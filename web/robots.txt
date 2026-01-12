@@ -1,0 +1,53 @@
+# Celestial - Astroloji ve Numeroloji Uygulaması
+# https://celestial.app
+
+User-agent: *
+Allow: /
+
+# Main pages
+Allow: /home
+Allow: /horoscope
+Allow: /horoscope/*
+Allow: /birth-chart
+Allow: /compatibility
+Allow: /tarot
+Allow: /numerology
+Allow: /kabbalah
+Allow: /aura
+Allow: /transits
+
+# Block onboarding and internal routes
+Disallow: /onboarding
+Disallow: /splash
+
+# Block query parameters that create duplicate content
+Disallow: /*?*
+
+# Crawl-delay for polite crawling
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://celestial.app/sitemap.xml
+
+# Google specific
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Bing specific
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Block bad bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /

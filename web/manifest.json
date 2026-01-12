@@ -1,0 +1,80 @@
+{
+    "name": "Celestial - Astroloji, Numeroloji ve Tarot",
+    "short_name": "Celestial",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#0D0D1A",
+    "theme_color": "#FFD700",
+    "description": "Günlük burç yorumları, kişiselleştirilmiş doğum haritası, tarot falı, numeroloji ve aura analizi. Türkiye'nin en kapsamlı astroloji uygulaması.",
+    "orientation": "portrait-primary",
+    "prefer_related_applications": false,
+    "categories": ["lifestyle", "entertainment", "utilities"],
+    "lang": "tr",
+    "dir": "ltr",
+    "scope": "/",
+    "id": "celestial-astrology-app",
+    "icons": [
+        {
+            "src": "icons/Icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "icons/Icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "icons/Icon-maskable-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "icons/Icon-maskable-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "Günlük Burç",
+            "short_name": "Burç",
+            "description": "Günlük burç yorumunu gör",
+            "url": "/horoscope",
+            "icons": [{"src": "icons/Icon-192.png", "sizes": "192x192"}]
+        },
+        {
+            "name": "Tarot Çek",
+            "short_name": "Tarot",
+            "description": "Günün tarot kartını çek",
+            "url": "/tarot",
+            "icons": [{"src": "icons/Icon-192.png", "sizes": "192x192"}]
+        },
+        {
+            "name": "Doğum Haritası",
+            "short_name": "Harita",
+            "description": "Doğum haritanı gör",
+            "url": "/birth-chart",
+            "icons": [{"src": "icons/Icon-192.png", "sizes": "192x192"}]
+        }
+    ],
+    "related_applications": [
+        {
+            "platform": "play",
+            "url": "https://play.google.com/store/apps/details?id=app.celestial",
+            "id": "app.celestial"
+        },
+        {
+            "platform": "itunes",
+            "url": "https://apps.apple.com/app/celestial/id123456789"
+        }
+    ],
+    "handle_links": "preferred",
+    "launch_handler": {
+        "client_mode": "navigate-existing"
+    }
+}
