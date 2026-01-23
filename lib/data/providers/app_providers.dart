@@ -6,6 +6,7 @@ import '../models/horoscope.dart';
 import '../models/house.dart';
 import '../services/horoscope_service.dart';
 import '../services/api/astrology_api_service.dart';
+import '../services/storage_service.dart';
 
 // User profile state using Notifier (Riverpod 2.x+)
 final userProfileProvider =
@@ -34,6 +35,62 @@ class UserProfileNotifier extends Notifier<UserProfile?> {
     }
   }
 }
+
+// Multiple profiles provider
+final savedProfilesProvider =
+    NotifierProvider<SavedProfilesNotifier, List<UserProfile>>(() {
+  return SavedProfilesNotifier();
+});
+
+class SavedProfilesNotifier extends Notifier<List<UserProfile>> {
+  @override
+  List<UserProfile> build() {
+    return StorageService.loadAllProfiles();
+  }
+
+  Future<void> addProfile(UserProfile profile) async {
+    await StorageService.saveProfile(profile);
+    state = StorageService.loadAllProfiles();
+  }
+
+  Future<void> updateProfile(UserProfile profile) async {
+    await StorageService.saveProfile(profile);
+    state = StorageService.loadAllProfiles();
+  }
+
+  Future<void> removeProfile(String id) async {
+    await StorageService.deleteProfile(id);
+    state = StorageService.loadAllProfiles();
+  }
+
+  Future<void> setPrimary(String id) async {
+    await StorageService.setPrimaryProfileId(id);
+    final profiles = state.map((p) {
+      return p.copyWith(isPrimary: p.id == id);
+    }).toList();
+    state = profiles;
+  }
+
+  void refresh() {
+    state = StorageService.loadAllProfiles();
+  }
+}
+
+final primaryProfileProvider = Provider<UserProfile?>((ref) {
+  final profiles = ref.watch(savedProfilesProvider);
+  final primaryId = StorageService.getPrimaryProfileId();
+
+  if (primaryId != null) {
+    final primary = profiles.where((p) => p.id == primaryId).firstOrNull;
+    if (primary != null) return primary;
+  }
+
+  return profiles.isNotEmpty ? profiles.first : null;
+});
+
+// Comparison profiles selection
+final comparisonProfile1Provider = StateProvider<UserProfile?>((ref) => null);
+final comparisonProfile2Provider = StateProvider<UserProfile?>((ref) => null);
 
 // Selected zodiac sign for viewing
 final selectedZodiacProvider =

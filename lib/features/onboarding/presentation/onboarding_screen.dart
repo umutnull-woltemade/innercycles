@@ -698,15 +698,12 @@ class _BirthPlacePickerState extends State<_BirthPlacePicker> {
       ),
       builder: (context) {
         String searchQuery = '';
-        bool showTurkeyOnly = true;
 
         return StatefulBuilder(
           builder: (context, setModalState) {
             List<CityData> filteredCities;
             if (searchQuery.isEmpty) {
-              filteredCities = showTurkeyOnly
-                  ? WorldCities.turkishCities
-                  : WorldCities.allCities;
+              filteredCities = WorldCities.allCities;
             } else {
               filteredCities = WorldCities.search(searchQuery);
             }
@@ -741,77 +738,6 @@ class _BirthPlacePickerState extends State<_BirthPlacePicker> {
                         ],
                       ),
                       const SizedBox(width: 60),
-                    ],
-                  ),
-                  const SizedBox(height: 12),
-                  // Filter toggle
-                  Row(
-                    children: [
-                      Expanded(
-                        child: GestureDetector(
-                          onTap: () => setModalState(() => showTurkeyOnly = true),
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(vertical: 10),
-                            decoration: BoxDecoration(
-                              color: showTurkeyOnly
-                                  ? colorScheme.primary.withAlpha(51)
-                                  : Colors.transparent,
-                              borderRadius: BorderRadius.circular(8),
-                              border: Border.all(
-                                color: showTurkeyOnly
-                                    ? colorScheme.primary
-                                    : (isDark ? AppColors.surfaceLight : Colors.grey.shade300),
-                              ),
-                            ),
-                            child: Center(
-                              child: Text(
-                                'Türkiye & KKTC',
-                                style: TextStyle(
-                                  color: showTurkeyOnly
-                                      ? colorScheme.primary
-                                      : (isDark ? AppColors.textMuted : AppColors.lightTextMuted),
-                                  fontWeight: showTurkeyOnly
-                                      ? FontWeight.bold
-                                      : FontWeight.normal,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: 8),
-                      Expanded(
-                        child: GestureDetector(
-                          onTap: () => setModalState(() => showTurkeyOnly = false),
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(vertical: 10),
-                            decoration: BoxDecoration(
-                              color: !showTurkeyOnly
-                                  ? colorScheme.secondary.withAlpha(51)
-                                  : Colors.transparent,
-                              borderRadius: BorderRadius.circular(8),
-                              border: Border.all(
-                                color: !showTurkeyOnly
-                                    ? colorScheme.secondary
-                                    : (isDark ? AppColors.surfaceLight : Colors.grey.shade300),
-                              ),
-                            ),
-                            child: Center(
-                              child: Text(
-                                'Tüm Dünya',
-                                style: TextStyle(
-                                  color: !showTurkeyOnly
-                                      ? colorScheme.secondary
-                                      : (isDark ? AppColors.textMuted : AppColors.lightTextMuted),
-                                  fontWeight: !showTurkeyOnly
-                                      ? FontWeight.bold
-                                      : FontWeight.normal,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
                     ],
                   ),
                   const SizedBox(height: 12),
@@ -930,7 +856,7 @@ class _YourSignPage extends StatelessWidget {
           'Lütfen doğum tarihini gir',
           style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                 color: AppColors.textSecondary,
-                fontSize: 16,
+                fontSize: 18,
               ),
         ),
       );
@@ -938,169 +864,236 @@ class _YourSignPage extends StatelessWidget {
 
     final sign = ZodiacSignExtension.fromDate(selectedDate!);
 
-    return SingleChildScrollView(
-      padding: const EdgeInsets.all(AppConstants.spacingXl),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const SizedBox(height: 20),
-          Text(
-            'Güneş Burcun',
-            style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  color: AppColors.textSecondary,
-                  fontSize: 18,
-                ),
-          ).animate().fadeIn(duration: 400.ms),
-          const SizedBox(height: AppConstants.spacingLg),
+          // Üst bölüm - Burç sembolü ve ismi
           Container(
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: sign.color.withAlpha(38),
-              shape: BoxShape.circle,
-              boxShadow: [
-                BoxShadow(
-                  color: sign.color.withAlpha(76),
-                  blurRadius: 40,
-                  spreadRadius: 10,
-                ),
-              ],
-            ),
-            child: Text(
-              sign.symbol,
-              style: TextStyle(
-                fontSize: 64,
-                color: sign.color,
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  sign.color.withAlpha(50),
+                  sign.color.withAlpha(20),
+                ],
               ),
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(color: sign.color.withAlpha(80)),
             ),
-          )
-              .animate()
-              .fadeIn(delay: 200.ms, duration: 600.ms)
-              .scale(begin: const Offset(0.5, 0.5), curve: Curves.elasticOut),
-          const SizedBox(height: AppConstants.spacingXl),
-          Text(
-            sign.nameTr,
-            style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                  color: sign.color,
-                  fontSize: 40,
-                  fontWeight: FontWeight.bold,
-                ),
-          ).animate().fadeIn(delay: 400.ms, duration: 400.ms),
-          const SizedBox(height: AppConstants.spacingSm),
-          Text(
-            sign.dateRange,
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: AppColors.textSecondary,
-                  fontSize: 16,
-                ),
-          ).animate().fadeIn(delay: 500.ms, duration: 400.ms),
-          const SizedBox(height: AppConstants.spacingLg),
-
-          // Data summary
-          Container(
-            padding: const EdgeInsets.all(AppConstants.spacingMd),
-            decoration: BoxDecoration(
-              color: AppColors.surfaceLight.withAlpha(76),
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Column(
+            child: Row(
               children: [
-                _buildDataRow(context, 'Doğum Tarihi', _formatDate(selectedDate!)),
-                if (selectedTime != null)
-                  _buildDataRow(
-                    context,
-                    'Doğum Saati',
-                    '${selectedTime!.hour.toString().padLeft(2, '0')}:${selectedTime!.minute.toString().padLeft(2, '0')}',
+                // Burç sembolü
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: sign.color.withAlpha(40),
+                    shape: BoxShape.circle,
+                    boxShadow: [
+                      BoxShadow(
+                        color: sign.color.withAlpha(100),
+                        blurRadius: 20,
+                        spreadRadius: 5,
+                      ),
+                    ],
                   ),
-                if (birthPlace != null)
-                  _buildDataRow(context, 'Doğum Yeri', birthPlace!),
+                  child: Text(
+                    sign.symbol,
+                    style: TextStyle(fontSize: 48, color: sign.color),
+                  ),
+                ).animate().scale(begin: const Offset(0.5, 0.5), curve: Curves.elasticOut, duration: 600.ms),
+                const SizedBox(width: 16),
+                // Burç bilgileri
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Güneş Burcun',
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              color: AppColors.textSecondary,
+                              fontSize: 14,
+                            ),
+                      ),
+                      Text(
+                        sign.nameTr,
+                        style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                              color: sign.color,
+                              fontSize: 32,
+                              fontWeight: FontWeight.bold,
+                            ),
+                      ),
+                      Text(
+                        sign.dateRange,
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                              color: AppColors.textSecondary,
+                              fontSize: 13,
+                            ),
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
-          ).animate().fadeIn(delay: 600.ms, duration: 400.ms),
+          ).animate().fadeIn(duration: 400.ms),
 
-          const SizedBox(height: AppConstants.spacingLg),
+          const SizedBox(height: 16),
 
-          // Analysis preview
-          Container(
-            padding: const EdgeInsets.all(AppConstants.spacingMd),
-            decoration: BoxDecoration(
-              gradient: AppColors.cardGradient,
-              borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: AppColors.auroraStart.withAlpha(76)),
-            ),
-            child: Column(
+          // Alt bölüm - Sol: Doğum bilgileri, Sağ: Çözümlenecekler
+          Expanded(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(Icons.auto_awesome, color: AppColors.starGold, size: 18),
-                    const SizedBox(width: 8),
-                    Text(
-                      'Senin İçin Çözümlenecekler',
-                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                            color: AppColors.starGold,
-                          ),
+                // Sol - Doğum Bilgileri
+                Expanded(
+                  child: Container(
+                    padding: const EdgeInsets.all(14),
+                    decoration: BoxDecoration(
+                      color: AppColors.surfaceLight.withAlpha(50),
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(color: Colors.white.withAlpha(30)),
                     ),
-                  ],
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Row(
+                          children: [
+                            Icon(Icons.person_outline, color: AppColors.auroraStart, size: 20),
+                            const SizedBox(width: 8),
+                            Text(
+                              'Doğum Bilgilerin',
+                              style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                                    color: AppColors.auroraStart,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                  ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 12),
+                        _buildCompactDataRow(context, '📅', 'Tarih', _formatDate(selectedDate!)),
+                        if (selectedTime != null)
+                          _buildCompactDataRow(
+                            context,
+                            '🕐',
+                            'Saat',
+                            '${selectedTime!.hour.toString().padLeft(2, '0')}:${selectedTime!.minute.toString().padLeft(2, '0')}',
+                          ),
+                        if (birthPlace != null)
+                          _buildCompactDataRow(context, '📍', 'Yer', birthPlace!),
+                      ],
+                    ),
+                  ).animate().fadeIn(delay: 300.ms, duration: 400.ms).slideX(begin: -0.2),
                 ),
-                const SizedBox(height: 12),
-                _buildFeatureRow(context, '10 Gezegen Pozisyonu', true),
-                _buildFeatureRow(context, 'Gezegen Açıları', true),
-                _buildFeatureRow(
-                    context, '12 Ev Sistemi', selectedTime != null && birthPlace != null),
-                _buildFeatureRow(context, 'Yükselen Burcu',
-                    selectedTime != null && birthPlace != null),
-                _buildFeatureRow(context, 'Psikolojik Profil', true),
-                _buildFeatureRow(context, 'Numeroloji', true),
+
+                const SizedBox(width: 12),
+
+                // Sağ - Çözümlenecekler
+                Expanded(
+                  child: Container(
+                    padding: const EdgeInsets.all(14),
+                    decoration: BoxDecoration(
+                      gradient: AppColors.cardGradient,
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(color: AppColors.starGold.withAlpha(60)),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Row(
+                          children: [
+                            Icon(Icons.auto_awesome, color: AppColors.starGold, size: 20),
+                            const SizedBox(width: 8),
+                            Flexible(
+                              child: Text(
+                                'Çözümlenecekler',
+                                style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                                      color: AppColors.starGold,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16,
+                                    ),
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 12),
+                        _buildCompactFeatureRow(context, '🪐', '10 Gezegen', true),
+                        _buildCompactFeatureRow(context, '📐', 'Gezegen Açıları', true),
+                        _buildCompactFeatureRow(context, '🏠', '12 Ev Sistemi', selectedTime != null && birthPlace != null),
+                        _buildCompactFeatureRow(context, '⬆️', 'Yükselen Burç', selectedTime != null && birthPlace != null),
+                        _buildCompactFeatureRow(context, '🧠', 'Psikolojik Profil', true),
+                        _buildCompactFeatureRow(context, '🔢', 'Numeroloji', true),
+                      ],
+                    ),
+                  ).animate().fadeIn(delay: 400.ms, duration: 400.ms).slideX(begin: 0.2),
+                ),
               ],
             ),
-          ).animate().fadeIn(delay: 700.ms, duration: 400.ms),
-
-          const SizedBox(height: 40),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildDataRow(BuildContext context, String label, String value) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            label,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: AppColors.textMuted,
-                ),
-          ),
-          Text(
-            value,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: AppColors.textPrimary,
-                  fontWeight: FontWeight.w500,
-                ),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildFeatureRow(BuildContext context, String feature, bool available) {
+  Widget _buildCompactDataRow(BuildContext context, String emoji, String label, String value) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4),
+      padding: const EdgeInsets.symmetric(vertical: 6),
       child: Row(
         children: [
+          Text(emoji, style: const TextStyle(fontSize: 16)),
+          const SizedBox(width: 10),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                label,
+                style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                      color: AppColors.textMuted,
+                      fontSize: 12,
+                    ),
+              ),
+              Text(
+                value,
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: AppColors.textPrimary,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 15,
+                    ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildCompactFeatureRow(BuildContext context, String emoji, String feature, bool available) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5),
+      child: Row(
+        children: [
+          Text(emoji, style: const TextStyle(fontSize: 15)),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Text(
+              feature,
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: available ? AppColors.textPrimary : AppColors.textMuted,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                  ),
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
           Icon(
             available ? Icons.check_circle : Icons.remove_circle_outline,
             size: 16,
             color: available ? AppColors.success : AppColors.textMuted,
-          ),
-          const SizedBox(width: 8),
-          Text(
-            feature,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: available ? AppColors.textPrimary : AppColors.textMuted,
-                ),
           ),
         ],
       ),

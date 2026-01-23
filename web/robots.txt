@@ -1,5 +1,5 @@
-# Celestial - Astroloji ve Numeroloji Uygulaması
-# https://celestial.app
+# Astrobobo - Astroloji ve Numeroloji Uygulaması
+# https://astrobobo.com
 
 User-agent: *
 Allow: /
@@ -27,7 +27,7 @@ Disallow: /*?*
 Crawl-delay: 1
 
 # Sitemap location
-Sitemap: https://celestial.app/sitemap.xml
+Sitemap: https://astrobobo.com/sitemap.xml
 
 # Google specific
 User-agent: Googlebot

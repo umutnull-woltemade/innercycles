@@ -1,6 +1,6 @@
 {
-    "name": "Celestial - Astroloji, Numeroloji ve Tarot",
-    "short_name": "Celestial",
+    "name": "Astrobobo - Astroloji, Numeroloji ve Tarot",
+    "short_name": "Astrobobo",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0D0D1A",
@@ -12,7 +12,7 @@
     "lang": "tr",
     "dir": "ltr",
     "scope": "/",
-    "id": "celestial-astrology-app",
+    "id": "astrobobo-astrology-app",
     "icons": [
         {
             "src": "icons/Icon-192.png",
@@ -65,12 +65,12 @@
     "related_applications": [
         {
             "platform": "play",
-            "url": "https://play.google.com/store/apps/details?id=app.celestial",
-            "id": "app.celestial"
+            "url": "https://play.google.com/store/apps/details?id=com.astrobobo",
+            "id": "com.astrobobo"
         },
         {
             "platform": "itunes",
-            "url": "https://apps.apple.com/app/celestial/id123456789"
+            "url": "https://apps.apple.com/app/astrobobo/id123456789"
         }
     ],
     "handle_links": "preferred",

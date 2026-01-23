@@ -12,6 +12,51 @@ class DailyHoroscope {
   final String luckyColor;
   final String mood;
 
+  // Kozmik Fısıltı - Geçmiş, Şimdi, Gelecek
+  final String pastInsight;      // Geçmişin Yankısı
+  final String presentEnergy;    // Şimdinin Enerjisi
+  final String futureGuidance;   // Geleceğin Fısıltısı
+  final String cosmicMessage;    // Evrenin Mesajı (kısa özet)
+
+  // Element ve Modalite Analizi
+  final String elementAnalysis;   // Element derinlemesine analizi
+  final String modalityAnalysis;  // Modalite yorumu
+
+  // Gezegensel Saatler ve Enerjiler
+  final String planetaryHourInfo;  // Günün gezegensel saatleri
+  final String rulingPlanetMessage; // Yönetici gezegen mesajı
+
+  // Ritüeller ve Pratikler
+  final String dailyRitual;       // Günlük ritüel önerisi
+  final String meditationFocus;   // Meditasyon odağı
+  final String affirmation;       // Günün olumlaması
+
+  // Kristaller ve Taşlar
+  final String crystalOfDay;      // Günün kristali
+  final String crystalMeaning;    // Kristal anlamı ve kullanımı
+
+  // Çakra ve Enerji Çalışması
+  final String chakraFocus;       // Odaklanılacak çakra
+  final String chakraExercise;    // Çakra egzersizi
+
+  // Ruh Hayvanı ve Semboller
+  final String spiritAnimal;      // Günün ruh hayvanı
+  final String spiritAnimalMessage; // Ruh hayvanı mesajı
+
+  // Numeroloji
+  final String numerologyInsight; // Numerolojik analiz
+
+  // Tarot Kartı
+  final String tarotCard;         // Günün tarot kartı
+  final String tarotMeaning;      // Tarot kartı yorumu
+
+  // Ay Fazı Etkisi
+  final String moonPhaseEffect;   // Ay fazının burca etkisi
+
+  // Özel Uyarılar
+  final String specialWarning;    // Özel dikkat edilecek konu
+  final String luckyTime;         // Şanslı saat aralığı
+
   DailyHoroscope({
     required this.sign,
     required this.date,
@@ -23,6 +68,29 @@ class DailyHoroscope {
     required this.luckyNumber,
     required this.luckyColor,
     required this.mood,
+    required this.pastInsight,
+    required this.presentEnergy,
+    required this.futureGuidance,
+    required this.cosmicMessage,
+    this.elementAnalysis = '',
+    this.modalityAnalysis = '',
+    this.planetaryHourInfo = '',
+    this.rulingPlanetMessage = '',
+    this.dailyRitual = '',
+    this.meditationFocus = '',
+    this.affirmation = '',
+    this.crystalOfDay = '',
+    this.crystalMeaning = '',
+    this.chakraFocus = '',
+    this.chakraExercise = '',
+    this.spiritAnimal = '',
+    this.spiritAnimalMessage = '',
+    this.numerologyInsight = '',
+    this.tarotCard = '',
+    this.tarotMeaning = '',
+    this.moonPhaseEffect = '',
+    this.specialWarning = '',
+    this.luckyTime = '',
   });
 
   Map<String, dynamic> toJson() => {
@@ -36,6 +104,10 @@ class DailyHoroscope {
         'luckyNumber': luckyNumber,
         'luckyColor': luckyColor,
         'mood': mood,
+        'pastInsight': pastInsight,
+        'presentEnergy': presentEnergy,
+        'futureGuidance': futureGuidance,
+        'cosmicMessage': cosmicMessage,
       };
 
   factory DailyHoroscope.fromJson(Map<String, dynamic> json) => DailyHoroscope(
@@ -49,6 +121,10 @@ class DailyHoroscope {
         luckyNumber: json['luckyNumber'] as String,
         luckyColor: json['luckyColor'] as String,
         mood: json['mood'] as String,
+        pastInsight: json['pastInsight'] as String? ?? '',
+        presentEnergy: json['presentEnergy'] as String? ?? '',
+        futureGuidance: json['futureGuidance'] as String? ?? '',
+        cosmicMessage: json['cosmicMessage'] as String? ?? '',
       );
 }
 

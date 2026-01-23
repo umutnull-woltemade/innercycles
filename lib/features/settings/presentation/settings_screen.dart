@@ -9,7 +9,9 @@ import '../../../data/providers/app_providers.dart';
 import '../../../data/services/localization_service.dart';
 import '../../../data/models/house.dart';
 import '../../../data/services/storage_service.dart';
+import '../../../data/services/url_launcher_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import 'notification_settings_section.dart';
 
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
@@ -38,8 +40,13 @@ class SettingsScreen extends ConsumerWidget {
                 _buildHouseSystemSection(context, ref, language, houseSystem, isDark),
                 const SizedBox(height: AppConstants.spacingLg),
                 _buildAccountSection(context, ref, language, isDark),
+                const SizedBox(height: AppConstants.spacingLg),
+                const NotificationSettingsSection()
+                    .animate()
+                    .fadeIn(delay: 350.ms, duration: 400.ms)
+                    .slideY(begin: 0.1),
                 const SizedBox(height: AppConstants.spacingXl),
-                _buildAppInfoSection(context, language, isDark),
+                _buildAppInfoSection(context, ref, language, isDark),
               ],
             ),
           ),
@@ -352,9 +359,12 @@ class SettingsScreen extends ConsumerWidget {
 
   Widget _buildAppInfoSection(
     BuildContext context,
+    WidgetRef ref,
     AppLanguage language,
     bool isDark,
   ) {
+    final urlLauncher = ref.read(urlLauncherServiceProvider);
+
     return _SettingsSection(
       title: _getLocalizedString('about', language),
       icon: Icons.info_outline,
@@ -366,8 +376,8 @@ class SettingsScreen extends ConsumerWidget {
             title: _getLocalizedString('rate_app', language),
             subtitle: _getLocalizedString('rate_app_desc', language),
             isDark: isDark,
-            onTap: () {
-              // TODO: Open app store rating
+            onTap: () async {
+              await urlLauncher.requestAppReview();
             },
           ),
           const Divider(height: 1),
@@ -376,8 +386,8 @@ class SettingsScreen extends ConsumerWidget {
             title: _getLocalizedString('privacy_policy', language),
             subtitle: null,
             isDark: isDark,
-            onTap: () {
-              // TODO: Open privacy policy
+            onTap: () async {
+              await urlLauncher.openPrivacyPolicy();
             },
           ),
           const Divider(height: 1),
@@ -386,13 +396,26 @@ class SettingsScreen extends ConsumerWidget {
             title: _getLocalizedString('terms_of_service', language),
             subtitle: null,
             isDark: isDark,
-            onTap: () {
-              // TODO: Open terms of service
+            onTap: () async {
+              await urlLauncher.openTermsOfService();
+            },
+          ),
+          const Divider(height: 1),
+          _SettingsTile(
+            icon: Icons.mail_outline,
+            title: _getLocalizedString('contact_support', language),
+            subtitle: null,
+            isDark: isDark,
+            onTap: () async {
+              await urlLauncher.openSupportEmail(
+                subject: 'Astrobobo Destek',
+                body: '\n\n---\nApp Version: 1.0.0',
+              );
             },
           ),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
-            'Celestial v1.0.0',
+            'Astrobobo v1.0.0',
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
                 ),
@@ -663,6 +686,18 @@ class SettingsScreen extends ConsumerWidget {
         AppLanguage.de: 'Nutzungsbedingungen',
         AppLanguage.es: 'Términos de Servicio',
         AppLanguage.ar: 'شروط الخدمة',
+      },
+      'contact_support': {
+        AppLanguage.en: 'Contact Support',
+        AppLanguage.tr: 'Destek ile İletişim',
+        AppLanguage.el: 'Επικοινωνία Υποστήριξης',
+        AppLanguage.bg: 'Свържете се с Поддръжката',
+        AppLanguage.ru: 'Связаться с Поддержкой',
+        AppLanguage.zh: '联系支持',
+        AppLanguage.fr: 'Contacter le Support',
+        AppLanguage.de: 'Support Kontaktieren',
+        AppLanguage.es: 'Contactar Soporte',
+        AppLanguage.ar: 'الاتصال بالدعم',
       },
     };
 

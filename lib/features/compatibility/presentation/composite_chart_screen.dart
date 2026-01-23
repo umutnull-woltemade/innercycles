@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/zodiac_sign.dart';
+import '../../../data/models/user_profile.dart';
 import '../../../data/models/advanced_astrology.dart';
 import '../../../data/services/advanced_astrology_service.dart';
 import '../../../data/providers/app_providers.dart';
@@ -32,9 +33,9 @@ class _CompositeChartScreenState extends ConsumerState<CompositeChartScreen> {
       _chart = AdvancedAstrologyService.generateCompositeChart(
         person1Name: userProfile.name ?? 'Sen',
         person2Name: _partnerNameController.text,
-        person1Sun: userProfile.sunSign ?? ZodiacSign.aries,
+        person1Sun: userProfile.sunSign,
         person2Sun: _partnerSun,
-        person1Moon: userProfile.moonSign ?? ZodiacSign.cancer,
+        person1Moon: userProfile.effectiveMoonSign,
         person2Moon: _partnerMoon,
       );
     });
@@ -164,7 +165,7 @@ class _CompositeChartScreenState extends ConsumerState<CompositeChartScreen> {
     );
   }
 
-  Widget _buildUserProfileCard(bool isDark, dynamic userProfile) {
+  Widget _buildUserProfileCard(bool isDark, UserProfile userProfile) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -212,8 +213,7 @@ class _CompositeChartScreenState extends ConsumerState<CompositeChartScreen> {
           ),
           const SizedBox(height: AppConstants.spacingMd),
           _buildInfoRow(isDark, Icons.person_outline, 'Isim', userProfile.name ?? 'Kullanici'),
-          if (userProfile.sunSign != null)
-            _buildInfoRow(isDark, Icons.wb_sunny_outlined, 'Gunes', userProfile.sunSign!.nameTr),
+          _buildInfoRow(isDark, Icons.wb_sunny_outlined, 'Gunes', userProfile.sunSign.nameTr),
           if (userProfile.moonSign != null)
             _buildInfoRow(isDark, Icons.nightlight_outlined, 'Ay', userProfile.moonSign!.nameTr),
         ],

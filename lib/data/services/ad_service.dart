@@ -3,43 +3,37 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../core/constants/app_constants.dart';
+import 'analytics_service.dart';
 
-/// Ad unit IDs - Replace with your actual AdMob IDs before release
+/// Ad unit IDs configuration
 class AdConfig {
   // Test IDs (for development)
   static const String testBannerId = 'ca-app-pub-3940256099942544/6300978111';
   static const String testInterstitialId = 'ca-app-pub-3940256099942544/1033173712';
   static const String testRewardedId = 'ca-app-pub-3940256099942544/5224354917';
 
-  // Production IDs - Replace these with your actual AdMob IDs
-  static const String prodBannerIdAndroid = 'ca-app-pub-XXXXXXXXXXXXXXXX/XXXXXXXXXX';
-  static const String prodBannerIdIos = 'ca-app-pub-XXXXXXXXXXXXXXXX/XXXXXXXXXX';
-  static const String prodInterstitialIdAndroid = 'ca-app-pub-XXXXXXXXXXXXXXXX/XXXXXXXXXX';
-  static const String prodInterstitialIdIos = 'ca-app-pub-XXXXXXXXXXXXXXXX/XXXXXXXXXX';
-  static const String prodRewardedIdAndroid = 'ca-app-pub-XXXXXXXXXXXXXXXX/XXXXXXXXXX';
-  static const String prodRewardedIdIos = 'ca-app-pub-XXXXXXXXXXXXXXXX/XXXXXXXXXX';
-
   // Use test ads in debug mode
   static bool get isTestMode => kDebugMode;
 
   static String get bannerId {
     if (isTestMode) return testBannerId;
-    if (Platform.isAndroid) return prodBannerIdAndroid;
-    if (Platform.isIOS) return prodBannerIdIos;
+    if (Platform.isAndroid) return AppConstants.admobBannerIdAndroid;
+    if (Platform.isIOS) return AppConstants.admobBannerIdIos;
     return testBannerId;
   }
 
   static String get interstitialId {
     if (isTestMode) return testInterstitialId;
-    if (Platform.isAndroid) return prodInterstitialIdAndroid;
-    if (Platform.isIOS) return prodInterstitialIdIos;
+    if (Platform.isAndroid) return AppConstants.admobInterstitialIdAndroid;
+    if (Platform.isIOS) return AppConstants.admobInterstitialIdIos;
     return testInterstitialId;
   }
 
   static String get rewardedId {
     if (isTestMode) return testRewardedId;
-    if (Platform.isAndroid) return prodRewardedIdAndroid;
-    if (Platform.isIOS) return prodRewardedIdIos;
+    if (Platform.isAndroid) return AppConstants.admobRewardedIdAndroid;
+    if (Platform.isIOS) return AppConstants.admobRewardedIdIos;
     return testRewardedId;
   }
 }
@@ -54,6 +48,8 @@ enum AdPlacement {
   auraResult,
   postAnalysis,
   premiumUnlock,
+  homeScreen,
+  settingsScreen,
 }
 
 /// AdService manages all ad operations
@@ -63,6 +59,7 @@ class AdService {
   bool _isInterstitialReady = false;
   bool _isRewardedReady = false;
   int _analysisCount = 0;
+  bool _isInitialized = false;
 
   // Show interstitial every N analyses
   static const int _interstitialFrequency = 3;
@@ -71,19 +68,43 @@ class AdService {
   bool _isPremium = false;
   bool get isPremium => _isPremium;
 
+  // Analytics
+  AnalyticsService? _analytics;
+
   /// Initialize the ad service
-  Future<void> initialize() async {
+  Future<void> initialize({AnalyticsService? analytics}) async {
+    if (_isInitialized) return;
     if (kIsWeb) return; // Ads not supported on web
 
-    await MobileAds.instance.initialize();
+    _analytics = analytics;
 
-    // Load premium status
-    final prefs = await SharedPreferences.getInstance();
-    _isPremium = prefs.getBool('is_premium') ?? false;
+    try {
+      await MobileAds.instance.initialize();
+      _isInitialized = true;
 
-    if (!_isPremium) {
-      _loadInterstitialAd();
-      _loadRewardedAd();
+      // Configure test devices in debug mode
+      if (kDebugMode) {
+        MobileAds.instance.updateRequestConfiguration(
+          RequestConfiguration(
+            testDeviceIds: ['YOUR_TEST_DEVICE_ID'], // Add your test device IDs
+          ),
+        );
+      }
+
+      // Load premium status
+      final prefs = await SharedPreferences.getInstance();
+      _isPremium = prefs.getBool('is_premium') ?? false;
+
+      if (!_isPremium) {
+        _loadInterstitialAd();
+        _loadRewardedAd();
+      }
+
+      _logAdEvent('ads_initialized', 'init');
+    } catch (e) {
+      if (kDebugMode) {
+        debugPrint('AdService: Initialization failed - $e');
+      }
     }
   }
 
@@ -92,30 +113,54 @@ class AdService {
     _isPremium = isPremium;
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool('is_premium', isPremium);
+
+    if (isPremium) {
+      // Dispose ads when user becomes premium
+      _interstitialAd?.dispose();
+      _rewardedAd?.dispose();
+      _interstitialAd = null;
+      _rewardedAd = null;
+      _isInterstitialReady = false;
+      _isRewardedReady = false;
+    } else {
+      // Reload ads when premium expires
+      _loadInterstitialAd();
+      _loadRewardedAd();
+    }
   }
 
-  /// Create a banner ad
+  /// Create a banner ad widget
   BannerAd createBannerAd({
     required AdSize size,
     required void Function(Ad) onAdLoaded,
     required void Function(Ad, LoadAdError) onAdFailedToLoad,
+    AdPlacement placement = AdPlacement.homeScreen,
   }) {
     return BannerAd(
       adUnitId: AdConfig.bannerId,
       size: size,
       request: const AdRequest(),
       listener: BannerAdListener(
-        onAdLoaded: onAdLoaded,
-        onAdFailedToLoad: onAdFailedToLoad,
-        onAdOpened: (ad) => _logAdEvent('banner_opened'),
-        onAdClosed: (ad) => _logAdEvent('banner_closed'),
-        onAdImpression: (ad) => _logAdEvent('banner_impression'),
+        onAdLoaded: (ad) {
+          _logAdEvent('banner', 'loaded', placement: placement);
+          onAdLoaded(ad);
+        },
+        onAdFailedToLoad: (ad, error) {
+          _logAdEvent('banner', 'failed', placement: placement);
+          onAdFailedToLoad(ad, error);
+        },
+        onAdOpened: (ad) => _logAdEvent('banner', 'opened', placement: placement),
+        onAdClosed: (ad) => _logAdEvent('banner', 'closed', placement: placement),
+        onAdImpression: (ad) => _logAdEvent('banner', 'impression', placement: placement),
+        onAdClicked: (ad) => _logAdEvent('banner', 'clicked', placement: placement),
       ),
     );
   }
 
   /// Load interstitial ad
   void _loadInterstitialAd() {
+    if (_isPremium || kIsWeb) return;
+
     InterstitialAd.load(
       adUnitId: AdConfig.interstitialId,
       request: const AdRequest(),
@@ -123,25 +168,36 @@ class AdService {
         onAdLoaded: (ad) {
           _interstitialAd = ad;
           _isInterstitialReady = true;
-          _logAdEvent('interstitial_loaded');
+          _logAdEvent('interstitial', 'loaded');
 
           ad.fullScreenContentCallback = FullScreenContentCallback(
+            onAdShowedFullScreenContent: (ad) {
+              _logAdEvent('interstitial', 'showed');
+            },
             onAdDismissedFullScreenContent: (ad) {
+              _logAdEvent('interstitial', 'dismissed');
               ad.dispose();
               _isInterstitialReady = false;
               _loadInterstitialAd(); // Preload next
             },
             onAdFailedToShowFullScreenContent: (ad, error) {
+              _logAdEvent('interstitial', 'show_failed');
               ad.dispose();
               _isInterstitialReady = false;
               _loadInterstitialAd();
             },
+            onAdImpression: (ad) {
+              _logAdEvent('interstitial', 'impression');
+            },
+            onAdClicked: (ad) {
+              _logAdEvent('interstitial', 'clicked');
+            },
           );
         },
         onAdFailedToLoad: (error) {
-          _logAdEvent('interstitial_failed: ${error.message}');
+          _logAdEvent('interstitial', 'load_failed');
           _isInterstitialReady = false;
-          // Retry after delay
+          // Retry after delay with exponential backoff
           Future.delayed(const Duration(seconds: 30), _loadInterstitialAd);
         },
       ),
@@ -150,6 +206,8 @@ class AdService {
 
   /// Load rewarded ad
   void _loadRewardedAd() {
+    if (kIsWeb) return;
+
     RewardedAd.load(
       adUnitId: AdConfig.rewardedId,
       request: const AdRequest(),
@@ -157,23 +215,34 @@ class AdService {
         onAdLoaded: (ad) {
           _rewardedAd = ad;
           _isRewardedReady = true;
-          _logAdEvent('rewarded_loaded');
+          _logAdEvent('rewarded', 'loaded');
 
           ad.fullScreenContentCallback = FullScreenContentCallback(
+            onAdShowedFullScreenContent: (ad) {
+              _logAdEvent('rewarded', 'showed');
+            },
             onAdDismissedFullScreenContent: (ad) {
+              _logAdEvent('rewarded', 'dismissed');
               ad.dispose();
               _isRewardedReady = false;
               _loadRewardedAd(); // Preload next
             },
             onAdFailedToShowFullScreenContent: (ad, error) {
+              _logAdEvent('rewarded', 'show_failed');
               ad.dispose();
               _isRewardedReady = false;
               _loadRewardedAd();
             },
+            onAdImpression: (ad) {
+              _logAdEvent('rewarded', 'impression');
+            },
+            onAdClicked: (ad) {
+              _logAdEvent('rewarded', 'clicked');
+            },
           );
         },
         onAdFailedToLoad: (error) {
-          _logAdEvent('rewarded_failed: ${error.message}');
+          _logAdEvent('rewarded', 'load_failed');
           _isRewardedReady = false;
           // Retry after delay
           Future.delayed(const Duration(seconds: 30), _loadRewardedAd);
@@ -191,7 +260,6 @@ class AdService {
     if (_analysisCount >= _interstitialFrequency && _isInterstitialReady) {
       _analysisCount = 0;
       await _interstitialAd?.show();
-      _logAdEvent('interstitial_shown');
       return true;
     }
 
@@ -203,8 +271,8 @@ class AdService {
     if (_isPremium || kIsWeb) return false;
 
     if (_isInterstitialReady) {
+      _logAdEvent('interstitial', 'show_requested', placement: placement);
       await _interstitialAd?.show();
-      _logAdEvent('interstitial_shown_${placement.name}');
       return true;
     }
 
@@ -219,9 +287,11 @@ class AdService {
     if (kIsWeb) return false;
 
     if (_isRewardedReady && _rewardedAd != null) {
+      _logAdEvent('rewarded', 'show_requested', placement: placement);
+
       await _rewardedAd!.show(
         onUserEarnedReward: (ad, reward) {
-          _logAdEvent('rewarded_earned_${placement.name}');
+          _logAdEvent('rewarded', 'reward_earned', placement: placement);
           onRewardEarned();
         },
       );
@@ -234,28 +304,38 @@ class AdService {
   /// Check if rewarded ad is available
   bool get isRewardedAdReady => _isRewardedReady && !kIsWeb;
 
+  /// Check if interstitial ad is ready
+  bool get isInterstitialReady => _isInterstitialReady && !kIsWeb;
+
+  /// Get remaining analyses before next interstitial
+  int get analysesUntilInterstitial => _interstitialFrequency - _analysisCount;
+
   /// Dispose ads
   void dispose() {
     _interstitialAd?.dispose();
     _rewardedAd?.dispose();
+    _interstitialAd = null;
+    _rewardedAd = null;
   }
 
-  void _logAdEvent(String event) {
+  void _logAdEvent(String adType, String action, {AdPlacement? placement}) {
     if (kDebugMode) {
-      debugPrint('AdService: $event');
+      debugPrint('AdService: $adType $action ${placement?.name ?? ''}');
     }
-    // TODO: Add analytics logging here
+    _analytics?.logAdEvent(adType, action, placement: placement?.name);
   }
 }
 
 /// AdService provider
 final adServiceProvider = Provider<AdService>((ref) {
+  final analytics = ref.watch(analyticsServiceProvider);
   final service = AdService();
+  service.initialize(analytics: analytics);
   ref.onDispose(() => service.dispose());
   return service;
 });
 
-/// Premium status provider
+/// Premium status provider (from AdService)
 final isPremiumProvider = Provider<bool>((ref) {
   return ref.watch(adServiceProvider).isPremium;
 });

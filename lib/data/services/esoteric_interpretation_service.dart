@@ -9,18 +9,18 @@ class EsotericInterpretationService {
   static String getSunInterpretation(ZodiacSign sign) {
     final interpretations = {
       ZodiacSign.aries: '''
-Ates elementiyle yaratilmis ruhun, kozmik iradenin ilk kivilcimini tasiyor. Koç enerjisi sende, evrenin "Ol!" emrini temsil ediyor - saf yaratici guc, baslatici enerji.
+Ateş elementiyle yaratılmış ruhun, kozmik iradenin ilk kıvılcımını taşıyor. Koç enerjisi sende, evrenin "Ol!" emrini temsil ediyor - saf yaratıcı güç, başlatıcı enerji.
 
-Ruhun bu yasama, liderlik ve cesaret derslerini ogrenmeye geldi. Korkusuzca ilerleme, yeni baslangiçlar yapma ve kendi yolunu açma senin kozmik gorevlerin arasinda.
+Ruhun bu yaşama, liderlik ve cesaret derslerini öğrenmeye geldi. Korkusuzca ilerleme, yeni başlangıçlar yapma ve kendi yolunu açma senin kozmik görevlerin arasında.
 
-Golgen, sabırsızlık ve dürtüsellik olabilir. Ancak bu "golge" aslinda senin yanlis anlasilmis gucun - onu donusturduğünde, vizyoner bir öncü olursun.
+Gölgen, sabırsızlık ve dürtüsellik olabilir. Ancak bu "gölge" aslında senin yanlış anlaşılmış gücün - onu dönüştürdüğünde, vizyoner bir öncü olursun.
 
-Ruhsal yolculugunda, ego ile ruh arasindaki dengeyi bulmak en buyuk dersin. "Ben varım" diyebilmek kutsal bir haktir - ama "Biz varız" demek ustaliga giden yoldur.
+Ruhsal yolculuğunda, ego ile ruh arasındaki dengeyi bulmak en büyük dersin. "Ben varım" diyebilmek kutsal bir haktır - ama "Biz varız" demek ustalığa giden yoldur.
 ''',
       ZodiacSign.taurus: '''
-Toprak elementinin en sabit, en verimli ifadesisin. Boga enerjisi sende, Dünya Ana'nin bereketini, maddenin kutsalligini temsil ediyor.
+Toprak elementinin en sabit, en verimli ifadesisin. Boğa enerjisi sende, Dünya Ana'nın bereketini, maddenin kutsallığını temsil ediyor.
 
-Ruhun bu yasama, değer ve bolluk derslerini kesfetmeye geldi. Neyin gerçekten değerli olduğunu - para ve mal otesinde - anlamak senin spiritüel yolculuğun.
+Ruhun bu yaşama, değer ve bolluk derslerini keşfetmeye geldi. Neyin gerçekten değerli olduğunu - para ve mal ötesinde - anlamak senin spiritüel yolculuğun.
 
 Haz alma kapasitenin yüksekliği bir lanet değil, bir armağan. Beş duyunla evreni deneyimlemen, ruhsal uyanışın bedeni aracığıdır.
 

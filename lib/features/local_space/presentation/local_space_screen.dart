@@ -22,6 +22,11 @@ class _LocalSpaceScreenState extends ConsumerState<LocalSpaceScreen>
   LocalSpaceChart? _chart;
   late TabController _tabController;
 
+  // Compass rotation state
+  double _compassRotation = 0.0;
+  double _startRotation = 0.0;
+  Offset? _startPosition;
+
   @override
   void initState() {
     super.initState();
@@ -53,6 +58,41 @@ class _LocalSpaceScreenState extends ConsumerState<LocalSpaceScreen>
         latitude: latitude,
         longitude: longitude,
       );
+    });
+  }
+
+  // Compass rotation handlers
+  void _onPanStart(DragStartDetails details) {
+    _startPosition = details.localPosition;
+    _startRotation = _compassRotation;
+  }
+
+  void _onPanUpdate(DragUpdateDetails details) {
+    if (_startPosition == null) return;
+
+    // Calculate rotation based on circular gesture
+    const center = Offset(140, 140); // Center of 280x280 compass
+    final startAngle = math.atan2(
+      _startPosition!.dy - center.dy,
+      _startPosition!.dx - center.dx,
+    );
+    final currentAngle = math.atan2(
+      details.localPosition.dy - center.dy,
+      details.localPosition.dx - center.dx,
+    );
+
+    setState(() {
+      _compassRotation = _startRotation + (currentAngle - startAngle);
+    });
+  }
+
+  void _onPanEnd(DragEndDetails details) {
+    _startPosition = null;
+  }
+
+  void _resetRotation() {
+    setState(() {
+      _compassRotation = 0.0;
     });
   }
 
@@ -338,25 +378,109 @@ class _LocalSpaceScreenState extends ConsumerState<LocalSpaceScreen>
       ),
       child: Column(
         children: [
-          Text(
-            'Gezegen Pusula',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 18,
-              color: isDark ? Colors.white : AppColors.textDark,
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Gezegen Pusula',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                  color: isDark ? Colors.white : AppColors.textDark,
+                ),
+              ),
+              const SizedBox(width: 8),
+              Icon(
+                Icons.touch_app,
+                size: 16,
+                color: Colors.teal.withValues(alpha: 0.7),
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Döndürmek için sürükleyin',
+                style: TextStyle(
+                  fontSize: 12,
+                  color: isDark ? Colors.white54 : AppColors.textLight,
+                ),
+              ),
+              if (_compassRotation != 0.0) ...[
+                const SizedBox(width: 8),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                  decoration: BoxDecoration(
+                    color: Colors.teal.withValues(alpha: 0.2),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Text(
+                    '${(_compassRotation * 180 / math.pi).toStringAsFixed(0)}°',
+                    style: TextStyle(
+                      fontSize: 11,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.teal,
+                    ),
+                  ),
+                ),
+              ],
+            ],
           ),
           const SizedBox(height: AppConstants.spacingMd),
-          SizedBox(
-            width: 280,
-            height: 280,
-            child: CustomPaint(
-              painter: _CompassPainter(
-                planetLines: _chart!.planetLines,
-                isDark: isDark,
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              GestureDetector(
+                onPanStart: _onPanStart,
+                onPanUpdate: _onPanUpdate,
+                onPanEnd: _onPanEnd,
+                onDoubleTap: _resetRotation,
+                child: SizedBox(
+                  width: 280,
+                  height: 280,
+                  child: Transform.rotate(
+                    angle: _compassRotation,
+                    child: CustomPaint(
+                      painter: _CompassPainter(
+                        planetLines: _chart!.planetLines,
+                        isDark: isDark,
+                        rotation: _compassRotation,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              // Center indicator (fixed - doesn't rotate)
+              Container(
+                width: 12,
+                height: 12,
+                decoration: BoxDecoration(
+                  color: Colors.teal,
+                  shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.teal.withValues(alpha: 0.5),
+                      blurRadius: 8,
+                      spreadRadius: 2,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          if (_compassRotation != 0.0) ...[
+            const SizedBox(height: 8),
+            TextButton.icon(
+              onPressed: _resetRotation,
+              icon: const Icon(Icons.refresh, size: 16),
+              label: const Text('Sıfırla'),
+              style: TextButton.styleFrom(
+                foregroundColor: Colors.teal,
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
               ),
             ),
-          ),
+          ],
           const SizedBox(height: AppConstants.spacingMd),
           Wrap(
             spacing: 8,
@@ -760,8 +884,13 @@ class _LocalSpaceScreenState extends ConsumerState<LocalSpaceScreen>
 class _CompassPainter extends CustomPainter {
   final List<LocalSpaceLine> planetLines;
   final bool isDark;
+  final double rotation;
 
-  _CompassPainter({required this.planetLines, required this.isDark});
+  _CompassPainter({
+    required this.planetLines,
+    required this.isDark,
+    this.rotation = 0.0,
+  });
 
   @override
   void paint(Canvas canvas, Size size) {

@@ -103,7 +103,7 @@ class _WeeklyHoroscopeScreenState extends State<WeeklyHoroscopeScreen> {
           const SizedBox(width: AppConstants.spacingSm),
           Expanded(
             child: Text(
-              'Haftalik Burc Yorumu',
+              'Haftalık Burç Yorumu',
               style: Theme.of(context).textTheme.headlineSmall,
             ),
           ),
@@ -261,7 +261,7 @@ class _WeeklyHoroscopeScreenState extends State<WeeklyHoroscopeScreen> {
                   borderRadius: BorderRadius.circular(AppConstants.radiusFull),
                 ),
                 child: Text(
-                  'Sans Gunu: ${_horoscope.luckyDay}',
+                  'Şans Günü: ${_horoscope.luckyDay}',
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: AppColors.starGold,
                         fontWeight: FontWeight.w600,
@@ -298,7 +298,7 @@ class _WeeklyHoroscopeScreenState extends State<WeeklyHoroscopeScreen> {
     final categories = [
       {
         'icon': Icons.favorite,
-        'title': 'Ask',
+        'title': 'Aşk',
         'content': _horoscope.loveWeek,
         'color': Colors.pink,
       },
@@ -310,7 +310,7 @@ class _WeeklyHoroscopeScreenState extends State<WeeklyHoroscopeScreen> {
       },
       {
         'icon': Icons.health_and_safety,
-        'title': 'Saglik',
+        'title': 'Sağlık',
         'content': _horoscope.healthWeek,
         'color': Colors.green,
       },
@@ -421,7 +421,7 @@ class _WeeklyHoroscopeScreenState extends State<WeeklyHoroscopeScreen> {
               ),
               const SizedBox(width: AppConstants.spacingMd),
               Text(
-                'Onemli Tarihler',
+                'Önemli Tarihler',
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
@@ -482,7 +482,7 @@ class _WeeklyHoroscopeScreenState extends State<WeeklyHoroscopeScreen> {
           ),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
-            'Haftalik Afirmasyon',
+            'Haftalık Afirmasyon',
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                   color: AppColors.starGold,

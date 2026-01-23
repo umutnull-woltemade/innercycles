@@ -87,7 +87,7 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
                     ),
               ),
               Text(
-                'Dogum Gunu Haritasi',
+                'Doğum Günü Haritası',
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: AppColors.textSecondary,
                     ),
@@ -219,7 +219,7 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      'Gunes ${sunSign.nameTr} burcuna donuyor',
+                      'Güneş ${sunSign.nameTr} burcuna dönüyor',
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                             color: AppColors.textSecondary,
                           ),
@@ -242,15 +242,15 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    _buildInfoItem(context, 'Donus Tarihi', _formatDate(_returnData.exactReturnDate)),
-                    _buildInfoItem(context, 'Yukselen', _returnData.risingSign.nameTr),
+                    _buildInfoItem(context, 'Dönüş Tarihi', _formatDate(_returnData.exactReturnDate)),
+                    _buildInfoItem(context, 'Yükselen', _returnData.risingSign.nameTr),
                   ],
                 ),
                 const SizedBox(height: AppConstants.spacingSm),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    _buildInfoItem(context, 'Gunes Evi', '${_returnData.sunHouse}. Ev'),
+                    _buildInfoItem(context, 'Güneş Evi', '${_returnData.sunHouse}. Ev'),
                     _buildInfoItem(context, 'Ay Burcu', _returnData.moonSign.nameTr),
                   ],
                 ),
@@ -293,7 +293,7 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
             const Icon(Icons.auto_awesome, color: AppColors.starGold, size: 20),
             const SizedBox(width: 8),
             Text(
-              'Yil Temalari',
+              'Yıl Temaları',
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                     color: AppColors.textPrimary,
                   ),
@@ -363,8 +363,8 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
 
   Widget _buildMonthlyHighlights(BuildContext context) {
     final months = [
-      'Ocak', 'Subat', 'Mart', 'Nisan', 'Mayis', 'Haziran',
-      'Temmuz', 'Agustos', 'Eylul', 'Ekim', 'Kasim', 'Aralik'
+      'Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran',
+      'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'
     ];
 
     return Column(
@@ -375,7 +375,7 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
             const Icon(Icons.calendar_month, color: AppColors.auroraStart, size: 20),
             const SizedBox(width: 8),
             Text(
-              'Aylik One Cikanlar',
+              'Aylık Öne Çıkanlar',
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                     color: AppColors.textPrimary,
                   ),
@@ -453,7 +453,7 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
             const Icon(Icons.event_note, color: AppColors.twilightStart, size: 20),
             const SizedBox(width: 8),
             Text(
-              'Onemli Tarihler',
+              'Önemli Tarihler',
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                     color: AppColors.textPrimary,
                   ),
@@ -547,7 +547,7 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
               const Icon(Icons.lightbulb_outline, color: AppColors.auroraStart, size: 20),
               const SizedBox(width: 8),
               Text(
-                'Yil Icin Onerim',
+                'Yıl İçin Önerim',
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       color: AppColors.auroraStart,
                       fontWeight: FontWeight.bold,
@@ -570,8 +570,8 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
 
   String _formatDate(DateTime date) {
     final months = [
-      'Ocak', 'Subat', 'Mart', 'Nisan', 'Mayis', 'Haziran',
-      'Temmuz', 'Agustos', 'Eylul', 'Ekim', 'Kasim', 'Aralik'
+      'Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran',
+      'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'
     ];
     return '${date.day} ${months[date.month - 1]} ${date.year}';
   }
@@ -612,14 +612,14 @@ class SolarReturnCalculator {
 
   static List<SolarReturnTheme> _generateThemes(int seed, int sunHouse) {
     final allThemes = [
-      SolarReturnTheme(title: 'Kariyer Odagi', description: 'Mesleki gelisim ve toplumsal konum on planda', emoji: '💼', color: AppColors.starGold),
-      SolarReturnTheme(title: 'Iliskiler', description: 'Partnerllik ve isbirliklerinde onemli gelismeler', emoji: '💕', color: Colors.pink),
-      SolarReturnTheme(title: 'Kisisel Gelisim', description: 'Kendinizi yeniden kesfetme zamani', emoji: '🌱', color: AppColors.earthElement),
-      SolarReturnTheme(title: 'Finansal Buyume', description: 'Maddi konularda firsatlar', emoji: '💰', color: AppColors.celestialGold),
-      SolarReturnTheme(title: 'Egitim ve Seyahat', description: 'Ufkunuzu genisletme zamani', emoji: '✈️', color: AppColors.airElement),
-      SolarReturnTheme(title: 'Ev ve Aile', description: 'Koklere donus ve yuva kurma', emoji: '🏠', color: AppColors.waterElement),
-      SolarReturnTheme(title: 'Yaraticilik', description: 'Sanatsal ifade ve eglence', emoji: '🎨', color: AppColors.auroraStart),
-      SolarReturnTheme(title: 'Saglik ve Rutin', description: 'Gunluk yasami iyilestirme', emoji: '🧘', color: Colors.teal),
+      SolarReturnTheme(title: 'Kariyer Odağı', description: 'Mesleki gelişim ve toplumsal konum ön planda', emoji: '💼', color: AppColors.starGold),
+      SolarReturnTheme(title: 'İlişkiler', description: 'Partnerlik ve iş birliklerinde önemli gelişmeler', emoji: '💕', color: Colors.pink),
+      SolarReturnTheme(title: 'Kişisel Gelişim', description: 'Kendinizi yeniden keşfetme zamanı', emoji: '🌱', color: AppColors.earthElement),
+      SolarReturnTheme(title: 'Finansal Büyüme', description: 'Maddi konularda fırsatlar', emoji: '💰', color: AppColors.celestialGold),
+      SolarReturnTheme(title: 'Eğitim ve Seyahat', description: 'Ufkunuzu genişletme zamanı', emoji: '✈️', color: AppColors.airElement),
+      SolarReturnTheme(title: 'Ev ve Aile', description: 'Köklere dönüş ve yuva kurma', emoji: '🏠', color: AppColors.waterElement),
+      SolarReturnTheme(title: 'Yaratıcılık', description: 'Sanatsal ifade ve eğlence', emoji: '🎨', color: AppColors.auroraStart),
+      SolarReturnTheme(title: 'Sağlık ve Rutin', description: 'Günlük yaşamı iyileştirme', emoji: '🧘', color: Colors.teal),
     ];
 
     // Select 3-4 themes based on sun house
@@ -635,7 +635,7 @@ class SolarReturnCalculator {
   }
 
   static List<MonthlyHighlight> _generateMonthlyHighlights(int seed) {
-    final keywords = ['Baslangic', 'Buyume', 'Zorluk', 'Firsat', 'Dinlenme', 'Aksiyon', 'Dusunme', 'Ilerleme', 'Degisim', 'Denge', 'Hasat', 'Kapaniş'];
+    final keywords = ['Başlangıç', 'Büyüme', 'Zorluk', 'Fırsat', 'Dinlenme', 'Aksiyon', 'Düşünme', 'İlerleme', 'Değişim', 'Denge', 'Hasat', 'Kapanış'];
     final emojis = ['🚀', '🌿', '⚡', '✨', '🌙', '🔥', '🤔', '📈', '🔄', '⚖️', '🌾', '🎁'];
 
     return List.generate(12, (month) {
@@ -658,25 +658,25 @@ class SolarReturnCalculator {
       KeyDate(
         date: DateTime(year, 3, 20 + (seed % 3)),
         title: 'Bahar Ekinoksu',
-        description: 'Yeni projelere baslamak icin ideal',
+        description: 'Yeni projelere başlamak için ideal',
         emoji: '🌸',
       ),
       KeyDate(
         date: DateTime(year, 6, 20 + (seed % 2)),
-        title: 'Yaz Donumu',
-        description: 'Enerji zirvede, aksiyona gec',
+        title: 'Yaz Dönümü',
+        description: 'Enerji zirvede, aksiyona geç',
         emoji: '☀️',
       ),
       KeyDate(
         date: DateTime(year, 9, 22 + (seed % 2)),
         title: 'Sonbahar Ekinoksu',
-        description: 'Dengeleme ve dusunme zamani',
+        description: 'Dengeleme ve düşünme zamanı',
         emoji: '🍂',
       ),
       KeyDate(
         date: DateTime(year, 12, 21),
-        title: 'Kis Donumu',
-        description: 'Ice donus ve planlama',
+        title: 'Kış Dönümü',
+        description: 'İçe dönüş ve planlama',
         emoji: '❄️',
       ),
     ];
@@ -684,21 +684,21 @@ class SolarReturnCalculator {
 
   static String _generateAdvice(int sunHouse, ZodiacSign rising) {
     final houseAdvice = {
-      1: 'Bu yil kendinize odaklanin. Kisisel hedeflerinizi belirleyin ve cesaretinizi kullanin.',
-      2: 'Finansal planlarinizi gozden gecirin. Degerleriniz ve kaynaklariniz uzerinde calisin.',
-      3: 'Iletisim becerilerinizi gelistirin. Yakin cevrenizle baglantilari guclendirin.',
-      4: 'Evinize ve ailenize zaman ayirin. Duygusal guvenliginizi oncelikli yapin.',
-      5: 'Yaraticiliginda ozgur birakin. Ask ve eglence hayatinda canlilik bekleyin.',
-      6: 'Sagliginiza ve gunluk rutinlerinize dikkat edin. Is ortaminda gelismeler olacak.',
-      7: 'Iliskileriniz on planda. Ortakliklar ve evlilik konularinda onemli adimlar.',
-      8: 'Derinlere inin. Donusum ve yenilenme zamani. Ortak finanslar onem kazaniyor.',
-      9: 'Ufkunuzu genisletin. Egitim, seyahat ve felsefi arayislar icin ideal yil.',
-      10: 'Kariyer hedeflerinize odaklanin. Toplumda yerinizi belirleyin.',
-      11: 'Sosyal cevrenizi genisletin. Gelecek hayalleriniz icin calisin.',
-      12: 'Ice donus yili. Ruhsal gelisim ve dinlenme oncelikli olmali.',
+      1: 'Bu yıl kendinize odaklanın. Kişisel hedeflerinizi belirleyin ve cesaretinizi kullanın.',
+      2: 'Finansal planlarınızı gözden geçirin. Değerleriniz ve kaynaklarınız üzerinde çalışın.',
+      3: 'İletişim becerilerinizi geliştirin. Yakın çevrenizle bağlantıları güçlendirin.',
+      4: 'Evinize ve ailenize zaman ayırın. Duygusal güvenliğinizi öncelikli yapın.',
+      5: 'Yaratıcılığınızda özgür bırakın. Aşk ve eğlence hayatında canlılık bekleyin.',
+      6: 'Sağlığınıza ve günlük rutinlerinize dikkat edin. İş ortamında gelişmeler olacak.',
+      7: 'İlişkileriniz ön planda. Ortaklıklar ve evlilik konularında önemli adımlar.',
+      8: 'Derinlere inin. Dönüşüm ve yenilenme zamanı. Ortak finanslar önem kazanıyor.',
+      9: 'Ufkunuzu genişletin. Eğitim, seyahat ve felsefi arayışlar için ideal yıl.',
+      10: 'Kariyer hedeflerinize odaklanın. Toplumda yerinizi belirleyin.',
+      11: 'Sosyal çevrenizi genişletin. Gelecek hayalleriniz için çalışın.',
+      12: 'İçe dönüş yılı. Ruhsal gelişim ve dinlenme öncelikli olmalı.',
     };
 
-    return houseAdvice[sunHouse] ?? 'Bu yil sizin icin onemli donusumler getirecek.';
+    return houseAdvice[sunHouse] ?? 'Bu yıl sizin için önemli dönüşümler getirecek.';
   }
 }
 

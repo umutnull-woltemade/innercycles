@@ -172,10 +172,12 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
           const SizedBox(height: AppConstants.spacingMd),
           Text(
             profile.name ?? sign.name,
-            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+            style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                   color: isDark
                       ? AppColors.textPrimary
                       : AppColors.lightTextPrimary,
+                  fontWeight: FontWeight.w700,
+                  fontSize: 24,
                 ),
           ),
           const SizedBox(height: 4),

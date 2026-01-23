@@ -1,8 +1,34 @@
 class AppConstants {
   AppConstants._();
 
-  static const String appName = 'Celestial';
-  static const String appTagline = 'Gökyüzünün Sırları Seni Bekliyor';
+  static const String appName = 'Astrobobo';
+  static const String appTagline = 'Yıldızların Rehberliğinde Kendini Keşfet';
+
+  // App IDs and Links
+  static const String appStoreId = ''; // Add your App Store ID here
+  static const String playStoreId = 'com.astrobobo'; // Update with your package name
+  static const String privacyPolicyUrl = 'https://astrobobo.com/privacy';
+  static const String termsOfServiceUrl = 'https://astrobobo.com/terms';
+  static const String supportEmail = 'support@astrobobo.com';
+
+  // RevenueCat API Keys
+  static const String revenueCatAppleApiKey = ''; // Add your RevenueCat Apple API key
+  static const String revenueCatGoogleApiKey = ''; // Add your RevenueCat Google API key
+
+  // RevenueCat Product IDs
+  static const String monthlyProductId = 'astrobobo_premium_monthly';
+  static const String yearlyProductId = 'astrobobo_premium_yearly';
+  static const String entitlementId = 'premium';
+
+  // AdMob IDs (Production) - Replace with your actual IDs
+  static const String admobAppIdAndroid = 'ca-app-pub-XXXXXXXXXXXXXXXX~XXXXXXXXXX';
+  static const String admobAppIdIos = 'ca-app-pub-XXXXXXXXXXXXXXXX~XXXXXXXXXX';
+  static const String admobBannerIdAndroid = 'ca-app-pub-XXXXXXXXXXXXXXXX/XXXXXXXXXX';
+  static const String admobBannerIdIos = 'ca-app-pub-XXXXXXXXXXXXXXXX/XXXXXXXXXX';
+  static const String admobInterstitialIdAndroid = 'ca-app-pub-XXXXXXXXXXXXXXXX/XXXXXXXXXX';
+  static const String admobInterstitialIdIos = 'ca-app-pub-XXXXXXXXXXXXXXXX/XXXXXXXXXX';
+  static const String admobRewardedIdAndroid = 'ca-app-pub-XXXXXXXXXXXXXXXX/XXXXXXXXXX';
+  static const String admobRewardedIdIos = 'ca-app-pub-XXXXXXXXXXXXXXXX/XXXXXXXXXX';
 
   // Storage keys
   static const String userProfileKey = 'user_profile';

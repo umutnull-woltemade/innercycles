@@ -77,7 +77,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
           ],
         ),
         Text(
-          'Celestial Premium',
+          'Astrobobo Premium',
           style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                 color: AppColors.starGold,
                 fontWeight: FontWeight.bold,

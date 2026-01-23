@@ -1,39 +1,91 @@
 import 'zodiac_sign.dart';
 
-/// Astrology Glossary Entry
+/// Astrology Glossary Entry with enhanced features
 class GlossaryEntry {
   final String term;
   final String termTr;
-  final String definition;
+  final String hint; // Kısa ipucu - kartın üstünde görünür
+  final String definition; // Detaylı açıklama
+  final String? deepExplanation; // Derin ezoterik açıklama
   final String? example;
   final GlossaryCategory category;
   final List<String> relatedTerms;
+  final List<GlossaryReference> references; // Kaynak ve referanslar
+  final String? planetInHouse; // Gezegen-Ev yorumu için
+  final String? signRuler; // Burç yöneticisi bilgisi
 
   GlossaryEntry({
     required this.term,
     required this.termTr,
+    required this.hint,
     required this.definition,
+    this.deepExplanation,
     this.example,
     required this.category,
     this.relatedTerms = const [],
+    this.references = const [],
+    this.planetInHouse,
+    this.signRuler,
   });
 
   Map<String, dynamic> toJson() => {
         'term': term,
         'termTr': termTr,
+        'hint': hint,
         'definition': definition,
+        'deepExplanation': deepExplanation,
         'example': example,
         'category': category.index,
         'relatedTerms': relatedTerms,
+        'references': references.map((r) => r.toJson()).toList(),
+        'planetInHouse': planetInHouse,
+        'signRuler': signRuler,
       };
 
   factory GlossaryEntry.fromJson(Map<String, dynamic> json) => GlossaryEntry(
         term: json['term'] as String,
         termTr: json['termTr'] as String,
+        hint: json['hint'] as String? ?? '',
         definition: json['definition'] as String,
+        deepExplanation: json['deepExplanation'] as String?,
         example: json['example'] as String?,
         category: GlossaryCategory.values[json['category'] as int],
         relatedTerms: List<String>.from(json['relatedTerms'] as List? ?? []),
+        references: (json['references'] as List?)
+                ?.map((r) => GlossaryReference.fromJson(r as Map<String, dynamic>))
+                .toList() ??
+            [],
+        planetInHouse: json['planetInHouse'] as String?,
+        signRuler: json['signRuler'] as String?,
+      );
+}
+
+/// Kaynak/Referans bilgisi
+class GlossaryReference {
+  final String title;
+  final String author;
+  final String? url;
+  final String type; // 'book', 'article', 'tradition', 'website'
+
+  GlossaryReference({
+    required this.title,
+    required this.author,
+    this.url,
+    required this.type,
+  });
+
+  Map<String, dynamic> toJson() => {
+        'title': title,
+        'author': author,
+        'url': url,
+        'type': type,
+      };
+
+  factory GlossaryReference.fromJson(Map<String, dynamic> json) => GlossaryReference(
+        title: json['title'] as String,
+        author: json['author'] as String,
+        url: json['url'] as String?,
+        type: json['type'] as String,
       );
 }
 
@@ -45,6 +97,10 @@ enum GlossaryCategory {
   aspects,
   techniques,
   modern,
+  esoteric,       // Ezoterik ve spiritüel kavramlar
+  psychological,  // Psikolojik astroloji
+  predictive,     // Tahmin teknikleri
+  relationships,  // İlişki astrolojisi
 }
 
 extension GlossaryCategoryExtension on GlossaryCategory {
@@ -64,6 +120,14 @@ extension GlossaryCategoryExtension on GlossaryCategory {
         return 'Teknikler';
       case GlossaryCategory.modern:
         return 'Modern Astroloji';
+      case GlossaryCategory.esoteric:
+        return 'Ezoterik';
+      case GlossaryCategory.psychological:
+        return 'Psikolojik';
+      case GlossaryCategory.predictive:
+        return 'Tahmin';
+      case GlossaryCategory.relationships:
+        return 'İlişkiler';
     }
   }
 
@@ -83,6 +147,14 @@ extension GlossaryCategoryExtension on GlossaryCategory {
         return '🔮';
       case GlossaryCategory.modern:
         return '✨';
+      case GlossaryCategory.esoteric:
+        return '🌙';
+      case GlossaryCategory.psychological:
+        return '🧠';
+      case GlossaryCategory.predictive:
+        return '🔭';
+      case GlossaryCategory.relationships:
+        return '💕';
     }
   }
 }

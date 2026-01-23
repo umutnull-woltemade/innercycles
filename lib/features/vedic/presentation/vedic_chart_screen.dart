@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/zodiac_sign.dart';
+import '../../../data/models/user_profile.dart';
 import '../../../data/models/advanced_astrology.dart';
 import '../../../data/services/advanced_astrology_service.dart';
 import '../../../data/providers/app_providers.dart';
@@ -32,12 +33,16 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
     final userProfile = ref.read(userProfileProvider);
     if (userProfile == null) return;
 
+    // Use actual rising sign if available, otherwise use sun sign as fallback
+    // Note: For accurate Vedic chart, birth time is needed for true ascendant (Lagna)
+    final ascendantToUse = userProfile.risingSign ?? userProfile.sunSign;
+
     setState(() {
       _chart = AdvancedAstrologyService.generateVedicChart(
         birthDate: userProfile.birthDate,
-        westernSun: userProfile.sunSign ?? ZodiacSign.aries,
-        westernMoon: userProfile.moonSign ?? ZodiacSign.cancer,
-        westernAscendant: userProfile.risingSign ?? ZodiacSign.leo,
+        westernSun: userProfile.sunSign,
+        westernMoon: userProfile.moonSign ?? userProfile.sunSign,
+        westernAscendant: ascendantToUse,
       );
     });
   }
@@ -57,14 +62,14 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
                 const Text('', style: TextStyle(fontSize: 64)),
                 const SizedBox(height: 16),
                 Text(
-                  'Profil bulunamadi',
+                  'Profil bulunamadı',
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
                         color: Colors.white,
                       ),
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Lutfen once dogum bilgilerinizi girin',
+                  'Lütfen önce doğum bilgilerinizi girin',
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         color: Colors.white70,
                       ),
@@ -72,7 +77,7 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
                 const SizedBox(height: 24),
                 ElevatedButton(
                   onPressed: () => context.pop(),
-                  child: const Text('Geri Don'),
+                  child: const Text('Geri Dön'),
                 ),
               ],
             ),
@@ -116,7 +121,7 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
                         const CircularProgressIndicator(color: Colors.orange),
                         const SizedBox(height: 16),
                         Text(
-                          'Vedik harita olusturuluyor...',
+                          'Vedik harita oluşturuluyor...',
                           style: TextStyle(
                             color: isDark ? Colors.white70 : AppColors.textLight,
                           ),
@@ -175,7 +180,7 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
           const SizedBox(width: 12),
           Expanded(
             child: Text(
-              'Vedik astroloji sidereal (yildiz tabanli) zodyak kullanir. Bati astrolojisinden yaklasik 24 derece fark vardir.',
+              'Vedik astroloji sidereal (yıldız tabanlı) zodyak kullanır. Batı astrolojisinden yaklaşık 24 derece fark vardır.',
               style: Theme.of(context).textTheme.bodySmall,
             ),
           ),
@@ -184,7 +189,7 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
     );
   }
 
-  Widget _buildProfileCard(bool isDark, dynamic userProfile) {
+  Widget _buildProfileCard(bool isDark, UserProfile userProfile) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -215,14 +220,13 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
             ],
           ),
           const SizedBox(height: AppConstants.spacingMd),
-          _buildInfoRow(isDark, Icons.person_outline, 'Isim', userProfile.name ?? 'Kullanici'),
-          _buildInfoRow(isDark, Icons.cake_outlined, 'Dogum Tarihi', _formatDate(userProfile.birthDate)),
-          if (userProfile.sunSign != null)
-            _buildInfoRow(isDark, Icons.wb_sunny_outlined, 'Bati Gunes', userProfile.sunSign!.nameTr),
+          _buildInfoRow(isDark, Icons.person_outline, 'İsim', userProfile.name ?? 'Kullanıcı'),
+          _buildInfoRow(isDark, Icons.cake_outlined, 'Doğum Tarihi', _formatDate(userProfile.birthDate)),
+          _buildInfoRow(isDark, Icons.wb_sunny_outlined, 'Batı Güneş', userProfile.sunSign.nameTr),
           if (userProfile.moonSign != null)
-            _buildInfoRow(isDark, Icons.nightlight_outlined, 'Bati Ay', userProfile.moonSign!.nameTr),
+            _buildInfoRow(isDark, Icons.nightlight_outlined, 'Batı Ay', userProfile.moonSign!.nameTr),
           if (userProfile.risingSign != null)
-            _buildInfoRow(isDark, Icons.arrow_upward, 'Bati Yukselen', userProfile.risingSign!.nameTr),
+            _buildInfoRow(isDark, Icons.arrow_upward, 'Batı Yükselen', userProfile.risingSign!.nameTr),
         ],
       ),
     );
@@ -260,8 +264,8 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
 
   String _formatDate(DateTime date) {
     const months = [
-      'Ocak', 'Subat', 'Mart', 'Nisan', 'Mayis', 'Haziran',
-      'Temmuz', 'Agustos', 'Eylul', 'Ekim', 'Kasim', 'Aralik'
+      'Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran',
+      'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'
     ];
     return '${date.day} ${months[date.month - 1]} ${date.year}';
   }
@@ -481,7 +485,7 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
               const Icon(Icons.timeline, color: Colors.indigo),
               const SizedBox(width: 8),
               Text(
-                'Dasha Donemi',
+                'Dasha Dönemi',
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
@@ -566,7 +570,7 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Gezegen Pozisyonlari (Sidereal)',
+            'Gezegen Pozisyonları (Sidereal)',
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),

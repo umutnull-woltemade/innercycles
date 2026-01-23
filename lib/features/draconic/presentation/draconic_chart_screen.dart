@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/zodiac_sign.dart';
+import '../../../data/models/user_profile.dart';
 import '../../../data/models/premium_astrology.dart';
 import '../../../data/services/premium_astrology_service.dart';
 import '../../../data/providers/app_providers.dart';
@@ -34,12 +35,16 @@ class _DraconicChartScreenState extends ConsumerState<DraconicChartScreen> {
     final userProfile = ref.read(userProfileProvider);
     if (userProfile == null) return;
 
+    // Use actual rising sign if available, otherwise use sun sign as fallback
+    // Note: For accurate Draconic chart, birth time is needed for true ascendant
+    final ascendantToUse = userProfile.risingSign ?? userProfile.sunSign;
+
     setState(() {
       _chart = _service.generateDraconicChart(
         birthDate: userProfile.birthDate,
-        natalSun: userProfile.sunSign ?? ZodiacSign.aries,
-        natalMoon: userProfile.moonSign ?? ZodiacSign.cancer,
-        natalAscendant: userProfile.risingSign ?? ZodiacSign.leo,
+        natalSun: userProfile.sunSign,
+        natalMoon: userProfile.moonSign ?? userProfile.sunSign,
+        natalAscendant: ascendantToUse,
       );
     });
   }
@@ -59,14 +64,14 @@ class _DraconicChartScreenState extends ConsumerState<DraconicChartScreen> {
                 const Text('', style: TextStyle(fontSize: 64)),
                 const SizedBox(height: 16),
                 Text(
-                  'Profil bulunamadi',
+                  'Profil bulunamadı',
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
                         color: Colors.white,
                       ),
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Lutfen once dogum bilgilerinizi girin',
+                  'Lütfen önce doğum bilgilerinizi girin',
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         color: Colors.white70,
                       ),
@@ -74,7 +79,7 @@ class _DraconicChartScreenState extends ConsumerState<DraconicChartScreen> {
                 const SizedBox(height: 24),
                 ElevatedButton(
                   onPressed: () => context.pop(),
-                  child: const Text('Geri Don'),
+                  child: const Text('Geri Dön'),
                 ),
               ],
             ),
@@ -118,7 +123,7 @@ class _DraconicChartScreenState extends ConsumerState<DraconicChartScreen> {
                         const CircularProgressIndicator(color: AppColors.mystic),
                         const SizedBox(height: 16),
                         Text(
-                          'Harita olusturuluyor...',
+                          'Harita oluşturuluyor...',
                           style: TextStyle(
                             color: isDark ? Colors.white70 : AppColors.textLight,
                           ),
@@ -194,7 +199,7 @@ class _DraconicChartScreenState extends ConsumerState<DraconicChartScreen> {
                   ),
                 ),
                 Text(
-                  'Ruhunuzun gercek amacini ve gecmis yasam izlerini kesfedin',
+                  'Ruhunuzun gerçek amacını ve geçmiş yaşam izlerini keşfedin',
                   style: TextStyle(
                     fontSize: 12,
                     color: isDark ? Colors.white70 : AppColors.textLight,
@@ -208,7 +213,7 @@ class _DraconicChartScreenState extends ConsumerState<DraconicChartScreen> {
     );
   }
 
-  Widget _buildProfileCard(bool isDark, dynamic userProfile) {
+  Widget _buildProfileCard(bool isDark, UserProfile userProfile) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -242,14 +247,13 @@ class _DraconicChartScreenState extends ConsumerState<DraconicChartScreen> {
             ],
           ),
           const SizedBox(height: AppConstants.spacingMd),
-          _buildInfoRow(isDark, Icons.person_outline, 'Isim', userProfile.name ?? 'Kullanici'),
-          _buildInfoRow(isDark, Icons.cake_outlined, 'Dogum Tarihi', _formatDate(userProfile.birthDate)),
-          if (userProfile.sunSign != null)
-            _buildInfoRow(isDark, Icons.wb_sunny_outlined, 'Gunes Burcu', userProfile.sunSign!.nameTr),
+          _buildInfoRow(isDark, Icons.person_outline, 'İsim', userProfile.name ?? 'Kullanıcı'),
+          _buildInfoRow(isDark, Icons.cake_outlined, 'Doğum Tarihi', _formatDate(userProfile.birthDate)),
+          _buildInfoRow(isDark, Icons.wb_sunny_outlined, 'Güneş Burcu', userProfile.sunSign.nameTr),
           if (userProfile.moonSign != null)
             _buildInfoRow(isDark, Icons.nightlight_outlined, 'Ay Burcu', userProfile.moonSign!.nameTr),
           if (userProfile.risingSign != null)
-            _buildInfoRow(isDark, Icons.arrow_upward, 'Yukselen', userProfile.risingSign!.nameTr),
+            _buildInfoRow(isDark, Icons.arrow_upward, 'Yükselen', userProfile.risingSign!.nameTr),
         ],
       ),
     );
@@ -287,8 +291,8 @@ class _DraconicChartScreenState extends ConsumerState<DraconicChartScreen> {
 
   String _formatDate(DateTime date) {
     const months = [
-      'Ocak', 'Subat', 'Mart', 'Nisan', 'Mayis', 'Haziran',
-      'Temmuz', 'Agustos', 'Eylul', 'Ekim', 'Kasim', 'Aralik'
+      'Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran',
+      'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'
     ];
     return '${date.day} ${months[date.month - 1]} ${date.year}';
   }
@@ -313,7 +317,7 @@ class _DraconicChartScreenState extends ConsumerState<DraconicChartScreen> {
       child: Column(
         children: [
           Text(
-            'Drakonik Uclusu',
+            'Drakonik Üçlüsü',
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 18,
@@ -325,7 +329,7 @@ class _DraconicChartScreenState extends ConsumerState<DraconicChartScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               _buildDraconicSign(
-                'Gunes',
+                'Güneş',
                 _chart!.draconicSun,
                 '',
                 isDark,
@@ -337,7 +341,7 @@ class _DraconicChartScreenState extends ConsumerState<DraconicChartScreen> {
                 isDark,
               ),
               _buildDraconicSign(
-                'Yukselen',
+                'Yükselen',
                 _chart!.draconicAscendant,
                 '',
                 isDark,
@@ -397,7 +401,7 @@ class _DraconicChartScreenState extends ConsumerState<DraconicChartScreen> {
 
     return _buildContentCard(
       icon: '',
-      title: 'Ruhsal Amac',
+      title: 'Ruhsal Amaç',
       content: _chart!.soulPurpose,
       isDark: isDark,
       color: AppColors.gold,
@@ -433,7 +437,7 @@ class _DraconicChartScreenState extends ConsumerState<DraconicChartScreen> {
 
     return _buildContentCard(
       icon: '',
-      title: 'Gecmis Yasam Gostergeleri',
+      title: 'Geçmiş Yaşam Göstergeleri',
       content: _chart!.pastLifeIndicators,
       isDark: isDark,
       color: Colors.purple,
@@ -525,7 +529,7 @@ class _DraconicChartScreenState extends ConsumerState<DraconicChartScreen> {
               const Text('', style: TextStyle(fontSize: 24)),
               const SizedBox(width: AppConstants.spacingMd),
               Text(
-                'Drakonik Gezegen Pozisyonlari',
+                'Drakonik Gezegen Pozisyonları',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
@@ -607,25 +611,25 @@ class _DraconicChartScreenState extends ConsumerState<DraconicChartScreen> {
 
   String _getPlanetEmoji(String planet) {
     switch (planet) {
-      case 'Gunes':
+      case 'Güneş':
         return '';
       case 'Ay':
         return '';
-      case 'Merkur':
+      case 'Merkür':
         return '';
-      case 'Venus':
+      case 'Venüs':
         return '';
       case 'Mars':
         return '';
-      case 'Jupiter':
+      case 'Jüpiter':
         return '';
-      case 'Saturn':
+      case 'Satürn':
         return '';
-      case 'Uranus':
+      case 'Uranüs':
         return '';
-      case 'Neptun':
+      case 'Neptün':
         return '';
-      case 'Pluto':
+      case 'Plüton':
         return '';
       default:
         return '';

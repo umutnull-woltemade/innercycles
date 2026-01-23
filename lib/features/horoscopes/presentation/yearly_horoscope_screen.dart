@@ -104,7 +104,7 @@ class _YearlyHoroscopeScreenState extends State<YearlyHoroscopeScreen> {
           const SizedBox(width: AppConstants.spacingSm),
           Expanded(
             child: Text(
-              'Yillik Burc Yorumu',
+              'Yıllık Burç Yorumu',
               style: Theme.of(context).textTheme.headlineSmall,
             ),
           ),
@@ -258,7 +258,7 @@ class _YearlyHoroscopeScreenState extends State<YearlyHoroscopeScreen> {
                         ),
                   ),
                   Text(
-                    '$_selectedYear Yili Genel Bakis',
+                    '$_selectedYear Yılı Genel Bakış',
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           color: AppColors.starGold,
                         ),
@@ -333,7 +333,7 @@ class _YearlyHoroscopeScreenState extends State<YearlyHoroscopeScreen> {
           ),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
-            'Yilin Temasi',
+            'Yılın Teması',
             style: Theme.of(context).textTheme.titleSmall?.copyWith(
                   color: Colors.purple,
                 ),
@@ -376,7 +376,7 @@ class _YearlyHoroscopeScreenState extends State<YearlyHoroscopeScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Aylik Enerji Haritasi',
+            'Aylık Enerji Haritası',
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
@@ -454,7 +454,7 @@ class _YearlyHoroscopeScreenState extends State<YearlyHoroscopeScreen> {
     final categories = [
       {
         'icon': Icons.favorite,
-        'title': 'Ask',
+        'title': 'Aşk',
         'content': _horoscope.loveYear,
         'color': Colors.pink,
       },
@@ -466,7 +466,7 @@ class _YearlyHoroscopeScreenState extends State<YearlyHoroscopeScreen> {
       },
       {
         'icon': Icons.health_and_safety,
-        'title': 'Saglik',
+        'title': 'Sağlık',
         'content': _horoscope.healthYear,
         'color': Colors.green,
       },
@@ -583,7 +583,7 @@ class _YearlyHoroscopeScreenState extends State<YearlyHoroscopeScreen> {
               ),
               const SizedBox(width: AppConstants.spacingMd),
               Text(
-                'Onemli Gezegen Transitleri',
+                'Önemli Gezegen Transitleri',
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
@@ -643,7 +643,7 @@ class _YearlyHoroscopeScreenState extends State<YearlyHoroscopeScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Yilin Ozel Aylari',
+            'Yılın Özel Ayları',
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
@@ -660,7 +660,7 @@ class _YearlyHoroscopeScreenState extends State<YearlyHoroscopeScreen> {
                         const Icon(Icons.star, color: Colors.green, size: 16),
                         const SizedBox(width: 4),
                         Text(
-                          'Sansli Aylar',
+                          'Şanslı Aylar',
                           style:
                               Theme.of(context).textTheme.bodySmall?.copyWith(
                                     color: Colors.green,
@@ -771,7 +771,7 @@ class _YearlyHoroscopeScreenState extends State<YearlyHoroscopeScreen> {
           ),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
-            'Yillik Afirmasyon',
+            'Yıllık Afirmasyon',
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                   color: AppColors.starGold,

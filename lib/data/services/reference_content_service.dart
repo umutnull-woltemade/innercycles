@@ -1,6 +1,7 @@
 import 'dart:math';
 import '../models/reference_content.dart';
 import '../models/zodiac_sign.dart';
+import '../content/glossary_content.dart';
 
 class ReferenceContentService {
   static final ReferenceContentService _instance =
@@ -8,264 +9,85 @@ class ReferenceContentService {
   factory ReferenceContentService() => _instance;
   ReferenceContentService._internal();
 
-  /// Get all glossary entries
+  /// Get all glossary entries (300+ terms)
   List<GlossaryEntry> getGlossaryEntries() {
+    return GlossaryContent.getAllEntries();
+  }
+
+  /// Get glossary entries count
+  int get glossaryCount => GlossaryContent.totalCount;
+
+  /// Search planet in house interpretations
+  List<GlossaryEntry> searchPlanetInHouse(String query) {
+    return GlossaryContent.searchPlanetInHouse(query);
+  }
+
+  /// Get entries by category
+  List<GlossaryEntry> getEntriesByCategory(GlossaryCategory category) {
+    return GlossaryContent.getByCategory(category);
+  }
+
+  /// Search glossary with improved algorithm
+  List<GlossaryEntry> searchGlossary(String query) {
+    if (query.trim().isEmpty) return getGlossaryEntries();
+
+    final normalizedQuery = query.toLowerCase().trim();
+    final entries = getGlossaryEntries();
+
+    // Priority search: exact match, starts with, contains, related terms
+    final exactMatches = <GlossaryEntry>[];
+    final startsWithMatches = <GlossaryEntry>[];
+    final containsMatches = <GlossaryEntry>[];
+    final relatedMatches = <GlossaryEntry>[];
+
+    for (final entry in entries) {
+      final termLower = entry.term.toLowerCase();
+      final termTrLower = entry.termTr.toLowerCase();
+      final definitionLower = entry.definition.toLowerCase();
+      final planetInHouse = entry.planetInHouse?.toLowerCase() ?? '';
+
+      // Exact match
+      if (termLower == normalizedQuery || termTrLower == normalizedQuery) {
+        exactMatches.add(entry);
+        continue;
+      }
+
+      // Starts with
+      if (termLower.startsWith(normalizedQuery) ||
+          termTrLower.startsWith(normalizedQuery)) {
+        startsWithMatches.add(entry);
+        continue;
+      }
+
+      // Contains in term, termTr, planetInHouse
+      if (termLower.contains(normalizedQuery) ||
+          termTrLower.contains(normalizedQuery) ||
+          planetInHouse.contains(normalizedQuery)) {
+        containsMatches.add(entry);
+        continue;
+      }
+
+      // Contains in definition or deep explanation
+      if (definitionLower.contains(normalizedQuery) ||
+          (entry.deepExplanation?.toLowerCase().contains(normalizedQuery) ??
+              false)) {
+        relatedMatches.add(entry);
+        continue;
+      }
+
+      // Related terms match
+      if (entry.relatedTerms.any(
+          (term) => term.toLowerCase().contains(normalizedQuery))) {
+        relatedMatches.add(entry);
+      }
+    }
+
+    // Combine results in priority order
     return [
-      // Basics
-      GlossaryEntry(
-        term: 'Natal Chart',
-        termTr: 'Doğum Haritası',
-        definition:
-            'Bir kişinin doğduğu anda gökyüzündeki gezegen konumlarını gösteren astrolojik harita. '
-            'Kişilik, yetenekler ve yaşam yolculuğu hakkında bilgi verir.',
-        example: 'Doğum haritanızda Güneş Koç burcunda, bu cesaret ve girişimcilik özelliklerini gösterir.',
-        category: GlossaryCategory.basics,
-        relatedTerms: ['Yükselen', 'Ev', 'Açı'],
-      ),
-      GlossaryEntry(
-        term: 'Ascendant',
-        termTr: 'Yükselen',
-        definition:
-            'Doğum anında doğu ufkunda yükselen burç. Dış görünüşünüzü, ilk izleniminizi ve '
-            'dünyaya nasıl yaklaştığınızı temsil eder. 1. evin başlangıç noktasıdır.',
-        example: 'Aslan yükseleni olan biri genellikle karizmatik ve dikkat çekici bir görünüme sahiptir.',
-        category: GlossaryCategory.basics,
-        relatedTerms: ['Doğum Haritası', 'Ev', 'Descendant'],
-      ),
-      GlossaryEntry(
-        term: 'Transit',
-        termTr: 'Transit',
-        definition:
-            'Şu anki gezegen konumlarının doğum haritanızdaki gezegen konumlarıyla etkileşimi. '
-            'Güncel astrolojik etkileri ve zamanlamayı anlamak için kullanılır.',
-        example: 'Satürn transitiniz 7. evinize geçtiğinde ilişkilerde ciddi kararlar gündeme gelebilir.',
-        category: GlossaryCategory.basics,
-        relatedTerms: ['Progresyon', 'Açı', 'Gezegen'],
-      ),
-      GlossaryEntry(
-        term: 'Retrograde',
-        termTr: 'Retro',
-        definition:
-            'Bir gezegenin Dünya\'dan bakıldığında geriye doğru hareket ediyor gibi görünmesi. '
-            'Bu dönemlerde o gezegenin temsil ettiği konularda gecikmeler ve tekrar değerlendirmeler yaşanabilir.',
-        example: 'Merkür retrosu sırasında iletişim aksaklıkları ve sözleşme sorunları yaşanabilir.',
-        category: GlossaryCategory.basics,
-        relatedTerms: ['Gezegen', 'Transit'],
-      ),
-
-      // Planets
-      GlossaryEntry(
-        term: 'Sun',
-        termTr: 'Güneş',
-        definition:
-            'Astrolojide benlik, ego, yaşam gücü ve temel kimliği temsil eder. '
-            'Güneş burcunuz, en temel karakteristiklerinizi ve yaşam amacınızı gösterir.',
-        category: GlossaryCategory.planets,
-        relatedTerms: ['Ay', 'Yükselen'],
-      ),
-      GlossaryEntry(
-        term: 'Moon',
-        termTr: 'Ay',
-        definition:
-            'Duygusal doğanızı, içgüdülerinizi, alışkanlıklarınızı ve iç dünyanızı temsil eder. '
-            'Ay burcunuz, duygusal ihtiyaçlarınızı ve tepkilerinizi gösterir.',
-        category: GlossaryCategory.planets,
-        relatedTerms: ['Güneş', 'Yükselen'],
-      ),
-      GlossaryEntry(
-        term: 'Mercury',
-        termTr: 'Merkür',
-        definition:
-            'İletişim, düşünme biçimi, öğrenme ve kısa mesafe seyahatleri yönetir. '
-            'Merkür konumunuz nasıl düşündüğünüzü ve iletişim kurduğunuzu gösterir.',
-        category: GlossaryCategory.planets,
-        relatedTerms: ['Retro', 'İletişim'],
-      ),
-      GlossaryEntry(
-        term: 'Venus',
-        termTr: 'Venüs',
-        definition:
-            'Aşk, güzellik, sanat, para ve değerler gezegenidir. '
-            'Venüs konumunuz neyi çekici bulduğunuzu ve nasıl sevdiğinizi gösterir.',
-        category: GlossaryCategory.planets,
-        relatedTerms: ['Mars', '7. Ev'],
-      ),
-      GlossaryEntry(
-        term: 'Mars',
-        termTr: 'Mars',
-        definition:
-            'Eylem, enerji, tutku, saldırganlık ve fiziksel güç gezegenidir. '
-            'Mars konumunuz nasıl motive olduğunuzu ve çatışmalara nasıl yaklaştığınızı gösterir.',
-        category: GlossaryCategory.planets,
-        relatedTerms: ['Venüs', 'Ateş Elementi'],
-      ),
-      GlossaryEntry(
-        term: 'Jupiter',
-        termTr: 'Jüpiter',
-        definition:
-            'Şans, genişleme, büyüme, felsefe ve yüksek öğrenim gezegenidir. '
-            'Jüpiter konumunuz nerede şanslı olduğunuzu ve nasıl büyüdüğünüzü gösterir.',
-        category: GlossaryCategory.planets,
-        relatedTerms: ['Satürn', '9. Ev'],
-      ),
-      GlossaryEntry(
-        term: 'Saturn',
-        termTr: 'Satürn',
-        definition:
-            'Yapı, disiplin, sorumluluk, kısıtlamalar ve olgunluk gezegenidir. '
-            'Satürn konumunuz zorluklarla karşılaştığınız ve ders aldığınız alanları gösterir.',
-        category: GlossaryCategory.planets,
-        relatedTerms: ['Jüpiter', '10. Ev', 'Satürn Dönüşü'],
-      ),
-
-      // Signs
-      GlossaryEntry(
-        term: 'Cardinal Signs',
-        termTr: 'Öncü Burçlar',
-        definition:
-            'Koç, Yengeç, Terazi ve Oğlak. Mevsim başlangıçlarını temsil eder. '
-            'Liderlik, başlatma ve inisiyatif alma özelliklerine sahiptirler.',
-        category: GlossaryCategory.signs,
-        relatedTerms: ['Sabit Burçlar', 'Değişken Burçlar'],
-      ),
-      GlossaryEntry(
-        term: 'Fixed Signs',
-        termTr: 'Sabit Burçlar',
-        definition:
-            'Boğa, Aslan, Akrep ve Kova. Mevsimin ortasını temsil eder. '
-            'Kararlılık, istikrar ve direnç özelliklerine sahiptirler.',
-        category: GlossaryCategory.signs,
-        relatedTerms: ['Öncü Burçlar', 'Değişken Burçlar'],
-      ),
-      GlossaryEntry(
-        term: 'Mutable Signs',
-        termTr: 'Değişken Burçlar',
-        definition:
-            'İkizler, Başak, Yay ve Balık. Mevsim sonlarını temsil eder. '
-            'Uyum sağlama, esneklik ve değişim özelliklerine sahiptirler.',
-        category: GlossaryCategory.signs,
-        relatedTerms: ['Öncü Burçlar', 'Sabit Burçlar'],
-      ),
-
-      // Houses
-      GlossaryEntry(
-        term: 'First House',
-        termTr: '1. Ev',
-        definition:
-            'Benlik evi. Fiziksel görünümünüzü, kişiliğinizi, ilk izleniminizi ve '
-            'dünyaya nasıl yaklaştığınızı temsil eder. Yükselen burcunuz burada bulunur.',
-        category: GlossaryCategory.houses,
-        relatedTerms: ['Yükselen', '7. Ev'],
-      ),
-      GlossaryEntry(
-        term: 'Seventh House',
-        termTr: '7. Ev',
-        definition:
-            'Ortaklıklar ve evlilik evi. Romantik ilişkilerinizi, iş ortaklıklarınızı ve '
-            'bir-bir ilişkilerinizi temsil eder. Descendant burada bulunur.',
-        category: GlossaryCategory.houses,
-        relatedTerms: ['1. Ev', 'Descendant', 'Venüs'],
-      ),
-      GlossaryEntry(
-        term: 'Tenth House',
-        termTr: '10. Ev',
-        definition:
-            'Kariyer ve toplumsal konum evi. Meslek yolunuzu, kamusal imajınızı ve '
-            'hayattaki başarılarınızı temsil eder. Midheaven (MC) burada bulunur.',
-        category: GlossaryCategory.houses,
-        relatedTerms: ['4. Ev', 'Satürn', 'MC'],
-      ),
-
-      // Aspects
-      GlossaryEntry(
-        term: 'Conjunction',
-        termTr: 'Kavuşum',
-        definition:
-            'İki gezegen aynı derecede veya çok yakın olduğunda oluşur (0°). '
-            'Enerjiler birleşir ve yoğunlaşır. Olumlu veya olumsuz olabilir.',
-        example: 'Güneş-Ay kavuşumu (Yeni Ay) yeni başlangıçlar için güçlü bir zamandır.',
-        category: GlossaryCategory.aspects,
-        relatedTerms: ['Karşıtlık', 'Üçgen'],
-      ),
-      GlossaryEntry(
-        term: 'Opposition',
-        termTr: 'Karşıtlık',
-        definition:
-            'İki gezegen 180° açı yaptığında oluşur. Gerilim ve denge arayışını temsil eder. '
-            'İki karşıt enerji arasında entegrasyon gerektirir.',
-        example: 'Güneş-Ay karşıtlığı (Dolunay) duygusal farkındalık ve tamamlanma zamanıdır.',
-        category: GlossaryCategory.aspects,
-        relatedTerms: ['Kavuşum', 'Kare'],
-      ),
-      GlossaryEntry(
-        term: 'Trine',
-        termTr: 'Üçgen',
-        definition:
-            'İki gezegen 120° açı yaptığında oluşur. Uyum, akış ve doğal yetenekleri gösterir. '
-            'En olumlu açılardan biridir.',
-        example: 'Venüs-Jüpiter üçgeni aşk ve bolluk konularında şans getirir.',
-        category: GlossaryCategory.aspects,
-        relatedTerms: ['Kavuşum', 'Altıgen'],
-      ),
-      GlossaryEntry(
-        term: 'Square',
-        termTr: 'Kare',
-        definition:
-            'İki gezegen 90° açı yaptığında oluşur. Gerilim, zorluk ve büyüme potansiyeli taşır. '
-            'Çözülmesi gereken çatışmaları gösterir.',
-        example: 'Mars-Satürn karesi engellenmiş enerji ve sabır dersleri getirebilir.',
-        category: GlossaryCategory.aspects,
-        relatedTerms: ['Karşıtlık', 'Üçgen'],
-      ),
-
-      // Techniques
-      GlossaryEntry(
-        term: 'Synastry',
-        termTr: 'Sinastri',
-        definition:
-            'İki kişinin doğum haritalarını karşılaştırarak ilişki uyumunu analiz etme tekniği. '
-            'Çiftler arasındaki dinamikleri ve potansiyeli gösterir.',
-        category: GlossaryCategory.techniques,
-        relatedTerms: ['Composite Chart', 'İlişki Astrolojisi'],
-      ),
-      GlossaryEntry(
-        term: 'Solar Return',
-        termTr: 'Güneş Dönüşü',
-        definition:
-            'Güneş\'in doğum haritanızdaki tam pozisyonuna döndüğü an için çıkarılan harita. '
-            'Gelecek bir yılın temalarını ve olaylarını tahmin etmek için kullanılır.',
-        category: GlossaryCategory.techniques,
-        relatedTerms: ['Transit', 'Progresyon'],
-      ),
-      GlossaryEntry(
-        term: 'Progressions',
-        termTr: 'Progresyonlar',
-        definition:
-            'Doğum sonrası her gün = bir yıl formülüyle hesaplanan ilerlemiş harita. '
-            'İç gelişimi ve psikolojik olgunlaşmayı gösterir.',
-        category: GlossaryCategory.techniques,
-        relatedTerms: ['Transit', 'Güneş Dönüşü'],
-      ),
-
-      // Modern
-      GlossaryEntry(
-        term: 'Chiron',
-        termTr: 'Kiron',
-        definition:
-            'Yaralı şifacı asteroidi. Derin yaralarımızı ve bu yaraları başkalarını iyileştirmek için '
-            'nasıl kullanabileceğimizi gösterir.',
-        category: GlossaryCategory.modern,
-        relatedTerms: ['Asteroid', 'Şifa'],
-      ),
-      GlossaryEntry(
-        term: 'North Node',
-        termTr: 'Kuzey Düğümü',
-        definition:
-            'Ay\'ın yörüngesinin ekliptik ile kesiştiği kuzey noktası. '
-            'Bu yaşamdaki ruhsal amacınızı ve büyüme yönünüzü gösterir.',
-        category: GlossaryCategory.modern,
-        relatedTerms: ['Güney Düğümü', 'Karma'],
-      ),
+      ...exactMatches,
+      ...startsWithMatches,
+      ...containsMatches,
+      ...relatedMatches,
     ];
   }
 
@@ -1031,7 +853,7 @@ Doğum haritası 12 eve bölünür ve her ev yaşamın farklı bir alanını tem
         ''',
         category: ArticleCategory.beginners,
         publishedAt: DateTime.now().subtract(const Duration(days: 30)),
-        author: 'Celestial Team',
+        author: 'Astrobobo Team',
         readTimeMinutes: 8,
         tags: ['başlangıç', 'burçlar', 'gezegenler', 'evler'],
       ),
@@ -1069,7 +891,7 @@ Her iki kişinin de 7. evi ilişki beklentilerini gösterir. 7. ev yöneticisini
         ''',
         category: ArticleCategory.relationships,
         publishedAt: DateTime.now().subtract(const Duration(days: 15)),
-        author: 'Celestial Team',
+        author: 'Astrobobo Team',
         readTimeMinutes: 6,
         tags: ['sinastri', 'ilişkiler', 'uyum'],
       ),
@@ -1112,7 +934,7 @@ Retro öncesi ve sonrası 2 haftalık gölge dönemleri de dikkat gerektirir.
         ''',
         category: ArticleCategory.currentTransits,
         publishedAt: DateTime.now().subtract(const Duration(days: 5)),
-        author: 'Celestial Team',
+        author: 'Astrobobo Team',
         readTimeMinutes: 5,
         tags: ['merkür', 'retro', 'transit'],
       ),

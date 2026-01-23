@@ -5,10 +5,10 @@
 
   <!-- Homepage -->
   <url>
-    <loc>https://celestial.app/</loc>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://celestial.app/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://celestial.app/en/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://celestial.app/"/>
+    <loc>https://astrobobo.com/</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://astrobobo.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://astrobobo.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://astrobobo.com/"/>
     <lastmod>2026-01-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
@@ -16,7 +16,7 @@
 
   <!-- Horoscope Main Page -->
   <url>
-    <loc>https://celestial.app/horoscope</loc>
+    <loc>https://astrobobo.com/horoscope</loc>
     <lastmod>2026-01-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
@@ -24,73 +24,73 @@
 
   <!-- Individual Zodiac Signs -->
   <url>
-    <loc>https://celestial.app/horoscope/aries</loc>
+    <loc>https://astrobobo.com/horoscope/aries</loc>
     <lastmod>2026-01-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://celestial.app/horoscope/taurus</loc>
+    <loc>https://astrobobo.com/horoscope/taurus</loc>
     <lastmod>2026-01-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://celestial.app/horoscope/gemini</loc>
+    <loc>https://astrobobo.com/horoscope/gemini</loc>
     <lastmod>2026-01-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://celestial.app/horoscope/cancer</loc>
+    <loc>https://astrobobo.com/horoscope/cancer</loc>
     <lastmod>2026-01-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://celestial.app/horoscope/leo</loc>
+    <loc>https://astrobobo.com/horoscope/leo</loc>
     <lastmod>2026-01-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://celestial.app/horoscope/virgo</loc>
+    <loc>https://astrobobo.com/horoscope/virgo</loc>
     <lastmod>2026-01-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://celestial.app/horoscope/libra</loc>
+    <loc>https://astrobobo.com/horoscope/libra</loc>
     <lastmod>2026-01-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://celestial.app/horoscope/scorpio</loc>
+    <loc>https://astrobobo.com/horoscope/scorpio</loc>
     <lastmod>2026-01-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://celestial.app/horoscope/sagittarius</loc>
+    <loc>https://astrobobo.com/horoscope/sagittarius</loc>
     <lastmod>2026-01-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://celestial.app/horoscope/capricorn</loc>
+    <loc>https://astrobobo.com/horoscope/capricorn</loc>
     <lastmod>2026-01-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://celestial.app/horoscope/aquarius</loc>
+    <loc>https://astrobobo.com/horoscope/aquarius</loc>
     <lastmod>2026-01-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://celestial.app/horoscope/pisces</loc>
+    <loc>https://astrobobo.com/horoscope/pisces</loc>
     <lastmod>2026-01-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -98,7 +98,7 @@
 
   <!-- Birth Chart -->
   <url>
-    <loc>https://celestial.app/birth-chart</loc>
+    <loc>https://astrobobo.com/birth-chart</loc>
     <lastmod>2026-01-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -106,7 +106,7 @@
 
   <!-- Tarot -->
   <url>
-    <loc>https://celestial.app/tarot</loc>
+    <loc>https://astrobobo.com/tarot</loc>
     <lastmod>2026-01-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -114,7 +114,7 @@
 
   <!-- Numerology -->
   <url>
-    <loc>https://celestial.app/numerology</loc>
+    <loc>https://astrobobo.com/numerology</loc>
     <lastmod>2026-01-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -122,7 +122,7 @@
 
   <!-- Compatibility -->
   <url>
-    <loc>https://celestial.app/compatibility</loc>
+    <loc>https://astrobobo.com/compatibility</loc>
     <lastmod>2026-01-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -130,7 +130,7 @@
 
   <!-- Aura Analysis -->
   <url>
-    <loc>https://celestial.app/aura</loc>
+    <loc>https://astrobobo.com/aura</loc>
     <lastmod>2026-01-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -138,7 +138,7 @@
 
   <!-- Kabbalah -->
   <url>
-    <loc>https://celestial.app/kabbalah</loc>
+    <loc>https://astrobobo.com/kabbalah</loc>
     <lastmod>2026-01-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -146,7 +146,7 @@
 
   <!-- Transits -->
   <url>
-    <loc>https://celestial.app/transits</loc>
+    <loc>https://astrobobo.com/transits</loc>
     <lastmod>2026-01-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>

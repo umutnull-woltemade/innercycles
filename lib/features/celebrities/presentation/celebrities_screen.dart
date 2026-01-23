@@ -324,7 +324,7 @@ class _CelebritiesScreenState extends State<CelebritiesScreen> {
     );
   }
 
-  Widget _buildSignBadge(String emoji, dynamic sign, bool isDark) {
+  Widget _buildSignBadge(String emoji, ZodiacSign sign, bool isDark) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
       decoration: BoxDecoration(
@@ -463,7 +463,7 @@ class _CelebritiesScreenState extends State<CelebritiesScreen> {
   }
 
   Widget _buildDetailedSign(
-      String label, String emoji, dynamic sign, bool isDark) {
+      String label, String emoji, ZodiacSign sign, bool isDark) {
     return Column(
       children: [
         Text(emoji, style: const TextStyle(fontSize: 24)),

@@ -11,16 +11,16 @@ class L10n {
   static final Map<String, Map<AppLanguage, String>> _translations = {
     // ============ APP GENERAL ============
     'app_name': {
-      AppLanguage.en: 'Celestial',
-      AppLanguage.tr: 'Celestial',
-      AppLanguage.el: 'Celestial',
-      AppLanguage.bg: 'Celestial',
-      AppLanguage.ru: 'Celestial',
-      AppLanguage.zh: 'Celestial',
-      AppLanguage.fr: 'Celestial',
-      AppLanguage.de: 'Celestial',
-      AppLanguage.es: 'Celestial',
-      AppLanguage.ar: 'Celestial',
+      AppLanguage.en: 'Astrobobo',
+      AppLanguage.tr: 'Astrobobo',
+      AppLanguage.el: 'Astrobobo',
+      AppLanguage.bg: 'Astrobobo',
+      AppLanguage.ru: 'Astrobobo',
+      AppLanguage.zh: 'Astrobobo',
+      AppLanguage.fr: 'Astrobobo',
+      AppLanguage.de: 'Astrobobo',
+      AppLanguage.es: 'Astrobobo',
+      AppLanguage.ar: 'Astrobobo',
     },
     'app_tagline': {
       AppLanguage.en: 'The Secrets of the Sky Await You',

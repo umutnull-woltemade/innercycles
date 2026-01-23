@@ -113,7 +113,7 @@ class _MonthlyHoroscopeScreenState extends State<MonthlyHoroscopeScreen> {
           const SizedBox(width: AppConstants.spacingSm),
           Expanded(
             child: Text(
-              'Aylik Burc Yorumu',
+              'Aylık Burç Yorumu',
               style: Theme.of(context).textTheme.headlineSmall,
             ),
           ),
@@ -274,7 +274,7 @@ class _MonthlyHoroscopeScreenState extends State<MonthlyHoroscopeScreen> {
                   borderRadius: BorderRadius.circular(AppConstants.radiusFull),
                 ),
                 child: Text(
-                  '$day. gun',
+                  '$day. gün',
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: AppColors.starGold,
                         fontWeight: FontWeight.w600,
@@ -332,7 +332,7 @@ class _MonthlyHoroscopeScreenState extends State<MonthlyHoroscopeScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Haftalik Enerji Grafigi',
+            'Haftalık Enerji Grafiği',
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
@@ -380,7 +380,7 @@ class _MonthlyHoroscopeScreenState extends State<MonthlyHoroscopeScreen> {
     final categories = [
       {
         'icon': Icons.favorite,
-        'title': 'Ask',
+        'title': 'Aşk',
         'content': _horoscope.loveMonth,
         'color': Colors.pink,
       },
@@ -392,7 +392,7 @@ class _MonthlyHoroscopeScreenState extends State<MonthlyHoroscopeScreen> {
       },
       {
         'icon': Icons.health_and_safety,
-        'title': 'Saglik',
+        'title': 'Sağlık',
         'content': _horoscope.healthMonth,
         'color': Colors.green,
       },
@@ -605,7 +605,7 @@ class _MonthlyHoroscopeScreenState extends State<MonthlyHoroscopeScreen> {
           ),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
-            'Aylik Mantra',
+            'Aylık Mantra',
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                   color: AppColors.starGold,

@@ -19,7 +19,8 @@ class EphemerisService {
 
   /// Calculate complete natal chart
   static NatalChart calculateNatalChart(BirthData birthData) {
-    final jd = _dateToJulianDay(birthData.dateTime);
+    // Use UTC time for Julian Day calculation (astronomical standard)
+    final jd = _dateToJulianDay(birthData.dateTimeUtc);
 
     // Calculate planet positions
     final planets = <PlanetPosition>[];
@@ -112,7 +113,7 @@ class EphemerisService {
     var houses = <HouseCusp>[];
     if (birthData.hasExactTime && birthData.hasLocation) {
       houses = _calculateHouses(
-          jd, birthData.latitude!, birthData.longitude!, birthData.dateTime);
+          jd, birthData.latitude!, birthData.longitude!, birthData.dateTimeUtc);
 
       // Add Ascendant, MC, IC, Descendant
       if (houses.isNotEmpty) {
@@ -199,10 +200,11 @@ class EphemerisService {
   static double _calculateSunLongitude(double jd) {
     final t = _julianCenturies(jd);
 
-    // Mean longitude
+    // Mean longitude (VSOP87 coefficients)
+    // L0 = 280.46646 + 36000.76983 * T + 0.0003032 * T²
     var l0 = 280.4664567 +
-        360007.6982779 * t +
-        0.03032028 * t * t +
+        36000.76982779 * t +
+        0.0003032028 * t * t +
         t * t * t / 49931 -
         t * t * t * t / 15300 -
         t * t * t * t * t / 2000000;
@@ -609,19 +611,31 @@ class EphemerisService {
     return lst;
   }
 
-  /// Calculate Ascendant
+  /// Calculate Ascendant using the standard astrological formula
+  /// The Ascendant is the degree of the ecliptic rising on the eastern horizon
   static double _calculateAscendant(double lst, double latitude) {
     final lstRad = lst * _deg2rad;
     final latRad = latitude * _deg2rad;
 
-    // Obliquity of ecliptic
+    // Obliquity of ecliptic (mean value for J2000)
     const obliquity = 23.4393 * _deg2rad;
 
-    final y = -math.cos(lstRad);
-    final x = math.sin(lstRad) * math.cos(obliquity) +
-        math.tan(latRad) * math.sin(obliquity);
+    // Standard ascendant formula:
+    // tan(Asc) = cos(RAMC) / -(sin(RAMC) * cos(ε) + tan(φ) * sin(ε))
+    // where RAMC = Local Sidereal Time, ε = obliquity, φ = latitude
+
+    final sinLst = math.sin(lstRad);
+    final cosLst = math.cos(lstRad);
+    final sinObl = math.sin(obliquity);
+    final cosObl = math.cos(obliquity);
+    final tanLat = math.tan(latRad);
+
+    final y = cosLst;
+    final x = -(sinLst * cosObl + tanLat * sinObl);
 
     var ascendant = math.atan2(y, x) * _rad2deg;
+
+    // Normalize to 0-360
     ascendant = _normalize(ascendant);
 
     return ascendant;

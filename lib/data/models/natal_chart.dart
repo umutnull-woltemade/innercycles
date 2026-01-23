@@ -124,6 +124,7 @@ class BirthData {
   final double? latitude;
   final double? longitude;
   final String? placeName;
+  final double? timezoneOffset; // Hours offset from UTC (e.g., +3 for Istanbul, -5 for New York)
 
   BirthData({
     required this.date,
@@ -131,10 +132,21 @@ class BirthData {
     this.latitude,
     this.longitude,
     this.placeName,
+    this.timezoneOffset,
   });
 
   bool get hasExactTime => time != null;
   bool get hasLocation => latitude != null && longitude != null;
+
+  /// Get timezone offset - use provided value or estimate from longitude
+  double get effectiveTimezoneOffset {
+    if (timezoneOffset != null) return timezoneOffset!;
+    if (longitude != null) {
+      // Approximate timezone from longitude (15° per hour)
+      return (longitude! / 15).roundToDouble();
+    }
+    return 0; // Default to UTC
+  }
 
   DateTime get dateTime {
     if (time == null) return date;
@@ -146,5 +158,15 @@ class BirthData {
       int.parse(parts[0]),
       int.parse(parts[1]),
     );
+  }
+
+  /// Get dateTime in UTC for astronomical calculations
+  DateTime get dateTimeUtc {
+    final local = dateTime;
+    // Subtract timezone offset to get UTC
+    return local.subtract(Duration(
+      hours: effectiveTimezoneOffset.truncate(),
+      minutes: ((effectiveTimezoneOffset % 1) * 60).round(),
+    ));
   }
 }

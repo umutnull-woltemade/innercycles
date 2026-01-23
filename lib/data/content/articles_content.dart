@@ -36,7 +36,7 @@ Doğum haritası 12 eve bölünür ve her ev yaşamın farklı bir alanını tem
         ''',
         category: ArticleCategory.beginners,
         publishedAt: DateTime.now().subtract(const Duration(days: 30)),
-        author: 'Celestial Team',
+        author: 'Astrobobo Team',
         readTimeMinutes: 8,
         tags: ['başlangıç', 'burçlar', 'gezegenler', 'evler'],
       ),
@@ -74,7 +74,7 @@ Tek tek parçalara değil, bütüne bakın. Haritadaki tekrarlayan temalar ve ba
         ''',
         category: ArticleCategory.beginners,
         publishedAt: DateTime.now().subtract(const Duration(days: 28)),
-        author: 'Celestial Team',
+        author: 'Astrobobo Team',
         readTimeMinutes: 10,
         tags: ['doğum haritası', 'natal chart', 'yorum'],
       ),
@@ -116,7 +116,7 @@ Su burçları duygusal, sezgisel ve empatiktir. Derin bağlantılar, duygusal g�
         ''',
         category: ArticleCategory.beginners,
         publishedAt: DateTime.now().subtract(const Duration(days: 25)),
-        author: 'Celestial Team',
+        author: 'Astrobobo Team',
         readTimeMinutes: 7,
         tags: ['elementler', 'ateş', 'toprak', 'hava', 'su'],
       ),
@@ -157,7 +157,7 @@ Değişken burçlar mevsim geçişlerini temsil eder. Esnek, uyumlu ve çok yön
         ''',
         category: ArticleCategory.beginners,
         publishedAt: DateTime.now().subtract(const Duration(days: 22)),
-        author: 'Celestial Team',
+        author: 'Astrobobo Team',
         readTimeMinutes: 6,
         tags: ['modalite', 'öncü', 'sabit', 'değişken'],
       ),
@@ -188,7 +188,7 @@ Yükselenizi hesaplamak için doğum saatinizi ve yerinizi bilmeniz gerekir. Saa
         ''',
         category: ArticleCategory.beginners,
         publishedAt: DateTime.now().subtract(const Duration(days: 20)),
-        author: 'Celestial Team',
+        author: 'Astrobobo Team',
         readTimeMinutes: 8,
         tags: ['yükselen', 'ascendant', 'kişilik'],
       ),
@@ -224,7 +224,7 @@ Ay burcunuz, annenizle ilişkinizi ve ondan aldığınız duygusal mirası da g�
         ''',
         category: ArticleCategory.beginners,
         publishedAt: DateTime.now().subtract(const Duration(days: 18)),
-        author: 'Celestial Team',
+        author: 'Astrobobo Team',
         readTimeMinutes: 9,
         tags: ['ay burcu', 'duygular', 'bilinçaltı'],
       ),
@@ -264,7 +264,7 @@ Doğum haritasındaki 12 ev, yaşamınızın farklı alanlarını temsil eder. H
         ''',
         category: ArticleCategory.beginners,
         publishedAt: DateTime.now().subtract(const Duration(days: 15)),
-        author: 'Celestial Team',
+        author: 'Astrobobo Team',
         readTimeMinutes: 10,
         tags: ['evler', 'houses', 'yaşam alanları'],
       ),
@@ -300,7 +300,7 @@ Açılar tam derece olmak zorunda değildir. Birkaç derece sapma (orb) kabul ed
         ''',
         category: ArticleCategory.beginners,
         publishedAt: DateTime.now().subtract(const Duration(days: 12)),
-        author: 'Celestial Team',
+        author: 'Astrobobo Team',
         readTimeMinutes: 8,
         tags: ['açılar', 'kavuşum', 'karşıtlık', 'üçgen', 'kare'],
       ),
@@ -339,7 +339,7 @@ Her iki kişinin 7. evi (ortaklık evi) önemlidir:
         ''',
         category: ArticleCategory.relationships,
         publishedAt: DateTime.now().subtract(const Duration(days: 10)),
-        author: 'Celestial Team',
+        author: 'Astrobobo Team',
         readTimeMinutes: 12,
         tags: ['sinastri', 'ilişkiler', 'uyum', 'aşk'],
       ),
@@ -379,7 +379,7 @@ Venüs, astrolojide aşk ve güzellik gezegenidir. Venüs burcunuz, nasıl sevdi
         ''',
         category: ArticleCategory.relationships,
         publishedAt: DateTime.now().subtract(const Duration(days: 8)),
-        author: 'Celestial Team',
+        author: 'Astrobobo Team',
         readTimeMinutes: 10,
         tags: ['venüs', 'aşk', 'ilişki', 'çekim'],
       ),
@@ -416,7 +416,7 @@ Su Mars\'ı: Duygusal yoğunluk, sezgisel bağlantı
         ''',
         category: ArticleCategory.relationships,
         publishedAt: DateTime.now().subtract(const Duration(days: 6)),
-        author: 'Celestial Team',
+        author: 'Astrobobo Team',
         readTimeMinutes: 9,
         tags: ['mars', 'tutku', 'cinsellik', 'ilişki'],
       ),
@@ -454,7 +454,7 @@ Gezegenler hangi evlere düşerse, ilişkinin o yaşam alanlarında odaklandığ
         ''',
         category: ArticleCategory.relationships,
         publishedAt: DateTime.now().subtract(const Duration(days: 4)),
-        author: 'Celestial Team',
+        author: 'Astrobobo Team',
         readTimeMinutes: 11,
         tags: ['kompozit', 'ilişki haritası', 'uyum'],
       ),
@@ -490,7 +490,7 @@ Güneş burcu uyumu sadece bir faktördür. Ay, Venüs, Mars ve yükselenler de 
         ''',
         category: ArticleCategory.relationships,
         publishedAt: DateTime.now().subtract(const Duration(days: 2)),
-        author: 'Celestial Team',
+        author: 'Astrobobo Team',
         readTimeMinutes: 8,
         tags: ['uyum', 'burç uyumu', 'elementler'],
       ),
@@ -526,7 +526,7 @@ Yükselenin tam karşısında yer alır. Bu burç, çektiğiniz ve aradığını
         ''',
         category: ArticleCategory.relationships,
         publishedAt: DateTime.now().subtract(const Duration(days: 1)),
-        author: 'Celestial Team',
+        author: 'Astrobobo Team',
         readTimeMinutes: 10,
         tags: ['7. ev', 'evlilik', 'partner', 'descendant'],
       ),
@@ -563,7 +563,7 @@ Birinin gezegenleri diğerinin düğümlerine değdiğinde karmik bir bağ hisse
         ''',
         category: ArticleCategory.relationships,
         publishedAt: DateTime.now(),
-        author: 'Celestial Team',
+        author: 'Astrobobo Team',
         readTimeMinutes: 9,
         tags: ['düğümler', 'karma', 'ruh eşi', 'ilişki'],
       ),
@@ -609,7 +609,7 @@ Retro öncesi ve sonrası 2 haftalık gölge dönemleri de dikkat gerektirir.
         ''',
         category: ArticleCategory.currentTransits,
         publishedAt: DateTime.now().subtract(const Duration(days: 14)),
-        author: 'Celestial Team',
+        author: 'Astrobobo Team',
         readTimeMinutes: 7,
         tags: ['merkür', 'retro', 'transit'],
       ),
@@ -650,7 +650,7 @@ Saç kesimi, estetik müdahaleler gibi değişiklikler için ideal değil. Sonu�
         ''',
         category: ArticleCategory.currentTransits,
         publishedAt: DateTime.now().subtract(const Duration(days: 11)),
-        author: 'Celestial Team',
+        author: 'Astrobobo Team',
         readTimeMinutes: 8,
         tags: ['venüs', 'retro', 'aşk', 'ilişki'],
       ),
@@ -694,7 +694,7 @@ Bu dönemde:
         ''',
         category: ArticleCategory.currentTransits,
         publishedAt: DateTime.now().subtract(const Duration(days: 9)),
-        author: 'Celestial Team',
+        author: 'Astrobobo Team',
         readTimeMinutes: 10,
         tags: ['satürn', 'dönüşü', '29 yaş', 'olgunluk'],
       ),
@@ -733,7 +733,7 @@ Her 12 yılda Jüpiter doğum konumuna döner (12, 24, 36, 48... yaşlar). Bu ö
         ''',
         category: ArticleCategory.currentTransits,
         publishedAt: DateTime.now().subtract(const Duration(days: 7)),
-        author: 'Celestial Team',
+        author: 'Astrobobo Team',
         readTimeMinutes: 8,
         tags: ['jüpiter', 'transit', 'şans', 'fırsat'],
       ),
@@ -775,7 +775,7 @@ Tutulmalar Ay düğümleri yakınında gerçekleşir, bu yüzden karmik ve kader
         ''',
         category: ArticleCategory.currentTransits,
         publishedAt: DateTime.now().subtract(const Duration(days: 5)),
-        author: 'Celestial Team',
+        author: 'Astrobobo Team',
         readTimeMinutes: 9,
         tags: ['tutulma', 'güneş tutulması', 'ay tutulması', 'kader'],
       ),
@@ -816,7 +816,7 @@ Pluto transitleri yıllarca sürer. Sabır gerektirir ama sonuç kalıcı dönü
         ''',
         category: ArticleCategory.currentTransits,
         publishedAt: DateTime.now().subtract(const Duration(days: 3)),
-        author: 'Celestial Team',
+        author: 'Astrobobo Team',
         readTimeMinutes: 10,
         tags: ['pluto', 'transit', 'dönüşüm', 'güç'],
       ),
@@ -856,7 +856,7 @@ Uranüs, değişim ve özgürlük gezegenidir. Bir burçta 7 yıl kalır ve ani,
         ''',
         category: ArticleCategory.currentTransits,
         publishedAt: DateTime.now().subtract(const Duration(days: 1)),
-        author: 'Celestial Team',
+        author: 'Astrobobo Team',
         readTimeMinutes: 8,
         tags: ['uranüs', 'transit', 'değişim', 'özgürlük'],
       ),
@@ -896,7 +896,7 @@ MC burcunun yöneticisinin konumu, kariyerinizi nasıl bulacağınızı gösteri
         ''',
         category: ArticleCategory.career,
         publishedAt: DateTime.now().subtract(const Duration(days: 13)),
-        author: 'Celestial Team',
+        author: 'Astrobobo Team',
         readTimeMinutes: 11,
         tags: ['kariyer', '10. ev', 'midheaven', 'meslek'],
       ),
@@ -931,7 +931,7 @@ Merkür hangi evdeyse, o alanda iletişim ve düşünce odaklı olursunuz.
         ''',
         category: ArticleCategory.career,
         publishedAt: DateTime.now().subtract(const Duration(days: 10)),
-        author: 'Celestial Team',
+        author: 'Astrobobo Team',
         readTimeMinutes: 8,
         tags: ['merkür', 'iletişim', 'düşünce', 'kariyer'],
       ),
@@ -970,7 +970,7 @@ Bu ev, başkalarına nasıl hizmet ettiğinizi de gösterir. Gönüllülük, yar
         ''',
         category: ArticleCategory.career,
         publishedAt: DateTime.now().subtract(const Duration(days: 8)),
-        author: 'Celestial Team',
+        author: 'Astrobobo Team',
         readTimeMinutes: 9,
         tags: ['6. ev', 'sağlık', 'rutin', 'çalışma'],
       ),
@@ -1012,7 +1012,7 @@ Bu iki gezegenin konumu, evleri ve açıları kariyer hikayenizi anlatır.
         ''',
         category: ArticleCategory.career,
         publishedAt: DateTime.now().subtract(const Duration(days: 6)),
-        author: 'Celestial Team',
+        author: 'Astrobobo Team',
         readTimeMinutes: 10,
         tags: ['jüpiter', 'satürn', 'kariyer', 'başarı'],
       ),
@@ -1048,7 +1048,7 @@ Düğümlerinizin evleri, bu ruhsal yolculuğun hangi yaşam alanlarında gerçe
         ''',
         category: ArticleCategory.spirituality,
         publishedAt: DateTime.now().subtract(const Duration(days: 4)),
-        author: 'Celestial Team',
+        author: 'Astrobobo Team',
         readTimeMinutes: 12,
         tags: ['düğümler', 'karma', 'ruhsal yolculuk', 'amaç'],
       ),
@@ -1087,7 +1087,7 @@ Bu ev aynı zamanda şifa potansiyelinizi gösterir. Başkalarına görünmeyen 
         ''',
         category: ArticleCategory.spirituality,
         publishedAt: DateTime.now().subtract(const Duration(days: 2)),
-        author: 'Celestial Team',
+        author: 'Astrobobo Team',
         readTimeMinutes: 10,
         tags: ['12. ev', 'bilinçaltı', 'spiritüellik', 'meditasyon'],
       ),
@@ -1131,7 +1131,7 @@ Sanat, müzik, meditasyon, şifa pratikleri ve spiritüel arayış Neptün enerj
         ''',
         category: ArticleCategory.spirituality,
         publishedAt: DateTime.now(),
-        author: 'Celestial Team',
+        author: 'Astrobobo Team',
         readTimeMinutes: 9,
         tags: ['neptün', 'spiritüellik', 'rüyalar', 'ilham'],
       ),
@@ -1172,9 +1172,452 @@ Kiron güçlü olanlar, kendi yaralarını deneyimledikleri için başkalarına 
         ''',
         category: ArticleCategory.spirituality,
         publishedAt: DateTime.now().subtract(const Duration(hours: 12)),
-        author: 'Celestial Team',
+        author: 'Astrobobo Team',
         readTimeMinutes: 10,
         tags: ['kiron', 'şifa', 'yara', 'dönüşüm'],
+      ),
+
+      // TRENDING/POPULAR ARTICLES (31-40)
+      AstrologyArticle(
+        id: '31',
+        title: 'Ay Fazları ve Manifestasyon Ritüelleri',
+        summary: 'Her ay fazına uygun manifestasyon teknikleri ve niyet belirleme.',
+        content: '''
+Ay'ın 29.5 günlük döngüsü, manifestasyon ve niyet belirleme için güçlü bir çerçeve sunar.
+
+## Yeni Ay: Tohum Ekme
+
+Yeni Ay karanlıktır - yeni başlangıçlar için ideal zaman.
+
+**Ritüel Önerileri:**
+- Niyet listesi yazın (elle, kağıda)
+- Yeni Ay meditasyonu
+- Vizyon panosu oluşturun
+- Yeni projeler başlatın
+- Sessizlik ve içe dönüş
+
+## Hilal Ay: Büyüme
+
+İnancınızı güçlendirin, eyleme geçin.
+
+## İlk Dördün: Eylem
+
+Engellerle yüzleşin, kararlılık gösterin.
+
+## Kabaran Ay: İnce Ayar
+
+Stratejinizi gözden geçirin, sabırlı olun.
+
+## Dolunay: Hasat ve Şükür
+
+Dolunay, enerjinin doruğudur. Manifestasyonların gerçekleşme zamanı.
+
+**Ritüel Önerileri:**
+- Şükür listesi yazın
+- Bırakma ritüeli
+- Dolunay banyosu
+- Kristal şarj etme
+- Meditasyon ve enerji çalışması
+
+## Azalan Ay: Arınma
+
+Bırakmak istediğiniz şeyleri serbest bırakın.
+        ''',
+        category: ArticleCategory.spirituality,
+        publishedAt: DateTime.now().subtract(const Duration(hours: 6)),
+        author: 'Astrobobo Team',
+        readTimeMinutes: 11,
+        tags: ['ay fazları', 'manifestasyon', 'ritüel', 'niyet'],
+      ),
+
+      AstrologyArticle(
+        id: '32',
+        title: 'Burç Burcuna Sabah Ritüelleri',
+        summary: 'Güneş burcunuza göre ideal sabah rutini ve enerji yönetimi.',
+        content: '''
+Her burcun enerjisi farklıdır. Burç özelliklerinize uygun bir sabah rutini oluşturmak gününüzü dönüştürebilir.
+
+## Ateş Burçları (Koç, Aslan, Yay)
+
+**İdeal Uyanış**: Erken, enerjik
+**Ritüeller**:
+- Dinamik egzersiz veya yoga
+- Motivasyon müziği
+- Günün niyetini yüksek sesle söyleyin
+- Kırmızı veya turuncu içeren kahvaltı
+
+## Toprak Burçları (Boğa, Başak, Oğlak)
+
+**İdeal Uyanış**: Yavaş, ritüellerle
+**Ritüeller**:
+- Sabit bir uyku-uyanma saati
+- Dokunsal deneyimler (yumuşak havlu, güzel koku)
+- Besleyici kahvaltı
+- Günlük planlama ve liste yapma
+
+## Hava Burçları (İkizler, Terazi, Kova)
+
+**İdeal Uyanış**: Uyarıcı, değişken
+**Ritüeller**:
+- Sabah haberleri veya podcast
+- Sosyal medya kontrolü (sınırlı)
+- Hafif stretching
+- Günlük yazma veya sesli düşünme
+
+## Su Burçları (Yengeç, Akrep, Balık)
+
+**İdeal Uyanış**: Nazik, kademeli
+**Ritüeller**:
+- Rüya günlüğü tutma
+- Meditasyon veya dua
+- Su ile arınma
+- Sezgisel kart çekme
+        ''',
+        category: ArticleCategory.beginners,
+        publishedAt: DateTime.now().subtract(const Duration(hours: 3)),
+        author: 'Astrobobo Team',
+        readTimeMinutes: 8,
+        tags: ['sabah rutini', 'wellness', 'burçlar', 'enerji'],
+      ),
+
+      AstrologyArticle(
+        id: '33',
+        title: 'Ruh Eşi Mi Karşıma Çıktı? Astrolojik İşaretler',
+        summary: 'Gerçek ruh eşini astrololojik açıdan nasıl tanırsın?',
+        content: '''
+"Ruh eşi" kavramı romantize edilse de astrolojide belirli göstergeleri vardır.
+
+## Güçlü Ruh Eşi Göstergeleri
+
+### Düğüm Bağlantıları
+Birinin Güneşi, Ayı veya Venüsü diğerinin Kuzey Düğümüne değiyorsa karmik bir bağ vardır.
+
+### Satürn Bağlantıları
+Satürn karması! Satürn-Güneş veya Satürn-Ay kavuşumları ciddi, uzun süreli bağları gösterir.
+
+### 12. Ev Bağlantıları
+Birinin gezegenleri diğerinin 12. evine düşerse spiritüel, açıklanamaz bir çekim oluşur.
+
+### Vertex Bağlantıları
+Vertex noktası "kadersel karşılaşmalar"ı gösterir. Vertex üzerine düşen gezegenler anlam taşır.
+
+## Dikkat Edilmesi Gerekenler
+
+**Yoğunluk ≠ Uyumluluk**
+Çok yoğun hisler her zaman sağlıklı ilişki anlamına gelmez.
+
+**Karşılıklı Büyüme**
+Gerçek ruh eşileri birbirini büyütür, tüketmez.
+
+**Zorluklar Normal**
+Ruh eşi ilişkileri de zorlu olabilir - amaç birlikte evrimleşmektir.
+
+## Dikkat: Karmik İlişki ≠ Ruh Eşi
+
+Karmik ilişkiler ders öğretir, ruh eşileri birlikte büyür.
+        ''',
+        category: ArticleCategory.relationships,
+        publishedAt: DateTime.now().subtract(const Duration(hours: 2)),
+        author: 'Astrobobo Team',
+        readTimeMinutes: 10,
+        tags: ['ruh eşi', 'karma', 'ilişki', 'kader'],
+      ),
+
+      AstrologyArticle(
+        id: '34',
+        title: 'Burcuna Göre Self-Care Rehberi',
+        summary: 'Güneş burcunuza özel kendinize bakım önerileri ve şifa pratikleri.',
+        content: '''
+Her burcun enerjisi farklı self-care ihtiyaçları gerektirir. İşte size özel bakım rehberi.
+
+## Koç
+- **İhtiyaç**: Hareket, meydan okuma
+- **Öneri**: Yoğun spor, boks, yürüyüş
+- **Kaçının**: Hareketsizlik, sıkıcı rutinler
+
+## Boğa
+- **İhtiyaç**: Duyusal keyif, konfor
+- **Öneri**: Spa, masaj, lezzetli yemek
+- **Kaçının**: Aşırı harcama, tembellik
+
+## İkizler
+- **İhtiyaç**: Zihinsel uyarım, sosyalleşme
+- **Öneri**: Yeni bir şey öğrenin, sohbet
+- **Kaçının**: Aşırı bilgi tüketimi
+
+## Yengeç
+- **İhtiyaç**: Ev, güvenlik, aile
+- **Öneri**: Ev yapımı yemek, nostalji
+- **Kaçının**: Başkalarını fazla önemsemek
+
+## Aslan
+- **İhtiyaç**: Yaratıcılık, takdir görme
+- **Öneri**: Sanat, performans, övgü
+- **Kaçının**: Kendini küçümseme
+
+## Başak
+- **İhtiyaç**: Düzen, temizlik, sağlık
+- **Öneri**: Detoks, organize etme
+- **Kaçının**: Mükemmeliyetçilik
+
+## Terazi - Balık
+*(Diğer burçlar için detaylı içerik devam eder)*
+        ''',
+        category: ArticleCategory.spirituality,
+        publishedAt: DateTime.now().subtract(const Duration(hours: 1)),
+        author: 'Astrobobo Team',
+        readTimeMinutes: 12,
+        tags: ['self-care', 'bakım', 'wellness', 'burçlar'],
+      ),
+
+      AstrologyArticle(
+        id: '35',
+        title: '2025 Yılı Burç Tahminleri: Genel Bakış',
+        summary: 'Jüpiter, Satürn ve önemli geçişlerin 2025 yılı etkileri.',
+        content: '''
+2025, astrolojik açıdan önemli dönüşümler vadeden bir yıl. İşte öne çıkan temalar.
+
+## Jüpiter İkizler\'de (2024-2025)
+
+İletişim, öğrenme ve ağ kurma alanında fırsatlar. Özellikle hava burçları için şanslı bir dönem.
+
+## Satürn Balık\'ta
+
+Spiritüel konularda yapılanma, hayal ile gerçek arasında denge kurma. Sınırlar ve empati.
+
+## Uranüs Boğa\'dan Çıkıyor
+
+Finansal ve değer sistemlerinde uzun süredir devam eden devrimin sonu. Yeni bir çağ başlıyor.
+
+## Tutulma Ekseni
+
+Koç-Terazi ekseninde tutulmalar devam ediyor. İlişkiler ve bireysellik teması öne çıkıyor.
+
+## Burçlara Göre Ana Temalar
+
+**Ateş Burçları**: Yenilik ve liderlik fırsatları
+**Toprak Burçları**: Finansal yeniden yapılanma
+**Hava Burçları**: Büyüme ve genişleme
+**Su Burçları**: Duygusal derinleşme ve şifa
+        ''',
+        category: ArticleCategory.currentTransits,
+        publishedAt: DateTime.now(),
+        author: 'Astrobobo Team',
+        readTimeMinutes: 15,
+        tags: ['2025', 'yıllık', 'tahmin', 'transit'],
+      ),
+
+      AstrologyArticle(
+        id: '36',
+        title: 'Gece Doğanlar vs Gündüz Doğanlar: Sekt',
+        summary: 'Doğum saatinize göre hangi gezegenler sizin için daha önemli?',
+        content: '''
+Antik astrolojide "sekt" kavramı, gece ve gündüz doğumlarını ayırır ve hangi gezegenlerin daha aktif olduğunu gösterir.
+
+## Gündüz Sektı (Güneş ufkun üstünde)
+
+**Işık Gezegeni**: Güneş
+**İyi Gezegen**: Jüpiter
+**Zor Gezegen**: Satürn (daha yapıcı)
+**Mars**: Daha zorlu
+
+Gündüz doğanlar genellikle:
+- Dışa dönük enerjiler
+- Sosyal ve görünür konular
+- Jüpiter'in bolluğundan faydalanır
+
+## Gece Sektı (Güneş ufkun altında)
+
+**Işık Gezegeni**: Ay
+**İyi Gezegen**: Venüs
+**Zor Gezegen**: Mars (daha yapıcı)
+**Satürn**: Daha zorlu
+
+Gece doğanlar genellikle:
+- İçe dönük enerjiler
+- Özel ve duygusal konular
+- Venüs'ün uyumundan faydalanır
+
+## Pratik Uygulama
+
+Doğum saatinizi öğrenin ve:
+- İyi gezegeninizi güçlendirin
+- Zor gezegeninizle çalışın
+        ''',
+        category: ArticleCategory.beginners,
+        publishedAt: DateTime.now().subtract(const Duration(hours: 8)),
+        author: 'Astrobobo Team',
+        readTimeMinutes: 9,
+        tags: ['sekt', 'gece doğum', 'gündüz doğum', 'antik'],
+      ),
+
+      AstrologyArticle(
+        id: '37',
+        title: 'Lilith: Gölge Dişil Enerji',
+        summary: 'Kara Ay Lilith\'in doğum haritanızdaki anlamı ve gücü.',
+        content: '''
+Lilith (Kara Ay), bastırılmış dişil enerjiyi, isyanı ve özgürleşmeyi temsil eder.
+
+## Lilith Nedir?
+
+Astronomik olarak Ay'ın yörüngesinin uzak noktasıdır. Astrolojik olarak:
+- Bastırılmış öfke
+- Red edilen benlik parçaları
+- Cinsel güç
+- İsyan ve özgürlük
+- Dışlanmış dişil
+
+## Lilith Mitolojisi
+
+Yahudi mitolojisinde Lilith, Adem'in ilk eşiydi ve boyun eğmeyi reddetti. Bu arketip bağımsızlık ve isyanı simgeler.
+
+## Burçlarda Lilith
+
+**Koç Lilith**: Öfke ve bağımsızlık gücü
+**Boğa Lilith**: Duyusal özgürleşme
+**Akrep Lilith**: Derin dönüşüm gücü
+**Balık Lilith**: Spiritüel isyan
+
+## Lilith'le Çalışmak
+
+- Red ettiğiniz yanlarınızı kabul edin
+- Sağlıksız uysallıktan çıkın
+- Otantik gücünüzü keşfedin
+- Gölge çalışması yapın
+        ''',
+        category: ArticleCategory.spirituality,
+        publishedAt: DateTime.now().subtract(const Duration(hours: 4)),
+        author: 'Astrobobo Team',
+        readTimeMinutes: 10,
+        tags: ['lilith', 'gölge', 'dişil', 'güç'],
+      ),
+
+      AstrologyArticle(
+        id: '38',
+        title: 'Para ve Bolluk: 2. ve 8. Ev Analizi',
+        summary: 'Finansal durumunuzu ve para ilişkinizi gösteren astrolojik faktörler.',
+        content: '''
+Astrolojide maddi konular iki ev tarafından yönetilir: 2. ev (kendi kazancınız) ve 8. ev (paylaşılan kaynaklar).
+
+## 2. Ev: Kendi Değeriniz
+
+Bu ev şunları gösterir:
+- Nasıl para kazanırsınız
+- Neyi değerli bulursunuz
+- Öz değer algınız
+- Maddi güvenlik ihtiyacınız
+
+**2. Ev Burçları ve Para**:
+- Toprak burçları: Pratik ve biriktirici
+- Ateş burçları: Cömert ve harcamacı
+- Hava burçları: Değişken ve fırsatçı
+- Su burçları: Duygusal harcama
+
+## 8. Ev: Paylaşılan Kaynaklar
+
+Bu ev şunları gösterir:
+- Miras, yatırım, borç
+- Partnerinizin parası
+- Vergi ve sigorta
+- Psikolojik dönüşüm
+
+## Bolluk Blokajları
+
+Satürn 2. veya 8. evde bolluk korkularını gösterebilir. Bu farkındalıkla çalışılabilir.
+
+## Jüpiter ve Şans
+
+Jüpiter bu evlerde finansal fırsatları genişletir.
+        ''',
+        category: ArticleCategory.career,
+        publishedAt: DateTime.now().subtract(const Duration(hours: 5)),
+        author: 'Astrobobo Team',
+        readTimeMinutes: 11,
+        tags: ['para', 'bolluk', '2. ev', '8. ev', 'finans'],
+      ),
+
+      AstrologyArticle(
+        id: '39',
+        title: 'Astroloji ve Psikoloji: Jung\'un Mirası',
+        summary: 'Carl Jung\'un astrolojiyle ilişkisi ve arketip kavramının bağlantısı.',
+        content: '''
+Carl Jung, modern psikolojinin kurucularından biri olarak astrolojiyi ciddiye alan nadir bilim insanlarından biriydi.
+
+## Jung ve Astroloji
+
+Jung, hastaların doğum haritalarını incelemiş ve şöyle söylemiştir: "Astroloji, tüm psikolojik bilgiyi içerir."
+
+## Kolektif Bilinçdışı
+
+Jung'un "kolektif bilinçdışı" kavramı, astrolojinin arketipsel sembolleriyle örtüşür:
+- Gezegenler = Arketipler
+- Burçlar = Enerji kalıpları
+- Evler = Yaşam alanları
+
+## Arketip Eşleşmeleri
+
+**Güneş**: Kahraman, Benlik
+**Ay**: Anne, Bilinçdışı
+**Venüs**: Sevgili, Anima
+**Mars**: Savaşçı, Animus
+**Satürn**: Bilge Yaşlı, Gölge
+
+## Senkronisite
+
+Jung'un "anlamlı tesadüf" kavramı, astrolojinin temelini oluşturur. Gökyüzü ve yeryüzü aynı kalıbı yansıtır.
+
+## Modern Psikolojik Astroloji
+
+Bugün birçok terapist, astrolojiyi kendini tanıma aracı olarak kullanır.
+        ''',
+        category: ArticleCategory.spirituality,
+        publishedAt: DateTime.now().subtract(const Duration(hours: 7)),
+        author: 'Astrobobo Team',
+        readTimeMinutes: 12,
+        tags: ['jung', 'psikoloji', 'arketip', 'bilinçdışı'],
+      ),
+
+      AstrologyArticle(
+        id: '40',
+        title: 'Tarot ve Astroloji: Güçlü İkili',
+        summary: 'Tarot kartları ile astrolojik sembollerin bağlantısı.',
+        content: '''
+Tarot ve astroloji, aynı arketipsel sistemin iki farklı dilidir. Birlikte kullanıldığında güçlü içgörüler sunar.
+
+## Major Arcana ve Gezegenler
+
+**0 Fool**: Uranüs (özgürlük, risk)
+**I Magician**: Merkür (iletişim)
+**II High Priestess**: Ay (sezgi)
+**III Empress**: Venüs (bolluk)
+**IV Emperor**: Koç (otorite)
+**V Hierophant**: Boğa (gelenek)
+
+## Burçlar ve Kartlar
+
+Her burç bir Major Arcana kartıyla eşleşir:
+- Koç: Emperor
+- Boğa: Hierophant
+- İkizler: Lovers
+- Yengeç: Chariot
+- ...
+
+## Minor Arcana ve Elementler
+
+**Değnekler**: Ateş burçları
+**Kupalar**: Su burçları
+**Kılıçlar**: Hava burçları
+**Pentagramlar**: Toprak burçları
+
+## Birlikte Kullanım
+
+Doğum haritanızı okurken ilgili tarot kartlarına da bakabilirsiniz. Bu, sembolleri derinleştirir.
+        ''',
+        category: ArticleCategory.spirituality,
+        publishedAt: DateTime.now().subtract(const Duration(hours: 9)),
+        author: 'Astrobobo Team',
+        readTimeMinutes: 10,
+        tags: ['tarot', 'kartlar', 'semboller', 'major arcana'],
       ),
     ];
   }

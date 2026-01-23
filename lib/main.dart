@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'core/theme/app_theme.dart';
 import 'shared/services/router_service.dart';
+import 'shared/widgets/interpretive_text.dart';
 import 'data/services/ad_service.dart';
 import 'data/services/storage_service.dart';
 import 'data/providers/app_providers.dart';
@@ -11,6 +12,9 @@ import 'data/models/user_profile.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialize glossary cache for fast term lookups
+  GlossaryCache().initialize();
 
   // Initialize local storage
   await StorageService.initialize();
@@ -36,7 +40,7 @@ void main() async {
         if (savedProfile != null)
           userProfileProvider.overrideWith(() => _InitializedUserProfileNotifier(savedProfile)),
       ],
-      child: const CelestialApp(),
+      child: const AstroboboApp(),
     ),
   );
 }
@@ -51,8 +55,8 @@ class _InitializedUserProfileNotifier extends UserProfileNotifier {
   UserProfile? build() => _initialProfile;
 }
 
-class CelestialApp extends ConsumerWidget {
-  const CelestialApp({super.key});
+class AstroboboApp extends ConsumerWidget {
+  const AstroboboApp({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -61,7 +65,7 @@ class CelestialApp extends ConsumerWidget {
     final language = ref.watch(languageProvider);
 
     return MaterialApp.router(
-      title: 'Celestial',
+      title: 'Astrobobo',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light,
       darkTheme: AppTheme.dark,

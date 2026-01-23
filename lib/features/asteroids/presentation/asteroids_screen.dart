@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/zodiac_sign.dart';
+import '../../../data/models/user_profile.dart';
 import '../../../data/models/premium_astrology.dart';
 import '../../../data/services/premium_astrology_service.dart';
 import '../../../data/providers/app_providers.dart';
@@ -46,7 +47,7 @@ class _AsteroidsScreenState extends ConsumerState<AsteroidsScreen>
     setState(() {
       _chart = _service.generateAsteroidChart(
         birthDate: userProfile.birthDate,
-        sunSign: userProfile.sunSign ?? ZodiacSign.aries,
+        sunSign: userProfile.sunSign,
       );
     });
   }
@@ -203,7 +204,7 @@ class _AsteroidsScreenState extends ConsumerState<AsteroidsScreen>
     );
   }
 
-  Widget _buildProfileCard(bool isDark, dynamic userProfile) {
+  Widget _buildProfileCard(bool isDark, UserProfile userProfile) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -239,8 +240,7 @@ class _AsteroidsScreenState extends ConsumerState<AsteroidsScreen>
           const SizedBox(height: AppConstants.spacingMd),
           _buildInfoRow(isDark, Icons.person_outline, 'Isim', userProfile.name ?? 'Kullanici'),
           _buildInfoRow(isDark, Icons.cake_outlined, 'Dogum Tarihi', _formatDate(userProfile.birthDate)),
-          if (userProfile.sunSign != null)
-            _buildInfoRow(isDark, Icons.wb_sunny_outlined, 'Gunes Burcu', userProfile.sunSign!.nameTr),
+          _buildInfoRow(isDark, Icons.wb_sunny_outlined, 'Gunes Burcu', userProfile.sunSign.nameTr),
         ],
       ),
     );

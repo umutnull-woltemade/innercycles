@@ -9,6 +9,7 @@ import '../../../data/models/zodiac_sign.dart' as zodiac;
 import '../../../data/services/ephemeris_service.dart';
 import '../../../data/services/esoteric_interpretation_service.dart';
 import '../../../data/services/ad_service.dart';
+import '../../../data/services/storage_service.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/ad_banner_widget.dart';
@@ -47,9 +48,30 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
         longitude: userProfile.birthLongitude,
         placeName: userProfile.birthPlace,
       );
+      final natalChart = EphemerisService.calculateNatalChart(birthData);
       setState(() {
-        _natalChart = EphemerisService.calculateNatalChart(birthData);
+        _natalChart = natalChart;
       });
+
+      // Save calculated rising sign and moon sign to user profile if not already set
+      // Using Future.microtask to avoid modifying provider during widget build
+      if (userProfile.risingSign == null || userProfile.moonSign == null) {
+        final ascendant = natalChart.ascendant;
+        final moon = natalChart.moon;
+
+        if (ascendant != null || moon != null) {
+          Future.microtask(() {
+            final updatedProfile = userProfile.copyWith(
+              risingSign: userProfile.risingSign ?? ascendant?.sign,
+              moonSign: userProfile.moonSign ?? moon?.sign,
+            );
+            ref.read(userProfileProvider.notifier).setProfile(updatedProfile);
+            // Also persist to storage
+            StorageService.saveUserProfile(updatedProfile);
+          });
+        }
+      }
+
       // Show interstitial ad after chart calculation
       _showPostAnalysisAd();
     }
@@ -163,8 +185,10 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
                 if (name != null)
                   Text(
                     name,
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                          color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 20,
                         ),
                   ),
               ],
@@ -286,9 +310,6 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
             AppColors.starGold,
           ).animate().fadeIn(duration: 400.ms),
           const SizedBox(height: AppConstants.spacingLg),
-          // Visual Chart Wheel
-          _buildChartWheelSection(),
-          const SizedBox(height: AppConstants.spacingLg),
           ChartSummaryCard(chart: _natalChart!),
           const SizedBox(height: AppConstants.spacingLg),
           _buildBigThree(),
@@ -311,6 +332,10 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
           const SizedBox(height: AppConstants.spacingLg),
           // Ad Banner
           const InlineAdBanner(),
+          const SizedBox(height: AppConstants.spacingLg),
+          // Visual Chart Wheel - moved to bottom
+          _buildChartWheelSection(),
+          const SizedBox(height: AppConstants.spacingXxl),
         ],
       ),
     );

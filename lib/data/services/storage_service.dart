@@ -10,6 +10,8 @@ class StorageService {
   static const String _settingsBoxName = 'settings_box';
 
   static const String _profileKey = 'user_profile';
+  static const String _allProfilesKey = 'all_profiles';
+  static const String _primaryProfileIdKey = 'primary_profile_id';
   static const String _onboardingKey = 'onboarding_complete';
   static const String _languageKey = 'app_language';
   static const String _themeModeKey = 'theme_mode';
@@ -45,8 +47,19 @@ class StorageService {
 
     try {
       final data = jsonDecode(json) as Map<String, dynamic>;
-      return UserProfile.fromJson(data);
+      final profile = UserProfile.fromJson(data);
+
+      // Validate profile has required data (name must exist and not be empty)
+      if (profile.name == null || profile.name!.isEmpty) {
+        // Clear invalid data
+        box.delete(_profileKey);
+        return null;
+      }
+
+      return profile;
     } catch (e) {
+      // Clear corrupted data
+      box.delete(_profileKey);
       return null;
     }
   }
@@ -57,6 +70,98 @@ class StorageService {
     if (box == null) return;
 
     await box.delete(_profileKey);
+  }
+
+  // ========== MULTIPLE PROFILES ==========
+
+  static Future<void> saveProfile(UserProfile profile) async {
+    final box = _profileBox;
+    if (box == null) return;
+
+    final profiles = loadAllProfiles();
+    final index = profiles.indexWhere((p) => p.id == profile.id);
+
+    if (index >= 0) {
+      profiles[index] = profile.copyWith(updatedAt: DateTime.now());
+    } else {
+      profiles.add(profile);
+    }
+
+    final jsonList = profiles.map((p) => p.toJson()).toList();
+    await box.put(_allProfilesKey, jsonEncode(jsonList));
+
+    if (profile.isPrimary || profiles.length == 1) {
+      await setPrimaryProfileId(profile.id);
+    }
+  }
+
+  static List<UserProfile> loadAllProfiles() {
+    final box = _profileBox;
+    if (box == null) return [];
+
+    final json = box.get(_allProfilesKey) as String?;
+    if (json == null) {
+      final legacy = loadUserProfile();
+      if (legacy != null) {
+        return [legacy.copyWith(isPrimary: true)];
+      }
+      return [];
+    }
+
+    try {
+      final list = jsonDecode(json) as List;
+      return list
+          .map((e) => UserProfile.fromJson(e as Map<String, dynamic>))
+          .where((p) => p.name != null && p.name!.isNotEmpty)
+          .toList();
+    } catch (e) {
+      return [];
+    }
+  }
+
+  static Future<void> deleteProfile(String id) async {
+    final box = _profileBox;
+    if (box == null) return;
+
+    final profiles = loadAllProfiles();
+    profiles.removeWhere((p) => p.id == id);
+
+    final jsonList = profiles.map((p) => p.toJson()).toList();
+    await box.put(_allProfilesKey, jsonEncode(jsonList));
+
+    final primaryId = getPrimaryProfileId();
+    if (primaryId == id && profiles.isNotEmpty) {
+      await setPrimaryProfileId(profiles.first.id);
+    }
+  }
+
+  static Future<void> setPrimaryProfileId(String id) async {
+    final box = _profileBox;
+    if (box == null) return;
+    await box.put(_primaryProfileIdKey, id);
+  }
+
+  static String? getPrimaryProfileId() {
+    final box = _profileBox;
+    if (box == null) return null;
+    return box.get(_primaryProfileIdKey) as String?;
+  }
+
+  static UserProfile? getPrimaryProfile() {
+    final profiles = loadAllProfiles();
+    final primaryId = getPrimaryProfileId();
+
+    if (primaryId != null) {
+      final primary = profiles.where((p) => p.id == primaryId).firstOrNull;
+      if (primary != null) return primary;
+    }
+
+    return profiles.isNotEmpty ? profiles.first : null;
+  }
+
+  static UserProfile? getProfileById(String id) {
+    final profiles = loadAllProfiles();
+    return profiles.where((p) => p.id == id).firstOrNull;
   }
 
   // ========== ONBOARDING ==========
@@ -70,11 +175,24 @@ class StorageService {
   }
 
   /// Load onboarding completion status
+  /// Returns false if there's no valid user profile (to force onboarding)
   static bool loadOnboardingComplete() {
     final box = _settingsBox;
     if (box == null) return false;
 
-    return box.get(_onboardingKey, defaultValue: false) as bool;
+    final isComplete = box.get(_onboardingKey, defaultValue: false) as bool;
+
+    // If onboarding is marked complete but there's no valid profile, reset it
+    if (isComplete) {
+      final profile = loadUserProfile();
+      if (profile == null) {
+        // Reset onboarding flag since profile is invalid
+        box.put(_onboardingKey, false);
+        return false;
+      }
+    }
+
+    return isComplete;
   }
 
   // ========== LANGUAGE ==========

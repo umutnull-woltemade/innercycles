@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/zodiac_sign.dart';
+import '../../../data/models/user_profile.dart';
 import '../../../data/models/advanced_astrology.dart';
 import '../../../data/services/advanced_astrology_service.dart';
 import '../../../data/providers/app_providers.dart';
@@ -32,12 +33,16 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
     final userProfile = ref.read(userProfileProvider);
     if (userProfile == null) return;
 
+    // Use actual rising sign if available, otherwise use sun sign as fallback
+    // Note: For accurate progressions, birth time is needed for true ascendant
+    final ascendantToUse = userProfile.risingSign ?? userProfile.sunSign;
+
     setState(() {
       _progressions = AdvancedAstrologyService.generateProgressions(
         birthDate: userProfile.birthDate,
-        natalSun: userProfile.sunSign ?? ZodiacSign.aries,
-        natalMoon: userProfile.moonSign ?? ZodiacSign.cancer,
-        natalAscendant: userProfile.risingSign ?? ZodiacSign.leo,
+        natalSun: userProfile.sunSign,
+        natalMoon: userProfile.moonSign ?? userProfile.sunSign,
+        natalAscendant: ascendantToUse,
       );
     });
   }
@@ -57,14 +62,14 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
                 const Text('', style: TextStyle(fontSize: 64)),
                 const SizedBox(height: 16),
                 Text(
-                  'Profil bulunamadi',
+                  'Profil bulunamadı',
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
                         color: Colors.white,
                       ),
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Lutfen once dogum bilgilerinizi girin',
+                  'Lütfen önce doğum bilgilerinizi girin',
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         color: Colors.white70,
                       ),
@@ -72,7 +77,7 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
                 const SizedBox(height: 24),
                 ElevatedButton(
                   onPressed: () => context.pop(),
-                  child: const Text('Geri Don'),
+                  child: const Text('Geri Dön'),
                 ),
               ],
             ),
@@ -116,7 +121,7 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
                         const CircularProgressIndicator(color: AppColors.auroraStart),
                         const SizedBox(height: 16),
                         Text(
-                          'Ilerlemeler hesaplaniyor...',
+                          'İlerlemeler hesaplanıyor...',
                           style: TextStyle(
                             color: isDark ? Colors.white70 : AppColors.textLight,
                           ),
@@ -150,7 +155,7 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
                 const Icon(Icons.trending_up, color: AppColors.auroraStart, size: 24),
                 const SizedBox(width: 8),
                 Text(
-                  'Ikincil Ilerlemeler',
+                  'İkincil İlerlemeler',
                   style: Theme.of(context).textTheme.headlineSmall,
                 ),
               ],
@@ -175,7 +180,7 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
           const SizedBox(width: 12),
           Expanded(
             child: Text(
-              'Ikincil ilerlemeler, "bir gun = bir yil" prensibine dayanir. Natal haritanizin yavas evrimini gosterir.',
+              'İkincil ilerlemeler, "bir gün = bir yıl" prensibine dayanır. Natal haritanızın yavaş evrimini gösterir.',
               style: Theme.of(context).textTheme.bodySmall,
             ),
           ),
@@ -184,7 +189,7 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
     );
   }
 
-  Widget _buildProfileCard(bool isDark, dynamic userProfile) {
+  Widget _buildProfileCard(bool isDark, UserProfile userProfile) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -215,14 +220,13 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
             ],
           ),
           const SizedBox(height: AppConstants.spacingMd),
-          _buildInfoRow(isDark, Icons.person_outline, 'Isim', userProfile.name ?? 'Kullanici'),
-          _buildInfoRow(isDark, Icons.cake_outlined, 'Dogum Tarihi', _formatDate(userProfile.birthDate)),
-          if (userProfile.sunSign != null)
-            _buildInfoRow(isDark, Icons.wb_sunny_outlined, 'Gunes Burcu', userProfile.sunSign!.nameTr),
+          _buildInfoRow(isDark, Icons.person_outline, 'İsim', userProfile.name ?? 'Kullanıcı'),
+          _buildInfoRow(isDark, Icons.cake_outlined, 'Doğum Tarihi', _formatDate(userProfile.birthDate)),
+          _buildInfoRow(isDark, Icons.wb_sunny_outlined, 'Güneş Burcu', userProfile.sunSign.nameTr),
           if (userProfile.moonSign != null)
             _buildInfoRow(isDark, Icons.nightlight_outlined, 'Ay Burcu', userProfile.moonSign!.nameTr),
           if (userProfile.risingSign != null)
-            _buildInfoRow(isDark, Icons.arrow_upward, 'Yukselen', userProfile.risingSign!.nameTr),
+            _buildInfoRow(isDark, Icons.arrow_upward, 'Yükselen', userProfile.risingSign!.nameTr),
         ],
       ),
     );
@@ -260,16 +264,16 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
 
   String _formatDate(DateTime date) {
     const months = [
-      'Ocak', 'Subat', 'Mart', 'Nisan', 'Mayis', 'Haziran',
-      'Temmuz', 'Agustos', 'Eylul', 'Ekim', 'Kasim', 'Aralik'
+      'Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran',
+      'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'
     ];
     return '${date.day} ${months[date.month - 1]} ${date.year}';
   }
 
-  Widget _buildProgressedPositions(bool isDark, dynamic userProfile) {
-    final natalSun = userProfile.sunSign ?? ZodiacSign.aries;
-    final natalMoon = userProfile.moonSign ?? ZodiacSign.cancer;
-    final natalAscendant = userProfile.risingSign ?? ZodiacSign.leo;
+  Widget _buildProgressedPositions(bool isDark, UserProfile userProfile) {
+    final natalSun = userProfile.sunSign;
+    final natalMoon = userProfile.moonSign ?? userProfile.sunSign;
+    final natalAscendant = userProfile.risingSign ?? userProfile.sunSign;
 
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -292,7 +296,7 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Ilerlemis Pozisyonlar',
+                'İlerlemiş Pozisyonlar',
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
@@ -304,7 +308,7 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
                   borderRadius: BorderRadius.circular(AppConstants.radiusFull),
                 ),
                 child: Text(
-                  '${_progressions!.progressedAge} yas',
+                  '${_progressions!.progressedAge} yaş',
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: AppColors.starGold,
                         fontWeight: FontWeight.bold,
@@ -318,7 +322,7 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
             children: [
               Expanded(
                 child: _buildProgressedPlanet(
-                  'Gunes',
+                  'Güneş',
                   '',
                   natalSun,
                   _progressions!.progressedSun,
@@ -338,7 +342,7 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
               const SizedBox(width: 8),
               Expanded(
                 child: _buildProgressedPlanet(
-                  'Yukselen',
+                  'Yükselen',
                   '',
                   natalAscendant,
                   _progressions!.progressedAscendant,
@@ -352,7 +356,7 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
             children: [
               Expanded(
                 child: _buildProgressedPlanet(
-                  'Merkur',
+                  'Merkür',
                   '',
                   natalSun, // Simplified
                   _progressions!.progressedMercury,
@@ -362,7 +366,7 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
               const SizedBox(width: 8),
               Expanded(
                 child: _buildProgressedPlanet(
-                  'Venus',
+                  'Venüs',
                   '',
                   natalSun,
                   _progressions!.progressedVenus,
@@ -465,7 +469,7 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
               ),
               const SizedBox(width: 12),
               Text(
-                'Mevcut Yasam Evresi',
+                'Mevcut Yaşam Evresi',
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
@@ -582,7 +586,7 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Aktif Acilar',
+            'Aktif Açılar',
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
@@ -622,7 +626,7 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
                           borderRadius: BorderRadius.circular(4),
                         ),
                         child: Text(
-                          aspect.isApplying ? 'Yaklasan' : 'Ayrilan',
+                          aspect.isApplying ? 'Yaklaşan' : 'Ayrılan',
                           style: Theme.of(context).textTheme.labelSmall?.copyWith(
                                 color: aspect.isApplying
                                     ? Colors.green
@@ -670,7 +674,7 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
               ),
               const SizedBox(width: 12),
               Text(
-                'Onemli Olaylar',
+                'Önemli Olaylar',
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
@@ -764,7 +768,7 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
           ),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
-            'Gelecek Degisimler',
+            'Gelecek Değişimler',
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                   color: AppColors.starGold,

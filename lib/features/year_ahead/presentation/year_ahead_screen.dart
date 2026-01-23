@@ -667,12 +667,12 @@ class YearAheadService {
 
   static String _getQuarterDescription(ZodiacSign sign, int quarter, String theme) {
     final descriptions = {
-      1: 'Yilin baslangici $theme enerjisi ile geliyor. ${sign.nameTr} burcu olarak bu donemde aktif olacaksiniz.',
-      2: 'Ilkbahar ve yaz arasinda $theme on plana cikiyor. Projelerinizi somutlastirma zamani.',
-      3: 'Sonbahar mevsimi $theme ile ilgili konulari one cikariyor. Dengeleme onemli.',
-      4: 'Yilin son ceyregi $theme uzerine dusunme ve gelecek yili planlama zamani.',
+      1: 'Yılın başlangıcı $theme enerjisi ile geliyor. ${sign.nameTr} burcu olarak bu dönemde aktif olacaksınız.',
+      2: 'İlkbahar ve yaz arasında $theme ön plana çıkıyor. Projelerinizi somutlaştırma zamanı.',
+      3: 'Sonbahar mevsimi $theme ile ilgili konuları öne çıkarıyor. Dengeleme önemli.',
+      4: 'Yılın son çeyreği $theme üzerine düşünme ve gelecek yılı planlama zamanı.',
     };
-    return descriptions[quarter] ?? 'Bu ceyrek $theme uzerine odaklanmanizi gerektiriyor.';
+    return descriptions[quarter] ?? 'Bu çeyrek $theme üzerine odaklanmanızı gerektiriyor.';
   }
 
   static List<TransitInfo> _generateTransits(ZodiacSign sign, int year) {

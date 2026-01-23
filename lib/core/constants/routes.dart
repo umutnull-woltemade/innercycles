@@ -54,4 +54,63 @@ class Routes {
 
   // New Features
   static const String transitCalendar = '/transit-calendar';
+
+  // Spiritual & Wellness
+  static const String dailyRituals = '/daily-rituals';
+  static const String chakraAnalysis = '/chakra-analysis';
+  static const String crystalGuide = '/crystal-guide';
+  static const String moonRituals = '/moon-rituals';
+  static const String dreamInterpretation = '/dream-interpretation';
+
+  // Profile Management
+  static const String savedProfiles = '/saved-profiles';
+  static const String comparison = '/comparison';
+
+  // Kozmoz - Tüm özellikler ekranı
+  static const String kozmoz = '/kozmoz';
+
+  // ════════════════════════════════════════════════════════════════
+  // KOZMİK KEŞİF - Viral & Felsefi İçerikler (Özel Ekranlar)
+  // ════════════════════════════════════════════════════════════════
+
+  // Günlük Enerjiler
+  static const String dailySummary = '/kesif/gunun-ozeti';
+  static const String moonEnergy = '/kesif/ay-enerjisi';
+  static const String loveEnergy = '/kesif/ask-enerjisi';
+  static const String abundanceEnergy = '/kesif/bolluk-enerjisi';
+
+  // Ruhsal Dönüşüm & Hayat Amacı
+  static const String spiritualTransformation = '/kesif/ruhsal-donusum';
+  static const String lifePurpose = '/kesif/hayat-amacin';
+  static const String subconsciousPatterns = '/kesif/bilincalti-kaliplarin';
+  static const String karmaLessons = '/kesif/karma-derslerin';
+  static const String soulContract = '/kesif/ruh-sozlesmen';
+  static const String innerPower = '/kesif/icsel-gucun';
+
+  // Kişilik Analizleri
+  static const String shadowSelf = '/kesif/golge-benligin';
+  static const String leadershipStyle = '/kesif/liderlik-stilin';
+  static const String heartbreak = '/kesif/kalp-yaran';
+  static const String redFlags = '/kesif/red-flaglerin';
+  static const String greenFlags = '/kesif/green-flaglerin';
+  static const String flirtStyle = '/kesif/flort-stilin';
+
+  // Mistik Keşifler
+  static const String tarotCard = '/kesif/tarot-kartin';
+  static const String auraColor = '/kesif/aura-rengin';
+  static const String chakraBalance = '/kesif/cakra-dengen';
+  static const String lifeNumber = '/kesif/yasam-sayin';
+  static const String kabbalaPath = '/kesif/kabala-yolun';
+
+  // Zaman & Döngüler
+  static const String saturnLessons = '/kesif/saturn-derslerin';
+  static const String birthdayEnergy = '/kesif/dogum-gunu-enerjin';
+  static const String eclipseEffect = '/kesif/tutulma-etkisi';
+  static const String transitFlow = '/kesif/transit-akisi';
+
+  // İlişki Analizleri
+  static const String compatibilityAnalysis = '/kesif/uyum-analizi';
+  static const String soulMate = '/kesif/ruh-esin';
+  static const String relationshipKarma = '/kesif/iliski-karman';
+  static const String celebrityTwin = '/kesif/unlu-ikizin';
 }
