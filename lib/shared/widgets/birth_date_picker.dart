@@ -27,15 +27,15 @@ class _BirthDatePickerState extends State<BirthDatePicker> {
   late FixedExtentScrollController _yearController;
 
   final List<String> _months = [
-    'January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December'
+    'Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran',
+    'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'
   ];
 
   @override
   void initState() {
     super.initState();
     final now = DateTime.now();
-    final initial = widget.initialDate ?? DateTime(now.year - 25, 6, 15);
+    final initial = widget.initialDate ?? DateTime(1997, 3, 27);
 
     _selectedDay = initial.day;
     _selectedMonth = initial.month;
@@ -91,7 +91,7 @@ class _BirthDatePickerState extends State<BirthDatePicker> {
                 _notifyDateChanged();
               },
               itemBuilder: (index) => '${index + 1}',
-              label: 'Day',
+              label: 'Gün',
             ),
           ),
 
@@ -115,7 +115,7 @@ class _BirthDatePickerState extends State<BirthDatePicker> {
                 _notifyDateChanged();
               },
               itemBuilder: (index) => _months[index],
-              label: 'Month',
+              label: 'Ay',
             ),
           ),
 
@@ -139,7 +139,7 @@ class _BirthDatePickerState extends State<BirthDatePicker> {
                 _notifyDateChanged();
               },
               itemBuilder: (index) => '${now.year - index}',
-              label: 'Year',
+              label: 'Yıl',
             ),
           ),
         ],
@@ -245,8 +245,8 @@ class SelectedDateDisplay extends StatelessWidget {
 
   String _getMonthName(int month) {
     const months = [
-      'January', 'February', 'March', 'April', 'May', 'June',
-      'July', 'August', 'September', 'October', 'November', 'December'
+      'Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran',
+      'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'
     ];
     return months[month - 1];
   }

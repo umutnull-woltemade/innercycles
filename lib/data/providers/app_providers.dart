@@ -20,6 +20,7 @@ class UserProfileNotifier extends Notifier<UserProfile?> {
 
   void setProfile(UserProfile profile) {
     state = profile;
+    _syncToStorage(profile);
   }
 
   void clearProfile() {
@@ -28,11 +29,18 @@ class UserProfileNotifier extends Notifier<UserProfile?> {
 
   void updateBirthDate(DateTime date) {
     if (state != null) {
-      state = state!.copyWith(
+      final updated = state!.copyWith(
         birthDate: date,
         sunSign: zodiac.ZodiacSignExtension.fromDate(date),
       );
+      state = updated;
+      _syncToStorage(updated);
     }
+  }
+
+  void _syncToStorage(UserProfile profile) {
+    StorageService.saveUserProfile(profile);
+    ref.read(savedProfilesProvider.notifier).updateProfile(profile);
   }
 }
 
@@ -188,8 +196,14 @@ final languageProvider = StateProvider<AppLanguage>((ref) => AppLanguage.tr);
 // Theme mode provider - default is dark
 final themeModeProvider = StateProvider<ThemeMode>((ref) => ThemeMode.dark);
 
-// House system provider - default is Placidus
-final houseSystemProvider = StateProvider<HouseSystem>((ref) => HouseSystem.placidus);
+// House system provider - persisted to storage, default is Placidus
+final houseSystemProvider = StateProvider<HouseSystem>((ref) {
+  final index = StorageService.loadHouseSystemIndex();
+  if (index >= 0 && index < HouseSystem.values.length) {
+    return HouseSystem.values[index];
+  }
+  return HouseSystem.placidus;
+});
 
 // =============================================================================
 // API Integration Providers

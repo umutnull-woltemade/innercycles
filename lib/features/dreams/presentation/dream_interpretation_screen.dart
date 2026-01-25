@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
-import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/zodiac_sign.dart' as zodiac;
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/ai_content_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/entertainment_disclaimer.dart';
+import '../../../shared/widgets/quiz_cta_card.dart';
 
-/// Dream Interpretation Screen with AI-like Chatbot
-/// Provides mystical dream interpretations based on user's zodiac sign
+/// Kozmik Iletisim - AI-Powered Dream Chatbot
+/// Sohbet formatinda mistik ruya yorumlama deneyimi
 class DreamInterpretationScreen extends ConsumerStatefulWidget {
   const DreamInterpretationScreen({super.key});
 
@@ -33,6 +35,89 @@ class _DreamInterpretationScreenState
   int _currentQuestionIndex = 0;
   final Map<String, String> _contextAnswers = {};
   bool _awaitingAnswer = false;
+
+  // Önerilen rüya paylaşım örnekleri - MEGA GELİŞTİRİLMİŞ
+  final List<Map<String, dynamic>> _suggestedDreamPrompts = [
+    // 🌊 SU & DOĞA RÜYALARI
+    {'emoji': '🌊', 'text': 'Denizde yüzüyordum ama suyun altında nefes alabiliyordum', 'category': 'su'},
+    {'emoji': '🌧️', 'text': 'Şiddetli yağmur altında koşuyordum ama ıslanmıyordum', 'category': 'su'},
+    {'emoji': '🏊', 'text': 'Derin bir göle dalıyordum ve dibinde ışık görüyordum', 'category': 'su'},
+    {'emoji': '🌈', 'text': 'Şelalenin arkasında gizli bir geçit keşfettim', 'category': 'su'},
+
+    // 🐍 HAYVAN RÜYALARI
+    {'emoji': '🐍', 'text': 'Yılan gördüm, bana doğru yaklaşıyordu ama korkmadım', 'category': 'hayvan'},
+    {'emoji': '🦅', 'text': 'Bir kartalın sırtında uçuyordum ve şehri görüyordum', 'category': 'hayvan'},
+    {'emoji': '🐺', 'text': 'Kurt sürüsü beni takip ediyordu ama bana zarar vermediler', 'category': 'hayvan'},
+    {'emoji': '🦋', 'text': 'Kelebeklerin içinden geçtim ve kendimi dönüşmüş hissettim', 'category': 'hayvan'},
+    {'emoji': '🐱', 'text': 'Konuşan bir kedi bana önemli bir şey söyledi', 'category': 'hayvan'},
+
+    // ✈️ UÇMA & DÜŞME RÜYALARI
+    {'emoji': '🦸', 'text': 'Uçuyordum ve çok özgür hissediyordum', 'category': 'ucmak'},
+    {'emoji': '⬇️', 'text': 'Yüksekten düşüyordum ama yere çarpmadan önce uyandım', 'category': 'dusmek'},
+    {'emoji': '🎈', 'text': 'Balonlarla havada süzülüyordum ve aşağıdaki insanları izliyordum', 'category': 'ucmak'},
+    {'emoji': '🪂', 'text': 'Paraşütle atlıyordum ama paraşüt açılmıyordu', 'category': 'dusmek'},
+
+    // 🏃 KAÇIŞ & KOVALANMA RÜYALARI
+    {'emoji': '🏃', 'text': 'Bir şeyden kaçıyordum ama bacaklarım hareket etmiyordu', 'category': 'kovalanmak'},
+    {'emoji': '👤', 'text': 'Tanımadığım biri beni takip ediyordu, yüzünü göremiyordum', 'category': 'kovalanmak'},
+    {'emoji': '🚪', 'text': 'Koridorda koşuyordum ama kapılar sürekli kayboluyordu', 'category': 'kovalanmak'},
+    {'emoji': '🌑', 'text': 'Karanlıkta saklanan bir şeyden kaçıyordum', 'category': 'kovalanmak'},
+
+    // 🏠 EV & MEKAN RÜYALARI
+    {'emoji': '🏠', 'text': 'Evimde hiç görmediğim gizli odalar keşfettim', 'category': 'ev'},
+    {'emoji': '🏚️', 'text': 'Çocukluk evimdeydim ama her şey farklıydı', 'category': 'ev'},
+    {'emoji': '🏰', 'text': 'Bir sarayda kaybolmuştum ve çıkışı bulamıyordum', 'category': 'ev'},
+    {'emoji': '🛗', 'text': 'Asansör sürekli yanlış katlara gidiyordu', 'category': 'ev'},
+
+    // 👥 İNSAN & İLİŞKİ RÜYALARI
+    {'emoji': '👨‍👩‍👧', 'text': 'Ölen bir yakınımı gördüm, benimle konuştu', 'category': 'insan'},
+    {'emoji': '💔', 'text': 'Eski sevgilimi gördüm ama tanımadığım biriymiş gibi davrandı', 'category': 'insan'},
+    {'emoji': '👶', 'text': 'Kucağımda bir bebek vardı ama kimin bebeği bilmiyordum', 'category': 'bebek'},
+    {'emoji': '👰', 'text': 'Düğünümü gördüm ama damat/gelin yüzü bulanıktı', 'category': 'gelin'},
+    {'emoji': '👯', 'text': 'Kendimi dışarıdan izliyordum, iki tane bendim', 'category': 'insan'},
+
+    // 🦷 BEDEN RÜYALARI
+    {'emoji': '🦷', 'text': 'Dişlerim dökülüyordu ve durduramıyordum', 'category': 'dis'},
+    {'emoji': '💇', 'text': 'Saçlarım bir anda uzadı veya döküldü', 'category': 'beden'},
+    {'emoji': '👁️', 'text': 'Aynaya baktım ama başka birini gördüm', 'category': 'beden'},
+    {'emoji': '🫀', 'text': 'Vücudumun bir kısmı hareket etmiyordu', 'category': 'beden'},
+
+    // 🔥 ELEMENT RÜYALARI
+    {'emoji': '🔥', 'text': 'Her yer yanıyordu ama ben yanmıyordum', 'category': 'ates'},
+    {'emoji': '⚡', 'text': 'Yıldırım çarpıyordu ve bir güç hissettim', 'category': 'element'},
+    {'emoji': '🌪️', 'text': 'Kasırganın içindeydim ama sakin hissediyordum', 'category': 'element'},
+    {'emoji': '❄️', 'text': 'Her yer donmuştu ve buzda yürüyordum', 'category': 'element'},
+
+    // 📚 SINAV & PERFORMANS RÜYALARI
+    {'emoji': '📝', 'text': 'Sınava hazırlıksız girdim, hiçbir şey bilmiyordum', 'category': 'sinav'},
+    {'emoji': '🎤', 'text': 'Sahnede konuşmam gerekiyordu ama sesim çıkmıyordu', 'category': 'sinav'},
+    {'emoji': '🏃‍♂️', 'text': 'Yarışıyordum ama koşamıyordum', 'category': 'sinav'},
+    {'emoji': '🎭', 'text': 'Rol yapmam gerekiyordu ama repliklerimi unutmuştum', 'category': 'sinav'},
+
+    // 💀 ÖLÜM & DÖNÜŞÜM RÜYALARI
+    {'emoji': '💀', 'text': 'Öldüğümü gördüm ama ruhum izliyordu', 'category': 'olum'},
+    {'emoji': '⚰️', 'text': 'Cenaze törenimdeydim, herkes ağlıyordu', 'category': 'olum'},
+    {'emoji': '🔄', 'text': 'Öldüm ama başka bir bedende uyandım', 'category': 'olum'},
+    {'emoji': '👻', 'text': 'Hayalet olmuştum ve kimse beni göremiyordu', 'category': 'olum'},
+
+    // 💰 PARA & BOLLUK RÜYALARI
+    {'emoji': '💰', 'text': 'Yerde altınlar buldum ama toplayamıyordum', 'category': 'para'},
+    {'emoji': '🏆', 'text': 'Piyango kazandım ama bilet kayboldu', 'category': 'para'},
+    {'emoji': '💎', 'text': 'Mücevherlerle dolu bir hazine sandığı açtım', 'category': 'para'},
+
+    // 🚗 ARAÇ & YOLCULUK RÜYALARI
+    {'emoji': '🚗', 'text': 'Araba kullanıyordum ama frenler tutmuyordu', 'category': 'araba'},
+    {'emoji': '✈️', 'text': 'Uçak düşüyordu ama sakin hissediyordum', 'category': 'yolculuk'},
+    {'emoji': '🚂', 'text': 'Treni kaçırdım ve bir daha gelmeyeceğini biliyordum', 'category': 'yolculuk'},
+    {'emoji': '🛤️', 'text': 'Sonu görünmeyen bir yolda yürüyordum', 'category': 'yolculuk'},
+
+    // 🔮 MİSTİK & SPİRİTÜEL RÜYALAR
+    {'emoji': '🔮', 'text': 'Geleceği gördüm ve bir şey değişiyordu', 'category': 'mistik'},
+    {'emoji': '👼', 'text': 'Bir melek veya ışık varlığı gördüm', 'category': 'mistik'},
+    {'emoji': '🌙', 'text': 'Ay çok büyüktü ve bana mesaj veriyordu', 'category': 'mistik'},
+    {'emoji': '⭐', 'text': 'Yıldızlara yükseliyordum ve evren açıldı', 'category': 'mistik'},
+    {'emoji': '🪬', 'text': 'Bir portal açıldı ve başka bir dünyaya geçtim', 'category': 'mistik'},
+  ];
 
   @override
   void initState() {
@@ -61,10 +146,11 @@ class _DreamInterpretationScreenState
     setState(() {
       _messages.add(ChatMessage(
         text:
-            'Merhaba, ben Ruya Yorumcusu. ${sign.nameTr} burcunun kozmik enerjisiyle ruyalarini yorumlamak icin buradayim.\n\n'
-            'Gordugün ruyayi detayli bir sekilde anlat. Ne gordun? Neler hissettin? '
-            'Ruyandaki semboller, renkler ve duygular hakkinda ne kadar cok bilgi verirsen, '
-            'yorumum o kadar derin olacak.',
+            'Merhaba, ben Rüya İzi. ${sign.nameTr} burcunun kozmik enerjisiyle sana rehberlik etmek için buradayım.\n\n'
+            'Gördüğün rüyayı detaylı bir şekilde anlat. Ne gördün? Neler hissettin? '
+            'Rüyandaki semboller, renkler ve duygular hakkında ne kadar çok bilgi verirsen, '
+            'kozmik yorumum o kadar derin olacak.\n\n'
+            '⚠️ ${DisclaimerTexts.dreams}',
         isUser: false,
         timestamp: DateTime.now(),
       ));
@@ -234,28 +320,6 @@ class _DreamInterpretationScreenState
     }
   }
 
-  // Keep the original method as fallback
-  void _sendMessageLegacy() {
-    final text = _dreamController.text.trim();
-    if (text.isEmpty) return;
-
-    setState(() {
-      _messages.add(ChatMessage(
-        text: text,
-        isUser: true,
-        timestamp: DateTime.now(),
-      ));
-      _isTyping = true;
-    });
-
-    _dreamController.clear();
-    _scrollToBottom();
-
-    // Simulate AI thinking time
-    Future.delayed(const Duration(milliseconds: 1500), () {
-      _generateInterpretation(text);
-    });
-  }
 
   void _generateInterpretation(String dreamText) {
     final userProfile = ref.read(userProfileProvider);
@@ -378,90 +442,478 @@ class _DreamInterpretationScreenState
 
   String _getWaterInterpretation(zodiac.ZodiacSign sign) {
     final interpretations = {
-      zodiac.ZodiacSign.aries:
-          'Su, ates burcun icin duygusal derinliklere inmeye cagri. Bilincdisi enerjilerin yuzeyе cikmak istiyor. Sabir ve dinlenme zamani.',
-      zodiac.ZodiacSign.taurus:
-          'Su, toprak burcun icin bereket ve bollugun sembolü. Maddi ve duygusal akis hayatina giriyor. Dogal ritmine güven.',
-      zodiac.ZodiacSign.gemini:
-          'Su, hava burcun icin duyguların mantıkla bulusmasi. Ic sesin sana ne söylediğine kulak ver. Iletisimde daha derin ol.',
-      zodiac.ZodiacSign.cancer:
-          'Su senin elementi - bu ruya cok güclü! Ev, aile ve köklerİnle derin bir baglantiyi isaret ediyor. Içsel huzuru bul.',
-      zodiac.ZodiacSign.leo:
-          'Su, ates burcun icin yaratici enerjilerin akisi. Duygusal ifade ve sanatsal yeteneklerin one cikiyor.',
-      zodiac.ZodiacSign.virgo:
-          'Su, toprak burcun icin arınma ve iyilesme. Detaylara takılmak yerine akisa bırak. Bedensel sagliga dikkat.',
-      zodiac.ZodiacSign.libra:
-          'Su, hava burcun icin iliskilerde denge arayisi. Duygusal dengeyi bulmak icin partnerlİklerine odaklan.',
-      zodiac.ZodiacSign.scorpio:
-          'Su senin elementi - bu ruya transformasyonu isaret ediyor! Derin donusum süreci basliyor. Yenilenme zamani.',
-      zodiac.ZodiacSign.sagittarius:
-          'Su, ates burcun icin ruhsal yolculuk. Felsefi derinlikler ve manevi arayis seni bekliyor.',
-      zodiac.ZodiacSign.capricorn:
-          'Su, toprak burcun icin duygusal engellerin erİmesi. Sert kabuğunu yumusatma zamani. Savunmasizlik güctür.',
-      zodiac.ZodiacSign.aquarius:
-          'Su, hava burcun icin kollektif bilinc baglantisi. Insanliga hizmet ve duygusal zeka gelistirme zamani.',
-      zodiac.ZodiacSign.pisces:
-          'Su senin elementi - spiritüel alemlerle baglanti cok güclü! Sezgilerine tamamen güvenebilirsin. Yaratici ilham akiyor.',
+      zodiac.ZodiacSign.aries: '''🌊 SU RÜYASI - ${sign.nameTr.toUpperCase()} YORUMU
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+💧 TEMEL ANLAM
+Su, ateş burcun için duygusal derinliklere inme çağrısıdır. Bilinçdışı enerjilerin yüzeye çıkmak istiyor.
+
+🔥 ATEŞ ELEMENTİ PERSPEKTİFİ
+Suyun yatıştırıcı enerjisi, ateş doğanı dengelemek için gelmiş. Sabır ve dinlenme zamanı. Aksiyondan önce düşünme dönemi.
+
+🌙 PSİKOLOJİK BOYUT
+Su: Bilinçaltı, duygular, anne arketipi
+Koç olarak: Bastırdığın duygular yüzeye çıkmak istiyor
+Mesaj: Sadece koşmak değil, bazen duraksayıp hissetmek de gerekir
+
+✨ PRATİK UYGULAMA
+• Su kenarında meditasyon yap
+• Duş alırken niyetini belirle
+• Gözyaşlarına izin ver
+• Duygularını yazıya dök''',
+
+      zodiac.ZodiacSign.taurus: '''🌊 SU RÜYASI - ${sign.nameTr.toUpperCase()} YORUMU
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+💧 TEMEL ANLAM
+Su, toprak burcun için bereket ve bolluğun sembolü. Maddi ve duygusal akış hayatına giriyor.
+
+🌍 TOPRAK ELEMENTİ PERSPEKTİFİ
+Su toprağı besler - bu rüya büyüme ve bereket habercisi. Doğal ritmine güven, zorlamadan akışa bırak.
+
+🌙 PSİKOLOJİK BOYUT
+Su: Duygusal güvenlik, konfor, beslenme
+Boğa olarak: İç huzurun maddi güvenlikle bağlantısı
+Mesaj: Duygusal zenginlik maddi zenginliği çeker
+
+✨ PRATİK UYGULAMA
+• Bitkilerini sula, bahçeyle ilgilen
+• Banyo ritüeli yap
+• Finansal akışı görselleştir
+• Rahatlama ve konfor önceliğin olsun''',
+
+      zodiac.ZodiacSign.cancer: '''🌊 SU RÜYASI - ${sign.nameTr.toUpperCase()} YORUMU
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+💧 KENDİ ELEMENTİN - ÇOK GÜÇLÜ!
+Su senin elementi - bu rüya son derece anlamlı! Ruhsal derinliklerinden gelen güçlü bir mesaj var.
+
+🌊 SU ELEMENTİ DERİNLİĞİ
+Bu rüya ev, aile ve köklerinle derin bir bağlantıyı işaret ediyor. Anne arketipi aktif. İçsel yuvan çağırıyor.
+
+🌙 PSİKOLOJİK BOYUT
+Su: Bilinçaltı, sezgi, koruyucu içgüdü
+Yengeç olarak: Ruhsal koruma ve yuva ihtiyacı
+Mesaj: Eve dön - iç evine, ruhsal evine
+
+✨ PRATİK UYGULAMA
+• Ay ışığında su doldur ve iç
+• Aile fotoğraflarına bak
+• Deniz tuzu banyosu al
+• Ev temizliği yap - enerjiyi yenile
+• Annevi figürlerle bağlantı kur''',
+
+      zodiac.ZodiacSign.scorpio: '''🌊 SU RÜYASI - ${sign.nameTr.toUpperCase()} YORUMU
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+💧 KENDİ ELEMENTİN - TRANSFORMASYON!
+Su senin elementi ve bu rüya derin dönüşümü işaret ediyor! Yenilenme zamanı geldi.
+
+🦂 AKREP DERİNLİĞİ
+Suyun derinliklerine dalmaktan korkma. Orada hazineler var. Ölüm ve yeniden doğuş döngüsü aktif.
+
+🌙 PSİKOLOJİK BOYUT
+Su: Bilinçaltının en derin katmanları
+Akrep olarak: Gölge çalışması zamanı
+Mesaj: Karanlıktan korkmak yerine, onu aydınlat
+
+✨ PRATİK UYGULAMA
+• Derin meditasyonlar yap
+• Gölge jurnal tut
+• Bırakma ritüeli uygula
+• Plutonyen dönüşümü kucakla
+• Terapi veya danışmanlık düşün''',
+
+      zodiac.ZodiacSign.pisces: '''🌊 SU RÜYASI - ${sign.nameTr.toUpperCase()} YORUMU
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+💧 KENDİ ELEMENTİN - SPİRİTÜEL BAĞLANTI!
+Su senin elementi - spiritüel alemlerle bağlantın çok güçlü! Sezgilerine tamamen güvenebilirsin.
+
+🐟 BALIK MİSTİSİZMİ
+Evrenle bir olma deneyimi yaşıyorsun. Yaratıcı ilham akıyor. Sanatsal ifade için ideal dönem.
+
+🌙 PSİKOLOJİK BOYUT
+Su: Evrensel bilinç, şifa, kolektif bilinçaltı
+Balık olarak: Mistik deneyimler ve içsel rehberlik
+Mesaj: Sen sudan ötesin - okyanussun
+
+✨ PRATİK UYGULAMA
+• Sanatsal yaratım - resim, müzik, yazı
+• Deniz veya göl kenarında meditasyon
+• Lucid rüya pratikleri
+• Şifa çalışmaları
+• Spiritüel rehberliğe açık ol'''
     };
-    return interpretations[sign] ?? interpretations[zodiac.ZodiacSign.aries]!;
+
+    // Default interpretation for other signs
+    return interpretations[sign] ?? '''🌊 SU RÜYASI - ${sign.nameTr.toUpperCase()} YORUMU
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+💧 TEMEL ANLAM
+Su, ${sign.element.nameTr} burcun için duygusal mesajlar taşıyor. Bilinçaltı akışa geçmek istiyor.
+
+🌙 ${sign.element.nameTr.toUpperCase()} ELEMENTİ PERSPEKTİFİ
+Suyun akışkan enerjisi seninle iletişim kuruyor. Duygusal derinliklere inme çağrısı.
+
+✨ PRATİK UYGULAMA
+• Su kenarında zaman geçir
+• Duygularını ifade et
+• Akışa güven, zorlamayı bırak
+• Sezgilerine kulak ver''';
   }
 
   String _getFlyingInterpretation(zodiac.ZodiacSign sign) {
-    return '${sign.symbol} Ucmak, özgürlük ve sınırları asma arzusunu temsil eder. '
-        '${sign.nameTr} enerjinle, bu ruya sana hayatında yeni zirveler fethetme potansiyelini gösteriyor. '
-        'Kendini sınırlayan inanclardan kurtulma zamanı geldi.';
+    return '''✈️ UÇMA RÜYASI - ${sign.nameTr.toUpperCase()} YORUMU
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🦅 TEMEL ANLAM
+Uçmak, özgürlük ve sınırları aşma arzusunu temsil eder. Ruhun yükselişi ve bilinç genişlemesi.
+
+${sign.symbol} ${sign.nameTr.toUpperCase()} İÇİN ÖZEL YORUM
+Bu rüya sana hayatında yeni zirveler fethetme potansiyelini gösteriyor. Kendini sınırlayan inançlardan kurtulma zamanı geldi.
+
+🌙 PSİKOLOJİK BOYUT
+• Uçuş yüksekliği: Bilinç seviyeni gösterir
+• Uçuş hızı: Değişim hızını simgeler
+• Zorluk: Yaşadığın engelleri yansıtır
+• Kolaylık: İçsel özgürlük seviyeni gösterir
+
+📍 UÇUŞ STİLİNE GÖRE
+• Süzülerek: Hayatta akışta olma hali
+• Çırpınarak: Zorlu ama başarılan hedefler
+• Yükselememe: Bastırılmış potansiyel
+• Düşme: Kontrolü kaybetme korkusu
+
+✨ PRATİK UYGULAMA
+• Korkularını yaz ve yak
+• Yüksek bir yere çık, manzaraya bak
+• "Uçabiliyorum" afirmasyonu tekrarla
+• Lucid rüya için niyet koy
+
+💫 KOZMIK MESAJ
+Evren sana "kanatların var, kullan" diyor. ${sign.element.nameTr} elementi olarak ${_getElementFlyingMessage(sign.element)}.''';
+  }
+
+  String _getElementFlyingMessage(zodiac.Element element) {
+    switch (element) {
+      case zodiac.Element.fire:
+        return 'cesaretle yükselme zamanı';
+      case zodiac.Element.earth:
+        return 'pratik hedeflerini yükselt';
+      case zodiac.Element.air:
+        return 'fikirlerinin kanatlarıyla uç';
+      case zodiac.Element.water:
+        return 'duygusal özgürlüğünü yakala';
+    }
   }
 
   String _getFallingInterpretation(zodiac.ZodiacSign sign) {
-    return '${sign.symbol} Düsmek, kontrolü kaybetme korkusunu ya da hayatındaki bir alanda güvensizligi yansıtır. '
-        '${sign.nameTr} olarak, temellendirme calismalarına odaklan. '
-        'Bu ruya, sana "yere sag basmalısın" mesajı veriyor olabilir.';
+    return '''⬇️ DÜŞME RÜYASI - ${sign.nameTr.toUpperCase()} YORUMU
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🌪️ TEMEL ANLAM
+Düşmek, kontrolü kaybetme korkusunu veya hayatındaki bir alanda güvensizliği yansıtır.
+
+${sign.symbol} ${sign.nameTr.toUpperCase()} İÇİN ÖZEL YORUM
+Temellendirme çalışmalarına odaklan. Bu rüya sana "ayaklarının yere basması gerekiyor" mesajı veriyor.
+
+🌙 PSİKOLOJİK BOYUT
+• Nereden düştün: Hangi alanda güvensizlik
+• Düşüş hızı: Kontrolsüzlük seviyesi
+• Yere çarpma: Korkuların realize olma endişesi
+• Uyanma öncesi: Kaçış mekanizması aktif
+
+⚠️ DİKKAT EDİLECEKLER
+• Hayatında kontrolü kaybettiğin alanlar
+• Aşırı stres ve kaygı belirtileri
+• Temel ihtiyaçların karşılanması
+• İş-yaşam dengesi
+
+✨ PRATİK UYGULAMA
+• Çıplak ayakla toprağa bas
+• Kök çakra meditasyonu yap
+• Güvenlik ihtiyaçlarını listele
+• Nefes egzersizleri uygula
+
+💫 KOZMIK MESAJ
+Düşmek aslında bırakmaktır. Kontrol illüzyonunu bırak, evrene güven. ${sign.element.nameTr} elementi olarak topraklanma pratiği özellikle önemli.''';
   }
 
   String _getDeathInterpretation(zodiac.ZodiacSign sign) {
-    return '${sign.symbol} Ruyalarda ölum, transformasyonun ve yeni baslangiclarin sembolüdür - korkulacak bir sey degil! '
-        '${sign.nameTr} icin bu, eski kaliplarin ölmesi ve yeni benligin dogması anlamına gelir. '
-        'Hayatında neyi bırakman gerektigini düsün.';
+    return '''💀 ÖLÜM RÜYASI - ${sign.nameTr.toUpperCase()} YORUMU
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🦋 TEMEL ANLAM - KORKULACAK BİR ŞEY DEĞİL!
+Rüyalarda ölüm, transformasyonun ve yeni başlangıçların sembolüdür. Bu bir son değil, dönüşümdür!
+
+${sign.symbol} ${sign.nameTr.toUpperCase()} İÇİN ÖZEL YORUM
+Bu rüya eski kalıpların ölmesi ve yeni benliğin doğması anlamına gelir. Hayatında neyi bırakman gerektiğini düşün.
+
+🌙 PSİKOLOJİK BOYUT
+• Kendi ölümün: Ego dönüşümü, yeni benlik
+• Başkasının ölümü: O kişinin temsil ettiği şey bitiyor
+• Tanımadık birinin ölümü: Genel yaşam değişimi
+• Ölümden dönüş: Yenilenme ve güç kazanma
+
+🔄 DÖNÜŞÜM ALANLARI
+• Kariyer değişimi
+• İlişki dönüşümü
+• İnançların yenilenmesi
+• Kimlik evrimi
+• Yaşam tarzı değişikliği
+
+✨ PRATİK UYGULAMA
+• Neyi bırakman gerekiyor - liste yap
+• Eski fotoğrafları gözden geçir
+• Kıyafet dolabını temizle
+• "Ölmesi gereken" alışkanlıkları belirle
+
+💫 KOZMIK MESAJ
+Anka kuşu gibi küllerinden doğuyorsun. ${sign.nameTr} enerjisi bu dönüşümü güçlendiriyor. Yeni sen doğuyor!''';
   }
 
   String _getChaseInterpretation(zodiac.ZodiacSign sign) {
-    return '${sign.symbol} Kovalanmak, hayatinda kactIgIn bir konuyla yüzlesme cagrisI. '
-        '${sign.nameTr} enerjinle, cesaretle dön ve neyin pesinde oldugunu sor. '
-        'Genellikle kaçtığımız sey, en cok ihtiyacımız olan derslerdir.';
+    return '''🏃 KOVALANMA RÜYASI - ${sign.nameTr.toUpperCase()} YORUMU
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+😰 TEMEL ANLAM
+Kovalanmak, hayatında kaçtığın bir konuyla yüzleşme çağrısıdır. Kaçtıkça kovalayan büyür!
+
+${sign.symbol} ${sign.nameTr.toUpperCase()} İÇİN ÖZEL YORUM
+${sign.element.nameTr} enerjinle, cesaretle dön ve neyin peşinde olduğunu sor. Genellikle kaçtığımız şey, en çok ihtiyacımız olan derslerdir.
+
+🌙 PSİKOLOJİK BOYUT (JUNG ANALİZİ)
+• Kovalayan: Gölge arketipi - reddedilen yönlerin
+• Kaçış: Yüzleşmekten kaçınma
+• Yakalanma: Gölgeyle entegrasyon fırsatı
+• Kaçamama: İnkar artık işe yaramıyor
+
+🔍 KOVALAYAN NE OLABİLİR?
+• Korku veya kaygı
+• Bastırılmış öfke
+• Ertelenen sorumluluklar
+• Kaçınılan ilişki meseleleri
+• Karşılanmamış ihtiyaçlar
+
+✨ PRATİK UYGULAMA
+• Rüyanda dur ve kovalayıcıyla konuş
+• "Ne istiyorsun?" diye sor
+• Aktif hayal tekniği uygula
+• Kaçtığın konuyu belirle ve küçük adımlar at
+
+💫 KOZMIK MESAJ
+Kovalayan aslında sensin - bastırdığın bir yönün. Kucakla ve entegre et. Düşmanın dostun olabilir.''';
   }
 
   String _getAnimalInterpretation(zodiac.ZodiacSign sign) {
-    return '${sign.symbol} Hayvanlar, icgüdüsel dogamızı ve bastırılmıs enerjileri temsil eder. '
-        '${sign.nameTr} icin bu ruya, dogal iç güdülerinle yeniden bağlanma cagrisi. '
-        'Hangi hayvan gördüysen, onun totem enerjisini arastir.';
+    return '''🐾 HAYVAN RÜYASI - ${sign.nameTr.toUpperCase()} YORUMU
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🦁 TEMEL ANLAM
+Hayvanlar, içgüdüsel doğamızı ve bastırılmış enerjileri temsil eder. Her hayvan bir totem mesajı taşır.
+
+${sign.symbol} ${sign.nameTr.toUpperCase()} İÇİN ÖZEL YORUM
+Bu rüya, doğal içgüdülerinle yeniden bağlanma çağrısı. Hangi hayvan gördüysen, onun totem enerjisini araştır.
+
+🐍 YAYGIN HAYVAN SEMBOLLERİ
+• Yılan: Dönüşüm, şifa, kundalini
+• Köpek: Sadakat, koruma, arkadaşlık
+• Kedi: Bağımsızlık, gizem, sezgi
+• Kuş: Özgürlük, ruhsal mesajlar
+• Kurt: Topluluk, liderlik, öğretmen
+• Ayı: Güç, koruma, içe dönüş
+• At: Özgürlük, güç, tutku
+
+🌙 PSİKOLOJİK BOYUT
+• Hayvan davranışı: Senin bastırdığın davranış
+• Hayvanla ilişkin: İçgüdülerinle ilişkin
+• Hayvanın rengi: Duygusal ton
+• Hayvan saldırıyorsa: Bastırılmış enerji patlaması
+
+✨ PRATİK UYGULAMA
+• O hayvanı araştır - mitoloji, sembolizm
+• Hayvan meditasyonu yap
+• Totem kartları çek
+• O hayvanla ilgili bir nesne edin
+
+💫 KOZMIK MESAJ
+Hayvan rehberin seninle iletişim kuruyor. ${sign.element.nameTr} elementi olarak bu bağlantı özellikle güçlü.''';
   }
 
   String _getHouseInterpretation(zodiac.ZodiacSign sign) {
-    return '${sign.symbol} Ev ve binalar, ruhsal yapını ve iç dünyanı sembolize eder. '
-        'Odalr, benliginin farklI yönlerini temsil eder. '
-        '${sign.nameTr} olarak, hangi "oda"ya girmekten kacIndIgInI düsün.';
+    return '''🏠 EV/BİNA RÜYASI - ${sign.nameTr.toUpperCase()} YORUMU
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🏛️ TEMEL ANLAM
+Ev ve binalar, ruhsal yapını ve iç dünyayı sembolize eder. Her oda benliğinin farklı yönlerini temsil eder.
+
+${sign.symbol} ${sign.nameTr.toUpperCase()} İÇİN ÖZEL YORUM
+Hangi "odaya" girmekten kaçındığını düşün. ${sign.element.nameTr} elementi olarak iç dünyanın yapısı önemli.
+
+🚪 ODA ANLAMLARI
+• Bodrum: Bilinçaltı, bastırılmış anılar
+• Çatı katı: Yüksek bilinç, spiritüellik
+• Mutfak: Beslenme, yaratıcılık
+• Yatak odası: Mahremiyet, cinsellik
+• Banyo: Arınma, duygusal temizlik
+• Salon: Sosyal yön, dış dünya ilişkisi
+• Gizli odalar: Keşfedilmemiş potansiyel
+
+🔑 EV DURUMLARI
+• Yeni ev: Yeni benlik, değişim
+• Harap ev: İhmal edilen yönler
+• Çocukluk evi: Kökler, geçmiş
+• Yabancı ev: Bilinmeyen potansiyel
+
+✨ PRATİK UYGULAMA
+• Evinizde en az gittiğiniz odayı temizle
+• Ev köşelerini enerjiyle yenile
+• İç dünyanın haritasını çiz
+• "Ruhsal evin" meditasyonu yap
+
+💫 KOZMIK MESAJ
+Evin sensin. Her odası bir yönün. Hepsini keşfet ve sahiplen.''';
   }
 
   String _getLoveInterpretation(zodiac.ZodiacSign sign) {
-    return '${sign.symbol} Ask temalı ruyalar, iliski dinamiklerini ve duygusal ihtiyacları yansıtır. '
-        '${sign.nameTr} icin bu, ask hayatında yeni bir dönemin habercisi olabilir. '
-        'Kendinle olan iliskim nasıl sorusunu sor.';
+    return '''💕 AŞK RÜYASI - ${sign.nameTr.toUpperCase()} YORUMU
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+❤️ TEMEL ANLAM
+Aşk temalı rüyalar, ilişki dinamiklerini ve duygusal ihtiyaçları yansıtır.
+
+${sign.symbol} ${sign.nameTr.toUpperCase()} İÇİN ÖZEL YORUM
+Bu rüya, aşk hayatında yeni bir dönemin habercisi olabilir. "Kendinle olan ilişkim nasıl?" sorusunu sor.
+
+💑 AŞK RÜYASI TİPLERİ
+• Eski sevgili: Tamamlanmamış duygular
+• Yabancı biri: Yeni potansiyel veya arzu
+• Partnerin: İlişki dinamikleri
+• Ünlü biri: Arzu edilen özellikler
+• Platonik aşk: Duygusal ihtiyaçlar
+
+🌹 RÜYA SENARYOLARI
+• Öpüşmek: Birleşme arzusu
+• Ayrılık: Kaybetme korkusu
+• Evlilik: Taahhüt isteği
+• Aldatılma: Güvensizlik
+• Kavga: İç çatışma
+
+🌙 PSİKOLOJİK BOYUT
+• Anima/Animus: Karşı cins arketipi
+• Projeksiyon: Kendi özelliklerini görme
+• İhtiyaç: Karşılanmamış duygusal gereksinimler
+
+✨ PRATİK UYGULAMA
+• Aşk dili testini yap
+• İlişki ihtiyaçlarını listele
+• Özdeğer çalışması yap
+• Kalp çakrası meditasyonu
+
+💫 KOZMIK MESAJ
+Önce kendini sev. ${sign.element.nameTr} elementi aşk yaşamında ${_getElementLoveMessage(sign.element)}.''';
+  }
+
+  String _getElementLoveMessage(zodiac.Element element) {
+    switch (element) {
+      case zodiac.Element.fire:
+        return 'tutku ve heyecan istiyor';
+      case zodiac.Element.earth:
+        return 'güvenlik ve sadakat arıyor';
+      case zodiac.Element.air:
+        return 'iletişim ve zihinsel bağ öncelikli';
+      case zodiac.Element.water:
+        return 'derin duygusal bağ kurmak istiyor';
+    }
   }
 
   String _getMoneyInterpretation(zodiac.ZodiacSign sign) {
-    return '${sign.symbol} Para ve zenginlik ruyaları, özdeğer ve bolluk bilincini temsil eder. '
-        '${sign.nameTr} icin bu ruya, maddi dünyayla iliskini sorgulamaya davet. '
-        'Gerçek zenginlik içsel huzur ve minnettarlıktır.';
+    return '''💰 PARA/ZENGİNLİK RÜYASI - ${sign.nameTr.toUpperCase()} YORUMU
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🏆 TEMEL ANLAM
+Para ve zenginlik rüyaları, öz değer ve bolluk bilincini temsil eder. Maddi değil, içsel zenginlik mesajı taşır.
+
+${sign.symbol} ${sign.nameTr.toUpperCase()} İÇİN ÖZEL YORUM
+Bu rüya, maddi dünyayla ilişkini sorgulamaya davet ediyor. Gerçek zenginlik içsel huzur ve minnettarlıktır.
+
+💎 PARA RÜYASI TİPLERİ
+• Para bulmak: Gelen fırsatlar, şans
+• Para kaybetmek: Güvensizlik, kayıp korkusu
+• Zengin olmak: Potansiyelin farkındalığı
+• Para saymak: Kontrol ihtiyacı
+• Para vermek: Cömertlik veya güç kaybı
+
+🪙 SEMBOLLER
+• Altın: Ruhsal zenginlik, bilgelik
+• Nakit: Günlük güvenlik
+• Hazine: Gizli potansiyel
+• Mücevher: Öz değer
+• Banka: Güvenlik ve yapı
+
+🌙 PSİKOLOJİK BOYUT
+• Para = Enerji alışverişi
+• Zenginlik = Öz değer algısı
+• Yoksulluk = Yetersizlik hissi
+• Bolluk = Evrenle uyum
+
+✨ PRATİK UYGULAMA
+• Bolluk afirmasyonları tekrarla
+• Şükran listesi tut
+• Para ile ilişkini sorgula
+• Cömertlik pratiği yap
+
+💫 KOZMIK MESAJ
+Evren bolluk sunar - alıcı ol. ${sign.element.nameTr} elementi finansal konularda ${_getElementMoneyMessage(sign.element)}.''';
+  }
+
+  String _getElementMoneyMessage(zodiac.Element element) {
+    switch (element) {
+      case zodiac.Element.fire:
+        return 'cesaretli yatırımlar önerir';
+      case zodiac.Element.earth:
+        return 'güvenli ve kararlı birikimi destekler';
+      case zodiac.Element.air:
+        return 'çoklu gelir kaynaklarını işaret eder';
+      case zodiac.Element.water:
+        return 'sezgisel finansal kararlar önerir';
+    }
   }
 
   String _getGenericInterpretation(zodiac.ZodiacSign sign, String dreamText) {
-    return '${sign.symbol} ${sign.nameTr} burcunun kozmik perspektifinden:\n\n'
-        'Anlattıgın ruya, bilincaltinin sana önemli mesajlar ilettigini gösteriyor. '
-        '${sign.element.nameTr} elementinin enerjisiyle, bu ruyanin temel mesaji '
-        '${_getElementMessage(sign)} ile ilgili görünüyor.\n\n'
-        'Ruyandaki duygulara odaklan - korku, mutluluk, saskinlik... '
-        'Bu duygular, uyanik hayatinda hangi alanlarla resonans yapiyor?\n\n'
-        '${_getZodiacAdvice(sign)}';
+    return '''${sign.symbol} ${sign.nameTr.toUpperCase()} KOZMİK RÜYA YORUMU
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🔮 BİLİNÇALTI MESAJI
+Anlattığın rüya, bilinçaltının sana önemli mesajlar ilettiğini gösteriyor.
+
+💫 ${sign.element.nameTr.toUpperCase()} ELEMENTİ PERSPEKTİFİ
+${sign.element.nameTr} elementinin enerjisiyle, bu rüyanın temel mesajı ${_getElementMessage(sign)} ile ilgili görünüyor.
+
+🌙 DUYGU ANALİZİ
+Rüyandaki duygulara odaklan:
+• Korku: Güvenlik ihtiyacı
+• Mutluluk: Doğru yoldasın işareti
+• Şaşkınlık: Bilinmeyen keşfediliyor
+• Üzüntü: Tamamlanmamış duygu
+• Öfke: Bastırılmış enerji
+
+📍 SEMBOL OKUMA
+Rüyandaki ana sembolleri not et:
+• Kişiler: Senin yönlerini temsil ediyor
+• Mekanlar: İç dünyanın haritası
+• Objeler: Araçlar ve kaynaklar
+• Eylemler: Hayat yaklaşımın
+
+✨ PRATİK UYGULAMA
+• Rüya defteri tut
+• Uyumadan önce niyet koy
+• Sembolleri araştır
+• Meditasyonla bağlan
+
+💫 ${sign.nameTr.toUpperCase()} TAVSİYESİ
+${_getZodiacAdvice(sign)}''';
   }
 
   String _getElementMessage(zodiac.ZodiacSign sign) {
@@ -623,14 +1075,129 @@ class _DreamInterpretationScreenState
     return ListView.builder(
       controller: _scrollController,
       padding: const EdgeInsets.all(16),
-      itemCount: _messages.length + (_isTyping ? 1 : 0),
+      itemCount: _messages.length + (_isTyping ? 1 : 0) + (_messages.length == 1 ? 1 : 0),
       itemBuilder: (context, index) {
-        if (index == _messages.length && _isTyping) {
+        // Show suggested prompts after welcome message
+        if (_messages.length == 1 && index == 1 && !_isTyping) {
+          return _buildSuggestedDreamPrompts();
+        }
+        if (index == _messages.length + (_messages.length == 1 ? 1 : 0) && _isTyping) {
           return _buildTypingIndicator();
         }
-        return _buildMessageBubble(_messages[index], index);
+        if (index < _messages.length) {
+          return _buildMessageBubble(_messages[index], index);
+        }
+        return const SizedBox.shrink();
       },
     );
+  }
+
+  Widget _buildSuggestedDreamPrompts() {
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Quiz CTA - Google Discover Funnel
+          Padding(
+            padding: const EdgeInsets.only(bottom: 16),
+            child: QuizCTACard.dream(compact: true),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 12),
+            child: Row(
+              children: [
+                const Text('💭', style: TextStyle(fontSize: 16)),
+                const SizedBox(width: 8),
+                Text(
+                  'Ornek Ruya Paylasımlari:',
+                  style: TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.textSecondary,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 110,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: _suggestedDreamPrompts.length,
+              itemBuilder: (context, index) {
+                final prompt = _suggestedDreamPrompts[index];
+                return Padding(
+                  padding: const EdgeInsets.only(right: 10),
+                  child: InkWell(
+                    onTap: () {
+                      _dreamController.text = prompt['text'];
+                      _sendMessage();
+                    },
+                    borderRadius: BorderRadius.circular(14),
+                    child: Container(
+                      width: 180,
+                      padding: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [
+                            AppColors.mystic.withOpacity(0.25),
+                            AppColors.nebulaPurple.withOpacity(0.15),
+                          ],
+                        ),
+                        borderRadius: BorderRadius.circular(14),
+                        border: Border.all(
+                          color: AppColors.mystic.withOpacity(0.35),
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: AppColors.mystic.withOpacity(0.1),
+                            blurRadius: 8,
+                            offset: const Offset(0, 2),
+                          ),
+                        ],
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(prompt['emoji'], style: const TextStyle(fontSize: 22)),
+                          const SizedBox(height: 8),
+                          Expanded(
+                            child: Text(
+                              prompt['text'],
+                              style: const TextStyle(
+                                fontSize: 11,
+                                color: AppColors.textPrimary,
+                                height: 1.3,
+                              ),
+                              maxLines: 3,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ).animate().fadeIn(duration: 300.ms, delay: (50 * index).ms).slideX(begin: 0.1, end: 0);
+              },
+            ),
+          ),
+          const SizedBox(height: 8),
+          Center(
+            child: Text(
+              'Bir tanesine dokun veya kendi ruyani yaz',
+              style: TextStyle(
+                fontSize: 11,
+                color: AppColors.textSecondary.withOpacity(0.7),
+                fontStyle: FontStyle.italic,
+              ),
+            ),
+          ),
+        ],
+      ),
+    ).animate().fadeIn(duration: 500.ms, delay: 300.ms);
   }
 
   Widget _buildMessageBubble(ChatMessage message, int index) {
@@ -839,21 +1406,31 @@ class _DreamInterpretationScreenState
                   color: AppColors.mystic.withOpacity(0.3),
                 ),
               ),
-              child: TextField(
-                controller: _dreamController,
-                style: const TextStyle(color: AppColors.textPrimary),
-                maxLines: 3,
-                minLines: 1,
-                decoration: InputDecoration(
-                  hintText: 'Ruyani anlat...',
-                  hintStyle: TextStyle(color: AppColors.textSecondary.withOpacity(0.6)),
-                  border: InputBorder.none,
-                  contentPadding: const EdgeInsets.symmetric(
-                    horizontal: 18,
-                    vertical: 12,
+              child: RawKeyboardListener(
+                focusNode: FocusNode(),
+                onKey: (event) {
+                  if (event.isKeyPressed(LogicalKeyboardKey.enter) &&
+                      !event.isShiftPressed) {
+                    _sendMessage();
+                  }
+                },
+                child: TextField(
+                  controller: _dreamController,
+                  style: const TextStyle(color: AppColors.textPrimary),
+                  maxLines: 5,
+                  minLines: 1,
+                  textInputAction: TextInputAction.send,
+                  decoration: InputDecoration(
+                    hintText: 'Rüyanı detaylı anlat... (Enter ile gönder, Shift+Enter yeni satır)',
+                    hintStyle: TextStyle(color: AppColors.textSecondary.withOpacity(0.6)),
+                    border: InputBorder.none,
+                    contentPadding: const EdgeInsets.symmetric(
+                      horizontal: 18,
+                      vertical: 12,
+                    ),
                   ),
+                  onSubmitted: (_) => _sendMessage(),
                 ),
-                onSubmitted: (_) => _sendMessage(),
               ),
             ),
           ),
@@ -900,32 +1477,103 @@ class _DreamInterpretationScreenState
     );
   }
 
-  /// Quick answer buttons for context questions
+  /// Quick answer buttons for context questions - ENHANCED
   Widget _buildQuickAnswers() {
     if (_currentSession == null || _currentQuestionIndex >= _currentSession!.contextQuestions.length) {
       return const SizedBox.shrink();
     }
 
     final currentQuestion = _currentSession!.contextQuestions[_currentQuestionIndex].toLowerCase();
-    List<String> quickAnswers = [];
+    List<Map<String, String>> quickAnswers = [];
 
-    // Generate contextual quick answers based on question
+    // Generate rich contextual quick answers based on question type
     if (currentQuestion.contains('korku') ||
         currentQuestion.contains('duygu') ||
-        currentQuestion.contains('hissett')) {
-      quickAnswers = ['Korku hissettim', 'Huzur hissettim', 'Merak duydum', 'Belirsiz bir his'];
+        currentQuestion.contains('hissett') ||
+        currentQuestion.contains('nasıl')) {
+      quickAnswers = [
+        {'emoji': '😨', 'text': 'Korku ve endişe hissettim'},
+        {'emoji': '😌', 'text': 'Huzur ve güven hissettim'},
+        {'emoji': '🤔', 'text': 'Merak ve şaşkınlık duydum'},
+        {'emoji': '😢', 'text': 'Üzüntü ve melankoli'},
+        {'emoji': '😊', 'text': 'Mutluluk ve sevinç'},
+        {'emoji': '😤', 'text': 'Öfke ve kızgınlık'},
+      ];
     } else if (currentQuestion.contains('ortam') ||
                currentQuestion.contains('nerede') ||
-               currentQuestion.contains('gorunuyordu')) {
-      quickAnswers = ['Evde', 'Dogada', 'Tanimadik bir yer', 'Karanlik bir ortam'];
+               currentQuestion.contains('mekan') ||
+               currentQuestion.contains('yer')) {
+      quickAnswers = [
+        {'emoji': '🏠', 'text': 'Evimde veya tanıdık bir mekanda'},
+        {'emoji': '🌳', 'text': 'Doğada, ormanda veya bahçede'},
+        {'emoji': '🌊', 'text': 'Su kenarında, deniz veya göl'},
+        {'emoji': '🏔️', 'text': 'Dağda veya yüksek bir yerde'},
+        {'emoji': '🌑', 'text': 'Karanlık, belirsiz bir ortamda'},
+        {'emoji': '❓', 'text': 'Tanımadığım garip bir yer'},
+      ];
     } else if (currentQuestion.contains('kim') ||
-               currentQuestion.contains('baska')) {
-      quickAnswers = ['Yalnizdim', 'Tanidik biri vardi', 'Yabancilar vardi', 'Hatirlamiyorum'];
-    } else if (currentQuestion.contains('dogru') ||
-               currentQuestion.contains('sana')) {
-      quickAnswers = ['Evet', 'Hayir', 'Emin degilim'];
+               currentQuestion.contains('biri') ||
+               currentQuestion.contains('kişi') ||
+               currentQuestion.contains('başka')) {
+      quickAnswers = [
+        {'emoji': '🚶', 'text': 'Tamamen yalnızdım'},
+        {'emoji': '👨‍👩‍👧', 'text': 'Ailemden biri vardı'},
+        {'emoji': '💑', 'text': 'Sevgilim/eşim vardı'},
+        {'emoji': '👥', 'text': 'Arkadaşlarım vardı'},
+        {'emoji': '👤', 'text': 'Tanımadığım insanlar vardı'},
+        {'emoji': '😶', 'text': 'Vardı ama yüzünü göremedim'},
+      ];
+    } else if (currentQuestion.contains('renk') ||
+               currentQuestion.contains('görün')) {
+      quickAnswers = [
+        {'emoji': '⚫', 'text': 'Karanlık, siyah tonlar'},
+        {'emoji': '⚪', 'text': 'Parlak, beyaz ve aydınlık'},
+        {'emoji': '🔵', 'text': 'Mavi ve huzurlu tonlar'},
+        {'emoji': '🔴', 'text': 'Kırmızı, turuncu sıcak renkler'},
+        {'emoji': '🌈', 'text': 'Canlı ve renkli bir ortam'},
+        {'emoji': '🌫️', 'text': 'Sisli, bulanık görüntüler'},
+      ];
+    } else if (currentQuestion.contains('doğru') ||
+               currentQuestion.contains('sana') ||
+               currentQuestion.contains('yaklaş') ||
+               currentQuestion.contains('hareket')) {
+      quickAnswers = [
+        {'emoji': '➡️', 'text': 'Evet, bana doğru geliyordu'},
+        {'emoji': '⬅️', 'text': 'Hayır, benden uzaklaşıyordu'},
+        {'emoji': '⏸️', 'text': 'Sadece duruyordu, hareketsizdi'},
+        {'emoji': '🔄', 'text': 'Etrafımda dönüyordu'},
+        {'emoji': '🏃', 'text': 'Çok hızlı hareket ediyordu'},
+        {'emoji': '❓', 'text': 'Tam hatırlamıyorum'},
+      ];
+    } else if (currentQuestion.contains('ses') ||
+               currentQuestion.contains('konuş') ||
+               currentQuestion.contains('duy')) {
+      quickAnswers = [
+        {'emoji': '🔇', 'text': 'Sessizlik vardı'},
+        {'emoji': '🗣️', 'text': 'Sesler ve konuşmalar duydum'},
+        {'emoji': '🎵', 'text': 'Müzik veya melodiler vardı'},
+        {'emoji': '😱', 'text': 'Korkutucu sesler duydum'},
+        {'emoji': '💭', 'text': 'İç sesimi duyuyordum'},
+        {'emoji': '❓', 'text': 'Hatırlamıyorum'},
+      ];
+    } else if (currentQuestion.contains('son') ||
+               currentQuestion.contains('bit') ||
+               currentQuestion.contains('uyan')) {
+      quickAnswers = [
+        {'emoji': '😰', 'text': 'Korkuyla uyandım'},
+        {'emoji': '😊', 'text': 'Huzurla, yavaşça uyandım'},
+        {'emoji': '❓', 'text': 'Rüya aniden bitti'},
+        {'emoji': '🔄', 'text': 'Rüya başka bir sahneye geçti'},
+        {'emoji': '⏰', 'text': 'Alarm çaldı, rüya yarıda kaldı'},
+        {'emoji': '💭', 'text': 'Devamını görmek istedim'},
+      ];
     } else {
-      quickAnswers = ['Evet', 'Hayir', 'Emin degilim', 'Hatirlamiyorum'];
+      quickAnswers = [
+        {'emoji': '💭', 'text': 'Detay eklemek istiyorum'},
+        {'emoji': '🔮', 'text': 'Yorumla'},
+        {'emoji': '🤷', 'text': 'Emin değilim'},
+        {'emoji': '❓', 'text': 'Hatırlamıyorum'},
+      ];
     }
 
     return Padding(
@@ -936,24 +1584,44 @@ class _DreamInterpretationScreenState
         alignment: WrapAlignment.center,
         children: quickAnswers.map((answer) => InkWell(
           onTap: () {
-            _dreamController.text = answer;
+            _dreamController.text = answer['text']!;
             _sendMessage();
           },
+          borderRadius: BorderRadius.circular(20),
           child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
             decoration: BoxDecoration(
-              color: AppColors.cosmicPurple.withOpacity(0.2),
+              gradient: LinearGradient(
+                colors: [
+                  AppColors.cosmicPurple.withOpacity(0.3),
+                  AppColors.mystic.withOpacity(0.2),
+                ],
+              ),
               borderRadius: BorderRadius.circular(20),
               border: Border.all(
-                color: AppColors.cosmicPurple.withOpacity(0.5),
+                color: AppColors.mystic.withOpacity(0.4),
               ),
+              boxShadow: [
+                BoxShadow(
+                  color: AppColors.mystic.withOpacity(0.1),
+                  blurRadius: 4,
+                ),
+              ],
             ),
-            child: Text(
-              answer,
-              style: const TextStyle(
-                fontSize: 13,
-                color: AppColors.textPrimary,
-              ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(answer['emoji']!, style: const TextStyle(fontSize: 14)),
+                const SizedBox(width: 6),
+                Text(
+                  answer['text']!,
+                  style: const TextStyle(
+                    fontSize: 12,
+                    color: AppColors.textPrimary,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
             ),
           ),
         )).toList(),

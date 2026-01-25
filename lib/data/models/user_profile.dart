@@ -57,7 +57,12 @@ class UserProfile {
         'avatarEmoji': avatarEmoji,
       };
 
-  factory UserProfile.fromJson(Map<String, dynamic> json) => UserProfile(
+  factory UserProfile.fromJson(Map<String, dynamic> json) {
+    final sunSignIndex = json['sunSign'] as int? ?? 0;
+    final moonSignIndex = json['moonSign'] as int?;
+    final risingSignIndex = json['risingSign'] as int?;
+
+    return UserProfile(
         id: json['id'] as String?,
         name: json['name'] as String?,
         birthDate: DateTime.parse(json['birthDate'] as String),
@@ -65,12 +70,14 @@ class UserProfile {
         birthPlace: json['birthPlace'] as String?,
         birthLatitude: json['birthLatitude'] as double?,
         birthLongitude: json['birthLongitude'] as double?,
-        sunSign: ZodiacSign.values[json['sunSign'] as int],
-        moonSign: json['moonSign'] != null
-            ? ZodiacSign.values[json['moonSign'] as int]
+        sunSign: (sunSignIndex >= 0 && sunSignIndex < ZodiacSign.values.length)
+            ? ZodiacSign.values[sunSignIndex]
             : null,
-        risingSign: json['risingSign'] != null
-            ? ZodiacSign.values[json['risingSign'] as int]
+        moonSign: (moonSignIndex != null && moonSignIndex >= 0 && moonSignIndex < ZodiacSign.values.length)
+            ? ZodiacSign.values[moonSignIndex]
+            : null,
+        risingSign: (risingSignIndex != null && risingSignIndex >= 0 && risingSignIndex < ZodiacSign.values.length)
+            ? ZodiacSign.values[risingSignIndex]
             : null,
         createdAt: json['createdAt'] != null
             ? DateTime.parse(json['createdAt'] as String)
@@ -82,6 +89,7 @@ class UserProfile {
         relationship: json['relationship'] as String?,
         avatarEmoji: json['avatarEmoji'] as String?,
       );
+  }
 
   UserProfile copyWith({
     String? id,

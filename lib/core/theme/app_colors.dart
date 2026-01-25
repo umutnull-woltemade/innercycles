@@ -33,11 +33,11 @@ class AppColors {
   // Text colors (dark mode)
   static const Color textPrimary = Color(0xFFF5F5F5);
   static const Color textSecondary = Color(0xFFB8B8D1);
-  static const Color textMuted = Color(0xFF6C6C8A);
+  static const Color textMuted = Color(0xFF8A8AA8);
 
   // Text colors (for theme-aware usage)
   static const Color textDark = Color(0xFF1A1A2E);
-  static const Color textLight = Color(0xFF6C6C8A);
+  static const Color textLight = Color(0xFF8A8AA8);
 
   // Cosmic accent
   static const Color cosmic = Color(0xFF667EEA);
@@ -97,6 +97,14 @@ class AppColors {
     end: Alignment.bottomRight,
     colors: [lightSurface, lightSurfaceVariant],
   );
+
+  // ========== TANTRA COLORS ==========
+  // Warm, sensual, grounding palette (non-explicit)
+  static const Color tantraWarm = Color(0xFFC4A484);      // Warm earth
+  static const Color tantraCrimson = Color(0xFFBC544B);   // Soft crimson
+  static const Color tantraGold = Color(0xFFE8B4B8);      // Rose gold
+  static const Color tantraDeep = Color(0xFF8B5A2B);      // Deep amber
+  static const Color tantraIvory = Color(0xFFFDF6E3);     // Cream ivory
 
   static const LinearGradient goldGradient = LinearGradient(
     begin: Alignment.topCenter,

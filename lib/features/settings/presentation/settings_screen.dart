@@ -223,6 +223,7 @@ class SettingsScreen extends ConsumerWidget {
               return GestureDetector(
                 onTap: () {
                   ref.read(houseSystemProvider.notifier).state = system;
+                  StorageService.saveHouseSystem(system.index);
                 },
                 child: Container(
                   padding: const EdgeInsets.symmetric(
@@ -382,6 +383,14 @@ class SettingsScreen extends ConsumerWidget {
           ),
           const Divider(height: 1),
           _SettingsTile(
+            icon: Icons.gavel_outlined,
+            title: _getLocalizedString('disclaimer', language),
+            subtitle: _getLocalizedString('disclaimer_desc', language),
+            isDark: isDark,
+            onTap: () => _showDisclaimerDialog(context, language, isDark),
+          ),
+          const Divider(height: 1),
+          _SettingsTile(
             icon: Icons.privacy_tip_outlined,
             title: _getLocalizedString('privacy_policy', language),
             subtitle: null,
@@ -419,6 +428,30 @@ class SettingsScreen extends ConsumerWidget {
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
                 ),
+          ),
+          const Divider(height: 24),
+          _SettingsTile(
+            icon: Icons.admin_panel_settings,
+            title: 'Admin',
+            subtitle: 'Dashboard & Analytics',
+            isDark: isDark,
+            onTap: () => context.push(Routes.adminLogin),
+            trailing: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [AppColors.starGold, AppColors.celestialGold],
+                ),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Text(
+                'PIN',
+                style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                      color: AppColors.deepSpace,
+                      fontWeight: FontWeight.bold,
+                    ),
+              ),
+            ),
           ),
         ],
       ),
@@ -481,8 +514,141 @@ class SettingsScreen extends ConsumerWidget {
     );
   }
 
+  void _showDisclaimerDialog(BuildContext context, AppLanguage language, bool isDark) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: isDark ? AppColors.surfaceDark : AppColors.lightSurface,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+        ),
+        title: Row(
+          children: [
+            Icon(Icons.info_outline, color: AppColors.starGold),
+            const SizedBox(width: 12),
+            Text(
+              _getLocalizedString('disclaimer', language),
+              style: TextStyle(
+                color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+              ),
+            ),
+          ],
+        ),
+        content: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                _getLocalizedString('disclaimer_content', language),
+                style: TextStyle(
+                  color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+                  height: 1.5,
+                ),
+              ),
+              const SizedBox(height: 16),
+              Container(
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: AppColors.starGold.withValues(alpha: 0.1),
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(color: AppColors.starGold.withValues(alpha: 0.3)),
+                ),
+                child: Row(
+                  children: [
+                    Icon(Icons.lightbulb_outline, color: AppColors.starGold, size: 20),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Text(
+                        _getLocalizedString('disclaimer_tip', language),
+                        style: TextStyle(
+                          color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+                          fontSize: 12,
+                          fontStyle: FontStyle.italic,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text(
+              L10n.get('ok', language),
+              style: TextStyle(color: AppColors.starGold),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   String _getLocalizedString(String key, AppLanguage language) {
     final Map<String, Map<AppLanguage, String>> strings = {
+      'disclaimer': {
+        AppLanguage.en: 'Disclaimer',
+        AppLanguage.tr: 'Yasal Uyarı',
+        AppLanguage.el: 'Αποποίηση',
+        AppLanguage.bg: 'Отказ от отговорност',
+        AppLanguage.ru: 'Отказ от ответственности',
+        AppLanguage.zh: '免责声明',
+        AppLanguage.fr: 'Avertissement',
+        AppLanguage.de: 'Haftungsausschluss',
+        AppLanguage.es: 'Descargo',
+        AppLanguage.ar: 'إخلاء المسؤولية',
+      },
+      'disclaimer_desc': {
+        AppLanguage.en: 'Entertainment purposes only',
+        AppLanguage.tr: 'Sadece eğlence amaçlıdır',
+        AppLanguage.el: 'Μόνο για ψυχαγωγικούς σκοπούς',
+        AppLanguage.bg: 'Само за забавление',
+        AppLanguage.ru: 'Только для развлечения',
+        AppLanguage.zh: '仅供娱乐',
+        AppLanguage.fr: 'À des fins de divertissement uniquement',
+        AppLanguage.de: 'Nur zu Unterhaltungszwecken',
+        AppLanguage.es: 'Solo para entretenimiento',
+        AppLanguage.ar: 'لأغراض الترفيه فقط',
+      },
+      'disclaimer_content': {
+        AppLanguage.en: '''This app provides astrological, numerological, tarot, and dream interpretation content for entertainment and self-reflection purposes only.
+
+The content does not constitute professional advice in any field including but not limited to: medical, psychological, financial, legal, or relationship advice.
+
+If you need professional support, please consult qualified professionals in the relevant field.
+
+All interpretations are generated for informational and entertainment purposes and should not be used as the basis for important life decisions.''',
+        AppLanguage.tr: '''Bu uygulama astroloji, numeroloji, tarot ve rüya yorumu içeriklerini yalnızca eğlence ve kendini keşfetme amaçlı sunmaktadır.
+
+İçerikler; tıbbi, psikolojik, finansal, hukuki veya ilişki danışmanlığı dahil hiçbir alanda profesyonel tavsiye niteliği taşımaz.
+
+Profesyonel desteğe ihtiyacınız varsa, lütfen ilgili alanda uzman kişilere başvurun.
+
+Tüm yorumlar bilgilendirme ve eğlence amaçlı oluşturulmaktadır ve önemli yaşam kararlarına temel oluşturmamalıdır.''',
+        AppLanguage.el: 'Αυτή η εφαρμογή παρέχει αστρολογικό περιεχόμενο μόνο για σκοπούς ψυχαγωγίας.',
+        AppLanguage.bg: 'Това приложение предоставя астрологично съдържание само за забавление.',
+        AppLanguage.ru: 'Это приложение предоставляет астрологический контент только для развлечения.',
+        AppLanguage.zh: '此应用程序仅提供娱乐性的占星内容。',
+        AppLanguage.fr: 'Cette application fournit du contenu astrologique à des fins de divertissement uniquement.',
+        AppLanguage.de: 'Diese App bietet astrologische Inhalte nur zur Unterhaltung.',
+        AppLanguage.es: 'Esta aplicación proporciona contenido astrológico solo para entretenimiento.',
+        AppLanguage.ar: 'يقدم هذا التطبيق محتوى فلكي لأغراض الترفيه فقط.',
+      },
+      'disclaimer_tip': {
+        AppLanguage.en: 'Use the content for self-reflection, not decision-making.',
+        AppLanguage.tr: 'İçerikleri karar verme için değil, kendini keşfetmek için kullan.',
+        AppLanguage.el: 'Χρησιμοποιήστε το περιεχόμενο για αυτοστοχασμό.',
+        AppLanguage.bg: 'Използвайте съдържанието за саморефлексия.',
+        AppLanguage.ru: 'Используйте контент для самоанализа.',
+        AppLanguage.zh: '使用内容进行自我反思。',
+        AppLanguage.fr: 'Utilisez le contenu pour la réflexion personnelle.',
+        AppLanguage.de: 'Nutze den Inhalt zur Selbstreflexion.',
+        AppLanguage.es: 'Usa el contenido para la autorreflexión.',
+        AppLanguage.ar: 'استخدم المحتوى للتأمل الذاتي.',
+      },
       'house_system': {
         AppLanguage.en: 'House System',
         AppLanguage.tr: 'Ev Sistemi',

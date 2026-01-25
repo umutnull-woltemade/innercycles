@@ -9,6 +9,10 @@ import '../../../data/models/zodiac_sign.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/ephemeris_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/kadim_not_card.dart';
+import '../../../shared/widgets/next_blocks.dart';
+import '../../../shared/widgets/entertainment_disclaimer.dart';
+import '../../../shared/widgets/quiz_cta_card.dart';
 
 /// Current planetary transits provider - uses API with local fallback
 final currentTransitsProvider = FutureProvider<List<PlanetPosition>>((ref) async {
@@ -118,6 +122,30 @@ class TransitsScreen extends ConsumerWidget {
                   _buildRetrogradePlanets(context, currentTransits),
                   const SizedBox(height: AppConstants.spacingXl),
                   _buildPlanetList(context, currentTransits, language),
+                  const SizedBox(height: AppConstants.spacingXl),
+                  // Kadim Not
+                  KadimNotCard(
+                    category: KadimCategory.astrology,
+                    title: 'Kozmik Hava Durumu',
+                    content: 'Transitler, gökyüzündeki gezegenlerin şu anki konumlarının doğum haritanla '
+                        'nasıl etkileştiğini gösterir. Kozmik bir hava durumu raporu gibi düşün - '
+                        'evrenin enerjileri her gün değişir ve bu geçişler hayatının farklı alanlarını tetikler. '
+                        'Antik astrologlar gökyüzünü okuyarak krallıkların kaderini belirlerdi.',
+                    icon: Icons.compare_arrows,
+                  ),
+                  const SizedBox(height: AppConstants.spacingXl),
+                  // Quiz CTA - Google Discover Funnel
+                  QuizCTACard.astrology(compact: true),
+                  const SizedBox(height: AppConstants.spacingXl),
+                  // Next Blocks
+                  const NextBlocks(currentPage: 'transits'),
+                  const SizedBox(height: AppConstants.spacingXl),
+                  // Entertainment Disclaimer
+                  const PageFooterWithDisclaimer(
+                    brandText: 'Transitler — Astrobobo',
+                    disclaimerText: DisclaimerTexts.astrology,
+                  ),
+                  const SizedBox(height: AppConstants.spacingLg),
                 ],
               ),
             ),

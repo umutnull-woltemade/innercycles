@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/services/tarot_service.dart';
+import '../../../data/content/tarot_content.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/page_bottom_navigation.dart';
+import '../../../shared/widgets/next_blocks.dart';
+import '../../../shared/widgets/kadim_not_card.dart';
+import '../../../shared/widgets/entertainment_disclaimer.dart';
+import '../../../shared/widgets/quiz_cta_card.dart';
 
 class TarotScreen extends ConsumerStatefulWidget {
   const TarotScreen({super.key});
@@ -67,10 +74,12 @@ class _TarotScreenState extends ConsumerState<TarotScreen> {
               SliverAppBar(
                 backgroundColor: Colors.transparent,
                 floating: true,
+                snap: true,
                 title: Text(
-                  'Tarot',
+                  'Kartlar sana ne söylüyor?',
                   style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                         color: AppColors.starGold,
+                        fontSize: 20,
                       ),
                 ),
                 leading: IconButton(
@@ -100,7 +109,35 @@ class _TarotScreenState extends ConsumerState<TarotScreen> {
                     else if (_selectedSpread == 'yesno' && _yesNoReading != null)
                       _buildYesNoReading(context),
 
+                    const SizedBox(height: AppConstants.spacingLg),
+
+                    // Major Arcana Grid
+                    _buildMajorArcanaSection(context),
+                    const SizedBox(height: AppConstants.spacingLg),
+
+                    // Quiz CTA - Google Discover Funnel
+                    QuizCTACard.general(compact: true),
+                    const SizedBox(height: AppConstants.spacingLg),
+
+                    // Kadim Not - Tarot bilgeliği
+                    const KadimNotCard(
+                      title: 'Arketiplerin Dansı',
+                      content: 'Her Tarot kartı, kolektif bilinçaltının bir arketipidir. Jung\'un dediği gibi, bu semboller insanlığın ortak rüyalarından doğmuştur. Bir kart çektiğinde, evrenle bir diyalog başlatıyorsun. Cevap kartın kendisinde değil, onunla kurduğun bağlantıda.',
+                      category: KadimCategory.tarot,
+                      source: 'Jungiyen Sembolizm',
+                    ),
                     const SizedBox(height: AppConstants.spacingXl),
+                    // Next Blocks - Sonraki öneriler
+                    const NextBlocks(currentPage: 'tarot'),
+                    const SizedBox(height: AppConstants.spacingXl),
+                    // Back-Button-Free Navigation
+                    const PageBottomNavigation(currentRoute: '/tarot'),
+                    const SizedBox(height: AppConstants.spacingLg),
+                    // Disclaimer
+                    const PageFooterWithDisclaimer(
+                      brandText: 'Tarot — Astrobobo',
+                      disclaimerText: DisclaimerTexts.tarot,
+                    ),
                   ]),
                 ),
               ),
@@ -755,5 +792,132 @@ class _TarotScreenState extends ConsumerState<TarotScreen> {
         ],
       ),
     );
+  }
+
+  Widget _buildMajorArcanaSection(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            const Icon(Icons.style, color: AppColors.auroraEnd, size: 20),
+            const SizedBox(width: 8),
+            Text(
+              '22 Major Arcana',
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                color: AppColors.auroraEnd,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const Spacer(),
+            Text(
+              'Kartlara dokun',
+              style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                color: AppColors.textMuted,
+                fontStyle: FontStyle.italic,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: AppConstants.spacingMd),
+        SizedBox(
+          height: 120,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: 22,
+            itemBuilder: (context, index) {
+              final card = majorArcanaContents[index];
+              if (card == null) return const SizedBox.shrink();
+
+              final color = _getMajorArcanaColor(index);
+
+              return GestureDetector(
+                onTap: () => context.push('/tarot/major/$index'),
+                child: Container(
+                  width: 80,
+                  margin: const EdgeInsets.only(right: 10),
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        color.withAlpha(80),
+                        AppColors.surfaceDark,
+                      ],
+                    ),
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(color: color.withAlpha(150)),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        _getRomanNumeral(index),
+                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                          color: color,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 4),
+                        child: Text(
+                          card.nameTr,
+                          style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                            color: AppColors.textSecondary,
+                            fontSize: 9,
+                          ),
+                          textAlign: TextAlign.center,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ).animate(delay: Duration(milliseconds: index * 30))
+                .fadeIn(duration: 300.ms)
+                .slideX(begin: 0.2, end: 0);
+            },
+          ),
+        ),
+      ],
+    ).animate().fadeIn(delay: 300.ms, duration: 400.ms);
+  }
+
+  String _getRomanNumeral(int number) {
+    final romanNumerals = [
+      '0', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X',
+      'XI', 'XII', 'XIII', 'XIV', 'XV', 'XVI', 'XVII', 'XVIII', 'XIX', 'XX', 'XXI'
+    ];
+    return romanNumerals[number];
+  }
+
+  Color _getMajorArcanaColor(int number) {
+    final colors = [
+      const Color(0xFF00BCD4), // Fool
+      const Color(0xFFFFD700), // Magician
+      const Color(0xFF9C27B0), // High Priestess
+      const Color(0xFF4CAF50), // Empress
+      const Color(0xFFF44336), // Emperor
+      const Color(0xFF795548), // Hierophant
+      const Color(0xFFE91E63), // Lovers
+      const Color(0xFF607D8B), // Chariot
+      const Color(0xFFFF9800), // Strength
+      const Color(0xFF3F51B5), // Hermit
+      const Color(0xFF9E9E9E), // Wheel
+      const Color(0xFFCDDC39), // Justice
+      const Color(0xFF2196F3), // Hanged Man
+      const Color(0xFF212121), // Death
+      const Color(0xFF00BCD4), // Temperance
+      const Color(0xFF8B0000), // Devil
+      const Color(0xFFFFEB3B), // Tower
+      const Color(0xFF7C4DFF), // Star
+      const Color(0xFFC0C0C0), // Moon
+      const Color(0xFFFFD700), // Sun
+      const Color(0xFF9C27B0), // Judgement
+      const Color(0xFF4CAF50), // World
+    ];
+    return colors[number % colors.length];
   }
 }

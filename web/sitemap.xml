@@ -1,155 +1,654 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-
-  <!-- Homepage -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://astrobobo.com/</loc>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://astrobobo.com/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://astrobobo.com/en/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://astrobobo.com/"/>
-    <lastmod>2026-01-10</lastmod>
+    <loc>https://astrobobo.com</loc>
+    <lastmod>2026-01-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
-
-  <!-- Horoscope Main Page -->
   <url>
-    <loc>https://astrobobo.com/horoscope</loc>
-    <lastmod>2026-01-10</lastmod>
+    <loc>https://astrobobo.com/birth-chart</loc>
+    <lastmod>2026-01-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
-
-  <!-- Individual Zodiac Signs -->
   <url>
-    <loc>https://astrobobo.com/horoscope/aries</loc>
-    <lastmod>2026-01-10</lastmod>
+    <loc>https://astrobobo.com/horoscope</loc>
+    <lastmod>2026-01-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/synastry</loc>
+    <lastmod>2026-01-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/composite</loc>
+    <lastmod>2026-01-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/solar-return</loc>
+    <lastmod>2026-01-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/progressions</loc>
+    <lastmod>2026-01-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/transits</loc>
+    <lastmod>2026-01-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/vedic</loc>
+    <lastmod>2026-01-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/draconic</loc>
+    <lastmod>2026-01-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/asteroids</loc>
+    <lastmod>2026-01-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/local-space</loc>
+    <lastmod>2026-01-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/timing</loc>
+    <lastmod>2026-01-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/year-ahead</loc>
+    <lastmod>2026-01-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/weekly-horoscope</loc>
+    <lastmod>2026-01-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/monthly-horoscope</loc>
+    <lastmod>2026-01-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/yearly-horoscope</loc>
+    <lastmod>2026-01-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/celebrities</loc>
+    <lastmod>2026-01-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/glossary</loc>
+    <lastmod>2026-01-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/tarot</loc>
+    <lastmod>2026-01-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/numerology</loc>
+    <lastmod>2026-01-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/saturn-return</loc>
+    <lastmod>2026-01-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/premium</loc>
+    <lastmod>2026-01-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/profile</loc>
+    <lastmod>2026-01-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/settings</loc>
+    <lastmod>2026-01-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/kozmoz</loc>
+    <lastmod>2026-01-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/dreams</loc>
+    <lastmod>2026-01-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/chakra</loc>
+    <lastmod>2026-01-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/rituals</loc>
+    <lastmod>2026-01-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- Zodiac Sign Pages -->
+  <url>
+    <loc>https://astrobobo.com/horoscope/aries</loc>
+    <lastmod>2026-01-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://astrobobo.com/horoscope/taurus</loc>
-    <lastmod>2026-01-10</lastmod>
+    <lastmod>2026-01-23</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://astrobobo.com/horoscope/gemini</loc>
-    <lastmod>2026-01-10</lastmod>
+    <lastmod>2026-01-23</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://astrobobo.com/horoscope/cancer</loc>
-    <lastmod>2026-01-10</lastmod>
+    <lastmod>2026-01-23</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://astrobobo.com/horoscope/leo</loc>
-    <lastmod>2026-01-10</lastmod>
+    <lastmod>2026-01-23</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://astrobobo.com/horoscope/virgo</loc>
-    <lastmod>2026-01-10</lastmod>
+    <lastmod>2026-01-23</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://astrobobo.com/horoscope/libra</loc>
-    <lastmod>2026-01-10</lastmod>
+    <lastmod>2026-01-23</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://astrobobo.com/horoscope/scorpio</loc>
-    <lastmod>2026-01-10</lastmod>
+    <lastmod>2026-01-23</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://astrobobo.com/horoscope/sagittarius</loc>
-    <lastmod>2026-01-10</lastmod>
+    <lastmod>2026-01-23</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://astrobobo.com/horoscope/capricorn</loc>
-    <lastmod>2026-01-10</lastmod>
+    <lastmod>2026-01-23</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://astrobobo.com/horoscope/aquarius</loc>
-    <lastmod>2026-01-10</lastmod>
+    <lastmod>2026-01-23</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://astrobobo.com/horoscope/pisces</loc>
-    <lastmod>2026-01-10</lastmod>
+    <lastmod>2026-01-23</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
-
-  <!-- Birth Chart -->
-  <url>
-    <loc>https://astrobobo.com/birth-chart</loc>
-    <lastmod>2026-01-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Tarot -->
-  <url>
-    <loc>https://astrobobo.com/tarot</loc>
-    <lastmod>2026-01-10</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Numerology -->
-  <url>
-    <loc>https://astrobobo.com/numerology</loc>
-    <lastmod>2026-01-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Compatibility -->
-  <url>
-    <loc>https://astrobobo.com/compatibility</loc>
-    <lastmod>2026-01-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <!-- Aura Analysis -->
+  <!-- Additional Tools -->
   <url>
     <loc>https://astrobobo.com/aura</loc>
-    <lastmod>2026-01-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2026-01-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
   </url>
-
-  <!-- Kabbalah -->
   <url>
     <loc>https://astrobobo.com/kabbalah</loc>
-    <lastmod>2026-01-10</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-01-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/compatibility</loc>
+    <lastmod>2026-01-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/void-of-course</loc>
+    <lastmod>2026-01-23</lastmod>
+    <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
-
-  <!-- Transits -->
+  <!-- Yeni Eklenen Sayfalar - 2026-01-24 -->
   <url>
-    <loc>https://astrobobo.com/transits</loc>
-    <lastmod>2026-01-10</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
+    <loc>https://astrobobo.com/tum-cozumlemeler</loc>
+    <lastmod>2026-01-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
-
+  <url>
+    <loc>https://astrobobo.com/tantra</loc>
+    <lastmod>2026-01-24</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/love-horoscope</loc>
+    <lastmod>2026-01-24</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/dream-glossary</loc>
+    <lastmod>2026-01-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/cosmic-share</loc>
+    <lastmod>2026-01-24</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <!-- Rüya İzi - AI-First Canonical Sayfalar -->
+  <url>
+    <loc>https://astrobobo.com/ruya/dusmek</loc>
+    <lastmod>2026-01-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/ruya/su-gormek</loc>
+    <lastmod>2026-01-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/ruya/tekrar-eden</loc>
+    <lastmod>2026-01-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/ruya/kacmak</loc>
+    <lastmod>2026-01-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/ruya/ucmak</loc>
+    <lastmod>2026-01-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/ruya/birini-kaybetmek</loc>
+    <lastmod>2026-01-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/ruya/karanlik</loc>
+    <lastmod>2026-01-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/ruya/gecmisten-biri</loc>
+    <lastmod>2026-01-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/ruya/bir-sey-aramak</loc>
+    <lastmod>2026-01-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/ruya/ses-cikaramamak</loc>
+    <lastmod>2026-01-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <!-- Ruya Izi - Discover SEO Pages 2026-01-25 -->
+  <url>
+    <loc>https://astrobobo.com/ruya/ruyada-dusmek</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/ruya/ruyada-yilan</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/ruya/ruyada-dis-dokulmesi</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/ruya/ruyada-ucmak</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/ruya/ruyada-su</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/quiz.html</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/ruya/</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <!-- Ruya Izi - Batch 2 SEO Pages 2026-01-25 -->
+  <url>
+    <loc>https://astrobobo.com/ruya/ruyada-kovalanmak</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/ruya/ruyada-kaybolmak</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/ruya/ruyada-olum</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/ruya/ruyada-bogulmak</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/ruya/ruyada-bebek</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/ruya/ruyada-araba</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/ruya/ruyada-eski-sevgili</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/ruya/ruyada-ev</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/ruya/ruyada-para</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/ruya/ruyada-kopek</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <!-- Ruya Izi - Batch 3 SEO Pages 2026-01-25 -->
+  <url>
+    <loc>https://astrobobo.com/ruya/ruyada-hamile-kalmak</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/ruya/ruyada-aglamak</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/ruya/ruyada-kavga</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/ruya/ruyada-deprem</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/ruya/ruyada-ates</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/ruya/ruyada-ucurum</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/ruya/ruyada-gec-kalmak</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/ruya/ruyada-sinav</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/ruya/ruyada-savas</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/ruya/ruyada-cicek</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <!-- Ruya Izi - Batch 4 SEO Pages 2026-01-25 -->
+  <url>
+    <loc>https://astrobobo.com/ruya/ruyada-kedi</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/ruya/ruyada-at</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/ruya/ruyada-yukseklik</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/ruya/ruyada-doga</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/ruya/ruyada-hastane</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/ruya/ruyada-okul</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/ruya/ruyada-ayna</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/ruya/ruyada-telefon</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/ruya/ruyada-karanlik</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/ruya/ruyada-yol</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <!-- Ruya Izi - Batch 5 SEO Pages 2026-01-25 -->
+  <url>
+    <loc>https://astrobobo.com/ruya/ruyada-cocuk</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/ruya/ruyada-dugun</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/ruya/ruyada-ucak</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/ruya/ruyada-deniz</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/ruya/ruyada-orman</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/ruya/ruyada-dag</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/ruya/ruyada-yagmur</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/ruya/ruyada-kar</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/ruya/ruyada-mezarlik</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://astrobobo.com/ruya/ruyada-hastalik</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
 </urlset>

@@ -11,11 +11,8 @@ class EphemerisService {
   static const double _deg2rad = math.pi / 180.0;
   static const double _rad2deg = 180.0 / math.pi;
 
-  // J2000.0 epoch (January 1, 2000, 12:00 TT)
-  static const double _j2000 = 2451545.0;
 
-  // Obliquity of the ecliptic at J2000.0 (degrees)
-  static const double _obliquityJ2000 = 23.439291;
+
 
   /// Calculate complete natal chart
   static NatalChart calculateNatalChart(BirthData birthData) {
@@ -555,7 +552,6 @@ class EphemerisService {
       double ramc, double latRad, double obliquity, double fraction, bool aboveHorizon) {
     // Simplified Placidus calculation using semi-arc interpolation
     final tanLat = math.tan(latRad);
-    final tanObl = math.tan(obliquity);
 
     // Calculate the semi-arc for the cusp
     double semiArc;
@@ -573,10 +569,6 @@ class EphemerisService {
 
     // Convert to ecliptic longitude
     final houseRaRad = housera * _deg2rad;
-
-    // Calculate declination at this RA
-    final sinDec = math.sin(obliquity) * math.sin(houseRaRad);
-    final dec = math.asin(sinDec.clamp(-1.0, 1.0));
 
     // Placidus formula for ecliptic longitude
     final y = math.sin(houseRaRad);

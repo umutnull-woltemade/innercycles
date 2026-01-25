@@ -3,8 +3,6 @@ import '../models/zodiac_sign.dart';
 import '../models/extended_horoscope.dart';
 
 class ExtendedHoroscopeService {
-  static final _random = Random();
-
   // ============ WEEKLY HOROSCOPE ============
 
   static WeeklyHoroscope generateWeeklyHoroscope(ZodiacSign sign, DateTime weekStart) {

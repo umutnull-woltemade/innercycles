@@ -1,0 +1,49 @@
+default_platform(:android)
+
+platform :android do
+  desc "Upload AAB to Play Console Internal Testing track"
+  lane :internal do |options|
+    version_name = options[:version_name] || "1.0.0"
+    version_code = options[:version_code] || "1"
+
+    # Read release notes for the store listing (≤500 chars)
+    changelog = ""
+    notes_file = "../release_notes_short.txt"
+    if File.exist?(notes_file)
+      changelog = File.read(notes_file).strip
+    end
+
+    upload_to_play_store(
+      track: "internal",
+      aab: "../build/app/outputs/bundle/release/app-release.aab",
+      json_key: "fastlane/play-service-account.json",
+      package_name: ENV["ANDROID_PACKAGE_NAME"] || "com.umut.astrology_app",
+      version_name: version_name,
+      version_code: version_code.to_i,
+      skip_upload_metadata: true,
+      skip_upload_changelogs: changelog.empty?,
+      skip_upload_images: true,
+      skip_upload_screenshots: true,
+      release_status: "draft",
+    )
+
+    unless changelog.empty?
+      UI.success("Release notes uploaded: #{changelog[0..80]}...")
+    end
+  end
+
+  desc "Promote internal → production"
+  lane :promote do
+    upload_to_play_store(
+      track: "internal",
+      track_promote_to: "production",
+      json_key: "fastlane/play-service-account.json",
+      package_name: ENV["ANDROID_PACKAGE_NAME"] || "com.umut.astrology_app",
+      skip_upload_aab: true,
+      skip_upload_metadata: true,
+      skip_upload_changelogs: true,
+      skip_upload_images: true,
+      skip_upload_screenshots: true,
+    )
+  end
+end

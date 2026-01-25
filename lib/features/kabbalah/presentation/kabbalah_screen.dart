@@ -6,6 +6,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/kabbalah_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/entertainment_disclaimer.dart';
 
 class KabbalahScreen extends ConsumerWidget {
   const KabbalahScreen({super.key});
@@ -52,6 +53,7 @@ class KabbalahScreen extends ConsumerWidget {
               SliverAppBar(
                 backgroundColor: Colors.transparent,
                 floating: true,
+                snap: true,
                 title: Text(
                   'Kabala',
                   style: Theme.of(context).textTheme.headlineMedium?.copyWith(
@@ -107,6 +109,12 @@ class KabbalahScreen extends ConsumerWidget {
                         .animate()
                         .fadeIn(delay: 400.ms, duration: 400.ms),
                     const SizedBox(height: AppConstants.spacingXl),
+                    // Entertainment Disclaimer
+                    const PageFooterWithDisclaimer(
+                      brandText: 'Kabala — Astrobobo',
+                      disclaimerText: DisclaimerTexts.astrology,
+                    ),
+                    const SizedBox(height: AppConstants.spacingLg),
                   ]),
                 ),
               ),

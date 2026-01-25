@@ -84,7 +84,7 @@ class _TransitCalendarScreenState extends ConsumerState<TransitCalendarScreen> {
                       ),
                 ),
                 Text(
-                  'Onemli astrolojik olaylar',
+                  'Önemli astrolojik olaylar',
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: AppColors.textSecondary,
                       ),
@@ -599,7 +599,7 @@ class TransitCalendarService {
     events.add(TransitEvent(
       date: DateTime(year, month, newMoonDay),
       title: 'Yeni Ay - ${newMoonSign.nameTr}',
-      description: '${newMoonSign.nameTr} burcunda yeni ay. Yeni baslangiclar icin ideal zaman. '
+      description: '${newMoonSign.nameTr} burcunda yeni ay. Yeni başlangıçlar için ideal zaman. '
           '${newMoonSign.element.nameTr} elementi enerjisi hakim.',
       emoji: '🌑',
       type: TransitEventType.newMoon,
@@ -609,8 +609,8 @@ class TransitCalendarService {
     events.add(TransitEvent(
       date: DateTime(year, month, fullMoonDay),
       title: 'Dolunay - ${fullMoonSign.nameTr}',
-      description: '${fullMoonSign.nameTr} burcunda dolunay. Tamamlanma ve hasat zamani. '
-          'Duygular yogunlasiyor.',
+      description: '${fullMoonSign.nameTr} burcunda dolunay. Tamamlanma ve hasat zamanı. '
+          'Duygular yoğunlaşıyor.',
       emoji: '🌕',
       type: TransitEventType.fullMoon,
       sign: fullMoonSign,
@@ -646,10 +646,10 @@ class TransitCalendarService {
 
       events.add(TransitEvent(
         date: DateTime(year, month, eclipseDay.clamp(1, 28)),
-        title: isSolar ? 'Gunes Tutulmasi - ${eclipseSign.nameTr}' : 'Ay Tutulmasi - ${eclipseSign.nameTr}',
+        title: isSolar ? 'Güneş Tutulması - ${eclipseSign.nameTr}' : 'Ay Tutulması - ${eclipseSign.nameTr}',
         description: isSolar
-            ? '${eclipseSign.nameTr} burcunda gunes tutulmasi. Guçlu yeni baslangiçlar. Kader kapilari aciliyor.'
-            : '${eclipseSign.nameTr} burcunda ay tutulmasi. Buyuk kapatislar ve sonlanmalar. Duygusal donusum.',
+            ? '${eclipseSign.nameTr} burcunda güneş tutulması. Güçlü yeni başlangıçlar. Kader kapıları açılıyor.'
+            : '${eclipseSign.nameTr} burcunda ay tutulması. Büyük kapatışlar ve sonlanmalar. Duygusal dönüşüm.',
         emoji: isSolar ? '🌘' : '🌒',
         type: TransitEventType.eclipse,
         sign: eclipseSign,
@@ -733,9 +733,9 @@ class TransitCalendarService {
     if (seed % 20 == 0) {
       events.add(TransitEvent(
         date: DateTime(year, month, 15),
-        title: 'Jupiter-Saturn Kavusumu',
-        description: 'Onemli toplumsal ve kisisel donusum. 20 yilda bir gerceklesen bu '
-            'olay buyuk degisimler getirir.',
+        title: 'Jüpiter-Satürn Kavuşumu',
+        description: 'Önemli toplumsal ve kişisel dönüşüm. 20 yılda bir gerçekleşen bu '
+            'olay büyük değişimler getirir.',
         emoji: '⚡',
         type: TransitEventType.majorAspect,
       ));
@@ -746,8 +746,8 @@ class TransitCalendarService {
       final aspectDay = 5 + (seed % 10);
       events.add(TransitEvent(
         date: DateTime(year, month, aspectDay.clamp(1, 28)),
-        title: 'Mars-Jupiter Ucgeni',
-        description: 'Enerji ve sans bulusuyor. Cesur girisimler icin mukemmel zaman. '
+        title: 'Mars-Jüpiter Üçgeni',
+        description: 'Enerji ve şans buluşuyor. Cesur girişimler için mükemmel zaman. '
             'Fiziksel aktiviteler ve sporlar destekleniyor.',
         emoji: '🔥',
         type: TransitEventType.majorAspect,
@@ -759,9 +759,9 @@ class TransitCalendarService {
       final aspectDay = 12 + (seed % 8);
       events.add(TransitEvent(
         date: DateTime(year, month, aspectDay.clamp(1, 28)),
-        title: 'Venus-Neptun Kavusumu',
-        description: 'Romantik ve sanatsal ilham. Ruyalar ve hayal gucu gucleniyor. '
-            'Spiritüel ask deneyimleri.',
+        title: 'Venüs-Neptün Kavuşumu',
+        description: 'Romantik ve sanatsal ilham. Rüyalar ve hayal gücü güçleniyor. '
+            'Spiritüel aşk deneyimleri.',
         emoji: '💫',
         type: TransitEventType.majorAspect,
       ));

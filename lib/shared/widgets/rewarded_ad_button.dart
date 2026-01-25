@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../data/services/ad_service.dart';
+import '../../data/services/premium_service.dart';
 
 /// A button that shows a rewarded ad to unlock premium content
 class RewardedAdButton extends ConsumerStatefulWidget {
@@ -106,7 +107,7 @@ class _RewardedAdButtonState extends ConsumerState<RewardedAdButton> {
 
   @override
   Widget build(BuildContext context) {
-    final isPremium = ref.watch(isPremiumProvider);
+    final isPremium = ref.watch(isPremiumUserProvider);
 
     return Container(
       decoration: BoxDecoration(
@@ -204,7 +205,7 @@ class PremiumContentCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isPremium = ref.watch(isPremiumProvider);
+    final isPremium = ref.watch(isPremiumUserProvider);
 
     if (isPremium || isUnlocked) {
       return child;

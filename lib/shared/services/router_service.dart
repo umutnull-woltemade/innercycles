@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/constants/routes.dart';
 import '../../data/providers/app_providers.dart';
 import '../../features/onboarding/presentation/onboarding_screen.dart';
-import '../../features/home/presentation/home_screen.dart';
+import '../../features/home/presentation/responsive_home_screen.dart';
 import '../../features/horoscope/presentation/horoscope_screen.dart';
 import '../../features/horoscope/presentation/horoscope_detail_screen.dart';
 import '../../features/compatibility/presentation/compatibility_screen.dart';
@@ -17,7 +17,8 @@ import '../../features/transits/presentation/transits_screen.dart';
 import '../../features/premium/presentation/premium_screen.dart';
 import '../../features/settings/presentation/settings_screen.dart';
 import '../../features/profile/presentation/profile_screen.dart';
-import '../../features/share/presentation/share_summary_screen.dart';
+import '../../features/share/presentation/cosmic_share_screen.dart';
+import '../../features/share/presentation/screenshot_share_screen.dart';
 import '../../features/horoscopes/presentation/weekly_horoscope_screen.dart';
 import '../../features/horoscopes/presentation/monthly_horoscope_screen.dart';
 import '../../features/horoscopes/presentation/yearly_horoscope_screen.dart';
@@ -39,6 +40,7 @@ import '../../features/saturn_return/presentation/saturn_return_screen.dart';
 import '../../features/solar_return/presentation/solar_return_screen.dart';
 import '../../features/year_ahead/presentation/year_ahead_screen.dart';
 import '../../features/timing/presentation/timing_screen.dart';
+import '../../features/timing/presentation/void_of_course_screen.dart';
 import '../../features/synastry/presentation/synastry_screen.dart';
 import '../../features/transits/presentation/transit_calendar_screen.dart';
 import '../../features/rituals/presentation/daily_rituals_screen.dart';
@@ -48,11 +50,61 @@ import '../../features/profile/presentation/comparison_screen.dart';
 import '../../features/kozmoz/presentation/kozmoz_screen.dart';
 import '../../features/cosmic_discovery/presentation/cosmic_discovery_screen.dart';
 import '../../features/dreams/presentation/dream_interpretation_screen.dart';
+import '../../features/dreams/presentation/dream_oracle_screen.dart';
+import '../../features/dreams/presentation/dream_glossary_screen.dart';
+import '../../features/dreams/presentation/dream_share_screen.dart';
+import '../../features/dreams/presentation/canonical/dream_falling_screen.dart';
+import '../../features/dreams/presentation/canonical/dream_water_screen.dart';
+import '../../features/dreams/presentation/canonical/dream_recurring_screen.dart';
+import '../../features/dreams/presentation/canonical/dream_running_screen.dart';
+import '../../features/dreams/presentation/canonical/dream_flying_screen.dart';
+import '../../features/dreams/presentation/canonical/dream_losing_screen.dart';
+import '../../features/dreams/presentation/canonical/dream_darkness_screen.dart';
+import '../../features/dreams/presentation/canonical/dream_past_screen.dart';
+import '../../features/dreams/presentation/canonical/dream_searching_screen.dart';
+import '../../features/dreams/presentation/canonical/dream_voiceless_screen.dart';
+import '../../features/dreams/presentation/canonical/dream_lost_screen.dart';
+import '../../features/dreams/presentation/canonical/dream_unable_to_fly_screen.dart';
+import '../../features/tantra/presentation/tantra_screen.dart';
+import '../../features/kozmik/presentation/canonical/cosmic_today_screen.dart';
+import '../../features/tantra/presentation/canonical/tantra_micro_ritual_screen.dart';
+import '../../features/tarot/presentation/major_arcana_detail_screen.dart';
+import '../../features/numerology/presentation/life_path_detail_screen.dart';
+import '../../features/numerology/presentation/master_number_screen.dart';
+import '../../features/numerology/presentation/personal_year_screen.dart';
+import '../../features/numerology/presentation/karmic_debt_screen.dart';
+import '../../features/all_services/presentation/all_services_screen.dart';
+import '../../features/admin/presentation/admin_login_screen.dart';
+import '../../features/admin/presentation/admin_dashboard_screen.dart';
+import '../../features/quiz/presentation/quiz_screen.dart';
+import '../../data/services/admin_auth_service.dart';
+import '../../data/services/storage_service.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
   return GoRouter(
     initialLocation: Routes.splash,
     errorBuilder: (context, state) => _NotFoundScreen(path: state.uri.path),
+    redirect: (context, state) {
+      final path = state.uri.path;
+
+      // Allow splash and onboarding without guard
+      if (path == Routes.splash || path == Routes.onboarding) {
+        return null;
+      }
+
+      // Allow admin routes without onboarding
+      if (path.startsWith('/admin')) {
+        return null;
+      }
+
+      // Guard: redirect to onboarding if not completed
+      final onboardingDone = StorageService.loadOnboardingComplete();
+      if (!onboardingDone) {
+        return Routes.onboarding;
+      }
+
+      return null;
+    },
     routes: [
       GoRoute(
         path: Routes.splash,
@@ -64,7 +116,10 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(
         path: Routes.home,
-        builder: (context, state) => const HomeScreen(),
+        // DUAL HOMEPAGE SYSTEM: ResponsiveHomeScreen detects device type
+        // Mobile (<768px): MobileLiteHomepage - fast, no heavy effects
+        // Desktop (>=768px): DesktopRichHomepage - visual, immersive
+        builder: (context, state) => const ResponsiveHomeScreen(),
       ),
       GoRoute(
         path: Routes.horoscope,
@@ -89,6 +144,38 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: Routes.numerology,
         builder: (context, state) => const NumerologyScreen(),
       ),
+      // Numerology - Life Path Detail (1-9)
+      GoRoute(
+        path: Routes.lifePathDetail,
+        builder: (context, state) {
+          final number = int.tryParse(state.pathParameters['number'] ?? '1') ?? 1;
+          return LifePathDetailScreen(number: number);
+        },
+      ),
+      // Numerology - Master Numbers (11, 22, 33)
+      GoRoute(
+        path: Routes.masterNumber,
+        builder: (context, state) {
+          final number = int.tryParse(state.pathParameters['number'] ?? '11') ?? 11;
+          return MasterNumberScreen(number: number);
+        },
+      ),
+      // Numerology - Personal Year (1-9)
+      GoRoute(
+        path: Routes.personalYearDetail,
+        builder: (context, state) {
+          final number = int.tryParse(state.pathParameters['number'] ?? '1') ?? 1;
+          return PersonalYearScreen(year: number);
+        },
+      ),
+      // Numerology - Karmic Debt (13, 14, 16, 19)
+      GoRoute(
+        path: '/numerology/karmic-debt/:number',
+        builder: (context, state) {
+          final number = int.tryParse(state.pathParameters['number'] ?? '13') ?? 13;
+          return KarmicDebtScreen(debtNumber: number);
+        },
+      ),
       GoRoute(
         path: Routes.kabbalah,
         builder: (context, state) => const KabbalahScreen(),
@@ -96,6 +183,14 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: Routes.tarot,
         builder: (context, state) => const TarotScreen(),
+      ),
+      // Tarot - Major Arcana Detail (22 cards)
+      GoRoute(
+        path: '/tarot/major/:number',
+        builder: (context, state) {
+          final number = int.tryParse(state.pathParameters['number'] ?? '0') ?? 0;
+          return MajorArcanaDetailScreen(cardNumber: number);
+        },
       ),
       GoRoute(
         path: Routes.aura,
@@ -119,7 +214,13 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(
         path: Routes.shareSummary,
-        builder: (context, state) => const ShareSummaryScreen(),
+        // SIMPLIFIED SHARE SCREEN: Tek fullscreen görsel, screenshot-ready
+        // Instagram'a yönlendirme YOK, kullanıcı ekran görüntüsü alacak
+        builder: (context, state) => const ScreenshotShareScreen(),
+      ),
+      GoRoute(
+        path: Routes.cosmicShare,
+        builder: (context, state) => const CosmicShareScreen(),
       ),
       // Extended Horoscopes
       GoRoute(
@@ -198,6 +299,10 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: Routes.timing,
         builder: (context, state) => const TimingScreen(),
+      ),
+      GoRoute(
+        path: Routes.voidOfCourse,
+        builder: (context, state) => const VoidOfCourseScreen(),
       ),
       GoRoute(
         path: Routes.synastry,
@@ -282,6 +387,92 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: Routes.dreamInterpretation,
         builder: (context, state) => const DreamInterpretationScreen(),
       ),
+      GoRoute(
+        path: Routes.dreamGlossary,
+        builder: (context, state) => const DreamGlossaryScreen(),
+      ),
+      GoRoute(
+        path: Routes.dreamShare,
+        builder: (context, state) => const DreamShareScreen(),
+      ),
+      // ════════════════════════════════════════════════════════════════
+      // RÜYA İZİ - AI-First Canonical Sayfalar
+      // ════════════════════════════════════════════════════════════════
+      GoRoute(
+        path: Routes.dreamFalling,
+        builder: (context, state) => const DreamFallingScreen(),
+      ),
+      GoRoute(
+        path: Routes.dreamWater,
+        builder: (context, state) => const DreamWaterScreen(),
+      ),
+      GoRoute(
+        path: Routes.dreamRecurring,
+        builder: (context, state) => const DreamRecurringScreen(),
+      ),
+      GoRoute(
+        path: Routes.dreamRunning,
+        builder: (context, state) => const DreamRunningScreen(),
+      ),
+      GoRoute(
+        path: Routes.dreamFlying,
+        builder: (context, state) => const DreamFlyingScreen(),
+      ),
+      GoRoute(
+        path: Routes.dreamLosing,
+        builder: (context, state) => const DreamLosingScreen(),
+      ),
+      GoRoute(
+        path: Routes.dreamDarkness,
+        builder: (context, state) => const DreamDarknessScreen(),
+      ),
+      GoRoute(
+        path: Routes.dreamPast,
+        builder: (context, state) => const DreamPastScreen(),
+      ),
+      GoRoute(
+        path: Routes.dreamSearching,
+        builder: (context, state) => const DreamSearchingScreen(),
+      ),
+      GoRoute(
+        path: Routes.dreamVoiceless,
+        builder: (context, state) => const DreamVoicelessScreen(),
+      ),
+      GoRoute(
+        path: Routes.dreamLost,
+        builder: (context, state) => const DreamLostScreen(),
+      ),
+      GoRoute(
+        path: Routes.dreamUnableToFly,
+        builder: (context, state) => const DreamUnableToFlyScreen(),
+      ),
+      // Tantra - Mindfulness & Connection
+      GoRoute(
+        path: Routes.tantra,
+        builder: (context, state) => const TantraScreen(),
+      ),
+      // Tantra Mikro Ritüel - AI-First Canonical
+      GoRoute(
+        path: Routes.tantraMicroRitual,
+        builder: (context, state) => const TantraMicroRitualScreen(),
+      ),
+      // Kozmik Iletisim - Chatbot formatinda ruya yorumlama
+      GoRoute(
+        path: Routes.kozmikIletisim,
+        builder: (context, state) => const DreamInterpretationScreen(),
+      ),
+      // Ruya Dongusu - 7 Boyutlu form bazli ruya yorumlama
+      GoRoute(
+        path: Routes.ruyaDongusu,
+        builder: (context, state) => const DreamOracleScreen(),
+      ),
+      // ════════════════════════════════════════════════════════════════
+      // KOZMİK - Günlük Tema (AI-First Canonical)
+      // ════════════════════════════════════════════════════════════════
+      GoRoute(
+        path: Routes.cosmicToday,
+        builder: (context, state) => const CosmicTodayScreen(),
+      ),
       // Profile Management
       GoRoute(
         path: Routes.savedProfiles,
@@ -295,6 +486,11 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: Routes.kozmoz,
         builder: (context, state) => const KozmozScreen(),
+      ),
+      // Tüm Çözümlemeler - Ana katalog sayfası
+      GoRoute(
+        path: Routes.allServices,
+        builder: (context, state) => const AllServicesScreen(),
       ),
 
       // ════════════════════════════════════════════════════════════════
@@ -601,6 +797,36 @@ final routerProvider = Provider<GoRouter>((ref) {
           primaryColor: Color(0xFFFFD700),
           type: CosmicDiscoveryType.celebrityTwin,
         ),
+      ),
+
+      // ════════════════════════════════════════════════════════════════
+      // QUIZ FUNNEL - Google Discover → Quiz → Premium
+      // ════════════════════════════════════════════════════════════════
+      GoRoute(
+        path: '/quiz',
+        builder: (context, state) {
+          final quizType = state.uri.queryParameters['type'] ?? 'general';
+          final source = state.uri.queryParameters['source'];
+          return QuizScreen(quizType: quizType, sourceContext: source);
+        },
+      ),
+
+      // ════════════════════════════════════════════════════════════════
+      // ADMIN SYSTEM - PIN Protected Dashboard
+      // ════════════════════════════════════════════════════════════════
+      GoRoute(
+        path: Routes.adminLogin,
+        builder: (context, state) => const AdminLoginScreen(),
+      ),
+      GoRoute(
+        path: Routes.admin,
+        redirect: (context, state) {
+          if (!AdminAuthService.isAuthenticated) {
+            return Routes.adminLogin;
+          }
+          return null;
+        },
+        builder: (context, state) => const AdminDashboardScreen(),
       ),
     ],
   );

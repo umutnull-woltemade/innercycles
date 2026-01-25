@@ -8,13 +8,12 @@ import '../../../core/constants/app_constants.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/zodiac_sign.dart';
-import '../../../data/models/house.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/localization_service.dart';
 import '../../../data/services/moon_service.dart';
-import '../../../data/services/storage_service.dart';
 import '../../../data/services/ai_content_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/page_bottom_navigation.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
@@ -50,7 +49,7 @@ class HomeScreen extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildHeader(context, ref, userProfile?.name, sign),
+                _buildHeader(context, ref, userProfile.name, sign),
                 const SizedBox(height: AppConstants.spacingLg),
                 // ════════════════════════════════════════════════════════════
                 // KOZMOZ USTASI - Ana sayfanın yıldızı, AI destekli asistan
@@ -66,8 +65,8 @@ class HomeScreen extends ConsumerWidget {
                 const SizedBox(height: AppConstants.spacingXl),
                 _buildQuickActions(context),
                 const SizedBox(height: AppConstants.spacingXl),
-                // Kozmik Keşif - Yeni Araçlar Bölümü
-                _buildKozmikKesif(context),
+                // Tüm Çözümlemeler Butonu
+                _buildAllServicesButton(context),
                 const SizedBox(height: AppConstants.spacingXxl),
                 // ═══════════════════════════════════════════════════════════════
                 // RUHSAL & WELLNESS - Meditasyon, ritüeller, chakra
@@ -75,6 +74,9 @@ class HomeScreen extends ConsumerWidget {
                 _buildSpiritualSection(context),
                 const SizedBox(height: AppConstants.spacingXl),
                 _buildAllSigns(context),
+                const SizedBox(height: AppConstants.spacingXxl),
+                // Back-Button-Free Navigation
+                const PageBottomNavigation(currentRoute: '/'),
               ],
             ),
           ),
@@ -84,9 +86,7 @@ class HomeScreen extends ConsumerWidget {
   }
 
   Widget _buildHeader(BuildContext context, WidgetRef ref, String? name, ZodiacSign sign) {
-    final greeting = _getGreeting(ref);
     final language = ref.watch(languageProvider);
-    final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -99,9 +99,14 @@ class HomeScreen extends ConsumerWidget {
               onLanguageChanged: (lang) => ref.read(languageProvider.notifier).state = lang,
             ),
             const Spacer(),
-            // Rüya Tabiri Butonu - Kozmoz'un solunda
-            _DreamButton(
-              onTap: () => context.push(Routes.dreamInterpretation),
+            // Kozmik Iletisim Butonu - Chatbot
+            _KozmikIletisimButton(
+              onTap: () => context.push(Routes.kozmikIletisim),
+            ),
+            const SizedBox(width: 8),
+            // Ruya Dongusu Butonu - 7 Boyutlu Form
+            _RuyaDongusuButton(
+              onTap: () => context.push(Routes.ruyaDongusu),
             ),
             const SizedBox(width: 8),
             // KOZMOZ Butonu - Her zaman parlayan özel buton
@@ -145,7 +150,6 @@ class HomeScreen extends ConsumerWidget {
   Widget _buildCompactDailyCard(BuildContext context, WidgetRef ref, String? name, ZodiacSign sign) {
     final horoscope = ref.watch(dailyHoroscopeProvider(sign));
     final userProfile = ref.watch(userProfileProvider);
-    final greeting = _getGreeting(ref);
 
     // Doğum bilgileri
     final birthDate = userProfile?.birthDate;
@@ -186,8 +190,11 @@ class HomeScreen extends ConsumerWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Sol: Tantrik logo
-                const _TantricLogoSmall(),
+                // Sol: Tantrik logo (tap to Kozmoz)
+                GestureDetector(
+                  onTap: () => context.push(Routes.kozmoz),
+                  child: const _TantricLogoSmall(),
+                ),
                 const SizedBox(width: 12),
                 // Orta: Burç sembolü
                 Container(
@@ -394,71 +401,6 @@ class HomeScreen extends ConsumerWidget {
     ).animate().fadeIn(delay: 100.ms, duration: 400.ms);
   }
 
-  // Küçük kozmik mesaj widget'ı - Yazı kadar kutu (artık kullanılmıyor ama yedek)
-  Widget _buildMiniCosmicMessage(BuildContext context, WidgetRef ref, ZodiacSign sign) {
-    final cosmicMessages = {
-      ZodiacSign.aries: ['Cesaretini göster! 🔥', 'Liderlik zamanı! 🔥', 'Harekete geç! 🔥', 'Zafer senin! 🔥', 'Korkusuzca ilerle! 🔥'],
-      ZodiacSign.taurus: ['Sabır meyvesini verir 🌿', 'Bolluk kapıda 🌿', 'Kendini ödüllendir 🌿', 'Huzuru bul 🌿', 'Değerini bil 🌿'],
-      ZodiacSign.gemini: ['Kelimelerin sihirli ✨', 'İletişim dorukta ✨', 'Zekân parlıyor ✨', 'Fikirlerini paylaş ✨', 'Merakını takip et ✨'],
-      ZodiacSign.cancer: ['Sezgilerine güven 🌙', 'Duygusal zekân güçlü 🌙', 'Ailenle bağlan 🌙', 'Şefkat göster 🌙', 'İç sesin doğru 🌙'],
-      ZodiacSign.leo: ['Sahneyi al! 👑', 'Işığın parlıyor 👑', 'Kraliyet enerjisi 👑', 'Yaratıcılığın coşuyor 👑', 'Parlamanın zamanı 👑'],
-      ZodiacSign.virgo: ['Detaylar fark yaratır 💫', 'Mükemmelsin 💫', 'Çözüm seninle 💫', 'Düzeni sağla 💫', 'Analiz gücün 💫'],
-      ZodiacSign.libra: ['Denge ve uyum ⚖️', 'Aşk kapıda ⚖️', 'Diplomasi zamanı ⚖️', 'Güzelliği gör ⚖️', 'Kalbini dinle ⚖️'],
-      ZodiacSign.scorpio: ['Dönüşüm zamanı 🦂', 'Güç seninle 🦂', 'Derinlere dal 🦂', 'Sezgilerin keskin 🦂', 'Tutkunu kullan 🦂'],
-      ZodiacSign.sagittarius: ['Macera çağırıyor 🏹', 'Büyük düşün 🏹', 'Özgürlük ruhu 🏹', 'İyimser kal 🏹', 'Hayallerinin peşinde 🏹'],
-      ZodiacSign.capricorn: ['Hedefe yakınsın 🏔️', 'Disiplin ödüllendirir 🏔️', 'Zirve yakın 🏔️', 'Kararlılık gücü 🏔️', 'Başarı senin 🏔️'],
-      ZodiacSign.aquarius: ['Farklı ol! ⚡', 'Devrimci düşün ⚡', 'Özgün kal ⚡', 'Geleceği şekillendir ⚡', 'Vizyonun güçlü ⚡'],
-      ZodiacSign.pisces: ['Rüyaların mesaj 🐟', 'Sezgisel güç 🐟', 'Empatin süper güç 🐟', 'Evrenle bir ol 🐟', 'Hayal gücün sınırsız 🐟'],
-    };
-
-    final messages = cosmicMessages[sign] ?? ['Evren seninle ✨'];
-    final dayOfYear = DateTime.now().difference(DateTime(DateTime.now().year, 1, 1)).inDays;
-    final message = messages[dayOfYear % messages.length];
-
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            sign.color.withOpacity(0.35),
-            sign.color.withOpacity(0.15),
-          ],
-        ),
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: sign.color.withOpacity(0.5)),
-      ),
-      child: Text(
-        message,
-        style: TextStyle(
-          color: Colors.white.withOpacity(0.95),
-          fontStyle: FontStyle.italic,
-          fontSize: 13,
-          fontWeight: FontWeight.w500,
-        ),
-      ),
-    );
-  }
-
-  String _getGreeting(WidgetRef ref) {
-    final hour = DateTime.now().hour;
-    final language = ref.watch(languageProvider);
-
-    String key;
-    if (hour < 6) {
-      key = 'greeting_night';
-    } else if (hour < 12) {
-      key = 'greeting_morning';
-    } else if (hour < 17) {
-      key = 'greeting_afternoon';
-    } else if (hour < 21) {
-      key = 'greeting_evening';
-    } else {
-      key = 'greeting_late_night';
-    }
-
-    return L10n.get(key, language);
-  }
-
   Widget _buildMercuryRetrogradeAlert(BuildContext context) {
     final retroEnd = MoonService.getCurrentMercuryRetrogradeEnd();
     final daysLeft = retroEnd != null
@@ -536,254 +478,6 @@ class HomeScreen extends ConsumerWidget {
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  // Evrenin Mesajı - Büyük ve dikkat çekici bölüm
-  Widget _buildCosmicMessage(BuildContext context, WidgetRef ref, ZodiacSign sign) {
-    // Burca özel kozmik mesajlar - Her burç için 5+ mesaj
-    final cosmicMessagesMap = {
-      ZodiacSign.aries: [
-        'Bugün cesaretini gösterme zamanı. Evren, yeni başlangıçlar için sana güç veriyor. Korkusuzca ilerle! 🔥',
-        'Ateş enerjin bugün dorukta! Önüne çıkan engelleri aşacak güce sahipsin. Harekete geç! 🔥',
-        'Liderlik ruhun bugün parlıyor. İnsanları peşinden sürükleyecek karizman var, kullan! 🔥',
-        'Evren sana "şimdi zamanı" diyor. Ertelediğin o adımı bugün at, pişman olmayacaksın! 🔥',
-        'Tutkun ve enerjin bugün bulaşıcı. Etrafındakilere ilham kaynağı olacaksın! 🔥',
-        'Mars enerjin güçlü! Rekabetten korkma, kazanmak için doğdun. Zafer senin! 🔥',
-      ],
-      ZodiacSign.taurus: [
-        'Sabır ve kararlılığın bugün meyvelerini verecek. Güvendiğin yolda devam et, evren seninle. 🌿',
-        'Venüs sana bolluk enerjisi gönderiyor. Maddi ve manevi zenginlik kapıda! 🌿',
-        'Bugün konfor alanını genişlet. Kendine güzel bir şey hediye etmeyi hak ediyorsun! 🌿',
-        'Sadakatin ve güvenilirliğin bugün takdir görecek. Değerini bilenler yanına gelecek! 🌿',
-        'Doğayla bağlantın güçlü. Toprakla temas et, enerji al, huzur bul! 🌿',
-        'Evren diyor ki: Acele etme, doğru zamanda doğru şeyler gelecek. Sabret! 🌿',
-      ],
-      ZodiacSign.gemini: [
-        'İletişim enerjin dorukta. Bugün söylediklerin kalplere dokunacak. Kelimelerin sihirli! ✨',
-        'Zekân ve esprin bugün çevreni büyüleyecek. Sosyal enerjin tavanda! ✨',
-        'Merkür sana mesaj gönderiyor: Öğrenmeye açık ol, yeni bilgiler hayatını değiştirecek! ✨',
-        'Çift taraflı doğan bugün avantajlı. Farklı bakış açıların fark yaratacak! ✨',
-        'Merakın seni güzel yerlere götürecek. Sorularının peşinden git! ✨',
-        'Evren diyor ki: Fikirlerini paylaş, dünyayı değiştirecek potansiyelin var! ✨',
-      ],
-      ZodiacSign.cancer: [
-        'Sezgilerin seni yönlendiriyor. İç sesin her zamankinden güçlü, ona güven. 🌙',
-        'Ay enerjin bugün çok güçlü. Duygusal zekân seni doğru kararlara götürecek! 🌙',
-        'Ailenle bağın bugün önem kazanıyor. Sevdiklerinle vakit geçir, şifa bulacaksın! 🌙',
-        'Koruyucu enerjin bugün hissedilecek. Yakınların sana minnettar! 🌙',
-        'Evren diyor ki: Duygularından korkma, onlar senin süper gücün! 🌙',
-        'Bugün kendine şefkat göster. Başkalarına verdiğin sevgiyi kendine de ver! 🌙',
-      ],
-      ZodiacSign.leo: [
-        'Işığın bugün herkesi aydınlatacak. Liderlik enerjin dorukta, sahneyi al! 👑',
-        'Güneş sana özel parlıyor! Bugün dikkat çekecek, başarı senin! 👑',
-        'Kraliyet enerjin dorukta. Hak ettiğin ilgiyi ve saygıyı talep et! 👑',
-        'Yaratıcılığın bugün coşkuyla akıyor. Sanatsal ruhunu ifade et! 👑',
-        'Evren diyor ki: Mütevazılığı bırak, parlamanın zamanı geldi! 👑',
-        'Cömertliğin bugün karşılık bulacak. Verdiğin sevgi katlanarak dönecek! 👑',
-      ],
-      ZodiacSign.virgo: [
-        'Detaylara olan hakimiyetin bugün fark yaratacak. Mükemmeliyetin ilham veriyor. 💫',
-        'Analitik zekân bugün problemleri çözecek. Kimsenin göremediğini sen görüyorsun! 💫',
-        'Merkür sana pratik çözümler fısıldıyor. Dinle ve uygula! 💫',
-        'Düzen ve organizasyon enerjin dorukta. Hayatını düzene sok, rahatlayacaksın! 💫',
-        'Evren diyor ki: Mükemmel olmak zorunda değilsin, yeterlisin! 💫',
-        'Sağlık ve wellness enerjin güçlü. Bedenine iyi bak, o sana iyi bakacak! 💫',
-      ],
-      ZodiacSign.libra: [
-        'Denge ve uyum enerjin bugün çok güçlü. İlişkilerinde mucizeler bekle. ⚖️',
-        'Venüs sana aşk ve güzellik enerjisi gönderiyor. Kalbin açık, aşk kapıda! ⚖️',
-        'Diplomasi yeteneğin bugün parlıyor. Anlaşmazlıkları çözecek tek kişi sensin! ⚖️',
-        'Estetik anlayışın dorukta. Güzelliği her yerde görüyorsun, paylaş! ⚖️',
-        'Evren diyor ki: Karar verme zamanı geldi, kalbini dinle! ⚖️',
-        'Adalet duygun güçlü. Doğru olanı savunmaktan çekinme! ⚖️',
-      ],
-      ZodiacSign.scorpio: [
-        'Dönüşüm enerjin zirve yapıyor. Eskiyi bırak, yeniye yer aç. Güç seninle! 🦂',
-        'Plüton sana yeniden doğuş enerjisi veriyor. Küllerinden yüksel! 🦂',
-        'Sezgilerin ve içgüdülerin bugün çok keskin. Kimse seni kandıramaz! 🦂',
-        'Gizemli çekiciliğin bugün dorukta. İnsanlar sana mıknatıs gibi çekilecek! 🦂',
-        'Evren diyor ki: Derinlere dal, orada hazineler var! 🦂',
-        'Tutkun ve yoğunluğun bugün seni hedefe götürecek. Vazgeçme! 🦂',
-      ],
-      ZodiacSign.sagittarius: [
-        'Macera ruhu bugün seni çağırıyor. Yeni ufuklar keşfetme zamanı! 🏹',
-        'Jüpiter sana şans ve genişleme enerjisi gönderiyor. Büyük düşün! 🏹',
-        'Özgürlük ruhun kanat çırpıyor. Sınırları aş, dünyayı keşfet! 🏹',
-        'İyimserliğin bugün bulaşıcı. Gülümsemen insanların gününü aydınlatacak! 🏹',
-        'Evren diyor ki: Hayallerinin peşinden koş, evren seni destekliyor! 🏹',
-        'Felsefi bakış açın bugün derinleşiyor. Hayatın anlamını sorgula! 🏹',
-      ],
-      ZodiacSign.capricorn: [
-        'Hedeflerine her zamankinden yakınsın. Disiplin ve kararlılığın ödüllendirilecek. 🏔️',
-        'Satürn sana dayanıklılık ve sabır veriyor. Zirveye ulaşacaksın! 🏔️',
-        'Profesyonel imajın bugün parlıyor. Kariyer fırsatları kapıda! 🏔️',
-        'Sorumluluk bilincing takdir görecek. Güvenilirliğin altın değerinde! 🏔️',
-        'Evren diyor ki: Adım adım ilerliyorsun, zirve yakın! 🏔️',
-        'Pratik zekân bugün seni öne çıkaracak. Çözüm odaklı ol! 🏔️',
-      ],
-      ZodiacSign.aquarius: [
-        'Yaratıcı enerjin bugün dorukta. Farklı düşüncelerinden korkma, devrimci ol! ⚡',
-        'Uranüs sana yenilik ve özgünlük enerjisi gönderiyor. Sıradanı reddet! ⚡',
-        'İnsanlık için vizyonun bugün önem kazanıyor. Dünyayı değiştir! ⚡',
-        'Bağımsızlık ruhun güçlü. Kendi yolunu çiz, takipçiler gelecek! ⚡',
-        'Evren diyor ki: Farklı olmak güç, bu gücü kullan! ⚡',
-        'Teknoloji ve yenilik enerjin dorukta. Geleceği bugünden şekillendir! ⚡',
-      ],
-      ZodiacSign.pisces: [
-        'Spiritüel bağlantın çok güçlü. Rüyaların mesaj taşıyor, evrenle bir ol. 🐟',
-        'Neptün sana ilham ve hayal gücü veriyor. Sanatsal ruhun akıyor! 🐟',
-        'Empatin bugün süper güç. Başkalarının hislerini anlıyorsun, şifa veriyorsun! 🐟',
-        'Sezgisel yeteneklerin dorukta. Evren seninle konuşuyor, dinle! 🐟',
-        'Evren diyor ki: Hayallerinin gücünü hafife alma, gerçek olabilirler! 🐟',
-        'Şefkat ve merhamet enerjin bugün dünyaya ışık saçıyor! 🐟',
-      ],
-    };
-
-    // Günün mesajını seç (gün bazlı değişecek)
-    final now = DateTime.now();
-    final dayOfYear = now.difference(DateTime(now.year, 1, 1)).inDays;
-    final messages = cosmicMessagesMap[sign] ?? ['Evren bugün seninle. Her adımında kozmik rehberlik yanında. ✨'];
-    final message = messages[dayOfYear % messages.length];
-
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            const Color(0xFF1a0a2e).withOpacity(0.95),
-            const Color(0xFF2d1b4e).withOpacity(0.9),
-            const Color(0xFF1a0a2e).withOpacity(0.95),
-          ],
-        ),
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: const Color(0xFFFFD700).withOpacity(0.4),
-          width: 1.5,
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: const Color(0xFF9D4EDD).withOpacity(0.3),
-            blurRadius: 20,
-            spreadRadius: 2,
-          ),
-          BoxShadow(
-            color: const Color(0xFFFFD700).withOpacity(0.15),
-            blurRadius: 30,
-            spreadRadius: 5,
-          ),
-        ],
-      ),
-      child: Column(
-        children: [
-          // Başlık
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ShaderMask(
-                shaderCallback: (bounds) => const LinearGradient(
-                  colors: [Color(0xFFFFD700), Color(0xFFFF6B9D), Color(0xFF9D4EDD)],
-                ).createShader(bounds),
-                child: const Icon(
-                  Icons.auto_awesome,
-                  color: Colors.white,
-                  size: 28,
-                ),
-              ),
-              const SizedBox(width: 10),
-              ShaderMask(
-                shaderCallback: (bounds) => const LinearGradient(
-                  colors: [Color(0xFFFFD700), Color(0xFFFF6B9D)],
-                ).createShader(bounds),
-                child: Text(
-                  'Evrenin Mesajı',
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 1,
-                      ),
-                ),
-              ),
-              const SizedBox(width: 10),
-              ShaderMask(
-                shaderCallback: (bounds) => const LinearGradient(
-                  colors: [Color(0xFF9D4EDD), Color(0xFFFF6B9D), Color(0xFFFFD700)],
-                ).createShader(bounds),
-                child: const Icon(
-                  Icons.auto_awesome,
-                  color: Colors.white,
-                  size: 28,
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 16),
-          // Mesaj
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-            decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.05),
-              borderRadius: BorderRadius.circular(15),
-              border: Border.all(
-                color: Colors.white.withOpacity(0.1),
-              ),
-            ),
-            child: Text(
-              message,
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: Colors.white.withOpacity(0.95),
-                    fontStyle: FontStyle.italic,
-                    height: 1.6,
-                    fontSize: 16,
-                    letterSpacing: 0.3,
-                  ),
-            ),
-          ),
-          const SizedBox(height: 12),
-          // Alt bilgi
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                sign.symbol,
-                style: const TextStyle(fontSize: 18),
-              ),
-              const SizedBox(width: 6),
-              Text(
-                sign.nameTr,
-                style: TextStyle(
-                  color: sign.color,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 14,
-                ),
-              ),
-              const SizedBox(width: 8),
-              Container(
-                width: 4,
-                height: 4,
-                decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.5),
-                  shape: BoxShape.circle,
-                ),
-              ),
-              const SizedBox(width: 8),
-              Text(
-                'Bugün için',
-                style: TextStyle(
-                  color: Colors.white.withOpacity(0.6),
-                  fontSize: 12,
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    ).animate()
-      .fadeIn(delay: 200.ms, duration: 500.ms)
-      .slideY(begin: 0.1, end: 0, delay: 200.ms, duration: 500.ms);
-  }
 
   Widget _buildMoonWidget(BuildContext context) {
     final moonPhase = MoonService.getCurrentPhase();
@@ -792,22 +486,24 @@ class HomeScreen extends ConsumerWidget {
     final retrogrades = MoonService.getRetrogradePlanets();
     final vocStatus = VoidOfCourseMoonExtension.getVoidOfCourseStatus();
 
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(AppConstants.spacingLg),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            AppColors.moonSilver.withAlpha(30),
-            AppColors.surfaceDark,
-          ],
+    return GestureDetector(
+      onTap: () => context.push(Routes.timing),
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.all(AppConstants.spacingLg),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              AppColors.moonSilver.withAlpha(30),
+              AppColors.surfaceDark,
+            ],
+          ),
+          borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+          border: Border.all(color: AppColors.moonSilver.withAlpha(50)),
         ),
-        borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-        border: Border.all(color: AppColors.moonSilver.withAlpha(50)),
-      ),
-      child: Column(
+        child: Column(
         children: [
           Row(
             children: [
@@ -860,23 +556,36 @@ class HomeScreen extends ConsumerWidget {
                           ),
                     ),
                     const SizedBox(height: 2),
-                    Row(
-                      children: [
-                        Text(
-                          'Ay ${moonSign.nameTr} burcunda',
-                          style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                                color: AppColors.textSecondary,
-                              ),
-                        ),
-                        const SizedBox(width: 4),
-                        Text(
-                          moonSign.symbol,
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: AppColors.starGold,
+                    GestureDetector(
+                      onTap: () {
+                        context.push('/horoscope/${moonSign.name}');
+                      },
+                      child: Row(
+                        children: [
+                          Text(
+                            'Ay ${moonSign.nameTr} burcunda',
+                            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                  color: AppColors.textSecondary,
+                                  decoration: TextDecoration.underline,
+                                  decorationColor: AppColors.textSecondary.withAlpha(100),
+                                ),
                           ),
-                        ),
-                      ],
+                          const SizedBox(width: 4),
+                          Text(
+                            moonSign.symbol,
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: AppColors.starGold,
+                            ),
+                          ),
+                          const SizedBox(width: 4),
+                          Icon(
+                            Icons.arrow_forward_ios,
+                            size: 10,
+                            color: AppColors.textSecondary.withAlpha(150),
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
@@ -1027,8 +736,8 @@ class HomeScreen extends ConsumerWidget {
                         const SizedBox(height: 2),
                         Text(
                           vocStatus.timeRemainingFormatted != null
-                              ? 'Onemli kararlar ertelensin. ${vocStatus.timeRemainingFormatted} kaldi.'
-                              : 'Onemli kararlar ve baslangiclari erteleyiniz.',
+                              ? 'Önemli kararlar ertelensin. ${vocStatus.timeRemainingFormatted} kaldı.'
+                              : 'Önemli kararlar ve başlangıçları erteleyiniz.',
                           style: Theme.of(context).textTheme.bodySmall?.copyWith(
                                 color: AppColors.textSecondary,
                                 fontSize: 11,
@@ -1060,6 +769,7 @@ class HomeScreen extends ConsumerWidget {
           ],
         ],
       ),
+    ),
     ).animate().fadeIn(delay: 150.ms, duration: 400.ms);
   }
 
@@ -1075,314 +785,6 @@ class HomeScreen extends ConsumerWidget {
       case 'pluto': return 'Pluton';
       default: return planet;
     }
-  }
-
-  Widget _buildTodayCard(BuildContext context, WidgetRef ref, ZodiacSign sign) {
-    final horoscope = ref.watch(dailyHoroscopeProvider(sign));
-
-    return GestureDetector(
-      onTap: () => context.push('${Routes.horoscope}/${sign.name.toLowerCase()}'),
-      child: Container(
-        width: double.infinity,
-        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              sign.color.withValues(alpha: 0.25),
-              const Color(0xFF1A1A2E),
-            ],
-          ),
-          borderRadius: BorderRadius.circular(18),
-          border: Border.all(
-            color: sign.color.withValues(alpha: 0.4),
-            width: 1.5,
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: sign.color.withValues(alpha: 0.2),
-              blurRadius: 16,
-              offset: const Offset(0, 6),
-            ),
-          ],
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            // Üst kısım: Tantrik Logo + Burç bilgisi yan yana
-            Row(
-              children: [
-                // Sol: Tantrik Logo (küçültülmüş)
-                const _TantricLogoSmall(),
-                const SizedBox(width: 12),
-                // Orta: Burç sembolü ve ismi
-                Expanded(
-                  child: Row(
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                          gradient: RadialGradient(
-                            colors: [
-                              sign.color.withValues(alpha: 0.4),
-                              sign.color.withValues(alpha: 0.1),
-                            ],
-                          ),
-                          shape: BoxShape.circle,
-                          border: Border.all(color: sign.color.withValues(alpha: 0.6)),
-                        ),
-                        child: Text(
-                          sign.symbol,
-                          style: TextStyle(fontSize: 20, color: sign.color),
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              sign.nameTr,
-                              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                                    color: sign.color,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                            ),
-                            Text(
-                              _formatTodayDate(DateTime.now()),
-                              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                                    color: AppColors.textSecondary,
-                                    fontSize: 10,
-                                  ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                // Sağ: Şans yıldızları
-                Column(
-                  children: [
-                    _buildLuckStars(horoscope.luckRating),
-                    Text(
-                      'Şans',
-                      style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                            color: AppColors.textMuted,
-                            fontSize: 8,
-                          ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            const SizedBox(height: 10),
-            // Info chips - tek satırda kompakt
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                _MiniChip(icon: Icons.mood, label: horoscope.mood, color: sign.color),
-                const SizedBox(width: 6),
-                _MiniChip(icon: Icons.palette, label: horoscope.luckyColor, color: sign.color),
-                const SizedBox(width: 6),
-                _MiniChip(icon: Icons.tag, label: horoscope.luckyNumber, color: sign.color),
-              ],
-            ),
-            const SizedBox(height: 10),
-            // Evrenin Mesajı - Kısa
-            if (horoscope.cosmicMessage.isNotEmpty)
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      AppColors.starGold.withValues(alpha: 0.15),
-                      sign.color.withValues(alpha: 0.08),
-                    ],
-                  ),
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: AppColors.starGold.withValues(alpha: 0.3)),
-                ),
-                child: Text(
-                  horoscope.cosmicMessage,
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: AppColors.textPrimary,
-                        fontStyle: FontStyle.italic,
-                        height: 1.3,
-                        fontSize: 12,
-                      ),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ),
-            const SizedBox(height: 8),
-            // Detay butonu - daha kompakt
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [sign.color.withValues(alpha: 0.3), sign.color.withValues(alpha: 0.15)],
-                ),
-                borderRadius: BorderRadius.circular(16),
-              ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    'Detaylı Yorum',
-                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
-                        ),
-                  ),
-                  const SizedBox(width: 4),
-                  Icon(Icons.arrow_forward_ios, size: 10, color: Colors.white),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    ).animate().fadeIn(delay: 200.ms, duration: 400.ms).slideY(begin: 0.1);
-  }
-
-  Widget _buildCosmicSection(
-    BuildContext context, {
-    required IconData icon,
-    required String title,
-    required String subtitle,
-    required String content,
-    required Color color,
-    required List<Color> gradientColors,
-  }) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(AppConstants.spacingLg),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: gradientColors,
-        ),
-        borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-        border: Border.all(color: color.withValues(alpha: 0.3)),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Container(
-                padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  color: color.withValues(alpha: 0.2),
-                  shape: BoxShape.circle,
-                ),
-                child: Icon(icon, size: 20, color: color),
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      title,
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            color: color,
-                            fontWeight: FontWeight.bold,
-                          ),
-                    ),
-                    Text(
-                      subtitle,
-                      style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                            color: AppColors.textMuted,
-                          ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: AppConstants.spacingMd),
-          Container(
-            width: double.infinity,
-            padding: const EdgeInsets.all(AppConstants.spacingMd),
-            decoration: BoxDecoration(
-              color: AppColors.surfaceDark.withValues(alpha: 0.3),
-              borderRadius: BorderRadius.circular(AppConstants.radiusSm),
-            ),
-            child: Text(
-              content,
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: AppColors.textPrimary,
-                    height: 1.8,
-                    fontStyle: FontStyle.italic,
-                  ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildAdviceSection(
-    BuildContext context, {
-    required IconData icon,
-    required String title,
-    required String content,
-    required Color color,
-  }) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(AppConstants.spacingMd),
-      decoration: BoxDecoration(
-        color: color.withValues(alpha: 0.08),
-        borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-        border: Border.all(color: color.withValues(alpha: 0.2)),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Container(
-                padding: const EdgeInsets.all(6),
-                decoration: BoxDecoration(
-                  color: color.withValues(alpha: 0.2),
-                  shape: BoxShape.circle,
-                ),
-                child: Icon(icon, size: 14, color: color),
-              ),
-              const SizedBox(width: 8),
-              Text(
-                title,
-                style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                      color: color,
-                      fontWeight: FontWeight.bold,
-                    ),
-              ),
-            ],
-          ),
-          const SizedBox(height: AppConstants.spacingSm),
-          Text(
-            content,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppColors.textPrimary,
-                  height: 1.6,
-                ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  String _formatTodayDate(DateTime date) {
-    final days = ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'];
-    final months = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
-    return '${days[date.weekday % 7]}, ${date.day} ${months[date.month - 1]} ${date.year}';
   }
 
   String _formatBirthDate(DateTime date) {
@@ -1845,27 +1247,9 @@ class HomeScreen extends ConsumerWidget {
     ).animate().fadeIn(delay: 900.ms, duration: 400.ms);
   }
 
-  IconData _getHouseIcon(int houseNum) {
-    switch (houseNum) {
-      case 1: return Icons.person;
-      case 2: return Icons.attach_money;
-      case 3: return Icons.chat_bubble;
-      case 4: return Icons.home;
-      case 5: return Icons.palette;
-      case 6: return Icons.favorite;
-      case 7: return Icons.people;
-      case 8: return Icons.autorenew;
-      case 9: return Icons.school;
-      case 10: return Icons.work;
-      case 11: return Icons.groups;
-      case 12: return Icons.psychology;
-      default: return Icons.circle;
-    }
-  }
-
   void _showHouseDetail(BuildContext context, Map<String, dynamic> house) {
     final houseNum = house['num'] as int;
-    final houseName = house['name'] as String;
+
     final houseColor = house['color'] as Color;
     final houseIcon = house['icon'] as IconData;
 
@@ -2363,223 +1747,87 @@ class HomeScreen extends ConsumerWidget {
     );
   }
 
-  // Kozmik Keşif - Instagram'da paylaşılabilir viral içerikler
-  Widget _buildKozmikKesif(BuildContext context) {
-    // Instagram'da viral olacak paylaşılabilir içerikler
-    // Her biri 1080x1080 veya 1080x1350 Instagram formatına uygun
-    final kesifItems = [
-      // ════ GÜNLÜK ÖZET & YORUMLAR ════
-      {'icon': '⭐', 'name': 'Bugünün\nÖzeti', 'color': Color(0xFFFFD700), 'route': Routes.dailySummary, 'badge': 'Günlük'},
-      {'icon': '🌙', 'name': 'Ay\nEnerjisi', 'color': Color(0xFF607D8B), 'route': Routes.moonEnergy, 'badge': null},
-      {'icon': '💕', 'name': 'Aşk\nEnerjisi', 'color': Color(0xFFE91E63), 'route': Routes.loveEnergy, 'badge': 'Hot'},
-      {'icon': '💰', 'name': 'Bolluk\nEnerjisi', 'color': Color(0xFF4CAF50), 'route': Routes.abundanceEnergy, 'badge': null},
-
-      // ════ FELSEFİ & VİRAL İÇERİKLER ════
-      {'icon': '🦋', 'name': 'Ruhsal\nDönüşüm', 'color': Color(0xFF9C27B0), 'route': Routes.spiritualTransformation, 'badge': 'Derin'},
-      {'icon': '🌟', 'name': 'Hayat\nAmacın', 'color': Color(0xFFFFD700), 'route': Routes.lifePurpose, 'badge': null},
-      {'icon': '🧠', 'name': 'Bilinçaltı\nKalıpların', 'color': Color(0xFF3F51B5), 'route': Routes.subconsciousPatterns, 'badge': null},
-      {'icon': '💫', 'name': 'Karma\nDerslerin', 'color': Color(0xFF673AB7), 'route': Routes.karmaLessons, 'badge': 'Derin'},
-      {'icon': '🌀', 'name': 'Ruh\nSözleşmen', 'color': Color(0xFF00BCD4), 'route': Routes.soulContract, 'badge': null},
-      {'icon': '✨', 'name': 'İçsel\nGücün', 'color': Color(0xFFFF9800), 'route': Routes.innerPower, 'badge': null},
-
-      // ════ KİŞİLİK ANALİZLERİ ════
-      {'icon': '😈', 'name': 'Gölge\nBenliğin', 'color': Color(0xFF880E4F), 'route': Routes.shadowSelf, 'badge': 'Viral'},
-      {'icon': '👑', 'name': 'Liderlik\nStili', 'color': Color(0xFFFFAB00), 'route': Routes.leadershipStyle, 'badge': null},
-      {'icon': '💔', 'name': 'Kalp\nYaran', 'color': Color(0xFF6A1B9A), 'route': Routes.heartbreak, 'badge': null},
-      {'icon': '🔥', 'name': 'Red\nFlag\'lerin', 'color': Color(0xFFFF1744), 'route': Routes.redFlags, 'badge': 'Trend'},
-      {'icon': '💚', 'name': 'Green\nFlag\'lerin', 'color': Color(0xFF00C853), 'route': Routes.greenFlags, 'badge': null},
-      {'icon': '💋', 'name': 'Flört\nStili', 'color': Color(0xFFD81B60), 'route': Routes.flirtStyle, 'badge': null},
-
-      // ════ MİSTİK ARAÇLAR ════
-      {'icon': '🔮', 'name': 'Tarot\nKartın', 'color': Color(0xFF9C27B0), 'route': Routes.tarotCard, 'badge': 'Yeni'},
-      {'icon': '🌈', 'name': 'Aura\nRengin', 'color': Color(0xFFAB47BC), 'route': Routes.auraColor, 'badge': null},
-      {'icon': '🧘', 'name': 'Çakra\nDengen', 'color': Color(0xFFFF5722), 'route': Routes.chakraBalance, 'badge': null},
-      {'icon': '🔢', 'name': 'Yaşam\nSayın', 'color': Color(0xFF7986CB), 'route': Routes.lifeNumber, 'badge': null},
-      {'icon': '🌳', 'name': 'Kabala\nYolun', 'color': Color(0xFF66BB6A), 'route': Routes.kabbalaPath, 'badge': null},
-
-      // ════ ZAMAN & DÖNGÜLER ════
-      {'icon': '🪐', 'name': 'Saturn\nDersleri', 'color': Color(0xFF455A64), 'route': Routes.saturnLessons, 'badge': null},
-      {'icon': '☀️', 'name': 'Doğum Günü\nEnerjin', 'color': Color(0xFFFF9800), 'route': Routes.birthdayEnergy, 'badge': null},
-      {'icon': '🌑', 'name': 'Tutulma\nEtkisi', 'color': Color(0xFF37474F), 'route': Routes.eclipseEffect, 'badge': null},
-      {'icon': '🔄', 'name': 'Transit\nAkışı', 'color': Color(0xFF4CAF50), 'route': Routes.transitFlow, 'badge': null},
-
-      // ════ İLİŞKİ ANALİZLERİ ════
-      {'icon': '💕', 'name': 'Uyum\nAnalizi', 'color': Color(0xFFE91E63), 'route': Routes.compatibilityAnalysis, 'badge': 'Hot'},
-      {'icon': '👥', 'name': 'Ruh\nEşin', 'color': Color(0xFFE91E63), 'route': Routes.soulMate, 'badge': null},
-      {'icon': '💫', 'name': 'İlişki\nKarman', 'color': Color(0xFFFF4081), 'route': Routes.relationshipKarma, 'badge': null},
-
-      // ════ KEŞFET ════
-      {'icon': '⭐', 'name': 'Ünlü\nİkizin', 'color': Color(0xFFFFB74D), 'route': Routes.celebrityTwin, 'badge': 'Fun'},
-      {'icon': '🌌', 'name': 'Kozmoz\nDünyası', 'color': Color(0xFF6A1B9A), 'route': Routes.kozmoz, 'badge': 'Yeni'},
-    ];
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              children: [
-                ShaderMask(
-                  shaderCallback: (bounds) => const LinearGradient(
-                    colors: [Color(0xFFFFD700), Color(0xFFFF6B9D), Color(0xFF9D4EDD)],
-                  ).createShader(bounds),
-                  child: const Icon(
-                    Icons.auto_awesome,
-                    color: Colors.white,
-                    size: 22,
-                  ),
-                ),
-                const SizedBox(width: 8),
-                Text(
-                  'Kozmik Keşif',
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        color: AppColors.textPrimary,
-                        fontWeight: FontWeight.bold,
-                      ),
-                ),
-                const SizedBox(width: 6),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                  decoration: BoxDecoration(
-                    gradient: const LinearGradient(
-                      colors: [Color(0xFFE91E63), Color(0xFFFF5722)],
-                    ),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Text(
-                    'PAYLAŞ',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 8,
-                      fontWeight: FontWeight.w800,
-                      letterSpacing: 0.5,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-        const SizedBox(height: AppConstants.spacingMd),
-        // 2 satırlık yatay scroll grid (daha fazla içerik için)
-        SizedBox(
-          height: 160, // 2 satır için yükseklik (her biri 72px + 8px gap + padding)
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: (kesifItems.length / 2).ceil(),
-            itemBuilder: (context, colIndex) {
-              return Padding(
-                padding: EdgeInsets.only(right: colIndex < (kesifItems.length / 2).ceil() - 1 ? 8 : 0),
-                child: Column(
-                  children: [
-                    // Üst satır
-                    if (colIndex * 2 < kesifItems.length)
-                      _buildKesifItem(context, kesifItems[colIndex * 2]),
-                    const SizedBox(height: 8),
-                    // Alt satır
-                    if (colIndex * 2 + 1 < kesifItems.length)
-                      _buildKesifItem(context, kesifItems[colIndex * 2 + 1]),
-                  ],
-                ),
-              );
-            },
-          ),
-        ),
-      ],
-    ).animate().fadeIn(delay: 500.ms, duration: 600.ms);
-  }
-
-  Widget _buildKesifItem(BuildContext context, Map<String, dynamic> item) {
-    final color = item['color'] as Color;
-    final emoji = item['icon'] as String;
-    final name = item['name'] as String;
-    final route = item['route'] as String;
-    final badge = item['badge'] as String?;
-
+  // Tüm Çözümlemeler - Ana katalog butonu
+  Widget _buildAllServicesButton(BuildContext context) {
     return GestureDetector(
-      onTap: () => context.push(route),
+      onTap: () => context.push(Routes.allServices),
       child: Container(
-        width: 72,
-        height: 72,
+        width: double.infinity,
+        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-              color.withValues(alpha: 0.5),
-              color.withValues(alpha: 0.2),
+              const Color(0xFF9C27B0).withOpacity(0.35),
+              const Color(0xFF673AB7).withOpacity(0.25),
+              const Color(0xFFE91E63).withOpacity(0.2),
             ],
           ),
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(20),
           border: Border.all(
-            color: color.withValues(alpha: 0.6),
-            width: 1.5,
+            color: const Color(0xFF9C27B0).withOpacity(0.4),
+            width: 2,
           ),
           boxShadow: [
             BoxShadow(
-              color: color.withValues(alpha: 0.3),
-              blurRadius: 8,
-              offset: const Offset(0, 2),
+              color: const Color(0xFF9C27B0).withOpacity(0.25),
+              blurRadius: 15,
+              spreadRadius: 0,
             ),
           ],
         ),
-        child: Stack(
+        child: Row(
           children: [
-            // İçerik
-            Center(
+            // Icon with gradient
+            ShaderMask(
+              shaderCallback: (bounds) => const LinearGradient(
+                colors: [Color(0xFFE040FB), Color(0xFFFFD700), Color(0xFFE040FB)],
+              ).createShader(bounds),
+              child: const Icon(
+                Icons.explore_rounded,
+                size: 32,
+                color: Colors.white,
+              ),
+            ),
+            const SizedBox(width: 16),
+            Expanded(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(emoji, style: const TextStyle(fontSize: 20)),
-                  const SizedBox(height: 2),
+                  ShaderMask(
+                    shaderCallback: (bounds) => const LinearGradient(
+                      colors: [Color(0xFFE040FB), Color(0xFFFFD700), Color(0xFFFF4081)],
+                    ).createShader(bounds),
+                    child: const Text(
+                      'Tüm Çözümlemeler',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 4),
                   Text(
-                    name,
-                    textAlign: TextAlign.center,
+                    'Kozmik yolculuğun için 80+ araç',
                     style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 8,
-                      fontWeight: FontWeight.w700,
-                      height: 1.1,
+                      fontSize: 12,
+                      color: Colors.white.withOpacity(0.7),
                     ),
                   ),
                 ],
               ),
             ),
-            // Badge
-            if (badge != null)
-              Positioned(
-                top: 2,
-                right: 2,
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 1),
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: badge == 'Viral' || badge == 'Hot' || badge == 'Trend'
-                          ? [Color(0xFFFF1744), Color(0xFFFF6D00)]
-                          : badge == 'Yeni'
-                              ? [Color(0xFF00E676), Color(0xFF00BFA5)]
-                              : badge == 'Fun'
-                                  ? [Color(0xFFFFD700), Color(0xFFFF9800)]
-                                  : [Color(0xFF2196F3), Color(0xFF00BCD4)],
-                    ),
-                    borderRadius: BorderRadius.circular(6),
-                  ),
-                  child: Text(
-                    badge,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 6,
-                      fontWeight: FontWeight.w800,
-                    ),
-                  ),
-                ),
-              ),
+            Icon(
+              Icons.arrow_forward_ios_rounded,
+              size: 20,
+              color: Colors.white.withOpacity(0.5),
+            ),
           ],
         ),
       ),
-    );
+    ).animate().fadeIn(delay: 500.ms, duration: 600.ms);
   }
 
   Widget _buildAllSigns(BuildContext context) {
@@ -2706,110 +1954,6 @@ class HomeScreen extends ConsumerWidget {
           ),
         ),
       ],
-    );
-  }
-
-  void _showAllZodiacSigns(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      backgroundColor: Colors.transparent,
-      builder: (context) => Container(
-        padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              const Color(0xFF1A1A2E),
-              const Color(0xFF0D0D1A),
-            ],
-          ),
-          borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(
-              width: 40,
-              height: 4,
-              margin: const EdgeInsets.only(bottom: 16),
-              decoration: BoxDecoration(
-                color: Colors.white30,
-                borderRadius: BorderRadius.circular(2),
-              ),
-            ),
-            Text(
-              '✨ Tüm Burçlar',
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
-            ),
-            const SizedBox(height: 16),
-            // 2 satırda 6'şar burç
-            GridView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 6,
-                childAspectRatio: 0.85,
-                crossAxisSpacing: 8,
-                mainAxisSpacing: 8,
-              ),
-              itemCount: 12,
-              itemBuilder: (context, index) {
-                final sign = ZodiacSign.values[index];
-                return GestureDetector(
-                  onTap: () {
-                    Navigator.pop(context);
-                    context.push('${Routes.horoscope}/${sign.name.toLowerCase()}');
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [
-                          sign.color.withValues(alpha: 0.3),
-                          sign.color.withValues(alpha: 0.1),
-                        ],
-                      ),
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(
-                        color: sign.color.withValues(alpha: 0.5),
-                        width: 1,
-                      ),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          sign.symbol,
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: sign.color,
-                          ),
-                        ),
-                        const SizedBox(height: 2),
-                        Text(
-                          sign.nameTr,
-                          style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                                color: Colors.white,
-                                fontSize: 8,
-                                fontWeight: FontWeight.w600,
-                              ),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              },
-            ),
-            const SizedBox(height: 20),
-          ],
-        ),
-      ),
     );
   }
 
@@ -3075,12 +2219,20 @@ class _TantricLogoSmall extends StatefulWidget {
 class _TantricLogoSmallState extends State<_TantricLogoSmall> {
   @override
   Widget build(BuildContext context) {
-    // Static version - no animation to prevent scroll issues
+    // AstroBoBo Logo - Scottish Shorthair Kedi
     return Container(
       width: 44,
       height: 44,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            AppColors.cosmicPurple.withValues(alpha: 0.8),
+            AppColors.auroraStart.withValues(alpha: 0.6),
+          ],
+        ),
         boxShadow: [
           BoxShadow(
             color: AppColors.auroraStart.withValues(alpha: 0.4),
@@ -3097,94 +2249,10 @@ class _TantricLogoSmallState extends State<_TantricLogoSmall> {
       child: Stack(
         alignment: Alignment.center,
         children: [
-          // Dış halka - statik
+          // Dış halka - yıldızlı
           Container(
             width: 44,
             height: 44,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(
-                color: AppColors.auroraStart.withValues(alpha: 0.5),
-                width: 1.5,
-              ),
-            ),
-          ),
-          // İç halka
-          Container(
-            width: 30,
-            height: 30,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(
-                color: AppColors.starGold.withValues(alpha: 0.5),
-                width: 1,
-              ),
-            ),
-          ),
-          // Merkez sembol
-          ShaderMask(
-            shaderCallback: (bounds) => LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                AppColors.starGold,
-                AppColors.auroraStart,
-                AppColors.cosmicPurple,
-              ],
-            ).createShader(bounds),
-            child: const Text(
-              '☸',
-              style: TextStyle(
-                fontSize: 18,
-                color: Colors.white,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _TantricLogo extends StatelessWidget {
-  const _TantricLogo();
-
-  @override
-  Widget build(BuildContext context) {
-    // Static version - no animation to prevent scroll issues
-    return Container(
-      width: 70,
-      height: 70,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.auroraStart.withValues(alpha: 0.5),
-            blurRadius: 25,
-            spreadRadius: 5,
-          ),
-          BoxShadow(
-            color: AppColors.cosmicPurple.withValues(alpha: 0.3),
-            blurRadius: 35,
-            spreadRadius: 8,
-          ),
-        ],
-      ),
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          // Dış halka - statik
-          CustomPaint(
-            size: const Size(70, 70),
-            painter: _SacredGeometryPainter(
-              color: AppColors.auroraStart,
-              progress: 0,
-            ),
-          ),
-          // İç halka
-          Container(
-            width: 45,
-            height: 45,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               border: Border.all(
@@ -3193,91 +2261,40 @@ class _TantricLogo extends StatelessWidget {
               ),
             ),
           ),
-          // Merkez - Om sembolü / Lotus
+          // Scottish Shorthair Kedi - Kozmik Maskot
           ShaderMask(
             shaderCallback: (bounds) => LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
               colors: [
                 AppColors.starGold,
-                AppColors.auroraStart,
-                AppColors.cosmicPurple,
+                Colors.white,
+                AppColors.moonSilver,
               ],
             ).createShader(bounds),
             child: const Text(
-              '☸',
+              '🐱',
               style: TextStyle(
-                fontSize: 28,
+                fontSize: 22,
                 color: Colors.white,
+              ),
+            ),
+          ),
+          // Küçük yıldız aksan
+          Positioned(
+            top: 4,
+            right: 6,
+            child: Text(
+              '✨',
+              style: TextStyle(
+                fontSize: 8,
+                color: AppColors.starGold,
               ),
             ),
           ),
         ],
       ),
     );
-  }
-}
-
-// Sacred Geometry Painter
-class _SacredGeometryPainter extends CustomPainter {
-  final Color color;
-  final double progress;
-
-  _SacredGeometryPainter({required this.color, required this.progress});
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final center = Offset(size.width / 2, size.height / 2);
-    final radius = size.width / 2 - 2;
-
-    final paint = Paint()
-      ..color = color.withValues(alpha: 0.6)
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 1.5;
-
-    // Dış çember
-    canvas.drawCircle(center, radius, paint);
-
-    // Altı köşeli yıldız (hexagram)
-    final path = Path();
-    for (int i = 0; i < 6; i++) {
-      final angle = (i * 60 - 90) * 3.14159 / 180;
-      final x = center.dx + radius * 0.8 * (angle).abs() % 1 * (i % 2 == 0 ? 1 : 0.7);
-      final y = center.dy + radius * 0.8 * (angle).abs() % 1 * (i % 2 == 0 ? 0.7 : 1);
-
-      final pointAngle = (i * 60 - 90) * 3.14159 / 180;
-      final px = center.dx + radius * 0.85 * math.cos(pointAngle);
-      final py = center.dy + radius * 0.85 * math.sin(pointAngle);
-
-      if (i == 0) {
-        path.moveTo(px, py);
-      } else {
-        path.lineTo(px, py);
-      }
-    }
-    path.close();
-    canvas.drawPath(path, paint..color = color.withValues(alpha: 0.4));
-
-    // İç üçgen
-    final innerPath = Path();
-    for (int i = 0; i < 3; i++) {
-      final angle = (i * 120 - 90) * 3.14159 / 180;
-      final px = center.dx + radius * 0.5 * math.cos(angle);
-      final py = center.dy + radius * 0.5 * math.sin(angle);
-
-      if (i == 0) {
-        innerPath.moveTo(px, py);
-      } else {
-        innerPath.lineTo(px, py);
-      }
-    }
-    innerPath.close();
-    canvas.drawPath(innerPath, paint..color = AppColors.starGold.withValues(alpha: 0.5));
-  }
-
-  @override
-  bool shouldRepaint(covariant _SacredGeometryPainter oldDelegate) {
-    return false; // Static - no repaints needed
   }
 }
 
@@ -3312,42 +2329,6 @@ class _MiniChip extends StatelessWidget {
             style: Theme.of(context).textTheme.labelSmall?.copyWith(
                   color: color,
                   fontSize: 10,
-                ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _InfoChip extends StatelessWidget {
-  final IconData icon;
-  final String label;
-  final Color color;
-
-  const _InfoChip({
-    required this.icon,
-    required this.label,
-    required this.color,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-      decoration: BoxDecoration(
-        color: color.withValues(alpha: 0.15),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(icon, size: 14, color: color),
-          const SizedBox(width: 4),
-          Text(
-            label,
-            style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                  color: color,
                 ),
           ),
         ],
@@ -4625,7 +3606,7 @@ class _AiChatSectionState extends ConsumerState<_AiChatSection> {
   String _getCompatibilityWithScorpio(ZodiacSign userSign) {
     final compatibilities = {
       ZodiacSign.aries: '🌋 Yoğun! İkisi de tutkulu. Savaş ya da aşk - ortası yok.',
-      ZodiacSign.taurus: '💕💕 Harika! Karşı burçlar ama mükemmel çekim. Sadakat garantili.',
+      ZodiacSign.taurus: '💕💕 Harika! Karşı burçlar ama mükemmel çekim. Derin bağ potansiyeli.',
       ZodiacSign.gemini: '😰 Zor. İkizler hafif, Akrep derin. Anlaşmak güç.',
       ZodiacSign.cancer: '🌊💕 Mükemmel! Su elementleri. Duygusal bağ çok güçlü.',
       ZodiacSign.leo: '🔥⚡ Güç savaşı! İkisi de hakim olmak ister. Ya harika ya felaket.',
@@ -4664,7 +3645,7 @@ class _AiChatSectionState extends ConsumerState<_AiChatSection> {
       ZodiacSign.taurus: '😅 Zorlu. Boğa yavaş, İkizler hızlı. Sabır lazım.',
       ZodiacSign.gemini: '💬💬 İlginç! Çok konuşma, az eylem riski. Ama eğlenceli.',
       ZodiacSign.cancer: '🌙 Duygusal zorluklar. Yengeç güvenlik, İkizler özgürlük ister.',
-      ZodiacSign.leo: '🎭 İyi! Sosyal ve parlak çift. Eğlence garantili.',
+      ZodiacSign.leo: '🎭 İyi! Sosyal ve parlak çift. Eğlence potansiyeli yüksek.',
       ZodiacSign.virgo: '🧠 Zihinsel uyum. İkisi de Merkür yönetiminde. Analitik.',
       ZodiacSign.libra: '💕💕 Mükemmel! Hava grubu. İletişim ve sosyallik.',
       ZodiacSign.scorpio: '😰 Çok zor. Akrep derin, İkizler yüzeysel bulunur.',
@@ -4678,8 +3659,6 @@ class _AiChatSectionState extends ConsumerState<_AiChatSection> {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -5205,68 +4184,6 @@ class _ShareSummaryButtonState extends State<_ShareSummaryButton> {
   }
 }
 
-// Yıldız deseni çizen CustomPainter
-class _StarPatternPainter extends CustomPainter {
-  final Color color;
-
-  _StarPatternPainter({required this.color});
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = color
-      ..strokeWidth = 1
-      ..style = PaintingStyle.stroke;
-
-    // Küçük yıldızlar çiz
-    final starPositions = [
-      Offset(size.width * 0.2, size.height * 0.3),
-      Offset(size.width * 0.8, size.height * 0.2),
-      Offset(size.width * 0.5, size.height * 0.7),
-      Offset(size.width * 0.15, size.height * 0.8),
-      Offset(size.width * 0.85, size.height * 0.75),
-    ];
-
-    for (final pos in starPositions) {
-      _drawStar(canvas, pos, 3, paint);
-    }
-
-    // Çapraz çizgiler
-    paint.strokeWidth = 0.5;
-    canvas.drawLine(
-      Offset(0, size.height),
-      Offset(size.width * 0.3, size.height * 0.7),
-      paint,
-    );
-    canvas.drawLine(
-      Offset(size.width, 0),
-      Offset(size.width * 0.7, size.height * 0.3),
-      paint,
-    );
-  }
-
-  void _drawStar(Canvas canvas, Offset center, double radius, Paint paint) {
-    final path = Path();
-    for (int i = 0; i < 4; i++) {
-      final angle = (i * 90) * 3.14159 / 180;
-      final x = center.dx + radius * (i % 2 == 0 ? 1 : 0.5) * (i < 2 ? 1 : -1) * (i % 2 == 0 ? (i == 0 ? 1 : -1) : 0);
-      final y = center.dy + radius * (i % 2 == 1 ? 1 : 0.5) * (i < 2 ? -1 : 1) * (i % 2 == 1 ? (i == 1 ? -1 : 1) : 0);
-      if (i == 0) {
-        path.moveTo(center.dx + radius, center.dy);
-      }
-    }
-    // Basit 4 köşeli yıldız
-    path.moveTo(center.dx, center.dy - radius);
-    path.lineTo(center.dx, center.dy + radius);
-    path.moveTo(center.dx - radius, center.dy);
-    path.lineTo(center.dx + radius, center.dy);
-    canvas.drawPath(path, paint);
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
-}
-
 // KOZMOZ Özel Parlayan Buton - Sürekli animasyonlu, göz alıcı
 class _KozmozButton extends StatefulWidget {
   final VoidCallback onTap;
@@ -5278,14 +4195,9 @@ class _KozmozButton extends StatefulWidget {
 }
 
 class _KozmozButtonState extends State<_KozmozButton> {
-  bool _isHovered = false;
-
   @override
   Widget build(BuildContext context) {
-    return MouseRegion(
-      onEnter: (_) => setState(() => _isHovered = true),
-      onExit: (_) => setState(() => _isHovered = false),
-      child: GestureDetector(
+    return GestureDetector(
         onTap: widget.onTap,
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
@@ -5376,22 +4288,21 @@ class _KozmozButtonState extends State<_KozmozButton> {
             ),
           ),
         ),
-      ),
     );
   }
 }
 
-// Rüya Tabiri Butonu - Mistik mor tema
-class _DreamButton extends StatefulWidget {
+// Kozmik Iletisim Butonu - Chatbot, Mistik mor tema
+class _KozmikIletisimButton extends StatefulWidget {
   final VoidCallback onTap;
 
-  const _DreamButton({required this.onTap});
+  const _KozmikIletisimButton({required this.onTap});
 
   @override
-  State<_DreamButton> createState() => _DreamButtonState();
+  State<_KozmikIletisimButton> createState() => _KozmikIletisimButtonState();
 }
 
-class _DreamButtonState extends State<_DreamButton>
+class _KozmikIletisimButtonState extends State<_KozmikIletisimButton>
     with SingleTickerProviderStateMixin {
   bool _isHovered = false;
   late AnimationController _glowController;
@@ -5423,70 +4334,182 @@ class _DreamButtonState extends State<_DreamButton>
           builder: (context, child) {
             final glowIntensity = 0.4 + (_glowController.value * 0.3);
             return Container(
-              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
               decoration: BoxDecoration(
-                // Mistik mor gradient
+                // Kozmik mor-mavi gradient
                 gradient: LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [
-                    const Color(0xFF9D4EDD).withOpacity(0.8),
-                    const Color(0xFF6B3FA0).withOpacity(0.9),
-                    const Color(0xFF3D2066).withOpacity(0.95),
+                    const Color(0xFF7B2CBF).withOpacity(0.85),
+                    const Color(0xFF5A189A).withOpacity(0.9),
+                    const Color(0xFF3C096C).withOpacity(0.95),
                   ],
                 ),
-                borderRadius: BorderRadius.circular(14),
+                borderRadius: BorderRadius.circular(12),
                 border: Border.all(
-                  color: const Color(0xFFAA77FF).withOpacity(_isHovered ? 0.8 : 0.5),
+                  color: const Color(0xFFE0AAFF).withOpacity(_isHovered ? 0.8 : 0.5),
                   width: 1.5,
                 ),
                 boxShadow: [
-                  // Pulsing glow
                   BoxShadow(
-                    color: const Color(0xFF9D4EDD).withOpacity(glowIntensity),
-                    blurRadius: 18,
+                    color: const Color(0xFF7B2CBF).withOpacity(glowIntensity),
+                    blurRadius: 16,
                     spreadRadius: 2,
                   ),
                   if (_isHovered)
                     BoxShadow(
-                      color: const Color(0xFFAA77FF).withOpacity(0.4),
-                      blurRadius: 25,
-                      spreadRadius: 4,
+                      color: const Color(0xFFE0AAFF).withOpacity(0.4),
+                      blurRadius: 22,
+                      spreadRadius: 3,
                     ),
                 ],
               ),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  // Moon emoji with glow
-                  Container(
-                    padding: const EdgeInsets.all(2),
+                  Text(
+                    '\u{1F4AC}', // Speech bubble emoji
+                    style: TextStyle(
+                      fontSize: 14,
+                      shadows: [
+                        Shadow(
+                          color: Colors.white.withOpacity(0.5),
+                          blurRadius: 6,
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(width: 5),
+                  Text(
+                    'Kozmik',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 11,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 0.8,
+                      shadows: [
+                        Shadow(
+                          color: const Color(0xFFE0AAFF).withOpacity(0.6),
+                          blurRadius: 5,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+
+// Ruya Dongusu Butonu - 7 Boyutlu Form, Mistik indigo tema
+class _RuyaDongusuButton extends StatefulWidget {
+  final VoidCallback onTap;
+
+  const _RuyaDongusuButton({required this.onTap});
+
+  @override
+  State<_RuyaDongusuButton> createState() => _RuyaDongusuButtonState();
+}
+
+class _RuyaDongusuButtonState extends State<_RuyaDongusuButton>
+    with SingleTickerProviderStateMixin {
+  bool _isHovered = false;
+  late AnimationController _rotateController;
+
+  @override
+  void initState() {
+    super.initState();
+    _rotateController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 3000),
+    )..repeat();
+  }
+
+  @override
+  void dispose() {
+    _rotateController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      onEnter: (_) => setState(() => _isHovered = true),
+      onExit: (_) => setState(() => _isHovered = false),
+      child: GestureDetector(
+        onTap: widget.onTap,
+        child: AnimatedBuilder(
+          animation: _rotateController,
+          builder: (context, child) {
+            final glowIntensity = 0.35 + (math.sin(_rotateController.value * math.pi * 2) * 0.25);
+            return Container(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+              decoration: BoxDecoration(
+                // Mistik indigo-turkuaz gradient
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    const Color(0xFF4361EE).withOpacity(0.85),
+                    const Color(0xFF3A0CA3).withOpacity(0.9),
+                    const Color(0xFF240046).withOpacity(0.95),
+                  ],
+                ),
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(
+                  color: const Color(0xFF72EFDD).withOpacity(_isHovered ? 0.8 : 0.5),
+                  width: 1.5,
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: const Color(0xFF4361EE).withOpacity(glowIntensity),
+                    blurRadius: 16,
+                    spreadRadius: 2,
+                  ),
+                  if (_isHovered)
+                    BoxShadow(
+                      color: const Color(0xFF72EFDD).withOpacity(0.4),
+                      blurRadius: 22,
+                      spreadRadius: 3,
+                    ),
+                ],
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  // Rotating moon cycle emoji
+                  Transform.rotate(
+                    angle: _rotateController.value * math.pi * 2,
                     child: Text(
                       '\u{1F319}', // Crescent moon
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 14,
                         shadows: [
                           Shadow(
                             color: Colors.white.withOpacity(0.5),
-                            blurRadius: 8,
+                            blurRadius: 6,
                           ),
                         ],
                       ),
                     ),
                   ),
-                  const SizedBox(width: 6),
-                  // Text
+                  const SizedBox(width: 5),
                   Text(
-                    'Ruya',
+                    'Dongu',
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 12,
+                      fontSize: 11,
                       fontWeight: FontWeight.bold,
-                      letterSpacing: 1,
+                      letterSpacing: 0.8,
                       shadows: [
                         Shadow(
-                          color: const Color(0xFFAA77FF).withOpacity(0.6),
-                          blurRadius: 6,
+                          color: const Color(0xFF72EFDD).withOpacity(0.6),
+                          blurRadius: 5,
                         ),
                       ],
                     ),

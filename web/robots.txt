@@ -16,9 +16,16 @@ Allow: /kabbalah
 Allow: /aura
 Allow: /transits
 
+# Dream interpretation pages (Ruya Izi)
+Allow: /ruya/
+Allow: /dreams
+Allow: /dream-glossary
+Allow: /quiz.html
+
 # Block onboarding and internal routes
 Disallow: /onboarding
 Disallow: /splash
+Disallow: /thanks.html
 
 # Block query parameters that create duplicate content
 Disallow: /*?*
@@ -28,6 +35,11 @@ Crawl-delay: 1
 
 # Sitemap location
 Sitemap: https://astrobobo.com/sitemap.xml
+Sitemap: https://astrobobo.com/api/sitemap
+
+# Block subscription portal
+Disallow: /sub.html
+Disallow: /api/
 
 # Google specific
 User-agent: Googlebot

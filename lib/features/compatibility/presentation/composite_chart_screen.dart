@@ -576,7 +576,7 @@ class _CompositeChartScreenState extends ConsumerState<CompositeChartScreen> {
         'color': Colors.blue,
       },
       {
-        'title': 'Guclu Yanlar',
+        'title': 'Güçlü Yanlar',
         'content': _chart!.strengthsOverview,
         'icon': Icons.star,
         'color': Colors.green,
@@ -654,7 +654,7 @@ class _CompositeChartScreenState extends ConsumerState<CompositeChartScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Onemli Acilar',
+            'Önemli Açılar',
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),

@@ -8,6 +8,8 @@ import '../../../core/theme/app_colors.dart';
 import '../../../data/models/zodiac_sign.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/next_blocks.dart';
+import '../../../shared/widgets/entertainment_disclaimer.dart';
 
 /// Year Ahead Forecast Screen
 /// Comprehensive yearly forecast with quarterly breakdowns
@@ -61,6 +63,15 @@ class _YearAheadScreenState extends ConsumerState<YearAheadScreen> {
                 _buildChallengingPeriods(context),
                 const SizedBox(height: AppConstants.spacingXl),
                 _buildYearAffirmation(context),
+                const SizedBox(height: AppConstants.spacingXxl),
+                // Next Blocks
+                const NextBlocks(currentPage: 'year_ahead'),
+                const SizedBox(height: AppConstants.spacingXl),
+                // Entertainment Disclaimer
+                const PageFooterWithDisclaimer(
+                  brandText: 'Yıl Öngörüsü — Astrobobo',
+                  disclaimerText: DisclaimerTexts.astrology,
+                ),
               ],
             ),
           ),
@@ -81,7 +92,7 @@ class _YearAheadScreenState extends ConsumerState<YearAheadScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                '$_selectedYear Yil Ongorusu',
+                '$_selectedYear Yılı Öngörüsü',
                 style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                       color: AppColors.starGold,
                       fontWeight: FontWeight.bold,
@@ -249,7 +260,7 @@ class _YearAheadScreenState extends ConsumerState<YearAheadScreen> {
             children: [
               Expanded(child: _buildScoreCard(context, 'Finans', _forecast.financeScore, Icons.attach_money)),
               const SizedBox(width: 12),
-              Expanded(child: _buildScoreCard(context, 'Saglik', _forecast.healthScore, Icons.favorite_border)),
+              Expanded(child: _buildScoreCard(context, 'Sağlık', _forecast.healthScore, Icons.favorite_border)),
             ],
           ),
         ],
@@ -393,7 +404,7 @@ class _YearAheadScreenState extends ConsumerState<YearAheadScreen> {
             const Icon(Icons.public, color: AppColors.celestialGold, size: 20),
             const SizedBox(width: 8),
             Text(
-              'Onemli Transitler',
+              'Önemli Geçişler',
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                     color: AppColors.textPrimary,
                   ),
@@ -609,28 +620,28 @@ class YearAheadService {
 
   static String _generateOverview(ZodiacSign sign, int year) {
     final overviews = {
-      ZodiacSign.aries: '$year sizin icin cesaret ve yeni baslangiclar yili. Liderlik ozelllikleriniz on plana cikacak.',
-      ZodiacSign.taurus: '$year finansal istikrar ve kisisel degerler uzerine odaklanacaginiz bir yil olacak.',
-      ZodiacSign.gemini: '$year iletisim ve ogrenim icin onemli firsatlar getirecek. Sosyal cevreniz genisleyecek.',
-      ZodiacSign.cancer: '$year ev, aile ve duygusal guvenlik temalarina odaklanacaginiz bir donem.',
-      ZodiacSign.leo: '$year yaratici ifade ve kisisel parlaklik zamani. Sahneye cikmaktan korkmayın.',
-      ZodiacSign.virgo: '$year detaylara odaklanma ve hizmet etme enerjisi tasiyor. Saglik ve rutin onemli.',
-      ZodiacSign.libra: '$year iliskiler ve ortakliklar icin donusum zamani. Denge arayin.',
-      ZodiacSign.scorpio: '$year derin donusumler ve yenilenme getiriyor. Eski kaliplari birakin.',
-      ZodiacSign.sagittarius: '$year macera, egitim ve ufuklari genisletme yili. Ozgurluk on planda.',
-      ZodiacSign.capricorn: '$year kariyer zirvesi ve toplumsal basari icin uygun. Hedeflerinize odaklanin.',
-      ZodiacSign.aquarius: '$year yenilikci fikirler ve toplumsal baglanti icin guclu enerji tasiyor.',
-      ZodiacSign.pisces: '$year ruhsal gelisim ve yaratici ilham icin zengin bir donem olacak.',
+      ZodiacSign.aries: '$year sizin için cesaret ve yeni başlangıçlar yılı. Liderlik özellikleriniz ön plana çıkacak.',
+      ZodiacSign.taurus: '$year finansal istikrar ve kişisel değerler üzerine odaklanacağınız bir yıl olacak.',
+      ZodiacSign.gemini: '$year iletişim ve öğrenim için önemli fırsatlar getirecek. Sosyal çevreniz genişleyecek.',
+      ZodiacSign.cancer: '$year ev, aile ve duygusal güvenlik temalarına odaklanacağınız bir dönem.',
+      ZodiacSign.leo: '$year yaratıcı ifade ve kişisel parlaklık zamanı. Sahneye çıkmaktan korkmayın.',
+      ZodiacSign.virgo: '$year detaylara odaklanma ve hizmet etme enerjisi taşıyor. Sağlık ve rutin önemli.',
+      ZodiacSign.libra: '$year ilişkiler ve ortaklıklar için dönüşüm zamanı. Denge arayın.',
+      ZodiacSign.scorpio: '$year derin dönüşümler ve yenilenme getiriyor. Eski kalıpları bırakın.',
+      ZodiacSign.sagittarius: '$year macera, eğitim ve ufukları genişletme yılı. Özgürlük ön planda.',
+      ZodiacSign.capricorn: '$year kariyer zirvesi ve toplumsal başarı için uygun. Hedeflerinize odaklanın.',
+      ZodiacSign.aquarius: '$year yenilikçi fikirler ve toplumsal bağlantı için güçlü enerji taşıyor.',
+      ZodiacSign.pisces: '$year ruhsal gelişim ve yaratıcı ilham için zengin bir dönem olacak.',
     };
-    return overviews[sign] ?? '$year sizin icin onemli firsatlar ve gelisim getiriyor.';
+    return overviews[sign] ?? '$year sizin için önemli fırsatlar ve gelişim getiriyor.';
   }
 
   static List<QuarterForecast> _generateQuarters(ZodiacSign sign, int year, Random random) {
     final themes = [
-      ['Baslangiclar', 'Enerji', 'Yenilik', 'Cesaret'],
-      ['Buyume', 'Istikrar', 'Uygulama', 'Toplama'],
-      ['Hasat', 'Denge', 'Iliskiler', 'Degerlendirme'],
-      ['Tamamlama', 'Planlama', 'Yansima', 'Hazirlik'],
+      ['Başlangıçlar', 'Enerji', 'Yenilik', 'Cesaret'],
+      ['Büyüme', 'İstikrar', 'Uygulama', 'Toplama'],
+      ['Hasat', 'Denge', 'İlişkiler', 'Değerlendirme'],
+      ['Tamamlama', 'Planlama', 'Yansıma', 'Hazırlık'],
     ];
 
     final colors = [
@@ -722,20 +733,20 @@ class YearAheadService {
 
   static String _generateAffirmation(ZodiacSign sign) {
     final affirmations = {
-      ZodiacSign.aries: 'Cesaretle ilerliyorum, yeni baslangiclara hazirım.',
-      ZodiacSign.taurus: 'Bolluk ve bereket hayatima akiyor.',
-      ZodiacSign.gemini: 'Her gun yeni seyler ogreniyor ve buyuyorum.',
-      ZodiacSign.cancer: 'Duygusal guvenligim ve huzurum saglamdir.',
-      ZodiacSign.leo: 'Isigimi parlatiyor ve dunyayla paylasiyorum.',
-      ZodiacSign.virgo: 'Mukemmellik yerine ilerlemeyi seciyorum.',
-      ZodiacSign.libra: 'Hayatimda denge ve uyum yaratiyorum.',
-      ZodiacSign.scorpio: 'Donusumu kucakliyor, yeniden doguyorum.',
-      ZodiacSign.sagittarius: 'Ozgurce kesfediyor ve buyuyorum.',
-      ZodiacSign.capricorn: 'Hedeflerime kararlilıkla ilerliyorum.',
-      ZodiacSign.aquarius: 'Benzersizligimi kutluyor, farki yaratiyorum.',
-      ZodiacSign.pisces: 'Sezgilerime guveniyorum, evrenle akiyorum.',
+      ZodiacSign.aries: 'Cesaretle ilerliyorum, yeni başlangıçlara hazırım.',
+      ZodiacSign.taurus: 'Bolluk ve bereket hayatıma akıyor.',
+      ZodiacSign.gemini: 'Her gün yeni şeyler öğreniyor ve büyüyorum.',
+      ZodiacSign.cancer: 'Duygusal güvenliğim ve huzurum sağlamdır.',
+      ZodiacSign.leo: 'Işığımı parlatıyor ve dünyayla paylaşıyorum.',
+      ZodiacSign.virgo: 'Mükemmellik yerine ilerlemeyi seçiyorum.',
+      ZodiacSign.libra: 'Hayatımda denge ve uyum yaratıyorum.',
+      ZodiacSign.scorpio: 'Dönüşümü kucaklıyor, yeniden doğuyorum.',
+      ZodiacSign.sagittarius: 'Özgürce keşfediyor ve büyüyorum.',
+      ZodiacSign.capricorn: 'Hedeflerime kararlılıkla ilerliyorum.',
+      ZodiacSign.aquarius: 'Benzersizliğimi kutluyor, farkı yaratıyorum.',
+      ZodiacSign.pisces: 'Sezgilerime güveniyorum, evrenle akıyorum.',
     };
-    return affirmations[sign] ?? 'Her gun daha iyi bir versiyonum oluyorum.';
+    return affirmations[sign] ?? 'Her gün daha iyi bir versiyonum oluyorum.';
   }
 }
 

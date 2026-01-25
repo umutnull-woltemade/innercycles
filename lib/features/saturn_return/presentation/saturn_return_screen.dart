@@ -6,6 +6,9 @@ import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/kadim_not_card.dart';
+import '../../../shared/widgets/next_blocks.dart';
+import '../../../shared/widgets/entertainment_disclaimer.dart';
 
 /// Saturn Return Calculator Screen
 /// Saturn takes ~29.5 years to complete one orbit
@@ -54,6 +57,27 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
                 _buildInterpretation(context),
                 const SizedBox(height: AppConstants.spacingXl),
                 _buildSaturnInfo(context),
+                const SizedBox(height: AppConstants.spacingXl),
+                // Kadim Not
+                KadimNotCard(
+                  category: KadimCategory.astrology,
+                  title: 'Olgunlaşma Sınavı',
+                  content: 'Satürn Dönüşü, astrolojinin en önemli yaşam geçişlerinden biridir. 29.5 yılda '
+                      'bir gerçekleşen bu döngü, antik çağlardan beri "olgunlaşma sınavı" olarak bilinir. '
+                      'Romalılar Satürn\'ü zaman tanrısı Kronos ile özdeşleştirirdi - biçtiğin şeyi '
+                      'toplarsın. Bu dönem seni otantik benliğine çağırır.',
+                  icon: Icons.loop,
+                ),
+                const SizedBox(height: AppConstants.spacingXl),
+                // Next Blocks
+                const NextBlocks(currentPage: 'saturn_return'),
+                const SizedBox(height: AppConstants.spacingXl),
+                // Entertainment Disclaimer
+                const PageFooterWithDisclaimer(
+                  brandText: 'Satürn Dönüşü — Astrobobo',
+                  disclaimerText: DisclaimerTexts.astrology,
+                ),
+                const SizedBox(height: AppConstants.spacingLg),
               ],
             ),
           ),
@@ -74,14 +98,14 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Saturn Donusu',
+                'Satürn Dönüşü',
                 style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                       color: AppColors.starGold,
                       fontWeight: FontWeight.bold,
                     ),
               ),
               Text(
-                'Yasamin Donusum Noktalari',
+                'Yaşamın Dönüşüm Noktaları',
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: AppColors.textSecondary,
                     ),
@@ -174,7 +198,7 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
             ),
             const SizedBox(height: AppConstants.spacingMd),
             Text(
-              'Saturn Donusundesin!',
+              'Satürn Dönüşündesin!',
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                     color: AppColors.textPrimary,
                     fontWeight: FontWeight.bold,
@@ -192,7 +216,7 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
           ] else if (nextReturn != null) ...[
             // Countdown to next return
             Text(
-              'Siradaki Saturn Donusu',
+              'Sıradaki Satürn Dönüşü',
               style: Theme.of(context).textTheme.labelMedium?.copyWith(
                     color: AppColors.textMuted,
                     letterSpacing: 1.2,
@@ -485,12 +509,12 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
           ),
           const SizedBox(height: AppConstants.spacingMd),
           _buildInfoRow(context, 'Yörünge Süresi', '29.5 yıl'),
-          _buildInfoRow(context, 'Temsil Ettigi', 'Sorumluluk, olgunluk, sınırlar'),
-          _buildInfoRow(context, 'Ev', 'Oglak (10. ev)'),
+          _buildInfoRow(context, 'Temsil Ettiği', 'Sorumluluk, olgunluk, sınırlar'),
+          _buildInfoRow(context, 'Ev', 'Oğlak (10. ev)'),
           _buildInfoRow(context, 'Element', 'Toprak'),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
-            'Saturn, kozmik ogretmendir. Donuslerinde bizi sinirlarimizla, sorumluluklarimizla ve gercek benligimizle yuzlestirir.',
+            'Satürn, kozmik öğretmendir. Dönüşlerinde bizi sınırlarımızla, sorumluluklarımızla ve gerçek benliğimizle yüzleştirir.',
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: AppColors.textSecondary,
                   fontStyle: FontStyle.italic,
@@ -541,24 +565,24 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
   String _getActiveReturnMessage(int returnNumber) {
     switch (returnNumber) {
       case 1:
-        return 'Yetiskinlige gecis doneminde, kariyerini ve hayat yonunu belirliyorsun. Bu donem zorlu olabilir ama seni guclendirecek.';
+        return 'Yetişkinliğe geçiş döneminde, kariyerini ve hayat yönünü belirliyorsun. Bu dönem zorlu olabilir ama seni güçlendirecek.';
       case 2:
-        return 'Yasamin ikinci yarisina gecis. Gercek onceliklerin netlesiyor, bilgeligi deneyimle birlestiriyorsun.';
+        return 'Yaşamın ikinci yarısına geçiş. Gerçek önceliklerin netleşiyor, bilgeliği deneyimle birleştiriyorsun.';
       case 3:
-        return 'Mirasi ve yasam amacini gozden gecirme zamani. Bilgeligini gelecek nesillere aktariyorsun.';
+        return 'Mirası ve yaşam amacını gözden geçirme zamanı. Bilgeliğini gelecek nesillere aktarıyorsun.';
       default:
-        return 'Onemli bir yasam donusumundesin.';
+        return 'Önemli bir yaşam dönüşümündesin.';
     }
   }
 
   String _getReturnInterpretation(int returnNumber) {
     switch (returnNumber) {
       case 1:
-        return 'Ilk Saturn Donusu (27-30 yas), yetiskinlige gecis kapisidir. Bu donemde genclikteki hayallerle gerceklik arasinda bir dengeleme yasarsin. Kariyer, iliskiler ve yasam amaci konusunda onemli kararlar alinir. Saturn seni sinirlarinla yuzlestirir ve gercek potansiyelini ortaya cikarmani saglar.';
+        return 'İlk Satürn Dönüşü (27-30 yaş), yetişkinliğe geçiş kapısıdır. Bu dönemde gençlikteki hayallerle gerçeklik arasında bir dengeleme yaşarsın. Kariyer, ilişkiler ve yaşam amacı konusunda önemli kararlar alınır. Satürn seni sınırlarınla yüzleştirir ve gerçek potansiyelini ortaya çıkarmana yardımcı olur.';
       case 2:
-        return 'Ikinci Saturn Donusu (57-60 yas), yasamin ikinci yarisina gecistir. Bu donemde gercekten neyin onemli oldugunu anlarsın. Kariyerin zirvesinden bilgeligi paylasma asamasina gecis olur. Fiziksel ve duygusal saglik on plana cikar.';
+        return 'İkinci Satürn Dönüşü (57-60 yaş), yaşamın ikinci yarısına geçiştir. Bu dönemde gerçekten neyin önemli olduğunu anlarsın. Kariyerin zirvesinden bilgeliği paylaşma aşamasına geçiş olur. Fiziksel ve duygusal sağlık ön plana çıkar.';
       case 3:
-        return 'Ucuncu Saturn Donusu (87-90 yas), yasam mirasinin degerlendirilmesi zamanidir. Bilgeligin ve deneyimlerin gelecek nesillere aktarilir. Ruhsal olgunluk ve ic huzur bu donemin armağanlarıdır.';
+        return 'Üçüncü Satürn Dönüşü (87-90 yaş), yaşam mirasının değerlendirilmesi zamanıdır. Bilgeliğin ve deneyimlerin gelecek nesillere aktarılır. Ruhsal olgunluk ve iç huzur bu dönemin armağanlarıdır.';
       default:
         return '';
     }
@@ -567,11 +591,11 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
   List<String> _getReturnThemes(int returnNumber) {
     switch (returnNumber) {
       case 1:
-        return ['Kariyer', 'Bagimsizlik', 'Sorumluluk', 'Kimlik', 'Sinirlar'];
+        return ['Kariyer', 'Bağımsızlık', 'Sorumluluk', 'Kimlik', 'Sınırlar'];
       case 2:
-        return ['Miras', 'Bilgelik', 'Saglik', 'Oncelikler', 'Anlam'];
+        return ['Miras', 'Bilgelik', 'Sağlık', 'Öncelikler', 'Anlam'];
       case 3:
-        return ['Kabul', 'Huzur', 'Aktarim', 'Tamamlanma', 'Ruhsallik'];
+        return ['Kabul', 'Huzur', 'Aktarım', 'Tamamlanma', 'Ruhsallık'];
       default:
         return [];
     }

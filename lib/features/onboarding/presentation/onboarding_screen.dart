@@ -26,11 +26,11 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
   DateTime? _selectedDate;
-  TimeOfDay? _selectedTime;
+  TimeOfDay? _selectedTime = const TimeOfDay(hour: 12, minute: 0); // Default 12:00
   String? _userName;
-  String? _birthPlace;
-  double? _birthLatitude;
-  double? _birthLongitude;
+  String? _birthPlace = 'Marmaris, Mugla (Türkiye)'; // Default Marmaris
+  double? _birthLatitude = 36.8500; // Marmaris coordinates
+  double? _birthLongitude = 28.2667;
 
   @override
   void dispose() {
@@ -671,7 +671,7 @@ class _BirthPlacePickerState extends State<_BirthPlacePicker> {
                       overflow: TextOverflow.ellipsis,
                     )
                   : Text(
-                      'Şehir seç (${WorldCities.allCities.length} şehir)',
+                      'Şehir seç (${WorldCities.sortedCities.length} şehir)',
                       style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
                           ),
@@ -703,7 +703,7 @@ class _BirthPlacePickerState extends State<_BirthPlacePicker> {
           builder: (context, setModalState) {
             List<CityData> filteredCities;
             if (searchQuery.isEmpty) {
-              filteredCities = WorldCities.allCities;
+              filteredCities = WorldCities.sortedCities;
             } else {
               filteredCities = WorldCities.search(searchQuery);
             }
@@ -730,7 +730,7 @@ class _BirthPlacePickerState extends State<_BirthPlacePicker> {
                                 ),
                           ),
                           Text(
-                            '${WorldCities.allCities.length} şehir',
+                            '${WorldCities.sortedCities.length} şehir',
                             style: Theme.of(context).textTheme.bodySmall?.copyWith(
                                   color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
                                 ),

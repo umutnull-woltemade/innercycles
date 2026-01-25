@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/numerology_service.dart';
+import '../../../data/content/numerology_content.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/next_blocks.dart';
+import '../../../shared/widgets/kadim_not_card.dart';
+import '../../../shared/widgets/entertainment_disclaimer.dart';
+import '../../../shared/widgets/quiz_cta_card.dart';
 
 class NumerologyScreen extends ConsumerWidget {
   const NumerologyScreen({super.key});
@@ -58,10 +64,12 @@ class NumerologyScreen extends ConsumerWidget {
               SliverAppBar(
                 backgroundColor: Colors.transparent,
                 floating: true,
+                snap: true,
                 title: Text(
-                  'Numeroloji',
+                  'Sayıların sana ne söylüyor?',
                   style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                         color: AppColors.starGold,
+                        fontSize: 20,
                       ),
                 ),
                 leading: IconButton(
@@ -214,7 +222,37 @@ class NumerologyScreen extends ConsumerWidget {
                     _buildShadowSideCard(context, lifePathMeaning)
                         .animate()
                         .fadeIn(delay: 900.ms, duration: 400.ms),
+                    const SizedBox(height: AppConstants.spacingLg),
+
+                    // Explore All Life Paths
+                    _buildLifePathExplorer(context, lifePath),
+                    const SizedBox(height: AppConstants.spacingLg),
+
+                    // Karmic Debt Section
+                    _buildKarmicDebtSection(context, karmicDebts),
+                    const SizedBox(height: AppConstants.spacingLg),
+
+                    // Quiz CTA - Google Discover Funnel
+                    QuizCTACard.numerology(compact: true),
+                    const SizedBox(height: AppConstants.spacingLg),
+
+                    // Kadim Not - Numeroloji bilgeliği
+                    KadimNotCard(
+                      title: 'Sayıların Ezeli Dansı',
+                      content: 'Pisagor\'dan bu yana bilgeler sayıların evrenin gizli dilini taşıdığını bilir. Yaşam yolu sayın sadece bir rakam değil - ruhunun bu dünyaya getirdiği titreşim, evrenin sana verdiği benzersiz melodi. Bu melodiyi duyabilmek için önce sessizliğe ihtiyacın var.',
+                      category: KadimCategory.numerology,
+                      source: 'Pisagorcu Öğreti',
+                    ),
+                    const SizedBox(height: AppConstants.spacingXxl),
+
+                    // Next Blocks - keşfetmeye devam et
+                    const NextBlocks(currentPage: 'numerology'),
                     const SizedBox(height: AppConstants.spacingXl),
+                    // Disclaimer
+                    const PageFooterWithDisclaimer(
+                      brandText: 'Numeroloji — Astrobobo',
+                      disclaimerText: DisclaimerTexts.numerology,
+                    ),
                   ]),
                 ),
               ),
@@ -869,5 +907,306 @@ class NumerologyScreen extends ConsumerWidget {
         ],
       ),
     );
+  }
+
+  Widget _buildLifePathExplorer(BuildContext context, int currentLifePath) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            const Icon(Icons.explore, color: AppColors.auroraStart, size: 20),
+            const SizedBox(width: 8),
+            Text(
+              'Tüm Yaşam Yolu Sayıları',
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                color: AppColors.auroraStart,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: AppConstants.spacingMd),
+        SizedBox(
+          height: 90,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: 9,
+            itemBuilder: (context, index) {
+              final number = index + 1;
+              final isCurrentPath = number == currentLifePath;
+              final content = lifePathContents[number];
+              final color = _getLifePathColor(number);
+
+              return GestureDetector(
+                onTap: () => context.push('/numerology/life-path/$number'),
+                child: Container(
+                  width: 75,
+                  margin: const EdgeInsets.only(right: 10),
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: isCurrentPath
+                          ? [color, color.withAlpha(150)]
+                          : [color.withAlpha(50), AppColors.surfaceDark],
+                    ),
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(
+                      color: color,
+                      width: isCurrentPath ? 2 : 1,
+                    ),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        number.toString(),
+                        style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                          color: isCurrentPath ? Colors.white : color,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        content?.title ?? '',
+                        style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                          color: isCurrentPath ? Colors.white70 : AppColors.textMuted,
+                          fontSize: 9,
+                        ),
+                        textAlign: TextAlign.center,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
+                  ),
+                ),
+              ).animate(delay: Duration(milliseconds: index * 50))
+                .fadeIn(duration: 300.ms)
+                .slideX(begin: 0.2, end: 0);
+            },
+          ),
+        ),
+        const SizedBox(height: AppConstants.spacingMd),
+        // Master Numbers
+        Row(
+          children: [
+            const Icon(Icons.star, color: AppColors.starGold, size: 16),
+            const SizedBox(width: 6),
+            Text(
+              'Master Sayılar',
+              style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                color: AppColors.starGold,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        Row(
+          children: [11, 22, 33].map((master) {
+            final content = masterNumberContents[master];
+            return GestureDetector(
+              onTap: () => context.push('/numerology/master/$master'),
+              child: Container(
+                margin: const EdgeInsets.only(right: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      AppColors.starGold.withAlpha(50),
+                      AppColors.surfaceDark,
+                    ],
+                  ),
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(color: AppColors.starGold.withAlpha(100)),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      master.toString(),
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        color: AppColors.starGold,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(width: 6),
+                    Text(
+                      content?.title ?? '',
+                      style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                        color: AppColors.textMuted,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          }).toList(),
+        ),
+      ],
+    ).animate().fadeIn(delay: 500.ms, duration: 400.ms);
+  }
+
+  Widget _buildKarmicDebtSection(BuildContext context, List<int> userKarmicDebts) {
+    final allKarmicDebts = [13, 14, 16, 19];
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            const Icon(Icons.link, color: AppColors.error, size: 20),
+            const SizedBox(width: 8),
+            Text(
+              'Karmik Borç Sayıları',
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                color: AppColors.error,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        Text(
+          'Geçmiş yaşamlardan taşınan dersler',
+          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+            color: AppColors.textMuted,
+            fontStyle: FontStyle.italic,
+          ),
+        ),
+        const SizedBox(height: AppConstants.spacingMd),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: allKarmicDebts.map((debt) {
+            final hasDebt = userKarmicDebts.contains(debt);
+            final content = karmicDebtContents[debt];
+            final color = _getKarmicDebtColor(debt);
+
+            return GestureDetector(
+              onTap: () => context.push('/numerology/karmic-debt/$debt'),
+              child: Column(
+                children: [
+                  Container(
+                    width: 60,
+                    height: 60,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      gradient: hasDebt
+                          ? LinearGradient(colors: [color, color.withAlpha(150)])
+                          : null,
+                      color: hasDebt ? null : color.withAlpha(30),
+                      border: Border.all(
+                        color: color,
+                        width: hasDebt ? 3 : 1,
+                      ),
+                      boxShadow: hasDebt
+                          ? [
+                              BoxShadow(
+                                color: color.withAlpha(100),
+                                blurRadius: 10,
+                                spreadRadius: 2,
+                              ),
+                            ]
+                          : null,
+                    ),
+                    child: Center(
+                      child: Text(
+                        debt.toString(),
+                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                          color: hasDebt ? Colors.white : color,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    content?.title.split(' ').first ?? '',
+                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                      color: hasDebt ? color : AppColors.textMuted,
+                      fontSize: 9,
+                      fontWeight: hasDebt ? FontWeight.bold : FontWeight.normal,
+                    ),
+                  ),
+                  if (hasDebt)
+                    Container(
+                      margin: const EdgeInsets.only(top: 4),
+                      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                      decoration: BoxDecoration(
+                        color: color.withAlpha(50),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Text(
+                        'SENİN',
+                        style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                          color: color,
+                          fontSize: 8,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                ],
+              ),
+            );
+          }).toList(),
+        ),
+        if (userKarmicDebts.isNotEmpty) ...[
+          const SizedBox(height: AppConstants.spacingMd),
+          Container(
+            padding: const EdgeInsets.all(AppConstants.spacingMd),
+            decoration: BoxDecoration(
+              color: AppColors.error.withAlpha(20),
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: AppColors.error.withAlpha(50)),
+            ),
+            child: Row(
+              children: [
+                const Icon(Icons.info_outline, color: AppColors.error, size: 18),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    'Haritanda ${userKarmicDebts.join(", ")} karmik borcu var. Detaylar için dokun.',
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: AppColors.error,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ],
+    ).animate().fadeIn(delay: 600.ms, duration: 400.ms);
+  }
+
+  Color _getLifePathColor(int number) {
+    final colors = [
+      const Color(0xFFFFD700), // 1 - Gold
+      const Color(0xFF78909C), // 2 - Blue Grey
+      const Color(0xFFFF9800), // 3 - Orange
+      const Color(0xFF4CAF50), // 4 - Green
+      const Color(0xFF00BCD4), // 5 - Cyan
+      const Color(0xFFE91E63), // 6 - Pink
+      const Color(0xFF9C27B0), // 7 - Purple
+      const Color(0xFF212121), // 8 - Black
+      const Color(0xFFF44336), // 9 - Red
+    ];
+    return colors[(number - 1) % colors.length];
+  }
+
+  Color _getKarmicDebtColor(int debt) {
+    switch (debt) {
+      case 13:
+        return const Color(0xFF8B4513);
+      case 14:
+        return const Color(0xFF00BCD4);
+      case 16:
+        return const Color(0xFF9C27B0);
+      case 19:
+        return const Color(0xFFFFD700);
+      default:
+        return AppColors.error;
+    }
   }
 }

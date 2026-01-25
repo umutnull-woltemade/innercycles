@@ -8,6 +8,7 @@ class CityData {
   final double lng;
   final String? region;
   final double? timezone; // UTC offset in hours
+  final int population; // For sorting by city size
 
   const CityData({
     required this.name,
@@ -16,6 +17,7 @@ class CityData {
     required this.lng,
     this.region,
     this.timezone,
+    this.population = 0,
   });
 
   String get displayName => region != null ? '$name, $region ($country)' : '$name ($country)';
@@ -1635,16 +1637,117 @@ class WorldCities {
     CityData(name: 'Managua', country: 'Nikaragua', lat: 12.1364, lng: -86.2514),
   ];
 
-  /// Search cities by name (case-insensitive)
+  /// Major cities to show first (sorted by importance/population)
+  static const List<String> _majorCitiesOrder = [
+    // Türkiye Büyük Şehirler
+    'Istanbul',
+    'Ankara',
+    'Izmir',
+    'Bursa',
+    'Antalya',
+    'Adana',
+    'Konya',
+    'Gaziantep',
+    'Sanliurfa',
+    'Kocaeli',
+    'Mersin',
+    'Diyarbakir',
+    'Hatay',
+    'Manisa',
+    'Kayseri',
+    'Samsun',
+    'Balikesir',
+    'Kahramanmaras',
+    'Van',
+    'Aydin',
+    'Denizli',
+    'Sakarya',
+    'Mugla',
+    'Eskisehir',
+    'Trabzon',
+    'Marmaris', // Kullanıcının varsayılanı
+    'Bodrum',
+    'Fethiye',
+    'Alanya',
+    'Kusadasi',
+    // Dünya Büyük Şehirleri
+    'London',
+    'Paris',
+    'Berlin',
+    'New York',
+    'Los Angeles',
+    'Tokyo',
+    'Moscow',
+    'Dubai',
+    'Amsterdam',
+    'Barcelona',
+    'Rome',
+    'Madrid',
+    'Vienna',
+    'Prague',
+    'Sydney',
+    'Melbourne',
+  ];
+
+  /// Get sorted cities list (major cities first, then alphabetical)
+  static List<CityData> get sortedCities {
+    final majorCities = <CityData>[];
+    final otherCities = <CityData>[];
+
+    // First, add major cities in order
+    for (final majorName in _majorCitiesOrder) {
+      final found = allCities.where((c) => c.name == majorName).toList();
+      if (found.isNotEmpty) {
+        // Only add the first match (avoid duplicates)
+        majorCities.add(found.first);
+      }
+    }
+
+    // Then add remaining cities alphabetically
+    for (final city in allCities) {
+      if (!_majorCitiesOrder.contains(city.name)) {
+        otherCities.add(city);
+      }
+    }
+
+    // Sort other cities alphabetically
+    otherCities.sort((a, b) => a.name.compareTo(b.name));
+
+    return [...majorCities, ...otherCities];
+  }
+
+  /// Search cities by name (case-insensitive) - returns major cities first
   static List<CityData> search(String query) {
-    if (query.isEmpty) return allCities;
+    if (query.isEmpty) return sortedCities;
     final lowerQuery = query.toLowerCase();
-    return allCities.where((city) {
+    final results = allCities.where((city) {
       return city.name.toLowerCase().contains(lowerQuery) ||
           city.country.toLowerCase().contains(lowerQuery) ||
           (city.region?.toLowerCase().contains(lowerQuery) ?? false) ||
           city.displayName.toLowerCase().contains(lowerQuery);
     }).toList();
+
+    // Sort results: major cities first, then by relevance
+    results.sort((a, b) {
+      final aIsMajor = _majorCitiesOrder.contains(a.name);
+      final bIsMajor = _majorCitiesOrder.contains(b.name);
+
+      if (aIsMajor && !bIsMajor) return -1;
+      if (!aIsMajor && bIsMajor) return 1;
+      if (aIsMajor && bIsMajor) {
+        return _majorCitiesOrder.indexOf(a.name).compareTo(_majorCitiesOrder.indexOf(b.name));
+      }
+
+      // For non-major cities, prefer exact name matches
+      final aStartsWith = a.name.toLowerCase().startsWith(lowerQuery);
+      final bStartsWith = b.name.toLowerCase().startsWith(lowerQuery);
+      if (aStartsWith && !bStartsWith) return -1;
+      if (!aStartsWith && bStartsWith) return 1;
+
+      return a.name.compareTo(b.name);
+    });
+
+    return results;
   }
 
   /// Get cities by country

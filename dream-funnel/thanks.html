@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rüya Yorumun | Astrobobo</title>
+  <meta name="robots" content="noindex, nofollow">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:linear-gradient(135deg,#0D0D1A 0%,#1A1A2E 100%);color:#F5F5F5;min-height:100vh;padding:1.5rem}
+    .container{max-width:640px;margin:0 auto}
+    h1{color:#FFD700;font-size:1.5rem;text-align:center;margin-bottom:0.5rem}
+    .subtitle{color:#A0A0A0;text-align:center;font-size:0.9rem;margin-bottom:2rem}
+    .state{text-align:center;padding:3rem}
+    .spinner{width:48px;height:48px;border:3px solid rgba(255,215,0,0.2);border-top-color:#FFD700;border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 1rem}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .result-card{background:rgba(255,255,255,0.03);border-radius:16px;padding:1.5rem;border:1px solid rgba(255,215,0,0.1);margin-bottom:1rem}
+    .section-title{color:#C9B8FF;font-size:1rem;font-weight:600;margin-bottom:0.75rem}
+    .section-content{color:#E0E0E0;font-size:0.95rem;line-height:1.6}
+    .warning-box{background:rgba(231,76,60,0.1);border-left:3px solid #E74C3C;padding:1rem;margin:1rem 0;border-radius:0 8px 8px 0}
+    .recommendation-box{background:rgba(46,204,113,0.1);border-left:3px solid #2ECC71;padding:1rem;margin:1rem 0;border-radius:0 8px 8px 0}
+    .disclaimer{font-size:0.75rem;color:#666;text-align:center;margin-top:2rem;line-height:1.4;padding:1rem;border-top:1px solid rgba(255,255,255,0.1)}
+    .btn{display:inline-block;width:100%;padding:1rem;background:linear-gradient(135deg,#FFD700 0%,#FFA500 100%);color:#0D0D1A;border:none;border-radius:8px;font-size:1rem;font-weight:600;cursor:pointer;text-align:center;text-decoration:none;margin-top:1rem}
+    .btn-secondary{background:transparent;border:1px solid #666;color:#E0E0E0}
+    .btn-pdf{background:linear-gradient(135deg,#9B59B6 0%,#8E44AD 100%);color:#fff}
+    .order-info{text-align:center;color:#888;font-size:0.8rem;margin-bottom:1.5rem}
+    .hidden{display:none}
+    .pdf-section{background:linear-gradient(135deg,rgba(155,89,182,0.1) 0%,rgba(142,68,173,0.1) 100%);border:1px solid rgba(155,89,182,0.3);border-radius:12px;padding:1.5rem;margin:1.5rem 0;text-align:center}
+    .error-state{color:#E74C3C}
+    .blocked-state{color:#F39C12}
+    .push-prompt{background:rgba(255,255,255,0.02);border-radius:12px;padding:1.5rem;margin:1.5rem 0;text-align:center;border:1px solid rgba(255,255,255,0.1)}
+    .push-prompt.hidden{display:none}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="state-pending" class="state">
+      <div class="spinner"></div>
+      <p style="color:#A0A0A0">Odeme dogrulanıyor...</p>
+      <p style="color:#666;font-size:0.8rem;margin-top:1rem">Bu islem birkac saniye surebilir.</p>
+    </div>
+
+    <div id="state-generating" class="state hidden">
+      <div class="spinner"></div>
+      <p style="color:#A0A0A0">Ruya yorumun hazirlaniyor...</p>
+    </div>
+
+    <div id="state-blocked" class="state hidden">
+      <p class="blocked-state" style="font-size:1.25rem;margin-bottom:1rem">Erisim Engellendi</p>
+      <p style="color:#A0A0A0">Bu siparis iptal edilmis veya itiraz surecinde.</p>
+      <p style="color:#666;font-size:0.8rem;margin-top:1rem">Destek: destek@astrobobo.com</p>
+    </div>
+
+    <div id="state-error" class="state hidden">
+      <p class="error-state" style="font-size:1.25rem;margin-bottom:1rem">Bir Sorun Olustu</p>
+      <p style="color:#A0A0A0" id="error-message">Lutfen tekrar deneyin.</p>
+      <button class="btn" onclick="location.reload()">Tekrar Dene</button>
+    </div>
+
+    <div id="state-invalid" class="state hidden">
+      <p class="error-state" style="font-size:1.25rem;margin-bottom:1rem">Gecersiz Baglanti</p>
+      <p style="color:#A0A0A0">Bu sayfa gecerli bir quiz token'i olmadan acilamaz.</p>
+      <a href="/quiz" class="btn">Quiz'e Git</a>
+    </div>
+
+    <div id="state-content" class="hidden">
+      <h1>Ruya Yorumun Hazir</h1>
+      <p class="subtitle" id="product-type"></p>
+      <p class="order-info" id="order-info"></p>
+
+      <div class="result-card" id="dream-card">
+        <div class="section-title">Senin Ruyan</div>
+        <div class="section-content" id="dream-text" style="font-style:italic;color:#A0A0A0"></div>
+      </div>
+
+      <div class="result-card">
+        <div class="section-title">Kisisel Ozet</div>
+        <div class="section-content" id="summary"></div>
+      </div>
+
+      <div class="result-card">
+        <div class="section-title">Sembol Analizi</div>
+        <div class="section-content" id="symbols"></div>
+      </div>
+
+      <div class="result-card hidden" id="psychology-section">
+        <div class="section-title">Psikolojik Icgoru</div>
+        <div class="section-content" id="psychology"></div>
+      </div>
+
+      <div class="result-card hidden" id="spiritual-section">
+        <div class="section-title">Ruhsal Perspektif</div>
+        <div class="section-content" id="spiritual"></div>
+      </div>
+
+      <div class="warning-box">
+        <div class="section-title" style="color:#E74C3C;margin-bottom:0.5rem">Dikkat Edilmesi Gereken</div>
+        <div class="section-content" id="warning"></div>
+      </div>
+
+      <div class="recommendation-box">
+        <div class="section-title" style="color:#2ECC71;margin-bottom:0.5rem">Oneri</div>
+        <div class="section-content" id="recommendation"></div>
+      </div>
+
+      <div class="pdf-section hidden" id="pdf-section">
+        <p style="color:#C9B8FF;font-weight:600;margin-bottom:0.5rem">PDF Raporun</p>
+        <p style="color:#A0A0A0;font-size:0.9rem;margin-bottom:1rem">Yorumunu PDF olarak indir.</p>
+        <button class="btn btn-pdf" id="download-pdf">PDF Indir</button>
+      </div>
+
+      <div class="push-prompt hidden" id="push-prompt">
+        <p style="color:#C9B8FF;font-weight:600;margin-bottom:0.5rem">Bildirim Al</p>
+        <p style="color:#A0A0A0;font-size:0.9rem;margin-bottom:1rem">Yeni ruya yorumlarini kacirmak ister misin?</p>
+        <button class="btn btn-secondary" id="enable-push">Bildirimleri Ac</button>
+      </div>
+
+      <a href="/dreams" class="btn btn-secondary">Ruya Sozlugune Git</a>
+
+      <div class="disclaimer">
+        Bu yorum eglence ve kisisel kesif amaclidir. Profesyonel psikolojik danismanlik, tibbi tavsiye veya gelecek tahmini icermez.
+      </div>
+    </div>
+  </div>
+
+  <!-- OneSignal SDK -->
+  <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+  <script>
+    window.OneSignalDeferred = window.OneSignalDeferred || [];
+    OneSignalDeferred.push(async function(OneSignal) {
+      await OneSignal.init({
+        appId: "YOUR_ONESIGNAL_APP_ID",
+        allowLocalhostAsSecureOrigin: true,
+      });
+    });
+  </script>
+
+  <script>
+    (function(){
+      var API_BASE = '/api';
+      var POLL_INTERVAL = 2000;
+      var MAX_POLLS = 30;
+      var pollCount = 0;
+
+      var params = new URLSearchParams(window.location.search);
+      var qt = params.get('qt');
+
+      function showState(stateId) {
+        ['pending','generating','blocked','error','invalid','content'].forEach(function(s) {
+          document.getElementById('state-' + s).classList.add('hidden');
+        });
+        document.getElementById('state-' + stateId).classList.remove('hidden');
+      }
+
+      function showError(msg) {
+        document.getElementById('error-message').textContent = msg;
+        showState('error');
+      }
+
+      if (!qt || qt.length < 32) {
+        showState('invalid');
+        return;
+      }
+
+      function checkStatus() {
+        fetch(API_BASE + '/order/status?qt=' + encodeURIComponent(qt))
+          .then(function(res) { return res.json(); })
+          .then(function(data) {
+            if (data.status === 'paid') {
+              showState('generating');
+              renderContent();
+            } else if (data.status === 'blocked') {
+              showState('blocked');
+            } else if (data.status === 'pending') {
+              pollCount++;
+              if (pollCount >= MAX_POLLS) {
+                showError('Odeme dogrulanamadi. Lutfen destek@astrobobo.com ile iletisime gecin.');
+              } else {
+                setTimeout(checkStatus, POLL_INTERVAL);
+              }
+            } else {
+              showError('Beklenmeyen durum: ' + data.status);
+            }
+          })
+          .catch(function(err) {
+            showError('Baglanti hatasi: ' + err.message);
+          });
+      }
+
+      function renderContent() {
+        fetch(API_BASE + '/order/render?qt=' + encodeURIComponent(qt))
+          .then(function(res) {
+            if (!res.ok) throw new Error('Yorum alinamadi');
+            return res.json();
+          })
+          .then(function(data) {
+            displayContent(data);
+          })
+          .catch(function(err) {
+            showError(err.message);
+          });
+      }
+
+      function displayContent(data) {
+        var isFull = data.variant === 'full';
+
+        document.getElementById('product-type').textContent = isFull ? 'Detayli Kisisel Yorum' : 'Mini Kisisel Yorum';
+        document.getElementById('order-info').textContent = 'Siparis: ' + (data.saleId || qt.substring(0,8));
+
+        if (data.dreamText) {
+          document.getElementById('dream-text').textContent = '"' + data.dreamText + '"';
+        } else {
+          document.getElementById('dream-card').classList.add('hidden');
+        }
+
+        document.getElementById('summary').textContent = data.content.summary || '';
+        document.getElementById('symbols').textContent = data.content.symbols || '';
+        document.getElementById('warning').textContent = data.content.warning || '';
+        document.getElementById('recommendation').textContent = data.content.recommendation || '';
+
+        if (isFull) {
+          document.getElementById('psychology').textContent = data.content.psychology || '';
+          document.getElementById('spiritual').textContent = data.content.spiritual || '';
+          document.getElementById('psychology-section').classList.remove('hidden');
+          document.getElementById('spiritual-section').classList.remove('hidden');
+          document.getElementById('pdf-section').classList.remove('hidden');
+        }
+
+        showState('content');
+
+        // Show push prompt after content is displayed
+        setTimeout(showPushPrompt, 2000);
+
+        if (typeof fbq !== 'undefined') {
+          fbq('track', 'Purchase', {
+            value: isFull ? 9.99 : 4.99,
+            currency: 'USD',
+            content_ids: [isFull ? 'ruya-detayli' : 'ruya-mini']
+          });
+        }
+      }
+
+      function showPushPrompt() {
+        if (!('Notification' in window)) return;
+        if (Notification.permission === 'granted') return;
+        if (Notification.permission === 'denied') return;
+
+        document.getElementById('push-prompt').classList.remove('hidden');
+      }
+
+      document.getElementById('enable-push').addEventListener('click', async function() {
+        var btn = this;
+        btn.disabled = true;
+        btn.textContent = 'Ayarlaniyor...';
+
+        try {
+          if (window.OneSignal) {
+            await OneSignal.Slidedown.promptPush();
+            var playerId = await OneSignal.User.PushSubscription.id;
+
+            if (playerId) {
+              await fetch(API_BASE + '/push/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ qt: qt, pushId: playerId })
+              });
+
+              btn.textContent = 'Bildirimler Acik';
+              document.getElementById('push-prompt').classList.add('hidden');
+            }
+          }
+        } catch (err) {
+          console.error('Push error:', err);
+          btn.textContent = 'Tekrar Dene';
+          btn.disabled = false;
+        }
+      });
+
+      document.getElementById('download-pdf').addEventListener('click', function() {
+        window.open(API_BASE + '/order/pdf?qt=' + encodeURIComponent(qt), '_blank');
+      });
+
+      checkStatus();
+    })();
+  </script>
+</body>
+</html>

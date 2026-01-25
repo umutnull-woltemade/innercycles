@@ -6,6 +6,9 @@ import '../../../core/theme/app_colors.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/aura_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/kadim_not_card.dart';
+import '../../../shared/widgets/next_blocks.dart';
+import '../../../shared/widgets/entertainment_disclaimer.dart';
 
 class AuraScreen extends ConsumerWidget {
   const AuraScreen({super.key});
@@ -44,6 +47,7 @@ class AuraScreen extends ConsumerWidget {
               SliverAppBar(
                 backgroundColor: Colors.transparent,
                 floating: true,
+                snap: true,
                 title: Text(
                   'Aura Analizi',
                   style: Theme.of(context).textTheme.headlineMedium?.copyWith(
@@ -98,6 +102,28 @@ class AuraScreen extends ConsumerWidget {
                     }),
 
                     const SizedBox(height: AppConstants.spacingXl),
+
+                    // Kadim Not
+                    KadimNotCard(
+                      category: KadimCategory.chakra,
+                      title: 'Enerji Bedenin Sırrı',
+                      content: 'Aura kavramı binlerce yıllık ezoterik geleneğe dayanır. Eski Mısır\'da "ka" '
+                          'olarak bilinen enerji bedeni, Hint geleneğinde "prana maya kosha" (yaşam enerjisi '
+                          'kılıfı) adını alır. Modern Kirlian fotoğrafçılığı bu kadim bilgeliği doğrulamış, '
+                          'canlı organizmaların çevresindeki biyoelektrik alanı görünür kılmıştır.',
+                      icon: Icons.blur_on,
+                    ),
+                    const SizedBox(height: AppConstants.spacingXl),
+
+                    // Next Blocks
+                    const NextBlocks(currentPage: 'aura'),
+                    const SizedBox(height: AppConstants.spacingXl),
+                    // Entertainment Disclaimer
+                    const PageFooterWithDisclaimer(
+                      brandText: 'Aura — Astrobobo',
+                      disclaimerText: DisclaimerTexts.chakra,
+                    ),
+                    const SizedBox(height: AppConstants.spacingLg),
                   ]),
                 ),
               ),

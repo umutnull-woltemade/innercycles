@@ -10,6 +10,10 @@ import '../../../data/providers/app_providers.dart';
 import '../../../data/services/horoscope_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/gradient_button.dart';
+import '../../../shared/widgets/next_blocks.dart';
+import '../../../shared/widgets/kadim_not_card.dart';
+import '../../../shared/widgets/entertainment_disclaimer.dart';
+import '../../../shared/widgets/quiz_cta_card.dart';
 
 class CompatibilityScreen extends ConsumerStatefulWidget {
   const CompatibilityScreen({super.key});
@@ -339,6 +343,32 @@ class _CompatibilityScreenState extends ConsumerState<CompatibilityScreen> {
 
         // Detaylı burç açıklamaları
         _buildSignDescriptions(context, _sign1!, _sign2!),
+
+        const SizedBox(height: AppConstants.spacingLg),
+
+        // Kadim Not - Uyum bilgeliği
+        const KadimNotCard(
+          title: 'Kozmik Kimya',
+          content: 'İki burç arasındaki uyum, sadece element ve modalite hesabı değildir. Her ilişki, iki ruhun birbirini tamamlama ve dönüştürme potansiyelini taşır. Zorluklar, en büyük öğretmenlerdir.',
+          category: KadimCategory.astrology,
+          source: 'Astrolojik Uyum',
+        ),
+        const SizedBox(height: AppConstants.spacingXl),
+
+        // Quiz CTA - Google Discover Funnel
+        QuizCTACard.astrology(compact: true),
+        const SizedBox(height: AppConstants.spacingXl),
+
+        // Next Blocks - keşfetmeye devam et
+        NextBlocks(currentPage: 'compatibility')
+            .animate()
+            .fadeIn(delay: 1000.ms, duration: 400.ms),
+        const SizedBox(height: AppConstants.spacingLg),
+        // Disclaimer
+        const PageFooterWithDisclaimer(
+          brandText: 'Burç Uyumu — Astrobobo',
+          disclaimerText: DisclaimerTexts.compatibility,
+        ),
       ],
     );
   }

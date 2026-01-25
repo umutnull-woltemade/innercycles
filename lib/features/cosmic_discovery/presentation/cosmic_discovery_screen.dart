@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/models/zodiac_sign.dart' as zodiac;
 import '../../../shared/widgets/cosmic_background.dart';
@@ -592,8 +591,6 @@ class CosmicDiscoveryContent {
         return _getRelationshipKarmaContent(sign, userName);
       case CosmicDiscoveryType.celebrityTwin:
         return _getCelebrityTwinContent(sign, userName);
-      default:
-        return _getDefaultContent(sign, userName, type);
     }
   }
 
@@ -983,7 +980,7 @@ class CosmicDiscoveryContent {
       zodiac.ZodiacSign.sagittarius: 'Bilgelik Arayışı - Hayatın anlamını bulma',
       zodiac.ZodiacSign.capricorn: 'Miras Yaratma - Kalıcı eserler bırakma',
       zodiac.ZodiacSign.aquarius: 'Topluluk Kurma - İnsanları birleştirme',
-      zodiac.ZodiacSign.pisces: 'Rüya Yorumlama - Bilinçaltı mesajları anlama',
+      zodiac.ZodiacSign.pisces: 'Rüya İzi - Bilinçaltı mesajları anlama',
     };
     return powers[sign] ?? 'Keşfedilmemiş Potansiyel';
   }
@@ -2061,13 +2058,6 @@ class CosmicDiscoveryContent {
     };
   }
 
-  static Map<String, String> _getDefaultContent(zodiac.ZodiacSign sign, String userName, CosmicDiscoveryType type) {
-    return {
-      'mainMessage': '$userName, ${sign.nameTr} burcu için özel içerik hazırlanıyor...',
-      'details': 'Bu içerik yakında aktif olacak. Şimdilik doğum haritanı keşfet veya diğer analizlere göz at.',
-      'advice': 'İçerik hazırlanırken günlük burç yorumunu okuyabilirsin.',
-    };
-  }
 }
 
 // _CosmicBackgroundPainter removed - using CosmicBackground widget instead

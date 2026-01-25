@@ -10,9 +10,14 @@ import '../../../data/services/ephemeris_service.dart';
 import '../../../data/services/esoteric_interpretation_service.dart';
 import '../../../data/services/ad_service.dart';
 import '../../../data/services/storage_service.dart';
+import '../../../data/services/pdf_report_service.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/ad_banner_widget.dart';
+import '../../../shared/widgets/page_bottom_navigation.dart';
+import '../../../shared/widgets/next_blocks.dart';
+import '../../../shared/widgets/entertainment_disclaimer.dart';
+import '../../../shared/widgets/quiz_cta_card.dart';
 import 'widgets/planet_positions_card.dart';
 import 'widgets/houses_card.dart';
 import 'widgets/aspects_card.dart';
@@ -194,6 +199,16 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
               ],
             ),
           ),
+          // PDF Export Button
+          IconButton(
+            onPressed: () => _showExportOptions(context),
+            icon: Icon(
+              Icons.picture_as_pdf_outlined,
+              color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+            ),
+            tooltip: 'PDF Raporu',
+          ),
+          const SizedBox(width: 4),
           Container(
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
@@ -217,6 +232,234 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
         ],
       ),
     ).animate().fadeIn(duration: 400.ms);
+  }
+
+  void _showExportOptions(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (context) => Container(
+        padding: const EdgeInsets.all(24),
+        decoration: BoxDecoration(
+          color: isDark ? AppColors.surfaceDark : AppColors.lightCard,
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: 40,
+              height: 4,
+              margin: const EdgeInsets.only(bottom: 20),
+              decoration: BoxDecoration(
+                color: isDark ? AppColors.textMuted : Colors.grey.shade300,
+                borderRadius: BorderRadius.circular(2),
+              ),
+            ),
+            Text(
+              'Raporu Disa Aktar',
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                    color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                    fontWeight: FontWeight.bold,
+                  ),
+            ),
+            const SizedBox(height: 20),
+            _buildExportOption(
+              context,
+              icon: Icons.visibility_outlined,
+              title: 'Onizle',
+              subtitle: 'PDF raporunu goruntule',
+              onTap: () => _previewPdf(context),
+            ),
+            const SizedBox(height: 12),
+            _buildExportOption(
+              context,
+              icon: Icons.share_outlined,
+              title: 'Paylas',
+              subtitle: 'PDF olarak paylas',
+              onTap: () => _sharePdf(context),
+            ),
+            const SizedBox(height: 24),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildExportOption(
+    BuildContext context, {
+    required IconData icon,
+    required String title,
+    required String subtitle,
+    required VoidCallback onTap,
+  }) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(12),
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: isDark
+              ? AppColors.surfaceLight.withOpacity(0.1)
+              : AppColors.lightSurfaceVariant,
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(
+            color: isDark
+                ? AppColors.surfaceLight.withOpacity(0.2)
+                : Colors.grey.shade200,
+          ),
+        ),
+        child: Row(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: AppColors.starGold.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Icon(
+                icon,
+                color: AppColors.starGold,
+                size: 24,
+              ),
+            ),
+            const SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                          color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                          fontWeight: FontWeight.w600,
+                        ),
+                  ),
+                  Text(
+                    subtitle,
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                        ),
+                  ),
+                ],
+              ),
+            ),
+            Icon(
+              Icons.chevron_right,
+              color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Future<void> _previewPdf(BuildContext context) async {
+    Navigator.pop(context); // Close bottom sheet
+    _showLoadingDialog(context);
+
+    try {
+      final userProfile = ref.read(userProfileProvider);
+      if (userProfile == null || _natalChart == null) return;
+
+      // Convert planet positions to the expected format
+      final planetPositions = <Planet, zodiac.ZodiacSign>{};
+      final planetHouses = <Planet, int>{};
+      for (final position in _natalChart!.planets) {
+        planetPositions[position.planet] = position.sign;
+        planetHouses[position.planet] = position.house;
+      }
+
+      final pdfService = PdfReportService();
+      final pdfData = await pdfService.generateBirthChartReport(
+        profile: userProfile,
+        planetPositions: planetPositions,
+        planetHouses: planetHouses,
+        ascendant: _natalChart!.ascendant?.sign,
+        moonSign: _natalChart!.moon?.sign,
+      );
+
+      if (context.mounted) Navigator.pop(context); // Close loading dialog
+
+      await pdfService.previewPdf(pdfData);
+    } catch (e) {
+      if (context.mounted) {
+        Navigator.pop(context); // Close loading dialog
+        _showErrorSnackBar(context, 'PDF olusturulamadi');
+      }
+    }
+  }
+
+  Future<void> _sharePdf(BuildContext context) async {
+    Navigator.pop(context); // Close bottom sheet
+    _showLoadingDialog(context);
+
+    try {
+      final userProfile = ref.read(userProfileProvider);
+      if (userProfile == null || _natalChart == null) return;
+
+      // Convert planet positions to the expected format
+      final planetPositions = <Planet, zodiac.ZodiacSign>{};
+      final planetHouses = <Planet, int>{};
+      for (final position in _natalChart!.planets) {
+        planetPositions[position.planet] = position.sign;
+        planetHouses[position.planet] = position.house;
+      }
+
+      final pdfService = PdfReportService();
+      final pdfData = await pdfService.generateBirthChartReport(
+        profile: userProfile,
+        planetPositions: planetPositions,
+        planetHouses: planetHouses,
+        ascendant: _natalChart!.ascendant?.sign,
+        moonSign: _natalChart!.moon?.sign,
+      );
+
+      if (context.mounted) Navigator.pop(context); // Close loading dialog
+
+      final filename = 'dogum_haritasi_${userProfile.name?.replaceAll(' ', '_') ?? 'rapor'}.pdf';
+      await pdfService.sharePdf(pdfData, filename);
+    } catch (e) {
+      if (context.mounted) {
+        Navigator.pop(context); // Close loading dialog
+        _showErrorSnackBar(context, 'PDF paylasilamadi');
+      }
+    }
+  }
+
+  void _showLoadingDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => const Center(
+        child: Card(
+          child: Padding(
+            padding: EdgeInsets.all(24),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                CircularProgressIndicator(color: AppColors.starGold),
+                SizedBox(height: 16),
+                Text('PDF olusturuluyor...'),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  void _showErrorSnackBar(BuildContext context, String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: AppColors.error,
+      ),
+    );
   }
 
   Widget _buildTabBar(BuildContext context) {
@@ -335,7 +578,21 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
           const SizedBox(height: AppConstants.spacingLg),
           // Visual Chart Wheel - moved to bottom
           _buildChartWheelSection(),
-          const SizedBox(height: AppConstants.spacingXxl),
+          const SizedBox(height: AppConstants.spacingXl),
+          // Quiz CTA - Google Discover Funnel
+          QuizCTACard.astrology(compact: true),
+          const SizedBox(height: AppConstants.spacingXl),
+          // Next Blocks - Sonraki öneriler
+          const NextBlocks(currentPage: 'natal_chart'),
+          const SizedBox(height: AppConstants.spacingXl),
+          // Entertainment Disclaimer
+          const PageFooterWithDisclaimer(
+            brandText: 'Doğum Haritası — Astrobobo',
+            disclaimerText: DisclaimerTexts.astrology,
+          ),
+          const SizedBox(height: AppConstants.spacingLg),
+          // Back-Button-Free Navigation
+          const PageBottomNavigation(currentRoute: '/birth-chart'),
         ],
       ),
     );
@@ -1228,6 +1485,9 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
           ).animate().fadeIn(duration: 400.ms),
           const SizedBox(height: AppConstants.spacingLg),
           PlanetPositionsCard(chart: _natalChart!),
+          const SizedBox(height: AppConstants.spacingXl),
+          // Back-Button-Free Navigation (compact)
+          const PageBottomNavigationCompact(currentRoute: '/birth-chart'),
         ],
       ),
     );
@@ -1246,6 +1506,9 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
           ).animate().fadeIn(duration: 400.ms),
           const SizedBox(height: AppConstants.spacingLg),
           HousesCard(chart: _natalChart!),
+          const SizedBox(height: AppConstants.spacingXl),
+          // Back-Button-Free Navigation (compact)
+          const PageBottomNavigationCompact(currentRoute: '/birth-chart'),
         ],
       ),
     );
@@ -1264,6 +1527,9 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
           ).animate().fadeIn(duration: 400.ms),
           const SizedBox(height: AppConstants.spacingLg),
           AspectsCard(chart: _natalChart!),
+          const SizedBox(height: AppConstants.spacingXl),
+          // Back-Button-Free Navigation (compact)
+          const PageBottomNavigationCompact(currentRoute: '/birth-chart'),
         ],
       ),
     );

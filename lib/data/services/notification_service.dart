@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -6,6 +5,9 @@ import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz_data;
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/zodiac_sign.dart';
+
+/// Global navigator key for notification navigation
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 /// Notification service for daily horoscope reminders and transit alerts
 class NotificationService {
@@ -24,6 +26,9 @@ class NotificationService {
   static const int moonPhaseId = 3;
   static const int transitAlertId = 4;
   static const int saturnReturnId = 5;
+  static const int voidOfCourseMoonId = 6;
+  static const int newMoonId = 7;
+  static const int fullMoonId = 8;
 
   // Preference keys
   static const String _keyDailyEnabled = 'notification_daily_enabled';
@@ -35,6 +40,7 @@ class NotificationService {
   /// Initialize the notification service
   Future<void> initialize() async {
     if (_isInitialized) return;
+    if (kIsWeb) return; // Notifications not supported on web
 
     // Initialize timezone
     tz_data.initializeTimeZones();
@@ -68,7 +74,7 @@ class NotificationService {
   Future<bool> requestPermissions() async {
     if (kIsWeb) return false;
 
-    if (Platform.isIOS || Platform.isMacOS) {
+    if (defaultTargetPlatform == TargetPlatform.iOS || defaultTargetPlatform == TargetPlatform.macOS) {
       final result = await _notifications
           .resolvePlatformSpecificImplementation<
               IOSFlutterLocalNotificationsPlugin>()
@@ -76,7 +82,7 @@ class NotificationService {
       return result ?? false;
     }
 
-    if (Platform.isAndroid) {
+    if (defaultTargetPlatform == TargetPlatform.android) {
       final result = await _notifications
           .resolvePlatformSpecificImplementation<
               AndroidFlutterLocalNotificationsPlugin>()
@@ -91,7 +97,7 @@ class NotificationService {
   Future<bool> areNotificationsEnabled() async {
     if (kIsWeb) return false;
 
-    if (Platform.isAndroid) {
+    if (defaultTargetPlatform == TargetPlatform.android) {
       final result = await _notifications
           .resolvePlatformSpecificImplementation<
               AndroidFlutterLocalNotificationsPlugin>()
@@ -107,9 +113,38 @@ class NotificationService {
   void _onNotificationTapped(NotificationResponse response) {
     // Handle navigation based on notification payload
     final payload = response.payload;
-    if (payload != null) {
-      // This would integrate with your navigation service
-      debugPrint('Notification tapped with payload: $payload');
+    if (payload == null) return;
+
+    // Navigate based on payload
+    String? route;
+    switch (payload) {
+      case 'daily_horoscope':
+        route = '/horoscope';
+        break;
+      case 'moon_phase':
+      case 'new_moon':
+      case 'full_moon':
+        route = '/kesif/ay-enerjisi';
+        break;
+      case 'mercury_retrograde':
+        route = '/transits';
+        break;
+      case 'transit':
+        route = '/transit-calendar';
+        break;
+      case 'saturn_return':
+        route = '/saturn-return';
+        break;
+      case 'void_of_course':
+        route = '/timing';
+        break;
+      default:
+        route = '/home';
+    }
+
+    // Use global navigator key if available
+    if (navigatorKey.currentState != null) {
+      navigatorKey.currentState!.pushNamed(route);
     }
   }
 

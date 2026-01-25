@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import '../models/user_profile.dart';
 import '../providers/app_providers.dart';
@@ -19,6 +20,14 @@ class StorageService {
   static Box? _profileBox;
   static Box? _settingsBox;
 
+  static bool get _isInitialized => _profileBox != null && _settingsBox != null;
+
+  static void _warnIfNotInitialized(String method) {
+    if (!_isInitialized && kDebugMode) {
+      debugPrint('StorageService.$method called before initialize()');
+    }
+  }
+
   /// Initialize Hive and open boxes
   static Future<void> initialize() async {
     await Hive.initFlutter();
@@ -30,6 +39,7 @@ class StorageService {
 
   /// Save user profile to local storage
   static Future<void> saveUserProfile(UserProfile profile) async {
+    _warnIfNotInitialized('saveUserProfile');
     final box = _profileBox;
     if (box == null) return;
 
@@ -39,6 +49,7 @@ class StorageService {
 
   /// Load user profile from local storage
   static UserProfile? loadUserProfile() {
+    _warnIfNotInitialized('loadUserProfile');
     final box = _profileBox;
     if (box == null) return null;
 
@@ -66,6 +77,7 @@ class StorageService {
 
   /// Delete user profile from local storage
   static Future<void> deleteUserProfile() async {
+    _warnIfNotInitialized('deleteUserProfile');
     final box = _profileBox;
     if (box == null) return;
 
@@ -75,6 +87,7 @@ class StorageService {
   // ========== MULTIPLE PROFILES ==========
 
   static Future<void> saveProfile(UserProfile profile) async {
+    _warnIfNotInitialized('saveProfile');
     final box = _profileBox;
     if (box == null) return;
 
@@ -96,6 +109,7 @@ class StorageService {
   }
 
   static List<UserProfile> loadAllProfiles() {
+    _warnIfNotInitialized('loadAllProfiles');
     final box = _profileBox;
     if (box == null) return [];
 
@@ -120,6 +134,7 @@ class StorageService {
   }
 
   static Future<void> deleteProfile(String id) async {
+    _warnIfNotInitialized('deleteProfile');
     final box = _profileBox;
     if (box == null) return;
 
@@ -136,12 +151,14 @@ class StorageService {
   }
 
   static Future<void> setPrimaryProfileId(String id) async {
+    _warnIfNotInitialized('setPrimaryProfileId');
     final box = _profileBox;
     if (box == null) return;
     await box.put(_primaryProfileIdKey, id);
   }
 
   static String? getPrimaryProfileId() {
+    _warnIfNotInitialized('getPrimaryProfileId');
     final box = _profileBox;
     if (box == null) return null;
     return box.get(_primaryProfileIdKey) as String?;
@@ -168,6 +185,7 @@ class StorageService {
 
   /// Save onboarding completion status
   static Future<void> saveOnboardingComplete(bool complete) async {
+    _warnIfNotInitialized('saveOnboardingComplete');
     final box = _settingsBox;
     if (box == null) return;
 
@@ -177,6 +195,7 @@ class StorageService {
   /// Load onboarding completion status
   /// Returns false if there's no valid user profile (to force onboarding)
   static bool loadOnboardingComplete() {
+    _warnIfNotInitialized('loadOnboardingComplete');
     final box = _settingsBox;
     if (box == null) return false;
 
@@ -199,6 +218,7 @@ class StorageService {
 
   /// Save selected language
   static Future<void> saveLanguage(AppLanguage language) async {
+    _warnIfNotInitialized('saveLanguage');
     final box = _settingsBox;
     if (box == null) return;
 
@@ -207,6 +227,7 @@ class StorageService {
 
   /// Load selected language
   static AppLanguage loadLanguage() {
+    _warnIfNotInitialized('loadLanguage');
     final box = _settingsBox;
     if (box == null) return AppLanguage.tr;
 
@@ -221,6 +242,7 @@ class StorageService {
 
   /// Save theme mode
   static Future<void> saveThemeMode(ThemeMode mode) async {
+    _warnIfNotInitialized('saveThemeMode');
     final box = _settingsBox;
     if (box == null) return;
 
@@ -229,6 +251,7 @@ class StorageService {
 
   /// Load theme mode (defaults to dark)
   static ThemeMode loadThemeMode() {
+    _warnIfNotInitialized('loadThemeMode');
     final box = _settingsBox;
     if (box == null) return ThemeMode.dark;
 
@@ -237,6 +260,29 @@ class StorageService {
       return ThemeMode.values[index];
     }
     return ThemeMode.dark;
+  }
+
+  // ========== HOUSE SYSTEM ==========
+
+  static const String _houseSystemKey = 'house_system';
+
+  /// Save selected house system
+  static Future<void> saveHouseSystem(int index) async {
+    _warnIfNotInitialized('saveHouseSystem');
+    final box = _settingsBox;
+    if (box == null) return;
+
+    await box.put(_houseSystemKey, index);
+  }
+
+  /// Load selected house system index (defaults to 0 = Placidus)
+  static int loadHouseSystemIndex() {
+    _warnIfNotInitialized('loadHouseSystemIndex');
+    final box = _settingsBox;
+    if (box == null) return 0;
+
+    final index = box.get(_houseSystemKey, defaultValue: 0) as int;
+    return index;
   }
 
   // ========== CLEAR ALL DATA ==========

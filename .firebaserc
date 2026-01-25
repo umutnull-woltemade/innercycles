@@ -1,5 +1,15 @@
 {
   "projects": {
     "default": "celestial-95a95"
-  }
+  },
+  "targets": {
+    "celestial-95a95": {
+      "hosting": {
+        "astrobobo": [
+          "celestial-95a95"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }

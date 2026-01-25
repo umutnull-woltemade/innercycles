@@ -50,13 +50,13 @@ class _AspectsCardState extends State<AspectsCard> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Acilar (${aspects.length})',
+                      'Açılar (${aspects.length})',
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
                             color: AppColors.textPrimary,
                           ),
                     ),
                     Text(
-                      'Gezegenler arasi iliskiler',
+                      'Gezegenler arası ilişkiler',
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                             color: AppColors.textMuted,
                           ),
@@ -95,8 +95,8 @@ class _AspectsCardState extends State<AspectsCard> {
         if (harmoniousAspects.isNotEmpty)
           _buildAspectSection(
             context,
-            'Uyumlu Acilar',
-            'Dogal yetenekler ve kolay akis',
+            'Uyumlu Açılar',
+            'Doğal yetenekler ve kolay akış',
             harmoniousAspects,
             AppColors.success,
             100,
@@ -108,8 +108,8 @@ class _AspectsCardState extends State<AspectsCard> {
         if (challengingAspects.isNotEmpty)
           _buildAspectSection(
             context,
-            'Zorlu Acilar',
-            'Buyume ve donusum potansiyeli',
+            'Zorlu Açılar',
+            'Büyüme ve dönüşüm potansiyeli',
             challengingAspects,
             AppColors.error,
             200,
@@ -121,8 +121,8 @@ class _AspectsCardState extends State<AspectsCard> {
         if (neutralAspects.isNotEmpty)
           _buildAspectSection(
             context,
-            'Notr Acilar',
-            'Ayarlama ve farkindalik',
+            'Nötr Açılar',
+            'Ayarlama ve farkındalık',
             neutralAspects,
             AppColors.auroraEnd,
             300,

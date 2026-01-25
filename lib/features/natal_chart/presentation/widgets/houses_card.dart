@@ -62,8 +62,8 @@ class HousesCard extends StatelessWidget {
       children: [
         _buildHouseTypeSection(
           context,
-          'Acisal Evler',
-          'En guclu ve aktif evler (1, 4, 7, 10)',
+          'Açısal Evler',
+          'En güçlü ve aktif evler (1, 4, 7, 10)',
           angularHouses,
           AppColors.starGold,
           0,
@@ -71,8 +71,8 @@ class HousesCard extends StatelessWidget {
         const SizedBox(height: AppConstants.spacingMd),
         _buildHouseTypeSection(
           context,
-          'Ardil Evler',
-          'Kaynaklar ve degerler (2, 5, 8, 11)',
+          'Ardıl Evler',
+          'Kaynaklar ve değerler (2, 5, 8, 11)',
           succedentHouses,
           AppColors.auroraStart,
           100,
@@ -163,13 +163,11 @@ class _HouseRow extends StatefulWidget {
   final HouseCusp house;
   final List<PlanetPosition> planetsInHouse;
   final bool isLast;
-  final bool initiallyExpanded;
 
   const _HouseRow({
     required this.house,
     required this.planetsInHouse,
     this.isLast = false,
-    this.initiallyExpanded = false,
   });
 
   @override
@@ -182,7 +180,7 @@ class _HouseRowState extends State<_HouseRow> {
   @override
   void initState() {
     super.initState();
-    _isExpanded = widget.initiallyExpanded;
+    _isExpanded = false;
   }
 
   // Ev için detaylı ezoterik yorum
@@ -372,7 +370,7 @@ class _HouseRowState extends State<_HouseRow> {
     final shadowGift = _getHouseShadowAndGift(widget.house.house.number);
 
     return ExpansionTile(
-      initiallyExpanded: widget.initiallyExpanded,
+      initiallyExpanded: false,
       onExpansionChanged: (expanded) => setState(() => _isExpanded = expanded),
       tilePadding: const EdgeInsets.symmetric(
         horizontal: AppConstants.spacingMd,

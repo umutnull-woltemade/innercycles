@@ -1,4 +1,3 @@
-import 'dart:math';
 import '../models/reference_content.dart';
 import '../models/zodiac_sign.dart';
 import '../content/glossary_content.dart';
@@ -105,8 +104,6 @@ class ReferenceContentService {
   }
 
   GardeningMoonDay _generateGardeningDay(DateTime date) {
-    final random = Random(date.millisecondsSinceEpoch);
-
     // Calculate approximate moon phase
     final phase = _getMoonPhase(date);
     final moonSign = ZodiacSign.values[(date.day + date.month) % 12];

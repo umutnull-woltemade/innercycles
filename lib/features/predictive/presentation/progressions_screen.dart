@@ -9,6 +9,9 @@ import '../../../data/models/advanced_astrology.dart';
 import '../../../data/services/advanced_astrology_service.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/kadim_not_card.dart';
+import '../../../shared/widgets/next_blocks.dart';
+import '../../../shared/widgets/entertainment_disclaimer.dart';
 
 class ProgressionsScreen extends ConsumerStatefulWidget {
   const ProgressionsScreen({super.key});
@@ -115,7 +118,27 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
                         _buildEventsCard(isDark),
                         const SizedBox(height: AppConstants.spacingMd),
                         _buildUpcomingCard(isDark),
-                        const SizedBox(height: AppConstants.spacingXxl),
+                        const SizedBox(height: AppConstants.spacingXl),
+                        // Kadim Not
+                        KadimNotCard(
+                          category: KadimCategory.astrology,
+                          title: 'Bir Gün = Bir Yıl',
+                          content: 'İkincil İlerlemeler, astrolojinin en incelikli tahmin tekniklerinden biridir. '
+                              '"Bir gün = bir yıl" formülüyle çalışır: doğumunuzdan 30 gün sonraki gökyüzü, '
+                              '30 yaşınızdaki enerjileri yansıtır. Bu kadim teknik, içsel evriminizi ve '
+                              'ruhsal olgunlaşmanızı gösterir - dış olaylardan ziyade iç dönüşümü.',
+                          icon: Icons.trending_up,
+                        ),
+                        const SizedBox(height: AppConstants.spacingXl),
+                        // Next Blocks
+                        const NextBlocks(currentPage: 'progressions'),
+                        const SizedBox(height: AppConstants.spacingXl),
+                        // Entertainment Disclaimer
+                        const PageFooterWithDisclaimer(
+                          brandText: 'Progresyonlar — Astrobobo',
+                          disclaimerText: DisclaimerTexts.astrology,
+                        ),
+                        const SizedBox(height: AppConstants.spacingLg),
                       ] else ...[
                         const SizedBox(height: 100),
                         const CircularProgressIndicator(color: AppColors.auroraStart),

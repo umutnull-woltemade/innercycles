@@ -6,6 +6,8 @@ import '../../../data/models/zodiac_sign.dart';
 import '../../../data/models/extended_horoscope.dart';
 import '../../../data/services/extended_horoscope_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/entertainment_disclaimer.dart';
+import '../../../shared/widgets/quiz_cta_card.dart';
 
 class YearlyHoroscopeScreen extends StatefulWidget {
   final String? signName;
@@ -80,6 +82,15 @@ class _YearlyHoroscopeScreenState extends State<YearlyHoroscopeScreen> {
                       const SizedBox(height: AppConstants.spacingMd),
                       _buildAffirmationCard(isDark),
                       const SizedBox(height: AppConstants.spacingXxl),
+                      // Quiz CTA - Google Discover Funnel
+                      QuizCTACard.astrology(compact: true),
+                      const SizedBox(height: AppConstants.spacingXl),
+                      // Entertainment Disclaimer
+                      const PageFooterWithDisclaimer(
+                        brandText: 'Yıllık Burç — Astrobobo',
+                        disclaimerText: DisclaimerTexts.astrology,
+                      ),
+                      const SizedBox(height: AppConstants.spacingLg),
                     ],
                   ),
                 ),
@@ -104,7 +115,7 @@ class _YearlyHoroscopeScreenState extends State<YearlyHoroscopeScreen> {
           const SizedBox(width: AppConstants.spacingSm),
           Expanded(
             child: Text(
-              'Yıllık Burç Yorumu',
+              'Bu yıl seni ne bekliyor?',
               style: Theme.of(context).textTheme.headlineSmall,
             ),
           ),
@@ -157,7 +168,7 @@ class _YearlyHoroscopeScreenState extends State<YearlyHoroscopeScreen> {
 
   Widget _buildSignSelector(bool isDark) {
     return SizedBox(
-      height: 80,
+      height: 56,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: ZodiacSign.values.length,
@@ -173,15 +184,15 @@ class _YearlyHoroscopeScreenState extends State<YearlyHoroscopeScreen> {
               });
             },
             child: Container(
-              width: 70,
-              margin: const EdgeInsets.symmetric(horizontal: 4),
+              width: 52,
+              margin: const EdgeInsets.symmetric(horizontal: 3),
               decoration: BoxDecoration(
                 color: isSelected
                     ? AppColors.starGold.withValues(alpha: 0.3)
                     : isDark
                         ? AppColors.surfaceLight.withValues(alpha: 0.2)
                         : AppColors.lightSurfaceVariant,
-                borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+                borderRadius: BorderRadius.circular(AppConstants.radiusSm),
                 border: isSelected
                     ? Border.all(color: AppColors.starGold, width: 2)
                     : null,
@@ -191,12 +202,12 @@ class _YearlyHoroscopeScreenState extends State<YearlyHoroscopeScreen> {
                 children: [
                   Text(
                     sign.symbol,
-                    style: const TextStyle(fontSize: 24),
+                    style: const TextStyle(fontSize: 20),
                   ),
-                  const SizedBox(height: 4),
                   Text(
                     sign.nameTr,
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                          fontSize: 10,
                           fontWeight:
                               isSelected ? FontWeight.bold : FontWeight.normal,
                         ),
@@ -244,7 +255,7 @@ class _YearlyHoroscopeScreenState extends State<YearlyHoroscopeScreen> {
                 ),
                 child: Text(
                   _selectedSign.symbol,
-                  style: const TextStyle(fontSize: 28),
+                  style: const TextStyle(fontSize: 26),
                 ),
               ),
               const SizedBox(width: AppConstants.spacingMd),
@@ -253,7 +264,7 @@ class _YearlyHoroscopeScreenState extends State<YearlyHoroscopeScreen> {
                 children: [
                   Text(
                     _selectedSign.nameTr,
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
                   ),

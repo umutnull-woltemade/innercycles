@@ -223,20 +223,12 @@ class _GlossaryTermWidgetState extends State<_GlossaryTermWidget> {
   Widget _buildRichTooltipOverlay(BuildContext context) {
     if (_entry == null) return const SizedBox.shrink();
 
-    return Positioned(
-      child: CompositedTransformFollower(
-        link: _link,
-        targetAnchor: Alignment.bottomCenter,
-        followerAnchor: Alignment.topCenter,
-        offset: const Offset(0, 8),
-        child: Material(
-          color: Colors.transparent,
-          child: GlossaryRichTooltip(
-            entry: _entry!,
-            onClose: _hideRichTooltip,
-            onNavigate: () => _navigateToGlossary(context),
-          ),
-        ),
+    return _ConstrainedTooltipOverlay(
+      link: _link,
+      child: GlossaryRichTooltip(
+        entry: _entry!,
+        onClose: _hideRichTooltip,
+        onNavigate: () => _navigateToGlossary(context),
       ),
     );
   }
@@ -245,6 +237,74 @@ class _GlossaryTermWidgetState extends State<_GlossaryTermWidget> {
     _hideRichTooltip();
     final searchTerm = _entry?.termTr ?? widget.term;
     context.push('${Routes.glossary}?search=$searchTerm');
+  }
+}
+
+/// Constrained tooltip overlay that stays within screen bounds
+class _ConstrainedTooltipOverlay extends StatelessWidget {
+  final LayerLink link;
+  final Widget child;
+
+  const _ConstrainedTooltipOverlay({
+    required this.link,
+    required this.child,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
+    final screenPadding = MediaQuery.of(context).padding;
+    final isMobile = screenSize.width < 600;
+
+    // On mobile, center the tooltip horizontally and position below the target
+    if (isMobile) {
+      return Positioned(
+        left: 16,
+        right: 16,
+        child: CompositedTransformFollower(
+          link: link,
+          showWhenUnlinked: false,
+          targetAnchor: Alignment.bottomCenter,
+          followerAnchor: Alignment.topCenter,
+          offset: const Offset(0, 8),
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              maxWidth: screenSize.width - 32,
+              maxHeight: screenSize.height * 0.5,
+            ),
+            child: SingleChildScrollView(
+              child: Material(
+                color: Colors.transparent,
+                child: child,
+              ),
+            ),
+          ),
+        ),
+      );
+    }
+
+    // On desktop, use the default positioning with boundary checks
+    return Positioned(
+      child: CompositedTransformFollower(
+        link: link,
+        showWhenUnlinked: false,
+        targetAnchor: Alignment.bottomCenter,
+        followerAnchor: Alignment.topCenter,
+        offset: const Offset(0, 8),
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            maxWidth: 320,
+            maxHeight: screenSize.height - screenPadding.top - screenPadding.bottom - 100,
+          ),
+          child: Material(
+            color: Colors.transparent,
+            child: SingleChildScrollView(
+              child: child,
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
 
@@ -728,20 +788,12 @@ class _AutoGlossaryTermWidgetState extends State<_AutoGlossaryTermWidget> {
   }
 
   Widget _buildRichTooltipOverlay(BuildContext context) {
-    return Positioned(
-      child: CompositedTransformFollower(
-        link: _link,
-        targetAnchor: Alignment.bottomCenter,
-        followerAnchor: Alignment.topCenter,
-        offset: const Offset(0, 8),
-        child: Material(
-          color: Colors.transparent,
-          child: GlossaryRichTooltip(
-            entry: widget.entry,
-            onClose: _hideRichTooltip,
-            onNavigate: () => _navigateToGlossary(context),
-          ),
-        ),
+    return _ConstrainedTooltipOverlay(
+      link: _link,
+      child: GlossaryRichTooltip(
+        entry: widget.entry,
+        onClose: _hideRichTooltip,
+        onNavigate: () => _navigateToGlossary(context),
       ),
     );
   }
@@ -1049,23 +1101,15 @@ class _GlossaryTooltipState extends State<GlossaryTooltip> {
       link: _link,
       child: OverlayPortal(
         controller: _overlayController,
-        overlayChildBuilder: (context) => Positioned(
-          child: CompositedTransformFollower(
-            link: _link,
-            targetAnchor: Alignment.bottomCenter,
-            followerAnchor: Alignment.topCenter,
-            offset: const Offset(0, 8),
-            child: Material(
-              color: Colors.transparent,
-              child: GlossaryRichTooltip(
-                entry: _entry!,
-                onClose: _hideRichTooltip,
-                onNavigate: () {
-                  _hideRichTooltip();
-                  context.push('${Routes.glossary}?search=${_entry!.termTr}');
-                },
-              ),
-            ),
+        overlayChildBuilder: (context) => _ConstrainedTooltipOverlay(
+          link: _link,
+          child: GlossaryRichTooltip(
+            entry: _entry!,
+            onClose: _hideRichTooltip,
+            onNavigate: () {
+              _hideRichTooltip();
+              context.push('${Routes.glossary}?search=${_entry!.termTr}');
+            },
           ),
         ),
         child: MouseRegion(

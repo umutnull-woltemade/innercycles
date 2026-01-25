@@ -9,6 +9,9 @@ import '../../../data/models/zodiac_sign.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/moon_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/kadim_not_card.dart';
+import '../../../shared/widgets/next_blocks.dart';
+import '../../../shared/widgets/entertainment_disclaimer.dart';
 
 class TimingScreen extends ConsumerStatefulWidget {
   const TimingScreen({super.key});
@@ -58,7 +61,27 @@ class _TimingScreenState extends ConsumerState<TimingScreen> {
                     _buildBiorhythm(context, birthDate),
                     const SizedBox(height: AppConstants.spacingXl),
                     _buildDailyAspects(context),
-                    const SizedBox(height: AppConstants.spacingXxl),
+                    const SizedBox(height: AppConstants.spacingXl),
+                    // Kadim Not
+                    KadimNotCard(
+                      category: KadimCategory.astrology,
+                      title: 'Elektional Astroloji',
+                      content: 'Kadim astrologlar, her anın eşsiz bir kozmik imzası olduğunu bilirdi. '
+                          'Elektional astroloji - doğru zamanı seçme sanatı - krallıkların taç giyme '
+                          'törenlerinden evliliklere kadar her önemli olay için kullanılırdı. '
+                          'Gezegen saatleri ve Ay\'ın boş seyir dönemleri, başarılı eylemlerin anahtarıydı.',
+                      icon: Icons.access_time,
+                    ),
+                    const SizedBox(height: AppConstants.spacingXl),
+                    // Next Blocks
+                    const NextBlocks(currentPage: 'timing'),
+                    const SizedBox(height: AppConstants.spacingXl),
+                    // Entertainment Disclaimer
+                    const PageFooterWithDisclaimer(
+                      brandText: 'Zamanlama — Astrobobo',
+                      disclaimerText: DisclaimerTexts.astrology,
+                    ),
+                    const SizedBox(height: AppConstants.spacingLg),
                   ],
                 ),
               ),
@@ -267,11 +290,14 @@ class _TimingScreenState extends ConsumerState<TimingScreen> {
                   value: moonSign.nameTr,
                 ),
                 Container(width: 1, height: 40, color: Colors.white12),
-                _MiniIndicator(
-                  icon: vocStatus.isVoid ? Icons.do_not_disturb : Icons.check_circle,
-                  label: 'VOC',
-                  value: vocStatus.isVoid ? 'Aktif' : 'Yok',
-                  color: vocStatus.isVoid ? Colors.purple : Colors.green,
+                GestureDetector(
+                  onTap: () => context.push('/void-of-course'),
+                  child: _MiniIndicator(
+                    icon: vocStatus.isVoid ? Icons.do_not_disturb : Icons.check_circle,
+                    label: 'VOC',
+                    value: vocStatus.isVoid ? 'Aktif' : 'Yok',
+                    color: vocStatus.isVoid ? Colors.purple : Colors.green,
+                  ),
                 ),
                 Container(width: 1, height: 40, color: Colors.white12),
                 _MiniIndicator(
@@ -1226,7 +1252,6 @@ class _BiorhythmBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final percentage = ((value + 1) / 2 * 100).round();
-    final status = value > 0.3 ? 'Yüksek' : value < -0.3 ? 'Düşük' : 'Normal';
 
     return Row(
       children: [

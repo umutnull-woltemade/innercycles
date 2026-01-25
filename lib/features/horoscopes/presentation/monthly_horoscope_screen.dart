@@ -6,6 +6,8 @@ import '../../../data/models/zodiac_sign.dart';
 import '../../../data/models/extended_horoscope.dart';
 import '../../../data/services/extended_horoscope_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/entertainment_disclaimer.dart';
+import '../../../shared/widgets/quiz_cta_card.dart';
 
 class MonthlyHoroscopeScreen extends StatefulWidget {
   final String? signName;
@@ -89,6 +91,15 @@ class _MonthlyHoroscopeScreenState extends State<MonthlyHoroscopeScreen> {
                       const SizedBox(height: AppConstants.spacingMd),
                       _buildMantraCard(isDark),
                       const SizedBox(height: AppConstants.spacingXxl),
+                      // Quiz CTA - Google Discover Funnel
+                      QuizCTACard.astrology(compact: true),
+                      const SizedBox(height: AppConstants.spacingXl),
+                      // Entertainment Disclaimer
+                      const PageFooterWithDisclaimer(
+                        brandText: 'Aylık Burç — Astrobobo',
+                        disclaimerText: DisclaimerTexts.astrology,
+                      ),
+                      const SizedBox(height: AppConstants.spacingLg),
                     ],
                   ),
                 ),
@@ -113,7 +124,7 @@ class _MonthlyHoroscopeScreenState extends State<MonthlyHoroscopeScreen> {
           const SizedBox(width: AppConstants.spacingSm),
           Expanded(
             child: Text(
-              'Aylık Burç Yorumu',
+              'Bu ay seni ne bekliyor?',
               style: Theme.of(context).textTheme.headlineSmall,
             ),
           ),
@@ -161,7 +172,7 @@ class _MonthlyHoroscopeScreenState extends State<MonthlyHoroscopeScreen> {
 
   Widget _buildSignSelector(bool isDark) {
     return SizedBox(
-      height: 80,
+      height: 56, // Küçültüldü: 80 -> 56
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: ZodiacSign.values.length,
@@ -177,15 +188,15 @@ class _MonthlyHoroscopeScreenState extends State<MonthlyHoroscopeScreen> {
               });
             },
             child: Container(
-              width: 70,
-              margin: const EdgeInsets.symmetric(horizontal: 4),
+              width: 52, // Küçültüldü: 70 -> 52
+              margin: const EdgeInsets.symmetric(horizontal: 3),
               decoration: BoxDecoration(
                 color: isSelected
                     ? AppColors.auroraStart.withValues(alpha: 0.3)
                     : isDark
                         ? AppColors.surfaceLight.withValues(alpha: 0.2)
                         : AppColors.lightSurfaceVariant,
-                borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+                borderRadius: BorderRadius.circular(AppConstants.radiusSm),
                 border: isSelected
                     ? Border.all(color: AppColors.auroraStart, width: 2)
                     : null,
@@ -195,14 +206,14 @@ class _MonthlyHoroscopeScreenState extends State<MonthlyHoroscopeScreen> {
                 children: [
                   Text(
                     sign.symbol,
-                    style: const TextStyle(fontSize: 24),
+                    style: const TextStyle(fontSize: 20), // Küçültüldü: 24 -> 20
                   ),
-                  const SizedBox(height: 4),
                   Text(
                     sign.nameTr,
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
                           fontWeight:
                               isSelected ? FontWeight.bold : FontWeight.normal,
+                          fontSize: 10,
                         ),
                     textAlign: TextAlign.center,
                     maxLines: 1,
@@ -242,15 +253,15 @@ class _MonthlyHoroscopeScreenState extends State<MonthlyHoroscopeScreen> {
             children: [
               Text(
                 _selectedSign.symbol,
-                style: const TextStyle(fontSize: 32),
+                style: const TextStyle(fontSize: 26), // Küçültüldü: 32 -> 26
               ),
-              const SizedBox(width: AppConstants.spacingMd),
+              const SizedBox(width: AppConstants.spacingSm),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     _selectedSign.nameTr,
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
                   ),

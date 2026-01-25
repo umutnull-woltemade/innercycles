@@ -12,6 +12,13 @@ import '../../../data/services/extended_horoscope_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/ad_banner_widget.dart';
 import '../../../shared/widgets/interpretive_text.dart';
+import '../../../shared/widgets/page_bottom_navigation.dart';
+import '../../../shared/widgets/breadcrumb_navigation.dart';
+import '../../../shared/widgets/faq_section.dart';
+import '../../../shared/widgets/next_blocks.dart';
+import '../../../shared/widgets/energy_bar.dart';
+import '../../../shared/widgets/kadim_not_card.dart';
+import '../../../shared/widgets/entertainment_disclaimer.dart';
 
 class HoroscopeDetailScreen extends ConsumerStatefulWidget {
   final String signName;
@@ -125,8 +132,14 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          // AI-QUOTABLE: İlk 3 Bullet (Kısa Cevap)
+          _buildQuotableBullets(context, sign, horoscope),
+          const SizedBox(height: AppConstants.spacingLg),
           // Date and luck
           _buildDateSection(context, horoscope.luckRating),
+          const SizedBox(height: AppConstants.spacingMd),
+          // Daily Energy Bar
+          DailyEnergyCard.fromLuckRating(horoscope.luckRating, accentColor: sign.color),
           const SizedBox(height: AppConstants.spacingXl),
           // Main horoscope
           _buildMainHoroscope(context, horoscope.summary, sign),
@@ -160,11 +173,157 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
           _buildQuickFacts(context, horoscope.mood,
               horoscope.luckyColor, horoscope.luckyNumber, sign),
           const SizedBox(height: AppConstants.spacingLg),
+          // Kadim Not - Astroloji bilgeliği
+          KadimNotCard(
+            title: 'Göksel Senkronizasyon',
+            content: 'Kozmik enerjiler rastgele hareket etmez. Bugün ${sign.nameTr} burcuna gelen titreşimler, evrenin senin için hazırladığı bir mesajdır. Bu mesajı almak için önce durmalı, sonra dinlemelisin.',
+            category: KadimCategory.astrology,
+            source: 'Hermetik Öğreti',
+            compact: true,
+          ),
+          const SizedBox(height: AppConstants.spacingLg),
           // Ad Banner
           const InlineAdBanner(),
+          const SizedBox(height: AppConstants.spacingXl),
+          // Next Blocks - Sonraki öneriler
+          const NextBlocks(currentPage: 'horoscope_detail'),
+          const SizedBox(height: AppConstants.spacingXl),
+          // Back-Button-Free Navigation
+          PageBottomNavigation(currentRoute: '/horoscope/${_sign.name.toLowerCase()}'),
+          const SizedBox(height: AppConstants.spacingLg),
+          // AI-QUOTABLE: Footer with Disclaimer
+          const PageFooterWithDisclaimer(
+            brandText: 'Astroloji — Astrobobo',
+            disclaimerText: DisclaimerTexts.astrology,
+          ),
+          const SizedBox(height: AppConstants.spacingMd),
         ],
       ),
     );
+  }
+
+  /// AI-QUOTABLE: İlk 3 bullet - direkt cevap
+  Widget _buildQuotableBullets(BuildContext context, ZodiacSign sign, dynamic horoscope) {
+    final bullets = _getQuotableBullets(sign, horoscope);
+    return Container(
+      padding: const EdgeInsets.all(AppConstants.spacingLg),
+      decoration: BoxDecoration(
+        color: sign.color.withValues(alpha: 0.1),
+        borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+        border: Border.all(color: sign.color.withValues(alpha: 0.2)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Kısa Cevap',
+            style: Theme.of(context).textTheme.titleSmall?.copyWith(
+              color: sign.color,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          const SizedBox(height: AppConstants.spacingMd),
+          ...bullets.map((bullet) => Padding(
+            padding: const EdgeInsets.only(bottom: 8),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  width: 6,
+                  height: 6,
+                  margin: const EdgeInsets.only(top: 7),
+                  decoration: BoxDecoration(
+                    color: sign.color,
+                    shape: BoxShape.circle,
+                  ),
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Text(
+                    bullet,
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: AppColors.textPrimary,
+                      height: 1.5,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          )),
+        ],
+      ),
+    ).animate().fadeIn(duration: 400.ms);
+  }
+
+  List<String> _getQuotableBullets(ZodiacSign sign, dynamic horoscope) {
+    // Generate 3 AI-quotable bullets based on sign and horoscope
+    final Map<ZodiacSign, List<String>> signBullets = {
+      ZodiacSign.aries: [
+        'Bugün enerjin yüksek, inisiyatif almak için uygun.',
+        'Sabırsızlık tuzağına düşmemeye dikkat et.',
+        'Akşam saatlerinde önemli bir haber gelebilir.',
+      ],
+      ZodiacSign.taurus: [
+        'Bugün maddi konularda netlik kazanabilirsin.',
+        'Rutinlerine sadık kal, değişiklik şimdilik bekleyebilir.',
+        'Sevdiklerinle kaliteli zaman geçirmek için ideal bir gün.',
+      ],
+      ZodiacSign.gemini: [
+        'İletişim becerilerin bugün ön planda.',
+        'Ertelediğin konuşmaları yapmak için uygun.',
+        'Zihnin hızlı çalışıyor, notlar almayı unutma.',
+      ],
+      ZodiacSign.cancer: [
+        'Duygusal olarak hassas bir gün geçirebilirsin.',
+        'Ev ve aile konuları ön plana çıkıyor.',
+        'Sezgilerine güven, seni doğru yönlendirecekler.',
+      ],
+      ZodiacSign.leo: [
+        'Bugün dikkat çekmek için ekstra çaba harcamana gerek yok.',
+        'Yaratıcı projeler için ilham alabilirsin.',
+        'Liderlik vasıfların takdir görecek.',
+      ],
+      ZodiacSign.virgo: [
+        'Detaylara odaklanman gereken bir gün.',
+        'Sağlık rutinlerini gözden geçirmek için uygun.',
+        'Eleştirel bakış açını yapıcı tutmaya dikkat et.',
+      ],
+      ZodiacSign.libra: [
+        'İlişkilerde denge arayışın bugün öne çıkıyor.',
+        'Estetik kararlar almak için uygun bir gün.',
+        'Ortaklık konularında ilerleme kaydedebilirsin.',
+      ],
+      ZodiacSign.scorpio: [
+        'Bugün derin düşüncelere dalabilirsin.',
+        'Gizli kalmış bir konu gün yüzüne çıkabilir.',
+        'Dönüşüm enerjisi güçlü, eski kalıpları bırakmak için uygun.',
+      ],
+      ZodiacSign.sagittarius: [
+        'Macera ruhu bugün canlanıyor.',
+        'Yeni bir şey öğrenmek için harika bir gün.',
+        'Uzak yerlerden haberler gelebilir.',
+      ],
+      ZodiacSign.capricorn: [
+        'Kariyer hedeflerin için somut adımlar atabilirsin.',
+        'Disiplinli yaklaşımın bugün meyvelerini verecek.',
+        'Uzun vadeli planlar yapmak için uygun.',
+      ],
+      ZodiacSign.aquarius: [
+        'Özgün fikirlerinle fark yaratabilirsin.',
+        'Grup aktiviteleri ve arkadaşlıklar ön planda.',
+        'Teknoloji ile ilgili konularda şans senden yana.',
+      ],
+      ZodiacSign.pisces: [
+        'Sezgilerin bugün özellikle güçlü.',
+        'Sanatsal ve spiritüel aktiviteler için ideal.',
+        'Rüyalarına dikkat et, önemli mesajlar taşıyabilirler.',
+      ],
+    };
+    return signBullets[sign] ?? [
+      'Bugün kozmik enerjiler seninle.',
+      'İç sesine kulak ver.',
+      'Yeni fırsatlar kapıda.',
+    ];
   }
 
   Widget _buildWeeklyContent(BuildContext context, WeeklyHoroscope horoscope, ZodiacSign sign) {
@@ -211,6 +370,9 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
           _buildAffirmationCard(context, horoscope.weeklyAffirmation, sign),
           const SizedBox(height: AppConstants.spacingLg),
           const InlineAdBanner(),
+          const SizedBox(height: AppConstants.spacingXl),
+          // Back-Button-Free Navigation (compact)
+          PageBottomNavigationCompact(currentRoute: '/horoscope/${sign.name.toLowerCase()}'),
         ],
       ),
     );
@@ -309,6 +471,9 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
           _buildAffirmationCard(context, horoscope.monthlyMantra, sign),
           const SizedBox(height: AppConstants.spacingLg),
           const InlineAdBanner(),
+          const SizedBox(height: AppConstants.spacingXl),
+          // Back-Button-Free Navigation (compact)
+          PageBottomNavigationCompact(currentRoute: '/horoscope/${sign.name.toLowerCase()}'),
         ],
       ),
     );
@@ -320,6 +485,9 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          // Breadcrumb Navigation
+          BreadcrumbNavigation.zodiacSign(sign.nameTr, sign.symbol),
+          const SizedBox(height: AppConstants.spacingMd),
           _buildSignInfo(context, sign),
           const SizedBox(height: AppConstants.spacingLg),
           // Deep Interpretation Card
@@ -332,7 +500,13 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
             relatedTerms: [sign.nameTr, sign.element.nameTr, sign.modality.nameTr, sign.rulingPlanet],
           ),
           const SizedBox(height: AppConstants.spacingLg),
+          // FAQ Section for this zodiac sign
+          FaqSection.zodiacSign(sign.nameTr),
+          const SizedBox(height: AppConstants.spacingLg),
           const InlineAdBanner(),
+          const SizedBox(height: AppConstants.spacingXl),
+          // Back-Button-Free Navigation
+          PageBottomNavigation(currentRoute: '/horoscope/${sign.name.toLowerCase()}'),
         ],
       ),
     );
@@ -723,70 +897,101 @@ Balık'ın iki balık sembolizmi - zıt yönlere yüzen - maddi ve spiritüel d�
 
 
   Widget _buildHeader(BuildContext context, ZodiacSign sign) {
+    // AI-QUOTABLE HEADER - Soru formatı
     return Container(
-      padding: const EdgeInsets.all(AppConstants.spacingLg),
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppConstants.spacingLg,
+        vertical: AppConstants.spacingSm,
+      ),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: [
-            sign.color.withValues(alpha: 0.3),
+            sign.color.withValues(alpha: 0.25),
             Colors.transparent,
           ],
         ),
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
         children: [
+          // Back button row
           Row(
             children: [
               IconButton(
                 icon: const Icon(Icons.arrow_back),
                 color: AppColors.textPrimary,
                 onPressed: () => context.pop(),
+                visualDensity: VisualDensity.compact,
               ),
               const Spacer(),
               IconButton(
                 icon: const Icon(Icons.share),
                 color: AppColors.textPrimary,
                 onPressed: () {},
+                visualDensity: VisualDensity.compact,
               ),
             ],
           ),
-          const SizedBox(height: AppConstants.spacingMd),
-          Container(
-            padding: const EdgeInsets.all(20),
-            decoration: BoxDecoration(
-              color: sign.color.withValues(alpha: 0.2),
-              shape: BoxShape.circle,
-              boxShadow: [
-                BoxShadow(
-                  color: sign.color.withValues(alpha: 0.4),
-                  blurRadius: 30,
-                  spreadRadius: 5,
+          const SizedBox(height: AppConstants.spacingSm),
+          // Symbol + Question H1
+          Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: sign.color.withValues(alpha: 0.2),
+                  shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(
+                      color: sign.color.withValues(alpha: 0.3),
+                      blurRadius: 12,
+                      spreadRadius: 2,
+                    ),
+                  ],
                 ),
-              ],
-            ),
-            child: Text(
-              sign.symbol,
-              style: TextStyle(fontSize: 56, color: sign.color),
-            ),
-          ).animate().fadeIn(duration: 400.ms).scale(
-                begin: const Offset(0.8, 0.8),
-                curve: Curves.elasticOut,
+                child: Text(
+                  sign.symbol,
+                  style: TextStyle(fontSize: 28, color: sign.color),
+                ),
               ),
-          const SizedBox(height: AppConstants.spacingMd),
-          Text(
-            sign.name,
-            style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                  color: sign.color,
+              const SizedBox(width: AppConstants.spacingMd),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // H1 - Soru formatı (AI-quotable)
+                    Text(
+                      '${sign.nameTr} burcu bugün nasıl?',
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                            color: AppColors.textPrimary,
+                            fontWeight: FontWeight.bold,
+                          ),
+                    ),
+                    const SizedBox(height: 4),
+                    // Brand tag
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                      decoration: BoxDecoration(
+                        color: sign.color.withValues(alpha: 0.15),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Text(
+                        'Astroloji',
+                        style: TextStyle(
+                          fontSize: 11,
+                          color: sign.color,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-          ).animate().fadeIn(delay: 200.ms, duration: 400.ms),
-          Text(
-            sign.dateRange,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: AppColors.textSecondary,
-                ),
-          ).animate().fadeIn(delay: 300.ms, duration: 400.ms),
+              ),
+            ],
+          ),
         ],
       ),
     );

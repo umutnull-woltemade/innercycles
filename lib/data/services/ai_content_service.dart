@@ -1501,7 +1501,7 @@ Turkce yaz, mistik ve destekleyici bir ton kullan.
       'Liderlik ve yoneticilik firsatlari kapida. Parla!',
     ],
     ZodiacSign.virgo: [
-      'Detay odakli islerde basari garantili. Analiz yetenegini kullan.',
+      'Detay odakli islerde basari potansiyeli yuksek. Analiz yetenegini kullan.',
       'Organizasyon projeleri parliyor. Sistemler kur, verimlilik artir.',
     ],
     ZodiacSign.libra: [

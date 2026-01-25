@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
@@ -154,9 +153,9 @@ class PremiumNotifier extends Notifier<PremiumState> {
       }
 
       String apiKey;
-      if (Platform.isIOS) {
+      if (defaultTargetPlatform == TargetPlatform.iOS) {
         apiKey = AppConstants.revenueCatAppleApiKey;
-      } else if (Platform.isAndroid) {
+      } else if (defaultTargetPlatform == TargetPlatform.android) {
         apiKey = AppConstants.revenueCatGoogleApiKey;
       } else {
         await _loadLocalPremiumStatus();

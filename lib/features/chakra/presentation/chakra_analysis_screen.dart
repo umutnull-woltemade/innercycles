@@ -6,6 +6,9 @@ import '../../../core/theme/app_colors.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/models/zodiac_sign.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/next_blocks.dart';
+import '../../../shared/widgets/kadim_not_card.dart';
+import '../../../shared/widgets/entertainment_disclaimer.dart';
 
 /// Chakra Analysis Screen - Personalized chakra reading based on natal chart
 class ChakraAnalysisScreen extends ConsumerStatefulWidget {
@@ -82,6 +85,33 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
                       _buildChakraVisualization(context),
                       _buildTabBar(context),
                       _buildTabContent(context),
+                      const SizedBox(height: AppConstants.spacingLg),
+                      // Kadim Not - Chakra bilgeliği
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: AppConstants.spacingLg),
+                        child: KadimNotCard(
+                          title: 'Enerji Döngüsü',
+                          content: 'Chakralar yalnızca enerji merkezleri değil, bilinç kapılarıdır. Her chakra, fiziksel bedenle ruhsal beden arasında bir köprüdür. Onları dengelemek, sadece sağlık değil - içsel uyanışın anahtarıdır.',
+                          category: KadimCategory.chakra,
+                          source: 'Tantrik Bilgelik',
+                        ),
+                      ),
+                      const SizedBox(height: AppConstants.spacingXl),
+                      // Next Blocks - keşfetmeye devam et
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: AppConstants.spacingLg),
+                        child: const NextBlocks(currentPage: 'chakra'),
+                      ),
+                      const SizedBox(height: AppConstants.spacingXl),
+                      // Entertainment Disclaimer
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: AppConstants.spacingLg),
+                        child: PageFooterWithDisclaimer(
+                          brandText: 'Chakra — Astrobobo',
+                          disclaimerText: DisclaimerTexts.chakra,
+                        ),
+                      ),
+                      const SizedBox(height: AppConstants.spacingLg),
                     ],
                   ),
                 ),
@@ -724,9 +754,9 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
         unselectedLabelColor: Colors.white.withValues(alpha: 0.6),
         dividerColor: Colors.transparent,
         tabs: const [
-          Tab(text: 'Genel Bakis'),
+          Tab(text: 'Genel Bakış'),
           Tab(text: 'Meditasyon'),
-          Tab(text: 'Gunluk'),
+          Tab(text: 'Günlük'),
         ],
       ),
     );
@@ -779,7 +809,7 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
           // Strongest chakra
           _buildChakraHighlight(
             context,
-            title: 'En Guclu Chakran',
+            title: 'En Güçlü Çakran',
             chakra: _analysisData!.strongestChakra,
             color: Colors.green,
           ),

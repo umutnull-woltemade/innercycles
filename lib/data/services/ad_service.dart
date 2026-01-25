@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -18,22 +17,22 @@ class AdConfig {
 
   static String get bannerId {
     if (isTestMode) return testBannerId;
-    if (Platform.isAndroid) return AppConstants.admobBannerIdAndroid;
-    if (Platform.isIOS) return AppConstants.admobBannerIdIos;
+    if (defaultTargetPlatform == TargetPlatform.android) return AppConstants.admobBannerIdAndroid;
+    if (defaultTargetPlatform == TargetPlatform.iOS) return AppConstants.admobBannerIdIos;
     return testBannerId;
   }
 
   static String get interstitialId {
     if (isTestMode) return testInterstitialId;
-    if (Platform.isAndroid) return AppConstants.admobInterstitialIdAndroid;
-    if (Platform.isIOS) return AppConstants.admobInterstitialIdIos;
+    if (defaultTargetPlatform == TargetPlatform.android) return AppConstants.admobInterstitialIdAndroid;
+    if (defaultTargetPlatform == TargetPlatform.iOS) return AppConstants.admobInterstitialIdIos;
     return testInterstitialId;
   }
 
   static String get rewardedId {
     if (isTestMode) return testRewardedId;
-    if (Platform.isAndroid) return AppConstants.admobRewardedIdAndroid;
-    if (Platform.isIOS) return AppConstants.admobRewardedIdIos;
+    if (defaultTargetPlatform == TargetPlatform.android) return AppConstants.admobRewardedIdAndroid;
+    if (defaultTargetPlatform == TargetPlatform.iOS) return AppConstants.admobRewardedIdIos;
     return testRewardedId;
   }
 }
@@ -335,7 +334,6 @@ final adServiceProvider = Provider<AdService>((ref) {
   return service;
 });
 
-/// Premium status provider (from AdService)
-final isPremiumProvider = Provider<bool>((ref) {
-  return ref.watch(adServiceProvider).isPremium;
-});
+/// NOTE: isPremiumProvider is defined in premium_service.dart as the
+/// canonical source. Use isPremiumUserProvider from premium_service.dart
+/// instead of duplicating here.

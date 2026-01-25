@@ -8,6 +8,10 @@ import '../../../core/theme/app_colors.dart';
 import '../../../data/models/zodiac_sign.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/next_blocks.dart';
+import '../../../shared/widgets/kadim_not_card.dart';
+import '../../../shared/widgets/entertainment_disclaimer.dart';
+import '../../../shared/widgets/quiz_cta_card.dart';
 
 class SynastryScreen extends ConsumerStatefulWidget {
   const SynastryScreen({super.key});
@@ -210,160 +214,6 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen> with SingleTick
     ).animate().fadeIn(delay: 100.ms, duration: 400.ms);
   }
 
-  Widget _buildCompatibilityScore(BuildContext context, SynastryData data) {
-    final Color scoreColor = data.overallScore >= 70
-        ? Colors.green
-        : data.overallScore >= 50
-            ? Colors.amber
-            : Colors.red;
-
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: AppConstants.spacingLg, vertical: AppConstants.spacingSm),
-      padding: const EdgeInsets.all(AppConstants.spacingMd),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            Colors.pink.withAlpha(25),
-            Colors.purple.withAlpha(15),
-            AppColors.surfaceDark,
-          ],
-        ),
-        borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-        border: Border.all(color: Colors.pink.withAlpha(40)),
-      ),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              // Person 1
-              Column(
-                children: [
-                  Container(
-                    width: 44,
-                    height: 44,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      gradient: RadialGradient(
-                        colors: [
-                          ref.watch(userProfileProvider)?.sunSign.color ?? AppColors.starGold,
-                          (ref.watch(userProfileProvider)?.sunSign.color ?? AppColors.starGold).withAlpha(50),
-                        ],
-                      ),
-                    ),
-                    child: Center(
-                      child: Text(
-                        ref.watch(userProfileProvider)?.sunSign.symbol ?? '?',
-                        style: const TextStyle(fontSize: 20),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    'Sen',
-                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                      color: AppColors.textSecondary,
-                    ),
-                  ),
-                ],
-              ),
-              // Heart in middle
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Column(
-                  children: [
-                    Container(
-                      width: 56,
-                      height: 56,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        gradient: RadialGradient(
-                          colors: [
-                            scoreColor.withAlpha(100),
-                            scoreColor.withAlpha(30),
-                          ],
-                        ),
-                        boxShadow: [
-                          BoxShadow(
-                            color: scoreColor.withAlpha(40),
-                            blurRadius: 12,
-                            spreadRadius: 2,
-                          ),
-                        ],
-                      ),
-                      child: Center(
-                        child: Text(
-                          '${data.overallScore}%',
-                          style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            color: scoreColor,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 2),
-                    Text(
-                      data.compatibilityLevel,
-                      style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                        color: scoreColor,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 10,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              // Person 2
-              Column(
-                children: [
-                  Container(
-                    width: 44,
-                    height: 44,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      gradient: RadialGradient(
-                        colors: [
-                          _partnerSign.color,
-                          _partnerSign.color.withAlpha(50),
-                        ],
-                      ),
-                    ),
-                    child: Center(
-                      child: Text(
-                        _partnerSign.symbol,
-                        style: const TextStyle(fontSize: 20),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    'Partner',
-                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                      color: AppColors.textSecondary,
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-          const SizedBox(height: AppConstants.spacingSm),
-          // Category scores - smaller
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              _ScoreCategorySmall(label: 'Duygusal', score: data.emotionalScore, color: Colors.pink),
-              _ScoreCategorySmall(label: 'Zihinsel', score: data.mentalScore, color: Colors.blue),
-              _ScoreCategorySmall(label: 'Fiziksel', score: data.physicalScore, color: Colors.red),
-              _ScoreCategorySmall(label: 'Ruhsal', score: data.spiritualScore, color: Colors.purple),
-            ],
-          ),
-        ],
-      ),
-    ).animate().fadeIn(delay: 200.ms, duration: 400.ms);
-  }
-
   // KOMPAKT VERSİYON - Daha az yer kaplayan uyumluluk göstergesi
   Widget _buildCompactCompatibilityScore(BuildContext context, SynastryData data) {
     final Color scoreColor = data.overallScore >= 70
@@ -518,7 +368,29 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen> with SingleTick
           icon: Icons.warning_amber,
           color: Colors.orange,
         ),
+        const SizedBox(height: AppConstants.spacingLg),
+
+        // Kadim Not - Sinastri bilgeliği
+        const KadimNotCard(
+          title: 'Ruhların Aynası',
+          content: 'Sinastri, iki ruhun kozmik dansını gösteren kadim bir sanat. Haritalar arasındaki açılar, yalnızca uyumu değil - birlikte öğrenilecek dersleri ve ruhsal büyümeyi de ortaya koyar. Her ilişki, evrenin bir okulu.',
+          category: KadimCategory.astrology,
+          source: 'İlişki Astrolojisi',
+        ),
         const SizedBox(height: AppConstants.spacingXl),
+
+        // Quiz CTA - Google Discover Funnel
+        QuizCTACard.astrology(compact: true),
+        const SizedBox(height: AppConstants.spacingXl),
+
+        // Next Blocks - keşfetmeye devam et
+        const NextBlocks(currentPage: 'synastry'),
+        const SizedBox(height: AppConstants.spacingXl),
+        // Disclaimer
+        const PageFooterWithDisclaimer(
+          brandText: 'Sinastri — Astrobobo',
+          disclaimerText: DisclaimerTexts.compatibility,
+        ),
       ],
     );
   }
@@ -1132,107 +1004,6 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen> with SingleTick
     if ((month == 12 && day >= 22) || (month == 1 && day <= 19)) return ZodiacSign.capricorn;
     if ((month == 1 && day >= 20) || (month == 2 && day <= 18)) return ZodiacSign.aquarius;
     return ZodiacSign.pisces;
-  }
-}
-
-class _ScoreCategory extends StatelessWidget {
-  final String label;
-  final int score;
-  final Color color;
-
-  const _ScoreCategory({
-    required this.label,
-    required this.score,
-    required this.color,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(
-          width: 40,
-          height: 40,
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              CircularProgressIndicator(
-                value: score / 100,
-                backgroundColor: Colors.white10,
-                valueColor: AlwaysStoppedAnimation(color),
-                strokeWidth: 3,
-              ),
-              Text(
-                '$score',
-                style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                  color: color,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(height: 4),
-        Text(
-          label,
-          style: Theme.of(context).textTheme.labelSmall?.copyWith(
-            color: AppColors.textMuted,
-            fontSize: 10,
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class _ScoreCategorySmall extends StatelessWidget {
-  final String label;
-  final int score;
-  final Color color;
-
-  const _ScoreCategorySmall({
-    required this.label,
-    required this.score,
-    required this.color,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(
-          width: 28,
-          height: 28,
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              CircularProgressIndicator(
-                value: score / 100,
-                backgroundColor: Colors.white10,
-                valueColor: AlwaysStoppedAnimation(color),
-                strokeWidth: 2,
-              ),
-              Text(
-                '$score',
-                style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                  color: color,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 9,
-                ),
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(height: 2),
-        Text(
-          label,
-          style: Theme.of(context).textTheme.labelSmall?.copyWith(
-            color: AppColors.textMuted,
-            fontSize: 8,
-          ),
-        ),
-      ],
-    );
   }
 }
 

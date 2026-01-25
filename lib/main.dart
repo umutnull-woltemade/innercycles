@@ -2,16 +2,40 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'core/theme/app_theme.dart';
 import 'shared/services/router_service.dart';
 import 'shared/widgets/interpretive_text.dart';
 import 'data/services/ad_service.dart';
 import 'data/services/storage_service.dart';
+import 'data/services/notification_service.dart';
+import 'data/services/admin_auth_service.dart';
+import 'data/services/admin_analytics_service.dart';
 import 'data/providers/app_providers.dart';
 import 'data/models/user_profile.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialize Firebase
+  await Firebase.initializeApp();
+
+  // Initialize Crashlytics (mobile only)
+  if (!kIsWeb) {
+    // Pass all uncaught Flutter errors to Crashlytics
+    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+
+    // Pass all uncaught async errors to Crashlytics
+    PlatformDispatcher.instance.onError = (error, stack) {
+      FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+      return true;
+    };
+
+    // Disable collection in debug mode
+    await FirebaseCrashlytics.instance
+        .setCrashlyticsCollectionEnabled(!kDebugMode);
+  }
 
   // Initialize glossary cache for fast term lookups
   GlossaryCache().initialize();
@@ -19,11 +43,20 @@ void main() async {
   // Initialize local storage
   await StorageService.initialize();
 
+  // Initialize admin services
+  await AdminAuthService.initialize();
+  await AdminAnalyticsService.initialize();
+
   // Load saved settings
   final savedLanguage = StorageService.loadLanguage();
   final savedThemeMode = StorageService.loadThemeMode();
   final savedOnboardingComplete = StorageService.loadOnboardingComplete();
   final savedProfile = StorageService.loadUserProfile();
+
+  // Initialize notifications (only on mobile platforms)
+  if (!kIsWeb) {
+    await NotificationService().initialize();
+  }
 
   // Initialize ads (only on mobile platforms)
   if (!kIsWeb) {

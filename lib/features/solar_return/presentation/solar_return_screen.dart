@@ -7,6 +7,8 @@ import '../../../core/theme/app_colors.dart';
 import '../../../data/models/zodiac_sign.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/next_blocks.dart';
+import '../../../shared/widgets/entertainment_disclaimer.dart';
 
 /// Solar Return Screen
 /// Shows the yearly forecast based on the Sun returning to its natal position
@@ -60,6 +62,15 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
                 _buildKeyDates(context),
                 const SizedBox(height: AppConstants.spacingXl),
                 _buildAdvice(context),
+                const SizedBox(height: AppConstants.spacingXxl),
+                // Next Blocks
+                const NextBlocks(currentPage: 'solar_return'),
+                const SizedBox(height: AppConstants.spacingXl),
+                // Entertainment Disclaimer
+                const PageFooterWithDisclaimer(
+                  brandText: 'Solar Return — Astrobobo',
+                  disclaimerText: DisclaimerTexts.astrology,
+                ),
               ],
             ),
           ),

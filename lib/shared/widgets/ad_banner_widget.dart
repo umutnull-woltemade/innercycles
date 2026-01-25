@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import '../../data/services/ad_service.dart';
+import '../../data/services/premium_service.dart';
 
 /// A widget that displays a banner ad
 /// Automatically handles loading, premium status, and web platform
@@ -67,7 +68,7 @@ class _AdBannerWidgetState extends ConsumerState<AdBannerWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final isPremium = ref.watch(isPremiumProvider);
+    final isPremium = ref.watch(isPremiumUserProvider);
 
     // Don't show ads on web or for premium users
     if (kIsWeb || isPremium || !_isAdLoaded || _bannerAd == null) {
