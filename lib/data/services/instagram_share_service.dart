@@ -8,18 +8,25 @@ import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-/// PART 5 & 6: Instagram Share Service
+// Web-specific imports (conditionally compiled)
+import 'web_download_stub.dart' if (dart.library.html) 'web_download_impl.dart';
+
+/// Instagram Share Service
 ///
 /// WHY INSTAGRAM SHARE FAILS:
 /// 1. Instagram has NO public API for direct posting
 /// 2. iOS restricts direct app-to-app sharing without user consent
 /// 3. Android intents require specific MIME types and content URIs
 /// 4. Web cannot trigger native Instagram app
-/// 5. Stories API requires Meta developer approval (not practical for most apps)
+/// 5. Stories API requires Meta developer approval
 ///
 /// SOLUTION:
 /// Use the native OS share sheet which includes Instagram when installed.
-/// This is the ONLY reliable cross-platform method.
+///
+/// WEB SOLUTION:
+/// 1. Try Web Share API first (modern browsers on HTTPS)
+/// 2. Fallback: Download image directly to user's device
+/// 3. User can then share on Instagram manually
 class InstagramShareService {
   /// Main share method - handles all platforms
   static Future<ShareResult> shareCosmicContent({
@@ -38,7 +45,12 @@ class InstagramShareService {
         );
       }
 
-      // 2. Save to temp file
+      // 2. Platform-specific share
+      if (kIsWeb) {
+        return await _shareOnWeb(imageBytes, shareText, hashtags);
+      }
+
+      // 3. For native platforms, save to temp file first
       final file = await _saveToTempFile(imageBytes);
       if (file == null) {
         return ShareResult(
@@ -48,10 +60,7 @@ class InstagramShareService {
         );
       }
 
-      // 3. Platform-specific share
-      if (kIsWeb) {
-        return await _shareOnWeb(file, shareText, hashtags);
-      } else if (Platform.isIOS) {
+      if (Platform.isIOS) {
         return await _shareOnIOS(file, shareText, hashtags);
       } else if (Platform.isAndroid) {
         return await _shareOnAndroid(file, shareText, hashtags);
@@ -84,8 +93,10 @@ class InstagramShareService {
     }
   }
 
-  /// Save bytes to temp file
+  /// Save bytes to temp file (native platforms only)
   static Future<File?> _saveToTempFile(Uint8List bytes) async {
+    if (kIsWeb) return null;
+
     try {
       final tempDir = await getTemporaryDirectory();
       final timestamp = DateTime.now().millisecondsSinceEpoch;
@@ -99,9 +110,6 @@ class InstagramShareService {
   }
 
   /// iOS Share Implementation
-  ///
-  /// Uses UIActivityViewController via share_plus
-  /// Instagram Stories option appears if Instagram is installed
   static Future<ShareResult> _shareOnIOS(
     File file,
     String shareText,
@@ -110,14 +118,12 @@ class InstagramShareService {
     try {
       final fullText = _buildShareText(shareText, hashtags);
 
-      // Use SharePlus which wraps UIActivityViewController
       final result = await Share.shareXFiles(
         [XFile(file.path)],
         text: fullText,
         subject: 'Kozmik Enerji',
       );
 
-      // Check result status
       if (result.status == ShareResultStatus.success) {
         return ShareResult(
           success: true,
@@ -150,9 +156,6 @@ class InstagramShareService {
   }
 
   /// Android Share Implementation
-  ///
-  /// Uses Intent.ACTION_SEND with proper MIME type
-  /// System share sheet shows Instagram if installed
   static Future<ShareResult> _shareOnAndroid(
     File file,
     String shareText,
@@ -161,7 +164,6 @@ class InstagramShareService {
     try {
       final fullText = _buildShareText(shareText, hashtags);
 
-      // share_plus handles Intent.ACTION_SEND correctly
       final result = await Share.shareXFiles(
         [XFile(file.path, mimeType: 'image/png')],
         text: fullText,
@@ -200,20 +202,28 @@ class InstagramShareService {
   }
 
   /// Web Share Implementation
-  ///
-  /// Web cannot directly share to Instagram
-  /// Fallback: Download image + copy text + show instructions
   static Future<ShareResult> _shareOnWeb(
-    File file,
+    Uint8List imageBytes,
     String shareText,
     String? hashtags,
   ) async {
     try {
-      // Try Web Share API first (Chrome, Safari, Edge support)
-      if (await _canUseWebShareApi()) {
+      final fullText = _buildShareText(shareText, hashtags);
+      final timestamp = DateTime.now().millisecondsSinceEpoch;
+      final fileName = 'astrobobo_cosmic_$timestamp.png';
+
+      // Try Web Share API with files first (modern browsers on HTTPS)
+      try {
+        final xFile = XFile.fromData(
+          imageBytes,
+          name: fileName,
+          mimeType: 'image/png',
+        );
+
         final result = await Share.shareXFiles(
-          [XFile(file.path)],
-          text: _buildShareText(shareText, hashtags),
+          [xFile],
+          text: fullText,
+          subject: 'Kozmik Enerji',
         );
 
         if (result.status == ShareResultStatus.success) {
@@ -222,23 +232,36 @@ class InstagramShareService {
             platform: SharePlatform.web,
             message: 'Paylaşıldı!',
           );
+        } else if (result.status == ShareResultStatus.dismissed) {
+          return ShareResult(
+            success: false,
+            error: ShareError.dismissed,
+            platform: SharePlatform.web,
+            message: 'Paylaşım iptal edildi',
+          );
         }
+      } catch (e) {
+        debugPrint('Web Share API failed, using download fallback: $e');
       }
 
-      // Fallback: Provide download and instructions
+      // Fallback: Download image directly using web-specific implementation
+      downloadImageOnWeb(imageBytes, fileName);
+
+      // Copy text to clipboard
+      await Clipboard.setData(ClipboardData(text: fullText));
+
       return ShareResult(
-        success: false,
-        error: ShareError.webFallback,
+        success: true,
         platform: SharePlatform.web,
-        message: 'Görseli indirip Instagram\'da paylaşabilirsin',
+        message: 'Görsel indirildi! Metin panoya kopyalandı.',
         fallbackData: ShareFallbackData(
-          downloadUrl: file.path,
-          copyText: _buildShareText(shareText, hashtags),
+          downloadUrl: '',
+          copyText: fullText,
           instructions: [
-            '1. Görseli indir',
-            '2. Instagram\'ı aç',
-            '3. Hikaye veya gönderi olarak paylaş',
-            '4. Metni yapıştır',
+            '1. Görsel indirildi ✓',
+            '2. Metin panoya kopyalandı ✓',
+            '3. Instagram\'ı aç',
+            '4. Hikaye olarak paylaş ve metni yapıştır',
           ],
         ),
       );
@@ -291,13 +314,7 @@ class InstagramShareService {
     return buffer.toString();
   }
 
-  /// Check if Web Share API is available
-  static Future<bool> _canUseWebShareApi() async {
-    // This is a simplified check - in production, use a proper JS interop
-    return kIsWeb;
-  }
-
-  /// Open Instagram app directly (for "Open in Instagram" button)
+  /// Open Instagram app directly
   static Future<bool> openInstagram() async {
     const instagramUrl = 'instagram://app';
     const webUrl = 'https://instagram.com';
@@ -307,7 +324,6 @@ class InstagramShareService {
       if (await canLaunchUrl(uri)) {
         return await launchUrl(uri);
       } else {
-        // Fallback to web
         return await launchUrl(Uri.parse(webUrl));
       }
     } catch (e) {
@@ -328,7 +344,7 @@ class InstagramShareService {
     }
   }
 
-  /// Copy text to clipboard (helper for web fallback)
+  /// Copy text to clipboard
   static Future<void> copyToClipboard(String text) async {
     await Clipboard.setData(ClipboardData(text: text));
   }

@@ -76,10 +76,11 @@ class _BeautifulCosmicBackground extends StatelessWidget {
 class _CosmicPainter extends CustomPainter {
   const _CosmicPainter();
 
-  // Sabit veriler - her zaman aynı
+  // Sabit veriler - çoğu zaman aynı
   static final List<_Star> _stars = _generateStars();
   static final List<_Nebula> _nebulas = _generateNebulas();
   static final List<_GlowOrb> _glowOrbs = _generateGlowOrbs();
+  static final List<_EsotericSymbol> _symbols = _generateEsotericSymbols();
 
   static List<_Star> _generateStars() {
     final random = math.Random(42);
@@ -178,6 +179,47 @@ class _CosmicPainter extends CustomPainter {
     ];
   }
 
+  // Ezoterik semboller - burç ve gezegen sembolleri
+  static List<_EsotericSymbol> _generateEsotericSymbols() {
+    final random = math.Random(99);
+    final symbols = <_EsotericSymbol>[];
+
+    // Burç sembolleri
+    const zodiacSymbols = ['♈', '♉', '♊', '♋', '♌', '♍', '♎', '♏', '♐', '♑', '♒', '♓'];
+    // Gezegen sembolleri
+    const planetSymbols = ['☉', '☽', '☿', '♀', '♂', '♃', '♄', '♅', '♆', '⚷'];
+    // Ezoterik semboller
+    const esotericSymbols = ['✧', '⚹', '△', '☆', '◇', '⬡', '⊛', '✦'];
+
+    // Pastel renkler
+    const pastelColors = [
+      Color(0xFFE6E6FA), // Lavanta
+      Color(0xFFFFB6C1), // Pembe
+      Color(0xFFADD8E6), // Açık mavi
+      Color(0xFFFFE4B5), // Sıcak sarı
+      Color(0xFFB0E0E6), // Turkuaz
+      Color(0xFFDDA0DD), // Mor
+      Color(0xFF98FB98), // Yeşil
+      Color(0xFFF0E68C), // Altın
+    ];
+
+    final allSymbols = [...zodiacSymbols, ...planetSymbols, ...esotericSymbols];
+
+    // 25-30 sembol ekle - dağınık ve soluk
+    for (int i = 0; i < 28; i++) {
+      symbols.add(_EsotericSymbol(
+        x: random.nextDouble(),
+        y: random.nextDouble(),
+        symbol: allSymbols[random.nextInt(allSymbols.length)],
+        size: 14 + random.nextDouble() * 20, // 14-34 arası boyut
+        opacity: 0.04 + random.nextDouble() * 0.08, // Soluk: 0.04-0.12
+        rotation: random.nextDouble() * math.pi * 2,
+        color: pastelColors[random.nextInt(pastelColors.length)],
+      ));
+    }
+    return symbols;
+  }
+
   @override
   void paint(Canvas canvas, Size size) {
     // 1. Derin uzay gradient arka planı
@@ -189,7 +231,10 @@ class _CosmicPainter extends CustomPainter {
     // 3. Parlak ışık küreleri
     _drawGlowOrbs(canvas, size);
 
-    // 4. Yıldızlar
+    // 4. Ezoterik semboller (burç, gezegen)
+    _drawEsotericSymbols(canvas, size);
+
+    // 5. Yıldızlar
     _drawStars(canvas, size);
   }
 
@@ -292,6 +337,34 @@ class _CosmicPainter extends CustomPainter {
     }
   }
 
+  void _drawEsotericSymbols(Canvas canvas, Size size) {
+    for (final symbol in _symbols) {
+      final center = Offset(symbol.x * size.width, symbol.y * size.height);
+
+      canvas.save();
+      canvas.translate(center.dx, center.dy);
+      canvas.rotate(symbol.rotation);
+
+      final textPainter = TextPainter(
+        text: TextSpan(
+          text: symbol.symbol,
+          style: TextStyle(
+            fontSize: symbol.size,
+            color: symbol.color.withOpacity(symbol.opacity),
+          ),
+        ),
+        textDirection: TextDirection.ltr,
+      );
+      textPainter.layout();
+      textPainter.paint(
+        canvas,
+        Offset(-textPainter.width / 2, -textPainter.height / 2),
+      );
+
+      canvas.restore();
+    }
+  }
+
   @override
   bool shouldRepaint(covariant _CosmicPainter oldDelegate) => false;
 }
@@ -349,6 +422,26 @@ class _GlowOrb {
     required this.size,
     required this.color,
     required this.opacity,
+  });
+}
+
+class _EsotericSymbol {
+  final double x;
+  final double y;
+  final String symbol;
+  final double size;
+  final double opacity;
+  final double rotation;
+  final Color color;
+
+  const _EsotericSymbol({
+    required this.x,
+    required this.y,
+    required this.symbol,
+    required this.size,
+    required this.opacity,
+    required this.rotation,
+    this.color = const Color(0xFFE6E6FA), // Lavanta - varsayılan
   });
 }
 
