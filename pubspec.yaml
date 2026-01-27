@@ -51,7 +51,6 @@ dependencies:
   in_app_review: ^2.0.10
 
   # Auth
-  supabase_flutter: ^2.8.3
   google_sign_in: ^6.2.2
 
   # Analytics & Crashlytics
