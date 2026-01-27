@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
@@ -12,8 +13,6 @@ import '../../../data/models/user_profile.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/cities/world_cities.dart';
 import '../../../data/services/storage_service.dart';
-import '../../../data/services/supabase_auth_service.dart';
-import '../../../data/services/google_auth_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/birth_date_picker.dart';
@@ -200,6 +199,9 @@ class _WelcomePageState extends State<_WelcomePage> {
   bool _isLoading = false;
   String? _errorMessage;
 
+  static const String _supabaseRef = 'riadutygfuzufzzsvxqh';
+  static const String _redirectUrl = 'https://astrobobo.com/%23/onboarding';
+
   Future<void> _signInWithGoogle() async {
     setState(() {
       _isLoading = true;
@@ -207,20 +209,20 @@ class _WelcomePageState extends State<_WelcomePage> {
     });
 
     try {
-      if (kIsWeb) {
-        // On web, use Supabase OAuth which redirects
-        await SupabaseAuthService.signInWithGoogle();
+      final authUrl = Uri.parse(
+        'https://$_supabaseRef.supabase.co/auth/v1/authorize'
+        '?provider=google'
+        '&redirect_to=$_redirectUrl'
+      );
+
+      if (await canLaunchUrl(authUrl)) {
+        await launchUrl(authUrl, mode: LaunchMode.inAppBrowserView);
       } else {
-        // On mobile, use native Google Sign In
-        final userInfo = await GoogleAuthService.signInWithGoogle();
-        if (userInfo != null) {
-          // Continue to next page with user info
-          widget.onContinue();
-        }
+        throw Exception('Could not launch Google Sign In');
       }
     } catch (e) {
       setState(() {
-        _errorMessage = 'Google bağlantısı kurulamadı: $e';
+        _errorMessage = 'Google bağlantısı kurulamadı';
       });
     } finally {
       if (mounted) {
@@ -236,16 +238,20 @@ class _WelcomePageState extends State<_WelcomePage> {
     });
 
     try {
-      if (kIsWeb) {
-        // On web, use Supabase OAuth which redirects
-        await SupabaseAuthService.signInWithApple();
+      final authUrl = Uri.parse(
+        'https://$_supabaseRef.supabase.co/auth/v1/authorize'
+        '?provider=apple'
+        '&redirect_to=$_redirectUrl'
+      );
+
+      if (await canLaunchUrl(authUrl)) {
+        await launchUrl(authUrl, mode: LaunchMode.inAppBrowserView);
       } else {
-        // On mobile, native Apple Sign In would be here
-        throw UnimplementedError('Apple Sign In henüz mobile için hazır değil');
+        throw Exception('Could not launch Apple Sign In');
       }
     } catch (e) {
       setState(() {
-        _errorMessage = 'Apple bağlantısı kurulamadı: $e';
+        _errorMessage = 'Apple bağlantısı kurulamadı';
       });
     } finally {
       if (mounted) {
@@ -309,13 +315,13 @@ class _WelcomePageState extends State<_WelcomePage> {
           ).animate().fadeIn(delay: 300.ms, duration: 600.ms),
           const SizedBox(height: AppConstants.spacingXl),
 
-          // OAuth Buttons (Web only for now)
+          // OAuth Buttons (Web only)
           if (kIsWeb) ...[
             // Google Sign In Button
             _OAuthButton(
               label: 'Google ile devam et',
               icon: 'G',
-              iconColor: null, // Google multicolor
+              iconColor: null,
               backgroundColor: Colors.white,
               textColor: Colors.black87,
               onPressed: _isLoading ? null : _signInWithGoogle,
@@ -402,18 +408,18 @@ class _OAuthButton extends StatelessWidget {
   const _OAuthButton({
     required this.label,
     required this.icon,
-    required this.iconColor,
+    this.iconColor,
     required this.backgroundColor,
     required this.textColor,
     this.borderColor,
-    required this.onPressed,
+    this.onPressed,
   });
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: 56,
+      height: 52,
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
@@ -421,17 +427,18 @@ class _OAuthButton extends StatelessWidget {
           foregroundColor: textColor,
           elevation: 0,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(28),
+            borderRadius: BorderRadius.circular(12),
             side: borderColor != null
-                ? BorderSide(color: borderColor!)
+                ? BorderSide(color: borderColor!, width: 1.5)
                 : BorderSide.none,
           ),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            if (icon == 'G') ...[
-              // Google logo (simplified)
+            if (icon == '') // Apple icon
+              Icon(Icons.apple, color: iconColor, size: 24)
+            else if (icon == 'G') // Google icon
               Container(
                 width: 24,
                 height: 24,
@@ -439,23 +446,19 @@ class _OAuthButton extends StatelessWidget {
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(4),
                 ),
-                child: const Center(
+                child: Center(
                   child: Text(
                     'G',
                     style: TextStyle(
-                      color: Color(0xFF4285F4),
-                      fontSize: 18,
+                      color: Colors.red,
                       fontWeight: FontWeight.bold,
+                      fontSize: 16,
                     ),
                   ),
                 ),
-              ),
-            ] else if (icon == '') ...[
-              // Apple logo
-              Icon(Icons.apple, color: iconColor, size: 24),
-            ] else ...[
+              )
+            else
               Text(icon, style: TextStyle(fontSize: 20, color: iconColor)),
-            ],
             const SizedBox(width: 12),
             Text(
               label,

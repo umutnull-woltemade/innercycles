@@ -12,7 +12,6 @@ import 'data/services/storage_service.dart';
 import 'data/services/notification_service.dart';
 import 'data/services/admin_auth_service.dart';
 import 'data/services/admin_analytics_service.dart';
-import 'data/services/supabase_auth_service.dart';
 import 'data/providers/app_providers.dart';
 import 'data/models/user_profile.dart';
 
@@ -47,9 +46,6 @@ void main() async {
   // Initialize admin services
   await AdminAuthService.initialize();
   await AdminAnalyticsService.initialize();
-
-  // Initialize Supabase Auth (for Apple/Google OAuth on web)
-  await SupabaseAuthService.initialize();
 
   // Load saved settings
   final savedLanguage = StorageService.loadLanguage();
