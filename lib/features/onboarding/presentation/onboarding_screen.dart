@@ -1,8 +1,10 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
@@ -189,6 +191,32 @@ class _WelcomePage extends StatelessWidget {
 
   const _WelcomePage({required this.onContinue});
 
+  // Supabase OAuth URL'leri
+  static const String _supabaseRef = 'riadutygfuzufzzsvxqh';
+  static const String _redirectUrl = 'https://astrobobo.com/%23/onboarding';
+
+  Future<void> _signInWithGoogle(BuildContext context) async {
+    final authUrl = Uri.parse(
+      'https://$_supabaseRef.supabase.co/auth/v1/authorize'
+      '?provider=google'
+      '&redirect_to=$_redirectUrl',
+    );
+    if (await canLaunchUrl(authUrl)) {
+      await launchUrl(authUrl, mode: LaunchMode.externalApplication);
+    }
+  }
+
+  Future<void> _signInWithApple(BuildContext context) async {
+    final authUrl = Uri.parse(
+      'https://$_supabaseRef.supabase.co/auth/v1/authorize'
+      '?provider=apple'
+      '&redirect_to=$_redirectUrl',
+    );
+    if (await canLaunchUrl(authUrl)) {
+      await launchUrl(authUrl, mode: LaunchMode.externalApplication);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -230,7 +258,70 @@ class _WelcomePage extends StatelessWidget {
                 ),
             textAlign: TextAlign.center,
           ).animate().fadeIn(delay: 600.ms, duration: 600.ms),
+          // OAuth Buttons for Web
+          if (kIsWeb) ...[
+            const SizedBox(height: AppConstants.spacingXl),
+            _OAuthButton(
+              label: 'Google ile Giriş',
+              icon: Icons.g_mobiledata,
+              backgroundColor: Colors.white,
+              textColor: Colors.black87,
+              onPressed: () => _signInWithGoogle(context),
+            ).animate().fadeIn(delay: 800.ms, duration: 400.ms),
+            const SizedBox(height: AppConstants.spacingMd),
+            _OAuthButton(
+              label: 'Apple ile Giriş',
+              icon: Icons.apple,
+              backgroundColor: Colors.black,
+              textColor: Colors.white,
+              onPressed: () => _signInWithApple(context),
+            ).animate().fadeIn(delay: 900.ms, duration: 400.ms),
+          ],
         ],
+      ),
+    );
+  }
+}
+
+class _OAuthButton extends StatelessWidget {
+  final String label;
+  final IconData icon;
+  final Color backgroundColor;
+  final Color textColor;
+  final VoidCallback onPressed;
+
+  const _OAuthButton({
+    required this.label,
+    required this.icon,
+    required this.backgroundColor,
+    required this.textColor,
+    required this.onPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      height: 50,
+      child: ElevatedButton.icon(
+        onPressed: onPressed,
+        icon: Icon(icon, color: textColor, size: 24),
+        label: Text(
+          label,
+          style: TextStyle(
+            color: textColor,
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: backgroundColor,
+          foregroundColor: textColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          elevation: 2,
+        ),
       ),
     );
   }
