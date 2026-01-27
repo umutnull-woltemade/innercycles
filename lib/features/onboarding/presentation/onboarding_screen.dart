@@ -1,10 +1,11 @@
-import 'package:flutter/foundation.dart';
+import 'package:flutter/foundation.dart' show debugPrint;
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
@@ -13,6 +14,7 @@ import '../../../data/models/user_profile.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/cities/world_cities.dart';
 import '../../../data/services/storage_service.dart';
+import '../../../data/services/auth_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/birth_date_picker.dart';
@@ -186,144 +188,493 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   }
 }
 
-class _WelcomePage extends StatelessWidget {
+class _WelcomePage extends StatefulWidget {
   final VoidCallback onContinue;
 
   const _WelcomePage({required this.onContinue});
 
-  // Supabase OAuth URL'leri
-  static const String _supabaseRef = 'riadutygfuzufzzsvxqh';
-  static const String _redirectUrl = 'https://astrobobo.com/%23/onboarding';
-
-  Future<void> _signInWithGoogle(BuildContext context) async {
-    final authUrl = Uri.parse(
-      'https://$_supabaseRef.supabase.co/auth/v1/authorize'
-      '?provider=google'
-      '&redirect_to=$_redirectUrl',
-    );
-    if (await canLaunchUrl(authUrl)) {
-      await launchUrl(authUrl, mode: LaunchMode.externalApplication);
-    }
-  }
-
-  Future<void> _signInWithApple(BuildContext context) async {
-    final authUrl = Uri.parse(
-      'https://$_supabaseRef.supabase.co/auth/v1/authorize'
-      '?provider=apple'
-      '&redirect_to=$_redirectUrl',
-    );
-    if (await canLaunchUrl(authUrl)) {
-      await launchUrl(authUrl, mode: LaunchMode.externalApplication);
-    }
-  }
-
   @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(AppConstants.spacingXl),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Text(
-            '✨',
-            style: TextStyle(fontSize: 40),
-          )
-              .animate(onPlay: (c) => c.repeat())
-              .shimmer(duration: 2.seconds, color: AppColors.starGold),
-          const SizedBox(height: AppConstants.spacingLg),
-          Text(
-            AppConstants.appName,
-            style: Theme.of(context).textTheme.displayLarge?.copyWith(
-                  color: AppColors.starGold,
-                  fontSize: 52,
-                  fontWeight: FontWeight.bold,
-                ),
-          ).animate().fadeIn(duration: 600.ms).slideY(begin: 0.3),
-          const SizedBox(height: AppConstants.spacingMd),
-          Text(
-            AppConstants.appTagline,
-            style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  color: AppColors.textSecondary,
-                  fontSize: 18,
-                ),
-            textAlign: TextAlign.center,
-          ).animate().fadeIn(delay: 300.ms, duration: 600.ms),
-          const SizedBox(height: AppConstants.spacingHuge),
-          Text(
-            'Evrenin sana fısıldadığı sırları dinle.\nDoğduğun an gökyüzü senin için\nbir harita çizdi, onu keşfet.',
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: AppColors.textSecondary,
-                  fontSize: 16,
-                  height: 1.8,
-                ),
-            textAlign: TextAlign.center,
-          ).animate().fadeIn(delay: 600.ms, duration: 600.ms),
-          // OAuth Buttons for Web
-          if (kIsWeb) ...[
-            const SizedBox(height: AppConstants.spacingXl),
-            _OAuthButton(
-              label: 'Google ile Giriş',
-              icon: Icons.g_mobiledata,
-              backgroundColor: Colors.white,
-              textColor: Colors.black87,
-              onPressed: () => _signInWithGoogle(context),
-            ).animate().fadeIn(delay: 800.ms, duration: 400.ms),
-            const SizedBox(height: AppConstants.spacingMd),
-            _OAuthButton(
-              label: 'Apple ile Giriş',
-              icon: Icons.apple,
-              backgroundColor: Colors.black,
-              textColor: Colors.white,
-              onPressed: () => _signInWithApple(context),
-            ).animate().fadeIn(delay: 900.ms, duration: 400.ms),
-          ],
-        ],
-      ),
-    );
-  }
+  State<_WelcomePage> createState() => _WelcomePageState();
 }
 
-class _OAuthButton extends StatelessWidget {
-  final String label;
-  final IconData icon;
-  final Color backgroundColor;
-  final Color textColor;
-  final VoidCallback onPressed;
+class _WelcomePageState extends State<_WelcomePage> with SingleTickerProviderStateMixin {
+  bool _isAppleLoading = false;
+  late AnimationController _glowController;
+  late final Stream<AuthState> _authStateStream;
 
-  const _OAuthButton({
-    required this.label,
-    required this.icon,
-    required this.backgroundColor,
-    required this.textColor,
-    required this.onPressed,
-  });
+  @override
+  void initState() {
+    super.initState();
+    _glowController = AnimationController(
+      duration: const Duration(seconds: 3),
+      vsync: this,
+    )..repeat(reverse: true);
+
+    // OAuth callback'lerini dinle (web'de sayfa yeniden yüklendiğinde)
+    _authStateStream = AuthService.authStateChanges;
+    _authStateStream.listen((state) {
+      debugPrint('🔐 Auth state changed: ${state.event}');
+      if (state.event == AuthChangeEvent.signedIn && state.session != null) {
+        debugPrint('🔐 User signed in via OAuth callback!');
+        _handleOAuthSuccess(state.session!.user);
+      }
+    });
+
+    // Sayfa yüklendiğinde zaten oturum açık mı kontrol et
+    final currentUser = AuthService.currentUser;
+    if (currentUser != null) {
+      debugPrint('🔐 User already signed in: ${currentUser.email}');
+      // Biraz bekle ki UI hazır olsun
+      Future.delayed(const Duration(milliseconds: 500), () {
+        if (mounted) {
+          _handleOAuthSuccess(currentUser);
+        }
+      });
+    }
+  }
+
+  void _handleOAuthSuccess(User user) {
+    if (!mounted) return;
+
+    final displayName = user.userMetadata?['full_name'] as String? ??
+        user.userMetadata?['name'] as String? ??
+        user.email?.split('@').first ??
+        'kozmik yolcu';
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Row(
+          children: [
+            const Icon(Icons.check_circle, color: Colors.white, size: 20),
+            const SizedBox(width: 8),
+            Text('Hoş geldin $displayName!'),
+          ],
+        ),
+        backgroundColor: AppColors.success,
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      ),
+    );
+
+    // Devam et
+    widget.onContinue();
+  }
+
+  @override
+  void dispose() {
+    _glowController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      height: 50,
-      child: ElevatedButton.icon(
-        onPressed: onPressed,
-        icon: Icon(icon, color: textColor, size: 24),
-        label: Text(
-          label,
-          style: TextStyle(
-            color: textColor,
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        style: ElevatedButton.styleFrom(
-          backgroundColor: backgroundColor,
-          foregroundColor: textColor,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
-          elevation: 2,
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const SizedBox(height: 40),
+            // ══════════════════════════════════════════════════════
+            // ANIMATED LOGO with cosmic glow
+            // ══════════════════════════════════════════════════════
+            _buildAnimatedLogo(),
+            const SizedBox(height: 24),
+
+            // App name with gradient
+            ShaderMask(
+              shaderCallback: (bounds) => const LinearGradient(
+                colors: [
+                  Color(0xFFFFD700),
+                  Color(0xFFFF6B9D),
+                  Color(0xFF9B59B6),
+                  Color(0xFF667EEA),
+                ],
+              ).createShader(bounds),
+              child: Text(
+                'AstroBoBo',
+                style: Theme.of(context).textTheme.displayLarge?.copyWith(
+                      color: Colors.white,
+                      fontSize: 48,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 2,
+                    ),
+              ),
+            ).animate().fadeIn(duration: 800.ms).slideY(begin: 0.2),
+
+            const SizedBox(height: 8),
+
+            // Tagline
+            Text(
+              'Kozmik Yolculuğuna Başla',
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    color: AppColors.textSecondary,
+                    fontSize: 16,
+                    letterSpacing: 1,
+                  ),
+              textAlign: TextAlign.center,
+            ).animate().fadeIn(delay: 400.ms, duration: 600.ms),
+
+            const SizedBox(height: 48),
+
+            // ══════════════════════════════════════════════════════
+            // SIGN-IN BUTTONS - Premium Design
+            // ══════════════════════════════════════════════════════
+
+            // Apple Sign-In Button
+            _buildAppleSignInButton(),
+
+            const SizedBox(height: 24),
+
+            // Divider with text
+            _buildDivider(),
+
+            const SizedBox(height: 24),
+
+            // Guest continue button
+            _buildGuestButton(),
+
+            const SizedBox(height: 32),
+
+            // Features preview
+            _buildFeaturesPreview(),
+
+            const SizedBox(height: 24),
+
+            // Terms text
+            Text(
+              'Devam ederek Kullanım Şartlarını kabul etmiş olursunuz',
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: AppColors.textMuted.withAlpha(150),
+                    fontSize: 14,
+                  ),
+              textAlign: TextAlign.center,
+            ).animate().fadeIn(delay: 1200.ms),
+
+            const SizedBox(height: 20),
+          ],
         ),
       ),
     );
+  }
+
+  Widget _buildAnimatedLogo() {
+    return AnimatedBuilder(
+      animation: _glowController,
+      builder: (context, child) {
+        return Container(
+          width: 160,
+          height: 160,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            boxShadow: [
+              BoxShadow(
+                color: const Color(0xFF667EEA).withAlpha((100 * _glowController.value).toInt() + 50),
+                blurRadius: 40 + (20 * _glowController.value),
+                spreadRadius: 10 + (10 * _glowController.value),
+              ),
+              BoxShadow(
+                color: const Color(0xFF9B59B6).withAlpha((80 * _glowController.value).toInt() + 30),
+                blurRadius: 60 + (30 * _glowController.value),
+                spreadRadius: 5,
+              ),
+              BoxShadow(
+                color: const Color(0xFFFFD700).withAlpha((60 * _glowController.value).toInt() + 20),
+                blurRadius: 80,
+                spreadRadius: 0,
+              ),
+            ],
+          ),
+          child: child,
+        );
+      },
+      child: ClipOval(
+        child: Image.asset(
+          'assets/images/app_icon.png',
+          width: 160,
+          height: 160,
+          fit: BoxFit.cover,
+          errorBuilder: (context, error, stackTrace) {
+            // Fallback if image doesn't exist
+            return Container(
+              width: 160,
+              height: 160,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                gradient: const LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    Color(0xFF667EEA),
+                    Color(0xFF9B59B6),
+                    Color(0xFFFF6B9D),
+                  ],
+                ),
+              ),
+              child: const Center(
+                child: Text('🐱', style: TextStyle(fontSize: 80)),
+              ),
+            );
+          },
+        ),
+      ),
+    ).animate()
+      .fadeIn(duration: 1000.ms)
+      .scale(begin: const Offset(0.8, 0.8), curve: Curves.elasticOut, duration: 1200.ms);
+  }
+
+  Widget _buildAppleSignInButton() {
+    return GestureDetector(
+      onTap: _isAppleLoading ? null : _handleAppleSignIn,
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.symmetric(vertical: 16),
+        decoration: BoxDecoration(
+          color: Colors.black,
+          borderRadius: BorderRadius.circular(16),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withAlpha(50),
+              blurRadius: 20,
+              offset: const Offset(0, 8),
+            ),
+          ],
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            if (_isAppleLoading)
+              const SizedBox(
+                width: 24,
+                height: 24,
+                child: CircularProgressIndicator(
+                  strokeWidth: 2.5,
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                ),
+              )
+            else
+              const Icon(
+                Icons.apple,
+                color: Colors.white,
+                size: 28,
+              ),
+            const SizedBox(width: 14),
+            Text(
+              _isAppleLoading ? 'Bağlanıyor...' : 'Apple ile devam et',
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                letterSpacing: 0.3,
+              ),
+            ),
+          ],
+        ),
+      ),
+    ).animate().fadeIn(delay: 700.ms, duration: 500.ms).slideY(begin: 0.3);
+  }
+
+  Widget _buildDivider() {
+    return Row(
+      children: [
+        Expanded(
+          child: Container(
+            height: 1,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Colors.transparent,
+                  AppColors.textMuted.withAlpha(100),
+                ],
+              ),
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Text(
+            'veya',
+            style: TextStyle(
+              color: AppColors.textMuted,
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ),
+        Expanded(
+          child: Container(
+            height: 1,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  AppColors.textMuted.withAlpha(100),
+                  Colors.transparent,
+                ],
+              ),
+            ),
+          ),
+        ),
+      ],
+    ).animate().fadeIn(delay: 800.ms, duration: 400.ms);
+  }
+
+  Widget _buildGuestButton() {
+    return GestureDetector(
+      onTap: widget.onContinue,
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.symmetric(vertical: 16),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              const Color(0xFF667EEA).withAlpha(40),
+              const Color(0xFF9B59B6).withAlpha(40),
+            ],
+          ),
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(
+            color: const Color(0xFF667EEA).withAlpha(100),
+            width: 1.5,
+          ),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ShaderMask(
+              shaderCallback: (bounds) => const LinearGradient(
+                colors: [Color(0xFF667EEA), Color(0xFF9B59B6)],
+              ).createShader(bounds),
+              child: const Icon(
+                Icons.auto_awesome,
+                color: Colors.white,
+                size: 22,
+              ),
+            ),
+            const SizedBox(width: 12),
+            ShaderMask(
+              shaderCallback: (bounds) => const LinearGradient(
+                colors: [Color(0xFF667EEA), Color(0xFF9B59B6)],
+              ).createShader(bounds),
+              child: const Text(
+                'Hemen Keşfetmeye Başla',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  letterSpacing: 0.3,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    ).animate().fadeIn(delay: 900.ms, duration: 500.ms).slideY(begin: 0.2);
+  }
+
+  Widget _buildFeaturesPreview() {
+    final features = [
+      {'icon': '🌙', 'text': 'Doğum Haritası'},
+      {'icon': '✨', 'text': 'Günlük Yorum'},
+      {'icon': '🔮', 'text': 'Tarot'},
+      {'icon': '💫', 'text': 'Numeroloji'},
+    ];
+
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: features.asMap().entries.map((entry) {
+        final index = entry.key;
+        final feature = entry.value;
+
+        return Column(
+          children: [
+            Container(
+              width: 50,
+              height: 50,
+              decoration: BoxDecoration(
+                color: AppColors.surfaceLight.withAlpha(50),
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(
+                  color: const Color(0xFF667EEA).withAlpha(50),
+                ),
+              ),
+              child: Center(
+                child: Text(
+                  feature['icon']!,
+                  style: const TextStyle(fontSize: 24),
+                ),
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              feature['text']!,
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: AppColors.textMuted,
+                    fontSize: 14,
+                  ),
+            ),
+          ],
+        ).animate().fadeIn(delay: (1000 + index * 100).ms, duration: 400.ms).slideY(begin: 0.3);
+      }).toList(),
+    );
+  }
+
+  Future<void> _handleAppleSignIn() async {
+    setState(() => _isAppleLoading = true);
+
+    try {
+      // Import and use AuthService for Apple Sign-In
+      final userInfo = await AuthService.signInWithApple();
+
+      if (!mounted) return;
+
+      if (userInfo != null) {
+        // Success - continue to next page
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Row(
+              children: [
+                const Icon(Icons.check_circle, color: Colors.white, size: 20),
+                const SizedBox(width: 8),
+                Text('Hoş geldin ${userInfo.displayName ?? 'kozmik yolcu'}!'),
+              ],
+            ),
+            backgroundColor: AppColors.success,
+            behavior: SnackBarBehavior.floating,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          ),
+        );
+        widget.onContinue();
+      }
+      // userInfo null ise web'de OAuth redirect olacak
+      // authStateChanges listener basarili girisi yakalayacak
+      // Loading state'i devam etsin ta ki redirect olana kadar
+    } catch (e) {
+      if (!mounted) return;
+      final errorStr = e.toString();
+
+      // Web'de JS interop hatalarini gosterme - OAuth devam ediyor olabilir
+      if (errorStr.contains('TypeError') ||
+          errorStr.contains('JSObject') ||
+          errorStr.contains('minified')) {
+        debugPrint('🍎 JS interop hatasi yakalandi - OAuth redirect bekleniyor');
+        // Loading state'i devam etsin
+        return;
+      }
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Apple bağlantısı kurulamadı: $e'),
+          backgroundColor: AppColors.error,
+          behavior: SnackBarBehavior.floating,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        ),
+      );
+      setState(() => _isAppleLoading = false);
+    }
+    // finally bloğunu kaldırdık - loading state'i sadece hata durumunda kapatılıyor
+    // başarılı OAuth'da redirect olacağı için loading devam etmeli
   }
 }
 
@@ -359,9 +710,10 @@ class _BirthDataPage extends StatelessWidget {
         children: [
           const SizedBox(height: 10),
           Center(
-            child: const Text(
-              '🌟',
-              style: TextStyle(fontSize: 32),
+            child: SvgPicture.asset(
+              'assets/images/logo_cat.svg',
+              width: 50,
+              height: 50,
             ),
           ),
           const SizedBox(height: AppConstants.spacingMd),
@@ -375,17 +727,7 @@ class _BirthDataPage extends StatelessWidget {
               textAlign: TextAlign.center,
             ).animate().fadeIn(duration: 400.ms),
           ),
-          const SizedBox(height: AppConstants.spacingSm),
-          Center(
-            child: Text(
-              'Evrenle bağlantını kurmak için bilgilerini gir',
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: AppColors.textSecondary,
-                  ),
-              textAlign: TextAlign.center,
-            ).animate().fadeIn(delay: 200.ms, duration: 400.ms),
-          ),
-          const SizedBox(height: AppConstants.spacingXl),
+          const SizedBox(height: AppConstants.spacingLg),
 
           // Name input
           _buildSectionTitle(context, 'İsim *'),
@@ -839,7 +1181,7 @@ class _BirthPlacePickerState extends State<_BirthPlacePicker> {
                     },
                     style: TextStyle(color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary),
                     decoration: InputDecoration(
-                      hintText: 'Şehir veya ülke ara...',
+                      hintText: 'Şehir veya ülke ara. . .',
                       hintStyle: TextStyle(color: isDark ? AppColors.textMuted : AppColors.lightTextMuted),
                       prefixIcon:
                           Icon(Icons.search, color: isDark ? AppColors.textMuted : AppColors.lightTextMuted),
@@ -897,7 +1239,7 @@ class _BirthPlacePickerState extends State<_BirthPlacePicker> {
                                 : city.country,
                             style: TextStyle(
                               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-                              fontSize: 12,
+                              fontSize: 14,
                             ),
                           ),
                           trailing: isSelected
@@ -1032,14 +1374,14 @@ class _YourSignPage extends StatelessWidget {
 
           const SizedBox(height: 16),
 
-          // Alt bölüm - Sol: Doğum bilgileri, Sağ: Çözümlenecekler
+          // Alt bölüm - Üst: Doğum bilgileri, Alt: Çözümlenecekler (dikey yerleşim)
           Expanded(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Sol - Doğum Bilgileri
-                Expanded(
-                  child: Container(
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  // Üst - Doğum Bilgileri
+                  Container(
                     padding: const EdgeInsets.all(14),
                     decoration: BoxDecoration(
                       color: AppColors.surfaceLight.withAlpha(50),
@@ -1077,19 +1419,27 @@ class _YourSignPage extends StatelessWidget {
                           _buildCompactDataRow(context, '📍', 'Yer', birthPlace!),
                       ],
                     ),
-                  ).animate().fadeIn(delay: 300.ms, duration: 400.ms).slideX(begin: -0.2),
-                ),
+                  ).animate().fadeIn(delay: 300.ms, duration: 400.ms).slideY(begin: -0.2),
 
-                const SizedBox(width: 12),
+                  const SizedBox(height: 12),
 
-                // Sağ - Çözümlenecekler
-                Expanded(
-                  child: Container(
+                  // Alt - Çözümlenecekler - Pastel gradient
+                  Container(
                     padding: const EdgeInsets.all(14),
                     decoration: BoxDecoration(
-                      gradient: AppColors.cardGradient,
+                      gradient: const LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [
+                          Color(0xFF2D2040), // Koyu mor
+                          Color(0xFF1A2540), // Koyu mavi
+                          Color(0xFF1F3040), // Koyu turkuaz
+                        ],
+                      ),
                       borderRadius: BorderRadius.circular(16),
-                      border: Border.all(color: AppColors.starGold.withAlpha(60)),
+                      border: Border.all(
+                        color: const Color(0xFFE6E6FA).withAlpha(40), // Pastel lavanta border
+                      ),
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -1097,33 +1447,43 @@ class _YourSignPage extends StatelessWidget {
                       children: [
                         Row(
                           children: [
-                            Icon(Icons.auto_awesome, color: AppColors.starGold, size: 20),
+                            const Text('✦', style: TextStyle(fontSize: 18)),
                             const SizedBox(width: 8),
                             Flexible(
                               child: Text(
                                 'Çözümlenecekler',
                                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                                      color: AppColors.starGold,
+                                      color: const Color(0xFFE6E6FA), // Pastel lavanta
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 16,
+                                      fontSize: 15,
                                     ),
                                 overflow: TextOverflow.ellipsis,
                               ),
                             ),
                           ],
                         ),
-                        const SizedBox(height: 12),
-                        _buildCompactFeatureRow(context, '🪐', '10 Gezegen', true),
-                        _buildCompactFeatureRow(context, '📐', 'Gezegen Açıları', true),
-                        _buildCompactFeatureRow(context, '🏠', '12 Ev Sistemi', selectedTime != null && birthPlace != null),
-                        _buildCompactFeatureRow(context, '⬆️', 'Yükselen Burç', selectedTime != null && birthPlace != null),
-                        _buildCompactFeatureRow(context, '🧠', 'Psikolojik Profil', true),
-                        _buildCompactFeatureRow(context, '🔢', 'Numeroloji', true),
+                        const SizedBox(height: 10),
+                        // Feature list (no longer scrollable, uses wrap)
+                        Wrap(
+                          spacing: 8,
+                          runSpacing: 4,
+                          children: [
+                            _buildPastelFeatureRow(context, '♄', '10 Gezegen', const Color(0xFFFFB347), true),
+                            _buildPastelFeatureRow(context, '△', 'Gezegen Açıları', const Color(0xFF87CEEB), true),
+                            _buildPastelFeatureRow(context, '□', '12 Ev Sistemi', const Color(0xFFDDA0DD), selectedTime != null && birthPlace != null),
+                            _buildPastelFeatureRow(context, '↑', 'Yükselen Burç', const Color(0xFF98FB98), selectedTime != null && birthPlace != null),
+                            _buildPastelFeatureRow(context, '☽', 'Ay Düğümleri', const Color(0xFFE6E6FA), true),
+                            _buildPastelFeatureRow(context, '◆', 'Karmik Harita', const Color(0xFFFFB6C1), true),
+                            _buildPastelFeatureRow(context, '○', 'Psikolojik Profil', const Color(0xFFADD8E6), true),
+                            _buildPastelFeatureRow(context, '∞', 'Numeroloji', const Color(0xFFF0E68C), true),
+                            _buildPastelFeatureRow(context, '☯', 'Element Dengesi', const Color(0xFFB0E0E6), true),
+                          ],
+                        ),
                       ],
                     ),
-                  ).animate().fadeIn(delay: 400.ms, duration: 400.ms).slideX(begin: 0.2),
-                ),
-              ],
+                  ).animate().fadeIn(delay: 400.ms, duration: 400.ms).slideY(begin: 0.2),
+                ],
+              ),
             ),
           ),
         ],
@@ -1145,7 +1505,7 @@ class _YourSignPage extends StatelessWidget {
                 label,
                 style: Theme.of(context).textTheme.labelSmall?.copyWith(
                       color: AppColors.textMuted,
-                      fontSize: 12,
+                      fontSize: 14,
                     ),
               ),
               Text(
@@ -1163,28 +1523,39 @@ class _YourSignPage extends StatelessWidget {
     );
   }
 
-  Widget _buildCompactFeatureRow(BuildContext context, String emoji, String feature, bool available) {
+  // Pastel renkli feature row - her öğe kendi rengiyle
+  Widget _buildPastelFeatureRow(BuildContext context, String emoji, String feature, Color pastelColor, bool available) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5),
+      padding: const EdgeInsets.symmetric(vertical: 4),
       child: Row(
         children: [
-          Text(emoji, style: const TextStyle(fontSize: 15)),
-          const SizedBox(width: 8),
+          Text(emoji, style: const TextStyle(fontSize: 14)),
+          const SizedBox(width: 6),
           Expanded(
             child: Text(
               feature,
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: available ? AppColors.textPrimary : AppColors.textMuted,
-                    fontSize: 14,
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: available ? pastelColor : AppColors.textMuted.withOpacity(0.5),
+                    fontSize: 13,
                     fontWeight: FontWeight.w500,
                   ),
               overflow: TextOverflow.ellipsis,
             ),
           ),
-          Icon(
-            available ? Icons.check_circle : Icons.remove_circle_outline,
-            size: 16,
-            color: available ? AppColors.success : AppColors.textMuted,
+          Container(
+            width: 16,
+            height: 16,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: available ? pastelColor.withOpacity(0.2) : Colors.transparent,
+              border: Border.all(
+                color: available ? pastelColor : AppColors.textMuted.withOpacity(0.3),
+                width: 1.5,
+              ),
+            ),
+            child: available
+                ? Icon(Icons.check, size: 10, color: pastelColor)
+                : null,
           ),
         ],
       ),
