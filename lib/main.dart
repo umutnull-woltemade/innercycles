@@ -4,6 +4,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'firebase_options.dart';
 import 'core/theme/app_theme.dart';
 import 'shared/services/router_service.dart';
 import 'shared/widgets/interpretive_text.dart';
@@ -18,8 +21,20 @@ import 'data/models/user_profile.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Initialize Firebase
-  await Firebase.initializeApp();
+  // Load environment variables
+  // On web, the file is served from assets/.env
+  await dotenv.load(fileName: 'assets/.env');
+
+  // Initialize Firebase with platform-specific options
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  // Initialize Supabase with values from .env
+  await Supabase.initialize(
+    url: dotenv.env['SUPABASE_URL'] ?? 'https://placeholder.supabase.co',
+    anonKey: dotenv.env['SUPABASE_ANON_KEY'] ?? 'placeholder-key',
+  );
 
   // Initialize Crashlytics (mobile only)
   if (!kIsWeb) {
