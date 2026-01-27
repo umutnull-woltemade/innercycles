@@ -1,10 +1,8 @@
-import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
-import 'package:url_launcher/url_launcher.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
@@ -186,121 +184,30 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   }
 }
 
-class _WelcomePage extends StatefulWidget {
+class _WelcomePage extends StatelessWidget {
   final VoidCallback onContinue;
 
   const _WelcomePage({required this.onContinue});
 
   @override
-  State<_WelcomePage> createState() => _WelcomePageState();
-}
-
-class _WelcomePageState extends State<_WelcomePage> {
-  bool _isLoading = false;
-  String? _errorMessage;
-
-  static const String _supabaseRef = 'riadutygfuzufzzsvxqh';
-  static const String _redirectUrl = 'https://astrobobo.com/%23/onboarding';
-
-  Future<void> _signInWithGoogle() async {
-    setState(() {
-      _isLoading = true;
-      _errorMessage = null;
-    });
-
-    try {
-      final authUrl = Uri.parse(
-        'https://$_supabaseRef.supabase.co/auth/v1/authorize'
-        '?provider=google'
-        '&redirect_to=$_redirectUrl'
-      );
-
-      if (await canLaunchUrl(authUrl)) {
-        await launchUrl(authUrl, mode: LaunchMode.inAppBrowserView);
-      } else {
-        throw Exception('Could not launch Google Sign In');
-      }
-    } catch (e) {
-      setState(() {
-        _errorMessage = 'Google bağlantısı kurulamadı';
-      });
-    } finally {
-      if (mounted) {
-        setState(() => _isLoading = false);
-      }
-    }
-  }
-
-  Future<void> _signInWithApple() async {
-    setState(() {
-      _isLoading = true;
-      _errorMessage = null;
-    });
-
-    try {
-      final authUrl = Uri.parse(
-        'https://$_supabaseRef.supabase.co/auth/v1/authorize'
-        '?provider=apple'
-        '&redirect_to=$_redirectUrl'
-      );
-
-      if (await canLaunchUrl(authUrl)) {
-        await launchUrl(authUrl, mode: LaunchMode.inAppBrowserView);
-      } else {
-        throw Exception('Could not launch Apple Sign In');
-      }
-    } catch (e) {
-      setState(() {
-        _errorMessage = 'Apple bağlantısı kurulamadı';
-      });
-    } finally {
-      if (mounted) {
-        setState(() => _isLoading = false);
-      }
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
+    return Padding(
       padding: const EdgeInsets.all(AppConstants.spacingXl),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const SizedBox(height: 40),
-          // App Logo
-          Container(
-            width: 120,
-            height: 120,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  AppColors.auroraStart.withAlpha(150),
-                  AppColors.auroraEnd.withAlpha(150),
-                ],
-              ),
-            ),
-            child: ClipOval(
-              child: Image.asset(
-                'assets/images/app_logo.png',
-                fit: BoxFit.cover,
-                errorBuilder: (_, __, ___) => const Icon(
-                  Icons.auto_awesome,
-                  size: 60,
-                  color: AppColors.starGold,
-                ),
-              ),
-            ),
-          ).animate().scale(begin: const Offset(0.8, 0.8), duration: 500.ms),
+          const Text(
+            '✨',
+            style: TextStyle(fontSize: 40),
+          )
+              .animate(onPlay: (c) => c.repeat())
+              .shimmer(duration: 2.seconds, color: AppColors.starGold),
           const SizedBox(height: AppConstants.spacingLg),
           Text(
             AppConstants.appName,
             style: Theme.of(context).textTheme.displayLarge?.copyWith(
                   color: AppColors.starGold,
-                  fontSize: 42,
+                  fontSize: 52,
                   fontWeight: FontWeight.bold,
                 ),
           ).animate().fadeIn(duration: 600.ms).slideY(begin: 0.3),
@@ -313,163 +220,17 @@ class _WelcomePageState extends State<_WelcomePage> {
                 ),
             textAlign: TextAlign.center,
           ).animate().fadeIn(delay: 300.ms, duration: 600.ms),
-          const SizedBox(height: AppConstants.spacingXl),
-
-          // OAuth Buttons (Web only)
-          if (kIsWeb) ...[
-            // Google Sign In Button
-            _OAuthButton(
-              label: 'Google ile devam et',
-              icon: 'G',
-              iconColor: null,
-              backgroundColor: Colors.white,
-              textColor: Colors.black87,
-              onPressed: _isLoading ? null : _signInWithGoogle,
-            ).animate().fadeIn(delay: 400.ms, duration: 400.ms),
-            const SizedBox(height: AppConstants.spacingMd),
-
-            // Apple Sign In Button
-            _OAuthButton(
-              label: 'Apple ile devam et',
-              icon: '',
-              iconColor: Colors.white,
-              backgroundColor: Colors.black,
-              textColor: Colors.white,
-              onPressed: _isLoading ? null : _signInWithApple,
-            ).animate().fadeIn(delay: 500.ms, duration: 400.ms),
-            const SizedBox(height: AppConstants.spacingMd),
-
-            // Divider
-            Row(
-              children: [
-                Expanded(child: Divider(color: AppColors.surfaceLight)),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: Text(
-                    'veya',
-                    style: TextStyle(color: AppColors.textMuted, fontSize: 14),
-                  ),
+          const SizedBox(height: AppConstants.spacingHuge),
+          Text(
+            'Evrenin sana fısıldadığı sırları dinle.\nDoğduğun an gökyüzü senin için\nbir harita çizdi, onu keşfet.',
+            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                  color: AppColors.textSecondary,
+                  fontSize: 16,
+                  height: 1.8,
                 ),
-                Expanded(child: Divider(color: AppColors.surfaceLight)),
-              ],
-            ).animate().fadeIn(delay: 600.ms, duration: 400.ms),
-            const SizedBox(height: AppConstants.spacingMd),
-          ],
-
-          // Continue without sign in button
-          _OAuthButton(
-            label: 'Hemen Keşfetmeye Başla',
-            icon: '✨',
-            iconColor: AppColors.starGold,
-            backgroundColor: Colors.transparent,
-            textColor: AppColors.auroraStart,
-            borderColor: AppColors.auroraStart,
-            onPressed: _isLoading ? null : widget.onContinue,
-          ).animate().fadeIn(delay: 700.ms, duration: 400.ms),
-
-          // Error message
-          if (_errorMessage != null) ...[
-            const SizedBox(height: AppConstants.spacingMd),
-            Container(
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                color: Colors.red.withAlpha(30),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Text(
-                _errorMessage!,
-                style: const TextStyle(color: Colors.redAccent, fontSize: 14),
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ],
-
-          // Loading indicator
-          if (_isLoading) ...[
-            const SizedBox(height: AppConstants.spacingMd),
-            const CircularProgressIndicator(color: AppColors.auroraStart),
-          ],
+            textAlign: TextAlign.center,
+          ).animate().fadeIn(delay: 600.ms, duration: 600.ms),
         ],
-      ),
-    );
-  }
-}
-
-/// OAuth button widget for Google/Apple sign in
-class _OAuthButton extends StatelessWidget {
-  final String label;
-  final String icon;
-  final Color? iconColor;
-  final Color backgroundColor;
-  final Color textColor;
-  final Color? borderColor;
-  final VoidCallback? onPressed;
-
-  const _OAuthButton({
-    required this.label,
-    required this.icon,
-    this.iconColor,
-    required this.backgroundColor,
-    required this.textColor,
-    this.borderColor,
-    this.onPressed,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      height: 52,
-      child: ElevatedButton(
-        onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: backgroundColor,
-          foregroundColor: textColor,
-          elevation: 0,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-            side: borderColor != null
-                ? BorderSide(color: borderColor!, width: 1.5)
-                : BorderSide.none,
-          ),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            if (icon == '') // Apple icon
-              Icon(Icons.apple, color: iconColor, size: 24)
-            else if (icon == 'G') // Google icon
-              Container(
-                width: 24,
-                height: 24,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(4),
-                ),
-                child: Center(
-                  child: Text(
-                    'G',
-                    style: TextStyle(
-                      color: Colors.red,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                    ),
-                  ),
-                ),
-              )
-            else
-              Text(icon, style: TextStyle(fontSize: 20, color: iconColor)),
-            const SizedBox(width: 12),
-            Text(
-              label,
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-                color: textColor,
-              ),
-            ),
-          ],
-        ),
       ),
     );
   }

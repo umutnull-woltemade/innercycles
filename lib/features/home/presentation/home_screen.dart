@@ -14,7 +14,6 @@ import '../../../data/services/moon_service.dart';
 import '../../../data/services/ai_content_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/page_bottom_navigation.dart';
-import '../../profile/presentation/add_profile_sheet.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
@@ -88,114 +87,57 @@ class HomeScreen extends ConsumerWidget {
 
   Widget _buildHeader(BuildContext context, WidgetRef ref, String? name, ZodiacSign sign) {
     final language = ref.watch(languageProvider);
-    // LayoutBuilder içinde kullanmak için outer context'i sakla
-    final rootContext = context;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // Language selector and settings at top - responsive layout
-        LayoutBuilder(
-          builder: (_, constraints) {
-            // Use Wrap for narrow screens, Row for wide screens
-            if (constraints.maxWidth < 500) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // First row: Language + main buttons
-                  Row(
-                    children: [
-                      _LanguageSelectorButton(
-                        currentLanguage: language,
-                        onLanguageChanged: (lang) => ref.read(languageProvider.notifier).state = lang,
-                      ),
-                      const Spacer(),
-                      _KozmikIletisimButton(
-                        onTap: () => rootContext.push(Routes.kozmikIletisim),
-                      ),
-                      const SizedBox(width: 6),
-                      _RuyaDongusuButton(
-                        onTap: () => rootContext.push(Routes.ruyaDongusu),
-                      ),
-                      const SizedBox(width: 6),
-                      _KozmozButton(
-                        onTap: () => rootContext.push(Routes.kozmoz),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 8),
-                  // Second row: Action buttons
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      _AnimatedHeaderButton(
-                        icon: Icons.search_rounded,
-                        label: 'Ara',
-                        color: AppColors.mysticBlue,
-                        onTap: () => _showSearchDialog(rootContext, ref),
-                      ),
-                      const SizedBox(width: 6),
-                      _AnimatedHeaderButton(
-                        icon: Icons.person_add_rounded,
-                        label: 'Profil',
-                        color: AppColors.starGold,
-                        onTap: () => _showAddProfileDialog(rootContext, ref),
-                      ),
-                      const SizedBox(width: 6),
-                      _AnimatedHeaderButton(
-                        icon: Icons.settings_rounded,
-                        label: 'Ayar',
-                        color: AppColors.cosmicPurple,
-                        onTap: () => rootContext.push(Routes.settings),
-                      ),
-                    ],
-                  ),
-                ],
-              );
-            }
-            // Wide screen: single row
-            return Row(
-              children: [
-                _LanguageSelectorButton(
-                  currentLanguage: language,
-                  onLanguageChanged: (lang) => ref.read(languageProvider.notifier).state = lang,
-                ),
-                const Spacer(),
-                _KozmikIletisimButton(
-                  onTap: () => rootContext.push(Routes.kozmikIletisim),
-                ),
-                const SizedBox(width: 8),
-                _RuyaDongusuButton(
-                  onTap: () => rootContext.push(Routes.ruyaDongusu),
-                ),
-                const SizedBox(width: 8),
-                _KozmozButton(
-                  onTap: () => rootContext.push(Routes.kozmoz),
-                ),
-                const SizedBox(width: 8),
-                _AnimatedHeaderButton(
-                  icon: Icons.search_rounded,
-                  label: 'Ara',
-                  color: AppColors.mysticBlue,
-                  onTap: () => _showSearchDialog(rootContext, ref),
-                ),
-                const SizedBox(width: 8),
-                _AnimatedHeaderButton(
-                  icon: Icons.person_add_rounded,
-                  label: 'Profil',
-                  color: AppColors.starGold,
-                  onTap: () => _showAddProfileDialog(rootContext, ref),
-                ),
-                const SizedBox(width: 8),
-                _AnimatedHeaderButton(
-                  icon: Icons.settings_rounded,
-                  label: 'Ayar',
-                  color: AppColors.cosmicPurple,
-                  onTap: () => rootContext.push(Routes.settings),
-                ),
-              ],
-            );
-          },
+        // Language selector and settings at top
+        Row(
+          children: [
+            _LanguageSelectorButton(
+              currentLanguage: language,
+              onLanguageChanged: (lang) => ref.read(languageProvider.notifier).state = lang,
+            ),
+            const Spacer(),
+            // Kozmik Iletisim Butonu - Chatbot
+            _KozmikIletisimButton(
+              onTap: () => context.push(Routes.kozmikIletisim),
+            ),
+            const SizedBox(width: 8),
+            // Ruya Dongusu Butonu - 7 Boyutlu Form
+            _RuyaDongusuButton(
+              onTap: () => context.push(Routes.ruyaDongusu),
+            ),
+            const SizedBox(width: 8),
+            // KOZMOZ Butonu - Her zaman parlayan özel buton
+            _KozmozButton(
+              onTap: () => context.push(Routes.kozmoz),
+            ),
+            const SizedBox(width: 8),
+            // Arama Butonu - Büyük ve animasyonlu
+            _AnimatedHeaderButton(
+              icon: Icons.search_rounded,
+              label: 'Ara',
+              color: AppColors.mysticBlue,
+              onTap: () => _showSearchDialog(context, ref),
+            ),
+            const SizedBox(width: 8),
+            // Profil Ekle Butonu
+            _AnimatedHeaderButton(
+              icon: Icons.person_add_rounded,
+              label: 'Profil',
+              color: AppColors.starGold,
+              onTap: () => _showAddProfileDialog(context, ref),
+            ),
+            const SizedBox(width: 8),
+            // Ayarlar Butonu
+            _AnimatedHeaderButton(
+              icon: Icons.settings_rounded,
+              label: 'Ayar',
+              color: AppColors.cosmicPurple,
+              onTap: () => context.push(Routes.settings),
+            ),
+          ],
         ),
         const SizedBox(height: AppConstants.spacingMd),
         // Günlük yorum kartı header'da
@@ -522,8 +464,8 @@ class HomeScreen extends ConsumerWidget {
                 const SizedBox(height: 2),
                 Text(
                   daysLeft > 0
-                      ? 'İletişimde dikkatli ol! $daysLeft gün kaldı.'
-                      : 'İletişim ve teknolojide dikkatli ol!',
+                      ? 'Iletisimde dikkatli ol! $daysLeft gun kaldi.'
+                      : 'Iletisim ve teknolojide dikkatli ol!',
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: AppColors.textSecondary,
                       ),
@@ -869,7 +811,7 @@ class HomeScreen extends ConsumerWidget {
         // ═══════════════════════════════════════════════════════════════
         // ÖZEL ÇÖZÜMLEMELERİMİZ - Profil tabanlı, kişiye özel analizler
         // ═══════════════════════════════════════════════════════════════
-        _buildSectionHeader(context, '★ Özel Çözümlemelerimiz', 'Doğum bilgilerinize özel analizler'),
+        _buildSectionHeader(context, '✨ Özel Çözümlemelerimiz', 'Doğum bilgilerinize özel analizler'),
         const SizedBox(height: AppConstants.spacingMd),
         // Doğum Haritası & Uyum
         Row(
@@ -1447,7 +1389,7 @@ class HomeScreen extends ConsumerWidget {
             const SizedBox(height: AppConstants.spacingMd),
             // Areas
             Text(
-              'Bu Evin Yönettiği Alanlar: ',
+              'Bu Evin Yönettiği Alanlar:',
               style: Theme.of(context).textTheme.labelMedium?.copyWith(
                     color: houseColor,
                     fontWeight: FontWeight.bold,
@@ -1554,7 +1496,7 @@ class HomeScreen extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                '✦ Kalan Çözümlemelerimiz',
+                '🔮 Kalan Çözümlemelerimiz',
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
                       color: AppColors.moonSilver,
                       fontWeight: FontWeight.bold,
@@ -1909,7 +1851,7 @@ class HomeScreen extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          '★ Burçlar',
+          '✨ Burçlar',
           style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
@@ -2016,126 +1958,16 @@ class HomeScreen extends ConsumerWidget {
   }
 
   void _showSearchDialog(BuildContext context, WidgetRef ref) {
-    if (!context.mounted) return;
-
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
-      builder: (_) => const _SearchBottomSheet(),
+      builder: (context) => const _SearchBottomSheet(),
     );
   }
 
   void _showAddProfileDialog(BuildContext context, WidgetRef ref) {
-    if (!context.mounted) return;
-
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    final savedProfiles = ref.read(savedProfilesProvider);
-
-    showModalBottomSheet(
-      context: context,
-      backgroundColor: isDark ? AppColors.surfaceDark : AppColors.lightSurface,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
-      ),
-      builder: (sheetContext) => Container(
-        padding: const EdgeInsets.all(AppConstants.spacingLg),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            // Handle bar
-            Container(
-              width: 40,
-              height: 4,
-              decoration: BoxDecoration(
-                color: Colors.grey.withAlpha(80),
-                borderRadius: BorderRadius.circular(2),
-              ),
-            ),
-            const SizedBox(height: AppConstants.spacingLg),
-            // Title
-            Text(
-              'Profil Yönetimi',
-              style: Theme.of(sheetContext).textTheme.titleMedium?.copyWith(
-                    color: AppColors.starGold,
-                    fontWeight: FontWeight.bold,
-                  ),
-            ),
-            const SizedBox(height: AppConstants.spacingXl),
-            // Option: Add New Profile
-            _ProfileOptionTile(
-              icon: Icons.person_add_rounded,
-              iconColor: AppColors.auroraStart,
-              title: 'Yeni Profil Ekle',
-              subtitle: 'Partner, arkadaş veya aile ekle',
-              isDark: isDark,
-              onTap: () {
-                Navigator.pop(sheetContext);
-                _showAddProfileSheet(context, ref);
-              },
-            ),
-            const SizedBox(height: AppConstants.spacingMd),
-            // Option: Compare Profiles
-            _ProfileOptionTile(
-              icon: Icons.compare_arrows_rounded,
-              iconColor: Colors.pink,
-              title: 'Karşılaştırma',
-              subtitle: savedProfiles.length >= 2
-                  ? '${savedProfiles.length} profil mevcut'
-                  : 'En az 2 profil gerekli',
-              isDark: isDark,
-              enabled: savedProfiles.length >= 2,
-              onTap: () {
-                Navigator.pop(sheetContext);
-                context.push(Routes.comparison);
-              },
-            ),
-            const SizedBox(height: AppConstants.spacingMd),
-            // Option: View Saved Profiles
-            _ProfileOptionTile(
-              icon: Icons.people_outline_rounded,
-              iconColor: AppColors.mysticBlue,
-              title: 'Kayıtlı Profiller',
-              subtitle: savedProfiles.isEmpty
-                  ? 'Henüz profil eklenmedi'
-                  : '${savedProfiles.length} profil kayıtlı',
-              isDark: isDark,
-              onTap: () {
-                Navigator.pop(sheetContext);
-                context.push(Routes.savedProfiles);
-              },
-            ),
-            const SizedBox(height: AppConstants.spacingLg),
-          ],
-        ),
-      ),
-    );
-  }
-
-  void _showAddProfileSheet(BuildContext context, WidgetRef ref) {
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      backgroundColor: Colors.transparent,
-      builder: (sheetContext) => AddProfileSheet(
-        onSave: (profile) async {
-          await ref.read(savedProfilesProvider.notifier).addProfile(profile);
-          if (sheetContext.mounted) Navigator.pop(sheetContext);
-          if (context.mounted) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text('${profile.name} eklendi'),
-                backgroundColor: AppColors.success,
-                behavior: SnackBarBehavior.floating,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(AppConstants.radiusSm),
-                ),
-              ),
-            );
-          }
-        },
-      ),
-    );
+    context.push(Routes.savedProfiles);
   }
 }
 
@@ -2249,7 +2081,7 @@ class _SearchBottomSheetState extends State<_SearchBottomSheet> {
                   controller: _searchController,
                   autofocus: true,
                   decoration: InputDecoration(
-                    hintText: 'Ara. . . (örn: burç, tarot, saturn)',
+                    hintText: 'Ara... (örn: burç, tarot, saturn)',
                     prefixIcon: const Icon(Icons.search),
                     suffixIcon: _searchQuery.isNotEmpty
                         ? IconButton(
@@ -2373,95 +2205,6 @@ class _SearchItem {
   final List<String> keywords;
 
   const _SearchItem(this.title, this.description, this.icon, this.route, this.category, this.keywords);
-}
-
-// Profile option tile for profile management bottom sheet
-class _ProfileOptionTile extends StatelessWidget {
-  final IconData icon;
-  final Color iconColor;
-  final String title;
-  final String subtitle;
-  final bool isDark;
-  final bool enabled;
-  final VoidCallback onTap;
-
-  const _ProfileOptionTile({
-    required this.icon,
-    required this.iconColor,
-    required this.title,
-    required this.subtitle,
-    required this.isDark,
-    required this.onTap,
-    this.enabled = true,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: enabled ? onTap : null,
-      child: Container(
-        padding: const EdgeInsets.all(AppConstants.spacingMd),
-        decoration: BoxDecoration(
-          color: isDark
-              ? AppColors.surfaceLight.withAlpha(enabled ? 20 : 10)
-              : AppColors.lightCard.withAlpha(enabled ? 255 : 128),
-          borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-          border: Border.all(
-            color: enabled
-                ? iconColor.withAlpha(50)
-                : (isDark ? Colors.white12 : Colors.black12),
-            width: 1,
-          ),
-        ),
-        child: Row(
-          children: [
-            Container(
-              padding: const EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                color: iconColor.withAlpha(enabled ? 30 : 15),
-                shape: BoxShape.circle,
-              ),
-              child: Icon(
-                icon,
-                color: enabled ? iconColor : iconColor.withAlpha(100),
-                size: 24,
-              ),
-            ),
-            const SizedBox(width: AppConstants.spacingMd),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    title,
-                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                          color: enabled
-                              ? (isDark ? AppColors.textPrimary : AppColors.lightTextPrimary)
-                              : (isDark ? AppColors.textMuted : AppColors.lightTextMuted),
-                          fontWeight: FontWeight.w600,
-                        ),
-                  ),
-                  const SizedBox(height: 2),
-                  Text(
-                    subtitle,
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-                        ),
-                  ),
-                ],
-              ),
-            ),
-            Icon(
-              Icons.chevron_right_rounded,
-              color: enabled
-                  ? (isDark ? AppColors.textSecondary : AppColors.lightTextSecondary)
-                  : (isDark ? AppColors.textMuted : AppColors.lightTextMuted),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 }
 
 // Animasyonlu Tantrik Logo Widget
@@ -2962,19 +2705,19 @@ class _KozmozMasterSectionState extends ConsumerState<_KozmozMasterSection> {
     }
 
     if (lowerQuestion.contains('ateş') && lowerQuestion.contains('su')) {
-      return '🔥💧 Ateş ve Su grupları uyumlu mu? \n\n⚡ Zorlu ama mümkün! Ateş (Koç, Aslan, Yay) tutku ve enerji getirir. Su (Yengeç, Akrep, Balık) duygusal derinlik katar. \n\n✅ Artıları: \n• Tutku + Duygusallık = Yoğun romantizm\n• Birbirlerini dengeleyebilirler\n• Çekim gücü yüksek\n\n❌ Eksileri: \n• Ateş çok hızlı, Su çok hassas\n• İletişim kopuklukları yaşanabilir\n• Ateş suyu buharlaştırabilir, Su ateşi söndürebilir\n\n💡 Çözüm: Sabır, anlayış ve orta yol bulmak şart!';
+      return '🔥💧 Ateş ve Su grupları uyumlu mu?\n\n⚡ Zorlu ama mümkün! Ateş (Koç, Aslan, Yay) tutku ve enerji getirir. Su (Yengeç, Akrep, Balık) duygusal derinlik katar.\n\n✅ Artıları:\n• Tutku + Duygusallık = Yoğun romantizm\n• Birbirlerini dengeleyebilirler\n• Çekim gücü yüksek\n\n❌ Eksileri:\n• Ateş çok hızlı, Su çok hassas\n• İletişim kopuklukları yaşanabilir\n• Ateş suyu buharlaştırabilir, Su ateşi söndürebilir\n\n💡 Çözüm: Sabır, anlayış ve orta yol bulmak şart!';
     }
 
     if (lowerQuestion.contains('sadık') || lowerQuestion.contains('en sadık')) {
-      return '💫 En sadık burçlar sıralaması: \n\n🥇 1. AKREP - Bir kez bağlandı mı ölümüne sadık! Ama ihanet edersen unutmaz. \n\n🥈 2. BOĞA - Toprak elementi, güvenilir ve sadık. Değişimi sevmez. \n\n🥉 3. YENGEÇ - Aile odaklı, koruyucu ve sadık. Duygusal bağ güçlü. \n\n4. OĞLAK - Sorumlu ve bağlı. Evliliği ciddiye alır. \n\n5. ASLAN - Sadık ama ilgi ister. İlgi alırsa sadık kalır. \n\n⚠️ En az sadık: İkizler (değişken), Yay (özgürlükçü), Kova (bağımsız)';
+      return '💫 En sadık burçlar sıralaması:\n\n🥇 1. AKREP - Bir kez bağlandı mı ölümüne sadık! Ama ihanet edersen unutmaz.\n\n🥈 2. BOĞA - Toprak elementi, güvenilir ve sadık. Değişimi sevmez.\n\n🥉 3. YENGEÇ - Aile odaklı, koruyucu ve sadık. Duygusal bağ güçlü.\n\n4. OĞLAK - Sorumlu ve bağlı. Evliliği ciddiye alır.\n\n5. ASLAN - Sadık ama ilgi ister. İlgi alırsa sadık kalır.\n\n⚠️ En az sadık: İkizler (değişken), Yay (özgürlükçü), Kova (bağımsız)';
     }
 
     if (lowerQuestion.contains('kıskanç') || lowerQuestion.contains('kıskançlık')) {
-      return '😈 En kıskanç burçlar: \n\n🔥 1. AKREP - Kıskançlık kralı/kraliçesi! Sahiplenme yoğun, güven sorunu var. \n\n2. ASLAN - Ego meselesi. "Benim olan başkasının olamaz" zihniyeti. \n\n3. BOĞA - Sahiplenme güdüsü güçlü. Yavaş güvenir ama kıskançlık patlamaları olabilir. \n\n4. YENGEÇ - Duygusal kıskançlık. Güvensizlik hissederse kapanır. \n\n5. KOÇ - Ani öfke patlamaları olabilir ama çabuk geçer. \n\n😎 En az kıskanç: Yay, Kova, İkizler - özgürlüğe değer verirler!';
+      return '😈 En kıskanç burçlar:\n\n🔥 1. AKREP - Kıskançlık kralı/kraliçesi! Sahiplenme yoğun, güven sorunu var.\n\n2. ASLAN - Ego meselesi. "Benim olan başkasının olamaz" zihniyeti.\n\n3. BOĞA - Sahiplenme güdüsü güçlü. Yavaş güvenir ama kıskançlık patlamaları olabilir.\n\n4. YENGEÇ - Duygusal kıskançlık. Güvensizlik hissederse kapanır.\n\n5. KOÇ - Ani öfke patlamaları olabilir ama çabuk geçer.\n\n😎 En az kıskanç: Yay, Kova, İkizler - özgürlüğe değer verirler!';
     }
 
     if (lowerQuestion.contains('yatakta') || lowerQuestion.contains('ateşli') || lowerQuestion.contains('cinsel')) {
-      return '💋 Yatakta en ateşli burçlar: \n\n🔥 1. AKREP - Tartışmasız şampiyon! Tutku, yoğunluk, derinlik. . . Seksi bir sanat formuna dönüştürürler. \n\n2. KOÇ - Ateşli ve enerjik. Spontan ve maceraperest. \n\n3. ASLAN - Dramatik ve gösterişli. Performans önemli! \n\n4. BOĞA - Duyusal zevklerin ustası. Yavaş ama etkili. \n\n5. BALIK - Romantik ve hayalperest. Duygusal bağ + fiziksel = mükemmel! \n\n😌 En az: Başak (aşırı analitik), Oğlak (iş odaklı), Kova (kafası başka yerde)';
+      return '💋 Yatakta en ateşli burçlar:\n\n🔥 1. AKREP - Tartışmasız şampiyon! Tutku, yoğunluk, derinlik... Seksi bir sanat formuna dönüştürürler.\n\n2. KOÇ - Ateşli ve enerjik. Spontan ve maceraperest.\n\n3. ASLAN - Dramatik ve gösterişli. Performans önemli!\n\n4. BOĞA - Duyusal zevklerin ustası. Yavaş ama etkili.\n\n5. BALIK - Romantik ve hayalperest. Duygusal bağ + fiziksel = mükemmel!\n\n😌 En az: Başak (aşırı analitik), Oğlak (iş odaklı), Kova (kafası başka yerde)';
     }
 
     // Zenginlik soruları
@@ -3052,7 +2795,7 @@ class _KozmozMasterSectionState extends ConsumerState<_KozmozMasterSection> {
 
   String _getLoveAdvice(ZodiacSign sign) {
     final advices = {
-      ZodiacSign.aries: 'Sabırlı ol, ani kararlar verme. doğru kişi seni bekletmeye değer.',
+      ZodiacSign.aries: 'Sabırlı ol, ani kararlar verme. Doğru kişi seni bekletmeye değer.',
       ZodiacSign.taurus: 'Değişime açık ol. Bazen konfor alanından çıkmak gerekir.',
       ZodiacSign.gemini: 'Bir ilişkiye odaklan. Çok seçenek bazen kafa karıştırır.',
       ZodiacSign.cancer: 'Kalbin kabuğunu aç. Korunmak için herkesi uzak tutma.',
@@ -3496,7 +3239,7 @@ class _KozmozMasterSectionState extends ConsumerState<_KozmozMasterSection> {
                           controller: _questionController,
                           style: const TextStyle(color: Colors.white, fontSize: 14),
                           decoration: InputDecoration(
-                            hintText: 'Yıldızlara sormak istediğin her şey. . .',
+                            hintText: 'Yıldızlara sormak istediğin her şey...',
                             hintStyle: TextStyle(color: Colors.white38, fontSize: 13),
                             prefixIcon: ShaderMask(
                               shaderCallback: (bounds) => const LinearGradient(
@@ -3747,19 +3490,19 @@ class _AiChatSectionState extends ConsumerState<_AiChatSection> {
     }
 
     if (lowerQuestion.contains('ateş') && lowerQuestion.contains('su')) {
-      return '🔥💧 Ateş ve Su grupları uyumlu mu? \n\n⚡ Zorlu ama mümkün! Ateş (Koç, Aslan, Yay) tutku ve enerji getirir. Su (Yengeç, Akrep, Balık) duygusal derinlik katar. \n\n✅ Artıları: \n• Tutku + Duygusallık = Yoğun romantizm\n• Birbirlerini dengeleyebilirler\n• Çekim gücü yüksek\n\n❌ Eksileri: \n• Ateş çok hızlı, Su çok hassas\n• İletişim kopuklukları yaşanabilir\n• Ateş suyu buharlaştırabilir, Su ateşi söndürebilir\n\n💡 Çözüm: Sabır, anlayış ve orta yol bulmak şart!';
+      return '🔥💧 Ateş ve Su grupları uyumlu mu?\n\n⚡ Zorlu ama mümkün! Ateş (Koç, Aslan, Yay) tutku ve enerji getirir. Su (Yengeç, Akrep, Balık) duygusal derinlik katar.\n\n✅ Artıları:\n• Tutku + Duygusallık = Yoğun romantizm\n• Birbirlerini dengeleyebilirler\n• Çekim gücü yüksek\n\n❌ Eksileri:\n• Ateş çok hızlı, Su çok hassas\n• İletişim kopuklukları yaşanabilir\n• Ateş suyu buharlaştırabilir, Su ateşi söndürebilir\n\n💡 Çözüm: Sabır, anlayış ve orta yol bulmak şart!';
     }
 
     if (lowerQuestion.contains('sadık') || lowerQuestion.contains('en sadık')) {
-      return '💫 En sadık burçlar sıralaması: \n\n🥇 1. AKREP - Bir kez bağlandı mı ölümüne sadık! Ama ihanet edersen unutmaz. \n\n🥈 2. BOĞA - Toprak elementi, güvenilir ve sadık. Değişimi sevmez. \n\n🥉 3. YENGEÇ - Aile odaklı, koruyucu ve sadık. Duygusal bağ güçlü. \n\n4. OĞLAK - Sorumlu ve bağlı. Evliliği ciddiye alır. \n\n5. ASLAN - Sadık ama ilgi ister. İlgi alırsa sadık kalır. \n\n⚠️ En az sadık: İkizler (değişken), Yay (özgürlükçü), Kova (bağımsız)';
+      return '💫 En sadık burçlar sıralaması:\n\n🥇 1. AKREP - Bir kez bağlandı mı ölümüne sadık! Ama ihanet edersen unutmaz.\n\n🥈 2. BOĞA - Toprak elementi, güvenilir ve sadık. Değişimi sevmez.\n\n🥉 3. YENGEÇ - Aile odaklı, koruyucu ve sadık. Duygusal bağ güçlü.\n\n4. OĞLAK - Sorumlu ve bağlı. Evliliği ciddiye alır.\n\n5. ASLAN - Sadık ama ilgi ister. İlgi alırsa sadık kalır.\n\n⚠️ En az sadık: İkizler (değişken), Yay (özgürlükçü), Kova (bağımsız)';
     }
 
     if (lowerQuestion.contains('kıskanç') || lowerQuestion.contains('kıskançlık')) {
-      return '😈 En kıskanç burçlar: \n\n🔥 1. AKREP - Kıskançlık kralı/kraliçesi! Sahiplenme yoğun, güven sorunu var. \n\n2. ASLAN - Ego meselesi. "Benim olan başkasının olamaz" zihniyeti. \n\n3. BOĞA - Sahiplenme güdüsü güçlü. Yavaş güvenir ama kıskançlık patlamaları olabilir. \n\n4. YENGEÇ - Duygusal kıskançlık. Güvensizlik hissederse kapanır. \n\n5. KOÇ - Ani öfke patlamaları olabilir ama çabuk geçer. \n\n😎 En az kıskanç: Yay, Kova, İkizler - özgürlüğe değer verirler!';
+      return '😈 En kıskanç burçlar:\n\n🔥 1. AKREP - Kıskançlık kralı/kraliçesi! Sahiplenme yoğun, güven sorunu var.\n\n2. ASLAN - Ego meselesi. "Benim olan başkasının olamaz" zihniyeti.\n\n3. BOĞA - Sahiplenme güdüsü güçlü. Yavaş güvenir ama kıskançlık patlamaları olabilir.\n\n4. YENGEÇ - Duygusal kıskançlık. Güvensizlik hissederse kapanır.\n\n5. KOÇ - Ani öfke patlamaları olabilir ama çabuk geçer.\n\n😎 En az kıskanç: Yay, Kova, İkizler - özgürlüğe değer verirler!';
     }
 
     if (lowerQuestion.contains('yatakta') || lowerQuestion.contains('ateşli') || lowerQuestion.contains('cinsel')) {
-      return '💋 Yatakta en ateşli burçlar: \n\n🔥 1. AKREP - Tartışmasız şampiyon! Tutku, yoğunluk, derinlik. . . Seksi bir sanat formuna dönüştürürler. \n\n2. KOÇ - Ateşli ve enerjik. Spontan ve maceraperest. \n\n3. ASLAN - Dramatik ve gösterişli. Performans önemli! \n\n4. BOĞA - Duyusal zevklerin ustası. Yavaş ama etkili. \n\n5. BALIK - Romantik ve hayalperest. Duygusal bağ + fiziksel = mükemmel! \n\n😌 En az: Başak (aşırı analitik), Oğlak (iş odaklı), Kova (kafası başka yerde)';
+      return '💋 Yatakta en ateşli burçlar:\n\n🔥 1. AKREP - Tartışmasız şampiyon! Tutku, yoğunluk, derinlik... Seksi bir sanat formuna dönüştürürler.\n\n2. KOÇ - Ateşli ve enerjik. Spontan ve maceraperest.\n\n3. ASLAN - Dramatik ve gösterişli. Performans önemli!\n\n4. BOĞA - Duyusal zevklerin ustası. Yavaş ama etkili.\n\n5. BALIK - Romantik ve hayalperest. Duygusal bağ + fiziksel = mükemmel!\n\n😌 En az: Başak (aşırı analitik), Oğlak (iş odaklı), Kova (kafası başka yerde)';
     }
 
     // Aşk soruları
@@ -3832,7 +3575,7 @@ class _AiChatSectionState extends ConsumerState<_AiChatSection> {
       ZodiacSign.virgo: '💎 Sevgili ${sign.nameTr}, analitik zekânız bugün lazer gibi. Detaylarda sihir gizli. Organizasyon yeteneğinizi kullanın, şifalı ellerinizle fark yaratın.',
       ZodiacSign.libra: '⚖️ Sevgili ${sign.nameTr}, denge ve uyum enerjisi güçlü. Venüs diplomasi yeteneğinizi artırıyor. Güzellik yaratın, güzellik çekin. İlişkilerde harmoni zamanı.',
       ZodiacSign.scorpio: '🦂 Sevgili ${sign.nameTr}, dönüşüm enerjisi yoğun. Sezgileriniz keskin, gizli gerçekler ortaya çıkıyor. Tutku ve güç sizinle. Derinliklerde hazineler bekliyor.',
-      ZodiacSign.sagittarius: '🏹 Sevgili ${sign.nameTr}, macera ruhu uyanıyor. Jüpiter şansınızı genişletiyor. Yeni ufuklar, yeni deneyimler size yönelik olabilir. Bilgelik arayışınız ödüllendirilecek.',
+      ZodiacSign.sagittarius: '🏹 Sevgili ${sign.nameTr}, macera ruhu uyanıyor. Jüpiter şansınızı genişletiyor. Yeni ufuklar, yeni deneyimler sizi bekliyor. Bilgelik arayışınız ödüllendirilecek.',
       ZodiacSign.capricorn: '🏔️ Sevgili ${sign.nameTr}, Satürn disiplin ve yapı veriyor. Hedeflerinize kararlılıkla ilerleyin. Uzun vadeli planlar için mükemmel zaman. Zirve yakın.',
       ZodiacSign.aquarius: '🌊 Sevgili ${sign.nameTr}, yenilikçi enerjiniz dorukta. Uranüs beklenmedik fırsatlar getiriyor. Değişime açık olun, benzersizliğiniz süper gücünüz.',
       ZodiacSign.pisces: '🐟 Sevgili ${sign.nameTr}, spiritüel bağlantınız güçlü. Neptün yaratıcılığınızı ve sezgilerinizi besliyor. Rüyalarınız mesaj taşıyor, evrenle bir olun.',
@@ -3857,7 +3600,7 @@ class _AiChatSectionState extends ConsumerState<_AiChatSection> {
       ZodiacSign.aquarius: '💫 İyi! İkisi de bağımsız. Arkadaşlık + aşk = ideal.',
       ZodiacSign.pisces: '🌊 Karışık. Balık hassas, Koç sert. Nazik ol.',
     };
-    return compatibilities[userSign] ?? 'Burç uyumunuz analiz ediliyor. . .';
+    return compatibilities[userSign] ?? 'Burç uyumunuz analiz ediliyor...';
   }
 
   String _getCompatibilityWithScorpio(ZodiacSign userSign) {
@@ -3875,7 +3618,7 @@ class _AiChatSectionState extends ConsumerState<_AiChatSection> {
       ZodiacSign.aquarius: '❄️ Çok zor. Kova mesafeli, Akrep yoğun. Zıt kutuplar.',
       ZodiacSign.pisces: '💕💕💕 EN İYİ! Su grubu uyumu. Ruhsal bağ mükemmel.',
     };
-    return compatibilities[userSign] ?? 'Burç uyumunuz analiz ediliyor. . .';
+    return compatibilities[userSign] ?? 'Burç uyumunuz analiz ediliyor...';
   }
 
   String _getCompatibilityWithLeo(ZodiacSign userSign) {
@@ -3893,7 +3636,7 @@ class _AiChatSectionState extends ConsumerState<_AiChatSection> {
       ZodiacSign.aquarius: '💫 Zıt ama çekici. Bağımsızlık vs. sahiplenme.',
       ZodiacSign.pisces: '🌊 Romantik. Balık hayran olur, Aslan korur.',
     };
-    return compatibilities[userSign] ?? 'Burç uyumunuz analiz ediliyor. . .';
+    return compatibilities[userSign] ?? 'Burç uyumunuz analiz ediliyor...';
   }
 
   String _getCompatibilityWithGemini(ZodiacSign userSign) {
@@ -3911,7 +3654,7 @@ class _AiChatSectionState extends ConsumerState<_AiChatSection> {
       ZodiacSign.aquarius: '💫💫 Süper! Hava grubu. Entelektüel cennet.',
       ZodiacSign.pisces: '🌊 Karışık. Balık duygusal, İkizler mantıksal. Köprü kurun.',
     };
-    return compatibilities[userSign] ?? 'Burç uyumunuz analiz ediliyor. . .';
+    return compatibilities[userSign] ?? 'Burç uyumunuz analiz ediliyor...';
   }
 
   @override
@@ -4126,7 +3869,7 @@ class _AiChatSectionState extends ConsumerState<_AiChatSection> {
                     controller: _questionController,
                     style: const TextStyle(color: Colors.white, fontSize: 14),
                     decoration: InputDecoration(
-                      hintText: 'Yıldızlara bir soru sor. . .',
+                      hintText: 'Yıldızlara bir soru sor...',
                       hintStyle: TextStyle(color: Colors.white38, fontSize: 13),
                       prefixIcon: Icon(Icons.chat_bubble_outline, color: Colors.white38, size: 20),
                       filled: true,
@@ -4326,8 +4069,8 @@ class _ShareSummaryButtonState extends State<_ShareSummaryButton> {
               Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      // Sparkle symbol
-                      const Text('✦', style: TextStyle(fontSize: 22)),
+                      // Sparkle emoji
+                      const Text('✨', style: TextStyle(fontSize: 22)),
                       const SizedBox(width: 10),
                       // Instagram icon - premium design
                       Container(
@@ -4414,7 +4157,7 @@ class _ShareSummaryButtonState extends State<_ShareSummaryButton> {
                                 ),
                               ),
                               const SizedBox(width: 6),
-                              const Text('★', style: TextStyle(fontSize: 14)),
+                              const Text('💫', style: TextStyle(fontSize: 14)),
                             ],
                           ),
                           const SizedBox(height: 3),
@@ -4430,7 +4173,7 @@ class _ShareSummaryButtonState extends State<_ShareSummaryButton> {
                         ],
                       ),
                       const SizedBox(width: 10),
-                      const Text('◆', style: TextStyle(fontSize: 22)),
+                      const Text('🔮', style: TextStyle(fontSize: 22)),
                     ],
                   ),
                 ],
@@ -4799,90 +4542,121 @@ class _AnimatedHeaderButton extends StatefulWidget {
   State<_AnimatedHeaderButton> createState() => _AnimatedHeaderButtonState();
 }
 
-class _AnimatedHeaderButtonState extends State<_AnimatedHeaderButton> {
+class _AnimatedHeaderButtonState extends State<_AnimatedHeaderButton>
+    with SingleTickerProviderStateMixin {
   bool _isHovered = false;
-  bool _isPressed = false;
+  late AnimationController _pulseController;
+  late Animation<double> _pulseAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _pulseController = AnimationController(
+      duration: const Duration(milliseconds: 2000),
+      vsync: this,
+    )..repeat(reverse: true);
+    _pulseAnimation = Tween<double>(begin: 0.8, end: 1.0).animate(
+      CurvedAnimation(parent: _pulseController, curve: Curves.easeInOut),
+    );
+  }
+
+  @override
+  void dispose() {
+    _pulseController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: () {
-          // Debug: Butona tıklandığında konsola yaz
-          debugPrint('🔘 ${widget.label} butonu tıklandı!');
-          widget.onTap();
-        },
-        onHover: (hovering) => setState(() => _isHovered = hovering),
-        onTapDown: (_) => setState(() => _isPressed = true),
-        onTapUp: (_) => setState(() => _isPressed = false),
-        onTapCancel: () => setState(() => _isPressed = false),
-        borderRadius: BorderRadius.circular(16),
-        splashColor: widget.color.withAlpha(100),
-        highlightColor: widget.color.withAlpha(50),
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 150),
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: _isPressed
-                  ? [widget.color.withAlpha(150), widget.color.withAlpha(100)]
-                  : _isHovered
+    return MouseRegion(
+      onEnter: (_) => setState(() => _isHovered = true),
+      onExit: (_) => setState(() => _isHovered = false),
+      child: GestureDetector(
+        onTap: widget.onTap,
+        child: AnimatedBuilder(
+          animation: _pulseAnimation,
+          builder: (context, child) {
+            return Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              decoration: BoxDecoration(
+                // Daha yoğun gradient - daha görünür
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: _isHovered
                       ? [widget.color.withAlpha(120), widget.color.withAlpha(80)]
                       : [widget.color.withAlpha(80), widget.color.withAlpha(50)],
-            ),
-            borderRadius: BorderRadius.circular(16),
-            border: Border.all(
-              color: widget.color.withAlpha(_isHovered ? 220 : 160),
-              width: 2,
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: widget.color.withAlpha(_isHovered ? 100 : 60),
-                blurRadius: _isHovered ? 20 : 12,
-                spreadRadius: _isHovered ? 2 : 0,
-              ),
-            ],
-          ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              AnimatedRotation(
-                turns: _isHovered ? 0.05 : 0,
-                duration: const Duration(milliseconds: 200),
-                child: Container(
-                  padding: const EdgeInsets.all(4),
-                  decoration: BoxDecoration(
-                    color: widget.color.withAlpha(40),
-                    shape: BoxShape.circle,
-                  ),
-                  child: Icon(
-                    widget.icon,
-                    color: Colors.white,
-                    size: 20,
-                  ),
                 ),
-              ),
-              const SizedBox(width: 8),
-              Text(
-                widget.label,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 13,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 0.8,
-                  shadows: [
-                    Shadow(
-                      color: widget.color.withAlpha(150),
-                      blurRadius: 8,
+                borderRadius: BorderRadius.circular(16),
+                // Daha belirgin border
+                border: Border.all(
+                  color: widget.color.withAlpha(_isHovered ? 220 : 160),
+                  width: 2,
+                ),
+                // Güçlü glow efekti
+                boxShadow: [
+                  // Ana glow - nabız efektli
+                  BoxShadow(
+                    color: widget.color.withAlpha((100 * _pulseAnimation.value).round()),
+                    blurRadius: 20 * _pulseAnimation.value,
+                    spreadRadius: 2 * _pulseAnimation.value,
+                  ),
+                  // İç glow
+                  BoxShadow(
+                    color: widget.color.withAlpha(50),
+                    blurRadius: 10,
+                    spreadRadius: 0,
+                    offset: const Offset(0, 2),
+                  ),
+                  if (_isHovered)
+                    BoxShadow(
+                      color: widget.color.withAlpha(100),
+                      blurRadius: 25,
+                      spreadRadius: 4,
                     ),
-                  ],
-                ),
+                ],
               ),
-            ],
-          ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  // Daha büyük ve parlak ikon
+                  AnimatedRotation(
+                    turns: _isHovered ? 0.05 : 0,
+                    duration: const Duration(milliseconds: 200),
+                    child: Container(
+                      padding: const EdgeInsets.all(4),
+                      decoration: BoxDecoration(
+                        color: widget.color.withAlpha(40),
+                        shape: BoxShape.circle,
+                      ),
+                      child: Icon(
+                        widget.icon,
+                        color: Colors.white,
+                        size: 20,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  // Daha okunabilir yazı
+                  Text(
+                    widget.label,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 13,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 0.8,
+                      shadows: [
+                        Shadow(
+                          color: widget.color.withAlpha(150),
+                          blurRadius: 8,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
         ),
       ),
     );

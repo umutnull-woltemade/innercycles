@@ -18,8 +18,10 @@ import 'data/models/user_profile.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Initialize Firebase
-  await Firebase.initializeApp();
+  // Initialize Firebase (mobile only - web doesn't have firebase_options configured)
+  if (!kIsWeb) {
+    await Firebase.initializeApp();
+  }
 
   // Initialize Crashlytics (mobile only)
   if (!kIsWeb) {
