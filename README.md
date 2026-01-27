@@ -78,6 +78,56 @@ flutter build appbundle
 flutter build web
 ```
 
+## Deploy on Vercel
+
+### Quick Deploy
+
+1. **Build the Flutter web app:**
+   ```bash
+   flutter pub get
+   flutter build web --release
+   ```
+
+2. **Deploy to Vercel:**
+   ```bash
+   # Copy build output to temp directory (avoids git author issues)
+   cp -r build/web /tmp/astrobobo-deploy
+   cp vercel.json /tmp/astrobobo-deploy/
+
+   # Link and deploy
+   cd /tmp/astrobobo-deploy
+   vercel link --yes --project=astrology_app
+   vercel deploy --prod --yes
+   ```
+
+3. **Verify deployment:**
+   ```bash
+   curl -I https://astrobobo.com/
+   ```
+
+### Vercel Configuration
+
+The `vercel.json` includes:
+- SPA routing (all routes -> index.html)
+- Cache headers for static assets (1 year)
+- No-cache for index.html and service worker
+
+### Custom Domain
+
+DNS records for `astrobobo.com`:
+```
+Type    Name    Value
+A       @       76.76.21.21
+CNAME   www     cname.vercel-dns.com
+```
+
+### Rollback
+
+```bash
+vercel ls astrology_app          # List deployments
+vercel rollback [DEPLOYMENT_URL] # Rollback to previous
+```
+
 ## Project Structure
 
 ```
