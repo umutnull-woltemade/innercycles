@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -19,39 +20,78 @@ import 'data/providers/app_providers.dart';
 import 'data/models/user_profile.dart';
 
 void main() async {
+  if (kDebugMode) {
+    debugPrint('🚀 Venus One: Starting initialization...');
+  }
+
   WidgetsFlutterBinding.ensureInitialized();
+
+  if (kDebugMode) {
+    debugPrint('✓ WidgetsBinding initialized');
+  }
 
   // Load environment variables with error handling for web
   try {
     await dotenv.load(fileName: 'assets/.env');
+    if (kDebugMode) {
+      debugPrint('✓ Environment variables loaded');
+    }
   } catch (e) {
     // On web, .env may not exist or be empty - continue with defaults
     if (kDebugMode) {
-      debugPrint('Warning: Could not load .env file: $e');
+      debugPrint('⚠️ Warning: Could not load .env file: $e');
     }
   }
 
   // Initialize Firebase with platform-specific options and error handling
+  if (kDebugMode) {
+    debugPrint('⏳ Initializing Firebase...');
+  }
   try {
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
+    ).timeout(
+      const Duration(seconds: 8),
+      onTimeout: () {
+        if (kDebugMode) {
+          debugPrint('⚠️ Warning: Firebase initialization timed out');
+        }
+        throw TimeoutException('Firebase timeout');
+      },
     );
+    if (kDebugMode) {
+      debugPrint('✓ Firebase initialized');
+    }
   } catch (e) {
     // Firebase may fail on web without proper config - app can still function
     if (kDebugMode) {
-      debugPrint('Warning: Firebase initialization failed: $e');
+      debugPrint('⚠️ Warning: Firebase initialization failed: $e');
     }
   }
 
   // Initialize Supabase with values from .env
+  if (kDebugMode) {
+    debugPrint('⏳ Initializing Supabase...');
+  }
   try {
     await Supabase.initialize(
       url: dotenv.env['SUPABASE_URL'] ?? 'https://placeholder.supabase.co',
       anonKey: dotenv.env['SUPABASE_ANON_KEY'] ?? 'placeholder-key',
+    ).timeout(
+      const Duration(seconds: 5),
+      onTimeout: () {
+        if (kDebugMode) {
+          debugPrint('⚠️ Warning: Supabase initialization timed out');
+        }
+        throw TimeoutException('Supabase timeout');
+      },
     );
+    if (kDebugMode) {
+      debugPrint('✓ Supabase initialized');
+    }
   } catch (e) {
     if (kDebugMode) {
-      debugPrint('Warning: Supabase initialization failed: $e');
+      debugPrint('⚠️ Warning: Supabase initialization failed: $e');
     }
   }
 
@@ -82,18 +122,24 @@ void main() async {
   Future.microtask(() => GlossaryCache().initialize());
 
   // Initialize local storage with timeout for web
+  if (kDebugMode) {
+    debugPrint('⏳ Initializing Storage...');
+  }
   try {
     await StorageService.initialize().timeout(
-      const Duration(seconds: 5),
+      const Duration(seconds: 10),
       onTimeout: () {
         if (kDebugMode) {
-          debugPrint('Warning: Storage initialization timed out');
+          debugPrint('⚠️ Warning: Storage initialization timed out');
         }
       },
     );
+    if (kDebugMode) {
+      debugPrint('✓ Storage initialized');
+    }
   } catch (e) {
     if (kDebugMode) {
-      debugPrint('Warning: Storage initialization failed: $e');
+      debugPrint('⚠️ Warning: Storage initialization failed: $e');
     }
   }
 
@@ -126,6 +172,10 @@ void main() async {
     await adService.initialize();
   }
 
+  if (kDebugMode) {
+    debugPrint('🎨 Starting Flutter app...');
+  }
+
   runApp(
     ProviderScope(
       overrides: [
@@ -138,6 +188,10 @@ void main() async {
       child: const VenusOneApp(),
     ),
   );
+
+  if (kDebugMode) {
+    debugPrint('✅ Venus One: Initialization complete!');
+  }
 }
 
 /// Notifier that starts with an initial profile

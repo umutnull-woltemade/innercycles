@@ -809,23 +809,83 @@
   </div>
 
   <script>
+    // Flag to track if loading screen has been removed
+    var loadingRemoved = false;
+
+    // Function to remove loading screen
+    function removeLoadingScreen() {
+      if (loadingRemoved) return;
+      loadingRemoved = true;
+
+      var loading = document.getElementById('loading');
+      if (loading) {
+        loading.style.opacity = '0';
+        loading.style.transition = 'opacity 0.3s ease-out';
+        setTimeout(function() {
+          loading.remove();
+        }, 300);
+      }
+      console.log('Loading screen removed');
+    }
+
     // Remove loading indicator when Flutter loads
     window.addEventListener('flutter-first-frame', function() {
-      var loading = document.getElementById('loading');
-      if (loading) loading.remove();
+      console.log('Flutter first frame received');
+      removeLoadingScreen();
     });
+
+    // Fallback: Remove loading screen when DOM content is interactive
+    // This catches cases where flutter-first-frame doesn't fire
+    var checkCount = 0;
+    var checkInterval = setInterval(function() {
+      checkCount++;
+
+      // Check if Flutter app root exists
+      var flutterView = document.querySelector('flutter-view') ||
+                       document.querySelector('flt-glass-pane') ||
+                       document.querySelector('[flt-view-id]');
+
+      if (flutterView) {
+        console.log('Flutter view detected, removing loading screen');
+        clearInterval(checkInterval);
+        removeLoadingScreen();
+      }
+
+      // Stop checking after 30 seconds
+      if (checkCount > 60) {
+        clearInterval(checkInterval);
+      }
+    }, 500);
 
     // Add timeout to show error if Flutter doesn't load
     setTimeout(function() {
-      var loading = document.getElementById('loading');
-      if (loading) {
-        var errorMsg = loading.querySelector('.error-msg');
-        if (!errorMsg) {
-          errorMsg = document.createElement('span');
-          errorMsg.className = 'error-msg';
-          errorMsg.style.cssText = 'font-size: 12px; color: #ff6b6b; margin-top: 20px; text-align: center; max-width: 300px;';
-          errorMsg.textContent = 'Yükleme uzun sürüyor. Sayfayı yenileyiniz veya tarayıcı önbelleğini temizleyiniz.';
-          loading.appendChild(errorMsg);
+      if (!loadingRemoved) {
+        var loading = document.getElementById('loading');
+        if (loading) {
+          var errorMsg = loading.querySelector('.error-msg');
+          if (!errorMsg) {
+            errorMsg = document.createElement('div');
+            errorMsg.className = 'error-msg';
+            errorMsg.style.cssText = 'font-size: 12px; color: #ff6b6b; margin-top: 20px; text-align: center; max-width: 400px; display: flex; flex-direction: column; gap: 10px;';
+
+            var msg1 = document.createElement('span');
+            msg1.textContent = 'Yükleme uzun sürüyor. Lütfen bekleyin...';
+            errorMsg.appendChild(msg1);
+
+            var msg2 = document.createElement('span');
+            msg2.textContent = 'Sorun devam ederse sayfayı yenileyiniz veya tarayıcı önbelleğini temizleyiniz.';
+            msg2.style.fontSize = '11px';
+            msg2.style.color = '#888';
+            errorMsg.appendChild(msg2);
+
+            var reloadBtn = document.createElement('button');
+            reloadBtn.textContent = 'Sayfayı Yenile';
+            reloadBtn.style.cssText = 'margin-top: 10px; padding: 8px 16px; background: #FFD700; color: #0D0D1A; border: none; border-radius: 4px; cursor: pointer; font-size: 12px;';
+            reloadBtn.onclick = function() { window.location.reload(); };
+            errorMsg.appendChild(reloadBtn);
+
+            loading.appendChild(errorMsg);
+          }
         }
       }
     }, 15000);
@@ -834,6 +894,9 @@
     window.addEventListener('error', function(e) {
       console.error('Global error:', e.message, e.filename, e.lineno);
     });
+
+    // Log when script loads
+    console.log('Venus One: Loading script initialized');
   </script>
 
   <script src="flutter_bootstrap.js" async></script>

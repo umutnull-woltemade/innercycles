@@ -1,0 +1,49 @@
+{
+  "recommendations": [
+    // Dart & Flutter
+    "dart-code.dart-code",
+    "dart-code.flutter",
+
+    // Firebase
+    "toba.vsfire",
+
+    // JavaScript/TypeScript
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+
+    // Git & Version Control
+    "eamodio.gitlens",
+    "github.vscode-pull-request-github",
+
+    // Code Quality & Testing
+    "usernamehw.errorlens",
+    "streetsidesoftware.code-spell-checker",
+
+    // Productivity
+    "gruntfuggly.todo-tree",
+    "aaron-bond.better-comments",
+    "wayou.vscode-todo-highlight",
+
+    // UI/UX
+    "pkief.material-icon-theme",
+    "zhuangtongfa.material-theme",
+
+    // YAML Support
+    "redhat.vscode-yaml",
+
+    // JSON
+    "zainchen.json",
+
+    // Markdown
+    "yzhang.markdown-all-in-one",
+
+    // Environment Files
+    "mikestead.dotenv",
+
+    // REST Client (for testing APIs)
+    "humao.rest-client",
+
+    // PDF Support
+    "tomoki1207.pdf"
+  ]
+}

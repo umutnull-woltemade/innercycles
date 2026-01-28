@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -31,9 +32,39 @@ class StorageService {
 
   /// Initialize Hive and open boxes
   static Future<void> initialize() async {
-    await Hive.initFlutter();
-    _profileBox = await Hive.openBox(_userProfileBoxName);
-    _settingsBox = await Hive.openBox(_settingsBoxName);
+    try {
+      await Hive.initFlutter();
+
+      // Try to open boxes with individual timeouts
+      _profileBox = await Hive.openBox(_userProfileBoxName).timeout(
+        const Duration(seconds: 5),
+        onTimeout: () {
+          if (kDebugMode) {
+            debugPrint('Warning: Profile box initialization timed out');
+          }
+          throw TimeoutException('Profile box timeout');
+        },
+      );
+
+      _settingsBox = await Hive.openBox(_settingsBoxName).timeout(
+        const Duration(seconds: 5),
+        onTimeout: () {
+          if (kDebugMode) {
+            debugPrint('Warning: Settings box initialization timed out');
+          }
+          throw TimeoutException('Settings box timeout');
+        },
+      );
+
+      if (kDebugMode) {
+        debugPrint('StorageService initialized successfully');
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        debugPrint('StorageService initialization error: $e');
+      }
+      // Continue without storage - app will work in memory-only mode
+    }
   }
 
   // ========== USER PROFILE ==========
