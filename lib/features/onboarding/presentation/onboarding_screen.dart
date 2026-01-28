@@ -238,26 +238,46 @@ class _WelcomePageState extends State<_WelcomePage> with SingleTickerProviderSta
 
     final displayName = user.userMetadata?['full_name'] as String? ??
         user.userMetadata?['name'] as String? ??
-        user.email?.split('@').first ??
-        'kozmik yolcu';
+        user.email?.split('@').first;
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Row(
-          children: [
-            const Icon(Icons.check_circle, color: Colors.white, size: 20),
-            const SizedBox(width: 8),
-            Text('Hoş geldin $displayName!'),
-          ],
-        ),
-        backgroundColor: AppColors.success,
-        behavior: SnackBarBehavior.floating,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      ),
+    // Kozmik karşılama overlay'i göster
+    _showCosmicWelcome(displayName);
+  }
+
+  void _showCosmicWelcome(String? name) {
+    // Ezoterik karşılama mesajları
+    final cosmicGreetings = [
+      'Yıldızlar seni bekliyordu',
+      'Kozmik yolculuğun başlıyor',
+      'Evren seninle buluştu',
+      'Ruhun eve döndü',
+      'Kaderin kapısı açıldı',
+      'Işığın parlamaya başladı',
+    ];
+    final greeting = cosmicGreetings[DateTime.now().millisecond % cosmicGreetings.length];
+
+    showGeneralDialog(
+      context: context,
+      barrierDismissible: false,
+      barrierColor: Colors.transparent,
+      transitionDuration: const Duration(milliseconds: 500),
+      pageBuilder: (context, anim1, anim2) {
+        return _CosmicWelcomeOverlay(
+          greeting: greeting,
+          name: name,
+          onComplete: () {
+            Navigator.of(context).pop();
+            widget.onContinue();
+          },
+        );
+      },
+      transitionBuilder: (context, anim1, anim2, child) {
+        return FadeTransition(
+          opacity: CurvedAnimation(parent: anim1, curve: Curves.easeOut),
+          child: child,
+        );
+      },
     );
-
-    // Devam et
-    widget.onContinue();
   }
 
   @override
@@ -630,22 +650,8 @@ class _WelcomePageState extends State<_WelcomePage> with SingleTickerProviderSta
       if (!mounted) return;
 
       if (userInfo != null) {
-        // Success - continue to next page
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Row(
-              children: [
-                const Icon(Icons.check_circle, color: Colors.white, size: 20),
-                const SizedBox(width: 8),
-                Text('Hoş geldin ${userInfo.displayName ?? 'kozmik yolcu'}!'),
-              ],
-            ),
-            backgroundColor: AppColors.success,
-            behavior: SnackBarBehavior.floating,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-          ),
-        );
-        widget.onContinue();
+        // Kozmik karşılama overlay'i göster
+        _showCosmicWelcome(userInfo.displayName);
       }
       // userInfo null ise web'de OAuth redirect olacak
       // authStateChanges listener basarili girisi yakalayacak
@@ -1568,5 +1574,183 @@ class _YourSignPage extends StatelessWidget {
       'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'
     ];
     return '${date.day} ${months[date.month - 1]} ${date.year}';
+  }
+}
+
+/// Kozmik karşılama overlay'i - tam ekran, animasyonlu
+class _CosmicWelcomeOverlay extends StatefulWidget {
+  final String greeting;
+  final String? name;
+  final VoidCallback onComplete;
+
+  const _CosmicWelcomeOverlay({
+    required this.greeting,
+    this.name,
+    required this.onComplete,
+  });
+
+  @override
+  State<_CosmicWelcomeOverlay> createState() => _CosmicWelcomeOverlayState();
+}
+
+class _CosmicWelcomeOverlayState extends State<_CosmicWelcomeOverlay>
+    with TickerProviderStateMixin {
+  late AnimationController _starController;
+  late AnimationController _textController;
+
+  @override
+  void initState() {
+    super.initState();
+    _starController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 3),
+    )..repeat();
+
+    _textController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 800),
+    )..forward();
+
+    // 2.5 saniye sonra otomatik geç
+    Future.delayed(const Duration(milliseconds: 2500), () {
+      if (mounted) widget.onComplete();
+    });
+  }
+
+  @override
+  void dispose() {
+    _starController.dispose();
+    _textController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.transparent,
+      child: GestureDetector(
+        onTap: widget.onComplete,
+        child: Container(
+          width: double.infinity,
+          height: double.infinity,
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Color(0xFF0D0D1A),
+                Color(0xFF1A1A2E),
+                Color(0xFF16213E),
+                Color(0xFF0F3460),
+              ],
+            ),
+          ),
+          child: Stack(
+            children: [
+              // Yıldızlar arka planı
+              ...List.generate(50, (index) {
+                final random = index * 7.3;
+                return Positioned(
+                  left: (random * 13) % MediaQuery.of(context).size.width,
+                  top: (random * 17) % MediaQuery.of(context).size.height,
+                  child: AnimatedBuilder(
+                    animation: _starController,
+                    builder: (context, child) {
+                      final twinkle = ((_starController.value * 2 + random / 50) % 1.0);
+                      return Opacity(
+                        opacity: 0.3 + twinkle * 0.7,
+                        child: Icon(
+                          Icons.star,
+                          size: 4 + (index % 4) * 2.0,
+                          color: index % 3 == 0
+                              ? const Color(0xFFFFD700)
+                              : index % 3 == 1
+                                  ? const Color(0xFFE6E6FA)
+                                  : Colors.white,
+                        ),
+                      );
+                    },
+                  ),
+                );
+              }),
+
+              // Ana içerik
+              Center(
+                child: FadeTransition(
+                  opacity: _textController,
+                  child: SlideTransition(
+                    position: Tween<Offset>(
+                      begin: const Offset(0, 0.2),
+                      end: Offset.zero,
+                    ).animate(CurvedAnimation(
+                      parent: _textController,
+                      curve: Curves.easeOutCubic,
+                    )),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        // Ay/Yıldız ikonu
+                        const Text(
+                          '🌙',
+                          style: TextStyle(fontSize: 64),
+                        ),
+                        const SizedBox(height: 32),
+
+                        // Ezoterik mesaj
+                        ShaderMask(
+                          shaderCallback: (bounds) => const LinearGradient(
+                            colors: [
+                              Color(0xFFFFD700),
+                              Color(0xFFFF6B9D),
+                              Color(0xFF9B59B6),
+                            ],
+                          ).createShader(bounds),
+                          child: Text(
+                            widget.greeting,
+                            style: const TextStyle(
+                              fontSize: 28,
+                              fontWeight: FontWeight.w300,
+                              color: Colors.white,
+                              letterSpacing: 1.5,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+
+                        // İsim varsa göster
+                        if (widget.name != null && widget.name!.isNotEmpty) ...[
+                          const SizedBox(height: 16),
+                          Text(
+                            widget.name!,
+                            style: const TextStyle(
+                              fontSize: 36,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFFFFD700),
+                              letterSpacing: 2,
+                            ),
+                          ),
+                        ],
+
+                        const SizedBox(height: 48),
+
+                        // Alt mesaj
+                        Text(
+                          '✨ Dokunarak devam et ✨',
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.white.withOpacity(0.5),
+                            letterSpacing: 1,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
