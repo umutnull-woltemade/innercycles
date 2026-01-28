@@ -214,7 +214,6 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 class _SocialLoginButton extends StatelessWidget {
   final String label;
   final IconData? icon;
-  final Widget? customIcon;
   final Color backgroundColor;
   final Color textColor;
   final Color? borderColor;
@@ -224,7 +223,6 @@ class _SocialLoginButton extends StatelessWidget {
   const _SocialLoginButton({
     required this.label,
     this.icon,
-    this.customIcon,
     required this.backgroundColor,
     required this.textColor,
     this.borderColor,
@@ -263,9 +261,7 @@ class _SocialLoginButton extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   if (icon != null)
-                    Icon(icon, size: 24)
-                  else if (customIcon != null)
-                    customIcon!,
+                    Icon(icon, size: 24),
                   const SizedBox(width: 12),
                   Text(
                     label,
