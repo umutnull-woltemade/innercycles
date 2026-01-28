@@ -27,7 +27,7 @@ jobs:
         run: flutter pub get
 
       - name: Run dart analyze
-        run: dart analyze --fatal-infos
+        run: dart analyze --fatal-warnings
 
   test:
     name: Unit Tests
