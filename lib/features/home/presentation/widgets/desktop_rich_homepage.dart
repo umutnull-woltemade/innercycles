@@ -171,6 +171,24 @@ class _QuickDiscoveryBar extends StatelessWidget {
           ),
           const SizedBox(width: 24),
           _QuickDiscoveryItem(
+            icon: '🧠',
+            label: 'Theta Healing',
+            route: Routes.thetaHealing,
+          ),
+          const SizedBox(width: 24),
+          _QuickDiscoveryItem(
+            icon: '🌍',
+            label: 'Astrokartografi',
+            route: Routes.astroCartography,
+          ),
+          const SizedBox(width: 24),
+          _QuickDiscoveryItem(
+            icon: '🙏',
+            label: 'Reiki',
+            route: Routes.reiki,
+          ),
+          const SizedBox(width: 24),
+          _QuickDiscoveryItem(
             icon: '🔮',
             label: 'Tarot',
             route: Routes.tarot,
@@ -1317,6 +1335,8 @@ class _DiscoverySection extends StatelessWidget {
               _DiscoveryCard(icon: Icons.spa_rounded, title: 'Günlük Ritüeller', color: const Color(0xFF4CAF50), route: Routes.dailyRituals),
               _DiscoveryCard(icon: Icons.nightlight_rounded, title: 'Ay Ritüelleri', color: const Color(0xFFC0C0C0), route: Routes.moonRituals),
               _DiscoveryCard(icon: Icons.grass_rounded, title: 'Ay Bahçeciliği', color: const Color(0xFF8BC34A), route: Routes.gardeningMoon),
+              _DiscoveryCard(icon: Icons.psychology_rounded, title: 'Theta Healing', color: const Color(0xFF7C4DFF), route: Routes.thetaHealing),
+              _DiscoveryCard(icon: Icons.self_improvement_rounded, title: 'Reiki', color: const Color(0xFFFF7043), route: Routes.reiki),
             ],
           ),
 
