@@ -250,7 +250,7 @@ class NumerologyScreen extends ConsumerWidget {
                     const SizedBox(height: AppConstants.spacingXl),
                     // Disclaimer
                     const PageFooterWithDisclaimer(
-                      brandText: 'Numeroloji — Astrobobo',
+                      brandText: 'Numeroloji — Venus One',
                       disclaimerText: DisclaimerTexts.numerology,
                     ),
                   ]),

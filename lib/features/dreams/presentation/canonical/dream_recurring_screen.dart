@@ -129,7 +129,7 @@ class DreamRecurringScreen extends StatelessWidget {
                 const SizedBox(height: 40),
 
                 const PageFooterWithDisclaimer(
-                  brandText: 'Rüya İzi — Astrobobo',
+                  brandText: 'Rüya İzi — Venus One',
                   disclaimerText: DisclaimerTexts.dreams,
                 ),
               ],

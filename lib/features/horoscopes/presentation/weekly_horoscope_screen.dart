@@ -90,7 +90,7 @@ class _WeeklyHoroscopeScreenState extends State<WeeklyHoroscopeScreen> {
                       const SizedBox(height: AppConstants.spacingXl),
                       // Entertainment Disclaimer
                       const PageFooterWithDisclaimer(
-                        brandText: 'Haftalık Burç — Astrobobo',
+                        brandText: 'Haftalık Burç — Venus One',
                         disclaimerText: DisclaimerTexts.astrology,
                       ),
                       const SizedBox(height: AppConstants.spacingLg),

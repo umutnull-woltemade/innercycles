@@ -75,7 +75,7 @@ class MoonSignTodayScreen extends StatelessWidget {
                 _buildSuggestion(context, isDark, '⬆️', 'Yükselen burç nedir?', Routes.horoscope),
                 const SizedBox(height: 40),
 
-                Center(child: Text('Astroloji — Astrobobo', style: TextStyle(fontSize: 12, color: isDark ? Colors.white38 : AppColors.textLight))),
+                Center(child: Text('Astroloji — Venus One', style: TextStyle(fontSize: 12, color: isDark ? Colors.white38 : AppColors.textLight))),
                 const SizedBox(height: 20),
               ],
             ),

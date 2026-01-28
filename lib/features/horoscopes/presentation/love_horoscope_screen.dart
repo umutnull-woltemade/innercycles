@@ -87,7 +87,7 @@ class _LoveHoroscopeScreenState extends State<LoveHoroscopeScreen> {
                       const SizedBox(height: AppConstants.spacingXl),
                       // Entertainment Disclaimer
                       const PageFooterWithDisclaimer(
-                        brandText: 'Aşk Burcu — Astrobobo',
+                        brandText: 'Aşk Burcu — Venus One',
                         disclaimerText: DisclaimerTexts.astrology,
                       ),
                       const SizedBox(height: AppConstants.spacingLg),

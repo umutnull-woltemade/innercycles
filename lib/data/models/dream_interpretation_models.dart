@@ -304,7 +304,7 @@ class ShareableCard {
     required this.category,
   });
 
-  String get fullShareText => '$emoji "$quote" — Rüya Yorumu | astrobobo.com';
+  String get fullShareText => '$emoji "$quote" — Rüya Yorumu | venusone.com';
 
   Map<String, dynamic> toJson() => {
         'emoji': emoji,

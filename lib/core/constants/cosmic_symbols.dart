@@ -1,4 +1,4 @@
-/// Cosmic Symbols - Web-safe unicode symbols for Astrobobo
+/// Cosmic Symbols - Web-safe unicode symbols for Venus One
 /// These symbols work across all platforms including web browsers
 ///
 /// IMPORTANT: Avoid emojis (like 🔮, ✨, 🌙) as they render inconsistently on web.

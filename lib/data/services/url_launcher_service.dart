@@ -154,7 +154,7 @@ class UrlLauncherService {
     } else if (Platform.isAndroid) {
       return 'https://play.google.com/store/apps/details?id=${AppConstants.playStoreId}';
     }
-    return 'https://astrobobo.com';
+    return 'https://venusone.com';
   }
 }
 

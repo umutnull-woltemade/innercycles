@@ -961,7 +961,7 @@ class _SplashScreenState extends ConsumerState<_SplashScreen> {
             ),
             const SizedBox(height: 24),
             Text(
-              'Astrobobo',
+              'Venus One',
               style: Theme.of(context).textTheme.displayMedium?.copyWith(
                     color: const Color(0xFFFFD700),
                   ),

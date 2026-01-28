@@ -483,7 +483,7 @@ class _BelowTheFold extends StatelessWidget {
             child: GestureDetector(
               onTap: () => context.push(Routes.kozmoz),
               child: Text(
-                'AstroBoBo',
+                'Venus One',
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w500,

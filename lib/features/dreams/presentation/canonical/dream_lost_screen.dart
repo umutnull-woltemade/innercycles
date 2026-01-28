@@ -65,7 +65,7 @@ class DreamLostScreen extends StatelessWidget {
                 _buildSuggestion(context, isDark, '🌫️', 'Rüyada karanlık yer ne demek?', Routes.dreamDarkness),
                 const SizedBox(height: 40),
                 const PageFooterWithDisclaimer(
-                  brandText: 'Rüya İzi — Astrobobo',
+                  brandText: 'Rüya İzi — Venus One',
                   disclaimerText: DisclaimerTexts.dreams,
                 ),
               ],

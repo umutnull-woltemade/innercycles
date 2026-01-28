@@ -107,13 +107,13 @@ class _ShareSummaryScreenState extends ConsumerState<ShareSummaryScreen> {
 
       // Save to temp file
       final tempDir = await getTemporaryDirectory();
-      final file = File('${tempDir.path}/astrobobo_summary.png');
+      final file = File('${tempDir.path}/venusone_summary.png');
       await file.writeAsBytes(bytes);
 
       // Share
       await Share.shareXFiles(
         [XFile(file.path)],
-        text: 'Bugünün kozmik enerjisi benimle! ✨🔮 Evrenin fısıltılarını dinle... #astrobobo #astroloji #burçyorumu #kozmikenerji',
+        text: 'Bugünün kozmik enerjisi benimle! ✨🔮 Evrenin fısıltılarını dinle... #venusone #astroloji #burçyorumu #kozmikenerji',
       );
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(

@@ -110,7 +110,7 @@ class DisclaimerScreen extends ConsumerWidget {
         children: [
           _buildParagraph(
             context,
-            'Astrobobo, astroloji, numeroloji ve rüya yorumları hakkında '
+            'Venus One, astroloji, numeroloji ve rüya yorumları hakkında '
             'yorumlayıcı ve eğlence amaçlı içerikler sunar. Burada yer alan '
             'bilgiler kişisel yansıtma ve merak için tasarlanmıştır.',
             textColor,

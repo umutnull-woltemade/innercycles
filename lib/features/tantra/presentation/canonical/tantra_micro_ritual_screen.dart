@@ -145,7 +145,7 @@ class TantraMicroRitualScreen extends StatelessWidget {
 
                 // Footer
                 Text(
-                  'Tantra — Astrobobo',
+                  'Tantra — Venus One',
                   style: TextStyle(fontSize: 12, color: isDark ? Colors.white38 : AppColors.textLight),
                 ),
                 const SizedBox(height: 20),

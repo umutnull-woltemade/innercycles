@@ -366,7 +366,7 @@ class _CompatibilityScreenState extends ConsumerState<CompatibilityScreen> {
         const SizedBox(height: AppConstants.spacingLg),
         // Disclaimer
         const PageFooterWithDisclaimer(
-          brandText: 'Burç Uyumu — Astrobobo',
+          brandText: 'Burç Uyumu — Venus One',
           disclaimerText: DisclaimerTexts.compatibility,
         ),
       ],

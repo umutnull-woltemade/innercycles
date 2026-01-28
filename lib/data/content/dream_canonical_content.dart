@@ -513,15 +513,15 @@ class DreamUIStrings {
   };
 
   static const Map<AppLanguage, String> _brandText = {
-    AppLanguage.tr: 'Rüya İzi — Astrobobo',
-    AppLanguage.en: 'Dream Trace — Astrobobo',
-    AppLanguage.de: 'Traumspur — Astrobobo',
-    AppLanguage.fr: 'Trace de Rêve — Astrobobo',
-    AppLanguage.es: 'Huella del Sueño — Astrobobo',
-    AppLanguage.ru: 'След Сна — Astrobobo',
-    AppLanguage.zh: '梦迹 — Astrobobo',
-    AppLanguage.ar: 'أثر الحلم — Astrobobo',
-    AppLanguage.el: 'Ίχνος Ονείρου — Astrobobo',
-    AppLanguage.bg: 'Следа от Сън — Astrobobo',
+    AppLanguage.tr: 'Rüya İzi — Venus One',
+    AppLanguage.en: 'Dream Trace — Venus One',
+    AppLanguage.de: 'Traumspur — Venus One',
+    AppLanguage.fr: 'Trace de Rêve — Venus One',
+    AppLanguage.es: 'Huella del Sueño — Venus One',
+    AppLanguage.ru: 'След Сна — Venus One',
+    AppLanguage.zh: '梦迹 — Venus One',
+    AppLanguage.ar: 'أثر الحلم — Venus One',
+    AppLanguage.el: 'Ίχνος Ονείρου — Venus One',
+    AppLanguage.bg: 'Следа от Сън — Venus One',
   };
 }

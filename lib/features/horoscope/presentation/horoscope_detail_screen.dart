@@ -193,7 +193,7 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
           const SizedBox(height: AppConstants.spacingLg),
           // AI-QUOTABLE: Footer with Disclaimer
           const PageFooterWithDisclaimer(
-            brandText: 'Astroloji — Astrobobo',
+            brandText: 'Astroloji — Venus One',
             disclaimerText: DisclaimerTexts.astrology,
           ),
           const SizedBox(height: AppConstants.spacingMd),

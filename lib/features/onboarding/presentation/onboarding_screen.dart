@@ -312,7 +312,7 @@ class _WelcomePageState extends State<_WelcomePage> with SingleTickerProviderSta
                 ],
               ).createShader(bounds),
               child: Text(
-                'AstroBoBo',
+                'Venus One',
                 style: Theme.of(context).textTheme.displayLarge?.copyWith(
                       color: Colors.white,
                       fontSize: 48,

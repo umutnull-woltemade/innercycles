@@ -88,7 +88,7 @@ void main() async {
         if (savedProfile != null)
           userProfileProvider.overrideWith(() => _InitializedUserProfileNotifier(savedProfile)),
       ],
-      child: const AstroboboApp(),
+      child: const Venus OneApp(),
     ),
   );
 }
@@ -103,8 +103,8 @@ class _InitializedUserProfileNotifier extends UserProfileNotifier {
   UserProfile? build() => _initialProfile;
 }
 
-class AstroboboApp extends ConsumerWidget {
-  const AstroboboApp({super.key});
+class Venus OneApp extends ConsumerWidget {
+  const Venus OneApp({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -113,7 +113,7 @@ class AstroboboApp extends ConsumerWidget {
     final language = ref.watch(languageProvider);
 
     return MaterialApp.router(
-      title: 'Astrobobo',
+      title: 'Venus One',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light,
       darkTheme: AppTheme.dark,

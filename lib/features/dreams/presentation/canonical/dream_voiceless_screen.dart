@@ -64,7 +64,7 @@ class DreamVoicelessScreen extends StatelessWidget {
                 _buildSuggestion(context, isDark, '💧', 'Rüyada su görmek ne anlama gelir?', Routes.dreamWater),
                 const SizedBox(height: 40),
                 const PageFooterWithDisclaimer(
-                  brandText: 'Rüya İzi — Astrobobo',
+                  brandText: 'Rüya İzi — Venus One',
                   disclaimerText: DisclaimerTexts.dreams,
                 ),
               ],

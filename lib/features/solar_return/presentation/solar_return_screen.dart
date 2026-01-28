@@ -68,7 +68,7 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
                 const SizedBox(height: AppConstants.spacingXl),
                 // Entertainment Disclaimer
                 const PageFooterWithDisclaimer(
-                  brandText: 'Solar Return — Astrobobo',
+                  brandText: 'Solar Return — Venus One',
                   disclaimerText: DisclaimerTexts.astrology,
                 ),
               ],

@@ -86,7 +86,7 @@ class RisingSignScreen extends StatelessWidget {
                 const SizedBox(height: 40),
 
                 const PageFooterWithDisclaimer(
-                  brandText: 'Astroloji — Astrobobo',
+                  brandText: 'Astroloji — Venus One',
                   disclaimerText: DisclaimerTexts.astrology,
                 ),
               ],

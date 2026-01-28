@@ -65,7 +65,7 @@ class DreamDarknessScreen extends StatelessWidget {
                 _buildSuggestion(context, isDark, '👤', 'Rüyada geçmişten biri çıkması ne demek?', Routes.dreamPast),
                 const SizedBox(height: 40),
                 const PageFooterWithDisclaimer(
-                  brandText: 'Rüya İzi — Astrobobo',
+                  brandText: 'Rüya İzi — Venus One',
                   disclaimerText: DisclaimerTexts.dreams,
                 ),
               ],

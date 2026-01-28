@@ -135,7 +135,7 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
                         const SizedBox(height: AppConstants.spacingXl),
                         // Entertainment Disclaimer
                         const PageFooterWithDisclaimer(
-                          brandText: 'Progresyonlar — Astrobobo',
+                          brandText: 'Progresyonlar — Venus One',
                           disclaimerText: DisclaimerTexts.astrology,
                         ),
                         const SizedBox(height: AppConstants.spacingLg),

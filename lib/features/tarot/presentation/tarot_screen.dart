@@ -135,7 +135,7 @@ class _TarotScreenState extends ConsumerState<TarotScreen> {
                     const SizedBox(height: AppConstants.spacingLg),
                     // Disclaimer
                     const PageFooterWithDisclaimer(
-                      brandText: 'Tarot — Astrobobo',
+                      brandText: 'Tarot — Venus One',
                       disclaimerText: DisclaimerTexts.tarot,
                     ),
                   ]),

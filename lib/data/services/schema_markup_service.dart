@@ -6,9 +6,9 @@ import 'dart:convert';
 import 'seo_meta_service.dart';
 
 class SchemaMarkupService {
-  static const String _baseUrl = 'https://astrobobo.com';
+  static const String _baseUrl = 'https://venusone.com';
   static const String _logoUrl = '$_baseUrl/icons/Icon-512.png';
-  static const String _orgName = 'Astrobobo';
+  static const String _orgName = 'Venus One';
 
   /// Generate JSON-LD script tag content for a given route
   static String generateSchemaMarkup(String route) {
@@ -68,9 +68,9 @@ class SchemaMarkupService {
       'url': _baseUrl,
       'logo': _logoUrl,
       'sameAs': [
-        'https://twitter.com/astroboboapp',
-        'https://instagram.com/astroboboapp',
-        'https://facebook.com/astroboboapp',
+        'https://twitter.com/venusoneapp',
+        'https://instagram.com/venusoneapp',
+        'https://facebook.com/venusoneapp',
       ],
       'contactPoint': {
         '@type': 'ContactPoint',
@@ -214,7 +214,7 @@ class SchemaMarkupService {
     return {
       '@context': 'https://schema.org',
       '@type': 'Product',
-      'name': 'Astrobobo Premium',
+      'name': 'Venus One Premium',
       'description': meta.description,
       'url': meta.getCanonicalUrl(_baseUrl),
       'brand': {

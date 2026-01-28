@@ -111,7 +111,7 @@ class DisclaimerTexts {
 
 /// Sayfa footer'ı ile disclaimer birlikte
 class PageFooterWithDisclaimer extends StatelessWidget {
-  final String brandText; // "Rüya İzi — Astrobobo"
+  final String brandText; // "Rüya İzi — Venus One"
   final String? disclaimerText;
   final bool showDisclaimer;
 

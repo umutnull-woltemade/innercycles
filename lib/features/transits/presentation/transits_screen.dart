@@ -142,7 +142,7 @@ class TransitsScreen extends ConsumerWidget {
                   const SizedBox(height: AppConstants.spacingXl),
                   // Entertainment Disclaimer
                   const PageFooterWithDisclaimer(
-                    brandText: 'Transitler — Astrobobo',
+                    brandText: 'Transitler — Venus One',
                     disclaimerText: DisclaimerTexts.astrology,
                   ),
                   const SizedBox(height: AppConstants.spacingLg),

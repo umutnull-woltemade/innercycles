@@ -11,16 +11,16 @@ class L10n {
   static final Map<String, Map<AppLanguage, String>> _translations = {
     // ============ APP GENERAL ============
     'app_name': {
-      AppLanguage.en: 'Astrobobo',
-      AppLanguage.tr: 'Astrobobo',
-      AppLanguage.el: 'Astrobobo',
-      AppLanguage.bg: 'Astrobobo',
-      AppLanguage.ru: 'Astrobobo',
-      AppLanguage.zh: 'Astrobobo',
-      AppLanguage.fr: 'Astrobobo',
-      AppLanguage.de: 'Astrobobo',
-      AppLanguage.es: 'Astrobobo',
-      AppLanguage.ar: 'Astrobobo',
+      AppLanguage.en: 'Venus One',
+      AppLanguage.tr: 'Venus One',
+      AppLanguage.el: 'Venus One',
+      AppLanguage.bg: 'Venus One',
+      AppLanguage.ru: 'Venus One',
+      AppLanguage.zh: 'Venus One',
+      AppLanguage.fr: 'Venus One',
+      AppLanguage.de: 'Venus One',
+      AppLanguage.es: 'Venus One',
+      AppLanguage.ar: 'Venus One',
     },
     'app_tagline': {
       AppLanguage.en: 'The Secrets of the Sky Await You',
