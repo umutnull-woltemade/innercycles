@@ -146,10 +146,7 @@ class TantraQuestion {
   final String question;
   final TantraQuestionPurpose purpose;
 
-  const TantraQuestion({
-    required this.question,
-    required this.purpose,
-  });
+  const TantraQuestion({required this.question, required this.purpose});
 }
 
 enum TantraQuestionPurpose {
@@ -241,33 +238,41 @@ class TantraContent {
     if (hour >= 5 && hour < 9) {
       // Morning
       return _allModules
-          .where((m) =>
-              m.theme == TantraTheme.breathAwareness ||
-              m.theme == TantraTheme.ritualIntent)
+          .where(
+            (m) =>
+                m.theme == TantraTheme.breathAwareness ||
+                m.theme == TantraTheme.ritualIntent,
+          )
           .take(3)
           .toList();
     } else if (hour >= 18 && hour < 22) {
       // Evening
       return _allModules
-          .where((m) =>
-              m.theme == TantraTheme.emotionalConnection ||
-              m.theme == TantraTheme.sharedRhythms)
+          .where(
+            (m) =>
+                m.theme == TantraTheme.emotionalConnection ||
+                m.theme == TantraTheme.sharedRhythms,
+          )
           .take(3)
           .toList();
     } else if (hour >= 22 || hour < 5) {
       // Night
       return _allModules
-          .where((m) =>
-              m.theme == TantraTheme.selfCompassion ||
-              m.theme == TantraTheme.presentMoment)
+          .where(
+            (m) =>
+                m.theme == TantraTheme.selfCompassion ||
+                m.theme == TantraTheme.presentMoment,
+          )
           .take(3)
           .toList();
     }
     // Daytime
     return _allModules
-        .where((m) =>
-            m.theme == TantraTheme.energyBalance ||
-            m.theme == TantraTheme.slownessAttention)
+        .where(
+          (m) =>
+              m.theme == TantraTheme.energyBalance ||
+              m.theme == TantraTheme.slownessAttention,
+        )
         .take(3)
         .toList();
   }
@@ -1001,7 +1006,8 @@ class TantraContent {
       'color': 'Koyu Kırmızı',
       'colorHex': '#8B0000',
       'bijaMantra': 'LAM',
-      'bijaMantraAciklama': 'LAM mantrasının titreşimi toprak elementini uyandırır. '
+      'bijaMantraAciklama':
+          'LAM mantrasının titreşimi toprak elementini uyandırır. '
           'Derin, guttural bir sesle söylenir ve kök çakranın enerji merkezini aktive eder.',
       'symbol': 'Dört yapraklı lotus, içinde sarı kare (toprak yantra)',
       'petals': 4,
@@ -1072,7 +1078,8 @@ class TantraContent {
         ],
       },
       'kundaliniStage': {
-        'description': 'Kundalini Shakti burada uyur. Üç buçuk kıvrım halinde '
+        'description':
+            'Kundalini Shakti burada uyur. Üç buçuk kıvrım halinde '
             'sarılmış yılan, Shiva lingamının etrafında bekler. Uyanış burada başlar.',
         'awakeningSigns': [
           'Kuyruk sokumunda ısı veya titreşim',
@@ -1154,9 +1161,20 @@ class TantraContent {
           ],
         },
       ],
-      'crystals': ['Kırmızı Jasper', 'Hematit', 'Siyah Turmalin', 'Garnet', 'Obsidyen'],
+      'crystals': [
+        'Kırmızı Jasper',
+        'Hematit',
+        'Siyah Turmalin',
+        'Garnet',
+        'Obsidyen',
+      ],
       'essentialOils': ['Paçuli', 'Sedir', 'Vetiver', 'Sandal Ağacı'],
-      'foods': ['Kök sebzeler', 'Kırmızı meyveler', 'Protein', 'Toprak altı yiyecekler'],
+      'foods': [
+        'Kök sebzeler',
+        'Kırmızı meyveler',
+        'Protein',
+        'Toprak altı yiyecekler',
+      ],
       'yogaAsanas': ['Tadasana', 'Virabhadrasana', 'Malasana', 'Balasana'],
     },
 
@@ -1172,7 +1190,8 @@ class TantraContent {
       'color': 'Turuncu',
       'colorHex': '#FF6600',
       'bijaMantra': 'VAM',
-      'bijaMantraAciklama': 'VAM mantrasının titreşimi su elementini uyandırır. '
+      'bijaMantraAciklama':
+          'VAM mantrasının titreşimi su elementini uyandırır. '
           'Akışkan ve yumuşak bir sesle söylenir, yaratıcılığı ve hazzı aktive eder.',
       'symbol': 'Altı yapraklı lotus, içinde hilal ay (su yantra)',
       'petals': 6,
@@ -1243,7 +1262,8 @@ class TantraContent {
         ],
       },
       'kundaliniStage': {
-        'description': 'Kundalini burada ilk uyanışını deneyimler. Su elementi '
+        'description':
+            'Kundalini burada ilk uyanışını deneyimler. Su elementi '
             'enerjinin akışını kolaylaştırır. Shakti burada dans etmeye başlar.',
         'awakeningSigns': [
           'Pelvis bölgesinde sıcaklık',
@@ -1325,10 +1345,21 @@ class TantraContent {
           ],
         },
       ],
-      'crystals': ['Karneol', 'Turuncu Kalsit', 'Ay Taşı', 'Mercan', 'Kehribar'],
+      'crystals': [
+        'Karneol',
+        'Turuncu Kalsit',
+        'Ay Taşı',
+        'Mercan',
+        'Kehribar',
+      ],
       'essentialOils': ['Ylang Ylang', 'Sandal', 'Portakal', 'Neroli'],
       'foods': ['Turuncu meyveler', 'Bal kabağı', 'Havuç', 'Badem'],
-      'yogaAsanas': ['Baddha Konasana', 'Upavistha Konasana', 'Bhujangasana', 'Pigeon Pose'],
+      'yogaAsanas': [
+        'Baddha Konasana',
+        'Upavistha Konasana',
+        'Bhujangasana',
+        'Pigeon Pose',
+      ],
     },
 
     // ─────────────────────────────────────────────────────────────────────────
@@ -1343,11 +1374,23 @@ class TantraContent {
       'color': 'Sarı',
       'colorHex': '#FFCC00',
       'bijaMantra': 'RAM',
-      'bijaMantraAciklama': 'RAM mantrasının titreşimi ateş elementini uyandırır. '
+      'bijaMantraAciklama':
+          'RAM mantrasının titreşimi ateş elementini uyandırır. '
           'Güçlü ve kararlı bir sesle söylenir, iradeyi ve gücü aktive eder.',
       'symbol': 'On yapraklı lotus, içinde aşağı bakan üçgen (ateş yantra)',
       'petals': 10,
-      'petalMantras': ['Dam', 'Dham', 'Nam', 'Tam', 'Tham', 'Dam', 'Dham', 'Nam', 'Pam', 'Pham'],
+      'petalMantras': [
+        'Dam',
+        'Dham',
+        'Nam',
+        'Tam',
+        'Tham',
+        'Dam',
+        'Dham',
+        'Nam',
+        'Pam',
+        'Pham',
+      ],
       'deity': {
         'masculine': 'Rudra - Dönüşüm Tanrısı',
         'feminine': 'Lakini Shakti - Üç Yüzlü Tanrıça',
@@ -1414,7 +1457,8 @@ class TantraContent {
         ],
       },
       'kundaliniStage': {
-        'description': 'Kundalini burada ateşle karşılaşır. Sindirici ateş (Jatharagni) '
+        'description':
+            'Kundalini burada ateşle karşılaşır. Sindirici ateş (Jatharagni) '
             'enerjiyi rafine eder. Ego burada dönüşür, irade güçlenir.',
         'awakeningSigns': [
           'Mide bölgesinde ısı',
@@ -1500,7 +1544,12 @@ class TantraContent {
       'crystals': ['Sitrin', 'Kaplan Gözü', 'Sarı Topaz', 'Amber', 'Pirit'],
       'essentialOils': ['Limon', 'Zencefil', 'Karanfil', 'Biberiye'],
       'foods': ['Sarı yiyecekler', 'Tahıllar', 'Baharatlar', 'Limon'],
-      'yogaAsanas': ['Navasana', 'Ardha Matsyendrasana', 'Dhanurasana', 'Ustrasana'],
+      'yogaAsanas': [
+        'Navasana',
+        'Ardha Matsyendrasana',
+        'Dhanurasana',
+        'Ustrasana',
+      ],
     },
 
     // ─────────────────────────────────────────────────────────────────────────
@@ -1515,11 +1564,26 @@ class TantraContent {
       'color': 'Yeşil (Pembe ikincil)',
       'colorHex': '#00FF00',
       'bijaMantra': 'YAM',
-      'bijaMantraAciklama': 'YAM mantrasının titreşimi hava elementini uyandırır. '
+      'bijaMantraAciklama':
+          'YAM mantrasının titreşimi hava elementini uyandırır. '
           'Yumuşak ve açık bir sesle söylenir, sevgiyi ve şefkati aktive eder.',
-      'symbol': 'On iki yapraklı lotus, içinde altı köşeli yıldız (iki üçgenin birleşimi)',
+      'symbol':
+          'On iki yapraklı lotus, içinde altı köşeli yıldız (iki üçgenin birleşimi)',
       'petals': 12,
-      'petalMantras': ['Kam', 'Kham', 'Gam', 'Gham', 'Ngam', 'Cham', 'Chham', 'Jam', 'Jham', 'Nyam', 'Tam', 'Tham'],
+      'petalMantras': [
+        'Kam',
+        'Kham',
+        'Gam',
+        'Gham',
+        'Ngam',
+        'Cham',
+        'Chham',
+        'Jam',
+        'Jham',
+        'Nyam',
+        'Tam',
+        'Tham',
+      ],
       'deity': {
         'masculine': 'Ishana - Shiva\'nın Barış Formu',
         'feminine': 'Kakini Shakti - Altın Tanrıça',
@@ -1586,7 +1650,8 @@ class TantraContent {
         ],
       },
       'kundaliniStage': {
-        'description': 'Kundalini kalp çakrasına ulaştığında büyük dönüşüm başlar. '
+        'description':
+            'Kundalini kalp çakrasına ulaştığında büyük dönüşüm başlar. '
             'Alt üç çakra (maddi) ile üst üç çakra (spiritüel) burada birleşir. '
             'Shiva ve Shakti\'nin ilk buluşması burada gerçekleşir.',
         'awakeningSigns': [
@@ -1672,7 +1737,13 @@ class TantraContent {
           ],
         },
       ],
-      'crystals': ['Gül Kuvars', 'Yeşil Aventurin', 'Yeşim', 'Rodokrozit', 'Malakit'],
+      'crystals': [
+        'Gül Kuvars',
+        'Yeşil Aventurin',
+        'Yeşim',
+        'Rodokrozit',
+        'Malakit',
+      ],
       'essentialOils': ['Gül', 'Yasemin', 'Bergamot', 'Melissa'],
       'foods': ['Yeşil yapraklı sebzeler', 'Yeşil çay', 'Brokoli', 'Avokado'],
       'yogaAsanas': ['Ustrasana', 'Bhujangasana', 'Matsyasana', 'Gomukhasana'],
@@ -1690,11 +1761,29 @@ class TantraContent {
       'color': 'Mavi',
       'colorHex': '#00BFFF',
       'bijaMantra': 'HAM',
-      'bijaMantraAciklama': 'HAM mantrasının titreşimi eter elementini uyandırır. '
+      'bijaMantraAciklama':
+          'HAM mantrasının titreşimi eter elementini uyandırır. '
           'Açık ve net bir sesle söylenir, ifadeyi ve iletişimi aktive eder.',
       'symbol': 'On altı yapraklı lotus, içinde daire (eter yantra)',
       'petals': 16,
-      'petalMantras': ['Am', 'Aam', 'Im', 'Iim', 'Um', 'Uum', 'Rm', 'Rrm', 'Lrm', 'Llrm', 'Em', 'Aim', 'Om', 'Aum', 'Am', 'Ah'],
+      'petalMantras': [
+        'Am',
+        'Aam',
+        'Im',
+        'Iim',
+        'Um',
+        'Uum',
+        'Rm',
+        'Rrm',
+        'Lrm',
+        'Llrm',
+        'Em',
+        'Aim',
+        'Om',
+        'Aum',
+        'Am',
+        'Ah',
+      ],
       'deity': {
         'masculine': 'Sadashiva - Sonsuz Shiva',
         'feminine': 'Shakini - Beyaz Tanrıça',
@@ -1761,7 +1850,8 @@ class TantraContent {
         ],
       },
       'kundaliniStage': {
-        'description': 'Kundalini boğaz çakrasına ulaştığında Nada (kozmik ses) '
+        'description':
+            'Kundalini boğaz çakrasına ulaştığında Nada (kozmik ses) '
             'deneyimlenir. Eter elementi sınırsız ifade alanı açar. Hakikat burada konuşur.',
         'awakeningSigns': [
           'Boğazda titreşim veya basınç',
@@ -1842,7 +1932,13 @@ class TantraContent {
           ],
         },
       ],
-      'crystals': ['Lapis Lazuli', 'Akuamarin', 'Mavi Topaz', 'Sodalit', 'Türkuaz'],
+      'crystals': [
+        'Lapis Lazuli',
+        'Akuamarin',
+        'Mavi Topaz',
+        'Sodalit',
+        'Türkuaz',
+      ],
       'essentialOils': ['Okaliptüs', 'Nane', 'Çam', 'Lavanta'],
       'foods': ['Mavi/mor meyveler', 'Yosun', 'Bal', 'Limon'],
       'yogaAsanas': ['Sarvangasana', 'Halasana', 'Simhasana', 'Matsyasana'],
@@ -1860,8 +1956,9 @@ class TantraContent {
       'color': 'Çivit Mavisi / Mor',
       'colorHex': '#4B0082',
       'bijaMantra': 'OM / AUM',
-      'bijaMantraAciklama': 'OM mantrasının titreşimi evrensel bilinçle bağlantı kurar. '
-            'Derin ve kutsal bir sesle söylenir, sezgiyi ve içgörüyü aktive eder.',
+      'bijaMantraAciklama':
+          'OM mantrasının titreşimi evrensel bilinçle bağlantı kurar. '
+          'Derin ve kutsal bir sesle söylenir, sezgiyi ve içgörüyü aktive eder.',
       'symbol': 'İki yapraklı lotus, içinde OM sembolü',
       'petals': 2,
       'petalMantras': ['Ham', 'Ksham'],
@@ -1932,7 +2029,8 @@ class TantraContent {
         ],
       },
       'kundaliniStage': {
-        'description': 'Kundalini ajna çakrasına ulaştığında üçüncü göz açılır. '
+        'description':
+            'Kundalini ajna çakrasına ulaştığında üçüncü göz açılır. '
             'Ida ve Pingala nadileri burada birleşir. Dualite çözülür, birlik algısı başlar.',
         'awakeningSigns': [
           'Alında basınç veya nabız atışı',
@@ -2030,7 +2128,8 @@ class TantraContent {
       'color': 'Mor / Beyaz / Altın',
       'colorHex': '#9400D3',
       'bijaMantra': 'Sessizlik / OM / AH',
-      'bijaMantraAciklama': 'Sahasrara tüm seslerin ötesindedir. Sessizlik en yüce mantradır. '
+      'bijaMantraAciklama':
+          'Sahasrara tüm seslerin ötesindedir. Sessizlik en yüce mantradır. '
           'Ancak OM evrensel titreşim olarak burada da kullanılabilir.',
       'symbol': 'Bin yapraklı lotus, saf ışık',
       'petals': 1000,
@@ -2102,7 +2201,8 @@ class TantraContent {
         ],
       },
       'kundaliniStage': {
-        'description': 'Kundalini taç çakrasına ulaştığında Shiva ve Shakti birleşir. '
+        'description':
+            'Kundalini taç çakrasına ulaştığında Shiva ve Shakti birleşir. '
             'Bu, kozmik evlilik (Maithuna) ve aydınlanmanın zirvesidir. '
             'Bireysel bilinç evrensel bilince kavuşur.',
         'awakeningSigns': [
@@ -2189,10 +2289,21 @@ class TantraContent {
           ],
         },
       ],
-      'crystals': ['Temiz Kuvars', 'Ametist', 'Selenit', 'Danburit', 'Fenakite'],
+      'crystals': [
+        'Temiz Kuvars',
+        'Ametist',
+        'Selenit',
+        'Danburit',
+        'Fenakite',
+      ],
       'essentialOils': ['Lotus', 'Akgünlük', 'Mür', 'Sandal'],
       'foods': ['Oruç', 'Hafif meyveler', 'Saf su', 'Bilinçli beslenme'],
-      'yogaAsanas': ['Sirsasana', 'Savasana', 'Padmasana', 'Meditasyon pozları'],
+      'yogaAsanas': [
+        'Sirsasana',
+        'Savasana',
+        'Padmasana',
+        'Meditasyon pozları',
+      ],
     },
   };
 
@@ -2282,7 +2393,8 @@ Meditasyon, pranayama ve yoga pratiği Sushumna'yı açar.
         'ida': {
           'name': 'Ida Nadi',
           'nameTr': 'Ay Kanalı',
-          'location': 'Sol burun deliğinden başlar, omurganın solunda iner-çıkar',
+          'location':
+              'Sol burun deliğinden başlar, omurganın solunda iner-çıkar',
           'description': '''
 Ida, kadınsal, alıcı, soğutucu enerjiyi taşır. Ay enerjisi (Chandra)
 ile ilişkilidir. Sol beyin yarımküresiyle bağlantılıdır.
@@ -2327,7 +2439,8 @@ Ancak aşırı Ida, durgunluk ve atalet getirebilir.
         'pingala': {
           'name': 'Pingala Nadi',
           'nameTr': 'Güneş Kanalı',
-          'location': 'Sağ burun deliğinden başlar, omurganın sağında iner-çıkar',
+          'location':
+              'Sağ burun deliğinden başlar, omurganın sağında iner-çıkar',
           'description': '''
 Pingala, erkeksel, verici, ısıtıcı enerjiyi taşır. Güneş enerjisi (Surya)
 ile ilişkilidir. Sağ beyin yarımküresiyle bağlantılıdır.
@@ -3796,7 +3909,7 @@ maksimum güçtedir. Derin partner pratikleri ve Kundalini
           'phase': 'Azalan Ay (Krishna Paksha)',
           'energy': 'Bırakma, arınma, azaltma',
           'description': '''
-Dolunay\'dan sonra Ay küçülmeye başlar. Bu dönem, artık
+Dolunay'dan sonra Ay küçülmeye başlar. Bu dönem, artık
 işe yaramayanı bırakmak, arınmak ve sadeleşmek için
 uygundur. İç temizlik zamanıdır.
 ''',
@@ -3886,7 +3999,7 @@ uygundur. Tantrik çalışmalar, bu saatlere uyumlanarak güçlendirilebilir.
           'tantricPractice': '''
 Güneş saatleri, solar pleksus çakra çalışması, irade gücü
 pratikleri ve erkeksel enerji aktivasyonu için uygundur.
-Güneş enerjisi, Pingala nadi\'yi aktive eder.
+Güneş enerjisi, Pingala nadi'yi aktive eder.
 ''',
           'rituals': [
             'Güneş selamlaması (Surya Namaskar)',
@@ -3903,7 +4016,7 @@ Güneş enerjisi, Pingala nadi\'yi aktive eder.
           'color': 'Gümüş, beyaz',
           'tantricPractice': '''
 Ay saatleri, sezgisel çalışmalar, duygusal şifa ve dişil enerji
-pratikleri için uygundur. Ay enerjisi, Ida nadi\'yi aktive eder.
+pratikleri için uygundur. Ay enerjisi, Ida nadi'yi aktive eder.
 Kalp ve sakral çakra çalışmaları desteklenir.
 ''',
           'rituals': [
@@ -3956,7 +4069,7 @@ ifade odaklı tantrik pratikler desteklenir.
           'energy': 'Bilgelik, genişleme, spiritüellik',
           'color': 'Sarı, mor',
           'tantricPractice': '''
-Jüpiter saatleri, spiritüel öğreti alma, guru\'ya bağlanma
+Jüpiter saatleri, spiritüel öğreti alma, guru'ya bağlanma
 ve taç çakra çalışması için idealdir. Aydınlanma ve
 genişleme odaklı pratikler desteklenir.
 ''',
@@ -4008,8 +4121,8 @@ sınırları aşma pratikleri desteklenir.
       'howToCalculate': '''
 Gezegen saatlerini hesaplamak için:
 1. Gün doğumu ve gün batımı saatlerini belirle.
-2. Gündüz süresini 12\'ye böl (gündüz saati uzunluğu).
-3. Gece süresini 12\'ye böl (gece saati uzunluğu).
+2. Gündüz süresini 12'ye böl (gündüz saati uzunluğu).
+3. Gece süresini 12'ye böl (gece saati uzunluğu).
 4. İlk gündüz saati, o günün yönetici gezegenine aittir.
 5. Sırasıyla: Güneş, Venüs, Merkür, Ay, Satürn, Jüpiter, Mars.
 ''',
@@ -4020,15 +4133,15 @@ Gezegen saatlerini hesaplamak için:
     // ─────────────────────────────────────────────────────────────────────────
     'sacredSymbolism': {
       'overview': '''
-Tantra\'da, Yoni ve Lingam kutsal sembollerdir. Bunlar, fiziksel
+Tantra'da, Yoni ve Lingam kutsal sembollerdir. Bunlar, fiziksel
 organlardan çok öte, kozmik prensipleri temsil eder. Shakti ve
-Shiva\'nın, yaratıcı ve bilinç güçlerinin sembolleridir.
+Shiva'nın, yaratıcı ve bilinç güçlerinin sembolleridir.
 ''',
       'yoni': {
         'name': 'Yoni',
         'meaning': 'Kaynak, Rahm, Kutsal Dişil',
         'symbolism': '''
-Yoni, Sanskrit\'te "kaynak" veya "rahm" anlamına gelir. Bu sembol,
+Yoni, Sanskrit'te "kaynak" veya "rahm" anlamına gelir. Bu sembol,
 yaratıcı Shakti gücünü, doğurganlığı ve evreni doğuran ana rahmini
 temsil eder.
 
@@ -4059,8 +4172,8 @@ bağlantılıdır. Tüm varlığın çıktığı ve döneceği kozmik rahmdir.
         'name': 'Lingam',
         'meaning': 'İşaret, Sembol, Kutsal Erkeksel',
         'symbolism': '''
-Lingam, Sanskrit\'te "işaret" veya "sembol" anlamına gelir. Bu sembol,
-saf bilinç Shiva\'yı, yaratıcı gücü ve evrenin eksenini temsil eder.
+Lingam, Sanskrit'te "işaret" veya "sembol" anlamına gelir. Bu sembol,
+saf bilinç Shiva'yı, yaratıcı gücü ve evrenin eksenini temsil eder.
 
 Lingam, genellikle Yoni içinde tasvir edilir ve bu, Shiva-Shakti
 birliğini, bilinç ve enerjinin birleşimini simgeler. Bu birlik,
@@ -4090,7 +4203,7 @@ evrenin yaratılışının ve sürdürülüşünün sembolüdür.
         'name': 'Yoni-Lingam Birliği',
         'symbolism': '''
 Yoni içinde Lingam, kozmik birliğin sembolüdür. Bu imge, Shiva ve
-Shakti\'nin ayrılmaz birliğini, bilinç ve enerjinin dansını temsil eder.
+Shakti'nin ayrılmaz birliğini, bilinç ve enerjinin dansını temsil eder.
 
 Bu sembol, yaratılışın gizemini taşır. Boşluktan (Yoni) form (Lingam)
 doğar ve form tekrar boşluğa döner. Bu sonsuz döngü, evrenin nefesidir.
@@ -4113,8 +4226,8 @@ doğar ve form tekrar boşluğa döner. Bu sonsuz döngü, evrenin nefesidir.
     // ─────────────────────────────────────────────────────────────────────────
     'sacredGeometry': {
       'overview': '''
-Yantra, Sanskrit\'te "araç" veya "makine" anlamına gelir. Bunlar,
-evrensel enerjileri odaklayan geometrik diyagramlardır. Tantra\'da,
+Yantra, Sanskrit'te "araç" veya "makine" anlamına gelir. Bunlar,
+evrensel enerjileri odaklayan geometrik diyagramlardır. Tantra'da,
 yantralar meditasyon ve ritüel için güçlü araçlardır.
 
 Her yantra, belirli bir tanrısallığı veya enerjiyi temsil eder ve
@@ -4126,7 +4239,7 @@ meditasyon yoluyla bu enerjiyle bağlantı kurmayı sağlar.
           'description': 'En kutsal ve karmaşık yantra',
           'symbolism': '''
 Sri Yantra, dokuz iç içe geçmiş üçgenden oluşur. Dört yukarı bakan
-üçgen Shiva\'yı (bilinç), beş aşağı bakan üçgen Shakti\'yi (enerji)
+üçgen Shiva'yı (bilinç), beş aşağı bakan üçgen Shakti'yi (enerji)
 temsil eder. Merkezde, bindu (nokta) bulunur - saf potansiyel.
 
 Bu yantra, tüm evrenin haritasıdır. Makrokozmos ve mikrokozmos
@@ -4195,8 +4308,8 @@ burada birleşir. Sri Yantra meditasyonu, kozmik bilince açar.
           'name': 'Kali Yantra',
           'description': 'Dönüşüm ve koruyucu güç',
           'symbolism': '''
-Kali Yantra, beş aşağı bakan üçgenden oluşur. Shakti\'nin
-yıkıcı-dönüştürücü yönünü temsil eder. Korku ve ego\'yu
+Kali Yantra, beş aşağı bakan üçgenden oluşur. Shakti'nin
+yıkıcı-dönüştürücü yönünü temsil eder. Korku ve ego'yu
 yok eden, özgürleştiren enerji.
 ''',
           'uses': [
@@ -4234,7 +4347,7 @@ yok eden, özgürleştiren enerji.
     // ─────────────────────────────────────────────────────────────────────────
     'mantraPractices': {
       'overview': '''
-Mantra, Sanskrit\'te "zihin aracı" anlamına gelir (man = zihin, tra = araç).
+Mantra, Sanskrit'te "zihin aracı" anlamına gelir (man = zihin, tra = araç).
 Mantralar, kutsal ses formülleridir ve titreşimleri yoluyla bilinç
 durumlarını değiştirir, enerjileri aktive eder.
 
@@ -4271,8 +4384,8 @@ her türlü spiritüel pratiğin başlangıcı ve sonudur.
           'meaning': 'Ben O\'yum - Bireysel ruhun evrensel ruhla birliği',
           'description': '''
 SO HAM, nefesle birlikte söylenen doğal mantradır. Nefes alırken
-SO (O), nefes verirken HAM (Ben). Bu mantra, Atman\'ın (bireysel ruh)
-Brahman\'la (evrensel ruh) birliğini onaylar.
+SO (O), nefes verirken HAM (Ben). Bu mantra, Atman'ın (bireysel ruh)
+Brahman'la (evrensel ruh) birliğini onaylar.
 
 Her canlı, her nefeste farkında olmadan bu mantrayı söyler.
 Bilinçli tekrar, bu doğal gerçeği farkındalığa getirir.
@@ -4294,7 +4407,7 @@ Bilinçli tekrar, bu doğal gerçeği farkındalığa getirir.
           'mantra': 'OM NAMAH SHIVAYA',
           'meaning': 'Shiva\'ya selamlarım - Saf bilince teslimiyet',
           'description': '''
-Bu beş heceli mantra (Panchakshara), Shiva\'ya adanmıştır.
+Bu beş heceli mantra (Panchakshara), Shiva'ya adanmıştır.
 Shiva, saf bilinç, dönüşüm ve aydınlanma tanrısıdır.
 Bu mantra, egonun Tanrısal olana teslimiyetini ifade eder.
 
@@ -4318,15 +4431,12 @@ Bu mantra, tüm elementleri arındırır ve dengeler.
           'mantra': 'OM SHAKTI OM',
           'meaning': 'Evrensel enerji, ilahi dişil güç',
           'description': '''
-Bu mantra, Shakti\'yi - evrensel yaratıcı enerjiyi - çağırır.
+Bu mantra, Shakti'yi - evrensel yaratıcı enerjiyi - çağırır.
 Kundalini aktivasyonu ve dişil enerji ile bağlantı için kullanılır.
 ''',
           'pronunciation': 'OM SHAK-TI OM',
           'chakra': 'Muladhara, Svadhisthana, Anahata',
-          'practice': {
-            'japa': '108 tekrar',
-            'duration': '20-30 dakika',
-          },
+          'practice': {'japa': '108 tekrar', 'duration': '20-30 dakika'},
           'benefits': [
             'Shakti aktivasyonu',
             'Kundalini uyanışı',
@@ -4336,10 +4446,11 @@ Kundalini aktivasyonu ve dişil enerji ile bağlantı için kullanılır.
         },
         {
           'mantra': 'Gayatri Mantra',
-          'fullText': 'Om Bhur Bhuvaḥ Swaḥ, Tat Savitur Vareṇyaṃ, Bhargo Devasya Dhīmahi, Dhiyo Yo Naḥ Prachodayāt',
+          'fullText':
+              'Om Bhur Bhuvaḥ Swaḥ, Tat Savitur Vareṇyaṃ, Bhargo Devasya Dhīmahi, Dhiyo Yo Naḥ Prachodayāt',
           'meaning': 'Güneş tanrısına dua - Aydınlanma ve bilgelik talebi',
           'description': '''
-Gayatri, en kutsal Vedik mantradır. Güneş tanrısı Savitur\'a yöneliktir
+Gayatri, en kutsal Vedik mantradır. Güneş tanrısı Savitur'a yöneliktir
 ve aydınlanmış bilinç için dua eder. Brahminlerin günde üç kez
 okuduğu bu mantra, evrensel bilgeliği çağırır.
 ''',
@@ -4406,7 +4517,7 @@ Venüs, astrolojide aşk, güzellik, haz ve ilişkilerin gezegenidir.
 Tantrik perspektiften, Venüs Shakti enerjisinin tezahürüdür -
 çekicilik, birleştirme ve yaratıcı haz gücü.
 
-Doğum haritasında Venüs\'ün burcu, kişinin sevme, sevilme ve
+Doğum haritasında Venüs'ün burcu, kişinin sevme, sevilme ve
 haz alma tarzını gösterir. Bu bilgi, tantrik pratiklerde partnerin
 enerji dilini anlamak için değerlidir.
 ''',
@@ -4768,10 +4879,10 @@ Teslimiyet ve kaynaşma doğaldır.
     'marsSexuality': {
       'overview': '''
 Mars, cinsel dürtü, tutku ve enerji gezegenidir. Tantrik perspektiften,
-Mars Kundalini\'nin ateşidir - harekete geçiren, yükselen, dönüştüren
+Mars Kundalini'nin ateşidir - harekete geçiren, yükselen, dönüştüren
 ilkel güç.
 
-Doğum haritasında Mars\'ın burcu, kişinin cinsel enerjisini nasıl
+Doğum haritasında Mars'ın burcu, kişinin cinsel enerjisini nasıl
 ifade ettiğini, neyin ateşlediğini ve tutku dinamiklerini gösterir.
 ''',
       'byZodiac': {
@@ -4779,7 +4890,7 @@ ifade ettiğini, neyin ateşlediğini ve tutku dinamiklerini gösterir.
           'sign': 'Koç',
           'marsExpression': 'Doğrudan, hızlı, fetihçi',
           'sexualEnergy': '''
-Mars Koç\'ta evindedir. Doğrudan, güçlü ve anlık ateşlenir.
+Mars Koç'ta evindedir. Doğrudan, güçlü ve anlık ateşlenir.
 Fethetme içgüdüsü güçlüdür. Sabırsız olabilir ama tutku
 yoğundur. İlk adımı atmaktan çekinmez.
 ''',
@@ -4791,43 +4902,55 @@ yoğundur. İlk adımı atmaktan çekinmez.
           'sign': 'Boğa',
           'marsExpression': 'Yavaş, kararlı, duyusal',
           'sexualEnergy': '''
-Mars Boğa\'da yavaş ama kararlıdır. Acele etmez, enerji biriktirir.
+Mars Boğa'da yavaş ama kararlıdır. Acele etmez, enerji biriktirir.
 Duyusal zevkler önemlidir. Bir kez ateşlenince uzun süre yanar.
 Fiziksel dayanıklılık yüksektir.
 ''',
           'kundaliniStyle': 'Yavaş, istikrarlı yükseliş',
           'tantricChallenge': 'Esneklik ve değişim',
-          'practices': ['Yavaş enerji çalışması', 'Duyusal farkındalık', 'Topraklama'],
+          'practices': [
+            'Yavaş enerji çalışması',
+            'Duyusal farkındalık',
+            'Topraklama',
+          ],
         },
         'gemini': {
           'sign': 'İkizler',
           'marsExpression': 'Zihinsel, çeşitli, oyuncu',
           'sexualEnergy': '''
-Mars İkizler\'de zihinle başlar. Sözel uyarılma, çeşitlilik ve
+Mars İkizler'de zihinle başlar. Sözel uyarılma, çeşitlilik ve
 oyun önemlidir. Tek bir şeyle sınırlı kalmak istemez.
 Merak ve keşif dürtüsü güçlüdür.
 ''',
           'kundaliniStyle': 'Dalgalı, değişken akış',
           'tantricChallenge': 'Odaklanma ve derinleşme',
-          'practices': ['Mantra çalışması', 'Nefes varyasyonları', 'Zihin-beden bağlantısı'],
+          'practices': [
+            'Mantra çalışması',
+            'Nefes varyasyonları',
+            'Zihin-beden bağlantısı',
+          ],
         },
         'cancer': {
           'sign': 'Yengeç',
           'marsExpression': 'Duygusal, koruyucu, döngüsel',
           'sexualEnergy': '''
-Mars Yengeç\'te duygusal güvenlikle bağlantılıdır. Duygusal bağ
+Mars Yengeç'te duygusal güvenlikle bağlantılıdır. Duygusal bağ
 olmadan fiziksel enerji akmaz. Ay döngüleriyle etkilenir.
 Koruyucu ve besleyici bir tutku taşır.
 ''',
           'kundaliniStyle': 'Duygusal tetiklemelerle yükselme',
           'tantricChallenge': 'Duygusal savunmasızlık',
-          'practices': ['Kalp odaklı pratikler', 'Ay ritüelleri', 'Duygusal şifa'],
+          'practices': [
+            'Kalp odaklı pratikler',
+            'Ay ritüelleri',
+            'Duygusal şifa',
+          ],
         },
         'leo': {
           'sign': 'Aslan',
           'marsExpression': 'Dramatik, cömert, gösterişli',
           'sexualEnergy': '''
-Mars Aslan\'da görkemli ve teatraldir. Performans ve takdir önemlidir.
+Mars Aslan'da görkemli ve teatraldir. Performans ve takdir önemlidir.
 Cömert bir aşıktır ama karşılık bekler. Ego ve tutku iç içedir.
 Yaratıcı ve eğlenceli bir enerji taşır.
 ''',
@@ -4839,85 +4962,113 @@ Yaratıcı ve eğlenceli bir enerji taşır.
           'sign': 'Başak',
           'marsExpression': 'Kontrollü, detaycı, hizmet odaklı',
           'sexualEnergy': '''
-Mars Başak\'ta kontrollü ve tekniktir. Detaylar önemlidir.
+Mars Başak'ta kontrollü ve tekniktir. Detaylar önemlidir.
 Hizmet yoluyla tatmin bulur. Mükemmeliyetçilik bazen
 spontanlığı engelleyebilir.
 ''',
           'kundaliniStyle': 'Metodili, kademeli yükseliş',
           'tantricChallenge': 'Kontrolü bırakmak',
-          'practices': ['Beden farkındalığı', 'Arınma teknikleri', 'Detaylı pratikler'],
+          'practices': [
+            'Beden farkındalığı',
+            'Arınma teknikleri',
+            'Detaylı pratikler',
+          ],
         },
         'libra': {
           'sign': 'Terazi',
           'marsExpression': 'Diplomatik, dengeli, partner odaklı',
           'sexualEnergy': '''
-Mars Terazi\'de partner odaklıdır. Karşılıklılık ve uyum önemlidir.
+Mars Terazi'de partner odaklıdır. Karşılıklılık ve uyum önemlidir.
 Çatışmadan kaçınır, zarfet arar. Bazen kendi isteklerini
 bastırabilir.
 ''',
           'kundaliniStyle': 'Dengeli, partnere yansıyan akış',
           'tantricChallenge': 'Kendi arzularını onurlandırmak',
-          'practices': ['Partner dengesi', 'Yin-Yang çalışması', 'Uyum pratikleri'],
+          'practices': [
+            'Partner dengesi',
+            'Yin-Yang çalışması',
+            'Uyum pratikleri',
+          ],
         },
         'scorpio': {
           'sign': 'Akrep',
           'marsExpression': 'Yoğun, dönüştürücü, güçlü',
           'sexualEnergy': '''
-Mars Akrep\'te ikinci evindedir. Yoğun, derin ve dönüştürücüdür.
+Mars Akrep'te ikinci evindedir. Yoğun, derin ve dönüştürücüdür.
 Yüzeyselliğe tahammülü yoktur. Birlik, ego ölümü ve yeniden
 doğuş deneyimi olabilir. Gizem ve derinlik arar.
 ''',
           'kundaliniStyle': 'Yoğun, dönüştürücü yükseliş',
           'tantricChallenge': 'Kontrol bırakma ve teslimiyet',
-          'practices': ['Derin dönüşüm', 'Gölge çalışması', 'Ölüm-yeniden doğuş'],
+          'practices': [
+            'Derin dönüşüm',
+            'Gölge çalışması',
+            'Ölüm-yeniden doğuş',
+          ],
         },
         'sagittarius': {
           'sign': 'Yay',
           'marsExpression': 'Maceraperest, özgür, ateşli',
           'sexualEnergy': '''
-Mars Yay\'da maceraperesttir. Özgürlük ve keşif önemlidir.
+Mars Yay'da maceraperesttir. Özgürlük ve keşif önemlidir.
 Felsefi derinlik arar. Neşeli ve optimist bir tutku taşır.
 Bağımlılık ve rutinden kaçınır.
 ''',
           'kundaliniStyle': 'Genişleyen, yükselen akış',
           'tantricChallenge': 'Odaklanma ve bağlılık',
-          'practices': ['Genişleme meditasyonu', 'Felsefi tantra', 'Macera pratikleri'],
+          'practices': [
+            'Genişleme meditasyonu',
+            'Felsefi tantra',
+            'Macera pratikleri',
+          ],
         },
         'capricorn': {
           'sign': 'Oğlak',
           'marsExpression': 'Disiplinli, kararlı, dayanıklı',
           'sexualEnergy': '''
-Mars Oğlak\'ta yüceltilmiş konumdadır. Disiplinli, kararlı ve
+Mars Oğlak'ta yüceltilmiş konumdadır. Disiplinli, kararlı ve
 dayanıklıdır. Enerji uzun süre kontrol edilebilir.
 Hedef odaklı, stratejik bir tutku taşır.
 ''',
           'kundaliniStyle': 'Kontrollü, tırmanan yükseliş',
           'tantricChallenge': 'Spontanlık ve akış',
-          'practices': ['Enerji muhafazası', 'Disiplin pratiği', 'Dağ meditasyonu'],
+          'practices': [
+            'Enerji muhafazası',
+            'Disiplin pratiği',
+            'Dağ meditasyonu',
+          ],
         },
         'aquarius': {
           'sign': 'Kova',
           'marsExpression': 'Deneysel, özgün, ayrılıkçı',
           'sexualEnergy': '''
-Mars Kova\'da geleneksel değildir. Deneysel, özgün yaklaşımlar sever.
+Mars Kova'da geleneksel değildir. Deneysel, özgün yaklaşımlar sever.
 Bazen entelektüel mesafe koyar. Bireysellik ve özgürlük korunmalıdır.
 Yenilikçi ve alışılmadık pratikler çeker.
 ''',
           'kundaliniStyle': 'Elektriksel, düzensiz akış',
           'tantricChallenge': 'Duygusal bağlantı',
-          'practices': ['Yenilikçi teknikler', 'Elektrik meditasyonu', 'Özgün pratikler'],
+          'practices': [
+            'Yenilikçi teknikler',
+            'Elektrik meditasyonu',
+            'Özgün pratikler',
+          ],
         },
         'pisces': {
           'sign': 'Balık',
           'marsExpression': 'Akışkan, teslim, sınırsız',
           'sexualEnergy': '''
-Mars Balık\'ta akışkan ve sınırsızdır. Net sınırlar çizmek zordur.
+Mars Balık'ta akışkan ve sınırsızdır. Net sınırlar çizmek zordur.
 Teslimiyet ve kaynaşma doğaldır. Spiritüel ve mistik bir
 tutku taşır. Bazen edilgen olabilir.
 ''',
           'kundaliniStyle': 'Dalga gibi, akışkan yükseliş',
           'tantricChallenge': 'Topraklama ve sınırlar',
-          'practices': ['Su meditasyonu', 'Teslimiyet pratiği', 'Mistik birleşme'],
+          'practices': [
+            'Su meditasyonu',
+            'Teslimiyet pratiği',
+            'Mistik birleşme',
+          ],
         },
       },
     },
@@ -4939,7 +5090,7 @@ dönüşüm ve derin birlik deneyimlerini gösterir.
         'aries': {
           'sign': 'Koç',
           'interpretation': '''
-8. Ev Koç\'ta: Dönüşüm ani ve patlayıcı olur. Cesaretle gölgeye dalınır.
+8. Ev Koç'ta: Dönüşüm ani ve patlayıcı olur. Cesaretle gölgeye dalınır.
 Tantrik pratiklerde liderlik alınır. Ego ölümü savaşçı bir süreçtir.
 ''',
           'tantricPath': 'Cesaret yoluyla dönüşüm',
@@ -4948,7 +5099,7 @@ Tantrik pratiklerde liderlik alınır. Ego ölümü savaşçı bir süreçtir.
         'taurus': {
           'sign': 'Boğa',
           'interpretation': '''
-8. Ev Boğa\'da: Dönüşüm yavaş ve duyusal deneyim yoluyla olur.
+8. Ev Boğa'da: Dönüşüm yavaş ve duyusal deneyim yoluyla olur.
 Maddi ve fiziksel bağların bırakılması zorlayıcıdır.
 Bedensel dönüşüm derin ve kalıcıdır.
 ''',
@@ -4958,7 +5109,7 @@ Bedensel dönüşüm derin ve kalıcıdır.
         'gemini': {
           'sign': 'İkizler',
           'interpretation': '''
-8. Ev İkizler\'de: Dönüşüm zihinsel keşif yoluyla olur.
+8. Ev İkizler'de: Dönüşüm zihinsel keşif yoluyla olur.
 Gizli bilgilere ilgi vardır. İletişim yoluyla şifa mümkündür.
 Düşünce kalıplarının dönüşümü önemlidir.
 ''',
@@ -4968,7 +5119,7 @@ Düşünce kalıplarının dönüşümü önemlidir.
         'cancer': {
           'sign': 'Yengeç',
           'interpretation': '''
-8. Ev Yengeç\'te: Dönüşüm duygusal derinlik yoluyla olur.
+8. Ev Yengeç'te: Dönüşüm duygusal derinlik yoluyla olur.
 Aile ve geçmişle ilgili gizli konular önemlidir.
 Duygusal güvenlik içinde dönüşüm mümkündür.
 ''',
@@ -4978,7 +5129,7 @@ Duygusal güvenlik içinde dönüşüm mümkündür.
         'leo': {
           'sign': 'Aslan',
           'interpretation': '''
-8. Ev Aslan\'da: Dönüşüm yaratıcı ifade ve ego dönüşümü yoluyla olur.
+8. Ev Aslan'da: Dönüşüm yaratıcı ifade ve ego dönüşümü yoluyla olur.
 Güç ve kontrol konuları önemlidir. Kalp merkezli dönüşüm güçlüdür.
 ''',
           'tantricPath': 'Yaratıcılık ve kalp yoluyla dönüşüm',
@@ -4987,7 +5138,7 @@ Güç ve kontrol konuları önemlidir. Kalp merkezli dönüşüm güçlüdür.
         'virgo': {
           'sign': 'Başak',
           'interpretation': '''
-8. Ev Başak\'ta: Dönüşüm analiz ve arınma yoluyla olur.
+8. Ev Başak'ta: Dönüşüm analiz ve arınma yoluyla olur.
 Sağlık krizleri dönüştürücü olabilir. Detaylı iç çalışma gerekir.
 ''',
           'tantricPath': 'Arınma ve hizmet yoluyla dönüşüm',
@@ -4996,7 +5147,7 @@ Sağlık krizleri dönüştürücü olabilir. Detaylı iç çalışma gerekir.
         'libra': {
           'sign': 'Terazi',
           'interpretation': '''
-8. Ev Terazi\'de: Dönüşüm ilişkiler yoluyla olur.
+8. Ev Terazi'de: Dönüşüm ilişkiler yoluyla olur.
 Partner dinamikleri derin dönüşüm getirir.
 İlişkisel gölge çalışması önemlidir.
 ''',
@@ -5006,7 +5157,7 @@ Partner dinamikleri derin dönüşüm getirir.
         'scorpio': {
           'sign': 'Akrep',
           'interpretation': '''
-8. Ev Akrep\'te: En güçlü dönüşüm konumu. Derin, yoğun ve
+8. Ev Akrep'te: En güçlü dönüşüm konumu. Derin, yoğun ve
 kaçınılmaz dönüşümler. Ölüm-yeniden doğuş deneyimleri güçlü.
 Tantrik potansiyel en yüksek.
 ''',
@@ -5016,7 +5167,7 @@ Tantrik potansiyel en yüksek.
         'sagittarius': {
           'sign': 'Yay',
           'interpretation': '''
-8. Ev Yay\'da: Dönüşüm felsefi ve spiritüel arayış yoluyla olur.
+8. Ev Yay'da: Dönüşüm felsefi ve spiritüel arayış yoluyla olur.
 İnanç sistemlerinin dönüşümü önemlidir. Yabancı öğretiler çeker.
 ''',
           'tantricPath': 'Bilgelik ve inanç yoluyla dönüşüm',
@@ -5025,7 +5176,7 @@ Tantrik potansiyel en yüksek.
         'capricorn': {
           'sign': 'Oğlak',
           'interpretation': '''
-8. Ev Oğlak\'ta: Dönüşüm yapıların yıkılması ve yeniden inşası yoluyla
+8. Ev Oğlak'ta: Dönüşüm yapıların yıkılması ve yeniden inşası yoluyla
 olur. Otorite ve kontrol konuları derin. Disiplinli dönüşüm yolu.
 ''',
           'tantricPath': 'Disiplin ve yapı yoluyla dönüşüm',
@@ -5034,7 +5185,7 @@ olur. Otorite ve kontrol konuları derin. Disiplinli dönüşüm yolu.
         'aquarius': {
           'sign': 'Kova',
           'interpretation': '''
-8. Ev Kova\'da: Dönüşüm radikal ve beklenmedik olur.
+8. Ev Kova'da: Dönüşüm radikal ve beklenmedik olur.
 Kolektif bilinç ve insanlık konuları derin. Teknoloji veya
 bilim yoluyla dönüşüm mümkün.
 ''',
@@ -5044,7 +5195,7 @@ bilim yoluyla dönüşüm mümkün.
         'pisces': {
           'sign': 'Balık',
           'interpretation': '''
-8. Ev Balık\'ta: Dönüşüm çözülme ve teslimiyet yoluyla olur.
+8. Ev Balık'ta: Dönüşüm çözülme ve teslimiyet yoluyla olur.
 Mistik deneyimler ve sınırların erimesi. Spiritüel birleşme derin.
 ''',
           'tantricPath': 'Teslimiyet ve mistisizm yoluyla dönüşüm',
@@ -5095,7 +5246,7 @@ anlamak ve bilinçli çalışmaktır.
           'aspect': 'Venüs-Mars (çapraz)',
           'meaning': 'Çekim ve tutku dinamiği',
           'significance': '''
-Bir partnerin Venüs\'ü diğerinin Mars\'ına aspekt yaptığında,
+Bir partnerin Venüs'ü diğerinin Mars'ına aspekt yaptığında,
 güçlü çekim ve cinsel enerji oluşur. Bu, tantrik birlik için
 en önemli göstergelerden biridir.
 ''',
@@ -5587,7 +5738,8 @@ Bu vayuların dengesi, sağlık ve spiritüel ilerleme için kritiktir.
               'Doğum',
               'Topraklama',
             ],
-            'imbalance': 'Sindirim sorunları, üreme sorunları, topraklanma zorluğu',
+            'imbalance':
+                'Sindirim sorunları, üreme sorunları, topraklanma zorluğu',
             'balancingPractices': [
               'Mula bandha',
               'Apanasana',
@@ -5604,12 +5756,9 @@ Bu vayuların dengesi, sağlık ve spiritüel ilerleme için kritiktir.
               'Metabolizma',
               'Dengeleme',
             ],
-            'imbalance': 'Sindirim sorunları, metabolizma bozuklukları, karar verememe',
-            'balancingPractices': [
-              'Agni sara',
-              'Nauli',
-              'Ateş nefesi',
-            ],
+            'imbalance':
+                'Sindirim sorunları, metabolizma bozuklukları, karar verememe',
+            'balancingPractices': ['Agni sara', 'Nauli', 'Ateş nefesi'],
           },
           {
             'name': 'Udana Vayu',
@@ -5638,7 +5787,8 @@ Bu vayuların dengesi, sağlık ve spiritüel ilerleme için kritiktir.
               'Enerji dağıtımı',
               'Bütünleşme',
             ],
-            'imbalance': 'Dolaşım sorunları, koordinasyon eksikliği, bağlantı kopukluğu',
+            'imbalance':
+                'Dolaşım sorunları, koordinasyon eksikliği, bağlantı kopukluğu',
             'balancingPractices': [
               'Hatha yoga genel pratiği',
               'Nadi shodhana',
@@ -5736,7 +5886,8 @@ Bu, hem bireysel hem de partner çalışması yoluyla gerçekleşir.
         },
         {
           'name': 'Duygusal Salınım',
-          'description': 'Bastırılmış duyguları hareket yoluyla serbest bırakma',
+          'description':
+              'Bastırılmış duyguları hareket yoluyla serbest bırakma',
           'steps': [
             'Güvenli ve özel bir alan oluştur.',
             'Bedenini serbest hareketle gevşet.',
@@ -6033,7 +6184,8 @@ gelişim, tüm katmanlarda eşzamanlı çalışmayı gerektirir.
   static Map<String, dynamic>? getMantraInfo(String mantra) {
     final mantras = esotericRituals['mantraPractices']['mainMantras'] as List;
     return mantras.firstWhere(
-      (m) => (m['mantra'] as String).toLowerCase().contains(mantra.toLowerCase()),
+      (m) =>
+          (m['mantra'] as String).toLowerCase().contains(mantra.toLowerCase()),
       orElse: () => null,
     );
   }

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
+
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/content/numerology_content.dart';
 import '../../../shared/widgets/cosmic_background.dart';
-import '../../../shared/widgets/next_blocks.dart';
 import '../../../shared/widgets/kadim_not_card.dart';
+import '../../../shared/widgets/next_blocks.dart';
 import '../../../shared/widgets/page_bottom_navigation.dart';
 
 /// KİŞİSEL YIL DETAY SAYFASI
@@ -28,9 +29,9 @@ class PersonalYearScreen extends StatelessWidget {
           child: Center(
             child: Text(
               'Kişisel yıl bilgisi bulunamadı',
-              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                color: AppColors.textSecondary,
-              ),
+              style: Theme.of(
+                context,
+              ).textTheme.bodyLarge?.copyWith(color: AppColors.textSecondary),
             ),
           ),
         ),
@@ -49,7 +50,10 @@ class PersonalYearScreen extends StatelessWidget {
                 expandedHeight: 200,
                 flexibleSpace: _buildHeader(context, content),
                 leading: IconButton(
-                  icon: const Icon(Icons.arrow_back, color: AppColors.textPrimary),
+                  icon: const Icon(
+                    Icons.arrow_back,
+                    color: AppColors.textPrimary,
+                  ),
                   onPressed: () => context.pop(),
                 ),
               ),
@@ -67,7 +71,7 @@ class PersonalYearScreen extends StatelessWidget {
 
                     // Kadim Not
                     KadimNotCard(
-                      title: '${year}. Yılın Bilgeliği',
+                      title: '$year. Yılın Bilgeliği',
                       content: content.viralQuote,
                       category: KadimCategory.numerology,
                       source: 'Döngüsel Bilgelik',
@@ -111,10 +115,7 @@ class PersonalYearScreen extends StatelessWidget {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [
-              color.withValues(alpha: 0.3),
-              Colors.transparent,
-            ],
+            colors: [color.withValues(alpha: 0.3), Colors.transparent],
           ),
         ),
         child: Column(
@@ -188,10 +189,7 @@ class PersonalYearScreen extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [
-            color.withValues(alpha: 0.2),
-            AppColors.surfaceDark,
-          ],
+          colors: [color.withValues(alpha: 0.2), AppColors.surfaceDark],
         ),
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         border: Border.all(color: color.withValues(alpha: 0.4)),
@@ -293,7 +291,10 @@ class PersonalYearScreen extends StatelessWidget {
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildFocusAvoidSection(BuildContext context, PersonalYearContent content) {
+  Widget _buildFocusAvoidSection(
+    BuildContext context,
+    PersonalYearContent content,
+  ) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -304,14 +305,20 @@ class PersonalYearScreen extends StatelessWidget {
             decoration: BoxDecoration(
               color: AppColors.success.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-              border: Border.all(color: AppColors.success.withValues(alpha: 0.3)),
+              border: Border.all(
+                color: AppColors.success.withValues(alpha: 0.3),
+              ),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   children: [
-                    Icon(Icons.check_circle, color: AppColors.success, size: 18),
+                    Icon(
+                      Icons.check_circle,
+                      color: AppColors.success,
+                      size: 18,
+                    ),
                     const SizedBox(width: 6),
                     Text(
                       'Odaklan',
@@ -409,9 +416,9 @@ class PersonalYearScreen extends StatelessWidget {
           const SizedBox(height: AppConstants.spacingMd),
           Text(
             'Yılın Olumlaması',
-            style: Theme.of(context).textTheme.labelSmall?.copyWith(
-              color: AppColors.textMuted,
-            ),
+            style: Theme.of(
+              context,
+            ).textTheme.labelSmall?.copyWith(color: AppColors.textMuted),
           ),
         ],
       ),
@@ -430,9 +437,9 @@ class PersonalYearScreen extends StatelessWidget {
         children: [
           Text(
             '9 Yıllık Döngü',
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-              color: AppColors.textPrimary,
-            ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleSmall?.copyWith(color: AppColors.textPrimary),
           ),
           const SizedBox(height: AppConstants.spacingMd),
           Row(
@@ -451,9 +458,7 @@ class PersonalYearScreen extends StatelessWidget {
                   height: 32,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: isCurrentYear
-                        ? color
-                        : color.withValues(alpha: 0.2),
+                    color: isCurrentYear ? color : color.withValues(alpha: 0.2),
                     border: Border.all(
                       color: color,
                       width: isCurrentYear ? 2 : 1,
@@ -464,7 +469,9 @@ class PersonalYearScreen extends StatelessWidget {
                       yearNum.toString(),
                       style: Theme.of(context).textTheme.labelSmall?.copyWith(
                         color: isCurrentYear ? Colors.white : color,
-                        fontWeight: isCurrentYear ? FontWeight.bold : FontWeight.normal,
+                        fontWeight: isCurrentYear
+                            ? FontWeight.bold
+                            : FontWeight.normal,
                       ),
                     ),
                   ),
@@ -475,7 +482,7 @@ class PersonalYearScreen extends StatelessWidget {
           const SizedBox(height: AppConstants.spacingMd),
           Center(
             child: Text(
-              'Şu an ${currentYear}. yıldasınız',
+              'Şu an $currentYear. yıldasınız',
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
                 color: AppColors.textMuted,
                 fontStyle: FontStyle.italic,

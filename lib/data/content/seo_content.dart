@@ -1,6 +1,7 @@
 /// SEO Content for Venus One Web Pages
 /// Ready-to-use Turkish content for all pages
 /// Following: possibility language, symbolic approach, no deterministic claims
+library;
 
 class SeoContent {
   SeoContent._();
@@ -794,7 +795,8 @@ semboller ile bir yorum sunar.
   // ═══════════════════════════════════════════════════════════════
 
   static const Map<String, String> glossaryTerms = {
-    'Aspekt': 'Gezegenler arasındaki geometrik açılar (konjunksiyon, kare, trigon vb.)',
+    'Aspekt':
+        'Gezegenler arasındaki geometrik açılar (konjunksiyon, kare, trigon vb.)',
     'Ascendant': 'Yükselen burç — doğum anında doğu ufkunda yükselen burç',
     'Ayanamsa': 'Tropical ve Sidereal zodyak arasındaki fark (~24°)',
     'Burç': 'Zodyağın 12 bölümünden her biri, 30°lik segmentler',
@@ -831,38 +833,44 @@ semboller ile bir yorum sunar.
   static const List<FaqItem> commonFaqs = [
     FaqItem(
       question: 'Astroloji bilim midir?',
-      answer: 'Hayır. Astroloji bilimsel bir disiplin değildir. Astronomik '
+      answer:
+          'Hayır. Astroloji bilimsel bir disiplin değildir. Astronomik '
           'hesaplamalar doğru olsa da, yorumlar ampirik olarak test edilemez. '
           'Astrolojiyi bir öz-yansıtma ve sembolik düşünce aracı olarak '
           'görmenizi öneririz.',
     ),
     FaqItem(
       question: 'Doğum saatim yoksa ne olur?',
-      answer: 'Doğum saati olmadan Yükselen burç ve ev konumları hesaplanamaz. '
+      answer:
+          'Doğum saati olmadan Yükselen burç ve ev konumları hesaplanamaz. '
           'Ancak Güneş, gezegenler ve aspektler yine de yorumlanabilir. '
           'Mümkünse doğum belgenizi kontrol edin veya ailenize sorun.',
     ),
     FaqItem(
       question: 'Neden farklı siteler farklı sonuçlar veriyor?',
-      answer: 'Farklı ev sistemleri (Placidus, Whole Sign, Koch vb.), '
+      answer:
+          'Farklı ev sistemleri (Placidus, Whole Sign, Koch vb.), '
           'farklı orb değerleri ve yorum gelenekleri kullanılabilir. '
           'Venus One, Placidus ev sistemi ve Tropical zodyak kullanır.',
     ),
     FaqItem(
       question: 'Burç uyumu güvenilir mi?',
-      answer: 'Sadece Güneş burçlarına dayalı uyum analizi yetersizdir. '
+      answer:
+          'Sadece Güneş burçlarına dayalı uyum analizi yetersizdir. '
           'Gerçek uyum için tüm harita karşılaştırılmalıdır (synastry). '
           'Ayrıca hiçbir astrolojik analiz, ilişki başarısını garanti edemez.',
     ),
     FaqItem(
       question: 'Transitler kötü olaylar mı getirir?',
-      answer: 'Hiçbir transit doğrudan "kötü olay" getirmez. Zorlayıcı '
+      answer:
+          'Hiçbir transit doğrudan "kötü olay" getirmez. Zorlayıcı '
           'transitler (Satürn kareleri, Pluto aspektleri) büyüme ve dönüşüm '
           'fırsatları olarak yorumlanabilir. Astroloji determinist değildir.',
     ),
     FaqItem(
       question: 'Merkür retrograd döneminde ne yapmamalıyım?',
-      answer: 'Merkür retrograd dönemlerinde iletişim aksaklıkları ve '
+      answer:
+          'Merkür retrograd dönemlerinde iletişim aksaklıkları ve '
           'yanlış anlamalar ile ilişkilendirilir. Ancak bu dönemlerde '
           'hayatı durdurmak gerekmez. Sadece önemli sözleşmelerde ve '
           'iletişimde ekstra dikkatli olmanız önerilir.',
@@ -898,8 +906,5 @@ class FaqItem {
   final String question;
   final String answer;
 
-  const FaqItem({
-    required this.question,
-    required this.answer,
-  });
+  const FaqItem({required this.question, required this.answer});
 }

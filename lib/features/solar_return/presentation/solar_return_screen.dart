@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/zodiac_sign.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/cosmic_background.dart';
-import '../../../shared/widgets/next_blocks.dart';
 import '../../../shared/widgets/entertainment_disclaimer.dart';
+import '../../../shared/widgets/next_blocks.dart';
 
 /// Solar Return Screen
 /// Shows the yearly forecast based on the Sun returning to its natal position
@@ -93,15 +94,15 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
               Text(
                 'Solar Return',
                 style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                      color: AppColors.starGold,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  color: AppColors.starGold,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               Text(
                 'Doğum Günü Haritası',
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: AppColors.textSecondary,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.bodySmall?.copyWith(color: AppColors.textSecondary),
               ),
             ],
           ),
@@ -117,10 +118,7 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
             ),
             shape: BoxShape.circle,
           ),
-          child: const Text(
-            '☀️',
-            style: TextStyle(fontSize: 28),
-          ),
+          child: const Text('☀️', style: TextStyle(fontSize: 28)),
         ),
       ],
     ).animate().fadeIn(duration: 400.ms);
@@ -162,9 +160,13 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
                 child: Text(
                   '$year',
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        color: isSelected ? AppColors.deepSpace : AppColors.textSecondary,
-                        fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-                      ),
+                    color: isSelected
+                        ? AppColors.deepSpace
+                        : AppColors.textSecondary,
+                    fontWeight: isSelected
+                        ? FontWeight.bold
+                        : FontWeight.normal,
+                  ),
                 ),
               ),
             ),
@@ -185,10 +187,7 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [
-            AppColors.starGold.withAlpha(30),
-            AppColors.surfaceDark,
-          ],
+          colors: [AppColors.starGold.withAlpha(30), AppColors.surfaceDark],
         ),
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         border: Border.all(color: AppColors.starGold.withAlpha(50)),
@@ -224,16 +223,16 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
                     Text(
                       '$_selectedYear Solar Return',
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            color: AppColors.starGold,
-                            fontWeight: FontWeight.bold,
-                          ),
+                        color: AppColors.starGold,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     const SizedBox(height: 4),
                     Text(
                       'Güneş ${sunSign.nameTr} burcuna dönüyor',
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: AppColors.textSecondary,
-                          ),
+                        color: AppColors.textSecondary,
+                      ),
                     ),
                   ],
                 ),
@@ -253,16 +252,32 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    _buildInfoItem(context, 'Dönüş Tarihi', _formatDate(_returnData.exactReturnDate)),
-                    _buildInfoItem(context, 'Yükselen', _returnData.risingSign.nameTr),
+                    _buildInfoItem(
+                      context,
+                      'Dönüş Tarihi',
+                      _formatDate(_returnData.exactReturnDate),
+                    ),
+                    _buildInfoItem(
+                      context,
+                      'Yükselen',
+                      _returnData.risingSign.nameTr,
+                    ),
                   ],
                 ),
                 const SizedBox(height: AppConstants.spacingSm),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    _buildInfoItem(context, 'Güneş Evi', '${_returnData.sunHouse}. Ev'),
-                    _buildInfoItem(context, 'Ay Burcu', _returnData.moonSign.nameTr),
+                    _buildInfoItem(
+                      context,
+                      'Güneş Evi',
+                      '${_returnData.sunHouse}. Ev',
+                    ),
+                    _buildInfoItem(
+                      context,
+                      'Ay Burcu',
+                      _returnData.moonSign.nameTr,
+                    ),
                   ],
                 ),
               ],
@@ -279,17 +294,17 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
       children: [
         Text(
           label,
-          style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                color: AppColors.textMuted,
-              ),
+          style: Theme.of(
+            context,
+          ).textTheme.labelSmall?.copyWith(color: AppColors.textMuted),
         ),
         const SizedBox(height: 2),
         Text(
           value,
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: AppColors.textPrimary,
-                fontWeight: FontWeight.w600,
-              ),
+            color: AppColors.textPrimary,
+            fontWeight: FontWeight.w600,
+          ),
         ),
       ],
     );
@@ -305,9 +320,9 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
             const SizedBox(width: 8),
             Text(
               'Yıl Temaları',
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    color: AppColors.textPrimary,
-                  ),
+              style: Theme.of(
+                context,
+              ).textTheme.titleLarge?.copyWith(color: AppColors.textPrimary),
             ),
           ],
         ),
@@ -353,16 +368,16 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
                 Text(
                   theme.title,
                   style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                        color: theme.color,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    color: theme.color,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 const SizedBox(height: 2),
                 Text(
                   theme.description,
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: AppColors.textSecondary,
-                      ),
+                    color: AppColors.textSecondary,
+                  ),
                 ),
               ],
             ),
@@ -374,8 +389,18 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
 
   Widget _buildMonthlyHighlights(BuildContext context) {
     final months = [
-      'Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran',
-      'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'
+      'Ocak',
+      'Şubat',
+      'Mart',
+      'Nisan',
+      'Mayıs',
+      'Haziran',
+      'Temmuz',
+      'Ağustos',
+      'Eylül',
+      'Ekim',
+      'Kasım',
+      'Aralık',
     ];
 
     return Column(
@@ -383,13 +408,17 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
       children: [
         Row(
           children: [
-            const Icon(Icons.calendar_month, color: AppColors.auroraStart, size: 20),
+            const Icon(
+              Icons.calendar_month,
+              color: AppColors.auroraStart,
+              size: 20,
+            ),
             const SizedBox(width: 8),
             Text(
               'Aylık Öne Çıkanlar',
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    color: AppColors.textPrimary,
-                  ),
+              style: Theme.of(
+                context,
+              ).textTheme.titleLarge?.copyWith(color: AppColors.textPrimary),
             ),
           ],
         ),
@@ -409,15 +438,15 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
                   color: highlight.isPositive
                       ? Colors.green.withAlpha(20)
                       : highlight.isChallenging
-                          ? Colors.orange.withAlpha(20)
-                          : AppColors.surfaceLight.withAlpha(30),
+                      ? Colors.orange.withAlpha(20)
+                      : AppColors.surfaceLight.withAlpha(30),
                   borderRadius: BorderRadius.circular(AppConstants.radiusSm),
                   border: Border.all(
                     color: highlight.isPositive
                         ? Colors.green.withAlpha(40)
                         : highlight.isChallenging
-                            ? Colors.orange.withAlpha(40)
-                            : AppColors.surfaceLight.withAlpha(50),
+                        ? Colors.orange.withAlpha(40)
+                        : AppColors.surfaceLight.withAlpha(50),
                   ),
                 ),
                 child: Column(
@@ -426,21 +455,18 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
                     Text(
                       months[index].substring(0, 3),
                       style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                            color: AppColors.textMuted,
-                          ),
+                        color: AppColors.textMuted,
+                      ),
                     ),
                     const SizedBox(height: 4),
-                    Text(
-                      highlight.emoji,
-                      style: const TextStyle(fontSize: 24),
-                    ),
+                    Text(highlight.emoji, style: const TextStyle(fontSize: 24)),
                     const SizedBox(height: 4),
                     Text(
                       highlight.keyword,
                       style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                            color: AppColors.textSecondary,
-                            fontSize: 9,
-                          ),
+                        color: AppColors.textSecondary,
+                        fontSize: 9,
+                      ),
                       textAlign: TextAlign.center,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
@@ -461,75 +487,76 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
       children: [
         Row(
           children: [
-            const Icon(Icons.event_note, color: AppColors.twilightStart, size: 20),
+            const Icon(
+              Icons.event_note,
+              color: AppColors.twilightStart,
+              size: 20,
+            ),
             const SizedBox(width: 8),
             Text(
               'Önemli Tarihler',
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    color: AppColors.textPrimary,
-                  ),
+              style: Theme.of(
+                context,
+              ).textTheme.titleLarge?.copyWith(color: AppColors.textPrimary),
             ),
           ],
         ),
         const SizedBox(height: AppConstants.spacingMd),
-        ..._returnData.keyDates.map((keyDate) => Padding(
-              padding: const EdgeInsets.only(bottom: AppConstants.spacingSm),
-              child: Container(
-                padding: const EdgeInsets.all(AppConstants.spacingMd),
-                decoration: BoxDecoration(
-                  color: AppColors.surfaceLight.withAlpha(30),
-                  borderRadius: BorderRadius.circular(AppConstants.radiusSm),
-                ),
-                child: Row(
-                  children: [
-                    Container(
-                      width: 50,
-                      child: Column(
-                        children: [
-                          Text(
-                            '${keyDate.date.day}',
-                            style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                                  color: AppColors.starGold,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                          ),
-                          Text(
-                            _getMonthAbbr(keyDate.date.month),
-                            style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                                  color: AppColors.textMuted,
-                                ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(width: AppConstants.spacingMd),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            keyDate.title,
-                            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                                  color: AppColors.textPrimary,
-                                ),
-                          ),
-                          Text(
-                            keyDate.description,
-                            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                                  color: AppColors.textSecondary,
-                                ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Text(
-                      keyDate.emoji,
-                      style: const TextStyle(fontSize: 20),
-                    ),
-                  ],
-                ),
+        ..._returnData.keyDates.map(
+          (keyDate) => Padding(
+            padding: const EdgeInsets.only(bottom: AppConstants.spacingSm),
+            child: Container(
+              padding: const EdgeInsets.all(AppConstants.spacingMd),
+              decoration: BoxDecoration(
+                color: AppColors.surfaceLight.withAlpha(30),
+                borderRadius: BorderRadius.circular(AppConstants.radiusSm),
               ),
-            )),
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: 50,
+                    child: Column(
+                      children: [
+                        Text(
+                          '${keyDate.date.day}',
+                          style: Theme.of(context).textTheme.titleLarge
+                              ?.copyWith(
+                                color: AppColors.starGold,
+                                fontWeight: FontWeight.bold,
+                              ),
+                        ),
+                        Text(
+                          _getMonthAbbr(keyDate.date.month),
+                          style: Theme.of(context).textTheme.labelSmall
+                              ?.copyWith(color: AppColors.textMuted),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(width: AppConstants.spacingMd),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          keyDate.title,
+                          style: Theme.of(context).textTheme.titleSmall
+                              ?.copyWith(color: AppColors.textPrimary),
+                        ),
+                        Text(
+                          keyDate.description,
+                          style: Theme.of(context).textTheme.bodySmall
+                              ?.copyWith(color: AppColors.textSecondary),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Text(keyDate.emoji, style: const TextStyle(fontSize: 20)),
+                ],
+              ),
+            ),
+          ),
+        ),
       ],
     ).animate().fadeIn(delay: 700.ms, duration: 400.ms);
   }
@@ -555,14 +582,18 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
         children: [
           Row(
             children: [
-              const Icon(Icons.lightbulb_outline, color: AppColors.auroraStart, size: 20),
+              const Icon(
+                Icons.lightbulb_outline,
+                color: AppColors.auroraStart,
+                size: 20,
+              ),
               const SizedBox(width: 8),
               Text(
                 'Yıl İçin Önerim',
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      color: AppColors.auroraStart,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  color: AppColors.auroraStart,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ],
           ),
@@ -570,9 +601,9 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
           Text(
             _returnData.yearAdvice,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: AppColors.textPrimary,
-                  height: 1.6,
-                ),
+              color: AppColors.textPrimary,
+              height: 1.6,
+            ),
           ),
         ],
       ),
@@ -581,14 +612,37 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
 
   String _formatDate(DateTime date) {
     final months = [
-      'Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran',
-      'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'
+      'Ocak',
+      'Şubat',
+      'Mart',
+      'Nisan',
+      'Mayıs',
+      'Haziran',
+      'Temmuz',
+      'Ağustos',
+      'Eylül',
+      'Ekim',
+      'Kasım',
+      'Aralık',
     ];
     return '${date.day} ${months[date.month - 1]} ${date.year}';
   }
 
   String _getMonthAbbr(int month) {
-    final months = ['Oca', 'Sub', 'Mar', 'Nis', 'May', 'Haz', 'Tem', 'Agu', 'Eyl', 'Eki', 'Kas', 'Ara'];
+    final months = [
+      'Oca',
+      'Sub',
+      'Mar',
+      'Nis',
+      'May',
+      'Haz',
+      'Tem',
+      'Agu',
+      'Eyl',
+      'Eki',
+      'Kas',
+      'Ara',
+    ];
     return months[month - 1];
   }
 }
@@ -597,7 +651,13 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
 class SolarReturnCalculator {
   static SolarReturnData calculate(DateTime birthDate, int year) {
     // Calculate exact return date (approximate - Sun returns to natal position)
-    final exactReturnDate = DateTime(year, birthDate.month, birthDate.day, 12, 0);
+    final exactReturnDate = DateTime(
+      year,
+      birthDate.month,
+      birthDate.day,
+      12,
+      0,
+    );
 
     // Generate return data based on year and birth data
     final seed = year * 1000 + birthDate.month * 10 + birthDate.day;
@@ -623,14 +683,54 @@ class SolarReturnCalculator {
 
   static List<SolarReturnTheme> _generateThemes(int seed, int sunHouse) {
     final allThemes = [
-      SolarReturnTheme(title: 'Kariyer Odağı', description: 'Mesleki gelişim ve toplumsal konum ön planda', emoji: '💼', color: AppColors.starGold),
-      SolarReturnTheme(title: 'İlişkiler', description: 'Partnerlik ve iş birliklerinde önemli gelişmeler', emoji: '💕', color: Colors.pink),
-      SolarReturnTheme(title: 'Kişisel Gelişim', description: 'Kendinizi yeniden keşfetme zamanı', emoji: '🌱', color: AppColors.earthElement),
-      SolarReturnTheme(title: 'Finansal Büyüme', description: 'Maddi konularda fırsatlar', emoji: '💰', color: AppColors.celestialGold),
-      SolarReturnTheme(title: 'Eğitim ve Seyahat', description: 'Ufkunuzu genişletme zamanı', emoji: '✈️', color: AppColors.airElement),
-      SolarReturnTheme(title: 'Ev ve Aile', description: 'Köklere dönüş ve yuva kurma', emoji: '🏠', color: AppColors.waterElement),
-      SolarReturnTheme(title: 'Yaratıcılık', description: 'Sanatsal ifade ve eğlence', emoji: '🎨', color: AppColors.auroraStart),
-      SolarReturnTheme(title: 'Sağlık ve Rutin', description: 'Günlük yaşamı iyileştirme', emoji: '🧘', color: Colors.teal),
+      SolarReturnTheme(
+        title: 'Kariyer Odağı',
+        description: 'Mesleki gelişim ve toplumsal konum ön planda',
+        emoji: '💼',
+        color: AppColors.starGold,
+      ),
+      SolarReturnTheme(
+        title: 'İlişkiler',
+        description: 'Partnerlik ve iş birliklerinde önemli gelişmeler',
+        emoji: '💕',
+        color: Colors.pink,
+      ),
+      SolarReturnTheme(
+        title: 'Kişisel Gelişim',
+        description: 'Kendinizi yeniden keşfetme zamanı',
+        emoji: '🌱',
+        color: AppColors.earthElement,
+      ),
+      SolarReturnTheme(
+        title: 'Finansal Büyüme',
+        description: 'Maddi konularda fırsatlar',
+        emoji: '💰',
+        color: AppColors.celestialGold,
+      ),
+      SolarReturnTheme(
+        title: 'Eğitim ve Seyahat',
+        description: 'Ufkunuzu genişletme zamanı',
+        emoji: '✈️',
+        color: AppColors.airElement,
+      ),
+      SolarReturnTheme(
+        title: 'Ev ve Aile',
+        description: 'Köklere dönüş ve yuva kurma',
+        emoji: '🏠',
+        color: AppColors.waterElement,
+      ),
+      SolarReturnTheme(
+        title: 'Yaratıcılık',
+        description: 'Sanatsal ifade ve eğlence',
+        emoji: '🎨',
+        color: AppColors.auroraStart,
+      ),
+      SolarReturnTheme(
+        title: 'Sağlık ve Rutin',
+        description: 'Günlük yaşamı iyileştirme',
+        emoji: '🧘',
+        color: Colors.teal,
+      ),
     ];
 
     // Select 3-4 themes based on sun house
@@ -646,8 +746,34 @@ class SolarReturnCalculator {
   }
 
   static List<MonthlyHighlight> _generateMonthlyHighlights(int seed) {
-    final keywords = ['Başlangıç', 'Büyüme', 'Zorluk', 'Fırsat', 'Dinlenme', 'Aksiyon', 'Düşünme', 'İlerleme', 'Değişim', 'Denge', 'Hasat', 'Kapanış'];
-    final emojis = ['🚀', '🌿', '⚡', '✨', '🌙', '🔥', '🤔', '📈', '🔄', '⚖️', '🌾', '🎁'];
+    final keywords = [
+      'Başlangıç',
+      'Büyüme',
+      'Zorluk',
+      'Fırsat',
+      'Dinlenme',
+      'Aksiyon',
+      'Düşünme',
+      'İlerleme',
+      'Değişim',
+      'Denge',
+      'Hasat',
+      'Kapanış',
+    ];
+    final emojis = [
+      '🚀',
+      '🌿',
+      '⚡',
+      '✨',
+      '🌙',
+      '🔥',
+      '🤔',
+      '📈',
+      '🔄',
+      '⚖️',
+      '🌾',
+      '🎁',
+    ];
 
     return List.generate(12, (month) {
       final monthSeed = seed + month;
@@ -709,7 +835,8 @@ class SolarReturnCalculator {
       12: 'İçe dönüş yılı. Ruhsal gelişim ve dinlenme öncelikli olmalı.',
     };
 
-    return houseAdvice[sunHouse] ?? 'Bu yıl sizin için önemli dönüşümler getirecek.';
+    return houseAdvice[sunHouse] ??
+        'Bu yıl sizin için önemli dönüşümler getirecek.';
   }
 }
 

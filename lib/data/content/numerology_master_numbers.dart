@@ -113,7 +113,8 @@ deneyimidir. Başkalarına ilham vermek, onları aydınlatmak birincil görevler
   ];
 
   static const Map<String, String> healthFocus = {
-    'sinir_sistemi': 'Stres yönetimi kritik. Meditasyon ve nefes çalışmaları şart.',
+    'sinir_sistemi':
+        'Stres yönetimi kritik. Meditasyon ve nefes çalışmaları şart.',
     'uyku': 'Kaliteli uyku gerekli. Rüyalar önemli mesajlar taşır.',
     'enerji': 'Enerji dalgalanmaları normal. Dinlenme dönemleri planla.',
     'beslenme': 'Hafif, temiz beslenme. Kafein ve alkole dikkat.',
@@ -497,7 +498,7 @@ Aşk ve ilişkilerde bencillik.
 ''',
       currentLifeLesson: '''
 Bu yaşamda ego yıkımları yaşanır. Her zirveyi bir düşüş takip eder.
-Bu, ego\'nun eritilmesi ve gerçek alçakgönüllülüğün öğrenilmesi içindir.
+Bu, ego'nun eritilmesi ve gerçek alçakgönüllülüğün öğrenilmesi içindir.
 
 Ders: Alçakgönüllülük, ego-aşma, spiritüel uyanış.
 ''',
@@ -518,7 +519,8 @@ Ders: Alçakgönüllülük, ego-aşma, spiritüel uyanış.
         'Gerçek benliğinle bağlan',
         'Affetmeyi öğren (kendini ve başkalarını)',
       ],
-      affirmation: 'Her düşüş beni gerçek benliğime yaklaştırıyor. Alçakgönüllülük gücümdür.',
+      affirmation:
+          'Her düşüş beni gerçek benliğime yaklaştırıyor. Alçakgönüllülük gücümdür.',
     ),
 
     19: KarmicDebt(
@@ -553,7 +555,8 @@ Ders: Bağımsızlık ile birlik dengesi, güçle hizmet.
         'Bireyselliği grup içinde ifade et',
         'Ego ile özdeşleşmeyi bırak',
       ],
-      affirmation: 'Güçlü olmak başkalarını yükseltmektir. Bağımsızlığım paylaştıkça artar.',
+      affirmation:
+          'Güçlü olmak başkalarını yükseltmektir. Bağımsızlığım paylaştıkça artar.',
     ),
   };
 }

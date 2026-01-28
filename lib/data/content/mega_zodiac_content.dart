@@ -70,31 +70,38 @@ affetmesi zor olabilir.
       'compatibility': {
         'aries': {
           'score': 75,
-          'description': 'Iki ates - ya mukemmel ya da yangin. Rekabet dengesi zor.',
+          'description':
+              'Iki ates - ya mukemmel ya da yangin. Rekabet dengesi zor.',
         },
         'taurus': {
           'score': 55,
-          'description': 'Tempo farki buyuk. Boga yavas, Koc hizli. Sabir gerektirir.',
+          'description':
+              'Tempo farki buyuk. Boga yavas, Koc hizli. Sabir gerektirir.',
         },
         'gemini': {
           'score': 83,
-          'description': 'Canli ve eglenceli. Ikiz hareketliligi Koc\'u mutlu eder.',
+          'description':
+              'Canli ve eglenceli. Ikiz hareketliligi Koc\'u mutlu eder.',
         },
         'cancer': {
           'score': 48,
-          'description': 'Duygusal farkliliklar. Yengec hassasiyeti Koc\'u yorabilir.',
+          'description':
+              'Duygusal farkliliklar. Yengec hassasiyeti Koc\'u yorabilir.',
         },
         'leo': {
           'score': 92,
-          'description': 'Ates-ates uyumu mukemmel. Karsilikli hayranlik ve tutku.',
+          'description':
+              'Ates-ates uyumu mukemmel. Karsilikli hayranlik ve tutku.',
         },
         'virgo': {
           'score': 52,
-          'description': 'Farkli dunyalar. Basak detayciligi Koc\'u bunaltabilir.',
+          'description':
+              'Farkli dunyalar. Basak detayciligi Koc\'u bunaltabilir.',
         },
         'libra': {
           'score': 68,
-          'description': 'Karsit kutuplar cekim yaratir ama uzun vadede zorluk.',
+          'description':
+              'Karsit kutuplar cekim yaratir ama uzun vadede zorluk.',
         },
         'scorpio': {
           'score': 70,
@@ -189,9 +196,9 @@ Rekabet motive eder. Detaylara dikkat etmekte zorlanabilir.
     // Spirituel (20+)
     'spiritual': {
       'life_lesson': '''
-Koc\'un ruhsal dersi sabir ve isbirligi ogrenmektir. Liderlik guzel ama
+Koc'un ruhsal dersi sabir ve isbirligi ogrenmektir. Liderlik guzel ama
 takip etmeyi de bilmek gerekir. Ofkeyi donusturmek, duygusal zeka gelistirmek
-ve empatik olmak Koc\'un spirituel evriminin anahtaridir.
+ve empatik olmak Koc'un spirituel evriminin anahtaridir.
 ''',
       'karmic_patterns': [
         'Sabırsizliktan kaynaklanan tekrar eden dersler',
@@ -353,17 +360,50 @@ Rutinler ve gelenekler sever. Bir kez baglandimi kopamaz. Kiskanclik egilimi var
 ''',
       'compatibility': {
         'aries': {'score': 55, 'description': 'Tempo farki. Sabir gerektirir.'},
-        'taurus': {'score': 85, 'description': 'Uyumlu ve stabil. Rutinler paylasir.'},
-        'gemini': {'score': 45, 'description': 'Cok farkli. Ikiz degisken, Boga sabit.'},
-        'cancer': {'score': 95, 'description': 'Mukemmel! Ev, aile, guvenlik birlikte.'},
-        'leo': {'score': 65, 'description': 'Sabit isaretler. Inat catisabilir.'},
-        'virgo': {'score': 92, 'description': 'Toprak uyumu harika. Pratik ve sadık.'},
-        'libra': {'score': 72, 'description': 'Venüs yonetiyor ikisini de. Estetik uyum.'},
-        'scorpio': {'score': 78, 'description': 'Karsit kutuplar. Tutku ve guc savasi.'},
-        'sagittarius': {'score': 42, 'description': 'Cok farkli ihtiyaclar. Zor uyum.'},
-        'capricorn': {'score': 96, 'description': 'Mukemmel toprak uyumu. Hedefler ortakk.'},
-        'aquarius': {'score': 48, 'description': 'Sabit ama cok farkli. Inat savasi.'},
-        'pisces': {'score': 82, 'description': 'Romantik ve nazik. Guzel baglanti.'},
+        'taurus': {
+          'score': 85,
+          'description': 'Uyumlu ve stabil. Rutinler paylasir.',
+        },
+        'gemini': {
+          'score': 45,
+          'description': 'Cok farkli. Ikiz degisken, Boga sabit.',
+        },
+        'cancer': {
+          'score': 95,
+          'description': 'Mukemmel! Ev, aile, guvenlik birlikte.',
+        },
+        'leo': {
+          'score': 65,
+          'description': 'Sabit isaretler. Inat catisabilir.',
+        },
+        'virgo': {
+          'score': 92,
+          'description': 'Toprak uyumu harika. Pratik ve sadık.',
+        },
+        'libra': {
+          'score': 72,
+          'description': 'Venüs yonetiyor ikisini de. Estetik uyum.',
+        },
+        'scorpio': {
+          'score': 78,
+          'description': 'Karsit kutuplar. Tutku ve guc savasi.',
+        },
+        'sagittarius': {
+          'score': 42,
+          'description': 'Cok farkli ihtiyaclar. Zor uyum.',
+        },
+        'capricorn': {
+          'score': 96,
+          'description': 'Mukemmel toprak uyumu. Hedefler ortakk.',
+        },
+        'aquarius': {
+          'score': 48,
+          'description': 'Sabit ama cok farkli. Inat savasi.',
+        },
+        'pisces': {
+          'score': 82,
+          'description': 'Romantik ve nazik. Guzel baglanti.',
+        },
       },
     },
 
@@ -394,9 +434,9 @@ Maddi odullere iyi cevap verir. Konforlu calisma ortami ister.
 
     'spiritual': {
       'life_lesson': '''
-Boga\'nin ruhsal dersi bırakmayı öğrenmek ve değişime açılmaktir.
+Boga'nin ruhsal dersi bırakmayı öğrenmek ve değişime açılmaktir.
 Maddi dunya guzel ama gecicidir. Ic zenginligi kesfetmek,
-baglanmadan sevmeyi ogrenmek Boga\'nin evrim yoludur.
+baglanmadan sevmeyi ogrenmek Boga'nin evrim yoludur.
 ''',
       'karmic_patterns': [
         'Maddi bagimlılık dongusu',
@@ -464,14 +504,35 @@ Rutinden sıkilir, heyecan arar. Baglanmakta zorlanabilir ama dogru kisiyle sad�
         'taurus': {'score': 45, 'description': 'Tempo uyumsuzlugu.'},
         'gemini': {'score': 72, 'description': 'Cok konusma, az eylem riski.'},
         'cancer': {'score': 55, 'description': 'Duygusal farkliliklar.'},
-        'leo': {'score': 88, 'description': 'Parlak ve eglenceli. Sosyal uyum.'},
-        'virgo': {'score': 68, 'description': 'Merkür baglantisi. Zihinsel uyum.'},
-        'libra': {'score': 93, 'description': 'Hava uyumu harika! Sosyal ve zeki.'},
-        'scorpio': {'score': 52, 'description': 'Zor uyum. Derinlik vs yuzeysellik.'},
-        'sagittarius': {'score': 85, 'description': 'Macera ve ozgurluk ortakk.'},
-        'capricorn': {'score': 48, 'description': 'Ciddiyet vs hafiflik catismasi.'},
+        'leo': {
+          'score': 88,
+          'description': 'Parlak ve eglenceli. Sosyal uyum.',
+        },
+        'virgo': {
+          'score': 68,
+          'description': 'Merkür baglantisi. Zihinsel uyum.',
+        },
+        'libra': {
+          'score': 93,
+          'description': 'Hava uyumu harika! Sosyal ve zeki.',
+        },
+        'scorpio': {
+          'score': 52,
+          'description': 'Zor uyum. Derinlik vs yuzeysellik.',
+        },
+        'sagittarius': {
+          'score': 85,
+          'description': 'Macera ve ozgurluk ortakk.',
+        },
+        'capricorn': {
+          'score': 48,
+          'description': 'Ciddiyet vs hafiflik catismasi.',
+        },
         'aquarius': {'score': 95, 'description': 'Mukemmel! Zihinsel ebeveyn.'},
-        'pisces': {'score': 58, 'description': 'Degisken isaret uyumu ama farkli.'},
+        'pisces': {
+          'score': 58,
+          'description': 'Degisken isaret uyumu ama farkli.',
+        },
       },
     },
 
@@ -550,17 +611,29 @@ Partnerin ihtiyaclarini sezer. Kirilganligı saklar. Sadakat bekler ve verir.
 ''',
       'compatibility': {
         'aries': {'score': 48, 'description': 'Duygusal farkliliklar buyuk.'},
-        'taurus': {'score': 95, 'description': 'Ev, aile, guvenlik mukemmel uyum!'},
+        'taurus': {
+          'score': 95,
+          'description': 'Ev, aile, guvenlik mukemmel uyum!',
+        },
         'gemini': {'score': 55, 'description': 'Farkli ihtiyaclar.'},
         'cancer': {'score': 88, 'description': 'Derin duygusal baglanti.'},
         'leo': {'score': 65, 'description': 'Dikkat ihtiyaci catisabilir.'},
         'virgo': {'score': 85, 'description': 'Bakım veren uyum.'},
         'libra': {'score': 52, 'description': 'Farkli duygusal diller.'},
-        'scorpio': {'score': 97, 'description': 'Su burclari birlikte! Derin baglanti.'},
+        'scorpio': {
+          'score': 97,
+          'description': 'Su burclari birlikte! Derin baglanti.',
+        },
         'sagittarius': {'score': 45, 'description': 'Ev vs macera catismasi.'},
-        'capricorn': {'score': 78, 'description': 'Karsit kutuplar cekim yaratir.'},
+        'capricorn': {
+          'score': 78,
+          'description': 'Karsit kutuplar cekim yaratir.',
+        },
         'aquarius': {'score': 42, 'description': 'Cok farkli. Zorlu uyum.'},
-        'pisces': {'score': 96, 'description': 'Ruh esi potansiyeli! Su uyumu.'},
+        'pisces': {
+          'score': 96,
+          'description': 'Ruh esi potansiyeli! Su uyumu.',
+        },
       },
     },
   };
@@ -618,18 +691,33 @@ Hayranlik ve takdir bekler. Sadik ve koruyucudur. Romantik jestler yapar.
 Partnerin parlat, kendisi daha cok parlasın. Drama sever ama kalbi saftir.
 ''',
       'compatibility': {
-        'aries': {'score': 92, 'description': 'Ates uyumu harika! Tutku ve macera.'},
+        'aries': {
+          'score': 92,
+          'description': 'Ates uyumu harika! Tutku ve macera.',
+        },
         'taurus': {'score': 65, 'description': 'Sabit burçlar inat edebilir.'},
         'gemini': {'score': 88, 'description': 'Eglenceli ve sosyal uyum.'},
         'cancer': {'score': 65, 'description': 'Dikkat rekabeti olabilir.'},
-        'leo': {'score': 75, 'description': 'Iki kral! Spotlight paylasilmali.'},
+        'leo': {
+          'score': 75,
+          'description': 'Iki kral! Spotlight paylasilmali.',
+        },
         'virgo': {'score': 55, 'description': 'Elestiri Aslan\'i yaralar.'},
         'libra': {'score': 85, 'description': 'Sosyal ve estetik uyum guzel.'},
         'scorpio': {'score': 62, 'description': 'Guc savasi potansiyeli.'},
-        'sagittarius': {'score': 97, 'description': 'Ates uyumu mukemmel! Macera ve tutku.'},
+        'sagittarius': {
+          'score': 97,
+          'description': 'Ates uyumu mukemmel! Macera ve tutku.',
+        },
         'capricorn': {'score': 52, 'description': 'Farkli yaklasimlar.'},
-        'aquarius': {'score': 72, 'description': 'Karşıt kutuplar cekim yaratir.'},
-        'pisces': {'score': 58, 'description': 'Romantik ama farkli ihtiyaclar.'},
+        'aquarius': {
+          'score': 72,
+          'description': 'Karşıt kutuplar cekim yaratir.',
+        },
+        'pisces': {
+          'score': 58,
+          'description': 'Romantik ama farkli ihtiyaclar.',
+        },
       },
     },
   };
@@ -661,8 +749,18 @@ Partnerin parlat, kendisi daha cok parlasın. Drama sever ama kalbi saftir.
 
   static List<String> getAllSigns() {
     return [
-      'aries', 'taurus', 'gemini', 'cancer', 'leo', 'virgo',
-      'libra', 'scorpio', 'sagittarius', 'capricorn', 'aquarius', 'pisces'
+      'aries',
+      'taurus',
+      'gemini',
+      'cancer',
+      'leo',
+      'virgo',
+      'libra',
+      'scorpio',
+      'sagittarius',
+      'capricorn',
+      'aquarius',
+      'pisces',
     ];
   }
 }

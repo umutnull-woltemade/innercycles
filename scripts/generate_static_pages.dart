@@ -2,6 +2,7 @@
 /// Generates static HTML fallback pages for all routes
 ///
 /// Run with: dart run scripts/generate_static_pages.dart
+library;
 
 import 'dart:io';
 

@@ -1,23 +1,23 @@
-import 'package:flutter/foundation.dart' show debugPrint;
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+
 import '../../../core/constants/app_constants.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
-import '../../../data/models/zodiac_sign.dart';
-import '../../../data/models/user_profile.dart';
-import '../../../data/providers/app_providers.dart';
 import '../../../data/cities/world_cities.dart';
-import '../../../data/services/storage_service.dart';
+import '../../../data/models/user_profile.dart';
+import '../../../data/models/zodiac_sign.dart';
+import '../../../data/providers/app_providers.dart';
 import '../../../data/services/auth_service.dart';
+import '../../../data/services/storage_service.dart';
+import '../../../shared/widgets/birth_date_picker.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/gradient_button.dart';
-import '../../../shared/widgets/birth_date_picker.dart';
 
 class OnboardingScreen extends ConsumerStatefulWidget {
   const OnboardingScreen({super.key});
@@ -30,7 +30,10 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
   DateTime? _selectedDate;
-  TimeOfDay? _selectedTime = const TimeOfDay(hour: 12, minute: 0); // Default 12:00
+  TimeOfDay? _selectedTime = const TimeOfDay(
+    hour: 12,
+    minute: 0,
+  ); // Default 12:00
   String? _userName;
   String? _birthPlace = 'Marmaris, Mugla (Türkiye)'; // Default Marmaris
   double? _birthLatitude = 36.8500; // Marmaris coordinates
@@ -179,10 +182,10 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     if (_currentPage == 1) {
       // All fields are required for accurate chart calculation
       return _userName != null &&
-             _userName!.isNotEmpty &&
-             _selectedDate != null &&
-             _selectedTime != null &&
-             _birthPlace != null;
+          _userName!.isNotEmpty &&
+          _selectedDate != null &&
+          _selectedTime != null &&
+          _birthPlace != null;
     }
     return true;
   }
@@ -197,7 +200,8 @@ class _WelcomePage extends StatefulWidget {
   State<_WelcomePage> createState() => _WelcomePageState();
 }
 
-class _WelcomePageState extends State<_WelcomePage> with SingleTickerProviderStateMixin {
+class _WelcomePageState extends State<_WelcomePage>
+    with SingleTickerProviderStateMixin {
   bool _isAppleLoading = false;
   late AnimationController _glowController;
   late final Stream<AuthState> _authStateStream;
@@ -236,7 +240,8 @@ class _WelcomePageState extends State<_WelcomePage> with SingleTickerProviderSta
   void _handleOAuthSuccess(User user) {
     if (!mounted) return;
 
-    final displayName = user.userMetadata?['full_name'] as String? ??
+    final displayName =
+        user.userMetadata?['full_name'] as String? ??
         user.userMetadata?['name'] as String? ??
         user.email?.split('@').first;
 
@@ -254,7 +259,8 @@ class _WelcomePageState extends State<_WelcomePage> with SingleTickerProviderSta
       'Kaderin kapısı açıldı',
       'Işığın parlamaya başladı',
     ];
-    final greeting = cosmicGreetings[DateTime.now().millisecond % cosmicGreetings.length];
+    final greeting =
+        cosmicGreetings[DateTime.now().millisecond % cosmicGreetings.length];
 
     showGeneralDialog(
       context: context,
@@ -314,11 +320,11 @@ class _WelcomePageState extends State<_WelcomePage> with SingleTickerProviderSta
               child: Text(
                 'Venus One',
                 style: Theme.of(context).textTheme.displayLarge?.copyWith(
-                      color: Colors.white,
-                      fontSize: 48,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 2,
-                    ),
+                  color: Colors.white,
+                  fontSize: 48,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 2,
+                ),
               ),
             ).animate().fadeIn(duration: 800.ms).slideY(begin: 0.2),
 
@@ -328,10 +334,10 @@ class _WelcomePageState extends State<_WelcomePage> with SingleTickerProviderSta
             Text(
               'Kozmik Yolculuğuna Başla',
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    color: AppColors.textSecondary,
-                    fontSize: 16,
-                    letterSpacing: 1,
-                  ),
+                color: AppColors.textSecondary,
+                fontSize: 16,
+                letterSpacing: 1,
+              ),
               textAlign: TextAlign.center,
             ).animate().fadeIn(delay: 400.ms, duration: 600.ms),
 
@@ -365,9 +371,9 @@ class _WelcomePageState extends State<_WelcomePage> with SingleTickerProviderSta
             Text(
               'Devam ederek Kullanım Şartlarını kabul etmiş olursunuz',
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.textMuted.withAlpha(150),
-                    fontSize: 14,
-                  ),
+                color: AppColors.textMuted.withAlpha(150),
+                fontSize: 14,
+              ),
               textAlign: TextAlign.center,
             ).animate().fadeIn(delay: 1200.ms),
 
@@ -380,67 +386,78 @@ class _WelcomePageState extends State<_WelcomePage> with SingleTickerProviderSta
 
   Widget _buildAnimatedLogo() {
     return AnimatedBuilder(
-      animation: _glowController,
-      builder: (context, child) {
-        return Container(
-          width: 160,
-          height: 160,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            boxShadow: [
-              BoxShadow(
-                color: const Color(0xFF667EEA).withAlpha((100 * _glowController.value).toInt() + 50),
-                blurRadius: 40 + (20 * _glowController.value),
-                spreadRadius: 10 + (10 * _glowController.value),
-              ),
-              BoxShadow(
-                color: const Color(0xFF9B59B6).withAlpha((80 * _glowController.value).toInt() + 30),
-                blurRadius: 60 + (30 * _glowController.value),
-                spreadRadius: 5,
-              ),
-              BoxShadow(
-                color: const Color(0xFFFFD700).withAlpha((60 * _glowController.value).toInt() + 20),
-                blurRadius: 80,
-                spreadRadius: 0,
-              ),
-            ],
-          ),
-          child: child,
-        );
-      },
-      child: ClipOval(
-        child: Image.asset(
-          'assets/images/app_icon.png',
-          width: 160,
-          height: 160,
-          fit: BoxFit.cover,
-          errorBuilder: (context, error, stackTrace) {
-            // Fallback if image doesn't exist
+          animation: _glowController,
+          builder: (context, child) {
             return Container(
               width: 160,
               height: 160,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                gradient: const LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    Color(0xFF667EEA),
-                    Color(0xFF9B59B6),
-                    Color(0xFFFF6B9D),
-                  ],
-                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: const Color(
+                      0xFF667EEA,
+                    ).withAlpha((100 * _glowController.value).toInt() + 50),
+                    blurRadius: 40 + (20 * _glowController.value),
+                    spreadRadius: 10 + (10 * _glowController.value),
+                  ),
+                  BoxShadow(
+                    color: const Color(
+                      0xFF9B59B6,
+                    ).withAlpha((80 * _glowController.value).toInt() + 30),
+                    blurRadius: 60 + (30 * _glowController.value),
+                    spreadRadius: 5,
+                  ),
+                  BoxShadow(
+                    color: const Color(
+                      0xFFFFD700,
+                    ).withAlpha((60 * _glowController.value).toInt() + 20),
+                    blurRadius: 80,
+                    spreadRadius: 0,
+                  ),
+                ],
               ),
-              child: const Center(
-                child: Text('🐱', style: TextStyle(fontSize: 80)),
-              ),
+              child: child,
             );
           },
-        ),
-      ),
-    ).animate()
-      .fadeIn(duration: 1000.ms)
-      .scale(begin: const Offset(0.8, 0.8), curve: Curves.elasticOut, duration: 1200.ms);
+          child: ClipOval(
+            child: Image.asset(
+              'assets/images/app_icon.png',
+              width: 160,
+              height: 160,
+              fit: BoxFit.cover,
+              errorBuilder: (context, error, stackTrace) {
+                // Fallback if image doesn't exist
+                return Container(
+                  width: 160,
+                  height: 160,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    gradient: const LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [
+                        Color(0xFF667EEA),
+                        Color(0xFF9B59B6),
+                        Color(0xFFFF6B9D),
+                      ],
+                    ),
+                  ),
+                  child: const Center(
+                    child: Text('🐱', style: TextStyle(fontSize: 80)),
+                  ),
+                );
+              },
+            ),
+          ),
+        )
+        .animate()
+        .fadeIn(duration: 1000.ms)
+        .scale(
+          begin: const Offset(0.8, 0.8),
+          curve: Curves.elasticOut,
+          duration: 1200.ms,
+        );
   }
 
   Widget _buildAppleSignInButton() {
@@ -473,11 +490,7 @@ class _WelcomePageState extends State<_WelcomePage> with SingleTickerProviderSta
                 ),
               )
             else
-              const Icon(
-                Icons.apple,
-                color: Colors.white,
-                size: 28,
-              ),
+              const Icon(Icons.apple, color: Colors.white, size: 28),
             const SizedBox(width: 14),
             Text(
               _isAppleLoading ? 'Bağlanıyor...' : 'Apple ile devam et',
@@ -608,34 +621,37 @@ class _WelcomePageState extends State<_WelcomePage> with SingleTickerProviderSta
         final feature = entry.value;
 
         return Column(
-          children: [
-            Container(
-              width: 50,
-              height: 50,
-              decoration: BoxDecoration(
-                color: AppColors.surfaceLight.withAlpha(50),
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(
-                  color: const Color(0xFF667EEA).withAlpha(50),
+              children: [
+                Container(
+                  width: 50,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    color: AppColors.surfaceLight.withAlpha(50),
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(
+                      color: const Color(0xFF667EEA).withAlpha(50),
+                    ),
+                  ),
+                  child: Center(
+                    child: Text(
+                      feature['icon']!,
+                      style: const TextStyle(fontSize: 24),
+                    ),
+                  ),
                 ),
-              ),
-              child: Center(
-                child: Text(
-                  feature['icon']!,
-                  style: const TextStyle(fontSize: 24),
-                ),
-              ),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              feature['text']!,
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                const SizedBox(height: 8),
+                Text(
+                  feature['text']!,
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: AppColors.textMuted,
                     fontSize: 14,
                   ),
-            ),
-          ],
-        ).animate().fadeIn(delay: (1000 + index * 100).ms, duration: 400.ms).slideY(begin: 0.3);
+                ),
+              ],
+            )
+            .animate()
+            .fadeIn(delay: (1000 + index * 100).ms, duration: 400.ms)
+            .slideY(begin: 0.3);
       }).toList(),
     );
   }
@@ -664,7 +680,9 @@ class _WelcomePageState extends State<_WelcomePage> with SingleTickerProviderSta
       if (errorStr.contains('TypeError') ||
           errorStr.contains('JSObject') ||
           errorStr.contains('minified')) {
-        debugPrint('🍎 JS interop hatasi yakalandi - OAuth redirect bekleniyor');
+        debugPrint(
+          '🍎 JS interop hatasi yakalandi - OAuth redirect bekleniyor',
+        );
         // Loading state'i devam etsin
         return;
       }
@@ -674,7 +692,9 @@ class _WelcomePageState extends State<_WelcomePage> with SingleTickerProviderSta
           content: Text('Apple bağlantısı kurulamadı: $e'),
           backgroundColor: AppColors.error,
           behavior: SnackBarBehavior.floating,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
         ),
       );
       setState(() => _isAppleLoading = false);
@@ -727,9 +747,9 @@ class _BirthDataPage extends StatelessWidget {
             child: Text(
               'Kozmik Kimliğin',
               style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                    fontSize: 26,
-                    fontWeight: FontWeight.bold,
-                  ),
+                fontSize: 26,
+                fontWeight: FontWeight.bold,
+              ),
               textAlign: TextAlign.center,
             ).animate().fadeIn(duration: 400.ms),
           ),
@@ -786,9 +806,9 @@ class _BirthDataPage extends StatelessWidget {
     return Text(
       title,
       style: Theme.of(context).textTheme.labelLarge?.copyWith(
-            color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
-            fontWeight: FontWeight.w500,
-          ),
+        color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+        fontWeight: FontWeight.w500,
+      ),
     );
   }
 }
@@ -797,10 +817,7 @@ class _NameInput extends StatelessWidget {
   final String? userName;
   final ValueChanged<String> onNameChanged;
 
-  const _NameInput({
-    required this.userName,
-    required this.onNameChanged,
-  });
+  const _NameInput({required this.userName, required this.onNameChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -822,13 +839,17 @@ class _NameInput extends StatelessWidget {
         ),
         prefixIcon: Icon(
           Icons.person_outline,
-          color: hasValue ? colorScheme.primary : (isDark ? AppColors.textMuted : AppColors.lightTextMuted),
+          color: hasValue
+              ? colorScheme.primary
+              : (isDark ? AppColors.textMuted : AppColors.lightTextMuted),
         ),
         suffixIcon: hasValue
             ? const Icon(Icons.check_circle, color: AppColors.success, size: 20)
             : null,
         filled: true,
-        fillColor: isDark ? AppColors.surfaceDark.withAlpha(128) : AppColors.lightSurfaceVariant,
+        fillColor: isDark
+            ? AppColors.surfaceDark.withAlpha(128)
+            : AppColors.lightSurfaceVariant,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide.none,
@@ -863,7 +884,9 @@ class _InfoBox extends StatelessWidget {
       decoration: BoxDecoration(
         color: colorScheme.primary.withAlpha(isDark ? 25 : 15),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: colorScheme.primary.withAlpha(isDark ? 76 : 50)),
+        border: Border.all(
+          color: colorScheme.primary.withAlpha(isDark ? 76 : 50),
+        ),
       ),
       child: Row(
         children: [
@@ -872,9 +895,9 @@ class _InfoBox extends StatelessWidget {
           Expanded(
             child: Text(
               'Kozmik haritanın tüm katmanlarını açmak için bilgilerini eksiksiz gir.',
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: colorScheme.primary,
-                  ),
+              style: Theme.of(
+                context,
+              ).textTheme.bodySmall?.copyWith(color: colorScheme.primary),
             ),
           ),
         ],
@@ -902,7 +925,9 @@ class _BirthTimePicker extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: isDark ? AppColors.surfaceDark.withAlpha(128) : AppColors.lightSurfaceVariant,
+          color: isDark
+              ? AppColors.surfaceDark.withAlpha(128)
+              : AppColors.lightSurfaceVariant,
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
             color: selectedTime != null
@@ -924,18 +949,26 @@ class _BirthTimePicker extends StatelessWidget {
                   ? Text(
                       '${selectedTime!.hour.toString().padLeft(2, '0')}:${selectedTime!.minute.toString().padLeft(2, '0')}',
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
-                          ),
+                        color: isDark
+                            ? AppColors.textPrimary
+                            : AppColors.lightTextPrimary,
+                      ),
                     )
                   : Text(
                       'Saat seç',
                       style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                            color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-                          ),
+                        color: isDark
+                            ? AppColors.textMuted
+                            : AppColors.lightTextMuted,
+                      ),
                     ),
             ),
             if (selectedTime != null)
-              const Icon(Icons.check_circle, color: AppColors.success, size: 20),
+              const Icon(
+                Icons.check_circle,
+                color: AppColors.success,
+                size: 20,
+              ),
           ],
         ),
       ),
@@ -968,25 +1001,38 @@ class _BirthTimePicker extends StatelessWidget {
                     children: [
                       TextButton(
                         onPressed: () => Navigator.pop(context),
-                        child: Text('İptal',
-                            style: TextStyle(color: isDark ? AppColors.textMuted : AppColors.lightTextMuted)),
+                        child: Text(
+                          'İptal',
+                          style: TextStyle(
+                            color: isDark
+                                ? AppColors.textMuted
+                                : AppColors.lightTextMuted,
+                          ),
+                        ),
                       ),
                       Text(
                         'Doğum Saati',
-                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                              color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                        style: Theme.of(context).textTheme.titleMedium
+                            ?.copyWith(
+                              color: isDark
+                                  ? AppColors.textPrimary
+                                  : AppColors.lightTextPrimary,
                             ),
                       ),
                       TextButton(
                         onPressed: () {
-                          onTimeSelected(TimeOfDay(
-                            hour: selectedHour,
-                            minute: selectedMinute,
-                          ));
+                          onTimeSelected(
+                            TimeOfDay(
+                              hour: selectedHour,
+                              minute: selectedMinute,
+                            ),
+                          );
                           Navigator.pop(context);
                         },
-                        child: Text('Tamam',
-                            style: TextStyle(color: colorScheme.primary)),
+                        child: Text(
+                          'Tamam',
+                          style: TextStyle(color: colorScheme.primary),
+                        ),
                       ),
                     ],
                   ),
@@ -998,7 +1044,8 @@ class _BirthTimePicker extends StatelessWidget {
                         Expanded(
                           child: CupertinoPicker(
                             scrollController: FixedExtentScrollController(
-                                initialItem: selectedHour),
+                              initialItem: selectedHour,
+                            ),
                             itemExtent: 40,
                             onSelectedItemChanged: (index) {
                               setModalState(() => selectedHour = index);
@@ -1008,7 +1055,9 @@ class _BirthTimePicker extends StatelessWidget {
                                 child: Text(
                                   index.toString().padLeft(2, '0'),
                                   style: TextStyle(
-                                    color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                                    color: isDark
+                                        ? AppColors.textPrimary
+                                        : AppColors.lightTextPrimary,
                                     fontSize: 20,
                                   ),
                                 ),
@@ -1019,7 +1068,9 @@ class _BirthTimePicker extends StatelessWidget {
                         Text(
                           ':',
                           style: TextStyle(
-                            color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                            color: isDark
+                                ? AppColors.textPrimary
+                                : AppColors.lightTextPrimary,
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
                           ),
@@ -1028,7 +1079,8 @@ class _BirthTimePicker extends StatelessWidget {
                         Expanded(
                           child: CupertinoPicker(
                             scrollController: FixedExtentScrollController(
-                                initialItem: selectedMinute),
+                              initialItem: selectedMinute,
+                            ),
                             itemExtent: 40,
                             onSelectedItemChanged: (index) {
                               setModalState(() => selectedMinute = index);
@@ -1038,7 +1090,9 @@ class _BirthTimePicker extends StatelessWidget {
                                 child: Text(
                                   index.toString().padLeft(2, '0'),
                                   style: TextStyle(
-                                    color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                                    color: isDark
+                                        ? AppColors.textPrimary
+                                        : AppColors.lightTextPrimary,
                                     fontSize: 20,
                                   ),
                                 ),
@@ -1083,7 +1137,9 @@ class _BirthPlacePickerState extends State<_BirthPlacePicker> {
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: isDark ? AppColors.surfaceDark.withAlpha(128) : AppColors.lightSurfaceVariant,
+          color: isDark
+              ? AppColors.surfaceDark.withAlpha(128)
+              : AppColors.lightSurfaceVariant,
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
             color: widget.selectedPlace != null
@@ -1105,19 +1161,27 @@ class _BirthPlacePickerState extends State<_BirthPlacePicker> {
                   ? Text(
                       widget.selectedPlace!,
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
-                          ),
+                        color: isDark
+                            ? AppColors.textPrimary
+                            : AppColors.lightTextPrimary,
+                      ),
                       overflow: TextOverflow.ellipsis,
                     )
                   : Text(
                       'Şehir seç (${WorldCities.sortedCities.length} şehir)',
                       style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                            color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-                          ),
+                        color: isDark
+                            ? AppColors.textMuted
+                            : AppColors.lightTextMuted,
+                      ),
                     ),
             ),
             if (widget.selectedPlace != null)
-              const Icon(Icons.check_circle, color: AppColors.success, size: 20),
+              const Icon(
+                Icons.check_circle,
+                color: AppColors.success,
+                size: 20,
+              ),
           ],
         ),
       ),
@@ -1157,21 +1221,33 @@ class _BirthPlacePickerState extends State<_BirthPlacePicker> {
                     children: [
                       TextButton(
                         onPressed: () => Navigator.pop(context),
-                        child: Text('İptal',
-                            style: TextStyle(color: isDark ? AppColors.textMuted : AppColors.lightTextMuted)),
+                        child: Text(
+                          'İptal',
+                          style: TextStyle(
+                            color: isDark
+                                ? AppColors.textMuted
+                                : AppColors.lightTextMuted,
+                          ),
+                        ),
                       ),
                       Column(
                         children: [
                           Text(
                             'Doğum Yeri',
-                            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                                  color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                            style: Theme.of(context).textTheme.titleMedium
+                                ?.copyWith(
+                                  color: isDark
+                                      ? AppColors.textPrimary
+                                      : AppColors.lightTextPrimary,
                                 ),
                           ),
                           Text(
                             '${WorldCities.sortedCities.length} şehir',
-                            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                                  color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                            style: Theme.of(context).textTheme.bodySmall
+                                ?.copyWith(
+                                  color: isDark
+                                      ? AppColors.textMuted
+                                      : AppColors.lightTextMuted,
                                 ),
                           ),
                         ],
@@ -1185,14 +1261,28 @@ class _BirthPlacePickerState extends State<_BirthPlacePicker> {
                     onChanged: (value) {
                       setModalState(() => searchQuery = value);
                     },
-                    style: TextStyle(color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary),
+                    style: TextStyle(
+                      color: isDark
+                          ? AppColors.textPrimary
+                          : AppColors.lightTextPrimary,
+                    ),
                     decoration: InputDecoration(
                       hintText: 'Şehir veya ülke ara. . .',
-                      hintStyle: TextStyle(color: isDark ? AppColors.textMuted : AppColors.lightTextMuted),
-                      prefixIcon:
-                          Icon(Icons.search, color: isDark ? AppColors.textMuted : AppColors.lightTextMuted),
+                      hintStyle: TextStyle(
+                        color: isDark
+                            ? AppColors.textMuted
+                            : AppColors.lightTextMuted,
+                      ),
+                      prefixIcon: Icon(
+                        Icons.search,
+                        color: isDark
+                            ? AppColors.textMuted
+                            : AppColors.lightTextMuted,
+                      ),
                       filled: true,
-                      fillColor: isDark ? AppColors.surfaceLight.withAlpha(76) : AppColors.lightSurfaceVariant,
+                      fillColor: isDark
+                          ? AppColors.surfaceLight.withAlpha(76)
+                          : AppColors.lightSurfaceVariant,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                         borderSide: BorderSide.none,
@@ -1206,8 +1296,10 @@ class _BirthPlacePickerState extends State<_BirthPlacePicker> {
                     child: Text(
                       '${filteredCities.length} sonuç',
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-                          ),
+                        color: isDark
+                            ? AppColors.textMuted
+                            : AppColors.lightTextMuted,
+                      ),
                     ),
                   ),
                   const SizedBox(height: 8),
@@ -1226,14 +1318,18 @@ class _BirthPlacePickerState extends State<_BirthPlacePicker> {
                                 : Icons.public,
                             color: isSelected
                                 ? colorScheme.primary
-                                : (isDark ? AppColors.textMuted : AppColors.lightTextMuted),
+                                : (isDark
+                                      ? AppColors.textMuted
+                                      : AppColors.lightTextMuted),
                           ),
                           title: Text(
                             city.name,
                             style: TextStyle(
                               color: isSelected
                                   ? colorScheme.primary
-                                  : (isDark ? AppColors.textPrimary : AppColors.lightTextPrimary),
+                                  : (isDark
+                                        ? AppColors.textPrimary
+                                        : AppColors.lightTextPrimary),
                               fontWeight: isSelected
                                   ? FontWeight.bold
                                   : FontWeight.normal,
@@ -1244,13 +1340,17 @@ class _BirthPlacePickerState extends State<_BirthPlacePicker> {
                                 ? '${city.region}, ${city.country}'
                                 : city.country,
                             style: TextStyle(
-                              color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                              color: isDark
+                                  ? AppColors.textMuted
+                                  : AppColors.lightTextMuted,
                               fontSize: 14,
                             ),
                           ),
                           trailing: isSelected
-                              ? Icon(Icons.check_circle,
-                                  color: colorScheme.primary)
+                              ? Icon(
+                                  Icons.check_circle,
+                                  color: colorScheme.primary,
+                                )
                               : null,
                           onTap: () {
                             widget.onPlaceSelected(
@@ -1294,9 +1394,9 @@ class _YourSignPage extends StatelessWidget {
         child: Text(
           'Lütfen doğum tarihini gir',
           style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                color: AppColors.textSecondary,
-                fontSize: 18,
-              ),
+            color: AppColors.textSecondary,
+            fontSize: 18,
+          ),
         ),
       );
     }
@@ -1314,10 +1414,7 @@ class _YourSignPage extends StatelessWidget {
               gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
-                colors: [
-                  sign.color.withAlpha(50),
-                  sign.color.withAlpha(20),
-                ],
+                colors: [sign.color.withAlpha(50), sign.color.withAlpha(20)],
               ),
               borderRadius: BorderRadius.circular(20),
               border: Border.all(color: sign.color.withAlpha(80)),
@@ -1342,7 +1439,11 @@ class _YourSignPage extends StatelessWidget {
                     sign.symbol,
                     style: TextStyle(fontSize: 48, color: sign.color),
                   ),
-                ).animate().scale(begin: const Offset(0.5, 0.5), curve: Curves.elasticOut, duration: 600.ms),
+                ).animate().scale(
+                  begin: const Offset(0.5, 0.5),
+                  curve: Curves.elasticOut,
+                  duration: 600.ms,
+                ),
                 const SizedBox(width: 16),
                 // Burç bilgileri
                 Expanded(
@@ -1352,13 +1453,14 @@ class _YourSignPage extends StatelessWidget {
                       Text(
                         'Güneş Burcun',
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              color: AppColors.textSecondary,
-                              fontSize: 14,
-                            ),
+                          color: AppColors.textSecondary,
+                          fontSize: 14,
+                        ),
                       ),
                       Text(
                         sign.nameTr,
-                        style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                        style: Theme.of(context).textTheme.headlineMedium
+                            ?.copyWith(
                               color: sign.color,
                               fontSize: 32,
                               fontWeight: FontWeight.bold,
@@ -1367,9 +1469,9 @@ class _YourSignPage extends StatelessWidget {
                       Text(
                         sign.dateRange,
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                              color: AppColors.textSecondary,
-                              fontSize: 13,
-                            ),
+                          color: AppColors.textSecondary,
+                          fontSize: 13,
+                        ),
                       ),
                     ],
                   ),
@@ -1388,106 +1490,188 @@ class _YourSignPage extends StatelessWidget {
                 children: [
                   // Üst - Doğum Bilgileri
                   Container(
-                    padding: const EdgeInsets.all(14),
-                    decoration: BoxDecoration(
-                      color: AppColors.surfaceLight.withAlpha(50),
-                      borderRadius: BorderRadius.circular(16),
-                      border: Border.all(color: Colors.white.withAlpha(30)),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Row(
+                        padding: const EdgeInsets.all(14),
+                        decoration: BoxDecoration(
+                          color: AppColors.surfaceLight.withAlpha(50),
+                          borderRadius: BorderRadius.circular(16),
+                          border: Border.all(color: Colors.white.withAlpha(30)),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
                           children: [
-                            Icon(Icons.person_outline, color: AppColors.auroraStart, size: 20),
-                            const SizedBox(width: 8),
-                            Text(
-                              'Doğum Bilgilerin',
-                              style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                                    color: AppColors.auroraStart,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16,
-                                  ),
+                            Row(
+                              children: [
+                                Icon(
+                                  Icons.person_outline,
+                                  color: AppColors.auroraStart,
+                                  size: 20,
+                                ),
+                                const SizedBox(width: 8),
+                                Text(
+                                  'Doğum Bilgilerin',
+                                  style: Theme.of(context).textTheme.titleSmall
+                                      ?.copyWith(
+                                        color: AppColors.auroraStart,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16,
+                                      ),
+                                ),
+                              ],
                             ),
+                            const SizedBox(height: 12),
+                            _buildCompactDataRow(
+                              context,
+                              '📅',
+                              'Tarih',
+                              _formatDate(selectedDate!),
+                            ),
+                            if (selectedTime != null)
+                              _buildCompactDataRow(
+                                context,
+                                '🕐',
+                                'Saat',
+                                '${selectedTime!.hour.toString().padLeft(2, '0')}:${selectedTime!.minute.toString().padLeft(2, '0')}',
+                              ),
+                            if (birthPlace != null)
+                              _buildCompactDataRow(
+                                context,
+                                '📍',
+                                'Yer',
+                                birthPlace!,
+                              ),
                           ],
                         ),
-                        const SizedBox(height: 12),
-                        _buildCompactDataRow(context, '📅', 'Tarih', _formatDate(selectedDate!)),
-                        if (selectedTime != null)
-                          _buildCompactDataRow(
-                            context,
-                            '🕐',
-                            'Saat',
-                            '${selectedTime!.hour.toString().padLeft(2, '0')}:${selectedTime!.minute.toString().padLeft(2, '0')}',
-                          ),
-                        if (birthPlace != null)
-                          _buildCompactDataRow(context, '📍', 'Yer', birthPlace!),
-                      ],
-                    ),
-                  ).animate().fadeIn(delay: 300.ms, duration: 400.ms).slideY(begin: -0.2),
+                      )
+                      .animate()
+                      .fadeIn(delay: 300.ms, duration: 400.ms)
+                      .slideY(begin: -0.2),
 
                   const SizedBox(height: 12),
 
                   // Alt - Çözümlenecekler - Pastel gradient
                   Container(
-                    padding: const EdgeInsets.all(14),
-                    decoration: BoxDecoration(
-                      gradient: const LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [
-                          Color(0xFF2D2040), // Koyu mor
-                          Color(0xFF1A2540), // Koyu mavi
-                          Color(0xFF1F3040), // Koyu turkuaz
-                        ],
-                      ),
-                      borderRadius: BorderRadius.circular(16),
-                      border: Border.all(
-                        color: const Color(0xFFE6E6FA).withAlpha(40), // Pastel lavanta border
-                      ),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Row(
+                        padding: const EdgeInsets.all(14),
+                        decoration: BoxDecoration(
+                          gradient: const LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: [
+                              Color(0xFF2D2040), // Koyu mor
+                              Color(0xFF1A2540), // Koyu mavi
+                              Color(0xFF1F3040), // Koyu turkuaz
+                            ],
+                          ),
+                          borderRadius: BorderRadius.circular(16),
+                          border: Border.all(
+                            color: const Color(
+                              0xFFE6E6FA,
+                            ).withAlpha(40), // Pastel lavanta border
+                          ),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
                           children: [
-                            const Text('✦', style: TextStyle(fontSize: 18)),
-                            const SizedBox(width: 8),
-                            Flexible(
-                              child: Text(
-                                'Çözümlenecekler',
-                                style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                                      color: const Color(0xFFE6E6FA), // Pastel lavanta
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15,
-                                    ),
-                                overflow: TextOverflow.ellipsis,
-                              ),
+                            Row(
+                              children: [
+                                const Text('✦', style: TextStyle(fontSize: 18)),
+                                const SizedBox(width: 8),
+                                Flexible(
+                                  child: Text(
+                                    'Çözümlenecekler',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleSmall
+                                        ?.copyWith(
+                                          color: const Color(
+                                            0xFFE6E6FA,
+                                          ), // Pastel lavanta
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 15,
+                                        ),
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 10),
+                            // Feature list (no longer scrollable, uses wrap)
+                            Wrap(
+                              spacing: 8,
+                              runSpacing: 4,
+                              children: [
+                                _buildPastelFeatureRow(
+                                  context,
+                                  '♄',
+                                  '10 Gezegen',
+                                  const Color(0xFFFFB347),
+                                  true,
+                                ),
+                                _buildPastelFeatureRow(
+                                  context,
+                                  '△',
+                                  'Gezegen Açıları',
+                                  const Color(0xFF87CEEB),
+                                  true,
+                                ),
+                                _buildPastelFeatureRow(
+                                  context,
+                                  '□',
+                                  '12 Ev Sistemi',
+                                  const Color(0xFFDDA0DD),
+                                  selectedTime != null && birthPlace != null,
+                                ),
+                                _buildPastelFeatureRow(
+                                  context,
+                                  '↑',
+                                  'Yükselen Burç',
+                                  const Color(0xFF98FB98),
+                                  selectedTime != null && birthPlace != null,
+                                ),
+                                _buildPastelFeatureRow(
+                                  context,
+                                  '☽',
+                                  'Ay Düğümleri',
+                                  const Color(0xFFE6E6FA),
+                                  true,
+                                ),
+                                _buildPastelFeatureRow(
+                                  context,
+                                  '◆',
+                                  'Karmik Harita',
+                                  const Color(0xFFFFB6C1),
+                                  true,
+                                ),
+                                _buildPastelFeatureRow(
+                                  context,
+                                  '○',
+                                  'Psikolojik Profil',
+                                  const Color(0xFFADD8E6),
+                                  true,
+                                ),
+                                _buildPastelFeatureRow(
+                                  context,
+                                  '∞',
+                                  'Numeroloji',
+                                  const Color(0xFFF0E68C),
+                                  true,
+                                ),
+                                _buildPastelFeatureRow(
+                                  context,
+                                  '☯',
+                                  'Element Dengesi',
+                                  const Color(0xFFB0E0E6),
+                                  true,
+                                ),
+                              ],
                             ),
                           ],
                         ),
-                        const SizedBox(height: 10),
-                        // Feature list (no longer scrollable, uses wrap)
-                        Wrap(
-                          spacing: 8,
-                          runSpacing: 4,
-                          children: [
-                            _buildPastelFeatureRow(context, '♄', '10 Gezegen', const Color(0xFFFFB347), true),
-                            _buildPastelFeatureRow(context, '△', 'Gezegen Açıları', const Color(0xFF87CEEB), true),
-                            _buildPastelFeatureRow(context, '□', '12 Ev Sistemi', const Color(0xFFDDA0DD), selectedTime != null && birthPlace != null),
-                            _buildPastelFeatureRow(context, '↑', 'Yükselen Burç', const Color(0xFF98FB98), selectedTime != null && birthPlace != null),
-                            _buildPastelFeatureRow(context, '☽', 'Ay Düğümleri', const Color(0xFFE6E6FA), true),
-                            _buildPastelFeatureRow(context, '◆', 'Karmik Harita', const Color(0xFFFFB6C1), true),
-                            _buildPastelFeatureRow(context, '○', 'Psikolojik Profil', const Color(0xFFADD8E6), true),
-                            _buildPastelFeatureRow(context, '∞', 'Numeroloji', const Color(0xFFF0E68C), true),
-                            _buildPastelFeatureRow(context, '☯', 'Element Dengesi', const Color(0xFFB0E0E6), true),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ).animate().fadeIn(delay: 400.ms, duration: 400.ms).slideY(begin: 0.2),
+                      )
+                      .animate()
+                      .fadeIn(delay: 400.ms, duration: 400.ms)
+                      .slideY(begin: 0.2),
                 ],
               ),
             ),
@@ -1497,7 +1681,12 @@ class _YourSignPage extends StatelessWidget {
     );
   }
 
-  Widget _buildCompactDataRow(BuildContext context, String emoji, String label, String value) {
+  Widget _buildCompactDataRow(
+    BuildContext context,
+    String emoji,
+    String label,
+    String value,
+  ) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 6),
       child: Row(
@@ -1510,17 +1699,17 @@ class _YourSignPage extends StatelessWidget {
               Text(
                 label,
                 style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                      color: AppColors.textMuted,
-                      fontSize: 14,
-                    ),
+                  color: AppColors.textMuted,
+                  fontSize: 14,
+                ),
               ),
               Text(
                 value,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: AppColors.textPrimary,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 15,
-                    ),
+                  color: AppColors.textPrimary,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 15,
+                ),
               ),
             ],
           ),
@@ -1530,7 +1719,13 @@ class _YourSignPage extends StatelessWidget {
   }
 
   // Pastel renkli feature row - her öğe kendi rengiyle
-  Widget _buildPastelFeatureRow(BuildContext context, String emoji, String feature, Color pastelColor, bool available) {
+  Widget _buildPastelFeatureRow(
+    BuildContext context,
+    String emoji,
+    String feature,
+    Color pastelColor,
+    bool available,
+  ) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4),
       child: Row(
@@ -1541,10 +1736,12 @@ class _YourSignPage extends StatelessWidget {
             child: Text(
               feature,
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: available ? pastelColor : AppColors.textMuted.withOpacity(0.5),
-                    fontSize: 13,
-                    fontWeight: FontWeight.w500,
-                  ),
+                color: available
+                    ? pastelColor
+                    : AppColors.textMuted.withOpacity(0.5),
+                fontSize: 13,
+                fontWeight: FontWeight.w500,
+              ),
               overflow: TextOverflow.ellipsis,
             ),
           ),
@@ -1553,9 +1750,13 @@ class _YourSignPage extends StatelessWidget {
             height: 16,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: available ? pastelColor.withOpacity(0.2) : Colors.transparent,
+              color: available
+                  ? pastelColor.withOpacity(0.2)
+                  : Colors.transparent,
               border: Border.all(
-                color: available ? pastelColor : AppColors.textMuted.withOpacity(0.3),
+                color: available
+                    ? pastelColor
+                    : AppColors.textMuted.withOpacity(0.3),
                 width: 1.5,
               ),
             ),
@@ -1570,8 +1771,18 @@ class _YourSignPage extends StatelessWidget {
 
   String _formatDate(DateTime date) {
     const months = [
-      'Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran',
-      'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'
+      'Ocak',
+      'Şubat',
+      'Mart',
+      'Nisan',
+      'Mayıs',
+      'Haziran',
+      'Temmuz',
+      'Ağustos',
+      'Eylül',
+      'Ekim',
+      'Kasım',
+      'Aralık',
     ];
     return '${date.day} ${months[date.month - 1]} ${date.year}';
   }
@@ -1656,7 +1867,8 @@ class _CosmicWelcomeOverlayState extends State<_CosmicWelcomeOverlay>
                   child: AnimatedBuilder(
                     animation: _starController,
                     builder: (context, child) {
-                      final twinkle = ((_starController.value * 2 + random / 50) % 1.0);
+                      final twinkle =
+                          ((_starController.value * 2 + random / 50) % 1.0);
                       return Opacity(
                         opacity: 0.3 + twinkle * 0.7,
                         child: Icon(
@@ -1665,8 +1877,8 @@ class _CosmicWelcomeOverlayState extends State<_CosmicWelcomeOverlay>
                           color: index % 3 == 0
                               ? const Color(0xFFFFD700)
                               : index % 3 == 1
-                                  ? const Color(0xFFE6E6FA)
-                                  : Colors.white,
+                              ? const Color(0xFFE6E6FA)
+                              : Colors.white,
                         ),
                       );
                     },
@@ -1679,21 +1891,21 @@ class _CosmicWelcomeOverlayState extends State<_CosmicWelcomeOverlay>
                 child: FadeTransition(
                   opacity: _textController,
                   child: SlideTransition(
-                    position: Tween<Offset>(
-                      begin: const Offset(0, 0.2),
-                      end: Offset.zero,
-                    ).animate(CurvedAnimation(
-                      parent: _textController,
-                      curve: Curves.easeOutCubic,
-                    )),
+                    position:
+                        Tween<Offset>(
+                          begin: const Offset(0, 0.2),
+                          end: Offset.zero,
+                        ).animate(
+                          CurvedAnimation(
+                            parent: _textController,
+                            curve: Curves.easeOutCubic,
+                          ),
+                        ),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         // Ay/Yıldız ikonu
-                        const Text(
-                          '🌙',
-                          style: TextStyle(fontSize: 64),
-                        ),
+                        const Text('🌙', style: TextStyle(fontSize: 64)),
                         const SizedBox(height: 32),
 
                         // Ezoterik mesaj

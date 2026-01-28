@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+
 import '../../../../core/constants/app_constants.dart';
 import '../../../../core/theme/app_colors.dart';
-import '../../../../data/models/natal_chart.dart';
 import '../../../../data/models/aspect.dart';
+import '../../../../data/models/natal_chart.dart';
 import '../../../../data/models/planet.dart';
 
 class AspectsCard extends StatefulWidget {
@@ -25,10 +26,12 @@ class _AspectsCardState extends State<AspectsCard> {
         : widget.chart.aspects;
 
     // Group by type
-    final harmoniousAspects =
-        aspects.where((a) => a.type.isHarmonious).toList();
-    final challengingAspects =
-        aspects.where((a) => a.type.isChallenging).toList();
+    final harmoniousAspects = aspects
+        .where((a) => a.type.isHarmonious)
+        .toList();
+    final challengingAspects = aspects
+        .where((a) => a.type.isChallenging)
+        .toList();
     final neutralAspects = aspects
         .where((a) => !a.type.isHarmonious && !a.type.isChallenging)
         .toList();
@@ -52,14 +55,14 @@ class _AspectsCardState extends State<AspectsCard> {
                     Text(
                       'Açılar (${aspects.length})',
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            color: AppColors.textPrimary,
-                          ),
+                        color: AppColors.textPrimary,
+                      ),
                     ),
                     Text(
                       'Gezegenler arası ilişkiler',
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: AppColors.textMuted,
-                          ),
+                        color: AppColors.textMuted,
+                      ),
                     ),
                   ],
                 ),
@@ -69,8 +72,8 @@ class _AspectsCardState extends State<AspectsCard> {
                   Text(
                     'Sadece Ana',
                     style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                          color: AppColors.textMuted,
-                        ),
+                      color: AppColors.textMuted,
+                    ),
                   ),
                   Switch(
                     value: _showMajorOnly,
@@ -137,8 +140,9 @@ class _AspectsCardState extends State<AspectsCard> {
     List<Aspect> challenging,
   ) {
     final total = harmonious.length + challenging.length;
-    final harmoniousRatio =
-        total > 0 ? (harmonious.length / total * 100).round() : 0;
+    final harmoniousRatio = total > 0
+        ? (harmonious.length / total * 100).round()
+        : 0;
 
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingMd),
@@ -158,11 +162,7 @@ class _AspectsCardState extends State<AspectsCard> {
                 count: harmonious.length,
                 color: AppColors.success,
               ),
-              Container(
-                width: 1,
-                height: 40,
-                color: Colors.white12,
-              ),
+              Container(width: 1, height: 40, color: Colors.white12),
               _SummaryItem(
                 icon: Icons.warning,
                 label: 'Zorlu',
@@ -193,9 +193,9 @@ class _AspectsCardState extends State<AspectsCard> {
           const SizedBox(height: 8),
           Text(
             'Enerji Dengesi: %$harmoniousRatio Uyumlu',
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppColors.textMuted,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.bodySmall?.copyWith(color: AppColors.textMuted),
           ),
         ],
       ),
@@ -238,15 +238,15 @@ class _AspectsCardState extends State<AspectsCard> {
                     children: [
                       Text(
                         '$title (${aspects.length})',
-                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                              color: accentColor,
-                            ),
+                        style: Theme.of(
+                          context,
+                        ).textTheme.titleMedium?.copyWith(color: accentColor),
                       ),
                       Text(
                         subtitle,
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                              color: AppColors.textMuted,
-                            ),
+                          color: AppColors.textMuted,
+                        ),
                       ),
                     ],
                   ),
@@ -291,15 +291,15 @@ class _SummaryItem extends StatelessWidget {
         Text(
           '$count',
           style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                color: color,
-                fontWeight: FontWeight.bold,
-              ),
+            color: color,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         Text(
           label,
-          style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                color: AppColors.textMuted,
-              ),
+          style: Theme.of(
+            context,
+          ).textTheme.labelSmall?.copyWith(color: AppColors.textMuted),
         ),
       ],
     );
@@ -310,10 +310,7 @@ class _AspectRow extends StatelessWidget {
   final Aspect aspect;
   final bool isLast;
 
-  const _AspectRow({
-    required this.aspect,
-    this.isLast = false,
-  });
+  const _AspectRow({required this.aspect, this.isLast = false});
 
   @override
   Widget build(BuildContext context) {
@@ -344,63 +341,45 @@ class _AspectRow extends StatelessWidget {
         child: Center(
           child: Text(
             aspect.type.symbol,
-            style: TextStyle(
-              fontSize: 18,
-              color: aspect.type.color,
-            ),
+            style: TextStyle(fontSize: 18, color: aspect.type.color),
           ),
         ),
       ),
       title: Row(
         children: [
-          Text(
-            p1Symbol,
-            style: TextStyle(
-              fontSize: 16,
-              color: p1Color,
-            ),
-          ),
+          Text(p1Symbol, style: TextStyle(fontSize: 16, color: p1Color)),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
             child: Text(
               aspect.type.symbol,
-              style: TextStyle(
-                fontSize: 14,
-                color: aspect.type.color,
-              ),
+              style: TextStyle(fontSize: 14, color: aspect.type.color),
             ),
           ),
-          Text(
-            p2Symbol,
-            style: TextStyle(
-              fontSize: 16,
-              color: p2Color,
-            ),
-          ),
+          Text(p2Symbol, style: TextStyle(fontSize: 16, color: p2Color)),
           const SizedBox(width: 8),
           Text(
             aspect.type.nameTr,
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                  color: AppColors.textPrimary,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleSmall?.copyWith(color: AppColors.textPrimary),
           ),
         ],
       ),
       subtitle: Text(
         '$p1NameTr - $p2NameTr',
-        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: AppColors.textMuted,
-            ),
+        style: Theme.of(
+          context,
+        ).textTheme.bodySmall?.copyWith(color: AppColors.textMuted),
       ),
       trailing: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           Text(
-            '${aspect.orb.toStringAsFixed(1)}',
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: AppColors.textSecondary,
-                ),
+            aspect.orb.toStringAsFixed(1),
+            style: Theme.of(
+              context,
+            ).textTheme.bodyMedium?.copyWith(color: AppColors.textSecondary),
           ),
           // Strength indicator
           Container(
@@ -454,17 +433,17 @@ class _AspectRow extends StatelessWidget {
               const SizedBox(height: AppConstants.spacingMd),
               Text(
                 'Yorum',
-                style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                      color: AppColors.starGold,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.labelSmall?.copyWith(color: AppColors.starGold),
               ),
               const SizedBox(height: 4),
               Text(
                 aspect.interpretation,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: AppColors.textPrimary,
-                      height: 1.5,
-                    ),
+                  color: AppColors.textPrimary,
+                  height: 1.5,
+                ),
               ),
             ],
           ),
@@ -478,10 +457,7 @@ class _InfoChip extends StatelessWidget {
   final String label;
   final Color color;
 
-  const _InfoChip({
-    required this.label,
-    required this.color,
-  });
+  const _InfoChip({required this.label, required this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -494,9 +470,7 @@ class _InfoChip extends StatelessWidget {
       ),
       child: Text(
         label,
-        style: Theme.of(context).textTheme.labelSmall?.copyWith(
-              color: color,
-            ),
+        style: Theme.of(context).textTheme.labelSmall?.copyWith(color: color),
       ),
     );
   }

@@ -1,6 +1,7 @@
 /// Admin System Data Models
 /// ═══════════════════════════════════════════════════════════════════
 /// Prisma-style schema definitions for admin dashboard
+library;
 
 // ═══════════════════════════════════════════════════════════════════
 // MetricDaily - Daily KPI snapshots
@@ -11,13 +12,13 @@
 class MetricDaily {
   final String id;
   final DateTime date;
-  final double d1Return;       // D1 retention rate (%)
-  final double d7Return;       // D7 retention rate (%)
+  final double d1Return; // D1 retention rate (%)
+  final double d7Return; // D7 retention rate (%)
   final double avgSessionDepth; // Avg pages per session
-  final double recoCtr;         // Recommendation CTR (%)
-  final double shareReturn;     // Share-to-return rate (%)
-  final int totalSessions;      // Total sessions
-  final int uniqueUsers;        // Unique users
+  final double recoCtr; // Recommendation CTR (%)
+  final double shareReturn; // Share-to-return rate (%)
+  final int totalSessions; // Total sessions
+  final int uniqueUsers; // Unique users
   final int premiumConversions; // Premium purchases
   final DateTime createdAt;
 
@@ -124,9 +125,9 @@ class GrowthTaskModel {
   final String id;
   final String title;
   final String? description;
-  final String category;       // retention, conversion, growth, experimentation
-  final String priority;       // high, medium, low
-  final String status;         // pending, in_progress, completed, blocked
+  final String category; // retention, conversion, growth, experimentation
+  final String priority; // high, medium, low
+  final String status; // pending, in_progress, completed, blocked
   final DateTime? dueDate;
   final String? assignee;
   final List<String>? tags;
@@ -161,19 +162,24 @@ class GrowthTaskModel {
     'completed_at': completedAt?.toIso8601String(),
   };
 
-  factory GrowthTaskModel.fromJson(Map<String, dynamic> json) => GrowthTaskModel(
-    id: json['id'],
-    title: json['title'],
-    description: json['description'],
-    category: json['category'],
-    priority: json['priority'],
-    status: json['status'],
-    dueDate: json['due_date'] != null ? DateTime.parse(json['due_date']) : null,
-    assignee: json['assignee'],
-    tags: (json['tags'] as List?)?.cast<String>(),
-    createdAt: DateTime.parse(json['created_at']),
-    completedAt: json['completed_at'] != null ? DateTime.parse(json['completed_at']) : null,
-  );
+  factory GrowthTaskModel.fromJson(Map<String, dynamic> json) =>
+      GrowthTaskModel(
+        id: json['id'],
+        title: json['title'],
+        description: json['description'],
+        category: json['category'],
+        priority: json['priority'],
+        status: json['status'],
+        dueDate: json['due_date'] != null
+            ? DateTime.parse(json['due_date'])
+            : null,
+        assignee: json['assignee'],
+        tags: (json['tags'] as List?)?.cast<String>(),
+        createdAt: DateTime.parse(json['created_at']),
+        completedAt: json['completed_at'] != null
+            ? DateTime.parse(json['completed_at'])
+            : null,
+      );
 }
 
 // ═══════════════════════════════════════════════════════════════════
@@ -184,7 +190,7 @@ class GrowthTaskModel {
 /// Stores context snapshots for continuity
 class SnapshotModel {
   final String id;
-  final String type;           // resume, decision, open_loops, risk, etc.
+  final String type; // resume, decision, open_loops, risk, etc.
   final String title;
   final String content;
   final Map<String, dynamic>? metadata;
@@ -230,11 +236,11 @@ class SnapshotModel {
 /// Triggers when metrics cross thresholds
 class AlertModel {
   final String id;
-  final String metric;         // d1_return, d7_return, etc.
-  final String condition;      // above, below, change
+  final String metric; // d1_return, d7_return, etc.
+  final String condition; // above, below, change
   final double threshold;
   final double currentValue;
-  final String severity;       // info, warning, critical
+  final String severity; // info, warning, critical
   final bool acknowledged;
   final DateTime triggeredAt;
   final DateTime? acknowledgedAt;
@@ -272,6 +278,8 @@ class AlertModel {
     severity: json['severity'],
     acknowledged: json['acknowledged'],
     triggeredAt: DateTime.parse(json['triggered_at']),
-    acknowledgedAt: json['acknowledged_at'] != null ? DateTime.parse(json['acknowledged_at']) : null,
+    acknowledgedAt: json['acknowledged_at'] != null
+        ? DateTime.parse(json['acknowledged_at'])
+        : null,
   );
 }

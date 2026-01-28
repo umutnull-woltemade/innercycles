@@ -14,25 +14,39 @@ enum HouseSystem {
 extension HouseSystemExtension on HouseSystem {
   String get name {
     switch (this) {
-      case HouseSystem.placidus: return 'Placidus';
-      case HouseSystem.wholeSigns: return 'Whole Sign';
-      case HouseSystem.equalHouse: return 'Equal House';
-      case HouseSystem.koch: return 'Koch';
-      case HouseSystem.porphyry: return 'Porphyry';
-      case HouseSystem.regiomontanus: return 'Regiomontanus';
-      case HouseSystem.campanus: return 'Campanus';
+      case HouseSystem.placidus:
+        return 'Placidus';
+      case HouseSystem.wholeSigns:
+        return 'Whole Sign';
+      case HouseSystem.equalHouse:
+        return 'Equal House';
+      case HouseSystem.koch:
+        return 'Koch';
+      case HouseSystem.porphyry:
+        return 'Porphyry';
+      case HouseSystem.regiomontanus:
+        return 'Regiomontanus';
+      case HouseSystem.campanus:
+        return 'Campanus';
     }
   }
 
   String get nameTr {
     switch (this) {
-      case HouseSystem.placidus: return 'Placidus';
-      case HouseSystem.wholeSigns: return 'Tam Burc';
-      case HouseSystem.equalHouse: return 'Esit Ev';
-      case HouseSystem.koch: return 'Koch';
-      case HouseSystem.porphyry: return 'Porphyry';
-      case HouseSystem.regiomontanus: return 'Regiomontanus';
-      case HouseSystem.campanus: return 'Campanus';
+      case HouseSystem.placidus:
+        return 'Placidus';
+      case HouseSystem.wholeSigns:
+        return 'Tam Burc';
+      case HouseSystem.equalHouse:
+        return 'Esit Ev';
+      case HouseSystem.koch:
+        return 'Koch';
+      case HouseSystem.porphyry:
+        return 'Porphyry';
+      case HouseSystem.regiomontanus:
+        return 'Regiomontanus';
+      case HouseSystem.campanus:
+        return 'Campanus';
     }
   }
 
@@ -75,22 +89,34 @@ enum House {
 extension HouseExtension on House {
   int get number => index + 1;
 
-  String get name => '${number}. Ev';
+  String get name => '$number. Ev';
 
   String get nameTr {
     switch (this) {
-      case House.first: return '1. Ev - Benlik';
-      case House.second: return '2. Ev - Para & Değerler';
-      case House.third: return '3. Ev - İletişim';
-      case House.fourth: return '4. Ev - Aile & Kökler';
-      case House.fifth: return '5. Ev - Aşk & Yaratıcılık';
-      case House.sixth: return '6. Ev - İş & Sağlık';
-      case House.seventh: return '7. Ev - Evlilik & Partner';
-      case House.eighth: return '8. Ev - Cinsellik & Dönüşüm';
-      case House.ninth: return '9. Ev - Felsefe & Yolculuk';
-      case House.tenth: return '10. Ev - Kariyer & Statü';
-      case House.eleventh: return '11. Ev - Arkadaşlar & Topluluk';
-      case House.twelfth: return '12. Ev - Bilinçaltı & Gizli';
+      case House.first:
+        return '1. Ev - Benlik';
+      case House.second:
+        return '2. Ev - Para & Değerler';
+      case House.third:
+        return '3. Ev - İletişim';
+      case House.fourth:
+        return '4. Ev - Aile & Kökler';
+      case House.fifth:
+        return '5. Ev - Aşk & Yaratıcılık';
+      case House.sixth:
+        return '6. Ev - İş & Sağlık';
+      case House.seventh:
+        return '7. Ev - Evlilik & Partner';
+      case House.eighth:
+        return '8. Ev - Cinsellik & Dönüşüm';
+      case House.ninth:
+        return '9. Ev - Felsefe & Yolculuk';
+      case House.tenth:
+        return '10. Ev - Kariyer & Statü';
+      case House.eleventh:
+        return '11. Ev - Arkadaşlar & Topluluk';
+      case House.twelfth:
+        return '12. Ev - Bilinçaltı & Gizli';
     }
   }
 
@@ -125,18 +151,30 @@ extension HouseExtension on House {
 
   String get keywords {
     switch (this) {
-      case House.first: return 'Benlik • İmaj • Başlangıç';
-      case House.second: return 'Para • Değer • Güvenlik';
-      case House.third: return 'İletişim • Öğrenme • Kardeş';
-      case House.fourth: return 'Ev • Aile • Kökler';
-      case House.fifth: return 'Aşk • Yaratıcılık • Eğlence';
-      case House.sixth: return 'Sağlık • İş • Rutin';
-      case House.seventh: return 'Partner • Evlilik • Ortaklık';
-      case House.eighth: return 'Cinsellik • Dönüşüm • Kriz';
-      case House.ninth: return 'Felsefe • Yolculuk • İnanç';
-      case House.tenth: return 'Kariyer • Statü • Başarı';
-      case House.eleventh: return 'Arkadaş • Topluluk • Hayal';
-      case House.twelfth: return 'Bilinçaltı • Gizli • Spiritüel';
+      case House.first:
+        return 'Benlik • İmaj • Başlangıç';
+      case House.second:
+        return 'Para • Değer • Güvenlik';
+      case House.third:
+        return 'İletişim • Öğrenme • Kardeş';
+      case House.fourth:
+        return 'Ev • Aile • Kökler';
+      case House.fifth:
+        return 'Aşk • Yaratıcılık • Eğlence';
+      case House.sixth:
+        return 'Sağlık • İş • Rutin';
+      case House.seventh:
+        return 'Partner • Evlilik • Ortaklık';
+      case House.eighth:
+        return 'Cinsellik • Dönüşüm • Kriz';
+      case House.ninth:
+        return 'Felsefe • Yolculuk • İnanç';
+      case House.tenth:
+        return 'Kariyer • Statü • Başarı';
+      case House.eleventh:
+        return 'Arkadaş • Topluluk • Hayal';
+      case House.twelfth:
+        return 'Bilinçaltı • Gizli • Spiritüel';
     }
   }
 
@@ -167,10 +205,7 @@ class HouseCusp {
   final House house;
   final double longitude; // 0-360 degrees
 
-  HouseCusp({
-    required this.house,
-    required this.longitude,
-  });
+  HouseCusp({required this.house, required this.longitude});
 
   ZodiacSign get sign {
     final signIndex = (longitude / 30).floor() % 12;
@@ -179,5 +214,5 @@ class HouseCusp {
 
   int get degree => (longitude % 30).floor();
 
-  String get positionString => '${degree}° ${sign.symbol}';
+  String get positionString => '$degree° ${sign.symbol}';
 }

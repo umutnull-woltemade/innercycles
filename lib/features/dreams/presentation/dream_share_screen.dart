@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -7,6 +8,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
+
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/dream_interpretation_models.dart';
 import '../../../data/services/moon_service.dart';
@@ -204,17 +206,17 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: [
-            AppColors.mystic.withOpacity(0.3),
-            Colors.transparent,
-          ],
+          colors: [AppColors.mystic.withOpacity(0.3), Colors.transparent],
         ),
       ),
       child: Row(
         children: [
           IconButton(
             onPressed: () => context.pop(),
-            icon: const Icon(Icons.arrow_back_ios, color: AppColors.textPrimary),
+            icon: const Icon(
+              Icons.arrow_back_ios,
+              color: AppColors.textPrimary,
+            ),
           ),
           const SizedBox(width: 8),
           Container(
@@ -238,15 +240,15 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
                 Text(
                   'Ruya Paylasimi',
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        color: AppColors.textPrimary,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    color: AppColors.textPrimary,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 Text(
                   'Kozmik mesajini paylas',
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: AppColors.textSecondary,
-                      ),
+                    color: AppColors.textSecondary,
+                  ),
                 ),
               ],
             ),
@@ -304,17 +306,15 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
       child: Column(
         children: [
           // Main card preview
-          Center(
-            child: _buildCurrentCard(),
-          ),
+          Center(child: _buildCurrentCard()),
           const SizedBox(height: 24),
 
           // Quick template buttons
           Text(
             'Hizli Sablonlar',
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                  color: AppColors.textSecondary,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleSmall?.copyWith(color: AppColors.textSecondary),
           ),
           const SizedBox(height: 12),
           _buildQuickTemplates(),
@@ -324,9 +324,9 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
           // Theme preview strip
           Text(
             'Tema Sec',
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                  color: AppColors.textSecondary,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleSmall?.copyWith(color: AppColors.textSecondary),
           ),
           const SizedBox(height: 12),
           _buildThemeStrip(),
@@ -410,7 +410,8 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
 
     switch (template) {
       case DreamCardTemplate.dreamQuote:
-        _mainText = interp?.whisperQuote ?? 'Ruyalarimin icinde kendimi buldum.';
+        _mainText =
+            interp?.whisperQuote ?? 'Ruyalarimin icinde kendimi buldum.';
         _subtitle = '';
         _headerEmoji = '\u{1F319}';
         break;
@@ -427,7 +428,8 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
         }
         break;
       case DreamCardTemplate.dailyMessage:
-        _mainText = _generatedAffirmation ?? 'Bugün ruyalarimin isiginda yuruyorum.';
+        _mainText =
+            _generatedAffirmation ?? 'Bugün ruyalarimin isiginda yuruyorum.';
         _subtitle = '';
         _headerEmoji = '\u{1F31F}';
         break;
@@ -481,14 +483,20 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
                     border: Border.all(
-                      color: isSelected ? AppColors.starGold : Colors.transparent,
+                      color: isSelected
+                          ? AppColors.starGold
+                          : Colors.transparent,
                       width: 2,
                     ),
                     gradient: _getThemePreviewGradient(theme),
                   ),
                   child: isSelected
                       ? const Center(
-                          child: Icon(Icons.check, color: Colors.white, size: 20),
+                          child: Icon(
+                            Icons.check,
+                            color: Colors.white,
+                            size: 20,
+                          ),
                         )
                       : null,
                 ),
@@ -497,7 +505,9 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
                   theme.label,
                   style: TextStyle(
                     fontSize: 10,
-                    color: isSelected ? AppColors.starGold : AppColors.textSecondary,
+                    color: isSelected
+                        ? AppColors.starGold
+                        : AppColors.textSecondary,
                   ),
                 ),
               ],
@@ -532,7 +542,10 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
         );
       case DreamCardTheme.golden:
         return LinearGradient(
-          colors: [const Color(0xFF2D2410), AppColors.starGold.withOpacity(0.3)],
+          colors: [
+            const Color(0xFF2D2410),
+            AppColors.starGold.withOpacity(0.3),
+          ],
         );
     }
   }
@@ -587,9 +600,9 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
     return Text(
       title,
       style: Theme.of(context).textTheme.titleSmall?.copyWith(
-            color: AppColors.textPrimary,
-            fontWeight: FontWeight.w600,
-          ),
+        color: AppColors.textPrimary,
+        fontWeight: FontWeight.w600,
+      ),
     );
   }
 
@@ -627,7 +640,10 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
                 _subtitle = value;
               });
             },
-            style: const TextStyle(color: AppColors.textSecondary, fontSize: 14),
+            style: const TextStyle(
+              color: AppColors.textSecondary,
+              fontSize: 14,
+            ),
             decoration: const InputDecoration(
               hintText: 'Alt baslik (opsiyonel)',
               hintStyle: TextStyle(color: AppColors.textMuted, fontSize: 14),
@@ -662,7 +678,9 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
               color: isSelected ? null : AppColors.surfaceDark.withOpacity(0.5),
               borderRadius: BorderRadius.circular(12),
               border: Border.all(
-                color: isSelected ? Colors.transparent : AppColors.mystic.withOpacity(0.3),
+                color: isSelected
+                    ? Colors.transparent
+                    : AppColors.mystic.withOpacity(0.3),
               ),
             ),
             child: Text(
@@ -670,7 +688,9 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
               style: TextStyle(
                 fontSize: 14,
                 color: isSelected ? Colors.white : AppColors.textSecondary,
-                fontStyle: font == DreamCardFont.mystical ? FontStyle.italic : FontStyle.normal,
+                fontStyle: font == DreamCardFont.mystical
+                    ? FontStyle.italic
+                    : FontStyle.normal,
               ),
             ),
           ),
@@ -681,9 +701,21 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
 
   Widget _buildEmojiSelector() {
     final dreamEmojis = [
-      '\u{1F319}', '\u{1F31F}', '\u{2728}', '\u{1F52E}', '\u{1F3AD}',
-      '\u{1F30C}', '\u{1F320}', '\u{2604}', '\u{1F300}', '\u{1F311}',
-      '\u{1F315}', '\u{1FA90}', '\u{1F9FF}', '\u{1F4AB}', '\u{1F302}',
+      '\u{1F319}',
+      '\u{1F31F}',
+      '\u{2728}',
+      '\u{1F52E}',
+      '\u{1F3AD}',
+      '\u{1F30C}',
+      '\u{1F320}',
+      '\u{2604}',
+      '\u{1F300}',
+      '\u{1F311}',
+      '\u{1F315}',
+      '\u{1FA90}',
+      '\u{1F9FF}',
+      '\u{1F4AB}',
+      '\u{1F302}',
     ];
 
     return Wrap(
@@ -754,9 +786,9 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
           children: [
             Text(
               'Emoji Sec',
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    color: AppColors.textPrimary,
-                  ),
+              style: Theme.of(
+                context,
+              ).textTheme.titleMedium?.copyWith(color: AppColors.textPrimary),
             ),
             const SizedBox(height: 16),
             Expanded(
@@ -764,34 +796,70 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
                 crossAxisCount: 8,
                 mainAxisSpacing: 8,
                 crossAxisSpacing: 8,
-                children: [
-                  '\u{1F319}', '\u{1F31F}', '\u{2728}', '\u{1F52E}', '\u{1F3AD}',
-                  '\u{1F30C}', '\u{1F320}', '\u{2604}', '\u{1F300}', '\u{1F311}',
-                  '\u{1F312}', '\u{1F313}', '\u{1F314}', '\u{1F315}', '\u{1F316}',
-                  '\u{1F317}', '\u{1F318}', '\u{1FA90}', '\u{1F9FF}', '\u{1F4AB}',
-                  '\u{1F302}', '\u{1F40D}', '\u{1F99B}', '\u{1F418}', '\u{1F987}',
-                  '\u{1F989}', '\u{1F426}', '\u{1F43A}', '\u{1F981}', '\u{1F98B}',
-                  '\u{1F31E}', '\u{1F525}', '\u{1F30A}', '\u{1F343}', '\u{1F338}',
-                  '\u{1F48E}', '\u{1F5DD}', '\u{1F573}', '\u{1F30D}', '\u{1F308}',
-                ].map((emoji) {
-                  return GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        _headerEmoji = emoji;
-                      });
-                      Navigator.pop(context);
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: AppColors.surfaceLight.withOpacity(0.3),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Center(
-                        child: Text(emoji, style: const TextStyle(fontSize: 22)),
-                      ),
-                    ),
-                  );
-                }).toList(),
+                children:
+                    [
+                      '\u{1F319}',
+                      '\u{1F31F}',
+                      '\u{2728}',
+                      '\u{1F52E}',
+                      '\u{1F3AD}',
+                      '\u{1F30C}',
+                      '\u{1F320}',
+                      '\u{2604}',
+                      '\u{1F300}',
+                      '\u{1F311}',
+                      '\u{1F312}',
+                      '\u{1F313}',
+                      '\u{1F314}',
+                      '\u{1F315}',
+                      '\u{1F316}',
+                      '\u{1F317}',
+                      '\u{1F318}',
+                      '\u{1FA90}',
+                      '\u{1F9FF}',
+                      '\u{1F4AB}',
+                      '\u{1F302}',
+                      '\u{1F40D}',
+                      '\u{1F99B}',
+                      '\u{1F418}',
+                      '\u{1F987}',
+                      '\u{1F989}',
+                      '\u{1F426}',
+                      '\u{1F43A}',
+                      '\u{1F981}',
+                      '\u{1F98B}',
+                      '\u{1F31E}',
+                      '\u{1F525}',
+                      '\u{1F30A}',
+                      '\u{1F343}',
+                      '\u{1F338}',
+                      '\u{1F48E}',
+                      '\u{1F5DD}',
+                      '\u{1F573}',
+                      '\u{1F30D}',
+                      '\u{1F308}',
+                    ].map((emoji) {
+                      return GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _headerEmoji = emoji;
+                          });
+                          Navigator.pop(context);
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: AppColors.surfaceLight.withOpacity(0.3),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Center(
+                            child: Text(
+                              emoji,
+                              style: const TextStyle(fontSize: 22),
+                            ),
+                          ),
+                        ),
+                      );
+                    }).toList(),
               ),
             ),
           ],
@@ -803,38 +871,30 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
   Widget _buildToggleOptions() {
     return Column(
       children: [
-        _buildToggleTile(
-          'Ay Fazini Goster',
-          _config.showMoonPhase,
-          (value) {
-            setState(() {
-              _config = _config.copyWith(showMoonPhase: value);
-            });
-          },
-        ),
-        _buildToggleTile(
-          'Filigran Goster',
-          _config.showWatermark,
-          (value) {
-            setState(() {
-              _config = _config.copyWith(showWatermark: value);
-            });
-          },
-        ),
-        _buildToggleTile(
-          'Emoji Suslemeler',
-          _config.showEmoji,
-          (value) {
-            setState(() {
-              _config = _config.copyWith(showEmoji: value);
-            });
-          },
-        ),
+        _buildToggleTile('Ay Fazini Goster', _config.showMoonPhase, (value) {
+          setState(() {
+            _config = _config.copyWith(showMoonPhase: value);
+          });
+        }),
+        _buildToggleTile('Filigran Goster', _config.showWatermark, (value) {
+          setState(() {
+            _config = _config.copyWith(showWatermark: value);
+          });
+        }),
+        _buildToggleTile('Emoji Suslemeler', _config.showEmoji, (value) {
+          setState(() {
+            _config = _config.copyWith(showEmoji: value);
+          });
+        }),
       ],
     );
   }
 
-  Widget _buildToggleTile(String title, bool value, ValueChanged<bool> onChanged) {
+  Widget _buildToggleTile(
+    String title,
+    bool value,
+    ValueChanged<bool> onChanged,
+  ) {
     return Container(
       margin: const EdgeInsets.only(bottom: 8),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
@@ -845,14 +905,11 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            title,
-            style: const TextStyle(color: AppColors.textSecondary),
-          ),
+          Text(title, style: const TextStyle(color: AppColors.textSecondary)),
           Switch(
             value: value,
             onChanged: onChanged,
-            activeColor: AppColors.mystic,
+            activeThumbColor: AppColors.mystic,
           ),
         ],
       ),
@@ -1087,7 +1144,9 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Text(
-                _mainText.length > 80 ? '${_mainText.substring(0, 80)}...' : _mainText,
+                _mainText.length > 80
+                    ? '${_mainText.substring(0, 80)}...'
+                    : _mainText,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   color: Colors.white,
@@ -1105,10 +1164,7 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
               ),
               child: const Text(
                 '9:16 Story Format',
-                style: TextStyle(
-                  color: Colors.white54,
-                  fontSize: 9,
-                ),
+                style: TextStyle(color: Colors.white54, fontSize: 9),
               ),
             ),
           ],
@@ -1250,9 +1306,9 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
               TextButton.icon(
                 onPressed: () {
                   Clipboard.setData(ClipboardData(text: content));
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Kopyalandı!')),
-                  );
+                  ScaffoldMessenger.of(
+                    context,
+                  ).showSnackBar(const SnackBar(content: Text('Kopyalandı!')));
                 },
                 icon: const Icon(Icons.copy, size: 16),
                 label: const Text('Kopyala'),
@@ -1265,9 +1321,7 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
                 onPressed: onUse,
                 icon: const Icon(Icons.check, size: 16),
                 label: const Text('Kullan'),
-                style: TextButton.styleFrom(
-                  foregroundColor: AppColors.mystic,
-                ),
+                style: TextButton.styleFrom(foregroundColor: AppColors.mystic),
               ),
             ],
           ),
@@ -1333,10 +1387,7 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
         gradient: LinearGradient(
           begin: Alignment.bottomCenter,
           end: Alignment.topCenter,
-          colors: [
-            AppColors.nebulaPurple.withOpacity(0.8),
-            Colors.transparent,
-          ],
+          colors: [AppColors.nebulaPurple.withOpacity(0.8), Colors.transparent],
         ),
       ),
       child: Row(
@@ -1381,9 +1432,9 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
           children: [
             Text(
               'Gizlilik Kontrolleri',
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    color: AppColors.textPrimary,
-                  ),
+              style: Theme.of(
+                context,
+              ).textTheme.titleLarge?.copyWith(color: AppColors.textPrimary),
             ),
             const SizedBox(height: 20),
             _buildPrivacyToggle(
@@ -1460,7 +1511,7 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
           Switch(
             value: value,
             onChanged: onChanged,
-            activeColor: AppColors.mystic,
+            activeThumbColor: AppColors.mystic,
           ),
         ],
       ),
@@ -1485,7 +1536,9 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
       } else {
         // Mobile: Save to temp and share to photos
         final tempDir = await getTemporaryDirectory();
-        final file = File('${tempDir.path}/dream_card_${DateTime.now().millisecondsSinceEpoch}.png');
+        final file = File(
+          '${tempDir.path}/dream_card_${DateTime.now().millisecondsSinceEpoch}.png',
+        );
         await file.writeAsBytes(imageBytes);
 
         _showSuccess('Gorsel kaydedildi!');
@@ -1525,7 +1578,9 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
       } else {
         // Mobile: Use share sheet
         final tempDir = await getTemporaryDirectory();
-        final file = File('${tempDir.path}/dream_share_${DateTime.now().millisecondsSinceEpoch}.png');
+        final file = File(
+          '${tempDir.path}/dream_share_${DateTime.now().millisecondsSinceEpoch}.png',
+        );
         await file.writeAsBytes(imageBytes);
 
         await Share.shareXFiles(
@@ -1594,7 +1649,8 @@ class DreamQuickShareButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onShare ??
+      onTap:
+          onShare ??
           () {
             Navigator.push(
               context,

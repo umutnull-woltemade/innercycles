@@ -8,6 +8,7 @@
 /// - Bilgelik odaklı yaklaşım
 /// - Pratik uygulamalar
 /// - Viral paylaşım ögeleri
+library;
 
 /// ═══════════════════════════════════════════════════════════════════════════
 /// YAŞAM YOLU SAYILARI (LIFE PATH) 1-9
@@ -153,7 +154,7 @@ Kaçınılması gereken: Aşırı çalışma, uyku ihmalı, tek başına her şe
       'Yaratıcılık',
       'Öncülük',
       'Cesaret',
-      'Vizyon'
+      'Vizyon',
     ],
     yearlyGuidance: {
       '2024':
@@ -241,16 +242,10 @@ Kaçınılması gereken: Yalnız kalmak, duyguları bastırmak, çatışmayı i�
         '"2 ol: Köprü ol, denge ol, barış ol. Güç tek başına değil, birlikte olunca çoğalır."',
     compatibleNumbers: ['6', '8', '9'],
     challengingNumbers: ['1', '5'],
-    keywords: [
-      'Diplomasi',
-      'Denge',
-      'Empati',
-      'Ortaklık',
-      'Sezgi',
-      'Barış'
-    ],
+    keywords: ['Diplomasi', 'Denge', 'Empati', 'Ortaklık', 'Sezgi', 'Barış'],
     yearlyGuidance: {
-      '2024': '2024 ilişkilerde derinleşme yılı. Yüzeysel bağlantıları bırak, kalıcı olanları koru.',
+      '2024':
+          '2024 ilişkilerde derinleşme yılı. Yüzeysel bağlantıları bırak, kalıcı olanları koru.',
       '2025': '2025\'te sezgilerin güçlenecek. İç sesin rehberliğine güven.',
       '2026': '2026 işbirliği yılı. Ortaklıklar, birlikte projeler ön planda.',
     },
@@ -338,10 +333,11 @@ Kaçınılması gereken: İzolasyon, duyguları bastırma, aşırı kafein.
       'Neşe',
       'Sanat',
       'İfade',
-      'Sosyallik'
+      'Sosyallik',
     ],
     yearlyGuidance: {
-      '2024': '2024 yaratıcı projeler için ideal. Ertelediğin sanat eserini hayata geçir.',
+      '2024':
+          '2024 yaratıcı projeler için ideal. Ertelediğin sanat eserini hayata geçir.',
       '2025': '2025\'te iletişim becerilerin ön planda. Yaz, konuş, paylaş.',
       '2026': '2026 odaklanma yılı. Bir projeyi bitir, sonra diğerine geç.',
     },
@@ -429,11 +425,12 @@ Kaçınılması gereken: Hareketsiz yaşam, aşırı çalışma, molasız tempo.
       'Düzen',
       'Güvenilirlik',
       'Yapı',
-      'Disiplin'
+      'Disiplin',
     ],
     yearlyGuidance: {
       '2024': '2024 temel atma yılı. Uzun vadeli planlarını şimdi başlat.',
-      '2025': '2025\'te esneklik öğreneceksin. Kontrol etmeye çalışma, akışa gir.',
+      '2025':
+          '2025\'te esneklik öğreneceksin. Kontrol etmeye çalışma, akışa gir.',
       '2026': '2026 hasat yılı. Çalışmalarının meyvelerini görmeye başlarsın.',
     },
   ),
@@ -513,17 +510,11 @@ Kaçınılması gereken: Aşırı kafein, uykusuzluk, bağımlılık yapıcı ma
         '"5 ol: Keşfet, değiş, özgürleş. Konfor alanın güzel, ama büyüme orada yok."',
     compatibleNumbers: ['1', '3', '7'],
     challengingNumbers: ['2', '4'],
-    keywords: [
-      'Özgürlük',
-      'Macera',
-      'Değişim',
-      'Esneklik',
-      'Deneyim',
-      'Uyum'
-    ],
+    keywords: ['Özgürlük', 'Macera', 'Değişim', 'Esneklik', 'Deneyim', 'Uyum'],
     yearlyGuidance: {
       '2024': '2024 değişim yılı. Kalıpları kır, yeni şeyler dene.',
-      '2025': '2025\'te seyahat enerjisi güçlü. Fiziksel veya zihinsel yolculuklara çık.',
+      '2025':
+          '2025\'te seyahat enerjisi güçlü. Fiziksel veya zihinsel yolculuklara çık.',
       '2026': '2026 dengeleme yılı. Özgürlük ve sorumluluk arasında denge bul.',
     },
   ),
@@ -597,24 +588,20 @@ Başkalarının stresini üstlenme eğilimi. Omuz ve sırt ağrılarına dikkat.
 
 Kaçınılması gereken: Kendi ihtiyaçlarını ihmal, duygusal tükenme.
 ''',
-    famousPeople: 'John Lennon, Michael Jackson, Jessica Alba, Victoria Beckham',
+    famousPeople:
+        'John Lennon, Michael Jackson, Jessica Alba, Victoria Beckham',
     dailyAffirmation:
         'Sevgim şifa veriyor. Önce kendimi seviyorum, sonra dünyayı.',
     viralQuote:
         '"6 ol: Sev, koru, iyileştir. Ama unutma - sen de sevilmeyi hak ediyorsun."',
     compatibleNumbers: ['2', '4', '9'],
     challengingNumbers: ['1', '5'],
-    keywords: [
-      'Sevgi',
-      'Aile',
-      'Sorumluluk',
-      'Şifa',
-      'Koruma',
-      'Uyum'
-    ],
+    keywords: ['Sevgi', 'Aile', 'Sorumluluk', 'Şifa', 'Koruma', 'Uyum'],
     yearlyGuidance: {
-      '2024': '2024 aile ve ev odaklı yıl. Sıcak bir yuva oluşturmaya yatırım yap.',
-      '2025': '2025\'te kendi bakımına önem ver. Başkalarını kurtarmaya çalışma.',
+      '2024':
+          '2024 aile ve ev odaklı yıl. Sıcak bir yuva oluşturmaya yatırım yap.',
+      '2025':
+          '2025\'te kendi bakımına önem ver. Başkalarını kurtarmaya çalışma.',
       '2026': '2026 denge yılı. Vermek ve almak arasında uyum bul.',
     },
   ),
@@ -688,9 +675,9 @@ Aşırı düşünce baş ve sinir sistemini yorar. Uyku sorunlarına dikkat.
 
 Kaçınılması gereken: Aşırı kafein, uyku ihmalı, sosyal izolasyon.
 ''',
-    famousPeople: 'Nikola Tesla, Princess Diana, Stephen Hawking, Leonardo DiCaprio',
-    dailyAffirmation:
-        'Hakikati arıyorum. Derinliğim benim gücüm.',
+    famousPeople:
+        'Nikola Tesla, Princess Diana, Stephen Hawking, Leonardo DiCaprio',
+    dailyAffirmation: 'Hakikati arıyorum. Derinliğim benim gücüm.',
     viralQuote:
         '"7 ol: Sorgula, ara, derinleş. Cevap her zaman yüzeyde değil - ama arayan bulur."',
     compatibleNumbers: ['3', '5', '9'],
@@ -701,7 +688,7 @@ Kaçınılması gereken: Aşırı kafein, uyku ihmalı, sosyal izolasyon.
       'Mistisizm',
       'Derinlik',
       'Sezgi',
-      'Analiz'
+      'Analiz',
     ],
     yearlyGuidance: {
       '2024': '2024 içsel yolculuk yılı. Meditasyon, okuma, sessizlik.',
@@ -780,22 +767,15 @@ Stres sindirim sistemi ve kardiyovasküler sistemde birikir.
 Kaçınılması gereken: İşkoliklik, stresi yemeyle bastırma, uyku ihmalı.
 ''',
     famousPeople: 'Nelson Mandela, Pablo Picasso, Sandra Bullock, 50 Cent',
-    dailyAffirmation:
-        'Gücümü bilgelikle kullanıyorum. Bolluk hayatıma akıyor.',
+    dailyAffirmation: 'Gücümü bilgelikle kullanıyorum. Bolluk hayatıma akıyor.',
     viralQuote:
         '"8 ol: Güç kazan, akıllıca kullan, paylaş. Gerçek zenginlik, verdiğinde çoğalan."',
     compatibleNumbers: ['2', '4', '6'],
     challengingNumbers: ['1', '7'],
-    keywords: [
-      'Güç',
-      'Başarı',
-      'Bolluk',
-      'Manifestasyon',
-      'Karma',
-      'Liderlik'
-    ],
+    keywords: ['Güç', 'Başarı', 'Bolluk', 'Manifestasyon', 'Karma', 'Liderlik'],
     yearlyGuidance: {
-      '2024': '2024 finansal fırsatlar yılı. Yatırım yap, ama etik çizgini koru.',
+      '2024':
+          '2024 finansal fırsatlar yılı. Yatırım yap, ama etik çizgini koru.',
       '2025': '2025\'te güç dengesini öğreneceksin. Yönetirken empati göster.',
       '2026': '2026 karma hasat yılı. Geçmişte ektiğin tohumlar meyve verecek.',
     },
@@ -871,8 +851,7 @@ Başkalarının enerjisini üstlenme eğilimi. Bağışıklık sistemine dikkat.
 Kaçınılması gereken: Duygusal vampirler, tükenmişlik, sınırsız verme.
 ''',
     famousPeople: 'Mahatma Gandhi, Mother Teresa, Bob Marley, Jim Carrey',
-    dailyAffirmation:
-        'Evrensel sevgi benimle akıyor. Dünyanın ışığı oluyorum.',
+    dailyAffirmation: 'Evrensel sevgi benimle akıyor. Dünyanın ışığı oluyorum.',
     viralQuote:
         '"9 ol: Sev, bırak, dönüştür. Son değil - yeni bir başlangıç. Her kapanış bir açılış."',
     compatibleNumbers: ['3', '6', '7'],
@@ -883,12 +862,14 @@ Kaçınılması gereken: Duygusal vampirler, tükenmişlik, sınırsız verme.
       'Tamamlama',
       'Evrensel Sevgi',
       'Şifa',
-      'Bırakma'
+      'Bırakma',
     ],
     yearlyGuidance: {
       '2024': '2024 tamamlama yılı. Yarım kalan işleri bitir, geçmişi bırak.',
-      '2025': '2025\'te evrensel hizmet çağrısı. Daha büyük bir amaca hizmet et.',
-      '2026': '2026 yeni başlangıçlar yılı. 9\'un ardından 1 gelir - yeni döngü başlıyor.',
+      '2025':
+          '2025\'te evrensel hizmet çağrısı. Daha büyük bir amaca hizmet et.',
+      '2026':
+          '2026 yeni başlangıçlar yılı. 9\'un ardından 1 gelir - yeni döngü başlıyor.',
     },
   ),
 };
@@ -965,14 +946,7 @@ Günlük uygulama: Meditasyon, enerji koruma, grounding (topraklanma).
 ''',
     viralQuote:
         '"11:11 - Evrenin sana mesajı var. Uyan, dinle, aydınlan. Sen ışığın taşıyıcısısın."',
-    keywords: [
-      'İlham',
-      'Sezgi',
-      'Mistisizm',
-      'Aydınlanma',
-      'Köprü',
-      'Vizyon'
-    ],
+    keywords: ['İlham', 'Sezgi', 'Mistisizm', 'Aydınlanma', 'Köprü', 'Vizyon'],
   ),
 
   22: const MasterNumberContent(
@@ -1014,14 +988,7 @@ Günlük uygulama: Planlama, meditasyon, fiziksel aktivite, doğada vakit.
 ''',
     viralQuote:
         '"22 - Rüyaları inşa et. Vizyonun büyük, temellerin sağlam olsun. Gelecek senin ellerinde şekilleniyor."',
-    keywords: [
-      'İnşa',
-      'Vizyon',
-      'Miras',
-      'Ustalık',
-      'Pratiklik',
-      'Kalıcılık'
-    ],
+    keywords: ['İnşa', 'Vizyon', 'Miras', 'Ustalık', 'Pratiklik', 'Kalıcılık'],
   ),
 
   33: const MasterNumberContent(
@@ -1069,7 +1036,7 @@ Günlük uygulama: Sessizlik, meditasyon, doğada vakit, topluluk hizmeti (sın�
       'Öğretmenlik',
       'Hizmet',
       'Ustalık',
-      'Evrensellik'
+      'Evrensellik',
     ],
   ),
 };
@@ -1118,7 +1085,8 @@ Yeni projeler, yeni ilişkiler, yeni alışkanlıklar için ideal zaman. Teredd�
     focus: 'Kendine odaklan, vizyonunu netleştir, ilk adımları at',
     avoid: 'Kararsızlık, geçmişe takılma, başkalarının onayını bekleme',
     affirmation: 'Yeni başlangıçların gücüyle ilerliyorum. Bu benim yılım.',
-    viralQuote: '"1. Yıl: Her şey yeniden başlıyor. Tohum ekme zamanı - ne istiyorsan şimdi ek."',
+    viralQuote:
+        '"1. Yıl: Her şey yeniden başlıyor. Tohum ekme zamanı - ne istiyorsan şimdi ek."',
   ),
   2: const PersonalYearContent(
     year: 2,
@@ -1135,7 +1103,8 @@ Kadim bilgelik: "Tohum karanlıkta büyür." Görmesen de gelişme var.
     focus: 'Sabır, dinleme, ilişki kurma, detaylara dikkat',
     avoid: 'Sabırsızlık, zorlamak, tek başına her şeyi yapmaya çalışmak',
     affirmation: 'Sabırla bekliyorum. Doğru zamanda doğru şeyler oluyor.',
-    viralQuote: '"2. Yıl: Bekle, dinle, güven. Tohum toprakta - görünmese de büyüyor."',
+    viralQuote:
+        '"2. Yıl: Bekle, dinle, güven. Tohum toprakta - görünmese de büyüyor."',
   ),
   3: const PersonalYearContent(
     year: 3,
@@ -1152,7 +1121,8 @@ Eğlence önemli - ama dağılmamaya dikkat et. Odaklanmış yaratıcılık en g
     focus: 'Yaratıcı projeler, sosyal bağlantılar, kendini ifade',
     avoid: 'Dağınıklık, yüzeysellik, eleştiriye aşırı tepki',
     affirmation: 'Yaratıcılığım özgürce akıyor. Neşemi paylaşıyorum.',
-    viralQuote: '"3. Yıl: Yarat, ifade et, neşelen. Sanatın, sesin, ışığın - dünyaya hediyendir."',
+    viralQuote:
+        '"3. Yıl: Yarat, ifade et, neşelen. Sanatın, sesin, ışığın - dünyaya hediyendir."',
   ),
   4: const PersonalYearContent(
     year: 4,
@@ -1169,7 +1139,8 @@ Sıkı çalışma mevsimi - ama sabırlı ol. Temellerin sağlamsa, üzerine her
     focus: 'Organizasyon, planlama, çalışma, sağlık rutinleri',
     avoid: 'Kaytarmak, temel atmadan bina dikmek, aşırı çalışma',
     affirmation: 'Sağlam temeller kuruyorum. Çalışmam meyvelerini verecek.',
-    viralQuote: '"4. Yıl: Çalış, inşa et, sabredÇalışmak zor, ama meyve tatlı."',
+    viralQuote:
+        '"4. Yıl: Çalış, inşa et, sabredÇalışmak zor, ama meyve tatlı."',
   ),
   5: const PersonalYearContent(
     year: 5,
@@ -1186,7 +1157,8 @@ Esnek ol, yeni deneyimlere açıl. Ama her değişikliğin peşinden koşma - ö
     focus: 'Esneklik, yeni deneyimler, seyahat, özgürleşme',
     avoid: 'Aşırı dağınıklık, sorumsuzluk, bağımlılıklar',
     affirmation: 'Değişime açığım. Her deneyim beni zenginleştiriyor.',
-    viralQuote: '"5. Yıl: Değiş, keşfet, özgürleş. Konfor alanın dışına çık - orası büyüyor."',
+    viralQuote:
+        '"5. Yıl: Değiş, keşfet, özgürleş. Konfor alanın dışına çık - orası büyüyor."',
   ),
   6: const PersonalYearContent(
     year: 6,
@@ -1202,8 +1174,10 @@ Güzellik, estetik, uyum arayışı güçlü. Yaşam alanını düzenle, güzell
 ''',
     focus: 'Aile, ev, ilişkiler, estetik, sağlık',
     avoid: 'Aşırı fedakarlık, başkalarının hayatını yaşama, kontrolcülük',
-    affirmation: 'Sevgim şifa veriyor. Önce kendimi, sonra başkalarını seviyorum.',
-    viralQuote: '"6. Yıl: Sev, koru, iyileştir. Ev sadece dört duvar değil - kalbin olduğu yer."',
+    affirmation:
+        'Sevgim şifa veriyor. Önce kendimi, sonra başkalarını seviyorum.',
+    viralQuote:
+        '"6. Yıl: Sev, koru, iyileştir. Ev sadece dört duvar değil - kalbin olduğu yer."',
   ),
   7: const PersonalYearContent(
     year: 7,
@@ -1219,8 +1193,10 @@ Ruhani gelişim, meditasyon, okuma için ideal yıl. Ama aşırı izolasyondan k
 ''',
     focus: 'İçsel çalışma, araştırma, ruhani gelişim, sağlık',
     avoid: 'Aşırı izolasyon, aşırı analiz, paranoya',
-    affirmation: 'İçsel bilgeliğimi keşfediyorum. Sessizlikte cevapları buluyorum.',
-    viralQuote: '"7. Yıl: Dur, dinle, derinleş. Cevaplar dışarıda değil - içinde."',
+    affirmation:
+        'İçsel bilgeliğimi keşfediyorum. Sessizlikte cevapları buluyorum.',
+    viralQuote:
+        '"7. Yıl: Dur, dinle, derinleş. Cevaplar dışarıda değil - içinde."',
   ),
   8: const PersonalYearContent(
     year: 8,
@@ -1237,7 +1213,8 @@ Finansal fırsatlar, kariyer atılımları mümkün. Ama gücü etik kullan.
     focus: 'Kariyer, finans, güç dengeleme, sağlık',
     avoid: 'Açgözlülük, materyalizm, güç sarhoşluğu',
     affirmation: 'Bolluk hayatıma akıyor. Gücümü bilgelikle kullanıyorum.',
-    viralQuote: '"8. Yıl: Hasat zamanı. Ektiğini biçiyorsun - adil ol, bol ol."',
+    viralQuote:
+        '"8. Yıl: Hasat zamanı. Ektiğini biçiyorsun - adil ol, bol ol."',
   ),
   9: const PersonalYearContent(
     year: 9,
@@ -1254,7 +1231,8 @@ Kadim bilgelik: "Her son, bir başlangıçtır." Bırakmak acı verebilir, ama �
     focus: 'Tamamlama, bırakma, temizlik, hizmet, hazırlık',
     avoid: 'Yeni başlangıçlar (bekle), geçmişe takılma, şehitlik',
     affirmation: 'Kolaylıkla bırakıyorum. Yeni döngüme hazırım.',
-    viralQuote: '"9. Yıl: Bitir, bırak, temizle. Bir dönem kapanıyor - yenisine yer açılıyor."',
+    viralQuote:
+        '"9. Yıl: Bitir, bırak, temizle. Bir dönem kapanıyor - yenisine yer açılıyor."',
   ),
 };
 
@@ -1319,7 +1297,8 @@ final Map<int, KarmicDebtContent> karmicDebtContents = {
     archetype: 'Tembel Ruh',
     symbol: '⚙️',
     keywords: 'Çalışma, disiplin, sorumluluk, temel inşa',
-    shortDescription: 'Geçmiş yaşamlarda kaçınılan çalışma ve sorumlulukların karmik yükü.',
+    shortDescription:
+        'Geçmiş yaşamlarda kaçınılan çalışma ve sorumlulukların karmik yükü.',
     deepMeaning: '''
 13 karmik borcu, ruhun geçmiş yaşamlarda çalışmaktan kaçındığı, sorumluluklardan kaytardığı ve kolay yolu seçtiği deneyimlerin birikimini taşır.
 
@@ -1351,8 +1330,10 @@ Bu yaşamdaki dersin: DİSİPLİN ve SORUMLULUK.
 
 Her zorlu iş, geçmişteki bir kaytarmanın karşılığı. Şikayet etmeden, minnetle karşıla.
 ''',
-    challenge: 'Kolay yolu seçme dürtüsü, tembellik, erteleme, yarım bırakma, mazeret üretme, engellerden yılma.',
-    gift: 'Sabır, dayanıklılık, pratik zeka, sağlam temeller inşa etme, zorlukları fırsata çevirme.',
+    challenge:
+        'Kolay yolu seçme dürtüsü, tembellik, erteleme, yarım bırakma, mazeret üretme, engellerden yılma.',
+    gift:
+        'Sabır, dayanıklılık, pratik zeka, sağlam temeller inşa etme, zorlukları fırsata çevirme.',
     healingPath: '''
 İyileşme yolunda şunları uygula:
 1. Her gün bir şeyi TAMAMLA - küçük de olsa
@@ -1399,8 +1380,10 @@ Ruhsal pratikler:
 
 Mantra: "Ben sorumluluklarımı sevgiyle üstleniyorum."
 ''',
-    affirmation: 'Çalışmak kutsaldır. Her görev, ruhumu arındırıyor. Disiplinim özgürlüğümdür.',
-    viralQuote: '"13 Karmik Borcu: Geçmişte kaytardın, şimdi çalışacaksın. Ama şikayet etme - her damla ter, bir karma damlası siliniyor."',
+    affirmation:
+        'Çalışmak kutsaldır. Her görev, ruhumu arındırıyor. Disiplinim özgürlüğümdür.',
+    viralQuote:
+        '"13 Karmik Borcu: Geçmişte kaytardın, şimdi çalışacaksın. Ama şikayet etme - her damla ter, bir karma damlası siliniyor."',
     warnings: [
       'Kolay para tuzaklarından kaç',
       'İşleri yarım bırakma',
@@ -1424,7 +1407,8 @@ Mantra: "Ben sorumluluklarımı sevgiyle üstleniyorum."
     archetype: 'Dizginsiz Ruh',
     symbol: '🔗',
     keywords: 'Özgürlük, bağımlılık, disiplin, denge, sorumluluk',
-    shortDescription: 'Geçmiş yaşamlarda özgürlüğün suistimalinin, aşırılıkların karmik sonucu.',
+    shortDescription:
+        'Geçmiş yaşamlarda özgürlüğün suistimalinin, aşırılıkların karmik sonucu.',
     deepMeaning: '''
 14 karmik borcu, ruhun geçmiş yaşamlarda özgürlüğü kötüye kullandığı, aşırılıklara kaçtığı ve başkalarının özgürlüğünü kısıtladığı deneyimlerin yükünü taşır.
 
@@ -1457,8 +1441,10 @@ Bu yaşamdaki dersin: DENGELİ ÖZGÜRLÜK.
 
 Gerçek özgürlük, hiçbir şeye bağımlı olmamaktır.
 ''',
-    challenge: 'Bağımlılık eğilimleri, aşırılıklar, sınır tanımama, huzursuzluk, taahhüt korkusu, kontrolsüz değişim.',
-    gift: 'Uyum sağlama, esneklik, değişimi yönetme, çeşitlilik, deneyim zenginliği.',
+    challenge:
+        'Bağımlılık eğilimleri, aşırılıklar, sınır tanımama, huzursuzluk, taahhüt korkusu, kontrolsüz değişim.',
+    gift:
+        'Uyum sağlama, esneklik, değişimi yönetme, çeşitlilik, deneyim zenginliği.',
     healingPath: '''
 İyileşme yolunda şunları uygula:
 1. Her türlü bağımlılığı tanı (madde, ilişki, iş, telefon...)
@@ -1505,8 +1491,10 @@ Ruhsal pratikler:
 
 Mantra: "Ben özgürüm çünkü hiçbir şeye bağımlı değilim."
 ''',
-    affirmation: 'Gerçek özgürlüğü içimde buluyorum. Disiplinim beni özgürleştiriyor, kısıtlamıyor.',
-    viralQuote: '"14 Karmik Borcu: Özgürlüğü suistimal ettin, şimdi gerçek özgürlüğü öğreneceksin. Hiçbir şeye bağımlı olmamak - işte gerçek özgürlük."',
+    affirmation:
+        'Gerçek özgürlüğü içimde buluyorum. Disiplinim beni özgürleştiriyor, kısıtlamıyor.',
+    viralQuote:
+        '"14 Karmik Borcu: Özgürlüğü suistimal ettin, şimdi gerçek özgürlüğü öğreneceksin. Hiçbir şeye bağımlı olmamak - işte gerçek özgürlük."',
     warnings: [
       'Bağımlılık yapan her şeyden uzak dur',
       'Aşırılıklardan kaçın',
@@ -1530,7 +1518,8 @@ Mantra: "Ben özgürüm çünkü hiçbir şeye bağımlı değilim."
     archetype: 'Düşen Kule',
     symbol: '🗼',
     keywords: 'Ego, gurur, yıkım, yeniden doğuş, tevazu',
-    shortDescription: 'Geçmiş yaşamlarda egonun şişirilmesi, gururun karmik sonucu.',
+    shortDescription:
+        'Geçmiş yaşamlarda egonun şişirilmesi, gururun karmik sonucu.',
     deepMeaning: '''
 16 karmik borcu, en zorlu ama en dönüştürücü karmik yüklerden biridir. Geçmiş yaşamlarda ego aşırı şişmiş, gurur kontrolden çıkmış, ruh yoldan sapmıştır.
 
@@ -1563,7 +1552,8 @@ Bu yaşamdaki dersin: TEVAZU ve OTANTISITE.
 
 Egonun ölümü, ruhun doğumudur.
 ''',
-    challenge: 'Ani kayıplar, imaj çöküşü, gurur yaraları, izolasyon, depresyon, anlam krizi.',
+    challenge:
+        'Ani kayıplar, imaj çöküşü, gurur yaraları, izolasyon, depresyon, anlam krizi.',
     gift: 'Derin içsel bilgelik, otantisite, ruhsal uyanış, tevazu, gerçeklik.',
     healingPath: '''
 İyileşme yolunda şunları uygula:
@@ -1611,8 +1601,10 @@ Ruhsal pratikler:
 
 Mantra: "Ben egomdan ibaret değilim. Gerçek benliğim sonsuz ve tevazu doludur."
 ''',
-    affirmation: 'Egomun ölümüne izin veriyorum. Gerçek benliğim ortaya çıkıyor. Tevazuda güç buluyorum.',
-    viralQuote: '"16 Karmik Borcu: Kulen yıkılacak. Ama yıkıntılardan çıkan SEN, kuleden çok daha değerli. Ego ölsün ki ruh doğsun."',
+    affirmation:
+        'Egomun ölümüne izin veriyorum. Gerçek benliğim ortaya çıkıyor. Tevazuda güç buluyorum.',
+    viralQuote:
+        '"16 Karmik Borcu: Kulen yıkılacak. Ama yıkıntılardan çıkan SEN, kuleden çok daha değerli. Ego ölsün ki ruh doğsun."',
     warnings: [
       'Gururu besleyen her şeyden kaçın',
       'Sahte imaj inşa etme',
@@ -1636,7 +1628,8 @@ Mantra: "Ben egomdan ibaret değilim. Gerçek benliğim sonsuz ve tevazu doludur
     archetype: 'Zalim Kral',
     symbol: '👑',
     keywords: 'Güç, bağımsızlık, bencillik, hizmet, liderlik',
-    shortDescription: 'Geçmiş yaşamlarda gücün bencilce kullanılmasının karmik sonucu.',
+    shortDescription:
+        'Geçmiş yaşamlarda gücün bencilce kullanılmasının karmik sonucu.',
     deepMeaning: '''
 19 karmik borcu, ruhun geçmiş yaşamlarda güç sahibi olup bunu bencilce, başkalarına zarar verecek şekilde kullandığı deneyimlerin yükünü taşır.
 
@@ -1669,8 +1662,10 @@ Bu yaşamdaki dersin: HİZMET ODAKLI LİDERLİK.
 
 Gerçek güç, başkalarını güçlendirmektir.
 ''',
-    challenge: 'Bencillik, yalnızlık, yardım kabul edememe, kontrol ihtiyacı, başkalarına güvenememe.',
-    gift: 'Doğal liderlik, bağımsızlık, yaratıcılık, ilham verme, dönüştürme gücü.',
+    challenge:
+        'Bencillik, yalnızlık, yardım kabul edememe, kontrol ihtiyacı, başkalarına güvenememe.',
+    gift:
+        'Doğal liderlik, bağımsızlık, yaratıcılık, ilham verme, dönüştürme gücü.',
     healingPath: '''
 İyileşme yolunda şunları uygula:
 1. Her gün birine yardım et - karşılıksız
@@ -1717,8 +1712,10 @@ Ruhsal pratikler:
 
 Mantra: "Gücüm hizmet içindir. Başkalarını yükselterek kendim yükseliyorum."
 ''',
-    affirmation: 'Gücümü başkalarını güçlendirmek için kullanıyorum. Bencilliği bırakıp hizmete dönüyorum.',
-    viralQuote: '"19 Karmik Borcu: Gücün var, evet. Ama ne için? Kendin için kullanırsan yalnız kalırsın. Başkaları için kullanırsan - işte o zaman gerçek kral olursun."',
+    affirmation:
+        'Gücümü başkalarını güçlendirmek için kullanıyorum. Bencilliği bırakıp hizmete dönüyorum.',
+    viralQuote:
+        '"19 Karmik Borcu: Gücün var, evet. Ama ne için? Kendin için kullanırsan yalnız kalırsın. Başkaları için kullanırsan - işte o zaman gerçek kral olursun."',
     warnings: [
       'Gücü bencil kullanma',
       'Yalnız kalma',

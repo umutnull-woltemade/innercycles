@@ -1,6 +1,7 @@
 import 'dart:math';
-import '../models/zodiac_sign.dart';
+
 import '../models/advanced_astrology.dart';
+import '../models/zodiac_sign.dart';
 
 // ============ NEW MODEL CLASSES ============
 
@@ -2368,9 +2369,13 @@ class AdvancedAstrologyService {
 
     // Complementary elements
     if ((sun1.element == Element.fire && sun2.element == Element.air) ||
-        (sun1.element == Element.air && sun2.element == Element.fire)) score += 12;
+        (sun1.element == Element.air && sun2.element == Element.fire)) {
+      score += 12;
+    }
     if ((sun1.element == Element.earth && sun2.element == Element.water) ||
-        (sun1.element == Element.water && sun2.element == Element.earth)) score += 12;
+        (sun1.element == Element.water && sun2.element == Element.earth)) {
+      score += 12;
+    }
 
     // Opposing signs (can be challenging but magnetic)
     if ((sun1.index - sun2.index).abs() == 6) score += 5;

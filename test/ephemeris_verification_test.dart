@@ -1,7 +1,7 @@
-import 'package:flutter_test/flutter_test.dart';
-import 'package:astrology_app/data/services/ephemeris_service.dart';
 import 'package:astrology_app/data/models/natal_chart.dart';
 import 'package:astrology_app/data/models/zodiac_sign.dart';
+import 'package:astrology_app/data/services/ephemeris_service.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('Ephemeris Verification', () {
@@ -26,12 +26,21 @@ void main() {
 
       // Verify the calculation
       expect(chart.sun, isNotNull, reason: 'Sun position should be calculated');
-      expect(chart.sun!.longitude, greaterThanOrEqualTo(240),
-          reason: 'Sun longitude should be in Sagittarius range (240-270°)');
-      expect(chart.sun!.longitude, lessThan(270),
-          reason: 'Sun longitude should be in Sagittarius range (240-270°)');
-      expect(chart.sunSign, equals(ZodiacSign.sagittarius),
-          reason: 'Sun sign should be Sagittarius for Dec 15 birthdate');
+      expect(
+        chart.sun!.longitude,
+        greaterThanOrEqualTo(240),
+        reason: 'Sun longitude should be in Sagittarius range (240-270°)',
+      );
+      expect(
+        chart.sun!.longitude,
+        lessThan(270),
+        reason: 'Sun longitude should be in Sagittarius range (240-270°)',
+      );
+      expect(
+        chart.sunSign,
+        equals(ZodiacSign.sagittarius),
+        reason: 'Sun sign should be Sagittarius for Dec 15 birthdate',
+      );
     });
 
     test('June 25, 2000 should be Cancer', () {
@@ -74,8 +83,11 @@ void main() {
 
       for (final (sign, startDegree) in signTests) {
         final signIndex = (startDegree / 30).floor() % 12;
-        expect(ZodiacSign.values[signIndex], equals(sign),
-            reason: '$sign should start at ${startDegree}°');
+        expect(
+          ZodiacSign.values[signIndex],
+          equals(sign),
+          reason: '$sign should start at $startDegree°',
+        );
       }
     });
   });

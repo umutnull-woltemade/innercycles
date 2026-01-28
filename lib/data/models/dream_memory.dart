@@ -1,6 +1,7 @@
 /// Dream Memory System - Core data model for AI-powered dream tracking
 /// This is the UNIQUE MOAT - no competitor has this feature
 /// Enables pattern detection, symbol tracking, and personalized interpretations
+library;
 
 /// Individual dream entry
 class Dream {
@@ -29,32 +30,32 @@ class Dream {
   });
 
   Map<String, dynamic> toJson() => {
-        'id': id,
-        'content': content,
-        'dreamDate': dreamDate.toIso8601String(),
-        'createdAt': createdAt.toIso8601String(),
-        'symbols': symbols,
-        'dominantEmotion': dominantEmotion,
-        'themes': themes,
-        'mood': mood,
-        'interpretation': interpretation?.toJson(),
-        'isSaved': isSaved,
-      };
+    'id': id,
+    'content': content,
+    'dreamDate': dreamDate.toIso8601String(),
+    'createdAt': createdAt.toIso8601String(),
+    'symbols': symbols,
+    'dominantEmotion': dominantEmotion,
+    'themes': themes,
+    'mood': mood,
+    'interpretation': interpretation?.toJson(),
+    'isSaved': isSaved,
+  };
 
   factory Dream.fromJson(Map<String, dynamic> json) => Dream(
-        id: json['id'],
-        content: json['content'],
-        dreamDate: DateTime.parse(json['dreamDate']),
-        createdAt: DateTime.parse(json['createdAt']),
-        symbols: List<String>.from(json['symbols'] ?? []),
-        dominantEmotion: json['dominantEmotion'],
-        themes: List<String>.from(json['themes'] ?? []),
-        mood: json['mood'],
-        interpretation: json['interpretation'] != null
-            ? DreamInterpretation.fromJson(json['interpretation'])
-            : null,
-        isSaved: json['isSaved'] ?? true,
-      );
+    id: json['id'],
+    content: json['content'],
+    dreamDate: DateTime.parse(json['dreamDate']),
+    createdAt: DateTime.parse(json['createdAt']),
+    symbols: List<String>.from(json['symbols'] ?? []),
+    dominantEmotion: json['dominantEmotion'],
+    themes: List<String>.from(json['themes'] ?? []),
+    mood: json['mood'],
+    interpretation: json['interpretation'] != null
+        ? DreamInterpretation.fromJson(json['interpretation'])
+        : null,
+    isSaved: json['isSaved'] ?? true,
+  );
 
   Dream copyWith({
     String? id,
@@ -67,19 +68,18 @@ class Dream {
     String? mood,
     DreamInterpretation? interpretation,
     bool? isSaved,
-  }) =>
-      Dream(
-        id: id ?? this.id,
-        content: content ?? this.content,
-        dreamDate: dreamDate ?? this.dreamDate,
-        createdAt: createdAt ?? this.createdAt,
-        symbols: symbols ?? this.symbols,
-        dominantEmotion: dominantEmotion ?? this.dominantEmotion,
-        themes: themes ?? this.themes,
-        mood: mood ?? this.mood,
-        interpretation: interpretation ?? this.interpretation,
-        isSaved: isSaved ?? this.isSaved,
-      );
+  }) => Dream(
+    id: id ?? this.id,
+    content: content ?? this.content,
+    dreamDate: dreamDate ?? this.dreamDate,
+    createdAt: createdAt ?? this.createdAt,
+    symbols: symbols ?? this.symbols,
+    dominantEmotion: dominantEmotion ?? this.dominantEmotion,
+    themes: themes ?? this.themes,
+    mood: mood ?? this.mood,
+    interpretation: interpretation ?? this.interpretation,
+    isSaved: isSaved ?? this.isSaved,
+  );
 }
 
 /// AI-generated dream interpretation with layered content
@@ -107,16 +107,16 @@ class DreamInterpretation {
   });
 
   Map<String, dynamic> toJson() => {
-        'surfaceLayer': surfaceLayer.toJson(),
-        'emotionalLayer': emotionalLayer.toJson(),
-        'symbolicLayer': symbolicLayer.toJson(),
-        'patternLayer': patternLayer?.toJson(),
-        'guidanceLayer': guidanceLayer?.toJson(),
-        'shareText': shareText,
-        'reflectionQuestion': reflectionQuestion,
-        'modelVersion': modelVersion,
-        'createdAt': createdAt.toIso8601String(),
-      };
+    'surfaceLayer': surfaceLayer.toJson(),
+    'emotionalLayer': emotionalLayer.toJson(),
+    'symbolicLayer': symbolicLayer.toJson(),
+    'patternLayer': patternLayer?.toJson(),
+    'guidanceLayer': guidanceLayer?.toJson(),
+    'shareText': shareText,
+    'reflectionQuestion': reflectionQuestion,
+    'modelVersion': modelVersion,
+    'createdAt': createdAt.toIso8601String(),
+  };
 
   factory DreamInterpretation.fromJson(Map<String, dynamic> json) =>
       DreamInterpretation(
@@ -153,12 +153,12 @@ class InterpretationLayer {
   });
 
   Map<String, dynamic> toJson() => {
-        'title': title,
-        'content': content,
-        'teaser': teaser,
-        'isLocked': isLocked,
-        'connectionCount': connectionCount,
-      };
+    'title': title,
+    'content': content,
+    'teaser': teaser,
+    'isLocked': isLocked,
+    'connectionCount': connectionCount,
+  };
 
   factory InterpretationLayer.fromJson(Map<String, dynamic> json) =>
       InterpretationLayer(
@@ -189,43 +189,51 @@ class DreamMemory {
   });
 
   Map<String, dynamic> toJson() => {
-        'userId': userId,
-        'symbols':
-            symbols.map((key, value) => MapEntry(key, value.toJson())),
-        'emotionalProfile': emotionalProfile.toJson(),
-        'themes': themes.map((key, value) => MapEntry(key, value.toJson())),
-        'milestones': milestones.toJson(),
-        'updatedAt': updatedAt.toIso8601String(),
-      };
+    'userId': userId,
+    'symbols': symbols.map((key, value) => MapEntry(key, value.toJson())),
+    'emotionalProfile': emotionalProfile.toJson(),
+    'themes': themes.map((key, value) => MapEntry(key, value.toJson())),
+    'milestones': milestones.toJson(),
+    'updatedAt': updatedAt.toIso8601String(),
+  };
 
   factory DreamMemory.fromJson(Map<String, dynamic> json) => DreamMemory(
-        userId: json['userId'],
-        symbols: (json['symbols'] as Map<String, dynamic>?)?.map(
-              (key, value) =>
-                  MapEntry(key, SymbolOccurrence.fromJson(value)),
-            ) ??
-            {},
-        emotionalProfile: EmotionalProfile.fromJson(
-            json['emotionalProfile'] ?? {'dominantTones': [], 'recentTrend': 'seeking'}),
-        themes: (json['themes'] as Map<String, dynamic>?)?.map(
-              (key, value) => MapEntry(key, ThemeOccurrence.fromJson(value)),
-            ) ??
-            {},
-        milestones: DreamMilestones.fromJson(json['milestones'] ??
-            {'dreamCount': 0, 'longestStreak': 0, 'currentStreak': 0}),
-        updatedAt: DateTime.parse(json['updatedAt'] ?? DateTime.now().toIso8601String()),
-      );
+    userId: json['userId'],
+    symbols:
+        (json['symbols'] as Map<String, dynamic>?)?.map(
+          (key, value) => MapEntry(key, SymbolOccurrence.fromJson(value)),
+        ) ??
+        {},
+    emotionalProfile: EmotionalProfile.fromJson(
+      json['emotionalProfile'] ??
+          {'dominantTones': [], 'recentTrend': 'seeking'},
+    ),
+    themes:
+        (json['themes'] as Map<String, dynamic>?)?.map(
+          (key, value) => MapEntry(key, ThemeOccurrence.fromJson(value)),
+        ) ??
+        {},
+    milestones: DreamMilestones.fromJson(
+      json['milestones'] ??
+          {'dreamCount': 0, 'longestStreak': 0, 'currentStreak': 0},
+    ),
+    updatedAt: DateTime.parse(
+      json['updatedAt'] ?? DateTime.now().toIso8601String(),
+    ),
+  );
 
   /// Get recurring symbols (appeared 3+ times)
-  List<MapEntry<String, SymbolOccurrence>> get recurringSymbols => symbols.entries
-      .where((e) => e.value.count >= 3)
-      .toList()
-    ..sort((a, b) => b.value.count.compareTo(a.value.count));
+  List<MapEntry<String, SymbolOccurrence>> get recurringSymbols =>
+      symbols.entries.where((e) => e.value.count >= 3).toList()
+        ..sort((a, b) => b.value.count.compareTo(a.value.count));
 
   /// Get recent symbols (last 7 days)
   List<String> get recentSymbols => symbols.entries
-      .where((e) =>
-          e.value.lastSeen.isAfter(DateTime.now().subtract(const Duration(days: 7))))
+      .where(
+        (e) => e.value.lastSeen.isAfter(
+          DateTime.now().subtract(const Duration(days: 7)),
+        ),
+      )
       .map((e) => e.key)
       .toList();
 }
@@ -247,12 +255,12 @@ class SymbolOccurrence {
   });
 
   Map<String, dynamic> toJson() => {
-        'count': count,
-        'firstSeen': firstSeen.toIso8601String(),
-        'lastSeen': lastSeen.toIso8601String(),
-        'contexts': contexts,
-        'emotionalAssociations': emotionalAssociations,
-      };
+    'count': count,
+    'firstSeen': firstSeen.toIso8601String(),
+    'lastSeen': lastSeen.toIso8601String(),
+    'contexts': contexts,
+    'emotionalAssociations': emotionalAssociations,
+  };
 
   factory SymbolOccurrence.fromJson(Map<String, dynamic> json) =>
       SymbolOccurrence(
@@ -260,8 +268,9 @@ class SymbolOccurrence {
         firstSeen: DateTime.parse(json['firstSeen']),
         lastSeen: DateTime.parse(json['lastSeen']),
         contexts: List<String>.from(json['contexts'] ?? []),
-        emotionalAssociations:
-            List<String>.from(json['emotionalAssociations'] ?? []),
+        emotionalAssociations: List<String>.from(
+          json['emotionalAssociations'] ?? [],
+        ),
       );
 
   SymbolOccurrence increment({String? context, String? emotion}) =>
@@ -270,8 +279,9 @@ class SymbolOccurrence {
         firstSeen: firstSeen,
         lastSeen: DateTime.now(),
         contexts: context != null ? [...contexts, context] : contexts,
-        emotionalAssociations:
-            emotion != null ? [...emotionalAssociations, emotion] : emotionalAssociations,
+        emotionalAssociations: emotion != null
+            ? [...emotionalAssociations, emotion]
+            : emotionalAssociations,
       );
 }
 
@@ -288,16 +298,17 @@ class EmotionalProfile {
   });
 
   Map<String, dynamic> toJson() => {
-        'dominantTones': dominantTones,
-        'recentTrend': recentTrend,
-        'weeklySnapshots': weeklySnapshots.map((s) => s.toJson()).toList(),
-      };
+    'dominantTones': dominantTones,
+    'recentTrend': recentTrend,
+    'weeklySnapshots': weeklySnapshots.map((s) => s.toJson()).toList(),
+  };
 
   factory EmotionalProfile.fromJson(Map<String, dynamic> json) =>
       EmotionalProfile(
         dominantTones: List<String>.from(json['dominantTones'] ?? []),
         recentTrend: json['recentTrend'] ?? 'seeking',
-        weeklySnapshots: (json['weeklySnapshots'] as List<dynamic>?)
+        weeklySnapshots:
+            (json['weeklySnapshots'] as List<dynamic>?)
                 ?.map((s) => WeeklySnapshot.fromJson(s))
                 .toList() ??
             [],
@@ -316,16 +327,16 @@ class WeeklySnapshot {
   });
 
   Map<String, dynamic> toJson() => {
-        'week': week,
-        'dominantEmotion': dominantEmotion,
-        'symbolHighlight': symbolHighlight,
-      };
+    'week': week,
+    'dominantEmotion': dominantEmotion,
+    'symbolHighlight': symbolHighlight,
+  };
 
   factory WeeklySnapshot.fromJson(Map<String, dynamic> json) => WeeklySnapshot(
-        week: json['week'],
-        dominantEmotion: json['dominantEmotion'],
-        symbolHighlight: json['symbolHighlight'],
-      );
+    week: json['week'],
+    dominantEmotion: json['dominantEmotion'],
+    symbolHighlight: json['symbolHighlight'],
+  );
 }
 
 /// Theme tracking
@@ -341,10 +352,10 @@ class ThemeOccurrence {
   });
 
   Map<String, dynamic> toJson() => {
-        'count': count,
-        'evolution': evolution,
-        'lastSeen': lastSeen.toIso8601String(),
-      };
+    'count': count,
+    'evolution': evolution,
+    'lastSeen': lastSeen.toIso8601String(),
+  };
 
   factory ThemeOccurrence.fromJson(Map<String, dynamic> json) =>
       ThemeOccurrence(
@@ -373,13 +384,13 @@ class DreamMilestones {
   });
 
   Map<String, dynamic> toJson() => {
-        'dreamCount': dreamCount,
-        'longestStreak': longestStreak,
-        'currentStreak': currentStreak,
-        'firstDreamAt': firstDreamAt?.toIso8601String(),
-        'lastDreamAt': lastDreamAt?.toIso8601String(),
-        'achievements': achievements,
-      };
+    'dreamCount': dreamCount,
+    'longestStreak': longestStreak,
+    'currentStreak': currentStreak,
+    'firstDreamAt': firstDreamAt?.toIso8601String(),
+    'lastDreamAt': lastDreamAt?.toIso8601String(),
+    'achievements': achievements,
+  };
 
   factory DreamMilestones.fromJson(Map<String, dynamic> json) =>
       DreamMilestones(

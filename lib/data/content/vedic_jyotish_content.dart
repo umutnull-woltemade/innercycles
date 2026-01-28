@@ -1279,7 +1279,12 @@ Ateş elementi, tutku ve yanmayı temsil eder.
 Cinsel enerji burada transformatif ateş haline gelir.
 Tantrik pratiklerde, içsel ateşin uyandırılması için kullanılır.
 ''',
-      compatibleNakshatras: ['Rohini', 'Mrigashira', 'Pushya', 'Uttara Phalguni'],
+      compatibleNakshatras: [
+        'Rohini',
+        'Mrigashira',
+        'Pushya',
+        'Uttara Phalguni',
+      ],
       remedy: '''
 Krittika dengesizse:
 - Surya mantrasını okuyun
@@ -1535,7 +1540,12 @@ Anne-çocuk dinamiği, güvenli bağlanmayı destekler.
 Cinsel enerji, ev ve aile kurma arzusuna dönüşür.
 Yeniden başlama ve tazelenme teması cinsellikte de görülür.
 ''',
-      compatibleNakshatras: ['Pushya', 'Uttara Phalguni', 'Uttarashadha', 'Hasta'],
+      compatibleNakshatras: [
+        'Pushya',
+        'Uttara Phalguni',
+        'Uttarashadha',
+        'Hasta',
+      ],
       remedy: '''
 Punarvasu zayıfsa:
 - Guru mantrasını okuyun
@@ -1599,7 +1609,12 @@ Cinsellik burada kutsal bir birleşme olarak deneyimlenir.
 Spiritüel ve fiziksel beslenme iç içe geçer.
 Üreme ve nesil devamı teması öne çıkar.
 ''',
-      compatibleNakshatras: ['Punarvasu', 'Ashlesha', 'Anuradha', 'Uttara Bhadrapada'],
+      compatibleNakshatras: [
+        'Punarvasu',
+        'Ashlesha',
+        'Anuradha',
+        'Uttara Bhadrapada',
+      ],
       remedy: '''
 Pushya enerjisini güçlendirmek için:
 - Perşembe ve Cumartesi ritüelleri birleştirin
@@ -1781,13 +1796,21 @@ Dünyevi başarı ve spiritüel ayrılık paradoksu.
       temperament: 'Kama (Arzu)',
       primaryMotivation: 'Kama - Arzu ve Zevk',
       bodyPart: 'Üreme organları, Sağ el',
-      tantricPractice: 'Aşk ve zevk ritüelleri, tantrik birleşme pratikleri, Bhaga puja',
-      sexualEnergy: 'En romantik ve zevk odaklı cinsel enerji. Yaratıcı ve üretken.',
+      tantricPractice:
+          'Aşk ve zevk ritüelleri, tantrik birleşme pratikleri, Bhaga puja',
+      sexualEnergy:
+          'En romantik ve zevk odaklı cinsel enerji. Yaratıcı ve üretken.',
       compatibleNakshatras: ['Uttara Phalguni', 'Hasta', 'Swati', 'Anuradha'],
-      remedy: 'Shukra mantrasını okuyun, Lakshmi puja yapın, pembe çiçekler sunun',
+      remedy:
+          'Shukra mantrasını okuyun, Lakshmi puja yapın, pembe çiçekler sunun',
       deepMeaning: 'Zevk yoluyla yaratım, romantik aşkın spiritüel boyutu',
       spiritualPath: 'Tantra yoluyla aydınlanma, zevki spiritüelleştirme',
-      pada: ['Aslan - yaratıcılık', 'Başak - pratik zevk', 'Terazi - ilişkisel', 'Akrep - derin tutku'],
+      pada: [
+        'Aslan - yaratıcılık',
+        'Başak - pratik zevk',
+        'Terazi - ilişkisel',
+        'Akrep - derin tutku',
+      ],
     ),
 
     // 12. UTTARA PHALGUNI
@@ -1811,13 +1834,19 @@ Dünyevi başarı ve spiritüel ayrılık paradoksu.
       temperament: 'Moksha (Kurtuluş)',
       primaryMotivation: 'Moksha - Spiritüel Kurtuluş',
       bodyPart: 'Sol el, Cinsel organlar',
-      tantricPractice: 'Evlilik ve birlik ritüelleri, bağlılık tantrik pratikleri',
+      tantricPractice:
+          'Evlilik ve birlik ritüelleri, bağlılık tantrik pratikleri',
       sexualEnergy: 'Sadık, derin ve kalıcı cinsel bağlanma. Evlilik odaklı.',
       compatibleNakshatras: ['Purva Phalguni', 'Hasta', 'Chitra', 'Swati'],
       remedy: 'Surya mantrasını okuyun, evlilik sözleşmelerini kutlayın',
       deepMeaning: 'Birlik yoluyla kurtuluş, sadakat ve bağlılık',
       spiritualPath: 'Grihasta (ev sahibi) dharma yoluyla moksha',
-      pada: ['Yay - felsefi birlik', 'Oğlak - pratik ortaklık', 'Kova - insancıl birlik', 'Balık - spiritüel birlik'],
+      pada: [
+        'Yay - felsefi birlik',
+        'Oğlak - pratik ortaklık',
+        'Kova - insancıl birlik',
+        'Balık - spiritüel birlik',
+      ],
     ),
 
     // 13. HASTA
@@ -1844,10 +1873,17 @@ Dünyevi başarı ve spiritüel ayrılık paradoksu.
       tantricPractice: 'Mudra pratikleri, el ile şifa, sanat ritüelleri',
       sexualEnergy: 'Ellerle ifade edilen duyusal enerji. Masaj ve dokunuş.',
       compatibleNakshatras: ['Ashwini', 'Swati', 'Shravana', 'Revati'],
-      remedy: 'Savitar Gayatri mantrasını okuyun, eller ile yaratıcı işler yapın',
-      deepMeaning: 'Yaratıcılığın el becerileriyle ifadesi, sanat yoluyla kurtuluş',
+      remedy:
+          'Savitar Gayatri mantrasını okuyun, eller ile yaratıcı işler yapın',
+      deepMeaning:
+          'Yaratıcılığın el becerileriyle ifadesi, sanat yoluyla kurtuluş',
       spiritualPath: 'Karma Yoga - eller ile hizmet',
-      pada: ['Koç - beceri', 'Boğa - zanaat', 'İkizler - iletişim', 'Yengeç - duygusal yaratım'],
+      pada: [
+        'Koç - beceri',
+        'Boğa - zanaat',
+        'İkizler - iletişim',
+        'Yengeç - duygusal yaratım',
+      ],
     ),
 
     // 14. CHITRA
@@ -1871,13 +1907,20 @@ Dünyevi başarı ve spiritüel ayrılık paradoksu.
       temperament: 'Kama (Arzu)',
       primaryMotivation: 'Kama - Arzu ve Zevk',
       bodyPart: 'Alın, Boyun',
-      tantricPractice: 'Güzellik ritüelleri, estetik meditasyonlar, yaratıcı tantrik sanat',
-      sexualEnergy: 'Estetik ve görsel çekicilik. Güzellik yoluyla cinsel enerji.',
+      tantricPractice:
+          'Güzellik ritüelleri, estetik meditasyonlar, yaratıcı tantrik sanat',
+      sexualEnergy:
+          'Estetik ve görsel çekicilik. Güzellik yoluyla cinsel enerji.',
       compatibleNakshatras: ['Mrigashira', 'Anuradha', 'Hasta', 'Swati'],
       remedy: 'Tvashtar mantrasını okuyun, güzel sanatlarla uğraşın',
       deepMeaning: 'İlahi yaratıcılık, evrensel güzellik',
       spiritualPath: 'Sanat yoluyla aydınlanma',
-      pada: ['Aslan - yaratıcı ifade', 'Başak - teknik ustalık', 'Terazi - estetik denge', 'Akrep - derin sanat'],
+      pada: [
+        'Aslan - yaratıcı ifade',
+        'Başak - teknik ustalık',
+        'Terazi - estetik denge',
+        'Akrep - derin sanat',
+      ],
     ),
 
     // 15. SWATI
@@ -1904,10 +1947,16 @@ Dünyevi başarı ve spiritüel ayrılık paradoksu.
       tantricPractice: 'Nefes çalışmaları, prana yönetimi, rüzgar ritüelleri',
       sexualEnergy: 'Özgür, hafif, esnek. Bağımsızlık içinde birleşme.',
       compatibleNakshatras: ['Ashwini', 'Hasta', 'Shravana', 'Shatabhisha'],
-      remedy: 'Vayu puja yapın, derin nefes egzersizleri, açık havada meditasyon',
+      remedy:
+          'Vayu puja yapın, derin nefes egzersizleri, açık havada meditasyon',
       deepMeaning: 'Rüzgar gibi özgür ama güçlü, bağımsızlık ve denge',
       spiritualPath: 'Pranayama ve nefes yoluyla kurtuluş',
-      pada: ['Yay - felsefi özgürlük', 'Oğlak - pratik bağımsızlık', 'Kova - sosyal özgürlük', 'Balık - spiritüel özgürlük'],
+      pada: [
+        'Yay - felsefi özgürlük',
+        'Oğlak - pratik bağımsızlık',
+        'Kova - sosyal özgürlük',
+        'Balık - spiritüel özgürlük',
+      ],
     ),
 
     // 16. VISHAKHA
@@ -1933,11 +1982,21 @@ Dünyevi başarı ve spiritüel ayrılık paradoksu.
       bodyPart: 'Kollar, Meme',
       tantricPractice: 'Hedef odaklı ritüeller, zafer tantras, Indra-Agni puja',
       sexualEnergy: 'Yoğun, hedef odaklı, fetih arzusu. Güçlü ve kararlı.',
-      compatibleNakshatras: ['Anuradha', 'Jyeshtha', 'Uttarashadha', 'Shravana'],
+      compatibleNakshatras: [
+        'Anuradha',
+        'Jyeshtha',
+        'Uttarashadha',
+        'Shravana',
+      ],
       remedy: 'Indra ve Agni mantrasını okuyun, hedeflerinizi netleştirin',
       deepMeaning: 'Kararlılık ve odaklanma yoluyla başarı',
       spiritualPath: 'Tek hedefe odaklanma yoluyla aydınlanma',
-      pada: ['Koç - savaşçı kararlılık', 'Boğa - maddi hedefler', 'İkizler - entelektüel hedefler', 'Yengeç - duygusal hedefler'],
+      pada: [
+        'Koç - savaşçı kararlılık',
+        'Boğa - maddi hedefler',
+        'İkizler - entelektüel hedefler',
+        'Yengeç - duygusal hedefler',
+      ],
     ),
 
     // 17. ANURADHA
@@ -1961,13 +2020,24 @@ Dünyevi başarı ve spiritüel ayrılık paradoksu.
       temperament: 'Dharma (Doğruluk)',
       primaryMotivation: 'Dharma - Kozmik Düzen',
       bodyPart: 'Karın, Mide, Rahım',
-      tantricPractice: 'Dostluk ve sevgi ritüelleri, Mitra puja, bhakti tantras',
+      tantricPractice:
+          'Dostluk ve sevgi ritüelleri, Mitra puja, bhakti tantras',
       sexualEnergy: 'Derin dostluk ve bağlılık yoluyla cinsel enerji. Sadakat.',
-      compatibleNakshatras: ['Vishakha', 'Jyeshtha', 'Shravana', 'Uttara Bhadrapada'],
+      compatibleNakshatras: [
+        'Vishakha',
+        'Jyeshtha',
+        'Shravana',
+        'Uttara Bhadrapada',
+      ],
       remedy: 'Mitra mantrasını okuyun, dostlukları güçlendirin',
       deepMeaning: 'Dostluk ve sadakat yoluyla ilahi aşka ulaşma',
       spiritualPath: 'Bhakti Yoga - aşk ve bağlılık',
-      pada: ['Aslan - yaratıcı dostluk', 'Başak - hizmet eden dostluk', 'Terazi - dengeli ilişki', 'Akrep - derin bağ'],
+      pada: [
+        'Aslan - yaratıcı dostluk',
+        'Başak - hizmet eden dostluk',
+        'Terazi - dengeli ilişki',
+        'Akrep - derin bağ',
+      ],
     ),
 
     // 18. JYESHTHA
@@ -1991,13 +2061,19 @@ Dünyevi başarı ve spiritüel ayrılık paradoksu.
       temperament: 'Artha (Maddi refah)',
       primaryMotivation: 'Artha - Maddi Güvenlik',
       bodyPart: 'Dil, Boyun, Sağ taraf',
-      tantricPractice: 'Güç ve liderlik ritüelleri, Indra puja, koruyucu tantras',
+      tantricPractice:
+          'Güç ve liderlik ritüelleri, Indra puja, koruyucu tantras',
       sexualEnergy: 'Dominant, güçlü, koruyucu. Liderlik yoluyla çekim.',
       compatibleNakshatras: ['Ashlesha', 'Anuradha', 'Moola', 'Shatabhisha'],
       remedy: 'Indra mantrasını okuyun, liderlik rollerini üstlenin',
       deepMeaning: 'Gerçek büyüklük, sorumluluk ile gelir',
       spiritualPath: 'Liderlik yoluyla hizmet',
-      pada: ['Yay - felsefi liderlik', 'Oğlak - pratik otorite', 'Kova - insancıl liderlik', 'Balık - spiritüel rehberlik'],
+      pada: [
+        'Yay - felsefi liderlik',
+        'Oğlak - pratik otorite',
+        'Kova - insancıl liderlik',
+        'Balık - spiritüel rehberlik',
+      ],
     ),
 
     // 19. MOOLA
@@ -2021,13 +2097,25 @@ Dünyevi başarı ve spiritüel ayrılık paradoksu.
       temperament: 'Kama (Arzu)',
       primaryMotivation: 'Kama - Arzu ve Zevk',
       bodyPart: 'Ayaklar, Sol taraf',
-      tantricPractice: 'Kali puja, yıkım ve yeniden doğuş ritüelleri, kök çalışması',
+      tantricPractice:
+          'Kali puja, yıkım ve yeniden doğuş ritüelleri, kök çalışması',
       sexualEnergy: 'Yoğun, dönüştürücü, kökten sarsıcı. Tabuları kıran.',
-      compatibleNakshatras: ['Ashlesha', 'Jyeshtha', 'Purvashadha', 'Purva Bhadrapada'],
-      remedy: 'Kali mantrasını okuyun, köklerinizi araştırın, bağımlılıkları bırakın',
+      compatibleNakshatras: [
+        'Ashlesha',
+        'Jyeshtha',
+        'Purvashadha',
+        'Purva Bhadrapada',
+      ],
+      remedy:
+          'Kali mantrasını okuyun, köklerinizi araştırın, bağımlılıkları bırakın',
       deepMeaning: 'Köke inme, temel gerçeklerle yüzleşme',
       spiritualPath: 'Yıkım yoluyla kurtuluş, sıfırdan başlama',
-      pada: ['Koç - köklü cesaret', 'Boğa - maddi kökler', 'İkizler - entelektüel kökler', 'Yengeç - duygusal kökler'],
+      pada: [
+        'Koç - köklü cesaret',
+        'Boğa - maddi kökler',
+        'İkizler - entelektüel kökler',
+        'Yengeç - duygusal kökler',
+      ],
     ),
 
     // 20. PURVASHADHA
@@ -2057,7 +2145,12 @@ Dünyevi başarı ve spiritüel ayrılık paradoksu.
       remedy: 'Su tanrıçasına dua edin, nehir veya okyanusta arınma yapın',
       deepMeaning: 'Su gibi engelleri aşma, yenilmez irade',
       spiritualPath: 'Akış ile kurtuluş, su elementi yoluyla arınma',
-      pada: ['Aslan - yaratıcı akış', 'Başak - pratik arınma', 'Terazi - dengeli akış', 'Akrep - derin dönüşüm'],
+      pada: [
+        'Aslan - yaratıcı akış',
+        'Başak - pratik arınma',
+        'Terazi - dengeli akış',
+        'Akrep - derin dönüşüm',
+      ],
     ),
 
     // 21. UTTARASHADHA
@@ -2081,13 +2174,24 @@ Dünyevi başarı ve spiritüel ayrılık paradoksu.
       temperament: 'Moksha (Kurtuluş)',
       primaryMotivation: 'Moksha - Spiritüel Kurtuluş',
       bodyPart: 'Uyluklar, Kalça',
-      tantricPractice: 'Evrensel tanrılar puja, zafer ritüelleri, liderlik tantras',
+      tantricPractice:
+          'Evrensel tanrılar puja, zafer ritüelleri, liderlik tantras',
       sexualEnergy: 'Güçlü, kararlı, zafer odaklı. Evrensel enerji.',
-      compatibleNakshatras: ['Purvashadha', 'Shravana', 'Dhanishtha', 'Punarvasu'],
+      compatibleNakshatras: [
+        'Purvashadha',
+        'Shravana',
+        'Dhanishtha',
+        'Punarvasu',
+      ],
       remedy: 'Vishve Devas mantrasını okuyun, evrensel değerlere bağlanın',
       deepMeaning: 'Nihai zafer, evrensel başarı',
       spiritualPath: 'Dharma yoluyla evrensel kurtuluş',
-      pada: ['Yay - felsefi zafer', 'Oğlak - pratik başarı', 'Kova - insancıl zafer', 'Balık - spiritüel zafer'],
+      pada: [
+        'Yay - felsefi zafer',
+        'Oğlak - pratik başarı',
+        'Kova - insancıl zafer',
+        'Balık - spiritüel zafer',
+      ],
     ),
 
     // 22. SHRAVANA
@@ -2117,7 +2221,12 @@ Dünyevi başarı ve spiritüel ayrılık paradoksu.
       remedy: 'Vishnu mantrasını dinleyin, sessizlik pratiği yapın',
       deepMeaning: 'İlahi sesi dinleme yoluyla bilgelik',
       spiritualPath: 'Nada Yoga - ses yoluyla kurtuluş',
-      pada: ['Koç - aktif dinleme', 'Boğa - pratik öğrenme', 'İkizler - entelektüel dinleme', 'Yengeç - duygusal dinleme'],
+      pada: [
+        'Koç - aktif dinleme',
+        'Boğa - pratik öğrenme',
+        'İkizler - entelektüel dinleme',
+        'Yengeç - duygusal dinleme',
+      ],
     ),
 
     // 23. DHANISHTHA
@@ -2143,11 +2252,21 @@ Dünyevi başarı ve spiritüel ayrılık paradoksu.
       bodyPart: 'Sırt, Anüs',
       tantricPractice: 'Müzik ritüelleri, ritm tantras, Vasu puja',
       sexualEnergy: 'Ritmik, müzikal, şöhret odaklı. Performans enerjisi.',
-      compatibleNakshatras: ['Shravana', 'Shatabhisha', 'Purva Bhadrapada', 'Uttara Bhadrapada'],
+      compatibleNakshatras: [
+        'Shravana',
+        'Shatabhisha',
+        'Purva Bhadrapada',
+        'Uttara Bhadrapada',
+      ],
       remedy: 'Müzik ile meditasyon, Ashta Vasu mantrasını okuyun',
       deepMeaning: 'Ritim ve harmoni yoluyla evrensel zenginlik',
       spiritualPath: 'Sanat ve müzik yoluyla kurtuluş',
-      pada: ['Aslan - yaratıcı şöhret', 'Başak - pratik başarı', 'Terazi - dengeli ün', 'Akrep - derin şöhret'],
+      pada: [
+        'Aslan - yaratıcı şöhret',
+        'Başak - pratik başarı',
+        'Terazi - dengeli ün',
+        'Akrep - derin şöhret',
+      ],
     ),
 
     // 24. SHATABHISHA
@@ -2173,11 +2292,21 @@ Dünyevi başarı ve spiritüel ayrılık paradoksu.
       bodyPart: 'Sağ uyluk, Çene',
       tantricPractice: 'Şifa ritüelleri, okült pratikler, Varuna puja',
       sexualEnergy: 'Gizemli, şifalı, derin. Okült ve gizli enerji.',
-      compatibleNakshatras: ['Ardra', 'Swati', 'Dhanishtha', 'Purva Bhadrapada'],
+      compatibleNakshatras: [
+        'Ardra',
+        'Swati',
+        'Dhanishtha',
+        'Purva Bhadrapada',
+      ],
       remedy: 'Varuna mantrasını okuyun, şifa pratikleri yapın',
       deepMeaning: 'Gizli şifa bilgisi, okült güçler',
       spiritualPath: 'Şifa yoluyla kurtuluş',
-      pada: ['Yay - felsefi şifa', 'Oğlak - pratik tıp', 'Kova - insancıl şifa', 'Balık - spiritüel şifa'],
+      pada: [
+        'Yay - felsefi şifa',
+        'Oğlak - pratik tıp',
+        'Kova - insancıl şifa',
+        'Balık - spiritüel şifa',
+      ],
     ),
 
     // 25. PURVA BHADRAPADA
@@ -2203,11 +2332,21 @@ Dünyevi başarı ve spiritüel ayrılık paradoksu.
       bodyPart: 'Sol taraf, Kalça',
       tantricPractice: 'Ateş ritüelleri, yükselme tantras, Rudra puja',
       sexualEnergy: 'İkili doğa, yoğun, dönüştürücü. Ateşli ve spiritüel.',
-      compatibleNakshatras: ['Moola', 'Shatabhisha', 'Uttara Bhadrapada', 'Revati'],
+      compatibleNakshatras: [
+        'Moola',
+        'Shatabhisha',
+        'Uttara Bhadrapada',
+        'Revati',
+      ],
       remedy: 'Aja Ekapada mantrasını okuyun, ateş ritüelleri yapın',
       deepMeaning: 'İkili doğanın birleşimi, spiritüel yükseliş',
       spiritualPath: 'Tapas (çilecilik) yoluyla kurtuluş',
-      pada: ['Koç - cesur yükseliş', 'Boğa - maddi dönüşüm', 'İkizler - entelektüel evrim', 'Yengeç - duygusal dönüşüm'],
+      pada: [
+        'Koç - cesur yükseliş',
+        'Boğa - maddi dönüşüm',
+        'İkizler - entelektüel evrim',
+        'Yengeç - duygusal dönüşüm',
+      ],
     ),
 
     // 26. UTTARA BHADRAPADA
@@ -2233,11 +2372,21 @@ Dünyevi başarı ve spiritüel ayrılık paradoksu.
       bodyPart: 'Bacaklar, Ayak tabanı',
       tantricPractice: 'Kundalini yoga, derin meditasyonlar, Shiva puja',
       sexualEnergy: 'Derin, gizemli, Kundalini odaklı. Spiritüel birleşme.',
-      compatibleNakshatras: ['Anuradha', 'Pushya', 'Purva Bhadrapada', 'Revati'],
+      compatibleNakshatras: [
+        'Anuradha',
+        'Pushya',
+        'Purva Bhadrapada',
+        'Revati',
+      ],
       remedy: 'Ahirbudhnya mantrasını okuyun, derin meditasyon yapın',
       deepMeaning: 'Kozmik derinlik, spiritüel bilgelik',
       spiritualPath: 'Derin meditasyon yoluyla kurtuluş',
-      pada: ['Aslan - yaratıcı derinlik', 'Başak - pratik bilgelik', 'Terazi - dengeli spiritüellik', 'Akrep - derin dönüşüm'],
+      pada: [
+        'Aslan - yaratıcı derinlik',
+        'Başak - pratik bilgelik',
+        'Terazi - dengeli spiritüellik',
+        'Akrep - derin dönüşüm',
+      ],
     ),
 
     // 27. REVATI
@@ -2263,11 +2412,21 @@ Dünyevi başarı ve spiritüel ayrılık paradoksu.
       bodyPart: 'Ayak bilekleri, Ayaklar',
       tantricPractice: 'Koruyucu ritüeller, yolculuk tantras, Pushan puja',
       sexualEnergy: 'Besleyici, koruyucu, şefkatli. Koşulsuz sevgi enerjisi.',
-      compatibleNakshatras: ['Ashwini', 'Bharani', 'Hasta', 'Uttara Bhadrapada'],
+      compatibleNakshatras: [
+        'Ashwini',
+        'Bharani',
+        'Hasta',
+        'Uttara Bhadrapada',
+      ],
       remedy: 'Pushan mantrasını okuyun, seyahatlerde dua edin',
       deepMeaning: 'Yolculuğun sonu ve yeni başlangıç, döngünün tamamlanması',
       spiritualPath: 'Teslimiyet ve bırakma yoluyla kurtuluş',
-      pada: ['Yay - felsefi yolculuk', 'Oğlak - pratik sonuç', 'Kova - insancıl döngü', 'Balık - spiritüel tamamlanma'],
+      pada: [
+        'Yay - felsefi yolculuk',
+        'Oğlak - pratik sonuç',
+        'Kova - insancıl döngü',
+        'Balık - spiritüel tamamlanma',
+      ],
     ),
   ];
 
@@ -2291,7 +2450,9 @@ Dünyevi başarı ve spiritüel ayrılık paradoksu.
   /// Gezegene göre nakshatra'ları filtrele
   static List<Nakshatra> getNakshatrasByPlanet(String planet) {
     return allNakshatras
-        .where((n) => n.rulingPlanet.toLowerCase().contains(planet.toLowerCase()))
+        .where(
+          (n) => n.rulingPlanet.toLowerCase().contains(planet.toLowerCase()),
+        )
         .toList();
   }
 
@@ -2819,7 +2980,7 @@ Spiritüel savaşçı arketipi - içsel şeytanlarla mücadele.
 Koruyucu ve savunucu rol, zayıfları koruma.
 ''',
       tantricImplication: '''
-Mars enerjisi, Kundalini\'nin ateşli gücünü destekler.
+Mars enerjisi, Kundalini'nin ateşli gücünü destekler.
 Muladhara çakranın aktivasyonu güçlüdür.
 Tantrik çilecilik (Tapas) için uygun enerji sağlar.
 ''',
@@ -2860,7 +3021,7 @@ Toplumda saygınlık, ahlaki otorite.
 Brahminler ve bilginler arasında önder.
 ''',
       spiritualMeaning: '''
-Hamsa (kuğu), Brahman\'ı gerçeklikten ayırt edebilen bilgeliği simgeler.
+Hamsa (kuğu), Brahman'ı gerçeklikten ayırt edebilen bilgeliği simgeler.
 "Neti Neti" - ne bu ne o - ayrımcı bilgelik.
 Spiritüel öğretmenlik ve guru potansiyeli.
 ''',
@@ -2885,7 +3046,7 @@ Sanat, moda ve lüks sektörlerde başarı.
       spiritualMeaning: '''
 Malavya Yoga, ilahi güzelliği dünyada yansıtma yeteneği verir.
 Bhakti (aşk yoluyla ibadet) doğal eğilim.
-Güzellik yoluyla Tanrı\'yı görebilme.
+Güzellik yoluyla Tanrı'yı görebilme.
 ''',
       tantricImplication: '''
 Venüs, Svadhisthana ve Anahata çakraları güçlendirir.
@@ -2907,11 +3068,11 @@ Halk lideri, köy veya şehir yöneticisi.
 ''',
       spiritualMeaning: '''
 Shasha Yoga, sabır ve disiplin yoluyla spiritüel ilerleme sağlar.
-Karma Yoga\'nın mükemmel ifadesi.
-Dharma\'ya bağlılık ve sorumluluk bilinci.
+Karma Yoga'nın mükemmel ifadesi.
+Dharma'ya bağlılık ve sorumluluk bilinci.
 ''',
       tantricImplication: '''
-Satürn, Muladhara\'yı temelden güçlendirir.
+Satürn, Muladhara'yı temelden güçlendirir.
 Uzun süreli sadhana (spiritüel pratik) için dayanıklılık.
 Tapasya (çilecilik) doğal hale gelir.
 ''',
@@ -2982,11 +3143,11 @@ Meditasyon ve içe dönüş yeteneği.
       spiritualMeaning: '''
 Moksha Yoga, bu yaşamda aydınlanma potansiyelini gösterir.
 Samsara (varoluş çarkı) döngüsünden çıkış imkanı.
-Guru\'nun bereketli etkisi, Ketu\'nun bırakma gücü ile birleşir.
+Guru'nun bereketli etkisi, Ketu'nun bırakma gücü ile birleşir.
 ''',
       tantricImplication: '''
 Sahasrara çakra aktivasyonu için ideal.
-Kundalini\'nin nihai hedefine ulaşma potansiyeli.
+Kundalini'nin nihai hedefine ulaşma potansiyeli.
 Samadhi (derin meditasyon) deneyimleri.
 ''',
       rarity: 'Çok Nadir',
@@ -3027,7 +3188,7 @@ Edebiyat, müzik ve eğitimde başarı.
 ''',
       spiritualMeaning: '''
 Saraswati, ilahi bilginin akışını temsil eder.
-Veda\'lar ve kutsal metinlerin anlaşılması.
+Veda'lar ve kutsal metinlerin anlaşılması.
 Spiritüel bilgiyi sanat yoluyla ifade etme.
 ''',
       tantricImplication: '''
@@ -3082,7 +3243,7 @@ Yaratıcı gücün spiritüel dönüşümü.
       tantricImplication: '''
 Tantrik birliktelik pratikleri için ideal enerji.
 Cinsel enerjinin yüceltilmesi.
-Kundalini\'nin Shakti yönünün güçlü ifadesi.
+Kundalini'nin Shakti yönünün güçlü ifadesi.
 ''',
       rarity: 'Orta',
       celebrities: ['Osho', 'Tantra öğretmenleri'],
@@ -3283,7 +3444,8 @@ TANTRİK PRATİK NAKSHATRALARI:
 5. Chitra - Yaratıcı tantrik sanat
 ''',
       tithi: 'Amavasya (yeni ay), 8. tithi (Ashtami), 14. tithi (Chaturdashi)',
-      weekday: 'Salı (Mars enerjisi), Cumartesi (Shani disiplini), Pazar (Surya gücü)',
+      weekday:
+          'Salı (Mars enerjisi), Cumartesi (Shani disiplini), Pazar (Surya gücü)',
       tantricTiming: '''
 ÖZEL TANTRİK ZAMANLAR:
 • Kali Puja - Amavasya geceleri, özellikle Diwali amavasya
@@ -3737,7 +3899,9 @@ MANGLİK DOSHA ÇARE PAKETİ:
   /// Gezegene göre upaya'ları filtrele
   static List<Upaya> getUpayasByPlanet(String planet) {
     return allUpayas
-        .where((u) => u.targetPlanet.toLowerCase().contains(planet.toLowerCase()))
+        .where(
+          (u) => u.targetPlanet.toLowerCase().contains(planet.toLowerCase()),
+        )
         .toList();
   }
 
@@ -3992,7 +4156,9 @@ class VedicJyotishService {
   }
 
   /// Nakshatra için kapsamlı bilgi al
-  static Map<String, dynamic> getComprehensiveNakshatraInfo(int nakshatraNumber) {
+  static Map<String, dynamic> getComprehensiveNakshatraInfo(
+    int nakshatraNumber,
+  ) {
     final nakshatra = NakshatraContent.getNakshatraByNumber(nakshatraNumber);
     if (nakshatra == null) return {};
 
@@ -4020,7 +4186,8 @@ class VedicJyotishService {
       'date': now,
       'graha': dailyGraha,
       'dayName': _getDayNameTurkish(dayOfWeek),
-      'recommendation': 'Bugün ${dailyGraha.turkishName} enerjisi aktif. '
+      'recommendation':
+          'Bugün ${dailyGraha.turkishName} enerjisi aktif. '
           '${dailyGraha.mantra} mantrasını okuyabilirsiniz.',
       'color': dailyGraha.color,
       'gemstone': dailyGraha.gemstone,

@@ -1,8 +1,10 @@
 import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/dream_memory.dart';
 import '../../../data/services/dream_memory_service.dart';
@@ -71,29 +73,36 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
 
     // Calculate dreams per week (last 4 weeks)
     final fourWeeksAgo = DateTime.now().subtract(const Duration(days: 28));
-    final recentDreams =
-        dreams.where((d) => d.dreamDate.isAfter(fourWeeksAgo)).toList();
+    final recentDreams = dreams
+        .where((d) => d.dreamDate.isAfter(fourWeeksAgo))
+        .toList();
     double dreamsPerWeek = recentDreams.length / 4;
 
     // Lucid and nightmare percentages
     int lucidCount = dreams
-        .where((d) =>
-            d.themes.any((t) => t.toLowerCase().contains('lucid')) ||
-            d.content.toLowerCase().contains('bilincli ruya') ||
-            d.content.toLowerCase().contains('lucid'))
+        .where(
+          (d) =>
+              d.themes.any((t) => t.toLowerCase().contains('lucid')) ||
+              d.content.toLowerCase().contains('bilincli ruya') ||
+              d.content.toLowerCase().contains('lucid'),
+        )
         .length;
 
     int nightmareCount = dreams
-        .where((d) =>
-            d.dominantEmotion?.toLowerCase().contains('korku') == true ||
-            d.themes.any((t) => t.toLowerCase().contains('nightmare')) ||
-            d.themes.any((t) => t.toLowerCase().contains('kabus')))
+        .where(
+          (d) =>
+              d.dominantEmotion?.toLowerCase().contains('korku') == true ||
+              d.themes.any((t) => t.toLowerCase().contains('nightmare')) ||
+              d.themes.any((t) => t.toLowerCase().contains('kabus')),
+        )
         .length;
 
-    double lucidPercentage =
-        dreams.isNotEmpty ? (lucidCount / dreams.length) * 100 : 0;
-    double nightmarePercentage =
-        dreams.isNotEmpty ? (nightmareCount / dreams.length) * 100 : 0;
+    double lucidPercentage = dreams.isNotEmpty
+        ? (lucidCount / dreams.length) * 100
+        : 0;
+    double nightmarePercentage = dreams.isNotEmpty
+        ? (nightmareCount / dreams.length) * 100
+        : 0;
 
     // Symbol frequency
     Map<String, int> symbolFrequency = {};
@@ -120,7 +129,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
       4: 0,
       5: 0,
       6: 0,
-      7: 0
+      7: 0,
     };
     for (final dream in dreams) {
       dreamsByDayOfWeek[dream.dreamDate.weekday] =
@@ -138,7 +147,9 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
     }
 
     // Moon phase correlation (approximate)
-    Map<String, int> dreamsByMoonPhase = _calculateMoonPhaseDistribution(dreams);
+    Map<String, int> dreamsByMoonPhase = _calculateMoonPhaseDistribution(
+      dreams,
+    );
 
     // Theme clusters
     Map<String, int> themeFrequency = {};
@@ -155,15 +166,18 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
     Map<String, int> locationFrequency = _extractLocationFrequency(dreams);
 
     // Recurring dreams detection
-    List<RecurringDreamPattern> recurringPatterns =
-        _detectRecurringPatterns(dreams);
+    List<RecurringDreamPattern> recurringPatterns = _detectRecurringPatterns(
+      dreams,
+    );
 
     // Progress tracking
     DreamProgressMetrics progress = _calculateProgress(dreams);
 
     // Achievements
-    List<DreamAchievement> achievements =
-        _calculateAchievements(dreams, memory);
+    List<DreamAchievement> achievements = _calculateAchievements(
+      dreams,
+      memory,
+    );
 
     return DreamStats(
       totalDreams: dreams.length,
@@ -351,13 +365,15 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
 
     for (final entry in symbolDreams.entries) {
       if (entry.value.length >= 3) {
-        patterns.add(RecurringDreamPattern(
-          type: 'Sembol',
-          identifier: entry.key,
-          count: entry.value.length,
-          firstOccurrence: entry.value.last.dreamDate,
-          lastOccurrence: entry.value.first.dreamDate,
-        ));
+        patterns.add(
+          RecurringDreamPattern(
+            type: 'Sembol',
+            identifier: entry.key,
+            count: entry.value.length,
+            firstOccurrence: entry.value.last.dreamDate,
+            lastOccurrence: entry.value.first.dreamDate,
+          ),
+        );
       }
     }
 
@@ -371,13 +387,15 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
 
     for (final entry in themeDreams.entries) {
       if (entry.value.length >= 3) {
-        patterns.add(RecurringDreamPattern(
-          type: 'Tema',
-          identifier: entry.key,
-          count: entry.value.length,
-          firstOccurrence: entry.value.last.dreamDate,
-          lastOccurrence: entry.value.first.dreamDate,
-        ));
+        patterns.add(
+          RecurringDreamPattern(
+            type: 'Tema',
+            identifier: entry.key,
+            count: entry.value.length,
+            firstOccurrence: entry.value.last.dreamDate,
+            lastOccurrence: entry.value.first.dreamDate,
+          ),
+        );
       }
     }
 
@@ -400,12 +418,13 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
     // Calculate weekly trend (last 8 weeks)
     List<int> weeklyTrend = [];
     for (int i = 7; i >= 0; i--) {
-      final weekStart =
-          DateTime.now().subtract(Duration(days: (i + 1) * 7));
+      final weekStart = DateTime.now().subtract(Duration(days: (i + 1) * 7));
       final weekEnd = DateTime.now().subtract(Duration(days: i * 7));
       final count = dreams
-          .where((d) =>
-              d.dreamDate.isAfter(weekStart) && d.dreamDate.isBefore(weekEnd))
+          .where(
+            (d) =>
+                d.dreamDate.isAfter(weekStart) && d.dreamDate.isBefore(weekEnd),
+          )
           .length;
       weeklyTrend.add(count);
     }
@@ -417,12 +436,16 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
       final secondHalf = dreams.sublist(0, dreams.length ~/ 2);
       final firstAvgWords = firstHalf.isEmpty
           ? 0
-          : firstHalf.map((d) => d.content.split(' ').length).reduce((a, b) => a + b) /
-              firstHalf.length;
+          : firstHalf
+                    .map((d) => d.content.split(' ').length)
+                    .reduce((a, b) => a + b) /
+                firstHalf.length;
       final secondAvgWords = secondHalf.isEmpty
           ? 0
-          : secondHalf.map((d) => d.content.split(' ').length).reduce((a, b) => a + b) /
-              secondHalf.length;
+          : secondHalf
+                    .map((d) => d.content.split(' ').length)
+                    .reduce((a, b) => a + b) /
+                secondHalf.length;
       if (firstAvgWords > 0) {
         recallImprovement =
             ((secondAvgWords - firstAvgWords) / firstAvgWords) * 100;
@@ -432,29 +455,36 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
     // Calculate lucid progress
     int lucidFirst = dreams
         .sublist(dreams.length ~/ 2)
-        .where((d) =>
-            d.themes.any((t) => t.toLowerCase().contains('lucid')) ||
-            d.content.toLowerCase().contains('bilincli ruya'))
+        .where(
+          (d) =>
+              d.themes.any((t) => t.toLowerCase().contains('lucid')) ||
+              d.content.toLowerCase().contains('bilincli ruya'),
+        )
         .length;
     int lucidSecond = dreams
         .sublist(0, dreams.length ~/ 2)
-        .where((d) =>
-            d.themes.any((t) => t.toLowerCase().contains('lucid')) ||
-            d.content.toLowerCase().contains('bilincli ruya'))
+        .where(
+          (d) =>
+              d.themes.any((t) => t.toLowerCase().contains('lucid')) ||
+              d.content.toLowerCase().contains('bilincli ruya'),
+        )
         .length;
-    double lucidProgress =
-        lucidFirst > 0 ? ((lucidSecond - lucidFirst) / lucidFirst) * 100 : 0;
+    double lucidProgress = lucidFirst > 0
+        ? ((lucidSecond - lucidFirst) / lucidFirst) * 100
+        : 0;
 
     // Calculate nightmare reduction
     int nightmareFirst = dreams
         .sublist(dreams.length ~/ 2)
-        .where((d) =>
-            d.dominantEmotion?.toLowerCase().contains('korku') == true)
+        .where(
+          (d) => d.dominantEmotion?.toLowerCase().contains('korku') == true,
+        )
         .length;
     int nightmareSecond = dreams
         .sublist(0, dreams.length ~/ 2)
-        .where((d) =>
-            d.dominantEmotion?.toLowerCase().contains('korku') == true)
+        .where(
+          (d) => d.dominantEmotion?.toLowerCase().contains('korku') == true,
+        )
         .length;
     double nightmareReduction = nightmareFirst > 0
         ? ((nightmareFirst - nightmareSecond) / nightmareFirst) * 100
@@ -480,142 +510,170 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
   }
 
   List<DreamAchievement> _calculateAchievements(
-      List<Dream> dreams, DreamMemory memory) {
+    List<Dream> dreams,
+    DreamMemory memory,
+  ) {
     List<DreamAchievement> achievements = [];
 
     // Dream count milestones
-    if (dreams.length >= 1) {
-      achievements.add(DreamAchievement(
-        id: 'first_dream',
-        title: 'Ilk Adim',
-        description: 'Ilk ruyani kaydettin',
-        emoji: '🌱',
-        isUnlocked: true,
-        unlockedAt: dreams.last.createdAt,
-      ));
+    if (dreams.isNotEmpty) {
+      achievements.add(
+        DreamAchievement(
+          id: 'first_dream',
+          title: 'Ilk Adim',
+          description: 'Ilk ruyani kaydettin',
+          emoji: '🌱',
+          isUnlocked: true,
+          unlockedAt: dreams.last.createdAt,
+        ),
+      );
     }
 
     if (dreams.length >= 10) {
-      achievements.add(DreamAchievement(
-        id: 'dream_explorer',
-        title: 'Ruya Kasifu',
-        description: '10 ruya kaydettin',
-        emoji: '🔍',
-        isUnlocked: true,
-      ));
+      achievements.add(
+        DreamAchievement(
+          id: 'dream_explorer',
+          title: 'Ruya Kasifu',
+          description: '10 ruya kaydettin',
+          emoji: '🔍',
+          isUnlocked: true,
+        ),
+      );
     }
 
     if (dreams.length >= 50) {
-      achievements.add(DreamAchievement(
-        id: 'dream_voyager',
-        title: 'Ruya Gezgini',
-        description: '50 ruya kaydettin',
-        emoji: '🚀',
-        isUnlocked: true,
-      ));
+      achievements.add(
+        DreamAchievement(
+          id: 'dream_voyager',
+          title: 'Ruya Gezgini',
+          description: '50 ruya kaydettin',
+          emoji: '🚀',
+          isUnlocked: true,
+        ),
+      );
     }
 
     if (dreams.length >= 100) {
-      achievements.add(DreamAchievement(
-        id: 'dream_master',
-        title: 'Ruya Ustasi',
-        description: '100 ruya kaydettin',
-        emoji: '👑',
-        isUnlocked: true,
-      ));
+      achievements.add(
+        DreamAchievement(
+          id: 'dream_master',
+          title: 'Ruya Ustasi',
+          description: '100 ruya kaydettin',
+          emoji: '👑',
+          isUnlocked: true,
+        ),
+      );
     }
 
     // Streak achievements
     if (memory.milestones.longestStreak >= 7) {
-      achievements.add(DreamAchievement(
-        id: 'week_streak',
-        title: 'Haftalik Seri',
-        description: '7 gun ust uste ruya kaydettin',
-        emoji: '🔥',
-        isUnlocked: true,
-      ));
+      achievements.add(
+        DreamAchievement(
+          id: 'week_streak',
+          title: 'Haftalik Seri',
+          description: '7 gun ust uste ruya kaydettin',
+          emoji: '🔥',
+          isUnlocked: true,
+        ),
+      );
     }
 
     if (memory.milestones.longestStreak >= 30) {
-      achievements.add(DreamAchievement(
-        id: 'month_streak',
-        title: 'Aylik Seri',
-        description: '30 gun ust uste ruya kaydettin',
-        emoji: '⚡',
-        isUnlocked: true,
-      ));
+      achievements.add(
+        DreamAchievement(
+          id: 'month_streak',
+          title: 'Aylik Seri',
+          description: '30 gun ust uste ruya kaydettin',
+          emoji: '⚡',
+          isUnlocked: true,
+        ),
+      );
     }
 
     // Symbol discoveries
     int uniqueSymbols = memory.symbols.length;
     if (uniqueSymbols >= 10) {
-      achievements.add(DreamAchievement(
-        id: 'symbol_finder',
-        title: 'Sembol Avcisi',
-        description: '10 farkli sembol kesfettin',
-        emoji: '🎯',
-        isUnlocked: true,
-      ));
+      achievements.add(
+        DreamAchievement(
+          id: 'symbol_finder',
+          title: 'Sembol Avcisi',
+          description: '10 farkli sembol kesfettin',
+          emoji: '🎯',
+          isUnlocked: true,
+        ),
+      );
     }
 
     if (uniqueSymbols >= 25) {
-      achievements.add(DreamAchievement(
-        id: 'symbol_master',
-        title: 'Sembol Ustasi',
-        description: '25 farkli sembol kesfettin',
-        emoji: '🏆',
-        isUnlocked: true,
-      ));
+      achievements.add(
+        DreamAchievement(
+          id: 'symbol_master',
+          title: 'Sembol Ustasi',
+          description: '25 farkli sembol kesfettin',
+          emoji: '🏆',
+          isUnlocked: true,
+        ),
+      );
     }
 
     // Lucid dreaming
     int lucidCount = dreams
-        .where((d) =>
-            d.themes.any((t) => t.toLowerCase().contains('lucid')) ||
-            d.content.toLowerCase().contains('bilincli ruya'))
+        .where(
+          (d) =>
+              d.themes.any((t) => t.toLowerCase().contains('lucid')) ||
+              d.content.toLowerCase().contains('bilincli ruya'),
+        )
         .length;
 
     if (lucidCount >= 1) {
-      achievements.add(DreamAchievement(
-        id: 'first_lucid',
-        title: 'Uyanis',
-        description: 'Ilk bilincli ruyani yasadin',
-        emoji: '✨',
-        isUnlocked: true,
-      ));
+      achievements.add(
+        DreamAchievement(
+          id: 'first_lucid',
+          title: 'Uyanis',
+          description: 'Ilk bilincli ruyani yasadin',
+          emoji: '✨',
+          isUnlocked: true,
+        ),
+      );
     }
 
     if (lucidCount >= 10) {
-      achievements.add(DreamAchievement(
-        id: 'lucid_master',
-        title: 'Bilincli Ruya Ustasi',
-        description: '10 bilincli ruya yasadin',
-        emoji: '🌟',
-        isUnlocked: true,
-      ));
+      achievements.add(
+        DreamAchievement(
+          id: 'lucid_master',
+          title: 'Bilincli Ruya Ustasi',
+          description: '10 bilincli ruya yasadin',
+          emoji: '🌟',
+          isUnlocked: true,
+        ),
+      );
     }
 
     // Add locked achievements
     if (dreams.length < 10) {
-      achievements.add(DreamAchievement(
-        id: 'dream_explorer_locked',
-        title: 'Ruya Kasifu',
-        description: '10 ruya kaydet',
-        emoji: '🔒',
-        isUnlocked: false,
-        progress: dreams.length / 10,
-      ));
+      achievements.add(
+        DreamAchievement(
+          id: 'dream_explorer_locked',
+          title: 'Ruya Kasifu',
+          description: '10 ruya kaydet',
+          emoji: '🔒',
+          isUnlocked: false,
+          progress: dreams.length / 10,
+        ),
+      );
     }
 
     if (memory.milestones.longestStreak < 7) {
-      achievements.add(DreamAchievement(
-        id: 'week_streak_locked',
-        title: 'Haftalik Seri',
-        description: '7 gun ust uste ruya kaydet',
-        emoji: '🔒',
-        isUnlocked: false,
-        progress: memory.milestones.longestStreak / 7,
-      ));
+      achievements.add(
+        DreamAchievement(
+          id: 'week_streak_locked',
+          title: 'Haftalik Seri',
+          description: '7 gun ust uste ruya kaydet',
+          emoji: '🔒',
+          isUnlocked: false,
+          progress: memory.milestones.longestStreak / 7,
+        ),
+      );
     }
 
     return achievements;
@@ -634,8 +692,8 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
                 child: _isLoading
                     ? _buildLoadingState()
                     : _stats == null || _stats!.totalDreams == 0
-                        ? _buildEmptyState()
-                        : _buildContent(),
+                    ? _buildEmptyState()
+                    : _buildContent(),
               ),
             ],
           ),
@@ -651,17 +709,17 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: [
-            AppColors.mystic.withOpacity(0.3),
-            Colors.transparent,
-          ],
+          colors: [AppColors.mystic.withOpacity(0.3), Colors.transparent],
         ),
       ),
       child: Row(
         children: [
           IconButton(
             onPressed: () => context.pop(),
-            icon: const Icon(Icons.arrow_back_ios, color: AppColors.textPrimary),
+            icon: const Icon(
+              Icons.arrow_back_ios,
+              color: AppColors.textPrimary,
+            ),
           ),
           const SizedBox(width: 8),
           Container(
@@ -688,15 +746,15 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
                 Text(
                   'Ruya Istatistikleri',
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        color: AppColors.textPrimary,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    color: AppColors.textPrimary,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 Text(
                   'Bilincaltinin haritasi',
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: AppColors.textSecondary,
-                      ),
+                    color: AppColors.textSecondary,
+                  ),
                 ),
               ],
             ),
@@ -716,9 +774,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
       decoration: BoxDecoration(
         color: AppColors.surfaceDark.withOpacity(0.5),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: AppColors.mystic.withOpacity(0.2),
-        ),
+        border: Border.all(color: AppColors.mystic.withOpacity(0.2)),
       ),
       child: TabBar(
         controller: _tabController,
@@ -785,9 +841,9 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
             const SizedBox(height: 24),
             Text(
               'Henuz ruya kaydedilmemis',
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    color: AppColors.textPrimary,
-                  ),
+              style: Theme.of(
+                context,
+              ).textTheme.titleLarge?.copyWith(color: AppColors.textPrimary),
             ),
             const SizedBox(height: 12),
             Text(
@@ -803,8 +859,10 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.mystic,
                 foregroundColor: Colors.white,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 24,
+                  vertical: 12,
+                ),
               ),
             ),
           ],
@@ -853,9 +911,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
           ],
         ),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: AppColors.mystic.withOpacity(0.3),
-        ),
+        border: Border.all(color: AppColors.mystic.withOpacity(0.3)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -945,10 +1001,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
           const SizedBox(height: 4),
           Text(
             label,
-            style: const TextStyle(
-              fontSize: 11,
-              color: AppColors.textMuted,
-            ),
+            style: const TextStyle(fontSize: 11, color: AppColors.textMuted),
             textAlign: TextAlign.center,
           ),
         ],
@@ -1012,9 +1065,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
       decoration: BoxDecoration(
         color: AppColors.surfaceDark.withOpacity(0.5),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: AppColors.mystic.withOpacity(0.2),
-        ),
+        border: Border.all(color: AppColors.mystic.withOpacity(0.2)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1105,9 +1156,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
       decoration: BoxDecoration(
         color: AppColors.surfaceDark.withOpacity(0.5),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: AppColors.moonSilver.withOpacity(0.2),
-        ),
+        border: Border.all(color: AppColors.moonSilver.withOpacity(0.2)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1132,10 +1181,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [
-                  AppColors.mystic.withOpacity(0.2),
-                  Colors.transparent,
-                ],
+                colors: [AppColors.mystic.withOpacity(0.2), Colors.transparent],
               ),
               borderRadius: BorderRadius.circular(12),
             ),
@@ -1180,57 +1226,63 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
             ),
           ),
           const SizedBox(height: 16),
-          ...sortedPhases.take(4).map((e) => Padding(
-                padding: const EdgeInsets.only(bottom: 8),
-                child: Row(
-                  children: [
-                    Text(_getMoonPhaseEmoji(e.key),
-                        style: const TextStyle(fontSize: 18)),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: Text(
-                        e.key,
-                        style: const TextStyle(
-                          fontSize: 13,
-                          color: AppColors.textSecondary,
-                        ),
+          ...sortedPhases
+              .take(4)
+              .map(
+                (e) => Padding(
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: Row(
+                    children: [
+                      Text(
+                        _getMoonPhaseEmoji(e.key),
+                        style: const TextStyle(fontSize: 18),
                       ),
-                    ),
-                    Container(
-                      width: 100,
-                      height: 6,
-                      decoration: BoxDecoration(
-                        color: Colors.white10,
-                        borderRadius: BorderRadius.circular(3),
-                      ),
-                      child: FractionallySizedBox(
-                        alignment: Alignment.centerLeft,
-                        widthFactor: _stats!.totalDreams > 0
-                            ? e.value / _stats!.totalDreams
-                            : 0,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: AppColors.moonSilver,
-                            borderRadius: BorderRadius.circular(3),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Text(
+                          e.key,
+                          style: const TextStyle(
+                            fontSize: 13,
+                            color: AppColors.textSecondary,
                           ),
                         ),
                       ),
-                    ),
-                    const SizedBox(width: 8),
-                    SizedBox(
-                      width: 24,
-                      child: Text(
-                        '${e.value}',
-                        style: const TextStyle(
-                          fontSize: 12,
-                          color: AppColors.textMuted,
+                      Container(
+                        width: 100,
+                        height: 6,
+                        decoration: BoxDecoration(
+                          color: Colors.white10,
+                          borderRadius: BorderRadius.circular(3),
                         ),
-                        textAlign: TextAlign.right,
+                        child: FractionallySizedBox(
+                          alignment: Alignment.centerLeft,
+                          widthFactor: _stats!.totalDreams > 0
+                              ? e.value / _stats!.totalDreams
+                              : 0,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: AppColors.moonSilver,
+                              borderRadius: BorderRadius.circular(3),
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
-                  ],
+                      const SizedBox(width: 8),
+                      SizedBox(
+                        width: 24,
+                        child: Text(
+                          '${e.value}',
+                          style: const TextStyle(
+                            fontSize: 12,
+                            color: AppColors.textMuted,
+                          ),
+                          textAlign: TextAlign.right,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              )),
+              ),
         ],
       ),
     ).animate().fadeIn(delay: 300.ms).slideY(begin: 0.1);
@@ -1253,8 +1305,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
   Widget _buildAchievementsSection() {
     if (_stats!.achievements.isEmpty) return const SizedBox.shrink();
 
-    final unlocked =
-        _stats!.achievements.where((a) => a.isUnlocked).toList();
+    final unlocked = _stats!.achievements.where((a) => a.isUnlocked).toList();
     final locked = _stats!.achievements.where((a) => !a.isUnlocked).toList();
 
     return Container(
@@ -1269,9 +1320,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
           ],
         ),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: AppColors.starGold.withOpacity(0.3),
-        ),
+        border: Border.all(color: AppColors.starGold.withOpacity(0.3)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1292,10 +1341,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
               const Spacer(),
               Text(
                 '${unlocked.length}/${_stats!.achievements.length}',
-                style: TextStyle(
-                  fontSize: 12,
-                  color: AppColors.textSecondary,
-                ),
+                style: TextStyle(fontSize: 12, color: AppColors.textSecondary),
               ),
             ],
           ),
@@ -1392,17 +1438,16 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
       ..sort((a, b) => b.value.compareTo(a.value));
 
     final topSymbols = sortedSymbols.take(10).toList();
-    final maxCount =
-        topSymbols.isNotEmpty ? topSymbols.first.value.toDouble() : 1.0;
+    final maxCount = topSymbols.isNotEmpty
+        ? topSymbols.first.value.toDouble()
+        : 1.0;
 
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: AppColors.surfaceDark.withOpacity(0.5),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: AppColors.mystic.withOpacity(0.2),
-        ),
+        border: Border.all(color: AppColors.mystic.withOpacity(0.2)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1495,17 +1540,16 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
     final sortedSymbols = _stats!.symbolFrequency.entries.toList()
       ..sort((a, b) => b.value.compareTo(a.value));
 
-    final maxCount =
-        sortedSymbols.isNotEmpty ? sortedSymbols.first.value.toDouble() : 1.0;
+    final maxCount = sortedSymbols.isNotEmpty
+        ? sortedSymbols.first.value.toDouble()
+        : 1.0;
 
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: AppColors.surfaceDark.withOpacity(0.5),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: AppColors.mystic.withOpacity(0.2),
-        ),
+        border: Border.all(color: AppColors.mystic.withOpacity(0.2)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1537,8 +1581,10 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
                 final symbolInfo = DreamSymbol.commonSymbols[entry.key];
 
                 return Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 6,
+                  ),
                   decoration: BoxDecoration(
                     color: AppColors.mystic.withOpacity(opacity * 0.2),
                     borderRadius: BorderRadius.circular(20),
@@ -1587,9 +1633,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
           ],
         ),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: AppColors.auroraStart.withOpacity(0.3),
-        ),
+        border: Border.all(color: AppColors.auroraStart.withOpacity(0.3)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1650,8 +1694,10 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
                     ),
                   ),
                   Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 4,
+                    ),
                     decoration: BoxDecoration(
                       color: AppColors.auroraStart.withOpacity(0.2),
                       borderRadius: BorderRadius.circular(12),
@@ -1685,9 +1731,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
       decoration: BoxDecoration(
         color: AppColors.surfaceDark.withOpacity(0.5),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: AppColors.mystic.withOpacity(0.2),
-        ),
+        border: Border.all(color: AppColors.mystic.withOpacity(0.2)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1713,14 +1757,14 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
             runSpacing: 8,
             children: sortedThemes.take(12).map((theme) {
               return Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 14,
+                  vertical: 8,
+                ),
                 decoration: BoxDecoration(
                   color: AppColors.mystic.withOpacity(0.15),
                   borderRadius: BorderRadius.circular(20),
-                  border: Border.all(
-                    color: AppColors.mystic.withOpacity(0.3),
-                  ),
+                  border: Border.all(color: AppColors.mystic.withOpacity(0.3)),
                 ),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
@@ -1735,7 +1779,9 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
                     const SizedBox(width: 6),
                     Container(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 6, vertical: 2),
+                        horizontal: 6,
+                        vertical: 2,
+                      ),
                       decoration: BoxDecoration(
                         color: AppColors.starGold.withOpacity(0.3),
                         borderRadius: BorderRadius.circular(8),
@@ -1785,17 +1831,14 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
     final days = ['Pzt', 'Sal', 'Car', 'Per', 'Cum', 'Cmt', 'Paz'];
     final maxCount = _stats!.dreamsByDayOfWeek.values.isEmpty
         ? 1
-        : _stats!.dreamsByDayOfWeek.values
-            .reduce((a, b) => a > b ? a : b);
+        : _stats!.dreamsByDayOfWeek.values.reduce((a, b) => a > b ? a : b);
 
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: AppColors.surfaceDark.withOpacity(0.5),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: AppColors.mystic.withOpacity(0.2),
-        ),
+        border: Border.all(color: AppColors.mystic.withOpacity(0.2)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1843,10 +1886,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
                         gradient: LinearGradient(
                           begin: Alignment.bottomCenter,
                           end: Alignment.topCenter,
-                          colors: [
-                            AppColors.mystic,
-                            AppColors.auroraStart,
-                          ],
+                          colors: [AppColors.mystic, AppColors.auroraStart],
                         ),
                         borderRadius: BorderRadius.circular(6),
                         boxShadow: [
@@ -1889,7 +1929,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
       'Eyl',
       'Eki',
       'Kas',
-      'Ara'
+      'Ara',
     ];
     final maxCount = _stats!.dreamsByMonth.values.isEmpty
         ? 1
@@ -1900,9 +1940,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
       decoration: BoxDecoration(
         color: AppColors.surfaceDark.withOpacity(0.5),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: AppColors.mystic.withOpacity(0.2),
-        ),
+        border: Border.all(color: AppColors.mystic.withOpacity(0.2)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1929,7 +1967,9 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
               size: const Size(double.infinity, 120),
               painter: _LineChartPainter(
                 data: List.generate(
-                    12, (i) => _stats!.dreamsByMonth[i + 1]?.toDouble() ?? 0),
+                  12,
+                  (i) => _stats!.dreamsByMonth[i + 1]?.toDouble() ?? 0,
+                ),
                 labels: months,
                 maxValue: maxCount.toDouble(),
               ),
@@ -1941,10 +1981,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
             children: List.generate(12, (index) {
               return Text(
                 months[index],
-                style: const TextStyle(
-                  fontSize: 9,
-                  color: AppColors.textMuted,
-                ),
+                style: const TextStyle(fontSize: 9, color: AppColors.textMuted),
               );
             }),
           ),
@@ -1964,9 +2001,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
       decoration: BoxDecoration(
         color: AppColors.surfaceDark.withOpacity(0.5),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: AppColors.mystic.withOpacity(0.2),
-        ),
+        border: Border.all(color: AppColors.mystic.withOpacity(0.2)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1992,8 +2027,10 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
             runSpacing: 8,
             children: sortedCharacters.take(8).map((e) {
               return Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 8,
+                ),
                 decoration: BoxDecoration(
                   color: AppColors.waterElement.withOpacity(0.15),
                   borderRadius: BorderRadius.circular(16),
@@ -2016,7 +2053,9 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
                     const SizedBox(width: 4),
                     Container(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 6, vertical: 2),
+                        horizontal: 6,
+                        vertical: 2,
+                      ),
                       decoration: BoxDecoration(
                         color: AppColors.waterElement.withOpacity(0.3),
                         borderRadius: BorderRadius.circular(8),
@@ -2051,9 +2090,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
       decoration: BoxDecoration(
         color: AppColors.surfaceDark.withOpacity(0.5),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: AppColors.mystic.withOpacity(0.2),
-        ),
+        border: Border.all(color: AppColors.mystic.withOpacity(0.2)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -2079,8 +2116,10 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
             runSpacing: 8,
             children: sortedLocations.take(8).map((e) {
               return Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 8,
+                ),
                 decoration: BoxDecoration(
                   color: AppColors.earthElement.withOpacity(0.15),
                   borderRadius: BorderRadius.circular(16),
@@ -2103,7 +2142,9 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
                     const SizedBox(width: 4),
                     Container(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 6, vertical: 2),
+                        horizontal: 6,
+                        vertical: 2,
+                      ),
                       decoration: BoxDecoration(
                         color: AppColors.earthElement.withOpacity(0.3),
                         borderRadius: BorderRadius.circular(8),
@@ -2162,9 +2203,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
           ],
         ),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: AppColors.auroraStart.withOpacity(0.3),
-        ),
+        border: Border.all(color: AppColors.auroraStart.withOpacity(0.3)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -2185,10 +2224,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
               const Spacer(),
               Text(
                 'Son 8 hafta',
-                style: TextStyle(
-                  fontSize: 11,
-                  color: AppColors.textMuted,
-                ),
+                style: TextStyle(fontSize: 11, color: AppColors.textMuted),
               ),
             ],
           ),
@@ -2228,9 +2264,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
       decoration: BoxDecoration(
         color: AppColors.surfaceDark.withOpacity(0.5),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: AppColors.mystic.withOpacity(0.2),
-        ),
+        border: Border.all(color: AppColors.mystic.withOpacity(0.2)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -2317,9 +2351,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
           decoration: BoxDecoration(
             color: color.withOpacity(0.15),
             borderRadius: BorderRadius.circular(12),
-            border: Border.all(
-              color: color.withOpacity(0.3),
-            ),
+            border: Border.all(color: color.withOpacity(0.3)),
           ),
           child: Row(
             mainAxisSize: MainAxisSize.min,
@@ -2358,9 +2390,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
           ],
         ),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: AppColors.mystic.withOpacity(0.3),
-        ),
+        border: Border.all(color: AppColors.mystic.withOpacity(0.3)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -2383,10 +2413,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
           const SizedBox(height: 16),
           Text(
             'Bilincaltinizin farkli yonlerini kesfetme yolculugunuz',
-            style: TextStyle(
-              fontSize: 12,
-              color: AppColors.textSecondary,
-            ),
+            style: TextStyle(fontSize: 12, color: AppColors.textSecondary),
           ),
           const SizedBox(height: 20),
           Row(
@@ -2431,10 +2458,22 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     _buildJourneyStep('Farkindalik', true),
-                    _buildJourneyStep('Kabul', _stats!.progress.shadowIntegration >= 30),
-                    _buildJourneyStep('Anlama', _stats!.progress.shadowIntegration >= 50),
-                    _buildJourneyStep('Entegrasyon', _stats!.progress.shadowIntegration >= 70),
-                    _buildJourneyStep('Uyum', _stats!.progress.shadowIntegration >= 90),
+                    _buildJourneyStep(
+                      'Kabul',
+                      _stats!.progress.shadowIntegration >= 30,
+                    ),
+                    _buildJourneyStep(
+                      'Anlama',
+                      _stats!.progress.shadowIntegration >= 50,
+                    ),
+                    _buildJourneyStep(
+                      'Entegrasyon',
+                      _stats!.progress.shadowIntegration >= 70,
+                    ),
+                    _buildJourneyStep(
+                      'Uyum',
+                      _stats!.progress.shadowIntegration >= 90,
+                    ),
                   ],
                 ),
               ),
@@ -2459,9 +2498,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
                   : Colors.white.withOpacity(0.1),
               shape: BoxShape.circle,
               border: Border.all(
-                color: isComplete
-                    ? AppColors.success
-                    : Colors.white24,
+                color: isComplete ? AppColors.success : Colors.white24,
                 width: 2,
               ),
             ),
@@ -2474,9 +2511,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
             label,
             style: TextStyle(
               fontSize: 12,
-              color: isComplete
-                  ? AppColors.textPrimary
-                  : AppColors.textMuted,
+              color: isComplete ? AppColors.textPrimary : AppColors.textMuted,
               fontWeight: isComplete ? FontWeight.w500 : FontWeight.normal,
             ),
           ),
@@ -2488,8 +2523,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
   Widget _buildAllAchievements() {
     if (_stats!.achievements.isEmpty) return const SizedBox.shrink();
 
-    final unlocked =
-        _stats!.achievements.where((a) => a.isUnlocked).toList();
+    final unlocked = _stats!.achievements.where((a) => a.isUnlocked).toList();
     final locked = _stats!.achievements.where((a) => !a.isUnlocked).toList();
 
     return Container(
@@ -2504,9 +2538,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
           ],
         ),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: AppColors.starGold.withOpacity(0.3),
-        ),
+        border: Border.all(color: AppColors.starGold.withOpacity(0.3)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -2527,10 +2559,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
               const Spacer(),
               Text(
                 '${unlocked.length}/${_stats!.achievements.length}',
-                style: TextStyle(
-                  fontSize: 12,
-                  color: AppColors.textSecondary,
-                ),
+                style: TextStyle(fontSize: 12, color: AppColors.textSecondary),
               ),
             ],
           ),
@@ -2600,10 +2629,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
                 ),
                 Text(
                   achievement.description,
-                  style: TextStyle(
-                    fontSize: 11,
-                    color: AppColors.textMuted,
-                  ),
+                  style: TextStyle(fontSize: 11, color: AppColors.textMuted),
                 ),
                 if (!isUnlocked && achievement.progress != null) ...[
                   const SizedBox(height: 6),
@@ -2627,11 +2653,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
                 color: AppColors.starGold.withOpacity(0.2),
                 shape: BoxShape.circle,
               ),
-              child: Icon(
-                Icons.check,
-                size: 16,
-                color: AppColors.starGold,
-              ),
+              child: Icon(Icons.check, size: 16, color: AppColors.starGold),
             ),
         ],
       ),
@@ -2742,7 +2764,8 @@ class _LineChartPainter extends CustomPainter {
 
     for (int i = 0; i < data.length; i++) {
       final x = (i / (data.length - 1)) * size.width;
-      final y = size.height - (data[i] / (maxValue > 0 ? maxValue : 1)) * size.height;
+      final y =
+          size.height - (data[i] / (maxValue > 0 ? maxValue : 1)) * size.height;
       points.add(Offset(x, y));
     }
 
@@ -2754,7 +2777,13 @@ class _LineChartPainter extends CustomPainter {
         final controlPoint1 = Offset(p0.dx + (p1.dx - p0.dx) / 2, p0.dy);
         final controlPoint2 = Offset(p0.dx + (p1.dx - p0.dx) / 2, p1.dy);
         path.cubicTo(
-            controlPoint1.dx, controlPoint1.dy, controlPoint2.dx, controlPoint2.dy, p1.dx, p1.dy);
+          controlPoint1.dx,
+          controlPoint1.dy,
+          controlPoint2.dx,
+          controlPoint2.dy,
+          p1.dx,
+          p1.dy,
+        );
       }
 
       canvas.drawPath(path, paint);
@@ -2784,7 +2813,10 @@ class _LineChartPainter extends CustomPainter {
       for (final point in points) {
         canvas.drawCircle(point, 4, pointPaint);
         canvas.drawCircle(
-            point, 6, Paint()..color = AppColors.mystic.withOpacity(0.3));
+          point,
+          6,
+          Paint()..color = AppColors.mystic.withOpacity(0.3),
+        );
       }
     }
   }
@@ -2828,7 +2860,13 @@ class _TrendChartPainter extends CustomPainter {
         final controlPoint1 = Offset(p0.dx + (p1.dx - p0.dx) / 2, p0.dy);
         final controlPoint2 = Offset(p0.dx + (p1.dx - p0.dx) / 2, p1.dy);
         path.cubicTo(
-            controlPoint1.dx, controlPoint1.dy, controlPoint2.dx, controlPoint2.dy, p1.dx, p1.dy);
+          controlPoint1.dx,
+          controlPoint1.dy,
+          controlPoint2.dx,
+          controlPoint2.dy,
+          p1.dx,
+          p1.dy,
+        );
       }
 
       // Glow effect
@@ -2845,16 +2883,8 @@ class _TrendChartPainter extends CustomPainter {
 
       // Draw points
       for (final point in points) {
-        canvas.drawCircle(
-          point,
-          5,
-          Paint()..color = AppColors.auroraStart,
-        );
-        canvas.drawCircle(
-          point,
-          3,
-          Paint()..color = Colors.white,
-        );
+        canvas.drawCircle(point, 5, Paint()..color = AppColors.auroraStart);
+        canvas.drawCircle(point, 3, Paint()..color = Colors.white);
       }
     }
   }
@@ -2965,32 +2995,32 @@ class DreamStats {
   });
 
   factory DreamStats.empty() => DreamStats(
-        totalDreams: 0,
-        currentStreak: 0,
-        longestStreak: 0,
-        dreamsPerWeek: 0,
-        lucidPercentage: 0,
-        nightmarePercentage: 0,
-        lucidCount: 0,
-        nightmareCount: 0,
-        symbolFrequency: {},
-        emotionDistribution: {},
-        dreamsByDayOfWeek: {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0},
-        dreamsByMonth: {},
-        dreamsByMoonPhase: {},
-        themeFrequency: {},
-        characterFrequency: {},
-        locationFrequency: {},
-        recurringPatterns: [],
-        progress: DreamProgressMetrics(
-          recallImprovement: 0,
-          lucidProgress: 0,
-          nightmareReduction: 0,
-          shadowIntegration: 0,
-          weeklyTrend: [],
-        ),
-        achievements: [],
-      );
+    totalDreams: 0,
+    currentStreak: 0,
+    longestStreak: 0,
+    dreamsPerWeek: 0,
+    lucidPercentage: 0,
+    nightmarePercentage: 0,
+    lucidCount: 0,
+    nightmareCount: 0,
+    symbolFrequency: {},
+    emotionDistribution: {},
+    dreamsByDayOfWeek: {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0},
+    dreamsByMonth: {},
+    dreamsByMoonPhase: {},
+    themeFrequency: {},
+    characterFrequency: {},
+    locationFrequency: {},
+    recurringPatterns: [],
+    progress: DreamProgressMetrics(
+      recallImprovement: 0,
+      lucidProgress: 0,
+      nightmareReduction: 0,
+      shadowIntegration: 0,
+      weeklyTrend: [],
+    ),
+    achievements: [],
+  );
 }
 
 class RecurringDreamPattern {

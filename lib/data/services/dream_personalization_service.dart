@@ -3,13 +3,15 @@
 library;
 
 import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../content/dream_advanced_content.dart';
 import '../models/dream_interpretation_models.dart';
 import '../models/dream_memory.dart';
-import '../content/dream_advanced_content.dart';
-import 'dream_memory_service.dart';
 import 'dream_interpretation_service.dart';
+import 'dream_memory_service.dart';
 
 // ════════════════════════════════════════════════════════════════════════════
 // KULLANICI RÜYA PROFİLİ
@@ -77,28 +79,28 @@ class UserDreamProfile {
   });
 
   Map<String, dynamic> toJson() => {
-        'userId': userId,
-        'sunSign': sunSign,
-        'moonSign': moonSign,
-        'risingSign': risingSign,
-        'birthDate': birthDate?.toIso8601String(),
-        'birthPlace': birthPlace,
-        'symbolFrequency': symbolFrequency,
-        'personalSymbolMeanings': personalSymbolMeanings,
-        'recurringThemes': recurringThemes,
-        'dominantDreamEmotion': dominantDreamEmotion?.name,
-        'lucidDreamFrequency': lucidDreamFrequency,
-        'nightmareFrequency': nightmareFrequency,
-        'lifeAreas': lifeAreas,
-        'currentLifePhase': currentLifePhase,
-        'recentLifeEvents': recentLifeEvents,
-        'preferredStyle': preferredStyle.name,
-        'culturalBackground': culturalBackground,
-        'age': age,
-        'feedbackHistory': feedbackHistory.map((f) => f.toJson()).toList(),
-        'createdAt': createdAt.toIso8601String(),
-        'updatedAt': updatedAt.toIso8601String(),
-      };
+    'userId': userId,
+    'sunSign': sunSign,
+    'moonSign': moonSign,
+    'risingSign': risingSign,
+    'birthDate': birthDate?.toIso8601String(),
+    'birthPlace': birthPlace,
+    'symbolFrequency': symbolFrequency,
+    'personalSymbolMeanings': personalSymbolMeanings,
+    'recurringThemes': recurringThemes,
+    'dominantDreamEmotion': dominantDreamEmotion?.name,
+    'lucidDreamFrequency': lucidDreamFrequency,
+    'nightmareFrequency': nightmareFrequency,
+    'lifeAreas': lifeAreas,
+    'currentLifePhase': currentLifePhase,
+    'recentLifeEvents': recentLifeEvents,
+    'preferredStyle': preferredStyle.name,
+    'culturalBackground': culturalBackground,
+    'age': age,
+    'feedbackHistory': feedbackHistory.map((f) => f.toJson()).toList(),
+    'createdAt': createdAt.toIso8601String(),
+    'updatedAt': updatedAt.toIso8601String(),
+  };
 
   factory UserDreamProfile.fromJson(Map<String, dynamic> json) =>
       UserDreamProfile(
@@ -110,10 +112,10 @@ class UserDreamProfile {
             ? DateTime.tryParse(json['birthDate'])
             : null,
         birthPlace: json['birthPlace'],
-        symbolFrequency:
-            Map<String, int>.from(json['symbolFrequency'] ?? {}),
-        personalSymbolMeanings:
-            Map<String, String>.from(json['personalSymbolMeanings'] ?? {}),
+        symbolFrequency: Map<String, int>.from(json['symbolFrequency'] ?? {}),
+        personalSymbolMeanings: Map<String, String>.from(
+          json['personalSymbolMeanings'] ?? {},
+        ),
         recurringThemes: List<String>.from(json['recurringThemes'] ?? []),
         dominantDreamEmotion: json['dominantDreamEmotion'] != null
             ? EmotionalTone.values.firstWhere(
@@ -136,7 +138,8 @@ class UserDreamProfile {
             : DreamStyle.jungian,
         culturalBackground: json['culturalBackground'],
         age: json['age'],
-        feedbackHistory: (json['feedbackHistory'] as List?)
+        feedbackHistory:
+            (json['feedbackHistory'] as List?)
                 ?.map((f) => InterpretationFeedback.fromJson(f))
                 .toList() ??
             [],
@@ -170,33 +173,30 @@ class UserDreamProfile {
     List<InterpretationFeedback>? feedbackHistory,
     DateTime? createdAt,
     DateTime? updatedAt,
-  }) =>
-      UserDreamProfile(
-        userId: userId ?? this.userId,
-        sunSign: sunSign ?? this.sunSign,
-        moonSign: moonSign ?? this.moonSign,
-        risingSign: risingSign ?? this.risingSign,
-        birthDate: birthDate ?? this.birthDate,
-        birthPlace: birthPlace ?? this.birthPlace,
-        symbolFrequency: symbolFrequency ?? this.symbolFrequency,
-        personalSymbolMeanings:
-            personalSymbolMeanings ?? this.personalSymbolMeanings,
-        recurringThemes: recurringThemes ?? this.recurringThemes,
-        dominantDreamEmotion:
-            dominantDreamEmotion ?? this.dominantDreamEmotion,
-        lucidDreamFrequency:
-            lucidDreamFrequency ?? this.lucidDreamFrequency,
-        nightmareFrequency: nightmareFrequency ?? this.nightmareFrequency,
-        lifeAreas: lifeAreas ?? this.lifeAreas,
-        currentLifePhase: currentLifePhase ?? this.currentLifePhase,
-        recentLifeEvents: recentLifeEvents ?? this.recentLifeEvents,
-        preferredStyle: preferredStyle ?? this.preferredStyle,
-        culturalBackground: culturalBackground ?? this.culturalBackground,
-        age: age ?? this.age,
-        feedbackHistory: feedbackHistory ?? this.feedbackHistory,
-        createdAt: createdAt ?? this.createdAt,
-        updatedAt: updatedAt ?? DateTime.now(),
-      );
+  }) => UserDreamProfile(
+    userId: userId ?? this.userId,
+    sunSign: sunSign ?? this.sunSign,
+    moonSign: moonSign ?? this.moonSign,
+    risingSign: risingSign ?? this.risingSign,
+    birthDate: birthDate ?? this.birthDate,
+    birthPlace: birthPlace ?? this.birthPlace,
+    symbolFrequency: symbolFrequency ?? this.symbolFrequency,
+    personalSymbolMeanings:
+        personalSymbolMeanings ?? this.personalSymbolMeanings,
+    recurringThemes: recurringThemes ?? this.recurringThemes,
+    dominantDreamEmotion: dominantDreamEmotion ?? this.dominantDreamEmotion,
+    lucidDreamFrequency: lucidDreamFrequency ?? this.lucidDreamFrequency,
+    nightmareFrequency: nightmareFrequency ?? this.nightmareFrequency,
+    lifeAreas: lifeAreas ?? this.lifeAreas,
+    currentLifePhase: currentLifePhase ?? this.currentLifePhase,
+    recentLifeEvents: recentLifeEvents ?? this.recentLifeEvents,
+    preferredStyle: preferredStyle ?? this.preferredStyle,
+    culturalBackground: culturalBackground ?? this.culturalBackground,
+    age: age ?? this.age,
+    feedbackHistory: feedbackHistory ?? this.feedbackHistory,
+    createdAt: createdAt ?? this.createdAt,
+    updatedAt: updatedAt ?? DateTime.now(),
+  );
 
   /// Profil tamamlanma yüzdesi
   double get completionPercentage {
@@ -247,13 +247,13 @@ class InterpretationFeedback {
   });
 
   Map<String, dynamic> toJson() => {
-        'dreamId': dreamId,
-        'rating': rating,
-        'comment': comment,
-        'resonatingParts': resonatingParts,
-        'notResonatingParts': notResonatingParts,
-        'createdAt': createdAt.toIso8601String(),
-      };
+    'dreamId': dreamId,
+    'rating': rating,
+    'comment': comment,
+    'resonatingParts': resonatingParts,
+    'notResonatingParts': notResonatingParts,
+    'createdAt': createdAt.toIso8601String(),
+  };
 
   factory InterpretationFeedback.fromJson(Map<String, dynamic> json) =>
       InterpretationFeedback(
@@ -261,8 +261,7 @@ class InterpretationFeedback {
         rating: json['rating'] ?? 3,
         comment: json['comment'],
         resonatingParts: List<String>.from(json['resonatingParts'] ?? []),
-        notResonatingParts:
-            List<String>.from(json['notResonatingParts'] ?? []),
+        notResonatingParts: List<String>.from(json['notResonatingParts'] ?? []),
         createdAt: json['createdAt'] != null
             ? DateTime.parse(json['createdAt'])
             : DateTime.now(),
@@ -298,16 +297,16 @@ class DreamContext {
   });
 
   Map<String, dynamic> toJson() => {
-        'moonPhase': moonPhase.name,
-        'moonSign': moonSign,
-        'activeTransits': activeTransits,
-        'currentRetrograde': currentRetrograde,
-        'season': season,
-        'dayOfWeek': dayOfWeek,
-        'dreamTime': '${dreamTime.hour}:${dreamTime.minute}',
-        'recentDreams': recentDreams.map((d) => d.toJson()).toList(),
-        'recentLifeEvents': recentLifeEvents,
-      };
+    'moonPhase': moonPhase.name,
+    'moonSign': moonSign,
+    'activeTransits': activeTransits,
+    'currentRetrograde': currentRetrograde,
+    'season': season,
+    'dayOfWeek': dayOfWeek,
+    'dreamTime': '${dreamTime.hour}:${dreamTime.minute}',
+    'recentDreams': recentDreams.map((d) => d.toJson()).toList(),
+    'recentLifeEvents': recentLifeEvents,
+  };
 }
 
 // ════════════════════════════════════════════════════════════════════════════
@@ -325,7 +324,7 @@ class LifePhaseData {
         'Sınavlar',
         'geç kalma',
         'hazırlıksız yakalanma',
-        'okul'
+        'okul',
       ],
       interpretationFocus: 'Performans kaygısı, gelecek belirsizliği, öğrenme',
       advice:
@@ -340,7 +339,7 @@ class LifePhaseData {
         'koruma',
         'kaybolma',
         'yetersizlik',
-        'büyük sorumluluk'
+        'büyük sorumluluk',
       ],
       interpretationFocus:
           'Koruma içgüdüsü, kimlik değişimi, yeni sorumluluklar',
@@ -356,7 +355,7 @@ class LifePhaseData {
         'yeni binalar',
         'yolculuk',
         'geç kalma',
-        'hazırlıksız'
+        'hazırlıksız',
       ],
       interpretationFocus: 'Kimlik sorgulaması, güvensizlik, fırsatlar',
       advice:
@@ -370,7 +369,7 @@ class LifePhaseData {
         'Kaybedilen kişi',
         'vedalaşma',
         'arayış',
-        'yeniden buluşma'
+        'yeniden buluşma',
       ],
       interpretationFocus: 'Kayıp işleme, tamamlanmamış iş, ruhani bağlantı',
       advice:
@@ -385,7 +384,7 @@ class LifePhaseData {
         'zaman',
         'gençlik',
         'tamamlanma',
-        'miras'
+        'miras',
       ],
       interpretationFocus: 'Yaşam değerlendirmesi, anlam arayışı, miras',
       advice:
@@ -400,7 +399,7 @@ class LifePhaseData {
         'ihanet',
         'kavga',
         'ayrılık',
-        'yabancı partner'
+        'yabancı partner',
       ],
       interpretationFocus: 'İlişki dinamikleri, güven, iletişim',
       advice:
@@ -415,7 +414,7 @@ class LifePhaseData {
         'şifa',
         'hastane',
         'dönüşüm',
-        'ölüm ve yeniden doğuş'
+        'ölüm ve yeniden doğuş',
       ],
       interpretationFocus: 'Beden bilinci, şifa, ölümlülük farkındalığı',
       advice:
@@ -430,7 +429,7 @@ class LifePhaseData {
         'rehberler',
         'uçuş',
         'kozmik deneyimler',
-        'ölüm ve yeniden doğuş'
+        'ölüm ve yeniden doğuş',
       ],
       interpretationFocus: 'Ruhani gelişim, aşkın deneyimler, anlam arayışı',
       advice:
@@ -444,7 +443,7 @@ class LifePhaseData {
         'Bebek',
         'tohumlar',
         'yeni ev',
-        'yolculuk başlangıcı'
+        'yolculuk başlangıcı',
       ],
       interpretationFocus: 'Potansiyel, umut, büyüme fırsatları',
       advice:
@@ -580,12 +579,14 @@ class DreamPersonalizationService {
   ) async {
     final profile = await getOrCreateProfile(userId);
 
-    final updatedMeanings =
-        Map<String, String>.from(profile.personalSymbolMeanings);
+    final updatedMeanings = Map<String, String>.from(
+      profile.personalSymbolMeanings,
+    );
     updatedMeanings[symbol] = meaning;
 
-    final updatedProfile =
-        profile.copyWith(personalSymbolMeanings: updatedMeanings);
+    final updatedProfile = profile.copyWith(
+      personalSymbolMeanings: updatedMeanings,
+    );
     await updateProfile(updatedProfile);
   }
 
@@ -663,8 +664,9 @@ class DreamPersonalizationService {
       createdAt: DateTime.now(),
     );
 
-    final updatedFeedback =
-        List<InterpretationFeedback>.from(profile.feedbackHistory);
+    final updatedFeedback = List<InterpretationFeedback>.from(
+      profile.feedbackHistory,
+    );
     updatedFeedback.add(newFeedback);
 
     // Son 100 geri bildirimi tut
@@ -707,8 +709,7 @@ class DreamPersonalizationService {
   double getAverageRating(UserDreamProfile profile) {
     if (profile.feedbackHistory.isEmpty) return 0.0;
 
-    final total =
-        profile.feedbackHistory.fold(0, (sum, f) => sum + f.rating);
+    final total = profile.feedbackHistory.fold(0, (sum, f) => sum + f.rating);
     return total / profile.feedbackHistory.length;
   }
 
@@ -760,7 +761,7 @@ class DreamPersonalizationService {
       'Yay',
       'Oğlak',
       'Kova',
-      'Balık'
+      'Balık',
     ];
 
     // Referans: 1 Ocak 2000 00:00 UTC - Ay Yengeç'te başlıyor
@@ -882,7 +883,7 @@ class DreamPersonalizationService {
       'Perşembe',
       'Cuma',
       'Cumartesi',
-      'Pazar'
+      'Pazar',
     ];
     return days[date.weekday - 1];
   }
@@ -913,8 +914,7 @@ class DreamPersonalizationService {
 
     // Kültürel arka plana göre ayarla
     if (profile.culturalBackground != null) {
-      adjusted =
-          _adjustForCulture(adjusted, profile.culturalBackground!);
+      adjusted = _adjustForCulture(adjusted, profile.culturalBackground!);
     }
 
     return adjusted;
@@ -936,7 +936,10 @@ class DreamPersonalizationService {
       case DreamStyle.practical:
         // Daha az mistik, daha fazla somut
         return text
-            .replaceAll('evren sana mesaj gönderiyor', 'bilinçaltın sana bir şey söylüyor')
+            .replaceAll(
+              'evren sana mesaj gönderiyor',
+              'bilinçaltın sana bir şey söylüyor',
+            )
             .replaceAll('kozmik', 'derin');
       case DreamStyle.spiritual:
         // Daha spiritüel vurgu
@@ -945,9 +948,7 @@ class DreamPersonalizationService {
             .replaceAll('psikolojik', 'spiritüel');
       case DreamStyle.esoteric:
         // Kadim bilgelik vurgusu
-        return text
-            .replaceAll('analiz', 'okuma')
-            .replaceAll('yorum', 'keşif');
+        return text.replaceAll('analiz', 'okuma').replaceAll('yorum', 'keşif');
       case DreamStyle.psychological:
         // Bilimsel dil
         return text
@@ -975,7 +976,10 @@ class DreamPersonalizationService {
         return text;
       case 'batı':
       case 'western':
-        return text.replaceAll('kadim bilgeler', 'Jung ve Freud gibi psikologlar');
+        return text.replaceAll(
+          'kadim bilgeler',
+          'Jung ve Freud gibi psikologlar',
+        );
       default:
         return text;
     }
@@ -1014,13 +1018,17 @@ class DreamPersonalizationService {
     }
     if (profile.currentLifePhase != null) {
       final phase = LifePhaseData.getPhase(profile.currentLifePhase!);
-      buffer.writeln('- Yaşam Evresi: ${phase?.label ?? profile.currentLifePhase}');
+      buffer.writeln(
+        '- Yaşam Evresi: ${phase?.label ?? profile.currentLifePhase}',
+      );
     }
     if (profile.lifeAreas.isNotEmpty) {
       buffer.writeln('- Odak Alanları: ${profile.lifeAreas.join(", ")}');
     }
     if (profile.recentLifeEvents.isNotEmpty) {
-      buffer.writeln('- Son Yaşam Olayları: ${profile.recentLifeEvents.join(", ")}');
+      buffer.writeln(
+        '- Son Yaşam Olayları: ${profile.recentLifeEvents.join(", ")}',
+      );
     }
 
     buffer.writeln('\n');
@@ -1038,19 +1046,25 @@ class DreamPersonalizationService {
       buffer.writeln('UYANDIKTAN SONRAKİ HİS: ${input.wakingFeeling}');
     }
     if (input.isRecurring) {
-      buffer.writeln('TEKRARLAYAN RÜYA: Evet (${input.recurringCount ?? "?"} kez)');
+      buffer.writeln(
+        'TEKRARLAYAN RÜYA: Evet (${input.recurringCount ?? "?"} kez)',
+      );
     }
 
     buffer.writeln('\n');
 
     // Bağlam
     buffer.writeln('BAĞLAM:');
-    buffer.writeln('- Ay Fazı: ${context.moonPhase.label} ${context.moonPhase.emoji}');
+    buffer.writeln(
+      '- Ay Fazı: ${context.moonPhase.label} ${context.moonPhase.emoji}',
+    );
     if (context.moonSign != null) {
       buffer.writeln('- Ay Burcu: ${context.moonSign}');
     }
     if (context.activeTransits.isNotEmpty) {
-      buffer.writeln('- Aktif Transitler: ${context.activeTransits.join(", ")}');
+      buffer.writeln(
+        '- Aktif Transitler: ${context.activeTransits.join(", ")}',
+      );
     }
     if (context.currentRetrograde != null) {
       buffer.writeln('- Retro: ${context.currentRetrograde}');
@@ -1065,8 +1079,7 @@ class DreamPersonalizationService {
       buffer.writeln('KİŞİSEL SEMBOL GEÇMİŞİ:');
       for (final entry in recentSymbols.entries.take(5)) {
         buffer.writeln('- ${entry.key}: ${entry.value} kez görüldü');
-        final personalMeaning =
-            getPersonalSymbolMeaning(profile, entry.key);
+        final personalMeaning = getPersonalSymbolMeaning(profile, entry.key);
         if (personalMeaning != null) {
           buffer.writeln('  Kişisel anlam: $personalMeaning');
         }
@@ -1078,8 +1091,10 @@ class DreamPersonalizationService {
     if (context.recentDreams.isNotEmpty) {
       buffer.writeln('SON 7 GÜNDEKİ RÜYALAR:');
       for (final dream in context.recentDreams.take(3)) {
-        buffer.writeln('- ${dream.dreamDate.day}/${dream.dreamDate.month}: '
-            '${dream.content.length > 50 ? dream.content.substring(0, 50) + "..." : dream.content}');
+        buffer.writeln(
+          '- ${dream.dreamDate.day}/${dream.dreamDate.month}: '
+          '${dream.content.length > 50 ? "${dream.content.substring(0, 50)}..." : dream.content}',
+        );
         if (dream.symbols.isNotEmpty) {
           buffer.writeln('  Semboller: ${dream.symbols.join(", ")}');
         }
@@ -1168,37 +1183,42 @@ class DreamPersonalizationService {
       final topSymbol = topSymbols.entries.first;
       if (topSymbol.value >= 3) {
         patterns.add(
-            '${topSymbol.key.toUpperCase()} sembolü rüyalarında sıkça beliriyor (${topSymbol.value} kez). '
-            'Bu senin için özel bir anlam taşıyor olabilir.');
+          '${topSymbol.key.toUpperCase()} sembolü rüyalarında sıkça beliriyor (${topSymbol.value} kez). '
+          'Bu senin için özel bir anlam taşıyor olabilir.',
+        );
       }
     }
 
     // Duygusal kalıplar
     if (profile.dominantDreamEmotion != null) {
       patterns.add(
-          'Rüyalarında en çok ${profile.dominantDreamEmotion!.label.toLowerCase()} duygusu hakim. '
-          '${profile.dominantDreamEmotion!.hint}');
+        'Rüyalarında en çok ${profile.dominantDreamEmotion!.label.toLowerCase()} duygusu hakim. '
+        '${profile.dominantDreamEmotion!.hint}',
+      );
     }
 
     // Lucid rüya eğilimi
     if (profile.lucidDreamFrequency > 0.3) {
       patterns.add(
-          'Lucid rüya deneyimin ortalamanın üzerinde. Bu farkındalığı geliştirmek için '
-          'MILD veya reality check tekniklerini kullanabilirsin.');
+        'Lucid rüya deneyimin ortalamanın üzerinde. Bu farkındalığı geliştirmek için '
+        'MILD veya reality check tekniklerini kullanabilirsin.',
+      );
     }
 
     // Kâbus sıklığı
     if (profile.nightmareFrequency > 0.2) {
       patterns.add(
-          'Kâbus sıklığın biraz yüksek görünüyor. Bu, işlenmemiş duygusal malzeme '
-          'veya stres dönemlerine işaret edebilir.');
+        'Kâbus sıklığın biraz yüksek görünüyor. Bu, işlenmemiş duygusal malzeme '
+        'veya stres dönemlerine işaret edebilir.',
+      );
     }
 
     // Tekrarlayan temalar
     if (profile.recurringThemes.isNotEmpty) {
       patterns.add(
-          'Tekrarlayan temalar: ${profile.recurringThemes.join(", ")}. '
-          'Bu temalar bilinçaltının sürekli işlediği konuları gösteriyor.');
+        'Tekrarlayan temalar: ${profile.recurringThemes.join(", ")}. '
+        'Bu temalar bilinçaltının sürekli işlediği konuları gösteriyor.',
+      );
     }
 
     return patterns;
@@ -1212,7 +1232,9 @@ class DreamPersonalizationService {
     final transits = <String>[];
 
     if (profile.sunSign == null) {
-      return ['Doğum bilgilerini ekleyerek kişisel transitlerini görebilirsin.'];
+      return [
+        'Doğum bilgilerini ekleyerek kişisel transitlerini görebilirsin.',
+      ];
     }
 
     // Ay transitini kontrol et
@@ -1220,11 +1242,13 @@ class DreamPersonalizationService {
     if (currentMoonSign != null) {
       if (currentMoonSign == profile.sunSign) {
         transits.add(
-            '🌙 Ay senin burcunda (${profile.sunSign}) - Duygusal yoğunluk ve sezgi artışı');
+          '🌙 Ay senin burcunda (${profile.sunSign}) - Duygusal yoğunluk ve sezgi artışı',
+        );
       }
       if (currentMoonSign == profile.moonSign) {
         transits.add(
-            '🌙 Ay doğum Ay burcunda (${profile.moonSign}) - İç dünyayla derin bağlantı');
+          '🌙 Ay doğum Ay burcunda (${profile.moonSign}) - İç dünyayla derin bağlantı',
+        );
       }
     }
 
@@ -1236,10 +1260,12 @@ class DreamPersonalizationService {
 
     // Ay fazı
     final moonPhase = MoonPhaseCalculator.calculate(now);
-    final phaseDetail = AstroRuyaKorelasyonlari.ayFaziDetay[
-        moonPhase.name.toLowerCase().replaceAll('ı', 'i')];
+    final phaseDetail = AstroRuyaKorelasyonlari
+        .ayFaziDetay[moonPhase.name.toLowerCase().replaceAll('ı', 'i')];
     if (phaseDetail != null) {
-      transits.add('${phaseDetail.emoji} ${phaseDetail.phase}: ${phaseDetail.dreamQuality}');
+      transits.add(
+        '${phaseDetail.emoji} ${phaseDetail.phase}: ${phaseDetail.dreamQuality}',
+      );
     }
 
     return transits.isEmpty
@@ -1265,7 +1291,8 @@ class DreamPersonalizationService {
 
     buffer.writeln('\n\n---');
     buffer.writeln(
-        '${zodiacProfile.emoji} **${zodiacProfile.sign} Burcu Perspektifi:**');
+      '${zodiacProfile.emoji} **${zodiacProfile.sign} Burcu Perspektifi:**',
+    );
     buffer.writeln(zodiacProfile.dreamAdvice);
 
     // Ay burcunu da ekle
@@ -1274,7 +1301,8 @@ class DreamPersonalizationService {
       if (moonProfile != null) {
         buffer.writeln('\n🌙 **Ay Burcun (${moonProfile.sign}) Etkisi:**');
         buffer.writeln(
-            'Duygusal işleme tarzın: ${moonProfile.commonThemes.take(3).join(", ")} temaları etrafında döner.');
+          'Duygusal işleme tarzın: ${moonProfile.commonThemes.take(3).join(", ")} temaları etrafında döner.',
+        );
       }
     }
 
@@ -1384,8 +1412,7 @@ class PersonalizationHelpers {
           'Merkür günü Çarşamba, iletişim ve mesaj içerikli rüyalar getirir.',
       'Perşembe':
           'Jüpiter günü Perşembe, genişleme ve şans temalı rüyalar görülebilir.',
-      'Cuma':
-          'Venüs günü Cuma, aşk ve güzellik rüyalarına açıktır.',
+      'Cuma': 'Venüs günü Cuma, aşk ve güzellik rüyalarına açıktır.',
       'Cumartesi':
           'Satürn günü Cumartesi, sınırlar ve yapı hakkında rüyalar getirir.',
       'Pazar':

@@ -85,9 +85,16 @@ class ComparisonService {
     final elementBonus = _elementBonus(elementMatch);
     final modalityBonus = _modalityBonus(modalityMatch);
 
-    final overallScore = (baseScore + elementBonus + modalityBonus).clamp(0, 100);
+    final overallScore = (baseScore + elementBonus + modalityBonus).clamp(
+      0,
+      100,
+    );
     final loveScore = _calculateLoveScore(sign1, sign2, overallScore);
-    final friendshipScore = _calculateFriendshipScore(sign1, sign2, overallScore);
+    final friendshipScore = _calculateFriendshipScore(
+      sign1,
+      sign2,
+      overallScore,
+    );
     final communicationScore = _calculateCommunicationScore(sign1, sign2);
     final trustScore = _calculateTrustScore(sign1, sign2);
 
@@ -117,7 +124,10 @@ class ComparisonService {
     );
   }
 
-  static ElementCompatibility _getElementCompatibility(ZodiacSign s1, ZodiacSign s2) {
+  static ElementCompatibility _getElementCompatibility(
+    ZodiacSign s1,
+    ZodiacSign s2,
+  ) {
     final e1 = s1.element;
     final e2 = s2.element;
 
@@ -144,7 +154,10 @@ class ComparisonService {
     return ElementCompatibility.challenging;
   }
 
-  static ModalityCompatibility _getModalityCompatibility(ZodiacSign s1, ZodiacSign s2) {
+  static ModalityCompatibility _getModalityCompatibility(
+    ZodiacSign s1,
+    ZodiacSign s2,
+  ) {
     final m1 = s1.modality;
     final m2 = s2.modality;
 
@@ -158,18 +171,174 @@ class ComparisonService {
 
   static int _getBaseCompatibility(ZodiacSign s1, ZodiacSign s2) {
     final matrix = <String, Map<String, int>>{
-      'Koç': {'Koç': 70, 'Boğa': 55, 'İkizler': 75, 'Yengeç': 45, 'Aslan': 90, 'Başak': 50, 'Terazi': 65, 'Akrep': 55, 'Yay': 90, 'Oğlak': 45, 'Kova': 80, 'Balık': 50},
-      'Boğa': {'Koç': 55, 'Boğa': 75, 'İkizler': 50, 'Yengeç': 85, 'Aslan': 60, 'Başak': 90, 'Terazi': 70, 'Akrep': 80, 'Yay': 45, 'Oğlak': 95, 'Kova': 40, 'Balık': 85},
-      'İkizler': {'Koç': 75, 'Boğa': 50, 'İkizler': 70, 'Yengeç': 55, 'Aslan': 80, 'Başak': 60, 'Terazi': 90, 'Akrep': 45, 'Yay': 75, 'Oğlak': 50, 'Kova': 90, 'Balık': 55},
-      'Yengeç': {'Koç': 45, 'Boğa': 85, 'İkizler': 55, 'Yengeç': 75, 'Aslan': 65, 'Başak': 80, 'Terazi': 50, 'Akrep': 90, 'Yay': 45, 'Oğlak': 60, 'Kova': 50, 'Balık': 95},
-      'Aslan': {'Koç': 90, 'Boğa': 60, 'İkizler': 80, 'Yengeç': 65, 'Aslan': 75, 'Başak': 55, 'Terazi': 85, 'Akrep': 55, 'Yay': 90, 'Oğlak': 50, 'Kova': 70, 'Balık': 55},
-      'Başak': {'Koç': 50, 'Boğa': 90, 'İkizler': 60, 'Yengeç': 80, 'Aslan': 55, 'Başak': 70, 'Terazi': 65, 'Akrep': 85, 'Yay': 50, 'Oğlak': 90, 'Kova': 45, 'Balık': 75},
-      'Terazi': {'Koç': 65, 'Boğa': 70, 'İkizler': 90, 'Yengeç': 50, 'Aslan': 85, 'Başak': 65, 'Terazi': 75, 'Akrep': 60, 'Yay': 80, 'Oğlak': 55, 'Kova': 90, 'Balık': 60},
-      'Akrep': {'Koç': 55, 'Boğa': 80, 'İkizler': 45, 'Yengeç': 90, 'Aslan': 55, 'Başak': 85, 'Terazi': 60, 'Akrep': 70, 'Yay': 50, 'Oğlak': 80, 'Kova': 55, 'Balık': 90},
-      'Yay': {'Koç': 90, 'Boğa': 45, 'İkizler': 75, 'Yengeç': 45, 'Aslan': 90, 'Başak': 50, 'Terazi': 80, 'Akrep': 50, 'Yay': 75, 'Oğlak': 55, 'Kova': 85, 'Balık': 60},
-      'Oğlak': {'Koç': 45, 'Boğa': 95, 'İkizler': 50, 'Yengeç': 60, 'Aslan': 50, 'Başak': 90, 'Terazi': 55, 'Akrep': 80, 'Yay': 55, 'Oğlak': 75, 'Kova': 60, 'Balık': 70},
-      'Kova': {'Koç': 80, 'Boğa': 40, 'İkizler': 90, 'Yengeç': 50, 'Aslan': 70, 'Başak': 45, 'Terazi': 90, 'Akrep': 55, 'Yay': 85, 'Oğlak': 60, 'Kova': 70, 'Balık': 65},
-      'Balık': {'Koç': 50, 'Boğa': 85, 'İkizler': 55, 'Yengeç': 95, 'Aslan': 55, 'Başak': 75, 'Terazi': 60, 'Akrep': 90, 'Yay': 60, 'Oğlak': 70, 'Kova': 65, 'Balık': 75},
+      'Koç': {
+        'Koç': 70,
+        'Boğa': 55,
+        'İkizler': 75,
+        'Yengeç': 45,
+        'Aslan': 90,
+        'Başak': 50,
+        'Terazi': 65,
+        'Akrep': 55,
+        'Yay': 90,
+        'Oğlak': 45,
+        'Kova': 80,
+        'Balık': 50,
+      },
+      'Boğa': {
+        'Koç': 55,
+        'Boğa': 75,
+        'İkizler': 50,
+        'Yengeç': 85,
+        'Aslan': 60,
+        'Başak': 90,
+        'Terazi': 70,
+        'Akrep': 80,
+        'Yay': 45,
+        'Oğlak': 95,
+        'Kova': 40,
+        'Balık': 85,
+      },
+      'İkizler': {
+        'Koç': 75,
+        'Boğa': 50,
+        'İkizler': 70,
+        'Yengeç': 55,
+        'Aslan': 80,
+        'Başak': 60,
+        'Terazi': 90,
+        'Akrep': 45,
+        'Yay': 75,
+        'Oğlak': 50,
+        'Kova': 90,
+        'Balık': 55,
+      },
+      'Yengeç': {
+        'Koç': 45,
+        'Boğa': 85,
+        'İkizler': 55,
+        'Yengeç': 75,
+        'Aslan': 65,
+        'Başak': 80,
+        'Terazi': 50,
+        'Akrep': 90,
+        'Yay': 45,
+        'Oğlak': 60,
+        'Kova': 50,
+        'Balık': 95,
+      },
+      'Aslan': {
+        'Koç': 90,
+        'Boğa': 60,
+        'İkizler': 80,
+        'Yengeç': 65,
+        'Aslan': 75,
+        'Başak': 55,
+        'Terazi': 85,
+        'Akrep': 55,
+        'Yay': 90,
+        'Oğlak': 50,
+        'Kova': 70,
+        'Balık': 55,
+      },
+      'Başak': {
+        'Koç': 50,
+        'Boğa': 90,
+        'İkizler': 60,
+        'Yengeç': 80,
+        'Aslan': 55,
+        'Başak': 70,
+        'Terazi': 65,
+        'Akrep': 85,
+        'Yay': 50,
+        'Oğlak': 90,
+        'Kova': 45,
+        'Balık': 75,
+      },
+      'Terazi': {
+        'Koç': 65,
+        'Boğa': 70,
+        'İkizler': 90,
+        'Yengeç': 50,
+        'Aslan': 85,
+        'Başak': 65,
+        'Terazi': 75,
+        'Akrep': 60,
+        'Yay': 80,
+        'Oğlak': 55,
+        'Kova': 90,
+        'Balık': 60,
+      },
+      'Akrep': {
+        'Koç': 55,
+        'Boğa': 80,
+        'İkizler': 45,
+        'Yengeç': 90,
+        'Aslan': 55,
+        'Başak': 85,
+        'Terazi': 60,
+        'Akrep': 70,
+        'Yay': 50,
+        'Oğlak': 80,
+        'Kova': 55,
+        'Balık': 90,
+      },
+      'Yay': {
+        'Koç': 90,
+        'Boğa': 45,
+        'İkizler': 75,
+        'Yengeç': 45,
+        'Aslan': 90,
+        'Başak': 50,
+        'Terazi': 80,
+        'Akrep': 50,
+        'Yay': 75,
+        'Oğlak': 55,
+        'Kova': 85,
+        'Balık': 60,
+      },
+      'Oğlak': {
+        'Koç': 45,
+        'Boğa': 95,
+        'İkizler': 50,
+        'Yengeç': 60,
+        'Aslan': 50,
+        'Başak': 90,
+        'Terazi': 55,
+        'Akrep': 80,
+        'Yay': 55,
+        'Oğlak': 75,
+        'Kova': 60,
+        'Balık': 70,
+      },
+      'Kova': {
+        'Koç': 80,
+        'Boğa': 40,
+        'İkizler': 90,
+        'Yengeç': 50,
+        'Aslan': 70,
+        'Başak': 45,
+        'Terazi': 90,
+        'Akrep': 55,
+        'Yay': 85,
+        'Oğlak': 60,
+        'Kova': 70,
+        'Balık': 65,
+      },
+      'Balık': {
+        'Koç': 50,
+        'Boğa': 85,
+        'İkizler': 55,
+        'Yengeç': 95,
+        'Aslan': 55,
+        'Başak': 75,
+        'Terazi': 60,
+        'Akrep': 90,
+        'Yay': 60,
+        'Oğlak': 70,
+        'Kova': 65,
+        'Balık': 75,
+      },
     };
 
     return matrix[s1.name]?[s2.name] ?? 50;
@@ -201,13 +370,16 @@ class ComparisonService {
 
   static int _calculateLoveScore(ZodiacSign s1, ZodiacSign s2, int base) {
     final romantic = ['Boğa', 'Yengeç', 'Terazi', 'Balık'];
-    final bonus = (romantic.contains(s1.name) ? 5 : 0) + (romantic.contains(s2.name) ? 5 : 0);
+    final bonus =
+        (romantic.contains(s1.name) ? 5 : 0) +
+        (romantic.contains(s2.name) ? 5 : 0);
     return (base + bonus).clamp(0, 100);
   }
 
   static int _calculateFriendshipScore(ZodiacSign s1, ZodiacSign s2, int base) {
     final social = ['İkizler', 'Aslan', 'Terazi', 'Yay', 'Kova'];
-    final bonus = (social.contains(s1.name) ? 5 : 0) + (social.contains(s2.name) ? 5 : 0);
+    final bonus =
+        (social.contains(s1.name) ? 5 : 0) + (social.contains(s2.name) ? 5 : 0);
     return (base + bonus).clamp(0, 100);
   }
 
@@ -215,20 +387,28 @@ class ComparisonService {
     final communicators = ['İkizler', 'Terazi', 'Kova'];
     final quiet = ['Akrep', 'Oğlak', 'Balık'];
 
-    if (communicators.contains(s1.name) && communicators.contains(s2.name)) return 90;
+    if (communicators.contains(s1.name) && communicators.contains(s2.name))
+      return 90;
     if (quiet.contains(s1.name) && quiet.contains(s2.name)) return 75;
     if ((communicators.contains(s1.name) && quiet.contains(s2.name)) ||
-        (quiet.contains(s1.name) && communicators.contains(s2.name))) return 55;
+        (quiet.contains(s1.name) && communicators.contains(s2.name))) {
+      return 55;
+    }
     return 70;
   }
 
   static int _calculateTrustScore(ZodiacSign s1, ZodiacSign s2) {
     final loyal = ['Boğa', 'Yengeç', 'Aslan', 'Akrep', 'Oğlak'];
-    final bonus = (loyal.contains(s1.name) ? 10 : 0) + (loyal.contains(s2.name) ? 10 : 0);
+    final bonus =
+        (loyal.contains(s1.name) ? 10 : 0) + (loyal.contains(s2.name) ? 10 : 0);
     return (60 + bonus).clamp(0, 100);
   }
 
-  static Map<String, List<String>> _getStrengths(ZodiacSign s1, ZodiacSign s2, ElementCompatibility element) {
+  static Map<String, List<String>> _getStrengths(
+    ZodiacSign s1,
+    ZodiacSign s2,
+    ElementCompatibility element,
+  ) {
     final trList = <String>[];
     final enList = <String>[];
 
@@ -238,10 +418,22 @@ class ComparisonService {
     }
 
     final strengthMap = {
-      Element.fire: {'tr': 'Tutku ve heyecan dolu bir bağ', 'en': 'Passionate and exciting bond'},
-      Element.earth: {'tr': 'Sağlam ve güvenilir temel', 'en': 'Solid and reliable foundation'},
-      Element.air: {'tr': 'Entelektüel ve sosyal uyum', 'en': 'Intellectual and social harmony'},
-      Element.water: {'tr': 'Derin duygusal bağ', 'en': 'Deep emotional connection'},
+      Element.fire: {
+        'tr': 'Tutku ve heyecan dolu bir bağ',
+        'en': 'Passionate and exciting bond',
+      },
+      Element.earth: {
+        'tr': 'Sağlam ve güvenilir temel',
+        'en': 'Solid and reliable foundation',
+      },
+      Element.air: {
+        'tr': 'Entelektüel ve sosyal uyum',
+        'en': 'Intellectual and social harmony',
+      },
+      Element.water: {
+        'tr': 'Derin duygusal bağ',
+        'en': 'Deep emotional connection',
+      },
     };
 
     if (s1.element == s2.element) {
@@ -258,7 +450,10 @@ class ComparisonService {
     return {'tr': trList, 'en': enList};
   }
 
-  static Map<String, List<String>> _getChallenges(ZodiacSign s1, ZodiacSign s2) {
+  static Map<String, List<String>> _getChallenges(
+    ZodiacSign s1,
+    ZodiacSign s2,
+  ) {
     final trList = <String>[];
     final enList = <String>[];
 
@@ -285,32 +480,47 @@ class ComparisonService {
     return {'tr': trList, 'en': enList};
   }
 
-  static Map<String, String> _getAdvice(ZodiacSign s1, ZodiacSign s2, int score) {
+  static Map<String, String> _getAdvice(
+    ZodiacSign s1,
+    ZodiacSign s2,
+    int score,
+  ) {
     if (score >= 80) {
       return {
-        'tr': 'Harika bir uyumunuz var! Bu özel bağı korumak için birbirinize zaman ayırın.',
-        'en': 'You have great compatibility! Make time for each other to nurture this special bond.',
+        'tr':
+            'Harika bir uyumunuz var! Bu özel bağı korumak için birbirinize zaman ayırın.',
+        'en':
+            'You have great compatibility! Make time for each other to nurture this special bond.',
       };
     } else if (score >= 60) {
       return {
-        'tr': 'Güzel bir potansiyel var. Farklılıklarınızı kabul edip birbirinizden öğrenin.',
-        'en': 'Good potential here. Accept your differences and learn from each other.',
+        'tr':
+            'Güzel bir potansiyel var. Farklılıklarınızı kabul edip birbirinizden öğrenin.',
+        'en':
+            'Good potential here. Accept your differences and learn from each other.',
       };
     } else {
       return {
         'tr': 'Zorluklar büyüme fırsatıdır. Açık iletişim ve sabır anahtardır.',
-        'en': 'Challenges are growth opportunities. Open communication and patience are key.',
+        'en':
+            'Challenges are growth opportunities. Open communication and patience are key.',
       };
     }
   }
 
-  static Map<String, String> _getSummary(ZodiacSign s1, ZodiacSign s2, int score) {
+  static Map<String, String> _getSummary(
+    ZodiacSign s1,
+    ZodiacSign s2,
+    int score,
+  ) {
     final level = score >= 80 ? 'yüksek' : (score >= 60 ? 'iyi' : 'orta');
     final levelEn = score >= 80 ? 'high' : (score >= 60 ? 'good' : 'moderate');
 
     return {
-      'tr': '${s1.name} ve ${s2.name} arasında $level seviyede bir uyum var. ${s1.element} ve ${s2.element} elementlerinin birleşimi ilginç dinamikler yaratıyor.',
-      'en': '${s1.name} and ${s2.name} share a $levelEn level of compatibility. The combination of ${s1.element} and ${s2.element} elements creates interesting dynamics.',
+      'tr':
+          '${s1.name} ve ${s2.name} arasında $level seviyede bir uyum var. ${s1.element} ve ${s2.element} elementlerinin birleşimi ilginç dinamikler yaratıyor.',
+      'en':
+          '${s1.name} and ${s2.name} share a $levelEn level of compatibility. The combination of ${s1.element} and ${s2.element} elements creates interesting dynamics.',
     };
   }
 }

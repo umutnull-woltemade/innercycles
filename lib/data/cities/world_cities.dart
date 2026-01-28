@@ -1,5 +1,6 @@
 /// Comprehensive global cities database for astrology birth location
 /// Contains major cities from all continents with coordinates
+library;
 
 class CityData {
   final String name;

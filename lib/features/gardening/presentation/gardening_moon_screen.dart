@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/reference_content.dart';
@@ -97,9 +98,9 @@ class _GardeningMoonScreenState extends State<GardeningMoonScreen> {
                 Text(
                   'Bahçe Ay Takvimi',
                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                        fontWeight: FontWeight.bold,
-                        color: isDark ? Colors.white : AppColors.textDark,
-                      ),
+                    fontWeight: FontWeight.bold,
+                    color: isDark ? Colors.white : AppColors.textDark,
+                  ),
                   textAlign: TextAlign.center,
                 ),
                 Text(
@@ -120,8 +121,18 @@ class _GardeningMoonScreenState extends State<GardeningMoonScreen> {
 
   Widget _buildMonthSelector(bool isDark) {
     final months = [
-      'Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran',
-      'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'
+      'Ocak',
+      'Şubat',
+      'Mart',
+      'Nisan',
+      'Mayıs',
+      'Haziran',
+      'Temmuz',
+      'Ağustos',
+      'Eylül',
+      'Ekim',
+      'Kasım',
+      'Aralık',
     ];
 
     return Container(
@@ -203,7 +214,8 @@ class _GardeningMoonScreenState extends State<GardeningMoonScreen> {
 
               final day = _days[dayIndex];
               final isSelected = _selectedDay?.date.day == day.date.day;
-              final isToday = day.date.day == DateTime.now().day &&
+              final isToday =
+                  day.date.day == DateTime.now().day &&
                   day.date.month == DateTime.now().month &&
                   day.date.year == DateTime.now().year;
 
@@ -219,15 +231,15 @@ class _GardeningMoonScreenState extends State<GardeningMoonScreen> {
                     color: isSelected
                         ? AppColors.cosmic.withValues(alpha: 0.3)
                         : (isDark
-                            ? Colors.white.withValues(alpha: 0.05)
-                            : Colors.white.withValues(alpha: 0.5)),
+                              ? Colors.white.withValues(alpha: 0.05)
+                              : Colors.white.withValues(alpha: 0.5)),
                     borderRadius: BorderRadius.circular(8),
                     border: Border.all(
                       color: isToday
                           ? AppColors.gold
                           : (isSelected
-                              ? AppColors.cosmic
-                              : Colors.transparent),
+                                ? AppColors.cosmic
+                                : Colors.transparent),
                       width: isToday ? 2 : 1,
                     ),
                   ),
@@ -238,7 +250,9 @@ class _GardeningMoonScreenState extends State<GardeningMoonScreen> {
                         '${day.date.day}',
                         style: TextStyle(
                           fontSize: 14,
-                          fontWeight: isToday ? FontWeight.bold : FontWeight.normal,
+                          fontWeight: isToday
+                              ? FontWeight.bold
+                              : FontWeight.normal,
                           color: isDark ? Colors.white : AppColors.textDark,
                         ),
                       ),
@@ -294,10 +308,7 @@ class _GardeningMoonScreenState extends State<GardeningMoonScreen> {
       ),
       child: Row(
         children: [
-          Text(
-            day.phase.icon,
-            style: const TextStyle(fontSize: 48),
-          ),
+          Text(day.phase.icon, style: const TextStyle(fontSize: 48)),
           const SizedBox(width: AppConstants.spacingLg),
           Expanded(
             child: Column(
@@ -328,9 +339,7 @@ class _GardeningMoonScreenState extends State<GardeningMoonScreen> {
                 children: List.generate(
                   5,
                   (i) => Icon(
-                    i < day.fertilityRating
-                        ? Icons.eco
-                        : Icons.eco_outlined,
+                    i < day.fertilityRating ? Icons.eco : Icons.eco_outlined,
                     size: 18,
                     color: Colors.green,
                   ),
@@ -365,10 +374,7 @@ class _GardeningMoonScreenState extends State<GardeningMoonScreen> {
           Expanded(
             child: Column(
               children: [
-                Text(
-                  '${day.moonSign.symbol}',
-                  style: const TextStyle(fontSize: 28),
-                ),
+                Text(day.moonSign.symbol, style: const TextStyle(fontSize: 28)),
                 const SizedBox(height: 4),
                 Text(
                   'Ay ${day.moonSign.nameTr}\'da',
@@ -379,10 +385,7 @@ class _GardeningMoonScreenState extends State<GardeningMoonScreen> {
                 ),
                 Text(
                   day.moonSign.element.nameTr,
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: day.moonSign.color,
-                  ),
+                  style: TextStyle(fontSize: 12, color: day.moonSign.color),
                 ),
               ],
             ),
@@ -398,9 +401,7 @@ class _GardeningMoonScreenState extends State<GardeningMoonScreen> {
             child: Column(
               children: [
                 Icon(
-                  day.phase.isWaxing
-                      ? Icons.trending_up
-                      : Icons.trending_down,
+                  day.phase.isWaxing ? Icons.trending_up : Icons.trending_down,
                   size: 28,
                   color: day.phase.isWaxing ? Colors.green : Colors.orange,
                 ),
@@ -438,16 +439,11 @@ class _GardeningMoonScreenState extends State<GardeningMoonScreen> {
           ],
         ),
         borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: Colors.green.withValues(alpha: 0.5),
-        ),
+        border: Border.all(color: Colors.green.withValues(alpha: 0.5)),
       ),
       child: Row(
         children: [
-          Text(
-            day.bestActivity.icon,
-            style: const TextStyle(fontSize: 36),
-          ),
+          Text(day.bestActivity.icon, style: const TextStyle(fontSize: 36)),
           const SizedBox(width: AppConstants.spacingLg),
           Expanded(
             child: Column(
@@ -472,10 +468,7 @@ class _GardeningMoonScreenState extends State<GardeningMoonScreen> {
             ),
           ),
           Container(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 12,
-              vertical: 6,
-            ),
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
             decoration: BoxDecoration(
               color: Colors.green,
               borderRadius: BorderRadius.circular(20),
@@ -509,7 +502,11 @@ class _GardeningMoonScreenState extends State<GardeningMoonScreen> {
               children: [
                 Row(
                   children: [
-                    const Icon(Icons.check_circle, color: Colors.green, size: 18),
+                    const Icon(
+                      Icons.check_circle,
+                      color: Colors.green,
+                      size: 18,
+                    ),
                     const SizedBox(width: 4),
                     Text(
                       'Uygun',
@@ -532,7 +529,9 @@ class _GardeningMoonScreenState extends State<GardeningMoonScreen> {
                           act.nameTr,
                           style: TextStyle(
                             fontSize: 12,
-                            color: isDark ? Colors.white70 : AppColors.textLight,
+                            color: isDark
+                                ? Colors.white70
+                                : AppColors.textLight,
                           ),
                         ),
                       ],
@@ -579,7 +578,9 @@ class _GardeningMoonScreenState extends State<GardeningMoonScreen> {
                           act.nameTr,
                           style: TextStyle(
                             fontSize: 12,
-                            color: isDark ? Colors.white70 : AppColors.textLight,
+                            color: isDark
+                                ? Colors.white70
+                                : AppColors.textLight,
                           ),
                         ),
                       ],

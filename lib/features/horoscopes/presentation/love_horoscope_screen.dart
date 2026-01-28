@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
-import '../../../data/models/zodiac_sign.dart';
 import '../../../data/models/extended_horoscope.dart';
+import '../../../data/models/zodiac_sign.dart';
 import '../../../data/services/extended_horoscope_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/entertainment_disclaimer.dart';
@@ -133,7 +134,8 @@ class _LoveHoroscopeScreenState extends State<LoveHoroscopeScreen> {
   Widget _buildDateSelector(bool isDark) {
     final dateFormat =
         '${_selectedDate.day}.${_selectedDate.month}.${_selectedDate.year}';
-    final isToday = _selectedDate.day == DateTime.now().day &&
+    final isToday =
+        _selectedDate.day == DateTime.now().day &&
         _selectedDate.month == DateTime.now().month &&
         _selectedDate.year == DateTime.now().year;
 
@@ -165,15 +167,12 @@ class _LoveHoroscopeScreenState extends State<LoveHoroscopeScreen> {
             children: [
               Text(
                 isToday ? 'Bugun' : dateFormat,
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.w600,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
               ),
               if (!isToday)
-                Text(
-                  dateFormat,
-                  style: Theme.of(context).textTheme.bodySmall,
-                ),
+                Text(dateFormat, style: Theme.of(context).textTheme.bodySmall),
             ],
           ),
           IconButton(
@@ -210,8 +209,8 @@ class _LoveHoroscopeScreenState extends State<LoveHoroscopeScreen> {
                 color: isSelected
                     ? Colors.pink.withValues(alpha: 0.3)
                     : isDark
-                        ? AppColors.surfaceLight.withValues(alpha: 0.2)
-                        : AppColors.lightSurfaceVariant,
+                    ? AppColors.surfaceLight.withValues(alpha: 0.2)
+                    : AppColors.lightSurfaceVariant,
                 borderRadius: BorderRadius.circular(AppConstants.radiusSm),
                 border: isSelected
                     ? Border.all(color: Colors.pink, width: 2)
@@ -220,17 +219,15 @@ class _LoveHoroscopeScreenState extends State<LoveHoroscopeScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    sign.symbol,
-                    style: const TextStyle(fontSize: 20),
-                  ),
+                  Text(sign.symbol, style: const TextStyle(fontSize: 20)),
                   Text(
                     sign.nameTr,
                     style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                          fontSize: 10,
-                          fontWeight:
-                              isSelected ? FontWeight.bold : FontWeight.normal,
-                        ),
+                      fontSize: 10,
+                      fontWeight: isSelected
+                          ? FontWeight.bold
+                          : FontWeight.normal,
+                    ),
                     textAlign: TextAlign.center,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
@@ -258,9 +255,7 @@ class _LoveHoroscopeScreenState extends State<LoveHoroscopeScreen> {
           ],
         ),
         borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: Colors.pink.withValues(alpha: 0.3),
-        ),
+        border: Border.all(color: Colors.pink.withValues(alpha: 0.3)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -285,14 +280,14 @@ class _LoveHoroscopeScreenState extends State<LoveHoroscopeScreen> {
                   Text(
                     _selectedSign.nameTr,
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   Text(
                     'Ask Enerjisi',
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: Colors.pink,
-                        ),
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodySmall?.copyWith(color: Colors.pink),
                   ),
                 ],
               ),
@@ -304,11 +299,11 @@ class _LoveHoroscopeScreenState extends State<LoveHoroscopeScreen> {
                   shape: BoxShape.circle,
                 ),
                 child: Text(
-                  '${_horoscope.overallLoveRating.toStringAsFixed(1)}',
+                  _horoscope.overallLoveRating.toStringAsFixed(1),
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.pink,
-                      ),
+                    fontWeight: FontWeight.bold,
+                    color: Colors.pink,
+                  ),
                 ),
               ),
             ],
@@ -316,9 +311,7 @@ class _LoveHoroscopeScreenState extends State<LoveHoroscopeScreen> {
           const SizedBox(height: AppConstants.spacingLg),
           Text(
             _horoscope.romanticOutlook,
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  height: 1.6,
-                ),
+            style: Theme.of(context).textTheme.bodyLarge?.copyWith(height: 1.6),
           ),
         ],
       ),
@@ -327,16 +320,20 @@ class _LoveHoroscopeScreenState extends State<LoveHoroscopeScreen> {
 
   Widget _buildRatingsCard(bool isDark) {
     final ratings = [
-      {'label': 'Tutku', 'value': _horoscope.passionRating, 'color': Colors.red},
+      {
+        'label': 'Tutku',
+        'value': _horoscope.passionRating,
+        'color': Colors.red,
+      },
       {
         'label': 'Romantizm',
         'value': _horoscope.romanceRating,
-        'color': Colors.pink
+        'color': Colors.pink,
       },
       {
         'label': 'Iletisim',
         'value': _horoscope.communicationRating,
-        'color': Colors.purple
+        'color': Colors.purple,
       },
     ];
 
@@ -363,9 +360,9 @@ class _LoveHoroscopeScreenState extends State<LoveHoroscopeScreen> {
         children: [
           Text(
             'Gunun Ask Enerjileri',
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: AppConstants.spacingLg),
           ...ratings.map((rating) {
@@ -397,10 +394,12 @@ class _LoveHoroscopeScreenState extends State<LoveHoroscopeScreen> {
                   const SizedBox(height: 4),
                   LinearProgressIndicator(
                     value: (rating['value'] as int) / 5,
-                    backgroundColor:
-                        (rating['color'] as Color).withValues(alpha: 0.2),
+                    backgroundColor: (rating['color'] as Color).withValues(
+                      alpha: 0.2,
+                    ),
                     valueColor: AlwaysStoppedAnimation<Color>(
-                        rating['color'] as Color),
+                      rating['color'] as Color,
+                    ),
                     minHeight: 6,
                     borderRadius: BorderRadius.circular(3),
                   ),
@@ -443,27 +442,23 @@ class _LoveHoroscopeScreenState extends State<LoveHoroscopeScreen> {
                   color: Colors.pink.withValues(alpha: 0.2),
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: const Icon(
-                  Icons.person,
-                  color: Colors.pink,
-                  size: 20,
-                ),
+                child: const Icon(Icons.person, color: Colors.pink, size: 20),
               ),
               const SizedBox(width: AppConstants.spacingMd),
               Text(
                 'Bekarlar Icin',
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
               ),
             ],
           ),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
             _horoscope.singleAdvice,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  height: 1.5,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.bodyMedium?.copyWith(height: 1.5),
           ),
         ],
       ),
@@ -500,27 +495,23 @@ class _LoveHoroscopeScreenState extends State<LoveHoroscopeScreen> {
                   color: Colors.red.withValues(alpha: 0.2),
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: const Icon(
-                  Icons.people,
-                  color: Colors.red,
-                  size: 20,
-                ),
+                child: const Icon(Icons.people, color: Colors.red, size: 20),
               ),
               const SizedBox(width: AppConstants.spacingMd),
               Text(
                 'Ciftler Icin',
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
               ),
             ],
           ),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
             _horoscope.couplesAdvice,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  height: 1.5,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.bodyMedium?.copyWith(height: 1.5),
           ),
         ],
       ),
@@ -541,18 +532,16 @@ class _LoveHoroscopeScreenState extends State<LoveHoroscopeScreen> {
           ],
         ),
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-        border: Border.all(
-          color: AppColors.auroraStart.withValues(alpha: 0.3),
-        ),
+        border: Border.all(color: AppColors.auroraStart.withValues(alpha: 0.3)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             'Bugunun Burc Uyumu',
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: AppConstants.spacingLg),
           Row(
@@ -608,23 +597,20 @@ class _LoveHoroscopeScreenState extends State<LoveHoroscopeScreen> {
               Text(
                 label,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: color,
-                      fontWeight: FontWeight.w600,
-                    ),
+                  color: color,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ],
           ),
           const SizedBox(height: 8),
-          Text(
-            sign.symbol,
-            style: const TextStyle(fontSize: 28),
-          ),
+          Text(sign.symbol, style: const TextStyle(fontSize: 28)),
           const SizedBox(height: 4),
           Text(
             sign.nameTr,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
           ),
         ],
       ),
@@ -645,9 +631,7 @@ class _LoveHoroscopeScreenState extends State<LoveHoroscopeScreen> {
           ],
         ),
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-        border: Border.all(
-          color: Colors.purple.withValues(alpha: 0.3),
-        ),
+        border: Border.all(color: Colors.purple.withValues(alpha: 0.3)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -669,18 +653,18 @@ class _LoveHoroscopeScreenState extends State<LoveHoroscopeScreen> {
               const SizedBox(width: AppConstants.spacingMd),
               Text(
                 'Ruhsal Bag',
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
               ),
             ],
           ),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
             _horoscope.soulConnection,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  height: 1.5,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.bodyMedium?.copyWith(height: 1.5),
           ),
         ],
       ),
@@ -717,39 +701,40 @@ class _LoveHoroscopeScreenState extends State<LoveHoroscopeScreen> {
                   color: AppColors.starGold.withValues(alpha: 0.2),
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: const Text(
-                  '♀',
-                  style: TextStyle(fontSize: 20),
-                ),
+                child: const Text('♀', style: TextStyle(fontSize: 20)),
               ),
               const SizedBox(width: AppConstants.spacingMd),
               Text(
                 'Venus Etkisi',
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
               ),
             ],
           ),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
             _horoscope.venusInfluence,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  height: 1.5,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.bodyMedium?.copyWith(height: 1.5),
           ),
           const SizedBox(height: AppConstants.spacingLg),
           const Divider(),
           const SizedBox(height: AppConstants.spacingMd),
           Row(
             children: [
-              const Icon(Icons.lightbulb_outline, color: Colors.amber, size: 20),
+              const Icon(
+                Icons.lightbulb_outline,
+                color: Colors.amber,
+                size: 20,
+              ),
               const SizedBox(width: 8),
               Text(
                 'Yakinlik Tavsiyesi',
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      fontWeight: FontWeight.w600,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.bodySmall?.copyWith(fontWeight: FontWeight.w600),
               ),
             ],
           ),
@@ -757,9 +742,9 @@ class _LoveHoroscopeScreenState extends State<LoveHoroscopeScreen> {
           Text(
             _horoscope.intimacyAdvice,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  fontStyle: FontStyle.italic,
-                  height: 1.5,
-                ),
+              fontStyle: FontStyle.italic,
+              height: 1.5,
+            ),
           ),
         ],
       ),

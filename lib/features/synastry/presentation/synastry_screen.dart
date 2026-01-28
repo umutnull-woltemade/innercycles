@@ -1,16 +1,18 @@
 import 'dart:math';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/zodiac_sign.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/cosmic_background.dart';
-import '../../../shared/widgets/next_blocks.dart';
-import '../../../shared/widgets/kadim_not_card.dart';
 import '../../../shared/widgets/entertainment_disclaimer.dart';
+import '../../../shared/widgets/kadim_not_card.dart';
+import '../../../shared/widgets/next_blocks.dart';
 import '../../../shared/widgets/quiz_cta_card.dart';
 
 class SynastryScreen extends ConsumerStatefulWidget {
@@ -20,7 +22,8 @@ class SynastryScreen extends ConsumerStatefulWidget {
   ConsumerState<SynastryScreen> createState() => _SynastryScreenState();
 }
 
-class _SynastryScreenState extends ConsumerState<SynastryScreen> with SingleTickerProviderStateMixin {
+class _SynastryScreenState extends ConsumerState<SynastryScreen>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
   // Partner data (in real app, this would be entered by user)
@@ -59,7 +62,9 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen> with SingleTick
             headerSliverBuilder: (context, innerBoxIsScrolled) => [
               SliverToBoxAdapter(child: _buildHeader(context, userSign)),
               SliverToBoxAdapter(child: _buildPartnerSelector(context)),
-              SliverToBoxAdapter(child: _buildCompactCompatibilityScore(context, synastryData)),
+              SliverToBoxAdapter(
+                child: _buildCompactCompatibilityScore(context, synastryData),
+              ),
               SliverToBoxAdapter(child: _buildTabBar(context)),
             ],
             body: TabBarView(
@@ -149,9 +154,9 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen> with SingleTick
               children: [
                 Text(
                   'Partner Burcu',
-                  style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                    color: AppColors.textMuted,
-                  ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.labelSmall?.copyWith(color: AppColors.textMuted),
                 ),
                 const SizedBox(height: 4),
                 GestureDetector(
@@ -160,18 +165,26 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen> with SingleTick
                     children: [
                       Text(
                         _partnerSign.symbol,
-                        style: TextStyle(fontSize: 24, color: _partnerSign.color),
+                        style: TextStyle(
+                          fontSize: 24,
+                          color: _partnerSign.color,
+                        ),
                       ),
                       const SizedBox(width: 8),
                       Text(
                         _partnerSign.nameTr,
-                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          color: AppColors.textPrimary,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: Theme.of(context).textTheme.titleMedium
+                            ?.copyWith(
+                              color: AppColors.textPrimary,
+                              fontWeight: FontWeight.bold,
+                            ),
                       ),
                       const SizedBox(width: 4),
-                      const Icon(Icons.edit, size: 16, color: AppColors.textMuted),
+                      const Icon(
+                        Icons.edit,
+                        size: 16,
+                        color: AppColors.textMuted,
+                      ),
                     ],
                   ),
                 ),
@@ -186,22 +199,25 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen> with SingleTick
               children: [
                 Text(
                   'Doğum Tarihi',
-                  style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                    color: AppColors.textMuted,
-                  ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.labelSmall?.copyWith(color: AppColors.textMuted),
                 ),
                 const SizedBox(height: 4),
                 GestureDetector(
                   onTap: () => _selectPartnerDate(context),
                   child: Row(
                     children: [
-                      const Icon(Icons.calendar_today, size: 20, color: AppColors.textSecondary),
+                      const Icon(
+                        Icons.calendar_today,
+                        size: 20,
+                        color: AppColors.textSecondary,
+                      ),
                       const SizedBox(width: 8),
                       Text(
                         '${_partnerBirthDate.day}/${_partnerBirthDate.month}/${_partnerBirthDate.year}',
-                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          color: AppColors.textPrimary,
-                        ),
+                        style: Theme.of(context).textTheme.titleMedium
+                            ?.copyWith(color: AppColors.textPrimary),
                       ),
                     ],
                   ),
@@ -215,15 +231,21 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen> with SingleTick
   }
 
   // KOMPAKT VERSİYON - Daha az yer kaplayan uyumluluk göstergesi
-  Widget _buildCompactCompatibilityScore(BuildContext context, SynastryData data) {
+  Widget _buildCompactCompatibilityScore(
+    BuildContext context,
+    SynastryData data,
+  ) {
     final Color scoreColor = data.overallScore >= 70
         ? Colors.green
         : data.overallScore >= 50
-            ? Colors.amber
-            : Colors.red;
+        ? Colors.amber
+        : Colors.red;
 
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: AppConstants.spacingLg, vertical: 4),
+      margin: const EdgeInsets.symmetric(
+        horizontal: AppConstants.spacingLg,
+        vertical: 4,
+      ),
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -248,8 +270,11 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen> with SingleTick
               shape: BoxShape.circle,
               gradient: RadialGradient(
                 colors: [
-                  ref.watch(userProfileProvider)?.sunSign.color ?? AppColors.starGold,
-                  (ref.watch(userProfileProvider)?.sunSign.color ?? AppColors.starGold).withAlpha(50),
+                  ref.watch(userProfileProvider)?.sunSign.color ??
+                      AppColors.starGold,
+                  (ref.watch(userProfileProvider)?.sunSign.color ??
+                          AppColors.starGold)
+                      .withAlpha(50),
                 ],
               ),
             ),
@@ -261,7 +286,13 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen> with SingleTick
             ),
           ),
           const SizedBox(width: 4),
-          Text('Sen', style: Theme.of(context).textTheme.labelSmall?.copyWith(color: AppColors.textMuted, fontSize: 9)),
+          Text(
+            'Sen',
+            style: Theme.of(context).textTheme.labelSmall?.copyWith(
+              color: AppColors.textMuted,
+              fontSize: 9,
+            ),
+          ),
 
           // Score in middle
           Expanded(
@@ -273,33 +304,68 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen> with SingleTick
                   height: 44,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    gradient: RadialGradient(colors: [scoreColor.withAlpha(80), scoreColor.withAlpha(20)]),
-                    boxShadow: [BoxShadow(color: scoreColor.withAlpha(30), blurRadius: 8, spreadRadius: 1)],
+                    gradient: RadialGradient(
+                      colors: [
+                        scoreColor.withAlpha(80),
+                        scoreColor.withAlpha(20),
+                      ],
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: scoreColor.withAlpha(30),
+                        blurRadius: 8,
+                        spreadRadius: 1,
+                      ),
+                    ],
                   ),
                   child: Center(
                     child: Text(
                       '${data.overallScore}%',
-                      style: Theme.of(context).textTheme.labelLarge?.copyWith(color: scoreColor, fontWeight: FontWeight.bold, fontSize: 13),
+                      style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                        color: scoreColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 13,
+                      ),
                     ),
                   ),
                 ),
                 const SizedBox(width: 6),
-                Text(data.compatibilityLevel, style: Theme.of(context).textTheme.labelSmall?.copyWith(color: scoreColor, fontWeight: FontWeight.bold, fontSize: 10)),
+                Text(
+                  data.compatibilityLevel,
+                  style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                    color: scoreColor,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 10,
+                  ),
+                ),
               ],
             ),
           ),
 
           // Person 2 - Mini
-          Text('Partner', style: Theme.of(context).textTheme.labelSmall?.copyWith(color: AppColors.textMuted, fontSize: 9)),
+          Text(
+            'Partner',
+            style: Theme.of(context).textTheme.labelSmall?.copyWith(
+              color: AppColors.textMuted,
+              fontSize: 9,
+            ),
+          ),
           const SizedBox(width: 4),
           Container(
             width: 36,
             height: 36,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              gradient: RadialGradient(colors: [_partnerSign.color, _partnerSign.color.withAlpha(50)]),
+              gradient: RadialGradient(
+                colors: [_partnerSign.color, _partnerSign.color.withAlpha(50)],
+              ),
             ),
-            child: Center(child: Text(_partnerSign.symbol, style: const TextStyle(fontSize: 16))),
+            child: Center(
+              child: Text(
+                _partnerSign.symbol,
+                style: const TextStyle(fontSize: 16),
+              ),
+            ),
           ),
         ],
       ),
@@ -322,7 +388,9 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen> with SingleTick
         ),
         labelColor: Colors.pink,
         unselectedLabelColor: AppColors.textSecondary,
-        labelStyle: Theme.of(context).textTheme.labelMedium?.copyWith(fontWeight: FontWeight.bold),
+        labelStyle: Theme.of(
+          context,
+        ).textTheme.labelMedium?.copyWith(fontWeight: FontWeight.bold),
         tabs: const [
           Tab(text: 'Genel'),
           Tab(text: 'Aspektler'),
@@ -373,7 +441,8 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen> with SingleTick
         // Kadim Not - Sinastri bilgeliği
         const KadimNotCard(
           title: 'Ruhların Aynası',
-          content: 'Sinastri, iki ruhun kozmik dansını gösteren kadim bir sanat. Haritalar arasındaki açılar, yalnızca uyumu değil - birlikte öğrenilecek dersleri ve ruhsal büyümeyi de ortaya koyar. Her ilişki, evrenin bir okulu.',
+          content:
+              'Sinastri, iki ruhun kozmik dansını gösteren kadim bir sanat. Haritalar arasındaki açılar, yalnızca uyumu değil - birlikte öğrenilecek dersleri ve ruhsal büyümeyi de ortaya koyar. Her ilişki, evrenin bir okulu.',
           category: KadimCategory.astrology,
           source: 'İlişki Astrolojisi',
         ),
@@ -406,19 +475,49 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen> with SingleTick
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          _buildMiniScoreItem(context, 'Duygusal', data.emotionalScore, Colors.pink, '💕'),
+          _buildMiniScoreItem(
+            context,
+            'Duygusal',
+            data.emotionalScore,
+            Colors.pink,
+            '💕',
+          ),
           _buildScoreDivider(),
-          _buildMiniScoreItem(context, 'Zihinsel', data.mentalScore, Colors.blue, '🧠'),
+          _buildMiniScoreItem(
+            context,
+            'Zihinsel',
+            data.mentalScore,
+            Colors.blue,
+            '🧠',
+          ),
           _buildScoreDivider(),
-          _buildMiniScoreItem(context, 'Fiziksel', data.physicalScore, Colors.red, '🔥'),
+          _buildMiniScoreItem(
+            context,
+            'Fiziksel',
+            data.physicalScore,
+            Colors.red,
+            '🔥',
+          ),
           _buildScoreDivider(),
-          _buildMiniScoreItem(context, 'Ruhsal', data.spiritualScore, Colors.purple, '✨'),
+          _buildMiniScoreItem(
+            context,
+            'Ruhsal',
+            data.spiritualScore,
+            Colors.purple,
+            '✨',
+          ),
         ],
       ),
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildMiniScoreItem(BuildContext context, String label, int score, Color color, String emoji) {
+  Widget _buildMiniScoreItem(
+    BuildContext context,
+    String label,
+    int score,
+    Color color,
+    String emoji,
+  ) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -449,11 +548,7 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen> with SingleTick
   }
 
   Widget _buildScoreDivider() {
-    return Container(
-      width: 1,
-      height: 30,
-      color: Colors.white12,
-    );
+    return Container(width: 1, height: 30, color: Colors.white12);
   }
 
   Widget _buildAspectsTab(BuildContext context, SynastryData data) {
@@ -479,9 +574,9 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen> with SingleTick
         _buildSectionTitle(context, 'Ev Yerleşimi'),
         Text(
           'Partnerin gezegenlerinin senin evlerine düşmesi',
-          style: Theme.of(context).textTheme.bodySmall?.copyWith(
-            color: AppColors.textMuted,
-          ),
+          style: Theme.of(
+            context,
+          ).textTheme.bodySmall?.copyWith(color: AppColors.textMuted),
         ),
         const SizedBox(height: AppConstants.spacingMd),
         ...data.houseOverlays.asMap().entries.map((entry) {
@@ -584,7 +679,12 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen> with SingleTick
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildSynastryKeyPoint(BuildContext context, String symbol, String name, String meaning) {
+  Widget _buildSynastryKeyPoint(
+    BuildContext context,
+    String symbol,
+    String name,
+    String meaning,
+  ) {
     return Expanded(
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
@@ -594,7 +694,10 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen> with SingleTick
         ),
         child: Column(
           children: [
-            Text(symbol, style: const TextStyle(fontSize: 16, color: Colors.purple)),
+            Text(
+              symbol,
+              style: const TextStyle(fontSize: 16, color: Colors.purple),
+            ),
             const SizedBox(height: 2),
             Text(
               name,
@@ -629,7 +732,8 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen> with SingleTick
     );
   }
 
-  Widget _buildInfoCard(BuildContext context, {
+  Widget _buildInfoCard(
+    BuildContext context, {
     required String title,
     required String content,
     required IconData icon,
@@ -671,8 +775,14 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen> with SingleTick
     );
   }
 
-  Widget _buildAspectCard(BuildContext context, SynastryAspect aspect, int index) {
-    final Color aspectColor = aspect.isHarmonious ? Colors.green : Colors.orange;
+  Widget _buildAspectCard(
+    BuildContext context,
+    SynastryAspect aspect,
+    int index,
+  ) {
+    final Color aspectColor = aspect.isHarmonious
+        ? Colors.green
+        : Colors.orange;
 
     return Container(
       margin: const EdgeInsets.only(bottom: AppConstants.spacingMd),
@@ -739,7 +849,11 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen> with SingleTick
     ).animate().fadeIn(delay: (index * 100).ms, duration: 400.ms);
   }
 
-  Widget _buildHouseCard(BuildContext context, HouseOverlay overlay, int index) {
+  Widget _buildHouseCard(
+    BuildContext context,
+    HouseOverlay overlay,
+    int index,
+  ) {
     return Container(
       margin: const EdgeInsets.only(bottom: AppConstants.spacingMd),
       padding: const EdgeInsets.all(AppConstants.spacingMd),
@@ -783,9 +897,9 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen> with SingleTick
                     ),
                     Text(
                       '${overlay.house}. Evde',
-                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                        color: Colors.purple,
-                      ),
+                      style: Theme.of(
+                        context,
+                      ).textTheme.titleSmall?.copyWith(color: Colors.purple),
                     ),
                   ],
                 ),
@@ -804,7 +918,11 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen> with SingleTick
     ).animate().fadeIn(delay: (index * 100).ms, duration: 400.ms);
   }
 
-  Widget _buildAdviceCard(BuildContext context, RelationshipAdvice advice, int index) {
+  Widget _buildAdviceCard(
+    BuildContext context,
+    RelationshipAdvice advice,
+    int index,
+  ) {
     return Container(
       margin: const EdgeInsets.only(bottom: AppConstants.spacingMd),
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -881,9 +999,9 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen> with SingleTick
                 ),
                 Text(
                   date.description,
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.textMuted,
-                  ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodySmall?.copyWith(color: AppColors.textMuted),
                 ),
               ],
             ),
@@ -928,7 +1046,9 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen> with SingleTick
                       width: 70,
                       padding: const EdgeInsets.symmetric(vertical: 12),
                       decoration: BoxDecoration(
-                        color: isSelected ? sign.color.withAlpha(40) : AppColors.surfaceLight.withAlpha(20),
+                        color: isSelected
+                            ? sign.color.withAlpha(40)
+                            : AppColors.surfaceLight.withAlpha(20),
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(
                           color: isSelected ? sign.color : Colors.transparent,
@@ -937,14 +1057,22 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen> with SingleTick
                       ),
                       child: Column(
                         children: [
-                          Text(sign.symbol, style: TextStyle(fontSize: 24, color: sign.color)),
+                          Text(
+                            sign.symbol,
+                            style: TextStyle(fontSize: 24, color: sign.color),
+                          ),
                           const SizedBox(height: 4),
                           Text(
                             sign.nameTr,
-                            style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                              color: isSelected ? sign.color : AppColors.textSecondary,
-                              fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-                            ),
+                            style: Theme.of(context).textTheme.labelSmall
+                                ?.copyWith(
+                                  color: isSelected
+                                      ? sign.color
+                                      : AppColors.textSecondary,
+                                  fontWeight: isSelected
+                                      ? FontWeight.bold
+                                      : FontWeight.normal,
+                                ),
                           ),
                         ],
                       ),
@@ -992,17 +1120,28 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen> with SingleTick
     final month = date.month;
     final day = date.day;
 
-    if ((month == 3 && day >= 21) || (month == 4 && day <= 19)) return ZodiacSign.aries;
-    if ((month == 4 && day >= 20) || (month == 5 && day <= 20)) return ZodiacSign.taurus;
-    if ((month == 5 && day >= 21) || (month == 6 && day <= 20)) return ZodiacSign.gemini;
-    if ((month == 6 && day >= 21) || (month == 7 && day <= 22)) return ZodiacSign.cancer;
-    if ((month == 7 && day >= 23) || (month == 8 && day <= 22)) return ZodiacSign.leo;
-    if ((month == 8 && day >= 23) || (month == 9 && day <= 22)) return ZodiacSign.virgo;
-    if ((month == 9 && day >= 23) || (month == 10 && day <= 22)) return ZodiacSign.libra;
-    if ((month == 10 && day >= 23) || (month == 11 && day <= 21)) return ZodiacSign.scorpio;
-    if ((month == 11 && day >= 22) || (month == 12 && day <= 21)) return ZodiacSign.sagittarius;
-    if ((month == 12 && day >= 22) || (month == 1 && day <= 19)) return ZodiacSign.capricorn;
-    if ((month == 1 && day >= 20) || (month == 2 && day <= 18)) return ZodiacSign.aquarius;
+    if ((month == 3 && day >= 21) || (month == 4 && day <= 19))
+      return ZodiacSign.aries;
+    if ((month == 4 && day >= 20) || (month == 5 && day <= 20))
+      return ZodiacSign.taurus;
+    if ((month == 5 && day >= 21) || (month == 6 && day <= 20))
+      return ZodiacSign.gemini;
+    if ((month == 6 && day >= 21) || (month == 7 && day <= 22))
+      return ZodiacSign.cancer;
+    if ((month == 7 && day >= 23) || (month == 8 && day <= 22))
+      return ZodiacSign.leo;
+    if ((month == 8 && day >= 23) || (month == 9 && day <= 22))
+      return ZodiacSign.virgo;
+    if ((month == 9 && day >= 23) || (month == 10 && day <= 22))
+      return ZodiacSign.libra;
+    if ((month == 10 && day >= 23) || (month == 11 && day <= 21))
+      return ZodiacSign.scorpio;
+    if ((month == 11 && day >= 22) || (month == 12 && day <= 21))
+      return ZodiacSign.sagittarius;
+    if ((month == 12 && day >= 22) || (month == 1 && day <= 19))
+      return ZodiacSign.capricorn;
+    if ((month == 1 && day >= 20) || (month == 2 && day <= 18))
+      return ZodiacSign.aquarius;
     return ZodiacSign.pisces;
   }
 }
@@ -1109,12 +1248,17 @@ class SynastryCalculator {
 
     // Calculate element compatibility
     final sameElement = person1Sign.element == person2Sign.element;
-    final compatibleElements = _areElementsCompatible(person1Sign.element.name, person2Sign.element.name);
+    final compatibleElements = _areElementsCompatible(
+      person1Sign.element.name,
+      person2Sign.element.name,
+    );
 
     // Base scores
     int baseScore = 50;
-    if (sameElement) baseScore += 20;
-    else if (compatibleElements) baseScore += 10;
+    if (sameElement) {
+      baseScore += 20;
+    } else if (compatibleElements)
+      baseScore += 10;
 
     // Add some variation
     final emotionalScore = (baseScore + random.nextInt(30)).clamp(30, 95);
@@ -1122,7 +1266,9 @@ class SynastryCalculator {
     final physicalScore = (baseScore + random.nextInt(35) - 10).clamp(30, 95);
     final spiritualScore = (baseScore + random.nextInt(25)).clamp(30, 95);
 
-    final overallScore = ((emotionalScore + mentalScore + physicalScore + spiritualScore) / 4).round();
+    final overallScore =
+        ((emotionalScore + mentalScore + physicalScore + spiritualScore) / 4)
+            .round();
 
     return SynastryData(
       overallScore: overallScore,
@@ -1169,7 +1315,11 @@ class SynastryCalculator {
     }
   }
 
-  static List<String> _getStrengths(ZodiacSign sign1, ZodiacSign sign2, Random random) {
+  static List<String> _getStrengths(
+    ZodiacSign sign1,
+    ZodiacSign sign2,
+    Random random,
+  ) {
     final allStrengths = [
       'Duygusal derinlik ve anlayış',
       'Güçlü iletişim bağları',
@@ -1188,7 +1338,11 @@ class SynastryCalculator {
     return allStrengths.take(count).map((s) => '• $s').toList();
   }
 
-  static List<String> _getChallenges(ZodiacSign sign1, ZodiacSign sign2, Random random) {
+  static List<String> _getChallenges(
+    ZodiacSign sign1,
+    ZodiacSign sign2,
+    Random random,
+  ) {
     final allChallenges = [
       'Farklı iletişim stilleri',
       'Bağımsızlık vs yakınlık dengesi',
@@ -1205,7 +1359,11 @@ class SynastryCalculator {
     return allChallenges.take(count).map((s) => '• $s').toList();
   }
 
-  static List<SynastryAspect> _generateAspects(ZodiacSign sign1, ZodiacSign sign2, Random random) {
+  static List<SynastryAspect> _generateAspects(
+    ZodiacSign sign1,
+    ZodiacSign sign2,
+    Random random,
+  ) {
     final aspects = <SynastryAspect>[
       SynastryAspect(
         planet1: 'Güneş (${sign1.nameTr})',
@@ -1222,7 +1380,8 @@ class SynastryCalculator {
         planet2: 'Mars (${sign2.nameTr})',
         aspectName: random.nextBool() ? 'Kavuşum' : 'Karşıt',
         aspectSymbol: random.nextBool() ? '☌' : '☍',
-        interpretation: 'Fiziksel çekim ve tutku yüksek. Romantik enerji yoğun.',
+        interpretation:
+            'Fiziksel çekim ve tutku yüksek. Romantik enerji yoğun.',
         isHarmonious: true,
       ),
       SynastryAspect(
@@ -1230,7 +1389,8 @@ class SynastryCalculator {
         planet2: 'Merkür (${sign2.nameTr})',
         aspectName: 'Sextil',
         aspectSymbol: '⚹',
-        interpretation: 'İletişim akıcı ve anlaşılır. Fikirleri paylaşma kolaylığı var.',
+        interpretation:
+            'İletişim akıcı ve anlaşılır. Fikirleri paylaşma kolaylığı var.',
         isHarmonious: true,
       ),
     ];
@@ -1238,7 +1398,10 @@ class SynastryCalculator {
     return aspects;
   }
 
-  static List<HouseOverlay> _generateHouseOverlays(ZodiacSign partnerSign, Random random) {
+  static List<HouseOverlay> _generateHouseOverlays(
+    ZodiacSign partnerSign,
+    Random random,
+  ) {
     return [
       HouseOverlay(
         planet: 'Güneş',
@@ -1263,29 +1426,38 @@ class SynastryCalculator {
     ];
   }
 
-  static List<RelationshipAdvice> _generateAdvice(ZodiacSign sign1, ZodiacSign sign2, int score, Random random) {
+  static List<RelationshipAdvice> _generateAdvice(
+    ZodiacSign sign1,
+    ZodiacSign sign2,
+    int score,
+    Random random,
+  ) {
     return [
       const RelationshipAdvice(
         title: 'İletişim',
-        content: 'Açık ve dürüst iletişim kurun. Duygularınızı ifade ederken "ben" dilini kullanın. Dinleme becerilerinizi geliştirin.',
+        content:
+            'Açık ve dürüst iletişim kurun. Duygularınızı ifade ederken "ben" dilini kullanın. Dinleme becerilerinizi geliştirin.',
         icon: Icons.chat_bubble_outline,
         color: Colors.blue,
       ),
       const RelationshipAdvice(
         title: 'Kaliteli Zaman',
-        content: 'Birlikte anlamlı aktiviteler yapın. Ortak hobiler geliştirin. Düzenli "biz zamanı" ayırın.',
+        content:
+            'Birlikte anlamlı aktiviteler yapın. Ortak hobiler geliştirin. Düzenli "biz zamanı" ayırın.',
         icon: Icons.schedule,
         color: Colors.green,
       ),
       const RelationshipAdvice(
         title: 'Saygı',
-        content: 'Birbirinizin sınırlarına saygı gösterin. Farklılıkları kabul edin. Küçük jestlerle takdirinizi gösterin.',
+        content:
+            'Birbirinizin sınırlarına saygı gösterin. Farklılıkları kabul edin. Küçük jestlerle takdirinizi gösterin.',
         icon: Icons.handshake,
         color: Colors.purple,
       ),
       const RelationshipAdvice(
         title: 'Büyüme',
-        content: 'Birlikte ve bireysel olarak büyümeye açık olun. Birbirinizin hedeflerini destekleyin.',
+        content:
+            'Birlikte ve bireysel olarak büyümeye açık olun. Birbirinizin hedeflerini destekleyin.',
         icon: Icons.trending_up,
         color: Colors.orange,
       ),
@@ -1296,17 +1468,20 @@ class SynastryCalculator {
     final now = DateTime.now();
     return [
       ImportantDate(
-        formattedDate: '${now.add(const Duration(days: 14)).day}/${now.add(const Duration(days: 14)).month}',
+        formattedDate:
+            '${now.add(const Duration(days: 14)).day}/${now.add(const Duration(days: 14)).month}',
         event: 'Venüs Trigonu',
         description: 'Romantik enerji yüksek, özel planlar yapın',
       ),
       ImportantDate(
-        formattedDate: '${now.add(const Duration(days: 28)).day}/${now.add(const Duration(days: 28)).month}',
+        formattedDate:
+            '${now.add(const Duration(days: 28)).day}/${now.add(const Duration(days: 28)).month}',
         event: 'Dolunay',
         description: 'Duygusal derinlik, önemli konuşmalara uygun',
       ),
       ImportantDate(
-        formattedDate: '${now.add(const Duration(days: 45)).day}/${now.add(const Duration(days: 45)).month}',
+        formattedDate:
+            '${now.add(const Duration(days: 45)).day}/${now.add(const Duration(days: 45)).month}',
         event: 'Mars Sextili',
         description: 'Ortak projeler ve aktiviteler için ideal',
       ),

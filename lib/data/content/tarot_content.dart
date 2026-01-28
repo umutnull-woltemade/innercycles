@@ -2,6 +2,7 @@
 ///
 /// 22 Major Arcana kartı için detaylı kadim/ezoterik içerikler.
 /// Her kart için: anlam, ters anlam, sembolizm, arketip, tavsiye, meditasyon.
+library;
 
 class MajorArcanaContent {
   final int number;
@@ -57,8 +58,10 @@ final Map<int, MajorArcanaContent> majorArcanaContents = {
     element: 'Hava',
     planet: 'Uranüs',
     hebrewLetter: 'Aleph (א)',
-    keywords: 'Yeni başlangıçlar, masumiyet, spontanlık, inanç sıçrayışı, potansiyel',
-    shortMeaning: 'Bilinmeyene adım atma cesareti. Saf potansiyel ve sınırsız olasılıklar.',
+    keywords:
+        'Yeni başlangıçlar, masumiyet, spontanlık, inanç sıçrayışı, potansiyel',
+    shortMeaning:
+        'Bilinmeyene adım atma cesareti. Saf potansiyel ve sınırsız olasılıklar.',
     deepMeaning: '''
 Deli, Tarot yolculuğunun hem başlangıcı hem sonudur - 0 sayısı sonsuzluğu temsil eder. O henüz hiçbir şey deneyimlememiştir, ama tüm deneyimlerin potansiyelini taşır.
 
@@ -113,8 +116,10 @@ Korkuyu hisset. Sonra bırak. Bir adım at. Düşmüyorsun - uçuyorsun.
 
 Mantra: "Bilinmeyene güveniyorum. Her adım beni doğru yere götürüyor."
 ''',
-    viralQuote: '"Deli ol: Atla, güven, uç. Kaybedecek bir şeyin yok - çünkü her şey zaten seninle."',
-    shadowAspect: 'Sorumsuzluk, kaçış, gerçeklikten kopma, çocuksu davranış, sonuçları düşünmeme.',
+    viralQuote:
+        '"Deli ol: Atla, güven, uç. Kaybedecek bir şeyin yok - çünkü her şey zaten seninle."',
+    shadowAspect:
+        'Sorumsuzluk, kaçış, gerçeklikten kopma, çocuksu davranış, sonuçları düşünmeme.',
   ),
 
   1: const MajorArcanaContent(
@@ -126,7 +131,8 @@ Mantra: "Bilinmeyene güveniyorum. Her adım beni doğru yere götürüyor."
     planet: 'Merkür',
     hebrewLetter: 'Beth (ב)',
     keywords: 'Manifestasyon, irade gücü, beceri, konsantrasyon, eylem',
-    shortMeaning: 'Düşüncelerini gerçeğe dönüştürme gücü. "Yukarıda ne varsa, aşağıda da o var."',
+    shortMeaning:
+        'Düşüncelerini gerçeğe dönüştürme gücü. "Yukarıda ne varsa, aşağıda da o var."',
     deepMeaning: '''
 Büyücü, kozmik enerjinin maddeye dönüştüğü noktadır. Bir eliyle göğü, diğeriyle yeri işaret eder - o bir kanaldır.
 
@@ -181,8 +187,10 @@ Kozmik enerji tependen giriyor, kalbinde dönüşüyor, ellerinden akıyor.
 
 Mantra: "Ben bir kanalım. Evrenin gücü benim aracılığımla akar."
 ''',
-    viralQuote: '"Büyücü ol: Düşün, niyetlen, yarat. Sen evrenin eli, kainatın kalemisin."',
-    shadowAspect: 'Manipülasyon, aldatma, güç sarhoşluğu, yeteneklerin kötüye kullanımı.',
+    viralQuote:
+        '"Büyücü ol: Düşün, niyetlen, yarat. Sen evrenin eli, kainatın kalemisin."',
+    shadowAspect:
+        'Manipülasyon, aldatma, güç sarhoşluğu, yeteneklerin kötüye kullanımı.',
   ),
 
   2: const MajorArcanaContent(
@@ -194,7 +202,8 @@ Mantra: "Ben bir kanalım. Evrenin gücü benim aracılığımla akar."
     planet: 'Ay',
     hebrewLetter: 'Gimel (ג)',
     keywords: 'Sezgi, gizem, bilinçaltı, içsel bilgi, sessizlik',
-    shortMeaning: 'Görünmeyeni gören, bilinmeyeni bilen. İçsel bilgeliğin sesi.',
+    shortMeaning:
+        'Görünmeyeni gören, bilinmeyeni bilen. İçsel bilgeliğin sesi.',
     deepMeaning: '''
 Yüksek Rahibe, bilinçli ve bilinçdışı arasındaki perdenin bekçisidir. Arkasındaki perde, gizemlerin dünyasını örter - ama o geçişe izin verebilir.
 
@@ -250,7 +259,8 @@ Perdenin ardına bakma isteğini hisset. Ama acele etme. Perde kendi zamanında 
 Mantra: "İçsel bilgeliğimi duyuyorum. Sessizlikte cevaplar bana geliyor."
 ''',
     viralQuote: '"Rahibe ol: Sus, dinle, bil. Gizem sende - sen gizemsin."',
-    shadowAspect: 'Gizlilik takıntısı, pasiflik, gerçeklikten kopma, manipülatif sezgi kullanımı.',
+    shadowAspect:
+        'Gizlilik takıntısı, pasiflik, gerçeklikten kopma, manipülatif sezgi kullanımı.',
   ),
 
   3: const MajorArcanaContent(
@@ -262,7 +272,8 @@ Mantra: "İçsel bilgeliğimi duyuyorum. Sessizlikte cevaplar bana geliyor."
     planet: 'Venüs',
     hebrewLetter: 'Daleth (ד)',
     keywords: 'Bereket, yaratıcılık, doğurganlık, doğa, şefkat, güzellik',
-    shortMeaning: 'Yaşamın doğurgan gücü. Bolluk, güzellik ve şefkatin kaynağı.',
+    shortMeaning:
+        'Yaşamın doğurgan gücü. Bolluk, güzellik ve şefkatin kaynağı.',
     deepMeaning: '''
 İmparatoriçe, Büyük Anne'dir - tüm yaşamın doğduğu rahimdir. O, Gaia, Demeter, İştar'ın Tarot'taki yansımasıdır.
 
@@ -309,7 +320,8 @@ Sanat, tasarım, güzellik, sağlık, çocuklarla ilgili işler ön planda.
 
 Sabırlı ol - hasat zamanı yaklaşıyor.
 ''',
-    advice: 'Besle - kendini, başkalarını, projelerini. Sevgiyle sular, sabırla bekle.',
+    advice:
+        'Besle - kendini, başkalarını, projelerini. Sevgiyle sular, sabırla bekle.',
     meditation: '''
 Gözlerini kapat. Bereketli bir bahçede oturduğunu hayal et. Her tarafında çiçekler, meyveler, kuşlar var.
 
@@ -317,8 +329,10 @@ Toprakla bağlantını hisset. Kökler ayaklarından yerin derinliklerine iniyor
 
 Mantra: "Ben bereket kaynağıyım. Verdikçe çoğalıyorum."
 ''',
-    viralQuote: '"İmparatoriçe ol: Besle, büyüt, çiçek aç. Sevgin dünyayı dönüştüren güç."',
-    shadowAspect: 'Aşırı korumacılık, bağımlılık yaratma, kendini ihmal, duygusal manipülasyon.',
+    viralQuote:
+        '"İmparatoriçe ol: Besle, büyüt, çiçek aç. Sevgin dünyayı dönüştüren güç."',
+    shadowAspect:
+        'Aşırı korumacılık, bağımlılık yaratma, kendini ihmal, duygusal manipülasyon.',
   ),
 
   4: const MajorArcanaContent(
@@ -385,8 +399,10 @@ Omuzlarındaki sorumluluğu hisset. Ama yük değil - onur.
 
 Mantra: "Ben sağlam temeller üzerinde duruyorum. Gücüm hizmet içindir."
 ''',
-    viralQuote: '"İmparator ol: Kur, koru, yönet. Ama unutma - taç ağırdır, taşıyan güçlü olmalı."',
-    shadowAspect: 'Tiranlık, aşırı kontrol, katılık, duygusal mesafe, güç sarhoşluğu.',
+    viralQuote:
+        '"İmparator ol: Kur, koru, yönet. Ama unutma - taç ağırdır, taşıyan güçlü olmalı."',
+    shadowAspect:
+        'Tiranlık, aşırı kontrol, katılık, duygusal mesafe, güç sarhoşluğu.',
   ),
 
   5: const MajorArcanaContent(
@@ -445,7 +461,8 @@ Sertifika, diploma, resmi eğitim değerli. Bir mentor bul veya mentor ol.
 
 Eğitim, din, hukuk, büyük kurumlar alanları uygun.
 ''',
-    advice: 'Geleneği öğren, ama kölesi olma. Bir öğretmen bul veya kendin öğret.',
+    advice:
+        'Geleneği öğren, ama kölesi olma. Bir öğretmen bul veya kendin öğret.',
     meditation: '''
 Gözlerini kapat. Kadim bir tapınakta, bir bilgenin önünde diz çöktüğünü hayal et.
 
@@ -453,8 +470,10 @@ Bilge sana bir şey fısıldıyor. Dinle. Bu senin için özel bir mesaj.
 
 Mantra: "Bilgeliği alıyorum, bilgeliği paylaşıyorum. Ben köprüyüm."
 ''',
-    viralQuote: '"Hierophant ol: Öğren, öğret, aktar. Bilgelik paylaşıldıkça çoğalır."',
-    shadowAspect: 'Dogmatizm, körü körüne itaat, otorite korkusu, aşırı muhafazakarlık.',
+    viralQuote:
+        '"Hierophant ol: Öğren, öğret, aktar. Bilgelik paylaşıldıkça çoğalır."',
+    shadowAspect:
+        'Dogmatizm, körü körüne itaat, otorite korkusu, aşırı muhafazakarlık.',
   ),
 
   6: const MajorArcanaContent(
@@ -513,7 +532,8 @@ Ortaklıklar, işbirlikleri, birleşmeler için uygun zaman.
 
 Kalbin seni nereye çekiyor? Bazen "mantıksız" görünen kariyer seçimleri en doğru olanlardır.
 ''',
-    advice: 'Kalbinle seç. Ama aklını da dinle. Gerçek seçim, ikisinin uyumudur.',
+    advice:
+        'Kalbinle seç. Ama aklını da dinle. Gerçek seçim, ikisinin uyumudur.',
     meditation: '''
 Gözlerini kapat. Karşında bir ayna hayal et. Aynada senin "diğer yarın" var - senin zıt kutbun.
 
@@ -521,8 +541,10 @@ Ona yaklaş. Dokunduğunuzda, iki enerji birleşiyor. İkisi de kaybolmuyor - d�
 
 Mantra: "Kendimle birleşiyorum. İçimdeki tüm parçalar uyum içinde."
 ''',
-    viralQuote: '"Aşık ol: Kendinle, hayatla, evrenle. Gerçek aşk içeride başlar."',
-    shadowAspect: 'Bağımlılık, yanlış seçimler, değerlerden kopma, kararsızlık.',
+    viralQuote:
+        '"Aşık ol: Kendinle, hayatla, evrenle. Gerçek aşk içeride başlar."',
+    shadowAspect:
+        'Bağımlılık, yanlış seçimler, değerlerden kopma, kararsızlık.',
   ),
 
   7: const MajorArcanaContent(
@@ -581,7 +603,8 @@ Rekabette öne geç. Ama dürüst oyna - hile kısa vadeli zafer, uzun vadeli ka
 
 Satış, liderlik, girişimcilik, spor alanları ön planda.
 ''',
-    advice: 'Yoluna odaklan. Engeller olacak - onları yönet, onların seni yönetmesine izin verme.',
+    advice:
+        'Yoluna odaklan. Engeller olacak - onları yönet, onların seni yönetmesine izin verme.',
     meditation: '''
 Gözlerini kapat. Bir savaş arabasında duruyorsun. Önünde iki güç var - biri seni sola, biri sağa çekiyor.
 
@@ -589,8 +612,10 @@ Dizginleri bırak. Zihinle yönlendir. İkisi de senin gücün - birlikte ilerle
 
 Mantra: "Zıtlıkları yönetiyorum. İradem beni hedefe taşıyor."
 ''',
-    viralQuote: '"Savaşçı ol: Zorluklara değil, kendinle savaş. Gerçek zafer, iç barıştır."',
-    shadowAspect: 'Saldırganlık, aşırı kontrol, başkalarını ezme, duygusuz ilerleme.',
+    viralQuote:
+        '"Savaşçı ol: Zorluklara değil, kendinle savaş. Gerçek zafer, iç barıştır."',
+    shadowAspect:
+        'Saldırganlık, aşırı kontrol, başkalarını ezme, duygusuz ilerleme.',
   ),
 
   8: const MajorArcanaContent(
@@ -657,8 +682,10 @@ Korkmadan yaklaş. Elini nazikçe kafasına koy. Aslan gözlerini kapatıyor, sa
 
 Mantra: "İçimdeki vahşi güçle barış içindeyim. Şefkatim benim gücüm."
 ''',
-    viralQuote: '"Güçlü ol: Kırma, dönüştür. Gerçek güç, aslanı sevgiyle evcilleştirmektir."',
-    shadowAspect: 'Bastırılmış öfke, pasif-agresif davranış, aşırı kontrol, güçsüzlük hissi.',
+    viralQuote:
+        '"Güçlü ol: Kırma, dönüştür. Gerçek güç, aslanı sevgiyle evcilleştirmektir."',
+    shadowAspect:
+        'Bastırılmış öfke, pasif-agresif davranış, aşırı kontrol, güçsüzlük hissi.',
   ),
 
   9: const MajorArcanaContent(
@@ -670,7 +697,8 @@ Mantra: "İçimdeki vahşi güçle barış içindeyim. Şefkatim benim gücüm."
     planet: 'Başak',
     hebrewLetter: 'Yod (י)',
     keywords: 'İçe dönüş, yalnızlık, arayış, bilgelik, rehberlik, inziva',
-    shortMeaning: 'Karanlıkta ışık tutan bilge. İçsel arayış ve yalnız yolculuk.',
+    shortMeaning:
+        'Karanlıkta ışık tutan bilge. İçsel arayış ve yalnız yolculuk.',
     deepMeaning: '''
 Ermiş, dış dünyadan çekilerek iç dünyayı keşfeden bilgedir. Elindeki fener, aradığı gerçeği simgeler - ve bu gerçek içeridedir.
 
@@ -717,7 +745,8 @@ Kalabalıktan uzaklaş. Niş alanına odaklan. Herkesin yaptığını yapma.
 
 Danışmanlık, araştırma, yazarlık, ruhani meslekler için uygun.
 ''',
-    advice: 'Geri çekil. Dinle. Işığını ara - ve bulduğunda başkalarına da göster.',
+    advice:
+        'Geri çekil. Dinle. Işığını ara - ve bulduğunda başkalarına da göster.',
     meditation: '''
 Gözlerini kapat. Karanlık bir dağ yolunda yürüyorsun. Elindeki fener tek ışık kaynağı.
 
@@ -725,8 +754,10 @@ Her adımda sadece önündeki birkaç metreyi görebiliyorsun. Ama bu yeterli. B
 
 Mantra: "Karanlıkta bile ışığımı taşıyorum. Yolum bana gösteriliyor."
 ''',
-    viralQuote: '"Ermiş ol: Çekil, sessizleş, derinleş. Işık başkalarında değil - içinde."',
-    shadowAspect: 'Aşırı izolasyon, yabancılaşma, üstünlük kompleksi, sosyal kopukluk.',
+    viralQuote:
+        '"Ermiş ol: Çekil, sessizleş, derinleş. Işık başkalarında değil - içinde."',
+    shadowAspect:
+        'Aşırı izolasyon, yabancılaşma, üstünlük kompleksi, sosyal kopukluk.',
   ),
 
   10: const MajorArcanaContent(
@@ -738,7 +769,8 @@ Mantra: "Karanlıkta bile ışığımı taşıyorum. Yolum bana gösteriliyor."
     planet: 'Jüpiter',
     hebrewLetter: 'Kaph (כ)',
     keywords: 'Kader, döngüler, değişim, şans, karma, dönüm noktası',
-    shortMeaning: 'Değişmeyen tek şey, değişimdir. Kaderin dönüşü ve kozmik döngüler.',
+    shortMeaning:
+        'Değişmeyen tek şey, değişimdir. Kaderin dönüşü ve kozmik döngüler.',
     deepMeaning: '''
 Kader Çarkı, evrenin döngüsel doğasını temsil eder. Her şey döner - iyi günler, kötü günler, mevsimler, yaşamlar.
 
@@ -793,7 +825,8 @@ Etrafında insanlar yükseliyor, düşüyor. Sen izliyorsun - dahil olmadan, ama
 
 Mantra: "Değişimin içinde değişmeyenim. Merkezde huzur buluyorum."
 ''',
-    viralQuote: '"Çark döner: Bugünkü zirve, yarının vadisi olabilir. Değişime dans et."',
+    viralQuote:
+        '"Çark döner: Bugünkü zirve, yarının vadisi olabilir. Değişime dans et."',
     shadowAspect: 'Kontrolsüzlük, kadercilik, pasiflik, şanssızlık döngüsü.',
   ),
 
@@ -806,7 +839,8 @@ Mantra: "Değişimin içinde değişmeyenim. Merkezde huzur buluyorum."
     planet: 'Terazi',
     hebrewLetter: 'Lamed (ל)',
     keywords: 'Adalet, denge, doğruluk, hukuk, karma, karar',
-    shortMeaning: 'Evrensel denge yasası. Eylemlerimizin sonuçlarıyla yüzleşme.',
+    shortMeaning:
+        'Evrensel denge yasası. Eylemlerimizin sonuçlarıyla yüzleşme.',
     deepMeaning: '''
 Adalet, kozmik dengenin bekçisidir. Elindeki terazi, tüm eylemlerin tartıldığını gösterir - hiçbir şey kaybolmaz.
 
@@ -862,7 +896,8 @@ Terazi dengeleniyor mu? Değilse, hangi eylemler eksik veya fazla?
 Mantra: "Eylemlerimin sorumluluğunu alıyorum. Adalet benimle başlıyor."
 ''',
     viralQuote: '"Adalet zamanla dengelenir - ektiğini biçersin."',
-    shadowAspect: 'Katı yargılama, intikam, sorumsuzluk, suçlama, kendini kandırma.',
+    shadowAspect:
+        'Katı yargılama, intikam, sorumsuzluk, suçlama, kendini kandırma.',
   ),
 
   12: const MajorArcanaContent(
@@ -873,8 +908,10 @@ Mantra: "Eylemlerimin sorumluluğunu alıyorum. Adalet benimle başlıyor."
     element: 'Su',
     planet: 'Neptün',
     hebrewLetter: 'Mem (מ)',
-    keywords: 'Teslimiyet, bekleyiş, fedakarlık, perspektif değişimi, aydınlanma',
-    shortMeaning: 'Baş aşağı bakınca dünya farklı görünür. Teslimiyet ve yeni perspektif.',
+    keywords:
+        'Teslimiyet, bekleyiş, fedakarlık, perspektif değişimi, aydınlanma',
+    shortMeaning:
+        'Baş aşağı bakınca dünya farklı görünür. Teslimiyet ve yeni perspektif.',
     deepMeaning: '''
 Asılan Adam, paradoksun kartıdır. Bağlı ama özgür, düşmüş ama yükselmiş, acı çekiyor ama huzurlu.
 
@@ -921,7 +958,8 @@ Zorlamak işe yaramıyor. Geri adım at, perspektif kazan, sonra hareket et.
 
 Sabbatical, kariyer değişikliği düşünme, araştırma dönemi.
 ''',
-    advice: 'Teslim ol. Bekle. Perspektifini değiştir. Bazen hiçbir şey yapmamak, en doğru eylemdir.',
+    advice:
+        'Teslim ol. Bekle. Perspektifini değiştir. Bazen hiçbir şey yapmamak, en doğru eylemdir.',
     meditation: '''
 Gözlerini kapat. Kendini baş aşağı asılmış hayal et. Başta rahatsız, sonra... huzur.
 
@@ -929,8 +967,10 @@ Dünya ters görünüyor. Ama belki dünya zaten tersken, sen doğru yöne bakı
 
 Mantra: "Teslim oluyorum. Evrenin zamanlamasına güveniyorum."
 ''',
-    viralQuote: '"Asıl: Teslim ol, bırak, bekle. Bazen en büyük güç, hiçbir şey yapmamaktır."',
-    shadowAspect: 'Kurban zihniyeti, pasiflik, şehitlik kompleksi, gerekli eylemi yapmama.',
+    viralQuote:
+        '"Asıl: Teslim ol, bırak, bekle. Bazen en büyük güç, hiçbir şey yapmamaktır."',
+    shadowAspect:
+        'Kurban zihniyeti, pasiflik, şehitlik kompleksi, gerekli eylemi yapmama.',
   ),
 
   13: const MajorArcanaContent(
@@ -997,7 +1037,8 @@ Ona teşekkür et. Sarıl. Sonra bırak. İzle nasıl dönüşüyor - yok olmuyo
 
 Mantra: "Ölümden korkmuyorum. Her son, yeni bir başlangıç."
 ''',
-    viralQuote: '"Öl ve yeniden doğ: Her gün, her an. Dönüşüm, evrenin nefesidir."',
+    viralQuote:
+        '"Öl ve yeniden doğ: Her gün, her an. Dönüşüm, evrenin nefesidir."',
     shadowAspect: 'Değişim korkusu, saplantılı tutunma, yıkıcılık, nihilizm.',
   ),
 
@@ -1057,7 +1098,8 @@ Farklı becerileri, projeleri, ekipleri entegre etme zamanı.
 
 Sağlık, terapi, danışmanlık, arabuluculuk alanları uygun.
 ''',
-    advice: 'Denge kur. Sabırlı ol. Zıtları birleştir - sonuç ikisinden de büyük olur.',
+    advice:
+        'Denge kur. Sabırlı ol. Zıtları birleştir - sonuç ikisinden de büyük olur.',
     meditation: '''
 Gözlerini kapat. Ellerinde iki kupa var - birinde ateş, birinde su.
 
@@ -1066,7 +1108,8 @@ Yavaşça birinden diğerine akıt. Ateş ve su birleşiyor - buhar yükseliyor.
 Mantra: "Zıtlıkları birleştiriyorum. Dengede güç buluyorum."
 ''',
     viralQuote: '"Denge bul: Ne az ne çok. Gerçek ustalık, ortada durmaktır."',
-    shadowAspect: 'Aşırılıklar, bağımlılık, kaçınma, yapay uyum, kendini kandırma.',
+    shadowAspect:
+        'Aşırılıklar, bağımlılık, kaçınma, yapay uyum, kendini kandırma.',
   ),
 
   15: const MajorArcanaContent(
@@ -1125,7 +1168,8 @@ Para için ruhunu satıyor musun? Etik çizgini aştın mı?
 
 Kurumsal tuzaklar, altın kafesler. Güvenlik için özgürlükten vazgeçmek.
 ''',
-    advice: 'Zincirlerine bak. Kim taktı? Cevap aynada. Çıkış mümkün - ister misin?',
+    advice:
+        'Zincirlerine bak. Kim taktı? Cevap aynada. Çıkış mümkün - ister misin?',
     meditation: '''
 Gözlerini kapat. Karanlık bir odadasın. Gölgen karşında duruyor - senden büyük, korkutucu.
 
@@ -1135,8 +1179,10 @@ Gölge küçülüyor. Artık korkutmuyor - sadece sana bakıyor.
 
 Mantra: "Gölgemi kabul ediyorum. O benim parçam - ama ben değilim."
 ''',
-    viralQuote: '"Şeytanın yüzüne bak - kendi gözlerini göreceksin. Zincirleri sen taktın, sen çıkarırsın."',
-    shadowAspect: 'Bağımlılık, kontrol, manipülasyon, maddecilik, kendini kandırma.',
+    viralQuote:
+        '"Şeytanın yüzüne bak - kendi gözlerini göreceksin. Zincirleri sen taktın, sen çıkarırsın."',
+    shadowAspect:
+        'Bağımlılık, kontrol, manipülasyon, maddecilik, kendini kandırma.',
   ),
 
   16: const MajorArcanaContent(
@@ -1148,7 +1194,8 @@ Mantra: "Gölgemi kabul ediyorum. O benim parçam - ama ben değilim."
     planet: 'Mars',
     hebrewLetter: 'Peh (פ)',
     keywords: 'Ani değişim, yıkım, vahiy, kriz, çöküş, özgürleşme',
-    shortMeaning: 'Yıldırım çarptığında gerçek ortaya çıkar. Yıkımdan doğan aydınlanma.',
+    shortMeaning:
+        'Yıldırım çarptığında gerçek ortaya çıkar. Yıkımdan doğan aydınlanma.',
     deepMeaning: '''
 Kule, kaçınılmaz yıkımın kartıdır. Sahte temeller üzerine kurulu yapılar yıkılmalıdır - gerçek ortaya çıksın diye.
 
@@ -1195,7 +1242,8 @@ Planların çöküyor - ama belki de yanlış planlardı.
 
 Kriz anında sakin kal. Panik kararlar verme.
 ''',
-    advice: 'Yıkıma direnmeSenin ellerin. Bırak çöksün. Enkazdan yeni bir şey inşa edeceksin.',
+    advice:
+        'Yıkıma direnmeSenin ellerin. Bırak çöksün. Enkazdan yeni bir şey inşa edeceksin.',
     meditation: '''
 Gözlerini kapat. Büyük bir kulenin tepesinde duruyorsun. Yıldırım çakıyor, kule sallanıyor.
 
@@ -1205,8 +1253,10 @@ Yere değil, gökyüzüne doğru düşüyorsun.
 
 Mantra: "Yıkımdan korkmuyorum. Her çöküş, yeni bir yükselişin başlangıcı."
 ''',
-    viralQuote: '"Yıkılsın: Sahte temeller, sahte hayatlar, sahte benlikler. Gerçek olan, yıkılamaz."',
-    shadowAspect: 'Yıkıcılık, ani öfke patlamaları, kaos yaratma, kendini sabotaj.',
+    viralQuote:
+        '"Yıkılsın: Sahte temeller, sahte hayatlar, sahte benlikler. Gerçek olan, yıkılamaz."',
+    shadowAspect:
+        'Yıkıcılık, ani öfke patlamaları, kaos yaratma, kendini sabotaj.',
   ),
 
   17: const MajorArcanaContent(
@@ -1265,7 +1315,8 @@ Zor dönemden sonra iyileşme. Yeni başlangıçlar için uygun zaman.
 
 Sanat, müzik, yardım işleri, çevre koruma alanları ön planda.
 ''',
-    advice: 'Umudunu koru. Işığını paylaş. Şifa için sabırlı ol - ama şifanın geldiğine inan.',
+    advice:
+        'Umudunu koru. Işığını paylaş. Şifa için sabırlı ol - ama şifanın geldiğine inan.',
     meditation: '''
 Gözlerini kapat. Yıldızlı bir gecede, berrak bir gölün kenarında oturuyorsun.
 
@@ -1273,7 +1324,8 @@ Gökyüzüne bak. Yıldızlar seninle konuşuyor - her biri bir mesaj.
 
 Mantra: "Evrenden rehberlik alıyorum. Işık her zaman benimle."
 ''',
-    viralQuote: '"Yıldız ol: Karanlıkta parla, umut saç, şifa ver. En karanlık gecede bile, ışık var."',
+    viralQuote:
+        '"Yıldız ol: Karanlıkta parla, umut saç, şifa ver. En karanlık gecede bile, ışık var."',
     shadowAspect: 'Aşırı idealizm, gerçeklikten kopuş, pasif umut, hayalcilik.',
   ),
 
@@ -1286,7 +1338,8 @@ Mantra: "Evrenden rehberlik alıyorum. Işık her zaman benimle."
     planet: 'Balık',
     hebrewLetter: 'Qoph (ק)',
     keywords: 'Illüzyon, bilinçaltı, korkular, gölgeler, sezgi, rüyalar',
-    shortMeaning: 'Ay ışığında her şey farklı görünür. Bilinçaltının karanlık suları.',
+    shortMeaning:
+        'Ay ışığında her şey farklı görünür. Bilinçaltının karanlık suları.',
     deepMeaning: '''
 Ay, bilinçaltının karanlık ve gizemli dünyasını temsil eder. Güneş gerçeği gösterir - Ay, gerçeğin gölgelerini.
 
@@ -1333,7 +1386,8 @@ Yaratıcı işler, sanat, psikoloji, gizem alanları için uygun.
 
 Önemli kararlar için bu dönem uygun değil - daha fazla bilgi gerekiyor.
 ''',
-    advice: 'Karanlıkta yürü. Gözlerin alışacak. Sezgilerine güven - ama doğrula.',
+    advice:
+        'Karanlıkta yürü. Gözlerin alışacak. Sezgilerine güven - ama doğrula.',
     meditation: '''
 Gözlerini kapat. Ay ışığında bir orman yolundasın. Gölgeler hareket ediyor - ya da öyle mi görünüyor?
 
@@ -1341,7 +1395,8 @@ Korkma. Yürümeye devam et. Gölgeler sadece gölge - gerçek değil.
 
 Mantra: "Karanlıkta bile görüyorum. Sezgilerim beni yönlendiriyor."
 ''',
-    viralQuote: '"Ay\'a bak: Tam değil, eksik - ama güzel. Karanlık da ışığın parçası."',
+    viralQuote:
+        '"Ay\'a bak: Tam değil, eksik - ama güzel. Karanlık da ışığın parçası."',
     shadowAspect: 'Korku, paranoya, illüzyon, aldatma, bilinçaltı bastırma.',
   ),
 
@@ -1409,7 +1464,8 @@ O çocuk hâlâ içinde. Onu selamla. Onunla oyna.
 
 Mantra: "Işığım parlıyor. Neşem bulaşıcı. İçimdeki çocuk özgür."
 ''',
-    viralQuote: '"Güneş ol: Parla, ısıt, aydınlat. Koşulsuz, karşılıksız - sadece ol."',
+    viralQuote:
+        '"Güneş ol: Parla, ısıt, aydınlat. Koşulsuz, karşılıksız - sadece ol."',
     shadowAspect: 'Naiflik, aşırı iyimserlik, kibirli ışık, gölgeyi reddetme.',
   ),
 
@@ -1422,7 +1478,8 @@ Mantra: "Işığım parlıyor. Neşem bulaşıcı. İçimdeki çocuk özgür."
     planet: 'Pluto',
     hebrewLetter: 'Shin (ש)',
     keywords: 'Yeniden doğuş, çağrı, yargılama, uyanış, özgürleşme, kefaret',
-    shortMeaning: 'Borazan çalıyor - uyanma zamanı. Yeniden doğuş ve kozmik çağrı.',
+    shortMeaning:
+        'Borazan çalıyor - uyanma zamanı. Yeniden doğuş ve kozmik çağrı.',
     deepMeaning: '''
 Yargı, son değil - yeni başlangıçtır. Meleklerin borazanı, ruhları uyandırır.
 
@@ -1477,7 +1534,8 @@ Yerden yüksel. Eski benliğini arkanda bırak. Yeni sen doğuyor.
 
 Mantra: "Çağrıyı duyuyorum. Uyanıyorum. Yeniden doğuyorum."
 ''',
-    viralQuote: '"Uyan: Borazan çalıyor. Geçmiş geride, gelecek belirsiz - ama şimdi burada."',
+    viralQuote:
+        '"Uyan: Borazan çalıyor. Geçmiş geride, gelecek belirsiz - ama şimdi burada."',
     shadowAspect: 'Kendini yargılama, suçluluk, çağrıdan kaçış, affetmeme.',
   ),
 
@@ -1490,7 +1548,8 @@ Mantra: "Çağrıyı duyuyorum. Uyanıyorum. Yeniden doğuyorum."
     planet: 'Satürn',
     hebrewLetter: 'Tav (ת)',
     keywords: 'Tamamlanma, bütünlük, başarı, entegrasyon, döngü sonu',
-    shortMeaning: 'Yolculuk tamamlandı. Bütünlük, başarı ve yeni döngünün eşiği.',
+    shortMeaning:
+        'Yolculuk tamamlandı. Bütünlük, başarı ve yeni döngünün eşiği.',
     deepMeaning: '''
 Dünya, Major Arcana'nın son kartıdır - ama aynı zamanda yeni bir başlangıcın eşiği. Deli'nin yolculuğu tamamlandı.
 
@@ -1537,7 +1596,8 @@ Proje tamamlanıyor. Terfi, ödül, tanınma.
 
 Ama dikkat: Bir döngü bitiyor. Sıradaki ne?
 ''',
-    advice: 'Kutla. Şükret. Entegre et. Ve hazırlan - yeni bir yolculuk başlamak üzere.',
+    advice:
+        'Kutla. Şükret. Entegre et. Ve hazırlan - yeni bir yolculuk başlamak üzere.',
     meditation: '''
 Gözlerini kapat. Evrenin merkezinde duruyorsun. Dört yön seni selamlıyor.
 
@@ -1545,8 +1605,10 @@ Her şeyle bağlantını hisset. Sen ayrı değilsin - bütünün parçasısın.
 
 Mantra: "Ben bütünüm. Evrenle bir. Ve yolculuk devam ediyor."
 ''',
-    viralQuote: '"Dünya senin: Tamamla, kutla, devam et. Her son, yeni bir şarkının girişi."',
-    shadowAspect: 'Tamamlanma yanılgısı, durgunluk, yeni başlangıçtan korku, kibirli memnuniyet.',
+    viralQuote:
+        '"Dünya senin: Tamamla, kutla, devam et. Her son, yeni bir şarkının girişi."',
+    shadowAspect:
+        'Tamamlanma yanılgısı, durgunluk, yeni başlangıçtan korku, kibirli memnuniyet.',
   ),
 };
 

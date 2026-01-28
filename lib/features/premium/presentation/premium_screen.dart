@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/services/premium_service.dart';
@@ -79,17 +80,17 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
         Text(
           'Venus One Premium',
           style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                color: AppColors.starGold,
-                fontWeight: FontWeight.bold,
-              ),
+            color: AppColors.starGold,
+            fontWeight: FontWeight.bold,
+          ),
         ).animate().fadeIn(duration: 400.ms),
         const SizedBox(height: 8),
         Text(
           'Kozmik yolculuğunuzu sınırsız deneyimleyin',
           textAlign: TextAlign.center,
-          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: AppColors.textSecondary,
-              ),
+          style: Theme.of(
+            context,
+          ).textTheme.bodyMedium?.copyWith(color: AppColors.textSecondary),
         ).animate().fadeIn(delay: 100.ms, duration: 400.ms),
       ],
     );
@@ -97,28 +98,26 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
 
   Widget _buildPremiumBadge() {
     return Container(
-      padding: const EdgeInsets.all(24),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            AppColors.starGold.withOpacity(0.3),
-            AppColors.auroraStart.withOpacity(0.3),
-          ],
-        ),
-        shape: BoxShape.circle,
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.starGold.withOpacity(0.3),
-            blurRadius: 30,
-            spreadRadius: 5,
+          padding: const EdgeInsets.all(24),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                AppColors.starGold.withOpacity(0.3),
+                AppColors.auroraStart.withOpacity(0.3),
+              ],
+            ),
+            shape: BoxShape.circle,
+            boxShadow: [
+              BoxShadow(
+                color: AppColors.starGold.withOpacity(0.3),
+                blurRadius: 30,
+                spreadRadius: 5,
+              ),
+            ],
           ),
-        ],
-      ),
-      child: const Text(
-        '✨',
-        style: TextStyle(fontSize: 64),
-      ),
-    ).animate()
+          child: const Text('✨', style: TextStyle(fontSize: 64)),
+        )
+        .animate()
         .fadeIn(delay: 200.ms, duration: 400.ms)
         .scale(begin: const Offset(0.8, 0.8), curve: Curves.elasticOut);
   }
@@ -138,12 +137,12 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
         children: [
           Text(
             'Kozmik Güçler',
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  color: AppColors.starGold,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleMedium?.copyWith(color: AppColors.starGold),
           ),
           const SizedBox(height: AppConstants.spacingMd),
-          ...features.map((feature) => _FeatureItem(feature: feature)).toList(),
+          ...features.map((feature) => _FeatureItem(feature: feature)),
         ],
       ),
     ).animate().fadeIn(delay: 300.ms, duration: 400.ms);
@@ -208,7 +207,9 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                         height: 24,
                         child: CircularProgressIndicator(
                           strokeWidth: 2,
-                          valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                            Colors.white,
+                          ),
                         ),
                       )
                     : Text(
@@ -232,8 +233,9 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
       onPressed: premiumState.isLoading
           ? null
           : () async {
-              final restored =
-                  await ref.read(premiumProvider.notifier).restorePurchases();
+              final restored = await ref
+                  .read(premiumProvider.notifier)
+                  .restorePurchases();
               if (mounted) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
@@ -242,8 +244,9 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                           ? 'Satın alımlar geri yüklendi!'
                           : 'Geri yüklenecek satın alım bulunamadı.',
                     ),
-                    backgroundColor:
-                        restored ? AppColors.success : AppColors.error,
+                    backgroundColor: restored
+                        ? AppColors.success
+                        : AppColors.error,
                   ),
                 );
               }
@@ -265,9 +268,9 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
         'Satın alma işlemi, onaylandıktan sonra iTunes/Google Play hesabınızdan tahsil edilecektir. Abonelik, mevcut dönemin bitiminden en az 24 saat önce otomatik yenileme kapatılmadığı sürece otomatik olarak yenilenir.',
         textAlign: TextAlign.center,
         style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: AppColors.textMuted,
-              fontSize: 10,
-            ),
+          color: AppColors.textMuted,
+          fontSize: 10,
+        ),
       ),
     );
   }
@@ -326,19 +329,15 @@ class _FeatureItem extends StatelessWidget {
               color: AppColors.starGold.withOpacity(0.2),
               shape: BoxShape.circle,
             ),
-            child: const Icon(
-              Icons.check,
-              color: AppColors.starGold,
-              size: 14,
-            ),
+            child: const Icon(Icons.check, color: AppColors.starGold, size: 14),
           ),
           const SizedBox(width: 12),
           Expanded(
             child: Text(
               feature,
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: AppColors.textPrimary,
-                  ),
+              style: Theme.of(
+                context,
+              ).textTheme.bodyMedium?.copyWith(color: AppColors.textPrimary),
             ),
           ),
         ],
@@ -408,7 +407,11 @@ class _PlanCard extends StatelessWidget {
                             : Colors.transparent,
                       ),
                       child: isSelected
-                          ? const Icon(Icons.check, size: 16, color: Colors.black)
+                          ? const Icon(
+                              Icons.check,
+                              size: 16,
+                              color: Colors.black,
+                            )
                           : null,
                     ),
                     const SizedBox(width: 16),
@@ -418,7 +421,8 @@ class _PlanCard extends StatelessWidget {
                         children: [
                           Text(
                             tier.displayName,
-                            style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                            style: Theme.of(context).textTheme.titleSmall
+                                ?.copyWith(
                                   color: isSelected
                                       ? AppColors.starGold
                                       : AppColors.textPrimary,
@@ -428,9 +432,8 @@ class _PlanCard extends StatelessWidget {
                           if (tier.savings.isNotEmpty)
                             Text(
                               tier.savings,
-                              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                                    color: AppColors.success,
-                                  ),
+                              style: Theme.of(context).textTheme.bodySmall
+                                  ?.copyWith(color: AppColors.success),
                             ),
                         ],
                       ),
@@ -438,11 +441,11 @@ class _PlanCard extends StatelessWidget {
                     Text(
                       tier.price,
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            color: isSelected
-                                ? AppColors.starGold
-                                : AppColors.textPrimary,
-                            fontWeight: FontWeight.bold,
-                          ),
+                        color: isSelected
+                            ? AppColors.starGold
+                            : AppColors.textPrimary,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ],
                 ),

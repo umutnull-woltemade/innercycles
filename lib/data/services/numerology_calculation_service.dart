@@ -26,7 +26,8 @@ class Pinnacle {
     this.advice = '',
   });
 
-  bool isActive(int currentAge) => currentAge >= startAge && currentAge <= endAge;
+  bool isActive(int currentAge) =>
+      currentAge >= startAge && currentAge <= endAge;
 
   @override
   String toString() => 'Pinnacle($number: age $startAge-$endAge)';
@@ -50,7 +51,8 @@ class Challenge {
     this.howToOvercome = '',
   });
 
-  bool isActive(int currentAge) => currentAge >= startAge && currentAge <= endAge;
+  bool isActive(int currentAge) =>
+      currentAge >= startAge && currentAge <= endAge;
 
   @override
   String toString() => 'Challenge($number: age $startAge-$endAge)';
@@ -257,9 +259,7 @@ class NumerologyCalculationService {
   };
 
   /// Vowels in Chaldean system (Y can be vowel or consonant)
-  static const Set<String> _chaldeanVowels = {
-    'A', 'E', 'I', 'O', 'U',
-  };
+  static const Set<String> _chaldeanVowels = {'A', 'E', 'I', 'O', 'U'};
 
   // ==========================================================================
   // LETTER VALUE METHODS
@@ -399,7 +399,8 @@ class NumerologyCalculationService {
   /// Some numerologists prefer this approach
   static int calculateLifePathAlternative(DateTime birthDate) {
     // Add all digits together without reducing components first
-    final dateString = '${birthDate.year}${birthDate.month.toString().padLeft(2, '0')}${birthDate.day.toString().padLeft(2, '0')}';
+    final dateString =
+        '${birthDate.year}${birthDate.month.toString().padLeft(2, '0')}${birthDate.day.toString().padLeft(2, '0')}';
     var sum = 0;
     for (final char in dateString.split('')) {
       sum += int.tryParse(char) ?? 0;
@@ -459,7 +460,8 @@ class NumerologyCalculationService {
   /// Calculate Maturity Number (Life Path + Expression)
   /// Represents the person you're becoming
   static int calculateMaturity(int lifePath, int expression) {
-    final sum = _reduceToSingleDigit(lifePath) + _reduceToSingleDigit(expression);
+    final sum =
+        _reduceToSingleDigit(lifePath) + _reduceToSingleDigit(expression);
     return _reduceToSingleDigitOrMaster(sum);
   }
 
@@ -500,7 +502,10 @@ class NumerologyCalculationService {
 
   /// Calculate Subconscious Self Number
   /// Based on how many numbers are present in the name (out of 9)
-  static int calculateSubconsciousSelf(String fullName, {bool chaldean = false}) {
+  static int calculateSubconsciousSelf(
+    String fullName, {
+    bool chaldean = false,
+  }) {
     final missing = getMissingNumbers(fullName, chaldean: chaldean);
     return 9 - missing.length;
   }
@@ -592,44 +597,60 @@ class NumerologyCalculationService {
     final lessons = {
       1: const KarmicLesson(
         number: 1,
-        description: 'Ozguven ve bagimsizlik konusunda dersler ogrenmeniz gerekiyor.',
-        howToHeal: 'Kendi kararlarinizi vermeyi, liderlik almaya ve kendinize guvenmeyi ogrenmek.',
+        description:
+            'Ozguven ve bagimsizlik konusunda dersler ogrenmeniz gerekiyor.',
+        howToHeal:
+            'Kendi kararlarinizi vermeyi, liderlik almaya ve kendinize guvenmeyi ogrenmek.',
         affirmations: ['Ben guclu ve bagimsizim', 'Kendi yolumu yaratiyorum'],
       ),
       2: const KarmicLesson(
         number: 2,
         description: 'Isbirligi ve diplomasi konusunda gelismeniz gerekiyor.',
-        howToHeal: 'Sabir, empati ve baskalariyla uyum icinde calismayi ogrenmek.',
+        howToHeal:
+            'Sabir, empati ve baskalariyla uyum icinde calismayi ogrenmek.',
         affirmations: ['Isbirligine acigim', 'Uyum yaratiyorum'],
       ),
       3: const KarmicLesson(
         number: 3,
         description: 'Yaratici ifade ve iletisim konusunda engelleriniz var.',
-        howToHeal: 'Kendinizi ifade etmekten korkmamak, yaraticiligi kucaklamak.',
-        affirmations: ['Yaraticiligimi ozgurce ifade ediyorum', 'Sesim degerli'],
+        howToHeal:
+            'Kendinizi ifade etmekten korkmamak, yaraticiligi kucaklamak.',
+        affirmations: [
+          'Yaraticiligimi ozgurce ifade ediyorum',
+          'Sesim degerli',
+        ],
       ),
       4: const KarmicLesson(
         number: 4,
-        description: 'Disiplin, organizasyon ve pratiklik konusunda calismaniz gerekiyor.',
+        description:
+            'Disiplin, organizasyon ve pratiklik konusunda calismaniz gerekiyor.',
         howToHeal: 'Duzenli calisma, planlama ve sabir gelistirmek.',
-        affirmations: ['Duzen ve stabilite yaratiyorum', 'Sabirla insa ediyorum'],
+        affirmations: [
+          'Duzen ve stabilite yaratiyorum',
+          'Sabirla insa ediyorum',
+        ],
       ),
       5: const KarmicLesson(
         number: 5,
-        description: 'Degisim, ozgurluk ve adaptasyon konusunda dersleriniz var.',
-        howToHeal: 'Degisimi kucaklamak, esnek olmak, yeni deneyimlere acik olmak.',
+        description:
+            'Degisim, ozgurluk ve adaptasyon konusunda dersleriniz var.',
+        howToHeal:
+            'Degisimi kucaklamak, esnek olmak, yeni deneyimlere acik olmak.',
         affirmations: ['Degisime acigim', 'Ozgurlugumu kutluyorum'],
       ),
       6: const KarmicLesson(
         number: 6,
-        description: 'Sorumluluk, aile ve bakim verme konusunda ogreniminiz var.',
+        description:
+            'Sorumluluk, aile ve bakim verme konusunda ogreniminiz var.',
         howToHeal: 'Baskalarina sefkat gostermek, sorumluluk almak.',
         affirmations: ['Sevgiyle bakim veriyorum', 'Ailem icin varim'],
       ),
       7: const KarmicLesson(
         number: 7,
-        description: 'Spiritüel arayis ve icsel bilgelik konusunda gelismeniz gerekiyor.',
-        howToHeal: 'Meditasyon, kendini tanimayla, derin dusunce ile baglanmak.',
+        description:
+            'Spiritüel arayis ve icsel bilgelik konusunda gelismeniz gerekiyor.',
+        howToHeal:
+            'Meditasyon, kendini tanimayla, derin dusunce ile baglanmak.',
         affirmations: ['Icsel bilgeligimi dinliyorum', 'Derinlige iniyorum'],
       ),
       8: const KarmicLesson(
@@ -640,7 +661,8 @@ class NumerologyCalculationService {
       ),
       9: const KarmicLesson(
         number: 9,
-        description: 'Evrensel sevgi, sefkat ve birakma konusunda ogreniminiz var.',
+        description:
+            'Evrensel sevgi, sefkat ve birakma konusunda ogreniminiz var.',
         howToHeal: 'Kosulsuz sevgi, affetme ve hizmet etmeyi ogrenmek.',
         affirmations: ['Kosulsuz seviyorum', 'Kolayca birakiyorum'],
       ),
@@ -691,9 +713,15 @@ class NumerologyCalculationService {
   }
 
   /// Get complete cycle information for a date
-  static Map<String, int> getCompleteCycles(DateTime birthDate, DateTime currentDate) {
+  static Map<String, int> getCompleteCycles(
+    DateTime birthDate,
+    DateTime currentDate,
+  ) {
     final personalYear = calculatePersonalYear(birthDate, currentDate.year);
-    final personalMonth = calculatePersonalMonth(personalYear, currentDate.month);
+    final personalMonth = calculatePersonalMonth(
+      personalYear,
+      currentDate.month,
+    );
     final personalDay = calculatePersonalDay(personalMonth, currentDate.day);
 
     return {
@@ -701,8 +729,15 @@ class NumerologyCalculationService {
       'personalMonth': personalMonth,
       'personalDay': personalDay,
       'universalYear': calculateUniversalYear(currentDate.year),
-      'universalMonth': calculateUniversalMonth(currentDate.year, currentDate.month),
-      'universalDay': calculateUniversalDay(currentDate.year, currentDate.month, currentDate.day),
+      'universalMonth': calculateUniversalMonth(
+        currentDate.year,
+        currentDate.month,
+      ),
+      'universalDay': calculateUniversalDay(
+        currentDate.year,
+        currentDate.month,
+        currentDate.day,
+      ),
     };
   }
 
@@ -966,7 +1001,10 @@ class NumerologyCalculationService {
   // ==========================================================================
 
   /// Analyze name using Pythagorean grid (Lo Shu grid concept)
-  static Map<String, int> analyzeNameGrid(String fullName, {bool chaldean = false}) {
+  static Map<String, int> analyzeNameGrid(
+    String fullName, {
+    bool chaldean = false,
+  }) {
     final name = _normalizeNameForCalculation(fullName);
     final grid = <String, int>{
       'mental': 0, // 1, 2, 3 - Mental plane
@@ -987,7 +1025,8 @@ class NumerologyCalculationService {
 
       // Diagonals
       if ([1, 5, 9].contains(value)) grid['will'] = grid['will']! + 1;
-      if ([3, 5, 7].contains(value)) grid['creativity'] = grid['creativity']! + 1;
+      if ([3, 5, 7].contains(value))
+        grid['creativity'] = grid['creativity']! + 1;
       if ([2, 5, 8].contains(value)) grid['intuition'] = grid['intuition']! + 1;
     }
 
@@ -1009,7 +1048,10 @@ class NumerologyCalculationService {
   }
 
   /// Get frequency of each number in the name
-  static Map<int, int> getNumberFrequency(String fullName, {bool chaldean = false}) {
+  static Map<int, int> getNumberFrequency(
+    String fullName, {
+    bool chaldean = false,
+  }) {
     final name = _normalizeNameForCalculation(fullName);
     final frequency = <int, int>{};
 
@@ -1024,7 +1066,10 @@ class NumerologyCalculationService {
   }
 
   /// Get the intensity of each number (how many times it appears)
-  static Map<int, String> getNumberIntensities(String fullName, {bool chaldean = false}) {
+  static Map<int, String> getNumberIntensities(
+    String fullName, {
+    bool chaldean = false,
+  }) {
     final frequency = getNumberFrequency(fullName, chaldean: chaldean);
     final intensities = <int, String>{};
 
@@ -1124,34 +1169,58 @@ class NumerologyCalculationService {
 
     // Calculate individual compatibility scores
     final lifePathScore = calculateCompatibilityScore(lifePath1, lifePath2);
-    final expressionScore = calculateCompatibilityScore(expression1, expression2);
+    final expressionScore = calculateCompatibilityScore(
+      expression1,
+      expression2,
+    );
     final soulUrgeScore = calculateCompatibilityScore(soulUrge1, soulUrge2);
-    final personalityScore = calculateCompatibilityScore(personality1, personality2);
+    final personalityScore = calculateCompatibilityScore(
+      personality1,
+      personality2,
+    );
 
     // Weighted average for overall score
-    final overallScore = (
-      (lifePathScore * 0.35) +
-      (soulUrgeScore * 0.30) +
-      (expressionScore * 0.20) +
-      (personalityScore * 0.15)
-    ).round();
+    final overallScore =
+        ((lifePathScore * 0.35) +
+                (soulUrgeScore * 0.30) +
+                (expressionScore * 0.20) +
+                (personalityScore * 0.15))
+            .round();
 
     // Generate compatibility descriptions
-    final lifePathCompatibility = _getLifePathCompatibilityDescription(lifePath1, lifePath2);
-    final expressionCompatibility = _getExpressionCompatibilityDescription(expression1, expression2);
-    final soulUrgeCompatibility = _getSoulUrgeCompatibilityDescription(soulUrge1, soulUrge2);
-    final personalityCompatibility = _getPersonalityCompatibilityDescription(personality1, personality2);
+    final lifePathCompatibility = _getLifePathCompatibilityDescription(
+      lifePath1,
+      lifePath2,
+    );
+    final expressionCompatibility = _getExpressionCompatibilityDescription(
+      expression1,
+      expression2,
+    );
+    final soulUrgeCompatibility = _getSoulUrgeCompatibilityDescription(
+      soulUrge1,
+      soulUrge2,
+    );
+    final personalityCompatibility = _getPersonalityCompatibilityDescription(
+      personality1,
+      personality2,
+    );
 
     // Identify strengths and challenges
     final strengths = _identifyRelationshipStrengths(
-      lifePath1, lifePath2,
-      expression1, expression2,
-      soulUrge1, soulUrge2,
+      lifePath1,
+      lifePath2,
+      expression1,
+      expression2,
+      soulUrge1,
+      soulUrge2,
     );
     final challenges = _identifyRelationshipChallenges(
-      lifePath1, lifePath2,
-      expression1, expression2,
-      soulUrge1, soulUrge2,
+      lifePath1,
+      lifePath2,
+      expression1,
+      expression2,
+      soulUrge1,
+      soulUrge2,
     );
     final advice = _generateRelationshipAdvice(overallScore, challenges);
 
@@ -1222,9 +1291,12 @@ class NumerologyCalculationService {
   }
 
   static List<String> _identifyRelationshipStrengths(
-    int lp1, int lp2,
-    int e1, int e2,
-    int s1, int s2,
+    int lp1,
+    int lp2,
+    int e1,
+    int e2,
+    int s1,
+    int s2,
   ) {
     final strengths = <String>[];
 
@@ -1260,9 +1332,12 @@ class NumerologyCalculationService {
   }
 
   static List<String> _identifyRelationshipChallenges(
-    int lp1, int lp2,
-    int e1, int e2,
-    int s1, int s2,
+    int lp1,
+    int lp2,
+    int e1,
+    int e2,
+    int s1,
+    int s2,
   ) {
     final challenges = <String>[];
 
@@ -1291,7 +1366,10 @@ class NumerologyCalculationService {
     return challenges;
   }
 
-  static List<String> _generateRelationshipAdvice(int overallScore, List<String> challenges) {
+  static List<String> _generateRelationshipAdvice(
+    int overallScore,
+    List<String> challenges,
+  ) {
     final advice = <String>[];
 
     if (overallScore >= 85) {
@@ -1318,12 +1396,18 @@ class NumerologyCalculationService {
   // ==========================================================================
 
   /// Calculate the numerology number for a business name
-  static int calculateBusinessNumber(String businessName, {bool chaldean = false}) {
+  static int calculateBusinessNumber(
+    String businessName, {
+    bool chaldean = false,
+  }) {
     return calculateExpression(businessName, chaldean: chaldean);
   }
 
   /// Check if a business name number is favorable for a specific purpose
-  static Map<String, dynamic> analyzeBusinessName(String businessName, {bool chaldean = false}) {
+  static Map<String, dynamic> analyzeBusinessName(
+    String businessName, {
+    bool chaldean = false,
+  }) {
     final number = calculateBusinessNumber(businessName, chaldean: chaldean);
 
     final analysis = {
@@ -1393,7 +1477,9 @@ class NumerologyCalculationService {
 
     // Master number bonuses
     if (isMasterNumber(number)) {
-      (analysis['favorable'] as List).add('Master sayi enerjisi - yuksek potansiyel');
+      (analysis['favorable'] as List).add(
+        'Master sayi enerjisi - yuksek potansiyel',
+      );
       analysis['rating'] = (analysis['rating'] as int) + 10;
     }
 
@@ -1401,11 +1487,16 @@ class NumerologyCalculationService {
   }
 
   /// Suggest modifications to make a name reach a desired number
-  static List<String> suggestLuckyNames(int desiredNumber, String baseName, {bool chaldean = false}) {
+  static List<String> suggestLuckyNames(
+    int desiredNumber,
+    String baseName, {
+    bool chaldean = false,
+  }) {
     final suggestions = <String>[];
     final currentNumber = calculateExpression(baseName, chaldean: chaldean);
 
-    if (_reduceToSingleDigit(currentNumber) == _reduceToSingleDigit(desiredNumber)) {
+    if (_reduceToSingleDigit(currentNumber) ==
+        _reduceToSingleDigit(desiredNumber)) {
       suggestions.add('$baseName zaten istenen sayiya sahip!');
       return suggestions;
     }
@@ -1429,7 +1520,7 @@ class NumerologyCalculationService {
 
     // Generate suggestions
     for (final letter in matchingLetters.take(5)) {
-      suggestions.add('${baseName}$letter');
+      suggestions.add('$baseName$letter');
       suggestions.add('$letter$baseName');
     }
 
@@ -1458,7 +1549,11 @@ class NumerologyCalculationService {
   // ==========================================================================
 
   /// Get lucky numbers based on birth date and name
-  static List<int> getLuckyNumbers(DateTime birthDate, String name, {bool chaldean = false}) {
+  static List<int> getLuckyNumbers(
+    DateTime birthDate,
+    String name, {
+    bool chaldean = false,
+  }) {
     final luckyNumbers = <int>{};
 
     // Life Path is always lucky
@@ -1492,17 +1587,29 @@ class NumerologyCalculationService {
   }
 
   /// Get daily lucky numbers
-  static List<int> getDailyLuckyNumbers(DateTime birthDate, DateTime currentDate, {String? name, bool chaldean = false}) {
+  static List<int> getDailyLuckyNumbers(
+    DateTime birthDate,
+    DateTime currentDate, {
+    String? name,
+    bool chaldean = false,
+  }) {
     final luckyNumbers = <int>{};
 
     // Personal day number
     final personalYear = calculatePersonalYear(birthDate, currentDate.year);
-    final personalMonth = calculatePersonalMonth(personalYear, currentDate.month);
+    final personalMonth = calculatePersonalMonth(
+      personalYear,
+      currentDate.month,
+    );
     final personalDay = calculatePersonalDay(personalMonth, currentDate.day);
     luckyNumbers.add(personalDay);
 
     // Universal day number
-    final universalDay = calculateUniversalDay(currentDate.year, currentDate.month, currentDate.day);
+    final universalDay = calculateUniversalDay(
+      currentDate.year,
+      currentDate.month,
+      currentDate.day,
+    );
     luckyNumbers.add(universalDay);
 
     // Life Path always lucky
@@ -1549,7 +1656,11 @@ class NumerologyCalculationService {
   // ==========================================================================
 
   /// Get daily forecast
-  static NumerologyForecast getDailyForecast(DateTime birthDate, DateTime date, {String? name}) {
+  static NumerologyForecast getDailyForecast(
+    DateTime birthDate,
+    DateTime date, {
+    String? name,
+  }) {
     final personalYear = calculatePersonalYear(birthDate, date.year);
     final personalMonth = calculatePersonalMonth(personalYear, date.month);
     final personalDay = calculatePersonalDay(personalMonth, date.day);
@@ -1564,7 +1675,11 @@ class NumerologyCalculationService {
   }
 
   /// Get weekly forecast
-  static NumerologyForecast getWeeklyForecast(DateTime birthDate, DateTime weekStart, {String? name}) {
+  static NumerologyForecast getWeeklyForecast(
+    DateTime birthDate,
+    DateTime weekStart, {
+    String? name,
+  }) {
     final personalYear = calculatePersonalYear(birthDate, weekStart.year);
     final personalMonth = calculatePersonalMonth(personalYear, weekStart.month);
 
@@ -1582,7 +1697,12 @@ class NumerologyCalculationService {
   }
 
   /// Get monthly forecast
-  static NumerologyForecast getMonthlyForecast(DateTime birthDate, int year, int month, {String? name}) {
+  static NumerologyForecast getMonthlyForecast(
+    DateTime birthDate,
+    int year,
+    int month, {
+    String? name,
+  }) {
     final personalYear = calculatePersonalYear(birthDate, year);
     final personalMonth = calculatePersonalMonth(personalYear, month);
 
@@ -1596,7 +1716,11 @@ class NumerologyCalculationService {
   }
 
   /// Get yearly forecast
-  static NumerologyForecast getYearlyForecast(DateTime birthDate, int year, {String? name}) {
+  static NumerologyForecast getYearlyForecast(
+    DateTime birthDate,
+    int year, {
+    String? name,
+  }) {
     final personalYear = calculatePersonalYear(birthDate, year);
 
     return _generateForecast(
@@ -1691,7 +1815,9 @@ class NumerologyCalculationService {
     };
 
     final number = _reduceToSingleDigit(personalNumber);
-    final displayNumber = isMasterNumber(personalNumber) ? personalNumber : number;
+    final displayNumber = isMasterNumber(personalNumber)
+        ? personalNumber
+        : number;
 
     // Generate lucky days based on period type
     List<String> luckyDays;
@@ -1708,7 +1834,8 @@ class NumerologyCalculationService {
     return NumerologyForecast(
       personalNumber: displayNumber,
       theme: themes[displayNumber] ?? 'Ozel Donen',
-      generalAdvice: generalAdvices[displayNumber] ?? 'Icsel rehberliginizi dinleyin.',
+      generalAdvice:
+          generalAdvices[displayNumber] ?? 'Icsel rehberliginizi dinleyin.',
       loveAdvice: loveAdvices[displayNumber] ?? 'Kalbiizi dinleyin.',
       careerAdvice: careerAdvices[displayNumber] ?? 'Hedeflerinize odaklanin.',
       healthAdvice: healthAdvices[displayNumber] ?? 'Dengenizi koruyun.',
@@ -1789,18 +1916,31 @@ class NumerologyCalculationService {
   }
 
   static List<String> _getYearlyLuckyMonths(int number) {
-    final months = ['Ocak', 'Subat', 'Mart', 'Nisan', 'Mayis', 'Haziran',
-                    'Temmuz', 'Agustos', 'Eylul', 'Ekim', 'Kasim', 'Aralik'];
+    final months = [
+      'Ocak',
+      'Subat',
+      'Mart',
+      'Nisan',
+      'Mayis',
+      'Haziran',
+      'Temmuz',
+      'Agustos',
+      'Eylul',
+      'Ekim',
+      'Kasim',
+      'Aralik',
+    ];
     final luckyMonths = <String>[];
 
     for (var i = 0; i < 12; i++) {
       final monthNumber = _reduceToSingleDigit(i + 1);
-      if (monthNumber == number || _reduceToSingleDigit(monthNumber + number) == number) {
+      if (monthNumber == number ||
+          _reduceToSingleDigit(monthNumber + number) == number) {
         luckyMonths.add(months[i]);
       }
     }
 
-    return luckyMonths.isEmpty ? ['${months[number - 1]}'] : luckyMonths;
+    return luckyMonths.isEmpty ? [(months[number - 1])] : luckyMonths;
   }
 
   static List<String> _getFavorableActivities(int number) {
@@ -1889,9 +2029,10 @@ class NumerologyCalculationService {
       challenges: calculateChallenges(birthDate),
       numberFrequency: getNumberFrequency(fullName, chaldean: chaldean),
       missingNumbers: getMissingNumbers(fullName, chaldean: chaldean),
-      hasMasterNumber: isMasterNumber(lifePath) ||
-                       isMasterNumber(expression) ||
-                       isMasterNumber(soulUrge),
+      hasMasterNumber:
+          isMasterNumber(lifePath) ||
+          isMasterNumber(expression) ||
+          isMasterNumber(soulUrge),
     );
   }
 }

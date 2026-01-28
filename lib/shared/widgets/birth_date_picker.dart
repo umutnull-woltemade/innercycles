@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-import '../../core/theme/app_colors.dart';
+
 import '../../core/constants/app_constants.dart';
+import '../../core/theme/app_colors.dart';
 
 class BirthDatePicker extends StatefulWidget {
   final DateTime? initialDate;
@@ -27,8 +27,18 @@ class _BirthDatePickerState extends State<BirthDatePicker> {
   late FixedExtentScrollController _yearController;
 
   final List<String> _months = [
-    'Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran',
-    'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'
+    'Ocak',
+    'Şubat',
+    'Mart',
+    'Nisan',
+    'Mayıs',
+    'Haziran',
+    'Temmuz',
+    'Ağustos',
+    'Eylül',
+    'Ekim',
+    'Kasım',
+    'Aralık',
   ];
 
   @override
@@ -42,8 +52,12 @@ class _BirthDatePickerState extends State<BirthDatePicker> {
     _selectedYear = initial.year;
 
     _dayController = FixedExtentScrollController(initialItem: _selectedDay - 1);
-    _monthController = FixedExtentScrollController(initialItem: _selectedMonth - 1);
-    _yearController = FixedExtentScrollController(initialItem: now.year - _selectedYear);
+    _monthController = FixedExtentScrollController(
+      initialItem: _selectedMonth - 1,
+    );
+    _yearController = FixedExtentScrollController(
+      initialItem: now.year - _selectedYear,
+    );
   }
 
   @override
@@ -106,7 +120,10 @@ class _BirthDatePickerState extends State<BirthDatePicker> {
                 setState(() {
                   _selectedMonth = index + 1;
                   // Adjust day if needed
-                  final newDaysInMonth = _getDaysInMonth(_selectedMonth, _selectedYear);
+                  final newDaysInMonth = _getDaysInMonth(
+                    _selectedMonth,
+                    _selectedYear,
+                  );
                   if (_selectedDay > newDaysInMonth) {
                     _selectedDay = newDaysInMonth;
                     _dayController.jumpToItem(_selectedDay - 1);
@@ -130,7 +147,10 @@ class _BirthDatePickerState extends State<BirthDatePicker> {
                 setState(() {
                   _selectedYear = now.year - index;
                   // Adjust day for leap year
-                  final newDaysInMonth = _getDaysInMonth(_selectedMonth, _selectedYear);
+                  final newDaysInMonth = _getDaysInMonth(
+                    _selectedMonth,
+                    _selectedYear,
+                  );
                   if (_selectedDay > newDaysInMonth) {
                     _selectedDay = newDaysInMonth;
                     _dayController.jumpToItem(_selectedDay - 1);
@@ -211,14 +231,15 @@ class _WheelPicker extends StatelessWidget {
                     return Center(
                       child: Text(
                         itemBuilder(index),
-                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          color: isSelected
-                              ? AppColors.textPrimary
-                              : AppColors.textMuted,
-                          fontWeight: isSelected
-                              ? FontWeight.w600
-                              : FontWeight.w400,
-                        ),
+                        style: Theme.of(context).textTheme.titleMedium
+                            ?.copyWith(
+                              color: isSelected
+                                  ? AppColors.textPrimary
+                                  : AppColors.textMuted,
+                              fontWeight: isSelected
+                                  ? FontWeight.w600
+                                  : FontWeight.w400,
+                            ),
                       ),
                     );
                   },
@@ -237,16 +258,22 @@ class SelectedDateDisplay extends StatelessWidget {
   final DateTime? date;
   final VoidCallback? onTap;
 
-  const SelectedDateDisplay({
-    super.key,
-    this.date,
-    this.onTap,
-  });
+  const SelectedDateDisplay({super.key, this.date, this.onTap});
 
   String _getMonthName(int month) {
     const months = [
-      'Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran',
-      'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'
+      'Ocak',
+      'Şubat',
+      'Mart',
+      'Nisan',
+      'Mayıs',
+      'Haziran',
+      'Temmuz',
+      'Ağustos',
+      'Eylül',
+      'Ekim',
+      'Kasım',
+      'Aralık',
     ];
     return months[month - 1];
   }
@@ -291,11 +318,7 @@ class SelectedDateDisplay extends StatelessWidget {
               ),
             ),
             const SizedBox(width: AppConstants.spacingSm),
-            const Icon(
-              Icons.edit,
-              color: AppColors.textMuted,
-              size: 16,
-            ),
+            const Icon(Icons.edit, color: AppColors.textMuted, size: 16),
           ],
         ),
       ),

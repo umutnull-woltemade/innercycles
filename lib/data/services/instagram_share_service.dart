@@ -1,6 +1,6 @@
 import 'dart:io';
-import 'dart:typed_data';
 import 'dart:ui' as ui;
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
@@ -77,7 +77,9 @@ class InstagramShareService {
   }
 
   /// Capture widget as image
-  static Future<Uint8List?> _captureImage(RenderRepaintBoundary boundary) async {
+  static Future<Uint8List?> _captureImage(
+    RenderRepaintBoundary boundary,
+  ) async {
     try {
       // Wait for any pending renders
       await Future.delayed(const Duration(milliseconds: 50));
@@ -282,10 +284,9 @@ class InstagramShareService {
     String? hashtags,
   ) async {
     try {
-      final result = await Share.shareXFiles(
-        [XFile(file.path)],
-        text: _buildShareText(shareText, hashtags),
-      );
+      final result = await Share.shareXFiles([
+        XFile(file.path),
+      ], text: _buildShareText(shareText, hashtags));
 
       return ShareResult(
         success: result.status == ShareResultStatus.success,
@@ -379,12 +380,7 @@ enum ShareError {
   unknown,
 }
 
-enum SharePlatform {
-  ios,
-  android,
-  web,
-  other,
-}
+enum SharePlatform { ios, android, web, other }
 
 class ShareFallbackData {
   final String downloadUrl;

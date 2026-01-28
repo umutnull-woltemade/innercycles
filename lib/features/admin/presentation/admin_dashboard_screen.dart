@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+
 import '../../../core/constants/app_constants.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
-import '../../../data/services/admin_auth_service.dart';
 import '../../../data/providers/admin_providers.dart';
+import '../../../data/services/admin_auth_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 
 class AdminDashboardScreen extends ConsumerStatefulWidget {
@@ -110,9 +111,7 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
             ? AppColors.surfaceDark.withOpacity(0.8)
             : AppColors.lightCard,
         border: Border(
-          bottom: BorderSide(
-            color: AppColors.starGold.withOpacity(0.3),
-          ),
+          bottom: BorderSide(color: AppColors.starGold.withOpacity(0.3)),
         ),
       ),
       child: Row(
@@ -121,7 +120,9 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
             onPressed: () => context.go(Routes.settings),
             icon: Icon(
               Icons.arrow_back_ios_new,
-              color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+              color: isDark
+                  ? AppColors.textPrimary
+                  : AppColors.lightTextPrimary,
             ),
           ),
           Container(
@@ -144,18 +145,18 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
                 Text(
                   'Admin Dashboard',
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        color: AppColors.starGold,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    color: AppColors.starGold,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 if (session != null)
                   Text(
                     'Session expires in ${session.remainingTime.inHours}h',
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: isDark
-                              ? AppColors.textMuted
-                              : AppColors.lightTextMuted,
-                        ),
+                      color: isDark
+                          ? AppColors.textMuted
+                          : AppColors.lightTextMuted,
+                    ),
                   ),
               ],
             ),
@@ -164,7 +165,9 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
             onPressed: () => ref.invalidate(adminMetricsProvider),
             icon: Icon(
               Icons.refresh,
-              color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+              color: isDark
+                  ? AppColors.textSecondary
+                  : AppColors.lightTextSecondary,
             ),
             tooltip: 'Refresh Data',
           ),
@@ -247,21 +250,22 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
                   color: isSelected
                       ? AppColors.starGold
                       : (isDark
-                          ? AppColors.textMuted
-                          : AppColors.lightTextMuted),
+                            ? AppColors.textMuted
+                            : AppColors.lightTextMuted),
                 ),
                 const SizedBox(height: 4),
                 Text(
                   label,
                   style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                        color: isSelected
-                            ? AppColors.starGold
-                            : (isDark
-                                ? AppColors.textMuted
-                                : AppColors.lightTextMuted),
-                        fontWeight:
-                            isSelected ? FontWeight.bold : FontWeight.normal,
-                      ),
+                    color: isSelected
+                        ? AppColors.starGold
+                        : (isDark
+                              ? AppColors.textMuted
+                              : AppColors.lightTextMuted),
+                    fontWeight: isSelected
+                        ? FontWeight.bold
+                        : FontWeight.normal,
+                  ),
                 ),
               ],
             ),
@@ -292,8 +296,20 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
           child: ListView(
             padding: const EdgeInsets.all(AppConstants.spacingMd),
             children: [
-              _buildSidebarItem(context, isDark, 0, 'Overview', Icons.dashboard),
-              _buildSidebarItem(context, isDark, 1, 'Growth', Icons.trending_up),
+              _buildSidebarItem(
+                context,
+                isDark,
+                0,
+                'Overview',
+                Icons.dashboard,
+              ),
+              _buildSidebarItem(
+                context,
+                isDark,
+                1,
+                'Growth',
+                Icons.trending_up,
+              ),
               _buildSidebarItem(context, isDark, 2, 'Events', Icons.analytics),
               _buildSidebarItem(context, isDark, 3, 'Notes', Icons.note_alt),
             ],
@@ -365,7 +381,12 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
           const SizedBox(height: AppConstants.spacingMd),
           _buildKpiGrid(context, isDark),
           const SizedBox(height: AppConstants.spacingXl),
-          _buildSectionTitle(context, isDark, 'Usage Overview', Icons.pie_chart),
+          _buildSectionTitle(
+            context,
+            isDark,
+            'Usage Overview',
+            Icons.pie_chart,
+          ),
           const SizedBox(height: AppConstants.spacingMd),
           _buildUsageChart(context, isDark),
           const SizedBox(height: AppConstants.spacingXl),
@@ -385,20 +406,14 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
   ) {
     return Row(
       children: [
-        Icon(
-          icon,
-          color: AppColors.starGold,
-          size: 20,
-        ),
+        Icon(icon, color: AppColors.starGold, size: 20),
         const SizedBox(width: 8),
         Text(
           title,
           style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                color: isDark
-                    ? AppColors.textPrimary
-                    : AppColors.lightTextPrimary,
-                fontWeight: FontWeight.w600,
-              ),
+            color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+            fontWeight: FontWeight.w600,
+          ),
         ),
       ],
     );
@@ -432,7 +447,7 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
         ),
         _KpiCard(
           title: 'Avg Session',
-          value: '${metrics.avgSessionDepth.toStringAsFixed(1)}',
+          value: metrics.avgSessionDepth.toStringAsFixed(1),
           change: metrics.sessionChange,
           icon: Icons.layers,
           color: AppColors.celestialGold,
@@ -472,10 +487,10 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
           Text(
             'Tool Usage Distribution',
             style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                  color: isDark
-                      ? AppColors.textPrimary
-                      : AppColors.lightTextPrimary,
-                ),
+              color: isDark
+                  ? AppColors.textPrimary
+                  : AppColors.lightTextPrimary,
+            ),
           ),
           const SizedBox(height: AppConstants.spacingLg),
           ...metrics.toolUsage.entries.map((entry) {
@@ -527,17 +542,17 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
               Text(
                 label,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: isDark
-                          ? AppColors.textSecondary
-                          : AppColors.lightTextSecondary,
-                    ),
+                  color: isDark
+                      ? AppColors.textSecondary
+                      : AppColors.lightTextSecondary,
+                ),
               ),
               Text(
                 '${percentage.toStringAsFixed(0)}%',
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: color,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  color: color,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ],
           ),
@@ -624,19 +639,15 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(
-                icon,
-                size: 18,
-                color: AppColors.starGold,
-              ),
+              Icon(icon, size: 18, color: AppColors.starGold),
               const SizedBox(width: 8),
               Text(
                 label,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: isDark
-                          ? AppColors.textPrimary
-                          : AppColors.lightTextPrimary,
-                    ),
+                  color: isDark
+                      ? AppColors.textPrimary
+                      : AppColors.lightTextPrimary,
+                ),
               ),
             ],
           ),
@@ -655,7 +666,12 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildSectionTitle(context, isDark, 'Retention Trends', Icons.trending_up),
+          _buildSectionTitle(
+            context,
+            isDark,
+            'Retention Trends',
+            Icons.trending_up,
+          ),
           const SizedBox(height: AppConstants.spacingMd),
           _buildRetentionChart(context, isDark),
           const SizedBox(height: AppConstants.spacingXl),
@@ -693,10 +709,10 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
               Text(
                 'D1/D7 Retention Over Time',
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      color: isDark
-                          ? AppColors.textPrimary
-                          : AppColors.lightTextPrimary,
-                    ),
+                  color: isDark
+                      ? AppColors.textPrimary
+                      : AppColors.lightTextPrimary,
+                ),
               ),
               Row(
                 children: [
@@ -709,7 +725,11 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
           ),
           const SizedBox(height: AppConstants.spacingMd),
           Expanded(
-            child: _buildSimpleLineChart(context, isDark, metrics.retentionHistory),
+            child: _buildSimpleLineChart(
+              context,
+              isDark,
+              metrics.retentionHistory,
+            ),
           ),
         ],
       ),
@@ -729,13 +749,7 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
           ),
         ),
         const SizedBox(width: 4),
-        Text(
-          label,
-          style: TextStyle(
-            fontSize: 12,
-            color: color,
-          ),
-        ),
+        Text(label, style: TextStyle(fontSize: 12, color: color)),
       ],
     );
   }
@@ -758,10 +772,7 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
 
     return CustomPaint(
       size: Size.infinite,
-      painter: _SimpleChartPainter(
-        data: data,
-        isDark: isDark,
-      ),
+      painter: _SimpleChartPainter(data: data, isDark: isDark),
     );
   }
 
@@ -805,8 +816,9 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
                 color: isDark
                     ? AppColors.textPrimary
                     : AppColors.lightTextPrimary,
-                decoration:
-                    task.isCompleted ? TextDecoration.lineThrough : null,
+                decoration: task.isCompleted
+                    ? TextDecoration.lineThrough
+                    : null,
               ),
             ),
             subtitle: Text(
@@ -830,8 +842,8 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
     final color = priority == 'high'
         ? AppColors.error
         : priority == 'medium'
-            ? AppColors.warning
-            : AppColors.success;
+        ? AppColors.warning
+        : AppColors.success;
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
@@ -900,10 +912,7 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
               children: [
                 Expanded(
                   flex: 2,
-                  child: Text(
-                    'Event',
-                    style: _headerStyle(context, isDark),
-                  ),
+                  child: Text('Event', style: _headerStyle(context, isDark)),
                 ),
                 Expanded(
                   flex: 1,
@@ -1049,7 +1058,12 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
           const SizedBox(height: AppConstants.spacingMd),
           _buildSnapshotsList(context, isDark),
           const SizedBox(height: AppConstants.spacingXl),
-          _buildSectionTitle(context, isDark, 'Admin Notes', Icons.sticky_note_2),
+          _buildSectionTitle(
+            context,
+            isDark,
+            'Admin Notes',
+            Icons.sticky_note_2,
+          ),
           const SizedBox(height: AppConstants.spacingMd),
           _buildNotesCard(context, isDark),
         ],
@@ -1171,9 +1185,9 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
           children: [
             Text(
               snapshot.title,
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    color: AppColors.starGold,
-                  ),
+              style: Theme.of(
+                context,
+              ).textTheme.titleLarge?.copyWith(color: AppColors.starGold),
             ),
             const SizedBox(height: AppConstants.spacingMd),
             Text(
@@ -1218,7 +1232,9 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
               border: InputBorder.none,
             ),
             style: TextStyle(
-              color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+              color: isDark
+                  ? AppColors.textPrimary
+                  : AppColors.lightTextPrimary,
             ),
           ),
           const SizedBox(height: AppConstants.spacingMd),
@@ -1246,9 +1262,7 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
         content: Text(message),
         backgroundColor: AppColors.starGold,
         behavior: SnackBarBehavior.floating,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       ),
     );
   }
@@ -1286,9 +1300,7 @@ class _KpiCard extends StatelessWidget {
             ? AppColors.surfaceDark.withOpacity(0.7)
             : AppColors.lightCard,
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-        border: Border.all(
-          color: color.withOpacity(0.3),
-        ),
+        border: Border.all(color: color.withOpacity(0.3)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1299,10 +1311,7 @@ class _KpiCard extends StatelessWidget {
             children: [
               Icon(icon, color: color, size: 20),
               Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 6,
-                  vertical: 2,
-                ),
+                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                 decoration: BoxDecoration(
                   color: (isPositive ? AppColors.success : AppColors.error)
                       .withOpacity(0.2),
@@ -1312,9 +1321,7 @@ class _KpiCard extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Icon(
-                      isPositive
-                          ? Icons.arrow_upward
-                          : Icons.arrow_downward,
+                      isPositive ? Icons.arrow_upward : Icons.arrow_downward,
                       size: 10,
                       color: isPositive ? AppColors.success : AppColors.error,
                     ),
@@ -1335,18 +1342,18 @@ class _KpiCard extends StatelessWidget {
           Text(
             value,
             style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                  color: color,
-                  fontWeight: FontWeight.bold,
-                ),
+              color: color,
+              fontWeight: FontWeight.bold,
+            ),
           ),
           const SizedBox(height: 4),
           Text(
             title,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: isDark
-                      ? AppColors.textSecondary
-                      : AppColors.lightTextSecondary,
-                ),
+              color: isDark
+                  ? AppColors.textSecondary
+                  : AppColors.lightTextSecondary,
+            ),
           ),
         ],
       ),
@@ -1362,10 +1369,7 @@ class _SimpleChartPainter extends CustomPainter {
   final List<RetentionPoint> data;
   final bool isDark;
 
-  _SimpleChartPainter({
-    required this.data,
-    required this.isDark,
-  });
+  _SimpleChartPainter({required this.data, required this.isDark});
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -1386,7 +1390,10 @@ class _SimpleChartPainter extends CustomPainter {
     final d1Path = Path();
     final d7Path = Path();
 
-    final maxY = data.map((p) => [p.d1, p.d7]).expand((e) => e).reduce((a, b) => a > b ? a : b);
+    final maxY = data
+        .map((p) => [p.d1, p.d7])
+        .expand((e) => e)
+        .reduce((a, b) => a > b ? a : b);
     final xStep = size.width / (data.length - 1);
 
     for (var i = 0; i < data.length; i++) {
@@ -1403,11 +1410,7 @@ class _SimpleChartPainter extends CustomPainter {
       }
 
       // Draw dots
-      canvas.drawCircle(
-        Offset(x, d1Y),
-        3,
-        dotPaint..color = AppColors.success,
-      );
+      canvas.drawCircle(Offset(x, d1Y), 3, dotPaint..color = AppColors.success);
       canvas.drawCircle(
         Offset(x, d7Y),
         3,

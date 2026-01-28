@@ -1,4 +1,5 @@
 import 'dart:math';
+
 import '../models/premium_astrology.dart';
 import '../models/zodiac_sign.dart';
 
@@ -578,7 +579,7 @@ Tavsiye: Seyahat planlarınızı yaparken veya taşınma düşünürken bu harit
   }
 
   String _getKarmicLessons(ZodiacSign moon, ZodiacSign ascendant) {
-    return '''Drakonik Ay\'ınız ${moon.nameTr} burcunda, duygusal karmik kalıplarınızı gösteriyor.
+    return '''Drakonik Ay'ınız ${moon.nameTr} burcunda, duygusal karmik kalıplarınızı gösteriyor.
 Geçmiş yaşamlardan getirdiğiniz duygusal tepkiler ve bağlanma biçimleri bu burç üzerinden ifade buluyor.
 
 Drakonik Yükseleniz ${ascendant.nameTr}, bu yaşamda geliştirmeniz gereken ruhsal nitelikleri işaret ediyor.
@@ -617,7 +618,7 @@ Karmik dersleriniz:
 ${sun.nameTr} Güneşi: Geçmiş yaşamlarda liderlik veya yaratıcı ifade rolleri üstlenmiş olabilirsiniz.
 ${sun.element.nameTr} elementi bu yaşamların genel tonunu gösteriyor.
 
-${moon.nameTr} Ay\'ı: Duygusal kalıplarınız ${moon.element.nameTr} elementi yaşamlarından geliyor.
+${moon.nameTr} Ay'ı: Duygusal kalıplarınız ${moon.element.nameTr} elementi yaşamlarından geliyor.
 Aile ve ilişki dinamikleriniz bu geçmişle şekillendi.
 
 Güçlü göstergeler:
@@ -699,11 +700,11 @@ Her zorluk, daha yüksek bir bilinç seviyesine adımdır.''';
 
 ${pos.sign.nameTr} burcunda, ${pos.house}. evde.
 
-Kiron\'unuz derin yaranızı ve şifa potansiyelinizi gösteriyor. ${pos.sign.nameTr} enerjisi, yaranın doğasını belirliyor - ${pos.sign.element.nameTr} elementi üzerinden deneyimlenen acılar.
+Kiron'unuz derin yaranızı ve şifa potansiyelinizi gösteriyor. ${pos.sign.nameTr} enerjisi, yaranın doğasını belirliyor - ${pos.sign.element.nameTr} elementi üzerinden deneyimlenen acılar.
 
 ${pos.house}. ev konumu, bu yaranın hayatınızın hangi alanında en çok hissedildiğini gösterir. Ancak aynı zamanda, başkalarına şifa getirme kapasitenizin de bu alanda yoğunlaştığı anlamına gelir.
 
-Şifa yolculuğunuz, yaranızı kabullenmek ve bu deneyimi bilgeliğe dönüştürmekle başlar. Kiron\'unuz ne kadar güçlüyse, şifacılık potansiyeliniz de o kadar büyüktür.''';
+Şifa yolculuğunuz, yaranızı kabullenmek ve bu deneyimi bilgeliğe dönüştürmekle başlar. Kiron'unuz ne kadar güçlüyse, şifacılık potansiyeliniz de o kadar büyüktür.''';
   }
 
   String _getCeresAnalysis(AsteroidPosition pos) {
@@ -711,7 +712,7 @@ ${pos.house}. ev konumu, bu yaranın hayatınızın hangi alanında en çok hiss
 
 ${pos.sign.nameTr} burcunda, ${pos.house}. evde.
 
-Ceres\'iniz nasıl beslendiğinizi ve nasıl beslediğinizi gösterir. ${pos.sign.nameTr} enerjisi, bakım stilinizi belirler - ${pos.sign.modality.nameTr} bir yaklaşımla sevginizi ifade edersiniz.
+Ceres'iniz nasıl beslendiğinizi ve nasıl beslediğinizi gösterir. ${pos.sign.nameTr} enerjisi, bakım stilinizi belirler - ${pos.sign.modality.nameTr} bir yaklaşımla sevginizi ifade edersiniz.
 
 ${pos.house}. ev konumu, bakım ihtiyaçlarınızın ve verme kapasitenizin odaklandığı yaşam alanını gösterir. Annelik arketipi bu evde en güçlü şekilde hissedilir.
 
@@ -723,7 +724,7 @@ Ceres aynı zamanda kayıp ve geri dönüş döngülerini de temsil eder. Bu kon
 
 ${pos.sign.nameTr} burcunda, ${pos.house}. evde.
 
-Pallas\'ınız yaratıcı zekanızı ve stratejik düşünme kapasitenizi gösterir. ${pos.sign.nameTr} enerjisi, problem çözme stilinizi belirler - ${pos.sign.element.nameTr} elementi üzerinden çözümler üretirsiniz.
+Pallas'ınız yaratıcı zekanızı ve stratejik düşünme kapasitenizi gösterir. ${pos.sign.nameTr} enerjisi, problem çözme stilinizi belirler - ${pos.sign.element.nameTr} elementi üzerinden çözümler üretirsiniz.
 
 ${pos.house}. ev konumu, zeka ve bilgeliğinizin en çok parladığı alanı gösterir. Politik becerileriniz ve örüntü tanıma yeteneğiniz bu evde yoğunlaşır.
 
@@ -735,7 +736,7 @@ Pallas aynı zamanda baba-kız dinamiğini ve kadınsı bilgeliği temsil eder. 
 
 ${pos.sign.nameTr} burcunda, ${pos.house}. evde.
 
-Juno\'nuz ideal eş konseptinizi ve bağlılık biçiminizi gösterir. ${pos.sign.nameTr} enerjisi, evlilikte ne aradığınızı belirler - ${pos.sign.modality.nameTr} bir partner dinamiği tercih edersiniz.
+Juno'nuz ideal eş konseptinizi ve bağlılık biçiminizi gösterir. ${pos.sign.nameTr} enerjisi, evlilikte ne aradığınızı belirler - ${pos.sign.modality.nameTr} bir partner dinamiği tercih edersiniz.
 
 ${pos.house}. ev konumu, eş bulma ve evlilik konularının hayatınızın hangi alanıyla bağlantılı olduğunu gösterir. Sadakat ve güven temaları bu evde odaklanır.
 
@@ -747,7 +748,7 @@ Juno güçlü veya zorlu açılarda, ilişkilerde güç dengeleri ve eşitlik m�
 
 ${pos.sign.nameTr} burcunda, ${pos.house}. evde.
 
-Vesta\'nız neye adadığınızı ve kutsal ateşinizin nerede yandığını gösterir. ${pos.sign.nameTr} enerjisi, adanmışlık stilinizi belirler - ${pos.sign.element.nameTr} elementi üzerinden hizmet verirsiniz.
+Vesta'nız neye adadığınızı ve kutsal ateşinizin nerede yandığını gösterir. ${pos.sign.nameTr} enerjisi, adanmışlık stilinizi belirler - ${pos.sign.element.nameTr} elementi üzerinden hizmet verirsiniz.
 
 ${pos.house}. ev konumu, en derin odaklanma ve kendini adama alanınızı gösterir. Burada cinsellik ve maneviyat iç içe geçebilir.
 
@@ -773,7 +774,7 @@ Bu, asteroidlerinizin genel olarak ${dominantElement.nameTr} enerjisi üzerinden
 
 Kiron-Ceres ilişkisi, yaralanma ve iyileşme döngünüzü gösterir.
 Pallas-Vesta ilişkisi, bilgelik ve adanmışlık arasındaki dengenizi yansıtır.
-Juno\'nun konumu, ideal partner dinamiklerinizi ve bağlılık kalıplarınızı açıklar.
+Juno'nun konumu, ideal partner dinamiklerinizi ve bağlılık kalıplarınızı açıklar.
 
 Bu asteroidlerle çalışmak, kendinizi daha derinden anlamanıza ve spiritüel gelişiminizi hızlandırmanıza yardımcı olur.''';
   }

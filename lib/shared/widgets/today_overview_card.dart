@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+
 import '../../core/theme/app_colors.dart';
 import '../../data/services/moon_service.dart';
 
@@ -84,7 +85,9 @@ class TodayOverviewCard extends StatelessWidget {
                         greeting,
                         style: TextStyle(
                           fontSize: 14,
-                          color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                          color: isDark
+                              ? AppColors.textMuted
+                              : AppColors.lightTextMuted,
                           letterSpacing: 1.2,
                         ),
                       ),
@@ -94,7 +97,9 @@ class TodayOverviewCard extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
-                          color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                          color: isDark
+                              ? AppColors.textPrimary
+                              : AppColors.lightTextPrimary,
                         ),
                       ),
                     ],
@@ -102,7 +107,10 @@ class TodayOverviewCard extends StatelessWidget {
                 ),
                 // Today's Energy Badge
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 8,
+                  ),
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
@@ -183,11 +191,13 @@ class TodayOverviewCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Ay ${moonInSign} Burcunda',
+                          'Ay $moonInSign Burcunda',
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
-                            color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                            color: isDark
+                                ? AppColors.textPrimary
+                                : AppColors.lightTextPrimary,
                           ),
                         ),
                         const SizedBox(height: 4),
@@ -195,7 +205,9 @@ class TodayOverviewCard extends StatelessWidget {
                           moonPhase.nameTr,
                           style: TextStyle(
                             fontSize: 13,
-                            color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+                            color: isDark
+                                ? AppColors.textSecondary
+                                : AppColors.lightTextSecondary,
                           ),
                         ),
                         const SizedBox(height: 4),
@@ -204,7 +216,9 @@ class TodayOverviewCard extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 12,
                             fontStyle: FontStyle.italic,
-                            color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                            color: isDark
+                                ? AppColors.textMuted
+                                : AppColors.lightTextMuted,
                           ),
                         ),
                       ],
@@ -254,9 +268,7 @@ class TodayOverviewCard extends StatelessWidget {
                   ],
                 ),
                 borderRadius: BorderRadius.circular(16),
-                border: Border.all(
-                  color: AppColors.starGold.withOpacity(0.3),
-                ),
+                border: Border.all(color: AppColors.starGold.withOpacity(0.3)),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -286,7 +298,9 @@ class TodayOverviewCard extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 14,
                       height: 1.5,
-                      color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                      color: isDark
+                          ? AppColors.textPrimary
+                          : AppColors.lightTextPrimary,
                     ),
                   ),
                 ],
@@ -301,7 +315,9 @@ class TodayOverviewCard extends StatelessWidget {
                 'Detaylı günlük yorumun için dokun',
                 style: TextStyle(
                   fontSize: 12,
-                  color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                  color: isDark
+                      ? AppColors.textMuted
+                      : AppColors.lightTextMuted,
                 ),
               ),
             ),
@@ -323,7 +339,11 @@ class TodayOverviewCard extends StatelessWidget {
   _TodayEnergy _getTodayEnergy(String moonPhase) {
     switch (moonPhase.toLowerCase()) {
       case 'new moon':
-        return _TodayEnergy('Yeni Baslangiclarin Gunui', AppColors.mysticBlue, 'seed');
+        return _TodayEnergy(
+          'Yeni Baslangiclarin Gunui',
+          AppColors.mysticBlue,
+          'seed',
+        );
       case 'waxing crescent':
         return _TodayEnergy('Buyume Enerjisi', AppColors.success, 'sprout');
       case 'first quarter':
@@ -364,9 +384,12 @@ class TodayOverviewCard extends StatelessWidget {
   String _getDailyFocus(String sunSign, String moonSign) {
     // Simplified personalized focus based on sun sign and current moon
     final focuses = {
-      'aries': 'Bugün enerjin yüksek. Ertelediğin bir projeyi başlatmak için mükemmel zaman.',
-      'taurus': 'Maddi konularda netlik günü. Bütçeni gözden geçir, küçük bir keyif al.',
-      'gemini': 'İletişim kanalların açık. Önemli bir konuşma için ideal atmosfer.',
+      'aries':
+          'Bugün enerjin yüksek. Ertelediğin bir projeyi başlatmak için mükemmel zaman.',
+      'taurus':
+          'Maddi konularda netlik günü. Bütçeni gözden geçir, küçük bir keyif al.',
+      'gemini':
+          'İletişim kanalların açık. Önemli bir konuşma için ideal atmosfer.',
       'cancer': 'Ev ve aile odaklı enerji. Yakınlarınla kaliteli zaman geçir.',
       'leo': 'Yaratıcılığın dorukta. Kendini ifade etmekten çekinme.',
       'virgo': 'Detaylara dikkat günü. Organize ol, listeler yap.',
@@ -377,7 +400,8 @@ class TodayOverviewCard extends StatelessWidget {
       'aquarius': 'Sosyal bağlantılar güçlü. Topluluk aktivitelerine katıl.',
       'pisces': 'Sezgisel enerji yüksek. Meditasyon ve hayal kurma zamanı.',
     };
-    return focuses[sunSign.toLowerCase()] ?? 'Bugün evrenin enerjisiyle uyum içinde kal.';
+    return focuses[sunSign.toLowerCase()] ??
+        'Bugün evrenin enerjisiyle uyum içinde kal.';
   }
 }
 
@@ -390,15 +414,24 @@ class _TodayEnergy {
 
   static String _getEmoji(String type) {
     switch (type) {
-      case 'seed': return '🌱';
-      case 'sprout': return '🌿';
-      case 'fire': return '🔥';
-      case 'star': return '⭐';
-      case 'moon': return '🌕';
-      case 'heart': return '💜';
-      case 'water': return '💧';
-      case 'rest': return '🌙';
-      default: return '✨';
+      case 'seed':
+        return '🌱';
+      case 'sprout':
+        return '🌿';
+      case 'fire':
+        return '🔥';
+      case 'star':
+        return '⭐';
+      case 'moon':
+        return '🌕';
+      case 'heart':
+        return '💜';
+      case 'water':
+        return '💧';
+      case 'rest':
+        return '🌙';
+      default:
+        return '✨';
     }
   }
 }
@@ -434,9 +467,7 @@ class _QuickActionCard extends StatelessWidget {
             decoration: BoxDecoration(
               color: color.withOpacity(isDark ? 0.15 : 0.1),
               borderRadius: BorderRadius.circular(16),
-              border: Border.all(
-                color: color.withOpacity(0.3),
-              ),
+              border: Border.all(color: color.withOpacity(0.3)),
             ),
             child: Row(
               children: [
@@ -446,11 +477,7 @@ class _QuickActionCard extends StatelessWidget {
                     color: color.withOpacity(0.2),
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: Icon(
-                    icon,
-                    size: 20,
-                    color: color,
-                  ),
+                  child: Icon(icon, size: 20, color: color),
                 ),
                 const SizedBox(width: 10),
                 Expanded(
@@ -459,7 +486,9 @@ class _QuickActionCard extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w600,
-                      color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                      color: isDark
+                          ? AppColors.textPrimary
+                          : AppColors.lightTextPrimary,
                       height: 1.3,
                     ),
                   ),

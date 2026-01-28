@@ -8,7 +8,8 @@ class ArticlesContent {
       AstrologyArticle(
         id: '1',
         title: 'Astrolojiye Başlangıç: Temel Kavramlar',
-        summary: 'Astroloji dünyasına ilk adımınızı atın. Burçlar, gezegenler ve evler hakkında temel bilgiler.',
+        summary:
+            'Astroloji dünyasına ilk adımınızı atın. Burçlar, gezegenler ve evler hakkında temel bilgiler.',
         content: '''
 Astroloji, gökyüzündeki gök cisimlerinin konumlarının dünya üzerindeki olayları ve insan davranışlarını etkilediği inancına dayanan kadim bir bilim dalıdır.
 
@@ -44,7 +45,8 @@ Doğum haritası 12 eve bölünür ve her ev yaşamın farklı bir alanını tem
       AstrologyArticle(
         id: '2',
         title: 'Doğum Haritası Nasıl Okunur?',
-        summary: 'Natal chart yorumlama sanatının temel adımları ve dikkat edilmesi gereken noktalar.',
+        summary:
+            'Natal chart yorumlama sanatının temel adımları ve dikkat edilmesi gereken noktalar.',
         content: '''
 Doğum haritası, doğduğunuz anda gökyüzünün bir fotoğrafıdır. Bu haritayı okumak, kendinizi tanımanın en derin yollarından biridir.
 
@@ -82,7 +84,8 @@ Tek tek parçalara değil, bütüne bakın. Haritadaki tekrarlayan temalar ve ba
       AstrologyArticle(
         id: '3',
         title: 'Dört Element ve Anlamları',
-        summary: 'Ateş, Toprak, Hava ve Su elementlerinin astrolojideki önemi ve karakteristikleri.',
+        summary:
+            'Ateş, Toprak, Hava ve Su elementlerinin astrolojideki önemi ve karakteristikleri.',
         content: '''
 Astrolojide dört element, burçları ve enerjileri anlamak için temel bir çerçeve sunar.
 
@@ -165,7 +168,8 @@ Değişken burçlar mevsim geçişlerini temsil eder. Esnek, uyumlu ve çok yön
       AstrologyArticle(
         id: '5',
         title: 'Yükselen Burç: Dış Dünyadaki Maskeniz',
-        summary: 'Ascendant burcunuzun kişiliğinizi ve ilk izleniminizi nasıl şekillendirdiği.',
+        summary:
+            'Ascendant burcunuzun kişiliğinizi ve ilk izleniminizi nasıl şekillendirdiği.',
         content: '''
 Yükselen burcunuz (Ascendant), doğduğunuz anda doğu ufkunda yükselen burçtur ve astrolojide "üç büyük"ten biridir.
 
@@ -196,7 +200,8 @@ Yükselenizi hesaplamak için doğum saatinizi ve yerinizi bilmeniz gerekir. Saa
       AstrologyArticle(
         id: '6',
         title: 'Ay Burcunuz: Duygusal DNA\'nız',
-        summary: 'Ay burcunuzun iç dünyanızı, duygusal ihtiyaçlarınızı ve alışkanlıklarınızı nasıl belirlediği.',
+        summary:
+            'Ay burcunuzun iç dünyanızı, duygusal ihtiyaçlarınızı ve alışkanlıklarınızı nasıl belirlediği.',
         content: '''
 Ay burcunuz, güneş burcunuz kadar önemlidir çünkü duygusal doğanızı, iç dünyanızı ve temel güvenlik ihtiyaçlarınızı temsil eder.
 
@@ -232,7 +237,8 @@ Ay burcunuz, annenizle ilişkinizi ve ondan aldığınız duygusal mirası da g�
       AstrologyArticle(
         id: '7',
         title: '12 Ev Sistemi: Yaşamın Haritası',
-        summary: 'Astrolojik evlerin temsil ettiği yaşam alanları ve her evin anlamı.',
+        summary:
+            'Astrolojik evlerin temsil ettiği yaşam alanları ve her evin anlamı.',
         content: '''
 Doğum haritasındaki 12 ev, yaşamınızın farklı alanlarını temsil eder. Her ev, belirli konuları ve deneyimleri yönetir.
 
@@ -272,7 +278,8 @@ Doğum haritasındaki 12 ev, yaşamınızın farklı alanlarını temsil eder. H
       AstrologyArticle(
         id: '8',
         title: 'Astrolojik Açılar: Gezegen Diyalogları',
-        summary: 'Kavuşum, karşıtlık, üçgen, kare ve altıgen açılarının anlamları.',
+        summary:
+            'Kavuşum, karşıtlık, üçgen, kare ve altıgen açılarının anlamları.',
         content: '''
 Astrolojik açılar, gezegenler arasındaki ilişkileri ve enerji etkileşimlerini gösterir.
 
@@ -309,7 +316,8 @@ Açılar tam derece olmak zorunda değildir. Birkaç derece sapma (orb) kabul ed
       AstrologyArticle(
         id: '9',
         title: 'İlişkilerde Astroloji: Sinastri Rehberi',
-        summary: 'Sevgilinizle uyumunuzu astrolojik açıdan nasıl değerlendirebilirsiniz?',
+        summary:
+            'Sevgilinizle uyumunuzu astrolojik açıdan nasıl değerlendirebilirsiniz?',
         content: '''
 Sinastri, iki kişinin doğum haritalarını karşılaştırarak ilişki dinamiklerini anlama sanatıdır.
 
@@ -347,7 +355,8 @@ Her iki kişinin 7. evi (ortaklık evi) önemlidir:
       AstrologyArticle(
         id: '10',
         title: 'Venüs Burcunuz ve Aşk Diliniz',
-        summary: 'Venüs burcunuzun aşk, çekim ve ilişki tarzınızı nasıl şekillendirdiği.',
+        summary:
+            'Venüs burcunuzun aşk, çekim ve ilişki tarzınızı nasıl şekillendirdiği.',
         content: '''
 Venüs, astrolojide aşk ve güzellik gezegenidir. Venüs burcunuz, nasıl sevdiğinizi ve neyi çekici bulduğunuzu gösterir.
 
@@ -387,11 +396,12 @@ Venüs, astrolojide aşk ve güzellik gezegenidir. Venüs burcunuz, nasıl sevdi
       AstrologyArticle(
         id: '11',
         title: 'Mars ve İlişkide Tutku',
-        summary: 'Mars burcunuzun cinsellik, tutku ve çatışma tarzınızı nasıl belirlediği.',
+        summary:
+            'Mars burcunuzun cinsellik, tutku ve çatışma tarzınızı nasıl belirlediği.',
         content: '''
 Mars, eylem ve tutku gezegenidir. İlişkilerde Mars, cinsel enerjiyi, savaş tarzını ve neyin motive ettiğini gösterir.
 
-## Mars\'ın İlişkideki Rolü
+## Mars'ın İlişkideki Rolü
 
 - **Cinsel Enerji**: Tutkuyu nasıl ifade edersiniz
 - **Çatışma Tarzı**: Tartışmalarda nasıl davranırsınız
@@ -400,7 +410,7 @@ Mars, eylem ve tutku gezegenidir. İlişkilerde Mars, cinsel enerjiyi, savaş ta
 
 ## Venüs-Mars Dinamiği
 
-Venüs çekicilik, Mars ise kovalamadır. İki partnerin Venüs ve Mars\'ı arasındaki açılar kimyayı belirler.
+Venüs çekicilik, Mars ise kovalamadır. İki partnerin Venüs ve Mars'ı arasındaki açılar kimyayı belirler.
 
 **Venüs kavuşum Mars**: Güçlü çekim
 **Venüs karşıt Mars**: Manyetik gerilim
@@ -409,10 +419,10 @@ Venüs çekicilik, Mars ise kovalamadır. İki partnerin Venüs ve Mars\'ı aras
 
 ## Mars Burçlarının Tutku Tarzları
 
-Ateş Mars\'ı: Hızlı, tutkulu, spontan
-Toprak Mars\'ı: Duyusal, dayanıklı, pratik
-Hava Mars\'ı: Zihinsel uyarım, iletişim önemli
-Su Mars\'ı: Duygusal yoğunluk, sezgisel bağlantı
+Ateş Mars'ı: Hızlı, tutkulu, spontan
+Toprak Mars'ı: Duyusal, dayanıklı, pratik
+Hava Mars'ı: Zihinsel uyarım, iletişim önemli
+Su Mars'ı: Duygusal yoğunluk, sezgisel bağlantı
         ''',
         category: ArticleCategory.relationships,
         publishedAt: DateTime.now().subtract(const Duration(days: 6)),
@@ -424,7 +434,8 @@ Su Mars\'ı: Duygusal yoğunluk, sezgisel bağlantı
       AstrologyArticle(
         id: '12',
         title: 'Kompozit Harita: İlişkinizin Doğum Haritası',
-        summary: 'İki kişinin enerjisinin birleşiminden oluşan kompozit haritanın yorumlanması.',
+        summary:
+            'İki kişinin enerjisinin birleşiminden oluşan kompozit haritanın yorumlanması.',
         content: '''
 Kompozit harita, iki kişinin haritalarının matematiksel ortalamasıdır ve ilişkinin kendisinin "doğum haritası"dır.
 
@@ -498,7 +509,8 @@ Güneş burcu uyumu sadece bir faktördür. Ay, Venüs, Mars ve yükselenler de 
       AstrologyArticle(
         id: '14',
         title: '7. Ev ve Evlilik Potansiyeli',
-        summary: '7. evinizin ve yöneticisinin ideal partneriniz hakkında söyledikleri.',
+        summary:
+            '7. evinizin ve yöneticisinin ideal partneriniz hakkında söyledikleri.',
         content: '''
 7. ev, astrolojide ortaklıklar ve evlilik evidir. Bu ev, bilinçli ilişkilerimizi ve eş arayışımızı gösterir.
 
@@ -572,7 +584,8 @@ Birinin gezegenleri diğerinin düğümlerine değdiğinde karmik bir bağ hisse
       AstrologyArticle(
         id: '16',
         title: 'Merkür Retrosu: Korkulacak Bir Şey Yok',
-        summary: 'Merkür retrosunun gerçek anlamı ve bu dönemi nasıl verimli geçirebilirsiniz.',
+        summary:
+            'Merkür retrosunun gerçek anlamı ve bu dönemi nasıl verimli geçirebilirsiniz.',
         content: '''
 Merkür retrosu, astrolojide en çok konuşulan dönemdir. Yılda 3-4 kez gerçekleşir ve her biri yaklaşık 3 hafta sürer.
 
@@ -617,7 +630,8 @@ Retro öncesi ve sonrası 2 haftalık gölge dönemleri de dikkat gerektirir.
       AstrologyArticle(
         id: '17',
         title: 'Venüs Retrosu ve Aşk Hayatınız',
-        summary: 'Her 18 ayda bir gerçekleşen Venüs retrosunun ilişkilere etkisi.',
+        summary:
+            'Her 18 ayda bir gerçekleşen Venüs retrosunun ilişkilere etkisi.',
         content: '''
 Venüs retrosu yaklaşık 40 gün sürer ve 18 ayda bir gerçekleşir. Aşk, güzellik ve değerler gezegeninin geriye hareketi önemli dönemlerden biridir.
 
@@ -702,7 +716,8 @@ Bu dönemde:
       AstrologyArticle(
         id: '19',
         title: 'Jüpiter Transitleri ve Şans Dönemleri',
-        summary: 'Şans ve genişleme gezegeni Jüpiter\'in transitlerinden nasıl faydalanabilirsiniz.',
+        summary:
+            'Şans ve genişleme gezegeni Jüpiter\'in transitlerinden nasıl faydalanabilirsiniz.',
         content: '''
 Jüpiter, astrolojinin "büyük iyileştirici"sidir. Her burçta yaklaşık 1 yıl kalır ve değdiği yerlere büyüme ve fırsatlar getirir.
 
@@ -741,15 +756,16 @@ Her 12 yılda Jüpiter doğum konumuna döner (12, 24, 36, 48... yaşlar). Bu ö
       AstrologyArticle(
         id: '20',
         title: 'Tutulmalar ve Kader Anları',
-        summary: 'Güneş ve Ay tutulmalarının astrolojik önemi ve hayatınıza etkileri.',
+        summary:
+            'Güneş ve Ay tutulmalarının astrolojik önemi ve hayatınıza etkileri.',
         content: '''
 Tutulmalar, astrolojide en güçlü kozmik olaylardan biridir. Yılda 4-6 tutulma gerçekleşir.
 
 ## Tutulma Türleri
 
-**Güneş Tutulması** (Yeni Ay\'da): Yeni başlangıçlar, kapıların açılması
+**Güneş Tutulması** (Yeni Ay'da): Yeni başlangıçlar, kapıların açılması
 
-**Ay Tutulması** (Dolunay\'da): Sonuçlanmalar, ortaya çıkışlar
+**Ay Tutulması** (Dolunay'da): Sonuçlanmalar, ortaya çıkışlar
 
 ## Tutulmalar Neden Güçlü?
 
@@ -787,7 +803,7 @@ Tutulmalar Ay düğümleri yakınında gerçekleşir, bu yüzden karmik ve kader
         content: '''
 Pluto en yavaş hareket eden ana gezegendir. Bir burçta 12-31 yıl kalır ve değdiği yerlerde köklü dönüşümler yaratır.
 
-## Pluto\'nun Doğası
+## Pluto'nun Doğası
 
 - Yıkım ve yeniden yapım
 - Güç dinamikleri
@@ -802,7 +818,7 @@ Pluto en yavaş hareket eden ana gezegendir. Bir burçta 12-31 yıl kalır ve de
 **Pluto 7. evde**: İlişkilerde güç mücadelesi
 **Pluto 10. evde**: Kariyer ve statü dönüşümü
 
-## Pluto\'yla Baş Etmek
+## Pluto'yla Baş Etmek
 
 1. Kontrol etmeye çalışmayın
 2. Direnmek işe yaramaz
@@ -828,7 +844,7 @@ Pluto transitleri yıllarca sürer. Sabır gerektirir ama sonuç kalıcı dönü
         content: '''
 Uranüs, değişim ve özgürlük gezegenidir. Bir burçta 7 yıl kalır ve ani, beklenmedik olaylar getirir.
 
-## Uranüs\'ün Doğası
+## Uranüs'ün Doğası
 
 - Ani değişimler
 - Özgürlük arayışı
@@ -847,7 +863,7 @@ Uranüs, değişim ve özgürlük gezegenidir. Bir burçta 7 yıl kalır ve ani,
 
 "Orta yaş krizi" olarak bilinen bu transit, otantik benliğinize dönme çağrısıdır.
 
-## Uranüs\'le Baş Etmek
+## Uranüs'le Baş Etmek
 
 - Esnekliği koruyun
 - Değişime direnmeyin
@@ -865,7 +881,8 @@ Uranüs, değişim ve özgürlük gezegenidir. Bir burçta 7 yıl kalır ve ani,
       AstrologyArticle(
         id: '23',
         title: '10. Ev ve Kariyer Yolunuz',
-        summary: '10. eviniz ve Midheaven burcunuzun kariyer potansiyeliniz hakkında söyledikleri.',
+        summary:
+            '10. eviniz ve Midheaven burcunuzun kariyer potansiyeliniz hakkında söyledikleri.',
         content: '''
 10. ev, astrolojide kariyer, toplumsal konum ve kamusal imaj evidir. Bu ev, profesyonel hayatınızı şekillendirir.
 
@@ -904,7 +921,8 @@ MC burcunun yöneticisinin konumu, kariyerinizi nasıl bulacağınızı gösteri
       AstrologyArticle(
         id: '24',
         title: 'Merkür ve İletişim Becerileri',
-        summary: 'Merkür burcunuzun düşünce ve iletişim tarzınızı nasıl şekillendirdiği.',
+        summary:
+            'Merkür burcunuzun düşünce ve iletişim tarzınızı nasıl şekillendirdiği.',
         content: '''
 Merkür, zihin ve iletişim gezegenidir. Merkür burcunuz, nasıl düşündüğünüzü ve iletişim kurduğunuzu gösterir.
 
@@ -939,7 +957,8 @@ Merkür hangi evdeyse, o alanda iletişim ve düşünce odaklı olursunuz.
       AstrologyArticle(
         id: '25',
         title: '6. Ev: Günlük İş ve Rutinler',
-        summary: '6. evinizin çalışma tarzınızı, sağlığınızı ve günlük rutinlerinizi nasıl etkilediği.',
+        summary:
+            '6. evinizin çalışma tarzınızı, sağlığınızı ve günlük rutinlerinizi nasıl etkilediği.',
         content: '''
 6. ev, günlük çalışma ortamınızı, sağlık alışkanlıklarınızı ve hizmet etme tarzınızı gösterir.
 
@@ -978,7 +997,8 @@ Bu ev, başkalarına nasıl hizmet ettiğinizi de gösterir. Gönüllülük, yar
       AstrologyArticle(
         id: '26',
         title: 'Jüpiter ve Satürn: Kariyer İkilisi',
-        summary: 'Bu iki gezegenin kariyer ve başarı üzerindeki birlikte etkileri.',
+        summary:
+            'Bu iki gezegenin kariyer ve başarı üzerindeki birlikte etkileri.',
         content: '''
 Jüpiter ve Satürn, kariyer açısından en önemli iki gezegendir. Biri büyütür, diğeri yapılandırır.
 
@@ -1099,7 +1119,7 @@ Bu ev aynı zamanda şifa potansiyelinizi gösterir. Başkalarına görünmeyen 
         content: '''
 Neptün, astrolojinin en spiritüel gezegenidir. Hayal gücü, ilham, rüyalar ve spiritüellik ile ilgilidir.
 
-## Neptün\'ün Doğası
+## Neptün'ün Doğası
 
 - Sınırların çözülmesi
 - İlham ve yaratıcılık
@@ -1107,7 +1127,7 @@ Neptün, astrolojinin en spiritüel gezegenidir. Hayal gücü, ilham, rüyalar v
 - Kaçış ve hayal
 - Empati ve şefkat
 
-## Neptün\'ün Zorlukları
+## Neptün'ün Zorlukları
 
 - Yanılsama ve aldanma
 - Gerçeklikten kaçış
@@ -1125,7 +1145,7 @@ Neptün bir burçta 14 yıl kaldığı için nesil etkisidir.
 - **Açıları**: Nasıl ifade ediliyor
 - **Güç/zayıflık**: Güçlü Neptün = güçlü sezgi
 
-## Neptün\'le Çalışmak
+## Neptün'le Çalışmak
 
 Sanat, müzik, meditasyon, şifa pratikleri ve spiritüel arayış Neptün enerjisini olumlu yönlendirir.
         ''',
@@ -1139,15 +1159,16 @@ Sanat, müzik, meditasyon, şifa pratikleri ve spiritüel arayış Neptün enerj
       AstrologyArticle(
         id: '30',
         title: 'Kiron: Yaralı Şifacı',
-        summary: 'Kiron asteroidi ve derin yaralarımızı şifaya dönüştürme potansiyelimiz.',
+        summary:
+            'Kiron asteroidi ve derin yaralarımızı şifaya dönüştürme potansiyelimiz.',
         content: '''
 Kiron, Satürn ve Uranüs arasında yörüngesi olan bir asteroittir. "Yaralı Şifacı" arketipi ile bilinir.
 
 ## Kiron Mitolojisi
 
-Kiron, mitolojide yarısı insan yarısı at olan bir centaur\'dur. Büyük bir şifacı olmasına rağmen kendi yarasını iyileştiremez.
+Kiron, mitolojide yarısı insan yarısı at olan bir centaur'dur. Büyük bir şifacı olmasına rağmen kendi yarasını iyileştiremez.
 
-## Kiron\'un Astrolojik Anlamı
+## Kiron'un Astrolojik Anlamı
 
 - Derin, iyileşmeyen yaralar
 - Şifa yeteneği
@@ -1164,7 +1185,7 @@ Kiron, mitolojide yarısı insan yarısı at olan bir centaur\'dur. Büyük bir 
 
 ## Kiron Dönüşü (50 yaş civarı)
 
-Kiron\'un doğum konumuna dönmesi, yaralarla barışma ve şifacı potansiyeli aktive etme zamanıdır.
+Kiron'un doğum konumuna dönmesi, yaralarla barışma ve şifacı potansiyeli aktive etme zamanıdır.
 
 ## Şifacı Olmak
 
@@ -1181,7 +1202,8 @@ Kiron güçlü olanlar, kendi yaralarını deneyimledikleri için başkalarına 
       AstrologyArticle(
         id: '31',
         title: 'Ay Fazları ve Manifestasyon Ritüelleri',
-        summary: 'Her ay fazına uygun manifestasyon teknikleri ve niyet belirleme.',
+        summary:
+            'Her ay fazına uygun manifestasyon teknikleri ve niyet belirleme.',
         content: '''
 Ay'ın 29.5 günlük döngüsü, manifestasyon ve niyet belirleme için güçlü bir çerçeve sunar.
 
@@ -1326,7 +1348,8 @@ Karmik ilişkiler ders öğretir, ruh eşileri birlikte büyür.
       AstrologyArticle(
         id: '34',
         title: 'Burcuna Göre Self-Care Rehberi',
-        summary: 'Güneş burcunuza özel kendinize bakım önerileri ve şifa pratikleri.',
+        summary:
+            'Güneş burcunuza özel kendinize bakım önerileri ve şifa pratikleri.',
         content: '''
 Her burcun enerjisi farklı self-care ihtiyaçları gerektirir. İşte size özel bakım rehberi.
 
@@ -1377,15 +1400,15 @@ Her burcun enerjisi farklı self-care ihtiyaçları gerektirir. İşte size öze
         content: '''
 2025, astrolojik açıdan önemli dönüşümler vadeden bir yıl. İşte öne çıkan temalar.
 
-## Jüpiter İkizler\'de (2024-2025)
+## Jüpiter İkizler'de (2024-2025)
 
 İletişim, öğrenme ve ağ kurma alanında fırsatlar. Özellikle hava burçları için şanslı bir dönem.
 
-## Satürn Balık\'ta
+## Satürn Balık'ta
 
 Spiritüel konularda yapılanma, hayal ile gerçek arasında denge kurma. Sınırlar ve empati.
 
-## Uranüs Boğa\'dan Çıkıyor
+## Uranüs Boğa'dan Çıkıyor
 
 Finansal ve değer sistemlerinde uzun süredir devam eden devrimin sonu. Yeni bir çağ başlıyor.
 
@@ -1410,7 +1433,8 @@ Koç-Terazi ekseninde tutulmalar devam ediyor. İlişkiler ve bireysellik temas�
       AstrologyArticle(
         id: '36',
         title: 'Gece Doğanlar vs Gündüz Doğanlar: Sekt',
-        summary: 'Doğum saatinize göre hangi gezegenler sizin için daha önemli?',
+        summary:
+            'Doğum saatinize göre hangi gezegenler sizin için daha önemli?',
         content: '''
 Antik astrolojide "sekt" kavramı, gece ve gündüz doğumlarını ayırır ve hangi gezegenlerin daha aktif olduğunu gösterir.
 
@@ -1495,7 +1519,8 @@ Yahudi mitolojisinde Lilith, Adem'in ilk eşiydi ve boyun eğmeyi reddetti. Bu a
       AstrologyArticle(
         id: '38',
         title: 'Para ve Bolluk: 2. ve 8. Ev Analizi',
-        summary: 'Finansal durumunuzu ve para ilişkinizi gösteren astrolojik faktörler.',
+        summary:
+            'Finansal durumunuzu ve para ilişkinizi gösteren astrolojik faktörler.',
         content: '''
 Astrolojide maddi konular iki ev tarafından yönetilir: 2. ev (kendi kazancınız) ve 8. ev (paylaşılan kaynaklar).
 
@@ -1539,7 +1564,8 @@ Jüpiter bu evlerde finansal fırsatları genişletir.
       AstrologyArticle(
         id: '39',
         title: 'Astroloji ve Psikoloji: Jung\'un Mirası',
-        summary: 'Carl Jung\'un astrolojiyle ilişkisi ve arketip kavramının bağlantısı.',
+        summary:
+            'Carl Jung\'un astrolojiyle ilişkisi ve arketip kavramının bağlantısı.',
         content: '''
 Carl Jung, modern psikolojinin kurucularından biri olarak astrolojiyi ciddiye alan nadir bilim insanlarından biriydi.
 

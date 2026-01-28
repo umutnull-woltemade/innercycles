@@ -1,19 +1,20 @@
 /// Quiz Segmentation Models
 /// Google Discover → Quiz → Premium funnel için model sınıfları
+library;
 
 /// Quiz segmentasyonu - kullanıcının premium'a dönüşüm olasılığı
 enum QuizSegment {
-  low,    // Düşük - Soft CTA veya skip
+  low, // Düşük - Soft CTA veya skip
   medium, // Orta - Normal premium teklifi
-  high,   // Yüksek - Agresif premium teklif (%30-40 dönüşüm hedefi)
+  high, // Yüksek - Agresif premium teklif (%30-40 dönüşüm hedefi)
 }
 
 /// Quiz tipi
 enum QuizType {
-  dream,      // Rüya yorumu quiz'i
-  astrology,  // Astroloji quiz'i
+  dream, // Rüya yorumu quiz'i
+  astrology, // Astroloji quiz'i
   numerology, // Numeroloji quiz'i
-  general,    // Genel keşif quiz'i
+  general, // Genel keşif quiz'i
   personality, // Kişilik testi
 }
 

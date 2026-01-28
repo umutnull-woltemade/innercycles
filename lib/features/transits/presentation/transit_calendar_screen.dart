@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/zodiac_sign.dart';
@@ -12,7 +13,8 @@ class TransitCalendarScreen extends ConsumerStatefulWidget {
   const TransitCalendarScreen({super.key});
 
   @override
-  ConsumerState<TransitCalendarScreen> createState() => _TransitCalendarScreenState();
+  ConsumerState<TransitCalendarScreen> createState() =>
+      _TransitCalendarScreenState();
 }
 
 class _TransitCalendarScreenState extends ConsumerState<TransitCalendarScreen> {
@@ -24,13 +26,22 @@ class _TransitCalendarScreenState extends ConsumerState<TransitCalendarScreen> {
   void initState() {
     super.initState();
     _selectedMonth = DateTime.now();
-    _monthEvents = TransitCalendarService.getMonthEvents(_selectedMonth.year, _selectedMonth.month);
+    _monthEvents = TransitCalendarService.getMonthEvents(
+      _selectedMonth.year,
+      _selectedMonth.month,
+    );
   }
 
   void _changeMonth(int delta) {
     setState(() {
-      _selectedMonth = DateTime(_selectedMonth.year, _selectedMonth.month + delta);
-      _monthEvents = TransitCalendarService.getMonthEvents(_selectedMonth.year, _selectedMonth.month);
+      _selectedMonth = DateTime(
+        _selectedMonth.year,
+        _selectedMonth.month + delta,
+      );
+      _monthEvents = TransitCalendarService.getMonthEvents(
+        _selectedMonth.year,
+        _selectedMonth.month,
+      );
       _selectedDate = null;
     });
   }
@@ -70,7 +81,10 @@ class _TransitCalendarScreenState extends ConsumerState<TransitCalendarScreen> {
         children: [
           IconButton(
             onPressed: () => context.pop(),
-            icon: const Icon(Icons.arrow_back_ios, color: AppColors.textPrimary),
+            icon: const Icon(
+              Icons.arrow_back_ios,
+              color: AppColors.textPrimary,
+            ),
           ),
           Expanded(
             child: Column(
@@ -79,15 +93,15 @@ class _TransitCalendarScreenState extends ConsumerState<TransitCalendarScreen> {
                 Text(
                   'Transit Takvimi',
                   style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                        color: AppColors.starGold,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    color: AppColors.starGold,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 Text(
                   'Önemli astrolojik olaylar',
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: AppColors.textSecondary,
-                      ),
+                    color: AppColors.textSecondary,
+                  ),
                 ),
               ],
             ),
@@ -112,18 +126,35 @@ class _TransitCalendarScreenState extends ConsumerState<TransitCalendarScreen> {
 
   Widget _buildMonthSelector(BuildContext context) {
     final months = [
-      'Ocak', 'Subat', 'Mart', 'Nisan', 'Mayis', 'Haziran',
-      'Temmuz', 'Agustos', 'Eylul', 'Ekim', 'Kasim', 'Aralik'
+      'Ocak',
+      'Subat',
+      'Mart',
+      'Nisan',
+      'Mayis',
+      'Haziran',
+      'Temmuz',
+      'Agustos',
+      'Eylul',
+      'Ekim',
+      'Kasim',
+      'Aralik',
     ];
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: AppConstants.spacingLg, vertical: AppConstants.spacingMd),
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppConstants.spacingLg,
+        vertical: AppConstants.spacingMd,
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           IconButton(
             onPressed: () => _changeMonth(-1),
-            icon: const Icon(Icons.chevron_left, color: AppColors.textPrimary, size: 28),
+            icon: const Icon(
+              Icons.chevron_left,
+              color: AppColors.textPrimary,
+              size: 28,
+            ),
           ),
           GestureDetector(
             onTap: () => _showMonthPicker(context),
@@ -140,19 +171,26 @@ class _TransitCalendarScreenState extends ConsumerState<TransitCalendarScreen> {
                   Text(
                     '${months[_selectedMonth.month - 1]} ${_selectedMonth.year}',
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                          color: AppColors.starGold,
-                          fontWeight: FontWeight.bold,
-                        ),
+                      color: AppColors.starGold,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   const SizedBox(width: 8),
-                  const Icon(Icons.keyboard_arrow_down, color: AppColors.starGold),
+                  const Icon(
+                    Icons.keyboard_arrow_down,
+                    color: AppColors.starGold,
+                  ),
                 ],
               ),
             ),
           ),
           IconButton(
             onPressed: () => _changeMonth(1),
-            icon: const Icon(Icons.chevron_right, color: AppColors.textPrimary, size: 28),
+            icon: const Icon(
+              Icons.chevron_right,
+              color: AppColors.textPrimary,
+              size: 28,
+            ),
           ),
         ],
       ),
@@ -174,9 +212,9 @@ class _TransitCalendarScreenState extends ConsumerState<TransitCalendarScreen> {
             children: [
               Text(
                 'Ay Sec',
-                style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      color: AppColors.textPrimary,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleLarge?.copyWith(color: AppColors.textPrimary),
               ),
               const SizedBox(height: AppConstants.spacingLg),
               SizedBox(
@@ -185,23 +223,45 @@ class _TransitCalendarScreenState extends ConsumerState<TransitCalendarScreen> {
                   itemCount: 12,
                   itemBuilder: (context, index) {
                     final months = [
-                      'Ocak', 'Subat', 'Mart', 'Nisan', 'Mayis', 'Haziran',
-                      'Temmuz', 'Agustos', 'Eylul', 'Ekim', 'Kasim', 'Aralik'
+                      'Ocak',
+                      'Subat',
+                      'Mart',
+                      'Nisan',
+                      'Mayis',
+                      'Haziran',
+                      'Temmuz',
+                      'Agustos',
+                      'Eylul',
+                      'Ekim',
+                      'Kasim',
+                      'Aralik',
                     ];
                     final isSelected = index + 1 == _selectedMonth.month;
                     return ListTile(
                       title: Text(
                         months[index],
                         style: TextStyle(
-                          color: isSelected ? AppColors.starGold : AppColors.textPrimary,
-                          fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                          color: isSelected
+                              ? AppColors.starGold
+                              : AppColors.textPrimary,
+                          fontWeight: isSelected
+                              ? FontWeight.bold
+                              : FontWeight.normal,
                         ),
                       ),
-                      trailing: isSelected ? const Icon(Icons.check, color: AppColors.starGold) : null,
+                      trailing: isSelected
+                          ? const Icon(Icons.check, color: AppColors.starGold)
+                          : null,
                       onTap: () {
                         setState(() {
-                          _selectedMonth = DateTime(_selectedMonth.year, index + 1);
-                          _monthEvents = TransitCalendarService.getMonthEvents(_selectedMonth.year, _selectedMonth.month);
+                          _selectedMonth = DateTime(
+                            _selectedMonth.year,
+                            index + 1,
+                          );
+                          _monthEvents = TransitCalendarService.getMonthEvents(
+                            _selectedMonth.year,
+                            _selectedMonth.month,
+                          );
                         });
                         Navigator.pop(context);
                       },
@@ -217,8 +277,16 @@ class _TransitCalendarScreenState extends ConsumerState<TransitCalendarScreen> {
   }
 
   Widget _buildCalendarGrid(BuildContext context) {
-    final daysInMonth = DateTime(_selectedMonth.year, _selectedMonth.month + 1, 0).day;
-    final firstDayOfMonth = DateTime(_selectedMonth.year, _selectedMonth.month, 1);
+    final daysInMonth = DateTime(
+      _selectedMonth.year,
+      _selectedMonth.month + 1,
+      0,
+    ).day;
+    final firstDayOfMonth = DateTime(
+      _selectedMonth.year,
+      _selectedMonth.month,
+      1,
+    );
     final startingWeekday = (firstDayOfMonth.weekday % 7); // 0 = Monday
 
     final dayNames = ['Pzt', 'Sal', 'Car', 'Per', 'Cum', 'Cmt', 'Paz'];
@@ -234,35 +302,45 @@ class _TransitCalendarScreenState extends ConsumerState<TransitCalendarScreen> {
         children: [
           // Day names header
           Row(
-            children: dayNames.map((day) => Expanded(
-              child: Center(
-                child: Text(
-                  day,
-                  style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                        color: AppColors.textMuted,
+            children: dayNames
+                .map(
+                  (day) => Expanded(
+                    child: Center(
+                      child: Text(
+                        day,
+                        style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                          color: AppColors.textMuted,
+                        ),
                       ),
-                ),
-              ),
-            )).toList(),
+                    ),
+                  ),
+                )
+                .toList(),
           ),
           const SizedBox(height: AppConstants.spacingSm),
           // Calendar grid
           ...List.generate(6, (weekIndex) {
             return Row(
               children: List.generate(7, (dayIndex) {
-                final dayNumber = weekIndex * 7 + dayIndex - startingWeekday + 1;
+                final dayNumber =
+                    weekIndex * 7 + dayIndex - startingWeekday + 1;
                 if (dayNumber < 1 || dayNumber > daysInMonth) {
                   return Expanded(child: Container(height: 44));
                 }
 
-                final date = DateTime(_selectedMonth.year, _selectedMonth.month, dayNumber);
-                final eventsOnDay = _monthEvents.where((e) =>
-                  e.date.day == dayNumber
-                ).toList();
+                final date = DateTime(
+                  _selectedMonth.year,
+                  _selectedMonth.month,
+                  dayNumber,
+                );
+                final eventsOnDay = _monthEvents
+                    .where((e) => e.date.day == dayNumber)
+                    .toList();
                 final isSelected = _selectedDate?.day == dayNumber;
-                final isToday = DateTime.now().year == date.year &&
-                               DateTime.now().month == date.month &&
-                               DateTime.now().day == date.day;
+                final isToday =
+                    DateTime.now().year == date.year &&
+                    DateTime.now().month == date.month &&
+                    DateTime.now().day == date.day;
 
                 return Expanded(
                   child: GestureDetector(
@@ -278,19 +356,22 @@ class _TransitCalendarScreenState extends ConsumerState<TransitCalendarScreen> {
                         color: isSelected
                             ? AppColors.starGold.withAlpha(100)
                             : isToday
-                                ? AppColors.auroraStart.withAlpha(50)
-                                : eventsOnDay.isNotEmpty
-                                    ? eventsOnDay.first.type.color.withAlpha(30)
-                                    : Colors.transparent,
+                            ? AppColors.auroraStart.withAlpha(50)
+                            : eventsOnDay.isNotEmpty
+                            ? eventsOnDay.first.type.color.withAlpha(30)
+                            : Colors.transparent,
                         borderRadius: BorderRadius.circular(8),
-                        border: isToday ? Border.all(color: AppColors.auroraStart, width: 2) : null,
+                        border: isToday
+                            ? Border.all(color: AppColors.auroraStart, width: 2)
+                            : null,
                       ),
                       child: Stack(
                         alignment: Alignment.center,
                         children: [
                           Text(
                             '$dayNumber',
-                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            style: Theme.of(context).textTheme.bodyMedium
+                                ?.copyWith(
                                   color: isSelected
                                       ? AppColors.deepSpace
                                       : AppColors.textPrimary,
@@ -304,17 +385,22 @@ class _TransitCalendarScreenState extends ConsumerState<TransitCalendarScreen> {
                               bottom: 4,
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
-                                children: eventsOnDay.take(3).map((e) =>
-                                  Container(
-                                    width: 4,
-                                    height: 4,
-                                    margin: const EdgeInsets.symmetric(horizontal: 1),
-                                    decoration: BoxDecoration(
-                                      color: e.type.color,
-                                      shape: BoxShape.circle,
-                                    ),
-                                  )
-                                ).toList(),
+                                children: eventsOnDay
+                                    .take(3)
+                                    .map(
+                                      (e) => Container(
+                                        width: 4,
+                                        height: 4,
+                                        margin: const EdgeInsets.symmetric(
+                                          horizontal: 1,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          color: e.type.color,
+                                          shape: BoxShape.circle,
+                                        ),
+                                      ),
+                                    )
+                                    .toList(),
                               ),
                             ),
                         ],
@@ -346,9 +432,9 @@ class _TransitCalendarScreenState extends ConsumerState<TransitCalendarScreen> {
               _selectedDate != null
                   ? 'Bu gun icin ozel transit yok'
                   : 'Bu ay icin transit yok',
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: AppColors.textSecondary,
-                  ),
+              style: Theme.of(
+                context,
+              ).textTheme.bodyMedium?.copyWith(color: AppColors.textSecondary),
             ),
           ],
         ),
@@ -366,9 +452,9 @@ class _TransitCalendarScreenState extends ConsumerState<TransitCalendarScreen> {
               _selectedDate != null
                   ? '${_selectedDate!.day} ${_getMonthName(_selectedDate!.month)} Transitler'
                   : 'Ayin Transitler',
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    color: AppColors.textPrimary,
-                  ),
+              style: Theme.of(
+                context,
+              ).textTheme.titleMedium?.copyWith(color: AppColors.textPrimary),
             ),
             const Spacer(),
             if (_selectedDate != null)
@@ -385,9 +471,10 @@ class _TransitCalendarScreenState extends ConsumerState<TransitCalendarScreen> {
         ...eventsToShow.asMap().entries.map((entry) {
           final index = entry.key;
           final event = entry.value;
-          return _buildEventCard(context, event)
-              .animate()
-              .fadeIn(delay: (300 + index * 50).ms, duration: 300.ms);
+          return _buildEventCard(
+            context,
+            event,
+          ).animate().fadeIn(delay: (300 + index * 50).ms, duration: 300.ms);
         }),
       ],
     );
@@ -401,32 +488,29 @@ class _TransitCalendarScreenState extends ConsumerState<TransitCalendarScreen> {
         gradient: LinearGradient(
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,
-          colors: [
-            event.type.color.withAlpha(30),
-            AppColors.surfaceDark,
-          ],
+          colors: [event.type.color.withAlpha(30), AppColors.surfaceDark],
         ),
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         border: Border.all(color: event.type.color.withAlpha(50)),
       ),
       child: Row(
         children: [
-          Container(
+          SizedBox(
             width: 50,
             child: Column(
               children: [
                 Text(
                   '${event.date.day}',
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        color: event.type.color,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    color: event.type.color,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 Text(
                   _getMonthAbbr(event.date.month),
-                  style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                        color: AppColors.textMuted,
-                      ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.labelSmall?.copyWith(color: AppColors.textMuted),
                 ),
               ],
             ),
@@ -451,7 +535,10 @@ class _TransitCalendarScreenState extends ConsumerState<TransitCalendarScreen> {
                 Row(
                   children: [
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 6,
+                        vertical: 2,
+                      ),
                       decoration: BoxDecoration(
                         color: event.type.color.withAlpha(30),
                         borderRadius: BorderRadius.circular(4),
@@ -459,9 +546,9 @@ class _TransitCalendarScreenState extends ConsumerState<TransitCalendarScreen> {
                       child: Text(
                         event.type.nameTr,
                         style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                              color: event.type.color,
-                              fontSize: 9,
-                            ),
+                          color: event.type.color,
+                          fontSize: 9,
+                        ),
                       ),
                     ),
                   ],
@@ -470,15 +557,15 @@ class _TransitCalendarScreenState extends ConsumerState<TransitCalendarScreen> {
                 Text(
                   event.title,
                   style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                        color: AppColors.textPrimary,
-                      ),
+                    color: AppColors.textPrimary,
+                  ),
                 ),
                 const SizedBox(height: 2),
                 Text(
                   event.description,
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: AppColors.textSecondary,
-                      ),
+                    color: AppColors.textSecondary,
+                  ),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -492,14 +579,37 @@ class _TransitCalendarScreenState extends ConsumerState<TransitCalendarScreen> {
 
   String _getMonthName(int month) {
     final months = [
-      'Ocak', 'Subat', 'Mart', 'Nisan', 'Mayis', 'Haziran',
-      'Temmuz', 'Agustos', 'Eylul', 'Ekim', 'Kasim', 'Aralik'
+      'Ocak',
+      'Subat',
+      'Mart',
+      'Nisan',
+      'Mayis',
+      'Haziran',
+      'Temmuz',
+      'Agustos',
+      'Eylul',
+      'Ekim',
+      'Kasim',
+      'Aralik',
     ];
     return months[month - 1];
   }
 
   String _getMonthAbbr(int month) {
-    final months = ['Oca', 'Sub', 'Mar', 'Nis', 'May', 'Haz', 'Tem', 'Agu', 'Eyl', 'Eki', 'Kas', 'Ara'];
+    final months = [
+      'Oca',
+      'Sub',
+      'Mar',
+      'Nis',
+      'May',
+      'Haz',
+      'Tem',
+      'Agu',
+      'Eyl',
+      'Eki',
+      'Kas',
+      'Ara',
+    ];
     return months[month - 1];
   }
 }
@@ -596,25 +706,31 @@ class TransitCalendarService {
     final newMoonSign = moonSigns[(month - 1) % 12];
     final fullMoonSign = moonSigns[(month + 5) % 12];
 
-    events.add(TransitEvent(
-      date: DateTime(year, month, newMoonDay),
-      title: 'Yeni Ay - ${newMoonSign.nameTr}',
-      description: '${newMoonSign.nameTr} burcunda yeni ay. Yeni başlangıçlar için ideal zaman. '
-          '${newMoonSign.element.nameTr} elementi enerjisi hakim.',
-      emoji: '🌑',
-      type: TransitEventType.newMoon,
-      sign: newMoonSign,
-    ));
+    events.add(
+      TransitEvent(
+        date: DateTime(year, month, newMoonDay),
+        title: 'Yeni Ay - ${newMoonSign.nameTr}',
+        description:
+            '${newMoonSign.nameTr} burcunda yeni ay. Yeni başlangıçlar için ideal zaman. '
+            '${newMoonSign.element.nameTr} elementi enerjisi hakim.',
+        emoji: '🌑',
+        type: TransitEventType.newMoon,
+        sign: newMoonSign,
+      ),
+    );
 
-    events.add(TransitEvent(
-      date: DateTime(year, month, fullMoonDay),
-      title: 'Dolunay - ${fullMoonSign.nameTr}',
-      description: '${fullMoonSign.nameTr} burcunda dolunay. Tamamlanma ve hasat zamanı. '
-          'Duygular yoğunlaşıyor.',
-      emoji: '🌕',
-      type: TransitEventType.fullMoon,
-      sign: fullMoonSign,
-    ));
+    events.add(
+      TransitEvent(
+        date: DateTime(year, month, fullMoonDay),
+        title: 'Dolunay - ${fullMoonSign.nameTr}',
+        description:
+            '${fullMoonSign.nameTr} burcunda dolunay. Tamamlanma ve hasat zamanı. '
+            'Duygular yoğunlaşıyor.',
+        emoji: '🌕',
+        type: TransitEventType.fullMoon,
+        sign: fullMoonSign,
+      ),
+    );
 
     return events;
   }
@@ -644,16 +760,20 @@ class TransitCalendarService {
       final eclipseDay = 8 + (year % 10);
       final eclipseSign = ZodiacSign.values[(month + 2) % 12];
 
-      events.add(TransitEvent(
-        date: DateTime(year, month, eclipseDay.clamp(1, 28)),
-        title: isSolar ? 'Güneş Tutulması - ${eclipseSign.nameTr}' : 'Ay Tutulması - ${eclipseSign.nameTr}',
-        description: isSolar
-            ? '${eclipseSign.nameTr} burcunda güneş tutulması. Güçlü yeni başlangıçlar. Kader kapıları açılıyor.'
-            : '${eclipseSign.nameTr} burcunda ay tutulması. Büyük kapatışlar ve sonlanmalar. Duygusal dönüşüm.',
-        emoji: isSolar ? '🌘' : '🌒',
-        type: TransitEventType.eclipse,
-        sign: eclipseSign,
-      ));
+      events.add(
+        TransitEvent(
+          date: DateTime(year, month, eclipseDay.clamp(1, 28)),
+          title: isSolar
+              ? 'Güneş Tutulması - ${eclipseSign.nameTr}'
+              : 'Ay Tutulması - ${eclipseSign.nameTr}',
+          description: isSolar
+              ? '${eclipseSign.nameTr} burcunda güneş tutulması. Güçlü yeni başlangıçlar. Kader kapıları açılıyor.'
+              : '${eclipseSign.nameTr} burcunda ay tutulması. Büyük kapatışlar ve sonlanmalar. Duygusal dönüşüm.',
+          emoji: isSolar ? '🌘' : '🌒',
+          type: TransitEventType.eclipse,
+          sign: eclipseSign,
+        ),
+      );
     }
 
     return events;
@@ -666,38 +786,47 @@ class TransitCalendarService {
     final mercuryRetroMonths = [1, 4, 8, 12];
     if (mercuryRetroMonths.contains(month)) {
       final startDay = 10 + (year % 5);
-      events.add(TransitEvent(
-        date: DateTime(year, month, startDay),
-        title: 'Merkur Retro Basliyor',
-        description: 'Iletisim, seyahat ve teknolojide aksakliklar yasanabilir. '
-            'Eski konulari gozden gecirin. Yeni sozlesmeler icin bekleyin.',
-        emoji: '☿️',
-        type: TransitEventType.retrograde,
-      ));
+      events.add(
+        TransitEvent(
+          date: DateTime(year, month, startDay),
+          title: 'Merkur Retro Basliyor',
+          description:
+              'Iletisim, seyahat ve teknolojide aksakliklar yasanabilir. '
+              'Eski konulari gozden gecirin. Yeni sozlesmeler icin bekleyin.',
+          emoji: '☿️',
+          type: TransitEventType.retrograde,
+        ),
+      );
     }
 
     // Venus retrograde (approximately every 18 months)
     if ((year + month) % 18 == 0) {
-      events.add(TransitEvent(
-        date: DateTime(year, month, 5),
-        title: 'Venus Retro Basliyor',
-        description: 'Ask ve iliskilerde tekrar degerledirme zamani. '
-            'Eski asklar geri donebilir. Estetik kararlari erteleyin.',
-        emoji: '♀️',
-        type: TransitEventType.retrograde,
-      ));
+      events.add(
+        TransitEvent(
+          date: DateTime(year, month, 5),
+          title: 'Venus Retro Basliyor',
+          description:
+              'Ask ve iliskilerde tekrar degerledirme zamani. '
+              'Eski asklar geri donebilir. Estetik kararlari erteleyin.',
+          emoji: '♀️',
+          type: TransitEventType.retrograde,
+        ),
+      );
     }
 
     // Mars retrograde (approximately every 2 years)
     if (year % 2 == 0 && month == 10) {
-      events.add(TransitEvent(
-        date: DateTime(year, month, 20),
-        title: 'Mars Retro Basliyor',
-        description: 'Enerji iceride yonlendirilmeli. Agresif kararlardan kacinin. '
-            'Fiziksel aktivitelerde dikkatli olun.',
-        emoji: '♂️',
-        type: TransitEventType.retrograde,
-      ));
+      events.add(
+        TransitEvent(
+          date: DateTime(year, month, 20),
+          title: 'Mars Retro Basliyor',
+          description:
+              'Enerji iceride yonlendirilmeli. Agresif kararlardan kacinin. '
+              'Fiziksel aktivitelerde dikkatli olun.',
+          emoji: '♂️',
+          type: TransitEventType.retrograde,
+        ),
+      );
     }
 
     return events;
@@ -710,15 +839,18 @@ class TransitCalendarService {
     final sunIngressDay = 20 + (month % 3);
     final nextSign = ZodiacSign.values[month % 12];
 
-    events.add(TransitEvent(
-      date: DateTime(year, month, sunIngressDay),
-      title: 'Gunes ${nextSign.nameTr} Burcuna Giriyor',
-      description: '${nextSign.nameTr} sezonu basliyor. ${nextSign.element.nameTr} elementi enerjisi '
-          'yoğunlasiyor. ${nextSign.nameTr} burcunun temalari on plana cikiyor.',
-      emoji: '☀️',
-      type: TransitEventType.signIngress,
-      sign: nextSign,
-    ));
+    events.add(
+      TransitEvent(
+        date: DateTime(year, month, sunIngressDay),
+        title: 'Gunes ${nextSign.nameTr} Burcuna Giriyor',
+        description:
+            '${nextSign.nameTr} sezonu basliyor. ${nextSign.element.nameTr} elementi enerjisi '
+            'yoğunlasiyor. ${nextSign.nameTr} burcunun temalari on plana cikiyor.',
+        emoji: '☀️',
+        type: TransitEventType.signIngress,
+        sign: nextSign,
+      ),
+    );
 
     return events;
   }
@@ -731,40 +863,49 @@ class TransitCalendarService {
 
     // Jupiter-Saturn aspects (rare and significant)
     if (seed % 20 == 0) {
-      events.add(TransitEvent(
-        date: DateTime(year, month, 15),
-        title: 'Jüpiter-Satürn Kavuşumu',
-        description: 'Önemli toplumsal ve kişisel dönüşüm. 20 yılda bir gerçekleşen bu '
-            'olay büyük değişimler getirir.',
-        emoji: '⚡',
-        type: TransitEventType.majorAspect,
-      ));
+      events.add(
+        TransitEvent(
+          date: DateTime(year, month, 15),
+          title: 'Jüpiter-Satürn Kavuşumu',
+          description:
+              'Önemli toplumsal ve kişisel dönüşüm. 20 yılda bir gerçekleşen bu '
+              'olay büyük değişimler getirir.',
+          emoji: '⚡',
+          type: TransitEventType.majorAspect,
+        ),
+      );
     }
 
     // Mars-Jupiter positive aspect
     if (month % 4 == 0) {
       final aspectDay = 5 + (seed % 10);
-      events.add(TransitEvent(
-        date: DateTime(year, month, aspectDay.clamp(1, 28)),
-        title: 'Mars-Jüpiter Üçgeni',
-        description: 'Enerji ve şans buluşuyor. Cesur girişimler için mükemmel zaman. '
-            'Fiziksel aktiviteler ve sporlar destekleniyor.',
-        emoji: '🔥',
-        type: TransitEventType.majorAspect,
-      ));
+      events.add(
+        TransitEvent(
+          date: DateTime(year, month, aspectDay.clamp(1, 28)),
+          title: 'Mars-Jüpiter Üçgeni',
+          description:
+              'Enerji ve şans buluşuyor. Cesur girişimler için mükemmel zaman. '
+              'Fiziksel aktiviteler ve sporlar destekleniyor.',
+          emoji: '🔥',
+          type: TransitEventType.majorAspect,
+        ),
+      );
     }
 
     // Venus-Neptune aspect
     if (month % 3 == 1) {
       final aspectDay = 12 + (seed % 8);
-      events.add(TransitEvent(
-        date: DateTime(year, month, aspectDay.clamp(1, 28)),
-        title: 'Venüs-Neptün Kavuşumu',
-        description: 'Romantik ve sanatsal ilham. Rüyalar ve hayal gücü güçleniyor. '
-            'Spiritüel aşk deneyimleri.',
-        emoji: '💫',
-        type: TransitEventType.majorAspect,
-      ));
+      events.add(
+        TransitEvent(
+          date: DateTime(year, month, aspectDay.clamp(1, 28)),
+          title: 'Venüs-Neptün Kavuşumu',
+          description:
+              'Romantik ve sanatsal ilham. Rüyalar ve hayal gücü güçleniyor. '
+              'Spiritüel aşk deneyimleri.',
+          emoji: '💫',
+          type: TransitEventType.majorAspect,
+        ),
+      );
     }
 
     return events;
