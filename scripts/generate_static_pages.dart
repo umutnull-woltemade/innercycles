@@ -24,18 +24,18 @@ class PageMeta {
   });
 }
 
-const String baseUrl = 'https://astrobobo.com';
+const String baseUrl = 'https://venusone.app';
 
 final List<PageMeta> pages = [
   // Ana Sayfa
   PageMeta(
     route: '',
-    title: 'Astrobobo — Kişisel Kozmik Rehberiniz | Ücretsiz Doğum Haritası',
+    title: 'Venus One — Kişisel Kozmik Rehberiniz | Ücretsiz Doğum Haritası',
     description: 'Ücretsiz doğum haritası, günlük burç yorumları, synastry uyum analizi ve gezegen transitleri. Swiss Ephemeris ile hesaplanan profesyonel astroloji.',
     keywords: 'astroloji, doğum haritası, burç yorumu, natal chart, synastry, transit',
     ogType: 'website',
     content: [
-      'Astrobobo — Kozmik Yolculuğunuz Başlıyor',
+      'Venus One — Kozmik Yolculuğunuz Başlıyor',
       'Ücretsiz profesyonel doğum haritası hesaplama',
       'Günlük, haftalık ve aylık burç yorumları',
       'Synastry ilişki uyumu analizi',
@@ -47,7 +47,7 @@ final List<PageMeta> pages = [
   // Doğum Haritası
   PageMeta(
     route: 'birth-chart',
-    title: 'Ücretsiz Doğum Haritası Hesaplama | Astrobobo',
+    title: 'Ücretsiz Doğum Haritası Hesaplama | Venus One',
     description: 'Profesyonel doğum haritası hesaplayıcı. Gezegen pozisyonları, ev yerleşimleri, açılar ve yükselen burç analizi. Swiss Ephemeris hassasiyetinde.',
     keywords: 'doğum haritası, natal chart, yükselen burç, gezegen pozisyonları, astroloji haritası',
     ogType: 'website',
@@ -70,7 +70,7 @@ final List<PageMeta> pages = [
   // Günlük Burç
   PageMeta(
     route: 'horoscope',
-    title: 'Günlük Burç Yorumları — 12 Burç İçin Detaylı Yorum | Astrobobo',
+    title: 'Günlük Burç Yorumları — 12 Burç İçin Detaylı Yorum | Venus One',
     description: 'Günlük, haftalık ve aylık burç yorumları. Aşk, kariyer, sağlık ve para konularında kozmik enerji analizi.',
     keywords: 'günlük burç yorumu, haftalık burç, aylık burç, burç falı',
     ogType: 'article',
@@ -96,7 +96,7 @@ final List<PageMeta> pages = [
   // Synastry
   PageMeta(
     route: 'synastry',
-    title: 'Synastry — İlişki Uyumu Analizi | Astrobobo',
+    title: 'Synastry — İlişki Uyumu Analizi | Venus One',
     description: 'İki kişinin doğum haritaları arasındaki uyumu keşfedin. Synastry açıları, gezegen etkileşimleri ve ilişki dinamikleri.',
     keywords: 'synastry, burç uyumu, ilişki uyumu, astroloji uyum',
     ogType: 'website',
@@ -116,7 +116,7 @@ final List<PageMeta> pages = [
   // Kompozit
   PageMeta(
     route: 'composite',
-    title: 'Kompozit Harita — İlişkinin Doğum Haritası | Astrobobo',
+    title: 'Kompozit Harita — İlişkinin Doğum Haritası | Venus One',
     description: 'İki kişinin birleşik haritası. İlişkinizin ortak enerjisi, potansiyeli ve dinamikleri.',
     keywords: 'kompozit harita, composite chart, ilişki haritası',
     ogType: 'website',
@@ -135,7 +135,7 @@ final List<PageMeta> pages = [
   // Solar Return
   PageMeta(
     route: 'solar-return',
-    title: 'Solar Return — Güneş Dönüşü Haritası | Astrobobo',
+    title: 'Solar Return — Güneş Dönüşü Haritası | Venus One',
     description: 'Yıllık Solar Return haritanız. Doğum gününüzde Güneşin konumuna göre yılın temaları.',
     keywords: 'solar return, güneş dönüşü, yıllık harita',
     ogType: 'website',
@@ -153,7 +153,7 @@ final List<PageMeta> pages = [
   // Progresyonlar
   PageMeta(
     route: 'progressions',
-    title: 'İkincil Progresyonlar — İç Evrim Haritası | Astrobobo',
+    title: 'İkincil Progresyonlar — İç Evrim Haritası | Venus One',
     description: 'Secondary Progressions ile içsel gelişiminizi takip edin. Progrese Ay fazları ve kişisel evrim.',
     keywords: 'progresyon, secondary progressions, progrese ay',
     ogType: 'website',
@@ -171,7 +171,7 @@ final List<PageMeta> pages = [
   // Transitler
   PageMeta(
     route: 'transits',
-    title: 'Gezegen Transitleri — Güncel Kozmik Akış | Astrobobo',
+    title: 'Gezegen Transitleri — Güncel Kozmik Akış | Venus One',
     description: 'Şu anki gezegen transitlerinin doğum haritanıza etkileri.',
     keywords: 'transit, gezegen transiti, satürn transiti, jüpiter transiti',
     ogType: 'website',
@@ -189,7 +189,7 @@ final List<PageMeta> pages = [
   // Vedik
   PageMeta(
     route: 'vedic',
-    title: 'Vedik Astroloji — Hint Astrolojisi Haritası | Astrobobo',
+    title: 'Vedik Astroloji — Hint Astrolojisi Haritası | Venus One',
     description: 'Jyotish (Vedik Astroloji) haritanız. Sidereal zodiac, Nakshatra ve Dasha analizi.',
     keywords: 'vedik astroloji, jyotish, nakshatra, dasha',
     ogType: 'website',
@@ -207,7 +207,7 @@ final List<PageMeta> pages = [
   // Drakonik
   PageMeta(
     route: 'draconic',
-    title: 'Drakonik Harita — Ruhsal Köken Haritası | Astrobobo',
+    title: 'Drakonik Harita — Ruhsal Köken Haritası | Venus One',
     description: 'Ay Düğümüne dayalı drakonik haritanız. Ruhsal kökeniniz ve karma mirasınız.',
     keywords: 'drakonik harita, draconic chart, ruhsal harita',
     ogType: 'website',
@@ -225,7 +225,7 @@ final List<PageMeta> pages = [
   // Asteroidler
   PageMeta(
     route: 'asteroids',
-    title: 'Asteroidler — Chiron, Lilith, Juno, Ceres | Astrobobo',
+    title: 'Asteroidler — Chiron, Lilith, Juno, Ceres | Venus One',
     description: 'Asteroitlerin doğum haritanızdaki etkileri. Chiron, Lilith, Juno, Ceres analizi.',
     keywords: 'asteroit, chiron, lilith, juno, ceres, pallas, vesta',
     ogType: 'website',
@@ -245,7 +245,7 @@ final List<PageMeta> pages = [
   // Local Space
   PageMeta(
     route: 'local-space',
-    title: 'Local Space — Mekansal Astroloji | Astrobobo',
+    title: 'Local Space — Mekansal Astroloji | Venus One',
     description: 'Bulunduğunuz konumun astrolojik analizi. Gezegen yönleri ve enerji hatları.',
     keywords: 'local space, mekansal astroloji, astrokartografi',
     ogType: 'website',
@@ -263,7 +263,7 @@ final List<PageMeta> pages = [
   // Timing
   PageMeta(
     route: 'timing',
-    title: 'Astrolojik Zamanlama — Electional Astrology | Astrobobo',
+    title: 'Astrolojik Zamanlama — Electional Astrology | Venus One',
     description: 'Önemli kararlarınız için en uygun zamanları keşfedin.',
     keywords: 'electional astroloji, uygun zaman, muhurta',
     ogType: 'website',
@@ -282,7 +282,7 @@ final List<PageMeta> pages = [
   // Year Ahead
   PageMeta(
     route: 'year-ahead',
-    title: 'Yıllık Astroloji Önizlemesi — 2025 Analizi | Astrobobo',
+    title: 'Yıllık Astroloji Önizlemesi — 2025 Analizi | Venus One',
     description: '2025 yılı için kişisel astroloji önizlemeniz. Major transitler ve tutulmalar.',
     keywords: '2025 astroloji, yıllık burç, yıl önizleme',
     ogType: 'article',
@@ -300,7 +300,7 @@ final List<PageMeta> pages = [
   // Weekly Horoscope
   PageMeta(
     route: 'weekly-horoscope',
-    title: 'Haftalık Burç Yorumları | Astrobobo',
+    title: 'Haftalık Burç Yorumları | Venus One',
     description: 'Haftalık burç yorumları. Bu hafta burçları neler bekliyor?',
     keywords: 'haftalık burç, bu hafta burçlar, haftalık yorum',
     ogType: 'article',
@@ -317,7 +317,7 @@ final List<PageMeta> pages = [
   // Monthly Horoscope
   PageMeta(
     route: 'monthly-horoscope',
-    title: 'Aylık Burç Yorumları | Astrobobo',
+    title: 'Aylık Burç Yorumları | Venus One',
     description: 'Aylık burç yorumları. Bu ay burçları neler bekliyor?',
     keywords: 'aylık burç, bu ay burçlar, aylık yorum',
     ogType: 'article',
@@ -334,7 +334,7 @@ final List<PageMeta> pages = [
   // Yearly Horoscope
   PageMeta(
     route: 'yearly-horoscope',
-    title: 'Yıllık Burç Yorumları 2025 | Astrobobo',
+    title: 'Yıllık Burç Yorumları 2025 | Venus One',
     description: '2025 yılı burç yorumları. Major gezegenler ve tutulmaların etkileri.',
     keywords: 'yıllık burç 2025, yıllık burç yorumu, 2025 burçlar',
     ogType: 'article',
@@ -351,7 +351,7 @@ final List<PageMeta> pages = [
   // Celebrities
   PageMeta(
     route: 'celebrities',
-    title: 'Ünlü Doğum Haritaları — Celebrity Astrology | Astrobobo',
+    title: 'Ünlü Doğum Haritaları — Celebrity Astrology | Venus One',
     description: 'Ünlülerin doğum haritaları ve astrolojik analizleri.',
     keywords: 'ünlü doğum haritası, celebrity astrology, ünlü burç',
     ogType: 'website',
@@ -370,7 +370,7 @@ final List<PageMeta> pages = [
   // Glossary
   PageMeta(
     route: 'glossary',
-    title: 'Astroloji Sözlüğü — Terimler ve Kavramlar | Astrobobo',
+    title: 'Astroloji Sözlüğü — Terimler ve Kavramlar | Venus One',
     description: "A'dan Z'ye astroloji terimleri sözlüğü.",
     keywords: 'astroloji sözlüğü, astroloji terimleri, astroloji kavramları',
     ogType: 'website',
@@ -389,7 +389,7 @@ final List<PageMeta> pages = [
   // Tarot
   PageMeta(
     route: 'tarot',
-    title: 'Tarot Falı — Günlük Tarot Kartı | Astrobobo',
+    title: 'Tarot Falı — Günlük Tarot Kartı | Venus One',
     description: 'Ücretsiz tarot falı. Günlük kart, 3 kart açılımı, aşk tarot.',
     keywords: 'tarot, tarot falı, günlük tarot, tarot kartları',
     ogType: 'website',
@@ -407,7 +407,7 @@ final List<PageMeta> pages = [
   // Numeroloji
   PageMeta(
     route: 'numerology',
-    title: 'Numeroloji — Sayılarla Kişilik Analizi | Astrobobo',
+    title: 'Numeroloji — Sayılarla Kişilik Analizi | Venus One',
     description: 'Yaşam yolu sayınız, kişilik sayınız ve ruh sayınız.',
     keywords: 'numeroloji, yaşam yolu sayısı, kişilik sayısı',
     ogType: 'website',
@@ -425,7 +425,7 @@ final List<PageMeta> pages = [
   // Saturn Return
   PageMeta(
     route: 'saturn-return',
-    title: 'Satürn Dönüşü — 29 Yaş Krizi Astrolojisi | Astrobobo',
+    title: 'Satürn Dönüşü — 29 Yaş Krizi Astrolojisi | Venus One',
     description: 'Satürn Dönüşü nedir ve sizi nasıl etkiler? 27-30 yaş dönemi analizi.',
     keywords: 'satürn dönüşü, saturn return, 29 yaş krizi',
     ogType: 'article',
@@ -442,12 +442,12 @@ final List<PageMeta> pages = [
   // Premium
   PageMeta(
     route: 'premium',
-    title: 'Astrobobo Premium — Gelişmiş Astroloji Özellikleri',
+    title: 'Venus One Premium — Gelişmiş Astroloji Özellikleri',
     description: 'Premium özelliklere erişin: Detaylı raporlar, karşılaştırmalı analizler.',
-    keywords: 'astroloji premium, astrobobo premium',
+    keywords: 'astroloji premium, venusone premium',
     ogType: 'website',
     content: [
-      'Astrobobo Premium',
+      'Venus One Premium',
       'Astroloji deneyiminizi bir üst seviyeye taşıyın.',
       'Premium Özellikler',
       '• Detaylı transit raporları',
@@ -461,7 +461,7 @@ final List<PageMeta> pages = [
   // Profile
   PageMeta(
     route: 'profile',
-    title: 'Profilim — Astroloji Profilim | Astrobobo',
+    title: 'Profilim — Astroloji Profilim | Venus One',
     description: 'Kişisel astroloji profiliniz. Kayıtlı haritalarınız ve tercihleriniz.',
     keywords: 'astroloji profil, doğum bilgisi, kişisel harita',
     ogType: 'profile',
@@ -479,13 +479,13 @@ final List<PageMeta> pages = [
   // Settings
   PageMeta(
     route: 'settings',
-    title: 'Ayarlar | Astrobobo',
+    title: 'Ayarlar | Venus One',
     description: 'Uygulama ayarları. Ev sistemi, zodiac tipi ve tema tercihleri.',
     keywords: 'ayarlar, tercihler, uygulama ayarları',
     ogType: 'website',
     content: [
       'Uygulama Ayarları',
-      'Astrobobo deneyiminizi özelleştirin.',
+      'Venus One deneyiminizi özelleştirin.',
       'Ayar Kategorileri',
       '• Ev sistemi seçimi (Placidus, Whole Sign, vb.)',
       '• Zodiac tipi (Tropical/Sidereal)',
@@ -497,7 +497,7 @@ final List<PageMeta> pages = [
   // Kozmoz
   PageMeta(
     route: 'kozmoz',
-    title: 'Kozmoz — Günlük Kozmik Keşif | Astrobobo',
+    title: 'Kozmoz — Günlük Kozmik Keşif | Venus One',
     description: 'Her gün yeni bir kozmik mesaj. Günün enerjisi ve kişisel rehberlik.',
     keywords: 'kozmik mesaj, günlük enerji, ay fazı',
     ogType: 'article',
@@ -515,7 +515,7 @@ final List<PageMeta> pages = [
   // Dreams
   PageMeta(
     route: 'dreams',
-    title: 'Rüya Yorumu — Sembolik Rüya Analizi | Astrobobo',
+    title: 'Rüya Yorumu — Sembolik Rüya Analizi | Venus One',
     description: 'Rüyalarınızın sembolik anlamlarını keşfedin.',
     keywords: 'rüya yorumu, rüya analizi, rüya sembolleri',
     ogType: 'website',
@@ -533,7 +533,7 @@ final List<PageMeta> pages = [
   // Chakra
   PageMeta(
     route: 'chakra',
-    title: 'Chakra Analizi — Enerji Merkezi Dengesi | Astrobobo',
+    title: 'Chakra Analizi — Enerji Merkezi Dengesi | Venus One',
     description: 'Yedi ana chakranızın analizi. Enerji blokajları ve denge durumu.',
     keywords: 'chakra, enerji merkezi, chakra dengesi, kundalini',
     ogType: 'website',
@@ -554,7 +554,7 @@ final List<PageMeta> pages = [
   // Rituals
   PageMeta(
     route: 'rituals',
-    title: 'Kozmik Ritüeller — Ay Fazı Ritüelleri | Astrobobo',
+    title: 'Kozmik Ritüeller — Ay Fazı Ritüelleri | Venus One',
     description: 'Yeniay ve dolunay ritüelleri. Niyet belirleme ve manifestasyon.',
     keywords: 'ritüel, yeniay ritüeli, dolunay ritüeli, manifestasyon',
     ogType: 'article',
@@ -645,7 +645,7 @@ String generateHtml(PageMeta page) {
   <meta property="og:description" content="${page.description}">
   <meta property="og:image" content="$baseUrl/images/og-image.png">
   <meta property="og:locale" content="tr_TR">
-  <meta property="og:site_name" content="Astrobobo">
+  <meta property="og:site_name" content="Venus One">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
@@ -712,7 +712,7 @@ $contentHtml
     <a href="/" class="cta">Uygulamayı Aç →</a>
 
     <div class="footer">
-      <p>© 2025 Astrobobo — Kişisel Kozmik Rehberiniz</p>
+      <p>© 2025 Venus One — Kişisel Kozmik Rehberiniz</p>
       <p>
         <a href="/birth-chart">Doğum Haritası</a> ·
         <a href="/horoscope">Burç Yorumları</a> ·

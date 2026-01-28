@@ -558,7 +558,7 @@ class HomeScreen extends ConsumerWidget {
                     const SizedBox(height: 2),
                     GestureDetector(
                       onTap: () {
-                        context.push('/horoscope/${moonSign.name}');
+                        context.push('/horoscope/${moonSign.name.toLowerCase()}');
                       },
                       child: Row(
                         children: [

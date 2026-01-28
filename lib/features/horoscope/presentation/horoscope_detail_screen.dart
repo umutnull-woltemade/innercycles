@@ -33,6 +33,9 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   late ZodiacSign _sign;
+  // Cache expensive computations
+  late WeeklyHoroscope _weeklyHoroscope;
+  late MonthlyHoroscope _monthlyHoroscope;
 
   @override
   void initState() {
@@ -41,6 +44,16 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
     _sign = ZodiacSign.values.firstWhere(
       (s) => s.name.toLowerCase() == widget.signName.toLowerCase(),
       orElse: () => ZodiacSign.aries,
+    );
+    // Generate horoscopes once during initialization
+    _weeklyHoroscope = ExtendedHoroscopeService.generateWeeklyHoroscope(
+      _sign,
+      DateTime.now().subtract(Duration(days: DateTime.now().weekday - 1)),
+    );
+    _monthlyHoroscope = ExtendedHoroscopeService.generateMonthlyHoroscope(
+      _sign,
+      DateTime.now().month,
+      DateTime.now().year,
     );
   }
 
@@ -53,15 +66,6 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
   @override
   Widget build(BuildContext context) {
     final horoscope = ref.watch(dailyHoroscopeProvider(_sign));
-    final weeklyHoroscope = ExtendedHoroscopeService.generateWeeklyHoroscope(
-      _sign,
-      DateTime.now().subtract(Duration(days: DateTime.now().weekday - 1)),
-    );
-    final monthlyHoroscope = ExtendedHoroscopeService.generateMonthlyHoroscope(
-      _sign,
-      DateTime.now().month,
-      DateTime.now().year,
-    );
 
     return Scaffold(
       body: CosmicBackground(
@@ -80,9 +84,9 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
                     // Daily Tab
                     _buildDailyContent(context, horoscope, _sign),
                     // Weekly Tab
-                    _buildWeeklyContent(context, weeklyHoroscope, _sign),
+                    _buildWeeklyContent(context, _weeklyHoroscope, _sign),
                     // Monthly Tab
-                    _buildMonthlyContent(context, monthlyHoroscope, _sign),
+                    _buildMonthlyContent(context, _monthlyHoroscope, _sign),
                     // Sign Info Tab
                     _buildSignInfoContent(context, _sign),
                   ],

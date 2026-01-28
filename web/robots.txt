@@ -1,5 +1,5 @@
 # Astrobobo - Astroloji ve Numeroloji Uygulaması
-# https://astrobobo.com
+# https://venusone.app
 
 User-agent: *
 Allow: /
@@ -34,8 +34,8 @@ Disallow: /*?*
 Crawl-delay: 1
 
 # Sitemap location
-Sitemap: https://astrobobo.com/sitemap.xml
-Sitemap: https://astrobobo.com/api/sitemap
+Sitemap: https://venusone.app/sitemap.xml
+Sitemap: https://venusone.app/api/sitemap
 
 # Block subscription portal
 Disallow: /sub.html
