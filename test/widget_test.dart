@@ -4,11 +4,11 @@ import 'package:astrology_app/main.dart';
 // Basic test to verify the main app class exists and is properly exported.
 // Full widget tests with app initialization are in integration tests.
 void main() {
-  test('AstroboboApp is exported from main.dart', () {
+  test('VenusOneApp is exported from main.dart', () {
     // Verify the app class can be constructed
     // Note: We don't pump the widget because it requires Firebase,
     // platform channels, and other integrations that need full setup
-    expect(AstroboboApp, isNotNull);
-    expect(const AstroboboApp(), isA<AstroboboApp>());
+    expect(VenusOneApp, isNotNull);
+    expect(const VenusOneApp(), isA<VenusOneApp>());
   });
 }
