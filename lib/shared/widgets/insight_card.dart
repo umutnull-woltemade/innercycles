@@ -35,7 +35,7 @@ class InsightCard extends StatelessWidget {
       onTap: isPremium ? onLockTap : onTap,
       child: Container(
         width: 280,
-        margin: const EdgeInsets.only(right: 16),
+        margin: const EdgeInsetsDirectional.only(end: 16),
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -232,7 +232,7 @@ class InsightCarousel extends StatelessWidget {
       children: [
         if (title != null)
           Padding(
-            padding: const EdgeInsets.only(left: 4, bottom: 16),
+            padding: const EdgeInsetsDirectional.only(start: 4, bottom: 16),
             child: Row(
               children: [
                 Text(
