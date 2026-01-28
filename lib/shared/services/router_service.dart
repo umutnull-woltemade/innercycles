@@ -66,6 +66,8 @@ import '../../features/dreams/presentation/canonical/dream_voiceless_screen.dart
 import '../../features/dreams/presentation/canonical/dream_lost_screen.dart';
 import '../../features/dreams/presentation/canonical/dream_unable_to_fly_screen.dart';
 import '../../features/tantra/presentation/tantra_screen.dart';
+import '../../features/theta_healing/presentation/theta_healing_screen.dart';
+import '../../features/reiki/presentation/reiki_screen.dart';
 import '../../features/kozmik/presentation/canonical/cosmic_today_screen.dart';
 import '../../features/tantra/presentation/canonical/tantra_micro_ritual_screen.dart';
 import '../../features/tarot/presentation/major_arcana_detail_screen.dart';
@@ -450,6 +452,16 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: Routes.tantra,
         builder: (context, state) => const TantraScreen(),
+      ),
+      // Theta Healing - Bilinçaltı Dönüşüm
+      GoRoute(
+        path: Routes.thetaHealing,
+        builder: (context, state) => const ThetaHealingScreen(),
+      ),
+      // Reiki - Evrensel Yaşam Enerjisi
+      GoRoute(
+        path: Routes.reiki,
+        builder: (context, state) => const ReikiScreen(),
       ),
       // Tantra Mikro Ritüel - AI-First Canonical
       GoRoute(

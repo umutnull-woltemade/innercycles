@@ -110,6 +110,8 @@ class Routes {
   static const String dreamGlossary = '/dream-glossary';
   static const String dreamShare = '/dream-share';
   static const String tantra = '/tantra';
+  static const String thetaHealing = '/theta-healing';
+  static const String reiki = '/reiki';
 
   // ════════════════════════════════════════════════════════════════
   // RÜYA İZİ - AI-First Canonical Sayfalar
