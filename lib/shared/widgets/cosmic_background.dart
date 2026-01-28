@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 import 'dart:ui' as ui;
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
 
@@ -39,7 +40,23 @@ class CosmicBackground extends StatelessWidget {
       );
     }
 
-    // Dark mode - GÜZEL KOZMİK ARKA PLAN
+    // Dark mode - Use simplified version on web for better performance
+    if (kIsWeb) {
+      return Stack(
+        children: [
+          // Simplified web background
+          const Positioned.fill(
+            child: IgnorePointer(
+              child: _SimplifiedWebBackground(),
+            ),
+          ),
+          // Content
+          child,
+        ],
+      );
+    }
+
+    // Dark mode - Full cosmic background on native platforms
     return Stack(
       children: [
         // Ana kozmik arka plan - nebula ve yıldızlar
@@ -53,6 +70,133 @@ class CosmicBackground extends StatelessWidget {
       ],
     );
   }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// SIMPLIFIED WEB BACKGROUND - Lightweight for web platform
+// ═══════════════════════════════════════════════════════════════════════════
+class _SimplifiedWebBackground extends StatelessWidget {
+  const _SimplifiedWebBackground();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            Color(0xFF0D0D1A), // Deep space black
+            Color(0xFF1A1A2E), // Dark purple
+            Color(0xFF16213E), // Navy blue
+            Color(0xFF0F0F1A), // Deep black
+          ],
+          stops: [0.0, 0.3, 0.7, 1.0],
+        ),
+      ),
+      child: Stack(
+        children: [
+          // Simple stars overlay
+          Positioned.fill(
+            child: RepaintBoundary(
+              child: CustomPaint(
+                painter: _SimpleStarsPainter(),
+                willChange: false,
+              ),
+            ),
+          ),
+          // Subtle glow effects
+          Positioned(
+            top: 100,
+            left: 50,
+            child: Container(
+              width: 200,
+              height: 200,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                gradient: RadialGradient(
+                  colors: [
+                    const Color(0xFF9C27B0).withOpacity(0.15),
+                    const Color(0xFF9C27B0).withOpacity(0.0),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Positioned(
+            bottom: 100,
+            right: 80,
+            child: Container(
+              width: 250,
+              height: 250,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                gradient: RadialGradient(
+                  colors: [
+                    const Color(0xFF2196F3).withOpacity(0.12),
+                    const Color(0xFF2196F3).withOpacity(0.0),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _SimpleStarsPainter extends CustomPainter {
+  static final List<_SimpleStar> _stars = _generateSimpleStars();
+
+  static List<_SimpleStar> _generateSimpleStars() {
+    final random = math.Random(42);
+    final stars = <_SimpleStar>[];
+
+    // Only 100 stars for web performance
+    for (int i = 0; i < 100; i++) {
+      stars.add(_SimpleStar(
+        x: random.nextDouble(),
+        y: random.nextDouble(),
+        size: 0.5 + random.nextDouble() * 1.5,
+        opacity: 0.3 + random.nextDouble() * 0.5,
+      ));
+    }
+    return stars;
+  }
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = Colors.white
+      ..style = PaintingStyle.fill;
+
+    for (final star in _stars) {
+      paint.color = Colors.white.withOpacity(star.opacity);
+      canvas.drawCircle(
+        Offset(star.x * size.width, star.y * size.height),
+        star.size,
+        paint,
+      );
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
+}
+
+class _SimpleStar {
+  final double x;
+  final double y;
+  final double size;
+  final double opacity;
+
+  const _SimpleStar({
+    required this.x,
+    required this.y,
+    required this.size,
+    required this.opacity,
+  });
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
