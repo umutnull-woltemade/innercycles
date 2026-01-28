@@ -80,7 +80,7 @@ class DailyNumberScreen extends StatelessWidget {
                 _buildSuggestion(context, isDark, '🎯', 'Kader sayısı nedir?', Routes.numerology),
                 const SizedBox(height: 40),
 
-                Center(child: Text('Numeroloji — Astrobobo', style: TextStyle(fontSize: 12, color: isDark ? Colors.white38 : AppColors.textLight))),
+                Center(child: Text('Numeroloji — Venus One', style: TextStyle(fontSize: 12, color: isDark ? Colors.white38 : AppColors.textLight))),
                 const SizedBox(height: 20),
               ],
             ),

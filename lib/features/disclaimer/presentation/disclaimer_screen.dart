@@ -4,7 +4,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
-import '../../../data/services/storage_service.dart';
+import '../../../core/theme/mystical_colors.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/gradient_button.dart';
 
@@ -32,7 +32,7 @@ class DisclaimerScreen extends ConsumerWidget {
                     gradient: LinearGradient(
                       colors: [
                         AppColors.cosmicPurple,
-                        AppColors.amethyst,
+                        MysticalColors.amethyst,
                       ],
                     ),
                     boxShadow: [
@@ -72,8 +72,8 @@ class DisclaimerScreen extends ConsumerWidget {
                   label: 'Devam Et',
                   icon: Icons.arrow_forward,
                   width: double.infinity,
-                  onPressed: () async {
-                    await StorageService.saveDisclaimerAccepted(true);
+                  onPressed: () {
+                    // Disclaimer acceptance tracked via onboarding completion flow
                     if (context.mounted) {
                       context.go(Routes.onboarding);
                     }
@@ -110,7 +110,7 @@ class DisclaimerScreen extends ConsumerWidget {
         children: [
           _buildParagraph(
             context,
-            'Astrobobo, astroloji, numeroloji ve rüya yorumları hakkında '
+            'Venus One, astroloji, numeroloji ve rüya yorumları hakkında '
             'yorumlayıcı ve eğlence amaçlı içerikler sunar. Burada yer alan '
             'bilgiler kişisel yansıtma ve merak için tasarlanmıştır.',
             textColor,

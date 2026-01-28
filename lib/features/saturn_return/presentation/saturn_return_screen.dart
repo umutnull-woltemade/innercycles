@@ -74,7 +74,7 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
                 const SizedBox(height: AppConstants.spacingXl),
                 // Entertainment Disclaimer
                 const PageFooterWithDisclaimer(
-                  brandText: 'Satürn Dönüşü — Astrobobo',
+                  brandText: 'Satürn Dönüşü — Venus One',
                   disclaimerText: DisclaimerTexts.astrology,
                 ),
                 const SizedBox(height: AppConstants.spacingLg),

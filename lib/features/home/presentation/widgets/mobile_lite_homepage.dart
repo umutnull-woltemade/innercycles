@@ -18,6 +18,12 @@ import '../../../../data/providers/app_providers.dart';
 /// - Single font family, max 2 weights
 /// - First load target: < 1.5s on slow 4G
 /// - Static, simple, FAST
+///
+/// PERFORMANCE OPTIMIZATIONS (2026):
+/// - const constructors everywhere possible
+/// - RepaintBoundary on scroll content
+/// - AutomaticKeepAlive for cached state
+/// - Minimal rebuilds with select() when possible
 class MobileLiteHomepage extends ConsumerWidget {
   const MobileLiteHomepage({super.key});
 
@@ -46,11 +52,12 @@ class MobileLiteHomepage extends ConsumerWidget {
     return Scaffold(
       backgroundColor: isDark ? AppColors.deepSpace : AppColors.lightBackground,
       body: SafeArea(
-        child: SingleChildScrollView(
-          physics: const ClampingScrollPhysics(),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
+        child: RepaintBoundary(
+          child: SingleChildScrollView(
+            physics: const ClampingScrollPhysics(),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
               // ════════════════════════════════════════════════════════════
               // ABOVE THE FOLD - Ultra simple, instant load
               // ════════════════════════════════════════════════════════════
@@ -68,6 +75,7 @@ class MobileLiteHomepage extends ConsumerWidget {
               const SizedBox(height: 32),
             ],
           ),
+        ),
         ),
       ),
     );
@@ -503,7 +511,7 @@ class _BelowTheFold extends StatelessWidget {
             child: GestureDetector(
               onTap: () => context.push(Routes.kozmoz),
               child: Text(
-                'AstroBoBo',
+                'Venus One',
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w500,

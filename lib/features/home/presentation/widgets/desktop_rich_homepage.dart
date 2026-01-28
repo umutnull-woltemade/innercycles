@@ -318,8 +318,8 @@ class _DesktopHeader extends StatelessWidget {
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              // AstroBoBo Logo
-              _AstroBoBoCatLogo(),
+              // Venus One Logo
+              _VenusOneLogo(),
 
               // Bağlantı çizgisi 1
               Container(
@@ -1758,15 +1758,15 @@ class _AllServicesButtonState extends State<_AllServicesButton>
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// ASTROBOBO CAT LOGO - Scottish Shorthair + Sihirli Değnek
+// VENUS ONE LOGO
 // ═══════════════════════════════════════════════════════════════════════════
 
-class _AstroBoBoCatLogo extends StatefulWidget {
+class _VenusOneLogo extends StatefulWidget {
   @override
-  State<_AstroBoBoCatLogo> createState() => _AstroBoBoCatLogoState();
+  State<_VenusOneLogo> createState() => _VenusOneLogoState();
 }
 
-class _AstroBoBoCatLogoState extends State<_AstroBoBoCatLogo>
+class _VenusOneLogoState extends State<_VenusOneLogo>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   bool _isHovered = false;
@@ -1870,7 +1870,7 @@ class _AstroBoBoCatLogoState extends State<_AstroBoBoCatLogo>
                 ],
               ),
               const SizedBox(width: 8),
-              // AstroBoBo yazısı
+              // Venus One yazısı
               Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -1884,7 +1884,7 @@ class _AstroBoBoCatLogoState extends State<_AstroBoBoCatLogo>
                       ],
                     ).createShader(bounds),
                     child: const Text(
-                      'AstroBoBo',
+                      'Venus One',
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w800,

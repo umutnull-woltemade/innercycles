@@ -247,7 +247,7 @@ class _ShareImageCard extends StatelessWidget {
                 child: Opacity(
                   opacity: 0.4,
                   child: Text(
-                    '✧ astrobobo ✧',
+                    '✧ venusone ✧',
                     style: TextStyle(
                       fontSize: 11,
                       color: Colors.white,
@@ -425,7 +425,7 @@ class _ShareImageCard extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.only(top: 12),
                 child: Text(
-                  'astrobobo.com',
+                  'venusone.com',
                   style: TextStyle(
                     fontSize: 11,
                     color: Colors.white.withOpacity(0.3),

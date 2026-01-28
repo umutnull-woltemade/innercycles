@@ -15,6 +15,7 @@ class AppColors {
   static const Color celestialGold = Color(0xFFF4C430);
   static const Color moonSilver = Color(0xFFC0C0C0);
   static const Color stardust = Color(0xFFE8E4E1);
+  static const Color amethyst = Color(0xFF9B59B6);
 
   // Gradient colors
   static const Color auroraStart = Color(0xFF667EEA);

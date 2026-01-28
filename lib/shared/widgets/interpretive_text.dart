@@ -241,6 +241,7 @@ class _GlossaryTermWidgetState extends State<_GlossaryTermWidget> {
 }
 
 /// Constrained tooltip overlay that stays within screen bounds
+/// CRITICAL: Prevents viewport overflow, horizontal scroll, and layout shift (CLS = 0)
 class _ConstrainedTooltipOverlay extends StatelessWidget {
   final LayerLink link;
   final Widget child;
@@ -254,13 +255,20 @@ class _ConstrainedTooltipOverlay extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
     final screenPadding = MediaQuery.of(context).padding;
+    final viewInsets = MediaQuery.of(context).viewInsets; // Keyboard awareness
     final isMobile = screenSize.width < 600;
+
+    // Safe area calculations - prevent overflow in all directions
+    final safeHorizontalPadding = 16.0;
+    final safeBottom = screenPadding.bottom + viewInsets.bottom + 16;
+    final availableWidth = screenSize.width - (safeHorizontalPadding * 2);
+    final availableHeight = screenSize.height - screenPadding.top - safeBottom - 100;
 
     // On mobile, center the tooltip horizontally and position below the target
     if (isMobile) {
       return Positioned(
-        left: 16,
-        right: 16,
+        left: safeHorizontalPadding,
+        right: safeHorizontalPadding,
         child: CompositedTransformFollower(
           link: link,
           showWhenUnlinked: false,
@@ -269,10 +277,11 @@ class _ConstrainedTooltipOverlay extends StatelessWidget {
           offset: const Offset(0, 8),
           child: ConstrainedBox(
             constraints: BoxConstraints(
-              maxWidth: screenSize.width - 32,
-              maxHeight: screenSize.height * 0.5,
+              maxWidth: availableWidth,
+              maxHeight: availableHeight.clamp(200.0, screenSize.height * 0.4),
             ),
             child: SingleChildScrollView(
+              physics: const ClampingScrollPhysics(),
               child: Material(
                 color: Colors.transparent,
                 child: child,
@@ -283,7 +292,7 @@ class _ConstrainedTooltipOverlay extends StatelessWidget {
       );
     }
 
-    // On desktop, use the default positioning with boundary checks
+    // On desktop/tablet, use the default positioning with boundary checks
     return Positioned(
       child: CompositedTransformFollower(
         link: link,
@@ -293,12 +302,13 @@ class _ConstrainedTooltipOverlay extends StatelessWidget {
         offset: const Offset(0, 8),
         child: ConstrainedBox(
           constraints: BoxConstraints(
-            maxWidth: 320,
-            maxHeight: screenSize.height - screenPadding.top - screenPadding.bottom - 100,
+            maxWidth: 320.0.clamp(0.0, availableWidth),
+            maxHeight: availableHeight.clamp(200.0, 500.0),
           ),
           child: Material(
             color: Colors.transparent,
             child: SingleChildScrollView(
+              physics: const ClampingScrollPhysics(),
               child: child,
             ),
           ),

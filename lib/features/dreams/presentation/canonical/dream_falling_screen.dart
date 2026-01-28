@@ -135,7 +135,7 @@ class DreamFallingScreen extends StatelessWidget {
 
                 // Footer with disclaimer
                 const PageFooterWithDisclaimer(
-                  brandText: 'Rüya İzi — Astrobobo',
+                  brandText: 'Rüya İzi — Venus One',
                   disclaimerText: DisclaimerTexts.dreams,
                 ),
               ],

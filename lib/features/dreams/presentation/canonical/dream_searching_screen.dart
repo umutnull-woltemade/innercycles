@@ -63,7 +63,7 @@ class DreamSearchingScreen extends StatelessWidget {
                 const SizedBox(height: 32),
                 _buildSuggestion(context, isDark, '🌫️', 'Rüyada kaybolmak ne demek?', Routes.dreamLost),
                 const SizedBox(height: 40),
-                Center(child: Text('Rüya İzi — Astrobobo', style: TextStyle(fontSize: 12, color: isDark ? Colors.white38 : AppColors.textLight))),
+                Center(child: Text('Rüya İzi — Venus One', style: TextStyle(fontSize: 12, color: isDark ? Colors.white38 : AppColors.textLight))),
                 const SizedBox(height: 20),
               ],
             ),

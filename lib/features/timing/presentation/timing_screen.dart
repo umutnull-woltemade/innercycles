@@ -78,7 +78,7 @@ class _TimingScreenState extends ConsumerState<TimingScreen> {
                     const SizedBox(height: AppConstants.spacingXl),
                     // Entertainment Disclaimer
                     const PageFooterWithDisclaimer(
-                      brandText: 'Zamanlama — Astrobobo',
+                      brandText: 'Zamanlama — Venus One',
                       disclaimerText: DisclaimerTexts.astrology,
                     ),
                     const SizedBox(height: AppConstants.spacingLg),

@@ -2219,7 +2219,7 @@ class _TantricLogoSmall extends StatefulWidget {
 class _TantricLogoSmallState extends State<_TantricLogoSmall> {
   @override
   Widget build(BuildContext context) {
-    // AstroBoBo Logo - Scottish Shorthair Kedi
+    // Venus One Logo - Scottish Shorthair Kedi
     return Container(
       width: 44,
       height: 44,

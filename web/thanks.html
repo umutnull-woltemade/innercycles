@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rüya Yorumun Hazır | Astrobobo</title>
+  <title>Rüya Yorumun Hazır | Venus One</title>
   <meta name="robots" content="noindex, nofollow">
   <meta name="theme-color" content="#0D0D1A">
   <style>
@@ -256,7 +256,7 @@
         var result = JSON.parse(localStorage.getItem('interpretation_result') || '{}');
         var dreamText = localStorage.getItem('dream_topic') || '';
 
-        var printContent = '<html><head><title>Rüya Yorumun - Astrobobo</title><style>';
+        var printContent = '<html><head><title>Rüya Yorumun - Venus One</title><style>';
         printContent += 'body{font-family:Georgia,serif;max-width:700px;margin:40px auto;padding:20px;line-height:1.8;color:#333}';
         printContent += 'h1{color:#8E44AD;text-align:center;border-bottom:2px solid #8E44AD;padding-bottom:10px}';
         printContent += 'h2{color:#9B59B6;margin-top:30px}';
@@ -281,7 +281,7 @@
         printContent += '<div class="section"><h2>Dikkat</h2><p>' + (result.warning || '') + '</p></div>';
         printContent += '<div class="section"><h2>Öneri</h2><p>' + (result.recommendation || '') + '</p></div>';
         printContent += '<div class="disclaimer">Bu yorum eğlence ve kişisel keşif amaçlıdır. Profesyonel psikolojik danışmanlık yerine geçmez.</div>';
-        printContent += '<div class="logo">✨ Astrobobo - Rüya İzi ✨</div>';
+        printContent += '<div class="logo">✨ Venus One - Rüya İzi ✨</div>';
         printContent += '</body></html>';
 
         var printWindow = window.open('', '_blank');

@@ -210,7 +210,7 @@ class _TantraScreenState extends State<TantraScreen>
           const SizedBox(height: AppConstants.spacingXl),
           // Entertainment Disclaimer
           const PageFooterWithDisclaimer(
-            brandText: 'Tantra — Astrobobo',
+            brandText: 'Tantra — Venus One',
             disclaimerText: DisclaimerTexts.astrology,
           ),
         ],

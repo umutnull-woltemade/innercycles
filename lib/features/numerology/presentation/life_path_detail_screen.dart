@@ -173,7 +173,7 @@ class LifePathDetailScreen extends StatelessWidget {
                     // AI-QUOTABLE: Footer
                     Center(
                       child: Text(
-                        'Numeroloji — Astrobobo',
+                        'Numeroloji — Venus One',
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           color: AppColors.textMuted,
                         ),

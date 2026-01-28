@@ -111,7 +111,7 @@ class KabbalahScreen extends ConsumerWidget {
                     const SizedBox(height: AppConstants.spacingXl),
                     // Entertainment Disclaimer
                     const PageFooterWithDisclaimer(
-                      brandText: 'Kabala — Astrobobo',
+                      brandText: 'Kabala — Venus One',
                       disclaimerText: DisclaimerTexts.astrology,
                     ),
                     const SizedBox(height: AppConstants.spacingLg),

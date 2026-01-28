@@ -107,7 +107,7 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
                       const Padding(
                         padding: EdgeInsets.symmetric(horizontal: AppConstants.spacingLg),
                         child: PageFooterWithDisclaimer(
-                          brandText: 'Chakra — Astrobobo',
+                          brandText: 'Chakra — Venus One',
                           disclaimerText: DisclaimerTexts.chakra,
                         ),
                       ),

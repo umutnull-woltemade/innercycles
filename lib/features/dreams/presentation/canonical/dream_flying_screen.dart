@@ -64,7 +64,7 @@ class DreamFlyingScreen extends StatelessWidget {
                 _buildSuggestion(context, isDark, '🏃', 'Rüyada kaçmak ne anlama gelir?', Routes.dreamRunning),
                 const SizedBox(height: 40),
                 const PageFooterWithDisclaimer(
-                  brandText: 'Rüya İzi — Astrobobo',
+                  brandText: 'Rüya İzi — Venus One',
                   disclaimerText: DisclaimerTexts.dreams,
                 ),
               ],

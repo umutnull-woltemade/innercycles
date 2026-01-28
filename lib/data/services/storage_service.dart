@@ -14,6 +14,7 @@ class StorageService {
   static const String _allProfilesKey = 'all_profiles';
   static const String _primaryProfileIdKey = 'primary_profile_id';
   static const String _onboardingKey = 'onboarding_complete';
+  static const String _disclaimerKey = 'disclaimer_accepted';
   static const String _languageKey = 'app_language';
   static const String _themeModeKey = 'theme_mode';
 
@@ -212,6 +213,26 @@ class StorageService {
     }
 
     return isComplete;
+  }
+
+  // ========== DISCLAIMER ==========
+
+  /// Save disclaimer accepted status
+  static Future<void> saveDisclaimerAccepted(bool accepted) async {
+    _warnIfNotInitialized('saveDisclaimerAccepted');
+    final box = _settingsBox;
+    if (box == null) return;
+
+    await box.put(_disclaimerKey, accepted);
+  }
+
+  /// Load disclaimer accepted status
+  static bool loadDisclaimerAccepted() {
+    _warnIfNotInitialized('loadDisclaimerAccepted');
+    final box = _settingsBox;
+    if (box == null) return false;
+
+    return box.get(_disclaimerKey, defaultValue: false) as bool;
   }
 
   // ========== LANGUAGE ==========

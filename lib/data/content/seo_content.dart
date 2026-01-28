@@ -1,4 +1,4 @@
-/// SEO Content for AstroBoBo Web Pages
+/// SEO Content for Venus One Web Pages
 /// Ready-to-use Turkish content for all pages
 /// Following: possibility language, symbolic approach, no deterministic claims
 
@@ -9,7 +9,7 @@ class SeoContent {
   // HOMEPAGE
   // ═══════════════════════════════════════════════════════════════
 
-  static const String homepageTitle = 'AstroBoBo — Kişisel Kozmik Rehberiniz';
+  static const String homepageTitle = 'Venus One — Kişisel Kozmik Rehberiniz';
   static const String homepageDescription =
       'Doğum haritanız, transitler, tarot ve numeroloji ile kendinizi keşfedin. '
       'Bilimsel hesaplama, sembolik yorum.';
@@ -17,7 +17,7 @@ class SeoContent {
   static const String homepageHero = '''
 Gökyüzü bir ayna — içinize bakmanın en kadim yollarından biri.
 
-AstroBoBo, binlerce yıllık astrolojik geleneği modern teknoloji ile buluşturur.
+Venus One, binlerce yıllık astrolojik geleneği modern teknoloji ile buluşturur.
 Doğum haritanız, günlük transitler, tarot rehberliği ve numerolojik analizlerle
 kendinizi yeni bir perspektiften keşfedin.
 
@@ -846,7 +846,7 @@ semboller ile bir yorum sunar.
       question: 'Neden farklı siteler farklı sonuçlar veriyor?',
       answer: 'Farklı ev sistemleri (Placidus, Whole Sign, Koch vb.), '
           'farklı orb değerleri ve yorum gelenekleri kullanılabilir. '
-          'AstroBoBo, Placidus ev sistemi ve Tropical zodyak kullanır.',
+          'Venus One, Placidus ev sistemi ve Tropical zodyak kullanır.',
     ),
     FaqItem(
       question: 'Burç uyumu güvenilir mi?',

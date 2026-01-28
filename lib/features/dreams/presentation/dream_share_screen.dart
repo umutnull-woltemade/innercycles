@@ -1516,7 +1516,7 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
       if (_subtitle.isNotEmpty) {
         shareText += '\n\n$_subtitle';
       }
-      shareText += '\n\n#ruyayorumu #astrobobo #kozmikenerji';
+      shareText += '\n\n#ruyayorumu #venusone #kozmikenerji';
 
       if (kIsWeb) {
         // Web: Copy text and show instructions

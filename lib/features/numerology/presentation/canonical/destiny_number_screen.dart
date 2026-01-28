@@ -80,7 +80,7 @@ class DestinyNumberScreen extends StatelessWidget {
                 const SizedBox(height: 40),
 
                 const PageFooterWithDisclaimer(
-                  brandText: 'Numeroloji — Astrobobo',
+                  brandText: 'Numeroloji — Venus One',
                   disclaimerText: DisclaimerTexts.numerology,
                 ),
               ],

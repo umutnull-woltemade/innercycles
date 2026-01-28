@@ -388,7 +388,7 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen> with SingleTick
         const SizedBox(height: AppConstants.spacingXl),
         // Disclaimer
         const PageFooterWithDisclaimer(
-          brandText: 'Sinastri — Astrobobo',
+          brandText: 'Sinastri — Venus One',
           disclaimerText: DisclaimerTexts.compatibility,
         ),
       ],

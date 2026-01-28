@@ -87,7 +87,7 @@ class _YearlyHoroscopeScreenState extends State<YearlyHoroscopeScreen> {
                       const SizedBox(height: AppConstants.spacingXl),
                       // Entertainment Disclaimer
                       const PageFooterWithDisclaimer(
-                        brandText: 'Yıllık Burç — Astrobobo',
+                        brandText: 'Yıllık Burç — Venus One',
                         disclaimerText: DisclaimerTexts.astrology,
                       ),
                       const SizedBox(height: AppConstants.spacingLg),

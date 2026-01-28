@@ -417,14 +417,14 @@ class SettingsScreen extends ConsumerWidget {
             isDark: isDark,
             onTap: () async {
               await urlLauncher.openSupportEmail(
-                subject: 'Astrobobo Destek',
+                subject: 'Venus One Destek',
                 body: '\n\n---\nApp Version: 1.0.0',
               );
             },
           ),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
-            'Astrobobo v1.0.0',
+            'Venus One v1.0.0',
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
                 ),

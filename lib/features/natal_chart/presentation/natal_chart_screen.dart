@@ -587,7 +587,7 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
           const SizedBox(height: AppConstants.spacingXl),
           // Entertainment Disclaimer
           const PageFooterWithDisclaimer(
-            brandText: 'Doğum Haritası — Astrobobo',
+            brandText: 'Doğum Haritası — Venus One',
             disclaimerText: DisclaimerTexts.astrology,
           ),
           const SizedBox(height: AppConstants.spacingLg),

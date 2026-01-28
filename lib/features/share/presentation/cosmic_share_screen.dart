@@ -263,7 +263,7 @@ class _CosmicShareScreenState extends ConsumerState<CosmicShareScreen> {
 
       // Build share text with hashtags
       final shareText = 'Bugünün kozmik enerjisi benimle! ${_content.heroBlock.moonPhaseEmoji} ${_sign.symbol} Evrenin fısıltılarını dinle...';
-      final hashtags = '#astrobobo #astroloji #${_sign.name.toLowerCase()} #kozmikenerji #burcyorumu #gunlukburc';
+      final hashtags = '#venusone #astroloji #${_sign.name.toLowerCase()} #kozmikenerji #burcyorumu #gunlukburc';
 
       // Use the new Instagram share service
       final result = await InstagramShareService.shareCosmicContent(
@@ -2341,7 +2341,7 @@ class _CosmicShareCard extends StatelessWidget {
             ),
             const SizedBox(width: 8),
             Text(
-              'astrobobo',
+              'venusone',
               style: GoogleFonts.playfairDisplay(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,

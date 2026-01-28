@@ -93,7 +93,7 @@ class CosmicTodayScreen extends ConsumerWidget {
 
                 // Footer with disclaimer
                 const PageFooterWithDisclaimer(
-                  brandText: 'Kozmik — Astrobobo',
+                  brandText: 'Kozmik — Venus One',
                 ),
               ],
             ),

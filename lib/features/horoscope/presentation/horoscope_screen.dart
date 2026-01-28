@@ -132,7 +132,7 @@ class HoroscopeScreen extends StatelessWidget {
                       const SizedBox(height: AppConstants.spacingLg),
                       // Footer with branding
                       const PageFooterWithDisclaimer(
-                        brandText: 'Burç Yorumları — Astrobobo',
+                        brandText: 'Burç Yorumları — Venus One',
                         disclaimerText: DisclaimerTexts.astrology,
                       ),
                     ],

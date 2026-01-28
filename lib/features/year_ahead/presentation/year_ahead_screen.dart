@@ -69,7 +69,7 @@ class _YearAheadScreenState extends ConsumerState<YearAheadScreen> {
                 const SizedBox(height: AppConstants.spacingXl),
                 // Entertainment Disclaimer
                 const PageFooterWithDisclaimer(
-                  brandText: 'Yıl Öngörüsü — Astrobobo',
+                  brandText: 'Yıl Öngörüsü — Venus One',
                   disclaimerText: DisclaimerTexts.astrology,
                 ),
               ],

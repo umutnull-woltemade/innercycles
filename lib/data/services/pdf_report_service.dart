@@ -163,7 +163,7 @@ class PdfReportService {
         mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
         children: [
           pw.Text(
-            'ASTROBOBO',
+            'VENUS ONE',
             style: pw.TextStyle(
               fontSize: 14,
               fontWeight: pw.FontWeight.bold,
@@ -195,7 +195,7 @@ class PdfReportService {
         mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
         children: [
           pw.Text(
-            'Astrobobo - Kozmik Rehberiniz',
+            'Venus One - Kozmik Rehberiniz',
             style: const pw.TextStyle(
               fontSize: 8,
               color: _textMuted,
@@ -896,7 +896,7 @@ class PdfReportService {
         mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
         children: [
           pw.Text(
-            'ASTROBOBO',
+            'VENUS ONE',
             style: pw.TextStyle(
               fontSize: 14,
               fontWeight: pw.FontWeight.bold,

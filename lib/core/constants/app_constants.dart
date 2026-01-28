@@ -1,23 +1,23 @@
 class AppConstants {
   AppConstants._();
 
-  static const String appName = 'Astrobobo';
+  static const String appName = 'Venus One';
   static const String appTagline = 'Yıldızların Rehberliğinde Kendini Keşfet';
 
   // App IDs and Links
   static const String appStoreId = ''; // Add your App Store ID here
-  static const String playStoreId = 'com.astrobobo'; // Update with your package name
-  static const String privacyPolicyUrl = 'https://astrobobo.com/privacy';
-  static const String termsOfServiceUrl = 'https://astrobobo.com/terms';
-  static const String supportEmail = 'support@astrobobo.com';
+  static const String playStoreId = 'com.venusone'; // Update with your package name
+  static const String privacyPolicyUrl = 'https://venusone.com/privacy';
+  static const String termsOfServiceUrl = 'https://venusone.com/terms';
+  static const String supportEmail = 'support@venusone.com';
 
   // RevenueCat API Keys
   static const String revenueCatAppleApiKey = ''; // Add your RevenueCat Apple API key
   static const String revenueCatGoogleApiKey = ''; // Add your RevenueCat Google API key
 
   // RevenueCat Product IDs
-  static const String monthlyProductId = 'astrobobo_premium_monthly';
-  static const String yearlyProductId = 'astrobobo_premium_yearly';
+  static const String monthlyProductId = 'venusone_premium_monthly';
+  static const String yearlyProductId = 'venusone_premium_yearly';
   static const String entitlementId = 'premium';
 
   // AdMob IDs (Production) - Replace with your actual IDs

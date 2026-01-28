@@ -888,7 +888,7 @@ class DreamInterpretationResultWidget extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             Text(
-              '— Rüya Yorumu | astrobobo.com',
+              '— Rüya Yorumu | venusone.com',
               style: Theme.of(context).textTheme.labelSmall?.copyWith(
                     color: Colors.white.withValues(alpha: 0.7),
                   ),

@@ -344,7 +344,7 @@ class DreamShareCard extends StatelessWidget {
         ),
         const SizedBox(width: 4),
         Text(
-          'astrobobo.com',
+          'venusone.com',
           style: TextStyle(
             fontSize: 10,
             color: Colors.white.withOpacity(0.5),

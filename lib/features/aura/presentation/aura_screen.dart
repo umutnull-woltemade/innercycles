@@ -120,7 +120,7 @@ class AuraScreen extends ConsumerWidget {
                     const SizedBox(height: AppConstants.spacingXl),
                     // Entertainment Disclaimer
                     const PageFooterWithDisclaimer(
-                      brandText: 'Aura — Astrobobo',
+                      brandText: 'Aura — Venus One',
                       disclaimerText: DisclaimerTexts.chakra,
                     ),
                     const SizedBox(height: AppConstants.spacingLg),
