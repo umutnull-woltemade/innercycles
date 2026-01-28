@@ -145,9 +145,9 @@ class SeoMetaService {
 
     // Yıllık Önizleme
     'year-ahead': PageMeta(
-      title: 'Yıllık Astroloji Önizlemesi — 2025 Analizi | Astrobobo',
-      description: '2025 yılı için kişisel astroloji önizlemeniz. Major transitler, tutulmalar ve önemli dönemlerin analizi.',
-      keywords: ['2025 astroloji', 'yıllık burç', 'yıl önizleme', 'yıllık transit', '2025 burç yorumu'],
+      title: 'Yıllık Astroloji Önizlemesi — 2026 Analizi | Astrobobo',
+      description: '2026 yılı için kişisel astroloji önizlemeniz. Major transitler, tutulmalar ve önemli dönemlerin analizi.',
+      keywords: ['2026 astroloji', 'yıllık burç', 'yıl önizleme', 'yıllık transit', '2026 burç yorumu'],
       canonicalPath: '/year-ahead',
       ogType: 'article',
       schemaType: SchemaType.article,
@@ -175,9 +175,9 @@ class SeoMetaService {
 
     // Yıllık Burç
     'yearly-horoscope': PageMeta(
-      title: 'Yıllık Burç Yorumları 2025 — Yılın Astrolojik Analizi | Astrobobo',
-      description: '2025 yılı burç yorumları. Major gezegenler, tutulmalar ve yılın dönüm noktaları. Tüm burçlar için kapsamlı yıllık analiz.',
-      keywords: ['yıllık burç 2025', 'yıllık burç yorumu', '2025 burçlar', 'yıl burcu'],
+      title: 'Yıllık Burç Yorumları 2026 — Yılın Astrolojik Analizi | Astrobobo',
+      description: '2026 yılı burç yorumları. Major gezegenler, tutulmalar ve yılın dönüm noktaları. Tüm burçlar için kapsamlı yıllık analiz.',
+      keywords: ['yıllık burç 2026', 'yıllık burç yorumu', '2026 burçlar', 'yıl burcu'],
       canonicalPath: '/yearly-horoscope',
       ogType: 'article',
       schemaType: SchemaType.article,
@@ -302,6 +302,106 @@ class SeoMetaService {
       ogType: 'article',
       schemaType: SchemaType.howTo,
     ),
+
+    // ════════════════════════════════════════════════════════════════
+    // CANONICAL DREAM PAGES - AI-First SEO with FAQ Schema
+    // ════════════════════════════════════════════════════════════════
+    'ruya/dusmek': PageMeta(
+      title: 'Rüyada Düşmek Ne Demek? | Rüya İzi — Astrobobo',
+      description: 'Rüyada düşmek kontrol kaybı hissini yansıtır. Hayatta bir şeylerin elimizden kaydığını düşündüğümüzde ortaya çıkar. Düşme rüyalarının psikolojik anlamı.',
+      keywords: ['rüyada düşmek', 'düşme rüyası', 'rüyada düşmek ne anlama gelir', 'rüya yorumu'],
+      canonicalPath: '/ruya/dusmek',
+      ogType: 'article',
+      schemaType: SchemaType.faqPage,
+    ),
+    'ruya/su-gormek': PageMeta(
+      title: 'Rüyada Su Görmek Ne Anlama Gelir? | Rüya İzi — Astrobobo',
+      description: 'Rüyada su görmek bilinçaltını ve duyguları simgeler. Suyun durumu iç dünyanın durumunu yansıtır. Durgun su huzuru, dalgalı su karmaşayı gösterir.',
+      keywords: ['rüyada su görmek', 'su rüyası', 'rüyada deniz görmek', 'rüya yorumu'],
+      canonicalPath: '/ruya/su-gormek',
+      ogType: 'article',
+      schemaType: SchemaType.faqPage,
+    ),
+    'ruya/tekrar-eden': PageMeta(
+      title: 'Tekrar Eden Rüyalar Neden Olur? | Rüya İzi — Astrobobo',
+      description: 'Tekrar eden rüyalar çözülmemiş bir duygusal konuyu işaret eder. Bilinçaltının dikkatinizi çekmek istediği mesajlar. Tekrarlayan rüya kalıpları.',
+      keywords: ['tekrar eden rüya', 'tekrarlayan rüyalar', 'aynı rüyayı görmek', 'rüya yorumu'],
+      canonicalPath: '/ruya/tekrar-eden',
+      ogType: 'article',
+      schemaType: SchemaType.faqPage,
+    ),
+    'ruya/kosmak': PageMeta(
+      title: 'Rüyada Koşmak Ne Anlama Gelir? | Rüya İzi — Astrobobo',
+      description: 'Rüyada koşmak bir şeyden kaçma veya bir şeye ulaşma arzusunu gösterir. Koşma hızı ve yönü duygusal durumu yansıtır.',
+      keywords: ['rüyada koşmak', 'koşma rüyası', 'rüyada kaçmak', 'rüya yorumu'],
+      canonicalPath: '/ruya/kosmak',
+      ogType: 'article',
+      schemaType: SchemaType.faqPage,
+    ),
+    'ruya/ucmak': PageMeta(
+      title: 'Rüyada Uçmak Ne Demek? | Rüya İzi — Astrobobo',
+      description: 'Rüyada uçmak özgürlük, başarı ve engelleri aşma arzusunu simgeler. Uçuş yüksekliği ve kontrolü öz güveni yansıtır.',
+      keywords: ['rüyada uçmak', 'uçma rüyası', 'rüyada gökyüzünde uçmak', 'rüya yorumu'],
+      canonicalPath: '/ruya/ucmak',
+      ogType: 'article',
+      schemaType: SchemaType.faqPage,
+    ),
+    'ruya/karanlik': PageMeta(
+      title: 'Rüyada Karanlık Görmek Ne Anlama Gelir? | Rüya İzi — Astrobobo',
+      description: 'Rüyada karanlık bilinmeyeni, korkulaı ve belirsizliği simgeler. Karanlıkta kaybolmak veya yol bulmak duygusal durumu yansıtır.',
+      keywords: ['rüyada karanlık', 'karanlık rüyası', 'rüyada gece', 'rüya yorumu'],
+      canonicalPath: '/ruya/karanlik',
+      ogType: 'article',
+      schemaType: SchemaType.faqPage,
+    ),
+    'ruya/kaybolmak': PageMeta(
+      title: 'Rüyada Kaybolmak Ne Anlama Gelir? | Rüya İzi — Astrobobo',
+      description: 'Rüyada kaybolmak yön kaybını ve belirsizliği simgeler. Hayatta rotanı kaybetmiş hissetmek bilinçaltının uyarısı olabilir.',
+      keywords: ['rüyada kaybolmak', 'kaybolma rüyası', 'rüyada yolunu kaybetmek', 'rüya yorumu'],
+      canonicalPath: '/ruya/kaybolmak',
+      ogType: 'article',
+      schemaType: SchemaType.faqPage,
+    ),
+    'ruya/sessiz-kalmak': PageMeta(
+      title: 'Rüyada Ses Çıkaramamak Ne Demek? | Rüya İzi — Astrobobo',
+      description: 'Rüyada bağıramamak veya konuşamamak ifade edilememiş duyguları simgeler. İletişim zorlukları ve bastırılmış düşünceler.',
+      keywords: ['rüyada ses çıkaramamak', 'konuşamama rüyası', 'rüyada bağıramamak', 'rüya yorumu'],
+      canonicalPath: '/ruya/sessiz-kalmak',
+      ogType: 'article',
+      schemaType: SchemaType.faqPage,
+    ),
+    'ruya/aramak': PageMeta(
+      title: 'Rüyada Bir Şey Aramak Ne Anlama Gelir? | Rüya İzi — Astrobobo',
+      description: 'Rüyada aramak eksiklik hissini ve tamamlanmamış bir arayışı simgeler. Neyi aradığınız bilinçaltının mesajını ortaya koyar.',
+      keywords: ['rüyada aramak', 'arama rüyası', 'rüyada kayıp eşya', 'rüya yorumu'],
+      canonicalPath: '/ruya/aramak',
+      ogType: 'article',
+      schemaType: SchemaType.faqPage,
+    ),
+    'ruya/gecmis': PageMeta(
+      title: 'Rüyada Geçmiş Görmek Ne Demek? | Rüya İzi — Astrobobo',
+      description: 'Rüyada geçmişi görmek çözülmemiş duygular ve nostaljik bağları simgeler. Eski yerler, kişiler ve anıların anlamı.',
+      keywords: ['rüyada geçmiş', 'geçmiş rüyası', 'rüyada eski sevgili', 'rüya yorumu'],
+      canonicalPath: '/ruya/gecmis',
+      ogType: 'article',
+      schemaType: SchemaType.faqPage,
+    ),
+    'ruya/ucamamak': PageMeta(
+      title: 'Rüyada Uçamamak Ne Demek? | Rüya İzi — Astrobobo',
+      description: 'Rüyada uçmaya çalışıp uçamamak engellenmişlik hissini yansıtır. Hedeflere ulaşmakta zorluk ve sınırlanmış hissetme.',
+      keywords: ['rüyada uçamamak', 'uçamama rüyası', 'rüyada uçmaya çalışmak', 'rüya yorumu'],
+      canonicalPath: '/ruya/ucamamak',
+      ogType: 'article',
+      schemaType: SchemaType.faqPage,
+    ),
+    'ruya/kaybetmek': PageMeta(
+      title: 'Rüyada Bir Şey Kaybetmek Ne Anlama Gelir? | Rüya İzi — Astrobobo',
+      description: 'Rüyada kaybetmek değerli bir şeyi yitirme korkusunu simgeler. Kaybedilen nesne veya kişi duygusal bağı ortaya koyar.',
+      keywords: ['rüyada kaybetmek', 'kayıp rüyası', 'rüyada eşya kaybetmek', 'rüya yorumu'],
+      canonicalPath: '/ruya/kaybetmek',
+      ogType: 'article',
+      schemaType: SchemaType.faqPage,
+    ),
   };
 
   /// Get all available routes for sitemap generation
@@ -344,6 +444,154 @@ enum SchemaType {
   profilePage,
   definedTermSet,
   faqPage,
+}
+
+/// FAQ Schema generator for structured data
+/// Generates Schema.org FAQPage JSON-LD for Google rich results
+class FaqSchemaGenerator {
+  FaqSchemaGenerator._();
+
+  /// Generate FAQPage JSON-LD schema from question/answer pairs
+  static String generateFaqSchema({
+    required List<FaqSchemaItem> items,
+    String? pageUrl,
+    String? pageName,
+  }) {
+    final faqItems = items.map((item) => {
+      '@type': 'Question',
+      'name': item.question,
+      'acceptedAnswer': {
+        '@type': 'Answer',
+        'text': item.answer,
+      },
+    }).toList();
+
+    final schema = {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      if (pageName != null) 'name': pageName,
+      if (pageUrl != null) 'url': pageUrl,
+      'mainEntity': faqItems,
+    };
+
+    return _jsonEncode(schema);
+  }
+
+  /// Generate Article + FAQPage combined schema for dream pages
+  static String generateDreamArticleSchema({
+    required String title,
+    required String description,
+    required String url,
+    required List<FaqSchemaItem> faqItems,
+    String? imageUrl,
+    String? datePublished,
+    String? dateModified,
+  }) {
+    final now = DateTime.now().toIso8601String();
+
+    final schema = {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'Article',
+          'headline': title,
+          'description': description,
+          'url': url,
+          if (imageUrl != null) 'image': imageUrl,
+          'datePublished': datePublished ?? now,
+          'dateModified': dateModified ?? now,
+          'author': {
+            '@type': 'Organization',
+            'name': 'Astrobobo',
+            'url': 'https://astrobobo.com',
+          },
+          'publisher': {
+            '@type': 'Organization',
+            'name': 'Astrobobo',
+            'logo': {
+              '@type': 'ImageObject',
+              'url': 'https://astrobobo.com/images/logo.png',
+            },
+          },
+        },
+        {
+          '@type': 'FAQPage',
+          'mainEntity': faqItems.map((item) => {
+            '@type': 'Question',
+            'name': item.question,
+            'acceptedAnswer': {
+              '@type': 'Answer',
+              'text': item.answer,
+            },
+          }).toList(),
+        },
+      ],
+    };
+
+    return _jsonEncode(schema);
+  }
+
+  /// Generate BreadcrumbList schema for navigation
+  static String generateBreadcrumbSchema({
+    required List<BreadcrumbItem> items,
+  }) {
+    final listItems = items.asMap().entries.map((entry) => {
+      '@type': 'ListItem',
+      'position': entry.key + 1,
+      'name': entry.value.name,
+      'item': entry.value.url,
+    }).toList();
+
+    final schema = {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      'itemListElement': listItems,
+    };
+
+    return _jsonEncode(schema);
+  }
+
+  /// Simple JSON encoder (avoiding dart:convert for Flutter web compatibility)
+  static String _jsonEncode(Map<String, dynamic> data) {
+    String encodeValue(dynamic value) {
+      if (value == null) return 'null';
+      if (value is String) return '"${value.replaceAll('"', '\\"')}"';
+      if (value is num || value is bool) return value.toString();
+      if (value is List) {
+        return '[${value.map(encodeValue).join(',')}]';
+      }
+      if (value is Map) {
+        final entries = value.entries
+            .map((e) => '"${e.key}":${encodeValue(e.value)}')
+            .join(',');
+        return '{$entries}';
+      }
+      return '"$value"';
+    }
+    return encodeValue(data);
+  }
+}
+
+/// FAQ item model for schema generation
+class FaqSchemaItem {
+  final String question;
+  final String answer;
+
+  const FaqSchemaItem({
+    required this.question,
+    required this.answer,
+  });
+}
+
+/// Breadcrumb item model for schema generation
+class BreadcrumbItem {
+  final String name;
+  final String url;
+
+  const BreadcrumbItem({
+    required this.name,
+    required this.url,
+  });
 }
 
 // ═══════════════════════════════════════════════════════════════
