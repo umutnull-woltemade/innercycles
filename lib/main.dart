@@ -21,48 +21,95 @@ import 'data/models/user_profile.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Load environment variables
-  // On web, the file is served from assets/.env
-  await dotenv.load(fileName: 'assets/.env');
+  // Load environment variables with error handling for web
+  try {
+    await dotenv.load(fileName: 'assets/.env');
+  } catch (e) {
+    // On web, .env may not exist or be empty - continue with defaults
+    if (kDebugMode) {
+      debugPrint('Warning: Could not load .env file: $e');
+    }
+  }
 
-  // Initialize Firebase with platform-specific options
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  // Initialize Firebase with platform-specific options and error handling
+  try {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+  } catch (e) {
+    // Firebase may fail on web without proper config - app can still function
+    if (kDebugMode) {
+      debugPrint('Warning: Firebase initialization failed: $e');
+    }
+  }
 
   // Initialize Supabase with values from .env
-  await Supabase.initialize(
-    url: dotenv.env['SUPABASE_URL'] ?? 'https://placeholder.supabase.co',
-    anonKey: dotenv.env['SUPABASE_ANON_KEY'] ?? 'placeholder-key',
-  );
+  try {
+    await Supabase.initialize(
+      url: dotenv.env['SUPABASE_URL'] ?? 'https://placeholder.supabase.co',
+      anonKey: dotenv.env['SUPABASE_ANON_KEY'] ?? 'placeholder-key',
+    );
+  } catch (e) {
+    if (kDebugMode) {
+      debugPrint('Warning: Supabase initialization failed: $e');
+    }
+  }
 
   // Initialize Crashlytics (mobile only)
   if (!kIsWeb) {
-    // Pass all uncaught Flutter errors to Crashlytics
-    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+    try {
+      // Pass all uncaught Flutter errors to Crashlytics
+      FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
 
-    // Pass all uncaught async errors to Crashlytics
-    PlatformDispatcher.instance.onError = (error, stack) {
-      FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
-      return true;
-    };
+      // Pass all uncaught async errors to Crashlytics
+      PlatformDispatcher.instance.onError = (error, stack) {
+        FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+        return true;
+      };
 
-    // Disable collection in debug mode
-    await FirebaseCrashlytics.instance
-        .setCrashlyticsCollectionEnabled(!kDebugMode);
+      // Disable collection in debug mode
+      await FirebaseCrashlytics.instance
+          .setCrashlyticsCollectionEnabled(!kDebugMode);
+    } catch (e) {
+      if (kDebugMode) {
+        debugPrint('Warning: Crashlytics initialization failed: $e');
+      }
+    }
   }
 
-  // Initialize glossary cache for fast term lookups
-  GlossaryCache().initialize();
+  // Initialize glossary cache asynchronously (don't block first paint)
+  // This runs in the background while the app loads
+  Future.microtask(() => GlossaryCache().initialize());
 
-  // Initialize local storage
-  await StorageService.initialize();
+  // Initialize local storage with timeout for web
+  try {
+    await StorageService.initialize().timeout(
+      const Duration(seconds: 5),
+      onTimeout: () {
+        if (kDebugMode) {
+          debugPrint('Warning: Storage initialization timed out');
+        }
+      },
+    );
+  } catch (e) {
+    if (kDebugMode) {
+      debugPrint('Warning: Storage initialization failed: $e');
+    }
+  }
 
-  // Initialize admin services
-  await AdminAuthService.initialize();
-  await AdminAnalyticsService.initialize();
+  // Initialize admin services (non-blocking on web)
+  if (!kIsWeb) {
+    await AdminAuthService.initialize();
+    await AdminAnalyticsService.initialize();
+  } else {
+    // Initialize admin services in background on web
+    Future.microtask(() async {
+      await AdminAuthService.initialize();
+      await AdminAnalyticsService.initialize();
+    });
+  }
 
-  // Load saved settings
+  // Load saved settings with defaults
   final savedLanguage = StorageService.loadLanguage();
   final savedThemeMode = StorageService.loadThemeMode();
   final savedOnboardingComplete = StorageService.loadOnboardingComplete();
@@ -88,7 +135,7 @@ void main() async {
         if (savedProfile != null)
           userProfileProvider.overrideWith(() => _InitializedUserProfileNotifier(savedProfile)),
       ],
-      child: const Venus OneApp(),
+      child: const VenusOneApp(),
     ),
   );
 }
@@ -103,8 +150,8 @@ class _InitializedUserProfileNotifier extends UserProfileNotifier {
   UserProfile? build() => _initialProfile;
 }
 
-class Venus OneApp extends ConsumerWidget {
-  const Venus OneApp({super.key});
+class VenusOneApp extends ConsumerWidget {
+  const VenusOneApp({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
