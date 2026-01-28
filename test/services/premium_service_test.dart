@@ -38,7 +38,7 @@ void main() {
       expect(tier.price, '₺29/ay');
       expect(tier.savings, '');
       expect(tier.features, isNotEmpty);
-      expect(tier.productId, 'astrobobo_premium_monthly');
+      expect(tier.productId, 'venusone_premium_monthly');
     });
 
     test('yearly tier has correct properties', () {
@@ -47,7 +47,7 @@ void main() {
       expect(tier.price, '₺79/yil');
       expect(tier.savings, '%77 tasarruf');
       expect(tier.features, isNotEmpty);
-      expect(tier.productId, 'astrobobo_premium_yearly');
+      expect(tier.productId, 'venusone_premium_yearly');
     });
 
     test('premium tiers have more features than free', () {
