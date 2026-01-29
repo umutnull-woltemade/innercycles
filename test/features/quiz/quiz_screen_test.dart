@@ -12,7 +12,9 @@ void main() {
   });
 
   testWidgets('QuizScreen renders with quizType', (tester) async {
-    await tester.pumpApp(const QuizScreen(quizType: 'general', sourceContext: 'discover'));
+    await tester.pumpApp(
+      const QuizScreen(quizType: 'general', sourceContext: 'discover'),
+    );
     await tester.pumpAndSettle();
     expect(find.byType(Scaffold), findsWidgets);
   });

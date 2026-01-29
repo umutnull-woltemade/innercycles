@@ -103,10 +103,7 @@ extension PumpApp on WidgetTester {
   }) async {
     final profile = userProfile ?? fakeUserProfile();
 
-    final router = GoRouter(
-      initialLocation: initialLocation,
-      routes: routes,
-    );
+    final router = GoRouter(initialLocation: initialLocation, routes: routes);
 
     await pumpWidget(
       ProviderScope(

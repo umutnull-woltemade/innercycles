@@ -15,10 +15,7 @@ void main() {
     });
 
     test('logEvent does not throw', () {
-      expect(
-        () => service.logEvent('test_event'),
-        returnsNormally,
-      );
+      expect(() => service.logEvent('test_event'), returnsNormally);
     });
 
     test('logEvent with parameters does not throw', () {
@@ -29,10 +26,7 @@ void main() {
     });
 
     test('logScreenView does not throw', () {
-      expect(
-        () => service.logScreenView('TestScreen'),
-        returnsNormally,
-      );
+      expect(() => service.logScreenView('TestScreen'), returnsNormally);
     });
 
     test('logScreenView with class does not throw', () {
@@ -66,10 +60,7 @@ void main() {
     });
 
     test('logAdEvent does not throw', () {
-      expect(
-        () => service.logAdEvent('banner', 'loaded'),
-        returnsNormally,
-      );
+      expect(() => service.logAdEvent('banner', 'loaded'), returnsNormally);
     });
 
     test('logAdEvent with placement does not throw', () {
@@ -80,31 +71,19 @@ void main() {
     });
 
     test('logFeatureUsage does not throw', () {
-      expect(
-        () => service.logFeatureUsage('horoscope'),
-        returnsNormally,
-      );
+      expect(() => service.logFeatureUsage('horoscope'), returnsNormally);
     });
 
     test('logHoroscopeView does not throw', () {
-      expect(
-        () => service.logHoroscopeView('aries', 'daily'),
-        returnsNormally,
-      );
+      expect(() => service.logHoroscopeView('aries', 'daily'), returnsNormally);
     });
 
     test('logChartGeneration does not throw', () {
-      expect(
-        () => service.logChartGeneration('natal'),
-        returnsNormally,
-      );
+      expect(() => service.logChartGeneration('natal'), returnsNormally);
     });
 
     test('logShare does not throw', () {
-      expect(
-        () => service.logShare('horoscope', 'instagram'),
-        returnsNormally,
-      );
+      expect(() => service.logShare('horoscope', 'instagram'), returnsNormally);
     });
 
     test('logError does not throw', () {
@@ -115,24 +94,15 @@ void main() {
     });
 
     test('setUserProperty does not throw', () {
-      expect(
-        () => service.setUserProperty('sign', 'aries'),
-        returnsNormally,
-      );
+      expect(() => service.setUserProperty('sign', 'aries'), returnsNormally);
     });
 
     test('setUserId does not throw', () {
-      expect(
-        () => service.setUserId('user123'),
-        returnsNormally,
-      );
+      expect(() => service.setUserId('user123'), returnsNormally);
     });
 
     test('setUserId with null does not throw', () {
-      expect(
-        () => service.setUserId(null),
-        returnsNormally,
-      );
+      expect(() => service.setUserId(null), returnsNormally);
     });
   });
 

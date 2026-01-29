@@ -114,9 +114,9 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
         const SizedBox(width: AppConstants.spacingSm),
         Text(
           _getLocalizedString('profile', language),
-          style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                color: AppColors.starGold,
-              ),
+          style: Theme.of(
+            context,
+          ).textTheme.headlineMedium?.copyWith(color: AppColors.starGold),
         ),
         const Spacer(),
         if (_hasChanges)
@@ -142,62 +142,68 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     final sign = profile.sunSign as ZodiacSign;
 
     return Center(
-      child: Column(
-        children: [
-          Container(
-            width: 100,
-            height: 100,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  sign.color.withOpacity(0.3),
-                  sign.color.withOpacity(0.1),
-                ],
+          child: Column(
+            children: [
+              Container(
+                width: 100,
+                height: 100,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      sign.color.withOpacity(0.3),
+                      sign.color.withOpacity(0.1),
+                    ],
+                  ),
+                  border: Border.all(
+                    color: sign.color.withOpacity(0.5),
+                    width: 3,
+                  ),
+                ),
+                child: Center(
+                  child: Text(
+                    sign.symbol,
+                    style: TextStyle(fontSize: 40, color: sign.color),
+                  ),
+                ),
               ),
-              border: Border.all(
-                color: sign.color.withOpacity(0.5),
-                width: 3,
-              ),
-            ),
-            child: Center(
-              child: Text(
-                sign.symbol,
-                style: TextStyle(fontSize: 40, color: sign.color),
-              ),
-            ),
-          ),
-          const SizedBox(height: AppConstants.spacingMd),
-          Text(
-            profile.name ?? sign.name,
-            style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+              const SizedBox(height: AppConstants.spacingMd),
+              Text(
+                profile.name ?? sign.name,
+                style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                   color: isDark
                       ? AppColors.textPrimary
                       : AppColors.lightTextPrimary,
                   fontWeight: FontWeight.w700,
                   fontSize: 24,
                 ),
-          ),
-          const SizedBox(height: 4),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-            decoration: BoxDecoration(
-              color: sign.color.withOpacity(0.2),
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: Text(
-              sign.name,
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              ),
+              const SizedBox(height: 4),
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 6,
+                ),
+                decoration: BoxDecoration(
+                  color: sign.color.withOpacity(0.2),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Text(
+                  sign.name,
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: sign.color,
                     fontWeight: FontWeight.w600,
                   ),
-            ),
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
-    ).animate().fadeIn(delay: 100.ms, duration: 400.ms).scale(begin: const Offset(0.9, 0.9));
+        )
+        .animate()
+        .fadeIn(delay: 100.ms, duration: 400.ms)
+        .scale(begin: const Offset(0.9, 0.9));
   }
 
   Widget _buildEditSection(
@@ -223,20 +229,16 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
         children: [
           Row(
             children: [
-              Icon(
-                Icons.edit_outlined,
-                color: AppColors.starGold,
-                size: 20,
-              ),
+              Icon(Icons.edit_outlined, color: AppColors.starGold, size: 20),
               const SizedBox(width: AppConstants.spacingSm),
               Text(
                 _getLocalizedString('edit_info', language),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      color: isDark
-                          ? AppColors.textPrimary
-                          : AppColors.lightTextPrimary,
-                      fontWeight: FontWeight.w600,
-                    ),
+                  color: isDark
+                      ? AppColors.textPrimary
+                      : AppColors.lightTextPrimary,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ],
           ),
@@ -309,8 +311,8 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
         Text(
           label,
           style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-              ),
+            color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+          ),
         ),
         const SizedBox(height: 6),
         TextField(
@@ -325,7 +327,9 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             ),
             prefixIcon: Icon(
               icon,
-              color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+              color: isDark
+                  ? AppColors.textSecondary
+                  : AppColors.lightTextSecondary,
             ),
             filled: true,
             fillColor: isDark
@@ -360,8 +364,8 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
         Text(
           label,
           style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-              ),
+            color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+          ),
         ),
         const SizedBox(height: 6),
         GestureDetector(
@@ -378,22 +382,26 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
               children: [
                 Icon(
                   icon,
-                  color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+                  color: isDark
+                      ? AppColors.textSecondary
+                      : AppColors.lightTextSecondary,
                 ),
                 const SizedBox(width: AppConstants.spacingMd),
                 Expanded(
                   child: Text(
                     value,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: isDark
-                              ? AppColors.textPrimary
-                              : AppColors.lightTextPrimary,
-                        ),
+                      color: isDark
+                          ? AppColors.textPrimary
+                          : AppColors.lightTextPrimary,
+                    ),
                   ),
                 ),
                 Icon(
                   Icons.chevron_right,
-                  color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                  color: isDark
+                      ? AppColors.textMuted
+                      : AppColors.lightTextMuted,
                 ),
               ],
             ),
@@ -427,20 +435,16 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
         children: [
           Row(
             children: [
-              Icon(
-                Icons.auto_awesome,
-                color: AppColors.starGold,
-                size: 20,
-              ),
+              Icon(Icons.auto_awesome, color: AppColors.starGold, size: 20),
               const SizedBox(width: AppConstants.spacingSm),
               Text(
                 L10n.get('big_three', language),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      color: isDark
-                          ? AppColors.textPrimary
-                          : AppColors.lightTextPrimary,
-                      fontWeight: FontWeight.w600,
-                    ),
+                  color: isDark
+                      ? AppColors.textPrimary
+                      : AppColors.lightTextPrimary,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ],
           ),
@@ -530,9 +534,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
       builder: (context, child) {
         return Theme(
           data: Theme.of(context).copyWith(
-            colorScheme: ColorScheme.dark(
-              primary: AppColors.auroraStart,
-            ),
+            colorScheme: ColorScheme.dark(primary: AppColors.auroraStart),
           ),
           child: child!,
         );
@@ -586,14 +588,19 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                         child: Text(
                           L10n.get('cancel', language),
                           style: TextStyle(
-                            color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                            color: isDark
+                                ? AppColors.textMuted
+                                : AppColors.lightTextMuted,
                           ),
                         ),
                       ),
                       Text(
                         L10n.get('select_city', language),
-                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                              color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                        style: Theme.of(context).textTheme.titleMedium
+                            ?.copyWith(
+                              color: isDark
+                                  ? AppColors.textPrimary
+                                  : AppColors.lightTextPrimary,
                               fontWeight: FontWeight.w600,
                             ),
                       ),
@@ -603,16 +610,22 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                   const SizedBox(height: 16),
                   TextField(
                     style: TextStyle(
-                      color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                      color: isDark
+                          ? AppColors.textPrimary
+                          : AppColors.lightTextPrimary,
                     ),
                     decoration: InputDecoration(
                       hintText: L10n.get('search_city', language),
                       hintStyle: TextStyle(
-                        color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                        color: isDark
+                            ? AppColors.textMuted
+                            : AppColors.lightTextMuted,
                       ),
                       prefixIcon: Icon(
                         Icons.search,
-                        color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                        color: isDark
+                            ? AppColors.textMuted
+                            : AppColors.lightTextMuted,
                       ),
                       filled: true,
                       fillColor: isDark
@@ -636,7 +649,9 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                           style: TextStyle(
                             color: showTurkeyOnly
                                 ? Colors.white
-                                : (isDark ? AppColors.textSecondary : AppColors.lightTextSecondary),
+                                : (isDark
+                                      ? AppColors.textSecondary
+                                      : AppColors.lightTextSecondary),
                           ),
                         ),
                         selected: showTurkeyOnly,
@@ -655,7 +670,9 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                           style: TextStyle(
                             color: !showTurkeyOnly
                                 ? Colors.white
-                                : (isDark ? AppColors.textSecondary : AppColors.lightTextSecondary),
+                                : (isDark
+                                      ? AppColors.textSecondary
+                                      : AppColors.lightTextSecondary),
                           ),
                         ),
                         selected: !showTurkeyOnly,
@@ -678,18 +695,24 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                         return ListTile(
                           leading: Icon(
                             Icons.location_city,
-                            color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                            color: isDark
+                                ? AppColors.textMuted
+                                : AppColors.lightTextMuted,
                           ),
                           title: Text(
                             city.name,
                             style: TextStyle(
-                              color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                              color: isDark
+                                  ? AppColors.textPrimary
+                                  : AppColors.lightTextPrimary,
                             ),
                           ),
                           subtitle: Text(
                             city.country,
                             style: TextStyle(
-                              color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                              color: isDark
+                                  ? AppColors.textMuted
+                                  : AppColors.lightTextMuted,
                             ),
                           ),
                           onTap: () => Navigator.pop(context, city),
@@ -739,7 +762,9 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text(_getLocalizedString('profile_saved', ref.read(languageProvider))),
+        content: Text(
+          _getLocalizedString('profile_saved', ref.read(languageProvider)),
+        ),
         backgroundColor: AppColors.success,
         behavior: SnackBarBehavior.floating,
         shape: RoundedRectangleBorder(
@@ -755,7 +780,9 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        backgroundColor: isDark ? AppColors.surfaceDark : AppColors.lightSurface,
+        backgroundColor: isDark
+            ? AppColors.surfaceDark
+            : AppColors.lightSurface,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppConstants.radiusLg),
         ),
@@ -768,7 +795,9 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
         content: Text(
           _getLocalizedString('discard_changes_desc', language),
           style: TextStyle(
-            color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+            color: isDark
+                ? AppColors.textSecondary
+                : AppColors.lightTextSecondary,
           ),
         ),
         actions: [
@@ -871,16 +900,25 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
         AppLanguage.ar: 'تجاهل التغييرات؟',
       },
       'discard_changes_desc': {
-        AppLanguage.en: 'You have unsaved changes. Are you sure you want to leave?',
-        AppLanguage.tr: 'Kaydedilmemiş değişiklikleriniz var. Çıkmak istediğinizden emin misiniz?',
-        AppLanguage.el: 'Έχετε μη αποθηκευμένες αλλαγές. Είστε βέβαιοι ότι θέλετε να φύγετε;',
-        AppLanguage.bg: 'Имате незапазени промени. Сигурни ли сте, че искате да излезете?',
-        AppLanguage.ru: 'У вас есть несохраненные изменения. Вы уверены, что хотите выйти?',
+        AppLanguage.en:
+            'You have unsaved changes. Are you sure you want to leave?',
+        AppLanguage.tr:
+            'Kaydedilmemiş değişiklikleriniz var. Çıkmak istediğinizden emin misiniz?',
+        AppLanguage.el:
+            'Έχετε μη αποθηκευμένες αλλαγές. Είστε βέβαιοι ότι θέλετε να φύγετε;',
+        AppLanguage.bg:
+            'Имате незапазени промени. Сигурни ли сте, че искате да излезете?',
+        AppLanguage.ru:
+            'У вас есть несохраненные изменения. Вы уверены, что хотите выйти?',
         AppLanguage.zh: '您有未保存的更改。确定要离开吗？',
-        AppLanguage.fr: 'Vous avez des modifications non enregistrées. Êtes-vous sûr de vouloir partir?',
-        AppLanguage.de: 'Du hast ungespeicherte Änderungen. Bist du sicher, dass du gehen möchtest?',
-        AppLanguage.es: 'Tienes cambios sin guardar. ¿Seguro que quieres salir?',
-        AppLanguage.ar: 'لديك تغييرات غير محفوظة. هل أنت متأكد أنك تريد المغادرة؟',
+        AppLanguage.fr:
+            'Vous avez des modifications non enregistrées. Êtes-vous sûr de vouloir partir?',
+        AppLanguage.de:
+            'Du hast ungespeicherte Änderungen. Bist du sicher, dass du gehen möchtest?',
+        AppLanguage.es:
+            'Tienes cambios sin guardar. ¿Seguro que quieres salir?',
+        AppLanguage.ar:
+            'لديك تغييرات غير محفوظة. هل أنت متأكد أنك تريد المغادرة؟',
       },
       'discard': {
         AppLanguage.en: 'Discard',
@@ -929,9 +967,9 @@ class _CosmicSignCard extends StatelessWidget {
           Text(
             title,
             style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                  color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-                  fontSize: 10,
-                ),
+              color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+              fontSize: 10,
+            ),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 6),
@@ -944,18 +982,18 @@ class _CosmicSignCard extends StatelessWidget {
             Text(
               sign!.nameTr,
               style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                    color: sign!.color,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 10,
-                  ),
+                color: sign!.color,
+                fontWeight: FontWeight.w600,
+                fontSize: 10,
+              ),
               textAlign: TextAlign.center,
             ),
           ] else
             Text(
               '?',
               style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                    color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-                  ),
+                color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+              ),
             ),
         ],
       ),

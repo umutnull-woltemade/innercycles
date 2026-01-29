@@ -5,7 +5,9 @@ class L10n {
   L10n._();
 
   static String get(String key, AppLanguage language) {
-    return _translations[key]?[language] ?? _translations[key]?[AppLanguage.en] ?? key;
+    return _translations[key]?[language] ??
+        _translations[key]?[AppLanguage.en] ??
+        key;
   }
 
   static final Map<String, Map<AppLanguage, String>> _translations = {
@@ -42,7 +44,8 @@ class L10n {
       AppLanguage.ru: 'Звёзды выстраиваются, твоя судьба разворачивается...',
       AppLanguage.zh: '星星正在排列，你的命运正在展开...',
       AppLanguage.fr: 'Les étoiles s\'alignent, votre destin se dévoile...',
-      AppLanguage.de: 'Die Sterne richten sich aus, dein Schicksal entfaltet sich...',
+      AppLanguage.de:
+          'Die Sterne richten sich aus, dein Schicksal entfaltet sich...',
       AppLanguage.es: 'Las estrellas se alinean, tu destino se revela...',
       AppLanguage.ar: 'النجوم تصطف، قدرك يتكشف...',
     },
@@ -111,16 +114,25 @@ class L10n {
 
     // ============ ONBOARDING ============
     'onboarding_welcome_text': {
-      AppLanguage.en: 'Listen to the secrets the universe whispers to you.\nThe sky drew a map for you\nthe moment you were born, discover it.',
-      AppLanguage.tr: 'Evrenin sana fısıldadığı sırları dinle.\nDoğduğun an gökyüzü senin için\nbir harita çizdi, onu keşfet.',
-      AppLanguage.el: 'Άκου τα μυστικά που το σύμπαν σου ψιθυρίζει.\nΤη στιγμή που γεννήθηκες ο ουρανός\nσχεδίασε έναν χάρτη για σένα, ανακάλυψέ τον.',
-      AppLanguage.bg: 'Слушай тайните, които вселената ти шепне.\nВ момента на твоето раждане небето\nначерта карта за теб, открий я.',
-      AppLanguage.ru: 'Слушай тайны, которые вселенная шепчет тебе.\nВ момент твоего рождения небо\nначертило для тебя карту, открой её.',
+      AppLanguage.en:
+          'Listen to the secrets the universe whispers to you.\nThe sky drew a map for you\nthe moment you were born, discover it.',
+      AppLanguage.tr:
+          'Evrenin sana fısıldadığı sırları dinle.\nDoğduğun an gökyüzü senin için\nbir harita çizdi, onu keşfet.',
+      AppLanguage.el:
+          'Άκου τα μυστικά που το σύμπαν σου ψιθυρίζει.\nΤη στιγμή που γεννήθηκες ο ουρανός\nσχεδίασε έναν χάρτη για σένα, ανακάλυψέ τον.',
+      AppLanguage.bg:
+          'Слушай тайните, които вселената ти шепне.\nВ момента на твоето раждане небето\nначерта карта за теб, открий я.',
+      AppLanguage.ru:
+          'Слушай тайны, которые вселенная шепчет тебе.\nВ момент твоего рождения небо\nначертило для тебя карту, открой её.',
       AppLanguage.zh: '倾听宇宙向你低语的秘密。\n在你出生的那一刻，天空为你\n绘制了一张地图，去发现它吧。',
-      AppLanguage.fr: 'Écoutez les secrets que l\'univers vous murmure.\nAu moment de votre naissance, le ciel\na dessiné une carte pour vous, découvrez-la.',
-      AppLanguage.de: 'Höre auf die Geheimnisse, die das Universum dir zuflüstert.\nIn dem Moment, als du geboren wurdest,\nzeichnete der Himmel eine Karte für dich, entdecke sie.',
-      AppLanguage.es: 'Escucha los secretos que el universo te susurra.\nEn el momento de tu nacimiento, el cielo\ndibujó un mapa para ti, descúbrelo.',
-      AppLanguage.ar: 'استمع إلى الأسرار التي يهمسها لك الكون.\nفي لحظة ولادتك، رسمت السماء\nخريطة لك، اكتشفها.',
+      AppLanguage.fr:
+          'Écoutez les secrets que l\'univers vous murmure.\nAu moment de votre naissance, le ciel\na dessiné une carte pour vous, découvrez-la.',
+      AppLanguage.de:
+          'Höre auf die Geheimnisse, die das Universum dir zuflüstert.\nIn dem Moment, als du geboren wurdest,\nzeichnete der Himmel eine Karte für dich, entdecke sie.',
+      AppLanguage.es:
+          'Escucha los secretos que el universo te susurra.\nEn el momento de tu nacimiento, el cielo\ndibujó un mapa para ti, descúbrelo.',
+      AppLanguage.ar:
+          'استمع إلى الأسرار التي يهمسها لك الكون.\nفي لحظة ولادتك، رسمت السماء\nخريطة لك، اكتشفها.',
     },
     'cosmic_identity': {
       AppLanguage.en: 'Your Cosmic Identity',
@@ -141,8 +153,10 @@ class L10n {
       AppLanguage.bg: 'Въведете информацията си, за да се свържете с вселената',
       AppLanguage.ru: 'Введите свою информацию, чтобы соединиться со вселенной',
       AppLanguage.zh: '输入您的信息以与宇宙连接',
-      AppLanguage.fr: 'Entrez vos informations pour vous connecter à l\'univers',
-      AppLanguage.de: 'Gib deine Informationen ein, um dich mit dem Universum zu verbinden',
+      AppLanguage.fr:
+          'Entrez vos informations pour vous connecter à l\'univers',
+      AppLanguage.de:
+          'Gib deine Informationen ein, um dich mit dem Universum zu verbinden',
       AppLanguage.es: 'Ingresa tu información para conectarte con el universo',
       AppLanguage.ar: 'أدخل معلوماتك للتواصل مع الكون',
     },
@@ -171,15 +185,23 @@ class L10n {
       AppLanguage.ar: 'متابعة',
     },
     'info_box_text': {
-      AppLanguage.en: 'Fill in all the information to unlock all layers of your cosmic map.',
-      AppLanguage.tr: 'Kozmik haritanın tüm katmanlarını açmak için bilgilerini eksiksiz gir.',
-      AppLanguage.el: 'Συμπληρώστε όλες τις πληροφορίες για να ξεκλειδώσετε όλα τα επίπεδα του κοσμικού σας χάρτη.',
-      AppLanguage.bg: 'Попълнете цялата информация, за да отключите всички слоеве на вашата космическа карта.',
-      AppLanguage.ru: 'Заполните всю информацию, чтобы открыть все слои вашей космической карты.',
+      AppLanguage.en:
+          'Fill in all the information to unlock all layers of your cosmic map.',
+      AppLanguage.tr:
+          'Kozmik haritanın tüm katmanlarını açmak için bilgilerini eksiksiz gir.',
+      AppLanguage.el:
+          'Συμπληρώστε όλες τις πληροφορίες για να ξεκλειδώσετε όλα τα επίπεδα του κοσμικού σας χάρτη.',
+      AppLanguage.bg:
+          'Попълнете цялата информация, за да отключите всички слоеве на вашата космическа карта.',
+      AppLanguage.ru:
+          'Заполните всю информацию, чтобы открыть все слои вашей космической карты.',
       AppLanguage.zh: '填写所有信息以解锁您宇宙地图的所有层次。',
-      AppLanguage.fr: 'Remplissez toutes les informations pour débloquer toutes les couches de votre carte cosmique.',
-      AppLanguage.de: 'Fülle alle Informationen aus, um alle Ebenen deiner kosmischen Karte freizuschalten.',
-      AppLanguage.es: 'Complete toda la información para desbloquear todas las capas de su mapa cósmico.',
+      AppLanguage.fr:
+          'Remplissez toutes les informations pour débloquer toutes les couches de votre carte cosmique.',
+      AppLanguage.de:
+          'Fülle alle Informationen aus, um alle Ebenen deiner kosmischen Karte freizuschalten.',
+      AppLanguage.es:
+          'Complete toda la información para desbloquear todas las capas de su mapa cósmico.',
       AppLanguage.ar: 'أكمل جميع المعلومات لفتح جميع طبقات خريطتك الكونية.',
     },
     'will_be_calculated': {
@@ -599,16 +621,25 @@ class L10n {
       AppLanguage.ar: 'انفتح الباب الكوني!',
     },
     'premium_success_message': {
-      AppLanguage.en: 'Full access to the secrets of the universe is now with you. You are ready for limitless exploration under the guidance of the stars.',
-      AppLanguage.tr: 'Evrenin sırlarına tam erişim artık seninle. Yıldızların rehberliğinde sınırsız keşfe hazırsın.',
-      AppLanguage.el: 'Η πλήρης πρόσβαση στα μυστικά του σύμπαντος είναι τώρα μαζί σας. Είστε έτοιμοι για απεριόριστη εξερεύνηση υπό την καθοδήγηση των άστρων.',
-      AppLanguage.bg: 'Пълен достъп до тайните на вселената вече е с вас. Готови сте за безгранично изследване под напътствието на звездите.',
-      AppLanguage.ru: 'Полный доступ к тайнам вселенной теперь с вами. Вы готовы к безграничному исследованию под руководством звёзд.',
+      AppLanguage.en:
+          'Full access to the secrets of the universe is now with you. You are ready for limitless exploration under the guidance of the stars.',
+      AppLanguage.tr:
+          'Evrenin sırlarına tam erişim artık seninle. Yıldızların rehberliğinde sınırsız keşfe hazırsın.',
+      AppLanguage.el:
+          'Η πλήρης πρόσβαση στα μυστικά του σύμπαντος είναι τώρα μαζί σας. Είστε έτοιμοι για απεριόριστη εξερεύνηση υπό την καθοδήγηση των άστρων.',
+      AppLanguage.bg:
+          'Пълен достъп до тайните на вселената вече е с вас. Готови сте за безгранично изследване под напътствието на звездите.',
+      AppLanguage.ru:
+          'Полный доступ к тайнам вселенной теперь с вами. Вы готовы к безграничному исследованию под руководством звёзд.',
       AppLanguage.zh: '您现在拥有了宇宙秘密的完全访问权限。在星星的指引下，您已准备好进行无限探索。',
-      AppLanguage.fr: 'L\'accès complet aux secrets de l\'univers est maintenant avec vous. Vous êtes prêt pour une exploration illimitée sous la guidance des étoiles.',
-      AppLanguage.de: 'Der volle Zugang zu den Geheimnissen des Universums ist jetzt bei dir. Du bist bereit für grenzenlose Erkundung unter der Führung der Sterne.',
-      AppLanguage.es: 'El acceso completo a los secretos del universo ahora está contigo. Estás listo para una exploración ilimitada bajo la guía de las estrellas.',
-      AppLanguage.ar: 'الوصول الكامل إلى أسرار الكون الآن معك. أنت مستعد للاستكشاف اللامحدود تحت إرشاد النجوم.',
+      AppLanguage.fr:
+          'L\'accès complet aux secrets de l\'univers est maintenant avec vous. Vous êtes prêt pour une exploration illimitée sous la guidance des étoiles.',
+      AppLanguage.de:
+          'Der volle Zugang zu den Geheimnissen des Universums ist jetzt bei dir. Du bist bereit für grenzenlose Erkundung unter der Führung der Sterne.',
+      AppLanguage.es:
+          'El acceso completo a los secretos del universo ahora está contigo. Estás listo para una exploración ilimitada bajo la guía de las estrellas.',
+      AppLanguage.ar:
+          'الوصول الكامل إلى أسرار الكون الآن معك. أنت مستعد للاستكشاف اللامحدود تحت إرشاد النجوم.',
     },
 
     // ============ FEATURES ============

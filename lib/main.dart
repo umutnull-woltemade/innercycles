@@ -99,7 +99,8 @@ void main() async {
   if (!kIsWeb) {
     try {
       // Pass all uncaught Flutter errors to Crashlytics
-      FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+      FlutterError.onError =
+          FirebaseCrashlytics.instance.recordFlutterFatalError;
 
       // Pass all uncaught async errors to Crashlytics
       PlatformDispatcher.instance.onError = (error, stack) {
@@ -108,8 +109,9 @@ void main() async {
       };
 
       // Disable collection in debug mode
-      await FirebaseCrashlytics.instance
-          .setCrashlyticsCollectionEnabled(!kDebugMode);
+      await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(
+        !kDebugMode,
+      );
     } catch (e) {
       if (kDebugMode) {
         debugPrint('Warning: Crashlytics initialization failed: $e');
@@ -181,9 +183,13 @@ void main() async {
       overrides: [
         languageProvider.overrideWith((ref) => savedLanguage),
         themeModeProvider.overrideWith((ref) => savedThemeMode),
-        onboardingCompleteProvider.overrideWith((ref) => savedOnboardingComplete),
+        onboardingCompleteProvider.overrideWith(
+          (ref) => savedOnboardingComplete,
+        ),
         if (savedProfile != null)
-          userProfileProvider.overrideWith(() => _InitializedUserProfileNotifier(savedProfile)),
+          userProfileProvider.overrideWith(
+            () => _InitializedUserProfileNotifier(savedProfile),
+          ),
       ],
       child: const VenusOneApp(),
     ),

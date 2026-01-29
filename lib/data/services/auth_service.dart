@@ -23,20 +23,22 @@ class AuthUserInfo {
   });
 
   Map<String, dynamic> toJson() => {
-        'uid': uid,
-        'email': email,
-        'displayName': displayName,
-        'photoUrl': photoUrl,
-        'provider': provider.name,
-      };
+    'uid': uid,
+    'email': email,
+    'displayName': displayName,
+    'photoUrl': photoUrl,
+    'provider': provider.name,
+  };
 
   factory AuthUserInfo.fromSupabaseUser(User user, AuthProvider provider) {
     return AuthUserInfo(
       uid: user.id,
       email: user.email,
-      displayName: user.userMetadata?['full_name'] as String? ??
+      displayName:
+          user.userMetadata?['full_name'] as String? ??
           user.userMetadata?['name'] as String?,
-      photoUrl: user.userMetadata?['avatar_url'] as String? ??
+      photoUrl:
+          user.userMetadata?['avatar_url'] as String? ??
           user.userMetadata?['picture'] as String?,
       provider: provider,
     );
@@ -84,8 +86,8 @@ class AuthService {
   static bool get _isSupabaseConfigured {
     final url = dotenv.env['SUPABASE_URL'] ?? '';
     return url.isNotEmpty &&
-           !url.contains('demo.supabase.co') &&
-           !url.contains('placeholder');
+        !url.contains('demo.supabase.co') &&
+        !url.contains('placeholder');
   }
 
   // ==================== Apple Sign In ====================
@@ -181,7 +183,8 @@ class AuthService {
 
     if (!isAvailable) {
       throw Exception(
-          'Apple Sign In bu cihazda kullanilabilir degil. iOS 13+ gerekli.');
+        'Apple Sign In bu cihazda kullanilabilir degil. iOS 13+ gerekli.',
+      );
     }
 
     // Nonce olustur (guvenlik icin)
@@ -328,7 +331,10 @@ class AuthService {
           } catch (_) {}
 
           try {
-            await _supabase.from('saved_readings').delete().eq('user_id', user.id);
+            await _supabase
+                .from('saved_readings')
+                .delete()
+                .eq('user_id', user.id);
           } catch (_) {}
 
           await _supabase.auth.signOut();
@@ -347,8 +353,10 @@ class AuthService {
     const charset =
         '0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._';
     final random = Random.secure();
-    return List.generate(length, (_) => charset[random.nextInt(charset.length)])
-        .join();
+    return List.generate(
+      length,
+      (_) => charset[random.nextInt(charset.length)],
+    ).join();
   }
 
   /// SHA256 hash olustur

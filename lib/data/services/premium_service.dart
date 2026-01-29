@@ -7,11 +7,7 @@ import 'ad_service.dart';
 import 'analytics_service.dart';
 
 /// Premium subscription tiers
-enum PremiumTier {
-  free,
-  monthly,
-  yearly,
-}
+enum PremiumTier { free, monthly, yearly }
 
 extension PremiumTierExtension on PremiumTier {
   String get displayName {
@@ -204,7 +200,8 @@ class PremiumNotifier extends Notifier<PremiumState> {
 
   /// Handle customer info updates from RevenueCat
   void _handleCustomerInfoUpdate(CustomerInfo customerInfo) {
-    final entitlement = customerInfo.entitlements.all[AppConstants.entitlementId];
+    final entitlement =
+        customerInfo.entitlements.all[AppConstants.entitlementId];
     final isPremium = entitlement?.isActive ?? false;
 
     PremiumTier tier = PremiumTier.free;

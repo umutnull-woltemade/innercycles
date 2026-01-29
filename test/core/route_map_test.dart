@@ -151,8 +151,11 @@ void main() {
 
       for (final path in corePaths) {
         expect(path, isNotEmpty, reason: 'Route path should not be empty');
-        expect(path.startsWith('/'), isTrue,
-            reason: '$path should start with /');
+        expect(
+          path.startsWith('/'),
+          isTrue,
+          reason: '$path should start with /',
+        );
       }
     });
 
@@ -259,8 +262,11 @@ void main() {
 
       for (final path in kesifPaths) {
         expect(path, isNotEmpty);
-        expect(path.startsWith('/kesif/'), isTrue,
-            reason: '$path should be under /kesif/');
+        expect(
+          path.startsWith('/kesif/'),
+          isTrue,
+          reason: '$path should be under /kesif/',
+        );
       }
     });
 

@@ -6,14 +6,17 @@ class AppConstants {
 
   // App IDs and Links
   static const String appStoreId = ''; // Add your App Store ID here
-  static const String playStoreId = 'com.venusone'; // Update with your package name
+  static const String playStoreId =
+      'com.venusone'; // Update with your package name
   static const String privacyPolicyUrl = 'https://venusone.com/privacy';
   static const String termsOfServiceUrl = 'https://venusone.com/terms';
   static const String supportEmail = 'support@venusone.com';
 
   // RevenueCat API Keys
-  static const String revenueCatAppleApiKey = ''; // Add your RevenueCat Apple API key
-  static const String revenueCatGoogleApiKey = ''; // Add your RevenueCat Google API key
+  static const String revenueCatAppleApiKey =
+      ''; // Add your RevenueCat Apple API key
+  static const String revenueCatGoogleApiKey =
+      ''; // Add your RevenueCat Google API key
 
   // RevenueCat Product IDs
   static const String monthlyProductId = 'venusone_premium_monthly';
@@ -21,14 +24,21 @@ class AppConstants {
   static const String entitlementId = 'premium';
 
   // AdMob IDs (Production) - Replace with your actual IDs
-  static const String admobAppIdAndroid = 'ca-app-pub-XXXXXXXXXXXXXXXX~XXXXXXXXXX';
+  static const String admobAppIdAndroid =
+      'ca-app-pub-XXXXXXXXXXXXXXXX~XXXXXXXXXX';
   static const String admobAppIdIos = 'ca-app-pub-XXXXXXXXXXXXXXXX~XXXXXXXXXX';
-  static const String admobBannerIdAndroid = 'ca-app-pub-XXXXXXXXXXXXXXXX/XXXXXXXXXX';
-  static const String admobBannerIdIos = 'ca-app-pub-XXXXXXXXXXXXXXXX/XXXXXXXXXX';
-  static const String admobInterstitialIdAndroid = 'ca-app-pub-XXXXXXXXXXXXXXXX/XXXXXXXXXX';
-  static const String admobInterstitialIdIos = 'ca-app-pub-XXXXXXXXXXXXXXXX/XXXXXXXXXX';
-  static const String admobRewardedIdAndroid = 'ca-app-pub-XXXXXXXXXXXXXXXX/XXXXXXXXXX';
-  static const String admobRewardedIdIos = 'ca-app-pub-XXXXXXXXXXXXXXXX/XXXXXXXXXX';
+  static const String admobBannerIdAndroid =
+      'ca-app-pub-XXXXXXXXXXXXXXXX/XXXXXXXXXX';
+  static const String admobBannerIdIos =
+      'ca-app-pub-XXXXXXXXXXXXXXXX/XXXXXXXXXX';
+  static const String admobInterstitialIdAndroid =
+      'ca-app-pub-XXXXXXXXXXXXXXXX/XXXXXXXXXX';
+  static const String admobInterstitialIdIos =
+      'ca-app-pub-XXXXXXXXXXXXXXXX/XXXXXXXXXX';
+  static const String admobRewardedIdAndroid =
+      'ca-app-pub-XXXXXXXXXXXXXXXX/XXXXXXXXXX';
+  static const String admobRewardedIdIos =
+      'ca-app-pub-XXXXXXXXXXXXXXXX/XXXXXXXXXX';
 
   // Storage keys
   static const String userProfileKey = 'user_profile';

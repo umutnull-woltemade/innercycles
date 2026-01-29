@@ -150,7 +150,8 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: Routes.lifePathDetail,
         builder: (context, state) {
-          final number = int.tryParse(state.pathParameters['number'] ?? '1') ?? 1;
+          final number =
+              int.tryParse(state.pathParameters['number'] ?? '1') ?? 1;
           return LifePathDetailScreen(number: number);
         },
       ),
@@ -158,7 +159,8 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: Routes.masterNumber,
         builder: (context, state) {
-          final number = int.tryParse(state.pathParameters['number'] ?? '11') ?? 11;
+          final number =
+              int.tryParse(state.pathParameters['number'] ?? '11') ?? 11;
           return MasterNumberScreen(number: number);
         },
       ),
@@ -166,7 +168,8 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: Routes.personalYearDetail,
         builder: (context, state) {
-          final number = int.tryParse(state.pathParameters['number'] ?? '1') ?? 1;
+          final number =
+              int.tryParse(state.pathParameters['number'] ?? '1') ?? 1;
           return PersonalYearScreen(year: number);
         },
       ),
@@ -174,7 +177,8 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/numerology/karmic-debt/:number',
         builder: (context, state) {
-          final number = int.tryParse(state.pathParameters['number'] ?? '13') ?? 13;
+          final number =
+              int.tryParse(state.pathParameters['number'] ?? '13') ?? 13;
           return KarmicDebtScreen(debtNumber: number);
         },
       ),
@@ -190,7 +194,8 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/tarot/major/:number',
         builder: (context, state) {
-          final number = int.tryParse(state.pathParameters['number'] ?? '0') ?? 0;
+          final number =
+              int.tryParse(state.pathParameters['number'] ?? '0') ?? 0;
           return MajorArcanaDetailScreen(cardNumber: number);
         },
       ),
@@ -860,40 +865,37 @@ class _NotFoundScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
-                  '🔮',
-                  style: TextStyle(fontSize: 80),
-                ),
+                const Text('🔮', style: TextStyle(fontSize: 80)),
                 const SizedBox(height: 24),
                 Text(
                   '404',
                   style: Theme.of(context).textTheme.displayLarge?.copyWith(
-                        color: const Color(0xFFFFD700),
-                        fontWeight: FontWeight.bold,
-                      ),
+                    color: const Color(0xFFFFD700),
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 const SizedBox(height: 16),
                 Text(
                   'Sayfa Bulunamadı',
-                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                        color: Colors.white,
-                      ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.headlineSmall?.copyWith(color: Colors.white),
                 ),
                 const SizedBox(height: 8),
                 Text(
                   'Aradığınız sayfa yıldızlarda kaybolmuş görünüyor.',
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: Colors.white70,
-                      ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodyMedium?.copyWith(color: Colors.white70),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 8),
                 Text(
                   'Aranan: $path',
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: Colors.white38,
-                        fontFamily: 'monospace',
-                      ),
+                    color: Colors.white38,
+                    fontFamily: 'monospace',
+                  ),
                 ),
                 const SizedBox(height: 32),
                 ElevatedButton.icon(
@@ -948,7 +950,8 @@ class _SplashScreenState extends ConsumerState<_SplashScreen> {
     final userProfile = ref.read(userProfileProvider);
 
     // Require BOTH onboarding complete AND valid user profile with name
-    final hasValidProfile = userProfile != null &&
+    final hasValidProfile =
+        userProfile != null &&
         userProfile.name != null &&
         userProfile.name!.isNotEmpty;
 
@@ -967,16 +970,13 @@ class _SplashScreenState extends ConsumerState<_SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(
-              '✨',
-              style: TextStyle(fontSize: 64),
-            ),
+            const Text('✨', style: TextStyle(fontSize: 64)),
             const SizedBox(height: 24),
             Text(
               'Venus One',
               style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                    color: const Color(0xFFFFD700),
-                  ),
+                color: const Color(0xFFFFD700),
+              ),
             ),
           ],
         ),

@@ -37,7 +37,13 @@ class SettingsScreen extends ConsumerWidget {
                 const SizedBox(height: AppConstants.spacingLg),
                 _buildLanguageSection(context, ref, language, isDark),
                 const SizedBox(height: AppConstants.spacingLg),
-                _buildHouseSystemSection(context, ref, language, houseSystem, isDark),
+                _buildHouseSystemSection(
+                  context,
+                  ref,
+                  language,
+                  houseSystem,
+                  isDark,
+                ),
                 const SizedBox(height: AppConstants.spacingLg),
                 _buildAccountSection(context, ref, language, isDark),
                 const SizedBox(height: AppConstants.spacingLg),
@@ -70,9 +76,9 @@ class SettingsScreen extends ConsumerWidget {
         const SizedBox(width: AppConstants.spacingSm),
         Text(
           L10n.get('settings', language),
-          style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                color: AppColors.starGold,
-              ),
+          style: Theme.of(
+            context,
+          ).textTheme.headlineMedium?.copyWith(color: AppColors.starGold),
         ),
       ],
     ).animate().fadeIn(duration: 400.ms);
@@ -150,8 +156,8 @@ class SettingsScreen extends ConsumerWidget {
                 color: isSelected
                     ? AppColors.auroraStart.withOpacity(0.2)
                     : (isDark
-                        ? AppColors.surfaceLight.withOpacity(0.3)
-                        : AppColors.lightSurfaceVariant),
+                          ? AppColors.surfaceLight.withOpacity(0.3)
+                          : AppColors.lightSurfaceVariant),
                 borderRadius: BorderRadius.circular(AppConstants.radiusFull),
                 border: Border.all(
                   color: isSelected
@@ -168,14 +174,15 @@ class SettingsScreen extends ConsumerWidget {
                   Text(
                     lang.displayName,
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: isSelected
-                              ? AppColors.auroraStart
-                              : (isDark
-                                  ? AppColors.textPrimary
-                                  : AppColors.lightTextPrimary),
-                          fontWeight:
-                              isSelected ? FontWeight.bold : FontWeight.normal,
-                        ),
+                      color: isSelected
+                          ? AppColors.auroraStart
+                          : (isDark
+                                ? AppColors.textPrimary
+                                : AppColors.lightTextPrimary),
+                      fontWeight: isSelected
+                          ? FontWeight.bold
+                          : FontWeight.normal,
+                    ),
                   ),
                   if (isSelected) ...[
                     const SizedBox(width: 4),
@@ -234,9 +241,11 @@ class SettingsScreen extends ConsumerWidget {
                     color: isSelected
                         ? AppColors.celestialGold.withOpacity(0.2)
                         : (isDark
-                            ? AppColors.surfaceLight.withOpacity(0.3)
-                            : AppColors.lightSurfaceVariant),
-                    borderRadius: BorderRadius.circular(AppConstants.radiusFull),
+                              ? AppColors.surfaceLight.withOpacity(0.3)
+                              : AppColors.lightSurfaceVariant),
+                    borderRadius: BorderRadius.circular(
+                      AppConstants.radiusFull,
+                    ),
                     border: Border.all(
                       color: isSelected
                           ? AppColors.celestialGold
@@ -253,10 +262,11 @@ class SettingsScreen extends ConsumerWidget {
                           color: isSelected
                               ? AppColors.celestialGold
                               : (isDark
-                                  ? AppColors.textPrimary
-                                  : AppColors.lightTextPrimary),
-                          fontWeight:
-                              isSelected ? FontWeight.bold : FontWeight.normal,
+                                    ? AppColors.textPrimary
+                                    : AppColors.lightTextPrimary),
+                          fontWeight: isSelected
+                              ? FontWeight.bold
+                              : FontWeight.normal,
                         ),
                       ),
                       if (isSelected) ...[
@@ -280,17 +290,25 @@ class SettingsScreen extends ConsumerWidget {
               decoration: BoxDecoration(
                 color: AppColors.celestialGold.withOpacity(0.1),
                 borderRadius: BorderRadius.circular(AppConstants.radiusSm),
-                border: Border.all(color: AppColors.celestialGold.withOpacity(0.3)),
+                border: Border.all(
+                  color: AppColors.celestialGold.withOpacity(0.3),
+                ),
               ),
               child: Row(
                 children: [
-                  Icon(Icons.info_outline, color: AppColors.celestialGold, size: 18),
+                  Icon(
+                    Icons.info_outline,
+                    color: AppColors.celestialGold,
+                    size: 18,
+                  ),
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
                       currentSystem.description,
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+                        color: isDark
+                            ? AppColors.textSecondary
+                            : AppColors.lightTextSecondary,
                       ),
                     ),
                   ),
@@ -338,9 +356,9 @@ class SettingsScreen extends ConsumerWidget {
               child: Text(
                 'PRO',
                 style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                      color: AppColors.deepSpace,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  color: AppColors.deepSpace,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ),
@@ -426,8 +444,8 @@ class SettingsScreen extends ConsumerWidget {
           Text(
             'Venus One v1.0.0',
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-                ),
+              color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+            ),
           ),
           const Divider(height: 24),
           _SettingsTile(
@@ -447,9 +465,9 @@ class SettingsScreen extends ConsumerWidget {
               child: Text(
                 'PIN',
                 style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                      color: AppColors.deepSpace,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  color: AppColors.deepSpace,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ),
@@ -468,7 +486,9 @@ class SettingsScreen extends ConsumerWidget {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        backgroundColor: isDark ? AppColors.surfaceDark : AppColors.lightSurface,
+        backgroundColor: isDark
+            ? AppColors.surfaceDark
+            : AppColors.lightSurface,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppConstants.radiusLg),
         ),
@@ -481,7 +501,9 @@ class SettingsScreen extends ConsumerWidget {
         content: Text(
           _getLocalizedString('clear_data_warning', language),
           style: TextStyle(
-            color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+            color: isDark
+                ? AppColors.textSecondary
+                : AppColors.lightTextSecondary,
           ),
         ),
         actions: [
@@ -514,11 +536,17 @@ class SettingsScreen extends ConsumerWidget {
     );
   }
 
-  void _showDisclaimerDialog(BuildContext context, AppLanguage language, bool isDark) {
+  void _showDisclaimerDialog(
+    BuildContext context,
+    AppLanguage language,
+    bool isDark,
+  ) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        backgroundColor: isDark ? AppColors.surfaceDark : AppColors.lightSurface,
+        backgroundColor: isDark
+            ? AppColors.surfaceDark
+            : AppColors.lightSurface,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppConstants.radiusLg),
         ),
@@ -529,7 +557,9 @@ class SettingsScreen extends ConsumerWidget {
             Text(
               _getLocalizedString('disclaimer', language),
               style: TextStyle(
-                color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                color: isDark
+                    ? AppColors.textPrimary
+                    : AppColors.lightTextPrimary,
               ),
             ),
           ],
@@ -542,7 +572,9 @@ class SettingsScreen extends ConsumerWidget {
               Text(
                 _getLocalizedString('disclaimer_content', language),
                 style: TextStyle(
-                  color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+                  color: isDark
+                      ? AppColors.textSecondary
+                      : AppColors.lightTextSecondary,
                   height: 1.5,
                 ),
               ),
@@ -552,17 +584,25 @@ class SettingsScreen extends ConsumerWidget {
                 decoration: BoxDecoration(
                   color: AppColors.starGold.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(8),
-                  border: Border.all(color: AppColors.starGold.withValues(alpha: 0.3)),
+                  border: Border.all(
+                    color: AppColors.starGold.withValues(alpha: 0.3),
+                  ),
                 ),
                 child: Row(
                   children: [
-                    Icon(Icons.lightbulb_outline, color: AppColors.starGold, size: 20),
+                    Icon(
+                      Icons.lightbulb_outline,
+                      color: AppColors.starGold,
+                      size: 20,
+                    ),
                     const SizedBox(width: 8),
                     Expanded(
                       child: Text(
                         _getLocalizedString('disclaimer_tip', language),
                         style: TextStyle(
-                          color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+                          color: isDark
+                              ? AppColors.textSecondary
+                              : AppColors.lightTextSecondary,
                           fontSize: 12,
                           fontStyle: FontStyle.italic,
                         ),
@@ -614,32 +654,42 @@ class SettingsScreen extends ConsumerWidget {
         AppLanguage.ar: 'لأغراض الترفيه فقط',
       },
       'disclaimer_content': {
-        AppLanguage.en: '''This app provides astrological, numerological, tarot, and dream interpretation content for entertainment and self-reflection purposes only.
+        AppLanguage.en:
+            '''This app provides astrological, numerological, tarot, and dream interpretation content for entertainment and self-reflection purposes only.
 
 The content does not constitute professional advice in any field including but not limited to: medical, psychological, financial, legal, or relationship advice.
 
 If you need professional support, please consult qualified professionals in the relevant field.
 
 All interpretations are generated for informational and entertainment purposes and should not be used as the basis for important life decisions.''',
-        AppLanguage.tr: '''Bu uygulama astroloji, numeroloji, tarot ve rüya yorumu içeriklerini yalnızca eğlence ve kendini keşfetme amaçlı sunmaktadır.
+        AppLanguage.tr:
+            '''Bu uygulama astroloji, numeroloji, tarot ve rüya yorumu içeriklerini yalnızca eğlence ve kendini keşfetme amaçlı sunmaktadır.
 
 İçerikler; tıbbi, psikolojik, finansal, hukuki veya ilişki danışmanlığı dahil hiçbir alanda profesyonel tavsiye niteliği taşımaz.
 
 Profesyonel desteğe ihtiyacınız varsa, lütfen ilgili alanda uzman kişilere başvurun.
 
 Tüm yorumlar bilgilendirme ve eğlence amaçlı oluşturulmaktadır ve önemli yaşam kararlarına temel oluşturmamalıdır.''',
-        AppLanguage.el: 'Αυτή η εφαρμογή παρέχει αστρολογικό περιεχόμενο μόνο για σκοπούς ψυχαγωγίας.',
-        AppLanguage.bg: 'Това приложение предоставя астрологично съдържание само за забавление.',
-        AppLanguage.ru: 'Это приложение предоставляет астрологический контент только для развлечения.',
+        AppLanguage.el:
+            'Αυτή η εφαρμογή παρέχει αστρολογικό περιεχόμενο μόνο για σκοπούς ψυχαγωγίας.',
+        AppLanguage.bg:
+            'Това приложение предоставя астрологично съдържание само за забавление.',
+        AppLanguage.ru:
+            'Это приложение предоставляет астрологический контент только для развлечения.',
         AppLanguage.zh: '此应用程序仅提供娱乐性的占星内容。',
-        AppLanguage.fr: 'Cette application fournit du contenu astrologique à des fins de divertissement uniquement.',
-        AppLanguage.de: 'Diese App bietet astrologische Inhalte nur zur Unterhaltung.',
-        AppLanguage.es: 'Esta aplicación proporciona contenido astrológico solo para entretenimiento.',
+        AppLanguage.fr:
+            'Cette application fournit du contenu astrologique à des fins de divertissement uniquement.',
+        AppLanguage.de:
+            'Diese App bietet astrologische Inhalte nur zur Unterhaltung.',
+        AppLanguage.es:
+            'Esta aplicación proporciona contenido astrológico solo para entretenimiento.',
         AppLanguage.ar: 'يقدم هذا التطبيق محتوى فلكي لأغراض الترفيه فقط.',
       },
       'disclaimer_tip': {
-        AppLanguage.en: 'Use the content for self-reflection, not decision-making.',
-        AppLanguage.tr: 'İçerikleri karar verme için değil, kendini keşfetmek için kullan.',
+        AppLanguage.en:
+            'Use the content for self-reflection, not decision-making.',
+        AppLanguage.tr:
+            'İçerikleri karar verme için değil, kendini keşfetmek için kullan.',
         AppLanguage.el: 'Χρησιμοποιήστε το περιεχόμενο για αυτοστοχασμό.',
         AppLanguage.bg: 'Използвайте съдържанието за саморефлексия.',
         AppLanguage.ru: 'Используйте контент для самоанализа.',
@@ -668,7 +718,8 @@ Tüm yorumlar bilgilendirme ve eğlence amaçlı oluşturulmaktadır ve önemli 
         AppLanguage.bg: 'Изберете как се изчисляват домовете в картите ви',
         AppLanguage.ru: 'Выберите, как рассчитываются дома в ваших картах',
         AppLanguage.zh: '选择星盘中宫位的计算方式',
-        AppLanguage.fr: 'Choisissez comment les maisons sont calculées dans vos cartes',
+        AppLanguage.fr:
+            'Choisissez comment les maisons sont calculées dans vos cartes',
         AppLanguage.de: 'Wähle, wie Häuser in deinen Karten berechnet werden',
         AppLanguage.es: 'Elige cómo se calculan las casas en tus cartas',
         AppLanguage.ar: 'اختر كيفية حساب البيوت في خرائطك',
@@ -748,7 +799,8 @@ Tüm yorumlar bilgilendirme ve eğlence amaçlı oluşturulmaktadır ve önemli 
       'clear_data_desc': {
         AppLanguage.en: 'Delete all your data and start fresh',
         AppLanguage.tr: 'Tüm verilerini sil ve baştan başla',
-        AppLanguage.el: 'Διαγράψτε όλα τα δεδομένα σας και ξεκινήστε από την αρχή',
+        AppLanguage.el:
+            'Διαγράψτε όλα τα δεδομένα σας και ξεκινήστε από την αρχή',
         AppLanguage.bg: 'Изтрийте всички данни и започнете отначало',
         AppLanguage.ru: 'Удалите все данные и начните заново',
         AppLanguage.zh: '删除所有数据并重新开始',
@@ -770,16 +822,25 @@ Tüm yorumlar bilgilendirme ve eğlence amaçlı oluşturulmaktadır ve önemli 
         AppLanguage.ar: 'مسح جميع البيانات؟',
       },
       'clear_data_warning': {
-        AppLanguage.en: 'This will delete your profile, settings, and all saved data. This action cannot be undone.',
-        AppLanguage.tr: 'Bu işlem profilinizi, ayarlarınızı ve tüm kayıtlı verilerinizi silecektir. Bu işlem geri alınamaz.',
-        AppLanguage.el: 'Αυτό θα διαγράψει το προφίλ σας, τις ρυθμίσεις και όλα τα αποθηκευμένα δεδομένα. Αυτή η ενέργεια δεν μπορεί να αναιρεθεί.',
-        AppLanguage.bg: 'Това ще изтрие вашия профил, настройки и всички запазени данни. Това действие не може да бъде отменено.',
-        AppLanguage.ru: 'Это удалит ваш профиль, настройки и все сохраненные данные. Это действие нельзя отменить.',
+        AppLanguage.en:
+            'This will delete your profile, settings, and all saved data. This action cannot be undone.',
+        AppLanguage.tr:
+            'Bu işlem profilinizi, ayarlarınızı ve tüm kayıtlı verilerinizi silecektir. Bu işlem geri alınamaz.',
+        AppLanguage.el:
+            'Αυτό θα διαγράψει το προφίλ σας, τις ρυθμίσεις και όλα τα αποθηκευμένα δεδομένα. Αυτή η ενέργεια δεν μπορεί να αναιρεθεί.',
+        AppLanguage.bg:
+            'Това ще изтрие вашия профил, настройки и всички запазени данни. Това действие не може да бъде отменено.',
+        AppLanguage.ru:
+            'Это удалит ваш профиль, настройки и все сохраненные данные. Это действие нельзя отменить.',
         AppLanguage.zh: '这将删除您的个人资料、设置和所有保存的数据。此操作无法撤消。',
-        AppLanguage.fr: 'Cela supprimera votre profil, vos paramètres et toutes les données enregistrées. Cette action ne peut pas être annulée.',
-        AppLanguage.de: 'Dies löscht dein Profil, deine Einstellungen und alle gespeicherten Daten. Diese Aktion kann nicht rückgängig gemacht werden.',
-        AppLanguage.es: 'Esto eliminará tu perfil, configuración y todos los datos guardados. Esta acción no se puede deshacer.',
-        AppLanguage.ar: 'سيؤدي هذا إلى حذف ملفك الشخصي وإعداداتك وجميع البيانات المحفوظة. لا يمكن التراجع عن هذا الإجراء.',
+        AppLanguage.fr:
+            'Cela supprimera votre profil, vos paramètres et toutes les données enregistrées. Cette action ne peut pas être annulée.',
+        AppLanguage.de:
+            'Dies löscht dein Profil, deine Einstellungen und alle gespeicherten Daten. Diese Aktion kann nicht rückgängig gemacht werden.',
+        AppLanguage.es:
+            'Esto eliminará tu perfil, configuración y todos los datos guardados. Esta acción no se puede deshacer.',
+        AppLanguage.ar:
+            'سيؤدي هذا إلى حذف ملفك الشخصي وإعداداتك وجميع البيانات المحفوظة. لا يمكن التراجع عن هذا الإجراء.',
       },
       'delete': {
         AppLanguage.en: 'Delete',
@@ -904,20 +965,16 @@ class _SettingsSection extends StatelessWidget {
         children: [
           Row(
             children: [
-              Icon(
-                icon,
-                color: AppColors.starGold,
-                size: 20,
-              ),
+              Icon(icon, color: AppColors.starGold, size: 20),
               const SizedBox(width: AppConstants.spacingSm),
               Text(
                 title,
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      color: isDark
-                          ? AppColors.textPrimary
-                          : AppColors.lightTextPrimary,
-                      fontWeight: FontWeight.w600,
-                    ),
+                  color: isDark
+                      ? AppColors.textPrimary
+                      : AppColors.lightTextPrimary,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ],
           ),
@@ -962,8 +1019,8 @@ class _ThemeOption extends StatelessWidget {
           color: isSelected
               ? null
               : (isDark
-                  ? AppColors.surfaceLight.withOpacity(0.3)
-                  : AppColors.lightSurfaceVariant),
+                    ? AppColors.surfaceLight.withOpacity(0.3)
+                    : AppColors.lightSurfaceVariant),
           borderRadius: BorderRadius.circular(AppConstants.radiusMd),
           border: Border.all(
             color: isSelected ? AppColors.auroraStart : Colors.transparent,
@@ -983,15 +1040,13 @@ class _ThemeOption extends StatelessWidget {
             Text(
               label,
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: isSelected
-                        ? (isDark
-                            ? AppColors.textPrimary
-                            : AppColors.lightTextPrimary)
-                        : (isDark
-                            ? AppColors.textMuted
-                            : AppColors.lightTextMuted),
-                    fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
-                  ),
+                color: isSelected
+                    ? (isDark
+                          ? AppColors.textPrimary
+                          : AppColors.lightTextPrimary)
+                    : (isDark ? AppColors.textMuted : AppColors.lightTextMuted),
+                fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+              ),
             ),
           ],
         ),
@@ -1035,20 +1090,18 @@ class _SettingsTile extends StatelessWidget {
       ),
       title: Text(
         title,
-        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              color: color,
-            ),
+        style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: color),
       ),
       subtitle: subtitle != null
           ? Text(
               subtitle!,
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color:
-                        isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-                  ),
+                color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+              ),
             )
           : null,
-      trailing: trailing ??
+      trailing:
+          trailing ??
           Icon(
             Icons.chevron_right,
             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,

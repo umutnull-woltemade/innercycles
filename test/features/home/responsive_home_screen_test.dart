@@ -14,9 +14,10 @@ void main() {
     await tester.pumpApp(const ResponsiveHomeScreen());
     await tester.pumpAndSettle();
     // Home screen should have scrollable content
-    final hasScroll = find.byType(SingleChildScrollView).evaluate().isNotEmpty ||
-                      find.byType(ListView).evaluate().isNotEmpty ||
-                      find.byType(CustomScrollView).evaluate().isNotEmpty;
+    final hasScroll =
+        find.byType(SingleChildScrollView).evaluate().isNotEmpty ||
+        find.byType(ListView).evaluate().isNotEmpty ||
+        find.byType(CustomScrollView).evaluate().isNotEmpty;
     expect(hasScroll, isTrue);
   });
 }

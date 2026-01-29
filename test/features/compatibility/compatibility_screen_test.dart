@@ -14,7 +14,10 @@ void main() {
     await tester.pumpApp(const CompatibilityScreen());
     await tester.pumpAndSettle();
     // Should have interactive elements for selecting signs
-    expect(find.byType(GestureDetector).evaluate().isNotEmpty ||
-           find.byType(InkWell).evaluate().isNotEmpty, isTrue);
+    expect(
+      find.byType(GestureDetector).evaluate().isNotEmpty ||
+          find.byType(InkWell).evaluate().isNotEmpty,
+      isTrue,
+    );
   });
 }

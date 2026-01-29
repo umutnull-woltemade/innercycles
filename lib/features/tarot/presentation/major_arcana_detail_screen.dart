@@ -28,9 +28,9 @@ class MajorArcanaDetailScreen extends StatelessWidget {
           child: Center(
             child: Text(
               'Kart bilgisi bulunamadı',
-              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                color: AppColors.textSecondary,
-              ),
+              style: Theme.of(
+                context,
+              ).textTheme.bodyLarge?.copyWith(color: AppColors.textSecondary),
             ),
           ),
         ),
@@ -49,7 +49,10 @@ class MajorArcanaDetailScreen extends StatelessWidget {
                 expandedHeight: 280,
                 flexibleSpace: _buildHeader(context, content),
                 leading: IconButton(
-                  icon: const Icon(Icons.arrow_back, color: AppColors.textPrimary),
+                  icon: const Icon(
+                    Icons.arrow_back,
+                    color: AppColors.textPrimary,
+                  ),
                   onPressed: () => context.pop(),
                 ),
                 actions: [
@@ -133,10 +136,7 @@ class MajorArcanaDetailScreen extends StatelessWidget {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [
-              color.withValues(alpha: 0.4),
-              Colors.transparent,
-            ],
+            colors: [color.withValues(alpha: 0.4), Colors.transparent],
           ),
         ),
         child: Column(
@@ -150,10 +150,7 @@ class MajorArcanaDetailScreen extends StatelessWidget {
                 gradient: LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
-                  colors: [
-                    color.withValues(alpha: 0.3),
-                    AppColors.surfaceDark,
-                  ],
+                  colors: [color.withValues(alpha: 0.3), AppColors.surfaceDark],
                 ),
                 borderRadius: BorderRadius.circular(16),
                 border: Border.all(color: color, width: 3),
@@ -221,21 +218,48 @@ class MajorArcanaDetailScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildQuickInfoPills(BuildContext context, MajorArcanaContent content) {
+  Widget _buildQuickInfoPills(
+    BuildContext context,
+    MajorArcanaContent content,
+  ) {
     final color = _getCardColor(cardNumber);
 
     return Wrap(
       spacing: AppConstants.spacingSm,
       runSpacing: AppConstants.spacingSm,
       children: [
-        _buildInfoPill(context, 'Element', content.element, Icons.blur_on, color),
-        _buildInfoPill(context, 'Gezegen', content.planet, Icons.public, Colors.orange),
-        _buildInfoPill(context, 'İbrani Harf', content.hebrewLetter, Icons.translate, Colors.teal),
+        _buildInfoPill(
+          context,
+          'Element',
+          content.element,
+          Icons.blur_on,
+          color,
+        ),
+        _buildInfoPill(
+          context,
+          'Gezegen',
+          content.planet,
+          Icons.public,
+          Colors.orange,
+        ),
+        _buildInfoPill(
+          context,
+          'İbrani Harf',
+          content.hebrewLetter,
+          Icons.translate,
+          Colors.teal,
+        ),
       ],
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildInfoPill(BuildContext context, String label, String value, IconData icon, Color color) {
+  Widget _buildInfoPill(
+    BuildContext context,
+    String label,
+    String value,
+    IconData icon,
+    Color color,
+  ) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
@@ -272,7 +296,10 @@ class MajorArcanaDetailScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildDeepMeaningSection(BuildContext context, MajorArcanaContent content) {
+  Widget _buildDeepMeaningSection(
+    BuildContext context,
+    MajorArcanaContent content,
+  ) {
     final color = _getCardColor(cardNumber);
 
     return Container(
@@ -281,10 +308,7 @@ class MajorArcanaDetailScreen extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [
-            color.withValues(alpha: 0.15),
-            AppColors.surfaceDark,
-          ],
+          colors: [color.withValues(alpha: 0.15), AppColors.surfaceDark],
         ),
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         border: Border.all(color: color.withValues(alpha: 0.3)),
@@ -358,7 +382,10 @@ class MajorArcanaDetailScreen extends StatelessWidget {
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildReversedSection(BuildContext context, MajorArcanaContent content) {
+  Widget _buildReversedSection(
+    BuildContext context,
+    MajorArcanaContent content,
+  ) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -373,7 +400,11 @@ class MajorArcanaDetailScreen extends StatelessWidget {
             children: [
               Transform.rotate(
                 angle: 3.14159,
-                child: const Icon(Icons.arrow_upward, color: AppColors.error, size: 20),
+                child: const Icon(
+                  Icons.arrow_upward,
+                  color: AppColors.error,
+                  size: 20,
+                ),
               ),
               const SizedBox(width: 8),
               Text(
@@ -398,7 +429,10 @@ class MajorArcanaDetailScreen extends StatelessWidget {
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildSymbolismSection(BuildContext context, MajorArcanaContent content) {
+  Widget _buildSymbolismSection(
+    BuildContext context,
+    MajorArcanaContent content,
+  ) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -410,7 +444,11 @@ class MajorArcanaDetailScreen extends StatelessWidget {
         children: [
           Row(
             children: [
-              const Icon(Icons.visibility, color: AppColors.auroraEnd, size: 20),
+              const Icon(
+                Icons.visibility,
+                color: AppColors.auroraEnd,
+                size: 20,
+              ),
               const SizedBox(width: 8),
               Text(
                 'Sembolizm',
@@ -434,7 +472,10 @@ class MajorArcanaDetailScreen extends StatelessWidget {
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildSpiritualLessonSection(BuildContext context, MajorArcanaContent content) {
+  Widget _buildSpiritualLessonSection(
+    BuildContext context,
+    MajorArcanaContent content,
+  ) {
     final color = _getCardColor(cardNumber);
 
     return Container(
@@ -506,7 +547,10 @@ class MajorArcanaDetailScreen extends StatelessWidget {
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildReadingsSection(BuildContext context, MajorArcanaContent content) {
+  Widget _buildReadingsSection(
+    BuildContext context,
+    MajorArcanaContent content,
+  ) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -517,14 +561,20 @@ class MajorArcanaDetailScreen extends StatelessWidget {
             decoration: BoxDecoration(
               color: AppColors.fireElement.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-              border: Border.all(color: AppColors.fireElement.withValues(alpha: 0.3)),
+              border: Border.all(
+                color: AppColors.fireElement.withValues(alpha: 0.3),
+              ),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   children: [
-                    const Icon(Icons.favorite, color: AppColors.fireElement, size: 18),
+                    const Icon(
+                      Icons.favorite,
+                      color: AppColors.fireElement,
+                      size: 18,
+                    ),
                     const SizedBox(width: 6),
                     Text(
                       'Aşk',
@@ -555,7 +605,9 @@ class MajorArcanaDetailScreen extends StatelessWidget {
             decoration: BoxDecoration(
               color: AppColors.starGold.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-              border: Border.all(color: AppColors.starGold.withValues(alpha: 0.3)),
+              border: Border.all(
+                color: AppColors.starGold.withValues(alpha: 0.3),
+              ),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -627,7 +679,10 @@ class MajorArcanaDetailScreen extends StatelessWidget {
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildMeditationSection(BuildContext context, MajorArcanaContent content) {
+  Widget _buildMeditationSection(
+    BuildContext context,
+    MajorArcanaContent content,
+  ) {
     final color = _getCardColor(cardNumber);
 
     return Container(
@@ -682,9 +737,9 @@ class MajorArcanaDetailScreen extends StatelessWidget {
         children: [
           Text(
             '22 Major Arcana',
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-              color: AppColors.textPrimary,
-            ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleSmall?.copyWith(color: AppColors.textPrimary),
           ),
           const SizedBox(height: AppConstants.spacingMd),
           SizedBox(
@@ -707,7 +762,9 @@ class MajorArcanaDetailScreen extends StatelessWidget {
                     height: 50,
                     margin: const EdgeInsets.only(right: 8),
                     decoration: BoxDecoration(
-                      color: isCurrentCard ? color : color.withValues(alpha: 0.2),
+                      color: isCurrentCard
+                          ? color
+                          : color.withValues(alpha: 0.2),
                       borderRadius: BorderRadius.circular(8),
                       border: Border.all(
                         color: color,
@@ -719,7 +776,9 @@ class MajorArcanaDetailScreen extends StatelessWidget {
                         _getRomanNumeral(index),
                         style: Theme.of(context).textTheme.labelSmall?.copyWith(
                           color: isCurrentCard ? Colors.white : color,
-                          fontWeight: isCurrentCard ? FontWeight.bold : FontWeight.normal,
+                          fontWeight: isCurrentCard
+                              ? FontWeight.bold
+                              : FontWeight.normal,
                           fontSize: 10,
                         ),
                       ),
@@ -745,12 +804,15 @@ class MajorArcanaDetailScreen extends StatelessWidget {
   }
 
   void _shareCard(BuildContext context, MajorArcanaContent content) {
-    context.push('/cosmic-share', extra: {
-      'title': content.nameTr,
-      'subtitle': content.archetype,
-      'content': content.viralQuote,
-      'type': 'tarot',
-    });
+    context.push(
+      '/cosmic-share',
+      extra: {
+        'title': content.nameTr,
+        'subtitle': content.archetype,
+        'content': content.viralQuote,
+        'type': 'tarot',
+      },
+    );
   }
 
   Color _getCardColor(int number) {
@@ -784,8 +846,28 @@ class MajorArcanaDetailScreen extends StatelessWidget {
 
   String _getRomanNumeral(int number) {
     final romanNumerals = [
-      '0', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X',
-      'XI', 'XII', 'XIII', 'XIV', 'XV', 'XVI', 'XVII', 'XVIII', 'XIX', 'XX', 'XXI'
+      '0',
+      'I',
+      'II',
+      'III',
+      'IV',
+      'V',
+      'VI',
+      'VII',
+      'VIII',
+      'IX',
+      'X',
+      'XI',
+      'XII',
+      'XIII',
+      'XIV',
+      'XV',
+      'XVI',
+      'XVII',
+      'XVIII',
+      'XIX',
+      'XX',
+      'XXI',
     ];
     return romanNumerals[number];
   }

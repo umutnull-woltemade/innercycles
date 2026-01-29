@@ -15,17 +15,11 @@ void main() {
 
     group('URLs', () {
       test('privacyPolicyUrl is valid URL', () {
-        expect(
-          Uri.tryParse(AppConstants.privacyPolicyUrl)?.hasScheme,
-          true,
-        );
+        expect(Uri.tryParse(AppConstants.privacyPolicyUrl)?.hasScheme, true);
       });
 
       test('termsOfServiceUrl is valid URL', () {
-        expect(
-          Uri.tryParse(AppConstants.termsOfServiceUrl)?.hasScheme,
-          true,
-        );
+        expect(Uri.tryParse(AppConstants.termsOfServiceUrl)?.hasScheme, true);
       });
 
       test('supportEmail is valid email format', () {

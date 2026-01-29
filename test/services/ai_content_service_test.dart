@@ -39,21 +39,24 @@ void main() {
       expect(service.isAiAvailable, false);
     });
 
-    test('generatePersonalizedHoroscope returns local horoscope when AI unavailable', () async {
-      final horoscope = await service.generatePersonalizedHoroscope(
-        sunSign: ZodiacSign.aries,
-      );
+    test(
+      'generatePersonalizedHoroscope returns local horoscope when AI unavailable',
+      () async {
+        final horoscope = await service.generatePersonalizedHoroscope(
+          sunSign: ZodiacSign.aries,
+        );
 
-      expect(horoscope.sign, ZodiacSign.aries);
-      expect(horoscope.summary, isNotEmpty);
-      expect(horoscope.loveAdvice, isNotEmpty);
-      expect(horoscope.careerAdvice, isNotEmpty);
-      expect(horoscope.healthAdvice, isNotEmpty);
-      expect(horoscope.luckyNumber, isNotEmpty);
-      expect(horoscope.luckyColor, isNotEmpty);
-      expect(horoscope.mood, isNotEmpty);
-      expect(horoscope.isAiGenerated, false);
-    });
+        expect(horoscope.sign, ZodiacSign.aries);
+        expect(horoscope.summary, isNotEmpty);
+        expect(horoscope.loveAdvice, isNotEmpty);
+        expect(horoscope.careerAdvice, isNotEmpty);
+        expect(horoscope.healthAdvice, isNotEmpty);
+        expect(horoscope.luckyNumber, isNotEmpty);
+        expect(horoscope.luckyColor, isNotEmpty);
+        expect(horoscope.mood, isNotEmpty);
+        expect(horoscope.isAiGenerated, false);
+      },
+    );
 
     test('generatePersonalizedHoroscope works for all signs', () async {
       for (final sign in ZodiacSign.values) {
@@ -95,9 +98,7 @@ void main() {
 
     test('clearCache clears cached content', () async {
       // Generate content to cache it
-      await service.generatePersonalizedHoroscope(
-        sunSign: ZodiacSign.leo,
-      );
+      await service.generatePersonalizedHoroscope(sunSign: ZodiacSign.leo);
 
       // Clear cache
       service.clearCache();
@@ -179,13 +180,16 @@ void main() {
 
   group('AdviceArea', () {
     test('has all expected values', () {
-      expect(AdviceArea.values, containsAll([
-        AdviceArea.love,
-        AdviceArea.career,
-        AdviceArea.health,
-        AdviceArea.money,
-        AdviceArea.spiritual,
-      ]));
+      expect(
+        AdviceArea.values,
+        containsAll([
+          AdviceArea.love,
+          AdviceArea.career,
+          AdviceArea.health,
+          AdviceArea.money,
+          AdviceArea.spiritual,
+        ]),
+      );
     });
 
     test('has 5 values', () {

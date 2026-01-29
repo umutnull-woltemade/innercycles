@@ -283,7 +283,8 @@ class StorageService {
     final box = _settingsBox;
     if (box == null) return AppLanguage.tr;
 
-    final index = box.get(_languageKey, defaultValue: AppLanguage.tr.index) as int;
+    final index =
+        box.get(_languageKey, defaultValue: AppLanguage.tr.index) as int;
     if (index >= 0 && index < AppLanguage.values.length) {
       return AppLanguage.values[index];
     }
@@ -307,7 +308,8 @@ class StorageService {
     final box = _settingsBox;
     if (box == null) return ThemeMode.dark;
 
-    final index = box.get(_themeModeKey, defaultValue: ThemeMode.dark.index) as int;
+    final index =
+        box.get(_themeModeKey, defaultValue: ThemeMode.dark.index) as int;
     if (index >= 0 && index < ThemeMode.values.length) {
       return ThemeMode.values[index];
     }

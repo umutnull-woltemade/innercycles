@@ -14,8 +14,11 @@ void main() {
     await tester.pumpApp(const HoroscopeScreen());
     await tester.pumpAndSettle();
     // Should display zodiac signs or horoscope content
-    expect(find.byType(GestureDetector).evaluate().isNotEmpty ||
-           find.byType(InkWell).evaluate().isNotEmpty ||
-           find.byType(ListTile).evaluate().isNotEmpty, isTrue);
+    expect(
+      find.byType(GestureDetector).evaluate().isNotEmpty ||
+          find.byType(InkWell).evaluate().isNotEmpty ||
+          find.byType(ListTile).evaluate().isNotEmpty,
+      isTrue,
+    );
   });
 }

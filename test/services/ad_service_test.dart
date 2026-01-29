@@ -9,7 +9,10 @@ void main() {
     });
 
     test('provides test interstitial ID', () {
-      expect(AdConfig.testInterstitialId, 'ca-app-pub-3940256099942544/1033173712');
+      expect(
+        AdConfig.testInterstitialId,
+        'ca-app-pub-3940256099942544/1033173712',
+      );
     });
 
     test('provides test rewarded ID', () {
@@ -23,18 +26,21 @@ void main() {
 
   group('AdPlacement', () {
     test('has all expected values', () {
-      expect(AdPlacement.values, containsAll([
-        AdPlacement.horoscopeResult,
-        AdPlacement.birthChartResult,
-        AdPlacement.tarotResult,
-        AdPlacement.numerologyResult,
-        AdPlacement.compatibilityResult,
-        AdPlacement.auraResult,
-        AdPlacement.postAnalysis,
-        AdPlacement.premiumUnlock,
-        AdPlacement.homeScreen,
-        AdPlacement.settingsScreen,
-      ]));
+      expect(
+        AdPlacement.values,
+        containsAll([
+          AdPlacement.horoscopeResult,
+          AdPlacement.birthChartResult,
+          AdPlacement.tarotResult,
+          AdPlacement.numerologyResult,
+          AdPlacement.compatibilityResult,
+          AdPlacement.auraResult,
+          AdPlacement.postAnalysis,
+          AdPlacement.premiumUnlock,
+          AdPlacement.homeScreen,
+          AdPlacement.settingsScreen,
+        ]),
+      );
     });
 
     test('has 10 values', () {
@@ -97,17 +103,11 @@ void main() {
 
   group('AppConstants AdMob IDs', () {
     test('Android banner ID is placeholder', () {
-      expect(
-        AppConstants.admobBannerIdAndroid.contains('XXXXXXXX'),
-        true,
-      );
+      expect(AppConstants.admobBannerIdAndroid.contains('XXXXXXXX'), true);
     });
 
     test('iOS banner ID is placeholder', () {
-      expect(
-        AppConstants.admobBannerIdIos.contains('XXXXXXXX'),
-        true,
-      );
+      expect(AppConstants.admobBannerIdIos.contains('XXXXXXXX'), true);
     });
 
     test('Android interstitial ID is placeholder', () {
@@ -118,24 +118,15 @@ void main() {
     });
 
     test('iOS interstitial ID is placeholder', () {
-      expect(
-        AppConstants.admobInterstitialIdIos.contains('XXXXXXXX'),
-        true,
-      );
+      expect(AppConstants.admobInterstitialIdIos.contains('XXXXXXXX'), true);
     });
 
     test('Android rewarded ID is placeholder', () {
-      expect(
-        AppConstants.admobRewardedIdAndroid.contains('XXXXXXXX'),
-        true,
-      );
+      expect(AppConstants.admobRewardedIdAndroid.contains('XXXXXXXX'), true);
     });
 
     test('iOS rewarded ID is placeholder', () {
-      expect(
-        AppConstants.admobRewardedIdIos.contains('XXXXXXXX'),
-        true,
-      );
+      expect(AppConstants.admobRewardedIdIos.contains('XXXXXXXX'), true);
     });
   });
 }

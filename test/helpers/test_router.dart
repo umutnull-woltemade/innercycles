@@ -87,9 +87,8 @@ import 'package:astrology_app/features/admin/presentation/admin_dashboard_screen
 GoRouter buildTestRouter({String initialLocation = '/home'}) {
   return GoRouter(
     initialLocation: initialLocation,
-    errorBuilder: (context, state) => Scaffold(
-      body: Center(child: Text('404 — ${state.uri.path}')),
-    ),
+    errorBuilder: (context, state) =>
+        Scaffold(body: Center(child: Text('404 — ${state.uri.path}'))),
     routes: _testRoutes,
   );
 }
@@ -129,32 +128,28 @@ final List<RouteBase> _testRoutes = [
   GoRoute(
     path: Routes.lifePathDetail,
     builder: (context, state) {
-      final number =
-          int.tryParse(state.pathParameters['number'] ?? '1') ?? 1;
+      final number = int.tryParse(state.pathParameters['number'] ?? '1') ?? 1;
       return LifePathDetailScreen(number: number);
     },
   ),
   GoRoute(
     path: Routes.masterNumber,
     builder: (context, state) {
-      final number =
-          int.tryParse(state.pathParameters['number'] ?? '11') ?? 11;
+      final number = int.tryParse(state.pathParameters['number'] ?? '11') ?? 11;
       return MasterNumberScreen(number: number);
     },
   ),
   GoRoute(
     path: Routes.personalYearDetail,
     builder: (context, state) {
-      final number =
-          int.tryParse(state.pathParameters['number'] ?? '1') ?? 1;
+      final number = int.tryParse(state.pathParameters['number'] ?? '1') ?? 1;
       return PersonalYearScreen(year: number);
     },
   ),
   GoRoute(
     path: '/numerology/karmic-debt/:number',
     builder: (context, state) {
-      final number =
-          int.tryParse(state.pathParameters['number'] ?? '13') ?? 13;
+      final number = int.tryParse(state.pathParameters['number'] ?? '13') ?? 13;
       return KarmicDebtScreen(debtNumber: number);
     },
   ),
@@ -162,22 +157,15 @@ final List<RouteBase> _testRoutes = [
     path: Routes.kabbalah,
     builder: (context, state) => const KabbalahScreen(),
   ),
-  GoRoute(
-    path: Routes.tarot,
-    builder: (context, state) => const TarotScreen(),
-  ),
+  GoRoute(path: Routes.tarot, builder: (context, state) => const TarotScreen()),
   GoRoute(
     path: '/tarot/major/:number',
     builder: (context, state) {
-      final number =
-          int.tryParse(state.pathParameters['number'] ?? '0') ?? 0;
+      final number = int.tryParse(state.pathParameters['number'] ?? '0') ?? 0;
       return MajorArcanaDetailScreen(cardNumber: number);
     },
   ),
-  GoRoute(
-    path: Routes.aura,
-    builder: (context, state) => const AuraScreen(),
-  ),
+  GoRoute(path: Routes.aura, builder: (context, state) => const AuraScreen()),
   GoRoute(
     path: Routes.transits,
     builder: (context, state) => const TransitsScreen(),

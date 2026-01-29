@@ -61,7 +61,9 @@ class HoroscopeScreen extends StatelessWidget {
                   children: [
                     IconButton(
                       icon: const Icon(Icons.arrow_back),
-                      color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                      color: isDark
+                          ? AppColors.textPrimary
+                          : AppColors.lightTextPrimary,
                       onPressed: () => context.pop(),
                       visualDensity: VisualDensity.compact,
                     ),
@@ -72,16 +74,22 @@ class HoroscopeScreen extends StatelessWidget {
                         children: [
                           Text(
                             'Bugün burcun ne diyor?',
-                            style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                              color: isDark ? AppColors.starGold : AppColors.lightStarGold,
-                              fontWeight: FontWeight.bold,
-                            ),
+                            style: Theme.of(context).textTheme.titleLarge
+                                ?.copyWith(
+                                  color: isDark
+                                      ? AppColors.starGold
+                                      : AppColors.lightStarGold,
+                                  fontWeight: FontWeight.bold,
+                                ),
                           ),
                           Text(
                             'Burcunu seç, kozmik enerjini keşfet',
-                            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                              color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
-                            ),
+                            style: Theme.of(context).textTheme.bodySmall
+                                ?.copyWith(
+                                  color: isDark
+                                      ? AppColors.textSecondary
+                                      : AppColors.lightTextSecondary,
+                                ),
                           ),
                         ],
                       ),
@@ -96,24 +104,28 @@ class HoroscopeScreen extends StatelessWidget {
                     children: [
                       Padding(
                         padding: EdgeInsets.symmetric(
-                          horizontal: screenWidth > 900 ? 24 : AppConstants.spacingLg,
+                          horizontal: screenWidth > 900
+                              ? 24
+                              : AppConstants.spacingLg,
                         ),
                         child: GridView.builder(
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
-                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: crossAxisCount,
-                            crossAxisSpacing: spacing,
-                            mainAxisSpacing: spacing,
-                            childAspectRatio: childAspectRatio,
-                          ),
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: crossAxisCount,
+                                crossAxisSpacing: spacing,
+                                mainAxisSpacing: spacing,
+                                childAspectRatio: childAspectRatio,
+                              ),
                           itemCount: ZodiacSign.values.length,
                           itemBuilder: (context, index) {
                             final sign = ZodiacSign.values[index];
                             return ZodiacGridCard(
                               sign: sign,
                               onTap: () => context.push(
-                                  '${Routes.horoscope}/${sign.name.toLowerCase()}'),
+                                '${Routes.horoscope}/${sign.name.toLowerCase()}',
+                              ),
                             );
                           },
                         ),
@@ -122,7 +134,9 @@ class HoroscopeScreen extends StatelessWidget {
                       // Quiz CTA - Google Discover Funnel
                       Padding(
                         padding: EdgeInsets.symmetric(
-                          horizontal: screenWidth > 900 ? 24 : AppConstants.spacingLg,
+                          horizontal: screenWidth > 900
+                              ? 24
+                              : AppConstants.spacingLg,
                         ),
                         child: QuizCTACard.astrology(compact: true),
                       ),

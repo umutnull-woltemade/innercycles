@@ -14,8 +14,11 @@ void main() {
     await tester.pumpApp(const OnboardingScreen());
     await tester.pumpAndSettle();
     // Onboarding typically has buttons or page indicators
-    expect(find.byType(ElevatedButton).evaluate().isNotEmpty ||
-           find.byType(TextButton).evaluate().isNotEmpty ||
-           find.byType(IconButton).evaluate().isNotEmpty, isTrue);
+    expect(
+      find.byType(ElevatedButton).evaluate().isNotEmpty ||
+          find.byType(TextButton).evaluate().isNotEmpty ||
+          find.byType(IconButton).evaluate().isNotEmpty,
+      isTrue,
+    );
   });
 }

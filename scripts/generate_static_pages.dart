@@ -32,8 +32,10 @@ final List<PageMeta> pages = [
   PageMeta(
     route: '',
     title: 'Venus One — Kişisel Kozmik Rehberiniz | Ücretsiz Doğum Haritası',
-    description: 'Ücretsiz doğum haritası, günlük burç yorumları, synastry uyum analizi ve gezegen transitleri. Swiss Ephemeris ile hesaplanan profesyonel astroloji.',
-    keywords: 'astroloji, doğum haritası, burç yorumu, natal chart, synastry, transit',
+    description:
+        'Ücretsiz doğum haritası, günlük burç yorumları, synastry uyum analizi ve gezegen transitleri. Swiss Ephemeris ile hesaplanan profesyonel astroloji.',
+    keywords:
+        'astroloji, doğum haritası, burç yorumu, natal chart, synastry, transit',
     ogType: 'website',
     content: [
       'Venus One — Kozmik Yolculuğunuz Başlıyor',
@@ -49,8 +51,10 @@ final List<PageMeta> pages = [
   PageMeta(
     route: 'birth-chart',
     title: 'Ücretsiz Doğum Haritası Hesaplama | Venus One',
-    description: 'Profesyonel doğum haritası hesaplayıcı. Gezegen pozisyonları, ev yerleşimleri, açılar ve yükselen burç analizi. Swiss Ephemeris hassasiyetinde.',
-    keywords: 'doğum haritası, natal chart, yükselen burç, gezegen pozisyonları, astroloji haritası',
+    description:
+        'Profesyonel doğum haritası hesaplayıcı. Gezegen pozisyonları, ev yerleşimleri, açılar ve yükselen burç analizi. Swiss Ephemeris hassasiyetinde.',
+    keywords:
+        'doğum haritası, natal chart, yükselen burç, gezegen pozisyonları, astroloji haritası',
     ogType: 'website',
     content: [
       'Ücretsiz Doğum Haritası Hesaplama',
@@ -72,7 +76,8 @@ final List<PageMeta> pages = [
   PageMeta(
     route: 'horoscope',
     title: 'Günlük Burç Yorumları — 12 Burç İçin Detaylı Yorum | Venus One',
-    description: 'Günlük, haftalık ve aylık burç yorumları. Aşk, kariyer, sağlık ve para konularında kozmik enerji analizi.',
+    description:
+        'Günlük, haftalık ve aylık burç yorumları. Aşk, kariyer, sağlık ve para konularında kozmik enerji analizi.',
     keywords: 'günlük burç yorumu, haftalık burç, aylık burç, burç falı',
     ogType: 'article',
     content: [
@@ -98,7 +103,8 @@ final List<PageMeta> pages = [
   PageMeta(
     route: 'synastry',
     title: 'Synastry — İlişki Uyumu Analizi | Venus One',
-    description: 'İki kişinin doğum haritaları arasındaki uyumu keşfedin. Synastry açıları, gezegen etkileşimleri ve ilişki dinamikleri.',
+    description:
+        'İki kişinin doğum haritaları arasındaki uyumu keşfedin. Synastry açıları, gezegen etkileşimleri ve ilişki dinamikleri.',
     keywords: 'synastry, burç uyumu, ilişki uyumu, astroloji uyum',
     ogType: 'website',
     content: [
@@ -118,7 +124,8 @@ final List<PageMeta> pages = [
   PageMeta(
     route: 'composite',
     title: 'Kompozit Harita — İlişkinin Doğum Haritası | Venus One',
-    description: 'İki kişinin birleşik haritası. İlişkinizin ortak enerjisi, potansiyeli ve dinamikleri.',
+    description:
+        'İki kişinin birleşik haritası. İlişkinizin ortak enerjisi, potansiyeli ve dinamikleri.',
     keywords: 'kompozit harita, composite chart, ilişki haritası',
     ogType: 'website',
     content: [
@@ -137,7 +144,8 @@ final List<PageMeta> pages = [
   PageMeta(
     route: 'solar-return',
     title: 'Solar Return — Güneş Dönüşü Haritası | Venus One',
-    description: 'Yıllık Solar Return haritanız. Doğum gününüzde Güneşin konumuna göre yılın temaları.',
+    description:
+        'Yıllık Solar Return haritanız. Doğum gününüzde Güneşin konumuna göre yılın temaları.',
     keywords: 'solar return, güneş dönüşü, yıllık harita',
     ogType: 'website',
     content: [
@@ -155,7 +163,8 @@ final List<PageMeta> pages = [
   PageMeta(
     route: 'progressions',
     title: 'İkincil Progresyonlar — İç Evrim Haritası | Venus One',
-    description: 'Secondary Progressions ile içsel gelişiminizi takip edin. Progrese Ay fazları ve kişisel evrim.',
+    description:
+        'Secondary Progressions ile içsel gelişiminizi takip edin. Progrese Ay fazları ve kişisel evrim.',
     keywords: 'progresyon, secondary progressions, progrese ay',
     ogType: 'website',
     content: [
@@ -191,7 +200,8 @@ final List<PageMeta> pages = [
   PageMeta(
     route: 'vedic',
     title: 'Vedik Astroloji — Hint Astrolojisi Haritası | Venus One',
-    description: 'Jyotish (Vedik Astroloji) haritanız. Sidereal zodiac, Nakshatra ve Dasha analizi.',
+    description:
+        'Jyotish (Vedik Astroloji) haritanız. Sidereal zodiac, Nakshatra ve Dasha analizi.',
     keywords: 'vedik astroloji, jyotish, nakshatra, dasha',
     ogType: 'website',
     content: [
@@ -209,7 +219,8 @@ final List<PageMeta> pages = [
   PageMeta(
     route: 'draconic',
     title: 'Drakonik Harita — Ruhsal Köken Haritası | Venus One',
-    description: 'Ay Düğümüne dayalı drakonik haritanız. Ruhsal kökeniniz ve karma mirasınız.',
+    description:
+        'Ay Düğümüne dayalı drakonik haritanız. Ruhsal kökeniniz ve karma mirasınız.',
     keywords: 'drakonik harita, draconic chart, ruhsal harita',
     ogType: 'website',
     content: [
@@ -227,7 +238,8 @@ final List<PageMeta> pages = [
   PageMeta(
     route: 'asteroids',
     title: 'Asteroidler — Chiron, Lilith, Juno, Ceres | Venus One',
-    description: 'Asteroitlerin doğum haritanızdaki etkileri. Chiron, Lilith, Juno, Ceres analizi.',
+    description:
+        'Asteroitlerin doğum haritanızdaki etkileri. Chiron, Lilith, Juno, Ceres analizi.',
     keywords: 'asteroit, chiron, lilith, juno, ceres, pallas, vesta',
     ogType: 'website',
     content: [
@@ -247,7 +259,8 @@ final List<PageMeta> pages = [
   PageMeta(
     route: 'local-space',
     title: 'Local Space — Mekansal Astroloji | Venus One',
-    description: 'Bulunduğunuz konumun astrolojik analizi. Gezegen yönleri ve enerji hatları.',
+    description:
+        'Bulunduğunuz konumun astrolojik analizi. Gezegen yönleri ve enerji hatları.',
     keywords: 'local space, mekansal astroloji, astrokartografi',
     ogType: 'website',
     content: [
@@ -284,7 +297,8 @@ final List<PageMeta> pages = [
   PageMeta(
     route: 'year-ahead',
     title: 'Yıllık Astroloji Önizlemesi — 2025 Analizi | Venus One',
-    description: '2025 yılı için kişisel astroloji önizlemeniz. Major transitler ve tutulmalar.',
+    description:
+        '2025 yılı için kişisel astroloji önizlemeniz. Major transitler ve tutulmalar.',
     keywords: '2025 astroloji, yıllık burç, yıl önizleme',
     ogType: 'article',
     content: [
@@ -336,7 +350,8 @@ final List<PageMeta> pages = [
   PageMeta(
     route: 'yearly-horoscope',
     title: 'Yıllık Burç Yorumları 2025 | Venus One',
-    description: '2025 yılı burç yorumları. Major gezegenler ve tutulmaların etkileri.',
+    description:
+        '2025 yılı burç yorumları. Major gezegenler ve tutulmaların etkileri.',
     keywords: 'yıllık burç 2025, yıllık burç yorumu, 2025 burçlar',
     ogType: 'article',
     content: [
@@ -427,7 +442,8 @@ final List<PageMeta> pages = [
   PageMeta(
     route: 'saturn-return',
     title: 'Satürn Dönüşü — 29 Yaş Krizi Astrolojisi | Venus One',
-    description: 'Satürn Dönüşü nedir ve sizi nasıl etkiler? 27-30 yaş dönemi analizi.',
+    description:
+        'Satürn Dönüşü nedir ve sizi nasıl etkiler? 27-30 yaş dönemi analizi.',
     keywords: 'satürn dönüşü, saturn return, 29 yaş krizi',
     ogType: 'article',
     content: [
@@ -444,7 +460,8 @@ final List<PageMeta> pages = [
   PageMeta(
     route: 'premium',
     title: 'Venus One Premium — Gelişmiş Astroloji Özellikleri',
-    description: 'Premium özelliklere erişin: Detaylı raporlar, karşılaştırmalı analizler.',
+    description:
+        'Premium özelliklere erişin: Detaylı raporlar, karşılaştırmalı analizler.',
     keywords: 'astroloji premium, venusone premium',
     ogType: 'website',
     content: [
@@ -463,7 +480,8 @@ final List<PageMeta> pages = [
   PageMeta(
     route: 'profile',
     title: 'Profilim — Astroloji Profilim | Venus One',
-    description: 'Kişisel astroloji profiliniz. Kayıtlı haritalarınız ve tercihleriniz.',
+    description:
+        'Kişisel astroloji profiliniz. Kayıtlı haritalarınız ve tercihleriniz.',
     keywords: 'astroloji profil, doğum bilgisi, kişisel harita',
     ogType: 'profile',
     content: [
@@ -481,7 +499,8 @@ final List<PageMeta> pages = [
   PageMeta(
     route: 'settings',
     title: 'Ayarlar | Venus One',
-    description: 'Uygulama ayarları. Ev sistemi, zodiac tipi ve tema tercihleri.',
+    description:
+        'Uygulama ayarları. Ev sistemi, zodiac tipi ve tema tercihleri.',
     keywords: 'ayarlar, tercihler, uygulama ayarları',
     ogType: 'website',
     content: [
@@ -499,7 +518,8 @@ final List<PageMeta> pages = [
   PageMeta(
     route: 'kozmoz',
     title: 'Kozmoz — Günlük Kozmik Keşif | Venus One',
-    description: 'Her gün yeni bir kozmik mesaj. Günün enerjisi ve kişisel rehberlik.',
+    description:
+        'Her gün yeni bir kozmik mesaj. Günün enerjisi ve kişisel rehberlik.',
     keywords: 'kozmik mesaj, günlük enerji, ay fazı',
     ogType: 'article',
     content: [
@@ -535,7 +555,8 @@ final List<PageMeta> pages = [
   PageMeta(
     route: 'chakra',
     title: 'Chakra Analizi — Enerji Merkezi Dengesi | Venus One',
-    description: 'Yedi ana chakranızın analizi. Enerji blokajları ve denge durumu.',
+    description:
+        'Yedi ana chakranızın analizi. Enerji blokajları ve denge durumu.',
     keywords: 'chakra, enerji merkezi, chakra dengesi, kundalini',
     ogType: 'website',
     content: [
@@ -556,7 +577,8 @@ final List<PageMeta> pages = [
   PageMeta(
     route: 'rituals',
     title: 'Kozmik Ritüeller — Ay Fazı Ritüelleri | Venus One',
-    description: 'Yeniay ve dolunay ritüelleri. Niyet belirleme ve manifestasyon.',
+    description:
+        'Yeniay ve dolunay ritüelleri. Niyet belirleme ve manifestasyon.',
     keywords: 'ritüel, yeniay ritüeli, dolunay ritüeli, manifestasyon',
     ogType: 'article',
     content: [
@@ -582,7 +604,9 @@ void main() async {
   print('🌙 Generating static HTML pages for SEO...\n');
 
   for (final page in pages) {
-    final fileName = page.route.isEmpty ? 'index-static.html' : '${page.route}.html';
+    final fileName = page.route.isEmpty
+        ? 'index-static.html'
+        : '${page.route}.html';
     final file = File('web/$fileName');
 
     final html = generateHtml(page);
@@ -601,30 +625,30 @@ void main() async {
 }
 
 String generateHtml(PageMeta page) {
-  final canonicalUrl = page.route.isEmpty
-      ? baseUrl
-      : '$baseUrl/${page.route}';
+  final canonicalUrl = page.route.isEmpty ? baseUrl : '$baseUrl/${page.route}';
 
-  final contentHtml = page.content.map((line) {
-    if (line.startsWith('•')) {
-      return '      <li>${line.substring(2)}</li>';
-    } else if (line == page.content.first) {
-      return '      <h1 style="color: #FFD700; font-size: 2rem; margin-bottom: 1rem;">$line</h1>';
-    } else if (line.contains('Nedir') ||
-               line.contains('Temalar') ||
-               line.contains('Özellikler') ||
-               line.contains('Analiz') ||
-               line.contains('Metodoloji') ||
-               line.contains('Kategoriler') ||
-               line.contains('Türleri') ||
-               line.contains('Sayılar') ||
-               line.contains('Chakra') ||
-               line.contains('Dönemleri')) {
-      return '      <h2 style="color: #C9B8FF; font-size: 1.5rem; margin-top: 1.5rem;">$line</h2>';
-    } else {
-      return '      <p style="line-height: 1.6;">$line</p>';
-    }
-  }).join('\n');
+  final contentHtml = page.content
+      .map((line) {
+        if (line.startsWith('•')) {
+          return '      <li>${line.substring(2)}</li>';
+        } else if (line == page.content.first) {
+          return '      <h1 style="color: #FFD700; font-size: 2rem; margin-bottom: 1rem;">$line</h1>';
+        } else if (line.contains('Nedir') ||
+            line.contains('Temalar') ||
+            line.contains('Özellikler') ||
+            line.contains('Analiz') ||
+            line.contains('Metodoloji') ||
+            line.contains('Kategoriler') ||
+            line.contains('Türleri') ||
+            line.contains('Sayılar') ||
+            line.contains('Chakra') ||
+            line.contains('Dönemleri')) {
+          return '      <h2 style="color: #C9B8FF; font-size: 1.5rem; margin-top: 1.5rem;">$line</h2>';
+        } else {
+          return '      <p style="line-height: 1.6;">$line</p>';
+        }
+      })
+      .join('\n');
 
   return '''<!DOCTYPE html>
 <html lang="tr">
@@ -741,20 +765,27 @@ $contentHtml
 Future<void> generateSitemap() async {
   final now = DateTime.now().toIso8601String().split('T')[0];
 
-  final urls = pages.map((page) {
-    final loc = page.route.isEmpty ? baseUrl : '$baseUrl/${page.route}';
-    final priority = page.route.isEmpty ? '1.0' :
-                     page.route == 'birth-chart' ? '0.9' :
-                     page.route == 'horoscope' ? '0.9' : '0.8';
-    return '''  <url>
+  final urls = pages
+      .map((page) {
+        final loc = page.route.isEmpty ? baseUrl : '$baseUrl/${page.route}';
+        final priority = page.route.isEmpty
+            ? '1.0'
+            : page.route == 'birth-chart'
+            ? '0.9'
+            : page.route == 'horoscope'
+            ? '0.9'
+            : '0.8';
+        return '''  <url>
     <loc>$loc</loc>
     <lastmod>$now</lastmod>
     <changefreq>daily</changefreq>
     <priority>$priority</priority>
   </url>''';
-  }).join('\n');
+      })
+      .join('\n');
 
-  final sitemap = '''<?xml version="1.0" encoding="UTF-8"?>
+  final sitemap =
+      '''<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 $urls
 </urlset>

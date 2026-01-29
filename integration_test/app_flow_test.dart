@@ -134,9 +134,7 @@ void main() {
     });
 
     testWidgets('master number 22 loads via deep link', (tester) async {
-      await tester.pumpAppWithRouter(
-        initialLocation: '/numerology/master/22',
-      );
+      await tester.pumpAppWithRouter(initialLocation: '/numerology/master/22');
       expect(find.byType(Scaffold), findsWidgets);
     });
 
@@ -185,9 +183,7 @@ void main() {
     });
 
     testWidgets('weekly horoscope for leo loads', (tester) async {
-      await tester.pumpAppWithRouter(
-        initialLocation: '/horoscope/weekly/leo',
-      );
+      await tester.pumpAppWithRouter(initialLocation: '/horoscope/weekly/leo');
       expect(find.byType(Scaffold), findsWidgets);
     });
 
@@ -202,9 +198,7 @@ void main() {
     });
 
     testWidgets('love horoscope for pisces loads', (tester) async {
-      await tester.pumpAppWithRouter(
-        initialLocation: '/horoscope/love/pisces',
-      );
+      await tester.pumpAppWithRouter(initialLocation: '/horoscope/love/pisces');
       expect(find.byType(Scaffold), findsWidgets);
     });
 
@@ -374,9 +368,7 @@ void main() {
     });
 
     testWidgets('glossary loads with search=venus', (tester) async {
-      await tester.pumpAppWithRouter(
-        initialLocation: '/glossary?search=venus',
-      );
+      await tester.pumpAppWithRouter(initialLocation: '/glossary?search=venus');
       expect(find.byType(Scaffold), findsWidgets);
     });
   });

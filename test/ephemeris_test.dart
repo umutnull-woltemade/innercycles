@@ -185,7 +185,9 @@ void main() {
         print('${person.name}:');
         print('  Expected Sun: ${person.expectedSunSign}');
         print('  Calculated Sun: ${sunSign.name}');
-        print('  Sun Longitude: ${chart.planets.firstWhere((p) => p.planet == Planet.sun).longitude.toStringAsFixed(2)}°');
+        print(
+          '  Sun Longitude: ${chart.planets.firstWhere((p) => p.planet == Planet.sun).longitude.toStringAsFixed(2)}°',
+        );
 
         expect(
           sunSign.name.toLowerCase(),
@@ -194,53 +196,65 @@ void main() {
         );
       });
 
-      test('${person.name} - Ascendant should be ${person.expectedAscendant}', () {
-        final birthData = BirthData(
-          date: person.birthDate,
-          time: person.birthTime,
-          latitude: person.latitude,
-          longitude: person.longitude,
-        );
+      test(
+        '${person.name} - Ascendant should be ${person.expectedAscendant}',
+        () {
+          final birthData = BirthData(
+            date: person.birthDate,
+            time: person.birthTime,
+            latitude: person.latitude,
+            longitude: person.longitude,
+          );
 
-        final chart = EphemerisService.calculateNatalChart(birthData);
-        final ascendant = chart.houses.first; // First house is Ascendant
+          final chart = EphemerisService.calculateNatalChart(birthData);
+          final ascendant = chart.houses.first; // First house is Ascendant
 
-        final ascSign = getSignFromLongitude(ascendant.longitude);
-        print('${person.name}:');
-        print('  Expected Ascendant: ${person.expectedAscendant}');
-        print('  Calculated Ascendant: ${ascSign.name}');
-        print('  Ascendant Longitude: ${ascendant.longitude.toStringAsFixed(2)}°');
+          final ascSign = getSignFromLongitude(ascendant.longitude);
+          print('${person.name}:');
+          print('  Expected Ascendant: ${person.expectedAscendant}');
+          print('  Calculated Ascendant: ${ascSign.name}');
+          print(
+            '  Ascendant Longitude: ${ascendant.longitude.toStringAsFixed(2)}°',
+          );
 
-        expect(
-          ascSign.name.toLowerCase(),
-          person.expectedAscendant.toLowerCase(),
-          reason: '${person.name} Ascendant mismatch',
-        );
-      });
+          expect(
+            ascSign.name.toLowerCase(),
+            person.expectedAscendant.toLowerCase(),
+            reason: '${person.name} Ascendant mismatch',
+          );
+        },
+      );
 
-      test('${person.name} - Moon Sign should be ${person.expectedMoonSign}', () {
-        final birthData = BirthData(
-          date: person.birthDate,
-          time: person.birthTime,
-          latitude: person.latitude,
-          longitude: person.longitude,
-        );
+      test(
+        '${person.name} - Moon Sign should be ${person.expectedMoonSign}',
+        () {
+          final birthData = BirthData(
+            date: person.birthDate,
+            time: person.birthTime,
+            latitude: person.latitude,
+            longitude: person.longitude,
+          );
 
-        final chart = EphemerisService.calculateNatalChart(birthData);
-        final moonPlanet = chart.planets.firstWhere((p) => p.planet == Planet.moon);
-        final moonSign = getSignFromLongitude(moonPlanet.longitude);
+          final chart = EphemerisService.calculateNatalChart(birthData);
+          final moonPlanet = chart.planets.firstWhere(
+            (p) => p.planet == Planet.moon,
+          );
+          final moonSign = getSignFromLongitude(moonPlanet.longitude);
 
-        print('${person.name}:');
-        print('  Expected Moon: ${person.expectedMoonSign}');
-        print('  Calculated Moon: ${moonSign.name}');
-        print('  Moon Longitude: ${moonPlanet.longitude.toStringAsFixed(2)}°');
+          print('${person.name}:');
+          print('  Expected Moon: ${person.expectedMoonSign}');
+          print('  Calculated Moon: ${moonSign.name}');
+          print(
+            '  Moon Longitude: ${moonPlanet.longitude.toStringAsFixed(2)}°',
+          );
 
-        expect(
-          moonSign.name.toLowerCase(),
-          person.expectedMoonSign.toLowerCase(),
-          reason: '${person.name} Moon sign mismatch',
-        );
-      });
+          expect(
+            moonSign.name.toLowerCase(),
+            person.expectedMoonSign.toLowerCase(),
+            reason: '${person.name} Moon sign mismatch',
+          );
+        },
+      );
     }
   });
 }

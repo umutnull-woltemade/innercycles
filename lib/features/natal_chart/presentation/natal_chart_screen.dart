@@ -98,11 +98,7 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
     final userProfile = ref.watch(userProfileProvider);
 
     if (userProfile == null) {
-      return const Scaffold(
-        body: Center(
-          child: Text('Profil bulunamadı'),
-        ),
-      );
+      return const Scaffold(body: Center(child: Text('Profil bulunamadı')));
     }
 
     if (_natalChart == null) {
@@ -112,23 +108,21 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const CircularProgressIndicator(
-                  color: AppColors.starGold,
-                ),
+                const CircularProgressIndicator(color: AppColors.starGold),
                 const SizedBox(height: 16),
                 Text(
                   'Kozmik haritanız çözümleniyor...',
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        color: AppColors.textSecondary,
-                      ),
+                    color: AppColors.textSecondary,
+                  ),
                 ),
                 const SizedBox(height: 8),
                 Text(
                   'Gezegenler konumlarını fısıldıyor ✨',
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: AppColors.textMuted,
-                        fontStyle: FontStyle.italic,
-                      ),
+                    color: AppColors.textMuted,
+                    fontStyle: FontStyle.italic,
+                  ),
                 ),
               ],
             ),
@@ -174,7 +168,9 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
             onPressed: () => Navigator.of(context).pop(),
             icon: Icon(
               Icons.arrow_back_ios,
-              color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+              color: isDark
+                  ? AppColors.textPrimary
+                  : AppColors.lightTextPrimary,
             ),
           ),
           Expanded(
@@ -184,17 +180,19 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
                 Text(
                   'Doğum Haritası',
                   style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                        color: isDark ? AppColors.starGold : colorScheme.primary,
-                      ),
+                    color: isDark ? AppColors.starGold : colorScheme.primary,
+                  ),
                 ),
                 if (name != null)
                   Text(
                     name,
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                          color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 20,
-                        ),
+                      color: isDark
+                          ? AppColors.textPrimary
+                          : AppColors.lightTextPrimary,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 20,
+                    ),
                   ),
               ],
             ),
@@ -204,7 +202,9 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
             onPressed: () => _showExportOptions(context),
             icon: Icon(
               Icons.picture_as_pdf_outlined,
-              color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+              color: isDark
+                  ? AppColors.textSecondary
+                  : AppColors.lightTextSecondary,
             ),
             tooltip: 'PDF Raporu',
           ),
@@ -216,17 +216,16 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
                   ? AppColors.surfaceLight.withAlpha(128)
                   : _natalChart!.sunSign.color.withOpacity(0.1),
               shape: BoxShape.circle,
-              border: isDark ? null : Border.all(
-                color: _natalChart!.sunSign.color.withOpacity(0.3),
-                width: 2,
-              ),
+              border: isDark
+                  ? null
+                  : Border.all(
+                      color: _natalChart!.sunSign.color.withOpacity(0.3),
+                      width: 2,
+                    ),
             ),
             child: Text(
               _natalChart!.sunSign.symbol,
-              style: TextStyle(
-                fontSize: 24,
-                color: _natalChart!.sunSign.color,
-              ),
+              style: TextStyle(fontSize: 24, color: _natalChart!.sunSign.color),
             ),
           ),
         ],
@@ -261,9 +260,11 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
             Text(
               'Raporu Disa Aktar',
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
-                    fontWeight: FontWeight.bold,
-                  ),
+                color: isDark
+                    ? AppColors.textPrimary
+                    : AppColors.lightTextPrimary,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             const SizedBox(height: 20),
             _buildExportOption(
@@ -321,11 +322,7 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
                 color: AppColors.starGold.withOpacity(0.1),
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: Icon(
-                icon,
-                color: AppColors.starGold,
-                size: 24,
-              ),
+              child: Icon(icon, color: AppColors.starGold, size: 24),
             ),
             const SizedBox(width: 16),
             Expanded(
@@ -335,15 +332,19 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
                   Text(
                     title,
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
-                          fontWeight: FontWeight.w600,
-                        ),
+                      color: isDark
+                          ? AppColors.textPrimary
+                          : AppColors.lightTextPrimary,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                   Text(
                     subtitle,
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-                        ),
+                      color: isDark
+                          ? AppColors.textMuted
+                          : AppColors.lightTextMuted,
+                    ),
                   ),
                 ],
               ),
@@ -421,7 +422,8 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
 
       if (context.mounted) Navigator.pop(context); // Close loading dialog
 
-      final filename = 'dogum_haritasi_${userProfile.name?.replaceAll(' ', '_') ?? 'rapor'}.pdf';
+      final filename =
+          'dogum_haritasi_${userProfile.name?.replaceAll(' ', '_') ?? 'rapor'}.pdf';
       await pdfService.sharePdf(pdfData, filename);
     } catch (e) {
       if (context.mounted) {
@@ -455,10 +457,7 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
 
   void _showErrorSnackBar(BuildContext context, String message) {
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message),
-        backgroundColor: AppColors.error,
-      ),
+      SnackBar(content: Text(message), backgroundColor: AppColors.error),
     );
   }
 
@@ -474,13 +473,15 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
             ? AppColors.surfaceDark.withAlpha(200)
             : AppColors.lightSurfaceVariant,
         borderRadius: BorderRadius.circular(16),
-        boxShadow: isDark ? null : [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 10,
-            offset: const Offset(0, 2),
-          ),
-        ],
+        boxShadow: isDark
+            ? null
+            : [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.05),
+                  blurRadius: 10,
+                  offset: const Offset(0, 2),
+                ),
+              ],
       ),
       child: TabBar(
         controller: _tabController,
@@ -488,10 +489,7 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [
-              colorScheme.primary,
-              colorScheme.secondary,
-            ],
+            colors: [colorScheme.primary, colorScheme.secondary],
           ),
           borderRadius: BorderRadius.circular(12),
           boxShadow: [
@@ -503,10 +501,12 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
           ],
         ),
         labelColor: Colors.white,
-        unselectedLabelColor: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-        labelStyle: Theme.of(context).textTheme.labelLarge?.copyWith(
-          fontWeight: FontWeight.w600,
-        ),
+        unselectedLabelColor: isDark
+            ? AppColors.textMuted
+            : AppColors.lightTextMuted,
+        labelStyle: Theme.of(
+          context,
+        ).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w600),
         unselectedLabelStyle: Theme.of(context).textTheme.labelMedium,
         dividerHeight: 0,
         indicatorSize: TabBarIndicatorSize.tab,
@@ -529,12 +529,7 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
         children: [
           Icon(icon, size: 16),
           const SizedBox(width: 6),
-          Flexible(
-            child: Text(
-              label,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ),
+          Flexible(child: Text(label, overflow: TextOverflow.ellipsis)),
         ],
       ),
     );
@@ -602,7 +597,9 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
     final sun = _natalChart!.sun;
     if (sun == null) return const SizedBox.shrink();
 
-    final interpretation = EsotericInterpretationService.getSunInterpretation(sun.sign);
+    final interpretation = EsotericInterpretationService.getSunInterpretation(
+      sun.sign,
+    );
 
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -610,10 +607,7 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [
-            sun.sign.color.withAlpha(38),
-            AppColors.surfaceDark,
-          ],
+          colors: [sun.sign.color.withAlpha(38), AppColors.surfaceDark],
         ),
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         border: Border.all(color: sun.sign.color.withAlpha(76)),
@@ -641,16 +635,16 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
                   children: [
                     Text(
                       'Güneş Burcun: ${sun.sign.nameTr}',
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            color: sun.sign.color,
-                          ),
+                      style: Theme.of(
+                        context,
+                      ).textTheme.titleMedium?.copyWith(color: sun.sign.color),
                     ),
                     Text(
                       'Özünün Sırrı',
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: AppColors.textMuted,
-                            fontStyle: FontStyle.italic,
-                          ),
+                        color: AppColors.textMuted,
+                        fontStyle: FontStyle.italic,
+                      ),
                     ),
                   ],
                 ),
@@ -661,9 +655,9 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
           Text(
             interpretation,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: AppColors.textSecondary,
-                  height: 1.8,
-                ),
+              color: AppColors.textSecondary,
+              height: 1.8,
+            ),
           ),
         ],
       ),
@@ -674,7 +668,9 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
     final moon = _natalChart!.moon;
     if (moon == null) return const SizedBox.shrink();
 
-    final interpretation = EsotericInterpretationService.getMoonInterpretation(moon.sign);
+    final interpretation = EsotericInterpretationService.getMoonInterpretation(
+      moon.sign,
+    );
 
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -682,10 +678,7 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [
-            AppColors.moonSilver.withAlpha(38),
-            AppColors.surfaceDark,
-          ],
+          colors: [AppColors.moonSilver.withAlpha(38), AppColors.surfaceDark],
         ),
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         border: Border.all(color: AppColors.moonSilver.withAlpha(76)),
@@ -714,15 +707,15 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
                     Text(
                       'Ay Burcun: ${moon.sign.nameTr}',
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            color: AppColors.moonSilver,
-                          ),
+                        color: AppColors.moonSilver,
+                      ),
                     ),
                     Text(
                       'Duygusal Dünyan',
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: AppColors.textMuted,
-                            fontStyle: FontStyle.italic,
-                          ),
+                        color: AppColors.textMuted,
+                        fontStyle: FontStyle.italic,
+                      ),
                     ),
                   ],
                 ),
@@ -733,9 +726,9 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
           Text(
             interpretation,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: AppColors.textSecondary,
-                  height: 1.8,
-                ),
+              color: AppColors.textSecondary,
+              height: 1.8,
+            ),
           ),
         ],
       ),
@@ -746,7 +739,8 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
     final rising = _natalChart!.ascendant;
     if (rising == null) return const SizedBox.shrink();
 
-    final interpretation = EsotericInterpretationService.getRisingInterpretation(rising.sign);
+    final interpretation =
+        EsotericInterpretationService.getRisingInterpretation(rising.sign);
 
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -754,10 +748,7 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [
-            AppColors.fireElement.withAlpha(38),
-            AppColors.surfaceDark,
-          ],
+          colors: [AppColors.fireElement.withAlpha(38), AppColors.surfaceDark],
         ),
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         border: Border.all(color: AppColors.fireElement.withAlpha(76)),
@@ -786,15 +777,15 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
                     Text(
                       'Yükselen: ${rising.sign.nameTr}',
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            color: AppColors.fireElement,
-                          ),
+                        color: AppColors.fireElement,
+                      ),
                     ),
                     Text(
                       'Dış İmajın & İlk İzlenim',
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: AppColors.textMuted,
-                            fontStyle: FontStyle.italic,
-                          ),
+                        color: AppColors.textMuted,
+                        fontStyle: FontStyle.italic,
+                      ),
                     ),
                   ],
                 ),
@@ -805,9 +796,9 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
           Text(
             interpretation,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: AppColors.textSecondary,
-                  height: 1.8,
-                ),
+              color: AppColors.textSecondary,
+              height: 1.8,
+            ),
           ),
         ],
       ),
@@ -818,10 +809,14 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
     final mercury = _natalChart!.mercury;
     if (mercury == null) return const SizedBox.shrink();
 
-    final interpretation = EsotericInterpretationService.getMercuryInterpretation(mercury.sign);
+    final interpretation =
+        EsotericInterpretationService.getMercuryInterpretation(mercury.sign);
     // Only show house interpretation if houses were calculated (time & location provided)
     final houseInterp = _natalChart!.hasExactTime
-        ? EsotericInterpretationService.getPlanetInHouseInterpretation(Planet.mercury, mercury.house)
+        ? EsotericInterpretationService.getPlanetInHouseInterpretation(
+            Planet.mercury,
+            mercury.house,
+          )
         : '';
 
     return Container(
@@ -830,10 +825,7 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [
-            mercury.planet.color.withAlpha(38),
-            AppColors.surfaceDark,
-          ],
+          colors: [mercury.planet.color.withAlpha(38), AppColors.surfaceDark],
         ),
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         border: Border.all(color: mercury.planet.color.withAlpha(76)),
@@ -862,29 +854,35 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
                     Text(
                       'Merkür: ${mercury.sign.nameTr}',
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            color: mercury.planet.color,
-                          ),
+                        color: mercury.planet.color,
+                      ),
                     ),
                     Text(
                       'Zihin & İletişim Tarzı',
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: AppColors.textMuted,
-                            fontStyle: FontStyle.italic,
-                          ),
+                        color: AppColors.textMuted,
+                        fontStyle: FontStyle.italic,
+                      ),
                     ),
                   ],
                 ),
               ),
               if (mercury.isRetrograde)
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                    vertical: 4,
+                  ),
                   decoration: BoxDecoration(
                     color: AppColors.warning.withAlpha(51),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Text(
                     'R',
-                    style: TextStyle(color: AppColors.warning, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                      color: AppColors.warning,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
             ],
@@ -893,9 +891,9 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
           Text(
             interpretation,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: AppColors.textSecondary,
-                  height: 1.8,
-                ),
+              color: AppColors.textSecondary,
+              height: 1.8,
+            ),
           ),
           if (houseInterp.isNotEmpty) ...[
             const SizedBox(height: AppConstants.spacingSm),
@@ -908,9 +906,9 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
               child: Text(
                 houseInterp,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: mercury.planet.color,
-                      fontStyle: FontStyle.italic,
-                    ),
+                  color: mercury.planet.color,
+                  fontStyle: FontStyle.italic,
+                ),
               ),
             ),
           ],
@@ -923,10 +921,15 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
     final venus = _natalChart!.venus;
     if (venus == null) return const SizedBox.shrink();
 
-    final interpretation = EsotericInterpretationService.getVenusInterpretation(venus.sign);
+    final interpretation = EsotericInterpretationService.getVenusInterpretation(
+      venus.sign,
+    );
     // Only show house interpretation if houses were calculated (time & location provided)
     final houseInterp = _natalChart!.hasExactTime
-        ? EsotericInterpretationService.getPlanetInHouseInterpretation(Planet.venus, venus.house)
+        ? EsotericInterpretationService.getPlanetInHouseInterpretation(
+            Planet.venus,
+            venus.house,
+          )
         : '';
 
     return Container(
@@ -935,10 +938,7 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [
-            venus.planet.color.withAlpha(38),
-            AppColors.surfaceDark,
-          ],
+          colors: [venus.planet.color.withAlpha(38), AppColors.surfaceDark],
         ),
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         border: Border.all(color: venus.planet.color.withAlpha(76)),
@@ -967,29 +967,35 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
                     Text(
                       'Venüs: ${venus.sign.nameTr}',
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            color: venus.planet.color,
-                          ),
+                        color: venus.planet.color,
+                      ),
                     ),
                     Text(
                       'Aşk & Değerler & Estetik',
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: AppColors.textMuted,
-                            fontStyle: FontStyle.italic,
-                          ),
+                        color: AppColors.textMuted,
+                        fontStyle: FontStyle.italic,
+                      ),
                     ),
                   ],
                 ),
               ),
               if (venus.isRetrograde)
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                    vertical: 4,
+                  ),
                   decoration: BoxDecoration(
                     color: AppColors.warning.withAlpha(51),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Text(
                     'R',
-                    style: TextStyle(color: AppColors.warning, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                      color: AppColors.warning,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
             ],
@@ -998,9 +1004,9 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
           Text(
             interpretation,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: AppColors.textSecondary,
-                  height: 1.8,
-                ),
+              color: AppColors.textSecondary,
+              height: 1.8,
+            ),
           ),
           if (houseInterp.isNotEmpty) ...[
             const SizedBox(height: AppConstants.spacingSm),
@@ -1013,9 +1019,9 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
               child: Text(
                 houseInterp,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: venus.planet.color,
-                      fontStyle: FontStyle.italic,
-                    ),
+                  color: venus.planet.color,
+                  fontStyle: FontStyle.italic,
+                ),
               ),
             ),
           ],
@@ -1028,10 +1034,15 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
     final mars = _natalChart!.mars;
     if (mars == null) return const SizedBox.shrink();
 
-    final interpretation = EsotericInterpretationService.getMarsInterpretation(mars.sign);
+    final interpretation = EsotericInterpretationService.getMarsInterpretation(
+      mars.sign,
+    );
     // Only show house interpretation if houses were calculated (time & location provided)
     final houseInterp = _natalChart!.hasExactTime
-        ? EsotericInterpretationService.getPlanetInHouseInterpretation(Planet.mars, mars.house)
+        ? EsotericInterpretationService.getPlanetInHouseInterpretation(
+            Planet.mars,
+            mars.house,
+          )
         : '';
 
     return Container(
@@ -1040,10 +1051,7 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [
-            mars.planet.color.withAlpha(38),
-            AppColors.surfaceDark,
-          ],
+          colors: [mars.planet.color.withAlpha(38), AppColors.surfaceDark],
         ),
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         border: Border.all(color: mars.planet.color.withAlpha(76)),
@@ -1072,29 +1080,35 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
                     Text(
                       'Mars: ${mars.sign.nameTr}',
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            color: mars.planet.color,
-                          ),
+                        color: mars.planet.color,
+                      ),
                     ),
                     Text(
                       'İrade & Motivasyon & Enerji',
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: AppColors.textMuted,
-                            fontStyle: FontStyle.italic,
-                          ),
+                        color: AppColors.textMuted,
+                        fontStyle: FontStyle.italic,
+                      ),
                     ),
                   ],
                 ),
               ),
               if (mars.isRetrograde)
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                    vertical: 4,
+                  ),
                   decoration: BoxDecoration(
                     color: AppColors.warning.withAlpha(51),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Text(
                     'R',
-                    style: TextStyle(color: AppColors.warning, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                      color: AppColors.warning,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
             ],
@@ -1103,9 +1117,9 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
           Text(
             interpretation,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: AppColors.textSecondary,
-                  height: 1.8,
-                ),
+              color: AppColors.textSecondary,
+              height: 1.8,
+            ),
           ),
           if (houseInterp.isNotEmpty) ...[
             const SizedBox(height: AppConstants.spacingSm),
@@ -1118,9 +1132,9 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
               child: Text(
                 houseInterp,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: mars.planet.color,
-                      fontStyle: FontStyle.italic,
-                    ),
+                  color: mars.planet.color,
+                  fontStyle: FontStyle.italic,
+                ),
               ),
             ),
           ],
@@ -1129,7 +1143,12 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
     ).animate().fadeIn(delay: 600.ms, duration: 400.ms);
   }
 
-  Widget _buildEsotericIntro(BuildContext context, String title, String text, Color color) {
+  Widget _buildEsotericIntro(
+    BuildContext context,
+    String title,
+    String text,
+    Color color,
+  ) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Container(
@@ -1145,13 +1164,15 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
         ),
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         border: Border.all(color: color.withAlpha(isDark ? 51 : 40)),
-        boxShadow: isDark ? null : [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.04),
-            blurRadius: 8,
-            offset: const Offset(0, 2),
-          ),
-        ],
+        boxShadow: isDark
+            ? null
+            : [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.04),
+                  blurRadius: 8,
+                  offset: const Offset(0, 2),
+                ),
+              ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1163,9 +1184,9 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
               Text(
                 title,
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      color: color,
-                      fontStyle: FontStyle.italic,
-                    ),
+                  color: color,
+                  fontStyle: FontStyle.italic,
+                ),
               ),
             ],
           ),
@@ -1173,10 +1194,12 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
           Text(
             text,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
-                  height: 1.6,
-                  fontStyle: FontStyle.italic,
-                ),
+              color: isDark
+                  ? AppColors.textSecondary
+                  : AppColors.lightTextSecondary,
+              height: 1.6,
+              fontStyle: FontStyle.italic,
+            ),
           ),
         ],
       ),
@@ -1189,58 +1212,68 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
     final accentColor = isDark ? AppColors.starGold : colorScheme.primary;
 
     return Container(
-      padding: const EdgeInsets.all(AppConstants.spacingLg),
-      decoration: BoxDecoration(
-        gradient: isDark ? AppColors.cardGradient : AppColors.lightCardGradient,
-        borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-        border: Border.all(color: accentColor.withAlpha(isDark ? 76 : 50)),
-        boxShadow: isDark ? null : [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.06),
-            blurRadius: 12,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(Icons.public, color: accentColor, size: 20),
-              const SizedBox(width: 8),
-              Text(
-                'Doğum Haritası',
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      color: accentColor,
+          padding: const EdgeInsets.all(AppConstants.spacingLg),
+          decoration: BoxDecoration(
+            gradient: isDark
+                ? AppColors.cardGradient
+                : AppColors.lightCardGradient,
+            borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+            border: Border.all(color: accentColor.withAlpha(isDark ? 76 : 50)),
+            boxShadow: isDark
+                ? null
+                : [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.06),
+                      blurRadius: 12,
+                      offset: const Offset(0, 4),
                     ),
+                  ],
+          ),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.public, color: accentColor, size: 20),
+                  const SizedBox(width: 8),
+                  Text(
+                    'Doğum Haritası',
+                    style: Theme.of(
+                      context,
+                    ).textTheme.titleMedium?.copyWith(color: accentColor),
+                  ),
+                ],
+              ),
+              const SizedBox(height: AppConstants.spacingLg),
+              Center(
+                child: NatalChartWheel(
+                  chart: _natalChart!,
+                  showAspects: true,
+                  showHouses: _natalChart!.hasExactTime,
+                  size: MediaQuery.of(context).size.width - 80,
+                ),
+              ),
+              const SizedBox(height: AppConstants.spacingMd),
+              // Legend
+              Wrap(
+                spacing: 12,
+                runSpacing: 8,
+                alignment: WrapAlignment.center,
+                children: [
+                  _buildLegendItem('Uyumlu', AppColors.success),
+                  _buildLegendItem('Zorlayıcı', AppColors.error),
+                  _buildLegendItem(
+                    'Kavuşum',
+                    isDark ? AppColors.starGold : colorScheme.primary,
+                  ),
+                ],
               ),
             ],
           ),
-          const SizedBox(height: AppConstants.spacingLg),
-          Center(
-            child: NatalChartWheel(
-              chart: _natalChart!,
-              showAspects: true,
-              showHouses: _natalChart!.hasExactTime,
-              size: MediaQuery.of(context).size.width - 80,
-            ),
-          ),
-          const SizedBox(height: AppConstants.spacingMd),
-          // Legend
-          Wrap(
-            spacing: 12,
-            runSpacing: 8,
-            alignment: WrapAlignment.center,
-            children: [
-              _buildLegendItem('Uyumlu', AppColors.success),
-              _buildLegendItem('Zorlayıcı', AppColors.error),
-              _buildLegendItem('Kavuşum', isDark ? AppColors.starGold : colorScheme.primary),
-            ],
-          ),
-        ],
-      ),
-    ).animate().fadeIn(delay: 100.ms, duration: 400.ms).scale(begin: const Offset(0.95, 0.95));
+        )
+        .animate()
+        .fadeIn(delay: 100.ms, duration: 400.ms)
+        .scale(begin: const Offset(0.95, 0.95));
   }
 
   Widget _buildLegendItem(String label, Color color) {
@@ -1249,17 +1282,13 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Container(
-          width: 16,
-          height: 2,
-          color: color,
-        ),
+        Container(width: 16, height: 2, color: color),
         const SizedBox(width: 4),
         Text(
           label,
           style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-              ),
+            color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+          ),
         ),
       ],
     );
@@ -1278,14 +1307,18 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
       decoration: BoxDecoration(
         gradient: isDark ? AppColors.cardGradient : AppColors.lightCardGradient,
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-        border: Border.all(color: AppColors.auroraStart.withAlpha(isDark ? 76 : 50)),
-        boxShadow: isDark ? null : [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.06),
-            blurRadius: 12,
-            offset: const Offset(0, 4),
-          ),
-        ],
+        border: Border.all(
+          color: AppColors.auroraStart.withAlpha(isDark ? 76 : 50),
+        ),
+        boxShadow: isDark
+            ? null
+            : [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.06),
+                  blurRadius: 12,
+                  offset: const Offset(0, 4),
+                ),
+              ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1296,9 +1329,9 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
               const SizedBox(width: 8),
               Text(
                 'Büyük Üçlü',
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      color: accentColor,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleMedium?.copyWith(color: accentColor),
               ),
             ],
           ),
@@ -1338,27 +1371,35 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
       decoration: BoxDecoration(
         gradient: isDark ? AppColors.cardGradient : AppColors.lightCardGradient,
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-        border: Border.all(color: AppColors.auroraEnd.withAlpha(isDark ? 76 : 50)),
-        boxShadow: isDark ? null : [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.06),
-            blurRadius: 12,
-            offset: const Offset(0, 4),
-          ),
-        ],
+        border: Border.all(
+          color: AppColors.auroraEnd.withAlpha(isDark ? 76 : 50),
+        ),
+        boxShadow: isDark
+            ? null
+            : [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.06),
+                  blurRadius: 12,
+                  offset: const Offset(0, 4),
+                ),
+              ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
-              Icon(Icons.pie_chart, color: isDark ? AppColors.auroraEnd : colorScheme.secondary, size: 20),
+              Icon(
+                Icons.pie_chart,
+                color: isDark ? AppColors.auroraEnd : colorScheme.secondary,
+                size: 20,
+              ),
               const SizedBox(width: 8),
               Text(
                 'Baskın Enerjiler',
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      color: isDark ? AppColors.auroraEnd : colorScheme.secondary,
-                    ),
+                  color: isDark ? AppColors.auroraEnd : colorScheme.secondary,
+                ),
               ),
             ],
           ),
@@ -1379,7 +1420,9 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
                   label: 'Modalite',
                   value: zodiac.ModalityExtension(dominantModality).nameTr,
                   icon: zodiac.ModalityExtension(dominantModality).symbol,
-                  color: isDark ? AppColors.moonSilver : AppColors.lightTextSecondary,
+                  color: isDark
+                      ? AppColors.moonSilver
+                      : AppColors.lightTextSecondary,
                 ),
               ),
             ],
@@ -1402,14 +1445,18 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
       decoration: BoxDecoration(
         gradient: isDark ? AppColors.cardGradient : AppColors.lightCardGradient,
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-        border: Border.all(color: AppColors.warning.withAlpha(isDark ? 76 : 50)),
-        boxShadow: isDark ? null : [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.06),
-            blurRadius: 12,
-            offset: const Offset(0, 4),
-          ),
-        ],
+        border: Border.all(
+          color: AppColors.warning.withAlpha(isDark ? 76 : 50),
+        ),
+        boxShadow: isDark
+            ? null
+            : [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.06),
+                  blurRadius: 12,
+                  offset: const Offset(0, 4),
+                ),
+              ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1420,9 +1467,9 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
               const SizedBox(width: 8),
               Text(
                 'Geri Giden Gezegenler',
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      color: AppColors.warning,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleMedium?.copyWith(color: AppColors.warning),
               ),
             ],
           ),
@@ -1432,28 +1479,32 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
             runSpacing: 8,
             children: retrogrades.map((p) {
               return Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 6,
+                ),
                 decoration: BoxDecoration(
                   color: p.planet.color.withAlpha(isDark ? 51 : 25),
                   borderRadius: BorderRadius.circular(20),
-                  border: Border.all(color: p.planet.color.withAlpha(isDark ? 128 : 80)),
+                  border: Border.all(
+                    color: p.planet.color.withAlpha(isDark ? 128 : 80),
+                  ),
                 ),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
                       p.planet.symbol,
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: p.planet.color,
-                      ),
+                      style: TextStyle(fontSize: 16, color: p.planet.color),
                     ),
                     const SizedBox(width: 6),
                     Text(
                       '${p.planet.nameTr} R',
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
-                          ),
+                        color: isDark
+                            ? AppColors.textPrimary
+                            : AppColors.lightTextPrimary,
+                      ),
                     ),
                   ],
                 ),
@@ -1464,8 +1515,8 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
           Text(
             'Geri giden gezegenler, o gezegenin enerjisinin içe dönük ve yeniden değerlendirme sürecinde olduğunu gösterir.',
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-                ),
+              color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+            ),
           ),
         ],
       ),
@@ -1561,9 +1612,9 @@ class _BigThreeItem extends StatelessWidget {
           decoration: BoxDecoration(
             color: planet!.sign.color.withAlpha(isDark ? 51 : 25),
             borderRadius: BorderRadius.circular(8),
-            border: isDark ? null : Border.all(
-              color: planet!.sign.color.withOpacity(0.3),
-            ),
+            border: isDark
+                ? null
+                : Border.all(color: planet!.sign.color.withOpacity(0.3)),
           ),
           child: Center(
             child: Text(
@@ -1580,14 +1631,16 @@ class _BigThreeItem extends StatelessWidget {
               Text(
                 label,
                 style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                      color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-                    ),
+                  color: isDark
+                      ? AppColors.textMuted
+                      : AppColors.lightTextMuted,
+                ),
               ),
               Text(
                 '${planet!.sign.nameTr} ${planet!.degree}',
-                style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      color: planet!.sign.color,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleSmall?.copyWith(color: planet!.sign.color),
               ),
             ],
           ),
@@ -1595,8 +1648,8 @@ class _BigThreeItem extends StatelessWidget {
         Text(
           description,
           style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-              ),
+            color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+          ),
         ),
       ],
     );
@@ -1625,28 +1678,23 @@ class _DominantItem extends StatelessWidget {
       decoration: BoxDecoration(
         color: color.withAlpha(isDark ? 25 : 15),
         borderRadius: BorderRadius.circular(AppConstants.radiusSm),
-        border: isDark ? null : Border.all(
-          color: color.withOpacity(0.2),
-        ),
+        border: isDark ? null : Border.all(color: color.withOpacity(0.2)),
       ),
       child: Column(
         children: [
-          Text(
-            icon,
-            style: TextStyle(fontSize: 24, color: color),
-          ),
+          Text(icon, style: TextStyle(fontSize: 24, color: color)),
           const SizedBox(height: 4),
           Text(
             label,
             style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                  color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-                ),
+              color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+            ),
           ),
           Text(
             value,
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                  color: color,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleSmall?.copyWith(color: color),
           ),
         ],
       ),

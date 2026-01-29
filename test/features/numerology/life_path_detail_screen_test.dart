@@ -5,7 +5,9 @@ import '../../helpers/pump_app.dart';
 
 void main() {
   for (final number in [1, 2, 3, 4, 5, 6, 7, 8, 9]) {
-    testWidgets('LifePathDetailScreen renders for number $number', (tester) async {
+    testWidgets('LifePathDetailScreen renders for number $number', (
+      tester,
+    ) async {
       await tester.pumpApp(LifePathDetailScreen(number: number));
       await tester.pumpAndSettle();
       expect(find.byType(Scaffold), findsWidgets);

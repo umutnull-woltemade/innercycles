@@ -64,7 +64,9 @@ class AppTheme {
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(Spacing.radiusMd),
-        borderSide: BorderSide(color: MysticalColors.textMuted.withValues(alpha: 0.3)),
+        borderSide: BorderSide(
+          color: MysticalColors.textMuted.withValues(alpha: 0.3),
+        ),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(Spacing.radiusMd),
@@ -139,7 +141,9 @@ class AppTheme {
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(Spacing.radiusMd),
-        borderSide: BorderSide(color: MysticalColors.violetMist.withValues(alpha: 0.5)),
+        borderSide: BorderSide(
+          color: MysticalColors.violetMist.withValues(alpha: 0.5),
+        ),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(Spacing.radiusMd),
