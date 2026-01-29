@@ -387,8 +387,9 @@ class ComparisonService {
     final communicators = ['İkizler', 'Terazi', 'Kova'];
     final quiet = ['Akrep', 'Oğlak', 'Balık'];
 
-    if (communicators.contains(s1.name) && communicators.contains(s2.name))
+    if (communicators.contains(s1.name) && communicators.contains(s2.name)) {
       return 90;
+    }
     if (quiet.contains(s1.name) && quiet.contains(s2.name)) return 75;
     if ((communicators.contains(s1.name) && quiet.contains(s2.name)) ||
         (quiet.contains(s1.name) && communicators.contains(s2.name))) {

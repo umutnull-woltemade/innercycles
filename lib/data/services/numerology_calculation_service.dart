@@ -1025,8 +1025,9 @@ class NumerologyCalculationService {
 
       // Diagonals
       if ([1, 5, 9].contains(value)) grid['will'] = grid['will']! + 1;
-      if ([3, 5, 7].contains(value))
+      if ([3, 5, 7].contains(value)) {
         grid['creativity'] = grid['creativity']! + 1;
+      }
       if ([2, 5, 8].contains(value)) grid['intuition'] = grid['intuition']! + 1;
     }
 

@@ -2780,19 +2780,19 @@ Ders, bu iki enerjiyi birbirinin karşıtı olarak görmek yerine, tamamlayıcı
 olarak kullanmayı öğrenmektir.
 ''',
       tantricDynamic: '''
-Tantrik açıdan kavuşum, Shiva ve Shakti\'nin birleşmesidir - eril ve dişil
+Tantrik açıdan kavuşum, Shiva ve Shakti'nin birleşmesidir - eril ve dişil
 ilkelerin tek bir güç haline gelmesi.
 
 Bu birlik, yaratıcı gücün en yoğun halidir. Kavuşumdaki gezegenler,
 birlikte çok güçlü bir enerji üretir.
 
-Kundalini pratiğinde kavuşum, Ida ve Pingala\'nın Sushumna\'da buluşmasına
+Kundalini pratiğinde kavuşum, Ida ve Pingala'nın Sushumna'da buluşmasına
 benzer - iki zıt akımın tek bir merkezi akımda birleşmesi.
 ''',
       alchemicalProcess: '''
 Simyasal süreçte kavuşum, "Coniunctio Oppositorum" (zıtların birleşmesi) aşamasıdır.
 
-Bu, Magnum Opus\'un (Büyük Eser) en kritik aşamalarından biridir. Kral ve
+Bu, Magnum Opus'un (Büyük Eser) en kritik aşamalarından biridir. Kral ve
 Kraliçe birleşir, güneş ve ay tek bir ışık olur.
 
 Birleşme öncesi her iki madde de kendi süreçlerinden geçmiş olmalıdır.
@@ -2846,7 +2846,7 @@ Ders, "ya bu ya o" zihniyetinden "hem bu hem o" bilincine geçiştir.
 Polariteler, seçenek değil spektrumdur.
 ''',
       tantricDynamic: '''
-Tantrik açıdan karşıtlık, Shakti ve Shiva\'nın dans halindeki gerilimini temsil eder.
+Tantrik açıdan karşıtlık, Shakti ve Shiva'nın dans halindeki gerilimini temsil eder.
 
 Bu gerilim, yaratıcıdır. Zıtların çekim gücü, tüm yaratımın motorudur.
 Karşıt açı, bu kozmik dansın bireysel ifadesidir.
@@ -3095,7 +3095,7 @@ Bu iki alan, geçmiş yaşamlarda birbirinden bağımsız ele alınmış olabili
 Quincunx, "kör nokta" karmasıdır. Görmediğimiz şeyler, bizi yönetir.
 ''',
       spiritualLesson: '''
-Quincunx\'un ruhani dersi: Gizli bağlantıları keşfet, esnek ol.
+Quincunx'un ruhani dersi: Gizli bağlantıları keşfet, esnek ol.
 
 Bu açı, sürekli ince ayar gerektirir. Hiçbir pozisyon kalıcı değildir,
 sürekli adaptasyon şart.
@@ -3165,7 +3165,7 @@ Ruh, geçmişte bu alanlarda deneyim kazanmamış veya yetenekleri geliştirmemi
 Şimdi, dengeyi sağlamak için bu yönde büyüme gerekiyor.
 ''',
       currentLifeLesson: '''
-Kuzey Düğüm\'ün dersi: Bilinmeyene adım at, büyü.
+Kuzey Düğüm'ün dersi: Bilinmeyene adım at, büyü.
 
 Bu noktanın işareti ve evi, rahat alanınızın dışında kalan ama ruhunuzun
 özlediği deneyimleri gösterir. Başlangıçta zor gelebilir ama pratikle
@@ -3211,7 +3211,7 @@ Ruh, geçmişte bu alanlarda uzmanlaşmış, aşırı geliştirmiştir. Şimdi, 
 sağlamak için bu yönden uzaklaşma gerekiyor.
 ''',
       currentLifeLesson: '''
-Güney Düğüm\'ün dersi: Bırak, özgürleş.
+Güney Düğüm'ün dersi: Bırak, özgürleş.
 
 Bu noktanın işareti ve evi, kolayca yaslandığınız ama artık hizmet etmeyen
 kalıpları gösterir. Tanıdık ve rahat ama sürekli buraya dönmek evrimi durdurur.
@@ -3284,7 +3284,7 @@ derin ustalık ve benzersiz yetenekler geliştirir.
     'saturn_return': KarmicIndicatorContent(
       indicator: 'Satürn Dönüşü',
       esotericMeaning: '''
-Satürn Dönüşü, Satürn\'ün doğum pozisyonuna geri döndüğü dönemdir.
+Satürn Dönüşü, Satürn'ün doğum pozisyonuna geri döndüğü dönemdir.
 Yaklaşık 29-30 yaşlarında ilk, 58-60 yaşlarında ikinci dönüş gerçekleşir.
 
 Bu dönem, en büyük karmik inisiyasyonlardan biridir. Zaman Lordu hesap sorar:
@@ -3293,19 +3293,19 @@ Bu dönem, en büyük karmik inisiyasyonlardan biridir. Zaman Lordu hesap sorar:
       pastLifeConnection: '''
 Satürn Dönüşü, önceki yaşamlardan taşınan Satürn karmasının yoğunlaştığı dönemdir.
 
-Doğum Satürn\'ünün işareti, evi ve açıları, karmik derslerin doğasını gösterir.
+Doğum Satürn'ünün işareti, evi ve açıları, karmik derslerin doğasını gösterir.
 Satürn Dönüşü, bu derslerin sınavıdır.
 ''',
       currentLifeLesson: '''
-Satürn Dönüşü\'nün dersi: Olgun ol, sorumluluk al, otantik yaşa.
+Satürn Dönüşü'nün dersi: Olgun ol, sorumluluk al, otantik yaşa.
 
 İlk Satürn Dönüşü, "kim olmam gerektiğini" sorgular. İkinci dönüş,
 "mirasım ne olacak" sorar.
 ''',
       healingPath: '''
 Satürn Dönüşü şifası için:
-- Satürn Dönüşü\'nden önce hazırlanmaya başlayın
-- Doğum Satürn\'ünüzün temalarını inceleyin
+- Satürn Dönüşü'nden önce hazırlanmaya başlayın
+- Doğum Satürn'ünüzün temalarını inceleyin
 - Hayatınızda neyin sahte neyin gerçek olduğunu değerlendirin
 - Otantik hedefler tanımlayın
 ''',
@@ -3330,7 +3330,7 @@ Kiron, "yaralı şifacı" arketipidir. Mitolojide Kiron, ölümsüz bir kentaur
 olmasına rağmen iyileşmeyen bir yara taşır - ve bu yara sayesinde başkalarına
 şifa verebilir.
 
-Kiron\'un işareti ve evi, ruhun bu yaşamda taşıdığı "kutsal yara"yı ve
+Kiron'un işareti ve evi, ruhun bu yaşamda taşıdığı "kutsal yara"yı ve
 bu yaranın dönüştürülmesiyle elde edilecek armağanı gösterir.
 ''',
       pastLifeConnection: '''
@@ -3340,7 +3340,7 @@ Bu yara, bir yaşamda değil, muhtemelen birçok yaşamda birikmiştir. Artık
 o kadar derine işlemiştir ki, bu yaşamın parçası gibi hissedilir.
 ''',
       currentLifeLesson: '''
-Kiron\'un dersi: Yarandan kaçma, onu dönüştür.
+Kiron'un dersi: Yarandan kaçma, onu dönüştür.
 
 Kiron yarası, iyileşmeyen bir yara gibi hissettirir. Ama paradoks şudur:
 tam olarak iyileşemeyiz, ama bu iyileşememe durumu başkalarına şifa verebilmemizi sağlar.
@@ -3387,17 +3387,17 @@ göstergeleri olarak yorumlar.
       point: 'Kara Ay Lilith',
       esotericName: 'Umbra Feminae - Dişil Gölge',
       cosmicFunction: '''
-Lilith, Ay\'ın yörüngesinin Dünya\'dan en uzak noktasıdır (apogee). Bu
+Lilith, Ay'ın yörüngesinin Dünya'dan en uzak noktasıdır (apogee). Bu
 matematiksel nokta, güçlü bir arketipsel enerji taşır.
 
-Mitolojide Lilith, Adem\'in ilk eşidir - itaat etmeyi reddeden, cennetten
+Mitolojide Lilith, Adem'in ilk eşidir - itaat etmeyi reddeden, cennetten
 kendi iradesiyle ayrılan, vahşi dişilliğin simgesi.
 
 Lilith, bastırılmış dişil gücü, reddedilen cinselliği ve "karanlık tanrıça"
 arketipini temsil eder.
 ''',
       shadowIntegration: '''
-Lilith\'in işareti ve evi, dişil gölgemizi gösterir - kadın veya erkek
+Lilith'in işareti ve evi, dişil gölgemizi gösterir - kadın veya erkek
 olsun, hepimizde bastırılmış dişil yönler vardır.
 
 Bu gölge, toplumun "kabul edilemez" bulduğu dişil ifadeleri içerir:
@@ -3408,7 +3408,7 @@ Entegrasyon, bu güçleri tanımak ve bilinçli olarak kucaklamaktır.
       sexualEnergy: '''
 Tantrik açıdan Lilith, cinsel enerjinin en ham, en vahşi formunu temsil eder.
 
-Bu enerji, evcilleştirilmemiş Shakti\'dir. Potansiyel olarak yıkıcı ama
+Bu enerji, evcilleştirilmemiş Shakti'dir. Potansiyel olarak yıkıcı ama
 aynı zamanda son derece yaratıcı ve dönüştürücü.
 ''',
       spiritualAwakening: '''
@@ -3419,10 +3419,10 @@ yüzleşmenin kapısıdır.
 ''',
       practiceGuidance: '''
 Lilith çalışması için:
-- Lilith\'in işaretini ve evini araştırın
+- Lilith'in işaretini ve evini araştırın
 - "Yasaklanmış" dürtülerinizi tanıyın
 - Güvenli ortamlarda bu enerjileri ifade etmeyi öğrenin
-- Lilith\'i müttefik olarak görün
+- Lilith'i müttefik olarak görün
 ''',
     ),
 
@@ -3437,7 +3437,7 @@ Vertex, ruhun "yazgı noktası"dır. Kontrol edemediğimiz ama hayatımızı
 derinden değiştiren olaylar ve insanlarla ilişkilidir.
 ''',
       shadowIntegration: '''
-Vertex\'in gölge yönü, "kurban" psikolojisidir.
+Vertex'in gölge yönü, "kurban" psikolojisidir.
 
 Vertex deneyimleri, kontrol dışı olduğu için pasiflik hissi yaratabilir.
 Entegrasyon, kadersel karşılaşmalardan öğrenmeyi seçmektir.
@@ -3456,7 +3456,7 @@ kozmik sürprizlerin nerede tezahür edeceğini gösterir.
 ''',
       practiceGuidance: '''
 Vertex çalışması için:
-- Vertex\'in işaretini ve evini araştırın
+- Vertex'in işaretini ve evini araştırın
 - "Kadersel" karşılaşmaları gözden geçirin
 - Bu karşılaşmalardan ne öğrendiğinizi sorgulayın
 - "Kadere teslim olma" meditasyonu yapın
@@ -3467,14 +3467,14 @@ Vertex çalışması için:
       point: 'Fortuna Parçası',
       esotericName: 'Aurea Felicitas - Altın Mutluluk',
       cosmicFunction: '''
-Fortuna Parçası (Part of Fortune), Güneş, Ay ve Yükselen\'in kombinasyonuyla
+Fortuna Parçası (Part of Fortune), Güneş, Ay ve Yükselen'in kombinasyonuyla
 hesaplanan Arap noktasıdır. Formül: Yükselen + Ay - Güneş.
 
 Fortuna, ruhun "hazine noktası"dır. Doğal bolluk ve mutluluğun nereden
 akacağını gösterir.
 ''',
       shadowIntegration: '''
-Fortuna\'nın gölge yönü, "dışsal bolluk bağımlılığı"dır.
+Fortuna'nın gölge yönü, "dışsal bolluk bağımlılığı"dır.
 
 Fortuna enerjisi, kolayca maddi takıntıya dönüşebilir. Gerçek bolluk
 içeridedir, dışarıda değil.
@@ -3493,7 +3493,7 @@ ruhun doğal yeteneklerini ifade etmek.
 ''',
       practiceGuidance: '''
 Fortuna çalışması için:
-- Fortuna\'nın işaretini ve evini araştırın
+- Fortuna'nın işaretini ve evini araştırın
 - Bu alanda sahip olduğunuz armağanları tanıyın
 - Bu enerjileri bilinçli olarak geliştirin ve paylaşın
 - Bolluk ritüelleri yapın
@@ -3504,14 +3504,14 @@ Fortuna çalışması için:
       point: 'Ruh Parçası',
       esotericName: 'Daimon Divinus - İlahi Ruh',
       cosmicFunction: '''
-Ruh Parçası, Fortuna\'nın "tersine çevrilmiş" halidir.
+Ruh Parçası, Fortuna'nın "tersine çevrilmiş" halidir.
 Formül: Yükselen + Güneş - Ay.
 
 Spirit, "daimon"u temsil eder - her insanın içindeki ilahi kılavuz,
 ruhani misyon. Fortuna alırken, Spirit verir.
 ''',
       shadowIntegration: '''
-Spirit\'in gölge yönü, "misyon takıntısı" veya "kurtarıcı kompleksi"dir.
+Spirit'in gölge yönü, "misyon takıntısı" veya "kurtarıcı kompleksi"dir.
 
 Spirit enerjisi dengesiz olduğunda, kişi dünyayı kurtarmaya çalışır ama
 kendi ihtiyaçlarını ihmal eder.
@@ -3530,9 +3530,9 @@ birlikte, ruhani yaşamın hem içe hem dışa dönük yüzlerini gösterir.
 ''',
       practiceGuidance: '''
 Spirit çalışması için:
-- Spirit\'in işaretini ve evini araştırın
+- Spirit'in işaretini ve evini araştırın
 - "Benim misyonum nedir?" sorusu üzerine meditasyon
-- Spirit\'i Fortuna ile karşılaştırın
+- Spirit'i Fortuna ile karşılaştırın
 - Hizmet pratiği geliştirin
 ''',
     ),
@@ -3570,7 +3570,7 @@ Ruh, bu alanda önceki enkarnasyonlarda yoğun çalışmış ve şimdi meyveleri
 topluyor. Bu yetenekler doğal, zahmetsiz gelir.
 ''',
       soulMission: '''
-Grand Trine\'ın ruh misyonu: Armağanı paylaş, tembelliğe düşme.
+Grand Trine'ın ruh misyonu: Armağanı paylaş, tembelliğe düşme.
 
 Bu desen, liderlik ve öğretmenlik için doğal zemin sağlar. Ama kendi
 kendine yetmez - bilinçli kullanılmalıdır.
@@ -3613,7 +3613,7 @@ Ruh, bu alanlardaki dengeyi önceki yaşamlarda kuramamıştır. Şimdi
 yoğunlaştırılmış bir şekilde bu derslerle yüzleşme zamanı.
 ''',
       soulMission: '''
-T-Kare\'nin ruh misyonu: Gerilimi güce dönüştür, zayıflıktan ustalık çıkar.
+T-Kare'nin ruh misyonu: Gerilimi güce dönüştür, zayıflıktan ustalık çıkar.
 
 T-Kare, zorlar, iter, rahatsız eder. Ama bu rahatsızlık, harekete geçme
 motivasyonudur.
@@ -3645,17 +3645,17 @@ olarak görmek yerine "enerji kaynağı" olarak kullanmaktır.
 Yod, iki gezegenin birbirine sextile (60 derece), her ikisinin de
 üçüncü bir gezegene quincunx (150 derece) açı yapmasıyla oluşur.
 
-Bu, "kader parmağı" veya "Tanrı\'nın parmağı"dır - kaçınılmaz görevler,
+Bu, "kader parmağı" veya "Tanrı'nın parmağı"dır - kaçınılmaz görevler,
 mukadder dönüşümler içeren bir yapı.
 ''',
       karmicSignificance: '''
 Karmik açıdan Yod, özel bir ruhani görev için "seçilmiş" olmayı temsil eder.
 
-Bu, ego\'nun seçtiği bir görev değildir - evrenin atadığı bir misyon.
+Bu, ego'nun seçtiği bir görev değildir - evrenin atadığı bir misyon.
 Kaçınmak zordur, kabul etmek özgürleştirici.
 ''',
       soulMission: '''
-Yod\'un ruh misyonu: Kaçınılmaz görevi kabul et, özel yeteneği keşfet.
+Yod'un ruh misyonu: Kaçınılmaz görevi kabul et, özel yeteneği keşfet.
 
 Yod, hayatı belirli bir yöne zorlar. Ne kadar direnilirse, o kadar
 baskı artar. Teslim olmak, akışı sağlar.
@@ -3697,7 +3697,7 @@ Ruh, bu yaşamda büyük işler için gelmiştir - ama bu işler, büyük
 sınavları gerektirir.
 ''',
       soulMission: '''
-Grand Cross\'un ruh misyonu: Tam denge, tam merkez, tam güç.
+Grand Cross'un ruh misyonu: Tam denge, tam merkez, tam güç.
 
 Bu yapı, kolay çözümler sunmaz. Her yön, kendi talebini getirir.
 Denge, sürekli yeniden kurulmalıdır.
@@ -3739,7 +3739,7 @@ Ruh, hem zorlu hem de destekleyici enerjileri bir arada getirmiştir.
 Bu, olgun bir ruhun işaretidir.
 ''',
       soulMission: '''
-Mistik Dikdörtgen\'in ruh misyonu: Dengeyi koru, aşırılıklardan kaçın.
+Mistik Dikdörtgen'in ruh misyonu: Dengeyi koru, aşırılıklardan kaçın.
 
 Bu yapı, doğal bir stabilite sağlar. Ama bu stabiliteyi kullanmak,
 bilinç gerektirir.
@@ -3779,7 +3779,7 @@ Ruh, bu konuda çok şey yaşamış, çok şey öğrenmiştir. Şimdi tüm bu
 birikimi entegre etme zamanı.
 ''',
       soulMission: '''
-Stellium\'un ruh misyonu: Yoğunluğu ustalığa dönüştür.
+Stellium'un ruh misyonu: Yoğunluğu ustalığa dönüştür.
 
 Bu yapı, belirli bir alanda derinlik ve güç sağlar. Ama diğer alanları
 ihmal etme riski taşır.
