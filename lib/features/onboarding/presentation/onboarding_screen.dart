@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -213,6 +212,12 @@ class _WelcomePageState extends State<_WelcomePage>
       duration: const Duration(seconds: 3),
       vsync: this,
     )..repeat(reverse: true);
+
+    // Guard Supabase access (may not be initialized in tests)
+    if (!AuthService.isSupabaseInitialized) {
+      debugPrint('⚠️ Supabase not initialized - skipping auth listeners');
+      return;
+    }
 
     // OAuth callback'lerini dinle (web'de sayfa yeniden yüklendiğinde)
     _authStateStream = AuthService.authStateChanges;
@@ -614,8 +619,10 @@ class _WelcomePageState extends State<_WelcomePage>
       {'icon': '💫', 'text': 'Numeroloji'},
     ];
 
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    return Wrap(
+      alignment: WrapAlignment.spaceEvenly,
+      spacing: 8,
+      runSpacing: 12,
       children: features.asMap().entries.map((entry) {
         final index = entry.key;
         final feature = entry.value;
@@ -735,12 +742,8 @@ class _BirthDataPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 10),
-          Center(
-            child: SvgPicture.asset(
-              'assets/images/logo_cat.svg',
-              width: 50,
-              height: 50,
-            ),
+          const Center(
+            child: Text('🐱', style: TextStyle(fontSize: 40)),
           ),
           const SizedBox(height: AppConstants.spacingMd),
           Center(

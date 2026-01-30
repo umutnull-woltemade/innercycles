@@ -170,12 +170,15 @@ class _TarotScreenState extends ConsumerState<TarotScreen> {
             children: [
               const Icon(Icons.auto_awesome, color: AppColors.auroraEnd, size: 18),
               const SizedBox(width: 8),
-              Text(
-                'Kadim Bilgeliğin Anahtarları',
-                style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      color: AppColors.auroraEnd,
-                      fontStyle: FontStyle.italic,
-                    ),
+              Flexible(
+                child: Text(
+                  'Kadim Bilgeliğin Anahtarları',
+                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                        color: AppColors.auroraEnd,
+                        fontStyle: FontStyle.italic,
+                      ),
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
             ],
           ),

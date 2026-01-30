@@ -1,10 +1,13 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:purchases_ui_flutter/purchases_ui_flutter.dart';
 
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/services/premium_service.dart';
+import '../../../data/services/paywall_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 
 class PremiumScreen extends ConsumerStatefulWidget {
@@ -16,10 +19,16 @@ class PremiumScreen extends ConsumerStatefulWidget {
 
 class _PremiumScreenState extends ConsumerState<PremiumScreen> {
   PremiumTier _selectedTier = PremiumTier.yearly;
+  bool _useRevenueCatPaywall = true; // Default to RevenueCat Paywall
 
   @override
   Widget build(BuildContext context) {
     final premiumState = ref.watch(premiumProvider);
+
+    // If user is already premium, show their status
+    if (premiumState.isPremium) {
+      return _buildPremiumActiveScreen(context, premiumState);
+    }
 
     return Scaffold(
       body: CosmicBackground(
@@ -38,16 +47,29 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                   _buildPremiumBadge(),
                   const SizedBox(height: AppConstants.spacingXl),
 
-                  // Features list
-                  _buildFeaturesList(context),
-                  const SizedBox(height: AppConstants.spacingXl),
+                  // Paywall toggle (for testing - can be removed in production)
+                  if (kDebugMode) ...[
+                    _buildPaywallToggle(context),
+                    const SizedBox(height: AppConstants.spacingMd),
+                  ],
 
-                  // Plan selection
-                  _buildPlanSelection(context),
-                  const SizedBox(height: AppConstants.spacingXl),
+                  if (_useRevenueCatPaywall) ...[
+                    // RevenueCat Paywall Button
+                    _buildRevenueCatPaywallButton(context, premiumState),
+                  ] else ...[
+                    // Custom UI
+                    // Features list
+                    _buildFeaturesList(context),
+                    const SizedBox(height: AppConstants.spacingXl),
 
-                  // Purchase button
-                  _buildPurchaseButton(context, premiumState),
+                    // Plan selection
+                    _buildPlanSelection(context),
+                    const SizedBox(height: AppConstants.spacingXl),
+
+                    // Purchase button
+                    _buildPurchaseButton(context, premiumState),
+                  ],
+
                   const SizedBox(height: AppConstants.spacingMd),
 
                   // Restore purchases
@@ -65,6 +87,130 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
     );
   }
 
+  Widget _buildPremiumActiveScreen(BuildContext context, PremiumState premiumState) {
+    return Scaffold(
+      body: CosmicBackground(
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(AppConstants.spacingLg),
+            child: Column(
+              children: [
+                _buildHeader(context),
+                const Spacer(),
+                _buildPremiumActiveBadge(premiumState),
+                const SizedBox(height: AppConstants.spacingXl),
+                _buildPremiumStatus(context, premiumState),
+                const SizedBox(height: AppConstants.spacingXl),
+                _buildManageSubscriptionButton(context),
+                const Spacer(),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildPremiumActiveBadge(PremiumState premiumState) {
+    return Container(
+          padding: const EdgeInsets.all(32),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                AppColors.starGold.withOpacity(0.4),
+                AppColors.auroraStart.withOpacity(0.4),
+              ],
+            ),
+            shape: BoxShape.circle,
+            boxShadow: [
+              BoxShadow(
+                color: AppColors.starGold.withOpacity(0.5),
+                blurRadius: 40,
+                spreadRadius: 10,
+              ),
+            ],
+          ),
+          child: Column(
+            children: [
+              const Text('👑', style: TextStyle(fontSize: 72)),
+              const SizedBox(height: 8),
+              Text(
+                premiumState.tier.displayName,
+                style: const TextStyle(
+                  color: AppColors.starGold,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+        )
+        .animate()
+        .fadeIn(duration: 600.ms)
+        .scale(begin: const Offset(0.8, 0.8), curve: Curves.elasticOut);
+  }
+
+  Widget _buildPremiumStatus(BuildContext context, PremiumState premiumState) {
+    return Container(
+      padding: const EdgeInsets.all(AppConstants.spacingLg),
+      decoration: BoxDecoration(
+        gradient: AppColors.cardGradient,
+        borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+        border: Border.all(color: AppColors.starGold.withOpacity(0.3)),
+      ),
+      child: Column(
+        children: [
+          Text(
+            'Kozmik Güçler Aktif',
+            style: Theme.of(context).textTheme.titleLarge?.copyWith(
+              color: AppColors.starGold,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: AppConstants.spacingMd),
+          if (premiumState.isLifetime)
+            Text(
+              'Ömür boyu erişiminiz var!',
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                color: AppColors.textSecondary,
+              ),
+            )
+          else if (premiumState.expiryDate != null)
+            Text(
+              'Yenileme: ${_formatDate(premiumState.expiryDate!)}',
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                color: AppColors.textSecondary,
+              ),
+            ),
+        ],
+      ),
+    ).animate().fadeIn(delay: 200.ms, duration: 400.ms);
+  }
+
+  Widget _buildManageSubscriptionButton(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: OutlinedButton.icon(
+        onPressed: () async {
+          await ref.read(paywallServiceProvider).presentCustomerCenter();
+        },
+        icon: const Icon(Icons.settings, color: AppColors.starGold),
+        label: const Text(
+          'Aboneliği Yönet',
+          style: TextStyle(color: AppColors.starGold),
+        ),
+        style: OutlinedButton.styleFrom(
+          side: const BorderSide(color: AppColors.starGold),
+          padding: const EdgeInsets.symmetric(vertical: 16),
+        ),
+      ),
+    ).animate().fadeIn(delay: 300.ms, duration: 400.ms);
+  }
+
+  String _formatDate(DateTime date) {
+    return '${date.day}/${date.month}/${date.year}';
+  }
+
   Widget _buildHeader(BuildContext context) {
     return Column(
       children: [
@@ -78,7 +224,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
           ],
         ),
         Text(
-          'Venus One Premium',
+          'umutnull Pro',
           style: Theme.of(context).textTheme.headlineMedium?.copyWith(
             color: AppColors.starGold,
             fontWeight: FontWeight.bold,
@@ -122,6 +268,109 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
         .scale(begin: const Offset(0.8, 0.8), curve: Curves.elasticOut);
   }
 
+  Widget _buildPaywallToggle(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(AppConstants.spacingMd),
+      decoration: BoxDecoration(
+        color: Colors.orange.withOpacity(0.1),
+        borderRadius: BorderRadius.circular(AppConstants.radiusSm),
+        border: Border.all(color: Colors.orange.withOpacity(0.3)),
+      ),
+      child: Row(
+        children: [
+          const Icon(Icons.science, color: Colors.orange, size: 20),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Text(
+              'RevenueCat Paywall',
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                color: Colors.orange,
+              ),
+            ),
+          ),
+          Switch(
+            value: _useRevenueCatPaywall,
+            onChanged: (value) => setState(() => _useRevenueCatPaywall = value),
+            activeColor: Colors.orange,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildRevenueCatPaywallButton(BuildContext context, PremiumState premiumState) {
+    return Column(
+      children: [
+        // Features preview
+        _buildFeaturesList(context),
+        const SizedBox(height: AppConstants.spacingXl),
+
+        // Show RevenueCat Paywall button
+        SizedBox(
+          width: double.infinity,
+          child: Container(
+            decoration: BoxDecoration(
+              gradient: const LinearGradient(
+                colors: [AppColors.starGold, Color(0xFFFFA500)],
+              ),
+              borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+              boxShadow: [
+                BoxShadow(
+                  color: AppColors.starGold.withOpacity(0.4),
+                  blurRadius: 12,
+                  offset: const Offset(0, 4),
+                ),
+              ],
+            ),
+            child: Material(
+              color: Colors.transparent,
+              child: InkWell(
+                onTap: premiumState.isLoading
+                    ? null
+                    : () async {
+                        final result = await ref.read(paywallServiceProvider).presentPaywall();
+                        if (mounted && result == PaywallResult.purchased) {
+                          _showSuccessDialog();
+                        }
+                      },
+                borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  child: Center(
+                    child: premiumState.isLoading
+                        ? const SizedBox(
+                            width: 24,
+                            height: 24,
+                            child: CircularProgressIndicator(
+                              strokeWidth: 2,
+                              valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                            ),
+                          )
+                        : const Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(Icons.star, color: Colors.black, size: 20),
+                              SizedBox(width: 8),
+                              Text(
+                                'Planları Görüntüle',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ).animate().fadeIn(delay: 400.ms, duration: 400.ms),
+      ],
+    );
+  }
+
   Widget _buildFeaturesList(BuildContext context) {
     final features = PremiumTier.yearly.features;
 
@@ -151,6 +400,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
   Widget _buildPlanSelection(BuildContext context) {
     return Column(
       children: [
+        // Best value - Yearly
         _PlanCard(
           tier: PremiumTier.yearly,
           isSelected: _selectedTier == PremiumTier.yearly,
@@ -158,10 +408,21 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
           isBestValue: true,
         ),
         const SizedBox(height: AppConstants.spacingMd),
+
+        // Monthly
         _PlanCard(
           tier: PremiumTier.monthly,
           isSelected: _selectedTier == PremiumTier.monthly,
           onTap: () => setState(() => _selectedTier = PremiumTier.monthly),
+        ),
+        const SizedBox(height: AppConstants.spacingMd),
+
+        // Lifetime
+        _PlanCard(
+          tier: PremiumTier.lifetime,
+          isSelected: _selectedTier == PremiumTier.lifetime,
+          onTap: () => setState(() => _selectedTier = PremiumTier.lifetime),
+          isLifetime: true,
         ),
       ],
     ).animate().fadeIn(delay: 400.ms, duration: 400.ms);
@@ -285,9 +546,11 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
           children: [
             const Text('🌟', style: TextStyle(fontSize: 24)),
             const SizedBox(width: 8),
-            const Text(
-              'Kozmik Kapı Açıldı!',
-              style: TextStyle(color: AppColors.starGold),
+            const Flexible(
+              child: Text(
+                'Kozmik Kapı Açıldı!',
+                style: TextStyle(color: AppColors.starGold),
+              ),
             ),
           ],
         ),
@@ -351,12 +614,14 @@ class _PlanCard extends StatelessWidget {
   final bool isSelected;
   final VoidCallback onTap;
   final bool isBestValue;
+  final bool isLifetime;
 
   const _PlanCard({
     required this.tier,
     required this.isSelected,
     required this.onTap,
     this.isBestValue = false,
+    this.isLifetime = false,
   });
 
   @override
@@ -419,21 +684,33 @@ class _PlanCard extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            tier.displayName,
-                            style: Theme.of(context).textTheme.titleSmall
-                                ?.copyWith(
-                                  color: isSelected
-                                      ? AppColors.starGold
-                                      : AppColors.textPrimary,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                          Row(
+                            children: [
+                              Text(
+                                tier.displayName,
+                                style: Theme.of(context).textTheme.titleSmall
+                                    ?.copyWith(
+                                      color: isSelected
+                                          ? AppColors.starGold
+                                          : AppColors.textPrimary,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                              ),
+                              if (isLifetime) ...[
+                                const SizedBox(width: 8),
+                                const Text('♾️', style: TextStyle(fontSize: 14)),
+                              ],
+                            ],
                           ),
                           if (tier.savings.isNotEmpty)
                             Text(
                               tier.savings,
                               style: Theme.of(context).textTheme.bodySmall
-                                  ?.copyWith(color: AppColors.success),
+                                  ?.copyWith(
+                                    color: isLifetime
+                                        ? AppColors.auroraEnd
+                                        : AppColors.success,
+                                  ),
                             ),
                         ],
                       ),
@@ -469,6 +746,28 @@ class _PlanCard extends StatelessWidget {
                 'En İyi Değer',
                 style: TextStyle(
                   color: Colors.black,
+                  fontSize: 10,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+        if (isLifetime)
+          Positioned(
+            top: -10,
+            right: 16,
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [AppColors.auroraStart, AppColors.auroraEnd],
+                ),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: const Text(
+                'Ömür Boyu',
+                style: TextStyle(
+                  color: Colors.white,
                   fontSize: 10,
                   fontWeight: FontWeight.bold,
                 ),

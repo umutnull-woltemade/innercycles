@@ -142,7 +142,7 @@ class _QuickDiscoveryBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      padding: const EdgeInsets.symmetric(vertical: 12),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
@@ -155,69 +155,73 @@ class _QuickDiscoveryBar extends StatelessWidget {
           color: Colors.white.withOpacity(0.08),
         ),
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          _QuickDiscoveryItem(
-            icon: '⭐',
-            label: 'Burç Yorumu',
-            route: Routes.horoscope,
-          ),
-          const SizedBox(width: 24),
-          _QuickDiscoveryItem(
-            icon: '🗺️',
-            label: 'Doğum Haritası',
-            route: Routes.birthChart,
-          ),
-          const SizedBox(width: 24),
-          _QuickDiscoveryItem(
-            icon: '🧠',
-            label: 'Theta Healing',
-            route: Routes.thetaHealing,
-          ),
-          const SizedBox(width: 24),
-          _QuickDiscoveryItem(
-            icon: '🌍',
-            label: 'Astrokartografi',
-            route: Routes.astroCartography,
-          ),
-          const SizedBox(width: 24),
-          _QuickDiscoveryItem(
-            icon: '🙏',
-            label: 'Reiki',
-            route: Routes.reiki,
-          ),
-          const SizedBox(width: 24),
-          _QuickDiscoveryItem(
-            icon: '🔮',
-            label: 'Tarot',
-            route: Routes.tarot,
-          ),
-          const SizedBox(width: 24),
-          _QuickDiscoveryItem(
-            icon: '🔢',
-            label: 'Numeroloji',
-            route: Routes.numerology,
-          ),
-          const SizedBox(width: 24),
-          _QuickDiscoveryItem(
-            icon: '💜',
-            label: 'Çakra',
-            route: Routes.chakraAnalysis,
-          ),
-          const SizedBox(width: 24),
-          _QuickDiscoveryItem(
-            icon: '✨',
-            label: 'Aura',
-            route: Routes.aura,
-          ),
-          const SizedBox(width: 24),
-          _QuickDiscoveryItem(
-            icon: '🕯️',
-            label: 'Tantra',
-            route: Routes.tantra,
-          ),
-        ],
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            _QuickDiscoveryItem(
+              icon: '⭐',
+              label: 'Burç Yorumu',
+              route: Routes.horoscope,
+            ),
+            const SizedBox(width: 24),
+            _QuickDiscoveryItem(
+              icon: '🗺️',
+              label: 'Doğum Haritası',
+              route: Routes.birthChart,
+            ),
+            const SizedBox(width: 24),
+            _QuickDiscoveryItem(
+              icon: '🧠',
+              label: 'Theta Healing',
+              route: Routes.thetaHealing,
+            ),
+            const SizedBox(width: 24),
+            _QuickDiscoveryItem(
+              icon: '🌍',
+              label: 'Astrokartografi',
+              route: Routes.astroCartography,
+            ),
+            const SizedBox(width: 24),
+            _QuickDiscoveryItem(
+              icon: '🙏',
+              label: 'Reiki',
+              route: Routes.reiki,
+            ),
+            const SizedBox(width: 24),
+            _QuickDiscoveryItem(
+              icon: '🔮',
+              label: 'Tarot',
+              route: Routes.tarot,
+            ),
+            const SizedBox(width: 24),
+            _QuickDiscoveryItem(
+              icon: '🔢',
+              label: 'Numeroloji',
+              route: Routes.numerology,
+            ),
+            const SizedBox(width: 24),
+            _QuickDiscoveryItem(
+              icon: '💜',
+              label: 'Çakra',
+              route: Routes.chakraAnalysis,
+            ),
+            const SizedBox(width: 24),
+            _QuickDiscoveryItem(
+              icon: '✨',
+              label: 'Aura',
+              route: Routes.aura,
+            ),
+            const SizedBox(width: 24),
+            _QuickDiscoveryItem(
+              icon: '🕯️',
+              label: 'Tantra',
+              route: Routes.tantra,
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -315,66 +319,68 @@ class _DesktopHeader extends StatelessWidget {
           // ═══════════════════════════════════════════════════════════════
           // LOGO + AI TOOLS - Birbirine bağlı görünüm
           // ═══════════════════════════════════════════════════════════════
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              // Venus One Logo
-              _VenusOneLogo(),
+          Flexible(
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                // Venus One Logo
+                _VenusOneLogo(),
 
-              // Bağlantı çizgisi 1
-              Container(
-                width: 20,
-                height: 2,
-                margin: const EdgeInsets.symmetric(horizontal: 4),
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      AppColors.starGold.withOpacity(0.8),
-                      const Color(0xFF9D4EDD).withOpacity(0.6),
+                // Bağlantı çizgisi 1
+                Container(
+                  width: 20,
+                  height: 2,
+                  margin: const EdgeInsets.symmetric(horizontal: 4),
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        AppColors.starGold.withOpacity(0.8),
+                        const Color(0xFF9D4EDD).withOpacity(0.6),
+                      ],
+                    ),
+                    borderRadius: BorderRadius.circular(1),
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppColors.starGold.withOpacity(0.4),
+                        blurRadius: 4,
+                      ),
                     ],
                   ),
-                  borderRadius: BorderRadius.circular(1),
-                  boxShadow: [
-                    BoxShadow(
-                      color: AppColors.starGold.withOpacity(0.4),
-                      blurRadius: 4,
-                    ),
-                  ],
                 ),
-              ),
 
-              // Rüya İzi Button
-              _DreamHeaderButton(
-                onTap: () => context.push(Routes.dreamInterpretation),
-              ),
+                // Rüya İzi Button
+                _DreamHeaderButton(
+                  onTap: () => context.push(Routes.dreamInterpretation),
+                ),
 
-              // Bağlantı çizgisi 2
-              Container(
-                width: 20,
-                height: 2,
-                margin: const EdgeInsets.symmetric(horizontal: 4),
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      const Color(0xFF5C6BC0).withOpacity(0.6),
-                      const Color(0xFF6A1B9A).withOpacity(0.8),
+                // Bağlantı çizgisi 2
+                Container(
+                  width: 20,
+                  height: 2,
+                  margin: const EdgeInsets.symmetric(horizontal: 4),
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        const Color(0xFF5C6BC0).withOpacity(0.6),
+                        const Color(0xFF6A1B9A).withOpacity(0.8),
+                      ],
+                    ),
+                    borderRadius: BorderRadius.circular(1),
+                    boxShadow: [
+                      BoxShadow(
+                        color: const Color(0xFF5C6BC0).withOpacity(0.3),
+                        blurRadius: 4,
+                      ),
                     ],
                   ),
-                  borderRadius: BorderRadius.circular(1),
-                  boxShadow: [
-                    BoxShadow(
-                      color: const Color(0xFF5C6BC0).withOpacity(0.3),
-                      blurRadius: 4,
-                    ),
-                  ],
                 ),
-              ),
 
-              // Kozmoz Button - En sağda
-              _KozmozHeaderButton(
-                onTap: () => context.push(Routes.kozmoz),
-              ),
-            ],
+                // Kozmoz Button - En sağda
+                _KozmozHeaderButton(
+                  onTap: () => context.push(Routes.kozmoz),
+                ),
+              ],
+            ),
           ),
 
           const Spacer(),
@@ -587,11 +593,14 @@ class _HeroSection extends StatelessWidget {
                   child: const Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text(
-                        'Kozmik Mesajını Al',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
+                      Flexible(
+                        child: Text(
+                          'Kozmik Mesajını Al',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                          ),
+                          overflow: TextOverflow.ellipsis,
                         ),
                       ),
                       SizedBox(width: 8),

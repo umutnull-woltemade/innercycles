@@ -12,13 +12,14 @@ class AppConstants {
   static const String supportEmail = 'support@venusone.com';
 
   // RevenueCat API Keys
-  static const String revenueCatAppleApiKey = ''; // Add your RevenueCat Apple API key
-  static const String revenueCatGoogleApiKey = ''; // Add your RevenueCat Google API key
+  static const String revenueCatAppleApiKey = 'test_FplulzHEctJYysDPRwkIMOtcuyf';
+  static const String revenueCatGoogleApiKey = 'test_FplulzHEctJYysDPRwkIMOtcuyf';
 
   // RevenueCat Product IDs
-  static const String monthlyProductId = 'venusone_premium_monthly';
-  static const String yearlyProductId = 'venusone_premium_yearly';
-  static const String entitlementId = 'premium';
+  static const String monthlyProductId = 'monthly';
+  static const String yearlyProductId = 'yearly';
+  static const String lifetimeProductId = 'lifetime';
+  static const String entitlementId = 'umutnull Pro';
 
   // AdMob IDs (Production) - Replace with your actual IDs
   static const String admobAppIdAndroid = 'ca-app-pub-XXXXXXXXXXXXXXXX~XXXXXXXXXX';

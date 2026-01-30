@@ -278,12 +278,15 @@ class _GlossaryScreenState extends State<GlossaryScreen> {
                 children: [
                   Text(category.icon, style: const TextStyle(fontSize: 20)),
                   const SizedBox(width: 8),
-                  Text(
-                    category.nameTr,
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: isDark ? Colors.white : AppColors.textDark,
+                  Flexible(
+                    child: Text(
+                      category.nameTr,
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: isDark ? Colors.white : AppColors.textDark,
+                      ),
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                   const SizedBox(width: 8),

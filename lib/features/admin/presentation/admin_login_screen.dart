@@ -115,11 +115,14 @@ class _AdminLoginScreenState extends ConsumerState<AdminLoginScreen> {
           ),
         ),
         const SizedBox(width: AppConstants.spacingSm),
-        Text(
-          'Admin Access',
-          style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                color: AppColors.starGold,
-              ),
+        Flexible(
+          child: Text(
+            'Admin Access',
+            style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                  color: AppColors.starGold,
+                ),
+            overflow: TextOverflow.ellipsis,
+          ),
         ),
       ],
     ).animate().fadeIn(duration: 400.ms);

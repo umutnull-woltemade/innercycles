@@ -10,6 +10,8 @@ import '../../../data/services/localization_service.dart';
 import '../../../data/models/house.dart';
 import '../../../data/services/storage_service.dart';
 import '../../../data/services/url_launcher_service.dart';
+import '../../../data/services/premium_service.dart';
+import '../../../data/services/paywall_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import 'notification_settings_section.dart';
 
@@ -309,6 +311,9 @@ class SettingsScreen extends ConsumerWidget {
     AppLanguage language,
     bool isDark,
   ) {
+    final premiumState = ref.watch(premiumProvider);
+    final isPremium = premiumState.isPremium;
+
     return _SettingsSection(
       title: _getLocalizedString('account', language),
       icon: Icons.person_outline,
@@ -326,24 +331,43 @@ class SettingsScreen extends ConsumerWidget {
           _SettingsTile(
             icon: Icons.workspace_premium_outlined,
             title: _getLocalizedString('premium', language),
-            subtitle: _getLocalizedString('premium_desc', language),
+            subtitle: isPremium
+                ? _getLocalizedString('premium_active', language)
+                : _getLocalizedString('premium_desc', language),
             isDark: isDark,
             onTap: () => context.push(Routes.premium),
             trailing: Container(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
               decoration: BoxDecoration(
-                gradient: AppColors.goldGradient,
+                gradient: isPremium
+                    ? LinearGradient(
+                        colors: [AppColors.success, AppColors.success.withOpacity(0.8)],
+                      )
+                    : AppColors.goldGradient,
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Text(
-                'PRO',
+                isPremium ? '✓ PRO' : 'PRO',
                 style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                      color: AppColors.deepSpace,
+                      color: isPremium ? Colors.white : AppColors.deepSpace,
                       fontWeight: FontWeight.bold,
                     ),
               ),
             ),
           ),
+          // Show "Manage Subscription" only for premium users
+          if (isPremium) ...[
+            const Divider(height: 1),
+            _SettingsTile(
+              icon: Icons.credit_card_outlined,
+              title: _getLocalizedString('manage_subscription', language),
+              subtitle: _getLocalizedString('manage_subscription_desc', language),
+              isDark: isDark,
+              onTap: () async {
+                await ref.read(paywallServiceProvider).presentCustomerCenter();
+              },
+            ),
+          ],
           const Divider(height: 1),
           _SettingsTile(
             icon: Icons.delete_outline,
@@ -732,6 +756,42 @@ Tüm yorumlar bilgilendirme ve eğlence amaçlı oluşturulmaktadır ve önemli 
         AppLanguage.de: 'Alle kosmischen Kräfte freischalten',
         AppLanguage.es: 'Desbloquea todos los poderes cósmicos',
         AppLanguage.ar: 'افتح جميع القوى الكونية',
+      },
+      'premium_active': {
+        AppLanguage.en: 'Cosmic powers active',
+        AppLanguage.tr: 'Kozmik güçler aktif',
+        AppLanguage.el: 'Κοσμικές δυνάμεις ενεργές',
+        AppLanguage.bg: 'Космическите сили са активни',
+        AppLanguage.ru: 'Космические силы активны',
+        AppLanguage.zh: '宇宙力量已激活',
+        AppLanguage.fr: 'Pouvoirs cosmiques actifs',
+        AppLanguage.de: 'Kosmische Kräfte aktiv',
+        AppLanguage.es: 'Poderes cósmicos activos',
+        AppLanguage.ar: 'القوى الكونية نشطة',
+      },
+      'manage_subscription': {
+        AppLanguage.en: 'Manage Subscription',
+        AppLanguage.tr: 'Aboneliği Yönet',
+        AppLanguage.el: 'Διαχείριση Συνδρομής',
+        AppLanguage.bg: 'Управление на Абонамента',
+        AppLanguage.ru: 'Управление Подпиской',
+        AppLanguage.zh: '管理订阅',
+        AppLanguage.fr: 'Gérer l\'Abonnement',
+        AppLanguage.de: 'Abonnement Verwalten',
+        AppLanguage.es: 'Gestionar Suscripción',
+        AppLanguage.ar: 'إدارة الاشتراك',
+      },
+      'manage_subscription_desc': {
+        AppLanguage.en: 'View and manage your subscription',
+        AppLanguage.tr: 'Aboneliğini görüntüle ve yönet',
+        AppLanguage.el: 'Δείτε και διαχειριστείτε τη συνδρομή σας',
+        AppLanguage.bg: 'Преглед и управление на абонамента ви',
+        AppLanguage.ru: 'Просмотр и управление подпиской',
+        AppLanguage.zh: '查看和管理您的订阅',
+        AppLanguage.fr: 'Voir et gérer votre abonnement',
+        AppLanguage.de: 'Abonnement anzeigen und verwalten',
+        AppLanguage.es: 'Ver y gestionar tu suscripción',
+        AppLanguage.ar: 'عرض وإدارة اشتراكك',
       },
       'clear_data': {
         AppLanguage.en: 'Clear Data',

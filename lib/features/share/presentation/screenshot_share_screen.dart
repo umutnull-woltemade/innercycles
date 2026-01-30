@@ -146,12 +146,15 @@ class _ScreenshotShareScreenState extends ConsumerState<ScreenshotShareScreen> {
                         size: 18,
                       ),
                       const SizedBox(width: 8),
-                      Text(
-                        'Ekran görüntüsü al ve paylaş',
-                        style: const TextStyle(
-                          color: Colors.white70,
-                          fontSize: 13,
-                          fontWeight: FontWeight.w500,
+                      Flexible(
+                        child: Text(
+                          'Ekran görüntüsü al ve paylaş',
+                          style: const TextStyle(
+                            color: Colors.white70,
+                            fontSize: 13,
+                            fontWeight: FontWeight.w500,
+                          ),
+                          overflow: TextOverflow.ellipsis,
                         ),
                       ),
                     ],

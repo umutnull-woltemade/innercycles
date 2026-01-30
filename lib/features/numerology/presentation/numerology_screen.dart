@@ -655,12 +655,15 @@ class NumerologyScreen extends ConsumerWidget {
             children: [
               const Icon(Icons.auto_awesome, color: AppColors.starGold, size: 18),
               const SizedBox(width: 8),
-              Text(
-                'Sayıların Kadim Sırrı',
-                style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      color: AppColors.starGold,
-                      fontStyle: FontStyle.italic,
-                    ),
+              Flexible(
+                child: Text(
+                  'Sayıların Kadim Sırrı',
+                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                        color: AppColors.starGold,
+                        fontStyle: FontStyle.italic,
+                      ),
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
             ],
           ),

@@ -166,24 +166,26 @@ class ZodiacGridCard extends StatelessWidget {
           ],
         ),
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            // Symbol ve İsim - Büyük header
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  sign.symbol,
-                  style: TextStyle(
-                    fontSize: 28,
-                    color: sign.color,
+        child: FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              // Symbol ve İsim - Büyük header
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    sign.symbol,
+                    style: TextStyle(
+                      fontSize: 28,
+                      color: sign.color,
+                    ),
                   ),
-                ),
-                const SizedBox(width: 6),
-                Flexible(
-                  child: Text(
+                  const SizedBox(width: 6),
+                  Text(
                     sign.nameTr,
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                           color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
@@ -192,35 +194,35 @@ class ZodiacGridCard extends StatelessWidget {
                         ),
                     overflow: TextOverflow.ellipsis,
                   ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 6),
-            // Tarih
-            Text(
-              sign.dateRange,
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-                    fontSize: 13,
+                ],
+              ),
+              const SizedBox(height: 6),
+              // Tarih
+              Text(
+                sign.dateRange,
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                      fontSize: 13,
+                    ),
+              ),
+              const SizedBox(height: 8),
+              // Element ve Modalite
+              Wrap(
+                alignment: WrapAlignment.center,
+                spacing: 6,
+                runSpacing: 4,
+                children: [
+                  _MiniTag(
+                    text: sign.element.nameTr,
+                    color: sign.element.color,
+                    icon: sign.element.symbol,
                   ),
-            ),
-            const SizedBox(height: 8),
-            // Element ve Modalite
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                _MiniTag(
-                  text: sign.element.nameTr,
-                  color: sign.element.color,
-                  icon: sign.element.symbol,
-                ),
-                const SizedBox(width: 6),
-                _MiniTag(
-                  text: sign.modality.nameTr,
-                  color: isDark ? AppColors.moonSilver : AppColors.lightTextSecondary,
-                ),
-              ],
-            ),
+                  _MiniTag(
+                    text: sign.modality.nameTr,
+                    color: isDark ? AppColors.moonSilver : AppColors.lightTextSecondary,
+                  ),
+                ],
+              ),
             const SizedBox(height: 8),
             // Yönetici Gezegen
             Row(
@@ -257,6 +259,7 @@ class ZodiacGridCard extends StatelessWidget {
               )).toList(),
             ),
           ],
+        ),
         ),
       ),
     ).animate().fadeIn(duration: 300.ms).scale(

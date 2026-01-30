@@ -12,6 +12,44 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # ═══════════════════════════════════════════════════════════════════════════════
+  # CRITICAL UI TESTS - HARD REQUIREMENT (NO SOFT FAILURES)
+  # ═══════════════════════════════════════════════════════════════════════════════
+  critical-ui:
+    name: Critical UI Tests (REQUIRED)
+    runs-on: ubuntu-latest
+    # NOTE: NO continue-on-error - this job MUST pass
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create placeholder assets
+        run: |
+          mkdir -p assets/images
+          touch assets/images/.gitkeep
+          echo "# CI placeholder" > assets/.env
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Run Critical UI Tests
+        run: |
+          echo "╔══════════════════════════════════════════════════════════════════════════════╗"
+          echo "║                  CRITICAL UI TESTS - HARD REQUIREMENT                        ║"
+          echo "╚══════════════════════════════════════════════════════════════════════════════╝"
+          flutter test test/critical_ui/critical_ui_regression_test.dart --no-pub
+
+      - name: Run Chaos Tests
+        run: |
+          echo "╔══════════════════════════════════════════════════════════════════════════════╗"
+          echo "║                         CHAOS TESTS                                          ║"
+          echo "╚══════════════════════════════════════════════════════════════════════════════╝"
+          flutter test test/critical_ui/chaos_test.dart --no-pub
+
   analyze:
     name: Dart Analyze
     runs-on: ubuntu-latest
@@ -178,17 +216,28 @@ jobs:
 
   smoke-result:
     name: Smoke Result
-    needs: [build-android, build-ios, build-web, test]
+    needs: [critical-ui, build-android, build-ios, build-web, test]
     runs-on: ubuntu-latest
     if: always()
     steps:
       - name: Check results
         run: |
-          echo "Build Results:"
-          echo "  Android: ${{ needs.build-android.result }}"
-          echo "  iOS: ${{ needs.build-ios.result }}"
-          echo "  Web: ${{ needs.build-web.result }}"
-          echo "  Tests: ${{ needs.test.result }}"
+          echo "╔══════════════════════════════════════════════════════════════════════════════╗"
+          echo "║                           BUILD RESULTS                                      ║"
+          echo "╠══════════════════════════════════════════════════════════════════════════════╣"
+          echo "║  Critical UI: ${{ needs.critical-ui.result }}"
+          echo "║  Android: ${{ needs.build-android.result }}"
+          echo "║  iOS: ${{ needs.build-ios.result }}"
+          echo "║  Web: ${{ needs.build-web.result }}"
+          echo "║  Tests: ${{ needs.test.result }}"
+          echo "╚══════════════════════════════════════════════════════════════════════════════╝"
+
+          # CRITICAL UI IS A HARD REQUIREMENT
+          if [ "${{ needs.critical-ui.result }}" != "success" ]; then
+            echo "::error::CRITICAL UI TESTS FAILED - MERGE BLOCKED"
+            echo "::error::Critical UI elements must remain functional. Check test output."
+            exit 1
+          fi
 
           if [ "${{ needs.build-android.result }}" != "success" ] || \
              [ "${{ needs.build-ios.result }}" != "success" ] || \
@@ -201,4 +250,7 @@ jobs:
             echo "::warning::Tests have known failures (ephemeris accuracy)"
           fi
 
-          echo "All builds passed successfully"
+          echo ""
+          echo "╔══════════════════════════════════════════════════════════════════════════════╗"
+          echo "║  ✅ ALL CHECKS PASSED - MERGE ALLOWED                                        ║"
+          echo "╚══════════════════════════════════════════════════════════════════════════════╝"

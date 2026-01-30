@@ -131,12 +131,15 @@ class _CosmicShareScreenState extends ConsumerState<CosmicShareScreen> {
             onPressed: () => context.pop(),
           ),
           const Spacer(),
-          Text(
-            'Kozmik Paylaşım',
-            style: GoogleFonts.playfairDisplay(
-              fontSize: 20,
-              fontWeight: FontWeight.w600,
-              color: MysticalColors.textPrimary,
+          Flexible(
+            child: Text(
+              'Kozmik Paylaşım',
+              style: GoogleFonts.playfairDisplay(
+                fontSize: 20,
+                fontWeight: FontWeight.w600,
+                color: MysticalColors.textPrimary,
+              ),
+              overflow: TextOverflow.ellipsis,
             ),
           ),
           const Spacer(),
@@ -641,13 +644,16 @@ class _CosmicShareCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                content.heroBlock.dateFormatted,
-                style: GoogleFonts.raleway(
-                  fontSize: 11,
-                  fontWeight: FontWeight.w500,
-                  color: MysticalColors.textSecondary,
-                  letterSpacing: 0.5,
+              Flexible(
+                child: Text(
+                  content.heroBlock.dateFormatted,
+                  style: GoogleFonts.raleway(
+                    fontSize: 11,
+                    fontWeight: FontWeight.w500,
+                    color: MysticalColors.textSecondary,
+                    letterSpacing: 0.5,
+                  ),
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
               const SizedBox(width: 8),
@@ -1177,12 +1183,15 @@ class _CosmicShareCard extends StatelessWidget {
             children: [
               Icon(icon, size: 12, color: color),
               const SizedBox(width: 4),
-              Text(
-                label,
-                style: GoogleFonts.raleway(
-                  fontSize: 9,
-                  fontWeight: FontWeight.w600,
-                  color: color,
+              Flexible(
+                child: Text(
+                  label,
+                  style: GoogleFonts.raleway(
+                    fontSize: 9,
+                    fontWeight: FontWeight.w600,
+                    color: color,
+                  ),
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
             ],

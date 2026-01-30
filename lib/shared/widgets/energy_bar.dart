@@ -198,15 +198,18 @@ class DailyEnergyCard extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 10),
-              Text(
-                'Günlük Enerji',
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w600,
-                  color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+              Flexible(
+                child: Text(
+                  'Günlük Enerji',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                  ),
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
-              const Spacer(),
+              const SizedBox(width: 8),
               _buildOverallBadge(context, isDark),
             ],
           ),

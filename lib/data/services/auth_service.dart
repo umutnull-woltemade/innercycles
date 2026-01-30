@@ -48,6 +48,16 @@ enum AuthProvider { apple, email }
 /// Unified Authentication Service - Supabase
 /// Apple ve Email/Password destekli
 class AuthService {
+  /// Check if Supabase is initialized (safe for testing)
+  static bool get isSupabaseInitialized {
+    try {
+      // ignore: unnecessary_null_comparison
+      return Supabase.instance.client != null;
+    } catch (_) {
+      return false;
+    }
+  }
+
   static SupabaseClient get _supabase => Supabase.instance.client;
 
   // ==================== Current User ====================
