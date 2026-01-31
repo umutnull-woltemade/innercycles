@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../core/theme/app_colors.dart';
+import '../services/localization_service.dart';
+import '../providers/app_providers.dart';
 
 enum Element { fire, earth, air, water }
 
@@ -78,6 +80,13 @@ extension ZodiacSignExtension on ZodiacSign {
       case ZodiacSign.pisces:
         return 'Balık';
     }
+  }
+
+  /// Get localized name based on app language
+  /// Uses localization_service.dart translations for all 10 languages
+  String localizedName(AppLanguage language) {
+    final key = toString().split('.').last; // 'aries', 'taurus', etc.
+    return L10n.get(key, language);
   }
 
   String get symbol {
@@ -368,6 +377,20 @@ extension ElementExtension on Element {
     }
   }
 
+  /// Get localized element name based on app language
+  String localizedName(AppLanguage language) {
+    switch (this) {
+      case Element.fire:
+        return L10n.get('element_fire', language);
+      case Element.earth:
+        return L10n.get('element_earth', language);
+      case Element.air:
+        return L10n.get('element_air', language);
+      case Element.water:
+        return L10n.get('element_water', language);
+    }
+  }
+
   String get symbol {
     switch (this) {
       case Element.fire:
@@ -415,6 +438,18 @@ extension ModalityExtension on Modality {
         return 'Sabit';
       case Modality.mutable:
         return 'Değişken';
+    }
+  }
+
+  /// Get localized modality name based on app language
+  String localizedName(AppLanguage language) {
+    switch (this) {
+      case Modality.cardinal:
+        return L10n.get('modality_cardinal', language);
+      case Modality.fixed:
+        return L10n.get('modality_fixed', language);
+      case Modality.mutable:
+        return L10n.get('modality_mutable', language);
     }
   }
 

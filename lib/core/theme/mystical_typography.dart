@@ -82,41 +82,41 @@ class MysticalTypography {
       height: 1.4,
     ),
 
-    // Body styles - Space Grotesk for excellent readability (BÜYÜTÜLDÜ)
+    // Body styles - Space Grotesk for excellent readability (BÜYÜTÜLDÜ +1)
     bodyLarge: GoogleFonts.spaceGrotesk(
-      fontSize: 18,
+      fontSize: 19,
       fontWeight: FontWeight.w400,
       letterSpacing: 0.15,
       height: 1.65,
     ),
     bodyMedium: GoogleFonts.spaceGrotesk(
-      fontSize: 16,
+      fontSize: 17,
       fontWeight: FontWeight.w400,
       letterSpacing: 0.1,
       height: 1.6,
     ),
     bodySmall: GoogleFonts.spaceGrotesk(
-      fontSize: 14,
+      fontSize: 15,
       fontWeight: FontWeight.w400,
       letterSpacing: 0.1,
       height: 1.55,
     ),
 
-    // Label styles - Space Grotesk (BÜYÜTÜLDÜ)
+    // Label styles - Space Grotesk (BÜYÜTÜLDÜ +1)
     labelLarge: GoogleFonts.spaceGrotesk(
-      fontSize: 16,
+      fontSize: 17,
       fontWeight: FontWeight.w600,
       letterSpacing: 0.3,
       height: 1.4,
     ),
     labelMedium: GoogleFonts.spaceGrotesk(
-      fontSize: 14,
+      fontSize: 15,
       fontWeight: FontWeight.w600,
       letterSpacing: 0.25,
       height: 1.4,
     ),
     labelSmall: GoogleFonts.spaceGrotesk(
-      fontSize: 12,
+      fontSize: 13,
       fontWeight: FontWeight.w600,
       letterSpacing: 0.2,
       height: 1.4,

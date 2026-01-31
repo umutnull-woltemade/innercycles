@@ -1,4 +1,4 @@
-/// Engagement-Driven Content Library for AstroBobo - Part 3
+/// Engagement-Driven Content Library for Venus One - Part 3
 /// Tool Pages: Birth Chart, Tarot, Numerology, Compatibility, Aura, Kabbalah, Transits
 library;
 
@@ -16,7 +16,7 @@ class BirthChartContent {
   // - Astro-Seek: Massive data, technical depth
   // - Astro.com: Traditional, trusted, educational
   // - Co-Star: AI-driven personal insights
-  // - Gap: AstroBobo needs more educational context + emotional resonance
+  // - Gap: Venus One needs more educational context + emotional resonance
 
   static const String heroTitle = 'Doğum Haritanız — Kozmik Parmak İziniz';
 
@@ -210,7 +210,7 @@ Tarot, yüzyıllardır kullanılan sembolik bir sistemdir. 78 karttan oluşan de
 **Tarot Ne Yapar?**
 Tarot kartları, bilinçaltınızla köprü kurar. Bir kart çektiğinizde, o an dikkatinizi çekecek semboller karşınıza çıkar. Bu, "geleceği görme" değil, şu andaki durumunuzu farklı bir perspektiften değerlendirme fırsatıdır.
 
-**AstroBobo'da Tarot**
+**Venus One'da Tarot**
 Biz tarot'u kehanet aracı olarak değil, yansıtma ve içgörü aracı olarak sunuyoruz. "Bu kart sana ne söylüyor?" sorusu, "Bu kart ne olacağını gösteriyor?" sorusundan daha değerlidir.
 ''';
 
@@ -712,7 +712,7 @@ Kabala (Kabbalah), Yahudi mistisizminin ezoterink geleneğidir. Hayat Ağacı (E
 **Hayat Ağacı Nedir?**
 10 sefirah (sefira) ve bunları birbirine bağlayan 22 patikadan oluşur. Her sefirah, ilahi enerjinin farklı bir tezahürünü, farklı bir bilinç seviyesini temsil eder.
 
-**AstroBobo'da Kabala**
+**Venus One'da Kabala**
 Biz Kabala'yı öz-keşif için bir araç olarak sunuyoruz. Derin teolojik veya dini iddialar taşımıyoruz. Bu, meditasyonel bir harita olarak kullanılabilir.
 ''';
 
@@ -916,7 +916,7 @@ Transitler "şu olacak" demez. Enerji akışlarını, olası temaları gösterir
     {
       'question': 'Transit takvimi nasıl takip edilir?',
       'answer':
-          'AstroBobo\'da kişisel transit takviminizi görebilirsiniz. Önemli transitler için bildirim ayarlayabilirsiniz.'
+          'Venus One\'da kişisel transit takviminizi görebilirsiniz. Önemli transitler için bildirim ayarlayabilirsiniz.'
     },
     {
       'question': 'Herkes aynı transitleri yaşar mı?',

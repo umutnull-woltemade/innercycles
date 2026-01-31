@@ -1,4 +1,4 @@
-/// Navigation Content Library for AstroBobo
+/// Navigation Content Library for Venus One
 /// Back-Button-Free, Engagement-First Navigation System
 /// Every page ends with 4 mandatory exploration sections
 library;

@@ -1,4 +1,4 @@
-/// Engagement-Driven Content Library for AstroBobo - Part 2
+/// Engagement-Driven Content Library for Venus One - Part 2
 /// Remaining Zodiac Signs: Virgo, Libra, Scorpio, Sagittarius, Capricorn, Aquarius, Pisces
 library;
 

@@ -521,21 +521,12 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
     ).animate().fadeIn(delay: 100.ms, duration: 400.ms);
   }
 
-  Widget _buildTab(BuildContext context, IconData icon, String label) {
-    return Tab(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(icon, size: 16),
-          const SizedBox(width: 6),
-          Flexible(
-            child: Text(
-              label,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ),
-        ],
+  Widget _buildTab(BuildContext context, IconData icon, String tooltip) {
+    return Tooltip(
+      message: tooltip,
+      child: Tab(
+        icon: Icon(icon, size: 22),
+        iconMargin: EdgeInsets.zero,
       ),
     );
   }

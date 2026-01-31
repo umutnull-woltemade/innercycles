@@ -140,10 +140,12 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     bool isDark,
   ) {
     final sign = profile.sunSign as ZodiacSign;
+    final language = ref.watch(languageProvider);
 
     return Center(
       child: Column(
         children: [
+          // Venus One Logo instead of zodiac symbol
           Container(
             width: 100,
             height: 100,
@@ -153,25 +155,28 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: [
-                  sign.color.withOpacity(0.3),
-                  sign.color.withOpacity(0.1),
+                  AppColors.starGold.withOpacity(0.3),
+                  AppColors.starGold.withOpacity(0.1),
                 ],
               ),
               border: Border.all(
-                color: sign.color.withOpacity(0.5),
+                color: AppColors.starGold.withOpacity(0.5),
                 width: 3,
               ),
             ),
-            child: Center(
-              child: Text(
-                sign.symbol,
-                style: TextStyle(fontSize: 40, color: sign.color),
+            child: ClipOval(
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Image.asset(
+                  'assets/brand/venus-logo/png/venus-logo-96.png',
+                  fit: BoxFit.contain,
+                ),
               ),
             ),
           ),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
-            profile.name ?? sign.name,
+            profile.name ?? sign.localizedName(language),
             style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                   color: isDark
                       ? AppColors.textPrimary
@@ -188,7 +193,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
               borderRadius: BorderRadius.circular(20),
             ),
             child: Text(
-              sign.name,
+              sign.localizedName(language),
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: sign.color,
                     fontWeight: FontWeight.w600,

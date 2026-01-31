@@ -5,6 +5,7 @@ import '../../../../core/constants/routes.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../data/models/zodiac_sign.dart';
 import '../../../../data/providers/app_providers.dart';
+import '../../../../data/content/venus_homepage_content.dart';
 
 /// MOBILE LITE HOMEPAGE
 ///
@@ -507,6 +508,70 @@ class _BelowTheFold extends StatelessWidget {
             isDark: isDark,
           ),
 
+          const SizedBox(height: 32),
+
+          // ════════════════════════════════════════════════════════════
+          // VENUS WISDOM SECTION - 12 Rich Content Sections
+          // ════════════════════════════════════════════════════════════
+          Text(
+            'Venus Bilgeliği',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w600,
+              color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+            ),
+          ),
+
+          const SizedBox(height: 8),
+
+          Text(
+            'Aşk, ilişkiler ve iç yolculuk',
+            style: TextStyle(
+              fontSize: 14,
+              color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+            ),
+          ),
+
+          const SizedBox(height: 16),
+
+          // Venus content tiles (first 6)
+          ...VenusHomepageContent.sections.take(6).map((section) =>
+            _VenusContentTile(
+              emoji: section.emoji,
+              title: section.title,
+              subtitle: section.subtitle,
+              badge: section.badge,
+              route: section.route,
+              isDark: isDark,
+            ),
+          ),
+
+          const SizedBox(height: 24),
+
+          // Expandable "Daha Fazla Venus İçeriği" section
+          Text(
+            'Daha Fazla Keşfet',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w600,
+              color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+            ),
+          ),
+
+          const SizedBox(height: 16),
+
+          // Venus content tiles (remaining 6)
+          ...VenusHomepageContent.sections.skip(6).map((section) =>
+            _VenusContentTile(
+              emoji: section.emoji,
+              title: section.title,
+              subtitle: section.subtitle,
+              badge: section.badge,
+              route: section.route,
+              isDark: isDark,
+            ),
+          ),
+
           const SizedBox(height: 24),
 
           // Footer branding - minimal (tap to go to Kozmoz)
@@ -519,14 +584,140 @@ class _BelowTheFold extends StatelessWidget {
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
                   color: isDark
-                      ? AppColors.textMuted.withOpacity(0.5)
-                      : AppColors.lightTextMuted.withOpacity(0.5),
+                      ? AppColors.textMuted.withOpacity(0.7)
+                      : AppColors.lightTextMuted.withOpacity(0.7),
                   letterSpacing: 2,
                 ),
               ),
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// VENUS CONTENT TILE
+// Rich content entry point with emoji, badge support
+// ═══════════════════════════════════════════════════════════════════════════
+
+class _VenusContentTile extends StatelessWidget {
+  final String emoji;
+  final String title;
+  final String subtitle;
+  final String? badge;
+  final String route;
+  final bool isDark;
+
+  const _VenusContentTile({
+    required this.emoji,
+    required this.title,
+    required this.subtitle,
+    this.badge,
+    required this.route,
+    required this.isDark,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 12),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: () => context.push(route),
+          borderRadius: BorderRadius.circular(12),
+          child: Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: isDark
+                  ? AppColors.surfaceDark.withOpacity(0.5)
+                  : AppColors.lightSurfaceVariant,
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(
+                color: isDark
+                    ? AppColors.cosmicPurple.withOpacity(0.3)
+                    : Colors.grey.shade200,
+              ),
+            ),
+            child: Row(
+              children: [
+                // Emoji icon
+                Container(
+                  width: 44,
+                  height: 44,
+                  decoration: BoxDecoration(
+                    color: isDark
+                        ? AppColors.cosmicPurple.withOpacity(0.4)
+                        : AppColors.lightStarGold.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Center(
+                    child: Text(emoji, style: const TextStyle(fontSize: 22)),
+                  ),
+                ),
+                const SizedBox(width: 14),
+                // Text content
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              title,
+                              style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w600,
+                                color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                              ),
+                            ),
+                          ),
+                          if (badge != null)
+                            Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                              decoration: BoxDecoration(
+                                color: badge == 'Yeni'
+                                    ? AppColors.starGold.withOpacity(0.2)
+                                    : AppColors.cosmicPurple.withOpacity(0.2),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: Text(
+                                badge!,
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w600,
+                                  color: badge == 'Yeni'
+                                      ? AppColors.starGold
+                                      : (isDark ? AppColors.textSecondary : AppColors.lightTextSecondary),
+                                ),
+                              ),
+                            ),
+                        ],
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        subtitle,
+                        style: TextStyle(
+                          fontSize: 13,
+                          color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(width: 8),
+                Icon(
+                  Icons.chevron_right,
+                  size: 20,
+                  color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }

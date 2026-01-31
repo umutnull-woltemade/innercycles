@@ -1,4 +1,4 @@
-/// Engagement-Driven Content Library for AstroBobo
+/// Engagement-Driven Content Library for Venus One
 /// Deep content expansion with navigation strategy for each page
 /// Generated for maximum user engagement and session depth
 library;
@@ -17,7 +17,7 @@ class HomepageContent {
   // - Co-Star: Personalized daily push, emotional hook immediately
   // - Nebula: Visual storytelling, mystical atmosphere
   // - Astro-Seek: Tool-first approach, data richness visible
-  // - AstroBobo Gap: Needs stronger emotional hook + clear value proposition
+  // - Venus One Gap: Needs stronger emotional hook + clear value proposition
 
   static const String heroTitle = 'Kozmik Yolculuğunuz Burada Başlıyor';
 
@@ -25,7 +25,7 @@ class HomepageContent {
       'Gökyüzü size ne fısıldıyor? Doğum haritanız, günlük enerjiniz ve içsel rehberliğiniz — hepsi tek bir yerde.';
 
   static const String introSection = '''
-AstroBobo, astrolojiyi bir kehanet aracı olarak değil, bir öz-keşif yolculuğu olarak sunar.
+Venus One, astrolojiyi bir kehanet aracı olarak değil, bir öz-keşif yolculuğu olarak sunar.
 
 Burada bulacaklarınız:
 • Kişiselleştirilmiş doğum haritası analizi
@@ -54,7 +54,7 @@ Tarot, numeroloji, Kabala ve aura okumaları — bunların hepsi bilinçaltını
 ''';
 
   static const String howToUseSection = '''
-## AstroBobo Nasıl Kullanılır?
+## Venus One Nasıl Kullanılır?
 
 **1. Doğum Bilgilerinizi Girin**
 Doğum tarihi, saati ve yeri — bu üç bilgi, kozmik haritanızın anahtarıdır. Saat bilmiyorsanız bile temel bir analiz yapılabilir, ancak yükselen burç hesaplanamaz.
@@ -114,7 +114,7 @@ Astroloji ampirik bilim değildir. Binlerce yıllık sembolik bir dil sistemidir
     {
       'question': 'Tarot ve astroloji aynı şey mi?',
       'answer':
-          "Hayır. Astroloji gezegen konumlarına dayalı bir sistem, tarot ise sembolik kartlarla yapılan bir okuma pratiğidir. İkisi de içsel yansıma araçlarıdır ama farklı diller kullanırlar. AstroBobo'da her ikisini de bulabilirsiniz."
+          "Hayır. Astroloji gezegen konumlarına dayalı bir sistem, tarot ise sembolik kartlarla yapılan bir okuma pratiğidir. İkisi de içsel yansıma araçlarıdır ama farklı diller kullanırlar. Venus One'da her ikisini de bulabilirsiniz."
     },
     {
       'question': 'Premium üyelik ne fark yaratır?',
@@ -165,7 +165,7 @@ class HoroscopeHubContent {
   // - Co-Star: Personalized, AI-driven, emotional
   // - Astro.com: Traditional, detailed, educational
   // - Nebula: Visual, mystical, story-driven
-  // - Gap: AstroBobo needs more depth before sign selection
+  // - Gap: Venus One needs more depth before sign selection
 
   static const String heroTitle = 'Günlük Burç Yorumları';
 
