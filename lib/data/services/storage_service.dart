@@ -30,8 +30,17 @@ class StorageService {
     }
   }
 
-  /// Initialize Hive and open boxes
+  /// Initialize Hive and open boxes (skipped on web to prevent white screen)
   static Future<void> initialize() async {
+    // Skip Hive entirely on web - IndexedDB can hang and cause white screen
+    // Web will work in memory-only mode (no persistence between sessions)
+    if (kIsWeb) {
+      if (kDebugMode) {
+        debugPrint('StorageService: Skipping Hive on web (memory-only mode)');
+      }
+      return;
+    }
+
     try {
       await Hive.initFlutter();
 

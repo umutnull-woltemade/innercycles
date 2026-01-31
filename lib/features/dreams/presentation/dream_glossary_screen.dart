@@ -3,6 +3,7 @@
 library;
 
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
@@ -1446,6 +1447,9 @@ class PersonalDictionaryService {
   List<PersonalSymbolEntry> _entries = [];
 
   Future<void> init() async {
+    // Skip on web - Hive's IndexedDB can hang and cause white screen
+    if (kIsWeb) return;
+
     _box = await Hive.openBox(_boxName);
     _loadEntries();
   }
