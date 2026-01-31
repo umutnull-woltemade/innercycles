@@ -158,10 +158,22 @@ void main() async {
   }
 
   // Initialize admin services (mobile only - skip on web to prevent white screen)
-  // Admin services use Hive.openBox() which can hang on web's IndexedDB
+  // Admin services use Hive.openBox() which can hang on web's IndexedDB or iOS simulator
   if (!kIsWeb) {
-    await AdminAuthService.initialize();
-    await AdminAnalyticsService.initialize();
+    try {
+      await AdminAuthService.initialize().timeout(const Duration(seconds: 5));
+    } catch (e) {
+      if (kDebugMode) {
+        debugPrint('⚠️ AdminAuthService init failed/timeout: $e');
+      }
+    }
+    try {
+      await AdminAnalyticsService.initialize().timeout(const Duration(seconds: 5));
+    } catch (e) {
+      if (kDebugMode) {
+        debugPrint('⚠️ AdminAnalyticsService init failed/timeout: $e');
+      }
+    }
   } else {
     if (kDebugMode) {
       debugPrint('⚠️ Skipping admin services on web (prevents white screen)');

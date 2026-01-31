@@ -264,7 +264,7 @@ class _ReikiScreenState extends State<ReikiScreen>
           }),
           const SizedBox(height: AppConstants.spacingXl),
           const PageFooterWithDisclaimer(
-            brandText: 'Reiki — Astrobobo',
+            brandText: 'Reiki — Venus One',
             disclaimerText: DisclaimerTexts.astrology,
           ),
         ],

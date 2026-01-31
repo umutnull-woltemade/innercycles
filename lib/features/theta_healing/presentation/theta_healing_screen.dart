@@ -206,7 +206,7 @@ class _ThetaHealingScreenState extends State<ThetaHealingScreen>
           ).animate(delay: 300.ms).fadeIn(duration: 500.ms).slideY(begin: 0.1),
           const SizedBox(height: AppConstants.spacingXl),
           const PageFooterWithDisclaimer(
-            brandText: 'Theta Healing — Astrobobo',
+            brandText: 'Theta Healing — Venus One',
             disclaimerText: DisclaimerTexts.astrology,
           ),
         ],
