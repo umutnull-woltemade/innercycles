@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:crypto/crypto.dart';
+import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 /// Admin authentication service with PIN-based access and rate limiting
@@ -22,8 +23,15 @@ class AdminAuthService {
 
   static Box? _adminBox;
 
-  /// Initialize admin storage
+  /// Initialize admin storage (skipped on web to prevent white screen)
   static Future<void> initialize() async {
+    // Skip on web - Hive's IndexedDB can hang and cause white screen
+    if (kIsWeb) {
+      if (kDebugMode) {
+        debugPrint('AdminAuthService: Skipping on web');
+      }
+      return;
+    }
     _adminBox = await Hive.openBox(_adminBoxName);
   }
 

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 /// Admin analytics service for tracking growth events
@@ -10,8 +11,15 @@ class AdminAnalyticsService {
 
   static Box? _analyticsBox;
 
-  /// Initialize analytics storage
+  /// Initialize analytics storage (skipped on web to prevent white screen)
   static Future<void> initialize() async {
+    // Skip on web - Hive's IndexedDB can hang and cause white screen
+    if (kIsWeb) {
+      if (kDebugMode) {
+        debugPrint('AdminAnalyticsService: Skipping on web');
+      }
+      return;
+    }
     _analyticsBox = await Hive.openBox(_analyticsBoxName);
   }
 

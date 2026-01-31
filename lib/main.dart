@@ -157,16 +157,15 @@ void main() async {
     }
   }
 
-  // Initialize admin services (non-blocking on web)
+  // Initialize admin services (mobile only - skip on web to prevent white screen)
+  // Admin services use Hive.openBox() which can hang on web's IndexedDB
   if (!kIsWeb) {
     await AdminAuthService.initialize();
     await AdminAnalyticsService.initialize();
   } else {
-    // Initialize admin services in background on web
-    Future.microtask(() async {
-      await AdminAuthService.initialize();
-      await AdminAnalyticsService.initialize();
-    });
+    if (kDebugMode) {
+      debugPrint('⚠️ Skipping admin services on web (prevents white screen)');
+    }
   }
 
   // Load saved settings with defaults
