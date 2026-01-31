@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -213,13 +214,21 @@ class _WelcomePageState extends State<_WelcomePage>
       vsync: this,
     )..repeat(reverse: true);
 
+    // Skip OAuth setup on web - auth streams can cause white screen
+    if (kIsWeb) {
+      if (kDebugMode) {
+        debugPrint('⚠️ Skipping OAuth setup on web (prevents white screen)');
+      }
+      return;
+    }
+
     // Guard Supabase access (may not be initialized in tests)
     if (!AuthService.isSupabaseInitialized) {
       debugPrint('⚠️ Supabase not initialized - skipping auth listeners');
       return;
     }
 
-    // OAuth callback'lerini dinle (web'de sayfa yeniden yüklendiğinde)
+    // OAuth callback'lerini dinle (mobile only)
     _authStateStream = AuthService.authStateChanges;
     _authStateStream.listen((state) {
       debugPrint('🔐 Auth state changed: ${state.event}');

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -99,7 +100,13 @@ final routerProvider = Provider<GoRouter>((ref) {
         return null;
       }
 
-      // Guard: redirect to onboarding if not completed
+      // WEB: Skip storage check - web has no persistence (memory-only mode)
+      // This prevents white screen caused by StorageService returning false
+      if (kIsWeb) {
+        return null;
+      }
+
+      // MOBILE: Guard - redirect to onboarding if not completed
       final onboardingDone = StorageService.loadOnboardingComplete();
       if (!onboardingDone) {
         return Routes.onboarding;
@@ -944,6 +951,13 @@ class _SplashScreenState extends ConsumerState<_SplashScreen> {
     await Future.delayed(const Duration(milliseconds: 1500));
     if (!mounted) return;
 
+    // WEB: Always go to onboarding (no persistence, memory-only mode)
+    if (kIsWeb) {
+      context.go(Routes.onboarding);
+      return;
+    }
+
+    // MOBILE: Check saved state
     final onboardingComplete = ref.read(onboardingCompleteProvider);
     final userProfile = ref.read(userProfileProvider);
 
