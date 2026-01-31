@@ -214,6 +214,7 @@ class PremiumNotifier extends Notifier<PremiumState> {
   }
 
   /// Check current subscription status
+  /// This is the core entitlement guardrail - always verifies from source
   Future<void> _checkSubscriptionStatus() async {
     try {
       final customerInfo = await Purchases.getCustomerInfo();
@@ -222,7 +223,67 @@ class PremiumNotifier extends Notifier<PremiumState> {
       if (kDebugMode) {
         debugPrint('Error checking subscription: $e');
       }
+      // GUARDRAIL: On error, default to cached state but never unlock
+      // If we can't verify, don't change premium status
       state = state.copyWith(isLoading: false);
+    }
+  }
+
+  /// Foreground check - call when app returns from background
+  /// GUARDRAIL: Re-verify entitlement when app becomes active
+  Future<void> onAppResumed() async {
+    if (!_isInitialized || kIsWeb) return;
+
+    if (kDebugMode) {
+      debugPrint('PremiumService: App resumed - verifying entitlement');
+    }
+
+    await _checkSubscriptionStatus();
+  }
+
+  /// Verify entitlement before granting premium features
+  /// GUARDRAIL: Double-check before premium action
+  Future<bool> verifyEntitlementForFeature() async {
+    if (!_isInitialized || kIsWeb) {
+      return state.isPremium;
+    }
+
+    try {
+      final customerInfo = await Purchases.getCustomerInfo();
+      final entitlement = customerInfo.entitlements.all[AppConstants.entitlementId];
+      return entitlement?.isActive ?? false;
+    } catch (e) {
+      // GUARDRAIL: On verification error, use cached state
+      // But log for monitoring
+      if (kDebugMode) {
+        debugPrint('Entitlement verification error: $e');
+      }
+      return state.isPremium;
+    }
+  }
+
+  /// Check if subscription has expired
+  /// GUARDRAIL: Handle expiry immediately
+  bool _hasSubscriptionExpired() {
+    if (state.isLifetime) return false;
+    if (state.expiryDate == null) return false;
+    return state.expiryDate!.isBefore(DateTime.now());
+  }
+
+  /// Handle subscription expiry
+  /// GUARDRAIL: Revert to free mode on expiry
+  Future<void> checkAndHandleExpiry() async {
+    if (_hasSubscriptionExpired()) {
+      if (kDebugMode) {
+        debugPrint('PremiumService: Subscription expired - reverting to free');
+      }
+
+      await _clearPremium();
+
+      _analytics.logEvent('subscription_expired', {
+        'previous_tier': state.tier.name,
+        'expiry_date': state.expiryDate?.toIso8601String(),
+      });
     }
   }
 
@@ -700,3 +761,4 @@ final isPremiumUserProvider = Provider<bool>((ref) {
 final isLifetimeUserProvider = Provider<bool>((ref) {
   return ref.watch(premiumProvider).isLifetime;
 });
+

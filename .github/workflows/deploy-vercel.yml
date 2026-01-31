@@ -1,0 +1,173 @@
+name: Zero-Downtime Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+jobs:
+  # ═══════════════════════════════════════════════════════════════════════════
+  # STEP 1: Build Flutter Web and Deploy to Preview
+  # ═══════════════════════════════════════════════════════════════════════════
+  build-and-preview:
+    name: Build & Preview Deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    outputs:
+      preview_url: ${{ steps.deploy.outputs.url }}
+      deployment_id: ${{ steps.deploy.outputs.deployment_id }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Get Flutter dependencies
+        run: flutter pub get
+
+      - name: Build Flutter Web
+        run: flutter build web --release --no-tree-shake-icons
+
+      - name: Copy build to web directory
+        run: cp -r build/web/* web/
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Vercel CLI
+        run: npm i -g vercel@latest
+
+      - name: Pull Vercel Environment
+        run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Deploy to Preview
+        id: deploy
+        run: |
+          URL=$(vercel deploy --token=${{ secrets.VERCEL_TOKEN }} --yes 2>&1 | grep -E '^https://' | head -1)
+          echo "url=$URL" >> $GITHUB_OUTPUT
+          echo "Preview URL: $URL"
+          # Extract deployment ID from URL for potential rollback
+          DEPLOYMENT_ID=$(echo $URL | sed 's|https://||' | cut -d'-' -f1-3)
+          echo "deployment_id=$DEPLOYMENT_ID" >> $GITHUB_OUTPUT
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # STEP 2: Smoke Test the Preview Deployment
+  # ═══════════════════════════════════════════════════════════════════════════
+  smoke-test:
+    name: Smoke Test Preview
+    needs: build-and-preview
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Playwright
+        run: |
+          npm init -y
+          npm install @playwright/test
+          npx playwright install chromium --with-deps
+
+      - name: Wait for preview to be ready
+        run: |
+          echo "Waiting for preview deployment to be ready..."
+          for i in {1..30}; do
+            if curl -sf "${{ needs.build-and-preview.outputs.preview_url }}" > /dev/null; then
+              echo "Preview is ready!"
+              break
+            fi
+            echo "Attempt $i/30: Preview not ready yet, waiting 10s..."
+            sleep 10
+          done
+
+      - name: Run White Screen Tests on Preview
+        run: npx playwright test e2e/white-screen.spec.ts --reporter=html
+        env:
+          BASE_URL: ${{ needs.build-and-preview.outputs.preview_url }}
+
+      - name: Health Check
+        run: |
+          echo "Checking health endpoint..."
+          curl -f "${{ needs.build-and-preview.outputs.preview_url }}/api/health" || {
+            echo "Health check failed!"
+            exit 1
+          }
+          echo "Health check passed!"
+
+      - name: Upload test results on failure
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: smoke-test-results
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 7
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # STEP 3: Promote to Production (Only if Smoke Tests Pass)
+  # ═══════════════════════════════════════════════════════════════════════════
+  promote:
+    name: Promote to Production
+    needs: [build-and-preview, smoke-test]
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Vercel CLI
+        run: npm i -g vercel@latest
+
+      - name: Promote to Production
+        run: |
+          echo "Promoting ${{ needs.build-and-preview.outputs.preview_url }} to production..."
+          vercel promote ${{ needs.build-and-preview.outputs.preview_url }} --token=${{ secrets.VERCEL_TOKEN }} --yes
+          echo "Successfully promoted to production!"
+
+      - name: Verify Production Health
+        run: |
+          echo "Verifying production health..."
+          sleep 30  # Wait for DNS propagation
+          # Replace with your actual production URL
+          curl -f "https://astrobobo.vercel.app/api/health" || {
+            echo "WARNING: Production health check failed, but deployment completed"
+          }
+          echo "Production deployment complete!"
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # STEP 4: Notify on Failure (Optional - requires Slack webhook)
+  # ═══════════════════════════════════════════════════════════════════════════
+  notify-failure:
+    name: Notify on Failure
+    needs: [build-and-preview, smoke-test, promote]
+    if: failure()
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Log Failure
+        run: |
+          echo "Deployment failed!"
+          echo "Preview URL: ${{ needs.build-and-preview.outputs.preview_url }}"
+          echo "Check the smoke-test job for details."
+          echo "Production was NOT updated - users are still on the previous version."

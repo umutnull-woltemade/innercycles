@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ui';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -11,11 +12,13 @@ import 'firebase_options.dart';
 import 'core/theme/app_theme.dart';
 import 'shared/services/router_service.dart';
 import 'shared/widgets/interpretive_text.dart';
+import 'shared/widgets/app_error_widget.dart';
 import 'data/services/ad_service.dart';
 import 'data/services/storage_service.dart';
 import 'data/services/notification_service.dart';
 import 'data/services/admin_auth_service.dart';
 import 'data/services/admin_analytics_service.dart';
+import 'data/services/web_error_service.dart';
 import 'data/providers/app_providers.dart';
 import 'data/models/user_profile.dart';
 
@@ -25,6 +28,11 @@ void main() async {
   }
 
   WidgetsFlutterBinding.ensureInitialized();
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // GLOBAL ERROR HANDLING - Prevent white screen on ANY error
+  // ═══════════════════════════════════════════════════════════════════════════
+  _setupGlobalErrorHandling();
 
   if (kDebugMode) {
     debugPrint('✓ WidgetsBinding initialized');
@@ -95,15 +103,21 @@ void main() async {
     }
   }
 
-  // Initialize Crashlytics (mobile only)
+  // Initialize Crashlytics (mobile only) - extends the global error handling
   if (!kIsWeb) {
     try {
-      // Pass all uncaught Flutter errors to Crashlytics
-      FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+      // Wrap global handler with Crashlytics
+      final originalHandler = FlutterError.onError;
+      FlutterError.onError = (details) {
+        FirebaseCrashlytics.instance.recordFlutterFatalError(details);
+        originalHandler?.call(details);
+      };
 
-      // Pass all uncaught async errors to Crashlytics
+      // Wrap platform dispatcher with Crashlytics
+      final originalPlatformHandler = PlatformDispatcher.instance.onError;
       PlatformDispatcher.instance.onError = (error, stack) {
         FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+        originalPlatformHandler?.call(error, stack);
         return true;
       };
 
@@ -228,6 +242,11 @@ class VenusOneApp extends ConsumerWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       builder: (context, child) {
+        // Set global error widget builder to prevent white screen
+        ErrorWidget.builder = (FlutterErrorDetails details) {
+          return AppErrorWidget(details: details);
+        };
+
         // Apply RTL direction for Arabic
         return Directionality(
           textDirection: language.isRTL ? TextDirection.rtl : TextDirection.ltr,
@@ -235,5 +254,55 @@ class VenusOneApp extends ConsumerWidget {
         );
       },
     );
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// GLOBAL ERROR HANDLING SETUP
+// ═══════════════════════════════════════════════════════════════════════════
+
+/// Sets up global error handling to prevent white screens
+/// This ensures ANY uncaught error shows a fallback UI instead of blank screen
+void _setupGlobalErrorHandling() {
+  // Catch all synchronous Flutter framework errors
+  FlutterError.onError = (FlutterErrorDetails details) {
+    // Log to console in debug mode
+    if (kDebugMode) {
+      debugPrint('═══════════════════════════════════════════════════════════');
+      debugPrint('FLUTTER ERROR CAUGHT (prevents white screen):');
+      debugPrint('${details.exception}');
+      debugPrint('═══════════════════════════════════════════════════════════');
+    }
+
+    // Log to analytics on web
+    if (kIsWeb) {
+      WebErrorService().logError(details.exception.toString());
+    }
+
+    // Present the error using Flutter's built-in mechanism
+    FlutterError.presentError(details);
+  };
+
+  // Catch all asynchronous errors (Futures, Streams, etc.)
+  PlatformDispatcher.instance.onError = (error, stack) {
+    if (kDebugMode) {
+      debugPrint('═══════════════════════════════════════════════════════════');
+      debugPrint('ASYNC ERROR CAUGHT (prevents white screen):');
+      debugPrint('$error');
+      debugPrint('Stack: $stack');
+      debugPrint('═══════════════════════════════════════════════════════════');
+    }
+
+    // Log to analytics on web
+    if (kIsWeb) {
+      WebErrorService().logError(error.toString());
+    }
+
+    // Return true to indicate the error was handled
+    return true;
+  };
+
+  if (kDebugMode) {
+    debugPrint('✓ Global error handling initialized (white screen protection)');
   }
 }

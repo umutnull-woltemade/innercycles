@@ -5,7 +5,8 @@
     "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
-        { "source": "/birth-chart", "destination": "/index.html" },
+    { "source": "/api/health", "destination": "/api/health.json" },
+    { "source": "/birth-chart", "destination": "/index.html" },
     { "source": "/horoscope", "destination": "/index.html" },
     { "source": "/horoscope/:path*", "destination": "/index.html" },
     { "source": "/synastry", "destination": "/index.html" },
