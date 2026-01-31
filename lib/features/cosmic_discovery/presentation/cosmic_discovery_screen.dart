@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/models/zodiac_sign.dart' as zodiac;
 import '../../../shared/widgets/cosmic_background.dart';
@@ -93,7 +94,7 @@ class _CosmicDiscoveryScreenState extends ConsumerState<CosmicDiscoveryScreen>
       child: Row(
         children: [
           GestureDetector(
-            onTap: () => Navigator.of(context).pop(),
+            onTap: () => context.pop(),
             child: Container(
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
