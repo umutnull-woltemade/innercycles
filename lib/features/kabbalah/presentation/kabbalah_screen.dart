@@ -7,6 +7,7 @@ import '../../../data/providers/app_providers.dart';
 import '../../../data/services/kabbalah_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/entertainment_disclaimer.dart';
+import '../../../shared/widgets/null_profile_placeholder.dart';
 
 class KabbalahScreen extends ConsumerWidget {
   const KabbalahScreen({super.key});
@@ -16,17 +17,10 @@ class KabbalahScreen extends ConsumerWidget {
     final userProfile = ref.watch(userProfileProvider);
 
     if (userProfile == null) {
-      return Scaffold(
-        body: CosmicBackground(
-          child: Center(
-            child: Text(
-              'Lütfen önce doğum bilgilerinizi girin',
-              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: AppColors.textSecondary,
-                  ),
-            ),
-          ),
-        ),
+      return const NullProfilePlaceholder(
+        emoji: '🕎',
+        titleKey: 'kabbalah_analysis',
+        messageKey: 'enter_birth_info_kabbalah',
       );
     }
 

@@ -105,6 +105,9 @@ class UrlLauncherService {
 
   /// Open app store page directly
   Future<bool> openAppStorePage() async {
+    // Web'de store yok
+    if (kIsWeb) return false;
+
     try {
       final InAppReview inAppReview = InAppReview.instance;
 
@@ -127,32 +130,43 @@ class UrlLauncherService {
   }
 
   Future<bool> _openStoreFallback() async {
-    String storeUrl;
+    // Web doesn't have a store
+    if (kIsWeb) return false;
 
-    if (kIsWeb) {
-      // Web doesn't have a store
-      return false;
-    } else if (Platform.isIOS) {
-      if (AppConstants.appStoreId.isNotEmpty) {
-        storeUrl = 'https://apps.apple.com/app/id${AppConstants.appStoreId}';
+    try {
+      String storeUrl;
+
+      if (Platform.isIOS) {
+        if (AppConstants.appStoreId.isNotEmpty) {
+          storeUrl = 'https://apps.apple.com/app/id${AppConstants.appStoreId}';
+        } else {
+          return false;
+        }
+      } else if (Platform.isAndroid) {
+        storeUrl = 'https://play.google.com/store/apps/details?id=${AppConstants.playStoreId}';
       } else {
         return false;
       }
-    } else if (Platform.isAndroid) {
-      storeUrl = 'https://play.google.com/store/apps/details?id=${AppConstants.playStoreId}';
-    } else {
+
+      return launchUrl(storeUrl, source: 'store_fallback');
+    } catch (_) {
       return false;
     }
-
-    return launchUrl(storeUrl, source: 'store_fallback');
   }
 
   /// Share app link
   Future<String> getAppShareLink() async {
-    if (Platform.isIOS && AppConstants.appStoreId.isNotEmpty) {
-      return 'https://apps.apple.com/app/id${AppConstants.appStoreId}';
-    } else if (Platform.isAndroid) {
-      return 'https://play.google.com/store/apps/details?id=${AppConstants.playStoreId}';
+    // Web'de platform kontrolü yapamayız
+    if (kIsWeb) return 'https://venusone.com';
+
+    try {
+      if (Platform.isIOS && AppConstants.appStoreId.isNotEmpty) {
+        return 'https://apps.apple.com/app/id${AppConstants.appStoreId}';
+      } else if (Platform.isAndroid) {
+        return 'https://play.google.com/store/apps/details?id=${AppConstants.playStoreId}';
+      }
+    } catch (_) {
+      // Platform erişimi başarısız
     }
     return 'https://venusone.com';
   }

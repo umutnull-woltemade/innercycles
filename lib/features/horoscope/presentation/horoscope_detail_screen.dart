@@ -12,6 +12,7 @@ import '../../../data/services/extended_horoscope_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/ad_banner_widget.dart';
 import '../../../shared/widgets/interpretive_text.dart';
+import '../../../shared/widgets/constellation_widget.dart';
 import '../../../shared/widgets/page_bottom_navigation.dart';
 import '../../../shared/widgets/breadcrumb_navigation.dart';
 import '../../../shared/widgets/faq_section.dart';
@@ -220,7 +221,7 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Kısa Cevap',
+            'Burç Çözümlemelerin',
             style: Theme.of(context).textTheme.titleSmall?.copyWith(
               color: sign.color,
               fontWeight: FontWeight.w600,
@@ -243,8 +244,9 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
                 ),
                 const SizedBox(width: 10),
                 Expanded(
-                  child: Text(
-                    bullet,
+                  child: AutoGlossaryText(
+                    text: bullet,
+                    enableHighlighting: true,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       color: AppColors.textPrimary,
                       height: 1.5,
@@ -496,7 +498,7 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
           const SizedBox(height: AppConstants.spacingLg),
           // Deep Interpretation Card
           DeepInterpretationCard(
-            title: '${sign.nameTr} Burcunun Derinligi',
+            title: '${sign.nameTr} Burcunun Derinliği',
             summary: _getSignSummary(sign),
             deepInterpretation: _getSignDeepInterpretation(sign),
             icon: Icons.auto_stories,
@@ -754,7 +756,7 @@ Balık'ın iki balık sembolizmi - zıt yönlere yüzen - maddi ve spiritüel d�
               Icon(Icons.auto_awesome, color: sign.color, size: 20),
               const SizedBox(width: 8),
               Text(
-                'Genel Bakış',
+                'Kozmik Enerjin',
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       color: sign.color,
                     ),
@@ -934,7 +936,19 @@ Balık'ın iki balık sembolizmi - zıt yönlere yüzen - maddi ve spiritüel d�
               IconButton(
                 icon: const Icon(Icons.share),
                 color: AppColors.textPrimary,
-                onPressed: () {},
+                onPressed: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: const Text('Bu özellik yakında eklenecek ✨'),
+                      backgroundColor: AppColors.starGold,
+                      behavior: SnackBarBehavior.floating,
+                      duration: const Duration(seconds: 2),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                  );
+                },
                 visualDensity: VisualDensity.compact,
               ),
             ],
@@ -956,9 +970,11 @@ Balık'ın iki balık sembolizmi - zıt yönlere yüzen - maddi ve spiritüel d�
                     ),
                   ],
                 ),
-                child: Text(
-                  sign.symbol,
-                  style: TextStyle(fontSize: 28, color: sign.color),
+                child: ConstellationWidget(
+                  sign: sign,
+                  size: 36,
+                  color: sign.color,
+                  showGlow: true,
                 ),
               ),
               const SizedBox(width: AppConstants.spacingMd),
@@ -1075,7 +1091,7 @@ Balık'ın iki balık sembolizmi - zıt yönlere yüzen - maddi ve spiritüel d�
               Icon(Icons.auto_awesome, color: sign.color, size: 20),
               const SizedBox(width: 8),
               Text(
-                'Günlük Genel Bakış',
+                'Günün Kozmik Enerjin',
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       color: sign.color,
                     ),
@@ -1127,8 +1143,9 @@ Balık'ın iki balık sembolizmi - zıt yönlere yüzen - maddi ve spiritüel d�
             ],
           ),
           const SizedBox(height: AppConstants.spacingMd),
-          Text(
-            content,
+          AutoGlossaryText(
+            text: content,
+            enableHighlighting: true,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   color: AppColors.textSecondary,
                   height: 1.6,
@@ -1202,7 +1219,7 @@ Balık'ın iki balık sembolizmi - zıt yönlere yüzen - maddi ve spiritüel d�
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            '${sign.nameTr} Hakkında',
+            '${sign.nameTr} Burcu Sırları',
             style: Theme.of(context).textTheme.titleSmall?.copyWith(
                   color: sign.color,
                 ),
@@ -1224,14 +1241,14 @@ Balık'ın iki balık sembolizmi - zıt yönlere yüzen - maddi ve spiritüel d�
                   label: sign.element.name, icon: null, color: sign.element.color),
               _InfoTag(label: sign.modality.name, icon: null, color: sign.color),
               _InfoTag(
-                  label: 'Ruled by ${sign.rulingPlanet}',
+                  label: 'Yönetici: ${sign.rulingPlanetTr}',
                   icon: null,
                   color: AppColors.starGold),
             ],
           ),
           const SizedBox(height: AppConstants.spacingLg),
           Text(
-            'Temel Özellikler',
+            'Ruhsal İmza',
             style: Theme.of(context).textTheme.labelMedium?.copyWith(
                   color: AppColors.textMuted,
                 ),

@@ -754,7 +754,7 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
         unselectedLabelColor: Colors.white.withValues(alpha: 0.6),
         dividerColor: Colors.transparent,
         tabs: const [
-          Tab(text: 'Genel Bakış'),
+          Tab(text: 'Çakra Haritası'),
           Tab(text: 'Meditasyon'),
           Tab(text: 'Günlük'),
         ],
@@ -1348,13 +1348,16 @@ class ChakraAnalysisService {
     return [
       ChakraData(
         name: 'Root',
-        nameTr: 'Kök Chakra',
+        nameTr: 'Kök Çakrası',
         sanskritName: 'Muladhara',
-        symbol: '4',
+        symbol: 'LAM',
         color: const Color(0xFFE53935),
         balance: baseBalances[0],
         description:
-            'Kök chakra, hayatta kalma içgüdüleri, güvenlik ve topraklanma ile ilişkilidir. Fiziksel bedenin temelini oluşturur.',
+            'Muladhara - "Kök Destek" - 4 yapraklı kırmızı lotus olarak sembolize edilir. '
+            'Omurganın tabanında yer alan bu çakra, hayatta kalma içgüdüleri, güvenlik, '
+            'topraklanma ve maddi dünya ile bağlantını temsil eder. Toprak elementi ile ilişkilidir. '
+            'Atalarından gelen enerji burada saklanır. Dengeli olduğunda güvenli ve istikrarlı hissedersin.',
         physicalConnection: 'Bacaklar, ayaklar, kemikler, bağışıklık sistemi',
         emotionalAspects: 'Güvenlik hissi, istikrar, temel ihtiyaçlar',
         balanceMessage: baseBalances[0] > 0.7
@@ -1372,7 +1375,7 @@ class ChakraAnalysisService {
       ),
       ChakraData(
         name: 'Sacral',
-        nameTr: 'Sakral Chakra',
+        nameTr: 'Sakral Çakrası',
         sanskritName: 'Svadhisthana',
         symbol: 'VAM',
         color: const Color(0xFFFF9800),
@@ -1396,7 +1399,7 @@ class ChakraAnalysisService {
       ),
       ChakraData(
         name: 'Solar Plexus',
-        nameTr: 'Güneş Ağı Chakrası',
+        nameTr: 'Güneş Ağı Çakrası',
         sanskritName: 'Manipura',
         symbol: 'RAM',
         color: const Color(0xFFFFEB3B),
@@ -1420,13 +1423,16 @@ class ChakraAnalysisService {
       ),
       ChakraData(
         name: 'Heart',
-        nameTr: 'Kalp Chakrası',
+        nameTr: 'Kalp Çakrası',
         sanskritName: 'Anahata',
         symbol: 'YAM',
         color: const Color(0xFF4CAF50),
         balance: baseBalances[3],
         description:
-            'Kalp chakrası, sevgi, şefkat, affetme ve ilişkiler ile bağlantılıdır. Fiziksel ve ruhsal bedeni birleştirir.',
+            'Anahata - "Vurulamayan Ses" - 12 yapraklı yeşil lotus olarak sembolize edilir. '
+            'Kalp çakrası, sevgi, şefkat, affetme ve koşulsuz kabul enerjisidir. '
+            'Fiziksel ve ruhsal bedeni birleştiren köprüdür. Hava elementi ile bağlantılıdır. '
+            'Dengeli olduğunda evrensel sevgiyi deneyimler, tüm canlılara şefkat duyarsın.',
         physicalConnection: 'Kalp, akciğer, göğüs, kollar, eller',
         emotionalAspects: 'Koşulsuz sevgi, empati, bağışlama',
         balanceMessage: baseBalances[3] > 0.7
@@ -1444,7 +1450,7 @@ class ChakraAnalysisService {
       ),
       ChakraData(
         name: 'Throat',
-        nameTr: 'Boğaz Chakrası',
+        nameTr: 'Boğaz Çakrası',
         sanskritName: 'Vishuddha',
         symbol: 'HAM',
         color: const Color(0xFF03A9F4),
@@ -1468,7 +1474,7 @@ class ChakraAnalysisService {
       ),
       ChakraData(
         name: 'Third Eye',
-        nameTr: 'Üçüncü Göz Chakrası',
+        nameTr: 'Üçüncü Göz Çakrası',
         sanskritName: 'Ajna',
         symbol: 'OM',
         color: const Color(0xFF3F51B5),
@@ -1492,7 +1498,7 @@ class ChakraAnalysisService {
       ),
       ChakraData(
         name: 'Crown',
-        nameTr: 'Taç Chakrası',
+        nameTr: 'Taç Çakrası',
         sanskritName: 'Sahasrara',
         symbol: 'AUM',
         color: const Color(0xFF9C27B0),

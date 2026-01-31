@@ -1,17 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/zodiac_sign.dart';
+import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/zodiac_card.dart';
 import '../../../shared/widgets/page_bottom_navigation.dart';
 import '../../../shared/widgets/entertainment_disclaimer.dart';
 import '../../../shared/widgets/quiz_cta_card.dart';
 
-class HoroscopeScreen extends StatelessWidget {
+class HoroscopeScreen extends ConsumerStatefulWidget {
   const HoroscopeScreen({super.key});
+
+  @override
+  ConsumerState<HoroscopeScreen> createState() => _HoroscopeScreenState();
+}
+
+class _HoroscopeScreenState extends ConsumerState<HoroscopeScreen> {
+  bool _hasAutoNavigated = false;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!_hasAutoNavigated) {
+        _hasAutoNavigated = true;
+        final userProfile = ref.read(userProfileProvider);
+        if (userProfile?.sunSign != null && context.mounted) {
+          context.pushReplacement(
+            '${Routes.horoscope}/${userProfile!.sunSign.name.toLowerCase()}',
+          );
+        }
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -1,48 +1,117 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
   <defs>
-    <!-- Primary pearl gradient - soft blush pink with warm highlights -->
-    <radialGradient id="venusCore" cx="35%" cy="30%" r="65%" fx="30%" fy="25%">
-      <stop offset="0%" stop-color="#FFF5F0"/>
-      <stop offset="12%" stop-color="#FFEFEA"/>
-      <stop offset="28%" stop-color="#FFE4DD"/>
-      <stop offset="45%" stop-color="#FFD9D1"/>
-      <stop offset="62%" stop-color="#F5C4BC"/>
-      <stop offset="78%" stop-color="#E8ADA4"/>
-      <stop offset="92%" stop-color="#DFA099"/>
-      <stop offset="100%" stop-color="#D8968E"/>
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- VENUS ONE - Premium Planet Logo                                  -->
+    <!-- Version 2.0 - Cosmic Venus with depth and glow                  -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+
+    <!-- Outer cosmic glow - soft pink halo -->
+    <radialGradient id="outerGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="60%" stop-color="#FFD4E8" stop-opacity="0"/>
+      <stop offset="75%" stop-color="#FFD4E8" stop-opacity="0.15"/>
+      <stop offset="85%" stop-color="#F5C4D4" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#E8B4BC" stop-opacity="0"/>
     </radialGradient>
 
-    <!-- Subtle inner luminosity -->
-    <radialGradient id="venusGlow" cx="38%" cy="32%" r="45%" fx="35%" fy="28%">
-      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.35"/>
-      <stop offset="40%" stop-color="#FFF8F5" stop-opacity="0.15"/>
+    <!-- Main planet surface gradient - rose gold 3D sphere -->
+    <radialGradient id="planetSurface" cx="35%" cy="30%" r="70%" fx="30%" fy="25%">
+      <stop offset="0%" stop-color="#FFFAF5"/>
+      <stop offset="8%" stop-color="#FFF5EE"/>
+      <stop offset="18%" stop-color="#FFEEE5"/>
+      <stop offset="30%" stop-color="#FFE5D8"/>
+      <stop offset="45%" stop-color="#F5D0C5"/>
+      <stop offset="60%" stop-color="#E8B4BC"/>
+      <stop offset="75%" stop-color="#D8A098"/>
+      <stop offset="88%" stop-color="#C88A82"/>
+      <stop offset="100%" stop-color="#B87D75"/>
+    </radialGradient>
+
+    <!-- Highlight spot - pearl white shine -->
+    <radialGradient id="highlight" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.9"/>
+      <stop offset="30%" stop-color="#FFFFFF" stop-opacity="0.5"/>
+      <stop offset="60%" stop-color="#FFF8F5" stop-opacity="0.2"/>
       <stop offset="100%" stop-color="#FFE8E2" stop-opacity="0"/>
     </radialGradient>
 
-    <!-- Soft edge definition -->
-    <radialGradient id="venusEdge" cx="50%" cy="50%" r="50%">
-      <stop offset="85%" stop-color="#D8968E" stop-opacity="0"/>
-      <stop offset="95%" stop-color="#C88A82" stop-opacity="0.08"/>
-      <stop offset="100%" stop-color="#B87D75" stop-opacity="0.15"/>
+    <!-- Secondary highlight - softer -->
+    <radialGradient id="secondaryHighlight" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.4"/>
+      <stop offset="50%" stop-color="#FFF5F0" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#FFE4DD" stop-opacity="0"/>
     </radialGradient>
 
-    <!-- Pearl sheen highlight -->
-    <linearGradient id="venusPearlSheen" x1="20%" y1="15%" x2="75%" y2="80%">
-      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.22"/>
-      <stop offset="35%" stop-color="#FFF8F5" stop-opacity="0.08"/>
-      <stop offset="100%" stop-color="#FFE4DD" stop-opacity="0"/>
+    <!-- Atmosphere band gradient -->
+    <linearGradient id="atmosphereBand" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0"/>
+      <stop offset="20%" stop-color="#FFFFFF" stop-opacity="0.12"/>
+      <stop offset="50%" stop-color="#FFF8F5" stop-opacity="0.18"/>
+      <stop offset="80%" stop-color="#FFFFFF" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
     </linearGradient>
+
+    <!-- Edge shadow for depth -->
+    <radialGradient id="edgeShadow" cx="65%" cy="65%" r="50%">
+      <stop offset="70%" stop-color="#B87D75" stop-opacity="0"/>
+      <stop offset="90%" stop-color="#A06B65" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#8B5A52" stop-opacity="0.35"/>
+    </radialGradient>
+
+    <!-- Inner rim light -->
+    <radialGradient id="rimLight" cx="75%" cy="75%" r="50%">
+      <stop offset="80%" stop-color="#FFE8E2" stop-opacity="0"/>
+      <stop offset="95%" stop-color="#FFD0C5" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#FFC0B5" stop-opacity="0.08"/>
+    </radialGradient>
+
+    <!-- Golden cosmic sparkle -->
+    <radialGradient id="goldenSparkle" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFD700" stop-opacity="0.8"/>
+      <stop offset="40%" stop-color="#FFD700" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#FFD700" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Subtle star glow filter -->
+    <filter id="starGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
   </defs>
 
+  <!-- Background (transparent) -->
+
+  <!-- Outer cosmic glow halo -->
+  <circle cx="256" cy="256" r="250" fill="url(#outerGlow)"/>
+
   <!-- Main planet body -->
-  <circle cx="256" cy="256" r="240" fill="url(#venusCore)"/>
+  <circle cx="256" cy="256" r="200" fill="url(#planetSurface)"/>
 
-  <!-- Inner luminosity layer -->
-  <circle cx="256" cy="256" r="240" fill="url(#venusGlow)"/>
+  <!-- Edge shadow for 3D depth -->
+  <circle cx="256" cy="256" r="200" fill="url(#edgeShadow)"/>
 
-  <!-- Pearl sheen overlay -->
-  <circle cx="256" cy="256" r="240" fill="url(#venusPearlSheen)"/>
+  <!-- Rim light on opposite side -->
+  <circle cx="256" cy="256" r="200" fill="url(#rimLight)"/>
 
-  <!-- Soft edge definition -->
-  <circle cx="256" cy="256" r="240" fill="url(#venusEdge)"/>
+  <!-- Atmosphere bands - subtle horizontal wisps -->
+  <ellipse cx="256" cy="220" rx="180" ry="25" fill="url(#atmosphereBand)" opacity="0.5"/>
+  <ellipse cx="256" cy="260" rx="175" ry="22" fill="url(#atmosphereBand)" opacity="0.4"/>
+  <ellipse cx="256" cy="295" rx="165" ry="20" fill="url(#atmosphereBand)" opacity="0.3"/>
+  <ellipse cx="256" cy="185" rx="170" ry="18" fill="url(#atmosphereBand)" opacity="0.35"/>
+
+  <!-- Primary highlight - top left bright spot -->
+  <circle cx="180" cy="180" r="70" fill="url(#highlight)"/>
+
+  <!-- Secondary highlight - softer spread -->
+  <circle cx="200" cy="200" r="100" fill="url(#secondaryHighlight)"/>
+
+  <!-- Small golden sparkles for premium feel -->
+  <circle cx="145" cy="165" r="4" fill="url(#goldenSparkle)" filter="url(#starGlow)"/>
+  <circle cx="165" cy="145" r="3" fill="url(#goldenSparkle)" filter="url(#starGlow)"/>
+  <circle cx="130" cy="190" r="2.5" fill="url(#goldenSparkle)" filter="url(#starGlow)"/>
+
+  <!-- Subtle edge definition ring -->
+  <circle cx="256" cy="256" r="199" fill="none" stroke="#C88A82" stroke-width="1" stroke-opacity="0.15"/>
 </svg>

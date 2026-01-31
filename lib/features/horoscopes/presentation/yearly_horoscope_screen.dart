@@ -269,7 +269,7 @@ class _YearlyHoroscopeScreenState extends State<YearlyHoroscopeScreen> {
                         ),
                   ),
                   Text(
-                    '$_selectedYear Yılı Genel Bakış',
+                    '$_selectedYear Kozmik Özeti',
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           color: AppColors.starGold,
                         ),

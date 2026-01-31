@@ -37,21 +37,27 @@ class MajorArcanaDetailScreen extends StatelessWidget {
       );
     }
 
-    return Scaffold(
-      body: CosmicBackground(
-        child: SafeArea(
-          child: CustomScrollView(
-            slivers: [
-              SliverAppBar(
-                backgroundColor: Colors.transparent,
-                floating: true,
-                snap: true,
-                expandedHeight: 280,
-                flexibleSpace: _buildHeader(context, content),
-                leading: IconButton(
-                  icon: const Icon(Icons.arrow_back, color: AppColors.textPrimary),
-                  onPressed: () => context.pop(),
-                ),
+    return GestureDetector(
+      onHorizontalDragEnd: (details) {
+        if (details.primaryVelocity != null && details.primaryVelocity! > 300) {
+          context.pop();
+        }
+      },
+      child: Scaffold(
+        body: CosmicBackground(
+          child: SafeArea(
+            child: CustomScrollView(
+              slivers: [
+                SliverAppBar(
+                  backgroundColor: Colors.transparent,
+                  floating: true,
+                  snap: true,
+                  expandedHeight: 280,
+                  flexibleSpace: _buildHeader(context, content),
+                  leading: IconButton(
+                    icon: const Icon(Icons.arrow_back, color: AppColors.textPrimary),
+                    onPressed: () => context.pop(),
+                  ),
                 actions: [
                   IconButton(
                     icon: const Icon(Icons.share, color: AppColors.textPrimary),
@@ -121,6 +127,7 @@ class MajorArcanaDetailScreen extends StatelessWidget {
           ),
         ),
       ),
+    ),
     );
   }
 
@@ -787,6 +794,7 @@ class MajorArcanaDetailScreen extends StatelessWidget {
       '0', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X',
       'XI', 'XII', 'XIII', 'XIV', 'XV', 'XVI', 'XVII', 'XVIII', 'XIX', 'XX', 'XXI'
     ];
+    if (number < 0 || number >= romanNumerals.length) return '?';
     return romanNumerals[number];
   }
 

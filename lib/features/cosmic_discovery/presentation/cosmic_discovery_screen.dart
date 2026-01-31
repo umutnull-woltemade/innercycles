@@ -491,6 +491,7 @@ enum CosmicDiscoveryType {
   // Günlük Enerjiler
   dailySummary,
   moonEnergy,
+  moonRituals,    // Ay Ritüelleri - distinct from moonEnergy
   loveEnergy,
   abundanceEnergy,
 
@@ -513,6 +514,7 @@ enum CosmicDiscoveryType {
   // Mistik Keşifler
   tarotCard,
   auraColor,
+  crystalGuide,   // Kristal Rehberi - distinct from auraColor
   chakraBalance,
   lifeNumber,
   kabbalaPath,
@@ -564,6 +566,8 @@ class CosmicDiscoveryContent {
         return _getDailySummaryContent(sign, userName);
       case CosmicDiscoveryType.moonEnergy:
         return _getMoonEnergyContent(sign, userName);
+      case CosmicDiscoveryType.moonRituals:
+        return _getMoonRitualsContent(sign, userName);
       case CosmicDiscoveryType.loveEnergy:
         return _getLoveEnergyContent(sign, userName);
       case CosmicDiscoveryType.abundanceEnergy:
@@ -572,6 +576,8 @@ class CosmicDiscoveryContent {
         return _getTarotCardContent(sign, userName);
       case CosmicDiscoveryType.auraColor:
         return _getAuraColorContent(sign, userName);
+      case CosmicDiscoveryType.crystalGuide:
+        return _getCrystalGuideContent(sign, userName);
       case CosmicDiscoveryType.chakraBalance:
         return _getChakraBalanceContent(sign, userName);
       case CosmicDiscoveryType.lifeNumber:
@@ -1533,6 +1539,99 @@ class CosmicDiscoveryContent {
       zodiac.ZodiacSign.pisces: 'Su elementi olarak Ay enerjisi sezgileri güçlendirir. Sınırlarını koru.',
     };
     return advice[sign] ?? 'Ay enerjisini dengele.';
+  }
+
+  static Map<String, String> _getMoonRitualsContent(zodiac.ZodiacSign sign, String userName) {
+    return {
+      'mainMessage': '$userName, Ay ritüelleri ${sign.nameTr} burcunun duygusal döngüsünü destekler.',
+      'details': 'Ay Fazlarına Göre Ritüeller:\n\n🌑 Yeni Ay Ritüeli:\n• Niyet belirleme\n• Mum yakma\n• Dilek yazma\n\n🌕 Dolunay Ritüeli:\n• Bırakma meditasyonu\n• Ay banyosu\n• Şükran listesi\n\n🌙 ${sign.element} Elementi için özel:\n${_getMoonRitualAdvice(sign)}',
+      'advice': 'Her Ay fazında 10 dakika sessiz meditasyon yap.',
+      'warning': 'Ay tutulmalarında ritüel yapmaktan kaçın.',
+    };
+  }
+
+  static String _getMoonRitualAdvice(zodiac.ZodiacSign sign) {
+    final rituals = {
+      zodiac.ZodiacSign.aries: 'Ateş ritüeli: Mum yakarak niyetini güçlendir.',
+      zodiac.ZodiacSign.taurus: 'Toprak ritüeli: Doğada çıplak ayakla yürü.',
+      zodiac.ZodiacSign.gemini: 'Hava ritüeli: Rüzgara dileklerini fısılda.',
+      zodiac.ZodiacSign.cancer: 'Su ritüeli: Ay ışığında banyo yap.',
+      zodiac.ZodiacSign.leo: 'Ateş ritüeli: Güneş doğarken niyet kur.',
+      zodiac.ZodiacSign.virgo: 'Toprak ritüeli: Bitki dikme meditasyonu.',
+      zodiac.ZodiacSign.libra: 'Hava ritüeli: Tütsü yakarak denge kur.',
+      zodiac.ZodiacSign.scorpio: 'Su ritüeli: Temizleyici banyo al.',
+      zodiac.ZodiacSign.sagittarius: 'Ateş ritüeli: Ateş başında meditasyon.',
+      zodiac.ZodiacSign.capricorn: 'Toprak ritüeli: Kristal çalışması yap.',
+      zodiac.ZodiacSign.aquarius: 'Hava ritüeli: Nefes çalışması yap.',
+      zodiac.ZodiacSign.pisces: 'Su ritüeli: Ay suyu hazırla.',
+    };
+    return rituals[sign] ?? 'Elementinle uyumlu ritüel seç.';
+  }
+
+  static Map<String, String> _getCrystalGuideContent(zodiac.ZodiacSign sign, String userName) {
+    final crystals = {
+      zodiac.ZodiacSign.aries: {
+        'mainMessage': '$userName, Koç burcunun şifa kristalleri enerji ve cesaret taşıyor.',
+        'details': '💎 Ana Kristalin: Karnelyan\n🔮 Destek Kristalleri:\n• Kırmızı Jasper - cesaret\n• Sitrin - enerji\n• Hematit - topraklama\n\n✨ Kullanım:\n• Sağ cepte taşı\n• Meditasyonda göğüste tut\n• Dolunayda arındır',
+        'advice': 'Karnelyan göbek çakrasını aktive eder.',
+      },
+      zodiac.ZodiacSign.taurus: {
+        'mainMessage': '$userName, Boğa burcunun şifa kristalleri bolluk ve huzur getiriyor.',
+        'details': '💎 Ana Kristalin: Rodonit\n🔮 Destek Kristalleri:\n• Yeşil Aventurin - bolluk\n• Gül Kuvars - sevgi\n• Lapis Lazuli - bilgelik\n\n✨ Kullanım:\n• Yastık altında tut\n• Cüzdanda taşı\n• Yeni ayda şarj et',
+        'advice': 'Rodonit kalp çakrasını dengeliyor.',
+      },
+      zodiac.ZodiacSign.gemini: {
+        'mainMessage': '$userName, İkizler burcunun şifa kristalleri iletişim ve odaklanma sağlıyor.',
+        'details': '💎 Ana Kristalin: Akvamarin\n🔮 Destek Kristalleri:\n• Agat - denge\n• Kaplan Gözü - odak\n• Florit - zihinsel berraklık\n\n✨ Kullanım:\n• Boğaz çakrasında tut\n• Çalışma masasında bulundur\n• Akarsuda arındır',
+        'advice': 'Akvamarin iletişimi güçlendiriyor.',
+      },
+      zodiac.ZodiacSign.cancer: {
+        'mainMessage': '$userName, Yengeç burcunun şifa kristalleri duygusal koruma sağlıyor.',
+        'details': '💎 Ana Kristalin: Ay Taşı\n🔮 Destek Kristalleri:\n• Sedefli İnci - sezgi\n• Opal - duygusal denge\n• Rodonit - şefkat\n\n✨ Kullanım:\n• Kalp üzerinde tut\n• Dolunayda şarj et\n• Suyla arındır',
+        'advice': 'Ay Taşı sezgileri güçlendiriyor.',
+      },
+      zodiac.ZodiacSign.leo: {
+        'mainMessage': '$userName, Aslan burcunun şifa kristalleri parlaklık ve özgüven veriyor.',
+        'details': '💎 Ana Kristalin: Güneş Taşı\n🔮 Destek Kristalleri:\n• Kaplan Gözü - güç\n• Sitrin - neşe\n• Kehribar - enerji\n\n✨ Kullanım:\n• Güneş ışığında şarj et\n• Göğüs üzerinde tut\n• Solar pleksus çakrasına yerleştir',
+        'advice': 'Güneş Taşı özgüveni artırıyor.',
+      },
+      zodiac.ZodiacSign.virgo: {
+        'mainMessage': '$userName, Başak burcunun şifa kristalleri berraklık ve şifa getiriyor.',
+        'details': '💎 Ana Kristalin: Amazonit\n🔮 Destek Kristalleri:\n• Yeşil Turmalin - detoks\n• Ametist - sakinlik\n• Florit - odak\n\n✨ Kullanım:\n• Boğazda veya göğüste tut\n• Doğada şarj et\n• Tuzla arındır',
+        'advice': 'Amazonit kaygıyı azaltıyor.',
+      },
+      zodiac.ZodiacSign.libra: {
+        'mainMessage': '$userName, Terazi burcunun şifa kristalleri denge ve uyum sağlıyor.',
+        'details': '💎 Ana Kristalin: Lepidolit\n🔮 Destek Kristalleri:\n• Gül Kuvars - sevgi\n• Turkuaz - iletişim\n• Akuamarin - huzur\n\n✨ Kullanım:\n• İki elde tut\n• Kalp çakrasına yerleştir\n• Ay ışığında şarj et',
+        'advice': 'Lepidolit duygusal dengeyi destekliyor.',
+      },
+      zodiac.ZodiacSign.scorpio: {
+        'mainMessage': '$userName, Akrep burcunun şifa kristalleri dönüşüm ve koruma sağlıyor.',
+        'details': '💎 Ana Kristalin: Obsidiyen\n🔮 Destek Kristalleri:\n• Labradorit - dönüşüm\n• Kırmızı Garnet - tutku\n• Malakit - koruma\n\n✨ Kullanım:\n• Kök çakrasına yerleştir\n• Meditasyonda kullan\n• Akarsuda arındır',
+        'advice': 'Obsidiyen gölge çalışmasını destekliyor.',
+      },
+      zodiac.ZodiacSign.sagittarius: {
+        'mainMessage': '$userName, Yay burcunun şifa kristalleri genişleme ve şans getiriyor.',
+        'details': '💎 Ana Kristalin: Turkuaz\n🔮 Destek Kristalleri:\n• Sodalit - bilgelik\n• Ametist - ruhsallık\n• Sitrin - bolluk\n\n✨ Kullanım:\n• Boğaz çakrasına yerleştir\n• Seyahatte yanında taşı\n• Güneşte şarj et',
+        'advice': 'Turkuaz koruma ve şans getiriyor.',
+      },
+      zodiac.ZodiacSign.capricorn: {
+        'mainMessage': '$userName, Oğlak burcunun şifa kristalleri disiplin ve başarı destekliyor.',
+        'details': '💎 Ana Kristalin: Oniks\n🔮 Destek Kristalleri:\n• Yeşil Turmalin - bolluk\n• Garnet - motivasyon\n• Dumanlı Kuvars - topraklama\n\n✨ Kullanım:\n• Kök çakrasına yerleştir\n• Ofiste bulundur\n• Toprağa gömerek arındır',
+        'advice': 'Oniks odaklanma ve kararlılık veriyor.',
+      },
+      zodiac.ZodiacSign.aquarius: {
+        'mainMessage': '$userName, Kova burcunun şifa kristalleri yenilik ve özgürlük destekliyor.',
+        'details': '💎 Ana Kristalin: Ametist\n🔮 Destek Kristalleri:\n• Labradorit - sezgi\n• Akuamarin - iletişim\n• Florit - zihinsel berraklık\n\n✨ Kullanım:\n• Taç çakrasına yerleştir\n• Meditasyonda kullan\n• Ay ışığında şarj et',
+        'advice': 'Ametist üst çakraları aktive ediyor.',
+      },
+      zodiac.ZodiacSign.pisces: {
+        'mainMessage': '$userName, Balık burcunun şifa kristalleri sezgi ve ruhsal bağlantı sağlıyor.',
+        'details': '💎 Ana Kristalin: Ay Taşı\n🔮 Destek Kristalleri:\n• Akuamarin - duygusal şifa\n• Ametist - ruhsal bağlantı\n• Florit - koruma\n\n✨ Kullanım:\n• Üçüncü göze yerleştir\n• Suyla arındır\n• Dolunayda şarj et',
+        'advice': 'Ay Taşı psişik yetenekleri açıyor.',
+      },
+    };
+    return crystals[sign] ?? {'mainMessage': 'Kristal bilgin yükleniyor...'};
   }
 
   static Map<String, String> _getLoveEnergyContent(zodiac.ZodiacSign sign, String userName) {

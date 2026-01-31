@@ -9,6 +9,7 @@ import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/kadim_not_card.dart';
 import '../../../shared/widgets/next_blocks.dart';
 import '../../../shared/widgets/entertainment_disclaimer.dart';
+import '../../../shared/widgets/null_profile_placeholder.dart';
 
 class AuraScreen extends ConsumerWidget {
   const AuraScreen({super.key});
@@ -18,17 +19,10 @@ class AuraScreen extends ConsumerWidget {
     final userProfile = ref.watch(userProfileProvider);
 
     if (userProfile == null) {
-      return Scaffold(
-        body: CosmicBackground(
-          child: Center(
-            child: Text(
-              'Lütfen önce doğum bilgilerinizi girin',
-              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: AppColors.textSecondary,
-                  ),
-            ),
-          ),
-        ),
+      return const NullProfilePlaceholder(
+        emoji: '✨',
+        titleKey: 'aura_analysis',
+        messageKey: 'enter_birth_info_aura',
       );
     }
 

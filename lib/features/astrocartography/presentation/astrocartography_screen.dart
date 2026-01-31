@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_constants.dart';
+import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/premium_astrology.dart';
 import '../../../data/services/premium_astrology_service.dart';
@@ -60,25 +61,37 @@ class _AstroCartographyScreenState extends ConsumerState<AstroCartographyScreen>
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text('', style: TextStyle(fontSize: 64)),
+                const Text('🗺️', style: TextStyle(fontSize: 64)),
                 const SizedBox(height: 16),
                 Text(
-                  'Profil bulunamadi',
+                  'Profil Bulunamadı',
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
                         color: Colors.white,
                       ),
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Lutfen once dogum bilgilerinizi girin',
+                  'Astrokatografi haritanızı görmek için\nönce doğum bilgilerinizi girin',
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         color: Colors.white70,
                       ),
+                  textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 24),
-                ElevatedButton(
+                ElevatedButton.icon(
+                  onPressed: () => context.go(Routes.onboarding),
+                  icon: const Icon(Icons.person_add),
+                  label: const Text('Profil Oluştur'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF667EEA),
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                  ),
+                ),
+                const SizedBox(height: 12),
+                TextButton(
                   onPressed: () => context.pop(),
-                  child: const Text('Geri Don'),
+                  child: const Text('Geri Dön', style: TextStyle(color: Colors.white70)),
                 ),
               ],
             ),

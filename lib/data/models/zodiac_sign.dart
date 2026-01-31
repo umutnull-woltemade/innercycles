@@ -230,32 +230,61 @@ extension ZodiacSignExtension on ZodiacSign {
     }
   }
 
+  String get rulingPlanetTr {
+    switch (this) {
+      case ZodiacSign.aries:
+        return 'Mars';
+      case ZodiacSign.taurus:
+        return 'Venüs';
+      case ZodiacSign.gemini:
+        return 'Merkür';
+      case ZodiacSign.cancer:
+        return 'Ay';
+      case ZodiacSign.leo:
+        return 'Güneş';
+      case ZodiacSign.virgo:
+        return 'Merkür';
+      case ZodiacSign.libra:
+        return 'Venüs';
+      case ZodiacSign.scorpio:
+        return 'Plüton';
+      case ZodiacSign.sagittarius:
+        return 'Jüpiter';
+      case ZodiacSign.capricorn:
+        return 'Satürn';
+      case ZodiacSign.aquarius:
+        return 'Uranüs';
+      case ZodiacSign.pisces:
+        return 'Neptün';
+    }
+  }
+
   List<String> get traits {
     switch (this) {
       case ZodiacSign.aries:
-        return ['Courageous', 'Energetic', 'Confident', 'Impulsive'];
+        return ['Savaşçı Ruh', 'Ateş Enerjisi', 'Öncü Güç', 'Anlık Aksiyon'];
       case ZodiacSign.taurus:
-        return ['Reliable', 'Patient', 'Devoted', 'Stubborn'];
+        return ['Toprak Bilgeliği', 'Sabır Taşı', 'Sadık Kalp', 'Dağ Kararlılığı'];
       case ZodiacSign.gemini:
-        return ['Adaptable', 'Curious', 'Witty', 'Restless'];
+        return ['Rüzgar Zekası', 'Merak Işığı', 'Söz Büyüsü', 'Uçan Düşünce'];
       case ZodiacSign.cancer:
-        return ['Nurturing', 'Intuitive', 'Protective', 'Moody'];
+        return ['Anne Enerjisi', 'Ay Sezgisi', 'Koruyucu Kabuk', 'Gelgit Duygusu'];
       case ZodiacSign.leo:
-        return ['Generous', 'Creative', 'Warm', 'Dramatic'];
+        return ['Güneş Kalbi', 'Yaratıcı Ateş', 'Kral Aurası', 'Sahne Ruhu'];
       case ZodiacSign.virgo:
-        return ['Analytical', 'Practical', 'Loyal', 'Critical'];
+        return ['Detay Gözü', 'Toprak Pratiği', 'Hizmet Ruhu', 'Mükemmel Arayış'];
       case ZodiacSign.libra:
-        return ['Diplomatic', 'Fair', 'Charming', 'Indecisive'];
+        return ['Denge Ustası', 'Adalet Terazisi', 'Venüs Cazibesi', 'Tartı Ruhu'];
       case ZodiacSign.scorpio:
-        return ['Passionate', 'Resourceful', 'Brave', 'Secretive'];
+        return ['Dönüşüm Gücü', 'Derinlik Bilgisi', 'Plüton Cesareti', 'Gizem Perdesi'];
       case ZodiacSign.sagittarius:
-        return ['Optimistic', 'Adventurous', 'Honest', 'Restless'];
+        return ['Okçu Vizyonu', 'Macera Ateşi', 'Hakikat Oku', 'Özgür Ruh'];
       case ZodiacSign.capricorn:
-        return ['Ambitious', 'Disciplined', 'Patient', 'Reserved'];
+        return ['Zirve Azmi', 'Saturn Disiplini', 'Dağ Sabrı', 'Taş Duvar'];
       case ZodiacSign.aquarius:
-        return ['Progressive', 'Original', 'Independent', 'Detached'];
+        return ['Devrimci Ruh', 'Uranüs Kıvılcımı', 'Özgür Zihin', 'Uzak Bakış'];
       case ZodiacSign.pisces:
-        return ['Compassionate', 'Artistic', 'Intuitive', 'Escapist'];
+        return ['Okyanus Kalbi', 'Neptün Rüyası', 'Mistik Sezgi', 'Sınırsız Hayal'];
     }
   }
 

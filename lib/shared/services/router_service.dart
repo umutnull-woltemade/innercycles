@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import '../../core/constants/routes.dart';
 import '../../data/providers/app_providers.dart';
 import '../../features/onboarding/presentation/onboarding_screen.dart';
@@ -80,6 +81,7 @@ import '../../features/all_services/presentation/all_services_screen.dart';
 import '../../features/admin/presentation/admin_login_screen.dart';
 import '../../features/admin/presentation/admin_dashboard_screen.dart';
 import '../../features/quiz/presentation/quiz_screen.dart';
+import '../../features/content/presentation/content_detail_screen.dart';
 import '../../data/services/admin_auth_service.dart';
 import '../../data/services/storage_service.dart';
 
@@ -379,7 +381,7 @@ final routerProvider = Provider<GoRouter>((ref) {
           subtitle: 'Şifalı taşların enerjisi',
           emoji: '💎',
           primaryColor: Color(0xFF9D4EDD),
-          type: CosmicDiscoveryType.auraColor,
+          type: CosmicDiscoveryType.crystalGuide,
         ),
       ),
       GoRoute(
@@ -389,7 +391,7 @@ final routerProvider = Provider<GoRouter>((ref) {
           subtitle: 'Ayın döngüsüyle uyum',
           emoji: '🌕',
           primaryColor: Color(0xFFC0C0C0),
-          type: CosmicDiscoveryType.moonEnergy,
+          type: CosmicDiscoveryType.moonRituals,
         ),
       ),
       GoRoute(
@@ -475,11 +477,8 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: Routes.tantraMicroRitual,
         builder: (context, state) => const TantraMicroRitualScreen(),
       ),
-      // Kozmik Iletisim - Chatbot formatinda ruya yorumlama
-      GoRoute(
-        path: Routes.kozmikIletisim,
-        builder: (context, state) => const DreamInterpretationScreen(),
-      ),
+      // Kozmik Iletisim - REMOVED (duplicate of dreamInterpretation)
+      // Route: /kozmik-iletisim now returns 404 - use /dream-interpretation instead
       // Ruya Dongusu - 7 Boyutlu form bazli ruya yorumlama
       GoRoute(
         path: Routes.ruyaDongusu,
@@ -831,6 +830,23 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
 
       // ════════════════════════════════════════════════════════════════
+      // VENUS CONTENT - Homepage content sections
+      // ════════════════════════════════════════════════════════════════
+      GoRoute(
+        path: '/content/:contentId',
+        builder: (context, state) {
+          final contentId = state.pathParameters['contentId'] ?? '';
+          return ContentDetailScreen(contentId: contentId);
+        },
+      ),
+
+      // Karmic Debt base route (redirects to default 13)
+      GoRoute(
+        path: Routes.karmicDebt,
+        builder: (context, state) => const KarmicDebtScreen(debtNumber: 13),
+      ),
+
+      // ════════════════════════════════════════════════════════════════
       // ADMIN SYSTEM - PIN Protected Dashboard
       // ════════════════════════════════════════════════════════════════
       GoRoute(
@@ -940,15 +956,28 @@ class _SplashScreen extends ConsumerStatefulWidget {
   ConsumerState<_SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends ConsumerState<_SplashScreen> {
+class _SplashScreenState extends ConsumerState<_SplashScreen>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _breathingController;
+
   @override
   void initState() {
     super.initState();
+    _breathingController = AnimationController(
+      duration: const Duration(milliseconds: 2500),
+      vsync: this,
+    )..repeat(reverse: true);
     _navigate();
   }
 
+  @override
+  void dispose() {
+    _breathingController.dispose();
+    super.dispose();
+  }
+
   Future<void> _navigate() async {
-    await Future.delayed(const Duration(milliseconds: 1500));
+    await Future.delayed(const Duration(milliseconds: 2500));
     if (!mounted) return;
 
     // WEB: Always go to onboarding (no persistence, memory-only mode)
@@ -976,22 +1005,69 @@ class _SplashScreenState extends ConsumerState<_SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF0D0D1A),
+      backgroundColor: const Color(0xFF0B0F1A),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(
-              '✨',
-              style: TextStyle(fontSize: 64),
-            ),
-            const SizedBox(height: 24),
-            Text(
-              'Venus One',
-              style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                    color: const Color(0xFFFFD700),
+            // Logo with breathing animation
+            AnimatedBuilder(
+              animation: _breathingController,
+              builder: (context, child) {
+                final scale = 0.95 + (_breathingController.value * 0.1);
+                final glowOpacity = 0.3 + (_breathingController.value * 0.3);
+                return Container(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    boxShadow: [
+                      BoxShadow(
+                        color: const Color(0xFF9B59B6).withAlpha((glowOpacity * 255).toInt()),
+                        blurRadius: 60,
+                        spreadRadius: 30,
+                      ),
+                      BoxShadow(
+                        color: const Color(0xFF3498DB).withAlpha((glowOpacity * 0.5 * 255).toInt()),
+                        blurRadius: 80,
+                        spreadRadius: 20,
+                      ),
+                    ],
                   ),
+                  child: Transform.scale(
+                    scale: scale,
+                    child: Image.asset(
+                      'assets/brand/venus-logo/png/venus-logo-256.png',
+                      width: 180,
+                      height: 180,
+                    ),
+                  ),
+                );
+              },
             ),
+            const SizedBox(height: 32),
+            // Ezoterik tagline
+            const Text(
+              '✨ Yıldızlar Hizalanıyor... ✨',
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w300,
+                color: Colors.white70,
+                letterSpacing: 2,
+              ),
+            ).animate()
+              .fadeIn(delay: 400.ms, duration: 600.ms),
+            const SizedBox(height: 24),
+            // Venus One - ince yazı tipi
+            const Text(
+              'Venus One',
+              style: TextStyle(
+                fontSize: 36,
+                fontWeight: FontWeight.w100,
+                color: Colors.white,
+                letterSpacing: 6,
+              ),
+            ).animate()
+              .fadeIn(delay: 600.ms, duration: 800.ms)
+              .slideY(begin: 0.2, end: 0, duration: 800.ms, curve: Curves.easeOut),
           ],
         ),
       ),

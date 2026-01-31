@@ -1,3 +1,4 @@
+import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -8,7 +9,6 @@ import '../../../data/models/user_profile.dart';
 import '../../../data/models/zodiac_sign.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/comparison_service.dart';
-import '../../../shared/widgets/cosmic_background.dart';
 
 class ComparisonScreen extends ConsumerStatefulWidget {
   const ComparisonScreen({super.key});
@@ -18,55 +18,108 @@ class ComparisonScreen extends ConsumerStatefulWidget {
 }
 
 class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
-  ComparisonResult? _result;
+  List<UserProfile?> _selectedProfiles = [null, null];
+  List<ComparisonResult> _pairResults = [];
+  static const int _maxProfiles = 7;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final primary = ref.read(primaryProfileProvider);
+      if (primary != null && _selectedProfiles[0] == null) {
+        setState(() {
+          _selectedProfiles[0] = primary;
+        });
+      }
+    });
+  }
+
+  void _calculateResults() {
+    _pairResults.clear();
+    final validProfiles = _selectedProfiles.whereType<UserProfile>().toList();
+
+    if (validProfiles.length >= 2) {
+      // Her ikili kombinasyonu hesapla
+      for (int i = 0; i < validProfiles.length; i++) {
+        for (int j = i + 1; j < validProfiles.length; j++) {
+          _pairResults.add(ComparisonService.analyze(validProfiles[i], validProfiles[j]));
+        }
+      }
+    }
+  }
+
+  int get _groupAverageScore {
+    if (_pairResults.isEmpty) return 0;
+    final total = _pairResults.fold<int>(0, (sum, r) => sum + r.overallScore);
+    return (total / _pairResults.length).round();
+  }
+
+  ComparisonResult? get _bestPair {
+    if (_pairResults.isEmpty) return null;
+    return _pairResults.reduce((a, b) => a.overallScore > b.overallScore ? a : b);
+  }
+
+  ComparisonResult? get _worstPair {
+    if (_pairResults.isEmpty) return null;
+    return _pairResults.reduce((a, b) => a.overallScore < b.overallScore ? a : b);
+  }
 
   @override
   Widget build(BuildContext context) {
     final profiles = ref.watch(savedProfilesProvider);
-    final primary = ref.watch(primaryProfileProvider);
-    final profile1 = ref.watch(comparisonProfile1Provider) ?? primary;
-    final profile2 = ref.watch(comparisonProfile2Provider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
-    if (profile1 != null && profile2 != null && _result == null) {
-      _result = ComparisonService.analyze(profile1, profile2);
+    final validCount = _selectedProfiles.whereType<UserProfile>().length;
+    if (validCount >= 2) {
+      _calculateResults();
     }
 
     return Scaffold(
-      body: CosmicBackground(
-        child: SafeArea(
-          child: Column(
-            children: [
-              _buildHeader(context, isDark),
-              Expanded(
-                child: SingleChildScrollView(
-                  padding: const EdgeInsets.all(AppConstants.spacingLg),
-                  child: Column(
-                    children: [
-                      _buildProfileSelectors(context, ref, profiles, profile1, profile2, isDark),
-                      if (_result != null) ...[
-                        const SizedBox(height: AppConstants.spacingLg),
-                        _buildScoreSection(context, _result!, isDark),
-                        const SizedBox(height: AppConstants.spacingLg),
-                        _buildCategoryScores(context, _result!, isDark),
-                        const SizedBox(height: AppConstants.spacingLg),
-                        _buildSummaryCard(context, _result!, isDark),
-                        const SizedBox(height: AppConstants.spacingLg),
-                        _buildStrengthsCard(context, _result!, isDark),
-                        const SizedBox(height: AppConstants.spacingLg),
-                        _buildChallengesCard(context, _result!, isDark),
-                        const SizedBox(height: AppConstants.spacingLg),
-                        _buildAdviceCard(context, _result!, isDark),
-                        const SizedBox(height: AppConstants.spacingXl),
-                      ] else if (profile1 == null || profile2 == null)
-                        _buildEmptyState(context, isDark),
-                    ],
+      backgroundColor: isDark ? const Color(0xFF1F1A2E) : const Color(0xFFFFF0F5),
+      body: Stack(
+        children: [
+          // Kalpli arka plan
+          _HeartPatternBackground(isDark: isDark),
+
+          SafeArea(
+            child: Column(
+              children: [
+                _buildHeader(context, isDark),
+                Expanded(
+                  child: SingleChildScrollView(
+                    padding: const EdgeInsets.all(AppConstants.spacingLg),
+                    child: Column(
+                      children: [
+                        _buildMultiProfileSelectors(context, profiles, isDark),
+                        if (_pairResults.isNotEmpty) ...[
+                          const SizedBox(height: AppConstants.spacingLg),
+                          if (_selectedProfiles.whereType<UserProfile>().length > 2)
+                            _buildGroupScoreSection(context, isDark),
+                          if (_selectedProfiles.whereType<UserProfile>().length == 2 && _pairResults.isNotEmpty) ...[
+                            _buildScoreSection(context, _pairResults.first, isDark),
+                            const SizedBox(height: AppConstants.spacingLg),
+                            _buildCategoryScores(context, _pairResults.first, isDark),
+                            const SizedBox(height: AppConstants.spacingLg),
+                            _buildSummaryCard(context, _pairResults.first, isDark),
+                            const SizedBox(height: AppConstants.spacingLg),
+                            _buildStrengthsCard(context, _pairResults.first, isDark),
+                            const SizedBox(height: AppConstants.spacingLg),
+                            _buildChallengesCard(context, _pairResults.first, isDark),
+                            const SizedBox(height: AppConstants.spacingLg),
+                            _buildAdviceCard(context, _pairResults.first, isDark),
+                          ],
+                          const SizedBox(height: AppConstants.spacingXl),
+                        ] else if (validCount < 2)
+                          _buildEmptyState(context, isDark),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
@@ -119,55 +172,287 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildProfileSelectors(
+  Widget _buildMultiProfileSelectors(
     BuildContext context,
-    WidgetRef ref,
     List<UserProfile> profiles,
-    UserProfile? profile1,
-    UserProfile? profile2,
     bool isDark,
   ) {
-    return Row(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Expanded(
-          child: _ProfileSelector(
-            profile: profile1,
-            label: 'Sen',
-            profiles: profiles,
-            isDark: isDark,
-            onSelect: (p) {
-              ref.read(comparisonProfile1Provider.notifier).state = p;
-              setState(() => _result = null);
-            },
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12),
-          child: Container(
-            padding: const EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              gradient: RadialGradient(
-                colors: [Colors.pink.withAlpha(60), Colors.pink.withAlpha(20)],
-              ),
-              shape: BoxShape.circle,
+        // Profil sayısı göstergesi
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'Profiller (${_selectedProfiles.whereType<UserProfile>().length}/$_maxProfiles)',
+              style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                    color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                  ),
             ),
-            child: const Icon(Icons.favorite, color: Colors.pink, size: 20),
-          ),
+            if (_selectedProfiles.length > 2)
+              TextButton.icon(
+                onPressed: () {
+                  setState(() {
+                    _selectedProfiles = [_selectedProfiles[0], _selectedProfiles[1]];
+                    _pairResults.clear();
+                  });
+                },
+                icon: const Icon(Icons.refresh, size: 16),
+                label: const Text('Sıfırla'),
+                style: TextButton.styleFrom(
+                  foregroundColor: Colors.pink,
+                  padding: EdgeInsets.zero,
+                  visualDensity: VisualDensity.compact,
+                ),
+              ),
+          ],
         ),
-        Expanded(
-          child: _ProfileSelector(
-            profile: profile2,
-            label: 'Partner',
-            profiles: profiles,
-            isDark: isDark,
-            onSelect: (p) {
-              ref.read(comparisonProfile2Provider.notifier).state = p;
-              setState(() => _result = null);
-            },
+        const SizedBox(height: 12),
+
+        // Profil kartları - yatay scroll
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: [
+              ..._selectedProfiles.asMap().entries.map((entry) {
+                final index = entry.key;
+                final profile = entry.value;
+                final label = index == 0 ? 'Sen' : (index == 1 ? 'Partner' : 'Arkadaş ${index - 1}');
+
+                return Padding(
+                  padding: const EdgeInsets.only(right: 8),
+                  child: _ProfileSelector(
+                    profile: profile,
+                    label: label,
+                    profiles: profiles,
+                    isDark: isDark,
+                    showRemove: index > 1,
+                    onSelect: (p) {
+                      setState(() {
+                        _selectedProfiles[index] = p;
+                        _pairResults.clear();
+                      });
+                    },
+                    onRemove: index > 1
+                        ? () {
+                            setState(() {
+                              _selectedProfiles.removeAt(index);
+                              _pairResults.clear();
+                            });
+                          }
+                        : null,
+                  ),
+                );
+              }),
+
+              // Ekleme butonu
+              if (_selectedProfiles.length < _maxProfiles)
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      _selectedProfiles.add(null);
+                    });
+                  },
+                  child: Container(
+                    width: 80,
+                    height: 110,
+                    decoration: BoxDecoration(
+                      color: isDark
+                          ? Colors.pink.withAlpha(20)
+                          : Colors.pink.withAlpha(15),
+                      borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+                      border: Border.all(
+                        color: Colors.pink.withAlpha(60),
+                        style: BorderStyle.solid,
+                      ),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.add, color: Colors.pink.withAlpha(180), size: 28),
+                        const SizedBox(height: 4),
+                        Text(
+                          'Ekle',
+                          style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                                color: Colors.pink.withAlpha(180),
+                              ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+            ],
           ),
         ),
       ],
     ).animate().fadeIn(delay: 100.ms, duration: 400.ms);
+  }
+
+  Widget _buildGroupScoreSection(BuildContext context, bool isDark) {
+    final avgScore = _groupAverageScore;
+    final best = _bestPair;
+    final worst = _worstPair;
+    final scoreColor = avgScore >= 70
+        ? Colors.green
+        : avgScore >= 50
+            ? Colors.amber
+            : Colors.red;
+
+    return Container(
+      padding: const EdgeInsets.all(AppConstants.spacingLg),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            Colors.pink.withAlpha(30),
+            Colors.purple.withAlpha(20),
+            isDark ? Colors.transparent : AppColors.lightCard.withAlpha(200),
+          ],
+        ),
+        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+        border: Border.all(color: Colors.pink.withAlpha(50)),
+      ),
+      child: Column(
+        children: [
+          // Grup ortalaması
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                width: 90,
+                height: 90,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  gradient: RadialGradient(
+                    colors: [
+                      scoreColor.withAlpha(120),
+                      scoreColor.withAlpha(40),
+                    ],
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: scoreColor.withAlpha(80),
+                      blurRadius: 20,
+                      spreadRadius: 5,
+                    ),
+                  ],
+                ),
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        '$avgScore%',
+                        style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                              color: scoreColor,
+                              fontWeight: FontWeight.bold,
+                            ),
+                      ),
+                      Text(
+                        'Grup Uyumu',
+                        style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                              color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                              fontSize: 9,
+                            ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+
+          const SizedBox(height: AppConstants.spacingLg),
+
+          // En uyumlu ve en az uyumlu ikililer
+          Row(
+            children: [
+              if (best != null)
+                Expanded(
+                  child: _PairHighlightCard(
+                    title: 'En Uyumlu',
+                    result: best,
+                    color: Colors.green,
+                    icon: Icons.favorite,
+                    isDark: isDark,
+                  ),
+                ),
+              if (best != null && worst != null) const SizedBox(width: 12),
+              if (worst != null && _pairResults.length > 1)
+                Expanded(
+                  child: _PairHighlightCard(
+                    title: 'Dikkat!',
+                    result: worst,
+                    color: Colors.orange,
+                    icon: Icons.warning_amber,
+                    isDark: isDark,
+                  ),
+                ),
+            ],
+          ),
+
+          if (_pairResults.length > 2) ...[
+            const SizedBox(height: AppConstants.spacingMd),
+            // Tüm ikililer listesi
+            ExpansionTile(
+              title: Text(
+                'Tüm İkili Uyumları (${_pairResults.length})',
+                style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                      color: Colors.pink,
+                    ),
+              ),
+              iconColor: Colors.pink,
+              collapsedIconColor: Colors.pink,
+              children: _pairResults.map((r) {
+                return ListTile(
+                  dense: true,
+                  leading: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(r.profile1.sunSign.symbol, style: const TextStyle(fontSize: 16)),
+                      const Text(' 💕 ', style: TextStyle(fontSize: 10)),
+                      Text(r.profile2.sunSign.symbol, style: const TextStyle(fontSize: 16)),
+                    ],
+                  ),
+                  title: Text(
+                    '${r.profile1.name ?? r.profile1.sunSign.nameTr} & ${r.profile2.name ?? r.profile2.sunSign.nameTr}',
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                        ),
+                  ),
+                  trailing: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    decoration: BoxDecoration(
+                      color: (r.overallScore >= 70
+                              ? Colors.green
+                              : r.overallScore >= 50
+                                  ? Colors.amber
+                                  : Colors.red)
+                          .withAlpha(40),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Text(
+                      '${r.overallScore}%',
+                      style: TextStyle(
+                        color: r.overallScore >= 70
+                            ? Colors.green
+                            : r.overallScore >= 50
+                                ? Colors.amber
+                                : Colors.red,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12,
+                      ),
+                    ),
+                  ),
+                );
+              }).toList(),
+            ),
+          ],
+        ],
+      ),
+    ).animate().fadeIn(delay: 200.ms, duration: 400.ms).scale(begin: const Offset(0.95, 0.95));
   }
 
   Widget _buildEmptyState(BuildContext context, bool isDark) {
@@ -405,7 +690,7 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
               const Icon(Icons.auto_awesome, color: Colors.purple, size: 20),
               const SizedBox(width: 8),
               Text(
-                'Genel Bakış',
+                'Kozmik Uyum',
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       color: Colors.purple,
                       fontWeight: FontWeight.bold,
@@ -563,12 +848,170 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
   }
 }
 
+// Kalpli arka plan widget'ı
+class _HeartPatternBackground extends StatelessWidget {
+  final bool isDark;
+
+  const _HeartPatternBackground({required this.isDark});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: isDark
+              ? [
+                  const Color(0xFF2D1B3D),
+                  const Color(0xFF1F1A2E),
+                  const Color(0xFF2D1B3D),
+                ]
+              : [
+                  const Color(0xFFFFF0F5),
+                  const Color(0xFFFFE4EC),
+                  const Color(0xFFFFF5F8),
+                ],
+        ),
+      ),
+      child: CustomPaint(
+        painter: _HeartPatternPainter(isDark: isDark),
+        child: const SizedBox.expand(),
+      ),
+    );
+  }
+}
+
+class _HeartPatternPainter extends CustomPainter {
+  final bool isDark;
+
+  _HeartPatternPainter({required this.isDark});
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = (isDark ? Colors.pink : Colors.pink.shade200).withAlpha(isDark ? 15 : 25)
+      ..style = PaintingStyle.fill;
+
+    final random = math.Random(42); // Deterministic random for consistency
+
+    // Küçük kalpler çiz
+    for (int i = 0; i < 30; i++) {
+      final x = random.nextDouble() * size.width;
+      final y = random.nextDouble() * size.height;
+      final heartSize = 8.0 + random.nextDouble() * 16;
+
+      _drawHeart(canvas, Offset(x, y), heartSize, paint);
+    }
+  }
+
+  void _drawHeart(Canvas canvas, Offset center, double size, Paint paint) {
+    final path = Path();
+
+    // Basit kalp şekli
+    path.moveTo(center.dx, center.dy + size * 0.3);
+    path.cubicTo(
+      center.dx - size * 0.5, center.dy - size * 0.3,
+      center.dx - size * 0.5, center.dy - size * 0.7,
+      center.dx, center.dy - size * 0.3,
+    );
+    path.cubicTo(
+      center.dx + size * 0.5, center.dy - size * 0.7,
+      center.dx + size * 0.5, center.dy - size * 0.3,
+      center.dx, center.dy + size * 0.3,
+    );
+
+    canvas.drawPath(path, paint);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
+}
+
+// İkili highlight kartı
+class _PairHighlightCard extends StatelessWidget {
+  final String title;
+  final ComparisonResult result;
+  final Color color;
+  final IconData icon;
+  final bool isDark;
+
+  const _PairHighlightCard({
+    required this.title,
+    required this.result,
+    required this.color,
+    required this.icon,
+    required this.isDark,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: color.withAlpha(20),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: color.withAlpha(50)),
+      ),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(icon, color: color, size: 14),
+              const SizedBox(width: 4),
+              Text(
+                title,
+                style: TextStyle(
+                  color: color,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 11,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(result.profile1.sunSign.symbol, style: const TextStyle(fontSize: 18)),
+              const Text(' 💕 ', style: TextStyle(fontSize: 12)),
+              Text(result.profile2.sunSign.symbol, style: const TextStyle(fontSize: 18)),
+            ],
+          ),
+          const SizedBox(height: 4),
+          Text(
+            '${result.overallScore}%',
+            style: TextStyle(
+              color: color,
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+            ),
+          ),
+          Text(
+            '${result.profile1.name ?? 'İsimsiz'} & ${result.profile2.name ?? 'İsimsiz'}',
+            style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                  color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                  fontSize: 9,
+                ),
+            textAlign: TextAlign.center,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class _ProfileSelector extends StatelessWidget {
   final UserProfile? profile;
   final String label;
   final List<UserProfile> profiles;
   final bool isDark;
   final Function(UserProfile) onSelect;
+  final VoidCallback? onRemove;
+  final bool showRemove;
 
   const _ProfileSelector({
     required this.profile,
@@ -576,93 +1019,131 @@ class _ProfileSelector extends StatelessWidget {
     required this.profiles,
     required this.isDark,
     required this.onSelect,
+    this.onRemove,
+    this.showRemove = false,
   });
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => _showProfilePicker(context),
-      child: Container(
-        padding: const EdgeInsets.all(AppConstants.spacingMd),
-        decoration: BoxDecoration(
-          color: isDark ? AppColors.surfaceLight.withAlpha(20) : AppColors.lightCard,
-          borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-          border: Border.all(
-            color: profile != null
-                ? profile!.sunSign.color.withAlpha(60)
-                : (isDark ? Colors.white12 : Colors.black12),
-          ),
-        ),
-        child: Column(
-          children: [
-            Text(
-              label,
-              style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                    color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-                  ),
+    return Stack(
+      children: [
+        GestureDetector(
+          onTap: () => _showProfilePicker(context),
+          child: Container(
+            width: 80,
+            padding: const EdgeInsets.all(AppConstants.spacingSm),
+            decoration: BoxDecoration(
+              color: isDark ? AppColors.surfaceLight.withAlpha(20) : AppColors.lightCard,
+              borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+              border: Border.all(
+                color: profile != null
+                    ? profile!.sunSign.color.withAlpha(60)
+                    : (isDark ? Colors.white12 : Colors.black12),
+              ),
             ),
-            const SizedBox(height: 8),
-            if (profile != null) ...[
-              Container(
-                width: 48,
-                height: 48,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  gradient: RadialGradient(
-                    colors: [
-                      profile!.sunSign.color.withAlpha(100),
-                      profile!.sunSign.color.withAlpha(30),
-                    ],
-                  ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  label,
+                  style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                        color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                        fontSize: 9,
+                      ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
-                child: Center(
-                  child: Text(
-                    profile!.avatarEmoji ?? profile!.sunSign.symbol,
-                    style: const TextStyle(fontSize: 24),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 4),
-              Text(
-                profile!.name ?? 'İsimsiz',
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
-                      fontWeight: FontWeight.w600,
+                const SizedBox(height: 6),
+                if (profile != null) ...[
+                  Container(
+                    width: 40,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      gradient: RadialGradient(
+                        colors: [
+                          profile!.sunSign.color.withAlpha(100),
+                          profile!.sunSign.color.withAlpha(30),
+                        ],
+                      ),
                     ),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-              Text(
-                profile!.sunSign.nameTr,
-                style: TextStyle(
-                  fontSize: 10,
-                  color: profile!.sunSign.color,
-                ),
-              ),
-            ] else ...[
-              Container(
-                width: 48,
-                height: 48,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: isDark ? AppColors.surfaceLight.withAlpha(40) : Colors.grey.shade200,
-                ),
-                child: Icon(
-                  Icons.person_add,
-                  color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-                ),
-              ),
-              const SizedBox(height: 4),
-              Text(
-                'Profil Seç',
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    child: Center(
+                      child: Text(
+                        profile!.avatarEmoji ?? profile!.sunSign.symbol,
+                        style: const TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    profile!.name ?? 'İsimsiz',
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 10,
+                        ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  Text(
+                    profile!.sunSign.nameTr,
+                    style: TextStyle(
+                      fontSize: 9,
+                      color: profile!.sunSign.color,
+                    ),
+                  ),
+                ] else ...[
+                  Container(
+                    width: 40,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: isDark ? AppColors.surfaceLight.withAlpha(40) : Colors.grey.shade200,
+                    ),
+                    child: Icon(
+                      Icons.person_add,
+                      size: 18,
                       color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
                     ),
-              ),
-            ],
-          ],
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    'Seç',
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                          fontSize: 10,
+                        ),
+                  ),
+                ],
+              ],
+            ),
+          ),
         ),
-      ),
+        // Silme butonu
+        if (showRemove && onRemove != null)
+          Positioned(
+            top: -4,
+            right: -4,
+            child: GestureDetector(
+              onTap: onRemove,
+              child: Container(
+                width: 20,
+                height: 20,
+                decoration: BoxDecoration(
+                  color: Colors.red.withAlpha(200),
+                  shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withAlpha(40),
+                      blurRadius: 4,
+                    ),
+                  ],
+                ),
+                child: const Icon(Icons.close, size: 12, color: Colors.white),
+              ),
+            ),
+          ),
+      ],
     );
   }
 

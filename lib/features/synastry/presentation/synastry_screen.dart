@@ -415,7 +415,7 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen>
         const SizedBox(height: AppConstants.spacingMd),
         _buildInfoCard(
           context,
-          title: 'Genel Bakış',
+          title: 'Ruhsal Bağ',
           content: data.overview,
           icon: Icons.visibility,
           color: Colors.pink,

@@ -321,24 +321,14 @@ class _WelcomePageState extends State<_WelcomePage>
             _buildAnimatedLogo(),
             const SizedBox(height: 24),
 
-            // App name with gradient
-            ShaderMask(
-              shaderCallback: (bounds) => const LinearGradient(
-                colors: [
-                  Color(0xFFFFD700),
-                  Color(0xFFFF6B9D),
-                  Color(0xFF9B59B6),
-                  Color(0xFF667EEA),
-                ],
-              ).createShader(bounds),
-              child: Text(
-                'Venus One',
-                style: Theme.of(context).textTheme.displayLarge?.copyWith(
-                  color: Colors.white,
-                  fontSize: 48,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 2,
-                ),
+            // App name - ultra thin font
+            const Text(
+              'Venus One',
+              style: TextStyle(
+                fontSize: 56,
+                fontWeight: FontWeight.w100,
+                color: Colors.white,
+                letterSpacing: 4,
               ),
             ).animate().fadeIn(duration: 800.ms).slideY(begin: 0.2),
 
@@ -434,35 +424,11 @@ class _WelcomePageState extends State<_WelcomePage>
               child: child,
             );
           },
-          child: ClipOval(
-            child: Image.asset(
-              'assets/images/app_icon.png',
-              width: 160,
-              height: 160,
-              fit: BoxFit.cover,
-              errorBuilder: (context, error, stackTrace) {
-                // Fallback if image doesn't exist
-                return Container(
-                  width: 160,
-                  height: 160,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    gradient: const LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [
-                        Color(0xFF667EEA),
-                        Color(0xFF9B59B6),
-                        Color(0xFFFF6B9D),
-                      ],
-                    ),
-                  ),
-                  child: const Center(
-                    child: Text('🐱', style: TextStyle(fontSize: 80)),
-                  ),
-                );
-              },
-            ),
+          child: Image.asset(
+            'assets/brand/venus-logo/png/venus-logo-256.png',
+            width: 160,
+            height: 160,
+            fit: BoxFit.contain,
           ),
         )
         .animate()
@@ -750,22 +716,7 @@ class _BirthDataPage extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: 10),
-          const Center(
-            child: Text('🐱', style: TextStyle(fontSize: 40)),
-          ),
-          const SizedBox(height: AppConstants.spacingMd),
-          Center(
-            child: Text(
-              'Kozmik Kimliğin',
-              style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                fontSize: 26,
-                fontWeight: FontWeight.bold,
-              ),
-              textAlign: TextAlign.center,
-            ).animate().fadeIn(duration: 400.ms),
-          ),
-          const SizedBox(height: AppConstants.spacingLg),
+          const SizedBox(height: 16),
 
           // Name input
           _buildSectionTitle(context, 'İsim *'),

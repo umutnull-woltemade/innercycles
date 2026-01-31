@@ -172,7 +172,7 @@ class _NavigationSection extends StatelessWidget {
           const SizedBox(height: 16),
           // Horizontal Scrolling Cards
           SizedBox(
-            height: 140,
+            height: 145,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               padding: const EdgeInsets.symmetric(horizontal: 16),

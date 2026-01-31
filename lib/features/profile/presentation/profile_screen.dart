@@ -142,67 +142,71 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     final sign = profile.sunSign as ZodiacSign;
     final language = ref.watch(languageProvider);
 
-    return Center(
-      child: Column(
-        children: [
-          // Venus One Logo instead of zodiac symbol
-          Container(
-            width: 100,
-            height: 100,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  AppColors.starGold.withOpacity(0.3),
-                  AppColors.starGold.withOpacity(0.1),
-                ],
-              ),
-              border: Border.all(
-                color: AppColors.starGold.withOpacity(0.5),
-                width: 3,
-              ),
+    // Compact header with logo and zodiac sign inline
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        // Venus One Logo - smaller
+        Container(
+          width: 56,
+          height: 56,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                AppColors.starGold.withOpacity(0.3),
+                AppColors.starGold.withOpacity(0.1),
+              ],
             ),
-            child: ClipOval(
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Image.asset(
-                  'assets/brand/venus-logo/png/venus-logo-96.png',
-                  fit: BoxFit.contain,
-                ),
+            border: Border.all(
+              color: AppColors.starGold.withOpacity(0.5),
+              width: 2,
+            ),
+          ),
+          child: ClipOval(
+            child: Padding(
+              padding: const EdgeInsets.all(8),
+              child: Image.asset(
+                'assets/brand/venus-logo/png/venus-logo-96.png',
+                fit: BoxFit.contain,
               ),
             ),
           ),
-          const SizedBox(height: AppConstants.spacingMd),
-          Text(
-            profile.name ?? sign.localizedName(language),
-            style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                  color: isDark
-                      ? AppColors.textPrimary
-                      : AppColors.lightTextPrimary,
-                  fontWeight: FontWeight.w700,
-                  fontSize: 24,
-                ),
-          ),
-          const SizedBox(height: 4),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-            decoration: BoxDecoration(
-              color: sign.color.withOpacity(0.2),
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: Text(
-              sign.localizedName(language),
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: sign.color,
-                    fontWeight: FontWeight.w600,
+        ),
+        const SizedBox(width: AppConstants.spacingMd),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              profile.name ?? sign.localizedName(language),
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                    color: isDark
+                        ? AppColors.textPrimary
+                        : AppColors.lightTextPrimary,
+                    fontWeight: FontWeight.w700,
                   ),
             ),
-          ),
-        ],
-      ),
-    ).animate().fadeIn(delay: 100.ms, duration: 400.ms).scale(begin: const Offset(0.9, 0.9));
+            const SizedBox(height: 4),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+              decoration: BoxDecoration(
+                color: sign.color.withOpacity(0.2),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Text(
+                sign.localizedName(language),
+                style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                      color: sign.color,
+                      fontWeight: FontWeight.w600,
+                    ),
+              ),
+            ),
+          ],
+        ),
+      ],
+    ).animate().fadeIn(delay: 100.ms, duration: 400.ms);
   }
 
   Widget _buildEditSection(

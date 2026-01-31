@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/models/zodiac_sign.dart' as zodiac;
+import 'constellation_widget.dart';
 
 class ZodiacCard extends StatelessWidget {
   final zodiac.ZodiacSign sign;
@@ -56,16 +57,15 @@ class ZodiacCard extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(
-              sign.symbol,
-              style: TextStyle(
-                fontSize: showDetails ? 48 : 32,
-                color: isSelected ? sign.color : AppColors.textPrimary,
-              ),
+            ConstellationWidget(
+              sign: sign,
+              size: showDetails ? 48 : 32,
+              color: isSelected ? sign.color : AppColors.textPrimary,
+              showGlow: isSelected,
             ),
             const SizedBox(height: 8),
             Text(
-              sign.name,
+              sign.nameTr,
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     color: isSelected ? sign.color : AppColors.textPrimary,
                     fontWeight: FontWeight.w600,
@@ -114,7 +114,7 @@ class _ElementBadge extends StatelessWidget {
           ),
           const SizedBox(width: 4),
           Text(
-            element.name,
+            element.nameTr,
             style: Theme.of(context).textTheme.labelSmall?.copyWith(
                   color: element.color,
                   fontWeight: FontWeight.w500,
@@ -172,17 +172,16 @@ class ZodiacGridCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: [
-              // Symbol ve İsim - Büyük header
+              // Constellation + İsim - Büyük header
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(
-                    sign.symbol,
-                    style: TextStyle(
-                      fontSize: 28,
-                      color: sign.color,
-                    ),
+                  ConstellationWidget(
+                    sign: sign,
+                    size: 28,
+                    color: sign.color,
+                    showGlow: true,
                   ),
                   const SizedBox(width: 6),
                   Text(

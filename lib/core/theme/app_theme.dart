@@ -11,6 +11,17 @@ class AppTheme {
     useMaterial3: true,
     brightness: Brightness.dark,
     colorScheme: MysticalColors.darkScheme,
+    // Smooth page transitions with swipe-back gesture (iOS style)
+    pageTransitionsTheme: const PageTransitionsTheme(
+      builders: {
+        TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+        TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+        TargetPlatform.macOS: CupertinoPageTransitionsBuilder(),
+        TargetPlatform.linux: CupertinoPageTransitionsBuilder(),
+        TargetPlatform.windows: CupertinoPageTransitionsBuilder(),
+        TargetPlatform.fuchsia: CupertinoPageTransitionsBuilder(),
+      },
+    ),
     textTheme: MysticalTypography.textTheme.apply(
       bodyColor: MysticalColors.textPrimary,
       displayColor: MysticalColors.textPrimary,
@@ -85,6 +96,17 @@ class AppTheme {
     useMaterial3: true,
     brightness: Brightness.light,
     colorScheme: MysticalColors.lightScheme,
+    // Smooth page transitions with swipe-back gesture (iOS style)
+    pageTransitionsTheme: const PageTransitionsTheme(
+      builders: {
+        TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+        TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+        TargetPlatform.macOS: CupertinoPageTransitionsBuilder(),
+        TargetPlatform.linux: CupertinoPageTransitionsBuilder(),
+        TargetPlatform.windows: CupertinoPageTransitionsBuilder(),
+        TargetPlatform.fuchsia: CupertinoPageTransitionsBuilder(),
+      },
+    ),
     textTheme: MysticalTypography.textTheme.apply(
       bodyColor: MysticalColors.textDark,
       displayColor: MysticalColors.textDark,

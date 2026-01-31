@@ -53,7 +53,7 @@ class MegaDreamSymbolsPart1 {
         'Kozmik hafiza',
       ],
       emotionVariants: {
-        EmotionalTone.korku: 'Varolussal endise - bilinmeyenin derinligi urkutuyor',
+        EmotionalTone.korku: 'Varolussal endise - bilinmeyenin derinliği urkutuyor',
         EmotionalTone.huzur: 'Evrenle butunlesme - spirituel birlik hissi',
         EmotionalTone.ozlem: 'Kayip butunluge ozlem - anne rahmine donus arzusu',
         EmotionalTone.heyecan: 'Kesfedilecek sonsuz potansiyel - yeni ufuklar',
@@ -858,7 +858,7 @@ class MegaDreamSymbolsPart1 {
         EmotionalTone.huzur: 'Saf kaynakla baglanti',
         EmotionalTone.heyecan: 'Yeni kaynak keşfi',
         EmotionalTone.ozlem: 'Koklere donus',
-        EmotionalTone.merak: 'Kaynagin derinligi',
+        EmotionalTone.merak: 'Kaynagin derinliği',
       },
       archetypes: ['Kaynak', 'Saflik', 'Baslangic'],
       relatedSymbols: ['water', 'mountain', 'purity', 'life'],

@@ -402,7 +402,7 @@ class _BelowTheFold extends StatelessWidget {
         children: [
           // Section title
           Text(
-            'Keşfet',
+            'Yıldız Kapısı',
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,
@@ -415,17 +415,9 @@ class _BelowTheFold extends StatelessWidget {
           // Entry points list
           _EntryPointTile(
             icon: Icons.wb_sunny_outlined,
-            title: 'Günlük Burç Yorumu',
-            subtitle: 'Bugünün kozmik enerjileri',
+            title: 'Kozmik Akış',
+            subtitle: 'Kısa ve uzun dönem yıldız haritanız',
             route: Routes.horoscope,
-            isDark: isDark,
-          ),
-
-          _EntryPointTile(
-            icon: Icons.calendar_month_outlined,
-            title: 'Haftalık Yorum',
-            subtitle: 'Bu hafta seni neler bekliyor',
-            route: Routes.weeklyHoroscope,
             isDark: isDark,
           ),
 
@@ -466,7 +458,7 @@ class _BelowTheFold extends StatelessWidget {
 
           // Secondary section - More features
           Text(
-            'Daha Fazla',
+            'Gizli Bilgi',
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,
@@ -550,7 +542,7 @@ class _BelowTheFold extends StatelessWidget {
 
           // Expandable "Daha Fazla Venus İçeriği" section
           Text(
-            'Daha Fazla Keşfet',
+            'Kadim Sırlar',
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,
@@ -570,6 +562,26 @@ class _BelowTheFold extends StatelessWidget {
               route: section.route,
               isDark: isDark,
             ),
+          ),
+
+          const SizedBox(height: 32),
+
+          // Ev Sistemi Section
+          Text(
+            '🏠 Astrolojik Evler',
+            style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                  color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                  fontWeight: FontWeight.w600,
+                  letterSpacing: 0.5,
+                ),
+          ),
+          const SizedBox(height: 12),
+          _EntryPointTile(
+            icon: Icons.home_outlined,
+            title: 'Ev Sistemi',
+            subtitle: '12 astrolojik ev ve yaşam alanları',
+            route: Routes.birthChart,
+            isDark: isDark,
           ),
 
           const SizedBox(height: 24),

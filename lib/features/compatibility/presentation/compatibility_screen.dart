@@ -1,3 +1,4 @@
+import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -8,7 +9,7 @@ import '../../../data/models/zodiac_sign.dart';
 import '../../../data/models/horoscope.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/horoscope_service.dart';
-import '../../../shared/widgets/cosmic_background.dart';
+import '../../../data/services/localization_service.dart';
 import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/next_blocks.dart';
 import '../../../shared/widgets/kadim_not_card.dart';
@@ -83,13 +84,21 @@ class _CompatibilityScreenState extends ConsumerState<CompatibilityScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final language = ref.watch(languageProvider);
     return Scaffold(
-      body: CosmicBackground(
-        child: SafeArea(
-          child: SingleChildScrollView(
-            child: Column(
+      backgroundColor: isDark ? const Color(0xFF1F1A2E) : const Color(0xFFFFF0F5),
+      body: Stack(
+        children: [
+          // Kalpli arka plan - tüm sayfayı kaplar
+          Positioned.fill(
+            child: _HeartPatternBackground(isDark: isDark),
+          ),
+          SafeArea(
+            child: SingleChildScrollView(
+              child: Column(
               children: [
-                _buildHeader(context),
+                _buildHeader(context, language),
                 Padding(
                   padding: const EdgeInsets.all(AppConstants.spacingLg),
                   child: Column(
@@ -104,7 +113,7 @@ class _CompatibilityScreenState extends ConsumerState<CompatibilityScreen> {
                                 ),
                               )
                             : GradientButton(
-                                label: 'Check Compatibility',
+                                label: 'Uyumu Hesapla',
                                 icon: Icons.favorite,
                                 width: double.infinity,
                                 onPressed: _calculateCompatibility,
@@ -120,11 +129,12 @@ class _CompatibilityScreenState extends ConsumerState<CompatibilityScreen> {
             ),
           ),
         ),
+        ],
       ),
     );
   }
 
-  Widget _buildHeader(BuildContext context) {
+  Widget _buildHeader(BuildContext context, AppLanguage language) {
     return Padding(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       child: Row(
@@ -136,7 +146,7 @@ class _CompatibilityScreenState extends ConsumerState<CompatibilityScreen> {
           ),
           const SizedBox(width: AppConstants.spacingSm),
           Text(
-            'Compatibility',
+            L10n.get('zodiac_analysis', language),
             style: Theme.of(context).textTheme.headlineMedium,
           ),
         ],
@@ -149,7 +159,7 @@ class _CompatibilityScreenState extends ConsumerState<CompatibilityScreen> {
       children: [
         Expanded(
           child: _SignSelector(
-            label: 'Your Sign',
+            label: 'Sizin Burcunuz',
             selectedSign: _sign1,
             onSignSelected: (sign) {
               setState(() {
@@ -176,7 +186,7 @@ class _CompatibilityScreenState extends ConsumerState<CompatibilityScreen> {
         ),
         Expanded(
           child: _SignSelector(
-            label: 'Their Sign',
+            label: 'Karşı Burç',
             selectedSign: _sign2,
             onSignSelected: (sign) {
               setState(() {
@@ -247,21 +257,21 @@ class _CompatibilityScreenState extends ConsumerState<CompatibilityScreen> {
             Expanded(
               child: _ScoreCategory(
                 icon: Icons.favorite,
-                label: 'Love',
+                label: 'Aşk',
                 score: result.loveScore,
               ),
             ),
             Expanded(
               child: _ScoreCategory(
                 icon: Icons.people,
-                label: 'Friendship',
+                label: 'Arkadaşlık',
                 score: result.friendshipScore,
               ),
             ),
             Expanded(
               child: _ScoreCategory(
                 icon: Icons.chat,
-                label: 'Communication',
+                label: 'İletişim',
                 score: result.communicationScore,
               ),
             ),
@@ -297,7 +307,7 @@ class _CompatibilityScreenState extends ConsumerState<CompatibilityScreen> {
                   const SizedBox(width: 12),
                   Expanded(
                     child: Text(
-                      '${_sign1!.name} & ${_sign2!.name}',
+                      '${_sign1!.nameTr} & ${_sign2!.nameTr}',
                       style: Theme.of(context).textTheme.titleSmall?.copyWith(
                             color: AppColors.textPrimary,
                           ),
@@ -319,10 +329,10 @@ class _CompatibilityScreenState extends ConsumerState<CompatibilityScreen> {
 
         const SizedBox(height: AppConstants.spacingLg),
 
-        // Strengths
+        // Güçlü Yanlar
         _buildListSection(
           context,
-          'Strengths',
+          'Güçlü Yanlar',
           Icons.thumb_up,
           AppColors.success,
           result.strengths,
@@ -330,10 +340,10 @@ class _CompatibilityScreenState extends ConsumerState<CompatibilityScreen> {
 
         const SizedBox(height: AppConstants.spacingMd),
 
-        // Challenges
+        // Zorluklar
         _buildListSection(
           context,
-          'Challenges',
+          'Zorluklar',
           Icons.warning,
           AppColors.warning,
           result.challenges,
@@ -540,10 +550,10 @@ class _CompatibilityScreenState extends ConsumerState<CompatibilityScreen> {
   }
 
   String _getScoreLabel(int score) {
-    if (score >= 80) return 'Excellent Match';
-    if (score >= 60) return 'Good Compatibility';
-    if (score >= 40) return 'Moderate Match';
-    return 'Challenging';
+    if (score >= 80) return 'Mükemmel Uyum';
+    if (score >= 60) return 'İyi Uyum';
+    if (score >= 40) return 'Orta Uyum';
+    return 'Zorlu';
   }
 }
 
@@ -591,7 +601,7 @@ class _SignSelector extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               Text(
-                selectedSign!.name,
+                selectedSign!.nameTr,
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       color: selectedSign!.color,
                     ),
@@ -611,7 +621,7 @@ class _SignSelector extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               Text(
-                'Select',
+                'Seç',
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       color: AppColors.textMuted,
                     ),
@@ -646,7 +656,7 @@ class _SignSelector extends StatelessWidget {
               ),
               const SizedBox(height: AppConstants.spacingLg),
               Text(
-                'Select Zodiac Sign',
+                'Burç Seç',
                 style: Theme.of(context).textTheme.titleMedium,
               ),
               const SizedBox(height: AppConstants.spacingLg),
@@ -694,7 +704,7 @@ class _SignSelector extends StatelessWidget {
                             ),
                             const SizedBox(height: 4),
                             Text(
-                              sign.name,
+                              sign.nameTr,
                               style: Theme.of(context)
                                   .textTheme
                                   .labelSmall
@@ -768,4 +778,84 @@ class _ScoreCategory extends StatelessWidget {
     if (score >= 50) return AppColors.auroraStart;
     return AppColors.warning;
   }
+}
+
+// Kalpli arka plan widget'ı
+class _HeartPatternBackground extends StatelessWidget {
+  final bool isDark;
+
+  const _HeartPatternBackground({required this.isDark});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: isDark
+              ? [
+                  const Color(0xFF2D1B3D),
+                  const Color(0xFF1F1A2E),
+                  const Color(0xFF2D1B3D),
+                ]
+              : [
+                  const Color(0xFFFFF0F5),
+                  const Color(0xFFFFE4EC),
+                  const Color(0xFFFFF5F8),
+                ],
+        ),
+      ),
+      child: CustomPaint(
+        painter: _HeartPatternPainter(isDark: isDark),
+        child: const SizedBox.expand(),
+      ),
+    );
+  }
+}
+
+class _HeartPatternPainter extends CustomPainter {
+  final bool isDark;
+
+  _HeartPatternPainter({required this.isDark});
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = (isDark ? Colors.pink : Colors.pink.shade200).withAlpha(isDark ? 15 : 25)
+      ..style = PaintingStyle.fill;
+
+    final random = math.Random(42); // Deterministic random for consistency
+
+    // Küçük kalpler çiz
+    for (int i = 0; i < 30; i++) {
+      final x = random.nextDouble() * size.width;
+      final y = random.nextDouble() * size.height;
+      final heartSize = 8.0 + random.nextDouble() * 16;
+
+      _drawHeart(canvas, Offset(x, y), heartSize, paint);
+    }
+  }
+
+  void _drawHeart(Canvas canvas, Offset center, double size, Paint paint) {
+    final path = Path();
+
+    // Basit kalp şekli
+    path.moveTo(center.dx, center.dy + size * 0.3);
+    path.cubicTo(
+      center.dx - size * 0.5, center.dy - size * 0.3,
+      center.dx - size * 0.5, center.dy - size * 0.7,
+      center.dx, center.dy - size * 0.3,
+    );
+    path.cubicTo(
+      center.dx + size * 0.5, center.dy - size * 0.7,
+      center.dx + size * 0.5, center.dy - size * 0.3,
+      center.dx, center.dy + size * 0.3,
+    );
+
+    canvas.drawPath(path, paint);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }

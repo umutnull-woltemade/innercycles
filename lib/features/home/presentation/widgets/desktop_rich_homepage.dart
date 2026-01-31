@@ -120,6 +120,15 @@ class DesktopRichHomepage extends ConsumerWidget {
 
                   const SizedBox(height: 32),
 
+                  // ══════════════════════════════════════════════════════
+                  // EV SİSTEMİ SECTION - Astrolojik Evler
+                  // ══════════════════════════════════════════════════════
+                  _HouseSystemSection()
+                      .animate()
+                      .fadeIn(duration: 500.ms, delay: 800.ms),
+
+                  const SizedBox(height: 32),
+
                   // Bottom navigation
                   const PageBottomNavigation(currentRoute: '/'),
                 ],
@@ -429,12 +438,12 @@ class _DesktopHeader extends StatelessWidget {
           // Action buttons
           _HeaderIconButton(
             icon: Icons.search_rounded,
-            onTap: () {},
+            onTap: () => context.push(Routes.allServices),
           ),
           const SizedBox(width: 8),
           _HeaderIconButton(
             icon: Icons.person_add_rounded,
-            onTap: () {},
+            onTap: () => context.push(Routes.savedProfiles),
           ),
           const SizedBox(width: 8),
           _HeaderIconButton(
@@ -1767,6 +1776,110 @@ class _AllServicesButtonState extends State<_AllServicesButton>
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
+// HOUSE SYSTEM SECTION - Ev Sistemi
+// ═══════════════════════════════════════════════════════════════════════════
+
+class _HouseSystemSection extends StatelessWidget {
+  const _HouseSystemSection();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(24),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            Colors.white.withOpacity(0.05),
+            Colors.white.withOpacity(0.02),
+          ],
+        ),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(
+          color: Colors.white.withOpacity(0.1),
+          width: 1,
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: const Color(0xFF4A90A4).withOpacity(0.2),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: const Icon(
+                  Icons.home_outlined,
+                  color: Color(0xFF4A90A4),
+                  size: 24,
+                ),
+              ),
+              const SizedBox(width: 16),
+              const Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '🏠 Astrolojik Evler',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.textPrimary,
+                    ),
+                  ),
+                  SizedBox(height: 4),
+                  Text(
+                    '12 astrolojik ev ve yaşam alanları',
+                    style: TextStyle(
+                      fontSize: 13,
+                      color: AppColors.textSecondary,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          const SizedBox(height: 20),
+          Material(
+            color: Colors.transparent,
+            child: InkWell(
+              onTap: () => context.push(Routes.birthChart),
+              borderRadius: BorderRadius.circular(12),
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 20),
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(
+                    colors: [Color(0xFF4A90A4), Color(0xFF357ABD)],
+                  ),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.explore_outlined, color: Colors.white, size: 20),
+                    SizedBox(width: 8),
+                    Text(
+                      'Ev Sistemini Keşfet',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
 // VENUS ONE LOGO
 // ═══════════════════════════════════════════════════════════════════════════
 
@@ -1859,22 +1972,11 @@ class _VenusOneLogoState extends State<_VenusOneLogo>
                       );
                     },
                   ),
-                  // Kedi emoji
-                  const Text(
-                    '🐱',
-                    style: TextStyle(fontSize: 26),
-                  ),
-                  // Sihirli değnek - kedinin elinde
-                  Positioned(
-                    right: -2,
-                    bottom: 0,
-                    child: Transform.rotate(
-                      angle: -0.4, // Hafif eğik
-                      child: const Text(
-                        '✨',
-                        style: TextStyle(fontSize: 12),
-                      ),
-                    ),
+                  // Venus Logo
+                  Image.asset(
+                    'assets/brand/venus-logo/png/venus-logo-72.png',
+                    width: 32,
+                    height: 32,
                   ),
                 ],
               ),

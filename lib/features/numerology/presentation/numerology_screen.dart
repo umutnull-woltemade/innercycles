@@ -12,6 +12,7 @@ import '../../../shared/widgets/next_blocks.dart';
 import '../../../shared/widgets/kadim_not_card.dart';
 import '../../../shared/widgets/entertainment_disclaimer.dart';
 import '../../../shared/widgets/quiz_cta_card.dart';
+import '../../../shared/widgets/null_profile_placeholder.dart';
 
 class NumerologyScreen extends ConsumerWidget {
   const NumerologyScreen({super.key});
@@ -21,17 +22,10 @@ class NumerologyScreen extends ConsumerWidget {
     final userProfile = ref.watch(userProfileProvider);
 
     if (userProfile == null) {
-      return Scaffold(
-        body: CosmicBackground(
-          child: Center(
-            child: Text(
-              'Lütfen önce doğum bilgilerinizi girin',
-              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: AppColors.textSecondary,
-                  ),
-            ),
-          ),
-        ),
+      return const NullProfilePlaceholder(
+        emoji: '🔢',
+        titleKey: 'numerology_analysis',
+        messageKey: 'enter_birth_info_numerology',
       );
     }
 
