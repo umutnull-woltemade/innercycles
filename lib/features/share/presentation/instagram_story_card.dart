@@ -382,8 +382,10 @@ class InstagramStoryCard extends StatelessWidget {
         const SizedBox(height: 4),
 
         // Element ve tarih
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+        Wrap(
+          alignment: WrapAlignment.center,
+          spacing: 8,
+          runSpacing: 4,
           children: [
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
@@ -401,7 +403,6 @@ class InstagramStoryCard extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(width: 8),
             Text(
               sign.dateRange,
               style: GoogleFonts.inter(

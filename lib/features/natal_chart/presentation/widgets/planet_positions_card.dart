@@ -289,11 +289,14 @@ Kara Ay, vahşi, evcilleştirilmemiş feminine enerjiyi temsil ediyor - $signNam
             style: TextStyle(fontSize: 16, color: signColor),
           ),
           const SizedBox(width: 4),
-          Text(
-            signNameTr,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: signColor,
-                ),
+          Flexible(
+            child: Text(
+              signNameTr,
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: signColor,
+                  ),
+              overflow: TextOverflow.ellipsis,
+            ),
           ),
         ],
       ),

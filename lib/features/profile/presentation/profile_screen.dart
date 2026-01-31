@@ -637,7 +637,9 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                     },
                   ),
                   const SizedBox(height: 12),
-                  Row(
+                  Wrap(
+                    spacing: 8,
+                    runSpacing: 8,
                     children: [
                       FilterChip(
                         label: Text(
@@ -657,7 +659,6 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                           setModalState(() => showTurkeyOnly = selected);
                         },
                       ),
-                      const SizedBox(width: 8),
                       FilterChip(
                         label: Text(
                           L10n.get('all_countries', language),
@@ -942,6 +943,8 @@ class _CosmicSignCard extends StatelessWidget {
                   fontSize: 10,
                 ),
             textAlign: TextAlign.center,
+            overflow: TextOverflow.ellipsis,
+            maxLines: 1,
           ),
           const SizedBox(height: 6),
           if (sign != null) ...[
