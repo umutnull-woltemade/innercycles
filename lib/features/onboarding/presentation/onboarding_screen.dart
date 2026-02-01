@@ -89,6 +89,8 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: avoid_print
+    print('🌐 OnboardingScreen.build() called, kIsWeb=$kIsWeb');
     return Scaffold(
       backgroundColor: const Color(0xFF0D0D1A), // Fallback dark background
       body: CosmicBackground(
@@ -319,6 +321,8 @@ class _WelcomePageState extends State<_WelcomePage>
     // WEB: Simple static version without animations (prevents white screen)
     // The animated version causes layout/animation issues on web
     if (kIsWeb) {
+      // ignore: avoid_print
+      print('🌐 WEB: _WelcomePage building static version');
       return Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24),
