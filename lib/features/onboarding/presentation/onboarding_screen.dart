@@ -91,6 +91,89 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   Widget build(BuildContext context) {
     // ignore: avoid_print
     print('🌐 OnboardingScreen.build() called, kIsWeb=$kIsWeb');
+
+    // ═══════════════════════════════════════════════════════════════════════════
+    // WEB: Ultra-simple onboarding - bypass complex widget tree
+    // CosmicBackground, SafeArea, PageView, _WelcomePage all have issues on web
+    // ═══════════════════════════════════════════════════════════════════════════
+    if (kIsWeb) {
+      // ignore: avoid_print
+      print('🌐 WEB: Using ultra-simple onboarding');
+      return Scaffold(
+        backgroundColor: const Color(0xFF0D0D1A),
+        body: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Color(0xFF1a1a2e),
+                Color(0xFF0D0D1A),
+              ],
+            ),
+          ),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // Logo
+                Container(
+                  width: 120,
+                  height: 120,
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [Color(0xFF667EEA), Color(0xFF764BA2)],
+                    ),
+                  ),
+                  child: const Icon(Icons.auto_awesome, color: Colors.white, size: 60),
+                ),
+                const SizedBox(height: 32),
+                // Title
+                const Text(
+                  'Venus One',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 36,
+                    fontWeight: FontWeight.w300,
+                    letterSpacing: 4,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                // Subtitle
+                const Text(
+                  'Kozmik Yolculuğuna Başla',
+                  style: TextStyle(
+                    color: Colors.white70,
+                    fontSize: 16,
+                  ),
+                ),
+                const SizedBox(height: 48),
+                // Continue button
+                ElevatedButton(
+                  onPressed: _completeOnboarding,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF667EEA),
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(horizontal: 48, vertical: 16),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                  ),
+                  child: const Text('Devam Et', style: TextStyle(fontSize: 18)),
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+    }
+
+    // ═══════════════════════════════════════════════════════════════════════════
+    // MOBILE: Original complex widget tree with animations
+    // ═══════════════════════════════════════════════════════════════════════════
     return Scaffold(
       backgroundColor: const Color(0xFF0D0D1A), // Fallback dark background
       body: CosmicBackground(

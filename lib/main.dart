@@ -24,54 +24,7 @@ import 'data/models/user_profile.dart';
 
 void main() async {
   // ═══════════════════════════════════════════════════════════════════════════
-  // WEB: ULTRA-MINIMAL TEST - Bypass EVERYTHING to debug white screen
-  // If this works → problem is in app code
-  // If this fails → problem is in Flutter web itself
-  // ═══════════════════════════════════════════════════════════════════════════
-  if (kIsWeb) {
-    // ignore: avoid_print
-    print('🌐 WEB: Running ultra-minimal test widget');
-    runApp(
-      MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Scaffold(
-          backgroundColor: const Color(0xFF0D0D1A),
-          body: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Text(
-                  '✨',
-                  style: TextStyle(fontSize: 64),
-                ),
-                SizedBox(height: 24),
-                Text(
-                  'Venus One',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 32,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                SizedBox(height: 8),
-                Text(
-                  'Web Test Başarılı!',
-                  style: TextStyle(
-                    color: Colors.white70,
-                    fontSize: 16,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-    return; // Skip ALL initialization
-  }
-
-  // ═══════════════════════════════════════════════════════════════════════════
-  // MOBILE: Normal flow with full initialization
+  // OUTER TRY-CATCH: Prevents white screen on ANY uncaught error
   // ═══════════════════════════════════════════════════════════════════════════
   try {
     await _initializeAndRunApp();
