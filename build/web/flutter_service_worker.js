@@ -4,7 +4,7 @@ const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 
 const RESOURCES = {"birth-chart.html": "b06679c8dd509cc93c60783edd4cf19c",
-"flutter_bootstrap.js": "8b077d88a5acda715ff93cafe7a1d9d0",
+"flutter_bootstrap.js": "6aec86003f351947ce9d8a61d1f547cb",
 "synastry.html": "b503272cfcc28c9698c2d4e3d2cb80a6",
 "profile.html": "53ea82de74276cd8077bdb738609703b",
 "horoscope.html": "2b889810df2c7a6124a3fe7ee844aff1",
