@@ -809,6 +809,19 @@
   </div>
 
   <script>
+    // ═══════════════════════════════════════════════════════════════════════════
+    // FIREBASE ANALYTICS STUB - Prevents white screen crash
+    // firebase_core_web tries to call ff_trigger_firebase_analytics even without
+    // firebase_analytics package. This stub prevents the uncaught error.
+    // ═══════════════════════════════════════════════════════════════════════════
+    window.ff_trigger_firebase_analytics = function(callback) {
+      console.debug('Firebase Analytics stub called (web build - no-op)');
+      // Return a resolved promise-like to prevent crash
+      if (callback) {
+        callback({ logEvent: function() {}, setUserId: function() {}, setUserProperties: function() {} });
+      }
+    };
+
     // Flag to track if loading screen has been removed
     var loadingRemoved = false;
 

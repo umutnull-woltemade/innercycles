@@ -53,7 +53,8 @@ class DefaultFirebaseOptions {
  projectId: 'celestial-95a95',
  authDomain: 'celestial-95a95.firebaseapp.com',
  storageBucket: 'celestial-95a95.firebasestorage.app',
- measurementId: 'G-JG0CWR2ZG4',
+ // measurementId REMOVED - causes white screen by auto-triggering Firebase Analytics on web
+ // measurementId: 'G-JG0CWR2ZG4',
  );
 
  static const FirebaseOptions android = FirebaseOptions(
