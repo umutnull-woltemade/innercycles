@@ -228,6 +228,98 @@ Future<void> _initializeAndRunApp() async {
     debugPrint('🎨 Starting Flutter app...');
   }
 
+  // ═══════════════════════════════════════════════════════════════════════════
+  // WEB: Bypass ProviderScope and GoRouter - they cause white screen
+  // Ultra-minimal test showed MaterialApp + Scaffold works
+  // ═══════════════════════════════════════════════════════════════════════════
+  if (kIsWeb) {
+    // ignore: avoid_print
+    print('🌐 WEB: Bypassing ProviderScope and GoRouter');
+    runApp(
+      MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData.dark().copyWith(
+          scaffoldBackgroundColor: const Color(0xFF0D0D1A),
+        ),
+        home: Scaffold(
+          backgroundColor: const Color(0xFF0D0D1A),
+          body: Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Color(0xFF1a1a2e),
+                  Color(0xFF0D0D1A),
+                ],
+              ),
+            ),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  // Logo
+                  Container(
+                    width: 120,
+                    height: 120,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [Color(0xFF667EEA), Color(0xFF764BA2)],
+                      ),
+                    ),
+                    child: const Icon(Icons.auto_awesome, color: Colors.white, size: 60),
+                  ),
+                  const SizedBox(height: 32),
+                  // Title
+                  const Text(
+                    'Venus One',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 36,
+                      fontWeight: FontWeight.w300,
+                      letterSpacing: 4,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  // Subtitle
+                  const Text(
+                    'Kozmik Yolculuğuna Başla',
+                    style: TextStyle(
+                      color: Colors.white70,
+                      fontSize: 16,
+                    ),
+                  ),
+                  const SizedBox(height: 48),
+                  // Info text
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 32),
+                    child: Text(
+                      'Web versiyonu yakında! Şimdilik mobil uygulamayı indirin.',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white54,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+    // ignore: avoid_print
+    print('✅ Venus One Web: App started!');
+    return;
+  }
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // MOBILE: Full app with ProviderScope and GoRouter
+  // ═══════════════════════════════════════════════════════════════════════════
   runApp(
     ProviderScope(
       overrides: [
