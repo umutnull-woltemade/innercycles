@@ -330,12 +330,28 @@ class _WelcomePageState extends State<_WelcomePage>
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: [
-              // Logo - Use actual Venus One logo
+              // Logo - Use actual Venus One logo with fallback for web
               Image.asset(
                 'assets/brand/venus-logo/png/venus-logo-256.png',
                 width: 120,
                 height: 120,
                 fit: BoxFit.contain,
+                errorBuilder: (context, error, stackTrace) {
+                  // Fallback: gradient circle with star icon (if asset fails on web)
+                  return Container(
+                    width: 120,
+                    height: 120,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [Color(0xFF667EEA), Color(0xFF764BA2)],
+                      ),
+                    ),
+                    child: const Icon(Icons.auto_awesome, color: Colors.white, size: 60),
+                  );
+                },
               ),
               const SizedBox(height: 24),
               // App name
