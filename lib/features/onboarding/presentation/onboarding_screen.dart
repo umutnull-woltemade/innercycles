@@ -210,18 +210,25 @@ class _WelcomePageState extends State<_WelcomePage>
   @override
   void initState() {
     super.initState();
+
+    // Skip ALL complex initialization on web to prevent white screen
+    if (kIsWeb) {
+      if (kDebugMode) {
+        debugPrint('⚠️ Web: Using simplified onboarding (no animations)');
+      }
+      // Create a dummy controller that won't cause issues
+      _glowController = AnimationController(
+        duration: const Duration(seconds: 1),
+        vsync: this,
+      );
+      return;
+    }
+
+    // MOBILE: Full animated experience
     _glowController = AnimationController(
       duration: const Duration(seconds: 3),
       vsync: this,
     )..repeat(reverse: true);
-
-    // Skip OAuth setup on web - auth streams can cause white screen
-    if (kIsWeb) {
-      if (kDebugMode) {
-        debugPrint('⚠️ Skipping OAuth setup on web (prevents white screen)');
-      }
-      return;
-    }
 
     // Guard Supabase access (may not be initialized in tests)
     if (!AuthService.isSupabaseInitialized) {
@@ -309,6 +316,68 @@ class _WelcomePageState extends State<_WelcomePage>
 
   @override
   Widget build(BuildContext context) {
+    // WEB: Simple static version without animations (prevents white screen)
+    // The animated version causes layout/animation issues on web
+    if (kIsWeb) {
+      return Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              // Logo
+              Container(
+                width: 120,
+                height: 120,
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [Color(0xFF667EEA), Color(0xFF764BA2)],
+                  ),
+                ),
+                child: const Icon(Icons.auto_awesome, color: Colors.white, size: 60),
+              ),
+              const SizedBox(height: 24),
+              // App name
+              const Text(
+                'Venus One',
+                style: TextStyle(
+                  fontSize: 48,
+                  fontWeight: FontWeight.w100,
+                  color: Colors.white,
+                  letterSpacing: 4,
+                ),
+              ),
+              const SizedBox(height: 8),
+              // Tagline
+              const Text(
+                'Kozmik Yolculuğuna Başla',
+                style: TextStyle(color: Colors.white70, fontSize: 16),
+              ),
+              const SizedBox(height: 48),
+              // Continue button
+              ElevatedButton(
+                onPressed: widget.onContinue,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFF667EEA),
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(horizontal: 48, vertical: 16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                ),
+                child: const Text('Devam Et', style: TextStyle(fontSize: 18)),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    // MOBILE: Original animated version
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
