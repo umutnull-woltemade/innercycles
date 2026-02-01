@@ -23,6 +23,20 @@ import 'data/providers/app_providers.dart';
 import 'data/models/user_profile.dart';
 
 void main() async {
+  // ═══════════════════════════════════════════════════════════════════════════
+  // OUTER TRY-CATCH: Prevents white screen on ANY uncaught error
+  // ═══════════════════════════════════════════════════════════════════════════
+  try {
+    await _initializeAndRunApp();
+  } catch (e, stack) {
+    debugPrint('❌ FATAL: App initialization failed: $e');
+    debugPrint('Stack: $stack');
+    // Run minimal fallback app to show SOMETHING instead of white screen
+    _runFallbackApp(e.toString());
+  }
+}
+
+Future<void> _initializeAndRunApp() async {
   if (kDebugMode) {
     debugPrint('🚀 Venus One: Starting initialization...');
   }
@@ -51,56 +65,67 @@ void main() async {
     }
   }
 
-  // Initialize Firebase with platform-specific options and error handling
-  if (kDebugMode) {
-    debugPrint('⏳ Initializing Firebase...');
-  }
-  try {
-    await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
-    ).timeout(
-      const Duration(seconds: 8),
-      onTimeout: () {
-        if (kDebugMode) {
-          debugPrint('⚠️ Warning: Firebase initialization timed out');
-        }
-        throw TimeoutException('Firebase timeout');
-      },
-    );
+  // ═══════════════════════════════════════════════════════════════════════════
+  // WEB: Skip Firebase/Supabase to prevent white screen
+  // These services can throw uncaught errors on web due to IndexedDB/CORS issues
+  // ═══════════════════════════════════════════════════════════════════════════
+  if (!kIsWeb) {
+    // MOBILE ONLY: Initialize Firebase
     if (kDebugMode) {
-      debugPrint('✓ Firebase initialized');
+      debugPrint('⏳ Initializing Firebase (mobile)...');
     }
-  } catch (e) {
-    // Firebase may fail on web without proper config - app can still function
-    if (kDebugMode) {
-      debugPrint('⚠️ Warning: Firebase initialization failed: $e');
+    try {
+      await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform,
+      ).timeout(
+        const Duration(seconds: 8),
+        onTimeout: () {
+          if (kDebugMode) {
+            debugPrint('⚠️ Warning: Firebase initialization timed out');
+          }
+          throw TimeoutException('Firebase timeout');
+        },
+      );
+      if (kDebugMode) {
+        debugPrint('✓ Firebase initialized');
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        debugPrint('⚠️ Warning: Firebase initialization failed: $e');
+      }
     }
+  } else {
+    debugPrint('⚠️ Web: Skipping Firebase (prevents white screen)');
   }
 
-  // Initialize Supabase with values from .env
-  if (kDebugMode) {
-    debugPrint('⏳ Initializing Supabase...');
-  }
-  try {
-    await Supabase.initialize(
-      url: dotenv.env['SUPABASE_URL'] ?? 'https://placeholder.supabase.co',
-      anonKey: dotenv.env['SUPABASE_ANON_KEY'] ?? 'placeholder-key',
-    ).timeout(
-      const Duration(seconds: 5),
-      onTimeout: () {
-        if (kDebugMode) {
-          debugPrint('⚠️ Warning: Supabase initialization timed out');
-        }
-        throw TimeoutException('Supabase timeout');
-      },
-    );
+  // Initialize Supabase with values from .env (MOBILE ONLY)
+  if (!kIsWeb) {
     if (kDebugMode) {
-      debugPrint('✓ Supabase initialized');
+      debugPrint('⏳ Initializing Supabase (mobile)...');
     }
-  } catch (e) {
-    if (kDebugMode) {
-      debugPrint('⚠️ Warning: Supabase initialization failed: $e');
+    try {
+      await Supabase.initialize(
+        url: dotenv.env['SUPABASE_URL'] ?? 'https://placeholder.supabase.co',
+        anonKey: dotenv.env['SUPABASE_ANON_KEY'] ?? 'placeholder-key',
+      ).timeout(
+        const Duration(seconds: 5),
+        onTimeout: () {
+          if (kDebugMode) {
+            debugPrint('⚠️ Warning: Supabase initialization timed out');
+          }
+          throw TimeoutException('Supabase timeout');
+        },
+      );
+      if (kDebugMode) {
+        debugPrint('✓ Supabase initialized');
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        debugPrint('⚠️ Warning: Supabase initialization failed: $e');
+      }
     }
+  } else {
+    debugPrint('⚠️ Web: Skipping Supabase (prevents white screen)');
   }
 
   // Initialize Crashlytics (mobile only) - extends the global error handling
@@ -318,4 +343,81 @@ void _setupGlobalErrorHandling() {
   if (kDebugMode) {
     debugPrint('✓ Global error handling initialized (white screen protection)');
   }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// FALLBACK APP - Shows when initialization fails completely
+// ═══════════════════════════════════════════════════════════════════════════
+void _runFallbackApp(String errorMessage) {
+  runApp(
+    MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        backgroundColor: const Color(0xFF0D0D1A),
+        body: SafeArea(
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(32),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(
+                    Icons.error_outline,
+                    color: Colors.amber,
+                    size: 64,
+                  ),
+                  const SizedBox(height: 24),
+                  const Text(
+                    'Venus One',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 28,
+                      fontWeight: FontWeight.w300,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  const Text(
+                    'Uygulama yüklenirken bir hata oluştu.',
+                    style: TextStyle(
+                      color: Colors.white70,
+                      fontSize: 16,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    'Lütfen sayfayı yenileyin veya daha sonra tekrar deneyin.',
+                    style: TextStyle(
+                      color: Colors.white.withAlpha(120),
+                      fontSize: 14,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  if (kDebugMode) ...[
+                    const SizedBox(height: 24),
+                    Container(
+                      padding: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        color: Colors.red.withAlpha(30),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Text(
+                        errorMessage,
+                        style: const TextStyle(
+                          color: Colors.redAccent,
+                          fontSize: 12,
+                          fontFamily: 'monospace',
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ],
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    ),
+  );
 }
