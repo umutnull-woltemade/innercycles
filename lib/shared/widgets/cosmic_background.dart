@@ -18,6 +18,25 @@ class CosmicBackground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // WEB: ALWAYS use dark gradient (onboarding UI designed for dark mode)
+    // This check MUST be first - before isDark check, otherwise light mode
+    // returns early and web never gets the dark gradient
+    if (kIsWeb) {
+      return Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Color(0xFF1a1a2e), // Dark purple-blue
+              Color(0xFF0D0D1A), // Deep space black
+            ],
+          ),
+        ),
+        child: child,
+      );
+    }
+
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     // Light mode - clean, soft gradient background
@@ -35,23 +54,6 @@ class CosmicBackground extends StatelessWidget {
                 )
               : null,
           color: showGradient ? null : AppColors.lightBackground,
-        ),
-        child: child,
-      );
-    }
-
-    // Dark mode - Use ultra-simple gradient on web (no CustomPaint to avoid rendering issues)
-    if (kIsWeb) {
-      return Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color(0xFF1a1a2e), // Dark purple-blue
-              Color(0xFF0D0D1A), // Deep space black
-            ],
-          ),
         ),
         child: child,
       );
