@@ -817,10 +817,9 @@
     // ═══════════════════════════════════════════════════════════════════════════
     Object.defineProperty(window, 'ff_trigger_firebase_analytics', {
       value: function(callback) {
-        console.debug('Firebase Analytics stub (no-op, non-writable)');
-        if (callback) {
-          callback({ logEvent: function() {}, setUserId: function() {}, setUserProperties: function() {} });
-        }
+        console.debug('Firebase Analytics stub - blocked, callback not invoked');
+        // DON'T call callback - this prevents Analytics code from trying to
+        // initialize Firebase again, which would cause "duplicate-app" error
       },
       writable: false,
       configurable: false
