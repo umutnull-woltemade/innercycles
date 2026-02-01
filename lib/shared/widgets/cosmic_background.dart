@@ -40,19 +40,20 @@ class CosmicBackground extends StatelessWidget {
       );
     }
 
-    // Dark mode - Use simplified version on web for better performance
+    // Dark mode - Use ultra-simple gradient on web (no CustomPaint to avoid rendering issues)
     if (kIsWeb) {
-      return Stack(
-        children: [
-          // Simplified web background
-          const Positioned.fill(
-            child: IgnorePointer(
-              child: _SimplifiedWebBackground(),
-            ),
+      return Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Color(0xFF1a1a2e), // Dark purple-blue
+              Color(0xFF0D0D1A), // Deep space black
+            ],
           ),
-          // Content
-          child,
-        ],
+        ),
+        child: child,
       );
     }
 
