@@ -87,7 +87,7 @@ import '../../data/services/storage_service.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
   return GoRouter(
-    initialLocation: Routes.splash,
+    initialLocation: Routes.onboarding,
     errorBuilder: (context, state) => _NotFoundScreen(path: state.uri.path),
     redirect: (context, state) {
       final path = state.uri.path;
