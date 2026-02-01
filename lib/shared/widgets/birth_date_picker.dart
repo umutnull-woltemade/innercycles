@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 
 import '../../core/constants/app_constants.dart';
@@ -84,6 +85,12 @@ class _BirthDatePickerState extends State<BirthDatePicker> {
     final now = DateTime.now();
     final daysInMonth = _getDaysInMonth(_selectedMonth, _selectedYear);
 
+    // WEB: Use dropdown-based picker (ListWheelScrollView doesn't work on web)
+    if (kIsWeb) {
+      return _buildWebDatePicker(now, daysInMonth);
+    }
+
+    // MOBILE: Use wheel picker
     return Container(
       height: 200,
       decoration: BoxDecoration(
@@ -164,6 +171,131 @@ class _BirthDatePickerState extends State<BirthDatePicker> {
           ),
         ],
       ),
+    );
+  }
+
+  // Web-specific dropdown-based date picker
+  Widget _buildWebDatePicker(DateTime now, int daysInMonth) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: AppColors.surfaceLight.withAlpha(128),
+        borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+        border: Border.all(color: AppColors.auroraStart.withAlpha(76)),
+      ),
+      child: Row(
+        children: [
+          // Day dropdown
+          Expanded(
+            child: _buildDropdown(
+              label: 'Gün',
+              value: _selectedDay,
+              items: List.generate(daysInMonth, (i) => i + 1),
+              itemLabel: (i) => '$i',
+              onChanged: (value) {
+                if (value != null) {
+                  setState(() => _selectedDay = value);
+                  _notifyDateChanged();
+                }
+              },
+            ),
+          ),
+          const SizedBox(width: 12),
+          // Month dropdown
+          Expanded(
+            flex: 2,
+            child: _buildDropdown(
+              label: 'Ay',
+              value: _selectedMonth,
+              items: List.generate(12, (i) => i + 1),
+              itemLabel: (i) => _months[i - 1],
+              onChanged: (value) {
+                if (value != null) {
+                  setState(() {
+                    _selectedMonth = value;
+                    final newDaysInMonth = _getDaysInMonth(_selectedMonth, _selectedYear);
+                    if (_selectedDay > newDaysInMonth) {
+                      _selectedDay = newDaysInMonth;
+                    }
+                  });
+                  _notifyDateChanged();
+                }
+              },
+            ),
+          ),
+          const SizedBox(width: 12),
+          // Year dropdown
+          Expanded(
+            child: _buildDropdown(
+              label: 'Yıl',
+              value: _selectedYear,
+              items: List.generate(100, (i) => now.year - i),
+              itemLabel: (i) => '$i',
+              onChanged: (value) {
+                if (value != null) {
+                  setState(() {
+                    _selectedYear = value;
+                    final newDaysInMonth = _getDaysInMonth(_selectedMonth, _selectedYear);
+                    if (_selectedDay > newDaysInMonth) {
+                      _selectedDay = newDaysInMonth;
+                    }
+                  });
+                  _notifyDateChanged();
+                }
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildDropdown<T>({
+    required String label,
+    required T value,
+    required List<T> items,
+    required String Function(T) itemLabel,
+    required ValueChanged<T?> onChanged,
+  }) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          label,
+          style: TextStyle(
+            color: AppColors.textMuted,
+            fontSize: 12,
+            letterSpacing: 1,
+          ),
+        ),
+        const SizedBox(height: 8),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 12),
+          decoration: BoxDecoration(
+            color: AppColors.auroraStart.withAlpha(30),
+            borderRadius: BorderRadius.circular(8),
+            border: Border.all(color: AppColors.auroraStart.withAlpha(76)),
+          ),
+          child: DropdownButton<T>(
+            value: value,
+            isExpanded: true,
+            underline: const SizedBox(),
+            dropdownColor: const Color(0xFF1a1a2e),
+            style: TextStyle(
+              color: AppColors.textPrimary,
+              fontSize: 16,
+            ),
+            items: items.map((item) {
+              return DropdownMenuItem<T>(
+                value: item,
+                child: Text(itemLabel(item)),
+              );
+            }).toList(),
+            onChanged: onChanged,
+          ),
+        ),
+      ],
     );
   }
 }
