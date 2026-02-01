@@ -131,9 +131,11 @@ void main() async {
     }
   }
 
-  // Initialize glossary cache asynchronously (don't block first paint)
-  // This runs in the background while the app loads
-  Future.microtask(() => GlossaryCache().initialize());
+  // Initialize glossary cache asynchronously (MOBILE ONLY)
+  // Web'de 300+ terimlik regex JavaScript event loop'u blokluyor → beyaz ekran
+  if (!kIsWeb) {
+    Future.microtask(() => GlossaryCache().initialize());
+  }
 
   // Initialize local storage with timeout for web
   if (kDebugMode) {

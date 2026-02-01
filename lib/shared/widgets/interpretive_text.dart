@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
@@ -19,6 +20,13 @@ class GlossaryCache {
   /// Initialize cache - call this early in app lifecycle
   void initialize() {
     if (_termMap != null) return;
+
+    // Web'de glossary cache'i skip et - 300+ terimlik regex çok yavaş
+    if (kIsWeb) {
+      _termMap = {};
+      _sortedTerms = [];
+      return;
+    }
 
     final entries = GlossaryContent.getAllEntries();
     _termMap = <String, GlossaryEntry>{};
