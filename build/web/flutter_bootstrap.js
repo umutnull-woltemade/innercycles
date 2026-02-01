@@ -36,8 +36,6 @@ if (!window._flutter) {
 }
 _flutter.buildConfig = {"engineRevision":"1527ae0ec577a4ef50e65f6fefcfc1326707d9bf","builds":[{"compileTarget":"dart2js","renderer":"canvaskit","mainJsPath":"main.dart.js"}]};
 
-_flutter.loader.load({
-  serviceWorkerSettings: {
-    serviceWorkerVersion: "1738435200"
-  }
-});
+// Service worker DISABLED - was causing white screen due to cache.addAll() failure
+// The addAll() fails if ANY resource (80+ HTML files) can't be cached
+_flutter.loader.load();
