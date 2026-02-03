@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+    SAMPLE Info.plist Configuration
+    Copy relevant sections to your ios/Runner/Info.plist
+    
+    DO NOT replace your entire Info.plist with this file!
+    This is a reference for required keys.
+-->
+<plist version="1.0">
+<dict>
+    
+    <!-- ============================================ -->
+    <!-- REQUIRED: Basic App Information -->
+    <!-- ============================================ -->
+    
+    <key>CFBundleDevelopmentRegion</key>
+    <string>$(DEVELOPMENT_LANGUAGE)</string>
+    
+    <key>CFBundleDisplayName</key>
+    <string>Your App Name</string>
+    
+    <key>CFBundleExecutable</key>
+    <string>$(EXECUTABLE_NAME)</string>
+    
+    <key>CFBundleIdentifier</key>
+    <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+    
+    <key>CFBundleInfoDictionaryVersion</key>
+    <string>6.0</string>
+    
+    <key>CFBundleName</key>
+    <string>your_app</string>
+    
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    
+    <key>CFBundleShortVersionString</key>
+    <string>$(FLUTTER_BUILD_NAME)</string>
+    
+    <key>CFBundleVersion</key>
+    <string>$(FLUTTER_BUILD_NUMBER)</string>
+    
+    <key>LSRequiresIPhoneOS</key>
+    <true/>
+    
+    <key>UILaunchStoryboardName</key>
+    <string>LaunchScreen</string>
+    
+    <key>UIMainStoryboardFile</key>
+    <string>Main</string>
+    
+    <!-- ============================================ -->
+    <!-- REQUIRED: Supported Interface Orientations -->
+    <!-- ============================================ -->
+    
+    <key>UISupportedInterfaceOrientations</key>
+    <array>
+        <string>UIInterfaceOrientationPortrait</string>
+        <string>UIInterfaceOrientationLandscapeLeft</string>
+        <string>UIInterfaceOrientationLandscapeRight</string>
+    </array>
+    
+    <key>UISupportedInterfaceOrientations~ipad</key>
+    <array>
+        <string>UIInterfaceOrientationPortrait</string>
+        <string>UIInterfaceOrientationPortraitUpsideDown</string>
+        <string>UIInterfaceOrientationLandscapeLeft</string>
+        <string>UIInterfaceOrientationLandscapeRight</string>
+    </array>
+    
+    <key>CADisableMinimumFrameDurationOnPhone</key>
+    <true/>
+    <key>UIApplicationSupportsIndirectInputEvents</key>
+    <true/>
+    
+    <!-- ============================================ -->
+    <!-- REQUIRED: Google AdMob (google_mobile_ads) -->
+    <!-- ============================================ -->
+    
+    <key>GADApplicationIdentifier</key>
+    <string>ca-app-pub-XXXXXXXXXXXXXXXX~YYYYYYYYYY</string>
+    <!-- Replace with your actual AdMob App ID from AdMob console -->
+    
+    <!-- ============================================ -->
+    <!-- REQUIRED: SKAdNetwork IDs (for AdMob) -->
+    <!-- ============================================ -->
+    
+    <key>SKAdNetworkItems</key>
+    <array>
+        <!-- Google AdMob -->
+        <dict>
+            <key>SKAdNetworkIdentifier</key>
+            <string>cstr6suwn9.skadnetwork</string>
+        </dict>
+        <!-- Add more SKAdNetwork IDs as needed -->
+        <!-- Get full list from: https://developers.google.com/admob/ios/quick-start -->
+    </array>
+    
+    <!-- ============================================ -->
+    <!-- REQUIRED: App Transport Security -->
+    <!-- ============================================ -->
+    
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <!-- Allow secure connections only (recommended) -->
+        <key>NSAllowsArbitraryLoads</key>
+        <false/>
+        
+        <!-- If you need to allow specific domains: -->
+        <!--
+        <key>NSExceptionDomains</key>
+        <dict>
+            <key>example.com</key>
+            <dict>
+                <key>NSIncludesSubdomains</key>
+                <true/>
+                <key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+                <true/>
+            </dict>
+        </dict>
+        -->
+    </dict>
+    
+    <!-- ============================================ -->
+    <!-- REQUIRED: URL Schemes (url_launcher, app_links) -->
+    <!-- ============================================ -->
+    
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+        <string>https</string>
+        <string>http</string>
+        <string>mailto</string>
+        <string>tel</string>
+        <string>sms</string>
+        <string>maps</string>
+        <string>facetime</string>
+        <string>facetime-audio</string>
+    </array>
+    
+    <!-- ============================================ -->
+    <!-- REQUIRED: Background Modes (notifications) -->
+    <!-- ============================================ -->
+    
+    <key>UIBackgroundModes</key>
+    <array>
+        <string>fetch</string>
+        <string>remote-notification</string>
+    </array>
+    
+    <!-- ============================================ -->
+    <!-- RECOMMENDED: Privacy Descriptions -->
+    <!-- Add descriptions for any permissions you use -->
+    <!-- ============================================ -->
+    
+    <!-- User Tracking (REQUIRED if using AdMob personalized ads) -->
+    <key>NSUserTrackingUsageDescription</key>
+    <string>We use your data to provide personalized ads and improve your app experience.</string>
+    
+    <!-- Photo Library (if using share_plus for images) -->
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>We need access to your photo library to share images.</string>
+    
+    <key>NSPhotoLibraryAddUsageDescription</key>
+    <string>We need access to save images to your photo library.</string>
+    
+    <!-- Camera (if using camera features) -->
+    <key>NSCameraUsageDescription</key>
+    <string>We need access to your camera to take photos.</string>
+    
+    <!-- Notifications -->
+    <key>NSLocalNetworkUsageDescription</key>
+    <string>We use local network to deliver notifications.</string>
+    
+    <!-- ============================================ -->
+    <!-- OPTIONAL: Firebase Dynamic Links -->
+    <!-- ============================================ -->
+    
+    <!--
+    <key>FirebaseDynamicLinksCustomDomains</key>
+    <array>
+        <string>https://your-custom-domain.com</string>
+    </array>
+    -->
+    
+    <!-- ============================================ -->
+    <!-- OPTIONAL: Universal Links (app_links) -->
+    <!-- ============================================ -->
+    
+    <!--
+    Add to Signing & Capabilities instead:
+    - Associated Domains capability
+    - Add domain: applinks:yourdomain.com
+    -->
+    
+</dict>
+</plist>
