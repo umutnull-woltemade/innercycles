@@ -7,7 +7,9 @@ import 'package:go_router/go_router.dart';
 
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/dream_memory.dart';
+import '../../../data/providers/app_providers.dart';
 import '../../../data/services/dream_memory_service.dart';
+import '../../../data/services/l10n_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 
 /// Dream Statistics & Insights Dashboard
@@ -703,6 +705,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
   }
 
   Widget _buildHeader(BuildContext context) {
+    final language = ref.watch(languageProvider);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: BoxDecoration(
@@ -744,14 +747,14 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Ruya Istatistikleri',
+                  L10nService.get('dreams.statistics_title', language),
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
                     color: AppColors.textPrimary,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 Text(
-                  'Bilincaltinin haritasi',
+                  L10nService.get('dreams.statistics_subtitle', language),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: AppColors.textSecondary,
                   ),
@@ -769,6 +772,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
   }
 
   Widget _buildTabBar() {
+    final language = ref.watch(languageProvider);
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 16),
       decoration: BoxDecoration(
@@ -792,11 +796,11 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
         labelColor: AppColors.textPrimary,
         unselectedLabelColor: AppColors.textMuted,
         labelStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
-        tabs: const [
-          Tab(text: 'Genel'),
-          Tab(text: 'Semboller'),
-          Tab(text: 'Zaman'),
-          Tab(text: 'Ilerleme'),
+        tabs: [
+          Tab(text: L10nService.get('dreams.tab_general', language)),
+          Tab(text: L10nService.get('dreams.tab_symbols', language)),
+          Tab(text: L10nService.get('dreams.tab_time', language)),
+          Tab(text: L10nService.get('dreams.tab_progress', language)),
         ],
       ),
     ).animate().fadeIn(delay: 200.ms);
@@ -815,6 +819,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
   }
 
   Widget _buildLoadingState() {
+    final language = ref.watch(languageProvider);
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -822,7 +827,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
           const CircularProgressIndicator(color: AppColors.mystic),
           const SizedBox(height: 16),
           Text(
-            'Ruya verileri yukleniyor...',
+            L10nService.get('dreams.loading_data', language),
             style: TextStyle(color: AppColors.textSecondary),
           ),
         ],
@@ -831,6 +836,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
   }
 
   Widget _buildEmptyState() {
+    final language = ref.watch(languageProvider);
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(32),
@@ -840,14 +846,14 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
             const Text('\u{1F319}', style: TextStyle(fontSize: 64)),
             const SizedBox(height: 24),
             Text(
-              'Henuz ruya kaydedilmemis',
+              L10nService.get('dreams.no_dreams_yet', language),
               style: Theme.of(
                 context,
               ).textTheme.titleLarge?.copyWith(color: AppColors.textPrimary),
             ),
             const SizedBox(height: 12),
             Text(
-              'Ruyalarini kaydetmeye basla ve bilincaltinin gizemli dunyasini kesfeт.',
+              L10nService.get('dreams.no_dreams_description', language),
               textAlign: TextAlign.center,
               style: TextStyle(color: AppColors.textSecondary),
             ),
@@ -855,7 +861,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
             ElevatedButton.icon(
               onPressed: () => context.go('/dream-interpretation'),
               icon: const Icon(Icons.add),
-              label: const Text('Ruya Kaydet'),
+              label: Text(L10nService.get('dreams.save_dream', language)),
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.mystic,
                 foregroundColor: Colors.white,
@@ -899,6 +905,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
   }
 
   Widget _buildOverviewStats() {
+    final language = ref.watch(languageProvider);
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
@@ -921,7 +928,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
               const Text('\u{2728}', style: TextStyle(fontSize: 20)),
               const SizedBox(width: 8),
               Text(
-                'GENEL BAKIS',
+                L10nService.get('dreams.overview', language),
                 style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
@@ -936,17 +943,17 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
             children: [
               _buildStatItem(
                 value: '${_stats!.totalDreams}',
-                label: 'Toplam Ruya',
+                label: L10nService.get('dreams.total_dreams', language),
                 emoji: '\u{1F319}',
               ),
               _buildStatItem(
                 value: '${_stats!.currentStreak}',
-                label: 'Guncel Seri',
+                label: L10nService.get('dreams.current_streak', language),
                 emoji: '\u{1F525}',
               ),
               _buildStatItem(
                 value: _stats!.dreamsPerWeek.toStringAsFixed(1),
-                label: 'Haftalik Ort.',
+                label: L10nService.get('dreams.weekly_avg', language),
                 emoji: '\u{1F4C5}',
               ),
             ],
@@ -958,7 +965,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
             children: [
               Expanded(
                 child: _buildPercentageBar(
-                  label: 'Bilincli Ruya',
+                  label: L10nService.get('dreams.lucid_dream', language),
                   value: _stats!.lucidPercentage,
                   color: AppColors.starGold,
                   emoji: '\u{2728}',
@@ -967,7 +974,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
               const SizedBox(width: 16),
               Expanded(
                 child: _buildPercentageBar(
-                  label: 'Kabus',
+                  label: L10nService.get('dreams.nightmare', language),
                   value: _stats!.nightmarePercentage,
                   color: AppColors.fireElement,
                   emoji: '\u{1F47F}',
@@ -1057,6 +1064,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
   Widget _buildEmotionSection() {
     if (_stats!.emotionDistribution.isEmpty) return const SizedBox.shrink();
 
+    final language = ref.watch(languageProvider);
     final sortedEmotions = _stats!.emotionDistribution.entries.toList()
       ..sort((a, b) => b.value.compareTo(a.value));
 
@@ -1075,7 +1083,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
               const Text('\u{1F3AD}', style: TextStyle(fontSize: 20)),
               const SizedBox(width: 8),
               Text(
-                'DUYGU DAGILIMI',
+                L10nService.get('dreams.emotion_distribution', language),
                 style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
@@ -1146,6 +1154,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
   Widget _buildMoonPhaseSection() {
     if (_stats!.dreamsByMoonPhase.isEmpty) return const SizedBox.shrink();
 
+    final language = ref.watch(languageProvider);
     final sortedPhases = _stats!.dreamsByMoonPhase.entries.toList()
       ..sort((a, b) => b.value.compareTo(a.value));
 
@@ -1166,7 +1175,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
               const Text('\u{1F311}', style: TextStyle(fontSize: 20)),
               const SizedBox(width: 8),
               Text(
-                'AY FAZLARI KORELASYONU',
+                L10nService.get('dreams.moon_phase_correlation', language),
                 style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
@@ -1197,14 +1206,14 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'En Verimli Ay Fazin',
+                        L10nService.get('dreams.best_moon_phase', language),
                         style: TextStyle(
                           fontSize: 11,
                           color: AppColors.textMuted,
                         ),
                       ),
                       Text(
-                        bestPhase.key,
+                        _getLocalizedMoonPhase(bestPhase.key, language),
                         style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
@@ -1215,7 +1224,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
                   ),
                 ),
                 Text(
-                  '${bestPhase.value} ruya',
+                  L10nService.get('dreams.dreams_count', language).replaceAll('{count}', '${bestPhase.value}'),
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
@@ -1302,9 +1311,28 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
     return emojis[phase] ?? '\u{1F319}';
   }
 
+  String _getLocalizedMoonPhase(String phase, AppLanguage language) {
+    final phaseMap = {
+      'Yeni Ay': 'dreams.moon_phases.new_moon',
+      'Hilal (Buyuyen)': 'dreams.moon_phases.waxing_crescent',
+      'Ilk Dordun': 'dreams.moon_phases.first_quarter',
+      'Siskin Ay': 'dreams.moon_phases.waxing_gibbous',
+      'Dolunay': 'dreams.moon_phases.full_moon',
+      'Basak Ay': 'dreams.moon_phases.waning_gibbous',
+      'Son Dordun': 'dreams.moon_phases.last_quarter',
+      'Hilal (Azalan)': 'dreams.moon_phases.waning_crescent',
+    };
+    final key = phaseMap[phase];
+    if (key != null) {
+      return L10nService.get(key, language);
+    }
+    return phase;
+  }
+
   Widget _buildAchievementsSection() {
     if (_stats!.achievements.isEmpty) return const SizedBox.shrink();
 
+    final language = ref.watch(languageProvider);
     final unlocked = _stats!.achievements.where((a) => a.isUnlocked).toList();
     final locked = _stats!.achievements.where((a) => !a.isUnlocked).toList();
 
@@ -1330,7 +1358,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
               const Text('\u{1F3C6}', style: TextStyle(fontSize: 20)),
               const SizedBox(width: 8),
               Text(
-                'BASARIMLAR',
+                L10nService.get('dreams.achievements', language),
                 style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
@@ -1434,6 +1462,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
   Widget _buildTopSymbolsChart() {
     if (_stats!.symbolFrequency.isEmpty) return const SizedBox.shrink();
 
+    final language = ref.watch(languageProvider);
     final sortedSymbols = _stats!.symbolFrequency.entries.toList()
       ..sort((a, b) => b.value.compareTo(a.value));
 
@@ -1457,7 +1486,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
               const Text('\u{1F52E}', style: TextStyle(fontSize: 20)),
               const SizedBox(width: 8),
               Text(
-                'EN SIK SEMBOLLER',
+                L10nService.get('dreams.most_frequent_symbols', language),
                 style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
@@ -1537,6 +1566,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
   Widget _buildSymbolWordCloud() {
     if (_stats!.symbolFrequency.isEmpty) return const SizedBox.shrink();
 
+    final language = ref.watch(languageProvider);
     final sortedSymbols = _stats!.symbolFrequency.entries.toList()
       ..sort((a, b) => b.value.compareTo(a.value));
 
@@ -1559,7 +1589,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
               const Text('\u{2601}', style: TextStyle(fontSize: 20)),
               const SizedBox(width: 8),
               Text(
-                'SEMBOL BULUTU',
+                L10nService.get('dreams.symbol_cloud', language),
                 style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
@@ -1621,6 +1651,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
   Widget _buildRecurringPatternsSection() {
     if (_stats!.recurringPatterns.isEmpty) return const SizedBox.shrink();
 
+    final language = ref.watch(languageProvider);
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
@@ -1643,7 +1674,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
               const Text('\u{1F504}', style: TextStyle(fontSize: 20)),
               const SizedBox(width: 8),
               Text(
-                'TEKRARLAYAN ORUNTULER',
+                L10nService.get('dreams.recurring_patterns', language),
                 style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
@@ -1684,7 +1715,9 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
                           ),
                         ),
                         Text(
-                          '${pattern.type} - ${pattern.count}x tekrarlandi',
+                          L10nService.get('dreams.pattern_repeated', language)
+                              .replaceAll('{type}', pattern.type)
+                              .replaceAll('{count}', '${pattern.count}'),
                           style: const TextStyle(
                             fontSize: 11,
                             color: AppColors.textMuted,
@@ -1703,7 +1736,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Text(
-                      'Aktif',
+                      L10nService.get('dreams.active', language),
                       style: TextStyle(
                         fontSize: 10,
                         fontWeight: FontWeight.w600,
@@ -1723,6 +1756,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
   Widget _buildThemeClustersSection() {
     if (_stats!.themeFrequency.isEmpty) return const SizedBox.shrink();
 
+    final language = ref.watch(languageProvider);
     final sortedThemes = _stats!.themeFrequency.entries.toList()
       ..sort((a, b) => b.value.compareTo(a.value));
 
@@ -1741,7 +1775,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
               const Text('\u{1F3AF}', style: TextStyle(fontSize: 20)),
               const SizedBox(width: 8),
               Text(
-                'TEMA KUMELERI',
+                L10nService.get('dreams.theme_clusters', language),
                 style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
@@ -1828,7 +1862,16 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
   }
 
   Widget _buildWeekdayChart() {
-    final days = ['Pzt', 'Sal', 'Car', 'Per', 'Cum', 'Cmt', 'Paz'];
+    final language = ref.watch(languageProvider);
+    final days = [
+      L10nService.get('dreams.days.mon', language),
+      L10nService.get('dreams.days.tue', language),
+      L10nService.get('dreams.days.wed', language),
+      L10nService.get('dreams.days.thu', language),
+      L10nService.get('dreams.days.fri', language),
+      L10nService.get('dreams.days.sat', language),
+      L10nService.get('dreams.days.sun', language),
+    ];
     final maxCount = _stats!.dreamsByDayOfWeek.values.isEmpty
         ? 1
         : _stats!.dreamsByDayOfWeek.values.reduce((a, b) => a > b ? a : b);
@@ -1848,7 +1891,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
               const Text('\u{1F4C5}', style: TextStyle(fontSize: 20)),
               const SizedBox(width: 8),
               Text(
-                'HAFTANIN GUNLERINE GORE',
+                L10nService.get('dreams.by_day_of_week', language),
                 style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
@@ -1917,19 +1960,20 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
   }
 
   Widget _buildMonthlyChart() {
+    final language = ref.watch(languageProvider);
     final months = [
-      'Oca',
-      'Sub',
-      'Mar',
-      'Nis',
-      'May',
-      'Haz',
-      'Tem',
-      'Agu',
-      'Eyl',
-      'Eki',
-      'Kas',
-      'Ara',
+      L10nService.get('dreams.months_short.jan', language),
+      L10nService.get('dreams.months_short.feb', language),
+      L10nService.get('dreams.months_short.mar', language),
+      L10nService.get('dreams.months_short.apr', language),
+      L10nService.get('dreams.months_short.may', language),
+      L10nService.get('dreams.months_short.jun', language),
+      L10nService.get('dreams.months_short.jul', language),
+      L10nService.get('dreams.months_short.aug', language),
+      L10nService.get('dreams.months_short.sep', language),
+      L10nService.get('dreams.months_short.oct', language),
+      L10nService.get('dreams.months_short.nov', language),
+      L10nService.get('dreams.months_short.dec', language),
     ];
     final maxCount = _stats!.dreamsByMonth.values.isEmpty
         ? 1
@@ -1950,7 +1994,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
               const Text('\u{1F4C8}', style: TextStyle(fontSize: 20)),
               const SizedBox(width: 8),
               Text(
-                'AYLIK DAGILIM',
+                L10nService.get('dreams.monthly_distribution', language),
                 style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
@@ -1993,6 +2037,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
   Widget _buildCharacterFrequencySection() {
     if (_stats!.characterFrequency.isEmpty) return const SizedBox.shrink();
 
+    final language = ref.watch(languageProvider);
     final sortedCharacters = _stats!.characterFrequency.entries.toList()
       ..sort((a, b) => b.value.compareTo(a.value));
 
@@ -2011,7 +2056,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
               const Text('\u{1F465}', style: TextStyle(fontSize: 20)),
               const SizedBox(width: 8),
               Text(
-                'KARAKTER SIKLIĞI',
+                L10nService.get('dreams.character_frequency', language),
                 style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
@@ -2082,6 +2127,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
   Widget _buildLocationFrequencySection() {
     if (_stats!.locationFrequency.isEmpty) return const SizedBox.shrink();
 
+    final language = ref.watch(languageProvider);
     final sortedLocations = _stats!.locationFrequency.entries.toList()
       ..sort((a, b) => b.value.compareTo(a.value));
 
@@ -2100,7 +2146,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
               const Text('\u{1F5FA}', style: TextStyle(fontSize: 20)),
               const SizedBox(width: 8),
               Text(
-                'MEKAN SIKLIĞI',
+                L10nService.get('dreams.location_frequency', language),
                 style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
@@ -2191,6 +2237,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
   }
 
   Widget _buildWeeklyTrendChart() {
+    final language = ref.watch(languageProvider);
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
@@ -2213,7 +2260,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
               const Text('\u{1F4C8}', style: TextStyle(fontSize: 20)),
               const SizedBox(width: 8),
               Text(
-                'HAFTALIK TREND',
+                L10nService.get('dreams.weekly_trend', language),
                 style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
@@ -2223,7 +2270,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
               ),
               const Spacer(),
               Text(
-                'Son 8 hafta',
+                L10nService.get('dreams.last_8_weeks', language),
                 style: TextStyle(fontSize: 11, color: AppColors.textMuted),
               ),
             ],
@@ -2259,6 +2306,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
   }
 
   Widget _buildProgressMetrics() {
+    final language = ref.watch(languageProvider);
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
@@ -2274,7 +2322,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
               const Text('\u{1F680}', style: TextStyle(fontSize: 20)),
               const SizedBox(width: 8),
               Text(
-                'ILERLEME METRIKLERI',
+                L10nService.get('dreams.progress_metrics', language),
                 style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
@@ -2286,24 +2334,24 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
           ),
           const SizedBox(height: 20),
           _buildProgressRow(
-            label: 'Ruya Hatirlama',
+            label: L10nService.get('dreams.dream_recall', language),
             value: _stats!.progress.recallImprovement,
             emoji: '\u{1F4DD}',
-            description: 'Ruya detay seviyesi',
+            description: L10nService.get('dreams.dream_detail_level', language),
           ),
           const SizedBox(height: 16),
           _buildProgressRow(
-            label: 'Bilincli Ruya',
+            label: L10nService.get('dreams.lucid_progress', language),
             value: _stats!.progress.lucidProgress,
             emoji: '\u{2728}',
-            description: 'Lucid ruya gelisimi',
+            description: L10nService.get('dreams.lucid_dream_development', language),
           ),
           const SizedBox(height: 16),
           _buildProgressRow(
-            label: 'Kabus Azaltma',
+            label: L10nService.get('dreams.nightmare_reduction', language),
             value: _stats!.progress.nightmareReduction,
             emoji: '\u{1F31F}',
-            description: 'Kabus sikligi degisimi',
+            description: L10nService.get('dreams.nightmare_frequency_change', language),
           ),
         ],
       ),
@@ -2378,6 +2426,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
   }
 
   Widget _buildShadowIntegrationSection() {
+    final language = ref.watch(languageProvider);
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
@@ -2400,7 +2449,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
               const Text('\u{1F319}', style: TextStyle(fontSize: 20)),
               const SizedBox(width: 8),
               Text(
-                'GOLGE ENTEGRASYONU',
+                L10nService.get('dreams.shadow_integration', language),
                 style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
@@ -2412,7 +2461,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
           ),
           const SizedBox(height: 16),
           Text(
-            'Bilincaltinizin farkli yonlerini kesfetme yolculugunuz',
+            L10nService.get('dreams.shadow_description', language),
             style: TextStyle(fontSize: 12, color: AppColors.textSecondary),
           ),
           const SizedBox(height: 20),
@@ -2443,7 +2492,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
                     ),
                     const SizedBox(height: 12),
                     Text(
-                      'Kesfedilen Duygular',
+                      L10nService.get('dreams.discovered_emotions', language),
                       style: TextStyle(
                         fontSize: 11,
                         color: AppColors.textMuted,
@@ -2457,21 +2506,21 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    _buildJourneyStep('Farkindalik', true),
+                    _buildJourneyStep(L10nService.get('dreams.awareness', language), true),
                     _buildJourneyStep(
-                      'Kabul',
+                      L10nService.get('dreams.acceptance', language),
                       _stats!.progress.shadowIntegration >= 30,
                     ),
                     _buildJourneyStep(
-                      'Anlama',
+                      L10nService.get('dreams.understanding', language),
                       _stats!.progress.shadowIntegration >= 50,
                     ),
                     _buildJourneyStep(
-                      'Entegrasyon',
+                      L10nService.get('dreams.integration', language),
                       _stats!.progress.shadowIntegration >= 70,
                     ),
                     _buildJourneyStep(
-                      'Uyum',
+                      L10nService.get('dreams.harmony', language),
                       _stats!.progress.shadowIntegration >= 90,
                     ),
                   ],
@@ -2523,6 +2572,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
   Widget _buildAllAchievements() {
     if (_stats!.achievements.isEmpty) return const SizedBox.shrink();
 
+    final language = ref.watch(languageProvider);
     final unlocked = _stats!.achievements.where((a) => a.isUnlocked).toList();
     final locked = _stats!.achievements.where((a) => !a.isUnlocked).toList();
 
@@ -2548,7 +2598,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
               const Text('\u{1F3C6}', style: TextStyle(fontSize: 20)),
               const SizedBox(width: 8),
               Text(
-                'TUM BASARIMLAR',
+                L10nService.get('dreams.all_achievements', language),
                 style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
@@ -2566,7 +2616,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
           const SizedBox(height: 20),
           if (unlocked.isNotEmpty) ...[
             Text(
-              'Kazanilan',
+              L10nService.get('dreams.earned', language),
               style: TextStyle(
                 fontSize: 11,
                 color: AppColors.textMuted,
@@ -2579,7 +2629,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
           if (locked.isNotEmpty) ...[
             const SizedBox(height: 16),
             Text(
-              'Kilidi Acilmamis',
+              L10nService.get('dreams.locked', language),
               style: TextStyle(
                 fontSize: 11,
                 color: AppColors.textMuted,

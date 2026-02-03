@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_constants.dart';
+import '../../../data/providers/app_providers.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/zodiac_sign.dart';
 import '../../../data/models/extended_horoscope.dart';
@@ -8,19 +10,22 @@ import '../../../data/services/extended_horoscope_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/entertainment_disclaimer.dart';
 import '../../../shared/widgets/quiz_cta_card.dart';
+import '../../../data/services/localization_service.dart';
+import '../../../data/services/l10n_service.dart';
 
-class MonthlyHoroscopeScreen extends StatefulWidget {
+class MonthlyHoroscopeScreen extends ConsumerStatefulWidget {
   final String? signName;
 
   const MonthlyHoroscopeScreen({super.key, this.signName});
 
   @override
-  State<MonthlyHoroscopeScreen> createState() => _MonthlyHoroscopeScreenState();
+  ConsumerState<MonthlyHoroscopeScreen> createState() => _MonthlyHoroscopeScreenState();
 }
 
-class _MonthlyHoroscopeScreenState extends State<MonthlyHoroscopeScreen> {
+class _MonthlyHoroscopeScreenState extends ConsumerState<MonthlyHoroscopeScreen> {
   late ZodiacSign _selectedSign;
-  late MonthlyHoroscope _horoscope;
+  MonthlyHoroscope? _horoscope;
+  AppLanguage? _cachedLanguage;
   late int _selectedMonth;
   late int _selectedYear;
 
@@ -36,18 +41,21 @@ class _MonthlyHoroscopeScreenState extends State<MonthlyHoroscopeScreen> {
     final now = DateTime.now();
     _selectedMonth = now.month;
     _selectedYear = now.year;
-    _loadHoroscope();
   }
 
-  void _loadHoroscope() {
-    _horoscope = ExtendedHoroscopeService.generateMonthlyHoroscope(
-      _selectedSign,
-      _selectedMonth,
-      _selectedYear,
-    );
+  void _loadHoroscope(AppLanguage language) {
+    if (_cachedLanguage != language || _horoscope == null) {
+      _cachedLanguage = language;
+      _horoscope = ExtendedHoroscopeService.generateMonthlyHoroscope(
+        _selectedSign,
+        _selectedMonth,
+        _selectedYear,
+        language: language,
+      );
+    }
   }
 
-  void _changeMonth(int delta) {
+  void _changeMonth(int delta, AppLanguage language) {
     setState(() {
       _selectedMonth += delta;
       if (_selectedMonth > 12) {
@@ -57,21 +65,24 @@ class _MonthlyHoroscopeScreenState extends State<MonthlyHoroscopeScreen> {
         _selectedMonth = 12;
         _selectedYear--;
       }
-      _loadHoroscope();
+      _cachedLanguage = null; // Force reload
+      _loadHoroscope(language);
     });
   }
 
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final language = ref.watch(languageProvider);
+    _loadHoroscope(language);
 
     return Scaffold(
       body: CosmicBackground(
         child: SafeArea(
           child: Column(
             children: [
-              _buildHeader(context, isDark),
-              _buildMonthSelector(isDark),
+              _buildHeader(context, isDark, language),
+              _buildMonthSelector(isDark, language),
               Expanded(
                 child: SingleChildScrollView(
                   padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -81,9 +92,9 @@ class _MonthlyHoroscopeScreenState extends State<MonthlyHoroscopeScreen> {
                       const SizedBox(height: AppConstants.spacingLg),
                       _buildOverviewCard(isDark),
                       const SizedBox(height: AppConstants.spacingMd),
-                      _buildWeeklyRatingsCard(isDark),
+                      _buildWeeklyRatingsCard(isDark, language),
                       const SizedBox(height: AppConstants.spacingMd),
-                      _buildCategoryCards(isDark),
+                      _buildCategoryCards(isDark, language),
                       const SizedBox(height: AppConstants.spacingMd),
                       _buildSpiritualCard(isDark),
                       const SizedBox(height: AppConstants.spacingMd),
@@ -95,8 +106,8 @@ class _MonthlyHoroscopeScreenState extends State<MonthlyHoroscopeScreen> {
                       QuizCTACard.astrology(compact: true),
                       const SizedBox(height: AppConstants.spacingXl),
                       // Entertainment Disclaimer
-                      const PageFooterWithDisclaimer(
-                        brandText: 'Aylık Burç — Venus One',
+                      PageFooterWithDisclaimer(
+                        brandText: L10n.get('brand_monthly_horoscope', language),
                         disclaimerText: DisclaimerTexts.astrology,
                       ),
                       const SizedBox(height: AppConstants.spacingLg),
@@ -111,7 +122,7 @@ class _MonthlyHoroscopeScreenState extends State<MonthlyHoroscopeScreen> {
     );
   }
 
-  Widget _buildHeader(BuildContext context, bool isDark) {
+  Widget _buildHeader(BuildContext context, bool isDark, AppLanguage language) {
     return Padding(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       child: Row(
@@ -124,7 +135,7 @@ class _MonthlyHoroscopeScreenState extends State<MonthlyHoroscopeScreen> {
           const SizedBox(width: AppConstants.spacingSm),
           Expanded(
             child: Text(
-              'Bu ay seni ne bekliyor?',
+              L10n.get('what_awaits_this_month', language),
               style: Theme.of(context).textTheme.headlineSmall,
             ),
           ),
@@ -133,7 +144,7 @@ class _MonthlyHoroscopeScreenState extends State<MonthlyHoroscopeScreen> {
     );
   }
 
-  Widget _buildMonthSelector(bool isDark) {
+  Widget _buildMonthSelector(bool isDark, AppLanguage language) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: AppConstants.spacingLg),
       padding: const EdgeInsets.symmetric(
@@ -151,18 +162,18 @@ class _MonthlyHoroscopeScreenState extends State<MonthlyHoroscopeScreen> {
         children: [
           IconButton(
             icon: const Icon(Icons.chevron_left),
-            onPressed: () => _changeMonth(-1),
+            onPressed: () => _changeMonth(-1, language),
             color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
           ),
           Text(
-            '${_horoscope.monthName} $_selectedYear',
+            '${_horoscope!.monthName} $_selectedYear',
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.w600,
                 ),
           ),
           IconButton(
             icon: const Icon(Icons.chevron_right),
-            onPressed: () => _changeMonth(1),
+            onPressed: () => _changeMonth(1, language),
             color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
           ),
         ],
@@ -184,7 +195,8 @@ class _MonthlyHoroscopeScreenState extends State<MonthlyHoroscopeScreen> {
             onTap: () {
               setState(() {
                 _selectedSign = sign;
-                _loadHoroscope();
+                _cachedLanguage = null; // Force reload
+                _loadHoroscope(ref.read(languageProvider));
               });
             },
             child: Container(
@@ -209,7 +221,7 @@ class _MonthlyHoroscopeScreenState extends State<MonthlyHoroscopeScreen> {
                     style: const TextStyle(fontSize: 20), // Küçültüldü: 24 -> 20
                   ),
                   Text(
-                    sign.nameTr,
+                    sign.localizedName(ref.read(languageProvider)),
                     style: Theme.of(context).textTheme.labelSmall?.copyWith(
                           fontWeight:
                               isSelected ? FontWeight.bold : FontWeight.normal,
@@ -260,12 +272,12 @@ class _MonthlyHoroscopeScreenState extends State<MonthlyHoroscopeScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    _selectedSign.nameTr,
+                    _selectedSign.localizedName(ref.read(languageProvider)),
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
                   ),
-                  _buildRatingStars(_horoscope.overallRating),
+                  _buildRatingStars(_horoscope!.overallRating),
                 ],
               ),
             ],
@@ -274,7 +286,7 @@ class _MonthlyHoroscopeScreenState extends State<MonthlyHoroscopeScreen> {
           Wrap(
             spacing: 8,
             runSpacing: 8,
-            children: _horoscope.luckyDays.map((day) {
+            children: _horoscope!.luckyDays.map((day) {
               return Container(
                 padding: const EdgeInsets.symmetric(
                   horizontal: AppConstants.spacingMd,
@@ -285,7 +297,7 @@ class _MonthlyHoroscopeScreenState extends State<MonthlyHoroscopeScreen> {
                   borderRadius: BorderRadius.circular(AppConstants.radiusFull),
                 ),
                 child: Text(
-                  '$day. gün',
+                  '$day. ${L10nService.get('sections.day_suffix', ref.read(languageProvider))}',
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: AppColors.starGold,
                         fontWeight: FontWeight.w600,
@@ -296,7 +308,7 @@ class _MonthlyHoroscopeScreenState extends State<MonthlyHoroscopeScreen> {
           ),
           const SizedBox(height: AppConstants.spacingLg),
           Text(
-            _horoscope.overview,
+            _horoscope!.overview,
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                   height: 1.6,
                 ),
@@ -318,8 +330,9 @@ class _MonthlyHoroscopeScreenState extends State<MonthlyHoroscopeScreen> {
     );
   }
 
-  Widget _buildWeeklyRatingsCard(bool isDark) {
-    final weeks = ['1. Hafta', '2. Hafta', '3. Hafta', '4. Hafta'];
+  Widget _buildWeeklyRatingsCard(bool isDark, AppLanguage language) {
+    final weekLabel = L10n.get('week_number', language);
+    final weeks = ['1. $weekLabel', '2. $weekLabel', '3. $weekLabel', '4. $weekLabel'];
 
     return Container(
       width: double.infinity,
@@ -343,7 +356,7 @@ class _MonthlyHoroscopeScreenState extends State<MonthlyHoroscopeScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Haftalık Enerji Grafiği',
+            L10n.get('weekly_energy_chart', language),
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
@@ -352,7 +365,7 @@ class _MonthlyHoroscopeScreenState extends State<MonthlyHoroscopeScreen> {
           Row(
             children: List.generate(4, (index) {
               final rating =
-                  _horoscope.weeklyRatings['week${index + 1}'] ?? 3;
+                  _horoscope!.weeklyRatings['week${index + 1}'] ?? 3;
               return Expanded(
                 child: Column(
                   children: [
@@ -387,30 +400,30 @@ class _MonthlyHoroscopeScreenState extends State<MonthlyHoroscopeScreen> {
     );
   }
 
-  Widget _buildCategoryCards(bool isDark) {
+  Widget _buildCategoryCards(bool isDark, AppLanguage language) {
     final categories = [
       {
         'icon': Icons.favorite,
-        'title': 'Aşk',
-        'content': _horoscope.loveMonth,
+        'title': L10n.get('category_love', language),
+        'content': _horoscope!.loveMonth,
         'color': Colors.pink,
       },
       {
         'icon': Icons.work,
-        'title': 'Kariyer',
-        'content': _horoscope.careerMonth,
+        'title': L10n.get('category_career', language),
+        'content': _horoscope!.careerMonth,
         'color': Colors.blue,
       },
       {
         'icon': Icons.health_and_safety,
-        'title': 'Sağlık',
-        'content': _horoscope.healthMonth,
+        'title': L10n.get('category_health', language),
+        'content': _horoscope!.healthMonth,
         'color': Colors.green,
       },
       {
         'icon': Icons.attach_money,
-        'title': 'Finans',
-        'content': _horoscope.financialMonth,
+        'title': L10n.get('category_finance', language),
+        'content': _horoscope!.financialMonth,
         'color': Colors.amber,
       },
     ];
@@ -513,7 +526,7 @@ class _MonthlyHoroscopeScreenState extends State<MonthlyHoroscopeScreen> {
               ),
               const SizedBox(width: AppConstants.spacingMd),
               Text(
-                'Ruhsal Rehberlik',
+                L10nService.get('horoscope.spiritual_guidance', ref.read(languageProvider)),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
@@ -522,7 +535,7 @@ class _MonthlyHoroscopeScreenState extends State<MonthlyHoroscopeScreen> {
           ),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
-            _horoscope.spiritualGuidance,
+            _horoscope!.spiritualGuidance,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   height: 1.5,
                 ),
@@ -570,7 +583,7 @@ class _MonthlyHoroscopeScreenState extends State<MonthlyHoroscopeScreen> {
               ),
               const SizedBox(width: AppConstants.spacingMd),
               Text(
-                'Gezegen Transitler',
+                L10nService.get('horoscope.planet_transits', ref.read(languageProvider)),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
@@ -579,7 +592,7 @@ class _MonthlyHoroscopeScreenState extends State<MonthlyHoroscopeScreen> {
           ),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
-            _horoscope.keyTransits,
+            _horoscope!.keyTransits,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   height: 1.5,
                 ),
@@ -616,7 +629,7 @@ class _MonthlyHoroscopeScreenState extends State<MonthlyHoroscopeScreen> {
           ),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
-            'Aylık Mantra',
+            L10nService.get('sections.monthly_mantra', ref.read(languageProvider)),
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                   color: AppColors.starGold,
@@ -624,7 +637,7 @@ class _MonthlyHoroscopeScreenState extends State<MonthlyHoroscopeScreen> {
           ),
           const SizedBox(height: AppConstants.spacingSm),
           Text(
-            '"${_horoscope.monthlyMantra}"',
+            '"${_horoscope!.monthlyMantra}"',
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                   fontStyle: FontStyle.italic,
                   height: 1.5,

@@ -5,6 +5,7 @@ import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/aura_service.dart';
+import '../../../data/services/l10n_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/kadim_not_card.dart';
 import '../../../shared/widgets/next_blocks.dart';
@@ -17,6 +18,7 @@ class AuraScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final userProfile = ref.watch(userProfileProvider);
+    final language = ref.watch(languageProvider);
 
     if (userProfile == null) {
       return const NullProfilePlaceholder(
@@ -43,7 +45,7 @@ class AuraScreen extends ConsumerWidget {
                 floating: true,
                 snap: true,
                 title: Text(
-                  'Aura Analizi',
+                  L10nService.get('aura.title', language),
                   style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                         color: AppColors.starGold,
                       ),
@@ -58,33 +60,33 @@ class AuraScreen extends ConsumerWidget {
                 sliver: SliverList(
                   delegate: SliverChildListDelegate([
                     // Ezoterik giriş
-                    _buildEsotericIntro(context),
+                    _buildEsotericIntro(context, language),
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Ana aura kartı
-                    _buildMainAuraCard(context, auraProfile)
+                    _buildMainAuraCard(context, auraProfile, language)
                         .animate()
                         .fadeIn(duration: 400.ms),
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Chakra dengesi
-                    _buildSectionTitle(context, 'Chakra Dengesi'),
+                    _buildSectionTitle(context, L10nService.get('aura.chakra_balance', language)),
                     const SizedBox(height: AppConstants.spacingMd),
-                    _buildChakraBalance(context, auraProfile.chakraAlignment)
+                    _buildChakraBalance(context, auraProfile.chakraAlignment, language)
                         .animate()
                         .fadeIn(delay: 200.ms, duration: 400.ms),
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Günlük enerji
-                    _buildSectionTitle(context, 'Günlük Aura Enerjisi'),
+                    _buildSectionTitle(context, L10nService.get('aura.daily_energy', language)),
                     const SizedBox(height: AppConstants.spacingMd),
-                    _buildDailyEnergyCard(context, dailyEnergy)
+                    _buildDailyEnergyCard(context, dailyEnergy, language)
                         .animate()
                         .fadeIn(delay: 300.ms, duration: 400.ms),
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Aura temizleme
-                    _buildSectionTitle(context, 'Aura Temizleme'),
+                    _buildSectionTitle(context, L10nService.get('aura.cleansing', language)),
                     const SizedBox(height: AppConstants.spacingMd),
                     ...cleansingTips.asMap().entries.map((entry) {
                       return Padding(
@@ -100,11 +102,8 @@ class AuraScreen extends ConsumerWidget {
                     // Kadim Not
                     KadimNotCard(
                       category: KadimCategory.chakra,
-                      title: 'Enerji Bedenin Sırrı',
-                      content: 'Aura kavramı binlerce yıllık ezoterik geleneğe dayanır. Eski Mısır\'da "ka" '
-                          'olarak bilinen enerji bedeni, Hint geleneğinde "prana maya kosha" (yaşam enerjisi '
-                          'kılıfı) adını alır. Modern Kirlian fotoğrafçılığı bu kadim bilgeliği doğrulamış, '
-                          'canlı organizmaların çevresindeki biyoelektrik alanı görünür kılmıştır.',
+                      title: L10nService.get('aura.energy_body_secret', language),
+                      content: L10nService.get('aura.energy_body_secret_content', language),
                       icon: Icons.blur_on,
                     ),
                     const SizedBox(height: AppConstants.spacingXl),
@@ -128,7 +127,7 @@ class AuraScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildEsotericIntro(BuildContext context) {
+  Widget _buildEsotericIntro(BuildContext context, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -151,7 +150,7 @@ class AuraScreen extends ConsumerWidget {
               const Icon(Icons.blur_on, color: AppColors.auroraStart, size: 18),
               const SizedBox(width: 8),
               Text(
-                'Enerji Bedenin',
+                L10nService.get('aura.your_energy_body', language),
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       color: AppColors.auroraStart,
                       fontStyle: FontStyle.italic,
@@ -161,7 +160,7 @@ class AuraScreen extends ConsumerWidget {
           ),
           const SizedBox(height: AppConstants.spacingSm),
           Text(
-            'Aura, fiziksel bedenini çevreleyen enerji alanıdır. Her düşünce, duygu ve deneyim auranın rengini ve yoğunluğunu etkiler. Doğum tarihin ve ismin, temel aura rengini belirler - bu senin ruhsal imzandır. Auranı anlamak, enerjini yönetmenin ve korumanın anahtarıdır.',
+            L10nService.get('aura.energy_body_description', language),
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: AppColors.textSecondary,
                   height: 1.6,
@@ -173,7 +172,7 @@ class AuraScreen extends ConsumerWidget {
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildMainAuraCard(BuildContext context, AuraProfile profile) {
+  Widget _buildMainAuraCard(BuildContext context, AuraProfile profile, AppLanguage language) {
     final auraColor = profile.primaryColor.color;
 
     return Container(
@@ -242,14 +241,14 @@ class AuraScreen extends ConsumerWidget {
           ),
           const SizedBox(height: AppConstants.spacingLg),
           Text(
-            'Birincil Auran',
+            L10nService.get('aura.primary_aura', language),
             style: Theme.of(context).textTheme.labelMedium?.copyWith(
                   color: AppColors.textMuted,
                 ),
           ),
           const SizedBox(height: 4),
           Text(
-            profile.primaryColor.nameTr,
+            profile.primaryColor.localizedName(language),
             style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                   color: auraColor,
                   fontWeight: FontWeight.bold,
@@ -270,7 +269,7 @@ class AuraScreen extends ConsumerWidget {
               Expanded(
                 child: _buildAuraAttribute(
                   context,
-                  'Enerji Seviyesi',
+                  L10nService.get('aura.energy_level', language),
                   '${profile.overallEnergy}%',
                   auraColor,
                   profile.overallEnergy / 100,
@@ -281,7 +280,7 @@ class AuraScreen extends ConsumerWidget {
                 child: _buildAuraAttribute(
                   context,
                   'Chakra',
-                  profile.primaryColor.chakra.nameTr,
+                  profile.primaryColor.chakra.localizedName(language),
                   profile.primaryColor.chakra.color,
                   null,
                 ),
@@ -313,13 +312,13 @@ class AuraScreen extends ConsumerWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'İkincil Aura',
+                          L10nService.get('aura.secondary_aura', language),
                           style: Theme.of(context).textTheme.labelSmall?.copyWith(
                                 color: AppColors.textMuted,
                               ),
                         ),
                         Text(
-                          profile.secondaryColor!.nameTr,
+                          profile.secondaryColor!.localizedName(language),
                           style: Theme.of(context).textTheme.titleSmall?.copyWith(
                                 color: profile.secondaryColor!.color,
                               ),
@@ -347,7 +346,7 @@ class AuraScreen extends ConsumerWidget {
                     Icon(Icons.lightbulb_outline, color: auraColor, size: 16),
                     const SizedBox(width: 8),
                     Text(
-                      'Spiritüel Tavsiye',
+                      L10nService.get('aura.spiritual_advice', language),
                       style: Theme.of(context).textTheme.labelMedium?.copyWith(
                             color: auraColor,
                           ),
@@ -420,7 +419,7 @@ class AuraScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildChakraBalance(BuildContext context, Map<Chakra, int> alignment) {
+  Widget _buildChakraBalance(BuildContext context, Map<Chakra, int> alignment, AppLanguage language) {
     // Find strongest and weakest chakras
     final sortedChakras = alignment.entries.toList()
       ..sort((a, b) => b.value.compareTo(a.value));
@@ -451,7 +450,7 @@ class AuraScreen extends ConsumerWidget {
                 const SizedBox(width: 8),
                 Expanded(
                   child: Text(
-                    'Chakralar bedenindeki enerji merkezleridir. Her biri farklı yaşam alanlarını yönetir.',
+                    L10nService.get('aura.chakra_balance_info', language),
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           color: AppColors.textSecondary,
                           fontStyle: FontStyle.italic,
@@ -487,7 +486,7 @@ class AuraScreen extends ConsumerWidget {
                     final value = alignment[chakra] ?? 50;
                     return Padding(
                       padding: const EdgeInsets.only(bottom: AppConstants.spacingMd),
-                      child: _buildChakraDetailRow(context, chakra, value),
+                      child: _buildChakraDetailRow(context, chakra, value, language),
                     );
                   }).toList(),
                 ),
@@ -503,20 +502,22 @@ class AuraScreen extends ConsumerWidget {
               Expanded(
                 child: _buildChakraAnalysisCard(
                   context,
-                  'En Güçlü',
+                  L10nService.get('aura.strongest', language),
                   strongest.key,
                   strongest.value,
                   Icons.arrow_upward,
+                  language,
                 ),
               ),
               const SizedBox(width: AppConstants.spacingMd),
               Expanded(
                 child: _buildChakraAnalysisCard(
                   context,
-                  'Dengelenmeli',
+                  L10nService.get('aura.needs_balance', language),
                   weakest.key,
                   weakest.value,
                   Icons.arrow_downward,
+                  language,
                 ),
               ),
             ],
@@ -546,7 +547,7 @@ class AuraScreen extends ConsumerWidget {
                     Icon(Icons.healing, color: weakest.key.color, size: 16),
                     const SizedBox(width: 8),
                     Text(
-                      'Dengeleme Tavsiyesi',
+                      L10nService.get('aura.balancing_advice', language),
                       style: Theme.of(context).textTheme.labelMedium?.copyWith(
                             color: weakest.key.color,
                           ),
@@ -569,7 +570,7 @@ class AuraScreen extends ConsumerWidget {
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Text(
-                    'Mantra: ${weakest.key.mantras}',
+                    '${L10nService.get('aura.mantra', language)}: ${weakest.key.mantras}',
                     style: Theme.of(context).textTheme.labelSmall?.copyWith(
                           color: weakest.key.color,
                           fontWeight: FontWeight.bold,
@@ -639,8 +640,10 @@ class AuraScreen extends ConsumerWidget {
     return index > 0 ? Chakra.values[index - 1] : chakra;
   }
 
-  Widget _buildChakraDetailRow(BuildContext context, Chakra chakra, int value) {
-    final status = value >= 80 ? 'Aktif' : (value >= 60 ? 'Dengeli' : 'Zayıf');
+  Widget _buildChakraDetailRow(BuildContext context, Chakra chakra, int value, AppLanguage language) {
+    final status = value >= 80
+        ? L10nService.get('aura.status.active', language)
+        : (value >= 60 ? L10nService.get('aura.status.balanced', language) : L10nService.get('aura.status.weak', language));
     final statusColor = value >= 80
         ? AppColors.success
         : (value >= 60 ? AppColors.starGold : AppColors.warning);
@@ -663,7 +666,7 @@ class AuraScreen extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      chakra.nameTr,
+                      chakra.localizedName(language),
                       style: Theme.of(context).textTheme.labelMedium?.copyWith(
                             color: chakra.color,
                             fontWeight: FontWeight.bold,
@@ -717,6 +720,7 @@ class AuraScreen extends ConsumerWidget {
     Chakra chakra,
     int value,
     IconData icon,
+    AppLanguage language,
   ) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingMd),
@@ -764,7 +768,7 @@ class AuraScreen extends ConsumerWidget {
           ),
           const SizedBox(height: 6),
           Text(
-            chakra.nameTr,
+            chakra.localizedName(language),
             style: Theme.of(context).textTheme.labelMedium?.copyWith(
                   color: chakra.color,
                   fontWeight: FontWeight.bold,
@@ -813,7 +817,7 @@ class AuraScreen extends ConsumerWidget {
     }
   }
 
-  Widget _buildDailyEnergyCard(BuildContext context, DailyAuraEnergy energy) {
+  Widget _buildDailyEnergyCard(BuildContext context, DailyAuraEnergy energy, AppLanguage language) {
     final todayColor = energy.todayAura.color;
 
     return Container(
@@ -851,13 +855,13 @@ class AuraScreen extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Bugünün Aura Enerjisi',
+                      L10nService.get('aura.todays_aura_energy', language),
                       style: Theme.of(context).textTheme.labelMedium?.copyWith(
                             color: AppColors.textMuted,
                           ),
                     ),
                     Text(
-                      energy.todayAura.nameTr,
+                      energy.todayAura.localizedName(language),
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
                             color: todayColor,
                           ),
@@ -905,7 +909,7 @@ class AuraScreen extends ConsumerWidget {
                     Icon(Icons.format_quote, color: todayColor, size: 16),
                     const SizedBox(width: 8),
                     Text(
-                      'Günlük Olumlamanız',
+                      L10nService.get('aura.daily_affirmation', language),
                       style: Theme.of(context).textTheme.labelMedium?.copyWith(
                             color: todayColor,
                           ),

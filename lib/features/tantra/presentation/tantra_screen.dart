@@ -1,22 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/content/tantra_content.dart';
+import '../../../data/services/l10n_service.dart';
+import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/entertainment_disclaimer.dart';
 
 /// Tantra Screen - Mindfulness & Connection Practices
 /// Safe, non-explicit, wellness-focused content
-class TantraScreen extends StatefulWidget {
+class TantraScreen extends ConsumerStatefulWidget {
   const TantraScreen({super.key});
 
   @override
-  State<TantraScreen> createState() => _TantraScreenState();
+  ConsumerState<TantraScreen> createState() => _TantraScreenState();
 }
 
-class _TantraScreenState extends State<TantraScreen>
+class _TantraScreenState extends ConsumerState<TantraScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   TantraTheme? _selectedTheme;
@@ -36,21 +39,22 @@ class _TantraScreenState extends State<TantraScreen>
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final language = ref.watch(languageProvider);
 
     return Scaffold(
       body: CosmicBackground(
         child: SafeArea(
           child: Column(
             children: [
-              _buildHeader(context, isDark),
-              _buildTabBar(isDark),
+              _buildHeader(context, isDark, language),
+              _buildTabBar(isDark, language),
               Expanded(
                 child: TabBarView(
                   controller: _tabController,
                   children: [
-                    _buildDailyTab(isDark),
-                    _buildExploreTab(isDark),
-                    _buildQuestionsTab(isDark),
+                    _buildDailyTab(isDark, language),
+                    _buildExploreTab(isDark, language),
+                    _buildQuestionsTab(isDark, language),
                   ],
                 ),
               ),
@@ -61,7 +65,7 @@ class _TantraScreenState extends State<TantraScreen>
     );
   }
 
-  Widget _buildHeader(BuildContext context, bool isDark) {
+  Widget _buildHeader(BuildContext context, bool isDark, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       child: Column(
@@ -87,7 +91,7 @@ class _TantraScreenState extends State<TantraScreen>
                         ),
                         const SizedBox(width: 8),
                         Text(
-                          'Tantra',
+                          L10nService.get('tantra.title', language),
                           style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                                 fontWeight: FontWeight.bold,
                                 color: isDark ? Colors.white : AppColors.textDark,
@@ -97,7 +101,7 @@ class _TantraScreenState extends State<TantraScreen>
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      'Farkındalık & Bağlanma Pratiği',
+                      L10nService.get('tantra.subtitle', language),
                       style: TextStyle(
                         fontSize: 12,
                         color: isDark ? Colors.white60 : AppColors.textLight,
@@ -126,7 +130,7 @@ class _TantraScreenState extends State<TantraScreen>
               ),
             ),
             child: Text(
-              'Tantra, bedensel farkındalık, bilinçli nefes ve duygusal bağlanma yoluyla içsel dengeyi keşfetme sanatıdır. Bu pratikler, kendinle ve sevdiklerinle daha derin bir bağ kurmanı sağlar.',
+              L10nService.get('tantra.description', language),
               style: TextStyle(
                 fontSize: 13,
                 height: 1.5,
@@ -140,7 +144,7 @@ class _TantraScreenState extends State<TantraScreen>
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildTabBar(bool isDark) {
+  Widget _buildTabBar(bool isDark, AppLanguage language) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -161,10 +165,10 @@ class _TantraScreenState extends State<TantraScreen>
           borderRadius: BorderRadius.circular(AppConstants.radiusLg),
         ),
         dividerColor: Colors.transparent,
-        tabs: const [
-          Tab(text: 'Günlük'),
-          Tab(text: 'Keşfet'),
-          Tab(text: 'Sorular'),
+        tabs: [
+          Tab(text: L10nService.get('tantra.daily', language)),
+          Tab(text: L10nService.get('tantra.explore', language)),
+          Tab(text: L10nService.get('tantra.questions', language)),
         ],
       ),
     );
@@ -174,7 +178,7 @@ class _TantraScreenState extends State<TantraScreen>
   // DAILY TAB
   // ═══════════════════════════════════════════════════════════════════════════
 
-  Widget _buildDailyTab(bool isDark) {
+  Widget _buildDailyTab(bool isDark, AppLanguage language) {
     final dailyModule = TantraContent.getDailyModule();
     final recommended = TantraContent.getRecommendedForTime();
 
@@ -184,7 +188,7 @@ class _TantraScreenState extends State<TantraScreen>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Daily module card
-          _buildDailyModuleCard(dailyModule, isDark)
+          _buildDailyModuleCard(dailyModule, isDark, language)
               .animate()
               .fadeIn(duration: 500.ms)
               .slideY(begin: 0.1),
@@ -193,7 +197,7 @@ class _TantraScreenState extends State<TantraScreen>
 
           // Time-based recommendations
           Text(
-            'Şu An İçin Önerilen',
+            L10nService.get('tantra.recommended_now', language),
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
@@ -202,7 +206,7 @@ class _TantraScreenState extends State<TantraScreen>
           ),
           const SizedBox(height: AppConstants.spacingMd),
           ...recommended.asMap().entries.map((entry) {
-            return _buildModuleCard(entry.value, isDark)
+            return _buildModuleCard(entry.value, isDark, language)
                 .animate(delay: (100 * entry.key).ms)
                 .fadeIn(duration: 400.ms)
                 .slideX(begin: 0.1);
@@ -218,7 +222,7 @@ class _TantraScreenState extends State<TantraScreen>
     );
   }
 
-  Widget _buildDailyModuleCard(TantraModule module, bool isDark) {
+  Widget _buildDailyModuleCard(TantraModule module, bool isDark, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -260,7 +264,7 @@ class _TantraScreenState extends State<TantraScreen>
                     const Text('✨', style: TextStyle(fontSize: 14)),
                     const SizedBox(width: 6),
                     Text(
-                      'Günün Pratiği',
+                      L10nService.get('tantra.daily_practice', language),
                       style: TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.w600,
@@ -319,7 +323,7 @@ class _TantraScreenState extends State<TantraScreen>
                     const Text('💭', style: TextStyle(fontSize: 16)),
                     const SizedBox(width: 8),
                     Text(
-                      'Düşün',
+                      L10nService.get('tantra.reflect', language),
                       style: TextStyle(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,
@@ -360,7 +364,7 @@ class _TantraScreenState extends State<TantraScreen>
                     const Text('🧘', style: TextStyle(fontSize: 16)),
                     const SizedBox(width: 8),
                     Text(
-                      'Pratik',
+                      L10nService.get('tantra.practice', language),
                       style: TextStyle(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,
@@ -378,7 +382,7 @@ class _TantraScreenState extends State<TantraScreen>
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Text(
-                        '${module.durationMinutes} dk',
+                        '${module.durationMinutes} ${L10nService.get('common.minutes_short', language)}',
                         style: TextStyle(
                           fontSize: 11,
                           fontWeight: FontWeight.w600,
@@ -409,7 +413,7 @@ class _TantraScreenState extends State<TantraScreen>
   // EXPLORE TAB
   // ═══════════════════════════════════════════════════════════════════════════
 
-  Widget _buildExploreTab(bool isDark) {
+  Widget _buildExploreTab(bool isDark, AppLanguage language) {
     final modules = _selectedTheme != null
         ? TantraContent.getByTheme(_selectedTheme!)
         : TantraContent.getAllModules();
@@ -425,10 +429,10 @@ class _TantraScreenState extends State<TantraScreen>
             padding:
                 const EdgeInsets.symmetric(horizontal: AppConstants.spacingLg),
             children: [
-              _buildThemeChip(null, 'Tümü', '📚', isDark),
+              _buildThemeChip(null, L10nService.get('common.all', language), '📚', isDark),
               ...TantraTheme.values.map(
                 (theme) =>
-                    _buildThemeChip(theme, theme.nameTr, theme.icon, isDark),
+                    _buildThemeChip(theme, theme.localizedName(language), theme.icon, isDark),
               ),
             ],
           ),
@@ -467,7 +471,7 @@ class _TantraScreenState extends State<TantraScreen>
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        _selectedTheme!.nameTr,
+                        _selectedTheme!.localizedName(language),
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
@@ -498,7 +502,7 @@ class _TantraScreenState extends State<TantraScreen>
             padding: const EdgeInsets.all(AppConstants.spacingLg),
             itemCount: modules.length,
             itemBuilder: (context, index) {
-              return _buildModuleCard(modules[index], isDark)
+              return _buildModuleCard(modules[index], isDark, language)
                   .animate(delay: (50 * index).ms)
                   .fadeIn(duration: 300.ms);
             },
@@ -537,7 +541,7 @@ class _TantraScreenState extends State<TantraScreen>
     );
   }
 
-  Widget _buildModuleCard(TantraModule module, bool isDark) {
+  Widget _buildModuleCard(TantraModule module, bool isDark, AppLanguage language) {
     return Container(
       margin: const EdgeInsets.only(bottom: AppConstants.spacingMd),
       decoration: BoxDecoration(
@@ -602,7 +606,7 @@ class _TantraScreenState extends State<TantraScreen>
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Text(
-                '${module.durationMinutes} dk',
+                '${module.durationMinutes} ${L10nService.get('common.minutes_short', language)}',
                 style: TextStyle(
                   fontSize: 11,
                   color: AppColors.tantraCrimson,
@@ -620,7 +624,7 @@ class _TantraScreenState extends State<TantraScreen>
           // Reflection
           _buildSectionBox(
             icon: '💭',
-            title: 'Düşün',
+            title: L10nService.get('tantra.reflect', language),
             content: module.reflection,
             isDark: isDark,
           ),
@@ -629,7 +633,7 @@ class _TantraScreenState extends State<TantraScreen>
           // Practice
           _buildSectionBox(
             icon: '🧘',
-            title: 'Pratik',
+            title: L10nService.get('tantra.practice', language),
             content: module.practice,
             isDark: isDark,
             highlight: true,
@@ -696,13 +700,13 @@ class _TantraScreenState extends State<TantraScreen>
   // QUESTIONS TAB
   // ═══════════════════════════════════════════════════════════════════════════
 
-  Widget _buildQuestionsTab(bool isDark) {
+  Widget _buildQuestionsTab(bool isDark, AppLanguage language) {
     return ListView(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       children: [
         ...TantraQuestionPurpose.values.map((purpose) {
           final questions = TantraContent.getByPurpose(purpose);
-          return _buildQuestionSection(purpose, questions, isDark);
+          return _buildQuestionSection(purpose, questions, isDark, language);
         }),
       ],
     );
@@ -712,6 +716,7 @@ class _TantraScreenState extends State<TantraScreen>
     TantraQuestionPurpose purpose,
     List<TantraQuestion> questions,
     bool isDark,
+    AppLanguage language,
   ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -743,7 +748,7 @@ class _TantraScreenState extends State<TantraScreen>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      purpose.nameTr,
+                      purpose.localizedName(language),
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,

@@ -4,6 +4,8 @@
 /// Her kart için: anlam, ters anlam, sembolizm, arketip, tavsiye, meditasyon.
 library;
 
+import '../providers/app_providers.dart';
+
 class MajorArcanaContent {
   final int number;
   final String name;
@@ -46,6 +48,19 @@ class MajorArcanaContent {
     required this.viralQuote,
     required this.shadowAspect,
   });
+
+  /// Localized card name based on language
+  String localizedName(AppLanguage language) {
+    switch (language) {
+      case AppLanguage.tr:
+        return nameTr;
+      case AppLanguage.en:
+      case AppLanguage.de:
+      case AppLanguage.fr:
+      default:
+        return name;
+    }
+  }
 }
 
 /// 22 Major Arcana Kartı

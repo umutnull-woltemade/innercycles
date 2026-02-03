@@ -1,27 +1,47 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
-import '../../../data/models/zodiac_sign.dart';
 import '../../../data/models/extended_horoscope.dart';
+import '../../../data/models/zodiac_sign.dart';
+import '../../../data/providers/app_providers.dart';
 import '../../../data/services/extended_horoscope_service.dart';
+import '../../../data/services/localization_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/entertainment_disclaimer.dart';
 import '../../../shared/widgets/quiz_cta_card.dart';
 
-class YearlyHoroscopeScreen extends StatefulWidget {
+List<String> _getMonthAbbreviations(AppLanguage language) {
+  switch (language) {
+    case AppLanguage.en:
+      return ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'];
+    case AppLanguage.de:
+      return ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'];
+    case AppLanguage.fr:
+      return ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'];
+    case AppLanguage.tr:
+    default:
+      return ['O', 'Ş', 'M', 'N', 'M', 'H', 'T', 'A', 'E', 'E', 'K', 'A'];
+  }
+}
+
+class YearlyHoroscopeScreen extends ConsumerStatefulWidget {
   final String? signName;
 
   const YearlyHoroscopeScreen({super.key, this.signName});
 
   @override
-  State<YearlyHoroscopeScreen> createState() => _YearlyHoroscopeScreenState();
+  ConsumerState<YearlyHoroscopeScreen> createState() =>
+      _YearlyHoroscopeScreenState();
 }
 
-class _YearlyHoroscopeScreenState extends State<YearlyHoroscopeScreen> {
+class _YearlyHoroscopeScreenState extends ConsumerState<YearlyHoroscopeScreen> {
   late ZodiacSign _selectedSign;
-  late YearlyHoroscope _horoscope;
+  YearlyHoroscope? _horoscope;
   late int _selectedYear;
+  AppLanguage? _cachedLanguage;
 
   @override
   void initState() {
@@ -33,61 +53,72 @@ class _YearlyHoroscopeScreenState extends State<YearlyHoroscopeScreen> {
           )
         : ZodiacSign.aries;
     _selectedYear = DateTime.now().year;
-    _loadHoroscope();
   }
 
-  void _loadHoroscope() {
-    _horoscope = ExtendedHoroscopeService.generateYearlyHoroscope(
-      _selectedSign,
-      _selectedYear,
-    );
+  void _loadHoroscope(AppLanguage language) {
+    if (_cachedLanguage != language || _horoscope == null) {
+      _cachedLanguage = language;
+      _horoscope = ExtendedHoroscopeService.generateYearlyHoroscope(
+        _selectedSign,
+        _selectedYear,
+        language: language,
+      );
+    }
   }
 
-  void _changeYear(int delta) {
+  void _changeYear(int delta, AppLanguage language) {
     setState(() {
       _selectedYear += delta;
-      _loadHoroscope();
+      _cachedLanguage = null; // Force reload
+      _loadHoroscope(language);
     });
   }
 
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final language = ref.watch(languageProvider);
+
+    // Load horoscope with current language
+    _loadHoroscope(language);
 
     return Scaffold(
       body: CosmicBackground(
         child: SafeArea(
           child: Column(
             children: [
-              _buildHeader(context, isDark),
-              _buildYearSelector(isDark),
+              _buildHeader(context, isDark, language),
+              _buildYearSelector(isDark, language),
               Expanded(
                 child: SingleChildScrollView(
                   padding: const EdgeInsets.all(AppConstants.spacingLg),
                   child: Column(
                     children: [
-                      _buildSignSelector(isDark),
+                      _buildSignSelector(isDark, language),
                       const SizedBox(height: AppConstants.spacingLg),
-                      _buildOverviewCard(isDark),
+                      _buildOverviewCard(isDark, language),
                       const SizedBox(height: AppConstants.spacingMd),
-                      _buildThemeCard(isDark),
+                      _buildThemeCard(isDark, language),
                       const SizedBox(height: AppConstants.spacingMd),
-                      _buildMonthlyChart(isDark),
+                      _buildMonthlyChart(isDark, language),
                       const SizedBox(height: AppConstants.spacingMd),
-                      _buildCategoryCards(isDark),
+                      _buildCategoryCards(isDark, language),
                       const SizedBox(height: AppConstants.spacingMd),
-                      _buildTransitsCard(isDark),
+                      _buildTransitsCard(isDark, language),
                       const SizedBox(height: AppConstants.spacingMd),
-                      _buildLuckyMonthsCard(isDark),
+                      _buildLuckyMonthsCard(isDark, language),
                       const SizedBox(height: AppConstants.spacingMd),
-                      _buildAffirmationCard(isDark),
+                      _buildAffirmationCard(isDark, language),
                       const SizedBox(height: AppConstants.spacingXxl),
                       // Quiz CTA - Google Discover Funnel
                       QuizCTACard.astrology(compact: true),
                       const SizedBox(height: AppConstants.spacingXl),
                       // Entertainment Disclaimer
-                      const PageFooterWithDisclaimer(
-                        brandText: 'Yıllık Burç — Venus One',
+                      PageFooterWithDisclaimer(
+                        brandText: L10n.get(
+                          'brands.yearly_horoscope',
+                          language,
+                        ),
                         disclaimerText: DisclaimerTexts.astrology,
                       ),
                       const SizedBox(height: AppConstants.spacingLg),
@@ -102,7 +133,7 @@ class _YearlyHoroscopeScreenState extends State<YearlyHoroscopeScreen> {
     );
   }
 
-  Widget _buildHeader(BuildContext context, bool isDark) {
+  Widget _buildHeader(BuildContext context, bool isDark, AppLanguage language) {
     return Padding(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       child: Row(
@@ -115,7 +146,7 @@ class _YearlyHoroscopeScreenState extends State<YearlyHoroscopeScreen> {
           const SizedBox(width: AppConstants.spacingSm),
           Expanded(
             child: Text(
-              'Bu yıl seni ne bekliyor?',
+              L10n.get('sections.what_awaits_this_year', language),
               style: Theme.of(context).textTheme.headlineSmall,
             ),
           ),
@@ -124,7 +155,7 @@ class _YearlyHoroscopeScreenState extends State<YearlyHoroscopeScreen> {
     );
   }
 
-  Widget _buildYearSelector(bool isDark) {
+  Widget _buildYearSelector(bool isDark, AppLanguage language) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: AppConstants.spacingLg),
       padding: const EdgeInsets.symmetric(
@@ -146,19 +177,19 @@ class _YearlyHoroscopeScreenState extends State<YearlyHoroscopeScreen> {
         children: [
           IconButton(
             icon: const Icon(Icons.chevron_left),
-            onPressed: () => _changeYear(-1),
+            onPressed: () => _changeYear(-1, language),
             color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
           ),
           Text(
             '$_selectedYear',
             style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: AppColors.starGold,
-                ),
+              fontWeight: FontWeight.bold,
+              color: AppColors.starGold,
+            ),
           ),
           IconButton(
             icon: const Icon(Icons.chevron_right),
-            onPressed: () => _changeYear(1),
+            onPressed: () => _changeYear(1, language),
             color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
           ),
         ],
@@ -166,7 +197,7 @@ class _YearlyHoroscopeScreenState extends State<YearlyHoroscopeScreen> {
     );
   }
 
-  Widget _buildSignSelector(bool isDark) {
+  Widget _buildSignSelector(bool isDark, AppLanguage language) {
     return SizedBox(
       height: 56,
       child: ListView.builder(
@@ -178,9 +209,11 @@ class _YearlyHoroscopeScreenState extends State<YearlyHoroscopeScreen> {
 
           return GestureDetector(
             onTap: () {
+              final lang = ref.read(languageProvider);
               setState(() {
                 _selectedSign = sign;
-                _loadHoroscope();
+                _cachedLanguage = null; // Force reload
+                _loadHoroscope(lang);
               });
             },
             child: Container(
@@ -190,8 +223,8 @@ class _YearlyHoroscopeScreenState extends State<YearlyHoroscopeScreen> {
                 color: isSelected
                     ? AppColors.starGold.withValues(alpha: 0.3)
                     : isDark
-                        ? AppColors.surfaceLight.withValues(alpha: 0.2)
-                        : AppColors.lightSurfaceVariant,
+                    ? AppColors.surfaceLight.withValues(alpha: 0.2)
+                    : AppColors.lightSurfaceVariant,
                 borderRadius: BorderRadius.circular(AppConstants.radiusSm),
                 border: isSelected
                     ? Border.all(color: AppColors.starGold, width: 2)
@@ -200,17 +233,15 @@ class _YearlyHoroscopeScreenState extends State<YearlyHoroscopeScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  Text(sign.symbol, style: const TextStyle(fontSize: 20)),
                   Text(
-                    sign.symbol,
-                    style: const TextStyle(fontSize: 20),
-                  ),
-                  Text(
-                    sign.nameTr,
+                    sign.localizedName(language),
                     style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                          fontSize: 10,
-                          fontWeight:
-                              isSelected ? FontWeight.bold : FontWeight.normal,
-                        ),
+                      fontSize: 10,
+                      fontWeight: isSelected
+                          ? FontWeight.bold
+                          : FontWeight.normal,
+                    ),
                     textAlign: TextAlign.center,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
@@ -224,7 +255,7 @@ class _YearlyHoroscopeScreenState extends State<YearlyHoroscopeScreen> {
     );
   }
 
-  Widget _buildOverviewCard(bool isDark) {
+  Widget _buildOverviewCard(bool isDark, AppLanguage language) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -238,9 +269,7 @@ class _YearlyHoroscopeScreenState extends State<YearlyHoroscopeScreen> {
           ],
         ),
         borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: AppColors.starGold.withValues(alpha: 0.3),
-        ),
+        border: Border.all(color: AppColors.starGold.withValues(alpha: 0.3)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -263,29 +292,27 @@ class _YearlyHoroscopeScreenState extends State<YearlyHoroscopeScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    _selectedSign.nameTr,
+                    _selectedSign.localizedName(language),
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   Text(
-                    '$_selectedYear Kozmik Özeti',
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: AppColors.starGold,
-                        ),
+                    '$_selectedYear ${L10n.get('sections.cosmic_summary', language)}',
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodySmall?.copyWith(color: AppColors.starGold),
                   ),
                 ],
               ),
               const Spacer(),
-              _buildRatingBadge(_horoscope.overallRating),
+              _buildRatingBadge(_horoscope!.overallRating),
             ],
           ),
           const SizedBox(height: AppConstants.spacingLg),
           Text(
-            _horoscope.yearOverview,
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  height: 1.6,
-                ),
+            _horoscope!.yearOverview,
+            style: Theme.of(context).textTheme.bodyLarge?.copyWith(height: 1.6),
           ),
         ],
       ),
@@ -308,16 +335,16 @@ class _YearlyHoroscopeScreenState extends State<YearlyHoroscopeScreen> {
           Text(
             '$rating/5',
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: AppColors.starGold,
-                  fontWeight: FontWeight.bold,
-                ),
+              color: AppColors.starGold,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildThemeCard(bool isDark) {
+  Widget _buildThemeCard(bool isDark, AppLanguage language) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -331,30 +358,24 @@ class _YearlyHoroscopeScreenState extends State<YearlyHoroscopeScreen> {
           ],
         ),
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-        border: Border.all(
-          color: Colors.purple.withValues(alpha: 0.3),
-        ),
+        border: Border.all(color: Colors.purple.withValues(alpha: 0.3)),
       ),
       child: Column(
         children: [
-          const Icon(
-            Icons.auto_awesome,
-            color: Colors.purple,
-            size: 32,
-          ),
+          const Icon(Icons.auto_awesome, color: Colors.purple, size: 32),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
-            'Yılın Teması',
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                  color: Colors.purple,
-                ),
+            L10n.get('horoscope.yearly_theme', language),
+            style: Theme.of(
+              context,
+            ).textTheme.titleSmall?.copyWith(color: Colors.purple),
           ),
           const SizedBox(height: AppConstants.spacingSm),
           Text(
-            _horoscope.keyTheme,
-            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
+            _horoscope!.keyTheme,
+            style: Theme.of(
+              context,
+            ).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
             textAlign: TextAlign.center,
           ),
         ],
@@ -362,8 +383,8 @@ class _YearlyHoroscopeScreenState extends State<YearlyHoroscopeScreen> {
     );
   }
 
-  Widget _buildMonthlyChart(bool isDark) {
-    final months = ['O', 'S', 'M', 'N', 'M', 'H', 'T', 'A', 'E', 'E', 'K', 'A'];
+  Widget _buildMonthlyChart(bool isDark, AppLanguage language) {
+    final months = _getMonthAbbreviations(language);
 
     return Container(
       width: double.infinity,
@@ -387,10 +408,10 @@ class _YearlyHoroscopeScreenState extends State<YearlyHoroscopeScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Aylık Enerji Haritası',
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
+            L10n.get('sections.yearly_energy_map', language),
+            style: Theme.of(
+              context,
+            ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: AppConstants.spacingLg),
           SizedBox(
@@ -398,8 +419,9 @@ class _YearlyHoroscopeScreenState extends State<YearlyHoroscopeScreen> {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: List.generate(12, (index) {
-                final rating = _horoscope.monthlyRatings[index + 1] ?? 3;
-                final isCurrentMonth = index + 1 == DateTime.now().month &&
+                final rating = _horoscope!.monthlyRatings[index + 1] ?? 3;
+                final isCurrentMonth =
+                    index + 1 == DateTime.now().month &&
                     _selectedYear == DateTime.now().year;
 
                 return Expanded(
@@ -410,13 +432,13 @@ class _YearlyHoroscopeScreenState extends State<YearlyHoroscopeScreen> {
                       children: [
                         Text(
                           '$rating',
-                          style:
-                              Theme.of(context).textTheme.bodySmall?.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                    color: isCurrentMonth
-                                        ? AppColors.starGold
-                                        : null,
-                                  ),
+                          style: Theme.of(context).textTheme.bodySmall
+                              ?.copyWith(
+                                fontWeight: FontWeight.bold,
+                                color: isCurrentMonth
+                                    ? AppColors.starGold
+                                    : null,
+                              ),
                         ),
                         const SizedBox(height: 4),
                         Container(
@@ -426,28 +448,36 @@ class _YearlyHoroscopeScreenState extends State<YearlyHoroscopeScreen> {
                               begin: Alignment.bottomCenter,
                               end: Alignment.topCenter,
                               colors: isCurrentMonth
-                                  ? [AppColors.starGold, AppColors.celestialGold]
-                                  : [AppColors.auroraStart, AppColors.auroraEnd],
+                                  ? [
+                                      AppColors.starGold,
+                                      AppColors.celestialGold,
+                                    ]
+                                  : [
+                                      AppColors.auroraStart,
+                                      AppColors.auroraEnd,
+                                    ],
                             ),
                             borderRadius: BorderRadius.circular(4),
                             border: isCurrentMonth
                                 ? Border.all(
-                                    color: AppColors.starGold, width: 2)
+                                    color: AppColors.starGold,
+                                    width: 2,
+                                  )
                                 : null,
                           ),
                         ),
                         const SizedBox(height: 4),
                         Text(
                           months[index],
-                          style:
-                              Theme.of(context).textTheme.labelSmall?.copyWith(
-                                    fontWeight: isCurrentMonth
-                                        ? FontWeight.bold
-                                        : FontWeight.normal,
-                                    color: isCurrentMonth
-                                        ? AppColors.starGold
-                                        : null,
-                                  ),
+                          style: Theme.of(context).textTheme.labelSmall
+                              ?.copyWith(
+                                fontWeight: isCurrentMonth
+                                    ? FontWeight.bold
+                                    : FontWeight.normal,
+                                color: isCurrentMonth
+                                    ? AppColors.starGold
+                                    : null,
+                              ),
                         ),
                       ],
                     ),
@@ -461,36 +491,36 @@ class _YearlyHoroscopeScreenState extends State<YearlyHoroscopeScreen> {
     );
   }
 
-  Widget _buildCategoryCards(bool isDark) {
+  Widget _buildCategoryCards(bool isDark, AppLanguage language) {
     final categories = [
       {
         'icon': Icons.favorite,
-        'title': 'Aşk',
-        'content': _horoscope.loveYear,
+        'title': L10n.get('categories.love', language),
+        'content': _horoscope!.loveYear,
         'color': Colors.pink,
       },
       {
         'icon': Icons.work,
-        'title': 'Kariyer',
-        'content': _horoscope.careerYear,
+        'title': L10n.get('categories.career', language),
+        'content': _horoscope!.careerYear,
         'color': Colors.blue,
       },
       {
         'icon': Icons.health_and_safety,
-        'title': 'Sağlık',
-        'content': _horoscope.healthYear,
+        'title': L10n.get('categories.health', language),
+        'content': _horoscope!.healthYear,
         'color': Colors.green,
       },
       {
         'icon': Icons.attach_money,
-        'title': 'Finans',
-        'content': _horoscope.financialYear,
+        'title': L10n.get('categories.finance', language),
+        'content': _horoscope!.financialYear,
         'color': Colors.amber,
       },
       {
         'icon': Icons.self_improvement,
-        'title': 'Ruhsal Yolculuk',
-        'content': _horoscope.spiritualJourney,
+        'title': L10n.get('sections.spiritual_journey', language),
+        'content': _horoscope!.spiritualJourney,
         'color': Colors.purple,
       },
     ];
@@ -537,17 +567,17 @@ class _YearlyHoroscopeScreenState extends State<YearlyHoroscopeScreen> {
                   Text(
                     cat['title'] as String,
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ],
               ),
               const SizedBox(height: AppConstants.spacingMd),
               Text(
                 cat['content'] as String,
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      height: 1.5,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.bodyMedium?.copyWith(height: 1.5),
               ),
             ],
           ),
@@ -556,7 +586,7 @@ class _YearlyHoroscopeScreenState extends State<YearlyHoroscopeScreen> {
     );
   }
 
-  Widget _buildTransitsCard(bool isDark) {
+  Widget _buildTransitsCard(bool isDark, AppLanguage language) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -594,15 +624,15 @@ class _YearlyHoroscopeScreenState extends State<YearlyHoroscopeScreen> {
               ),
               const SizedBox(width: AppConstants.spacingMd),
               Text(
-                'Önemli Gezegen Transitleri',
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+                L10n.get('sections.important_transits', language),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
               ),
             ],
           ),
           const SizedBox(height: AppConstants.spacingMd),
-          ..._horoscope.majorTransits.map((transit) {
+          ..._horoscope!.majorTransits.map((transit) {
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 4),
               child: Row(
@@ -617,9 +647,9 @@ class _YearlyHoroscopeScreenState extends State<YearlyHoroscopeScreen> {
                   Expanded(
                     child: Text(
                       transit,
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            height: 1.5,
-                          ),
+                      style: Theme.of(
+                        context,
+                      ).textTheme.bodyMedium?.copyWith(height: 1.5),
                     ),
                   ),
                 ],
@@ -631,7 +661,7 @@ class _YearlyHoroscopeScreenState extends State<YearlyHoroscopeScreen> {
     );
   }
 
-  Widget _buildLuckyMonthsCard(bool isDark) {
+  Widget _buildLuckyMonthsCard(bool isDark, AppLanguage language) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -654,10 +684,10 @@ class _YearlyHoroscopeScreenState extends State<YearlyHoroscopeScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Yılın Özel Ayları',
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
+            L10n.get('sections.special_months_of_year', language),
+            style: Theme.of(
+              context,
+            ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: AppConstants.spacingLg),
           Row(
@@ -671,12 +701,12 @@ class _YearlyHoroscopeScreenState extends State<YearlyHoroscopeScreen> {
                         const Icon(Icons.star, color: Colors.green, size: 16),
                         const SizedBox(width: 4),
                         Text(
-                          'Şanslı Aylar',
-                          style:
-                              Theme.of(context).textTheme.bodySmall?.copyWith(
-                                    color: Colors.green,
-                                    fontWeight: FontWeight.w600,
-                                  ),
+                          L10n.get('horoscope.lucky_months', language),
+                          style: Theme.of(context).textTheme.bodySmall
+                              ?.copyWith(
+                                color: Colors.green,
+                                fontWeight: FontWeight.w600,
+                              ),
                         ),
                       ],
                     ),
@@ -684,7 +714,7 @@ class _YearlyHoroscopeScreenState extends State<YearlyHoroscopeScreen> {
                     Wrap(
                       spacing: 4,
                       runSpacing: 4,
-                      children: _horoscope.luckyMonths.map((month) {
+                      children: _horoscope!.luckyMonths.map((month) {
                         return Container(
                           padding: const EdgeInsets.symmetric(
                             horizontal: 8,
@@ -711,16 +741,19 @@ class _YearlyHoroscopeScreenState extends State<YearlyHoroscopeScreen> {
                   children: [
                     Row(
                       children: [
-                        const Icon(Icons.warning_amber,
-                            color: Colors.orange, size: 16),
+                        const Icon(
+                          Icons.warning_amber,
+                          color: Colors.orange,
+                          size: 16,
+                        ),
                         const SizedBox(width: 4),
                         Text(
-                          'Dikkat Gerektiren',
-                          style:
-                              Theme.of(context).textTheme.bodySmall?.copyWith(
-                                    color: Colors.orange,
-                                    fontWeight: FontWeight.w600,
-                                  ),
+                          L10n.get('sections.caution_required', language),
+                          style: Theme.of(context).textTheme.bodySmall
+                              ?.copyWith(
+                                color: Colors.orange,
+                                fontWeight: FontWeight.w600,
+                              ),
                         ),
                       ],
                     ),
@@ -728,7 +761,7 @@ class _YearlyHoroscopeScreenState extends State<YearlyHoroscopeScreen> {
                     Wrap(
                       spacing: 4,
                       runSpacing: 4,
-                      children: _horoscope.challengingMonths.map((month) {
+                      children: _horoscope!.challengingMonths.map((month) {
                         return Container(
                           padding: const EdgeInsets.symmetric(
                             horizontal: 8,
@@ -755,7 +788,7 @@ class _YearlyHoroscopeScreenState extends State<YearlyHoroscopeScreen> {
     );
   }
 
-  Widget _buildAffirmationCard(bool isDark) {
+  Widget _buildAffirmationCard(bool isDark, AppLanguage language) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -769,32 +802,26 @@ class _YearlyHoroscopeScreenState extends State<YearlyHoroscopeScreen> {
           ],
         ),
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-        border: Border.all(
-          color: AppColors.starGold.withValues(alpha: 0.3),
-        ),
+        border: Border.all(color: AppColors.starGold.withValues(alpha: 0.3)),
       ),
       child: Column(
         children: [
-          const Icon(
-            Icons.auto_awesome,
-            color: AppColors.starGold,
-            size: 32,
-          ),
+          const Icon(Icons.auto_awesome, color: AppColors.starGold, size: 32),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
-            'Yıllık Afirmasyon',
+            L10n.get('sections.yearly_affirmation', language),
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: AppColors.starGold,
-                ),
+              fontWeight: FontWeight.bold,
+              color: AppColors.starGold,
+            ),
           ),
           const SizedBox(height: AppConstants.spacingSm),
           Text(
-            '"${_horoscope.yearlyAffirmation}"',
+            '"${_horoscope!.yearlyAffirmation}"',
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  fontStyle: FontStyle.italic,
-                  height: 1.5,
-                ),
+              fontStyle: FontStyle.italic,
+              height: 1.5,
+            ),
             textAlign: TextAlign.center,
           ),
         ],

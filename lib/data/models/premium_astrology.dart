@@ -1,4 +1,5 @@
 import 'zodiac_sign.dart';
+import '../providers/app_providers.dart';
 
 /// AstroCartography - Location-based astrology
 class AstroCartographyData {
@@ -119,6 +120,59 @@ extension LineTypeExtension on LineType {
         return 'Gökyüzü Ortası (MC)';
       case LineType.imumCoeli:
         return 'Göğün Dibi (IC)';
+    }
+  }
+
+  String get nameEn {
+    switch (this) {
+      case LineType.ascendant:
+        return 'Ascendant (AC)';
+      case LineType.descendant:
+        return 'Descendant (DC)';
+      case LineType.midheaven:
+        return 'Midheaven (MC)';
+      case LineType.imumCoeli:
+        return 'Imum Coeli (IC)';
+    }
+  }
+
+  String get nameDe {
+    switch (this) {
+      case LineType.ascendant:
+        return 'Aszendent (AC)';
+      case LineType.descendant:
+        return 'Deszendent (DC)';
+      case LineType.midheaven:
+        return 'Medium Coeli (MC)';
+      case LineType.imumCoeli:
+        return 'Imum Coeli (IC)';
+    }
+  }
+
+  String get nameFr {
+    switch (this) {
+      case LineType.ascendant:
+        return 'Ascendant (AC)';
+      case LineType.descendant:
+        return 'Descendant (DC)';
+      case LineType.midheaven:
+        return 'Milieu du Ciel (MC)';
+      case LineType.imumCoeli:
+        return 'Fond du Ciel (IC)';
+    }
+  }
+
+  String localizedName(AppLanguage language) {
+    switch (language) {
+      case AppLanguage.en:
+        return nameEn;
+      case AppLanguage.de:
+        return nameDe;
+      case AppLanguage.fr:
+        return nameFr;
+      case AppLanguage.tr:
+      default:
+        return nameTr;
     }
   }
 
@@ -314,6 +368,95 @@ extension ElectionalPurposeExtension on ElectionalPurpose {
         return 'Evlilik Teklifi';
       case ElectionalPurpose.other:
         return 'Diğer';
+    }
+  }
+
+  String get nameEn {
+    switch (this) {
+      case ElectionalPurpose.wedding:
+        return 'Wedding / Marriage';
+      case ElectionalPurpose.businessStart:
+        return 'Starting a Business';
+      case ElectionalPurpose.travel:
+        return 'Travel';
+      case ElectionalPurpose.surgery:
+        return 'Surgery';
+      case ElectionalPurpose.contract:
+        return 'Contract Signing';
+      case ElectionalPurpose.moveHome:
+        return 'Moving Home';
+      case ElectionalPurpose.investment:
+        return 'Investment';
+      case ElectionalPurpose.jobInterview:
+        return 'Job Interview';
+      case ElectionalPurpose.proposal:
+        return 'Marriage Proposal';
+      case ElectionalPurpose.other:
+        return 'Other';
+    }
+  }
+
+  String get nameDe {
+    switch (this) {
+      case ElectionalPurpose.wedding:
+        return 'Hochzeit / Heirat';
+      case ElectionalPurpose.businessStart:
+        return 'Geschaftsgrundung';
+      case ElectionalPurpose.travel:
+        return 'Reise';
+      case ElectionalPurpose.surgery:
+        return 'Operation';
+      case ElectionalPurpose.contract:
+        return 'Vertragsunterzeichnung';
+      case ElectionalPurpose.moveHome:
+        return 'Umzug';
+      case ElectionalPurpose.investment:
+        return 'Investition';
+      case ElectionalPurpose.jobInterview:
+        return 'Vorstellungsgesprach';
+      case ElectionalPurpose.proposal:
+        return 'Heiratsantrag';
+      case ElectionalPurpose.other:
+        return 'Andere';
+    }
+  }
+
+  String get nameFr {
+    switch (this) {
+      case ElectionalPurpose.wedding:
+        return 'Mariage';
+      case ElectionalPurpose.businessStart:
+        return 'Creation d\'entreprise';
+      case ElectionalPurpose.travel:
+        return 'Voyage';
+      case ElectionalPurpose.surgery:
+        return 'Chirurgie';
+      case ElectionalPurpose.contract:
+        return 'Signature de contrat';
+      case ElectionalPurpose.moveHome:
+        return 'Demenagement';
+      case ElectionalPurpose.investment:
+        return 'Investissement';
+      case ElectionalPurpose.jobInterview:
+        return 'Entretien d\'embauche';
+      case ElectionalPurpose.proposal:
+        return 'Demande en mariage';
+      case ElectionalPurpose.other:
+        return 'Autre';
+    }
+  }
+
+  String localizedName(AppLanguage language) {
+    switch (language) {
+      case AppLanguage.en:
+        return nameEn;
+      case AppLanguage.de:
+        return nameDe;
+      case AppLanguage.fr:
+        return nameFr;
+      case AppLanguage.tr:
+      default:
+        return nameTr;
     }
   }
 
@@ -600,6 +743,95 @@ extension AsteroidExtension on Asteroid {
         return 'Nessus (Döngüler)';
       case Asteroid.pholus:
         return 'Pholus (Dönüşüm)';
+    }
+  }
+
+  String get nameEn {
+    switch (this) {
+      case Asteroid.chiron:
+        return 'Chiron (Wounded Healer)';
+      case Asteroid.ceres:
+        return 'Ceres (Nurturing)';
+      case Asteroid.pallas:
+        return 'Pallas (Wisdom)';
+      case Asteroid.juno:
+        return 'Juno (Marriage)';
+      case Asteroid.vesta:
+        return 'Vesta (Dedication)';
+      case Asteroid.eros:
+        return 'Eros (Passion)';
+      case Asteroid.psyche:
+        return 'Psyche (Soul)';
+      case Asteroid.lilith:
+        return 'Lilith (Shadow)';
+      case Asteroid.nessus:
+        return 'Nessus (Cycles)';
+      case Asteroid.pholus:
+        return 'Pholus (Transformation)';
+    }
+  }
+
+  String get nameDe {
+    switch (this) {
+      case Asteroid.chiron:
+        return 'Chiron (Verwundeter Heiler)';
+      case Asteroid.ceres:
+        return 'Ceres (Nahrung)';
+      case Asteroid.pallas:
+        return 'Pallas (Weisheit)';
+      case Asteroid.juno:
+        return 'Juno (Ehe)';
+      case Asteroid.vesta:
+        return 'Vesta (Hingabe)';
+      case Asteroid.eros:
+        return 'Eros (Leidenschaft)';
+      case Asteroid.psyche:
+        return 'Psyche (Seele)';
+      case Asteroid.lilith:
+        return 'Lilith (Schatten)';
+      case Asteroid.nessus:
+        return 'Nessus (Zyklen)';
+      case Asteroid.pholus:
+        return 'Pholus (Transformation)';
+    }
+  }
+
+  String get nameFr {
+    switch (this) {
+      case Asteroid.chiron:
+        return 'Chiron (Guerisseur blesse)';
+      case Asteroid.ceres:
+        return 'Ceres (Nourriture)';
+      case Asteroid.pallas:
+        return 'Pallas (Sagesse)';
+      case Asteroid.juno:
+        return 'Junon (Mariage)';
+      case Asteroid.vesta:
+        return 'Vesta (Devouement)';
+      case Asteroid.eros:
+        return 'Eros (Passion)';
+      case Asteroid.psyche:
+        return 'Psyche (Ame)';
+      case Asteroid.lilith:
+        return 'Lilith (Ombre)';
+      case Asteroid.nessus:
+        return 'Nessus (Cycles)';
+      case Asteroid.pholus:
+        return 'Pholus (Transformation)';
+    }
+  }
+
+  String localizedName(AppLanguage language) {
+    switch (language) {
+      case AppLanguage.en:
+        return nameEn;
+      case AppLanguage.de:
+        return nameDe;
+      case AppLanguage.fr:
+        return nameFr;
+      case AppLanguage.tr:
+      default:
+        return nameTr;
     }
   }
 

@@ -13,6 +13,7 @@ import '../../../data/models/planet.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/cosmic_share_content_service.dart';
 import '../../../data/services/instagram_share_service.dart';
+import '../../../data/services/l10n_service.dart';
 
 /// MOBILE OPTIMIZATION FLAG
 /// On mobile devices (<768px), disable heavy animations for performance
@@ -50,6 +51,7 @@ class _CosmicShareScreenState extends ConsumerState<CosmicShareScreen> {
   bool _isCapturing = false;
   late CosmicShareContent _content;
   late zodiac.ZodiacSign _sign;
+  late AppLanguage _language;
 
   @override
   void initState() {
@@ -59,6 +61,7 @@ class _CosmicShareScreenState extends ConsumerState<CosmicShareScreen> {
   @override
   Widget build(BuildContext context) {
     final userProfile = ref.watch(userProfileProvider);
+    _language = ref.watch(languageProvider);
     _sign = userProfile?.sunSign ?? zodiac.ZodiacSign.aries;
 
     // Generate content
@@ -133,7 +136,7 @@ class _CosmicShareScreenState extends ConsumerState<CosmicShareScreen> {
           const Spacer(),
           Flexible(
             child: Text(
-              'Kozmik Paylaşım',
+              L10nService.get('share.cosmic_share', _language),
               style: GoogleFonts.playfairDisplay(
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
@@ -226,7 +229,7 @@ class _CosmicShareScreenState extends ConsumerState<CosmicShareScreen> {
                   const Icon(Icons.share, color: Colors.white, size: 20),
                 const SizedBox(width: 12),
                 Text(
-                  _isCapturing ? 'Hazırlanıyor...' : 'Hikayende Paylaş',
+                  _isCapturing ? '...' : L10nService.get('share.share_on_instagram', _language),
                   style: GoogleFonts.raleway(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
@@ -241,7 +244,7 @@ class _CosmicShareScreenState extends ConsumerState<CosmicShareScreen> {
         const SizedBox(height: 12),
 
         Text(
-          'Instagram hikayende kozmik enerjini paylaş!',
+          L10nService.get('share.share_cosmic_energy_story', _language),
           style: GoogleFonts.raleway(
             fontSize: 12,
             color: MysticalColors.textMuted,
@@ -260,13 +263,13 @@ class _CosmicShareScreenState extends ConsumerState<CosmicShareScreen> {
       final boundary =
           _shareCardKey.currentContext?.findRenderObject() as RenderRepaintBoundary?;
       if (boundary == null) {
-        _showErrorFeedback('Görsel oluşturulamadı');
+        _showErrorFeedback(L10nService.get('share.share_error', _language));
         return;
       }
 
       // Build share text with hashtags
-      final shareText = 'Bugünün kozmik enerjisi benimle! ${_content.heroBlock.moonPhaseEmoji} ${_sign.symbol} Evrenin fısıltılarını dinle...';
-      final hashtags = '#venusone #astroloji #${_sign.name.toLowerCase()} #kozmikenerji #burcyorumu #gunlukburc';
+      final shareText = L10nService.get('share.share_text', _language);
+      final hashtags = '#venusone #astrology #${_sign.name.toLowerCase()}';
 
       // Use the new Instagram share service
       final result = await InstagramShareService.shareCosmicContent(
@@ -289,7 +292,7 @@ class _CosmicShareScreenState extends ConsumerState<CosmicShareScreen> {
       }
     } catch (e) {
       if (mounted) {
-        _showErrorFeedback('Paylaşım hatası: $e');
+        _showErrorFeedback('${L10nService.get('share.share_error', _language)}: $e');
       }
     } finally {
       if (mounted) {

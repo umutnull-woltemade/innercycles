@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/providers/app_providers.dart';
+import '../../../data/services/l10n_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/kadim_not_card.dart';
 import '../../../shared/widgets/next_blocks.dart';
@@ -39,6 +40,7 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
   Widget build(BuildContext context) {
     // Watch for profile changes to recalculate
     ref.watch(userProfileProvider);
+    final language = ref.watch(languageProvider);
 
     return Scaffold(
       body: CosmicBackground(
@@ -48,24 +50,21 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildHeader(context),
+                _buildHeader(context, language),
                 const SizedBox(height: AppConstants.spacingXl),
-                _buildCurrentStatus(context),
+                _buildCurrentStatus(context, language),
                 const SizedBox(height: AppConstants.spacingXl),
-                _buildReturnsList(context),
+                _buildReturnsList(context, language),
                 const SizedBox(height: AppConstants.spacingXl),
-                _buildInterpretation(context),
+                _buildInterpretation(context, language),
                 const SizedBox(height: AppConstants.spacingXl),
-                _buildSaturnInfo(context),
+                _buildSaturnInfo(context, language),
                 const SizedBox(height: AppConstants.spacingXl),
                 // Kadim Not
                 KadimNotCard(
                   category: KadimCategory.astrology,
-                  title: 'Olgunlaşma Sınavı',
-                  content: 'Satürn Dönüşü, astrolojinin en önemli yaşam geçişlerinden biridir. 29.5 yılda '
-                      'bir gerçekleşen bu döngü, antik çağlardan beri "olgunlaşma sınavı" olarak bilinir. '
-                      'Romalılar Satürn\'ü zaman tanrısı Kronos ile özdeşleştirirdi - biçtiğin şeyi '
-                      'toplarsın. Bu dönem seni otantik benliğine çağırır.',
+                  title: L10nService.get('saturn_return.kadim_title', language),
+                  content: L10nService.get('saturn_return.kadim_content', language),
                   icon: Icons.loop,
                 ),
                 const SizedBox(height: AppConstants.spacingXl),
@@ -73,8 +72,8 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
                 const NextBlocks(currentPage: 'saturn_return'),
                 const SizedBox(height: AppConstants.spacingXl),
                 // Entertainment Disclaimer
-                const PageFooterWithDisclaimer(
-                  brandText: 'Satürn Dönüşü — Venus One',
+                PageFooterWithDisclaimer(
+                  brandText: L10nService.get('saturn_return.brand_text', language),
                   disclaimerText: DisclaimerTexts.astrology,
                 ),
                 const SizedBox(height: AppConstants.spacingLg),
@@ -86,7 +85,7 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
     );
   }
 
-  Widget _buildHeader(BuildContext context) {
+  Widget _buildHeader(BuildContext context, AppLanguage language) {
     return Row(
       children: [
         IconButton(
@@ -98,14 +97,14 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Satürn Dönüşü',
+                L10nService.get('saturn_return.title', language),
                 style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                       color: AppColors.starGold,
                       fontWeight: FontWeight.bold,
                     ),
               ),
               Text(
-                'Yaşamın Dönüşüm Noktaları',
+                L10nService.get('saturn_return.subtitle', language),
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: AppColors.textSecondary,
                     ),
@@ -128,7 +127,7 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildCurrentStatus(BuildContext context) {
+  Widget _buildCurrentStatus(BuildContext context, AppLanguage language) {
     final currentReturn = _returnData.getCurrentReturn();
     final nextReturn = _returnData.getNextReturn();
     final isInReturn = currentReturn != null && currentReturn.isActive;
@@ -176,7 +175,7 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
                       ),
                       const SizedBox(width: 6),
                       Text(
-                        'AKTIF',
+                        L10nService.get('saturn_return.status_active', language).toUpperCase(),
                         style: Theme.of(context).textTheme.labelSmall?.copyWith(
                               color: AppColors.saturnColor,
                               fontWeight: FontWeight.bold,
@@ -188,7 +187,7 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
                 ),
                 const Spacer(),
                 Text(
-                  '${currentReturn.returnNumber}. Donus',
+                  L10nService.getWithParams('saturn_return.return_number', language, params: {'number': '${currentReturn.returnNumber}'}),
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
                         color: AppColors.saturnColor,
                         fontWeight: FontWeight.bold,
@@ -198,7 +197,7 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
             ),
             const SizedBox(height: AppConstants.spacingMd),
             Text(
-              'Satürn Dönüşündesin!',
+              L10nService.get('saturn_return.in_return', language),
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                     color: AppColors.textPrimary,
                     fontWeight: FontWeight.bold,
@@ -206,7 +205,7 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
             ),
             const SizedBox(height: 8),
             Text(
-              _getActiveReturnMessage(currentReturn.returnNumber),
+              _getActiveReturnMessage(currentReturn.returnNumber, language),
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: AppColors.textSecondary,
                     height: 1.5,
@@ -216,7 +215,7 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
           ] else if (nextReturn != null) ...[
             // Countdown to next return
             Text(
-              'Sıradaki Satürn Dönüşü',
+              L10nService.get('saturn_return.next_return', language),
               style: Theme.of(context).textTheme.labelMedium?.copyWith(
                     color: AppColors.textMuted,
                     letterSpacing: 1.2,
@@ -224,24 +223,24 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
             ),
             const SizedBox(height: AppConstants.spacingSm),
             Text(
-              '${nextReturn.returnNumber}. Donus',
+              L10nService.getWithParams('saturn_return.return_number', language, params: {'number': '${nextReturn.returnNumber}'}),
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                     color: AppColors.starGold,
                     fontWeight: FontWeight.bold,
                   ),
             ),
             const SizedBox(height: AppConstants.spacingMd),
-            _buildCountdown(context, nextReturn),
+            _buildCountdown(context, nextReturn, language),
             const SizedBox(height: AppConstants.spacingMd),
             Text(
-              _formatDateRange(nextReturn.startDate, nextReturn.endDate),
+              _formatDateRange(nextReturn.startDate, nextReturn.endDate, language),
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: AppColors.textSecondary,
                   ),
             ),
           ] else if (_returnData.returns.isEmpty) ...[
             Text(
-              'Saturn donusleriniz tamamlandi',
+              L10nService.get('saturn_return.returns_completed', language),
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     color: AppColors.textSecondary,
                   ),
@@ -252,7 +251,7 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
     ).animate().fadeIn(delay: 100.ms, duration: 400.ms);
   }
 
-  Widget _buildCountdown(BuildContext context, SaturnReturn returnData) {
+  Widget _buildCountdown(BuildContext context, SaturnReturn returnData, AppLanguage language) {
     final now = DateTime.now();
     final daysUntil = returnData.startDate.difference(now).inDays;
     final yearsUntil = (daysUntil / 365).floor();
@@ -275,7 +274,7 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
     );
   }
 
-  Widget _buildReturnsList(BuildContext context) {
+  Widget _buildReturnsList(BuildContext context, AppLanguage language) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -407,7 +406,7 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
     );
   }
 
-  Widget _buildInterpretation(BuildContext context) {
+  Widget _buildInterpretation(BuildContext context, AppLanguage language) {
     final currentOrNext = _returnData.getCurrentReturn() ?? _returnData.getNextReturn();
     if (currentOrNext == null) return const SizedBox.shrink();
 
@@ -484,7 +483,7 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
     ).animate().fadeIn(delay: 500.ms, duration: 400.ms);
   }
 
-  Widget _buildSaturnInfo(BuildContext context) {
+  Widget _buildSaturnInfo(BuildContext context, AppLanguage language) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -554,7 +553,7 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
     );
   }
 
-  String _formatDateRange(DateTime start, DateTime end) {
+  String _formatDateRange(DateTime start, DateTime end, [AppLanguage? language]) {
     final months = [
       'Ocak', 'Subat', 'Mart', 'Nisan', 'Mayis', 'Haziran',
       'Temmuz', 'Agustos', 'Eylul', 'Ekim', 'Kasim', 'Aralik'
@@ -562,7 +561,7 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
     return '${months[start.month - 1]} ${start.year} - ${months[end.month - 1]} ${end.year}';
   }
 
-  String _getActiveReturnMessage(int returnNumber) {
+  String _getActiveReturnMessage(int returnNumber, [AppLanguage? language]) {
     switch (returnNumber) {
       case 1:
         return 'Yetişkinliğe geçiş döneminde, kariyerini ve hayat yönünü belirliyorsun. Bu dönem zorlu olabilir ama seni güçlendirecek.';

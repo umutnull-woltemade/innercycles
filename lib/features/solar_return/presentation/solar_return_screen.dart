@@ -7,6 +7,7 @@ import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/zodiac_sign.dart';
 import '../../../data/providers/app_providers.dart';
+import '../../../data/services/localization_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/entertainment_disclaimer.dart';
 import '../../../shared/widgets/next_blocks.dart';
@@ -41,6 +42,7 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
   Widget build(BuildContext context) {
     // Watch for profile changes
     ref.watch(userProfileProvider);
+    final language = ref.watch(languageProvider);
 
     return Scaffold(
       body: CosmicBackground(
@@ -50,19 +52,19 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildHeader(context),
+                _buildHeader(context, language),
                 const SizedBox(height: AppConstants.spacingXl),
                 _buildYearSelector(context),
                 const SizedBox(height: AppConstants.spacingXl),
-                _buildReturnInfo(context),
+                _buildReturnInfo(context, language),
                 const SizedBox(height: AppConstants.spacingXl),
-                _buildYearThemes(context),
+                _buildYearThemes(context, language),
                 const SizedBox(height: AppConstants.spacingXl),
-                _buildMonthlyHighlights(context),
+                _buildMonthlyHighlights(context, language),
                 const SizedBox(height: AppConstants.spacingXl),
-                _buildKeyDates(context),
+                _buildKeyDates(context, language),
                 const SizedBox(height: AppConstants.spacingXl),
-                _buildAdvice(context),
+                _buildAdvice(context, language),
                 const SizedBox(height: AppConstants.spacingXxl),
                 // Next Blocks
                 const NextBlocks(currentPage: 'solar_return'),
@@ -80,7 +82,7 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
     );
   }
 
-  Widget _buildHeader(BuildContext context) {
+  Widget _buildHeader(BuildContext context, AppLanguage language) {
     return Row(
       children: [
         IconButton(
@@ -92,14 +94,14 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Solar Return',
+                L10n.get('solar_return_title', language),
                 style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                   color: AppColors.starGold,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               Text(
-                'Doğum Günü Haritası',
+                L10n.get('solar_return_subtitle', language),
                 style: Theme.of(
                   context,
                 ).textTheme.bodySmall?.copyWith(color: AppColors.textSecondary),
@@ -176,7 +178,7 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
     ).animate().fadeIn(delay: 100.ms, duration: 400.ms);
   }
 
-  Widget _buildReturnInfo(BuildContext context) {
+  Widget _buildReturnInfo(BuildContext context, AppLanguage language) {
     final userProfile = ref.watch(userProfileProvider);
     final sunSign = userProfile?.sunSign ?? ZodiacSign.aries;
 
@@ -221,7 +223,7 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      '$_selectedYear Solar Return',
+                      '$_selectedYear ${L10n.get('solar_return_title', language)}',
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
                         color: AppColors.starGold,
                         fontWeight: FontWeight.bold,
@@ -229,7 +231,7 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      'Güneş ${sunSign.nameTr} burcuna dönüyor',
+                      L10n.get('solar_return_sun_returns', language).replaceAll('{sign}', sunSign.localizedName(language)),
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: AppColors.textSecondary,
                       ),
@@ -254,13 +256,13 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
                   children: [
                     _buildInfoItem(
                       context,
-                      'Dönüş Tarihi',
-                      _formatDate(_returnData.exactReturnDate),
+                      L10n.get('solar_return_return_date', language),
+                      _formatDate(_returnData.exactReturnDate, language),
                     ),
                     _buildInfoItem(
                       context,
-                      'Yükselen',
-                      _returnData.risingSign.nameTr,
+                      L10n.get('rising_sign', language),
+                      _returnData.risingSign.localizedName(language),
                     ),
                   ],
                 ),
@@ -270,13 +272,13 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
                   children: [
                     _buildInfoItem(
                       context,
-                      'Güneş Evi',
-                      '${_returnData.sunHouse}. Ev',
+                      L10n.get('solar_return_sun_house', language),
+                      L10n.get('solar_return_house_number', language).replaceAll('{number}', '${_returnData.sunHouse}'),
                     ),
                     _buildInfoItem(
                       context,
-                      'Ay Burcu',
-                      _returnData.moonSign.nameTr,
+                      L10n.get('moon_sign', language),
+                      _returnData.moonSign.localizedName(language),
                     ),
                   ],
                 ),
@@ -310,7 +312,7 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
     );
   }
 
-  Widget _buildYearThemes(BuildContext context) {
+  Widget _buildYearThemes(BuildContext context, AppLanguage language) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -319,7 +321,7 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
             const Icon(Icons.auto_awesome, color: AppColors.starGold, size: 20),
             const SizedBox(width: 8),
             Text(
-              'Yıl Temaları',
+              L10n.get('solar_return_year_themes', language),
               style: Theme.of(
                 context,
               ).textTheme.titleLarge?.copyWith(color: AppColors.textPrimary),
@@ -332,14 +334,14 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
           final theme = entry.value;
           return Padding(
             padding: const EdgeInsets.only(bottom: AppConstants.spacingSm),
-            child: _buildThemeCard(context, theme),
+            child: _buildThemeCard(context, theme, language),
           ).animate().fadeIn(delay: (300 + index * 100).ms, duration: 400.ms);
         }),
       ],
     );
   }
 
-  Widget _buildThemeCard(BuildContext context, SolarReturnTheme theme) {
+  Widget _buildThemeCard(BuildContext context, SolarReturnTheme theme, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingMd),
       decoration: BoxDecoration(
@@ -366,7 +368,7 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  theme.title,
+                  L10n.get(theme.titleKey, language),
                   style: Theme.of(context).textTheme.titleSmall?.copyWith(
                     color: theme.color,
                     fontWeight: FontWeight.bold,
@@ -374,7 +376,7 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
                 ),
                 const SizedBox(height: 2),
                 Text(
-                  theme.description,
+                  L10n.get(theme.descriptionKey, language),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: AppColors.textSecondary,
                   ),
@@ -387,22 +389,7 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
     );
   }
 
-  Widget _buildMonthlyHighlights(BuildContext context) {
-    final months = [
-      'Ocak',
-      'Şubat',
-      'Mart',
-      'Nisan',
-      'Mayıs',
-      'Haziran',
-      'Temmuz',
-      'Ağustos',
-      'Eylül',
-      'Ekim',
-      'Kasım',
-      'Aralık',
-    ];
-
+  Widget _buildMonthlyHighlights(BuildContext context, AppLanguage language) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -415,7 +402,7 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
             ),
             const SizedBox(width: 8),
             Text(
-              'Aylık Öne Çıkanlar',
+              L10n.get('solar_return_monthly_highlights', language),
               style: Theme.of(
                 context,
               ).textTheme.titleLarge?.copyWith(color: AppColors.textPrimary),
@@ -430,6 +417,7 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
             itemCount: 12,
             itemBuilder: (context, index) {
               final highlight = _returnData.monthlyHighlights[index];
+              final monthAbbr = _getMonthAbbr(index + 1, language);
               return Container(
                 width: 80,
                 margin: EdgeInsets.only(right: index < 11 ? 8 : 0),
@@ -453,7 +441,7 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      months[index].substring(0, 3),
+                      monthAbbr,
                       style: Theme.of(context).textTheme.labelSmall?.copyWith(
                         color: AppColors.textMuted,
                       ),
@@ -462,7 +450,7 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
                     Text(highlight.emoji, style: const TextStyle(fontSize: 24)),
                     const SizedBox(height: 4),
                     Text(
-                      highlight.keyword,
+                      L10n.get(highlight.keywordKey, language),
                       style: Theme.of(context).textTheme.labelSmall?.copyWith(
                         color: AppColors.textSecondary,
                         fontSize: 9,
@@ -481,7 +469,7 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
     ).animate().fadeIn(delay: 600.ms, duration: 400.ms);
   }
 
-  Widget _buildKeyDates(BuildContext context) {
+  Widget _buildKeyDates(BuildContext context, AppLanguage language) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -494,7 +482,7 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
             ),
             const SizedBox(width: 8),
             Text(
-              'Önemli Tarihler',
+              L10n.get('solar_return_important_dates', language),
               style: Theme.of(
                 context,
               ).textTheme.titleLarge?.copyWith(color: AppColors.textPrimary),
@@ -526,7 +514,7 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
                               ),
                         ),
                         Text(
-                          _getMonthAbbr(keyDate.date.month),
+                          _getMonthAbbr(keyDate.date.month, language),
                           style: Theme.of(context).textTheme.labelSmall
                               ?.copyWith(color: AppColors.textMuted),
                         ),
@@ -539,12 +527,12 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          keyDate.title,
+                          L10n.get(keyDate.titleKey, language),
                           style: Theme.of(context).textTheme.titleSmall
                               ?.copyWith(color: AppColors.textPrimary),
                         ),
                         Text(
-                          keyDate.description,
+                          L10n.get(keyDate.descriptionKey, language),
                           style: Theme.of(context).textTheme.bodySmall
                               ?.copyWith(color: AppColors.textSecondary),
                         ),
@@ -561,7 +549,7 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
     ).animate().fadeIn(delay: 700.ms, duration: 400.ms);
   }
 
-  Widget _buildAdvice(BuildContext context) {
+  Widget _buildAdvice(BuildContext context, AppLanguage language) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -589,7 +577,7 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
               ),
               const SizedBox(width: 8),
               Text(
-                'Yıl İçin Önerim',
+                L10n.get('solar_return_year_advice', language),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   color: AppColors.auroraStart,
                   fontWeight: FontWeight.bold,
@@ -599,7 +587,7 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
           ),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
-            _returnData.yearAdvice,
+            L10n.get(_returnData.yearAdviceKey, language),
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
               color: AppColors.textPrimary,
               height: 1.6,
@@ -610,40 +598,51 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
     ).animate().fadeIn(delay: 800.ms, duration: 400.ms);
   }
 
-  String _formatDate(DateTime date) {
-    final months = [
-      'Ocak',
-      'Şubat',
-      'Mart',
-      'Nisan',
-      'Mayıs',
-      'Haziran',
-      'Temmuz',
-      'Ağustos',
-      'Eylül',
-      'Ekim',
-      'Kasım',
-      'Aralık',
-    ];
-    return '${date.day} ${months[date.month - 1]} ${date.year}';
+  String _formatDate(DateTime date, AppLanguage language) {
+    final monthKey = _getMonthKey(date.month);
+    final monthName = L10n.get(monthKey, language);
+    return '${date.day} $monthName ${date.year}';
   }
 
-  String _getMonthAbbr(int month) {
-    final months = [
-      'Oca',
-      'Sub',
-      'Mar',
-      'Nis',
-      'May',
-      'Haz',
-      'Tem',
-      'Agu',
-      'Eyl',
-      'Eki',
-      'Kas',
-      'Ara',
+  String _getMonthAbbr(int month, AppLanguage language) {
+    final monthAbbrKey = _getMonthAbbrKey(month);
+    return L10n.get(monthAbbrKey, language);
+  }
+
+  String _getMonthKey(int month) {
+    const monthKeys = [
+      'month_january',
+      'month_february',
+      'month_march',
+      'month_april',
+      'month_may',
+      'month_june',
+      'month_july',
+      'month_august',
+      'month_september',
+      'month_october',
+      'month_november',
+      'month_december',
     ];
-    return months[month - 1];
+    return monthKeys[month - 1];
+  }
+
+  String _getMonthAbbrKey(int month) {
+    const monthAbbrKeys = [
+      'month_abbr_jan',
+      'month_abbr_feb',
+      'month_abbr_mar',
+      'month_abbr_apr',
+      'month_abbr_may',
+      'month_abbr_jun',
+      'month_abbr_jul',
+      'month_abbr_aug',
+      'month_abbr_sep',
+      'month_abbr_oct',
+      'month_abbr_nov',
+      'month_abbr_dec',
+    ];
+    return monthAbbrKeys[month - 1];
   }
 }
 
@@ -677,57 +676,57 @@ class SolarReturnCalculator {
       themes: _generateThemes(seed, sunHouse),
       monthlyHighlights: _generateMonthlyHighlights(seed),
       keyDates: _generateKeyDates(year, seed),
-      yearAdvice: _generateAdvice(sunHouse, ZodiacSign.values[risingIndex]),
+      yearAdviceKey: _generateAdviceKey(sunHouse),
     );
   }
 
   static List<SolarReturnTheme> _generateThemes(int seed, int sunHouse) {
     final allThemes = [
       SolarReturnTheme(
-        title: 'Kariyer Odağı',
-        description: 'Mesleki gelişim ve toplumsal konum ön planda',
+        titleKey: 'solar_return_theme_career_title',
+        descriptionKey: 'solar_return_theme_career_desc',
         emoji: '💼',
         color: AppColors.starGold,
       ),
       SolarReturnTheme(
-        title: 'İlişkiler',
-        description: 'Partnerlik ve iş birliklerinde önemli gelişmeler',
+        titleKey: 'solar_return_theme_relationships_title',
+        descriptionKey: 'solar_return_theme_relationships_desc',
         emoji: '💕',
         color: Colors.pink,
       ),
       SolarReturnTheme(
-        title: 'Kişisel Gelişim',
-        description: 'Kendinizi yeniden keşfetme zamanı',
+        titleKey: 'solar_return_theme_personal_growth_title',
+        descriptionKey: 'solar_return_theme_personal_growth_desc',
         emoji: '🌱',
         color: AppColors.earthElement,
       ),
       SolarReturnTheme(
-        title: 'Finansal Büyüme',
-        description: 'Maddi konularda fırsatlar',
+        titleKey: 'solar_return_theme_financial_title',
+        descriptionKey: 'solar_return_theme_financial_desc',
         emoji: '💰',
         color: AppColors.celestialGold,
       ),
       SolarReturnTheme(
-        title: 'Eğitim ve Seyahat',
-        description: 'Ufkunuzu genişletme zamanı',
+        titleKey: 'solar_return_theme_education_travel_title',
+        descriptionKey: 'solar_return_theme_education_travel_desc',
         emoji: '✈️',
         color: AppColors.airElement,
       ),
       SolarReturnTheme(
-        title: 'Ev ve Aile',
-        description: 'Köklere dönüş ve yuva kurma',
+        titleKey: 'solar_return_theme_home_family_title',
+        descriptionKey: 'solar_return_theme_home_family_desc',
         emoji: '🏠',
         color: AppColors.waterElement,
       ),
       SolarReturnTheme(
-        title: 'Yaratıcılık',
-        description: 'Sanatsal ifade ve eğlence',
+        titleKey: 'solar_return_theme_creativity_title',
+        descriptionKey: 'solar_return_theme_creativity_desc',
         emoji: '🎨',
         color: AppColors.auroraStart,
       ),
       SolarReturnTheme(
-        title: 'Sağlık ve Rutin',
-        description: 'Günlük yaşamı iyileştirme',
+        titleKey: 'solar_return_theme_health_routine_title',
+        descriptionKey: 'solar_return_theme_health_routine_desc',
         emoji: '🧘',
         color: Colors.teal,
       ),
@@ -746,19 +745,19 @@ class SolarReturnCalculator {
   }
 
   static List<MonthlyHighlight> _generateMonthlyHighlights(int seed) {
-    final keywords = [
-      'Başlangıç',
-      'Büyüme',
-      'Zorluk',
-      'Fırsat',
-      'Dinlenme',
-      'Aksiyon',
-      'Düşünme',
-      'İlerleme',
-      'Değişim',
-      'Denge',
-      'Hasat',
-      'Kapanış',
+    final keywordKeys = [
+      'solar_return_keyword_beginning',
+      'solar_return_keyword_growth',
+      'solar_return_keyword_challenge',
+      'solar_return_keyword_opportunity',
+      'solar_return_keyword_rest',
+      'solar_return_keyword_action',
+      'solar_return_keyword_reflection',
+      'solar_return_keyword_progress',
+      'solar_return_keyword_change',
+      'solar_return_keyword_balance',
+      'solar_return_keyword_harvest',
+      'solar_return_keyword_closure',
     ];
     final emojis = [
       '🚀',
@@ -782,7 +781,7 @@ class SolarReturnCalculator {
 
       return MonthlyHighlight(
         month: month + 1,
-        keyword: keywords[month],
+        keywordKey: keywordKeys[month],
         emoji: emojis[month],
         isPositive: isPositive,
         isChallenging: isChallenging,
@@ -794,49 +793,48 @@ class SolarReturnCalculator {
     return [
       KeyDate(
         date: DateTime(year, 3, 20 + (seed % 3)),
-        title: 'Bahar Ekinoksu',
-        description: 'Yeni projelere başlamak için ideal',
+        titleKey: 'solar_return_spring_equinox_title',
+        descriptionKey: 'solar_return_spring_equinox_desc',
         emoji: '🌸',
       ),
       KeyDate(
         date: DateTime(year, 6, 20 + (seed % 2)),
-        title: 'Yaz Dönümü',
-        description: 'Enerji zirvede, aksiyona geç',
+        titleKey: 'solar_return_summer_solstice_title',
+        descriptionKey: 'solar_return_summer_solstice_desc',
         emoji: '☀️',
       ),
       KeyDate(
         date: DateTime(year, 9, 22 + (seed % 2)),
-        title: 'Sonbahar Ekinoksu',
-        description: 'Dengeleme ve düşünme zamanı',
+        titleKey: 'solar_return_autumn_equinox_title',
+        descriptionKey: 'solar_return_autumn_equinox_desc',
         emoji: '🍂',
       ),
       KeyDate(
         date: DateTime(year, 12, 21),
-        title: 'Kış Dönümü',
-        description: 'İçe dönüş ve planlama',
+        titleKey: 'solar_return_winter_solstice_title',
+        descriptionKey: 'solar_return_winter_solstice_desc',
         emoji: '❄️',
       ),
     ];
   }
 
-  static String _generateAdvice(int sunHouse, ZodiacSign rising) {
-    final houseAdvice = {
-      1: 'Bu yıl kendinize odaklanın. Kişisel hedeflerinizi belirleyin ve cesaretinizi kullanın.',
-      2: 'Finansal planlarınızı gözden geçirin. Değerleriniz ve kaynaklarınız üzerinde çalışın.',
-      3: 'İletişim becerilerinizi geliştirin. Yakın çevrenizle bağlantıları güçlendirin.',
-      4: 'Evinize ve ailenize zaman ayırın. Duygusal güvenliğinizi öncelikli yapın.',
-      5: 'Yaratıcılığınızda özgür bırakın. Aşk ve eğlence hayatında canlılık bekleyin.',
-      6: 'Sağlığınıza ve günlük rutinlerinize dikkat edin. İş ortamında gelişmeler olacak.',
-      7: 'İlişkileriniz ön planda. Ortaklıklar ve evlilik konularında önemli adımlar.',
-      8: 'Derinlere inin. Dönüşüm ve yenilenme zamanı. Ortak finanslar önem kazanıyor.',
-      9: 'Ufkunuzu genişletin. Eğitim, seyahat ve felsefi arayışlar için ideal yıl.',
-      10: 'Kariyer hedeflerinize odaklanın. Toplumda yerinizi belirleyin.',
-      11: 'Sosyal çevrenizi genişletin. Gelecek hayalleriniz için çalışın.',
-      12: 'İçe dönüş yılı. Ruhsal gelişim ve dinlenme öncelikli olmalı.',
+  static String _generateAdviceKey(int sunHouse) {
+    final houseAdviceKeys = {
+      1: 'solar_return_advice_house_1',
+      2: 'solar_return_advice_house_2',
+      3: 'solar_return_advice_house_3',
+      4: 'solar_return_advice_house_4',
+      5: 'solar_return_advice_house_5',
+      6: 'solar_return_advice_house_6',
+      7: 'solar_return_advice_house_7',
+      8: 'solar_return_advice_house_8',
+      9: 'solar_return_advice_house_9',
+      10: 'solar_return_advice_house_10',
+      11: 'solar_return_advice_house_11',
+      12: 'solar_return_advice_house_12',
     };
 
-    return houseAdvice[sunHouse] ??
-        'Bu yıl sizin için önemli dönüşümler getirecek.';
+    return houseAdviceKeys[sunHouse] ?? 'solar_return_advice_default';
   }
 }
 
@@ -851,7 +849,7 @@ class SolarReturnData {
   final List<SolarReturnTheme> themes;
   final List<MonthlyHighlight> monthlyHighlights;
   final List<KeyDate> keyDates;
-  final String yearAdvice;
+  final String yearAdviceKey;
 
   SolarReturnData({
     required this.year,
@@ -863,19 +861,19 @@ class SolarReturnData {
     required this.themes,
     required this.monthlyHighlights,
     required this.keyDates,
-    required this.yearAdvice,
+    required this.yearAdviceKey,
   });
 }
 
 class SolarReturnTheme {
-  final String title;
-  final String description;
+  final String titleKey;
+  final String descriptionKey;
   final String emoji;
   final Color color;
 
   SolarReturnTheme({
-    required this.title,
-    required this.description,
+    required this.titleKey,
+    required this.descriptionKey,
     required this.emoji,
     required this.color,
   });
@@ -883,14 +881,14 @@ class SolarReturnTheme {
 
 class MonthlyHighlight {
   final int month;
-  final String keyword;
+  final String keywordKey;
   final String emoji;
   final bool isPositive;
   final bool isChallenging;
 
   MonthlyHighlight({
     required this.month,
-    required this.keyword,
+    required this.keywordKey,
     required this.emoji,
     required this.isPositive,
     required this.isChallenging,
@@ -899,14 +897,14 @@ class MonthlyHighlight {
 
 class KeyDate {
   final DateTime date;
-  final String title;
-  final String description;
+  final String titleKey;
+  final String descriptionKey;
   final String emoji;
 
   KeyDate({
     required this.date,
-    required this.title,
-    required this.description,
+    required this.titleKey,
+    required this.descriptionKey,
     required this.emoji,
   });
 }

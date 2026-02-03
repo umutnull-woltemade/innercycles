@@ -20,6 +20,8 @@ import '../../../shared/widgets/next_blocks.dart';
 import '../../../shared/widgets/energy_bar.dart';
 import '../../../shared/widgets/kadim_not_card.dart';
 import '../../../shared/widgets/entertainment_disclaimer.dart';
+import '../../../data/services/localization_service.dart';
+import '../../../data/services/l10n_service.dart';
 
 class HoroscopeDetailScreen extends ConsumerStatefulWidget {
   final String signName;
@@ -34,9 +36,10 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   late ZodiacSign _sign;
-  // Cache expensive computations
-  late WeeklyHoroscope _weeklyHoroscope;
-  late MonthlyHoroscope _monthlyHoroscope;
+  // Cache for language-aware horoscopes
+  AppLanguage? _cachedLanguage;
+  WeeklyHoroscope? _weeklyHoroscope;
+  MonthlyHoroscope? _monthlyHoroscope;
 
   @override
   void initState() {
@@ -46,16 +49,23 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
       (s) => s.name.toLowerCase() == widget.signName.toLowerCase(),
       orElse: () => ZodiacSign.aries,
     );
-    // Generate horoscopes once during initialization
-    _weeklyHoroscope = ExtendedHoroscopeService.generateWeeklyHoroscope(
-      _sign,
-      DateTime.now().subtract(Duration(days: DateTime.now().weekday - 1)),
-    );
-    _monthlyHoroscope = ExtendedHoroscopeService.generateMonthlyHoroscope(
-      _sign,
-      DateTime.now().month,
-      DateTime.now().year,
-    );
+  }
+
+  void _updateHoroscopesIfNeeded(AppLanguage language) {
+    if (_cachedLanguage != language || _weeklyHoroscope == null || _monthlyHoroscope == null) {
+      _cachedLanguage = language;
+      _weeklyHoroscope = ExtendedHoroscopeService.generateWeeklyHoroscope(
+        _sign,
+        DateTime.now().subtract(Duration(days: DateTime.now().weekday - 1)),
+        language: language,
+      );
+      _monthlyHoroscope = ExtendedHoroscopeService.generateMonthlyHoroscope(
+        _sign,
+        DateTime.now().month,
+        DateTime.now().year,
+        language: language,
+      );
+    }
   }
 
   @override
@@ -66,7 +76,11 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
 
   @override
   Widget build(BuildContext context) {
-    final horoscope = ref.watch(dailyHoroscopeProvider(_sign));
+    final language = ref.watch(languageProvider);
+    final horoscope = ref.watch(dailyHoroscopeProvider((_sign, language)));
+
+    // Update horoscopes when language changes
+    _updateHoroscopesIfNeeded(language);
 
     return Scaffold(
       body: CosmicBackground(
@@ -76,18 +90,18 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
               // Header
               _buildHeader(context, _sign),
               // Tab Bar
-              _buildTabBar(context),
+              _buildTabBar(context, language),
               // Tab Content
               Expanded(
                 child: TabBarView(
                   controller: _tabController,
                   children: [
                     // Daily Tab
-                    _buildDailyContent(context, horoscope, _sign),
+                    _buildDailyContent(context, horoscope, _sign, language),
                     // Weekly Tab
-                    _buildWeeklyContent(context, _weeklyHoroscope, _sign),
+                    _buildWeeklyContent(context, _weeklyHoroscope!, _sign),
                     // Monthly Tab
-                    _buildMonthlyContent(context, _monthlyHoroscope, _sign),
+                    _buildMonthlyContent(context, _monthlyHoroscope!, _sign),
                     // Sign Info Tab
                     _buildSignInfoContent(context, _sign),
                   ],
@@ -100,7 +114,7 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
     );
   }
 
-  Widget _buildTabBar(BuildContext context) {
+  Widget _buildTabBar(BuildContext context, AppLanguage language) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -121,17 +135,17 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
             ),
         unselectedLabelStyle: Theme.of(context).textTheme.labelMedium,
         dividerColor: Colors.transparent,
-        tabs: const [
-          Tab(text: 'Günlük'),
-          Tab(text: 'Haftalık'),
-          Tab(text: 'Aylık'),
-          Tab(text: 'Burç'),
+        tabs: [
+          Tab(text: L10n.get('tab_daily', language)),
+          Tab(text: L10n.get('tab_weekly', language)),
+          Tab(text: L10n.get('tab_monthly', language)),
+          Tab(text: L10n.get('tab_zodiac', language)),
         ],
       ),
     ).animate().fadeIn(delay: 200.ms, duration: 300.ms);
   }
 
-  Widget _buildDailyContent(BuildContext context, dynamic horoscope, ZodiacSign sign) {
+  Widget _buildDailyContent(BuildContext context, dynamic horoscope, ZodiacSign sign, AppLanguage language) {
     return SingleChildScrollView(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       child: Column(
@@ -152,7 +166,7 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
           // Categories
           _buildCategoryCard(
             context,
-            'Aşk & İlişkiler',
+            L10nService.get('horoscope.love_relationships', language),
             Icons.favorite,
             horoscope.loveAdvice,
             AppColors.fireElement,
@@ -160,7 +174,7 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
           const SizedBox(height: AppConstants.spacingMd),
           _buildCategoryCard(
             context,
-            'Kariyer & Finans',
+            L10nService.get('horoscope.career_finance', language),
             Icons.work,
             horoscope.careerAdvice,
             AppColors.earthElement,
@@ -168,7 +182,7 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
           const SizedBox(height: AppConstants.spacingMd),
           _buildCategoryCard(
             context,
-            'Sağlık & İyilik',
+            L10nService.get('horoscope.health_wellness', language),
             Icons.spa,
             horoscope.healthAdvice,
             AppColors.airElement,
@@ -180,10 +194,10 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
           const SizedBox(height: AppConstants.spacingLg),
           // Kadim Not - Astroloji bilgeliği
           KadimNotCard(
-            title: 'Göksel Senkronizasyon',
-            content: 'Kozmik enerjiler rastgele hareket etmez. Bugün ${sign.nameTr} burcuna gelen titreşimler, evrenin senin için hazırladığı bir mesajdır. Bu mesajı almak için önce durmalı, sonra dinlemelisin.',
+            title: L10nService.get('horoscope.celestial_sync', language),
+            content: L10nService.get('horoscope.celestial_sync', language),
             category: KadimCategory.astrology,
-            source: 'Hermetik Öğreti',
+            source: L10nService.get('horoscope.hermetic_teaching', language),
             compact: true,
           ),
           const SizedBox(height: AppConstants.spacingLg),
@@ -197,8 +211,8 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
           PageBottomNavigation(currentRoute: '/horoscope/${_sign.name.toLowerCase()}'),
           const SizedBox(height: AppConstants.spacingLg),
           // AI-QUOTABLE: Footer with Disclaimer
-          const PageFooterWithDisclaimer(
-            brandText: 'Astroloji — Venus One',
+          PageFooterWithDisclaimer(
+            brandText: L10nService.get('horoscope.astrology_brand', language),
             disclaimerText: DisclaimerTexts.astrology,
           ),
           const SizedBox(height: AppConstants.spacingMd),
@@ -221,7 +235,7 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Burç Çözümlemelerin',
+            L10nService.get('horoscope.your_zodiac_readings', ref.read(languageProvider)),
             style: Theme.of(context).textTheme.titleSmall?.copyWith(
               color: sign.color,
               fontWeight: FontWeight.w600,
@@ -347,7 +361,7 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
           // Categories
           _buildCategoryCard(
             context,
-            'Aşk & İlişkiler',
+            L10nService.get('horoscope.love_relationships', ref.read(languageProvider)),
             Icons.favorite,
             horoscope.loveWeek,
             AppColors.fireElement,
@@ -355,7 +369,7 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
           const SizedBox(height: AppConstants.spacingMd),
           _buildCategoryCard(
             context,
-            'Kariyer & Finans',
+            L10nService.get('horoscope.career_finance', ref.read(languageProvider)),
             Icons.work,
             horoscope.careerWeek,
             AppColors.earthElement,
@@ -363,7 +377,7 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
           const SizedBox(height: AppConstants.spacingMd),
           _buildCategoryCard(
             context,
-            'Sağlık & Enerji',
+            L10nService.get('horoscope.health_energy', ref.read(languageProvider)),
             Icons.spa,
             horoscope.healthWeek,
             AppColors.airElement,
@@ -385,10 +399,8 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
   }
 
   Widget _buildMonthlyContent(BuildContext context, MonthlyHoroscope horoscope, ZodiacSign sign) {
-    final months = [
-      'Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran',
-      'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'
-    ];
+    final language = ref.read(languageProvider);
+    final months = _getLocalizedMonths(language);
 
     return SingleChildScrollView(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -440,7 +452,7 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
           // Categories
           _buildCategoryCard(
             context,
-            'Aşk & İlişkiler',
+            L10nService.get('horoscope.love_relationships', language),
             Icons.favorite,
             horoscope.loveMonth,
             AppColors.fireElement,
@@ -448,7 +460,7 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
           const SizedBox(height: AppConstants.spacingMd),
           _buildCategoryCard(
             context,
-            'Kariyer & Finans',
+            L10nService.get('horoscope.career_finance', language),
             Icons.work,
             horoscope.careerMonth,
             AppColors.earthElement,
@@ -456,7 +468,7 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
           const SizedBox(height: AppConstants.spacingMd),
           _buildCategoryCard(
             context,
-            'Sağlık & Enerji',
+            L10nService.get('horoscope.health_energy', language),
             Icons.spa,
             horoscope.healthMonth,
             AppColors.airElement,
@@ -464,7 +476,7 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
           const SizedBox(height: AppConstants.spacingMd),
           _buildCategoryCard(
             context,
-            'Ruhsal Rehberlik',
+            L10nService.get('horoscope.spiritual_guidance', language),
             Icons.auto_awesome,
             horoscope.spiritualGuidance,
             AppColors.auroraStart,
@@ -486,28 +498,30 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
   }
 
   Widget _buildSignInfoContent(BuildContext context, ZodiacSign sign) {
+    final language = ref.read(languageProvider);
+    final signName = sign.localizedName(language);
     return SingleChildScrollView(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Breadcrumb Navigation
-          BreadcrumbNavigation.zodiacSign(sign.nameTr, sign.symbol),
+          BreadcrumbNavigation.zodiacSign(signName, sign.symbol),
           const SizedBox(height: AppConstants.spacingMd),
           _buildSignInfo(context, sign),
           const SizedBox(height: AppConstants.spacingLg),
           // Deep Interpretation Card
           DeepInterpretationCard(
-            title: '${sign.nameTr} Burcunun Derinliği',
+            title: '$signName ${L10nService.get('horoscope.sign_depth', language)}',
             summary: _getSignSummary(sign),
             deepInterpretation: _getSignDeepInterpretation(sign),
             icon: Icons.auto_stories,
             accentColor: sign.color,
-            relatedTerms: [sign.nameTr, sign.element.nameTr, sign.modality.nameTr, sign.rulingPlanet],
+            relatedTerms: [signName, sign.element.getLocalizedName(language), sign.modality.getLocalizedName(language), sign.rulingPlanet],
           ),
           const SizedBox(height: AppConstants.spacingLg),
           // FAQ Section for this zodiac sign
-          FaqSection.zodiacSign(sign.nameTr),
+          FaqSection.zodiacSign(signName),
           const SizedBox(height: AppConstants.spacingLg),
           const InlineAdBanner(),
           const SizedBox(height: AppConstants.spacingXl),
@@ -637,6 +651,24 @@ Balık'ın iki balık sembolizmi - zıt yönlere yüzen - maddi ve spiritüel d�
     return interpretations[sign] ?? 'Burç yorumu yükleniyor...';
   }
 
+  List<String> _getLocalizedMonths(AppLanguage language) {
+    switch (language) {
+      case AppLanguage.en:
+        return ['January', 'February', 'March', 'April', 'May', 'June',
+                'July', 'August', 'September', 'October', 'November', 'December'];
+      case AppLanguage.de:
+        return ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni',
+                'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
+      case AppLanguage.fr:
+        return ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
+                'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+      case AppLanguage.tr:
+      default:
+        return ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran',
+                'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
+    }
+  }
+
   Widget _buildWeekHeader(BuildContext context, WeeklyHoroscope horoscope) {
     final weekEnd = horoscope.weekStart.add(const Duration(days: 6));
     final format = DateFormat('d MMM', 'tr');
@@ -694,7 +726,7 @@ Balık'ın iki balık sembolizmi - zıt yönlere yüzen - maddi ve spiritüel d�
               Icon(Icons.event_note, color: sign.color, size: 20),
               const SizedBox(width: 8),
               Text(
-                'Önemli Günler',
+                L10nService.get('horoscope.important_days', ref.read(languageProvider)),
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       color: sign.color,
                     ),
@@ -756,7 +788,7 @@ Balık'ın iki balık sembolizmi - zıt yönlere yüzen - maddi ve spiritüel d�
               Icon(Icons.auto_awesome, color: sign.color, size: 20),
               const SizedBox(width: 8),
               Text(
-                'Kozmik Enerjin',
+                L10nService.get('horoscope.cosmic_energy', ref.read(languageProvider)),
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       color: sign.color,
                     ),
@@ -794,7 +826,7 @@ Balık'ın iki balık sembolizmi - zıt yönlere yüzen - maddi ve spiritüel d�
               Icon(Icons.star, color: AppColors.starGold, size: 20),
               const SizedBox(width: 8),
               Text(
-                'Şanslı Günler',
+                L10nService.get('horoscope.lucky_days', ref.read(languageProvider)),
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       color: AppColors.starGold,
                     ),
@@ -843,7 +875,7 @@ Balık'ın iki balık sembolizmi - zıt yönlere yüzen - maddi ve spiritüel d�
               Icon(Icons.route, color: sign.color, size: 20),
               const SizedBox(width: 8),
               Text(
-                'Önemli Transitler',
+                L10nService.get('horoscope.important_transits', ref.read(languageProvider)),
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       color: sign.color,
                     ),
@@ -891,7 +923,7 @@ Balık'ın iki balık sembolizmi - zıt yönlere yüzen - maddi ve spiritüel d�
           ),
           const SizedBox(height: AppConstants.spacingSm),
           Text(
-            'Haftanın Olumlaması',
+            L10nService.get('horoscope.weekly_affirmation_label', ref.read(languageProvider)),
             style: Theme.of(context).textTheme.labelSmall?.copyWith(
                   color: AppColors.textMuted,
                 ),
@@ -939,7 +971,7 @@ Balık'ın iki balık sembolizmi - zıt yönlere yüzen - maddi ve spiritüel d�
                 onPressed: () {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
-                      content: const Text('Bu özellik yakında eklenecek ✨'),
+                      content: Text(L10nService.get('horoscope.feature_coming_soon', ref.read(languageProvider))),
                       backgroundColor: AppColors.starGold,
                       behavior: SnackBarBehavior.floating,
                       duration: const Duration(seconds: 2),
@@ -984,7 +1016,7 @@ Balık'ın iki balık sembolizmi - zıt yönlere yüzen - maddi ve spiritüel d�
                   children: [
                     // H1 - Soru formatı (AI-quotable)
                     Text(
-                      '${sign.nameTr} burcu bugün nasıl?',
+                      L10nService.get('horoscope.sign_today', ref.read(languageProvider)).replaceAll('{sign}', sign.localizedName(ref.read(languageProvider))),
                       style: Theme.of(context).textTheme.titleLarge?.copyWith(
                             color: AppColors.textPrimary,
                             fontWeight: FontWeight.bold,
@@ -999,7 +1031,7 @@ Balık'ın iki balık sembolizmi - zıt yönlere yüzen - maddi ve spiritüel d�
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Text(
-                        'Astroloji',
+                        L10nService.get('horoscope.astrology', ref.read(languageProvider)),
                         style: TextStyle(
                           fontSize: 11,
                           color: sign.color,
@@ -1028,7 +1060,7 @@ Balık'ın iki balık sembolizmi - zıt yönlere yüzen - maddi ve spiritüel d�
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Günün Yorumu',
+              L10nService.get('horoscope.daily_reading', ref.read(languageProvider)),
               style: Theme.of(context).textTheme.labelSmall?.copyWith(
                     color: AppColors.textMuted,
                     letterSpacing: 1.5,
@@ -1046,7 +1078,7 @@ Balık'ın iki balık sembolizmi - zıt yönlere yüzen - maddi ve spiritüel d�
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Text(
-              'Şans Oranı',
+              L10nService.get('horoscope.luck_rate', ref.read(languageProvider)),
               style: Theme.of(context).textTheme.labelSmall?.copyWith(
                     color: AppColors.textMuted,
                     letterSpacing: 1.5,
@@ -1091,7 +1123,7 @@ Balık'ın iki balık sembolizmi - zıt yönlere yüzen - maddi ve spiritüel d�
               Icon(Icons.auto_awesome, color: sign.color, size: 20),
               const SizedBox(width: 8),
               Text(
-                'Günün Kozmik Enerjin',
+                L10nService.get('horoscope.daily_cosmic_energy', ref.read(languageProvider)),
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       color: sign.color,
                     ),
@@ -1168,7 +1200,7 @@ Balık'ın iki balık sembolizmi - zıt yönlere yüzen - maddi ve spiritüel d�
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Günün Kozmik İpuçları',
+            L10nService.get('horoscope.cosmic_tips', ref.read(languageProvider)),
             style: Theme.of(context).textTheme.titleSmall?.copyWith(
                   color: AppColors.textPrimary,
                 ),
@@ -1179,7 +1211,7 @@ Balık'ın iki balık sembolizmi - zıt yönlere yüzen - maddi ve spiritüel d�
               Expanded(
                 child: _QuickFactItem(
                   icon: Icons.mood,
-                  label: 'Ruh Hali',
+                  label: L10nService.get('horoscope.mood', ref.read(languageProvider)),
                   value: mood,
                   color: sign.color,
                 ),
@@ -1187,7 +1219,7 @@ Balık'ın iki balık sembolizmi - zıt yönlere yüzen - maddi ve spiritüel d�
               Expanded(
                 child: _QuickFactItem(
                   icon: Icons.palette,
-                  label: 'Şanslı Renk',
+                  label: L10nService.get('horoscope.lucky_color', ref.read(languageProvider)),
                   value: luckyColor,
                   color: sign.color,
                 ),
@@ -1195,7 +1227,7 @@ Balık'ın iki balık sembolizmi - zıt yönlere yüzen - maddi ve spiritüel d�
               Expanded(
                 child: _QuickFactItem(
                   icon: Icons.tag,
-                  label: 'Şanslı Sayı',
+                  label: L10nService.get('horoscope.lucky_number', ref.read(languageProvider)),
                   value: luckyNumber,
                   color: sign.color,
                 ),
@@ -1219,7 +1251,7 @@ Balık'ın iki balık sembolizmi - zıt yönlere yüzen - maddi ve spiritüel d�
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            '${sign.nameTr} Burcu Sırları',
+            '${sign.localizedName(ref.read(languageProvider))} ${L10nService.get('horoscope.zodiac_secrets', ref.read(languageProvider))}',
             style: Theme.of(context).textTheme.titleSmall?.copyWith(
                   color: sign.color,
                 ),
@@ -1241,14 +1273,14 @@ Balık'ın iki balık sembolizmi - zıt yönlere yüzen - maddi ve spiritüel d�
                   label: sign.element.name, icon: null, color: sign.element.color),
               _InfoTag(label: sign.modality.name, icon: null, color: sign.color),
               _InfoTag(
-                  label: 'Yönetici: ${sign.rulingPlanetTr}',
+                  label: '${L10nService.get('horoscope.ruling_planet', ref.read(languageProvider))}: ${sign.rulingPlanet}',
                   icon: null,
                   color: AppColors.starGold),
             ],
           ),
           const SizedBox(height: AppConstants.spacingLg),
           Text(
-            'Ruhsal İmza',
+            L10nService.get('horoscope.spiritual_signature', ref.read(languageProvider)),
             style: Theme.of(context).textTheme.labelMedium?.copyWith(
                   color: AppColors.textMuted,
                 ),

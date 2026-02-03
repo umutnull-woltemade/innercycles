@@ -7,6 +7,7 @@ import '../../../data/models/zodiac_sign.dart';
 import '../../../data/models/user_profile.dart';
 import '../../../data/models/premium_astrology.dart';
 import '../../../data/services/premium_astrology_service.dart';
+import '../../../data/services/l10n_service.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 
@@ -56,6 +57,7 @@ class _AsteroidsScreenState extends ConsumerState<AsteroidsScreen>
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final userProfile = ref.watch(userProfileProvider);
+    final language = ref.watch(languageProvider);
 
     if (userProfile == null) {
       return Scaffold(
@@ -67,14 +69,14 @@ class _AsteroidsScreenState extends ConsumerState<AsteroidsScreen>
                 const Text('', style: TextStyle(fontSize: 64)),
                 const SizedBox(height: 16),
                 Text(
-                  'Profil bulunamadi',
+                  L10nService.get('asteroids.profile_not_found', language),
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
                         color: Colors.white,
                       ),
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Lutfen once dogum bilgilerinizi girin',
+                  L10nService.get('asteroids.enter_birth_info_first', language),
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         color: Colors.white70,
                       ),
@@ -82,7 +84,7 @@ class _AsteroidsScreenState extends ConsumerState<AsteroidsScreen>
                 const SizedBox(height: 24),
                 ElevatedButton(
                   onPressed: () => context.pop(),
-                  child: const Text('Geri Don'),
+                  child: Text(L10nService.get('asteroids.go_back', language)),
                 ),
               ],
             ),
@@ -96,25 +98,25 @@ class _AsteroidsScreenState extends ConsumerState<AsteroidsScreen>
         child: SafeArea(
           child: Column(
             children: [
-              _buildHeader(context, isDark),
+              _buildHeader(context, isDark, language),
               Expanded(
                 child: SingleChildScrollView(
                   padding: const EdgeInsets.all(AppConstants.spacingLg),
                   child: Column(
                     children: [
-                      _buildInfoBanner(isDark),
+                      _buildInfoBanner(isDark, language),
                       const SizedBox(height: AppConstants.spacingLg),
-                      _buildProfileCard(isDark, userProfile),
+                      _buildProfileCard(isDark, userProfile, language),
                       const SizedBox(height: AppConstants.spacingLg),
                       if (_chart != null) ...[
-                        _buildTabSection(isDark),
+                        _buildTabSection(isDark, language),
                         const SizedBox(height: AppConstants.spacingXxl),
                       ] else ...[
                         const SizedBox(height: 100),
                         const CircularProgressIndicator(color: Colors.purple),
                         const SizedBox(height: 16),
                         Text(
-                          'Harita olusturuluyor...',
+                          L10nService.get('asteroids.generating_chart', language),
                           style: TextStyle(
                             color: isDark ? Colors.white70 : AppColors.textLight,
                           ),
@@ -131,7 +133,7 @@ class _AsteroidsScreenState extends ConsumerState<AsteroidsScreen>
     );
   }
 
-  Widget _buildHeader(BuildContext context, bool isDark) {
+  Widget _buildHeader(BuildContext context, bool isDark, AppLanguage language) {
     return Padding(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       child: Row(
@@ -145,7 +147,7 @@ class _AsteroidsScreenState extends ConsumerState<AsteroidsScreen>
           ),
           Expanded(
             child: Text(
-              'Asteroid Haritasi',
+              L10nService.get('asteroids.title', language),
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                     fontWeight: FontWeight.bold,
                     color: isDark ? Colors.white : AppColors.textDark,
@@ -159,7 +161,7 @@ class _AsteroidsScreenState extends ConsumerState<AsteroidsScreen>
     );
   }
 
-  Widget _buildInfoBanner(bool isDark) {
+  Widget _buildInfoBanner(bool isDark, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingMd),
       decoration: BoxDecoration(
@@ -183,14 +185,14 @@ class _AsteroidsScreenState extends ConsumerState<AsteroidsScreen>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Genisletilmis Asteroidler',
+                  L10nService.get('asteroids.extended_asteroids', language),
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: isDark ? Colors.white : AppColors.textDark,
                   ),
                 ),
                 Text(
-                  'Kiron, Ceres, Pallas, Juno, Vesta ve daha fazlasi',
+                  L10nService.get('asteroids.asteroids_subtitle', language),
                   style: TextStyle(
                     fontSize: 12,
                     color: isDark ? Colors.white70 : AppColors.textLight,
@@ -204,7 +206,7 @@ class _AsteroidsScreenState extends ConsumerState<AsteroidsScreen>
     );
   }
 
-  Widget _buildProfileCard(bool isDark, UserProfile userProfile) {
+  Widget _buildProfileCard(bool isDark, UserProfile userProfile, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -228,7 +230,7 @@ class _AsteroidsScreenState extends ConsumerState<AsteroidsScreen>
               ),
               const SizedBox(width: 8),
               Text(
-                'Profil Bilgileri',
+                L10nService.get('asteroids.profile_info', language),
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
@@ -238,9 +240,9 @@ class _AsteroidsScreenState extends ConsumerState<AsteroidsScreen>
             ],
           ),
           const SizedBox(height: AppConstants.spacingMd),
-          _buildInfoRow(isDark, Icons.person_outline, 'Isim', userProfile.name ?? 'Kullanici'),
-          _buildInfoRow(isDark, Icons.cake_outlined, 'Dogum Tarihi', _formatDate(userProfile.birthDate)),
-          _buildInfoRow(isDark, Icons.wb_sunny_outlined, 'Gunes Burcu', userProfile.sunSign.nameTr),
+          _buildInfoRow(isDark, Icons.person_outline, L10nService.get('asteroids.name', language), userProfile.name ?? L10nService.get('asteroids.user', language)),
+          _buildInfoRow(isDark, Icons.cake_outlined, L10nService.get('asteroids.birth_date', language), _formatDate(userProfile.birthDate, language)),
+          _buildInfoRow(isDark, Icons.wb_sunny_outlined, L10nService.get('asteroids.sun_sign', language), userProfile.sunSign.localizedName(language)),
         ],
       ),
     );
@@ -276,15 +278,17 @@ class _AsteroidsScreenState extends ConsumerState<AsteroidsScreen>
     );
   }
 
-  String _formatDate(DateTime date) {
-    const months = [
-      'Ocak', 'Subat', 'Mart', 'Nisan', 'Mayis', 'Haziran',
-      'Temmuz', 'Agustos', 'Eylul', 'Ekim', 'Kasim', 'Aralik'
+  String _formatDate(DateTime date, AppLanguage language) {
+    final monthKeys = [
+      'months.january', 'months.february', 'months.march', 'months.april',
+      'months.may', 'months.june', 'months.july', 'months.august',
+      'months.september', 'months.october', 'months.november', 'months.december'
     ];
-    return '${date.day} ${months[date.month - 1]} ${date.year}';
+    final month = L10nService.get(monthKeys[date.month - 1], language);
+    return '${date.day} $month ${date.year}';
   }
 
-  Widget _buildTabSection(bool isDark) {
+  Widget _buildTabSection(bool isDark, AppLanguage language) {
     if (_chart == null) return const SizedBox.shrink();
 
     return Column(
@@ -301,10 +305,10 @@ class _AsteroidsScreenState extends ConsumerState<AsteroidsScreen>
             labelColor: Colors.purple,
             unselectedLabelColor: isDark ? Colors.white60 : AppColors.textLight,
             indicatorColor: Colors.purple,
-            tabs: const [
-              Tab(text: 'Ana Asteroidler'),
-              Tab(text: 'Ikincil'),
-              Tab(text: 'Analiz'),
+            tabs: [
+              Tab(text: L10nService.get('asteroids.main_asteroids', language)),
+              Tab(text: L10nService.get('asteroids.secondary', language)),
+              Tab(text: L10nService.get('asteroids.analysis', language)),
             ],
           ),
         ),
@@ -314,9 +318,9 @@ class _AsteroidsScreenState extends ConsumerState<AsteroidsScreen>
           child: TabBarView(
             controller: _tabController,
             children: [
-              _buildMainAsteroidsTab(isDark),
-              _buildSecondaryAsteroidsTab(isDark),
-              _buildAnalysisTab(isDark),
+              _buildMainAsteroidsTab(isDark, language),
+              _buildSecondaryAsteroidsTab(isDark, language),
+              _buildAnalysisTab(isDark, language),
             ],
           ),
         ),
@@ -324,7 +328,7 @@ class _AsteroidsScreenState extends ConsumerState<AsteroidsScreen>
     );
   }
 
-  Widget _buildMainAsteroidsTab(bool isDark) {
+  Widget _buildMainAsteroidsTab(bool isDark, AppLanguage language) {
     final mainAsteroids = [
       Asteroid.chiron,
       Asteroid.ceres,
@@ -340,14 +344,14 @@ class _AsteroidsScreenState extends ConsumerState<AsteroidsScreen>
             final pos = _chart!.asteroids.firstWhere(
               (a) => a.asteroid == asteroid,
             );
-            return _buildAsteroidCard(pos, isDark);
+            return _buildAsteroidCard(pos, isDark, language);
           }),
         ],
       ),
     );
   }
 
-  Widget _buildSecondaryAsteroidsTab(bool isDark) {
+  Widget _buildSecondaryAsteroidsTab(bool isDark, AppLanguage language) {
     final secondaryAsteroids = [
       Asteroid.eros,
       Asteroid.psyche,
@@ -363,14 +367,14 @@ class _AsteroidsScreenState extends ConsumerState<AsteroidsScreen>
             final pos = _chart!.asteroids.firstWhere(
               (a) => a.asteroid == asteroid,
             );
-            return _buildAsteroidCard(pos, isDark);
+            return _buildAsteroidCard(pos, isDark, language);
           }),
         ],
       ),
     );
   }
 
-  Widget _buildAsteroidCard(AsteroidPosition pos, bool isDark) {
+  Widget _buildAsteroidCard(AsteroidPosition pos, bool isDark, AppLanguage language) {
     return Container(
       margin: const EdgeInsets.only(bottom: AppConstants.spacingMd),
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -408,7 +412,7 @@ class _AsteroidsScreenState extends ConsumerState<AsteroidsScreen>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      pos.asteroid.nameTr,
+                      pos.asteroid.name,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
@@ -427,7 +431,7 @@ class _AsteroidsScreenState extends ConsumerState<AsteroidsScreen>
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: Text(
-                            '${pos.sign.symbol} ${pos.sign.nameTr}',
+                            '${pos.sign.symbol} ${pos.sign.localizedName(language)}',
                             style: TextStyle(
                               fontSize: 12,
                               color: isDark ? Colors.white : AppColors.textDark,
@@ -436,7 +440,7 @@ class _AsteroidsScreenState extends ConsumerState<AsteroidsScreen>
                         ),
                         const SizedBox(width: 8),
                         Text(
-                          '${pos.degree.toStringAsFixed(1)} - ${pos.house}. Ev',
+                          '${pos.degree.toStringAsFixed(1)} - ${pos.house}. ${L10nService.get('asteroids.house', language)}',
                           style: TextStyle(
                             fontSize: 12,
                             color: isDark ? Colors.white60 : AppColors.textLight,
@@ -507,13 +511,13 @@ class _AsteroidsScreenState extends ConsumerState<AsteroidsScreen>
     );
   }
 
-  Widget _buildAnalysisTab(bool isDark) {
+  Widget _buildAnalysisTab(bool isDark, AppLanguage language) {
     return SingleChildScrollView(
       child: Column(
         children: [
           _buildDetailedAnalysisCard(
             icon: '',
-            title: 'Kiron Analizi',
+            title: L10nService.get('asteroids.chiron_analysis', language),
             content: _chart!.chiron,
             color: Colors.teal,
             isDark: isDark,
@@ -521,7 +525,7 @@ class _AsteroidsScreenState extends ConsumerState<AsteroidsScreen>
           const SizedBox(height: AppConstants.spacingMd),
           _buildDetailedAnalysisCard(
             icon: '',
-            title: 'Ceres Analizi',
+            title: L10nService.get('asteroids.ceres_analysis', language),
             content: _chart!.ceres,
             color: Colors.green,
             isDark: isDark,
@@ -529,7 +533,7 @@ class _AsteroidsScreenState extends ConsumerState<AsteroidsScreen>
           const SizedBox(height: AppConstants.spacingMd),
           _buildDetailedAnalysisCard(
             icon: '',
-            title: 'Pallas Analizi',
+            title: L10nService.get('asteroids.pallas_analysis', language),
             content: _chart!.pallas,
             color: Colors.blue,
             isDark: isDark,
@@ -537,7 +541,7 @@ class _AsteroidsScreenState extends ConsumerState<AsteroidsScreen>
           const SizedBox(height: AppConstants.spacingMd),
           _buildDetailedAnalysisCard(
             icon: '',
-            title: 'Juno Analizi',
+            title: L10nService.get('asteroids.juno_analysis', language),
             content: _chart!.juno,
             color: Colors.pink,
             isDark: isDark,
@@ -545,7 +549,7 @@ class _AsteroidsScreenState extends ConsumerState<AsteroidsScreen>
           const SizedBox(height: AppConstants.spacingMd),
           _buildDetailedAnalysisCard(
             icon: '',
-            title: 'Vesta Analizi',
+            title: L10nService.get('asteroids.vesta_analysis', language),
             content: _chart!.vesta,
             color: Colors.orange,
             isDark: isDark,
@@ -553,7 +557,7 @@ class _AsteroidsScreenState extends ConsumerState<AsteroidsScreen>
           const SizedBox(height: AppConstants.spacingMd),
           _buildDetailedAnalysisCard(
             icon: '',
-            title: 'Genel Analiz',
+            title: L10nService.get('asteroids.overall_analysis', language),
             content: _chart!.overallAnalysis,
             color: Colors.purple,
             isDark: isDark,

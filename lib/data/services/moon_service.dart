@@ -1,5 +1,8 @@
 import 'dart:math';
 
+import '../providers/app_providers.dart';
+import 'l10n_service.dart';
+
 /// Moon phase and sign calculation service
 class MoonService {
   /// Known new moon reference date (Jan 6, 2000 at 18:14 UTC)
@@ -226,6 +229,24 @@ extension MoonPhaseExtension on MoonPhase {
     }
   }
 
+  String localizedName(AppLanguage language) {
+    final key = 'dreams.moon_phases.${_moonPhaseToKey(this)}';
+    return L10nService.get(key, language);
+  }
+
+  static String _moonPhaseToKey(MoonPhase phase) {
+    switch (phase) {
+      case MoonPhase.newMoon: return 'new_moon';
+      case MoonPhase.waxingCrescent: return 'waxing_crescent';
+      case MoonPhase.firstQuarter: return 'first_quarter';
+      case MoonPhase.waxingGibbous: return 'waxing_gibbous';
+      case MoonPhase.fullMoon: return 'full_moon';
+      case MoonPhase.waningGibbous: return 'waning_gibbous';
+      case MoonPhase.lastQuarter: return 'last_quarter';
+      case MoonPhase.waningCrescent: return 'waning_crescent';
+    }
+  }
+
   String get emoji {
     switch (this) {
       case MoonPhase.newMoon: return '🌑';
@@ -327,6 +348,11 @@ extension MoonSignExtension on MoonSign {
       case MoonSign.aquarius: return '♒';
       case MoonSign.pisces: return '♓';
     }
+  }
+
+  String localizedName(AppLanguage language) {
+    final key = 'zodiac.${name.toLowerCase()}';
+    return L10nService.get(key, language);
   }
 }
 

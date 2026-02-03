@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'planet.dart';
+import '../providers/app_providers.dart';
 
 /// Types of astrological aspects
 enum AspectType {
@@ -40,6 +41,50 @@ extension AspectTypeExtension on AspectType {
       case AspectType.semisextile: return 'Yarı Sekstil';
       case AspectType.semisquare: return 'Yarı Kare';
       case AspectType.sesquisquare: return 'Sesquikare';
+    }
+  }
+
+  String get nameEn => name;
+
+  String get nameDe {
+    switch (this) {
+      case AspectType.conjunction: return 'Konjunktion';
+      case AspectType.opposition: return 'Opposition';
+      case AspectType.trine: return 'Trigon';
+      case AspectType.square: return 'Quadrat';
+      case AspectType.sextile: return 'Sextil';
+      case AspectType.quincunx: return 'Quincunx';
+      case AspectType.semisextile: return 'Halbsextil';
+      case AspectType.semisquare: return 'Halbquadrat';
+      case AspectType.sesquisquare: return 'Anderthalbquadrat';
+    }
+  }
+
+  String get nameFr {
+    switch (this) {
+      case AspectType.conjunction: return 'Conjonction';
+      case AspectType.opposition: return 'Opposition';
+      case AspectType.trine: return 'Trigone';
+      case AspectType.square: return 'Carre';
+      case AspectType.sextile: return 'Sextile';
+      case AspectType.quincunx: return 'Quinconce';
+      case AspectType.semisextile: return 'Semi-sextile';
+      case AspectType.semisquare: return 'Semi-carre';
+      case AspectType.sesquisquare: return 'Sesqui-carre';
+    }
+  }
+
+  String localizedName(AppLanguage language) {
+    switch (language) {
+      case AppLanguage.en:
+        return nameEn;
+      case AppLanguage.de:
+        return nameDe;
+      case AppLanguage.fr:
+        return nameFr;
+      case AppLanguage.tr:
+      default:
+        return nameTr;
     }
   }
 

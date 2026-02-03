@@ -7,6 +7,7 @@ import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/zodiac_sign.dart';
 import '../../../data/providers/app_providers.dart';
+import '../../../data/services/l10n_service.dart';
 import '../../../data/services/moon_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 
@@ -54,22 +55,23 @@ class _DailyRitualsScreenState extends ConsumerState<DailyRitualsScreen>
   Widget build(BuildContext context) {
     final userProfile = ref.watch(userProfileProvider);
     final sign = userProfile?.sunSign ?? ZodiacSign.aries;
+    final language = ref.watch(languageProvider);
 
     return Scaffold(
       body: CosmicBackground(
         child: SafeArea(
           child: Column(
             children: [
-              _buildHeader(context, sign),
-              _buildTabBar(context),
+              _buildHeader(context, sign, language),
+              _buildTabBar(context, language),
               Expanded(
                 child: TabBarView(
                   controller: _tabController,
                   children: [
-                    _buildMorningRitual(context),
-                    _buildMeditationTab(context),
-                    _buildAffirmationsTab(context),
-                    _buildEveningRitual(context),
+                    _buildMorningRitual(context, language),
+                    _buildMeditationTab(context, language),
+                    _buildAffirmationsTab(context, language),
+                    _buildEveningRitual(context, language),
                   ],
                 ),
               ),
@@ -80,7 +82,7 @@ class _DailyRitualsScreenState extends ConsumerState<DailyRitualsScreen>
     );
   }
 
-  Widget _buildHeader(BuildContext context, ZodiacSign sign) {
+  Widget _buildHeader(BuildContext context, ZodiacSign sign, AppLanguage language) {
     final moonPhase = MoonService.getCurrentPhase();
 
     return Padding(
@@ -96,7 +98,7 @@ class _DailyRitualsScreenState extends ConsumerState<DailyRitualsScreen>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Gunluk Rituel & Meditasyon',
+                  L10nService.get('rituals.daily_ritual_meditation', language),
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
                         color: AppColors.starGold,
                         fontWeight: FontWeight.bold,
@@ -105,14 +107,14 @@ class _DailyRitualsScreenState extends ConsumerState<DailyRitualsScreen>
                 Row(
                   children: [
                     Text(
-                      '${sign.nameTr} ',
+                      '${sign.localizedName(language)} ',
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                             color: sign.color,
                           ),
                     ),
                     Text(sign.symbol, style: TextStyle(color: sign.color)),
                     Text(
-                      ' • ${moonPhase.emoji} ${moonPhase.nameTr}',
+                      ' • ${moonPhase.emoji} ${moonPhase.localizedName(language)}',
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                             color: AppColors.textSecondary,
                           ),
@@ -127,7 +129,7 @@ class _DailyRitualsScreenState extends ConsumerState<DailyRitualsScreen>
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildTabBar(BuildContext context) {
+  Widget _buildTabBar(BuildContext context, AppLanguage language) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -147,17 +149,17 @@ class _DailyRitualsScreenState extends ConsumerState<DailyRitualsScreen>
               fontWeight: FontWeight.bold,
             ),
         dividerColor: Colors.transparent,
-        tabs: const [
-          Tab(text: 'Sabah'),
-          Tab(text: 'Meditasyon'),
-          Tab(text: 'Olumlama'),
-          Tab(text: 'Aksam'),
+        tabs: [
+          Tab(text: L10nService.get('rituals.morning', language)),
+          Tab(text: L10nService.get('rituals.meditation', language)),
+          Tab(text: L10nService.get('rituals.affirmation', language)),
+          Tab(text: L10nService.get('rituals.evening', language)),
         ],
       ),
     ).animate().fadeIn(delay: 100.ms, duration: 300.ms);
   }
 
-  Widget _buildMorningRitual(BuildContext context) {
+  Widget _buildMorningRitual(BuildContext context, AppLanguage language) {
     final ritual = _ritualData.morningRitual;
 
     return SingleChildScrollView(
@@ -168,27 +170,27 @@ class _DailyRitualsScreenState extends ConsumerState<DailyRitualsScreen>
           _buildRitualHeader(
             context,
             icon: Icons.wb_sunny,
-            title: 'Sabah Ritueli',
-            subtitle: 'Gune pozitif enerji ile basla',
+            title: L10nService.get('rituals.morning_ritual', language),
+            subtitle: L10nService.get('rituals.morning_subtitle', language),
             color: Colors.orange,
           ),
           const SizedBox(height: AppConstants.spacingLg),
-          _buildTimeCard(context, ritual.bestTime, 'En Uygun Saat'),
+          _buildTimeCard(context, ritual.bestTime, L10nService.get('rituals.best_time', language)),
           const SizedBox(height: AppConstants.spacingMd),
-          _buildIntentionCard(context, ritual.intention),
+          _buildIntentionCard(context, ritual.intention, language),
           const SizedBox(height: AppConstants.spacingMd),
-          _buildStepsSection(context, ritual.steps),
+          _buildStepsSection(context, ritual.steps, language),
           const SizedBox(height: AppConstants.spacingMd),
-          _buildCrystalCard(context, ritual.crystalSuggestion),
+          _buildCrystalCard(context, ritual.crystalSuggestion, language),
           const SizedBox(height: AppConstants.spacingMd),
-          _buildEssentialOilCard(context, ritual.essentialOil),
+          _buildEssentialOilCard(context, ritual.essentialOil, language),
           const SizedBox(height: AppConstants.spacingXxl),
         ],
       ),
     );
   }
 
-  Widget _buildMeditationTab(BuildContext context) {
+  Widget _buildMeditationTab(BuildContext context, AppLanguage language) {
     final meditation = _ritualData.meditation;
 
     return SingleChildScrollView(
@@ -199,27 +201,27 @@ class _DailyRitualsScreenState extends ConsumerState<DailyRitualsScreen>
           _buildRitualHeader(
             context,
             icon: Icons.self_improvement,
-            title: 'Gunun Meditasyonu',
-            subtitle: 'Ic huzuru bul',
+            title: L10nService.get('rituals.todays_meditation', language),
+            subtitle: L10nService.get('rituals.find_inner_peace', language),
             color: AppColors.auroraStart,
           ),
           const SizedBox(height: AppConstants.spacingLg),
           _buildMeditationTypeCard(context, meditation),
           const SizedBox(height: AppConstants.spacingMd),
-          _buildDurationSelector(context, meditation.recommendedDuration),
+          _buildDurationSelector(context, meditation.recommendedDuration, language),
           const SizedBox(height: AppConstants.spacingMd),
-          _buildMeditationGuide(context, meditation),
+          _buildMeditationGuide(context, meditation, language),
           const SizedBox(height: AppConstants.spacingMd),
-          _buildBreathingExercise(context, meditation.breathingPattern),
+          _buildBreathingExercise(context, meditation.breathingPattern, language),
           const SizedBox(height: AppConstants.spacingMd),
-          _buildChakraFocus(context, meditation.chakraFocus),
+          _buildChakraFocus(context, meditation.chakraFocus, language),
           const SizedBox(height: AppConstants.spacingXxl),
         ],
       ),
     );
   }
 
-  Widget _buildAffirmationsTab(BuildContext context) {
+  Widget _buildAffirmationsTab(BuildContext context, AppLanguage language) {
     final affirmations = _ritualData.affirmations;
 
     return SingleChildScrollView(
@@ -230,27 +232,27 @@ class _DailyRitualsScreenState extends ConsumerState<DailyRitualsScreen>
           _buildRitualHeader(
             context,
             icon: Icons.format_quote,
-            title: 'Günün Olumlamaları',
-            subtitle: 'Pozitif düşüncelerle güçlen',
+            title: L10nService.get('rituals.todays_affirmations', language),
+            subtitle: L10nService.get('rituals.affirmations_subtitle', language),
             color: AppColors.starGold,
           ),
           const SizedBox(height: AppConstants.spacingLg),
-          _buildMainAffirmation(context, affirmations.mainAffirmation),
+          _buildMainAffirmation(context, affirmations.mainAffirmation, language),
           const SizedBox(height: AppConstants.spacingMd),
-          _buildAffirmationList(context, 'Sabah Olumlamalari', affirmations.morningAffirmations, Colors.orange),
+          _buildAffirmationList(context, L10nService.get('rituals.morning_affirmations', language), affirmations.morningAffirmations, Colors.orange),
           const SizedBox(height: AppConstants.spacingMd),
-          _buildAffirmationList(context, 'Ogle Olumlamalari', affirmations.noonAffirmations, AppColors.starGold),
+          _buildAffirmationList(context, L10nService.get('rituals.noon_affirmations', language), affirmations.noonAffirmations, AppColors.starGold),
           const SizedBox(height: AppConstants.spacingMd),
-          _buildAffirmationList(context, 'Aksam Olumlamalari', affirmations.eveningAffirmations, AppColors.auroraStart),
+          _buildAffirmationList(context, L10nService.get('rituals.evening_affirmations', language), affirmations.eveningAffirmations, AppColors.auroraStart),
           const SizedBox(height: AppConstants.spacingMd),
-          _buildAffirmationTips(context),
+          _buildAffirmationTips(context, language),
           const SizedBox(height: AppConstants.spacingXxl),
         ],
       ),
     );
   }
 
-  Widget _buildEveningRitual(BuildContext context) {
+  Widget _buildEveningRitual(BuildContext context, AppLanguage language) {
     final ritual = _ritualData.eveningRitual;
 
     return SingleChildScrollView(
@@ -261,20 +263,20 @@ class _DailyRitualsScreenState extends ConsumerState<DailyRitualsScreen>
           _buildRitualHeader(
             context,
             icon: Icons.nightlight_round,
-            title: 'Aksam Ritueli',
-            subtitle: 'Gunu huzurla tamamla',
+            title: L10nService.get('rituals.evening_ritual', language),
+            subtitle: L10nService.get('rituals.evening_subtitle', language),
             color: AppColors.auroraEnd,
           ),
           const SizedBox(height: AppConstants.spacingLg),
-          _buildTimeCard(context, ritual.bestTime, 'En Uygun Saat'),
+          _buildTimeCard(context, ritual.bestTime, L10nService.get('rituals.best_time', language)),
           const SizedBox(height: AppConstants.spacingMd),
-          _buildReflectionCard(context, ritual.reflectionPrompts),
+          _buildReflectionCard(context, ritual.reflectionPrompts, language),
           const SizedBox(height: AppConstants.spacingMd),
-          _buildGratitudeSection(context, ritual.gratitudePrompts),
+          _buildGratitudeSection(context, ritual.gratitudePrompts, language),
           const SizedBox(height: AppConstants.spacingMd),
-          _buildReleasingRitual(context, ritual.releasingRitual),
+          _buildReleasingRitual(context, ritual.releasingRitual, language),
           const SizedBox(height: AppConstants.spacingMd),
-          _buildSleepPreparation(context, ritual.sleepPreparation),
+          _buildSleepPreparation(context, ritual.sleepPreparation, language),
           const SizedBox(height: AppConstants.spacingXxl),
         ],
       ),
@@ -367,7 +369,7 @@ class _DailyRitualsScreenState extends ConsumerState<DailyRitualsScreen>
     );
   }
 
-  Widget _buildIntentionCard(BuildContext context, String intention) {
+  Widget _buildIntentionCard(BuildContext context, String intention, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -388,7 +390,7 @@ class _DailyRitualsScreenState extends ConsumerState<DailyRitualsScreen>
               Icon(Icons.lightbulb, color: AppColors.starGold, size: 20),
               const SizedBox(width: 8),
               Text(
-                'Gunun Niyeti',
+                L10nService.get('rituals.todays_intention', language),
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       color: AppColors.starGold,
                     ),
@@ -409,7 +411,7 @@ class _DailyRitualsScreenState extends ConsumerState<DailyRitualsScreen>
     );
   }
 
-  Widget _buildStepsSection(BuildContext context, List<RitualStep> steps) {
+  Widget _buildStepsSection(BuildContext context, List<RitualStep> steps, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -420,7 +422,7 @@ class _DailyRitualsScreenState extends ConsumerState<DailyRitualsScreen>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Rituel Adimlari',
+            L10nService.get('rituals.ritual_steps', language),
             style: Theme.of(context).textTheme.titleSmall?.copyWith(
                   color: AppColors.textPrimary,
                 ),
@@ -470,7 +472,7 @@ class _DailyRitualsScreenState extends ConsumerState<DailyRitualsScreen>
                               ),
                         ),
                         Text(
-                          '${step.durationMinutes} dakika',
+                          '${step.durationMinutes} ${L10nService.get('rituals.minutes', language)}',
                           style: Theme.of(context).textTheme.labelSmall?.copyWith(
                                 color: AppColors.textMuted,
                               ),
@@ -487,7 +489,7 @@ class _DailyRitualsScreenState extends ConsumerState<DailyRitualsScreen>
     );
   }
 
-  Widget _buildCrystalCard(BuildContext context, CrystalSuggestion crystal) {
+  Widget _buildCrystalCard(BuildContext context, CrystalSuggestion crystal, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -509,7 +511,7 @@ class _DailyRitualsScreenState extends ConsumerState<DailyRitualsScreen>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Onerilen Kristal',
+                  L10nService.get('rituals.suggested_crystal', language),
                   style: Theme.of(context).textTheme.labelSmall?.copyWith(
                         color: AppColors.textMuted,
                       ),
@@ -535,7 +537,7 @@ class _DailyRitualsScreenState extends ConsumerState<DailyRitualsScreen>
     );
   }
 
-  Widget _buildEssentialOilCard(BuildContext context, EssentialOilSuggestion oil) {
+  Widget _buildEssentialOilCard(BuildContext context, EssentialOilSuggestion oil, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -557,7 +559,7 @@ class _DailyRitualsScreenState extends ConsumerState<DailyRitualsScreen>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Onerilen Esansiyel Yag',
+                  L10nService.get('rituals.suggested_essential_oil', language),
                   style: Theme.of(context).textTheme.labelSmall?.copyWith(
                         color: AppColors.textMuted,
                       ),
@@ -645,7 +647,7 @@ class _DailyRitualsScreenState extends ConsumerState<DailyRitualsScreen>
     );
   }
 
-  Widget _buildDurationSelector(BuildContext context, int minutes) {
+  Widget _buildDurationSelector(BuildContext context, int minutes, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingMd),
       decoration: BoxDecoration(
@@ -656,7 +658,7 @@ class _DailyRitualsScreenState extends ConsumerState<DailyRitualsScreen>
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            'Onerilen Sure',
+            L10nService.get('rituals.recommended_duration', language),
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   color: AppColors.textSecondary,
                 ),
@@ -672,7 +674,7 @@ class _DailyRitualsScreenState extends ConsumerState<DailyRitualsScreen>
                 Icon(Icons.timer, color: AppColors.auroraStart, size: 18),
                 const SizedBox(width: 6),
                 Text(
-                  '$minutes dakika',
+                  '$minutes ${L10nService.get('rituals.minutes', language)}',
                   style: Theme.of(context).textTheme.titleSmall?.copyWith(
                         color: AppColors.auroraStart,
                         fontWeight: FontWeight.bold,
@@ -686,7 +688,7 @@ class _DailyRitualsScreenState extends ConsumerState<DailyRitualsScreen>
     );
   }
 
-  Widget _buildMeditationGuide(BuildContext context, MeditationData meditation) {
+  Widget _buildMeditationGuide(BuildContext context, MeditationData meditation, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -697,7 +699,7 @@ class _DailyRitualsScreenState extends ConsumerState<DailyRitualsScreen>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Meditasyon Rehberi',
+            L10nService.get('rituals.meditation_guide', language),
             style: Theme.of(context).textTheme.titleSmall?.copyWith(
                   color: AppColors.textPrimary,
                 ),
@@ -745,7 +747,7 @@ class _DailyRitualsScreenState extends ConsumerState<DailyRitualsScreen>
     );
   }
 
-  Widget _buildBreathingExercise(BuildContext context, BreathingPattern pattern) {
+  Widget _buildBreathingExercise(BuildContext context, BreathingPattern pattern, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -766,7 +768,7 @@ class _DailyRitualsScreenState extends ConsumerState<DailyRitualsScreen>
               Icon(Icons.air, color: Colors.blue, size: 24),
               const SizedBox(width: 8),
               Text(
-                'Nefes Egzersizi: ${pattern.name}',
+                '${L10nService.get('rituals.breathing_exercise', language)}: ${pattern.name}',
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       color: Colors.blue,
                     ),
@@ -777,14 +779,14 @@ class _DailyRitualsScreenState extends ConsumerState<DailyRitualsScreen>
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              _buildBreathPhase(context, 'Nefes Al', '${pattern.inhaleSeconds}s', Colors.blue),
-              _buildBreathPhase(context, 'Tut', '${pattern.holdSeconds}s', Colors.purple),
-              _buildBreathPhase(context, 'Ver', '${pattern.exhaleSeconds}s', Colors.teal),
+              _buildBreathPhase(context, L10nService.get('rituals.inhale', language), '${pattern.inhaleSeconds}s', Colors.blue),
+              _buildBreathPhase(context, L10nService.get('rituals.hold', language), '${pattern.holdSeconds}s', Colors.purple),
+              _buildBreathPhase(context, L10nService.get('rituals.exhale', language), '${pattern.exhaleSeconds}s', Colors.teal),
             ],
           ),
           const SizedBox(height: AppConstants.spacingSm),
           Text(
-            '${pattern.cycles} kez tekrarla',
+            L10nService.get('rituals.repeat_times', language).replaceAll('{count}', '${pattern.cycles}'),
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: AppColors.textMuted,
                 ),
@@ -826,7 +828,7 @@ class _DailyRitualsScreenState extends ConsumerState<DailyRitualsScreen>
     );
   }
 
-  Widget _buildChakraFocus(BuildContext context, ChakraInfo chakra) {
+  Widget _buildChakraFocus(BuildContext context, ChakraInfo chakra, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -858,7 +860,7 @@ class _DailyRitualsScreenState extends ConsumerState<DailyRitualsScreen>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Odaklanilacak Cakra',
+                  L10nService.get('rituals.chakra_to_focus', language),
                   style: Theme.of(context).textTheme.labelSmall?.copyWith(
                         color: AppColors.textMuted,
                       ),
@@ -884,7 +886,7 @@ class _DailyRitualsScreenState extends ConsumerState<DailyRitualsScreen>
     );
   }
 
-  Widget _buildMainAffirmation(BuildContext context, String affirmation) {
+  Widget _buildMainAffirmation(BuildContext context, String affirmation, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingXl),
       decoration: BoxDecoration(
@@ -914,7 +916,7 @@ class _DailyRitualsScreenState extends ConsumerState<DailyRitualsScreen>
           ),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
-            'Gunun Ana Olumlamasi',
+            L10nService.get('rituals.main_affirmation', language),
             style: Theme.of(context).textTheme.labelMedium?.copyWith(
                   color: AppColors.starGold,
                 ),
@@ -967,7 +969,7 @@ class _DailyRitualsScreenState extends ConsumerState<DailyRitualsScreen>
     );
   }
 
-  Widget _buildAffirmationTips(BuildContext context) {
+  Widget _buildAffirmationTips(BuildContext context, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -982,7 +984,7 @@ class _DailyRitualsScreenState extends ConsumerState<DailyRitualsScreen>
               Icon(Icons.tips_and_updates, color: AppColors.starGold, size: 20),
               const SizedBox(width: 8),
               Text(
-                'Olumlama Ipuclari',
+                L10nService.get('rituals.affirmation_tips', language),
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       color: AppColors.starGold,
                     ),
@@ -990,10 +992,10 @@ class _DailyRitualsScreenState extends ConsumerState<DailyRitualsScreen>
             ],
           ),
           const SizedBox(height: AppConstants.spacingMd),
-          _buildTipItem(context, 'Olumlamaları yüksek sesle söyleyin'),
-          _buildTipItem(context, 'Aynaya bakarak tekrarlayın'),
-          _buildTipItem(context, 'Duyguyu hissedin, sadece kelime değil'),
-          _buildTipItem(context, 'Günde en az 3 kez tekrarlayın'),
+          _buildTipItem(context, L10nService.get('rituals.tip_say_aloud', language)),
+          _buildTipItem(context, L10nService.get('rituals.tip_mirror', language)),
+          _buildTipItem(context, L10nService.get('rituals.tip_feel', language)),
+          _buildTipItem(context, L10nService.get('rituals.tip_repeat', language)),
         ],
       ),
     );
@@ -1024,7 +1026,7 @@ class _DailyRitualsScreenState extends ConsumerState<DailyRitualsScreen>
     );
   }
 
-  Widget _buildReflectionCard(BuildContext context, List<String> prompts) {
+  Widget _buildReflectionCard(BuildContext context, List<String> prompts, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -1039,7 +1041,7 @@ class _DailyRitualsScreenState extends ConsumerState<DailyRitualsScreen>
               Icon(Icons.psychology, color: AppColors.auroraEnd, size: 20),
               const SizedBox(width: 8),
               Text(
-                'Gun Sonu Yansimasi',
+                L10nService.get('rituals.end_of_day_reflection', language),
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       color: AppColors.auroraEnd,
                     ),
@@ -1071,7 +1073,7 @@ class _DailyRitualsScreenState extends ConsumerState<DailyRitualsScreen>
     );
   }
 
-  Widget _buildGratitudeSection(BuildContext context, List<String> prompts) {
+  Widget _buildGratitudeSection(BuildContext context, List<String> prompts, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -1092,7 +1094,7 @@ class _DailyRitualsScreenState extends ConsumerState<DailyRitualsScreen>
               Icon(Icons.favorite, color: Colors.pink, size: 20),
               const SizedBox(width: 8),
               Text(
-                'Sukran Pratiği',
+                L10nService.get('rituals.gratitude_practice', language),
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       color: Colors.pink,
                     ),
@@ -1101,7 +1103,7 @@ class _DailyRitualsScreenState extends ConsumerState<DailyRitualsScreen>
           ),
           const SizedBox(height: AppConstants.spacingSm),
           Text(
-            'Bu gun icin sukran duydugun 3 seyi yaz:',
+            L10nService.get('rituals.gratitude_prompt', language),
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: AppColors.textSecondary,
                 ),
@@ -1137,7 +1139,7 @@ class _DailyRitualsScreenState extends ConsumerState<DailyRitualsScreen>
     );
   }
 
-  Widget _buildReleasingRitual(BuildContext context, ReleasingRitual ritual) {
+  Widget _buildReleasingRitual(BuildContext context, ReleasingRitual ritual, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -1152,7 +1154,7 @@ class _DailyRitualsScreenState extends ConsumerState<DailyRitualsScreen>
               Icon(Icons.waves, color: AppColors.auroraEnd, size: 20),
               const SizedBox(width: 8),
               Text(
-                'Birakma Ritueli',
+                L10nService.get('rituals.releasing_ritual', language),
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       color: AppColors.auroraEnd,
                     ),
@@ -1169,7 +1171,7 @@ class _DailyRitualsScreenState extends ConsumerState<DailyRitualsScreen>
           ),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
-            'Birak:',
+            L10nService.get('rituals.release', language),
             style: Theme.of(context).textTheme.labelMedium?.copyWith(
                   color: AppColors.textMuted,
                 ),
@@ -1199,7 +1201,7 @@ class _DailyRitualsScreenState extends ConsumerState<DailyRitualsScreen>
     );
   }
 
-  Widget _buildSleepPreparation(BuildContext context, SleepPreparation prep) {
+  Widget _buildSleepPreparation(BuildContext context, SleepPreparation prep, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -1220,7 +1222,7 @@ class _DailyRitualsScreenState extends ConsumerState<DailyRitualsScreen>
               Icon(Icons.bedtime, color: Colors.indigo, size: 20),
               const SizedBox(width: 8),
               Text(
-                'Uyku Hazirligi',
+                L10nService.get('rituals.sleep_preparation', language),
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       color: Colors.indigo,
                     ),

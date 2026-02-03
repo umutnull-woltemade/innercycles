@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/content/tarot_content.dart';
+import '../../../data/services/l10n_service.dart';
+import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/next_blocks.dart';
 import '../../../shared/widgets/kadim_not_card.dart';
@@ -11,15 +14,16 @@ import '../../../shared/widgets/page_bottom_navigation.dart';
 
 /// MAJOR ARCANA DETAY SAYFASI
 ///
-/// 22 Major Arcana kartının her biri için derin ezoterik içerik.
-/// Arketip, sembolizm, ruhsal ders, aşk/kariyer yorumları.
-class MajorArcanaDetailScreen extends StatelessWidget {
+/// 22 Major Arcana kartinin her biri icin derin ezoterik icerik.
+/// Arketip, sembolizm, ruhsal ders, ask/kariyer yorumlari.
+class MajorArcanaDetailScreen extends ConsumerWidget {
   final int cardNumber;
 
   const MajorArcanaDetailScreen({super.key, required this.cardNumber});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final language = ref.watch(languageProvider);
     final content = majorArcanaContents[cardNumber];
 
     if (content == null) {
@@ -27,7 +31,7 @@ class MajorArcanaDetailScreen extends StatelessWidget {
         body: CosmicBackground(
           child: Center(
             child: Text(
-              'Kart bilgisi bulunamadı',
+              L10nService.get('tarot.card_not_found', language),
               style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                 color: AppColors.textSecondary,
               ),
@@ -53,7 +57,7 @@ class MajorArcanaDetailScreen extends StatelessWidget {
                   floating: true,
                   snap: true,
                   expandedHeight: 280,
-                  flexibleSpace: _buildHeader(context, content),
+                  flexibleSpace: _buildHeader(context, content, language),
                   leading: IconButton(
                     icon: const Icon(Icons.arrow_back, color: AppColors.textPrimary),
                     onPressed: () => context.pop(),
@@ -61,7 +65,7 @@ class MajorArcanaDetailScreen extends StatelessWidget {
                 actions: [
                   IconButton(
                     icon: const Icon(Icons.share, color: AppColors.textPrimary),
-                    onPressed: () => _shareCard(context, content),
+                    onPressed: () => _shareCard(context, content, language),
                   ),
                 ],
               ),
@@ -70,48 +74,48 @@ class MajorArcanaDetailScreen extends StatelessWidget {
                 sliver: SliverList(
                   delegate: SliverChildListDelegate([
                     // Quick Info Pills
-                    _buildQuickInfoPills(context, content),
+                    _buildQuickInfoPills(context, content, language),
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Deep Meaning
-                    _buildDeepMeaningSection(context, content),
+                    _buildDeepMeaningSection(context, content, language),
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Kadim Not
                     KadimNotCard(
-                      title: '${content.nameTr} Bilgeliği',
+                      title: '${content.localizedName(language)} ${L10nService.get('tarot.wisdom_source', language)}',
                       content: content.viralQuote.replaceAll('"', ''),
                       category: KadimCategory.tarot,
-                      source: 'Arketipsel Bilgelik',
+                      source: L10nService.get('tarot.wisdom_source', language),
                     ),
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Reversed Meaning
-                    _buildReversedSection(context, content),
+                    _buildReversedSection(context, content, language),
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Symbolism
-                    _buildSymbolismSection(context, content),
+                    _buildSymbolismSection(context, content, language),
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Spiritual Lesson
-                    _buildSpiritualLessonSection(context, content),
+                    _buildSpiritualLessonSection(context, content, language),
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Love & Career Readings
-                    _buildReadingsSection(context, content),
+                    _buildReadingsSection(context, content, language),
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Shadow Aspect
-                    _buildShadowSection(context, content),
+                    _buildShadowSection(context, content, language),
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Meditation
-                    _buildMeditationSection(context, content),
+                    _buildMeditationSection(context, content, language),
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Card Navigation
-                    _buildCardNavigation(context, cardNumber),
+                    _buildCardNavigation(context, cardNumber, language),
                     const SizedBox(height: AppConstants.spacingXl),
 
                     // Next Blocks
@@ -131,7 +135,7 @@ class MajorArcanaDetailScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildHeader(BuildContext context, MajorArcanaContent content) {
+  Widget _buildHeader(BuildContext context, MajorArcanaContent content, AppLanguage language) {
     final color = _getCardColor(cardNumber);
 
     return FlexibleSpaceBar(
@@ -190,7 +194,7 @@ class MajorArcanaDetailScreen extends StatelessWidget {
             const SizedBox(height: 16),
             // Card Name
             Text(
-              content.nameTr,
+              content.localizedName(language),
               style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                 color: AppColors.textPrimary,
                 fontWeight: FontWeight.bold,
@@ -198,7 +202,7 @@ class MajorArcanaDetailScreen extends StatelessWidget {
             ).animate().fadeIn(delay: 200.ms),
             const SizedBox(height: 4),
             Text(
-              content.name,
+              language == AppLanguage.tr ? content.name : content.nameTr,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 color: AppColors.textMuted,
                 fontStyle: FontStyle.italic,
@@ -228,16 +232,16 @@ class MajorArcanaDetailScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildQuickInfoPills(BuildContext context, MajorArcanaContent content) {
+  Widget _buildQuickInfoPills(BuildContext context, MajorArcanaContent content, AppLanguage language) {
     final color = _getCardColor(cardNumber);
 
     return Wrap(
       spacing: AppConstants.spacingSm,
       runSpacing: AppConstants.spacingSm,
       children: [
-        _buildInfoPill(context, 'Element', content.element, Icons.blur_on, color),
-        _buildInfoPill(context, 'Gezegen', content.planet, Icons.public, Colors.orange),
-        _buildInfoPill(context, 'İbrani Harf', content.hebrewLetter, Icons.translate, Colors.teal),
+        _buildInfoPill(context, L10nService.get('tarot.element', language), content.element, Icons.blur_on, color),
+        _buildInfoPill(context, L10nService.get('tarot.planet_sign', language), content.planet, Icons.public, Colors.orange),
+        _buildInfoPill(context, L10nService.get('tarot.hebrew_letter', language), content.hebrewLetter, Icons.translate, Colors.teal),
       ],
     ).animate().fadeIn(duration: 400.ms);
   }
@@ -279,7 +283,7 @@ class MajorArcanaDetailScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildDeepMeaningSection(BuildContext context, MajorArcanaContent content) {
+  Widget _buildDeepMeaningSection(BuildContext context, MajorArcanaContent content, AppLanguage language) {
     final color = _getCardColor(cardNumber);
 
     return Container(
@@ -311,7 +315,7 @@ class MajorArcanaDetailScreen extends StatelessWidget {
               ),
               const SizedBox(width: 12),
               Text(
-                'Derin Anlam',
+                L10nService.get('tarot.deep_meaning', language),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   color: color,
                   fontWeight: FontWeight.bold,
@@ -365,7 +369,7 @@ class MajorArcanaDetailScreen extends StatelessWidget {
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildReversedSection(BuildContext context, MajorArcanaContent content) {
+  Widget _buildReversedSection(BuildContext context, MajorArcanaContent content, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -384,7 +388,7 @@ class MajorArcanaDetailScreen extends StatelessWidget {
               ),
               const SizedBox(width: 8),
               Text(
-                'Ters Anlam',
+                L10nService.get('tarot.reversed_meaning', language),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   color: AppColors.error,
                   fontWeight: FontWeight.bold,
@@ -405,7 +409,7 @@ class MajorArcanaDetailScreen extends StatelessWidget {
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildSymbolismSection(BuildContext context, MajorArcanaContent content) {
+  Widget _buildSymbolismSection(BuildContext context, MajorArcanaContent content, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -420,7 +424,7 @@ class MajorArcanaDetailScreen extends StatelessWidget {
               const Icon(Icons.visibility, color: AppColors.auroraEnd, size: 20),
               const SizedBox(width: 8),
               Text(
-                'Sembolizm',
+                L10nService.get('tarot.symbolism', language),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   color: AppColors.auroraEnd,
                   fontWeight: FontWeight.bold,
@@ -441,7 +445,7 @@ class MajorArcanaDetailScreen extends StatelessWidget {
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildSpiritualLessonSection(BuildContext context, MajorArcanaContent content) {
+  Widget _buildSpiritualLessonSection(BuildContext context, MajorArcanaContent content, AppLanguage language) {
     final color = _getCardColor(cardNumber);
 
     return Container(
@@ -466,7 +470,7 @@ class MajorArcanaDetailScreen extends StatelessWidget {
               const Icon(Icons.school, color: AppColors.auroraStart, size: 20),
               const SizedBox(width: 8),
               Text(
-                'Ruhsal Ders',
+                L10nService.get('tarot.spiritual_lesson', language),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   color: AppColors.auroraStart,
                   fontWeight: FontWeight.bold,
@@ -513,7 +517,7 @@ class MajorArcanaDetailScreen extends StatelessWidget {
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildReadingsSection(BuildContext context, MajorArcanaContent content) {
+  Widget _buildReadingsSection(BuildContext context, MajorArcanaContent content, AppLanguage language) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -534,7 +538,7 @@ class MajorArcanaDetailScreen extends StatelessWidget {
                     const Icon(Icons.favorite, color: AppColors.fireElement, size: 18),
                     const SizedBox(width: 6),
                     Text(
-                      'Aşk',
+                      L10nService.get('tarot.love', language),
                       style: Theme.of(context).textTheme.titleSmall?.copyWith(
                         color: AppColors.fireElement,
                         fontWeight: FontWeight.bold,
@@ -572,7 +576,7 @@ class MajorArcanaDetailScreen extends StatelessWidget {
                     const Icon(Icons.work, color: AppColors.starGold, size: 18),
                     const SizedBox(width: 6),
                     Text(
-                      'Kariyer',
+                      L10nService.get('tarot.career', language),
                       style: Theme.of(context).textTheme.titleSmall?.copyWith(
                         color: AppColors.starGold,
                         fontWeight: FontWeight.bold,
@@ -596,7 +600,7 @@ class MajorArcanaDetailScreen extends StatelessWidget {
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildShadowSection(BuildContext context, MajorArcanaContent content) {
+  Widget _buildShadowSection(BuildContext context, MajorArcanaContent content, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingMd),
       decoration: BoxDecoration(
@@ -612,7 +616,7 @@ class MajorArcanaDetailScreen extends StatelessWidget {
               const Icon(Icons.dark_mode, color: Colors.grey, size: 18),
               const SizedBox(width: 6),
               Text(
-                'Gölge Yönü',
+                L10nService.get('tarot.shadow_aspect', language),
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
                   color: Colors.grey,
                   fontWeight: FontWeight.bold,
@@ -634,7 +638,7 @@ class MajorArcanaDetailScreen extends StatelessWidget {
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildMeditationSection(BuildContext context, MajorArcanaContent content) {
+  Widget _buildMeditationSection(BuildContext context, MajorArcanaContent content, AppLanguage language) {
     final color = _getCardColor(cardNumber);
 
     return Container(
@@ -656,7 +660,7 @@ class MajorArcanaDetailScreen extends StatelessWidget {
           Icon(Icons.self_improvement, color: color, size: 36),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
-            'Meditasyon',
+            L10nService.get('tarot.meditation', language),
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
               color: color,
               fontWeight: FontWeight.bold,
@@ -677,7 +681,10 @@ class MajorArcanaDetailScreen extends StatelessWidget {
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildCardNavigation(BuildContext context, int currentCard) {
+  Widget _buildCardNavigation(BuildContext context, int currentCard, AppLanguage language) {
+    final cardContent = majorArcanaContents[currentCard];
+    final cardName = cardContent?.localizedName(language) ?? '';
+
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -688,7 +695,7 @@ class MajorArcanaDetailScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            '22 Major Arcana',
+            L10nService.get('tarot.major_arcana', language),
             style: Theme.of(context).textTheme.titleSmall?.copyWith(
               color: AppColors.textPrimary,
             ),
@@ -739,7 +746,7 @@ class MajorArcanaDetailScreen extends StatelessWidget {
           const SizedBox(height: AppConstants.spacingMd),
           Center(
             child: Text(
-              'Şu an ${majorArcanaContents[currentCard]?.nameTr ?? ''} kartındasınız',
+              L10nService.get('tarot.viewing_card', language).replaceAll('{name}', cardName),
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
                 color: AppColors.textMuted,
                 fontStyle: FontStyle.italic,
@@ -751,9 +758,9 @@ class MajorArcanaDetailScreen extends StatelessWidget {
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  void _shareCard(BuildContext context, MajorArcanaContent content) {
+  void _shareCard(BuildContext context, MajorArcanaContent content, AppLanguage language) {
     context.push('/cosmic-share', extra: {
-      'title': content.nameTr,
+      'title': content.localizedName(language),
       'subtitle': content.archetype,
       'content': content.viralQuote,
       'type': 'tarot',

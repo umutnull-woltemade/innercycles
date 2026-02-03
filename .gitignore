@@ -46,3 +46,14 @@ app.*.map.json
 /android/app/release
 .vercel
 .env*.local
+
+# iOS build artifacts
+ios/build/
+**/ios/build/
+
+# Flutter build cache
+*.dill
+*.dill.track.dill
+
+# Info.plist backups
+ios/Runner/Info.plist.backup.*

@@ -10,6 +10,7 @@ import '../../../data/models/horoscope.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/horoscope_service.dart';
 import '../../../data/services/localization_service.dart';
+import '../../../data/services/l10n_service.dart';
 import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/next_blocks.dart';
 import '../../../shared/widgets/kadim_not_card.dart';
@@ -75,7 +76,12 @@ class _CompatibilityScreenState extends ConsumerState<CompatibilityScreen> {
     }
 
     // Fallback to local calculation
-    final compatibility = HoroscopeService.calculateCompatibility(_sign1!, _sign2!);
+    final language = ref.read(languageProvider);
+    final compatibility = HoroscopeService.calculateCompatibility(
+      _sign1!,
+      _sign2!,
+      language: language,
+    );
     setState(() {
       _result = compatibility;
       _isLoading = false;
@@ -113,7 +119,7 @@ class _CompatibilityScreenState extends ConsumerState<CompatibilityScreen> {
                                 ),
                               )
                             : GradientButton(
-                                label: 'Uyumu Hesapla',
+                                label: L10nService.get('compatibility.calculate', language),
                                 icon: Icons.favorite,
                                 width: double.infinity,
                                 onPressed: _calculateCompatibility,
@@ -155,11 +161,13 @@ class _CompatibilityScreenState extends ConsumerState<CompatibilityScreen> {
   }
 
   Widget _buildSignSelectors() {
+    final language = ref.watch(languageProvider);
+
     return Row(
       children: [
         Expanded(
           child: _SignSelector(
-            label: 'Sizin Burcunuz',
+            label: L10nService.get('compatibility.your_sign', language),
             selectedSign: _sign1,
             onSignSelected: (sign) {
               setState(() {
@@ -186,7 +194,7 @@ class _CompatibilityScreenState extends ConsumerState<CompatibilityScreen> {
         ),
         Expanded(
           child: _SignSelector(
-            label: 'Karşı Burç',
+            label: L10nService.get('compatibility.opposite_sign', language),
             selectedSign: _sign2,
             onSignSelected: (sign) {
               setState(() {
@@ -205,6 +213,7 @@ class _CompatibilityScreenState extends ConsumerState<CompatibilityScreen> {
 
     final result = _result!;
     final scoreColor = _getScoreColor(result.overallScore);
+    final language = ref.watch(languageProvider);
 
     return Column(
       children: [
@@ -257,21 +266,21 @@ class _CompatibilityScreenState extends ConsumerState<CompatibilityScreen> {
             Expanded(
               child: _ScoreCategory(
                 icon: Icons.favorite,
-                label: 'Aşk',
+                label: L10nService.get('categories.love', language),
                 score: result.loveScore,
               ),
             ),
             Expanded(
               child: _ScoreCategory(
                 icon: Icons.people,
-                label: 'Arkadaşlık',
+                label: L10nService.get('categories.friendship', language),
                 score: result.friendshipScore,
               ),
             ),
             Expanded(
               child: _ScoreCategory(
                 icon: Icons.chat,
-                label: 'İletişim',
+                label: L10nService.get('categories.communication', language),
                 score: result.communicationScore,
               ),
             ),
@@ -307,7 +316,7 @@ class _CompatibilityScreenState extends ConsumerState<CompatibilityScreen> {
                   const SizedBox(width: 12),
                   Expanded(
                     child: Text(
-                      '${_sign1!.nameTr} & ${_sign2!.nameTr}',
+                      '${_sign1!.localizedName(language)} & ${_sign2!.localizedName(language)}',
                       style: Theme.of(context).textTheme.titleSmall?.copyWith(
                             color: AppColors.textPrimary,
                           ),
@@ -332,7 +341,7 @@ class _CompatibilityScreenState extends ConsumerState<CompatibilityScreen> {
         // Güçlü Yanlar
         _buildListSection(
           context,
-          'Güçlü Yanlar',
+          L10nService.get('compatibility.strengths', language),
           Icons.thumb_up,
           AppColors.success,
           result.strengths,
@@ -343,7 +352,7 @@ class _CompatibilityScreenState extends ConsumerState<CompatibilityScreen> {
         // Zorluklar
         _buildListSection(
           context,
-          'Zorluklar',
+          L10nService.get('compatibility.challenges', language),
           Icons.warning,
           AppColors.warning,
           result.challenges,
@@ -352,16 +361,16 @@ class _CompatibilityScreenState extends ConsumerState<CompatibilityScreen> {
         const SizedBox(height: AppConstants.spacingXl),
 
         // Detaylı burç açıklamaları
-        _buildSignDescriptions(context, _sign1!, _sign2!),
+        _buildSignDescriptions(context, _sign1!, _sign2!, language),
 
         const SizedBox(height: AppConstants.spacingLg),
 
         // Kadim Not - Uyum bilgeliği
-        const KadimNotCard(
-          title: 'Kozmik Kimya',
-          content: 'İki burç arasındaki uyum, sadece element ve modalite hesabı değildir. Her ilişki, iki ruhun birbirini tamamlama ve dönüştürme potansiyelini taşır. Zorluklar, en büyük öğretmenlerdir.',
+        KadimNotCard(
+          title: L10nService.get('compatibility.cosmic_chemistry', language),
+          content: L10nService.get('compatibility.ancient_note', language),
           category: KadimCategory.astrology,
-          source: 'Astrolojik Uyum',
+          source: L10nService.get('analysis.zodiac_analysis', language),
         ),
         const SizedBox(height: AppConstants.spacingXl),
 
@@ -375,20 +384,20 @@ class _CompatibilityScreenState extends ConsumerState<CompatibilityScreen> {
             .fadeIn(delay: 1000.ms, duration: 400.ms),
         const SizedBox(height: AppConstants.spacingLg),
         // Disclaimer
-        const PageFooterWithDisclaimer(
-          brandText: 'Burç Uyumu — Venus One',
+        PageFooterWithDisclaimer(
+          brandText: L10nService.get('compatibility.brand_text', language),
           disclaimerText: DisclaimerTexts.compatibility,
         ),
       ],
     );
   }
 
-  Widget _buildSignDescriptions(BuildContext context, ZodiacSign sign1, ZodiacSign sign2) {
+  Widget _buildSignDescriptions(BuildContext context, ZodiacSign sign1, ZodiacSign sign2, AppLanguage language) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Burç Profilleri',
+          L10nService.get('compatibility.zodiac_profiles', language),
           style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 color: AppColors.starGold,
               ),
@@ -396,20 +405,20 @@ class _CompatibilityScreenState extends ConsumerState<CompatibilityScreen> {
         const SizedBox(height: AppConstants.spacingMd),
 
         // Sign 1 description
-        _buildSignDescriptionCard(context, sign1)
+        _buildSignDescriptionCard(context, sign1, language)
             .animate()
             .fadeIn(delay: 800.ms, duration: 400.ms),
         const SizedBox(height: AppConstants.spacingMd),
 
         // Sign 2 description
-        _buildSignDescriptionCard(context, sign2)
+        _buildSignDescriptionCard(context, sign2, language)
             .animate()
             .fadeIn(delay: 900.ms, duration: 400.ms),
       ],
     );
   }
 
-  Widget _buildSignDescriptionCard(BuildContext context, ZodiacSign sign) {
+  Widget _buildSignDescriptionCard(BuildContext context, ZodiacSign sign, AppLanguage language) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -447,13 +456,13 @@ class _CompatibilityScreenState extends ConsumerState<CompatibilityScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      sign.nameTr,
+                      sign.localizedName(language),
                       style: Theme.of(context).textTheme.titleSmall?.copyWith(
                             color: sign.color,
                           ),
                     ),
                     Text(
-                      '${sign.element.nameTr} elementi • ${sign.modality.nameTr}',
+                      '${sign.element.getLocalizedName(language)} • ${sign.modality.getLocalizedName(language)}',
                       style: Theme.of(context).textTheme.labelSmall?.copyWith(
                             color: AppColors.textMuted,
                           ),
@@ -465,7 +474,7 @@ class _CompatibilityScreenState extends ConsumerState<CompatibilityScreen> {
           ),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
-            sign.detailedDescriptionTr,
+            sign.getLocalizedDetailedDescription(language),
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: AppColors.textSecondary,
                   height: 1.7,
@@ -475,7 +484,7 @@ class _CompatibilityScreenState extends ConsumerState<CompatibilityScreen> {
           Wrap(
             spacing: 8,
             runSpacing: 8,
-            children: sign.traits.map((trait) => Container(
+            children: sign.getLocalizedTraits(language).map((trait) => Container(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
               decoration: BoxDecoration(
                 color: sign.color.withValues(alpha: 0.15),
@@ -550,14 +559,15 @@ class _CompatibilityScreenState extends ConsumerState<CompatibilityScreen> {
   }
 
   String _getScoreLabel(int score) {
-    if (score >= 80) return 'Mükemmel Uyum';
-    if (score >= 60) return 'İyi Uyum';
-    if (score >= 40) return 'Orta Uyum';
-    return 'Zorlu';
+    final language = ref.read(languageProvider);
+    if (score >= 80) return L10nService.get('compatibility.excellent_match', language);
+    if (score >= 60) return L10nService.get('compatibility.good_match', language);
+    if (score >= 40) return L10nService.get('compatibility.moderate_match', language);
+    return L10nService.get('compatibility.challenging', language);
   }
 }
 
-class _SignSelector extends StatelessWidget {
+class _SignSelector extends ConsumerWidget {
   final String label;
   final ZodiacSign? selectedSign;
   final ValueChanged<ZodiacSign> onSignSelected;
@@ -569,9 +579,11 @@ class _SignSelector extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final language = ref.watch(languageProvider);
+
     return GestureDetector(
-      onTap: () => _showSignPicker(context),
+      onTap: () => _showSignPicker(context, ref),
       child: Container(
         padding: const EdgeInsets.all(AppConstants.spacingLg),
         decoration: BoxDecoration(
@@ -601,7 +613,7 @@ class _SignSelector extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               Text(
-                selectedSign!.nameTr,
+                selectedSign!.localizedName(language),
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       color: selectedSign!.color,
                     ),
@@ -621,7 +633,7 @@ class _SignSelector extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               Text(
-                'Seç',
+                L10nService.get('compatibility.select', language),
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       color: AppColors.textMuted,
                     ),
@@ -633,7 +645,9 @@ class _SignSelector extends StatelessWidget {
     );
   }
 
-  void _showSignPicker(BuildContext context) {
+  void _showSignPicker(BuildContext context, WidgetRef ref) {
+    final language = ref.read(languageProvider);
+
     showModalBottomSheet(
       context: context,
       backgroundColor: AppColors.surfaceDark,
@@ -656,7 +670,7 @@ class _SignSelector extends StatelessWidget {
               ),
               const SizedBox(height: AppConstants.spacingLg),
               Text(
-                'Burç Seç',
+                L10nService.get('compatibility.select_sign', language),
                 style: Theme.of(context).textTheme.titleMedium,
               ),
               const SizedBox(height: AppConstants.spacingLg),
@@ -704,7 +718,7 @@ class _SignSelector extends StatelessWidget {
                             ),
                             const SizedBox(height: 4),
                             Text(
-                              sign.nameTr,
+                              sign.localizedName(language),
                               style: Theme.of(context)
                                   .textTheme
                                   .labelSmall

@@ -7,6 +7,7 @@ import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/localization_service.dart';
+import '../../../data/services/l10n_service.dart';
 import '../../../data/models/house.dart';
 import '../../../data/services/storage_service.dart';
 import '../../../data/services/url_launcher_service.dart';
@@ -71,7 +72,7 @@ class SettingsScreen extends ConsumerWidget {
         ),
         const SizedBox(width: AppConstants.spacingSm),
         Text(
-          L10n.get('settings', language),
+          L10n.get('settings.title', language),
           style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                 color: AppColors.starGold,
               ),
@@ -95,7 +96,7 @@ class SettingsScreen extends ConsumerWidget {
         children: [
           Expanded(
             child: _ThemeOption(
-              label: L10n.get('light_mode', language),
+              label: L10n.get('settings.light_mode', language),
               icon: Icons.light_mode,
               isSelected: themeMode == ThemeMode.light,
               isDark: isDark,
@@ -108,7 +109,7 @@ class SettingsScreen extends ConsumerWidget {
           const SizedBox(width: AppConstants.spacingMd),
           Expanded(
             child: _ThemeOption(
-              label: L10n.get('dark_mode', language),
+              label: L10n.get('settings.dark_mode', language),
               icon: Icons.dark_mode,
               isSelected: themeMode == ThemeMode.dark,
               isDark: isDark,
@@ -138,56 +139,71 @@ class SettingsScreen extends ConsumerWidget {
         runSpacing: AppConstants.spacingSm,
         children: AppLanguage.values.map((lang) {
           final isSelected = lang == currentLanguage;
+          // Use hasStrictIsolation to check if language has complete translations
+          final isAvailable = lang.hasStrictIsolation;
           return GestureDetector(
             onTap: () {
-              ref.read(languageProvider.notifier).state = lang;
-              StorageService.saveLanguage(lang);
-            },
-            child: Container(
-              padding: const EdgeInsets.symmetric(
-                horizontal: AppConstants.spacingMd,
-                vertical: AppConstants.spacingSm,
-              ),
-              decoration: BoxDecoration(
-                color: isSelected
-                    ? AppColors.auroraStart.withOpacity(0.2)
-                    : (isDark
-                        ? AppColors.surfaceLight.withOpacity(0.3)
-                        : AppColors.lightSurfaceVariant),
-                borderRadius: BorderRadius.circular(AppConstants.radiusFull),
-                border: Border.all(
-                  color: isSelected
-                      ? AppColors.auroraStart
-                      : Colors.transparent,
-                  width: 2,
-                ),
-              ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(lang.flag, style: const TextStyle(fontSize: 16)),
-                  const SizedBox(width: 6),
-                  Text(
-                    lang.displayName,
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: isSelected
-                              ? AppColors.auroraStart
-                              : (isDark
-                                  ? AppColors.textPrimary
-                                  : AppColors.lightTextPrimary),
-                          fontWeight:
-                              isSelected ? FontWeight.bold : FontWeight.normal,
-                        ),
+              if (isAvailable) {
+                ref.read(languageProvider.notifier).state = lang;
+                StorageService.saveLanguage(lang);
+              } else {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(L10nService.get('settings.coming_soon_language', currentLanguage)),
+                    duration: const Duration(seconds: 2),
+                    behavior: SnackBarBehavior.floating,
                   ),
-                  if (isSelected) ...[
-                    const SizedBox(width: 4),
-                    Icon(
-                      Icons.check_circle,
-                      size: 14,
-                      color: AppColors.auroraStart,
+                );
+              }
+            },
+            child: Opacity(
+              opacity: isAvailable ? 1.0 : 0.5,
+              child: Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppConstants.spacingMd,
+                  vertical: AppConstants.spacingSm,
+                ),
+                decoration: BoxDecoration(
+                  color: isSelected
+                      ? AppColors.auroraStart.withOpacity(0.2)
+                      : (isDark
+                          ? AppColors.surfaceLight.withOpacity(0.3)
+                          : AppColors.lightSurfaceVariant),
+                  borderRadius: BorderRadius.circular(AppConstants.radiusFull),
+                  border: Border.all(
+                    color: isSelected
+                        ? AppColors.auroraStart
+                        : Colors.transparent,
+                    width: 2,
+                  ),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(lang.flag, style: const TextStyle(fontSize: 16)),
+                    const SizedBox(width: 6),
+                    Text(
+                      lang.displayName,
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                            color: isSelected
+                                ? AppColors.auroraStart
+                                : (isDark
+                                    ? AppColors.textPrimary
+                                    : AppColors.lightTextPrimary),
+                            fontWeight:
+                                isSelected ? FontWeight.bold : FontWeight.normal,
+                          ),
                     ),
+                    if (isSelected) ...[
+                      const SizedBox(width: 4),
+                      Icon(
+                        Icons.check_circle,
+                        size: 14,
+                        color: AppColors.auroraStart,
+                      ),
+                    ],
                   ],
-                ],
+                ),
               ),
             ),
           );
@@ -441,7 +457,7 @@ class SettingsScreen extends ConsumerWidget {
             isDark: isDark,
             onTap: () async {
               await urlLauncher.openSupportEmail(
-                subject: 'Venus One Destek',
+                subject: L10n.get('settings.support', language),
                 body: '\n\n---\nApp Version: 1.0.0',
               );
             },
@@ -512,7 +528,7 @@ class SettingsScreen extends ConsumerWidget {
           TextButton(
             onPressed: () => Navigator.pop(context),
             child: Text(
-              L10n.get('cancel', language),
+              L10n.get('common.cancel', language),
               style: TextStyle(
                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
               ),
@@ -602,7 +618,7 @@ class SettingsScreen extends ConsumerWidget {
           TextButton(
             onPressed: () => Navigator.pop(context),
             child: Text(
-              L10n.get('ok', language),
+              L10n.get('common.ok', language),
               style: TextStyle(color: AppColors.starGold),
             ),
           ),

@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/models/zodiac_sign.dart' as zodiac;
+import '../../../data/services/l10n_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/interpretive_text.dart';
 
@@ -51,8 +52,9 @@ class _CosmicDiscoveryScreenState extends ConsumerState<CosmicDiscoveryScreen>
   @override
   Widget build(BuildContext context) {
     final userProfile = ref.watch(userProfileProvider);
+    final language = ref.watch(languageProvider);
     final sign = userProfile?.sunSign ?? zodiac.ZodiacSign.aries;
-    final userName = userProfile?.name ?? 'Gezgin';
+    final userName = userProfile?.name ?? L10nService.get('cosmic_discovery.default_username', language);
 
     return Scaffold(
       body: CosmicBackground(
@@ -60,7 +62,7 @@ class _CosmicDiscoveryScreenState extends ConsumerState<CosmicDiscoveryScreen>
           child: Column(
             children: [
               // Header
-              _buildHeader(context),
+              _buildHeader(context, language),
 
               // Main Content
               Expanded(
@@ -69,14 +71,14 @@ class _CosmicDiscoveryScreenState extends ConsumerState<CosmicDiscoveryScreen>
                   child: Column(
                     children: [
                       // Hero Section
-                      _buildHeroSection(context, sign, userName),
+                      _buildHeroSection(context, sign, userName, language),
                       const SizedBox(height: 24),
 
                       // Reveal Button or Content
                       if (!_isRevealed)
-                        _buildRevealButton(context)
+                        _buildRevealButton(context, language)
                       else
-                        _buildContent(context, sign, userName),
+                        _buildContent(context, sign, userName, language),
                     ],
                   ),
                 ),
@@ -88,7 +90,7 @@ class _CosmicDiscoveryScreenState extends ConsumerState<CosmicDiscoveryScreen>
     );
   }
 
-  Widget _buildHeader(BuildContext context) {
+  Widget _buildHeader(BuildContext context, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       child: Row(
@@ -144,7 +146,7 @@ class _CosmicDiscoveryScreenState extends ConsumerState<CosmicDiscoveryScreen>
           ),
           // Share Button
           GestureDetector(
-            onTap: () => _shareContent(context),
+            onTap: () => _shareContent(context, language),
             child: Container(
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
@@ -162,7 +164,7 @@ class _CosmicDiscoveryScreenState extends ConsumerState<CosmicDiscoveryScreen>
     );
   }
 
-  Widget _buildHeroSection(BuildContext context, zodiac.ZodiacSign sign, String userName) {
+  Widget _buildHeroSection(BuildContext context, zodiac.ZodiacSign sign, String userName, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
@@ -222,7 +224,11 @@ class _CosmicDiscoveryScreenState extends ConsumerState<CosmicDiscoveryScreen>
           ),
           const SizedBox(height: 8),
           Text(
-            '${sign.nameTr} Burcu Analizi',
+            L10nService.getWithParams(
+              'cosmic_discovery.sign_analysis',
+              language,
+              params: {'sign': sign.localizedName(language)},
+            ),
             style: TextStyle(
               fontSize: 16,
               color: sign.color,
@@ -234,7 +240,7 @@ class _CosmicDiscoveryScreenState extends ConsumerState<CosmicDiscoveryScreen>
     );
   }
 
-  Widget _buildRevealButton(BuildContext context) {
+  Widget _buildRevealButton(BuildContext context, AppLanguage language) {
     return GestureDetector(
       onTap: () {
         setState(() => _isRevealed = true);
@@ -259,9 +265,9 @@ class _CosmicDiscoveryScreenState extends ConsumerState<CosmicDiscoveryScreen>
           children: [
             const Icon(Icons.auto_awesome, color: Colors.white, size: 24),
             const SizedBox(width: 12),
-            const Text(
-              'Keşfet',
-              style: TextStyle(
+            Text(
+              L10nService.get('cosmic_discovery.discover', language),
+              style: const TextStyle(
                 color: Colors.white,
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -273,7 +279,7 @@ class _CosmicDiscoveryScreenState extends ConsumerState<CosmicDiscoveryScreen>
     );
   }
 
-  Widget _buildContent(BuildContext context, zodiac.ZodiacSign sign, String userName) {
+  Widget _buildContent(BuildContext context, zodiac.ZodiacSign sign, String userName, AppLanguage language) {
     final content = _getContent(sign, userName);
 
     return Column(
@@ -311,13 +317,13 @@ class _CosmicDiscoveryScreenState extends ConsumerState<CosmicDiscoveryScreen>
 
               // Detaylar
               if (content['details'] != null) ...[
-                _buildDetailSection('Detaylı Analiz', content['details']!, Icons.psychology),
+                _buildDetailSection(L10nService.get('cosmic_discovery.detailed_analysis', language), content['details']!, Icons.psychology),
                 const SizedBox(height: 16),
               ],
 
               // Tavsiyeler
               if (content['advice'] != null) ...[
-                _buildDetailSection('Tavsiyeler', content['advice']!, Icons.lightbulb_outline),
+                _buildDetailSection(L10nService.get('cosmic_discovery.advice', language), content['advice']!, Icons.lightbulb_outline),
                 const SizedBox(height: 16),
               ],
 
@@ -332,7 +338,7 @@ class _CosmicDiscoveryScreenState extends ConsumerState<CosmicDiscoveryScreen>
         const SizedBox(height: 20),
 
         // Paylaş Butonu
-        _buildShareCard(context, content),
+        _buildShareCard(context, content, language),
       ],
     );
   }
@@ -405,7 +411,7 @@ class _CosmicDiscoveryScreenState extends ConsumerState<CosmicDiscoveryScreen>
     );
   }
 
-  Widget _buildShareCard(BuildContext context, Map<String, String> content) {
+  Widget _buildShareCard(BuildContext context, Map<String, String> content, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
@@ -424,10 +430,10 @@ class _CosmicDiscoveryScreenState extends ConsumerState<CosmicDiscoveryScreen>
             children: [
               const Icon(Icons.camera_alt, color: Color(0xFFE91E63), size: 24),
               const SizedBox(width: 12),
-              const Expanded(
+              Expanded(
                 child: Text(
-                  'Bu keşfi Instagram\'da paylaş!',
-                  style: TextStyle(
+                  L10nService.get('cosmic_discovery.share_on_instagram', language),
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
@@ -438,7 +444,7 @@ class _CosmicDiscoveryScreenState extends ConsumerState<CosmicDiscoveryScreen>
           ),
           const SizedBox(height: 16),
           GestureDetector(
-            onTap: () => _shareContent(context),
+            onTap: () => _shareContent(context, language),
             child: Container(
               width: double.infinity,
               padding: const EdgeInsets.symmetric(vertical: 14),
@@ -448,14 +454,14 @@ class _CosmicDiscoveryScreenState extends ConsumerState<CosmicDiscoveryScreen>
                 ),
                 borderRadius: BorderRadius.circular(12),
               ),
-              child: const Row(
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.share, color: Colors.white),
-                  SizedBox(width: 8),
+                  const Icon(Icons.share, color: Colors.white),
+                  const SizedBox(width: 8),
                   Text(
-                    'Paylaş',
-                    style: TextStyle(
+                    L10nService.get('cosmic_discovery.share', language),
+                    style: const TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
@@ -470,10 +476,10 @@ class _CosmicDiscoveryScreenState extends ConsumerState<CosmicDiscoveryScreen>
     );
   }
 
-  void _shareContent(BuildContext context) {
+  void _shareContent(BuildContext context, AppLanguage language) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: const Text('Paylaşım özelliği yakında!'),
+        content: Text(L10nService.get('cosmic_discovery.share_coming_soon', language)),
         backgroundColor: widget.primaryColor,
         behavior: SnackBarBehavior.floating,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),

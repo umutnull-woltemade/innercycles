@@ -1,4 +1,5 @@
 import 'zodiac_sign.dart';
+import '../providers/app_providers.dart';
 
 /// Astrology Glossary Entry with enhanced features
 class GlossaryEntry {
@@ -131,6 +132,101 @@ extension GlossaryCategoryExtension on GlossaryCategory {
     }
   }
 
+  String get nameEn {
+    switch (this) {
+      case GlossaryCategory.basics:
+        return 'Basic Concepts';
+      case GlossaryCategory.planets:
+        return 'Planets';
+      case GlossaryCategory.signs:
+        return 'Signs';
+      case GlossaryCategory.houses:
+        return 'Houses';
+      case GlossaryCategory.aspects:
+        return 'Aspects';
+      case GlossaryCategory.techniques:
+        return 'Techniques';
+      case GlossaryCategory.modern:
+        return 'Modern Astrology';
+      case GlossaryCategory.esoteric:
+        return 'Esoteric';
+      case GlossaryCategory.psychological:
+        return 'Psychological';
+      case GlossaryCategory.predictive:
+        return 'Predictive';
+      case GlossaryCategory.relationships:
+        return 'Relationships';
+    }
+  }
+
+  String get nameDe {
+    switch (this) {
+      case GlossaryCategory.basics:
+        return 'Grundlagen';
+      case GlossaryCategory.planets:
+        return 'Planeten';
+      case GlossaryCategory.signs:
+        return 'Zeichen';
+      case GlossaryCategory.houses:
+        return 'Hauser';
+      case GlossaryCategory.aspects:
+        return 'Aspekte';
+      case GlossaryCategory.techniques:
+        return 'Techniken';
+      case GlossaryCategory.modern:
+        return 'Moderne Astrologie';
+      case GlossaryCategory.esoteric:
+        return 'Esoterisch';
+      case GlossaryCategory.psychological:
+        return 'Psychologisch';
+      case GlossaryCategory.predictive:
+        return 'Prognostisch';
+      case GlossaryCategory.relationships:
+        return 'Beziehungen';
+    }
+  }
+
+  String get nameFr {
+    switch (this) {
+      case GlossaryCategory.basics:
+        return 'Concepts de base';
+      case GlossaryCategory.planets:
+        return 'Planetes';
+      case GlossaryCategory.signs:
+        return 'Signes';
+      case GlossaryCategory.houses:
+        return 'Maisons';
+      case GlossaryCategory.aspects:
+        return 'Aspects';
+      case GlossaryCategory.techniques:
+        return 'Techniques';
+      case GlossaryCategory.modern:
+        return 'Astrologie moderne';
+      case GlossaryCategory.esoteric:
+        return 'Esoterique';
+      case GlossaryCategory.psychological:
+        return 'Psychologique';
+      case GlossaryCategory.predictive:
+        return 'Predictif';
+      case GlossaryCategory.relationships:
+        return 'Relations';
+    }
+  }
+
+  String localizedName(AppLanguage language) {
+    switch (language) {
+      case AppLanguage.en:
+        return nameEn;
+      case AppLanguage.de:
+        return nameDe;
+      case AppLanguage.fr:
+        return nameFr;
+      case AppLanguage.tr:
+      default:
+        return nameTr;
+    }
+  }
+
   String get icon {
     switch (this) {
       case GlossaryCategory.basics:
@@ -242,6 +338,83 @@ extension MoonPhaseExtension on MoonPhase {
     }
   }
 
+  String get nameEn {
+    switch (this) {
+      case MoonPhase.newMoon:
+        return 'New Moon';
+      case MoonPhase.waxingCrescent:
+        return 'Waxing Crescent';
+      case MoonPhase.firstQuarter:
+        return 'First Quarter';
+      case MoonPhase.waxingGibbous:
+        return 'Waxing Gibbous';
+      case MoonPhase.fullMoon:
+        return 'Full Moon';
+      case MoonPhase.waningGibbous:
+        return 'Waning Gibbous';
+      case MoonPhase.lastQuarter:
+        return 'Last Quarter';
+      case MoonPhase.waningCrescent:
+        return 'Waning Crescent';
+    }
+  }
+
+  String get nameDe {
+    switch (this) {
+      case MoonPhase.newMoon:
+        return 'Neumond';
+      case MoonPhase.waxingCrescent:
+        return 'Zunehmende Sichel';
+      case MoonPhase.firstQuarter:
+        return 'Erstes Viertel';
+      case MoonPhase.waxingGibbous:
+        return 'Zunehmender Mond';
+      case MoonPhase.fullMoon:
+        return 'Vollmond';
+      case MoonPhase.waningGibbous:
+        return 'Abnehmender Mond';
+      case MoonPhase.lastQuarter:
+        return 'Letztes Viertel';
+      case MoonPhase.waningCrescent:
+        return 'Abnehmende Sichel';
+    }
+  }
+
+  String get nameFr {
+    switch (this) {
+      case MoonPhase.newMoon:
+        return 'Nouvelle Lune';
+      case MoonPhase.waxingCrescent:
+        return 'Premier Croissant';
+      case MoonPhase.firstQuarter:
+        return 'Premier Quartier';
+      case MoonPhase.waxingGibbous:
+        return 'Lune Gibbeuse Croissante';
+      case MoonPhase.fullMoon:
+        return 'Pleine Lune';
+      case MoonPhase.waningGibbous:
+        return 'Lune Gibbeuse Decroissante';
+      case MoonPhase.lastQuarter:
+        return 'Dernier Quartier';
+      case MoonPhase.waningCrescent:
+        return 'Dernier Croissant';
+    }
+  }
+
+  String localizedName(AppLanguage language) {
+    switch (language) {
+      case AppLanguage.en:
+        return nameEn;
+      case AppLanguage.de:
+        return nameDe;
+      case AppLanguage.fr:
+        return nameFr;
+      case AppLanguage.tr:
+      default:
+        return nameTr;
+    }
+  }
+
   String get icon {
     switch (this) {
       case MoonPhase.newMoon:
@@ -307,6 +480,95 @@ extension GardeningActivityExtension on GardeningActivity {
         return 'Aşılama';
       case GardeningActivity.composting:
         return 'Kompost';
+    }
+  }
+
+  String get nameEn {
+    switch (this) {
+      case GardeningActivity.planting:
+        return 'Planting';
+      case GardeningActivity.transplanting:
+        return 'Transplanting';
+      case GardeningActivity.pruning:
+        return 'Pruning';
+      case GardeningActivity.harvesting:
+        return 'Harvesting';
+      case GardeningActivity.fertilizing:
+        return 'Fertilizing';
+      case GardeningActivity.weeding:
+        return 'Weeding';
+      case GardeningActivity.watering:
+        return 'Watering';
+      case GardeningActivity.seedStarting:
+        return 'Seed Starting';
+      case GardeningActivity.grafting:
+        return 'Grafting';
+      case GardeningActivity.composting:
+        return 'Composting';
+    }
+  }
+
+  String get nameDe {
+    switch (this) {
+      case GardeningActivity.planting:
+        return 'Pflanzen';
+      case GardeningActivity.transplanting:
+        return 'Umpflanzen';
+      case GardeningActivity.pruning:
+        return 'Beschneiden';
+      case GardeningActivity.harvesting:
+        return 'Ernten';
+      case GardeningActivity.fertilizing:
+        return 'Dungen';
+      case GardeningActivity.weeding:
+        return 'Jaten';
+      case GardeningActivity.watering:
+        return 'Giessen';
+      case GardeningActivity.seedStarting:
+        return 'Aussaat';
+      case GardeningActivity.grafting:
+        return 'Veredeln';
+      case GardeningActivity.composting:
+        return 'Kompostieren';
+    }
+  }
+
+  String get nameFr {
+    switch (this) {
+      case GardeningActivity.planting:
+        return 'Plantation';
+      case GardeningActivity.transplanting:
+        return 'Repiquage';
+      case GardeningActivity.pruning:
+        return 'Taille';
+      case GardeningActivity.harvesting:
+        return 'Recolte';
+      case GardeningActivity.fertilizing:
+        return 'Fertilisation';
+      case GardeningActivity.weeding:
+        return 'Desherbage';
+      case GardeningActivity.watering:
+        return 'Arrosage';
+      case GardeningActivity.seedStarting:
+        return 'Semis';
+      case GardeningActivity.grafting:
+        return 'Greffage';
+      case GardeningActivity.composting:
+        return 'Compostage';
+    }
+  }
+
+  String localizedName(AppLanguage language) {
+    switch (language) {
+      case AppLanguage.en:
+        return nameEn;
+      case AppLanguage.de:
+        return nameDe;
+      case AppLanguage.fr:
+        return nameFr;
+      case AppLanguage.tr:
+      default:
+        return nameTr;
     }
   }
 
@@ -426,6 +688,83 @@ extension CelebrityCategoryExtension on CelebrityCategory {
     }
   }
 
+  String get nameEn {
+    switch (this) {
+      case CelebrityCategory.actors:
+        return 'Actors';
+      case CelebrityCategory.musicians:
+        return 'Musicians';
+      case CelebrityCategory.politicians:
+        return 'Politicians';
+      case CelebrityCategory.athletes:
+        return 'Athletes';
+      case CelebrityCategory.artists:
+        return 'Artists';
+      case CelebrityCategory.scientists:
+        return 'Scientists';
+      case CelebrityCategory.writers:
+        return 'Writers';
+      case CelebrityCategory.historical:
+        return 'Historical Figures';
+    }
+  }
+
+  String get nameDe {
+    switch (this) {
+      case CelebrityCategory.actors:
+        return 'Schauspieler';
+      case CelebrityCategory.musicians:
+        return 'Musiker';
+      case CelebrityCategory.politicians:
+        return 'Politiker';
+      case CelebrityCategory.athletes:
+        return 'Sportler';
+      case CelebrityCategory.artists:
+        return 'Kunstler';
+      case CelebrityCategory.scientists:
+        return 'Wissenschaftler';
+      case CelebrityCategory.writers:
+        return 'Schriftsteller';
+      case CelebrityCategory.historical:
+        return 'Historische Personen';
+    }
+  }
+
+  String get nameFr {
+    switch (this) {
+      case CelebrityCategory.actors:
+        return 'Acteurs';
+      case CelebrityCategory.musicians:
+        return 'Musiciens';
+      case CelebrityCategory.politicians:
+        return 'Politiciens';
+      case CelebrityCategory.athletes:
+        return 'Athletes';
+      case CelebrityCategory.artists:
+        return 'Artistes';
+      case CelebrityCategory.scientists:
+        return 'Scientifiques';
+      case CelebrityCategory.writers:
+        return 'Ecrivains';
+      case CelebrityCategory.historical:
+        return 'Personnages historiques';
+    }
+  }
+
+  String localizedName(AppLanguage language) {
+    switch (language) {
+      case AppLanguage.en:
+        return nameEn;
+      case AppLanguage.de:
+        return nameDe;
+      case AppLanguage.fr:
+        return nameFr;
+      case AppLanguage.tr:
+      default:
+        return nameTr;
+    }
+  }
+
   String get icon {
     switch (this) {
       case CelebrityCategory.actors:
@@ -532,6 +871,83 @@ extension ArticleCategoryExtension on ArticleCategory {
         return 'Güncel Transitler';
       case ArticleCategory.techniques:
         return 'Teknikler';
+    }
+  }
+
+  String get nameEn {
+    switch (this) {
+      case ArticleCategory.beginners:
+        return 'Beginners';
+      case ArticleCategory.intermediate:
+        return 'Intermediate';
+      case ArticleCategory.advanced:
+        return 'Advanced';
+      case ArticleCategory.relationships:
+        return 'Relationships';
+      case ArticleCategory.career:
+        return 'Career';
+      case ArticleCategory.spirituality:
+        return 'Spirituality';
+      case ArticleCategory.currentTransits:
+        return 'Current Transits';
+      case ArticleCategory.techniques:
+        return 'Techniques';
+    }
+  }
+
+  String get nameDe {
+    switch (this) {
+      case ArticleCategory.beginners:
+        return 'Anfanger';
+      case ArticleCategory.intermediate:
+        return 'Fortgeschritten';
+      case ArticleCategory.advanced:
+        return 'Experte';
+      case ArticleCategory.relationships:
+        return 'Beziehungen';
+      case ArticleCategory.career:
+        return 'Karriere';
+      case ArticleCategory.spirituality:
+        return 'Spiritualitat';
+      case ArticleCategory.currentTransits:
+        return 'Aktuelle Transite';
+      case ArticleCategory.techniques:
+        return 'Techniken';
+    }
+  }
+
+  String get nameFr {
+    switch (this) {
+      case ArticleCategory.beginners:
+        return 'Debutants';
+      case ArticleCategory.intermediate:
+        return 'Intermediaire';
+      case ArticleCategory.advanced:
+        return 'Avance';
+      case ArticleCategory.relationships:
+        return 'Relations';
+      case ArticleCategory.career:
+        return 'Carriere';
+      case ArticleCategory.spirituality:
+        return 'Spiritualite';
+      case ArticleCategory.currentTransits:
+        return 'Transits actuels';
+      case ArticleCategory.techniques:
+        return 'Techniques';
+    }
+  }
+
+  String localizedName(AppLanguage language) {
+    switch (language) {
+      case AppLanguage.en:
+        return nameEn;
+      case AppLanguage.de:
+        return nameDe;
+      case AppLanguage.fr:
+        return nameFr;
+      case AppLanguage.tr:
+      default:
+        return nameTr;
     }
   }
 

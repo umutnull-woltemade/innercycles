@@ -1,5 +1,35 @@
 # 🎉 ALL DEPLOYMENT FILES READY!
 
+## ⚡ QUICK START (5 Minutes to First Archive)
+
+**If you just want to get started NOW, run these commands:**
+
+```bash
+# 1. Make scripts executable
+chmod +x deploy_ios.sh check_deployment.sh
+
+# 2. Run automated setup (this does 90% of the work!)
+./deploy_ios.sh
+
+# 3. If it passes, open Xcode
+open ios/Runner.xcworkspace
+
+# 4. In Xcode:
+#    - Select "Any iOS Device (arm64)" from device dropdown
+#    - Runner Target → Signing & Capabilities → Select your Team
+#    - Product → Archive
+
+# 5. Follow on-screen instructions in Organizer to upload
+```
+
+**That's it!** The script handles cleaning, building, and validation.
+
+**If you get errors:** Check the specific sections below or see TROUBLESHOOTING.md.
+
+---
+
+# 🎉 ALL DEPLOYMENT FILES READY!
+
 ## ✅ Complete iOS Deployment Package Created
 
 I've created a comprehensive deployment solution for your Flutter iOS app. Everything is ready to go!

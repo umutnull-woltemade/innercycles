@@ -1,3 +1,6 @@
+import '../providers/app_providers.dart';
+import 'l10n_service.dart';
+
 /// Kabala numeroloji ve Hayat Ağacı servisi
 class KabbalahService {
   /// Kabala sayısını hesapla (isimden)
@@ -306,6 +309,11 @@ extension SefirahExtension on Sefirah {
       case Sefirah.yesod: return 'Temel (Yesod)';
       case Sefirah.malkut: return 'Krallık (Malkut)';
     }
+  }
+
+  String localizedName(AppLanguage language) {
+    final key = 'kabbalah.sefirah_names.${name.toLowerCase()}';
+    return L10nService.get(key, language);
   }
 
   String get meaning {

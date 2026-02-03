@@ -5,6 +5,7 @@ import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/models/zodiac_sign.dart';
+import '../../../data/services/l10n_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/next_blocks.dart';
 import '../../../shared/widgets/kadim_not_card.dart';
@@ -51,12 +52,13 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
 
   @override
   Widget build(BuildContext context) {
+    final language = ref.watch(languageProvider);
     return Scaffold(
       body: CosmicBackground(
         child: SafeArea(
           child: CustomScrollView(
             slivers: [
-              _buildAppBar(context),
+              _buildAppBar(context, language),
               if (_isLoading)
                 SliverFillRemaining(
                   child: Center(
@@ -68,7 +70,7 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
                         ),
                         const SizedBox(height: 16),
                         Text(
-                          'Chakra enerjin analiz ediliyor...',
+                          L10nService.get('chakra.analyzing', language),
                           style: TextStyle(
                             color: Colors.white.withValues(alpha: 0.7),
                             fontSize: 14,
@@ -82,18 +84,18 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
                 SliverToBoxAdapter(
                   child: Column(
                     children: [
-                      _buildChakraVisualization(context),
-                      _buildTabBar(context),
-                      _buildTabContent(context),
+                      _buildChakraVisualization(context, language),
+                      _buildTabBar(context, language),
+                      _buildTabContent(context, language),
                       const SizedBox(height: AppConstants.spacingLg),
                       // Kadim Not - Chakra bilgeliği
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: AppConstants.spacingLg),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: AppConstants.spacingLg),
                         child: KadimNotCard(
-                          title: 'Enerji Döngüsü',
-                          content: 'Chakralar yalnızca enerji merkezleri değil, bilinç kapılarıdır. Her chakra, fiziksel bedenle ruhsal beden arasında bir köprüdür. Onları dengelemek, sadece sağlık değil - içsel uyanışın anahtarıdır.',
+                          title: L10nService.get('chakra.energy_cycle', language),
+                          content: L10nService.get('chakra.energy_cycle_content', language),
                           category: KadimCategory.chakra,
-                          source: 'Tantrik Bilgelik',
+                          source: L10nService.get('chakra.tantric_wisdom', language),
                         ),
                       ),
                       const SizedBox(height: AppConstants.spacingXl),
@@ -122,7 +124,7 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
     );
   }
 
-  Widget _buildAppBar(BuildContext context) {
+  Widget _buildAppBar(BuildContext context, AppLanguage language) {
     return SliverAppBar(
       expandedHeight: 140,
       pinned: true,
@@ -136,9 +138,9 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
               AppColors.starGold,
             ],
           ).createShader(bounds),
-          child: const Text(
-            'Chakra Analizi',
-            style: TextStyle(
+          child: Text(
+            L10nService.get('chakra.title', language),
+            style: const TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
               fontSize: 20,
@@ -182,7 +184,7 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
     );
   }
 
-  Widget _buildChakraVisualization(BuildContext context) {
+  Widget _buildChakraVisualization(BuildContext context, AppLanguage language) {
     if (_analysisData == null) return const SizedBox.shrink();
 
     return Container(
@@ -265,7 +267,7 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
             final yPosition = 30.0 + (index * 50);
             return Positioned(
               top: yPosition,
-              child: _buildChakraPoint(context, chakra)
+              child: _buildChakraPoint(context, chakra, language)
                   .animate(delay: Duration(milliseconds: index * 100))
                   .fadeIn()
                   .scale(begin: const Offset(0.5, 0.5)),
@@ -276,11 +278,11 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
     ).animate().fadeIn(delay: 200.ms, duration: 400.ms);
   }
 
-  Widget _buildChakraPoint(BuildContext context, ChakraData chakra) {
+  Widget _buildChakraPoint(BuildContext context, ChakraData chakra, AppLanguage language) {
     final size = 32 + (chakra.balance * 18);
 
     return GestureDetector(
-      onTap: () => _showChakraDetail(context, chakra),
+      onTap: () => _showChakraDetail(context, chakra, language),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -288,7 +290,7 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
           SizedBox(
             width: 110,
             child: Text(
-              chakra.nameTr,
+              chakra.localizedName(language),
               textAlign: TextAlign.right,
               style: TextStyle(
                 color: Colors.white.withValues(alpha: 0.9),
@@ -372,10 +374,10 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
                 const SizedBox(width: 4),
                 Text(
                   chakra.balance > 0.7
-                      ? 'Aktif'
+                      ? L10nService.get('chakra.active', language)
                       : chakra.balance < 0.4
-                          ? 'Bloklu'
-                          : 'Dengeli',
+                          ? L10nService.get('chakra.blocked', language)
+                          : L10nService.get('chakra.balanced', language),
                   style: TextStyle(
                     color: Colors.white.withValues(alpha: 0.9),
                     fontSize: 10,
@@ -390,7 +392,7 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
     );
   }
 
-  void _showChakraDetail(BuildContext context, ChakraData chakra) {
+  void _showChakraDetail(BuildContext context, ChakraData chakra, AppLanguage language) {
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
@@ -464,7 +466,7 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                chakra.nameTr,
+                                chakra.localizedName(language),
                                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,
@@ -486,14 +488,14 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
                     const SizedBox(height: 24),
 
                     // Balance indicator
-                    _buildBalanceIndicator(context, chakra),
+                    _buildBalanceIndicator(context, chakra, language),
                     const SizedBox(height: 24),
 
                     // Description
                     _buildDetailSection(
                       context,
                       icon: Icons.info_outline,
-                      title: 'Hakkında',
+                      title: L10nService.get('chakra.about', language),
                       content: chakra.description,
                     ),
 
@@ -501,7 +503,7 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
                     _buildDetailSection(
                       context,
                       icon: Icons.favorite_outline,
-                      title: 'Fiziksel Bağlantılar',
+                      title: L10nService.get('chakra.physical_connections', language),
                       content: chakra.physicalConnection,
                     ),
 
@@ -509,12 +511,12 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
                     _buildDetailSection(
                       context,
                       icon: Icons.psychology_outlined,
-                      title: 'Duygusal Yönler',
+                      title: L10nService.get('chakra.emotional_aspects', language),
                       content: chakra.emotionalAspects,
                     ),
 
                     // Healing suggestions
-                    _buildHealingSuggestions(context, chakra),
+                    _buildHealingSuggestions(context, chakra, language),
 
                     // Affirmation
                     _buildAffirmationCard(context, chakra),
@@ -528,7 +530,7 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
     );
   }
 
-  Widget _buildBalanceIndicator(BuildContext context, ChakraData chakra) {
+  Widget _buildBalanceIndicator(BuildContext context, ChakraData chakra, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingMd),
       decoration: BoxDecoration(
@@ -544,7 +546,7 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Denge Durumu',
+                L10nService.get('chakra.balance_status', language),
                 style: TextStyle(
                   color: Colors.white.withValues(alpha: 0.8),
                 ),
@@ -620,7 +622,7 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
     );
   }
 
-  Widget _buildHealingSuggestions(BuildContext context, ChakraData chakra) {
+  Widget _buildHealingSuggestions(BuildContext context, ChakraData chakra, AppLanguage language) {
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
       padding: const EdgeInsets.all(AppConstants.spacingMd),
@@ -638,9 +640,9 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
             children: [
               Icon(Icons.spa_outlined, color: Colors.green.shade400, size: 20),
               const SizedBox(width: 8),
-              const Text(
-                'Dengeleme Onerileri',
-                style: TextStyle(
+              Text(
+                L10nService.get('chakra.balancing_tips', language),
+                style: const TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.w600,
                 ),
@@ -732,7 +734,7 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
     );
   }
 
-  Widget _buildTabBar(BuildContext context) {
+  Widget _buildTabBar(BuildContext context, AppLanguage language) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -753,16 +755,16 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
         labelColor: Colors.white,
         unselectedLabelColor: Colors.white.withValues(alpha: 0.6),
         dividerColor: Colors.transparent,
-        tabs: const [
-          Tab(text: 'Çakra Haritası'),
-          Tab(text: 'Meditasyon'),
-          Tab(text: 'Günlük'),
+        tabs: [
+          Tab(text: L10nService.get('chakra.map', language)),
+          Tab(text: L10nService.get('chakra.meditation', language)),
+          Tab(text: L10nService.get('chakra.daily', language)),
         ],
       ),
     );
   }
 
-  Widget _buildTabContent(BuildContext context) {
+  Widget _buildTabContent(BuildContext context, AppLanguage language) {
     if (_analysisData == null) return const SizedBox.shrink();
 
     return SizedBox(
@@ -770,15 +772,15 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
       child: TabBarView(
         controller: _tabController,
         children: [
-          _buildOverviewTab(context),
-          _buildMeditationTab(context),
-          _buildDailyTab(context),
+          _buildOverviewTab(context, language),
+          _buildMeditationTab(context, language),
+          _buildDailyTab(context, language),
         ],
       ),
     );
   }
 
-  Widget _buildOverviewTab(BuildContext context) {
+  Widget _buildOverviewTab(BuildContext context, AppLanguage language) {
     return SingleChildScrollView(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       child: Column(
@@ -789,7 +791,7 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
               colors: [AppColors.starGold, const Color(0xFFFFE082)],
             ).createShader(bounds),
             child: Text(
-              'Chakra Profilin',
+              L10nService.get('chakra.profile', language),
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
@@ -809,24 +811,26 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
           // Strongest chakra
           _buildChakraHighlight(
             context,
-            title: 'En Güçlü Çakran',
+            title: L10nService.get('chakra.strongest', language),
             chakra: _analysisData!.strongestChakra,
             color: Colors.green,
+            language: language,
           ),
           const SizedBox(height: 16),
 
           // Needs attention
           _buildChakraHighlight(
             context,
-            title: 'Dikkat Gerektiren',
+            title: L10nService.get('chakra.needs_attention', language),
             chakra: _analysisData!.needsAttention,
             color: Colors.orange,
+            language: language,
           ),
           const SizedBox(height: 24),
 
           // Tips
           Text(
-            'Genel Oneriler',
+            L10nService.get('chakra.general_tips', language),
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   color: Colors.white,
                   fontWeight: FontWeight.w600,
@@ -844,6 +848,7 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
     required String title,
     required ChakraData chakra,
     required Color color,
+    required AppLanguage language,
   }) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingMd),
@@ -891,7 +896,7 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
                   ),
                 ),
                 Text(
-                  chakra.nameTr,
+                  chakra.localizedName(language),
                   style: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
@@ -949,7 +954,7 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
     );
   }
 
-  Widget _buildMeditationTab(BuildContext context) {
+  Widget _buildMeditationTab(BuildContext context, AppLanguage language) {
     return SingleChildScrollView(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       child: Column(
@@ -960,7 +965,7 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
               colors: [AppColors.starGold, const Color(0xFFFFE082)],
             ).createShader(bounds),
             child: Text(
-              'Chakra Meditasyonlari',
+              L10nService.get('chakra.meditations', language),
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
@@ -1089,7 +1094,7 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
     );
   }
 
-  Widget _buildDailyTab(BuildContext context) {
+  Widget _buildDailyTab(BuildContext context, AppLanguage language) {
     return SingleChildScrollView(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       child: Column(
@@ -1100,7 +1105,7 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
               colors: [AppColors.starGold, const Color(0xFFFFE082)],
             ).createShader(bounds),
             child: Text(
-              'Bugunun Chakra Enerjisi',
+              L10nService.get('chakra.todays_energy', language),
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
@@ -1164,7 +1169,7 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
                 ),
                 const SizedBox(height: 16),
                 Text(
-                  'Bugun ${_analysisData!.dailyFocus.focusChakra.nameTr} Chakrana Odaklan',
+                  L10nService.get('chakra.focus_today', language).replaceAll('{chakra}', _analysisData!.dailyFocus.focusChakra.localizedName(language)),
                   style: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
@@ -1187,7 +1192,7 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
 
           // Daily activities
           Text(
-            'Onerilen Aktiviteler',
+            L10nService.get('chakra.suggested_activities', language),
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   color: Colors.white,
                   fontWeight: FontWeight.w600,
@@ -1291,6 +1296,11 @@ class ChakraData {
     required this.crystals,
     required this.affirmation,
   });
+
+  String localizedName(AppLanguage language) {
+    final key = 'chakra.names.${name.toLowerCase().replaceAll(' ', '_')}';
+    return L10nService.get(key, language);
+  }
 }
 
 class ChakraMeditation {

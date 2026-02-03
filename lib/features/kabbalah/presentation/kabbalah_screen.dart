@@ -5,6 +5,7 @@ import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/kabbalah_service.dart';
+import '../../../data/services/l10n_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/entertainment_disclaimer.dart';
 import '../../../shared/widgets/null_profile_placeholder.dart';
@@ -15,6 +16,7 @@ class KabbalahScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final userProfile = ref.watch(userProfileProvider);
+    final language = ref.watch(languageProvider);
 
     if (userProfile == null) {
       return const NullProfilePlaceholder(
@@ -49,7 +51,7 @@ class KabbalahScreen extends ConsumerWidget {
                 floating: true,
                 snap: true,
                 title: Text(
-                  'Kabala',
+                  L10nService.get('kabbalah.title', language),
                   style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                         color: AppColors.starGold,
                       ),
@@ -64,18 +66,18 @@ class KabbalahScreen extends ConsumerWidget {
                 sliver: SliverList(
                   delegate: SliverChildListDelegate([
                     // Ezoterik giriş
-                    _buildEsotericIntro(context),
+                    _buildEsotericIntro(context, language),
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Ana Sefirah kartı
-                    _buildMainSefirahCard(context, lifePathSefirah)
+                    _buildMainSefirahCard(context, lifePathSefirah, language)
                         .animate()
                         .fadeIn(duration: 400.ms),
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // İsim bazlı sayılar
                     if (nameSefirah != null) ...[
-                      _buildSectionTitle(context, 'İsim Kabalası'),
+                      _buildSectionTitle(context, L10nService.get('kabbalah.name_kabbalah', language)),
                       const SizedBox(height: AppConstants.spacingMd),
                       _buildNameKabbalahCard(
                         context,
@@ -84,22 +86,23 @@ class KabbalahScreen extends ConsumerWidget {
                         soulNumber!,
                         personaNumber!,
                         userProfile.name!,
+                        language,
                       ).animate().fadeIn(delay: 200.ms, duration: 400.ms),
                       const SizedBox(height: AppConstants.spacingLg),
                     ],
 
                     // Günlük enerji
-                    _buildSectionTitle(context, 'Günlük Kabala Enerjisi'),
+                    _buildSectionTitle(context, L10nService.get('kabbalah.daily_energy', language)),
                     const SizedBox(height: AppConstants.spacingMd),
-                    _buildDailyEnergyCard(context, dailyEnergy)
+                    _buildDailyEnergyCard(context, dailyEnergy, language)
                         .animate()
                         .fadeIn(delay: 300.ms, duration: 400.ms),
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Hayat Ağacı
-                    _buildSectionTitle(context, 'Hayat Ağacı'),
+                    _buildSectionTitle(context, L10nService.get('kabbalah.tree_of_life', language)),
                     const SizedBox(height: AppConstants.spacingMd),
-                    _buildTreeOfLifeCard(context, lifePathSefirah, nameSefirah)
+                    _buildTreeOfLifeCard(context, lifePathSefirah, nameSefirah, language)
                         .animate()
                         .fadeIn(delay: 400.ms, duration: 400.ms),
                     const SizedBox(height: AppConstants.spacingXl),
@@ -119,7 +122,7 @@ class KabbalahScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildEsotericIntro(BuildContext context) {
+  Widget _buildEsotericIntro(BuildContext context, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -142,7 +145,7 @@ class KabbalahScreen extends ConsumerWidget {
               const Icon(Icons.auto_awesome, color: AppColors.starGold, size: 18),
               const SizedBox(width: 8),
               Text(
-                'Hayat Ağacının Sırrı',
+                L10nService.get('kabbalah.tree_of_life_secret', language),
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       color: AppColors.starGold,
                       fontStyle: FontStyle.italic,
@@ -152,7 +155,7 @@ class KabbalahScreen extends ConsumerWidget {
           ),
           const SizedBox(height: AppConstants.spacingSm),
           Text(
-            'Kabala, evrenin ve ruhun yapısını anlatan kadim bir bilgelik sistemidir. Hayat Ağacı (Etz Chaim), on Sefirah\'tan oluşur - her biri ilahi enerjinin farklı bir yönünü temsil eder. İsmin ve doğum tarihin, bu kozmik ağaçtaki yerini belirler. Bu bilgi, ruhsal yolculuğunda sana rehberlik edecektir.',
+            L10nService.get('kabbalah.tree_of_life_intro', language),
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: AppColors.textSecondary,
                   height: 1.6,
@@ -164,7 +167,7 @@ class KabbalahScreen extends ConsumerWidget {
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildMainSefirahCard(BuildContext context, Sefirah sefirah) {
+  Widget _buildMainSefirahCard(BuildContext context, Sefirah sefirah, AppLanguage language) {
     final sefirahColor = _getSefirahColor(sefirah);
 
     return Container(
@@ -209,13 +212,13 @@ class KabbalahScreen extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Yaşam Yolu Sefirah\'ın',
+                      L10nService.get('kabbalah.life_path_sefirah', language),
                       style: Theme.of(context).textTheme.labelMedium?.copyWith(
                             color: AppColors.textMuted,
                           ),
                     ),
                     Text(
-                      sefirah.nameTr,
+                      sefirah.localizedName(language),
                       style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                             color: sefirahColor,
                           ),
@@ -236,9 +239,9 @@ class KabbalahScreen extends ConsumerWidget {
           const SizedBox(height: AppConstants.spacingMd),
           Row(
             children: [
-              _buildSefirahAttribute(context, 'Renk', sefirah.color, sefirahColor),
+              _buildSefirahAttribute(context, L10nService.get('kabbalah.color', language), sefirah.color, sefirahColor),
               const SizedBox(width: AppConstants.spacingMd),
-              _buildSefirahAttribute(context, 'Sayı', sefirah.number.toString(), sefirahColor),
+              _buildSefirahAttribute(context, L10nService.get('kabbalah.number', language), sefirah.number.toString(), sefirahColor),
             ],
           ),
         ],
@@ -282,9 +285,10 @@ class KabbalahScreen extends ConsumerWidget {
     int soulNumber,
     int personaNumber,
     String name,
+    AppLanguage language,
   ) {
     final sefirahColor = _getSefirahColor(sefirah);
-    final personalInterpretation = _generateNameInterpretation(name, sefirah, kabbalahNumber, soulNumber, personaNumber);
+    final personalInterpretation = _generateNameInterpretation(name, sefirah, kabbalahNumber, soulNumber, personaNumber, language);
 
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -302,7 +306,7 @@ class KabbalahScreen extends ConsumerWidget {
               const SizedBox(width: 8),
               Expanded(
                 child: Text(
-                  'İsim Analizi: $name',
+                  '${L10nService.get('kabbalah.name_analysis', language)}: $name',
                   style: Theme.of(context).textTheme.titleSmall?.copyWith(
                         color: sefirahColor,
                       ),
@@ -314,15 +318,15 @@ class KabbalahScreen extends ConsumerWidget {
           Row(
             children: [
               Expanded(
-                child: _buildNumberBox(context, 'Kabala', kabbalahNumber, sefirahColor),
+                child: _buildNumberBox(context, L10nService.get('kabbalah.kabbalah_number', language), kabbalahNumber, sefirahColor),
               ),
               const SizedBox(width: AppConstants.spacingSm),
               Expanded(
-                child: _buildNumberBox(context, 'Ruh', soulNumber, AppColors.waterElement),
+                child: _buildNumberBox(context, L10nService.get('kabbalah.soul_number', language), soulNumber, AppColors.waterElement),
               ),
               const SizedBox(width: AppConstants.spacingSm),
               Expanded(
-                child: _buildNumberBox(context, 'Persona', personaNumber, AppColors.earthElement),
+                child: _buildNumberBox(context, L10nService.get('kabbalah.persona_number', language), personaNumber, AppColors.earthElement),
               ),
             ],
           ),
@@ -339,7 +343,7 @@ class KabbalahScreen extends ConsumerWidget {
                 const SizedBox(width: 8),
                 Expanded(
                   child: Text(
-                    'İsim Sefirah\'ın: ${sefirah.nameTr}',
+                    '${L10nService.get('kabbalah.name_sefirah', language)}: ${sefirah.localizedName(language)}',
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           color: sefirahColor,
                         ),
@@ -372,7 +376,7 @@ class KabbalahScreen extends ConsumerWidget {
                     Icon(Icons.auto_awesome, color: sefirahColor, size: 14),
                     const SizedBox(width: 6),
                     Text(
-                      'Kişisel Kabalistik Yorum',
+                      L10nService.get('kabbalah.personal_interpretation', language),
                       style: Theme.of(context).textTheme.labelSmall?.copyWith(
                             color: sefirahColor,
                             fontWeight: FontWeight.bold,
@@ -394,13 +398,13 @@ class KabbalahScreen extends ConsumerWidget {
           ),
           const SizedBox(height: AppConstants.spacingMd),
           // Ruh ve Persona detayları
-          _buildSoulPersonaDetails(context, soulNumber, personaNumber),
+          _buildSoulPersonaDetails(context, soulNumber, personaNumber, language),
         ],
       ),
     );
   }
 
-  Widget _buildSoulPersonaDetails(BuildContext context, int soulNumber, int personaNumber) {
+  Widget _buildSoulPersonaDetails(BuildContext context, int soulNumber, int personaNumber, AppLanguage language) {
     final soulSefirah = SefirahExtension.fromNumber(soulNumber);
     final personaSefirah = SefirahExtension.fromNumber(personaNumber);
 
@@ -420,7 +424,7 @@ class KabbalahScreen extends ConsumerWidget {
               const SizedBox(width: 4),
               Expanded(
                 child: Text(
-                  'Ruh ($soulNumber - ${soulSefirah.nameTr}): ${_getSoulMeaning(soulNumber)}',
+                  '${L10nService.get('kabbalah.soul_label', language)} ($soulNumber - ${soulSefirah.localizedName(language)}): ${_getSoulMeaning(soulNumber, language)}',
                   style: Theme.of(context).textTheme.labelSmall?.copyWith(
                         color: AppColors.textMuted,
                         height: 1.4,
@@ -437,7 +441,7 @@ class KabbalahScreen extends ConsumerWidget {
               const SizedBox(width: 4),
               Expanded(
                 child: Text(
-                  'Persona ($personaNumber - ${personaSefirah.nameTr}): ${_getPersonaMeaning(personaNumber)}',
+                  '${L10nService.get('kabbalah.persona_label', language)} ($personaNumber - ${personaSefirah.localizedName(language)}): ${_getPersonaMeaning(personaNumber, language)}',
                   style: Theme.of(context).textTheme.labelSmall?.copyWith(
                         color: AppColors.textMuted,
                         height: 1.4,
@@ -451,89 +455,45 @@ class KabbalahScreen extends ConsumerWidget {
     );
   }
 
-  String _generateNameInterpretation(String name, Sefirah sefirah, int kabbalahNumber, int soulNumber, int personaNumber) {
+  String _generateNameInterpretation(String name, Sefirah sefirah, int kabbalahNumber, int soulNumber, int personaNumber, AppLanguage language) {
     final gematria = KabbalahService.calculateGematria(name);
 
-    // Kişiye özel yorumlar
-    String interpretation = '"$name" ismi, Gematria değeri $gematria ile ${sefirah.nameTr} enerjisini taşıyor. ';
+    // Personalized interpretations
+    String introTemplate = L10nService.get('kabbalah.interpretation.name_intro', language);
+    String interpretation = introTemplate
+        .replaceAll('{name}', name)
+        .replaceAll('{gematria}', gematria.toString())
+        .replaceAll('{sefirah}', sefirah.localizedName(language));
 
-    // Sefirah'a göre kişilik özellikleri
-    switch (sefirah) {
-      case Sefirah.keter:
-        interpretation += 'Ruhun sonsuzlukla bağlantılı - ilahi iradenin taşıyıcısı olarak doğdun. Sezgilerin güçlü, vizyonun geniş. ';
-        break;
-      case Sefirah.chokhmah:
-        interpretation += 'Bilgelik tohumlarını taşıyorsun - ani içgörüler ve ilhamlar senin için doğal. Vizyoner bir ruh. ';
-        break;
-      case Sefirah.binah:
-        interpretation += 'Derin anlayış kapasiten var - kavramları derinlemesine işler, form verirsin. Analitik ve sezgisel. ';
-        break;
-      case Sefirah.chesed:
-        interpretation += 'Merhamet ve sevgi senin doğan - şifa verici, besleyici bir enerji taşıyorsun. Cömertlik ruhunda. ';
-        break;
-      case Sefirah.gevurah:
-        interpretation += 'İç gücün güçlü - disiplin ve kararlılık senin silahların. Adalet duygun keskin. ';
-        break;
-      case Sefirah.tiferet:
-        interpretation += 'Denge noktasındasın - güzellik ve uyumu doğal olarak yaratırsın. Kalp merkezlisin. ';
-        break;
-      case Sefirah.netzach:
-        interpretation += 'Azim ve tutku senin yolun - yaratıcı enerjin tükenmez. Hedeflerine ulaşana dek durmazsın. ';
-        break;
-      case Sefirah.hod:
-        interpretation += 'İletişim ve analiz yeteneğin güçlü - düşüncelerini berrak ifade edersin. Zihinsel parlaklık. ';
-        break;
-      case Sefirah.yesod:
-        interpretation += 'Sezgisel derinliğin var - rüyalar ve semboller seninle konuşur. Astral bağlantın güçlü. ';
-        break;
-      case Sefirah.malkut:
-        interpretation += 'Topraklanmış ve pratiksin - fikirleri gerçeğe dönüştürme yeteneğin var. Dünya senin krallığın. ';
-        break;
-    }
+    // Sefirah-based personality traits
+    final sefirahKey = 'kabbalah.interpretation.sefirah_${sefirah.name.toLowerCase()}';
+    interpretation += L10nService.get(sefirahKey, language);
 
-    // Ruh ve Persona dengesine göre ek yorum
+    // Additional comment based on Soul and Persona balance
     final difference = (soulNumber - personaNumber).abs();
     if (difference <= 2) {
-      interpretation += 'İç dünyan ile dışa yansıttığın uyum içinde - otantik bir kişilik.';
+      interpretation += L10nService.get('kabbalah.interpretation.balance_harmony', language);
     } else if (difference <= 4) {
-      interpretation += 'İç ve dış dünyaların arasında ilginç bir dinamik var - bu gerilim büyüme potansiyeli taşıyor.';
+      interpretation += L10nService.get('kabbalah.interpretation.balance_dynamic', language);
     } else {
-      interpretation += 'Derin iç dünyan ile gösterdiğin yüz farklı - bu gizem seni güçlü kılıyor.';
+      interpretation += L10nService.get('kabbalah.interpretation.balance_mystery', language);
     }
 
     return interpretation;
   }
 
-  String _getSoulMeaning(int number) {
-    switch (number) {
-      case 1: return 'Birlik arayışı, spiritüel özlem';
-      case 2: return 'Sezgisel bilgelik, ilham';
-      case 3: return 'Derin anlayış, kavrayış';
-      case 4: return 'Sevgi ihtiyacı, şefkat';
-      case 5: return 'Güç arayışı, bağımsızlık';
-      case 6: return 'Uyum özlemi, denge';
-      case 7: return 'Tutku, yaratıcı ifade';
-      case 8: return 'Bilgi aşkı, iletişim';
-      case 9: return 'Rüyalar, sezgisel derinlik';
-      case 10: return 'Topraklanma, gerçekleşme';
-      default: return 'Mistik derinlik';
-    }
+  String _getSoulMeaning(int number, AppLanguage language) {
+    final key = number >= 1 && number <= 10
+        ? 'kabbalah.soul_meanings.$number'
+        : 'kabbalah.soul_meanings.default';
+    return L10nService.get(key, language);
   }
 
-  String _getPersonaMeaning(int number) {
-    switch (number) {
-      case 1: return 'Lider görünüm, ilham verici';
-      case 2: return 'Bilge görünüm, danışman';
-      case 3: return 'Analitik, düşünceli';
-      case 4: return 'Yardımsever, sıcak';
-      case 5: return 'Güçlü, kararlı';
-      case 6: return 'Dengeli, uyumlu';
-      case 7: return 'Tutkulu, çekici';
-      case 8: return 'Zeki, konuşkan';
-      case 9: return 'Gizemli, sezgisel';
-      case 10: return 'Pratik, güvenilir';
-      default: return 'Çok yönlü';
-    }
+  String _getPersonaMeaning(int number, AppLanguage language) {
+    final key = number >= 1 && number <= 10
+        ? 'kabbalah.persona_meanings.$number'
+        : 'kabbalah.persona_meanings.default';
+    return L10nService.get(key, language);
   }
 
   Widget _buildNumberBox(BuildContext context, String label, int number, Color color) {
@@ -564,7 +524,7 @@ class KabbalahScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildDailyEnergyCard(BuildContext context, DailyKabbalahEnergy energy) {
+  Widget _buildDailyEnergyCard(BuildContext context, DailyKabbalahEnergy energy, AppLanguage language) {
     final sefirahColor = _getSefirahColor(energy.sefirah);
 
     return Container(
@@ -589,7 +549,7 @@ class KabbalahScreen extends ConsumerWidget {
               Icon(Icons.wb_sunny, color: sefirahColor, size: 20),
               const SizedBox(width: 8),
               Text(
-                'Bugünün Sefirah\'ı: ${energy.sefirah.nameTr}',
+                '${L10nService.get('kabbalah.todays_sefirah', language)}: ${energy.sefirah.localizedName(language)}',
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       color: sefirahColor,
                     ),
@@ -620,7 +580,7 @@ class KabbalahScreen extends ConsumerWidget {
                     Icon(Icons.self_improvement, color: sefirahColor, size: 16),
                     const SizedBox(width: 8),
                     Text(
-                      'Günlük Meditasyon',
+                      L10nService.get('kabbalah.daily_meditation', language),
                       style: Theme.of(context).textTheme.labelMedium?.copyWith(
                             color: sefirahColor,
                           ),
@@ -644,8 +604,8 @@ class KabbalahScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildTreeOfLifeCard(BuildContext context, Sefirah lifePath, Sefirah? namePath) {
-    final treeInterpretation = _generateTreeInterpretation(lifePath, namePath);
+  Widget _buildTreeOfLifeCard(BuildContext context, Sefirah lifePath, Sefirah? namePath, AppLanguage language) {
+    final treeInterpretation = _generateTreeInterpretation(lifePath, namePath, language);
 
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -657,7 +617,7 @@ class KabbalahScreen extends ConsumerWidget {
       child: Column(
         children: [
           Text(
-            'Hayat Ağacındaki Yerin',
+            L10nService.get('kabbalah.your_place_on_tree', language),
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   color: AppColors.starGold,
                 ),
@@ -667,8 +627,8 @@ class KabbalahScreen extends ConsumerWidget {
           _buildSimpleTreeOfLife(context, lifePath, namePath),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
-            'Kırmızı ile işaretli: Yaşam Yolu Sefirah\'ın\n'
-            '${namePath != null ? 'Mavi ile işaretli: İsim Sefirah\'ın' : ''}',
+            '${L10nService.get('kabbalah.marked_red', language)}\n'
+            '${namePath != null ? L10nService.get('kabbalah.marked_blue', language) : ''}',
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: AppColors.textMuted,
                 ),
@@ -698,7 +658,7 @@ class KabbalahScreen extends ConsumerWidget {
                     const Icon(Icons.account_tree, color: AppColors.starGold, size: 14),
                     const SizedBox(width: 6),
                     Text(
-                      'Spiritüel Yolculuğun',
+                      L10nService.get('kabbalah.spiritual_journey', language),
                       style: Theme.of(context).textTheme.labelSmall?.copyWith(
                             color: AppColors.starGold,
                             fontWeight: FontWeight.bold,
@@ -720,13 +680,13 @@ class KabbalahScreen extends ConsumerWidget {
           ),
           const SizedBox(height: AppConstants.spacingMd),
           // Sefirah detayları
-          _buildSefirahDetails(context, lifePath, namePath),
+          _buildSefirahDetails(context, lifePath, namePath, language),
         ],
       ),
     );
   }
 
-  Widget _buildSefirahDetails(BuildContext context, Sefirah lifePath, Sefirah? namePath) {
+  Widget _buildSefirahDetails(BuildContext context, Sefirah lifePath, Sefirah? namePath, AppLanguage language) {
     final lifePathColor = _getSefirahColor(lifePath);
 
     return Container(
@@ -765,14 +725,14 @@ class KabbalahScreen extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      '${lifePath.nameTr} - ${lifePath.pillar}',
+                      '${lifePath.localizedName(language)} - ${lifePath.pillar}',
                       style: Theme.of(context).textTheme.labelSmall?.copyWith(
                             color: lifePathColor,
                             fontWeight: FontWeight.bold,
                           ),
                     ),
                     Text(
-                      'Melek: ${lifePath.archangel}',
+                      '${L10nService.get('kabbalah.archangel', language)}: ${lifePath.archangel}',
                       style: Theme.of(context).textTheme.labelSmall?.copyWith(
                             color: AppColors.textMuted,
                           ),
@@ -784,19 +744,19 @@ class KabbalahScreen extends ConsumerWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            'Erdem: ${lifePath.virtue}',
+            '${L10nService.get('kabbalah.virtue', language)}: ${lifePath.virtue}',
             style: Theme.of(context).textTheme.labelSmall?.copyWith(
                   color: AppColors.textSecondary,
                 ),
           ),
           Text(
-            'Dikkat: ${lifePath.vice}',
+            '${L10nService.get('kabbalah.caution', language)}: ${lifePath.vice}',
             style: Theme.of(context).textTheme.labelSmall?.copyWith(
                   color: AppColors.textMuted,
                 ),
           ),
           Text(
-            'Gezegen: ${lifePath.planet}',
+            '${L10nService.get('kabbalah.planet', language)}: ${lifePath.planet}',
             style: Theme.of(context).textTheme.labelSmall?.copyWith(
                   color: AppColors.textMuted,
                 ),
@@ -806,36 +766,43 @@ class KabbalahScreen extends ConsumerWidget {
     );
   }
 
-  String _generateTreeInterpretation(Sefirah lifePath, Sefirah? namePath) {
-    String interpretation = 'Hayat Ağacı\'nda ${lifePath.pillar}\'nda yer alıyorsun. ';
+  String _generateTreeInterpretation(Sefirah lifePath, Sefirah? namePath, AppLanguage language) {
+    String interpretation = '';
 
-    // Sütuna göre yorum
+    // Column-based interpretation
     if (lifePath == Sefirah.keter || lifePath == Sefirah.tiferet ||
         lifePath == Sefirah.yesod || lifePath == Sefirah.malkut) {
-      interpretation += 'Orta sütun, denge yoludur - zıtlıkları birleştirme, uyum yaratma görevin var. ';
+      interpretation += L10nService.get('kabbalah.tree_interpretation.middle_pillar', language);
     } else if (lifePath == Sefirah.chokhmah || lifePath == Sefirah.chesed ||
         lifePath == Sefirah.netzach) {
-      interpretation += 'Sağ sütun, rahmet ve genişleme yoludur - sevgi, cömertlik ve yaratıcılık senin alanın. ';
+      interpretation += L10nService.get('kabbalah.tree_interpretation.right_pillar', language);
     } else {
-      interpretation += 'Sol sütun, form ve disiplin yoludur - sınır koyma, analiz ve güç senin alanın. ';
+      interpretation += L10nService.get('kabbalah.tree_interpretation.left_pillar', language);
     }
 
-    // İsim ve Yaşam yolu kombinasyonu
+    // Name and Life Path combination
     if (namePath != null) {
       if (lifePath == namePath) {
-        interpretation += 'İsmin ve doğum tarihin aynı Sefirah\'a işaret ediyor - bu enerjide çok güçlüsün!';
+        interpretation += L10nService.get('kabbalah.tree_interpretation.same_sefirah', language);
       } else {
         final lifeNum = lifePath.number;
         final nameNum = namePath.number;
 
         if ((lifeNum <= 3 && nameNum >= 8) || (lifeNum >= 8 && nameNum <= 3)) {
-          interpretation += '${lifePath.nameTr} ile ${namePath.nameTr} arasındaki yolculuğun, Hayat Ağacı\'nın tamamını kapsıyor - derin bir ruhsal evrim yaşıyorsun.';
+          String template = L10nService.get('kabbalah.tree_interpretation.full_journey', language);
+          interpretation += template
+              .replaceAll('{lifePath}', lifePath.localizedName(language))
+              .replaceAll('{namePath}', namePath.localizedName(language));
         } else {
-          interpretation += '${lifePath.nameTr} doğuştan enerjin, ${namePath.nameTr} ise isminle gelen titreşimin - bu ikisi birlikte benzersiz bir spiritüel imza oluşturuyor.';
+          String template = L10nService.get('kabbalah.tree_interpretation.unique_signature', language);
+          interpretation += template
+              .replaceAll('{lifePath}', lifePath.localizedName(language))
+              .replaceAll('{namePath}', namePath.localizedName(language));
         }
       }
     } else {
-      interpretation += '${lifePath.nameTr} enerjisi, bu yaşamda öğrenmen gereken ana dersi temsil ediyor.';
+      String template = L10nService.get('kabbalah.tree_interpretation.single_sefirah', language);
+      interpretation += template.replaceAll('{lifePath}', lifePath.localizedName(language));
     }
 
     return interpretation;

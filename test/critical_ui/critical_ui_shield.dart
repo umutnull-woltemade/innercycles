@@ -429,18 +429,18 @@ class CriticalUIShield {
     final failed = results.where((r) => !r.passed).length;
     final total = results.length;
 
-    buffer.writeln('║ Total Elements: $total'.padRight(79) + '║');
-    buffer.writeln('║ Passed: $passed'.padRight(79) + '║');
-    buffer.writeln('║ Failed: $failed'.padRight(79) + '║');
+    buffer.writeln('${'║ Total Elements: $total'.padRight(79)}║');
+    buffer.writeln('${'║ Passed: $passed'.padRight(79)}║');
+    buffer.writeln('${'║ Failed: $failed'.padRight(79)}║');
     buffer.writeln('╠══════════════════════════════════════════════════════════════════════════════╣');
 
     if (failed > 0) {
-      buffer.writeln('║ FAILURES:'.padRight(79) + '║');
+      buffer.writeln('${'║ FAILURES:'.padRight(79)}║');
       for (final result in results.where((r) => !r.passed)) {
-        buffer.writeln('║ - ${result.element.id}: ${result.error}'.padRight(77) + '║');
+        buffer.writeln('${'║ - ${result.element.id}: ${result.error}'.padRight(77)}║');
       }
     } else {
-      buffer.writeln('║ ✓ All critical UI elements verified successfully'.padRight(79) + '║');
+      buffer.writeln('${'║ ✓ All critical UI elements verified successfully'.padRight(79)}║');
     }
 
     buffer.writeln('╚══════════════════════════════════════════════════════════════════════════════╝');

@@ -1,5 +1,7 @@
 import 'package:uuid/uuid.dart';
 import 'zodiac_sign.dart';
+import '../providers/app_providers.dart';
+import '../services/l10n_service.dart';
 
 class UserProfile {
   final String id;
@@ -150,18 +152,24 @@ class UserProfile {
   /// Get display emoji (uses relationship emoji or sign emoji)
   String get displayEmoji => avatarEmoji ?? sunSign.symbol;
 
-  /// Get relationship display name
+  /// Get relationship display name (Turkish fallback)
   String get relationshipLabel {
     switch (relationship) {
       case 'partner': return 'Partner';
-      case 'friend': return 'Arkadaş';
-      case 'family': return 'Aile';
-      case 'child': return 'Çocuk';
-      case 'crush': return 'İlgi';
-      case 'ex': return 'Eski';
-      case 'colleague': return 'İş Arkadaşı';
+      case 'friend': return 'Friend';
+      case 'family': return 'Family';
+      case 'child': return 'Child';
+      case 'crush': return 'Crush';
+      case 'ex': return 'Ex';
+      case 'colleague': return 'Colleague';
       default: return relationship ?? '';
     }
+  }
+
+  /// Get localized relationship display name
+  String getLocalizedRelationshipLabel(AppLanguage language) {
+    if (relationship == null) return '';
+    return L10nService.get('profile.relationship_types.$relationship', language);
   }
 
   /// Calculate age from birth date

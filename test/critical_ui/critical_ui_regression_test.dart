@@ -9,15 +9,13 @@
 /// Run with: flutter test test/critical_ui/critical_ui_regression_test.dart
 library;
 
-import 'package:flutter/material.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:go_router/go_router.dart';
-
 import 'package:astrology_app/core/constants/routes.dart';
-import 'package:astrology_app/data/providers/app_providers.dart';
 import 'package:astrology_app/data/models/user_profile.dart';
+import 'package:astrology_app/data/providers/app_providers.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 import '../helpers/pump_app.dart';
 import '../helpers/test_router.dart';
@@ -97,19 +95,26 @@ void main() {
   group('CRITICAL UI: Home Screen', () {
     testWidgets('[CRITICAL] Home screen renders scaffold', (tester) async {
       await pumpAtRoute(tester, Routes.home);
-      expect(find.byType(Scaffold), findsWidgets,
-          reason: 'Home screen must render a Scaffold');
+      expect(
+        find.byType(Scaffold),
+        findsWidgets,
+        reason: 'Home screen must render a Scaffold',
+      );
     });
 
-    testWidgets('[CRITICAL] Settings button exists and is clickable',
-        (tester) async {
+    testWidgets('[CRITICAL] Settings button exists and is clickable', (
+      tester,
+    ) async {
       await pumpAtRoute(tester, Routes.home);
 
       // Find settings button by icon
       final settingsButton = find.byIcon(Icons.settings);
 
-      expect(settingsButton, findsWidgets,
-          reason: 'Settings button MUST exist on home screen');
+      expect(
+        settingsButton,
+        findsWidgets,
+        reason: 'Settings button MUST exist on home screen',
+      );
 
       // Verify at least one is clickable
       final buttons = settingsButton.evaluate();
@@ -123,8 +128,11 @@ void main() {
         }
       }
 
-      expect(foundClickable, isTrue,
-          reason: 'Settings button MUST be clickable');
+      expect(
+        foundClickable,
+        isTrue,
+        reason: 'Settings button MUST be clickable',
+      );
     });
 
     testWidgets('[CRITICAL] Search functionality accessible', (tester) async {
@@ -135,7 +143,8 @@ void main() {
       final searchByText = find.textContaining('Ara');
 
       expect(
-        searchByIcon.evaluate().isNotEmpty || searchByText.evaluate().isNotEmpty,
+        searchByIcon.evaluate().isNotEmpty ||
+            searchByText.evaluate().isNotEmpty,
         isTrue,
         reason: 'Search must be accessible from home screen',
       );
@@ -152,10 +161,13 @@ void main() {
         // Screen should still have scrollable content
         final hasContent =
             find.byType(SingleChildScrollView).evaluate().isNotEmpty ||
-                find.byType(ListView).evaluate().isNotEmpty ||
-                find.byType(CustomScrollView).evaluate().isNotEmpty;
-        expect(hasContent, isTrue,
-            reason: 'Home screen must have scrollable content with KOZMOZ access');
+            find.byType(ListView).evaluate().isNotEmpty ||
+            find.byType(CustomScrollView).evaluate().isNotEmpty;
+        expect(
+          hasContent,
+          isTrue,
+          reason: 'Home screen must have scrollable content with KOZMOZ access',
+        );
       }
     });
 
@@ -182,8 +194,11 @@ void main() {
   group('CRITICAL UI: Onboarding Flow', () {
     testWidgets('[CRITICAL] Onboarding screen renders', (tester) async {
       await pumpAtRoute(tester, Routes.onboarding, onboardingComplete: false);
-      expect(find.byType(Scaffold), findsWidgets,
-          reason: 'Onboarding screen must render');
+      expect(
+        find.byType(Scaffold),
+        findsWidgets,
+        reason: 'Onboarding screen must render',
+      );
     });
 
     testWidgets('[CRITICAL] Name input field exists', (tester) async {
@@ -227,8 +242,11 @@ void main() {
   group('CRITICAL UI: Settings Screen', () {
     testWidgets('[CRITICAL] Settings screen renders', (tester) async {
       await pumpAtRoute(tester, Routes.settings);
-      expect(find.byType(Scaffold), findsWidgets,
-          reason: 'Settings screen must render');
+      expect(
+        find.byType(Scaffold),
+        findsWidgets,
+        reason: 'Settings screen must render',
+      );
     });
 
     testWidgets('[MAJOR] Back navigation exists', (tester) async {
@@ -254,10 +272,13 @@ void main() {
       // Theme section should exist - look for theme-related content
       final hasScrollableContent =
           find.byType(SingleChildScrollView).evaluate().isNotEmpty ||
-              find.byType(ListView).evaluate().isNotEmpty;
+          find.byType(ListView).evaluate().isNotEmpty;
 
-      expect(hasScrollableContent, isTrue,
-          reason: 'Settings must have scrollable content with theme options');
+      expect(
+        hasScrollableContent,
+        isTrue,
+        reason: 'Settings must have scrollable content with theme options',
+      );
     });
 
     testWidgets('[MAJOR] Language selection accessible', (tester) async {
@@ -266,8 +287,11 @@ void main() {
       // Settings screen should have content
       final hasContent = find.byType(Scaffold).evaluate().isNotEmpty;
 
-      expect(hasContent, isTrue,
-          reason: 'Settings must render with language options');
+      expect(
+        hasContent,
+        isTrue,
+        reason: 'Settings must render with language options',
+      );
     });
   });
 
@@ -278,8 +302,11 @@ void main() {
   group('CRITICAL UI: Premium Screen', () {
     testWidgets('[CRITICAL] Premium screen renders', (tester) async {
       await pumpAtRoute(tester, Routes.premium);
-      expect(find.byType(Scaffold), findsWidgets,
-          reason: 'Premium screen must render');
+      expect(
+        find.byType(Scaffold),
+        findsWidgets,
+        reason: 'Premium screen must render',
+      );
     });
 
     testWidgets('[CRITICAL] Close/dismiss button exists', (tester) async {
@@ -291,7 +318,8 @@ void main() {
       expect(
         closeButton.evaluate().isNotEmpty || backButton.evaluate().isNotEmpty,
         isTrue,
-        reason: 'Premium screen MUST have close/back button (user cannot be trapped)',
+        reason:
+            'Premium screen MUST have close/back button (user cannot be trapped)',
       );
     });
 
@@ -313,13 +341,12 @@ void main() {
     testWidgets('[MAJOR] Restore purchases option exists', (tester) async {
       await pumpAtRoute(tester, Routes.premium);
 
-      // Look for restore option
-      final restoreText = find.textContaining('Geri Yükle');
-      final textButtons = find.byType(TextButton);
-
       // At minimum, screen should have interactive elements
-      expect(find.byType(Scaffold), findsWidgets,
-          reason: 'Premium screen must render with restore option');
+      expect(
+        find.byType(Scaffold),
+        findsWidgets,
+        reason: 'Premium screen must render with restore option',
+      );
     });
   });
 
@@ -330,8 +357,11 @@ void main() {
   group('CRITICAL UI: Profile Screen', () {
     testWidgets('[MAJOR] Profile screen renders', (tester) async {
       await pumpAtRoute(tester, Routes.profile);
-      expect(find.byType(Scaffold), findsWidgets,
-          reason: 'Profile screen must render');
+      expect(
+        find.byType(Scaffold),
+        findsWidgets,
+        reason: 'Profile screen must render',
+      );
     });
 
     testWidgets('[MAJOR] Back navigation exists', (tester) async {
@@ -354,8 +384,11 @@ void main() {
   group('CRITICAL UI: Saved Profiles Screen', () {
     testWidgets('[MAJOR] Saved profiles screen renders', (tester) async {
       await pumpAtRoute(tester, Routes.savedProfiles);
-      expect(find.byType(Scaffold), findsWidgets,
-          reason: 'Saved profiles screen must render');
+      expect(
+        find.byType(Scaffold),
+        findsWidgets,
+        reason: 'Saved profiles screen must render',
+      );
     });
   });
 
@@ -366,8 +399,11 @@ void main() {
   group('CRITICAL UI: Glossary/Search Screen', () {
     testWidgets('[MAJOR] Glossary screen renders', (tester) async {
       await pumpAtRoute(tester, Routes.glossary);
-      expect(find.byType(Scaffold), findsWidgets,
-          reason: 'Glossary screen must render');
+      expect(
+        find.byType(Scaffold),
+        findsWidgets,
+        reason: 'Glossary screen must render',
+      );
     });
 
     testWidgets('[MAJOR] Search input exists', (tester) async {
@@ -386,11 +422,15 @@ void main() {
       );
     });
 
-    testWidgets('[MAJOR] Glossary accepts search query parameter',
-        (tester) async {
+    testWidgets('[MAJOR] Glossary accepts search query parameter', (
+      tester,
+    ) async {
       await pumpAtRoute(tester, '${Routes.glossary}?search=venus');
-      expect(find.byType(Scaffold), findsWidgets,
-          reason: 'Glossary must handle search query parameter');
+      expect(
+        find.byType(Scaffold),
+        findsWidgets,
+        reason: 'Glossary must handle search query parameter',
+      );
     });
   });
 
@@ -412,8 +452,11 @@ void main() {
     for (final route in coreRoutes) {
       testWidgets('[CRITICAL] Route $route renders scaffold', (tester) async {
         await pumpAtRoute(tester, route);
-        expect(find.byType(Scaffold), findsWidgets,
-            reason: 'Route $route MUST render a Scaffold');
+        expect(
+          find.byType(Scaffold),
+          findsWidgets,
+          reason: 'Route $route MUST render a Scaffold',
+        );
       });
     }
   });
@@ -425,8 +468,11 @@ void main() {
   group('CRITICAL UI: All Services Hub', () {
     testWidgets('[MAJOR] All services screen renders', (tester) async {
       await pumpAtRoute(tester, Routes.allServices);
-      expect(find.byType(Scaffold), findsWidgets,
-          reason: 'All services screen must render');
+      expect(
+        find.byType(Scaffold),
+        findsWidgets,
+        reason: 'All services screen must render',
+      );
     });
 
     testWidgets('[MAJOR] All services has scrollable content', (tester) async {
@@ -434,12 +480,15 @@ void main() {
 
       final hasScroll =
           find.byType(SingleChildScrollView).evaluate().isNotEmpty ||
-              find.byType(ListView).evaluate().isNotEmpty ||
-              find.byType(CustomScrollView).evaluate().isNotEmpty ||
-              find.byType(GridView).evaluate().isNotEmpty;
+          find.byType(ListView).evaluate().isNotEmpty ||
+          find.byType(CustomScrollView).evaluate().isNotEmpty ||
+          find.byType(GridView).evaluate().isNotEmpty;
 
-      expect(hasScroll, isTrue,
-          reason: 'All services must have scrollable content');
+      expect(
+        hasScroll,
+        isTrue,
+        reason: 'All services must have scrollable content',
+      );
     });
   });
 
@@ -450,27 +499,46 @@ void main() {
   group('CRITICAL UI: Horoscope Feature', () {
     testWidgets('[MAJOR] Horoscope screen renders', (tester) async {
       await pumpAtRoute(tester, Routes.horoscope);
-      expect(find.byType(Scaffold), findsWidgets,
-          reason: 'Horoscope screen must render');
+      expect(
+        find.byType(Scaffold),
+        findsWidgets,
+        reason: 'Horoscope screen must render',
+      );
     });
 
     testWidgets('[MAJOR] Horoscope detail for aries renders', (tester) async {
       await pumpAtRoute(tester, '/horoscope/aries');
-      expect(find.byType(Scaffold), findsWidgets,
-          reason: 'Horoscope detail for aries must render');
+      expect(
+        find.byType(Scaffold),
+        findsWidgets,
+        reason: 'Horoscope detail for aries must render',
+      );
     });
 
     // Test all zodiac signs
     final zodiacSigns = [
-      'aries', 'taurus', 'gemini', 'cancer', 'leo', 'virgo',
-      'libra', 'scorpio', 'sagittarius', 'capricorn', 'aquarius', 'pisces'
+      'aries',
+      'taurus',
+      'gemini',
+      'cancer',
+      'leo',
+      'virgo',
+      'libra',
+      'scorpio',
+      'sagittarius',
+      'capricorn',
+      'aquarius',
+      'pisces',
     ];
 
     for (final sign in zodiacSigns) {
       testWidgets('[MAJOR] Horoscope detail for $sign renders', (tester) async {
         await pumpAtRoute(tester, '/horoscope/$sign');
-        expect(find.byType(Scaffold), findsWidgets,
-            reason: 'Horoscope detail for $sign must render');
+        expect(
+          find.byType(Scaffold),
+          findsWidgets,
+          reason: 'Horoscope detail for $sign must render',
+        );
       });
     }
   });
@@ -482,8 +550,11 @@ void main() {
   group('CRITICAL UI: Admin Access', () {
     testWidgets('[IMPORTANT] Admin login screen renders', (tester) async {
       await pumpAtRoute(tester, Routes.adminLogin);
-      expect(find.byType(Scaffold), findsWidgets,
-          reason: 'Admin login screen must render');
+      expect(
+        find.byType(Scaffold),
+        findsWidgets,
+        reason: 'Admin login screen must render',
+      );
     });
   });
 
@@ -494,14 +565,20 @@ void main() {
   group('CRITICAL UI: Share Functionality', () {
     testWidgets('[IMPORTANT] Cosmic share screen renders', (tester) async {
       await pumpAtRoute(tester, Routes.cosmicShare);
-      expect(find.byType(Scaffold), findsWidgets,
-          reason: 'Cosmic share screen must render');
+      expect(
+        find.byType(Scaffold),
+        findsWidgets,
+        reason: 'Cosmic share screen must render',
+      );
     });
 
     testWidgets('[IMPORTANT] Share summary screen renders', (tester) async {
       await pumpAtRoute(tester, Routes.shareSummary);
-      expect(find.byType(Scaffold), findsWidgets,
-          reason: 'Share summary screen must render');
+      expect(
+        find.byType(Scaffold),
+        findsWidgets,
+        reason: 'Share summary screen must render',
+      );
     });
   });
 
@@ -512,8 +589,11 @@ void main() {
   group('CRITICAL UI: Error Handling', () {
     testWidgets('[CRITICAL] Unknown route shows 404', (tester) async {
       await pumpAtRoute(tester, '/this-route-does-not-exist-xyz');
-      expect(find.textContaining('404'), findsOneWidget,
-          reason: 'Unknown routes must show 404 error');
+      expect(
+        find.textContaining('404'),
+        findsOneWidget,
+        reason: 'Unknown routes must show 404 error',
+      );
     });
   });
 
@@ -523,40 +603,60 @@ void main() {
 
   group('Critical UI Registry Validation', () {
     test('Registry has defined elements', () {
-      expect(criticalUIElements.isNotEmpty, isTrue,
-          reason: 'Critical UI registry must not be empty');
+      expect(
+        criticalUIElements.isNotEmpty,
+        isTrue,
+        reason: 'Critical UI registry must not be empty',
+      );
     });
 
     test('All elements have valid IDs', () {
       for (final element in criticalUIElements) {
-        expect(element.id.isNotEmpty, isTrue,
-            reason: 'Element ${element.name} must have valid ID');
+        expect(
+          element.id.isNotEmpty,
+          isTrue,
+          reason: 'Element ${element.name} must have valid ID',
+        );
       }
     });
 
     test('All elements have valid find strategies', () {
       for (final element in criticalUIElements) {
-        expect(element.findStrategy.isValid, isTrue,
-            reason: 'Element ${element.id} must have valid find strategy');
+        expect(
+          element.findStrategy.isValid,
+          isTrue,
+          reason: 'Element ${element.id} must have valid find strategy',
+        );
       }
     });
 
     test('Critical severity elements defined for core flows', () {
       final critical = getMustNotFailElements();
-      expect(critical.isNotEmpty, isTrue,
-          reason: 'Must have CRITICAL severity elements defined');
+      expect(
+        critical.isNotEmpty,
+        isTrue,
+        reason: 'Must have CRITICAL severity elements defined',
+      );
 
       // Verify onboarding has critical elements
-      final onboardingCritical =
-          critical.where((e) => e.sourceRoute == Routes.onboarding);
-      expect(onboardingCritical.isNotEmpty, isTrue,
-          reason: 'Onboarding must have CRITICAL severity elements');
+      final onboardingCritical = critical.where(
+        (e) => e.sourceRoute == Routes.onboarding,
+      );
+      expect(
+        onboardingCritical.isNotEmpty,
+        isTrue,
+        reason: 'Onboarding must have CRITICAL severity elements',
+      );
 
       // Verify premium has critical elements (user cannot be trapped)
-      final premiumCritical =
-          critical.where((e) => e.sourceRoute == Routes.premium);
-      expect(premiumCritical.isNotEmpty, isTrue,
-          reason: 'Premium screen must have CRITICAL severity elements');
+      final premiumCritical = critical.where(
+        (e) => e.sourceRoute == Routes.premium,
+      );
+      expect(
+        premiumCritical.isNotEmpty,
+        isTrue,
+        reason: 'Premium screen must have CRITICAL severity elements',
+      );
     });
   });
 }

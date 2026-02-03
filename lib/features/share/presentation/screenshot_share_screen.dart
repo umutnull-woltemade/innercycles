@@ -6,6 +6,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../data/models/zodiac_sign.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/moon_service.dart';
+import '../../../data/services/l10n_service.dart';
 
 /// SCREENSHOT SHARE SCREEN - Instagram Story Optimized
 ///
@@ -72,14 +73,15 @@ class _ScreenshotShareScreenState extends ConsumerState<ScreenshotShareScreen> {
   @override
   Widget build(BuildContext context) {
     final userProfile = ref.watch(userProfileProvider);
+    final language = ref.watch(languageProvider);
     final sign = userProfile?.sunSign ?? ZodiacSign.aries;
-    final userName = userProfile?.name ?? sign.nameTr;
+    final userName = userProfile?.name ?? sign.localizedName(language);
 
     return Scaffold(
       backgroundColor: const Color(0xFF0D0D1A),
       body: GestureDetector(
         // Tap anywhere to show/hide exit button temporarily
-        onTap: () => _showExitHint(context),
+        onTap: () => _showExitHint(context, language),
         child: Stack(
           children: [
             // ════════════════════════════════════════════════════════════
@@ -92,6 +94,7 @@ class _ScreenshotShareScreenState extends ConsumerState<ScreenshotShareScreen> {
                   child: _ShareImageCard(
                     sign: sign,
                     userName: userName,
+                    language: language,
                   ),
                 ),
               ),
@@ -148,7 +151,7 @@ class _ScreenshotShareScreenState extends ConsumerState<ScreenshotShareScreen> {
                       const SizedBox(width: 8),
                       Flexible(
                         child: Text(
-                          'Ekran görüntüsü al ve paylaş',
+                          L10nService.get('share.take_screenshot_and_share', language),
                           style: const TextStyle(
                             color: Colors.white70,
                             fontSize: 13,
@@ -168,10 +171,10 @@ class _ScreenshotShareScreenState extends ConsumerState<ScreenshotShareScreen> {
     );
   }
 
-  void _showExitHint(BuildContext context) {
+  void _showExitHint(BuildContext context, AppLanguage language) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: const Text('Çıkmak için sağ üstteki X butonuna dokun'),
+        content: Text(L10nService.get('share.tap_x_to_exit', language)),
         duration: const Duration(seconds: 2),
         backgroundColor: Colors.black87,
         behavior: SnackBarBehavior.floating,
@@ -204,10 +207,12 @@ class _ScreenshotShareScreenState extends ConsumerState<ScreenshotShareScreen> {
 class _ShareImageCard extends StatelessWidget {
   final ZodiacSign sign;
   final String userName;
+  final AppLanguage language;
 
   const _ShareImageCard({
     required this.sign,
     required this.userName,
+    required this.language,
   });
 
   // Truncation helpers
@@ -218,7 +223,7 @@ class _ShareImageCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final content = _getCosmicContent(sign);
+    final content = _getCosmicContent(sign, language);
     final moonPhase = MoonService.getCurrentPhase(DateTime.now());
 
     return Container(
@@ -292,7 +297,7 @@ class _ShareImageCard extends StatelessWidget {
                       const SizedBox(height: 6),
                       // Sign Name
                       Text(
-                        sign.nameTr.toUpperCase(),
+                        sign.localizedName(language).toUpperCase(),
                         style: const TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
@@ -303,7 +308,7 @@ class _ShareImageCard extends StatelessWidget {
                       const SizedBox(height: 6),
                       // Date & Moon
                       Text(
-                        '${_formatDate(DateTime.now())} • ${moonPhase.emoji}',
+                        '${_formatDate(DateTime.now(), language)} • ${moonPhase.emoji}',
                         style: TextStyle(
                           fontSize: 12,
                           color: Colors.white.withOpacity(0.5),
@@ -355,7 +360,7 @@ class _ShareImageCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Enerji',
+                        L10nService.get('share.energy', language),
                         style: TextStyle(
                           fontSize: 12,
                           color: Colors.white.withOpacity(0.5),
@@ -498,26 +503,42 @@ class _ShareImageCard extends StatelessWidget {
     );
   }
 
-  String _formatDate(DateTime date) {
-    const months = [
-      'Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran',
-      'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'
-    ];
+  String _formatDate(DateTime date, AppLanguage language) {
+    final months = L10nService.getList('share.months', language);
+    if (months.isEmpty) {
+      return '${date.day}/${date.month}/${date.year}';
+    }
     return '${date.day} ${months[date.month - 1]} ${date.year}';
   }
 
   /// Get cosmic content for the sign (deterministic based on day)
-  _CosmicContent _getCosmicContent(ZodiacSign sign) {
+  _CosmicContent _getCosmicContent(ZodiacSign sign, AppLanguage language) {
     final dayOfYear = DateTime.now().difference(DateTime(DateTime.now().year, 1, 1)).inDays;
-    final seed = (dayOfYear + sign.index) % _headlines[sign.index].length;
+
+    // Get localized content for the sign
+    final signKey = sign.name.toLowerCase();
+    final headlines = L10nService.getList('share.headlines.$signKey', language);
+    final quotes = L10nService.getList('share.quotes.$signKey', language);
+    final microMessages = L10nService.getList('share.micro_messages.$signKey', language);
+    final shadows = L10nService.getList('share.shadows.$signKey', language);
+    final lights = L10nService.getList('share.lights.$signKey', language);
+
+    // Fallback to static content if localization not available
+    final headlineList = headlines.isNotEmpty ? headlines : _headlines[sign.index];
+    final quoteList = quotes.isNotEmpty ? quotes : _quotes[sign.index];
+    final microMessageList = microMessages.isNotEmpty ? microMessages : _microMessages[sign.index];
+    final shadowList = shadows.isNotEmpty ? shadows : _shadows[sign.index];
+    final lightList = lights.isNotEmpty ? lights : _lights[sign.index];
+
+    final seed = (dayOfYear + sign.index) % headlineList.length;
 
     return _CosmicContent(
-      headline: _headlines[sign.index][seed],
-      quote: _quotes[sign.index][seed % _quotes[sign.index].length],
+      headline: headlineList[seed],
+      quote: quoteList[seed % quoteList.length],
       energy: 60 + ((dayOfYear + sign.index * 7) % 35), // 60-94
-      microMessage: _microMessages[sign.index][seed % _microMessages[sign.index].length],
-      shadow: _shadows[sign.index][seed % _shadows[sign.index].length],
-      light: _lights[sign.index][seed % _lights[sign.index].length],
+      microMessage: microMessageList[seed % microMessageList.length],
+      shadow: shadowList[seed % shadowList.length],
+      light: lightList[seed % lightList.length],
     );
   }
 

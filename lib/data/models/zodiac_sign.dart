@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../core/theme/app_colors.dart';
 import '../services/localization_service.dart';
+import '../services/l10n_service.dart';
 import '../providers/app_providers.dart';
 
 enum Element { fire, earth, air, water }
@@ -83,10 +84,68 @@ extension ZodiacSignExtension on ZodiacSign {
   }
 
   /// Get localized name based on app language
-  /// Uses localization_service.dart translations for all 10 languages
+  /// Uses strict isolation L10nService for supported languages (EN/TR/DE/FR)
+  /// Falls back to old L10n for other languages
   String localizedName(AppLanguage language) {
     final key = toString().split('.').last; // 'aries', 'taurus', etc.
+
+    // Use strict isolation L10nService for supported languages
+    if (L10nService.supportedLanguages.contains(language) &&
+        L10nService.isLanguageLoaded(language)) {
+      return L10nService.get('zodiac.$key', language);
+    }
+
+    // Fallback to old L10n for unsupported languages
     return L10n.get(key, language);
+  }
+
+  /// Alias for localizedName - consistent naming with other getters
+  String getLocalizedName(AppLanguage language) => localizedName(language);
+
+  /// Get localized detailed description based on app language
+  /// Currently only Turkish detailed descriptions are available, other languages fall back to English
+  String getLocalizedDetailedDescription(AppLanguage language) {
+    // For now, return Turkish for TR and English description for others
+    // Full localization would require adding detailed descriptions for each language
+    if (language == AppLanguage.tr) {
+      return detailedDescriptionTr;
+    }
+    return description;
+  }
+
+  /// Get localized traits based on app language
+  /// Currently only Turkish traits are available, other languages fall back to generic traits
+  List<String> getLocalizedTraits(AppLanguage language) {
+    if (language == AppLanguage.tr) {
+      return traits;
+    }
+    // English trait equivalents
+    switch (this) {
+      case ZodiacSign.aries:
+        return ['Warrior Spirit', 'Fire Energy', 'Pioneer Force', 'Instant Action'];
+      case ZodiacSign.taurus:
+        return ['Earth Wisdom', 'Stone Patience', 'Loyal Heart', 'Mountain Resolve'];
+      case ZodiacSign.gemini:
+        return ['Wind Intelligence', 'Curious Light', 'Word Magic', 'Flying Thought'];
+      case ZodiacSign.cancer:
+        return ['Mother Energy', 'Moon Intuition', 'Protective Shell', 'Tidal Emotion'];
+      case ZodiacSign.leo:
+        return ['Sun Heart', 'Creative Fire', 'Royal Aura', 'Stage Spirit'];
+      case ZodiacSign.virgo:
+        return ['Detail Eye', 'Earth Practice', 'Service Spirit', 'Perfect Quest'];
+      case ZodiacSign.libra:
+        return ['Balance Master', 'Justice Scales', 'Venus Charm', 'Weighing Soul'];
+      case ZodiacSign.scorpio:
+        return ['Transform Power', 'Depth Knowledge', 'Pluto Courage', 'Mystery Veil'];
+      case ZodiacSign.sagittarius:
+        return ['Archer Vision', 'Adventure Fire', 'Truth Arrow', 'Free Spirit'];
+      case ZodiacSign.capricorn:
+        return ['Summit Drive', 'Saturn Discipline', 'Mountain Patience', 'Stone Wall'];
+      case ZodiacSign.aquarius:
+        return ['Revolutionary Soul', 'Uranus Spark', 'Free Mind', 'Distant Gaze'];
+      case ZodiacSign.pisces:
+        return ['Ocean Heart', 'Neptune Dream', 'Mystic Intuition', 'Boundless Imagination'];
+    }
   }
 
   String get symbol {
@@ -420,6 +479,9 @@ extension ElementExtension on Element {
     }
   }
 
+  /// Alias for localizedName - consistent naming
+  String getLocalizedName(AppLanguage language) => localizedName(language);
+
   String get symbol {
     switch (this) {
       case Element.fire:
@@ -481,6 +543,9 @@ extension ModalityExtension on Modality {
         return L10n.get('modality_mutable', language);
     }
   }
+
+  /// Alias for localizedName - consistent naming
+  String getLocalizedName(AppLanguage language) => localizedName(language);
 
   String get symbol {
     switch (this) {

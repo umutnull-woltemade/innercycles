@@ -1236,5 +1236,891 @@ class L10n {
       AppLanguage.es: 'Mapa de Chakras',
       AppLanguage.ar: 'خريطة الشاكرا',
     },
+
+    // ============ TAB LABELS ============
+    'tab_daily': {
+      AppLanguage.en: 'Daily',
+      AppLanguage.tr: 'Günlük',
+    },
+    'tab_weekly': {
+      AppLanguage.en: 'Weekly',
+      AppLanguage.tr: 'Haftalık',
+    },
+    'tab_monthly': {
+      AppLanguage.en: 'Monthly',
+      AppLanguage.tr: 'Aylık',
+    },
+    'tab_yearly': {
+      AppLanguage.en: 'Yearly',
+      AppLanguage.tr: 'Yıllık',
+    },
+    'tab_zodiac': {
+      AppLanguage.en: 'Zodiac',
+      AppLanguage.tr: 'Burç',
+    },
+    'tab_meditation': {
+      AppLanguage.en: 'Meditation',
+      AppLanguage.tr: 'Meditasyon',
+    },
+    'tab_explore': {
+      AppLanguage.en: 'Explore',
+      AppLanguage.tr: 'Keşfet',
+    },
+    'tab_questions': {
+      AppLanguage.en: 'Questions',
+      AppLanguage.tr: 'Sorular',
+    },
+    'tab_main_asteroids': {
+      AppLanguage.en: 'Main Asteroids',
+      AppLanguage.tr: 'Ana Asteroidler',
+    },
+    'tab_secondary': {
+      AppLanguage.en: 'Secondary',
+      AppLanguage.tr: 'İkincil',
+    },
+    'tab_analysis': {
+      AppLanguage.en: 'Analysis',
+      AppLanguage.tr: 'Analiz',
+    },
+    'tab_general': {
+      AppLanguage.en: 'General',
+      AppLanguage.tr: 'Genel',
+    },
+    'tab_aspects': {
+      AppLanguage.en: 'Aspects',
+      AppLanguage.tr: 'Aspektler',
+    },
+    'tab_houses': {
+      AppLanguage.en: 'Houses',
+      AppLanguage.tr: 'Evler',
+    },
+    'tab_advice': {
+      AppLanguage.en: 'Advice',
+      AppLanguage.tr: 'Tavsiye',
+    },
+    'tab_directions': {
+      AppLanguage.en: 'Directions',
+      AppLanguage.tr: 'Yönler',
+    },
+    'tab_home': {
+      AppLanguage.en: 'Home',
+      AppLanguage.tr: 'Ev',
+    },
+    'tab_office': {
+      AppLanguage.en: 'Office',
+      AppLanguage.tr: 'Ofis',
+    },
+
+    // ============ CATEGORIES ============
+    'category_love': {
+      AppLanguage.en: 'Love',
+      AppLanguage.tr: 'Aşk',
+    },
+    'category_career': {
+      AppLanguage.en: 'Career',
+      AppLanguage.tr: 'Kariyer',
+    },
+    'category_health': {
+      AppLanguage.en: 'Health',
+      AppLanguage.tr: 'Sağlık',
+    },
+    'category_finance': {
+      AppLanguage.en: 'Finance',
+      AppLanguage.tr: 'Finans',
+    },
+
+    // ============ BRAND FOOTERS ============
+    'brand_weekly_horoscope': {
+      AppLanguage.en: 'Weekly Horoscope — Venus One',
+      AppLanguage.tr: 'Haftalık Burç — Venus One',
+    },
+    'brand_monthly_horoscope': {
+      AppLanguage.en: 'Monthly Horoscope — Venus One',
+      AppLanguage.tr: 'Aylık Burç — Venus One',
+    },
+    'brand_yearly_horoscope': {
+      AppLanguage.en: 'Yearly Horoscope — Venus One',
+      AppLanguage.tr: 'Yıllık Burç — Venus One',
+    },
+    'brand_love_horoscope': {
+      AppLanguage.en: 'Love Horoscope — Venus One',
+      AppLanguage.tr: 'Aşk Burcu — Venus One',
+    },
+    'brand_compatibility': {
+      AppLanguage.en: 'Zodiac Compatibility — Venus One',
+      AppLanguage.tr: 'Burç Uyumu — Venus One',
+    },
+
+    // ============ NAVIGATION ============
+    'nav_search': {
+      AppLanguage.en: 'Search',
+      AppLanguage.tr: 'Ara',
+    },
+    'nav_profile': {
+      AppLanguage.en: 'Profile',
+      AppLanguage.tr: 'Profil',
+    },
+    'nav_settings': {
+      AppLanguage.en: 'Settings',
+      AppLanguage.tr: 'Ayar',
+    },
+
+    // ============ SECTION HEADERS ============
+    'weekly_energy_chart': {
+      AppLanguage.en: 'Weekly Energy Chart',
+      AppLanguage.tr: 'Haftalık Enerji Grafiği',
+    },
+    'monthly_mantra': {
+      AppLanguage.en: 'Monthly Mantra',
+      AppLanguage.tr: 'Aylık Mantra',
+    },
+    'weekly_affirmation': {
+      AppLanguage.en: 'Weekly Affirmation',
+      AppLanguage.tr: 'Haftalık Afirmasyon',
+    },
+    'monthly_energy_map': {
+      AppLanguage.en: 'Monthly Energy Map',
+      AppLanguage.tr: 'Aylık Enerji Haritası',
+    },
+    'yearly_affirmation': {
+      AppLanguage.en: 'Yearly Affirmation',
+      AppLanguage.tr: 'Yıllık Afirmasyon',
+    },
+    'what_awaits_this_month': {
+      AppLanguage.en: 'What awaits you this month?',
+      AppLanguage.tr: 'Bu ay seni ne bekliyor?',
+    },
+    'what_awaits_this_week': {
+      AppLanguage.en: 'What awaits you this week?',
+      AppLanguage.tr: 'Bu hafta seni ne bekliyor?',
+    },
+    'what_awaits_this_year': {
+      AppLanguage.en: 'What awaits you this year?',
+      AppLanguage.tr: 'Bu yıl seni ne bekliyor?',
+    },
+    'week_number': {
+      AppLanguage.en: 'Week',
+      AppLanguage.tr: 'Hafta',
+    },
+    'day_suffix': {
+      AppLanguage.en: 'day',
+      AppLanguage.tr: 'gün',
+    },
+
+    // ============ MISC UI ============
+    'zodiac_interpretation': {
+      AppLanguage.en: 'Zodiac Reading',
+      AppLanguage.tr: 'Burç Yorumu',
+    },
+    'love_interpretation': {
+      AppLanguage.en: 'Love Reading',
+      AppLanguage.tr: 'Aşk Yorumu',
+    },
+    'zodiac_compatibility': {
+      AppLanguage.en: 'Zodiac Compatibility',
+      AppLanguage.tr: 'Burç Uyumu',
+    },
+    'zodiac_profiles': {
+      AppLanguage.en: 'Zodiac Profiles',
+      AppLanguage.tr: 'Burç Profilleri',
+    },
+    'select_zodiac': {
+      AppLanguage.en: 'Select Zodiac',
+      AppLanguage.tr: 'Burç Seç',
+    },
+    'view_house_on_map': {
+      AppLanguage.en: 'View This House on My Chart',
+      AppLanguage.tr: 'Haritamda Bu Evi Gör',
+    },
+    'coming_soon': {
+      AppLanguage.en: 'Coming soon',
+      AppLanguage.tr: 'Yakında eklenecek',
+    },
+    'how_is_your_love_life': {
+      AppLanguage.en: 'How is your love life going?',
+      AppLanguage.tr: 'Aşk hayatın nasıl gidiyor?',
+    },
+
+    // ============ SOLAR RETURN ============
+    'solar_return_title': {
+      AppLanguage.en: 'Solar Return',
+      AppLanguage.tr: 'Solar Return',
+      AppLanguage.de: 'Sonnenrückkehr',
+      AppLanguage.fr: 'Retour Solaire',
+    },
+    'solar_return_subtitle': {
+      AppLanguage.en: 'Birthday Chart',
+      AppLanguage.tr: 'Doğum Günü Haritası',
+      AppLanguage.de: 'Geburtstagskarte',
+      AppLanguage.fr: 'Carte d\'Anniversaire',
+    },
+    'solar_return_sun_returns': {
+      AppLanguage.en: 'Sun returns to {sign}',
+      AppLanguage.tr: 'Güneş {sign} burcuna dönüyor',
+      AppLanguage.de: 'Sonne kehrt zu {sign} zurück',
+      AppLanguage.fr: 'Le Soleil revient en {sign}',
+    },
+    'solar_return_return_date': {
+      AppLanguage.en: 'Return Date',
+      AppLanguage.tr: 'Dönüş Tarihi',
+      AppLanguage.de: 'Rückkehrdatum',
+      AppLanguage.fr: 'Date de Retour',
+    },
+    'solar_return_sun_house': {
+      AppLanguage.en: 'Sun House',
+      AppLanguage.tr: 'Güneş Evi',
+      AppLanguage.de: 'Sonnenhaus',
+      AppLanguage.fr: 'Maison du Soleil',
+    },
+    'solar_return_house_number': {
+      AppLanguage.en: '{number}. House',
+      AppLanguage.tr: '{number}. Ev',
+      AppLanguage.de: '{number}. Haus',
+      AppLanguage.fr: '{number}e Maison',
+    },
+    'solar_return_year_themes': {
+      AppLanguage.en: 'Year Themes',
+      AppLanguage.tr: 'Yıl Temaları',
+      AppLanguage.de: 'Jahresthemen',
+      AppLanguage.fr: 'Thèmes de l\'Année',
+    },
+    'solar_return_monthly_highlights': {
+      AppLanguage.en: 'Monthly Highlights',
+      AppLanguage.tr: 'Aylık Öne Çıkanlar',
+      AppLanguage.de: 'Monatliche Highlights',
+      AppLanguage.fr: 'Points Forts Mensuels',
+    },
+    'solar_return_important_dates': {
+      AppLanguage.en: 'Important Dates',
+      AppLanguage.tr: 'Önemli Tarihler',
+      AppLanguage.de: 'Wichtige Daten',
+      AppLanguage.fr: 'Dates Importantes',
+    },
+    'solar_return_year_advice': {
+      AppLanguage.en: 'My Advice for the Year',
+      AppLanguage.tr: 'Yıl İçin Önerim',
+      AppLanguage.de: 'Mein Rat für das Jahr',
+      AppLanguage.fr: 'Mon Conseil pour l\'Année',
+    },
+
+    // Solar Return Themes
+    'solar_return_theme_career_title': {
+      AppLanguage.en: 'Career Focus',
+      AppLanguage.tr: 'Kariyer Odağı',
+      AppLanguage.de: 'Karrierefokus',
+      AppLanguage.fr: 'Focus Carrière',
+    },
+    'solar_return_theme_career_desc': {
+      AppLanguage.en: 'Professional development and social status at the forefront',
+      AppLanguage.tr: 'Mesleki gelişim ve toplumsal konum ön planda',
+      AppLanguage.de: 'Berufliche Entwicklung und sozialer Status im Vordergrund',
+      AppLanguage.fr: 'Développement professionnel et statut social au premier plan',
+    },
+    'solar_return_theme_relationships_title': {
+      AppLanguage.en: 'Relationships',
+      AppLanguage.tr: 'İlişkiler',
+      AppLanguage.de: 'Beziehungen',
+      AppLanguage.fr: 'Relations',
+    },
+    'solar_return_theme_relationships_desc': {
+      AppLanguage.en: 'Important developments in partnerships and collaborations',
+      AppLanguage.tr: 'Partnerlik ve iş birliklerinde önemli gelişmeler',
+      AppLanguage.de: 'Wichtige Entwicklungen in Partnerschaften und Kooperationen',
+      AppLanguage.fr: 'Développements importants dans les partenariats et collaborations',
+    },
+    'solar_return_theme_personal_growth_title': {
+      AppLanguage.en: 'Personal Growth',
+      AppLanguage.tr: 'Kişisel Gelişim',
+      AppLanguage.de: 'Persönliches Wachstum',
+      AppLanguage.fr: 'Croissance Personnelle',
+    },
+    'solar_return_theme_personal_growth_desc': {
+      AppLanguage.en: 'Time to rediscover yourself',
+      AppLanguage.tr: 'Kendinizi yeniden keşfetme zamanı',
+      AppLanguage.de: 'Zeit, sich selbst wiederzuentdecken',
+      AppLanguage.fr: 'Temps de se redécouvrir',
+    },
+    'solar_return_theme_financial_title': {
+      AppLanguage.en: 'Financial Growth',
+      AppLanguage.tr: 'Finansal Büyüme',
+      AppLanguage.de: 'Finanzielles Wachstum',
+      AppLanguage.fr: 'Croissance Financière',
+    },
+    'solar_return_theme_financial_desc': {
+      AppLanguage.en: 'Opportunities in material matters',
+      AppLanguage.tr: 'Maddi konularda fırsatlar',
+      AppLanguage.de: 'Chancen in materiellen Angelegenheiten',
+      AppLanguage.fr: 'Opportunités dans les affaires matérielles',
+    },
+    'solar_return_theme_education_travel_title': {
+      AppLanguage.en: 'Education & Travel',
+      AppLanguage.tr: 'Eğitim ve Seyahat',
+      AppLanguage.de: 'Bildung & Reisen',
+      AppLanguage.fr: 'Éducation & Voyage',
+    },
+    'solar_return_theme_education_travel_desc': {
+      AppLanguage.en: 'Time to expand your horizons',
+      AppLanguage.tr: 'Ufkunuzu genişletme zamanı',
+      AppLanguage.de: 'Zeit, Ihren Horizont zu erweitern',
+      AppLanguage.fr: 'Temps d\'élargir vos horizons',
+    },
+    'solar_return_theme_home_family_title': {
+      AppLanguage.en: 'Home & Family',
+      AppLanguage.tr: 'Ev ve Aile',
+      AppLanguage.de: 'Zuhause & Familie',
+      AppLanguage.fr: 'Maison & Famille',
+    },
+    'solar_return_theme_home_family_desc': {
+      AppLanguage.en: 'Return to roots and building a home',
+      AppLanguage.tr: 'Köklere dönüş ve yuva kurma',
+      AppLanguage.de: 'Rückkehr zu den Wurzeln und Aufbau eines Zuhauses',
+      AppLanguage.fr: 'Retour aux racines et construction d\'un foyer',
+    },
+    'solar_return_theme_creativity_title': {
+      AppLanguage.en: 'Creativity',
+      AppLanguage.tr: 'Yaratıcılık',
+      AppLanguage.de: 'Kreativität',
+      AppLanguage.fr: 'Créativité',
+    },
+    'solar_return_theme_creativity_desc': {
+      AppLanguage.en: 'Artistic expression and entertainment',
+      AppLanguage.tr: 'Sanatsal ifade ve eğlence',
+      AppLanguage.de: 'Künstlerischer Ausdruck und Unterhaltung',
+      AppLanguage.fr: 'Expression artistique et divertissement',
+    },
+    'solar_return_theme_health_routine_title': {
+      AppLanguage.en: 'Health & Routine',
+      AppLanguage.tr: 'Sağlık ve Rutin',
+      AppLanguage.de: 'Gesundheit & Routine',
+      AppLanguage.fr: 'Santé & Routine',
+    },
+    'solar_return_theme_health_routine_desc': {
+      AppLanguage.en: 'Improving daily life',
+      AppLanguage.tr: 'Günlük yaşamı iyileştirme',
+      AppLanguage.de: 'Verbesserung des täglichen Lebens',
+      AppLanguage.fr: 'Amélioration de la vie quotidienne',
+    },
+
+    // Solar Return Keywords
+    'solar_return_keyword_beginning': {
+      AppLanguage.en: 'Beginning',
+      AppLanguage.tr: 'Başlangıç',
+      AppLanguage.de: 'Anfang',
+      AppLanguage.fr: 'Début',
+    },
+    'solar_return_keyword_growth': {
+      AppLanguage.en: 'Growth',
+      AppLanguage.tr: 'Büyüme',
+      AppLanguage.de: 'Wachstum',
+      AppLanguage.fr: 'Croissance',
+    },
+    'solar_return_keyword_challenge': {
+      AppLanguage.en: 'Challenge',
+      AppLanguage.tr: 'Zorluk',
+      AppLanguage.de: 'Herausforderung',
+      AppLanguage.fr: 'Défi',
+    },
+    'solar_return_keyword_opportunity': {
+      AppLanguage.en: 'Opportunity',
+      AppLanguage.tr: 'Fırsat',
+      AppLanguage.de: 'Gelegenheit',
+      AppLanguage.fr: 'Opportunité',
+    },
+    'solar_return_keyword_rest': {
+      AppLanguage.en: 'Rest',
+      AppLanguage.tr: 'Dinlenme',
+      AppLanguage.de: 'Ruhe',
+      AppLanguage.fr: 'Repos',
+    },
+    'solar_return_keyword_action': {
+      AppLanguage.en: 'Action',
+      AppLanguage.tr: 'Aksiyon',
+      AppLanguage.de: 'Aktion',
+      AppLanguage.fr: 'Action',
+    },
+    'solar_return_keyword_reflection': {
+      AppLanguage.en: 'Reflection',
+      AppLanguage.tr: 'Düşünme',
+      AppLanguage.de: 'Reflexion',
+      AppLanguage.fr: 'Réflexion',
+    },
+    'solar_return_keyword_progress': {
+      AppLanguage.en: 'Progress',
+      AppLanguage.tr: 'İlerleme',
+      AppLanguage.de: 'Fortschritt',
+      AppLanguage.fr: 'Progrès',
+    },
+    'solar_return_keyword_change': {
+      AppLanguage.en: 'Change',
+      AppLanguage.tr: 'Değişim',
+      AppLanguage.de: 'Veränderung',
+      AppLanguage.fr: 'Changement',
+    },
+    'solar_return_keyword_balance': {
+      AppLanguage.en: 'Balance',
+      AppLanguage.tr: 'Denge',
+      AppLanguage.de: 'Balance',
+      AppLanguage.fr: 'Équilibre',
+    },
+    'solar_return_keyword_harvest': {
+      AppLanguage.en: 'Harvest',
+      AppLanguage.tr: 'Hasat',
+      AppLanguage.de: 'Ernte',
+      AppLanguage.fr: 'Récolte',
+    },
+    'solar_return_keyword_closure': {
+      AppLanguage.en: 'Closure',
+      AppLanguage.tr: 'Kapanış',
+      AppLanguage.de: 'Abschluss',
+      AppLanguage.fr: 'Clôture',
+    },
+
+    // Solar Return Key Dates
+    'solar_return_spring_equinox_title': {
+      AppLanguage.en: 'Spring Equinox',
+      AppLanguage.tr: 'Bahar Ekinoksu',
+      AppLanguage.de: 'Frühlingstagundnachtgleiche',
+      AppLanguage.fr: 'Équinoxe de Printemps',
+    },
+    'solar_return_spring_equinox_desc': {
+      AppLanguage.en: 'Ideal for starting new projects',
+      AppLanguage.tr: 'Yeni projelere başlamak için ideal',
+      AppLanguage.de: 'Ideal für neue Projekte',
+      AppLanguage.fr: 'Idéal pour démarrer de nouveaux projets',
+    },
+    'solar_return_summer_solstice_title': {
+      AppLanguage.en: 'Summer Solstice',
+      AppLanguage.tr: 'Yaz Dönümü',
+      AppLanguage.de: 'Sommersonnenwende',
+      AppLanguage.fr: 'Solstice d\'Été',
+    },
+    'solar_return_summer_solstice_desc': {
+      AppLanguage.en: 'Energy at peak, take action',
+      AppLanguage.tr: 'Enerji zirvede, aksiyona geç',
+      AppLanguage.de: 'Energie auf dem Höhepunkt, handeln Sie',
+      AppLanguage.fr: 'Énergie au sommet, passez à l\'action',
+    },
+    'solar_return_autumn_equinox_title': {
+      AppLanguage.en: 'Autumn Equinox',
+      AppLanguage.tr: 'Sonbahar Ekinoksu',
+      AppLanguage.de: 'Herbsttagundnachtgleiche',
+      AppLanguage.fr: 'Équinoxe d\'Automne',
+    },
+    'solar_return_autumn_equinox_desc': {
+      AppLanguage.en: 'Time for balancing and reflection',
+      AppLanguage.tr: 'Dengeleme ve düşünme zamanı',
+      AppLanguage.de: 'Zeit für Ausgleich und Reflexion',
+      AppLanguage.fr: 'Temps d\'équilibre et de réflexion',
+    },
+    'solar_return_winter_solstice_title': {
+      AppLanguage.en: 'Winter Solstice',
+      AppLanguage.tr: 'Kış Dönümü',
+      AppLanguage.de: 'Wintersonnenwende',
+      AppLanguage.fr: 'Solstice d\'Hiver',
+    },
+    'solar_return_winter_solstice_desc': {
+      AppLanguage.en: 'Introspection and planning',
+      AppLanguage.tr: 'İçe dönüş ve planlama',
+      AppLanguage.de: 'Innenschau und Planung',
+      AppLanguage.fr: 'Introspection et planification',
+    },
+
+    // Solar Return Advice by House
+    'solar_return_advice_house_1': {
+      AppLanguage.en: 'Focus on yourself this year. Set your personal goals and use your courage.',
+      AppLanguage.tr: 'Bu yıl kendinize odaklanın. Kişisel hedeflerinizi belirleyin ve cesaretinizi kullanın.',
+      AppLanguage.de: 'Konzentrieren Sie sich dieses Jahr auf sich selbst. Setzen Sie persönliche Ziele und nutzen Sie Ihren Mut.',
+      AppLanguage.fr: 'Concentrez-vous sur vous-même cette année. Fixez vos objectifs personnels et utilisez votre courage.',
+    },
+    'solar_return_advice_house_2': {
+      AppLanguage.en: 'Review your financial plans. Work on your values and resources.',
+      AppLanguage.tr: 'Finansal planlarınızı gözden geçirin. Değerleriniz ve kaynaklarınız üzerinde çalışın.',
+      AppLanguage.de: 'Überprüfen Sie Ihre Finanzpläne. Arbeiten Sie an Ihren Werten und Ressourcen.',
+      AppLanguage.fr: 'Révisez vos plans financiers. Travaillez sur vos valeurs et ressources.',
+    },
+    'solar_return_advice_house_3': {
+      AppLanguage.en: 'Develop your communication skills. Strengthen connections with your close circle.',
+      AppLanguage.tr: 'İletişim becerilerinizi geliştirin. Yakın çevrenizle bağlantıları güçlendirin.',
+      AppLanguage.de: 'Entwickeln Sie Ihre Kommunikationsfähigkeiten. Stärken Sie Verbindungen mit Ihrem engeren Kreis.',
+      AppLanguage.fr: 'Développez vos compétences en communication. Renforcez les liens avec votre entourage.',
+    },
+    'solar_return_advice_house_4': {
+      AppLanguage.en: 'Dedicate time to your home and family. Prioritize your emotional security.',
+      AppLanguage.tr: 'Evinize ve ailenize zaman ayırın. Duygusal güvenliğinizi öncelikli yapın.',
+      AppLanguage.de: 'Widmen Sie Ihrem Zuhause und Ihrer Familie Zeit. Priorisieren Sie Ihre emotionale Sicherheit.',
+      AppLanguage.fr: 'Consacrez du temps à votre maison et votre famille. Priorisez votre sécurité émotionnelle.',
+    },
+    'solar_return_advice_house_5': {
+      AppLanguage.en: 'Let your creativity flow freely. Expect vitality in love and entertainment.',
+      AppLanguage.tr: 'Yaratıcılığınızda özgür bırakın. Aşk ve eğlence hayatında canlılık bekleyin.',
+      AppLanguage.de: 'Lassen Sie Ihre Kreativität frei fließen. Erwarten Sie Vitalität in Liebe und Unterhaltung.',
+      AppLanguage.fr: 'Laissez votre créativité s\'exprimer librement. Attendez-vous à de la vitalité en amour et divertissement.',
+    },
+    'solar_return_advice_house_6': {
+      AppLanguage.en: 'Pay attention to your health and daily routines. Expect developments in your work environment.',
+      AppLanguage.tr: 'Sağlığınıza ve günlük rutinlerinize dikkat edin. İş ortamında gelişmeler olacak.',
+      AppLanguage.de: 'Achten Sie auf Ihre Gesundheit und täglichen Routinen. Erwarten Sie Entwicklungen im Arbeitsumfeld.',
+      AppLanguage.fr: 'Faites attention à votre santé et routines quotidiennes. Attendez des développements dans votre environnement de travail.',
+    },
+    'solar_return_advice_house_7': {
+      AppLanguage.en: 'Relationships take center stage. Important steps in partnerships and marriage matters.',
+      AppLanguage.tr: 'İlişkileriniz ön planda. Ortaklıklar ve evlilik konularında önemli adımlar.',
+      AppLanguage.de: 'Beziehungen stehen im Mittelpunkt. Wichtige Schritte in Partnerschaften und Eheangelegenheiten.',
+      AppLanguage.fr: 'Les relations sont au premier plan. Étapes importantes dans les partenariats et questions de mariage.',
+    },
+    'solar_return_advice_house_8': {
+      AppLanguage.en: 'Go deep. Time for transformation and renewal. Shared finances gain importance.',
+      AppLanguage.tr: 'Derinlere inin. Dönüşüm ve yenilenme zamanı. Ortak finanslar önem kazanıyor.',
+      AppLanguage.de: 'Gehen Sie in die Tiefe. Zeit für Transformation und Erneuerung. Gemeinsame Finanzen gewinnen an Bedeutung.',
+      AppLanguage.fr: 'Allez en profondeur. Temps de transformation et renouvellement. Les finances partagées gagnent en importance.',
+    },
+    'solar_return_advice_house_9': {
+      AppLanguage.en: 'Expand your horizons. Ideal year for education, travel and philosophical pursuits.',
+      AppLanguage.tr: 'Ufkunuzu genişletin. Eğitim, seyahat ve felsefi arayışlar için ideal yıl.',
+      AppLanguage.de: 'Erweitern Sie Ihren Horizont. Ideales Jahr für Bildung, Reisen und philosophische Bestrebungen.',
+      AppLanguage.fr: 'Élargissez vos horizons. Année idéale pour l\'éducation, les voyages et les quêtes philosophiques.',
+    },
+    'solar_return_advice_house_10': {
+      AppLanguage.en: 'Focus on your career goals. Establish your place in society.',
+      AppLanguage.tr: 'Kariyer hedeflerinize odaklanın. Toplumda yerinizi belirleyin.',
+      AppLanguage.de: 'Konzentrieren Sie sich auf Ihre Karriereziele. Etablieren Sie Ihren Platz in der Gesellschaft.',
+      AppLanguage.fr: 'Concentrez-vous sur vos objectifs de carrière. Établissez votre place dans la société.',
+    },
+    'solar_return_advice_house_11': {
+      AppLanguage.en: 'Expand your social circle. Work towards your future dreams.',
+      AppLanguage.tr: 'Sosyal çevrenizi genişletin. Gelecek hayalleriniz için çalışın.',
+      AppLanguage.de: 'Erweitern Sie Ihren sozialen Kreis. Arbeiten Sie auf Ihre Zukunftsträume hin.',
+      AppLanguage.fr: 'Élargissez votre cercle social. Travaillez vers vos rêves futurs.',
+    },
+    'solar_return_advice_house_12': {
+      AppLanguage.en: 'Year of introspection. Spiritual development and rest should be prioritized.',
+      AppLanguage.tr: 'İçe dönüş yılı. Ruhsal gelişim ve dinlenme öncelikli olmalı.',
+      AppLanguage.de: 'Jahr der Innenschau. Spirituelle Entwicklung und Ruhe sollten Priorität haben.',
+      AppLanguage.fr: 'Année d\'introspection. Le développement spirituel et le repos doivent être prioritaires.',
+    },
+    'solar_return_advice_default': {
+      AppLanguage.en: 'This year will bring important transformations for you.',
+      AppLanguage.tr: 'Bu yıl sizin için önemli dönüşümler getirecek.',
+      AppLanguage.de: 'Dieses Jahr wird wichtige Veränderungen für Sie bringen.',
+      AppLanguage.fr: 'Cette année apportera des transformations importantes pour vous.',
+    },
+
+    // Months
+    'month_january': {
+      AppLanguage.en: 'January',
+      AppLanguage.tr: 'Ocak',
+      AppLanguage.de: 'Januar',
+      AppLanguage.fr: 'Janvier',
+    },
+    'month_february': {
+      AppLanguage.en: 'February',
+      AppLanguage.tr: 'Şubat',
+      AppLanguage.de: 'Februar',
+      AppLanguage.fr: 'Février',
+    },
+    'month_march': {
+      AppLanguage.en: 'March',
+      AppLanguage.tr: 'Mart',
+      AppLanguage.de: 'März',
+      AppLanguage.fr: 'Mars',
+    },
+    'month_april': {
+      AppLanguage.en: 'April',
+      AppLanguage.tr: 'Nisan',
+      AppLanguage.de: 'April',
+      AppLanguage.fr: 'Avril',
+    },
+    'month_may': {
+      AppLanguage.en: 'May',
+      AppLanguage.tr: 'Mayıs',
+      AppLanguage.de: 'Mai',
+      AppLanguage.fr: 'Mai',
+    },
+    'month_june': {
+      AppLanguage.en: 'June',
+      AppLanguage.tr: 'Haziran',
+      AppLanguage.de: 'Juni',
+      AppLanguage.fr: 'Juin',
+    },
+    'month_july': {
+      AppLanguage.en: 'July',
+      AppLanguage.tr: 'Temmuz',
+      AppLanguage.de: 'Juli',
+      AppLanguage.fr: 'Juillet',
+    },
+    'month_august': {
+      AppLanguage.en: 'August',
+      AppLanguage.tr: 'Ağustos',
+      AppLanguage.de: 'August',
+      AppLanguage.fr: 'Août',
+    },
+    'month_september': {
+      AppLanguage.en: 'September',
+      AppLanguage.tr: 'Eylül',
+      AppLanguage.de: 'September',
+      AppLanguage.fr: 'Septembre',
+    },
+    'month_october': {
+      AppLanguage.en: 'October',
+      AppLanguage.tr: 'Ekim',
+      AppLanguage.de: 'Oktober',
+      AppLanguage.fr: 'Octobre',
+    },
+    'month_november': {
+      AppLanguage.en: 'November',
+      AppLanguage.tr: 'Kasım',
+      AppLanguage.de: 'November',
+      AppLanguage.fr: 'Novembre',
+    },
+    'month_december': {
+      AppLanguage.en: 'December',
+      AppLanguage.tr: 'Aralık',
+      AppLanguage.de: 'Dezember',
+      AppLanguage.fr: 'Décembre',
+    },
+
+    // Month Abbreviations
+    'month_abbr_jan': {
+      AppLanguage.en: 'Jan',
+      AppLanguage.tr: 'Oca',
+      AppLanguage.de: 'Jan',
+      AppLanguage.fr: 'Jan',
+    },
+    'month_abbr_feb': {
+      AppLanguage.en: 'Feb',
+      AppLanguage.tr: 'Şub',
+      AppLanguage.de: 'Feb',
+      AppLanguage.fr: 'Fév',
+    },
+    'month_abbr_mar': {
+      AppLanguage.en: 'Mar',
+      AppLanguage.tr: 'Mar',
+      AppLanguage.de: 'Mär',
+      AppLanguage.fr: 'Mar',
+    },
+    'month_abbr_apr': {
+      AppLanguage.en: 'Apr',
+      AppLanguage.tr: 'Nis',
+      AppLanguage.de: 'Apr',
+      AppLanguage.fr: 'Avr',
+    },
+    'month_abbr_may': {
+      AppLanguage.en: 'May',
+      AppLanguage.tr: 'May',
+      AppLanguage.de: 'Mai',
+      AppLanguage.fr: 'Mai',
+    },
+    'month_abbr_jun': {
+      AppLanguage.en: 'Jun',
+      AppLanguage.tr: 'Haz',
+      AppLanguage.de: 'Jun',
+      AppLanguage.fr: 'Jui',
+    },
+    'month_abbr_jul': {
+      AppLanguage.en: 'Jul',
+      AppLanguage.tr: 'Tem',
+      AppLanguage.de: 'Jul',
+      AppLanguage.fr: 'Jui',
+    },
+    'month_abbr_aug': {
+      AppLanguage.en: 'Aug',
+      AppLanguage.tr: 'Ağu',
+      AppLanguage.de: 'Aug',
+      AppLanguage.fr: 'Aoû',
+    },
+    'month_abbr_sep': {
+      AppLanguage.en: 'Sep',
+      AppLanguage.tr: 'Eyl',
+      AppLanguage.de: 'Sep',
+      AppLanguage.fr: 'Sep',
+    },
+    'month_abbr_oct': {
+      AppLanguage.en: 'Oct',
+      AppLanguage.tr: 'Eki',
+      AppLanguage.de: 'Okt',
+      AppLanguage.fr: 'Oct',
+    },
+    'month_abbr_nov': {
+      AppLanguage.en: 'Nov',
+      AppLanguage.tr: 'Kas',
+      AppLanguage.de: 'Nov',
+      AppLanguage.fr: 'Nov',
+    },
+    'month_abbr_dec': {
+      AppLanguage.en: 'Dec',
+      AppLanguage.tr: 'Ara',
+      AppLanguage.de: 'Dez',
+      AppLanguage.fr: 'Déc',
+    },
+
+    // ============ PROGRESSIONS ============
+    'progressions_title': {
+      AppLanguage.en: 'Secondary Progressions',
+      AppLanguage.tr: 'İkincil İlerlemeler',
+      AppLanguage.de: 'Sekundäre Progressionen',
+      AppLanguage.fr: 'Progressions Secondaires',
+    },
+    'progressions_profile_not_found': {
+      AppLanguage.en: 'Profile not found',
+      AppLanguage.tr: 'Profil bulunamadı',
+      AppLanguage.de: 'Profil nicht gefunden',
+      AppLanguage.fr: 'Profil non trouvé',
+    },
+    'progressions_enter_birth_info': {
+      AppLanguage.en: 'Please enter your birth information first',
+      AppLanguage.tr: 'Lütfen önce doğum bilgilerinizi girin',
+      AppLanguage.de: 'Bitte geben Sie zuerst Ihre Geburtsinformationen ein',
+      AppLanguage.fr: 'Veuillez d\'abord entrer vos informations de naissance',
+    },
+    'progressions_go_back': {
+      AppLanguage.en: 'Go Back',
+      AppLanguage.tr: 'Geri Dön',
+      AppLanguage.de: 'Zurück',
+      AppLanguage.fr: 'Retour',
+    },
+    'progressions_info_banner': {
+      AppLanguage.en: 'Secondary progressions are based on the "one day = one year" principle. They show the slow evolution of your natal chart.',
+      AppLanguage.tr: 'İkincil ilerlemeler, "bir gün = bir yıl" prensibine dayanır. Natal haritanızın yavaş evrimini gösterir.',
+      AppLanguage.de: 'Sekundäre Progressionen basieren auf dem Prinzip "ein Tag = ein Jahr". Sie zeigen die langsame Entwicklung Ihres Geburtshoroskops.',
+      AppLanguage.fr: 'Les progressions secondaires sont basées sur le principe "un jour = un an". Elles montrent l\'évolution lente de votre thème natal.',
+    },
+    'progressions_profile_info': {
+      AppLanguage.en: 'Profile Information',
+      AppLanguage.tr: 'Profil Bilgileri',
+      AppLanguage.de: 'Profilinformationen',
+      AppLanguage.fr: 'Informations du Profil',
+    },
+    'progressions_name': {
+      AppLanguage.en: 'Name',
+      AppLanguage.tr: 'İsim',
+      AppLanguage.de: 'Name',
+      AppLanguage.fr: 'Nom',
+    },
+    'progressions_user': {
+      AppLanguage.en: 'User',
+      AppLanguage.tr: 'Kullanıcı',
+      AppLanguage.de: 'Benutzer',
+      AppLanguage.fr: 'Utilisateur',
+    },
+    'progressions_calculating': {
+      AppLanguage.en: 'Calculating progressions...',
+      AppLanguage.tr: 'İlerlemeler hesaplanıyor...',
+      AppLanguage.de: 'Progressionen werden berechnet...',
+      AppLanguage.fr: 'Calcul des progressions...',
+    },
+    'progressions_positions': {
+      AppLanguage.en: 'Progressed Positions',
+      AppLanguage.tr: 'İlerlemiş Pozisyonlar',
+      AppLanguage.de: 'Progredierte Positionen',
+      AppLanguage.fr: 'Positions Progressées',
+    },
+    'progressions_age': {
+      AppLanguage.en: 'years old',
+      AppLanguage.tr: 'yaş',
+      AppLanguage.de: 'Jahre alt',
+      AppLanguage.fr: 'ans',
+    },
+    'progressions_sun': {
+      AppLanguage.en: 'Sun',
+      AppLanguage.tr: 'Güneş',
+      AppLanguage.de: 'Sonne',
+      AppLanguage.fr: 'Soleil',
+    },
+    'progressions_moon': {
+      AppLanguage.en: 'Moon',
+      AppLanguage.tr: 'Ay',
+      AppLanguage.de: 'Mond',
+      AppLanguage.fr: 'Lune',
+    },
+    'progressions_rising': {
+      AppLanguage.en: 'Rising',
+      AppLanguage.tr: 'Yükselen',
+      AppLanguage.de: 'Aszendent',
+      AppLanguage.fr: 'Ascendant',
+    },
+    'progressions_mercury': {
+      AppLanguage.en: 'Mercury',
+      AppLanguage.tr: 'Merkür',
+      AppLanguage.de: 'Merkur',
+      AppLanguage.fr: 'Mercure',
+    },
+    'progressions_venus': {
+      AppLanguage.en: 'Venus',
+      AppLanguage.tr: 'Venüs',
+      AppLanguage.de: 'Venus',
+      AppLanguage.fr: 'Vénus',
+    },
+    'progressions_mars': {
+      AppLanguage.en: 'Mars',
+      AppLanguage.tr: 'Mars',
+      AppLanguage.de: 'Mars',
+      AppLanguage.fr: 'Mars',
+    },
+    'progressions_from': {
+      AppLanguage.en: '(from {sign})',
+      AppLanguage.tr: '({sign}\'dan)',
+      AppLanguage.de: '(von {sign})',
+      AppLanguage.fr: '(de {sign})',
+    },
+    'progressions_current_life_phase': {
+      AppLanguage.en: 'Current Life Phase',
+      AppLanguage.tr: 'Mevcut Yaşam Evresi',
+      AppLanguage.de: 'Aktuelle Lebensphase',
+      AppLanguage.fr: 'Phase de Vie Actuelle',
+    },
+    'progressions_emotional_theme': {
+      AppLanguage.en: 'Emotional Theme',
+      AppLanguage.tr: 'Duygusal Tema',
+      AppLanguage.de: 'Emotionales Thema',
+      AppLanguage.fr: 'Thème Émotionnel',
+    },
+    'progressions_identity_evolution': {
+      AppLanguage.en: 'Identity Evolution',
+      AppLanguage.tr: 'Kimlik Evrimi',
+      AppLanguage.de: 'Identitätsentwicklung',
+      AppLanguage.fr: 'Évolution de l\'Identité',
+    },
+    'progressions_active_aspects': {
+      AppLanguage.en: 'Active Aspects',
+      AppLanguage.tr: 'Aktif Açılar',
+      AppLanguage.de: 'Aktive Aspekte',
+      AppLanguage.fr: 'Aspects Actifs',
+    },
+    'progressions_applying': {
+      AppLanguage.en: 'Applying',
+      AppLanguage.tr: 'Yaklaşan',
+      AppLanguage.de: 'Annähernd',
+      AppLanguage.fr: 'Appliquant',
+    },
+    'progressions_separating': {
+      AppLanguage.en: 'Separating',
+      AppLanguage.tr: 'Ayrılan',
+      AppLanguage.de: 'Trennend',
+      AppLanguage.fr: 'Séparant',
+    },
+    'progressions_significant_events': {
+      AppLanguage.en: 'Significant Events',
+      AppLanguage.tr: 'Önemli Olaylar',
+      AppLanguage.de: 'Wichtige Ereignisse',
+      AppLanguage.fr: 'Événements Significatifs',
+    },
+    'progressions_upcoming_changes': {
+      AppLanguage.en: 'Upcoming Changes',
+      AppLanguage.tr: 'Gelecek Değişimler',
+      AppLanguage.de: 'Bevorstehende Änderungen',
+      AppLanguage.fr: 'Changements à Venir',
+    },
+    'progressions_kadim_title': {
+      AppLanguage.en: 'One Day = One Year',
+      AppLanguage.tr: 'Bir Gün = Bir Yıl',
+      AppLanguage.de: 'Ein Tag = Ein Jahr',
+      AppLanguage.fr: 'Un Jour = Un An',
+    },
+    'progressions_kadim_content': {
+      AppLanguage.en: 'Secondary Progressions are one of astrology\'s most subtle prediction techniques. They work with the "one day = one year" formula: the sky 30 days after your birth reflects the energies of your 30th year. This ancient technique shows your inner evolution and spiritual maturation - inner transformation rather than external events.',
+      AppLanguage.tr: 'İkincil İlerlemeler, astrolojinin en incelikli tahmin tekniklerinden biridir. "Bir gün = bir yıl" formülüyle çalışır: doğumunuzdan 30 gün sonraki gökyüzü, 30 yaşınızdaki enerjileri yansıtır. Bu kadim teknik, içsel evriminizi ve ruhsal olgunlaşmanızı gösterir - dış olaylardan ziyade iç dönüşümü.',
+      AppLanguage.de: 'Sekundäre Progressionen sind eine der subtilsten Vorhersagetechniken der Astrologie. Sie arbeiten mit der Formel "ein Tag = ein Jahr": der Himmel 30 Tage nach Ihrer Geburt spiegelt die Energien Ihres 30. Lebensjahres wider. Diese alte Technik zeigt Ihre innere Entwicklung und spirituelle Reifung.',
+      AppLanguage.fr: 'Les Progressions Secondaires sont l\'une des techniques de prédiction les plus subtiles de l\'astrologie. Elles fonctionnent avec la formule "un jour = un an" : le ciel 30 jours après votre naissance reflète les énergies de votre 30e année. Cette technique ancienne montre votre évolution intérieure et votre maturation spirituelle.',
+    },
   };
 }

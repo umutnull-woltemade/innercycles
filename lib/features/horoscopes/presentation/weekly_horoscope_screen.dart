@@ -1,28 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/zodiac_sign.dart';
 import '../../../data/models/extended_horoscope.dart';
+import '../../../data/providers/app_providers.dart';
 import '../../../data/services/extended_horoscope_service.dart';
+import '../../../data/services/l10n_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/next_blocks.dart';
 import '../../../shared/widgets/entertainment_disclaimer.dart';
 import '../../../shared/widgets/quiz_cta_card.dart';
 
-class WeeklyHoroscopeScreen extends StatefulWidget {
+class WeeklyHoroscopeScreen extends ConsumerStatefulWidget {
   final String? signName;
 
   const WeeklyHoroscopeScreen({super.key, this.signName});
 
   @override
-  State<WeeklyHoroscopeScreen> createState() => _WeeklyHoroscopeScreenState();
+  ConsumerState<WeeklyHoroscopeScreen> createState() => _WeeklyHoroscopeScreenState();
 }
 
-class _WeeklyHoroscopeScreenState extends State<WeeklyHoroscopeScreen> {
+class _WeeklyHoroscopeScreenState extends ConsumerState<WeeklyHoroscopeScreen> {
   late ZodiacSign _selectedSign;
-  late WeeklyHoroscope _horoscope;
+  WeeklyHoroscope? _horoscope;
   late DateTime _weekStart;
+  AppLanguage? _cachedLanguage;
 
   @override
   void initState() {
@@ -34,7 +38,6 @@ class _WeeklyHoroscopeScreenState extends State<WeeklyHoroscopeScreen> {
           )
         : ZodiacSign.aries;
     _weekStart = _getWeekStart(DateTime.now());
-    _loadHoroscope();
   }
 
   DateTime _getWeekStart(DateTime date) {
@@ -42,23 +45,35 @@ class _WeeklyHoroscopeScreenState extends State<WeeklyHoroscopeScreen> {
     return date.subtract(Duration(days: dayOfWeek - 1));
   }
 
-  void _loadHoroscope() {
-    _horoscope = ExtendedHoroscopeService.generateWeeklyHoroscope(
-      _selectedSign,
-      _weekStart,
-    );
+  void _loadHoroscope(AppLanguage language) {
+    if (_cachedLanguage != language || _horoscope == null) {
+      _cachedLanguage = language;
+      _horoscope = ExtendedHoroscopeService.generateWeeklyHoroscope(
+        _selectedSign,
+        _weekStart,
+        language: language,
+      );
+    }
   }
 
-  void _changeWeek(int delta) {
+  void _changeWeek(int delta, AppLanguage language) {
     setState(() {
       _weekStart = _weekStart.add(Duration(days: delta * 7));
-      _loadHoroscope();
+      _cachedLanguage = null; // Force reload
+      _loadHoroscope(language);
     });
+  }
+
+  String _getKeyDatesTitle() {
+    final language = ref.read(languageProvider);
+    return L10nService.get('horoscope.key_dates', language);
   }
 
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final language = ref.watch(languageProvider);
+    _loadHoroscope(language);
 
     return Scaffold(
       body: CosmicBackground(
@@ -66,7 +81,7 @@ class _WeeklyHoroscopeScreenState extends State<WeeklyHoroscopeScreen> {
           child: Column(
             children: [
               _buildHeader(context, isDark),
-              _buildWeekSelector(isDark),
+              _buildWeekSelector(isDark, language),
               Expanded(
                 child: SingleChildScrollView(
                   padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -89,8 +104,8 @@ class _WeeklyHoroscopeScreenState extends State<WeeklyHoroscopeScreen> {
                       NextBlocks(currentPage: 'weekly_horoscope', signName: _selectedSign.name),
                       const SizedBox(height: AppConstants.spacingXl),
                       // Entertainment Disclaimer
-                      const PageFooterWithDisclaimer(
-                        brandText: 'Haftalık Burç — Venus One',
+                      PageFooterWithDisclaimer(
+                        brandText: L10nService.get('brands.weekly_horoscope', language),
                         disclaimerText: DisclaimerTexts.astrology,
                       ),
                       const SizedBox(height: AppConstants.spacingLg),
@@ -106,6 +121,7 @@ class _WeeklyHoroscopeScreenState extends State<WeeklyHoroscopeScreen> {
   }
 
   Widget _buildHeader(BuildContext context, bool isDark) {
+    final language = ref.watch(languageProvider);
     return Padding(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       child: Row(
@@ -118,7 +134,7 @@ class _WeeklyHoroscopeScreenState extends State<WeeklyHoroscopeScreen> {
           const SizedBox(width: AppConstants.spacingSm),
           Expanded(
             child: Text(
-              'Bu hafta seni ne bekliyor?',
+              L10nService.get('sections.what_awaits_this_week', language),
               style: Theme.of(context).textTheme.headlineSmall,
             ),
           ),
@@ -127,7 +143,7 @@ class _WeeklyHoroscopeScreenState extends State<WeeklyHoroscopeScreen> {
     );
   }
 
-  Widget _buildWeekSelector(bool isDark) {
+  Widget _buildWeekSelector(bool isDark, AppLanguage language) {
     final weekEnd = _weekStart.add(const Duration(days: 6));
     final dateFormat = '${_weekStart.day}.${_weekStart.month} - ${weekEnd.day}.${weekEnd.month}';
 
@@ -148,7 +164,7 @@ class _WeeklyHoroscopeScreenState extends State<WeeklyHoroscopeScreen> {
         children: [
           IconButton(
             icon: const Icon(Icons.chevron_left),
-            onPressed: () => _changeWeek(-1),
+            onPressed: () => _changeWeek(-1, language),
             color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
           ),
           Text(
@@ -159,7 +175,7 @@ class _WeeklyHoroscopeScreenState extends State<WeeklyHoroscopeScreen> {
           ),
           IconButton(
             icon: const Icon(Icons.chevron_right),
-            onPressed: () => _changeWeek(1),
+            onPressed: () => _changeWeek(1, language),
             color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
           ),
         ],
@@ -179,9 +195,11 @@ class _WeeklyHoroscopeScreenState extends State<WeeklyHoroscopeScreen> {
 
           return GestureDetector(
             onTap: () {
+              final language = ref.read(languageProvider);
               setState(() {
                 _selectedSign = sign;
-                _loadHoroscope();
+                _cachedLanguage = null; // Force reload
+                _loadHoroscope(language);
               });
             },
             child: Container(
@@ -206,7 +224,7 @@ class _WeeklyHoroscopeScreenState extends State<WeeklyHoroscopeScreen> {
                     style: const TextStyle(fontSize: 20),
                   ),
                   Text(
-                    sign.nameTr,
+                    sign.localizedName(ref.read(languageProvider)),
                     style: Theme.of(context).textTheme.labelSmall?.copyWith(
                           fontSize: 10,
                           fontWeight:
@@ -257,12 +275,12 @@ class _WeeklyHoroscopeScreenState extends State<WeeklyHoroscopeScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    _selectedSign.nameTr,
+                    _selectedSign.localizedName(ref.read(languageProvider)),
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
                   ),
-                  _buildRatingStars(_horoscope.overallRating),
+                  _buildRatingStars(_horoscope!.overallRating),
                 ],
               ),
               const Spacer(),
@@ -276,7 +294,7 @@ class _WeeklyHoroscopeScreenState extends State<WeeklyHoroscopeScreen> {
                   borderRadius: BorderRadius.circular(AppConstants.radiusFull),
                 ),
                 child: Text(
-                  'Şans Günü: ${_horoscope.luckyDay}',
+                  '${L10nService.get('horoscope.lucky_days', ref.read(languageProvider))}: ${_horoscope!.luckyDay}',
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: AppColors.starGold,
                         fontWeight: FontWeight.w600,
@@ -287,7 +305,7 @@ class _WeeklyHoroscopeScreenState extends State<WeeklyHoroscopeScreen> {
           ),
           const SizedBox(height: AppConstants.spacingLg),
           Text(
-            _horoscope.overview,
+            _horoscope!.overview,
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                   height: 1.6,
                 ),
@@ -310,29 +328,30 @@ class _WeeklyHoroscopeScreenState extends State<WeeklyHoroscopeScreen> {
   }
 
   Widget _buildCategoryCards(bool isDark) {
+    final language = ref.watch(languageProvider);
     final categories = [
       {
         'icon': Icons.favorite,
-        'title': 'Aşk',
-        'content': _horoscope.loveWeek,
+        'title': L10nService.get('categories.love', language),
+        'content': _horoscope!.loveWeek,
         'color': Colors.pink,
       },
       {
         'icon': Icons.work,
-        'title': 'Kariyer',
-        'content': _horoscope.careerWeek,
+        'title': L10nService.get('categories.career', language),
+        'content': _horoscope!.careerWeek,
         'color': Colors.blue,
       },
       {
         'icon': Icons.health_and_safety,
-        'title': 'Sağlık',
-        'content': _horoscope.healthWeek,
+        'title': L10nService.get('categories.health', language),
+        'content': _horoscope!.healthWeek,
         'color': Colors.green,
       },
       {
         'icon': Icons.attach_money,
-        'title': 'Finans',
-        'content': _horoscope.financialWeek,
+        'title': L10nService.get('categories.finance', language),
+        'content': _horoscope!.financialWeek,
         'color': Colors.amber,
       },
     ];
@@ -436,7 +455,7 @@ class _WeeklyHoroscopeScreenState extends State<WeeklyHoroscopeScreen> {
               ),
               const SizedBox(width: AppConstants.spacingMd),
               Text(
-                'Önemli Tarihler',
+                _getKeyDatesTitle(),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
@@ -444,7 +463,7 @@ class _WeeklyHoroscopeScreenState extends State<WeeklyHoroscopeScreen> {
             ],
           ),
           const SizedBox(height: AppConstants.spacingMd),
-          ..._horoscope.keyDates.map((date) {
+          ..._horoscope!.keyDates.map((date) {
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 4),
               child: Row(
@@ -497,7 +516,7 @@ class _WeeklyHoroscopeScreenState extends State<WeeklyHoroscopeScreen> {
           ),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
-            'Haftalık Afirmasyon',
+            L10nService.get('sections.weekly_affirmation', ref.watch(languageProvider)),
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                   color: AppColors.starGold,
@@ -505,7 +524,7 @@ class _WeeklyHoroscopeScreenState extends State<WeeklyHoroscopeScreen> {
           ),
           const SizedBox(height: AppConstants.spacingSm),
           Text(
-            '"${_horoscope.weeklyAffirmation}"',
+            '"${_horoscope!.weeklyAffirmation}"',
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                   fontStyle: FontStyle.italic,
                   height: 1.5,

@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../data/providers/app_providers.dart';
+import '../../../data/services/l10n_service.dart';
 import '../../../data/services/moon_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/page_bottom_navigation.dart';
@@ -50,6 +52,7 @@ class VoidOfCourseScreen extends ConsumerWidget {
     final currentVoc = ref.watch(voidOfCourseProvider);
     final upcomingPeriods = ref.watch(upcomingVocPeriodsProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final language = ref.watch(languageProvider);
 
     return Scaffold(
       body: CosmicBackground(
@@ -59,24 +62,24 @@ class VoidOfCourseScreen extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildHeader(context, isDark),
+                _buildHeader(context, isDark, language),
                 const SizedBox(height: AppConstants.spacingXl),
-                _buildCurrentStatus(context, currentVoc, isDark)
+                _buildCurrentStatus(context, currentVoc, isDark, language)
                     .animate()
                     .fadeIn(delay: 100.ms, duration: 400.ms)
                     .slideY(begin: 0.1),
                 const SizedBox(height: AppConstants.spacingXl),
-                _buildWhatIsVoc(context, isDark)
+                _buildWhatIsVoc(context, isDark, language)
                     .animate()
                     .fadeIn(delay: 200.ms, duration: 400.ms)
                     .slideY(begin: 0.1),
                 const SizedBox(height: AppConstants.spacingXl),
-                _buildDosDonts(context, isDark)
+                _buildDosDonts(context, isDark, language)
                     .animate()
                     .fadeIn(delay: 300.ms, duration: 400.ms)
                     .slideY(begin: 0.1),
                 const SizedBox(height: AppConstants.spacingXl),
-                _buildUpcomingPeriods(context, upcomingPeriods, isDark)
+                _buildUpcomingPeriods(context, upcomingPeriods, isDark, language)
                     .animate()
                     .fadeIn(delay: 400.ms, duration: 400.ms)
                     .slideY(begin: 0.1),
@@ -90,7 +93,7 @@ class VoidOfCourseScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildHeader(BuildContext context, bool isDark) {
+  Widget _buildHeader(BuildContext context, bool isDark, AppLanguage language) {
     return Row(
       children: [
         IconButton(
@@ -106,14 +109,14 @@ class VoidOfCourseScreen extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Void of Course Ay',
+                L10nService.get('voc.title', language),
                 style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                       color: AppColors.starGold,
                       fontWeight: FontWeight.bold,
                     ),
               ),
               Text(
-                'Kozmik Zamanlama Rehberi',
+                L10nService.get('voc.subtitle', language),
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
                     ),
@@ -138,7 +141,7 @@ class VoidOfCourseScreen extends ConsumerWidget {
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildCurrentStatus(BuildContext context, VoidOfCourseMoon voc, bool isDark) {
+  Widget _buildCurrentStatus(BuildContext context, VoidOfCourseMoon voc, bool isDark, AppLanguage language) {
     final isVoid = voc.isVoid;
     final statusColor = isVoid ? AppColors.warning : AppColors.success;
     final moonPhase = MoonService.getCurrentPhase();
@@ -186,7 +189,7 @@ class VoidOfCourseScreen extends ConsumerWidget {
               ),
               const SizedBox(width: 10),
               Text(
-                isVoid ? 'AY VOID OF COURSE' : 'AY AKTIF',
+                isVoid ? L10nService.get('voc.moon_voc', language) : L10nService.get('voc.moon_active', language),
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
                       color: statusColor,
                       fontWeight: FontWeight.bold,
@@ -203,24 +206,24 @@ class VoidOfCourseScreen extends ConsumerWidget {
             children: [
               _buildMoonInfoItem(
                 context,
-                'Ay Evresi',
+                L10nService.get('voc.moon_phase', language),
                 moonPhase.emoji,
-                moonPhase.nameTr,
+                moonPhase.localizedName(language),
                 isDark,
               ),
               _buildMoonInfoItem(
                 context,
-                'Ay Burcu',
+                L10nService.get('voc.moon_sign', language),
                 voc.currentSign.symbol,
-                voc.currentSign.nameTr,
+                voc.currentSign.localizedName(language),
                 isDark,
               ),
               if (voc.nextSign != null)
                 _buildMoonInfoItem(
                   context,
-                  'Sonraki Burc',
+                  L10nService.get('voc.next_sign', language),
                   voc.nextSign!.symbol,
-                  voc.nextSign!.nameTr,
+                  voc.nextSign!.localizedName(language),
                   isDark,
                 ),
             ],
@@ -240,7 +243,7 @@ class VoidOfCourseScreen extends ConsumerWidget {
                   Icon(Icons.timer_outlined, color: statusColor, size: 20),
                   const SizedBox(width: 8),
                   Text(
-                    'Kalan Sure: ${voc.timeRemainingFormatted}',
+                    '${L10nService.get('voc.time_remaining', language)}: ${voc.timeRemainingFormatted}',
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                           color: statusColor,
                           fontWeight: FontWeight.w600,
@@ -254,8 +257,8 @@ class VoidOfCourseScreen extends ConsumerWidget {
           const SizedBox(height: 16),
           Text(
             isVoid
-                ? 'Bu dönemde önemli kararlar almaktan ve yeni başlangıçlara girmekten kaçının.'
-                : 'Ay aktif ve enerji akışında. Yeni başlangıçlara ve kararlara açık bir dönem.',
+                ? L10nService.get('voc.warning_message', language)
+                : L10nService.get('voc.active_message', language),
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
                 ),
@@ -295,7 +298,7 @@ class VoidOfCourseScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildWhatIsVoc(BuildContext context, bool isDark) {
+  Widget _buildWhatIsVoc(BuildContext context, bool isDark, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
@@ -321,7 +324,7 @@ class VoidOfCourseScreen extends ConsumerWidget {
               ),
               const SizedBox(width: 10),
               Text(
-                'Void of Course Ay Nedir?',
+                L10nService.get('voc.what_is_voc', language),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
                       fontWeight: FontWeight.bold,
@@ -331,7 +334,7 @@ class VoidOfCourseScreen extends ConsumerWidget {
           ),
           const SizedBox(height: 16),
           Text(
-            'Void of Course (VOC), Ay\'ın bulunduğu burçta son major aspektini yaptıktan sonra bir sonraki burca geçene kadar geçen süredir. Bu dönemde Ay hiçbir gezegenle önemli bir açı yapmaz.',
+            L10nService.get('voc.explanation_1', language),
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
                   height: 1.5,
@@ -339,7 +342,7 @@ class VoidOfCourseScreen extends ConsumerWidget {
           ),
           const SizedBox(height: 12),
           Text(
-            'VOC dönemlerinde başlatılan projeler, alınan kararlar ve yapılan planlar genellikle beklenilen sonuçları vermez veya hiçbir sonuca ulaşmaz.',
+            L10nService.get('voc.explanation_2', language),
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
                   height: 1.5,
@@ -350,24 +353,17 @@ class VoidOfCourseScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildDosDonts(BuildContext context, bool isDark) {
+  Widget _buildDosDonts(BuildContext context, bool isDark, AppLanguage language) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Expanded(
           child: _buildRecommendationCard(
             context,
-            'Yapilmasi Uygun',
+            L10nService.get('voc.recommended', language),
             Icons.check_circle_outline,
             AppColors.success,
-            [
-              'Meditasyon ve ic gozlem',
-              'Rutin isler ve temizlik',
-              'Dinlenme ve rahatlama',
-              'Eski projeleri tamamlama',
-              'Planlama ve arastirma',
-              'Yaratici calismalar',
-            ],
+            L10nService.getList('voc.dos', language),
             isDark,
           ),
         ),
@@ -375,17 +371,10 @@ class VoidOfCourseScreen extends ConsumerWidget {
         Expanded(
           child: _buildRecommendationCard(
             context,
-            'Kaçınılması Gereken',
+            L10nService.get('voc.avoid', language),
             Icons.cancel_outlined,
             AppColors.error,
-            [
-              'Yeni iş başlatmak',
-              'Önemli kararlar almak',
-              'Sözleşme imzalamak',
-              'İş görüşmeleri',
-              'Evlilik teklifi',
-              'Büyük alışverişler',
-            ],
+            L10nService.getList('voc.donts', language),
             isDark,
           ),
         ),
@@ -459,6 +448,7 @@ class VoidOfCourseScreen extends ConsumerWidget {
     BuildContext context,
     List<VoidOfCourseMoon> periods,
     bool isDark,
+    AppLanguage language,
   ) {
     return Container(
       padding: const EdgeInsets.all(20),
@@ -485,7 +475,7 @@ class VoidOfCourseScreen extends ConsumerWidget {
               ),
               const SizedBox(width: 10),
               Text(
-                'Yaklasan VOC Donemleri',
+                L10nService.get('voc.upcoming_periods', language),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
                       fontWeight: FontWeight.bold,
@@ -496,26 +486,26 @@ class VoidOfCourseScreen extends ConsumerWidget {
           const SizedBox(height: 16),
           if (periods.isEmpty)
             Text(
-              'Yaklasan VOC donemi bulunamadi.',
+              L10nService.get('voc.no_upcoming', language),
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
                   ),
             )
           else
-            ...periods.take(5).map((voc) => _buildVocPeriodItem(context, voc, isDark)),
+            ...periods.take(5).map((voc) => _buildVocPeriodItem(context, voc, isDark, language)),
         ],
       ),
     );
   }
 
-  Widget _buildVocPeriodItem(BuildContext context, VoidOfCourseMoon voc, bool isDark) {
+  Widget _buildVocPeriodItem(BuildContext context, VoidOfCourseMoon voc, bool isDark, AppLanguage language) {
     final start = voc.startTime;
     final end = voc.endTime;
 
     if (start == null || end == null) return const SizedBox.shrink();
 
-    final dayNames = ['Paz', 'Pzt', 'Sal', 'Car', 'Per', 'Cum', 'Cmt'];
-    final dayName = dayNames[start.weekday % 7];
+    final dayNames = L10nService.getList('common.weekdays_short', language);
+    final dayName = dayNames.isNotEmpty ? dayNames[start.weekday % 7] : '${start.weekday}';
     final duration = voc.durationHours;
 
     return Container(
@@ -571,7 +561,7 @@ class VoidOfCourseScreen extends ConsumerWidget {
                 Row(
                   children: [
                     Text(
-                      '${voc.currentSign.symbol} ${voc.currentSign.nameTr}',
+                      '${voc.currentSign.symbol} ${voc.currentSign.localizedName(language)}',
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                             color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
                           ),
@@ -579,7 +569,7 @@ class VoidOfCourseScreen extends ConsumerWidget {
                     if (voc.nextSign != null) ...[
                       const Text(' → '),
                       Text(
-                        '${voc.nextSign!.symbol} ${voc.nextSign!.nameTr}',
+                        '${voc.nextSign!.symbol} ${voc.nextSign!.localizedName(language)}',
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
                               color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
                             ),
@@ -598,7 +588,7 @@ class VoidOfCourseScreen extends ConsumerWidget {
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Text(
-                '${duration.toStringAsFixed(1)}s',
+                '${duration.toStringAsFixed(1)}${L10nService.get('voc.hours_abbr', language)}',
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: AppColors.warning,
                       fontWeight: FontWeight.w600,

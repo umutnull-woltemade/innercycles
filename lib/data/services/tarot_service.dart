@@ -1,4 +1,5 @@
 import 'dart:math';
+import '../providers/app_providers.dart';
 
 /// Tarot kart okuma servisi
 class TarotService {
@@ -166,6 +167,32 @@ class TarotCard {
   }
 
   String get currentMeaning => isReversed ? reversedMeaning : uprightMeaning;
+
+  /// Localized card name based on language
+  String localizedName(AppLanguage language) {
+    switch (language) {
+      case AppLanguage.tr:
+        return nameTr;
+      case AppLanguage.en:
+      case AppLanguage.de:
+      case AppLanguage.fr:
+      default:
+        return name;
+    }
+  }
+
+  /// Localized keywords based on language
+  String localizedKeywords(AppLanguage language) {
+    switch (language) {
+      case AppLanguage.tr:
+        return keywordsTr;
+      case AppLanguage.en:
+      case AppLanguage.de:
+      case AppLanguage.fr:
+      default:
+        return keywords;
+    }
+  }
 
   /// Büyük Arkana kartları
   static const List<TarotCard> majorArcana = [

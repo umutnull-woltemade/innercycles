@@ -6,6 +6,7 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../data/models/zodiac_sign.dart';
 import '../../../../data/providers/app_providers.dart';
 import '../../../../data/content/venus_homepage_content.dart';
+import '../../../../data/services/l10n_service.dart';
 
 /// MOBILE LITE HOMEPAGE
 ///
@@ -88,7 +89,7 @@ class MobileLiteHomepage extends ConsumerWidget {
 // Flat background, one headline, one sentence, one CTA
 // ═══════════════════════════════════════════════════════════════════════════
 
-class _AboveTheFold extends StatelessWidget {
+class _AboveTheFold extends ConsumerWidget {
   final String userName;
   final ZodiacSign sign;
   final bool isDark;
@@ -100,9 +101,10 @@ class _AboveTheFold extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    final headline = _getDailyHeadline(sign);
-    final sentence = _getDailySentence(sign);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final language = ref.watch(languageProvider);
+    final headline = _getDailyHeadline(sign, language);
+    final sentence = _getDailySentence(sign, language);
 
     return Container(
       padding: const EdgeInsets.fromLTRB(20, 24, 20, 32),
@@ -144,7 +146,7 @@ class _AboveTheFold extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Merhaba, $userName',
+                      L10nService.getWithParams('home.greeting', language, params: {'name': userName}),
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
@@ -155,7 +157,7 @@ class _AboveTheFold extends StatelessWidget {
                     ),
                     const SizedBox(height: 2),
                     Text(
-                      sign.nameTr,
+                      sign.localizedName(language),
                       style: TextStyle(
                         fontSize: 13,
                         color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
@@ -178,70 +180,70 @@ class _AboveTheFold extends StatelessWidget {
 
           const SizedBox(height: 16),
 
-          // Quick discovery chips - Kozmik araçlara hızlı erişim
+          // Quick discovery chips - Quick access to cosmic tools
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
               children: [
                 _QuickDiscoveryChip(
                   icon: '🌙',
-                  label: 'Rüya',
+                  label: L10nService.get('home.chips.dream', language),
                   onTap: () => context.push(Routes.dreamInterpretation),
                   isDark: isDark,
                 ),
                 const SizedBox(width: 8),
                 _QuickDiscoveryChip(
                   icon: '🌌',
-                  label: 'Kozmoz İzi',
+                  label: L10nService.get('home.chips.kozmoz', language),
                   onTap: () => context.push(Routes.kozmoz),
                   isDark: isDark,
                 ),
                 const SizedBox(width: 8),
                 _QuickDiscoveryChip(
                   icon: '🗺️',
-                  label: 'Doğum Haritası',
+                  label: L10nService.get('home.chips.birth_chart', language),
                   onTap: () => context.push(Routes.birthChart),
                   isDark: isDark,
                 ),
                 const SizedBox(width: 8),
                 _QuickDiscoveryChip(
                   icon: '🧠',
-                  label: 'Theta Healing',
+                  label: L10nService.get('home.chips.theta_healing', language),
                   onTap: () => context.push(Routes.thetaHealing),
                   isDark: isDark,
                 ),
                 const SizedBox(width: 8),
                 _QuickDiscoveryChip(
                   icon: '🌍',
-                  label: 'Astrokartografi',
+                  label: L10nService.get('home.chips.astrocartography', language),
                   onTap: () => context.push(Routes.astroCartography),
                   isDark: isDark,
                 ),
                 const SizedBox(width: 8),
                 _QuickDiscoveryChip(
                   icon: '🙏',
-                  label: 'Reiki',
+                  label: L10nService.get('home.chips.reiki', language),
                   onTap: () => context.push(Routes.reiki),
                   isDark: isDark,
                 ),
                 const SizedBox(width: 8),
                 _QuickDiscoveryChip(
                   icon: '🔮',
-                  label: 'Tarot',
+                  label: L10nService.get('home.chips.tarot', language),
                   onTap: () => context.push(Routes.tarot),
                   isDark: isDark,
                 ),
                 const SizedBox(width: 8),
                 _QuickDiscoveryChip(
                   icon: '⭐',
-                  label: 'Burç',
+                  label: L10nService.get('home.chips.horoscope', language),
                   onTap: () => context.push(Routes.horoscope),
                   isDark: isDark,
                 ),
                 const SizedBox(width: 8),
                 _QuickDiscoveryChip(
                   icon: '🕯️',
-                  label: 'Tantra',
+                  label: L10nService.get('home.chips.tantra', language),
                   onTap: () => context.push(Routes.tantra),
                   isDark: isDark,
                 ),
@@ -276,7 +278,7 @@ class _AboveTheFold extends StatelessWidget {
 
           const SizedBox(height: 24),
 
-          // Primary CTA - "Bugünün Kozmik Mesajı"
+          // Primary CTA - Today's Cosmic Message
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
@@ -290,21 +292,21 @@ class _AboveTheFold extends StatelessWidget {
                 ),
                 elevation: 0,
               ),
-              child: const Row(
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Flexible(
                     child: Text(
-                      'Bugünün Kozmik Mesajı',
-                      style: TextStyle(
+                      L10nService.get('home.todays_cosmic_message', language),
+                      style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
                       ),
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
-                  SizedBox(width: 8),
-                  Icon(Icons.arrow_forward_rounded, size: 18),
+                  const SizedBox(width: 8),
+                  const Icon(Icons.arrow_forward_rounded, size: 18),
                 ],
               ),
             ),
@@ -314,73 +316,24 @@ class _AboveTheFold extends StatelessWidget {
     );
   }
 
-  // Pre-computed headlines - no runtime calculation
-  String _getDailyHeadline(ZodiacSign sign) {
+  // Pre-computed headlines - uses localized content
+  String _getDailyHeadline(ZodiacSign sign, AppLanguage language) {
+    final signKey = sign.toString().split('.').last; // 'aries', 'taurus', etc.
+    final headlines = L10nService.getList('home.headlines.$signKey', language);
+    if (headlines.isEmpty) return '';
     final dayOfYear = DateTime.now().difference(DateTime(DateTime.now().year, 1, 1)).inDays;
-    final index = (dayOfYear + sign.index) % _headlines[sign.index].length;
-    return _headlines[sign.index][index];
+    final index = (dayOfYear + sign.index) % headlines.length;
+    return headlines[index];
   }
 
-  String _getDailySentence(ZodiacSign sign) {
+  String _getDailySentence(ZodiacSign sign, AppLanguage language) {
+    final signKey = sign.toString().split('.').last; // 'aries', 'taurus', etc.
+    final sentences = L10nService.getList('home.sentences.$signKey', language);
+    if (sentences.isEmpty) return '';
     final dayOfYear = DateTime.now().difference(DateTime(DateTime.now().year, 1, 1)).inDays;
-    final index = (dayOfYear + sign.index) % _sentences[sign.index].length;
-    return _sentences[sign.index][index];
+    final index = (dayOfYear + sign.index) % sentences.length;
+    return sentences[index];
   }
-
-  // Static content - no API calls, instant load
-  static const List<List<String>> _headlines = [
-    // Aries
-    ['Cesaretin bugün test ediliyor.', 'Ateşin içinden geçme zamanı.', 'Liderlik enerjin yükseliyor.'],
-    // Taurus
-    ['Köklerin seni taşıyor.', 'Sabır bugün en büyük gücün.', 'Değerini bil, taviz verme.'],
-    // Gemini
-    ['İki dünya arasında dans ediyorsun.', 'Kelimeler bugün silahın.', 'Merakın kapıları açıyor.'],
-    // Cancer
-    ['Ay seninle konuşuyor.', 'Duygularında cevap var.', 'Koruyucu kabuğun altında güç.'],
-    // Leo
-    ['Güneş senin için doğuyor.', 'Işığın karanlığı yırtıyor.', 'Tahtın hazır, sahip çık.'],
-    // Virgo
-    ['Detaylarda evren gizli.', 'Mükemmellik değil, anlam ara.', 'Şifa veren ellerin var.'],
-    // Libra
-    ['Denge noktasındasın.', 'Güzellik ve adalet senin.', 'İlişkilerde dönüşüm zamanı.'],
-    // Scorpio
-    ['Karanlıktan korkmuyorsun.', 'Dönüşüm kapıda.', 'Derinliklerde hazine var.'],
-    // Sagittarius
-    ['Ufuk seni çağırıyor.', 'Ok yaydan çıkmak üzere.', 'Özgürlük senin doğum hakkın.'],
-    // Capricorn
-    ['Zirve görüş mesafesinde.', 'Disiplin bugün süper gücün.', 'Zamanın ustası sensin.'],
-    // Aquarius
-    ['Geleceği sen yazıyorsun.', 'Farklılığın senin armağanın.', 'Devrim içinden başlıyor.'],
-    // Pisces
-    ['Rüyalar gerçeğe dönüşüyor.', 'Sezgilerin keskin.', 'Okyanus derinliğinde yüzüyorsun.'],
-  ];
-
-  static const List<List<String>> _sentences = [
-    // Aries
-    ['Bugün enerjin yüksek ama sabırlı ol.', 'Yeni başlangıçlar için ideal bir gün.', 'İçindeki ateşi kontrollü kullan.'],
-    // Taurus
-    ['Bugün maddi konularda şanslısın.', 'Rahatlığını korurken ilerlemeye bak.', 'Doğayla vakit geçirmek iyi gelecek.'],
-    // Gemini
-    ['Bugün iletişim yıldızın parlıyor.', 'Yeni bilgiler seni heyecanlandıracak.', 'Sosyal ağın genişliyor.'],
-    // Cancer
-    ['Bugün ev ve aile ön planda.', 'Duygusal sezgilerin güçlü.', 'Kendine bakmayı ihmal etme.'],
-    // Leo
-    ['Bugün sahne senin.', 'Yaratıcılığın zirve yapıyor.', 'Kalbin seni doğru yöne çekiyor.'],
-    // Virgo
-    ['Bugün detaylara dikkat et.', 'Organizasyon becerilerin işe yarayacak.', 'Sağlığına önem ver.'],
-    // Libra
-    ['Bugün ilişkiler ön planda.', 'Estetik zevkin takdir görecek.', 'Denge arayışın meyvelerini veriyor.'],
-    // Scorpio
-    ['Bugün içsel dönüşüm zamanı.', 'Gizli konular açığa çıkabilir.', 'Sezgilerin seni yanıltmaz.'],
-    // Sagittarius
-    ['Bugün macera ruhun uyanıyor.', 'Yeni fikirler ilham veriyor.', 'Optimizmin bulaşıcı.'],
-    // Capricorn
-    ['Bugün kariyer fırsatları var.', 'Disiplinli çalışman ödüllendirilecek.', 'Uzun vadeli planlar yap.'],
-    // Aquarius
-    ['Bugün yenilikçi fikirlerin öne çıkıyor.', 'Arkadaşlarınla vakit geçir.', 'Farklı olmaktan çekinme.'],
-    // Pisces
-    ['Bugün ruhsal farkındalık yüksek.', 'Sanat ve müzik ilham veriyor.', 'Hayallerine güven.'],
-  ];
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -388,13 +341,14 @@ class _AboveTheFold extends StatelessWidget {
 // Simple list of entry points - no heavy UI
 // ═══════════════════════════════════════════════════════════════════════════
 
-class _BelowTheFold extends StatelessWidget {
+class _BelowTheFold extends ConsumerWidget {
   final bool isDark;
 
   const _BelowTheFold({required this.isDark});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final language = ref.watch(languageProvider);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
       child: Column(
@@ -402,7 +356,7 @@ class _BelowTheFold extends StatelessWidget {
         children: [
           // Section title
           Text(
-            'Yıldız Kapısı',
+            L10nService.get('home.sections.star_gate', language),
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,
@@ -415,16 +369,16 @@ class _BelowTheFold extends StatelessWidget {
           // Entry points list
           _EntryPointTile(
             icon: Icons.wb_sunny_outlined,
-            title: 'Kozmik Akış',
-            subtitle: 'Kısa ve uzun dönem yıldız haritanız',
+            title: L10nService.get('home.entries.cosmic_flow.title', language),
+            subtitle: L10nService.get('home.entries.cosmic_flow.subtitle', language),
             route: Routes.horoscope,
             isDark: isDark,
           ),
 
           _EntryPointTile(
             icon: Icons.auto_awesome_outlined,
-            title: 'Kozmik Paylaşım',
-            subtitle: 'Kişisel kozmik mesajını paylaş',
+            title: L10nService.get('home.entries.cosmic_share.title', language),
+            subtitle: L10nService.get('home.entries.cosmic_share.subtitle', language),
             route: Routes.cosmicShare,
             isDark: isDark,
             isHighlighted: true,
@@ -432,24 +386,24 @@ class _BelowTheFold extends StatelessWidget {
 
           _EntryPointTile(
             icon: Icons.style_outlined,
-            title: 'Tarot Falı',
-            subtitle: 'Kartlar ne diyor?',
+            title: L10nService.get('home.entries.tarot.title', language),
+            subtitle: L10nService.get('home.entries.tarot.subtitle', language),
             route: Routes.tarot,
             isDark: isDark,
           ),
 
           _EntryPointTile(
             icon: Icons.favorite_border_outlined,
-            title: 'Burç Uyumu',
-            subtitle: 'İlişki uyumunu keşfet',
+            title: L10nService.get('home.entries.compatibility.title', language),
+            subtitle: L10nService.get('home.entries.compatibility.subtitle', language),
             route: Routes.compatibility,
             isDark: isDark,
           ),
 
           _EntryPointTile(
             icon: Icons.pie_chart_outline,
-            title: 'Doğum Haritası',
-            subtitle: 'Kozmik haritanı incele',
+            title: L10nService.get('home.entries.birth_chart.title', language),
+            subtitle: L10nService.get('home.entries.birth_chart.subtitle', language),
             route: Routes.birthChart,
             isDark: isDark,
           ),
@@ -458,7 +412,7 @@ class _BelowTheFold extends StatelessWidget {
 
           // Secondary section - More features
           Text(
-            'Gizli Bilgi',
+            L10nService.get('home.sections.hidden_knowledge', language),
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,
@@ -470,32 +424,32 @@ class _BelowTheFold extends StatelessWidget {
 
           _EntryPointTile(
             icon: Icons.numbers_outlined,
-            title: 'Numeroloji',
-            subtitle: 'Sayıların gizemi',
+            title: L10nService.get('home.entries.numerology.title', language),
+            subtitle: L10nService.get('home.entries.numerology.subtitle', language),
             route: Routes.numerology,
             isDark: isDark,
           ),
 
           _EntryPointTile(
             icon: Icons.nights_stay_outlined,
-            title: 'Rüya İzi',
-            subtitle: 'Rüyalarının anlamı',
+            title: L10nService.get('home.entries.dream.title', language),
+            subtitle: L10nService.get('home.entries.dream.subtitle', language),
             route: Routes.dreamInterpretation,
             isDark: isDark,
           ),
 
           _EntryPointTile(
             icon: Icons.blur_circular_outlined,
-            title: 'Chakra Analizi',
-            subtitle: 'Enerji merkezlerin',
+            title: L10nService.get('home.entries.chakra.title', language),
+            subtitle: L10nService.get('home.entries.chakra.subtitle', language),
             route: Routes.chakraAnalysis,
             isDark: isDark,
           ),
 
           _EntryPointTile(
             icon: Icons.all_inclusive_outlined,
-            title: 'Tüm Burçlar',
-            subtitle: '12 burcu keşfet',
+            title: L10nService.get('home.entries.all_signs.title', language),
+            subtitle: L10nService.get('home.entries.all_signs.subtitle', language),
             route: Routes.horoscope,
             isDark: isDark,
           ),
@@ -506,7 +460,7 @@ class _BelowTheFold extends StatelessWidget {
           // VENUS WISDOM SECTION - 12 Rich Content Sections
           // ════════════════════════════════════════════════════════════
           Text(
-            'Venus Bilgeliği',
+            L10nService.get('home.sections.venus_wisdom', language),
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,
@@ -517,7 +471,7 @@ class _BelowTheFold extends StatelessWidget {
           const SizedBox(height: 8),
 
           Text(
-            'Aşk, ilişkiler ve iç yolculuk',
+            L10nService.get('home.sections.venus_wisdom_subtitle', language),
             style: TextStyle(
               fontSize: 14,
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
@@ -540,9 +494,9 @@ class _BelowTheFold extends StatelessWidget {
 
           const SizedBox(height: 24),
 
-          // Expandable "Daha Fazla Venus İçeriği" section
+          // Expandable "More Venus Content" section
           Text(
-            'Kadim Sırlar',
+            L10nService.get('home.sections.ancient_secrets', language),
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,
@@ -566,9 +520,9 @@ class _BelowTheFold extends StatelessWidget {
 
           const SizedBox(height: 32),
 
-          // Ev Sistemi Section
+          // House System Section
           Text(
-            '🏠 Astrolojik Evler',
+            L10nService.get('home.sections.astrological_houses', language),
             style: Theme.of(context).textTheme.titleSmall?.copyWith(
                   color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
                   fontWeight: FontWeight.w600,
@@ -578,8 +532,8 @@ class _BelowTheFold extends StatelessWidget {
           const SizedBox(height: 12),
           _EntryPointTile(
             icon: Icons.home_outlined,
-            title: 'Ev Sistemi',
-            subtitle: '12 astrolojik ev ve yaşam alanları',
+            title: L10nService.get('home.entries.house_system.title', language),
+            subtitle: L10nService.get('home.entries.house_system.subtitle', language),
             route: Routes.birthChart,
             isDark: isDark,
           ),

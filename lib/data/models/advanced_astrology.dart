@@ -1,4 +1,5 @@
 import 'zodiac_sign.dart';
+import '../providers/app_providers.dart';
 
 /// Composite Chart - Combined chart for couples
 class CompositeChart {
@@ -74,6 +75,66 @@ extension AspectTypeExtension on AspectType {
         return 'Kare';
       case AspectType.sextile:
         return 'Altigen';
+    }
+  }
+
+  String get nameEn {
+    switch (this) {
+      case AspectType.conjunction:
+        return 'Conjunction';
+      case AspectType.opposition:
+        return 'Opposition';
+      case AspectType.trine:
+        return 'Trine';
+      case AspectType.square:
+        return 'Square';
+      case AspectType.sextile:
+        return 'Sextile';
+    }
+  }
+
+  String get nameDe {
+    switch (this) {
+      case AspectType.conjunction:
+        return 'Konjunktion';
+      case AspectType.opposition:
+        return 'Opposition';
+      case AspectType.trine:
+        return 'Trigon';
+      case AspectType.square:
+        return 'Quadrat';
+      case AspectType.sextile:
+        return 'Sextil';
+    }
+  }
+
+  String get nameFr {
+    switch (this) {
+      case AspectType.conjunction:
+        return 'Conjonction';
+      case AspectType.opposition:
+        return 'Opposition';
+      case AspectType.trine:
+        return 'Trigone';
+      case AspectType.square:
+        return 'Carre';
+      case AspectType.sextile:
+        return 'Sextile';
+    }
+  }
+
+  /// Get localized aspect name based on app language
+  String localizedName(AppLanguage language) {
+    switch (language) {
+      case AppLanguage.en:
+        return nameEn;
+      case AppLanguage.de:
+        return nameDe;
+      case AppLanguage.fr:
+        return nameFr;
+      case AppLanguage.tr:
+      default:
+        return nameTr;
     }
   }
 
@@ -259,6 +320,71 @@ extension ProgressionEventTypeExtension on ProgressionEventType {
     }
   }
 
+  String get nameEn {
+    switch (this) {
+      case ProgressionEventType.sunSignChange:
+        return 'Sun Sign Change';
+      case ProgressionEventType.moonSignChange:
+        return 'Moon Sign Change';
+      case ProgressionEventType.newMoon:
+        return 'New Moon';
+      case ProgressionEventType.fullMoon:
+        return 'Full Moon';
+      case ProgressionEventType.planetSignChange:
+        return 'Planet Sign Change';
+      case ProgressionEventType.majorAspect:
+        return 'Major Aspect';
+    }
+  }
+
+  String get nameDe {
+    switch (this) {
+      case ProgressionEventType.sunSignChange:
+        return 'Sonnenwechsel';
+      case ProgressionEventType.moonSignChange:
+        return 'Mondwechsel';
+      case ProgressionEventType.newMoon:
+        return 'Neumond';
+      case ProgressionEventType.fullMoon:
+        return 'Vollmond';
+      case ProgressionEventType.planetSignChange:
+        return 'Planetenwechsel';
+      case ProgressionEventType.majorAspect:
+        return 'Wichtiger Aspekt';
+    }
+  }
+
+  String get nameFr {
+    switch (this) {
+      case ProgressionEventType.sunSignChange:
+        return 'Changement de signe solaire';
+      case ProgressionEventType.moonSignChange:
+        return 'Changement de signe lunaire';
+      case ProgressionEventType.newMoon:
+        return 'Nouvelle Lune';
+      case ProgressionEventType.fullMoon:
+        return 'Pleine Lune';
+      case ProgressionEventType.planetSignChange:
+        return 'Changement de signe planetaire';
+      case ProgressionEventType.majorAspect:
+        return 'Aspect majeur';
+    }
+  }
+
+  String localizedName(AppLanguage language) {
+    switch (language) {
+      case AppLanguage.en:
+        return nameEn;
+      case AppLanguage.de:
+        return nameDe;
+      case AppLanguage.fr:
+        return nameFr;
+      case AppLanguage.tr:
+      default:
+        return nameTr;
+    }
+  }
+
   String get icon {
     switch (this) {
       case ProgressionEventType.sunSignChange:
@@ -290,6 +416,47 @@ extension AstrologySystemExtension on AstrologySystem {
         return 'Bati Astrolojisi';
       case AstrologySystem.vedic:
         return 'Vedik Astroloji';
+    }
+  }
+
+  String get nameEn {
+    switch (this) {
+      case AstrologySystem.western:
+        return 'Western Astrology';
+      case AstrologySystem.vedic:
+        return 'Vedic Astrology';
+    }
+  }
+
+  String get nameDe {
+    switch (this) {
+      case AstrologySystem.western:
+        return 'Westliche Astrologie';
+      case AstrologySystem.vedic:
+        return 'Vedische Astrologie';
+    }
+  }
+
+  String get nameFr {
+    switch (this) {
+      case AstrologySystem.western:
+        return 'Astrologie occidentale';
+      case AstrologySystem.vedic:
+        return 'Astrologie vedique';
+    }
+  }
+
+  String localizedName(AppLanguage language) {
+    switch (language) {
+      case AppLanguage.en:
+        return nameEn;
+      case AppLanguage.de:
+        return nameDe;
+      case AppLanguage.fr:
+        return nameFr;
+      case AppLanguage.tr:
+      default:
+        return nameTr;
     }
   }
 

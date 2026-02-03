@@ -62,6 +62,137 @@
       "command": "firebase emulators:start",
       "isBackground": true,
       "problemMatcher": []
+    },
+    {
+      "label": "agent:i18n",
+      "type": "shell",
+      "command": "./.vscode/scripts/run-with-retry.sh",
+      "args": [
+        "flutter test test/l10n/language_purity_test.dart",
+        "3",
+        "300"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true,
+        "echo": true
+      },
+      "problemMatcher": [],
+      "group": "test"
+    },
+    {
+      "label": "agent:snapshot",
+      "type": "shell",
+      "command": "./.vscode/scripts/run-with-retry.sh",
+      "args": [
+        "flutter test test/critical_ui/critical_ui_regression_test.dart",
+        "3",
+        "600"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true,
+        "echo": true
+      },
+      "problemMatcher": [],
+      "group": "test"
+    },
+    {
+      "label": "agent:chaos",
+      "type": "shell",
+      "command": "./.vscode/scripts/run-with-retry.sh",
+      "args": [
+        "flutter test test/critical_ui/chaos_testing.dart",
+        "2",
+        "600"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true,
+        "echo": true
+      },
+      "problemMatcher": [],
+      "group": "test"
+    },
+    {
+      "label": "agent:appstore",
+      "type": "shell",
+      "command": "./.vscode/scripts/run-with-retry.sh",
+      "args": [
+        "./auto_deploy.sh",
+        "1",
+        "900"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true,
+        "echo": true
+      },
+      "problemMatcher": [],
+      "group": "build"
+    },
+    {
+      "label": "agents:run-all",
+      "dependsOn": [
+        "agent:i18n",
+        "agent:snapshot",
+        "agent:chaos",
+        "agent:appstore"
+      ],
+      "dependsOrder": "parallel",
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "agents:tmux-launch",
+      "type": "shell",
+      "command": "./.vscode/scripts/tmux-agents.sh",
+      "args": [
+        "${workspaceFolder}"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "agents:tmux-attach",
+      "type": "shell",
+      "command": "tmux attach-session -t agents 2>/dev/null || echo 'No agents session running. Use agents:tmux-launch first.'",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "agents:tmux-kill",
+      "type": "shell",
+      "command": "tmux kill-session -t agents 2>/dev/null && echo 'Session killed.' || echo 'No agents session to kill.'",
+      "problemMatcher": []
     }
   ]
 }

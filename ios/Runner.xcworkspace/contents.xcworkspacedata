@@ -7,4 +7,31 @@
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:Info.plist.READY">
+   </FileRef>
+   <FileRef
+      location = "group:setup_complete.sh">
+   </FileRef>
+   <FileRef
+      location = "group:COMPLETE_DEPLOYMENT_SIMPLE.md">
+   </FileRef>
+   <FileRef
+      location = "group:AUTOMATED_SETUP_GUIDE.txt">
+   </FileRef>
+   <FileRef
+      location = "group:auto_deploy.sh">
+   </FileRef>
+   <FileRef
+      location = "group:RUN_THIS.txt">
+   </FileRef>
+   <FileRef
+      location = "group:DEPLOY_NOW.sh">
+   </FileRef>
+   <FileRef
+      location = "group:FINAL_INSTRUCTIONS.txt">
+   </FileRef>
+   <FileRef
+      location = "group:DEPLOY_NOW.txt">
+   </FileRef>
 </Workspace>

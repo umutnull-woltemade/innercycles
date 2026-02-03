@@ -7,6 +7,7 @@ import '../../../data/models/zodiac_sign.dart';
 import '../../../data/models/user_profile.dart';
 import '../../../data/models/advanced_astrology.dart';
 import '../../../data/services/advanced_astrology_service.dart';
+import '../../../data/services/l10n_service.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 
@@ -51,6 +52,7 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final userProfile = ref.watch(userProfileProvider);
+    final language = ref.watch(languageProvider);
 
     if (userProfile == null) {
       return Scaffold(
@@ -62,14 +64,14 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
                 const Text('', style: TextStyle(fontSize: 64)),
                 const SizedBox(height: 16),
                 Text(
-                  'Profil bulunamadı',
+                  L10nService.get('vedic.profile_not_found', language),
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
                         color: Colors.white,
                       ),
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Lütfen önce doğum bilgilerinizi girin',
+                  L10nService.get('vedic.enter_birth_info', language),
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         color: Colors.white70,
                       ),
@@ -77,7 +79,7 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
                 const SizedBox(height: 24),
                 ElevatedButton(
                   onPressed: () => context.pop(),
-                  child: const Text('Geri Dön'),
+                  child: Text(L10nService.get('common.back', language)),
                 ),
               ],
             ),
@@ -91,37 +93,37 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
         child: SafeArea(
           child: Column(
             children: [
-              _buildHeader(context, isDark),
+              _buildHeader(context, isDark, language),
               Expanded(
                 child: SingleChildScrollView(
                   padding: const EdgeInsets.all(AppConstants.spacingLg),
                   child: Column(
                     children: [
-                      _buildInfoBanner(isDark),
+                      _buildInfoBanner(isDark, language),
                       const SizedBox(height: AppConstants.spacingLg),
-                      _buildProfileCard(isDark, userProfile),
+                      _buildProfileCard(isDark, userProfile, language),
                       const SizedBox(height: AppConstants.spacingLg),
                       if (_chart != null) ...[
-                        _buildMoonSignCard(isDark),
+                        _buildMoonSignCard(isDark, language),
                         const SizedBox(height: AppConstants.spacingMd),
-                        _buildNakshatraCard(isDark),
+                        _buildNakshatraCard(isDark, language),
                         const SizedBox(height: AppConstants.spacingMd),
-                        _buildDashaCard(isDark),
+                        _buildDashaCard(isDark, language),
                         const SizedBox(height: AppConstants.spacingMd),
-                        _buildPlanetPositions(isDark),
+                        _buildPlanetPositions(isDark, language),
                         const SizedBox(height: AppConstants.spacingMd),
-                        _buildYogasCard(isDark),
+                        _buildYogasCard(isDark, language),
                         const SizedBox(height: AppConstants.spacingMd),
-                        _buildDoshaCard(isDark),
+                        _buildDoshaCard(isDark, language),
                         const SizedBox(height: AppConstants.spacingMd),
-                        _buildPredictionCard(isDark),
+                        _buildPredictionCard(isDark, language),
                         const SizedBox(height: AppConstants.spacingXxl),
                       ] else ...[
                         const SizedBox(height: 100),
                         const CircularProgressIndicator(color: Colors.orange),
                         const SizedBox(height: 16),
                         Text(
-                          'Vedik harita oluşturuluyor...',
+                          L10nService.get('vedic.generating_chart', language),
                           style: TextStyle(
                             color: isDark ? Colors.white70 : AppColors.textLight,
                           ),
@@ -138,7 +140,7 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
     );
   }
 
-  Widget _buildHeader(BuildContext context, bool isDark) {
+  Widget _buildHeader(BuildContext context, bool isDark, AppLanguage language) {
     return Padding(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       child: Row(
@@ -155,7 +157,7 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
                 const Text('', style: TextStyle(fontSize: 24)),
                 const SizedBox(width: 8),
                 Text(
-                  'Vedik Harita',
+                  L10nService.get('vedic.title', language),
                   style: Theme.of(context).textTheme.headlineSmall,
                 ),
               ],
@@ -166,7 +168,7 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
     );
   }
 
-  Widget _buildInfoBanner(bool isDark) {
+  Widget _buildInfoBanner(bool isDark, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingMd),
       decoration: BoxDecoration(
@@ -180,7 +182,7 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
           const SizedBox(width: 12),
           Expanded(
             child: Text(
-              'Vedik astroloji sidereal (yıldız tabanlı) zodyak kullanır. Batı astrolojisinden yaklaşık 24 derece fark vardır.',
+              L10nService.get('vedic.info_banner', language),
               style: Theme.of(context).textTheme.bodySmall,
             ),
           ),
@@ -189,7 +191,7 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
     );
   }
 
-  Widget _buildProfileCard(bool isDark, UserProfile userProfile) {
+  Widget _buildProfileCard(bool isDark, UserProfile userProfile, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -210,7 +212,7 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
               ),
               const SizedBox(width: 8),
               Text(
-                'Profil Bilgileri',
+                L10nService.get('vedic.profile_info', language),
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
@@ -220,13 +222,13 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
             ],
           ),
           const SizedBox(height: AppConstants.spacingMd),
-          _buildInfoRow(isDark, Icons.person_outline, 'İsim', userProfile.name ?? 'Kullanıcı'),
-          _buildInfoRow(isDark, Icons.cake_outlined, 'Doğum Tarihi', _formatDate(userProfile.birthDate)),
-          _buildInfoRow(isDark, Icons.wb_sunny_outlined, 'Batı Güneş', userProfile.sunSign.nameTr),
+          _buildInfoRow(isDark, Icons.person_outline, L10nService.get('vedic.name', language), userProfile.name ?? L10nService.get('vedic.user', language)),
+          _buildInfoRow(isDark, Icons.cake_outlined, L10nService.get('vedic.birth_date', language), _formatDate(userProfile.birthDate, language)),
+          _buildInfoRow(isDark, Icons.wb_sunny_outlined, L10nService.get('vedic.western_sun', language), userProfile.sunSign.localizedName(language)),
           if (userProfile.moonSign != null)
-            _buildInfoRow(isDark, Icons.nightlight_outlined, 'Batı Ay', userProfile.moonSign!.nameTr),
+            _buildInfoRow(isDark, Icons.nightlight_outlined, L10nService.get('vedic.western_moon', language), userProfile.moonSign!.localizedName(language)),
           if (userProfile.risingSign != null)
-            _buildInfoRow(isDark, Icons.arrow_upward, 'Batı Yükselen', userProfile.risingSign!.nameTr),
+            _buildInfoRow(isDark, Icons.arrow_upward, L10nService.get('vedic.western_rising', language), userProfile.risingSign!.localizedName(language)),
         ],
       ),
     );
@@ -262,15 +264,16 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
     );
   }
 
-  String _formatDate(DateTime date) {
-    const months = [
-      'Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran',
-      'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'
-    ];
-    return '${date.day} ${months[date.month - 1]} ${date.year}';
+  String _formatDate(DateTime date, AppLanguage language) {
+    final monthKey = [
+      'months.january', 'months.february', 'months.march', 'months.april',
+      'months.may', 'months.june', 'months.july', 'months.august',
+      'months.september', 'months.october', 'months.november', 'months.december'
+    ][date.month - 1];
+    return '${date.day} ${L10nService.get(monthKey, language)} ${date.year}';
   }
 
-  Widget _buildMoonSignCard(bool isDark) {
+  Widget _buildMoonSignCard(bool isDark, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -306,13 +309,13 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Rasi (Ay Burcu)',
+                      L10nService.get('vedic.rasi_moon_sign', language),
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                             color: Colors.orange,
                           ),
                     ),
                     Text(
-                      _chart!.moonSign.nameTr,
+                      _chart!.moonSign.localizedName(language),
                       style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                             fontWeight: FontWeight.bold,
                           ),
@@ -324,7 +327,7 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
-                    'Lagna',
+                    L10nService.get('vedic.lagna', language),
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           color: Colors.orange,
                         ),
@@ -337,7 +340,7 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
                       ),
                       const SizedBox(width: 4),
                       Text(
-                        _chart!.ascendant.nameTr,
+                        _chart!.ascendant.localizedName(language),
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                               fontWeight: FontWeight.bold,
                             ),
@@ -353,7 +356,7 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
     );
   }
 
-  Widget _buildNakshatraCard(bool isDark) {
+  Widget _buildNakshatraCard(bool isDark, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -377,7 +380,7 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
               ),
               const SizedBox(width: 12),
               Text(
-                'Nakshatra',
+                L10nService.get('vedic.nakshatra', language),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
@@ -414,7 +417,7 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
                         borderRadius: BorderRadius.circular(4),
                       ),
                       child: Text(
-                        'Pada ${_chart!.nakshatraPada}',
+                        '${L10nService.get('vedic.pada', language)} ${_chart!.nakshatraPada}',
                         style: Theme.of(context).textTheme.labelSmall?.copyWith(
                               color: Colors.purple,
                             ),
@@ -425,7 +428,7 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
                 const SizedBox(height: 8),
                 Row(
                   children: [
-                    _buildNakshatraInfo('Lord', _chart!.nakshatraLord, isDark),
+                    _buildNakshatraInfo(L10nService.get('vedic.lord', language), _chart!.nakshatraLord, isDark),
                   ],
                 ),
               ],
@@ -462,7 +465,7 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
     );
   }
 
-  Widget _buildDashaCard(bool isDark) {
+  Widget _buildDashaCard(bool isDark, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -485,7 +488,7 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
               const Icon(Icons.timeline, color: Colors.indigo),
               const SizedBox(width: 8),
               Text(
-                'Dasha Dönemi',
+                L10nService.get('vedic.dasha_period', language),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
@@ -497,7 +500,7 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
             children: [
               Expanded(
                 child: _buildDashaPeriod(
-                  'Mahadasha',
+                  L10nService.get('vedic.mahadasha', language),
                   _chart!.dashaLord,
                   Colors.indigo,
                   isDark,
@@ -506,7 +509,7 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
               const SizedBox(width: 8),
               Expanded(
                 child: _buildDashaPeriod(
-                  'Antardasha',
+                  L10nService.get('vedic.antardasha', language),
                   _chart!.antardasha,
                   Colors.blue,
                   isDark,
@@ -515,7 +518,7 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
               const SizedBox(width: 8),
               Expanded(
                 child: _buildDashaPeriod(
-                  'Pratyantar',
+                  L10nService.get('vedic.pratyantar', language),
                   _chart!.pratyantardasha,
                   Colors.cyan,
                   isDark,
@@ -557,7 +560,7 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
     );
   }
 
-  Widget _buildPlanetPositions(bool isDark) {
+  Widget _buildPlanetPositions(bool isDark, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -570,7 +573,7 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Gezegen Pozisyonları (Sidereal)',
+            L10nService.get('vedic.planet_positions_sidereal', language),
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
@@ -608,7 +611,7 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
                   const SizedBox(width: 4),
                   Expanded(
                     child: Text(
-                      planet.sign.nameTr,
+                      planet.sign.localizedName(language),
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
                   ),
@@ -622,7 +625,7 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
                       borderRadius: BorderRadius.circular(4),
                     ),
                     child: Text(
-                      '${planet.house}. Ev',
+                      '${planet.house}. ${L10nService.get('vedic.house', language)}',
                       style: Theme.of(context).textTheme.labelSmall,
                     ),
                   ),
@@ -672,7 +675,7 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
     );
   }
 
-  Widget _buildYogasCard(bool isDark) {
+  Widget _buildYogasCard(bool isDark, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -696,7 +699,7 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
               ),
               const SizedBox(width: 12),
               Text(
-                'Yogalar',
+                L10nService.get('vedic.yogas', language),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
@@ -734,7 +737,7 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
     );
   }
 
-  Widget _buildDoshaCard(bool isDark) {
+  Widget _buildDoshaCard(bool isDark, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -747,15 +750,15 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Dosha Analizi',
+            L10nService.get('vedic.dosha_analysis', language),
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
           ),
           const SizedBox(height: AppConstants.spacingMd),
-          _buildDoshaItem('Manglik Dosha', _chart!.manglikStatus, isDark),
+          _buildDoshaItem(L10nService.get('vedic.manglik_dosha', language), _chart!.manglikStatus, isDark),
           const SizedBox(height: 8),
-          _buildDoshaItem('Kala Sarpa Yoga', _chart!.kalaSarpaYoga, isDark),
+          _buildDoshaItem(L10nService.get('vedic.kala_sarpa_yoga', language), _chart!.kalaSarpaYoga, isDark),
         ],
       ),
     );
@@ -806,7 +809,7 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
     );
   }
 
-  Widget _buildPredictionCard(bool isDark) {
+  Widget _buildPredictionCard(bool isDark, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -826,7 +829,7 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
           const Text('', style: TextStyle(fontSize: 32)),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
-            'Vedik Yorum',
+            L10nService.get('vedic.interpretation', language),
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                   color: AppColors.starGold,

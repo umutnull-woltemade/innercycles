@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/constants/app_constants.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../data/models/natal_chart.dart';
 import '../../../../data/models/planet.dart';
 import '../../../../data/models/zodiac_sign.dart' as zodiac;
+import '../../../../data/providers/app_providers.dart';
 import '../../../../data/services/esoteric_interpretation_service.dart';
 
-class PlanetPositionsCard extends StatelessWidget {
+class PlanetPositionsCard extends ConsumerWidget {
   final NatalChart chart;
 
   const PlanetPositionsCard({super.key, required this.chart});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final language = ref.watch(languageProvider);
+
     // Group planets by type
     final personalPlanets = chart.planets
         .where((p) => p.planet.isPersonalPlanet)
@@ -44,16 +48,16 @@ class PlanetPositionsCard extends StatelessWidget {
 
     return Column(
       children: [
-        _buildSection(context, 'Kişisel Gezegenler', 'Benlik ve günlük yaşam', personalPlanets, 0),
+        _buildSection(context, language, 'Kişisel Gezegenler', 'Benlik ve günlük yaşam', personalPlanets, 0),
         const SizedBox(height: AppConstants.spacingMd),
-        _buildSection(context, 'Sosyal Gezegenler', 'Toplumsal rol', socialPlanets, 100),
+        _buildSection(context, language, 'Sosyal Gezegenler', 'Toplumsal rol', socialPlanets, 100),
         const SizedBox(height: AppConstants.spacingMd),
-        _buildSection(context, 'Dış Gezegenler', 'Nesil ve dönüşüm', outerPlanets, 200),
+        _buildSection(context, language, 'Dış Gezegenler', 'Nesil ve dönüşüm', outerPlanets, 200),
         const SizedBox(height: AppConstants.spacingMd),
-        _buildSection(context, 'Diğer Noktalar', 'Ay düğümleri, Chiron, Lilith', otherPoints, 300),
+        _buildSection(context, language, 'Diğer Noktalar', 'Ay düğümleri, Chiron, Lilith', otherPoints, 300),
         if (angles.isNotEmpty) ...[
           const SizedBox(height: AppConstants.spacingMd),
-          _buildSection(context, 'Açılar', 'Yükselen, MC, IC, Alçalan', angles, 400),
+          _buildSection(context, language, 'Açılar', 'Yükselen, MC, IC, Alçalan', angles, 400),
         ],
       ],
     );
@@ -61,6 +65,7 @@ class PlanetPositionsCard extends StatelessWidget {
 
   Widget _buildSection(
     BuildContext context,
+    AppLanguage language,
     String title,
     String subtitle,
     List<PlanetPosition> planets,
@@ -103,6 +108,7 @@ class PlanetPositionsCard extends StatelessWidget {
             final planet = entry.value;
             return _PlanetRow(
               planet: planet,
+              language: language,
               isLast: index == planets.length - 1,
             );
           }),
@@ -114,10 +120,12 @@ class PlanetPositionsCard extends StatelessWidget {
 
 class _PlanetRow extends StatelessWidget {
   final PlanetPosition planet;
+  final AppLanguage language;
   final bool isLast;
 
   const _PlanetRow({
     required this.planet,
+    required this.language,
     this.isLast = false,
   });
 
@@ -152,68 +160,69 @@ class _PlanetRow extends StatelessWidget {
   }
 
   String _getGenericPlanetInterpretation() {
-    final signName = zodiac.ZodiacSignExtension(planet.sign).nameTr;
+    final signName = zodiac.ZodiacSignExtension(planet.sign).localizedName(language);
+    final planetName = planet.planet.localizedName(language);
     final planetMeaning = planet.planet.meaning;
 
     final interpretations = {
       Planet.jupiter: '''
-${planet.planet.nameTr} $signName burcunda - büyüme ve şans alanın bu burç enerjisiyle renkleniyor.
+$planetName $signName burcunda - büyüme ve şans alanın bu burç enerjisiyle renkleniyor.
 
 $signName'nin özellikleri, nasıl genişlediğini, neye inandığını ve şansını nerede bulduğunu gösteriyor. Felsefik bakış açın, öğrenme stilin ve hayata karşı iyimserliğin bu burçla şekilleniyor.
 
 $planetMeaning alanlarında $signName enerjisi etkin. Bu yerleşim, ruhsal büyüme potansiyelini ve hayatında bereketin nasıl aktığını gösteriyor.
 ''',
       Planet.saturn: '''
-${planet.planet.nameTr} $signName burcunda - sorumluluk ve sınırlar bu burç enerjisiyle ifade buluyor.
+$planetName $signName burcunda - sorumluluk ve sınırlar bu burç enerjisiyle ifade buluyor.
 
 $signName'nin özellikleri, hangi alanlarda olgunlaşman gerektiğini, korkularını ve hayat derslerini gösteriyor. Disiplin tarzın, otorite ilişkin ve zaman anlayışın bu burçla şekilleniyor.
 
 $planetMeaning alanlarında $signName enerjisi etkin. Bu yerleşim, karmanı ve ustalık yolculuğunu gösteriyor.
 ''',
       Planet.uranus: '''
-${planet.planet.nameTr} $signName burcunda - özgünlük ve devrim bu burç enerjisiyle ifade buluyor.
+$planetName $signName burcunda - özgünlük ve devrim bu burç enerjisiyle ifade buluyor.
 
 $signName'nin özellikleri, nerede özgür olmak istediğini, farklı olduğun alanları ve yenilikçi potansiyelini gösteriyor. İsyankar ruhun ve vizyonerin bu burçla şekilleniyor.
 
 $planetMeaning alanlarında $signName enerjisi etkin. Bu bir nesil yerleşimi - yaş grubunla paylaştığın kolektif bir enerji.
 ''',
       Planet.neptune: '''
-${planet.planet.nameTr} $signName burcunda - rüyalar ve sezgi bu burç enerjisiyle ifade buluyor.
+$planetName $signName burcunda - rüyalar ve sezgi bu burç enerjisiyle ifade buluyor.
 
 $signName'nin özellikleri, spiritüel eğilimlerini, yaratıcı ilhamını ve illüzyon alanlarını gösteriyor. Hayal gücün ve ruhani bağlantın bu burçla şekilleniyor.
 
 $planetMeaning alanlarında $signName enerjisi etkin. Bu bir nesil yerleşimi - kolektif rüyalar ve spiritüel trendleri yansıtıyor.
 ''',
       Planet.pluto: '''
-${planet.planet.nameTr} $signName burcunda - dönüşüm ve güç bu burç enerjisiyle ifade buluyor.
+$planetName $signName burcunda - dönüşüm ve güç bu burç enerjisiyle ifade buluyor.
 
 $signName'nin özellikleri, derin dönüşüm alanlarını, gölge çalışması gereken konuları ve yeniden doğuş potansiyelini gösteriyor. Psikolojik derinliğin bu burçla şekilleniyor.
 
 $planetMeaning alanlarında $signName enerjisi etkin. Bu bir nesil yerleşimi - kolektif dönüşüm ve güç dinamiklerini yansıtıyor.
 ''',
       Planet.northNode: '''
-${planet.planet.nameTr} $signName burcunda - ruhunun bu hayatta öğrenmesi gereken ders bu burçla ilgili.
+$planetName $signName burcunda - ruhunun bu hayatta öğrenmesi gereken ders bu burçla ilgili.
 
 $signName enerjisini geliştirmek, bu hayattaki evrimsel yolculuğunun ana teması. Bu burç, konfor alanının dışına çıkarak ulaşman gereken hedefi gösteriyor.
 
 Güney Düğüm'ün karşı burcundaki alışkanlıklarını bırakıp, $signName'nin özelliklerini benimsemek ruhsal gelişimin için kritik.
 ''',
       Planet.southNode: '''
-${planet.planet.nameTr} $signName burcunda - geçmiş yaşamlardan getirdiğin yetenekler ve alışkanlıklar.
+$planetName $signName burcunda - geçmiş yaşamlardan getirdiğin yetenekler ve alışkanlıklar.
 
 $signName enerjisi sende doğuştan var - ama bu konfor alanın aynı zamanda büyümeni engelleyebilir. Bu burcun özelliklerine aşırı tutunmak, evrimsel gelişimini yavaşlatabilir.
 
 Kuzey Düğüm'üne yönelmek için $signName alışkanlıklarını dengelemen gerekiyor.
 ''',
       Planet.chiron: '''
-${planet.planet.nameTr} $signName burcunda - en derin yaran ve şifa potansiyelin bu burcla bağlantılı.
+$planetName $signName burcunda - en derin yaran ve şifa potansiyelin bu burcla bağlantılı.
 
 $signName alanlarında yaşadığın travmalar veya acı deneyimler, paradoks olarak başkalarını iyileştirme gücüne dönüşebilir. "Yaralı şifacı" arketipi senin için bu burçta aktif.
 
 Bu yarayı kabullenmek ve onunla barışmak, hem kendi şifanı hem de başkalarına yardım etme kapasiteni açığa çıkarır.
 ''',
       Planet.lilith: '''
-${planet.planet.nameTr} $signName burcunda - bastırılan arzuların ve gölge tarafın bu burçla ilgili.
+$planetName $signName burcunda - bastırılan arzuların ve gölge tarafın bu burçla ilgili.
 
 $signName alanlarında toplum tarafından kabul görmeyen veya bastırdığın istekler var. Bu enerjiyi reddetmek yerine, sağlıklı şekilde entegre etmek senin için önemli.
 
@@ -222,14 +231,15 @@ Kara Ay, vahşi, evcilleştirilmemiş feminine enerjiyi temsil ediyor - $signNam
     };
 
     return interpretations[planet.planet] ??
-        '${planet.planet.nameTr} $signName burcunda - $planetMeaning alanlarında bu burç enerjisi etkin.';
+        '$planetName $signName burcunda - $planetMeaning alanlarında bu burç enerjisi etkin.';
   }
 
   @override
   Widget build(BuildContext context) {
     final signColor = zodiac.ZodiacSignExtension(planet.sign).color;
     final signSymbol = zodiac.ZodiacSignExtension(planet.sign).symbol;
-    final signNameTr = zodiac.ZodiacSignExtension(planet.sign).nameTr;
+    final signName = zodiac.ZodiacSignExtension(planet.sign).localizedName(language);
+    final planetName = planet.planet.localizedName(language);
 
     return ExpansionTile(
       tilePadding: const EdgeInsets.symmetric(
@@ -262,7 +272,7 @@ Kara Ay, vahşi, evcilleştirilmemiş feminine enerjiyi temsil ediyor - $signNam
         children: [
           Expanded(
             child: Text(
-              planet.planet.nameTr,
+              planetName,
               style: Theme.of(context).textTheme.titleSmall?.copyWith(
                     color: AppColors.textPrimary,
                   ),
@@ -291,7 +301,7 @@ Kara Ay, vahşi, evcilleştirilmemiş feminine enerjiyi temsil ediyor - $signNam
           const SizedBox(width: 4),
           Flexible(
             child: Text(
-              signNameTr,
+              signName,
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: signColor,
                   ),
@@ -368,7 +378,7 @@ Kara Ay, vahşi, evcilleştirilmemiş feminine enerjiyi temsil ediyor - $signNam
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          '${planet.planet.nameTr} $signNameTr Burcunda',
+                          '$planetName $signName Burcunda',
                           style: Theme.of(context).textTheme.titleSmall?.copyWith(
                                 color: planet.planet.color,
                               ),
@@ -453,7 +463,7 @@ Kara Ay, vahşi, evcilleştirilmemiş feminine enerjiyi temsil ediyor - $signNam
                       Expanded(
                         child: Text(
                           'Retrograt: Bu gezegenin enerjisi içe dönük ve yeniden değerlendirme sürecinde. '
-                          '${planet.planet.nameTr} alanlarında geçmişi gözden geçirme, derinleşme ve içsel çalışma öne çıkıyor.',
+                          '$planetName alanlarında geçmişi gözden geçirme, derinleşme ve içsel çalışma öne çıkıyor.',
                           style: Theme.of(context).textTheme.bodySmall?.copyWith(
                                 color: AppColors.warning,
                                 fontStyle: FontStyle.italic,

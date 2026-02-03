@@ -7,6 +7,7 @@ import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/zodiac_sign.dart';
 import '../../../data/providers/app_providers.dart';
+import '../../../data/services/l10n_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/next_blocks.dart';
 import '../../../shared/widgets/entertainment_disclaimer.dart';
@@ -41,6 +42,7 @@ class _YearAheadScreenState extends ConsumerState<YearAheadScreen> {
   Widget build(BuildContext context) {
     final userProfile = ref.watch(userProfileProvider);
     final sign = userProfile?.sunSign ?? ZodiacSign.aries;
+    final language = ref.watch(languageProvider);
 
     return Scaffold(
       body: CosmicBackground(
@@ -50,26 +52,26 @@ class _YearAheadScreenState extends ConsumerState<YearAheadScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildHeader(context, sign),
+                _buildHeader(context, sign, language),
                 const SizedBox(height: AppConstants.spacingXl),
-                _buildYearOverview(context),
+                _buildYearOverview(context, language),
                 const SizedBox(height: AppConstants.spacingXl),
-                _buildQuarterlyBreakdown(context),
+                _buildQuarterlyBreakdown(context, language),
                 const SizedBox(height: AppConstants.spacingXl),
-                _buildKeyTransits(context),
+                _buildKeyTransits(context, language),
                 const SizedBox(height: AppConstants.spacingXl),
-                _buildLuckyPeriods(context),
+                _buildLuckyPeriods(context, language),
                 const SizedBox(height: AppConstants.spacingXl),
-                _buildChallengingPeriods(context),
+                _buildChallengingPeriods(context, language),
                 const SizedBox(height: AppConstants.spacingXl),
-                _buildYearAffirmation(context),
+                _buildYearAffirmation(context, language),
                 const SizedBox(height: AppConstants.spacingXxl),
                 // Next Blocks
                 const NextBlocks(currentPage: 'year_ahead'),
                 const SizedBox(height: AppConstants.spacingXl),
                 // Entertainment Disclaimer
-                const PageFooterWithDisclaimer(
-                  brandText: 'Yıl Öngörüsü — Venus One',
+                PageFooterWithDisclaimer(
+                  brandText: '${L10nService.get('year_ahead.title', language)} — Venus One',
                   disclaimerText: DisclaimerTexts.astrology,
                 ),
               ],
@@ -80,7 +82,7 @@ class _YearAheadScreenState extends ConsumerState<YearAheadScreen> {
     );
   }
 
-  Widget _buildHeader(BuildContext context, ZodiacSign sign) {
+  Widget _buildHeader(BuildContext context, ZodiacSign sign, AppLanguage language) {
     return Row(
       children: [
         IconButton(
@@ -92,7 +94,7 @@ class _YearAheadScreenState extends ConsumerState<YearAheadScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                '$_selectedYear Yılı Öngörüsü',
+                L10nService.getWithParams('year_ahead.year_forecast', language, params: {'year': '$_selectedYear'}),
                 style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                       color: AppColors.starGold,
                       fontWeight: FontWeight.bold,
@@ -101,7 +103,7 @@ class _YearAheadScreenState extends ConsumerState<YearAheadScreen> {
               Row(
                 children: [
                   Text(
-                    sign.nameTr,
+                    sign.localizedName(language),
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           color: sign.color,
                         ),
@@ -145,6 +147,7 @@ class _YearAheadScreenState extends ConsumerState<YearAheadScreen> {
 
   void _showYearPicker(BuildContext context) {
     final currentYear = DateTime.now().year;
+    final language = ref.read(languageProvider);
     showModalBottomSheet(
       context: context,
       backgroundColor: AppColors.surfaceDark,
@@ -157,7 +160,7 @@ class _YearAheadScreenState extends ConsumerState<YearAheadScreen> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              'Yil Secin',
+              L10nService.get('year_ahead.select_year', language),
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                     color: AppColors.textPrimary,
                   ),
@@ -201,7 +204,7 @@ class _YearAheadScreenState extends ConsumerState<YearAheadScreen> {
     );
   }
 
-  Widget _buildYearOverview(BuildContext context) {
+  Widget _buildYearOverview(BuildContext context, AppLanguage language) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -232,7 +235,7 @@ class _YearAheadScreenState extends ConsumerState<YearAheadScreen> {
               ),
               const SizedBox(width: 12),
               Text(
-                'Yil Ozeti',
+                L10nService.get('year_ahead.year_summary', language),
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
                       color: AppColors.textPrimary,
                     ),
@@ -250,17 +253,17 @@ class _YearAheadScreenState extends ConsumerState<YearAheadScreen> {
           const SizedBox(height: AppConstants.spacingLg),
           Row(
             children: [
-              Expanded(child: _buildScoreCard(context, 'Kariyer', _forecast.careerScore, Icons.work)),
+              Expanded(child: _buildScoreCard(context, L10nService.get('categories.career', language), _forecast.careerScore, Icons.work)),
               const SizedBox(width: 12),
-              Expanded(child: _buildScoreCard(context, 'Ask', _forecast.loveScore, Icons.favorite)),
+              Expanded(child: _buildScoreCard(context, L10nService.get('categories.love', language), _forecast.loveScore, Icons.favorite)),
             ],
           ),
           const SizedBox(height: 12),
           Row(
             children: [
-              Expanded(child: _buildScoreCard(context, 'Finans', _forecast.financeScore, Icons.attach_money)),
+              Expanded(child: _buildScoreCard(context, L10nService.get('categories.finance', language), _forecast.financeScore, Icons.attach_money)),
               const SizedBox(width: 12),
-              Expanded(child: _buildScoreCard(context, 'Sağlık', _forecast.healthScore, Icons.favorite_border)),
+              Expanded(child: _buildScoreCard(context, L10nService.get('categories.health', language), _forecast.healthScore, Icons.favorite_border)),
             ],
           ),
         ],
@@ -307,7 +310,7 @@ class _YearAheadScreenState extends ConsumerState<YearAheadScreen> {
     );
   }
 
-  Widget _buildQuarterlyBreakdown(BuildContext context) {
+  Widget _buildQuarterlyBreakdown(BuildContext context, AppLanguage language) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -316,7 +319,7 @@ class _YearAheadScreenState extends ConsumerState<YearAheadScreen> {
             const Icon(Icons.calendar_view_month, color: AppColors.twilightStart, size: 20),
             const SizedBox(width: 8),
             Text(
-              'Ceyreklik Ongorular',
+              L10nService.get('year_ahead.quarterly_forecasts', language),
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                     color: AppColors.textPrimary,
                   ),
@@ -395,7 +398,7 @@ class _YearAheadScreenState extends ConsumerState<YearAheadScreen> {
     );
   }
 
-  Widget _buildKeyTransits(BuildContext context) {
+  Widget _buildKeyTransits(BuildContext context, AppLanguage language) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -404,7 +407,7 @@ class _YearAheadScreenState extends ConsumerState<YearAheadScreen> {
             const Icon(Icons.public, color: AppColors.celestialGold, size: 20),
             const SizedBox(width: 8),
             Text(
-              'Önemli Geçişler',
+              L10nService.get('year_ahead.important_transits', language),
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                     color: AppColors.textPrimary,
                   ),
@@ -458,7 +461,7 @@ class _YearAheadScreenState extends ConsumerState<YearAheadScreen> {
     ).animate().fadeIn(delay: 600.ms, duration: 400.ms);
   }
 
-  Widget _buildLuckyPeriods(BuildContext context) {
+  Widget _buildLuckyPeriods(BuildContext context, AppLanguage language) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -467,7 +470,7 @@ class _YearAheadScreenState extends ConsumerState<YearAheadScreen> {
             const Icon(Icons.star, color: Colors.green, size: 20),
             const SizedBox(width: 8),
             Text(
-              'Sansli Donemler',
+              L10nService.get('year_ahead.lucky_periods', language),
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                     color: AppColors.textPrimary,
                   ),
@@ -506,7 +509,7 @@ class _YearAheadScreenState extends ConsumerState<YearAheadScreen> {
     ).animate().fadeIn(delay: 700.ms, duration: 400.ms);
   }
 
-  Widget _buildChallengingPeriods(BuildContext context) {
+  Widget _buildChallengingPeriods(BuildContext context, AppLanguage language) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -515,7 +518,7 @@ class _YearAheadScreenState extends ConsumerState<YearAheadScreen> {
             const Icon(Icons.warning_amber, color: Colors.orange, size: 20),
             const SizedBox(width: 8),
             Text(
-              'Dikkat Edilmesi Gereken Donemler',
+              L10nService.get('year_ahead.challenging_periods', language),
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                     color: AppColors.textPrimary,
                   ),
@@ -554,7 +557,7 @@ class _YearAheadScreenState extends ConsumerState<YearAheadScreen> {
     ).animate().fadeIn(delay: 800.ms, duration: 400.ms);
   }
 
-  Widget _buildYearAffirmation(BuildContext context) {
+  Widget _buildYearAffirmation(BuildContext context, AppLanguage language) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -575,7 +578,7 @@ class _YearAheadScreenState extends ConsumerState<YearAheadScreen> {
           const Text('✨', style: TextStyle(fontSize: 32)),
           const SizedBox(height: 12),
           Text(
-            'Yil Affirmasyonu',
+            L10nService.get('year_ahead.year_affirmation', language),
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   color: AppColors.starGold,
                 ),

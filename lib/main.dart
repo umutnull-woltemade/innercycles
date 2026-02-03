@@ -4,11 +4,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'firebase_options.dart';
 import 'core/theme/app_theme.dart';
 import 'shared/services/router_service.dart';
 import 'shared/widgets/interpretive_text.dart';
@@ -19,6 +16,7 @@ import 'data/services/notification_service.dart';
 import 'data/services/admin_auth_service.dart';
 import 'data/services/admin_analytics_service.dart';
 import 'data/services/web_error_service.dart';
+import 'data/services/l10n_service.dart';
 import 'data/providers/app_providers.dart';
 import 'data/models/user_profile.dart';
 
@@ -66,37 +64,9 @@ Future<void> _initializeAndRunApp() async {
   }
 
   // ═══════════════════════════════════════════════════════════════════════════
-  // WEB: Skip Firebase/Supabase to prevent white screen
+  // WEB: Skip Supabase to prevent white screen
   // These services can throw uncaught errors on web due to IndexedDB/CORS issues
   // ═══════════════════════════════════════════════════════════════════════════
-  if (!kIsWeb) {
-    // MOBILE ONLY: Initialize Firebase
-    if (kDebugMode) {
-      debugPrint('⏳ Initializing Firebase (mobile)...');
-    }
-    try {
-      await Firebase.initializeApp(
-        options: DefaultFirebaseOptions.currentPlatform,
-      ).timeout(
-        const Duration(seconds: 8),
-        onTimeout: () {
-          if (kDebugMode) {
-            debugPrint('⚠️ Warning: Firebase initialization timed out');
-          }
-          throw TimeoutException('Firebase timeout');
-        },
-      );
-      if (kDebugMode) {
-        debugPrint('✓ Firebase initialized');
-      }
-    } catch (e) {
-      if (kDebugMode) {
-        debugPrint('⚠️ Warning: Firebase initialization failed: $e');
-      }
-    }
-  } else {
-    debugPrint('⚠️ Web: Skipping Firebase (prevents white screen)');
-  }
 
   // Initialize Supabase with values from .env (MOBILE ONLY)
   if (!kIsWeb) {
@@ -126,34 +96,6 @@ Future<void> _initializeAndRunApp() async {
     }
   } else {
     debugPrint('⚠️ Web: Skipping Supabase (prevents white screen)');
-  }
-
-  // Initialize Crashlytics (mobile only) - extends the global error handling
-  if (!kIsWeb) {
-    try {
-      // Wrap global handler with Crashlytics
-      final originalHandler = FlutterError.onError;
-      FlutterError.onError = (details) {
-        FirebaseCrashlytics.instance.recordFlutterFatalError(details);
-        originalHandler?.call(details);
-      };
-
-      // Wrap platform dispatcher with Crashlytics
-      final originalPlatformHandler = PlatformDispatcher.instance.onError;
-      PlatformDispatcher.instance.onError = (error, stack) {
-        FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
-        originalPlatformHandler?.call(error, stack);
-        return true;
-      };
-
-      // Disable collection in debug mode
-      await FirebaseCrashlytics.instance
-          .setCrashlyticsCollectionEnabled(!kDebugMode);
-    } catch (e) {
-      if (kDebugMode) {
-        debugPrint('Warning: Crashlytics initialization failed: $e');
-      }
-    }
   }
 
   // Initialize glossary cache asynchronously (MOBILE ONLY)
@@ -208,10 +150,38 @@ Future<void> _initializeAndRunApp() async {
   }
 
   // Load saved settings with defaults
-  final savedLanguage = StorageService.loadLanguage();
+  var savedLanguage = StorageService.loadLanguage();
   final savedThemeMode = StorageService.loadThemeMode();
   final savedOnboardingComplete = StorageService.loadOnboardingComplete();
   final savedProfile = StorageService.loadUserProfile();
+
+  // Ensure saved language is supported with strict isolation
+  // If not, default to English
+  if (!L10nService.supportedLanguages.contains(savedLanguage)) {
+    savedLanguage = AppLanguage.en;
+    StorageService.saveLanguage(savedLanguage);
+  }
+
+  // Initialize L10nService with strict isolation (no fallback)
+  if (!kIsWeb) {
+    try {
+      await L10nService.init(savedLanguage);
+      if (kDebugMode) {
+        debugPrint('✓ L10nService initialized for ${savedLanguage.name}');
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        debugPrint('⚠️ L10nService initialization failed: $e');
+      }
+      // Fallback to English if locale load fails
+      try {
+        await L10nService.init(AppLanguage.en);
+        savedLanguage = AppLanguage.en;
+      } catch (_) {
+        // Continue without localization
+      }
+    }
+  }
 
   // Initialize notifications (only on mobile platforms)
   if (!kIsWeb) {

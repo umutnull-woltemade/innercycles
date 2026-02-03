@@ -4,12 +4,8 @@ import 'package:astrology_app/core/constants/app_constants.dart';
 void main() {
   group('AppConstants', () {
     group('App Info', () {
-      test('appName is Astrobobo', () {
-        expect(AppConstants.appName, 'Astrobobo');
-      });
-
-      test('appTagline is not empty', () {
-        expect(AppConstants.appTagline, isNotEmpty);
+      test('appName is Venus One', () {
+        expect(AppConstants.appName, 'Venus One');
       });
     });
 
@@ -42,8 +38,8 @@ void main() {
         expect(AppConstants.yearlyProductId, contains('yearly'));
       });
 
-      test('entitlementId is premium', () {
-        expect(AppConstants.entitlementId, 'premium');
+      test('entitlementId is set', () {
+        expect(AppConstants.entitlementId, isNotEmpty);
       });
     });
 

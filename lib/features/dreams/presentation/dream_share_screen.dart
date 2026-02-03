@@ -11,6 +11,8 @@ import 'package:share_plus/share_plus.dart';
 
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/dream_interpretation_models.dart';
+import '../../../data/providers/app_providers.dart';
+import '../../../data/services/l10n_service.dart';
 import '../../../data/services/moon_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/dream_share_card.dart';
@@ -200,6 +202,7 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
   }
 
   Widget _buildHeader() {
+    final language = ref.watch(languageProvider);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: BoxDecoration(
@@ -238,14 +241,14 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Ruya Paylasimi',
+                  L10nService.get('dreams.share_title', language),
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
                     color: AppColors.textPrimary,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 Text(
-                  'Kozmik mesajini paylas',
+                  L10nService.get('dreams.share_subtitle', language),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: AppColors.textSecondary,
                   ),
@@ -260,7 +263,7 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
               _shareAnonymously ? Icons.visibility_off : Icons.visibility,
               color: AppColors.mystic,
             ),
-            tooltip: 'Gizlilik Ayarlari',
+            tooltip: L10nService.get('settings.privacy', language),
           ),
         ],
       ),

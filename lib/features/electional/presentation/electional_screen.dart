@@ -5,6 +5,7 @@ import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/premium_astrology.dart';
 import '../../../data/services/premium_astrology_service.dart';
+import '../../../data/services/l10n_service.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 
@@ -79,6 +80,7 @@ class _ElectionalScreenState extends ConsumerState<ElectionalScreen> {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final userProfile = ref.watch(userProfileProvider);
+    final language = ref.watch(languageProvider);
 
     if (userProfile == null) {
       return Scaffold(
@@ -90,14 +92,14 @@ class _ElectionalScreenState extends ConsumerState<ElectionalScreen> {
                 const Text('', style: TextStyle(fontSize: 64)),
                 const SizedBox(height: 16),
                 Text(
-                  'Profil bulunamadi',
+                  L10nService.get('electional.profile_not_found', language),
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
                         color: Colors.white,
                       ),
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Lutfen once dogum bilgilerinizi girin',
+                  L10nService.get('electional.enter_birth_info', language),
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         color: Colors.white70,
                       ),
@@ -105,7 +107,7 @@ class _ElectionalScreenState extends ConsumerState<ElectionalScreen> {
                 const SizedBox(height: 24),
                 ElevatedButton(
                   onPressed: () => context.pop(),
-                  child: const Text('Geri Don'),
+                  child: Text(L10nService.get('common.go_back', language)),
                 ),
               ],
             ),
@@ -119,37 +121,37 @@ class _ElectionalScreenState extends ConsumerState<ElectionalScreen> {
         child: SafeArea(
           child: Column(
             children: [
-              _buildHeader(context, isDark),
+              _buildHeader(context, isDark, language),
               Expanded(
                 child: SingleChildScrollView(
                   padding: const EdgeInsets.all(AppConstants.spacingLg),
                   child: Column(
                     children: [
-                      _buildInfoBanner(isDark),
+                      _buildInfoBanner(isDark, language),
                       const SizedBox(height: AppConstants.spacingLg),
-                      _buildProfileCard(isDark, userProfile),
+                      _buildProfileCard(isDark, userProfile, language),
                       const SizedBox(height: AppConstants.spacingLg),
-                      _buildPurposeSelector(isDark),
+                      _buildPurposeSelector(isDark, language),
                       const SizedBox(height: AppConstants.spacingLg),
-                      _buildDateRangeCard(isDark),
+                      _buildDateRangeCard(isDark, language),
                       const SizedBox(height: AppConstants.spacingLg),
                       if (_chart != null) ...[
-                        _buildOptimalTimeCard(isDark),
+                        _buildOptimalTimeCard(isDark, language),
                         const SizedBox(height: AppConstants.spacingMd),
-                        _buildMoonPhaseCard(isDark),
+                        _buildMoonPhaseCard(isDark, language),
                         const SizedBox(height: AppConstants.spacingMd),
-                        _buildRetrogradeCard(isDark),
+                        _buildRetrogradeCard(isDark, language),
                         const SizedBox(height: AppConstants.spacingMd),
-                        _buildFavorableWindowsCard(isDark),
+                        _buildFavorableWindowsCard(isDark, language),
                         const SizedBox(height: AppConstants.spacingMd),
-                        _buildUnfavorableWindowsCard(isDark),
+                        _buildUnfavorableWindowsCard(isDark, language),
                         const SizedBox(height: AppConstants.spacingXxl),
                       ] else ...[
                         const SizedBox(height: 100),
                         const CircularProgressIndicator(color: AppColors.gold),
                         const SizedBox(height: 16),
                         Text(
-                          'Analiz yapiliyor...',
+                          L10nService.get('electional.analyzing', language),
                           style: TextStyle(
                             color: isDark ? Colors.white70 : AppColors.textLight,
                           ),
@@ -166,7 +168,7 @@ class _ElectionalScreenState extends ConsumerState<ElectionalScreen> {
     );
   }
 
-  Widget _buildHeader(BuildContext context, bool isDark) {
+  Widget _buildHeader(BuildContext context, bool isDark, AppLanguage language) {
     return Padding(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       child: Row(
@@ -180,7 +182,7 @@ class _ElectionalScreenState extends ConsumerState<ElectionalScreen> {
           ),
           Expanded(
             child: Text(
-              'Secim Astrolojisi',
+              L10nService.get('electional.title', language),
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                     fontWeight: FontWeight.bold,
                     color: isDark ? Colors.white : AppColors.textDark,
@@ -194,7 +196,7 @@ class _ElectionalScreenState extends ConsumerState<ElectionalScreen> {
     );
   }
 
-  Widget _buildInfoBanner(bool isDark) {
+  Widget _buildInfoBanner(bool isDark, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingMd),
       decoration: BoxDecoration(
@@ -218,14 +220,14 @@ class _ElectionalScreenState extends ConsumerState<ElectionalScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'En Uygun Zamani Bulun',
+                  L10nService.get('electional.find_best_time', language),
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: isDark ? Colors.white : AppColors.textDark,
                   ),
                 ),
                 Text(
-                  'Onemli kararlar icin astrolojik olarak desteklenen zamanlari kesfedin',
+                  L10nService.get('electional.discover_supported_times', language),
                   style: TextStyle(
                     fontSize: 12,
                     color: isDark ? Colors.white70 : AppColors.textLight,
@@ -239,7 +241,7 @@ class _ElectionalScreenState extends ConsumerState<ElectionalScreen> {
     );
   }
 
-  Widget _buildProfileCard(bool isDark, dynamic userProfile) {
+  Widget _buildProfileCard(bool isDark, dynamic userProfile, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -263,7 +265,7 @@ class _ElectionalScreenState extends ConsumerState<ElectionalScreen> {
               ),
               const SizedBox(width: 8),
               Text(
-                'Profil Bilgileri',
+                L10nService.get('common.profile_info', language),
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
@@ -273,9 +275,9 @@ class _ElectionalScreenState extends ConsumerState<ElectionalScreen> {
             ],
           ),
           const SizedBox(height: AppConstants.spacingMd),
-          _buildInfoRow(isDark, Icons.person_outline, 'Isim', userProfile.name ?? 'Kullanici'),
-          _buildInfoRow(isDark, Icons.cake_outlined, 'Dogum Tarihi', _formatDate(userProfile.birthDate)),
-          _buildInfoRow(isDark, Icons.location_on_outlined, 'Dogum Yeri', userProfile.birthPlace ?? 'Belirtilmedi'),
+          _buildInfoRow(isDark, Icons.person_outline, L10nService.get('common.name', language), userProfile.name ?? L10nService.get('common.user', language)),
+          _buildInfoRow(isDark, Icons.cake_outlined, L10nService.get('common.birth_date', language), _formatDate(userProfile.birthDate, language)),
+          _buildInfoRow(isDark, Icons.location_on_outlined, L10nService.get('common.birth_place', language), userProfile.birthPlace ?? L10nService.get('common.not_specified', language)),
         ],
       ),
     );
@@ -311,15 +313,25 @@ class _ElectionalScreenState extends ConsumerState<ElectionalScreen> {
     );
   }
 
-  String _formatDate(DateTime date) {
-    const months = [
-      'Ocak', 'Subat', 'Mart', 'Nisan', 'Mayis', 'Haziran',
-      'Temmuz', 'Agustos', 'Eylul', 'Ekim', 'Kasim', 'Aralik'
+  String _formatDate(DateTime date, AppLanguage language) {
+    final months = [
+      L10nService.get('months.january', language),
+      L10nService.get('months.february', language),
+      L10nService.get('months.march', language),
+      L10nService.get('months.april', language),
+      L10nService.get('months.may', language),
+      L10nService.get('months.june', language),
+      L10nService.get('months.july', language),
+      L10nService.get('months.august', language),
+      L10nService.get('months.september', language),
+      L10nService.get('months.october', language),
+      L10nService.get('months.november', language),
+      L10nService.get('months.december', language),
     ];
     return '${date.day} ${months[date.month - 1]} ${date.year}';
   }
 
-  Widget _buildPurposeSelector(bool isDark) {
+  Widget _buildPurposeSelector(bool isDark, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -337,7 +349,7 @@ class _ElectionalScreenState extends ConsumerState<ElectionalScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Amac Secin',
+            L10nService.get('electional.select_purpose', language),
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 16,
@@ -382,7 +394,7 @@ class _ElectionalScreenState extends ConsumerState<ElectionalScreen> {
                       Text(purpose.icon),
                       const SizedBox(width: 6),
                       Text(
-                        purpose.nameTr,
+                        purpose.localizedName(language),
                         style: TextStyle(
                           fontSize: 13,
                           fontWeight:
@@ -401,7 +413,7 @@ class _ElectionalScreenState extends ConsumerState<ElectionalScreen> {
     );
   }
 
-  Widget _buildDateRangeCard(bool isDark) {
+  Widget _buildDateRangeCard(bool isDark, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -419,7 +431,7 @@ class _ElectionalScreenState extends ConsumerState<ElectionalScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Tarih Araligi',
+            L10nService.get('electional.date_range', language),
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 16,
@@ -443,7 +455,7 @@ class _ElectionalScreenState extends ConsumerState<ElectionalScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Baslangic',
+                          L10nService.get('electional.start_date', language),
                           style: TextStyle(
                             fontSize: 12,
                             color: isDark ? Colors.white60 : AppColors.textLight,
@@ -480,7 +492,7 @@ class _ElectionalScreenState extends ConsumerState<ElectionalScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Bitis',
+                          L10nService.get('electional.end_date', language),
                           style: TextStyle(
                             fontSize: 12,
                             color: isDark ? Colors.white60 : AppColors.textLight,
@@ -506,7 +518,7 @@ class _ElectionalScreenState extends ConsumerState<ElectionalScreen> {
     );
   }
 
-  Widget _buildOptimalTimeCard(bool isDark) {
+  Widget _buildOptimalTimeCard(bool isDark, AppLanguage language) {
     if (_chart == null) return const SizedBox.shrink();
 
     return Container(
@@ -535,7 +547,7 @@ class _ElectionalScreenState extends ConsumerState<ElectionalScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Onerilen Zaman',
+                      L10nService.get('electional.recommended_time', language),
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
@@ -543,7 +555,7 @@ class _ElectionalScreenState extends ConsumerState<ElectionalScreen> {
                       ),
                     ),
                     Text(
-                      'Skor: ${_chart!.optimalScore}/100',
+                      '${L10nService.get('electional.score', language)}: ${_chart!.optimalScore}/100',
                       style: TextStyle(
                         color: AppColors.gold,
                         fontWeight: FontWeight.bold,
@@ -562,7 +574,7 @@ class _ElectionalScreenState extends ConsumerState<ElectionalScreen> {
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Text(
-                  _getScoreLabel(_chart!.optimalScore),
+                  _getScoreLabel(_chart!.optimalScore, language),
                   style: TextStyle(
                     color: _getScoreColor(_chart!.optimalScore),
                     fontWeight: FontWeight.bold,
@@ -593,14 +605,14 @@ class _ElectionalScreenState extends ConsumerState<ElectionalScreen> {
     return Colors.red;
   }
 
-  String _getScoreLabel(int score) {
-    if (score >= 80) return 'Mukemmel';
-    if (score >= 60) return 'Iyi';
-    if (score >= 40) return 'Orta';
-    return 'Zayif';
+  String _getScoreLabel(int score, AppLanguage language) {
+    if (score >= 80) return L10nService.get('electional.excellent', language);
+    if (score >= 60) return L10nService.get('electional.good', language);
+    if (score >= 40) return L10nService.get('electional.moderate', language);
+    return L10nService.get('electional.weak', language);
   }
 
-  Widget _buildMoonPhaseCard(bool isDark) {
+  Widget _buildMoonPhaseCard(bool isDark, AppLanguage language) {
     if (_chart == null) return const SizedBox.shrink();
 
     return Container(
@@ -624,7 +636,7 @@ class _ElectionalScreenState extends ConsumerState<ElectionalScreen> {
               const Text('', style: TextStyle(fontSize: 24)),
               const SizedBox(width: AppConstants.spacingMd),
               Text(
-                'Ay Fazi Tavsiyesi',
+                L10nService.get('electional.moon_phase_advice', language),
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
@@ -647,7 +659,7 @@ class _ElectionalScreenState extends ConsumerState<ElectionalScreen> {
     );
   }
 
-  Widget _buildRetrogradeCard(bool isDark) {
+  Widget _buildRetrogradeCard(bool isDark, AppLanguage language) {
     if (_chart == null) return const SizedBox.shrink();
 
     final isWarning = _chart!.retrogradeWarning.contains('');
@@ -676,7 +688,7 @@ class _ElectionalScreenState extends ConsumerState<ElectionalScreen> {
               ),
               const SizedBox(width: AppConstants.spacingMd),
               Text(
-                'Retro Durumu',
+                L10nService.get('electional.retrograde_status', language),
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
@@ -699,7 +711,7 @@ class _ElectionalScreenState extends ConsumerState<ElectionalScreen> {
     );
   }
 
-  Widget _buildFavorableWindowsCard(bool isDark) {
+  Widget _buildFavorableWindowsCard(bool isDark, AppLanguage language) {
     if (_chart == null || _chart!.favorableWindows.isEmpty) {
       return const SizedBox.shrink();
     }
@@ -725,7 +737,7 @@ class _ElectionalScreenState extends ConsumerState<ElectionalScreen> {
               const Text('', style: TextStyle(fontSize: 24)),
               const SizedBox(width: AppConstants.spacingMd),
               Text(
-                'Uygun Zamanlar',
+                L10nService.get('electional.favorable_times', language),
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
@@ -743,7 +755,7 @@ class _ElectionalScreenState extends ConsumerState<ElectionalScreen> {
     );
   }
 
-  Widget _buildUnfavorableWindowsCard(bool isDark) {
+  Widget _buildUnfavorableWindowsCard(bool isDark, AppLanguage language) {
     if (_chart == null || _chart!.unfavorableWindows.isEmpty) {
       return const SizedBox.shrink();
     }
@@ -769,7 +781,7 @@ class _ElectionalScreenState extends ConsumerState<ElectionalScreen> {
               const Text('', style: TextStyle(fontSize: 24)),
               const SizedBox(width: AppConstants.spacingMd),
               Text(
-                'Kacinilmasi Gereken Zamanlar',
+                L10nService.get('electional.unfavorable_times', language),
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16,

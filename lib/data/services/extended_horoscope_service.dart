@@ -1,22 +1,28 @@
 import 'dart:math';
 import '../models/zodiac_sign.dart';
 import '../models/extended_horoscope.dart';
+import '../providers/app_providers.dart';
+import 'extended_horoscope_content.dart';
 
 class ExtendedHoroscopeService {
   // ============ WEEKLY HOROSCOPE ============
 
-  static WeeklyHoroscope generateWeeklyHoroscope(ZodiacSign sign, DateTime weekStart) {
+  static WeeklyHoroscope generateWeeklyHoroscope(
+    ZodiacSign sign,
+    DateTime weekStart, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     final weekEnd = weekStart.add(const Duration(days: 6));
     final seed = weekStart.year * 10000 + _getWeekOfYear(weekStart) * 100 + sign.index;
     final seededRandom = Random(seed);
 
-    final overviews = _getWeeklyOverviews(sign);
-    final loves = _getWeeklyLoveContent(sign);
-    final careers = _getWeeklyCareerContent(sign);
-    final healths = _getWeeklyHealthContent(sign);
-    final financials = _getWeeklyFinancialContent(sign);
-    final affirmations = _getWeeklyAffirmations(sign);
-    final days = ['Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi', 'Pazar'];
+    final overviews = ExtendedHoroscopeContent.getWeeklyOverviews(sign, language);
+    final loves = ExtendedHoroscopeContent.getWeeklyLoveContent(language);
+    final careers = ExtendedHoroscopeContent.getWeeklyCareerContent(language);
+    final healths = ExtendedHoroscopeContent.getWeeklyHealthContent(language);
+    final financials = ExtendedHoroscopeContent.getWeeklyFinancialContent(language);
+    final affirmations = ExtendedHoroscopeContent.getWeeklyAffirmations(language);
+    final days = ExtendedHoroscopeContent.getDays(language);
 
     return WeeklyHoroscope(
       sign: sign,
@@ -30,7 +36,7 @@ class ExtendedHoroscopeService {
       overallRating: seededRandom.nextInt(5) + 1,
       luckyDay: days[seededRandom.nextInt(days.length)],
       weeklyAffirmation: affirmations[seededRandom.nextInt(affirmations.length)],
-      keyDates: _generateKeyDates(weekStart, seededRandom),
+      keyDates: _generateKeyDates(weekStart, seededRandom, language),
     );
   }
 
@@ -40,17 +46,10 @@ class ExtendedHoroscopeService {
     return (daysDiff / 7).ceil() + 1;
   }
 
-  static List<String> _generateKeyDates(DateTime weekStart, Random seededRandom) {
+  static List<String> _generateKeyDates(DateTime weekStart, Random seededRandom, AppLanguage language) {
     final keyDates = <String>[];
     final numDates = seededRandom.nextInt(3) + 1;
-    final events = [
-      'romantik fırsatlar',
-      'kariyer atılımları',
-      'finansal kararlar',
-      'sağlık odağı',
-      'sosyal etkinlikler',
-      'iç huzur',
-    ];
+    final events = ExtendedHoroscopeContent.getKeyDateEvents(language);
 
     for (int i = 0; i < numDates; i++) {
       final day = weekStart.add(Duration(days: seededRandom.nextInt(7)));
@@ -62,18 +61,23 @@ class ExtendedHoroscopeService {
 
   // ============ MONTHLY HOROSCOPE ============
 
-  static MonthlyHoroscope generateMonthlyHoroscope(ZodiacSign sign, int month, int year) {
+  static MonthlyHoroscope generateMonthlyHoroscope(
+    ZodiacSign sign,
+    int month,
+    int year, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     final seed = year * 10000 + month * 100 + sign.index;
     final seededRandom = Random(seed);
 
-    final overviews = _getMonthlyOverviews(sign);
-    final loves = _getMonthlyLoveContent(sign);
-    final careers = _getMonthlyCareerContent(sign);
-    final healths = _getMonthlyHealthContent(sign);
-    final financials = _getMonthlyFinancialContent(sign);
-    final spirituals = _getMonthlySpiritualContent(sign);
-    final mantras = _getMonthlyMantras(sign);
-    final transits = _getMonthlyTransits(sign, month);
+    final overviews = ExtendedHoroscopeContent.getMonthlyOverviews(sign, language);
+    final loves = ExtendedHoroscopeContent.getMonthlyLoveContent(language);
+    final careers = ExtendedHoroscopeContent.getMonthlyCareerContent(language);
+    final healths = ExtendedHoroscopeContent.getMonthlyHealthContent(language);
+    final financials = ExtendedHoroscopeContent.getMonthlyFinancialContent(language);
+    final spirituals = ExtendedHoroscopeContent.getMonthlySpiritualContent(language);
+    final mantras = ExtendedHoroscopeContent.getMonthlyMantras(language);
+    final transits = _getMonthlyTransits(sign, month, language);
 
     final weeklyRatings = <String, int>{
       'week1': seededRandom.nextInt(5) + 1,
@@ -107,16 +111,20 @@ class ExtendedHoroscopeService {
 
   // ============ LOVE HOROSCOPE ============
 
-  static LoveHoroscope generateLoveHoroscope(ZodiacSign sign, DateTime date) {
+  static LoveHoroscope generateLoveHoroscope(
+    ZodiacSign sign,
+    DateTime date, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     final seed = date.year * 10000 + date.month * 100 + date.day + sign.index;
     final seededRandom = Random(seed);
 
-    final outlooks = _getRomanticOutlooks(sign);
-    final singles = _getSingleAdvice(sign);
-    final couples = _getCouplesAdvice(sign);
-    final souls = _getSoulConnectionContent(sign);
-    final venus = _getVenusInfluence(sign);
-    final intimacy = _getIntimacyAdvice(sign);
+    final outlooks = ExtendedHoroscopeContent.getRomanticOutlooks(sign, language);
+    final singles = ExtendedHoroscopeContent.getSingleAdvice(language);
+    final couples = ExtendedHoroscopeContent.getCouplesAdvice(language);
+    final souls = ExtendedHoroscopeContent.getSoulConnectionContent(language);
+    final venus = ExtendedHoroscopeContent.getVenusInfluence(language);
+    final intimacy = ExtendedHoroscopeContent.getIntimacyAdvice(language);
 
     final compatibleSigns = _getCompatibleSigns(sign);
     final challengingSigns = _getChallengingSigns(sign);
@@ -140,19 +148,23 @@ class ExtendedHoroscopeService {
 
   // ============ YEARLY HOROSCOPE ============
 
-  static YearlyHoroscope generateYearlyHoroscope(ZodiacSign sign, int year) {
+  static YearlyHoroscope generateYearlyHoroscope(
+    ZodiacSign sign,
+    int year, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     final seed = year * 100 + sign.index;
     final seededRandom = Random(seed);
 
-    final overviews = _getYearlyOverviews(sign);
-    final loves = _getYearlyLoveContent(sign);
-    final careers = _getYearlyCareerContent(sign);
-    final healths = _getYearlyHealthContent(sign);
-    final financials = _getYearlyFinancialContent(sign);
-    final spirituals = _getYearlySpiritualContent(sign);
-    final affirmations = _getYearlyAffirmations(sign);
-    final themes = _getYearlyThemes(sign);
-    final transits = _getMajorTransits(year);
+    final overviews = ExtendedHoroscopeContent.getYearlyOverviews(sign, language);
+    final loves = ExtendedHoroscopeContent.getYearlyLoveContent(language);
+    final careers = ExtendedHoroscopeContent.getYearlyCareerContent(language);
+    final healths = ExtendedHoroscopeContent.getYearlyHealthContent(language);
+    final financials = ExtendedHoroscopeContent.getYearlyFinancialContent(language);
+    final spirituals = ExtendedHoroscopeContent.getYearlySpiritualContent(language);
+    final affirmations = ExtendedHoroscopeContent.getYearlyAffirmations(language);
+    final themes = ExtendedHoroscopeContent.getYearlyThemes(language);
+    final transits = _getMajorTransits(year, language);
 
     final monthlyRatings = <int, int>{};
     for (int i = 1; i <= 12; i++) {
@@ -161,8 +173,7 @@ class ExtendedHoroscopeService {
 
     final luckyMonths = <String>[];
     final challengingMonths = <String>[];
-    final months = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran',
-                    'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
+    final months = ExtendedHoroscopeContent.getMonths(language);
 
     for (int i = 0; i < 3; i++) {
       luckyMonths.add(months[seededRandom.nextInt(12)]);
@@ -524,12 +535,19 @@ class ExtendedHoroscopeService {
     ];
   }
 
-  static List<String> _getMonthlyTransits(ZodiacSign sign, int month) {
-    return [
-      'Ay başında Merkür\'ün hareketi iletişim alanını aktive ediyor. Ay ortasında Venüs geçişi aşk ve finans konularını ön plana çıkarıyor.',
-      'Mars enerjisi bu ay güçlü. Eylem ve kararlılık gerektiren konularda cesur adımlar atabilirsiniz. Dolunay döneminde duygusal doruk noktası.',
-      'Jüpiter\'in olumlu açısı şans ve fırsatlar getiriyor. Satürn\'ün etkisi ise disiplin ve sorumluluk temalarını vurguluyor.',
-    ];
+  static List<String> _getMonthlyTransits(ZodiacSign sign, int month, AppLanguage language) {
+    final isEn = language == AppLanguage.en;
+    return isEn
+        ? [
+            'At the beginning of the month, Mercury\'s movement activates the communication field. Mid-month Venus transit brings love and finance issues to the fore.',
+            'Mars energy is strong this month. You can take bold steps in matters requiring action and determination. Emotional peak during the full moon period.',
+            'Jupiter\'s favorable aspect brings luck and opportunities. Saturn\'s influence emphasizes discipline and responsibility themes.',
+          ]
+        : [
+            'Ay başında Merkür\'ün hareketi iletişim alanını aktive ediyor. Ay ortasında Venüs geçişi aşk ve finans konularını ön plana çıkarıyor.',
+            'Mars enerjisi bu ay güçlü. Eylem ve kararlılık gerektiren konularda cesur adımlar atabilirsiniz. Dolunay döneminde duygusal doruk noktası.',
+            'Jüpiter\'in olumlu açısı şans ve fırsatlar getiriyor. Satürn\'ün etkisi ise disiplin ve sorumluluk temalarını vurguluyor.',
+          ];
   }
 
   static List<String> _getRomanticOutlooks(ZodiacSign sign) {
@@ -698,13 +716,22 @@ class ExtendedHoroscopeService {
     ];
   }
 
-  static List<String> _getMajorTransits(int year) {
-    return [
-      'Jüpiter\'in burç değişimi yılın ana teması. Şans ve genişleme enerjisi yeni alanlara kayıyor.',
-      'Satürn\'ün hareketi sorumluluk ve olgunlaşma konularını vurguluyor.',
-      'Tutulma ekseni ilişki ve kimlik temalarını aktive ediyor.',
-      'Uranüs beklenmedik değişimler ve özgürlük arayışını tetikliyor.',
-      'Neptün ruhsal derinlik ve hayal gücünü güçlendiriyor.',
-    ];
+  static List<String> _getMajorTransits(int year, AppLanguage language) {
+    final isEn = language == AppLanguage.en;
+    return isEn
+        ? [
+            'Jupiter\'s sign change is the main theme of the year. Luck and expansion energy is shifting to new areas.',
+            'Saturn\'s movement emphasizes responsibility and maturation issues.',
+            'The eclipse axis activates relationship and identity themes.',
+            'Uranus triggers unexpected changes and the search for freedom.',
+            'Neptune strengthens spiritual depth and imagination.',
+          ]
+        : [
+            'Jüpiter\'in burç değişimi yılın ana teması. Şans ve genişleme enerjisi yeni alanlara kayıyor.',
+            'Satürn\'ün hareketi sorumluluk ve olgunlaşma konularını vurguluyor.',
+            'Tutulma ekseni ilişki ve kimlik temalarını aktive ediyor.',
+            'Uranüs beklenmedik değişimler ve özgürlük arayışını tetikliyor.',
+            'Neptün ruhsal derinlik ve hayal gücünü güçlendiriyor.',
+          ];
   }
 }

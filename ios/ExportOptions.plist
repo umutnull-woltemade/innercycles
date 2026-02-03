@@ -3,12 +3,21 @@
 <plist version="1.0">
 <dict>
     <key>method</key>
-    <string>app-store</string>
+    <string>app-store-connect</string>
     <key>uploadSymbols</key>
     <true/>
     <key>compileBitcode</key>
     <false/>
-    <key>destination</key>
-    <string>upload</string>
+    <key>teamID</key>
+    <string>8RBH9ALBH6</string>
+    <key>provisioningProfiles</key>
+    <dict>
+        <key>com.umut.astrologyApp</key>
+        <string>Venus One Distribution</string>
+    </dict>
+    <key>signingStyle</key>
+    <string>manual</string>
+    <key>signingCertificate</key>
+    <string>Apple Distribution</string>
 </dict>
 </plist>

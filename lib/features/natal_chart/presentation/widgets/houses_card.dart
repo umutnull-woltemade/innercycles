@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/constants/app_constants.dart';
 import '../../../../core/theme/app_colors.dart';
@@ -7,14 +8,17 @@ import '../../../../data/models/house.dart';
 import '../../../../data/models/natal_chart.dart';
 import '../../../../data/models/planet.dart';
 import '../../../../data/models/zodiac_sign.dart' as zodiac;
+import '../../../../data/providers/app_providers.dart';
 
-class HousesCard extends StatelessWidget {
+class HousesCard extends ConsumerWidget {
   final NatalChart chart;
 
   const HousesCard({super.key, required this.chart});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final language = ref.watch(languageProvider);
+
     if (chart.houses.isEmpty) {
       return Container(
         padding: const EdgeInsets.all(AppConstants.spacingXl),
@@ -62,6 +66,7 @@ class HousesCard extends StatelessWidget {
       children: [
         _buildHouseTypeSection(
           context,
+          language,
           'Açısal Evler',
           'En güçlü ve aktif evler (1, 4, 7, 10)',
           angularHouses,
@@ -71,6 +76,7 @@ class HousesCard extends StatelessWidget {
         const SizedBox(height: AppConstants.spacingMd),
         _buildHouseTypeSection(
           context,
+          language,
           'Ardıl Evler',
           'Kaynaklar ve değerler (2, 5, 8, 11)',
           succedentHouses,
@@ -80,6 +86,7 @@ class HousesCard extends StatelessWidget {
         const SizedBox(height: AppConstants.spacingMd),
         _buildHouseTypeSection(
           context,
+          language,
           'Dusen Evler',
           'Ogrenme ve uyum (3, 6, 9, 12)',
           cadentHouses,
@@ -92,6 +99,7 @@ class HousesCard extends StatelessWidget {
 
   Widget _buildHouseTypeSection(
     BuildContext context,
+    AppLanguage language,
     String title,
     String subtitle,
     List<HouseCusp> houses,
@@ -149,6 +157,7 @@ class HousesCard extends StatelessWidget {
             final planetsInHouse = chart.planetsInHouse(house.house);
             return _HouseRow(
               house: house,
+              language: language,
               planetsInHouse: planetsInHouse.cast<PlanetPosition>(),
               isLast: index == houses.length - 1,
             );
@@ -161,11 +170,13 @@ class HousesCard extends StatelessWidget {
 
 class _HouseRow extends StatefulWidget {
   final HouseCusp house;
+  final AppLanguage language;
   final List<PlanetPosition> planetsInHouse;
   final bool isLast;
 
   const _HouseRow({
     required this.house,
+    required this.language,
     required this.planetsInHouse,
     this.isLast = false,
   });
@@ -188,11 +199,12 @@ class _HouseRowState extends State<_HouseRow> {
     int houseNumber,
     zodiac.ZodiacSign sign,
   ) {
+    final signName = zodiac.ZodiacSignExtension(sign).localizedName(widget.language);
     final interpretations = {
       1: {
         'title': 'Benliğin Kapısı',
         'esoteric':
-            'Birinci ev, ruhunun bu dünyaya ilk dokunuşudur - ilk nefes, ilk bakış, ilk "ben" duygusu. Bu ev senin "kozmik masken"dir; ruhunun dünyaya kendini nasıl sunmayı seçtiğini gösterir. ${sign.nameTr} burada yükselen olarak, hayata yaklaşımını, fiziksel görünümünü ve başkalarının seni ilk nasıl algıladığını renklendirir.',
+            'Birinci ev, ruhunun bu dünyaya ilk dokunuşudur - ilk nefes, ilk bakış, ilk "ben" duygusu. Bu ev senin "kozmik masken"dir; ruhunun dünyaya kendini nasıl sunmayı seçtiğini gösterir. $signName burada yükselen olarak, hayata yaklaşımını, fiziksel görünümünü ve başkalarının seni ilk nasıl algıladığını renklendirir.',
         'shadow':
             'Gölge yönü: Maskenin arkasına saklanma, dış görünüşe aşırı önem verme.',
         'gift': 'Armağan: Her anı yeni bir başlangıç olarak yaşama yeteneği.',
@@ -207,7 +219,7 @@ class _HouseRowState extends State<_HouseRow> {
       2: {
         'title': 'Değerler Tapınağı',
         'esoteric':
-            'İkinci ev, maddi dünyanın kutsal mabedidir. Para sadece kağıt değil - senin değer sisteminin yansımasıdır. ${sign.nameTr} bu evde konumlanarak para kazanma tarzını, neye değer verdiğini ve güvenlik ihtiyacını şekillendiriyor. Bu ev "sahip olmak" fiilinin ruhsal boyutunu taşır.',
+            'İkinci ev, maddi dünyanın kutsal mabedidir. Para sadece kağıt değil - senin değer sisteminin yansımasıdır. $signName bu evde konumlanarak para kazanma tarzını, neye değer verdiğini ve güvenlik ihtiyacını şekillendiriyor. Bu ev "sahip olmak" fiilinin ruhsal boyutunu taşır.',
         'shadow':
             'Gölge yönü: Güvenliği sadece maddiyatta arama, açgözlülük veya aşırı tutumculuk.',
         'gift':
@@ -217,7 +229,7 @@ class _HouseRowState extends State<_HouseRow> {
       3: {
         'title': 'Zihnin Bahçesi',
         'esoteric':
-            'Üçüncü ev, zihnin ve iletişimin kutsal alanıdır. ${sign.nameTr} burada düşünme tarzını, konuşma stilini ve öğrenme biçimini belirliyor. Bu ev kardeşler, komşular ve yakın çevre ile ilişkiyi de yönetir. Zihin burada ya bir bahçe ya da bir orman olur - diktiğin tohumlar büyür.',
+            'Üçüncü ev, zihnin ve iletişimin kutsal alanıdır. $signName burada düşünme tarzını, konuşma stilini ve öğrenme biçimini belirliyor. Bu ev kardeşler, komşular ve yakın çevre ile ilişkiyi de yönetir. Zihin burada ya bir bahçe ya da bir orman olur - diktiğin tohumlar büyür.',
         'shadow': 'Gölge yönü: Yüzeysellik, dedikodu, dikkat dağınıklığı.',
         'gift': 'Armağan: Sözcüklerle dünyaları birleştirme gücü.',
         'keywords': [
@@ -231,7 +243,7 @@ class _HouseRowState extends State<_HouseRow> {
       4: {
         'title': 'Ruhun Kökü',
         'esoteric':
-            'Dördüncü ev, haritanın en derin noktasıdır - ruhunun kökü. ${sign.nameTr} burada aile kalıplarını, duygusal güvenlik ihtiyacını ve "yuva" kavramını şekillendiriyor. Bu ev ataların mirasını ve bilinçaltındaki en eski izlenimleri taşır. Nereden geldiğini bilmeden nereye gittiğini anlayamazsın.',
+            'Dördüncü ev, haritanın en derin noktasıdır - ruhunun kökü. $signName burada aile kalıplarını, duygusal güvenlik ihtiyacını ve "yuva" kavramını şekillendiriyor. Bu ev ataların mirasını ve bilinçaltındaki en eski izlenimleri taşır. Nereden geldiğini bilmeden nereye gittiğini anlayamazsın.',
         'shadow':
             'Gölge yönü: Geçmişe takılıp kalma, aile kalıplarını körü körüne tekrarlama.',
         'gift': 'Armağan: Derin duygusal bilgelik ve içsel huzur kapasitesi.',
@@ -240,7 +252,7 @@ class _HouseRowState extends State<_HouseRow> {
       5: {
         'title': 'Yaratıcının Sahnesi',
         'esoteric':
-            'Beşinci ev, ruhunun yaratıcı ifade bulduğu sahnedir. ${sign.nameTr} burada yaratıcılık tarzını, romantik ifadeni, çocuklarla ilişkini ve "oyun"a yaklaşımını renklendirir. Bu ev kalbin neşesinin fışkırdığı yerdir - içindeki çocuğun evi.',
+            'Beşinci ev, ruhunun yaratıcı ifade bulduğu sahnedir. $signName burada yaratıcılık tarzını, romantik ifadeni, çocuklarla ilişkini ve "oyun"a yaklaşımını renklendirir. Bu ev kalbin neşesinin fışkırdığı yerdir - içindeki çocuğun evi.',
         'shadow':
             'Gölge yönü: Ego şişkinliği, dikkat bağımlılığı, riskli davranışlar.',
         'gift':
@@ -256,7 +268,7 @@ class _HouseRowState extends State<_HouseRow> {
       6: {
         'title': 'Hizmetin Atelyesi',
         'esoteric':
-            'Altıncı ev, günlük yaşamın kutsal ritüellerinin evidir. ${sign.nameTr} burada iş rutinlerini, sağlık alışkanlıklarını ve hizmet anlayışını belirliyor. Bu ev "nasıl hizmet ederim?" sorusunun cevabını taşır. Bedenin bir tapınaktır - altıncı ev onun bakım kılavuzudur.',
+            'Altıncı ev, günlük yaşamın kutsal ritüellerinin evidir. $signName burada iş rutinlerini, sağlık alışkanlıklarını ve hizmet anlayışını belirliyor. Bu ev "nasıl hizmet ederim?" sorusunun cevabını taşır. Bedenin bir tapınaktır - altıncı ev onun bakım kılavuzudur.',
         'shadow':
             'Gölge yönü: Obsesif mükemmeliyetçilik, kendini ihmal ederek başkalarına hizmet.',
         'gift': 'Armağan: Düzeni ve iyileşmeyi yaratma kapasitesi.',
@@ -271,7 +283,7 @@ class _HouseRowState extends State<_HouseRow> {
       7: {
         'title': 'Aynanın Ötesi',
         'esoteric':
-            'Yedinci ev, "öteki"nin aynasıdır - ilişkilerin, ortaklıkların ve evliliğin evidir. ${sign.nameTr} burada partnerlerinde aradığın nitelikleri, ilişki tarzını ve "biz" kavramını şekillendiriyor. Karşına çıkan herkes içindeki bir şeyi yansıtır - bu ev o aynadır.',
+            'Yedinci ev, "öteki"nin aynasıdır - ilişkilerin, ortaklıkların ve evliliğin evidir. $signName burada partnerlerinde aradığın nitelikleri, ilişki tarzını ve "biz" kavramını şekillendiriyor. Karşına çıkan herkes içindeki bir şeyi yansıtır - bu ev o aynadır.',
         'shadow':
             'Gölge yönü: Kendini ilişkiler üzerinden tanımlama, bağımlı ilişkiler.',
         'gift': 'Armağan: Derin bağlar kurma ve başkalarında kendini görme.',
@@ -280,7 +292,7 @@ class _HouseRowState extends State<_HouseRow> {
       8: {
         'title': 'Dönüşümün Kuyusu',
         'esoteric':
-            'Sekizinci ev, ölüm-yeniden doğuş döngüsünün evidir - en derin dönüşümlerin yeri. ${sign.nameTr} burada krizlerle başa çıkma tarzını, paylaşılan kaynakları, cinselliği ve gizemlere yaklaşımını belirliyor. Bu ev, gölgelerle yüzleşme cesareti gerektirir.',
+            'Sekizinci ev, ölüm-yeniden doğuş döngüsünün evidir - en derin dönüşümlerin yeri. $signName burada krizlerle başa çıkma tarzını, paylaşılan kaynakları, cinselliği ve gizemlere yaklaşımını belirliyor. Bu ev, gölgelerle yüzleşme cesareti gerektirir.',
         'shadow': 'Gölge yönü: Kontrol obsesyonu, manipülasyon, kayıp korkusu.',
         'gift':
             'Armağan: Anka kuşu gibi her kül yığınından yeniden doğma gücü.',
@@ -295,7 +307,7 @@ class _HouseRowState extends State<_HouseRow> {
       9: {
         'title': 'Hakikat Arayışı',
         'esoteric':
-            'Dokuzuncu ev, anlam arayışının evidir - felsefe, yüksek öğrenim, uzak yolculuklar ve spiritüel genişleme. ${sign.nameTr} burada inanç sistemini, öğretme/öğrenme tarzını ve "büyük resmi" görme biçimini şekillendiriyor. Bu ev "neden?" sorusunun peşinden gider.',
+            'Dokuzuncu ev, anlam arayışının evidir - felsefe, yüksek öğrenim, uzak yolculuklar ve spiritüel genişleme. $signName burada inanç sistemini, öğretme/öğrenme tarzını ve "büyük resmi" görme biçimini şekillendiriyor. Bu ev "neden?" sorusunun peşinden gider.',
         'shadow': 'Gölge yönü: Dogmatizm, körü körüne inanç, yerinde duramama.',
         'gift':
             'Armağan: Bilgeliği deneyimden süzme ve başkalarını aydınlatma.',
@@ -310,7 +322,7 @@ class _HouseRowState extends State<_HouseRow> {
       10: {
         'title': 'Zirvenin Tacı',
         'esoteric':
-            'Onuncu ev, haritanın zirvesidir - kariyer, toplumsal statü ve yaşam misyonunun evidir. ${sign.nameTr} burada dünyada bırakmak istediğin izi, kariyer tarzını ve otorite figürleriyle ilişkini belirliyor. Bu ev "dünyada kim olmak istiyorum?" sorusunun cevabıdır.',
+            'Onuncu ev, haritanın zirvesidir - kariyer, toplumsal statü ve yaşam misyonunun evidir. $signName burada dünyada bırakmak istediğin izi, kariyer tarzını ve otorite figürleriyle ilişkini belirliyor. Bu ev "dünyada kim olmak istiyorum?" sorusunun cevabıdır.',
         'shadow':
             'Gölge yönü: Statü takıntısı, iş bağımlılığı, başarı için fedakarlık.',
         'gift': 'Armağan: Dünyada kalıcı ve anlamlı bir iz bırakma kapasitesi.',
@@ -319,7 +331,7 @@ class _HouseRowState extends State<_HouseRow> {
       11: {
         'title': 'Rüyaların Kolektifi',
         'esoteric':
-            'On birinci ev, kolektif rüyaların, ideallerin ve arkadaşlıkların evidir. ${sign.nameTr} burada sosyal çevreni, grup dinamiklerini ve geleceğe dair vizyonunu şekillendiriyor. Bu ev "kabileni" bulmakla ilgilidir - tek başına değiştiremediğini birlikte dönüştürürsün.',
+            'On birinci ev, kolektif rüyaların, ideallerin ve arkadaşlıkların evidir. $signName burada sosyal çevreni, grup dinamiklerini ve geleceğe dair vizyonunu şekillendiriyor. Bu ev "kabileni" bulmakla ilgilidir - tek başına değiştiremediğini birlikte dönüştürürsün.',
         'shadow':
             'Gölge yönü: Gruba uyum için bireyselligi kaybetme, ütopik hayaller.',
         'gift':
@@ -335,7 +347,7 @@ class _HouseRowState extends State<_HouseRow> {
       12: {
         'title': 'Sonsuzluğun Kapısı',
         'esoteric':
-            'On ikinci ev, haritanın en gizemli köşesidir - bilinçaltı, spiritüellik, karma ve çözülmenin evidir. ${sign.nameTr} burada bilinçaltı kalıplarını, spiritüel yolculuğunu ve "bırakma" derslerini taşıyor. Bu ev, egodan öteye, sonsuzluğa açılan kapıdır.',
+            'On ikinci ev, haritanın en gizemli köşesidir - bilinçaltı, spiritüellik, karma ve çözülmenin evidir. $signName burada bilinçaltı kalıplarını, spiritüel yolculuğunu ve "bırakma" derslerini taşıyor. Bu ev, egodan öteye, sonsuzluğa açılan kapıdır.',
         'shadow': 'Gölge yönü: Kaçış eğilimi, kurban rolü, gerçeklikten kopuş.',
         'gift': 'Armağan: Sınırsız şefkat ve evrensel birlik deneyimi.',
         'keywords': [
@@ -399,7 +411,7 @@ class _HouseRowState extends State<_HouseRow> {
   }
 
   String _getHouseSignInterpretation(int houseNumber, zodiac.ZodiacSign sign) {
-    final signName = zodiac.ZodiacSignExtension(sign).nameTr;
+    final signName = zodiac.ZodiacSignExtension(sign).localizedName(widget.language);
     final houseThemes = {
       1: 'kimlik, benlik ifadesi ve dış görünüş',
       2: 'para, değerler ve maddi güvenlik',
@@ -458,7 +470,7 @@ class _HouseRowState extends State<_HouseRow> {
     };
 
     final area = houseAreas[houseNumber] ?? 'bu alan';
-    final planetNames = planets.map((p) => p.planet.nameTr).join(', ');
+    final planetNames = planets.map((p) => p.planet.localizedName(widget.language)).join(', ');
     final count = planets.length;
 
     if (count == 1) {
@@ -707,7 +719,7 @@ class _HouseRowState extends State<_HouseRow> {
                         ),
                         const SizedBox(width: 6),
                         Text(
-                          '${zodiac.ZodiacSignExtension(widget.house.sign).nameTr} Yönetiminde',
+                          '${zodiac.ZodiacSignExtension(widget.house.sign).localizedName(widget.language)} Yönetiminde',
                           style: Theme.of(context).textTheme.labelSmall
                               ?.copyWith(
                                 color: signColor,
@@ -776,7 +788,7 @@ class _HouseRowState extends State<_HouseRow> {
                           ),
                           const SizedBox(width: 4),
                           Text(
-                            planet.planet.nameTr,
+                            planet.planet.localizedName(widget.language),
                             style: Theme.of(context).textTheme.bodySmall
                                 ?.copyWith(color: AppColors.textPrimary),
                           ),
@@ -814,7 +826,7 @@ class _HouseRowState extends State<_HouseRow> {
                       const SizedBox(width: 8),
                       Expanded(
                         child: Text(
-                          'Bu evde gezegen yok - bu alanın aktif olmadığı anlamına gelmez. Evin yönetici burcu olan ${zodiac.ZodiacSignExtension(widget.house.sign).nameTr} ve onun yönetici gezegeni bu alanı aktive eder.',
+                          'Bu evde gezegen yok - bu alanın aktif olmadığı anlamına gelmez. Evin yönetici burcu olan ${zodiac.ZodiacSignExtension(widget.house.sign).localizedName(widget.language)} ve onun yönetici gezegeni bu alanı aktive eder.',
                           style: Theme.of(context).textTheme.bodySmall
                               ?.copyWith(
                                 color: AppColors.textMuted,

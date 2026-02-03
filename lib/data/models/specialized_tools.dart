@@ -1,4 +1,5 @@
 import 'zodiac_sign.dart';
+import '../providers/app_providers.dart';
 
 /// Local Space Astrology
 class LocalSpaceChart {
@@ -148,6 +149,83 @@ extension CardinalDirectionExtension on CardinalDirection {
         return 'Batı';
       case CardinalDirection.northwest:
         return 'Kuzeybatı';
+    }
+  }
+
+  String get nameEn {
+    switch (this) {
+      case CardinalDirection.north:
+        return 'North';
+      case CardinalDirection.northeast:
+        return 'Northeast';
+      case CardinalDirection.east:
+        return 'East';
+      case CardinalDirection.southeast:
+        return 'Southeast';
+      case CardinalDirection.south:
+        return 'South';
+      case CardinalDirection.southwest:
+        return 'Southwest';
+      case CardinalDirection.west:
+        return 'West';
+      case CardinalDirection.northwest:
+        return 'Northwest';
+    }
+  }
+
+  String get nameDe {
+    switch (this) {
+      case CardinalDirection.north:
+        return 'Norden';
+      case CardinalDirection.northeast:
+        return 'Nordosten';
+      case CardinalDirection.east:
+        return 'Osten';
+      case CardinalDirection.southeast:
+        return 'Sudosten';
+      case CardinalDirection.south:
+        return 'Suden';
+      case CardinalDirection.southwest:
+        return 'Sudwesten';
+      case CardinalDirection.west:
+        return 'Westen';
+      case CardinalDirection.northwest:
+        return 'Nordwesten';
+    }
+  }
+
+  String get nameFr {
+    switch (this) {
+      case CardinalDirection.north:
+        return 'Nord';
+      case CardinalDirection.northeast:
+        return 'Nord-est';
+      case CardinalDirection.east:
+        return 'Est';
+      case CardinalDirection.southeast:
+        return 'Sud-est';
+      case CardinalDirection.south:
+        return 'Sud';
+      case CardinalDirection.southwest:
+        return 'Sud-ouest';
+      case CardinalDirection.west:
+        return 'Ouest';
+      case CardinalDirection.northwest:
+        return 'Nord-ouest';
+    }
+  }
+
+  String localizedName(AppLanguage language) {
+    switch (language) {
+      case AppLanguage.en:
+        return nameEn;
+      case AppLanguage.de:
+        return nameDe;
+      case AppLanguage.fr:
+        return nameFr;
+      case AppLanguage.tr:
+      default:
+        return nameTr;
     }
   }
 
@@ -322,6 +400,71 @@ extension FamilyRoleExtension on FamilyRole {
         return 'Eş';
       case FamilyRole.other:
         return 'Diğer';
+    }
+  }
+
+  String get nameEn {
+    switch (this) {
+      case FamilyRole.parent:
+        return 'Parent';
+      case FamilyRole.child:
+        return 'Child';
+      case FamilyRole.sibling:
+        return 'Sibling';
+      case FamilyRole.grandparent:
+        return 'Grandparent';
+      case FamilyRole.spouse:
+        return 'Spouse';
+      case FamilyRole.other:
+        return 'Other';
+    }
+  }
+
+  String get nameDe {
+    switch (this) {
+      case FamilyRole.parent:
+        return 'Elternteil';
+      case FamilyRole.child:
+        return 'Kind';
+      case FamilyRole.sibling:
+        return 'Geschwister';
+      case FamilyRole.grandparent:
+        return 'Grosseltern';
+      case FamilyRole.spouse:
+        return 'Ehepartner';
+      case FamilyRole.other:
+        return 'Andere';
+    }
+  }
+
+  String get nameFr {
+    switch (this) {
+      case FamilyRole.parent:
+        return 'Parent';
+      case FamilyRole.child:
+        return 'Enfant';
+      case FamilyRole.sibling:
+        return 'Frere/Soeur';
+      case FamilyRole.grandparent:
+        return 'Grand-parent';
+      case FamilyRole.spouse:
+        return 'Conjoint';
+      case FamilyRole.other:
+        return 'Autre';
+    }
+  }
+
+  String localizedName(AppLanguage language) {
+    switch (language) {
+      case AppLanguage.en:
+        return nameEn;
+      case AppLanguage.de:
+        return nameDe;
+      case AppLanguage.fr:
+        return nameFr;
+      case AppLanguage.tr:
+      default:
+        return nameTr;
     }
   }
 

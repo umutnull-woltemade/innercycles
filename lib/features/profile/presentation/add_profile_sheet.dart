@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/user_profile.dart';
 import '../../../data/models/zodiac_sign.dart';
+import '../../../data/providers/app_providers.dart';
+import '../../../data/services/l10n_service.dart';
 
-class AddProfileSheet extends StatefulWidget {
+class AddProfileSheet extends ConsumerStatefulWidget {
   final Function(UserProfile) onSave;
 
   const AddProfileSheet({super.key, required this.onSave});
 
   @override
-  State<AddProfileSheet> createState() => _AddProfileSheetState();
+  ConsumerState<AddProfileSheet> createState() => _AddProfileSheetState();
 }
 
-class _AddProfileSheetState extends State<AddProfileSheet> {
+class _AddProfileSheetState extends ConsumerState<AddProfileSheet> {
   final _nameController = TextEditingController();
   final _locationController = TextEditingController();
   DateTime _birthDate = DateTime(1990, 6, 15);
@@ -25,12 +28,12 @@ class _AddProfileSheetState extends State<AddProfileSheet> {
   String? _relationship;
   String? _avatarEmoji;
 
-  final _relationshipOptions = [
-    {'value': 'partner', 'label': 'Partner', 'emoji': '💕'},
-    {'value': 'friend', 'label': 'Arkadaş', 'emoji': '👫'},
-    {'value': 'family', 'label': 'Aile', 'emoji': '👨‍👩‍👧'},
-    {'value': 'colleague', 'label': 'İş Arkadaşı', 'emoji': '💼'},
-    {'value': 'other', 'label': 'Diğer', 'emoji': '✨'},
+  List<Map<String, String>> _getRelationshipOptions(AppLanguage language) => [
+    {'value': 'partner', 'label': L10nService.get('profile.relationship_types.partner', language), 'emoji': '💕'},
+    {'value': 'friend', 'label': L10nService.get('profile.relationship_types.friend', language), 'emoji': '👫'},
+    {'value': 'family', 'label': L10nService.get('profile.relationship_types.family', language), 'emoji': '👨‍👩‍👧'},
+    {'value': 'colleague', 'label': L10nService.get('profile.relationship_types.colleague', language), 'emoji': '💼'},
+    {'value': 'other', 'label': L10nService.get('profile.relationship_types.other', language), 'emoji': '✨'},
   ];
 
   final _emojiOptions = ['👤', '👱', '👩', '👨', '🧑', '👧', '👦', '🧔', '👵', '👴', '💫', '🌟', '🔮', '🌙', '☀️'];
@@ -46,6 +49,7 @@ class _AddProfileSheetState extends State<AddProfileSheet> {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final sign = ZodiacSignExtension.fromDate(_birthDate);
+    final language = ref.watch(languageProvider);
 
     return Container(
       height: MediaQuery.of(context).size.height * 0.85,
@@ -70,21 +74,21 @@ class _AddProfileSheetState extends State<AddProfileSheet> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _buildHeader(context, isDark),
+                  _buildHeader(context, isDark, language),
                   const SizedBox(height: AppConstants.spacingXl),
-                  _buildAvatarSection(context, isDark, sign),
+                  _buildAvatarSection(context, isDark, sign, language),
                   const SizedBox(height: AppConstants.spacingLg),
-                  _buildNameField(context, isDark),
+                  _buildNameField(context, isDark, language),
                   const SizedBox(height: AppConstants.spacingLg),
-                  _buildDateField(context, isDark, sign),
+                  _buildDateField(context, isDark, sign, language),
                   const SizedBox(height: AppConstants.spacingLg),
-                  _buildTimeField(context, isDark),
+                  _buildTimeField(context, isDark, language),
                   const SizedBox(height: AppConstants.spacingLg),
-                  _buildLocationField(context, isDark),
+                  _buildLocationField(context, isDark, language),
                   const SizedBox(height: AppConstants.spacingLg),
-                  _buildRelationshipField(context, isDark),
+                  _buildRelationshipField(context, isDark, language),
                   const SizedBox(height: AppConstants.spacingXl),
-                  _buildSaveButton(context, sign),
+                  _buildSaveButton(context, sign, language),
                   const SizedBox(height: AppConstants.spacingLg),
                 ],
               ),
@@ -95,21 +99,21 @@ class _AddProfileSheetState extends State<AddProfileSheet> {
     );
   }
 
-  Widget _buildHeader(BuildContext context, bool isDark) {
+  Widget _buildHeader(BuildContext context, bool isDark, AppLanguage language) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         TextButton(
           onPressed: () => Navigator.pop(context),
           child: Text(
-            'İptal',
+            L10nService.get('common.cancel', language),
             style: TextStyle(
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
             ),
           ),
         ),
         Text(
-          'Yeni Profil',
+          L10nService.get('profile.create_profile', language),
           style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 color: AppColors.starGold,
                 fontWeight: FontWeight.bold,
@@ -120,12 +124,12 @@ class _AddProfileSheetState extends State<AddProfileSheet> {
     ).animate().fadeIn(duration: 300.ms);
   }
 
-  Widget _buildAvatarSection(BuildContext context, bool isDark, ZodiacSign sign) {
+  Widget _buildAvatarSection(BuildContext context, bool isDark, ZodiacSign sign, AppLanguage language) {
     return Center(
       child: Column(
         children: [
           GestureDetector(
-            onTap: () => _showEmojiPicker(context, isDark),
+            onTap: () => _showEmojiPicker(context, isDark, language),
             child: Container(
               width: 80,
               height: 80,
@@ -152,9 +156,9 @@ class _AddProfileSheetState extends State<AddProfileSheet> {
           ),
           const SizedBox(height: 8),
           TextButton.icon(
-            onPressed: () => _showEmojiPicker(context, isDark),
+            onPressed: () => _showEmojiPicker(context, isDark, language),
             icon: const Icon(Icons.edit, size: 16),
-            label: const Text('Emoji Seç'),
+            label: Text(L10nService.get('profile.emoji_select', language)),
             style: TextButton.styleFrom(
               foregroundColor: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
             ),
@@ -164,12 +168,12 @@ class _AddProfileSheetState extends State<AddProfileSheet> {
     ).animate().fadeIn(delay: 100.ms, duration: 400.ms).scale(begin: const Offset(0.9, 0.9));
   }
 
-  Widget _buildNameField(BuildContext context, bool isDark) {
+  Widget _buildNameField(BuildContext context, bool isDark, AppLanguage language) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'İsim',
+          L10nService.get('input.name', language),
           style: Theme.of(context).textTheme.bodySmall?.copyWith(
                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
               ),
@@ -181,7 +185,7 @@ class _AddProfileSheetState extends State<AddProfileSheet> {
             color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
           ),
           decoration: InputDecoration(
-            hintText: 'Profil ismi girin',
+            hintText: L10nService.get('input.profile_name_hint', language),
             hintStyle: TextStyle(
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
             ),
@@ -207,12 +211,12 @@ class _AddProfileSheetState extends State<AddProfileSheet> {
     ).animate().fadeIn(delay: 200.ms, duration: 400.ms);
   }
 
-  Widget _buildDateField(BuildContext context, bool isDark, ZodiacSign sign) {
+  Widget _buildDateField(BuildContext context, bool isDark, ZodiacSign sign, AppLanguage language) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Doğum Tarihi',
+          L10nService.get('input.birth_date', language),
           style: Theme.of(context).textTheme.bodySmall?.copyWith(
                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
               ),
@@ -255,7 +259,7 @@ class _AddProfileSheetState extends State<AddProfileSheet> {
                       Text(sign.symbol, style: TextStyle(color: sign.color)),
                       const SizedBox(width: 4),
                       Text(
-                        sign.nameTr,
+                        sign.getLocalizedName(language),
                         style: TextStyle(
                           color: sign.color,
                           fontSize: 12,
@@ -273,14 +277,14 @@ class _AddProfileSheetState extends State<AddProfileSheet> {
     ).animate().fadeIn(delay: 300.ms, duration: 400.ms);
   }
 
-  Widget _buildTimeField(BuildContext context, bool isDark) {
+  Widget _buildTimeField(BuildContext context, bool isDark, AppLanguage language) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
           children: [
             Text(
-              'Doğum Saati',
+              L10nService.get('input.birth_time', language),
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
                   ),
@@ -293,7 +297,7 @@ class _AddProfileSheetState extends State<AddProfileSheet> {
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Text(
-                'Yükselen için gerekli',
+                L10nService.get('input.required_for_rising', language),
                 style: TextStyle(
                   color: AppColors.starGold,
                   fontSize: 10,
@@ -330,7 +334,7 @@ class _AddProfileSheetState extends State<AddProfileSheet> {
                   child: Text(
                     _birthTime != null
                         ? '${_birthTime!.hour.toString().padLeft(2, '0')}:${_birthTime!.minute.toString().padLeft(2, '0')}'
-                        : 'Saat seçin (opsiyonel)',
+                        : L10nService.get('input.select_time_optional', language),
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           color: _birthTime != null
                               ? (isDark ? AppColors.textPrimary : AppColors.lightTextPrimary)
@@ -355,14 +359,14 @@ class _AddProfileSheetState extends State<AddProfileSheet> {
     ).animate().fadeIn(delay: 350.ms, duration: 400.ms);
   }
 
-  Widget _buildLocationField(BuildContext context, bool isDark) {
+  Widget _buildLocationField(BuildContext context, bool isDark, AppLanguage language) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
           children: [
             Text(
-              'Doğum Yeri',
+              L10nService.get('input.birth_place', language),
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
                   ),
@@ -375,7 +379,7 @@ class _AddProfileSheetState extends State<AddProfileSheet> {
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Text(
-                'Ay burcu için gerekli',
+                L10nService.get('input.required_for_moon', language),
                 style: TextStyle(
                   color: AppColors.cosmicPurple,
                   fontSize: 10,
@@ -387,7 +391,7 @@ class _AddProfileSheetState extends State<AddProfileSheet> {
         ),
         const SizedBox(height: 8),
         GestureDetector(
-          onTap: () => _showLocationPicker(context, isDark),
+          onTap: () => _showLocationPicker(context, isDark, language),
           child: Container(
             padding: const EdgeInsets.all(AppConstants.spacingMd),
             decoration: BoxDecoration(
@@ -410,7 +414,7 @@ class _AddProfileSheetState extends State<AddProfileSheet> {
                 const SizedBox(width: AppConstants.spacingMd),
                 Expanded(
                   child: Text(
-                    _birthPlace ?? 'Konum seçin (opsiyonel)',
+                    _birthPlace ?? L10nService.get('input.select_location_optional', language),
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           color: _birthPlace != null
                               ? (isDark ? AppColors.textPrimary : AppColors.lightTextPrimary)
@@ -441,12 +445,12 @@ class _AddProfileSheetState extends State<AddProfileSheet> {
     ).animate().fadeIn(delay: 400.ms, duration: 400.ms);
   }
 
-  Widget _buildRelationshipField(BuildContext context, bool isDark) {
+  Widget _buildRelationshipField(BuildContext context, bool isDark, AppLanguage language) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'İlişki Türü',
+          L10nService.get('profile.relationship_type', language),
           style: Theme.of(context).textTheme.bodySmall?.copyWith(
                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
               ),
@@ -455,7 +459,7 @@ class _AddProfileSheetState extends State<AddProfileSheet> {
         Wrap(
           spacing: 8,
           runSpacing: 8,
-          children: _relationshipOptions.map((option) {
+          children: _getRelationshipOptions(language).map((option) {
             final isSelected = _relationship == option['value'];
             return GestureDetector(
               onTap: () => setState(() => _relationship = option['value'] as String),
@@ -497,11 +501,11 @@ class _AddProfileSheetState extends State<AddProfileSheet> {
     ).animate().fadeIn(delay: 400.ms, duration: 400.ms);
   }
 
-  Widget _buildSaveButton(BuildContext context, ZodiacSign sign) {
+  Widget _buildSaveButton(BuildContext context, ZodiacSign sign, AppLanguage language) {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
-        onPressed: _saveProfile,
+        onPressed: () => _saveProfile(language),
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.auroraStart,
           foregroundColor: Colors.white,
@@ -510,9 +514,9 @@ class _AddProfileSheetState extends State<AddProfileSheet> {
             borderRadius: BorderRadius.circular(AppConstants.radiusMd),
           ),
         ),
-        child: const Text(
-          'Profili Kaydet',
-          style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+        child: Text(
+          L10nService.get('common.save', language),
+          style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
         ),
       ),
     ).animate().fadeIn(delay: 500.ms, duration: 400.ms);
@@ -568,8 +572,7 @@ class _AddProfileSheetState extends State<AddProfileSheet> {
     }
   }
 
-  void _showLocationPicker(BuildContext context, bool isDark) {
-    // Türkiye'deki popüler şehirler
+  void _showLocationPicker(BuildContext context, bool isDark, AppLanguage language) {
     final popularCities = [
       {'name': 'İstanbul', 'lat': 41.0082, 'lng': 28.9784},
       {'name': 'Ankara', 'lat': 39.9334, 'lng': 32.8597},
@@ -619,7 +622,7 @@ class _AddProfileSheetState extends State<AddProfileSheet> {
               ),
               const SizedBox(height: AppConstants.spacingLg),
               Text(
-                '📍 Doğum Yeri Seçin',
+                '📍 ${L10nService.get('input.select_city', language)}',
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
                       fontWeight: FontWeight.bold,
@@ -627,7 +630,7 @@ class _AddProfileSheetState extends State<AddProfileSheet> {
               ),
               const SizedBox(height: 8),
               Text(
-                'Ay burcu ve yükselen hesaplaması için konum gereklidir',
+                L10nService.get('input.required_for_moon', language),
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
                     ),
@@ -640,7 +643,7 @@ class _AddProfileSheetState extends State<AddProfileSheet> {
                   color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
                 ),
                 decoration: InputDecoration(
-                  hintText: 'Şehir ara...',
+                  hintText: L10nService.get('input.search_city', language),
                   hintStyle: TextStyle(
                     color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
                   ),
@@ -664,7 +667,7 @@ class _AddProfileSheetState extends State<AddProfileSheet> {
               ),
               const SizedBox(height: AppConstants.spacingMd),
               Text(
-                'Popüler Şehirler',
+                L10nService.get('input.popular_cities', language),
                 style: Theme.of(context).textTheme.labelMedium?.copyWith(
                       color: AppColors.starGold,
                       fontWeight: FontWeight.w600,
@@ -705,7 +708,7 @@ class _AddProfileSheetState extends State<AddProfileSheet> {
                         ),
                       ),
                       subtitle: Text(
-                        'Türkiye',
+                        L10nService.get('input.turkey_kktc', language),
                         style: TextStyle(
                           color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
                           fontSize: 12,
@@ -736,7 +739,7 @@ class _AddProfileSheetState extends State<AddProfileSheet> {
     );
   }
 
-  void _showEmojiPicker(BuildContext context, bool isDark) {
+  void _showEmojiPicker(BuildContext context, bool isDark, AppLanguage language) {
     showModalBottomSheet(
       context: context,
       backgroundColor: isDark ? AppColors.surfaceDark : AppColors.lightSurface,
@@ -749,7 +752,7 @@ class _AddProfileSheetState extends State<AddProfileSheet> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              'Emoji Seç',
+              L10nService.get('profile.emoji_select', language),
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
                     fontWeight: FontWeight.bold,
@@ -795,11 +798,11 @@ class _AddProfileSheetState extends State<AddProfileSheet> {
     );
   }
 
-  void _saveProfile() {
+  void _saveProfile(AppLanguage language) {
     if (_nameController.text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: const Text('Lütfen bir isim girin'),
+          content: Text(L10nService.get('input.please_enter_name', language)),
           backgroundColor: AppColors.error,
           behavior: SnackBarBehavior.floating,
           shape: RoundedRectangleBorder(
@@ -812,7 +815,7 @@ class _AddProfileSheetState extends State<AddProfileSheet> {
 
     final sign = ZodiacSignExtension.fromDate(_birthDate);
 
-    // Saat string formatına çevir
+    // Convert time to string format
     String? birthTimeStr;
     if (_birthTime != null) {
       birthTimeStr = '${_birthTime!.hour.toString().padLeft(2, '0')}:${_birthTime!.minute.toString().padLeft(2, '0')}';

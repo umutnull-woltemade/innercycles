@@ -1,5 +1,8 @@
 import 'dart:ui';
 
+import '../providers/app_providers.dart';
+import 'l10n_service.dart';
+
 /// Aura renk analizi servisi
 class AuraService {
   /// Doğum tarihinden birincil aura rengini hesapla
@@ -361,6 +364,11 @@ extension AuraColorExtension on AuraColor {
     }
   }
 
+  String localizedName(AppLanguage language) {
+    final key = 'aura.colors.${name.toLowerCase()}';
+    return L10nService.get(key, language);
+  }
+
   Color get color {
     switch (this) {
       case AuraColor.red: return const Color(0xFFE53935);
@@ -560,6 +568,11 @@ extension ChakraExtension on Chakra {
       case Chakra.thirdEye: return 'Üçüncü Göz';
       case Chakra.crown: return 'Taç Chakra';
     }
+  }
+
+  String localizedName(AppLanguage language) {
+    final key = 'chakra.names.${name.toLowerCase().replaceAll(' ', '_')}';
+    return L10nService.get(key, language);
   }
 
   String get mantras {

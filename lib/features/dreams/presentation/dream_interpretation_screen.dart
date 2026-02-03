@@ -7,6 +7,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../data/models/zodiac_sign.dart' as zodiac;
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/ai_content_service.dart';
+import '../../../data/services/l10n_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/entertainment_disclaimer.dart';
 import '../../../shared/widgets/quiz_cta_card.dart';
@@ -142,13 +143,15 @@ class _DreamInterpretationScreenState
   void _addWelcomeMessage() {
     final userProfile = ref.read(userProfileProvider);
     final sign = userProfile?.sunSign ?? zodiac.ZodiacSign.aries;
+    final language = ref.read(languageProvider);
+    final signName = sign.localizedName(language);
 
     setState(() {
       _messages.add(ChatMessage(
         text:
-            'Merhaba, ben Rüya İzi. ${sign.nameTr} burcunun kozmik enerjisiyle sana rehberlik etmek için buradayım.\n\n'
-            'Gördüğün rüyayı detaylı bir şekilde anlat. Ne gördün? Neler hissettin? '
-            'Rüyandaki semboller, renkler ve duygular hakkında ne kadar çok bilgi verirsen, '
+            'Merhaba, ben Ruya Izi. $signName burcunun kozmik enerjisiyle sana rehberlik etmek icin buradayim.\n\n'
+            'Gordugun ruyayi detayli bir sekilde anlat. Ne gordun? Neler hissettin? '
+            'Ruyandaki semboller, renkler ve duygular hakkinda ne kadar cok bilgi verirsen, '
             'kozmik yorumum o kadar derin olacak.\n\n'
             '⚠️ ${DisclaimerTexts.dreams}',
         isUser: false,
@@ -427,7 +430,7 @@ class _DreamInterpretationScreenState
       // Generic interpretation based on zodiac
       buffer.writeln(_getGenericInterpretation(sign, dreamText));
     } else {
-      buffer.writeln('${sign.symbol} ${sign.nameTr} burcunun kozmik perspektifinden ruya yorumun:\n');
+      buffer.writeln('${sign.symbol} ${sign.localizedName(ref.read(languageProvider))} burcunun kozmik perspektifinden ruya yorumun:\n');
 
       for (final entry in themes.entries) {
         buffer.writeln(entry.value);
@@ -442,7 +445,7 @@ class _DreamInterpretationScreenState
 
   String _getWaterInterpretation(zodiac.ZodiacSign sign) {
     final interpretations = {
-      zodiac.ZodiacSign.aries: '''🌊 SU RÜYASI - ${sign.nameTr.toUpperCase()} YORUMU
+      zodiac.ZodiacSign.aries: '''🌊 SU RÜYASI - ${sign.localizedName(ref.read(languageProvider)).toUpperCase()} YORUMU
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 💧 TEMEL ANLAM
@@ -462,7 +465,7 @@ Mesaj: Sadece koşmak değil, bazen duraksayıp hissetmek de gerekir
 • Gözyaşlarına izin ver
 • Duygularını yazıya dök''',
 
-      zodiac.ZodiacSign.taurus: '''🌊 SU RÜYASI - ${sign.nameTr.toUpperCase()} YORUMU
+      zodiac.ZodiacSign.taurus: '''🌊 SU RÜYASI - ${sign.localizedName(ref.read(languageProvider)).toUpperCase()} YORUMU
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 💧 TEMEL ANLAM
@@ -482,7 +485,7 @@ Mesaj: Duygusal zenginlik maddi zenginliği çeker
 • Finansal akışı görselleştir
 • Rahatlama ve konfor önceliğin olsun''',
 
-      zodiac.ZodiacSign.cancer: '''🌊 SU RÜYASI - ${sign.nameTr.toUpperCase()} YORUMU
+      zodiac.ZodiacSign.cancer: '''🌊 SU RÜYASI - ${sign.localizedName(ref.read(languageProvider)).toUpperCase()} YORUMU
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 💧 KENDİ ELEMENTİN - ÇOK GÜÇLÜ!
@@ -503,7 +506,7 @@ Mesaj: Eve dön - iç evine, ruhsal evine
 • Ev temizliği yap - enerjiyi yenile
 • Annevi figürlerle bağlantı kur''',
 
-      zodiac.ZodiacSign.scorpio: '''🌊 SU RÜYASI - ${sign.nameTr.toUpperCase()} YORUMU
+      zodiac.ZodiacSign.scorpio: '''🌊 SU RÜYASI - ${sign.localizedName(ref.read(languageProvider)).toUpperCase()} YORUMU
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 💧 KENDİ ELEMENTİN - TRANSFORMASYON!
@@ -524,7 +527,7 @@ Mesaj: Karanlıktan korkmak yerine, onu aydınlat
 • Plutonyen dönüşümü kucakla
 • Terapi veya danışmanlık düşün''',
 
-      zodiac.ZodiacSign.pisces: '''🌊 SU RÜYASI - ${sign.nameTr.toUpperCase()} YORUMU
+      zodiac.ZodiacSign.pisces: '''🌊 SU RÜYASI - ${sign.localizedName(ref.read(languageProvider)).toUpperCase()} YORUMU
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 💧 KENDİ ELEMENTİN - SPİRİTÜEL BAĞLANTI!
@@ -547,13 +550,13 @@ Mesaj: Sen sudan ötesin - okyanussun
     };
 
     // Default interpretation for other signs
-    return interpretations[sign] ?? '''🌊 SU RÜYASI - ${sign.nameTr.toUpperCase()} YORUMU
+    return interpretations[sign] ?? '''🌊 SU RÜYASI - ${sign.localizedName(ref.read(languageProvider)).toUpperCase()} YORUMU
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 💧 TEMEL ANLAM
-Su, ${sign.element.nameTr} burcun için duygusal mesajlar taşıyor. Bilinçaltı akışa geçmek istiyor.
+Su, ${sign.element.localizedName(ref.read(languageProvider))} burcun için duygusal mesajlar taşıyor. Bilinçaltı akışa geçmek istiyor.
 
-🌙 ${sign.element.nameTr.toUpperCase()} ELEMENTİ PERSPEKTİFİ
+🌙 ${sign.element.localizedName(ref.read(languageProvider)).toUpperCase()} ELEMENTİ PERSPEKTİFİ
 Suyun akışkan enerjisi seninle iletişim kuruyor. Duygusal derinliklere inme çağrısı.
 
 ✨ PRATİK UYGULAMA
@@ -564,13 +567,13 @@ Suyun akışkan enerjisi seninle iletişim kuruyor. Duygusal derinliklere inme �
   }
 
   String _getFlyingInterpretation(zodiac.ZodiacSign sign) {
-    return '''✈️ UÇMA RÜYASI - ${sign.nameTr.toUpperCase()} YORUMU
+    return '''✈️ UÇMA RÜYASI - ${sign.localizedName(ref.read(languageProvider)).toUpperCase()} YORUMU
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 🦅 TEMEL ANLAM
 Uçmak, özgürlük ve sınırları aşma arzusunu temsil eder. Ruhun yükselişi ve bilinç genişlemesi.
 
-${sign.symbol} ${sign.nameTr.toUpperCase()} İÇİN ÖZEL YORUM
+${sign.symbol} ${sign.localizedName(ref.read(languageProvider)).toUpperCase()} İÇİN ÖZEL YORUM
 Bu rüya sana hayatında yeni zirveler fethetme potansiyelini gösteriyor. Kendini sınırlayan inançlardan kurtulma zamanı geldi.
 
 🌙 PSİKOLOJİK BOYUT
@@ -592,7 +595,7 @@ Bu rüya sana hayatında yeni zirveler fethetme potansiyelini gösteriyor. Kendi
 • Lucid rüya için niyet koy
 
 💫 KOZMIK MESAJ
-Evren sana "kanatların var, kullan" diyor. ${sign.element.nameTr} elementi olarak ${_getElementFlyingMessage(sign.element)}.''';
+Evren sana "kanatların var, kullan" diyor. ${sign.element.localizedName(ref.read(languageProvider))} elementi olarak ${_getElementFlyingMessage(sign.element)}.''';
   }
 
   String _getElementFlyingMessage(zodiac.Element element) {
@@ -609,13 +612,13 @@ Evren sana "kanatların var, kullan" diyor. ${sign.element.nameTr} elementi olar
   }
 
   String _getFallingInterpretation(zodiac.ZodiacSign sign) {
-    return '''⬇️ DÜŞME RÜYASI - ${sign.nameTr.toUpperCase()} YORUMU
+    return '''⬇️ DÜŞME RÜYASI - ${sign.localizedName(ref.read(languageProvider)).toUpperCase()} YORUMU
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 🌪️ TEMEL ANLAM
 Düşmek, kontrolü kaybetme korkusunu veya hayatındaki bir alanda güvensizliği yansıtır.
 
-${sign.symbol} ${sign.nameTr.toUpperCase()} İÇİN ÖZEL YORUM
+${sign.symbol} ${sign.localizedName(ref.read(languageProvider)).toUpperCase()} İÇİN ÖZEL YORUM
 Temellendirme çalışmalarına odaklan. Bu rüya sana "ayaklarının yere basması gerekiyor" mesajı veriyor.
 
 🌙 PSİKOLOJİK BOYUT
@@ -637,17 +640,17 @@ Temellendirme çalışmalarına odaklan. Bu rüya sana "ayaklarının yere basma
 • Nefes egzersizleri uygula
 
 💫 KOZMIK MESAJ
-Düşmek aslında bırakmaktır. Kontrol illüzyonunu bırak, evrene güven. ${sign.element.nameTr} elementi olarak topraklanma pratiği özellikle önemli.''';
+Düşmek aslında bırakmaktır. Kontrol illüzyonunu bırak, evrene güven. ${sign.element.localizedName(ref.read(languageProvider))} elementi olarak topraklanma pratiği özellikle önemli.''';
   }
 
   String _getDeathInterpretation(zodiac.ZodiacSign sign) {
-    return '''💀 ÖLÜM RÜYASI - ${sign.nameTr.toUpperCase()} YORUMU
+    return '''💀 ÖLÜM RÜYASI - ${sign.localizedName(ref.read(languageProvider)).toUpperCase()} YORUMU
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 🦋 TEMEL ANLAM - KORKULACAK BİR ŞEY DEĞİL!
 Rüyalarda ölüm, transformasyonun ve yeni başlangıçların sembolüdür. Bu bir son değil, dönüşümdür!
 
-${sign.symbol} ${sign.nameTr.toUpperCase()} İÇİN ÖZEL YORUM
+${sign.symbol} ${sign.localizedName(ref.read(languageProvider)).toUpperCase()} İÇİN ÖZEL YORUM
 Bu rüya eski kalıpların ölmesi ve yeni benliğin doğması anlamına gelir. Hayatında neyi bırakman gerektiğini düşün.
 
 🌙 PSİKOLOJİK BOYUT
@@ -670,18 +673,18 @@ Bu rüya eski kalıpların ölmesi ve yeni benliğin doğması anlamına gelir. 
 • "Ölmesi gereken" alışkanlıkları belirle
 
 💫 KOZMIK MESAJ
-Anka kuşu gibi küllerinden doğuyorsun. ${sign.nameTr} enerjisi bu dönüşümü güçlendiriyor. Yeni sen doğuyor!''';
+Anka kuşu gibi küllerinden doğuyorsun. ${sign.localizedName(ref.read(languageProvider))} enerjisi bu dönüşümü güçlendiriyor. Yeni sen doğuyor!''';
   }
 
   String _getChaseInterpretation(zodiac.ZodiacSign sign) {
-    return '''🏃 KOVALANMA RÜYASI - ${sign.nameTr.toUpperCase()} YORUMU
+    return '''🏃 KOVALANMA RÜYASI - ${sign.localizedName(ref.read(languageProvider)).toUpperCase()} YORUMU
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 😰 TEMEL ANLAM
 Kovalanmak, hayatında kaçtığın bir konuyla yüzleşme çağrısıdır. Kaçtıkça kovalayan büyür!
 
-${sign.symbol} ${sign.nameTr.toUpperCase()} İÇİN ÖZEL YORUM
-${sign.element.nameTr} enerjinle, cesaretle dön ve neyin peşinde olduğunu sor. Genellikle kaçtığımız şey, en çok ihtiyacımız olan derslerdir.
+${sign.symbol} ${sign.localizedName(ref.read(languageProvider)).toUpperCase()} İÇİN ÖZEL YORUM
+${sign.element.localizedName(ref.read(languageProvider))} enerjinle, cesaretle dön ve neyin peşinde olduğunu sor. Genellikle kaçtığımız şey, en çok ihtiyacımız olan derslerdir.
 
 🌙 PSİKOLOJİK BOYUT (JUNG ANALİZİ)
 • Kovalayan: Gölge arketipi - reddedilen yönlerin
@@ -707,13 +710,13 @@ Kovalayan aslında sensin - bastırdığın bir yönün. Kucakla ve entegre et. 
   }
 
   String _getAnimalInterpretation(zodiac.ZodiacSign sign) {
-    return '''🐾 HAYVAN RÜYASI - ${sign.nameTr.toUpperCase()} YORUMU
+    return '''🐾 HAYVAN RÜYASI - ${sign.localizedName(ref.read(languageProvider)).toUpperCase()} YORUMU
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 🦁 TEMEL ANLAM
 Hayvanlar, içgüdüsel doğamızı ve bastırılmış enerjileri temsil eder. Her hayvan bir totem mesajı taşır.
 
-${sign.symbol} ${sign.nameTr.toUpperCase()} İÇİN ÖZEL YORUM
+${sign.symbol} ${sign.localizedName(ref.read(languageProvider)).toUpperCase()} İÇİN ÖZEL YORUM
 Bu rüya, doğal içgüdülerinle yeniden bağlanma çağrısı. Hangi hayvan gördüysen, onun totem enerjisini araştır.
 
 🐍 YAYGIN HAYVAN SEMBOLLERİ
@@ -738,18 +741,18 @@ Bu rüya, doğal içgüdülerinle yeniden bağlanma çağrısı. Hangi hayvan g�
 • O hayvanla ilgili bir nesne edin
 
 💫 KOZMIK MESAJ
-Hayvan rehberin seninle iletişim kuruyor. ${sign.element.nameTr} elementi olarak bu bağlantı özellikle güçlü.''';
+Hayvan rehberin seninle iletişim kuruyor. ${sign.element.localizedName(ref.read(languageProvider))} elementi olarak bu bağlantı özellikle güçlü.''';
   }
 
   String _getHouseInterpretation(zodiac.ZodiacSign sign) {
-    return '''🏠 EV/BİNA RÜYASI - ${sign.nameTr.toUpperCase()} YORUMU
+    return '''🏠 EV/BİNA RÜYASI - ${sign.localizedName(ref.read(languageProvider)).toUpperCase()} YORUMU
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 🏛️ TEMEL ANLAM
 Ev ve binalar, ruhsal yapını ve iç dünyayı sembolize eder. Her oda benliğinin farklı yönlerini temsil eder.
 
-${sign.symbol} ${sign.nameTr.toUpperCase()} İÇİN ÖZEL YORUM
-Hangi "odaya" girmekten kaçındığını düşün. ${sign.element.nameTr} elementi olarak iç dünyanın yapısı önemli.
+${sign.symbol} ${sign.localizedName(ref.read(languageProvider)).toUpperCase()} İÇİN ÖZEL YORUM
+Hangi "odaya" girmekten kaçındığını düşün. ${sign.element.localizedName(ref.read(languageProvider))} elementi olarak iç dünyanın yapısı önemli.
 
 🚪 ODA ANLAMLARI
 • Bodrum: Bilinçaltı, bastırılmış anılar
@@ -777,13 +780,13 @@ Evin sensin. Her odası bir yönün. Hepsini keşfet ve sahiplen.''';
   }
 
   String _getLoveInterpretation(zodiac.ZodiacSign sign) {
-    return '''💕 AŞK RÜYASI - ${sign.nameTr.toUpperCase()} YORUMU
+    return '''💕 AŞK RÜYASI - ${sign.localizedName(ref.read(languageProvider)).toUpperCase()} YORUMU
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ❤️ TEMEL ANLAM
 Aşk temalı rüyalar, ilişki dinamiklerini ve duygusal ihtiyaçları yansıtır.
 
-${sign.symbol} ${sign.nameTr.toUpperCase()} İÇİN ÖZEL YORUM
+${sign.symbol} ${sign.localizedName(ref.read(languageProvider)).toUpperCase()} İÇİN ÖZEL YORUM
 Bu rüya, aşk hayatında yeni bir dönemin habercisi olabilir. "Kendinle olan ilişkim nasıl?" sorusunu sor.
 
 💑 AŞK RÜYASI TİPLERİ
@@ -812,7 +815,7 @@ Bu rüya, aşk hayatında yeni bir dönemin habercisi olabilir. "Kendinle olan i
 • Kalp çakrası meditasyonu
 
 💫 KOZMIK MESAJ
-Önce kendini sev. ${sign.element.nameTr} elementi aşk yaşamında ${_getElementLoveMessage(sign.element)}.''';
+Önce kendini sev. ${sign.element.localizedName(ref.read(languageProvider))} elementi aşk yaşamında ${_getElementLoveMessage(sign.element)}.''';
   }
 
   String _getElementLoveMessage(zodiac.Element element) {
@@ -829,13 +832,13 @@ Bu rüya, aşk hayatında yeni bir dönemin habercisi olabilir. "Kendinle olan i
   }
 
   String _getMoneyInterpretation(zodiac.ZodiacSign sign) {
-    return '''💰 PARA/ZENGİNLİK RÜYASI - ${sign.nameTr.toUpperCase()} YORUMU
+    return '''💰 PARA/ZENGİNLİK RÜYASI - ${sign.localizedName(ref.read(languageProvider)).toUpperCase()} YORUMU
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 🏆 TEMEL ANLAM
 Para ve zenginlik rüyaları, öz değer ve bolluk bilincini temsil eder. Maddi değil, içsel zenginlik mesajı taşır.
 
-${sign.symbol} ${sign.nameTr.toUpperCase()} İÇİN ÖZEL YORUM
+${sign.symbol} ${sign.localizedName(ref.read(languageProvider)).toUpperCase()} İÇİN ÖZEL YORUM
 Bu rüya, maddi dünyayla ilişkini sorgulamaya davet ediyor. Gerçek zenginlik içsel huzur ve minnettarlıktır.
 
 💎 PARA RÜYASI TİPLERİ
@@ -865,7 +868,7 @@ Bu rüya, maddi dünyayla ilişkini sorgulamaya davet ediyor. Gerçek zenginlik 
 • Cömertlik pratiği yap
 
 💫 KOZMIK MESAJ
-Evren bolluk sunar - alıcı ol. ${sign.element.nameTr} elementi finansal konularda ${_getElementMoneyMessage(sign.element)}.''';
+Evren bolluk sunar - alıcı ol. ${sign.element.localizedName(ref.read(languageProvider))} elementi finansal konularda ${_getElementMoneyMessage(sign.element)}.''';
   }
 
   String _getElementMoneyMessage(zodiac.Element element) {
@@ -882,14 +885,14 @@ Evren bolluk sunar - alıcı ol. ${sign.element.nameTr} elementi finansal konula
   }
 
   String _getGenericInterpretation(zodiac.ZodiacSign sign, String dreamText) {
-    return '''${sign.symbol} ${sign.nameTr.toUpperCase()} KOZMİK RÜYA YORUMU
+    return '''${sign.symbol} ${sign.localizedName(ref.read(languageProvider)).toUpperCase()} KOZMİK RÜYA YORUMU
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 🔮 BİLİNÇALTI MESAJI
 Anlattığın rüya, bilinçaltının sana önemli mesajlar ilettiğini gösteriyor.
 
-💫 ${sign.element.nameTr.toUpperCase()} ELEMENTİ PERSPEKTİFİ
-${sign.element.nameTr} elementinin enerjisiyle, bu rüyanın temel mesajı ${_getElementMessage(sign)} ile ilgili görünüyor.
+💫 ${sign.element.localizedName(ref.read(languageProvider)).toUpperCase()} ELEMENTİ PERSPEKTİFİ
+${sign.element.localizedName(ref.read(languageProvider))} elementinin enerjisiyle, bu rüyanın temel mesajı ${_getElementMessage(sign)} ile ilgili görünüyor.
 
 🌙 DUYGU ANALİZİ
 Rüyandaki duygulara odaklan:
@@ -912,7 +915,7 @@ Rüyandaki ana sembolleri not et:
 • Sembolleri araştır
 • Meditasyonla bağlan
 
-💫 ${sign.nameTr.toUpperCase()} TAVSİYESİ
+💫 ${sign.localizedName(ref.read(languageProvider)).toUpperCase()} TAVSİYESİ
 ${_getZodiacAdvice(sign)}''';
   }
 
@@ -1045,14 +1048,14 @@ ${_getZodiacAdvice(sign)}''';
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Ruya Yorumcusu',
+                  L10nService.get('dreams.interpretation_title', ref.watch(languageProvider)),
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
                         color: AppColors.textPrimary,
                         fontWeight: FontWeight.bold,
                       ),
                 ),
                 Text(
-                  'Ruyalarinin gizemini coz',
+                  L10nService.get('dreams.interpretation_subtitle', ref.watch(languageProvider)),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: AppColors.textSecondary,
                       ),
@@ -1064,7 +1067,7 @@ ${_getZodiacAdvice(sign)}''';
           IconButton(
             onPressed: () => _showDreamSymbolsSheet(context),
             icon: const Icon(Icons.auto_stories, color: AppColors.starGold),
-            tooltip: 'Ruya Sembolleri',
+            tooltip: L10nService.get('dreams.symbols_found', ref.watch(languageProvider)),
           ),
         ],
       ),

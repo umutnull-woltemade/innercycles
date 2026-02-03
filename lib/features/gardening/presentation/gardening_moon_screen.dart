@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/reference_content.dart';
 import '../../../data/models/zodiac_sign.dart';
+import '../../../data/providers/app_providers.dart';
+import '../../../data/services/l10n_service.dart';
 import '../../../data/services/reference_content_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 
-class GardeningMoonScreen extends StatefulWidget {
+class GardeningMoonScreen extends ConsumerStatefulWidget {
   const GardeningMoonScreen({super.key});
 
   @override
-  State<GardeningMoonScreen> createState() => _GardeningMoonScreenState();
+  ConsumerState<GardeningMoonScreen> createState() => _GardeningMoonScreenState();
 }
 
-class _GardeningMoonScreenState extends State<GardeningMoonScreen> {
+class _GardeningMoonScreenState extends ConsumerState<GardeningMoonScreen> {
   final _service = ReferenceContentService();
 
   late int _selectedYear;
@@ -59,19 +62,20 @@ class _GardeningMoonScreenState extends State<GardeningMoonScreen> {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final language = ref.watch(languageProvider);
 
     return Scaffold(
       body: CosmicBackground(
         child: SafeArea(
           child: Column(
             children: [
-              _buildHeader(context, isDark),
-              _buildMonthSelector(isDark),
-              _buildCalendarGrid(isDark),
+              _buildHeader(context, isDark, language),
+              _buildMonthSelector(isDark, language),
+              _buildCalendarGrid(isDark, language),
               Expanded(
                 child: _selectedDay == null
                     ? const SizedBox.shrink()
-                    : _buildDayDetails(isDark),
+                    : _buildDayDetails(isDark, language),
               ),
             ],
           ),
@@ -80,7 +84,7 @@ class _GardeningMoonScreenState extends State<GardeningMoonScreen> {
     );
   }
 
-  Widget _buildHeader(BuildContext context, bool isDark) {
+  Widget _buildHeader(BuildContext context, bool isDark, AppLanguage language) {
     return Padding(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       child: Row(
@@ -96,7 +100,7 @@ class _GardeningMoonScreenState extends State<GardeningMoonScreen> {
             child: Column(
               children: [
                 Text(
-                  'Bahçe Ay Takvimi',
+                  L10nService.get('gardening.moon_calendar', language),
                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                     fontWeight: FontWeight.bold,
                     color: isDark ? Colors.white : AppColors.textDark,
@@ -104,7 +108,7 @@ class _GardeningMoonScreenState extends State<GardeningMoonScreen> {
                   textAlign: TextAlign.center,
                 ),
                 Text(
-                  'Ay fazlarına göre bahçıvanlık',
+                  L10nService.get('gardening.gardening_by_moon', language),
                   style: TextStyle(
                     fontSize: 12,
                     color: isDark ? Colors.white60 : AppColors.textLight,
@@ -119,20 +123,20 @@ class _GardeningMoonScreenState extends State<GardeningMoonScreen> {
     );
   }
 
-  Widget _buildMonthSelector(bool isDark) {
+  Widget _buildMonthSelector(bool isDark, AppLanguage language) {
     final months = [
-      'Ocak',
-      'Şubat',
-      'Mart',
-      'Nisan',
-      'Mayıs',
-      'Haziran',
-      'Temmuz',
-      'Ağustos',
-      'Eylül',
-      'Ekim',
-      'Kasım',
-      'Aralık',
+      L10nService.get('months.january', language),
+      L10nService.get('months.february', language),
+      L10nService.get('months.march', language),
+      L10nService.get('months.april', language),
+      L10nService.get('months.may', language),
+      L10nService.get('months.june', language),
+      L10nService.get('months.july', language),
+      L10nService.get('months.august', language),
+      L10nService.get('months.september', language),
+      L10nService.get('months.october', language),
+      L10nService.get('months.november', language),
+      L10nService.get('months.december', language),
     ];
 
     return Container(
@@ -170,8 +174,16 @@ class _GardeningMoonScreenState extends State<GardeningMoonScreen> {
     );
   }
 
-  Widget _buildCalendarGrid(bool isDark) {
-    final dayNames = ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz'];
+  Widget _buildCalendarGrid(bool isDark, AppLanguage language) {
+    final dayNames = [
+      L10nService.get('days.mon_short', language),
+      L10nService.get('days.tue_short', language),
+      L10nService.get('days.wed_short', language),
+      L10nService.get('days.thu_short', language),
+      L10nService.get('days.fri_short', language),
+      L10nService.get('days.sat_short', language),
+      L10nService.get('days.sun_short', language),
+    ];
     final firstDay = DateTime(_selectedYear, _selectedMonth, 1);
     final startingWeekday = (firstDay.weekday - 1) % 7;
 
@@ -271,7 +283,7 @@ class _GardeningMoonScreenState extends State<GardeningMoonScreen> {
     );
   }
 
-  Widget _buildDayDetails(bool isDark) {
+  Widget _buildDayDetails(bool isDark, AppLanguage language) {
     final day = _selectedDay!;
 
     return SingleChildScrollView(
@@ -279,22 +291,22 @@ class _GardeningMoonScreenState extends State<GardeningMoonScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildDayHeader(day, isDark),
+          _buildDayHeader(day, isDark, language),
           const SizedBox(height: AppConstants.spacingMd),
-          _buildMoonInfo(day, isDark),
+          _buildMoonInfo(day, isDark, language),
           const SizedBox(height: AppConstants.spacingMd),
-          _buildBestActivity(day, isDark),
+          _buildBestActivity(day, isDark, language),
           const SizedBox(height: AppConstants.spacingMd),
-          _buildActivityLists(day, isDark),
+          _buildActivityLists(day, isDark, language),
           const SizedBox(height: AppConstants.spacingMd),
-          _buildAdvice(day, isDark),
+          _buildAdvice(day, isDark, language),
           const SizedBox(height: AppConstants.spacingXxl),
         ],
       ),
     );
   }
 
-  Widget _buildDayHeader(GardeningMoonDay day, bool isDark) {
+  Widget _buildDayHeader(GardeningMoonDay day, bool isDark, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -323,7 +335,7 @@ class _GardeningMoonScreenState extends State<GardeningMoonScreen> {
                   ),
                 ),
                 Text(
-                  day.phase.nameTr,
+                  day.phase.localizedName(language),
                   style: TextStyle(
                     fontSize: 14,
                     color: AppColors.cosmic,
@@ -347,7 +359,7 @@ class _GardeningMoonScreenState extends State<GardeningMoonScreen> {
               ),
               const SizedBox(height: 4),
               Text(
-                'Verimlilik',
+                L10nService.get('gardening.fertility', language),
                 style: TextStyle(
                   fontSize: 10,
                   color: isDark ? Colors.white60 : AppColors.textLight,
@@ -360,7 +372,7 @@ class _GardeningMoonScreenState extends State<GardeningMoonScreen> {
     );
   }
 
-  Widget _buildMoonInfo(GardeningMoonDay day, bool isDark) {
+  Widget _buildMoonInfo(GardeningMoonDay day, bool isDark, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -377,14 +389,14 @@ class _GardeningMoonScreenState extends State<GardeningMoonScreen> {
                 Text(day.moonSign.symbol, style: const TextStyle(fontSize: 28)),
                 const SizedBox(height: 4),
                 Text(
-                  'Ay ${day.moonSign.nameTr}\'da',
+                  L10nService.get('gardening.moon_in_sign', language).replaceAll('{sign}', day.moonSign.localizedName(language)),
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: isDark ? Colors.white : AppColors.textDark,
                   ),
                 ),
                 Text(
-                  day.moonSign.element.nameTr,
+                  day.moonSign.element.localizedName(language),
                   style: TextStyle(fontSize: 12, color: day.moonSign.color),
                 ),
               ],
@@ -407,14 +419,14 @@ class _GardeningMoonScreenState extends State<GardeningMoonScreen> {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  day.phase.isWaxing ? 'Büyüyen Ay' : 'Azalan Ay',
+                  day.phase.isWaxing ? L10nService.get('gardening.waxing_moon', language) : L10nService.get('gardening.waning_moon', language),
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: isDark ? Colors.white : AppColors.textDark,
                   ),
                 ),
                 Text(
-                  day.phase.isWaxing ? 'Dikim zamanı' : 'Hasat zamanı',
+                  day.phase.isWaxing ? L10nService.get('gardening.planting_time', language) : L10nService.get('gardening.harvest_time', language),
                   style: TextStyle(
                     fontSize: 12,
                     color: isDark ? Colors.white60 : AppColors.textLight,
@@ -428,7 +440,7 @@ class _GardeningMoonScreenState extends State<GardeningMoonScreen> {
     );
   }
 
-  Widget _buildBestActivity(GardeningMoonDay day, bool isDark) {
+  Widget _buildBestActivity(GardeningMoonDay day, bool isDark, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -450,14 +462,14 @@ class _GardeningMoonScreenState extends State<GardeningMoonScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Bugün İçin En Uygun',
+                  L10nService.get('gardening.best_for_today', language),
                   style: TextStyle(
                     fontSize: 12,
                     color: isDark ? Colors.white60 : AppColors.textLight,
                   ),
                 ),
                 Text(
-                  day.bestActivity.nameTr,
+                  day.bestActivity.localizedName(language),
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -473,9 +485,9 @@ class _GardeningMoonScreenState extends State<GardeningMoonScreen> {
               color: Colors.green,
               borderRadius: BorderRadius.circular(20),
             ),
-            child: const Text(
-              'EN İYİ',
-              style: TextStyle(
+            child: Text(
+              L10nService.get('gardening.best', language),
+              style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
                 fontSize: 11,
@@ -487,7 +499,7 @@ class _GardeningMoonScreenState extends State<GardeningMoonScreen> {
     );
   }
 
-  Widget _buildActivityLists(GardeningMoonDay day, bool isDark) {
+  Widget _buildActivityLists(GardeningMoonDay day, bool isDark, AppLanguage language) {
     return Row(
       children: [
         Expanded(
@@ -509,7 +521,7 @@ class _GardeningMoonScreenState extends State<GardeningMoonScreen> {
                     ),
                     const SizedBox(width: 4),
                     Text(
-                      'Uygun',
+                      L10nService.get('gardening.suitable', language),
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: isDark ? Colors.white : AppColors.textDark,
@@ -526,7 +538,7 @@ class _GardeningMoonScreenState extends State<GardeningMoonScreen> {
                         Text(act.icon, style: const TextStyle(fontSize: 14)),
                         const SizedBox(width: 4),
                         Text(
-                          act.nameTr,
+                          act.localizedName(language),
                           style: TextStyle(
                             fontSize: 12,
                             color: isDark
@@ -558,7 +570,7 @@ class _GardeningMoonScreenState extends State<GardeningMoonScreen> {
                     const Icon(Icons.cancel, color: Colors.red, size: 18),
                     const SizedBox(width: 4),
                     Text(
-                      'Kaçının',
+                      L10nService.get('gardening.avoid', language),
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: isDark ? Colors.white : AppColors.textDark,
@@ -575,7 +587,7 @@ class _GardeningMoonScreenState extends State<GardeningMoonScreen> {
                         Text(act.icon, style: const TextStyle(fontSize: 14)),
                         const SizedBox(width: 4),
                         Text(
-                          act.nameTr,
+                          act.localizedName(language),
                           style: TextStyle(
                             fontSize: 12,
                             color: isDark
@@ -595,7 +607,7 @@ class _GardeningMoonScreenState extends State<GardeningMoonScreen> {
     );
   }
 
-  Widget _buildAdvice(GardeningMoonDay day, bool isDark) {
+  Widget _buildAdvice(GardeningMoonDay day, bool isDark, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -612,7 +624,7 @@ class _GardeningMoonScreenState extends State<GardeningMoonScreen> {
               const Text('💡', style: TextStyle(fontSize: 20)),
               const SizedBox(width: 8),
               Text(
-                'Günün Tavsiyesi',
+                L10nService.get('gardening.todays_advice', language),
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16,

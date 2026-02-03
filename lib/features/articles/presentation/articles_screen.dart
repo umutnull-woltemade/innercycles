@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/reference_content.dart';
+import '../../../data/providers/app_providers.dart';
+import '../../../data/services/l10n_service.dart';
 import '../../../data/services/reference_content_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 
-class ArticlesScreen extends StatefulWidget {
+class ArticlesScreen extends ConsumerStatefulWidget {
   const ArticlesScreen({super.key});
 
   @override
-  State<ArticlesScreen> createState() => _ArticlesScreenState();
+  ConsumerState<ArticlesScreen> createState() => _ArticlesScreenState();
 }
 
-class _ArticlesScreenState extends State<ArticlesScreen> {
+class _ArticlesScreenState extends ConsumerState<ArticlesScreen> {
   final _service = ReferenceContentService();
 
   List<AstrologyArticle> _articles = [];
@@ -40,18 +43,19 @@ class _ArticlesScreenState extends State<ArticlesScreen> {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final language = ref.watch(languageProvider);
 
     return Scaffold(
       body: CosmicBackground(
         child: SafeArea(
           child: Column(
             children: [
-              _buildHeader(context, isDark),
-              if (_selectedArticle == null) _buildCategoryFilter(isDark),
+              _buildHeader(context, isDark, language),
+              if (_selectedArticle == null) _buildCategoryFilter(isDark, language),
               Expanded(
                 child: _selectedArticle != null
-                    ? _buildArticleDetail(isDark)
-                    : _buildArticlesList(isDark),
+                    ? _buildArticleDetail(isDark, language)
+                    : _buildArticlesList(isDark, language),
               ),
             ],
           ),
@@ -60,7 +64,7 @@ class _ArticlesScreenState extends State<ArticlesScreen> {
     );
   }
 
-  Widget _buildHeader(BuildContext context, bool isDark) {
+  Widget _buildHeader(BuildContext context, bool isDark, AppLanguage language) {
     return Padding(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       child: Row(
@@ -82,7 +86,9 @@ class _ArticlesScreenState extends State<ArticlesScreen> {
           ),
           Expanded(
             child: Text(
-              _selectedArticle != null ? 'Makale' : 'Makaleler & Rehberler',
+              _selectedArticle != null
+                  ? L10nService.get('articles.article', language)
+                  : L10nService.get('articles.title', language),
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                     fontWeight: FontWeight.bold,
                     color: isDark ? Colors.white : AppColors.textDark,
@@ -96,7 +102,7 @@ class _ArticlesScreenState extends State<ArticlesScreen> {
     );
   }
 
-  Widget _buildCategoryFilter(bool isDark) {
+  Widget _buildCategoryFilter(bool isDark, AppLanguage language) {
     return Container(
       height: 50,
       margin: const EdgeInsets.only(bottom: AppConstants.spacingMd),
@@ -104,9 +110,9 @@ class _ArticlesScreenState extends State<ArticlesScreen> {
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.symmetric(horizontal: AppConstants.spacingLg),
         children: [
-          _buildCategoryChip(null, 'Tümü', '📚', isDark),
+          _buildCategoryChip(null, L10nService.get('common.all', language), '📚', isDark),
           ...ArticleCategory.values.map(
-            (cat) => _buildCategoryChip(cat, cat.nameTr, cat.icon, isDark),
+            (cat) => _buildCategoryChip(cat, cat.localizedName(language), cat.icon, isDark),
           ),
         ],
       ),
@@ -143,7 +149,7 @@ class _ArticlesScreenState extends State<ArticlesScreen> {
     );
   }
 
-  Widget _buildArticlesList(bool isDark) {
+  Widget _buildArticlesList(bool isDark, AppLanguage language) {
     if (_filteredArticles.isEmpty) {
       return Center(
         child: Column(
@@ -152,7 +158,7 @@ class _ArticlesScreenState extends State<ArticlesScreen> {
             const Text('📭', style: TextStyle(fontSize: 64)),
             const SizedBox(height: 16),
             Text(
-              'Makale bulunamadı',
+              L10nService.get('articles.no_articles_found', language),
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -169,12 +175,12 @@ class _ArticlesScreenState extends State<ArticlesScreen> {
       itemCount: _filteredArticles.length,
       itemBuilder: (context, index) {
         final article = _filteredArticles[index];
-        return _buildArticleCard(article, isDark);
+        return _buildArticleCard(article, isDark, language);
       },
     );
   }
 
-  Widget _buildArticleCard(AstrologyArticle article, bool isDark) {
+  Widget _buildArticleCard(AstrologyArticle article, bool isDark, AppLanguage language) {
     return GestureDetector(
       onTap: () {
         setState(() {
@@ -234,7 +240,7 @@ class _ArticlesScreenState extends State<ArticlesScreen> {
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: Text(
-                          article.category.nameTr,
+                          article.category.localizedName(language),
                           style: TextStyle(
                             fontSize: 11,
                             color: AppColors.mystic,
@@ -304,7 +310,11 @@ class _ArticlesScreenState extends State<ArticlesScreen> {
                       ),
                       const SizedBox(width: 4),
                       Text(
-                        '${article.readTimeMinutes} dk okuma',
+                        L10nService.getWithParams(
+                          'articles.read_time',
+                          language,
+                          params: {'minutes': article.readTimeMinutes.toString()},
+                        ),
                         style: TextStyle(
                           fontSize: 12,
                           color: isDark ? Colors.white60 : AppColors.textLight,
@@ -335,7 +345,7 @@ class _ArticlesScreenState extends State<ArticlesScreen> {
     );
   }
 
-  Widget _buildArticleDetail(bool isDark) {
+  Widget _buildArticleDetail(bool isDark, AppLanguage language) {
     final article = _selectedArticle!;
 
     return SingleChildScrollView(
@@ -375,7 +385,7 @@ class _ArticlesScreenState extends State<ArticlesScreen> {
                           Text(article.category.icon),
                           const SizedBox(width: 4),
                           Text(
-                            article.category.nameTr,
+                            article.category.localizedName(language),
                             style: TextStyle(
                               fontSize: 12,
                               color: isDark ? Colors.white : AppColors.textDark,
@@ -420,7 +430,11 @@ class _ArticlesScreenState extends State<ArticlesScreen> {
                     ),
                     const SizedBox(width: 4),
                     Text(
-                      '${article.readTimeMinutes} dk',
+                      L10nService.getWithParams(
+                        'articles.read_time_short',
+                        language,
+                        params: {'minutes': article.readTimeMinutes.toString()},
+                      ),
                       style: TextStyle(
                         fontSize: 12,
                         color: isDark ? Colors.white70 : AppColors.textLight,

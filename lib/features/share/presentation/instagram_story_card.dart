@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../core/theme/mystical_colors.dart';
 import '../../../data/models/zodiac_sign.dart' as zodiac;
+import '../../../data/providers/app_providers.dart';
 
 /// Instagram Story formatına uygun kart (1080x1920 - 9:16)
 /// VİRAL & PAYLAŞILABILIR - Instagram trendlerine uygun
@@ -12,6 +13,7 @@ class InstagramStoryCard extends StatelessWidget {
   final zodiac.ZodiacSign? moonSign;
   final zodiac.ZodiacSign? risingSign;
   final DateTime? birthDate;
+  final AppLanguage language;
 
   const InstagramStoryCard({
     super.key,
@@ -20,6 +22,7 @@ class InstagramStoryCard extends StatelessWidget {
     this.moonSign,
     this.risingSign,
     this.birthDate,
+    this.language = AppLanguage.tr,
   });
 
   @override
@@ -367,7 +370,7 @@ class InstagramStoryCard extends StatelessWidget {
 
         // Burç adı
         Text(
-          sign.nameTr.toUpperCase(),
+          sign.localizedName(language).toUpperCase(),
           style: GoogleFonts.cinzel(
             fontSize: 30,
             fontWeight: FontWeight.w800,
@@ -585,7 +588,7 @@ class InstagramStoryCard extends StatelessWidget {
         ),
         const SizedBox(height: 2),
         Text(
-          itemSign.nameTr,
+          itemSign.localizedName(language),
           style: GoogleFonts.inter(
             fontSize: 10,
             fontWeight: FontWeight.w600,
@@ -1167,7 +1170,7 @@ class InstagramStoryCard extends StatelessWidget {
               Text(matchSign.symbol, style: const TextStyle(fontSize: 12)),
               const SizedBox(width: 3),
               Text(
-                matchSign.nameTr,
+                matchSign.localizedName(language),
                 style: GoogleFonts.inter(
                   fontSize: 10,
                   fontWeight: FontWeight.w600,

@@ -6,6 +6,7 @@ import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/specialized_tools.dart';
 import '../../../data/services/specialized_tools_service.dart';
+import '../../../data/services/l10n_service.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 
@@ -100,6 +101,7 @@ class _LocalSpaceScreenState extends ConsumerState<LocalSpaceScreen>
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final userProfile = ref.watch(userProfileProvider);
+    final language = ref.watch(languageProvider);
 
     if (userProfile == null) {
       return Scaffold(
@@ -111,14 +113,14 @@ class _LocalSpaceScreenState extends ConsumerState<LocalSpaceScreen>
                 const Text('🧭', style: TextStyle(fontSize: 64)),
                 const SizedBox(height: 16),
                 Text(
-                  'Profil bulunamadı',
+                  L10nService.get('local_space.profile_not_found', language),
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
                         color: Colors.white,
                       ),
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Lütfen önce doğum bilgilerinizi girin',
+                  L10nService.get('local_space.enter_birth_info_first', language),
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         color: Colors.white70,
                       ),
@@ -126,7 +128,7 @@ class _LocalSpaceScreenState extends ConsumerState<LocalSpaceScreen>
                 const SizedBox(height: 24),
                 ElevatedButton(
                   onPressed: () => context.pop(),
-                  child: const Text('Geri Dön'),
+                  child: Text(L10nService.get('local_space.go_back', language)),
                 ),
               ],
             ),
@@ -140,27 +142,27 @@ class _LocalSpaceScreenState extends ConsumerState<LocalSpaceScreen>
         child: SafeArea(
           child: Column(
             children: [
-              _buildHeader(context, isDark),
+              _buildHeader(context, isDark, language),
               Expanded(
                 child: SingleChildScrollView(
                   padding: const EdgeInsets.all(AppConstants.spacingLg),
                   child: Column(
                     children: [
-                      _buildInfoBanner(isDark),
+                      _buildInfoBanner(isDark, language),
                       const SizedBox(height: AppConstants.spacingLg),
-                      _buildProfileCard(isDark, userProfile),
+                      _buildProfileCard(isDark, userProfile, language),
                       const SizedBox(height: AppConstants.spacingLg),
                       if (_chart != null) ...[
-                        _buildCompass(isDark),
+                        _buildCompass(isDark, language),
                         const SizedBox(height: AppConstants.spacingLg),
-                        _buildTabSection(isDark),
+                        _buildTabSection(isDark, language),
                         const SizedBox(height: AppConstants.spacingXxl),
                       ] else ...[
                         const SizedBox(height: 100),
                         const CircularProgressIndicator(color: Colors.teal),
                         const SizedBox(height: 16),
                         Text(
-                          'Harita oluşturuluyor...',
+                          L10nService.get('local_space.generating_chart', language),
                           style: TextStyle(
                             color: isDark ? Colors.white70 : AppColors.textLight,
                           ),
@@ -177,7 +179,7 @@ class _LocalSpaceScreenState extends ConsumerState<LocalSpaceScreen>
     );
   }
 
-  Widget _buildHeader(BuildContext context, bool isDark) {
+  Widget _buildHeader(BuildContext context, bool isDark, AppLanguage language) {
     return Padding(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       child: Row(
@@ -191,7 +193,7 @@ class _LocalSpaceScreenState extends ConsumerState<LocalSpaceScreen>
           ),
           Expanded(
             child: Text(
-              'Yerel Uzay Astrolojisi',
+              L10nService.get('local_space.title', language),
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                     fontWeight: FontWeight.bold,
                     color: isDark ? Colors.white : AppColors.textDark,
@@ -205,7 +207,7 @@ class _LocalSpaceScreenState extends ConsumerState<LocalSpaceScreen>
     );
   }
 
-  Widget _buildInfoBanner(bool isDark) {
+  Widget _buildInfoBanner(bool isDark, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingMd),
       decoration: BoxDecoration(
@@ -229,14 +231,14 @@ class _LocalSpaceScreenState extends ConsumerState<LocalSpaceScreen>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Mekansal Astroloji',
+                  L10nService.get('local_space.spatial_astrology', language),
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: isDark ? Colors.white : AppColors.textDark,
                   ),
                 ),
                 Text(
-                  'Gezegen enerjilerinin yön ve mekan üzerindeki etkilerini keşfedin',
+                  L10nService.get('local_space.discover_planet_energies', language),
                   style: TextStyle(
                     fontSize: 12,
                     color: isDark ? Colors.white70 : AppColors.textLight,
@@ -250,7 +252,7 @@ class _LocalSpaceScreenState extends ConsumerState<LocalSpaceScreen>
     );
   }
 
-  Widget _buildProfileCard(bool isDark, dynamic userProfile) {
+  Widget _buildProfileCard(bool isDark, dynamic userProfile, AppLanguage language) {
     final hasCoordinates = userProfile.birthLatitude != null && userProfile.birthLongitude != null;
 
     return Container(
@@ -276,7 +278,7 @@ class _LocalSpaceScreenState extends ConsumerState<LocalSpaceScreen>
               ),
               const SizedBox(width: 8),
               Text(
-                'Profil Bilgileri',
+                L10nService.get('local_space.profile_info', language),
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
@@ -300,7 +302,9 @@ class _LocalSpaceScreenState extends ConsumerState<LocalSpaceScreen>
                     ),
                     const SizedBox(width: 4),
                     Text(
-                      hasCoordinates ? 'Tam Veri' : 'Varsayılan Konum',
+                      hasCoordinates
+                          ? L10nService.get('local_space.full_data', language)
+                          : L10nService.get('local_space.default_location', language),
                       style: TextStyle(
                         fontSize: 11,
                         color: hasCoordinates ? Colors.teal : Colors.orange,
@@ -312,14 +316,14 @@ class _LocalSpaceScreenState extends ConsumerState<LocalSpaceScreen>
             ],
           ),
           const SizedBox(height: AppConstants.spacingMd),
-          _buildInfoRow(isDark, Icons.person_outline, 'İsim', userProfile.name ?? 'Kullanıcı'),
-          _buildInfoRow(isDark, Icons.cake_outlined, 'Doğum Tarihi', _formatDate(userProfile.birthDate)),
-          _buildInfoRow(isDark, Icons.location_on_outlined, 'Doğum Yeri', userProfile.birthPlace ?? 'Belirtilmedi'),
+          _buildInfoRow(isDark, Icons.person_outline, L10nService.get('local_space.name', language), userProfile.name ?? L10nService.get('local_space.user', language)),
+          _buildInfoRow(isDark, Icons.cake_outlined, L10nService.get('local_space.birth_date', language), _formatDate(userProfile.birthDate, language)),
+          _buildInfoRow(isDark, Icons.location_on_outlined, L10nService.get('local_space.birth_place', language), userProfile.birthPlace ?? L10nService.get('local_space.not_specified', language)),
           if (hasCoordinates)
             _buildInfoRow(
               isDark,
               Icons.explore_outlined,
-              'Koordinatlar',
+              L10nService.get('local_space.coordinates', language),
               '${userProfile.birthLatitude!.toStringAsFixed(4)}°, ${userProfile.birthLongitude!.toStringAsFixed(4)}°',
             ),
         ],
@@ -357,15 +361,17 @@ class _LocalSpaceScreenState extends ConsumerState<LocalSpaceScreen>
     );
   }
 
-  String _formatDate(DateTime date) {
-    const months = [
-      'Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran',
-      'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'
+  String _formatDate(DateTime date, AppLanguage language) {
+    final monthKeys = [
+      'months.january', 'months.february', 'months.march', 'months.april',
+      'months.may', 'months.june', 'months.july', 'months.august',
+      'months.september', 'months.october', 'months.november', 'months.december'
     ];
-    return '${date.day} ${months[date.month - 1]} ${date.year}';
+    final month = L10nService.get(monthKeys[date.month - 1], language);
+    return '${date.day} $month ${date.year}';
   }
 
-  Widget _buildCompass(bool isDark) {
+  Widget _buildCompass(bool isDark, AppLanguage language) {
     if (_chart == null) return const SizedBox.shrink();
 
     return Container(
@@ -382,7 +388,7 @@ class _LocalSpaceScreenState extends ConsumerState<LocalSpaceScreen>
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Gezegen Pusula',
+                L10nService.get('local_space.planet_compass', language),
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 18,
@@ -401,7 +407,7 @@ class _LocalSpaceScreenState extends ConsumerState<LocalSpaceScreen>
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Döndürmek için sürükleyin',
+                L10nService.get('local_space.drag_to_rotate', language),
                 style: TextStyle(
                   fontSize: 12,
                   color: isDark ? Colors.white54 : AppColors.textLight,
@@ -474,7 +480,7 @@ class _LocalSpaceScreenState extends ConsumerState<LocalSpaceScreen>
             TextButton.icon(
               onPressed: _resetRotation,
               icon: const Icon(Icons.refresh, size: 16),
-              label: const Text('Sıfırla'),
+              label: Text(L10nService.get('local_space.reset', language)),
               style: TextButton.styleFrom(
                 foregroundColor: Colors.teal,
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
@@ -546,7 +552,7 @@ class _LocalSpaceScreenState extends ConsumerState<LocalSpaceScreen>
     }
   }
 
-  Widget _buildTabSection(bool isDark) {
+  Widget _buildTabSection(bool isDark, AppLanguage language) {
     if (_chart == null) return const SizedBox.shrink();
 
     return Column(
@@ -563,10 +569,10 @@ class _LocalSpaceScreenState extends ConsumerState<LocalSpaceScreen>
             labelColor: Colors.teal,
             unselectedLabelColor: isDark ? Colors.white60 : AppColors.textLight,
             indicatorColor: Colors.teal,
-            tabs: const [
-              Tab(text: 'Yönler'),
-              Tab(text: 'Ev'),
-              Tab(text: 'Ofis'),
+            tabs: [
+              Tab(text: L10nService.get('tabs.directions', language)),
+              Tab(text: L10nService.get('tabs.home', language)),
+              Tab(text: L10nService.get('tabs.office', language)),
             ],
           ),
         ),
@@ -576,9 +582,9 @@ class _LocalSpaceScreenState extends ConsumerState<LocalSpaceScreen>
           child: TabBarView(
             controller: _tabController,
             children: [
-              _buildDirectionsTab(isDark),
-              _buildHomeTab(isDark),
-              _buildOfficeTab(isDark),
+              _buildDirectionsTab(isDark, language),
+              _buildHomeTab(isDark, language),
+              _buildOfficeTab(isDark, language),
             ],
           ),
         ),
@@ -586,7 +592,12 @@ class _LocalSpaceScreenState extends ConsumerState<LocalSpaceScreen>
     );
   }
 
-  Widget _buildDirectionsTab(bool isDark) {
+  String _getDirectionLocalizedName(CardinalDirection direction, AppLanguage language) {
+    final key = 'local_space.directions.${direction.name}';
+    return L10nService.get(key, language);
+  }
+
+  Widget _buildDirectionsTab(bool isDark, AppLanguage language) {
     return SingleChildScrollView(
       child: Column(
         children: _chart!.directions.map((dir) {
@@ -607,7 +618,7 @@ class _LocalSpaceScreenState extends ConsumerState<LocalSpaceScreen>
                     Text(dir.direction.icon, style: const TextStyle(fontSize: 24)),
                     const SizedBox(width: 8),
                     Text(
-                      dir.direction.nameTr,
+                      _getDirectionLocalizedName(dir.direction, language),
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
@@ -676,7 +687,7 @@ class _LocalSpaceScreenState extends ConsumerState<LocalSpaceScreen>
     );
   }
 
-  Widget _buildHomeTab(bool isDark) {
+  Widget _buildHomeTab(bool isDark, AppLanguage language) {
     return SingleChildScrollView(
       child: Container(
         padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -694,7 +705,7 @@ class _LocalSpaceScreenState extends ConsumerState<LocalSpaceScreen>
                 const Text('🏠', style: TextStyle(fontSize: 24)),
                 const SizedBox(width: 8),
                 Text(
-                  'Ev Düzeni Önerileri',
+                  L10nService.get('local_space.home_layout', language),
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
@@ -716,7 +727,7 @@ class _LocalSpaceScreenState extends ConsumerState<LocalSpaceScreen>
             const Divider(),
             const SizedBox(height: AppConstants.spacingMd),
             Text(
-              'Oda Bazlı Öneriler',
+              L10nService.get('local_space.room_recommendations', language),
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 16,
@@ -743,7 +754,7 @@ class _LocalSpaceScreenState extends ConsumerState<LocalSpaceScreen>
                         ),
                         const SizedBox(width: 8),
                         Text(
-                          '${line.planet} - ${line.direction.nameTr}',
+                          '${line.planet} - ${_getDirectionLocalizedName(line.direction, language)}',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: isDark ? Colors.white : AppColors.textDark,
@@ -769,7 +780,7 @@ class _LocalSpaceScreenState extends ConsumerState<LocalSpaceScreen>
     );
   }
 
-  Widget _buildOfficeTab(bool isDark) {
+  Widget _buildOfficeTab(bool isDark, AppLanguage language) {
     return SingleChildScrollView(
       child: Container(
         padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -787,7 +798,7 @@ class _LocalSpaceScreenState extends ConsumerState<LocalSpaceScreen>
                 const Text('💼', style: TextStyle(fontSize: 24)),
                 const SizedBox(width: 8),
                 Text(
-                  'Ofis Düzeni Önerileri',
+                  L10nService.get('local_space.office_layout', language),
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
@@ -809,7 +820,7 @@ class _LocalSpaceScreenState extends ConsumerState<LocalSpaceScreen>
             const Divider(),
             const SizedBox(height: AppConstants.spacingMd),
             Text(
-              'Seyahat Önerileri',
+              L10nService.get('local_space.travel_recommendations', language),
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 16,
@@ -833,7 +844,7 @@ class _LocalSpaceScreenState extends ConsumerState<LocalSpaceScreen>
                         Text(line.direction.icon, style: const TextStyle(fontSize: 18)),
                         const SizedBox(width: 8),
                         Text(
-                          '${line.direction.nameTr} - ${line.planet}',
+                          '${_getDirectionLocalizedName(line.direction, language)} - ${line.planet}',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: isDark ? Colors.white : AppColors.textDark,

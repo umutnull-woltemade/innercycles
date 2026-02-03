@@ -1,25 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/constants/app_constants.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../data/models/natal_chart.dart';
 import '../../../../data/models/zodiac_sign.dart' as zodiac;
+import '../../../../data/providers/app_providers.dart';
 import '../../../../shared/widgets/interpretive_text.dart';
 
-class ChartSummaryCard extends StatelessWidget {
+class ChartSummaryCard extends ConsumerWidget {
   final NatalChart chart;
 
   const ChartSummaryCard({super.key, required this.chart});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final language = ref.watch(languageProvider);
     final sunSign = chart.sunSign;
     final signColor = zodiac.ZodiacSignExtension(sunSign).color;
     final signSymbol = zodiac.ZodiacSignExtension(sunSign).symbol;
-    final signNameTr = zodiac.ZodiacSignExtension(sunSign).nameTr;
-    final elementNameTr = zodiac.ElementExtension(sunSign.element).nameTr;
+    final signName = zodiac.ZodiacSignExtension(sunSign).localizedName(language);
+    final elementName = zodiac.ElementExtension(sunSign.element).localizedName(language);
     final elementSymbol = zodiac.ElementExtension(sunSign.element).symbol;
-    final modalityNameTr = zodiac.ModalityExtension(sunSign.modality).nameTr;
+    final modalityName = zodiac.ModalityExtension(sunSign.modality).localizedName(language);
 
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -54,13 +57,13 @@ class ChartSummaryCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      signNameTr,
+                      signName,
                       style: Theme.of(
                         context,
                       ).textTheme.headlineSmall?.copyWith(color: signColor),
                     ),
                     Text(
-                      '$elementNameTr $elementSymbol | $modalityNameTr',
+                      '$elementName $elementSymbol | $modalityName',
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         color: AppColors.textSecondary,
                       ),
@@ -122,12 +125,12 @@ class ChartSummaryCard extends StatelessWidget {
           const SizedBox(height: AppConstants.spacingLg),
           // Deep Interpretation Section
           DeepInterpretationCard(
-            title: '$signNameTr Güneşiniz',
+            title: '$signName Güneşiniz',
             summary: _getSunSignSummary(sunSign),
             deepInterpretation: _getSunSignDeepInterpretation(sunSign),
             icon: Icons.wb_sunny,
             accentColor: signColor,
-            relatedTerms: [signNameTr, elementNameTr, modalityNameTr, 'Güneş'],
+            relatedTerms: [signName, elementName, modalityName, 'Güneş'],
           ),
         ],
       ),

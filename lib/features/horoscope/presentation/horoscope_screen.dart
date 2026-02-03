@@ -6,6 +6,7 @@ import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/zodiac_sign.dart';
 import '../../../data/providers/app_providers.dart';
+import '../../../data/services/l10n_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/zodiac_card.dart';
 import '../../../shared/widgets/page_bottom_navigation.dart';
@@ -42,6 +43,7 @@ class _HoroscopeScreenState extends ConsumerState<HoroscopeScreen> {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final language = ref.watch(languageProvider);
 
     // Responsive crossAxisCount - masaüstünde 6, tablette 4, mobilde 3
     int crossAxisCount;
@@ -96,14 +98,14 @@ class _HoroscopeScreenState extends ConsumerState<HoroscopeScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Bugün burcun ne diyor?',
+                            L10nService.get('horoscope.what_says_today', language),
                             style: Theme.of(context).textTheme.titleLarge?.copyWith(
                               color: isDark ? AppColors.starGold : AppColors.lightStarGold,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                           Text(
-                            'Burcunu seç, kozmik enerjini keşfet',
+                            L10nService.get('horoscope.select_discover_energy', language),
                             style: Theme.of(context).textTheme.bodySmall?.copyWith(
                               color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
                             ),
@@ -156,8 +158,8 @@ class _HoroscopeScreenState extends ConsumerState<HoroscopeScreen> {
                       const PageBottomNavigation(currentRoute: '/horoscope'),
                       const SizedBox(height: AppConstants.spacingLg),
                       // Footer with branding
-                      const PageFooterWithDisclaimer(
-                        brandText: 'Burç Yorumları — Venus One',
+                      PageFooterWithDisclaimer(
+                        brandText: L10nService.get('brands.horoscope', language),
                         disclaimerText: DisclaimerTexts.astrology,
                       ),
                     ],

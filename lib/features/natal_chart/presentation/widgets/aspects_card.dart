@@ -1,26 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/constants/app_constants.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../data/models/aspect.dart';
 import '../../../../data/models/natal_chart.dart';
 import '../../../../data/models/planet.dart';
+import '../../../../data/providers/app_providers.dart';
 
-class AspectsCard extends StatefulWidget {
+class AspectsCard extends ConsumerStatefulWidget {
   final NatalChart chart;
 
   const AspectsCard({super.key, required this.chart});
 
   @override
-  State<AspectsCard> createState() => _AspectsCardState();
+  ConsumerState<AspectsCard> createState() => _AspectsCardState();
 }
 
-class _AspectsCardState extends State<AspectsCard> {
+class _AspectsCardState extends ConsumerState<AspectsCard> {
   bool _showMajorOnly = true;
 
   @override
   Widget build(BuildContext context) {
+    final language = ref.watch(languageProvider);
     final aspects = _showMajorOnly
         ? widget.chart.majorAspects
         : widget.chart.aspects;
@@ -98,6 +101,7 @@ class _AspectsCardState extends State<AspectsCard> {
         if (harmoniousAspects.isNotEmpty)
           _buildAspectSection(
             context,
+            language,
             'Uyumlu Açılar',
             'Doğal yetenekler ve kolay akış',
             harmoniousAspects,
@@ -111,6 +115,7 @@ class _AspectsCardState extends State<AspectsCard> {
         if (challengingAspects.isNotEmpty)
           _buildAspectSection(
             context,
+            language,
             'Zorlu Açılar',
             'Büyüme ve dönüşüm potansiyeli',
             challengingAspects,
@@ -124,6 +129,7 @@ class _AspectsCardState extends State<AspectsCard> {
         if (neutralAspects.isNotEmpty)
           _buildAspectSection(
             context,
+            language,
             'Nötr Açılar',
             'Ayarlama ve farkındalık',
             neutralAspects,
@@ -204,6 +210,7 @@ class _AspectsCardState extends State<AspectsCard> {
 
   Widget _buildAspectSection(
     BuildContext context,
+    AppLanguage language,
     String title,
     String subtitle,
     List<Aspect> aspects,
@@ -260,6 +267,7 @@ class _AspectsCardState extends State<AspectsCard> {
             final aspect = entry.value;
             return _AspectRow(
               aspect: aspect,
+              language: language,
               isLast: index == aspects.length - 1,
             );
           }),
@@ -308,18 +316,19 @@ class _SummaryItem extends StatelessWidget {
 
 class _AspectRow extends StatelessWidget {
   final Aspect aspect;
+  final AppLanguage language;
   final bool isLast;
 
-  const _AspectRow({required this.aspect, this.isLast = false});
+  const _AspectRow({required this.aspect, required this.language, this.isLast = false});
 
   @override
   Widget build(BuildContext context) {
     final p1Symbol = PlanetExtension(aspect.planet1).symbol;
     final p1Color = PlanetExtension(aspect.planet1).color;
-    final p1NameTr = PlanetExtension(aspect.planet1).nameTr;
+    final p1Name = PlanetExtension(aspect.planet1).localizedName(language);
     final p2Symbol = PlanetExtension(aspect.planet2).symbol;
     final p2Color = PlanetExtension(aspect.planet2).color;
-    final p2NameTr = PlanetExtension(aspect.planet2).nameTr;
+    final p2Name = PlanetExtension(aspect.planet2).localizedName(language);
 
     return ExpansionTile(
       tilePadding: const EdgeInsets.symmetric(
@@ -366,7 +375,7 @@ class _AspectRow extends StatelessWidget {
         ],
       ),
       subtitle: Text(
-        '$p1NameTr - $p2NameTr',
+        '$p1Name - $p2Name',
         style: Theme.of(
           context,
         ).textTheme.bodySmall?.copyWith(color: AppColors.textMuted),

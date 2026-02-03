@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/reference_content.dart';
 import '../../../data/models/zodiac_sign.dart';
+import '../../../data/providers/app_providers.dart';
+import '../../../data/services/l10n_service.dart';
 import '../../../data/services/reference_content_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 
-class CelebritiesScreen extends StatefulWidget {
+class CelebritiesScreen extends ConsumerStatefulWidget {
   const CelebritiesScreen({super.key});
 
   @override
-  State<CelebritiesScreen> createState() => _CelebritiesScreenState();
+  ConsumerState<CelebritiesScreen> createState() => _CelebritiesScreenState();
 }
 
-class _CelebritiesScreenState extends State<CelebritiesScreen> {
+class _CelebritiesScreenState extends ConsumerState<CelebritiesScreen> {
   final _service = ReferenceContentService();
   final _searchController = TextEditingController();
 
@@ -77,6 +80,7 @@ class _CelebritiesScreenState extends State<CelebritiesScreen> {
   }
 
   Widget _buildHeader(BuildContext context, bool isDark) {
+    final language = ref.watch(languageProvider);
     return Padding(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       child: Row(
@@ -98,7 +102,7 @@ class _CelebritiesScreenState extends State<CelebritiesScreen> {
           ),
           Expanded(
             child: Text(
-              _selectedCelebrity?.name ?? 'Ünlü Haritaları',
+              _selectedCelebrity?.name ?? L10nService.get('screens.celebrities.title', language),
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                     fontWeight: FontWeight.bold,
                     color: isDark ? Colors.white : AppColors.textDark,
@@ -114,13 +118,14 @@ class _CelebritiesScreenState extends State<CelebritiesScreen> {
 
   Widget _buildSearchBar(bool isDark) {
     if (_selectedCelebrity != null) return const SizedBox.shrink();
+    final language = ref.watch(languageProvider);
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: AppConstants.spacingLg),
       child: TextField(
         controller: _searchController,
         decoration: InputDecoration(
-          hintText: 'Ünlü ara...',
+          hintText: L10nService.get('screens.celebrities.search_hint', language),
           prefixIcon: const Icon(Icons.search),
           suffixIcon: _searchQuery.isNotEmpty
               ? IconButton(
@@ -155,6 +160,7 @@ class _CelebritiesScreenState extends State<CelebritiesScreen> {
 
   Widget _buildCategoryFilter(bool isDark) {
     if (_selectedCelebrity != null) return const SizedBox.shrink();
+    final language = ref.watch(languageProvider);
 
     return Container(
       height: 50,
@@ -163,9 +169,9 @@ class _CelebritiesScreenState extends State<CelebritiesScreen> {
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.symmetric(horizontal: AppConstants.spacingLg),
         children: [
-          _buildCategoryChip(null, 'Tümü', '⭐', isDark),
+          _buildCategoryChip(null, L10nService.get('common.all', language), '⭐', isDark),
           ...CelebrityCategory.values.map(
-            (cat) => _buildCategoryChip(cat, cat.nameTr, cat.icon, isDark),
+            (cat) => _buildCategoryChip(cat, cat.localizedName(language), cat.icon, isDark),
           ),
         ],
       ),
@@ -203,6 +209,7 @@ class _CelebritiesScreenState extends State<CelebritiesScreen> {
   }
 
   Widget _buildCelebritiesList(bool isDark) {
+    final language = ref.watch(languageProvider);
     if (_filteredCelebrities.isEmpty) {
       return Center(
         child: Column(
@@ -211,7 +218,7 @@ class _CelebritiesScreenState extends State<CelebritiesScreen> {
             const Text('🔍', style: TextStyle(fontSize: 64)),
             const SizedBox(height: 16),
             Text(
-              'Sonuç bulunamadı',
+              L10nService.get('screens.celebrities.no_results', language),
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -429,6 +436,7 @@ class _CelebritiesScreenState extends State<CelebritiesScreen> {
   }
 
   Widget _buildSignsCard(CelebrityChart celeb, bool isDark) {
+    final language = ref.watch(languageProvider);
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -440,7 +448,7 @@ class _CelebritiesScreenState extends State<CelebritiesScreen> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          _buildDetailedSign('Güneş', '☀️', celeb.sunSign, isDark),
+          _buildDetailedSign(L10nService.get('natal_chart.sun_sign', language), '☀️', celeb.sunSign, isDark),
           Container(
             width: 1,
             height: 60,
@@ -448,7 +456,7 @@ class _CelebritiesScreenState extends State<CelebritiesScreen> {
                 ? Colors.white.withValues(alpha: 0.1)
                 : Colors.grey.withValues(alpha: 0.3),
           ),
-          _buildDetailedSign('Ay', '🌙', celeb.moonSign, isDark),
+          _buildDetailedSign(L10nService.get('natal_chart.moon_sign', language), '🌙', celeb.moonSign, isDark),
           Container(
             width: 1,
             height: 60,
@@ -456,7 +464,7 @@ class _CelebritiesScreenState extends State<CelebritiesScreen> {
                 ? Colors.white.withValues(alpha: 0.1)
                 : Colors.grey.withValues(alpha: 0.3),
           ),
-          _buildDetailedSign('Yükselen', '⬆️', celeb.ascendant, isDark),
+          _buildDetailedSign(L10nService.get('natal_chart.rising_sign', language), '⬆️', celeb.ascendant, isDark),
         ],
       ),
     );
@@ -464,6 +472,7 @@ class _CelebritiesScreenState extends State<CelebritiesScreen> {
 
   Widget _buildDetailedSign(
       String label, String emoji, ZodiacSign sign, bool isDark) {
+    final language = ref.watch(languageProvider);
     return Column(
       children: [
         Text(emoji, style: const TextStyle(fontSize: 24)),
@@ -488,7 +497,7 @@ class _CelebritiesScreenState extends State<CelebritiesScreen> {
               Text(sign.symbol, style: const TextStyle(fontSize: 14)),
               const SizedBox(width: 4),
               Text(
-                sign.nameTr,
+                sign.localizedName(language),
                 style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.bold,
@@ -503,6 +512,7 @@ class _CelebritiesScreenState extends State<CelebritiesScreen> {
   }
 
   Widget _buildAnalysisCard(CelebrityChart celeb, bool isDark) {
+    final language = ref.watch(languageProvider);
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -519,7 +529,7 @@ class _CelebritiesScreenState extends State<CelebritiesScreen> {
               const Text('📊', style: TextStyle(fontSize: 20)),
               const SizedBox(width: 8),
               Text(
-                'Harita Analizi',
+                L10nService.get('screens.celebrities.chart_analysis', language),
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
@@ -543,6 +553,7 @@ class _CelebritiesScreenState extends State<CelebritiesScreen> {
   }
 
   Widget _buildAspectsCard(CelebrityChart celeb, bool isDark) {
+    final language = ref.watch(languageProvider);
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -559,7 +570,7 @@ class _CelebritiesScreenState extends State<CelebritiesScreen> {
               const Text('⚡', style: TextStyle(fontSize: 20)),
               const SizedBox(width: 8),
               Text(
-                'Önemli Açılar',
+                L10nService.get('screens.celebrities.notable_aspects', language),
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16,

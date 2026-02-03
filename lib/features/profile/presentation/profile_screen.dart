@@ -7,7 +7,7 @@ import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/zodiac_sign.dart';
 import '../../../data/providers/app_providers.dart';
-import '../../../data/services/localization_service.dart';
+import '../../../data/services/l10n_service.dart';
 import '../../../data/services/storage_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../data/cities/world_cities.dart';
@@ -113,7 +113,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
         ),
         const SizedBox(width: AppConstants.spacingSm),
         Text(
-          _getLocalizedString('profile', language),
+          L10nService.get('navigation.profile', language),
           style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                 color: AppColors.starGold,
               ),
@@ -123,7 +123,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
           TextButton(
             onPressed: _saveProfile,
             child: Text(
-              _getLocalizedString('save', language),
+              L10nService.get('common.save', language),
               style: TextStyle(
                 color: AppColors.auroraStart,
                 fontWeight: FontWeight.bold,
@@ -239,7 +239,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
               ),
               const SizedBox(width: AppConstants.spacingSm),
               Text(
-                _getLocalizedString('edit_info', language),
+                L10nService.get('profile.edit_info', language),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       color: isDark
                           ? AppColors.textPrimary
@@ -255,8 +255,8 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
           _buildTextField(
             context,
             controller: _nameController,
-            label: L10n.get('name', language),
-            hint: L10n.get('your_name', language),
+            label: L10nService.get('input.name', language),
+            hint: L10nService.get('input.your_name', language),
             icon: Icons.person_outline,
             isDark: isDark,
             onChanged: (value) => setState(() => _hasChanges = true),
@@ -266,10 +266,10 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
           // Birth date
           _buildInfoField(
             context,
-            label: L10n.get('birth_date', language),
+            label: L10nService.get('input.birth_date', language),
             value: _selectedDate != null
                 ? '${_selectedDate!.day}/${_selectedDate!.month}/${_selectedDate!.year}'
-                : L10n.get('select_time', language),
+                : L10nService.get('input.select_time', language),
             icon: Icons.calendar_today_outlined,
             isDark: isDark,
             onTap: () => _selectDate(context),
@@ -279,10 +279,10 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
           // Birth time
           _buildInfoField(
             context,
-            label: L10n.get('birth_time', language),
+            label: L10nService.get('input.birth_time', language),
             value: _selectedTime != null
                 ? '${_selectedTime!.hour.toString().padLeft(2, '0')}:${_selectedTime!.minute.toString().padLeft(2, '0')}'
-                : L10n.get('select_time', language),
+                : L10nService.get('input.select_time', language),
             icon: Icons.access_time_outlined,
             isDark: isDark,
             onTap: () => _selectTime(context),
@@ -292,8 +292,8 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
           // Birth place
           _buildInfoField(
             context,
-            label: L10n.get('birth_place', language),
-            value: _selectedCity ?? L10n.get('select_city', language),
+            label: L10nService.get('input.birth_place', language),
+            value: _selectedCity ?? L10nService.get('input.select_city', language),
             icon: Icons.location_on_outlined,
             isDark: isDark,
             onTap: () => _selectCity(context, language),
@@ -443,7 +443,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
               ),
               const SizedBox(width: AppConstants.spacingSm),
               Text(
-                L10n.get('big_three', language),
+                L10nService.get('natal_chart.big_three', language),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       color: isDark
                           ? AppColors.textPrimary
@@ -458,25 +458,28 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             children: [
               Expanded(
                 child: _CosmicSignCard(
-                  title: L10n.get('sun_sign', language),
+                  title: L10nService.get('natal_chart.sun_sign', language),
                   sign: profile.sunSign,
                   isDark: isDark,
+                  language: language,
                 ),
               ),
               const SizedBox(width: AppConstants.spacingSm),
               Expanded(
                 child: _CosmicSignCard(
-                  title: L10n.get('moon_sign', language),
+                  title: L10nService.get('natal_chart.moon_sign', language),
                   sign: profile.moonSign,
                   isDark: isDark,
+                  language: language,
                 ),
               ),
               const SizedBox(width: AppConstants.spacingSm),
               Expanded(
                 child: _CosmicSignCard(
-                  title: L10n.get('rising_sign', language),
+                  title: L10nService.get('natal_chart.rising_sign', language),
                   sign: profile.risingSign,
                   isDark: isDark,
+                  language: language,
                 ),
               ),
             ],
@@ -487,7 +490,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             child: OutlinedButton.icon(
               onPressed: () => context.push(Routes.birthChart),
               icon: const Icon(Icons.public),
-              label: Text(_getLocalizedString('view_full_chart', language)),
+              label: Text(L10nService.get('profile.view_birth_chart', language)),
               style: OutlinedButton.styleFrom(
                 foregroundColor: AppColors.auroraStart,
                 side: BorderSide(color: AppColors.auroraStart),
@@ -593,14 +596,14 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                       TextButton(
                         onPressed: () => Navigator.pop(context),
                         child: Text(
-                          L10n.get('cancel', language),
+                          L10nService.get('common.cancel', language),
                           style: TextStyle(
                             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
                           ),
                         ),
                       ),
                       Text(
-                        L10n.get('select_city', language),
+                        L10nService.get('input.select_city', language),
                         style: Theme.of(context).textTheme.titleMedium?.copyWith(
                               color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
                               fontWeight: FontWeight.w600,
@@ -615,7 +618,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                       color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
                     ),
                     decoration: InputDecoration(
-                      hintText: L10n.get('search_city', language),
+                      hintText: L10nService.get('input.search_city', language),
                       hintStyle: TextStyle(
                         color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
                       ),
@@ -661,7 +664,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                       ),
                       FilterChip(
                         label: Text(
-                          L10n.get('all_countries', language),
+                          L10nService.get('input.whole_world', language),
                           style: TextStyle(
                             color: !showTurkeyOnly
                                 ? Colors.white
@@ -749,7 +752,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text(_getLocalizedString('profile_saved', ref.read(languageProvider))),
+        content: Text(L10nService.get('profile.profile_saved', ref.read(languageProvider))),
         backgroundColor: AppColors.success,
         behavior: SnackBarBehavior.floating,
         shape: RoundedRectangleBorder(
@@ -770,13 +773,13 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
           borderRadius: BorderRadius.circular(AppConstants.radiusLg),
         ),
         title: Text(
-          _getLocalizedString('discard_changes', language),
+          L10nService.get('profile.discard_changes_title', language),
           style: TextStyle(
             color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
           ),
         ),
         content: Text(
-          _getLocalizedString('discard_changes_desc', language),
+          L10nService.get('profile.discard_changes_message', language),
           style: TextStyle(
             color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
           ),
@@ -785,7 +788,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
           TextButton(
             onPressed: () => Navigator.pop(context),
             child: Text(
-              L10n.get('cancel', language),
+              L10nService.get('common.cancel', language),
               style: TextStyle(
                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
               ),
@@ -797,7 +800,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
               context.pop();
             },
             child: Text(
-              _getLocalizedString('discard', language),
+              L10nService.get('common.delete', language),
               style: const TextStyle(color: AppColors.error),
             ),
           ),
@@ -806,119 +809,19 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     );
   }
 
-  String _getLocalizedString(String key, AppLanguage language) {
-    final Map<String, Map<AppLanguage, String>> strings = {
-      'profile': {
-        AppLanguage.en: 'Profile',
-        AppLanguage.tr: 'Profil',
-        AppLanguage.el: 'Προφίλ',
-        AppLanguage.bg: 'Профил',
-        AppLanguage.ru: 'Профиль',
-        AppLanguage.zh: '个人资料',
-        AppLanguage.fr: 'Profil',
-        AppLanguage.de: 'Profil',
-        AppLanguage.es: 'Perfil',
-        AppLanguage.ar: 'الملف الشخصي',
-      },
-      'save': {
-        AppLanguage.en: 'Save',
-        AppLanguage.tr: 'Kaydet',
-        AppLanguage.el: 'Αποθήκευση',
-        AppLanguage.bg: 'Запази',
-        AppLanguage.ru: 'Сохранить',
-        AppLanguage.zh: '保存',
-        AppLanguage.fr: 'Enregistrer',
-        AppLanguage.de: 'Speichern',
-        AppLanguage.es: 'Guardar',
-        AppLanguage.ar: 'حفظ',
-      },
-      'edit_info': {
-        AppLanguage.en: 'Edit Information',
-        AppLanguage.tr: 'Bilgileri Düzenle',
-        AppLanguage.el: 'Επεξεργασία Πληροφοριών',
-        AppLanguage.bg: 'Редактиране на Информация',
-        AppLanguage.ru: 'Редактировать Информацию',
-        AppLanguage.zh: '编辑信息',
-        AppLanguage.fr: 'Modifier les Informations',
-        AppLanguage.de: 'Informationen Bearbeiten',
-        AppLanguage.es: 'Editar Información',
-        AppLanguage.ar: 'تعديل المعلومات',
-      },
-      'view_full_chart': {
-        AppLanguage.en: 'View Full Birth Chart',
-        AppLanguage.tr: 'Doğum Haritasını Gör',
-        AppLanguage.el: 'Δείτε Πλήρη Χάρτη Γέννησης',
-        AppLanguage.bg: 'Вижте Пълната Натална Карта',
-        AppLanguage.ru: 'Посмотреть Полную Натальную Карту',
-        AppLanguage.zh: '查看完整出生图',
-        AppLanguage.fr: 'Voir la Carte Natale Complète',
-        AppLanguage.de: 'Vollständiges Geburtshoroskop Anzeigen',
-        AppLanguage.es: 'Ver Carta Natal Completa',
-        AppLanguage.ar: 'عرض خريطة الميلاد الكاملة',
-      },
-      'profile_saved': {
-        AppLanguage.en: 'Profile saved successfully',
-        AppLanguage.tr: 'Profil başarıyla kaydedildi',
-        AppLanguage.el: 'Το προφίλ αποθηκεύτηκε επιτυχώς',
-        AppLanguage.bg: 'Профилът е запазен успешно',
-        AppLanguage.ru: 'Профиль успешно сохранен',
-        AppLanguage.zh: '个人资料保存成功',
-        AppLanguage.fr: 'Profil enregistré avec succès',
-        AppLanguage.de: 'Profil erfolgreich gespeichert',
-        AppLanguage.es: 'Perfil guardado con éxito',
-        AppLanguage.ar: 'تم حفظ الملف الشخصي بنجاح',
-      },
-      'discard_changes': {
-        AppLanguage.en: 'Discard Changes?',
-        AppLanguage.tr: 'Değişiklikler Silinsin mi?',
-        AppLanguage.el: 'Απόρριψη Αλλαγών;',
-        AppLanguage.bg: 'Отхвърляне на Промените?',
-        AppLanguage.ru: 'Отменить Изменения?',
-        AppLanguage.zh: '放弃更改？',
-        AppLanguage.fr: 'Annuler les Modifications?',
-        AppLanguage.de: 'Änderungen Verwerfen?',
-        AppLanguage.es: '¿Descartar Cambios?',
-        AppLanguage.ar: 'تجاهل التغييرات؟',
-      },
-      'discard_changes_desc': {
-        AppLanguage.en: 'You have unsaved changes. Are you sure you want to leave?',
-        AppLanguage.tr: 'Kaydedilmemiş değişiklikleriniz var. Çıkmak istediğinizden emin misiniz?',
-        AppLanguage.el: 'Έχετε μη αποθηκευμένες αλλαγές. Είστε βέβαιοι ότι θέλετε να φύγετε;',
-        AppLanguage.bg: 'Имате незапазени промени. Сигурни ли сте, че искате да излезете?',
-        AppLanguage.ru: 'У вас есть несохраненные изменения. Вы уверены, что хотите выйти?',
-        AppLanguage.zh: '您有未保存的更改。确定要离开吗？',
-        AppLanguage.fr: 'Vous avez des modifications non enregistrées. Êtes-vous sûr de vouloir partir?',
-        AppLanguage.de: 'Du hast ungespeicherte Änderungen. Bist du sicher, dass du gehen möchtest?',
-        AppLanguage.es: 'Tienes cambios sin guardar. ¿Seguro que quieres salir?',
-        AppLanguage.ar: 'لديك تغييرات غير محفوظة. هل أنت متأكد أنك تريد المغادرة؟',
-      },
-      'discard': {
-        AppLanguage.en: 'Discard',
-        AppLanguage.tr: 'Sil',
-        AppLanguage.el: 'Απόρριψη',
-        AppLanguage.bg: 'Отхвърли',
-        AppLanguage.ru: 'Отменить',
-        AppLanguage.zh: '放弃',
-        AppLanguage.fr: 'Annuler',
-        AppLanguage.de: 'Verwerfen',
-        AppLanguage.es: 'Descartar',
-        AppLanguage.ar: 'تجاهل',
-      },
-    };
-
-    return strings[key]?[language] ?? strings[key]?[AppLanguage.en] ?? key;
-  }
 }
 
 class _CosmicSignCard extends StatelessWidget {
   final String title;
   final ZodiacSign? sign;
   final bool isDark;
+  final AppLanguage language;
 
   const _CosmicSignCard({
     required this.title,
     required this.sign,
     required this.isDark,
+    required this.language,
   });
 
   @override
@@ -954,7 +857,7 @@ class _CosmicSignCard extends StatelessWidget {
             ),
             const SizedBox(height: 4),
             Text(
-              sign!.nameTr,
+              sign!.localizedName(language),
               style: Theme.of(context).textTheme.labelSmall?.copyWith(
                     color: sign!.color,
                     fontWeight: FontWeight.w600,

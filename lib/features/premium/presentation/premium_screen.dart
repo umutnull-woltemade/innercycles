@@ -6,8 +6,10 @@ import 'package:purchases_ui_flutter/purchases_ui_flutter.dart';
 
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
-import '../../../data/services/premium_service.dart';
+import '../../../data/providers/app_providers.dart';
+import '../../../data/services/l10n_service.dart';
 import '../../../data/services/paywall_service.dart';
+import '../../../data/services/premium_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 
 class PremiumScreen extends ConsumerStatefulWidget {
@@ -151,6 +153,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
   }
 
   Widget _buildPremiumStatus(BuildContext context, PremiumState premiumState) {
+    final language = ref.watch(languageProvider);
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -161,7 +164,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
       child: Column(
         children: [
           Text(
-            'Kozmik Güçler Aktif',
+            L10nService.get('premium.cosmic_powers_active', language),
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
               color: AppColors.starGold,
               fontWeight: FontWeight.bold,
@@ -170,14 +173,14 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
           const SizedBox(height: AppConstants.spacingMd),
           if (premiumState.isLifetime)
             Text(
-              'Ömür boyu erişiminiz var!',
+              L10nService.get('premium.lifetime_access', language),
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 color: AppColors.textSecondary,
               ),
             )
           else if (premiumState.expiryDate != null)
             Text(
-              'Yenileme: ${_formatDate(premiumState.expiryDate!)}',
+              '${L10nService.get('common.next', language)}: ${_formatDate(premiumState.expiryDate!)}',
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 color: AppColors.textSecondary,
               ),
@@ -188,6 +191,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
   }
 
   Widget _buildManageSubscriptionButton(BuildContext context) {
+    final language = ref.watch(languageProvider);
     return SizedBox(
       width: double.infinity,
       child: OutlinedButton.icon(
@@ -195,9 +199,9 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
           await ref.read(paywallServiceProvider).presentCustomerCenter();
         },
         icon: const Icon(Icons.settings, color: AppColors.starGold),
-        label: const Text(
-          'Aboneliği Yönet',
-          style: TextStyle(color: AppColors.starGold),
+        label: Text(
+          L10nService.get('premium.manage_subscription', language),
+          style: const TextStyle(color: AppColors.starGold),
         ),
         style: OutlinedButton.styleFrom(
           side: const BorderSide(color: AppColors.starGold),
@@ -212,6 +216,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
   }
 
   Widget _buildHeader(BuildContext context) {
+    final language = ref.watch(languageProvider);
     return Column(
       children: [
         Row(
@@ -224,7 +229,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
           ],
         ),
         Text(
-          'umutnull Pro',
+          L10nService.get('app.name', language),
           style: Theme.of(context).textTheme.headlineMedium?.copyWith(
             color: AppColors.starGold,
             fontWeight: FontWeight.bold,
@@ -232,7 +237,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
         ).animate().fadeIn(duration: 400.ms),
         const SizedBox(height: 8),
         Text(
-          'Kozmik yolculuğunuzu sınırsız deneyimleyin',
+          L10nService.get('premium.success_message', language),
           textAlign: TextAlign.center,
           style: Theme.of(
             context,
@@ -291,7 +296,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
           Switch(
             value: _useRevenueCatPaywall,
             onChanged: (value) => setState(() => _useRevenueCatPaywall = value),
-            activeColor: Colors.orange,
+            activeThumbColor: Colors.orange,
           ),
         ],
       ),
@@ -346,14 +351,14 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                               valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                             ),
                           )
-                        : const Row(
+                        : Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Icon(Icons.star, color: Colors.black, size: 20),
-                              SizedBox(width: 8),
+                              const Icon(Icons.star, color: Colors.black, size: 20),
+                              const SizedBox(width: 8),
                               Text(
-                                'Planları Görüntüle',
-                                style: TextStyle(
+                                L10nService.get('premium.view_plans', ref.watch(languageProvider)),
+                                style: const TextStyle(
                                   color: Colors.black,
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
@@ -385,7 +390,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Kozmik Güçler',
+            L10nService.get('premium.cosmic_powers', ref.watch(languageProvider)),
             style: Theme.of(
               context,
             ).textTheme.titleMedium?.copyWith(color: AppColors.starGold),
@@ -474,7 +479,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                         ),
                       )
                     : Text(
-                        'Kozmik Kapıyı Aç - ${_selectedTier.price}',
+                        '${L10nService.get('premium.open_cosmic_door', ref.watch(languageProvider))} - ${_selectedTier.price}',
                         style: const TextStyle(
                           color: Colors.black,
                           fontSize: 16,
@@ -490,6 +495,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
   }
 
   Widget _buildRestoreButton(BuildContext context, PremiumState premiumState) {
+    final language = ref.watch(languageProvider);
     return TextButton(
       onPressed: premiumState.isLoading
           ? null
@@ -502,8 +508,8 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                   SnackBar(
                     content: Text(
                       restored
-                          ? 'Satın alımlar geri yüklendi!'
-                          : 'Geri yüklenecek satın alım bulunamadı.',
+                          ? L10nService.get('premium.purchases_restored', language)
+                          : L10nService.get('premium.no_purchases_found', language),
                     ),
                     backgroundColor: restored
                         ? AppColors.success
@@ -513,7 +519,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
               }
             },
       child: Text(
-        'Satın Alımları Geri Yükle',
+        L10nService.get('premium.restore_purchases', language),
         style: TextStyle(
           color: AppColors.textSecondary,
           decoration: TextDecoration.underline,
@@ -523,10 +529,11 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
   }
 
   Widget _buildTerms(BuildContext context) {
+    final language = ref.watch(languageProvider);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: AppConstants.spacingLg),
       child: Text(
-        'Satın alma işlemi, onaylandıktan sonra iTunes/Google Play hesabınızdan tahsil edilecektir. Abonelik, mevcut dönemin bitiminden en az 24 saat önce otomatik yenileme kapatılmadığı sürece otomatik olarak yenilenir.',
+        L10nService.get('premium.terms_text', language),
         textAlign: TextAlign.center,
         style: Theme.of(context).textTheme.bodySmall?.copyWith(
           color: AppColors.textMuted,
@@ -537,6 +544,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
   }
 
   void _showSuccessDialog() {
+    final language = ref.read(languageProvider);
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -546,17 +554,17 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
           children: [
             const Text('🌟', style: TextStyle(fontSize: 24)),
             const SizedBox(width: 8),
-            const Flexible(
+            Flexible(
               child: Text(
-                'Kozmik Kapı Açıldı!',
-                style: TextStyle(color: AppColors.starGold),
+                L10nService.get('premium.cosmic_door_opened', language),
+                style: const TextStyle(color: AppColors.starGold),
               ),
             ),
           ],
         ),
-        content: const Text(
-          'Evrenin sırlarına tam erişim artık seninle. Yıldızların rehberliğinde sınırsız keşfe hazırsın.',
-          style: TextStyle(color: Colors.white70),
+        content: Text(
+          L10nService.get('premium.success_message', language),
+          style: const TextStyle(color: Colors.white70),
         ),
         actions: [
           TextButton(
@@ -564,9 +572,9 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
               Navigator.pop(context); // Close dialog
               Navigator.pop(context); // Close premium screen
             },
-            child: const Text(
-              'Yolculuğa Başla',
-              style: TextStyle(color: AppColors.starGold),
+            child: Text(
+              L10nService.get('common.start_journey', language),
+              style: const TextStyle(color: AppColors.starGold),
             ),
           ),
         ],
@@ -734,47 +742,68 @@ class _PlanCard extends StatelessWidget {
           Positioned(
             top: -10,
             right: 16,
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-              decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                  colors: [AppColors.starGold, Color(0xFFFFA500)],
-                ),
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: const Text(
-                'En İyi Değer',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 10,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
+            child: _BestValueBadge(),
           ),
         if (isLifetime)
           Positioned(
             top: -10,
             right: 16,
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [AppColors.auroraStart, AppColors.auroraEnd],
-                ),
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: const Text(
-                'Ömür Boyu',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 10,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
+            child: _LifetimeBadge(),
           ),
       ],
+    );
+  }
+}
+
+class _BestValueBadge extends ConsumerWidget {
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final language = ref.watch(languageProvider);
+    // Use localized "Best Value" text - adding key to locale files
+    final bestValueText = language == AppLanguage.en ? 'Best Value'
+        : language == AppLanguage.de ? 'Bestes Angebot'
+        : language == AppLanguage.fr ? 'Meilleure Offre'
+        : 'En İyi Değer';
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          colors: [AppColors.starGold, Color(0xFFFFA500)],
+        ),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Text(
+        bestValueText,
+        style: const TextStyle(
+          color: Colors.black,
+          fontSize: 10,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    );
+  }
+}
+
+class _LifetimeBadge extends ConsumerWidget {
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final language = ref.watch(languageProvider);
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [AppColors.auroraStart, AppColors.auroraEnd],
+        ),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Text(
+        L10nService.get('premium.lifetime', language),
+        style: const TextStyle(
+          color: Colors.white,
+          fontSize: 10,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
     );
   }
 }

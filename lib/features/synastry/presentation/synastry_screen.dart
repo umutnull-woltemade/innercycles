@@ -9,6 +9,7 @@ import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/zodiac_sign.dart';
 import '../../../data/providers/app_providers.dart';
+import '../../../data/services/l10n_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/entertainment_disclaimer.dart';
 import '../../../shared/widgets/kadim_not_card.dart';
@@ -45,6 +46,7 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen>
   @override
   Widget build(BuildContext context) {
     final userProfile = ref.watch(userProfileProvider);
+    final language = ref.watch(languageProvider);
     final userSign = userProfile?.sunSign ?? ZodiacSign.aries;
     final userBirthDate = userProfile?.birthDate ?? DateTime(1990, 1, 1);
 
@@ -53,6 +55,7 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen>
       person1BirthDate: userBirthDate,
       person2Sign: _partnerSign,
       person2BirthDate: _partnerBirthDate,
+      language: language,
     );
 
     return Scaffold(
@@ -60,20 +63,20 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen>
         child: SafeArea(
           child: NestedScrollView(
             headerSliverBuilder: (context, innerBoxIsScrolled) => [
-              SliverToBoxAdapter(child: _buildHeader(context, userSign)),
-              SliverToBoxAdapter(child: _buildPartnerSelector(context)),
+              SliverToBoxAdapter(child: _buildHeader(context, userSign, language)),
+              SliverToBoxAdapter(child: _buildPartnerSelector(context, language)),
               SliverToBoxAdapter(
-                child: _buildCompactCompatibilityScore(context, synastryData),
+                child: _buildCompactCompatibilityScore(context, synastryData, language),
               ),
-              SliverToBoxAdapter(child: _buildTabBar(context)),
+              SliverToBoxAdapter(child: _buildTabBar(context, language)),
             ],
             body: TabBarView(
               controller: _tabController,
               children: [
-                _buildOverviewTab(context, synastryData),
-                _buildAspectsTab(context, synastryData),
-                _buildHousesTab(context, synastryData),
-                _buildAdviceTab(context, synastryData),
+                _buildOverviewTab(context, synastryData, language),
+                _buildAspectsTab(context, synastryData, language),
+                _buildHousesTab(context, synastryData, language),
+                _buildAdviceTab(context, synastryData, language),
               ],
             ),
           ),
@@ -82,7 +85,7 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen>
     );
   }
 
-  Widget _buildHeader(BuildContext context, ZodiacSign userSign) {
+  Widget _buildHeader(BuildContext context, ZodiacSign userSign, AppLanguage language) {
     return Padding(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       child: Row(
@@ -104,14 +107,14 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Sinastri Analizi',
+                  L10nService.get('synastry.title', language),
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
                     color: AppColors.textPrimary,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 Text(
-                  'İlişki uyumu detaylı analiz',
+                  L10nService.get('synastry.subtitle', language),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: AppColors.textSecondary,
                   ),
@@ -137,7 +140,7 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen>
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildPartnerSelector(BuildContext context) {
+  Widget _buildPartnerSelector(BuildContext context, AppLanguage language) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: AppConstants.spacingLg),
       padding: const EdgeInsets.all(AppConstants.spacingMd),
@@ -153,14 +156,14 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Partner Burcu',
+                  L10nService.get('synastry.partner_sign', language),
                   style: Theme.of(
                     context,
                   ).textTheme.labelSmall?.copyWith(color: AppColors.textMuted),
                 ),
                 const SizedBox(height: 4),
                 GestureDetector(
-                  onTap: () => _showSignSelector(context),
+                  onTap: () => _showSignSelector(context, language),
                   child: Row(
                     children: [
                       Text(
@@ -172,7 +175,7 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen>
                       ),
                       const SizedBox(width: 8),
                       Text(
-                        _partnerSign.nameTr,
+                        _partnerSign.localizedName(language),
                         style: Theme.of(context).textTheme.titleMedium
                             ?.copyWith(
                               color: AppColors.textPrimary,
@@ -198,7 +201,7 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Doğum Tarihi',
+                  L10nService.get('birth_date', language),
                   style: Theme.of(
                     context,
                   ).textTheme.labelSmall?.copyWith(color: AppColors.textMuted),
@@ -234,6 +237,7 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen>
   Widget _buildCompactCompatibilityScore(
     BuildContext context,
     SynastryData data,
+    AppLanguage language,
   ) {
     final Color scoreColor = data.overallScore >= 70
         ? Colors.green
@@ -287,7 +291,7 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen>
           ),
           const SizedBox(width: 4),
           Text(
-            'Sen',
+            L10nService.get('synastry.you', language),
             style: Theme.of(context).textTheme.labelSmall?.copyWith(
               color: AppColors.textMuted,
               fontSize: 9,
@@ -344,7 +348,7 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen>
 
           // Person 2 - Mini
           Text(
-            'Partner',
+            L10nService.get('synastry.partner', language),
             style: Theme.of(context).textTheme.labelSmall?.copyWith(
               color: AppColors.textMuted,
               fontSize: 9,
@@ -372,7 +376,7 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen>
     ).animate().fadeIn(delay: 200.ms, duration: 400.ms);
   }
 
-  Widget _buildTabBar(BuildContext context) {
+  Widget _buildTabBar(BuildContext context, AppLanguage language) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -391,31 +395,31 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen>
         labelStyle: Theme.of(
           context,
         ).textTheme.labelMedium?.copyWith(fontWeight: FontWeight.bold),
-        tabs: const [
-          Tab(text: 'Genel'),
-          Tab(text: 'Aspektler'),
-          Tab(text: 'Evler'),
-          Tab(text: 'Tavsiye'),
+        tabs: [
+          Tab(text: L10nService.get('tab_general', language)),
+          Tab(text: L10nService.get('tab_aspects', language)),
+          Tab(text: L10nService.get('tab_houses', language)),
+          Tab(text: L10nService.get('tab_advice', language)),
         ],
       ),
     ).animate().fadeIn(delay: 300.ms, duration: 400.ms);
   }
 
-  Widget _buildOverviewTab(BuildContext context, SynastryData data) {
+  Widget _buildOverviewTab(BuildContext context, SynastryData data, AppLanguage language) {
     return ListView(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       children: [
         // Kategori Skorları - Yatay Kompakt
-        _buildCategoryScoresRow(context, data),
+        _buildCategoryScoresRow(context, data, language),
         const SizedBox(height: AppConstants.spacingLg),
         // Synastry explanation
-        _buildSynastryExplanation(context),
+        _buildSynastryExplanation(context, language),
         const SizedBox(height: AppConstants.spacingLg),
-        _buildSectionTitle(context, 'İlişki Dinamiği'),
+        _buildSectionTitle(context, L10nService.get('synastry.relationship_dynamics', language)),
         const SizedBox(height: AppConstants.spacingMd),
         _buildInfoCard(
           context,
-          title: 'Ruhsal Bağ',
+          title: L10nService.get('synastry.spiritual_bond', language),
           content: data.overview,
           icon: Icons.visibility,
           color: Colors.pink,
@@ -423,7 +427,7 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen>
         const SizedBox(height: AppConstants.spacingMd),
         _buildInfoCard(
           context,
-          title: 'Güçlü Yanlar',
+          title: L10nService.get('synastry.strengths', language),
           content: data.strengths.join('\n'),
           icon: Icons.thumb_up,
           color: Colors.green,
@@ -431,7 +435,7 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen>
         const SizedBox(height: AppConstants.spacingMd),
         _buildInfoCard(
           context,
-          title: 'Zorluklar',
+          title: L10nService.get('synastry.challenges', language),
           content: data.challenges.join('\n'),
           icon: Icons.warning_amber,
           color: Colors.orange,
@@ -439,12 +443,11 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen>
         const SizedBox(height: AppConstants.spacingLg),
 
         // Kadim Not - Sinastri bilgeliği
-        const KadimNotCard(
-          title: 'Ruhların Aynası',
-          content:
-              'Sinastri, iki ruhun kozmik dansını gösteren kadim bir sanat. Haritalar arasındaki açılar, yalnızca uyumu değil - birlikte öğrenilecek dersleri ve ruhsal büyümeyi de ortaya koyar. Her ilişki, evrenin bir okulu.',
+        KadimNotCard(
+          title: L10nService.get('synastry.kadim_title', language),
+          content: L10nService.get('synastry.kadim_content', language),
           category: KadimCategory.astrology,
-          source: 'İlişki Astrolojisi',
+          source: L10nService.get('synastry.kadim_source', language),
         ),
         const SizedBox(height: AppConstants.spacingXl),
 
@@ -464,7 +467,7 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen>
     );
   }
 
-  Widget _buildCategoryScoresRow(BuildContext context, SynastryData data) {
+  Widget _buildCategoryScoresRow(BuildContext context, SynastryData data, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
       decoration: BoxDecoration(
@@ -477,7 +480,7 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen>
         children: [
           _buildMiniScoreItem(
             context,
-            'Duygusal',
+            L10nService.get('synastry.emotional', language),
             data.emotionalScore,
             Colors.pink,
             '💕',
@@ -485,7 +488,7 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen>
           _buildScoreDivider(),
           _buildMiniScoreItem(
             context,
-            'Zihinsel',
+            L10nService.get('synastry.mental', language),
             data.mentalScore,
             Colors.blue,
             '🧠',
@@ -493,7 +496,7 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen>
           _buildScoreDivider(),
           _buildMiniScoreItem(
             context,
-            'Fiziksel',
+            L10nService.get('synastry.physical', language),
             data.physicalScore,
             Colors.red,
             '🔥',
@@ -501,7 +504,7 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen>
           _buildScoreDivider(),
           _buildMiniScoreItem(
             context,
-            'Ruhsal',
+            L10nService.get('synastry.spiritual', language),
             data.spiritualScore,
             Colors.purple,
             '✨',
@@ -551,29 +554,29 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen>
     return Container(width: 1, height: 30, color: Colors.white12);
   }
 
-  Widget _buildAspectsTab(BuildContext context, SynastryData data) {
+  Widget _buildAspectsTab(BuildContext context, SynastryData data, AppLanguage language) {
     return ListView(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       children: [
-        _buildSectionTitle(context, 'Gezegen Aspektleri'),
+        _buildSectionTitle(context, L10nService.get('synastry.planet_aspects', language)),
         const SizedBox(height: AppConstants.spacingMd),
         ...data.aspects.asMap().entries.map((entry) {
           final index = entry.key;
           final aspect = entry.value;
-          return _buildAspectCard(context, aspect, index);
+          return _buildAspectCard(context, aspect, index, language);
         }),
         const SizedBox(height: AppConstants.spacingXl),
       ],
     );
   }
 
-  Widget _buildHousesTab(BuildContext context, SynastryData data) {
+  Widget _buildHousesTab(BuildContext context, SynastryData data, AppLanguage language) {
     return ListView(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       children: [
-        _buildSectionTitle(context, 'Ev Yerleşimi'),
+        _buildSectionTitle(context, L10nService.get('synastry.house_placement', language)),
         Text(
-          'Partnerin gezegenlerinin senin evlerine düşmesi',
+          L10nService.get('synastry.house_placement_subtitle', language),
           style: Theme.of(
             context,
           ).textTheme.bodySmall?.copyWith(color: AppColors.textMuted),
@@ -582,18 +585,18 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen>
         ...data.houseOverlays.asMap().entries.map((entry) {
           final index = entry.key;
           final overlay = entry.value;
-          return _buildHouseCard(context, overlay, index);
+          return _buildHouseCard(context, overlay, index, language);
         }),
         const SizedBox(height: AppConstants.spacingXl),
       ],
     );
   }
 
-  Widget _buildAdviceTab(BuildContext context, SynastryData data) {
+  Widget _buildAdviceTab(BuildContext context, SynastryData data, AppLanguage language) {
     return ListView(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       children: [
-        _buildSectionTitle(context, 'İlişki Tavsiyeleri'),
+        _buildSectionTitle(context, L10nService.get('synastry.relationship_advice', language)),
         const SizedBox(height: AppConstants.spacingMd),
         ...data.advice.asMap().entries.map((entry) {
           final index = entry.key;
@@ -601,7 +604,7 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen>
           return _buildAdviceCard(context, advice, index);
         }),
         const SizedBox(height: AppConstants.spacingLg),
-        _buildSectionTitle(context, 'Önemli Tarihler'),
+        _buildSectionTitle(context, L10nService.get('synastry.important_dates', language)),
         const SizedBox(height: AppConstants.spacingMd),
         ...data.importantDates.asMap().entries.map((entry) {
           final index = entry.key;
@@ -613,7 +616,7 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen>
     );
   }
 
-  Widget _buildSynastryExplanation(BuildContext context) {
+  Widget _buildSynastryExplanation(BuildContext context, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -637,7 +640,7 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen>
               const Icon(Icons.auto_awesome, color: Colors.purple, size: 20),
               const SizedBox(width: 8),
               Text(
-                'Sinastri Nedir?',
+                L10nService.get('synastry.what_is_synastry', language),
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
                   color: Colors.purple,
                   fontWeight: FontWeight.bold,
@@ -647,7 +650,7 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen>
           ),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
-            'Sinastri, iki kişinin doğum haritalarının karşılaştırılarak ilişki uyumunun analiz edilmesidir. Bu kadim astroloji tekniği, iki ruhun kozmik dansını anlamak için kullanılır.',
+            L10nService.get('synastry.explanation_1', language),
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
               color: AppColors.textSecondary,
               height: 1.5,
@@ -655,7 +658,7 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen>
           ),
           const SizedBox(height: AppConstants.spacingSm),
           Text(
-            'Her iki haritadaki gezegenlerin birbirleriyle yaptığı açılar (aspektler), ilişkinin güçlü yanlarını, zorluklarını ve büyüme potansiyelini ortaya koyar. Güneş-Ay, Venüs-Mars gibi etkileşimler özellikle önemlidir.',
+            L10nService.get('synastry.explanation_2', language),
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
               color: AppColors.textMuted,
               height: 1.5,
@@ -665,13 +668,13 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen>
           const SizedBox(height: AppConstants.spacingMd),
           Row(
             children: [
-              _buildSynastryKeyPoint(context, '☌', 'Kavuşum', 'Birleşme'),
+              _buildSynastryKeyPoint(context, '☌', L10nService.get('synastry.conjunction', language), L10nService.get('synastry.union', language)),
               const SizedBox(width: 8),
-              _buildSynastryKeyPoint(context, '△', 'Trigon', 'Uyum'),
+              _buildSynastryKeyPoint(context, '△', L10nService.get('synastry.trine', language), L10nService.get('synastry.harmony', language)),
               const SizedBox(width: 8),
-              _buildSynastryKeyPoint(context, '□', 'Kare', 'Büyüme'),
+              _buildSynastryKeyPoint(context, '□', L10nService.get('synastry.square', language), L10nService.get('synastry.growth', language)),
               const SizedBox(width: 8),
-              _buildSynastryKeyPoint(context, '☍', 'Karşıt', 'Denge'),
+              _buildSynastryKeyPoint(context, '☍', L10nService.get('synastry.opposition', language), L10nService.get('synastry.balance', language)),
             ],
           ),
         ],
@@ -779,6 +782,7 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen>
     BuildContext context,
     SynastryAspect aspect,
     int index,
+    AppLanguage language,
   ) {
     final Color aspectColor = aspect.isHarmonious
         ? Colors.green
@@ -837,7 +841,7 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen>
               borderRadius: BorderRadius.circular(10),
             ),
             child: Text(
-              aspect.isHarmonious ? 'Uyumlu' : 'Zorlayıcı',
+              aspect.isHarmonious ? L10nService.get('synastry.harmonious', language) : L10nService.get('synastry.challenging', language),
               style: Theme.of(context).textTheme.labelSmall?.copyWith(
                 color: aspectColor,
                 fontWeight: FontWeight.bold,
@@ -853,6 +857,7 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen>
     BuildContext context,
     HouseOverlay overlay,
     int index,
+    AppLanguage language,
   ) {
     return Container(
       margin: const EdgeInsets.only(bottom: AppConstants.spacingMd),
@@ -896,7 +901,7 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen>
                       ),
                     ),
                     Text(
-                      '${overlay.house}. Evde',
+                      L10nService.getWithParams('synastry.in_house', language, params: {'house': overlay.house.toString()}),
                       style: Theme.of(
                         context,
                       ).textTheme.titleSmall?.copyWith(color: Colors.purple),
@@ -1011,7 +1016,7 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen>
     ).animate().fadeIn(delay: (index * 50).ms, duration: 300.ms);
   }
 
-  void _showSignSelector(BuildContext context) {
+  void _showSignSelector(BuildContext context, AppLanguage language) {
     showModalBottomSheet(
       context: context,
       backgroundColor: AppColors.surfaceDark,
@@ -1025,7 +1030,7 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen>
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                'Partner Burcu Seç',
+                L10nService.get('synastry.select_partner_sign', language),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   color: AppColors.textPrimary,
                   fontWeight: FontWeight.bold,
@@ -1063,7 +1068,7 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen>
                           ),
                           const SizedBox(height: 4),
                           Text(
-                            sign.nameTr,
+                            sign.localizedName(language),
                             style: Theme.of(context).textTheme.labelSmall
                                 ?.copyWith(
                                   color: isSelected
@@ -1253,6 +1258,7 @@ class SynastryCalculator {
     required DateTime person1BirthDate,
     required ZodiacSign person2Sign,
     required DateTime person2BirthDate,
+    required AppLanguage language,
   }) {
     final seed = person1Sign.index * 12 + person2Sign.index;
     final random = Random(seed);
@@ -1287,14 +1293,14 @@ class SynastryCalculator {
       mentalScore: mentalScore,
       physicalScore: physicalScore,
       spiritualScore: spiritualScore,
-      compatibilityLevel: _getCompatibilityLevel(overallScore),
-      overview: _getOverview(person1Sign, person2Sign, overallScore),
-      strengths: _getStrengths(person1Sign, person2Sign, random),
-      challenges: _getChallenges(person1Sign, person2Sign, random),
-      aspects: _generateAspects(person1Sign, person2Sign, random),
-      houseOverlays: _generateHouseOverlays(person2Sign, random),
-      advice: _generateAdvice(person1Sign, person2Sign, overallScore, random),
-      importantDates: _generateImportantDates(random),
+      compatibilityLevel: _getCompatibilityLevel(overallScore, language),
+      overview: _getOverview(person1Sign, person2Sign, overallScore, language),
+      strengths: _getStrengths(person1Sign, person2Sign, random, language),
+      challenges: _getChallenges(person1Sign, person2Sign, random, language),
+      aspects: _generateAspects(person1Sign, person2Sign, random, language),
+      houseOverlays: _generateHouseOverlays(person2Sign, random, language),
+      advice: _generateAdvice(person1Sign, person2Sign, overallScore, random, language),
+      importantDates: _generateImportantDates(random, language),
     );
   }
 
@@ -1308,21 +1314,23 @@ class SynastryCalculator {
     return compatible[element1]?.contains(element2) ?? false;
   }
 
-  static String _getCompatibilityLevel(int score) {
-    if (score >= 80) return 'Mükemmel Uyum';
-    if (score >= 65) return 'Çok İyi';
-    if (score >= 50) return 'İyi';
-    if (score >= 35) return 'Orta';
-    return 'Zorlayıcı';
+  static String _getCompatibilityLevel(int score, AppLanguage language) {
+    if (score >= 80) return L10nService.get('synastry.level_perfect', language);
+    if (score >= 65) return L10nService.get('synastry.level_very_good', language);
+    if (score >= 50) return L10nService.get('synastry.level_good', language);
+    if (score >= 35) return L10nService.get('synastry.level_moderate', language);
+    return L10nService.get('synastry.level_challenging', language);
   }
 
-  static String _getOverview(ZodiacSign sign1, ZodiacSign sign2, int score) {
+  static String _getOverview(ZodiacSign sign1, ZodiacSign sign2, int score, AppLanguage language) {
+    final sign1Name = sign1.localizedName(language);
+    final sign2Name = sign2.localizedName(language);
     if (score >= 70) {
-      return '${sign1.nameTr} ve ${sign2.nameTr} arasında güçlü bir çekicilik var. Birbirinizi tamamlayan enerjileriniz, harmonik bir ilişki için sağlam bir temel oluşturuyor. Duygusal bağlarınız derin ve kalıcı olabilir.';
+      return L10nService.getWithParams('synastry.overview_high', language, params: {'sign1': sign1Name, 'sign2': sign2Name});
     } else if (score >= 50) {
-      return '${sign1.nameTr} ve ${sign2.nameTr} arasında dengeli bir dinamik mevcut. Her iki tarafın da anlayış ve esneklik göstermesiyle bu ilişki büyüyüp gelişebilir. Farklılıklarınız zenginlik katabilir.';
+      return L10nService.getWithParams('synastry.overview_medium', language, params: {'sign1': sign1Name, 'sign2': sign2Name});
     } else {
-      return '${sign1.nameTr} ve ${sign2.nameTr} arasında bazı zorluklar olabilir. Bu ilişki büyüme fırsatları sunuyor ancak her iki tarafın da bilinçli çaba göstermesi gerekiyor.';
+      return L10nService.getWithParams('synastry.overview_low', language, params: {'sign1': sign1Name, 'sign2': sign2Name});
     }
   }
 
@@ -1330,78 +1338,75 @@ class SynastryCalculator {
     ZodiacSign sign1,
     ZodiacSign sign2,
     Random random,
+    AppLanguage language,
   ) {
-    final allStrengths = [
-      'Duygusal derinlik ve anlayış',
-      'Güçlü iletişim bağları',
-      'Ortak değerler ve hedefler',
-      'Fiziksel çekim ve tutku',
-      'Karşılıklı saygı ve güven',
-      'Entelektüel uyum',
-      'Mizah anlayışında ortaklık',
-      'Birlikte büyüme potansiyeli',
-      'Sadakat ve bağlılık',
-      'Yaratıcı sinerji',
-    ];
+    final allStrengths = L10nService.getList('synastry.strengths_list', language);
 
     final count = 3 + random.nextInt(2);
-    allStrengths.shuffle(random);
-    return allStrengths.take(count).map((s) => '• $s').toList();
+    final shuffled = List<String>.from(allStrengths);
+    shuffled.shuffle(random);
+    return shuffled.take(count).map((s) => '• $s').toList();
   }
 
   static List<String> _getChallenges(
     ZodiacSign sign1,
     ZodiacSign sign2,
     Random random,
+    AppLanguage language,
   ) {
-    final allChallenges = [
-      'Farklı iletişim stilleri',
-      'Bağımsızlık vs yakınlık dengesi',
-      'Farklı sosyal ihtiyaçlar',
-      'Mali konularda farklı yaklaşımlar',
-      'Aile ve sorumluluk bakış açıları',
-      'Duygusal ifade farklılıkları',
-      'Kariyer öncelikleri çatışması',
-      'Zaman yönetimi farklılıkları',
-    ];
+    final allChallenges = L10nService.getList('synastry.challenges_list', language);
 
     final count = 2 + random.nextInt(2);
-    allChallenges.shuffle(random);
-    return allChallenges.take(count).map((s) => '• $s').toList();
+    final shuffled = List<String>.from(allChallenges);
+    shuffled.shuffle(random);
+    return shuffled.take(count).map((s) => '• $s').toList();
   }
 
   static List<SynastryAspect> _generateAspects(
     ZodiacSign sign1,
     ZodiacSign sign2,
     Random random,
+    AppLanguage language,
   ) {
+    final sign1Name = sign1.localizedName(language);
+    final sign2Name = sign2.localizedName(language);
+    final sunLabel = L10nService.get('planets.sun', language);
+    final moonLabel = L10nService.get('planets.moon', language);
+    final venusLabel = L10nService.get('planets.venus', language);
+    final marsLabel = L10nService.get('planets.mars', language);
+    final mercuryLabel = L10nService.get('planets.mercury', language);
+
+    final trigonName = L10nService.get('synastry.trine', language);
+    final squareName = L10nService.get('synastry.square', language);
+    final conjunctionName = L10nService.get('synastry.conjunction', language);
+    final oppositionName = L10nService.get('synastry.opposition', language);
+    final sextileName = L10nService.get('synastry.sextile', language);
+
     final aspects = <SynastryAspect>[
       SynastryAspect(
-        planet1: 'Güneş (${sign1.nameTr})',
-        planet2: 'Ay (${sign2.nameTr})',
-        aspectName: random.nextBool() ? 'Trigon' : 'Kare',
+        planet1: '$sunLabel ($sign1Name)',
+        planet2: '$moonLabel ($sign2Name)',
+        aspectName: random.nextBool() ? trigonName : squareName,
         aspectSymbol: random.nextBool() ? '△' : '□',
         interpretation: random.nextBool()
-            ? 'Duygusal anlayış ve empati güçlü. Birbirinizin ihtiyaçlarını sezgisel olarak anlıyorsunuz.'
-            : 'Duygusal ifade farklılıkları var. Sabır ve anlayışla aşılabilir.',
+            ? L10nService.get('synastry.aspect_sun_moon_positive', language)
+            : L10nService.get('synastry.aspect_sun_moon_negative', language),
         isHarmonious: random.nextBool(),
       ),
       SynastryAspect(
-        planet1: 'Venüs (${sign1.nameTr})',
-        planet2: 'Mars (${sign2.nameTr})',
-        aspectName: random.nextBool() ? 'Kavuşum' : 'Karşıt',
+        planet1: '$venusLabel ($sign1Name)',
+        planet2: '$marsLabel ($sign2Name)',
+        aspectName: random.nextBool() ? conjunctionName : oppositionName,
         aspectSymbol: random.nextBool() ? '☌' : '☍',
-        interpretation:
-            'Fiziksel çekim ve tutku yüksek. Romantik enerji yoğun.',
+        interpretation: L10nService.get('synastry.aspect_venus_mars', language),
         isHarmonious: true,
       ),
       SynastryAspect(
-        planet1: 'Merkür (${sign1.nameTr})',
-        planet2: 'Merkür (${sign2.nameTr})',
-        aspectName: 'Sextil',
+        planet1: '$mercuryLabel ($sign1Name)',
+        planet2: '$mercuryLabel ($sign2Name)',
+        aspectName: sextileName,
         aspectSymbol: '⚹',
-        interpretation:
-            'İletişim akıcı ve anlaşılır. Fikirleri paylaşma kolaylığı var.',
+        interpretation: L10nService.get('synastry.aspect_mercury_mercury', language),
         isHarmonious: true,
       ),
     ];
@@ -1412,27 +1417,28 @@ class SynastryCalculator {
   static List<HouseOverlay> _generateHouseOverlays(
     ZodiacSign partnerSign,
     Random random,
+    AppLanguage language,
   ) {
     return [
       HouseOverlay(
-        planet: 'Güneş',
+        planet: L10nService.get('planets.sun', language),
         house: 1 + random.nextInt(4),
-        meaning: 'Partneriniz sizin kimliğinizi ve benlik ifadenizi etkiliyor.',
+        meaning: L10nService.get('synastry.house_sun_meaning', language),
       ),
       HouseOverlay(
-        planet: 'Ay',
+        planet: L10nService.get('planets.moon', language),
         house: 4 + random.nextInt(3),
-        meaning: 'Duygusal güvenlik ve ev hayatı konularında etkili.',
+        meaning: L10nService.get('synastry.house_moon_meaning', language),
       ),
       HouseOverlay(
-        planet: 'Venüs',
+        planet: L10nService.get('planets.venus', language),
         house: 5 + random.nextInt(3),
-        meaning: 'Romantizm, yaratıcılık ve eğlence alanlarında uyum.',
+        meaning: L10nService.get('synastry.house_venus_meaning', language),
       ),
       HouseOverlay(
-        planet: 'Mars',
+        planet: L10nService.get('planets.mars', language),
         house: 7 + random.nextInt(2),
-        meaning: 'İlişki dinamikleri ve ortaklık enerjisini etkiliyor.',
+        meaning: L10nService.get('synastry.house_mars_meaning', language),
       ),
     ];
   }
@@ -1442,59 +1448,56 @@ class SynastryCalculator {
     ZodiacSign sign2,
     int score,
     Random random,
+    AppLanguage language,
   ) {
     return [
-      const RelationshipAdvice(
-        title: 'İletişim',
-        content:
-            'Açık ve dürüst iletişim kurun. Duygularınızı ifade ederken "ben" dilini kullanın. Dinleme becerilerinizi geliştirin.',
+      RelationshipAdvice(
+        title: L10nService.get('synastry.advice_communication_title', language),
+        content: L10nService.get('synastry.advice_communication_content', language),
         icon: Icons.chat_bubble_outline,
         color: Colors.blue,
       ),
-      const RelationshipAdvice(
-        title: 'Kaliteli Zaman',
-        content:
-            'Birlikte anlamlı aktiviteler yapın. Ortak hobiler geliştirin. Düzenli "biz zamanı" ayırın.',
+      RelationshipAdvice(
+        title: L10nService.get('synastry.advice_quality_time_title', language),
+        content: L10nService.get('synastry.advice_quality_time_content', language),
         icon: Icons.schedule,
         color: Colors.green,
       ),
-      const RelationshipAdvice(
-        title: 'Saygı',
-        content:
-            'Birbirinizin sınırlarına saygı gösterin. Farklılıkları kabul edin. Küçük jestlerle takdirinizi gösterin.',
+      RelationshipAdvice(
+        title: L10nService.get('synastry.advice_respect_title', language),
+        content: L10nService.get('synastry.advice_respect_content', language),
         icon: Icons.handshake,
         color: Colors.purple,
       ),
-      const RelationshipAdvice(
-        title: 'Büyüme',
-        content:
-            'Birlikte ve bireysel olarak büyümeye açık olun. Birbirinizin hedeflerini destekleyin.',
+      RelationshipAdvice(
+        title: L10nService.get('synastry.advice_growth_title', language),
+        content: L10nService.get('synastry.advice_growth_content', language),
         icon: Icons.trending_up,
         color: Colors.orange,
       ),
     ];
   }
 
-  static List<ImportantDate> _generateImportantDates(Random random) {
+  static List<ImportantDate> _generateImportantDates(Random random, AppLanguage language) {
     final now = DateTime.now();
     return [
       ImportantDate(
         formattedDate:
             '${now.add(const Duration(days: 14)).day}/${now.add(const Duration(days: 14)).month}',
-        event: 'Venüs Trigonu',
-        description: 'Romantik enerji yüksek, özel planlar yapın',
+        event: L10nService.get('synastry.date_venus_trine', language),
+        description: L10nService.get('synastry.date_venus_trine_desc', language),
       ),
       ImportantDate(
         formattedDate:
             '${now.add(const Duration(days: 28)).day}/${now.add(const Duration(days: 28)).month}',
-        event: 'Dolunay',
-        description: 'Duygusal derinlik, önemli konuşmalara uygun',
+        event: L10nService.get('synastry.date_full_moon', language),
+        description: L10nService.get('synastry.date_full_moon_desc', language),
       ),
       ImportantDate(
         formattedDate:
             '${now.add(const Duration(days: 45)).day}/${now.add(const Duration(days: 45)).month}',
-        event: 'Mars Sextili',
-        description: 'Ortak projeler ve aktiviteler için ideal',
+        event: L10nService.get('synastry.date_mars_sextile', language),
+        description: L10nService.get('synastry.date_mars_sextile_desc', language),
       ),
     ];
   }

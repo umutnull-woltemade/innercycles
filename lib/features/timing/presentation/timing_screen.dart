@@ -7,6 +7,7 @@ import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/zodiac_sign.dart';
 import '../../../data/providers/app_providers.dart';
+import '../../../data/services/l10n_service.dart';
 import '../../../data/services/moon_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/kadim_not_card.dart';
@@ -28,6 +29,7 @@ class _TimingScreenState extends ConsumerState<TimingScreen> {
     final userProfile = ref.watch(userProfileProvider);
     final sign = userProfile?.sunSign ?? ZodiacSign.aries;
     final birthDate = userProfile?.birthDate ?? DateTime(1990, 1, 1);
+    final language = ref.watch(languageProvider);
 
     final recommendations = TimingService.getRecommendations(
       sunSign: sign,
@@ -40,36 +42,33 @@ class _TimingScreenState extends ConsumerState<TimingScreen> {
         child: SafeArea(
           child: Column(
             children: [
-              _buildHeader(context),
-              _buildCategorySelector(),
+              _buildHeader(context, language),
+              _buildCategorySelector(language),
               Expanded(
                 child: ListView(
                   padding: const EdgeInsets.all(AppConstants.spacingLg),
                   children: [
-                    _buildTodayOverview(context),
+                    _buildTodayOverview(context, language),
                     const SizedBox(height: AppConstants.spacingXl),
-                    _buildCurrentConditions(context),
+                    _buildCurrentConditions(context, language),
                     const SizedBox(height: AppConstants.spacingXl),
-                    _buildRecommendations(context, recommendations),
+                    _buildRecommendations(context, recommendations, language),
                     const SizedBox(height: AppConstants.spacingXl),
-                    _buildUpcoming7Days(context, sign),
+                    _buildUpcoming7Days(context, sign, language),
                     const SizedBox(height: AppConstants.spacingXl),
-                    _buildPlanetaryHours(context),
+                    _buildPlanetaryHours(context, language),
                     const SizedBox(height: AppConstants.spacingXl),
-                    _buildLuckyElements(context, sign, birthDate),
+                    _buildLuckyElements(context, sign, birthDate, language),
                     const SizedBox(height: AppConstants.spacingXl),
-                    _buildBiorhythm(context, birthDate),
+                    _buildBiorhythm(context, birthDate, language),
                     const SizedBox(height: AppConstants.spacingXl),
-                    _buildDailyAspects(context),
+                    _buildDailyAspects(context, language),
                     const SizedBox(height: AppConstants.spacingXl),
                     // Kadim Not
                     KadimNotCard(
                       category: KadimCategory.astrology,
-                      title: 'Elektional Astroloji',
-                      content: 'Kadim astrologlar, her anın eşsiz bir kozmik imzası olduğunu bilirdi. '
-                          'Elektional astroloji - doğru zamanı seçme sanatı - krallıkların taç giyme '
-                          'törenlerinden evliliklere kadar her önemli olay için kullanılırdı. '
-                          'Gezegen saatleri ve Ay\'ın boş seyir dönemleri, başarılı eylemlerin anahtarıydı.',
+                      title: L10nService.get('timing.kadim_title', language),
+                      content: L10nService.get('timing.kadim_content', language),
                       icon: Icons.access_time,
                     ),
                     const SizedBox(height: AppConstants.spacingXl),
@@ -77,8 +76,8 @@ class _TimingScreenState extends ConsumerState<TimingScreen> {
                     const NextBlocks(currentPage: 'timing'),
                     const SizedBox(height: AppConstants.spacingXl),
                     // Entertainment Disclaimer
-                    const PageFooterWithDisclaimer(
-                      brandText: 'Zamanlama — Venus One',
+                    PageFooterWithDisclaimer(
+                      brandText: L10nService.get('timing.brand_footer', language),
                       disclaimerText: DisclaimerTexts.astrology,
                     ),
                     const SizedBox(height: AppConstants.spacingLg),
@@ -92,7 +91,7 @@ class _TimingScreenState extends ConsumerState<TimingScreen> {
     );
   }
 
-  Widget _buildHeader(BuildContext context) {
+  Widget _buildHeader(BuildContext context, AppLanguage language) {
     return Padding(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       child: Row(
@@ -114,14 +113,14 @@ class _TimingScreenState extends ConsumerState<TimingScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Kişisel Zamanlama',
+                  L10nService.get('timing.title', language),
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
                     color: AppColors.textPrimary,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 Text(
-                  'Yıldızlara göre en iyi zamanlar',
+                  L10nService.get('timing.subtitle', language),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: AppColors.textSecondary,
                   ),
@@ -147,7 +146,7 @@ class _TimingScreenState extends ConsumerState<TimingScreen> {
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildCategorySelector() {
+  Widget _buildCategorySelector(AppLanguage language) {
     return SizedBox(
       height: 50,
       child: ListView.builder(
@@ -181,7 +180,7 @@ class _TimingScreenState extends ConsumerState<TimingScreen> {
                     Icon(category.icon, size: 16, color: isSelected ? category.color : AppColors.textSecondary),
                     const SizedBox(width: 6),
                     Text(
-                      category.nameTr,
+                      category.localizedName(language),
                       style: Theme.of(context).textTheme.labelMedium?.copyWith(
                         color: isSelected ? category.color : AppColors.textSecondary,
                         fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
@@ -197,7 +196,7 @@ class _TimingScreenState extends ConsumerState<TimingScreen> {
     ).animate().fadeIn(delay: 100.ms, duration: 400.ms);
   }
 
-  Widget _buildTodayOverview(BuildContext context) {
+  Widget _buildTodayOverview(BuildContext context, AppLanguage language) {
     final moonPhase = MoonService.getCurrentPhase();
     final moonSign = MoonService.getCurrentMoonSign();
     final vocStatus = VoidOfCourseMoonExtension.getVoidOfCourseStatus();
@@ -256,7 +255,7 @@ class _TimingScreenState extends ConsumerState<TimingScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Bugünün Enerjisi',
+                      L10nService.get('timing.todays_energy', language),
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
                         color: AppColors.textPrimary,
                         fontWeight: FontWeight.bold,
@@ -264,7 +263,7 @@ class _TimingScreenState extends ConsumerState<TimingScreen> {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      _getOverallMessage(score),
+                      _getOverallMessage(score, language),
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: AppColors.textSecondary,
                       ),
@@ -286,8 +285,8 @@ class _TimingScreenState extends ConsumerState<TimingScreen> {
               children: [
                 _MiniIndicator(
                   icon: Icons.nightlight_round,
-                  label: moonPhase.nameTr,
-                  value: moonSign.nameTr,
+                  label: moonPhase.localizedName(language),
+                  value: moonSign.localizedName(language),
                 ),
                 Container(width: 1, height: 40, color: Colors.white12),
                 GestureDetector(
@@ -295,7 +294,7 @@ class _TimingScreenState extends ConsumerState<TimingScreen> {
                   child: _MiniIndicator(
                     icon: vocStatus.isVoid ? Icons.do_not_disturb : Icons.check_circle,
                     label: 'VOC',
-                    value: vocStatus.isVoid ? 'Aktif' : 'Yok',
+                    value: vocStatus.isVoid ? L10nService.get('timing.active', language) : L10nService.get('timing.none', language),
                     color: vocStatus.isVoid ? Colors.purple : Colors.green,
                   ),
                 ),
@@ -303,7 +302,7 @@ class _TimingScreenState extends ConsumerState<TimingScreen> {
                 _MiniIndicator(
                   icon: Icons.replay,
                   label: 'Retro',
-                  value: retrogrades.isEmpty ? 'Yok' : '${retrogrades.length}',
+                  value: retrogrades.isEmpty ? L10nService.get('timing.none', language) : '${retrogrades.length}',
                   color: retrogrades.isEmpty ? Colors.green : Colors.orange,
                 ),
               ],
@@ -314,14 +313,14 @@ class _TimingScreenState extends ConsumerState<TimingScreen> {
     ).animate().fadeIn(delay: 200.ms, duration: 400.ms);
   }
 
-  String _getOverallMessage(int score) {
-    if (score >= 80) return 'Mükemmel bir gün! Önemli işler için ideal.';
-    if (score >= 60) return 'İyi bir gün. Dikkatli ilerleyebilirsin.';
-    if (score >= 40) return 'Orta seviye enerji. Rutinlere odaklan.';
-    return 'Zorlayıcı bir gün. Dinlenmeyi tercih et.';
+  String _getOverallMessage(int score, AppLanguage language) {
+    if (score >= 80) return L10nService.get('timing.score_excellent', language);
+    if (score >= 60) return L10nService.get('timing.score_good', language);
+    if (score >= 40) return L10nService.get('timing.score_moderate', language);
+    return L10nService.get('timing.score_challenging', language);
   }
 
-  Widget _buildCurrentConditions(BuildContext context) {
+  Widget _buildCurrentConditions(BuildContext context, AppLanguage language) {
     final vocStatus = VoidOfCourseMoonExtension.getVoidOfCourseStatus();
     final retrogrades = MoonService.getRetrogradePlanets();
 
@@ -331,8 +330,8 @@ class _TimingScreenState extends ConsumerState<TimingScreen> {
     if (vocStatus.isVoid) {
       conditions.add(_ConditionItem(
         icon: Icons.do_not_disturb_on,
-        title: 'Ay Boş Seyir',
-        description: 'Önemli başlangıçları erteleyin. ${vocStatus.timeRemainingFormatted ?? "Bitiş zamanı yaklaşıyor"}',
+        title: L10nService.get('timing.voc_title', language),
+        description: '${L10nService.get('timing.voc_desc', language)} ${vocStatus.timeRemainingFormatted ?? L10nService.get('timing.ending_soon', language)}',
         color: Colors.purple,
         severity: 2,
       ));
@@ -342,8 +341,8 @@ class _TimingScreenState extends ConsumerState<TimingScreen> {
     if (retrogrades.contains('mercury')) {
       conditions.add(_ConditionItem(
         icon: Icons.chat_bubble_outline,
-        title: 'Merkür Retrosu',
-        description: 'İletişim ve sözleşmelerde dikkatli olun. Eski bağlantılar dönebilir.',
+        title: L10nService.get('timing.mercury_retro_title', language),
+        description: L10nService.get('timing.mercury_retro_desc', language),
         color: Colors.orange,
         severity: 2,
       ));
@@ -354,8 +353,8 @@ class _TimingScreenState extends ConsumerState<TimingScreen> {
     if (otherRetros.isNotEmpty) {
       conditions.add(_ConditionItem(
         icon: Icons.replay,
-        title: 'Diğer Retrolar',
-        description: '${otherRetros.map((p) => _getPlanetNameTr(p)).join(", ")} retroda. İlgili alanlarda yavaşlık.',
+        title: L10nService.get('timing.other_retros_title', language),
+        description: '${otherRetros.map((p) => _getPlanetName(p, language)).join(", ")} ${L10nService.get('timing.in_retrograde', language)}',
         color: Colors.amber,
         severity: 1,
       ));
@@ -364,8 +363,8 @@ class _TimingScreenState extends ConsumerState<TimingScreen> {
     if (conditions.isEmpty) {
       conditions.add(_ConditionItem(
         icon: Icons.check_circle_outline,
-        title: 'Temiz Gökyüzü',
-        description: 'Önemli bir uyarı bulunmuyor. Harika bir gün!',
+        title: L10nService.get('timing.clear_sky_title', language),
+        description: L10nService.get('timing.clear_sky_desc', language),
         color: Colors.green,
         severity: 0,
       ));
@@ -379,7 +378,7 @@ class _TimingScreenState extends ConsumerState<TimingScreen> {
             const Icon(Icons.warning_amber_rounded, color: AppColors.textSecondary, size: 20),
             const SizedBox(width: 8),
             Text(
-              'Güncel Koşullar',
+              L10nService.get('timing.current_conditions', language),
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 color: AppColors.textPrimary,
                 fontWeight: FontWeight.bold,
@@ -439,7 +438,7 @@ class _TimingScreenState extends ConsumerState<TimingScreen> {
     );
   }
 
-  Widget _buildRecommendations(BuildContext context, List<TimingRecommendation> recommendations) {
+  Widget _buildRecommendations(BuildContext context, List<TimingRecommendation> recommendations, AppLanguage language) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -448,7 +447,7 @@ class _TimingScreenState extends ConsumerState<TimingScreen> {
             const Icon(Icons.lightbulb_outline, color: AppColors.celestialGold, size: 20),
             const SizedBox(width: 8),
             Text(
-              'İyi Zamanlar',
+              L10nService.get('timing.good_times', language),
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 color: AppColors.textPrimary,
                 fontWeight: FontWeight.bold,
@@ -460,13 +459,13 @@ class _TimingScreenState extends ConsumerState<TimingScreen> {
         ...recommendations.asMap().entries.map((entry) {
           final index = entry.key;
           final rec = entry.value;
-          return _buildRecommendationCard(context, rec, index);
+          return _buildRecommendationCard(context, rec, index, language);
         }),
       ],
     ).animate().fadeIn(delay: 400.ms, duration: 400.ms);
   }
 
-  Widget _buildRecommendationCard(BuildContext context, TimingRecommendation rec, int index) {
+  Widget _buildRecommendationCard(BuildContext context, TimingRecommendation rec, int index, AppLanguage language) {
     final Color ratingColor = rec.rating >= 4 ? Colors.green : rec.rating >= 3 ? Colors.amber : Colors.red;
 
     return Container(
@@ -510,7 +509,7 @@ class _TimingScreenState extends ConsumerState<TimingScreen> {
                       ),
                     ),
                     Text(
-                      rec.category.nameTr,
+                      rec.category.localizedName(language),
                       style: Theme.of(context).textTheme.labelSmall?.copyWith(
                         color: rec.category.color,
                       ),
@@ -595,8 +594,8 @@ class _TimingScreenState extends ConsumerState<TimingScreen> {
     ).animate().fadeIn(delay: (500 + index * 100).ms, duration: 400.ms);
   }
 
-  Widget _buildUpcoming7Days(BuildContext context, ZodiacSign sign) {
-    final days = TimingService.get7DayForecast(sign);
+  Widget _buildUpcoming7Days(BuildContext context, ZodiacSign sign, AppLanguage language) {
+    final days = TimingService.get7DayForecast(sign, language);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -606,7 +605,7 @@ class _TimingScreenState extends ConsumerState<TimingScreen> {
             const Icon(Icons.calendar_month, color: AppColors.moonSilver, size: 20),
             const SizedBox(width: 8),
             Text(
-              'Önümüzdeki 7 Gün',
+              L10nService.get('timing.next_7_days', language),
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 color: AppColors.textPrimary,
                 fontWeight: FontWeight.bold,
@@ -682,22 +681,13 @@ class _TimingScreenState extends ConsumerState<TimingScreen> {
     ).animate().fadeIn(delay: 500.ms, duration: 400.ms);
   }
 
-  String _getPlanetNameTr(String planet) {
-    switch (planet.toLowerCase()) {
-      case 'mercury': return 'Merkür';
-      case 'venus': return 'Venüs';
-      case 'mars': return 'Mars';
-      case 'jupiter': return 'Jüpiter';
-      case 'saturn': return 'Satürn';
-      case 'uranus': return 'Uranüs';
-      case 'neptune': return 'Neptün';
-      case 'pluto': return 'Plüton';
-      default: return planet;
-    }
+  String _getPlanetName(String planet, AppLanguage language) {
+    final key = 'planets.${planet.toLowerCase()}';
+    return L10nService.get(key, language);
   }
 
-  Widget _buildPlanetaryHours(BuildContext context) {
-    final planetaryHours = TimingService.getPlanetaryHours();
+  Widget _buildPlanetaryHours(BuildContext context, AppLanguage language) {
+    final planetaryHours = TimingService.getPlanetaryHours(language);
     final currentHour = DateTime.now().hour;
 
     return Column(
@@ -708,7 +698,7 @@ class _TimingScreenState extends ConsumerState<TimingScreen> {
             const Icon(Icons.schedule, color: AppColors.auroraStart, size: 20),
             const SizedBox(width: 8),
             Text(
-              'Gezegen Saatleri',
+              L10nService.get('timing.planetary_hours', language),
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 color: AppColors.textPrimary,
                 fontWeight: FontWeight.bold,
@@ -722,7 +712,7 @@ class _TimingScreenState extends ConsumerState<TimingScreen> {
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Text(
-                'Simdi: ${planetaryHours[currentHour % planetaryHours.length].planetTr}',
+                '${L10nService.get('timing.now', language)}: ${planetaryHours[currentHour % planetaryHours.length].planetName}',
                 style: Theme.of(context).textTheme.labelSmall?.copyWith(
                   color: AppColors.auroraStart,
                   fontWeight: FontWeight.bold,
@@ -769,7 +759,7 @@ class _TimingScreenState extends ConsumerState<TimingScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            '${planetaryHours[currentHour % planetaryHours.length].planetTr} Saati',
+                            '${planetaryHours[currentHour % planetaryHours.length].planetName} ${L10nService.get('timing.hour', language)}',
                             style: Theme.of(context).textTheme.titleSmall?.copyWith(
                               color: planetaryHours[currentHour % planetaryHours.length].color,
                               fontWeight: FontWeight.bold,
@@ -819,7 +809,7 @@ class _TimingScreenState extends ConsumerState<TimingScreen> {
                             ),
                           ),
                           Text(
-                            hour.planetTr,
+                            hour.planetName,
                             style: Theme.of(context).textTheme.labelSmall?.copyWith(
                               color: hour.color,
                               fontWeight: FontWeight.bold,
@@ -840,8 +830,8 @@ class _TimingScreenState extends ConsumerState<TimingScreen> {
     ).animate().fadeIn(delay: 600.ms, duration: 400.ms);
   }
 
-  Widget _buildLuckyElements(BuildContext context, ZodiacSign sign, DateTime birthDate) {
-    final lucky = TimingService.getLuckyElements(sign, birthDate);
+  Widget _buildLuckyElements(BuildContext context, ZodiacSign sign, DateTime birthDate, AppLanguage language) {
+    final lucky = TimingService.getLuckyElements(sign, birthDate, language);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -851,7 +841,7 @@ class _TimingScreenState extends ConsumerState<TimingScreen> {
             const Icon(Icons.auto_awesome, color: AppColors.starGold, size: 20),
             const SizedBox(width: 8),
             Text(
-              'Bugünün Şans Elemanları',
+              L10nService.get('timing.lucky_elements', language),
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 color: AppColors.textPrimary,
                 fontWeight: FontWeight.bold,
@@ -881,7 +871,7 @@ class _TimingScreenState extends ConsumerState<TimingScreen> {
                   Expanded(
                     child: _LuckyCard(
                       icon: Icons.tag,
-                      label: 'Şans Sayıları',
+                      label: L10nService.get('timing.lucky_numbers', language),
                       value: lucky.numbers.join(', '),
                       color: Colors.purple,
                     ),
@@ -890,8 +880,8 @@ class _TimingScreenState extends ConsumerState<TimingScreen> {
                   Expanded(
                     child: _LuckyCard(
                       icon: Icons.color_lens,
-                      label: 'Şans Rengi',
-                      value: lucky.colorTr,
+                      label: L10nService.get('timing.lucky_color', language),
+                      value: lucky.colorName,
                       color: lucky.color,
                     ),
                   ),
@@ -903,7 +893,7 @@ class _TimingScreenState extends ConsumerState<TimingScreen> {
                   Expanded(
                     child: _LuckyCard(
                       icon: Icons.explore,
-                      label: 'Şans Yönü',
+                      label: L10nService.get('timing.lucky_direction', language),
                       value: lucky.direction,
                       color: Colors.cyan,
                     ),
@@ -912,7 +902,7 @@ class _TimingScreenState extends ConsumerState<TimingScreen> {
                   Expanded(
                     child: _LuckyCard(
                       icon: Icons.access_time,
-                      label: 'Şans Saati',
+                      label: L10nService.get('timing.lucky_hour', language),
                       value: lucky.time,
                       color: Colors.orange,
                     ),
@@ -925,7 +915,7 @@ class _TimingScreenState extends ConsumerState<TimingScreen> {
                   Expanded(
                     child: _LuckyCard(
                       icon: Icons.local_florist,
-                      label: 'Şans Çiçeği',
+                      label: L10nService.get('timing.lucky_flower', language),
                       value: lucky.flower,
                       color: Colors.pink,
                     ),
@@ -934,7 +924,7 @@ class _TimingScreenState extends ConsumerState<TimingScreen> {
                   Expanded(
                     child: _LuckyCard(
                       icon: Icons.diamond,
-                      label: 'Şans Taşı',
+                      label: L10nService.get('timing.lucky_stone', language),
                       value: lucky.gemstone,
                       color: Colors.teal,
                     ),
@@ -948,8 +938,8 @@ class _TimingScreenState extends ConsumerState<TimingScreen> {
     ).animate().fadeIn(delay: 700.ms, duration: 400.ms);
   }
 
-  Widget _buildBiorhythm(BuildContext context, DateTime birthDate) {
-    final biorhythm = TimingService.getBiorhythm(birthDate);
+  Widget _buildBiorhythm(BuildContext context, DateTime birthDate, AppLanguage language) {
+    final biorhythm = TimingService.getBiorhythm(birthDate, language);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -959,7 +949,7 @@ class _TimingScreenState extends ConsumerState<TimingScreen> {
             const Icon(Icons.waves, color: Colors.cyan, size: 20),
             const SizedBox(width: 8),
             Text(
-              'Biyoritim Döngüsü',
+              L10nService.get('timing.biorhythm_cycle', language),
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 color: AppColors.textPrimary,
                 fontWeight: FontWeight.bold,
@@ -978,28 +968,28 @@ class _TimingScreenState extends ConsumerState<TimingScreen> {
           child: Column(
             children: [
               _BiorhythmBar(
-                label: 'Fiziksel',
+                label: L10nService.get('timing.physical', language),
                 value: biorhythm.physical,
                 color: Colors.red,
                 icon: Icons.fitness_center,
               ),
               const SizedBox(height: 16),
               _BiorhythmBar(
-                label: 'Duygusal',
+                label: L10nService.get('timing.emotional', language),
                 value: biorhythm.emotional,
                 color: Colors.pink,
                 icon: Icons.favorite,
               ),
               const SizedBox(height: 16),
               _BiorhythmBar(
-                label: 'Zihinsel',
+                label: L10nService.get('timing.intellectual', language),
                 value: biorhythm.intellectual,
                 color: Colors.blue,
                 icon: Icons.psychology,
               ),
               const SizedBox(height: 16),
               _BiorhythmBar(
-                label: 'Sezgisel',
+                label: L10nService.get('timing.intuitive', language),
                 value: biorhythm.intuitive,
                 color: Colors.purple,
                 icon: Icons.visibility,
@@ -1034,8 +1024,8 @@ class _TimingScreenState extends ConsumerState<TimingScreen> {
     ).animate().fadeIn(delay: 800.ms, duration: 400.ms);
   }
 
-  Widget _buildDailyAspects(BuildContext context) {
-    final aspects = TimingService.getDailyAspects();
+  Widget _buildDailyAspects(BuildContext context, AppLanguage language) {
+    final aspects = TimingService.getDailyAspects(language);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -1045,7 +1035,7 @@ class _TimingScreenState extends ConsumerState<TimingScreen> {
             const Icon(Icons.blur_circular, color: AppColors.mystic, size: 20),
             const SizedBox(width: 8),
             Text(
-              'Günün Önemli Açıları',
+              L10nService.get('timing.daily_aspects', language),
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 color: AppColors.textPrimary,
                 fontWeight: FontWeight.bold,
@@ -1314,19 +1304,23 @@ class _BiorhythmBar extends StatelessWidget {
 
 // Enums and Models
 enum TimingCategory {
-  all('Tümü', Icons.apps, AppColors.textPrimary),
-  love('Aşk', Icons.favorite, Colors.pink),
-  career('Kariyer', Icons.work, Colors.blue),
-  money('Para', Icons.attach_money, Colors.green),
-  health('Sağlık', Icons.health_and_safety, Colors.red),
-  travel('Seyahat', Icons.flight, Colors.cyan),
-  creative('Yaratıcılık', Icons.palette, Colors.purple);
+  all(Icons.apps, AppColors.textPrimary),
+  love(Icons.favorite, Colors.pink),
+  career(Icons.work, Colors.blue),
+  money(Icons.attach_money, Colors.green),
+  health(Icons.health_and_safety, Colors.red),
+  travel(Icons.flight, Colors.cyan),
+  creative(Icons.palette, Colors.purple);
 
-  final String nameTr;
   final IconData icon;
   final Color color;
 
-  const TimingCategory(this.nameTr, this.icon, this.color);
+  const TimingCategory(this.icon, this.color);
+
+  String localizedName(AppLanguage language) {
+    final key = 'timing.category_$name';
+    return L10nService.get(key, language);
+  }
 }
 
 class TimingRecommendation {
@@ -1363,14 +1357,14 @@ class DayForecast {
 
 class PlanetaryHour {
   final String planet;
-  final String planetTr;
+  final String planetName;
   final String symbol;
   final Color color;
   final String meaning;
 
   const PlanetaryHour({
     required this.planet,
-    required this.planetTr,
+    required this.planetName,
     required this.symbol,
     required this.color,
     required this.meaning,
@@ -1380,7 +1374,7 @@ class PlanetaryHour {
 class LuckyElements {
   final List<int> numbers;
   final Color color;
-  final String colorTr;
+  final String colorName;
   final String direction;
   final String time;
   final String flower;
@@ -1389,7 +1383,7 @@ class LuckyElements {
   const LuckyElements({
     required this.numbers,
     required this.color,
-    required this.colorTr,
+    required this.colorName,
     required this.direction,
     required this.time,
     required this.flower,
@@ -1556,10 +1550,14 @@ class TimingService {
     return allRecommendations;
   }
 
-  static List<DayForecast> get7DayForecast(ZodiacSign sign) {
+  static List<DayForecast> get7DayForecast(ZodiacSign sign, AppLanguage language) {
     final days = <DayForecast>[];
     final now = DateTime.now();
-    final dayNames = ['Bugün', 'Yarın', 'Per', 'Cum', 'Cmt', 'Paz', 'Pzt'];
+    final dayNames = [
+      L10nService.get('timing.today', language),
+      L10nService.get('timing.tomorrow', language),
+      ...L10nService.getList('common.weekdays_short', language).skip(2).take(5),
+    ];
 
     for (int i = 0; i < 7; i++) {
       final date = now.add(Duration(days: i));
@@ -1574,7 +1572,7 @@ class TimingService {
       final moonSign = MoonSign.values[moonIndex];
 
       days.add(DayForecast(
-        dayName: i < dayNames.length ? dayNames[i] : _getShortDayName(date.weekday),
+        dayName: i < dayNames.length ? dayNames[i] : _getShortDayName(date.weekday, language),
         score: score,
         color: color,
         moonSign: moonSign,
@@ -1584,9 +1582,12 @@ class TimingService {
     return days;
   }
 
-  static String _getShortDayName(int weekday) {
-    const names = ['Pzt', 'Sal', 'Car', 'Per', 'Cum', 'Cmt', 'Paz'];
-    return names[weekday - 1];
+  static String _getShortDayName(int weekday, AppLanguage language) {
+    final names = L10nService.getList('common.weekdays_short', language);
+    if (names.isNotEmpty && weekday >= 1 && weekday <= 7) {
+      return names[weekday - 1];
+    }
+    return '$weekday';
   }
 
   // Description generators
@@ -1725,20 +1726,20 @@ class TimingService {
   }
 
   // Planetary Hours
-  static List<PlanetaryHour> getPlanetaryHours() {
+  static List<PlanetaryHour> getPlanetaryHours(AppLanguage language) {
     // Traditional Chaldean order, starting from Sunday sunrise
     final now = DateTime.now();
     final dayOfWeek = now.weekday % 7; // Sunday = 0
 
     // Day rulers in order: Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn
     final dayRulers = [
-      PlanetaryHour(planet: 'Sun', planetTr: 'Güneş', symbol: '☀️', color: Colors.amber, meaning: 'Liderlik, başarı, canlılık'),
-      PlanetaryHour(planet: 'Moon', planetTr: 'Ay', symbol: '🌙', color: Colors.blueGrey, meaning: 'Duygular, sezgi, ev işleri'),
-      PlanetaryHour(planet: 'Mars', planetTr: 'Mars', symbol: '♂️', color: Colors.red, meaning: 'Enerji, cesaret, rekabet'),
-      PlanetaryHour(planet: 'Mercury', planetTr: 'Merkür', symbol: '☿️', color: Colors.cyan, meaning: 'İletişim, öğrenme, ticaret'),
-      PlanetaryHour(planet: 'Jupiter', planetTr: 'Jüpiter', symbol: '♃', color: Colors.purple, meaning: 'Şans, genişleme, bilgelik'),
-      PlanetaryHour(planet: 'Venus', planetTr: 'Venüs', symbol: '♀️', color: Colors.pink, meaning: 'Aşk, güzellik, sanat'),
-      PlanetaryHour(planet: 'Saturn', planetTr: 'Satürn', symbol: '♄', color: Colors.brown, meaning: 'Disiplin, sorumluluk, sınırlar'),
+      PlanetaryHour(planet: 'Sun', planetName: L10nService.get('planets.sun', language), symbol: '☀️', color: Colors.amber, meaning: L10nService.get('timing.planet_sun_meaning', language)),
+      PlanetaryHour(planet: 'Moon', planetName: L10nService.get('planets.moon', language), symbol: '🌙', color: Colors.blueGrey, meaning: L10nService.get('timing.planet_moon_meaning', language)),
+      PlanetaryHour(planet: 'Mars', planetName: L10nService.get('planets.mars', language), symbol: '♂️', color: Colors.red, meaning: L10nService.get('timing.planet_mars_meaning', language)),
+      PlanetaryHour(planet: 'Mercury', planetName: L10nService.get('planets.mercury', language), symbol: '☿️', color: Colors.cyan, meaning: L10nService.get('timing.planet_mercury_meaning', language)),
+      PlanetaryHour(planet: 'Jupiter', planetName: L10nService.get('planets.jupiter', language), symbol: '♃', color: Colors.purple, meaning: L10nService.get('timing.planet_jupiter_meaning', language)),
+      PlanetaryHour(planet: 'Venus', planetName: L10nService.get('planets.venus', language), symbol: '♀️', color: Colors.pink, meaning: L10nService.get('timing.planet_venus_meaning', language)),
+      PlanetaryHour(planet: 'Saturn', planetName: L10nService.get('planets.saturn', language), symbol: '♄', color: Colors.brown, meaning: L10nService.get('timing.planet_saturn_meaning', language)),
     ];
 
     // Rotate based on day of week
@@ -1752,7 +1753,7 @@ class TimingService {
   }
 
   // Lucky Elements
-  static LuckyElements getLuckyElements(ZodiacSign sign, DateTime birthDate) {
+  static LuckyElements getLuckyElements(ZodiacSign sign, DateTime birthDate, AppLanguage language) {
     final now = DateTime.now();
     final seed = now.year * 10000 + now.month * 100 + now.day + sign.index;
     final random = Random(seed);
@@ -1768,70 +1769,74 @@ class TimingService {
     // Remove duplicates and sort
     final uniqueNumbers = baseNumbers.toSet().toList()..sort();
 
-    // Lucky colors by sign
-    final signColors = {
-      ZodiacSign.aries: (Colors.red, 'Kırmızı'),
-      ZodiacSign.taurus: (Colors.green, 'Yeşil'),
-      ZodiacSign.gemini: (Colors.yellow, 'Sarı'),
-      ZodiacSign.cancer: (Colors.white, 'Beyaz'),
-      ZodiacSign.leo: (Colors.orange, 'Turuncu'),
-      ZodiacSign.virgo: (Colors.brown, 'Kahverengi'),
-      ZodiacSign.libra: (Colors.pink, 'Pembe'),
-      ZodiacSign.scorpio: (Colors.purple, 'Mor'),
-      ZodiacSign.sagittarius: (Colors.blue, 'Mavi'),
-      ZodiacSign.capricorn: (Colors.grey, 'Gri'),
-      ZodiacSign.aquarius: (Colors.cyan, 'Turkuaz'),
-      ZodiacSign.pisces: (Colors.teal, 'Deniz Mavisi'),
+    // Lucky colors by sign - use localization keys
+    final signColorKeys = {
+      ZodiacSign.aries: (Colors.red, 'red'),
+      ZodiacSign.taurus: (Colors.green, 'green'),
+      ZodiacSign.gemini: (Colors.yellow, 'yellow'),
+      ZodiacSign.cancer: (Colors.white, 'white'),
+      ZodiacSign.leo: (Colors.orange, 'orange'),
+      ZodiacSign.virgo: (Colors.brown, 'brown'),
+      ZodiacSign.libra: (Colors.pink, 'pink'),
+      ZodiacSign.scorpio: (Colors.purple, 'purple'),
+      ZodiacSign.sagittarius: (Colors.blue, 'blue'),
+      ZodiacSign.capricorn: (Colors.grey, 'grey'),
+      ZodiacSign.aquarius: (Colors.cyan, 'turquoise'),
+      ZodiacSign.pisces: (Colors.teal, 'sea_blue'),
     };
 
-    final directions = ['Kuzey', 'Güney', 'Doğu', 'Batı', 'Kuzeydoğu', 'Güneybatı'];
+    final directions = L10nService.getList('timing.directions', language);
     final times = ['06:00-09:00', '09:00-12:00', '12:00-15:00', '15:00-18:00', '18:00-21:00', '21:00-24:00'];
 
-    final signFlowers = {
-      ZodiacSign.aries: 'Gelincik',
-      ZodiacSign.taurus: 'Gul',
-      ZodiacSign.gemini: 'Lavanta',
-      ZodiacSign.cancer: 'Zambak',
-      ZodiacSign.leo: 'Ayçiçeği',
-      ZodiacSign.virgo: 'Papatya',
-      ZodiacSign.libra: 'Orkide',
-      ZodiacSign.scorpio: 'Kasimpati',
-      ZodiacSign.sagittarius: 'Karanfil',
-      ZodiacSign.capricorn: 'Pansyon',
-      ZodiacSign.aquarius: 'Menekse',
-      ZodiacSign.pisces: 'Nilüfer',
+    // Flower keys for localization
+    final signFlowerKeys = {
+      ZodiacSign.aries: 'poppy',
+      ZodiacSign.taurus: 'rose',
+      ZodiacSign.gemini: 'lavender',
+      ZodiacSign.cancer: 'lily',
+      ZodiacSign.leo: 'sunflower',
+      ZodiacSign.virgo: 'daisy',
+      ZodiacSign.libra: 'orchid',
+      ZodiacSign.scorpio: 'chrysanthemum',
+      ZodiacSign.sagittarius: 'carnation',
+      ZodiacSign.capricorn: 'pansy',
+      ZodiacSign.aquarius: 'violet',
+      ZodiacSign.pisces: 'water_lily',
     };
 
-    final signGemstones = {
-      ZodiacSign.aries: 'Elmas',
-      ZodiacSign.taurus: 'Zümrüt',
-      ZodiacSign.gemini: 'Akik',
-      ZodiacSign.cancer: 'İnci',
-      ZodiacSign.leo: 'Yakut',
-      ZodiacSign.virgo: 'Safir',
-      ZodiacSign.libra: 'Opal',
-      ZodiacSign.scorpio: 'Topaz',
-      ZodiacSign.sagittarius: 'Turkuaz',
-      ZodiacSign.capricorn: 'Garnet',
-      ZodiacSign.aquarius: 'Ametist',
-      ZodiacSign.pisces: 'Akvamarin',
+    // Gemstone keys for localization
+    final signGemstoneKeys = {
+      ZodiacSign.aries: 'diamond',
+      ZodiacSign.taurus: 'emerald',
+      ZodiacSign.gemini: 'agate',
+      ZodiacSign.cancer: 'pearl',
+      ZodiacSign.leo: 'ruby',
+      ZodiacSign.virgo: 'sapphire',
+      ZodiacSign.libra: 'opal',
+      ZodiacSign.scorpio: 'topaz',
+      ZodiacSign.sagittarius: 'turquoise',
+      ZodiacSign.capricorn: 'garnet',
+      ZodiacSign.aquarius: 'amethyst',
+      ZodiacSign.pisces: 'aquamarine',
     };
 
-    final colorPair = signColors[sign] ?? (Colors.blue, 'Mavi');
+    final colorPair = signColorKeys[sign] ?? (Colors.blue, 'blue');
+    final flowerKey = signFlowerKeys[sign] ?? 'rose';
+    final gemstoneKey = signGemstoneKeys[sign] ?? 'crystal';
 
     return LuckyElements(
       numbers: uniqueNumbers.take(4).toList(),
       color: colorPair.$1,
-      colorTr: colorPair.$2,
-      direction: directions[random.nextInt(directions.length)],
+      colorName: L10nService.get('colors.${colorPair.$2}', language),
+      direction: directions.isNotEmpty ? directions[random.nextInt(directions.length)] : '',
       time: times[random.nextInt(times.length)],
-      flower: signFlowers[sign] ?? 'Gul',
-      gemstone: signGemstones[sign] ?? 'Kristal',
+      flower: L10nService.get('flowers.$flowerKey', language),
+      gemstone: L10nService.get('gemstones.$gemstoneKey', language),
     );
   }
 
   // Biorhythm Calculation
-  static Biorhythm getBiorhythm(DateTime birthDate) {
+  static Biorhythm getBiorhythm(DateTime birthDate, AppLanguage language) {
     final now = DateTime.now();
     final daysSinceBirth = now.difference(birthDate).inDays;
 
@@ -1846,13 +1851,13 @@ class TimingService {
     final avgPositive = (physical + emotional + intellectual) / 3;
 
     if (avgPositive > 0.5) {
-      summary = 'Bugün tüm döngüleriniz yüksekte! Enerjinizi akıllıca kullanın.';
+      summary = L10nService.get('timing.biorhythm_high', language);
     } else if (avgPositive > 0) {
-      summary = 'Dengeli bir gün. Fiziksel ve zihinsel aktiviteler için uygun.';
+      summary = L10nService.get('timing.biorhythm_balanced', language);
     } else if (avgPositive > -0.5) {
-      summary = 'Enerji seviyeleri düşük. Dinlenmeye öncelik verin.';
+      summary = L10nService.get('timing.biorhythm_low', language);
     } else {
-      summary = 'Kritik gün. Önemli kararları ertelemeniz önerilir.';
+      summary = L10nService.get('timing.biorhythm_critical', language);
     }
 
     return Biorhythm(
@@ -1865,7 +1870,7 @@ class TimingService {
   }
 
   // Daily Aspects
-  static List<DailyAspect> getDailyAspects() {
+  static List<DailyAspect> getDailyAspects(AppLanguage language) {
     final now = DateTime.now();
     final seed = now.year * 10000 + now.month * 100 + now.day;
     final random = Random(seed);
@@ -1875,25 +1880,27 @@ class TimingService {
     // Generate 3-5 aspects for the day
     final aspectCount = 3 + random.nextInt(3);
 
-    final planetPairs = [
-      ('Güneş', 'Ay'),
-      ('Merkür', 'Venüs'),
-      ('Mars', 'Jüpiter'),
-      ('Venüs', 'Mars'),
-      ('Ay', 'Satürn'),
-      ('Jüpiter', 'Neptün'),
-      ('Merkür', 'Mars'),
-      ('Venüs', 'Jüpiter'),
-      ('Satürn', 'Plüton'),
-      ('Ay', 'Venüs'),
+    // Planet pairs using localization keys
+    final planetPairKeys = [
+      ('sun', 'moon'),
+      ('mercury', 'venus'),
+      ('mars', 'jupiter'),
+      ('venus', 'mars'),
+      ('moon', 'saturn'),
+      ('jupiter', 'neptune'),
+      ('mercury', 'mars'),
+      ('venus', 'jupiter'),
+      ('saturn', 'pluto'),
+      ('moon', 'venus'),
     ];
 
-    final aspectTypes = [
-      ('Kavuşum', true, Colors.purple),
-      ('Üçgen', true, Colors.green),
-      ('Altıgen', true, Colors.cyan),
-      ('Kare', false, Colors.red),
-      ('Karşıt', false, Colors.orange),
+    // Aspect type keys
+    final aspectTypeKeys = [
+      ('conjunction', true, Colors.purple),
+      ('trine', true, Colors.green),
+      ('sextile', true, Colors.cyan),
+      ('square', false, Colors.red),
+      ('opposition', false, Colors.orange),
     ];
 
     final usedPairs = <int>{};
@@ -1901,27 +1908,31 @@ class TimingService {
     for (int i = 0; i < aspectCount; i++) {
       int pairIndex;
       do {
-        pairIndex = random.nextInt(planetPairs.length);
+        pairIndex = random.nextInt(planetPairKeys.length);
       } while (usedPairs.contains(pairIndex));
       usedPairs.add(pairIndex);
 
-      final pair = planetPairs[pairIndex];
-      final aspectType = aspectTypes[random.nextInt(aspectTypes.length)];
+      final pairKeys = planetPairKeys[pairIndex];
+      final aspectType = aspectTypeKeys[random.nextInt(aspectTypeKeys.length)];
       final hour = 6 + random.nextInt(16);
+
+      final p1 = L10nService.get('planets.${pairKeys.$1}', language);
+      final p2 = L10nService.get('planets.${pairKeys.$2}', language);
+      final aspectName = L10nService.get('aspects.${aspectType.$1}', language);
 
       String interpretation;
       if (aspectType.$2) {
         // Harmonious
-        interpretation = _getHarmoniousInterpretation(pair.$1, pair.$2, aspectType.$1);
+        interpretation = _getHarmoniousInterpretation(pairKeys.$1, pairKeys.$2, language);
       } else {
         // Challenging
-        interpretation = _getChallengingInterpretation(pair.$1, pair.$2, aspectType.$1);
+        interpretation = _getChallengingInterpretation(pairKeys.$1, pairKeys.$2, language);
       }
 
       aspects.add(DailyAspect(
         time: '${hour.toString().padLeft(2, '0')}:${(random.nextInt(4) * 15).toString().padLeft(2, '0')}',
-        planets: '${pair.$1} - ${pair.$2}',
-        aspectName: aspectType.$1,
+        planets: '$p1 - $p2',
+        aspectName: aspectName,
         isHarmonious: aspectType.$2,
         interpretation: interpretation,
         color: aspectType.$3,
@@ -1934,32 +1945,32 @@ class TimingService {
     return aspects;
   }
 
-  static String _getHarmoniousInterpretation(String p1, String p2, String aspect) {
-    if (p1 == 'Güneş' || p2 == 'Güneş') {
-      return 'Canlılık ve özgüven artıyor. Liderlik yeteneklerinizi kullanmak için ideal zaman.';
+  static String _getHarmoniousInterpretation(String p1, String p2, AppLanguage language) {
+    if (p1 == 'sun' || p2 == 'sun') {
+      return L10nService.get('timing.aspect_sun_harmonious', language);
     }
-    if (p1 == 'Ay' || p2 == 'Ay') {
-      return 'Duygusal denge ve sezgisel güç artıyor. İçsel huzur için meditasyon önerilir.';
+    if (p1 == 'moon' || p2 == 'moon') {
+      return L10nService.get('timing.aspect_moon_harmonious', language);
     }
-    if (p1 == 'Venüs' || p2 == 'Venüs') {
-      return 'Aşk ve güzellik enerjisi yüksek. İlişkiler ve sanatsal çalışmalar destekleniyor.';
+    if (p1 == 'venus' || p2 == 'venus') {
+      return L10nService.get('timing.aspect_venus_harmonious', language);
     }
-    if (p1 == 'Jüpiter' || p2 == 'Jüpiter') {
-      return 'Şans ve bolluk enerjisi akıyor. Yeni fırsatlar kapı çalabilir.';
+    if (p1 == 'jupiter' || p2 == 'jupiter') {
+      return L10nService.get('timing.aspect_jupiter_harmonious', language);
     }
-    return 'Uyumlu enerji akışı. İş birliği ve uyum için olumlu bir zaman.';
+    return L10nService.get('timing.aspect_default_harmonious', language);
   }
 
-  static String _getChallengingInterpretation(String p1, String p2, String aspect) {
-    if (p1 == 'Mars' || p2 == 'Mars') {
-      return 'Gerginlik ve çatışma potansiyeli var. Sabırlı olun ve tepkileri kontrol edin.';
+  static String _getChallengingInterpretation(String p1, String p2, AppLanguage language) {
+    if (p1 == 'mars' || p2 == 'mars') {
+      return L10nService.get('timing.aspect_mars_challenging', language);
     }
-    if (p1 == 'Satürn' || p2 == 'Satürn') {
-      return 'Kısıtlamalar ve engellerle karşılaşabilirsiniz. Disiplinli yaklaşım gerekli.';
+    if (p1 == 'saturn' || p2 == 'saturn') {
+      return L10nService.get('timing.aspect_saturn_challenging', language);
     }
-    if (p1 == 'Plüton' || p2 == 'Plüton') {
-      return 'Derin dönüşümler gündemde. Eski kalıpları bırakmak gerekebilir.';
+    if (p1 == 'pluto' || p2 == 'pluto') {
+      return L10nService.get('timing.aspect_pluto_challenging', language);
     }
-    return 'Zorlayıcı enerji. Dikkatli ve bilinçli hareket edin.';
+    return L10nService.get('timing.aspect_default_challenging', language);
   }
 }

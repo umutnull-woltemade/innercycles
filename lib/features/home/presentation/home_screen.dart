@@ -10,6 +10,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../data/models/zodiac_sign.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/localization_service.dart';
+import '../../../data/services/l10n_service.dart';
 import '../../../data/services/moon_service.dart';
 import '../../../data/services/ai_content_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
@@ -61,19 +62,21 @@ class HomeScreen extends ConsumerWidget {
                   _buildMercuryRetrogradeAlert(context),
                 const SizedBox(height: AppConstants.spacingMd),
                 // Moon Phase & Sign Widget
-                _buildMoonWidget(context),
+                _buildMoonWidget(context, ref),
                 const SizedBox(height: AppConstants.spacingXl),
-                _buildQuickActions(context),
+                _buildQuickActions(context, ref),
                 const SizedBox(height: AppConstants.spacingXl),
-                // Tüm Çözümlemeler Butonu
-                _buildAllServicesButton(context),
-                const SizedBox(height: AppConstants.spacingXxl),
                 // ═══════════════════════════════════════════════════════════════
                 // RUHSAL & WELLNESS - Meditasyon, ritüeller, chakra
                 // ═══════════════════════════════════════════════════════════════
-                _buildSpiritualSection(context),
+                _buildSpiritualSection(context, ref),
                 const SizedBox(height: AppConstants.spacingXl),
-                _buildAllSigns(context),
+                _buildAllSigns(context, ref),
+                const SizedBox(height: AppConstants.spacingXl),
+                // ═══════════════════════════════════════════════════════════════
+                // TÜM ÇÖZÜMLEMELERİ GÖR - Ana katalog butonu
+                // ═══════════════════════════════════════════════════════════════
+                _buildAllServicesButton(context, ref),
                 const SizedBox(height: AppConstants.spacingXxl),
                 // Back-Button-Free Navigation
                 const PageBottomNavigation(currentRoute: '/'),
@@ -117,7 +120,7 @@ class HomeScreen extends ConsumerWidget {
             // Arama Butonu - Büyük ve animasyonlu
             _AnimatedHeaderButton(
               icon: Icons.search_rounded,
-              label: 'Ara',
+              label: L10nService.get('navigation.search', language),
               color: AppColors.mysticBlue,
               onTap: () => _showSearchDialog(context, ref),
             ),
@@ -125,7 +128,7 @@ class HomeScreen extends ConsumerWidget {
             // Profil Ekle Butonu
             _AnimatedHeaderButton(
               icon: Icons.person_add_rounded,
-              label: 'Profil',
+              label: L10nService.get('navigation.profile', language),
               color: AppColors.starGold,
               onTap: () => _showAddProfileDialog(context, ref),
             ),
@@ -133,7 +136,7 @@ class HomeScreen extends ConsumerWidget {
             // Ayarlar Butonu
             _AnimatedHeaderButton(
               icon: Icons.settings_rounded,
-              label: 'Ayar',
+              label: L10nService.get('navigation.settings', language),
               color: AppColors.cosmicPurple,
               onTap: () => context.push(Routes.settings),
             ),
@@ -148,7 +151,8 @@ class HomeScreen extends ConsumerWidget {
 
   // Kompakt günlük yorum kartı - header'a entegre
   Widget _buildCompactDailyCard(BuildContext context, WidgetRef ref, String? name, ZodiacSign sign) {
-    final horoscope = ref.watch(dailyHoroscopeProvider(sign));
+    final language = ref.watch(languageProvider);
+    final horoscope = ref.watch(dailyHoroscopeProvider((sign, language)));
     final userProfile = ref.watch(userProfileProvider);
 
     // Doğum bilgileri
@@ -244,7 +248,7 @@ class HomeScreen extends ConsumerWidget {
                             const SizedBox(width: 8),
                           ],
                           Text(
-                            sign.nameTr,
+                            sign.localizedName(language),
                             style: TextStyle(
                               color: sign.color,
                               fontSize: 18,
@@ -367,6 +371,65 @@ class HomeScreen extends ConsumerWidget {
                 ),
               ),
             const SizedBox(height: 12),
+            // Tüm Çözümlemeler - Psikedelik buton
+            GestureDetector(
+              onTap: () => context.push(Routes.allServices),
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 16),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      Colors.purple.withOpacity(0.7),
+                      Colors.pink.withOpacity(0.6),
+                      Colors.orange.withOpacity(0.5),
+                      Colors.cyan.withOpacity(0.6),
+                    ],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(
+                    color: Colors.white.withOpacity(0.4),
+                    width: 2,
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.purple.withOpacity(0.4),
+                      blurRadius: 16,
+                      spreadRadius: 2,
+                    ),
+                    BoxShadow(
+                      color: Colors.pink.withOpacity(0.3),
+                      blurRadius: 12,
+                      offset: const Offset(3, 3),
+                    ),
+                  ],
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(Icons.auto_awesome, color: Colors.white, size: 22),
+                    const SizedBox(width: 10),
+                    Text(
+                      'Tüm Çözümlemeler',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                        letterSpacing: 0.5,
+                        shadows: [
+                          Shadow(color: Colors.black.withOpacity(0.3), blurRadius: 4),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    const Icon(Icons.arrow_forward_ios, color: Colors.white, size: 14),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 12),
             // Detaylı yorum butonu
             Center(
               child: Container(
@@ -479,7 +542,8 @@ class HomeScreen extends ConsumerWidget {
   }
 
 
-  Widget _buildMoonWidget(BuildContext context) {
+  Widget _buildMoonWidget(BuildContext context, WidgetRef ref) {
+    final language = ref.watch(languageProvider);
     final moonPhase = MoonService.getCurrentPhase();
     final moonSign = MoonService.getCurrentMoonSign();
     final illumination = MoonService.getIllumination();
@@ -541,7 +605,7 @@ class HomeScreen extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Simdi Gokyuzunde',
+                      L10nService.get('home.currently_in_sky', language),
                       style: Theme.of(context).textTheme.labelSmall?.copyWith(
                             color: AppColors.textMuted,
                             letterSpacing: 1.2,
@@ -563,7 +627,11 @@ class HomeScreen extends ConsumerWidget {
                       child: Row(
                         children: [
                           Text(
-                            'Ay ${moonSign.nameTr} burcunda',
+                            L10nService.getWithParams(
+                              'home.moon_in_sign_formatted',
+                              language,
+                              params: {'sign': L10nService.get('zodiac.${moonSign.name.toLowerCase()}', language)},
+                            ),
                             style: Theme.of(context).textTheme.bodySmall?.copyWith(
                                   color: AppColors.textSecondary,
                                   decoration: TextDecoration.underline,
@@ -601,7 +669,7 @@ class HomeScreen extends ConsumerWidget {
                         ),
                   ),
                   Text(
-                    'Aydinlik',
+                    L10nService.get('home.illumination', language),
                     style: Theme.of(context).textTheme.labelSmall?.copyWith(
                           color: AppColors.textMuted,
                         ),
@@ -804,14 +872,15 @@ class HomeScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildQuickActions(BuildContext context) {
+  Widget _buildQuickActions(BuildContext context, WidgetRef ref) {
+    final language = ref.watch(languageProvider);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // ═══════════════════════════════════════════════════════════════
         // ÖZEL ÇÖZÜMLEMELERİMİZ - Profil tabanlı, kişiye özel analizler
         // ═══════════════════════════════════════════════════════════════
-        _buildSectionHeader(context, '✨ Özel Çözümlemelerimiz', 'Doğum bilgilerinize özel analizler'),
+        _buildSectionHeader(context, '✨ ${L10nService.get('home.special_readings', language)}', L10nService.get('home.personalized_readings', language)),
         const SizedBox(height: AppConstants.spacingMd),
         // Doğum Haritası & Uyum
         Row(
@@ -819,9 +888,8 @@ class HomeScreen extends ConsumerWidget {
             Expanded(
               child: _QuickActionCard(
                 icon: Icons.public,
-                label: 'Doğum Haritası',
+                label: L10nService.get('home.quick_actions.birth_chart', language),
                 color: AppColors.starGold,
-                tooltip: 'Natal haritanız: Gezegen pozisyonları, evler ve açılar',
                 onTap: () => context.push(Routes.birthChart),
               ),
             ),
@@ -829,9 +897,8 @@ class HomeScreen extends ConsumerWidget {
             Expanded(
               child: _QuickActionCard(
                 icon: Icons.favorite,
-                label: 'Uyum',
+                label: L10nService.get('home.quick_actions.compatibility', language),
                 color: AppColors.fireElement,
-                tooltip: 'İki burç arasındaki romantik ve duygusal uyumu keşfedin',
                 onTap: () => context.push(Routes.compatibility),
               ),
             ),
@@ -844,9 +911,8 @@ class HomeScreen extends ConsumerWidget {
             Expanded(
               child: _QuickActionCard(
                 icon: Icons.people_alt,
-                label: 'Sinastri',
+                label: L10nService.get('home.quick_actions.synastry', language),
                 color: Colors.pink,
-                tooltip: 'İki kişinin haritalarını karşılaştırarak ilişki dinamiklerini analiz edin',
                 onTap: () => context.push(Routes.synastry),
               ),
             ),
@@ -854,9 +920,8 @@ class HomeScreen extends ConsumerWidget {
             Expanded(
               child: _QuickActionCard(
                 icon: Icons.compare_arrows,
-                label: 'Kompozit',
+                label: L10nService.get('home.quick_actions.composite', language),
                 color: AppColors.sunriseStart,
-                tooltip: 'İki haritanın birleşiminden oluşan ilişki haritası',
                 onTap: () => context.push(Routes.compositeChart),
               ),
             ),
@@ -869,9 +934,8 @@ class HomeScreen extends ConsumerWidget {
             Expanded(
               child: _QuickActionCard(
                 icon: Icons.public,
-                label: 'Transitler',
+                label: L10nService.get('home.quick_actions.transits', language),
                 color: AppColors.sunriseEnd,
-                tooltip: 'Gökyüzündeki gezegenlerin natal haritanıza etkileri',
                 onTap: () => context.push(Routes.transits),
               ),
             ),
@@ -879,9 +943,8 @@ class HomeScreen extends ConsumerWidget {
             Expanded(
               child: _QuickActionCard(
                 icon: Icons.event_note,
-                label: 'Transit Takvimi',
+                label: L10nService.get('home.quick_actions.transit_calendar', language),
                 color: AppColors.auroraStart,
-                tooltip: 'Önemli transit tarihleri ve kozmik olaylar takvimi',
                 onTap: () => context.push(Routes.transitCalendar),
               ),
             ),
@@ -894,9 +957,8 @@ class HomeScreen extends ConsumerWidget {
             Expanded(
               child: _QuickActionCard(
                 icon: Icons.auto_graph,
-                label: 'Progresyon',
+                label: L10nService.get('home.quick_actions.progressions', language),
                 color: AppColors.twilightStart,
-                tooltip: 'Haritanızın zaman içinde nasıl evrildiğini görün',
                 onTap: () => context.push(Routes.progressions),
               ),
             ),
@@ -904,9 +966,8 @@ class HomeScreen extends ConsumerWidget {
             Expanded(
               child: _QuickActionCard(
                 icon: Icons.refresh,
-                label: 'Saturn Dönüşü',
+                label: L10nService.get('home.quick_actions.saturn_return', language),
                 color: AppColors.saturnColor,
-                tooltip: '~29 yılda bir gerçekleşen önemli yaşam dönüm noktası',
                 onTap: () => context.push(Routes.saturnReturn),
               ),
             ),
@@ -919,9 +980,8 @@ class HomeScreen extends ConsumerWidget {
             Expanded(
               child: _QuickActionCard(
                 icon: Icons.cake,
-                label: 'Solar Return',
+                label: L10nService.get('home.quick_actions.solar_return', language),
                 color: AppColors.starGold,
-                tooltip: 'Doğum gününüz etrafındaki yıllık kozmik haritanız',
                 onTap: () => context.push(Routes.solarReturn),
               ),
             ),
@@ -929,9 +989,8 @@ class HomeScreen extends ConsumerWidget {
             Expanded(
               child: _QuickActionCard(
                 icon: Icons.calendar_view_month,
-                label: 'Yıl Öngörüsü',
+                label: L10nService.get('home.quick_actions.year_ahead', language),
                 color: AppColors.celestialGold,
-                tooltip: 'Önümüzdeki 12 ay için astrolojik öngörüler',
                 onTap: () => context.push(Routes.yearAhead),
               ),
             ),
@@ -944,9 +1003,8 @@ class HomeScreen extends ConsumerWidget {
             Expanded(
               child: _QuickActionCard(
                 icon: Icons.brightness_3,
-                label: 'Vedik',
+                label: L10nService.get('home.quick_actions.vedic', language),
                 color: AppColors.celestialGold,
-                tooltip: 'Hint astrolojisine göre haritanız (Sidereal)',
                 onTap: () => context.push(Routes.vedicChart),
               ),
             ),
@@ -954,9 +1012,8 @@ class HomeScreen extends ConsumerWidget {
             Expanded(
               child: _QuickActionCard(
                 icon: Icons.psychology,
-                label: 'Drakonik',
+                label: L10nService.get('home.quick_actions.draconic', language),
                 color: AppColors.mystic,
-                tooltip: 'Ruhsal amacınızı ve karmik yolculuğunuzu keşfedin',
                 onTap: () => context.push(Routes.draconicChart),
               ),
             ),
@@ -969,9 +1026,8 @@ class HomeScreen extends ConsumerWidget {
             Expanded(
               child: _QuickActionCard(
                 icon: Icons.star_outline,
-                label: 'Asteroidler',
+                label: L10nService.get('home.quick_actions.asteroids', language),
                 color: AppColors.stardust,
-                tooltip: 'Chiron, Juno, Ceres ve diğer asteroitlerin konumları',
                 onTap: () => context.push(Routes.asteroids),
               ),
             ),
@@ -979,9 +1035,8 @@ class HomeScreen extends ConsumerWidget {
             Expanded(
               child: _QuickActionCard(
                 icon: Icons.map,
-                label: 'Astro Harita',
+                label: L10nService.get('home.quick_actions.astrocartography', language),
                 color: AppColors.auroraStart,
-                tooltip: 'Dünya üzerinde enerjilerin en güçlü olduğu yerler',
                 onTap: () => context.push(Routes.astroCartography),
               ),
             ),
@@ -994,9 +1049,8 @@ class HomeScreen extends ConsumerWidget {
             Expanded(
               child: _QuickActionCard(
                 icon: Icons.explore,
-                label: 'Yerel Uzay',
+                label: L10nService.get('home.quick_actions.local_space', language),
                 color: Colors.teal,
-                tooltip: 'Bulunduğunuz konuma özel astrolojik harita',
                 onTap: () => context.push(Routes.localSpace),
               ),
             ),
@@ -1004,9 +1058,8 @@ class HomeScreen extends ConsumerWidget {
             Expanded(
               child: _QuickActionCard(
                 icon: Icons.schedule,
-                label: 'Elektif',
+                label: L10nService.get('home.quick_actions.electional', language),
                 color: AppColors.twilightEnd,
-                tooltip: 'Önemli kararlar için en uygun zamanı seçin',
                 onTap: () => context.push(Routes.electional),
               ),
             ),
@@ -1019,9 +1072,8 @@ class HomeScreen extends ConsumerWidget {
             Expanded(
               child: _QuickActionCard(
                 icon: Icons.access_time,
-                label: 'Zamanlama',
+                label: L10nService.get('home.quick_actions.timing', language),
                 color: AppColors.auroraEnd,
-                tooltip: 'Kozmik enerjilere göre en uygun zamanları keşfedin',
                 onTap: () => context.push(Routes.timing),
               ),
             ),
@@ -1029,9 +1081,8 @@ class HomeScreen extends ConsumerWidget {
             Expanded(
               child: _QuickActionCard(
                 icon: Icons.numbers,
-                label: 'Numeroloji',
+                label: L10nService.get('home.quick_actions.numerology', language),
                 color: AppColors.auroraEnd,
-                tooltip: 'Sayıların gizli anlamları ve yaşam yolu sayınız',
                 onTap: () => context.push(Routes.numerology),
               ),
             ),
@@ -1051,7 +1102,7 @@ class HomeScreen extends ConsumerWidget {
         // ═══════════════════════════════════════════════════════════════
         // KALAN ÇÖZÜMLEMELERİMİZ - Genel araçlar
         // ═══════════════════════════════════════════════════════════════
-        _buildOtherTools(context),
+        _buildOtherTools(context, ref),
       ],
     );
   }
@@ -1476,7 +1527,8 @@ class HomeScreen extends ConsumerWidget {
     ).animate().fadeIn(delay: 300.ms, duration: 400.ms);
   }
 
-  Widget _buildOtherTools(BuildContext context) {
+  Widget _buildOtherTools(BuildContext context, WidgetRef ref) {
+    final language = ref.watch(languageProvider);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -1519,9 +1571,8 @@ class HomeScreen extends ConsumerWidget {
             Expanded(
               child: _QuickActionCard(
                 icon: Icons.auto_awesome,
-                label: 'Tüm Burçlar',
+                label: L10nService.get('home.quick_actions.all_signs', language),
                 color: AppColors.waterElement,
-                tooltip: '12 burç için günlük yorumlar ve öngörüler',
                 onTap: () => context.push(Routes.horoscope),
               ),
             ),
@@ -1529,7 +1580,7 @@ class HomeScreen extends ConsumerWidget {
             Expanded(
               child: _QuickActionCard(
                 icon: Icons.calendar_view_week,
-                label: 'Haftalık',
+                label: L10nService.get('tabs.weekly', language),
                 color: AppColors.earthElement,
                 tooltip: 'Bu haftanın kozmik enerjileri ve tavsiyeleri',
                 onTap: () => context.push(Routes.weeklyHoroscope),
@@ -1544,7 +1595,7 @@ class HomeScreen extends ConsumerWidget {
             Expanded(
               child: _QuickActionCard(
                 icon: Icons.calendar_month,
-                label: 'Aylık',
+                label: L10nService.get('tabs.monthly', language),
                 color: AppColors.waterElement,
                 tooltip: 'Bu ayın astrolojik temaları ve fırsatları',
                 onTap: () => context.push(Routes.monthlyHoroscope),
@@ -1554,7 +1605,7 @@ class HomeScreen extends ConsumerWidget {
             Expanded(
               child: _QuickActionCard(
                 icon: Icons.calendar_today,
-                label: 'Yıllık',
+                label: L10nService.get('tabs.yearly', language),
                 color: AppColors.fireElement,
                 tooltip: 'Yılın genel akışı ve büyük döngüler',
                 onTap: () => context.push(Routes.yearlyHoroscope),
@@ -1569,9 +1620,8 @@ class HomeScreen extends ConsumerWidget {
             Expanded(
               child: _QuickActionCard(
                 icon: Icons.favorite_border,
-                label: 'Aşk',
+                label: L10nService.get('home.quick_actions.love', language),
                 color: Colors.pink,
-                tooltip: 'Romantik yaşamınız için günlük öngörüler',
                 onTap: () => context.push(Routes.loveHoroscope),
               ),
             ),
@@ -1579,9 +1629,8 @@ class HomeScreen extends ConsumerWidget {
             Expanded(
               child: _QuickActionCard(
                 icon: Icons.dark_mode,
-                label: 'Tutulma',
+                label: L10nService.get('home.quick_actions.eclipse', language),
                 color: AppColors.moonSilver,
-                tooltip: 'Güneş ve Ay tutulmalarının takvimi ve etkileri',
                 onTap: () => context.push(Routes.eclipseCalendar),
               ),
             ),
@@ -1594,9 +1643,8 @@ class HomeScreen extends ConsumerWidget {
             Expanded(
               child: _QuickActionCard(
                 icon: Icons.account_tree,
-                label: 'Kabala',
+                label: L10nService.get('home.quick_actions.kabbalah', language),
                 color: AppColors.moonSilver,
-                tooltip: 'Hayat Ağacı ve mistik Yahudi bilgeliği',
                 onTap: () => context.push(Routes.kabbalah),
               ),
             ),
@@ -1604,7 +1652,7 @@ class HomeScreen extends ConsumerWidget {
             Expanded(
               child: _QuickActionCard(
                 icon: Icons.style,
-                label: 'Tarot',
+                label: L10nService.get('onboarding.features.tarot', language),
                 color: AppColors.auroraStart,
                 tooltip: 'Günlük kart çekimi ve tarot okumları',
                 onTap: () => context.push(Routes.tarot),
@@ -1619,9 +1667,8 @@ class HomeScreen extends ConsumerWidget {
             Expanded(
               child: _QuickActionCard(
                 icon: Icons.blur_on,
-                label: 'Aura Analizi',
+                label: L10nService.get('home.quick_actions.aura', language),
                 color: AppColors.airElement,
-                tooltip: 'Enerji alanınızın renkleri ve anlamları',
                 onTap: () => context.push(Routes.aura),
               ),
             ),
@@ -1629,9 +1676,8 @@ class HomeScreen extends ConsumerWidget {
             Expanded(
               child: _QuickActionCard(
                 icon: Icons.eco,
-                label: 'Bahçe Ayı',
+                label: L10nService.get('home.quick_actions.gardening_moon', language),
                 color: AppColors.earthElement,
-                tooltip: 'Ay fazlarına göre bahçecilik ve ekim takvimi',
                 onTap: () => context.push(Routes.gardeningMoon),
               ),
             ),
@@ -1644,9 +1690,8 @@ class HomeScreen extends ConsumerWidget {
             Expanded(
               child: _QuickActionCard(
                 icon: Icons.people,
-                label: 'Ünlüler',
+                label: L10nService.get('home.quick_actions.celebrities', language),
                 color: AppColors.starGold,
-                tooltip: 'Ünlü kişilerin doğum haritaları ve analizleri',
                 onTap: () => context.push(Routes.celebrities),
               ),
             ),
@@ -1654,9 +1699,8 @@ class HomeScreen extends ConsumerWidget {
             Expanded(
               child: _QuickActionCard(
                 icon: Icons.article,
-                label: 'Makaleler',
+                label: L10nService.get('home.quick_actions.articles', language),
                 color: AppColors.airElement,
-                tooltip: 'Astroloji hakkında derinlemesine yazılar',
                 onTap: () => context.push(Routes.articles),
               ),
             ),
@@ -1669,9 +1713,8 @@ class HomeScreen extends ConsumerWidget {
             Expanded(
               child: _QuickActionCard(
                 icon: Icons.menu_book,
-                label: 'Sözlük',
+                label: L10nService.get('home.quick_actions.glossary', language),
                 color: AppColors.textSecondary,
-                tooltip: 'Astroloji terimleri ve kavramları sözlüğü',
                 onTap: () => context.push(Routes.glossary),
               ),
             ),
@@ -1684,7 +1727,8 @@ class HomeScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildSpiritualSection(BuildContext context) {
+  Widget _buildSpiritualSection(BuildContext context, WidgetRef ref) {
+    final language = ref.watch(languageProvider);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -1727,7 +1771,7 @@ class HomeScreen extends ConsumerWidget {
             Expanded(
               child: _QuickActionCard(
                 icon: Icons.self_improvement,
-                label: 'Günlük Ritüel',
+                label: L10nService.get('screens.daily_ritual', language),
                 color: AppColors.cosmicPurple,
                 onTap: () => context.push(Routes.dailyRituals),
               ),
@@ -1736,7 +1780,7 @@ class HomeScreen extends ConsumerWidget {
             Expanded(
               child: _QuickActionCard(
                 icon: Icons.blur_circular,
-                label: 'Chakra',
+                label: L10nService.get('home.quick_actions.chakra', language),
                 color: AppColors.mysticBlue,
                 onTap: () => context.push(Routes.chakraAnalysis),
               ),
@@ -1747,90 +1791,180 @@ class HomeScreen extends ConsumerWidget {
     );
   }
 
-  // Tüm Çözümlemeler - Ana katalog butonu
-  Widget _buildAllServicesButton(BuildContext context) {
+  // Tüm Çözümlemeler - Psikedelik buton (Kozmik Mesaj altı, Yıldız Kapısı üstü)
+  Widget _buildPsychedelicAllServicesButton(BuildContext context) {
     return GestureDetector(
       onTap: () => context.push(Routes.allServices),
       child: Container(
         width: double.infinity,
-        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
         decoration: BoxDecoration(
           gradient: LinearGradient(
+            colors: [
+              Colors.purple.withOpacity(0.7),
+              Colors.pink.withOpacity(0.6),
+              Colors.orange.withOpacity(0.5),
+              Colors.cyan.withOpacity(0.6),
+            ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [
-              const Color(0xFF9C27B0).withOpacity(0.35),
-              const Color(0xFF673AB7).withOpacity(0.25),
-              const Color(0xFFE91E63).withOpacity(0.2),
-            ],
           ),
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
-            color: const Color(0xFF9C27B0).withOpacity(0.4),
+            color: Colors.white.withOpacity(0.4),
             width: 2,
           ),
           boxShadow: [
             BoxShadow(
-              color: const Color(0xFF9C27B0).withOpacity(0.25),
-              blurRadius: 15,
-              spreadRadius: 0,
+              color: Colors.purple.withOpacity(0.4),
+              blurRadius: 16,
+              spreadRadius: 4,
+            ),
+            BoxShadow(
+              color: Colors.pink.withOpacity(0.3),
+              blurRadius: 20,
+              spreadRadius: 2,
+              offset: const Offset(5, 5),
             ),
           ],
         ),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Icon with gradient
-            ShaderMask(
-              shaderCallback: (bounds) => const LinearGradient(
-                colors: [Color(0xFFE040FB), Color(0xFFFFD700), Color(0xFFE040FB)],
-              ).createShader(bounds),
-              child: const Icon(
-                Icons.explore_rounded,
-                size: 32,
+            const Icon(Icons.auto_awesome, color: Colors.white, size: 24),
+            const SizedBox(width: 12),
+            Text(
+              'Tüm Çözümlemeler',
+              style: TextStyle(
                 color: Colors.white,
-              ),
-            ),
-            const SizedBox(width: 16),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  ShaderMask(
-                    shaderCallback: (bounds) => const LinearGradient(
-                      colors: [Color(0xFFE040FB), Color(0xFFFFD700), Color(0xFFFF4081)],
-                    ).createShader(bounds),
-                    child: const Text(
-                      'Tüm Çözümlemeler',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    'Kozmik yolculuğun için 80+ araç',
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.white.withOpacity(0.7),
-                    ),
-                  ),
+                fontSize: 17,
+                fontWeight: FontWeight.w700,
+                letterSpacing: 0.8,
+                shadows: [
+                  Shadow(color: Colors.black.withOpacity(0.3), blurRadius: 4),
                 ],
               ),
             ),
-            Icon(
-              Icons.arrow_forward_ios_rounded,
-              size: 20,
-              color: Colors.white.withOpacity(0.5),
-            ),
+            const SizedBox(width: 10),
+            const Icon(Icons.arrow_forward_ios, color: Colors.white, size: 16),
           ],
+        ),
+      ),
+    );
+  }
+
+  // Tüm Çözümlemeler - Ana katalog butonu
+  // Sadece Türkçe'de aktif, diğer dillerde "Yakında" gösterir
+  Widget _buildAllServicesButton(BuildContext context, WidgetRef ref) {
+    final language = ref.watch(languageProvider);
+    final isAvailable = language == AppLanguage.tr; // Sadece Türkçe'de aktif
+
+    return GestureDetector(
+      onTap: isAvailable ? () => context.push(Routes.allServices) : null,
+      child: Opacity(
+        opacity: isAvailable ? 1.0 : 0.6,
+        child: Container(
+          width: double.infinity,
+          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                const Color(0xFF9C27B0).withOpacity(0.35),
+                const Color(0xFF673AB7).withOpacity(0.25),
+                const Color(0xFFE91E63).withOpacity(0.2),
+              ],
+            ),
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(
+              color: const Color(0xFF9C27B0).withOpacity(0.4),
+              width: 2,
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: const Color(0xFF9C27B0).withOpacity(0.25),
+                blurRadius: 15,
+                spreadRadius: 0,
+              ),
+            ],
+          ),
+          child: Row(
+            children: [
+              // Icon with gradient
+              ShaderMask(
+                shaderCallback: (bounds) => const LinearGradient(
+                  colors: [Color(0xFFE040FB), Color(0xFFFFD700), Color(0xFFE040FB)],
+                ).createShader(bounds),
+                child: const Icon(
+                  Icons.explore_rounded,
+                  size: 32,
+                  color: Colors.white,
+                ),
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ShaderMask(
+                      shaderCallback: (bounds) => const LinearGradient(
+                        colors: [Color(0xFFE040FB), Color(0xFFFFD700), Color(0xFFFF4081)],
+                      ).createShader(bounds),
+                      child: const Text(
+                        'Bütün Kozmoz',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      isAvailable
+                          ? 'Tüm kozmik araçlar ve içerikler'
+                          : L10nService.get('common.coming_soon', language),
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Colors.white.withOpacity(0.7),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              if (!isAvailable)
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                  decoration: BoxDecoration(
+                    color: Colors.orange.withOpacity(0.25),
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(color: Colors.orange.withOpacity(0.5)),
+                  ),
+                  child: Text(
+                    L10nService.get('common.coming_soon', language),
+                    style: const TextStyle(
+                      fontSize: 11,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.orange,
+                    ),
+                  ),
+                )
+              else
+                Icon(
+                  Icons.arrow_forward_ios_rounded,
+                  size: 20,
+                  color: Colors.white.withOpacity(0.5),
+                ),
+            ],
+          ),
         ),
       ),
     ).animate().fadeIn(delay: 500.ms, duration: 600.ms);
   }
 
-  Widget _buildAllSigns(BuildContext context) {
+  Widget _buildAllSigns(BuildContext context, WidgetRef ref) {
+    final language = ref.watch(languageProvider);
     // Burç tarihleri
     final signDates = {
       ZodiacSign.aries: '21 Mar - 19 Nis',
@@ -1929,7 +2063,7 @@ class HomeScreen extends ConsumerWidget {
                         ),
                         const SizedBox(height: 2),
                         Text(
-                          sign.nameTr,
+                          sign.localizedName(language),
                           style: Theme.of(context).textTheme.labelMedium?.copyWith(
                                 color: Colors.white,
                                 fontSize: 10,
@@ -1971,14 +2105,14 @@ class HomeScreen extends ConsumerWidget {
   }
 }
 
-class _SearchBottomSheet extends StatefulWidget {
+class _SearchBottomSheet extends ConsumerStatefulWidget {
   const _SearchBottomSheet();
 
   @override
-  State<_SearchBottomSheet> createState() => _SearchBottomSheetState();
+  ConsumerState<_SearchBottomSheet> createState() => _SearchBottomSheetState();
 }
 
-class _SearchBottomSheetState extends State<_SearchBottomSheet> {
+class _SearchBottomSheetState extends ConsumerState<_SearchBottomSheet> {
   final TextEditingController _searchController = TextEditingController();
   String _searchQuery = '';
 
@@ -2052,6 +2186,8 @@ class _SearchBottomSheetState extends State<_SearchBottomSheet> {
 
   @override
   Widget build(BuildContext context) {
+    final language = ref.watch(languageProvider);
+
     return DraggableScrollableSheet(
       initialChildSize: 0.9,
       minChildSize: 0.5,
@@ -2081,7 +2217,7 @@ class _SearchBottomSheetState extends State<_SearchBottomSheet> {
                   controller: _searchController,
                   autofocus: true,
                   decoration: InputDecoration(
-                    hintText: 'Ara... (örn: burç, tarot, saturn)',
+                    hintText: L10nService.get('home.search_hint', language),
                     prefixIcon: const Icon(Icons.search),
                     suffixIcon: _searchQuery.isNotEmpty
                         ? IconButton(
@@ -2110,13 +2246,13 @@ class _SearchBottomSheetState extends State<_SearchBottomSheet> {
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   children: [
                     if (_exploreFeatures.isNotEmpty) ...[
-                      _buildCategoryHeader('Keşfet', Icons.explore),
+                      _buildCategoryHeader(L10nService.get('home.explore_category', language), Icons.explore),
                       const SizedBox(height: 8),
                       ..._exploreFeatures.map((f) => _buildSearchResultItem(f)),
                       const SizedBox(height: 24),
                     ],
                     if (_moreToolsFeatures.isNotEmpty) ...[
-                      _buildCategoryHeader('Daha Fazla Araç', Icons.build),
+                      _buildCategoryHeader(L10nService.get('home.more_tools_category', language), Icons.build),
                       const SizedBox(height: 8),
                       ..._moreToolsFeatures.map((f) => _buildSearchResultItem(f)),
                     ],
@@ -2129,7 +2265,7 @@ class _SearchBottomSheetState extends State<_SearchBottomSheet> {
                               Icon(Icons.search_off, size: 48, color: Colors.grey.withAlpha(100)),
                               const SizedBox(height: 16),
                               Text(
-                                'Sonuç bulunamadı',
+                                L10nService.get('home.no_results', language),
                                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                                       color: Colors.grey,
                                     ),
@@ -2662,7 +2798,7 @@ class _KozmozMasterSectionState extends ConsumerState<_KozmozMasterSection> {
       });
     } catch (e) {
       setState(() {
-        _chatHistory.add({'role': 'assistant', 'content': 'Kozmik bağlantı geçici olarak kesildi. Lütfen tekrar deneyin. 🌟'});
+        _chatHistory.add({'role': 'assistant', 'content': '${L10nService.get('home.cosmic_connection_lost', ref.read(languageProvider))} 🌟'});
         _isLoading = false;
       });
     }
@@ -2912,6 +3048,7 @@ class _KozmozMasterSectionState extends ConsumerState<_KozmozMasterSection> {
   Widget build(BuildContext context) {
     final userProfile = ref.watch(userProfileProvider);
     final sign = userProfile?.sunSign ?? ZodiacSign.aries;
+    final language = ref.watch(languageProvider);
 
     return Container(
       decoration: BoxDecoration(
@@ -3012,7 +3149,7 @@ class _KozmozMasterSectionState extends ConsumerState<_KozmozMasterSection> {
                                   colors: [Colors.white, Color(0xFFFFD700), Colors.white],
                                 ).createShader(bounds),
                                 child: Text(
-                                  '🔮 Kozmoz Ustası',
+                                  '🔮 ${L10nService.get('home.kozmoz_master', language)}',
                                   style: GoogleFonts.playfairDisplay(
                                     fontSize: 22,
                                     fontWeight: FontWeight.bold,
@@ -3072,7 +3209,7 @@ class _KozmozMasterSectionState extends ConsumerState<_KozmozMasterSection> {
                       Icon(Icons.trending_up, color: Colors.amber, size: 18),
                       const SizedBox(width: 8),
                       Text(
-                        'En Popüler Sorular',
+                        L10nService.get('home.most_popular_questions', language),
                         style: TextStyle(
                           color: Colors.amber,
                           fontWeight: FontWeight.bold,
@@ -3445,7 +3582,7 @@ class _AiChatSectionState extends ConsumerState<_AiChatSection> {
       });
     } catch (e) {
       setState(() {
-        _chatHistory.add({'role': 'assistant', 'content': 'Kozmik bağlantı geçici olarak kesildi. Lütfen tekrar deneyin. 🌟'});
+        _chatHistory.add({'role': 'assistant', 'content': '${L10nService.get('home.cosmic_connection_lost', ref.read(languageProvider))} 🌟'});
         _isLoading = false;
       });
     }

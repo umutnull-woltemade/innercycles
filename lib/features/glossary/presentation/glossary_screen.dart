@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/reference_content.dart';
+import '../../../data/providers/app_providers.dart';
+import '../../../data/services/l10n_service.dart';
 import '../../../data/services/reference_content_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 
-class GlossaryScreen extends StatefulWidget {
+class GlossaryScreen extends ConsumerStatefulWidget {
   final String? initialSearch;
 
   const GlossaryScreen({super.key, this.initialSearch});
 
   @override
-  State<GlossaryScreen> createState() => _GlossaryScreenState();
+  ConsumerState<GlossaryScreen> createState() => _GlossaryScreenState();
 }
 
-class _GlossaryScreenState extends State<GlossaryScreen> {
+class _GlossaryScreenState extends ConsumerState<GlossaryScreen> {
   final _service = ReferenceContentService();
   final _searchController = TextEditingController();
 
@@ -92,6 +95,7 @@ class _GlossaryScreenState extends State<GlossaryScreen> {
   }
 
   Widget _buildHeader(BuildContext context, bool isDark) {
+    final language = ref.watch(languageProvider);
     return Padding(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       child: Row(
@@ -107,7 +111,7 @@ class _GlossaryScreenState extends State<GlossaryScreen> {
             child: Column(
               children: [
                 Text(
-                  'Astroloji Sözlüğü',
+                  L10nService.get('screens.glossary.title', language),
                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                         fontWeight: FontWeight.bold,
                         color: isDark ? Colors.white : AppColors.textDark,
@@ -115,7 +119,7 @@ class _GlossaryScreenState extends State<GlossaryScreen> {
                   textAlign: TextAlign.center,
                 ),
                 Text(
-                  '${_service.glossaryCount} terim',
+                  L10nService.getWithParams('screens.glossary.term_count', language, params: {'count': '${_service.glossaryCount}'}),
                   style: TextStyle(
                     fontSize: 12,
                     color: isDark ? Colors.white60 : AppColors.textLight,
@@ -131,12 +135,13 @@ class _GlossaryScreenState extends State<GlossaryScreen> {
   }
 
   Widget _buildSearchBar(bool isDark) {
+    final language = ref.watch(languageProvider);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: AppConstants.spacingLg),
       child: TextField(
         controller: _searchController,
         decoration: InputDecoration(
-          hintText: 'Terim ara...',
+          hintText: L10nService.get('screens.glossary.search_hint', language),
           prefixIcon: const Icon(Icons.search),
           suffixIcon: _searchQuery.isNotEmpty
               ? IconButton(
@@ -170,6 +175,7 @@ class _GlossaryScreenState extends State<GlossaryScreen> {
   }
 
   Widget _buildCategoryFilter(bool isDark) {
+    final language = ref.watch(languageProvider);
     return Container(
       height: 50,
       margin: const EdgeInsets.symmetric(vertical: AppConstants.spacingMd),
@@ -177,9 +183,9 @@ class _GlossaryScreenState extends State<GlossaryScreen> {
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.symmetric(horizontal: AppConstants.spacingLg),
         children: [
-          _buildCategoryChip(null, 'Tümü', '📚', isDark),
+          _buildCategoryChip(null, L10nService.get('common.all', language), '📚', isDark),
           ...GlossaryCategory.values.map(
-            (cat) => _buildCategoryChip(cat, cat.nameTr, cat.icon, isDark),
+            (cat) => _buildCategoryChip(cat, cat.localizedName(language), cat.icon, isDark),
           ),
         ],
       ),
@@ -217,6 +223,7 @@ class _GlossaryScreenState extends State<GlossaryScreen> {
   }
 
   Widget _buildEmptyState(bool isDark) {
+    final language = ref.watch(languageProvider);
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -224,7 +231,7 @@ class _GlossaryScreenState extends State<GlossaryScreen> {
           const Text('🔍', style: TextStyle(fontSize: 64)),
           const SizedBox(height: 16),
           Text(
-            'Sonuç bulunamadı',
+            L10nService.get('screens.glossary.no_results', language),
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
@@ -233,7 +240,7 @@ class _GlossaryScreenState extends State<GlossaryScreen> {
           ),
           const SizedBox(height: 8),
           Text(
-            'Farklı bir arama terimi deneyin',
+            L10nService.get('screens.glossary.try_different_term', language),
             style: TextStyle(
               color: isDark ? Colors.white60 : AppColors.textLight,
             ),
@@ -244,6 +251,7 @@ class _GlossaryScreenState extends State<GlossaryScreen> {
   }
 
   Widget _buildEntriesList(bool isDark) {
+    final language = ref.watch(languageProvider);
     // Group by category
     final groupedEntries = <GlossaryCategory, List<GlossaryEntry>>{};
     for (final entry in _filteredEntries) {
@@ -280,7 +288,7 @@ class _GlossaryScreenState extends State<GlossaryScreen> {
                   const SizedBox(width: 8),
                   Flexible(
                     child: Text(
-                      category.nameTr,
+                      category.localizedName(language),
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -319,6 +327,7 @@ class _GlossaryScreenState extends State<GlossaryScreen> {
   }
 
   Widget _buildEntryCard(GlossaryEntry entry, bool isDark) {
+    final language = ref.watch(languageProvider);
     return Container(
       margin: const EdgeInsets.only(bottom: AppConstants.spacingMd),
       decoration: BoxDecoration(
@@ -435,7 +444,7 @@ class _GlossaryScreenState extends State<GlossaryScreen> {
                       const Text('🔮', style: TextStyle(fontSize: 16)),
                       const SizedBox(width: 8),
                       Text(
-                        'Derin Yorum',
+                        L10nService.get('screens.glossary.deep_interpretation', language),
                         style: TextStyle(
                           fontSize: 13,
                           fontWeight: FontWeight.bold,
@@ -538,7 +547,7 @@ class _GlossaryScreenState extends State<GlossaryScreen> {
                   const Text('👑', style: TextStyle(fontSize: 14)),
                   const SizedBox(width: 6),
                   Text(
-                    'Yönetici: ${entry.signRuler}',
+                    L10nService.getWithParams('screens.glossary.ruler', language, params: {'ruler': entry.signRuler!}),
                     style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w500,
@@ -558,7 +567,7 @@ class _GlossaryScreenState extends State<GlossaryScreen> {
               runSpacing: 8,
               children: [
                 Text(
-                  'İlgili:',
+                  L10nService.get('screens.glossary.related', language),
                   style: TextStyle(
                     fontSize: 12,
                     color: isDark ? Colors.white60 : AppColors.textLight,
@@ -620,7 +629,7 @@ class _GlossaryScreenState extends State<GlossaryScreen> {
                       const Text('📚', style: TextStyle(fontSize: 14)),
                       const SizedBox(width: 6),
                       Text(
-                        'Kaynaklar',
+                        L10nService.get('screens.glossary.sources', language),
                         style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.bold,

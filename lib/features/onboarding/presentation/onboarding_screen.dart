@@ -14,6 +14,7 @@ import '../../../data/models/user_profile.dart';
 import '../../../data/models/zodiac_sign.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/auth_service.dart';
+import '../../../data/services/l10n_service.dart';
 import '../../../data/services/storage_service.dart';
 import '../../../shared/widgets/birth_date_picker.dart';
 import '../../../shared/widgets/cosmic_background.dart';
@@ -89,6 +90,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final language = ref.watch(languageProvider);
     // ignore: avoid_print
     print('🌐 OnboardingScreen.build() called, kIsWeb=$kIsWeb');
 
@@ -132,9 +134,9 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                 ),
                 const SizedBox(height: 32),
                 // Title
-                const Text(
-                  'Venus One',
-                  style: TextStyle(
+                Text(
+                  L10nService.get('app.name', language),
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 36,
                     fontWeight: FontWeight.w300,
@@ -143,9 +145,9 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                 ),
                 const SizedBox(height: 12),
                 // Subtitle
-                const Text(
-                  'Kozmik Yolculuğuna Başla',
-                  style: TextStyle(
+                Text(
+                  L10nService.get('onboarding.start_cosmic_journey', language),
+                  style: const TextStyle(
                     color: Colors.white70,
                     fontSize: 16,
                   ),
@@ -162,7 +164,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                       borderRadius: BorderRadius.circular(30),
                     ),
                   ),
-                  child: const Text('Devam Et', style: TextStyle(fontSize: 18)),
+                  child: Text(L10nService.get('common.continue', language), style: const TextStyle(fontSize: 18)),
                 ),
               ],
             ),
@@ -187,7 +189,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                     setState(() => _currentPage = index);
                   },
                   children: [
-                    _WelcomePage(onContinue: _nextPage),
+                    _WelcomePage(onContinue: _nextPage, language: language),
                     _BirthDataPage(
                       selectedDate: _selectedDate,
                       onDateSelected: (date) {
@@ -210,12 +212,14 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                         });
                       },
                       onContinue: _nextPage,
+                      language: language,
                     ),
                     _YourSignPage(
                       selectedDate: _selectedDate,
                       selectedTime: _selectedTime,
                       birthPlace: _birthPlace,
                       onComplete: _completeOnboarding,
+                      language: language,
                     ),
                   ],
                 ),
@@ -254,7 +258,9 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
           const SizedBox(height: AppConstants.spacingXl),
           // Continue button
           GradientButton(
-            label: _currentPage == 2 ? 'Yolculuğa Başla' : 'İlerle',
+            label: _currentPage == 2
+                ? L10nService.get('common.start_journey', ref.watch(languageProvider))
+                : L10nService.get('common.continue', ref.watch(languageProvider)),
             icon: _currentPage == 2 ? Icons.auto_awesome : Icons.arrow_forward,
             width: double.infinity,
             onPressed: _canProceed() ? _nextPage : null,
@@ -279,8 +285,9 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
 
 class _WelcomePage extends StatefulWidget {
   final VoidCallback onContinue;
+  final AppLanguage language;
 
-  const _WelcomePage({required this.onContinue});
+  const _WelcomePage({required this.onContinue, required this.language});
 
   @override
   State<_WelcomePage> createState() => _WelcomePageState();
@@ -357,17 +364,11 @@ class _WelcomePageState extends State<_WelcomePage>
   }
 
   void _showCosmicWelcome(String? name) {
-    // Ezoterik karşılama mesajları
-    final cosmicGreetings = [
-      'Yıldızlar seni bekliyordu',
-      'Kozmik yolculuğun başlıyor',
-      'Evren seninle buluştu',
-      'Ruhun eve döndü',
-      'Kaderin kapısı açıldı',
-      'Işığın parlamaya başladı',
-    ];
-    final greeting =
-        cosmicGreetings[DateTime.now().millisecond % cosmicGreetings.length];
+    // Ezoterik karşılama mesajları - from locale
+    final cosmicGreetings = L10nService.getList('greetings.cosmic_welcome', widget.language);
+    final greeting = cosmicGreetings.isNotEmpty
+        ? cosmicGreetings[DateTime.now().millisecond % cosmicGreetings.length]
+        : L10nService.get('greetings.cosmic_welcome', widget.language);
 
     showGeneralDialog(
       context: context,
@@ -378,6 +379,7 @@ class _WelcomePageState extends State<_WelcomePage>
         return _CosmicWelcomeOverlay(
           greeting: greeting,
           name: name,
+          language: widget.language,
           onComplete: () {
             Navigator.of(context).pop();
             widget.onContinue();
@@ -438,9 +440,9 @@ class _WelcomePageState extends State<_WelcomePage>
               ),
               const SizedBox(height: 24),
               // App name
-              const Text(
-                'Venus One',
-                style: TextStyle(
+              Text(
+                L10nService.get('app.name', widget.language),
+                style: const TextStyle(
                   fontSize: 48,
                   fontWeight: FontWeight.w100,
                   color: Colors.white,
@@ -449,9 +451,9 @@ class _WelcomePageState extends State<_WelcomePage>
               ),
               const SizedBox(height: 8),
               // Tagline
-              const Text(
-                'Kozmik Yolculuğuna Başla',
-                style: TextStyle(color: Colors.white70, fontSize: 16),
+              Text(
+                L10nService.get('onboarding.start_cosmic_journey', widget.language),
+                style: const TextStyle(color: Colors.white70, fontSize: 16),
               ),
               const SizedBox(height: 48),
               // Continue button
@@ -465,7 +467,7 @@ class _WelcomePageState extends State<_WelcomePage>
                     borderRadius: BorderRadius.circular(30),
                   ),
                 ),
-                child: const Text('Devam Et', style: TextStyle(fontSize: 18)),
+                child: Text(L10nService.get('common.continue', widget.language), style: const TextStyle(fontSize: 18)),
               ),
             ],
           ),
@@ -488,9 +490,9 @@ class _WelcomePageState extends State<_WelcomePage>
             const SizedBox(height: 24),
 
             // App name - ultra thin font
-            const Text(
-              'Venus One',
-              style: TextStyle(
+            Text(
+              L10nService.get('app.name', widget.language),
+              style: const TextStyle(
                 fontSize: 56,
                 fontWeight: FontWeight.w100,
                 color: Colors.white,
@@ -502,7 +504,7 @@ class _WelcomePageState extends State<_WelcomePage>
 
             // Tagline
             Text(
-              'Kozmik Yolculuğuna Başla',
+              L10nService.get('onboarding.start_cosmic_journey', widget.language),
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 color: AppColors.textSecondary,
                 fontSize: 16,
@@ -539,7 +541,7 @@ class _WelcomePageState extends State<_WelcomePage>
 
             // Terms text
             Text(
-              'Devam ederek Kullanım Şartlarını kabul etmiş olursunuz',
+              L10nService.get('onboarding.by_continuing', widget.language),
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
                 color: AppColors.textMuted.withAlpha(150),
                 fontSize: 14,
@@ -639,7 +641,9 @@ class _WelcomePageState extends State<_WelcomePage>
               const Icon(Icons.apple, color: Colors.white, size: 28),
             const SizedBox(width: 14),
             Text(
-              _isAppleLoading ? 'Bağlanıyor...' : 'Apple ile devam et',
+              _isAppleLoading
+                  ? L10nService.get('onboarding.connecting', widget.language)
+                  : L10nService.get('onboarding.connect_with_apple', widget.language),
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 16,
@@ -672,7 +676,7 @@ class _WelcomePageState extends State<_WelcomePage>
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Text(
-            'veya',
+            L10nService.get('common.or', widget.language),
             style: TextStyle(
               color: AppColors.textMuted,
               fontSize: 14,
@@ -736,9 +740,9 @@ class _WelcomePageState extends State<_WelcomePage>
               shaderCallback: (bounds) => const LinearGradient(
                 colors: [Color(0xFF667EEA), Color(0xFF9B59B6)],
               ).createShader(bounds),
-              child: const Text(
-                'Hemen Keşfetmeye Başla',
-                style: TextStyle(
+              child: Text(
+                L10nService.get('onboarding.explore_now', widget.language),
+                style: const TextStyle(
                   color: Colors.white,
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
@@ -754,10 +758,10 @@ class _WelcomePageState extends State<_WelcomePage>
 
   Widget _buildFeaturesPreview() {
     final features = [
-      {'icon': '🌙', 'text': 'Doğum Haritası'},
-      {'icon': '✨', 'text': 'Günlük Yorum'},
-      {'icon': '🔮', 'text': 'Tarot'},
-      {'icon': '💫', 'text': 'Numeroloji'},
+      {'icon': '🌙', 'text': L10nService.get('onboarding.features.birth_chart', widget.language)},
+      {'icon': '✨', 'text': L10nService.get('onboarding.features.daily_reading', widget.language)},
+      {'icon': '🔮', 'text': L10nService.get('onboarding.features.tarot', widget.language)},
+      {'icon': '💫', 'text': L10nService.get('onboarding.features.numerology', widget.language)},
     ];
 
     return Wrap(
@@ -837,7 +841,7 @@ class _WelcomePageState extends State<_WelcomePage>
 
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Apple bağlantısı kurulamadı: $e'),
+          content: Text('${L10nService.get('auth.apple_connection_failed', widget.language)}: $e'),
           backgroundColor: AppColors.error,
           behavior: SnackBarBehavior.floating,
           shape: RoundedRectangleBorder(
@@ -862,6 +866,7 @@ class _BirthDataPage extends StatelessWidget {
   final String? birthPlace;
   final void Function(String place, double lat, double lng) onPlaceChanged;
   final VoidCallback onContinue;
+  final AppLanguage language;
 
   const _BirthDataPage({
     required this.selectedDate,
@@ -873,6 +878,7 @@ class _BirthDataPage extends StatelessWidget {
     required this.birthPlace,
     required this.onPlaceChanged,
     required this.onContinue,
+    required this.language,
   });
 
   @override
@@ -885,16 +891,17 @@ class _BirthDataPage extends StatelessWidget {
           const SizedBox(height: 16),
 
           // Name input
-          _buildSectionTitle(context, 'İsim *'),
+          _buildSectionTitle(context, L10nService.get('input.name_required', language)),
           const SizedBox(height: 8),
           _NameInput(
             userName: userName,
             onNameChanged: onNameChanged,
+            language: language,
           ).animate().fadeIn(delay: 300.ms, duration: 400.ms),
           const SizedBox(height: AppConstants.spacingLg),
 
           // Birth Date
-          _buildSectionTitle(context, 'Doğum Tarihi *'),
+          _buildSectionTitle(context, L10nService.get('input.birth_date_required', language)),
           const SizedBox(height: 8),
           BirthDatePicker(
             initialDate: selectedDate,
@@ -903,26 +910,28 @@ class _BirthDataPage extends StatelessWidget {
           const SizedBox(height: AppConstants.spacingLg),
 
           // Birth Time
-          _buildSectionTitle(context, 'Doğum Saati *'),
+          _buildSectionTitle(context, L10nService.get('input.birth_time_required', language)),
           const SizedBox(height: 8),
           _BirthTimePicker(
             selectedTime: selectedTime,
             onTimeSelected: onTimeSelected,
+            language: language,
           ).animate().fadeIn(delay: 500.ms, duration: 400.ms),
           const SizedBox(height: AppConstants.spacingLg),
 
           // Birth Place
-          _buildSectionTitle(context, 'Doğum Yeri *'),
+          _buildSectionTitle(context, L10nService.get('input.birth_place_required', language)),
           const SizedBox(height: 8),
           _BirthPlacePicker(
             selectedPlace: birthPlace,
             onPlaceSelected: onPlaceChanged,
+            language: language,
           ).animate().fadeIn(delay: 600.ms, duration: 400.ms),
 
           const SizedBox(height: AppConstants.spacingLg),
 
           // Info box
-          _InfoBox().animate().fadeIn(delay: 700.ms, duration: 400.ms),
+          _InfoBox(language: language).animate().fadeIn(delay: 700.ms, duration: 400.ms),
 
           const SizedBox(height: 20),
         ],
@@ -945,8 +954,9 @@ class _BirthDataPage extends StatelessWidget {
 class _NameInput extends StatelessWidget {
   final String? userName;
   final ValueChanged<String> onNameChanged;
+  final AppLanguage language;
 
-  const _NameInput({required this.userName, required this.onNameChanged});
+  const _NameInput({required this.userName, required this.onNameChanged, required this.language});
 
   @override
   Widget build(BuildContext context) {
@@ -961,7 +971,7 @@ class _NameInput extends StatelessWidget {
         fontSize: 16,
       ),
       decoration: InputDecoration(
-        hintText: 'İsmin',
+        hintText: L10nService.get('input.your_name', language),
         hintStyle: TextStyle(
           color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
           fontSize: 15,
@@ -1001,7 +1011,8 @@ class _NameInput extends StatelessWidget {
 }
 
 class _InfoBox extends StatelessWidget {
-  const _InfoBox();
+  final AppLanguage language;
+  const _InfoBox({required this.language});
 
   @override
   Widget build(BuildContext context) {
@@ -1023,7 +1034,7 @@ class _InfoBox extends StatelessWidget {
           const SizedBox(width: 12),
           Expanded(
             child: Text(
-              'Kozmik haritanın tüm katmanlarını açmak için bilgilerini eksiksiz gir.',
+              L10nService.get('onboarding.info_box_text', language),
               style: Theme.of(
                 context,
               ).textTheme.bodySmall?.copyWith(color: colorScheme.primary),
@@ -1038,10 +1049,12 @@ class _InfoBox extends StatelessWidget {
 class _BirthTimePicker extends StatelessWidget {
   final TimeOfDay? selectedTime;
   final ValueChanged<TimeOfDay> onTimeSelected;
+  final AppLanguage language;
 
   const _BirthTimePicker({
     required this.selectedTime,
     required this.onTimeSelected,
+    required this.language,
   });
 
   @override
@@ -1084,7 +1097,7 @@ class _BirthTimePicker extends StatelessWidget {
                       ),
                     )
                   : Text(
-                      'Saat seç',
+                      L10nService.get('input.select_time', language),
                       style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                         color: isDark
                             ? AppColors.textMuted
@@ -1131,7 +1144,7 @@ class _BirthTimePicker extends StatelessWidget {
                       TextButton(
                         onPressed: () => Navigator.pop(context),
                         child: Text(
-                          'İptal',
+                          L10nService.get('common.cancel', language),
                           style: TextStyle(
                             color: isDark
                                 ? AppColors.textMuted
@@ -1140,7 +1153,7 @@ class _BirthTimePicker extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        'Doğum Saati',
+                        L10nService.get('input.birth_time', language),
                         style: Theme.of(context).textTheme.titleMedium
                             ?.copyWith(
                               color: isDark
@@ -1159,7 +1172,7 @@ class _BirthTimePicker extends StatelessWidget {
                           Navigator.pop(context);
                         },
                         child: Text(
-                          'Tamam',
+                          L10nService.get('common.ok', language),
                           style: TextStyle(color: colorScheme.primary),
                         ),
                       ),
@@ -1245,10 +1258,12 @@ class _BirthTimePicker extends StatelessWidget {
 class _BirthPlacePicker extends StatefulWidget {
   final String? selectedPlace;
   final void Function(String place, double lat, double lng) onPlaceSelected;
+  final AppLanguage language;
 
   const _BirthPlacePicker({
     required this.selectedPlace,
     required this.onPlaceSelected,
+    required this.language,
   });
 
   @override
@@ -1297,7 +1312,7 @@ class _BirthPlacePickerState extends State<_BirthPlacePicker> {
                       overflow: TextOverflow.ellipsis,
                     )
                   : Text(
-                      'Şehir seç (${WorldCities.sortedCities.length} şehir)',
+                      '${L10nService.get('input.select_city', widget.language)} (${WorldCities.sortedCities.length})',
                       style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                         color: isDark
                             ? AppColors.textMuted
@@ -1351,7 +1366,7 @@ class _BirthPlacePickerState extends State<_BirthPlacePicker> {
                       TextButton(
                         onPressed: () => Navigator.pop(context),
                         child: Text(
-                          'İptal',
+                          L10nService.get('common.cancel', widget.language),
                           style: TextStyle(
                             color: isDark
                                 ? AppColors.textMuted
@@ -1362,7 +1377,7 @@ class _BirthPlacePickerState extends State<_BirthPlacePicker> {
                       Column(
                         children: [
                           Text(
-                            'Doğum Yeri',
+                            L10nService.get('input.birth_place', widget.language),
                             style: Theme.of(context).textTheme.titleMedium
                                 ?.copyWith(
                                   color: isDark
@@ -1371,7 +1386,7 @@ class _BirthPlacePickerState extends State<_BirthPlacePicker> {
                                 ),
                           ),
                           Text(
-                            '${WorldCities.sortedCities.length} şehir',
+                            '${WorldCities.sortedCities.length}',
                             style: Theme.of(context).textTheme.bodySmall
                                 ?.copyWith(
                                   color: isDark
@@ -1396,7 +1411,7 @@ class _BirthPlacePickerState extends State<_BirthPlacePicker> {
                           : AppColors.lightTextPrimary,
                     ),
                     decoration: InputDecoration(
-                      hintText: 'Şehir veya ülke ara. . .',
+                      hintText: L10nService.get('input.search_city', widget.language),
                       hintStyle: TextStyle(
                         color: isDark
                             ? AppColors.textMuted
@@ -1423,7 +1438,7 @@ class _BirthPlacePickerState extends State<_BirthPlacePicker> {
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      '${filteredCities.length} sonuç',
+                      '${filteredCities.length} ${L10nService.get('common.results', widget.language)}',
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: isDark
                             ? AppColors.textMuted
@@ -1508,12 +1523,14 @@ class _YourSignPage extends StatelessWidget {
   final TimeOfDay? selectedTime;
   final String? birthPlace;
   final VoidCallback onComplete;
+  final AppLanguage language;
 
   const _YourSignPage({
     required this.selectedDate,
     required this.selectedTime,
     required this.birthPlace,
     required this.onComplete,
+    required this.language,
   });
 
   @override
@@ -1521,7 +1538,7 @@ class _YourSignPage extends StatelessWidget {
     if (selectedDate == null) {
       return Center(
         child: Text(
-          'Lütfen doğum tarihini gir',
+          L10nService.get('input.birth_date_required', language),
           style: Theme.of(context).textTheme.bodyLarge?.copyWith(
             color: AppColors.textSecondary,
             fontSize: 18,
@@ -1580,14 +1597,14 @@ class _YourSignPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Güneş Burcun',
+                        L10nService.get('profile.your_sun_sign', language),
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           color: AppColors.textSecondary,
                           fontSize: 14,
                         ),
                       ),
                       Text(
-                        sign.nameTr,
+                        sign.localizedName(language),
                         style: Theme.of(context).textTheme.headlineMedium
                             ?.copyWith(
                               color: sign.color,
@@ -1638,7 +1655,7 @@ class _YourSignPage extends StatelessWidget {
                                 ),
                                 const SizedBox(width: 8),
                                 Text(
-                                  'Doğum Bilgilerin',
+                                  L10nService.get('profile.your_birth_info', language),
                                   style: Theme.of(context).textTheme.titleSmall
                                       ?.copyWith(
                                         color: AppColors.auroraStart,
@@ -1652,21 +1669,21 @@ class _YourSignPage extends StatelessWidget {
                             _buildCompactDataRow(
                               context,
                               '📅',
-                              'Tarih',
-                              _formatDate(selectedDate!),
+                              L10nService.get('input.date', language),
+                              _formatDate(selectedDate!, language),
                             ),
                             if (selectedTime != null)
                               _buildCompactDataRow(
                                 context,
                                 '🕐',
-                                'Saat',
+                                L10nService.get('input.time', language),
                                 '${selectedTime!.hour.toString().padLeft(2, '0')}:${selectedTime!.minute.toString().padLeft(2, '0')}',
                               ),
                             if (birthPlace != null)
                               _buildCompactDataRow(
                                 context,
                                 '📍',
-                                'Yer',
+                                L10nService.get('input.place', language),
                                 birthPlace!,
                               ),
                           ],
@@ -1708,7 +1725,7 @@ class _YourSignPage extends StatelessWidget {
                                 const SizedBox(width: 8),
                                 Flexible(
                                   child: Text(
-                                    'Çözümlenecekler',
+                                    L10nService.get('onboarding.will_be_calculated', language),
                                     style: Theme.of(context)
                                         .textTheme
                                         .titleSmall
@@ -1733,63 +1750,63 @@ class _YourSignPage extends StatelessWidget {
                                 _buildPastelFeatureRow(
                                   context,
                                   '♄',
-                                  '10 Gezegen',
+                                  L10nService.get('onboarding.calculated_items.planets', language),
                                   const Color(0xFFFFB347),
                                   true,
                                 ),
                                 _buildPastelFeatureRow(
                                   context,
                                   '△',
-                                  'Gezegen Açıları',
+                                  L10nService.get('onboarding.calculated_items.aspects', language),
                                   const Color(0xFF87CEEB),
                                   true,
                                 ),
                                 _buildPastelFeatureRow(
                                   context,
                                   '□',
-                                  '12 Ev Sistemi',
+                                  L10nService.get('onboarding.calculated_items.houses', language),
                                   const Color(0xFFDDA0DD),
                                   selectedTime != null && birthPlace != null,
                                 ),
                                 _buildPastelFeatureRow(
                                   context,
                                   '↑',
-                                  'Yükselen Burç',
+                                  L10nService.get('onboarding.calculated_items.rising', language),
                                   const Color(0xFF98FB98),
                                   selectedTime != null && birthPlace != null,
                                 ),
                                 _buildPastelFeatureRow(
                                   context,
                                   '☽',
-                                  'Ay Düğümleri',
+                                  L10nService.get('onboarding.calculated_items.nodes', language),
                                   const Color(0xFFE6E6FA),
                                   true,
                                 ),
                                 _buildPastelFeatureRow(
                                   context,
                                   '◆',
-                                  'Karmik Harita',
+                                  L10nService.get('onboarding.calculated_items.karmic', language),
                                   const Color(0xFFFFB6C1),
                                   true,
                                 ),
                                 _buildPastelFeatureRow(
                                   context,
                                   '○',
-                                  'Psikolojik Profil',
+                                  L10nService.get('onboarding.calculated_items.psychological', language),
                                   const Color(0xFFADD8E6),
                                   true,
                                 ),
                                 _buildPastelFeatureRow(
                                   context,
                                   '∞',
-                                  'Numeroloji',
+                                  L10nService.get('onboarding.calculated_items.numerology', language),
                                   const Color(0xFFF0E68C),
                                   true,
                                 ),
                                 _buildPastelFeatureRow(
                                   context,
                                   '☯',
-                                  'Element Dengesi',
+                                  L10nService.get('onboarding.calculated_items.elements', language),
                                   const Color(0xFFB0E0E6),
                                   true,
                                 ),
@@ -1898,22 +1915,23 @@ class _YourSignPage extends StatelessWidget {
     );
   }
 
-  String _formatDate(DateTime date) {
-    const months = [
-      'Ocak',
-      'Şubat',
-      'Mart',
-      'Nisan',
-      'Mayıs',
-      'Haziran',
-      'Temmuz',
-      'Ağustos',
-      'Eylül',
-      'Ekim',
-      'Kasım',
-      'Aralık',
+  String _formatDate(DateTime date, AppLanguage language) {
+    final monthKeys = [
+      'months.january',
+      'months.february',
+      'months.march',
+      'months.april',
+      'months.may',
+      'months.june',
+      'months.july',
+      'months.august',
+      'months.september',
+      'months.october',
+      'months.november',
+      'months.december',
     ];
-    return '${date.day} ${months[date.month - 1]} ${date.year}';
+    final month = L10nService.get(monthKeys[date.month - 1], language);
+    return '${date.day} $month ${date.year}';
   }
 }
 
@@ -1921,11 +1939,13 @@ class _YourSignPage extends StatelessWidget {
 class _CosmicWelcomeOverlay extends StatefulWidget {
   final String greeting;
   final String? name;
+  final AppLanguage language;
   final VoidCallback onComplete;
 
   const _CosmicWelcomeOverlay({
     required this.greeting,
     this.name,
+    required this.language,
     required this.onComplete,
   });
 
@@ -2076,7 +2096,7 @@ class _CosmicWelcomeOverlayState extends State<_CosmicWelcomeOverlay>
 
                         // Alt mesaj
                         Text(
-                          '✨ Dokunarak devam et ✨',
+                          '✨ ${L10nService.get('onboarding.tap_to_continue', widget.language)} ✨',
                           style: TextStyle(
                             fontSize: 14,
                             color: Colors.white.withOpacity(0.5),

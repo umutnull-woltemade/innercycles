@@ -7,6 +7,7 @@ import '../../../data/models/zodiac_sign.dart';
 import '../../../data/models/user_profile.dart';
 import '../../../data/models/premium_astrology.dart';
 import '../../../data/services/premium_astrology_service.dart';
+import '../../../data/services/l10n_service.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 
@@ -53,6 +54,7 @@ class _DraconicChartScreenState extends ConsumerState<DraconicChartScreen> {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final userProfile = ref.watch(userProfileProvider);
+    final language = ref.watch(languageProvider);
 
     if (userProfile == null) {
       return Scaffold(
@@ -64,14 +66,14 @@ class _DraconicChartScreenState extends ConsumerState<DraconicChartScreen> {
                 const Text('', style: TextStyle(fontSize: 64)),
                 const SizedBox(height: 16),
                 Text(
-                  'Profil bulunamadı',
+                  L10nService.get('draconic.profile_not_found', language),
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
                         color: Colors.white,
                       ),
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Lütfen önce doğum bilgilerinizi girin',
+                  L10nService.get('draconic.enter_birth_info', language),
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         color: Colors.white70,
                       ),
@@ -79,7 +81,7 @@ class _DraconicChartScreenState extends ConsumerState<DraconicChartScreen> {
                 const SizedBox(height: 24),
                 ElevatedButton(
                   onPressed: () => context.pop(),
-                  child: const Text('Geri Dön'),
+                  child: Text(L10nService.get('common.back', language)),
                 ),
               ],
             ),
@@ -93,37 +95,37 @@ class _DraconicChartScreenState extends ConsumerState<DraconicChartScreen> {
         child: SafeArea(
           child: Column(
             children: [
-              _buildHeader(context, isDark),
+              _buildHeader(context, isDark, language),
               Expanded(
                 child: SingleChildScrollView(
                   padding: const EdgeInsets.all(AppConstants.spacingLg),
                   child: Column(
                     children: [
-                      _buildInfoBanner(isDark),
+                      _buildInfoBanner(isDark, language),
                       const SizedBox(height: AppConstants.spacingLg),
-                      _buildProfileCard(isDark, userProfile),
+                      _buildProfileCard(isDark, userProfile, language),
                       const SizedBox(height: AppConstants.spacingLg),
                       if (_chart != null) ...[
-                        _buildDraconicOverviewCard(isDark),
+                        _buildDraconicOverviewCard(isDark, language),
                         const SizedBox(height: AppConstants.spacingMd),
-                        _buildSoulPurposeCard(isDark),
+                        _buildSoulPurposeCard(isDark, language),
                         const SizedBox(height: AppConstants.spacingMd),
-                        _buildKarmicLessonsCard(isDark),
+                        _buildKarmicLessonsCard(isDark, language),
                         const SizedBox(height: AppConstants.spacingMd),
-                        _buildSpiritualGiftsCard(isDark),
+                        _buildSpiritualGiftsCard(isDark, language),
                         const SizedBox(height: AppConstants.spacingMd),
-                        _buildPastLifeCard(isDark),
+                        _buildPastLifeCard(isDark, language),
                         const SizedBox(height: AppConstants.spacingMd),
-                        _buildEvolutionaryPathCard(isDark),
+                        _buildEvolutionaryPathCard(isDark, language),
                         const SizedBox(height: AppConstants.spacingMd),
-                        _buildPlanetPositionsCard(isDark),
+                        _buildPlanetPositionsCard(isDark, language),
                         const SizedBox(height: AppConstants.spacingXxl),
                       ] else ...[
                         const SizedBox(height: 100),
                         const CircularProgressIndicator(color: AppColors.mystic),
                         const SizedBox(height: 16),
                         Text(
-                          'Harita oluşturuluyor...',
+                          L10nService.get('draconic.generating_chart', language),
                           style: TextStyle(
                             color: isDark ? Colors.white70 : AppColors.textLight,
                           ),
@@ -140,7 +142,7 @@ class _DraconicChartScreenState extends ConsumerState<DraconicChartScreen> {
     );
   }
 
-  Widget _buildHeader(BuildContext context, bool isDark) {
+  Widget _buildHeader(BuildContext context, bool isDark, AppLanguage language) {
     return Padding(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       child: Row(
@@ -154,7 +156,7 @@ class _DraconicChartScreenState extends ConsumerState<DraconicChartScreen> {
           ),
           Expanded(
             child: Text(
-              'Drakonik Harita',
+              L10nService.get('draconic.title', language),
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                     fontWeight: FontWeight.bold,
                     color: isDark ? Colors.white : AppColors.textDark,
@@ -168,7 +170,7 @@ class _DraconicChartScreenState extends ConsumerState<DraconicChartScreen> {
     );
   }
 
-  Widget _buildInfoBanner(bool isDark) {
+  Widget _buildInfoBanner(bool isDark, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingMd),
       decoration: BoxDecoration(
@@ -192,14 +194,14 @@ class _DraconicChartScreenState extends ConsumerState<DraconicChartScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Ruh Seviyesi Astroloji',
+                  L10nService.get('draconic.soul_level_astrology', language),
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: isDark ? Colors.white : AppColors.textDark,
                   ),
                 ),
                 Text(
-                  'Ruhunuzun gerçek amacını ve geçmiş yaşam izlerini keşfedin',
+                  L10nService.get('draconic.info_banner', language),
                   style: TextStyle(
                     fontSize: 12,
                     color: isDark ? Colors.white70 : AppColors.textLight,
@@ -213,7 +215,7 @@ class _DraconicChartScreenState extends ConsumerState<DraconicChartScreen> {
     );
   }
 
-  Widget _buildProfileCard(bool isDark, UserProfile userProfile) {
+  Widget _buildProfileCard(bool isDark, UserProfile userProfile, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -237,7 +239,7 @@ class _DraconicChartScreenState extends ConsumerState<DraconicChartScreen> {
               ),
               const SizedBox(width: 8),
               Text(
-                'Profil Bilgileri',
+                L10nService.get('draconic.profile_info', language),
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
@@ -247,13 +249,13 @@ class _DraconicChartScreenState extends ConsumerState<DraconicChartScreen> {
             ],
           ),
           const SizedBox(height: AppConstants.spacingMd),
-          _buildInfoRow(isDark, Icons.person_outline, 'İsim', userProfile.name ?? 'Kullanıcı'),
-          _buildInfoRow(isDark, Icons.cake_outlined, 'Doğum Tarihi', _formatDate(userProfile.birthDate)),
-          _buildInfoRow(isDark, Icons.wb_sunny_outlined, 'Güneş Burcu', userProfile.sunSign.nameTr),
+          _buildInfoRow(isDark, Icons.person_outline, L10nService.get('draconic.name', language), userProfile.name ?? L10nService.get('draconic.user', language)),
+          _buildInfoRow(isDark, Icons.cake_outlined, L10nService.get('draconic.birth_date', language), _formatDate(userProfile.birthDate, language)),
+          _buildInfoRow(isDark, Icons.wb_sunny_outlined, L10nService.get('draconic.sun_sign', language), userProfile.sunSign.localizedName(language)),
           if (userProfile.moonSign != null)
-            _buildInfoRow(isDark, Icons.nightlight_outlined, 'Ay Burcu', userProfile.moonSign!.nameTr),
+            _buildInfoRow(isDark, Icons.nightlight_outlined, L10nService.get('draconic.moon_sign', language), userProfile.moonSign!.localizedName(language)),
           if (userProfile.risingSign != null)
-            _buildInfoRow(isDark, Icons.arrow_upward, 'Yükselen', userProfile.risingSign!.nameTr),
+            _buildInfoRow(isDark, Icons.arrow_upward, L10nService.get('draconic.rising_sign', language), userProfile.risingSign!.localizedName(language)),
         ],
       ),
     );
@@ -289,15 +291,16 @@ class _DraconicChartScreenState extends ConsumerState<DraconicChartScreen> {
     );
   }
 
-  String _formatDate(DateTime date) {
-    const months = [
-      'Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran',
-      'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'
-    ];
-    return '${date.day} ${months[date.month - 1]} ${date.year}';
+  String _formatDate(DateTime date, AppLanguage language) {
+    final monthKey = [
+      'months.january', 'months.february', 'months.march', 'months.april',
+      'months.may', 'months.june', 'months.july', 'months.august',
+      'months.september', 'months.october', 'months.november', 'months.december'
+    ][date.month - 1];
+    return '${date.day} ${L10nService.get(monthKey, language)} ${date.year}';
   }
 
-  Widget _buildDraconicOverviewCard(bool isDark) {
+  Widget _buildDraconicOverviewCard(bool isDark, AppLanguage language) {
     if (_chart == null) return const SizedBox.shrink();
 
     return Container(
@@ -317,7 +320,7 @@ class _DraconicChartScreenState extends ConsumerState<DraconicChartScreen> {
       child: Column(
         children: [
           Text(
-            'Drakonik Üçlüsü',
+            L10nService.get('draconic.triad', language),
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 18,
@@ -329,22 +332,25 @@ class _DraconicChartScreenState extends ConsumerState<DraconicChartScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               _buildDraconicSign(
-                'Güneş',
+                L10nService.get('draconic.sun', language),
                 _chart!.draconicSun,
                 '',
                 isDark,
+                language,
               ),
               _buildDraconicSign(
-                'Ay',
+                L10nService.get('draconic.moon', language),
                 _chart!.draconicMoon,
                 '',
                 isDark,
+                language,
               ),
               _buildDraconicSign(
-                'Yükselen',
+                L10nService.get('draconic.ascendant', language),
                 _chart!.draconicAscendant,
                 '',
                 isDark,
+                language,
               ),
             ],
           ),
@@ -354,7 +360,7 @@ class _DraconicChartScreenState extends ConsumerState<DraconicChartScreen> {
   }
 
   Widget _buildDraconicSign(
-      String label, ZodiacSign sign, String emoji, bool isDark) {
+      String label, ZodiacSign sign, String emoji, bool isDark, AppLanguage language) {
     return Column(
       children: [
         Text(emoji, style: const TextStyle(fontSize: 28)),
@@ -382,7 +388,7 @@ class _DraconicChartScreenState extends ConsumerState<DraconicChartScreen> {
               Text(sign.symbol, style: const TextStyle(fontSize: 16)),
               const SizedBox(width: 4),
               Text(
-                sign.nameTr,
+                sign.localizedName(language),
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 13,
@@ -396,60 +402,60 @@ class _DraconicChartScreenState extends ConsumerState<DraconicChartScreen> {
     );
   }
 
-  Widget _buildSoulPurposeCard(bool isDark) {
+  Widget _buildSoulPurposeCard(bool isDark, AppLanguage language) {
     if (_chart == null) return const SizedBox.shrink();
 
     return _buildContentCard(
       icon: '',
-      title: 'Ruhsal Amaç',
+      title: L10nService.get('draconic.soul_purpose', language),
       content: _chart!.soulPurpose,
       isDark: isDark,
       color: AppColors.gold,
     );
   }
 
-  Widget _buildKarmicLessonsCard(bool isDark) {
+  Widget _buildKarmicLessonsCard(bool isDark, AppLanguage language) {
     if (_chart == null) return const SizedBox.shrink();
 
     return _buildContentCard(
       icon: '',
-      title: 'Karmik Dersler',
+      title: L10nService.get('draconic.karmic_lessons', language),
       content: _chart!.karmicLessons,
       isDark: isDark,
       color: AppColors.mystic,
     );
   }
 
-  Widget _buildSpiritualGiftsCard(bool isDark) {
+  Widget _buildSpiritualGiftsCard(bool isDark, AppLanguage language) {
     if (_chart == null) return const SizedBox.shrink();
 
     return _buildContentCard(
       icon: '',
-      title: 'Spiritual Hediyeler',
+      title: L10nService.get('draconic.spiritual_gifts', language),
       content: _chart!.spiritualGifts,
       isDark: isDark,
       color: AppColors.cosmic,
     );
   }
 
-  Widget _buildPastLifeCard(bool isDark) {
+  Widget _buildPastLifeCard(bool isDark, AppLanguage language) {
     if (_chart == null) return const SizedBox.shrink();
 
     return _buildContentCard(
       icon: '',
-      title: 'Geçmiş Yaşam Göstergeleri',
+      title: L10nService.get('draconic.past_life_indicators', language),
       content: _chart!.pastLifeIndicators,
       isDark: isDark,
       color: Colors.purple,
     );
   }
 
-  Widget _buildEvolutionaryPathCard(bool isDark) {
+  Widget _buildEvolutionaryPathCard(bool isDark, AppLanguage language) {
     if (_chart == null) return const SizedBox.shrink();
 
     return _buildContentCard(
       icon: '',
-      title: 'Evrimsel Yol',
+      title: L10nService.get('draconic.evolutionary_path', language),
       content: _chart!.evolutionaryPath,
       isDark: isDark,
       color: Colors.teal,
@@ -505,7 +511,7 @@ class _DraconicChartScreenState extends ConsumerState<DraconicChartScreen> {
     );
   }
 
-  Widget _buildPlanetPositionsCard(bool isDark) {
+  Widget _buildPlanetPositionsCard(bool isDark, AppLanguage language) {
     if (_chart == null) return const SizedBox.shrink();
 
     return Container(
@@ -529,7 +535,7 @@ class _DraconicChartScreenState extends ConsumerState<DraconicChartScreen> {
               const Text('', style: TextStyle(fontSize: 24)),
               const SizedBox(width: AppConstants.spacingMd),
               Text(
-                'Drakonik Gezegen Pozisyonları',
+                L10nService.get('draconic.planet_positions', language),
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
@@ -539,13 +545,13 @@ class _DraconicChartScreenState extends ConsumerState<DraconicChartScreen> {
             ],
           ),
           const SizedBox(height: AppConstants.spacingMd),
-          ..._chart!.planets.map((planet) => _buildPlanetTile(planet, isDark)),
+          ..._chart!.planets.map((planet) => _buildPlanetTile(planet, isDark, language)),
         ],
       ),
     );
   }
 
-  Widget _buildPlanetTile(DraconicPlanet planet, bool isDark) {
+  Widget _buildPlanetTile(DraconicPlanet planet, bool isDark, AppLanguage language) {
     return ExpansionTile(
       tilePadding: EdgeInsets.zero,
       leading: CircleAvatar(
@@ -573,7 +579,7 @@ class _DraconicChartScreenState extends ConsumerState<DraconicChartScreen> {
               borderRadius: BorderRadius.circular(12),
             ),
             child: Text(
-              '${planet.sign.symbol} ${planet.sign.nameTr}',
+              '${planet.sign.symbol} ${planet.sign.localizedName(language)}',
               style: TextStyle(
                 fontSize: 11,
                 color: isDark ? Colors.white : AppColors.textDark,
@@ -583,7 +589,7 @@ class _DraconicChartScreenState extends ConsumerState<DraconicChartScreen> {
         ],
       ),
       subtitle: Text(
-        '${planet.degree.toStringAsFixed(1)} - ${planet.house}. Ev',
+        '${planet.degree.toStringAsFixed(1)} - ${planet.house}. ${L10nService.get('draconic.house', language)}',
         style: TextStyle(
           fontSize: 12,
           color: isDark ? Colors.white60 : AppColors.textLight,

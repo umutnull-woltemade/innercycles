@@ -8,6 +8,7 @@ import '../../../data/models/natal_chart.dart';
 import '../../../data/models/zodiac_sign.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/ephemeris_service.dart';
+import '../../../data/services/l10n_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/kadim_not_card.dart';
 import '../../../shared/widgets/next_blocks.dart';
@@ -98,14 +99,14 @@ class TransitsScreen extends ConsumerWidget {
                   Icon(Icons.error_outline, color: AppColors.fireElement, size: 48),
                   const SizedBox(height: 16),
                   Text(
-                    'Gezegen verileri yüklenemedi',
+                    L10nService.get('transits.error_loading', language),
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                       color: AppColors.textPrimary,
                     ),
                   ),
                   TextButton(
                     onPressed: () => ref.invalidate(currentTransitsProvider),
-                    child: const Text('Tekrar Dene'),
+                    child: Text(L10nService.get('common.retry', language)),
                   ),
                 ],
               ),
@@ -117,20 +118,17 @@ class TransitsScreen extends ConsumerWidget {
                 children: [
                   _buildHeader(context, ref),
                   const SizedBox(height: AppConstants.spacingXl),
-                  _buildCurrentSkyCard(context, currentTransits),
+                  _buildCurrentSkyCard(context, currentTransits, language),
                   const SizedBox(height: AppConstants.spacingXl),
-                  _buildRetrogradePlanets(context, currentTransits),
+                  _buildRetrogradePlanets(context, currentTransits, language),
                   const SizedBox(height: AppConstants.spacingXl),
                   _buildPlanetList(context, currentTransits, language),
                   const SizedBox(height: AppConstants.spacingXl),
                   // Kadim Not
                   KadimNotCard(
                     category: KadimCategory.astrology,
-                    title: 'Kozmik Hava Durumu',
-                    content: 'Transitler, gökyüzündeki gezegenlerin şu anki konumlarının doğum haritanla '
-                        'nasıl etkileştiğini gösterir. Kozmik bir hava durumu raporu gibi düşün - '
-                        'evrenin enerjileri her gün değişir ve bu geçişler hayatının farklı alanlarını tetikler. '
-                        'Antik astrologlar gökyüzünü okuyarak krallıkların kaderini belirlerdi.',
+                    title: L10nService.get('transits.kadim_title', language),
+                    content: L10nService.get('transits.kadim_content', language),
                     icon: Icons.compare_arrows,
                   ),
                   const SizedBox(height: AppConstants.spacingXl),
@@ -141,8 +139,8 @@ class TransitsScreen extends ConsumerWidget {
                   const NextBlocks(currentPage: 'transits'),
                   const SizedBox(height: AppConstants.spacingXl),
                   // Entertainment Disclaimer
-                  const PageFooterWithDisclaimer(
-                    brandText: 'Transitler — Venus One',
+                  PageFooterWithDisclaimer(
+                    brandText: L10nService.get('transits.brand_footer', language),
                     disclaimerText: DisclaimerTexts.astrology,
                   ),
                   const SizedBox(height: AppConstants.spacingLg),
@@ -169,15 +167,13 @@ class TransitsScreen extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                language == AppLanguage.tr ? 'Gezegen Transitler' : 'Planet Transits',
+                L10nService.get('transits.title', language),
                 style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                       color: AppColors.starGold,
                     ),
               ).animate().fadeIn(duration: 400.ms),
               Text(
-                language == AppLanguage.tr
-                    ? 'Bugünkü gökyüzü enerjileri'
-                    : 'Today\'s sky energies',
+                L10nService.get('transits.subtitle', language),
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: AppColors.textSecondary,
                     ),
@@ -189,7 +185,7 @@ class TransitsScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildCurrentSkyCard(BuildContext context, List<PlanetPosition> transits) {
+  Widget _buildCurrentSkyCard(BuildContext context, List<PlanetPosition> transits, AppLanguage language) {
     final now = DateTime.now();
     final dateStr = '${now.day}.${now.month}.${now.year}';
 
@@ -233,7 +229,7 @@ class TransitsScreen extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Bugünün Gökyüzü',
+                      L10nService.get('transits.todays_sky', language),
                       style: Theme.of(context).textTheme.titleLarge?.copyWith(
                             color: AppColors.textPrimary,
                           ),
@@ -250,13 +246,13 @@ class TransitsScreen extends ConsumerWidget {
             ],
           ),
           const SizedBox(height: AppConstants.spacingLg),
-          _buildMiniPlanetRow(context, transits),
+          _buildMiniPlanetRow(context, transits, language),
         ],
       ),
     ).animate().fadeIn(delay: 200.ms, duration: 400.ms).slideY(begin: 0.1);
   }
 
-  Widget _buildMiniPlanetRow(BuildContext context, List<PlanetPosition> transits) {
+  Widget _buildMiniPlanetRow(BuildContext context, List<PlanetPosition> transits, AppLanguage language) {
     // Show first 5 personal planets
     final personalPlanets = transits
         .where((p) => p.planet.isPersonalPlanet)
@@ -296,7 +292,7 @@ class TransitsScreen extends ConsumerWidget {
               ),
               const SizedBox(width: 4),
               Text(
-                planet.sign.nameTr,
+                planet.sign.localizedName(language),
                 style: Theme.of(context).textTheme.labelSmall?.copyWith(
                       color: planet.sign.color,
                     ),
@@ -318,7 +314,7 @@ class TransitsScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildRetrogradePlanets(BuildContext context, List<PlanetPosition> transits) {
+  Widget _buildRetrogradePlanets(BuildContext context, List<PlanetPosition> transits, AppLanguage language) {
     final retrogrades = transits.where((p) => p.isRetrograde).toList();
 
     if (retrogrades.isEmpty) {
@@ -341,7 +337,7 @@ class TransitsScreen extends ConsumerWidget {
             const SizedBox(width: AppConstants.spacingMd),
             Expanded(
               child: Text(
-                'Hiçbir gezegen retro değil!',
+                L10nService.get('transits.no_retrograde', language),
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       color: AppColors.earthElement,
                     ),
@@ -364,7 +360,7 @@ class TransitsScreen extends ConsumerWidget {
             ),
             const SizedBox(width: 8),
             Text(
-              'Retrograd Gezegenler',
+              L10nService.get('transits.retrograde_planets', language),
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     color: AppColors.textPrimary,
                   ),
@@ -375,7 +371,7 @@ class TransitsScreen extends ConsumerWidget {
         ...retrogrades.asMap().entries.map((entry) {
           final index = entry.key;
           final planet = entry.value;
-          return _buildRetrogradeCard(context, planet)
+          return _buildRetrogradeCard(context, planet, language)
               .animate()
               .fadeIn(delay: (300 + index * 100).ms, duration: 400.ms);
         }),
@@ -383,7 +379,7 @@ class TransitsScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildRetrogradeCard(BuildContext context, PlanetPosition planet) {
+  Widget _buildRetrogradeCard(BuildContext context, PlanetPosition planet, AppLanguage language) {
     return Container(
       width: double.infinity,
       margin: const EdgeInsets.only(bottom: AppConstants.spacingSm),
@@ -426,7 +422,7 @@ class TransitsScreen extends ConsumerWidget {
                 Row(
                   children: [
                     Text(
-                      planet.planet.nameTr,
+                      planet.planet.localizedName(language),
                       style: Theme.of(context).textTheme.titleSmall?.copyWith(
                             color: planet.planet.color,
                           ),
@@ -450,7 +446,7 @@ class TransitsScreen extends ConsumerWidget {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  _getRetrogradeMessage(planet.planet),
+                  _getRetrogradeMessage(planet.planet, language),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: AppColors.textSecondary,
                       ),
@@ -463,27 +459,9 @@ class TransitsScreen extends ConsumerWidget {
     );
   }
 
-  String _getRetrogradeMessage(Planet planet) {
-    switch (planet) {
-      case Planet.mercury:
-        return 'İletişim ve seyahatte dikkatli ol. Eski konuları gözden geçir.';
-      case Planet.venus:
-        return 'Aşk ve finans konularında yavaş ilerle. İlişkileri sorgula.';
-      case Planet.mars:
-        return 'Enerjini içe yönlendir. Agresif kararlardan kaçın.';
-      case Planet.jupiter:
-        return 'İç büyüme ve felsefik sorgulamalar zamanı.';
-      case Planet.saturn:
-        return 'Sorumlulukları yeniden yapılandır. Sabırlı ol.';
-      case Planet.uranus:
-        return 'İç özgürlük arayışı. Beklenmedik değişimler.';
-      case Planet.neptune:
-        return 'Rüyalar ve sezgiler güçleniyor. Gerçeklik bulanık.';
-      case Planet.pluto:
-        return 'Derin dönüşüm süreci. Gölge çalışması zamanı.';
-      default:
-        return 'Bu gezegen retro döneminde.';
-    }
+  String _getRetrogradeMessage(Planet planet, AppLanguage language) {
+    final key = 'transits.retrograde_${planet.name.toLowerCase()}';
+    return L10nService.get(key, language);
   }
 
   Widget _buildPlanetList(BuildContext context, List<PlanetPosition> transits, AppLanguage language) {
@@ -491,7 +469,7 @@ class TransitsScreen extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          language == AppLanguage.tr ? 'Tüm Gezegenler' : 'All Planets',
+          L10nService.get('transits.all_planets', language),
           style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 color: AppColors.textPrimary,
               ),
@@ -509,12 +487,8 @@ class TransitsScreen extends ConsumerWidget {
   }
 
   Widget _buildPlanetCard(BuildContext context, PlanetPosition position, AppLanguage language) {
-    final planetName = language == AppLanguage.tr
-        ? position.planet.nameTr
-        : position.planet.name;
-    final signName = language == AppLanguage.tr
-        ? position.sign.nameTr
-        : position.sign.name;
+    final planetName = position.planet.localizedName(language);
+    final signName = position.sign.localizedName(language);
 
     return Container(
       width: double.infinity,

@@ -11,6 +11,7 @@ import 'dart:io';
 import '../../../core/theme/mystical_colors.dart';
 import '../../../data/models/zodiac_sign.dart' as zodiac;
 import '../../../data/providers/app_providers.dart';
+import '../../../data/services/l10n_service.dart';
 import 'instagram_story_card.dart';
 
 class ShareSummaryScreen extends ConsumerStatefulWidget {
@@ -27,6 +28,7 @@ class _ShareSummaryScreenState extends ConsumerState<ShareSummaryScreen> {
   @override
   Widget build(BuildContext context) {
     final userProfile = ref.watch(userProfileProvider);
+    final language = ref.watch(languageProvider);
     final sign = userProfile?.sunSign ?? zodiac.ZodiacSign.aries;
 
     return Scaffold(
@@ -39,7 +41,7 @@ class _ShareSummaryScreenState extends ConsumerState<ShareSummaryScreen> {
           onPressed: () => context.pop(),
         ),
         title: Text(
-          'Kozmik Paylaşım',
+          L10nService.get('share.cosmic_share', language),
           style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 color: MysticalColors.textPrimary,
               ),
@@ -54,11 +56,12 @@ class _ShareSummaryScreenState extends ConsumerState<ShareSummaryScreen> {
             RepaintBoundary(
               key: _cardKey,
               child: InstagramStoryCard(
-                name: userProfile?.name ?? sign.nameTr,
+                name: userProfile?.name ?? sign.localizedName(language),
                 sign: sign,
                 moonSign: userProfile?.moonSign,
                 risingSign: userProfile?.risingSign,
                 birthDate: userProfile?.birthDate,
+                language: language,
               ),
             ).animate().fadeIn(duration: 500.ms).scale(begin: const Offset(0.95, 0.95)),
 
@@ -67,14 +70,15 @@ class _ShareSummaryScreenState extends ConsumerState<ShareSummaryScreen> {
             // Share Button
             _ShareButton(
               isLoading: _isCapturing,
-              onPressed: _captureAndShare,
+              onPressed: () => _captureAndShare(language),
+              language: language,
             ).animate().fadeIn(delay: 300.ms, duration: 400.ms),
 
             const SizedBox(height: 16),
 
             // Hint
             Text(
-              'Instagram hikayende kozmik enerjini paylaş!',
+              L10nService.get('share.share_cosmic_energy_story', language),
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: MysticalColors.textSecondary,
                   ),
@@ -87,7 +91,7 @@ class _ShareSummaryScreenState extends ConsumerState<ShareSummaryScreen> {
     );
   }
 
-  Future<void> _captureAndShare() async {
+  Future<void> _captureAndShare(AppLanguage language) async {
     setState(() => _isCapturing = true);
 
     try {
@@ -113,11 +117,11 @@ class _ShareSummaryScreenState extends ConsumerState<ShareSummaryScreen> {
       // Share
       await Share.shareXFiles(
         [XFile(file.path)],
-        text: 'Bugünün kozmik enerjisi benimle! ✨🔮 Evrenin fısıltılarını dinle... #venusone #astroloji #burçyorumu #kozmikenerji',
+        text: L10nService.get('share.share_text', language),
       );
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Paylaşım hatası: $e')),
+        SnackBar(content: Text('${L10nService.get('share.share_error', language)}: $e')),
       );
     } finally {
       setState(() => _isCapturing = false);
@@ -128,10 +132,12 @@ class _ShareSummaryScreenState extends ConsumerState<ShareSummaryScreen> {
 class _ShareButton extends StatefulWidget {
   final bool isLoading;
   final VoidCallback onPressed;
+  final AppLanguage language;
 
   const _ShareButton({
     required this.isLoading,
     required this.onPressed,
+    required this.language,
   });
 
   @override
@@ -350,7 +356,7 @@ class _ShareButtonState extends State<_ShareButton> with TickerProviderStateMixi
                             Row(
                               children: [
                                 Text(
-                                  'Instagram\'da Paylaş',
+                                  L10nService.get('share.share_on_instagram', widget.language),
                                   style: GoogleFonts.raleway(
                                     fontSize: 17,
                                     fontWeight: FontWeight.w800,
@@ -371,7 +377,7 @@ class _ShareButtonState extends State<_ShareButton> with TickerProviderStateMixi
                             ),
                             const SizedBox(height: 3),
                             Text(
-                              'Hikayende kozmik enerjini paylaş!',
+                              L10nService.get('share.share_cosmic_energy_story', widget.language),
                               style: GoogleFonts.raleway(
                                 fontSize: 11,
                                 fontWeight: FontWeight.w500,

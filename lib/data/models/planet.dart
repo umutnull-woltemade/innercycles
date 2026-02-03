@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../models/zodiac_sign.dart';
+import '../providers/app_providers.dart';
+import '../services/l10n_service.dart';
 
 /// Represents a celestial body
 enum Planet {
@@ -105,6 +107,78 @@ extension PlanetExtension on Planet {
       case Planet.descendant:
         return 'Alçalan';
     }
+  }
+
+  /// Get localized name based on app language
+  /// Uses strict isolation L10nService for supported languages (EN/TR/DE/FR)
+  String localizedName(AppLanguage language) {
+    // Map planet enum to JSON key
+    String key;
+    switch (this) {
+      case Planet.sun:
+        key = 'planets.sun';
+        break;
+      case Planet.moon:
+        key = 'planets.moon';
+        break;
+      case Planet.mercury:
+        key = 'planets.mercury';
+        break;
+      case Planet.venus:
+        key = 'planets.venus';
+        break;
+      case Planet.mars:
+        key = 'planets.mars';
+        break;
+      case Planet.jupiter:
+        key = 'planets.jupiter';
+        break;
+      case Planet.saturn:
+        key = 'planets.saturn';
+        break;
+      case Planet.uranus:
+        key = 'planets.uranus';
+        break;
+      case Planet.neptune:
+        key = 'planets.neptune';
+        break;
+      case Planet.pluto:
+        key = 'planets.pluto';
+        break;
+      case Planet.northNode:
+        key = 'planets.north_node';
+        break;
+      case Planet.southNode:
+        key = 'planets.south_node';
+        break;
+      case Planet.chiron:
+        key = 'planets.chiron';
+        break;
+      case Planet.lilith:
+        key = 'planets.lilith';
+        break;
+      case Planet.ascendant:
+        key = 'planets.ascendant';
+        break;
+      case Planet.midheaven:
+        key = 'planets.midheaven';
+        break;
+      case Planet.ic:
+        key = 'planets.ic';
+        break;
+      case Planet.descendant:
+        key = 'planets.descendant';
+        break;
+    }
+
+    // Use strict isolation L10nService for supported languages
+    if (L10nService.supportedLanguages.contains(language) &&
+        L10nService.isLanguageLoaded(language)) {
+      return L10nService.get(key, language);
+    }
+
+    // Fallback to hardcoded names for unsupported languages
+    return language == AppLanguage.tr ? nameTr : name;
   }
 
   String get symbol {

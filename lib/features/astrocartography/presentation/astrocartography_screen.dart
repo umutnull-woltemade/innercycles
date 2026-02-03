@@ -6,6 +6,7 @@ import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/premium_astrology.dart';
 import '../../../data/services/premium_astrology_service.dart';
+import '../../../data/services/l10n_service.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 
@@ -53,6 +54,7 @@ class _AstroCartographyScreenState extends ConsumerState<AstroCartographyScreen>
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final userProfile = ref.watch(userProfileProvider);
+    final language = ref.watch(languageProvider);
 
     if (userProfile == null) {
       return Scaffold(
@@ -64,14 +66,14 @@ class _AstroCartographyScreenState extends ConsumerState<AstroCartographyScreen>
                 const Text('🗺️', style: TextStyle(fontSize: 64)),
                 const SizedBox(height: 16),
                 Text(
-                  'Profil Bulunamadı',
+                  L10nService.get('astrocartography.profile_not_found', language),
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
                         color: Colors.white,
                       ),
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Astrokatografi haritanızı görmek için\nönce doğum bilgilerinizi girin',
+                  L10nService.get('astrocartography.enter_birth_info', language),
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         color: Colors.white70,
                       ),
@@ -81,7 +83,7 @@ class _AstroCartographyScreenState extends ConsumerState<AstroCartographyScreen>
                 ElevatedButton.icon(
                   onPressed: () => context.go(Routes.onboarding),
                   icon: const Icon(Icons.person_add),
-                  label: const Text('Profil Oluştur'),
+                  label: Text(L10nService.get('astrocartography.create_profile', language)),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF667EEA),
                     foregroundColor: Colors.white,
@@ -91,7 +93,7 @@ class _AstroCartographyScreenState extends ConsumerState<AstroCartographyScreen>
                 const SizedBox(height: 12),
                 TextButton(
                   onPressed: () => context.pop(),
-                  child: const Text('Geri Dön', style: TextStyle(color: Colors.white70)),
+                  child: Text(L10nService.get('common.go_back', language), style: const TextStyle(color: Colors.white70)),
                 ),
               ],
             ),
@@ -105,33 +107,33 @@ class _AstroCartographyScreenState extends ConsumerState<AstroCartographyScreen>
         child: SafeArea(
           child: Column(
             children: [
-              _buildHeader(context, isDark),
+              _buildHeader(context, isDark, language),
               Expanded(
                 child: SingleChildScrollView(
                   padding: const EdgeInsets.all(AppConstants.spacingLg),
                   child: Column(
                     children: [
-                      _buildInfoBanner(isDark),
+                      _buildInfoBanner(isDark, language),
                       const SizedBox(height: AppConstants.spacingLg),
-                      _buildProfileCard(isDark, userProfile),
+                      _buildProfileCard(isDark, userProfile, language),
                       const SizedBox(height: AppConstants.spacingLg),
                       if (_data != null) ...[
-                        _buildFilterChips(isDark),
+                        _buildFilterChips(isDark, language),
                         const SizedBox(height: AppConstants.spacingMd),
-                        _buildWorldMapPlaceholder(isDark),
+                        _buildWorldMapPlaceholder(isDark, language),
                         const SizedBox(height: AppConstants.spacingMd),
-                        _buildPowerPlacesCard(isDark),
+                        _buildPowerPlacesCard(isDark, language),
                         const SizedBox(height: AppConstants.spacingMd),
-                        _buildPlanetaryLinesCard(isDark),
+                        _buildPlanetaryLinesCard(isDark, language),
                         const SizedBox(height: AppConstants.spacingMd),
-                        _buildAnalysisCard(isDark),
+                        _buildAnalysisCard(isDark, language),
                         const SizedBox(height: AppConstants.spacingXxl),
                       ] else ...[
                         const SizedBox(height: 100),
                         const CircularProgressIndicator(color: AppColors.cosmic),
                         const SizedBox(height: 16),
                         Text(
-                          'Harita olusturuluyor...',
+                          L10nService.get('astrocartography.generating_map', language),
                           style: TextStyle(
                             color: isDark ? Colors.white70 : AppColors.textLight,
                           ),
@@ -148,7 +150,7 @@ class _AstroCartographyScreenState extends ConsumerState<AstroCartographyScreen>
     );
   }
 
-  Widget _buildHeader(BuildContext context, bool isDark) {
+  Widget _buildHeader(BuildContext context, bool isDark, AppLanguage language) {
     return Padding(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       child: Row(
@@ -162,7 +164,7 @@ class _AstroCartographyScreenState extends ConsumerState<AstroCartographyScreen>
           ),
           Expanded(
             child: Text(
-              'AstroCartography',
+              L10nService.get('astrocartography.title', language),
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                     fontWeight: FontWeight.bold,
                     color: isDark ? Colors.white : AppColors.textDark,
@@ -176,7 +178,7 @@ class _AstroCartographyScreenState extends ConsumerState<AstroCartographyScreen>
     );
   }
 
-  Widget _buildInfoBanner(bool isDark) {
+  Widget _buildInfoBanner(bool isDark, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingMd),
       decoration: BoxDecoration(
@@ -200,14 +202,14 @@ class _AstroCartographyScreenState extends ConsumerState<AstroCartographyScreen>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Konum Astrolojisi',
+                  L10nService.get('astrocartography.location_astrology', language),
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: isDark ? Colors.white : AppColors.textDark,
                   ),
                 ),
                 Text(
-                  'Dogum haritanizin dunya uzerindeki yansimalarini kesfedin',
+                  L10nService.get('astrocartography.discover_reflections', language),
                   style: TextStyle(
                     fontSize: 12,
                     color: isDark ? Colors.white70 : AppColors.textLight,
@@ -221,7 +223,7 @@ class _AstroCartographyScreenState extends ConsumerState<AstroCartographyScreen>
     );
   }
 
-  Widget _buildProfileCard(bool isDark, dynamic userProfile) {
+  Widget _buildProfileCard(bool isDark, dynamic userProfile, AppLanguage language) {
     final hasCoordinates = userProfile.birthLatitude != null && userProfile.birthLongitude != null;
 
     return Container(
@@ -247,7 +249,7 @@ class _AstroCartographyScreenState extends ConsumerState<AstroCartographyScreen>
               ),
               const SizedBox(width: 8),
               Text(
-                'Profil Bilgileri',
+                L10nService.get('common.profile_info', language),
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
@@ -271,7 +273,7 @@ class _AstroCartographyScreenState extends ConsumerState<AstroCartographyScreen>
                     ),
                     const SizedBox(width: 4),
                     Text(
-                      hasCoordinates ? 'Tam Veri' : 'Varsayilan Konum',
+                      hasCoordinates ? L10nService.get('astrocartography.full_data', language) : L10nService.get('astrocartography.default_location', language),
                       style: TextStyle(
                         fontSize: 11,
                         color: hasCoordinates ? AppColors.cosmic : Colors.orange,
@@ -283,14 +285,14 @@ class _AstroCartographyScreenState extends ConsumerState<AstroCartographyScreen>
             ],
           ),
           const SizedBox(height: AppConstants.spacingMd),
-          _buildInfoRow(isDark, Icons.person_outline, 'Isim', userProfile.name ?? 'Kullanici'),
-          _buildInfoRow(isDark, Icons.cake_outlined, 'Dogum Tarihi', _formatDate(userProfile.birthDate)),
-          _buildInfoRow(isDark, Icons.location_on_outlined, 'Dogum Yeri', userProfile.birthPlace ?? 'Belirtilmedi'),
+          _buildInfoRow(isDark, Icons.person_outline, L10nService.get('common.name', language), userProfile.name ?? L10nService.get('common.user', language)),
+          _buildInfoRow(isDark, Icons.cake_outlined, L10nService.get('common.birth_date', language), _formatDate(userProfile.birthDate, language)),
+          _buildInfoRow(isDark, Icons.location_on_outlined, L10nService.get('common.birth_place', language), userProfile.birthPlace ?? L10nService.get('common.not_specified', language)),
           if (hasCoordinates)
             _buildInfoRow(
               isDark,
               Icons.explore_outlined,
-              'Koordinatlar',
+              L10nService.get('astrocartography.coordinates', language),
               '${userProfile.birthLatitude!.toStringAsFixed(4)}, ${userProfile.birthLongitude!.toStringAsFixed(4)}',
             ),
         ],
@@ -328,21 +330,31 @@ class _AstroCartographyScreenState extends ConsumerState<AstroCartographyScreen>
     );
   }
 
-  String _formatDate(DateTime date) {
-    const months = [
-      'Ocak', 'Subat', 'Mart', 'Nisan', 'Mayis', 'Haziran',
-      'Temmuz', 'Agustos', 'Eylul', 'Ekim', 'Kasim', 'Aralik'
+  String _formatDate(DateTime date, AppLanguage language) {
+    final months = [
+      L10nService.get('months.january', language),
+      L10nService.get('months.february', language),
+      L10nService.get('months.march', language),
+      L10nService.get('months.april', language),
+      L10nService.get('months.may', language),
+      L10nService.get('months.june', language),
+      L10nService.get('months.july', language),
+      L10nService.get('months.august', language),
+      L10nService.get('months.september', language),
+      L10nService.get('months.october', language),
+      L10nService.get('months.november', language),
+      L10nService.get('months.december', language),
     ];
     return '${date.day} ${months[date.month - 1]} ${date.year}';
   }
 
-  Widget _buildFilterChips(bool isDark) {
+  Widget _buildFilterChips(bool isDark, AppLanguage language) {
     final filters = [
-      {'id': 'all', 'label': 'Tumu'},
-      {'id': 'sun', 'label': 'Gunes'},
-      {'id': 'moon', 'label': 'Ay'},
-      {'id': 'venus', 'label': 'Venus'},
-      {'id': 'jupiter', 'label': 'Jupiter'},
+      {'id': 'all', 'label': L10nService.get('common.all', language)},
+      {'id': 'sun', 'label': L10nService.get('planets.sun', language)},
+      {'id': 'moon', 'label': L10nService.get('planets.moon', language)},
+      {'id': 'venus', 'label': L10nService.get('planets.venus', language)},
+      {'id': 'jupiter', 'label': L10nService.get('planets.jupiter', language)},
     ];
 
     return SingleChildScrollView(
@@ -369,7 +381,7 @@ class _AstroCartographyScreenState extends ConsumerState<AstroCartographyScreen>
     );
   }
 
-  Widget _buildWorldMapPlaceholder(bool isDark) {
+  Widget _buildWorldMapPlaceholder(bool isDark, AppLanguage language) {
     return Container(
       height: 200,
       decoration: BoxDecoration(
@@ -399,14 +411,14 @@ class _AstroCartographyScreenState extends ConsumerState<AstroCartographyScreen>
                 ),
                 const SizedBox(height: AppConstants.spacingMd),
                 Text(
-                  'Dunya Haritasi',
+                  L10nService.get('astrocartography.world_map', language),
                   style: TextStyle(
                     color: Colors.white.withValues(alpha: 0.8),
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 Text(
-                  'Gezegen cizgileriniz burada gosterilir',
+                  L10nService.get('astrocartography.planetary_lines_shown_here', language),
                   style: TextStyle(
                     color: Colors.white.withValues(alpha: 0.6),
                     fontSize: 12,
@@ -445,7 +457,7 @@ class _AstroCartographyScreenState extends ConsumerState<AstroCartographyScreen>
     );
   }
 
-  Widget _buildPowerPlacesCard(bool isDark) {
+  Widget _buildPowerPlacesCard(bool isDark, AppLanguage language) {
     if (_data == null) return const SizedBox.shrink();
 
     return Container(
@@ -469,7 +481,7 @@ class _AstroCartographyScreenState extends ConsumerState<AstroCartographyScreen>
               const Text('', style: TextStyle(fontSize: 24)),
               const SizedBox(width: AppConstants.spacingMd),
               Text(
-                'Guc Noktalari',
+                L10nService.get('astrocartography.power_points', language),
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 18,
@@ -479,13 +491,13 @@ class _AstroCartographyScreenState extends ConsumerState<AstroCartographyScreen>
             ],
           ),
           const SizedBox(height: AppConstants.spacingMd),
-          ..._data!.powerPlaces.take(5).map((place) => _buildPowerPlaceTile(place, isDark)),
+          ..._data!.powerPlaces.take(5).map((place) => _buildPowerPlaceTile(place, isDark, language)),
         ],
       ),
     );
   }
 
-  Widget _buildPowerPlaceTile(PowerPlace place, bool isDark) {
+  Widget _buildPowerPlaceTile(PowerPlace place, bool isDark, AppLanguage language) {
     return Container(
       margin: const EdgeInsets.only(bottom: AppConstants.spacingMd),
       padding: const EdgeInsets.all(AppConstants.spacingMd),
@@ -539,7 +551,7 @@ class _AstroCartographyScreenState extends ConsumerState<AstroCartographyScreen>
           ),
           const SizedBox(height: 8),
           Text(
-            'Aktif Gezegenler: ${place.activePlanets.join(", ")}',
+            '${L10nService.get('astrocartography.active_planets', language)}: ${place.activePlanets.join(", ")}',
             style: TextStyle(
               fontSize: 12,
               color: isDark ? Colors.white70 : AppColors.textLight,
@@ -558,7 +570,7 @@ class _AstroCartographyScreenState extends ConsumerState<AstroCartographyScreen>
     );
   }
 
-  Widget _buildPlanetaryLinesCard(bool isDark) {
+  Widget _buildPlanetaryLinesCard(bool isDark, AppLanguage language) {
     if (_data == null) return const SizedBox.shrink();
 
     // Group lines by planet
@@ -595,7 +607,7 @@ class _AstroCartographyScreenState extends ConsumerState<AstroCartographyScreen>
               const Text('', style: TextStyle(fontSize: 24)),
               const SizedBox(width: AppConstants.spacingMd),
               Text(
-                'Gezegen Cizgileri',
+                L10nService.get('astrocartography.planetary_lines', language),
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 18,
@@ -607,14 +619,14 @@ class _AstroCartographyScreenState extends ConsumerState<AstroCartographyScreen>
           const SizedBox(height: AppConstants.spacingMd),
           ...filteredPlanets.take(3).map((planet) {
             final lines = linesByPlanet[planet]!;
-            return _buildPlanetSection(planet, lines, isDark);
+            return _buildPlanetSection(planet, lines, isDark, language);
           }),
         ],
       ),
     );
   }
 
-  Widget _buildPlanetSection(String planet, List<PlanetaryLine> lines, bool isDark) {
+  Widget _buildPlanetSection(String planet, List<PlanetaryLine> lines, bool isDark, AppLanguage language) {
     return ExpansionTile(
       tilePadding: EdgeInsets.zero,
       title: Text(
@@ -641,7 +653,7 @@ class _AstroCartographyScreenState extends ConsumerState<AstroCartographyScreen>
             size: 20,
           ),
           title: Text(
-            line.lineType.nameTr,
+            line.lineType.localizedName(language),
             style: TextStyle(
               fontSize: 14,
               color: isDark ? Colors.white : AppColors.textDark,
@@ -701,7 +713,7 @@ class _AstroCartographyScreenState extends ConsumerState<AstroCartographyScreen>
     }
   }
 
-  Widget _buildAnalysisCard(bool isDark) {
+  Widget _buildAnalysisCard(bool isDark, AppLanguage language) {
     if (_data == null) return const SizedBox.shrink();
 
     return Container(
@@ -726,7 +738,7 @@ class _AstroCartographyScreenState extends ConsumerState<AstroCartographyScreen>
               const Text('', style: TextStyle(fontSize: 24)),
               const SizedBox(width: AppConstants.spacingMd),
               Text(
-                'Genel Analiz',
+                L10nService.get('astrocartography.general_analysis', language),
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 18,

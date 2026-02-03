@@ -173,11 +173,12 @@ class _KozmozScreenState extends ConsumerState<KozmozScreen>
     final userProfile = ref.read(userProfileProvider);
     final sign = userProfile?.sunSign ?? zodiac.ZodiacSign.aries;
     final userName = userProfile?.name ?? 'Yolcu';
+    final language = ref.read(languageProvider);
 
     setState(() {
       _messages.add(_ChatMessage(
         text: 'Merhaba $userName! 🌟\n\n'
-            'Ben Kozmoz İzi, senin kozmik rehberin. ${sign.nameTr} burcunun enerjisiyle '
+            'Ben Kozmoz İzi, senin kozmik rehberin. ${sign.localizedName(language)} burcunun enerjisiyle '
             'astroloji, burç yorumları, transitler, numeroloji ve daha fazlası hakkında '
             'sorularını yanıtlamak için buradayım.\n\n'
             'Bana her şeyi sorabilirsin - günlük burç yorumundan, '
@@ -215,66 +216,67 @@ class _KozmozScreenState extends ConsumerState<KozmozScreen>
   void _generateResponse(String userMessage) {
     final userProfile = ref.read(userProfileProvider);
     final sign = userProfile?.sunSign ?? zodiac.ZodiacSign.aries;
+    final language = ref.read(languageProvider);
     final lowerMessage = userMessage.toLowerCase();
 
     String response;
 
     // Mesaj içeriğine göre yanıt üret - MEGA GENİŞLETİLMİŞ
     if (_containsAny(lowerMessage, ['bugün', 'günlük', 'gün nasıl', 'bu gün'])) {
-      response = _getDailyResponse(sign);
+      response = _getDailyResponse(sign, language);
     } else if (_containsAny(lowerMessage, ['aşk', 'sevgili', 'ilişki', 'partner', 'evlilik', 'flört'])) {
-      response = _getLoveResponse(sign);
+      response = _getLoveResponse(sign, language);
     } else if (_containsAny(lowerMessage, ['kariyer', 'iş', 'para', 'maddi', 'finans', 'terfi'])) {
-      response = _getCareerResponse(sign);
+      response = _getCareerResponse(sign, language);
     } else if (_containsAny(lowerMessage, ['ay', 'ay fazı', 'dolunay', 'yeniay', 'lunar'])) {
-      response = _getMoonResponse(sign);
+      response = _getMoonResponse(sign, language);
     } else if (_containsAny(lowerMessage, ['saturn', 'transit', 'gezegen', 'retro', 'merkür'])) {
-      response = _getTransitResponse(sign);
+      response = _getTransitResponse(sign, language);
     } else if (_containsAny(lowerMessage, ['yükselen', 'ascendant', 'rising'])) {
-      response = _getRisingResponse(sign);
+      response = _getRisingResponse(sign, language);
     } else if (_containsAny(lowerMessage, ['uyum', 'uyumlu', 'hangi burç'])) {
-      response = _getCompatibilityResponse(sign);
+      response = _getCompatibilityResponse(sign, language);
     } else if (_containsAny(lowerMessage, ['numeroloji', 'sayı', 'yaşam yolu'])) {
-      response = _getNumerologyResponse(sign);
+      response = _getNumerologyResponse(sign, language);
     } else if (_containsAny(lowerMessage, ['tarot', 'kart', 'fal'])) {
-      response = _getTarotResponse(sign);
+      response = _getTarotResponse(sign, language);
     } else if (_containsAny(lowerMessage, ['aura', 'enerji beden'])) {
-      response = _getAuraResponse(sign);
+      response = _getAuraResponse(sign, language);
     } else if (_containsAny(lowerMessage, ['ruhsal', 'dönüşüm', 'spiritüel', 'uyanış'])) {
-      response = _getSpiritualResponse(sign);
+      response = _getSpiritualResponse(sign, language);
     } else if (_containsAny(lowerMessage, ['hayat amacı', 'amaç', 'misyon'])) {
-      response = _getLifePurposeResponse(sign);
+      response = _getLifePurposeResponse(sign, language);
     } else if (_containsAny(lowerMessage, ['yetenek', 'potansiyel', 'güçlü'])) {
-      response = _getTalentResponse(sign);
+      response = _getTalentResponse(sign, language);
     // YENİ KATEGORİLER - 10x GELİŞTİRME
     } else if (_containsAny(lowerMessage, ['rüya', 'bilinçaltı', 'uyku', 'lüsid'])) {
-      response = _getDreamResponse(sign);
+      response = _getDreamResponse(sign, language);
     } else if (_containsAny(lowerMessage, ['tantra', 'kundalini', 'cinsel enerji', 'nefes'])) {
-      response = _getTantraResponse(sign);
+      response = _getTantraResponse(sign, language);
     } else if (_containsAny(lowerMessage, ['sağlık', 'hastalık', 'organ', 'beslenme', 'detoks'])) {
-      response = _getHealthResponse(sign);
+      response = _getHealthResponse(sign, language);
     } else if (_containsAny(lowerMessage, ['ev', 'taşınma', 'aile', 'çocuk', 'evcil'])) {
-      response = _getHomeResponse(sign);
+      response = _getHomeResponse(sign, language);
     } else if (_containsAny(lowerMessage, ['seyahat', 'şehir', 'ülke', 'tatil', 'destinasyon'])) {
-      response = _getTravelResponse(sign);
+      response = _getTravelResponse(sign, language);
     } else if (_containsAny(lowerMessage, ['eğitim', 'öğrenme', 'sınav', 'mülakat', 'yazarlık'])) {
-      response = _getEducationResponse(sign);
+      response = _getEducationResponse(sign, language);
     } else if (_containsAny(lowerMessage, ['gölge', 'korku', 'karanlık', 'projeksiyon', 'bastır'])) {
-      response = _getShadowResponse(sign);
+      response = _getShadowResponse(sign, language);
     } else if (_containsAny(lowerMessage, ['manifestasyon', 'niyet', 'bolluk', 'çekim', 'vizyon'])) {
-      response = _getManifestationResponse(sign);
+      response = _getManifestationResponse(sign, language);
     } else if (_containsAny(lowerMessage, ['geçmiş yaşam', 'melek', 'rehber', 'akashik', 'yıldız tohum'])) {
-      response = _getMysticResponse(sign);
+      response = _getMysticResponse(sign, language);
     } else if (_containsAny(lowerMessage, ['kristal', 'taş', 'mücevher', 'ametist', 'kuvars'])) {
-      response = _getCrystalResponse(sign);
+      response = _getCrystalResponse(sign, language);
     } else if (_containsAny(lowerMessage, ['ritüel', 'tören', 'mevsim', 'temizlik', 'arın'])) {
-      response = _getRitualResponse(sign);
+      response = _getRitualResponse(sign, language);
     } else if (_containsAny(lowerMessage, ['çakra', 'bloke', 'enerji merkezi'])) {
-      response = _getChakraResponse(sign);
+      response = _getChakraResponse(sign, language);
     } else if (_containsAny(lowerMessage, ['merhaba', 'selam', 'hey', 'nasılsın'])) {
-      response = _getGreetingResponse(sign);
+      response = _getGreetingResponse(sign, language);
     } else {
-      response = _getGeneralResponse(sign, userMessage);
+      response = _getGeneralResponse(sign, userMessage, language);
     }
 
     setState(() {
@@ -297,14 +299,14 @@ class _KozmozScreenState extends ConsumerState<KozmozScreen>
   // MEGA GELİŞTİRİLMİŞ YANIT GENERATÖRLERİ - 5000x DETAYLI
   // ═══════════════════════════════════════════════════════════════
 
-  String _getDailyResponse(zodiac.ZodiacSign sign) {
+  String _getDailyResponse(zodiac.ZodiacSign sign, AppLanguage language) {
     final now = DateTime.now();
     final moonSign = _getRandomMoonSign();
     final luckyHours = _getLuckyHours(sign);
     final dangerHours = _getDangerHours(sign);
     final element = sign.element;
 
-    return '''${sign.symbol} ${sign.nameTr.toUpperCase()} GÜNLÜK KOZMİK RAPOR
+    return '''${sign.symbol} ${sign.localizedName(language).toUpperCase()} GÜNLÜK KOZMİK RAPOR
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 📅 ${now.day}.${now.month}.${now.year} | Ay: $moonSign Burcunda
@@ -333,17 +335,17 @@ ${_getDailyAdvice(sign)}
 "${_getDailyAffirmation(sign)}"
 
 🔮 KOZMİK NOT
-${element.nameTr} elementi olarak bugün ${_getElementDailyNote(element)}. Evrenin sana gönderdiği işaretlere açık ol - belki bir şarkı, bir kitap sayfası veya bir yabancının sözleri önemli mesajlar taşıyabilir.
+${element.localizedName(language)} elementi olarak bugün ${_getElementDailyNote(element)}. Evrenin sana gönderdiği işaretlere açık ol - belki bir şarkı, bir kitap sayfası veya bir yabancının sözleri önemli mesajlar taşıyabilir.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ✨ Unutma: Her gün yeni bir başlangıç fırsatıdır!''';
   }
 
-  String _getLoveResponse(zodiac.ZodiacSign sign) {
+  String _getLoveResponse(zodiac.ZodiacSign sign, AppLanguage language) {
     final venusSign = _getRandomMoonSign();
     final marsSign = _getRandomMoonSign();
 
-    return '''${sign.symbol} ${sign.nameTr.toUpperCase()} AŞK & İLİŞKİ ANALİZİ
+    return '''${sign.symbol} ${sign.localizedName(language).toUpperCase()} AŞK & İLİŞKİ ANALİZİ
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 💕 VENÜS POZİSYONU: $venusSign Burcunda
@@ -388,8 +390,8 @@ ${_getLoveAdvice(sign)}
 💝 Gerçek aşk, önce kendinle başlar!''';
   }
 
-  String _getCareerResponse(zodiac.ZodiacSign sign) {
-    return '''${sign.symbol} ${sign.nameTr.toUpperCase()} KARİYER & FİNANS ANALİZİ
+  String _getCareerResponse(zodiac.ZodiacSign sign, AppLanguage language) {
+    return '''${sign.symbol} ${sign.localizedName(language).toUpperCase()} KARİYER & FİNANS ANALİZİ
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 💼 DOĞAL YETENEKLERİN
@@ -432,12 +434,12 @@ ${_getLongTermVision(sign)}
 💎 Başarı, tutkunla yeteneğinin kesiştiği noktada doğar!''';
   }
 
-  String _getMoonResponse(zodiac.ZodiacSign sign) {
+  String _getMoonResponse(zodiac.ZodiacSign sign, AppLanguage language) {
     final moonPhase = _getCurrentMoonPhase();
     final moonSign = _getRandomMoonSign();
     final daysToNext = 3 + DateTime.now().day % 5;
 
-    return '''🌙 ${sign.nameTr.toUpperCase()} İÇİN AY FAZI ANALİZİ
+    return '''🌙 ${sign.localizedName(language).toUpperCase()} İÇİN AY FAZI ANALİZİ
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 🌑🌒🌓🌔🌕🌖🌗🌘 AY DÖNGÜSÜ
@@ -479,8 +481,8 @@ ${_getUpcomingMoonDates()}
 🌟 Ay'ın döngüsü, içsel döngünün aynasıdır!''';
   }
 
-  String _getTransitResponse(zodiac.ZodiacSign sign) {
-    return '''🪐 ${sign.nameTr.toUpperCase()} İÇİN AKTİF TRANSİTLER
+  String _getTransitResponse(zodiac.ZodiacSign sign, AppLanguage language) {
+    return '''🪐 ${sign.localizedName(language).toUpperCase()} İÇİN AKTİF TRANSİTLER
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ♄ SATURN TRANSİTİ
@@ -523,8 +525,8 @@ ${_getTransitRecommendations(sign)}
 🌌 Transitler bizi zorlamaz, dönüştürür!''';
   }
 
-  String _getRisingResponse(zodiac.ZodiacSign sign) {
-    return '''⬆️ ${sign.nameTr.toUpperCase()} & YÜKSELEN BURÇ ANALİZİ
+  String _getRisingResponse(zodiac.ZodiacSign sign, AppLanguage language) {
+    return '''⬆️ ${sign.localizedName(language).toUpperCase()} & YÜKSELEN BURÇ ANALİZİ
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 🌟 YÜKSELEN BURÇ NEDİR?
@@ -581,8 +583,8 @@ Doğum saatin ve doğum yerin gerekli. Ana sayfadan "Doğum Haritası" bölümü
 ✨ Yükselen burcun, ruhunun dünyaya açılan kapısıdır!''';
   }
 
-  String _getCompatibilityResponse(zodiac.ZodiacSign sign) {
-    return '''${sign.symbol} ${sign.nameTr.toUpperCase()} DETAYLI UYUM ANALİZİ
+  String _getCompatibilityResponse(zodiac.ZodiacSign sign, AppLanguage language) {
+    return '''${sign.symbol} ${sign.localizedName(language).toUpperCase()} DETAYLI UYUM ANALİZİ
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 🔥 ELEMENT UYUMU
@@ -611,8 +613,8 @@ ${_getCompatibilityTips(sign)}
 ❤️ Gerçek uyum, farklılıkları kucaklamaktır!''';
   }
 
-  String _getNumerologyResponse(zodiac.ZodiacSign sign) {
-    return '''🔢 ${sign.nameTr.toUpperCase()} & NUMEROLOJİ BİLGELİĞİ
+  String _getNumerologyResponse(zodiac.ZodiacSign sign, AppLanguage language) {
+    return '''🔢 ${sign.localizedName(language).toUpperCase()} & NUMEROLOJİ BİLGELİĞİ
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 📊 YAŞAM YOLU SAYILARI
@@ -650,14 +652,14 @@ ${_getMasterNumbers()}
 📅 KİŞİSEL YIL HESABI
 ${_getPersonalYearInfo()}
 
-🔮 ${sign.nameTr} VE NUMEROLOJİ
+🔮 ${sign.localizedName(language)} VE NUMEROLOJİ
 ${_getSignNumerologyConnection(sign)}
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 💫 Sayılar, evrenin gizli dilidir!''';
   }
 
-  String _getTarotResponse(zodiac.ZodiacSign sign) {
+  String _getTarotResponse(zodiac.ZodiacSign sign, AppLanguage language) {
     final cards = ['Sihirbaz', 'Yüksek Rahibe', 'İmparatoriçe', 'İmparator', 'Hierofant',
                    'Aşıklar', 'Savaş Arabası', 'Güç', 'Ermiş', 'Kader Çarkı',
                    'Adalet', 'Asılan Adam', 'Ölüm', 'Denge', 'Şeytan',
@@ -666,7 +668,7 @@ ${_getSignNumerologyConnection(sign)}
     final card2 = cards[(DateTime.now().millisecond + 7) % cards.length];
     final card3 = cards[(DateTime.now().second + 3) % cards.length];
 
-    return '''🎴 ${sign.nameTr.toUpperCase()} İÇİN TAROT OKUMASI
+    return '''🎴 ${sign.localizedName(language).toUpperCase()} İÇİN TAROT OKUMASI
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 🔮 3 KARTLIK AÇILIM
@@ -687,7 +689,7 @@ ${_getTarotReading(card1, card2, card3, sign)}
 💡 TAVSİYE
 ${_getTarotAdvice(card2, sign)}
 
-🌟 ${sign.nameTr} VE TAROT
+🌟 ${sign.localizedName(language)} VE TAROT
 ${_getSignTarotConnection(sign)}
 
 ✨ GÜNÜN KARTI
@@ -700,8 +702,8 @@ Bu kartın sana mesajı:
 🃏 Kartlar geleceği değil, potansiyelleri gösterir!''';
   }
 
-  String _getAuraResponse(zodiac.ZodiacSign sign) {
-    return '''✨ ${sign.nameTr.toUpperCase()} AURA & ENERJİ ANALİZİ
+  String _getAuraResponse(zodiac.ZodiacSign sign, AppLanguage language) {
+    return '''✨ ${sign.localizedName(language).toUpperCase()} AURA & ENERJİ ANALİZİ
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 🌈 AURA RENKLERİN
@@ -741,8 +743,8 @@ ${_getEnergyMeditation(sign)}
 🌟 Auran, ruhunun ışıltısıdır!''';
   }
 
-  String _getSpiritualResponse(zodiac.ZodiacSign sign) {
-    return '''🦋 ${sign.nameTr.toUpperCase()} RUHSAL GELİŞİM YOLCULUĞU
+  String _getSpiritualResponse(zodiac.ZodiacSign sign, AppLanguage language) {
+    return '''🦋 ${sign.localizedName(language).toUpperCase()} RUHSAL GELİŞİM YOLCULUĞU
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 🌟 RUHSAL EVRİM SEVİYEN
@@ -785,8 +787,8 @@ ${_getAuraCleansing(sign)}
 ✨ Ruhsal yolculuk, eve dönüş yolculuğudur!''';
   }
 
-  String _getLifePurposeResponse(zodiac.ZodiacSign sign) {
-    return '''🎯 ${sign.nameTr.toUpperCase()} HAYAT AMACI & MİSYON ANALİZİ
+  String _getLifePurposeResponse(zodiac.ZodiacSign sign, AppLanguage language) {
+    return '''🎯 ${sign.localizedName(language).toUpperCase()} HAYAT AMACI & MİSYON ANALİZİ
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 🌟 RUHSAL MİSYONUN
@@ -820,8 +822,8 @@ ${_getLifeRoadmap(sign)}
 ✨ Amacın zaten içinde, keşfetmeyi bekliyor!''';
   }
 
-  String _getTalentResponse(zodiac.ZodiacSign sign) {
-    return '''⚡ ${sign.nameTr.toUpperCase()} GİZLİ YETENEKLER & POTANSİYEL
+  String _getTalentResponse(zodiac.ZodiacSign sign, AppLanguage language) {
+    return '''⚡ ${sign.localizedName(language).toUpperCase()} GİZLİ YETENEKLER & POTANSİYEL
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 🎁 DOĞUŞTAN GELEN YETENEKLER
@@ -858,7 +860,7 @@ ${_getActivationCalendar(sign)}
 🌟 Yeteneklerin, ruhunun parmak izleridir!''';
   }
 
-  String _getGreetingResponse(zodiac.ZodiacSign sign) {
+  String _getGreetingResponse(zodiac.ZodiacSign sign, AppLanguage language) {
     final hour = DateTime.now().hour;
     String greeting;
     if (hour < 12) {
@@ -869,11 +871,11 @@ ${_getActivationCalendar(sign)}
       greeting = 'İyi akşamlar';
     }
 
-    return '''$greeting, değerli ${sign.nameTr}! 🌟
+    return '''$greeting, değerli ${sign.localizedName(language)}! 🌟
 
 Ben Kozmoz, senin kişisel kozmik AI rehberin!
 
-${sign.symbol} ${sign.element.nameTr} elementinin güçlü enerjisiyle bugün sana yardımcı olmak için buradayım.
+${sign.symbol} ${sign.element.localizedName(language)} elementinin güçlü enerjisiyle bugün sana yardımcı olmak için buradayım.
 
 Benimle konuşabileceğin konular:
 
@@ -910,8 +912,8 @@ Benimle konuşabileceğin konular:
 Ne hakkında konuşmak istersin? ✨''';
   }
 
-  String _getGeneralResponse(zodiac.ZodiacSign sign, String message) {
-    return '''${sign.symbol} ${sign.nameTr.toUpperCase()} KOZMİK BİLGELİK
+  String _getGeneralResponse(zodiac.ZodiacSign sign, String message, AppLanguage language) {
+    return '''${sign.symbol} ${sign.localizedName(language).toUpperCase()} KOZMİK BİLGELİK
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 Sorduğun konu hakkında evrensel enerjiler şunları söylüyor:
@@ -919,7 +921,7 @@ Sorduğun konu hakkında evrensel enerjiler şunları söylüyor:
 🌟 KOZMİK BAKIŞ AÇISI
 ${_getDeepWisdom(sign)}
 
-💫 ${sign.element.nameTr} ELEMENTİNDEN MESAJ
+💫 ${sign.element.localizedName(language)} ELEMENTİNDEN MESAJ
 ${_getElementMessage(sign)}
 
 🔮 EVRENSEL REHBERLİK
@@ -1710,8 +1712,8 @@ ${sign.nameTr} için özel etkileri:
   // 10x GELİŞTİRME: YENİ YANIT FONKSİYONLARI
   // ═══════════════════════════════════════════════════════════════
 
-  String _getDreamResponse(zodiac.ZodiacSign sign) {
-    return '''${sign.symbol} ${sign.nameTr.toUpperCase()} RÜYA & BİLİNÇALTI ANALİZİ
+  String _getDreamResponse(zodiac.ZodiacSign sign, AppLanguage language) {
+    return '''${sign.symbol} ${sign.localizedName(language).toUpperCase()} RÜYA & BİLİNÇALTI ANALİZİ
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 🌙 RÜYA ELEMENTİN
@@ -1742,8 +1744,8 @@ ${_getSleepRituals(sign)}
 🌙 Rüyalarını paylaş, birlikte yorumlayalım!''';
   }
 
-  String _getTantraResponse(zodiac.ZodiacSign sign) {
-    return '''${sign.symbol} ${sign.nameTr.toUpperCase()} TANTRA & ENERJİ REHBERİ
+  String _getTantraResponse(zodiac.ZodiacSign sign, AppLanguage language) {
+    return '''${sign.symbol} ${sign.localizedName(language).toUpperCase()} TANTRA & ENERJİ REHBERİ
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ༄ TANTRA PRATİĞİN
@@ -1777,8 +1779,8 @@ ${_getChakraActivation(sign)}
 ༄ Enerji bedenin sana teşekkür ediyor!''';
   }
 
-  String _getHealthResponse(zodiac.ZodiacSign sign) {
-    return '''${sign.symbol} ${sign.nameTr.toUpperCase()} SAĞLIK & ŞİFA ANALİZİ
+  String _getHealthResponse(zodiac.ZodiacSign sign, AppLanguage language) {
+    return '''${sign.symbol} ${sign.localizedName(language).toUpperCase()} SAĞLIK & ŞİFA ANALİZİ
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 🏥 HASSAS BÖLGELERİN
@@ -1800,7 +1802,7 @@ ${_getPhysicalMovement(sign)}
 ${_getMentalWellness(sign)}
 
 💊 ELEMENT DENGESİ
-${sign.element.nameTr} elementi olarak:
+${sign.element.localizedName(language)} elementi olarak:
 ${_getElementBalance(sign)}
 
 ✨ SAĞLIK AFİRMASYONU
@@ -1810,8 +1812,8 @@ ${_getElementBalance(sign)}
 🌿 Sağlığın en değerli sermayendir!''';
   }
 
-  String _getHomeResponse(zodiac.ZodiacSign sign) {
-    return '''${sign.symbol} ${sign.nameTr.toUpperCase()} EV & AİLE REHBERİ
+  String _getHomeResponse(zodiac.ZodiacSign sign, AppLanguage language) {
+    return '''${sign.symbol} ${sign.localizedName(language).toUpperCase()} EV & AİLE REHBERİ
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 🏠 TAŞINMA ZAMANLARI
@@ -1845,8 +1847,8 @@ ${_getFengShuiTips(sign)}
 🏠 Evlerin enerjisi sakinlerine yansır!''';
   }
 
-  String _getTravelResponse(zodiac.ZodiacSign sign) {
-    return '''${sign.symbol} ${sign.nameTr.toUpperCase()} SEYAHAT & MACERA REHBERİ
+  String _getTravelResponse(zodiac.ZodiacSign sign, AppLanguage language) {
+    return '''${sign.symbol} ${sign.localizedName(language).toUpperCase()} SEYAHAT & MACERA REHBERİ
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 🌍 ŞANSLI DESTİNASYONLARIN
@@ -1877,8 +1879,8 @@ ${_get2024Recommendations(sign)}
 ✈️ Dünya senin keşfetmeni bekliyor!''';
   }
 
-  String _getEducationResponse(zodiac.ZodiacSign sign) {
-    return '''${sign.symbol} ${sign.nameTr.toUpperCase()} EĞİTİM & ÖĞRENME REHBERİ
+  String _getEducationResponse(zodiac.ZodiacSign sign, AppLanguage language) {
+    return '''${sign.symbol} ${sign.localizedName(language).toUpperCase()} EĞİTİM & ÖĞRENME REHBERİ
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 📚 DOĞAL ÖĞRENİM ALANIN
@@ -1909,8 +1911,8 @@ ${_getProductiveHours(sign)}
 📚 Öğrenme yolculuğun sonsuz!''';
   }
 
-  String _getShadowResponse(zodiac.ZodiacSign sign) {
-    return '''${sign.symbol} ${sign.nameTr.toUpperCase()} GÖLGE ÇALIŞMASI
+  String _getShadowResponse(zodiac.ZodiacSign sign, AppLanguage language) {
+    return '''${sign.symbol} ${sign.localizedName(language).toUpperCase()} GÖLGE ÇALIŞMASI
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 🖤 GÖLGE BENLİĞİN
@@ -1944,8 +1946,8 @@ ${_getDarkMoonRitual(sign)}
 🌑 Karanlıktan korkmayan, ışığı bulur!''';
   }
 
-  String _getManifestationResponse(zodiac.ZodiacSign sign) {
-    return '''${sign.symbol} ${sign.nameTr.toUpperCase()} MANİFESTASYON REHBERİ
+  String _getManifestationResponse(zodiac.ZodiacSign sign, AppLanguage language) {
+    return '''${sign.symbol} ${sign.localizedName(language).toUpperCase()} MANİFESTASYON REHBERİ
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ✨ MANİFESTASYON GÜCÜN
@@ -1979,8 +1981,8 @@ ${_getManifestationRitual(sign)}
 ✨ Sen yaratıcısın, hayatını tasarla!''';
   }
 
-  String _getMysticResponse(zodiac.ZodiacSign sign) {
-    return '''${sign.symbol} ${sign.nameTr.toUpperCase()} MİSTİK BİLGELİK
+  String _getMysticResponse(zodiac.ZodiacSign sign, AppLanguage language) {
+    return '''${sign.symbol} ${sign.localizedName(language).toUpperCase()} MİSTİK BİLGELİK
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 🌀 GEÇMİŞ YAŞAMLARIN
@@ -2002,7 +2004,7 @@ ${_getSpiritGuides(sign)}
 ${_getCosmicMission(sign)}
 
 🌌 EVRENSEL BAĞLANTIN
-${sign.element.nameTr} elementi aracılığıyla kozmik akışa bağlısın.
+${sign.element.localizedName(language)} elementi aracılığıyla kozmik akışa bağlısın.
 Galaktik kökenin: ${_getGalacticOrigin(sign)}
 
 ✨ MİSTİK AFİRMASYON
@@ -2012,8 +2014,8 @@ Galaktik kökenin: ${_getGalacticOrigin(sign)}
 🌌 Evrenin gizemlerine açıksın!''';
   }
 
-  String _getCrystalResponse(zodiac.ZodiacSign sign) {
-    return '''${sign.symbol} ${sign.nameTr.toUpperCase()} KRİSTAL & TAŞ REHBERİ
+  String _getCrystalResponse(zodiac.ZodiacSign sign, AppLanguage language) {
+    return '''${sign.symbol} ${sign.localizedName(language).toUpperCase()} KRİSTAL & TAŞ REHBERİ
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 💎 ANA GÜÇ TAŞLARIN
@@ -2047,8 +2049,8 @@ ${_getAvoidStones(sign)}
 💎 Kristaller enerji yoğunlaştırıcılardır!''';
   }
 
-  String _getRitualResponse(zodiac.ZodiacSign sign) {
-    return '''${sign.symbol} ${sign.nameTr.toUpperCase()} RİTÜEL & TÖRENSELLİK REHBERİ
+  String _getRitualResponse(zodiac.ZodiacSign sign, AppLanguage language) {
+    return '''${sign.symbol} ${sign.localizedName(language).toUpperCase()} RİTÜEL & TÖRENSELLİK REHBERİ
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 🕯️ DOLUNAY RİTÜELİN
@@ -2082,8 +2084,8 @@ ${_getMoonPhaseRituals(sign)}
 🕯️ Ritüeller niyeti güçlendirir!''';
   }
 
-  String _getChakraResponse(zodiac.ZodiacSign sign) {
-    return '''${sign.symbol} ${sign.nameTr.toUpperCase()} ÇAKRA ANALİZİ
+  String _getChakraResponse(zodiac.ZodiacSign sign, AppLanguage language) {
+    return '''${sign.symbol} ${sign.localizedName(language).toUpperCase()} ÇAKRA ANALİZİ
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 🔴 KÖK ÇAKRA (Muladhara)

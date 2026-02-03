@@ -1,14 +1,17 @@
 import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/user_profile.dart';
 import '../../../data/models/zodiac_sign.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/comparison_service.dart';
+import '../../../data/services/l10n_service.dart';
 
 class ComparisonScreen extends ConsumerStatefulWidget {
   const ComparisonScreen({super.key});
@@ -19,7 +22,7 @@ class ComparisonScreen extends ConsumerStatefulWidget {
 
 class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
   List<UserProfile?> _selectedProfiles = [null, null];
-  List<ComparisonResult> _pairResults = [];
+  final List<ComparisonResult> _pairResults = [];
   static const int _maxProfiles = 7;
 
   @override
@@ -69,6 +72,7 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
   Widget build(BuildContext context) {
     final profiles = ref.watch(savedProfilesProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final language = ref.watch(languageProvider);
 
     final validCount = _selectedProfiles.whereType<UserProfile>().length;
     if (validCount >= 2) {
@@ -85,33 +89,33 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
           SafeArea(
             child: Column(
               children: [
-                _buildHeader(context, isDark),
+                _buildHeader(context, isDark, language),
                 Expanded(
                   child: SingleChildScrollView(
                     padding: const EdgeInsets.all(AppConstants.spacingLg),
                     child: Column(
                       children: [
-                        _buildMultiProfileSelectors(context, profiles, isDark),
+                        _buildMultiProfileSelectors(context, profiles, isDark, language),
                         if (_pairResults.isNotEmpty) ...[
                           const SizedBox(height: AppConstants.spacingLg),
                           if (_selectedProfiles.whereType<UserProfile>().length > 2)
-                            _buildGroupScoreSection(context, isDark),
+                            _buildGroupScoreSection(context, isDark, language),
                           if (_selectedProfiles.whereType<UserProfile>().length == 2 && _pairResults.isNotEmpty) ...[
-                            _buildScoreSection(context, _pairResults.first, isDark),
+                            _buildScoreSection(context, _pairResults.first, isDark, language),
                             const SizedBox(height: AppConstants.spacingLg),
-                            _buildCategoryScores(context, _pairResults.first, isDark),
+                            _buildCategoryScores(context, _pairResults.first, isDark, language),
                             const SizedBox(height: AppConstants.spacingLg),
-                            _buildSummaryCard(context, _pairResults.first, isDark),
+                            _buildSummaryCard(context, _pairResults.first, isDark, language),
                             const SizedBox(height: AppConstants.spacingLg),
-                            _buildStrengthsCard(context, _pairResults.first, isDark),
+                            _buildStrengthsCard(context, _pairResults.first, isDark, language),
                             const SizedBox(height: AppConstants.spacingLg),
-                            _buildChallengesCard(context, _pairResults.first, isDark),
+                            _buildChallengesCard(context, _pairResults.first, isDark, language),
                             const SizedBox(height: AppConstants.spacingLg),
-                            _buildAdviceCard(context, _pairResults.first, isDark),
+                            _buildAdviceCard(context, _pairResults.first, isDark, language),
                           ],
                           const SizedBox(height: AppConstants.spacingXl),
                         ] else if (validCount < 2)
-                          _buildEmptyState(context, isDark),
+                          _buildEmptyState(context, isDark, language),
                       ],
                     ),
                   ),
@@ -124,7 +128,7 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
     );
   }
 
-  Widget _buildHeader(BuildContext context, bool isDark) {
+  Widget _buildHeader(BuildContext context, bool isDark, AppLanguage language) {
     return Padding(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       child: Row(
@@ -142,14 +146,14 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Burç Uyumu',
+                  L10nService.get('comparison.title', language),
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
                         color: Colors.pink,
                         fontWeight: FontWeight.bold,
                       ),
                 ),
                 Text(
-                  'Detaylı karşılaştırma analizi',
+                  L10nService.get('comparison.subtitle', language),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
                       ),
@@ -176,16 +180,16 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
     BuildContext context,
     List<UserProfile> profiles,
     bool isDark,
+    AppLanguage language,
   ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // Profil sayısı göstergesi
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              'Profiller (${_selectedProfiles.whereType<UserProfile>().length}/$_maxProfiles)',
+              '${L10nService.get('navigation.profile', language)} (${_selectedProfiles.whereType<UserProfile>().length}/$_maxProfiles)',
               style: Theme.of(context).textTheme.labelMedium?.copyWith(
                     color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
                   ),
@@ -199,7 +203,7 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
                   });
                 },
                 icon: const Icon(Icons.refresh, size: 16),
-                label: const Text('Sıfırla'),
+                label: Text(L10nService.get('common.reset', language)),
                 style: TextButton.styleFrom(
                   foregroundColor: Colors.pink,
                   padding: EdgeInsets.zero,
@@ -210,7 +214,6 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
         ),
         const SizedBox(height: 12),
 
-        // Profil kartları - yatay scroll
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
@@ -218,7 +221,11 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
               ..._selectedProfiles.asMap().entries.map((entry) {
                 final index = entry.key;
                 final profile = entry.value;
-                final label = index == 0 ? 'Sen' : (index == 1 ? 'Partner' : 'Arkadaş ${index - 1}');
+                final label = index == 0
+                    ? L10nService.get('misc.you', language)
+                    : (index == 1
+                        ? L10nService.get('profile.relationship_types.partner', language)
+                        : '${L10nService.get('misc.friend_index', language)} ${index - 1}');
 
                 return Padding(
                   padding: const EdgeInsets.only(right: 8),
@@ -227,6 +234,7 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
                     label: label,
                     profiles: profiles,
                     isDark: isDark,
+                    language: language,
                     showRemove: index > 1,
                     onSelect: (p) {
                       setState(() {
@@ -273,7 +281,7 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
                         Icon(Icons.add, color: Colors.pink.withAlpha(180), size: 28),
                         const SizedBox(height: 4),
                         Text(
-                          'Ekle',
+                          L10nService.get('comparison.add', language),
                           style: Theme.of(context).textTheme.labelSmall?.copyWith(
                                 color: Colors.pink.withAlpha(180),
                               ),
@@ -289,7 +297,7 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
     ).animate().fadeIn(delay: 100.ms, duration: 400.ms);
   }
 
-  Widget _buildGroupScoreSection(BuildContext context, bool isDark) {
+  Widget _buildGroupScoreSection(BuildContext context, bool isDark, AppLanguage language) {
     final avgScore = _groupAverageScore;
     final best = _bestPair;
     final worst = _worstPair;
@@ -351,7 +359,7 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
                             ),
                       ),
                       Text(
-                        'Grup Uyumu',
+                        L10nService.get('comparison.group_harmony', language),
                         style: Theme.of(context).textTheme.labelSmall?.copyWith(
                               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
                               fontSize: 9,
@@ -372,22 +380,24 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
               if (best != null)
                 Expanded(
                   child: _PairHighlightCard(
-                    title: 'En Uyumlu',
+                    title: L10nService.get('comparison.most_compatible', language),
                     result: best,
                     color: Colors.green,
                     icon: Icons.favorite,
                     isDark: isDark,
+                    language: language,
                   ),
                 ),
               if (best != null && worst != null) const SizedBox(width: 12),
               if (worst != null && _pairResults.length > 1)
                 Expanded(
                   child: _PairHighlightCard(
-                    title: 'Dikkat!',
+                    title: L10nService.get('comparison.caution', language),
                     result: worst,
                     color: Colors.orange,
                     icon: Icons.warning_amber,
                     isDark: isDark,
+                    language: language,
                   ),
                 ),
             ],
@@ -398,7 +408,7 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
             // Tüm ikililer listesi
             ExpansionTile(
               title: Text(
-                'Tüm İkili Uyumları (${_pairResults.length})',
+                '${L10nService.get('comparison.all_pair_compatibilities', language)} (${_pairResults.length})',
                 style: Theme.of(context).textTheme.labelMedium?.copyWith(
                       color: Colors.pink,
                     ),
@@ -417,7 +427,7 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
                     ],
                   ),
                   title: Text(
-                    '${r.profile1.name ?? r.profile1.sunSign.nameTr} & ${r.profile2.name ?? r.profile2.sunSign.nameTr}',
+                    '${r.profile1.name ?? r.profile1.sunSign.localizedName(language)} & ${r.profile2.name ?? r.profile2.sunSign.localizedName(language)}',
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
                         ),
@@ -455,7 +465,7 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
     ).animate().fadeIn(delay: 200.ms, duration: 400.ms).scale(begin: const Offset(0.95, 0.95));
   }
 
-  Widget _buildEmptyState(BuildContext context, bool isDark) {
+  Widget _buildEmptyState(BuildContext context, bool isDark, AppLanguage language) {
     return Container(
       margin: const EdgeInsets.only(top: 60),
       child: Column(
@@ -474,14 +484,14 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
           ),
           const SizedBox(height: AppConstants.spacingLg),
           Text(
-            'İki profil seçin',
+            L10nService.get('misc.select_two_profiles', language),
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
                 ),
           ),
           const SizedBox(height: AppConstants.spacingSm),
           Text(
-            'Karşılaştırma için yukarıdaki\nkutulardan profil seçin',
+            L10nService.get('misc.select_profiles_hint', language),
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
@@ -492,7 +502,7 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
     ).animate().fadeIn(delay: 200.ms, duration: 400.ms);
   }
 
-  Widget _buildScoreSection(BuildContext context, ComparisonResult result, bool isDark) {
+  Widget _buildScoreSection(BuildContext context, ComparisonResult result, bool isDark, AppLanguage language) {
     final scoreColor = result.overallScore >= 70
         ? Colors.green
         : result.overallScore >= 50
@@ -519,7 +529,7 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              _buildProfileAvatar(result.profile1),
+              _buildProfileAvatar(result.profile1, language),
               const SizedBox(width: 16),
               Column(
                 children: [
@@ -580,7 +590,7 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
                 ],
               ),
               const SizedBox(width: 16),
-              _buildProfileAvatar(result.profile2),
+              _buildProfileAvatar(result.profile2, language),
             ],
           ),
         ],
@@ -588,7 +598,7 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
     ).animate().fadeIn(delay: 200.ms, duration: 400.ms).scale(begin: const Offset(0.95, 0.95));
   }
 
-  Widget _buildProfileAvatar(UserProfile profile) {
+  Widget _buildProfileAvatar(UserProfile profile, AppLanguage language) {
     return Column(
       children: [
         Container(
@@ -612,11 +622,11 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
         ),
         const SizedBox(height: 4),
         Text(
-          profile.name ?? 'İsimsiz',
+          profile.name ?? L10nService.get('comparison.unnamed', language),
           style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
         ),
         Text(
-          profile.sunSign.nameTr,
+          profile.sunSign.localizedName(language),
           style: TextStyle(
             fontSize: 10,
             color: profile.sunSign.color,
@@ -626,12 +636,12 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
     );
   }
 
-  Widget _buildCategoryScores(BuildContext context, ComparisonResult result, bool isDark) {
+  Widget _buildCategoryScores(BuildContext context, ComparisonResult result, bool isDark, AppLanguage language) {
     return Row(
       children: [
         Expanded(
           child: _ScoreCard(
-            label: 'Aşk',
+            label: L10nService.get('categories.love', language),
             score: result.loveScore,
             icon: Icons.favorite,
             color: Colors.pink,
@@ -641,7 +651,7 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
         const SizedBox(width: 8),
         Expanded(
           child: _ScoreCard(
-            label: 'Arkadaş',
+            label: L10nService.get('categories.friendship', language),
             score: result.friendshipScore,
             icon: Icons.people,
             color: Colors.blue,
@@ -651,7 +661,7 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
         const SizedBox(width: 8),
         Expanded(
           child: _ScoreCard(
-            label: 'İletişim',
+            label: L10nService.get('categories.communication', language),
             score: result.communicationScore,
             icon: Icons.chat,
             color: Colors.orange,
@@ -661,7 +671,7 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
         const SizedBox(width: 8),
         Expanded(
           child: _ScoreCard(
-            label: 'Güven',
+            label: L10nService.get('categories.trust', language),
             score: result.trustScore,
             icon: Icons.shield,
             color: Colors.green,
@@ -672,7 +682,7 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
     ).animate().fadeIn(delay: 300.ms, duration: 400.ms);
   }
 
-  Widget _buildSummaryCard(BuildContext context, ComparisonResult result, bool isDark) {
+  Widget _buildSummaryCard(BuildContext context, ComparisonResult result, bool isDark, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -690,7 +700,7 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
               const Icon(Icons.auto_awesome, color: Colors.purple, size: 20),
               const SizedBox(width: 8),
               Text(
-                'Kozmik Uyum',
+                L10nService.get('comparison.cosmic_harmony', language),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       color: Colors.purple,
                       fontWeight: FontWeight.bold,
@@ -711,7 +721,7 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
     ).animate().fadeIn(delay: 400.ms, duration: 400.ms);
   }
 
-  Widget _buildStrengthsCard(BuildContext context, ComparisonResult result, bool isDark) {
+  Widget _buildStrengthsCard(BuildContext context, ComparisonResult result, bool isDark, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -727,7 +737,7 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
               const Icon(Icons.thumb_up, color: Colors.green, size: 20),
               const SizedBox(width: 8),
               Text(
-                'Güçlü Yanlar',
+                L10nService.get('comparison.strengths', language),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       color: Colors.green,
                       fontWeight: FontWeight.bold,
@@ -759,7 +769,7 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
     ).animate().fadeIn(delay: 500.ms, duration: 400.ms);
   }
 
-  Widget _buildChallengesCard(BuildContext context, ComparisonResult result, bool isDark) {
+  Widget _buildChallengesCard(BuildContext context, ComparisonResult result, bool isDark, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -775,7 +785,7 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
               const Icon(Icons.warning_amber, color: Colors.orange, size: 20),
               const SizedBox(width: 8),
               Text(
-                'Dikkat Edilecekler',
+                L10nService.get('comparison.things_to_watch', language),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       color: Colors.orange,
                       fontWeight: FontWeight.bold,
@@ -807,7 +817,7 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
     ).animate().fadeIn(delay: 600.ms, duration: 400.ms);
   }
 
-  Widget _buildAdviceCard(BuildContext context, ComparisonResult result, bool isDark) {
+  Widget _buildAdviceCard(BuildContext context, ComparisonResult result, bool isDark, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -825,7 +835,7 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
               const Icon(Icons.lightbulb_outline, color: Colors.purple, size: 20),
               const SizedBox(width: 8),
               Text(
-                'Tavsiye',
+                L10nService.get('comparison.advice', language),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       color: Colors.purple,
                       fontWeight: FontWeight.bold,
@@ -935,6 +945,7 @@ class _PairHighlightCard extends StatelessWidget {
   final Color color;
   final IconData icon;
   final bool isDark;
+  final AppLanguage language;
 
   const _PairHighlightCard({
     required this.title,
@@ -942,6 +953,7 @@ class _PairHighlightCard extends StatelessWidget {
     required this.color,
     required this.icon,
     required this.isDark,
+    required this.language,
   });
 
   @override
@@ -989,7 +1001,7 @@ class _PairHighlightCard extends StatelessWidget {
             ),
           ),
           Text(
-            '${result.profile1.name ?? 'İsimsiz'} & ${result.profile2.name ?? 'İsimsiz'}',
+            '${result.profile1.name ?? L10nService.get('comparison.unnamed', language)} & ${result.profile2.name ?? L10nService.get('comparison.unnamed', language)}',
             style: Theme.of(context).textTheme.labelSmall?.copyWith(
                   color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
                   fontSize: 9,
@@ -1012,6 +1024,7 @@ class _ProfileSelector extends StatelessWidget {
   final Function(UserProfile) onSelect;
   final VoidCallback? onRemove;
   final bool showRemove;
+  final AppLanguage language;
 
   const _ProfileSelector({
     required this.profile,
@@ -1019,6 +1032,7 @@ class _ProfileSelector extends StatelessWidget {
     required this.profiles,
     required this.isDark,
     required this.onSelect,
+    required this.language,
     this.onRemove,
     this.showRemove = false,
   });
@@ -1076,7 +1090,7 @@ class _ProfileSelector extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    profile!.name ?? 'İsimsiz',
+                    profile!.name ?? L10nService.get('comparison.unnamed', language),
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
                           fontWeight: FontWeight.w600,
@@ -1086,7 +1100,7 @@ class _ProfileSelector extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                   Text(
-                    profile!.sunSign.nameTr,
+                    profile!.sunSign.localizedName(language),
                     style: TextStyle(
                       fontSize: 9,
                       color: profile!.sunSign.color,
@@ -1108,7 +1122,7 @@ class _ProfileSelector extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    'Seç',
+                    L10nService.get('comparison.select', language),
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
                           fontSize: 10,
@@ -1160,7 +1174,7 @@ class _ProfileSelector extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              'Profil Seç',
+              L10nService.get('comparison.select_profile', language),
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
                     fontWeight: FontWeight.bold,
@@ -1171,7 +1185,7 @@ class _ProfileSelector extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(AppConstants.spacingLg),
                 child: Text(
-                  'Henüz profil eklenmedi',
+                  L10nService.get('comparison.no_profiles_yet', language),
                   style: TextStyle(
                     color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
                   ),
@@ -1196,13 +1210,13 @@ class _ProfileSelector extends StatelessWidget {
                       ),
                     ),
                     title: Text(
-                      p.name ?? 'İsimsiz',
+                      p.name ?? L10nService.get('comparison.unnamed', language),
                       style: TextStyle(
                         color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
                       ),
                     ),
                     subtitle: Text(
-                      p.sunSign.nameTr,
+                      p.sunSign.localizedName(language),
                       style: TextStyle(color: p.sunSign.color),
                     ),
                     onTap: () {

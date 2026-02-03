@@ -7,6 +7,7 @@ import '../../../data/models/zodiac_sign.dart';
 import '../../../data/models/user_profile.dart';
 import '../../../data/models/advanced_astrology.dart';
 import '../../../data/services/advanced_astrology_service.dart';
+import '../../../data/services/l10n_service.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 
@@ -51,6 +52,7 @@ class _CompositeChartScreenState extends ConsumerState<CompositeChartScreen> {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final userProfile = ref.watch(userProfileProvider);
+    final language = ref.watch(languageProvider);
 
     if (userProfile == null) {
       return Scaffold(
@@ -62,14 +64,14 @@ class _CompositeChartScreenState extends ConsumerState<CompositeChartScreen> {
                 const Text('', style: TextStyle(fontSize: 64)),
                 const SizedBox(height: 16),
                 Text(
-                  'Profil bulunamadi',
+                  L10nService.get('composite.profile_not_found', language),
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
                         color: Colors.white,
                       ),
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Lutfen once dogum bilgilerinizi girin',
+                  L10nService.get('composite.enter_birth_info', language),
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         color: Colors.white70,
                       ),
@@ -77,7 +79,7 @@ class _CompositeChartScreenState extends ConsumerState<CompositeChartScreen> {
                 const SizedBox(height: 24),
                 ElevatedButton(
                   onPressed: () => context.pop(),
-                  child: const Text('Geri Don'),
+                  child: Text(L10nService.get('composite.go_back', language)),
                 ),
               ],
             ),
@@ -91,13 +93,13 @@ class _CompositeChartScreenState extends ConsumerState<CompositeChartScreen> {
         child: SafeArea(
           child: Column(
             children: [
-              _buildHeader(context, isDark),
+              _buildHeader(context, isDark, language),
               Expanded(
                 child: SingleChildScrollView(
                   padding: const EdgeInsets.all(AppConstants.spacingLg),
                   child: Column(
                     children: [
-                      _buildUserProfileCard(isDark, userProfile),
+                      _buildUserProfileCard(isDark, userProfile, language),
                       const SizedBox(height: AppConstants.spacingMd),
                       Center(
                         child: Container(
@@ -110,20 +112,20 @@ class _CompositeChartScreenState extends ConsumerState<CompositeChartScreen> {
                         ),
                       ),
                       const SizedBox(height: AppConstants.spacingMd),
-                      _buildPartnerInputCard(isDark),
+                      _buildPartnerInputCard(isDark, language),
                       const SizedBox(height: AppConstants.spacingLg),
                       if (_chart != null) ...[
-                        _buildCompatibilityScore(isDark),
+                        _buildCompatibilityScore(isDark, language),
                         const SizedBox(height: AppConstants.spacingMd),
-                        _buildCompositePositions(isDark),
+                        _buildCompositePositions(isDark, language),
                         const SizedBox(height: AppConstants.spacingMd),
-                        _buildRelationshipTheme(isDark),
+                        _buildRelationshipTheme(isDark, language),
                         const SizedBox(height: AppConstants.spacingMd),
-                        _buildDynamicsCards(isDark),
+                        _buildDynamicsCards(isDark, language),
                         const SizedBox(height: AppConstants.spacingMd),
-                        _buildAspectsCard(isDark),
+                        _buildAspectsCard(isDark, language),
                         const SizedBox(height: AppConstants.spacingMd),
-                        _buildSoulPurpose(isDark),
+                        _buildSoulPurpose(isDark, language),
                         const SizedBox(height: AppConstants.spacingXxl),
                       ],
                     ],
@@ -137,7 +139,7 @@ class _CompositeChartScreenState extends ConsumerState<CompositeChartScreen> {
     );
   }
 
-  Widget _buildHeader(BuildContext context, bool isDark) {
+  Widget _buildHeader(BuildContext context, bool isDark, AppLanguage language) {
     return Padding(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       child: Row(
@@ -154,7 +156,7 @@ class _CompositeChartScreenState extends ConsumerState<CompositeChartScreen> {
                 const Icon(Icons.people, color: Colors.pink, size: 24),
                 const SizedBox(width: 8),
                 Text(
-                  'Kompozit Harita',
+                  L10nService.get('composite.title', language),
                   style: Theme.of(context).textTheme.headlineSmall,
                 ),
               ],
@@ -165,7 +167,7 @@ class _CompositeChartScreenState extends ConsumerState<CompositeChartScreen> {
     );
   }
 
-  Widget _buildUserProfileCard(bool isDark, UserProfile userProfile) {
+  Widget _buildUserProfileCard(bool isDark, UserProfile userProfile, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -186,9 +188,9 @@ class _CompositeChartScreenState extends ConsumerState<CompositeChartScreen> {
                   color: Colors.pink.withValues(alpha: 0.2),
                   borderRadius: BorderRadius.circular(4),
                 ),
-                child: const Text(
-                  'Kisi 1 (Sen)',
-                  style: TextStyle(
+                child: Text(
+                  L10nService.get('composite.person_1_you', language),
+                  style: const TextStyle(
                     color: Colors.pink,
                     fontWeight: FontWeight.w600,
                     fontSize: 12,
@@ -196,15 +198,15 @@ class _CompositeChartScreenState extends ConsumerState<CompositeChartScreen> {
                 ),
               ),
               const Spacer(),
-              Icon(
+              const Icon(
                 Icons.check_circle,
                 color: Colors.green,
                 size: 20,
               ),
               const SizedBox(width: 4),
               Text(
-                'Profilden',
-                style: TextStyle(
+                L10nService.get('composite.from_profile', language),
+                style: const TextStyle(
                   fontSize: 11,
                   color: Colors.green,
                 ),
@@ -212,10 +214,10 @@ class _CompositeChartScreenState extends ConsumerState<CompositeChartScreen> {
             ],
           ),
           const SizedBox(height: AppConstants.spacingMd),
-          _buildInfoRow(isDark, Icons.person_outline, 'Isim', userProfile.name ?? 'Kullanici'),
-          _buildInfoRow(isDark, Icons.wb_sunny_outlined, 'Gunes', userProfile.sunSign.nameTr),
+          _buildInfoRow(isDark, Icons.person_outline, L10nService.get('composite.name', language), userProfile.name ?? L10nService.get('composite.user', language)),
+          _buildInfoRow(isDark, Icons.wb_sunny_outlined, L10nService.get('composite.sun', language), userProfile.sunSign.localizedName(language)),
           if (userProfile.moonSign != null)
-            _buildInfoRow(isDark, Icons.nightlight_outlined, 'Ay', userProfile.moonSign!.nameTr),
+            _buildInfoRow(isDark, Icons.nightlight_outlined, L10nService.get('composite.moon', language), userProfile.moonSign!.localizedName(language)),
         ],
       ),
     );
@@ -251,7 +253,7 @@ class _CompositeChartScreenState extends ConsumerState<CompositeChartScreen> {
     );
   }
 
-  Widget _buildPartnerInputCard(bool isDark) {
+  Widget _buildPartnerInputCard(bool isDark, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -272,9 +274,9 @@ class _CompositeChartScreenState extends ConsumerState<CompositeChartScreen> {
                   color: Colors.blue.withValues(alpha: 0.2),
                   borderRadius: BorderRadius.circular(4),
                 ),
-                child: const Text(
-                  'Kisi 2 (Partner)',
-                  style: TextStyle(
+                child: Text(
+                  L10nService.get('composite.person_2_partner', language),
+                  style: const TextStyle(
                     color: Colors.blue,
                     fontWeight: FontWeight.w600,
                     fontSize: 12,
@@ -287,7 +289,7 @@ class _CompositeChartScreenState extends ConsumerState<CompositeChartScreen> {
           TextField(
             controller: _partnerNameController,
             decoration: InputDecoration(
-              labelText: 'Isim',
+              labelText: L10nService.get('composite.name', language),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(AppConstants.radiusSm),
               ),
@@ -299,19 +301,21 @@ class _CompositeChartScreenState extends ConsumerState<CompositeChartScreen> {
             children: [
               Expanded(
                 child: _buildSignDropdown(
-                  'Gunes',
+                  L10nService.get('composite.sun', language),
                   _partnerSun,
                   (sign) => setState(() => _partnerSun = sign),
                   isDark,
+                  language,
                 ),
               ),
               const SizedBox(width: 12),
               Expanded(
                 child: _buildSignDropdown(
-                  'Ay',
+                  L10nService.get('composite.moon', language),
                   _partnerMoon,
                   (sign) => setState(() => _partnerMoon = sign),
                   isDark,
+                  language,
                 ),
               ),
             ],
@@ -329,9 +333,9 @@ class _CompositeChartScreenState extends ConsumerState<CompositeChartScreen> {
                   borderRadius: BorderRadius.circular(AppConstants.radiusMd),
                 ),
               ),
-              child: const Text(
-                'Kompozit Harita Olustur',
-                style: TextStyle(fontWeight: FontWeight.bold),
+              child: Text(
+                L10nService.get('composite.create_chart', language),
+                style: const TextStyle(fontWeight: FontWeight.bold),
               ),
             ),
           ),
@@ -345,6 +349,7 @@ class _CompositeChartScreenState extends ConsumerState<CompositeChartScreen> {
     ZodiacSign value,
     ValueChanged<ZodiacSign> onChanged,
     bool isDark,
+    AppLanguage language,
   ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -373,7 +378,7 @@ class _CompositeChartScreenState extends ConsumerState<CompositeChartScreen> {
                   children: [
                     Text(sign.symbol),
                     const SizedBox(width: 8),
-                    Text(sign.nameTr),
+                    Text(sign.localizedName(language)),
                   ],
                 ),
               );
@@ -387,7 +392,7 @@ class _CompositeChartScreenState extends ConsumerState<CompositeChartScreen> {
     );
   }
 
-  Widget _buildCompatibilityScore(bool isDark) {
+  Widget _buildCompatibilityScore(bool isDark, AppLanguage language) {
     final score = _chart!.overallCompatibility;
     final color = score >= 70
         ? Colors.green
@@ -441,7 +446,7 @@ class _CompositeChartScreenState extends ConsumerState<CompositeChartScreen> {
                         ),
                   ),
                   Text(
-                    'Uyum',
+                    L10nService.get('composite.compatibility', language),
                     style: Theme.of(context).textTheme.bodySmall,
                   ),
                 ],
@@ -453,13 +458,13 @@ class _CompositeChartScreenState extends ConsumerState<CompositeChartScreen> {
     );
   }
 
-  Widget _buildCompositePositions(bool isDark) {
+  Widget _buildCompositePositions(bool isDark, AppLanguage language) {
     final positions = [
-      {'label': 'Kompozit Gunes', 'sign': _chart!.compositeSun, 'icon': ''},
-      {'label': 'Kompozit Ay', 'sign': _chart!.compositeMoon, 'icon': ''},
-      {'label': 'Kompozit Yukselesi', 'sign': _chart!.compositeAscendant, 'icon': ''},
-      {'label': 'Kompozit Venus', 'sign': _chart!.compositeVenus, 'icon': ''},
-      {'label': 'Kompozit Mars', 'sign': _chart!.compositeMars, 'icon': ''},
+      {'label': L10nService.get('composite.composite_sun', language), 'sign': _chart!.compositeSun, 'icon': ''},
+      {'label': L10nService.get('composite.composite_moon', language), 'sign': _chart!.compositeMoon, 'icon': ''},
+      {'label': L10nService.get('composite.composite_ascendant', language), 'sign': _chart!.compositeAscendant, 'icon': ''},
+      {'label': L10nService.get('composite.composite_venus', language), 'sign': _chart!.compositeVenus, 'icon': ''},
+      {'label': L10nService.get('composite.composite_mars', language), 'sign': _chart!.compositeMars, 'icon': ''},
     ];
 
     return Container(
@@ -474,7 +479,7 @@ class _CompositeChartScreenState extends ConsumerState<CompositeChartScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Kompozit Pozisyonlar',
+            L10nService.get('composite.composite_positions', language),
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
@@ -504,7 +509,7 @@ class _CompositeChartScreenState extends ConsumerState<CompositeChartScreen> {
                     ),
                     const SizedBox(width: 4),
                     Text(
-                      sign.nameTr,
+                      sign.localizedName(language),
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                             fontWeight: FontWeight.w600,
                           ),
@@ -519,7 +524,7 @@ class _CompositeChartScreenState extends ConsumerState<CompositeChartScreen> {
     );
   }
 
-  Widget _buildRelationshipTheme(bool isDark) {
+  Widget _buildRelationshipTheme(bool isDark, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -542,7 +547,7 @@ class _CompositeChartScreenState extends ConsumerState<CompositeChartScreen> {
               const Icon(Icons.auto_awesome, color: Colors.purple),
               const SizedBox(width: 8),
               Text(
-                'Iliski Temasi',
+                L10nService.get('composite.relationship_theme', language),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
@@ -561,28 +566,28 @@ class _CompositeChartScreenState extends ConsumerState<CompositeChartScreen> {
     );
   }
 
-  Widget _buildDynamicsCards(bool isDark) {
+  Widget _buildDynamicsCards(bool isDark, AppLanguage language) {
     final dynamics = [
       {
-        'title': 'Duygusal Dinamikler',
+        'title': L10nService.get('composite.emotional_dynamics', language),
         'content': _chart!.emotionalDynamics,
         'icon': Icons.favorite,
         'color': Colors.pink,
       },
       {
-        'title': 'Iletisim Tarzi',
+        'title': L10nService.get('composite.communication_style', language),
         'content': _chart!.communicationStyle,
         'icon': Icons.chat_bubble,
         'color': Colors.blue,
       },
       {
-        'title': 'Güçlü Yanlar',
+        'title': L10nService.get('composite.strengths', language),
         'content': _chart!.strengthsOverview,
         'icon': Icons.star,
         'color': Colors.green,
       },
       {
-        'title': 'Zorluklar',
+        'title': L10nService.get('composite.challenges', language),
         'content': _chart!.challengesOverview,
         'icon': Icons.warning_amber,
         'color': Colors.orange,
@@ -641,7 +646,7 @@ class _CompositeChartScreenState extends ConsumerState<CompositeChartScreen> {
     );
   }
 
-  Widget _buildAspectsCard(bool isDark) {
+  Widget _buildAspectsCard(bool isDark, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -654,7 +659,7 @@ class _CompositeChartScreenState extends ConsumerState<CompositeChartScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Önemli Açılar',
+            L10nService.get('composite.key_aspects', language),
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
@@ -699,7 +704,7 @@ class _CompositeChartScreenState extends ConsumerState<CompositeChartScreen> {
                           borderRadius: BorderRadius.circular(4),
                         ),
                         child: Text(
-                          aspect.type.nameTr,
+                          aspect.type.localizedName(language),
                           style: Theme.of(context).textTheme.labelSmall?.copyWith(
                                 color: aspect.isHarmonious
                                     ? Colors.green
@@ -723,7 +728,7 @@ class _CompositeChartScreenState extends ConsumerState<CompositeChartScreen> {
     );
   }
 
-  Widget _buildSoulPurpose(bool isDark) {
+  Widget _buildSoulPurpose(bool isDark, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -747,7 +752,7 @@ class _CompositeChartScreenState extends ConsumerState<CompositeChartScreen> {
           ),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
-            'Ruhsal Amac',
+            L10nService.get('composite.soul_purpose', language),
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                   color: AppColors.starGold,

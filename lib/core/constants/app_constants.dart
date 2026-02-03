@@ -2,10 +2,10 @@ class AppConstants {
   AppConstants._();
 
   static const String appName = 'Venus One';
-  static const String appTagline = 'Yıldızların Rehberliğinde Kendini Keşfet';
+  // REMOVED: Turkish tagline - use L10nService.get('app.tagline', language) instead
 
   // App IDs and Links
-  static const String appStoreId = ''; // Add your App Store ID here
+  static const String appStoreId = '6758612716';
   static const String playStoreId = 'com.venusone'; // Update with your package name
   static const String privacyPolicyUrl = 'https://venusone.com/privacy';
   static const String termsOfServiceUrl = 'https://venusone.com/terms';
@@ -51,7 +51,7 @@ class AppConstants {
 
   // AdMob IDs (Production) - Replace with your actual IDs
   static const String admobAppIdAndroid = 'ca-app-pub-XXXXXXXXXXXXXXXX~XXXXXXXXXX';
-  static const String admobAppIdIos = 'ca-app-pub-XXXXXXXXXXXXXXXX~XXXXXXXXXX';
+  static const String admobAppIdIos = 'ca-app-pub-5137678816003178~8037799627';
   static const String admobBannerIdAndroid = 'ca-app-pub-XXXXXXXXXXXXXXXX/XXXXXXXXXX';
   static const String admobBannerIdIos = 'ca-app-pub-XXXXXXXXXXXXXXXX/XXXXXXXXXX';
   static const String admobInterstitialIdAndroid = 'ca-app-pub-XXXXXXXXXXXXXXXX/XXXXXXXXXX';

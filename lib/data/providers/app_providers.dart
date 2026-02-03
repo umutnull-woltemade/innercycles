@@ -104,16 +104,24 @@ final comparisonProfile2Provider = StateProvider<UserProfile?>((ref) => null);
 final selectedZodiacProvider =
     StateProvider<zodiac.ZodiacSign?>((ref) => null);
 
-// Daily horoscope for a sign
+// Daily horoscope for a sign with language support
 final dailyHoroscopeProvider =
-    Provider.family<DailyHoroscope, zodiac.ZodiacSign>((ref, sign) {
-  return HoroscopeService.generateDailyHoroscope(sign, DateTime.now());
+    Provider.family<DailyHoroscope, (zodiac.ZodiacSign, AppLanguage)>((ref, params) {
+  return HoroscopeService.generateDailyHoroscope(
+    params.$1,
+    DateTime.now(),
+    language: params.$2,
+  );
 });
 
-// Compatibility between two signs
+// Compatibility between two signs with language support
 final compatibilityProvider = Provider.family<Compatibility,
-    (zodiac.ZodiacSign, zodiac.ZodiacSign)>((ref, signs) {
-  return HoroscopeService.calculateCompatibility(signs.$1, signs.$2);
+    (zodiac.ZodiacSign, zodiac.ZodiacSign, AppLanguage)>((ref, params) {
+  return HoroscopeService.calculateCompatibility(
+    params.$1,
+    params.$2,
+    language: params.$3,
+  );
 });
 
 // Selected signs for compatibility checker
@@ -174,6 +182,19 @@ extension AppLanguageExtension on AppLanguage {
   }
 
   bool get isRTL => this == AppLanguage.ar;
+
+  /// Languages with complete translations and strict isolation support
+  /// These languages have NO fallback - all content is native
+  bool get hasStrictIsolation {
+    return this == AppLanguage.en ||
+        this == AppLanguage.tr ||
+        this == AppLanguage.de ||
+        this == AppLanguage.fr;
+  }
+
+  /// Languages that are fully available for selection
+  /// Non-strict languages show "Coming soon" in settings
+  bool get isFullyAvailable => hasStrictIsolation;
 
   Locale get locale {
     switch (this) {

@@ -1,4 +1,5 @@
 import 'zodiac_sign.dart';
+import '../providers/app_providers.dart';
 
 /// Weekly horoscope model
 class WeeklyHoroscope {
@@ -368,6 +369,71 @@ extension EclipseTypeExtension on EclipseType {
         return 'Kısmi Ay Tutulması';
       case EclipseType.lunarPenumbral:
         return 'Yarıgölge Ay Tutulması';
+    }
+  }
+
+  String get nameEn {
+    switch (this) {
+      case EclipseType.solarTotal:
+        return 'Total Solar Eclipse';
+      case EclipseType.solarPartial:
+        return 'Partial Solar Eclipse';
+      case EclipseType.solarAnnular:
+        return 'Annular Solar Eclipse';
+      case EclipseType.lunarTotal:
+        return 'Total Lunar Eclipse';
+      case EclipseType.lunarPartial:
+        return 'Partial Lunar Eclipse';
+      case EclipseType.lunarPenumbral:
+        return 'Penumbral Lunar Eclipse';
+    }
+  }
+
+  String get nameDe {
+    switch (this) {
+      case EclipseType.solarTotal:
+        return 'Totale Sonnenfinsternis';
+      case EclipseType.solarPartial:
+        return 'Partielle Sonnenfinsternis';
+      case EclipseType.solarAnnular:
+        return 'Ringformige Sonnenfinsternis';
+      case EclipseType.lunarTotal:
+        return 'Totale Mondfinsternis';
+      case EclipseType.lunarPartial:
+        return 'Partielle Mondfinsternis';
+      case EclipseType.lunarPenumbral:
+        return 'Halbschatten-Mondfinsternis';
+    }
+  }
+
+  String get nameFr {
+    switch (this) {
+      case EclipseType.solarTotal:
+        return 'Eclipse solaire totale';
+      case EclipseType.solarPartial:
+        return 'Eclipse solaire partielle';
+      case EclipseType.solarAnnular:
+        return 'Eclipse solaire annulaire';
+      case EclipseType.lunarTotal:
+        return 'Eclipse lunaire totale';
+      case EclipseType.lunarPartial:
+        return 'Eclipse lunaire partielle';
+      case EclipseType.lunarPenumbral:
+        return 'Eclipse lunaire penombrale';
+    }
+  }
+
+  String localizedName(AppLanguage language) {
+    switch (language) {
+      case AppLanguage.en:
+        return nameEn;
+      case AppLanguage.de:
+        return nameDe;
+      case AppLanguage.fr:
+        return nameFr;
+      case AppLanguage.tr:
+      default:
+        return nameTr;
     }
   }
 

@@ -7,6 +7,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../data/models/user_profile.dart';
 import '../../../data/models/zodiac_sign.dart';
 import '../../../data/providers/app_providers.dart';
+import '../../../data/services/l10n_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import 'add_profile_sheet.dart';
 
@@ -18,17 +19,18 @@ class SavedProfilesScreen extends ConsumerWidget {
     final profiles = ref.watch(savedProfilesProvider);
     final primaryId = ref.watch(primaryProfileProvider)?.id;
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final language = ref.watch(languageProvider);
 
     return Scaffold(
       body: CosmicBackground(
         child: SafeArea(
           child: Column(
             children: [
-              _buildHeader(context, isDark),
+              _buildHeader(context, isDark, language),
               Expanded(
                 child: profiles.isEmpty
-                    ? _buildEmptyState(context, isDark)
-                    : _buildProfilesList(context, ref, profiles, primaryId, isDark),
+                    ? _buildEmptyState(context, isDark, language)
+                    : _buildProfilesList(context, ref, profiles, primaryId, isDark, language),
               ),
             ],
           ),
@@ -38,12 +40,12 @@ class SavedProfilesScreen extends ConsumerWidget {
         onPressed: () => _showAddProfileSheet(context, ref),
         backgroundColor: AppColors.auroraStart,
         icon: const Icon(Icons.person_add, color: Colors.white),
-        label: const Text('Profil Ekle', style: TextStyle(color: Colors.white)),
+        label: Text(L10nService.get('profile.create_profile', language), style: const TextStyle(color: Colors.white)),
       ),
     );
   }
 
-  Widget _buildHeader(BuildContext context, bool isDark) {
+  Widget _buildHeader(BuildContext context, bool isDark, AppLanguage language) {
     return Padding(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       child: Row(
@@ -61,14 +63,14 @@ class SavedProfilesScreen extends ConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Kayıtlı Profiller',
+                  L10nService.get('profile.saved_profiles', language),
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
                         color: AppColors.starGold,
                         fontWeight: FontWeight.bold,
                       ),
                 ),
                 Text(
-                  'Karşılaştırma için profil ekle',
+                  L10nService.get('profile.add_profile_subtitle', language),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
                       ),
@@ -94,7 +96,7 @@ class SavedProfilesScreen extends ConsumerWidget {
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildEmptyState(BuildContext context, bool isDark) {
+  Widget _buildEmptyState(BuildContext context, bool isDark, AppLanguage language) {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -113,14 +115,14 @@ class SavedProfilesScreen extends ConsumerWidget {
           ),
           const SizedBox(height: AppConstants.spacingLg),
           Text(
-            'Henüz profil eklenmedi',
+            L10nService.get('profile.no_profiles_yet', language),
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
                 ),
           ),
           const SizedBox(height: AppConstants.spacingSm),
           Text(
-            'Partner, arkadas veya aile ekleyerek\nburç uyumunuzu keşfedin',
+            L10nService.get('profile.no_profiles_description', language),
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
@@ -137,6 +139,7 @@ class SavedProfilesScreen extends ConsumerWidget {
     List<UserProfile> profiles,
     String? primaryId,
     bool isDark,
+    AppLanguage language,
   ) {
     return ListView.builder(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -149,7 +152,8 @@ class SavedProfilesScreen extends ConsumerWidget {
           profile: profile,
           isPrimary: isPrimary,
           isDark: isDark,
-          onTap: () => _showProfileOptions(context, ref, profile, isPrimary),
+          language: language,
+          onTap: () => _showProfileOptions(context, ref, profile, isPrimary, language),
           onCompare: () => _startComparison(context, ref, profile),
         ).animate().fadeIn(delay: (index * 100).ms, duration: 400.ms).slideX(begin: 0.1);
       },
@@ -170,7 +174,7 @@ class SavedProfilesScreen extends ConsumerWidget {
     );
   }
 
-  void _showProfileOptions(BuildContext context, WidgetRef ref, UserProfile profile, bool isPrimary) {
+  void _showProfileOptions(BuildContext context, WidgetRef ref, UserProfile profile, bool isPrimary, AppLanguage language) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     showModalBottomSheet(
@@ -220,14 +224,14 @@ class SavedProfilesScreen extends ConsumerWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        profile.name ?? 'İsimsiz',
+                        profile.name ?? L10nService.get('misc.you', language),
                         style: Theme.of(context).textTheme.titleMedium?.copyWith(
                               color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
                               fontWeight: FontWeight.bold,
                             ),
                       ),
                       Text(
-                        '${profile.sunSign.nameTr} ${profile.relationshipLabel}',
+                        '${profile.sunSign.getLocalizedName(language)} ${profile.getLocalizedRelationshipLabel(language)}',
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
                               color: profile.sunSign.color,
                             ),
@@ -242,7 +246,7 @@ class SavedProfilesScreen extends ConsumerWidget {
               ListTile(
                 leading: const Icon(Icons.star_outline, color: AppColors.starGold),
                 title: Text(
-                  'Ana Profil Yap',
+                  L10nService.get('profile.make_main_profile', language),
                   style: TextStyle(
                     color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
                   ),
@@ -255,7 +259,7 @@ class SavedProfilesScreen extends ConsumerWidget {
             ListTile(
               leading: const Icon(Icons.compare_arrows, color: Colors.pink),
               title: Text(
-                'Karşılaştır',
+                L10nService.get('profile.compare', language),
                 style: TextStyle(
                   color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
                 ),
@@ -267,13 +271,13 @@ class SavedProfilesScreen extends ConsumerWidget {
             ),
             ListTile(
               leading: const Icon(Icons.delete_outline, color: AppColors.error),
-              title: const Text(
-                'Profili Sil',
-                style: TextStyle(color: AppColors.error),
+              title: Text(
+                L10nService.get('profile.delete_profile', language),
+                style: const TextStyle(color: AppColors.error),
               ),
               onTap: () {
                 Navigator.pop(context);
-                _confirmDelete(context, ref, profile);
+                _confirmDelete(context, ref, profile, language);
               },
             ),
             const SizedBox(height: AppConstants.spacingMd),
@@ -283,7 +287,7 @@ class SavedProfilesScreen extends ConsumerWidget {
     );
   }
 
-  void _confirmDelete(BuildContext context, WidgetRef ref, UserProfile profile) {
+  void _confirmDelete(BuildContext context, WidgetRef ref, UserProfile profile, AppLanguage language) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     showDialog(
@@ -294,13 +298,13 @@ class SavedProfilesScreen extends ConsumerWidget {
           borderRadius: BorderRadius.circular(AppConstants.radiusLg),
         ),
         title: Text(
-          'Profili Sil',
+          L10nService.get('profile.delete_profile', language),
           style: TextStyle(
             color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
           ),
         ),
         content: Text(
-          '${profile.name ?? "Bu profil"} silinecek. Emin misiniz?',
+          L10nService.get('profile.discard_changes_message', language),
           style: TextStyle(
             color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
           ),
@@ -309,7 +313,7 @@ class SavedProfilesScreen extends ConsumerWidget {
           TextButton(
             onPressed: () => Navigator.pop(context),
             child: Text(
-              'İptal',
+              L10nService.get('common.cancel', language),
               style: TextStyle(
                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
               ),
@@ -320,7 +324,7 @@ class SavedProfilesScreen extends ConsumerWidget {
               ref.read(savedProfilesProvider.notifier).removeProfile(profile.id);
               Navigator.pop(context);
             },
-            child: const Text('Sil', style: TextStyle(color: AppColors.error)),
+            child: Text(L10nService.get('common.delete', language), style: const TextStyle(color: AppColors.error)),
           ),
         ],
       ),
@@ -337,6 +341,7 @@ class _ProfileCard extends StatelessWidget {
   final UserProfile profile;
   final bool isPrimary;
   final bool isDark;
+  final AppLanguage language;
   final VoidCallback onTap;
   final VoidCallback onCompare;
 
@@ -344,6 +349,7 @@ class _ProfileCard extends StatelessWidget {
     required this.profile,
     required this.isPrimary,
     required this.isDark,
+    required this.language,
     required this.onTap,
     required this.onCompare,
   });
@@ -413,7 +419,7 @@ class _ProfileCard extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        profile.name ?? 'İsimsiz',
+                        profile.name ?? L10nService.get('misc.you', language),
                         style: Theme.of(context).textTheme.titleMedium?.copyWith(
                               color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
                               fontWeight: FontWeight.w600,
@@ -428,7 +434,7 @@ class _ProfileCard extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: Text(
-                            profile.relationshipLabel,
+                            profile.getLocalizedRelationshipLabel(language),
                             style: TextStyle(
                               fontSize: 10,
                               color: _getRelationshipColor(profile.relationship!),
@@ -448,14 +454,14 @@ class _ProfileCard extends StatelessWidget {
                       ),
                       const SizedBox(width: 4),
                       Text(
-                        profile.sunSign.nameTr,
+                        profile.sunSign.getLocalizedName(language),
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
                               color: profile.sunSign.color,
                             ),
                       ),
                       const SizedBox(width: 8),
                       Text(
-                        '${profile.age} yas',
+                        '${profile.age}',
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
                               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
                             ),

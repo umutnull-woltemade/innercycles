@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/constants/app_constants.dart';
+import '../../../data/providers/app_providers.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/extended_horoscope.dart';
 import '../../../data/models/zodiac_sign.dart';
@@ -9,20 +11,23 @@ import '../../../data/services/extended_horoscope_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/entertainment_disclaimer.dart';
 import '../../../shared/widgets/quiz_cta_card.dart';
+import '../../../data/services/localization_service.dart';
+import '../../../data/services/l10n_service.dart';
 
-class LoveHoroscopeScreen extends StatefulWidget {
+class LoveHoroscopeScreen extends ConsumerStatefulWidget {
   final String? signName;
 
   const LoveHoroscopeScreen({super.key, this.signName});
 
   @override
-  State<LoveHoroscopeScreen> createState() => _LoveHoroscopeScreenState();
+  ConsumerState<LoveHoroscopeScreen> createState() => _LoveHoroscopeScreenState();
 }
 
-class _LoveHoroscopeScreenState extends State<LoveHoroscopeScreen> {
+class _LoveHoroscopeScreenState extends ConsumerState<LoveHoroscopeScreen> {
   late ZodiacSign _selectedSign;
-  late LoveHoroscope _horoscope;
+  LoveHoroscope? _horoscope;
   late DateTime _selectedDate;
+  AppLanguage? _cachedLanguage;
 
   @override
   void initState() {
@@ -34,34 +39,41 @@ class _LoveHoroscopeScreenState extends State<LoveHoroscopeScreen> {
           )
         : ZodiacSign.aries;
     _selectedDate = DateTime.now();
-    _loadHoroscope();
   }
 
-  void _loadHoroscope() {
+  void _loadHoroscope(AppLanguage language) {
     _horoscope = ExtendedHoroscopeService.generateLoveHoroscope(
       _selectedSign,
       _selectedDate,
+      language: language,
     );
+    _cachedLanguage = language;
   }
 
-  void _changeDate(int delta) {
+  void _changeDate(int delta, AppLanguage language) {
     setState(() {
       _selectedDate = _selectedDate.add(Duration(days: delta));
-      _loadHoroscope();
+      _loadHoroscope(language);
     });
   }
 
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final language = ref.watch(languageProvider);
+
+    // Load horoscope if not loaded or language changed
+    if (_horoscope == null || _cachedLanguage != language) {
+      _loadHoroscope(language);
+    }
 
     return Scaffold(
       body: CosmicBackground(
         child: SafeArea(
           child: Column(
             children: [
-              _buildHeader(context, isDark),
-              _buildDateSelector(isDark),
+              _buildHeader(context, isDark, language),
+              _buildDateSelector(isDark, language),
               Expanded(
                 child: SingleChildScrollView(
                   padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -87,8 +99,8 @@ class _LoveHoroscopeScreenState extends State<LoveHoroscopeScreen> {
                       QuizCTACard.astrology(compact: true),
                       const SizedBox(height: AppConstants.spacingXl),
                       // Entertainment Disclaimer
-                      const PageFooterWithDisclaimer(
-                        brandText: 'Aşk Burcu — Venus One',
+                      PageFooterWithDisclaimer(
+                        brandText: L10n.get('brand_love_horoscope', language),
                         disclaimerText: DisclaimerTexts.astrology,
                       ),
                       const SizedBox(height: AppConstants.spacingLg),
@@ -103,7 +115,7 @@ class _LoveHoroscopeScreenState extends State<LoveHoroscopeScreen> {
     );
   }
 
-  Widget _buildHeader(BuildContext context, bool isDark) {
+  Widget _buildHeader(BuildContext context, bool isDark, AppLanguage language) {
     return Padding(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       child: Row(
@@ -120,7 +132,7 @@ class _LoveHoroscopeScreenState extends State<LoveHoroscopeScreen> {
                 const Icon(Icons.favorite, color: Colors.pink, size: 24),
                 const SizedBox(width: 8),
                 Text(
-                  'Aşk hayatın nasıl gidiyor?',
+                  L10nService.get('love_horoscope.title', language),
                   style: Theme.of(context).textTheme.headlineSmall,
                 ),
               ],
@@ -131,7 +143,7 @@ class _LoveHoroscopeScreenState extends State<LoveHoroscopeScreen> {
     );
   }
 
-  Widget _buildDateSelector(bool isDark) {
+  Widget _buildDateSelector(bool isDark, AppLanguage language) {
     final dateFormat =
         '${_selectedDate.day}.${_selectedDate.month}.${_selectedDate.year}';
     final isToday =
@@ -160,13 +172,13 @@ class _LoveHoroscopeScreenState extends State<LoveHoroscopeScreen> {
         children: [
           IconButton(
             icon: const Icon(Icons.chevron_left),
-            onPressed: () => _changeDate(-1),
+            onPressed: () => _changeDate(-1, language),
             color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
           ),
           Column(
             children: [
               Text(
-                isToday ? 'Bugun' : dateFormat,
+                isToday ? L10nService.get('love_horoscope.today', language) : dateFormat,
                 style: Theme.of(
                   context,
                 ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
@@ -177,7 +189,7 @@ class _LoveHoroscopeScreenState extends State<LoveHoroscopeScreen> {
           ),
           IconButton(
             icon: const Icon(Icons.chevron_right),
-            onPressed: () => _changeDate(1),
+            onPressed: () => _changeDate(1, language),
             color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
           ),
         ],
@@ -199,7 +211,7 @@ class _LoveHoroscopeScreenState extends State<LoveHoroscopeScreen> {
             onTap: () {
               setState(() {
                 _selectedSign = sign;
-                _loadHoroscope();
+                _loadHoroscope(ref.read(languageProvider));
               });
             },
             child: Container(
@@ -221,7 +233,7 @@ class _LoveHoroscopeScreenState extends State<LoveHoroscopeScreen> {
                 children: [
                   Text(sign.symbol, style: const TextStyle(fontSize: 20)),
                   Text(
-                    sign.nameTr,
+                    sign.localizedName(ref.read(languageProvider)),
                     style: Theme.of(context).textTheme.labelSmall?.copyWith(
                       fontSize: 10,
                       fontWeight: isSelected
@@ -278,13 +290,13 @@ class _LoveHoroscopeScreenState extends State<LoveHoroscopeScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    _selectedSign.nameTr,
+                    _selectedSign.localizedName(ref.read(languageProvider)),
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   Text(
-                    'Ask Enerjisi',
+                    L10nService.get('love_horoscope.love_energy', ref.read(languageProvider)),
                     style: Theme.of(
                       context,
                     ).textTheme.bodySmall?.copyWith(color: Colors.pink),
@@ -299,7 +311,7 @@ class _LoveHoroscopeScreenState extends State<LoveHoroscopeScreen> {
                   shape: BoxShape.circle,
                 ),
                 child: Text(
-                  _horoscope.overallLoveRating.toStringAsFixed(1),
+                  _horoscope!.overallLoveRating.toStringAsFixed(1),
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.bold,
                     color: Colors.pink,
@@ -310,7 +322,7 @@ class _LoveHoroscopeScreenState extends State<LoveHoroscopeScreen> {
           ),
           const SizedBox(height: AppConstants.spacingLg),
           Text(
-            _horoscope.romanticOutlook,
+            _horoscope!.romanticOutlook,
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(height: 1.6),
           ),
         ],
@@ -319,20 +331,21 @@ class _LoveHoroscopeScreenState extends State<LoveHoroscopeScreen> {
   }
 
   Widget _buildRatingsCard(bool isDark) {
+    final language = ref.read(languageProvider);
     final ratings = [
       {
-        'label': 'Tutku',
-        'value': _horoscope.passionRating,
+        'label': L10nService.get('love_horoscope.passion', language),
+        'value': _horoscope!.passionRating,
         'color': Colors.red,
       },
       {
-        'label': 'Romantizm',
-        'value': _horoscope.romanceRating,
+        'label': L10nService.get('love_horoscope.romance', language),
+        'value': _horoscope!.romanceRating,
         'color': Colors.pink,
       },
       {
-        'label': 'Iletisim',
-        'value': _horoscope.communicationRating,
+        'label': L10nService.get('love_horoscope.communication', language),
+        'value': _horoscope!.communicationRating,
         'color': Colors.purple,
       },
     ];
@@ -359,7 +372,7 @@ class _LoveHoroscopeScreenState extends State<LoveHoroscopeScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Gunun Ask Enerjileri',
+            L10nService.get('love_horoscope.daily_love_energies', language),
             style: Theme.of(
               context,
             ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
@@ -446,7 +459,7 @@ class _LoveHoroscopeScreenState extends State<LoveHoroscopeScreen> {
               ),
               const SizedBox(width: AppConstants.spacingMd),
               Text(
-                'Bekarlar Icin',
+                L10nService.get('love_horoscope.for_singles', ref.read(languageProvider)),
                 style: Theme.of(
                   context,
                 ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
@@ -455,7 +468,7 @@ class _LoveHoroscopeScreenState extends State<LoveHoroscopeScreen> {
           ),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
-            _horoscope.singleAdvice,
+            _horoscope!.singleAdvice,
             style: Theme.of(
               context,
             ).textTheme.bodyMedium?.copyWith(height: 1.5),
@@ -499,7 +512,7 @@ class _LoveHoroscopeScreenState extends State<LoveHoroscopeScreen> {
               ),
               const SizedBox(width: AppConstants.spacingMd),
               Text(
-                'Ciftler Icin',
+                L10nService.get('love_horoscope.for_couples', ref.read(languageProvider)),
                 style: Theme.of(
                   context,
                 ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
@@ -508,7 +521,7 @@ class _LoveHoroscopeScreenState extends State<LoveHoroscopeScreen> {
           ),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
-            _horoscope.couplesAdvice,
+            _horoscope!.couplesAdvice,
             style: Theme.of(
               context,
             ).textTheme.bodyMedium?.copyWith(height: 1.5),
@@ -538,7 +551,7 @@ class _LoveHoroscopeScreenState extends State<LoveHoroscopeScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Bugunun Burc Uyumu',
+            L10nService.get('love_horoscope.todays_compatibility', ref.read(languageProvider)),
             style: Theme.of(
               context,
             ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
@@ -548,8 +561,8 @@ class _LoveHoroscopeScreenState extends State<LoveHoroscopeScreen> {
             children: [
               Expanded(
                 child: _buildMatchCard(
-                  'En Uyumlu',
-                  _horoscope.bestMatch,
+                  L10nService.get('love_horoscope.most_compatible', ref.read(languageProvider)),
+                  _horoscope!.bestMatch,
                   Colors.green,
                   Icons.favorite,
                   isDark,
@@ -558,8 +571,8 @@ class _LoveHoroscopeScreenState extends State<LoveHoroscopeScreen> {
               const SizedBox(width: AppConstants.spacingMd),
               Expanded(
                 child: _buildMatchCard(
-                  'Zorlayici',
-                  _horoscope.challengingMatch,
+                  L10nService.get('love_horoscope.challenging', ref.read(languageProvider)),
+                  _horoscope!.challengingMatch,
                   Colors.orange,
                   Icons.warning_amber,
                   isDark,
@@ -607,7 +620,7 @@ class _LoveHoroscopeScreenState extends State<LoveHoroscopeScreen> {
           Text(sign.symbol, style: const TextStyle(fontSize: 28)),
           const SizedBox(height: 4),
           Text(
-            sign.nameTr,
+            sign.localizedName(ref.read(languageProvider)),
             style: Theme.of(
               context,
             ).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
@@ -652,7 +665,7 @@ class _LoveHoroscopeScreenState extends State<LoveHoroscopeScreen> {
               ),
               const SizedBox(width: AppConstants.spacingMd),
               Text(
-                'Ruhsal Bag',
+                L10nService.get('love_horoscope.soul_connection', ref.read(languageProvider)),
                 style: Theme.of(
                   context,
                 ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
@@ -661,7 +674,7 @@ class _LoveHoroscopeScreenState extends State<LoveHoroscopeScreen> {
           ),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
-            _horoscope.soulConnection,
+            _horoscope!.soulConnection,
             style: Theme.of(
               context,
             ).textTheme.bodyMedium?.copyWith(height: 1.5),
@@ -705,7 +718,7 @@ class _LoveHoroscopeScreenState extends State<LoveHoroscopeScreen> {
               ),
               const SizedBox(width: AppConstants.spacingMd),
               Text(
-                'Venus Etkisi',
+                L10nService.get('love_horoscope.venus_influence', ref.read(languageProvider)),
                 style: Theme.of(
                   context,
                 ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
@@ -714,7 +727,7 @@ class _LoveHoroscopeScreenState extends State<LoveHoroscopeScreen> {
           ),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
-            _horoscope.venusInfluence,
+            _horoscope!.venusInfluence,
             style: Theme.of(
               context,
             ).textTheme.bodyMedium?.copyWith(height: 1.5),
@@ -731,7 +744,7 @@ class _LoveHoroscopeScreenState extends State<LoveHoroscopeScreen> {
               ),
               const SizedBox(width: 8),
               Text(
-                'Yakinlik Tavsiyesi',
+                L10nService.get('love_horoscope.intimacy_advice', ref.read(languageProvider)),
                 style: Theme.of(
                   context,
                 ).textTheme.bodySmall?.copyWith(fontWeight: FontWeight.w600),
@@ -740,7 +753,7 @@ class _LoveHoroscopeScreenState extends State<LoveHoroscopeScreen> {
           ),
           const SizedBox(height: 8),
           Text(
-            _horoscope.intimacyAdvice,
+            _horoscope!.intimacyAdvice,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
               fontStyle: FontStyle.italic,
               height: 1.5,

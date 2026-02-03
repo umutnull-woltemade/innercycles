@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/zodiac_sign.dart';
 import '../../../data/models/extended_horoscope.dart';
+import '../../../data/providers/app_providers.dart';
 import '../../../data/services/extended_horoscope_service.dart';
+import '../../../data/services/l10n_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 
-class EclipseCalendarScreen extends StatefulWidget {
+class EclipseCalendarScreen extends ConsumerStatefulWidget {
   const EclipseCalendarScreen({super.key});
 
   @override
-  State<EclipseCalendarScreen> createState() => _EclipseCalendarScreenState();
+  ConsumerState<EclipseCalendarScreen> createState() => _EclipseCalendarScreenState();
 }
 
-class _EclipseCalendarScreenState extends State<EclipseCalendarScreen> {
+class _EclipseCalendarScreenState extends ConsumerState<EclipseCalendarScreen> {
   late int _selectedYear;
   late List<EclipseEvent> _eclipses;
   EclipseEvent? _nextEclipse;
@@ -41,13 +44,14 @@ class _EclipseCalendarScreenState extends State<EclipseCalendarScreen> {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final language = ref.watch(languageProvider);
 
     return Scaffold(
       body: CosmicBackground(
         child: SafeArea(
           child: Column(
             children: [
-              _buildHeader(context, isDark),
+              _buildHeader(context, isDark, language),
               Expanded(
                 child: SingleChildScrollView(
                   padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -55,12 +59,12 @@ class _EclipseCalendarScreenState extends State<EclipseCalendarScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       if (_nextEclipse != null) ...[
-                        _buildNextEclipseCard(isDark),
+                        _buildNextEclipseCard(isDark, language),
                         const SizedBox(height: AppConstants.spacingXl),
                       ],
-                      _buildYearSelector(isDark),
+                      _buildYearSelector(isDark, language),
                       const SizedBox(height: AppConstants.spacingLg),
-                      _buildEclipsesList(isDark),
+                      _buildEclipsesList(isDark, language),
                       const SizedBox(height: AppConstants.spacingXxl),
                     ],
                   ),
@@ -73,7 +77,7 @@ class _EclipseCalendarScreenState extends State<EclipseCalendarScreen> {
     );
   }
 
-  Widget _buildHeader(BuildContext context, bool isDark) {
+  Widget _buildHeader(BuildContext context, bool isDark, AppLanguage language) {
     return Padding(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       child: Row(
@@ -90,7 +94,7 @@ class _EclipseCalendarScreenState extends State<EclipseCalendarScreen> {
                 const Text('🌑', style: TextStyle(fontSize: 24)),
                 const SizedBox(width: 8),
                 Text(
-                  'Tutulma Takvimi',
+                  L10nService.get('eclipse.calendar_title', language),
                   style: Theme.of(context).textTheme.headlineSmall,
                 ),
               ],
@@ -101,7 +105,7 @@ class _EclipseCalendarScreenState extends State<EclipseCalendarScreen> {
     );
   }
 
-  Widget _buildNextEclipseCard(bool isDark) {
+  Widget _buildNextEclipseCard(bool isDark, AppLanguage language) {
     final eclipse = _nextEclipse!;
     final daysUntil = eclipse.daysUntil;
 
@@ -163,7 +167,7 @@ class _EclipseCalendarScreenState extends State<EclipseCalendarScreen> {
                         borderRadius: BorderRadius.circular(4),
                       ),
                       child: Text(
-                        'Siradaki Tutulma',
+                        L10nService.get('eclipse.next_eclipse', language),
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
                               color: AppColors.starGold,
                               fontWeight: FontWeight.w600,
@@ -172,7 +176,7 @@ class _EclipseCalendarScreenState extends State<EclipseCalendarScreen> {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      eclipse.type.nameTr,
+                      eclipse.type.localizedName(language),
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
                             fontWeight: FontWeight.bold,
                           ),
@@ -192,7 +196,7 @@ class _EclipseCalendarScreenState extends State<EclipseCalendarScreen> {
                         ),
                   ),
                   Text(
-                    'gun',
+                    L10nService.get('eclipse.days', language),
                     style: Theme.of(context).textTheme.bodySmall,
                   ),
                 ],
@@ -209,7 +213,7 @@ class _EclipseCalendarScreenState extends State<EclipseCalendarScreen> {
               ),
               const SizedBox(width: 8),
               _buildInfoChip(
-                eclipse.zodiacSign.nameTr,
+                eclipse.zodiacSign.localizedName(language),
                 null,
                 isDark,
                 prefix: eclipse.zodiacSign.symbol,
@@ -238,7 +242,7 @@ class _EclipseCalendarScreenState extends State<EclipseCalendarScreen> {
           ),
           const SizedBox(height: AppConstants.spacingLg),
           _buildExpandableSection(
-            'Ruhsal Anlam',
+            L10nService.get('eclipse.spiritual_meaning', language),
             eclipse.spiritualMeaning,
             Icons.auto_awesome,
             Colors.purple,
@@ -246,14 +250,14 @@ class _EclipseCalendarScreenState extends State<EclipseCalendarScreen> {
           ),
           const SizedBox(height: AppConstants.spacingMd),
           _buildExpandableSection(
-            'Pratik Tavsiye',
+            L10nService.get('eclipse.practical_advice', language),
             eclipse.practicalAdvice,
             Icons.lightbulb_outline,
             Colors.amber,
             isDark,
           ),
           const SizedBox(height: AppConstants.spacingMd),
-          _buildAffectedSignsRow(eclipse.mostAffectedSigns, isDark),
+          _buildAffectedSignsRow(eclipse.mostAffectedSigns, isDark, language),
         ],
       ),
     );
@@ -332,12 +336,12 @@ class _EclipseCalendarScreenState extends State<EclipseCalendarScreen> {
     );
   }
 
-  Widget _buildAffectedSignsRow(List<ZodiacSign> signs, bool isDark) {
+  Widget _buildAffectedSignsRow(List<ZodiacSign> signs, bool isDark, AppLanguage language) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'En Cok Etkilenen Burclar',
+          L10nService.get('eclipse.most_affected_signs', language),
           style: Theme.of(context).textTheme.bodySmall?.copyWith(
                 fontWeight: FontWeight.w600,
               ),
@@ -364,7 +368,7 @@ class _EclipseCalendarScreenState extends State<EclipseCalendarScreen> {
                   Text(sign.symbol, style: const TextStyle(fontSize: 14)),
                   const SizedBox(width: 4),
                   Text(
-                    sign.nameTr,
+                    sign.localizedName(language),
                     style: Theme.of(context).textTheme.bodySmall,
                   ),
                 ],
@@ -376,7 +380,7 @@ class _EclipseCalendarScreenState extends State<EclipseCalendarScreen> {
     );
   }
 
-  Widget _buildYearSelector(bool isDark) {
+  Widget _buildYearSelector(bool isDark, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.symmetric(
         horizontal: AppConstants.spacingMd,
@@ -397,7 +401,7 @@ class _EclipseCalendarScreenState extends State<EclipseCalendarScreen> {
             color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
           ),
           Text(
-            '$_selectedYear Tutulmalari',
+            L10nService.get('eclipse.year_eclipses', language).replaceAll('{year}', '$_selectedYear'),
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.w600,
                 ),
@@ -412,13 +416,13 @@ class _EclipseCalendarScreenState extends State<EclipseCalendarScreen> {
     );
   }
 
-  Widget _buildEclipsesList(bool isDark) {
+  Widget _buildEclipsesList(bool isDark, AppLanguage language) {
     if (_eclipses.isEmpty) {
       return Container(
         padding: const EdgeInsets.all(AppConstants.spacingXl),
         child: Center(
           child: Text(
-            'Bu yil icin tutulma verisi bulunamadi.',
+            L10nService.get('eclipse.no_data', language),
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   color: AppColors.textMuted,
                 ),
@@ -429,12 +433,12 @@ class _EclipseCalendarScreenState extends State<EclipseCalendarScreen> {
 
     return Column(
       children: _eclipses.map((eclipse) {
-        return _buildEclipseCard(eclipse, isDark);
+        return _buildEclipseCard(eclipse, isDark, language);
       }).toList(),
     );
   }
 
-  Widget _buildEclipseCard(EclipseEvent eclipse, bool isDark) {
+  Widget _buildEclipseCard(EclipseEvent eclipse, bool isDark, AppLanguage language) {
     final isPast = eclipse.isPast;
 
     return Container(
@@ -510,7 +514,7 @@ class _EclipseCalendarScreenState extends State<EclipseCalendarScreen> {
                           borderRadius: BorderRadius.circular(4),
                         ),
                         child: Text(
-                          'Gecmis',
+                          L10nService.get('eclipse.past', language),
                           style:
                               Theme.of(context).textTheme.labelSmall?.copyWith(
                                     color: Colors.grey,
@@ -518,7 +522,7 @@ class _EclipseCalendarScreenState extends State<EclipseCalendarScreen> {
                         ),
                       ),
                     Text(
-                      eclipse.type.nameTr,
+                      eclipse.type.localizedName(language),
                       style: Theme.of(context).textTheme.titleSmall?.copyWith(
                             fontWeight: FontWeight.bold,
                             color: isPast ? Colors.grey : null,
@@ -549,7 +553,7 @@ class _EclipseCalendarScreenState extends State<EclipseCalendarScreen> {
                 ),
                 const SizedBox(width: 4),
                 Text(
-                  eclipse.zodiacSign.nameTr,
+                  eclipse.zodiacSign.localizedName(language),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: isPast ? Colors.grey : null,
                       ),
@@ -566,7 +570,7 @@ class _EclipseCalendarScreenState extends State<EclipseCalendarScreen> {
             ),
             const SizedBox(height: AppConstants.spacingMd),
             _buildExpandableSection(
-              'Ruhsal Anlam',
+              L10nService.get('eclipse.spiritual_meaning', language),
               eclipse.spiritualMeaning,
               Icons.auto_awesome,
               Colors.purple,
@@ -574,14 +578,14 @@ class _EclipseCalendarScreenState extends State<EclipseCalendarScreen> {
             ),
             const SizedBox(height: AppConstants.spacingSm),
             _buildExpandableSection(
-              'Pratik Tavsiye',
+              L10nService.get('eclipse.practical_advice', language),
               eclipse.practicalAdvice,
               Icons.lightbulb_outline,
               Colors.amber,
               isDark,
             ),
             const SizedBox(height: AppConstants.spacingMd),
-            _buildAffectedSignsRow(eclipse.mostAffectedSigns, isDark),
+            _buildAffectedSignsRow(eclipse.mostAffectedSigns, isDark, language),
           ],
         ),
       ),

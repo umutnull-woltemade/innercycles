@@ -20,6 +20,9 @@ enum TantraTheme {
 }
 
 extension TantraThemeExtension on TantraTheme {
+  /// Localized name for the theme - falls back to Turkish for now
+  String localizedName(dynamic language) => nameTr;
+
   String get nameTr {
     switch (this) {
       case TantraTheme.breathAwareness:
@@ -158,6 +161,9 @@ enum TantraQuestionPurpose {
 }
 
 extension TantraQuestionPurposeExtension on TantraQuestionPurpose {
+  /// Localized name - falls back to Turkish for now
+  String localizedName(dynamic language) => nameTr;
+
   String get nameTr {
     switch (this) {
       case TantraQuestionPurpose.awarenessOpening:
