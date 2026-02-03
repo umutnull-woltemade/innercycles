@@ -1,3 +1,5 @@
+// ignore_for_file: unused_element
+
 import 'dart:math';
 import '../models/zodiac_sign.dart';
 import '../models/extended_horoscope.dart';
