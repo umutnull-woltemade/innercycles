@@ -1,0 +1,42 @@
+/*
+  Localizable.strings (Turkish)
+  RevenueCatUI
+
+  Copyright RevenueCat Inc. All Rights Reserved.
+  Licensed under the MIT License.
+*/
+
+/* Footer Actions */
+"all_subscriptions" = "Tüm abonelikler";
+"restore_purchases" = "Satın alımları geri yükle";
+"restore" = "Geri yükle";
+"purchases_restored_successfully" = "Satın alımlar başarıyla geri yüklendi!";
+"ok" = "Tamam";
+
+/* Legal Links */
+"terms_and_conditions" = "Şartlar ve koşullar";
+"terms_short" = "Şartlar";
+"privacy_policy" = "Gizlilik politikası";
+"privacy_short" = "Gizlilik";
+
+/* Package Types */
+"Annual" = "Yıllık";
+"6 Month" = "6 Ay";
+"3 Month" = "3 Ay";
+"2 Month" = "2 Ay";
+"Monthly" = "Aylık";
+"Weekly" = "Haftalık";
+"Lifetime" = "Ömür boyu";
+
+/* Package Types - Localization Keys */
+"package_annual" = "Yıllık";
+"package_six_month" = "6 Ay";
+"package_three_month" = "3 Ay";
+"package_two_month" = "2 Ay";
+"package_monthly" = "Aylık";
+"package_weekly" = "Haftalık";
+"package_lifetime" = "Ömür boyu";
+
+/* Discount Format */
+"%d%% off" = "%%% indirim";
+"percent_off" = "%%% indirim";

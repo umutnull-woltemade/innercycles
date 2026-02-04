@@ -34,4 +34,31 @@
    <FileRef
       location = "group:DEPLOY_NOW.txt">
    </FileRef>
+   <FileRef
+      location = "group:pubspec_web_fix.yaml">
+   </FileRef>
+   <FileRef
+      location = "group:index_web_fix.html">
+   </FileRef>
+   <FileRef
+      location = "group:main_web_fix.dart">
+   </FileRef>
+   <FileRef
+      location = "group:analytics_helper.dart">
+   </FileRef>
+   <FileRef
+      location = "group:KURULUM_TALIMATLARI.md">
+   </FileRef>
+   <FileRef
+      location = "group:firebase_kaldirma_scripti.sh">
+   </FileRef>
+   <FileRef
+      location = "group:LocalizationKeys.swift">
+   </FileRef>
+   <FileRef
+      location = "group:Resourcesen.lprojLocalizable.strings">
+   </FileRef>
+   <FileRef
+      location = "group:Resourcestr.lprojLocalizable.strings">
+   </FileRef>
 </Workspace>

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../models/user_profile.dart';
 import '../providers/app_providers.dart';
 import 'package:flutter/material.dart';
@@ -277,8 +278,20 @@ class StorageService {
 
   // ========== LANGUAGE ==========
 
-  /// Save selected language
+  /// Save selected language (uses SharedPreferences on web, Hive on mobile)
   static Future<void> saveLanguage(AppLanguage language) async {
+    // Web: use SharedPreferences (wraps localStorage)
+    if (kIsWeb) {
+      try {
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setInt(_languageKey, language.index);
+      } catch (e) {
+        if (kDebugMode) debugPrint('Web language save error: $e');
+      }
+      return;
+    }
+
+    // Mobile: use Hive
     _warnIfNotInitialized('saveLanguage');
     final box = _settingsBox;
     if (box == null) return;
@@ -286,17 +299,42 @@ class StorageService {
     await box.put(_languageKey, language.index);
   }
 
-  /// Load selected language
+  /// Load selected language (uses SharedPreferences on web, Hive on mobile)
+  /// Default: English (AppLanguage.en)
   static AppLanguage loadLanguage() {
+    // Note: Web uses async version loadLanguageAsync() for SharedPreferences
+    // This sync version is for mobile only
+    if (kIsWeb) {
+      return AppLanguage.en; // Default to English, actual value loaded async
+    }
+
+    // Mobile: use Hive
     _warnIfNotInitialized('loadLanguage');
     final box = _settingsBox;
-    if (box == null) return AppLanguage.tr;
+    if (box == null) return AppLanguage.en;
 
-    final index = box.get(_languageKey, defaultValue: AppLanguage.tr.index) as int;
+    final index = box.get(_languageKey, defaultValue: AppLanguage.en.index) as int;
     if (index >= 0 && index < AppLanguage.values.length) {
       return AppLanguage.values[index];
     }
-    return AppLanguage.tr;
+    return AppLanguage.en;
+  }
+
+  /// Async version of loadLanguage for web platform
+  static Future<AppLanguage> loadLanguageAsync() async {
+    if (kIsWeb) {
+      try {
+        final prefs = await SharedPreferences.getInstance();
+        final index = prefs.getInt(_languageKey) ?? AppLanguage.en.index;
+        if (index >= 0 && index < AppLanguage.values.length) {
+          return AppLanguage.values[index];
+        }
+      } catch (e) {
+        if (kDebugMode) debugPrint('Web language load error: $e');
+      }
+      return AppLanguage.en;
+    }
+    return loadLanguage();
   }
 
   // ========== THEME MODE ==========

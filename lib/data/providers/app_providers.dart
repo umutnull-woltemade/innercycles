@@ -212,7 +212,7 @@ extension AppLanguageExtension on AppLanguage {
   }
 }
 
-final languageProvider = StateProvider<AppLanguage>((ref) => AppLanguage.tr);
+final languageProvider = StateProvider<AppLanguage>((ref) => AppLanguage.en);
 
 // Theme mode provider - default is dark
 final themeModeProvider = StateProvider<ThemeMode>((ref) => ThemeMode.dark);
