@@ -61,7 +61,7 @@ class HomeScreen extends ConsumerWidget {
                 const SizedBox(height: AppConstants.spacingLg),
                 // Mercury Retrograde Alert
                 if (MoonService.isPlanetRetrograde('mercury'))
-                  _buildMercuryRetrogradeAlert(context),
+                  _buildMercuryRetrogradeAlert(context, ref),
                 const SizedBox(height: AppConstants.spacingMd),
                 // Moon Phase & Sign Widget
                 _buildMoonWidget(context, ref),
@@ -267,7 +267,7 @@ class HomeScreen extends ConsumerWidget {
                             Icon(Icons.cake_outlined, size: 14, color: Colors.white.withOpacity(0.6)),
                             const SizedBox(width: 6),
                             Text(
-                              _formatBirthDate(birthDate),
+                              _formatBirthDate(birthDate, language),
                               style: TextStyle(
                                 color: Colors.white.withOpacity(0.8),
                                 fontSize: 13,
@@ -310,13 +310,13 @@ class HomeScreen extends ConsumerWidget {
                     ],
                   ),
                 ),
-                // Şans yıldızları
+                // Luck stars
                 Column(
                   children: [
                     _buildLuckStars(horoscope.luckRating),
                     const SizedBox(height: 2),
                     Text(
-                      'Şans',
+                      L10nService.get('home.luck', language),
                       style: TextStyle(
                         color: Colors.white.withOpacity(0.5),
                         fontSize: 10,
@@ -414,7 +414,7 @@ class HomeScreen extends ConsumerWidget {
                     const Icon(Icons.auto_awesome, color: Colors.white, size: 22),
                     const SizedBox(width: 10),
                     Text(
-                      'Tüm Çözümlemeler',
+                      L10nService.get('home.all_services', language),
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 16,
@@ -432,7 +432,7 @@ class HomeScreen extends ConsumerWidget {
               ),
             ),
             const SizedBox(height: 12),
-            // Detaylı yorum butonu
+            // Detailed reading button
             Center(
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
@@ -447,7 +447,7 @@ class HomeScreen extends ConsumerWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      'Detaylı Yorum',
+                      L10nService.get('home.detailed_reading', language),
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 13,
@@ -466,7 +466,8 @@ class HomeScreen extends ConsumerWidget {
     ).animate().fadeIn(delay: 100.ms, duration: 400.ms);
   }
 
-  Widget _buildMercuryRetrogradeAlert(BuildContext context) {
+  Widget _buildMercuryRetrogradeAlert(BuildContext context, WidgetRef ref) {
+    final language = ref.watch(languageProvider);
     final retroEnd = MoonService.getCurrentMercuryRetrogradeEnd();
     final daysLeft = retroEnd != null
         ? retroEnd.difference(DateTime.now()).inDays
@@ -503,7 +504,7 @@ class HomeScreen extends ConsumerWidget {
                 Row(
                   children: [
                     Text(
-                      'Merkür Retrosu',
+                      L10nService.get('home.mercury_retrograde', language),
                       style: Theme.of(context).textTheme.titleSmall?.copyWith(
                             color: Colors.orange,
                             fontWeight: FontWeight.bold,
@@ -528,9 +529,7 @@ class HomeScreen extends ConsumerWidget {
                 ),
                 const SizedBox(height: 2),
                 Text(
-                  daysLeft > 0
-                      ? 'Iletisimde dikkatli ol! $daysLeft gun kaldi.'
-                      : 'Iletisim ve teknolojide dikkatli ol!',
+                  L10nService.get('home.mercury_retrograde_warning', language),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: AppColors.textSecondary,
                       ),
@@ -779,7 +778,7 @@ class HomeScreen extends ConsumerWidget {
                         Row(
                           children: [
                             Text(
-                              'Ay Bos Seyir',
+                              L10nService.get('home.void_of_course', language),
                               style: Theme.of(context).textTheme.labelMedium?.copyWith(
                                     color: Colors.purple,
                                     fontWeight: FontWeight.bold,
@@ -857,9 +856,10 @@ class HomeScreen extends ConsumerWidget {
     }
   }
 
-  String _formatBirthDate(DateTime date) {
-    final months = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
-    return '${date.day} ${months[date.month - 1]} ${date.year}';
+  String _formatBirthDate(DateTime date, AppLanguage language) {
+    final monthKeys = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'];
+    final monthName = L10nService.get('months.${monthKeys[date.month - 1]}', language);
+    return '${date.day} $monthName ${date.year}';
   }
 
   Widget _buildLuckStars(int rating) {

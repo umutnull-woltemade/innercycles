@@ -187,6 +187,10 @@
     "pdf_generating": "Generating PDF..."
   },
   "home": {
+    "luck": "Luck",
+    "detailed_reading": "Detailed Reading",
+    "mercury_retrograde": "Mercury Retrograde",
+    "mercury_retrograde_warning": "Be careful with communication and technology!",
     "get_cosmic_message": "Get Your Cosmic Message",
     "all_services": "All Analyses",
     "all_services_desc": "80+ tools for your cosmic journey",
@@ -1557,7 +1561,13 @@
     "dream_oracle": "Dream Oracle"
   },
   "kozmoz": {
-    "title": "Cosmic Guide"
+    "title": "Cosmic Guide",
+    "greeting_hello": "Hello",
+    "good_morning": "Good morning",
+    "good_afternoon": "Good afternoon",
+    "good_evening": "Good evening",
+    "dear": "dear",
+    "intro_message": "I am Kozmoz Trace, your cosmic guide. I am here to answer your questions about astrology, horoscope readings, transits, numerology and more with the energy of your {sign} sign."
   },
   "theta_healing": {
     "title": "Theta Healing"

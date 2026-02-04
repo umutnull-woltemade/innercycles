@@ -187,6 +187,10 @@
     "pdf_generating": "PDF oluşturuluyor..."
   },
   "home": {
+    "luck": "Şans",
+    "detailed_reading": "Detaylı Yorum",
+    "mercury_retrograde": "Merkür Retrosu",
+    "mercury_retrograde_warning": "İletişim ve teknolojide dikkatli ol!",
     "get_cosmic_message": "Kozmik Mesajını Al",
     "all_services": "Tüm Çözümlemeler",
     "all_services_desc": "Kozmik yolculuğun için 80+ araç",
@@ -1557,7 +1561,13 @@
     "dream_oracle": "Rüya Orakeli"
   },
   "kozmoz": {
-    "title": "Kozmik Rehber"
+    "title": "Kozmik Rehber",
+    "greeting_hello": "Merhaba",
+    "good_morning": "Günaydın",
+    "good_afternoon": "İyi günler",
+    "good_evening": "İyi akşamlar",
+    "dear": "değerli",
+    "intro_message": "Ben Kozmoz İzi, senin kozmik rehberin. {sign} burcunun enerjisiyle astroloji, burç yorumları, transitler, numeroloji ve daha fazlası hakkında sorularını yanıtlamak için buradayım."
   },
   "theta_healing": {
     "title": "Theta Healing"

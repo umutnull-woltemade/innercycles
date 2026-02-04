@@ -7,6 +7,7 @@ import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/zodiac_sign.dart' as zodiac;
 import '../../../data/providers/app_providers.dart';
+import '../../../data/services/l10n_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/entertainment_disclaimer.dart';
 
@@ -175,16 +176,14 @@ class _KozmozScreenState extends ConsumerState<KozmozScreen>
     final userName = userProfile?.name ?? 'Yolcu';
     final language = ref.read(languageProvider);
 
+    final hello = L10nService.get('kozmoz.greeting_hello', language);
+    final introMessage = L10nService.get('kozmoz.intro_message', language)
+        .replaceAll('{sign}', sign.localizedName(language));
+
     setState(() {
       _messages.add(_ChatMessage(
-        text: 'Merhaba $userName! 🌟\n\n'
-            'Ben Kozmoz İzi, senin kozmik rehberin. ${sign.localizedName(language)} burcunun enerjisiyle '
-            'astroloji, burç yorumları, transitler, numeroloji ve daha fazlası hakkında '
-            'sorularını yanıtlamak için buradayım.\n\n'
-            'Bana her şeyi sorabilirsin - günlük burç yorumundan, '
-            'doğum haritası analizine, ilişki uyumundan, '
-            'kozmik zamanlamaya kadar...\n\n'
-            '✨ Hadi başlayalım! Ne öğrenmek istersin?\n\n'
+        text: '$hello $userName! 🌟\n\n'
+            '$introMessage\n\n'
             '⚠️ ${DisclaimerTexts.astrology}',
         isUser: false,
         timestamp: DateTime.now(),
@@ -864,14 +863,15 @@ ${_getActivationCalendar(sign)}
     final hour = DateTime.now().hour;
     String greeting;
     if (hour < 12) {
-      greeting = 'Günaydın';
+      greeting = L10nService.get('kozmoz.good_morning', language);
     } else if (hour < 18) {
-      greeting = 'İyi günler';
+      greeting = L10nService.get('kozmoz.good_afternoon', language);
     } else {
-      greeting = 'İyi akşamlar';
+      greeting = L10nService.get('kozmoz.good_evening', language);
     }
+    final dear = L10nService.get('kozmoz.dear', language);
 
-    return '''$greeting, değerli ${sign.localizedName(language)}! 🌟
+    return '''$greeting, $dear ${sign.localizedName(language)}! 🌟
 
 Ben Kozmoz, senin kişisel kozmik AI rehberin!
 
