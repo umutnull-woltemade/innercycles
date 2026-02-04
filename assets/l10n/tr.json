@@ -697,6 +697,7 @@
     "no_account": "Hesabınız yok mu?"
   },
   "dreams": {
+    "title": "Rüyalar",
     "share": "Paylaş",
     "save": "Kaydet",
     "saved_to_journal": "Rüya günlüğüne kaydedildi",
@@ -1563,6 +1564,9 @@
   },
   "reiki": {
     "title": "Reiki"
+  },
+  "birth_chart": {
+    "title": "Doğum Haritası"
   },
   "chart": {
     "birth_date": "Doğum Tarihi",

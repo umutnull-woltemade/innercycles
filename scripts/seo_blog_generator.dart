@@ -298,7 +298,7 @@ Like all signs, ${data['name']} has areas for growth:
 
 ## ${data['name']} in Love & Relationships
 
-When it comes to matters of the heart, ${data['name']} brings their characteristic ${data['element'].toLowerCase()} energy to relationships.
+When it comes to matters of the heart, ${data['name']} brings their characteristic ${(data['element'] as String?)?.toLowerCase() ?? 'elemental'} energy to relationships.
 
 ### Most Compatible Signs
 1. ${_getMostCompatible(signKey, 0)}
@@ -567,11 +567,11 @@ schema_type: Article
 
 ## What Is a $aspectName?
 
-A $aspectName is an aspect of ${data['degree']} between two planets in a birth chart. It represents ${data['nature'].toLowerCase()} energy — ${data['keywords'].toLowerCase()}.
+A $aspectName is an aspect of ${data['degree']} between two planets in a birth chart. It represents ${(data['nature'] as String?)?.toLowerCase() ?? 'dynamic'} energy — ${(data['keywords'] as String?)?.toLowerCase() ?? 'transformative'}.
 
 ## The Nature of $aspectName Aspects
 
-$aspectName aspects are considered ${_getAspectNature(aspect.toLowerCase())} aspects in traditional astrology. They create a ${data['nature'].toLowerCase()} between the planets involved.
+$aspectName aspects are considered ${_getAspectNature(aspect.toLowerCase())} aspects in traditional astrology. They create a ${(data['nature'] as String?)?.toLowerCase() ?? 'dynamic'} between the planets involved.
 
 ### Key Characteristics
 - **Degree:** ${data['degree']}

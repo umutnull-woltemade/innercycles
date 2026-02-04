@@ -697,6 +697,7 @@
     "no_account": "Don't have an account?"
   },
   "dreams": {
+    "title": "Dreams",
     "share": "Share",
     "save": "Save",
     "saved_to_journal": "Saved to dream journal",
@@ -1563,6 +1564,9 @@
   },
   "reiki": {
     "title": "Reiki"
+  },
+  "birth_chart": {
+    "title": "Birth Chart"
   },
   "chart": {
     "birth_date": "Birth Date",

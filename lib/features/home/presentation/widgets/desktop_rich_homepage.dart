@@ -1942,12 +1942,12 @@ class _HouseSystemSection extends StatelessWidget {
 // VENUS ONE LOGO
 // ═══════════════════════════════════════════════════════════════════════════
 
-class _VenusOneLogo extends StatefulWidget {
+class _VenusOneLogo extends ConsumerStatefulWidget {
   @override
-  State<_VenusOneLogo> createState() => _VenusOneLogoState();
+  ConsumerState<_VenusOneLogo> createState() => _VenusOneLogoState();
 }
 
-class _VenusOneLogoState extends State<_VenusOneLogo>
+class _VenusOneLogoState extends ConsumerState<_VenusOneLogo>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   bool _isHovered = false;
@@ -1969,6 +1969,8 @@ class _VenusOneLogoState extends State<_VenusOneLogo>
 
   @override
   Widget build(BuildContext context) {
+    final language = ref.watch(languageProvider);
+
     return MouseRegion(
       onEnter: (_) => setState(() => _isHovered = true),
       onExit: (_) => setState(() => _isHovered = false),
@@ -2076,7 +2078,7 @@ class _VenusOneLogoState extends State<_VenusOneLogo>
                     builder: (context, child) {
                       final sparkle = _controller.value < 0.5 ? '✦' : '✧';
                       return Text(
-                        '$sparkle Kozmik Rehber $sparkle',
+                        '$sparkle ${L10nService.get('kozmoz.title', language)} $sparkle',
                         style: TextStyle(
                           fontSize: 8,
                           fontWeight: FontWeight.w500,
