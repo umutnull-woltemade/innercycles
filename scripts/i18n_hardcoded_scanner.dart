@@ -40,6 +40,18 @@ void main(List<String> args) {
   // Turkish characters to detect
   const turkishChars = 'ığüşöçİĞÜŞÖÇ';
 
+  // Common Turkish words that indicate hardcoded strings (even without special chars)
+  const turkishWords = [
+    'Burç', 'Günlük', 'Haftalık', 'Aylık', 'Yıllık',
+    'Keşfet', 'Devam', 'Analiz', 'Yorum', 'Harita',
+    'Uyum', 'Paylaş', 'Kozmik', 'Enerji', 'Tarot',
+    'Numeroloji', 'Rüya', 'Kadim', 'Bilgelik', 'Evren',
+    'Yıldız', 'Gezegen', 'Ay', 'Güneş', 'Doğum',
+    'Aşk', 'İlişki', 'Kariyer', 'Sağlık', 'Finans',
+    'Bugün', 'Yarın', 'Dün', 'Şimdi', 'Sonra',
+    'Merak', 'Bakış', 'Açı', 'Dünya', 'Bağlan',
+  ];
+
   for (final file in dartFiles) {
     final content = file.readAsStringSync();
     final lines = content.split('\n');
@@ -70,7 +82,10 @@ void main(List<String> args) {
         // Check if contains Turkish characters
         final hasTurkish = turkishChars.split('').any((c) => text.contains(c));
 
-        if (hasTurkish && text.length > 3 && !_isAllowedString(text)) {
+        // Check if contains common Turkish words
+        final hasTurkishWord = turkishWords.any((word) => text.contains(word));
+
+        if ((hasTurkish || hasTurkishWord) && text.length > 3 && !_isAllowedString(text)) {
           // Determine context
           String type;
           if (line.contains('Text(') || line.contains('Text.')) {

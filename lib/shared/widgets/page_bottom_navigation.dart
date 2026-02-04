@@ -4,6 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/content/navigation_content.dart';
+import '../../data/services/l10n_service.dart';
+import '../../data/providers/app_providers.dart';
 
 /// Page Bottom Navigation Widget
 /// Implements the "Back-Button-Free Navigation System"
@@ -15,11 +17,13 @@ import '../../data/content/navigation_content.dart';
 class PageBottomNavigation extends StatelessWidget {
   final String currentRoute;
   final PageNavigation? customNavigation;
+  final AppLanguage language;
 
   const PageBottomNavigation({
     super.key,
     required this.currentRoute,
     this.customNavigation,
+    this.language = AppLanguage.en,
   });
 
   @override
@@ -55,7 +59,7 @@ class PageBottomNavigation extends StatelessWidget {
           if (navigation.alsoViewed.isNotEmpty)
             _NavigationSection(
               title: NavigationSectionTitles.alsoViewed,
-              subtitle: 'Merak edenler bunlara da göz attı',
+              subtitle: L10nService.get('nav.also_viewed_subtitle', language),
               cards: navigation.alsoViewed,
               sectionIndex: 0,
             ),
@@ -63,7 +67,7 @@ class PageBottomNavigation extends StatelessWidget {
           if (navigation.goDeeper.isNotEmpty)
             _NavigationSection(
               title: NavigationSectionTitles.goDeeper,
-              subtitle: 'İç dünyanla bağlan',
+              subtitle: L10nService.get('nav.go_deeper_subtitle', language),
               cards: navigation.goDeeper,
               sectionIndex: 1,
               isHighlighted: true,
@@ -72,7 +76,7 @@ class PageBottomNavigation extends StatelessWidget {
           if (navigation.keepExploring.isNotEmpty)
             _NavigationSection(
               title: NavigationSectionTitles.keepExploring,
-              subtitle: 'Farklı bakış açıları',
+              subtitle: L10nService.get('nav.keep_exploring_subtitle', language),
               cards: navigation.keepExploring,
               sectionIndex: 2,
             ),
@@ -451,10 +455,12 @@ class _QuickLinkChip extends StatelessWidget {
 /// Compact version for pages with less space
 class PageBottomNavigationCompact extends StatelessWidget {
   final String currentRoute;
+  final AppLanguage language;
 
   const PageBottomNavigationCompact({
     super.key,
     required this.currentRoute,
+    this.language = AppLanguage.en,
   });
 
   @override
@@ -486,7 +492,7 @@ class PageBottomNavigationCompact extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Text(
-              'Keşfetmeye Devam Et',
+              L10nService.get('nav.keep_exploring', language),
               style: GoogleFonts.cormorantGaramond(
                 fontSize: 18,
                 fontWeight: FontWeight.w600,

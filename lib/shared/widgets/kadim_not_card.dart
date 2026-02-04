@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../../core/theme/app_colors.dart';
+import '../../data/services/l10n_service.dart';
+import '../../data/providers/app_providers.dart';
 
 /// KADİM NOT (ANCIENT NOTE) CARD WIDGET
 ///
@@ -42,6 +44,7 @@ class KadimNotCard extends StatelessWidget {
   final VoidCallback? onTap;
   final bool showGlow;
   final bool compact;
+  final AppLanguage language;
 
   const KadimNotCard({
     super.key,
@@ -53,6 +56,7 @@ class KadimNotCard extends StatelessWidget {
     this.onTap,
     this.showGlow = true,
     this.compact = false,
+    this.language = AppLanguage.en,
   });
 
   @override
@@ -231,73 +235,75 @@ class KadimNotCard extends StatelessWidget {
   }
 
   _CategoryData _getCategoryData(KadimCategory category) {
+    String t(String key) => L10nService.get(key, language);
+
     switch (category) {
       case KadimCategory.numerology:
         return _CategoryData(
-          label: 'Kadim Sayı Bilgeliği',
+          label: t('kadim.ancient_number_wisdom'),
           color: const Color(0xFF9C27B0), // Deep purple
           icon: Icons.tag,
           symbol: '∞',
         );
       case KadimCategory.astrology:
         return _CategoryData(
-          label: 'Göksel Bilgelik',
+          label: t('kadim.celestial_wisdom'),
           color: AppColors.auroraStart,
           icon: Icons.stars,
           symbol: '☿',
         );
       case KadimCategory.tarot:
         return _CategoryData(
-          label: 'Arketipsel Sırlar',
+          label: t('kadim.archetypal_secrets'),
           color: const Color(0xFFE91E63), // Pink
           icon: Icons.style,
           symbol: '⚜',
         );
       case KadimCategory.chakra:
         return _CategoryData(
-          label: 'Enerji Bilgeliği',
+          label: t('kadim.energy_wisdom'),
           color: const Color(0xFF00BCD4), // Cyan
           icon: Icons.blur_circular,
           symbol: '☯',
         );
       case KadimCategory.moonWisdom:
         return _CategoryData(
-          label: 'Ay Sırları',
+          label: t('kadim.moon_secrets'),
           color: const Color(0xFF78909C), // Blue grey
           icon: Icons.nightlight_round,
           symbol: '☽',
         );
       case KadimCategory.elements:
         return _CategoryData(
-          label: 'Element Bilgeliği',
+          label: t('kadim.element_wisdom'),
           color: const Color(0xFF4CAF50), // Green
           icon: Icons.eco,
           symbol: '◈',
         );
       case KadimCategory.rituals:
         return _CategoryData(
-          label: 'Kadim Ritüeller',
+          label: t('kadim.ancient_rituals'),
           color: const Color(0xFFFF9800), // Orange
           icon: Icons.local_fire_department,
           symbol: '⛤',
         );
       case KadimCategory.dreams:
         return _CategoryData(
-          label: 'Rüya Bilgeliği',
+          label: t('kadim.dream_wisdom'),
           color: const Color(0xFF673AB7), // Deep purple
           icon: Icons.cloud,
           symbol: '☁',
         );
       case KadimCategory.symbols:
         return _CategoryData(
-          label: 'Sembolik Sırlar',
+          label: t('kadim.universal_symbols'),
           color: const Color(0xFF795548), // Brown
           icon: Icons.auto_awesome,
           symbol: '⚕',
         );
       case KadimCategory.alchemy:
         return _CategoryData(
-          label: 'Simya Bilgeliği',
+          label: t('kadim.transformation_art'),
           color: const Color(0xFFFFD700), // Gold
           icon: Icons.science,
           symbol: '☿',
@@ -349,12 +355,14 @@ class KadimBanner extends StatelessWidget {
   final String message;
   final KadimCategory category;
   final VoidCallback? onTap;
+  final AppLanguage language;
 
   const KadimBanner({
     super.key,
     required this.message,
     this.category = KadimCategory.astrology,
     this.onTap,
+    this.language = AppLanguage.en,
   });
 
   @override
@@ -425,74 +433,75 @@ class KadimBanner extends StatelessWidget {
   }
 
   _CategoryData _getCategoryData(KadimCategory category) {
-    // Same as above - duplicated for independent usage
+    String t(String key) => L10nService.get(key, language);
+
     switch (category) {
       case KadimCategory.numerology:
         return _CategoryData(
-          label: 'Kadim Sayı Bilgeliği',
+          label: t('kadim.ancient_number_wisdom'),
           color: const Color(0xFF9C27B0),
           icon: Icons.tag,
           symbol: '∞',
         );
       case KadimCategory.astrology:
         return _CategoryData(
-          label: 'Göksel Bilgelik',
+          label: t('kadim.celestial_wisdom'),
           color: AppColors.auroraStart,
           icon: Icons.stars,
           symbol: '☿',
         );
       case KadimCategory.tarot:
         return _CategoryData(
-          label: 'Arketipsel Sırlar',
+          label: t('kadim.archetypal_secrets'),
           color: const Color(0xFFE91E63),
           icon: Icons.style,
           symbol: '⚜',
         );
       case KadimCategory.chakra:
         return _CategoryData(
-          label: 'Enerji Bilgeliği',
+          label: t('kadim.energy_wisdom'),
           color: const Color(0xFF00BCD4),
           icon: Icons.blur_circular,
           symbol: '☯',
         );
       case KadimCategory.moonWisdom:
         return _CategoryData(
-          label: 'Ay Sırları',
+          label: t('kadim.moon_secrets'),
           color: const Color(0xFF78909C),
           icon: Icons.nightlight_round,
           symbol: '☽',
         );
       case KadimCategory.elements:
         return _CategoryData(
-          label: 'Element Bilgeliği',
+          label: t('kadim.element_wisdom'),
           color: const Color(0xFF4CAF50),
           icon: Icons.eco,
           symbol: '◈',
         );
       case KadimCategory.rituals:
         return _CategoryData(
-          label: 'Kadim Ritüeller',
+          label: t('kadim.ancient_rituals'),
           color: const Color(0xFFFF9800),
           icon: Icons.local_fire_department,
           symbol: '⛤',
         );
       case KadimCategory.dreams:
         return _CategoryData(
-          label: 'Rüya Bilgeliği',
+          label: t('kadim.dream_wisdom'),
           color: const Color(0xFF673AB7),
           icon: Icons.cloud,
           symbol: '☁',
         );
       case KadimCategory.symbols:
         return _CategoryData(
-          label: 'Sembolik Sırlar',
+          label: t('kadim.universal_symbols'),
           color: const Color(0xFF795548),
           icon: Icons.auto_awesome,
           symbol: '⚕',
         );
       case KadimCategory.alchemy:
         return _CategoryData(
-          label: 'Simya Bilgeliği',
+          label: t('kadim.transformation_art'),
           color: const Color(0xFFFFD700),
           icon: Icons.science,
           symbol: '☿',
