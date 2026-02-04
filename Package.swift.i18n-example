@@ -1,0 +1,110 @@
+// Package.swift - i18n Integration Snippet
+//
+// Add this configuration to your existing Package.swift file
+// to enable the i18n localization system
+//
+// Copyright RevenueCat Inc. All Rights Reserved.
+// Licensed under the MIT License.
+
+import PackageDescription
+
+let package = Package(
+    name: "YourPackageName",
+    defaultLocalization: "en", // ← Add this for localization support
+    platforms: [
+        .iOS(.v15),
+        .macOS(.v12),
+        .tvOS(.v15),
+        .watchOS(.v8)
+    ],
+    products: [
+        .library(
+            name: "YourLibrary",
+            targets: ["YourTarget"]
+        )
+    ],
+    targets: [
+        .target(
+            name: "YourTarget",
+            dependencies: [],
+            resources: [
+                // ← Add this to include localization resources
+                .process("Resources")
+            ]
+        ),
+        .testTarget(
+            name: "YourTargetTests",
+            dependencies: ["YourTarget"],
+            path: "Tests", // ← Adjust if your tests are elsewhere
+            resources: [
+                // ← Add this if tests need access to Resources
+                .process("Resources")
+            ]
+        )
+    ]
+)
+
+/*
+ INTEGRATION CHECKLIST:
+ 
+ 1. ✅ Add `defaultLocalization: "en"` to Package
+ 2. ✅ Add `.process("Resources")` to target resources
+ 3. ✅ Ensure Resources/ folder is in same directory as Package.swift
+ 4. ✅ Add LocalizationKeys.swift to target
+ 5. ✅ Add Text+Localization.swift to target
+ 6. ✅ Build and verify: swift build
+ 
+ FILE STRUCTURE:
+ 
+ YourPackage/
+ ├── Package.swift
+ ├── Sources/
+ │   └── YourTarget/
+ │       ├── LocalizationKeys.swift      ← Add to sources
+ │       ├── Text+Localization.swift     ← Add to sources
+ │       ├── Localization.swift          ← Existing file
+ │       └── ... other source files
+ ├── Resources/
+ │   ├── en.lproj/
+ │   │   └── Localizable.strings
+ │   └── tr.lproj/
+ │       └── Localizable.strings
+ └── Tests/
+     └── i18n/
+         └── LocalizationTests.swift
+ 
+ USAGE IN CODE:
+ 
+ import SwiftUI
+ 
+ struct MyView: View {
+     @Environment(\.locale) var locale
+     
+     var body: some View {
+         Text(
+             LocalizationKey.restorePurchases.rawValue,
+             bundle: Localization.localizedBundle(locale)
+         )
+     }
+ }
+ 
+ VERIFICATION:
+ 
+ 1. Build: swift build
+ 2. Test: swift test --filter LocalizationTests
+ 3. Validate: swift scripts/i18n_guard.swift
+ 
+ TROUBLESHOOTING:
+ 
+ If Bundle.module is not found:
+ - Ensure you're building as a Swift Package
+ - Check Bundle+Extensions.swift for CocoaPods compatibility
+ - Verify resources are in .process() not .copy()
+ 
+ If strings don't load:
+ - Verify .strings files are valid format
+ - Check bundle path: print(Bundle.module.bundlePath)
+ - Ensure locale identifiers match (en, tr, not en_US, tr_TR)
+ 
+ For more help, see I18N_README.md
+*/

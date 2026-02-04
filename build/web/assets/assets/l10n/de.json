@@ -49,7 +49,13 @@
     "birth_date": "Geburtsdatum",
     "birth_place": "Geburtsort",
     "not_specified": "Nicht angegeben",
-    "minutes_short": "Min"
+    "minutes_short": "Min",
+    "also_discover": "Entdecke auch",
+    "discover": "Entdecken",
+    "all_features": "Alle Funktionen",
+    "notifications": "Benachrichtigungen",
+    "permission_required": "Erlaubnis erforderlich, um Benachrichtigungen zu erhalten.",
+    "grant_permission": "Erlaubnis erteilen"
   },
   "greetings": {
     "night": "Die Sterne flüstern in der Nacht",
@@ -1348,5 +1354,45 @@
     "retrograde_status": "Ruecklaeufiger Status",
     "favorable_times": "Guenstige Zeiten",
     "unfavorable_times": "Zu vermeidende Zeiten"
+  },
+  "composite": {
+    "title": "Komposithoroskop",
+    "profile_not_found": "Profil nicht gefunden",
+    "enter_birth_info": "Geburtsdaten eingeben",
+    "go_back": "Zurueck",
+    "person_1_you": "Person 1 (Sie)",
+    "person_2_partner": "Person 2 (Partner)",
+    "from_profile": "Aus Profil",
+    "name": "Name",
+    "user": "Benutzer",
+    "sun": "Sonne",
+    "moon": "Mond",
+    "create_chart": "Horoskop erstellen",
+    "compatibility": "Kompatibilitaet",
+    "composite_sun": "Komposit-Sonne",
+    "composite_moon": "Komposit-Mond",
+    "composite_ascendant": "Komposit-Aszendent",
+    "composite_venus": "Komposit-Venus",
+    "composite_mars": "Komposit-Mars",
+    "composite_positions": "Komposit-Positionen",
+    "relationship_theme": "Beziehungsthema",
+    "emotional_dynamics": "Emotionale Dynamik",
+    "communication_style": "Kommunikationsstil",
+    "strengths": "Staerken",
+    "challenges": "Herausforderungen",
+    "key_aspects": "Wichtige Aspekte",
+    "soul_purpose": "Seelenzweck"
+  },
+  "notifications": {
+    "title": "Benachrichtigungen",
+    "daily_horoscope": "Tageshoroskop",
+    "daily_horoscope_desc": "Jeden Tag um {time}",
+    "off": "Aus",
+    "moon_phases": "Mondphasen",
+    "moon_phases_desc": "Neumond- und Vollmondbenachrichtigungen",
+    "retrograde_alerts": "Retrograde-Warnungen",
+    "retrograde_desc": "Merkur und andere Planeten",
+    "transit_alerts": "Transit-Warnungen",
+    "transit_desc": "Wichtige Planetentransite"
   }
 }

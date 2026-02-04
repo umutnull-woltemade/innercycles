@@ -1,0 +1,42 @@
+/*
+  Localizable.strings (English)
+  RevenueCatUI
+
+  Copyright RevenueCat Inc. All Rights Reserved.
+  Licensed under the MIT License.
+*/
+
+/* Footer Actions */
+"all_subscriptions" = "All subscriptions";
+"restore_purchases" = "Restore purchases";
+"restore" = "Restore";
+"purchases_restored_successfully" = "Purchases restored successfully!";
+"ok" = "OK";
+
+/* Legal Links */
+"terms_and_conditions" = "Terms and conditions";
+"terms_short" = "Terms";
+"privacy_policy" = "Privacy policy";
+"privacy_short" = "Privacy";
+
+/* Package Types */
+"Annual" = "Annual";
+"6 Month" = "6 Month";
+"3 Month" = "3 Month";
+"2 Month" = "2 Month";
+"Monthly" = "Monthly";
+"Weekly" = "Weekly";
+"Lifetime" = "Lifetime";
+
+/* Package Types - Localization Keys */
+"package_annual" = "Annual";
+"package_six_month" = "6 Month";
+"package_three_month" = "3 Month";
+"package_two_month" = "2 Month";
+"package_monthly" = "Monthly";
+"package_weekly" = "Weekly";
+"package_lifetime" = "Lifetime";
+
+/* Discount Format */
+"%d%% off" = "%d%% off";
+"percent_off" = "%d%% off";

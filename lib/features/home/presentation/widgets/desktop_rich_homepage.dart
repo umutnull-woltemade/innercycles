@@ -10,6 +10,7 @@ import '../../../../data/providers/app_providers.dart';
 import '../../../../data/services/moon_service.dart';
 import '../../../../shared/widgets/cosmic_background.dart';
 import '../../../../shared/widgets/page_bottom_navigation.dart';
+import '../../../../data/services/l10n_service.dart';
 
 /// DESKTOP RICH HOMEPAGE
 ///
@@ -28,20 +29,21 @@ class DesktopRichHomepage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final userProfile = ref.watch(userProfileProvider);
+    final language = ref.watch(languageProvider);
 
     // Guard: Show loading if no valid profile (don't redirect - causes loop)
     if (userProfile == null || userProfile.name == null || userProfile.name!.isEmpty) {
-      return const Scaffold(
-        backgroundColor: Color(0xFF0D0D1A),
+      return Scaffold(
+        backgroundColor: const Color(0xFF0D0D1A),
         body: Center(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              CircularProgressIndicator(color: Color(0xFFFFD700)),
-              SizedBox(height: 16),
+              const CircularProgressIndicator(color: Color(0xFFFFD700)),
+              const SizedBox(height: 16),
               Text(
-                'Yükleniyor...',
-                style: TextStyle(color: Colors.white70),
+                L10nService.get('common.loading', language),
+                style: const TextStyle(color: Colors.white70),
               ),
             ],
           ),
@@ -65,6 +67,7 @@ class DesktopRichHomepage extends ConsumerWidget {
                   _DesktopHeader(
                     userName: userProfile.name ?? '',
                     sign: sign,
+                    language: language,
                   ).animate().fadeIn(duration: 500.ms).slideY(begin: -0.1),
 
                   const SizedBox(height: 16),
@@ -72,7 +75,7 @@ class DesktopRichHomepage extends ConsumerWidget {
                   // ══════════════════════════════════════════════════════
                   // QUICK DISCOVERY BAR - Lightweight tool access
                   // ══════════════════════════════════════════════════════
-                  const _QuickDiscoveryBar()
+                  _QuickDiscoveryBar(language: language)
                       .animate()
                       .fadeIn(duration: 400.ms, delay: 100.ms),
 
@@ -81,7 +84,7 @@ class DesktopRichHomepage extends ConsumerWidget {
                   // ══════════════════════════════════════════════════════
                   // HERO SECTION - Large cosmic card with daily message
                   // ══════════════════════════════════════════════════════
-                  _HeroSection(sign: sign)
+                  _HeroSection(sign: sign, language: language)
                       .animate()
                       .fadeIn(duration: 600.ms, delay: 200.ms)
                       .scale(begin: const Offset(0.95, 0.95)),
@@ -91,7 +94,7 @@ class DesktopRichHomepage extends ConsumerWidget {
                   // ══════════════════════════════════════════════════════
                   // MOON PHASE - Interactive moon widget
                   // ══════════════════════════════════════════════════════
-                  _MoonPhaseSection()
+                  _MoonPhaseSection(language: language)
                       .animate()
                       .fadeIn(duration: 500.ms, delay: 400.ms),
 
@@ -100,7 +103,7 @@ class DesktopRichHomepage extends ConsumerWidget {
                   // ══════════════════════════════════════════════════════
                   // QUICK ACTIONS GRID - Premium cards
                   // ══════════════════════════════════════════════════════
-                  _QuickActionsGrid()
+                  _QuickActionsGrid(language: language)
                       .animate()
                       .fadeIn(duration: 500.ms, delay: 500.ms),
 
@@ -109,7 +112,7 @@ class DesktopRichHomepage extends ConsumerWidget {
                   // ══════════════════════════════════════════════════════
                   // ZODIAC WHEEL - Interactive zodiac selector
                   // ══════════════════════════════════════════════════════
-                  _ZodiacWheelSection(currentSign: sign)
+                  _ZodiacWheelSection(currentSign: sign, language: language)
                       .animate()
                       .fadeIn(duration: 600.ms, delay: 600.ms)
                       .scale(begin: const Offset(0.9, 0.9)),
@@ -119,7 +122,7 @@ class DesktopRichHomepage extends ConsumerWidget {
                   // ══════════════════════════════════════════════════════
                   // DISCOVERY SECTION - Featured tools
                   // ══════════════════════════════════════════════════════
-                  _DiscoverySection()
+                  _DiscoverySection(language: language)
                       .animate()
                       .fadeIn(duration: 500.ms, delay: 700.ms),
 
@@ -128,7 +131,7 @@ class DesktopRichHomepage extends ConsumerWidget {
                   // ══════════════════════════════════════════════════════
                   // EV SİSTEMİ SECTION - Astrolojik Evler
                   // ══════════════════════════════════════════════════════
-                  _HouseSystemSection()
+                  _HouseSystemSection(language: language)
                       .animate()
                       .fadeIn(duration: 500.ms, delay: 800.ms),
 
@@ -151,7 +154,9 @@ class DesktopRichHomepage extends ConsumerWidget {
 // ═══════════════════════════════════════════════════════════════════════════
 
 class _QuickDiscoveryBar extends StatelessWidget {
-  const _QuickDiscoveryBar();
+  final AppLanguage language;
+
+  const _QuickDiscoveryBar({required this.language});
 
   @override
   Widget build(BuildContext context) {
@@ -177,61 +182,61 @@ class _QuickDiscoveryBar extends StatelessWidget {
           children: [
             _QuickDiscoveryItem(
               icon: '⭐',
-              label: 'Burç Yorumu',
+              label: L10nService.get('horoscope.title', language),
               route: Routes.horoscope,
             ),
             const SizedBox(width: 24),
             _QuickDiscoveryItem(
               icon: '🗺️',
-              label: 'Doğum Haritası',
+              label: L10nService.get('birth_chart.title', language),
               route: Routes.birthChart,
             ),
             const SizedBox(width: 24),
             _QuickDiscoveryItem(
               icon: '🧠',
-              label: 'Theta Healing',
+              label: L10nService.get('theta_healing.title', language),
               route: Routes.thetaHealing,
             ),
             const SizedBox(width: 24),
             _QuickDiscoveryItem(
               icon: '🌍',
-              label: 'Astrokartografi',
+              label: L10nService.get('astrocartography.title', language),
               route: Routes.astroCartography,
             ),
             const SizedBox(width: 24),
             _QuickDiscoveryItem(
               icon: '🙏',
-              label: 'Reiki',
+              label: L10nService.get('reiki.title', language),
               route: Routes.reiki,
             ),
             const SizedBox(width: 24),
             _QuickDiscoveryItem(
               icon: '🔮',
-              label: 'Tarot',
+              label: L10nService.get('tarot.title', language),
               route: Routes.tarot,
             ),
             const SizedBox(width: 24),
             _QuickDiscoveryItem(
               icon: '🔢',
-              label: 'Numeroloji',
+              label: L10nService.get('numerology.title', language),
               route: Routes.numerology,
             ),
             const SizedBox(width: 24),
             _QuickDiscoveryItem(
               icon: '💜',
-              label: 'Çakra',
+              label: L10nService.get('chakra.title', language),
               route: Routes.chakraAnalysis,
             ),
             const SizedBox(width: 24),
             _QuickDiscoveryItem(
               icon: '✨',
-              label: 'Aura',
+              label: L10nService.get('aura.title', language),
               route: Routes.aura,
             ),
             const SizedBox(width: 24),
             _QuickDiscoveryItem(
               icon: '🕯️',
-              label: 'Tantra',
+              label: L10nService.get('tantra.title', language),
               route: Routes.tantra,
             ),
           ],
@@ -305,10 +310,12 @@ class _QuickDiscoveryItemState extends State<_QuickDiscoveryItem> {
 class _DesktopHeader extends StatelessWidget {
   final String userName;
   final ZodiacSign sign;
+  final AppLanguage language;
 
   const _DesktopHeader({
     required this.userName,
     required this.sign,
+    required this.language,
   });
 
   @override
@@ -419,7 +426,7 @@ class _DesktopHeader extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Merhaba, $userName',
+                      '${L10nService.get('common.hello', language)}, $userName',
                       style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
@@ -429,7 +436,7 @@ class _DesktopHeader extends StatelessWidget {
                       maxLines: 1,
                     ),
                     Text(
-                      sign.nameTr,
+                      language == AppLanguage.en ? sign.name : sign.nameTr,
                       style: TextStyle(
                         fontSize: 13,
                         color: AppColors.textSecondary.withOpacity(0.8),
@@ -507,8 +514,9 @@ class _HeaderIconButton extends StatelessWidget {
 
 class _HeroSection extends StatelessWidget {
   final ZodiacSign sign;
+  final AppLanguage language;
 
-  const _HeroSection({required this.sign});
+  const _HeroSection({required this.sign, required this.language});
 
   @override
   Widget build(BuildContext context) {
@@ -607,21 +615,21 @@ class _HeroSection extends StatelessWidget {
                     ),
                     elevation: 0,
                   ),
-                  child: const Row(
+                  child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Flexible(
                         child: Text(
-                          'Kozmik Mesajını Al',
-                          style: TextStyle(
+                          L10nService.get('home.get_cosmic_message', language),
+                          style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
                           ),
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
-                      SizedBox(width: 8),
-                      Icon(Icons.auto_awesome, size: 18),
+                      const SizedBox(width: 8),
+                      const Icon(Icons.auto_awesome, size: 18),
                     ],
                   ),
                 ),
@@ -645,32 +653,51 @@ class _HeroSection extends StatelessWidget {
 
   String _getTodayString() {
     final now = DateTime.now();
-    final months = [
+    final monthsEn = [
+      'January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December'
+    ];
+    final monthsTr = [
       'Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran',
       'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'
     ];
+    final months = language == AppLanguage.en ? monthsEn : monthsTr;
     return '${now.day} ${months[now.month - 1]} ${now.year}';
   }
 
   String _getCosmicHeadline(ZodiacSign sign) {
     final dayOfYear = DateTime.now().difference(DateTime(DateTime.now().year, 1, 1)).inDays;
-    final headlines = <String>[
+    final headlinesEn = <String>[
+      'Cosmic energies are with you.',
+      'The universe is smiling at you.',
+      'Today is your transformation day.',
+      'The stars salute you.',
+      'Celestial forces are with you.',
+    ];
+    final headlinesTr = <String>[
       'Kozmik enerjiler senin yanında.',
       'Evren sana gülümsüyor.',
       'Bugün dönüşüm günün.',
       'Yıldızlar seni selamlıyor.',
       'Göksel güçler seninle.',
     ];
+    final headlines = language == AppLanguage.en ? headlinesEn : headlinesTr;
     return headlines[(dayOfYear + sign.index) % headlines.length];
   }
 
   String _getCosmicMessage(ZodiacSign sign) {
     final dayOfYear = DateTime.now().difference(DateTime(DateTime.now().year, 1, 1)).inDays;
-    final messages = <String>[
+    final messagesEn = <String>[
+      'Today is a perfect day to discover your inner power. Trust your intuition and listen to your heart.',
+      'The universe\'s energy flows with you. Seize this opportunity and move one step closer to your dreams.',
+      'Cosmic winds bring change. Be ready for new beginnings and let go of the past.',
+    ];
+    final messagesTr = <String>[
       'Bugün içsel gücünü keşfetmek için mükemmel bir gün. Sezgilerine güven ve kalbinin sesini dinle.',
       'Evrenin enerjisi seninle akıyor. Bu fırsatı değerlendir ve hayallerine bir adım daha yaklaş.',
       'Kozmik rüzgarlar değişim getiriyor. Yeni başlangıçlara hazır ol ve geçmişi bırak.',
     ];
+    final messages = language == AppLanguage.en ? messagesEn : messagesTr;
     return messages[(dayOfYear + sign.index) % messages.length];
   }
 }
@@ -792,6 +819,10 @@ class _AnimatedZodiacSymbolState extends State<_AnimatedZodiacSymbol>
 // ═══════════════════════════════════════════════════════════════════════════
 
 class _MoonPhaseSection extends StatelessWidget {
+  final AppLanguage language;
+
+  const _MoonPhaseSection({required this.language});
+
   @override
   Widget build(BuildContext context) {
     final moonPhase = MoonService.getCurrentPhase(DateTime.now());
@@ -844,7 +875,7 @@ class _MoonPhaseSection extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  moonPhase.nameTr,
+                  language == AppLanguage.en ? moonPhase.name : moonPhase.nameTr,
                   style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w600,
@@ -853,7 +884,9 @@ class _MoonPhaseSection extends StatelessWidget {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  'Ay ${moonSign.nameTr} burcunda',
+                  language == AppLanguage.en
+                      ? 'Moon in ${moonSign.name}'
+                      : 'Ay ${moonSign.nameTr} burcunda',
                   style: TextStyle(
                     fontSize: 14,
                     color: AppColors.textSecondary.withOpacity(0.8),
@@ -874,14 +907,14 @@ class _MoonPhaseSection extends StatelessWidget {
                   color: AppColors.error.withOpacity(0.3),
                 ),
               ),
-              child: const Row(
+              child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(Icons.warning_amber_rounded, color: AppColors.error, size: 16),
-                  SizedBox(width: 4),
+                  const Icon(Icons.warning_amber_rounded, color: AppColors.error, size: 16),
+                  const SizedBox(width: 4),
                   Text(
-                    'Merkür Geri',
-                    style: TextStyle(
+                    L10nService.get('timing.mercury_retrograde', language),
+                    style: const TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w600,
                       color: AppColors.error,
@@ -902,6 +935,10 @@ class _MoonPhaseSection extends StatelessWidget {
 // ═══════════════════════════════════════════════════════════════════════════
 
 class _QuickActionsGrid extends StatelessWidget {
+  final AppLanguage language;
+
+  const _QuickActionsGrid({required this.language});
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -914,24 +951,24 @@ class _QuickActionsGrid extends StatelessWidget {
           children: [
             _QuickActionCard(
               icon: Icons.wb_sunny_rounded,
-              title: 'Günlük',
-              subtitle: 'Burç Yorumu',
+              title: L10nService.get('home.quick_actions.daily', language),
+              subtitle: L10nService.get('horoscope.title', language),
               color: AppColors.celestialGold,
               route: Routes.horoscope,
               width: cardWidth,
             ),
             _QuickActionCard(
               icon: Icons.calendar_month_rounded,
-              title: 'Haftalık',
-              subtitle: 'Yorum',
+              title: L10nService.get('home.quick_actions.weekly', language),
+              subtitle: L10nService.get('horoscope.reading', language),
               color: AppColors.auroraStart,
               route: Routes.weeklyHoroscope,
               width: cardWidth,
             ),
             _QuickActionCard(
               icon: Icons.auto_awesome_rounded,
-              title: 'Kozmik',
-              subtitle: 'Paylaşım',
+              title: L10nService.get('home.quick_actions.cosmic', language),
+              subtitle: L10nService.get('home.quick_actions.share', language),
               color: AppColors.starGold,
               route: Routes.cosmicShare,
               width: cardWidth,
@@ -939,8 +976,8 @@ class _QuickActionsGrid extends StatelessWidget {
             ),
             _QuickActionCard(
               icon: Icons.style_rounded,
-              title: 'Tarot',
-              subtitle: 'Falı',
+              title: L10nService.get('home.quick_actions.tarot', language),
+              subtitle: L10nService.get('tarot.reading', language),
               color: AppColors.mystic,
               route: Routes.tarot,
               width: cardWidth,
@@ -1068,8 +1105,9 @@ class _QuickActionCardState extends State<_QuickActionCard> {
 
 class _ZodiacWheelSection extends StatelessWidget {
   final ZodiacSign currentSign;
+  final AppLanguage language;
 
-  const _ZodiacWheelSection({required this.currentSign});
+  const _ZodiacWheelSection({required this.currentSign, required this.language});
 
   @override
   Widget build(BuildContext context) {
@@ -1090,9 +1128,9 @@ class _ZodiacWheelSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'Tüm Burçlar',
-            style: TextStyle(
+          Text(
+            L10nService.get('zodiac.all_signs', language),
+            style: const TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w600,
               color: AppColors.textPrimary,
@@ -1100,7 +1138,7 @@ class _ZodiacWheelSection extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           Text(
-            '12 burcu keşfet ve günlük yorumlarını oku',
+            L10nService.get('zodiac.discover_all_signs', language),
             style: TextStyle(
               fontSize: 14,
               color: AppColors.textSecondary.withOpacity(0.8),
@@ -1117,6 +1155,7 @@ class _ZodiacWheelSection extends StatelessWidget {
               return _ZodiacChip(
                 sign: sign,
                 isSelected: isCurrentSign,
+                language: language,
               );
             }).toList(),
           ),
@@ -1129,10 +1168,12 @@ class _ZodiacWheelSection extends StatelessWidget {
 class _ZodiacChip extends StatefulWidget {
   final ZodiacSign sign;
   final bool isSelected;
+  final AppLanguage language;
 
   const _ZodiacChip({
     required this.sign,
     required this.isSelected,
+    required this.language,
   });
 
   @override
@@ -1185,7 +1226,7 @@ class _ZodiacChipState extends State<_ZodiacChip> {
               ),
               const SizedBox(width: 8),
               Text(
-                widget.sign.nameTr,
+                widget.language == AppLanguage.en ? widget.sign.name : widget.sign.nameTr,
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: widget.isSelected ? FontWeight.w600 : FontWeight.w500,
@@ -1207,6 +1248,10 @@ class _ZodiacChipState extends State<_ZodiacChip> {
 // ═══════════════════════════════════════════════════════════════════════════
 
 class _DiscoverySection extends StatelessWidget {
+  final AppLanguage language;
+
+  const _DiscoverySection({required this.language});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -1236,9 +1281,9 @@ class _DiscoverySection extends StatelessWidget {
                 child: const Icon(Icons.auto_awesome, color: Colors.white, size: 24),
               ),
               const SizedBox(width: 10),
-              const Text(
-                'Keşfet',
-                style: TextStyle(
+              Text(
+                L10nService.get('common.discover', language),
+                style: const TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.w700,
                   color: AppColors.textPrimary,
@@ -1253,9 +1298,9 @@ class _DiscoverySection extends StatelessWidget {
                   ),
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: const Text(
-                  'TÜM ÖZELLİKLER',
-                  style: TextStyle(
+                child: Text(
+                  L10nService.get('common.all_features', language).toUpperCase(),
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 10,
                     fontWeight: FontWeight.w800,
@@ -1423,7 +1468,7 @@ class _DiscoverySection extends StatelessWidget {
           // ═══════════════════════════════════════════════════════════════
           // TÜM ÇÖZÜMLEMELER - Ana Katalog Butonu
           // ═══════════════════════════════════════════════════════════════
-          _AllServicesButton(),
+          _AllServicesButton(language: language),
 
           const SizedBox(height: 28),
 
@@ -1631,6 +1676,10 @@ class _DiscoveryCardState extends State<_DiscoveryCard> {
 // ═══════════════════════════════════════════════════════════════════════════
 
 class _AllServicesButton extends StatefulWidget {
+  final AppLanguage language;
+
+  const _AllServicesButton({required this.language});
+
   @override
   State<_AllServicesButton> createState() => _AllServicesButtonState();
 }
@@ -1742,9 +1791,9 @@ class _AllServicesButtonState extends State<_AllServicesButton>
                             Color(0xFFFF4081),
                           ],
                         ).createShader(bounds),
-                        child: const Text(
-                          'Tüm Çözümlemeler',
-                          style: TextStyle(
+                        child: Text(
+                          L10nService.get('home.all_services', widget.language),
+                          style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
@@ -1753,7 +1802,7 @@ class _AllServicesButtonState extends State<_AllServicesButton>
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        'Kozmik yolculuğun için 80+ araç',
+                        L10nService.get('home.all_services_desc', widget.language),
                         style: TextStyle(
                           fontSize: 13,
                           color: Colors.white.withOpacity(0.7),
@@ -1788,7 +1837,9 @@ class _AllServicesButtonState extends State<_AllServicesButton>
 // ═══════════════════════════════════════════════════════════════════════════
 
 class _HouseSystemSection extends StatelessWidget {
-  const _HouseSystemSection();
+  final AppLanguage language;
+
+  const _HouseSystemSection({required this.language});
 
   @override
   Widget build(BuildContext context) {
@@ -1825,21 +1876,21 @@ class _HouseSystemSection extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 16),
-              const Column(
+              Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    '🏠 Astrolojik Evler',
-                    style: TextStyle(
+                    '🏠 ${L10nService.get('houses.title', language)}',
+                    style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
                       color: AppColors.textPrimary,
                     ),
                   ),
-                  SizedBox(height: 4),
+                  const SizedBox(height: 4),
                   Text(
-                    '12 astrolojik ev ve yaşam alanları',
-                    style: TextStyle(
+                    L10nService.get('houses.subtitle', language),
+                    style: const TextStyle(
                       fontSize: 13,
                       color: AppColors.textSecondary,
                     ),
@@ -1863,14 +1914,14 @@ class _HouseSystemSection extends StatelessWidget {
                   ),
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: const Row(
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.explore_outlined, color: Colors.white, size: 20),
-                    SizedBox(width: 8),
+                    const Icon(Icons.explore_outlined, color: Colors.white, size: 20),
+                    const SizedBox(width: 8),
                     Text(
-                      'Ev Sistemini Keşfet',
-                      style: TextStyle(
+                      L10nService.get('houses.explore_houses', language),
+                      style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
                         color: Colors.white,
@@ -2134,9 +2185,9 @@ class _KozmozHeaderButtonState extends State<_KozmozHeaderButton>
                   // AI ikonu
                   const Text('🌌', style: TextStyle(fontSize: 16)),
                   const SizedBox(width: 6),
-                  const Text(
-                    'Kozmoz İzi',
-                    style: TextStyle(
+                  Text(
+                    L10nService.get('kozmoz.title', AppLanguage.en),
+                    style: const TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w700,
                       color: Colors.white,
@@ -2228,9 +2279,9 @@ class _DreamHeaderButtonState extends State<_DreamHeaderButton>
                   // Rüya ikonu
                   const Text('🌙', style: TextStyle(fontSize: 16)),
                   const SizedBox(width: 6),
-                  const Text(
-                    'Rüya İzi',
-                    style: TextStyle(
+                  Text(
+                    L10nService.get('dreams.title', AppLanguage.en),
+                    style: const TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w700,
                       color: Colors.white,
@@ -2322,9 +2373,9 @@ class _HoroscopeHeaderButtonState extends State<_HoroscopeHeaderButton>
                   // Burç ikonu
                   const Text('⭐', style: TextStyle(fontSize: 16)),
                   const SizedBox(width: 6),
-                  const Text(
-                    'Burç Yorumu',
-                    style: TextStyle(
+                  Text(
+                    L10nService.get('horoscope.title', AppLanguage.en),
+                    style: const TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w700,
                       color: Colors.white,

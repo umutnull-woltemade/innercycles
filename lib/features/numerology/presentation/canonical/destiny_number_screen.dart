@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/constants/routes.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../data/services/l10n_service.dart';
+import '../../../../data/providers/app_providers.dart';
 import '../../../../shared/widgets/entertainment_disclaimer.dart';
 
 /// Kader Sayısı Nedir? - AI-First Canonical Sayfa
-class DestinyNumberScreen extends StatelessWidget {
+class DestinyNumberScreen extends ConsumerWidget {
   const DestinyNumberScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final language = ref.watch(languageProvider);
     final color = const Color(0xFFE91E63);
 
     return Scaffold(
@@ -76,7 +80,7 @@ class DestinyNumberScreen extends StatelessWidget {
                 ]),
                 const SizedBox(height: 32),
 
-                _buildSuggestion(context, isDark, '🔢', 'Yaşam yolu sayısı nedir?', Routes.numerology),
+                _buildSuggestion(context, isDark, language, '🔢', 'Yaşam yolu sayısı nedir?', Routes.numerology),
                 const SizedBox(height: 40),
 
                 const PageFooterWithDisclaimer(
@@ -184,7 +188,7 @@ class DestinyNumberScreen extends StatelessWidget {
     ],
   ).animate().fadeIn(duration: 400.ms);
 
-  Widget _buildSuggestion(BuildContext context, bool isDark, String emoji, String text, String route) => GestureDetector(
+  Widget _buildSuggestion(BuildContext context, bool isDark, AppLanguage language, String emoji, String text, String route) => GestureDetector(
     onTap: () => context.push(route),
     child: Container(
       padding: const EdgeInsets.all(16),
@@ -197,7 +201,7 @@ class DestinyNumberScreen extends StatelessWidget {
         Text(emoji, style: const TextStyle(fontSize: 24)),
         const SizedBox(width: 12),
         Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text('Bunu da keşfet', style: TextStyle(fontSize: 11, color: isDark ? Colors.white38 : AppColors.textLight)),
+          Text(L10nService.get('common.also_discover', language), style: TextStyle(fontSize: 11, color: isDark ? Colors.white38 : AppColors.textLight)),
           const SizedBox(height: 2),
           Text(text, style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: isDark ? Colors.white : AppColors.textDark)),
         ])),

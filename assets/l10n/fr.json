@@ -49,7 +49,13 @@
     "birth_date": "Date de naissance",
     "birth_place": "Lieu de naissance",
     "not_specified": "Non specifie",
-    "minutes_short": "min"
+    "minutes_short": "min",
+    "also_discover": "Decouvrez aussi",
+    "discover": "Decouvrir",
+    "all_features": "Toutes les fonctionnalites",
+    "notifications": "Notifications",
+    "permission_required": "Autorisation requise pour recevoir des notifications.",
+    "grant_permission": "Accorder l'autorisation"
   },
   "greetings": {
     "night": "Les étoiles murmurent dans la nuit",
@@ -1348,5 +1354,45 @@
     "retrograde_status": "Statut retrograde",
     "favorable_times": "Moments favorables",
     "unfavorable_times": "Moments a eviter"
+  },
+  "composite": {
+    "title": "Theme Composite",
+    "profile_not_found": "Profil non trouve",
+    "enter_birth_info": "Entrer les informations de naissance",
+    "go_back": "Retour",
+    "person_1_you": "Personne 1 (Vous)",
+    "person_2_partner": "Personne 2 (Partenaire)",
+    "from_profile": "Depuis le profil",
+    "name": "Nom",
+    "user": "Utilisateur",
+    "sun": "Soleil",
+    "moon": "Lune",
+    "create_chart": "Creer le theme",
+    "compatibility": "Compatibilite",
+    "composite_sun": "Soleil composite",
+    "composite_moon": "Lune composite",
+    "composite_ascendant": "Ascendant composite",
+    "composite_venus": "Venus composite",
+    "composite_mars": "Mars composite",
+    "composite_positions": "Positions composites",
+    "relationship_theme": "Theme relationnel",
+    "emotional_dynamics": "Dynamique emotionnelle",
+    "communication_style": "Style de communication",
+    "strengths": "Points forts",
+    "challenges": "Defis",
+    "key_aspects": "Aspects cles",
+    "soul_purpose": "But de l'ame"
+  },
+  "notifications": {
+    "title": "Notifications",
+    "daily_horoscope": "Horoscope quotidien",
+    "daily_horoscope_desc": "Chaque jour a {time}",
+    "off": "Desactive",
+    "moon_phases": "Phases lunaires",
+    "moon_phases_desc": "Alertes nouvelle lune et pleine lune",
+    "retrograde_alerts": "Alertes retrograde",
+    "retrograde_desc": "Mercure et autres planetes",
+    "transit_alerts": "Alertes transit",
+    "transit_desc": "Transits planetaires importants"
   }
 }

@@ -61,4 +61,13 @@
    <FileRef
       location = "group:Resourcestr.lprojLocalizable.strings">
    </FileRef>
+   <FileRef
+      location = "group:TestsLocalizationTests.swift">
+   </FileRef>
+   <FileRef
+      location = "group:scriptsi18n_guard.swift">
+   </FileRef>
+   <FileRef
+      location = "group:scriptsi18n_sync.swift">
+   </FileRef>
 </Workspace>

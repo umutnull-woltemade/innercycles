@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/constants/routes.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../data/services/l10n_service.dart';
+import '../../../../data/providers/app_providers.dart';
 import '../../../../shared/widgets/entertainment_disclaimer.dart';
 
 /// Tekrar Eden Rüyalar Neden Olur? - AI-First Canonical Sayfa
-class DreamRecurringScreen extends StatelessWidget {
+class DreamRecurringScreen extends ConsumerWidget {
   const DreamRecurringScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final language = ref.watch(languageProvider);
 
     return Scaffold(
       body: Container(
@@ -124,7 +128,7 @@ class DreamRecurringScreen extends StatelessWidget {
 
                 const SizedBox(height: 32),
 
-                _buildSuggestionBox(context, isDark),
+                _buildSuggestionBox(context, isDark, language),
 
                 const SizedBox(height: 40),
 
@@ -188,7 +192,7 @@ class DreamRecurringScreen extends StatelessWidget {
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildSuggestionBox(BuildContext context, bool isDark) {
+  Widget _buildSuggestionBox(BuildContext context, bool isDark, AppLanguage language) {
     return GestureDetector(
       onTap: () => context.push(Routes.dreamFalling),
       child: Container(
@@ -213,7 +217,7 @@ class DreamRecurringScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Bunu da keşfet',
+                    L10nService.get('common.also_discover', language),
                     style: TextStyle(
                       fontSize: 11,
                       color: isDark ? Colors.white38 : AppColors.textLight,

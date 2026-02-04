@@ -8,6 +8,8 @@ import '../../../core/constants/app_constants.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/services/auth_service.dart';
+import '../../../data/services/l10n_service.dart';
+import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 
 /// Login ekrani - Apple ve Email ile giris secenekleri
@@ -62,7 +64,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
             // Iptal durumunda hata gosterme
             _errorMessage = null;
           } else {
-            _errorMessage = 'Apple ile giris yapilamadi. Lutfen tekrar deneyin.';
+            final language = ref.read(languageProvider);
+            _errorMessage = L10nService.get('auth.apple_sign_in_failed', language);
           }
         });
       }
@@ -155,24 +158,31 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               ),
         ).animate().fadeIn(duration: 600.ms).slideY(begin: 0.3),
         const SizedBox(height: AppConstants.spacingSm),
-        Text(
-          'Kozmik yolculuguna basla',
-          style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
-              ),
-          textAlign: TextAlign.center,
-        ).animate().fadeIn(delay: 300.ms, duration: 600.ms),
+        Builder(
+          builder: (context) {
+            final container = ProviderScope.containerOf(context);
+            final language = container.read(languageProvider);
+            return Text(
+              L10nService.get('auth.start_cosmic_journey', language),
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+                  ),
+              textAlign: TextAlign.center,
+            ).animate().fadeIn(delay: 300.ms, duration: 600.ms);
+          },
+        ),
       ],
     );
   }
 
   Widget _buildLoginButtons(BuildContext context, bool isDark) {
+    final language = ref.watch(languageProvider);
     return Column(
       children: [
         // Apple Sign In (iOS/macOS/Web)
         if (_showAppleSignIn)
           _SocialLoginButton(
-            label: 'Apple ile Devam Et',
+            label: L10nService.get('auth.continue_with_apple', language),
             icon: Icons.apple,
             backgroundColor: isDark ? Colors.white : Colors.black,
             textColor: isDark ? Colors.black : Colors.white,
@@ -184,7 +194,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
         // Email Sign In
         _SocialLoginButton(
-          label: 'E-posta ile Devam Et',
+          label: L10nService.get('auth.continue_with_email', language),
           icon: Icons.email_outlined,
           backgroundColor: Colors.transparent,
           textColor: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
@@ -197,10 +207,11 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   }
 
   Widget _buildSkipOption(BuildContext context, bool isDark) {
+    final language = ref.watch(languageProvider);
     return TextButton(
       onPressed: _isLoading ? null : _skipLogin,
       child: Text(
-        'Simdilik atla',
+        L10nService.get('auth.skip_for_now', language),
         style: TextStyle(
           color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
           fontSize: 14,
@@ -323,9 +334,10 @@ class _EmailLoginScreenState extends ConsumerState<EmailLoginScreen> {
         );
         // Supabase kayit sonrasi email dogrulama gerekebilir
         if (user != null && mounted) {
+          final language = ref.read(languageProvider);
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text('Kayit basarili! Email adresinizi dogrulayin.'),
+              content: Text(L10nService.get('auth.register_success', language)),
               backgroundColor: AppColors.success,
             ),
           );
@@ -354,8 +366,9 @@ class _EmailLoginScreenState extends ConsumerState<EmailLoginScreen> {
   Future<void> _forgotPassword() async {
     final email = _emailController.text.trim();
     if (email.isEmpty) {
+      final language = ref.read(languageProvider);
       setState(() {
-        _errorMessage = 'Lutfen email adresinizi girin';
+        _errorMessage = L10nService.get('auth.enter_email', language);
       });
       return;
     }
@@ -363,9 +376,10 @@ class _EmailLoginScreenState extends ConsumerState<EmailLoginScreen> {
     try {
       await AuthService.sendPasswordResetEmail(email);
       if (mounted) {
+        final language = ref.read(languageProvider);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Sifre sifirlama emaili gonderildi'),
+            content: Text(L10nService.get('auth.reset_email_sent', language)),
             backgroundColor: AppColors.success,
           ),
         );
@@ -381,6 +395,7 @@ class _EmailLoginScreenState extends ConsumerState<EmailLoginScreen> {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final colorScheme = Theme.of(context).colorScheme;
+    final language = ref.watch(languageProvider);
 
     return Scaffold(
       body: CosmicBackground(
@@ -392,7 +407,7 @@ class _EmailLoginScreenState extends ConsumerState<EmailLoginScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Geri butonu
+                  // Back button
                   IconButton(
                     onPressed: () => Navigator.of(context).pop(),
                     icon: Icon(
@@ -403,7 +418,7 @@ class _EmailLoginScreenState extends ConsumerState<EmailLoginScreen> {
 
                   const SizedBox(height: AppConstants.spacingXl),
 
-                  // Baslik
+                  // Title
                   Center(
                     child: Column(
                       children: [
@@ -414,7 +429,9 @@ class _EmailLoginScreenState extends ConsumerState<EmailLoginScreen> {
                         ),
                         const SizedBox(height: AppConstants.spacingMd),
                         Text(
-                          _isSignUp ? 'Hesap Olustur' : 'Giris Yap',
+                          _isSignUp
+                              ? L10nService.get('auth.create_account', language)
+                              : L10nService.get('auth.sign_in', language),
                           style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                                 fontWeight: FontWeight.bold,
                               ),
@@ -425,16 +442,16 @@ class _EmailLoginScreenState extends ConsumerState<EmailLoginScreen> {
 
                   const SizedBox(height: AppConstants.spacingXl),
 
-                  // Isim (sadece kayit olurken)
+                  // Name (only for sign up)
                   if (_isSignUp) ...[
                     _buildTextField(
                       controller: _nameController,
-                      label: 'Isim',
+                      label: L10nService.get('auth.name', language),
                       icon: Icons.person_outline,
                       isDark: isDark,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Isim gerekli';
+                          return L10nService.get('auth.name_required', language);
                         }
                         return null;
                       },
@@ -445,16 +462,16 @@ class _EmailLoginScreenState extends ConsumerState<EmailLoginScreen> {
                   // Email
                   _buildTextField(
                     controller: _emailController,
-                    label: 'E-posta',
+                    label: L10nService.get('auth.email', language),
                     icon: Icons.email_outlined,
                     keyboardType: TextInputType.emailAddress,
                     isDark: isDark,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'E-posta gerekli';
+                        return L10nService.get('auth.email_required', language);
                       }
                       if (!value.contains('@')) {
-                        return 'Gecerli bir e-posta girin';
+                        return L10nService.get('auth.email_invalid', language);
                       }
                       return null;
                     },
@@ -462,10 +479,10 @@ class _EmailLoginScreenState extends ConsumerState<EmailLoginScreen> {
 
                   const SizedBox(height: AppConstants.spacingMd),
 
-                  // Sifre
+                  // Password
                   _buildTextField(
                     controller: _passwordController,
-                    label: 'Sifre',
+                    label: L10nService.get('auth.password', language),
                     icon: Icons.lock_outline,
                     obscureText: _obscurePassword,
                     isDark: isDark,
@@ -480,23 +497,23 @@ class _EmailLoginScreenState extends ConsumerState<EmailLoginScreen> {
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Sifre gerekli';
+                        return L10nService.get('auth.password_required', language);
                       }
                       if (value.length < 6) {
-                        return 'Sifre en az 6 karakter olmali';
+                        return L10nService.get('auth.password_min_length', language);
                       }
                       return null;
                     },
                   ),
 
-                  // Sifremi unuttum (sadece giris yaparken)
+                  // Forgot password (only for sign in)
                   if (!_isSignUp) ...[
                     Align(
                       alignment: Alignment.centerRight,
                       child: TextButton(
                         onPressed: _forgotPassword,
                         child: Text(
-                          'Sifremi unuttum',
+                          L10nService.get('auth.forgot_password', language),
                           style: TextStyle(
                             color: colorScheme.primary,
                             fontSize: 14,
@@ -508,7 +525,7 @@ class _EmailLoginScreenState extends ConsumerState<EmailLoginScreen> {
 
                   const SizedBox(height: AppConstants.spacingMd),
 
-                  // Hata mesaji
+                  // Error message
                   if (_errorMessage != null)
                     Container(
                       padding: const EdgeInsets.all(12),
@@ -533,7 +550,7 @@ class _EmailLoginScreenState extends ConsumerState<EmailLoginScreen> {
 
                   const SizedBox(height: AppConstants.spacingXl),
 
-                  // Giris/Kayit butonu
+                  // Sign in/Sign up button
                   SizedBox(
                     width: double.infinity,
                     height: 56,
@@ -556,7 +573,9 @@ class _EmailLoginScreenState extends ConsumerState<EmailLoginScreen> {
                               ),
                             )
                           : Text(
-                              _isSignUp ? 'Kayit Ol' : 'Giris Yap',
+                              _isSignUp
+                                  ? L10nService.get('auth.sign_up', language)
+                                  : L10nService.get('auth.sign_in', language),
                               style: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600,
@@ -567,12 +586,14 @@ class _EmailLoginScreenState extends ConsumerState<EmailLoginScreen> {
 
                   const SizedBox(height: AppConstants.spacingMd),
 
-                  // Kayit ol / Giris yap gecisi
+                  // Sign up / Sign in toggle
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        _isSignUp ? 'Zaten hesabiniz var mi?' : 'Hesabiniz yok mu?',
+                        _isSignUp
+                            ? L10nService.get('auth.already_have_account', language)
+                            : L10nService.get('auth.no_account', language),
                         style: TextStyle(
                           color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
                         ),
@@ -585,7 +606,9 @@ class _EmailLoginScreenState extends ConsumerState<EmailLoginScreen> {
                           });
                         },
                         child: Text(
-                          _isSignUp ? 'Giris Yap' : 'Kayit Ol',
+                          _isSignUp
+                              ? L10nService.get('auth.sign_in', language)
+                              : L10nService.get('auth.sign_up', language),
                           style: TextStyle(
                             color: colorScheme.primary,
                             fontWeight: FontWeight.w600,

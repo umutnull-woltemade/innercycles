@@ -4,6 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/constants/routes.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../data/services/l10n_service.dart';
+import '../../../../data/providers/app_providers.dart';
 import '../../../../shared/widgets/entertainment_disclaimer.dart';
 
 /// Kozmik - Bugünün Teması
@@ -14,6 +16,7 @@ class CosmicTodayScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final language = ref.watch(languageProvider);
     final today = DateTime.now();
     final theme = _getDailyTheme(today);
 
@@ -88,7 +91,7 @@ class CosmicTodayScreen extends ConsumerWidget {
                 const SizedBox(height: 32),
 
                 // Suggestion - Kozmik → rüya + numeroloji
-                _buildSuggestion(context, isDark, '🌙', 'Rüya İzi\'ni keşfet', Routes.dreamRecurring),
+                _buildSuggestion(context, isDark, language, '🌙', 'Rüya İzi\'ni keşfet', Routes.dreamRecurring),
                 const SizedBox(height: 40),
 
                 // Footer with disclaimer
@@ -186,7 +189,7 @@ class CosmicTodayScreen extends ConsumerWidget {
     ],
   ).animate().fadeIn(duration: 400.ms);
 
-  Widget _buildSuggestion(BuildContext context, bool isDark, String emoji, String text, String route) => GestureDetector(
+  Widget _buildSuggestion(BuildContext context, bool isDark, AppLanguage language, String emoji, String text, String route) => GestureDetector(
     onTap: () => context.push(route),
     child: Container(
       padding: const EdgeInsets.all(16),
@@ -204,7 +207,7 @@ class CosmicTodayScreen extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Bunu da keşfet', style: TextStyle(fontSize: 11, color: isDark ? Colors.white38 : AppColors.textLight)),
+                Text(L10nService.get('common.also_discover', language), style: TextStyle(fontSize: 11, color: isDark ? Colors.white38 : AppColors.textLight)),
                 const SizedBox(height: 2),
                 Text(text, style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: isDark ? Colors.white : AppColors.textDark)),
               ],

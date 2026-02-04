@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/constants/routes.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../data/services/l10n_service.dart';
+import '../../../../data/providers/app_providers.dart';
 import '../../../../shared/widgets/entertainment_disclaimer.dart';
 
 /// Rüyada Düşmek Ne Demek? - AI-First Canonical Sayfa
 /// H1: Soru formatı
 /// İlk 3 bullet: Direkt cevap
 /// AI alıntılanabilir format
-class DreamFallingScreen extends StatelessWidget {
+class DreamFallingScreen extends ConsumerWidget {
   const DreamFallingScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final language = ref.watch(languageProvider);
 
     return Scaffold(
       body: Container(
@@ -129,7 +133,7 @@ class DreamFallingScreen extends StatelessWidget {
                 const SizedBox(height: 32),
 
                 // Öneri kutusu - tek iç link
-                _buildSuggestionBox(context, isDark),
+                _buildSuggestionBox(context, isDark, language),
 
                 const SizedBox(height: 40),
 
@@ -193,7 +197,7 @@ class DreamFallingScreen extends StatelessWidget {
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildSuggestionBox(BuildContext context, bool isDark) {
+  Widget _buildSuggestionBox(BuildContext context, bool isDark, AppLanguage language) {
     return GestureDetector(
       onTap: () => context.push(Routes.dreamWater),
       child: Container(
@@ -218,7 +222,7 @@ class DreamFallingScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Bunu da keşfet',
+                    L10nService.get('common.also_discover', language),
                     style: TextStyle(
                       fontSize: 11,
                       color: isDark ? Colors.white38 : AppColors.textLight,

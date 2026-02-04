@@ -282,7 +282,7 @@ class _AppInitializerState extends State<AppInitializer> {
                   CircularProgressIndicator(color: Color(0xFFFFD700)),
                   SizedBox(height: 16),
                   Text(
-                    'Yükleniyor...',
+                    'Loading...',
                     style: TextStyle(color: Colors.white70, fontSize: 16),
                   ),
                 ],
@@ -309,7 +309,7 @@ class _AppInitializerState extends State<AppInitializer> {
                     ),
                     const SizedBox(height: 16),
                     Text(
-                      'Hata: ${snapshot.error}',
+                      'Error: ${snapshot.error}',
                       style: const TextStyle(color: Colors.redAccent, fontSize: 14),
                       textAlign: TextAlign.center,
                     ),

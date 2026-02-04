@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/constants/routes.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../data/services/l10n_service.dart';
+import '../../../../data/providers/app_providers.dart';
 import '../../../../shared/widgets/entertainment_disclaimer.dart';
 
 /// Rüyada Uçamamak Ne Anlama Gelir? - AI-First Canonical Sayfa
-class DreamUnableToFlyScreen extends StatelessWidget {
+class DreamUnableToFlyScreen extends ConsumerWidget {
   const DreamUnableToFlyScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final language = ref.watch(languageProvider);
     final color = const Color(0xFF90A4AE);
 
     return Scaffold(
@@ -63,7 +67,7 @@ class DreamUnableToFlyScreen extends StatelessWidget {
                 ]),
                 const SizedBox(height: 32),
                 // Döngüyü kapat: ucamamak → dusmek
-                _buildSuggestion(context, isDark, '🌀', 'Rüyada düşmek ne demek?', Routes.dreamFalling),
+                _buildSuggestion(context, isDark, language, '🌀', 'Rüyada düşmek ne demek?', Routes.dreamFalling),
                 const SizedBox(height: 40),
                 const PageFooterWithDisclaimer(
                   brandText: 'Rüya İzi — Venus One',
@@ -99,7 +103,7 @@ class DreamUnableToFlyScreen extends StatelessWidget {
     ],
   ).animate().fadeIn(duration: 400.ms);
 
-  Widget _buildSuggestion(BuildContext context, bool isDark, String emoji, String text, String route) => GestureDetector(
+  Widget _buildSuggestion(BuildContext context, bool isDark, AppLanguage language, String emoji, String text, String route) => GestureDetector(
     onTap: () => context.push(route),
     child: Container(
       padding: const EdgeInsets.all(16),
@@ -108,7 +112,7 @@ class DreamUnableToFlyScreen extends StatelessWidget {
         Text(emoji, style: const TextStyle(fontSize: 24)),
         const SizedBox(width: 12),
         Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text('Bunu da keşfet', style: TextStyle(fontSize: 11, color: isDark ? Colors.white38 : AppColors.textLight)),
+          Text(L10nService.get('common.also_discover', language), style: TextStyle(fontSize: 11, color: isDark ? Colors.white38 : AppColors.textLight)),
           const SizedBox(height: 2),
           Text(text, style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: isDark ? Colors.white : AppColors.textDark)),
         ])),

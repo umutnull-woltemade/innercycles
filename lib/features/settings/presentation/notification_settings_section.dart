@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/services/notification_service.dart';
+import '../../../data/services/l10n_service.dart';
 import '../../../data/providers/app_providers.dart';
 
 /// Notification settings provider
@@ -140,6 +141,7 @@ class _NotificationSettingsSectionState extends ConsumerState<NotificationSettin
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final language = ref.watch(languageProvider);
 
     if (!_isInitialized) {
       return const Center(child: CircularProgressIndicator());
@@ -166,7 +168,7 @@ class _NotificationSettingsSectionState extends ConsumerState<NotificationSettin
               ),
               const SizedBox(width: AppConstants.spacingSm),
               Text(
-                'Bildirimler',
+                L10nService.get('common.notifications', language),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
                       fontWeight: FontWeight.bold,
@@ -178,7 +180,7 @@ class _NotificationSettingsSectionState extends ConsumerState<NotificationSettin
 
           // Permission banner if needed
           if (!_permissionsGranted)
-            _buildPermissionBanner(context, isDark),
+            _buildPermissionBanner(context, isDark, language),
 
           if (_permissionsGranted) ...[
             // Daily horoscope notification
@@ -186,10 +188,11 @@ class _NotificationSettingsSectionState extends ConsumerState<NotificationSettin
               context,
               isDark,
               icon: Icons.wb_sunny_outlined,
-              title: 'Gunluk Burc Yorumu',
+              title: L10nService.get('notifications.daily_horoscope', language),
               subtitle: _dailyEnabled
-                  ? 'Her gun saat ${_dailyHour.toString().padLeft(2, '0')}:${_dailyMinute.toString().padLeft(2, '0')}'
-                  : 'Kapalı',
+                  ? L10nService.get('notifications.daily_horoscope_desc', language)
+                      .replaceAll('{time}', '${_dailyHour.toString().padLeft(2, '0')}:${_dailyMinute.toString().padLeft(2, '0')}')
+                  : L10nService.get('notifications.off', language),
               value: _dailyEnabled,
               onChanged: _toggleDailyNotification,
               onTap: _dailyEnabled ? _selectDailyTime : null,
@@ -202,8 +205,8 @@ class _NotificationSettingsSectionState extends ConsumerState<NotificationSettin
               context,
               isDark,
               icon: Icons.nightlight_round_outlined,
-              title: 'Ay Evreleri',
-              subtitle: 'Yeni ay ve dolunay bildirimleri',
+              title: L10nService.get('notifications.moon_phases', language),
+              subtitle: L10nService.get('notifications.moon_phases_desc', language),
               value: _moonEnabled,
               onChanged: _toggleMoonNotification,
             ),
@@ -215,8 +218,8 @@ class _NotificationSettingsSectionState extends ConsumerState<NotificationSettin
               context,
               isDark,
               icon: Icons.replay,
-              title: 'Retro Uyarilari',
-              subtitle: 'Merkur ve diger gezegenler',
+              title: L10nService.get('notifications.retrograde_alerts', language),
+              subtitle: L10nService.get('notifications.retrograde_desc', language),
               value: _retrogradeEnabled,
               onChanged: _toggleRetrogradeNotification,
             ),
@@ -228,8 +231,8 @@ class _NotificationSettingsSectionState extends ConsumerState<NotificationSettin
               context,
               isDark,
               icon: Icons.route_outlined,
-              title: 'Transit Uyarilari',
-              subtitle: 'Onemli gezegensel transitler',
+              title: L10nService.get('notifications.transit_alerts', language),
+              subtitle: L10nService.get('notifications.transit_desc', language),
               value: _transitEnabled,
               onChanged: _toggleTransitNotification,
             ),
@@ -239,7 +242,7 @@ class _NotificationSettingsSectionState extends ConsumerState<NotificationSettin
     );
   }
 
-  Widget _buildPermissionBanner(BuildContext context, bool isDark) {
+  Widget _buildPermissionBanner(BuildContext context, bool isDark, AppLanguage language) {
     return Container(
       margin: const EdgeInsets.only(bottom: AppConstants.spacingMd),
       padding: const EdgeInsets.all(AppConstants.spacingMd),
@@ -254,7 +257,7 @@ class _NotificationSettingsSectionState extends ConsumerState<NotificationSettin
           const SizedBox(width: AppConstants.spacingSm),
           Expanded(
             child: Text(
-              'Bildirimleri alabilmek icin izin vermeniz gerekiyor.',
+              L10nService.get('common.permission_required', language),
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
                   ),
@@ -263,7 +266,7 @@ class _NotificationSettingsSectionState extends ConsumerState<NotificationSettin
           TextButton(
             onPressed: _requestPermissions,
             child: Text(
-              'Izin Ver',
+              L10nService.get('common.grant_permission', language),
               style: TextStyle(color: AppColors.starGold),
             ),
           ),

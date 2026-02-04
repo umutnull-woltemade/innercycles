@@ -49,7 +49,14 @@
     "birth_date": "Birth Date",
     "birth_place": "Birth Place",
     "not_specified": "Not Specified",
-    "minutes_short": "min"
+    "minutes_short": "min",
+    "also_discover": "Also Discover",
+    "discover": "Discover",
+    "all_features": "All Features",
+    "notifications": "Notifications",
+    "permission_required": "Permission required to receive notifications.",
+    "grant_permission": "Grant Permission",
+    "hello": "Hello"
   },
   "greetings": {
     "night": "The stars whisper in the night",
@@ -169,6 +176,9 @@
     "ruler": "Ruler"
   },
   "home": {
+    "get_cosmic_message": "Get Your Cosmic Message",
+    "all_services": "All Analyses",
+    "all_services_desc": "80+ tools for your cosmic journey",
     "todays_cosmic_whisper": "Today's Cosmic Whisper",
     "special_readings": "Our Special Readings",
     "personalized_readings": "Personalized readings based on your birth info",
@@ -272,7 +282,11 @@
       "aura": "Aura Analysis",
       "gardening_moon": "Garden Moon",
       "celebrities": "Celebrities",
-      "chakra": "Chakra"
+      "chakra": "Chakra",
+      "daily": "Daily",
+      "weekly": "Weekly",
+      "cosmic": "Cosmic",
+      "share": "Share"
     }
   },
   "screens": {
@@ -346,6 +360,8 @@
     }
   },
   "zodiac": {
+    "all_signs": "All Zodiac Signs",
+    "discover_all_signs": "Discover all 12 signs and read daily horoscopes",
     "aries": "Aries",
     "taurus": "Taurus",
     "gemini": "Gemini",
@@ -380,6 +396,9 @@
     "descendant": "Descendant"
   },
   "houses": {
+    "title": "Astrological Houses",
+    "subtitle": "12 astrological houses and life areas",
+    "explore_houses": "Explore House System",
     "first": "1st House - Self",
     "second": "2nd House - Money & Values",
     "third": "3rd House - Communication",
@@ -431,6 +450,8 @@
     "pin": "PIN"
   },
   "horoscope": {
+    "title": "Horoscope",
+    "reading": "Reading",
     "analysis": "Horoscope Analysis",
     "cosmic_energy": "Your Cosmic Energy",
     "daily_cosmic_energy": "Today's Cosmic Energy",
@@ -606,8 +627,30 @@
   },
   "auth": {
     "registration_success": "Registration successful! Please verify your email address.",
+    "register_success": "Registration successful! Please verify your email.",
     "password_reset_sent": "Password reset email sent",
-    "apple_connection_failed": "Could not connect to Apple"
+    "reset_email_sent": "Password reset email sent",
+    "enter_email": "Please enter your email address",
+    "apple_connection_failed": "Could not connect to Apple",
+    "apple_sign_in_failed": "Could not sign in with Apple. Please try again.",
+    "start_cosmic_journey": "Start your cosmic journey",
+    "continue_with_apple": "Continue with Apple",
+    "continue_with_email": "Continue with Email",
+    "skip_for_now": "Skip for now",
+    "create_account": "Create Account",
+    "sign_in": "Sign In",
+    "name": "Name",
+    "name_required": "Name is required",
+    "email": "Email",
+    "email_required": "Email is required",
+    "email_invalid": "Please enter a valid email",
+    "password": "Password",
+    "password_required": "Password is required",
+    "password_min_length": "Password must be at least 6 characters",
+    "forgot_password": "Forgot password",
+    "sign_up": "Sign Up",
+    "already_have_account": "Already have an account?",
+    "no_account": "Don't have an account?"
   },
   "dreams": {
     "share": "Share",
@@ -1093,7 +1136,9 @@
     "share_coming_soon": "Sharing feature coming soon!"
   },
   "tarot": {
-    "title": "What do the cards tell you?",
+    "title": "Tarot",
+    "reading": "Reading",
+    "page_title": "What do the cards tell you?",
     "ancient_wisdom_title": "Keys to Ancient Wisdom",
     "ancient_wisdom_intro": "Tarot is a mirror of the subconscious. These cards do not show the future, but possibilities. Each draw reveals the current energy field and potential paths. Ask the cards a question or simply seek guidance. Trust your intuition - the answers are already within you.",
     "select_spread": "Select Spread",
@@ -1348,5 +1393,45 @@
     "retrograde_status": "Retrograde Status",
     "favorable_times": "Favorable Times",
     "unfavorable_times": "Times to Avoid"
+  },
+  "composite": {
+    "title": "Composite Chart",
+    "profile_not_found": "Profile not found",
+    "enter_birth_info": "Enter birth information",
+    "go_back": "Go Back",
+    "person_1_you": "Person 1 (You)",
+    "person_2_partner": "Person 2 (Partner)",
+    "from_profile": "From Profile",
+    "name": "Name",
+    "user": "User",
+    "sun": "Sun",
+    "moon": "Moon",
+    "create_chart": "Create Chart",
+    "compatibility": "Compatibility",
+    "composite_sun": "Composite Sun",
+    "composite_moon": "Composite Moon",
+    "composite_ascendant": "Composite Ascendant",
+    "composite_venus": "Composite Venus",
+    "composite_mars": "Composite Mars",
+    "composite_positions": "Composite Positions",
+    "relationship_theme": "Relationship Theme",
+    "emotional_dynamics": "Emotional Dynamics",
+    "communication_style": "Communication Style",
+    "strengths": "Strengths",
+    "challenges": "Challenges",
+    "key_aspects": "Key Aspects",
+    "soul_purpose": "Soul Purpose"
+  },
+  "notifications": {
+    "title": "Notifications",
+    "daily_horoscope": "Daily Horoscope",
+    "daily_horoscope_desc": "Every day at {time}",
+    "off": "Off",
+    "moon_phases": "Moon Phases",
+    "moon_phases_desc": "New moon and full moon alerts",
+    "retrograde_alerts": "Retrograde Alerts",
+    "retrograde_desc": "Mercury and other planets",
+    "transit_alerts": "Transit Alerts",
+    "transit_desc": "Important planetary transits"
   }
 }

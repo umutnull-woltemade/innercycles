@@ -49,7 +49,14 @@
     "birth_date": "Doğum Tarihi",
     "birth_place": "Doğum Yeri",
     "not_specified": "Belirtilmedi",
-    "minutes_short": "dk"
+    "minutes_short": "dk",
+    "also_discover": "Bunu da Keşfet",
+    "discover": "Keşfet",
+    "all_features": "Tüm Özellikler",
+    "notifications": "Bildirimler",
+    "permission_required": "Bildirimleri alabilmek için izin vermeniz gerekiyor.",
+    "grant_permission": "İzin Ver",
+    "hello": "Merhaba"
   },
   "greetings": {
     "night": "Gece sessizliğinde, yıldızlar seninle",
@@ -169,6 +176,9 @@
     "ruler": "Yönetici"
   },
   "home": {
+    "get_cosmic_message": "Kozmik Mesajını Al",
+    "all_services": "Tüm Çözümlemeler",
+    "all_services_desc": "Kozmik yolculuğun için 80+ araç",
     "todays_cosmic_whisper": "Bugünün Kozmik Fısıltısı",
     "special_readings": "Özel Çözümlemelerimiz",
     "personalized_readings": "Doğum bilgilerinize özel analizler",
@@ -272,7 +282,11 @@
       "aura": "Aura Analizi",
       "gardening_moon": "Bahçe Ayı",
       "celebrities": "Ünlüler",
-      "chakra": "Chakra"
+      "chakra": "Chakra",
+      "daily": "Günlük",
+      "weekly": "Haftalık",
+      "cosmic": "Kozmik",
+      "share": "Paylaşım"
     }
   },
   "screens": {
@@ -346,6 +360,8 @@
     }
   },
   "zodiac": {
+    "all_signs": "Tüm Burçlar",
+    "discover_all_signs": "12 burcu keşfet ve günlük yorumlarını oku",
     "aries": "Koç",
     "taurus": "Boğa",
     "gemini": "İkizler",
@@ -380,6 +396,9 @@
     "descendant": "Alçalan"
   },
   "houses": {
+    "title": "Astrolojik Evler",
+    "subtitle": "12 astrolojik ev ve yaşam alanları",
+    "explore_houses": "Ev Sistemini Keşfet",
     "first": "1. Ev - Benlik",
     "second": "2. Ev - Para & Değerler",
     "third": "3. Ev - İletişim",
@@ -431,6 +450,8 @@
     "pin": "PIN"
   },
   "horoscope": {
+    "title": "Burç Yorumu",
+    "reading": "Yorum",
     "analysis": "Burç Çözümlemelerin",
     "cosmic_energy": "Kozmik Enerjin",
     "daily_cosmic_energy": "Günün Kozmik Enerjin",
@@ -606,8 +627,30 @@
   },
   "auth": {
     "registration_success": "Kayıt başarılı! Email adresinizi doğrulayın.",
+    "register_success": "Kayıt başarılı! Email adresinizi doğrulayın.",
     "password_reset_sent": "Şifre sıfırlama emaili gönderildi",
-    "apple_connection_failed": "Apple bağlantısı kurulamadı"
+    "reset_email_sent": "Şifre sıfırlama emaili gönderildi",
+    "enter_email": "Lütfen email adresinizi girin",
+    "apple_connection_failed": "Apple bağlantısı kurulamadı",
+    "apple_sign_in_failed": "Apple ile giriş yapılamadı. Lütfen tekrar deneyin.",
+    "start_cosmic_journey": "Kozmik yolculuğuna başla",
+    "continue_with_apple": "Apple ile Devam Et",
+    "continue_with_email": "E-posta ile Devam Et",
+    "skip_for_now": "Şimdilik atla",
+    "create_account": "Hesap Oluştur",
+    "sign_in": "Giriş Yap",
+    "name": "İsim",
+    "name_required": "İsim gerekli",
+    "email": "E-posta",
+    "email_required": "E-posta gerekli",
+    "email_invalid": "Geçerli bir e-posta girin",
+    "password": "Şifre",
+    "password_required": "Şifre gerekli",
+    "password_min_length": "Şifre en az 6 karakter olmalı",
+    "forgot_password": "Şifremi unuttum",
+    "sign_up": "Kayıt Ol",
+    "already_have_account": "Zaten hesabınız var mı?",
+    "no_account": "Hesabınız yok mu?"
   },
   "dreams": {
     "share": "Paylaş",
@@ -1093,7 +1136,9 @@
     "share_coming_soon": "Paylaşım özelliği yakında!"
   },
   "tarot": {
-    "title": "Kartlar sana ne söylüyor?",
+    "title": "Tarot",
+    "reading": "Falı",
+    "page_title": "Kartlar sana ne söylüyor?",
     "ancient_wisdom_title": "Kadim Bilgeliğin Anahtarları",
     "ancient_wisdom_intro": "Tarot, bilinçaltının aynasıdır. Bu kartlar geleceği değil, olasılıkları gösterir. Her çekiş, şu anki enerji alanını ve potansiyel yolları ortaya koyar. Kartlara bir soru sor veya sadece rehberlik iste. Sezgine güven - cevaplar zaten içinde.",
     "select_spread": "Açılım Seç",
@@ -1348,5 +1393,45 @@
     "retrograde_status": "Retro Durumu",
     "favorable_times": "Uygun Zamanlar",
     "unfavorable_times": "Kaçınılması Gereken Zamanlar"
+  },
+  "composite": {
+    "title": "Kompozit Harita",
+    "profile_not_found": "Profil bulunamadı",
+    "enter_birth_info": "Doğum bilgilerini girin",
+    "go_back": "Geri Dön",
+    "person_1_you": "Kişi 1 (Sen)",
+    "person_2_partner": "Kişi 2 (Partner)",
+    "from_profile": "Profilden",
+    "name": "İsim",
+    "user": "Kullanıcı",
+    "sun": "Güneş",
+    "moon": "Ay",
+    "create_chart": "Harita Oluştur",
+    "compatibility": "Uyum",
+    "composite_sun": "Kompozit Güneş",
+    "composite_moon": "Kompozit Ay",
+    "composite_ascendant": "Kompozit Yükselen",
+    "composite_venus": "Kompozit Venüs",
+    "composite_mars": "Kompozit Mars",
+    "composite_positions": "Kompozit Pozisyonlar",
+    "relationship_theme": "İlişki Teması",
+    "emotional_dynamics": "Duygusal Dinamikler",
+    "communication_style": "İletişim Tarzı",
+    "strengths": "Güçlü Yanlar",
+    "challenges": "Zorluklar",
+    "key_aspects": "Önemli Açılar",
+    "soul_purpose": "Ruhsal Amaç"
+  },
+  "notifications": {
+    "title": "Bildirimler",
+    "daily_horoscope": "Günlük Burç Yorumu",
+    "daily_horoscope_desc": "Her gün saat {time}",
+    "off": "Kapalı",
+    "moon_phases": "Ay Evreleri",
+    "moon_phases_desc": "Yeni ay ve dolunay bildirimleri",
+    "retrograde_alerts": "Retro Uyarıları",
+    "retrograde_desc": "Merkür ve diğer gezegenler",
+    "transit_alerts": "Transit Uyarıları",
+    "transit_desc": "Önemli gezegensel transitler"
   }
 }
