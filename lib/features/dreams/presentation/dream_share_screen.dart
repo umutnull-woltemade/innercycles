@@ -1309,12 +1309,13 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
               TextButton.icon(
                 onPressed: () {
                   Clipboard.setData(ClipboardData(text: content));
+                  final lang = ref.read(languageProvider);
                   ScaffoldMessenger.of(
                     context,
-                  ).showSnackBar(const SnackBar(content: Text('Kopyalandı!')));
+                  ).showSnackBar(SnackBar(content: Text(L10nService.get('common.copied', lang))));
                 },
                 icon: const Icon(Icons.copy, size: 16),
-                label: const Text('Kopyala'),
+                label: Text(L10nService.get('common.copy', ref.watch(languageProvider))),
                 style: TextButton.styleFrom(
                   foregroundColor: AppColors.textSecondary,
                 ),
@@ -1323,7 +1324,7 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
               TextButton.icon(
                 onPressed: onUse,
                 icon: const Icon(Icons.check, size: 16),
-                label: const Text('Kullan'),
+                label: Text(L10nService.get('common.use', ref.watch(languageProvider))),
                 style: TextButton.styleFrom(foregroundColor: AppColors.mystic),
               ),
             ],

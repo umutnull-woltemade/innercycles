@@ -7,7 +7,9 @@ import '../../../core/constants/app_constants.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/providers/admin_providers.dart';
+import '../../../data/providers/app_providers.dart';
 import '../../../data/services/admin_auth_service.dart';
+import '../../../data/services/l10n_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 
 class AdminDashboardScreen extends ConsumerStatefulWidget {
@@ -47,23 +49,24 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
   }
 
   Future<void> _handleLogout() async {
+    final lang = ref.read(languageProvider);
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
         backgroundColor: Theme.of(context).brightness == Brightness.dark
             ? AppColors.surfaceDark
             : AppColors.lightSurface,
-        title: const Text('Logout'),
-        content: const Text('Are you sure you want to logout from admin?'),
+        title: Text(L10nService.get('admin.logout', lang)),
+        content: Text(L10nService.get('admin.logout_confirm', lang)),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, false),
-            child: const Text('Cancel'),
+            child: Text(L10nService.get('admin.cancel', lang)),
           ),
           TextButton(
             onPressed: () => Navigator.pop(context, true),
             style: TextButton.styleFrom(foregroundColor: AppColors.error),
-            child: const Text('Logout'),
+            child: Text(L10nService.get('admin.logout', lang)),
           ),
         ],
       ),

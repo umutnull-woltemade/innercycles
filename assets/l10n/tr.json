@@ -37,6 +37,7 @@
     "and": "ve",
     "loading": "Yükleniyor...",
     "saving": "Kaydediliyor...",
+    "sharing": "Paylaşılıyor...",
     "error": "Hata",
     "success": "Başarılı",
     "warning": "Uyarı",
@@ -56,7 +57,15 @@
     "notifications": "Bildirimler",
     "permission_required": "Bildirimleri alabilmek için izin vermeniz gerekiyor.",
     "grant_permission": "İzin Ver",
-    "hello": "Merhaba"
+    "hello": "Merhaba",
+    "read_more": "Devamını Oku",
+    "unlock": "Kilidi Aç",
+    "view_all": "Tümünü Gör",
+    "continue_exploring": "Keşfetmeye Devam Et",
+    "copied": "Kopyalandı!",
+    "text_copied": "Metin kopyalandı! Sosyal medyada paylaşabilirsin.",
+    "open_instagram": "Instagram'ı Aç",
+    "explore_more": "Daha Fazla Keşfet"
   },
   "greetings": {
     "night": "Gece sessizliğinde, yıldızlar seninle",
@@ -173,7 +182,9 @@
     "modality": "Modalite",
     "retrograde_planets": "Retro Gezegenler",
     "house": "Ev",
-    "ruler": "Yönetici"
+    "ruler": "Yönetici",
+    "profile_not_found": "Profil bulunamadı",
+    "pdf_generating": "PDF oluşturuluyor..."
   },
   "home": {
     "get_cosmic_message": "Kozmik Mesajını Al",
@@ -531,7 +542,27 @@
     "compatibility": "Burç Uyumu — Venus One",
     "horoscope": "Burç Yorumları — Venus One",
     "tarot": "Tarot — Venus One",
-    "dreams": "Rüya Kâhini — Venus One"
+    "dreams": "Rüya Kâhini — Venus One",
+    "astrology": "Astroloji — Venus One",
+    "numerology": "Numeroloji — Venus One",
+    "dream_trace": "Rüya İzi — Venus One"
+  },
+  "ads": {
+    "failed_to_load": "Reklam Yüklenemedi",
+    "not_available": "Şu anda reklam mevcut değil. Lütfen daha sonra tekrar deneyin veya Premium'a geçin.",
+    "watch_ad": "Reklam İzle",
+    "go_premium": "Premium'a Geç"
+  },
+  "disclaimer": {
+    "before_using": "Kullanmadan Önce",
+    "text_1": "Bu uygulamada sunulan bilgiler yalnızca eğlence ve bilgilendirme amaçlıdır.",
+    "text_2": "Sağlık, finansal, hukuki veya psikolojik konularda profesyonel tavsiye olarak değerlendirilmemelidir.",
+    "text_3": "Önemli yaşam kararları için lütfen nitelikli uzmanlara danışın."
+  },
+  "admin": {
+    "logout": "Çıkış Yap",
+    "logout_confirm": "Admin'den çıkış yapmak istediğinize emin misiniz?",
+    "cancel": "İptal"
   },
   "navigation": {
     "search": "Ara",
@@ -655,6 +686,21 @@
   "dreams": {
     "share": "Paylaş",
     "save": "Kaydet",
+    "saved_to_journal": "Rüya günlüğüne kaydedildi",
+    "canonical": {
+      "losing_question": "Rüyada birini kaybetmek ne demek?",
+      "searching_question": "Rüyada bir şey aramak ne anlama gelir?",
+      "past_question": "Rüyada geçmişten biri çıkması ne demek?",
+      "flying_question": "Rüyada uçmak ne anlama gelir?",
+      "voiceless_question": "Rüyada ses çıkaramamak ne demek?",
+      "darkness_question": "Rüyada karanlık yer ne anlama gelir?",
+      "unable_to_fly_question": "Rüyada uçamamak ne anlama gelir?",
+      "lost_question": "Rüyada kaybolmak ne anlama gelir?",
+      "running_question": "Rüyada kaçmak ne anlama gelir?",
+      "falling_question": "Rüyada düşmek ne demek?",
+      "water_question": "Rüyada su görmek ne anlama gelir?",
+      "recurring_question": "Tekrar eden rüyalar neden olur?"
+    },
     "emotional_reading": "DUYGUSAL OKUMA",
     "statistics_title": "Rüya İstatistikleri",
     "statistics_subtitle": "Bilinçaltının haritası",

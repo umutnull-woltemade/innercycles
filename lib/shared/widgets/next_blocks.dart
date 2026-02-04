@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/constants/routes.dart';
+import '../../data/services/l10n_service.dart';
+import '../../data/providers/app_providers.dart';
 
 /// NEXT BLOCKS WIDGET
 ///
@@ -19,12 +21,14 @@ class NextBlocks extends StatelessWidget {
   final String currentPage;
   final String? signName;
   final String? title;
+  final AppLanguage language;
 
   const NextBlocks({
     super.key,
     required this.currentPage,
     this.signName,
     this.title,
+    this.language = AppLanguage.en,
   });
 
   @override
@@ -41,7 +45,7 @@ class NextBlocks extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 4),
           child: Text(
-            title ?? 'Keşfetmeye Devam Et',
+            title ?? L10nService.get('common.continue_exploring', language),
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,

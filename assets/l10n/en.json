@@ -37,6 +37,7 @@
     "and": "and",
     "loading": "Loading...",
     "saving": "Saving...",
+    "sharing": "Sharing...",
     "error": "Error",
     "success": "Success",
     "warning": "Warning",
@@ -56,7 +57,15 @@
     "notifications": "Notifications",
     "permission_required": "Permission required to receive notifications.",
     "grant_permission": "Grant Permission",
-    "hello": "Hello"
+    "hello": "Hello",
+    "read_more": "Read More",
+    "unlock": "Unlock",
+    "view_all": "View All",
+    "continue_exploring": "Continue Exploring",
+    "copied": "Copied!",
+    "text_copied": "Text copied! You can share on social media.",
+    "open_instagram": "Open Instagram",
+    "explore_more": "Explore More"
   },
   "greetings": {
     "night": "The stars whisper in the night",
@@ -173,7 +182,9 @@
     "modality": "Modality",
     "retrograde_planets": "Retrograde Planets",
     "house": "House",
-    "ruler": "Ruler"
+    "ruler": "Ruler",
+    "profile_not_found": "Profile not found",
+    "pdf_generating": "Generating PDF..."
   },
   "home": {
     "get_cosmic_message": "Get Your Cosmic Message",
@@ -531,7 +542,27 @@
     "compatibility": "Zodiac Compatibility — Venus One",
     "horoscope": "Horoscope Readings — Venus One",
     "tarot": "Tarot — Venus One",
-    "dreams": "Dream Oracle — Venus One"
+    "dreams": "Dream Oracle — Venus One",
+    "astrology": "Astrology — Venus One",
+    "numerology": "Numerology — Venus One",
+    "dream_trace": "Dream Trace — Venus One"
+  },
+  "ads": {
+    "failed_to_load": "Ad Failed to Load",
+    "not_available": "Ad not available right now. Please try again later or go Premium.",
+    "watch_ad": "Watch Ad",
+    "go_premium": "Go Premium"
+  },
+  "disclaimer": {
+    "before_using": "Before Using",
+    "text_1": "The information provided in this app is for entertainment and informational purposes only.",
+    "text_2": "It should not be considered as professional advice for health, financial, legal, or psychological matters.",
+    "text_3": "Please consult qualified professionals for important life decisions."
+  },
+  "admin": {
+    "logout": "Logout",
+    "logout_confirm": "Are you sure you want to logout from admin?",
+    "cancel": "Cancel"
   },
   "navigation": {
     "search": "Search",
@@ -655,6 +686,21 @@
   "dreams": {
     "share": "Share",
     "save": "Save",
+    "saved_to_journal": "Saved to dream journal",
+    "canonical": {
+      "losing_question": "What does losing someone in a dream mean?",
+      "searching_question": "What does searching for something in a dream mean?",
+      "past_question": "What does someone from the past appearing in a dream mean?",
+      "flying_question": "What does flying in a dream mean?",
+      "voiceless_question": "What does being unable to speak in a dream mean?",
+      "darkness_question": "What does a dark place in a dream mean?",
+      "unable_to_fly_question": "What does being unable to fly in a dream mean?",
+      "lost_question": "What does being lost in a dream mean?",
+      "running_question": "What does running away in a dream mean?",
+      "falling_question": "What does falling in a dream mean?",
+      "water_question": "What does seeing water in a dream mean?",
+      "recurring_question": "Why do recurring dreams happen?"
+    },
     "emotional_reading": "EMOTIONAL READING",
     "statistics_title": "Dream Statistics",
     "statistics_subtitle": "Map of your subconscious",

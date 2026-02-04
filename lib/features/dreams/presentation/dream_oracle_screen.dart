@@ -6,6 +6,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -14,20 +15,22 @@ import '../../../core/theme/spacing.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/gradient_button.dart';
 import '../../../data/models/dream_interpretation_models.dart';
+import '../../../data/providers/app_providers.dart';
 import '../../../data/services/dream_interpretation_service.dart';
+import '../../../data/services/l10n_service.dart';
 
 // ============================================================================
 // DREAM ORACLE SCREEN - MAIN WIDGET
 // ============================================================================
 
-class DreamOracleScreen extends StatefulWidget {
+class DreamOracleScreen extends ConsumerStatefulWidget {
   const DreamOracleScreen({super.key});
 
   @override
-  State<DreamOracleScreen> createState() => _DreamOracleScreenState();
+  ConsumerState<DreamOracleScreen> createState() => _DreamOracleScreenState();
 }
 
-class _DreamOracleScreenState extends State<DreamOracleScreen>
+class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
     with TickerProviderStateMixin {
   // Controllers
   final TextEditingController _dreamController = TextEditingController();
@@ -1759,7 +1762,7 @@ class _DreamOracleScreenState extends State<DreamOracleScreen>
           child: OutlinedButton.icon(
             onPressed: _shareDream,
             icon: const Icon(Icons.share_outlined),
-            label: const Text('Paylas'),
+            label: Text(L10nService.get('dreams.share', ref.watch(languageProvider))),
             style: OutlinedButton.styleFrom(
               foregroundColor: MysticalColors.starGold,
               side: BorderSide(color: MysticalColors.starGold.withOpacity(0.5)),
@@ -1772,7 +1775,7 @@ class _DreamOracleScreenState extends State<DreamOracleScreen>
           child: OutlinedButton.icon(
             onPressed: _saveDream,
             icon: const Icon(Icons.bookmark_outline),
-            label: const Text('Kaydet'),
+            label: Text(L10nService.get('dreams.save', ref.watch(languageProvider))),
             style: OutlinedButton.styleFrom(
               foregroundColor: MysticalColors.amethyst,
               side: BorderSide(color: MysticalColors.amethyst.withOpacity(0.5)),
@@ -1797,7 +1800,7 @@ class _DreamOracleScreenState extends State<DreamOracleScreen>
             const Text('\u{1F517}', style: TextStyle(fontSize: 18)),
             const SizedBox(width: Spacing.sm),
             Text(
-              'Daha Fazla Kesfet',
+              L10nService.get('common.explore_more', ref.watch(languageProvider)),
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     color: MysticalColors.textPrimary,
                     fontWeight: FontWeight.w600,
@@ -1887,9 +1890,10 @@ class _DreamOracleScreenState extends State<DreamOracleScreen>
 
   void _saveDream() {
     // TODO: Implement save to dream journal
+    final lang = ref.read(languageProvider);
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: const Text('Ruya gunlugune kaydedildi'),
+        content: Text(L10nService.get('dreams.saved_to_journal', lang)),
         backgroundColor: MysticalColors.auroraGreen,
         behavior: SnackBarBehavior.floating,
         shape: RoundedRectangleBorder(

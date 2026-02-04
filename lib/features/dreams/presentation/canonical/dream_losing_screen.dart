@@ -37,7 +37,7 @@ class DreamLosingScreen extends ConsumerWidget {
               children: [
                 IconButton(onPressed: () => context.pop(), icon: Icon(Icons.arrow_back_ios, color: isDark ? Colors.white70 : AppColors.textDark)),
                 const SizedBox(height: 24),
-                Text('Rüyada birini kaybetmek ne demek?', style: TextStyle(fontSize: 28, fontWeight: FontWeight.w600, color: isDark ? Colors.white : AppColors.textDark, height: 1.2)).animate().fadeIn(duration: 400.ms),
+                Text(L10nService.get('dreams.canonical.losing_question', language), style: TextStyle(fontSize: 28, fontWeight: FontWeight.w600, color: isDark ? Colors.white : AppColors.textDark, height: 1.2)).animate().fadeIn(duration: 400.ms),
                 const SizedBox(height: 8),
                 _buildTag('Rüya İzi', color),
                 const SizedBox(height: 32),
@@ -65,7 +65,7 @@ class DreamLosingScreen extends ConsumerWidget {
                   'Bağımsızlık ve bağlılık arasında denge arıyorsun.',
                 ]),
                 const SizedBox(height: 32),
-                _buildSuggestion(context, isDark, language, '🕳️', 'Rüyada karanlık yer ne anlama gelir?', Routes.dreamDarkness),
+                _buildSuggestion(context, isDark, language, '🕳️', L10nService.get('dreams.canonical.darkness_question', language), Routes.dreamDarkness),
                 const SizedBox(height: 40),
                 const PageFooterWithDisclaimer(
                   brandText: 'Rüya İzi — Venus One',

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../data/services/ad_service.dart';
 import '../../data/services/premium_service.dart';
+import '../../data/services/l10n_service.dart';
+import '../../data/providers/app_providers.dart';
 
 /// A button that shows a rewarded ad to unlock premium content
 class RewardedAdButton extends ConsumerStatefulWidget {
@@ -69,25 +71,26 @@ class _RewardedAdButtonState extends ConsumerState<RewardedAdButton> {
   }
 
   void _showNoAdAvailableDialog() {
+    final language = ref.read(languageProvider);
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
         backgroundColor: const Color(0xFF1A1A2E),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        title: const Text(
-          'Reklam Yüklenemedi',
-          style: TextStyle(color: Colors.white),
+        title: Text(
+          L10nService.get('ads.failed_to_load', language),
+          style: const TextStyle(color: Colors.white),
         ),
-        content: const Text(
-          'Şu anda reklam mevcut değil. Lütfen daha sonra tekrar deneyin veya Premium\'a geçin.',
-          style: TextStyle(color: Colors.white70),
+        content: Text(
+          L10nService.get('ads.not_available', language),
+          style: const TextStyle(color: Colors.white70),
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text(
-              'Tamam',
-              style: TextStyle(color: Color(0xFFFFD700)),
+            child: Text(
+              L10nService.get('common.ok', language),
+              style: const TextStyle(color: Color(0xFFFFD700)),
             ),
           ),
           TextButton(
@@ -95,9 +98,9 @@ class _RewardedAdButtonState extends ConsumerState<RewardedAdButton> {
               Navigator.pop(context);
               // TODO: Navigate to premium subscription page
             },
-            child: const Text(
-              'Premium\'a Geç',
-              style: TextStyle(color: Color(0xFFFFD700)),
+            child: Text(
+              L10nService.get('ads.go_premium', language),
+              style: const TextStyle(color: Color(0xFFFFD700)),
             ),
           ),
         ],
@@ -282,11 +285,16 @@ class PremiumContentCard extends ConsumerWidget {
                     ),
                   ),
                   const SizedBox(height: 16),
-                  RewardedAdButton(
-                    label: 'Kilidi Aç',
-                    rewardDescription: 'Reklam izle',
-                    onRewardEarned: onUnlocked,
-                    icon: Icons.lock_open,
+                  Builder(
+                    builder: (context) {
+                      final language = ref.read(languageProvider);
+                      return RewardedAdButton(
+                        label: L10nService.get('common.unlock', language),
+                        rewardDescription: L10nService.get('ads.watch_ad', language),
+                        onRewardEarned: onUnlocked,
+                        icon: Icons.lock_open,
+                      );
+                    },
                   ),
                 ],
               ),

@@ -228,12 +228,61 @@ jobs:
           echo "✅ Registry validation passed"
 
   # ═══════════════════════════════════════════════════════════════════════════════
-  # JOB 4: Gate Result (REQUIRED - blocks merge)
+  # JOB 4: i18n Coverage Gate (REQUIRED)
+  # ═══════════════════════════════════════════════════════════════════════════════
+  i18n-gate:
+    name: i18n Coverage Gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: ${{ env.FLUTTER_VERSION }}
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Run i18n Coverage Check (BLOCKING)
+        run: |
+          echo "╔══════════════════════════════════════════════════════════════════════════════╗"
+          echo "║                     i18n COVERAGE CHECK (BLOCKING)                           ║"
+          echo "╚══════════════════════════════════════════════════════════════════════════════╝"
+
+          dart run scripts/i18n_coverage_check.dart
+
+          if [ $? -ne 0 ]; then
+            echo ""
+            echo "❌ i18n coverage < 100% - MERGE BLOCKED"
+            exit 1
+          fi
+
+          echo ""
+          echo "✅ i18n coverage check passed"
+
+      - name: Run Hardcoded String Scanner (ADVISORY)
+        run: |
+          echo "╔══════════════════════════════════════════════════════════════════════════════╗"
+          echo "║                   HARDCODED STRING SCANNER (ADVISORY)                        ║"
+          echo "╚══════════════════════════════════════════════════════════════════════════════╝"
+
+          dart run scripts/i18n_hardcoded_scanner.dart || true
+
+          echo ""
+          echo "⚠️ Hardcoded string scan complete (advisory only)"
+
+  # ═══════════════════════════════════════════════════════════════════════════════
+  # JOB 5: Gate Result (REQUIRED - blocks merge)
   # ═══════════════════════════════════════════════════════════════════════════════
   gate-result:
     name: Critical UI Gate Result
     runs-on: ubuntu-latest
-    needs: [critical-ui-tests, chaos-tests, registry-validation]
+    needs: [critical-ui-tests, chaos-tests, registry-validation, i18n-gate]
     if: always()
 
     steps:
@@ -246,12 +295,14 @@ jobs:
           echo "║  Critical UI Tests: ${{ needs.critical-ui-tests.result }}"
           echo "║  Chaos Tests: ${{ needs.chaos-tests.result }}"
           echo "║  Registry Validation: ${{ needs.registry-validation.result }}"
+          echo "║  i18n Coverage: ${{ needs.i18n-gate.result }}"
           echo "║                                                                              ║"
 
           # Check results
           CRITICAL="${{ needs.critical-ui-tests.result }}"
           CHAOS="${{ needs.chaos-tests.result }}"
           REGISTRY="${{ needs.registry-validation.result }}"
+          I18N="${{ needs.i18n-gate.result }}"
 
           # All must pass or be skipped (for optional chaos tests)
           if [ "$CRITICAL" != "success" ]; then
@@ -272,9 +323,16 @@ jobs:
             exit 1
           fi
 
+          if [ "$I18N" != "success" ]; then
+            echo "║  ❌ GATE FAILED: i18n coverage check did not pass                           ║"
+            echo "╚══════════════════════════════════════════════════════════════════════════════╝"
+            exit 1
+          fi
+
           echo "║  ✅ GATE PASSED: All critical UI protections verified                        ║"
           echo "║                                                                              ║"
           echo "║  Silent UI regressions are now IMPOSSIBLE.                                   ║"
+          echo "║  i18n coverage is now 100% enforced.                                         ║"
           echo "╚══════════════════════════════════════════════════════════════════════════════╝"
 
   # ═══════════════════════════════════════════════════════════════════════════════

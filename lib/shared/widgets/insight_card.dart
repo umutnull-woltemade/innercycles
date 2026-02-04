@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../../core/theme/app_colors.dart';
+import '../../data/services/l10n_service.dart';
+import '../../data/providers/app_providers.dart';
 
 /// Swipeable insight card for TikTok-style micro-engagement
 /// Increases session time through snackable content consumption
@@ -13,6 +15,7 @@ class InsightCard extends StatelessWidget {
   final Color? accentColor;
   final VoidCallback? onTap;
   final VoidCallback? onLockTap;
+  final AppLanguage language;
 
   const InsightCard({
     super.key,
@@ -24,6 +27,7 @@ class InsightCard extends StatelessWidget {
     this.accentColor,
     this.onTap,
     this.onLockTap,
+    this.language = AppLanguage.en,
   });
 
   @override
@@ -147,7 +151,7 @@ class InsightCard extends StatelessWidget {
                   children: [
                     if (deepLink != null && !isPremium)
                       Text(
-                        'Devamini oku',
+                        L10nService.get('common.read_more', language),
                         style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w600,
@@ -156,7 +160,7 @@ class InsightCard extends StatelessWidget {
                       )
                     else if (isPremium)
                       Text(
-                        'Kilidi ac',
+                        L10nService.get('common.unlock', language),
                         style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w600,
@@ -215,12 +219,14 @@ class InsightCarousel extends StatelessWidget {
   final List<InsightCardData> insights;
   final String? title;
   final VoidCallback? onPremiumTap;
+  final AppLanguage language;
 
   const InsightCarousel({
     super.key,
     required this.insights,
     this.title,
     this.onPremiumTap,
+    this.language = AppLanguage.en,
   });
 
   @override
@@ -247,7 +253,7 @@ class InsightCarousel extends StatelessWidget {
                 TextButton(
                   onPressed: () {}, // View all
                   child: Text(
-                    'Tumunu Gor',
+                    L10nService.get('common.view_all', language),
                     style: TextStyle(
                       fontSize: 13,
                       color: AppColors.auroraStart,
@@ -275,6 +281,7 @@ class InsightCarousel extends StatelessWidget {
                 accentColor: insight.color,
                 onTap: insight.onTap,
                 onLockTap: onPremiumTap,
+                language: language,
               );
             },
           ),

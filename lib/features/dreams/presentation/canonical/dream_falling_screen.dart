@@ -50,7 +50,7 @@ class DreamFallingScreen extends ConsumerWidget {
 
                 // H1 - Soru formatı
                 Text(
-                  'Rüyada düşmek ne demek?',
+                  L10nService.get('dreams.canonical.falling_question', language),
                   style: TextStyle(
                     fontSize: 28,
                     fontWeight: FontWeight.w600,
@@ -230,7 +230,7 @@ class DreamFallingScreen extends ConsumerWidget {
                   ),
                   const SizedBox(height: 2),
                   Text(
-                    'Rüyada su görmek ne anlama gelir?',
+                    L10nService.get('dreams.canonical.water_question', language),
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w500,

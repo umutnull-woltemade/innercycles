@@ -35,17 +35,18 @@ class MobileLiteHomepage extends ConsumerWidget {
 
     // Guard: Show loading if no valid profile (don't redirect - causes loop)
     if (userProfile == null || userProfile.name == null || userProfile.name!.isEmpty) {
-      return const Scaffold(
-        backgroundColor: Color(0xFF0D0D1A),
+      final language = ref.watch(languageProvider);
+      return Scaffold(
+        backgroundColor: const Color(0xFF0D0D1A),
         body: Center(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              CircularProgressIndicator(color: Color(0xFFFFD700)),
-              SizedBox(height: 16),
+              const CircularProgressIndicator(color: Color(0xFFFFD700)),
+              const SizedBox(height: 16),
               Text(
-                'Yükleniyor...',
-                style: TextStyle(color: Colors.white70),
+                L10nService.get('common.loading', language),
+                style: const TextStyle(color: Colors.white70),
               ),
             ],
           ),

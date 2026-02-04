@@ -41,7 +41,7 @@ class DreamRunningScreen extends ConsumerWidget {
                 ),
                 const SizedBox(height: 24),
                 Text(
-                  'Rüyada kaçmak ne anlama gelir?',
+                  L10nService.get('dreams.canonical.running_question', language),
                   style: TextStyle(fontSize: 28, fontWeight: FontWeight.w600, color: isDark ? Colors.white : AppColors.textDark, height: 1.2),
                 ).animate().fadeIn(duration: 400.ms),
                 const SizedBox(height: 8),
@@ -71,7 +71,7 @@ class DreamRunningScreen extends ConsumerWidget {
                   'Kaçışın sona erdiği rüya, çözümün başladığını gösterir.',
                 ]),
                 const SizedBox(height: 32),
-                _buildSuggestion(context, isDark, language, '🌀', 'Rüyada düşmek ne demek?', Routes.dreamFalling),
+                _buildSuggestion(context, isDark, language, '🌀', L10nService.get('dreams.canonical.falling_question', language), Routes.dreamFalling),
                 const SizedBox(height: 40),
                 const PageFooterWithDisclaimer(
                   brandText: 'Rüya İzi — Venus One',

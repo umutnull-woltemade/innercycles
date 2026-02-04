@@ -7,6 +7,8 @@ import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/mystical_colors.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/gradient_button.dart';
+import '../../../data/services/l10n_service.dart';
+import '../../../data/providers/app_providers.dart';
 
 /// First-launch disclaimer screen for App Store compliance.
 /// Shows entertainment/educational purpose disclaimer before onboarding.
@@ -15,6 +17,8 @@ class DisclaimerScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final language = ref.watch(languageProvider);
+
     return Scaffold(
       body: CosmicBackground(
         child: SafeArea(
@@ -56,7 +60,7 @@ class DisclaimerScreen extends ConsumerWidget {
                 const SizedBox(height: 24),
                 // Title
                 Text(
-                  'Kullanmadan Önce',
+                  L10nService.get('disclaimer.before_using', language),
                   style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                         color: AppColors.starGold,
                         fontWeight: FontWeight.bold,
@@ -65,11 +69,11 @@ class DisclaimerScreen extends ConsumerWidget {
                 ).animate().fadeIn(duration: 400.ms),
                 const SizedBox(height: 32),
                 // Body content
-                _buildDisclaimerContent(context),
+                _buildDisclaimerContent(context, language),
                 const Spacer(flex: 2),
                 // Continue button
                 GradientButton(
-                  label: 'Devam Et',
+                  label: L10nService.get('common.continue', language),
                   icon: Icons.arrow_forward,
                   width: double.infinity,
                   onPressed: () {
@@ -88,7 +92,7 @@ class DisclaimerScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildDisclaimerContent(BuildContext context) {
+  Widget _buildDisclaimerContent(BuildContext context, AppLanguage language) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final textColor = isDark ? AppColors.textSecondary : AppColors.lightTextSecondary;
 
@@ -110,24 +114,20 @@ class DisclaimerScreen extends ConsumerWidget {
         children: [
           _buildParagraph(
             context,
-            'Venus One, astroloji, numeroloji ve rüya yorumları hakkında '
-            'yorumlayıcı ve eğlence amaçlı içerikler sunar. Burada yer alan '
-            'bilgiler kişisel yansıtma ve merak için tasarlanmıştır.',
+            L10nService.get('disclaimer.text_1', language),
             textColor,
           ),
           const SizedBox(height: 16),
           _buildParagraph(
             context,
-            'Bu uygulama tıbbi, psikolojik veya profesyonel tavsiye sunmaz. '
-            'Sağlık, finans veya hukuk konularında her zaman uzman görüşü alınız.',
+            L10nService.get('disclaimer.text_2', language),
             textColor,
             icon: Icons.favorite_border,
           ),
           const SizedBox(height: 16),
           _buildParagraph(
             context,
-            'İçeriklerimiz kesin öngörü veya garanti içermez. Tüm yorumlar '
-            'geleneksel sembollere dayalı genel değerlendirmelerdir.',
+            L10nService.get('disclaimer.text_3', language),
             textColor,
             icon: Icons.nights_stay_outlined,
           ),

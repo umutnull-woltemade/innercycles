@@ -46,7 +46,7 @@ class DreamWaterScreen extends ConsumerWidget {
 
                 // H1 - Soru formatı
                 Text(
-                  'Rüyada su görmek ne anlama gelir?',
+                  L10nService.get('dreams.canonical.water_question', language),
                   style: TextStyle(
                     fontSize: 28,
                     fontWeight: FontWeight.w600,
@@ -226,7 +226,7 @@ class DreamWaterScreen extends ConsumerWidget {
                   ),
                   const SizedBox(height: 2),
                   Text(
-                    'Tekrar eden rüyalar neden olur?',
+                    L10nService.get('dreams.canonical.recurring_question', language),
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w500,

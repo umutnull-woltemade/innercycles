@@ -45,7 +45,7 @@ class DreamRecurringScreen extends ConsumerWidget {
                 const SizedBox(height: 24),
 
                 Text(
-                  'Tekrar eden rüyalar neden olur?',
+                  L10nService.get('dreams.canonical.recurring_question', language),
                   style: TextStyle(
                     fontSize: 28,
                     fontWeight: FontWeight.w600,
@@ -225,7 +225,7 @@ class DreamRecurringScreen extends ConsumerWidget {
                   ),
                   const SizedBox(height: 2),
                   Text(
-                    'Rüyada düşmek ne demek?',
+                    L10nService.get('dreams.canonical.falling_question', language),
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w500,

@@ -36,7 +36,7 @@ class DreamSearchingScreen extends ConsumerWidget {
               children: [
                 IconButton(onPressed: () => context.pop(), icon: Icon(Icons.arrow_back_ios, color: isDark ? Colors.white70 : AppColors.textDark)),
                 const SizedBox(height: 24),
-                Text('Rüyada bir şey aramak ne anlama gelir?', style: TextStyle(fontSize: 28, fontWeight: FontWeight.w600, color: isDark ? Colors.white : AppColors.textDark, height: 1.2)).animate().fadeIn(duration: 400.ms),
+                Text(L10nService.get('dreams.canonical.searching_question', language), style: TextStyle(fontSize: 28, fontWeight: FontWeight.w600, color: isDark ? Colors.white : AppColors.textDark, height: 1.2)).animate().fadeIn(duration: 400.ms),
                 const SizedBox(height: 8),
                 _buildTag('Rüya İzi', color),
                 const SizedBox(height: 32),
@@ -65,7 +65,7 @@ class DreamSearchingScreen extends ConsumerWidget {
                   'Sabır ve içe dönüş gerekiyor.',
                 ]),
                 const SizedBox(height: 32),
-                _buildSuggestion(context, isDark, language, '🌫️', 'Rüyada kaybolmak ne demek?', Routes.dreamLost),
+                _buildSuggestion(context, isDark, language, '🌫️', L10nService.get('dreams.canonical.lost_question', language), Routes.dreamLost),
                 const SizedBox(height: 40),
                 Center(child: Text('Rüya İzi — Venus One', style: TextStyle(fontSize: 12, color: isDark ? Colors.white38 : AppColors.textLight))),
                 const SizedBox(height: 20),
