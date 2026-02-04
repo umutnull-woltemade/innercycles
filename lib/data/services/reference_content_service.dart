@@ -195,19 +195,19 @@ class ReferenceContentService {
 
   String _getGardeningAdvice(MoonPhase phase, ZodiacSign sign) {
     if (phase == MoonPhase.newMoon) {
-      return 'Yeni Ay dönemi. Bahçe planlaması ve tohum hazırlığı için ideal. '
-          'Dikim için birkaç gün bekleyin.';
+      return 'New Moon period. Ideal for garden planning and seed preparation. '
+          'Wait a few days before planting.';
     }
     if (phase == MoonPhase.fullMoon) {
-      return 'Dolunay dönemi. Hasat için mükemmel zaman. '
-          'Dikim yapmaktan kaçının, bitkileri sulayın.';
+      return 'Full Moon period. Perfect time for harvesting. '
+          'Avoid planting, water your plants instead.';
     }
     if (phase.isWaxing) {
-      return 'Büyüyen Ay. ${sign.element.nameTr} elementindeki Ay, '
-          'toprak üstü büyüyen bitkiler için uygun. Dikim ve gübreleme yapılabilir.';
+      return 'Waxing Moon. The Moon in ${sign.element.name} element is favorable for '
+          'above-ground plants. Planting and fertilizing can be done.';
     }
-    return 'Azalan Ay. ${sign.element.nameTr} elementindeki Ay, '
-        'kök sebzeler ve budama için uygun. Ot temizliği yapılabilir.';
+    return 'Waning Moon. The Moon in ${sign.element.name} element is favorable for '
+        'root vegetables and pruning. Weeding can be done.';
   }
 
   int _getFertilityRating(ZodiacSign sign, MoonPhase phase) {
@@ -230,85 +230,85 @@ class ReferenceContentService {
       // Scientists
       CelebrityChart(
         name: 'Albert Einstein',
-        profession: 'Fizikçi',
+        profession: 'Physicist',
         birthDate: DateTime(1879, 3, 14),
-        birthPlace: 'Ulm, Almanya',
+        birthPlace: 'Ulm, Germany',
         sunSign: ZodiacSign.pisces,
         moonSign: ZodiacSign.sagittarius,
         ascendant: ZodiacSign.cancer,
         imageUrl: '',
         chartAnalysis:
-            'Einstein\'ın Balık Güneşi, sezgisel ve hayal gücü yüksek doğasını gösterir. '
-            'Yay Ay\'ı felsefi düşünceye ve büyük resmi görmeye yatkınlık verir. '
-            'Yengeç yükseleni, güvenli bir çevrede çalışma ihtiyacını ve duygusal zekayı vurgular. '
-            'Uranüs\'ün güçlü konumu, devrimci fikirleri ve norm dışı düşünceyi gösterir.',
+            'Einstein\'s Pisces Sun shows his intuitive and imaginative nature. '
+            'Sagittarius Moon gives inclination toward philosophical thinking and seeing the big picture. '
+            'Cancer Ascendant emphasizes the need to work in a secure environment and emotional intelligence. '
+            'The strong position of Uranus shows revolutionary ideas and unconventional thinking.',
         notableAspects: [
-          'Güneş-Merkür kavuşumu - Parlak zihin',
-          'Uranüs 3. evde - Yenilikçi düşünce',
-          'Jüpiter-Satürn üçgeni - Sabırlı genişleme',
+          'Sun-Mercury conjunction - Brilliant mind',
+          'Uranus in 3rd house - Innovative thinking',
+          'Jupiter-Saturn trine - Patient expansion',
         ],
         category: CelebrityCategory.scientists,
       ),
       CelebrityChart(
         name: 'Marie Curie',
-        profession: 'Fizikçi, Kimyager',
+        profession: 'Physicist, Chemist',
         birthDate: DateTime(1867, 11, 7),
-        birthPlace: 'Varşova, Polonya',
+        birthPlace: 'Warsaw, Poland',
         sunSign: ZodiacSign.scorpio,
         moonSign: ZodiacSign.pisces,
         ascendant: ZodiacSign.virgo,
         imageUrl: '',
         chartAnalysis:
-            'Curie\'nin Akrep Güneşi, araştırmacı ruhu ve derinlere inme tutkusunu gösterir. '
-            'Balık Ay\'ı, sezgisel anlayış ve fedakarlık kapasitesini vurgular. '
-            'Başak yükseleni, bilimsel titizlik ve analitik yaklaşımı işaret eder. '
-            'Pluto\'nun güçlü konumu, radyoaktivite keşfi ile sembolik olarak bağlantılıdır.',
+            'Curie\'s Scorpio Sun shows the investigative spirit and passion for going deep. '
+            'Pisces Moon emphasizes intuitive understanding and capacity for sacrifice. '
+            'Virgo Ascendant indicates scientific meticulousness and analytical approach. '
+            'The strong position of Pluto is symbolically connected to the discovery of radioactivity.',
         notableAspects: [
-          'Güneş-Pluto açısı - Dönüştürücü keşifler',
-          'Merkür 8. evde - Gizli olanı araştırma',
-          'Satürn 10. evde - Kalıcı başarı',
+          'Sun-Pluto aspect - Transformative discoveries',
+          'Mercury in 8th house - Researching the hidden',
+          'Saturn in 10th house - Lasting success',
         ],
         category: CelebrityCategory.scientists,
       ),
       CelebrityChart(
         name: 'Nikola Tesla',
-        profession: 'Mucit, Mühendis',
+        profession: 'Inventor, Engineer',
         birthDate: DateTime(1856, 7, 10),
-        birthPlace: 'Smiljan, Hırvatistan',
+        birthPlace: 'Smiljan, Croatia',
         sunSign: ZodiacSign.cancer,
         moonSign: ZodiacSign.libra,
         ascendant: ZodiacSign.aquarius,
         imageUrl: '',
         chartAnalysis:
-            'Tesla\'nın Yengeç Güneşi, derin sezgi ve koruyucu vizyonu gösterir. '
-            'Terazi Ay\'ı, uyum arayışı ve estetik mühendisliği vurgular. '
-            'Kova yükseleni, devrimci icatları ve geleceği görme yetisini işaret eder. '
-            'Uranüs\'ün güçlü konumu, elektrik ve enerji alanındaki dahiliği sembolize eder.',
+            'Tesla\'s Cancer Sun shows deep intuition and protective vision. '
+            'Libra Moon emphasizes the pursuit of harmony and aesthetic engineering. '
+            'Aquarius Ascendant indicates revolutionary inventions and ability to see the future. '
+            'The strong position of Uranus symbolizes genius in the field of electricity and energy.',
         notableAspects: [
-          'Uranüs-Merkür üçgeni - Devrimci fikirler',
-          'Neptün 11. evde - Gelecek vizyonu',
-          'Satürn 1. evde - Disiplinli dahilik',
+          'Uranus-Mercury trine - Revolutionary ideas',
+          'Neptune in 11th house - Future vision',
+          'Saturn in 1st house - Disciplined genius',
         ],
         category: CelebrityCategory.scientists,
       ),
       CelebrityChart(
         name: 'Stephen Hawking',
-        profession: 'Teorik Fizikçi',
+        profession: 'Theoretical Physicist',
         birthDate: DateTime(1942, 1, 8),
-        birthPlace: 'Oxford, İngiltere',
+        birthPlace: 'Oxford, England',
         sunSign: ZodiacSign.capricorn,
         moonSign: ZodiacSign.aries,
         ascendant: ZodiacSign.virgo,
         imageUrl: '',
         chartAnalysis:
-            'Hawking\'in Oğlak Güneşi, azim ve kalıcı başarı isteğini gösterir. '
-            'Koç Ay\'ı, cesaret ve mücadele ruhunu vurgular. '
-            'Başak yükseleni, analitik zekayı ve detaycılığı işaret eder. '
-            'Satürn\'ün 6. evdeki konumu, sağlık zorluklarına rağmen çalışma disiplinini gösterir.',
+            'Hawking\'s Capricorn Sun shows perseverance and desire for lasting success. '
+            'Aries Moon emphasizes courage and fighting spirit. '
+            'Virgo Ascendant indicates analytical intelligence and attention to detail. '
+            'Saturn\'s position in the 6th house shows work discipline despite health challenges.',
         notableAspects: [
-          'Güneş-Satürn kavuşumu - Engellere rağmen başarı',
-          'Mars 9. evde - Felsefi savaşçı',
-          'Jüpiter 8. evde - Evrenin sırlarını araştırma',
+          'Sun-Saturn conjunction - Success despite obstacles',
+          'Mars in 9th house - Philosophical warrior',
+          'Jupiter in 8th house - Exploring the universe\'s secrets',
         ],
         category: CelebrityCategory.scientists,
       ),
@@ -316,28 +316,28 @@ class ReferenceContentService {
       // Historical Figures
       CelebrityChart(
         name: 'Atatürk',
-        profession: 'Devlet Adamı',
+        profession: 'Statesman',
         birthDate: DateTime(1881, 5, 19),
-        birthPlace: 'Selanik',
+        birthPlace: 'Thessaloniki',
         sunSign: ZodiacSign.taurus,
         moonSign: ZodiacSign.leo,
         ascendant: ZodiacSign.scorpio,
         imageUrl: '',
         chartAnalysis:
-            'Atatürk\'ün Boğa Güneşi, kararlılık ve pratik liderliği gösterir. '
-            'Aslan Ay\'ı, güçlü irade ve halkını koruma içgüdüsünü vurgular. '
-            'Akrep yükseleni, dönüştürücü güç ve stratejik zekayı işaret eder. '
-            'Mars-Pluto açısı, engellenemez azim ve reform kapasitesini gösterir.',
+            'Atatürk\'s Taurus Sun shows determination and practical leadership. '
+            'Leo Moon emphasizes strong will and instinct to protect his people. '
+            'Scorpio Ascendant indicates transformative power and strategic intelligence. '
+            'Mars-Pluto aspect shows unstoppable determination and capacity for reform.',
         notableAspects: [
-          'Güneş 10. evde - Toplumsal liderlik',
-          'Mars-Pluto kavuşumu - Dönüştürücü güç',
-          'Jüpiter 9. evde - Vizyon ve idealizm',
+          'Sun in 10th house - Social leadership',
+          'Mars-Pluto conjunction - Transformative power',
+          'Jupiter in 9th house - Vision and idealism',
         ],
         category: CelebrityCategory.historical,
       ),
       CelebrityChart(
         name: 'Fatih Sultan Mehmet',
-        profession: 'Osmanlı Sultanı',
+        profession: 'Ottoman Sultan',
         birthDate: DateTime(1432, 3, 30),
         birthPlace: 'Edirne',
         sunSign: ZodiacSign.aries,
@@ -345,56 +345,56 @@ class ReferenceContentService {
         ascendant: ZodiacSign.leo,
         imageUrl: '',
         chartAnalysis:
-            'Fatih\'in Koç Güneşi, fetih ruhu ve öncü cesaretini gösterir. '
-            'Oğlak Ay\'ı, stratejik planlama ve uzun vadeli hedefleri vurgular. '
-            'Aslan yükseleni, imparatorluk vizyonu ve liderlik karizmasını işaret eder. '
-            'Mars\'ın güçlü konumu, askeri dehayı ve cesur eylemleri sembolize eder.',
+            'Fatih\'s Aries Sun shows the spirit of conquest and pioneering courage. '
+            'Capricorn Moon emphasizes strategic planning and long-term goals. '
+            'Leo Ascendant indicates imperial vision and leadership charisma. '
+            'The strong position of Mars symbolizes military genius and bold actions.',
         notableAspects: [
-          'Mars 10. evde - Askeri liderlik',
-          'Jüpiter-Satürn üçgeni - İmparatorluk kurma',
-          'Güneş-Mars kavuşumu - Savaşçı ruh',
+          'Mars in 10th house - Military leadership',
+          'Jupiter-Saturn trine - Empire building',
+          'Sun-Mars conjunction - Warrior spirit',
         ],
         category: CelebrityCategory.historical,
       ),
       CelebrityChart(
         name: 'Mevlana Celaleddin Rumi',
-        profession: 'Sufi Şair, Mutasavvıf',
+        profession: 'Sufi Poet, Mystic',
         birthDate: DateTime(1207, 9, 30),
-        birthPlace: 'Belh, Afganistan',
+        birthPlace: 'Balkh, Afghanistan',
         sunSign: ZodiacSign.libra,
         moonSign: ZodiacSign.pisces,
         ascendant: ZodiacSign.cancer,
         imageUrl: '',
         chartAnalysis:
-            'Mevlana\'nın Terazi Güneşi, uyum arayışı ve ilişkilerdeki derin anlayışı gösterir. '
-            'Balık Ay\'ı, mistik sezgi ve evrensel aşkı vurgular. '
-            'Yengeç yükseleni, derin duygusal bağ ve şefkati işaret eder. '
-            'Neptün\'ün güçlü konumu, spiritüel uyanış ve ilahi aşkı sembolize eder.',
+            'Rumi\'s Libra Sun shows pursuit of harmony and deep understanding in relationships. '
+            'Pisces Moon emphasizes mystical intuition and universal love. '
+            'Cancer Ascendant indicates deep emotional bonds and compassion. '
+            'The strong position of Neptune symbolizes spiritual awakening and divine love.',
         notableAspects: [
-          'Neptün 12. evde - Mistik deneyim',
-          'Venüs-Ay üçgeni - Şiirsel aşk',
-          'Jüpiter 9. evde - Manevi öğretmenlik',
+          'Neptune in 12th house - Mystical experience',
+          'Venus-Moon trine - Poetic love',
+          'Jupiter in 9th house - Spiritual teaching',
         ],
         category: CelebrityCategory.historical,
       ),
       CelebrityChart(
-        name: 'Kleopatra',
-        profession: 'Mısır Kraliçesi',
+        name: 'Cleopatra',
+        profession: 'Queen of Egypt',
         birthDate: DateTime(-69, 1, 15),
-        birthPlace: 'İskenderiye, Mısır',
+        birthPlace: 'Alexandria, Egypt',
         sunSign: ZodiacSign.capricorn,
         moonSign: ZodiacSign.scorpio,
         ascendant: ZodiacSign.leo,
         imageUrl: '',
         chartAnalysis:
-            'Kleopatra\'nın Oğlak Güneşi, siyasi zeka ve hırsı gösterir. '
-            'Akrep Ay\'ı, derin tutku ve manipülasyon yeteneğini vurgular. '
-            'Aslan yükseleni, kraliyet karizması ve dramatik çekiciliği işaret eder. '
-            'Venüs\'ün güçlü konumu, efsanevi güzellik ve çekiciliği sembolize eder.',
+            'Cleopatra\'s Capricorn Sun shows political intelligence and ambition. '
+            'Scorpio Moon emphasizes deep passion and ability to manipulate. '
+            'Leo Ascendant indicates royal charisma and dramatic appeal. '
+            'The strong position of Venus symbolizes legendary beauty and allure.',
         notableAspects: [
-          'Venüs 1. evde - Büyüleyici güzellik',
-          'Pluto 7. evde - Güçlü ilişkiler',
-          'Mars-Satürn üçgeni - Stratejik savaşçı',
+          'Venus in 1st house - Enchanting beauty',
+          'Pluto in 7th house - Powerful relationships',
+          'Mars-Saturn trine - Strategic warrior',
         ],
         category: CelebrityCategory.historical,
       ),
@@ -402,85 +402,85 @@ class ReferenceContentService {
       // Artists
       CelebrityChart(
         name: 'Leonardo da Vinci',
-        profession: 'Sanatçı, Mucit',
+        profession: 'Artist, Inventor',
         birthDate: DateTime(1452, 4, 15),
-        birthPlace: 'Vinci, İtalya',
+        birthPlace: 'Vinci, Italy',
         sunSign: ZodiacSign.aries,
         moonSign: ZodiacSign.pisces,
         ascendant: ZodiacSign.sagittarius,
         imageUrl: '',
         chartAnalysis:
-            'Da Vinci\'nin Koç Güneşi, öncü ve cesur doğasını gösterir. '
-            'Balık Ay\'ı, derin sanatsal sezgi ve hayal gücünü temsil eder. '
-            'Yay yükseleni, çok yönlülük ve sürekli öğrenme tutkusunu işaret eder. '
-            'Merkür-Venüs kavuşumu, estetik zeka ve el becerisi birleşimini gösterir.',
+            'Da Vinci\'s Aries Sun shows his pioneering and courageous nature. '
+            'Pisces Moon represents deep artistic intuition and imagination. '
+            'Sagittarius Ascendant indicates versatility and passion for continuous learning. '
+            'Mercury-Venus conjunction shows the combination of aesthetic intelligence and manual skill.',
         notableAspects: [
-          'Merkür-Venüs kavuşumu - Sanatsal zeka',
-          'Mars 5. evde - Yaratıcı enerji',
-          'Neptün güçlü - Spiritüel ilham',
+          'Mercury-Venus conjunction - Artistic intelligence',
+          'Mars in 5th house - Creative energy',
+          'Neptune strong - Spiritual inspiration',
         ],
         category: CelebrityCategory.artists,
       ),
       CelebrityChart(
         name: 'Vincent van Gogh',
-        profession: 'Ressam',
+        profession: 'Painter',
         birthDate: DateTime(1853, 3, 30),
-        birthPlace: 'Zundert, Hollanda',
+        birthPlace: 'Zundert, Netherlands',
         sunSign: ZodiacSign.aries,
         moonSign: ZodiacSign.sagittarius,
         ascendant: ZodiacSign.cancer,
         imageUrl: '',
         chartAnalysis:
-            'Van Gogh\'un Koç Güneşi, tutkulu ve cesur sanatsal ifadeyi gösterir. '
-            'Yay Ay\'ı, idealizm ve anlam arayışını vurgular. '
-            'Yengeç yükseleni, duygusal hassasiyet ve iç dünyasını işaret eder. '
-            'Neptün\'ün güçlü konumu, vizyoner sanatı ve ruhsal çalkantıyı sembolize eder.',
+            'Van Gogh\'s Aries Sun shows passionate and bold artistic expression. '
+            'Sagittarius Moon emphasizes idealism and search for meaning. '
+            'Cancer Ascendant indicates emotional sensitivity and inner world. '
+            'The strong position of Neptune symbolizes visionary art and spiritual turmoil.',
         notableAspects: [
-          'Güneş-Uranüs kavuşumu - Radikal yaratıcılık',
-          'Ay-Neptün karesi - Duygusal yoğunluk',
-          'Venüs 12. evde - Gizli güzellik algısı',
+          'Sun-Uranus conjunction - Radical creativity',
+          'Moon-Neptune square - Emotional intensity',
+          'Venus in 12th house - Hidden perception of beauty',
         ],
         category: CelebrityCategory.artists,
       ),
       CelebrityChart(
         name: 'Frida Kahlo',
-        profession: 'Ressam',
+        profession: 'Painter',
         birthDate: DateTime(1907, 7, 6),
-        birthPlace: 'Coyoacán, Meksika',
+        birthPlace: 'Coyoacan, Mexico',
         sunSign: ZodiacSign.cancer,
         moonSign: ZodiacSign.taurus,
         ascendant: ZodiacSign.leo,
         imageUrl: '',
         chartAnalysis:
-            'Frida\'nın Yengeç Güneşi, derin duygusallık ve kendini koruma içgüdüsünü gösterir. '
-            'Boğa Ay\'ı, duyusal zevkler ve dayanıklılığı vurgular. '
-            'Aslan yükseleni, dramatik kendini ifade ve cesur imajı işaret eder. '
-            'Kiron\'un güçlü konumu, acı aracılığıyla sanatı sembolize eder.',
+            'Frida\'s Cancer Sun shows deep emotionality and self-protective instinct. '
+            'Taurus Moon emphasizes sensual pleasures and resilience. '
+            'Leo Ascendant indicates dramatic self-expression and bold image. '
+            'The strong position of Chiron symbolizes art through pain.',
         notableAspects: [
-          'Kiron 1. evde - Yaralı sanatçı',
-          'Venüs-Pluto karesi - Tutkulu aşk',
-          'Mars 8. evde - Ölümle dans',
+          'Chiron in 1st house - Wounded artist',
+          'Venus-Pluto square - Passionate love',
+          'Mars in 8th house - Dance with death',
         ],
         category: CelebrityCategory.artists,
       ),
       CelebrityChart(
         name: 'Pablo Picasso',
-        profession: 'Ressam, Heykeltıraş',
+        profession: 'Painter, Sculptor',
         birthDate: DateTime(1881, 10, 25),
-        birthPlace: 'Málaga, İspanya',
+        birthPlace: 'Malaga, Spain',
         sunSign: ZodiacSign.scorpio,
         moonSign: ZodiacSign.sagittarius,
         ascendant: ZodiacSign.leo,
         imageUrl: '',
         chartAnalysis:
-            'Picasso\'nun Akrep Güneşi, yoğun yaratıcılık ve dönüşümü gösterir. '
-            'Yay Ay\'ı, özgür düşünce ve deneyselliği vurgular. '
-            'Aslan yükseleni, sanatsal ego ve dikkat çekme isteğini işaret eder. '
-            'Uranüs\'ün güçlü konumu, sanatı devrimleştirmeyi sembolize eder.',
+            'Picasso\'s Scorpio Sun shows intense creativity and transformation. '
+            'Sagittarius Moon emphasizes free thinking and experimentation. '
+            'Leo Ascendant indicates artistic ego and desire for attention. '
+            'The strong position of Uranus symbolizes revolutionizing art.',
         notableAspects: [
-          'Güneş-Merkür kavuşumu - Keskin zeka',
-          'Uranüs 3. evde - Yenilikçi ifade',
-          'Venüs-Mars karesi - Tutkulu ilişkiler',
+          'Sun-Mercury conjunction - Sharp intellect',
+          'Uranus in 3rd house - Innovative expression',
+          'Venus-Mars square - Passionate relationships',
         ],
         category: CelebrityCategory.artists,
       ),
@@ -488,7 +488,7 @@ class ReferenceContentService {
       // Musicians
       CelebrityChart(
         name: 'Freddie Mercury',
-        profession: 'Müzisyen',
+        profession: 'Musician',
         birthDate: DateTime(1946, 9, 5),
         birthPlace: 'Zanzibar',
         sunSign: ZodiacSign.virgo,
@@ -496,98 +496,98 @@ class ReferenceContentService {
         ascendant: ZodiacSign.leo,
         imageUrl: '',
         chartAnalysis:
-            'Mercury\'nin Başak Güneşi, mükemmeliyetçiliği ve müzikal detaycılığını gösterir. '
-            'Yay Ay\'ı, sahne performansındaki coşkuyu ve özgürlük tutkusunu vurgular. '
-            'Aslan yükseleni, karizmatik sahne varlığını ve dramatik ifadeyi işaret eder. '
-            'Venüs-Mars kavuşumu, tutkulu sanatsal ifadeyi temsil eder.',
+            'Mercury\'s Virgo Sun shows perfectionism and musical attention to detail. '
+            'Sagittarius Moon emphasizes stage performance enthusiasm and passion for freedom. '
+            'Leo Ascendant indicates charismatic stage presence and dramatic expression. '
+            'Venus-Mars conjunction represents passionate artistic expression.',
         notableAspects: [
-          'Aslan yükseleni - Sahne karizması',
-          'Venüs-Mars kavuşumu - Tutkulu performans',
-          'Neptün 5. evde - Müzikal ilham',
+          'Leo Ascendant - Stage charisma',
+          'Venus-Mars conjunction - Passionate performance',
+          'Neptune in 5th house - Musical inspiration',
         ],
         category: CelebrityCategory.musicians,
       ),
       CelebrityChart(
-        name: 'Barış Manço',
-        profession: 'Müzisyen, Şarkıcı',
+        name: 'Baris Manco',
+        profession: 'Musician, Singer',
         birthDate: DateTime(1943, 1, 2),
-        birthPlace: 'İstanbul',
+        birthPlace: 'Istanbul',
         sunSign: ZodiacSign.capricorn,
         moonSign: ZodiacSign.aries,
         ascendant: ZodiacSign.gemini,
         imageUrl: '',
         chartAnalysis:
-            'Barış Manço\'nun Oğlak Güneşi, disiplinli müzikalite ve kalıcı miras isteğini gösterir. '
-            'Koç Ay\'ı, cesur sahne performansı ve öncü ruhu vurgular. '
-            'İkizler yükseleni, iletişim yeteneği ve çocuklarla bağı işaret eder. '
-            'Jüpiter\'in güçlü konumu, kültürel elçiliği sembolize eder.',
+            'Baris Manco\'s Capricorn Sun shows disciplined musicality and desire for lasting legacy. '
+            'Aries Moon emphasizes bold stage performance and pioneering spirit. '
+            'Gemini Ascendant indicates communication skills and connection with children. '
+            'The strong position of Jupiter symbolizes cultural ambassadorship.',
         notableAspects: [
-          'Merkür 3. evde - İletişim ustası',
-          'Venüs-Neptün üçgeni - Müzikal sezgi',
-          'Jüpiter 9. evde - Kültürel köprü',
+          'Mercury in 3rd house - Master communicator',
+          'Venus-Neptune trine - Musical intuition',
+          'Jupiter in 9th house - Cultural bridge',
         ],
         category: CelebrityCategory.musicians,
       ),
       CelebrityChart(
         name: 'Wolfgang Amadeus Mozart',
-        profession: 'Besteci',
+        profession: 'Composer',
         birthDate: DateTime(1756, 1, 27),
-        birthPlace: 'Salzburg, Avusturya',
+        birthPlace: 'Salzburg, Austria',
         sunSign: ZodiacSign.aquarius,
         moonSign: ZodiacSign.sagittarius,
         ascendant: ZodiacSign.virgo,
         imageUrl: '',
         chartAnalysis:
-            'Mozart\'ın Kova Güneşi, dahice özgünlük ve döneminin ötesinde olmayı gösterir. '
-            'Yay Ay\'ı, neşeli yaratıcılık ve müzikal maceraperestliği vurgular. '
-            'Başak yükseleni, mükemmeliyetçi teknik ve titizliği işaret eder. '
-            'Uranüs\'ün güçlü konumu, erken yaşta ortaya çıkan dahiliği sembolize eder.',
+            'Mozart\'s Aquarius Sun shows genius originality and being ahead of his time. '
+            'Sagittarius Moon emphasizes joyful creativity and musical adventurousness. '
+            'Virgo Ascendant indicates perfectionist technique and meticulousness. '
+            'The strong position of Uranus symbolizes early emerging genius.',
         notableAspects: [
-          'Merkür-Venüs kavuşumu - Melodik deha',
-          'Güneş-Satürn üçgeni - Disiplinli yaratıcılık',
-          'Neptün 5. evde - İlahi müzik',
+          'Mercury-Venus conjunction - Melodic genius',
+          'Sun-Saturn trine - Disciplined creativity',
+          'Neptune in 5th house - Divine music',
         ],
         category: CelebrityCategory.musicians,
       ),
       CelebrityChart(
         name: 'Ludwig van Beethoven',
-        profession: 'Besteci',
+        profession: 'Composer',
         birthDate: DateTime(1770, 12, 16),
-        birthPlace: 'Bonn, Almanya',
+        birthPlace: 'Bonn, Germany',
         sunSign: ZodiacSign.sagittarius,
         moonSign: ZodiacSign.sagittarius,
         ascendant: ZodiacSign.scorpio,
         imageUrl: '',
         chartAnalysis:
-            'Beethoven\'in Yay Güneşi, özgürlük aşkı ve idealizmi gösterir. '
-            'Yay Ay\'ı, tutkulu ifade ve felsefik derinliği vurgular. '
-            'Akrep yükseleni, yoğun duygusallık ve dönüşümü işaret eder. '
-            'Satürn\'ün güçlü konumu, sağırlığa rağmen devam eden mücadeleyi sembolize eder.',
+            'Beethoven\'s Sagittarius Sun shows love of freedom and idealism. '
+            'Sagittarius Moon emphasizes passionate expression and philosophical depth. '
+            'Scorpio Ascendant indicates intense emotionality and transformation. '
+            'The strong position of Saturn symbolizes continued struggle despite deafness.',
         notableAspects: [
-          'Güneş-Ay kavuşumu - Güçlü irade',
-          'Mars 1. evde - Savaşçı ruh',
-          'Pluto 8. evde - Müzikte dönüşüm',
+          'Sun-Moon conjunction - Strong will',
+          'Mars in 1st house - Warrior spirit',
+          'Pluto in 8th house - Transformation in music',
         ],
         category: CelebrityCategory.musicians,
       ),
       CelebrityChart(
         name: 'Tarkan',
-        profession: 'Pop Şarkıcısı',
+        profession: 'Pop Singer',
         birthDate: DateTime(1972, 10, 17),
-        birthPlace: 'Alzey, Almanya',
+        birthPlace: 'Alzey, Germany',
         sunSign: ZodiacSign.libra,
         moonSign: ZodiacSign.taurus,
         ascendant: ZodiacSign.leo,
         imageUrl: '',
         chartAnalysis:
-            'Tarkan\'ın Terazi Güneşi, estetik mükemmeliyetçiliği ve çekiciliği gösterir. '
-            'Boğa Ay\'ı, duyusal müzikalite ve ses kalitesini vurgular. '
-            'Aslan yükseleni, sahne hakimiyeti ve star karizmasını işaret eder. '
-            'Venüs\'ün güçlü konumu, romantik şarkıları ve dans yetenğini sembolize eder.',
+            'Tarkan\'s Libra Sun shows aesthetic perfectionism and allure. '
+            'Taurus Moon emphasizes sensual musicality and vocal quality. '
+            'Leo Ascendant indicates stage dominance and star charisma. '
+            'The strong position of Venus symbolizes romantic songs and dance talent.',
         notableAspects: [
-          'Venüs 1. evde - Doğal çekicilik',
-          'Mars-Neptün üçgeni - Hipnotik performans',
-          'Jüpiter 5. evde - Yaratıcı başarı',
+          'Venus in 1st house - Natural charm',
+          'Mars-Neptune trine - Hypnotic performance',
+          'Jupiter in 5th house - Creative success',
         ],
         category: CelebrityCategory.musicians,
       ),
@@ -595,85 +595,85 @@ class ReferenceContentService {
       // Actors
       CelebrityChart(
         name: 'Marilyn Monroe',
-        profession: 'Aktris',
+        profession: 'Actress',
         birthDate: DateTime(1926, 6, 1),
-        birthPlace: 'Los Angeles, ABD',
+        birthPlace: 'Los Angeles, USA',
         sunSign: ZodiacSign.gemini,
         moonSign: ZodiacSign.aquarius,
         ascendant: ZodiacSign.leo,
         imageUrl: '',
         chartAnalysis:
-            'Monroe\'nun İkizler Güneşi, çok yönlülük ve ikili doğasını gösterir. '
-            'Kova Ay\'ı, farklı olma isteği ve duygusal bağımsızlığı vurgular. '
-            'Aslan yükseleni, ışıltılı çekicilik ve dramatik varlığı işaret eder. '
-            'Neptün\'ün güçlü konumu, hayali imajı ve kaçış eğilimini sembolize eder.',
+            'Monroe\'s Gemini Sun shows versatility and dual nature. '
+            'Aquarius Moon emphasizes desire to be different and emotional independence. '
+            'Leo Ascendant indicates radiant appeal and dramatic presence. '
+            'The strong position of Neptune symbolizes fantasy image and escapist tendencies.',
         notableAspects: [
-          'Venüs-Neptün kavuşumu - Büyüleyici cazibe',
-          'Ay 7. evde - İlişkilerde karmaşıklık',
-          'Pluto 12. evde - Gizli derinlikler',
+          'Venus-Neptune conjunction - Enchanting allure',
+          'Moon in 7th house - Complexity in relationships',
+          'Pluto in 12th house - Hidden depths',
         ],
         category: CelebrityCategory.actors,
       ),
       CelebrityChart(
-        name: 'Türkan Şoray',
-        profession: 'Aktris',
+        name: 'Turkan Soray',
+        profession: 'Actress',
         birthDate: DateTime(1945, 6, 28),
-        birthPlace: 'İstanbul',
+        birthPlace: 'Istanbul',
         sunSign: ZodiacSign.cancer,
         moonSign: ZodiacSign.scorpio,
         ascendant: ZodiacSign.libra,
         imageUrl: '',
         chartAnalysis:
-            'Türkan Şoray\'ın Yengeç Güneşi, derin duygusallık ve anne figürünü gösterir. '
-            'Akrep Ay\'ı, yoğun roller ve dönüştürücü performansları vurgular. '
-            'Terazi yükseleni, zarif güzellik ve diplomatik kişiliği işaret eder. '
-            'Venüs\'ün güçlü konumu, Yeşilçam\'ın sultanı ünvanını sembolize eder.',
+            'Turkan Soray\'s Cancer Sun shows deep emotionality and the mother figure. '
+            'Scorpio Moon emphasizes intense roles and transformative performances. '
+            'Libra Ascendant indicates elegant beauty and diplomatic personality. '
+            'The strong position of Venus symbolizes her title as the Sultan of Turkish Cinema.',
         notableAspects: [
-          'Güneş-Venüs kavuşumu - Doğal yıldız',
-          'Ay-Pluto kavuşumu - Derin roller',
-          'Jüpiter 10. evde - Kariyer başarısı',
+          'Sun-Venus conjunction - Natural star',
+          'Moon-Pluto conjunction - Deep roles',
+          'Jupiter in 10th house - Career success',
         ],
         category: CelebrityCategory.actors,
       ),
       CelebrityChart(
         name: 'Leonardo DiCaprio',
-        profession: 'Aktör',
+        profession: 'Actor',
         birthDate: DateTime(1974, 11, 11),
-        birthPlace: 'Los Angeles, ABD',
+        birthPlace: 'Los Angeles, USA',
         sunSign: ZodiacSign.scorpio,
         moonSign: ZodiacSign.libra,
         ascendant: ZodiacSign.libra,
         imageUrl: '',
         chartAnalysis:
-            'DiCaprio\'nun Akrep Güneşi, yoğun performanslar ve dönüşümü gösterir. '
-            'Terazi Ay\'ı, estetik hassasiyet ve işbirliği yeteneğini vurgular. '
-            'Terazi yükseleni, çekici görünüm ve diplomatik kişiliği işaret eder. '
-            'Pluto\'nun güçlü konumu, ağır rolleri ve aktivizmi sembolize eder.',
+            'DiCaprio\'s Scorpio Sun shows intense performances and transformation. '
+            'Libra Moon emphasizes aesthetic sensitivity and collaboration skills. '
+            'Libra Ascendant indicates attractive appearance and diplomatic personality. '
+            'The strong position of Pluto symbolizes heavy roles and activism.',
         notableAspects: [
-          'Güneş-Pluto üçgeni - Dönüştürücü yetenk',
-          'Mars 11. evde - Sosyal aktivizm',
-          'Neptün 5. evde - Sinematik ilham',
+          'Sun-Pluto trine - Transformative talent',
+          'Mars in 11th house - Social activism',
+          'Neptune in 5th house - Cinematic inspiration',
         ],
         category: CelebrityCategory.actors,
       ),
       CelebrityChart(
         name: 'Kemal Sunal',
-        profession: 'Komedyen, Aktör',
+        profession: 'Comedian, Actor',
         birthDate: DateTime(1944, 11, 11),
-        birthPlace: 'İstanbul',
+        birthPlace: 'Istanbul',
         sunSign: ZodiacSign.scorpio,
         moonSign: ZodiacSign.gemini,
         ascendant: ZodiacSign.virgo,
         imageUrl: '',
         chartAnalysis:
-            'Kemal Sunal\'ın Akrep Güneşi, karakterlerin derinine inmeyi gösterir. '
-            'İkizler Ay\'ı, komedi zamanlaması ve sözel zekayı vurgular. '
-            'Başak yükseleni, mütevazi kişiliği ve titiz çalışmayı işaret eder. '
-            'Merkür\'ün güçlü konumu, halkın adamı imajını sembolize eder.',
+            'Kemal Sunal\'s Scorpio Sun shows going deep into characters. '
+            'Gemini Moon emphasizes comedic timing and verbal wit. '
+            'Virgo Ascendant indicates humble personality and meticulous work. '
+            'The strong position of Mercury symbolizes his image as a man of the people.',
         notableAspects: [
-          'Merkür-Jüpiter üçgeni - Komik zeka',
-          'Satürn 10. evde - Kalıcı miras',
-          'Neptün 1. evde - Karaktere bürünme',
+          'Mercury-Jupiter trine - Comic genius',
+          'Saturn in 10th house - Lasting legacy',
+          'Neptune in 1st house - Character immersion',
         ],
         category: CelebrityCategory.actors,
       ),
@@ -681,43 +681,43 @@ class ReferenceContentService {
       // Athletes
       CelebrityChart(
         name: 'Cristiano Ronaldo',
-        profession: 'Futbolcu',
+        profession: 'Footballer',
         birthDate: DateTime(1985, 2, 5),
-        birthPlace: 'Madeira, Portekiz',
+        birthPlace: 'Madeira, Portugal',
         sunSign: ZodiacSign.aquarius,
         moonSign: ZodiacSign.leo,
         ascendant: ZodiacSign.virgo,
         imageUrl: '',
         chartAnalysis:
-            'Ronaldo\'nun Kova Güneşi, bireysellik ve benzersiz yetenekleri gösterir. '
-            'Aslan Ay\'ı, gurur ve tanınma ihtiyacını vurgular. '
-            'Başak yükseleni, disiplinli çalışma ve mükemmeliyetçiliği işaret eder. '
-            'Mars\'ın güçlü konumu, fiziksel üstünlüğü ve rekabetçiliği sembolize eder.',
+            'Ronaldo\'s Aquarius Sun shows individuality and unique talents. '
+            'Leo Moon emphasizes pride and need for recognition. '
+            'Virgo Ascendant indicates disciplined work and perfectionism. '
+            'The strong position of Mars symbolizes physical superiority and competitiveness.',
         notableAspects: [
-          'Mars-Jüpiter kavuşumu - Atletik şans',
-          'Güneş-Satürn karesi - Engelleri aşma',
-          'Venüs 5. evde - Şöhret ve zenginlik',
+          'Mars-Jupiter conjunction - Athletic luck',
+          'Sun-Saturn square - Overcoming obstacles',
+          'Venus in 5th house - Fame and wealth',
         ],
         category: CelebrityCategory.athletes,
       ),
       CelebrityChart(
-        name: 'Naim Süleymanoğlu',
-        profession: 'Halterci',
+        name: 'Naim Suleymanoglu',
+        profession: 'Weightlifter',
         birthDate: DateTime(1967, 1, 23),
-        birthPlace: 'Ptiçar, Bulgaristan',
+        birthPlace: 'Pticar, Bulgaria',
         sunSign: ZodiacSign.aquarius,
         moonSign: ZodiacSign.aries,
         ascendant: ZodiacSign.scorpio,
         imageUrl: '',
         chartAnalysis:
-            'Naim\'in Kova Güneşi, benzersiz fiziksel güç ve özgürlük aşkını gösterir. '
-            'Koç Ay\'ı, rekabetçi ruh ve cesur mücadeleyi vurgular. '
-            'Akrep yükseleni, yoğun kararlılık ve dönüşümü işaret eder. '
-            'Pluto\'nun güçlü konumu, "Cep Herkülü" lakabını sembolize eder.',
+            'Naim\'s Aquarius Sun shows unique physical strength and love of freedom. '
+            'Aries Moon emphasizes competitive spirit and courageous struggle. '
+            'Scorpio Ascendant indicates intense determination and transformation. '
+            'The strong position of Pluto symbolizes his nickname "Pocket Hercules".',
         notableAspects: [
-          'Mars 1. evde - Fiziksel güç',
-          'Satürn-Pluto kavuşumu - Engellenemez irade',
-          'Jüpiter 10. evde - Dünya şampiyonluğu',
+          'Mars in 1st house - Physical power',
+          'Saturn-Pluto conjunction - Unstoppable will',
+          'Jupiter in 10th house - World championship',
         ],
         category: CelebrityCategory.athletes,
       ),
@@ -725,64 +725,64 @@ class ReferenceContentService {
       // Writers
       CelebrityChart(
         name: 'William Shakespeare',
-        profession: 'Yazar, Şair',
+        profession: 'Writer, Poet',
         birthDate: DateTime(1564, 4, 23),
-        birthPlace: 'Stratford-upon-Avon, İngiltere',
+        birthPlace: 'Stratford-upon-Avon, England',
         sunSign: ZodiacSign.taurus,
         moonSign: ZodiacSign.virgo,
         ascendant: ZodiacSign.gemini,
         imageUrl: '',
         chartAnalysis:
-            'Shakespeare\'in Boğa Güneşi, duyusal dil ve kalıcı sanatı gösterir. '
-            'Başak Ay\'ı, titiz yazarlık ve psikolojik analizi vurgular. '
-            'İkizler yükseleni, dil ustalığı ve çok yönlülüğü işaret eder. '
-            'Merkür\'ün güçlü konumu, edebi dahiliği sembolize eder.',
+            'Shakespeare\'s Taurus Sun shows sensual language and enduring art. '
+            'Virgo Moon emphasizes meticulous writing and psychological analysis. '
+            'Gemini Ascendant indicates mastery of language and versatility. '
+            'The strong position of Mercury symbolizes literary genius.',
         notableAspects: [
-          'Merkür-Venüs kavuşumu - Şiirsel dil',
-          'Neptün 3. evde - Edebi ilham',
-          'Pluto 5. evde - Trajedilerde derinlik',
+          'Mercury-Venus conjunction - Poetic language',
+          'Neptune in 3rd house - Literary inspiration',
+          'Pluto in 5th house - Depth in tragedies',
         ],
         category: CelebrityCategory.writers,
       ),
       CelebrityChart(
         name: 'Orhan Pamuk',
-        profession: 'Yazar',
+        profession: 'Writer',
         birthDate: DateTime(1952, 6, 7),
-        birthPlace: 'İstanbul',
+        birthPlace: 'Istanbul',
         sunSign: ZodiacSign.gemini,
         moonSign: ZodiacSign.pisces,
         ascendant: ZodiacSign.libra,
         imageUrl: '',
         chartAnalysis:
-            'Pamuk\'un İkizler Güneşi, anlatıcı yeteneği ve entelektüel merakı gösterir. '
-            'Balık Ay\'ı, nostaljik duyarlılık ve hayal gücünü vurgular. '
-            'Terazi yükseleni, estetik hassasiyet ve dengeli bakışı işaret eder. '
-            'Neptün\'ün güçlü konumu, İstanbul romantiğini sembolize eder.',
+            'Pamuk\'s Gemini Sun shows narrative talent and intellectual curiosity. '
+            'Pisces Moon emphasizes nostalgic sensitivity and imagination. '
+            'Libra Ascendant indicates aesthetic sensitivity and balanced perspective. '
+            'The strong position of Neptune symbolizes Istanbul romanticism.',
         notableAspects: [
-          'Merkür 3. evde - Yazarlık dehası',
-          'Neptün-Ay kavuşumu - Rüya gibi anlatım',
-          'Satürn 10. evde - Nobel ödülü',
+          'Mercury in 3rd house - Writing genius',
+          'Neptune-Moon conjunction - Dreamlike narrative',
+          'Saturn in 10th house - Nobel Prize',
         ],
         category: CelebrityCategory.writers,
       ),
       CelebrityChart(
-        name: 'Nazım Hikmet',
-        profession: 'Şair',
+        name: 'Nazim Hikmet',
+        profession: 'Poet',
         birthDate: DateTime(1902, 1, 15),
-        birthPlace: 'Selanik',
+        birthPlace: 'Thessaloniki',
         sunSign: ZodiacSign.capricorn,
         moonSign: ZodiacSign.aquarius,
         ascendant: ZodiacSign.sagittarius,
         imageUrl: '',
         chartAnalysis:
-            'Nazım\'ın Oğlak Güneşi, kararlılık ve toplumsal sorumluluk duygusunu gösterir. '
-            'Kova Ay\'ı, insancıl idealleri ve özgürlük aşkını vurgular. '
-            'Yay yükseleni, evrensel vizyon ve sürgün yaşamını işaret eder. '
-            'Uranüs\'ün güçlü konumu, devrimci şiiri sembolize eder.',
+            'Nazim\'s Capricorn Sun shows determination and sense of social responsibility. '
+            'Aquarius Moon emphasizes humanitarian ideals and love of freedom. '
+            'Sagittarius Ascendant indicates universal vision and life in exile. '
+            'The strong position of Uranus symbolizes revolutionary poetry.',
         notableAspects: [
-          'Güneş-Uranüs karesi - Asi ruh',
-          'Ay 3. evde - Halkın şairi',
-          'Mars 9. evde - Sürgünde mücadele',
+          'Sun-Uranus square - Rebellious spirit',
+          'Moon in 3rd house - Poet of the people',
+          'Mars in 9th house - Struggle in exile',
         ],
         category: CelebrityCategory.writers,
       ),
@@ -794,146 +794,146 @@ class ReferenceContentService {
     return [
       AstrologyArticle(
         id: '1',
-        title: 'Astrolojiye Başlangıç: Temel Kavramlar',
-        summary: 'Astroloji dünyasına ilk adımınızı atın. Burçlar, gezegenler ve evler hakkında temel bilgiler.',
+        title: 'Introduction to Astrology: Basic Concepts',
+        summary: 'Take your first step into the world of astrology. Basic information about zodiac signs, planets, and houses.',
         content: '''
-Astroloji, gökyüzündeki gök cisimlerinin konumlarının dünya üzerindeki olayları ve insan davranışlarını etkilediği inancına dayanan kadim bir bilim dalıdır.
+Astrology is an ancient science based on the belief that the positions of celestial bodies in the sky influence events on Earth and human behavior.
 
-## Burçlar
+## Zodiac Signs
 
-Zodyak kuşağı 12 eşit parçaya bölünmüştür ve her parça bir burcu temsil eder:
+The zodiac belt is divided into 12 equal parts, each representing a sign:
 
-1. **Koç (21 Mart - 19 Nisan)**: Cesaret, enerji, liderlik
-2. **Boğa (20 Nisan - 20 Mayıs)**: İstikrar, güvenlik, konfor
-3. **İkizler (21 Mayıs - 20 Haziran)**: İletişim, merak, çok yönlülük
-4. **Yengeç (21 Haziran - 22 Temmuz)**: Duygusallık, koruma, sezgi
-5. **Aslan (23 Temmuz - 22 Ağustos)**: Yaratıcılık, liderlik, cömertlik
-6. **Başak (23 Ağustos - 22 Eylül)**: Analiz, hizmet, mükemmeliyetçilik
-7. **Terazi (23 Eylül - 22 Ekim)**: Denge, uyum, ilişkiler
-8. **Akrep (23 Ekim - 21 Kasım)**: Yoğunluk, dönüşüm, tutku
-9. **Yay (22 Kasım - 21 Aralık)**: Macera, felsefe, özgürlük
-10. **Oğlak (22 Aralık - 19 Ocak)**: Hırs, disiplin, sorumluluk
-11. **Kova (20 Ocak - 18 Şubat)**: Yenilik, insancıllık, bağımsızlık
-12. **Balık (19 Şubat - 20 Mart)**: Sezgi, şefkat, spiritüellik
+1. **Aries (March 21 - April 19)**: Courage, energy, leadership
+2. **Taurus (April 20 - May 20)**: Stability, security, comfort
+3. **Gemini (May 21 - June 20)**: Communication, curiosity, versatility
+4. **Cancer (June 21 - July 22)**: Emotionality, protection, intuition
+5. **Leo (July 23 - August 22)**: Creativity, leadership, generosity
+6. **Virgo (August 23 - September 22)**: Analysis, service, perfectionism
+7. **Libra (September 23 - October 22)**: Balance, harmony, relationships
+8. **Scorpio (October 23 - November 21)**: Intensity, transformation, passion
+9. **Sagittarius (November 22 - December 21)**: Adventure, philosophy, freedom
+10. **Capricorn (December 22 - January 19)**: Ambition, discipline, responsibility
+11. **Aquarius (January 20 - February 18)**: Innovation, humanitarianism, independence
+12. **Pisces (February 19 - March 20)**: Intuition, compassion, spirituality
 
-## Gezegenler
+## Planets
 
-Her gezegen farklı bir yaşam alanını temsil eder:
+Each planet represents a different area of life:
 
-- **Güneş**: Benlik, kimlik
-- **Ay**: Duygular, içgüdüler
-- **Merkür**: İletişim, düşünce
-- **Venüs**: Aşk, güzellik
-- **Mars**: Eylem, enerji
-- **Jüpiter**: Büyüme, şans
-- **Satürn**: Yapı, disiplin
-- **Uranüs**: Değişim, özgünlük
-- **Neptün**: Rüyalar, spiritüellik
-- **Pluto**: Dönüşüm, güç
+- **Sun**: Self, identity
+- **Moon**: Emotions, instincts
+- **Mercury**: Communication, thought
+- **Venus**: Love, beauty
+- **Mars**: Action, energy
+- **Jupiter**: Growth, luck
+- **Saturn**: Structure, discipline
+- **Uranus**: Change, originality
+- **Neptune**: Dreams, spirituality
+- **Pluto**: Transformation, power
 
-## Evler
+## Houses
 
-Doğum haritası 12 eve bölünür ve her ev yaşamın farklı bir alanını temsil eder:
+The birth chart is divided into 12 houses, each representing a different area of life:
 
-1. Ev - Benlik ve görünüm
-2. Ev - Para ve değerler
-3. Ev - İletişim ve yakın çevre
-4. Ev - Ev ve aile
-5. Ev - Yaratıcılık ve romantizm
-6. Ev - Sağlık ve günlük rutinler
-7. Ev - Ortaklıklar ve evlilik
-8. Ev - Dönüşüm ve paylaşılan kaynaklar
-9. Ev - Felsefe ve yabancı kültürler
-10. Ev - Kariyer ve toplumsal konum
-11. Ev - Arkadaşlık ve idealler
-12. Ev - Bilinçaltı ve spiritüellik
+1st House - Self and appearance
+2nd House - Money and values
+3rd House - Communication and immediate environment
+4th House - Home and family
+5th House - Creativity and romance
+6th House - Health and daily routines
+7th House - Partnerships and marriage
+8th House - Transformation and shared resources
+9th House - Philosophy and foreign cultures
+10th House - Career and social status
+11th House - Friendships and ideals
+12th House - Subconscious and spirituality
         ''',
         category: ArticleCategory.beginners,
         publishedAt: DateTime.now().subtract(const Duration(days: 30)),
         author: 'Venus One Team',
         readTimeMinutes: 8,
-        tags: ['başlangıç', 'burçlar', 'gezegenler', 'evler'],
+        tags: ['beginners', 'zodiac signs', 'planets', 'houses'],
       ),
       AstrologyArticle(
         id: '2',
-        title: 'İlişkilerde Astroloji: Sinastri Rehberi',
-        summary: 'Sevgilinizle uyumunuzu astrolojik açıdan nasıl değerlendirebilirsiniz?',
+        title: 'Astrology in Relationships: A Synastry Guide',
+        summary: 'How can you evaluate your compatibility with your partner from an astrological perspective?',
         content: '''
-Sinastri, iki kişinin doğum haritalarını karşılaştırarak ilişki dinamiklerini anlama sanatıdır.
+Synastry is the art of understanding relationship dynamics by comparing two people's birth charts.
 
-## Önemli Açılar
+## Important Aspects
 
-İki harita arasındaki gezegen bağlantıları ilişkinin doğasını belirler:
+Planetary connections between two charts determine the nature of the relationship:
 
-### Kavuşumlar (0°)
-İki gezegen yan yana geldiğinde güçlü bir bağ oluşur. Güneş-Ay kavuşumu derin duygusal bağı gösterir.
+### Conjunctions (0°)
+When two planets come together, a strong bond is formed. Sun-Moon conjunction indicates a deep emotional connection.
 
-### Üçgenler (120°)
-Doğal uyum ve akış. Venüs-Mars üçgeni romantik çekimi kolaylaştırır.
+### Trines (120°)
+Natural harmony and flow. Venus-Mars trine facilitates romantic attraction.
 
-### Kareler (90°)
-Zorluk ama büyüme potansiyeli. Güneş-Satürn karesi ilişkide olgunlaşmayı gerektirir.
+### Squares (90°)
+Challenge but growth potential. Sun-Saturn square requires maturation in the relationship.
 
-## En Önemli Bağlantılar
+## Most Important Connections
 
-1. **Güneş-Ay**: Temel uyum göstergesi
-2. **Venüs-Mars**: Romantik ve cinsel çekim
-3. **Merkür-Merkür**: İletişim uyumu
-4. **Ay-Venüs**: Duygusal bağ ve şefkat
-5. **Jüpiter bağlantıları**: Birlikte büyüme
+1. **Sun-Moon**: Basic compatibility indicator
+2. **Venus-Mars**: Romantic and sexual attraction
+3. **Mercury-Mercury**: Communication harmony
+4. **Moon-Venus**: Emotional bond and affection
+5. **Jupiter connections**: Growing together
 
-## 7. Ev Analizi
+## 7th House Analysis
 
-Her iki kişinin de 7. evi ilişki beklentilerini gösterir. 7. ev yöneticisinin konumu ve açıları önemlidir.
+Both partners' 7th house shows relationship expectations. The position and aspects of the 7th house ruler are important.
         ''',
         category: ArticleCategory.relationships,
         publishedAt: DateTime.now().subtract(const Duration(days: 15)),
         author: 'Venus One Team',
         readTimeMinutes: 6,
-        tags: ['sinastri', 'ilişkiler', 'uyum'],
+        tags: ['synastry', 'relationships', 'compatibility'],
       ),
       AstrologyArticle(
         id: '3',
-        title: 'Merkür Retrosu: Korkulacak Bir Şey Yok',
-        summary: 'Merkür retrosunun gerçek anlamı ve bu dönemi nasıl verimli geçirebilirsiniz.',
+        title: 'Mercury Retrograde: Nothing to Fear',
+        summary: 'The true meaning of Mercury retrograde and how to make this period productive.',
         content: '''
-Merkür retrosu, astrolojide en çok konuşulan ve korkulan dönemlerden biridir. Ancak doğru anlayışla bu dönem fırsata dönüşebilir.
+Mercury retrograde is one of the most talked about and feared periods in astrology. However, with the right understanding, this period can turn into an opportunity.
 
-## Merkür Retrosu Nedir?
+## What is Mercury Retrograde?
 
-Dünya'dan bakıldığında Merkür'ün geriye doğru hareket ediyor gibi görünmesidir. Yılda yaklaşık üç kez, her biri 3 hafta sürer.
+It's when Mercury appears to move backward when viewed from Earth. It happens about three times a year, each lasting 3 weeks.
 
-## Ne Beklemeli?
+## What to Expect?
 
-- İletişim aksaklıkları
-- Teknoloji sorunları
-- Seyahat gecikmeleri
-- Geçmişten gelen konular
+- Communication disruptions
+- Technology issues
+- Travel delays
+- Issues from the past resurfacing
 
-## Ne Yapmalı?
+## What to Do?
 
-### Yapılması Gerekenler:
-- Yedek alın
-- Detaylara dikkat edin
-- Eski projeleri tamamlayın
-- Eski arkadaşlarla bağlantı kurun
-- Düşünün ve planlayın
+### Things to Do:
+- Back up your data
+- Pay attention to details
+- Complete old projects
+- Reconnect with old friends
+- Reflect and plan
 
-### Kaçınılması Gerekenler:
-- Büyük sözleşmeler imzalamak
-- Yeni teknoloji satın almak
-- Önemli kararlar vermek
-- Yeni projelere başlamak
+### Things to Avoid:
+- Signing major contracts
+- Buying new technology
+- Making important decisions
+- Starting new projects
 
-## Gölge Dönemleri
+## Shadow Periods
 
-Retro öncesi ve sonrası 2 haftalık gölge dönemleri de dikkat gerektirir.
+The 2-week shadow periods before and after the retrograde also require attention.
         ''',
         category: ArticleCategory.currentTransits,
         publishedAt: DateTime.now().subtract(const Duration(days: 5)),
         author: 'Venus One Team',
         readTimeMinutes: 5,
-        tags: ['merkür', 'retro', 'transit'],
+        tags: ['mercury', 'retrograde', 'transit'],
       ),
     ];
   }

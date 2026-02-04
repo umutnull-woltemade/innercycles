@@ -1,697 +1,697 @@
-/// Dream Psychology Content - Freud, Jung, Gestalt, ve Modern Yaklaşımlar
-/// Derinlemesine psikolojik rüya analizi içeriği
+/// Dream Psychology Content - Freud, Jung, Gestalt, and Modern Approaches
+/// In-depth psychological dream analysis content
 library;
 
 // ════════════════════════════════════════════════════════════════════════════
-// JUNG PSİKOLOJİSİ - DERİNLİK PSİKOLOJİSİ
+// JUNG PSYCHOLOGY - DEPTH PSYCHOLOGY
 // ════════════════════════════════════════════════════════════════════════════
 
-/// Jungian rüya analizi sistemi
+/// Jungian dream analysis system
 class JungianDreamPsychology {
-  /// Kolektif Bilinçdışı Arketipleri
-  static const Map<String, ArchetypeDeepAnalysis> arketipler = {
+  /// Collective Unconscious Archetypes
+  static const Map<String, ArchetypeDeepAnalysis> archetypes = {
     'shadow': ArchetypeDeepAnalysis(
-      name: 'Gölge (Shadow)',
+      name: 'Shadow',
       emoji: '🌑',
       description:
-          'Ego tarafından reddedilen, bastırılan veya kabul edilmeyen kişilik yönleri. '
-          'Rüyalarda genellikle tehdit edici, korkutucu veya utanç verici figürler olarak belirir.',
+          'Personality aspects that are rejected, suppressed, or unaccepted by the ego. '
+          'In dreams, they usually appear as threatening, frightening, or shameful figures.',
       manifestations: [
-        'Kovalayan tehlikeli figürler',
-        'Tanımadığın ama tanıdık gelen insanlar',
-        'Aynı cinsiyetten rahatsız edici karakterler',
-        'Suçlu, hırsız, katil figürleri',
-        'Vahşi veya tehlikeli hayvanlar',
-        'Karanlık, yeraltı mekanları',
+        'Chasing dangerous figures',
+        'People you don\'t know but feel familiar',
+        'Disturbing same-gender characters',
+        'Criminal, thief, murderer figures',
+        'Wild or dangerous animals',
+        'Dark, underground places',
       ],
       integrationPath:
-          'Gölge ile yüzleşme, onu reddetmek yerine anlamaya çalışmaktır. '
-          '"Bu figür bana ne öğretmek istiyor?" sorusu sorulmalı.',
+          'Confronting the Shadow means trying to understand it rather than reject it. '
+          'Ask yourself: "What is this figure trying to teach me?"',
       questions: [
-        'Bu figür hangi yönümü temsil ediyor?',
-        'Hayatımda neyi bastırıyorum?',
-        'Bu "düşman" aslında hangi gücümü taşıyor?',
-        'Onu kucaklasam ne olur?',
+        'Which aspect of me does this figure represent?',
+        'What am I suppressing in my life?',
+        'What power does this "enemy" actually carry for me?',
+        'What would happen if I embraced it?',
       ],
       healingAffirmation:
-          'Karanlığım da ışığım kadar benim bir parçam. Tüm yönlerimle barışıyorum.',
-      relatedSymbols: ['kurt', 'yılan', 'canavar', 'hırsız', 'karanlık'],
+          'My darkness is as much a part of me as my light. I make peace with all aspects of myself.',
+      relatedSymbols: ['wolf', 'snake', 'monster', 'thief', 'darkness'],
     ),
     'anima': ArchetypeDeepAnalysis(
-      name: 'Anima (İç Kadın)',
+      name: 'Anima (Inner Woman)',
       emoji: '🌙',
       description:
-          'Erkeklerin bilinçdışındaki feminen yön. Duyguları, sezgiyi, yaratıcılığı '
-          've ilişkilenme kapasitesini temsil eder.',
+          'The feminine aspect in men\'s unconscious. Represents emotions, intuition, '
+          'creativity, and the capacity for relationships.',
       manifestations: [
-        'Gizemli, çekici kadın figürleri',
-        'Bilge kadın, büyücü kadın',
-        'Kurtarılması gereken prenses',
-        'Tehlikeli, baştan çıkarıcı kadın',
-        'Anne figürü (olumlu/olumsuz)',
-        'Deniz kızı, peri, melek',
+        'Mysterious, attractive female figures',
+        'Wise woman, witch',
+        'Princess who needs rescuing',
+        'Dangerous, seductive woman',
+        'Mother figure (positive/negative)',
+        'Mermaid, fairy, angel',
       ],
       integrationPath:
-          'Anima entegrasyonu, duygusal zekayı geliştirmek ve feminen enerjiyi '
-          'kabul etmektir. İlişkilerdeki kalıpları anlamak için anahtar.',
+          'Anima integration is about developing emotional intelligence and '
+          'accepting feminine energy. Key to understanding relationship patterns.',
       questions: [
-        'Bu kadın figürü hangi duygumu temsil ediyor?',
-        'İlişkilerimde hangi kalıp tekrar ediyor?',
-        'Feminen enerjimle barışık mıyım?',
-        'Sezgilerimi ne kadar dinliyorum?',
+        'Which emotion does this female figure represent?',
+        'What pattern repeats in my relationships?',
+        'Am I at peace with my feminine energy?',
+        'How much do I listen to my intuition?',
       ],
       healingAffirmation:
-          'İçimdeki feminen bilgeliği onurlandırıyorum. Sezgilerime güveniyorum.',
-      relatedSymbols: ['ay', 'su', 'deniz', 'mağara', 'çiçek', 'ayna'],
+          'I honor the feminine wisdom within me. I trust my intuition.',
+      relatedSymbols: ['moon', 'water', 'sea', 'cave', 'flower', 'mirror'],
     ),
     'animus': ArchetypeDeepAnalysis(
-      name: 'Animus (İç Erkek)',
+      name: 'Animus (Inner Man)',
       emoji: '☀️',
       description:
-          'Kadınların bilinçdışındaki maskülen yön. Mantığı, eylemi, kararlılığı '
-          've dış dünyayla ilişkilenmeyi temsil eder.',
+          'The masculine aspect in women\'s unconscious. Represents logic, action, '
+          'determination, and relating to the outer world.',
       manifestations: [
-        'Güçlü, koruyucu erkek figürleri',
-        'Bilge yaşlı adam',
-        'Kral, prens, kahraman',
-        'Tehlikeli, saldırgan erkek',
-        'Baba figürü (olumlu/olumsuz)',
-        'Öğretmen, rehber, mentor',
+        'Strong, protective male figures',
+        'Wise old man',
+        'King, prince, hero',
+        'Dangerous, aggressive man',
+        'Father figure (positive/negative)',
+        'Teacher, guide, mentor',
       ],
       integrationPath:
-          'Animus entegrasyonu, iç otoriteyi geliştirmek ve maskülen enerjiyi '
-          'sağlıklı şekilde ifade etmektir. Özgüven ve eylem kapasitesi.',
+          'Animus integration is about developing inner authority and '
+          'expressing masculine energy in a healthy way. Confidence and action capacity.',
       questions: [
-        'Bu erkek figürü hangi gücümü temsil ediyor?',
-        'Kendi otoriteme ne kadar güveniyorum?',
-        'Hayatımda kim adına hareket ediyorum?',
-        'Maskülen enerjimi nasıl ifade ediyorum?',
+        'Which power of mine does this male figure represent?',
+        'How much do I trust my own authority?',
+        'On whose behalf am I acting in my life?',
+        'How do I express my masculine energy?',
       ],
       healingAffirmation:
-          'Kendi gücüme ve otoriteme sahip çıkıyorum. Eylemlerimde kararlıyım.',
-      relatedSymbols: ['güneş', 'kılıç', 'dağ', 'kartal', 'ateş', 'aslan'],
+          'I claim my own power and authority. I am determined in my actions.',
+      relatedSymbols: ['sun', 'sword', 'mountain', 'eagle', 'fire', 'lion'],
     ),
     'self': ArchetypeDeepAnalysis(
-      name: 'Benlik (Self)',
+      name: 'Self',
       emoji: '☯️',
       description:
-          'Kişiliğin bütünlüğü, tüm zıtlıkların birleşimi. Jung\'un en yüksek '
-          'arketipi, bireyleşme sürecinin hedefi.',
+          'The wholeness of personality, the union of all opposites. Jung\'s highest '
+          'archetype, the goal of the individuation process.',
       manifestations: [
-        'Mandala, daire, küre şekilleri',
-        'Altın, elmas, değerli taşlar',
-        'Bilge yaşlı figürler (her iki cins)',
-        'Işık, aydınlanma deneyimleri',
-        'Merkez, kale, tapınak',
-        'Çocuk figürü (ilahi çocuk)',
+        'Mandala, circle, sphere shapes',
+        'Gold, diamond, precious stones',
+        'Wise elderly figures (both genders)',
+        'Light, enlightenment experiences',
+        'Center, castle, temple',
+        'Child figure (divine child)',
       ],
       integrationPath:
-          'Benlik ile bağlantı, bireyleşme yolculuğunun ödülüdür. Tüm arketiplerin '
-          'entegrasyonu sonucu ortaya çıkan bütünlük hissi.',
+          'Connection with the Self is the reward of the individuation journey. The sense '
+          'of wholeness that emerges from the integration of all archetypes.',
       questions: [
-        'Hayatımın anlamı nedir?',
-        'Tüm yönlerimi nasıl bütünleyebilirim?',
-        'Gerçek potansiyelim ne?',
-        'En derin değerlerim neler?',
+        'What is the meaning of my life?',
+        'How can I integrate all my aspects?',
+        'What is my true potential?',
+        'What are my deepest values?',
       ],
       healingAffirmation:
-          'Ben bir bütünüm. Tüm parçalarım uyum içinde dans ediyor.',
-      relatedSymbols: ['mandala', 'güneş', 'taç', 'elmas', 'ağaç', 'merkez'],
+          'I am whole. All my parts dance in harmony.',
+      relatedSymbols: ['mandala', 'sun', 'crown', 'diamond', 'tree', 'center'],
     ),
     'persona': ArchetypeDeepAnalysis(
-      name: 'Persona (Maske)',
+      name: 'Persona (Mask)',
       emoji: '🎭',
       description:
-          'Sosyal kimlik, dünyaya gösterdiğimiz yüz. Toplumsal beklentilere '
-          'uyum sağlamak için geliştirilen dış kimlik.',
+          'Social identity, the face we show to the world. The outer identity '
+          'developed to conform to social expectations.',
       manifestations: [
-        'Maske takmak, kostüm giymek',
-        'Tanınmama, kimlik karışıklığı',
-        'Sahne, performans rüyaları',
-        'Çıplak kalma (persona kaybı)',
-        'Kıyafet değiştirme',
-        'Ayna/yansıma sorunları',
+        'Wearing masks, costumes',
+        'Being unrecognized, identity confusion',
+        'Stage, performance dreams',
+        'Being naked (loss of persona)',
+        'Changing clothes',
+        'Mirror/reflection problems',
       ],
       integrationPath:
-          'Persona\'nın farkında olmak, sosyal kimliğimizin kim olduğumuz olmadığını '
-          'anlamaktır. Otantiklik ile sosyal uyum arasında denge.',
+          'Being aware of the Persona is understanding that our social identity is not '
+          'who we are. Balance between authenticity and social adaptation.',
       questions: [
-        'Gerçekten ben miyim yoksa rol mü oynuyorum?',
-        'Hangi maskelerim var?',
-        'Maskemin altında kim var?',
-        'Otantik olmak ne demek benim için?',
+        'Am I really myself or am I playing a role?',
+        'What masks do I have?',
+        'Who is underneath my mask?',
+        'What does being authentic mean to me?',
       ],
       healingAffirmation:
-          'Maskelerimi tanıyorum ama onlar ben değil. Gerçek benliğimi ifade etme cesaretim var.',
-      relatedSymbols: ['maske', 'ayna', 'sahne', 'kostüm', 'yüz'],
+          'I recognize my masks but they are not me. I have the courage to express my true self.',
+      relatedSymbols: ['mask', 'mirror', 'stage', 'costume', 'face'],
     ),
     'hero': ArchetypeDeepAnalysis(
-      name: 'Kahraman (Hero)',
+      name: 'Hero',
       emoji: '⚔️',
       description:
-          'Ego\'nun gelişimi ve güçlenmesi. Zorlukların üstesinden gelme, '
-          'engelleri aşma, cesaret ve irade.',
+          'The development and strengthening of the Ego. Overcoming difficulties, '
+          'surmounting obstacles, courage and willpower.',
       manifestations: [
-        'Canavar öldürme, savaş',
-        'Engelleri aşma, tırmanma',
-        'Kurtarma görevleri',
-        'Yolculuk, macera',
-        'Test ve sınavlar',
-        'Zafer anları',
+        'Killing monsters, battle',
+        'Overcoming obstacles, climbing',
+        'Rescue missions',
+        'Journey, adventure',
+        'Tests and trials',
+        'Victory moments',
       ],
       integrationPath:
-          'Kahraman arketipi, ego gücünü geliştirmek için gereklidir ancak '
-          'enflasyona (şişirilmiş ego) dikkat edilmeli.',
+          'The Hero archetype is necessary to develop ego strength, but beware '
+          'of inflation (inflated ego).',
       questions: [
-        'Hangi zorluklarla yüzleşiyorum?',
-        'İçimdeki kahraman ne istiyor?',
-        'Neyi kurtarmaya çalışıyorum?',
-        'Cesaret nereden geliyor?',
+        'What challenges am I facing?',
+        'What does the hero within me want?',
+        'What am I trying to save?',
+        'Where does courage come from?',
       ],
       healingAffirmation:
-          'Kendi kahramanımım. Zorluklarla yüzleşme gücüm var.',
-      relatedSymbols: ['kılıç', 'ejderha', 'yol', 'dağ', 'hazine'],
+          'I am my own hero. I have the strength to face challenges.',
+      relatedSymbols: ['sword', 'dragon', 'path', 'mountain', 'treasure'],
     ),
     'trickster': ArchetypeDeepAnalysis(
-      name: 'Düzenbaz (Trickster)',
+      name: 'Trickster',
       emoji: '🃏',
       description:
-          'Kuralları yıkan, beklenmedik değişim getiren enerji. Kaos, şaka, '
-          'dönüşüm ve sınırları aşma.',
+          'Energy that breaks rules and brings unexpected change. Chaos, jokes, '
+          'transformation, and transcending boundaries.',
       manifestations: [
-        'Palyaço, joker figürleri',
-        'Tilki, karga, maymun',
-        'Absürt, mantıksız durumlar',
-        'Şakalar, oyunlar, aldatmacalar',
-        'Rollerin değişmesi',
-        'Beklenmedik dönüşler',
+        'Clown, joker figures',
+        'Fox, crow, monkey',
+        'Absurd, illogical situations',
+        'Jokes, games, deceptions',
+        'Role reversals',
+        'Unexpected turns',
       ],
       integrationPath:
-          'Trickster, katı yapıları kırmak ve yeni perspektifler kazanmak için '
-          'gereklidir. Mizah ve esneklik öğretir.',
+          'The Trickster is necessary for breaking rigid structures and gaining new '
+          'perspectives. Teaches humor and flexibility.',
       questions: [
-        'Hayatımda neyi çok ciddiye alıyorum?',
-        'Hangi kurallar beni kısıtlıyor?',
-        'Oyunculuğumu nasıl ifade edebilirim?',
-        'Kaos bana ne öğretiyor?',
+        'What am I taking too seriously in my life?',
+        'Which rules are restricting me?',
+        'How can I express my playfulness?',
+        'What is chaos teaching me?',
       ],
       healingAffirmation:
-          'Hayata hafiflikle yaklaşabilirim. Değişim benim dostumdur.',
-      relatedSymbols: ['tilki', 'maymun', 'palyaço', 'karga', 'joker'],
+          'I can approach life with lightness. Change is my friend.',
+      relatedSymbols: ['fox', 'monkey', 'clown', 'crow', 'joker'],
     ),
     'wise_old_man': ArchetypeDeepAnalysis(
-      name: 'Bilge Yaşlı (Wise Old Man/Woman)',
+      name: 'Wise Old Man/Woman',
       emoji: '🧙',
       description:
-          'İçsel bilgelik, rehberlik, anlam arayışı. Spiritüel öğretmen, '
-          'mentor, içsel ses.',
+          'Inner wisdom, guidance, search for meaning. Spiritual teacher, '
+          'mentor, inner voice.',
       manifestations: [
-        'Yaşlı bilge figürler',
-        'Büyücü, şaman, keşiş',
-        'Öğretmen, profesör',
-        'Dini liderler',
-        'Ata ruhları',
-        'Konuşan hayvanlar (bilge)',
+        'Elderly wise figures',
+        'Wizard, shaman, monk',
+        'Teacher, professor',
+        'Religious leaders',
+        'Ancestral spirits',
+        'Talking animals (wise)',
       ],
       integrationPath:
-          'Bilge Yaşlı ile bağlantı, içsel rehberliğe güvenmek ve hayatın '
-          'derin anlamlarını araştırmaktır.',
+          'Connection with the Wise Old One is trusting inner guidance and '
+          'exploring the deep meanings of life.',
       questions: [
-        'İçsel bilgeliğime ne kadar güveniyorum?',
-        'Hayatımda kim benim mentorum?',
-        'Hangi derin soruları sormaktan kaçınıyorum?',
-        'Spiritüel yolculuğum nerede?',
+        'How much do I trust my inner wisdom?',
+        'Who is my mentor in life?',
+        'Which deep questions am I avoiding?',
+        'Where am I on my spiritual journey?',
       ],
       healingAffirmation:
-          'İçimdeki bilge sese kulak veriyorum. Rehberlik her zaman mevcut.',
-      relatedSymbols: ['kitap', 'asa', 'baykuş', 'dağ', 'yıldız'],
+          'I listen to the wise voice within me. Guidance is always available.',
+      relatedSymbols: ['book', 'staff', 'owl', 'mountain', 'star'],
     ),
     'great_mother': ArchetypeDeepAnalysis(
-      name: 'Büyük Anne (Great Mother)',
+      name: 'Great Mother',
       emoji: '🌍',
       description:
-          'Yaratıcı ve yıkıcı anne enerjisi. Beslenme, koruma, doğurganlık '
-          'ama aynı zamanda yutma, boğma, kontrol.',
+          'Creative and destructive mother energy. Nurturing, protection, fertility, '
+          'but also engulfing, smothering, control.',
       manifestations: [
-        'Anne figürleri (olumlu/olumsuz)',
-        'Doğa ana, toprak, deniz',
-        'Mağara, ev, yuva',
-        'Hamilelik, doğum',
-        'Yiyecek, beslenme',
-        'Büyük hayvanlar (ayı, inek)',
+        'Mother figures (positive/negative)',
+        'Mother Nature, earth, sea',
+        'Cave, home, nest',
+        'Pregnancy, birth',
+        'Food, nurturing',
+        'Large animals (bear, cow)',
       ],
       integrationPath:
-          'Büyük Anne arketipi, bağımlılık ile bağımsızlık arasındaki dengeyi '
-          'bulmaktır. Hem beslenme hem de bireyselleşme.',
+          'The Great Mother archetype is about finding balance between dependency '
+          'and independence. Both nurturing and individuation.',
       questions: [
-        'Annemle ilişkim nasıl?',
-        'Kendimi besliyor muyum?',
-        'Bağımlılık kalıplarım var mı?',
-        'Yaratıcı enerjimi nasıl kullanıyorum?',
+        'How is my relationship with my mother?',
+        'Am I nurturing myself?',
+        'Do I have dependency patterns?',
+        'How am I using my creative energy?',
       ],
       healingAffirmation:
-          'Kendimi besleyebilir ve koruyabilirim. İçimdeki anne enerjisiyle barışıyorum.',
-      relatedSymbols: ['toprak', 'mağara', 'deniz', 'ay', 'çiçek', 'ağaç'],
+          'I can nurture and protect myself. I make peace with the mother energy within me.',
+      relatedSymbols: ['earth', 'cave', 'sea', 'moon', 'flower', 'tree'],
     ),
     'divine_child': ArchetypeDeepAnalysis(
-      name: 'İlahi Çocuk (Divine Child)',
+      name: 'Divine Child',
       emoji: '👶',
       description:
-          'Saflık, potansiyel, yenilenme. Yaratıcılık, merak, yeni başlangıçlar '
-          've gelecek vaadi.',
+          'Innocence, potential, renewal. Creativity, curiosity, new beginnings, '
+          'and promise of the future.',
       manifestations: [
-        'Bebek, küçük çocuk',
-        'Kayıp çocuk (terk edilmiş)',
-        'Harika çocuk (özel güçler)',
-        'Oyun, yaratıcılık',
-        'Masumiyet',
-        'Yeni başlangıçlar',
+        'Baby, small child',
+        'Lost child (abandoned)',
+        'Wonder child (special powers)',
+        'Play, creativity',
+        'Innocence',
+        'New beginnings',
       ],
       integrationPath:
-          'İlahi Çocuk, iç çocuğumuzu şifalandırmak ve yaratıcılığımızı '
-          'yeniden keşfetmektir.',
+          'The Divine Child is about healing our inner child and '
+          'rediscovering our creativity.',
       questions: [
-        'İç çocuğum nasıl?',
-        'Neşemi ne zaman kaybettim?',
-        'Yaratıcılığımı bastırıyor muyum?',
-        'Yenilenmeye hazır mıyım?',
+        'How is my inner child?',
+        'When did I lose my joy?',
+        'Am I suppressing my creativity?',
+        'Am I ready for renewal?',
       ],
       healingAffirmation:
-          'İç çocuğumla oynayabilir, onun neşesini yeniden keşfedebilirim.',
-      relatedSymbols: ['bebek', 'oyuncak', 'güneş', 'kuş', 'çiçek'],
+          'I can play with my inner child and rediscover their joy.',
+      relatedSymbols: ['baby', 'toy', 'sun', 'bird', 'flower'],
     ),
   };
 
-  /// Bireyleşme Süreci (Individuation)
-  static const IndividuationProcess bireylesmeSureci = IndividuationProcess(
+  /// Individuation Process
+  static const IndividuationProcess individuationProcess = IndividuationProcess(
     description:
-        'Jung\'un bireyleşme (individuation) kavramı, kişinin kendi benzersiz '
-        'bütünlüğünü gerçekleştirme sürecidir. Rüyalar bu sürecin haritasıdır.',
+        'Jung\'s concept of individuation is the process of realizing one\'s unique '
+        'wholeness. Dreams are the map of this process.',
     stages: [
       IndividuationStage(
-        name: 'Persona Farkındalığı',
-        description: 'Sosyal maskelerin tanınması ve sorgulanması',
-        dreamSigns: ['Maske düşmesi', 'Çıplaklık', 'Kimlik karışıklığı'],
-        task: 'Kim olduğun ile kim göründüğün arasındaki farkı anla',
+        name: 'Persona Awareness',
+        description: 'Recognition and questioning of social masks',
+        dreamSigns: ['Mask falling off', 'Nakedness', 'Identity confusion'],
+        task: 'Understand the difference between who you are and who you appear to be',
       ),
       IndividuationStage(
-        name: 'Gölge ile Yüzleşme',
-        description: 'Bastırılan yönlerin kabul edilmesi',
-        dreamSigns: ['Düşman figürler', 'Karanlık yerler', 'Kovalanma'],
-        task: 'Reddettiğin yönlerini kucakla',
+        name: 'Confronting the Shadow',
+        description: 'Acceptance of suppressed aspects',
+        dreamSigns: ['Enemy figures', 'Dark places', 'Being chased'],
+        task: 'Embrace the aspects you have rejected',
       ),
       IndividuationStage(
-        name: 'Anima/Animus Entegrasyonu',
-        description: 'Karşı cinsiyet enerjisinin dengelenmesi',
-        dreamSigns: ['Aşk rüyaları', 'Gizemli figürler', 'Birleşme'],
-        task: 'İç feminen/maskülen dengeyi bul',
+        name: 'Anima/Animus Integration',
+        description: 'Balancing of opposite gender energy',
+        dreamSigns: ['Love dreams', 'Mysterious figures', 'Union'],
+        task: 'Find the inner feminine/masculine balance',
       ),
       IndividuationStage(
-        name: 'Benlik Gerçekleşmesi',
-        description: 'Bütünlük ve anlam deneyimi',
-        dreamSigns: ['Mandala', 'Merkez', 'Aydınlanma', 'Hazine bulma'],
-        task: 'Tüm parçaları birleştir, bütün ol',
+        name: 'Self Realization',
+        description: 'Experience of wholeness and meaning',
+        dreamSigns: ['Mandala', 'Center', 'Enlightenment', 'Finding treasure'],
+        task: 'Unite all parts, become whole',
       ),
     ],
   );
 
-  /// Rüya Amplifikasyonu
-  static const List<AmplificationTechnique> amplifikasyonTeknikleri = [
+  /// Dream Amplification
+  static const List<AmplificationTechnique> amplificationTechniques = [
     AmplificationTechnique(
-      name: 'Mitolojik Amplifikasyon',
+      name: 'Mythological Amplification',
       description:
-          'Rüya sembollerini dünya mitolojileriyle ilişkilendirme. '
-          'Evrensel hikayelerle kişisel anlamı derinleştirme.',
+          'Relating dream symbols to world mythologies. '
+          'Deepening personal meaning through universal stories.',
       steps: [
-        'Rüyadaki ana sembolü belirle',
-        'Bu sembolün mitolojideki karşılıklarını araştır',
-        'Farklı kültürlerdeki benzer hikayeleri incele',
-        'Kişisel bağlantını kur',
-        'Mitin öğretisini hayatına uygula',
+        'Identify the main symbol in the dream',
+        'Research its counterparts in mythology',
+        'Examine similar stories in different cultures',
+        'Make your personal connection',
+        'Apply the myth\'s teaching to your life',
       ],
       example:
-          'Yılan rüyası → Gilgameş destanında ölümsüzlük bitkisini çalan yılan → '
-          'Asklepios\'un şifa yılanı → Kundalini enerjisi → Dönüşüm ve şifa teması',
+          'Snake dream → Snake that steals the plant of immortality in the Epic of Gilgamesh → '
+          'Asclepius\'s healing snake → Kundalini energy → Theme of transformation and healing',
     ),
     AmplificationTechnique(
-      name: 'Sembolik Seri Analizi',
+      name: 'Symbolic Series Analysis',
       description:
-          'Birden fazla rüyayı bir seri olarak inceleme. '
-          'Tekrar eden semboller ve evrimleşen temalar.',
+          'Examining multiple dreams as a series. '
+          'Recurring symbols and evolving themes.',
       steps: [
-        'Son 10-20 rüyayı gözden geçir',
-        'Tekrar eden sembolleri listele',
-        'Sembollerin evrimini izle',
-        'Bir "rüya hikayesi" oluştur',
-        'Ana tema ve mesajı belirle',
+        'Review the last 10-20 dreams',
+        'List recurring symbols',
+        'Track the evolution of symbols',
+        'Create a "dream story"',
+        'Identify the main theme and message',
       ],
       example:
-          'İlk rüya: Boğulma → 3. rüya: Yüzme öğrenme → 7. rüya: Dalma → '
-          '10. rüya: Sualtı hazinesi → Duygusal derinleşme yolculuğu',
+          'First dream: Drowning → 3rd dream: Learning to swim → 7th dream: Diving → '
+          '10th dream: Underwater treasure → Journey of emotional deepening',
     ),
     AmplificationTechnique(
-      name: 'Aktif İmajinasyon',
+      name: 'Active Imagination',
       description:
-          'Jung\'un geliştirdiği teknik. Rüya imajlarıyla uyanıkken diyalog kurma.',
+          'Technique developed by Jung. Dialoguing with dream images while awake.',
       steps: [
-        'Rahat bir pozisyonda otur, gözlerini kapat',
-        'Rüyadaki bir imajı çağır',
-        'İmajın hareket etmesine izin ver',
-        'İmajla konuş, sorular sor',
-        'Diyaloğu kaydet',
+        'Sit in a comfortable position, close your eyes',
+        'Call up an image from the dream',
+        'Allow the image to move',
+        'Talk to the image, ask questions',
+        'Record the dialogue',
       ],
       example:
-          'Rüyadaki bilge kadına: "Kim sin?" → "Sezginin sesiyim" → '
-          '"Ne öğretmek istiyorsun?" → "Düşünmeden önce hisset"',
+          'To the wise woman in the dream: "Who are you?" → "I am the voice of intuition" → '
+          '"What do you want to teach?" → "Feel before you think"',
     ),
   ];
 }
 
 // ════════════════════════════════════════════════════════════════════════════
-// FREUD PSİKANALİZİ
+// FREUDIAN PSYCHOANALYSIS
 // ════════════════════════════════════════════════════════════════════════════
 
-/// Freudian rüya analizi
+/// Freudian dream analysis
 class FreudianDreamPsychology {
-  /// Temel kavramlar
-  static const FreudianTheory temelTeori = FreudianTheory(
+  /// Basic concepts
+  static const FreudianTheory basicTheory = FreudianTheory(
     wishFulfillment:
-        'Freud\'a göre her rüya bir dilek gerçekleştirmesidir. Bilinçdışı arzular, '
-        'gündüz bastırılanlar gece sembolik olarak ifade bulur.',
+        'According to Freud, every dream is a wish fulfillment. Unconscious desires, '
+        'what is suppressed during the day, find symbolic expression at night.',
     latentContent:
-        'Rüyanın gizli içeriği (latent content) - gerçek anlam. '
-        'Sansürden geçerek manifest içerik haline dönüşür.',
+        'The dream\'s hidden content (latent content) - the real meaning. '
+        'Transforms into manifest content after passing through censorship.',
     manifestContent:
-        'Rüyanın açık içeriği (manifest content) - hatırlanan hikaye. '
-        'Gizli içeriğin sembolik kılığı.',
+        'The dream\'s apparent content (manifest content) - the remembered story. '
+        'The symbolic disguise of the hidden content.',
     dreamWork:
-        'Rüya çalışması (dream work) - bilinçdışı materyalin rüyaya dönüşüm süreci. '
-        'Yoğunlaştırma, yer değiştirme, sembolleştirme.',
+        'Dream work - the process of transforming unconscious material into dreams. '
+        'Condensation, displacement, symbolization.',
   );
 
-  /// Rüya mekanizmaları
-  static const List<DreamMechanism> mekanizmalar = [
+  /// Dream mechanisms
+  static const List<DreamMechanism> mechanisms = [
     DreamMechanism(
-      name: 'Yoğunlaştırma (Condensation)',
+      name: 'Condensation',
       description:
-          'Birden fazla fikir, kişi veya duygu tek bir imajda birleşir. '
-          'Rüyadaki tek bir figür birçok anlamı temsil edebilir.',
+          'Multiple ideas, people, or emotions combine into a single image. '
+          'A single figure in a dream can represent many meanings.',
       examples: [
-        'Bir yüz birçok kişinin özelliklerini taşıyabilir',
-        'Tek bir mekan birden fazla yeri temsil edebilir',
-        'Bir nesne birçok duyguyu simgeleyebilir',
+        'One face may carry features of multiple people',
+        'A single place may represent multiple locations',
+        'An object may symbolize multiple emotions',
       ],
       interpretationTip:
-          'Rüyadaki her öğenin birden fazla çağrışımı olabileceğini düşün. '
-          '"Bu imaj başka neyi hatırlatıyor?" sorusunu sor.',
+          'Consider that each element in the dream may have multiple associations. '
+          'Ask: "What else does this image remind me of?"',
     ),
     DreamMechanism(
-      name: 'Yer Değiştirme (Displacement)',
+      name: 'Displacement',
       description:
-          'Duygusal yük önemli bir nesneden daha az önemli bir nesneye kaydırılır. '
-          'Rüyanın en yoğun kısmı gerçek mesajı gizleyebilir.',
+          'Emotional charge shifts from an important object to a less important one. '
+          'The most intense part of the dream may hide the real message.',
       examples: [
-        'Anneye duyulan öfke bir yabancıya yöneltilir',
-        'Cinsel arzu bir nesneye simgelenir',
-        'Korku zararsız bir figürde belirir',
+        'Anger toward mother is directed at a stranger',
+        'Sexual desire is symbolized by an object',
+        'Fear appears in a harmless figure',
       ],
       interpretationTip:
-          'Rüyanın en duygusal kısmı değil, en "anlamsız" kısmı önemli olabilir. '
-          'Önemsiz görünen detaylara dikkat et.',
+          'The most "meaningless" part of the dream, not the most emotional, may be important. '
+          'Pay attention to seemingly insignificant details.',
     ),
     DreamMechanism(
-      name: 'Sembolleştirme (Symbolization)',
+      name: 'Symbolization',
       description:
-          'Yasak veya kabul edilemez içerikler sembollerle ifade edilir. '
-          'Özellikle cinsel ve agresif içerikler.',
+          'Forbidden or unacceptable content is expressed through symbols. '
+          'Especially sexual and aggressive content.',
       examples: [
-        'Uzun nesneler → Maskülen semboller',
-        'Kapalı alanlar → Feminen semboller',
-        'Silah, bıçak → Saldırganlık',
-        'Merdiven çıkma → Cinsel eylem',
+        'Long objects → Masculine symbols',
+        'Enclosed spaces → Feminine symbols',
+        'Weapons, knives → Aggression',
+        'Climbing stairs → Sexual activity',
       ],
       interpretationTip:
-          'Semboller evrensel olabilir ama kişisel çağrışımlar daha önemlidir. '
-          '"Bu sembol SANA ne ifade ediyor?" sorusu.',
+          'Symbols may be universal, but personal associations are more important. '
+          'Ask: "What does this symbol mean to YOU?"',
     ),
     DreamMechanism(
-      name: 'İkincil İşleme (Secondary Revision)',
+      name: 'Secondary Revision',
       description:
-          'Uyanırken beyin rüyayı mantıklı bir hikayeye dönüştürmeye çalışır. '
-          'Boşluklar doldurulur, tutarsızlıklar düzeltilir.',
+          'Upon waking, the brain tries to turn the dream into a logical story. '
+          'Gaps are filled, inconsistencies are corrected.',
       examples: [
-        'Rüyayı anlatırken "mantıklı" hale getirmek',
-        'Eksik kısımları tamamlamak',
-        'Tutarsız sahneleri birleştirmek',
+        'Making the dream "make sense" when telling it',
+        'Filling in missing parts',
+        'Connecting inconsistent scenes',
       ],
       interpretationTip:
-          'Rüyanın tutarsız, mantıksız kısımları önemli. '
-          'Onları "düzeltme" dürtüsüne diren.',
+          'The inconsistent, illogical parts of the dream are important. '
+          'Resist the urge to "fix" them.',
     ),
   ];
 
-  /// Freudian semboller
-  static const Map<String, FreudianSymbol> semboller = {
-    // Maskülen semboller
-    'yilan': FreudianSymbol(
-      symbol: 'Yılan',
-      freudianMeaning: 'Fallik sembol, cinsel enerji, tehlike ve cazibe',
-      unconsciousContent: 'Bastırılmış cinsellik veya erkeklik enerjisi',
-      relatedFeelings: ['Korku', 'Çekim', 'Güç'],
+  /// Freudian symbols
+  static const Map<String, FreudianSymbol> symbols = {
+    // Masculine symbols
+    'snake': FreudianSymbol(
+      symbol: 'Snake',
+      freudianMeaning: 'Phallic symbol, sexual energy, danger and attraction',
+      unconsciousContent: 'Repressed sexuality or masculine energy',
+      relatedFeelings: ['Fear', 'Attraction', 'Power'],
     ),
-    'kilic': FreudianSymbol(
-      symbol: 'Kılıç',
-      freudianMeaning: 'Maskülen güç, penetrasyon, saldırganlık',
-      unconsciousContent: 'Kontrol arzusu, cinsel dürtüler',
-      relatedFeelings: ['Güç', 'Saldırganlık', 'Koruma'],
+    'sword': FreudianSymbol(
+      symbol: 'Sword',
+      freudianMeaning: 'Masculine power, penetration, aggression',
+      unconsciousContent: 'Desire for control, sexual drives',
+      relatedFeelings: ['Power', 'Aggression', 'Protection'],
     ),
-    'silah': FreudianSymbol(
-      symbol: 'Silah',
-      freudianMeaning: 'Fallik sembol, güç, tehdit veya koruma',
-      unconsciousContent: 'Bastırılmış öfke, kontrol ihtiyacı',
-      relatedFeelings: ['Korku', 'Güç', 'Savunma'],
+    'weapon': FreudianSymbol(
+      symbol: 'Weapon',
+      freudianMeaning: 'Phallic symbol, power, threat or protection',
+      unconsciousContent: 'Repressed anger, need for control',
+      relatedFeelings: ['Fear', 'Power', 'Defense'],
     ),
-    // Feminen semboller
-    'magara': FreudianSymbol(
-      symbol: 'Mağara',
-      freudianMeaning: 'Rahim sembolü, bilinçdışı, kadınlık',
-      unconsciousContent: 'Anneye dönüş arzusu, güvenlik ihtiyacı',
-      relatedFeelings: ['Güvenlik', 'Korku', 'Merak'],
+    // Feminine symbols
+    'cave': FreudianSymbol(
+      symbol: 'Cave',
+      freudianMeaning: 'Womb symbol, unconscious, femininity',
+      unconsciousContent: 'Desire to return to mother, need for security',
+      relatedFeelings: ['Safety', 'Fear', 'Curiosity'],
     ),
-    'ev': FreudianSymbol(
-      symbol: 'Ev',
-      freudianMeaning: 'Beden, benlik, aile. Katlar ruhun katmanları.',
-      unconsciousContent: 'Öz-imaj, aile dinamikleri',
-      relatedFeelings: ['Güvenlik', 'Kimlik', 'Aidiyet'],
+    'house': FreudianSymbol(
+      symbol: 'House',
+      freudianMeaning: 'Body, self, family. Floors represent layers of the psyche.',
+      unconsciousContent: 'Self-image, family dynamics',
+      relatedFeelings: ['Security', 'Identity', 'Belonging'],
     ),
-    'su': FreudianSymbol(
-      symbol: 'Su',
-      freudianMeaning: 'Amniyotik sıvı, bilinçdışı, doğum',
-      unconsciousContent: 'Duygusal dünya, anne ilişkisi',
-      relatedFeelings: ['Sakinlik', 'Korku', 'Arınma'],
+    'water': FreudianSymbol(
+      symbol: 'Water',
+      freudianMeaning: 'Amniotic fluid, unconscious, birth',
+      unconsciousContent: 'Emotional world, mother relationship',
+      relatedFeelings: ['Calmness', 'Fear', 'Purification'],
     ),
-    // Diğer önemli semboller
-    'ucmak': FreudianSymbol(
-      symbol: 'Uçmak',
-      freudianMeaning: 'Cinsel heyecan, özgürleşme, üstünlük',
-      unconsciousContent: 'Kısıtlamalardan kaçış arzusu',
-      relatedFeelings: ['Özgürlük', 'Heyecan', 'Korku'],
+    // Other important symbols
+    'flying': FreudianSymbol(
+      symbol: 'Flying',
+      freudianMeaning: 'Sexual excitement, liberation, superiority',
+      unconsciousContent: 'Desire to escape restrictions',
+      relatedFeelings: ['Freedom', 'Excitement', 'Fear'],
     ),
-    'dusmek': FreudianSymbol(
-      symbol: 'Düşmek',
-      freudianMeaning: 'Kontrol kaybı, başarısızlık korkusu, cinsel teslim',
-      unconsciousContent: 'Güvensizlik, ego tehdit altında',
-      relatedFeelings: ['Korku', 'Çaresizlik', 'Panik'],
+    'falling': FreudianSymbol(
+      symbol: 'Falling',
+      freudianMeaning: 'Loss of control, fear of failure, sexual surrender',
+      unconsciousContent: 'Insecurity, ego under threat',
+      relatedFeelings: ['Fear', 'Helplessness', 'Panic'],
     ),
-    'disler': FreudianSymbol(
-      symbol: 'Dişler (dökülme)',
-      freudianMeaning: 'Kastrasyon anksiyetesi, yaşlanma, güç kaybı',
-      unconsciousContent: 'Cinsel/güç kaygıları',
-      relatedFeelings: ['Utanç', 'Korku', 'Güçsüzlük'],
+    'teeth': FreudianSymbol(
+      symbol: 'Teeth (falling out)',
+      freudianMeaning: 'Castration anxiety, aging, loss of power',
+      unconsciousContent: 'Sexual/power anxieties',
+      relatedFeelings: ['Shame', 'Fear', 'Powerlessness'],
     ),
   };
 
-  /// Serbest çağrışım tekniği
-  static const FreeAssociationTechnique serbestCagrisim =
+  /// Free association technique
+  static const FreeAssociationTechnique freeAssociation =
       FreeAssociationTechnique(
     description:
-        'Freud\'un temel tekniği. Rüya öğelerinden başlayarak akla gelen '
-        'her şeyi sansürsüz söyleme.',
+        'Freud\'s fundamental technique. Starting from dream elements, saying '
+        'everything that comes to mind without censorship.',
     steps: [
-      'Rüyadan bir imaj seç',
-      'O imajla ilgili aklına gelen ilk şeyi söyle',
-      'Sonra onunla ilgili aklına geleni...',
-      'Zinciri takip et, sansürleme',
-      'Direnç noktalarına dikkat et',
-      'Duyguların yoğunlaştığı yere bak',
+      'Choose an image from the dream',
+      'Say the first thing that comes to mind about that image',
+      'Then what comes to mind about that...',
+      'Follow the chain, don\'t censor',
+      'Pay attention to points of resistance',
+      'Look where emotions intensify',
     ],
     tips: [
-      'Mantıklı olmaya çalışma',
-      'Utanç verici düşünceleri sansürleme',
-      'Duraksadığın yerlere dikkat et',
-      'Duygusal tepkileri not et',
+      'Don\'t try to be logical',
+      'Don\'t censor embarrassing thoughts',
+      'Pay attention to where you hesitate',
+      'Note emotional reactions',
     ],
   );
 }
 
 // ════════════════════════════════════════════════════════════════════════════
-// GESTALT RÜYA ÇALIŞMASI
+// GESTALT DREAM WORK
 // ════════════════════════════════════════════════════════════════════════════
 
-/// Gestalt rüya yaklaşımı
+/// Gestalt dream approach
 class GestaltDreamPsychology {
-  static const String temelYaklasim =
-      'Gestalt\'ta rüyanın her öğesi rüya görenin bir parçasıdır. '
-      'Yorum yapmak yerine, rüyayı yeniden yaşamak ve her parçayı '
-      '"olmak" önemlidir.';
+  static const String basicApproach =
+      'In Gestalt, every element of the dream is a part of the dreamer. '
+      'Rather than interpreting, it\'s important to relive the dream and '
+      '"become" each part.';
 
-  /// Gestalt teknikleri
-  static const List<GestaltTechnique> teknikler = [
+  /// Gestalt techniques
+  static const List<GestaltTechnique> techniques = [
     GestaltTechnique(
-      name: 'Sıcak Sandalye (Hot Seat)',
+      name: 'Hot Seat',
       description:
-          'Rüyadaki farklı öğeler arasında diyalog kurma. Her parçaya ses verme.',
+          'Creating dialogue between different elements in the dream. Giving voice to each part.',
       steps: [
-        'İki sandalye koy: Sen ve rüyadaki figür',
-        'Figürün yerine otur, onun gibi konuş',
-        'Kendi yerinde otur, figüre cevap ver',
-        'Diyaloğu sürdür',
-        'Duyguların değişimini izle',
+        'Place two chairs: You and the dream figure',
+        'Sit in the figure\'s place, speak as them',
+        'Sit in your own place, respond to the figure',
+        'Continue the dialogue',
+        'Observe the shift in emotions',
       ],
       example:
-          '"Ben rüyandaki kızgın köpeğim. Sana saldırıyorum çünkü..." → '
-          '"Sana öfkeliyim çünkü beni ihmal ediyorsun."',
+          '"I am the angry dog in your dream. I\'m attacking you because..." → '
+          '"I\'m angry at you because you\'re neglecting me."',
     ),
     GestaltTechnique(
-      name: 'Her Şey Ben (I Am Everything)',
+      name: 'I Am Everything',
       description:
-          'Rüyadaki her nesne, kişi, hatta mekan olarak konuş. Her şey seni temsil eder.',
+          'Speak as every object, person, even the space in the dream. Everything represents you.',
       steps: [
-        'Rüyadaki bir öğe seç',
-        '"Ben [öğe]\'yim. Ben..." diye başla',
-        'Birinci şahıs olarak tanımla',
-        'Ne hissettiğini, ne istediğini söyle',
-        'Diğer öğeler için tekrarla',
+        'Choose an element from the dream',
+        'Begin with "I am [element]. I..."',
+        'Describe yourself in first person',
+        'Say how you feel, what you want',
+        'Repeat for other elements',
       ],
       example:
-          '"Ben rüyadaki kapanmış kapıyım. Kapanmış tutuyorum çünkü...'
-          'İçeride ne olduğunu göstermek istemiyorum."',
+          '"I am the closed door in the dream. I keep closed because...'
+          'I don\'t want to show what\'s inside."',
     ),
     GestaltTechnique(
-      name: 'Şimdiki Zamanda Anlatım',
+      name: 'Present Tense Narration',
       description:
-          'Rüyayı geçmiş zaman değil, şu an oluyormuş gibi anlat. '
-          'Duyguları canlı tut.',
+          'Tell the dream not in past tense but as if it\'s happening now. '
+          'Keep the emotions alive.',
       steps: [
-        'Rüyayı "şu an" olarak anlat',
-        '"Gördüm" değil "görüyorum"',
-        'Bedendeki duyumları hisset',
-        'Duyguları isimlendirin',
-        'Ne istediğini belirt',
+        'Tell the dream as "now"',
+        'Not "I saw" but "I see"',
+        'Feel the sensations in your body',
+        'Name the emotions',
+        'State what you want',
       ],
       example:
-          'Değil: "Bir ormanda koşuyordum, korkuyordum" → '
-          'Evet: "Bir ormanda koşuyorum. Kalbim hızlı atıyor. Korkuyorum."',
+          'Not: "I was running in a forest, I was scared" → '
+          'Yes: "I am running in a forest. My heart is beating fast. I am scared."',
     ),
     GestaltTechnique(
-      name: 'Tamamlanmamış İş (Unfinished Business)',
+      name: 'Unfinished Business',
       description:
-          'Rüyadaki yarım kalan eylemleri tamamlama. Söylenmemiş sözleri söyleme.',
+          'Completing unfinished actions in the dream. Saying unsaid words.',
       steps: [
-        'Rüyada ne yarım kaldı?',
-        'Ne söylemek veya yapmak istedin?',
-        'Şimdi tamamla (imajinasyonda)',
-        'Duygusal değişimi gözlemle',
-        'Bu kalıp hayatta nerelerde tekrar ediyor?',
+        'What was left incomplete in the dream?',
+        'What did you want to say or do?',
+        'Complete it now (in imagination)',
+        'Observe the emotional shift',
+        'Where does this pattern repeat in life?',
       ],
       example:
-          'Rüyada babama bağıramadım → Şimdi, boş sandalyeye babammış '
-          'gibi: "Baba, sana kızgınım çünkü..."',
+          'I couldn\'t yell at my father in the dream → Now, to the empty chair as if it\'s '
+          'father: "Dad, I\'m angry at you because..."',
     ),
   ];
 
-  /// Polariteler çalışması
-  static const PolaritiesWork polariteler = PolaritiesWork(
+  /// Polarities work
+  static const PolaritiesWork polarities = PolaritiesWork(
     description:
-        'Gestalt\'ta zıtlıklar önemlidir. Rüyadaki zıt öğeler '
-        'kişiliğin bölünmüş parçalarıdır.',
+        'In Gestalt, opposites are important. Opposing elements in dreams '
+        'are split parts of the personality.',
     commonPolarities: [
-      'Kovalayan / Kaçan',
-      'Güçlü / Zayıf',
-      'İyi / Kötü',
-      'Korkutan / Korkan',
-      'Veren / Alan',
-      'Kontrol eden / Teslim olan',
+      'Chaser / Runner',
+      'Strong / Weak',
+      'Good / Bad',
+      'Frightening / Frightened',
+      'Giver / Taker',
+      'Controller / Surrenderer',
     ],
     integration:
-        'Her iki kutbu da deneyimle. Her ikisi de senin. '
-        'Onları entegre etmek bütünlük getirir.',
+        'Experience both poles. Both are you. '
+        'Integrating them brings wholeness.',
   );
 }
 
 // ════════════════════════════════════════════════════════════════════════════
-// MODERN BİLİŞSEL YAKLAŞIM
+// MODERN COGNITIVE APPROACH
 // ════════════════════════════════════════════════════════════════════════════
 
-/// Modern bilişsel rüya teorisi
+/// Modern cognitive dream theory
 class CognitiveDreamTheory {
-  static const String temelYaklasim =
-      'Bilişsel yaklaşım rüyaları beynin gece boyunca bilgiyi işlemesi, '
-      'anıları konsolide etmesi ve problem çözmesi olarak görür.';
+  static const String basicApproach =
+      'The cognitive approach views dreams as the brain processing information overnight, '
+      'consolidating memories, and problem-solving.';
 
-  /// Bilişsel fonksiyonlar
-  static const List<CognitiveFunction> fonksiyonlar = [
+  /// Cognitive functions
+  static const List<CognitiveFunction> functions = [
     CognitiveFunction(
-      name: 'Bellek Konsolidasyonu',
+      name: 'Memory Consolidation',
       description:
-          'Gündüz öğrenilenler gece REM uykusunda uzun süreli belleğe aktarılır.',
+          'What is learned during the day is transferred to long-term memory during REM sleep at night.',
       dreamManifestation:
-          'Gündüz deneyimleri rüyada tekrar eder, bazen değişmiş formda.',
+          'Daytime experiences repeat in dreams, sometimes in altered form.',
       practicalUse:
-          'Öğrenme öncesi iyi uyku önemli. Rüyalar öğrenmeyi pekiştirir.',
+          'Good sleep is important before learning. Dreams reinforce learning.',
     ),
     CognitiveFunction(
-      name: 'Duygusal İşleme',
+      name: 'Emotional Processing',
       description:
-          'REM uykusu duygusal anıları işler ve "soğutarak" depolamasını sağlar.',
+          'REM sleep processes emotional memories and stores them by "cooling" them down.',
       dreamManifestation:
-          'Stresli olaylar rüyada tekrar işlenir. Travma rüyaları.',
+          'Stressful events are reprocessed in dreams. Trauma dreams.',
       practicalUse:
-          'Duygusal iyileşme için REM uykusu kritik. Uyku yoksunluğu kaygıyı artırır.',
+          'REM sleep is critical for emotional healing. Sleep deprivation increases anxiety.',
     ),
     CognitiveFunction(
-      name: 'Problem Çözme',
+      name: 'Problem Solving',
       description:
-          'Beyin uyurken de problem üzerinde çalışır. Yaratıcı çözümler gelebilir.',
+          'The brain continues working on problems while sleeping. Creative solutions may emerge.',
       dreamManifestation:
-          'Uyandığında "Ah!" anları. Rüyada çözüm bulma.',
+          '"Aha!" moments upon waking. Finding solutions in dreams.',
       practicalUse:
-          'Uyumadan önce problemi düşün. Sabah yeni fikirler olabilir.',
+          'Think about the problem before sleep. New ideas may come in the morning.',
     ),
     CognitiveFunction(
-      name: 'Tehdit Simülasyonu',
+      name: 'Threat Simulation',
       description:
-          'Evrimsel teori: Rüyalar tehlikeli durumları güvenle prova etmemizi sağlar.',
+          'Evolutionary theory: Dreams allow us to safely rehearse dangerous situations.',
       dreamManifestation:
-          'Kovalanma, savaş, kaçış rüyaları. Tehdit senaryoları.',
+          'Chase, fight, escape dreams. Threat scenarios.',
       practicalUse:
-          'Kâbuslar "antrenman" olabilir. Bilinçaltı hazırlık.',
+          'Nightmares may be "training." Subconscious preparation.',
     ),
   ];
 
-  /// Rüya günlüğü için bilişsel sorular
-  static const List<String> bilisselSorular = [
-    'Bu rüya dünkü hangi olaylarla bağlantılı?',
-    'Rüyadaki problem gerçek hayattaki neyi yansıtıyor?',
-    'Rüyada hangi duygu yoğundu? Gündüz de bu duyguyu yaşıyor muyum?',
-    'Rüya bir çözüm önerisi içeriyor mu?',
-    'Beyin neyi "işliyor" olabilir?',
-    'Bu rüya bir kalıbın parçası mı?',
+  /// Cognitive questions for dream journaling
+  static const List<String> cognitiveQuestions = [
+    'What events from yesterday is this dream connected to?',
+    'What does the problem in the dream reflect in real life?',
+    'Which emotion was intense in the dream? Do I experience this emotion during the day too?',
+    'Does the dream contain a solution suggestion?',
+    'What might the brain be "processing"?',
+    'Is this dream part of a pattern?',
   ];
 }
 
 // ════════════════════════════════════════════════════════════════════════════
-// MODEL SINIFLARI
+// MODEL CLASSES
 // ════════════════════════════════════════════════════════════════════════════
 
 class ArchetypeDeepAnalysis {

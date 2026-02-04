@@ -57,16 +57,16 @@ class ProfileAnalysisService {
     if (moon != null) {
       switch (moon.sign.element) {
         case Element.fire:
-          emotionalStyle = 'Tutkulu ve spontan duygusal ifade';
+          emotionalStyle = 'Passionate and spontaneous emotional expression';
           break;
         case Element.earth:
-          emotionalStyle = 'Güvenilir ve istikrarlı duygusal yaklaşım';
+          emotionalStyle = 'Reliable and stable emotional approach';
           break;
         case Element.air:
-          emotionalStyle = 'Analitik ve iletişimsel duygusal işleyiş';
+          emotionalStyle = 'Analytical and communicative emotional processing';
           break;
         case Element.water:
-          emotionalStyle = 'Derin ve sezgisel duygusal dünya';
+          emotionalStyle = 'Deep and intuitive emotional world';
           break;
       }
     }
@@ -74,7 +74,7 @@ class ProfileAnalysisService {
     // First impression from Ascendant
     String firstImpression = '';
     if (asc != null) {
-      firstImpression = 'Dış dünyaya ${asc.sign.name} enerjisi yansıtır: '
+      firstImpression = 'Projects ${asc.sign.name} energy to the outer world: '
           '${asc.sign.traits.take(2).join(", ")}';
     }
 
@@ -103,7 +103,7 @@ class ProfileAnalysisService {
     final aspects = chart.aspectsForPlanet(Planet.moon);
 
     // Attachment style based on Moon aspects
-    String attachmentStyle = 'Güvenli bağlanma';
+    String attachmentStyle = 'Secure attachment';
     bool hasChallengingMoonAspects = aspects.any((a) => a.type.isChallenging);
     if (hasChallengingMoonAspects) {
       final saturnAspect = aspects.any((a) =>
@@ -112,9 +112,9 @@ class ProfileAnalysisService {
           a.planet2 == Planet.pluto && a.type.isChallenging);
 
       if (saturnAspect) {
-        attachmentStyle = 'Kaçıngan bağlanma eğilimi - duygusal mesafe';
+        attachmentStyle = 'Avoidant attachment tendency - emotional distance';
       } else if (plutoAspect) {
-        attachmentStyle = 'Kaygılı bağlanma eğilimi - yoğun duygusal ihtiyaç';
+        attachmentStyle = 'Anxious attachment tendency - intense emotional need';
       }
     }
 
@@ -124,33 +124,33 @@ class ProfileAnalysisService {
       switch (moon.sign) {
         case ZodiacSign.aries:
         case ZodiacSign.sagittarius:
-          securityNeeds = 'Özgürlük ve macera hissi';
+          securityNeeds = 'Freedom and sense of adventure';
           break;
         case ZodiacSign.taurus:
         case ZodiacSign.cancer:
-          securityNeeds = 'Fiziksel konfor ve aile bağları';
+          securityNeeds = 'Physical comfort and family bonds';
           break;
         case ZodiacSign.gemini:
         case ZodiacSign.aquarius:
-          securityNeeds = 'Zihinsel stimülasyon ve sosyal bağlantı';
+          securityNeeds = 'Mental stimulation and social connection';
           break;
         case ZodiacSign.leo:
-          securityNeeds = 'Takdir ve tanınma';
+          securityNeeds = 'Appreciation and recognition';
           break;
         case ZodiacSign.virgo:
-          securityNeeds = 'Düzen ve faydalı hissetmek';
+          securityNeeds = 'Order and feeling useful';
           break;
         case ZodiacSign.libra:
-          securityNeeds = 'Uyum ve ilişki';
+          securityNeeds = 'Harmony and relationships';
           break;
         case ZodiacSign.scorpio:
-          securityNeeds = 'Derin duygusal bağ ve güven';
+          securityNeeds = 'Deep emotional bond and trust';
           break;
         case ZodiacSign.capricorn:
-          securityNeeds = 'Başarı ve toplumsal statü';
+          securityNeeds = 'Achievement and social status';
           break;
         case ZodiacSign.pisces:
-          securityNeeds = 'Spiritüel bağlantı ve kabul edilme';
+          securityNeeds = 'Spiritual connection and acceptance';
           break;
       }
     }
@@ -162,7 +162,7 @@ class ProfileAnalysisService {
     for (final aspect in moonSquares) {
       final otherPlanet =
           aspect.planet1 == Planet.moon ? aspect.planet2 : aspect.planet1;
-      triggers.add('${otherPlanet.nameTr} konuları duygusal tetikleyici olabilir');
+      triggers.add('${otherPlanet.name} matters can be emotional triggers');
     }
 
     // Stress response
@@ -170,16 +170,16 @@ class ProfileAnalysisService {
     if (mars != null) {
       switch (mars.sign.element) {
         case Element.fire:
-          stressResponse = 'Aktif mücadele - öfke patlamaları olası';
+          stressResponse = 'Active struggle - anger outbursts possible';
           break;
         case Element.earth:
-          stressResponse = 'Pratik çözümler arar - içe kapanabilir';
+          stressResponse = 'Seeks practical solutions - may withdraw';
           break;
         case Element.air:
-          stressResponse = 'Rasyonalize eder - duygulardan kaçınabilir';
+          stressResponse = 'Rationalizes - may avoid emotions';
           break;
         case Element.water:
-          stressResponse = 'Duygusal tepki - geri çekilme veya pasif agresyon';
+          stressResponse = 'Emotional reaction - withdrawal or passive aggression';
           break;
       }
     }
@@ -204,27 +204,27 @@ class ProfileAnalysisService {
       switch (venus.sign) {
         case ZodiacSign.aries:
         case ZodiacSign.leo:
-          loveLanguage = 'Fiziksel dokunma ve eylemler';
+          loveLanguage = 'Physical touch and actions';
           break;
         case ZodiacSign.taurus:
         case ZodiacSign.cancer:
-          loveLanguage = 'Hediyeler ve kaliteli zaman';
+          loveLanguage = 'Gifts and quality time';
           break;
         case ZodiacSign.gemini:
         case ZodiacSign.libra:
-          loveLanguage = 'Onaylayıcı sözler ve iletişim';
+          loveLanguage = 'Words of affirmation and communication';
           break;
         case ZodiacSign.virgo:
         case ZodiacSign.capricorn:
-          loveLanguage = 'Hizmet etmek ve pratik destek';
+          loveLanguage = 'Acts of service and practical support';
           break;
         case ZodiacSign.scorpio:
         case ZodiacSign.pisces:
-          loveLanguage = 'Kaliteli zaman ve derin bağlantı';
+          loveLanguage = 'Quality time and deep connection';
           break;
         case ZodiacSign.sagittarius:
         case ZodiacSign.aquarius:
-          loveLanguage = 'Macera paylaşma ve özgürlük verme';
+          loveLanguage = 'Sharing adventures and giving freedom';
           break;
       }
     }
@@ -233,7 +233,7 @@ class ProfileAnalysisService {
     String attractionPattern = '';
     if (venus != null && mars != null) {
       attractionPattern =
-          '${venus.sign.name} çekiciliği ile ${mars.sign.name} arzusu birleşimi';
+          '${venus.sign.name} attraction combined with ${mars.sign.name} desire';
     }
 
     // Relationship style
@@ -243,15 +243,15 @@ class ProfileAnalysisService {
         (a.planet1 == Planet.saturn || a.planet2 == Planet.saturn));
 
     if (hasSaturnVenus) {
-      relationshipStyle = 'Ciddi ve uzun vadeli ilişkilere meyilli';
+      relationshipStyle = 'Inclined toward serious and long-term relationships';
     } else if (venus?.sign.element == Element.fire) {
-      relationshipStyle = 'Tutkulu ve spontan ilişkiler';
+      relationshipStyle = 'Passionate and spontaneous relationships';
     } else if (venus?.sign.element == Element.earth) {
-      relationshipStyle = 'Güvenilir ve istikrarlı ilişkiler';
+      relationshipStyle = 'Reliable and stable relationships';
     } else if (venus?.sign.element == Element.air) {
-      relationshipStyle = 'Entelektüel ve sosyal ilişkiler';
+      relationshipStyle = 'Intellectual and social relationships';
     } else {
-      relationshipStyle = 'Derin ve duygusal ilişkiler';
+      relationshipStyle = 'Deep and emotional relationships';
     }
 
     // Jealousy tendency
@@ -273,10 +273,10 @@ class ProfileAnalysisService {
       final descendant = chart.planets.where((p) => p.planet == Planet.descendant).firstOrNull;
       if (descendant != null) {
         idealPartnerProfile =
-            '${descendant.sign.name} özelliklerine sahip partnerlere çekilir';
+            'Attracted to partners with ${descendant.sign.name} qualities';
         if (planetsIn7th.isNotEmpty) {
           idealPartnerProfile +=
-              '. ${planetsIn7th.map((p) => p.planet.nameTr).join(", ")} enerjisi ilişkilerde önemli';
+              '. ${planetsIn7th.map((p) => p.planet.name).join(", ")} energy is important in relationships';
         }
       }
     }
@@ -302,16 +302,16 @@ class ProfileAnalysisService {
     List<String> talents = [];
     switch (chart.dominantElement) {
       case Element.fire:
-        talents = ['Liderlik', 'Girişimcilik', 'Motivasyon'];
+        talents = ['Leadership', 'Entrepreneurship', 'Motivation'];
         break;
       case Element.earth:
-        talents = ['Planlama', 'Organizasyon', 'Finansal zeka'];
+        talents = ['Planning', 'Organization', 'Financial intelligence'];
         break;
       case Element.air:
-        talents = ['İletişim', 'Analiz', 'Networking'];
+        talents = ['Communication', 'Analysis', 'Networking'];
         break;
       case Element.water:
-        talents = ['Empati', 'Yaratıcılık', 'Sezgi'];
+        talents = ['Empathy', 'Creativity', 'Intuition'];
         break;
     }
 
@@ -319,7 +319,7 @@ class ProfileAnalysisService {
     String careerDirection = '';
     if (chart.midheaven != null) {
       careerDirection =
-          '${chart.midheaven!.sign.name} enerjisiyle toplum önünde parlar';
+          'Shines in public life with ${chart.midheaven!.sign.name} energy';
     }
 
     // Leadership vs support role
@@ -367,21 +367,21 @@ class ProfileAnalysisService {
         (a.planet1 == Planet.saturn && a.planet2 == Planet.moon));
 
     if (moonSaturnAspect) {
-      defenseMechanisms.add('Duygusal baskılama');
-      defenseMechanisms.add('Aşırı kontrol ihtiyacı');
+      defenseMechanisms.add('Emotional suppression');
+      defenseMechanisms.add('Excessive need for control');
     }
 
     // Pluto aspects indicate transformation patterns
     final plutoAspects = chart.aspectsForPlanet(Planet.pluto);
     if (plutoAspects.any((a) => a.type.isChallenging)) {
-      defenseMechanisms.add('Yoğun kontrol eğilimi');
+      defenseMechanisms.add('Intense control tendency');
     }
 
     // Shadow self from Lilith
     String shadowSelf = '';
     final lilith = chart.lilith;
     if (lilith != null) {
-      shadowSelf = 'Bastırılmış ${lilith.sign.name} enerjisi - '
+      shadowSelf = 'Suppressed ${lilith.sign.name} energy - '
           '${_getLilithMeaning(lilith.sign)}';
     }
 
@@ -390,7 +390,7 @@ class ProfileAnalysisService {
     final venusAspects = chart.aspectsForPlanet(Planet.venus);
     for (final aspect in venusAspects.where((a) => a.type.isChallenging)) {
       relationshipPatterns.add(
-          '${aspect.planet1.nameTr}-${aspect.planet2.nameTr} ${aspect.type.nameTr}: ${aspect.interpretation}');
+          '${aspect.planet1.name}-${aspect.planet2.name} ${aspect.type.name}: ${aspect.interpretation}');
     }
 
     return PsychologicalProfile(
@@ -411,7 +411,7 @@ class ProfileAnalysisService {
     String lifeLesson = '';
     if (northNode != null) {
       lifeLesson =
-          '${northNode.sign.name} özelliklerini bu hayatta geliştirmek gerekir: '
+          'Developing ${northNode.sign.name} qualities is needed in this life: '
           '${_getNorthNodeLesson(northNode.sign)}';
     }
 
@@ -419,14 +419,14 @@ class ProfileAnalysisService {
     String pastLifePatterns = '';
     if (southNode != null) {
       pastLifePatterns =
-          '${southNode.sign.name} enerjisinde uzman ama bırakmayı öğrenmeli: '
+          'Expert in ${southNode.sign.name} energy but must learn to let go: '
           '${_getSouthNodePattern(southNode.sign)}';
     }
 
     // Deepest wound from Chiron
     String deepestWound = '';
     if (chiron != null) {
-      deepestWound = '${chiron.sign.name} alanında derin bir yara var: '
+      deepestWound = 'A deep wound exists in the ${chiron.sign.name} area: '
           '${_getChironWound(chiron.sign)}';
     }
 
@@ -552,116 +552,116 @@ class ProfileAnalysisService {
   static String _getLilithMeaning(ZodiacSign sign) {
     switch (sign) {
       case ZodiacSign.aries:
-        return 'yabanıl öfkenin ve saf bağımsızlığın gizli ateşi. İçindeki ilkel savaşçı, toplumsal kuralların ötesinde var olmak istiyor. Bu karanlık ateş, kontrol edildiğinde devrimci bir güç, bastırıldığında yıkıcı bir volkan olur';
+        return 'the hidden fire of wild rage and pure independence. The primal warrior within you wants to exist beyond societal rules. When controlled, this dark fire becomes a revolutionary force; when suppressed, it becomes a destructive volcano';
       case ZodiacSign.taurus:
-        return 'toprak tanrıçasının yasak meyveleri - bedensel hazlar, sahiplenme tutkusu ve maddi dünyanın büyüsü. İçindeki bu enerji, kutsalı maddi olanda arayan kadim bir arayıştır. Onu onurlandırırsan, bolluk akışını açarsın';
+        return 'the forbidden fruits of the earth goddess - bodily pleasures, possessive passion, and the magic of the material world. This energy within you is an ancient quest seeking the sacred in the material. Honor it and you open the flow of abundance';
       case ZodiacSign.gemini:
-        return 'karanlık ikiz - söylenmemiş sözlerin, manipülatif zekanın ve ikili doğanın gölgesi. Bu enerji, hakikatin birden fazla yüzü olduğunu bilen hileci arketipidir. Dengelenmezse yalan, dengelenirse şifa verici hikayeler doğurur';
+        return 'the dark twin - the shadow of unspoken words, manipulative intellect, and dual nature. This energy is the trickster archetype that knows truth has multiple faces. Unbalanced it breeds lies; balanced it births healing stories';
       case ZodiacSign.cancer:
-        return 'ay tanrıçasının karanlık yüzü - boğucu sevgi, duygusal vampirizm ve annelik gölgesi. İçindeki bu enerji, sonsuz beslenme ihtiyacını ve onu verememe korkusunu taşır. Şifa, önce kendinizi beslemekten geçer';
+        return 'the dark side of the moon goddess - suffocating love, emotional vampirism, and the shadow of motherhood. This energy within carries the endless need for nurturing and the fear of being unable to provide it. Healing begins with nurturing yourself first';
       case ZodiacSign.leo:
-        return 'tahtından düşmüş kralın gölgesi - karşı konulmaz dikkat açlığı, yaratıcı kıskançlık ve parlamanın yasak zevki. Bu enerji, içinizdeki tanrısal kıvılcımın kaotik tezahürüdür. Bilinçle kullanılırsa ilham, bilinçsizce kullanılırsa tiranlık olur';
+        return 'the shadow of a dethroned monarch - irresistible hunger for attention, creative jealousy, and the forbidden pleasure of shining. This energy is the chaotic manifestation of the divine spark within you. Used consciously it inspires; unconsciously it becomes tyranny';
       case ZodiacSign.virgo:
-        return 'mükemmeliyetin karanlık yüzü - eleştiri silahı, bedenle savaş ve "asla yeterli olmama" laneti. İçinizdeki bu enerji, kutsal düzeni arayan ama kusurlarında boğulan arketipi taşır. Şifa, kusurun içindeki güzelliği bulmaktadır';
+        return 'the dark side of perfection - criticism as a weapon, war with the body, and the curse of "never being enough." This energy within carries the archetype that seeks sacred order but drowns in its flaws. Healing lies in finding beauty within imperfection';
       case ZodiacSign.libra:
-        return 'ilişki maskesi altında kaybolan benlik - insanlara bağımlılık, onay açlığı ve sahte harmoninin tuzağı. Bu enerji, aşkta kaybolma ve kendini bulma arasındaki kadim savaşı temsil eder. Denge, önce kendi içinizde kurulmalıdır';
+        return 'the self lost beneath the mask of relationships - dependence on people, hunger for approval, and the trap of false harmony. This energy represents the ancient battle between losing yourself in love and finding yourself. Balance must first be established within';
       case ZodiacSign.scorpio:
-        return 'derin suların en karanlık yerinde saklanan hazine - obsesif tutku, güç oyunları ve yok etme dürtüsü. Bu, ruhun en karanlık gecesinde bile yanan ateştir. Dönüştürülürse simyasal altın, bastırılırsa zehirli yılan olur';
+        return 'the treasure hidden in the darkest depths - obsessive passion, power games, and the urge to destroy. This is the fire that burns even in the soul\'s darkest night. Transformed it becomes alchemical gold; suppressed it becomes a venomous serpent';
       case ZodiacSign.sagittarius:
-        return 'kaçışın ve fanatizmin gölgesi - hakikati silah olarak kullanma, ruhani bypass ve "daha iyi bir yerin" hayali. İçinizdeki bu enerji, sonsuz arayışın hem şifası hem hastalığıdır. Denge, "şimdi ve burada" kalabilmektir';
+        return 'the shadow of escape and fanaticism - using truth as a weapon, spiritual bypass, and the fantasy of "somewhere better." This energy within is both the cure and the disease of endless seeking. Balance lies in being able to stay "here and now"';
       case ZodiacSign.capricorn:
-        return 'hırsın karanlık tahtı - başarı takıntısı, duygusal donukluk ve "tepedeki yalnızlık" laneti. Bu enerji, dünyevi başarının ruhani bedeli sorusunu sorar. Şifa, başarıyı aşkla birleştirmektir';
+        return 'the dark throne of ambition - success obsession, emotional numbness, and the curse of "loneliness at the top." This energy asks the question of the spiritual cost of worldly success. Healing comes from uniting success with love';
       case ZodiacSign.aquarius:
-        return 'yabancılaşmanın gölgesi - soğuk mesafe, duygusal kopukluk ve "farklı olma" laneti. İçinizdeki bu enerji, kolektiften ayrılmanın hem özgürleştirici hem de yalnızlaştırıcı yüzünü taşır. Denge, bağlılık içinde özgürlüktür';
+        return 'the shadow of alienation - cold distance, emotional disconnection, and the curse of "being different." This energy within carries both the liberating and isolating aspects of separating from the collective. Balance is freedom within connection';
       case ZodiacSign.pisces:
-        return 'okyanusun en karanlık derinlikleri - kurban arketipi, sınırsızlık kabusu ve kaçış bağımlılıkları. Bu enerji, tanrısal birlikle maddi ayrılık arasındaki ıstırabı taşır. Şifa, bedende ruhani olmayı öğrenmektir';
+        return 'the darkest depths of the ocean - the victim archetype, the nightmare of boundlessness, and escape addictions. This energy carries the anguish between divine unity and material separation. Healing means learning to be spiritual while embodied';
     }
   }
 
   static String _getNorthNodeLesson(ZodiacSign sign) {
     switch (sign) {
       case ZodiacSign.aries:
-        return 'Kendi ayakları üzerinde durmak, cesaret';
+        return 'Standing on your own feet, courage';
       case ZodiacSign.taurus:
-        return 'İç huzur, maddi güvenlik inşa etme';
+        return 'Inner peace, building material security';
       case ZodiacSign.gemini:
-        return 'İletişim, merak, esneklik';
+        return 'Communication, curiosity, flexibility';
       case ZodiacSign.cancer:
-        return 'Duygusal bağ, yuva kurma';
+        return 'Emotional bonding, creating a home';
       case ZodiacSign.leo:
-        return 'Yaratıcı ifade, liderlik';
+        return 'Creative expression, leadership';
       case ZodiacSign.virgo:
-        return 'Pratik hizmet, detaylara dikkat';
+        return 'Practical service, attention to detail';
       case ZodiacSign.libra:
-        return 'Ortaklık, denge, diplomasi';
+        return 'Partnership, balance, diplomacy';
       case ZodiacSign.scorpio:
-        return 'Dönüşüm, derinlik, paylaşım';
+        return 'Transformation, depth, sharing';
       case ZodiacSign.sagittarius:
-        return 'Anlam arayışı, genişleme';
+        return 'Search for meaning, expansion';
       case ZodiacSign.capricorn:
-        return 'Sorumluluk, kariyer, otorite';
+        return 'Responsibility, career, authority';
       case ZodiacSign.aquarius:
-        return 'Topluluk, yenilik, bağımsızlık';
+        return 'Community, innovation, independence';
       case ZodiacSign.pisces:
-        return 'Spiritüel bağlantı, teslimiyet';
+        return 'Spiritual connection, surrender';
     }
   }
 
   static String _getSouthNodePattern(ZodiacSign sign) {
     switch (sign) {
       case ZodiacSign.aries:
-        return 'Aşırı bağımsızlık ve bencillik';
+        return 'Excessive independence and selfishness';
       case ZodiacSign.taurus:
-        return 'Maddi bağımlılık ve direnç';
+        return 'Material attachment and resistance';
       case ZodiacSign.gemini:
-        return 'Yüzeysellik ve dağınıklık';
+        return 'Superficiality and scattered energy';
       case ZodiacSign.cancer:
-        return 'Aşırı duygusallık ve bağımlılık';
+        return 'Excessive emotionality and dependence';
       case ZodiacSign.leo:
-        return 'Ego ve dikkat bağımlılığı';
+        return 'Ego and attention addiction';
       case ZodiacSign.virgo:
-        return 'Aşırı eleştirellik ve mükemmeliyetçilik';
+        return 'Excessive criticism and perfectionism';
       case ZodiacSign.libra:
-        return 'Kararsızlık ve başkalarına bağımlılık';
+        return 'Indecision and dependence on others';
       case ZodiacSign.scorpio:
-        return 'Kontrol ihtiyacı ve intikamcılık';
+        return 'Need for control and vengefulness';
       case ZodiacSign.sagittarius:
-        return 'Kaçış ve aşırı idealizm';
+        return 'Escapism and excessive idealism';
       case ZodiacSign.capricorn:
-        return 'İşkoliklik ve duygusal soğukluk';
+        return 'Workaholism and emotional coldness';
       case ZodiacSign.aquarius:
-        return 'Mesafe ve bağlanma korkusu';
+        return 'Distance and fear of attachment';
       case ZodiacSign.pisces:
-        return 'Kurban rolü ve sınır eksikliği';
+        return 'Victim role and lack of boundaries';
     }
   }
 
   static String _getChironWound(ZodiacSign sign) {
     switch (sign) {
       case ZodiacSign.aries:
-        return 'Kimlik ve özgüven yarası';
+        return 'Identity and self-confidence wound';
       case ZodiacSign.taurus:
-        return 'Değersizlik ve maddi güvensizlik';
+        return 'Worthlessness and material insecurity';
       case ZodiacSign.gemini:
-        return 'İletişim ve kabul görme yarası';
+        return 'Communication and acceptance wound';
       case ZodiacSign.cancer:
-        return 'Aile ve duygusal güvenlik yarası';
+        return 'Family and emotional security wound';
       case ZodiacSign.leo:
-        return 'Yaratıcılık ve tanınma yarası';
+        return 'Creativity and recognition wound';
       case ZodiacSign.virgo:
-        return 'Mükemmeliyetçilik ve yetersizlik';
+        return 'Perfectionism and inadequacy';
       case ZodiacSign.libra:
-        return 'İlişki ve denge yarası';
+        return 'Relationship and balance wound';
       case ZodiacSign.scorpio:
-        return 'Güven ve ihanet yarası';
+        return 'Trust and betrayal wound';
       case ZodiacSign.sagittarius:
-        return 'Anlam ve inanç krizi';
+        return 'Meaning and faith crisis';
       case ZodiacSign.capricorn:
-        return 'Başarısızlık ve otorite yarası';
+        return 'Failure and authority wound';
       case ZodiacSign.aquarius:
-        return 'Farklılık ve yabancılaşma';
+        return 'Difference and alienation';
       case ZodiacSign.pisces:
-        return 'Spiritüel kopuş ve kayıp';
+        return 'Spiritual disconnection and loss';
     }
   }
 }

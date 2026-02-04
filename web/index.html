@@ -830,22 +830,6 @@
   </div>
 
   <script>
-    // ═══════════════════════════════════════════════════════════════════════════
-    // FIREBASE ANALYTICS STUB - Prevents white screen crash
-    // firebase_core_web tries to call ff_trigger_firebase_analytics even without
-    // firebase_analytics package. main.dart.js OVERWRITES normal assignments,
-    // so we use Object.defineProperty with writable:false to prevent that.
-    // ═══════════════════════════════════════════════════════════════════════════
-    Object.defineProperty(window, 'ff_trigger_firebase_analytics', {
-      value: function(callback) {
-        console.debug('Firebase Analytics stub - blocked, callback not invoked');
-        // DON'T call callback - this prevents Analytics code from trying to
-        // initialize Firebase again, which would cause "duplicate-app" error
-      },
-      writable: false,
-      configurable: false
-    });
-
     // Flag to track if loading screen has been removed
     var loadingRemoved = false;
 

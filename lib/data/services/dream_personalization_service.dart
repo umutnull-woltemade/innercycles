@@ -1,5 +1,5 @@
-/// Dream Personalization Service - Kişiselleştirilmiş Rüya Yorumlama Motoru
-/// Kullanıcı verisine dayalı derin kişiselleştirme, adaptif öğrenme, astrolojik entegrasyon
+/// Dream Personalization Service - Personalized Dream Interpretation Engine
+/// Deep personalization based on user data, adaptive learning, astrological integration
 library;
 
 import 'dart:convert';
@@ -14,23 +14,23 @@ import 'dream_interpretation_service.dart';
 import 'dream_memory_service.dart';
 
 // ════════════════════════════════════════════════════════════════════════════
-// KULLANICI RÜYA PROFİLİ
+// USER DREAM PROFILE
 // ════════════════════════════════════════════════════════════════════════════
 
-/// Rüya yorumlama stilleri
+/// Dream interpretation styles
 enum DreamStyle {
-  jungian('Jungian', 'Arketip odaklı, gölge çalışması, bilinçdışı analiz'),
-  spiritual('Spiritüel', 'Kozmik mesajlar, ruhani rehberlik, mistik yorumlama'),
-  practical('Pratik', 'Günlük yaşam odaklı, eylem önerileri, somut tavsiyeler'),
-  esoteric('Ezoterik', 'Kadim bilgelik, sembolizm, gizli öğretiler'),
-  psychological('Psikolojik', 'Modern psikoloji perspektifi, duygusal analiz');
+  jungian('Jungian', 'Archetype-focused, shadow work, unconscious analysis'),
+  spiritual('Spiritual', 'Cosmic messages, spiritual guidance, mystical interpretation'),
+  practical('Practical', 'Daily life focused, action suggestions, concrete advice'),
+  esoteric('Esoteric', 'Ancient wisdom, symbolism, hidden teachings'),
+  psychological('Psychological', 'Modern psychology perspective, emotional analysis');
 
   final String label;
   final String description;
   const DreamStyle(this.label, this.description);
 }
 
-/// Kullanıcı rüya profili - Kişiselleştirmenin temel modeli
+/// User dream profile - The fundamental model for personalization
 class UserDreamProfile {
   final String userId;
   final String? sunSign;
@@ -198,7 +198,7 @@ class UserDreamProfile {
     updatedAt: updatedAt ?? DateTime.now(),
   );
 
-  /// Profil tamamlanma yüzdesi
+  /// Profile completion percentage
   double get completionPercentage {
     int completed = 0;
     int total = 10;
@@ -217,18 +217,18 @@ class UserDreamProfile {
     return completed / total;
   }
 
-  /// Astroloji verisi var mı?
+  /// Has astrology data?
   bool get hasAstrologyData =>
       sunSign != null || moonSign != null || risingSign != null;
 
-  /// Yaşam bağlamı var mı?
+  /// Has life context?
   bool get hasLifeContext =>
       currentLifePhase != null ||
       lifeAreas.isNotEmpty ||
       recentLifeEvents.isNotEmpty;
 }
 
-/// Yorum geri bildirimi
+/// Interpretation feedback
 class InterpretationFeedback {
   final String dreamId;
   final int rating; // 1-5
@@ -269,10 +269,10 @@ class InterpretationFeedback {
 }
 
 // ════════════════════════════════════════════════════════════════════════════
-// RÜYA BAĞLAMI
+// DREAM CONTEXT
 // ════════════════════════════════════════════════════════════════════════════
 
-/// Rüya yorumlama için bağlam verisi
+/// Context data for dream interpretation
 class DreamContext {
   final MoonPhase moonPhase;
   final String? moonSign;
@@ -310,144 +310,144 @@ class DreamContext {
 }
 
 // ════════════════════════════════════════════════════════════════════════════
-// YAŞAM EVRELERİ
+// LIFE PHASES
 // ════════════════════════════════════════════════════════════════════════════
 
-/// Yaşam evreleri ve rüya etkileri
+/// Life phases and dream influences
 class LifePhaseData {
   static const Map<String, LifePhaseInfo> phases = {
-    'ogrenci': LifePhaseInfo(
-      id: 'ogrenci',
-      label: 'Öğrenci',
+    'student': LifePhaseInfo(
+      id: 'student',
+      label: 'Student',
       emoji: '📚',
       commonDreamThemes: [
-        'Sınavlar',
-        'geç kalma',
-        'hazırlıksız yakalanma',
-        'okul',
+        'Exams',
+        'being late',
+        'being caught unprepared',
+        'school',
       ],
-      interpretationFocus: 'Performans kaygısı, gelecek belirsizliği, öğrenme',
+      interpretationFocus: 'Performance anxiety, future uncertainty, learning',
       advice:
-          'Rüyalardaki sınav temaları genellikle hayatındaki değerlendirme anlarını yansıtır.',
+          'Exam themes in dreams usually reflect evaluation moments in your life.',
     ),
-    'yeni_ebeveyn': LifePhaseInfo(
-      id: 'yeni_ebeveyn',
-      label: 'Yeni Ebeveyn',
+    'new_parent': LifePhaseInfo(
+      id: 'new_parent',
+      label: 'New Parent',
       emoji: '👶',
       commonDreamThemes: [
-        'Bebek',
-        'koruma',
-        'kaybolma',
-        'yetersizlik',
-        'büyük sorumluluk',
+        'Baby',
+        'protection',
+        'losing',
+        'inadequacy',
+        'great responsibility',
       ],
       interpretationFocus:
-          'Koruma içgüdüsü, kimlik değişimi, yeni sorumluluklar',
+          'Protective instinct, identity change, new responsibilities',
       advice:
-          'Bebek rüyaları yeni projeleri veya kimliğinin yeni yönlerini de temsil edebilir.',
+          'Baby dreams can also represent new projects or new aspects of your identity.',
     ),
-    'kariyer_degisimi': LifePhaseInfo(
-      id: 'kariyer_degisimi',
-      label: 'Kariyer Değişimi',
+    'career_change': LifePhaseInfo(
+      id: 'career_change',
+      label: 'Career Change',
       emoji: '💼',
       commonDreamThemes: [
-        'Kaybolma',
-        'yeni binalar',
-        'yolculuk',
-        'geç kalma',
-        'hazırlıksız',
+        'Getting lost',
+        'new buildings',
+        'journey',
+        'being late',
+        'unprepared',
       ],
-      interpretationFocus: 'Kimlik sorgulaması, güvensizlik, fırsatlar',
+      interpretationFocus: 'Identity questioning, insecurity, opportunities',
       advice:
-          'Yeni mekanlar rüyanda yeni olasılıkları, kaybolma ise belirsizliği temsil eder.',
+          'New places in your dreams represent new possibilities, getting lost represents uncertainty.',
     ),
-    'yas_tutan': LifePhaseInfo(
-      id: 'yas_tutan',
-      label: 'Yas Sürecinde',
+    'grieving': LifePhaseInfo(
+      id: 'grieving',
+      label: 'In Grieving Process',
       emoji: '🖤',
       commonDreamThemes: [
-        'Kaybedilen kişi',
-        'vedalaşma',
-        'arayış',
-        'yeniden buluşma',
+        'Lost person',
+        'saying goodbye',
+        'searching',
+        'reunion',
       ],
-      interpretationFocus: 'Kayıp işleme, tamamlanmamış iş, ruhani bağlantı',
+      interpretationFocus: 'Processing loss, unfinished business, spiritual connection',
       advice:
-          'Kaybettiğin kişiyi rüyanda görmek doğal bir yas sürecidir ve şifa taşır.',
+          'Seeing the person you lost in your dreams is a natural part of the grieving process and carries healing.',
     ),
-    'emekli': LifePhaseInfo(
-      id: 'emekli',
-      label: 'Emekli',
+    'retired': LifePhaseInfo(
+      id: 'retired',
+      label: 'Retired',
       emoji: '🌅',
       commonDreamThemes: [
-        'Eski iş yeri',
-        'zaman',
-        'gençlik',
-        'tamamlanma',
-        'miras',
+        'Former workplace',
+        'time',
+        'youth',
+        'completion',
+        'legacy',
       ],
-      interpretationFocus: 'Yaşam değerlendirmesi, anlam arayışı, miras',
+      interpretationFocus: 'Life review, searching for meaning, legacy',
       advice:
-          'Geçmişe dair rüyalar yaşamını gözden geçirme ve bilgelik toparlama sürecidir.',
+          'Dreams about the past are a process of reviewing your life and gathering wisdom.',
     ),
-    'iliski_krizi': LifePhaseInfo(
-      id: 'iliski_krizi',
-      label: 'İlişki Krizi',
+    'relationship_crisis': LifePhaseInfo(
+      id: 'relationship_crisis',
+      label: 'Relationship Crisis',
       emoji: '💔',
       commonDreamThemes: [
         'Partner',
-        'ihanet',
-        'kavga',
-        'ayrılık',
-        'yabancı partner',
+        'betrayal',
+        'argument',
+        'separation',
+        'unfamiliar partner',
       ],
-      interpretationFocus: 'İlişki dinamikleri, güven, iletişim',
+      interpretationFocus: 'Relationship dynamics, trust, communication',
       advice:
-          'Partner rüyaları çoğu zaman içindeki anima/animus ile ilişkini yansıtır.',
+          'Partner dreams often reflect your relationship with your inner anima/animus.',
     ),
-    'saglik_krizi': LifePhaseInfo(
-      id: 'saglik_krizi',
-      label: 'Sağlık Mücadelesi',
+    'health_crisis': LifePhaseInfo(
+      id: 'health_crisis',
+      label: 'Health Struggle',
       emoji: '🏥',
       commonDreamThemes: [
-        'Beden',
-        'şifa',
-        'hastane',
-        'dönüşüm',
-        'ölüm ve yeniden doğuş',
+        'Body',
+        'healing',
+        'hospital',
+        'transformation',
+        'death and rebirth',
       ],
-      interpretationFocus: 'Beden bilinci, şifa, ölümlülük farkındalığı',
+      interpretationFocus: 'Body awareness, healing, mortality awareness',
       advice:
-          'Bedenle ilgili rüyalar genellikle fiziksel durumunla ilgili mesajlar taşır.',
+          'Dreams about the body usually carry messages related to your physical condition.',
     ),
-    'spiritüel_uyanis': LifePhaseInfo(
-      id: 'spiritüel_uyanis',
-      label: 'Spiritüel Uyanış',
+    'spiritual_awakening': LifePhaseInfo(
+      id: 'spiritual_awakening',
+      label: 'Spiritual Awakening',
       emoji: '✨',
       commonDreamThemes: [
-        'Işık',
-        'rehberler',
-        'uçuş',
-        'kozmik deneyimler',
-        'ölüm ve yeniden doğuş',
+        'Light',
+        'guides',
+        'flight',
+        'cosmic experiences',
+        'death and rebirth',
       ],
-      interpretationFocus: 'Ruhani gelişim, aşkın deneyimler, anlam arayışı',
+      interpretationFocus: 'Spiritual development, transcendent experiences, searching for meaning',
       advice:
-          'Spiritüel rüyalar yükselişin işaretleridir, mesajları ciddiye al.',
+          'Spiritual dreams are signs of your ascension, take their messages seriously.',
     ),
-    'yeni_baslangic': LifePhaseInfo(
-      id: 'yeni_baslangic',
-      label: 'Yeni Başlangıç',
+    'new_beginning': LifePhaseInfo(
+      id: 'new_beginning',
+      label: 'New Beginning',
       emoji: '🌱',
       commonDreamThemes: [
-        'Bebek',
-        'tohumlar',
-        'yeni ev',
-        'yolculuk başlangıcı',
+        'Baby',
+        'seeds',
+        'new house',
+        'start of journey',
       ],
-      interpretationFocus: 'Potansiyel, umut, büyüme fırsatları',
+      interpretationFocus: 'Potential, hope, growth opportunities',
       advice:
-          'Yeni başlangıç sembolleri içindeki potansiyeli ve büyüme alanlarını gösterir.',
+          'New beginning symbols show the potential within you and your areas for growth.',
     ),
   };
 
@@ -458,7 +458,7 @@ class LifePhaseData {
   static List<String> get allPhaseIds => phases.keys.toList();
 }
 
-/// Yaşam evresi bilgisi
+/// Life phase information
 class LifePhaseInfo {
   final String id;
   final String label;
@@ -478,10 +478,10 @@ class LifePhaseInfo {
 }
 
 // ════════════════════════════════════════════════════════════════════════════
-// KİŞİSELLEŞTİRME SERVİSİ
+// PERSONALIZATION SERVICE
 // ════════════════════════════════════════════════════════════════════════════
 
-/// Ana kişiselleştirme servisi
+/// Main personalization service
 class DreamPersonalizationService {
   static const String _profileKey = 'dream_profile_';
   static const String _feedbackKey = 'dream_feedback_';
@@ -493,7 +493,7 @@ class DreamPersonalizationService {
 
   DreamPersonalizationService(this._prefs, {this.memoryService});
 
-  /// Servisi başlat
+  /// Initialize service
   static Future<DreamPersonalizationService> init({
     DreamMemoryService? memoryService,
   }) async {
@@ -502,10 +502,10 @@ class DreamPersonalizationService {
   }
 
   // ═══════════════════════════════════════════════════════════════════════
-  // PROFİL YÖNETİMİ
+  // PROFILE MANAGEMENT
   // ═══════════════════════════════════════════════════════════════════════
 
-  /// Profil al veya oluştur
+  /// Get or create profile
   Future<UserDreamProfile> getOrCreateProfile(String userId) async {
     final key = '$_profileKey$userId';
     final json = _prefs.getString(key);
@@ -514,11 +514,11 @@ class DreamPersonalizationService {
       try {
         return UserDreamProfile.fromJson(jsonDecode(json));
       } catch (e) {
-        debugPrint('Profil yükleme hatası: $e');
+        debugPrint('Profile loading error: $e');
       }
     }
 
-    // Yeni profil oluştur
+    // Create new profile
     final newProfile = UserDreamProfile(
       userId: userId,
       createdAt: DateTime.now(),
@@ -529,7 +529,7 @@ class DreamPersonalizationService {
     return newProfile;
   }
 
-  /// Profili güncelle
+  /// Update profile
   Future<void> updateProfile(UserDreamProfile profile) async {
     final updatedProfile = profile.copyWith(updatedAt: DateTime.now());
     await _saveProfile(updatedProfile);
@@ -540,7 +540,7 @@ class DreamPersonalizationService {
     await _prefs.setString(key, jsonEncode(profile.toJson()));
   }
 
-  /// Profili sil
+  /// Delete profile
   Future<void> deleteProfile(String userId) async {
     await _prefs.remove('$_profileKey$userId');
     await _prefs.remove('$_feedbackKey$userId');
@@ -549,10 +549,10 @@ class DreamPersonalizationService {
   }
 
   // ═══════════════════════════════════════════════════════════════════════
-  // SEMBOL ÖĞRENME
+  // SYMBOL LEARNING
   // ═══════════════════════════════════════════════════════════════════════
 
-  /// Sembol görünümünü kaydet
+  /// Record symbol appearance
   Future<void> recordSymbolAppearance(
     String userId,
     String symbol, {
@@ -567,11 +567,11 @@ class DreamPersonalizationService {
     final updatedProfile = profile.copyWith(symbolFrequency: updatedFrequency);
     await updateProfile(updatedProfile);
 
-    // Öğrenme verisi güncelle
+    // Update learning data
     await _updateLearningData(userId, symbol, context, emotion);
   }
 
-  /// Kişisel sembol anlamı kaydet
+  /// Save personal symbol meaning
   Future<void> setPersonalSymbolMeaning(
     String userId,
     String symbol,
@@ -590,12 +590,12 @@ class DreamPersonalizationService {
     await updateProfile(updatedProfile);
   }
 
-  /// Kişisel sembol anlamı al
+  /// Get personal symbol meaning
   String? getPersonalSymbolMeaning(UserDreamProfile profile, String symbol) {
     return profile.personalSymbolMeanings[symbol.toLowerCase()];
   }
 
-  /// Kişisel sembol sözlüğü
+  /// Personal symbol dictionary
   Map<String, String> getPersonalSymbolDictionary(UserDreamProfile profile) {
     return Map.unmodifiable(profile.personalSymbolMeanings);
   }
@@ -616,7 +616,7 @@ class DreamPersonalizationService {
       } catch (_) {}
     }
 
-    // Sembol öğrenme verisini güncelle
+    // Update symbol learning data
     final symbolData = learningData[symbol] as Map<String, dynamic>? ?? {};
     final contexts = List<String>.from(symbolData['contexts'] ?? []);
     final emotions = List<String>.from(symbolData['emotions'] ?? []);
@@ -641,10 +641,10 @@ class DreamPersonalizationService {
   }
 
   // ═══════════════════════════════════════════════════════════════════════
-  // GERİ BİLDİRİM
+  // FEEDBACK
   // ═══════════════════════════════════════════════════════════════════════
 
-  /// Yorum geri bildirimi kaydet
+  /// Record interpretation feedback
   Future<void> recordInterpretationFeedback(
     String userId,
     String dreamId,
@@ -669,7 +669,7 @@ class DreamPersonalizationService {
     );
     updatedFeedback.add(newFeedback);
 
-    // Son 100 geri bildirimi tut
+    // Keep last 100 feedbacks
     if (updatedFeedback.length > 100) {
       updatedFeedback.removeRange(0, updatedFeedback.length - 100);
     }
@@ -677,7 +677,7 @@ class DreamPersonalizationService {
     final updatedProfile = profile.copyWith(feedbackHistory: updatedFeedback);
     await updateProfile(updatedProfile);
 
-    // Geri bildirimi ayrıca kaydet
+    // Save feedback details separately
     await _saveFeedbackDetails(userId, newFeedback);
   }
 
@@ -697,7 +697,7 @@ class DreamPersonalizationService {
 
     feedbackList.add(feedback.toJson());
 
-    // Son 200 geri bildirimi tut
+    // Keep last 200 feedbacks
     if (feedbackList.length > 200) {
       feedbackList.removeRange(0, feedbackList.length - 200);
     }
@@ -705,7 +705,7 @@ class DreamPersonalizationService {
     await _prefs.setString(key, jsonEncode(feedbackList));
   }
 
-  /// Ortalama yorum puanı
+  /// Average interpretation rating
   double getAverageRating(UserDreamProfile profile) {
     if (profile.feedbackHistory.isEmpty) return 0.0;
 
@@ -714,15 +714,15 @@ class DreamPersonalizationService {
   }
 
   // ═══════════════════════════════════════════════════════════════════════
-  // BAĞLAM OLUŞTURMA
+  // CONTEXT BUILDING
   // ═══════════════════════════════════════════════════════════════════════
 
-  /// Rüya bağlamı oluştur
+  /// Build dream context
   Future<DreamContext> buildContext(String userId, DateTime dreamTime) async {
     final profile = await getOrCreateProfile(userId);
     List<Dream> recentDreams = [];
 
-    // Memory service varsa son rüyaları al
+    // Get recent dreams if memory service is available
     if (memoryService != null) {
       recentDreams = await memoryService!.getRecentDreams(days: 7);
     }
@@ -748,26 +748,26 @@ class DreamPersonalizationService {
   }
 
   String? _calculateMoonSign(DateTime date) {
-    // Basit ay burcu hesabı (yaklaşık 2.5 gün her burçta)
+    // Simple moon sign calculation (approximately 2.5 days in each sign)
     final signs = [
-      'Koç',
-      'Boğa',
-      'İkizler',
-      'Yengeç',
-      'Aslan',
-      'Başak',
-      'Terazi',
-      'Akrep',
-      'Yay',
-      'Oğlak',
-      'Kova',
-      'Balık',
+      'Aries',
+      'Taurus',
+      'Gemini',
+      'Cancer',
+      'Leo',
+      'Virgo',
+      'Libra',
+      'Scorpio',
+      'Sagittarius',
+      'Capricorn',
+      'Aquarius',
+      'Pisces',
     ];
 
-    // Referans: 1 Ocak 2000 00:00 UTC - Ay Yengeç'te başlıyor
+    // Reference: January 1, 2000 00:00 UTC - Moon starts in Cancer
     final reference = DateTime.utc(2000, 1, 1);
     final daysSince = date.difference(reference).inDays;
-    final lunarCycle = 27.32; // Sidereal ay döngüsü
+    final lunarCycle = 27.32; // Sidereal lunar cycle
     final daysPerSign = lunarCycle / 12;
 
     final signIndex = ((daysSince % lunarCycle) / daysPerSign).floor() % 12;
@@ -777,25 +777,25 @@ class DreamPersonalizationService {
   List<String> _getActiveTransits(UserDreamProfile profile, DateTime date) {
     final transits = <String>[];
 
-    // Kullanıcının doğum verisi varsa ilgili transitleri hesapla
+    // Calculate relevant transits if user has birth data
     if (profile.sunSign != null) {
-      // Basit transit önerileri
+      // Simple transit suggestions
       final moonSign = _calculateMoonSign(date);
       if (moonSign != null) {
         if (_isCompatibleSign(profile.sunSign!, moonSign)) {
-          transits.add('Ay $moonSign\'de - uyumlu akış');
+          transits.add('Moon in $moonSign - harmonious flow');
         } else if (_isChallengeSign(profile.sunSign!, moonSign)) {
-          transits.add('Ay $moonSign\'de - iç gerilim olası');
+          transits.add('Moon in $moonSign - inner tension possible');
         }
       }
     }
 
-    // Genel transit bilgileri
+    // General transit information
     final month = date.month;
     if (month == 3 || month == 4) {
-      transits.add('Koç sezonu - yeni başlangıçlar');
+      transits.add('Aries season - new beginnings');
     } else if (month == 10 || month == 11) {
-      transits.add('Akrep sezonu - dönüşüm dönemi');
+      transits.add('Scorpio season - transformation period');
     }
 
     return transits;
@@ -803,65 +803,64 @@ class DreamPersonalizationService {
 
   bool _isCompatibleSign(String sign1, String sign2) {
     final compatible = {
-      'Koç': ['Aslan', 'Yay', 'İkizler', 'Kova'],
-      'Boğa': ['Başak', 'Oğlak', 'Yengeç', 'Balık'],
-      'İkizler': ['Terazi', 'Kova', 'Koç', 'Aslan'],
-      'Yengeç': ['Akrep', 'Balık', 'Boğa', 'Başak'],
-      'Aslan': ['Koç', 'Yay', 'İkizler', 'Terazi'],
-      'Başak': ['Boğa', 'Oğlak', 'Yengeç', 'Akrep'],
-      'Terazi': ['İkizler', 'Kova', 'Aslan', 'Yay'],
-      'Akrep': ['Yengeç', 'Balık', 'Başak', 'Oğlak'],
-      'Yay': ['Koç', 'Aslan', 'Terazi', 'Kova'],
-      'Oğlak': ['Boğa', 'Başak', 'Akrep', 'Balık'],
-      'Kova': ['İkizler', 'Terazi', 'Koç', 'Yay'],
-      'Balık': ['Yengeç', 'Akrep', 'Boğa', 'Oğlak'],
+      'Aries': ['Leo', 'Sagittarius', 'Gemini', 'Aquarius'],
+      'Taurus': ['Virgo', 'Capricorn', 'Cancer', 'Pisces'],
+      'Gemini': ['Libra', 'Aquarius', 'Aries', 'Leo'],
+      'Cancer': ['Scorpio', 'Pisces', 'Taurus', 'Virgo'],
+      'Leo': ['Aries', 'Sagittarius', 'Gemini', 'Libra'],
+      'Virgo': ['Taurus', 'Capricorn', 'Cancer', 'Scorpio'],
+      'Libra': ['Gemini', 'Aquarius', 'Leo', 'Sagittarius'],
+      'Scorpio': ['Cancer', 'Pisces', 'Virgo', 'Capricorn'],
+      'Sagittarius': ['Aries', 'Leo', 'Libra', 'Aquarius'],
+      'Capricorn': ['Taurus', 'Virgo', 'Scorpio', 'Pisces'],
+      'Aquarius': ['Gemini', 'Libra', 'Aries', 'Sagittarius'],
+      'Pisces': ['Cancer', 'Scorpio', 'Taurus', 'Capricorn'],
     };
     return compatible[sign1]?.contains(sign2) ?? false;
   }
 
   bool _isChallengeSign(String sign1, String sign2) {
     final challenge = {
-      'Koç': ['Yengeç', 'Oğlak'],
-      'Boğa': ['Aslan', 'Kova'],
-      'İkizler': ['Başak', 'Balık'],
-      'Yengeç': ['Koç', 'Terazi'],
-      'Aslan': ['Boğa', 'Akrep'],
-      'Başak': ['İkizler', 'Yay'],
-      'Terazi': ['Yengeç', 'Oğlak'],
-      'Akrep': ['Aslan', 'Kova'],
-      'Yay': ['Başak', 'Balık'],
-      'Oğlak': ['Koç', 'Terazi'],
-      'Kova': ['Boğa', 'Akrep'],
-      'Balık': ['İkizler', 'Yay'],
+      'Aries': ['Cancer', 'Capricorn'],
+      'Taurus': ['Leo', 'Aquarius'],
+      'Gemini': ['Virgo', 'Pisces'],
+      'Cancer': ['Aries', 'Libra'],
+      'Leo': ['Taurus', 'Scorpio'],
+      'Virgo': ['Gemini', 'Sagittarius'],
+      'Libra': ['Cancer', 'Capricorn'],
+      'Scorpio': ['Leo', 'Aquarius'],
+      'Sagittarius': ['Virgo', 'Pisces'],
+      'Capricorn': ['Aries', 'Libra'],
+      'Aquarius': ['Taurus', 'Scorpio'],
+      'Pisces': ['Gemini', 'Sagittarius'],
     };
     return challenge[sign1]?.contains(sign2) ?? false;
   }
 
   String? _getCurrentRetrograde(DateTime date) {
-    // Basit retro takvimi (2024-2025)
-    final year = date.year;
+    // Simple retrograde calendar (2024-2025)
     final month = date.month;
     final day = date.day;
 
-    // Merkür retro dönemleri (yılda yaklaşık 3 kez)
-    final merkurRetros = [
-      [1, 1, 1, 25], // Ocak başı
-      [4, 1, 4, 25], // Nisan
-      [8, 5, 8, 28], // Ağustos
-      [11, 25, 12, 15], // Kasım sonu - Aralık ortası
+    // Mercury retrograde periods (approximately 3 times per year)
+    final mercuryRetros = [
+      [1, 1, 1, 25], // Early January
+      [4, 1, 4, 25], // April
+      [8, 5, 8, 28], // August
+      [11, 25, 12, 15], // Late November - Mid December
     ];
 
-    for (final retro in merkurRetros) {
+    for (final retro in mercuryRetros) {
       if ((month == retro[0] && day >= retro[1]) ||
           (month == retro[2] && day <= retro[3])) {
-        return 'Merkür';
+        return 'Mercury';
       }
     }
 
-    // Venüs retro (her 18 ayda bir, yaklaşık 40 gün)
-    if ((year == 2024 && month >= 3 && month <= 4) ||
-        (year == 2025 && month >= 3 && month <= 4)) {
-      return 'Venüs';
+    // Venus retrograde (every 18 months, approximately 40 days)
+    if ((date.year == 2024 && month >= 3 && month <= 4) ||
+        (date.year == 2025 && month >= 3 && month <= 4)) {
+      return 'Venus';
     }
 
     return null;
@@ -869,50 +868,50 @@ class DreamPersonalizationService {
 
   String _getSeason(DateTime date) {
     final month = date.month;
-    if (month >= 3 && month <= 5) return 'İlkbahar';
-    if (month >= 6 && month <= 8) return 'Yaz';
-    if (month >= 9 && month <= 11) return 'Sonbahar';
-    return 'Kış';
+    if (month >= 3 && month <= 5) return 'Spring';
+    if (month >= 6 && month <= 8) return 'Summer';
+    if (month >= 9 && month <= 11) return 'Autumn';
+    return 'Winter';
   }
 
   String _getDayOfWeek(DateTime date) {
     final days = [
-      'Pazartesi',
-      'Salı',
-      'Çarşamba',
-      'Perşembe',
-      'Cuma',
-      'Cumartesi',
-      'Pazar',
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday',
+      'Sunday',
     ];
     return days[date.weekday - 1];
   }
 
   // ═══════════════════════════════════════════════════════════════════════
-  // KİŞİSELLEŞTİRİLMİŞ YORUM
+  // PERSONALIZED INTERPRETATION
   // ═══════════════════════════════════════════════════════════════════════
 
-  /// Kullanıcıya göre yorum ayarla
+  /// Adjust interpretation for user
   String adjustInterpretationForUser(
     String interpretation,
     UserDreamProfile profile,
   ) {
     var adjusted = interpretation;
 
-    // Yaş grubuna göre dil ayarla
+    // Adjust language for age group
     if (profile.age != null) {
       adjusted = _adjustForAge(adjusted, profile.age!);
     }
 
-    // Stil terciğine göre ayarla
+    // Adjust for style preference
     adjusted = _adjustForStyle(adjusted, profile.preferredStyle);
 
-    // Yaşam evresine göre bağlam ekle
+    // Add context for life phase
     if (profile.currentLifePhase != null) {
       adjusted = _addLifePhaseContext(adjusted, profile.currentLifePhase!);
     }
 
-    // Kültürel arka plana göre ayarla
+    // Adjust for cultural background
     if (profile.culturalBackground != null) {
       adjusted = _adjustForCulture(adjusted, profile.culturalBackground!);
     }
@@ -922,11 +921,11 @@ class DreamPersonalizationService {
 
   String _adjustForAge(String text, int age) {
     if (age < 25) {
-      // Daha genç dil, daha fazla emoji ipuçları
-      return text.replaceAll('bilinçaltı', 'iç dünyan');
+      // Younger language, more emoji hints
+      return text.replaceAll('subconscious', 'inner world');
     } else if (age > 60) {
-      // Daha bilge, olgun dil
-      return text.replaceAll('gelişim', 'olgunlaşma');
+      // Wiser, mature language
+      return text.replaceAll('development', 'maturation');
     }
     return text;
   }
@@ -934,26 +933,26 @@ class DreamPersonalizationService {
   String _adjustForStyle(String text, DreamStyle style) {
     switch (style) {
       case DreamStyle.practical:
-        // Daha az mistik, daha fazla somut
+        // Less mystical, more concrete
         return text
             .replaceAll(
-              'evren sana mesaj gönderiyor',
-              'bilinçaltın sana bir şey söylüyor',
+              'the universe is sending you a message',
+              'your subconscious is telling you something',
             )
-            .replaceAll('kozmik', 'derin');
+            .replaceAll('cosmic', 'deep');
       case DreamStyle.spiritual:
-        // Daha spiritüel vurgu
+        // More spiritual emphasis
         return text
-            .replaceAll('bilinçaltı', 'ruhun')
-            .replaceAll('psikolojik', 'spiritüel');
+            .replaceAll('subconscious', 'soul')
+            .replaceAll('psychological', 'spiritual');
       case DreamStyle.esoteric:
-        // Kadim bilgelik vurgusu
-        return text.replaceAll('analiz', 'okuma').replaceAll('yorum', 'keşif');
+        // Ancient wisdom emphasis
+        return text.replaceAll('analysis', 'reading').replaceAll('interpretation', 'discovery');
       case DreamStyle.psychological:
-        // Bilimsel dil
+        // Scientific language
         return text
-            .replaceAll('kadim', 'psikolojik')
-            .replaceAll('mistik', 'bilinçdışı');
+            .replaceAll('ancient', 'psychological')
+            .replaceAll('mystical', 'unconscious');
       default:
         return text;
     }
@@ -962,23 +961,21 @@ class DreamPersonalizationService {
   String _addLifePhaseContext(String text, String phaseId) {
     final phase = LifePhaseData.getPhase(phaseId);
     if (phase != null) {
-      return '$text\n\n${phase.emoji} **Yaşam Evren Bağlamı:** ${phase.advice}';
+      return '$text\n\n${phase.emoji} **Life Phase Context:** ${phase.advice}';
     }
     return text;
   }
 
   String _adjustForCulture(String text, String culture) {
-    // Kültürel referansları ayarla
+    // Adjust cultural references
     switch (culture.toLowerCase()) {
-      case 'türk':
       case 'turkish':
-        // Türk kültürel referansları zaten mevcut
+        // Turkish cultural references
         return text;
-      case 'batı':
       case 'western':
         return text.replaceAll(
-          'kadim bilgeler',
-          'Jung ve Freud gibi psikologlar',
+          'ancient sages',
+          'psychologists like Jung and Freud',
         );
       default:
         return text;
@@ -986,10 +983,10 @@ class DreamPersonalizationService {
   }
 
   // ═══════════════════════════════════════════════════════════════════════
-  // AI PROMPT OLUŞTURMA
+  // AI PROMPT GENERATION
   // ═══════════════════════════════════════════════════════════════════════
 
-  /// Kişiselleştirilmiş AI promptu oluştur
+  /// Generate personalized AI prompt
   Future<String> generatePersonalizedPrompt(
     DreamInput input,
     UserDreamProfile profile,
@@ -1000,126 +997,126 @@ class DreamPersonalizationService {
 
     final buffer = StringBuffer();
 
-    buffer.writeln('=== KİŞİSELLEŞTİRİLMİŞ RÜYA YORUMU TALİMATI ===\n');
+    buffer.writeln('=== PERSONALIZED DREAM INTERPRETATION INSTRUCTION ===\n');
 
-    // Kullanıcı profili
-    buffer.writeln('KULLANICI PROFİLİ:');
+    // User profile
+    buffer.writeln('USER PROFILE:');
     if (profile.sunSign != null) {
-      buffer.writeln('- Güneş Burcu: ${profile.sunSign}');
+      buffer.writeln('- Sun Sign: ${profile.sunSign}');
     }
     if (profile.moonSign != null) {
-      buffer.writeln('- Ay Burcu: ${profile.moonSign}');
+      buffer.writeln('- Moon Sign: ${profile.moonSign}');
     }
     if (profile.risingSign != null) {
-      buffer.writeln('- Yükselen: ${profile.risingSign}');
+      buffer.writeln('- Rising: ${profile.risingSign}');
     }
     if (profile.age != null) {
-      buffer.writeln('- Yaş: ${profile.age}');
+      buffer.writeln('- Age: ${profile.age}');
     }
     if (profile.currentLifePhase != null) {
       final phase = LifePhaseData.getPhase(profile.currentLifePhase!);
       buffer.writeln(
-        '- Yaşam Evresi: ${phase?.label ?? profile.currentLifePhase}',
+        '- Life Phase: ${phase?.label ?? profile.currentLifePhase}',
       );
     }
     if (profile.lifeAreas.isNotEmpty) {
-      buffer.writeln('- Odak Alanları: ${profile.lifeAreas.join(", ")}');
+      buffer.writeln('- Focus Areas: ${profile.lifeAreas.join(", ")}');
     }
     if (profile.recentLifeEvents.isNotEmpty) {
       buffer.writeln(
-        '- Son Yaşam Olayları: ${profile.recentLifeEvents.join(", ")}',
+        '- Recent Life Events: ${profile.recentLifeEvents.join(", ")}',
       );
     }
 
     buffer.writeln('\n');
 
-    // Rüya verisi
-    buffer.writeln('RÜYA:');
+    // Dream data
+    buffer.writeln('DREAM:');
     buffer.writeln('"${input.dreamDescription}"');
     buffer.writeln('\n');
 
-    // Duygusal ton
+    // Emotional tone
     if (input.dominantEmotion != null) {
-      buffer.writeln('HAKİM DUYGU: ${input.dominantEmotion!.label}');
+      buffer.writeln('DOMINANT EMOTION: ${input.dominantEmotion!.label}');
     }
     if (input.wakingFeeling != null) {
-      buffer.writeln('UYANDIKTAN SONRAKİ HİS: ${input.wakingFeeling}');
+      buffer.writeln('FEELING AFTER WAKING: ${input.wakingFeeling}');
     }
     if (input.isRecurring) {
       buffer.writeln(
-        'TEKRARLAYAN RÜYA: Evet (${input.recurringCount ?? "?"} kez)',
+        'RECURRING DREAM: Yes (${input.recurringCount ?? "?"} times)',
       );
     }
 
     buffer.writeln('\n');
 
-    // Bağlam
-    buffer.writeln('BAĞLAM:');
+    // Context
+    buffer.writeln('CONTEXT:');
     buffer.writeln(
-      '- Ay Fazı: ${context.moonPhase.label} ${context.moonPhase.emoji}',
+      '- Moon Phase: ${context.moonPhase.label} ${context.moonPhase.emoji}',
     );
     if (context.moonSign != null) {
-      buffer.writeln('- Ay Burcu: ${context.moonSign}');
+      buffer.writeln('- Moon Sign: ${context.moonSign}');
     }
     if (context.activeTransits.isNotEmpty) {
       buffer.writeln(
-        '- Aktif Transitler: ${context.activeTransits.join(", ")}',
+        '- Active Transits: ${context.activeTransits.join(", ")}',
       );
     }
     if (context.currentRetrograde != null) {
-      buffer.writeln('- Retro: ${context.currentRetrograde}');
+      buffer.writeln('- Retrograde: ${context.currentRetrograde}');
     }
-    buffer.writeln('- Mevsim: ${context.season}');
-    buffer.writeln('- Gün: ${context.dayOfWeek}');
+    buffer.writeln('- Season: ${context.season}');
+    buffer.writeln('- Day: ${context.dayOfWeek}');
 
     buffer.writeln('\n');
 
-    // Kişisel sembol geçmişi
+    // Personal symbol history
     if (recentSymbols.isNotEmpty) {
-      buffer.writeln('KİŞİSEL SEMBOL GEÇMİŞİ:');
+      buffer.writeln('PERSONAL SYMBOL HISTORY:');
       for (final entry in recentSymbols.entries.take(5)) {
-        buffer.writeln('- ${entry.key}: ${entry.value} kez görüldü');
+        buffer.writeln('- ${entry.key}: seen ${entry.value} times');
         final personalMeaning = getPersonalSymbolMeaning(profile, entry.key);
         if (personalMeaning != null) {
-          buffer.writeln('  Kişisel anlam: $personalMeaning');
+          buffer.writeln('  Personal meaning: $personalMeaning');
         }
       }
       buffer.writeln('\n');
     }
 
-    // Önceki rüyalarla bağlantı
+    // Connection with previous dreams
     if (context.recentDreams.isNotEmpty) {
-      buffer.writeln('SON 7 GÜNDEKİ RÜYALAR:');
+      buffer.writeln('DREAMS IN THE LAST 7 DAYS:');
       for (final dream in context.recentDreams.take(3)) {
         buffer.writeln(
           '- ${dream.dreamDate.day}/${dream.dreamDate.month}: '
           '${dream.content.length > 50 ? "${dream.content.substring(0, 50)}..." : dream.content}',
         );
         if (dream.symbols.isNotEmpty) {
-          buffer.writeln('  Semboller: ${dream.symbols.join(", ")}');
+          buffer.writeln('  Symbols: ${dream.symbols.join(", ")}');
         }
       }
       buffer.writeln('\n');
     }
 
-    // Stil rehberi
-    buffer.writeln('YORUM STİLİ: ${profile.preferredStyle.label}');
+    // Style guide
+    buffer.writeln('INTERPRETATION STYLE: ${profile.preferredStyle.label}');
     buffer.writeln(styleGuide);
     buffer.writeln('\n');
 
-    // Özel talimatlar
-    buffer.writeln('ÖZEL TALİMATLAR:');
-    buffer.writeln('1. Kullanıcının burç profilini yoruma entegre et');
-    buffer.writeln('2. Kişisel sembol anlamlarını dikkate al');
-    buffer.writeln('3. Yaşam evresine uygun tavsiyeler ver');
-    buffer.writeln('4. Önceki rüyalarla bağlantı kur (varsa)');
+    // Special instructions
+    buffer.writeln('SPECIAL INSTRUCTIONS:');
+    buffer.writeln('1. Integrate the user\'s zodiac profile into the interpretation');
+    buffer.writeln('2. Consider personal symbol meanings');
+    buffer.writeln('3. Give advice appropriate to life phase');
+    buffer.writeln('4. Connect with previous dreams (if any)');
     buffer.writeln('5. ${profile.preferredStyle.description}');
 
     if (profile.age != null) {
       if (profile.age! < 25) {
-        buffer.writeln('6. Genç ve enerjik bir dil kullan');
+        buffer.writeln('6. Use young and energetic language');
       } else if (profile.age! > 55) {
-        buffer.writeln('6. Bilge ve olgun bir dil kullan');
+        buffer.writeln('6. Use wise and mature language');
       }
     }
 
@@ -1127,7 +1124,7 @@ class DreamPersonalizationService {
   }
 
   Map<String, int> _getRecentSymbolPatterns(UserDreamProfile profile) {
-    // Sıklığa göre sırala
+    // Sort by frequency
     final sorted = profile.symbolFrequency.entries.toList()
       ..sort((a, b) => b.value.compareTo(a.value));
 
@@ -1138,93 +1135,93 @@ class DreamPersonalizationService {
     switch (style) {
       case DreamStyle.jungian:
         return '''
-- Arketiplere odaklan: Gölge, Anima/Animus, Bilge Yaşlı, vb.
-- Bireyselleşme sürecini vurgula
-- Kolektif bilinçdışından referanslar ver
-- Sembollerin evrensel ve kişisel anlamlarını ayır''';
+- Focus on archetypes: Shadow, Anima/Animus, Wise Old Man, etc.
+- Emphasize the individuation process
+- Provide references from the collective unconscious
+- Distinguish between universal and personal meanings of symbols''';
       case DreamStyle.spiritual:
         return '''
-- Ruhani rehberlik tonunda yaz
-- Kozmik mesajlar ve işaretlere vurgu yap
-- Meditasyon ve spiritüel pratik önerileri ekle
-- Yüksek benlik ve ruhani gelişimden bahset''';
+- Write in a spiritual guidance tone
+- Emphasize cosmic messages and signs
+- Add meditation and spiritual practice suggestions
+- Talk about higher self and spiritual development''';
       case DreamStyle.practical:
         return '''
-- Somut ve uygulanabilir tavsiyeler ver
-- Günlük yaşamla doğrudan bağlantı kur
-- Mistik dilin minimum ol
-- Problem çözme odaklı yaklaş''';
+- Give concrete and actionable advice
+- Make direct connections to daily life
+- Use minimal mystical language
+- Approach with problem-solving focus''';
       case DreamStyle.esoteric:
         return '''
-- Kadim bilgelik ve mistik geleneklere referans ver
-- Sembolizmin derin katmanlarını aç
-- Ezoterik kavramları kullan ama açıkla
-- Gizli öğretilere göndermeler yap''';
+- Reference ancient wisdom and mystical traditions
+- Open deeper layers of symbolism
+- Use esoteric concepts but explain them
+- Make references to hidden teachings''';
       case DreamStyle.psychological:
         return '''
-- Bilimsel psikoloji terminolojisi kullan
-- Duygu düzenleme ve başa çıkma stratejileri öner
-- Savunma mekanizmalarını tanımla
-- Terapötik içgörüler sun''';
+- Use scientific psychology terminology
+- Suggest emotion regulation and coping strategies
+- Identify defense mechanisms
+- Offer therapeutic insights''';
     }
   }
 
   // ═══════════════════════════════════════════════════════════════════════
-  // KULLANICI İÇGÖRÜLERİ
+  // USER INSIGHTS
   // ═══════════════════════════════════════════════════════════════════════
 
-  /// Kişisel kalıpları al
+  /// Get personal patterns
   List<String> getPersonalPatterns(UserDreamProfile profile) {
     final patterns = <String>[];
 
-    // Sembol kalıpları
+    // Symbol patterns
     final topSymbols = _getRecentSymbolPatterns(profile);
     if (topSymbols.isNotEmpty) {
       final topSymbol = topSymbols.entries.first;
       if (topSymbol.value >= 3) {
         patterns.add(
-          '${topSymbol.key.toUpperCase()} sembolü rüyalarında sıkça beliriyor (${topSymbol.value} kez). '
-          'Bu senin için özel bir anlam taşıyor olabilir.',
+          'The ${topSymbol.key.toUpperCase()} symbol appears frequently in your dreams (${topSymbol.value} times). '
+          'This may hold special meaning for you.',
         );
       }
     }
 
-    // Duygusal kalıplar
+    // Emotional patterns
     if (profile.dominantDreamEmotion != null) {
       patterns.add(
-        'Rüyalarında en çok ${profile.dominantDreamEmotion!.label.toLowerCase()} duygusu hakim. '
+        'The ${profile.dominantDreamEmotion!.label.toLowerCase()} emotion is most dominant in your dreams. '
         '${profile.dominantDreamEmotion!.hint}',
       );
     }
 
-    // Lucid rüya eğilimi
+    // Lucid dream tendency
     if (profile.lucidDreamFrequency > 0.3) {
       patterns.add(
-        'Lucid rüya deneyimin ortalamanın üzerinde. Bu farkındalığı geliştirmek için '
-        'MILD veya reality check tekniklerini kullanabilirsin.',
+        'Your lucid dream experience is above average. You can use '
+        'MILD or reality check techniques to develop this awareness.',
       );
     }
 
-    // Kâbus sıklığı
+    // Nightmare frequency
     if (profile.nightmareFrequency > 0.2) {
       patterns.add(
-        'Kâbus sıklığın biraz yüksek görünüyor. Bu, işlenmemiş duygusal malzeme '
-        'veya stres dönemlerine işaret edebilir.',
+        'Your nightmare frequency seems a bit high. This may indicate '
+        'unprocessed emotional material or stress periods.',
       );
     }
 
-    // Tekrarlayan temalar
+    // Recurring themes
     if (profile.recurringThemes.isNotEmpty) {
       patterns.add(
-        'Tekrarlayan temalar: ${profile.recurringThemes.join(", ")}. '
-        'Bu temalar bilinçaltının sürekli işlediği konuları gösteriyor.',
+        'Recurring themes: ${profile.recurringThemes.join(", ")}. '
+        'These themes show topics that your subconscious is continuously processing.',
       );
     }
 
     return patterns;
   }
 
-  /// Kullanıcıya özel transit bilgileri
+  /// User-specific transit information
   Future<List<String>> getRelevantTransitsForUser(String userId) async {
     final profile = await getOrCreateProfile(userId);
     final now = DateTime.now();
@@ -1233,51 +1230,45 @@ class DreamPersonalizationService {
 
     if (profile.sunSign == null) {
       return [
-        'Doğum bilgilerini ekleyerek kişisel transitlerini görebilirsin.',
+        'You can see your personal transits by adding your birth information.',
       ];
     }
 
-    // Ay transitini kontrol et
+    // Check Moon transit
     final currentMoonSign = _calculateMoonSign(now);
     if (currentMoonSign != null) {
       if (currentMoonSign == profile.sunSign) {
         transits.add(
-          '🌙 Ay senin burcunda (${profile.sunSign}) - Duygusal yoğunluk ve sezgi artışı',
+          'Moon is in your sign (${profile.sunSign}) - Emotional intensity and intuition increase',
         );
       }
       if (currentMoonSign == profile.moonSign) {
         transits.add(
-          '🌙 Ay doğum Ay burcunda (${profile.moonSign}) - İç dünyayla derin bağlantı',
+          'Moon is in your natal Moon sign (${profile.moonSign}) - Deep connection with inner world',
         );
       }
     }
 
-    // Retro kontrol
+    // Check retrograde
     final retrograde = _getCurrentRetrograde(now);
     if (retrograde != null) {
-      transits.add('⏪ $retrograde retrosu aktif - Geçmişe dair rüyalar olası');
+      transits.add('$retrograde retrograde active - Dreams about the past likely');
     }
 
-    // Ay fazı
+    // Moon phase - basic info without undefined AstroDreamCorrelations
     final moonPhase = MoonPhaseCalculator.calculate(now);
-    final phaseDetail = AstroRuyaKorelasyonlari
-        .ayFaziDetay[moonPhase.name.toLowerCase().replaceAll('ı', 'i')];
-    if (phaseDetail != null) {
-      transits.add(
-        '${phaseDetail.emoji} ${phaseDetail.phase}: ${phaseDetail.dreamQuality}',
-      );
-    }
+    transits.add('Moon phase: ${moonPhase.name} - affects dream clarity');
 
     return transits.isEmpty
-        ? ['Şu an aktif önemli bir transit bulunmuyor.']
+        ? ['No significant active transits at the moment.']
         : transits;
   }
 
   // ═══════════════════════════════════════════════════════════════════════
-  // BURÇ-BAZLI KİŞİSELLEŞTİRME
+  // ZODIAC-BASED PERSONALIZATION
   // ═══════════════════════════════════════════════════════════════════════
 
-  /// Burca özel yorum ayarlaması
+  /// Zodiac-specific interpretation adjustment
   String getZodiacAdjustedInterpretation(
     String baseInterpretation,
     UserDreamProfile profile,
@@ -1291,17 +1282,17 @@ class DreamPersonalizationService {
 
     buffer.writeln('\n\n---');
     buffer.writeln(
-      '${zodiacProfile.emoji} **${zodiacProfile.sign} Burcu Perspektifi:**',
+      '${zodiacProfile.emoji} **${zodiacProfile.sign} Perspective:**',
     );
     buffer.writeln(zodiacProfile.dreamAdvice);
 
-    // Ay burcunu da ekle
+    // Add Moon sign too
     if (profile.moonSign != null) {
       final moonProfile = ZodiacDreamInsights.getProfile(profile.moonSign!);
       if (moonProfile != null) {
-        buffer.writeln('\n🌙 **Ay Burcun (${moonProfile.sign}) Etkisi:**');
+        buffer.writeln('\n**Your Moon Sign (${moonProfile.sign}) Influence:**');
         buffer.writeln(
-          'Duygusal işleme tarzın: ${moonProfile.commonThemes.take(3).join(", ")} temaları etrafında döner.',
+          'Your emotional processing style revolves around themes of: ${moonProfile.commonThemes.take(3).join(", ")}.',
         );
       }
     }
@@ -1310,31 +1301,31 @@ class DreamPersonalizationService {
   }
 
   // ═══════════════════════════════════════════════════════════════════════
-  // İSTATİSTİKLER
+  // STATISTICS
   // ═══════════════════════════════════════════════════════════════════════
 
-  /// Kullanıcı rüya istatistikleri
+  /// User dream statistics
   Future<Map<String, dynamic>> getUserDreamStats(String userId) async {
     final profile = await getOrCreateProfile(userId);
 
     final stats = <String, dynamic>{
-      'profilTamamlama': '${(profile.completionPercentage * 100).toInt()}%',
-      'toplamSembol': profile.symbolFrequency.length,
-      'enSikSembol': _getTopSymbol(profile),
-      'kisiselAnlamlar': profile.personalSymbolMeanings.length,
-      'tekrarlayanTemalar': profile.recurringThemes.length,
-      'lucidOrani': '${(profile.lucidDreamFrequency * 100).toInt()}%',
-      'kabusOrani': '${(profile.nightmareFrequency * 100).toInt()}%',
-      'geriBildirimSayisi': profile.feedbackHistory.length,
-      'ortalamaPuan': getAverageRating(profile).toStringAsFixed(1),
-      'tercihedilenStil': profile.preferredStyle.label,
+      'profileCompletion': '${(profile.completionPercentage * 100).toInt()}%',
+      'totalSymbols': profile.symbolFrequency.length,
+      'mostFrequentSymbol': _getTopSymbol(profile),
+      'personalMeanings': profile.personalSymbolMeanings.length,
+      'recurringThemes': profile.recurringThemes.length,
+      'lucidRatio': '${(profile.lucidDreamFrequency * 100).toInt()}%',
+      'nightmareRatio': '${(profile.nightmareFrequency * 100).toInt()}%',
+      'feedbackCount': profile.feedbackHistory.length,
+      'averageRating': getAverageRating(profile).toStringAsFixed(1),
+      'preferredStyle': profile.preferredStyle.label,
     };
 
     if (profile.hasAstrologyData) {
-      stats['burcProfili'] = {
-        'gunes': profile.sunSign,
-        'ay': profile.moonSign,
-        'yukselen': profile.risingSign,
+      stats['zodiacProfile'] = {
+        'sun': profile.sunSign,
+        'moon': profile.moonSign,
+        'rising': profile.risingSign,
       };
     }
 
@@ -1352,71 +1343,71 @@ class DreamPersonalizationService {
 }
 
 // ════════════════════════════════════════════════════════════════════════════
-// YARDIMCI KİŞİSELLEŞTİRME METODLARI
+// PERSONALIZATION HELPER METHODS
 // ════════════════════════════════════════════════════════════════════════════
 
-/// Kişiselleştirme yardımcıları
+/// Personalization helpers
 class PersonalizationHelpers {
-  /// Yaşa göre dil seviyesi önerisi
+  /// Language level suggestion based on age
   static String getLanguageLevelForAge(int age) {
-    if (age < 18) return 'genç';
-    if (age < 30) return 'genç yetişkin';
-    if (age < 50) return 'orta yaş';
-    if (age < 65) return 'olgun';
-    return 'yaşlı bilge';
+    if (age < 18) return 'young';
+    if (age < 30) return 'young adult';
+    if (age < 50) return 'middle age';
+    if (age < 65) return 'mature';
+    return 'elder sage';
   }
 
-  /// Yaşam alanına göre odak sembolleri
+  /// Focus symbols for life area
   static List<String> getFocusSymbolsForLifeArea(String area) {
     final focusSymbols = {
-      'kariyer': ['ofis', 'patron', 'para', 'başarı', 'merdiven', 'bina'],
-      'ask': ['partner', 'evlilik', 'kalp', 'öpücük', 'yabancı', 'ayrılık'],
-      'saglik': ['hastane', 'doktor', 'beden', 'ilaç', 'şifa', 'ağrı'],
-      'aile': ['anne', 'baba', 'ev', 'çocuk', 'kardeş', 'akraba'],
-      'finans': ['para', 'banka', 'borç', 'zenginlik', 'kayıp', 'bulma'],
-      'egitim': ['okul', 'sınav', 'öğretmen', 'kitap', 'öğrenme', 'diploma'],
-      'spiritüel': ['ışık', 'uçuş', 'melek', 'tanrı', 'tapınak', 'meditasyon'],
+      'career': ['office', 'boss', 'money', 'success', 'stairs', 'building'],
+      'love': ['partner', 'marriage', 'heart', 'kiss', 'stranger', 'separation'],
+      'health': ['hospital', 'doctor', 'body', 'medicine', 'healing', 'pain'],
+      'family': ['mother', 'father', 'home', 'child', 'sibling', 'relative'],
+      'finance': ['money', 'bank', 'debt', 'wealth', 'loss', 'finding'],
+      'education': ['school', 'exam', 'teacher', 'book', 'learning', 'diploma'],
+      'spiritual': ['light', 'flight', 'angel', 'god', 'temple', 'meditation'],
     };
 
     return focusSymbols[area.toLowerCase()] ?? [];
   }
 
-  /// Mevsime göre ek yorum
+  /// Additional interpretation based on season
   static String getSeasonalInsight(String season) {
     switch (season.toLowerCase()) {
-      case 'ilkbahar':
-        return 'İlkbahar enerjisi yeni başlangıçları ve yeniden doğuşu destekler. '
-            'Rüyalarında filizlenen tohumlar ve açan çiçekler umut taşır.';
-      case 'yaz':
-        return 'Yaz enerjisi dışa dönüklük ve bolluk getirir. '
-            'Rüyalarındaki güneş ve sıcaklık yaşam gücünü temsil eder.';
-      case 'sonbahar':
-        return 'Sonbahar bırakma ve hasat zamanıdır. '
-            'Rüyalarındaki düşen yapraklar ve hasat sembolleri tamamlanmayı gösterir.';
-      case 'kış':
-        return 'Kış içe dönüş ve dinlenme zamanıdır. '
-            'Rüyalarındaki kar ve soğuk temizlenme ve yeniden başlangıç hazırlığıdır.';
+      case 'spring':
+        return 'Spring energy supports new beginnings and rebirth. '
+            'Sprouting seeds and blooming flowers in your dreams carry hope.';
+      case 'summer':
+        return 'Summer energy brings extroversion and abundance. '
+            'Sun and warmth in your dreams represent life force.';
+      case 'autumn':
+        return 'Autumn is a time for letting go and harvest. '
+            'Falling leaves and harvest symbols in your dreams indicate completion.';
+      case 'winter':
+        return 'Winter is a time for introspection and rest. '
+            'Snow and cold in your dreams represent cleansing and preparation for a new beginning.';
       default:
         return '';
     }
   }
 
-  /// Haftanın gününe göre rüya eğilimi
+  /// Dream tendency based on day of the week
   static String getDayOfWeekInsight(String day) {
     final insights = {
-      'Pazartesi':
-          'Pazartesi rüyaları genellikle iş ve sorumluluk temalarını yansıtır.',
-      'Salı':
-          'Mars günü olan Salı, aksiyon ve enerji dolu rüyalara eğilimlidir.',
-      'Çarşamba':
-          'Merkür günü Çarşamba, iletişim ve mesaj içerikli rüyalar getirir.',
-      'Perşembe':
-          'Jüpiter günü Perşembe, genişleme ve şans temalı rüyalar görülebilir.',
-      'Cuma': 'Venüs günü Cuma, aşk ve güzellik rüyalarına açıktır.',
-      'Cumartesi':
-          'Satürn günü Cumartesi, sınırlar ve yapı hakkında rüyalar getirir.',
-      'Pazar':
-          'Güneş günü Pazar, benlik ve kimlik keşfi rüyalarına elverişlidir.',
+      'Monday':
+          'Monday dreams usually reflect work and responsibility themes.',
+      'Tuesday':
+          'Mars day Tuesday is prone to action and energy-filled dreams.',
+      'Wednesday':
+          'Mercury day Wednesday brings communication and message-filled dreams.',
+      'Thursday':
+          'Jupiter day Thursday may feature expansion and luck-themed dreams.',
+      'Friday': 'Venus day Friday is open to love and beauty dreams.',
+      'Saturday':
+          'Saturn day Saturday brings dreams about boundaries and structure.',
+      'Sunday':
+          'Sun day Sunday is conducive to self and identity discovery dreams.',
     };
 
     return insights[day] ?? '';

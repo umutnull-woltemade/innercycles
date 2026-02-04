@@ -20,25 +20,7 @@ class CosmicBackground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // WEB: ALWAYS use dark gradient (onboarding UI designed for dark mode)
-    // This check MUST be first - before isDark check, otherwise light mode
-    // returns early and web never gets the dark gradient
-    if (kIsWeb) {
-      return Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color(0xFF1a1a2e), // Dark purple-blue
-              Color(0xFF0D0D1A), // Deep space black
-            ],
-          ),
-        ),
-        child: child,
-      );
-    }
-
+    // BOTH WEB AND MOBILE: Respect user theme choice
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     // Light mode - clean, soft gradient background
@@ -61,13 +43,15 @@ class CosmicBackground extends StatelessWidget {
       );
     }
 
-    // Dark mode - Full cosmic background on native platforms
+    // Dark mode - Use lightweight background on web, full on mobile
     return Stack(
       children: [
         // Ana kozmik arka plan - nebula ve yıldızlar
-        const Positioned.fill(
+        Positioned.fill(
           child: IgnorePointer(
-            child: _BeautifulCosmicBackground(),
+            child: kIsWeb
+                ? const _SimplifiedWebBackground() // Lightweight for web performance
+                : const _BeautifulCosmicBackground(), // Full for mobile
           ),
         ),
         // Content

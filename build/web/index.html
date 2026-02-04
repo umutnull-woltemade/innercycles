@@ -17,6 +17,27 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
 
+  <!-- Unregister any existing service workers (they cause white screen due to cache.addAll failure) -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(function(registrations) {
+        registrations.forEach(function(registration) {
+          registration.unregister();
+          console.log('Service worker unregistered:', registration.scope);
+        });
+      });
+      // Also clear all caches
+      if ('caches' in window) {
+        caches.keys().then(function(names) {
+          names.forEach(function(name) {
+            caches.delete(name);
+            console.log('Cache deleted:', name);
+          });
+        });
+      }
+    }
+  </script>
+
   <!-- Dynamic SEO Meta Tags - Will be updated based on route -->
   <title id="page-title">Venus One — Kişisel Kozmik Rehberiniz | Ücretsiz Doğum Haritası</title>
   <meta id="page-description" name="description" content="Ücretsiz doğum haritası, günlük burç yorumları, synastry uyum analizi ve gezegen transitleri. Swiss Ephemeris ile hesaplanan profesyonel astroloji.">
@@ -809,22 +830,6 @@
   </div>
 
   <script>
-    // ═══════════════════════════════════════════════════════════════════════════
-    // FIREBASE ANALYTICS STUB - Prevents white screen crash
-    // firebase_core_web tries to call ff_trigger_firebase_analytics even without
-    // firebase_analytics package. main.dart.js OVERWRITES normal assignments,
-    // so we use Object.defineProperty with writable:false to prevent that.
-    // ═══════════════════════════════════════════════════════════════════════════
-    Object.defineProperty(window, 'ff_trigger_firebase_analytics', {
-      value: function(callback) {
-        console.debug('Firebase Analytics stub - blocked, callback not invoked');
-        // DON'T call callback - this prevents Analytics code from trying to
-        // initialize Firebase again, which would cause "duplicate-app" error
-      },
-      writable: false,
-      configurable: false
-    });
-
     // Flag to track if loading screen has been removed
     var loadingRemoved = false;
 

@@ -82,6 +82,9 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       await StorageService.saveUserProfile(profile);
       await StorageService.saveOnboardingComplete(true);
 
+      // Wait for state to propagate before navigation
+      await Future.delayed(const Duration(milliseconds: 100));
+
       if (mounted) {
         context.go(Routes.home);
       }
@@ -91,90 +94,9 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   @override
   Widget build(BuildContext context) {
     final language = ref.watch(languageProvider);
-    // ignore: avoid_print
-    print('🌐 OnboardingScreen.build() called, kIsWeb=$kIsWeb');
 
     // ═══════════════════════════════════════════════════════════════════════════
-    // WEB: Ultra-simple onboarding - bypass complex widget tree
-    // CosmicBackground, SafeArea, PageView, _WelcomePage all have issues on web
-    // ═══════════════════════════════════════════════════════════════════════════
-    if (kIsWeb) {
-      // ignore: avoid_print
-      print('🌐 WEB: Using ultra-simple onboarding');
-      return Scaffold(
-        backgroundColor: const Color(0xFF0D0D1A),
-        body: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                Color(0xFF1a1a2e),
-                Color(0xFF0D0D1A),
-              ],
-            ),
-          ),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                // Logo
-                Container(
-                  width: 120,
-                  height: 120,
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [Color(0xFF667EEA), Color(0xFF764BA2)],
-                    ),
-                  ),
-                  child: const Icon(Icons.auto_awesome, color: Colors.white, size: 60),
-                ),
-                const SizedBox(height: 32),
-                // Title
-                Text(
-                  L10nService.get('app.name', language),
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 36,
-                    fontWeight: FontWeight.w300,
-                    letterSpacing: 4,
-                  ),
-                ),
-                const SizedBox(height: 12),
-                // Subtitle
-                Text(
-                  L10nService.get('onboarding.start_cosmic_journey', language),
-                  style: const TextStyle(
-                    color: Colors.white70,
-                    fontSize: 16,
-                  ),
-                ),
-                const SizedBox(height: 48),
-                // Continue button
-                ElevatedButton(
-                  onPressed: _completeOnboarding,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF667EEA),
-                    foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(horizontal: 48, vertical: 16),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                  ),
-                  child: Text(L10nService.get('common.continue', language), style: const TextStyle(fontSize: 18)),
-                ),
-              ],
-            ),
-          ),
-        ),
-      );
-    }
-
-    // ═══════════════════════════════════════════════════════════════════════════
-    // MOBILE: Original complex widget tree with animations
+    // BOTH WEB AND MOBILE: Same onboarding UI
     // ═══════════════════════════════════════════════════════════════════════════
     return Scaffold(
       backgroundColor: const Color(0xFF0D0D1A), // Fallback dark background

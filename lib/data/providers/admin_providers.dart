@@ -15,7 +15,7 @@ final adminAuthProvider = StateProvider<bool>((ref) {
 // ═══════════════════════════════════════════════════════════════════
 
 final adminMetricsProvider = StateProvider<AdminMetrics>((ref) {
-  // In production, this would fetch from backend/Firebase
+  // In production, this would fetch from Supabase
   // For now, return sample data
   return AdminMetrics(
     d1Return: 42.5,

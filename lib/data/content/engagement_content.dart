@@ -19,135 +19,135 @@ class HomepageContent {
   // - Astro-Seek: Tool-first approach, data richness visible
   // - Venus One Gap: Needs stronger emotional hook + clear value proposition
 
-  static const String heroTitle = 'Kozmik Yolculuğunuz Burada Başlıyor';
+  static const String heroTitle = 'Your Cosmic Journey Begins Here';
 
   static const String heroSubtitle =
-      'Gökyüzü size ne fısıldıyor? Doğum haritanız, günlük enerjiniz ve içsel rehberliğiniz — hepsi tek bir yerde.';
+      'What is the sky whispering to you? Your birth chart, daily energy, and inner guidance — all in one place.';
 
   static const String introSection = '''
-Venus One, astrolojiyi bir kehanet aracı olarak değil, bir öz-keşif yolculuğu olarak sunar.
+Venus One presents astrology not as a fortune-telling tool, but as a journey of self-discovery.
 
-Burada bulacaklarınız:
-• Kişiselleştirilmiş doğum haritası analizi
-• Günlük, haftalık ve aylık burç yorumları
-• İlişki uyumu ve synastry analizleri
-• Tarot, numeroloji ve enerji okumaları
-• Gezegen transitlerinin size özel etkileri
+What you'll find here:
+• Personalized birth chart analysis
+• Daily, weekly, and monthly horoscope readings
+• Relationship compatibility and synastry analyses
+• Tarot, numerology, and energy readings
+• Transit effects personalized for you
 
-Astroloji, gökyüzündeki sembolleri okuma sanatıdır. Bu semboller kesin kaderler değil, potansiyeller ve eğilimlerdir. Size "şu olacak" demiyoruz — "bu enerji şu yöne akabilir, sen ne hissediyorsun?" diye soruyoruz.
+Astrology is the art of reading celestial symbols. These symbols are not fixed destinies, but potentials and tendencies. We don't tell you "this will happen" — we ask "this energy might flow in this direction, what do you feel?"
 ''';
 
   static const String whatWeOfferSection = '''
-## Bu Platform Ne Sunar?
+## What Does This Platform Offer?
 
-**Kişisel Kozmik Haritanız**
-Doğum anınızda gökyüzünün fotoğrafı olan natal haritanız, sizin benzersiz kozmik parmak izinizdir. Güneş, Ay, yükselen burç ve tüm gezegenlerin konumları — hepsi bir araya gelerek sizin hikayenizi anlatır.
+**Your Personal Cosmic Map**
+Your natal chart, a snapshot of the sky at the moment of your birth, is your unique cosmic fingerprint. The positions of the Sun, Moon, Ascendant, and all planets come together to tell your story.
 
-**Günlük Kozmik Hava Durumu**
-Her gün gökyüzü farklı bir enerji taşır. Günlük burç yorumlarımız, bu enerjinin sizin burcunuza nasıl yansıyabileceğini nazikçe aktarır. Bunlar direktifler değil, düşündürücü önerilerdir.
+**Daily Cosmic Weather**
+Each day the sky carries different energy. Our daily horoscope readings gently convey how this energy might reflect on your sign. These are not directives, but thought-provoking suggestions.
 
-**İlişki Dinamikleri**
-İki haritanın buluşması, iki evrenin kesişimidir. Synastry analizi ile ilişkilerinizin kozmik boyutunu keşfedin — ama unutmayın, hiçbir harita bir ilişkinin "işleyip işlemeyeceğini" söyleyemez.
+**Relationship Dynamics**
+The meeting of two charts is the intersection of two universes. Explore the cosmic dimension of your relationships with synastry analysis — but remember, no chart can tell whether a relationship will "work or not."
 
-**Sembolik Araçlar**
-Tarot, numeroloji, Kabala ve aura okumaları — bunların hepsi bilinçaltınızla konuşmanın farklı dilleridir. Cevaplar kartlarda veya sayılarda değil, sizin içinizdedir; bu araçlar sadece o cevaplara ulaşmanıza yardımcı olabilir.
+**Symbolic Tools**
+Tarot, numerology, Kabbalah, and aura readings — all of these are different languages for speaking with your subconscious. The answers are not in the cards or numbers, but within you; these tools can only help you reach those answers.
 ''';
 
   static const String howToUseSection = '''
-## Venus One Nasıl Kullanılır?
+## How to Use Venus One?
 
-**1. Doğum Bilgilerinizi Girin**
-Doğum tarihi, saati ve yeri — bu üç bilgi, kozmik haritanızın anahtarıdır. Saat bilmiyorsanız bile temel bir analiz yapılabilir, ancak yükselen burç hesaplanamaz.
+**1. Enter Your Birth Information**
+Date of birth, time, and place — these three pieces of information are the key to your cosmic map. Even without the exact time, a basic analysis can be done, but the Ascendant cannot be calculated.
 
-**2. Merak Ettiğiniz Alanı Seçin**
-Günlük enerji mi, ilişki uyumu mu, yoksa derin natal analiz mi? Her araç farklı bir perspektif sunar.
+**2. Choose the Area You're Curious About**
+Daily energy, relationship compatibility, or deep natal analysis? Each tool offers a different perspective.
 
-**3. Oku, Düşün, Yansıt**
-Yorumları "doğru/yanlış" olarak değil, "bu bende ne çağrıştırıyor?" sorusuyla okuyun. En değerli içgörüler, sizin kendi iç sesinizle buluşan anlardan doğar.
+**3. Read, Think, Reflect**
+Read the interpretations not as "right/wrong" but with the question "what does this evoke in me?" The most valuable insights come from moments when they meet your own inner voice.
 
-**4. Kaydet ve Geri Dön**
-Profil oluşturarak haritanızı kaydedin. Transitler değiştikçe, gökyüzü size farklı mesajlar sunacaktır.
+**4. Save and Return**
+Create a profile to save your chart. As transits change, the sky will present different messages to you.
 ''';
 
   static const String whatThisIsNotSection = '''
-## Bu Platform Ne DEĞİLDİR?
+## What This Platform Is NOT
 
-**Kehanet Servisi Değildir**
-Size "şu tarihte şu olacak" demiyoruz. Astroloji olasılıklar ve eğilimler üzerine kuruludur, kesinlikler üzerine değil.
+**It's Not a Fortune-Telling Service**
+We don't tell you "this will happen on this date." Astrology is built on probabilities and tendencies, not certainties.
 
-**Psikolojik Danışmanlık Değildir**
-Ciddi duygusal veya mental sağlık konularında mutlaka profesyonel destek alın. Astroloji tamamlayıcı bir araç olabilir, ama tedavi yerine geçmez.
+**It's Not Psychological Counseling**
+For serious emotional or mental health issues, please seek professional support. Astrology can be a complementary tool, but it doesn't replace treatment.
 
-**İlişki Kararlarınızı Almaz**
-"Bu kişiyle evlenmeli miyim?" sorusuna hiçbir harita cevap veremez. Kararlar sizindir, yıldızlar sadece düşünmeniz için perspektif sunar.
+**It Doesn't Make Relationship Decisions For You**
+No chart can answer the question "Should I marry this person?" The decisions are yours; the stars only offer perspectives to think about.
 
-**Bilimsel İddia Taşımaz**
-Astroloji ampirik bilim değildir. Binlerce yıllık sembolik bir dil sistemidir. Bunu kabul ederek, kendi içsel yolculuğunuz için kullanabilirsiniz.
+**It Makes No Scientific Claims**
+Astrology is not empirical science. It's a symbolic language system spanning thousands of years. Accepting this, you can use it for your own inner journey.
 ''';
 
   static const String curiosityHooksSection = '''
-## İnsanlar Burada Şunları da Merak Ediyor...
+## People Here Also Wonder About...
 
-→ "Yükselen burcum neden Güneş burcumdan farklı hissettiriyor?"
-→ "Retrograd dönemleri gerçekten hayatımı etkiler mi?"
-→ "Partnerimle uyumlu muyuz, haritalarımız ne söylüyor?"
-→ "Rüyalarımın astrolojik bir anlamı var mı?"
-→ "Hangi gezegen transitinde ne tür kararlar almalıyım?"
+→ "Why does my Ascendant feel different from my Sun sign?"
+→ "Do retrograde periods really affect my life?"
+→ "Are we compatible with my partner, what do our charts say?"
+→ "Do my dreams have an astrological meaning?"
+→ "What kind of decisions should I make during which planetary transit?"
 ''';
 
   static const List<Map<String, String>> faqs = [
     {
-      'question': 'Astroloji gerçekten işe yarıyor mu?',
+      'question': 'Does astrology really work?',
       'answer':
-          'Astroloji, binlerce yıllık sembolik bir dil sistemidir. "İşe yaramak" tanımınıza bağlıdır — eğer kesin kehanetler bekliyorsanız, hayal kırıklığına uğrayabilirsiniz. Ancak öz-keşif, içsel yansıma ve farklı perspektifler için güçlü bir araç olabilir. Bilimsel kanıt aramak yerine, sizde ne çağrıştırdığına odaklanmanızı öneririz.'
+          'Astrology is a symbolic language system spanning thousands of years. It depends on your definition of "work" — if you expect precise prophecies, you may be disappointed. However, it can be a powerful tool for self-discovery, inner reflection, and different perspectives. Instead of seeking scientific proof, we suggest focusing on what it evokes in you.'
     },
     {
-      'question': 'Doğum saatimi bilmiyorsam ne olur?',
+      'question': 'What if I don\'t know my birth time?',
       'answer':
-          'Doğum saati olmadan da Güneş burcu, Ay burcu (yaklaşık) ve gezegen pozisyonları hesaplanabilir. Ancak yükselen burç ve ev yerleşimleri için kesin saat gerekir. "Öğlen 12:00" gibi varsayılan bir saat kullanabilirsiniz, ama bu durumda ev yorumlarını atlayın.'
+          'Without a birth time, your Sun sign, Moon sign (approximate), and planetary positions can still be calculated. However, the exact time is needed for the Ascendant and house placements. You can use a default time like "noon 12:00," but skip the house interpretations in that case.'
     },
     {
-      'question': 'Günlük burç yorumları herkese aynı mı?',
+      'question': 'Are daily horoscopes the same for everyone?',
       'answer':
-          'Aynı burçtaki herkes aynı genel enerjiyi paylaşır, ama bireysel haritanızdaki diğer faktörler (Ay burcu, yükselen, gezegen açıları) deneyiminizi kişiselleştirir. Bu yüzden bazen "tam tuttu" bazen "hiç tutmadı" hissedebilirsiniz.'
+          'Everyone with the same sign shares the same general energy, but other factors in your individual chart (Moon sign, Ascendant, planetary aspects) personalize your experience. That\'s why sometimes it "hits exactly" and sometimes "doesn\'t resonate at all."'
     },
     {
-      'question': 'Tarot ve astroloji aynı şey mi?',
+      'question': 'Are tarot and astrology the same thing?',
       'answer':
-          "Hayır. Astroloji gezegen konumlarına dayalı bir sistem, tarot ise sembolik kartlarla yapılan bir okuma pratiğidir. İkisi de içsel yansıma araçlarıdır ama farklı diller kullanırlar. Venus One'da her ikisini de bulabilirsiniz."
+          "No. Astrology is a system based on planetary positions, while tarot is a reading practice using symbolic cards. Both are tools for inner reflection but use different languages. You can find both on Venus One."
     },
     {
-      'question': 'Premium üyelik ne fark yaratır?',
+      'question': 'What difference does Premium membership make?',
       'answer':
-          'Premium üyelik ile detaylı transit raporları, sınırsız synastry analizi, gelişmiş progresyon takibi ve reklamsız deneyim elde edersiniz. Temel özellikler ücretsizdir.'
+          'With Premium membership, you get detailed transit reports, unlimited synastry analysis, advanced progression tracking, and an ad-free experience. Basic features are free.'
     },
     {
-      'question': 'Verilerim güvende mi?',
+      'question': 'Is my data safe?',
       'answer':
-          'Doğum bilgileriniz cihazınızda şifreli olarak saklanır. Üçüncü taraflarla paylaşılmaz. Hesabınızı istediğiniz zaman silebilirsiniz.'
+          'Your birth information is stored encrypted on your device. It is not shared with third parties. You can delete your account at any time.'
     },
   ];
 
   // NAVIGATION STRATEGY
   static const Map<String, String> internalLinks = {
-    '/birth-chart': 'Doğum haritanızı hesaplayın →',
-    '/horoscope': 'Bugünün burç enerjisini keşfedin →',
-    '/compatibility': 'İlişki uyumunuzu analiz edin →',
-    '/tarot': 'Günlük tarot kartınızı çekin →',
-    '/transits': 'Şu anki gezegen geçişlerini görün →',
+    '/birth-chart': 'Calculate your birth chart →',
+    '/horoscope': 'Discover today\'s zodiac energy →',
+    '/compatibility': 'Analyze your relationship compatibility →',
+    '/tarot': 'Draw your daily tarot card →',
+    '/transits': 'See current planetary transits →',
   };
 
   static const Map<String, String> journeyPaths = {
-    'educational': 'Astroloji nasıl çalışır? → /glossary',
-    'personal': 'Haritamı hesapla → /birth-chart',
-    'exploratory': 'Günlük enerjimi gör → /horoscope',
-    'deep': 'Transitlerimi incele → /transits',
+    'educational': 'How does astrology work? → /glossary',
+    'personal': 'Calculate my chart → /birth-chart',
+    'exploratory': 'See my daily energy → /horoscope',
+    'deep': 'Examine my transits → /transits',
   };
 
   static const Map<String, String> ctas = {
-    'primary': 'Doğum Haritamı Hesapla',
-    'secondary': 'Günlük Burcuma Bak',
-    'soft': 'Sadece gezinmek istiyorum...',
+    'primary': 'Calculate My Birth Chart',
+    'secondary': 'Check My Daily Horoscope',
+    'soft': 'I just want to browse...',
   };
 }
 
@@ -167,97 +167,97 @@ class HoroscopeHubContent {
   // - Nebula: Visual, mystical, story-driven
   // - Gap: Venus One needs more depth before sign selection
 
-  static const String heroTitle = 'Günlük Burç Yorumları';
+  static const String heroTitle = 'Daily Horoscope Readings';
 
   static const String heroSubtitle =
-      'Kozmik enerjilerin bugün size ne fısıldadığını keşfedin. 12 burç, 12 farklı enerji akışı.';
+      'Discover what cosmic energies are whispering to you today. 12 signs, 12 different energy flows.';
 
   static const String introSection = '''
-Burç yorumları, gökyüzündeki anlık enerjinin sizin Güneş burcunuza nasıl yansıyabileceğinin sembolik bir okumasıdır.
+Horoscope readings are a symbolic interpretation of how the current energy in the sky might reflect on your Sun sign.
 
-Her gün Ay farklı bir burçtan geçer, gezegenler farklı açılar yapar. Bu kozmik hareketler, kolektif bir enerji alanı oluşturur. Burç yorumları, bu enerjinin 12 farklı arketipe nasıl temas edebileceğini anlatır.
+Each day the Moon passes through a different sign, planets make different angles. These cosmic movements create a collective energy field. Horoscope readings describe how this energy might touch 12 different archetypes.
 
-**Önemli Not:** Güneş burcu tek başına tüm hikayeyi anlatmaz. Ay burcunuz, yükselen burcunuz ve diğer gezegen yerleşimleriniz de günlük deneyiminizi şekillendirir. Bu yüzden bazen yorumlar "tam oturur", bazen uzak hissettirir.
+**Important Note:** The Sun sign alone doesn't tell the whole story. Your Moon sign, Ascendant, and other planetary placements also shape your daily experience. That's why sometimes readings "fit perfectly," and sometimes they feel distant.
 ''';
 
   static const String howToReadSection = '''
-## Burç Yorumlarını Nasıl Okumalı?
+## How to Read Horoscope Readings?
 
-**1. Güneş Burcunuzu Okuyun**
-En temel katman. Genel enerji ve ana temalar burada.
+**1. Read Your Sun Sign**
+The most basic layer. General energy and main themes are here.
 
-**2. Yükselen Burcunuzu Okuyun**
-Eğer yükselen burcunuzu biliyorsanız, onu da okuyun. Yükselen burç, dış dünyadaki deneyimlerinizi daha doğrudan yansıtabilir.
+**2. Read Your Ascendant Sign**
+If you know your Ascendant, read it too. The Ascendant can more directly reflect your experiences in the outer world.
 
-**3. Ay Burcunuzu Okuyun**
-Duygusal katman. İç dünyanız ve duygusal tepkileriniz için Ay burcu önemlidir.
+**3. Read Your Moon Sign**
+The emotional layer. Your Moon sign is important for your inner world and emotional reactions.
 
-**4. "Bu bende ne çağrıştırıyor?" Diye Sorun**
-Yorumları literal olarak almak yerine, hangi cümlelerin içinizde bir şey kıpırdattığına dikkat edin. O rezonans, sizin için anlamlı olandır.
+**4. Ask "What Does This Evoke in Me?"**
+Instead of taking interpretations literally, pay attention to which sentences stir something inside you. That resonance is what's meaningful for you.
 
-**5. Günlük Değil, Dönemsel Düşünün**
-Tek bir günün yorumu her zaman tutmayabilir. Haftalık ve aylık perspektif daha geniş bir resim sunar.
+**5. Think Periodically, Not Daily**
+A single day's reading may not always hit. Weekly and monthly perspectives offer a broader picture.
 ''';
 
   static const String whatThisIsNotSection = '''
-## Bu Ne DEĞİLDİR?
+## What This Is NOT
 
-**Kesin Tahmin Değildir**
-"Bugün para kazanacaksınız" veya "Bugün tartışma çıkacak" gibi kesin ifadeler kullanmıyoruz. Bunun yerine enerji eğilimlerinden bahsediyoruz.
+**It's Not a Precise Prediction**
+We don't use definitive statements like "You will make money today" or "There will be an argument today." Instead, we talk about energy tendencies.
 
-**Kişiselleştirilmiş Natal Analiz Değildir**
-Burç yorumları genel bir perspektif sunar. Kişisel haritanızın detayları için doğum haritası analizine bakın.
+**It's Not a Personalized Natal Analysis**
+Horoscope readings offer a general perspective. See birth chart analysis for the details of your personal chart.
 
-**Karar Verici Değildir**
-"Bugün imza atmalı mıyım?" sorusuna burç yorumları cevap vermez. Kararlarınız sizin sorumluluğunuzdadır.
+**It's Not a Decision Maker**
+Horoscope readings don't answer the question "Should I sign today?" Your decisions are your responsibility.
 ''';
 
   static const String elementalWisdomSection = '''
-## Elementlere Göre Günün Enerjisi
+## Today's Energy by Elements
 
-**Ateş Burçları (Koç, Aslan, Yay)**
-Aksiyon, girişim ve cesaret enerjisi. Bugün ateş burçları için hareket ve ifade ön planda olabilir.
+**Fire Signs (Aries, Leo, Sagittarius)**
+Action, initiative, and courage energy. Today, movement and expression may be at the forefront for fire signs.
 
-**Toprak Burçları (Boğa, Başak, Oğlak)**
-Pratiklik, somutluk ve istikrar. Toprak burçları için bugün elle tutulur sonuçlar önemli olabilir.
+**Earth Signs (Taurus, Virgo, Capricorn)**
+Practicality, tangibility, and stability. Tangible results may be important for earth signs today.
 
-**Hava Burçları (İkizler, Terazi, Kova)**
-İletişim, fikirler ve bağlantılar. Hava burçları için bugün konuşmalar ve zihinsel aktivite yoğun olabilir.
+**Air Signs (Gemini, Libra, Aquarius)**
+Communication, ideas, and connections. Conversations and mental activity may be intense for air signs today.
 
-**Su Burçları (Yengeç, Akrep, Balık)**
-Duygular, sezgiler ve derinlik. Su burçları için bugün içsel süreçler ve duygusal farkındalık ön planda olabilir.
+**Water Signs (Cancer, Scorpio, Pisces)**
+Emotions, intuitions, and depth. Inner processes and emotional awareness may be at the forefront for water signs today.
 ''';
 
   static const List<Map<String, String>> faqs = [
     {
-      'question': 'Neden bazen burç yorumum hiç tutmuyor?',
+      'question': 'Why does my horoscope sometimes not resonate at all?',
       'answer':
-          'Çünkü sadece Güneş burcunuza bakıyorsunuz. Haritanızda 10 gezegen, 12 ev ve sayısız açı var. Güneş burcu sadece bir parça. Ayrıca, yorumlar olasılıkları anlatır, kesinlikleri değil.'
+          'Because you\'re only looking at your Sun sign. Your chart has 10 planets, 12 houses, and countless aspects. The Sun sign is just one piece. Also, readings describe possibilities, not certainties.'
     },
     {
-      'question': 'Yükselen burcumu mu yoksa Güneş burcumu mu okumalıyım?',
+      'question': 'Should I read my Ascendant or Sun sign?',
       'answer':
-          'İkisini de okuyun. Güneş burcu içsel kimliğinizi, yükselen burç dış dünyadaki deneyimlerinizi yansıtır. Bazı astrologlar yükseleni daha önemli bulur, bazıları Güneşi. Hangisi size daha çok "oturuyorsa" onu öncelikli tutabilirsiniz.'
+          'Read both. The Sun sign reflects your inner identity, the Ascendant reflects your experiences in the outer world. Some astrologers find the Ascendant more important, some the Sun. You can prioritize whichever "fits" you better.'
     },
     {
-      'question': 'Günlük yorumlar gerçekten her gün değişiyor mu?',
+      'question': 'Do daily readings really change every day?',
       'answer':
-          'Evet. Ay her 2.5 günde bir burç değiştirir, gezegenler sürekli hareket eder. Bu yüzden kozmik enerji gerçekten her gün farklıdır.'
+          'Yes. The Moon changes signs every 2.5 days, planets are constantly moving. That\'s why cosmic energy is truly different every day.'
     },
     {
-      'question': 'Olumsuz yorum gördüğümde ne yapmalıyım?',
+      'question': 'What should I do when I see a negative reading?',
       'answer':
-          'Olumsuz yorumları "uyarı" olarak değil, "farkındalık daveti" olarak okuyun. "Bugün iletişimde dikkatli ol" demek "bugün tartışacaksın" demek değildir. Sadece o alana biraz daha özen göstermenizi önerir.'
+          'Read negative readings not as "warnings" but as "invitations to awareness." "Be careful in communication today" doesn\'t mean "you will have an argument today." It just suggests paying a bit more attention to that area.'
     },
     {
-      'question': 'Burç uyumu yorumları doğru mu?',
+      'question': 'Are compatibility readings accurate?',
       'answer':
-          'Genel eğilimleri gösterir ama hiçbir burç kombinasyonu "imkansız" veya "mükemmel" değildir. Bireysel haritalar, kişisel gelişim ve iletişim kalitesi çok daha belirleyicidir.'
+          'They show general tendencies, but no sign combination is "impossible" or "perfect." Individual charts, personal development, and communication quality are much more determinant.'
     },
     {
-      'question': 'Haftalık ve aylık yorumlar günlükten daha mı doğru?',
+      'question': 'Are weekly and monthly readings more accurate than daily?',
       'answer':
-          'Daha geniş perspektif sundukları için daha tutarlı hissedebilirler. Günlük yorumlar mikro enerjiyi, haftalık/aylık yorumlar makro temaları anlatır.'
+          'They may feel more consistent because they offer a broader perspective. Daily readings describe micro energy, weekly/monthly readings describe macro themes.'
     },
   ];
 
@@ -265,114 +265,114 @@ Duygular, sezgiler ve derinlik. Su burçları için bugün içsel süreçler ve 
   static const List<Map<String, String>> zodiacQuickCards = [
     {
       'sign': 'aries',
-      'name': 'Koç',
+      'name': 'Aries',
       'symbol': '♈',
-      'dates': '21 Mart - 19 Nisan',
-      'element': 'Ateş',
-      'hook': 'Bugün hangi kapıyı kırmak istiyorsun?'
+      'dates': 'March 21 - April 19',
+      'element': 'Fire',
+      'hook': 'Which door do you want to break down today?'
     },
     {
       'sign': 'taurus',
-      'name': 'Boğa',
+      'name': 'Taurus',
       'symbol': '♉',
-      'dates': '20 Nisan - 20 Mayıs',
-      'element': 'Toprak',
-      'hook': 'Bugün neyi korumak, neyi büyütmek istiyorsun?'
+      'dates': 'April 20 - May 20',
+      'element': 'Earth',
+      'hook': 'What do you want to protect, what do you want to grow today?'
     },
     {
       'sign': 'gemini',
-      'name': 'İkizler',
+      'name': 'Gemini',
       'symbol': '♊',
-      'dates': '21 Mayıs - 20 Haziran',
-      'element': 'Hava',
-      'hook': 'Bugün hangi hikayeyi anlatacaksın?'
+      'dates': 'May 21 - June 20',
+      'element': 'Air',
+      'hook': 'Which story will you tell today?'
     },
     {
       'sign': 'cancer',
-      'name': 'Yengeç',
+      'name': 'Cancer',
       'symbol': '♋',
-      'dates': '21 Haziran - 22 Temmuz',
-      'element': 'Su',
-      'hook': 'Bugün kalbini kime açacaksın?'
+      'dates': 'June 21 - July 22',
+      'element': 'Water',
+      'hook': 'Who will you open your heart to today?'
     },
     {
       'sign': 'leo',
-      'name': 'Aslan',
+      'name': 'Leo',
       'symbol': '♌',
-      'dates': '23 Temmuz - 22 Ağustos',
-      'element': 'Ateş',
-      'hook': 'Bugün hangi sahnede parlayacaksın?'
+      'dates': 'July 23 - August 22',
+      'element': 'Fire',
+      'hook': 'Which stage will you shine on today?'
     },
     {
       'sign': 'virgo',
-      'name': 'Başak',
+      'name': 'Virgo',
       'symbol': '♍',
-      'dates': '23 Ağustos - 22 Eylül',
-      'element': 'Toprak',
-      'hook': 'Bugün neyi iyileştirmek istiyorsun?'
+      'dates': 'August 23 - September 22',
+      'element': 'Earth',
+      'hook': 'What do you want to improve today?'
     },
     {
       'sign': 'libra',
-      'name': 'Terazi',
+      'name': 'Libra',
       'symbol': '♎',
-      'dates': '23 Eylül - 22 Ekim',
-      'element': 'Hava',
-      'hook': 'Bugün dengeyi nerede arıyorsun?'
+      'dates': 'September 23 - October 22',
+      'element': 'Air',
+      'hook': 'Where are you seeking balance today?'
     },
     {
       'sign': 'scorpio',
-      'name': 'Akrep',
+      'name': 'Scorpio',
       'symbol': '♏',
-      'dates': '23 Ekim - 21 Kasım',
-      'element': 'Su',
-      'hook': 'Bugün hangi derinliğe dalacaksın?'
+      'dates': 'October 23 - November 21',
+      'element': 'Water',
+      'hook': 'Which depth will you dive into today?'
     },
     {
       'sign': 'sagittarius',
-      'name': 'Yay',
+      'name': 'Sagittarius',
       'symbol': '♐',
-      'dates': '22 Kasım - 21 Aralık',
-      'element': 'Ateş',
-      'hook': 'Bugün hangi ufka doğru koşuyorsun?'
+      'dates': 'November 22 - December 21',
+      'element': 'Fire',
+      'hook': 'Which horizon are you running towards today?'
     },
     {
       'sign': 'capricorn',
-      'name': 'Oğlak',
+      'name': 'Capricorn',
       'symbol': '♑',
-      'dates': '22 Aralık - 19 Ocak',
-      'element': 'Toprak',
-      'hook': 'Bugün hangi zirveye tırmanıyorsun?'
+      'dates': 'December 22 - January 19',
+      'element': 'Earth',
+      'hook': 'Which peak are you climbing today?'
     },
     {
       'sign': 'aquarius',
-      'name': 'Kova',
+      'name': 'Aquarius',
       'symbol': '♒',
-      'dates': '20 Ocak - 18 Şubat',
-      'element': 'Hava',
-      'hook': 'Bugün hangi kuralı yeniden yazacaksın?'
+      'dates': 'January 20 - February 18',
+      'element': 'Air',
+      'hook': 'Which rule will you rewrite today?'
     },
     {
       'sign': 'pisces',
-      'name': 'Balık',
+      'name': 'Pisces',
       'symbol': '♓',
-      'dates': '19 Şubat - 20 Mart',
-      'element': 'Su',
-      'hook': 'Bugün hangi rüyaya dalacaksın?'
+      'dates': 'February 19 - March 20',
+      'element': 'Water',
+      'hook': 'Which dream will you dive into today?'
     },
   ];
 
   static const Map<String, String> internalLinks = {
-    '/birth-chart': 'Tam haritanızı görün →',
-    '/transits': 'Bugünün gezegen geçişleri →',
-    '/compatibility': 'İlişki uyumunuzu analiz edin →',
-    '/tarot': 'Günlük tarot kartınız →',
-    '/weekly-horoscope': 'Haftalık genel bakış →',
+    '/birth-chart': 'See your full chart →',
+    '/transits': 'Today\'s planetary transits →',
+    '/compatibility': 'Analyze your compatibility →',
+    '/tarot': 'Your daily tarot card →',
+    '/weekly-horoscope': 'Weekly overview →',
   };
 
   static const Map<String, String> ctas = {
-    'primary': 'Burcumu Seç',
-    'secondary': 'Haftalık Yoruma Bak',
-    'soft': 'Tüm burçları karşılaştır',
+    'primary': 'Select My Sign',
+    'secondary': 'View Weekly Reading',
+    'soft': 'Compare all signs',
   };
 }
 
@@ -433,564 +433,564 @@ class ZodiacSignContent {
 class AllZodiacContent {
   static const aries = ZodiacSignContent(
     sign: 'aries',
-    name: 'Koç',
+    name: 'Aries',
     symbol: '♈',
-    dates: '21 Mart - 19 Nisan',
-    element: 'Ateş',
-    modality: 'Kardinal (Öncü)',
+    dates: 'March 21 - April 19',
+    element: 'Fire',
+    modality: 'Cardinal',
     ruler: 'Mars',
     rulerMeaning:
-        'Mars, savaşçı gezegen, Koç\'a cesaret, girişimcilik ve doğrudan eylem enerjisi verir.',
+        'Mars, the warrior planet, gives Aries courage, initiative, and direct action energy.',
     essence: '''
-Koç, zodyağın ilk burcu olarak "Ben varım" arketipidir. Baharın başlangıcı, yeni doğuşlar, ilk adımlar... Koç enerjisi, hayata atılma cesareti ve öncü olma dürtüsü taşır.
+Aries, as the first sign of the zodiac, is the "I am" archetype. The beginning of spring, new births, first steps... Aries energy carries the courage to dive into life and the drive to be a pioneer.
 
-Bu burçta doğanlar genellikle liderlik potansiyeli, rekabetçi ruh ve sabırsız bir enerji ile tanınır. "Düşünmeden atla" yaklaşımı hem güçleri hem de sınavlarıdır.
+Those born under this sign are generally known for their leadership potential, competitive spirit, and impatient energy. The "leap before you look" approach is both their strength and their trial.
 ''',
     extendedDescription: '''
-## Koç Burcunun Derinliği
+## The Depth of Aries
 
-Koç, zodyak çemberinin sıfır noktasından başlar — tıpkı bir bebeğin dünyaya gelişi gibi. Bu yüzden Koç enerjisi saf, işlenmemiş ve doğrudandır. "Ben" kavramının en ham hali burada yaşanır.
+Aries begins at the zero point of the zodiac wheel — just like a baby coming into the world. That's why Aries energy is pure, unprocessed, and direct. The rawest form of the "I" concept lives here.
 
-**Arketipsel Tema: Savaşçı**
-Koç'un arketipi savaşçıdır ama bu savaş illa fiziksel değildir. Bir fikir için savaşmak, yeni bir yol açmak, kimsenin gitmediği yere gitmek... Hepsi Koç enerjisidir.
+**Archetypal Theme: The Warrior**
+Aries' archetype is the warrior, but this battle isn't necessarily physical. Fighting for an idea, blazing a new trail, going where no one has gone... These are all Aries energy.
 
-**Element Etkisi: Ateş**
-Ateş elementi, tutku, ilham ve spontanlık getirir. Koç, ateşin en "parlayan" halidir — bir kibrit çakması gibi ani ve yoğun.
+**Element Effect: Fire**
+The fire element brings passion, inspiration, and spontaneity. Aries is the most "blazing" form of fire — sudden and intense like striking a match.
 
-**Modalite: Kardinal**
-Kardinal burçlar başlatıcıdır. Koç bir şeyi başlatmakta ustadır ama bitirmek her zaman güçlü yanı değildir.
+**Modality: Cardinal**
+Cardinal signs are initiators. Aries excels at starting something, but finishing isn't always their strong suit.
 
-**Gölge Yönü**
-Her burcun bir gölgesi vardır. Koç'un gölgesi sabırsızlık, öfke kontrolü ve başkalarını ezme eğilimi olabilir. Bu gölgeyle yüzleşmek, Koç'un büyüme yolculuğudur.
+**Shadow Side**
+Every sign has a shadow. Aries' shadow can be impatience, anger control issues, and a tendency to steamroll others. Facing this shadow is Aries' growth journey.
 ''',
     lightSide:
-        'Cesaret, liderlik, dürüstlük, enerji, girişimcilik, koruyuculuk, yenilikçilik',
+        'Courage, leadership, honesty, energy, initiative, protectiveness, innovation',
     shadowSide:
-        'Sabırsızlık, öfke patlamaları, bencillik, düşünmeden hareket etme, dinlememe',
+        'Impatience, anger outbursts, selfishness, acting without thinking, not listening',
     loveStyle: '''
-Koç aşkta tutkulu ve doğrudandır. İlk hamleyi yapmaktan çekinmez. Kovalamayı sever ama "kazandıktan" sonra ilgisini kaybedebilir — bu onun sınavıdır.
+Aries is passionate and direct in love. They don't hesitate to make the first move. They enjoy the chase but may lose interest after "winning" — this is their trial.
 
-**İdeal Partner Dinamiği:** Koç'un enerjisine ayak uydurabilecek ama ona körü körüne boyun eğmeyecek biri. Meydan okuma onu canlı tutar.
+**Ideal Partner Dynamic:** Someone who can keep up with Aries' energy but won't blindly submit. Challenge keeps them alive.
 
-**Dikkat Noktası:** Çatışma, Koç için bazen "yakınlık" yerine geçebilir. Öfkenin ardındaki kırılganlığı görmek önemlidir.
+**Watch Point:** Conflict can sometimes substitute for "closeness" for Aries. It's important to see the vulnerability behind the anger.
 ''',
     careerStyle: '''
-Koç, kurumsal hiyerarşide zorlanabilir — kendi işini kurmak veya liderlik pozisyonları onun için daha uygundur.
+Aries may struggle in corporate hierarchies — starting their own business or leadership positions suits them better.
 
-**Güçlü Olduğu Alanlar:** Girişimcilik, satış, spor, askeri/güvenlik, acil müdahale gerektiren işler.
+**Strong Areas:** Entrepreneurship, sales, sports, military/security, emergency response work.
 
-**Dikkat Noktası:** Rutin ve detaylı işler Koç'u bunaltabilir. Ekip çalışmasında sabır geliştirmesi gerekebilir.
+**Watch Point:** Routine and detailed work can overwhelm Aries. They may need to develop patience in teamwork.
 ''',
     healthFocus:
-        'Baş bölgesi, baş ağrıları, ateşli hastalıklar. Fiziksel aktivite şart ama sakatlanma riski yüksek. Öfke bastırıldığında bedensel semptomlar çıkabilir.',
+        'Head region, headaches, feverish illnesses. Physical activity is essential but injury risk is high. Suppressed anger may manifest as physical symptoms.',
     dreamPatterns: '''
-Koç'un rüyaları genellikle aksiyon dolu ve yoğundur. Kovalamacalar, yarışlar, savaşlar, yüksekten düşme veya uçma rüyaları sık görülür.
+Aries' dreams are usually action-packed and intense. Chases, races, battles, falling from heights or flying dreams are common.
 
-**Sembolik Yorumlama:** Koç rüyalarında sıklıkla "bir şeye yetişememe" veya "engellenme" temaları çıkabilir — bu bilinçaltındaki sabırsızlık ve kontrol ihtiyacını yansıtır.
+**Symbolic Interpretation:** "Not being able to catch up" or "being blocked" themes often appear in Aries dreams — reflecting subconscious impatience and need for control.
 ''',
     commonDreamSymbols: [
-      'Ateş veya yanma',
-      'Koşma veya yarışma',
-      'Kavga veya çatışma',
-      'Araba kullanma (hızlı)',
-      'Silah veya kesici aletler',
-      'Kırmızı renk',
-      'Koç veya kuzu',
+      'Fire or burning',
+      'Running or racing',
+      'Fighting or conflict',
+      'Driving fast',
+      'Weapons or sharp objects',
+      'Red color',
+      'Ram or lamb',
     ],
-    compatibleSigns: ['Aslan', 'Yay', 'İkizler', 'Kova'],
-    challengingSigns: ['Yengeç', 'Oğlak', 'Terazi'],
+    compatibleSigns: ['Leo', 'Sagittarius', 'Gemini', 'Aquarius'],
+    challengingSigns: ['Cancer', 'Capricorn', 'Libra'],
     faqs: [
       {
-        'question': 'Koç burcu neden bu kadar sabırsız?',
+        'question': 'Why is Aries so impatient?',
         'answer':
-            'Mars yönetimi ve kardinal modalite, Koç\'a "şimdi" odaklı bir enerji verir. Gelecek veya geçmiş değil, an önemlidir. Bu sabırsızlık aslında hayata duyulan yoğun bir tutkunun yansımasıdır.'
+            'Mars rulership and cardinal modality give Aries a "now" focused energy. Not the future or past, but the present moment matters. This impatience is actually a reflection of an intense passion for life.'
       },
       {
-        'question': 'Koç burcu liderlik mi ister yoksa diktatörlük mü?',
+        'question': 'Does Aries want leadership or dictatorship?',
         'answer':
-            'Gelişmiş bir Koç, başkalarını güçlendiren bir liderdir. Gelişmemiş Koç, kontrolü elde tutmak için ezer. Fark, öz-farkındalık ve duygusal olgunluktadır.'
+            'A developed Aries is a leader who empowers others. An undeveloped Aries crushes to maintain control. The difference is self-awareness and emotional maturity.'
       },
       {
-        'question': 'Koç burcu ile ilişki nasıl sürdürülür?',
+        'question': 'How do you maintain a relationship with Aries?',
         'answer':
-            'Heyecanı canlı tutun, meydan okuyan ama saygılı olun, pasif-agresif olmayın (Koç doğrudan iletişim ister), ve bağımsızlığına saygı gösterin.'
+            'Keep the excitement alive, be challenging but respectful, don\'t be passive-aggressive (Aries wants direct communication), and respect their independence.'
       },
       {
-        'question': 'Koç burcu neden çabuk sıkılıyor?',
+        'question': 'Why does Aries get bored so quickly?',
         'answer':
-            'Yenilik arayışı Koç\'un doğasında var. Kovalamak, keşfetmek onu canlı tutar. "Kazandıktan" sonra ilgisini kaybedebilir — bu onun bilinçli olarak çalışması gereken bir alandır.'
+            'The search for novelty is in Aries\' nature. Chasing, exploring keeps them alive. They may lose interest after "winning" — this is an area they need to consciously work on.'
       },
       {
-        'question': 'Koç burcunun en büyük korkusu nedir?',
+        'question': 'What is Aries\' biggest fear?',
         'answer':
-            'Önemsiz olmak, görünmez olmak, yavaşlamak veya "kaybetmek". Koç\'un gizli korkusu güçsüzlüktür.'
+            'Being insignificant, invisible, slowing down, or "losing." Aries\' hidden fear is powerlessness.'
       },
       {
-        'question': 'Koç burcu nasıl sakinleşir?',
+        'question': 'How does Aries calm down?',
         'answer':
-            'Fiziksel aktivite (spor, yürüyüş, boks), rekabetçi oyunlar, yeni projeler başlatmak. Meditasyon zordur ama hareket halinde meditasyon (koşu, yüzme) işe yarayabilir.'
+            'Physical activity (sports, walking, boxing), competitive games, starting new projects. Meditation is difficult but moving meditation (running, swimming) may work.'
       },
     ],
     dailyAffirmation:
-        'Gücüm beni ileriye taşır, ama bilgeliğim beni doğru yola yönlendirir.',
+        'My strength carries me forward, but my wisdom guides me on the right path.',
     internalLinks: {
-      '/compatibility': 'Koç burcu ile uyumlu burçlar →',
-      '/birth-chart': 'Mars\'ın haritandaki yeri →',
-      '/horoscope/leo': 'Diğer ateş burcu: Aslan →',
-      '/horoscope/sagittarius': 'Diğer ateş burcu: Yay →',
-      '/transits': 'Mars transiti seni nasıl etkiliyor? →',
-      '/tarot': 'Koç enerjisi için tarot →',
+      '/compatibility': 'Signs compatible with Aries →',
+      '/birth-chart': 'Mars\' position in your chart →',
+      '/horoscope/leo': 'Another fire sign: Leo →',
+      '/horoscope/sagittarius': 'Another fire sign: Sagittarius →',
+      '/transits': 'How is Mars transit affecting you? →',
+      '/tarot': 'Tarot for Aries energy →',
     },
   );
 
   static const taurus = ZodiacSignContent(
     sign: 'taurus',
-    name: 'Boğa',
+    name: 'Taurus',
     symbol: '♉',
-    dates: '20 Nisan - 20 Mayıs',
-    element: 'Toprak',
-    modality: 'Sabit',
-    ruler: 'Venüs',
+    dates: 'April 20 - May 20',
+    element: 'Earth',
+    modality: 'Fixed',
+    ruler: 'Venus',
     rulerMeaning:
-        'Venüs, güzellik ve değer gezegeni, Boğa\'ya estetik duyarlılık, sadakat ve maddi güvenlik arayışı verir.',
+        'Venus, the planet of beauty and value, gives Taurus aesthetic sensitivity, loyalty, and a quest for material security.',
     essence: '''
-Boğa, zodyağın ikinci burcu olarak "Ben sahip olurum" arketipidir. Koç'un başlattığını Boğa somutlaştırır, korur ve büyütür.
+Taurus, as the second sign of the zodiac, is the "I have" archetype. Taurus solidifies, protects, and grows what Aries started.
 
-Bu burçta doğanlar genellikle sabırlı, kararlı ve duyusal zevklere düşkündür. Değişime direnç hem güçleri (istikrar) hem de sınavlarıdır (inatçılık).
+Those born under this sign are generally known for being patient, determined, and fond of sensory pleasures. Resistance to change is both their strength (stability) and their trial (stubbornness).
 ''',
     extendedDescription: '''
-## Boğa Burcunun Derinliği
+## The Depth of Taurus
 
-Boğa, baharın ortasında, doğanın en verimli olduğu dönemde yer alır. Bu yüzden Boğa enerjisi üretkenlik, büyütme ve koruma ile ilgilidir.
+Taurus falls in mid-spring, when nature is at its most fertile. That's why Taurus energy is about productivity, nurturing, and protection.
 
-**Arketipsel Tema: Bahçıvan**
-Boğa'nın arketipi bahçıvandır — toprağa tohum eker, sabırla bekler, büyütür ve hasat eder. Hızlı sonuç beklemez, ama emeğinin karşılığını almak ister.
+**Archetypal Theme: The Gardener**
+Taurus' archetype is the gardener — they plant seeds in the soil, wait patiently, nurture, and harvest. They don't expect quick results, but want to reap what they sow.
 
-**Element Etkisi: Toprak**
-Toprak elementi pratiklik, somutluk ve dayanıklılık getirir. Boğa, toprağın en "verimli" halidir — besleyici ve üretken.
+**Element Effect: Earth**
+The earth element brings practicality, tangibility, and durability. Taurus is the most "fertile" form of earth — nourishing and productive.
 
-**Modalite: Sabit**
-Sabit burçlar sürdürücüdür. Boğa başlatılan şeyi devam ettirir, korur, derinleştirir. Değişime dirençlidir ama bir kere değişirse geri dönmez.
+**Modality: Fixed**
+Fixed signs are sustainers. Taurus continues, protects, and deepens what's been started. They resist change but once they change, they don't go back.
 
-**Gölge Yönü**
-Boğa'nın gölgesi inatçılık, maddeye aşırı bağlanma, possesiflik ve tembellik olabilir. "Rahat alan" bağımlılığı büyüme engelleyebilir.
+**Shadow Side**
+Taurus' shadow can be stubbornness, over-attachment to material things, possessiveness, and laziness. "Comfort zone" addiction can hinder growth.
 ''',
     lightSide:
-        'Sadakat, sabır, güvenilirlik, duyusal zeka, estetik, pratiklik, kararlılık',
+        'Loyalty, patience, reliability, sensory intelligence, aesthetics, practicality, determination',
     shadowSide:
-        'İnatçılık, possesiflik, değişime direnç, maddecilik, tembellik, kıskançlık',
+        'Stubbornness, possessiveness, resistance to change, materialism, laziness, jealousy',
     loveStyle: '''
-Boğa aşkta sadık, duyusal ve koruyucudur. Güvenlik arar ve sunar. Romantizmde beş duyuya hitap eden deneyimler önemlidir.
+Taurus is loyal, sensual, and protective in love. They seek and offer security. Experiences that appeal to all five senses are important in romance.
 
-**İdeal Partner Dinamiği:** Güvenilir, sadık, maddi ve duygusal istikrar sağlayabilecek biri. Ani değişimler veya belirsizlik Boğa'yı bunaltır.
+**Ideal Partner Dynamic:** Someone reliable, loyal, who can provide material and emotional stability. Sudden changes or uncertainty overwhelm Taurus.
 
-**Dikkat Noktası:** Sahiplenme, kıskançlık ve kontrol eğilimi izlenmelidir. "Seni seviyorum" ile "sen benimsin" arasındaki fark önemlidir.
+**Watch Point:** Possessiveness, jealousy, and control tendencies should be monitored. The difference between "I love you" and "you're mine" matters.
 ''',
     careerStyle: '''
-Boğa, uzun vadeli projeler, somut sonuçlar ve finansal güvenlik sunan işlerde parlıyor.
+Taurus thrives in jobs offering long-term projects, tangible results, and financial security.
 
-**Güçlü Olduğu Alanlar:** Finans, bankacılık, gayrimenkul, tarım, yemek/restoran, sanat, müzik, lüks sektörü.
+**Strong Areas:** Finance, banking, real estate, agriculture, food/restaurant, art, music, luxury sector.
 
-**Dikkat Noktası:** Risk almaktan kaçınma, inovasyon gerektiren ortamlarda zorlanma olabilir. Konfor alanından çıkmak gerekebilir.
+**Watch Point:** Avoidance of risk-taking, struggle in innovation-requiring environments. May need to step out of comfort zone.
 ''',
     healthFocus:
-        'Boyun ve boğaz bölgesi, tiroit, ses. Aşırı yeme eğilimi ve metabolizma. Stres yediğinde birikir — fiziksel aktivite ve doğada zaman şifa verir.',
+        'Neck and throat region, thyroid, voice. Tendency to overeat and metabolism issues. Stress accumulates when eating — physical activity and time in nature provide healing.',
     dreamPatterns: '''
-Boğa'nın rüyaları genellikle duyusal ve somuttur. Yemek, bahçe, ev, para, cinsellik temaları sık görülür.
+Taurus' dreams are usually sensory and concrete. Food, garden, home, money, sexuality themes are common.
 
-**Sembolik Yorumlama:** "Bir şey kaybetme" veya "evden çıkarılma" rüyaları güvenlik kaygılarını, "şölen" rüyaları bolluk ve tatmin arayışını yansıtabilir.
+**Symbolic Interpretation:** "Losing something" or "being evicted from home" dreams may reflect security anxieties, "feast" dreams may reflect the search for abundance and satisfaction.
 ''',
     commonDreamSymbols: [
-      'Yemek veya şölen',
-      'Bahçe veya tarla',
-      'Ev veya mülk',
-      'Para veya mücevher',
-      'Boğa veya inek',
-      'Yeşil renk',
-      'Toprak veya çiçekler',
+      'Food or feast',
+      'Garden or field',
+      'House or property',
+      'Money or jewelry',
+      'Bull or cow',
+      'Green color',
+      'Soil or flowers',
     ],
-    compatibleSigns: ['Başak', 'Oğlak', 'Yengeç', 'Balık'],
-    challengingSigns: ['Aslan', 'Kova', 'Akrep'],
+    compatibleSigns: ['Virgo', 'Capricorn', 'Cancer', 'Pisces'],
+    challengingSigns: ['Leo', 'Aquarius', 'Scorpio'],
     faqs: [
       {
-        'question': 'Boğa burcu neden bu kadar inatçı?',
+        'question': 'Why is Taurus so stubborn?',
         'answer':
-            'Sabit modalite ve toprak elementi, Boğa\'ya derin bir "kök salma" enerjisi verir. Değişim tehdittir çünkü güvenliği sarsar. İnat aslında koruma mekanizmasıdır.'
+            'Fixed modality and earth element give Taurus a deep "rooting" energy. Change is a threat because it shakes their security. Stubbornness is actually a protection mechanism.'
       },
       {
-        'question': 'Boğa burcu paraya neden bu kadar düşkün?',
+        'question': 'Why is Taurus so attached to money?',
         'answer':
-            'Para Boğa için sadece para değil, güvenlik ve özgürlük sembolüdür. Maddi istikrar, Boğa\'nın iç huzurunun temelidir.'
+            'Money for Taurus isn\'t just money, it\'s a symbol of security and freedom. Material stability is the foundation of Taurus\' inner peace.'
       },
       {
-        'question': 'Boğa burcu ile kavga edilir mi?',
+        'question': 'Can you argue with a Taurus?',
         'answer':
-            'Boğa uzun süre sabreder ama bir kere patlarsa şiddetli olabilir. Doğrudan, sakin ve saygılı iletişim en iyisidir. Baskı yaparsanız duvar örer.'
+            'Taurus tolerates for a long time but once they explode, it can be intense. Direct, calm, and respectful communication works best. If you pressure them, they build walls.'
       },
       {
-        'question': 'Boğa burcunu nasıl etkilersiniz?',
+        'question': 'How do you influence a Taurus?',
         'answer':
-            'Mantık değil, deneyim ile. Bir şeyi söylemek yerine gösterin, tattırın, yaşatın. Boğa duyularıyla ikna olur.'
+            'Not with logic, but with experience. Instead of telling, show them, let them taste, let them experience. Taurus is convinced through their senses.'
       },
       {
-        'question': 'Boğa burcu aşık olduğunda nasıl davranır?',
+        'question': 'How does Taurus act when in love?',
         'answer':
-            'Yavaş ve temkinli başlar ama bir kere bağlandığında sadık ve adanmıştır. Hediyeler, fiziksel yakınlık ve istikrar arar.'
+            'They start slow and cautious but once attached, they\'re loyal and devoted. They seek gifts, physical closeness, and stability.'
       },
       {
-        'question': 'Boğa burcu değişime nasıl adapte olur?',
+        'question': 'How does Taurus adapt to change?',
         'answer':
-            'Çok zor ama zorunlu olduğunda uyum sağlar. Küçük adımlarla, kendi hızında ve kontrol hissi korunarak geçiş yapabilir.'
+            'With great difficulty, but they adapt when forced. They can transition with small steps, at their own pace, and while maintaining a sense of control.'
       },
     ],
     dailyAffirmation:
-        'Sabrım benim gücüm, değişim benim büyümem, bolluğa layığım.',
+        'My patience is my strength, change is my growth, I deserve abundance.',
     internalLinks: {
-      '/compatibility': 'Boğa burcu ile uyumlu burçlar →',
-      '/birth-chart': 'Venüs\'ün haritandaki yeri →',
-      '/horoscope/virgo': 'Diğer toprak burcu: Başak →',
-      '/horoscope/capricorn': 'Diğer toprak burcu: Oğlak →',
-      '/transits': 'Venüs transiti seni nasıl etkiliyor? →',
-      '/numerology': 'Boğa ve sayılar →',
+      '/compatibility': 'Signs compatible with Taurus →',
+      '/birth-chart': 'Venus\' position in your chart →',
+      '/horoscope/virgo': 'Another earth sign: Virgo →',
+      '/horoscope/capricorn': 'Another earth sign: Capricorn →',
+      '/transits': 'How is Venus transit affecting you? →',
+      '/numerology': 'Taurus and numbers →',
     },
   );
 
   static const gemini = ZodiacSignContent(
     sign: 'gemini',
-    name: 'İkizler',
+    name: 'Gemini',
     symbol: '♊',
-    dates: '21 Mayıs - 20 Haziran',
-    element: 'Hava',
-    modality: 'Değişken',
-    ruler: 'Merkür',
+    dates: 'May 21 - June 20',
+    element: 'Air',
+    modality: 'Mutable',
+    ruler: 'Mercury',
     rulerMeaning:
-        'Merkür, iletişim ve zeka gezegeni, İkizler\'e çok yönlülük, merak ve sözel yetenek verir.',
+        'Mercury, the planet of communication and intellect, gives Gemini versatility, curiosity, and verbal talent.',
     essence: '''
-İkizler, zodyağın üçüncü burcu olarak "Ben düşünürüm ve iletişim kurarım" arketipidir. Dualite, çeşitlilik ve bağlantı kurma enerjisi taşır.
+Gemini, as the third sign of the zodiac, is the "I think and communicate" archetype. It carries duality, variety, and connection-making energy.
 
-Bu burçta doğanlar genellikle meraklı, konuşkan ve adaptif olarak tanınır. Çok yönlülük hem güçleri hem de sınavlarıdır (dağınıklık, yüzeysellik riski).
+Those born under this sign are generally known for being curious, talkative, and adaptive. Versatility is both their strength and their trial (risk of scatteredness, superficiality).
 ''',
     extendedDescription: '''
-## İkizler Burcunun Derinliği
+## The Depth of Gemini
 
-İkizler, baharın sonunda, havanın en hareketli olduğu dönemde yer alır. İkiz sembolü, bu burcun çoğul doğasını yansıtır — birden fazla perspektif, birden fazla ilgi, birden fazla "ben".
+Gemini falls at the end of spring, when the air is most active. The Twins symbol reflects this sign's plural nature — multiple perspectives, multiple interests, multiple "selves."
 
-**Arketipsel Tema: Haberci / Trickster**
-İkizler'in arketipi habercidir — bilgiyi taşır, bağlantı kurar, köprü oluşturur. Mitolojik Hermes/Merkür gibi, dünyalar arasında geçiş yapar.
+**Archetypal Theme: The Messenger / Trickster**
+Gemini's archetype is the messenger — they carry information, make connections, build bridges. Like mythological Hermes/Mercury, they transition between worlds.
 
-**Element Etkisi: Hava**
-Hava elementi düşünce, iletişim ve sosyal bağlantı getirir. İkizler, havanın en "hareketli" halidir — sürekli hareket, değişim, akış.
+**Element Effect: Air**
+The air element brings thought, communication, and social connection. Gemini is the most "mobile" form of air — constant movement, change, flow.
 
-**Modalite: Değişken**
-Değişken burçlar adaptördür. İkizler ortama, kişiye, duruma göre şekil değiştirir. Bu esneklik güç ama tutarsızlık riski taşır.
+**Modality: Mutable**
+Mutable signs are adapters. Gemini shifts shape according to environment, person, situation. This flexibility is a strength but carries the risk of inconsistency.
 
-**Gölge Yönü**
-İkizler'in gölgesi yüzeysellik, dedikodu, kararsızlık, güvenilmezlik ve aşırı rasyonalizasyon olabilir. Duygulardan kaçmak için zihne sığınabilir.
+**Shadow Side**
+Gemini's shadow can be superficiality, gossip, indecisiveness, unreliability, and over-rationalization. They may hide in the mind to escape emotions.
 ''',
     lightSide:
-        'Zeka, iletişim becerisi, adaptasyon, merak, çok yönlülük, mizah, sosyallik',
+        'Intelligence, communication skills, adaptation, curiosity, versatility, humor, sociability',
     shadowSide:
-        'Yüzeysellik, kararsızlık, dedikodu, tutarsızlık, dikkat dağınıklığı, duygusal kaçış',
+        'Superficiality, indecisiveness, gossip, inconsistency, attention scatter, emotional escape',
     loveStyle: '''
-İkizler aşkta zihinsel uyaranlar arar. Konuşma, kahkaha ve entelektüel bağ onun için fiziksel çekimden önce gelir.
+Gemini seeks mental stimulation in love. Conversation, laughter, and intellectual connection come before physical attraction for them.
 
-**İdeal Partner Dinamiği:** Entelektüel olarak eşit, iletişime açık, bağımsızlığa saygılı ve sıkıcı olmayan biri.
+**Ideal Partner Dynamic:** Someone intellectually equal, open to communication, respectful of independence, and not boring.
 
-**Dikkat Noktası:** Sıkılma eğilimi ve "çim her zaman karşı tarafta yeşildir" sendromu. Duygusal derinlik geliştirmek önemlidir.
+**Watch Point:** Tendency to get bored and "grass is always greener" syndrome. Developing emotional depth is important.
 ''',
     careerStyle: '''
-İkizler, çeşitlilik, iletişim ve hızlı değişim gerektiren işlerde başarılı olur.
+Gemini succeeds in jobs requiring variety, communication, and rapid change.
 
-**Güçlü Olduğu Alanlar:** Medya, gazetecilik, satış, pazarlama, eğitim, yazarlık, sosyal medya, tercümanlık.
+**Strong Areas:** Media, journalism, sales, marketing, education, writing, social media, interpreting.
 
-**Dikkat Noktası:** Uzun vadeli, monoton projeler İkizler'i bunaltabilir. Çoklu görev (multitasking) yapabilecek roller idealdir.
+**Watch Point:** Long-term, monotonous projects can overwhelm Gemini. Roles allowing multitasking are ideal.
 ''',
     healthFocus:
-        'Eller, kollar, sinir sistemi, akciğerler. Anksiyete ve aşırı düşünme eğilimi. Nefes egzersizleri ve zihinsel dinlenme önemlidir.',
+        'Hands, arms, nervous system, lungs. Tendency toward anxiety and overthinking. Breathing exercises and mental rest are important.',
     dreamPatterns: '''
-İkizler'in rüyaları genellikle karmaşık, çoklu sahneli ve iletişim temalıdır. Konuşmalar, telefonlar, mektuplar, yolculuklar sık görülür.
+Gemini's dreams are usually complex, multi-scene, and communication-themed. Conversations, phones, letters, journeys are common.
 
-**Sembolik Yorumlama:** "Konuşamama" veya "yanlış anlaşılma" rüyaları iletişim kaygılarını, "ikiz/kopyalar" rüyaları iç çatışmaları yansıtabilir.
+**Symbolic Interpretation:** "Unable to speak" or "being misunderstood" dreams may reflect communication anxieties, "twins/copies" dreams may reflect inner conflicts.
 ''',
     commonDreamSymbols: [
-      'Kitaplar veya yazılar',
-      'Telefon veya mesajlar',
-      'Yolculuk veya araçlar',
-      'İkizler veya kopyalar',
-      'Kuşlar veya kelebekler',
-      'Rüzgar veya fırtına',
-      'Sarı renk',
+      'Books or writings',
+      'Phone or messages',
+      'Travel or vehicles',
+      'Twins or copies',
+      'Birds or butterflies',
+      'Wind or storm',
+      'Yellow color',
     ],
-    compatibleSigns: ['Terazi', 'Kova', 'Koç', 'Aslan'],
-    challengingSigns: ['Başak', 'Balık', 'Yay'],
+    compatibleSigns: ['Libra', 'Aquarius', 'Aries', 'Leo'],
+    challengingSigns: ['Virgo', 'Pisces', 'Sagittarius'],
     faqs: [
       {
-        'question': 'İkizler gerçekten iki yüzlü mü?',
+        'question': 'Is Gemini really two-faced?',
         'answer':
-            'Hayır, ama çok yönlüdür. Farklı ortamlarda farklı taraflarını gösterir — bu sahtelik değil, adaptasyondur. Ancak tutarsızlık güven sorunlarına yol açabilir.'
+            'No, but they are multi-faceted. They show different sides in different environments — this isn\'t fakeness, it\'s adaptation. However, inconsistency can cause trust issues.'
       },
       {
-        'question': 'İkizler neden bu kadar kararsız?',
+        'question': 'Why is Gemini so indecisive?',
         'answer':
-            'Tüm seçenekleri görebilmek hem bir lütuf hem de bir lanet. İkizler için "en iyi" seçimi yapmak zor çünkü her şeyde potansiyel görür.'
+            'Being able to see all options is both a blessing and a curse. Making the "best" choice is difficult for Gemini because they see potential in everything.'
       },
       {
-        'question': 'İkizler ile derin bir ilişki kurulabilir mi?',
+        'question': 'Can you have a deep relationship with a Gemini?',
         'answer':
-            'Evet, ama sabır gerektirir. İkizler yüzeyde kalmayı tercih edebilir ama güvendiği kişiye açılabilir. Zihinsel bağ kurulduktan sonra duygusal derinlik gelebilir.'
+            'Yes, but it requires patience. Gemini may prefer to stay on the surface but can open up to someone they trust. Emotional depth can come after mental connection is established.'
       },
       {
-        'question': 'İkizler neden bu kadar konuşuyor?',
+        'question': 'Why does Gemini talk so much?',
         'answer':
-            'Merkür yönetimi ve hava elementi İkizler\'i doğal bir iletişimci yapar. Düşünceler sürekli akar ve paylaşma ihtiyacı yoğundur. Bazen dinlemek de öğrenilmesi gereken bir beceridir.'
+            'Mercury rulership and air element make Gemini a natural communicator. Thoughts flow constantly and the need to share is intense. Sometimes listening is also a skill to learn.'
       },
       {
-        'question': 'İkizler burcu nasıl sakinleştirilir?',
+        'question': 'How do you calm a Gemini down?',
         'answer':
-            'Dikkatini dağıtmak (yeni konu), mantıksal açıklama yapmak, fiziksel aktivite (yürüyüş, dans), yazı yazmak veya konuşmak. Zihinsel meşguliyet sakinleştirir.'
+            'Distract their attention (new topic), give logical explanations, physical activity (walking, dancing), writing or talking. Mental occupation calms them.'
       },
       {
-        'question': 'İkizler sıkıldığında ne yapar?',
+        'question': 'What does Gemini do when bored?',
         'answer':
-            'Kaçar — mental veya fiziksel olarak. Yeni insanlar, yeni fikirler, yeni projeler arar. Sıkıntı İkizler için en büyük tehdittir.'
+            'They escape — mentally or physically. They seek new people, new ideas, new projects. Boredom is the biggest threat to Gemini.'
       },
     ],
     dailyAffirmation:
-        'Merakım beni zenginleştirir, ama derinlik beni tamamlar.',
+        'My curiosity enriches me, but depth completes me.',
     internalLinks: {
-      '/compatibility': 'İkizler burcu ile uyumlu burçlar →',
-      '/birth-chart': 'Merkür\'ün haritandaki yeri →',
-      '/horoscope/libra': 'Diğer hava burcu: Terazi →',
-      '/horoscope/aquarius': 'Diğer hava burcu: Kova →',
-      '/transits': 'Merkür retrosu seni nasıl etkiliyor? →',
-      '/tarot': 'İkizler enerjisi için tarot →',
+      '/compatibility': 'Signs compatible with Gemini →',
+      '/birth-chart': 'Mercury\'s position in your chart →',
+      '/horoscope/libra': 'Another air sign: Libra →',
+      '/horoscope/aquarius': 'Another air sign: Aquarius →',
+      '/transits': 'How is Mercury retrograde affecting you? →',
+      '/tarot': 'Tarot for Gemini energy →',
     },
   );
 
   // CANCER
   static const cancer = ZodiacSignContent(
     sign: 'cancer',
-    name: 'Yengeç',
+    name: 'Cancer',
     symbol: '♋',
-    dates: '21 Haziran - 22 Temmuz',
-    element: 'Su',
-    modality: 'Kardinal (Öncü)',
-    ruler: 'Ay',
+    dates: 'June 21 - July 22',
+    element: 'Water',
+    modality: 'Cardinal',
+    ruler: 'Moon',
     rulerMeaning:
-        'Ay, duygular ve bilinçaltı gezegeni, Yengeç\'e derin sezgi, bakım verme içgüdüsü ve duygusal hafıza verir.',
+        'The Moon, the planet of emotions and subconscious, gives Cancer deep intuition, nurturing instinct, and emotional memory.',
     essence: '''
-Yengeç, zodyağın dördüncü burcu olarak "Ben hissederim ve korurum" arketipidir. Ev, aile, kökler ve duygusal güvenlik temasları taşır.
+Cancer, as the fourth sign of the zodiac, is the "I feel and protect" archetype. It carries themes of home, family, roots, and emotional security.
 
-Bu burçta doğanlar genellikle şefkatli, sezgisel ve koruyucu olarak tanınır. Duygusal derinlik hem güçleri hem de kırılganlıklarıdır.
+Those born under this sign are generally known for being compassionate, intuitive, and protective. Emotional depth is both their strength and their vulnerability.
 ''',
     extendedDescription: '''
-## Yengeç Burcunun Derinliği
+## The Depth of Cancer
 
-Yengeç, yaz gündönümünde başlar — en uzun gün, ışığın zirvesi ama karanlığa dönüşün başlangıcı. Bu paradoks, Yengeç'in duygusal karmaşıklığını yansıtır.
+Cancer begins at the summer solstice — the longest day, the peak of light but also the beginning of the turn toward darkness. This paradox reflects Cancer's emotional complexity.
 
-**Arketipsel Tema: Anne / Bakıcı**
-Yengeç'in arketipi annedir — besleyici, koruyucu, ama bazen boğucu. Bu enerji cinsiyetten bağımsızdır; bakım verme ve alma ile ilgilidir.
+**Archetypal Theme: The Mother / Caregiver**
+Cancer's archetype is the mother — nurturing, protective, but sometimes smothering. This energy is gender-independent; it's about giving and receiving care.
 
-**Element Etkisi: Su**
-Su elementi duygular, sezgi ve empati getirir. Yengeç, suyun en "yumuşak" halidir — göl gibi sakin ama derin.
+**Element Effect: Water**
+The water element brings emotions, intuition, and empathy. Cancer is the "softest" form of water — calm like a lake but deep.
 
-**Modalite: Kardinal**
-Kardinal burçlar başlatıcıdır. Yengeç, duygusal alanda inisiyatif alır — ailesini kurar, yuvasını oluşturur, güvenli alan yaratır.
+**Modality: Cardinal**
+Cardinal signs are initiators. Cancer takes initiative in the emotional realm — they establish their family, create their home, build safe spaces.
 
-**Gölge Yönü**
-Yengeç'in gölgesi aşırı duygusallık, pasif-agresiflik, manipülasyon (suçluluk yoluyla), geçmişe takılma ve kabuk bağlamadır.
+**Shadow Side**
+Cancer's shadow can be excessive emotionality, passive-aggressiveness, manipulation (through guilt), being stuck in the past, and shell-building.
 ''',
     lightSide:
-        'Şefkat, sadakat, sezgi, bakım, duygusal zeka, hafıza, koruyuculuk',
+        'Compassion, loyalty, intuition, nurturing, emotional intelligence, memory, protectiveness',
     shadowSide:
-        'Aşırı hassasiyet, geçmişe takılma, pasif-agresiflik, kabuk bağlama, manipülasyon',
+        'Excessive sensitivity, being stuck in the past, passive-aggressiveness, shell-building, manipulation',
     loveStyle: '''
-Yengeç aşkta güvenlik ve duygusal bağ arar. Yavaş güvenir ama bir kere bağlandığında derin ve sadıktır.
+Cancer seeks security and emotional connection in love. They trust slowly but once attached, they're deep and loyal.
 
-**İdeal Partner Dinamiği:** Duygusal olarak açık, güvenilir, ailesine değer veren ve yuva kurma vizyonu olan biri.
+**Ideal Partner Dynamic:** Someone emotionally open, reliable, who values family, and has a vision of building a home.
 
-**Dikkat Noktası:** Reddedilme korkusu, klinger davranışlar ve "küsme" yerine direkt iletişim kurmayı öğrenmek.
+**Watch Point:** Fear of rejection, clingy behaviors, and learning to communicate directly instead of "sulking."
 ''',
     careerStyle: '''
-Yengeç, insanlara hizmet eden, bakım içeren ve güvenlik sunan işlerde başarılı olur.
+Cancer succeeds in jobs that serve people, involve care, and offer security.
 
-**Güçlü Olduğu Alanlar:** Sağlık, psikoloji, eğitim (özellikle çocuklar), gastronomi, otelcilik, emlak, aile işletmeleri.
+**Strong Areas:** Healthcare, psychology, education (especially children), gastronomy, hospitality, real estate, family businesses.
 
-**Dikkat Noktası:** Eleştiriye aşırı hassasiyet, ofis politikalarından etkilenme. Kalın derili olmayı öğrenmek gerekebilir.
+**Watch Point:** Excessive sensitivity to criticism, being affected by office politics. May need to learn to be thick-skinned.
 ''',
     healthFocus:
-        'Göğüs, mide, sindirim sistemi. Stres yemeğe yansıyabilir. Duygusal yükler fiziksel belirtilere dönüşebilir. Su içmek, ev ortamında dinlenmek önemlidir.',
+        'Chest, stomach, digestive system. Stress may manifest in eating. Emotional loads can turn into physical symptoms. Drinking water, resting in a home environment is important.',
     dreamPatterns: '''
-Yengeç'in rüyaları genellikle ev, aile, su ve geçmiş temalıdır. Eski evler, anılar, deniz veya göl sık görülür.
+Cancer's dreams are usually themed around home, family, water, and the past. Old houses, memories, sea or lake are common.
 
-**Sembolik Yorumlama:** "Eve dönememe" rüyaları güvenlik kaygılarını, "su altında kalma" rüyaları duygusal bunalmayı, "eski aile üyeleri" rüyaları işlenmemiş aile dinamiklerini yansıtabilir.
+**Symbolic Interpretation:** "Unable to return home" dreams may reflect security anxieties, "being underwater" dreams may reflect emotional overwhelm, "old family members" dreams may reflect unprocessed family dynamics.
 ''',
     commonDreamSymbols: [
-      'Ev veya eski evler',
-      'Anne veya aile üyeleri',
-      'Su (deniz, göl, yağmur)',
-      'Bebekler veya çocuklar',
-      'Yengeç veya kabuklu deniz canlıları',
-      'Ay veya gece',
-      'Gümüş renk',
+      'House or old houses',
+      'Mother or family members',
+      'Water (sea, lake, rain)',
+      'Babies or children',
+      'Crab or shelled sea creatures',
+      'Moon or night',
+      'Silver color',
     ],
-    compatibleSigns: ['Akrep', 'Balık', 'Boğa', 'Başak'],
-    challengingSigns: ['Koç', 'Terazi', 'Oğlak'],
+    compatibleSigns: ['Scorpio', 'Pisces', 'Taurus', 'Virgo'],
+    challengingSigns: ['Aries', 'Libra', 'Capricorn'],
     faqs: [
       {
-        'question': 'Yengeç burcu neden bu kadar duygusal?',
+        'question': 'Why is Cancer so emotional?',
         'answer':
-            'Ay yönetimi Yengeç\'e dalgalanan, döngüsel bir duygusal yaşam verir. Ay gibi, Yengeç de sürekli değişen iç manzaralar yaşar. Bu duygusal derinlik, aynı zamanda derin empati kapasitesidir.'
+            'Moon rulership gives Cancer a fluctuating, cyclical emotional life. Like the Moon, Cancer also experiences constantly changing inner landscapes. This emotional depth is also a capacity for deep empathy.'
       },
       {
-        'question': 'Yengeç burcu neden küser?',
+        'question': 'Why does Cancer sulk?',
         'answer':
-            'Yengeç doğrudan çatışmadan kaçınır, bunun yerine geri çekilir ve kabuk bağlar. Bu koruma mekanizmasıdır ama ilişkilere zarar verebilir. Güvenli hissederse açılabilir.'
+            'Cancer avoids direct conflict, instead withdrawing and building a shell. This is a protection mechanism but can harm relationships. They can open up if they feel safe.'
       },
       {
-        'question': 'Yengeç burcu ile nasıl bağ kurulur?',
+        'question': 'How do you build a bond with Cancer?',
         'answer':
-            'Sabır, tutarlılık ve duygusal güvenlik sunarak. Acele etmeyin, kendinizi açın, geçmişinizi paylaşın. Yengeç güven inşa etmek için zamana ihtiyaç duyar.'
+            'By offering patience, consistency, and emotional security. Don\'t rush, open up, share your past. Cancer needs time to build trust.'
       },
       {
-        'question': 'Yengeç burcu neden geçmişe takılıyor?',
+        'question': 'Why does Cancer get stuck in the past?',
         'answer':
-            'Ay güçlü bir hafıza verir. Yengeç geçmiş deneyimlerden öğrenir, hatıralar onu besler. Ama bazen bu nostaljik eğilim "şimdi"yi yaşamayı zorlaştırabilir.'
+            'The Moon gives strong memory. Cancer learns from past experiences, memories nourish them. But sometimes this nostalgic tendency can make living in the "now" difficult.'
       },
       {
-        'question': 'Yengeç burcu öfkelendiğinde ne yapar?',
+        'question': 'What does Cancer do when angry?',
         'answer':
-            'Önce içe çekilir (kabuk), sonra pasif-agresif olabilir (iğnelemeler), en son patlar. Patlama nadir ama şiddetli olabilir. Duyguların birikmesine izin vermemek önemlidir.'
+            'First withdraws (shell), then may become passive-aggressive (jabs), finally explodes. The explosion is rare but can be intense. It\'s important not to let emotions accumulate.'
       },
       {
-        'question': 'Yengeç burcu nasıl sevilir?',
+        'question': 'How do you love a Cancer?',
         'answer':
-            'Dinleyerek, hatırlayarak, küçük jestlerle, ailesiyle ilgilenerek, evinde onunla vakit geçirerek. Yengeç görkemli değil, samimi ifadeler ister.'
+            'By listening, remembering, small gestures, caring about their family, spending time with them at home. Cancer wants sincere, not grand expressions.'
       },
     ],
     dailyAffirmation:
-        'Kalbimi korurken, sevgimi paylaşmaktan korkmuyorum.',
+        'While protecting my heart, I\'m not afraid to share my love.',
     internalLinks: {
-      '/compatibility': 'Yengeç burcu ile uyumlu burçlar →',
-      '/birth-chart': 'Ay\'ın haritandaki yeri →',
-      '/horoscope/scorpio': 'Diğer su burcu: Akrep →',
-      '/horoscope/pisces': 'Diğer su burcu: Balık →',
-      '/transits': 'Ay transitleri seni nasıl etkiliyor? →',
-      '/dreams': 'Yengeç rüyaları →',
+      '/compatibility': 'Signs compatible with Cancer →',
+      '/birth-chart': 'Moon\'s position in your chart →',
+      '/horoscope/scorpio': 'Another water sign: Scorpio →',
+      '/horoscope/pisces': 'Another water sign: Pisces →',
+      '/transits': 'How are Moon transits affecting you? →',
+      '/dreams': 'Cancer dreams →',
     },
   );
 
   // LEO
   static const leo = ZodiacSignContent(
     sign: 'leo',
-    name: 'Aslan',
+    name: 'Leo',
     symbol: '♌',
-    dates: '23 Temmuz - 22 Ağustos',
-    element: 'Ateş',
-    modality: 'Sabit',
-    ruler: 'Güneş',
+    dates: 'July 23 - August 22',
+    element: 'Fire',
+    modality: 'Fixed',
+    ruler: 'Sun',
     rulerMeaning:
-        'Güneş, kimlik ve yaşam gücü merkezi, Aslan\'a ışıltı, yaratıcılık ve doğal liderlik enerjisi verir.',
+        'The Sun, the center of identity and life force, gives Leo radiance, creativity, and natural leadership energy.',
     essence: '''
-Aslan, zodyağın beşinci burcu olarak "Ben yaratırım ve parlarım" arketipidir. Yaratıcılık, kendini ifade ve tanınma ihtiyacı temasları taşır.
+Leo, as the fifth sign of the zodiac, is the "I create and shine" archetype. It carries themes of creativity, self-expression, and the need for recognition.
 
-Bu burçta doğanlar genellikle karizmatik, cömert ve dramatik olarak tanınır. Işık arayışı hem güçleri hem de sınavlarıdır (ego, gurur).
+Those born under this sign are generally known for being charismatic, generous, and dramatic. The search for light is both their strength and their trial (ego, pride).
 ''',
     extendedDescription: '''
-## Aslan Burcunun Derinliği
+## The Depth of Leo
 
-Aslan, yazın en sıcak döneminde, Güneş'in en güçlü olduğu zamanda yer alır. Tıpkı Güneş gibi, Aslan da merkezde olmak, ışık saçmak ve yaşam getirmek ister.
+Leo falls in the hottest period of summer, when the Sun is at its strongest. Just like the Sun, Leo wants to be at the center, radiate light, and bring life.
 
-**Arketipsel Tema: Kral/Kraliçe**
-Aslan'ın arketipi kraldır — hükmeden değil, koruyan ve onurlandıran. Gerçek bir kral halkına hizmet eder, şov yapmaz.
+**Archetypal Theme: The King/Queen**
+Leo's archetype is the king — not one who rules, but one who protects and honors. A true king serves their people, doesn't show off.
 
-**Element Etkisi: Ateş**
-Ateş elementi tutku, yaratıcılık ve canlılık getirir. Aslan, ateşin en "istikrarlı" halidir — ocak başı ateşi gibi sürekli yanan.
+**Element Effect: Fire**
+The fire element brings passion, creativity, and vitality. Leo is the most "stable" form of fire — like a hearth fire that constantly burns.
 
-**Modalite: Sabit**
-Sabit burçlar sürdürücüdür. Aslan, sadakatinde, yaratıcı vizyonunda ve kimliğinde sabittir. Değişmez ama bu bazen inatçılık olabilir.
+**Modality: Fixed**
+Fixed signs are sustainers. Leo is fixed in their loyalty, creative vision, and identity. They don't change, but this can sometimes be stubbornness.
 
-**Gölge Yönü**
-Aslan'ın gölgesi kibir, onay bağımlılığı, drama yararlığı, kontrol ihtiyacı ve eleştiriye kapalılıktır.
+**Shadow Side**
+Leo's shadow can be arrogance, approval addiction, drama creation, need for control, and being closed to criticism.
 ''',
     lightSide:
-        'Karizma, cömertlik, yaratıcılık, sadakat, cesaret, liderlik, sıcaklık',
+        'Charisma, generosity, creativity, loyalty, courage, leadership, warmth',
     shadowSide:
-        'Kibir, ego, onay bağımlılığı, drama, kontrol ihtiyacı, eleştiriye kapalılık',
+        'Arrogance, ego, approval addiction, drama, need for control, being closed to criticism',
     loveStyle: '''
-Aslan aşkta romantik, cömert ve performatiftir. Sevilmeyi ve hayranlık görmeyi ister, ama aynı zamanda derin bir sadakat sunar.
+Leo is romantic, generous, and performative in love. They want to be loved and admired, but also offer deep loyalty.
 
-**İdeal Partner Dinamiği:** Aslan'ı takdir eden ama ona boyun eğmeyen, kendi ışığı olan biri. Karşılıklı hayranlık önemlidir.
+**Ideal Partner Dynamic:** Someone who appreciates Leo but doesn't submit to them, who has their own light. Mutual admiration is important.
 
-**Dikkat Noktası:** Hayranlık bağımlılığı, ilişkide sahneye çıkma ihtiyacı, partnerinizin parlamasına da izin vermek.
+**Watch Point:** Admiration addiction, needing to be on stage in the relationship, allowing your partner to shine too.
 ''',
 
     careerStyle: '''
-Aslan, yaratıcılık, liderlik ve görünürlük gerektiren alanlarda parlar.
+Leo shines in areas requiring creativity, leadership, and visibility.
 
-**Güçlü Olduğu Alanlar:** Sahne sanatları, yönetim, eğlence, pazarlama, moda, spor, çocuklarla çalışma.
+**Strong Areas:** Performing arts, management, entertainment, marketing, fashion, sports, working with children.
 
-**Dikkat Noktası:** Perde arkası rollerde zorlanabilir. Tanınma olmadan motivasyon düşebilir.
+**Watch Point:** May struggle in behind-the-scenes roles. Motivation may drop without recognition.
 ''',
     healthFocus:
-        'Kalp ve sırt bölgesi. Stres kalbi etkiler. Fiziksel aktivite ve yaratıcı ifade şifa verir. Övgü alma ihtiyacı bastırıldığında depresyon riski.',
+        'Heart and back region. Stress affects the heart. Physical activity and creative expression provide healing. Depression risk when the need for praise is suppressed.',
     dreamPatterns: '''
-Aslan'ın rüyaları genellikle performans, sahne, ışık ve tanınma temalıdır. Kalabalıklar, alkış, sahneler sık görülür.
+Leo's dreams are usually themed around performance, stage, light, and recognition. Crowds, applause, stages are common.
 
-**Sembolik Yorumlama:** "Sahnede unutma" rüyaları performans kaygısını, "aslan" rüyaları güç arayışını, "taclanma/kral olma" rüyaları tanınma ihtiyacını yansıtabilir.
+**Symbolic Interpretation:** "Forgetting on stage" dreams may reflect performance anxiety, "lion" dreams may reflect the search for power, "coronation/becoming king" dreams may reflect the need for recognition.
 ''',
     commonDreamSymbols: [
-      'Sahne veya performans',
-      'Aslan veya kedi',
-      'Güneş veya ışık',
-      'Altın veya mücevherler',
-      'Kalabalık veya alkış',
-      'Taç veya tron',
-      'Turuncu veya altın rengi',
+      'Stage or performance',
+      'Lion or cat',
+      'Sun or light',
+      'Gold or jewels',
+      'Crowd or applause',
+      'Crown or throne',
+      'Orange or gold color',
     ],
-    compatibleSigns: ['Koç', 'Yay', 'İkizler', 'Terazi'],
-    challengingSigns: ['Boğa', 'Akrep', 'Kova'],
+    compatibleSigns: ['Aries', 'Sagittarius', 'Gemini', 'Libra'],
+    challengingSigns: ['Taurus', 'Scorpio', 'Aquarius'],
     faqs: [
       {
-        'question': 'Aslan burcu neden bu kadar dikkat istiyor?',
+        'question': 'Why does Leo want so much attention?',
         'answer':
-            'Güneş yönetimi, Aslan\'a "merkez" enerjisi verir. Dikkat, Aslan için onaylama ve varoluş hissidir. Bu ihtiyaç sağlıklı özgüvenle dengelenebilir.'
+            'Sun rulership gives Leo a "center" energy. Attention is validation and a sense of existence for Leo. This need can be balanced with healthy self-confidence.'
       },
       {
-        'question': 'Aslan burcu kibirli mi?',
+        'question': 'Is Leo arrogant?',
         'answer':
-            'Dışarıdan öyle görünebilir ama çoğu Aslan\'ın iç dünyasında derin bir güvensizlik olabilir. Kibir, aslında savunma mekanizmasıdır. Gerçek özgüven kibre ihtiyaç duymaz.'
+            'It may look that way from the outside, but many Leos have deep insecurity in their inner world. Arrogance is actually a defense mechanism. True self-confidence doesn\'t need arrogance.'
       },
       {
-        'question': 'Aslan burcu eleştiriyi nasıl alır?',
+        'question': 'How does Leo take criticism?',
         'answer':
-            'Genellikle zor alır, özellikle kamusal ortamda. Özel ve nazik geri bildirim daha iyi işe yarar. Eleştirinin kişisel saldırı olmadığını anlaması zaman alabilir.'
+            'Usually with difficulty, especially in public settings. Private and gentle feedback works better. It may take time for them to understand that criticism isn\'t a personal attack.'
       },
       {
-        'question': 'Aslan burcunu nasıl mutlu edersiniz?',
+        'question': 'How do you make Leo happy?',
         'answer':
-            'Takdir edin, iltifat edin, dinleyin, özel hissettirin. Aslan cömert övgü ister ama samimiyetsizliği hisseder. Gerçekten etkilendiğiniz şeyleri söyleyin.'
+            'Appreciate them, compliment them, listen to them, make them feel special. Leo wants generous praise but senses insincerity. Tell them about things that genuinely impress you.'
       },
       {
-        'question': 'Aslan burcu sadık mı?',
+        'question': 'Is Leo loyal?',
         'answer':
-            'Çok sadıktır — ailesine, dostlarına, sevdiklerine. Ama sadakat karşılıklı olmalı. Aslan kendini değersiz hissederse, ilgiyi başka yerde arayabilir.'
+            'Very loyal — to their family, friends, loved ones. But loyalty must be mutual. If Leo feels undervalued, they may seek attention elsewhere.'
       },
       {
-        'question': 'Aslan burcunun korkusu nedir?',
+        'question': 'What is Leo\'s fear?',
         'answer':
-            'Görülmemek, önemsiz olmak, sıradan olmak. Aslan\'ın en derin korkusu fark edilmemektir.'
+            'Being unseen, being unimportant, being ordinary. Leo\'s deepest fear is going unnoticed.'
       },
     ],
     dailyAffirmation:
-        'Işığımı paylaşırken, başkalarının da parlamasına alan açıyorum.',
+        'While sharing my light, I open space for others to shine too.',
     internalLinks: {
-      '/compatibility': 'Aslan burcu ile uyumlu burçlar →',
-      '/birth-chart': 'Güneş\'in haritandaki yeri →',
-      '/horoscope/aries': 'Diğer ateş burcu: Koç →',
-      '/horoscope/sagittarius': 'Diğer ateş burcu: Yay →',
-      '/transits': 'Güneş transiti seni nasıl etkiliyor? →',
-      '/tarot': 'Aslan enerjisi için tarot →',
+      '/compatibility': 'Signs compatible with Leo →',
+      '/birth-chart': 'Sun\'s position in your chart →',
+      '/horoscope/aries': 'Another fire sign: Aries →',
+      '/horoscope/sagittarius': 'Another fire sign: Sagittarius →',
+      '/transits': 'How is Sun transit affecting you? →',
+      '/tarot': 'Tarot for Leo energy →',
     },
   );
 

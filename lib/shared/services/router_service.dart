@@ -980,13 +980,9 @@ class _SplashScreenState extends ConsumerState<_SplashScreen>
     await Future.delayed(const Duration(milliseconds: 2500));
     if (!mounted) return;
 
-    // WEB: Always go to onboarding (no persistence, memory-only mode)
-    if (kIsWeb) {
-      context.go(Routes.onboarding);
-      return;
-    }
-
-    // MOBILE: Check saved state
+    // BOTH WEB AND MOBILE: Same logic
+    // Note: Web has no persistence, so onboardingComplete will be false on refresh
+    // This is expected - user goes through onboarding each session on web
     final onboardingComplete = ref.read(onboardingCompleteProvider);
     final userProfile = ref.read(userProfileProvider);
 

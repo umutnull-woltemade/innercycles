@@ -15,5 +15,9 @@
 		<string>applinks:www.astrobobo.com</string>
 		<string>webcredentials:www.astrobobo.com</string>
 	</array>
+	<key>com.apple.security.application-groups</key>
+	<array>
+		<string>group.com.umut.astrologyApp</string>
+	</array>
 </dict>
 </plist>

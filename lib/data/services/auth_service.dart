@@ -6,7 +6,7 @@ import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-/// Kullanici bilgileri - tum auth metodlari icin ortak
+/// User information - common for all auth methods
 class AuthUserInfo {
   final String uid;
   final String? email;
@@ -46,7 +46,7 @@ class AuthUserInfo {
 enum AuthProvider { apple, email }
 
 /// Unified Authentication Service - Supabase
-/// Apple ve Email/Password destekli
+/// Supports Apple and Email/Password authentication
 class AuthService {
   /// Check if Supabase is initialized (safe for testing)
   static bool get isSupabaseInitialized {
@@ -62,17 +62,17 @@ class AuthService {
 
   // ==================== Current User ====================
 
-  /// Mevcut kullanici
+  /// Current user
   static User? get currentUser => _supabase.auth.currentUser;
 
-  /// Kullanici oturum acmis mi?
+  /// Is user signed in?
   static bool get isSignedIn => _supabase.auth.currentUser != null;
 
-  /// Auth state degisikliklerini dinle
+  /// Listen to auth state changes
   static Stream<AuthState> get authStateChanges =>
       _supabase.auth.onAuthStateChange;
 
-  /// Mevcut kullanici bilgilerini al
+  /// Get current user information
   static AuthUserInfo? getCurrentUserInfo() {
     final user = _supabase.auth.currentUser;
     if (user == null) return null;
@@ -90,7 +90,7 @@ class AuthService {
     return AuthUserInfo.fromSupabaseUser(user, provider);
   }
 
-  /// Supabase baglantisi aktif mi kontrol et
+  /// Check if Supabase connection is configured
   static bool get _isSupabaseConfigured {
     final url = dotenv.env['SUPABASE_URL'] ?? '';
     return url.isNotEmpty &&
@@ -100,107 +100,107 @@ class AuthService {
 
   // ==================== Apple Sign In ====================
 
-  /// Apple ile giris yap
-  /// Web'de Supabase OAuth kullanir, mobilde native Apple Sign-In kullanir
+  /// Sign in with Apple
+  /// Uses Supabase OAuth on web, native Apple Sign-In on mobile
   static Future<AuthUserInfo?> signInWithApple() async {
     try {
-      debugPrint('🍎 Apple Sign-In baslatiliyor...');
+      debugPrint('🍎 Starting Apple Sign-In...');
       debugPrint('🍎 Platform: ${kIsWeb ? "Web" : "Native"}');
 
-      // Web platformunda Supabase OAuth akisini kullan
+      // Use Supabase OAuth flow on web platform
       if (kIsWeb) {
         return await _signInWithAppleWeb();
       }
 
-      // Mobilde native Apple Sign-In kullan
+      // Use native Apple Sign-In on mobile
       return await _signInWithAppleNative();
     } on SignInWithAppleAuthorizationException catch (e) {
-      // Kullanici iptali veya Apple hatasi
+      // User cancellation or Apple error
       debugPrint('🍎 Apple Authorization Error: ${e.code} - ${e.message}');
       if (e.code == AuthorizationErrorCode.canceled) {
-        debugPrint('🍎 Kullanici girisi iptal etti');
-        return null; // Kullanici iptal etti, hata gosterme
+        debugPrint('🍎 User canceled sign in');
+        return null; // User canceled, don't show error
       }
       if (e.code == AuthorizationErrorCode.failed) {
-        throw Exception('Apple girisi basarisiz. Lutfen tekrar deneyin.');
+        throw Exception('Apple sign in failed. Please try again.');
       }
       if (e.code == AuthorizationErrorCode.invalidResponse) {
-        throw Exception('Apple\'dan gecersiz yanit alindi.');
+        throw Exception('Invalid response received from Apple.');
       }
       if (e.code == AuthorizationErrorCode.notHandled) {
-        throw Exception('Apple girisi islenemedi.');
+        throw Exception('Apple sign in could not be handled.');
       }
       if (e.code == AuthorizationErrorCode.notInteractive) {
-        throw Exception('Apple girisi interaktif modda basarisiz.');
+        throw Exception('Apple sign in failed in interactive mode.');
       }
       if (e.code == AuthorizationErrorCode.unknown) {
-        throw Exception('Apple girisi bilinmeyen bir hatayla karsilasti.');
+        throw Exception('Apple sign in encountered an unknown error.');
       }
       rethrow;
     } on AuthException catch (e) {
-      // Supabase auth hatasi
+      // Supabase auth error
       debugPrint('🍎 Supabase Auth Error: ${e.message}');
-      throw Exception('Kimlik dogrulama hatasi: ${e.message}');
+      throw Exception('Authentication error: ${e.message}');
     } catch (e) {
       debugPrint('🍎 Apple Sign-In error: $e');
       if (e.toString().contains('canceled') ||
           e.toString().contains('cancelled') ||
           e.toString().contains('user_canceled')) {
-        return null; // Kullanici iptal etti
+        return null; // User canceled
       }
       rethrow;
     }
   }
 
-  /// Web icin Supabase OAuth akisi (Apple)
+  /// Supabase OAuth flow for web (Apple)
   static Future<AuthUserInfo?> _signInWithAppleWeb() async {
-    debugPrint('🍎 Web OAuth akisi baslatiliyor...');
+    debugPrint('🍎 Starting Web OAuth flow...');
     try {
-      // Web'de Apple Sign In icin Supabase OAuth redirect kullan
+      // Use Supabase OAuth redirect for Apple Sign In on web
       final result = await _supabase.auth.signInWithOAuth(
         OAuthProvider.apple,
         authScreenLaunchMode: LaunchMode.platformDefault,
       );
 
-      debugPrint('🍎 OAuth sonucu: $result');
-      // OAuth akisi redirect yapacagi icin burada null donuyoruz
-      // Kullanici donus yaptiginda auth state listener yakalayacak
+      debugPrint('🍎 OAuth result: $result');
+      // Return null because OAuth flow will redirect
+      // Auth state listener will catch when user returns
       return null;
     } catch (e) {
       debugPrint('🍎 Apple OAuth error: $e');
       final errorStr = e.toString();
-      // Web'de JS interop hatalari OAuth redirect sirasinda normal
+      // JS interop errors during OAuth redirect are normal on web
       if (errorStr.contains('TypeError') ||
           errorStr.contains('TypeErrorImpl') ||
           errorStr.contains('JSObject') ||
           errorStr.contains('minified')) {
-        debugPrint('🍎 JS interop hatasi - OAuth redirect devam ediyor');
+        debugPrint('🍎 JS interop error - OAuth redirect continuing');
         return null;
       }
       rethrow;
     }
   }
 
-  /// Mobil icin native Apple Sign-In
+  /// Native Apple Sign-In for mobile
   static Future<AuthUserInfo?> _signInWithAppleNative() async {
-    debugPrint('🍎 Native Apple Sign-In baslatiliyor...');
+    debugPrint('🍎 Starting Native Apple Sign-In...');
 
-    // Apple Sign In kullanilabilir mi kontrol et
+    // Check if Apple Sign In is available
     final isAvailable = await SignInWithApple.isAvailable();
-    debugPrint('🍎 Apple Sign In kullanilabilir: $isAvailable');
+    debugPrint('🍎 Apple Sign In available: $isAvailable');
 
     if (!isAvailable) {
       throw Exception(
-          'Apple Sign In bu cihazda kullanilabilir degil. iOS 13+ gerekli.');
+          'Apple Sign In is not available on this device. iOS 13+ required.');
     }
 
-    // Nonce olustur (guvenlik icin)
+    // Generate nonce (for security)
     final rawNonce = _generateNonce();
     final hashedNonce = _sha256ofString(rawNonce);
-    debugPrint('🍎 Nonce olusturuldu');
+    debugPrint('🍎 Nonce generated');
 
-    // Apple Sign In baslat
-    debugPrint('🍎 Apple credential isteniyor...');
+    // Start Apple Sign In
+    debugPrint('🍎 Requesting Apple credential...');
     final appleCredential = await SignInWithApple.getAppleIDCredential(
       scopes: [
         AppleIDAuthorizationScopes.email,
@@ -208,14 +208,14 @@ class AuthService {
       ],
       nonce: hashedNonce,
     );
-    debugPrint('🍎 Apple credential alindi');
+    debugPrint('🍎 Apple credential received');
 
     final idToken = appleCredential.identityToken;
     if (idToken == null) {
-      throw Exception('Apple ID token alinamadi');
+      throw Exception('Could not retrieve Apple ID token');
     }
 
-    // Supabase yapilandirilmamissa sadece Apple auth bilgilerini dondur
+    // If Supabase is not configured, return only Apple auth info
     if (!_isSupabaseConfigured) {
       final fullName =
           '${appleCredential.givenName ?? ''} ${appleCredential.familyName ?? ''}'
@@ -229,7 +229,7 @@ class AuthService {
       );
     }
 
-    // Supabase'e giris yap
+    // Sign in to Supabase
     final response = await _supabase.auth.signInWithIdToken(
       provider: OAuthProvider.apple,
       idToken: idToken,
@@ -239,7 +239,7 @@ class AuthService {
     final user = response.user;
     if (user == null) return null;
 
-    // Apple ilk giriste isim veriyor, sonra vermiyor
+    // Apple provides name only on first sign in
     if (appleCredential.givenName != null) {
       final fullName =
           '${appleCredential.givenName ?? ''} ${appleCredential.familyName ?? ''}'
@@ -256,14 +256,14 @@ class AuthService {
 
   // ==================== Email/Password Auth ====================
 
-  /// Email ve sifre ile kayit ol
+  /// Sign up with email and password
   static Future<AuthUserInfo?> signUpWithEmail({
     required String email,
     required String password,
     String? displayName,
   }) async {
     if (!_isSupabaseConfigured) {
-      throw 'Email girisi icin sunucu baglantisi gerekli.';
+      throw 'Server connection required for email sign in.';
     }
 
     try {
@@ -282,13 +282,13 @@ class AuthService {
     }
   }
 
-  /// Email ve sifre ile giris yap
+  /// Sign in with email and password
   static Future<AuthUserInfo?> signInWithEmail({
     required String email,
     required String password,
   }) async {
     if (!_isSupabaseConfigured) {
-      throw 'Email girisi icin sunucu baglantisi gerekli.';
+      throw 'Server connection required for email sign in.';
     }
 
     try {
@@ -306,7 +306,7 @@ class AuthService {
     }
   }
 
-  /// Sifre sifirlama emaili gonder
+  /// Send password reset email
   static Future<void> sendPasswordResetEmail(String email) async {
     try {
       await _supabase.auth.resetPasswordForEmail(email);
@@ -317,18 +317,18 @@ class AuthService {
 
   // ==================== Sign Out ====================
 
-  /// Oturumdan cik
+  /// Sign out
   static Future<void> signOut() async {
     await _supabase.auth.signOut();
   }
 
-  /// Hesabi ve tum verileri sil
+  /// Delete account and all data
   static Future<void> deleteAccount() async {
     try {
       if (_isSupabaseConfigured) {
         final user = _supabase.auth.currentUser;
         if (user != null) {
-          // Kullanici verilerini sil
+          // Delete user data
           try {
             await _supabase.from('profiles').delete().eq('id', user.id);
           } catch (_) {}
@@ -352,7 +352,7 @@ class AuthService {
 
   // ==================== Helper Methods ====================
 
-  /// Nonce olustur (Apple Sign In icin)
+  /// Generate nonce (for Apple Sign In)
   static String _generateNonce([int length = 32]) {
     const charset =
         '0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._';
@@ -361,45 +361,45 @@ class AuthService {
         .join();
   }
 
-  /// SHA256 hash olustur
+  /// Generate SHA256 hash
   static String _sha256ofString(String input) {
     final bytes = utf8.encode(input);
     final digest = sha256.convert(bytes);
     return digest.toString();
   }
 
-  /// Supabase Auth hatalarini kullanici dostu mesajlara cevir
+  /// Convert Supabase Auth errors to user-friendly messages
   static String _handleSupabaseAuthError(AuthException e) {
     final message = e.message.toLowerCase();
 
     if (message.contains('email already registered') ||
         message.contains('user already registered')) {
-      return 'Bu email adresi zaten kullanimda';
+      return 'This email address is already in use';
     }
     if (message.contains('invalid email')) {
-      return 'Gecersiz email adresi';
+      return 'Invalid email address';
     }
     if (message.contains('password') && message.contains('weak')) {
-      return 'Sifre cok zayif (en az 6 karakter)';
+      return 'Password is too weak (minimum 6 characters)';
     }
     if (message.contains('invalid login credentials') ||
         message.contains('invalid password')) {
-      return 'Email veya sifre hatali';
+      return 'Invalid email or password';
     }
     if (message.contains('email not confirmed')) {
-      return 'Lutfen email adresinizi dogrulayin';
+      return 'Please verify your email address';
     }
     if (message.contains('too many requests') ||
         message.contains('rate limit')) {
-      return 'Cok fazla deneme. Lutfen biraz bekleyin';
+      return 'Too many attempts. Please wait a moment';
     }
     if (message.contains('network') || message.contains('connection')) {
-      return 'Internet baglantisi yok';
+      return 'No internet connection';
     }
     if (message.contains('user not found')) {
-      return 'Bu email ile kayitli hesap bulunamadi';
+      return 'No account found with this email';
     }
 
-    return 'Bir hata olustu: ${e.message}';
+    return 'An error occurred: ${e.message}';
   }
 }

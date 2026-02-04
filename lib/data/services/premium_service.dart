@@ -495,22 +495,22 @@ class PremiumNotifier extends Notifier<PremiumState> {
       String errorMessage;
       switch (e) {
         case PurchasesErrorCode.purchaseCancelledError:
-          errorMessage = 'Satın alma iptal edildi';
+          errorMessage = 'Purchase cancelled';
           break;
         case PurchasesErrorCode.purchaseNotAllowedError:
-          errorMessage = 'Satın alma izni yok';
+          errorMessage = 'Purchase not allowed';
           break;
         case PurchasesErrorCode.purchaseInvalidError:
-          errorMessage = 'Geçersiz satın alma';
+          errorMessage = 'Invalid purchase';
           break;
         case PurchasesErrorCode.productNotAvailableForPurchaseError:
-          errorMessage = 'Ürün mevcut değil';
+          errorMessage = 'Product not available';
           break;
         case PurchasesErrorCode.networkError:
-          errorMessage = 'Ağ hatası. Lütfen tekrar deneyin.';
+          errorMessage = 'Network error. Please try again.';
           break;
         default:
-          errorMessage = 'Satın alma başarısız: $e';
+          errorMessage = 'Purchase failed: $e';
       }
 
       state = state.copyWith(isLoading: false, errorMessage: errorMessage);
@@ -529,7 +529,7 @@ class PremiumNotifier extends Notifier<PremiumState> {
       }
       state = state.copyWith(
         isLoading: false,
-        errorMessage: 'Satın alma başarısız. Lütfen tekrar deneyin.',
+        errorMessage: 'Purchase failed. Please try again.',
       );
 
       _analytics.logPurchase(
@@ -562,7 +562,7 @@ class PremiumNotifier extends Notifier<PremiumState> {
 
       if (!state.isPremium) {
         state = state.copyWith(
-          errorMessage: 'Geri yüklenecek satın alma bulunamadı',
+          errorMessage: 'No purchases found to restore',
         );
       }
 
@@ -573,7 +573,7 @@ class PremiumNotifier extends Notifier<PremiumState> {
       }
       state = state.copyWith(
         isLoading: false,
-        errorMessage: 'Geri yükleme başarısız. Lütfen tekrar deneyin.',
+        errorMessage: 'Restore failed. Please try again.',
       );
       return false;
     }

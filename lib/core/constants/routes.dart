@@ -59,7 +59,7 @@ class Routes {
   static const String voidOfCourse = '/void-of-course';
 
   // ════════════════════════════════════════════════════════════════
-  // NUMEROLOGY - Kadim Sayı Bilgeliği (60+ İçerik)
+  // NUMEROLOGY - Ancient Number Wisdom (60+ Content)
   // ════════════════════════════════════════════════════════════════
 
   // Life Path Numbers (1-9)
@@ -114,97 +114,154 @@ class Routes {
   static const String reiki = '/reiki';
 
   // ════════════════════════════════════════════════════════════════
-  // RÜYA İZİ - AI-First Canonical Sayfalar
+  // DREAM TRACE - AI-First Canonical Pages
   // ════════════════════════════════════════════════════════════════
-  static const String dreamFalling = '/ruya/dusmek';
-  static const String dreamWater = '/ruya/su-gormek';
-  static const String dreamRecurring = '/ruya/tekrar-eden';
-  static const String dreamRunning = '/ruya/kacmak';
-  static const String dreamLosing = '/ruya/birini-kaybetmek';
-  static const String dreamFlying = '/ruya/ucmak';
-  static const String dreamDarkness = '/ruya/karanlik';
-  static const String dreamPast = '/ruya/gecmisten-biri';
-  static const String dreamSearching = '/ruya/bir-sey-aramak';
-  static const String dreamVoiceless = '/ruya/ses-cikaramamak';
-  static const String dreamLost = '/ruya/kaybolmak';
-  static const String dreamUnableToFly = '/ruya/ucamamak';
+  static const String dreamFalling = '/dreams/falling';
+  static const String dreamWater = '/dreams/water';
+  static const String dreamRecurring = '/dreams/recurring';
+  static const String dreamRunning = '/dreams/running';
+  static const String dreamLosing = '/dreams/losing-someone';
+  static const String dreamFlying = '/dreams/flying';
+  static const String dreamDarkness = '/dreams/darkness';
+  static const String dreamPast = '/dreams/someone-from-past';
+  static const String dreamSearching = '/dreams/searching';
+  static const String dreamVoiceless = '/dreams/voiceless';
+  static const String dreamLost = '/dreams/lost';
+  static const String dreamUnableToFly = '/dreams/unable-to-fly';
 
   // ════════════════════════════════════════════════════════════════
-  // KOZMİK - Günlük Tema
+  // COSMIC - Daily Theme
   // ════════════════════════════════════════════════════════════════
-  static const String cosmicToday = '/kozmik/bugunku-tema';
-  static const String cosmicEnergy = '/kozmik/bugunku-enerji';
-  static const String cosmicEmotion = '/kozmik/one-cikan-duygu';
+  static const String cosmicToday = '/cosmic/daily-theme';
+  static const String cosmicEnergy = '/cosmic/daily-energy';
+  static const String cosmicEmotion = '/cosmic/featured-emotion';
 
   // ════════════════════════════════════════════════════════════════
-  // TANTRA - Mikro Ritüeller
+  // TANTRA - Micro Rituals
   // ════════════════════════════════════════════════════════════════
-  static const String tantraMicroRitual = '/tantra/mikro-rituel';
-  static const String tantraBreath = '/tantra/nefes-farkindalik';
-  static const String tantraIntention = '/tantra/niyet-ritueli';
+  static const String tantraMicroRitual = '/tantra/micro-ritual';
+  static const String tantraBreath = '/tantra/breath-awareness';
+  static const String tantraIntention = '/tantra/intention-ritual';
 
-  // Kozmik Ruhsal Araclari - Header'da
-  static const String kozmikIletisim = '/kozmik-iletisim';  // Chatbot - Ruya yorumlama sohbeti
-  static const String ruyaDongusu = '/ruya-dongusu';        // Dream Oracle - 7 boyutlu form
+  // Cosmic Spiritual Tools - In Header
+  static const String kozmikIletisim = '/cosmic-chat';  // Chatbot - Dream interpretation chat
+  static const String ruyaDongusu = '/dream-oracle';    // Dream Oracle - 7-dimensional form
 
   // Profile Management
   static const String savedProfiles = '/saved-profiles';
   static const String comparison = '/comparison';
 
-  // Kozmoz - Tüm özellikler ekranı
+  // Kozmoz - All features screen
   static const String kozmoz = '/kozmoz';
 
-  // Tüm Çözümlemeler - Ana katalog sayfası
-  static const String allServices = '/tum-cozumlemeler';
+  // All Services - Main catalog page
+  static const String allServices = '/all-services';
 
   // ════════════════════════════════════════════════════════════════
-  // KOZMİK KEŞİF - Viral & Felsefi İçerikler (Özel Ekranlar)
+  // COSMIC DISCOVERY - Viral & Philosophical Content (Special Screens)
   // ════════════════════════════════════════════════════════════════
 
-  // Günlük Enerjiler
-  static const String dailySummary = '/kesif/gunun-ozeti';
-  static const String moonEnergy = '/kesif/ay-enerjisi';
-  static const String loveEnergy = '/kesif/ask-enerjisi';
-  static const String abundanceEnergy = '/kesif/bolluk-enerjisi';
+  // Daily Energies
+  static const String dailySummary = '/discovery/daily-summary';
+  static const String moonEnergy = '/discovery/moon-energy';
+  static const String loveEnergy = '/discovery/love-energy';
+  static const String abundanceEnergy = '/discovery/abundance-energy';
 
-  // Ruhsal Dönüşüm & Hayat Amacı
-  static const String spiritualTransformation = '/kesif/ruhsal-donusum';
-  static const String lifePurpose = '/kesif/hayat-amacin';
-  static const String subconsciousPatterns = '/kesif/bilincalti-kaliplarin';
-  static const String karmaLessons = '/kesif/karma-derslerin';
-  static const String soulContract = '/kesif/ruh-sozlesmen';
-  static const String innerPower = '/kesif/icsel-gucun';
+  // Spiritual Transformation & Life Purpose
+  static const String spiritualTransformation = '/discovery/spiritual-transformation';
+  static const String lifePurpose = '/discovery/life-purpose';
+  static const String subconsciousPatterns = '/discovery/subconscious-patterns';
+  static const String karmaLessons = '/discovery/karma-lessons';
+  static const String soulContract = '/discovery/soul-contract';
+  static const String innerPower = '/discovery/inner-power';
 
-  // Kişilik Analizleri
-  static const String shadowSelf = '/kesif/golge-benligin';
-  static const String leadershipStyle = '/kesif/liderlik-stilin';
-  static const String heartbreak = '/kesif/kalp-yaran';
-  static const String redFlags = '/kesif/red-flaglerin';
-  static const String greenFlags = '/kesif/green-flaglerin';
-  static const String flirtStyle = '/kesif/flort-stilin';
+  // Personality Analysis
+  static const String shadowSelf = '/discovery/shadow-self';
+  static const String leadershipStyle = '/discovery/leadership-style';
+  static const String heartbreak = '/discovery/heartbreak';
+  static const String redFlags = '/discovery/red-flags';
+  static const String greenFlags = '/discovery/green-flags';
+  static const String flirtStyle = '/discovery/flirt-style';
 
-  // Mistik Keşifler
-  static const String tarotCard = '/kesif/tarot-kartin';
-  static const String auraColor = '/kesif/aura-rengin';
-  static const String chakraBalance = '/kesif/cakra-dengen';
-  static const String lifeNumber = '/kesif/yasam-sayin';
-  static const String kabbalaPath = '/kesif/kabala-yolun';
+  // Mystic Discoveries
+  static const String tarotCard = '/discovery/tarot-card';
+  static const String auraColor = '/discovery/aura-color';
+  static const String chakraBalance = '/discovery/chakra-balance';
+  static const String lifeNumber = '/discovery/life-number';
+  static const String kabbalaPath = '/discovery/kabbala-path';
 
-  // Zaman & Döngüler
-  static const String saturnLessons = '/kesif/saturn-derslerin';
-  static const String birthdayEnergy = '/kesif/dogum-gunu-enerjin';
-  static const String eclipseEffect = '/kesif/tutulma-etkisi';
-  static const String transitFlow = '/kesif/transit-akisi';
+  // Time & Cycles
+  static const String saturnLessons = '/discovery/saturn-lessons';
+  static const String birthdayEnergy = '/discovery/birthday-energy';
+  static const String eclipseEffect = '/discovery/eclipse-effect';
+  static const String transitFlow = '/discovery/transit-flow';
 
-  // İlişki Analizleri
-  static const String compatibilityAnalysis = '/kesif/uyum-analizi';
-  static const String soulMate = '/kesif/ruh-esin';
-  static const String relationshipKarma = '/kesif/iliski-karman';
-  static const String celebrityTwin = '/kesif/unlu-ikizin';
+  // Relationship Analysis
+  static const String compatibilityAnalysis = '/discovery/compatibility-analysis';
+  static const String soulMate = '/discovery/soulmate';
+  static const String relationshipKarma = '/discovery/relationship-karma';
+  static const String celebrityTwin = '/discovery/celebrity-twin';
 
   // ════════════════════════════════════════════════════════════════
   // ADMIN SYSTEM - PIN Protected Dashboard
   // ════════════════════════════════════════════════════════════════
   static const String adminLogin = '/admin/login';
   static const String admin = '/admin';
+
+  // ════════════════════════════════════════════════════════════════
+  // LEGACY TURKISH ROUTE REDIRECTS (for SEO backward compatibility)
+  // These should redirect to English equivalents
+  // ════════════════════════════════════════════════════════════════
+  static const Map<String, String> legacyRouteRedirects = {
+    '/ruya/dusmek': '/dreams/falling',
+    '/ruya/su-gormek': '/dreams/water',
+    '/ruya/tekrar-eden': '/dreams/recurring',
+    '/ruya/kacmak': '/dreams/running',
+    '/ruya/birini-kaybetmek': '/dreams/losing-someone',
+    '/ruya/ucmak': '/dreams/flying',
+    '/ruya/karanlik': '/dreams/darkness',
+    '/ruya/gecmisten-biri': '/dreams/someone-from-past',
+    '/ruya/bir-sey-aramak': '/dreams/searching',
+    '/ruya/ses-cikaramamak': '/dreams/voiceless',
+    '/ruya/kaybolmak': '/dreams/lost',
+    '/ruya/ucamamak': '/dreams/unable-to-fly',
+    '/kozmik/bugunku-tema': '/cosmic/daily-theme',
+    '/kozmik/bugunku-enerji': '/cosmic/daily-energy',
+    '/kozmik/one-cikan-duygu': '/cosmic/featured-emotion',
+    '/tantra/mikro-rituel': '/tantra/micro-ritual',
+    '/tantra/nefes-farkindalik': '/tantra/breath-awareness',
+    '/tantra/niyet-ritueli': '/tantra/intention-ritual',
+    '/kozmik-iletisim': '/cosmic-chat',
+    '/ruya-dongusu': '/dream-oracle',
+    '/tum-cozumlemeler': '/all-services',
+    '/kesif/gunun-ozeti': '/discovery/daily-summary',
+    '/kesif/ay-enerjisi': '/discovery/moon-energy',
+    '/kesif/ask-enerjisi': '/discovery/love-energy',
+    '/kesif/bolluk-enerjisi': '/discovery/abundance-energy',
+    '/kesif/ruhsal-donusum': '/discovery/spiritual-transformation',
+    '/kesif/hayat-amacin': '/discovery/life-purpose',
+    '/kesif/bilincalti-kaliplarin': '/discovery/subconscious-patterns',
+    '/kesif/karma-derslerin': '/discovery/karma-lessons',
+    '/kesif/ruh-sozlesmen': '/discovery/soul-contract',
+    '/kesif/icsel-gucun': '/discovery/inner-power',
+    '/kesif/golge-benligin': '/discovery/shadow-self',
+    '/kesif/liderlik-stilin': '/discovery/leadership-style',
+    '/kesif/kalp-yaran': '/discovery/heartbreak',
+    '/kesif/red-flaglerin': '/discovery/red-flags',
+    '/kesif/green-flaglerin': '/discovery/green-flags',
+    '/kesif/flort-stilin': '/discovery/flirt-style',
+    '/kesif/tarot-kartin': '/discovery/tarot-card',
+    '/kesif/aura-rengin': '/discovery/aura-color',
+    '/kesif/cakra-dengen': '/discovery/chakra-balance',
+    '/kesif/yasam-sayin': '/discovery/life-number',
+    '/kesif/kabala-yolun': '/discovery/kabbala-path',
+    '/kesif/saturn-derslerin': '/discovery/saturn-lessons',
+    '/kesif/dogum-gunu-enerjin': '/discovery/birthday-energy',
+    '/kesif/tutulma-etkisi': '/discovery/eclipse-effect',
+    '/kesif/transit-akisi': '/discovery/transit-flow',
+    '/kesif/uyum-analizi': '/discovery/compatibility-analysis',
+    '/kesif/ruh-esin': '/discovery/soulmate',
+    '/kesif/iliski-karman': '/discovery/relationship-karma',
+    '/kesif/unlu-ikizin': '/discovery/celebrity-twin',
+  };
 }

@@ -1,7 +1,7 @@
-/// TAROT CONTENT - ARKETİPSEL SEMBOLLER
+/// TAROT CONTENT - ARCHETYPAL SYMBOLS
 ///
-/// 22 Major Arcana kartı için detaylı kadim/ezoterik içerikler.
-/// Her kart için: anlam, ters anlam, sembolizm, arketip, tavsiye, meditasyon.
+/// Detailed ancient/esoteric content for 22 Major Arcana cards.
+/// For each card: meaning, reversed meaning, symbolism, archetype, advice, meditation.
 library;
 
 import '../providers/app_providers.dart';
@@ -63,1578 +63,1578 @@ class MajorArcanaContent {
   }
 }
 
-/// 22 Major Arcana Kartı
+/// 22 Major Arcana Cards
 final Map<int, MajorArcanaContent> majorArcanaContents = {
   0: const MajorArcanaContent(
     number: 0,
     name: 'The Fool',
     nameTr: 'Deli / Aptal',
-    archetype: 'Masum Yolcu',
-    element: 'Hava',
-    planet: 'Uranüs',
+    archetype: 'Innocent Traveler',
+    element: 'Air',
+    planet: 'Uranus',
     hebrewLetter: 'Aleph (א)',
     keywords:
-        'Yeni başlangıçlar, masumiyet, spontanlık, inanç sıçrayışı, potansiyel',
+        'New beginnings, innocence, spontaneity, leap of faith, potential',
     shortMeaning:
-        'Bilinmeyene adım atma cesareti. Saf potansiyel ve sınırsız olasılıklar.',
+        'The courage to step into the unknown. Pure potential and unlimited possibilities.',
     deepMeaning: '''
-Deli, Tarot yolculuğunun hem başlangıcı hem sonudur - 0 sayısı sonsuzluğu temsil eder. O henüz hiçbir şey deneyimlememiştir, ama tüm deneyimlerin potansiyelini taşır.
+The Fool is both the beginning and end of the Tarot journey - the number 0 represents infinity. They have not yet experienced anything, but carry the potential of all experiences.
 
-Kabala'da Aleph harfi, nefes ve ruhun başlangıcını simgeler. Deli, ruhun madde alemine ilk inişidir - henüz şartlanmamış, saf bilinç.
+In Kabbalah, the letter Aleph symbolizes breath and the beginning of spirit. The Fool is the soul's first descent into the material realm - not yet conditioned, pure consciousness.
 
-Uçurumun kenarında durur ama korkmaz - çünkü düşebileceğini bilmez. Bu cehalet mi, yoksa en derin bilgelik mi? Belki de ikisi de aynı şeydir.
+They stand at the edge of a cliff but are not afraid - because they don't know they can fall. Is this ignorance, or the deepest wisdom? Perhaps they are both the same thing.
 
-Jung'a göre Deli, "puer aeternus" - ebedi çocuk arketipidir. Yaşlanmayan, kalıplaşmayan, her an yeniden doğabilen ruh.
+According to Jung, The Fool is the "puer aeternus" - the eternal child archetype. The spirit that never ages, never crystallizes, that can be reborn at any moment.
 ''',
     reversedMeaning: '''
-Ters Deli, ihtiyatsızlık, düşüncesizlik veya harekete geçememe korkusunu gösterir.
+The reversed Fool indicates recklessness, thoughtlessness, or fear of taking action.
 
-Belki çok uzun süredir uçurumun kenarında bekliyorsun - atlamaktan korkuyorsun. Ya da tam tersi: düşünmeden atlıyorsun ve sonuçlarına katlanmak zorunda kalıyorsun.
+Perhaps you've been waiting at the edge of the cliff for too long - afraid to jump. Or the opposite: you're jumping without thinking and having to deal with the consequences.
 
-Soru şu: Korkuların mı seni engelliyor, yoksa gerçek bir tehlike mi var? Bazen "aptallık" aslında bilgeliktir - bazen de gerçekten aptallıktır.
+The question is: Are your fears holding you back, or is there real danger? Sometimes "foolishness" is actually wisdom - and sometimes it really is foolishness.
 ''',
     symbolism: '''
-• Beyaz güneş: Saf bilinç, aydınlanma
-• Beyaz gül: Masumiyet, saflık
-• Küçük çanta: Geçmişten taşınan minimal bagaj
-• Beyaz köpek: İçgüdüler, sadık rehber
-• Uçurum: Bilinmeyen, potansiyel
-• Renkli giysiler: Yaşamın tüm deneyimleri
-• Dağlar: Gelecekteki zorluklar ve başarılar
+• White sun: Pure consciousness, enlightenment
+• White rose: Innocence, purity
+• Small bag: Minimal baggage carried from the past
+• White dog: Instincts, loyal guide
+• Cliff: The unknown, potential
+• Colorful clothes: All experiences of life
+• Mountains: Future challenges and achievements
 ''',
     spiritualLesson: '''
-Ruhsal ders: Güven ve teslimiyet.
+Spiritual lesson: Trust and surrender.
 
-Hayat bir sıçrayıştır - her an. Kontrol illüzyonundan vazgeç ve akışa teslim ol. Evren seni tutacak - ama önce atlamam gerekiyor.
+Life is a leap - every moment. Let go of the illusion of control and surrender to the flow. The universe will catch you - but first you must jump.
 
-"Bilmiyorum" demek cesaret ister. Ve bazen en bilge cevap budur.
+Saying "I don't know" takes courage. And sometimes it's the wisest answer.
 ''',
     loveReading: '''
-Aşkta yeni bir başlangıç kapıda. Belki yeni bir ilişki, belki mevcut ilişkide yeni bir sayfa.
+A new beginning in love is at your door. Perhaps a new relationship, perhaps a new chapter in your current one.
 
-Kalıplarını bırak, geçmişin yaralarını bu ilişkiye taşıma. Her insan yeni bir evren - ona o gözle bak.
+Let go of your patterns, don't carry past wounds into this relationship. Every person is a new universe - see them that way.
 
-Uyarı: Körü körüne aşık olma. Sezgilerine güven, ama gözlerini de aç.
+Warning: Don't fall blindly in love. Trust your intuition, but keep your eyes open too.
 ''',
     careerReading: '''
-Yeni bir kariyer yolu, beklenmedik bir fırsat veya tamamen farklı bir alan.
+A new career path, an unexpected opportunity, or a completely different field.
 
-Risk almaktan korkma - ama hesaplanmış risk al. Bazen en "mantıksız" kararlar en doğru olanlardır.
+Don't be afraid to take risks - but take calculated risks. Sometimes the most "illogical" decisions are the right ones.
 
-Girişimcilik, freelance çalışma veya yaratıcı projeler için mükemmel enerji.
+Excellent energy for entrepreneurship, freelance work, or creative projects.
 ''',
-    advice: 'Atla. Düşünme, hisset. Bilinmeyene güven. Şimdi zamanı.',
+    advice: 'Jump. Don\'t think, feel. Trust the unknown. Now is the time.',
     meditation: '''
-Gözlerini kapat. Bir uçurumun kenarında durduğunu hayal et. Aşağısı görünmüyor - sadece bulutlar var.
+Close your eyes. Imagine you're standing at the edge of a cliff. You can't see below - only clouds.
 
-Korkuyu hisset. Sonra bırak. Bir adım at. Düşmüyorsun - uçuyorsun.
+Feel the fear. Then let it go. Take a step. You're not falling - you're flying.
 
-Mantra: "Bilinmeyene güveniyorum. Her adım beni doğru yere götürüyor."
+Mantra: "I trust the unknown. Every step leads me to the right place."
 ''',
     viralQuote:
-        '"Deli ol: Atla, güven, uç. Kaybedecek bir şeyin yok - çünkü her şey zaten seninle."',
+        '"Be a Fool: Jump, trust, fly. You have nothing to lose - because everything is already with you."',
     shadowAspect:
-        'Sorumsuzluk, kaçış, gerçeklikten kopma, çocuksu davranış, sonuçları düşünmeme.',
+        'Irresponsibility, escape, disconnection from reality, childish behavior, not considering consequences.',
   ),
 
   1: const MajorArcanaContent(
     number: 1,
     name: 'The Magician',
     nameTr: 'Büyücü',
-    archetype: 'Yaratıcı İrade',
-    element: 'Hava',
-    planet: 'Merkür',
+    archetype: 'Creative Will',
+    element: 'Air',
+    planet: 'Mercury',
     hebrewLetter: 'Beth (ב)',
-    keywords: 'Manifestasyon, irade gücü, beceri, konsantrasyon, eylem',
+    keywords: 'Manifestation, willpower, skill, concentration, action',
     shortMeaning:
-        'Düşüncelerini gerçeğe dönüştürme gücü. "Yukarıda ne varsa, aşağıda da o var."',
+        'The power to turn thoughts into reality. "As above, so below."',
     deepMeaning: '''
-Büyücü, kozmik enerjinin maddeye dönüştüğü noktadır. Bir eliyle göğü, diğeriyle yeri işaret eder - o bir kanaldır.
+The Magician is the point where cosmic energy transforms into matter. With one hand pointing to the sky and the other to the earth - they are a channel.
 
-Hermetik öğretinin temel ilkesi burada somutlaşır: "As above, so below." Büyücü, bu ilkeyi uygulayan kişidir.
+The fundamental principle of Hermetic teaching is embodied here: "As above, so below." The Magician is the one who applies this principle.
 
-Masasında dört element sembolü var: Asa (Ateş/İrade), Kupa (Su/Duygu), Kılıç (Hava/Düşünce), Pentakl (Toprak/Madde). Tüm araçlar elinde - şimdi sadece kullanmak kaldı.
+On their table are symbols of the four elements: Wand (Fire/Will), Cup (Water/Emotion), Sword (Air/Thought), Pentacle (Earth/Matter). All tools are in their hands - now they just need to use them.
 
-Başının üzerindeki sonsuzluk sembolü (∞), sınırsız potansiyeli gösterir. O bir yaratıcıdır - ve sen de öylesin.
+The infinity symbol (∞) above their head shows unlimited potential. They are a creator - and so are you.
 ''',
     reversedMeaning: '''
-Ters Büyücü, gücün kötüye kullanımını veya potansiyelin boşa harcanmasını gösterir.
+The reversed Magician indicates misuse of power or wasted potential.
 
-Belki yeteneklerini manipülasyon için kullanıyorsun. Belki de gücünün farkında değilsin ve kendini küçümsüyorsun.
+Perhaps you're using your talents for manipulation. Perhaps you're unaware of your power and underestimating yourself.
 
-Araçların var ama kullanmıyorsun. Ya da yanlış amaçlar için kullanıyorsun. Niyetini sorgula.
+You have the tools but you're not using them. Or you're using them for the wrong purposes. Question your intentions.
 ''',
     symbolism: '''
-• Sonsuzluk sembolü (∞): Sınırsız potansiyel
-• Beyaz bant (başta): Saf bilinç
-• Kırmızı pelerin: Tutku ve irade
-• Beyaz iç giysi: Saflık ve bilgelik
-• Dört element: Yaratımın araçları
-• Güller ve zambaklar: Tutku ve saflığın dengesi
-• Yukarı ve aşağı işaret eden eller: "As above, so below"
+• Infinity symbol (∞): Unlimited potential
+• White headband: Pure consciousness
+• Red cloak: Passion and will
+• White inner garment: Purity and wisdom
+• Four elements: Tools of creation
+• Roses and lilies: Balance of passion and purity
+• Hands pointing up and down: "As above, so below"
 ''',
     spiritualLesson: '''
-Ruhsal ders: Sen bir yaratıcısın.
+Spiritual lesson: You are a creator.
 
-Düşüncelerinin gücünü küçümseme. Her düşünce bir tohum, her niyet bir büyü. Neyi yaratıyorsun?
+Don't underestimate the power of your thoughts. Every thought is a seed, every intention is magic. What are you creating?
 
-Büyü, doğaüstü değildir - doğanın gizli yasalarını bilmektir. Ve sen bu yasaları öğrenebilirsin.
+Magic is not supernatural - it's knowing nature's hidden laws. And you can learn these laws.
 ''',
     loveReading: '''
-Aşkta aktif rol alma zamanı. Bekleyerek bir şey olmaz - ilk adımı at.
+Time to take an active role in love. Nothing happens by waiting - take the first step.
 
-Çekicilik enerjin yüksek. İstediğini çekebilirsin - ama önce ne istediğini net olarak bil.
+Your attraction energy is high. You can attract what you want - but first know clearly what you want.
 
-Uyarı: Manipülasyondan kaçın. Gerçek büyü, zorlama değil - çekimdir.
+Warning: Avoid manipulation. True magic is attraction, not force.
 ''',
     careerReading: '''
-Kariyerde manifestasyon gücün dorukta. Projeler başlat, sunumlar yap, liderlik al.
+Your manifestation power in career is at its peak. Start projects, give presentations, take leadership.
 
-Tüm becerilerini bir araya getirme zamanı. Sen düşündüğünden daha yeteneklisin.
+Time to bring all your skills together. You are more talented than you think.
 
-Girişimcilik, satış, pazarlama, yaratıcı projeler için mükemmel.
+Excellent for entrepreneurship, sales, marketing, and creative projects.
 ''',
-    advice: 'Gücünü bil. Odaklan. Niyet koy. Sonra harekete geç.',
+    advice: 'Know your power. Focus. Set intention. Then take action.',
     meditation: '''
-Gözlerini kapat. Kendini evrenin merkezinde hayal et. Bir elinle göğe, diğeriyle yere dokun.
+Close your eyes. Imagine yourself at the center of the universe. Touch the sky with one hand, the earth with the other.
 
-Kozmik enerji tependen giriyor, kalbinde dönüşüyor, ellerinden akıyor.
+Cosmic energy enters through your crown, transforms in your heart, flows through your hands.
 
-Mantra: "Ben bir kanalım. Evrenin gücü benim aracılığımla akar."
+Mantra: "I am a channel. The power of the universe flows through me."
 ''',
     viralQuote:
-        '"Büyücü ol: Düşün, niyetlen, yarat. Sen evrenin eli, kainatın kalemisin."',
+        '"Be a Magician: Think, intend, create. You are the hand of the universe, the pen of the cosmos."',
     shadowAspect:
-        'Manipülasyon, aldatma, güç sarhoşluğu, yeteneklerin kötüye kullanımı.',
+        'Manipulation, deception, power intoxication, misuse of talents.',
   ),
 
   2: const MajorArcanaContent(
     number: 2,
     name: 'The High Priestess',
     nameTr: 'Yüksek Rahibe',
-    archetype: 'Sezgisel Bilgelik',
-    element: 'Su',
-    planet: 'Ay',
+    archetype: 'Intuitive Wisdom',
+    element: 'Water',
+    planet: 'Moon',
     hebrewLetter: 'Gimel (ג)',
-    keywords: 'Sezgi, gizem, bilinçaltı, içsel bilgi, sessizlik',
+    keywords: 'Intuition, mystery, subconscious, inner knowledge, silence',
     shortMeaning:
-        'Görünmeyeni gören, bilinmeyeni bilen. İçsel bilgeliğin sesi.',
+        'She who sees the invisible, knows the unknown. The voice of inner wisdom.',
     deepMeaning: '''
-Yüksek Rahibe, bilinçli ve bilinçdışı arasındaki perdenin bekçisidir. Arkasındaki perde, gizemlerin dünyasını örter - ama o geçişe izin verebilir.
+The High Priestess is the guardian of the veil between conscious and unconscious. The veil behind her covers the world of mysteries - but she can allow passage.
 
-Kabala'da Gimel harfi, "deve" anlamına gelir - çölü geçen, bilinmeyeni taşıyan. Rahibe de öyle: O, gizli bilginin taşıyıcısıdır.
+In Kabbalah, the letter Gimel means "camel" - crossing the desert, carrying the unknown. So is the Priestess: She is the carrier of hidden knowledge.
 
-Isis, Persephone, Artemis - kadim tanrıçaların hepsi onda birleşir. O, dişil bilgeliğin arketipidir: Alıcı, sezgisel, döngüsel.
+Isis, Persephone, Artemis - all ancient goddesses unite in her. She is the archetype of feminine wisdom: Receptive, intuitive, cyclical.
 
-Elindeki Tora kitabı, yazılı olmayan bilgiyi temsil eder. Bazı şeyler kelimelerle anlatılamaz - sadece bilinir.
+The Torah scroll in her hands represents unwritten knowledge. Some things cannot be told in words - they can only be known.
 ''',
     reversedMeaning: '''
-Ters Rahibe, sezgilerin bastırılmasını veya gizli bilginin kötüye kullanılmasını gösterir.
+The reversed Priestess indicates suppression of intuition or misuse of hidden knowledge.
 
-Belki iç sesinizi susturuyorsunuz. Belki de "mantıklı" olmaya çalışırken sezgilerinizi görmezden geliyorsunuz.
+Perhaps you're silencing your inner voice. Perhaps you're ignoring your intuition while trying to be "logical."
 
-Ya da tam tersi: Gizli bilgiyi başkalarını manipüle etmek için kullanıyorsunuz. Sırlar güç verir - ama sorumluluk da.
+Or the opposite: You're using hidden knowledge to manipulate others. Secrets give power - but also responsibility.
 ''',
     symbolism: '''
-• Mavi pelerin: Bilinçaltı, sezgi
-• Ay tacı: Dişil enerji, döngüler
-• Siyah ve beyaz sütunlar (B ve J): Dualite, polarite
-• Perde: Görünen ve görünmeyen arasındaki sınır
-• Su: Duygu, sezgi akışı
-• Narlar: Persephone'un meyvesi, yeraltı bilgeliği
-• Tora/kitap: Gizli bilgi
+• Blue cloak: Subconscious, intuition
+• Moon crown: Feminine energy, cycles
+• Black and white pillars (B and J): Duality, polarity
+• Veil: The boundary between visible and invisible
+• Water: Emotion, flow of intuition
+• Pomegranates: Persephone's fruit, underworld wisdom
+• Torah/scroll: Hidden knowledge
 ''',
     spiritualLesson: '''
-Ruhsal ders: Sessizlikte dinle.
+Spiritual lesson: Listen in silence.
 
-Cevaplar dışarıda değil - içeride. Meditasyon, rüyalar, sezgiler... Hepsi içsel bilgeliğinin sesleri.
+Answers are not outside - they're inside. Meditation, dreams, intuitions... All are voices of your inner wisdom.
 
-Bazen en güçlü eylem, eylemsizliktir. Bekle, gözlemle, dinle.
+Sometimes the most powerful action is inaction. Wait, observe, listen.
 ''',
     loveReading: '''
-Aşkta gizli bir şeyler var. Belki karşı tarafın söylemedikleri, belki senin fark etmediklerin.
+There's something hidden in love. Perhaps things the other side isn't saying, perhaps things you haven't noticed.
 
-Sezgilerine güven. "Bir şeyler yanlış" hissi varsa, muhtemelen haklısın. Ama hemen tepki verme - önce dinle.
+Trust your intuition. If you feel "something is wrong," you're probably right. But don't react immediately - first, listen.
 
-Gizemli ol. Her şeyi hemen açıklama. Biraz sır, çekiciliği artırır.
+Be mysterious. Don't explain everything immediately. A little secret increases attraction.
 ''',
     careerReading: '''
-Kariyerde araştırma, analiz ve gizli bilgiye erişim ön planda.
+Research, analysis, and access to hidden information are prominent in career.
 
-Henüz ortaya çıkmamış fırsatlar var. Piyasayı, rakipleri, trendleri gözlemle.
+There are opportunities that haven't emerged yet. Observe the market, competitors, trends.
 
-Psikoloji, araştırma, arşivcilik, danışmanlık alanları uygun.
+Psychology, research, archiving, consulting fields are suitable.
 ''',
-    advice: 'Sus ve dinle. Cevap geliyor - ama sessizlikte.',
+    advice: 'Be silent and listen. The answer is coming - but in silence.',
     meditation: '''
-Gözlerini kapat. Ay ışığında bir tapınakta oturduğunu hayal et. Önünde bir perde var.
+Close your eyes. Imagine sitting in a temple under moonlight. There's a veil before you.
 
-Perdenin ardına bakma isteğini hisset. Ama acele etme. Perde kendi zamanında açılacak.
+Feel the desire to look behind the veil. But don't rush. The veil will open in its own time.
 
-Mantra: "İçsel bilgeliğimi duyuyorum. Sessizlikte cevaplar bana geliyor."
+Mantra: "I hear my inner wisdom. Answers come to me in silence."
 ''',
-    viralQuote: '"Rahibe ol: Sus, dinle, bil. Gizem sende - sen gizemsin."',
+    viralQuote: '"Be the Priestess: Be silent, listen, know. The mystery is in you - you are the mystery."',
     shadowAspect:
-        'Gizlilik takıntısı, pasiflik, gerçeklikten kopma, manipülatif sezgi kullanımı.',
+        'Secrecy obsession, passivity, disconnection from reality, manipulative use of intuition.',
   ),
 
   3: const MajorArcanaContent(
     number: 3,
     name: 'The Empress',
     nameTr: 'İmparatoriçe',
-    archetype: 'Bereket Tanrıçası',
-    element: 'Toprak',
-    planet: 'Venüs',
+    archetype: 'Goddess of Abundance',
+    element: 'Earth',
+    planet: 'Venus',
     hebrewLetter: 'Daleth (ד)',
-    keywords: 'Bereket, yaratıcılık, doğurganlık, doğa, şefkat, güzellik',
+    keywords: 'Abundance, creativity, fertility, nature, compassion, beauty',
     shortMeaning:
-        'Yaşamın doğurgan gücü. Bolluk, güzellik ve şefkatin kaynağı.',
+        'The fertile power of life. Source of abundance, beauty, and compassion.',
     deepMeaning: '''
-İmparatoriçe, Büyük Anne'dir - tüm yaşamın doğduğu rahimdir. O, Gaia, Demeter, İştar'ın Tarot'taki yansımasıdır.
+The Empress is the Great Mother - the womb from which all life is born. She is the Tarot reflection of Gaia, Demeter, Ishtar.
 
-Kabala'da Daleth, "kapı" anlamına gelir. İmparatoriçe, ruhun maddeye geçiş kapısıdır - doğumun, yaratımın kapısı.
+In Kabbalah, Daleth means "door." The Empress is the doorway for spirit to pass into matter - the door of birth, of creation.
 
-Rahibe'nin gizli bilgeliği, İmparatoriçe'de somutlaşır. Fikirler tohumdur - İmparatoriçe onları büyütür, besler, meyveye dönüştürür.
+The Priestess's hidden wisdom is embodied in the Empress. Ideas are seeds - the Empress nurtures them, feeds them, transforms them into fruit.
 
-Tahtı buğday tarlasında, ayakları suda, başında yıldızlardan taç. O, göğün ve yerin, ruhun ve maddenin birleşimidir.
+Her throne is in the wheat field, her feet in water, a crown of stars on her head. She is the union of heaven and earth, spirit and matter.
 ''',
     reversedMeaning: '''
-Ters İmparatoriçe, yaratıcı tıkanıklık, kısırlık veya aşırı bağımlılığı gösterir.
+The reversed Empress indicates creative blockage, barrenness, or excessive dependency.
 
-Belki kendine bakmayı ihmal ediyorsun. Belki başkalarına o kadar veriyorsun ki, kendi kaynakların kuruyor.
+Perhaps you're neglecting to care for yourself. Perhaps you're giving so much to others that your own resources are drying up.
 
-Ya da tam tersi: Aşırı sahiplenme, boğucu sevgi, "koruyucu anne" sendromu.
+Or the opposite: Excessive possessiveness, suffocating love, "protective mother" syndrome.
 ''',
     symbolism: '''
-• Buğday tarlası: Bereket, hasat
-• Yıldızlı taç: Kozmik anne
-• Venüs sembolü (kalpte): Aşk ve güzellik
-• Kırmızı kadife: Tutku ve yaşam gücü
-• Şelale/su: Duygu akışı, temizlenme
-• Ağaçlar: Büyüme, kökler
-• Yastık: Konfor, beslenme
+• Wheat field: Abundance, harvest
+• Starry crown: Cosmic mother
+• Venus symbol (on heart): Love and beauty
+• Red velvet: Passion and life force
+• Waterfall/water: Flow of emotion, cleansing
+• Trees: Growth, roots
+• Cushion: Comfort, nourishment
 ''',
     spiritualLesson: '''
-Ruhsal ders: Kendini besle.
+Spiritual lesson: Nourish yourself.
 
-Vermeden önce dolmalısın. Başkalarına sevgi dağıtmak için önce kendini sevmelisin.
+You must fill before giving. To spread love to others, you must first love yourself.
 
-Doğa senin öğretmenin. Ağaçlar nasıl büyür, çiçekler nasıl açar - izle ve öğren.
+Nature is your teacher. Watch and learn how trees grow, how flowers bloom.
 ''',
     loveReading: '''
-Aşkta bereket dönemi. Mevcut ilişki derinleşiyor, yeni ilişki çiçek açıyor.
+A period of abundance in love. Current relationship deepens, new relationship blossoms.
 
-Şefkat ve romantizm için mükemmel zaman. Duygularını ifade et, sevgini göster.
+Perfect time for compassion and romance. Express your feelings, show your love.
 
-Hamilelik, evlilik veya ilişkide yeni bir aşama olabilir.
+Pregnancy, marriage, or a new stage in the relationship may occur.
 ''',
     careerReading: '''
-Kariyerde yaratıcı projeler büyüyor. Ektiğin tohumlar filizleniyor.
+Creative projects are growing in career. Seeds you planted are sprouting.
 
-Sanat, tasarım, güzellik, sağlık, çocuklarla ilgili işler ön planda.
+Art, design, beauty, health, work related to children are prominent.
 
-Sabırlı ol - hasat zamanı yaklaşıyor.
+Be patient - harvest time is approaching.
 ''',
     advice:
-        'Besle - kendini, başkalarını, projelerini. Sevgiyle sular, sabırla bekle.',
+        'Nourish - yourself, others, your projects. Water with love, wait with patience.',
     meditation: '''
-Gözlerini kapat. Bereketli bir bahçede oturduğunu hayal et. Her tarafında çiçekler, meyveler, kuşlar var.
+Close your eyes. Imagine sitting in an abundant garden. Flowers, fruits, birds are all around you.
 
-Toprakla bağlantını hisset. Kökler ayaklarından yerin derinliklerine iniyor.
+Feel your connection to the earth. Roots descend from your feet deep into the ground.
 
-Mantra: "Ben bereket kaynağıyım. Verdikçe çoğalıyorum."
+Mantra: "I am a source of abundance. I multiply as I give."
 ''',
     viralQuote:
-        '"İmparatoriçe ol: Besle, büyüt, çiçek aç. Sevgin dünyayı dönüştüren güç."',
+        '"Be the Empress: Nourish, grow, bloom. Your love is the power that transforms the world."',
     shadowAspect:
-        'Aşırı korumacılık, bağımlılık yaratma, kendini ihmal, duygusal manipülasyon.',
+        'Overprotectiveness, creating dependency, self-neglect, emotional manipulation.',
   ),
 
   4: const MajorArcanaContent(
     number: 4,
     name: 'The Emperor',
     nameTr: 'İmparator',
-    archetype: 'Otorite Figürü',
-    element: 'Ateş',
-    planet: 'Mars / Koç',
+    archetype: 'Authority Figure',
+    element: 'Fire',
+    planet: 'Mars / Aries',
     hebrewLetter: 'Heh (ה)',
-    keywords: 'Otorite, yapı, düzen, liderlik, koruma, disiplin',
-    shortMeaning: 'Düzeni ve yasayı temsil eden güç. Koruyucu baba, lider.',
+    keywords: 'Authority, structure, order, leadership, protection, discipline',
+    shortMeaning: 'The power representing order and law. Protective father, leader.',
     deepMeaning: '''
-İmparator, kaosun içinde düzen kuran güçtür. İmparatoriçe'nin yaratıcı enerjisine form ve yapı verir.
+The Emperor is the power that establishes order within chaos. He gives form and structure to the Empress's creative energy.
 
-Kabala'da Heh harfi, "pencere" anlamına gelir. İmparator, kozmik düzenin dünyaya açılan penceresidir - yasalar onun aracılığıyla iner.
+In Kabbalah, the letter Heh means "window." The Emperor is the window through which cosmic order opens to the world - laws descend through him.
 
-Taştan tahtı, sağlam temelleri simgeler. Koç başları, Mars enerjisini ve cesareti temsil eder. Elinde ankh - yaşamın anahtarı.
+His stone throne symbolizes solid foundations. Ram heads represent Mars energy and courage. In his hand is the ankh - the key of life.
 
-Jung'a göre İmparator, "senex" arketipidir - bilge yaşlı, toplumsal düzenin koruyucusu. Ama dikkat: Aşırı katılık tiranlığa dönüşebilir.
+According to Jung, the Emperor is the "senex" archetype - the wise elder, guardian of social order. But beware: Excessive rigidity can turn into tyranny.
 ''',
     reversedMeaning: '''
-Ters İmparator, tiranlık, aşırı kontrol veya otorite eksikliğini gösterir.
+The reversed Emperor indicates tyranny, excessive control, or lack of authority.
 
-Belki çok katı kurallar koyuyorsun - kendine veya başkalarına. Belki de tam tersi: Yapı ve disiplinden yoksun bir hayat yaşıyorsun.
+Perhaps you're imposing too strict rules - on yourself or others. Or perhaps the opposite: You're living a life devoid of structure and discipline.
 
-Baba figürüyle ilgili sorunlar olabilir. Otorite ile sağlıklı ilişki kuramamak.
+There may be issues with the father figure. Inability to establish a healthy relationship with authority.
 ''',
     symbolism: '''
-• Taş taht: Sağlamlık, kalıcılık
-• Koç başları: Cesaret, liderlik, Mars
-• Kırmızı pelerin: Güç, tutku
-• Zırh: Koruma, savunma
-• Ankh: Yaşamın anahtarı
-• Dağlar: Başarılar, fethedilen zirveler
-• Küre: Dünyevi güç
+• Stone throne: Solidity, permanence
+• Ram heads: Courage, leadership, Mars
+• Red cloak: Power, passion
+• Armor: Protection, defense
+• Ankh: Key of life
+• Mountains: Achievements, conquered peaks
+• Orb: Worldly power
 ''',
     spiritualLesson: '''
-Ruhsal ders: Güç, sorumlulukla gelir.
+Spiritual lesson: Power comes with responsibility.
 
-Liderlik, başkalarının üzerinde güç değil - onlar için sorumluluk almaktır.
+Leadership is not power over others - it's taking responsibility for them.
 
-Yapı kurabilirsin - ama yapı hapisane olmamalı. Kurallar hizmet etmeli, köleleştirmemeli.
+You can build structure - but structure shouldn't become a prison. Rules should serve, not enslave.
 ''',
     loveReading: '''
-Aşkta istikrar ve güvenlik arayışı. Uzun vadeli taahhütler, evlilik, aile kurma.
+Seeking stability and security in love. Long-term commitments, marriage, starting a family.
 
-Ancak dikkat: Kontrolcü olmak ilişkiyi boğar. Partner değil, eş arıyorsan - eşit ol.
+But beware: Being controlling suffocates the relationship. If you're looking for a partner, not a subject - be an equal.
 
-Baba figürü veya yaşça büyük biriyle ilişki olabilir.
+There may be a relationship with a father figure or someone older.
 ''',
     careerReading: '''
-Kariyerde liderlik ve yöneticilik ön planda. Kurallar koymak, yapı kurmak, organizasyon.
+Leadership and management are prominent in career. Setting rules, building structure, organization.
 
-Kendi işini kurma, yönetici pozisyonu veya danışmanlık için uygun zaman.
+Good time for starting your own business, management position, or consulting.
 
-Hukuk, yönetim, inşaat, finans alanları ön planda.
+Law, management, construction, finance fields are prominent.
 ''',
-    advice: 'Yapı kur. Kuralları belirle. Ama esnekliği de unutma.',
+    advice: 'Build structure. Set the rules. But don\'t forget flexibility.',
     meditation: '''
-Gözlerini kapat. Bir dağın zirvesinde, taş bir tahtta oturduğunu hayal et. Aşağıda krallığın uzanıyor.
+Close your eyes. Imagine sitting on a stone throne at the top of a mountain. Your kingdom stretches below.
 
-Omuzlarındaki sorumluluğu hisset. Ama yük değil - onur.
+Feel the responsibility on your shoulders. But not as burden - as honor.
 
-Mantra: "Ben sağlam temeller üzerinde duruyorum. Gücüm hizmet içindir."
+Mantra: "I stand on solid foundations. My power is for service."
 ''',
     viralQuote:
-        '"İmparator ol: Kur, koru, yönet. Ama unutma - taç ağırdır, taşıyan güçlü olmalı."',
+        '"Be the Emperor: Build, protect, govern. But remember - the crown is heavy, the bearer must be strong."',
     shadowAspect:
-        'Tiranlık, aşırı kontrol, katılık, duygusal mesafe, güç sarhoşluğu.',
+        'Tyranny, excessive control, rigidity, emotional distance, power intoxication.',
   ),
 
   5: const MajorArcanaContent(
     number: 5,
     name: 'The Hierophant',
     nameTr: 'Hierophant / Başrahip',
-    archetype: 'Ruhani Öğretmen',
-    element: 'Toprak',
-    planet: 'Boğa',
+    archetype: 'Spiritual Teacher',
+    element: 'Earth',
+    planet: 'Taurus',
     hebrewLetter: 'Vav (ו)',
-    keywords: 'Gelenek, kurumlar, öğretim, inanç, ahlak, ritüel',
-    shortMeaning: 'Kutsal bilginin öğretmeni. Gelenek ve ruhani rehberlik.',
+    keywords: 'Tradition, institutions, teaching, faith, morality, ritual',
+    shortMeaning: 'Teacher of sacred knowledge. Tradition and spiritual guidance.',
     deepMeaning: '''
-Hierophant, "kutsal olanı gösteren" anlamına gelir. O, görünmez olanı görünür kılan köprüdür - ruhani bilgiyi günlük hayata taşıyan.
+Hierophant means "one who shows the sacred." He is the bridge that makes the invisible visible - carrying spiritual knowledge into everyday life.
 
-Kabala'da Vav harfi, "çivi/bağlantı" anlamına gelir. Hierophant, göğü ve yeri birbirine bağlayan çividir.
+In Kabbalah, the letter Vav means "nail/connection." The Hierophant is the nail that connects heaven and earth.
 
-Yüksek Rahibe'nin gizli bilgisi, Hierophant aracılığıyla topluma aktarılır. O bireysel değil, kolektif bilgeliktir.
+The High Priestess's hidden knowledge is transmitted to society through the Hierophant. He is not individual but collective wisdom.
 
-Ama dikkat: Gelenek hem rehber hem hapishane olabilir. Hierophant'ın dersi, bilgeliği dogmadan ayırt etmektir.
+But beware: Tradition can be both guide and prison. The Hierophant's lesson is to distinguish wisdom from dogma.
 ''',
     reversedMeaning: '''
-Ters Hierophant, geleneklere körü körüne bağlılık veya tamamen reddetmeyi gösterir.
+The reversed Hierophant indicates blind adherence to traditions or complete rejection of them.
 
-Belki kuralları sorgulamadan kabul ediyorsun. Belki de her otoriteyi reddedip kendi yolunu arıyorsun.
+Perhaps you're accepting rules without questioning. Perhaps you're rejecting every authority and seeking your own path.
 
-Ruhani arayış kişisel bir yolculuğa dönüşebilir. Dışarıdan değil, içeriden öğrenme zamanı.
+Spiritual seeking can turn into a personal journey. Time to learn from within, not from outside.
 ''',
     symbolism: '''
-• Üçlü taç: Üç alem (fiziksel, zihinsel, ruhani)
-• İki anahtar: Bilinç ve bilinçaltının anahtarları
-• Çapraz asa: Dünyevi ve ruhani otoritenin birleşimi
-• İki sütun: Dualite, denge
-• İki öğrenci: Bilginin aktarımı
-• Kırmızı ve beyaz giysiler: Tutku ve saflık
-• El işareti: Kutsal öğretim (mudra)
+• Triple crown: Three realms (physical, mental, spiritual)
+• Two keys: Keys to conscious and subconscious
+• Crossed scepter: Union of worldly and spiritual authority
+• Two pillars: Duality, balance
+• Two students: Transmission of knowledge
+• Red and white garments: Passion and purity
+• Hand gesture: Sacred teaching (mudra)
 ''',
     spiritualLesson: '''
-Ruhsal ders: Bilgelik aktarılarak çoğalır.
+Spiritual lesson: Wisdom multiplies by being passed on.
 
-Öğretmen ol - ama önce öğrenci ol. Gelenekleri öğren, sonra kendi anlayışını ekle.
+Be a teacher - but first be a student. Learn traditions, then add your own understanding.
 
-Dogma değil, canlı bilgelik. Kurallar değil, ilkeler.
+Not dogma, but living wisdom. Not rules, but principles.
 ''',
     loveReading: '''
-Aşkta geleneksel yol. Resmi ilişki, nişan, evlilik, aile onayı.
+Traditional path in love. Formal relationship, engagement, marriage, family approval.
 
-Eğer geleneksel değilsen, bu kart meydan okuma olabilir. Toplum baskısını mı, yoksa kendi kalbini mi takip edeceksin?
+If you're not traditional, this card can be a challenge. Will you follow society's pressure or your own heart?
 
-Bir öğretmen veya mentor figürüyle ilişki olabilir.
+There may be a relationship with a teacher or mentor figure.
 ''',
     careerReading: '''
-Kariyerde kurumsal yapılar, eğitim ve geleneksel yollar ön planda.
+Institutional structures, education, and traditional paths are prominent in career.
 
-Sertifika, diploma, resmi eğitim değerli. Bir mentor bul veya mentor ol.
+Certificates, diplomas, formal education are valuable. Find a mentor or be one.
 
-Eğitim, din, hukuk, büyük kurumlar alanları uygun.
+Education, religion, law, large institutions are suitable fields.
 ''',
     advice:
-        'Geleneği öğren, ama kölesi olma. Bir öğretmen bul veya kendin öğret.',
+        'Learn tradition, but don\'t be its slave. Find a teacher or teach yourself.',
     meditation: '''
-Gözlerini kapat. Kadim bir tapınakta, bir bilgenin önünde diz çöktüğünü hayal et.
+Close your eyes. Imagine kneeling before a sage in an ancient temple.
 
-Bilge sana bir şey fısıldıyor. Dinle. Bu senin için özel bir mesaj.
+The sage whispers something to you. Listen. This is a special message for you.
 
-Mantra: "Bilgeliği alıyorum, bilgeliği paylaşıyorum. Ben köprüyüm."
+Mantra: "I receive wisdom, I share wisdom. I am a bridge."
 ''',
     viralQuote:
-        '"Hierophant ol: Öğren, öğret, aktar. Bilgelik paylaşıldıkça çoğalır."',
+        '"Be the Hierophant: Learn, teach, transmit. Wisdom multiplies as it\'s shared."',
     shadowAspect:
-        'Dogmatizm, körü körüne itaat, otorite korkusu, aşırı muhafazakarlık.',
+        'Dogmatism, blind obedience, fear of authority, excessive conservatism.',
   ),
 
   6: const MajorArcanaContent(
     number: 6,
     name: 'The Lovers',
     nameTr: 'Aşıklar',
-    archetype: 'Birleşim',
-    element: 'Hava',
-    planet: 'İkizler',
+    archetype: 'Union',
+    element: 'Air',
+    planet: 'Gemini',
     hebrewLetter: 'Zayin (ז)',
-    keywords: 'Aşk, seçim, birleşim, uyum, değerler, ilişkiler',
-    shortMeaning: 'Kutsal birleşim. Kalbin seçimi, değerlerin uyumu.',
+    keywords: 'Love, choice, union, harmony, values, relationships',
+    shortMeaning: 'Sacred union. The heart\'s choice, alignment of values.',
     deepMeaning: '''
-Aşıklar kartı, sadece romantik aşk değil - tüm birleşimlerin arketipidir. Zıtların dansı, polaritelerin kaynaşması.
+The Lovers card is not just romantic love - it's the archetype of all unions. The dance of opposites, the merging of polarities.
 
-Kabala'da Zayin, "kılıç" anlamına gelir. Aşıklar, ayrımcılık kılıcıyla seçim yapma yeteneğini simgeler.
+In Kabbalah, Zayin means "sword." The Lovers symbolizes the ability to make choices with the sword of discernment.
 
-Kartın altında Havva ve Adem, üstte melek Raphael. Bu, insan aşkının ilahi aşkla bağlantısını gösterir.
+At the bottom of the card are Eve and Adam, above is the angel Raphael. This shows the connection of human love with divine love.
 
-Jung'a göre bu, anima/animus birleşmesidir - iç dişil ve eril enerjilerin evliliği. Gerçek aşk, önce kendinde başlar.
+According to Jung, this is the union of anima/animus - the marriage of inner feminine and masculine energies. True love starts with yourself.
 ''',
     reversedMeaning: '''
-Ters Aşıklar, uyumsuzluk, değer çatışması veya zor bir seçimi gösterir.
+The reversed Lovers indicates disharmony, value conflicts, or a difficult choice.
 
-Belki kalbin bir yöne, aklın başka yöne çekiyor. Belki de seçim yapmaktan kaçınıyorsun.
+Perhaps your heart pulls one way, your mind another. Perhaps you're avoiding making a choice.
 
-İlişkilerde sorunlar, aldatma veya güven eksikliği olabilir. Ama asıl soru: Kendine sadık mısın?
+There may be problems in relationships, infidelity, or lack of trust. But the real question is: Are you true to yourself?
 ''',
     symbolism: '''
-• Melek Raphael: İlahi rehberlik, şifa
-• Havva ve Adem: Dişil ve eril, bilinçaltı ve bilinç
-• Bilgi ağacı (yılanla): Ayartma, deneyim
-• Yaşam ağacı (alevlerle): Tutku, yaşam gücü
-• Güneş: Bilinç, aydınlanma
-• Dağ: Başarılacak zirve
-• Çıplaklık: Masumiyet, savunmasızlık
+• Angel Raphael: Divine guidance, healing
+• Eve and Adam: Feminine and masculine, subconscious and conscious
+• Tree of Knowledge (with snake): Temptation, experience
+• Tree of Life (with flames): Passion, life force
+• Sun: Consciousness, enlightenment
+• Mountain: Peak to be achieved
+• Nakedness: Innocence, vulnerability
 ''',
     spiritualLesson: '''
-Ruhsal ders: Seçim, özgürlüktür.
+Spiritual lesson: Choice is freedom.
 
-Her seçim bir kapıyı açar, diğerini kapar. Korku değil, sevgi ile seç.
+Every choice opens one door, closes another. Choose with love, not fear.
 
-Gerçek birleşim, iki yarımın bir bütün oluşturması değil - iki bütünün birlikte dans etmesidir.
+True union is not two halves making a whole - it's two wholes dancing together.
 ''',
     loveReading: '''
-Aşkta önemli bir dönem. Yeni bir ilişki, derin bir bağlantı veya mevcut ilişkide yeni bir seviye.
+An important period in love. A new relationship, a deep connection, or a new level in your current relationship.
 
-Kalbin seçimine güven. Ama sadece tutkuyla değil - değerlerinizin uyumuna da bak.
+Trust your heart's choice. But look not just at passion - also at the alignment of your values.
 
-Ruh eşi enerjisi. Ama ruh eşi, mükemmel değil - seni büyüten kişidir.
+Soulmate energy. But a soulmate is not perfect - it's the person who helps you grow.
 ''',
     careerReading: '''
-Kariyerde önemli bir seçim. Değerlerine uygun mu?
+An important choice in career. Does it align with your values?
 
-Ortaklıklar, işbirlikleri, birleşmeler için uygun zaman.
+Good time for partnerships, collaborations, mergers.
 
-Kalbin seni nereye çekiyor? Bazen "mantıksız" görünen kariyer seçimleri en doğru olanlardır.
+Where is your heart pulling you? Sometimes career choices that seem "illogical" are the right ones.
 ''',
     advice:
-        'Kalbinle seç. Ama aklını da dinle. Gerçek seçim, ikisinin uyumudur.',
+        'Choose with your heart. But listen to your mind too. The real choice is the harmony of both.',
     meditation: '''
-Gözlerini kapat. Karşında bir ayna hayal et. Aynada senin "diğer yarın" var - senin zıt kutbun.
+Close your eyes. Imagine a mirror in front of you. In the mirror is your "other half" - your opposite pole.
 
-Ona yaklaş. Dokunduğunuzda, iki enerji birleşiyor. İkisi de kaybolmuyor - dönüşüyorlar.
+Approach them. When you touch, the two energies merge. Neither disappears - they transform.
 
-Mantra: "Kendimle birleşiyorum. İçimdeki tüm parçalar uyum içinde."
+Mantra: "I unite with myself. All parts within me are in harmony."
 ''',
     viralQuote:
-        '"Aşık ol: Kendinle, hayatla, evrenle. Gerçek aşk içeride başlar."',
+        '"Be in love: With yourself, with life, with the universe. True love begins inside."',
     shadowAspect:
-        'Bağımlılık, yanlış seçimler, değerlerden kopma, kararsızlık.',
+        'Dependency, wrong choices, disconnection from values, indecisiveness.',
   ),
 
   7: const MajorArcanaContent(
     number: 7,
     name: 'The Chariot',
     nameTr: 'Savaş Arabası',
-    archetype: 'Zafer Savaşçısı',
-    element: 'Su',
-    planet: 'Yengeç',
+    archetype: 'Victory Warrior',
+    element: 'Water',
+    planet: 'Cancer',
     hebrewLetter: 'Cheth (ח)',
-    keywords: 'Zafer, irade gücü, kararlılık, kontrol, ilerleme, fetih',
-    shortMeaning: 'Zıt güçleri yöneten irade. Engelleriaşarak ilerlemek.',
+    keywords: 'Victory, willpower, determination, control, progress, conquest',
+    shortMeaning: 'Will that directs opposing forces. Moving forward by overcoming obstacles.',
     deepMeaning: '''
-Savaş Arabası, içsel ve dışsal zaferin sembolüdür. Siyah ve beyaz sfenksler, zıt güçleri temsil eder - ve savaşçı onları yönlendirir.
+The Chariot is the symbol of inner and outer victory. The black and white sphinxes represent opposing forces - and the warrior directs them.
 
-Kabala'da Cheth, "çit/sınır" anlamına gelir. Savaş Arabası, disiplin ve irade ile sınırları aşmaktır.
+In Kabbalah, Cheth means "fence/boundary." The Chariot is transcending boundaries through discipline and will.
 
-Bu kart, hareket halinde meditasyondur. Savaşçının elinde dizgin yok - o sfenksleri zihinle yönetiyor. Gerçek kontrol, zorlamak değil - yönlendirmektir.
+This card is meditation in motion. The warrior holds no reins - they control the sphinxes with the mind. True control is not forcing - it's directing.
 
-Jung'a göre bu, ego'nun bilinçdışı güçler üzerinde ustalaşmasıdır. Ama dikkat: Bastırmak değil, entegre etmek gerekir.
+According to Jung, this is the ego's mastery over unconscious forces. But beware: Not to suppress, but to integrate.
 ''',
     reversedMeaning: '''
-Ters Savaş Arabası, kontrolü kaybetmeyi veya yanlış yönde ilerlemeyi gösterir.
+The reversed Chariot indicates losing control or moving in the wrong direction.
 
-Belki çok zorluyor, çok savaşıyorsun - ve tükeniyorsun. Belki de kontrolü başkalarına bırakmışsın.
+Perhaps you're pushing too hard, fighting too much - and burning out. Perhaps you've handed control to others.
 
-Engellerle savaşmak yerine onlardan kaçıyor olabilirsin. Ya da yanlış savaşları veriyorsun.
+You might be running from obstacles instead of fighting them. Or you're fighting the wrong battles.
 ''',
     symbolism: '''
-• Siyah ve beyaz sfenksler: Zıt güçler, polarite
-• Yıldızlı baldaken: Kozmik koruma
-• Hilaller: Ay enerjisi, döngüler
-• Zırh: Koruma, hazırlık
-• Kanat sembolleri: Ruhani yükseliş
-• Şehir surları (arkada): Fethedilen kaleler
-• Dizginsiz kontrol: Zihinsel güç
+• Black and white sphinxes: Opposing forces, polarity
+• Starry canopy: Cosmic protection
+• Crescents: Moon energy, cycles
+• Armor: Protection, preparation
+• Wing symbols: Spiritual ascension
+• City walls (behind): Conquered fortresses
+• Reinless control: Mental power
 ''',
     spiritualLesson: '''
-Ruhsal ders: Zafer, fethetmek değil - ustalaşmaktır.
+Spiritual lesson: Victory is not conquering - it's mastering.
 
-Düşmanın dışarıda değil - içeride. Korku, şüphe, tembellik... Bunlarla savaş.
+Your enemy is not outside - it's inside. Fear, doubt, laziness... Fight these.
 
-Ama "savaş" zorlamak değil. Akışla birlikte, ama yönlendirerek ilerle.
+But "fighting" is not forcing. Move with the flow, but directing.
 ''',
     loveReading: '''
-Aşkta ilerleme ve fetih zamanı. İstediğin ilişki için harekete geç.
+Time for progress and conquest in love. Take action for the relationship you want.
 
-Ama dikkat: Aşk savaş alanı değil. Fethetmeye değil, birleşmeye odaklan.
+But beware: Love is not a battlefield. Focus on uniting, not conquering.
 
-Uzun mesafe ilişkileri, seyahat sırasında tanışmalar olabilir.
+Long-distance relationships, meetings during travel may occur.
 ''',
     careerReading: '''
-Kariyerde zafer yakın. Projeler tamamlanıyor, hedefler gerçekleşiyor.
+Victory is near in career. Projects are completing, goals are being achieved.
 
-Rekabette öne geç. Ama dürüst oyna - hile kısa vadeli zafer, uzun vadeli kayıptır.
+Get ahead in competition. But play fair - cheating is short-term victory, long-term loss.
 
-Satış, liderlik, girişimcilik, spor alanları ön planda.
+Sales, leadership, entrepreneurship, sports fields are prominent.
 ''',
     advice:
-        'Yoluna odaklan. Engeller olacak - onları yönet, onların seni yönetmesine izin verme.',
+        'Focus on your path. Obstacles will come - manage them, don\'t let them manage you.',
     meditation: '''
-Gözlerini kapat. Bir savaş arabasında duruyorsun. Önünde iki güç var - biri seni sola, biri sağa çekiyor.
+Close your eyes. You're standing in a war chariot. Before you are two forces - one pulling you left, one right.
 
-Dizginleri bırak. Zihinle yönlendir. İkisi de senin gücün - birlikte ilerle.
+Let go of the reins. Direct with your mind. Both are your power - move forward together.
 
-Mantra: "Zıtlıkları yönetiyorum. İradem beni hedefe taşıyor."
+Mantra: "I manage opposites. My will carries me to my goal."
 ''',
     viralQuote:
-        '"Savaşçı ol: Zorluklara değil, kendinle savaş. Gerçek zafer, iç barıştır."',
+        '"Be a warrior: Don\'t fight challenges, fight yourself. True victory is inner peace."',
     shadowAspect:
-        'Saldırganlık, aşırı kontrol, başkalarını ezme, duygusuz ilerleme.',
+        'Aggression, excessive control, crushing others, emotionless progress.',
   ),
 
   8: const MajorArcanaContent(
     number: 8,
     name: 'Strength',
     nameTr: 'Güç',
-    archetype: 'İçsel Güç',
-    element: 'Ateş',
-    planet: 'Aslan',
+    archetype: 'Inner Strength',
+    element: 'Fire',
+    planet: 'Leo',
     hebrewLetter: 'Teth (ט)',
-    keywords: 'İçsel güç, cesaret, şefkat, sabır, yumuşak güç',
-    shortMeaning: 'Aslanı evcilleştiren şefkat. Gerçek güç, içsel güçtür.',
+    keywords: 'Inner strength, courage, compassion, patience, soft power',
+    shortMeaning: 'Compassion that tames the lion. True strength is inner strength.',
     deepMeaning: '''
-Güç kartı, Savaş Arabası'nın zıttıdır. Orada zorla kontrol vardı - burada şefkatle dönüştürme.
+The Strength card is the opposite of The Chariot. There was control by force - here is transformation through compassion.
 
-Kabala'da Teth, "yılan" anlamına gelir - kundalini enerjisi, hayat gücü. Kadın, bu vahşi enerjiyi nazikçe yönlendiriyor.
+In Kabbalah, Teth means "serpent" - kundalini energy, life force. The woman gently directs this wild energy.
 
-Başının üzerindeki sonsuzluk sembolü, Büyücü ile bağlantıyı gösterir. Ama Büyücü dışsal güç kullanır - Güç, içsel gücü.
+The infinity symbol above her head shows connection to The Magician. But The Magician uses external power - Strength uses inner power.
 
-Bu, dişil gücün arketipidir: Kırmak değil, dönüştürmek. Bastırmak değil, entegre etmek.
+This is the archetype of feminine power: Not to break, but to transform. Not to suppress, but to integrate.
 ''',
     reversedMeaning: '''
-Ters Güç, özgüven eksikliği veya gücün kötüye kullanımını gösterir.
+Reversed Strength indicates lack of self-confidence or misuse of power.
 
-Belki içindeki "aslan"dan korkuyorsun - duygularını, tutkularını bastırıyorsun. Belki de aslanı serbest bırakıp kontrolü kaybediyorsun.
+Perhaps you're afraid of the "lion" inside you - suppressing your emotions, your passions. Perhaps you've released the lion and lost control.
 
-Kendine şefkat göstermekte zorlanıyor olabilirsin. Ya da başkalarına karşı çok sert.
+You might be struggling to show yourself compassion. Or you're too harsh with others.
 ''',
     symbolism: '''
-• Sonsuzluk sembolü: Sınırsız iç güç
-• Aslan: İçsel vahşi doğa, ego, tutku
-• Beyaz elbise: Saflık, masumiyet
-• Çiçek çelengi: Doğayla uyum
-• Dağlar: Aşılacak zorluklar
-• Nazik dokunuş: Şefkatle dönüştürme
-• Sarı (aslanın rengi): Güneş enerjisi
+• Infinity symbol: Unlimited inner strength
+• Lion: Inner wild nature, ego, passion
+• White dress: Purity, innocence
+• Flower wreath: Harmony with nature
+• Mountains: Challenges to overcome
+• Gentle touch: Transformation through compassion
+• Yellow (lion's color): Sun energy
 ''',
     spiritualLesson: '''
-Ruhsal ders: En büyük güç, kendini yenmektir.
+Spiritual lesson: The greatest strength is conquering yourself.
 
-Öfke, korku, kıskançlık - bunlar senin "aslanların". Onları öldürme, evcilleştir. Onlar da senin gücün.
+Anger, fear, jealousy - these are your "lions." Don't kill them, tame them. They are also your power.
 
-Şefkat zayıflık değil - en yüksek güçtür.
+Compassion is not weakness - it is the highest strength.
 ''',
     loveReading: '''
-Aşkta sabır ve anlayış gerekiyor. Zorlamak yerine nazikçe yaklaş.
+Patience and understanding are needed in love. Approach gently instead of forcing.
 
-Partnerinizin "vahşi" yanlarını kabul edin - ve kendi vahşi yanlarınızı da.
+Accept your partner's "wild" sides - and your own wild sides too.
 
-Tutkulu ama kontrollü bir aşk. Ateşi yönetmek, söndürmek değil.
+Passionate but controlled love. Managing the fire, not extinguishing it.
 ''',
     careerReading: '''
-Kariyerde yumuşak güç kullan. Zorlamak yerine ikna et, etkilemek yerine ilham ver.
+Use soft power in career. Persuade instead of forcing, inspire instead of influencing.
 
-Zorlu durumlarla sabırla başa çık. Tepki verme - cevap ver.
+Handle difficult situations with patience. Don't react - respond.
 
-Psikoloji, terapi, hayvanlarla çalışma, liderlik koçluğu alanları uygun.
+Psychology, therapy, working with animals, leadership coaching fields are suitable.
 ''',
-    advice: 'Güç gösterisi yapma. Gerçek güç, gösterilmez - hissedilir.',
+    advice: 'Don\'t show off strength. True strength is not shown - it\'s felt.',
     meditation: '''
-Gözlerini kapat. Önünde bir aslan oturuyor. Gözleri sana bakıyor - meydan okuyan, ama aynı zamanda bekleyen.
+Close your eyes. A lion sits before you. Its eyes look at you - challenging, but also waiting.
 
-Korkmadan yaklaş. Elini nazikçe kafasına koy. Aslan gözlerini kapatıyor, sakinleşiyor.
+Approach without fear. Place your hand gently on its head. The lion closes its eyes, calms down.
 
-Mantra: "İçimdeki vahşi güçle barış içindeyim. Şefkatim benim gücüm."
+Mantra: "I am at peace with the wild force within me. My compassion is my strength."
 ''',
     viralQuote:
-        '"Güçlü ol: Kırma, dönüştür. Gerçek güç, aslanı sevgiyle evcilleştirmektir."',
+        '"Be strong: Don\'t break, transform. True strength is taming the lion with love."',
     shadowAspect:
-        'Bastırılmış öfke, pasif-agresif davranış, aşırı kontrol, güçsüzlük hissi.',
+        'Suppressed anger, passive-aggressive behavior, excessive control, feeling powerless.',
   ),
 
   9: const MajorArcanaContent(
     number: 9,
     name: 'The Hermit',
     nameTr: 'Ermiş',
-    archetype: 'Bilge Arayıcı',
-    element: 'Toprak',
-    planet: 'Başak',
+    archetype: 'Wise Seeker',
+    element: 'Earth',
+    planet: 'Virgo',
     hebrewLetter: 'Yod (י)',
-    keywords: 'İçe dönüş, yalnızlık, arayış, bilgelik, rehberlik, inziva',
+    keywords: 'Introspection, solitude, seeking, wisdom, guidance, retreat',
     shortMeaning:
-        'Karanlıkta ışık tutan bilge. İçsel arayış ve yalnız yolculuk.',
+        'The sage holding light in darkness. Inner seeking and solitary journey.',
     deepMeaning: '''
-Ermiş, dış dünyadan çekilerek iç dünyayı keşfeden bilgedir. Elindeki fener, aradığı gerçeği simgeler - ve bu gerçek içeridedir.
+The Hermit is the sage who discovers the inner world by withdrawing from the outer world. The lantern in his hand symbolizes the truth he seeks - and this truth is within.
 
-Kabala'da Yod, en küçük ve en kutsal harftir - ilahi kıvılcım. Ermiş, bu kıvılcımı arayan ve taşıyan kişidir.
+In Kabbalah, Yod is the smallest and most sacred letter - the divine spark. The Hermit is the one who seeks and carries this spark.
 
-Dağın zirvesinde yalnız durur. Yolculuk zorlu olmuştur - ama zirvedeki bakış açısı buna değer.
+He stands alone at the mountaintop. The journey has been difficult - but the perspective at the summit is worth it.
 
-Bu kart, "bil kendini" ilkesinin somutlaşmasıdır. Başkalarının cevaplarını değil, kendi gerçeğini ara.
+This card is the embodiment of the "know thyself" principle. Seek not others' answers, but your own truth.
 ''',
     reversedMeaning: '''
-Ters Ermiş, aşırı izolasyonu veya içsel arayıştan kaçışı gösterir.
+The reversed Hermit indicates excessive isolation or escape from inner seeking.
 
-Belki yalnızlık seni hasta ediyor - ama insanlarla da bağlanamıyorsun. Belki de her şeyden kaçarak "arayış" yapıyorsun.
+Perhaps loneliness makes you sick - but you can't connect with people either. Perhaps you're "seeking" by running from everything.
 
-İçe dönmek yerine kapanma. Bilgelik aramak yerine dünyadan kopma.
+Closing off instead of turning inward. Disconnecting from the world instead of seeking wisdom.
 ''',
     symbolism: '''
-• Fener: İçsel ışık, bilgelik
-• Yıldız (fenerde): Gerçeğin ışığı
-• Gri pelerin: Alçakgönüllülük, görünmezlik
-• Asa: Bilgeliğin desteği
-• Dağ zirvesi: Ruhani yükseliş
-• Kar: Saflık, berraklık
-• Yalnızlık: İçsel yolculuk
+• Lantern: Inner light, wisdom
+• Star (in lantern): Light of truth
+• Gray cloak: Humility, invisibility
+• Staff: Support of wisdom
+• Mountaintop: Spiritual ascension
+• Snow: Purity, clarity
+• Solitude: Inner journey
 ''',
     spiritualLesson: '''
-Ruhsal ders: Cevaplar içeride.
+Spiritual lesson: Answers are within.
 
-Başkalarına sormayı bırak. Kitaplarda aramayı bırak. Sessizlikte otur ve dinle.
+Stop asking others. Stop searching in books. Sit in silence and listen.
 
-Yalnızlık bir ceza değil - bir hediyedir. Kendinle baş başa kalabilmek, en büyük özgürlüktür.
+Solitude is not punishment - it's a gift. Being able to be alone with yourself is the greatest freedom.
 ''',
     loveReading: '''
-Aşkta bir mola zamanı. Yalnız kalmak veya ilişkiyi sorgulamak gerekebilir.
+Time for a break in love. Being alone or questioning the relationship may be needed.
 
-Bu, kopuş değil - derinleşme. Kendini tanımadan başkasıyla nasıl birleşirsin?
+This is not disconnection - it's deepening. How can you unite with another without knowing yourself?
 
-Yaşça büyük, bilge bir mentor/partner olabilir.
+There may be an older, wise mentor/partner.
 ''',
     careerReading: '''
-Kariyerde araştırma, uzmanlaşma ve derinleşme zamanı.
+Time for research, specialization, and deepening in career.
 
-Kalabalıktan uzaklaş. Niş alanına odaklan. Herkesin yaptığını yapma.
+Step away from the crowd. Focus on your niche area. Don't do what everyone else does.
 
-Danışmanlık, araştırma, yazarlık, ruhani meslekler için uygun.
+Consulting, research, writing, spiritual professions are suitable.
 ''',
     advice:
-        'Geri çekil. Dinle. Işığını ara - ve bulduğunda başkalarına da göster.',
+        'Withdraw. Listen. Seek your light - and when you find it, show it to others too.',
     meditation: '''
-Gözlerini kapat. Karanlık bir dağ yolunda yürüyorsun. Elindeki fener tek ışık kaynağı.
+Close your eyes. You're walking on a dark mountain path. The lantern in your hand is the only light source.
 
-Her adımda sadece önündeki birkaç metreyi görebiliyorsun. Ama bu yeterli. Bir adım daha at.
+With each step you can only see a few meters ahead. But that's enough. Take one more step.
 
-Mantra: "Karanlıkta bile ışığımı taşıyorum. Yolum bana gösteriliyor."
+Mantra: "Even in darkness I carry my light. My path is shown to me."
 ''',
     viralQuote:
-        '"Ermiş ol: Çekil, sessizleş, derinleş. Işık başkalarında değil - içinde."',
+        '"Be the Hermit: Withdraw, be silent, go deep. Light is not in others - it\'s within."',
     shadowAspect:
-        'Aşırı izolasyon, yabancılaşma, üstünlük kompleksi, sosyal kopukluk.',
+        'Excessive isolation, alienation, superiority complex, social disconnection.',
   ),
 
   10: const MajorArcanaContent(
     number: 10,
     name: 'Wheel of Fortune',
     nameTr: 'Kader Çarkı',
-    archetype: 'Kozmik Döngü',
-    element: 'Ateş',
-    planet: 'Jüpiter',
+    archetype: 'Cosmic Cycle',
+    element: 'Fire',
+    planet: 'Jupiter',
     hebrewLetter: 'Kaph (כ)',
-    keywords: 'Kader, döngüler, değişim, şans, karma, dönüm noktası',
+    keywords: 'Fate, cycles, change, luck, karma, turning point',
     shortMeaning:
-        'Değişmeyen tek şey, değişimdir. Kaderin dönüşü ve kozmik döngüler.',
+        'The only constant is change. The turn of fate and cosmic cycles.',
     deepMeaning: '''
-Kader Çarkı, evrenin döngüsel doğasını temsil eder. Her şey döner - iyi günler, kötü günler, mevsimler, yaşamlar.
+The Wheel of Fortune represents the cyclical nature of the universe. Everything turns - good days, bad days, seasons, lives.
 
-Kabala'da Kaph, "avuç içi" anlamına gelir - alıcılık, kaderi kabul etme. Ama çark sadece rastgele değil - karma yasalarına göre döner.
+In Kabbalah, Kaph means "palm of hand" - receptivity, accepting fate. But the wheel is not just random - it turns according to karmic laws.
 
-Çarkın etrafında dört sabit figür (boğa, aslan, kartal, melek) dört elementi ve dört evangelisti temsil eder. Onlar değişmez - değişen, çarkın üzerindekilerdir.
+Around the wheel, four fixed figures (bull, lion, eagle, angel) represent four elements and four evangelists. They don't change - what changes are those on the wheel.
 
-Sfenks (üstte) bilgeliği, Anubis (solda) düşüşü, yılan (sağda) yükselişi simgeler. Sen hangisisin?
+The sphinx (on top) symbolizes wisdom, Anubis (on left) the fall, the serpent (on right) the rise. Which one are you?
 ''',
     reversedMeaning: '''
-Ters Çark, değişime direnmeyi veya kötü şansı gösterir.
+The reversed Wheel indicates resistance to change or bad luck.
 
-Belki döngünün dibindesin ve yukarı çıkış umutsuz görünüyor. Belki de değişime direniyor, geçmişe tutunuyorsun.
+Perhaps you're at the bottom of the cycle and the way up seems hopeless. Perhaps you're resisting change, clinging to the past.
 
-Karma borçları ödeme zamanı olabilir. Geçmişteki eylemlerinin sonuçları.
+It may be time to pay karmic debts. Consequences of past actions.
 ''',
     symbolism: '''
-• Çark: Döngüler, değişim
-• TARO/ROTA/ORAT: Tarot, tora, rota (yol)
-• Sfenks: Bilgelik, değişmeyen
-• Anubis: Düşüş, karanlık dönem
-• Yılan: Yükseliş, dönüşüm
-• Dört figür: Dört element, stabilite
-• Bulutlar: Gizemli doğa
+• Wheel: Cycles, change
+• TARO/ROTA/ORAT: Tarot, torah, rota (path)
+• Sphinx: Wisdom, the unchanging
+• Anubis: Fall, dark period
+• Serpent: Rise, transformation
+• Four figures: Four elements, stability
+• Clouds: Mysterious nature
 ''',
     spiritualLesson: '''
-Ruhsal ders: Değişime direnmek acı çekmektir.
+Spiritual lesson: Resisting change is suffering.
 
-Çark dönecek - ister iste ister isteme. Akışla birlikte hareket et.
+The wheel will turn - whether you want it or not. Move with the flow.
 
-Ama pasif de kalma. Karma, eylemlerinin sonucu. İyi tohumlar ek.
+But don't be passive either. Karma is the result of your actions. Plant good seeds.
 ''',
     loveReading: '''
-Aşkta beklenmedik değişimler. Yeni tanışmalar, sürpriz gelişmeler, kader anları.
+Unexpected changes in love. New encounters, surprise developments, fate moments.
 
-"Doğru zamanda doğru yerde" enerjisi. Ama unutma: Şans, hazırlıklı olanı bulur.
+"Right place at right time" energy. But remember: Luck finds those who are prepared.
 
-Geçmiş ilişkilerden gelen karmik bağlantılar olabilir.
+There may be karmic connections from past relationships.
 ''',
     careerReading: '''
-Kariyerde döngü değişiyor. Şanslı fırsatlar veya beklenmedik dönüşler.
+The cycle is changing in career. Lucky opportunities or unexpected turns.
 
-Risk almak için uygun zaman - ama hesaplanmış risk. Çark senin lehine dönüyor.
+Good time to take risks - but calculated risk. The wheel is turning in your favor.
 
-Kumar, finans, yatırım, fırsatçılık gerektiren alanlar.
+Gambling, finance, investment, fields requiring opportunism.
 ''',
-    advice: 'Değişime hazır ol. Çark dönerken merkezde kal - orada huzur var.',
+    advice: 'Be ready for change. Stay in the center while the wheel turns - there is peace there.',
     meditation: '''
-Gözlerini kapat. Devasa bir çarkın merkezinde duruyorsun. Çark dönüyor - ama sen sabitsin.
+Close your eyes. You're standing in the center of a massive wheel. The wheel turns - but you are fixed.
 
-Etrafında insanlar yükseliyor, düşüyor. Sen izliyorsun - dahil olmadan, ama tamamen farkında.
+Around you people rise, fall. You watch - without participating, but fully aware.
 
-Mantra: "Değişimin içinde değişmeyenim. Merkezde huzur buluyorum."
+Mantra: "I am the unchanging within change. I find peace in the center."
 ''',
     viralQuote:
-        '"Çark döner: Bugünkü zirve, yarının vadisi olabilir. Değişime dans et."',
-    shadowAspect: 'Kontrolsüzlük, kadercilik, pasiflik, şanssızlık döngüsü.',
+        '"The wheel turns: Today\'s peak may be tomorrow\'s valley. Dance with change."',
+    shadowAspect: 'Loss of control, fatalism, passivity, cycle of bad luck.',
   ),
 
   11: const MajorArcanaContent(
     number: 11,
     name: 'Justice',
     nameTr: 'Adalet',
-    archetype: 'Kozmik Yargıç',
-    element: 'Hava',
-    planet: 'Terazi',
+    archetype: 'Cosmic Judge',
+    element: 'Air',
+    planet: 'Libra',
     hebrewLetter: 'Lamed (ל)',
-    keywords: 'Adalet, denge, doğruluk, hukuk, karma, karar',
+    keywords: 'Justice, balance, truth, law, karma, decision',
     shortMeaning:
-        'Evrensel denge yasası. Eylemlerimizin sonuçlarıyla yüzleşme.',
+        'The universal law of balance. Facing the consequences of our actions.',
     deepMeaning: '''
-Adalet, kozmik dengenin bekçisidir. Elindeki terazi, tüm eylemlerin tartıldığını gösterir - hiçbir şey kaybolmaz.
+Justice is the guardian of cosmic balance. The scales in her hand show that all actions are weighed - nothing is lost.
 
-Kabala'da Lamed, "öğretmen" anlamına gelir. Adalet bize karma yasasını öğretir: Her eylem bir tepki yaratır.
+In Kabbalah, Lamed means "teacher." Justice teaches us the law of karma: Every action creates a reaction.
 
-Kılıcı keskindir - gerçeği yanılgıdan, doğruyu yanlıştan ayırır. Gözleri bağlı değil (bazı versiyonlarda aksine) - o tarafsız değil, hakikati görür.
+Her sword is sharp - it separates truth from illusion, right from wrong. Her eyes are not blindfolded (unlike in some versions) - she is not impartial, she sees the truth.
 
-Bu kart, "herkese hak ettiğini" vaat eder. Bu bir tehdit mi, yoksa teselli mi? Eylemlerine bağlı.
+This card promises "to each what they deserve." Is this a threat or consolation? It depends on your actions.
 ''',
     reversedMeaning: '''
-Ters Adalet, adaletsizlik, dengesizlik veya sorumluluğu reddetmeyi gösterir.
+Reversed Justice indicates injustice, imbalance, or refusing responsibility.
 
-Belki haksızlığa uğradığını hissediyorsun. Belki de yaptıklarının sonuçlarını kabul etmiyorsun.
+Perhaps you feel you've been wronged. Perhaps you're not accepting the consequences of what you've done.
 
-Yasal sorunlar, hukuki anlaşmazlıklar olabilir. Ya da kendi içinde, "ne yaptım?" sorusuyla yüzleşme zamanı.
+There may be legal problems, legal disputes. Or time to face the question "what have I done?" within yourself.
 ''',
     symbolism: '''
-• Terazi: Denge, tartı, değerlendirme
-• Kılıç: Keskin karar, ayrımcılık
-• Taç: Otorite, hakimiyet
-• Kırmızı pelerin: Eylem, tutku
-• İki sütun: Dualite, denge
-• Mor perde: Gizem, içsel bilgi
-• Kare taht: Sağlamlık, düzen
+• Scales: Balance, weighing, evaluation
+• Sword: Sharp decision, discrimination
+• Crown: Authority, sovereignty
+• Red cloak: Action, passion
+• Two pillars: Duality, balance
+• Purple curtain: Mystery, inner knowledge
+• Square throne: Solidity, order
 ''',
     spiritualLesson: '''
-Ruhsal ders: Her eylem bir enerji yaratır.
+Spiritual lesson: Every action creates an energy.
 
-Karma karmaşık bir ceza sistemi değil - basit bir fizik yasası. Ektiğin, biçersin.
+Karma is not a complex punishment system - it's a simple law of physics. You reap what you sow.
 
-Adil ol - başkalarına ve kendine. Kendini yargılamak da, affetmek de adaletin parçası.
+Be fair - to others and to yourself. Judging yourself and forgiving yourself are both parts of justice.
 ''',
     loveReading: '''
-Aşkta denge ve karşılıklılık gerekiyor. Tek taraflı fedakarlık sürdürülebilir değil.
+Balance and reciprocity are needed in love. One-sided sacrifice is not sustainable.
 
-İlişkide adalet var mı? İkiniz de eşit veriyor ve alıyor musunuz?
+Is there justice in the relationship? Are you both giving and receiving equally?
 
-Geçmiş ilişkilerden gelen karmik dersler tamamlanıyor olabilir.
+Karmic lessons from past relationships may be completing.
 ''',
     careerReading: '''
-Kariyerde adil sonuçlar. Çalışmanın karşılığını alıyorsun - iyi veya kötü.
+Fair results in career. You're getting what your work deserves - good or bad.
 
-Yasal konular, sözleşmeler, anlaşmalar için dikkatli ol. Her şeyi yazılı yap.
+Be careful with legal matters, contracts, agreements. Put everything in writing.
 
-Hukuk, yargı, hakemlik, denetim alanları ön planda.
+Law, judiciary, arbitration, auditing fields are prominent.
 ''',
-    advice: 'Adil ol. Kararlarının arkasında dur. Sonuçları kabul et.',
+    advice: 'Be fair. Stand behind your decisions. Accept the consequences.',
     meditation: '''
-Gözlerini kapat. Bir terazinin önünde duruyorsun. Bir kefede eylemlerin, diğerinde sonuçları.
+Close your eyes. You're standing before scales. In one pan are your actions, in the other are the consequences.
 
-Terazi dengeleniyor mu? Değilse, hangi eylemler eksik veya fazla?
+Is the scale balanced? If not, which actions are lacking or excessive?
 
-Mantra: "Eylemlerimin sorumluluğunu alıyorum. Adalet benimle başlıyor."
+Mantra: "I take responsibility for my actions. Justice begins with me."
 ''',
-    viralQuote: '"Adalet zamanla dengelenir - ektiğini biçersin."',
+    viralQuote: '"Justice balances with time - you reap what you sow."',
     shadowAspect:
-        'Katı yargılama, intikam, sorumsuzluk, suçlama, kendini kandırma.',
+        'Harsh judgment, revenge, irresponsibility, blame, self-deception.',
   ),
 
   12: const MajorArcanaContent(
     number: 12,
     name: 'The Hanged Man',
     nameTr: 'Asılan Adam',
-    archetype: 'Kutsal Kurban',
-    element: 'Su',
-    planet: 'Neptün',
+    archetype: 'Sacred Sacrifice',
+    element: 'Water',
+    planet: 'Neptune',
     hebrewLetter: 'Mem (מ)',
     keywords:
-        'Teslimiyet, bekleyiş, fedakarlık, perspektif değişimi, aydınlanma',
+        'Surrender, waiting, sacrifice, perspective change, enlightenment',
     shortMeaning:
-        'Baş aşağı bakınca dünya farklı görünür. Teslimiyet ve yeni perspektif.',
+        'The world looks different when viewed upside down. Surrender and new perspective.',
     deepMeaning: '''
-Asılan Adam, paradoksun kartıdır. Bağlı ama özgür, düşmüş ama yükselmiş, acı çekiyor ama huzurlu.
+The Hanged Man is the card of paradox. Bound but free, fallen but risen, suffering but peaceful.
 
-Kabala'da Mem, "su" anlamına gelir. Asılan Adam, suyun akışına teslim olmaktır - karşı koymak yerine bırakmak.
+In Kabbalah, Mem means "water." The Hanged Man is surrendering to the flow of water - letting go instead of resisting.
 
-Odin, bilgelik için kendini Yggdrasil ağacına astı. İsa, insanlık için çarmıhta asıldı. Bu arketip, fedakarlık yoluyla aydınlanmayı temsil eder.
+Odin hung himself on the Yggdrasil tree for wisdom. Jesus was hung on the cross for humanity. This archetype represents enlightenment through sacrifice.
 
-Başının etrafındaki ışık halesi, bu "ceza"nın aslında bir bereket olduğunu gösterir. Acı dönüştürücüdür.
+The halo of light around his head shows that this "punishment" is actually a blessing. Pain is transformative.
 ''',
     reversedMeaning: '''
-Ters Asılan Adam, gereksiz fedakarlık veya değişime direnci gösterir.
+The reversed Hanged Man indicates unnecessary sacrifice or resistance to change.
 
-Belki acı çekmeyi kutsallaştırıyorsun - "şehit" olmak hoşuna gidiyor. Belki de gerekli fedakarlığı yapmaktan kaçınıyorsun.
+Perhaps you're sanctifying suffering - being a "martyr" pleases you. Perhaps you're avoiding making the necessary sacrifice.
 
-Takılı kalmışsın - ama bağların çoğu senin ellerin. Bırakmak sana kalmış.
+You're stuck - but most of your bonds are your own hands. Letting go is up to you.
 ''',
     symbolism: '''
-• Baş aşağı pozisyon: Perspektif değişimi
-• T-şekilli ağaç: Tau haçı, kurban
-• Işık halesi: Aydınlanma, kutsallık
-• Mavi giysiler: Bilgelik, huzur
-• Kırmızı pantolon: Maddi dünyayla bağ
-• Bağlı ayak: İstemli teslimiyet
-• Serbest eller: İç özgürlük
+• Upside-down position: Perspective change
+• T-shaped tree: Tau cross, sacrifice
+• Halo of light: Enlightenment, holiness
+• Blue clothes: Wisdom, peace
+• Red pants: Connection to material world
+• Bound foot: Voluntary surrender
+• Free hands: Inner freedom
 ''',
     spiritualLesson: '''
-Ruhsal ders: Bazen bırakmak, savaşmaktan güçlüdür.
+Spiritual lesson: Sometimes letting go is stronger than fighting.
 
-Kontrol ihtiyacını bırak. Evrenin planına güven. Acele etme.
+Let go of the need for control. Trust the universe's plan. Don't rush.
 
-Fedakarlık, kaybetmek değil - dönüştürmektir. Bir şeyi bırakmak, başka bir şeye yer açar.
+Sacrifice is not losing - it's transforming. Letting go of something makes room for something else.
 ''',
     loveReading: '''
-Aşkta bekleyiş dönemi. Zorlamak yerine bekle, akışa bırak.
+A waiting period in love. Wait instead of forcing, let it flow.
 
-Belki ilişki için bir şeyden vazgeçmen gerekiyor. Ya da ilişkinin sana ne öğrettiğini görmelisin.
+Perhaps you need to give up something for the relationship. Or you should see what the relationship is teaching you.
 
-"Askıda" bir ilişki olabilir - netleşmesi zaman alacak.
+There may be a relationship "on hold" - it will take time to clarify.
 ''',
     careerReading: '''
-Kariyerde mola zamanı. Durum netleşene kadar bekle.
+Time for a break in career. Wait until the situation clarifies.
 
-Zorlamak işe yaramıyor. Geri adım at, perspektif kazan, sonra hareket et.
+Forcing isn't working. Step back, gain perspective, then act.
 
-Sabbatical, kariyer değişikliği düşünme, araştırma dönemi.
+Sabbatical, thinking about career change, research period.
 ''',
     advice:
-        'Teslim ol. Bekle. Perspektifini değiştir. Bazen hiçbir şey yapmamak, en doğru eylemdir.',
+        'Surrender. Wait. Change your perspective. Sometimes doing nothing is the right action.',
     meditation: '''
-Gözlerini kapat. Kendini baş aşağı asılmış hayal et. Başta rahatsız, sonra... huzur.
+Close your eyes. Imagine yourself hanging upside down. Uncomfortable at first, then... peace.
 
-Dünya ters görünüyor. Ama belki dünya zaten tersken, sen doğru yöne bakıyorsun.
+The world looks upside down. But maybe when the world is already upside down, you're looking the right way.
 
-Mantra: "Teslim oluyorum. Evrenin zamanlamasına güveniyorum."
+Mantra: "I surrender. I trust the universe's timing."
 ''',
     viralQuote:
-        '"Asıl: Teslim ol, bırak, bekle. Bazen en büyük güç, hiçbir şey yapmamaktır."',
+        '"Hang: Surrender, let go, wait. Sometimes the greatest power is doing nothing."',
     shadowAspect:
-        'Kurban zihniyeti, pasiflik, şehitlik kompleksi, gerekli eylemi yapmama.',
+        'Victim mentality, passivity, martyr complex, not taking necessary action.',
   ),
 
   13: const MajorArcanaContent(
     number: 13,
     name: 'Death',
     nameTr: 'Ölüm',
-    archetype: 'Dönüşümcü',
-    element: 'Su',
-    planet: 'Akrep',
+    archetype: 'Transformer',
+    element: 'Water',
+    planet: 'Scorpio',
     hebrewLetter: 'Nun (נ)',
-    keywords: 'Dönüşüm, son, yeni başlangıç, bırakma, metamorfoz',
-    shortMeaning: 'Her son, bir başlangıçtır. Ölüm, yeniden doğuşun kapısıdır.',
+    keywords: 'Transformation, ending, new beginning, letting go, metamorphosis',
+    shortMeaning: 'Every ending is a beginning. Death is the door to rebirth.',
     deepMeaning: '''
-Ölüm kartı, Tarot'un en yanlış anlaşılan kartıdır. Fiziksel ölümü değil, ego ölümünü - dönüşümü - temsil eder.
+The Death card is Tarot's most misunderstood card. It represents not physical death, but ego death - transformation.
 
-Kabala'da Nun, "balık" anlamına gelir - derinlerde yaşayan, görünmeyen. Ölüm de öyle: Görünmez ama her yerde.
+In Kabbalah, Nun means "fish" - living in the depths, unseen. So is Death: Invisible but everywhere.
 
-İskelet zırhlı, beyaz at üzerinde. Bu bir felaket değil, doğal bir süreç. Güneş doğuyor (arkada) - son değil, geçiş.
+The skeleton is armored, on a white horse. This is not a disaster, but a natural process. The sun is rising (in the background) - not an end, but a transition.
 
-Tüm Major Arcana içinde en dönüştürücü kart budur. Korkulacak değil, onurlandırılacak bir güç.
+This is the most transformative card in all the Major Arcana. A power to be honored, not feared.
 ''',
     reversedMeaning: '''
-Ters Ölüm, değişime direnç veya eksik dönüşümü gösterir.
+Reversed Death indicates resistance to change or incomplete transformation.
 
-Ölmesi gereken bir şey hala yaşıyor - belki eski bir alışkanlık, belki ölü bir ilişki, belki eskimiş bir inanç.
+Something that should die is still alive - perhaps an old habit, perhaps a dead relationship, perhaps an outdated belief.
 
-Bırakmaktan korkuyorsun. Ama tutmak da bir tür ölüm - canlı canlı gömülmek.
+You're afraid to let go. But holding on is also a kind of death - being buried alive.
 ''',
     symbolism: '''
-• İskelet: Kalıcı olan, geçici olmayan
-• Zırh: Kaçınılmazlık, koruma
-• Beyaz at: Saflık, güç
-• Bayrak (beyaz gül): Yeniden doğuş, saflık
-• Güneş (ufukta): Yeni başlangıç
-• Nehir: Akış, geçiş
-• Düşen figürler: Eski benlikler
+• Skeleton: What is permanent, not temporary
+• Armor: Inevitability, protection
+• White horse: Purity, power
+• Banner (white rose): Rebirth, purity
+• Sun (on horizon): New beginning
+• River: Flow, transition
+• Falling figures: Old selves
 ''',
     spiritualLesson: '''
-Ruhsal ders: Ölüm, yaşamın parçasıdır.
+Spiritual lesson: Death is part of life.
 
-Her an bir şey ölüyor, bir şey doğuyor. Nefes verdiğinde, bir parçan ölüyor. Nefes aldığında, yenileniyorsun.
+Every moment something dies, something is born. When you exhale, a part of you dies. When you inhale, you renew.
 
-Bırakmak yas ister. Yas tutmak, sevginin devamıdır.
+Letting go requires mourning. Mourning is the continuation of love.
 ''',
     loveReading: '''
-Aşkta dönüşüm zamanı. Bir ilişki bitiyor veya tamamen dönüşüyor.
+Time for transformation in love. A relationship is ending or completely transforming.
 
-Bu son ağrıtıcı olabilir. Ama ölü bir ilişkiyi canlı tutmak, ikisini de öldürür.
+This ending may be painful. But keeping a dead relationship alive kills both.
 
-Yeni aşk, ancak eskiyi gerçekten bıraktığında gelebilir.
+New love can only come when you truly let go of the old.
 ''',
     careerReading: '''
-Kariyerde büyük değişim. Bir dönem kapanıyor, yeni biri başlıyor.
+Big change in career. One era is closing, a new one is beginning.
 
-İşten ayrılma, kariyer değişikliği, şirket dönüşümü olabilir.
+Leaving a job, career change, company transformation may occur.
 
-Korkma. Bir kapı kapanınca başka kapılar açılır.
+Don't be afraid. When one door closes, other doors open.
 ''',
-    advice: 'Bırak. Tutma. Her son, bir başlangıcın tohumunu taşır.',
+    advice: 'Let go. Don\'t hold on. Every ending carries the seed of a beginning.',
     meditation: '''
-Gözlerini kapat. Eski benliğini karşında hayal et - geçmişin, eski inançların, eskiyen kalıpların.
+Close your eyes. Imagine your old self before you - your past, old beliefs, worn-out patterns.
 
-Ona teşekkür et. Sarıl. Sonra bırak. İzle nasıl dönüşüyor - yok olmuyor, sadece form değiştiriyor.
+Thank it. Embrace it. Then let it go. Watch how it transforms - not disappearing, just changing form.
 
-Mantra: "Ölümden korkmuyorum. Her son, yeni bir başlangıç."
+Mantra: "I don't fear death. Every ending is a new beginning."
 ''',
     viralQuote:
-        '"Öl ve yeniden doğ: Her gün, her an. Dönüşüm, evrenin nefesidir."',
-    shadowAspect: 'Değişim korkusu, saplantılı tutunma, yıkıcılık, nihilizm.',
+        '"Die and be reborn: Every day, every moment. Transformation is the breath of the universe."',
+    shadowAspect: 'Fear of change, obsessive clinging, destructiveness, nihilism.',
   ),
 
   14: const MajorArcanaContent(
     number: 14,
     name: 'Temperance',
     nameTr: 'Denge / Ölçülülük',
-    archetype: 'Simyacı',
-    element: 'Ateş',
-    planet: 'Yay',
+    archetype: 'Alchemist',
+    element: 'Fire',
+    planet: 'Sagittarius',
     hebrewLetter: 'Samekh (ס)',
-    keywords: 'Denge, uyum, ölçülülük, entegrasyon, sabır, iyileşme',
-    shortMeaning: 'Zıtların uyumu. Simya sanatı - kurşunu altına çevirmek.',
+    keywords: 'Balance, harmony, moderation, integration, patience, healing',
+    shortMeaning: 'Harmony of opposites. The art of alchemy - turning lead into gold.',
     deepMeaning: '''
-Denge, Ölüm'den sonra gelen şifa kartıdır. Dönüşüm gerçekleşti - şimdi yeni dengeyi bulmak gerekiyor.
+Temperance is the healing card that comes after Death. Transformation has occurred - now a new balance must be found.
 
-Kabala'da Samekh, "destek" anlamına gelir. Denge, bizi ayakta tutan görünmez yapıdır.
+In Kabbalah, Samekh means "support." Balance is the invisible structure that keeps us standing.
 
-Melek, iki kupa arasında su akıtıyor - bilinç ve bilinçaltı, maddi ve ruhani birleşiyor. Bu simya sürecidir.
+The angel pours water between two cups - conscious and subconscious, material and spiritual unite. This is the alchemical process.
 
-Bir ayağı suda, biri karada. İki dünya arasında köprü. Ne tamamen içe dönük, ne tamamen dışa.
+One foot in water, one on land. A bridge between two worlds. Neither entirely introverted nor entirely extroverted.
 ''',
     reversedMeaning: '''
-Ters Denge, aşırılık, dengesizlik veya uyumsuzluğu gösterir.
+Reversed Temperance indicates excess, imbalance, or disharmony.
 
-Belki hayatın bir alanı diğerlerini ezmiş. Belki de "orta yol"u bulamıyorsun.
+Perhaps one area of life has overwhelmed the others. Perhaps you can't find the "middle way."
 
-Aşırılıklar arasında gidip gelme. Bir gün çok fazla, bir gün hiç yok.
+Going back and forth between extremes. Too much one day, nothing the next.
 ''',
     symbolism: '''
-• Melek: Koruyucu, şifacı
-• İki kupa: Bilinç/bilinçaltı, madde/ruh
-• Akan su: Enerji akışı, simya
-• Bir ayak karada, biri suda: İki dünya arası
-• Güneş (ufukta): Hedef, aydınlanma
-• Iris çiçekleri: Gökkuşağı tanrıçası, köprü
-• Taç: Yüksek bilinç
+• Angel: Protector, healer
+• Two cups: Conscious/subconscious, matter/spirit
+• Flowing water: Energy flow, alchemy
+• One foot on land, one in water: Between two worlds
+• Sun (on horizon): Goal, enlightenment
+• Iris flowers: Rainbow goddess, bridge
+• Crown: Higher consciousness
 ''',
     spiritualLesson: '''
-Ruhsal ders: Orta yol, en zor yoldur.
+Spiritual lesson: The middle way is the hardest path.
 
-Aşırılıklar kolay - denge zor. "Ne az ne çok" yaşamak ustalık ister.
+Extremes are easy - balance is hard. Living "not too little, not too much" requires mastery.
 
-Sabır, simyanın anahtarıdır. Kurşun bir günde altına dönüşmez.
+Patience is the key to alchemy. Lead doesn't turn to gold in one day.
 ''',
     loveReading: '''
-Aşkta denge ve uyum zamanı. Orta yolu bul.
+Time for balance and harmony in love. Find the middle way.
 
-Ne çok bağımlı, ne çok mesafeli. Ne çok tutkulu, ne çok soğuk.
+Not too dependent, not too distant. Not too passionate, not too cold.
 
-İlişkide şifa süreci. Eski yaralar iyileşiyor, yeni denge kuruluyor.
+Healing process in relationship. Old wounds are healing, new balance is being established.
 ''',
     careerReading: '''
-Kariyerde iş-yaşam dengesi kritik. Aşırı çalışma da, tembellik de zararlı.
+Work-life balance is critical in career. Both overworking and laziness are harmful.
 
-Farklı becerileri, projeleri, ekipleri entegre etme zamanı.
+Time to integrate different skills, projects, teams.
 
-Sağlık, terapi, danışmanlık, arabuluculuk alanları uygun.
+Health, therapy, consulting, mediation fields are suitable.
 ''',
     advice:
-        'Denge kur. Sabırlı ol. Zıtları birleştir - sonuç ikisinden de büyük olur.',
+        'Establish balance. Be patient. Unite opposites - the result will be greater than both.',
     meditation: '''
-Gözlerini kapat. Ellerinde iki kupa var - birinde ateş, birinde su.
+Close your eyes. You have two cups in your hands - fire in one, water in the other.
 
-Yavaşça birinden diğerine akıt. Ateş ve su birleşiyor - buhar yükseliyor.
+Slowly pour from one to the other. Fire and water merge - steam rises.
 
-Mantra: "Zıtlıkları birleştiriyorum. Dengede güç buluyorum."
+Mantra: "I unite opposites. I find strength in balance."
 ''',
-    viralQuote: '"Denge bul: Ne az ne çok. Gerçek ustalık, ortada durmaktır."',
+    viralQuote: '"Find balance: Not too little, not too much. True mastery is standing in the middle."',
     shadowAspect:
-        'Aşırılıklar, bağımlılık, kaçınma, yapay uyum, kendini kandırma.',
+        'Extremes, addiction, avoidance, artificial harmony, self-deception.',
   ),
 
   15: const MajorArcanaContent(
     number: 15,
     name: 'The Devil',
     nameTr: 'Şeytan',
-    archetype: 'Gölge',
-    element: 'Toprak',
-    planet: 'Oğlak',
+    archetype: 'Shadow',
+    element: 'Earth',
+    planet: 'Capricorn',
     hebrewLetter: 'Ayin (ע)',
-    keywords: 'Bağımlılık, tutku, gölge, maddecilik, kısıtlama, illüzyon',
-    shortMeaning: 'Zincirlerin senin eserin. Gölgeyle yüzleşme, özgürleşme.',
+    keywords: 'Addiction, passion, shadow, materialism, restriction, illusion',
+    shortMeaning: 'The chains are your own creation. Confronting the shadow, liberation.',
     deepMeaning: '''
-Şeytan, Tarot'un en yanlış anlaşılan kartlarından biridir. O dışsal bir güç değil - içsel gölgenin yansımasıdır.
+The Devil is one of Tarot's most misunderstood cards. It's not an external force - it's the reflection of the inner shadow.
 
-Kabala'da Ayin, "göz" anlamına gelir. Şeytan, görmek istemediğimiz şeyleri görmeye zorlar.
+In Kabbalah, Ayin means "eye." The Devil forces us to see what we don't want to see.
 
-Baphomet figürü, "yukarıda ne varsa aşağıda da o" ilkesinin karanlık yüzüdür. İki çıplak figür zincirlenmiş - ama dikkat: Zincirler gevşek, isteseler çıkabilirler.
+The Baphomet figure is the dark face of "as above, so below." Two naked figures are chained - but notice: The chains are loose, they could leave if they wanted.
 
-Jung'un "gölge" kavramı burada somutlaşır. Bastırdığımız, reddettiğimiz, kabul etmediğimiz her şey.
+Jung's "shadow" concept is embodied here. Everything we suppress, reject, refuse to accept.
 ''',
     reversedMeaning: '''
-Ters Şeytan, gölgeden kurtuluşu veya gölgenin inkârını gösterir.
+The reversed Devil indicates liberation from the shadow or denial of the shadow.
 
-Belki bağımlılıktan, toksik ilişkiden, zararlı kalıptan kurtuluyorsun. Belki de gölgeni hâlâ görmezden geliyorsun.
+Perhaps you're breaking free from addiction, toxic relationship, harmful pattern. Perhaps you're still ignoring your shadow.
 
-Özgürleşme süreci başlamış - ama dikkatli ol, eski kalıplara dönüş kolay.
+The liberation process has begun - but be careful, returning to old patterns is easy.
 ''',
     symbolism: '''
-• Baphomet: Dualite, madde ve ruh
-• Zincirlenmiş figürler: İstemli esaret
-• Gevşek zincirler: Çıkış mümkün
-• Meşale (aşağı doğru): Yıkıcı tutku
-• Boynuzlar ve kuyruklar: Hayvansal doğa
-• Siyah arka plan: Bilinçaltı, karanlık
-• Ters pentagram: Maddecilik, düşmüş ruh
+• Baphomet: Duality, matter and spirit
+• Chained figures: Voluntary bondage
+• Loose chains: Exit is possible
+• Torch (pointing down): Destructive passion
+• Horns and tails: Animal nature
+• Black background: Subconscious, darkness
+• Inverted pentagram: Materialism, fallen spirit
 ''',
     spiritualLesson: '''
-Ruhsal ders: Gölgeni kabul et.
+Spiritual lesson: Accept your shadow.
 
-Reddettiğin, bastırdığın her şey güçlenir. Gölgeyle savaşma - onu tanı, anla, entegre et.
+Everything you reject, suppress, becomes stronger. Don't fight the shadow - know it, understand it, integrate it.
 
-Bağımlılıklar, gölgenin sesini susturmak içindir. Ama ses susmuyor - sadece daha yüksek bağırıyor.
+Addictions are for silencing the shadow's voice. But the voice doesn't quiet - it just screams louder.
 ''',
     loveReading: '''
-Aşkta bağımlılık, kontrol veya toksik kalıplar söz konusu.
+Addiction, control, or toxic patterns are at play in love.
 
-İlişki seni özgürleştiriyor mu, yoksa zincirliyor mu? Dürüst ol.
+Is the relationship liberating you or chaining you? Be honest.
 
-Tutkulu ama yıkıcı aşk. "Kötü" olduğunu biliyorsun, ama bırakamıyorsun.
+Passionate but destructive love. You know it's "bad," but you can't let go.
 ''',
     careerReading: '''
-Kariyerde maddi bağımlılık veya değer çatışması.
+Material dependency or value conflict in career.
 
-Para için ruhunu satıyor musun? Etik çizgini aştın mı?
+Are you selling your soul for money? Have you crossed your ethical line?
 
-Kurumsal tuzaklar, altın kafesler. Güvenlik için özgürlükten vazgeçmek.
+Corporate traps, golden cages. Giving up freedom for security.
 ''',
     advice:
-        'Zincirlerine bak. Kim taktı? Cevap aynada. Çıkış mümkün - ister misin?',
+        'Look at your chains. Who put them on? The answer is in the mirror. Exit is possible - do you want it?',
     meditation: '''
-Gözlerini kapat. Karanlık bir odadasın. Gölgen karşında duruyor - senden büyük, korkutucu.
+Close your eyes. You're in a dark room. Your shadow stands before you - bigger than you, frightening.
 
-Ona doğru yürü. "Seni görüyorum" de. "Sen de benim parçamsın."
+Walk toward it. Say "I see you." Say "You are also part of me."
 
-Gölge küçülüyor. Artık korkutmuyor - sadece sana bakıyor.
+The shadow shrinks. It no longer frightens - it just looks at you.
 
-Mantra: "Gölgemi kabul ediyorum. O benim parçam - ama ben değilim."
+Mantra: "I accept my shadow. It's part of me - but it's not me."
 ''',
     viralQuote:
-        '"Şeytanın yüzüne bak - kendi gözlerini göreceksin. Zincirleri sen taktın, sen çıkarırsın."',
+        '"Look at the Devil\'s face - you\'ll see your own eyes. You put on the chains, you take them off."',
     shadowAspect:
-        'Bağımlılık, kontrol, manipülasyon, maddecilik, kendini kandırma.',
+        'Addiction, control, manipulation, materialism, self-deception.',
   ),
 
   16: const MajorArcanaContent(
     number: 16,
     name: 'The Tower',
     nameTr: 'Kule',
-    archetype: 'Yıkıcı Aydınlanma',
-    element: 'Ateş',
+    archetype: 'Destructive Enlightenment',
+    element: 'Fire',
     planet: 'Mars',
     hebrewLetter: 'Peh (פ)',
-    keywords: 'Ani değişim, yıkım, vahiy, kriz, çöküş, özgürleşme',
+    keywords: 'Sudden change, destruction, revelation, crisis, collapse, liberation',
     shortMeaning:
-        'Yıldırım çarptığında gerçek ortaya çıkar. Yıkımdan doğan aydınlanma.',
+        'When lightning strikes, truth is revealed. Enlightenment born from destruction.',
     deepMeaning: '''
-Kule, kaçınılmaz yıkımın kartıdır. Sahte temeller üzerine kurulu yapılar yıkılmalıdır - gerçek ortaya çıksın diye.
+The Tower is the card of inevitable destruction. Structures built on false foundations must fall - so truth can emerge.
 
-Kabala'da Peh, "ağız" anlamına gelir. Kule, evrenin sana söylediği acı gerçektir - duymak istemesen de.
+In Kabbalah, Peh means "mouth." The Tower is the painful truth the universe tells you - even if you don't want to hear it.
 
-Yıldırım, ilahi müdahaledir. Taç düşüyor - ego yıkılıyor. İnsanlar düşüyor - ama belki de uçmayı öğreniyorlar.
+Lightning is divine intervention. The crown falls - ego is destroyed. People fall - but perhaps they're learning to fly.
 
-Bu kart korkutur - ama en özgürleştirici deneyimler genellikle en acı verici olanlardır.
+This card frightens - but the most liberating experiences are often the most painful ones.
 ''',
     reversedMeaning: '''
-Ters Kule, kaçınılan yıkımı veya içsel dönüşümü gösterir.
+The reversed Tower indicates avoided destruction or inner transformation.
 
-Belki felaketi kıl payı atlattın. Belki de yıkım içsel - dışarıdan görünmüyor ama içeride her şey değişti.
+Perhaps you narrowly escaped disaster. Perhaps the destruction is internal - not visible from outside but everything has changed inside.
 
-Değişime direnç, kaçınılmaz olanı ertelemek. Ama ertelenen yıkım daha büyük gelir.
+Resistance to change, postponing the inevitable. But postponed destruction comes bigger.
 ''',
     symbolism: '''
-• Kule: Ego, sahte yapılar
-• Yıldırım: İlahi müdahale, ani gerçek
-• Düşen taç: Ego yıkımı
-• Düşen figürler: Eski benlik
-• Alevler: Dönüşüm ateşi
-• Karanlık gece: Ruhun karanlık gecesi
-• 22 alev: 22 Major Arcana, tam döngü
+• Tower: Ego, false structures
+• Lightning: Divine intervention, sudden truth
+• Falling crown: Ego destruction
+• Falling figures: Old self
+• Flames: Fire of transformation
+• Dark night: Dark night of the soul
+• 22 flames: 22 Major Arcana, complete cycle
 ''',
     spiritualLesson: '''
-Ruhsal ders: Bazen yıkılması gereken şeyler vardır.
+Spiritual lesson: Sometimes things must be destroyed.
 
-Sahte güvenlik, sahte kimlik, sahte ilişkiler... Yıkım acıtır, ama sahtelikle yaşamak daha çok acıtır.
+False security, false identity, false relationships... Destruction hurts, but living with falseness hurts more.
 
-Krizi fırsata çevir. Enkazdan ne kurtarılabilir?
+Turn crisis into opportunity. What can be salvaged from the wreckage?
 ''',
     loveReading: '''
-Aşkta ani son, sarsıcı vahiy veya ilişkinin temelden sarsılması.
+Sudden ending, shocking revelation, or the relationship being shaken to its foundations in love.
 
-Aldatma, yalan veya uzun süredir görmezden gelinen sorunların patlaması.
+Infidelity, lies, or long-ignored problems exploding.
 
-Acı verici - ama gerçeği bilmek, yalanla yaşamaktan iyidir.
+Painful - but knowing the truth is better than living with lies.
 ''',
     careerReading: '''
-Kariyerde ani değişim. İşten çıkarılma, şirket iflası, sektör değişimi.
+Sudden change in career. Being fired, company bankruptcy, sector change.
 
-Planların çöküyor - ama belki de yanlış planlardı.
+Your plans are collapsing - but perhaps they were the wrong plans.
 
-Kriz anında sakin kal. Panik kararlar verme.
+Stay calm in crisis. Don't make panic decisions.
 ''',
     advice:
-        'Yıkıma direnmeSenin ellerin. Bırak çöksün. Enkazdan yeni bir şey inşa edeceksin.',
+        'Don\'t resist destruction. Let it collapse. You\'ll build something new from the wreckage.',
     meditation: '''
-Gözlerini kapat. Büyük bir kulenin tepesinde duruyorsun. Yıldırım çakıyor, kule sallanıyor.
+Close your eyes. You're standing on top of a great tower. Lightning flashes, the tower shakes.
 
-Korkma. Atla. Düşerken uçmayı öğreniyorsun.
+Don't be afraid. Jump. You're learning to fly as you fall.
 
-Yere değil, gökyüzüne doğru düşüyorsun.
+You're not falling toward the ground, but toward the sky.
 
-Mantra: "Yıkımdan korkmuyorum. Her çöküş, yeni bir yükselişin başlangıcı."
+Mantra: "I don't fear destruction. Every collapse is the beginning of a new rise."
 ''',
     viralQuote:
-        '"Yıkılsın: Sahte temeller, sahte hayatlar, sahte benlikler. Gerçek olan, yıkılamaz."',
+        '"Let it fall: False foundations, false lives, false selves. What is real cannot be destroyed."',
     shadowAspect:
-        'Yıkıcılık, ani öfke patlamaları, kaos yaratma, kendini sabotaj.',
+        'Destructiveness, sudden anger outbursts, creating chaos, self-sabotage.',
   ),
 
   17: const MajorArcanaContent(
     number: 17,
     name: 'The Star',
     nameTr: 'Yıldız',
-    archetype: 'Umut',
-    element: 'Hava',
-    planet: 'Kova',
+    archetype: 'Hope',
+    element: 'Air',
+    planet: 'Aquarius',
     hebrewLetter: 'Tzaddi (צ)',
-    keywords: 'Umut, ilham, huzur, iyileşme, maneviyat, bereket',
-    shortMeaning: 'Fırtınadan sonra gelen sükunet. Evrensel umut ve şifa.',
+    keywords: 'Hope, inspiration, peace, healing, spirituality, abundance',
+    shortMeaning: 'The calm after the storm. Universal hope and healing.',
     deepMeaning: '''
-Yıldız, Kule'nin yıkımından sonra gelen şifa ve umuttur. En karanlık geceden sonra, yıldızlar görünür.
+The Star is the healing and hope that comes after the Tower's destruction. After the darkest night, stars become visible.
 
-Kabala'da Tzaddi, "balık oltası" anlamına gelir - derinliklerden bilgelik çeken. Yıldız, kozmik bilgeliğin kaynağıdır.
+In Kabbalah, Tzaddi means "fish hook" - drawing wisdom from the depths. The Star is the source of cosmic wisdom.
 
-Çıplak kadın iki testiden su döker - bilinç ve bilinçaltını besler. Büyük yıldız (Sirius?) ve yedi küçük yıldız, kozmik rehberliği simgeler.
+The naked woman pours water from two jugs - nourishing conscious and subconscious. The large star (Sirius?) and seven small stars symbolize cosmic guidance.
 
-Bu kart, "her şey yoluna girecek" vaadi değil - "her şey olduğu gibi mükemmel" farkındalığıdır.
+This card is not the promise "everything will be fine" - it's the awareness that "everything is already perfect as it is."
 ''',
     reversedMeaning: '''
-Ters Yıldız, umut kaybı, inanç krizi veya gerçeklikten kopuşu gösterir.
+The reversed Star indicates loss of hope, crisis of faith, or disconnection from reality.
 
-Belki karanlıkta kaybolmuş hissediyorsun - yıldızları göremiyorsun. Belki de aşırı idealizm seni gerçeklikten kopardı.
+Perhaps you feel lost in the darkness - you can't see the stars. Perhaps excessive idealism has disconnected you from reality.
 
-Şifa süreci sekteye uğramış olabilir. Sabır gerekiyor.
+The healing process may have stalled. Patience is needed.
 ''',
     symbolism: '''
-• Büyük yıldız: Kozmik rehberlik
-• Yedi küçük yıldız: Çakralar, gezegenler
-• Çıplak kadın: Savunmasızlık, saflık
-• İki testi: Bilinç/bilinçaltı
-• Akan su: Şifa, bereket
-• Göl: Bilinçaltı, sezgi
-• Kuş (ağaçta): Ruh, özgürlük
+• Large star: Cosmic guidance
+• Seven small stars: Chakras, planets
+• Naked woman: Vulnerability, purity
+• Two jugs: Conscious/subconscious
+• Flowing water: Healing, abundance
+• Lake: Subconscious, intuition
+• Bird (in tree): Spirit, freedom
 ''',
     spiritualLesson: '''
-Ruhsal ders: En karanlık gecede bile yıldızlar parlar.
+Spiritual lesson: Even in the darkest night, stars shine.
 
-Umut, koşullara bağlı değildir. Dış dünya karanlık olsa bile, içsel ışık sönmez.
+Hope doesn't depend on conditions. Even if the outer world is dark, the inner light doesn't extinguish.
 
-Şifa zaman alır. Sabırlı ol - ama umudunu kaybetme.
+Healing takes time. Be patient - but don't lose hope.
 ''',
     loveReading: '''
-Aşkta iyileşme ve yenilenme. Geçmiş yaralar şifa buluyor.
+Healing and renewal in love. Past wounds are finding healing.
 
-Yeni bir umut, yeni bir ilham. İdealist ama ayakları yere basan bir aşk.
+New hope, new inspiration. Idealistic but grounded love.
 
-Ruh eşi enerjisi - ama önce kendi ışığını bul.
+Soulmate energy - but first find your own light.
 ''',
     careerReading: '''
-Kariyerde yeni umutlar, ilham veren projeler, yaratıcı fikirler.
+New hopes, inspiring projects, creative ideas in career.
 
-Zor dönemden sonra iyileşme. Yeni başlangıçlar için uygun zaman.
+Recovery after difficult period. Good time for new beginnings.
 
-Sanat, müzik, yardım işleri, çevre koruma alanları ön planda.
+Art, music, charitable work, environmental protection fields are prominent.
 ''',
     advice:
-        'Umudunu koru. Işığını paylaş. Şifa için sabırlı ol - ama şifanın geldiğine inan.',
+        'Keep your hope. Share your light. Be patient for healing - but believe healing is coming.',
     meditation: '''
-Gözlerini kapat. Yıldızlı bir gecede, berrak bir gölün kenarında oturuyorsun.
+Close your eyes. On a starry night, you're sitting by a clear lake.
 
-Gökyüzüne bak. Yıldızlar seninle konuşuyor - her biri bir mesaj.
+Look at the sky. The stars are speaking to you - each one is a message.
 
-Mantra: "Evrenden rehberlik alıyorum. Işık her zaman benimle."
+Mantra: "I receive guidance from the universe. Light is always with me."
 ''',
     viralQuote:
-        '"Yıldız ol: Karanlıkta parla, umut saç, şifa ver. En karanlık gecede bile, ışık var."',
-    shadowAspect: 'Aşırı idealizm, gerçeklikten kopuş, pasif umut, hayalcilik.',
+        '"Be a star: Shine in darkness, spread hope, give healing. Even in the darkest night, there is light."',
+    shadowAspect: 'Excessive idealism, disconnection from reality, passive hope, fantasy.',
   ),
 
   18: const MajorArcanaContent(
     number: 18,
     name: 'The Moon',
     nameTr: 'Ay',
-    archetype: 'Bilinçaltının Derinlikleri',
-    element: 'Su',
-    planet: 'Balık',
+    archetype: 'Depths of the Subconscious',
+    element: 'Water',
+    planet: 'Pisces',
     hebrewLetter: 'Qoph (ק)',
-    keywords: 'Illüzyon, bilinçaltı, korkular, gölgeler, sezgi, rüyalar',
+    keywords: 'Illusion, subconscious, fears, shadows, intuition, dreams',
     shortMeaning:
-        'Ay ışığında her şey farklı görünür. Bilinçaltının karanlık suları.',
+        'Everything looks different in moonlight. The dark waters of the subconscious.',
     deepMeaning: '''
-Ay, bilinçaltının karanlık ve gizemli dünyasını temsil eder. Güneş gerçeği gösterir - Ay, gerçeğin gölgelerini.
+The Moon represents the dark and mysterious world of the subconscious. The Sun shows truth - the Moon shows truth's shadows.
 
-Kabala'da Qoph, "ensee" anlamına gelir - görünmeyeni görmek. Ay, iç gözün kartıdır.
+In Kabbalah, Qoph means "back of head" - seeing the unseen. The Moon is the card of inner vision.
 
-İki kule arasındaki yol, bilinçten bilinçaltına geçiştir. Köpek ve kurt, evcil ve vahşi doğamızı simgeler. Yengeç, derinlerden yüzeye çıkan ilkel güçlerdir.
+The path between two towers is the passage from conscious to subconscious. Dog and wolf symbolize our domestic and wild nature. The crayfish is primitive forces rising from the depths to the surface.
 
-Bu kart, netlik değil - belirsizlik verir. Ve bazen belirsizlik, kesinliğin dayattığı kalıplardan özgürleştirir.
+This card gives not clarity - but uncertainty. And sometimes uncertainty liberates from the patterns that certainty imposes.
 ''',
     reversedMeaning: '''
-Ters Ay, korkularla yüzleşmeyi veya illüzyonların dağılmasını gösterir.
+The reversed Moon indicates confronting fears or illusions dissipating.
 
-Belki karanlıktan korkuyordun - ama artık görebiliyorsun. Belki de korkular gerçeği gizliyor.
+Perhaps you feared the darkness - but now you can see. Perhaps fears are hiding the truth.
 
-Bilinçaltı mesajlar netleşiyor. Rüyalar anlaşılır hale geliyor.
+Subconscious messages are becoming clear. Dreams are becoming understandable.
 ''',
     symbolism: '''
-• Ay: Bilinçaltı, döngüler, dişil
-• İki kule: Geçiş kapıları
-• Köpek ve kurt: Evcil/vahşi doğa
-• Yengeç: Bilinçaltından çıkan
-• Yol: Bilinçaltı yolculuğu
-• Su: Duygular, sezgi
-• Ay'ın yüzü: Çift doğa, ışık/gölge
+• Moon: Subconscious, cycles, feminine
+• Two towers: Passage gates
+• Dog and wolf: Domestic/wild nature
+• Crayfish: Rising from subconscious
+• Path: Subconscious journey
+• Water: Emotions, intuition
+• Moon's face: Dual nature, light/shadow
 ''',
     spiritualLesson: '''
-Ruhsal ders: Karanlıktan geçmeden aydınlığa ulaşılmaz.
+Spiritual lesson: You can't reach light without passing through darkness.
 
-Korkularınla yüzleş. Gölgelerini tanı. Bilinçaltı düşman değil - sadece tanınmamış dost.
+Face your fears. Know your shadows. The subconscious is not an enemy - just an unrecognized friend.
 
-Rüyalar, sezgiler, "anlamsız" hisler... Hepsini dinle. Mesajlar şifreli ama gerçek.
+Dreams, intuitions, "meaningless" feelings... Listen to them all. Messages are encrypted but real.
 ''',
     loveReading: '''
-Aşkta belirsizlik, gizli duygular veya illüzyonlar var.
+Uncertainty, hidden feelings, or illusions in love.
 
-Gerçeği görüyor musun, yoksa görmek istediğini mi? Partner hakkında bilmediğin şeyler olabilir.
+Are you seeing reality, or what you want to see? There may be things you don't know about your partner.
 
-Sezgilerine güven - ama paranoya ile sezgiyi ayırt et.
+Trust your intuition - but distinguish paranoia from intuition.
 ''',
     careerReading: '''
-Kariyerde belirsizlik. Net görüntü yok - bekle.
+Uncertainty in career. No clear picture - wait.
 
-Yaratıcı işler, sanat, psikoloji, gizem alanları için uygun.
+Suitable for creative work, art, psychology, mystery fields.
 
-Önemli kararlar için bu dönem uygun değil - daha fazla bilgi gerekiyor.
+This period is not suitable for important decisions - more information is needed.
 ''',
     advice:
-        'Karanlıkta yürü. Gözlerin alışacak. Sezgilerine güven - ama doğrula.',
+        'Walk in the darkness. Your eyes will adjust. Trust your intuition - but verify.',
     meditation: '''
-Gözlerini kapat. Ay ışığında bir orman yolundasın. Gölgeler hareket ediyor - ya da öyle mi görünüyor?
+Close your eyes. You're on a forest path in moonlight. Shadows are moving - or does it just seem so?
 
-Korkma. Yürümeye devam et. Gölgeler sadece gölge - gerçek değil.
+Don't be afraid. Keep walking. Shadows are just shadows - not real.
 
-Mantra: "Karanlıkta bile görüyorum. Sezgilerim beni yönlendiriyor."
+Mantra: "I see even in darkness. My intuition guides me."
 ''',
     viralQuote:
-        '"Ay\'a bak: Tam değil, eksik - ama güzel. Karanlık da ışığın parçası."',
-    shadowAspect: 'Korku, paranoya, illüzyon, aldatma, bilinçaltı bastırma.',
+        '"Look at the Moon: Not full, incomplete - but beautiful. Darkness is also part of light."',
+    shadowAspect: 'Fear, paranoia, illusion, deception, subconscious suppression.',
   ),
 
   19: const MajorArcanaContent(
     number: 19,
     name: 'The Sun',
     nameTr: 'Güneş',
-    archetype: 'Neşe ve Aydınlanma',
-    element: 'Ateş',
-    planet: 'Güneş',
+    archetype: 'Joy and Enlightenment',
+    element: 'Fire',
+    planet: 'Sun',
     hebrewLetter: 'Resh (ר)',
-    keywords: 'Neşe, başarı, canlılık, aydınlanma, pozitiflik, berraklık',
-    shortMeaning: 'Güneş her şeyi aydınlatır. Neşe, başarı ve çocuksu sevinç.',
+    keywords: 'Joy, success, vitality, enlightenment, positivity, clarity',
+    shortMeaning: 'The sun illuminates everything. Joy, success, and childlike happiness.',
     deepMeaning: '''
-Güneş, Tarot'un en pozitif kartıdır. Ay'ın belirsizliğinden sonra, güneş her şeyi netleştirir.
+The Sun is Tarot's most positive card. After the Moon's uncertainty, the sun clarifies everything.
 
-Kabala'da Resh, "baş" anlamına gelir. Güneş, bilinçli farkındalığın doruk noktasıdır.
+In Kabbalah, Resh means "head." The Sun is the peak of conscious awareness.
 
-Çıplak çocuk beyaz at üzerinde - masumiyet ve zafer bir arada. Güneş çiçekleri (ayçiçeği) her zaman ışığa döner - sen de öyle ol.
+Naked child on white horse - innocence and victory together. Sunflowers always turn toward light - so should you.
 
-Bu kart, dış başarı değil - içsel aydınlanmadır. Ama içsel ışık parlayınca, dış dünya da aydınlanır.
+This card is not external success - it's inner enlightenment. But when inner light shines, the outer world is also illuminated.
 ''',
     reversedMeaning: '''
-Ters Güneş, geçici karartma veya aşırı iyimserliği gösterir.
+The reversed Sun indicates temporary eclipse or excessive optimism.
 
-Belki güneş bulutların arkasında - ama hâlâ orada. Belki de gerçekçi olmayan beklentilerin hayal kırıklığına yol açtı.
+Perhaps the sun is behind clouds - but it's still there. Perhaps unrealistic expectations led to disappointment.
 
-İçsel çocuk yaralı olabilir. Neşe kapasiteni koru.
+The inner child may be wounded. Preserve your capacity for joy.
 ''',
     symbolism: '''
-• Güneş: Bilinç, aydınlanma, yaşam gücü
-• Çocuk: Masumiyet, neşe, yeni başlangıç
-• Beyaz at: Saflık, zafer
-• Ayçiçekleri: Işığa dönme, büyüme
-• Duvar: Aşılan engeller
-• Kırmızı bayrak: Yaşam gücü, kutlama
-• Çıplaklık: Saklanacak bir şey yok
+• Sun: Consciousness, enlightenment, life force
+• Child: Innocence, joy, new beginning
+• White horse: Purity, victory
+• Sunflowers: Turning toward light, growth
+• Wall: Overcome obstacles
+• Red flag: Life force, celebration
+• Nakedness: Nothing to hide
 ''',
     spiritualLesson: '''
-Ruhsal ders: Neşe, ruhun doğal halidir.
+Spiritual lesson: Joy is the natural state of the soul.
 
-Mutluluk dış koşullara bağlı değil - içsel bir karar. İçindeki çocuğu özgür bırak.
+Happiness doesn't depend on external conditions - it's an inner decision. Set the child within you free.
 
-Güneş gibi ol: Parla, ısıt, aydınlat - koşulsuz, beklentisiz.
+Be like the sun: Shine, warm, illuminate - unconditional, without expectation.
 ''',
     loveReading: '''
-Aşkta mutluluk, uyum ve neşe dönemi.
+Period of happiness, harmony, and joy in love.
 
-İlişki çiçek açıyor. Çocuklar konusu olabilir - fiziksel veya yaratıcı projeler.
+The relationship is blossoming. Children may be a topic - physical or creative projects.
 
-Partnerle çocuk gibi eğlen. Ciddiyet her şey değil.
+Have fun like a child with your partner. Seriousness isn't everything.
 ''',
     careerReading: '''
-Kariyerde başarı ve tanınma. Çabalarının karşılığını alıyorsun.
+Success and recognition in career. You're getting what your efforts deserve.
 
-Yaratıcı projeler parlıyor. Liderlik doğal geliyor.
+Creative projects are shining. Leadership comes naturally.
 
-Çocuklarla ilgili işler, eğlence, sanat, outdoor aktiviteler ön planda.
+Work with children, entertainment, art, outdoor activities are prominent.
 ''',
-    advice: 'Parla. Gülümse. Neşeni paylaş. İçindeki çocuğu özgür bırak.',
+    advice: 'Shine. Smile. Share your joy. Set the child within you free.',
     meditation: '''
-Gözlerini kapat. Sıcak bir güneş yüzünü okşuyor. Çocukken hissettiğin o saf neşeyi hatırla.
+Close your eyes. A warm sun is caressing your face. Remember that pure joy you felt as a child.
 
-O çocuk hâlâ içinde. Onu selamla. Onunla oyna.
+That child is still within you. Greet them. Play with them.
 
-Mantra: "Işığım parlıyor. Neşem bulaşıcı. İçimdeki çocuk özgür."
+Mantra: "My light is shining. My joy is contagious. The child within me is free."
 ''',
     viralQuote:
-        '"Güneş ol: Parla, ısıt, aydınlat. Koşulsuz, karşılıksız - sadece ol."',
-    shadowAspect: 'Naiflik, aşırı iyimserlik, kibirli ışık, gölgeyi reddetme.',
+        '"Be the Sun: Shine, warm, illuminate. Unconditional, unrequited - just be."',
+    shadowAspect: 'Naivety, excessive optimism, arrogant light, denying the shadow.',
   ),
 
   20: const MajorArcanaContent(
     number: 20,
     name: 'Judgement',
     nameTr: 'Yargı / Diriliş',
-    archetype: 'Kozmik Çağrı',
-    element: 'Ateş / Su',
+    archetype: 'Cosmic Call',
+    element: 'Fire / Water',
     planet: 'Pluto',
     hebrewLetter: 'Shin (ש)',
-    keywords: 'Yeniden doğuş, çağrı, yargılama, uyanış, özgürleşme, kefaret',
+    keywords: 'Rebirth, calling, judgment, awakening, liberation, atonement',
     shortMeaning:
-        'Borazan çalıyor - uyanma zamanı. Yeniden doğuş ve kozmik çağrı.',
+        'The trumpet sounds - time to wake up. Rebirth and cosmic call.',
     deepMeaning: '''
-Yargı, son değil - yeni başlangıçtır. Meleklerin borazanı, ruhları uyandırır.
+Judgement is not the end - it's a new beginning. The angels' trumpet awakens souls.
 
-Kabala'da Shin, "diş" ve "ateş" anlamına gelir - dönüştürücü güç. Yargı, ateşle arınmadır.
+In Kabbalah, Shin means "tooth" and "fire" - transformative power. Judgement is purification by fire.
 
-Mezarlardan yükselen figürler, geçmiş yaşamlardan, eski benliklerden, bastırılmış potansiyellerden uyanıyorlar.
+Figures rising from graves are awakening from past lives, old selves, suppressed potential.
 
-Bu kart, "kıyamet" değil - "apokalypsis" (Yunanca "perdenin kaldırılması"). Gerçek ortaya çıkıyor.
+This card is not "apocalypse" but "apokalypsis" (Greek "lifting of the veil"). Truth is revealed.
 ''',
     reversedMeaning: '''
-Ters Yargı, çağrıyı duymamayı veya kendini affetmemeyi gösterir.
+Reversed Judgement indicates not hearing the call or not forgiving yourself.
 
-Belki içsel ses çağırıyor ama duymuyorsun - ya da duyup görmezden geliyorsun.
+Perhaps the inner voice is calling but you're not hearing - or hearing and ignoring.
 
-Geçmişten kurtulamıyorsun. Kendini affetmek zor geliyor.
+You can't escape the past. Forgiving yourself feels difficult.
 ''',
     symbolism: '''
-• Melek (Gabriel): İlahi çağrı
-• Borazan: Uyanış çağrısı
-• Kırmızı haç (bayrak): Dönüşüm, kurban
-• Yükselen figürler: Yeniden doğuş
-• Tabutlar: Eski benlikler
-• Dağlar: Aşılan engeller
-• Su: Duygusal arınma
+• Angel (Gabriel): Divine call
+• Trumpet: Wake-up call
+• Red cross (flag): Transformation, sacrifice
+• Rising figures: Rebirth
+• Coffins: Old selves
+• Mountains: Overcome obstacles
+• Water: Emotional purification
 ''',
     spiritualLesson: '''
-Ruhsal ders: Hiçbir zaman geç değil.
+Spiritual lesson: It's never too late.
 
-Geçmiş ne olursa olsun, şimdi uyanabilirsin. Çağrı her an geliyor - duyuyor musun?
+Whatever the past, you can wake up now. The call comes every moment - do you hear it?
 
-Kendini yargılamak ile kendini afetmek aynı sürecin parçaları. İkisini de yap.
+Judging yourself and forgiving yourself are parts of the same process. Do both.
 ''',
     loveReading: '''
-Aşkta yeniden değerlendirme. İlişkiyi sorgula - ama yıkma.
+Re-evaluation in love. Question the relationship - but don't destroy it.
 
-Geçmiş ilişkilerden gelen karmik tamamlanmalar. Eski aşklar geri dönebilir - ama farklı bir perspektifle.
+Karmic completions from past relationships. Old loves may return - but with a different perspective.
 
-İkinci şanslar mümkün - ama bilinçli seçim gerekiyor.
+Second chances are possible - but conscious choice is needed.
 ''',
     careerReading: '''
-Kariyerde çağrı geliyor. Gerçek misyonun ne?
+A calling is coming in career. What is your true mission?
 
-Belki yıllardır ertelediğin bir yol. Belki tamamen farklı bir kariyer.
+Perhaps a path you've postponed for years. Perhaps a completely different career.
 
-Bu bir "ya hep ya hiç" anı değil - ama dönüm noktası.
+This is not an "all or nothing" moment - but a turning point.
 ''',
-    advice: 'Çağrıyı duy. Cevap ver. Geçmişi affet. Yeniden doğ.',
+    advice: 'Hear the call. Answer. Forgive the past. Be reborn.',
     meditation: '''
-Gözlerini kapat. Uzaktan bir borazan sesi duyuyorsun. Seni çağırıyor.
+Close your eyes. You hear a trumpet sound from afar. It's calling you.
 
-Yerden yüksel. Eski benliğini arkanda bırak. Yeni sen doğuyor.
+Rise from the ground. Leave your old self behind. The new you is being born.
 
-Mantra: "Çağrıyı duyuyorum. Uyanıyorum. Yeniden doğuyorum."
+Mantra: "I hear the call. I am awakening. I am being reborn."
 ''',
     viralQuote:
-        '"Uyan: Borazan çalıyor. Geçmiş geride, gelecek belirsiz - ama şimdi burada."',
-    shadowAspect: 'Kendini yargılama, suçluluk, çağrıdan kaçış, affetmeme.',
+        '"Awaken: The trumpet sounds. The past is behind, the future uncertain - but now is here."',
+    shadowAspect: 'Self-judgment, guilt, escaping the call, not forgiving.',
   ),
 
   21: const MajorArcanaContent(
     number: 21,
     name: 'The World',
     nameTr: 'Dünya',
-    archetype: 'Tamamlanma',
-    element: 'Toprak',
-    planet: 'Satürn',
+    archetype: 'Completion',
+    element: 'Earth',
+    planet: 'Saturn',
     hebrewLetter: 'Tav (ת)',
-    keywords: 'Tamamlanma, bütünlük, başarı, entegrasyon, döngü sonu',
+    keywords: 'Completion, wholeness, success, integration, end of cycle',
     shortMeaning:
-        'Yolculuk tamamlandı. Bütünlük, başarı ve yeni döngünün eşiği.',
+        'The journey is complete. Wholeness, success, and the threshold of a new cycle.',
     deepMeaning: '''
-Dünya, Major Arcana'nın son kartıdır - ama aynı zamanda yeni bir başlangıcın eşiği. Deli'nin yolculuğu tamamlandı.
+The World is the last card of Major Arcana - but also the threshold of a new beginning. The Fool's journey is complete.
 
-Kabala'da Tav, son harftir ve "işaret" anlamına gelir. Dünya, ruhsal yolculuğun tamamlanma işaretidir.
+In Kabbalah, Tav is the last letter and means "sign." The World is the sign of spiritual journey completion.
 
-Dans eden figür, iki asa ile dengeyi bulmuş - polariteler entegre edilmiş. Çelenk (ouroboros benzeri) döngüselliği simgeler.
+The dancing figure has found balance with two wands - polarities integrated. The wreath (ouroboros-like) symbolizes cyclicity.
 
-Dört köşedeki figürler (boğa, aslan, kartal, melek) sabit burçları ve dört elementi temsil eder - hepsi uyum içinde.
+The figures in four corners (bull, lion, eagle, angel) represent fixed signs and four elements - all in harmony.
 ''',
     reversedMeaning: '''
-Ters Dünya, eksik tamamlanmayı veya döngüde takılmayı gösterir.
+The reversed World indicates incomplete completion or being stuck in a cycle.
 
-Belki hedefe çok yakınsın ama son adımı atamıyorsun. Belki de başarıya ulaştın ama tatmin olmadın.
+Perhaps you're very close to the goal but can't take the last step. Perhaps you've achieved success but aren't satisfied.
 
-Yeni başlangıçtan önce, eski döngünün kapanması gerekiyor.
+Before a new beginning, the old cycle needs to close.
 ''',
     symbolism: '''
-• Dans eden figür: Tamamlanmış ruh
-• İki asa: Entegre polariteler
-• Defne çelengi: Zafer, döngüsellik
-• Dört figür: Dört element, dört sabit burç
-• Mor örtü: Bilgelik, ruhaniyet
-• Sonsuzluk şekli: Döngüsel doğa
-• Beyaz fon: Sonsuz olasılıklar
+• Dancing figure: Completed soul
+• Two wands: Integrated polarities
+• Laurel wreath: Victory, cyclicity
+• Four figures: Four elements, four fixed signs
+• Purple veil: Wisdom, spirituality
+• Infinity shape: Cyclical nature
+• White background: Infinite possibilities
 ''',
     spiritualLesson: '''
-Ruhsal ders: Tamamlanma, son değil - yeni başlangıçtır.
+Spiritual lesson: Completion is not the end - it's a new beginning.
 
-Her döngü bir sonrakine hazırlık. Her son, bir başlangıç. Evren spiral - dairesel değil.
+Every cycle is preparation for the next. Every end is a beginning. The universe is spiral - not circular.
 
-Başarı bir varış noktası değil - yolculuğun ta kendisi.
+Success is not a destination - it's the journey itself.
 ''',
     loveReading: '''
-Aşkta tamamlanma ve bütünlük. İlişki yeni bir seviyeye ulaşıyor.
+Completion and wholeness in love. The relationship reaches a new level.
 
-Evlilik, birlikte yaşama, kalıcı taahhütler için uygun.
+Suitable for marriage, living together, lasting commitments.
 
-Kendi içinde bütün hissetmek - bir ilişkiye "ihtiyaç" değil, "seçim" olarak yaklaşmak.
+Feeling whole within yourself - approaching a relationship as "choice" not "need."
 ''',
     careerReading: '''
-Kariyerde büyük başarı. Uzun vadeli hedefler gerçekleşiyor.
+Great success in career. Long-term goals are being realized.
 
-Proje tamamlanıyor. Terfi, ödül, tanınma.
+Project is completing. Promotion, award, recognition.
 
-Ama dikkat: Bir döngü bitiyor. Sıradaki ne?
+But beware: One cycle is ending. What's next?
 ''',
     advice:
-        'Kutla. Şükret. Entegre et. Ve hazırlan - yeni bir yolculuk başlamak üzere.',
+        'Celebrate. Give thanks. Integrate. And prepare - a new journey is about to begin.',
     meditation: '''
-Gözlerini kapat. Evrenin merkezinde duruyorsun. Dört yön seni selamlıyor.
+Close your eyes. You're standing at the center of the universe. Four directions greet you.
 
-Her şeyle bağlantını hisset. Sen ayrı değilsin - bütünün parçasısın.
+Feel your connection to everything. You're not separate - you're part of the whole.
 
-Mantra: "Ben bütünüm. Evrenle bir. Ve yolculuk devam ediyor."
+Mantra: "I am whole. One with the universe. And the journey continues."
 ''',
     viralQuote:
-        '"Dünya senin: Tamamla, kutla, devam et. Her son, yeni bir şarkının girişi."',
+        '"The World is yours: Complete, celebrate, continue. Every end is the opening of a new song."',
     shadowAspect:
-        'Tamamlanma yanılgısı, durgunluk, yeni başlangıçtan korku, kibirli memnuniyet.',
+        'Illusion of completion, stagnation, fear of new beginning, arrogant satisfaction.',
   ),
 };
 
-/// Tarot için viral paylaşım metinleri
+/// Viral sharing texts for Tarot
 class TarotViralTexts {
   static const List<String> generalTexts = [
-    'Kartlar ne söylüyor? 🎴',
-    'Bugünün arketipi seninle 🔮',
-    'Evren mesaj gönderiyor ✨',
-    'Tarot aynası: İçindekini gör 🪞',
-    'Kadim semboller, derin içgörüler 🌟',
+    'What do the cards say? 🎴',
+    'Today\'s archetype is with you 🔮',
+    'The universe is sending a message ✨',
+    'Tarot mirror: See what\'s within 🪞',
+    'Ancient symbols, deep insights 🌟',
   ];
 
   static String getForCard(int number) {

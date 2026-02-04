@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 /// Analytics service for tracking events and user behavior
-/// Supports Firebase Analytics with graceful fallback
+/// Logs events locally in debug mode, can be extended for Supabase analytics
 class AnalyticsService {
   static final AnalyticsService _instance = AnalyticsService._internal();
   factory AnalyticsService() => _instance;
@@ -15,8 +15,9 @@ class AnalyticsService {
     if (_isInitialized) return;
 
     try {
-      // Firebase Analytics initialization is handled in main.dart
-      // This service provides a wrapper for logging events
+      // Analytics initialization
+      // Events are logged locally in debug mode
+      // In production, events can be sent to Supabase
       _isInitialized = true;
       if (kDebugMode) {
         debugPrint('AnalyticsService: Initialized');
@@ -34,9 +35,8 @@ class AnalyticsService {
       debugPrint('Analytics Event: $name ${parameters ?? {}}');
     }
 
-    // In production, this would use Firebase Analytics
-    // Convert to Map<String, Object?> for Firebase
-    // FirebaseAnalytics.instance.logEvent(name: name, parameters: parameters);
+    // In production, events can be sent to Supabase analytics table
+    // For now, events are logged locally in debug mode
   }
 
   /// Log screen view
@@ -115,7 +115,7 @@ class AnalyticsService {
     if (kDebugMode) {
       debugPrint('Analytics User Property: $name = $value');
     }
-    // FirebaseAnalytics.instance.setUserProperty(name: name, value: value);
+    // User properties can be stored in Supabase profiles table
   }
 
   /// Set user ID (for premium users)
@@ -123,7 +123,7 @@ class AnalyticsService {
     if (kDebugMode) {
       debugPrint('Analytics User ID: $userId');
     }
-    // FirebaseAnalytics.instance.setUserId(id: userId);
+    // User ID is managed by Supabase Auth
   }
 
   // ─────────────────────────────────────────────────────────────────────────

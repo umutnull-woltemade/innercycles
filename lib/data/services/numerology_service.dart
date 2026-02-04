@@ -260,295 +260,295 @@ class NumerologyMeaning {
       case 1:
         return NumerologyMeaning(
           number: 1,
-          title: 'Lider',
-          keywords: 'Bağımsızlık • Öncülük • Yaratıcılık',
+          title: 'The Leader',
+          keywords: 'Independence - Pioneering - Creativity',
           meaning:
-              'Doğal liderler, yenilikçiler ve öncülerdir. Bağımsızlık en büyük değerleridir.',
-          strengths: 'Kararlılık, özgüven, yaratıcılık, girişimcilik',
-          challenges: 'İnatçılık, bencillik, sabırsızlık',
-          loveStyle: 'Bağımsız ama sadık, liderlik almak ister',
+              'Natural leaders, innovators, and pioneers. Independence is their greatest value.',
+          strengths: 'Determination, self-confidence, creativity, entrepreneurship',
+          challenges: 'Stubbornness, selfishness, impatience',
+          loveStyle: 'Independent but loyal, prefers to take the lead',
           detailedInterpretation: '''
-1 sayısı kozmik enerjinin ilk tezahürüdür - saf potansiyel, başlangıç noktası, yaratıcı kıvılcım. Bu sayıyla doğanlar evrene "Ben varım" mesajıyla geldiler.
+The number 1 is the first manifestation of cosmic energy - pure potential, the starting point, the creative spark. Those born with this number came into the universe with the message "I exist."
 
-Ruhunuz öncü olmak için tasarlandı. Yeni yollar açmak, ilk adımı atmak, kimsenin gitmediği yerlere gitmek sizin doğanızda var. Liderlik sizin için bir tercih değil, varoluşsal bir zorunluluk.
+Your soul is designed to be a pioneer. Opening new paths, taking the first step, going where no one has gone before is in your nature. Leadership for you is not a choice but an existential necessity.
 
-1 enerjisi Güneş'le ilişkilidir - merkezdeki, ışık saçan, hayat veren güç. Tıpkı Güneş gibi, etrafınızdakileri aydınlatır ve ısıtırsınız ama bazen de yakabilirsiniz.
+The 1 energy is associated with the Sun - the central, radiating, life-giving force. Like the Sun, you illuminate and warm those around you, but sometimes you can also burn.
 
-Bu sayının golge yönü izolasyon ve kibir. "Ben en iyisini bilirim" düşüncesi yalnızlığa götürebilir. Dengenizi bulmak için işbirliğini ve alçakgönüllülüğü öğrenmeniz gerekir.
+The shadow side of this number is isolation and arrogance. The thought "I know best" can lead to loneliness. To find your balance, you need to learn cooperation and humility.
 ''',
-          careerPath: 'Girişimcilik, yöneticilik, inovasyon, kendi işini kurma, spor, sanat yönetmenliği',
-          spiritualLesson: 'Ego ile ruh arasındaki dengeyi bulmak. Liderliğin hizmet olduğunu anlamak.',
-          shadowSide: 'Bencillik, diktatörlük, eleştiriye kapalılık, yalnızlık',
+          careerPath: 'Entrepreneurship, management, innovation, starting your own business, sports, artistic direction',
+          spiritualLesson: 'Finding the balance between ego and soul. Understanding that leadership is service.',
+          shadowSide: 'Selfishness, dictatorship, closed to criticism, loneliness',
           compatibleNumbers: '1, 3, 5, 7',
         );
       case 2:
         return NumerologyMeaning(
           number: 2,
-          title: 'Diplomat',
-          keywords: 'Denge • Ortaklık • Sezgi',
+          title: 'The Diplomat',
+          keywords: 'Balance - Partnership - Intuition',
           meaning:
-              'Barışçıl, işbirlikçi ve duyarlıdırlar. İlişkilerde uyum ararlar.',
-          strengths: 'Diplomasi, empati, sabır, işbirliği',
-          challenges: 'Kararsızlık, aşırı hassasiyet, bağımlılık',
-          loveStyle: 'Romantik, destekleyici, uyumlu partner',
+              'Peaceful, cooperative, and sensitive. They seek harmony in relationships.',
+          strengths: 'Diplomacy, empathy, patience, cooperation',
+          challenges: 'Indecisiveness, oversensitivity, dependency',
+          loveStyle: 'Romantic, supportive, harmonious partner',
           detailedInterpretation: '''
-2 sayısı dualiteyi, birleşimi ve dengeyi temsil eder - Yin ve Yang, gece ve gündüz, erkil ve dişil. Bu sayıyla doğanlar "Biz varız" mesajıyla dünyaya geldiler.
+The number 2 represents duality, union, and balance - Yin and Yang, night and day, masculine and feminine. Those born with this number came into the world with the message "We exist."
 
-Ruhunuz birleştirmek, dengelemek ve uyum yaratmak için tasarlandı. İlişkiler sizin öğrenme alanınız - yalnız başına bir anlam ifade etmezsiniz, bir ayna gerekir.
+Your soul is designed to unite, balance, and create harmony. Relationships are your learning field - alone you don't make sense, you need a mirror.
 
-2 enerjisi Ay'la ilişkilidir - yansıtan, döngüsel, duygusal. Tıpkı Ay gibi sezgiselsiniz, çevrenizdeki enerjileri hisseder ve yansıtırsınız.
+The 2 energy is associated with the Moon - reflecting, cyclical, emotional. Like the Moon, you are intuitive, sensing and reflecting the energies around you.
 
-Bu sayının gölge yönü aşırı bağımlılık ve kimlik kaybı. Başkalarını mutlu etme çabasında kendinizi kaybedebilirsiniz. Dengenizi bulmak için kendi sesinizi bulmanız gerekir.
+The shadow side of this number is excessive dependency and loss of identity. In trying to make others happy, you can lose yourself. To find your balance, you need to find your own voice.
 ''',
-          careerPath: 'Danışmanlık, terapi, insan kaynakları, diplomasi, müzakereci, arabuluculuk',
-          spiritualLesson: 'Kendi kimliğini koruyarak birleşmek. Sınır koymayı öğrenmek.',
-          shadowSide: 'Kararsızlık, çatışmadan kaçış, pasif-agresiflik, kimlik kaybı',
+          careerPath: 'Counseling, therapy, human resources, diplomacy, negotiation, mediation',
+          spiritualLesson: 'Merging while maintaining your own identity. Learning to set boundaries.',
+          shadowSide: 'Indecisiveness, conflict avoidance, passive-aggressiveness, loss of identity',
           compatibleNumbers: '2, 4, 6, 8',
         );
       case 3:
         return NumerologyMeaning(
           number: 3,
-          title: 'Yaratıcı',
-          keywords: 'İfade • Neşe • İletişim',
+          title: 'The Creative',
+          keywords: 'Expression - Joy - Communication',
           meaning:
-              'Sanatsal, sosyal ve enerjik bireylerdir. Kendilerini ifade etmeyi severler.',
-          strengths: 'Yaratıcılık, sosyallik, iyimserlik, ifade gücü',
-          challenges: 'Dağınıklık, yüzeysellik, kendini ifade edememe korkusu',
-          loveStyle: 'Eğlenceli, romantik, spontan ilişkiler',
+              'Artistic, social, and energetic individuals. They love to express themselves.',
+          strengths: 'Creativity, sociability, optimism, expressive power',
+          challenges: 'Scattered energy, superficiality, fear of self-expression',
+          loveStyle: 'Fun, romantic, spontaneous relationships',
           detailedInterpretation: '''
-3 sayısı kutsal üçlüyü temsil eder - yaratıcı, yaratım ve yaratılış. Baba, Ana, Çocuk. Başlangıç, orta, son. Bu sayıyla doğanlar "İfade ediyorum" mesajıyla dünyaya geldiler.
+The number 3 represents the sacred trinity - creator, creation, and created. Father, Mother, Child. Beginning, middle, end. Those born with this number came into the world with the message "I express."
 
-Ruhunuz yaratmak, iletmek ve neşe yaymak için tasarlandı. Kelimeler, renkler, sesler ve hareketler sizin araçlarınız. Sessiz kalmak sizin için ruhsal bir hapishane.
+Your soul is designed to create, communicate, and spread joy. Words, colors, sounds, and movements are your tools. Silence for you is a spiritual prison.
 
-3 enerjisi Jüpiter'le ilişkilidir - genişleten, iyimser, bereketli. Tıpkı Jüpiter gibi hayatı büyütür, zenginleştirir ve renklendirirsiniz.
+The 3 energy is associated with Jupiter - expanding, optimistic, abundant. Like Jupiter, you enlarge, enrich, and color life.
 
-Bu sayının gölge yönü dağınıklık ve yüzeysellik. Her şeye dokunup hiçbirini derinleştirmemek tehlikesi. Dengenizi bulmak için odaklanmayı öğrenmeniz gerekir.
+The shadow side of this number is scattered energy and superficiality. The danger of touching everything but not deepening anything. To find your balance, you need to learn to focus.
 ''',
-          careerPath: 'Sanat, yazarlık, oyunculuk, müzik, pazarlama, iletişim, eğlence sektörü',
-          spiritualLesson: 'Yaratıcılığı disiplinle birleştirmek. İfadenin sorumluluğunu taşımak.',
-          shadowSide: 'Dağınıklık, yüzeysellik, dedikodu, enerjinin israfı',
+          careerPath: 'Art, writing, acting, music, marketing, communications, entertainment industry',
+          spiritualLesson: 'Combining creativity with discipline. Bearing the responsibility of expression.',
+          shadowSide: 'Scattered energy, superficiality, gossip, wasting energy',
           compatibleNumbers: '1, 3, 5, 9',
         );
       case 4:
         return NumerologyMeaning(
           number: 4,
-          title: 'İnşacı',
-          keywords: 'Düzen • Çalışkanlık • Güvenilirlik',
+          title: 'The Builder',
+          keywords: 'Order - Diligence - Reliability',
           meaning:
-              'Pratik, disiplinli ve güvenilirdirler. Sağlam temeller kurarlar.',
-          strengths: 'Organizasyon, sadakat, azim, pratiklik',
-          challenges: 'Katılık, inatçılık, aşırı temkinlilik',
-          loveStyle: 'Sadık, güvenilir, geleneksel değerler',
+              'Practical, disciplined, and reliable. They build solid foundations.',
+          strengths: 'Organization, loyalty, perseverance, practicality',
+          challenges: 'Rigidity, stubbornness, excessive caution',
+          loveStyle: 'Loyal, reliable, traditional values',
           detailedInterpretation: '''
-4 sayısı maddi dünyanın temelini temsil eder - dört element, dört yön, dört mevsim. Bu sayıyla doğanlar "İnşa ediyorum" mesajıyla dünyaya geldiler.
+The number 4 represents the foundation of the material world - four elements, four directions, four seasons. Those born with this number came into the world with the message "I build."
 
-Ruhunuz kalıcı yapılar kurmak için tasarlandı - fiziksel, duygusal veya zihinsel. Rüyaları gerçeğe dönüştürmek sizin özel yeteneğiniz.
+Your soul is designed to build lasting structures - physical, emotional, or mental. Transforming dreams into reality is your special talent.
 
-4 enerjisi Satürn'le ilişkilidir - disiplinli, sınırlayıcı, öğretici. Tıpkı Satürn gibi kuralları, yapıları ve sorumluluğu temsil edersiniz.
+The 4 energy is associated with Saturn - disciplined, limiting, teaching. Like Saturn, you represent rules, structures, and responsibility.
 
-Bu sayının gölge yönü katılık ve korkuya dayalı kontrol. Her şeyi planlamaya çalışmak spontanlığı öldürür. Dengenizi bulmak için esnekliği öğrenmeniz gerekir.
+The shadow side of this number is rigidity and fear-based control. Trying to plan everything kills spontaneity. To find your balance, you need to learn flexibility.
 ''',
-          careerPath: 'Mühendislik, mimarlık, muhasebe, proje yönetimi, bankacılık, emlak',
-          spiritualLesson: 'Güvenliğin içeriden geldiğini anlamak. Kontrolü bırakmayı öğrenmek.',
-          shadowSide: 'Katılık, işkoliklik, kontrol takıntısı, değişim korkusu',
+          careerPath: 'Engineering, architecture, accounting, project management, banking, real estate',
+          spiritualLesson: 'Understanding that security comes from within. Learning to let go of control.',
+          shadowSide: 'Rigidity, workaholism, control obsession, fear of change',
           compatibleNumbers: '2, 4, 6, 8',
         );
       case 5:
         return NumerologyMeaning(
           number: 5,
-          title: 'Özgür Ruh',
-          keywords: 'Değişim • Macera • Özgürlük',
+          title: 'The Free Spirit',
+          keywords: 'Change - Adventure - Freedom',
           meaning:
-              'Maceracı, çok yönlü ve değişim seven bireylerdir. Sınırları sevmezler.',
-          strengths: 'Uyum, cesaret, merak, çok yönlülük',
-          challenges: 'Huzursuzluk, aşırı risk alma, bağlılık korkusu',
-          loveStyle: 'Heyecan arayan, özgürlüğüne düşkün, spontan',
+              'Adventurous, versatile, and change-loving individuals. They dislike limitations.',
+          strengths: 'Adaptability, courage, curiosity, versatility',
+          challenges: 'Restlessness, excessive risk-taking, fear of commitment',
+          loveStyle: 'Excitement-seeking, freedom-loving, spontaneous',
           detailedInterpretation: '''
-5 sayısı değişimi ve beş duyuyu temsil eder - hayatı deneyimlemek, tatmak, hissetmek. Bu sayıyla doğanlar "Özgürüm" mesajıyla dünyaya geldiler.
+The number 5 represents change and the five senses - experiencing, tasting, feeling life. Those born with this number came into the world with the message "I am free."
 
-Ruhunuz keşfetmek, deneyimlemek ve dönüşmek için tasarlandı. Rutin sizin için ölüm, değişim ise yaşam demek. Dünya sizin oyun alanınız.
+Your soul is designed to explore, experience, and transform. Routine means death to you, change means life. The world is your playground.
 
-5 enerjisi Merkür'le ilişkilidir - hareketli, iletişimci, adaptif. Tıpkı Merkür gibi hızlı, çevik ve değişkensiniz.
+The 5 energy is associated with Mercury - mobile, communicative, adaptive. Like Mercury, you are quick, agile, and changeable.
 
-Bu sayının gölge yönü dağınıklık ve bağımlılık yapan arayış. Her şeyi deneyip hiçbirinde kalmamak. Dengenizi bulmak için taahhüt etmeyi öğrenmeniz gerekir.
+The shadow side of this number is scattered energy and addictive searching. Trying everything and staying with nothing. To find your balance, you need to learn commitment.
 ''',
-          careerPath: 'Seyahat, satış, medya, pazarlama, girişimcilik, danışmanlık, eğlence',
-          spiritualLesson: 'Özgürlüğün taahhütle birlikte var olabileceğini anlamak.',
-          shadowSide: 'Bağlanma korkusu, aşırı risk alma, bağımlılıklar, huzursuzluk',
+          careerPath: 'Travel, sales, media, marketing, entrepreneurship, consulting, entertainment',
+          spiritualLesson: 'Understanding that freedom can coexist with commitment.',
+          shadowSide: 'Fear of attachment, excessive risk-taking, addictions, restlessness',
           compatibleNumbers: '1, 3, 5, 7, 9',
         );
       case 6:
         return NumerologyMeaning(
           number: 6,
-          title: 'Bakıcı',
-          keywords: 'Sorumluluk • Aile • Uyum',
+          title: 'The Caregiver',
+          keywords: 'Responsibility - Family - Harmony',
           meaning:
-              'Besleyici, sorumlu ve aile odaklıdırlar. Başkalarına yardım etmeyi severler.',
-          strengths: 'Şefkat, sorumluluk, estetik, iyileştirme',
-          challenges: 'Aşırı koruyuculuk, mükemmeliyetçilik, fedakarlık',
-          loveStyle: 'Bakım veren, sadık, uzun vadeli ilişkiler',
+              'Nurturing, responsible, and family-oriented. They love helping others.',
+          strengths: 'Compassion, responsibility, aesthetics, healing',
+          challenges: 'Overprotectiveness, perfectionism, self-sacrifice',
+          loveStyle: 'Caring, loyal, long-term relationships',
           detailedInterpretation: '''
-6 sayısı uyumu, güzelliği ve sorumluluğu temsil eder - altı yönlü yıldız, mükemmel denge. Bu sayıyla doğanlar "Şifa veriyorum" mesajıyla dünyaya geldiler.
+The number 6 represents harmony, beauty, and responsibility - the six-pointed star, perfect balance. Those born with this number came into the world with the message "I heal."
 
-Ruhunuz bakım vermek, iyileştirmek ve güzellik yaratmak için tasarlandı. Aile - ister kan bağı olsun ister seçilmiş - sizin kutsal alanınız.
+Your soul is designed to care, heal, and create beauty. Family - whether blood-related or chosen - is your sacred space.
 
-6 enerjisi Venüs'le ilişkilidir - sevgi, güzellik, uyum. Tıpkı Venüs gibi etrafınıza güzellik ve şifa yayarsınız.
+The 6 energy is associated with Venus - love, beauty, harmony. Like Venus, you spread beauty and healing around you.
 
-Bu sayının gölge yönü müdahaleci koruyuculuk ve mükemmeliyetçilik. Herkesi kurtarmaya çalışmak kendinizi ihmal etmenize yol açar. Dengenizi bulmak için sınır koymayı öğrenmeniz gerekir.
+The shadow side of this number is intrusive protection and perfectionism. Trying to save everyone can lead to neglecting yourself. To find your balance, you need to learn to set boundaries.
 ''',
-          careerPath: 'Sağlık, terapi, eğitim, iç mimari, güzellik, aile danışmanlığı, sosyal hizmet',
-          spiritualLesson: 'Başkalarına bakmadan önce kendine bakmayı öğrenmek.',
-          shadowSide: 'Müdahalecilik, fedakarlık kompleksi, mükemmeliyetçilik, eleştiri',
+          careerPath: 'Healthcare, therapy, education, interior design, beauty, family counseling, social services',
+          spiritualLesson: 'Learning to care for yourself before caring for others.',
+          shadowSide: 'Intrusiveness, martyr complex, perfectionism, criticism',
           compatibleNumbers: '2, 4, 6, 9',
         );
       case 7:
         return NumerologyMeaning(
           number: 7,
-          title: 'Arayışçı',
-          keywords: 'Bilgelik • Analiz • Spiritüellik',
+          title: 'The Seeker',
+          keywords: 'Wisdom - Analysis - Spirituality',
           meaning:
-              'Düşünür, araştırmacı ve spiritüel arayış içinde olan bireylerdir.',
-          strengths: 'Analitik zeka, sezgi, derinlik, bilgelik',
-          challenges: 'İzolasyon, şüphecilik, duygusal mesafe',
-          loveStyle: 'Derin bağ arayan, entelektüel uyum önemli',
+              'Thinker, researcher, and on a spiritual quest.',
+          strengths: 'Analytical intelligence, intuition, depth, wisdom',
+          challenges: 'Isolation, skepticism, emotional distance',
+          loveStyle: 'Seeks deep connection, intellectual compatibility important',
           detailedInterpretation: '''
-7 sayısı mistik sayıdır - yedi gezegen, yedi çakra, yedi gün. Bu sayıyla doğanlar "Anlıyorum" mesajıyla dünyaya geldiler.
+The number 7 is the mystical number - seven planets, seven chakras, seven days. Those born with this number came into the world with the message "I understand."
 
-Ruhunuz gerçeği aramak, derinliklere inmek ve bilgelik bulmak için tasarlandı. Yüzeysel cevaplar sizi tatmin etmez - her şeyin altında yatan anlamı ararsınız.
+Your soul is designed to seek truth, go deep, and find wisdom. Superficial answers don't satisfy you - you seek the meaning underlying everything.
 
-7 enerjisi Neptün'le ilişkilidir - mistik, sezgisel, spiritüel. Tıpkı Neptün gibi görünmeyeni görür, bilinmeyeni hissedersiniz.
+The 7 energy is associated with Neptune - mystical, intuitive, spiritual. Like Neptune, you see the invisible and feel the unknown.
 
-Bu sayının gölge yönü izolasyon ve şüphecilik. Kafanızdaki dünyada kaybolup gerçek dünyadan kopmak. Dengenizi bulmak için topraklanmayı öğrenmeniz gerekir.
+The shadow side of this number is isolation and skepticism. Getting lost in the world in your head and disconnecting from the real world. To find your balance, you need to learn grounding.
 ''',
-          careerPath: 'Araştırma, akademi, psikoloji, felsefe, yazarlık, spiritüel öğretmenlik, analiz',
-          spiritualLesson: 'İçsel bilgeliği dış dünyayla paylaşmak. Yalnızlık ile izolasyon farkı.',
-          shadowSide: 'Aşırı analiz, paranoya, duygusal kapalılık, kibir',
+          careerPath: 'Research, academia, psychology, philosophy, writing, spiritual teaching, analysis',
+          spiritualLesson: 'Sharing inner wisdom with the outer world. The difference between solitude and isolation.',
+          shadowSide: 'Over-analysis, paranoia, emotional closure, arrogance',
           compatibleNumbers: '1, 5, 7',
         );
       case 8:
         return NumerologyMeaning(
           number: 8,
-          title: 'Güç Sahibi',
-          keywords: 'Başarı • Maddi Güç • Otorite',
+          title: 'The Powerhouse',
+          keywords: 'Success - Material Power - Authority',
           meaning:
-              'Hırslı, güçlü ve başarı odaklıdırlar. Maddi dünyada ustadırlar.',
-          strengths: 'Liderlik, iş zekası, kararlılık, güç',
-          challenges: 'İşkoliklik, kontrol ihtiyacı, maddecilik',
-          loveStyle: 'Güvenlik arayan, sadık, güçlü partner',
+              'Ambitious, powerful, and success-oriented. Masters of the material world.',
+          strengths: 'Leadership, business acumen, determination, power',
+          challenges: 'Workaholism, need for control, materialism',
+          loveStyle: 'Security-seeking, loyal, strong partner',
           detailedInterpretation: '''
-8 sayısı sonsuzluk sembolü ve maddi güç sayısıdır - karma, denge, manifestasyon. Bu sayıyla doğanlar "Başarıyorum" mesajıyla dünyaya geldiler.
+The number 8 is the infinity symbol and the number of material power - karma, balance, manifestation. Those born with this number came into the world with the message "I succeed."
 
-Ruhunuz maddi dünyada ustalaşmak için tasarlandı. Para, güç ve etki sizin araçlarınız - ama bunlar amaç değil, araç. Gerçek sınav: gücü nasıl kullanıyorsunuz?
+Your soul is designed to master the material world. Money, power, and influence are your tools - but these are means, not ends. The real test: how do you use your power?
 
-8 enerjisi Satürn'le ilişkilidir - karma, sorumluluk, sonuçlar. Tıpkı Satürn gibi ne ekerseniz onu biçersiniz, kaçış yok.
+The 8 energy is associated with Saturn - karma, responsibility, consequences. Like Saturn, you reap what you sow, there's no escape.
 
-Bu sayının gölge yönü açgözlülük ve güç sarhoşluğu. Başarı takıntısı, insani değerleri ezebilir. Dengenizi bulmak için gücün sorumluluğunu anlamanız gerekir.
+The shadow side of this number is greed and power intoxication. Success obsession can crush human values. To find your balance, you need to understand the responsibility of power.
 ''',
-          careerPath: 'Finans, yöneticilik, girişimcilik, bankacılık, hukuk, gayrimenkul',
-          spiritualLesson: 'Maddi ve manevi zenginliği dengelemek. Gücün hizmet için olduğunu anlamak.',
-          shadowSide: 'Açgözlülük, güç sarhoşluğu, işkoliklik, duygusal körlük',
+          careerPath: 'Finance, management, entrepreneurship, banking, law, real estate',
+          spiritualLesson: 'Balancing material and spiritual wealth. Understanding that power is for service.',
+          shadowSide: 'Greed, power intoxication, workaholism, emotional blindness',
           compatibleNumbers: '2, 4, 8',
         );
       case 9:
         return NumerologyMeaning(
           number: 9,
-          title: 'Hümanist',
-          keywords: 'Şefkat • Evrensellik • Bilgelik',
+          title: 'The Humanitarian',
+          keywords: 'Compassion - Universality - Wisdom',
           meaning:
-              'İdealist, şefkatli ve insanlık için çalışan bireylerdir.',
-          strengths: 'Merhamet, evrensel sevgi, bilgelik, yaratıcılık',
-          challenges: 'Hayal kırıklığı, bırakma zorluğu, dağılmışlık',
-          loveStyle: 'Koşulsuz seven, fedakar, idealist',
+              'Idealistic, compassionate, and working for humanity.',
+          strengths: 'Mercy, universal love, wisdom, creativity',
+          challenges: 'Disappointment, difficulty letting go, being scattered',
+          loveStyle: 'Unconditional love, self-sacrificing, idealistic',
           detailedInterpretation: '''
-9 sayısı tamamlanma ve evrensel sevgidir - son tek basamak, tüm sayıları içeren, bütünlük. Bu sayıyla doğanlar "Hizmet ediyorum" mesajıyla dünyaya geldiler.
+The number 9 is completion and universal love - the last single digit, containing all numbers, wholeness. Those born with this number came into the world with the message "I serve."
 
-Ruhunuz insanlığa hizmet etmek için tasarlandı. Bireysel çıkarların ötesinde, kolektif iyilik sizin vizyonunuz. Dünyayı daha iyi bir yer bırakmak misyonunuz.
+Your soul is designed to serve humanity. Beyond individual interests, collective good is your vision. Leaving the world a better place is your mission.
 
-9 enerjisi Mars'la ilişkilidir - eylem, tutku, mücadele. Tıpkı Mars gibi inançlarınız için savaşırsınız ama silahınız şiddet değil, sevgi.
+The 9 energy is associated with Mars - action, passion, struggle. Like Mars, you fight for your beliefs, but your weapon is not violence, it's love.
 
-Bu sayının gölge yönü hayal kırıklığı ve tükenmişlik. Dünyayı değiştirmeye çalışırken kendinizi tüketmek. Dengenizi bulmak için sınırlarınızı bilmeniz gerekir.
+The shadow side of this number is disappointment and burnout. Exhausting yourself trying to change the world. To find your balance, you need to know your limits.
 ''',
-          careerPath: 'Hayırseverlik, sanat, terapi, uluslararası çalışma, aktivizm, öğretmenlik',
-          spiritualLesson: 'Bırakma ve kabul etmeyi öğrenmek. Dünyayı değiştirmek için önce kendini değiştirmek.',
-          shadowSide: 'Fanatizm, hayal kırıklığı, fedakarlık kompleksi, bitirme zorluğu',
+          careerPath: 'Philanthropy, art, therapy, international work, activism, teaching',
+          spiritualLesson: 'Learning to let go and accept. To change the world, first change yourself.',
+          shadowSide: 'Fanaticism, disappointment, martyr complex, difficulty finishing',
           compatibleNumbers: '3, 5, 6, 9',
         );
       case 11:
         return NumerologyMeaning(
           number: 11,
-          title: 'Usta Sezgisel',
-          keywords: 'İlham • Sezgi • Spiritüel Vizyon',
+          title: 'The Master Intuitive',
+          keywords: 'Inspiration - Intuition - Spiritual Vision',
           meaning:
-              'Master sayı. Yüksek sezgi, ilham ve spiritüel liderlik potansiyeli.',
-          strengths: 'Güçlü sezgi, ilham verici, vizyoner, spiritüel',
-          challenges: 'Sinir gerginliği, aşırı hassasiyet, pratik zorluklar',
-          loveStyle: 'Ruh eşi arayan, derin spiritüel bağ',
+              'Master number. High intuition, inspiration, and spiritual leadership potential.',
+          strengths: 'Strong intuition, inspiring, visionary, spiritual',
+          challenges: 'Nervous tension, hypersensitivity, practical difficulties',
+          loveStyle: 'Seeking a soulmate, deep spiritual connection',
           detailedInterpretation: '''
-11 bir Master Sayıdır - yüksek titreşim, yüksek potansiyel, yüksek sorumluluk. 1'in gücünün iki katı, ama aynı zamanda 2'nin hassasiyeti. Bu sayıyla doğanlar "İlham veriyorum" mesajıyla dünyaya geldiler.
+11 is a Master Number - high vibration, high potential, high responsibility. Double the power of 1, but also the sensitivity of 2. Those born with this number came into the world with the message "I inspire."
 
-Ruhunuz spiritüel ve maddi dünyalar arasında köprü olmak için tasarlandı. Güçlü sezgi, vizyoner düşünce ve ilham verme kapasitesi sizin armağanlarınız.
+Your soul is designed to be a bridge between spiritual and material worlds. Strong intuition, visionary thinking, and the capacity to inspire are your gifts.
 
-11 enerjisi elektrik gibidir - yüksek voltaj, yüksek etki, ama kontrol edilmezse tehlikeli. Sinir sisteminiz hassas, aşırı uyarıya açık.
+The 11 energy is like electricity - high voltage, high impact, but dangerous if not controlled. Your nervous system is sensitive, prone to overstimulation.
 
-Bu sayının gölge yönü aşırı hassasiyet ve pratik dünyayla başa çıkamama. Vizyonlarınız büyük ama ayakları yere basmayı unutabilirsiniz. Dengenizi bulmak için topraklanmayı öğrenmeniz gerekir.
+The shadow side of this number is hypersensitivity and inability to cope with the practical world. Your visions are great but you may forget to keep your feet on the ground. To find your balance, you need to learn grounding.
 ''',
-          careerPath: 'Spiritüel öğretmenlik, psikoloji, sanat, müzik, şifa, ilham verici konuşmacılık',
-          spiritualLesson: 'Vizyonu pratikle birleştirmek. Hassasiyeti güce dönüştürmek.',
-          shadowSide: 'Sinir gerginliği, gerçeklikten kopuş, aşırı idealizm, karar verememe',
+          careerPath: 'Spiritual teaching, psychology, art, music, healing, inspirational speaking',
+          spiritualLesson: 'Combining vision with practice. Transforming sensitivity into strength.',
+          shadowSide: 'Nervous tension, disconnection from reality, excessive idealism, inability to decide',
           compatibleNumbers: '2, 11, 22',
         );
       case 22:
         return NumerologyMeaning(
           number: 22,
-          title: 'Usta İnşacı',
-          keywords: 'Büyük Vizyon • Manifestasyon • Güç',
+          title: 'The Master Builder',
+          keywords: 'Grand Vision - Manifestation - Power',
           meaning:
-              'Master sayı. Büyük projeleri hayata geçirebilen, vizyoner inşacılar.',
-          strengths: 'Büyük vizyon, pratik güç, liderlik, başarı',
-          challenges: 'Aşırı baskı, mükemmeliyetçilik, tükenmişlik',
-          loveStyle: 'Güçlü ve destekleyici partner arayan',
+              'Master number. Visionary builders who can bring major projects to life.',
+          strengths: 'Grand vision, practical power, leadership, success',
+          challenges: 'Excessive pressure, perfectionism, burnout',
+          loveStyle: 'Seeking a strong and supportive partner',
           detailedInterpretation: '''
-22 en güçlü Master Sayıdır - "Usta İnşacı". 11'in vizyoner gücü + 4'ün pratik kapasitesi. Bu sayıyla doğanlar "İnşa ediyorum - büyük ölçekte" mesajıyla dünyaya geldiler.
+22 is the most powerful Master Number - "The Master Builder." The visionary power of 11 + the practical capacity of 4. Those born with this number came into the world with the message "I build - on a grand scale."
 
-Ruhunuz dünyayı kalıcı şekilde değiştirmek için tasarlandı. Sadece rüya görmekle kalmaz, o rüyaları gerçeğe dönüştürme gücüne sahipsiniz. Emperya kuran, hareket başlatan insanlar.
+Your soul is designed to change the world permanently. You don't just dream, you have the power to turn those dreams into reality. Empire builders, movement starters.
 
-22 enerjisi piramitler gibidir - devasa, kalıcı, ilham verici. Tıpkı piramitler gibi, nesiller boyu ayakta kalacak yapılar kurma potansiyeliniz var.
+The 22 energy is like pyramids - massive, permanent, inspiring. Like pyramids, you have the potential to build structures that will stand for generations.
 
-Bu sayının gölge yönü tükenmişlik ve aşırı baskı. Büyük hedefler büyük stres yaratır. Dengenizi bulmak için kendinize de şefkat göstermeniz gerekir.
+The shadow side of this number is burnout and excessive pressure. Big goals create big stress. To find your balance, you need to show compassion to yourself too.
 ''',
-          careerPath: 'Büyük ölçekli girişimcilik, mimari, uluslararası organizasyonlar, liderlik',
-          spiritualLesson: 'Büyük gücün büyük sorumluluk gerektirdiğini anlamak.',
-          shadowSide: 'Tükenmişlik, mükemmeliyetçilik, başkalarını ezmek, kendini tüketmek',
+          careerPath: 'Large-scale entrepreneurship, architecture, international organizations, leadership',
+          spiritualLesson: 'Understanding that great power requires great responsibility.',
+          shadowSide: 'Burnout, perfectionism, crushing others, exhausting yourself',
           compatibleNumbers: '4, 11, 22, 33',
         );
       case 33:
         return NumerologyMeaning(
           number: 33,
-          title: 'Usta Öğretmen',
-          keywords: 'Evrensel Sevgi • Şifa • İlham',
+          title: 'The Master Teacher',
+          keywords: 'Universal Love - Healing - Inspiration',
           meaning:
-              'Master sayı. Koşulsuz sevgi ve şifa enerjisi taşıyan öğretmenler.',
-          strengths: 'Koşulsuz sevgi, şifa, ilham, fedakarlık',
-          challenges: 'Aşırı sorumluluk, kendi ihtiyaçlarını ihmal',
-          loveStyle: 'Derin spiritüel bağ, koşulsuz sevgi',
+              'Master number. Teachers carrying unconditional love and healing energy.',
+          strengths: 'Unconditional love, healing, inspiration, self-sacrifice',
+          challenges: 'Excessive responsibility, neglecting own needs',
+          loveStyle: 'Deep spiritual connection, unconditional love',
           detailedInterpretation: '''
-33 en nadir ve en yüksek Master Sayıdır - "Usta Öğretmen" veya "Kozmik Anne/Baba". 11'in sezgisi + 22'nin inşa gücü + 6'nın şefkati. Bu sayıyla doğanlar "Şifa ve öğretiyorum" mesajıyla dünyaya geldiler.
+33 is the rarest and highest Master Number - "The Master Teacher" or "Cosmic Parent." The intuition of 11 + the building power of 22 + the compassion of 6. Those born with this number came into the world with the message "I heal and teach."
 
-Ruhunuz insanlığı yükseltmek için tasarlandı. Koşulsuz sevgi, evrensel şifa ve spiritüel öğretmenlik sizin kutsal göreviniz. 33 yaşına kadar bu enerjinin farkına varmayabilirsiniz.
+Your soul is designed to elevate humanity. Unconditional love, universal healing, and spiritual teaching are your sacred duties. You may not become aware of this energy until age 33.
 
-33 enerjisi Mesih bilinciyle ilişkilidir - fedakarlık, koşulsuz sevgi, şifa. Tıpkı büyük spiritüel öğretmenler gibi, başkalarının yükünü taşıma kapasitesine sahipsiniz.
+The 33 energy is associated with Christ consciousness - self-sacrifice, unconditional love, healing. Like great spiritual teachers, you have the capacity to carry others' burdens.
 
-Bu sayının gölge yönü aşırı fedakarlık ve martyrdom kompleksi. Herkesi kurtarmaya çalışırken kendinizi kurban edebilirsiniz. Dengenizi bulmak için kendinizi de sevmeniz gerekir.
+The shadow side of this number is excessive self-sacrifice and martyrdom complex. You can sacrifice yourself trying to save everyone. To find your balance, you need to love yourself too.
 ''',
-          careerPath: 'Spiritüel öğretmenlik, terapi, şifa, hayırseverlik, sanat terapisi, danışmanlık',
-          spiritualLesson: 'Başkalarını şifa ederken kendini de şifa etmek. Sınırları koruyarak sevmek.',
-          shadowSide: 'Fedakarlık kompleksi, kurban ruhu, kendini tüketme, sınır koyamama',
+          careerPath: 'Spiritual teaching, therapy, healing, philanthropy, art therapy, counseling',
+          spiritualLesson: 'Healing yourself while healing others. Loving while maintaining boundaries.',
+          shadowSide: 'Martyr complex, victim mentality, self-exhaustion, inability to set boundaries',
           compatibleNumbers: '6, 22, 33',
         );
       default:
         return NumerologyMeaning(
           number: number,
-          title: 'Bilinmiyor',
+          title: 'Unknown',
           keywords: '',
           meaning: '',
           strengths: '',

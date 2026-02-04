@@ -1,30 +1,30 @@
 /// ═══════════════════════════════════════════════════════════════════════════════
-/// NUMEROLOGY MEGA CONTENT - KADİM SAYI BİLGELİĞİ VE TANTRİK NUMEROLOJİ
+/// NUMEROLOGY MEGA CONTENT - ANCIENT NUMBER WISDOM AND TANTRIC NUMEROLOGY
 /// ═══════════════════════════════════════════════════════════════════════════════
 ///
-/// Bu dosya, kadim ezoterik numeroloji bilgeliğinin derinlikli içeriğini barındırır.
-/// Pisagor mistisizmi, Kabalistik bağlantılar, Tantrik numeroloji ve
-/// kutsal geometri ile bütünleştirilmiş kapsamlı bir kaynak.
+/// This file contains deep esoteric numerology wisdom content.
+/// A comprehensive resource integrating Pythagorean mysticism, Kabbalistic
+/// connections, Tantric numerology, and sacred geometry.
 ///
-/// İçerik:
-/// - Yaşam Yolu Sayıları (1-9, 11, 22, 33)
-/// - İfade Sayıları
-/// - Ruh Dürtüsü Sayıları
-/// - Kişilik Sayıları
-/// - Doğum Günü Sayıları
-/// - Karmik Borç Sayıları (13, 14, 16, 19)
-/// - Usta Sayılar (11, 22, 33, 44)
-/// - Kişisel Yıl Döngüleri
-/// - Ezoterik Numeroloji
-/// - Tantrik Numeroloji
+/// Content:
+/// - Life Path Numbers (1-9, 11, 22, 33)
+/// - Expression Numbers
+/// - Soul Urge Numbers
+/// - Personality Numbers
+/// - Birthday Numbers
+/// - Karmic Debt Numbers (13, 14, 16, 19)
+/// - Master Numbers (11, 22, 33, 44)
+/// - Personal Year Cycles
+/// - Esoteric Numerology
+/// - Tantric Numerology
 ///
 library;
 
 // ════════════════════════════════════════════════════════════════════════════════
-// BÖLÜM 1: YAŞAM YOLU SAYILARI - DERİN SPİRİTÜEL ANALİZ
+// SECTION 1: LIFE PATH NUMBERS - DEEP SPIRITUAL ANALYSIS
 // ════════════════════════════════════════════════════════════════════════════════
 
-/// Yaşam Yolu Sayısı için kapsamlı ezoterik içerik modeli
+/// Comprehensive esoteric content model for Life Path Number
 class LifePathMegaContent {
   final int number;
   final String title;
@@ -41,7 +41,7 @@ class LifePathMegaContent {
   final String frequencyHz;
   final String musicalNote;
 
-  // Derin spiritüel anlamlar
+  // Deep spiritual meanings
   final String deepSpiritualMeaning;
   final String karmicLessons;
   final String pastLifeConnections;
@@ -51,20 +51,20 @@ class LifePathMegaContent {
   final String sacredGeometryConnection;
   final String kundaliniActivation;
 
-  // Uyumluluk
+  // Compatibility
   final Map<int, String> compatibilityMatrix;
   final List<int> soulMateNumbers;
   final List<int> karmicPartnerNumbers;
   final List<int> challengingNumbers;
 
-  // Yaşam alanları
+  // Life areas
   final String careerDestiny;
   final String healthTendencies;
   final String wealthVibration;
   final String loveAndRelationships;
   final List<String> famousExamples;
 
-  // Pratik rehberlik
+  // Practical guidance
   final List<String> dailyAffirmations;
   final List<String> meditationMantras;
   final String healingPractice;
@@ -109,450 +109,449 @@ class LifePathMegaContent {
   });
 }
 
-/// Yaşam Yolu 1 - Öncü / Yaratıcı
+/// Life Path 1 - Pioneer / Creator
 const lifePathMega1 = LifePathMegaContent(
   number: 1,
-  title: 'Kozmik Öncü',
-  archetype: 'İlk Işık / Monad / Yaratıcı Güç',
+  title: 'Cosmic Pioneer',
+  archetype: 'First Light / Monad / Creative Force',
   sacredSymbol: '☉',
-  element: 'Ateş - Saf Yaratıcı Alev',
-  planet: 'Güneş - Ra\'nın Altın Diski',
-  tarotMajorArcana: 'Büyücü (I) - Sonsuz Potansiyelin Ustası',
-  runicSymbol: 'Fehu ᚠ - Bolluk ve Başlangıç',
-  colors: ['Altın', 'Kırmızı', 'Turuncu', 'Parlak Sarı'],
-  crystals: ['Sitrin', 'Kaplan Gözü', 'Karneol', 'Güneş Taşı', 'Pirit'],
-  chakraAlignment: 'Güneş Sinir Ağı (Solar Plexus) - Manipura',
-  sacredGeometry: 'Nokta ve Daire - Birliğin Sembolü',
-  frequencyHz: '396 Hz - Korkuyu Özgürleştirme',
-  musicalNote: 'Do (C) - Temel Titreşim',
+  element: 'Fire - Pure Creative Flame',
+  planet: 'Sun - Ra\'s Golden Disk',
+  tarotMajorArcana: 'The Magician (I) - Master of Infinite Potential',
+  runicSymbol: 'Fehu ᚠ - Abundance and Beginning',
+  colors: ['Gold', 'Red', 'Orange', 'Bright Yellow'],
+  crystals: ['Citrine', 'Tiger\'s Eye', 'Carnelian', 'Sunstone', 'Pyrite'],
+  chakraAlignment: 'Solar Plexus - Manipura',
+  sacredGeometry: 'Point and Circle - Symbol of Unity',
+  frequencyHz: '396 Hz - Liberating Fear',
+  musicalNote: 'C - Fundamental Vibration',
 
   deepSpiritualMeaning: '''
-☉ KADİM BİLGELİK: BİRİN MİSTİK SIRRI ☉
+☉ ANCIENT WISDOM: THE MYSTIC SECRET OF ONE ☉
 
-Sayılar evreninde 1, var oluşun ilk nefesidir. Hiçlikten doğan ilk titreşim,
-karanlıkta beliren ilk ışık huzmesi. Kadim Mısır'da Ra'nın ilk doğuşu olarak
-kabul edilirdi - güneşin ufuktan yükselişi, yaratılışın her sabah yeniden
-başlaması.
+In the universe of numbers, 1 is the first breath of existence. The first
+vibration born from nothingness, the first ray of light emerging from darkness.
+In ancient Egypt, it was considered Ra's first rising - the sun ascending from
+the horizon, creation beginning anew each morning.
 
-Pisagor, 1'i "Monad" olarak adlandırdı - bölünmez birlik, saf öz. Monad,
-tüm sayıların anası ve babasıdır; kendinden çıkar, kendine döner. Bu nedenle
-1 sayısı hem erkil (yaratıcı) hem de dişil (doğurucu) enerji taşır.
+Pythagoras called 1 the "Monad" - indivisible unity, pure essence. The Monad
+is the mother and father of all numbers; it emerges from itself and returns
+to itself. Therefore, number 1 carries both masculine (creative) and feminine
+(generative) energy.
 
-Kabala'da 1, Hayat Ağacı'nın tepesindeki "Kether" (Taç) sefirasına karşılık
-gelir. Kether, saf potansiyelin kaynağıdır - henüz tezahür etmemiş, sınırsız
-olasılık. Sen bu enerjinin taşıyıcısı olarak, sonsuz potansiyeli somut
-gerçekliğe dönüştürme gücüne sahipsin.
+In Kabbalah, 1 corresponds to "Kether" (Crown) sephira at the top of the Tree
+of Life. Kether is the source of pure potential - not yet manifested, limitless
+possibility. As the carrier of this energy, you have the power to transform
+infinite potential into concrete reality.
 
-Hint felsefesinde 1, "Brahman" ile özdeştir - her şeyin kaynağı olan tek
-gerçeklik. Upanishadlar der ki: "Tat tvam asi" - Sen O'sun. 1 yaşam yolunda
-doğanlar, bu evrensel birliğin bireysel ifadesidir.
+In Hindu philosophy, 1 is identical with "Brahman" - the single reality that
+is the source of everything. The Upanishads say: "Tat tvam asi" - You are That.
+Those born on life path 1 are the individual expression of this universal unity.
 
-Simya geleneğinde 1, "Prima Materia" - ilk madde, tüm dönüşümlerin başlangıç
-noktasıdır. Tıpkı simyacının kurşunu altına dönüştürmesi gibi, sen de sıradan
-olanı olağanüstüye dönüştürme yeteneği taşırsın.
+In the alchemical tradition, 1 is "Prima Materia" - the first matter, the
+starting point of all transformations. Just as the alchemist transforms lead
+into gold, you carry the ability to transform the ordinary into the extraordinary.
 
-Gnostik öğretilerde 1, "Monas" - ilahi kıvılcım, her ruhun içindeki tanrısal
-özdür. Bu kıvılcım sende özellikle parlak yanar ve görevin, bu ışığı dünyaya
-taşımaktır.
+In Gnostic teachings, 1 is the "Monas" - the divine spark, the godly essence
+within every soul. This spark burns especially bright in you, and your mission
+is to carry this light into the world.
 ''',
 
   karmicLessons: '''
-✦ KARMİK DERSLER VE RUHSAL SINAMALAR ✦
+✦ KARMIC LESSONS AND SPIRITUAL TESTS ✦
 
-1 yaşam yolunun karmik dersleri, güç ve alçakgönüllülük arasındaki ince
-dengede yatar. Geçmiş yaşamlarında muhtemelen ya çok fazla güç kullandın
-ya da gücünden tamamen vazgeçtin. Bu hayatta dengeyi bulmak zorundasın.
+The karmic lessons of life path 1 lie in the delicate balance between power
+and humility. In past lives, you likely either used too much power or gave up
+your power entirely. In this life, you must find balance.
 
-Birincil Karmik Ders: EGO VE TEVAZU DENGESİ
-Ego, ruhsal yolculuğun düşmanı değil, aracıdır. Ama kontrolsüz ego, bir
-tyran'a dönüşür. Dersin, güçlü bir benlik inşa ederken aynı zamanda bu
-benliğin evrensel bütünün bir parçası olduğunu unutmamaktır.
+Primary Karmic Lesson: BALANCE OF EGO AND HUMILITY
+Ego is not the enemy of the spiritual journey, but its vehicle. However,
+uncontrolled ego becomes a tyrant. Your lesson is to build a strong self
+while remembering that this self is part of the universal whole.
 
-İkincil Karmik Ders: BAĞIMSIZLIK VE BAĞLANTI
-Kendi ayaklarının üzerinde durmayı öğrenmelisin, ama bu yalnızlık değildir.
-Gerçek bağımsızlık, başkalarına muhtaç olmadan onlarla bağ kurabilmektir.
+Secondary Karmic Lesson: INDEPENDENCE AND CONNECTION
+You must learn to stand on your own feet, but this is not loneliness.
+True independence is being able to connect with others without being
+dependent on them.
 
-Üçüncül Karmik Ders: YARATICILIK VE SORUMLULUK
-Yaratma gücün büyük, ama her yaratım sorumluluk getirir. Ne ekersen onu
-biçersin - bu evrensel yasa 1'ler için çok daha yoğun işler.
+Tertiary Karmic Lesson: CREATIVITY AND RESPONSIBILITY
+Your creative power is great, but every creation brings responsibility.
+You reap what you sow - this universal law works much more intensely for 1s.
 
-Karmik Sınama Dönemleri:
-• 19, 28, 37, 46 yaşları kritik dönüm noktaları
-• Satürn döngüleri (29, 58 yaş) özellikle yoğun
-• Her 9 yılda bir büyük karmik sınav
+Karmic Test Periods:
+• Ages 19, 28, 37, 46 are critical turning points
+• Saturn cycles (ages 29, 58) are particularly intense
+• Major karmic test every 9 years
 
-Karmayı Dengeleme Yolları:
-• Başkalarına mentor ol, ama kontrol etme
-• Başarını paylaş, ama gösterişe kaçma
-• Liderlik et, ama diktatörlük yapma
-• Kendi yolunu çiz, ama başkalarının yoluna saygı duy
+Ways to Balance Karma:
+• Be a mentor to others, but don't control
+• Share your success, but don't show off
+• Lead, but don't dictate
+• Chart your own path, but respect others' paths
 ''',
 
   pastLifeConnections: '''
-✧ GEÇMİŞ YAŞAM BAĞLANTILARI ✧
+✧ PAST LIFE CONNECTIONS ✧
 
-1 yaşam yolunda doğanlar, genellikle şu geçmiş yaşam arketiplerini taşır:
+Those born on life path 1 typically carry these past life archetypes:
 
-SAVAŞÇI/KOMUTAN GEÇMİŞİ
-Önceki enkarnasyonlarında muhtemelen askeri lider, savaşçı veya stratejist
-rollerinde bulundun. Cesareti, kararlılığı ve liderliği defalarca
-deneyimledin. Bu hayatta, bu enerjileri barışçıl amaçlar için kullanmayı
-öğreniyorsun.
+WARRIOR/COMMANDER PAST
+In your previous incarnations, you likely held roles as military leader,
+warrior, or strategist. You experienced courage, determination, and
+leadership many times. In this life, you are learning to use these
+energies for peaceful purposes.
 
-KRAL/KRALİÇE ARKETİPİ
-Hükümdar enerjisi ruhunda derin izler bırakmış. Otoriteyi, sorumluluğu
-ve karar verme ağırlığını biliyorsun. Ama bu hayatta, "hizmetkar lider"
-olmayı öğrenmen gerekiyor.
+KING/QUEEN ARCHETYPE
+Ruler energy has left deep marks on your soul. You know authority,
+responsibility, and the weight of decision-making. But in this life,
+you need to learn to be a "servant leader."
 
-MUCIT/KAŞİF GEÇMİŞİ
-Yeni dünyalar keşfeden, bilinmeyene adım atan ruh. Kolomb, Marco Polo
-enerjisi. Risk almayı, öncü olmayı zaten biliyorsun - şimdi bu bilgiyi
-başkalarının yararına kullanmayı öğreniyorsun.
+INVENTOR/EXPLORER PAST
+A soul who discovered new worlds, stepped into the unknown. Columbus,
+Marco Polo energy. You already know how to take risks, how to be a pioneer -
+now you're learning to use this knowledge for others' benefit.
 
-ŞAMİN/KAHIN GEÇMİŞİ
-Bazı 1'ler, eski çağlarda spiritüel lider, şaman veya kahin olmuştur.
-İçsel bilgelik ve sezgi bu yaşamlardan kalma. Görev, bu kadim bilgiyi
-modern dünyada yeniden canlandırmak.
+SHAMAN/SEER PAST
+Some 1s were spiritual leaders, shamans, or seers in ancient times.
+Inner wisdom and intuition remain from these lives. The task is to revive
+this ancient knowledge in the modern world.
 
-Geçmiş Yaşam Tetikleyicileri:
-• Belirli coğrafyalara açıklanamaz çekim (Mısır, Roma, Tibet)
-• Liderlik pozisyonlarında déjà vu hissi
-• Bazı insanlarla anında tanışıklık duygusu
-• Belirli tarihsel dönemlere yoğun ilgi
+Past Life Triggers:
+• Unexplainable attraction to certain places (Egypt, Rome, Tibet)
+• Déjà vu feeling in leadership positions
+• Instant familiarity with certain people
+• Intense interest in specific historical periods
 ''',
 
   soulPurpose: '''
-❂ RUHUN KUTSAL MİSYONU ❂
+❂ THE SOUL'S SACRED MISSION ❂
 
-Sen bu dünyaya özel bir misyonla geldin: IŞIĞI TAŞIMAK ve YOLU AÇMAK.
+You came to this world with a special mission: TO CARRY THE LIGHT and OPEN THE PATH.
 
-Birincil Ruh Amacı: ÖNCÜLİK
-Karanlıkta ilk adımı atan, bilinmeyene cesurca yürüyen kişi sensin.
-Başkaları korkarken sen ileri atılırsın. Bu sadece cesaret değil -
-içsel bir zorunluluk, ruhsal bir çağrı.
+Primary Soul Purpose: PIONEERING
+You are the one who takes the first step in the dark, who walks bravely into
+the unknown. When others fear, you step forward. This is not just courage -
+it's an inner necessity, a spiritual calling.
 
-İkincil Ruh Amacı: İLHAM VERMEK
-Varlığın bile başkalarını harekete geçirir. Enerjin bulaşıcı, tutkun
-ateşleyici. Görevin, bu gücü bilinçli kullanmak - insanları kendi
-potansiyellerine uyandırmak.
+Secondary Soul Purpose: TO INSPIRE
+Even your presence moves others to action. Your energy is contagious, your
+passion igniting. Your task is to use this power consciously - to awaken
+people to their own potential.
 
-Üçüncül Ruh Amacı: YENİ BAŞLATMAK
-Eski sistemler çökerken, yeni paradigmalar kurmak senin işin. İnovasyon,
-devrim, dönüşüm - bunlar senin anahtar kelimelerin.
+Tertiary Soul Purpose: TO BEGIN ANEW
+As old systems collapse, building new paradigms is your work. Innovation,
+revolution, transformation - these are your keywords.
 
-Ruh Sözleşmesi Detayları:
-Bu enkarnasyona girmeden önce, ruhun şu sözleşmeleri imzaladı:
-• En az bir alanda öncü olacaksın
-• Başkalarına cesaret örneği olacaksın
-• Korkularınla yüzleşip onları aşacaksın
-• Bireyselliğini korurken topluma katkı sağlayacaksın
-• Liderlik ettiğin herkese hizmet edeceksin
+Soul Contract Details:
+Before entering this incarnation, your soul signed these contracts:
+• You will be a pioneer in at least one field
+• You will be an example of courage to others
+• You will face your fears and overcome them
+• You will contribute to society while preserving your individuality
+• You will serve everyone you lead
 
-Misyonunu Engelleyen Faktörler:
-• Başarısızlık korkusu
-• Başkalarının onayına bağımlılık
-• Aşırı kontrol ihtiyacı
-• Sabırsızlık
-• Ego şişkinliği
+Factors That Block Your Mission:
+• Fear of failure
+• Dependency on others' approval
+• Excessive need for control
+• Impatience
+• Ego inflation
 
-Misyonunu Destekleyen Faktörler:
-• Özgüven geliştirme çalışmaları
-• Risk alma pratiği
-• Mentor bulma ve olma
-• Düzenli meditasyon
-• Topluluk hizmeti
+Factors That Support Your Mission:
+• Self-confidence development work
+• Practice taking risks
+• Finding and being a mentor
+• Regular meditation
+• Community service
 ''',
 
   shadowAspects: '''
-☾ GÖLGE YÖNLERİ VE DÖNÜŞÜM ☾
+☾ SHADOW ASPECTS AND TRANSFORMATION ☾
 
-Her ışık gölge yaratır. 1 sayısının güçlü ışığı, derin gölgeler de taşır.
-Bu gölgelerle yüzleşmek, spiritüel olgunlaşmanın anahtarıdır.
+Every light creates shadow. The powerful light of number 1 also carries deep
+shadows. Facing these shadows is the key to spiritual maturation.
 
-BİRİNCİL GÖLGE: EGO ŞİŞKİNLİĞİ
-Belirtiler:
-• "Ben her zaman haklıyım" tutumu
-• Eleştiriye tahammülsüzlük
-• Başkalarını küçümseme
-• Megalomani eğilimi
-• Narsisistik davranış kalıpları
+PRIMARY SHADOW: EGO INFLATION
+Symptoms:
+• "I'm always right" attitude
+• Intolerance to criticism
+• Looking down on others
+• Megalomania tendency
+• Narcissistic behavior patterns
 
-Dönüşüm Yolu:
-Alçakgönüllülük, egonun ölümü değil, dönüşümüdür. "Ben değerli bir
-bireyim VE evrenin küçük bir parçasıyım" - bu iki gerçeği aynı anda
-tutabilmek.
+Transformation Path:
+Humility is not the death of ego, but its transformation. "I am a valuable
+individual AND I am a small part of the universe" - being able to hold
+these two truths simultaneously.
 
-İKİNCİL GÖLGE: AŞIRI BAĞIMSIZLIK
-Belirtiler:
-• Yardım kabul edememe
-• İlişkilerde mesafe koyma
-• "Tek başıma yaparım" takıntısı
-• Güven sorunları
-• Yalnızlık
+SECONDARY SHADOW: EXCESSIVE INDEPENDENCE
+Symptoms:
+• Inability to accept help
+• Keeping distance in relationships
+• "I'll do it alone" obsession
+• Trust issues
+• Loneliness
 
-Dönüşüm Yolu:
-Bağımsızlık, izolasyon değildir. Güçlü olmak, kırılganlık gösteremeyeceğin
-anlamına gelmez. Gerçek güç, ne zaman yardım isteyeceğini bilmektir.
+Transformation Path:
+Independence is not isolation. Being strong doesn't mean you can't show
+vulnerability. True strength is knowing when to ask for help.
 
-ÜÇÜNCÜL GÖLGE: SABIR SIZLIĞI
-Belirtiler:
-• Anında sonuç beklentisi
-• Süreçlere tahammülsüzlük
-• Kolay vazgeçme
-• Stres ve gerginlik
-• Çevresindekileri zorlama
+TERTIARY SHADOW: IMPATIENCE
+Symptoms:
+• Expecting immediate results
+• Intolerance of processes
+• Giving up easily
+• Stress and tension
+• Pushing those around you
 
-Dönüşüm Yolu:
-Doğa bile mevsimlerle çalışır. Tohum anında ağaç olmaz. Sabır, pasif
-bekleyiş değil, aktif güvendir - evrensel zamanlamanın mükemmelliğine
-inanmak.
+Transformation Path:
+Even nature works with seasons. A seed doesn't become a tree instantly.
+Patience is not passive waiting, but active trust - believing in the
+perfection of universal timing.
 
-DÖRDÜNCÜL GÖLGE: DİKTATÖRLÜK EĞİLİMİ
-Belirtiler:
-• Kontrolcülük
-• Başkalarının fikirlerini bastırma
-• "Benim yolum ya da hiçbir yol" tutumu
-• Otoriter davranış
+QUATERNARY SHADOW: DICTATOR TENDENCY
+Symptoms:
+• Controlling behavior
+• Suppressing others' ideas
+• "My way or no way" attitude
+• Authoritarian behavior
 
-Dönüşüm Yolu:
-Liderlik, insanları yönetmek değil, onların potansiyelini açığa çıkarmaktır.
-En büyük liderler, en çok hizmet edenlerdir.
+Transformation Path:
+Leadership is not managing people, but bringing out their potential.
+The greatest leaders are those who serve the most.
 
-Gölge Çalışması İçin Ritüel:
-Ayın karanlık evresinde, yalnız bir mekanda otur. Bir mum yak ve gölgeni
-izle. Gölgenle konuş, ona isim ver, onu kabul et. "Seni görüyorum,
-seni kabul ediyorum, seni dönüştürüyorum" de.
+Ritual for Shadow Work:
+During the dark phase of the moon, sit in a solitary place. Light a candle
+and watch your shadow. Talk to your shadow, name it, accept it. Say "I see
+you, I accept you, I transform you."
 ''',
 
   tantricEnergySignature: '''
-🔥 TANTRİK ENERJİ İMZASI 🔥
+🔥 TANTRIC ENERGY SIGNATURE 🔥
 
-1 sayısı, saf maskülen (Shiva) enerjiyi temsil eder. Bu, cinsiyet meselesi
-değil, kozmik prensip meselesidir. Kadın bedeninde de olsan, 1 enerjisi
-aktif, yönlendirici, penetratif güçtür.
+The number 1 represents pure masculine (Shiva) energy. This is not a matter
+of gender, but of cosmic principle. Even in a female body, 1 energy is
+active, directive, penetrative power.
 
-KUNDALINI AKTİVASYONU
-1'lerin kundalinisi genellikle güçlü ve aktiftir. Kök çakradan hızla
-yükselme eğilimindedir. Ancak bu güç, kontrol edilmezse yıkıcı olabilir.
+KUNDALINI ACTIVATION
+1s' kundalini is generally strong and active. It tends to rise quickly
+from the root chakra. However, this power can be destructive if not controlled.
 
-Kundalini Karakteristiği:
-• Ateş elementi dominant
-• Hızlı yükseliş, ani uyanışlar
-• Solar plexus'ta yoğunlaşma
-• Bazen kontrolsüz enerji patlamaları
-• Güçlü yaşam gücü (prana/chi)
+Kundalini Characteristics:
+• Fire element dominant
+• Rapid ascension, sudden awakenings
+• Concentration in solar plexus
+• Sometimes uncontrolled energy bursts
+• Strong life force (prana/chi)
 
-TANTRİK CİNSELLİK
-1 enerjisi cinsellikte dominant, aktif ve başlatıcı rol alır. Seksüel
-enerji (ojas), 1'ler için güçlü bir yaratıcı kaynak ve dönüşüm aracıdır.
+TANTRIC SEXUALITY
+1 energy takes the dominant, active, and initiating role in sexuality.
+Sexual energy (ojas) is a powerful creative source and transformation
+tool for 1s.
 
-Tantrik Pratikler:
-• Brahmacharya (enerji koruması) dönemleri önerilir
-• Seksüel enerjiyi yaratıcı projelere yönlendirme
-• Partner seçiminde enerji uyumu kritik
-• Çok sık boşalma enerji kaybına yol açar
-• Tantrik nefes teknikleri ile enerji kontrolü
+Tantric Practices:
+• Periods of Brahmacharya (energy conservation) recommended
+• Directing sexual energy to creative projects
+• Energy compatibility critical in partner selection
+• Too frequent ejaculation leads to energy loss
+• Energy control through Tantric breathing techniques
 
-KUTSAL BİRLİK (SACRED UNION)
-1 enerjisi, 2 enerjisiyle birleştiğinde mükemmel tantrik denge oluşur.
-Bu fiziksel birleşmenin ötesinde, içsel erkil-dişil dengenin de yansımasıdır.
+SACRED UNION
+When 1 energy unites with 2 energy, perfect tantric balance is created.
+Beyond physical union, this is also a reflection of inner masculine-
+feminine balance.
 
-Uyumlu Tantrik Partnerler: 2, 6, 9
-Zorlayıcı Tantrik Kombinasyonlar: 1, 8
+Compatible Tantric Partners: 2, 6, 9
+Challenging Tantric Combinations: 1, 8
 
-ENERJİ BEDEN BAĞLANTILARI
-1 enerjisi özellikle şu enerji noktalarında yoğunlaşır:
-• Üçüncü Göz (Ajna) - vizyon ve irade
-• Solar Plexus (Manipura) - kişisel güç
-• Kök Çakra (Muladhara) - temel yaşam gücü
+ENERGY BODY CONNECTIONS
+1 energy concentrates especially at these energy points:
+• Third Eye (Ajna) - vision and will
+• Solar Plexus (Manipura) - personal power
+• Root Chakra (Muladhara) - basic life force
 
-Enerji Dengesi İçin:
-• Topraklama çalışmaları (kök çakra)
-• Kalp açma meditasyonları (aşırı maskülenliği yumuşatmak)
-• Ay enerjisi (feminine) entegrasyonu
+For Energy Balance:
+• Grounding exercises (root chakra)
+• Heart-opening meditations (to soften excessive masculinity)
+• Moon energy (feminine) integration
 ''',
 
   sacredGeometryConnection: '''
-◯ KUTSAL GEOMETRİ BAĞLANTISI ◯
+◯ SACRED GEOMETRY CONNECTION ◯
 
-1 sayısının kutsal geometrisi, NOKTA ve DAİREdir.
+The sacred geometry of number 1 is the POINT and CIRCLE.
 
-NOKTA (Bindu)
-Her şeyin başlangıcı, sonsuzluğun kapısı. Hindu ve Budist mandalalarında
-merkezdeki nokta, yaratılışın kaynağını temsil eder. Sen bu noktanın
-insan formundaki tezahürüsün.
+POINT (Bindu)
+The beginning of everything, the gateway to infinity. In Hindu and Buddhist
+mandalas, the point in the center represents the source of creation. You are
+the human form manifestation of this point.
 
-DAİRE (Mandala)
-Noktadan genişleyen daire, 1'in evrensel birliğini simgeler. Ne başı
-var ne sonu - sonsuz döngü, ebedi dönüş. 1 yaşam yolundakiler, bu
-bütünlüğü içlerinde taşır.
+CIRCLE (Mandala)
+The circle expanding from the point symbolizes 1's universal unity. It has
+no beginning or end - infinite cycle, eternal return. Those on life path 1
+carry this wholeness within.
 
-MONOLİT
-Tek parça, bölünmez yapı. 2001: Uzay Macerası filmindeki gizemli
-monolit, 1 enerjisinin mükemmel sembolüdür - bilinmeyeni, gizemi,
-saf potansiyeli temsil eder.
+MONOLITH
+Single piece, indivisible structure. The mysterious monolith in 2001: A
+Space Odyssey is the perfect symbol of 1 energy - representing the unknown,
+mystery, pure potential.
 
-IŞIN (Ray)
-Noktadan çıkan tek ışın, 1'in direktifliğini, hedef odaklılığını
-gösterir. Laser ışını gibi - yoğun, odaklı, güçlü.
+RAY
+A single ray emanating from the point shows 1's directness, goal orientation.
+Like a laser beam - intense, focused, powerful.
 
-Meditasyon Pratiği:
-Beyaz bir arka plan üzerinde siyah bir nokta hayal et. Bu noktaya
-odaklan. Noktanın genişleyip daireye dönüştüğünü, sonra tekrar
-noktaya küçüldüğünü görselleştir. Bu, 1 enerjisinin nefes alıp
-vermesidir.
+Meditation Practice:
+Visualize a black point on a white background. Focus on this point. Visualize
+the point expanding into a circle, then shrinking back to a point. This is
+the breathing in and out of 1 energy.
 
-Kutsal Geometri Aktivasyonu:
-• Yeni ay döneminde bir kağıda tek bir nokta koy
-• Bu noktaya her gün 11 dakika meditasyon yap
-• Dolunayda noktayı daireyle çevrele
-• Bu mandala, 1 enerjini aktive edecek
+Sacred Geometry Activation:
+• On new moon, put a single point on paper
+• Meditate on this point for 11 minutes each day
+• On full moon, surround the point with a circle
+• This mandala will activate your 1 energy
 ''',
 
   kundaliniActivation: '''
-🐍 KUNDALİNİ AKTİVASYONU 🐍
+🐍 KUNDALINI ACTIVATION 🐍
 
-1 yaşam yolu, güçlü bir kundalini potansiyeli taşır. Ama bu güç,
-bilgelikle yönlendirilmelidir.
+Life path 1 carries strong kundalini potential. But this power must be
+directed with wisdom.
 
-KUNDALİNİ KARAKTERİSTİKLERİ
-• Doğal olarak aktif veya yarı-uyanık kundalini
-• Ani uyanış deneyimleri yaşama eğilimi
-• Güçlü enerji dalgalanmaları
-• Rüyalarda yılan, ateş, tırmanma sembolleri
-• Spontan yoga pozisyonları veya mudraları
+KUNDALINI CHARACTERISTICS
+• Naturally active or semi-awakened kundalini
+• Tendency to experience sudden awakening
+• Strong energy fluctuations
+• Snake, fire, climbing symbols in dreams
+• Spontaneous yoga positions or mudras
 
-TEHLİKELER VE UYARILAR
-1 enerjisi sabırsızdır ve kundaliniyi zorla uyandırmaya çalışabilir.
-Bu tehlikelidir:
-• Ani uyanışlar psikoza yol açabilir
-• Kontrol edilemeyen enerji bedeni yakabilir
-• Ego şişkinliği ile spiritüel dengesizlik
-• Topraklamasız yükseliş, dengesizlik getirir
+DANGERS AND WARNINGS
+1 energy is impatient and may try to forcefully awaken kundalini.
+This is dangerous:
+• Sudden awakenings can lead to psychosis
+• Uncontrolled energy can burn the body
+• Spiritual imbalance with ego inflation
+• Ungrounded ascension brings instability
 
-GÜVENLİ AKTİVASYON YOLLARI
-1. NEFES (Pranayama)
-Kapalika Pranayama önerilir. Sağ burun deliğinden nefes al (güneş
-enerjisi), sol burun deliğinden ver. Bu, 1'in solar enerjisini
-dengeler.
+SAFE ACTIVATION METHODS
+1. BREATH (Pranayama)
+Kapalabhati Pranayama is recommended. Inhale through right nostril (solar
+energy), exhale through left. This balances 1's solar energy.
 
 2. ASANA
-Savaşçı pozları (Virabhadrasana I, II, III) 1 enerjisini destekler.
-Ama dengelemek için Çocuk Pozu ve Ölü Pozu da eklenmeli.
+Warrior poses (Virabhadrasana I, II, III) support 1 energy. But Child's
+Pose and Corpse Pose should also be added for balance.
 
 3. MANTRA
-"OM NAMAH SHIVAYA" - Shiva'ya (saf bilinç, maskülen prensip) selam.
-"RA" - Güneş tanrısının sesi, 1'in titreşimi.
+"OM NAMAH SHIVAYA" - Salutation to Shiva (pure consciousness, masculine principle).
+"RA" - Voice of the Sun god, vibration of 1.
 
 4. MUDRA
-Chin Mudra (bilgelik mührü) - işaret parmağı ve baş parmak birleşir,
-diğerleri açık. Bu, bireysel ruhun evrensel ruhla birliğini sembolize
-eder.
+Chin Mudra (wisdom seal) - index finger and thumb join, others open.
+This symbolizes the union of individual soul with universal soul.
 
-5. CHAKRA ÇALIŞMASI
-Manipura (solar plexus) odaklı çalışmalar 1 enerjisini güçlendirir.
-Ama kalp ve kök çakraları da dengede tutulmalı.
+5. CHAKRA WORK
+Manipura (solar plexus) focused work strengthens 1 energy. But heart
+and root chakras should also be kept in balance.
 
-AKTİVASYON ZAMANLAMA
-• Güneşin doğuşu ideal
-• Pazar günleri (Güneş günü) güçlendirir
-• Aslan burcu mevsimi (23 Temmuz - 22 Ağustos) peak dönem
-• Yeni ayda yeni başlangıçlar için
+ACTIVATION TIMING
+• Sunrise is ideal
+• Sundays (Sun's day) strengthens
+• Leo season (July 23 - August 22) is peak period
+• New moon for new beginnings
 
-KUNDALİNİ UYANIŞI BELİRTİLERİ
-• Omurga boyunca ısı veya elektrik hissi
-• Spontan beden hareketleri
-• Yoğun rüyalar ve vizyonlar
-• Artan sezgi ve psişik deneyimler
-• Yaratıcılık patlamaları
-• Ani içgörüler ve aydınlanma anları
+KUNDALINI AWAKENING SIGNS
+• Heat or electric sensation along the spine
+• Spontaneous body movements
+• Intense dreams and visions
+• Increased intuition and psychic experiences
+• Creativity bursts
+• Sudden insights and enlightenment moments
 ''',
 
   compatibilityMatrix: {
     1: '''
-1 + 1 = ATEŞ ÇARPIŞMASI
-İki lider, iki ego, iki bağımsız ruh. Bu ilişki ya muhteşem bir
-ortaklık ya da savaş alanı olur. Karşılıklı saygı ve alan tanıma
-kritik. İki güneş aynı gökyüzünde parlarsa, birinin gölgede
-kalmaması için bilinçli çaba gerekir.
-Uyum puanı: 5/10
+1 + 1 = FIRE COLLISION
+Two leaders, two egos, two independent souls. This relationship either
+becomes a magnificent partnership or a battlefield. Mutual respect and
+giving space is critical. If two suns shine in the same sky, conscious
+effort is needed so neither is overshadowed.
+Compatibility score: 5/10
 ''',
     2: '''
-1 + 2 = MÜKEMMEL DENGE
-Güneş ve Ay, Yin ve Yang. 1'in liderliği, 2'nin desteğiyle mükemmel
-uyum oluşturur. 2, 1'i yumuşatır; 1, 2'ye güç verir. Doğal çekim
-ve tamamlayıcı enerji. Tantrik açıdan ideal birleşim.
-Uyum puanı: 9/10
+1 + 2 = PERFECT BALANCE
+Sun and Moon, Yin and Yang. 1's leadership creates perfect harmony with
+2's support. 2 softens 1; 1 gives strength to 2. Natural attraction
+and complementary energy. Tantrically ideal union.
+Compatibility score: 9/10
 ''',
     3: '''
-1 + 3 = YARATICI DANS
-İki yaratıcı güç birleşir. 3'ün neşesi, 1'in kararlılığını hafifletir.
-Birlikte projeler, sanat, maceralar. Eğlenceli ve enerjik ilişki.
-Risk: İkisi de dışa dönük, içsel derinlik ihmal edilebilir.
-Uyum puanı: 8/10
+1 + 3 = CREATIVE DANCE
+Two creative forces unite. 3's joy lightens 1's determination.
+Projects, art, adventures together. Fun and energetic relationship.
+Risk: Both are extroverted, inner depth may be neglected.
+Compatibility score: 8/10
 ''',
     4: '''
-1 + 4 = ZORLAYICI AMA ÖĞRETİCİ
-1'in vizyonu, 4'ün pratiğiyle çatışabilir. 4, 1'i yavaşlatır ve
-bu 1 için zor olabilir. Ama 4, fikirleri gerçekliğe dönüştürür.
-Sabır gerektirir ama uzun vadede sağlam temeller atar.
-Uyum puanı: 5/10
+1 + 4 = CHALLENGING BUT INSTRUCTIVE
+1's vision may clash with 4's practicality. 4 slows 1 down and this
+can be hard for 1. But 4 turns ideas into reality. Requires patience
+but builds solid foundations long-term.
+Compatibility score: 5/10
 ''',
     5: '''
-1 + 5 = MACERA ORTAĞI
-İki bağımsız ruh, özgürlük seven iki kaşif. Birlikte dünyayı
-fethedebilirler. Heyecan, değişim, macera. Risk: Hiçbiri
-yerleşmek istemeyebilir, ilişki yüzeysel kalabilir.
-Uyum puanı: 7/10
+1 + 5 = ADVENTURE PARTNER
+Two independent souls, two freedom-loving explorers. Together they can
+conquer the world. Excitement, change, adventure. Risk: Neither may
+want to settle, relationship can remain superficial.
+Compatibility score: 7/10
 ''',
     6: '''
-1 + 6 = AİLE LİDERLİĞİ
-6'nın şefkati, 1'in gücünü yumuşatır. Birlikte güçlü aile kurabilirler.
-6, 1'in ihmal ettiği duygusal dünyayı besler. 1, 6'yı korur ve
-yönlendirir. Geleneksel roller iyi işler.
-Uyum puanı: 7/10
+1 + 6 = FAMILY LEADERSHIP
+6's compassion softens 1's power. Together they can build a strong family.
+6 nourishes the emotional world 1 neglects. 1 protects and guides 6.
+Traditional roles work well.
+Compatibility score: 7/10
 ''',
     7: '''
-1 + 7 = MISTIK BİRLİK
-7'nin derinliği, 1'in yüzeyselliğini dengeler. 1 dışarıda parlarkej,
-7 içeride araştırır. Birbirlerine farklı dünyalar açarlar. İlişki
-derin ve anlamlı olabilir ama iletişim çaba ister.
-Uyum puanı: 7/10
+1 + 7 = MYSTIC UNION
+7's depth balances 1's superficiality. While 1 shines outwardly, 7
+investigates inwardly. They open different worlds to each other.
+Relationship can be deep and meaningful but communication takes effort.
+Compatibility score: 7/10
 ''',
     8: '''
-1 + 8 = GÜÇ SAVAŞI
-İki güç odaklı sayı. Ya birlikte imparatorluk kurarlar ya da birbirlerini
-yıkarlar. Karşılıklı saygı ve sorumluluk paylaşımı kritik. İş
-ortaklığında iyi, romantik ilişkide zor olabilir.
-Uyum puanı: 5/10
+1 + 8 = POWER STRUGGLE
+Two power-focused numbers. Either they build an empire together or
+destroy each other. Mutual respect and sharing responsibility is critical.
+Good in business partnership, can be difficult in romantic relationship.
+Compatibility score: 5/10
 ''',
     9: '''
-1 + 9 = İNSANLIĞA HİZMET
-1'in liderliği ve 9'un evrensel sevgisi birleşir. Birlikte büyük işler
-başarabilirler. 9, 1'e perspektif verir; 1, 9'un vizyonunu eyleme
-dönüştürür. Yüksek amaçlar için güçlü ortaklık.
-Uyum puanı: 8/10
+1 + 9 = SERVICE TO HUMANITY
+1's leadership and 9's universal love combine. Together they can achieve
+great things. 9 gives perspective to 1; 1 turns 9's vision into action.
+Strong partnership for higher purposes.
+Compatibility score: 8/10
 ''',
     11: '''
-1 + 11 = IŞIK TAŞIYICILARI
-1'in pratik liderliği, 11'in spiritüel vizyonuyla buluşur. 11, 1'e
-derin anlam katar; 1, 11'in vizyonlarını gerçekleştirir. Yoğun
-ve dönüştürücü birliktelik.
-Uyum puanı: 7/10
+1 + 11 = LIGHT CARRIERS
+1's practical leadership meets 11's spiritual vision. 11 adds deep meaning
+to 1; 1 realizes 11's visions. Intense and transformative partnership.
+Compatibility score: 7/10
 ''',
     22: '''
-1 + 22 = DÜNYA DEĞİŞTİRİCİLER
-İki güçlü manifeste edici. Birlikte kalıcı miras bırakabilirler.
-22'nin yapıcılığı, 1'in öncülüğüyle mükemmel uyum. Büyük projeler,
-kurumlar, hareketler.
-Uyum puanı: 8/10
+1 + 22 = WORLD CHANGERS
+Two powerful manifesters. Together they can leave a lasting legacy.
+22's constructive nature perfectly harmonizes with 1's pioneering.
+Big projects, institutions, movements.
+Compatibility score: 8/10
 ''',
     33: '''
-1 + 33 = USTA VE ÖĞRENCİ
-33'ün bilgeliği, 1'e rehberlik eder. 1, 33'ün öğretilerini dünyaya
-taşır. Spiritüel öğretmen-öğrenci dinamiği olabilir. Derin, kutsal
-bağlantı.
-Uyum puanı: 7/10
+1 + 33 = MASTER AND STUDENT
+33's wisdom guides 1. 1 carries 33's teachings to the world. Spiritual
+teacher-student dynamic may develop. Deep, sacred connection.
+Compatibility score: 7/10
 ''',
   },
 
@@ -561,737 +560,739 @@ Uyum puanı: 7/10
   challengingNumbers: [1, 8],
 
   careerDestiny: '''
-💼 KARİYER KADERİ VE MESLEK YOLU 💼
+💼 CAREER DESTINY AND PROFESSIONAL PATH 💼
 
-1 yaşam yolu, liderlik ve öncülük gerektiren alanlarda parlar.
-Başkalarının vizyonunu uygulamak değil, kendi vizyonunu hayata
-geçirmek senin için doğru yoldur.
+Life path 1 shines in fields requiring leadership and pioneering.
+Not implementing others' vision, but bringing your own vision to life
+is the right path for you.
 
-İDEAL KARİYER ALANLARI:
-• Girişimcilik ve Startup Kurucusu
-• CEO/Genel Müdür pozisyonları
-• Yaratıcı Direktörlük
-• Serbest Danışmanlık
-• Motivasyon Koçluğu
-• Araştırma ve Keşif (bilim, arkeoloji)
-• Spor (bireysel dallar, koçluk)
-• Sanat ve Tasarım (solo sanatçı)
-• Yazarlık (özellikle vizyon kitapları)
-• Politik Liderlik
+IDEAL CAREER FIELDS:
+• Entrepreneurship and Startup Founder
+• CEO/General Manager positions
+• Creative Director
+• Independent Consulting
+• Motivational Coaching
+• Research and Discovery (science, archaeology)
+• Sports (individual disciplines, coaching)
+• Art and Design (solo artist)
+• Writing (especially visionary books)
+• Political Leadership
 
-KAÇINILMASI GEREKEN ORTAMLAR:
-• Katı hiyerarşik yapılar
-• Monoton, rutin işler
-• Takım çalışması gerektiren roller (lider olmadan)
-• Bürokratik kurumlar
-• Yaratıcılığa izin vermeyen pozisyonlar
+ENVIRONMENTS TO AVOID:
+• Rigid hierarchical structures
+• Monotonous, routine jobs
+• Team roles (without being leader)
+• Bureaucratic institutions
+• Positions that don't allow creativity
 
-BAŞARI ANAHTARLARI:
-• Kendi işini kur veya en azından özerk çalış
-• Vizyonunu netleştir ve kararlılıkla takip et
-• Mentor bul ama kendi yolunu çiz
-• Başarısızlıkları öğrenme fırsatı olarak gör
-• Ekip kur ama yetki devret, mikroyönetme yapma
+KEYS TO SUCCESS:
+• Start your own business or at least work autonomously
+• Clarify your vision and follow it with determination
+• Find a mentor but chart your own course
+• See failures as learning opportunities
+• Build a team but delegate authority, don't micromanage
 
-PARA VE BOLLUK İLİŞKİSİ:
-1'ler para kazanmada yetenekli ama para biriktirmede zorlanabilir.
-Cömertlik ve gösteriş arasındaki denge önemli. Yatırım ve uzun
-vadeli düşünce geliştirilmeli.
+MONEY AND ABUNDANCE RELATIONSHIP:
+1s are talented at making money but may struggle to save it.
+Balance between generosity and showing off is important. Investment
+and long-term thinking should be developed.
 
-YILLIK KARİYER REHBERLİĞİ:
-• Kişisel yıl 1: Yeni başlangıçlar, iş kurma zamanı
-• Kişisel yıl 2: Ortaklıklar, işbirliği fırsatları
-• Kişisel yıl 8: Finansal ödüller, tanınırlık
-• Kişisel yıl 9: Döngü tamamlama, eski projeleri bitirme
+ANNUAL CAREER GUIDANCE:
+• Personal year 1: New beginnings, time to start business
+• Personal year 2: Partnerships, collaboration opportunities
+• Personal year 8: Financial rewards, recognition
+• Personal year 9: Completing cycles, finishing old projects
 ''',
 
   healthTendencies: '''
-🏥 SAĞLIK EĞİLİMLERİ VE BEDEN BİLGELİĞİ 🏥
+🏥 HEALTH TENDENCIES AND BODY WISDOM 🏥
 
-1 sayısı, bedenin en "ateşli" alanlarını yönetir. Sağlık sorunları
-genellikle aşırı enerji veya enerji blokajlarından kaynaklanır.
+Number 1 governs the body's most "fiery" areas. Health issues generally
+arise from excessive energy or energy blockages.
 
-HASSAS BÖLGELER:
-• Baş ve beyin (migren, baş ağrıları)
-• Kalp ve kan dolaşımı (yüksek tansiyon)
-• Gözler (göz yorgunluğu, göz tansiyonu)
-• Kas sistemi (aşırı gerginlik)
-• Böbrek üstü bezleri (adrenal yorgunluk)
+SENSITIVE AREAS:
+• Head and brain (migraines, headaches)
+• Heart and blood circulation (high blood pressure)
+• Eyes (eye strain, eye pressure)
+• Muscular system (excessive tension)
+• Adrenal glands (adrenal fatigue)
 
-ORTAK SAĞLIK SORUNLARI:
-• Stres kaynaklı rahatsızlıklar
-• Uykusuzluk (aşırı aktif zihin)
-• İş bağımlılığı (workaholism)
-• Tükenmişlik sendromu (burnout)
-• Öfke kaynaklı sorunlar
+COMMON HEALTH ISSUES:
+• Stress-related disorders
+• Insomnia (overactive mind)
+• Work addiction (workaholism)
+• Burnout syndrome
+• Anger-related problems
 
-ÖNERİLEN FİZİKSEL AKTİVİTELER:
-• Bireysel sporlar: Koşu, yüzme, bisiklet
-• Dövüş sanatları: Kickboks, taekwondo
-• Rekabetçi sporlar: Tenis, squash
-• Doğa yürüyüşleri (tek başına)
-• Güç antrenmanı
+RECOMMENDED PHYSICAL ACTIVITIES:
+• Individual sports: Running, swimming, cycling
+• Martial arts: Kickboxing, taekwondo
+• Competitive sports: Tennis, squash
+• Nature walks (alone)
+• Strength training
 
-KAÇINILMASI GEREKENLER:
-• Aşırı kafein ve uyarıcılar
-• Gece geç saatlere kadar çalışma
-• Uyku ihmalı
-• Tek başına her şeyi yüklenme
-• Kronik stres
+THINGS TO AVOID:
+• Excessive caffeine and stimulants
+• Working late into the night
+• Neglecting sleep
+• Carrying everything alone
+• Chronic stress
 
-BÜTÜNSEL ŞIFA ÖNERİLERİ:
-• Günlük meditasyon (zihni yavaşlatmak için)
-• Soğuk duş (ateş enerjisini dengelemek)
-• Kırmızı ve turuncu gıdalar (güneş enerjisini destekler)
-• Sitrin kristaliyle çalışma
-• Güneş ışığında zaman geçirme (ama aşırıya kaçmadan)
+HOLISTIC HEALING RECOMMENDATIONS:
+• Daily meditation (to slow the mind)
+• Cold shower (to balance fire energy)
+• Red and orange foods (supports solar energy)
+• Working with citrine crystal
+• Spending time in sunlight (but not excessively)
 
-AYLIK SAĞLIK DÖNGÜSÜ:
-• Yeni ay: Dinlenme, iç yolculuk
-• Büyüyen ay: Yeni sağlık rutinleri başlatma
-• Dolunay: Enerji zirvesi, dikkatli ol
-• Küçülen ay: Detoks, arınma
+MONTHLY HEALTH CYCLE:
+• New moon: Rest, inner journey
+• Waxing moon: Starting new health routines
+• Full moon: Energy peak, be careful
+• Waning moon: Detox, purification
 ''',
 
   wealthVibration: '''
-💰 BOLLUK TİTREŞİMİ VE MADDI DÜNYA 💰
+💰 ABUNDANCE VIBRATION AND MATERIAL WORLD 💰
 
-1 sayısı, "ilk olmak" enerjisiyle zenginlik yaratmada avantajlıdır.
-Ancak para ile ilişki, ego ile doğrudan bağlantılıdır.
+Number 1, with its "being first" energy, has an advantage in creating
+wealth. However, the relationship with money is directly connected to ego.
 
-DOĞAL BOLLUK YETENEKLERİ:
-• Yeni fırsatları ilk fark etme
-• Risk alma cesareti
-• Girişimci ruh
-• Karar verme hızı
-• Kendine güven ve satış yeteneği
+NATURAL ABUNDANCE TALENTS:
+• Being first to spot new opportunities
+• Courage to take risks
+• Entrepreneurial spirit
+• Quick decision-making
+• Self-confidence and sales ability
 
-PARA BLOKLARI:
-• "Hep en iyisine layığım" - gerçekçi olmayan beklentiler
-• Gösteriş ve statü harcamaları
-• Sabırsızlık - hızlı para şemaları
-• Yardım kabul edememe
-• Aşırı bağımsızlık - ortaklık fırsatlarını kaçırma
+MONEY BLOCKS:
+• "I deserve only the best" - unrealistic expectations
+• Show-off and status spending
+• Impatience - get-rich-quick schemes
+• Unable to accept help
+• Excessive independence - missing partnership opportunities
 
-ZENGİNLİK AKTİVASYONU:
-1. MANTRA: "Ben evrensel bolluğun bireysel ifadesiyim"
-2. KRİSTAL: Sitrin, pirit, kaplan gözü
-3. RENK: Altın (cüzdanda altın renkli nesne taşı)
-4. SAYI: 1 ve 8 kombinasyonları (örn: 18, 81, 118)
-5. GÜN: Pazar (Güneş günü) önemli finansal kararlar için
+WEALTH ACTIVATION:
+1. MANTRA: "I am the individual expression of universal abundance"
+2. CRYSTAL: Citrine, pyrite, tiger's eye
+3. COLOR: Gold (carry a gold-colored object in your wallet)
+4. NUMBER: 1 and 8 combinations (e.g., 18, 81, 118)
+5. DAY: Sunday (Sun's day) for important financial decisions
 
-YATIRIM STRATEJİSİ:
-• Öncü sektörlere yatırım (teknoloji, inovasyon)
-• Kendi işine yatırım en iyisi
-• Uzun vadeli düşünceyi geliştir
-• Danışman kullan ama son kararı kendin ver
-• Portföy çeşitlendir (sabırsızlıktan tek yatırıma yüklenme)
+INVESTMENT STRATEGY:
+• Invest in pioneering sectors (technology, innovation)
+• Investing in your own business is best
+• Develop long-term thinking
+• Use advisors but make final decisions yourself
+• Diversify portfolio (don't load up on single investment from impatience)
 
-PARA VE SPİRİTÜEL DENGE:
-Para, enerji alışverişinin aracıdır. Ne reddet ne de tanrılaştır.
-1'ler için para, güç ve özgürlük aracıdır - ama gerçek özgürlük
-içsel doyumdan gelir.
+MONEY AND SPIRITUAL BALANCE:
+Money is a tool for energy exchange. Neither reject nor deify it.
+For 1s, money is a tool for power and freedom - but true freedom
+comes from inner fulfillment.
 ''',
 
   loveAndRelationships: '''
-💕 AŞK VE İLİŞKİLER - KUTSAL BİRLİK YOLU 💕
+💕 LOVE AND RELATIONSHIPS - PATH OF SACRED UNION 💕
 
-1 yaşam yolunda aşk, bağımsızlık ve yakınlık arasındaki dengeyi
-bulmak demektir. Yalnız kalmak değil, birlikte olmak istiyorsun -
-ama kendi alanını koruyarak.
+On life path 1, love means finding balance between independence and
+intimacy. You want to be together, not alone - but while preserving
+your own space.
 
-AŞKTA GÜÇLÜ YÖNLER:
-• Tutkulu ve ateşli sevgi
-• Koruyucu ve sadık
-• Romantik jestler ve sürprizler
-• Güçlü çekim yaratma
-• Aktif ve inisiyatif alan
+STRENGTHS IN LOVE:
+• Passionate and fiery love
+• Protective and loyal
+• Romantic gestures and surprises
+• Creating strong attraction
+• Active and takes initiative
 
-AŞKTA ZORLUKLAR:
-• Kontrolcü olabilme
-• Eleştiriye aşırı tepki
-• Uzlaşmakta zorluk
-• Kendi ihtiyaçlarını öncelikleme
-• Partnerini gölgede bırakma
+CHALLENGES IN LOVE:
+• Can be controlling
+• Overreaction to criticism
+• Difficulty compromising
+• Prioritizing your own needs
+• Overshadowing your partner
 
-İDEAL PARTNER PROFİLİ:
-• Kendi ayakları üzerinde duran
-• Sana meydan okuyan ama saygılı
-• Bağımsızlığına saygı duyan
-• Entelektüel olarak uyarıcı
-• Senin kadar tutkulu ama farklı alanlarda
+IDEAL PARTNER PROFILE:
+• Stands on their own feet
+• Challenges you but respectfully
+• Respects your independence
+• Intellectually stimulating
+• As passionate as you but in different areas
 
-İLİŞKİDE KAÇINILMASI GEREKENLER:
-• "Benim yolum ya da hiç" tutumu
-• Partneri değiştirmeye çalışmak
-• İş ve ilişkiyi karıştırmak (her ikisinde de lider olmaya çalışmak)
-• Duygusal ifadeyi ihmal etmek
-• Kontrolü tamamen bırakmak (denge gerekli)
+THINGS TO AVOID IN RELATIONSHIPS:
+• "My way or no way" attitude
+• Trying to change your partner
+• Mixing work and relationship (trying to lead in both)
+• Neglecting emotional expression
+• Completely letting go of control (balance needed)
 
-KUTSAL BİRLİK İÇİN PRATİKLER:
-• Birlikte meditasyon
-• Karşılıklı masaj ve dokunma ritüelleri
-• Ayrı aktiviteler ve birlikte aktiviteler dengesi
-• Düzenli "tarih geceleri"
-• Birlikte büyüme hedefleri belirleme
+PRACTICES FOR SACRED UNION:
+• Meditation together
+• Mutual massage and touch rituals
+• Balance of separate and shared activities
+• Regular "date nights"
+• Setting growth goals together
 
-KARMİK İLİŞKİLER:
-8 ve 4 sayılı partnerlerle ilişkiler genellikle karmiktir. Zor ama
-öğretici. Bu ilişkiler, ego derslerini vermek için hayatına girer.
+KARMIC RELATIONSHIPS:
+Relationships with partners numbered 8 and 4 are usually karmic.
+Difficult but instructive. These relationships enter your life to
+teach ego lessons.
 
-RUH EŞİ İŞARETLERİ:
-• İlk görüşte tanıma hissi
-• Birlikte olamadan önce bireysel dönüşüm
-• Karşılıklı ilham ve büyüme
-• "Ben" değil "biz" düşüncesinin doğal gelmesi
-• Birlikte daha büyük bir amaca hizmet etme
+SOUL MATE SIGNS:
+• Recognition at first sight feeling
+• Individual transformation before being together
+• Mutual inspiration and growth
+• "We" thinking coming naturally instead of "I"
+• Serving a greater purpose together
 ''',
 
   famousExamples: [
-    'Martin Luther King Jr. - Sivil haklar öncüsü',
-    'Lady Gaga - Müzikal ikonoklast',
-    'Steve Jobs - Teknoloji vizyoneri',
-    'Nikola Tesla - Mucit dahi',
-    'Napoleon Bonaparte - Askeri stratejist',
-    'Tom Hanks - Hollywood\'un güvenilir yıldızı',
-    'Scarlett Johansson - Çok yönlü sanatçı',
-    'Tiger Woods - Golf efsanesi',
-    'Atatürk - Cumhuriyetin kurucusu',
+    'Martin Luther King Jr. - Civil rights pioneer',
+    'Lady Gaga - Musical iconoclast',
+    'Steve Jobs - Technology visionary',
+    'Nikola Tesla - Inventor genius',
+    'Napoleon Bonaparte - Military strategist',
+    'Tom Hanks - Hollywood\'s reliable star',
+    'Scarlett Johansson - Versatile artist',
+    'Tiger Woods - Golf legend',
+    'Ataturk - Founder of the Republic',
   ],
 
   dailyAffirmations: [
-    'Ben yaratıcı gücün saf ifadesiyim.',
-    'Cesaretle kendi yolumu çiziyorum.',
-    'Liderliğim, hizmet etmekten geçer.',
-    'İçimdeki ışık, yolumu aydınlatıyor.',
-    'Bağımsızım ama asla yalnız değilim.',
-    'Her yeni gün, yeni bir başlangıç.',
-    'Gücüm, alçakgönüllülükle dengeleniyor.',
-    'Evrenin desteğiyle ileri yürüyorum.',
-    'Potansiyelim sınırsız, sabrım güçlü.',
-    'Ben bir öncüyüm ve yolumu onurla yürüyorum.',
+    'I am the pure expression of creative power.',
+    'I chart my own path with courage.',
+    'My leadership comes through service.',
+    'The light within illuminates my path.',
+    'I am independent but never alone.',
+    'Every new day is a new beginning.',
+    'My strength is balanced with humility.',
+    'I walk forward with the support of the universe.',
+    'My potential is limitless, my patience is strong.',
+    'I am a pioneer and walk my path with honor.',
   ],
 
   meditationMantras: [
-    'OM - Evrensel birliğin sesi',
-    'RA - Güneş tanrısının titreşimi',
-    'HAM - Ateş elementinin mantrası',
-    'SO HAM - Ben O\'yum, O Benim',
-    'OM NAMAH SHIVAYA - Saf bilince selam',
-    'AUM SURYA NAMAHA - Güneşe selam',
+    'OM - Voice of universal unity',
+    'RA - Vibration of the Sun god',
+    'HAM - Mantra of the fire element',
+    'SO HAM - I am That, That is Me',
+    'OM NAMAH SHIVAYA - Salutation to pure consciousness',
+    'AUM SURYA NAMAHA - Salutation to the Sun',
   ],
 
   healingPractice: '''
-🙏 ŞIFA PRATİĞİ: GÜNEŞ MEDİTASYONU 🙏
+🙏 HEALING PRACTICE: SUN MEDITATION 🙏
 
-Bu pratik, 1 enerjisini dengelemek ve aktive etmek için tasarlanmıştır.
-İdeal zaman: Güneşin doğuşu veya öğle vakti.
+This practice is designed to balance and activate 1 energy.
+Ideal time: Sunrise or noon.
 
-HAZIRLIK:
-1. Doğuya dönük, rahat bir pozisyonda otur
-2. Omurgayı dik tut, omuzları gevşet
-3. Ellerini dizlerinin üzerine, avuçlar yukarı koy
-4. Gözlerini hafifçe kapa
+PREPARATION:
+1. Sit in a comfortable position facing east
+2. Keep spine erect, relax shoulders
+3. Place hands on knees, palms up
+4. Gently close your eyes
 
-NEFES (5 dakika):
-1. Burnundan derin nefes al (4 sayı)
-2. Nefesini tut (4 sayı)
-3. Ağızdan yavaşça ver (4 sayı)
-4. Boş tut (4 sayı)
-5. Tekrarla
+BREATH (5 minutes):
+1. Inhale deeply through nose (count 4)
+2. Hold breath (count 4)
+3. Exhale slowly through mouth (count 4)
+4. Hold empty (count 4)
+5. Repeat
 
-GÖRSELLEŞTIRME (10 dakika):
-1. Güneşin altın ışığının tependen girdiğini hayal et
-2. Bu ışık, bedeninin her hücresini doldursun
-3. Solar plexus bölgeni altın bir güneş olarak gör
-4. Bu güneş, her nefeste genişliyor
-5. Işık, auranı doldurup seni saran bir küre oluşturuyor
+VISUALIZATION (10 minutes):
+1. Visualize the golden light of the sun entering from the top of your head
+2. Let this light fill every cell of your body
+3. See your solar plexus area as a golden sun
+4. This sun expands with each breath
+5. Light fills your aura, forming a sphere surrounding you
 
-MANTRA (5 dakika):
-"RA... RA... RA..." - Güneş tanrısının adını sessizce tekrarla
-Her tekrarda, içindeki güneşin parladığını hisset
+MANTRA (5 minutes):
+"RA... RA... RA..." - Silently repeat the name of the Sun god
+With each repetition, feel the sun within you shining
 
-KAPATMA (5 dakika):
-1. Işığı yavaşça topla, kalbine yerleştir
-2. Minnettarlık hisset - varlığın için, gücün için
-3. "Bugün ışığımı sevgiyle paylaşacağım" niyetini kur
-4. Derin bir nefes al ve gözlerini aç
+CLOSING (5 minutes):
+1. Slowly gather the light, place it in your heart
+2. Feel gratitude - for your existence, for your power
+3. Set the intention "Today I will share my light with love"
+4. Take a deep breath and open your eyes
 
-Bu pratiği haftada en az 3 kez yap. Pazar günleri özellikle güçlü.
-Yeni ayda başla, düzenli pratik kur.
+Practice this at least 3 times per week. Sundays are especially powerful.
+Start at new moon, establish regular practice.
 ''',
 
   yearlyGuidance: {
     '2024': '''
-2024 - BAŞLANGIÇ YILI (Evrensel 8)
-8 evrensel yılı, 1'ler için güç ve başarı getirir. Liderlik fırsatları
-bollaşacak. Finansal konularda dikkatli ama cesur ol. Bu yıl attığın
-adımlar, önümüzdeki 9 yılı şekillendirecek.
+2024 - BEGINNING YEAR (Universal 8)
+Universal year 8 brings power and success for 1s. Leadership opportunities
+will abound. Be careful but bold in financial matters. Steps you take this
+year will shape the next 9 years.
 ''',
     '2025': '''
-2025 - TAMAMLAMA YILI (Evrensel 9)
-9 evrensel yılı, bitirme ve hazırlık zamanı. Eski projeleri tamamla,
-gereksiz bağları kes. Yeni döngüye hazırlan. Fedakarlık ve hizmet
-temaları öne çıkacak.
+2025 - COMPLETION YEAR (Universal 9)
+Universal year 9 is a time for finishing and preparation. Complete old
+projects, cut unnecessary ties. Prepare for new cycle. Themes of sacrifice
+and service will come to fore.
 ''',
     '2026': '''
-2026 - YENİ DÖNGÜ BAŞLANGICI (Evrensel 1)
-1+1 kombinasyonu! Bu yıl senin yılın. Yeni başlangıçlar için mükemmel
-zaman. Ertelediğin projeleri başlat. Cesur ol, risk al. Evren seninle.
+2026 - NEW CYCLE BEGINNING (Universal 1)
+1+1 combination! This year is your year. Perfect time for new beginnings.
+Start projects you've postponed. Be bold, take risks. The universe is with you.
 ''',
     '2027': '''
-2027 - ORTAKLIK YILI (Evrensel 2)
-2 enerjisi, 1'leri dengelemeye çağırır. İşbirlikleri, ilişkiler ön
-planda. Diplomasi ve sabır gerekecek. Tek başına değil, birlikte
-büyüme zamanı.
+2027 - PARTNERSHIP YEAR (Universal 2)
+2 energy calls 1s to balance. Collaborations, relationships in foreground.
+Diplomacy and patience will be needed. Time to grow together, not alone.
 ''',
     '2028': '''
-2028 - YARATICILIK YILI (Evrensel 3)
-Yaratıcı projelerin parladığı dönem. Kendini ifade et, sanat yap,
-eğlen. Sosyal bağlantılar güçlenecek. Neşe ve hafiflik getir hayatına.
+2028 - CREATIVITY YEAR (Universal 3)
+Period when creative projects shine. Express yourself, make art, have fun.
+Social connections will strengthen. Bring joy and lightness to your life.
 ''',
   },
 );
 
-/// Yaşam Yolu 2 - Diplomat / Şifacı
+/// Life Path 2 - Diplomat / Healer
 const lifePathMega2 = LifePathMegaContent(
   number: 2,
-  title: 'Kozmik Dengeleyici',
-  archetype: 'Diplomat / Şifacı / Köprü',
+  title: 'Cosmic Balancer',
+  archetype: 'Diplomat / Healer / Bridge',
   sacredSymbol: '☽',
-  element: 'Su - Derin Duygusal Akış',
-  planet: 'Ay - Gümüş Ana',
-  tarotMajorArcana: 'Yüksek Rahibe (II) - İçsel Bilgeliğin Koruyucusu',
-  runicSymbol: 'Laguz ᛚ - Su ve Sezgi',
-  colors: ['Gümüş', 'Turuncu', 'Açık Mavi', 'İnci Beyazı'],
-  crystals: ['Ay Taşı', 'Pembe Kuvars', 'Selenit', 'Akvamarin', 'İnci'],
-  chakraAlignment: 'Sakral Çakra (Svadhisthana) ve Kalp Çakra (Anahata)',
-  sacredGeometry: 'Vesica Piscis - İki Dairenin Kesişimi',
-  frequencyHz: '417 Hz - Değişimi Kolaylaştırma',
-  musicalNote: 'Re (D) - Uyum Titreşimi',
+  element: 'Water - Deep Emotional Flow',
+  planet: 'Moon - Silver Mother',
+  tarotMajorArcana: 'The High Priestess (II) - Guardian of Inner Wisdom',
+  runicSymbol: 'Laguz ᛚ - Water and Intuition',
+  colors: ['Silver', 'Orange', 'Light Blue', 'Pearl White'],
+  crystals: ['Moonstone', 'Rose Quartz', 'Selenite', 'Aquamarine', 'Pearl'],
+  chakraAlignment: 'Sacral Chakra (Svadhisthana) and Heart Chakra (Anahata)',
+  sacredGeometry: 'Vesica Piscis - Intersection of Two Circles',
+  frequencyHz: '417 Hz - Facilitating Change',
+  musicalNote: 'D - Harmony Vibration',
 
   deepSpiritualMeaning: '''
-☽ KADİM BİLGELİK: İKİNİN MİSTİK SIRRI ☽
+☽ ANCIENT WISDOM: THE MYSTIC SECRET OF TWO ☽
 
-2 sayısı, birliğin bölünmesinden doğan ilk dualitedir. Gece ve gündüz,
-erkil ve dişil, gökyüzü ve yeryüzü - tüm zıtlıkların dansı 2'de başlar.
-Ama 2'nin gerçek sırrı, zıtlıkların çatışması değil, birleşmesidir.
+Number 2 is the first duality born from the division of unity. Day and night,
+masculine and feminine, sky and earth - the dance of all opposites begins in 2.
+But the true secret of 2 is not the conflict of opposites, but their union.
 
-Pisagor, 2'yi "Dyad" olarak adlandırdı - ikili, çift. Dyad, Monad'dan
-(1) ayrılmış gibi görünse de, aslında birliğin başka bir ifadesidir.
-Ayna ve yansıması gibi - ikisi ayrı ama özde bir.
+Pythagoras called 2 the "Dyad" - dual, pair. Although the Dyad appears to be
+separated from the Monad (1), it is actually another expression of unity.
+Like a mirror and its reflection - two appear separate but are essentially one.
 
-Kabala'da 2, "Chokmah" (Bilgelik) sefirasına karşılık gelir. Ama daha
-derin seviyede, "Binah" (Anlayış) ile dualite oluşturur. Bu iki sefira,
-Hayat Ağacı'nın üst üçgeninde "Supernal Parents" - İlahi Ebeveynler
-olarak bilinir. Sen, bu ilahi dengenin insan formu taşıyıcısısın.
+In Kabbalah, 2 corresponds to the "Chokmah" (Wisdom) sephira. But at a deeper
+level, it forms duality with "Binah" (Understanding). These two sephiroth,
+in the upper triangle of the Tree of Life, are known as "Supernal Parents" -
+the Divine Parents. You are the human form carrier of this divine balance.
 
-Taoizm'de 2, Yin-Yang prensibini temsil eder. Yin (dişil, alıcı, karanlık)
-ve Yang (erkil, verici, aydınlık) birbirini tamamlar, birbirine dönüşür.
-2 yaşam yolundakiler, bu döngüsel dengenin ustalarıdır.
+In Taoism, 2 represents the Yin-Yang principle. Yin (feminine, receptive, dark)
+and Yang (masculine, giving, light) complete each other, transform into each other.
+Those on life path 2 are masters of this cyclical balance.
 
-Kadim Mısır'da Ay, Thoth'un gözü olarak kabul edilirdi - bilgelik, yazı
-ve sırların tanrısı. 2'ler de bu gizli bilgeliği taşır: Görünmeyeni görme,
-söylenmeyeni duyma yeteneği.
+In ancient Egypt, the Moon was considered the eye of Thoth - god of wisdom,
+writing, and secrets. 2s also carry this hidden wisdom: The ability to see
+the unseen, to hear the unspoken.
 
-Hindu mitolojisinde Ay (Chandra), zihnin (manas) yöneticisidir. 2 yaşam
-yolundakiler, zihinsel ve duygusal dünyaların arasında köprü kurar -
-mantık ile sezgi, akıl ile his arasında dans eder.
+In Hindu mythology, the Moon (Chandra) is the ruler of the mind (manas). Life path 2
+people build bridges between mental and emotional worlds -
+dancing between logic and intuition, reason and feeling.
 ''',
 
   karmicLessons: '''
-✦ KARMİK DERSLER VE RUHSAL SINAMALAR ✦
+✦ KARMIC LESSONS AND SPIRITUAL TESTS ✦
 
-2 yaşam yolunun karmik dersleri, kendilik ve başkaları arasındaki dengede
-yatar. Geçmiş yaşamlarında muhtemelen ya çok fazla kendini feda ettin
-ya da başkalarından tamamen kopuk yaşadın. Bu hayatta dengeyi bulmalısın.
+The karmic lessons of life path 2 lie in the balance between self and others.
+In past lives, you likely either sacrificed yourself too much or lived
+completely disconnected from others. In this life, you must find balance.
 
-Birincil Karmik Ders: BENLİK VE FEDAKARİK DENGESİ
-Başkalarına yardım etmek güzel, ama kendini kaybetmek değil. Dersin,
-sınır koymayı, "hayır" demeyi, kendi ihtiyaçlarını da onurlandırmayı
-öğrenmek. Şehit kompleksinden kaçınmalısın.
+Primary Karmic Lesson: BALANCE OF SELF AND SACRIFICE
+Helping others is beautiful, but losing yourself is not. Your lesson is
+learning to set boundaries, say "no," and honor your own needs too.
+You must avoid the martyr complex.
 
-İkincil Karmik Ders: GÖRÜNÜRLÜK VE GİZLİLİK
-Arka planda kalmak senin doğan, ama görünmez olmak misyonunu engelleyebilir.
-Dersin, ne zaman ortaya çıkacağını, ne zaman geri çekileceğini bilmek.
+Secondary Karmic Lesson: VISIBILITY AND INVISIBILITY
+Staying in the background is your nature, but being invisible can hinder
+your mission. Your lesson is knowing when to step forward, when to step back.
 
-Üçüncül Karmik Ders: BAĞIMLILIK VE BAĞIMSIZLIK
-İlişkilere tutunmak, bağımlılığa dönüşebilir. Dersin, sağlıklı bağlanmayı
-öğrenmek - yapışmadan sevmek, kaybetme korkusu olmadan paylaşmak.
+Tertiary Karmic Lesson: DEPENDENCY AND INDEPENDENCE
+Clinging to relationships can turn into dependency. Your lesson is learning
+healthy attachment - loving without clinging, sharing without fear of loss.
 
-Karmik Sınama Dönemleri:
-• 18, 27, 36, 45 yaşları kritik
-• Ay tutulmaları dönemleri yoğun
-• Yengeç ve Balık mevsimlerinde dersler yoğunlaşır
+Karmic Test Periods:
+• Ages 18, 27, 36, 45 are critical
+• Lunar eclipse periods are intense
+• Lessons intensify during Cancer and Pisces seasons
 
-Karmayı Dengeleme Yolları:
-• Sınır koyma pratiği yap
-• Kendi ihtiyaçlarını karşılamayı öğren
-• Bağımsız kararlar al
-• "Hayır" demeyi pratik et
-• Yalnız kalma kapasiteni geliştir
+Ways to Balance Karma:
+• Practice setting boundaries
+• Learn to meet your own needs
+• Make independent decisions
+• Practice saying "no"
+• Develop your capacity for solitude
 ''',
 
   pastLifeConnections: '''
-✧ GEÇMİŞ YAŞAM BAĞLANTILARI ✧
+✧ PAST LIFE CONNECTIONS ✧
 
-2 yaşam yolunda doğanlar, genellikle şu geçmiş yaşam arketiplerini taşır:
+Those born on life path 2 typically carry these past life archetypes:
 
-RAHİBE/KEŞİŞ GEÇMİŞİ
-Önceki enkarnasyonlarda tapınak hizmeti, manastır yaşamı veya spiritüel
-topluluk içinde yaşamış olabilirsin. Sessizlik, hizmet, ve başkalarını
-destekleme enerjisi ruhunda derin.
+PRIESTESS/MONK PAST
+In previous incarnations, you may have lived in temple service, monastery
+life, or within spiritual community. The energy of silence, service, and
+supporting others runs deep in your soul.
 
-ŞİFACI/EBE GEÇMİŞİ
-Doğumlara yardım etme, hastaları iyileştirme, ölüm anında refakat etme
-deneyimlerin var. Geçiş anlarında - doğum, ölüm, dönüşüm - bulunma
-kapasiten bu yaşamlardan geliyor.
+HEALER/MIDWIFE PAST
+You have experiences of assisting births, healing the sick, accompanying
+at the moment of death. Your capacity to be present at transition moments -
+birth, death, transformation - comes from these lives.
 
-DANIŞMAN/VEZİR GEÇMİŞİ
-Güçlü liderlerin arkasında sessiz güç olmuşsun. Tavsiye veren, yönlendiren,
-ama asla ön planda olmayan. Bu hayatta, bazen kendi liderliğini de
-üstlenmen gerekebilir.
+ADVISOR/VIZIER PAST
+You were the silent power behind strong leaders. The one who advises,
+guides, but is never in the foreground. In this life, sometimes you may
+need to take on your own leadership.
 
-SANATÇI/MÜZİSYEN GEÇMİŞİ
-Güzellik yaratma, harmoni oluşturma geçmişin var. Müzik, dans, şiir -
-duygusal ifadenin çeşitli formlarında ustalaşmışsın.
+ARTIST/MUSICIAN PAST
+You have a past of creating beauty, forming harmony. Music, dance, poetry -
+you have mastered various forms of emotional expression.
 
-Geçmiş Yaşam Tetikleyicileri:
-• Su kıyısında huzur bulma
-• Eski tapınak veya kiliselerde déjà vu
-• Bazı insanlara anında güven veya korku
-• Gece gökyüzüne, özellikle aya, derin çekim
-• Müzik veya sanatta açıklanamaz yetenek
+Past Life Triggers:
+• Finding peace by water's edge
+• Déjà vu in old temples or churches
+• Instant trust or fear with certain people
+• Deep attraction to the night sky, especially the moon
+• Unexplainable talent in music or art
 ''',
 
   soulPurpose: '''
-❂ RUHUN KUTSAL MİSYONU ❂
+❂ THE SOUL'S SACRED MISSION ❂
 
-Sen bu dünyaya özel bir misyonla geldin: KÖPRÜ OLMAK ve ŞİFA GETİRMEK.
+You came to this world with a special mission: TO BE A BRIDGE and BRING HEALING.
 
-Birincil Ruh Amacı: BİRLEŞTİRME
-Ayrı görüneni birleştirmek, kopuk olanı bağlamak senin görevin.
-İnsanlar arası, fikirler arası, dünyalar arası köprü kurarsın.
-Diplomasi ve arabuluculuk doğal yeteneklerin.
+Primary Soul Purpose: UNIFICATION
+Your task is to unite what appears separate, to connect what is disconnected.
+You build bridges between people, between ideas, between worlds.
+Diplomacy and mediation are your natural talents.
 
-İkincil Ruh Amacı: ŞİFA
-Varlığın bile şifalıdır. Enerjin, yanındakileri sakinleştirir,
-huzur verir. Bu pasif bir yetenek değil - aktif olarak kullanmalısın.
+Secondary Soul Purpose: HEALING
+Even your presence is healing. Your energy calms those around you,
+brings peace. This is not a passive ability - you must use it actively.
 
-Üçüncül Ruh Amacı: DENGE GETİRME
-Kaos ortamlarında denge noktası sensin. Fırtınada göz, savaşta ara bölge.
-Bu, kaçınma değil - bilinçli konumlanma.
+Tertiary Soul Purpose: BRINGING BALANCE
+In chaotic environments, you are the point of balance. The eye in the storm,
+the neutral zone in battle. This is not avoidance - it's conscious positioning.
 
-Ruh Sözleşmesi Detayları:
-• En az bir ilişkide derin şifa deneyimi yaşayacaksın
-• Başkalarının çatışmalarını çözmede anahtar rol oynayacaksın
-• Kendi sesini bulup ifade etmeyi öğreneceksin
-• Sınır koymayı ustalaştıracaksın
-• Görünür ve görünmez arasında köprü olacaksın
+Soul Contract Details:
+• You will experience deep healing in at least one relationship
+• You will play a key role in resolving others' conflicts
+• You will learn to find and express your own voice
+• You will master setting boundaries
+• You will be a bridge between the visible and invisible
 
-Misyonunu Engelleyen Faktörler:
-• Çatışmadan aşırı kaçınma
-• Kendini silme eğilimi
-• Onay bağımlılığı
-• Sınır koyamama
-• Aşırı hassasiyet
+Factors That Block Your Mission:
+• Excessive avoidance of conflict
+• Tendency to erase yourself
+• Approval dependency
+• Inability to set boundaries
+• Excessive sensitivity
 
-Misyonunu Destekleyen Faktörler:
-• Düzenli meditasyon ve içe dönüş
-• Sanat ve yaratıcı ifade
-• Doğada, özellikle su kenarında zaman
-• Bilinçli ilişki pratiği
-• Şifa sanatları eğitimi
+Factors That Support Your Mission:
+• Regular meditation and introspection
+• Art and creative expression
+• Time in nature, especially by water
+• Conscious relationship practice
+• Training in healing arts
 ''',
 
   shadowAspects: '''
-☾ GÖLGE YÖNLERİ VE DÖNÜŞÜM ☾
+☾ SHADOW ASPECTS AND TRANSFORMATION ☾
 
-2 sayısının gölgeleri, aşırı uyum ve kendini kaybetme etrafında döner.
-Işığın en parlak yandığı yerde gölge de en koyu olur.
+The shadows of number 2 revolve around excessive accommodation and losing
+oneself. Where the light burns brightest, the shadow is also darkest.
 
-BİRİNCİL GÖLGE: KENDİNİ SİLME
-Belirtiler:
-• Kendi ihtiyaçlarını sürekli erteleme
-• Başkalarının mutluluğu için kendini feda etme
-• "Ben önemli değilim" inancı
-• Görünmez olma eğilimi
-• Pasif agresif davranışlar
+PRIMARY SHADOW: SELF-ERASURE
+Symptoms:
+• Constantly postponing your own needs
+• Sacrificing yourself for others' happiness
+• "I'm not important" belief
+• Tendency to be invisible
+• Passive aggressive behaviors
 
-Dönüşüm Yolu:
-Fedakarlık, kendini kaybetmek değildir. Önce kendi bardağını doldurmalısın
-ki başkalarına akıtabilesin. "Benim ihtiyaçlarım da geçerli" - bu
-mantra ile çalış.
+Transformation Path:
+Sacrifice is not losing yourself. You must fill your own cup first
+so you can pour for others. Work with this mantra: "My needs are
+also valid."
 
-İKİNCİL GÖLGE: BAĞIMLILIK
-Belirtiler:
-• İlişkilere aşırı bağlanma
-• Yalnız kalamama
-• Karar vermek için onay arama
-• Ayrılık anksiyetesi
-• Terk edilme korkusu
+SECONDARY SHADOW: DEPENDENCY
+Symptoms:
+• Excessive attachment to relationships
+• Inability to be alone
+• Seeking approval to make decisions
+• Separation anxiety
+• Fear of abandonment
 
-Dönüşüm Yolu:
-Bağlanma, bağımlılık değildir. Birini sevmek, ona muhtaç olmak demek
-değil. Kendi bütünlüğünü, ilişkiler olmadan da hissetmeyi öğren.
+Transformation Path:
+Attachment is not dependency. Loving someone doesn't mean needing them.
+Learn to feel your own wholeness, even without relationships.
 
-ÜÇÜNCÜL GÖLGE: ÇATIŞMADAN KAÇINMA
-Belirtiler:
-• Her durumda uzlaşma arayışı (bazen gerekmese de)
-• Kendi fikrini söylemekten kaçınma
-• Problemleri halının altına süpürme
-• Yüzeyde barış, içte kaos
-• Öfkeyi bastırma
+TERTIARY SHADOW: CONFLICT AVOIDANCE
+Symptoms:
+• Seeking compromise in every situation (even when unnecessary)
+• Avoiding expressing your own opinion
+• Sweeping problems under the rug
+• Peace on the surface, chaos inside
+• Suppressing anger
 
-Dönüşüm Yolu:
-Çatışma, her zaman olumsuz değildir. Bazen en derin bağlar, dürüst
-çatışmalardan sonra kurulur. Kendi sesin de bu dünyada yer hak ediyor.
+Transformation Path:
+Conflict is not always negative. Sometimes the deepest bonds are formed
+after honest conflicts. Your voice also deserves a place in this world.
 
-DÖRDÜNCÜL GÖLGE: KURBAN ROLÜ
-Belirtiler:
-• "Herkes beni kullanıyor" inancı
-• Şehit kompleksi
-• Şikayet ama değişim için adım atmama
-• Sorumluluktan kaçınma (suçu dışarıda arama)
+QUATERNARY SHADOW: VICTIM ROLE
+Symptoms:
+• "Everyone uses me" belief
+• Martyr complex
+• Complaining but not taking steps for change
+• Avoiding responsibility (blaming externally)
 
-Dönüşüm Yolu:
-Kurban rolü, gizli bir güç arayışıdır. "Ben ne yaparsam yapayım değişmez"
-inancı, aslında "ben hiçbir şeyden sorumlu değilim" demektir. Gücünü
-geri al.
+Transformation Path:
+The victim role is a hidden search for power. "Nothing changes no matter
+what I do" belief actually means "I'm not responsible for anything."
+Take back your power.
 
-Gölge Çalışması Ritüel:
-Dolunayda, bir kase suya bak. Yansımanı gör. Gölgenle konuş: "Seni
-görüyorum. Senin acın benim acım. Birlikte iyileşeceğiz." Suya
-gözyaşlarını, korkularını bırak. Sonra suyu toprağa dök.
+Shadow Work Ritual:
+At full moon, look into a bowl of water. See your reflection. Talk to
+your shadow: "I see you. Your pain is my pain. We will heal together."
+Release your tears, your fears into the water. Then pour the water onto earth.
 ''',
 
   tantricEnergySignature: '''
-🌙 TANTRİK ENERJİ İMZASI 🌙
+🌙 TANTRIC ENERGY SIGNATURE 🌙
 
-2 sayısı, saf feminen (Shakti) enerjiyi temsil eder. Bu, cinsiyet
-meselesi değil, kozmik prensip. Erkek bedeninde de olsan, 2 enerjisi
-alıcı, besleyici, dönüştürücü güçtür.
+Number 2 represents pure feminine (Shakti) energy. This is not a gender
+issue, but a cosmic principle. Even in a male body, 2 energy is
+receptive, nurturing, transformative power.
 
-KUNDALINI KARAKTERİSTİĞİ
-2'lerin kundalinisi genellikle yumuşak, dalgalı ve su gibi akar.
-Ani patlamalardan ziyade kademeli uyanış tercih eder.
+KUNDALINI CHARACTERISTICS
+The kundalini of 2s generally flows soft, wavy, and like water.
+It prefers gradual awakening rather than sudden bursts.
 
-Kundalini Özellikleri:
-• Su elementi dominant
-• Yavaş, kademeli yükseliş
-• Sakral çakrada yoğunlaşma
-• Duygusal arınma ile birlikte hareket
-• Rüyalar yoluyla aktivasyon
+Kundalini Features:
+• Water element dominant
+• Slow, gradual rising
+• Concentration in sacral chakra
+• Movement together with emotional purification
+• Activation through dreams
 
-TANTRİK CİNSELLİK
-2 enerjisi cinsellikte alıcı, duygusal ve derin bağlantı arayan rol
-üstlenir. Seksüel enerji, 2'ler için şifa ve dönüşüm aracıdır.
+TANTRIC SEXUALITY
+2 energy takes the receptive, emotional, and deep connection-seeking
+role in sexuality. Sexual energy is a tool for healing and transformation for 2s.
 
-Tantrik Pratikler:
-• Yavaş, bilinçli birleşme (slow sex)
-• Duygusal bağ önce, fiziksel sonra
-• Partner seçiminde ruh bağlantısı kritik
-• Orgazm odaklı değil, enerji odaklı yaklaşım
-• Göz teması ve nefes senkronizasyonu
+Tantric Practices:
+• Slow, conscious union (slow sex)
+• Emotional connection first, physical second
+• Soul connection critical in partner selection
+• Energy-focused approach, not orgasm-focused
+• Eye contact and breath synchronization
 
-KUTSAL BİRLİK
-2 enerjisi, 1 enerjisiyle birleştiğinde mükemmel tantrik denge oluşur.
-Shakti (2) ve Shiva (1) birliği, tüm tantrik geleneklerin özüdür.
+SACRED UNION
+When 2 energy unites with 1 energy, perfect tantric balance is created.
+The union of Shakti (2) and Shiva (1) is the essence of all tantric traditions.
 
-Uyumlu Tantrik Partnerler: 1, 6, 9
-Zorlayıcı Tantrik Kombinasyonlar: 5, 7
+Compatible Tantric Partners: 1, 6, 9
+Challenging Tantric Combinations: 5, 7
 
-ENERJİ BEDEN BAĞLANTILARI
-2 enerjisi özellikle şu noktalarda yoğunlaşır:
-• Sakral Çakra (Svadhisthana) - duygusal akış, yaratıcılık
-• Kalp Çakra (Anahata) - sevgi, şefkat, bağlantı
-• Üçüncü Göz (Ajna) - sezgi, iç görüş
+ENERGY BODY CONNECTIONS
+2 energy concentrates especially at these points:
+• Sacral Chakra (Svadhisthana) - emotional flow, creativity
+• Heart Chakra (Anahata) - love, compassion, connection
+• Third Eye (Ajna) - intuition, inner vision
 
-Enerji Dengesi İçin:
-• Su ritüelleri (banyo, yüzme, yağmurda yürüme)
-• Ay meditasyonları
-• Yavaş, akışkan hareketler (dans, yoga)
-• Duygusal ifade (ağlama, gülme, yazma)
+For Energy Balance:
+• Water rituals (bathing, swimming, walking in rain)
+• Moon meditations
+• Slow, fluid movements (dance, yoga)
+• Emotional expression (crying, laughing, writing)
 ''',
 
   sacredGeometryConnection: '''
-◯ KUTSAL GEOMETRİ BAĞLANTISI ◯
+◯ SACRED GEOMETRY CONNECTION ◯
 
-2 sayısının kutsal geometrisi, VESICA PISCIS'tir.
+The sacred geometry of number 2 is VESICA PISCIS.
 
 VESICA PISCIS
-İki dairenin kesişmesiyle oluşan badem şekli. Bu form, iki dünyanın
-buluşma noktasını, geçiş kapısını simgeler. Rahmin şekli, gözün
-şekli, kapının şekli - hepsi vesica piscis'in yansımalarıdır.
+The almond shape formed by the intersection of two circles. This form
+symbolizes the meeting point of two worlds, the gateway of transition.
+The shape of the womb, the shape of the eye, the shape of the door -
+all are reflections of vesica piscis.
 
-Spiritüel Anlamı:
-• İki dünya arasındaki portal
-• Yaratılışın rahmi
-• Gizli bilgeliğin kapısı
-• Birleşme ve doğum noktası
-• Sezgisel görüşün sembolü
+Spiritual Meaning:
+• Portal between two worlds
+• Womb of creation
+• Gateway to hidden wisdom
+• Point of union and birth
+• Symbol of intuitive vision
 
-DÜALITE SEMBOLLERİ
-• Yin-Yang: Zıtların dansı ve birliği
-• İkiz sütunlar: Jachin ve Boaz (Süleyman Tapınağı)
-• Çift yılan: Caduceus, DNA
-• Ay ve Güneş: Gümüş ve Altın, Gece ve Gündüz
+DUALITY SYMBOLS
+• Yin-Yang: Dance and unity of opposites
+• Twin pillars: Jachin and Boaz (Solomon's Temple)
+• Double serpent: Caduceus, DNA
+• Moon and Sun: Silver and Gold, Night and Day
 
-Meditasyon Pratiği:
-İki daire hayal et, yavaşça birbirine yaklaşıyor. Kesişim noktasında
-vesica piscis oluşuyor. Bu badem şekline gir - bu senin kutsal alanın,
-iki dünya arasındaki evin. Burada hem görünür hem görünmezsin.
+Meditation Practice:
+Visualize two circles, slowly approaching each other. At the point of
+intersection, vesica piscis forms. Enter this almond shape - this is
+your sacred space, your home between two worlds. Here you are both
+visible and invisible.
 
-Kutsal Geometri Aktivasyonu:
-• Dolunayda iki beyaz mum yak, ortalarında otur
-• Bu iki ışığın kesişim noktasında meditasyon yap
-• "Ben köprüyüm, ben kapıyım" niyetini tut
-• Vesica piscis sembolünü gümüş bir nesne üzerine çiz, yanında taşı
+Sacred Geometry Activation:
+• At full moon, light two white candles, sit between them
+• Meditate at the intersection point of these two lights
+• Hold the intention "I am the bridge, I am the gateway"
+• Draw the vesica piscis symbol on a silver object, carry it with you
 ''',
 
   kundaliniActivation: '''
-🐍 KUNDALİNİ AKTİVASYONU 🐍
+🐍 KUNDALINI ACTIVATION 🐍
 
-2 yaşam yolu, nazik ama derin bir kundalini potansiyeli taşır.
-Su gibi - yumuşak ama zamanla kayaları bile aşındırır.
+Life path 2 carries gentle but deep kundalini potential.
+Like water - soft but over time erodes even rocks.
 
-KUNDALİNİ KARAKTERİSTİKLERİ
-• Doğal olarak pasif veya yarı-uyanık durumda
-• Kademeli, organik uyanış süreci
-• Duygusal tetikleyicilerle aktive olur
-• Rüyalarda su, ay, kadın figürleri, inciler
-• Aşk ve yakınlık anlarında güçlenir
+KUNDALINI CHARACTERISTICS
+• Naturally passive or semi-awakened state
+• Gradual, organic awakening process
+• Activated by emotional triggers
+• Water, moon, feminine figures, pearls in dreams
+• Strengthens in moments of love and intimacy
 
-TEHLİKELER VE UYARILAR
-2 enerjisi aceleci değil, ama duygusal travmalar kundaliniyi karmaşık
-şekillerde tetikleyebilir:
-• Duygusal boşalımlar (ağlama krizleri)
-• Aşırı hassasiyettenpsişik saldırılara açıklık
-• Enerji vampirlerine çekim
-• Sınır kaybı deneyimleri
-• Başkalarının duygularını taşıma
+DANGERS AND WARNINGS
+2 energy is not hasty, but emotional traumas can trigger kundalini
+in complex ways:
+• Emotional releases (crying episodes)
+• Openness to psychic attacks from excessive sensitivity
+• Attraction to energy vampires
+• Boundary loss experiences
+• Carrying others' emotions
 
-GÜVENLİ AKTİVASYON YOLLARI
-1. NEFES (Pranayama)
-Chandra Pranayama (Ay Nefesi) önerilir. Sol burun deliğinden nefes al
-(ay enerjisi), sağ burun deliğinden ver. Bu, 2'nin feminen enerjisini
-güçlendirir ve dengeler.
+SAFE ACTIVATION METHODS
+1. BREATH (Pranayama)
+Chandra Pranayama (Moon Breath) is recommended. Inhale through left
+nostril (moon energy), exhale through right. This strengthens and
+balances 2's feminine energy.
 
 2. ASANA
-Kalp açıcı pozlar (Ustrasana, Bhujangasana), kalça açıcılar (Pigeon,
-Frog), ve restoratif pozlar 2 enerjisini destekler.
+Heart-opening poses (Ustrasana, Bhujangasana), hip openers (Pigeon,
+Frog), and restorative poses support 2 energy.
 
 3. MANTRA
-"OM CHANDRAYA NAMAHA" - Ay'a selam.
-"SHREEM" - Lakshmi'nin (bolluk ve güzellik tanrıçası) tohum mantrası.
+"OM CHANDRAYA NAMAHA" - Salutation to the Moon.
+"SHREEM" - Seed mantra of Lakshmi (goddess of abundance and beauty).
 
 4. MUDRA
-Yoni Mudra - eller rahmişeklinde birleşir, dişil yaratıcı gücü
-onurlandırır. Veya Anjali Mudra - eller kalpte namaste pozisyonunda.
+Yoni Mudra - hands join in womb shape, honoring feminine creative
+power. Or Anjali Mudra - hands in namaste position at heart.
 
-5. CHAKRA ÇALIŞMASI
-Svadhisthana (sakral) ve Anahata (kalp) odaklı çalışmalar. Turuncu
-ve pembe/yeşil renk görselleştirmesi.
+5. CHAKRA WORK
+Svadhisthana (sacral) and Anahata (heart) focused work. Orange
+and pink/green color visualization.
 
-AKTİVASYON ZAMANLAMA
-• Dolunay ideal, özellikle su burçlarında
-• Pazartesi (Ay günü) pratikler için güçlü
-• Yengeç mevsimi (21 Haziran - 22 Temmuz) peak dönem
-• Akşam ve gece saatleri tercih edilir
+ACTIVATION TIMING
+• Full moon is ideal, especially in water signs
+• Mondays (Moon's day) are powerful for practice
+• Cancer season (June 21 - July 22) is peak period
+• Evening and night hours are preferred
 
-KUNDALİNİ UYANIŞI BELİRTİLERİ
-• Vücutta sıvı, dalga benzeri enerji hissi
-• Yoğun duygusal boşalımlar
-• Artan empati ve psişik duyarlılık
-• Canlı, profetik rüyalar
-• Sanatsal ilham patlamaları
-• Derin, ruhsal aşk deneyimleri
+KUNDALINI AWAKENING SIGNS
+• Fluid, wave-like energy sensation in body
+• Intense emotional releases
+• Increased empathy and psychic sensitivity
+• Vivid, prophetic dreams
+• Artistic inspiration bursts
+• Deep, spiritual love experiences
 ''',
 
   compatibilityMatrix: {
     1: '''
-2 + 1 = MÜKEMMEL DENGE
-Ay ve Güneş, Shakti ve Shiva. 2'nin alıcılığı, 1'in vericiliğiyle
-mükemmel uyum oluşturur. 2, 1'i yumuşatır ve derinleştirir; 1, 2'ye
-güç ve yön verir. Doğal çekim ve tamamlayıcı enerji.
-Uyum puanı: 9/10
+2 + 1 = PERFECT BALANCE
+Moon and Sun, Shakti and Shiva. 2's receptivity creates perfect
+harmony with 1's giving nature. 2 softens and deepens 1; 1 gives
+power and direction to 2. Natural attraction and complementary energy.
+Compatibility score: 9/10
 ''',
     2: '''
-2 + 2 = DUYGUSAL DERİNLİK
-İki hassas ruh, çok derin bağ kurabilir. Karşılıklı anlayış ve empati
-yüksek. Risk: Karar verme zorluğu, birbirinin duygularında boğulma,
-dış dünyadan kopma. Güçlü bir dengeleyiciye ihtiyaç var.
-Uyum puanı: 6/10
+2 + 2 = EMOTIONAL DEPTH
+Two sensitive souls can form very deep bonds. Mutual understanding
+and empathy are high. Risk: Difficulty deciding, drowning in each
+other's emotions, disconnecting from outer world. Needs strong balance.
+Compatibility score: 6/10
 ''',
     3: '''
-2 + 3 = NEŞELİ DANS
-3'ün neşesi, 2'nin hassasiyetini hafifletir. 2, 3'e duygusal derinlik
-katar. Yaratıcı, eğlenceli, sosyal ilişki. 2, bazen 3'ün yüzeyselliğinden
-incinebilir. İletişim kritik.
-Uyum puanı: 8/10
+2 + 3 = JOYFUL DANCE
+3's joy lightens 2's sensitivity. 2 adds emotional depth to 3.
+Creative, fun, social relationship. 2 may sometimes be hurt by 3's
+superficiality. Communication is critical.
+Compatibility score: 8/10
 ''',
     4: '''
-2 + 4 = GÜVENLİ LİMAN
-4'ün kararlılığı, 2'ye güvenlik verir. 2, 4'ün sertliğini yumuşatır.
-Ev, aile, istikrar temaları güçlü. Bazen monoton olabilir ama
-temeli sağlam ilişki.
-Uyum puanı: 7/10
+2 + 4 = SAFE HARBOR
+4's steadfastness gives 2 security. 2 softens 4's rigidity.
+Home, family, stability themes are strong. Can be monotonous sometimes
+but the foundation is solid.
+Compatibility score: 7/10
 ''',
     5: '''
-2 + 5 = TÜRBÜLANS
-5'in hareketliliği, 2'nin istikrar ihtiyacını zorlayabilir. Heyecan
-var ama güvensizlik de. 2, 5'i kısıtlamış hissedebilir; 5, 2'yi
-boğucu bulabilir. Özgürlük-bağlılık dengesi kritik.
-Uyum puanı: 5/10
+2 + 5 = TURBULENCE
+5's mobility can challenge 2's need for stability. There is excitement
+but also insecurity. 2 may feel 5 is restrictive; 5 may find 2
+suffocating. Freedom-commitment balance is critical.
+Compatibility score: 5/10
 ''',
     6: '''
-2 + 6 = ŞEFKAT YUVASI
-İki bakım veren enerji. Aile, ev, yuva temaları çok güçlü. Karşılıklı
-şefkat ve destek. Risk: Kim kimi daha çok seviyor yarışı, aşırı
-fedakarlık. Sınırlar önemli.
-Uyum puanı: 8/10
+2 + 6 = COMPASSION NEST
+Two nurturing energies. Family, home, nest themes are very strong.
+Mutual compassion and support. Risk: Competition of who loves more,
+excessive sacrifice. Boundaries are important.
+Compatibility score: 8/10
 ''',
     7: '''
-2 + 7 = GİZEM VE SEZGİ
-7'nin mistisizmi, 2'nin sezgisiyle derinleşir. Spiritüel bağ çok
-güçlü olabilir. 7 bazen uzak ve erişilmez; 2 bu mesafeden incinebilir.
-Sabır ve anlayış gerekli.
-Uyum puanı: 7/10
+2 + 7 = MYSTERY AND INTUITION
+7's mysticism deepens with 2's intuition. Spiritual bond can be very
+strong. 7 is sometimes distant and unreachable; 2 may be hurt by
+this distance. Patience and understanding needed.
+Compatibility score: 7/10
 ''',
     8: '''
-2 + 8 = DENGELİ GÜÇ
-8'in gücü, 2'nin yumuşaklığını dengeleyebilir. Maddi ve duygusal
-dünyalar birleşir. 2, 8'i insancıllaştırır; 8, 2'ye güç verir.
-Rol dağılımına dikkat.
-Uyum puanı: 7/10
+2 + 8 = BALANCED POWER
+8's power can balance 2's softness. Material and emotional worlds
+unite. 2 humanizes 8; 8 gives strength to 2. Pay attention to role
+distribution.
+Compatibility score: 7/10
 ''',
     9: '''
-2 + 9 = EVRENSEL SEVGİ
-9'un koşulsuz sevgisi, 2'nin desteğiyle somutlaşır. İnsanlığa birlikte
-hizmet. Spiritüel ve altruist ortaklık. 9 bazen çok uzak, 2 bunu
-kişisel algılayabilir.
-Uyum puanı: 8/10
+2 + 9 = UNIVERSAL LOVE
+9's unconditional love materializes with 2's support. Serving
+humanity together. Spiritual and altruistic partnership. 9 is
+sometimes too distant, 2 may take this personally.
+Compatibility score: 8/10
 ''',
     11: '''
-2 + 11 = SEZGİSEL İKİZLER
-2 aslında 11'in temeli. Bu ilişkide sezgisel anlayış çok derin.
-11'in yoğunluğu 2'yi bazen bunaltabilir ama bağ çok güçlü. Spiritüel
-büyüme birlikte.
-Uyum puanı: 8/10
+2 + 11 = INTUITIVE TWINS
+2 is actually the foundation of 11. In this relationship, intuitive
+understanding is very deep. 11's intensity may sometimes overwhelm 2
+but the bond is very strong. Spiritual growth together.
+Compatibility score: 8/10
 ''',
     22: '''
-2 + 22 = RÜYALARIN MİMARI
-22'nin yapıcılığı, 2'nin destekleyici doğasıyla büyük işler başarır.
-2, 22'nin vizyonuna duygu ve anlam katar. Birlikte kalıcı miras
-oluşturabilirler.
-Uyum puanı: 8/10
+2 + 22 = ARCHITECT OF DREAMS
+22's constructiveness accomplishes great things with 2's supportive
+nature. 2 adds emotion and meaning to 22's vision. Together they can
+create lasting legacy.
+Compatibility score: 8/10
 ''',
     33: '''
-2 + 33 = KOŞULSUZ AŞK
-33'ün öğretmenliği, 2'nin alıcılığıyla mükemmel uyum. 2, 33'ün
-mesajlarını duyar ve yayar. Spiritüel rehber-öğrenci veya eşit
-ruh arkadaşlığı.
-Uyum puanı: 9/10
+2 + 33 = UNCONDITIONAL LOVE
+33's teaching perfectly harmonizes with 2's receptivity. 2 hears
+and spreads 33's messages. Spiritual guide-student or equal
+soul friendship.
+Compatibility score: 9/10
 ''',
   },
 
@@ -1300,720 +1301,723 @@ Uyum puanı: 9/10
   challengingNumbers: [5, 8],
 
   careerDestiny: '''
-💼 KARİYER KADERİ VE MESLEK YOLU 💼
+💼 CAREER DESTINY AND PROFESSIONAL PATH 💼
 
-2 yaşam yolu, işbirliği, destek ve şifa gerektiren alanlarda parlar.
-Ön planda olmak yerine, önemli projelerin arkasındaki güç olmak
-sana daha uygun olabilir.
+Life path 2 shines in fields requiring collaboration, support, and healing.
+Rather than being in the foreground, being the power behind important
+projects may suit you better.
 
-İDEAL KARİYER ALANLARI:
-• Psikoloji ve Terapi
-• Hemşirelik ve Sağlık Bakımı
-• İnsan Kaynakları
-• Arabuluculuk ve Diplomasi
-• Sanat ve Müzik Terapisi
-• Sosyal Hizmetler
-• Danışmanlık (ilişki, aile, kariyer)
-• Asistanlık ve Koordinasyon
-• Editörlük ve Yazarlık (ghost writing)
-• Enerji Şifacılığı (Reiki vb.)
-• Eğitim (özellikle küçük çocuklar)
-• Müzisyenlik, Sanat
+IDEAL CAREER FIELDS:
+• Psychology and Therapy
+• Nursing and Healthcare
+• Human Resources
+• Mediation and Diplomacy
+• Art and Music Therapy
+• Social Services
+• Counseling (relationship, family, career)
+• Assistance and Coordination
+• Editing and Writing (ghost writing)
+• Energy Healing (Reiki, etc.)
+• Education (especially young children)
+• Music, Art
 
-KAÇINILMASI GEREKEN ORTAMLAR:
-• Aşırı rekabetçi ortamlar
-• Tek başına liderlik gerektiren pozisyonlar
-• Çatışmalı, agresif iş kültürleri
-• Hız ve baskı altında sürekli karar gerektiren roller
-• Duygusal destek sunmayan mekanik işler
+ENVIRONMENTS TO AVOID:
+• Excessively competitive environments
+• Positions requiring solo leadership
+• Confrontational, aggressive work cultures
+• Roles requiring constant decisions under speed and pressure
+• Mechanical jobs that don't offer emotional support
 
-BAŞARI ANAHTARLARI:
-• Güçlü bir lider veya ortakla çalış
-• Kendi sınırlarını koru - "hayır" demeyi öğren
-• Empatini profesyonellikle dengele
-• Görünürlüğünü bilinçli artır
-• Ekip çalışmasında parla
+KEYS TO SUCCESS:
+• Work with a strong leader or partner
+• Protect your own boundaries - learn to say "no"
+• Balance your empathy with professionalism
+• Consciously increase your visibility
+• Shine in teamwork
 
-PARA VE BOLLUK İLİŞKİSİ:
-2'ler para konusunda güvensiz olabilir. Başkalarına bağımlılık veya
-finansal korku yaşanabilir. Kendi değerini bilmek, ücretlendirmede
-kritik. Ortaklıklar finansal fırsatlar getirir.
+MONEY AND ABUNDANCE RELATIONSHIP:
+2s may be insecure about money. Dependency on others or financial
+fear may be experienced. Knowing your own value is critical in pricing.
+Partnerships bring financial opportunities.
 ''',
 
   healthTendencies: '''
-🏥 SAĞLIK EĞİLİMLERİ VE BEDEN BİLGELİĞİ 🏥
+🏥 HEALTH TENDENCIES AND BODY WISDOM 🏥
 
-2 sayısı, bedenin su elementli ve duygusal alanlarını yönetir.
-Sağlık sorunları genellikle bastırılmış duygulardan kaynaklanır.
+Number 2 governs the body's water element and emotional areas.
+Health issues generally stem from suppressed emotions.
 
-HASSAS BÖLGELER:
-• Sindirim sistemi (mide, bağırsaklar)
-• Üreme sistemi (rahim, yumurtalıklar, prostat)
-• Böbrekler ve mesane
-• Lenf sistemi
-• Göğüsler
+SENSITIVE AREAS:
+• Digestive system (stomach, intestines)
+• Reproductive system (uterus, ovaries, prostate)
+• Kidneys and bladder
+• Lymphatic system
+• Breasts
 
-ORTAK SAĞLIK SORUNLARI:
-• Duygusal yeme bozuklukları
-• Su tutulumu, ödem
-• Hormon dengesizlikleri
-• Depresyon ve anksiyete
-• Sindirim sorunları (stres kaynaklı)
-• Uyku bozuklukları
+COMMON HEALTH ISSUES:
+• Emotional eating disorders
+• Water retention, edema
+• Hormone imbalances
+• Depression and anxiety
+• Digestive issues (stress-related)
+• Sleep disorders
 
-ÖNERİLEN FİZİKSEL AKTİVİTELER:
-• Yüzme ve su sporları
-• Yoga (özellikle restoratif)
-• Dans (özellikle akışkan stiller)
-• Yürüyüş (su kenarında ideal)
-• Tai Chi ve Qi Gong
+RECOMMENDED PHYSICAL ACTIVITIES:
+• Swimming and water sports
+• Yoga (especially restorative)
+• Dance (especially fluid styles)
+• Walking (by water is ideal)
+• Tai Chi and Qi Gong
 
-KAÇINILMASI GEREKENLER:
-• Duygusal baskılama (ağlamayı tut)
-• Aşırı şeker ve karbonhidrat (duygusal yeme)
-• Uyku eksikliği
-• Başkalarının sorunlarını bedeninde taşıma
-• Zehirli ilişkilerde kalma
+THINGS TO AVOID:
+• Emotional suppression (holding back tears)
+• Excessive sugar and carbohydrates (emotional eating)
+• Sleep deprivation
+• Carrying others' problems in your body
+• Staying in toxic relationships
 
-BÜTÜNSEL ŞIFA ÖNERİLERİ:
-• Düzenli ağlama ve duygusal boşaltım
-• Su ritüelleri (banyo, yüzme, duş meditasyonu)
-• Ay taşı veya pembe kuvarsla çalışma
-• Turuncu ve pembe giysiler
-• Ay döngüsüyle uyumlu yaşam
+HOLISTIC HEALING RECOMMENDATIONS:
+• Regular crying and emotional release
+• Water rituals (bathing, swimming, shower meditation)
+• Working with moonstone or rose quartz
+• Orange and pink clothing
+• Living in harmony with the moon cycle
 ''',
 
   wealthVibration: '''
-💰 BOLLUK TİTREŞİMİ VE MADDI DÜNYA 💰
+💰 ABUNDANCE VIBRATION AND MATERIAL WORLD 💰
 
-2 sayısı, ortaklık ve işbirliği yoluyla zenginlik yaratmada yeteneklidir.
-Ama önce kendi değerinle barışmalısın.
+Number 2 is talented at creating wealth through partnership and collaboration.
+But first you must make peace with your own value.
 
-DOĞAL BOLLUK YETENEKLERİ:
-• Ortaklık fırsatlarını sezme
-• Müzakere ve diplomasi becerileri
-• Detaylara dikkat
-• Destekleyici roller yoluyla değer katma
-• Uzun vadeli ilişki kurma
+NATURAL ABUNDANCE TALENTS:
+• Sensing partnership opportunities
+• Negotiation and diplomacy skills
+• Attention to details
+• Adding value through supportive roles
+• Building long-term relationships
 
-PARA BLOKLARI:
-• "Ben yeterli değilim" inancı
-• Hak etme sorunları
-• Para istemenin bencillik olduğu düşüncesi
-• Finansal konularda başkalarına bağımlılık
-• Çatışmadan kaçınarak düşük ücret kabul etme
+MONEY BLOCKS:
+• "I'm not enough" belief
+• Deserving issues
+• Thinking that asking for money is selfish
+• Dependency on others in financial matters
+• Accepting low pay to avoid conflict
 
-ZENGİNLİK AKTİVASYONU:
-1. MANTRA: "Ben verdiğim kadar almaya da layığım"
-2. KRİSTAL: Ay taşı, sitrin, yeşil aventurin
-3. RENK: Gümüş ve turuncu (cüzdanda gümüş bozuk para)
-4. SAYI: 2 ve 6 kombinasyonları (26, 62)
-5. GÜN: Pazartesi (Ay günü) önemli finansal kararlar için
+WEALTH ACTIVATION:
+1. MANTRA: "I deserve to receive as much as I give"
+2. CRYSTAL: Moonstone, citrine, green aventurine
+3. COLOR: Silver and orange (silver coin in wallet)
+4. NUMBER: 2 and 6 combinations (26, 62)
+5. DAY: Monday (Moon's day) for important financial decisions
 
-YATIRIM STRATEJİSİ:
-• Ortaklık yatırımları (shared ownership)
-• Gayrimenkul (güvenlik hissi)
-• Sanat ve değerli nesneler
-• Güvenilir danışmanla çalışma
-• Ani kararlardan kaçınma - araştırma yap
+INVESTMENT STRATEGY:
+• Partnership investments (shared ownership)
+• Real estate (sense of security)
+• Art and valuables
+• Working with a trusted advisor
+• Avoiding sudden decisions - do research
 ''',
 
   loveAndRelationships: '''
-💕 AŞK VE İLİŞKİLER - KUTSAL BİRLİK YOLU 💕
+💕 LOVE AND RELATIONSHIPS - PATH OF SACRED UNION 💕
 
-2 yaşam yolunda aşk, hayatın merkezinde yer alır. İlişkiler sadece
-istek değil, derin ruhsal ihtiyaç. Ama sağlıklı ilişki, önce
-kendinle barışmaktan geçer.
+On life path 2, love is at the center of life. Relationships are not just
+desire, but a deep spiritual need. But a healthy relationship starts with
+making peace with yourself.
 
-AŞKTA GÜÇLÜ YÖNLER:
-• Derin empati ve anlayış
-• Sadakat ve bağlılık
-• Romantik ve duygusal
-• Bakım verici ve destekleyici
-• Çatışmaları yumuşatma yeteneği
+STRENGTHS IN LOVE:
+• Deep empathy and understanding
+• Loyalty and commitment
+• Romantic and emotional
+• Nurturing and supportive
+• Ability to soften conflicts
 
-AŞKTA ZORLUKLAR:
-• Aşırı bağımlılık
-• Kendi ihtiyaçlarını geri plana atma
-• Partnerin duygularını kendi duygularıymış gibi yaşama
-• Ayrılık korkusu
-• Sınır koyamama
+CHALLENGES IN LOVE:
+• Excessive dependency
+• Putting your own needs in the background
+• Living partner's emotions as if they were your own
+• Fear of separation
+• Inability to set boundaries
 
-İDEAL PARTNER PROFİLİ:
-• Duygusal olarak olgun ve ifadeli
-• Senin hassasiyetine saygı duyan
-• Güçlü ama nazik
-• Kararlı ve güvenilir
-• Sana alan tanıyan ama seni terk etmeyen
+IDEAL PARTNER PROFILE:
+• Emotionally mature and expressive
+• Respects your sensitivity
+• Strong but gentle
+• Decisive and reliable
+• Gives you space but doesn't abandon you
 
-İLİŞKİDE KAÇINILMASI GEREKENLER:
-• Tek taraflı fedakarlık
-• "Onu değiştireceğim" fantezisi
-• Duygusal vampirlere çekilme
-• Çatışmadan sürekli kaçınma
-• Kendi sesini susturma
+THINGS TO AVOID IN RELATIONSHIPS:
+• One-sided sacrifice
+• "I'll change them" fantasy
+• Attraction to emotional vampires
+• Constantly avoiding conflict
+• Silencing your own voice
 
-KUTSAL BİRLİK İÇİN PRATİKLER:
-• Günlük duygusal check-in (5 dakika karşılıklı paylaşım)
-• Dokunma ve fiziksel yakınlık ritüelleri
-• Birlikte su kenarında zaman
-• Karşılıklı meditasyon
-• Düzenli kalite zamanı
+PRACTICES FOR SACRED UNION:
+• Daily emotional check-in (5 minutes mutual sharing)
+• Touch and physical intimacy rituals
+• Time together by water
+• Mutual meditation
+• Regular quality time
 
-KARMİK İLİŞKİLER:
-5 ve 7 sayılı partnerlerle ilişkiler genellikle karmiktir. 5, bağımsızlık
-dersini; 7, yalnızlıkla barışma dersini getirir.
+KARMIC RELATIONSHIPS:
+Relationships with partners numbered 5 and 7 are usually karmic. 5 brings
+the lesson of independence; 7 brings the lesson of making peace with solitude.
 
-RUH EŞİ İŞARETLERİ:
-• Yanında kendin olabilme hissi
-• Suskunlukta bile rahatlık
-• Birbirini tamamlayan güçler ve zayıflıklar
-• Sözlere gerek kalmadan anlama
-• Birlikte büyüme arzusu
+SOUL MATE SIGNS:
+• Feeling you can be yourself with them
+• Comfort even in silence
+• Complementary strengths and weaknesses
+• Understanding without words
+• Desire to grow together
 ''',
 
   famousExamples: [
-    'Barack Obama - Diplomatik lider',
-    'Diana, Princess of Wales - Şefkat ikonu',
-    'Jennifer Aniston - Sevilen aktris',
-    'Kanye West - Hassas sanatçı',
-    'Kim Kardashian - İlişki odaklı medya figürü',
-    'Meg Ryan - Romantik komedi yıldızı',
-    'Tony Blair - Diplomat politikacı',
-    'Bill Clinton - Karizmatik arabulucu',
+    'Barack Obama - Diplomatic leader',
+    'Diana, Princess of Wales - Icon of compassion',
+    'Jennifer Aniston - Beloved actress',
+    'Kanye West - Sensitive artist',
+    'Kim Kardashian - Relationship-focused media figure',
+    'Meg Ryan - Romantic comedy star',
+    'Tony Blair - Diplomat politician',
+    'Bill Clinton - Charismatic mediator',
   ],
 
   dailyAffirmations: [
-    'Kendi ihtiyaçlarım da önemli ve geçerli.',
-    'Sınır koymak sevginin bir ifadesidir.',
-    'Ben köprüyüm - zıtlıkları birleştiriyorum.',
-    'Hassasiyetim benim süper gücüm.',
-    'Hem vermeyi hem almayı dengeliyorum.',
-    'Sezgilerime güveniyorum.',
-    'İlişkilerim karşılıklı saygı üzerine kurulu.',
-    'Ay gibi parıldıyorum - yumuşak ama güçlü.',
-    'Yalnız olduğumda da bütünüm.',
-    'Barış benden başlar.',
+    'My own needs are also important and valid.',
+    'Setting boundaries is an expression of love.',
+    'I am a bridge - I unite opposites.',
+    'My sensitivity is my superpower.',
+    'I balance both giving and receiving.',
+    'I trust my intuition.',
+    'My relationships are built on mutual respect.',
+    'I shine like the moon - soft but powerful.',
+    'I am whole even when I am alone.',
+    'Peace starts with me.',
   ],
 
   meditationMantras: [
-    'OM CHANDRAYA NAMAHA - Aya selam',
-    'SHREEM - Güzellik ve bolluk',
-    'YAM - Kalp çakrasının sesi',
-    'VAM - Sakral çakranın sesi',
-    'OM SHANTI - Barış titreşimi',
-    'SO HAM - Ben varım, var olduğum gibi',
+    'OM CHANDRAYA NAMAHA - Salutation to the Moon',
+    'SHREEM - Beauty and abundance',
+    'YAM - Voice of the heart chakra',
+    'VAM - Voice of the sacral chakra',
+    'OM SHANTI - Peace vibration',
+    'SO HAM - I am, as I am',
   ],
 
   healingPractice: '''
-🙏 ŞIFA PRATİĞİ: AY MEDİTASYONU 🙏
+🙏 HEALING PRACTICE: MOON MEDITATION 🙏
 
-Bu pratik, 2 enerjisini dengelemek ve aktive etmek için tasarlanmıştır.
-İdeal zaman: Dolunay gecesi veya ayın görünür olduğu gece.
+This practice is designed to balance and activate 2 energy.
+Ideal time: Full moon night or when the moon is visible.
 
-HAZIRLIK:
-1. Mümkünse açık havada, ayı görebileceğin bir yerde otur
-2. Rahat, sıcak giysiler giy
-3. Bir kase su yanına koy (ayın yansımasını tutacak)
-4. Beyaz veya gümüş renkli mum yak
+PREPARATION:
+1. If possible, sit outdoors where you can see the moon
+2. Wear comfortable, warm clothes
+3. Place a bowl of water beside you (to hold the moon's reflection)
+4. Light a white or silver candle
 
-NEFES (5 dakika):
-1. Sol burun deliğinden yavaşça nefes al (Ay nefesi)
-2. Her iki burun deliğinden ver
-3. Nefes alırken gümüş ışık çektiğini hayal et
-4. Verirken tüm gerginlik çıkıyor
-5. 10 döngü tekrarla
+BREATH (5 minutes):
+1. Breathe in slowly through left nostril (Moon breath)
+2. Exhale through both nostrils
+3. Imagine drawing in silver light as you inhale
+4. All tension releases as you exhale
+5. Repeat 10 cycles
 
-GÖRSELLEŞTIRME (10 dakika):
-1. Dolunayın gümüş ışığının üzerine yağdığını hayal et
-2. Bu ışık, su gibi bedenine akıyor
-3. Sakral çakranı turuncu bir ay olarak gör
-4. Kalbini pembe-gümüş bir ışık küre olarak gör
-5. İki merkez arasında enerji akışı oluştur
+VISUALIZATION (10 minutes):
+1. Imagine the full moon's silver light raining upon you
+2. This light flows into your body like water
+3. See your sacral chakra as an orange moon
+4. See your heart as a pink-silver sphere of light
+5. Create energy flow between the two centers
 
-DUYGUSAL ARINMA (5 dakika):
-1. Bastırdığın duyguları hatırla
-2. Bu duygulara izin ver - ağlama, öfke, üzüntü
-3. Duygular su gibi aksın ve dönüşsün
-4. "Bırakıyorum, özgürleşiyorum" de
+EMOTIONAL PURIFICATION (5 minutes):
+1. Remember emotions you've suppressed
+2. Allow these emotions - crying, anger, sadness
+3. Let emotions flow and transform like water
+4. Say "I release, I am free"
 
-MANTRA (5 dakika):
-"SHREEM... SHREEM... SHREEM..." - Güzellik ve uyum mantrası
-Her tekrarda kalbinin açıldığını hisset
+MANTRA (5 minutes):
+"SHREEM... SHREEM... SHREEM..." - Mantra of beauty and harmony
+Feel your heart opening with each repetition
 
-KAPATMA (5 dakika):
-1. Ay ışığını içine çek, hücrelerinde depola
-2. "Bu ay döngüsünde kalbimi açık tutacağım" niyetini kur
-3. Kasedeki suyu bitki veya toprağa dök
-4. Minnettarlıkla meditasyonu kapat
+CLOSING (5 minutes):
+1. Draw the moonlight inside, store it in your cells
+2. Set the intention "I will keep my heart open this moon cycle"
+3. Pour the water in the bowl onto a plant or earth
+4. Close the meditation with gratitude
 
-Bu pratiği özellikle dolunayda ve yeni ayda yap.
-Pazartesi geceleri de güçlü.
+Do this practice especially at full moon and new moon.
+Monday nights are also powerful.
 ''',
 
   yearlyGuidance: {
     '2024': '''
-2024 - ORTAKLIK YILI (Evrensel 8 içinde 2)
-8 evrensel yılında, 2'ler için güçlü ortaklık fırsatları var. İş ve özel
-hayatta destekleyici ilişkiler ön plana çıkıyor. Finansal konularda
-partner veya danışmanla çalışmak faydalı.
+2024 - PARTNERSHIP YEAR (2 within Universal 8)
+In universal year 8, there are strong partnership opportunities for 2s.
+Supportive relationships come to the fore in work and personal life.
+Working with a partner or advisor in financial matters is beneficial.
 ''',
     '2025': '''
-2025 - İÇSEL DERİNLİK YILI (Evrensel 9)
-9 evrensel yılı, 2'ler için eski ilişki kalıplarını tamamlama zamanı.
-Bağımlılık döngülerini kırma fırsatı. Fedakarlık ve hizmet temaları.
-Bazı ilişkileri bilinçli sonlandırma gerekebilir.
+2025 - INNER DEPTH YEAR (Universal 9)
+Universal year 9 is time for 2s to complete old relationship patterns.
+Opportunity to break dependency cycles. Themes of sacrifice and service.
+Some relationships may need to be consciously ended.
 ''',
     '2026': '''
-2026 - YENİ BAĞLANTILAR (Evrensel 1)
-Yeni döngü başlıyor. 2'ler için yeni ilişkiler, yeni ortaklıklar.
-Geçmişte yapamadığın bağlantıları kurma zamanı. Cesur ol, ilk adımı at.
+2026 - NEW CONNECTIONS (Universal 1)
+New cycle begins. For 2s, new relationships, new partnerships.
+Time to make connections you couldn't in the past. Be brave, take the first step.
 ''',
     '2027': '''
-2027 - UYUM YILI (Evrensel 2)
-Çift enerji yılı! 2+2=4 temeller atılıyor. Mevcut ilişkileri
-derinleştirme, yeni ortaklıklar kurma için ideal. Evlilik, iş
-ortaklığı temaları güçlü.
+2027 - HARMONY YEAR (Universal 2)
+Double energy year! 2+2=4 foundations are being laid. Ideal for deepening
+existing relationships, forming new partnerships. Marriage, business
+partnership themes are strong.
 ''',
     '2028': '''
-2028 - İFADE YILI (Evrensel 3)
-Duygularını ifade etme, yaratıcı projeler başlatma zamanı. Sosyal
-çevren genişliyor. Kendi sesini bulma ve kullanma yılı.
+2028 - EXPRESSION YEAR (Universal 3)
+Time to express your emotions, start creative projects. Your social
+circle is expanding. Year of finding and using your own voice.
 ''',
   },
 );
 
-/// Yaşam Yolu 3 - Yaratıcı / İfadeci
+/// Life Path 3 - Creative / Expresser
 const lifePathMega3 = LifePathMegaContent(
   number: 3,
-  title: 'Kozmik Yaratıcı',
-  archetype: 'Sanatçı / İfadeci / Neşe Taşıyıcı',
+  title: 'Cosmic Creator',
+  archetype: 'Artist / Expresser / Joy Carrier',
   sacredSymbol: '△',
-  element: 'Ateş ve Hava - Yaratıcı İlham',
-  planet: 'Jüpiter - Genişleme ve Bolluk',
-  tarotMajorArcana: 'İmparatoriçe (III) - Bereket ve Yaratıcılık',
-  runicSymbol: 'Wunjo ᚹ - Neşe ve Uyum',
-  colors: ['Sarı', 'Turuncu', 'Mor', 'Turkuaz'],
-  crystals: ['Ametist', 'Sitrin', 'Akuamarin', 'Lapis Lazuli', 'Turkuaz'],
-  chakraAlignment: 'Boğaz Çakra (Vishuddha) - İfade Merkezi',
-  sacredGeometry: 'Üçgen - Kutsal Trinite',
-  frequencyHz: '528 Hz - Mucize Frekansı, DNA Onarımı',
-  musicalNote: 'Mi (E) - Yaratıcı Titreşim',
+  element: 'Fire and Air - Creative Inspiration',
+  planet: 'Jupiter - Expansion and Abundance',
+  tarotMajorArcana: 'The Empress (III) - Fertility and Creativity',
+  runicSymbol: 'Wunjo ᚹ - Joy and Harmony',
+  colors: ['Yellow', 'Orange', 'Purple', 'Turquoise'],
+  crystals: ['Amethyst', 'Citrine', 'Aquamarine', 'Lapis Lazuli', 'Turquoise'],
+  chakraAlignment: 'Throat Chakra (Vishuddha) - Expression Center',
+  sacredGeometry: 'Triangle - Sacred Trinity',
+  frequencyHz: '528 Hz - Miracle Frequency, DNA Repair',
+  musicalNote: 'E - Creative Vibration',
 
   deepSpiritualMeaning: '''
-△ KADİM BİLGELİK: ÜÇÜN MİSTİK SIRRI △
+△ ANCIENT WISDOM: THE MYSTIC SECRET OF THREE △
 
-3 sayısı, kutsal üçlemenin sayısıdır. Baba-Ana-Çocuk, Geçmiş-Şimdi-Gelecek,
-Beden-Zihin-Ruh - tüm trinitelerin özü 3'te gizlidir. İlk geometrik şekil
-olan üçgen, 3'ün somut tezahürüdür.
+Number 3 is the number of sacred trinity. Father-Mother-Child, Past-Present-Future,
+Body-Mind-Spirit - the essence of all trinities is hidden in 3. The triangle,
+the first geometric shape, is the concrete manifestation of 3.
 
-Pisagor, 3'ü mükemmel sayı olarak görürdü - başlangıç, orta ve son. Dyad'dan
-(2) doğan ilk gerçek sayı, çünkü 1 ve 2'nin toplamı ile çarpımı eşittir
-(1+2=3, 1x2=2). 3, yaratılışın ilk meyvesidir.
+Pythagoras saw 3 as the perfect number - beginning, middle, and end. The first
+true number born from the Dyad (2), because the sum and product of 1 and 2
+are equal (1+2=3, 1x2=2). 3 is the first fruit of creation.
 
-Kabala'da 3, "Binah" (Anlayış) sefirasına karşılık gelir - dişil alıcılık,
-form verme, şekillendirme. Chokmah'ın (2) ham enerjisini alır, Binah'ta
-form kazanır. Sen de formların, fikirlerin, sanatın yaratıcısısın.
+In Kabbalah, 3 corresponds to "Binah" (Understanding) sephira - feminine
+receptivity, giving form, shaping. It takes the raw energy of Chokmah (2),
+and gains form in Binah. You too are the creator of forms, ideas, art.
 
-Hristiyanlıkta Kutsal Üçleme (Baba, Oğul, Kutsal Ruh), Hindu'da Trimurti
-(Brahma, Vishnu, Shiva), Mısır'da Osiris-Isis-Horus üçlemesi... 3, evrensel
-yaratıcı prensiptir.
+The Holy Trinity in Christianity (Father, Son, Holy Spirit), Trimurti in
+Hinduism (Brahma, Vishnu, Shiva), the Osiris-Isis-Horus trinity in Egypt...
+3 is the universal creative principle.
 
-Doğada 3'ün yansımaları: Üç boyutlu uzay, maddenin üç hali (katı, sıvı, gaz),
-zamanın üç boyutu, üçlü DNA kodu (kodon). Sen, bu kozmik yaratıcılığın
-bireysel ifadesisin.
+Reflections of 3 in nature: Three-dimensional space, three states of matter
+(solid, liquid, gas), three dimensions of time, triple DNA code (codon).
+You are the individual expression of this cosmic creativity.
 
-3 yaşam yolundakiler, evrenin "sözcüsü" gibidir - görünmeyeni görünür kılar,
-hissedileni ifade eder, içsel olanı dışsal yapar. Sanat, müzik, yazı, konuşma
-- her türlü yaratıcı ifade senin aracın.
+Those on life path 3 are like the "spokesperson" of the universe - making the
+invisible visible, expressing the felt, externalizing the internal. Art, music,
+writing, speaking - all kinds of creative expression are your tools.
 ''',
 
   karmicLessons: '''
-✦ KARMİK DERSLER VE RUHSAL SINAMALAR ✦
+✦ KARMIC LESSONS AND SPIRITUAL TESTS ✦
 
-3 yaşam yolunun karmik dersleri, ifade ve disiplin arasındaki dengede
-yatar. Geçmiş yaşamlarında ya sesini bastırdın ya da kontrolsüzce saçtın.
-Bu hayatta bilinçli, anlamlı ifadeyi öğreniyorsun.
+The karmic lessons of life path 3 lie in the balance between expression and
+discipline. In past lives, you either suppressed your voice or scattered it
+uncontrollably. In this life, you are learning conscious, meaningful expression.
 
-Birincil Karmik Ders: ODAKLANMA VE DİSİPLİN
-Yaratıcılığın sınırsız ama dikkat süren kısa olabilir. Dersin, bir projeyi
-baştan sona götürmek, dağılmamak, derinleşmek. Yüzeysellik tuzağından kaçınmak.
+Primary Karmic Lesson: FOCUS AND DISCIPLINE
+Your creativity is limitless but your attention span may be short. Your lesson
+is to take a project from start to finish, not scatter, deepen. Avoid the
+trap of superficiality.
 
-İkincil Karmik Ders: OTANTİK İFADE
-Başkalarını memnun etmek için değil, gerçek benliğini ifade etmeyi öğrenmek.
-Eleştiri korkusuyla susma, ama abartılı performansa da kaçma.
+Secondary Karmic Lesson: AUTHENTIC EXPRESSION
+Learning to express your true self, not to please others. Don't be silenced by
+fear of criticism, but don't escape into exaggerated performance either.
 
-Üçüncül Karmik Ders: DUYGUSAL DERİNLİK
-Neşe ve eğlence güzel, ama kaçış aracı olmamalı. Dersin, zor duygularla
-da yüzleşmek, hüznü de kabul etmek, yüzeysel kaçışlardan kaçınmak.
+Tertiary Karmic Lesson: EMOTIONAL DEPTH
+Joy and fun are beautiful, but shouldn't be an escape tool. Your lesson is to
+also face difficult emotions, accept sadness too, avoid superficial escapes.
 
-Karmik Sınama Dönemleri:
-• 21, 30, 39, 48 yaşları kritik dönüm noktaları
-• Jüpiter döngüleri (12, 24, 36, 48 yaş) genişleme veya savrulma
-• Yay burcu mevsiminde dersler yoğunlaşır
+Karmic Test Periods:
+• Ages 21, 30, 39, 48 are critical turning points
+• Jupiter cycles (ages 12, 24, 36, 48) bring expansion or scattering
+• Lessons intensify during Sagittarius season
 
-Karmayı Dengeleme Yolları:
-• Günlük yaratıcı pratik (küçük de olsa)
-• Bir projeyi tamamlama taahhüdü
-• Duygusal günlük tutma
-• Sessizlik ve içe dönüş zamanları
-• Anlamlı ilişkilere yatırım
+Ways to Balance Karma:
+• Daily creative practice (even small)
+• Commitment to completing a project
+• Keeping an emotional journal
+• Times of silence and introspection
+• Investing in meaningful relationships
 ''',
 
   pastLifeConnections: '''
-✧ GEÇMİŞ YAŞAM BAĞLANTILARI ✧
+✧ PAST LIFE CONNECTIONS ✧
 
-3 yaşam yolunda doğanlar, genellikle şu geçmiş yaşam arketiplerini taşır:
+Those born on life path 3 typically carry these past life archetypes:
 
-OZAN/ŞAİR GEÇMİŞİ
-Kadim çağlarda sözlü gelenek taşıyıcısı, şiir söyleyen, hikaye anlatan.
-Kelimelerin gücünü, ritmin büyüsünü, sesin şifasını biliyorsun.
+BARD/POET PAST
+Carrier of oral tradition in ancient times, reciting poetry, telling stories.
+You know the power of words, the magic of rhythm, the healing of voice.
 
-SARAY SOYTARİSİ/AKTÖR GEÇMİŞİ
-Güldüren, ağlatan, duygulandıran performans sanatçısı. Rollere bürünme,
-maskelerin ardında gerçeği söyleme. Mizah yoluyla hakikat.
+COURT JESTER/ACTOR PAST
+Performance artist who made people laugh, cry, feel. Taking on roles,
+speaking truth behind masks. Truth through humor.
 
-TAPUNAK MÜZİSYENİ GEÇMİŞİ
-Kutsal mekanlarda müzikle tanrılara ulaşan, sesin frekansıyla şifa veren.
-Müzik ve ses, sende derin rezonans yaratır.
+TEMPLE MUSICIAN PAST
+Reaching the gods with music in sacred places, healing with the frequency
+of sound. Music and sound create deep resonance in you.
 
-EL SANATLARI USTASI GEÇMİŞİ
-Heykeltıraş, ressam, dokumacı, çömlekçi - elleriyle güzellik yaratan.
-Fiziksel yaratıcılık, somut sanat sende güçlü.
+CRAFTSMAN PAST
+Sculptor, painter, weaver, potter - creating beauty with hands.
+Physical creativity, concrete art is strong in you.
 
-Geçmiş Yaşam Tetikleyicileri:
-• Belirli müzik veya enstrümanlara güçlü tepki
-• Sahne korkusu veya tam tersi, sahnede tamamen rahat hissetme
-• Bazı sanat formlarına açıklanamaz yetenek
-• Antik tiyatrolar, tapınaklara çekim
-• Belirli dillerin melodisine rezonans
+Past Life Triggers:
+• Strong reaction to certain music or instruments
+• Stage fright or the opposite, feeling completely at ease on stage
+• Unexplainable talent for certain art forms
+• Attraction to ancient theaters and temples
+• Resonance with the melody of certain languages
 ''',
 
   soulPurpose: '''
-❂ RUHUN KUTSAL MİSYONU ❂
+❂ THE SOUL'S SACRED MISSION ❂
 
-Sen bu dünyaya özel bir misyonla geldin: YARATMAK ve İFADE ETMEK.
+You came to this world with a special mission: TO CREATE and EXPRESS.
 
-Birincil Ruh Amacı: YARATICI İFADE
-İçindeki fikirleri, duyguları, vizyonları dünyaya taşımak. Sanat, müzik,
-yazı, konuşma - hangi form sana doğal geliyorsa o yolla yaratmak.
+Primary Soul Purpose: CREATIVE EXPRESSION
+Bringing the ideas, emotions, and visions within you to the world. Art, music,
+writing, speaking - creating through whichever form feels natural to you.
 
-İkincil Ruh Amacı: NEŞE GETİRMEK
-Karanlık dünyaya ışık taşımak. Gülümseten, umut veren, hayatı kutlayan
-enerji. Ama sahte pozitiflik değil - otantik, derin neşe.
+Secondary Soul Purpose: BRINGING JOY
+Carrying light to a dark world. Energy that makes people smile, gives hope,
+celebrates life. But not fake positivity - authentic, deep joy.
 
-Üçüncül Ruh Amacı: İLETİŞİM KÖPRÜSÜ
-Karmaşık fikirleri anlaşılır kılmak, farklı dünyaları birbirine bağlamak.
-Tercüman, yorumcu, aracı olarak hizmet.
+Tertiary Soul Purpose: COMMUNICATION BRIDGE
+Making complex ideas understandable, connecting different worlds together.
+Serving as translator, interpreter, mediator.
 
-Ruh Sözleşmesi Detayları:
-• En az bir yaratıcı alanda ustalaşacaksın
-• Başkalarına ilham vereceksin
-• Zor zamanları neşeyle dönüştürmeyi öğreneceksin
-• Otantik sesini bulup kullanacaksın
-• Güzelliği dünyaya taşıyacaksın
+Soul Contract Details:
+• You will master at least one creative field
+• You will inspire others
+• You will learn to transform difficult times with joy
+• You will find and use your authentic voice
+• You will carry beauty to the world
 
-Misyonunu Engelleyen Faktörler:
-• Mükemmeliyetçilik (hiçbir şey yeterince iyi değil)
-• Eleştiri korkusu
-• Dağınıklık ve odak kaybı
-• Yüzeysellik ve kaçış
-• Kendini ciddiye almama
+Factors Blocking Your Mission:
+• Perfectionism (nothing is good enough)
+• Fear of criticism
+• Scattered focus and loss of concentration
+• Superficiality and escapism
+• Not taking yourself seriously
 
-Misyonunu Destekleyen Faktörler:
-• Günlük yaratıcı pratik
-• Sanat topluluklarına katılım
-• Yapıcı geribildirim alma ve verme
-• Tamamlanmış projeler (küçük de olsa)
-• Kendi benzersiz sesin ve stilini keşfetme
+Factors Supporting Your Mission:
+• Daily creative practice
+• Participation in art communities
+• Giving and receiving constructive feedback
+• Completed projects (even small ones)
+• Discovering your own unique voice and style
 ''',
 
   shadowAspects: '''
-☾ GÖLGE YÖNLERİ VE DÖNÜŞÜM ☾
+☾ SHADOW ASPECTS AND TRANSFORMATION ☾
 
-3 sayısının gölgeleri, kaçış ve yüzeysellik etrafında döner. Işık
-çok parlak olduğunda, gölge de keskin olur.
+The shadows of number 3 revolve around escapism and superficiality. When the
+light is very bright, the shadow is also sharp.
 
-BİRİNCİL GÖLGE: DAĞINIKLIK
-Belirtiler:
-• Çok fazla proje, hiçbiri tamamlanmamış
-• Dikkat eksikliği, sürekli geçiş
-• Sıkılma ve yenilik arayışı
-• Derinleşememe, yüzeysel ilgi
-• Taahhütten kaçınma
+PRIMARY SHADOW: SCATTERED FOCUS
+Symptoms:
+• Too many projects, none completed
+• Attention deficit, constant switching
+• Boredom and seeking novelty
+• Inability to go deep, superficial interest
+• Avoiding commitment
 
-Dönüşüm Yolu:
-Sonsuz olasılık zenginlik değil, tuzak olabilir. Bir şeyi derinlemesine
-deneyimlemek, yüz şeyi yüzeysel denemekten değerli. "Daha az, daha derin"
-mantrasıyla çalış.
+Path of Transformation:
+Infinite possibility can be a trap, not wealth. Experiencing one thing deeply
+is more valuable than superficially trying a hundred things. Work with the
+mantra "less, but deeper."
 
-İKİNCİL GÖLGE: KAÇIŞ MEKANİZMASI
-Belirtiler:
-• Eğlence ve aktiviteyle duyguları bastırma
-• Sorunlardan komedi yapma
-• Ciddi konulardan kaçınma
-• Bağımlılık eğilimi (madde, aktivite, ilişki)
-• Yapay pozitiflik
+SECONDARY SHADOW: ESCAPE MECHANISM
+Symptoms:
+• Suppressing emotions with entertainment and activity
+• Making comedy out of problems
+• Avoiding serious topics
+• Tendency toward addiction (substance, activity, relationship)
+• Artificial positivity
 
-Dönüşüm Yolu:
-Neşe, acıyı reddetmekle gelmez. Gerçek neşe, karanlıkla da barışmış
-kalpten doğar. Zor duygulara alan tanı, kaçma.
+Path of Transformation:
+Joy doesn't come from rejecting pain. True joy is born from a heart that
+has made peace with darkness too. Give space to difficult emotions, don't run.
 
-ÜÇÜNCÜL GÖLGE: ELEŞTİRİYE AŞIRI DUYARLILIK
-Belirtiler:
-• Her eleştiriyi kişisel algılama
-• Savunmacılık
-• Kendini kanıtlama çabası
-• Onay bağımlılığı
-• Başkalarıyla kıyaslama
+TERTIARY SHADOW: HYPERSENSITIVITY TO CRITICISM
+Symptoms:
+• Taking every criticism personally
+• Defensiveness
+• Effort to prove oneself
+• Approval addiction
+• Comparing yourself to others
 
-Dönüşüm Yolu:
-Yaratıcılık, eleştiriyle büyür. Yapıcı geribildirim, düşman değil dost.
-Kendi değerini dışsal onaya bağlamayı bırak.
+Path of Transformation:
+Creativity grows with criticism. Constructive feedback is a friend, not an enemy.
+Stop tying your self-worth to external approval.
 
-DÖRDÜNCÜL GÖLGE: MEGALOMANİ / KÜÇÜMSEME
-Belirtiler:
-• "Ben dahiyim, kimse anlamıyor" tutumu
-• Başkalarının işlerini küçümseme
-• Tanınma ihtiyacı
-• Drama yaratma eğilimi
-• Aşırı performatif davranış
+QUATERNARY SHADOW: MEGALOMANIA / BELITTLING
+Symptoms:
+• "I'm a genius, no one understands" attitude
+• Belittling others' work
+• Need for recognition
+• Tendency to create drama
+• Excessively performative behavior
 
-Dönüşüm Yolu:
-Gerçek sanatçı, alçakgönüllüdür. Yaratıcılık, ego beslemek için değil,
-hizmet için kullanılmalı. Başkalarının yaratıcılığını da kutla.
+Path of Transformation:
+A true artist is humble. Creativity should be used for service, not to feed
+the ego. Celebrate others' creativity too.
 
-Gölge Çalışması Ritüel:
-Sarı bir mum yak, önüne boş bir kağıt koy. Tüm tamamlanmamış projeleri,
-kaçtığın duyguları, korkularını yaz. Sonra kağıdı katla, üzerine yeni
-bir başlangıç sembolü çiz. Bir hafta boyunca her gün bu niyete bak.
+Shadow Work Ritual:
+Light a yellow candle and place a blank paper in front of it. Write all your
+unfinished projects, the emotions you've been running from, your fears. Then
+fold the paper and draw a new beginning symbol on it. Look at this intention
+every day for a week.
 ''',
 
   tantricEnergySignature: '''
-✨ TANTRİK ENERJİ İMZASI ✨
+✨ TANTRIC ENERGY SIGNATURE ✨
 
-3 sayısı, yaratıcı Shakti enerjisinin neşeli, oyuncu ifadesini temsil
-eder. Ne saf maskülen ne saf feminen - ikisinin dans eden birleşimi.
+The number 3 represents the joyful, playful expression of creative Shakti
+energy. Neither purely masculine nor purely feminine - a dancing union of both.
 
-KUNDALINI KARAKTERİSTİĞİ
-3'lerin kundalinisi spontan, oyuncu ve beklenmedik şekillerde hareket
-eder. Sabit, lineer yükselişten ziyade spiral, dans eden enerji.
+KUNDALINI CHARACTERISTIC
+The kundalini of 3s moves in spontaneous, playful, and unexpected ways.
+Rather than a fixed, linear ascent - spiral, dancing energy.
 
-Kundalini Özellikleri:
-• Hava ve ateş elementi karışımı
-• Spontan, beklenmedik aktivasyonlar
-• Boğaz çakrasında yoğunlaşma
-• Yaratıcı ilham anlarıyla bağlantılı
-• Ses ve müzikle tetiklenir
+Kundalini Features:
+• Air and fire element mixture
+• Spontaneous, unexpected activations
+• Concentration in the throat chakra
+• Connected to moments of creative inspiration
+• Triggered by sound and music
 
-TANTRİK CİNSELLİK
-3 enerjisi cinsellikte oyuncu, keşifçi ve yaratıcıdır. Seks, 3'ler için
-ciddi bir ritüelden ziyade neşeli bir kutlama olabilir.
+TANTRIC SEXUALITY
+The 3 energy is playful, exploratory, and creative in sexuality. Sex for 3s
+can be a joyful celebration rather than a serious ritual.
 
-Tantrik Pratikler:
-• Tantrik ses çalışması (moaning, singing)
-• Yaratıcı rol oyunları ve keşif
-• Gülme ve oyun cinselliğe dahil
-• Çeşitlilik ve yenilik önemli
-• İfade özgürlüğü, utançsız deneyim
+Tantric Practices:
+• Tantric sound work (moaning, singing)
+• Creative role play and exploration
+• Laughter and play included in sexuality
+• Variety and novelty are important
+• Freedom of expression, shameless experience
 
-KUTSAL BİRLİK
-3 enerjisi, 6 ile mükemmel uyum yapar (3+3=6). Yaratıcılık ve şefkat
-birleşir. 9 ile de güçlü - yaratıcılık evrensel hizmete dönüşür.
+SACRED UNION
+The 3 energy harmonizes perfectly with 6 (3+3=6). Creativity and compassion
+unite. Also powerful with 9 - creativity transforms into universal service.
 
-Uyumlu Tantrik Partnerler: 1, 5, 6, 9
-Zorlayıcı Tantrik Kombinasyonlar: 4, 7
+Compatible Tantric Partners: 1, 5, 6, 9
+Challenging Tantric Combinations: 4, 7
 
-ENERJİ BEDEN BAĞLANTILARI
-3 enerjisi özellikle şu noktalarda yoğunlaşır:
-• Boğaz Çakra (Vishuddha) - ifade, ses, yaratıcılık
-• Sakral Çakra (Svadhisthana) - duygusal akış, zevk
-• Üçüncü Göz (Ajna) - yaratıcı vizyon, hayal gücü
+ENERGY BODY CONNECTIONS
+The 3 energy concentrates especially in these areas:
+• Throat Chakra (Vishuddha) - expression, voice, creativity
+• Sacral Chakra (Svadhisthana) - emotional flow, pleasure
+• Third Eye (Ajna) - creative vision, imagination
 
-Enerji Dengesi İçin:
-• Ses çalışmaları (şarkı söyleme, mantra, toning)
-• Dans ve hareket
-• Renklerle terapi
-• Yaratıcı görselleştirme
-• Nefes ve ses birleştirme
+For Energy Balance:
+• Sound work (singing, mantra, toning)
+• Dance and movement
+• Color therapy
+• Creative visualization
+• Combining breath and sound
 ''',
 
   sacredGeometryConnection: '''
-△ KUTSAL GEOMETRİ BAĞLANTISI △
+△ SACRED GEOMETRY CONNECTION △
 
-3 sayısının kutsal geometrisi, ÜÇGEN'dir - ilk gerçek geometrik şekil.
+The sacred geometry of number 3 is the TRIANGLE - the first true geometric shape.
 
-ÜÇGEN
-Üç nokta, üç çizgi - kaos değil, düzen. Yapının en temel, en sağlam
-formu. Piramitlerin gücü, dağların heybeti, okun yönü - hepsi üçgende.
+TRIANGLE
+Three points, three lines - not chaos, but order. The most basic, most stable
+form of structure. The power of pyramids, the majesty of mountains, the
+direction of arrows - all in the triangle.
 
-Spiritüel Anlamı:
-• Kutsal trinite - her geleneğin üçlemesi
-• Yön ve amaç - hedefe işaret
-• Denge - üç ayak en stabil
-• Yaratılış - baba, ana, çocuk
-• Zaman - geçmiş, şimdi, gelecek
+Spiritual Meaning:
+• Sacred trinity - every tradition's triad
+• Direction and purpose - pointing to the target
+• Balance - three legs are most stable
+• Creation - father, mother, child
+• Time - past, present, future
 
-TRIQUETRA (Üçlü Düğüm)
-Kelt geleneğinin güçlü sembolü - üç birbirine geçen arc, sonsuz
-döngüyü oluşturur. 3'ün sonsuz yaratıcılığını simgeler.
+TRIQUETRA (Triple Knot)
+A powerful symbol of Celtic tradition - three interlocking arcs forming
+an endless cycle. Symbolizes the infinite creativity of 3.
 
 SRI YANTRA
-108 üçgenin birleşimi, tanrısal dişil enerjinin (Shakti) yansıması.
-3 enerjisinin en yoğun geometrik ifadesi.
+A union of 108 triangles, reflection of divine feminine energy (Shakti).
+The most intense geometric expression of 3 energy.
 
-Meditasyon Pratiği:
-Sarı veya altın renkli bir üçgen hayal et, tepesi yukarı bakıyor.
-Bu üçgenin içine gir - burası senin yaratıcı tapınağın. Üçgenin
-her köşesi bir yeteneğini temsil eder. Üçgeni döndür, genişlet,
-küçült - onunla oyna.
+Meditation Practice:
+Imagine a yellow or golden triangle, point facing upward.
+Enter this triangle - this is your creative temple. Each corner
+of the triangle represents one of your talents. Rotate, expand,
+shrink the triangle - play with it.
 
-Kutsal Geometri Aktivasyonu:
-• Üç köşeli bir sembol tasarla (kendi triniten)
-• Üç renk, üç kristal, üç mum ile altar kur
-• Üçlü ritimde (vals ritmi) müzik dinle
-• Üç kelimelik bir yaratıcı mantra oluştur
+Sacred Geometry Activation:
+• Design a three-cornered symbol (your own trinity)
+• Set up an altar with three colors, three crystals, three candles
+• Listen to music in triple rhythm (waltz rhythm)
+• Create a three-word creative mantra
 ''',
 
   kundaliniActivation: '''
-🔥 KUNDALİNİ AKTİVASYONU 🔥
+🔥 KUNDALINI ACTIVATION 🔥
 
-3 yaşam yolu, spontan ve yaratıcı bir kundalini potansiyeli taşır.
-Enerji, oyuncu ve öngörülmez şekillerde hareket eder.
+Life path 3 carries a spontaneous and creative kundalini potential.
+Energy moves in playful and unpredictable ways.
 
-KUNDALİNİ KARAKTERİSTİKLERİ
-• Yaratıcı ilham anlarında spontan aktivasyon
-• Dans, müzik, sanatla tetiklenir
-• Spiral, döngüsel hareket
-• Rüyalarda renkler, müzik, uçuş
-• Neşe ve kahkaha ile açılır
+KUNDALINI CHARACTERISTICS
+• Spontaneous activation during moments of creative inspiration
+• Triggered by dance, music, art
+• Spiral, cyclical movement
+• Colors, music, flight in dreams
+• Opens with joy and laughter
 
-TEHLİKELER VE UYARILAR
-3 enerjisi dağınık olabilir, kundalini de kontrol edilmezse savrulabilir:
-• Manik yaratıcılık dönemleri (uyumama, yememe)
-• Enerji patlamaları sonrası çöküş
-• Topraklamasız uçuş hissi
-• Aşırı konuşma, ifade patlaması
-• Gerçeklikten kopma (delüzyon)
+DANGERS AND WARNINGS
+3 energy can be scattered, and if not controlled, kundalini can also scatter:
+• Manic creativity periods (not sleeping, not eating)
+• Collapse after energy bursts
+• Feeling of flying without grounding
+• Excessive talking, expression bursts
+• Disconnection from reality (delusion)
 
-GÜVENLİ AKTİVASYON YOLLARI
-1. SES VE MANTRA
-Boğaz çakrasından ses çıkar. "HAM" mantrası boğaz çakrasını, "OM"
-üçüncü gözü aktive eder. Şarkı söylemek, toning doğal aktivasyon.
+SAFE ACTIVATION PATHS
+1. SOUND AND MANTRA
+Sound emerges from the throat chakra. "HAM" mantra activates the throat
+chakra, "OM" activates the third eye. Singing, toning are natural activation.
 
-2. YARATICI HAREKET
-Serbest dans, müzikle hareket. Koreografi değil, bedenin doğal ifadesi.
-Hareket meditasyonu, ecstatic dance.
+2. CREATIVE MOVEMENT
+Free dance, movement with music. Not choreography, but the body's natural
+expression. Movement meditation, ecstatic dance.
 
-3. RENK VE GÖRSELLEŞTIRME
-Sarı ışık omurgadan yükseliyor, boğazda turkuaza dönüşüyor, üçüncü
-gözde mor oluyor. Renk gökkuşağı meditasyonu.
+3. COLOR AND VISUALIZATION
+Yellow light rising through the spine, turning turquoise at the throat,
+becoming purple at the third eye. Rainbow color meditation.
 
-4. NEFES
-Bhastrika (ateş nefesi) dikkatli şekilde - enerjiyi hızlandırır.
-Alternatif nostril breathing dengelemek için.
+4. BREATH
+Bhastrika (breath of fire) carefully - accelerates energy.
+Alternate nostril breathing for balance.
 
-5. SANAT TERAPİSİ
-Boyama, çizim, heykel - yaratıcı ifade kundaliniyi yumuşak aktive eder.
-Sonucu değil, süreci yaşa.
+5. ART THERAPY
+Painting, drawing, sculpture - creative expression softly activates kundalini.
+Experience the process, not the result.
 
-AKTİVASYON ZAMANLAMA
-• Perşembe (Jüpiter günü) güçlendirir
-• İlkbahar mevsimi (yenilenme, büyüme)
-• Yay burcu dönemi (22 Kasım - 21 Aralık)
-• Gündüz, özellikle sabah saatleri
+ACTIVATION TIMING
+• Thursday (Jupiter's day) strengthens
+• Spring season (renewal, growth)
+• Sagittarius period (November 22 - December 21)
+• Daytime, especially morning hours
 
-KUNDALİNİ UYANIŞI BELİRTİLERİ
-• Yaratıcı ilham selleri
-• Spontan şarkı söyleme veya sesler çıkarma
-• Yoğun renk deneyimleri (kapalı gözle bile)
-• Neşe ve coşku dalgaları
-• Kelimelerin akışı (yazı, konuşma)
-• Bağlantı hissi (evren, insanlar, doğa ile)
+KUNDALINI AWAKENING SIGNS
+• Floods of creative inspiration
+• Spontaneous singing or making sounds
+• Intense color experiences (even with eyes closed)
+• Waves of joy and excitement
+• Flow of words (writing, speaking)
+• Feeling of connection (with universe, people, nature)
 ''',
 
   compatibilityMatrix: {
     1: '''
-3 + 1 = YARATICI DANS
-1'in liderliği ve 3'ün yaratıcılığı birleşir. Birlikte projeler,
-heyecan, aksiyon. 1, 3'e yön verir; 3, 1'in vizyonuna renk katar.
-Enerjik, ateşli ilişki. Dikkat: Her ikisi de dışa dönük, bazen rekabet.
-Uyum puanı: 8/10
+3 + 1 = CREATIVE DANCE
+The leadership of 1 and the creativity of 3 unite. Projects together,
+excitement, action. 1 gives direction to 3; 3 adds color to 1's vision.
+Energetic, fiery relationship. Note: Both are extroverted, sometimes competitive.
+Compatibility score: 8/10
 ''',
     2: '''
-3 + 2 = NEŞELİ UYUM
-3'ün neşesi, 2'nin hassasiyetini hafifletir. 2, 3'e duygusal derinlik
-katar. Yaratıcı, destekleyici ilişki. 3, bazen 2'yi ihmal edebilir.
-2, 3'ün hafifliğini yüzeysel bulabilir. İletişim kritik.
-Uyum puanı: 8/10
+3 + 2 = JOYFUL HARMONY
+The joy of 3 lightens the sensitivity of 2. 2 adds emotional depth
+to 3. Creative, supportive relationship. 3 may sometimes neglect 2.
+2 may find 3's lightness superficial. Communication is critical.
+Compatibility score: 8/10
 ''',
     3: '''
-3 + 3 = ÇİFT GÖKKUŞAĞI
-İki yaratıcı ruh, sonsuz potansiyel. Birlikte eğlence, sanat, macera.
-Risk: Hiçbir şey tamamlanmaz, her şey yüzeysel kalır, mali kaos.
-Disiplin ve topraklama şart.
-Uyum puanı: 6/10
+3 + 3 = DOUBLE RAINBOW
+Two creative souls, infinite potential. Fun, art, adventure together.
+Risk: Nothing gets completed, everything stays superficial, financial chaos.
+Discipline and grounding are essential.
+Compatibility score: 6/10
 ''',
     4: '''
-3 + 4 = ZORLAYICI AMA DENGELEYİCİ
-4'ün disiplini, 3'ü sınırlandırabilir ama aynı zamanda topraklar.
-3, 4'ün katılığını çözer, renk katar. Birbirlerine ihtiyaçları var
-ama farkında olmalılar. Sabır ve anlayış gerekli.
-Uyum puanı: 5/10
+3 + 4 = CHALLENGING BUT BALANCING
+4's discipline can limit 3 but also grounds them. 3 dissolves 4's
+rigidity, adds color. They need each other but must be aware.
+Patience and understanding required.
+Compatibility score: 5/10
 ''',
     5: '''
-3 + 5 = MACERA ÇOCUKLARI
-İki özgür ruh, sınırsız macera. Seyahat, keşif, değişim. Sıkıcılık
-yok, heyecan bol. Risk: İstikrarsızlık, sorumluluktan kaçınma,
-her ikisi de farklı yönlere savrulabilir.
-Uyum puanı: 7/10
+3 + 5 = ADVENTURE CHILDREN
+Two free spirits, limitless adventure. Travel, exploration, change.
+No boredom, plenty of excitement. Risk: Instability, avoiding responsibility,
+both may scatter in different directions.
+Compatibility score: 7/10
 ''',
     6: '''
-3 + 6 = YARATICI YUVA
-6'nın şefkati ve 3'ün yaratıcılığı güzel bir yuva oluşturur.
-Estetik, güzellik, harmoni önemli. Sanatsal bir aile hayatı.
-Birlikte yaratıcı projeler.
-Uyum puanı: 9/10
+3 + 6 = CREATIVE NEST
+The compassion of 6 and the creativity of 3 form a beautiful home.
+Aesthetics, beauty, harmony are important. An artistic family life.
+Creative projects together.
+Compatibility score: 9/10
 ''',
     7: '''
-3 + 7 = YÜZEY VE DERİNLİK
-3'ün sosyalliği, 7'nin içe dönüklüğüyle çelişebilir. Ama 7, 3'e
-derinlik öğretir; 3, 7'yi dünyaya çıkarır. Karşılıklı büyüme
-mümkün ama zaman ve anlayış gerekli.
-Uyum puanı: 5/10
+3 + 7 = SURFACE AND DEPTH
+3's sociability can conflict with 7's introversion. But 7 teaches 3
+depth; 3 brings 7 out into the world. Mutual growth is possible
+but time and understanding are needed.
+Compatibility score: 5/10
 ''',
     8: '''
-3 + 8 = İŞ VE EĞLEnce
-8'in iş zekası, 3'ün yaratıcılığıyla başarı getirebilir. 3, 8'e
-neşe katar; 8, 3'ün fikirlerini paraya çevirir. İş ortaklığında
-iyi, romantik ilişkide rol dağılımı önemli.
-Uyum puanı: 7/10
+3 + 8 = BUSINESS AND FUN
+8's business acumen combined with 3's creativity can bring success.
+3 adds joy to 8; 8 turns 3's ideas into money. Good for business
+partnership, role distribution important in romantic relationship.
+Compatibility score: 7/10
 ''',
     9: '''
-3 + 9 = İLHAM ORTAKLIĞI
-Her ikisi de yaratıcı ve idealist. 9'un evrenselliği, 3'ün ifade
-gücüyle birleşir. Sanat, insanlık, hizmet temaları. Birlikte
-dünyayı güzelleştirme potansiyeli.
-Uyum puanı: 8/10
+3 + 9 = INSPIRATION PARTNERSHIP
+Both are creative and idealistic. 9's universality combines with
+3's expression power. Art, humanity, service themes. Potential
+to beautify the world together.
+Compatibility score: 8/10
 ''',
     11: '''
-3 + 11 = VİZYONER SANAT
-11'in spiritüel vizyonu, 3'ün yaratıcılığıyla ifade bulur. 3, 11'in
-mesajlarını sanata dönüştürür. Yoğun, ilham dolu ilişki.
-Uyum puanı: 8/10
+3 + 11 = VISIONARY ART
+11's spiritual vision finds expression through 3's creativity. 3
+transforms 11's messages into art. Intense, inspired relationship.
+Compatibility score: 8/10
 ''',
     22: '''
-3 + 22 = BÜYÜK YARATIM
-22'nin inşa gücü, 3'ün yaratıcılığıyla devasa projeler. 3, vizyona
-estetik katar; 22, fikirleri somutlaştırır. Mimarlık, tasarım,
-sanat kurumları.
-Uyum puanı: 7/10
+3 + 22 = GREAT CREATION
+22's building power combined with 3's creativity creates massive projects.
+3 adds aesthetics to the vision; 22 materializes ideas. Architecture,
+design, art institutions.
+Compatibility score: 7/10
 ''',
     33: '''
-3 + 33 = USTA VE ÇIRAK
-33'ün öğretmenliği, 3'ün öğrenme ve ifade yeteneğiyle buluşur.
-3, 33'ün bilgeliğini dünyaya taşır. Spiritüel sanat, kutsal ifade.
-Uyum puanı: 8/10
+3 + 33 = MASTER AND APPRENTICE
+33's teaching meets 3's learning and expression ability. 3 carries
+33's wisdom to the world. Spiritual art, sacred expression.
+Compatibility score: 8/10
 ''',
   },
 
@@ -2022,713 +2026,713 @@ Uyum puanı: 8/10
   challengingNumbers: [4, 7, 8],
 
   careerDestiny: '''
-💼 KARİYER KADERİ VE MESLEK YOLU 💼
+💼 CAREER DESTINY AND PROFESSIONAL PATH 💼
 
-3 yaşam yolu, yaratıcılık, iletişim ve ifade gerektiren alanlarda parlar.
-Monoton, kuralcı işler ruhunu soldurur.
+Life path 3 shines in fields requiring creativity, communication, and expression.
+Monotonous, rule-bound jobs wither the soul.
 
-İDEAL KARİYER ALANLARI:
-• Sanat (resim, heykel, grafik tasarım)
-• Müzik (performans, beste, prodüksiyon)
-• Yazarlık (roman, senaryo, blog, reklam)
-• Oyunculuk ve Performans Sanatları
-• Fotoğrafçılık ve Film
-• Moda ve Stil Danışmanlığı
-• İç Mimarlık ve Dekorasyon
-• Pazarlama ve Reklam
-• Sunuculuk ve Medya
-• Öğretmenlik (yaratıcı alanlar)
-• Koçluk (yaşam koçu, yaratıcılık koçu)
-• Event Planlama
+IDEAL CAREER FIELDS:
+• Art (painting, sculpture, graphic design)
+• Music (performance, composition, production)
+• Writing (novels, screenwriting, blogging, advertising)
+• Acting and Performing Arts
+• Photography and Film
+• Fashion and Style Consulting
+• Interior Design and Decoration
+• Marketing and Advertising
+• Hosting and Media
+• Teaching (creative fields)
+• Coaching (life coach, creativity coach)
+• Event Planning
 
-KAÇINILMASI GEREKEN ORTAMLAR:
-• Muhasebe, finans (aşırı detay ve tekrar)
-• Katı kurallı bürokratik kurumlar
-• Tek başına sessiz ofis işleri
-• Yaratıcılığa yer olmayan ortamlar
-• Sıkı hiyerarşik yapılar
+ENVIRONMENTS TO AVOID:
+• Accounting, finance (excessive detail and repetition)
+• Strictly rule-bound bureaucratic institutions
+• Quiet solo office work
+• Environments with no room for creativity
+• Strict hierarchical structures
 
-BAŞARI ANAHTARLARI:
-• Yaratıcılığını profesyonelleştir
-• Disiplin ve rutin oluştur (paradoks gibi ama gerekli)
-• Bir alanda uzmanlaş, sonra genişle
-• Portföy ve görünürlük oluştur
-• Eleştiriye açık ol ama özünü koru
+KEYS TO SUCCESS:
+• Professionalize your creativity
+• Create discipline and routine (seems paradoxical but necessary)
+• Specialize in one area, then expand
+• Build a portfolio and visibility
+• Be open to criticism but preserve your essence
 
-PARA VE BOLLUK İLİŞKİSİ:
-3'ler para kazanmada yaratıcı olabilir ama yönetmekte zorlanabilir.
-Saçma projeler, plansız harcamalar, finansal kaos riski var. Disiplinli
-bir finansal partner veya danışman faydalı.
+MONEY AND ABUNDANCE RELATIONSHIP:
+3s can be creative in making money but may struggle with managing it.
+Absurd projects, unplanned spending, risk of financial chaos. A disciplined
+financial partner or advisor is beneficial.
 ''',
 
   healthTendencies: '''
-🏥 SAĞLIK EĞİLİMLERİ VE BEDEN BİLGELİĞİ 🏥
+🏥 HEALTH TENDENCIES AND BODY WISDOM 🏥
 
-3 sayısı, bedenin iletişim ve ifade alanlarını yönetir. Sağlık
-sorunları genellikle bastırılmış ifadeden kaynaklanır.
+The number 3 governs the body's areas of communication and expression. Health
+issues generally stem from suppressed expression.
 
-HASSAS BÖLGELER:
-• Boğaz, ses telleri, tiroid
-• Eller ve kollar
-• Sinir sistemi (aşırı uyarılma)
-• Solunum sistemi
-• Cilt (ifade organı olarak)
+SENSITIVE AREAS:
+• Throat, vocal cords, thyroid
+• Hands and arms
+• Nervous system (overstimulation)
+• Respiratory system
+• Skin (as an organ of expression)
 
-ORTAK SAĞLIK SORUNLARI:
-• Ses problemleri (boğaz ağrısı, kısıklık)
-• Tiroid dengesizlikleri
-• Anksiyete ve hiperaktivite
-• Cilt döküntüleri (bastırılmış ifade)
-• Solunum sorunları (astım dahil)
-• ADD/ADHD eğilimi
+COMMON HEALTH ISSUES:
+• Voice problems (sore throat, hoarseness)
+• Thyroid imbalances
+• Anxiety and hyperactivity
+• Skin rashes (suppressed expression)
+• Respiratory problems (including asthma)
+• ADD/ADHD tendency
 
-ÖNERİLEN FİZİKSEL AKTİVİTELER:
-• Dans (her türlü)
-• Yüzme
-• Yoga (özellikle vokal yoga)
-• Dövüş sanatları (ifade ve disiplin)
-• Takım sporları (sosyal ihtiyaç)
+RECOMMENDED PHYSICAL ACTIVITIES:
+• Dance (all types)
+• Swimming
+• Yoga (especially vocal yoga)
+• Martial arts (expression and discipline)
+• Team sports (social need)
 
-KAÇINILMASI GEREKENLER:
-• Sürekli konuşma/şarkı söyleme (ses telleri yorgunluğu)
-• Aşırı kafein ve uyarıcılar
-• Uyku düzensizliği
-• İfadeyi bastırma
-• Sosyal izolasyon
+THINGS TO AVOID:
+• Constant talking/singing (vocal cord fatigue)
+• Excessive caffeine and stimulants
+• Sleep irregularity
+• Suppressing expression
+• Social isolation
 
-BÜTÜNSEL ŞIFA ÖNERİLERİ:
-• Ses terapisi ve toning
-• Sanat terapisi
-• Günlük yazı (morning pages)
-• Renk terapisi
-• Turkuaz ve mavi tonları (boğaz çakra)
+HOLISTIC HEALING RECOMMENDATIONS:
+• Sound therapy and toning
+• Art therapy
+• Daily writing (morning pages)
+• Color therapy
+• Turquoise and blue tones (throat chakra)
 ''',
 
   wealthVibration: '''
-💰 BOLLUK TİTREŞİMİ VE MADDI DÜNYA 💰
+💰 ABUNDANCE VIBRATION AND MATERIAL WORLD 💰
 
-3 sayısı, yaratıcılık yoluyla zenginlik yaratmada yeteneklidir.
-Ama paranın pratik yönetimi zayıf nokta olabilir.
+The number 3 is talented at creating wealth through creativity.
+But practical money management can be a weak point.
 
-DOĞAL BOLLUK YETENEKLERİ:
-• Yaratıcı fikirlerden gelir üretme
-• Kendini pazarlama ve satış
-• Network kurma ve sosyal bağlantılar
-• Fırsatları görme ve değerlendirme
-• İnsanları motive etme ve yönlendirme
+NATURAL ABUNDANCE TALENTS:
+• Generating income from creative ideas
+• Self-marketing and sales
+• Building networks and social connections
+• Seeing and evaluating opportunities
+• Motivating and guiding people
 
-PARA BLOKLARI:
-• "Sanatçılar fakir olur" inancı
-• Yaratıcılığını para için satma korkusu
-• Finansal planlama eksikliği
-• Anlık harcama dürtüsü
-• Para konularını "sıkıcı" bulma
+MONEY BLOCKS:
+• "Artists are poor" belief
+• Fear of selling your creativity for money
+• Lack of financial planning
+• Impulse spending urges
+• Finding money matters "boring"
 
-ZENGİNLİK AKTİVASYONU:
-1. MANTRA: "Yaratıcılığım bolluk kaynağım"
-2. KRİSTAL: Sitrin, turkuaz, kaplan gözü
-3. RENK: Sarı ve altın (sarı cüzdan veya sarı kağıt)
-4. SAYI: 3 ve 8 kombinasyonları (38, 83)
-5. GÜN: Perşembe (Jüpiter günü) yeni başlangıçlar için
+WEALTH ACTIVATION:
+1. MANTRA: "My creativity is my source of abundance"
+2. CRYSTAL: Citrine, turquoise, tiger's eye
+3. COLOR: Yellow and gold (yellow wallet or yellow paper)
+4. NUMBER: 3 and 8 combinations (38, 83)
+5. DAY: Thursday (Jupiter's day) for new beginnings
 
-YATIRIM STRATEJİSİ:
-• Yaratıcı sektörlere yatırım (eğlence, medya, sanat)
-• Entelektüel mülkiyet (kitap, patent, telif)
-• Profesyonel finansal danışmanlık al
-• Otomatik tasarruf sistemleri kur
-• Harcama takibi yap (sıkıcı ama gerekli)
+INVESTMENT STRATEGY:
+• Invest in creative sectors (entertainment, media, art)
+• Intellectual property (books, patents, royalties)
+• Get professional financial advice
+• Set up automatic savings systems
+• Track spending (boring but necessary)
 ''',
 
   loveAndRelationships: '''
-💕 AŞK VE İLİŞKİLER - KUTSAL BİRLİK YOLU 💕
+💕 LOVE AND RELATIONSHIPS - PATH OF SACRED UNION 💕
 
-3 yaşam yolunda aşk, oyuncu, yaratıcı ve neşeli olmalı. Sıkıcı,
-rutin ilişkiler ruhunu öldürür.
+In life path 3, love should be playful, creative, and joyful. Boring,
+routine relationships kill the soul.
 
-AŞKTA GÜÇLÜ YÖNLER:
-• Romantik ve yaratıcı
-• Eğlenceli ve neşeli
-• İfadeli ve açık
-• Sosyal ve cana yakın
-• Sürprizler ve maceralar düzenleme
+STRENGTHS IN LOVE:
+• Romantic and creative
+• Fun and joyful
+• Expressive and open
+• Social and friendly
+• Organizing surprises and adventures
 
-AŞKTA ZORLUKLAR:
-• Derin duygusal bağdan kaçınma
-• Sorunları mizahla geçiştirme
-• Yüzeysellik ve dağınıklık
-• Taahhüt korkusu
-• Drama yaratma eğilimi
+CHALLENGES IN LOVE:
+• Avoiding deep emotional bonds
+• Deflecting problems with humor
+• Superficiality and scattered focus
+• Fear of commitment
+• Tendency to create drama
 
-İDEAL PARTNER PROFİLİ:
-• Yaratıcılığını takdir eden
-• Sana meydan okuyan ama eleştirmeyen
-• Eğlence ve derinlik dengesi olan
-• Kendi ayakları üzerinde duran
-• Sosyal ama sadık
+IDEAL PARTNER PROFILE:
+• Appreciates your creativity
+• Challenges you but doesn't criticize
+• Has balance between fun and depth
+• Stands on their own feet
+• Social but loyal
 
-İLİŞKİDE KAÇINILMASI GEREKENLER:
-• Sürekli eğlence, hiç derinlik yok
-• Her sorunu espriyle geçiştirme
-• Flört etmeyi bırakamama
-• Partneri seyirci olarak kullanma
-• Duygusal kaçınma
+THINGS TO AVOID IN RELATIONSHIPS:
+• Constant entertainment, no depth
+• Deflecting every problem with jokes
+• Inability to stop flirting
+• Using partner as an audience
+• Emotional avoidance
 
-KUTSAL BİRLİK İÇİN PRATİKLER:
-• Birlikte yaratıcı projeler
-• Dans geceleri ve müzikli aktiviteler
-• Dürüst duygusal paylaşım zamanları
-• Macera ve keşif birlikte
-• Karşılıklı ilham ve destek
+PRACTICES FOR SACRED UNION:
+• Creative projects together
+• Dance nights and musical activities
+• Times for honest emotional sharing
+• Adventure and exploration together
+• Mutual inspiration and support
 
-KARMİK İLİŞKİLER:
-4 ve 7 sayılı partnerlerle ilişkiler genellikle karmiktir. 4, disiplin
-dersini; 7, derinlik dersini getirir. Zor ama dönüştürücü.
+KARMIC RELATIONSHIPS:
+Relationships with number 4 and 7 partners are usually karmic. 4 brings
+the lesson of discipline; 7 brings the lesson of depth. Difficult but transformative.
 
-RUH EŞİ İŞARETLERİ:
-• Birlikte gülmek kadar birlikte ağlamak
-• Yaratıcılığının en derin ifadelerine şahit olması
-• Seni "eğlendirici" değil, "sen" olarak görmesi
-• Birlikte sessizliğe de dayanabilme
-• Karşılıklı ilham ve büyüme
+SOUL MATE SIGNS:
+• Crying together as much as laughing together
+• Witnessing the deepest expressions of your creativity
+• Seeing you as "you" not as "the entertainer"
+• Being able to tolerate silence together
+• Mutual inspiration and growth
 ''',
 
   famousExamples: [
-    'John Travolta - Çok yönlü sanatçı',
-    'Christina Aguilera - Vokal yıldızı',
-    'Snoop Dogg - Müzik ikonu',
-    'David Bowie - Yaratıcı dahi',
-    'Celine Dion - Güçlü ses',
-    'Kevin Hart - Komedyen',
-    'Alec Baldwin - Aktör',
-    'Cameron Diaz - Neşeli yıldız',
+    'John Travolta - Versatile artist',
+    'Christina Aguilera - Vocal star',
+    'Snoop Dogg - Music icon',
+    'David Bowie - Creative genius',
+    'Celine Dion - Powerful voice',
+    'Kevin Hart - Comedian',
+    'Alec Baldwin - Actor',
+    'Cameron Diaz - Joyful star',
   ],
 
   dailyAffirmations: [
-    'Yaratıcılığım sınırsız ve değerli.',
-    'Kendimi özgürce ve otantik olarak ifade ediyorum.',
-    'Neşem gerçek ve derinden geliyor.',
-    'Hem eğleniyor hem derinleşiyorum.',
-    'Projelerimi tamamlama gücüm var.',
-    'Eleştiriler beni büyütür, yıkmaz.',
-    'Sesim duyulmaya değer.',
-    'Güzellik yaratarak dünyaya hizmet ediyorum.',
-    'Disiplin ve yaratıcılık birlikte dans ediyor.',
-    'Ben bir kanal, ilahi ilham benden akıyor.',
+    'My creativity is limitless and valuable.',
+    'I express myself freely and authentically.',
+    'My joy is real and comes from deep within.',
+    'I am both having fun and going deeper.',
+    'I have the power to complete my projects.',
+    'Criticism helps me grow, it does not destroy me.',
+    'My voice is worth hearing.',
+    'I serve the world by creating beauty.',
+    'Discipline and creativity dance together.',
+    'I am a channel, divine inspiration flows through me.',
   ],
 
   meditationMantras: [
-    'HAM - Boğaz çakrasının sesi',
-    'OM - Evrensel yaratıcı ses',
-    'AIM - Saraswati mantası (bilgelik ve sanat tanrıçası)',
-    'SHREEM - Bolluk ve güzellik',
-    'KRIM - Yaratıcı enerji',
-    'OM SARASWATIYE NAMAHA - Sanata selam',
+    'HAM - Sound of the throat chakra',
+    'OM - Universal creative sound',
+    'AIM - Saraswati mantra (goddess of wisdom and art)',
+    'SHREEM - Abundance and beauty',
+    'KRIM - Creative energy',
+    'OM SARASWATIYE NAMAHA - Salutations to art',
   ],
 
   healingPractice: '''
-🙏 ŞIFA PRATİĞİ: YARATICI SES MEDİTASYONU 🙏
+🙏 HEALING PRACTICE: CREATIVE SOUND MEDITATION 🙏
 
-Bu pratik, 3 enerjisini dengelemek ve boğaz çakrasını aktive etmek
-için tasarlanmıştır. İdeal zaman: Sabah veya yaratıcı blokaj anları.
+This practice is designed to balance the 3 energy and activate the throat
+chakra. Ideal time: Morning or during creative blocks.
 
-HAZIRLIK:
-1. Rahat bir yerde otur, omurgayı dik tut
-2. Boynunu ve omuzlarını gevşet
-3. Sarı veya turkuaz renkli mum yak
-4. Yanına bir bardak ılık su koy
+PREPARATION:
+1. Sit comfortably, keep your spine straight
+2. Relax your neck and shoulders
+3. Light a yellow or turquoise candle
+4. Place a glass of warm water beside you
 
-NEFES (5 dakika):
-1. Derin nefes al, ağızdan uzun "HAA" sesiyle ver
-2. Her nefes verişte sesi değiştir: "HAA", "HEE", "HOO"
-3. Boğazındaki titreşimi hisset
-4. Sesi yükselt, alçalt, oyna
+BREATH (5 minutes):
+1. Breathe in deeply, exhale with a long "HAA" sound through your mouth
+2. Change the sound with each exhale: "HAA", "HEE", "HOO"
+3. Feel the vibration in your throat
+4. Raise, lower, play with the sound
 
-SES ÇALIŞMASI (10 dakika):
-1. "OM" mantrası - derin, uzun, titreşimli
-2. Her tekrarda farklı nota dene
-3. Rezonansı bedeninde hisset
-4. Spontan sesler çıkmasına izin ver
-5. Şarkıya, melodiye dönüşebilir - izin ver
+SOUND WORK (10 minutes):
+1. "OM" mantra - deep, long, vibrational
+2. Try a different note with each repetition
+3. Feel the resonance in your body
+4. Allow spontaneous sounds to emerge
+5. It may turn into song, melody - allow it
 
-YARATICI GÖRSELLEŞTIRME (5 dakika):
-1. Boğazında turkuaz bir ışık küresi hayal et
-2. Bu küre genişliyor, tüm boğazı kaplıyor
-3. Işık, dudaklarından çıkıp odan dolduruyor
-4. Bu ışık, yaratıcı potansiyelini temsil ediyor
+CREATIVE VISUALIZATION (5 minutes):
+1. Imagine a turquoise sphere of light in your throat
+2. This sphere is expanding, covering your entire throat
+3. The light is leaving your lips and filling the room
+4. This light represents your creative potential
 
-AFFİRMASYON (5 dakika):
-Yüksek sesle söyle:
-"Ben yaratıcı gücün bir kanalıyım."
-"Sesim değerli ve güçlü."
-"Kendimi tam ve özgürce ifade ediyorum."
-"Her gün yaratıyorum ve paylaşıyorum."
+AFFIRMATION (5 minutes):
+Say aloud:
+"I am a channel of creative power."
+"My voice is valuable and powerful."
+"I express myself fully and freely."
+"Every day I create and share."
 
-KAPATMA:
-1. Bir bardak ılık su iç (boğazı besler)
-2. "Bugün yaratacağım şeylere açığım" niyeti
-3. Minnettarlıkla bitir
+CLOSING:
+1. Drink a glass of warm water (nourishes the throat)
+2. Intention: "I am open to what I will create today"
+3. End with gratitude
 
-Bu pratiği haftada en az 3 kez yap.
-Yaratıcı blokajlarda günlük uygula.
+Do this practice at least 3 times a week.
+Apply daily during creative blocks.
 ''',
 
   yearlyGuidance: {
     '2024': '''
-2024 - YARATICI GENİŞLEME (Evrensel 8)
-8 evrensel yılı, 3'ler için yaratıcılığı paraya çevirme zamanı.
-Sanatını profesyonelleştir. İş fırsatları, tanınırlık artışı.
-Disiplin ve odaklanma gerekecek.
+2024 - CREATIVE EXPANSION (Universal 8)
+The universal 8 year is time for 3s to monetize creativity.
+Professionalize your art. Business opportunities, increased recognition.
+Discipline and focus will be needed.
 ''',
     '2025': '''
-2025 - TAMAMLAMA VE BIRAKIM (Evrensel 9)
-9 evrensel yılı, eski projeleri bitirme zamanı. Yarım kalan işleri
-tamamla veya bilinçli bırak. Fedakarlık ve hizmet temaları.
+2025 - COMPLETION AND RELEASE (Universal 9)
+The universal 9 year is time to finish old projects. Complete
+unfinished work or consciously let go. Themes of sacrifice and service.
 ''',
     '2026': '''
-2026 - YENİ BAŞLANGIÇLAR (Evrensel 1)
-Yeni yaratıcı döngü başlıyor. Büyük projelere başlama zamanı.
-Cesur ol, risk al, yeni alanlar keşfet.
+2026 - NEW BEGINNINGS (Universal 1)
+A new creative cycle is beginning. Time to start big projects.
+Be brave, take risks, explore new areas.
 ''',
     '2027': '''
-2027 - İŞBİRLİĞİ (Evrensel 2)
-Ortaklıklar, kolaborasyonlar ön planda. Başkalarıyla birlikte
-yaratmayı öğren. Duygusal derinlik fırsatları.
+2027 - COLLABORATION (Universal 2)
+Partnerships and collaborations come to the fore. Learn to create
+together with others. Opportunities for emotional depth.
 ''',
     '2028': '''
-2028 - YARATICILIK ZİRVESİ (Evrensel 3)
-Çift 3 enerjisi! Bu senin yılın. Yaratıcılığın doruğa ulaşır.
-Dikkat: Dağılma, yüzeysellik riski de yüksek. Odaklan.
+2028 - CREATIVITY PEAK (Universal 3)
+Double 3 energy! This is your year. Your creativity reaches its peak.
+Warning: Risk of scattering and superficiality is also high. Focus.
 ''',
   },
 );
 
-/// Yaşam Yolu 4 - Yapıcı / Temel Kuran
+/// Life Path 4 - Builder / Foundation Setter
 const lifePathMega4 = LifePathMegaContent(
   number: 4,
-  title: 'Kozmik Mimar',
-  archetype: 'Yapıcı / Temel Kuran / Düzen Koruyucu',
+  title: 'Cosmic Architect',
+  archetype: 'Builder / Foundation Setter / Order Keeper',
   sacredSymbol: '□',
-  element: 'Toprak - Katı, Güvenilir Zemin',
-  planet: 'Satürn - Disiplin ve Sınırlar Ustası',
-  tarotMajorArcana: 'İmparator (IV) - Otorite ve Yapı',
-  runicSymbol: 'Othala ᛟ - Miras ve Kök',
-  colors: ['Yeşil', 'Kahverengi', 'Gri', 'Lacivert'],
-  crystals: ['Oniks', 'Hematit', 'Jade', 'Kehribar', 'Yeşil Turmalin'],
-  chakraAlignment: 'Kök Çakra (Muladhara) - Temel ve Güvenlik',
-  sacredGeometry: 'Kare - Stabilite ve Düzen',
-  frequencyHz: '285 Hz - Doku Onarımı, Topraklama',
-  musicalNote: 'Fa (F) - Toprak Titreşimi',
+  element: 'Earth - Solid, Reliable Ground',
+  planet: 'Saturn - Master of Discipline and Boundaries',
+  tarotMajorArcana: 'The Emperor (IV) - Authority and Structure',
+  runicSymbol: 'Othala ᛟ - Heritage and Roots',
+  colors: ['Green', 'Brown', 'Gray', 'Navy Blue'],
+  crystals: ['Onyx', 'Hematite', 'Jade', 'Amber', 'Green Tourmaline'],
+  chakraAlignment: 'Root Chakra (Muladhara) - Foundation and Security',
+  sacredGeometry: 'Square - Stability and Order',
+  frequencyHz: '285 Hz - Tissue Repair, Grounding',
+  musicalNote: 'F (Fa) - Earth Vibration',
 
   deepSpiritualMeaning: '''
-□ KADİM BİLGELİK: DÖRDÜN MİSTİK SIRRI □
+□ ANCIENT WISDOM: THE MYSTIC SECRET OF FOUR □
 
-4 sayısı, maddi dünyanın temelidir. Dört element (toprak, su, ateş, hava),
-dört yön (kuzey, güney, doğu, batı), dört mevsim, dört ay evresi -
-evrenin yapı taşları 4'te kodlanmıştır.
+The number 4 is the foundation of the material world. Four elements (earth, water,
+fire, air), four directions (north, south, east, west), four seasons, four moon
+phases - the building blocks of the universe are encoded in 4.
 
-Pisagor, 4'ü "Tetractys"in parçası olarak görürdü - 1+2+3+4=10, mükemmel
-sayının oluşumu. 4, soyut olanın somutlaştığı, fikrin form aldığı noktadır.
-Sen, fikirleri gerçeğe dönüştüren güçsün.
+Pythagoras saw 4 as part of the "Tetractys" - 1+2+3+4=10, the formation of the
+perfect number. 4 is where the abstract becomes concrete, where idea takes form.
+You are the force that transforms ideas into reality.
 
-Kabala'da 4, "Chesed" (Merhamet) sefirasına karşılık gelir - ama aynı
-zamanda maddi dünyanın (Malkuth) sayısıdır. Ruhsal olanı fiziksel olanda
-sabitleme, gökyüzünü yeryüzüne indirme görevi senindir.
+In Kabbalah, 4 corresponds to the sephira "Chesed" (Mercy) - but it is also
+the number of the material world (Malkuth). Your task is to anchor the spiritual
+in the physical, to bring heaven down to earth.
 
-Dört, evrensel denge sembolüdür. Masa dört ayak üzerinde durur, bina
-dört duvar arasında yükselir, taht dört köşeyle güçlenir. Sen de hayatın
-temellerini atan, istikrarı sağlayan güçsün.
+Four is the symbol of universal balance. A table stands on four legs, a building
+rises between four walls, a throne is strengthened by four corners. You too are
+the force that lays life's foundations and ensures stability.
 
-Hindu geleneğinde dört "Purushartha" (yaşam amacı) vardır: Dharma (görev),
-Artha (refah), Kama (zevk), Moksha (kurtuluş). 4 yaşam yolundakiler,
-bu dört amacı dengelemek ve somutlaştırmak için gelmişlerdir.
+In Hindu tradition, there are four "Purusharthas" (life purposes): Dharma (duty),
+Artha (prosperity), Kama (pleasure), Moksha (liberation). Those on life path 4
+have come to balance and manifest these four purposes.
 
-Kadim Mısır'da dört oğul (Horus'un oğulları) ölümden sonraki organları
-korurdu. 4, koruma, muhafaza ve kalıcılığın sayısıdır.
+In ancient Egypt, four sons (Horus's sons) protected the organs after death.
+4 is the number of protection, preservation, and permanence.
 ''',
 
   karmicLessons: '''
-✦ KARMİK DERSLER VE RUHSAL SINAMALAR ✦
+✦ KARMIC LESSONS AND SPIRITUAL TRIALS ✦
 
-4 yaşam yolunun karmik dersleri, esneklik ve katılık arasındaki
-dengede yatar. Geçmiş yaşamlarında ya çok katı oldun ya da tamamen
-temelsiz yaşadın. Bu hayatta dengeyi bulmalısın.
+The karmic lessons of life path 4 lie in the balance between flexibility
+and rigidity. In past lives you were either too rigid or lived completely
+without foundation. In this life you must find balance.
 
-Birincil Karmik Ders: ESNEKLİK VE ADAPTASYON
-Düzen güzel ama hayat bazen kaotiktir. Dersin, planlar bozulduğunda
-yıkılmamak, değişime adapte olabilmek. Kontrol yanılsamasını bırakmak.
+Primary Karmic Lesson: FLEXIBILITY AND ADAPTATION
+Order is beautiful but life is sometimes chaotic. Your lesson is not to
+collapse when plans fail, to adapt to change. To let go of the illusion of control.
 
-İkincil Karmik Ders: İŞ VE YAŞAM DENGESİ
-İş ahlakın güçlü ama workaholic olma riski yüksek. Dersin, üretkenliğin
-ötesinde anlam bulmak, dinlenmenin de değerli olduğunu kabul etmek.
+Secondary Karmic Lesson: WORK-LIFE BALANCE
+Your work ethic is strong but the risk of being a workaholic is high.
+Your lesson is to find meaning beyond productivity, to accept that rest is also valuable.
 
-Üçüncül Karmik Ders: GÜVENLİK İÇSELDE
-Dışsal güvenlik (para, mülk, statü) geçicidir. Dersin, iç huzuru
-dışsal koşullara bağlamamak. Temel, toprakta değil ruhta.
+Tertiary Karmic Lesson: SECURITY IS INTERNAL
+External security (money, property, status) is temporary. Your lesson is not
+to tie inner peace to external conditions. The foundation is in the spirit, not the ground.
 
-Karmik Sınama Dönemleri:
-• 22, 31, 40, 49 yaşları kritik (4+4+4...)
-• Satürn dönüşleri (29, 58 yaş) çok yoğun
-• Oğlak mevsiminde dersler yoğunlaşır
+Karmic Trial Periods:
+• Ages 22, 31, 40, 49 are critical (4+4+4...)
+• Saturn returns (ages 29, 58) are very intense
+• Lessons intensify during Capricorn season
 
-Karmayı Dengeleme Yolları:
-• Spontanlık pratiği (küçük plansız aktiviteler)
-• Meditasyon ve bırakma çalışmaları
-• Doğada zaman (toprağa dokunma)
-• Yaratıcı aktiviteler (sonuç değil süreç odaklı)
-• Yardım istemeyi öğrenme
+Ways to Balance Karma:
+• Spontaneity practice (small unplanned activities)
+• Meditation and letting go work
+• Time in nature (touching the earth)
+• Creative activities (process-oriented, not result-oriented)
+• Learning to ask for help
 ''',
 
   pastLifeConnections: '''
-✧ GEÇMİŞ YAŞAM BAĞLANTILARI ✧
+✧ PAST LIFE CONNECTIONS ✧
 
-4 yaşam yolunda doğanlar, genellikle şu geçmiş yaşam arketiplerini taşır:
+Those born on life path 4 typically carry these past life archetypes:
 
-MİMAR/USTALAR GEÇMİŞİ
-Piramitleri, katedralleri, tapınakları inşa edenler. Taş üzerine taş
-koyan, nesiller boyu kalacak yapılar yaratan. Sabır, hassasiyet ve
-ustalık biliyorsun.
+ARCHITECT/MASTER BUILDER PAST
+Those who built pyramids, cathedrals, temples. Placing stone upon stone,
+creating structures that would last for generations. You know patience,
+precision, and mastery.
 
-ÇİFTÇİ/TOPRAK SAHİBİ GEÇMİŞİ
-Toprağı işleyen, mevsimlerle yaşayan, hasadın sabırını bilen.
-Ekim ve biçim döngüsünü, doğanın ritimlerini anlıyorsun.
+FARMER/LANDOWNER PAST
+Working the land, living with the seasons, knowing the patience of harvest.
+You understand the cycle of sowing and reaping, nature's rhythms.
 
-ASKER/MUHAFIZ GEÇMİŞİ
-Sınırları koruyan, düzeni sağlayan, disiplini bilen. Görev bilinci,
-fedakarlık ve yapı içinde çalışma deneyimin var.
+SOLDIER/GUARDIAN PAST
+Protecting borders, maintaining order, knowing discipline. You have
+experience of duty, sacrifice, and working within structure.
 
-ZANAATKAR/LONCA USTASI GEÇMİŞİ
-Elleriyle üreten, mükemmellik peşinde koşan, çıraklıktan ustalığa
-yürüyen. Kalite ve detay sende derin.
+CRAFTSMAN/GUILD MASTER PAST
+Creating with hands, pursuing perfection, walking from apprenticeship
+to mastery. Quality and detail run deep in you.
 
-Geçmiş Yaşam Tetikleyicileri:
-• Eski yapılara, kalıntılara derin çekim
-• El işlerinde açıklanamaz yetenek
-• Belirli coğrafyalara (özellikle antik medeniyetler) çekim
-• Toprağa dokunduğunda rahatlama
-• Düzen bozulduğunda aşırı stres
+Past Life Triggers:
+• Deep attraction to old structures and ruins
+• Unexplainable talent for handicrafts
+• Attraction to certain geographies (especially ancient civilizations)
+• Relaxation when touching the earth
+• Extreme stress when order is disrupted
 ''',
 
   soulPurpose: '''
-❂ RUHUN KUTSAL MİSYONU ❂
+❂ THE SOUL'S SACRED MISSION ❂
 
-Sen bu dünyaya özel bir misyonla geldin: İNŞA ETMEK ve KALICI KIRMAK.
+You came to this world with a special mission: TO BUILD and MAKE LASTING.
 
-Birincil Ruh Amacı: TEMEL ATMAK
-Fikirleri somutlaştırmak, vizyonları gerçeğe dönüştürmek, sağlam yapılar
-kurmak. Fiziksel (bina, şirket) veya soyut (sistem, metodoloji).
+Primary Soul Purpose: LAYING FOUNDATIONS
+Materializing ideas, transforming visions into reality, building solid
+structures. Physical (buildings, companies) or abstract (systems, methodologies).
 
-İkincil Ruh Amacı: GÜVENLİK SAĞLAMAK
-Başkalarının üzerinde durabileceği zemin yaratmak. Aile, topluluk,
-kurum için istikrar ve güvenlik kaynağı olmak.
+Secondary Soul Purpose: PROVIDING SECURITY
+Creating ground that others can stand on. Being a source of stability
+and security for family, community, organization.
 
-Üçüncül Ruh Amacı: MİRAS BIRAKMAK
-Gelecek nesillere aktarılacak bir şey yaratmak. Bu bir bina, bir şirket,
-bir sistem veya bir gelenek olabilir.
+Tertiary Soul Purpose: LEAVING A LEGACY
+Creating something to pass on to future generations. This could be
+a building, a company, a system, or a tradition.
 
-Ruh Sözleşmesi Detayları:
-• En az bir kalıcı yapı (fiziksel veya kurumsal) inşa edeceksin
-• Ailenin/topluluğun temel direği olacaksın
-• Disiplin ve çalışma ahlakını öğreteceksin
-• Değişimle barışmayı öğreneceksin
-• Maddi güvenliği ruhani huzurla dengeleyeceksin
+Soul Contract Details:
+• You will build at least one permanent structure (physical or institutional)
+• You will be the foundational pillar of your family/community
+• You will teach discipline and work ethic
+• You will learn to make peace with change
+• You will balance material security with spiritual peace
 
-Misyonunu Engelleyen Faktörler:
-• Aşırı katılık ve kontrol
-• Değişime direnç
-• Workaholic eğilim
-• Mükemmeliyetçilik felci
-• İç dünyayı ihmal
+Factors Blocking Your Mission:
+• Excessive rigidity and control
+• Resistance to change
+• Workaholic tendency
+• Perfectionism paralysis
+• Neglecting inner world
 
-Misyonunu Destekleyen Faktörler:
-• Uzun vadeli planlama
-• Sabır ve kararlılık
-• Detaylara dikkat
-• Güvenilirlik
-• Pratik bilgelik
+Factors Supporting Your Mission:
+• Long-term planning
+• Patience and determination
+• Attention to detail
+• Reliability
+• Practical wisdom
 ''',
 
   shadowAspects: '''
-☾ GÖLGE YÖNLERİ VE DÖNÜŞÜM ☾
+☾ SHADOW ASPECTS AND TRANSFORMATION ☾
 
-4 sayısının gölgeleri, katılık ve kontrol etrafında döner. Yapının
-gücü, hapishanenin duvarına dönüşebilir.
+The shadows of number 4 revolve around rigidity and control. The power
+of structure can become the walls of a prison.
 
-BİRİNCİL GÖLGE: KATILK VE İNATÇILIK
-Belirtiler:
-• "Benim yolum tek doğru yol" tutumu
-• Yeni fikirlere kapalılık
-• Değişimden korku ve direnç
-• Kuralların esiri olma
-• Başkalarını yargılama
+PRIMARY SHADOW: RIGIDITY AND STUBBORNNESS
+Symptoms:
+• "My way is the only right way" attitude
+• Closed to new ideas
+• Fear and resistance to change
+• Being enslaved by rules
+• Judging others
 
-Dönüşüm Yolu:
-Yapı, hapis değildir. Sağlam temeller, hareket özgürlüğü verir.
-Esneklik, zayıflık değil güçtür. Bambu gibi ol - güçlü ama esnek.
+Path of Transformation:
+Structure is not prison. Solid foundations give freedom of movement.
+Flexibility is strength, not weakness. Be like bamboo - strong but flexible.
 
-İKİNCİL GÖLGE: WORKAHOLİSM
-Belirtiler:
-• Kendini işle tanımlama
-• Dinlenememme
-• Aile ve ilişkileri ihmal
-• Fiziksel sağlığı göz ardı etme
-• "Daha fazla" asla yetmez
+SECONDARY SHADOW: WORKAHOLISM
+Symptoms:
+• Defining yourself by work
+• Inability to rest
+• Neglecting family and relationships
+• Ignoring physical health
+• "More" is never enough
 
-Dönüşüm Yolu:
-Üretkenlik, değerini belirlemez. "Olmak" da "yapmak" kadar değerli.
-Dinlenme, tembellik değil - yenilenme.
+Path of Transformation:
+Productivity does not determine your worth. "Being" is as valuable as "doing."
+Rest is not laziness - it's renewal.
 
-ÜÇÜNCÜL GÖLGE: KARILIK VE ŞÜPHECİLİK
-Belirtiler:
-• Her şeyin kanıtını isteme
-• Sezgiye güvensizlik
-• Hayal gücünü küçümseme
-• Romantizmi reddetme
-• Spiritüelliğe kapalılık
+TERTIARY SHADOW: DRY SKEPTICISM
+Symptoms:
+• Demanding proof for everything
+• Distrust of intuition
+• Belittling imagination
+• Rejecting romanticism
+• Closed to spirituality
 
-Dönüşüm Yolu:
-Her şey ölçülebilir değildir. Görünmeyen de gerçektir. Mantık ve
-sezgi, rekabet değil ortaktır.
+Path of Transformation:
+Not everything is measurable. The invisible is also real. Logic and
+intuition are partners, not competitors.
 
-DÖRDÜNCÜL GÖLGE: KONTROL TAKINTISI
-Belirtiler:
-• Her şeyi kontrol etme ihtiyacı
-• Kaygı bozuklukları
-• Temizlik/düzen takıntısı
-• Güvensizlik ve paranoya
-• Mikroyönetim
+QUATERNARY SHADOW: CONTROL OBSESSION
+Symptoms:
+• Need to control everything
+• Anxiety disorders
+• Cleanliness/order obsession
+• Distrust and paranoia
+• Micromanagement
 
-Dönüşüm Yolu:
-Evren kontrol edilemez - ve bu iyi bir şey. Bırakma, güven, akışa
-teslim olma pratiği. Kontrolü bırakmak, kontrolsüzlük değil.
+Path of Transformation:
+The universe cannot be controlled - and that's a good thing. Practice of
+letting go, trust, surrender to the flow. Letting go of control is not being out of control.
 
-Gölge Çalışması Ritüel:
-Bir taşı al, üzerine kontrolü ve katılığını yaz. Bu taşı bir hafta
-yanında taşı. Sonra bir akarsuya at veya toprağa göm. "Bırakıyorum"
-niyetiyle serbest bırak.
+Shadow Work Ritual:
+Take a stone and write your control and rigidity on it. Carry this stone
+with you for a week. Then throw it into a flowing stream or bury it in the
+earth. Release it with the intention "I let go."
 ''',
 
   tantricEnergySignature: '''
-🌍 TANTRİK ENERJİ İMZASI 🌍
+🌍 TANTRIC ENERGY SIGNATURE 🌍
 
-4 sayısı, topraklı, stabil ve destekleyici enerjiyi temsil eder.
-Ne aşırı maskülen ne aşırı feminen - dengeli, merkezi güç.
+The number 4 represents grounded, stable, and supportive energy.
+Neither overly masculine nor overly feminine - balanced, centered power.
 
-KUNDALINI KARAKTERİSTİĞİ
-4'lerin kundalinisi yavaş, kararlı ve temelli hareket eder.
-Ani patlamalardan ziyade kademeli, organik yükseliş tercih eder.
+KUNDALINI CHARACTERISTIC
+The kundalini of 4s moves slowly, steadily, and groundedly.
+It prefers gradual, organic ascent rather than sudden bursts.
 
-Kundalini Özellikleri:
-• Toprak elementi dominant
-• Yavaş, kararlı yükseliş
-• Kök çakrada güçlü temel
-• Fiziksel pratiklerle aktive olur
-• Sabit, güvenilir enerji akışı
+Kundalini Features:
+• Earth element dominant
+• Slow, steady ascent
+• Strong foundation in root chakra
+• Activated by physical practices
+• Steady, reliable energy flow
 
-TANTRİK CİNSELLİK
-4 enerjisi cinsellikte güvenilir, kararlı ve derin bağlantı arayan.
-Maceradan ziyade güven ve tekrar önemli.
+TANTRIC SEXUALITY
+The 4 energy in sexuality is reliable, steady, and seeks deep connection.
+Trust and repetition are more important than adventure.
 
-Tantrik Pratikler:
-• Yavaş, bilinçli fiziksel birleşme
-• Topraklama ve beden farkındalığı
-• Fiziksel dokunuşun gücü
-• Tekrar ve ritim (tantra temelleri)
-• Nefes ve hareket senkronizasyonu
+Tantric Practices:
+• Slow, conscious physical union
+• Grounding and body awareness
+• The power of physical touch
+• Repetition and rhythm (tantric foundations)
+• Breath and movement synchronization
 
-KUTSAL BİRLİK
-4 enerjisi, 2 ile mükemmel uyum yapar (destekleyici partner). 8 ile
-güçlü (maddi başarı ortaklığı). 6 ile uyumlu (aile kurma).
+SACRED UNION
+The 4 energy harmonizes perfectly with 2 (supportive partner). Strong with 8
+(material success partnership). Harmonious with 6 (family building).
 
-Uyumlu Tantrik Partnerler: 2, 6, 8
-Zorlayıcı Tantrik Kombinasyonlar: 3, 5
+Compatible Tantric Partners: 2, 6, 8
+Challenging Tantric Combinations: 3, 5
 
-ENERJİ BEDEN BAĞLANTILARI
-4 enerjisi özellikle şu noktalarda yoğunlaşır:
-• Kök Çakra (Muladhara) - temel, güvenlik
-• Sakral Çakra (Svadhisthana) - yaratıcı ifade
-• Solar Plexus (Manipura) - kişisel güç
+ENERGY BODY CONNECTIONS
+The 4 energy concentrates especially in these areas:
+• Root Chakra (Muladhara) - foundation, security
+• Sacral Chakra (Svadhisthana) - creative expression
+• Solar Plexus (Manipura) - personal power
 
-Enerji Dengesi İçin:
-• Topraklama egzersizleri
-• Fiziksel hareket (yürüyüş, yoga)
-• Doğada zaman (özellikle toprakta çıplak ayak)
-• Kök sebzeler yeme
-• Kırmızı ve toprak tonları
+For Energy Balance:
+• Grounding exercises
+• Physical movement (walking, yoga)
+• Time in nature (especially barefoot on earth)
+• Eating root vegetables
+• Red and earth tones
 ''',
 
   sacredGeometryConnection: '''
-□ KUTSAL GEOMETRİ BAĞLANTISI □
+□ SACRED GEOMETRY CONNECTION □
 
-4 sayısının kutsal geometrisi, KARE'dir - stabilitenin sembolü.
+The sacred geometry of number 4 is the SQUARE - symbol of stability.
 
-KARE
-Dört eşit kenar, dört dik açı. Düzen, denge, eşitlik. Karenin içinde
-hiçbir şey kaybolmaz, her şeyin yeri bellidir. Bu, 4'ün ruhunun
-geometrik ifadesidir.
+SQUARE
+Four equal sides, four right angles. Order, balance, equality. Nothing
+is lost inside the square, everything has its place. This is the
+geometric expression of the 4's spirit.
 
-Spiritüel Anlamı:
-• Dört element - maddi dünyanın temeli
-• Dört yön - uzayda konumlanma
-• Dört mevsim - zamanın döngüsü
-• Düzen ve yapı
-• Temel ve istikrar
+Spiritual Meaning:
+• Four elements - foundation of the material world
+• Four directions - positioning in space
+• Four seasons - the cycle of time
+• Order and structure
+• Foundation and stability
 
-KÜP (HEXAHEDRON)
-Karenin üç boyutlu hali. Platonik katıların "Toprak" elementi.
-Sağlamlık, dayanıklılık, form.
+CUBE (HEXAHEDRON)
+The three-dimensional form of the square. The "Earth" element of
+Platonic solids. Solidity, durability, form.
 
-METATRON KÜPÜ
-Kutsal geometrinin merkezi figürü. Tüm Platonik katıları içerir.
-4 enerjisi, bu bütünlüğün temeli.
+METATRON'S CUBE
+The central figure of sacred geometry. Contains all Platonic solids.
+The 4 energy is the foundation of this wholeness.
 
-Meditasyon Pratiği:
-Yeşil veya kahverengi bir kare hayal et. Bu karenin içine gir -
-burası senin güvenli alanın. Karenin duvarları seni korur ama
-hapsetmez. Kapı her zaman açık - istediğinde çıkabilirsin.
+Meditation Practice:
+Imagine a green or brown square. Enter this square - this is your
+safe space. The walls of the square protect you but don't imprison.
+The door is always open - you can exit whenever you want.
 
-Kutsal Geometri Aktivasyonu:
-• Kare şekli çiz ve içine otur (meditasyon alanı)
-• Dört taşı karenin köşelerine yerleştir
-• Karenin merkezinde topraklama meditasyonu
-• Dört element ritüeli (her köşede bir element)
+Sacred Geometry Activation:
+• Draw a square shape and sit inside it (meditation space)
+• Place four stones at the corners of the square
+• Grounding meditation in the center of the square
+• Four elements ritual (one element at each corner)
 ''',
 
   kundaliniActivation: '''
-🌳 KUNDALİNİ AKTİVASYONU 🌳
+🌳 KUNDALINI ACTIVATION 🌳
 
-4 yaşam yolu, yavaş ama güçlü bir kundalini potansiyeli taşır.
-Ağaç kökleri gibi - görünmez ama derin ve güçlü.
+Life path 4 carries a slow but powerful kundalini potential.
+Like tree roots - invisible but deep and strong.
 
-KUNDALİNİ KARAKTERİSTİKLERİ
-• Fiziksel pratiklerle aktive olur
-• Yavaş, kademeli yükseliş
-• Kök çakrada güçlü temel gerektirir
-• Rüyalarda dağlar, mağaralar, kristaller
-• Fiziksel hislerde yoğunlaşır
+KUNDALINI CHARACTERISTICS
+• Activated by physical practices
+• Slow, gradual ascent
+• Requires strong foundation in root chakra
+• Mountains, caves, crystals in dreams
+• Intensifies in physical sensations
 
-TEHLİKELER VE UYARILAR
-4 enerjisi sabırlı, ama bazen kundaliniyi zorla tutabilir:
-• Enerji blokajları (özellikle kalça ve bel)
-• Aşırı topraklanma (uçamama)
-• Fiziksel semptomlar (ağrılar, sertlik)
-• Spiritüel gelişime direnç
-• Değişimden korku
+DANGERS AND WARNINGS
+4 energy is patient, but sometimes may forcibly hold the kundalini:
+• Energy blockages (especially hips and lower back)
+• Over-grounding (inability to fly)
+• Physical symptoms (pain, stiffness)
+• Resistance to spiritual development
+• Fear of change
 
-GÜVENLİ AKTİVASYON YOLLARI
-1. FİZİKSEL PRATİK
-Hatha yoga, özellikle kalça açıcılar ve topraklama pozları. Yavaş,
-bilinçli hareket. Vücudu dinleme.
+SAFE ACTIVATION PATHS
+1. PHYSICAL PRACTICE
+Hatha yoga, especially hip openers and grounding poses. Slow,
+conscious movement. Listening to the body.
 
-2. NEFES
-Muladhara nefesi - kök çakraya yönlendirilmiş nefes. Yavaş, derin,
-topraklı. Nefesi köklere gönder.
+2. BREATH
+Muladhara breath - breath directed to the root chakra. Slow, deep,
+grounded. Send breath to the roots.
 
 3. MANTRA
-"LAM" - Kök çakrasının sesi. Derin, titreşimli, topraklı ses.
-"OM NAMAH SHIVAYA" - Sabır ve dayanıklılık için.
+"LAM" - Sound of the root chakra. Deep, vibrational, grounded sound.
+"OM NAMAH SHIVAYA" - For patience and endurance.
 
-4. KRİSTAL ÇALIŞMASI
-Hematit, oniks, siyah turmalin - topraklama. Kök çakra üzerine
-yerleştir, nefesle aktive et.
+4. CRYSTAL WORK
+Hematite, onyx, black tourmaline - grounding. Place on root chakra,
+activate with breath.
 
-5. DOĞA BAĞLANTISI
-Çıplak ayakla toprakta yürü. Ağaçlara sarıl. Mağaralarda zaman geçir.
-Toprağa dokunarak meditasyon.
+5. NATURE CONNECTION
+Walk barefoot on earth. Hug trees. Spend time in caves.
+Meditation while touching the earth.
 
-AKTİVASYON ZAMANLAMA
-• Cumartesi (Satürn günü) güçlendirir
-• Kış mevsimi (toprak enerjisi)
-• Oğlak dönemi (22 Aralık - 19 Ocak)
-• Şafak ve gün batımı
+ACTIVATION TIMING
+• Saturday (Saturn's day) strengthens
+• Winter season (earth energy)
+• Capricorn period (December 22 - January 19)
+• Dawn and sunset
 
-KUNDALİNİ UYANIŞI BELİRTİLERİ
-• Bacaklarda ve ayaklarda sıcaklık/titreşim
-• Omurga tabanında hareket hissi
-• Rüyalarda kristaller, mağaralar, dağlar
-• Artan fiziksel güç ve dayanıklılık
-• Maddi dünyayla artan barış
-• İç güvenlik hissinde artış
+KUNDALINI AWAKENING SIGNS
+• Warmth/vibration in legs and feet
+• Feeling of movement at the base of the spine
+• Crystals, caves, mountains in dreams
+• Increased physical strength and endurance
+• Increased peace with the material world
+• Increase in feeling of inner security
 ''',
 
   compatibilityMatrix: {
     1: '''
-4 + 1 = ZORLAYICI AMA ÖĞRETİCİ
-1'in vizyonu, 4'ün pratiğiyle çatışabilir. 4, 1'i yavaşlatır,
-1 bundan rahatsız olabilir. Ama 4, fikirleri gerçeğe dönüştürür.
-Sabır ve karşılıklı saygı gerektirir.
-Uyum puanı: 5/10
+4 + 1 = CHALLENGING BUT INSTRUCTIVE
+1's vision may conflict with 4's practicality. 4 slows down 1,
+which may frustrate 1. But 4 transforms ideas into reality.
+Requires patience and mutual respect.
+Compatibility score: 5/10
 ''',
     2: '''
-4 + 2 = GÜVENLİ LİMAN
-4'ün kararlılığı, 2'ye güvenlik verir. 2, 4'ün sertliğini yumuşatır.
-Ev, aile, istikrar temaları güçlü. Sağlam temelli, uzun süreli ilişki.
-Uyum puanı: 8/10
+4 + 2 = SAFE HARBOR
+4's steadiness gives 2 security. 2 softens 4's hardness.
+Home, family, stability themes are strong. Solid foundation, long-lasting relationship.
+Compatibility score: 8/10
 ''',
     3: '''
-4 + 3 = ZIT KUTUPLAR
-4'ün disiplini, 3'ün özgürlüğüyle çatışır. 4, 3'ü kısıtlanmış
-hissettirir; 3, 4'ü sıkıcı bulabilir. Ama birbirlerine ihtiyaçları
-var - sabır ve anlayışla dengelenebilir.
-Uyum puanı: 5/10
+4 + 3 = OPPOSITE POLES
+4's discipline conflicts with 3's freedom. 4 makes 3 feel
+restricted; 3 may find 4 boring. But they need each other -
+can be balanced with patience and understanding.
+Compatibility score: 5/10
 ''',
     4: '''
-4 + 4 = ÇİFT KALE
-İki yapıcı, çok güçlü temel. Birlikte imparatorluk kurabilirler.
-Risk: Aşırı katılık, sıkıcılık, değişime direnç. Her ikisi de
-esnemeyi öğrenmeli.
-Uyum puanı: 6/10
+4 + 4 = DOUBLE FORTRESS
+Two builders, very strong foundation. Together they can build empires.
+Risk: Excessive rigidity, boredom, resistance to change. Both must
+learn to be flexible.
+Compatibility score: 6/10
 ''',
     5: '''
-4 + 5 = FIRTINA
-5'in kaotikliği, 4'ün düzenini yerle bir eder. 4, 5'i hapiste
-hissettirir; 5, 4'ü çıldırtır. Çok zor kombinasyon, ancak her
-ikisi de çok istekliyse mümkün.
-Uyum puanı: 3/10
+4 + 5 = STORM
+5's chaos demolishes 4's order. 4 makes 5 feel imprisoned;
+5 drives 4 crazy. Very difficult combination, only possible
+if both are very willing.
+Compatibility score: 3/10
 ''',
     6: '''
-4 + 6 = AİLE MİMARİ
-4'ün yapıcılığı, 6'nın şefkatiyle mükemmel aile kurulur. Ev,
-çocuklar, düzen, sıcaklık. Geleneksel ama güzel yuva.
-Uyum puanı: 9/10
+4 + 6 = FAMILY ARCHITECTURE
+4's building combined with 6's compassion creates perfect family.
+Home, children, order, warmth. Traditional but beautiful nest.
+Compatibility score: 9/10
 ''',
     7: '''
-4 + 7 = FARKLI DÜNYALAR
-4'ün pratikliği, 7'nin spiritüelliğiyle zorluklu ama öğretici.
-4, 7'yi "hayalperest" bulabilir; 7, 4'ü "yüzeysel" görebilir.
-Ama birbirlerine çok şey öğretebilirler.
-Uyum puanı: 5/10
+4 + 7 = DIFFERENT WORLDS
+4's practicality with 7's spirituality is challenging but instructive.
+4 may find 7 "dreamy"; 7 may see 4 as "superficial." But they can
+teach each other a lot.
+Compatibility score: 5/10
 ''',
     8: '''
-4 + 8 = GÜÇ ORTAKLIĞI
-Maddi dünyada muhteşem ortaklık. 4, temel atar; 8, genişletir.
-İş, finans, emlak - birlikte empire kurabilirler. Duygusal
-dünya ihmal edilmemeli.
-Uyum puanı: 8/10
+4 + 8 = POWER PARTNERSHIP
+Magnificent partnership in the material world. 4 lays foundation; 8 expands.
+Business, finance, real estate - together they can build empires.
+Emotional world should not be neglected.
+Compatibility score: 8/10
 ''',
     9: '''
-4 + 9 = FARKLI ODAKLAR
-9'un evrenselliği, 4'ün detaycılığıyla çelişebilir. 4, somut
-odaklanır; 9, soyutta kaybolabilir. Karşılıklı saygı ve anlayış
-gerektirir.
-Uyum puanı: 5/10
+4 + 9 = DIFFERENT FOCUSES
+9's universality may conflict with 4's detail focus. 4 focuses
+on concrete; 9 may get lost in abstract. Requires mutual respect
+and understanding.
+Compatibility score: 5/10
 ''',
     11: '''
-4 + 11 = TOPRAKLAMA ORTAKLIĞI
-11'in spiritüel vizyonu, 4'ün pratiğiyle somutlaşır. 4, 11'i
-topraklar; 11, 4'ü genişletir. Öğretici ve dengeleyici.
-Uyum puanı: 6/10
+4 + 11 = GROUNDING PARTNERSHIP
+11's spiritual vision materializes with 4's practicality. 4 grounds 11;
+11 expands 4. Educational and balancing.
+Compatibility score: 6/10
 ''',
     22: '''
-4 + 22 = USTA YAPICILAR
-22 (master builder) ve 4 (builder) mükemmel kombinasyon. Birlikte
-devasa projeler, kalıcı yapılar. Dünyayı değiştirecek ortaklık.
-Uyum puanı: 9/10
+4 + 22 = MASTER BUILDERS
+22 (master builder) and 4 (builder) perfect combination. Together
+massive projects, permanent structures. Partnership to change the world.
+Compatibility score: 9/10
 ''',
     33: '''
-4 + 33 = ÖĞRETMEN VE YAPICI
-33'ün öğretmenliği, 4'ün yapıcılığıyla kurumlar kurar. Okullar,
-vakıflar, kalıcı hizmet yapıları.
-Uyum puanı: 7/10
+4 + 33 = TEACHER AND BUILDER
+33's teaching combined with 4's building creates institutions.
+Schools, foundations, permanent service structures.
+Compatibility score: 7/10
 ''',
   },
 
@@ -2737,712 +2741,711 @@ Uyum puanı: 7/10
   challengingNumbers: [1, 3, 5],
 
   careerDestiny: '''
-💼 KARİYER KADERİ VE MESLEK YOLU 💼
+💼 CAREER DESTINY AND PROFESSIONAL PATH 💼
 
-4 yaşam yolu, yapı, düzen ve pratiklik gerektiren alanlarda parlar.
-Kaotik, belirsiz ortamlar seni tüketir.
+Life path 4 shines in fields requiring structure, order, and practicality.
+Chaotic, uncertain environments drain you.
 
-İDEAL KARİYER ALANLARI:
-• Mimarlık ve İnşaat
-• Mühendislik (her türlü)
-• Muhasebe ve Finans
-• Proje Yönetimi
-• Sistem Analizi
-• Hukuk ve Yargı
-• Bankacılık
-• Gayrimenkul
-• Zanaatkarlık
-• Tarım ve Bahçecilik
-• İnsan Kaynakları (yapılandırma)
-• Kalite Kontrol
+IDEAL CAREER FIELDS:
+• Architecture and Construction
+• Engineering (all types)
+• Accounting and Finance
+• Project Management
+• Systems Analysis
+• Law and Judiciary
+• Banking
+• Real Estate
+• Craftsmanship
+• Agriculture and Gardening
+• Human Resources (structuring)
+• Quality Control
 
-KAÇINILMASI GEREKEN ORTAMLAR:
-• Kaotik startup kültürü
-• Belirsiz, değişken işler
-• Tamamen yaratıcı, kuralsız ortamlar
-• Sürekli seyahat gerektiren roller
-• Spekülatif, riskli sektörler
+ENVIRONMENTS TO AVOID:
+• Chaotic startup culture
+• Uncertain, variable jobs
+• Completely creative, ruleless environments
+• Roles requiring constant travel
+• Speculative, risky sectors
 
-BAŞARI ANAHTARLARI:
-• Uzmanlık alanında derinleş
-• Uzun vadeli hedefler koy
-• Güvenilirliğini sermaye yap
-• Detaylara dikkat et ama büyük resmi de gör
-• Esnek ol - katılık kariyer engeli olabilir
+KEYS TO SUCCESS:
+• Go deep in your area of expertise
+• Set long-term goals
+• Make your reliability your capital
+• Pay attention to details but also see the big picture
+• Be flexible - rigidity can be a career obstacle
 
-PARA VE BOLLUK İLİŞKİSİ:
-4'ler para yönetiminde yetenekli. Birikim, yatırım, mülk edinme
-güçlü taraflar. Dikkat: Aşırı tutumculuk veya güvenlik takıntısı.
-Para hizmetçi olmalı, efendi değil.
+MONEY AND ABUNDANCE RELATIONSHIP:
+4s are talented at money management. Savings, investment, property acquisition
+are strong points. Warning: Excessive frugality or security obsession.
+Money should be a servant, not a master.
 ''',
 
   healthTendencies: '''
-🏥 SAĞLIK EĞİLİMLERİ VE BEDEN BİLGELİĞİ 🏥
+🏥 HEALTH TENDENCIES AND BODY WISDOM 🏥
 
-4 sayısı, bedenin yapısal sistemlerini yönetir. Sağlık sorunları
-genellikle aşırı çalışma ve stres kaynaklıdır.
+The number 4 governs the body's structural systems. Health issues
+generally stem from overwork and stress.
 
-HASSAS BÖLGELER:
-• İskelet sistemi (kemikler, eklemler)
-• Dişler ve tırnaklar
-• Deri (yapısal organ)
-• Dizler ve ayak bilekleri
-• Bel ve omurga
+SENSITIVE AREAS:
+• Skeletal system (bones, joints)
+• Teeth and nails
+• Skin (structural organ)
+• Knees and ankles
+• Lower back and spine
 
-ORTAK SAĞLIK SORUNLARI:
-• Eklem sorunları (artrit, bursit)
-• Sırt ve bel ağrıları
-• Kemik erimesi riski
-• Cilt sorunları (sedef, egzama)
-• Stres kaynaklı gerginlik
-• Kronik yorgunluk
+COMMON HEALTH ISSUES:
+• Joint problems (arthritis, bursitis)
+• Back and lower back pain
+• Osteoporosis risk
+• Skin problems (psoriasis, eczema)
+• Stress-induced tension
+• Chronic fatigue
 
-ÖNERİLEN FİZİKSEL AKTİVİTELER:
-• Yürüyüş (düzenli, tempolu)
-• Yoga (özellikle yin yoga)
+RECOMMENDED PHYSICAL ACTIVITIES:
+• Walking (regular, paced)
+• Yoga (especially yin yoga)
 • Pilates
-• Yüzme
-• Bahçecilik
-• Ağırlık antrenmanı (kemik sağlığı)
+• Swimming
+• Gardening
+• Weight training (bone health)
 
-KAÇINILMASI GEREKENLER:
-• Aşırı çalışma ve dinlenmeden uzak kalma
-• Tek pozisyonda uzun süre kalma
-• Stres biriktirme
-• Fiziksel aktivite ihmalı
-• Yeterli kalsiyum almama
+THINGS TO AVOID:
+• Overworking and not resting
+• Staying in one position for long periods
+• Accumulating stress
+• Neglecting physical activity
+• Not getting enough calcium
 
-BÜTÜNSEL ŞIFA ÖNERİLERİ:
-• Düzenli masaj ve fizyoterapi
-• Mineral takviyeleri (özellikle kalsiyum, magnezyum)
-• Topraklama egzersizleri
-• Stres yönetimi pratiği
-• Doğada zaman geçirme
+HOLISTIC HEALING RECOMMENDATIONS:
+• Regular massage and physiotherapy
+• Mineral supplements (especially calcium, magnesium)
+• Grounding exercises
+• Stress management practice
+• Spending time in nature
 ''',
 
   wealthVibration: '''
-💰 BOLLUK TİTREŞİMİ VE MADDI DÜNYA 💰
+💰 ABUNDANCE VIBRATION AND MATERIAL WORLD 💰
 
-4 sayısı, maddi dünyayla güçlü bağlantı kurar. Para, güvenliğin
-sembolü ve aracıdır.
+The number 4 forms a strong connection with the material world.
+Money is the symbol and vehicle of security.
 
-DOĞAL BOLLUK YETENEKLERİ:
-• Birikim ve tasarruf
-• Uzun vadeli yatırım
-• Risk yönetimi
-• Mülk edinme ve değerlendirme
-• Pratik finansal kararlar
+NATURAL ABUNDANCE TALENTS:
+• Saving and accumulating
+• Long-term investment
+• Risk management
+• Property acquisition and assessment
+• Practical financial decisions
 
-PARA BLOKLARI:
-• Aşırı güvenlik odaklılık (cimrilik)
-• Harcama korkusu
-• Para = güvenlik denkleminde takılma
-• Riskten tamamen kaçınma (fırsat kaçırma)
-• Çalışarak kazanma takıntısı (pasif geliri reddetme)
+MONEY BLOCKS:
+• Excessive security focus (stinginess)
+• Fear of spending
+• Getting stuck in money = security equation
+• Completely avoiding risk (missing opportunities)
+• Obsession with earning through work (rejecting passive income)
 
-ZENGİNLİK AKTİVASYONU:
-1. MANTRA: "Güvenliğim içimde, para özgürce akar"
-2. KRİSTAL: Yeşil jade, sitrin, pirit
-3. RENK: Yeşil (para rengi) ve toprak tonları
-4. SAYI: 4 ve 8 kombinasyonları (48, 84)
-5. GÜN: Cumartesi (Satürn günü) yatırım kararları için
+WEALTH ACTIVATION:
+1. MANTRA: "My security is within, money flows freely"
+2. CRYSTAL: Green jade, citrine, pyrite
+3. COLOR: Green (money color) and earth tones
+4. NUMBER: 4 and 8 combinations (48, 84)
+5. DAY: Saturday (Saturn's day) for investment decisions
 
-YATIRIM STRATEJİSİ:
-• Gayrimenkul (doğal alan)
-• Uzun vadeli, düşük riskli yatırımlar
-• Fiziksel varlıklar (altın, gümüş, arazi)
-• Temettü ödeyen hisseler
-• Emeklilik fonları ve birikim
+INVESTMENT STRATEGY:
+• Real estate (natural area)
+• Long-term, low-risk investments
+• Physical assets (gold, silver, land)
+• Dividend-paying stocks
+• Retirement funds and savings
 ''',
 
   loveAndRelationships: '''
-💕 AŞK VE İLİŞKİLER - KUTSAL BİRLİK YOLU 💕
+💕 LOVE AND RELATIONSHIPS - PATH OF SACRED UNION 💕
 
-4 yaşam yolunda aşk, güvenlik, istikrar ve güvenilirlik demektir.
-Drama ve belirsizlik seni tüketir.
+In life path 4, love means security, stability, and reliability.
+Drama and uncertainty drain you.
 
-AŞKTA GÜÇLÜ YÖNLER:
-• Sadık ve güvenilir
-• Destekleyici ve koruyucu
-• Pratik ve çözüm odaklı
-• Ailesine bağlı
-• Uzun vadeli düşünen
+STRENGTHS IN LOVE:
+• Loyal and reliable
+• Supportive and protective
+• Practical and solution-oriented
+• Devoted to family
+• Long-term thinker
 
-AŞKTA ZORLUKLAR:
-• Duygusal ifade zorluğu
-• Katılık ve kontrol
-• Romantizm eksikliği
-• Değişime direnç
-• İşi ilişkinin önüne koyma
+CHALLENGES IN LOVE:
+• Difficulty with emotional expression
+• Rigidity and control
+• Lack of romance
+• Resistance to change
+• Putting work before relationship
 
-İDEAL PARTNER PROFİLİ:
-• Güvenilir ve kararlı
-• Sana güvenlik veren
-• Duygusal olarak destekleyici
-• Pratik ve sorumlu
-• Aile değerlerine sahip
+IDEAL PARTNER PROFILE:
+• Reliable and determined
+• Gives you security
+• Emotionally supportive
+• Practical and responsible
+• Has family values
 
-İLİŞKİDE KAÇINILMASI GEREKENLER:
-• Aşırı kontrol ve kural koyma
-• Duyguları bastırma
-• İş-yaşam dengesini bozma
-• Romantizmi ihmal etme
-• Partneri değiştirmeye çalışma
+THINGS TO AVOID IN RELATIONSHIPS:
+• Excessive control and rule-making
+• Suppressing emotions
+• Disrupting work-life balance
+• Neglecting romance
+• Trying to change your partner
 
-KUTSAL BİRLİK İÇİN PRATİKLER:
-• Düzenli tarih geceleri (rutin ama özel)
-• Birlikte projeler (ev yenileme, bahçe)
-• Fiziksel dokunuş ve yakınlık
-• Duygusal paylaşım zamanları
-• Birlikte geleceği planlama
+PRACTICES FOR SACRED UNION:
+• Regular date nights (routine but special)
+• Projects together (home renovation, garden)
+• Physical touch and closeness
+• Times for emotional sharing
+• Planning the future together
 
-KARMİK İLİŞKİLER:
-3 ve 5 sayılı partnerlerle ilişkiler genellikle karmiktir. 3, yaratıcılık
-ve esneklik; 5, özgürlük ve değişim dersini getirir.
+KARMIC RELATIONSHIPS:
+Relationships with number 3 and 5 partners are usually karmic. 3 brings
+the lesson of creativity and flexibility; 5 brings freedom and change.
 
-RUH EŞİ İŞARETLERİ:
-• "Eve gelmek" hissi
-• Güvenlik ve özgürlük dengesi
-• Birlikte inşa etme isteği
-• Sabır ve anlayış
-• Uzun vadeli vizyon paylaşımı
+SOUL MATE SIGNS:
+• "Coming home" feeling
+• Balance of security and freedom
+• Desire to build together
+• Patience and understanding
+• Sharing long-term vision
 ''',
 
   famousExamples: [
-    'Oprah Winfrey - Medya imparatorluğu kurucusu',
-    'Bill Gates - Teknoloji mimarı',
-    'Clint Eastwood - Disiplinli sanatçı',
-    'Arnold Schwarzenegger - Çok yönlü başarı',
-    'Adam Sandler - Güvenilir komedyen',
-    'Usher - Kararlı sanatçı',
-    'Elton John - Kalıcı miras',
-    'Nicole Kidman - Disiplinli aktris',
+    'Oprah Winfrey - Media empire founder',
+    'Bill Gates - Technology architect',
+    'Clint Eastwood - Disciplined artist',
+    'Arnold Schwarzenegger - Versatile achiever',
+    'Adam Sandler - Reliable comedian',
+    'Usher - Determined artist',
+    'Elton John - Lasting legacy',
+    'Nicole Kidman - Disciplined actress',
   ],
 
   dailyAffirmations: [
-    'Güvenliğim içimde, temeller sağlam.',
-    'Değişime açığım, esneklik gücümdür.',
-    'Çalışmak kadar dinlenmek de değerlidir.',
-    'İnşa ettiğim her şey sevgiyle yapılıyor.',
-    'Kontrol bırakmak özgürlüktür.',
-    'Sabır ve kararlılık başarıyı getirir.',
-    'Ailem ve yakınlarım için şükrediyorum.',
-    'Maddi ve manevi dünya dengede.',
-    'Her gün temelleri güçlendiriyorum.',
-    'Ben güvenilir ve değerliyim.',
+    'My security is within, foundations are solid.',
+    'I am open to change, flexibility is my strength.',
+    'Rest is as valuable as work.',
+    'Everything I build is made with love.',
+    'Letting go of control is freedom.',
+    'Patience and determination bring success.',
+    'I am grateful for my family and loved ones.',
+    'Material and spiritual worlds are in balance.',
+    'Every day I strengthen the foundations.',
+    'I am reliable and valuable.',
   ],
 
   meditationMantras: [
-    'LAM - Kök çakrasının sesi',
-    'OM NAMAH SHIVAYA - Sabır ve dayanıklılık',
-    'OM GUM GANAPATAYE NAMAHA - Engelleri kaldırma',
-    'OM PRITHVIYE NAMAHA - Toprak elementine selam',
-    'KRIM - Yapıcı enerji',
-    'OM SHANTI - İç huzur',
+    'LAM - Sound of the root chakra',
+    'OM NAMAH SHIVAYA - Patience and endurance',
+    'OM GUM GANAPATAYE NAMAHA - Removing obstacles',
+    'OM PRITHVIYE NAMAHA - Salutations to earth element',
+    'KRIM - Building energy',
+    'OM SHANTI - Inner peace',
   ],
 
   healingPractice: '''
-🙏 ŞIFA PRATİĞİ: TOPRAKLAMA MEDİTASYONU 🙏
+🙏 HEALING PRACTICE: GROUNDING MEDITATION 🙏
 
-Bu pratik, 4 enerjisini dengelemek ve kök çakrasını güçlendirmek
-için tasarlanmıştır. İdeal zaman: Sabah veya stresli dönemlerde.
+This practice is designed to balance the 4 energy and strengthen the
+root chakra. Ideal time: Morning or during stressful periods.
 
-HAZIRLIK:
-1. Mümkünse doğada, toprak üzerinde otur
-2. Değilse, ayaklarını yere sağlam bas
-3. Yeşil veya kahverengi mum yak
-4. Yanına dört taş yerleştir (dört yön)
+PREPARATION:
+1. If possible, sit outdoors on the ground
+2. If not, plant your feet firmly on the floor
+3. Light a green or brown candle
+4. Place four stones beside you (four directions)
 
-TOPRAKLAMA (5 dakika):
-1. Ayaklarının tabanlarını hisset
-2. Ayaklarından kökler çıktığını hayal et
-3. Bu kökler toprağın derinliklerine iniyor
-4. Dünyanın merkezine kadar uzanıyor
-5. Orada sıcak, kırmızı bir enerji topuna bağlanıyor
+GROUNDING (5 minutes):
+1. Feel the soles of your feet
+2. Imagine roots emerging from your feet
+3. These roots descend into the depths of the earth
+4. Extending to the center of the earth
+5. There they connect to a warm, red energy ball
 
-NEFES (5 dakika):
-1. "LAM" sesi ile nefes ver
-2. Her nefes alışta topraktan enerji çek
-3. Her nefes verişte stresi toprağa bırak
-4. Kök çakranın kırmızı ışıkla parladığını gör
+BREATH (5 minutes):
+1. Exhale with "LAM" sound
+2. With each inhale, draw energy from the earth
+3. With each exhale, release stress into the earth
+4. See your root chakra glowing with red light
 
-GÜVENLİK GÖRSELLEŞTIRME (10 dakika):
-1. Etrafında güçlü bir kare yapı hayal et
-2. Bu yapı seni koruyor ama hapsetmiyor
-3. Duvarlar kristal - güçlü ama şeffaf
-4. İçeride güvende ve huzurlusun
-5. Dışarıdan ışık ve sevgi geliyor
+SECURITY VISUALIZATION (10 minutes):
+1. Imagine a strong square structure around you
+2. This structure protects but doesn't imprison
+3. The walls are crystal - strong but transparent
+4. Inside you are safe and peaceful
+5. Light and love come from outside
 
-AFFİRMASYON (5 dakika):
-Yüksek sesle söyle:
-"Ben güvendeyim."
-"Temeller sağlam."
-"Toprak beni destekliyor."
-"Değişime açığım."
-"Bırakmak özgürlüktür."
+AFFIRMATION (5 minutes):
+Say aloud:
+"I am safe."
+"The foundations are solid."
+"The earth supports me."
+"I am open to change."
+"Letting go is freedom."
 
-KAPATMA:
-1. Kökleri yavaşça geri çek
-2. Toprak enerjisini kök çakranda depola
-3. "Bugün topraklı ve dengeli kalacağım" niyeti
-4. Minnettarlıkla bitir
+CLOSING:
+1. Slowly retract the roots
+2. Store earth energy in your root chakra
+3. Intention: "Today I will remain grounded and balanced"
+4. End with gratitude
 
-Bu pratiği her gün, özellikle sabah yap.
-Stres ve kaygı anlarında kısa versiyonunu uygula.
+Do this practice every day, especially in the morning.
+Apply short version during moments of stress and anxiety.
 ''',
 
   yearlyGuidance: {
     '2024': '''
-2024 - MADDİ BAŞARI (Evrensel 8)
-8 evrensel yılı, 4'ler için maddi dünyada parlama zamanı. Yatırımlar,
-mülk edinme, kariyer yükselişi. Çalışmanın meyvelerini toplama vakti.
+2024 - MATERIAL SUCCESS (Universal 8)
+The universal 8 year is time for 4s to shine in the material world.
+Investments, property acquisition, career advancement. Time to reap
+the fruits of your labor.
 ''',
     '2025': '''
-2025 - TAMAMLAMA (Evrensel 9)
-9 evrensel yılı, projeleri bitirme zamanı. Yarım kalan işleri tamamla.
-Eski yapıları gözden geçir, gerekirse yık ve yeniden kur.
+2025 - COMPLETION (Universal 9)
+The universal 9 year is time to finish projects. Complete unfinished work.
+Review old structures, tear down and rebuild if necessary.
 ''',
     '2026': '''
-2026 - YENİ TEMELLER (Evrensel 1)
-Yeni döngü başlıyor. Yeni projeler, yeni yapılar için temel atma
-zamanı. Cesur ol, büyük planlar yap.
+2026 - NEW FOUNDATIONS (Universal 1)
+New cycle begins. Time to lay foundations for new projects, new structures.
+Be brave, make big plans.
 ''',
     '2027': '''
-2027 - ORTAKLIK (Evrensel 2)
-İşbirlikleri, ortaklıklar ön planda. Tek başına değil, birlikte
-inşa etmeyi öğren. İlişkilere yatırım yap.
+2027 - PARTNERSHIP (Universal 2)
+Collaborations and partnerships come to the fore. Learn to build
+together, not alone. Invest in relationships.
 ''',
     '2028': '''
-2028 - YARATICI YAPI (Evrensel 3)
-Yaratıcılık ve yapı birleşiyor. Estetik projeler, güzel yapılar.
-Katılığı bırak, sanat ve güzelliğe açıl.
+2028 - CREATIVE STRUCTURE (Universal 3)
+Creativity and structure unite. Aesthetic projects, beautiful structures.
+Let go of rigidity, open to art and beauty.
 ''',
   },
 );
 
-/// Yaşam Yolu 5 - Özgürlük Arayıcı
+/// Life Path 5 - Freedom Seeker
 const lifePathMega5 = LifePathMegaContent(
   number: 5,
-  title: 'Kozmik Kaşif',
-  archetype: 'Özgür Ruh / Maceraperest / Değişim Ajanı',
+  title: 'Cosmic Explorer',
+  archetype: 'Free Spirit / Adventurer / Agent of Change',
   sacredSymbol: '☿',
-  element: 'Hava ve Ateş - Değişken Rüzgar',
-  planet: 'Merkür - Hız ve İletişim Tanrısı',
-  tarotMajorArcana: 'Hierophant (V) - Geleneksel olmayan Öğretmen',
-  runicSymbol: 'Raidho ᚱ - Yolculuk ve Hareket',
-  colors: ['Turkuaz', 'Turuncu', 'Kırmızı', 'Çok Renkli'],
-  crystals: ['Akuamarin', 'Karneol', 'Turkuaz', 'Labradorit', 'Sodalit'],
-  chakraAlignment: 'Boğaz Çakra (Vishuddha) - Özgür İfade',
-  sacredGeometry: 'Pentagram - Beş Element ve İnsan',
-  frequencyHz: '639 Hz - Bağlantı ve İlişkiler',
-  musicalNote: 'Sol (G) - Özgürlük Titreşimi',
+  element: 'Air and Fire - Changing Wind',
+  planet: 'Mercury - God of Speed and Communication',
+  tarotMajorArcana: 'The Hierophant (V) - Unconventional Teacher',
+  runicSymbol: 'Raidho ᚱ - Journey and Movement',
+  colors: ['Turquoise', 'Orange', 'Red', 'Multicolor'],
+  crystals: ['Aquamarine', 'Carnelian', 'Turquoise', 'Labradorite', 'Sodalite'],
+  chakraAlignment: 'Throat Chakra (Vishuddha) - Free Expression',
+  sacredGeometry: 'Pentagram - Five Elements and Human',
+  frequencyHz: '639 Hz - Connection and Relationships',
+  musicalNote: 'G (Sol) - Freedom Vibration',
 
   deepSpiritualMeaning: '''
-☿ KADİM BİLGELİK: BEŞİN MİSTİK SIRRI ☿
+☿ ANCIENT WISDOM: THE MYSTIC SECRET OF FIVE ☿
 
-5 sayısı, özgürlüğün ve değişimin kutsal numarasıdır. Beş element
-(toprak, su, ateş, hava, eter), beş duyu, beş parmak, insanın beş
-uzvu - 5, insan deneyiminin sayısıdır.
+The number 5 is the sacred number of freedom and change. Five elements
+(earth, water, fire, air, ether), five senses, five fingers, five limbs
+of humans - 5 is the number of human experience.
 
-Pisagor, 5'i "evlilik sayısı" olarak görürdü - erkil 3 ve dişil 2'nin
-birleşimi. Ama 5'in gerçek gücü birleşmede değil, sentezde yatar.
-Zıtlıkları birleştiren, yeni bir şey yaratan güç.
+Pythagoras saw 5 as the "marriage number" - the union of masculine 3 and
+feminine 2. But the true power of 5 lies not in union, but in synthesis.
+The power that unites opposites and creates something new.
 
-Kabala'da 5, "Geburah" (Güç/Yargı) sefirasına karşılık gelir - aktif
-güç, değişimi başlatan enerji. Mars ile ilişkili, savaşçı ama adil.
+In Kabbalah, 5 corresponds to "Geburah" (Power/Judgment) - active
+power, energy that initiates change. Associated with Mars, warrior but just.
 
-Pentagram, beş köşeli yıldız, antik çağlardan beri koruma ve güç
-sembolü olmuştur. İnsan figürü (kafa, iki kol, iki bacak) pentagramda
-kodlanmıştır - 5, insanın kozmosdaki yeri.
+The pentagram, the five-pointed star, has been a symbol of protection and
+power since ancient times. The human figure (head, two arms, two legs) is
+encoded in the pentagram - 5 is humanity's place in the cosmos.
 
-İslam'da beş vakit namaz, beş şart, beş temel ibadet. Hristiyanlıkta
-İsa'nın beş yarası. Hindu'da Pancha Bhuta (beş element). 5, kutsal
-düzenin insan deneyimiyle buluştuğu nokta.
+In Islam, five daily prayers, five pillars, five basic acts of worship. In
+Christianity, Christ's five wounds. In Hinduism, Pancha Bhuta (five elements).
+5 is where sacred order meets human experience.
 
-5 yaşam yolundakiler, bu kozmik değişim enerjisinin taşıyıcılarıdır.
-Siz, yeni çağların habercisi, köprülerin kurucusu, değişimin
-katalizörüsünüz.
+Those on life path 5 are carriers of this cosmic change energy. You are
+heralds of new ages, builders of bridges, catalysts of change.
 ''',
 
   karmicLessons: '''
-✦ KARMİK DERSLER VE RUHSAL SINAMALAR ✦
+✦ KARMIC LESSONS AND SPIRITUAL TRIALS ✦
 
-5 yaşam yolunun karmik dersleri, özgürlük ve sorumluluk arasındaki
-dengede yatar. Geçmiş yaşamlarında ya çok kısıtlandın ya da sınır
-tanımadan yaşadın. Bu hayatta dengeyi bulmalısın.
+The karmic lessons of life path 5 lie in the balance between freedom
+and responsibility. In past lives you were either too restricted or
+lived without boundaries. In this life you must find balance.
 
-Birincil Karmik Ders: ÖZGÜRLÜK VE BAĞLILIK
-Özgürlük, sorumsuzluk değildir. Dersin, bağlılık korkusu olmadan
-ilişki kurmak, kısıtlanma hissi olmadan sorumluluk almak.
+Primary Karmic Lesson: FREEDOM AND COMMITMENT
+Freedom is not irresponsibility. Your lesson is to form relationships
+without fear of commitment, to take responsibility without feeling restricted.
 
-İkincil Karmik Ders: DENEYİM VE BİLGELİK
-Çok deneyim toplamak bilge yapmaz. Dersin, deneyimleri entegre etmek,
-yüzeysel toplamak yerine derinlemesine öğrenmek.
+Secondary Karmic Lesson: EXPERIENCE AND WISDOM
+Collecting many experiences doesn't make you wise. Your lesson is to
+integrate experiences, to learn deeply rather than collect superficially.
 
-Üçüncül Karmik Ders: SABIR VE ZAMANLAMA
-Hız güzel ama her şey hızlı olmaz. Dersin, beklemek, olgunlaşmak,
-doğru zamanda hareket etmek.
+Tertiary Karmic Lesson: PATIENCE AND TIMING
+Speed is beautiful but not everything is fast. Your lesson is to wait,
+to mature, to act at the right time.
 
-Karmik Sınama Dönemleri:
-• 23, 32, 41, 50 yaşları kritik (5+5+5...)
-• Merkür retrosları yoğun dönemler
-• İkizler ve Başak mevsimleri sınav zamanı
+Karmic Trial Periods:
+• Ages 23, 32, 41, 50 are critical (5+5+5...)
+• Mercury retrogrades are intense periods
+• Gemini and Virgo seasons are exam times
 
-Karmayı Dengeleme Yolları:
-• Bir şeye uzun vadeli bağlanma pratiği
-• Meditasyon ve sabır çalışmaları
-• Tamamlanmış projeler (başla VE bitir)
-• Kök salmayı deneme (bir yerde kalma)
-• Sorumluluk almayı pratik etme
+Ways to Balance Karma:
+• Practice of long-term commitment to something
+• Meditation and patience work
+• Completed projects (start AND finish)
+• Try putting down roots (staying in one place)
+• Practice taking responsibility
 ''',
 
   pastLifeConnections: '''
-✧ GEÇMİŞ YAŞAM BAĞLANTILARI ✧
+✧ PAST LIFE CONNECTIONS ✧
 
-5 yaşam yolunda doğanlar, genellikle şu geçmiş yaşam arketiplerini taşır:
+Those born on life path 5 typically carry these past life archetypes:
 
-GEZGİN/KAŞİF GEÇMİŞİ
-Okyanusları geçen, bilinmeyen toprakları keşfeden, evden uzakta
-yaşayan. Macera, risk, keşif DNA'nda kodlu.
+TRAVELER/EXPLORER PAST
+Crossing oceans, discovering unknown lands, living far from home.
+Adventure, risk, exploration are coded in your DNA.
 
-TÜCCAr/İPEK YOLU TÜCARI GEÇMİŞİ
-Kültürler arası köprü kuran, ticaret yollarında geçen hayatlar.
-Değiş-tokuş, pazarlık, farklı dillerle iletişim.
+MERCHANT/SILK ROAD TRADER PAST
+Lives spent building bridges between cultures, traveling trade routes.
+Exchange, bargaining, communicating in different languages.
 
-ÖZGÜRLÜK SAVAŞÇISI GEÇMİŞİ
-Devrimlerde, bağımsızlık savaşlarında, kurtuluş hareketlerinde
-bulunmuşsun. Özgürlük için savaşma enerjisi çok tanıdık.
+FREEDOM FIGHTER PAST
+You were in revolutions, independence wars, liberation movements.
+The energy of fighting for freedom is very familiar.
 
-SİRK/GEZGİN SANATÇI GEÇMİŞİ
-Yerleşik olmayan, köy köy gezen, performans sergileyen. Seyirciyi
-büyüleyen, sonra yola devam eden.
+CIRCUS/TRAVELING ARTIST PAST
+Non-settled, traveling village to village, performing. Enchanting
+audiences, then moving on.
 
-Geçmiş Yaşam Tetikleyicileri:
-• Yeni yerlerde anında "evde" hissetme
-• Belirli kültürlere açıklanamaz aşinalık
-• Kapalı yerlerde, rutinde bunalma
-• Sürekli "bir sonraki macera" arayışı
-• Değişim anlarında yoğun canlılık hissi
+Past Life Triggers:
+• Instantly feeling "at home" in new places
+• Unexplainable familiarity with certain cultures
+• Feeling suffocated in enclosed spaces and routine
+• Constant search for "the next adventure"
+• Intense feeling of aliveness during moments of change
 ''',
 
   soulPurpose: '''
-❂ RUHUN KUTSAL MİSYONU ❂
+❂ THE SOUL'S SACRED MISSION ❂
 
-Sen bu dünyaya özel bir misyonla geldin: DEĞİŞİMİ TAŞIMAK ve
-ÖZGÜRLÜĞÜ ÖĞRETMekL.
+You came to this world with a special mission: TO CARRY CHANGE and
+TEACH FREEDOM.
 
-Birincil Ruh Amacı: DEĞİŞİM KATALİZÖRÜ
-Durağanlığı sarsan, yeni perspektifler getiren, dönüşümü başlatan
-güç. Varlığın bile ortamları değiştirir.
+Primary Soul Purpose: CATALYST OF CHANGE
+The power that shakes stagnation, brings new perspectives, initiates
+transformation. Your very presence changes environments.
 
-İkincil Ruh Amacı: KÖPRÜ KURMA
-Farklı kültürler, fikirler, insanlar arasında bağlantı kurma.
-Tercüman, arabulucu, sentezleyici.
+Secondary Soul Purpose: BUILDING BRIDGES
+Creating connections between different cultures, ideas, people.
+Translator, mediator, synthesizer.
 
-Üçüncül Ruh Amacı: ÖZGÜRLÜK ÖĞRETMENİ
-Başkalarına özgürlüğün ne olduğunu, nasıl deneyimleneceğini göstermek.
-Korkulardan kurtuluş, sınırları aşma.
+Tertiary Soul Purpose: FREEDOM TEACHER
+Showing others what freedom is and how to experience it.
+Liberation from fears, transcending limits.
 
-Ruh Sözleşmesi Detayları:
-• Hayatın boyunca çok farklı deneyimler yaşayacaksın
-• En az bir büyük değişim/dönüşüm geçireceksin
-• Başkalarının değişimine yardımcı olacaksın
-• Özgürlük ve sorumluluk dengesini öğreneceksin
-• Dünyayı farklı pencerelerden göstereceksin
+Soul Contract Details:
+• You will experience very different experiences throughout your life
+• You will go through at least one major change/transformation
+• You will help others in their change
+• You will learn the balance of freedom and responsibility
+• You will show the world from different windows
 
-Misyonunu Engelleyen Faktörler:
-• Aşırı dağınıklık
-• Bağlanma korkusu
-• Yüzeysellik
-• Sorumsuzluk
-• Kaçış olarak değişim
+Factors Blocking Your Mission:
+• Excessive scatter
+• Fear of attachment
+• Superficiality
+• Irresponsibility
+• Change as escape
 
-Misyonunu Destekleyen Faktörler:
-• Bilinçli seyahat ve keşif
-• Yeni beceriler öğrenme
-• Çok kültürlü deneyimler
-• Değişim danışmanlığı
-• Macera ile kök salma dengesi
+Factors Supporting Your Mission:
+• Conscious travel and exploration
+• Learning new skills
+• Multicultural experiences
+• Change consulting
+• Balance between adventure and putting down roots
 ''',
 
   shadowAspects: '''
-☾ GÖLGE YÖNLERİ VE DÖNÜŞÜM ☾
+☾ SHADOW ASPECTS AND TRANSFORMATION ☾
 
-5 sayısının gölgeleri, kaçış ve savrulma etrafında döner. Özgürlük
-arayışı, hapishane olabilir.
+The shadows of number 5 revolve around escape and scattering. The
+search for freedom can become a prison.
 
-BİRİNCİL GÖLGE: BAĞLANMA KORKUSU
-Belirtiler:
-• İlişkilerde kaçış
-• Uzun vadeli taahhütten kaçınma
-• "Daha iyi bir şey var" sendromu
-• Sık partner/iş/yer değiştirme
-• Yakınlık korkusu
+PRIMARY SHADOW: FEAR OF ATTACHMENT
+Symptoms:
+• Running away in relationships
+• Avoiding long-term commitment
+• "There's something better" syndrome
+• Frequently changing partners/jobs/places
+• Fear of intimacy
 
-Dönüşüm Yolu:
-Bağlanmak, hapsolmak değildir. Özgürlük, taahhüt içinde de mümkündür.
-Derin kök, güçlü dal üretir.
+Path of Transformation:
+Attachment is not imprisonment. Freedom is possible within commitment.
+Deep roots produce strong branches.
 
-İKİNCİL GÖLGE: BAĞIMLILIK EĞİLİMİ
-Belirtiler:
-• Madde kullanımı riski
-• Adrenalin bağımlılığı
-• Seks bağımlılığı potansiyeli
-• Sürekli uyarıcı arama
-• "Normallik" tahammülsüzlüğü
+SECONDARY SHADOW: ADDICTION TENDENCY
+Symptoms:
+• Risk of substance use
+• Adrenaline addiction
+• Potential for sex addiction
+• Constant seeking of stimulation
+• Intolerance of "normalcy"
 
-Dönüşüm Yolu:
-Haz, kaçış aracı değil, hayatın doğal parçası olmalı. Sağlıklı
-heyecan kaynakları bul. Rutinin de değeri var.
+Path of Transformation:
+Pleasure should be a natural part of life, not an escape tool.
+Find healthy sources of excitement. Routine also has value.
 
-ÜÇÜNCÜL GÖLGE: YÜZEYSELLİK
-Belirtiler:
-• Çok başlanmış, hiçbiri bitirilmemiş
-• Uzmanlaşma eksikliği
-• Derin bilgi yerine genel kültür
-• İlişkilerde derinleşememe
-• "Bir sonrakine" takıntısı
+TERTIARY SHADOW: SUPERFICIALITY
+Symptoms:
+• Many things started, none finished
+• Lack of specialization
+• General knowledge instead of deep expertise
+• Unable to go deep in relationships
+• Obsession with "the next one"
 
-Dönüşüm Yolu:
-Genişlik güzel, ama derinlik olmadan anlamsız. Bir alanda ustalık
-kazanmak, diğer alanlara da taşınır.
+Path of Transformation:
+Breadth is beautiful, but meaningless without depth. Mastering
+one area transfers to other areas as well.
 
-DÖRDÜNCÜL GÖLGE: SORUMSUZLUK
-Belirtiler:
-• Sözlerini tutmama
-• Sonuçlardan kaçma
-• Başkalarını yarı yolda bırakma
-• Hesap vermekten kaçınma
-• "Özgür ruh" bahanesiyle sorumsuzluk
+QUATERNARY SHADOW: IRRESPONSIBILITY
+Symptoms:
+• Not keeping your word
+• Running from consequences
+• Leaving others halfway
+• Avoiding accountability
+• Irresponsibility under the guise of "free spirit"
 
-Dönüşüm Yolu:
-Özgürlük, sorumsuzluk değildir. Gerçek özgürlük, seçimlerinin
-sorumluluğunu alabilmekten geçer.
+Path of Transformation:
+Freedom is not irresponsibility. True freedom comes through
+being able to take responsibility for your choices.
 
-Gölge Çalışması Ritüel:
-Rüzgarlı bir günde dışarı çık. Rüzgarın sesini dinle. Ona bir
-şeyi bırakmasını söyle - bir korku, bir takıntı, bir kaçış.
-Rüzgarın onu alıp götürdüğünü hisset.
+Shadow Work Ritual:
+Go outside on a windy day. Listen to the sound of the wind.
+Tell it to let go of something - a fear, an obsession, an escape.
+Feel the wind taking it away.
 ''',
 
   tantricEnergySignature: '''
-💨 TANTRİK ENERJİ İMZASI 💨
+💨 TANTRIC ENERGY SIGNATURE 💨
 
-5 sayısı, hareketli, değişken ve elektrik yüklü enerjiyi temsil eder.
-Ne sabit maskülen ne sabit feminen - sürekli dans eden, değişen.
+The number 5 represents mobile, changeable, and electrically charged energy.
+Neither fixed masculine nor fixed feminine - constantly dancing, changing.
 
-KUNDALINI KARAKTERİSTİĞİ
-5'lerin kundalinisi çabuk, değişken ve öngörülmez hareket eder.
-Bir anda yükselir, bir anda çekilir.
+KUNDALINI CHARACTERISTIC
+The kundalini of 5s moves quickly, variably, and unpredictably.
+Rising in an instant, receding in an instant.
 
-Kundalini Özellikleri:
-• Hava elementi dominant
-• Hızlı, ani aktivasyonlar
-• Boğaz ve üst çakralarda yoğunlaşma
-• Hareket ve dansla tetiklenir
-• Elektrik benzeri enerji hissi
+Kundalini Features:
+• Air element dominant
+• Fast, sudden activations
+• Concentration in throat and upper chakras
+• Triggered by movement and dance
+• Electricity-like energy feeling
 
-TANTRİK CİNSELLİK
-5 enerjisi cinsellikte maceracı, keşifçi ve çeşitlilik arayan.
-Rutin öldürür, yenilik canlandırır.
+TANTRIC SEXUALITY
+The 5 energy in sexuality is adventurous, exploratory, and variety-seeking.
+Routine kills, novelty revitalizes.
 
-Tantrik Pratikler:
-• Çeşitlilik ve deneyim
-• Hareket ve dans odaklı tantra
-• Nefes oyunları ve dinamik pranayama
-• Beklenmedik zaman ve mekanlar
-• Sözel ifade ve iletişim (dirty talk)
+Tantric Practices:
+• Variety and experience
+• Movement and dance-focused tantra
+• Breath games and dynamic pranayama
+• Unexpected times and places
+• Verbal expression and communication (dirty talk)
 
-KUTSAL BİRLİK
-5 enerjisi, 1 ile maceracı (ikisi de bağımsız). 7 ile spiritüel
-derinlik bulabilir. 3 ile eğlenceli ama yüzeysel kalabilir.
+SACRED UNION
+The 5 energy is adventurous with 1 (both independent). Can find spiritual
+depth with 7. Fun but may stay superficial with 3.
 
-Uyumlu Tantrik Partnerler: 1, 3, 7, 9
-Zorlayıcı Tantrik Kombinasyonlar: 2, 4, 6
+Compatible Tantric Partners: 1, 3, 7, 9
+Challenging Tantric Combinations: 2, 4, 6
 
-ENERJİ BEDEN BAĞLANTILARI
-5 enerjisi özellikle şu noktalarda yoğunlaşır:
-• Boğaz Çakra (Vishuddha) - iletişim, ifade
-• Üçüncü Göz (Ajna) - vizyon, perspektif
-• Solar Plexus (Manipura) - aksiyon, hareket
+ENERGY BODY CONNECTIONS
+The 5 energy concentrates especially in these areas:
+• Throat Chakra (Vishuddha) - communication, expression
+• Third Eye (Ajna) - vision, perspective
+• Solar Plexus (Manipura) - action, movement
 
-Enerji Dengesi İçin:
-• Hareket meditasyonları
-• Nefes çalışmaları (dinamik pranayama)
-• Dans ve serbest hareket
-• Seyahat ve yeni yerler keşfi
-• Grounding pratikleri (hareketliliği dengeler)
+For Energy Balance:
+• Movement meditations
+• Breathwork (dynamic pranayama)
+• Dance and free movement
+• Travel and exploring new places
+• Grounding practices (balances mobility)
 ''',
 
   sacredGeometryConnection: '''
-⛤ KUTSAL GEOMETRİ BAĞLANTISI ⛤
+⛤ SACRED GEOMETRY CONNECTION ⛤
 
-5 sayısının kutsal geometrisi, PENTAGRAM'dır - beş köşeli yıldız.
+The sacred geometry of number 5 is the PENTAGRAM - the five-pointed star.
 
 PENTAGRAM
-Antik çağlardan beri koruma, güç ve insan-evren bağlantısının sembolü.
-Leonardo da Vinci'nin Vitruvius Adamı pentragram içindedir - insan,
-evrenin mikrokozmosudur.
+Symbol of protection, power, and human-universe connection since ancient times.
+Leonardo da Vinci's Vitruvian Man is within the pentagram - human is
+the microcosm of the universe.
 
-Spiritüel Anlamı:
-• Beş element (toprak, su, ateş, hava, eter)
-• İnsan figürü - kafa, kollar, bacaklar
-• Koruma ve güç
-• Altın oran (phi) içinde kodlu
-• Döngüsel değişim
+Spiritual Meaning:
+• Five elements (earth, water, fire, air, ether)
+• Human figure - head, arms, legs
+• Protection and power
+• Encoded in the golden ratio (phi)
+• Cyclic change
 
-ALTININ ORANI (PHI)
-Pentagramın her oranı altın oranı içerir (1.618...). Bu, 5'in
-doğanın temel estetiğiyle bağlantısını gösterir. Değişim içinde
-mükemmellik.
+THE GOLDEN RATIO (PHI)
+Every proportion of the pentagram contains the golden ratio (1.618...). This
+demonstrates 5's connection to nature's fundamental aesthetics. Perfection
+within change.
 
 DODECAHEDRON
-Beş kenarlı pentagranlardan oluşan Platonik katı. Eter/evren
-elementini temsil eder. 5, kozmik düzenle bağlantı noktası.
+A Platonic solid composed of five-sided pentagons. Represents the ether/universe
+element. 5 is the connection point with cosmic order.
 
-Meditasyon Pratiği:
-Beş köşeli bir yıldız hayal et, turkuaz renkte parlıyor. Yıldızın
-merkezine gir - burası değişimin ve potansiyelin merkezi. Her köşe
-bir hayat alanını temsil eder (iş, aşk, sağlık, maneviyat, macera).
-Dengeyi hisset.
+Meditation Practice:
+Imagine a five-pointed star, glowing in turquoise. Enter the center of the star -
+this is the center of change and potential. Each point represents an area of life
+(work, love, health, spirituality, adventure). Feel the balance.
 
-Kutsal Geometri Aktivasyonu:
-• Pentagram çiz ve içinde meditasyon yap
-• Beş kristal veya mum ile pentagram oluştur
-• Beş günlük döngüler (beş günde bir ritüel)
-• Beş element ritüeli
+Sacred Geometry Activation:
+• Draw a pentagram and meditate within it
+• Create a pentagram with five crystals or candles
+• Five-day cycles (ritual every five days)
+• Five elements ritual
 ''',
 
   kundaliniActivation: '''
-⚡ KUNDALİNİ AKTİVASYONU ⚡
+⚡ KUNDALINI ACTIVATION ⚡
 
-5 yaşam yolu, elektrik yüklü ve hızlı bir kundalini potansiyeli taşır.
-Şimşek gibi - ani, güçlü, öngörülmez.
+Life path 5 carries an electrically charged and fast kundalini potential.
+Like lightning - sudden, powerful, unpredictable.
 
-KUNDALİNİ KARAKTERİSTİKLERİ
-• Seyahat ve yeni deneyimlerle aktive olur
-• Ani, beklenmedik uyanışlar
-• Tüm vücutta elektrik hissi
-• Rüyalarda uçuş, düşüş, hareket
-• Heyecan ve macera anlarında güçlenir
+KUNDALINI CHARACTERISTICS
+• Activated through travel and new experiences
+• Sudden, unexpected awakenings
+• Electric sensation throughout the body
+• Dreams of flying, falling, movement
+• Strengthens during excitement and adventure moments
 
-TEHLİKELER VE UYARILAR
-5 enerjisi hızlı ve kontrolsüz olabilir:
-• Enerji savrulması (grounding eksikliği)
-• Aşırı stimülasyon
-• Sinir sistemi aşırı yükü
-• Topraklanamama
-• Uyku sorunları ve hiperaktivite
+DANGERS AND WARNINGS
+5 energy can be fast and uncontrolled:
+• Energy scattering (lack of grounding)
+• Overstimulation
+• Nervous system overload
+• Inability to ground
+• Sleep problems and hyperactivity
 
-GÜVENLİ AKTİVASYON YOLLARI
-1. HAREKET VE DANS
-Serbest dans, 5 Rhythms, ecstatic dance. Hareketi planlama,
-bırak aksın. Vücut bilgeliğine güven.
+SAFE ACTIVATION METHODS
+1. MOVEMENT AND DANCE
+Free dance, 5 Rhythms, ecstatic dance. Don't plan movement,
+let it flow. Trust body wisdom.
 
-2. NEFES
-Kapalabathi (ateş nefesi) - hızlandırıcı. Ama her zaman
-topraklama nefesiyle dengele.
+2. BREATH
+Kapalabhati (breath of fire) - accelerating. But always
+balance with grounding breath.
 
 3. MANTRA
-"HAM" - Boğaz çakrası (iletişim)
-"OM BUDH BUDDHAYA NAMAHA" - Merkür mantrası
+"HAM" - Throat chakra (communication)
+"OM BUDH BUDDHAYA NAMAHA" - Mercury mantra
 
-4. SEYAHAT MEDİTASYONU
-Yeni bir yerde, o yerin enerjisiyle bağlantı kur. Yerin
-tarihini, ruhunu hisset. Seyahat, spiritüel pratik olur.
+4. TRAVEL MEDITATION
+In a new place, connect with that place's energy. Feel the
+history and spirit of the place. Travel becomes spiritual practice.
 
-5. ELEMENT ÇALIŞMASI
-Tüm beş elementle bağlantı kur. Her gün bir element üzerine
-odaklan. Döngüsel pratik oluştur.
+5. ELEMENT WORK
+Connect with all five elements. Focus on one element each day.
+Create a cyclical practice.
 
-AKTİVASYON ZAMANLAMA
-• Çarşamba (Merkür günü) güçlendirir
-• İlkbahar ve sonbahar (geçiş mevsimleri)
-• İkizler ve Başak dönemleri
-• Seyahat ve değişim anları
+ACTIVATION TIMING
+• Wednesday (Mercury day) strengthens
+• Spring and autumn (transition seasons)
+• Gemini and Virgo periods
+• Moments of travel and change
 
-KUNDALİNİ UYANIŞI BELİRTİLERİ
-• Tüm vücutta elektrik/karıncalanma
-• Ani enerji patlamaları
-• Artan iletişim ve ifade yeteneği
-• Senkronisiteler (tesadüfler) artışı
-• Yeni fırsatların akışı
-• Hız ve hareket hissi
+KUNDALINI AWAKENING SIGNS
+• Electricity/tingling throughout the body
+• Sudden energy bursts
+• Increased communication and expression ability
+• Increase in synchronicities (coincidences)
+• Flow of new opportunities
+• Sense of speed and movement
 ''',
 
   compatibilityMatrix: {
     1: '''
-5 + 1 = MACERA ORTAĞI
-İki bağımsız, maceracı ruh. Birlikte dünyayı keşfedebilirler.
-1 liderlik eder, 5 maceraya açar. Özgürlük-özgürlük dengesi.
-Uyum puanı: 8/10
+5 + 1 = ADVENTURE PARTNERS
+Two independent, adventurous souls. Together they can explore the world.
+1 leads, 5 opens to adventure. Freedom-freedom balance.
+Compatibility score: 8/10
 ''',
     2: '''
-5 + 2 = TÜRBÜLANS
-5'in hareketliliği, 2'nin istikrar ihtiyacıyla çatışır. 2 güvensiz
-hisseder, 5 boğulur. Çok zor kombinasyon. Karşılıklı anlayış ve
-uzlaşma şart.
-Uyum puanı: 4/10
+5 + 2 = TURBULENCE
+5's mobility conflicts with 2's need for stability. 2 feels insecure,
+5 feels suffocated. Very difficult combination. Mutual understanding and
+compromise essential.
+Compatibility score: 4/10
 ''',
     3: '''
-5 + 3 = EĞLENCELİ KAOS
-İki sosyal, hareketli enerji. Partiler, seyahatler, maceralar.
-Eğlenceli ama yüzeysel kalabilir. Kimin topraklayacağı belirsiz.
-Uyum puanı: 7/10
+5 + 3 = FUN CHAOS
+Two social, active energies. Parties, travels, adventures.
+Fun but can remain superficial. Who will ground is unclear.
+Compatibility score: 7/10
 ''',
     4: '''
-5 + 4 = FIRTINA
-5'in kaosnu, 4'ün düzenini yerle bir eder. 4, 5'i hapiste hissettirir;
-5, 4'ü çıldırtır. Çok zor, ancak karşılıklı irade varsa öğretici.
-Uyum puanı: 3/10
+5 + 4 = STORM
+5's chaos demolishes 4's order. 4 makes 5 feel imprisoned;
+5 drives 4 crazy. Very difficult, but educational if mutual will exists.
+Compatibility score: 3/10
 ''',
     5: '''
-5 + 5 = ÇİFT RÜZGAR
-İki özgür ruh, sınırsız macera. Birlikte rüzgar gibi eserler. Risk:
-Hiçbiri yerleşmek istemez, her şey havada kalır. Dışsal çapa gerekli.
-Uyum puanı: 6/10
+5 + 5 = DOUBLE WIND
+Two free spirits, unlimited adventure. Together they blow like the wind. Risk:
+Neither wants to settle, everything stays in the air. External anchor needed.
+Compatibility score: 6/10
 ''',
     6: '''
-5 + 6 = FARKLI DÜNYALAR
-6'nın yuva özlemi, 5'in macera arayışıyla çelişir. 6 yerleşmek
-isterken 5 kaçar. Çok zor kombinasyon.
-Uyum puanı: 4/10
+5 + 6 = DIFFERENT WORLDS
+6's longing for home conflicts with 5's search for adventure. 6 wants to settle
+while 5 runs away. Very difficult combination.
+Compatibility score: 4/10
 ''',
     7: '''
-5 + 7 = GİZEMLİ YOLCULUK
-5'in dış dünya macerası, 7'nin iç dünya keşfiyle birleşir. Birlikte
-fiziksel ve spiritüel yolculuklar. Derin ama her zaman kolay değil.
-Uyum puanı: 7/10
+5 + 7 = MYSTERIOUS JOURNEY
+5's outer world adventure combines with 7's inner world exploration. Together
+physical and spiritual journeys. Deep but not always easy.
+Compatibility score: 7/10
 ''',
     8: '''
-5 + 8 = FARKLI PRİORİTELER
-8'in iş odağı, 5'in özgürlük arayışıyla çatışabilir. 5, 8'i sıkıcı
-bulur; 8, 5'i sorumsuz. Ama iş seyahatiyle birleşirse işe yarar.
-Uyum puanı: 5/10
+5 + 8 = DIFFERENT PRIORITIES
+8's work focus may conflict with 5's search for freedom. 5 finds 8 boring;
+8 finds 5 irresponsible. But if combined with business travel, it works.
+Compatibility score: 5/10
 ''',
     9: '''
-5 + 9 = DÜNYA VATANDAŞLARI
-9'un evrenselliği, 5'in macera ruhuyla birleşir. Birlikte dünyayı
-değiştirebilirler. Yüksek hedefler, geniş vizyon.
-Uyum puanı: 8/10
+5 + 9 = WORLD CITIZENS
+9's universality combines with 5's adventurous spirit. Together they can
+change the world. High goals, broad vision.
+Compatibility score: 8/10
 ''',
     11: '''
-5 + 11 = SPİRİTÜEL KAŞIFLER
-11'in spiritüel vizyonu, 5'in keşif ruhuyla birleşir. Mistik
-seyahatler, spiritüel arayış. Derin ve anlamlı.
-Uyum puanı: 7/10
+5 + 11 = SPIRITUAL EXPLORERS
+11's spiritual vision combines with 5's spirit of discovery. Mystical
+travels, spiritual quest. Deep and meaningful.
+Compatibility score: 7/10
 ''',
     22: '''
-5 + 22 = DİNAMİK VE YAPI
-22'nin yapıcılığı, 5'in dinamizmiyle büyük projeler. 5, değişimi
-getirir; 22 yapılandırır. Ama 5, 22'nin yavaşlığına tahammül etmeli.
-Uyum puanı: 6/10
+5 + 22 = DYNAMIC AND STRUCTURE
+22's constructiveness with 5's dynamism creates big projects. 5 brings change;
+22 structures. But 5 must tolerate 22's slowness.
+Compatibility score: 6/10
 ''',
     33: '''
-5 + 33 = ÖZGÜRLÜK ÖĞRETMENİ
-33'ün öğretmenliği, 5'in özgürlük enerjisiyle birleşir. Başkalarına
-özgürlüğü öğretme misyonu.
-Uyum puanı: 7/10
+5 + 33 = FREEDOM TEACHER
+33's teaching combines with 5's freedom energy. Mission to teach
+freedom to others.
+Compatibility score: 7/10
 ''',
   },
 
@@ -3451,703 +3454,705 @@ Uyum puanı: 7/10
   challengingNumbers: [2, 4, 6],
 
   careerDestiny: '''
-💼 KARİYER KADERİ VE MESLEK YOLU 💼
+💼 CAREER DESTINY AND PROFESSIONAL PATH 💼
 
-5 yaşam yolu, özgürlük, çeşitlilik ve değişim gerektiren alanlarda
-parlar. Masa başı monoton iş seni öldürür.
+Life path 5 shines in fields that require freedom, variety and change.
+Monotonous desk jobs kill you.
 
-İDEAL KARİYER ALANLARI:
-• Seyahat ve Turizm
-• Gazetecilik ve Medya
-• Satış ve Pazarlama (saha)
-• Dış Ticaret ve İhracat
-• Çevirmenlik ve Tercümanlık
-• Etkinlik Organizasyonu
-• Spor ve Fitness (özellikle ekstrem sporlar)
-• Pilotluk, Kaptanlık
-• Fotoğrafçılık ve Belgeselcilik
-• Eğlence Sektörü
-• Teknoloji Startupları
-• Danışmanlık (değişim yönetimi)
+IDEAL CAREER FIELDS:
+• Travel and Tourism
+• Journalism and Media
+• Sales and Marketing (field)
+• Foreign Trade and Export
+• Translation and Interpretation
+• Event Organization
+• Sports and Fitness (especially extreme sports)
+• Piloting, Captaincy
+• Photography and Documentary
+• Entertainment Industry
+• Technology Startups
+• Consulting (change management)
 
-KAÇINILMASI GEREKEN ORTAMLAR:
-• Masa başı, 9-5 rutin işler
-• Bürokratik, yavaş kurumlar
-• Dar, kapalı ofisler
-• Tekrarlayan, monoton görevler
-• Katı hiyerarşik yapılar
+ENVIRONMENTS TO AVOID:
+• Desk-bound, 9-5 routine jobs
+• Bureaucratic, slow institutions
+• Narrow, closed offices
+• Repetitive, monotonous tasks
+• Rigid hierarchical structures
 
-BAŞARI ANAHTARLARI:
-• Özgürlük veren pozisyonlar seç
-• Seyahat ve çeşitlilik içeren roller bul
-• Freelance veya uzaktan çalışma düşün
-• Değişimi kucakla, monotonluğu reddet
-• Ama bir alanda da uzmanlaş (yüzeysellik tuzağı)
+KEYS TO SUCCESS:
+• Choose positions that give freedom
+• Find roles that include travel and variety
+• Consider freelance or remote work
+• Embrace change, reject monotony
+• But also specialize in one area (superficiality trap)
 
-PARA VE BOLLUK İLİŞKİSİ:
-5'ler para kazanmada yetenekli (satış, fırsat görme) ama tutmada
-zorlanabilir. Anlık harcama, seyahat masrafları, "YOLO" mantığı.
-Finansal planlama gerekli.
+MONEY AND ABUNDANCE RELATIONSHIP:
+5s are talented at making money (sales, spotting opportunities) but may
+struggle to keep it. Impulse spending, travel expenses, "YOLO" mentality.
+Financial planning required.
 ''',
 
   healthTendencies: '''
-🏥 SAĞLIK EĞİLİMLERİ VE BEDEN BİLGELİĞİ 🏥
+🏥 HEALTH TENDENCIES AND BODY WISDOM 🏥
 
-5 sayısı, bedenin hareket ve sinir sistemini yönetir. Sağlık
-sorunları genellikle aşırı stimülasyon ve huzursuzluktan kaynaklanır.
+The number 5 governs the body's movement and nervous system. Health
+issues usually stem from overstimulation and restlessness.
 
-HASSAS BÖLGELER:
-• Sinir sistemi
-• Böbrek üstü bezleri (adrenalin)
-• Eller, ayaklar (hareket organları)
-• Solunum sistemi
-• Kas-iskelet (aşırı hareket)
+SENSITIVE AREAS:
+• Nervous system
+• Adrenal glands (adrenaline)
+• Hands, feet (movement organs)
+• Respiratory system
+• Musculoskeletal (excessive movement)
 
-ORTAK SAĞLIK SORUNLARI:
-• Anksiyete ve panik atak
-• ADHD belirtileri
-• Uyku sorunları
-• Bağımlılık eğilimi
-• Kazalara yatkınlık
-• Tükenmişlik (aşırı aktiviteden)
+COMMON HEALTH ISSUES:
+• Anxiety and panic attacks
+• ADHD symptoms
+• Sleep problems
+• Addiction tendencies
+• Accident proneness
+• Burnout (from excessive activity)
 
-ÖNERİLEN FİZİKSEL AKTİVİTELER:
-• Ekstrem sporlar (ama güvenli)
-• Seyahat ve yürüyüş
-• Dans ve hareket
-• Yüzme ve su sporları
-• Çeşitli sporlar (değişen aktiviteler)
+RECOMMENDED PHYSICAL ACTIVITIES:
+• Extreme sports (but safe)
+• Travel and hiking
+• Dance and movement
+• Swimming and water sports
+• Various sports (changing activities)
 
-KAÇINILMASI GEREKENLER:
-• Aşırı kafein ve uyarıcılar
-• Uyuşturucu ve alkol riski
-• Adrenalin bağımlılığı
-• Yetersiz uyku
-• Topraklanmadan sürekli hareket
+THINGS TO AVOID:
+• Excessive caffeine and stimulants
+• Drug and alcohol risk
+• Adrenaline addiction
+• Insufficient sleep
+• Constant movement without grounding
 
-BÜTÜNSEL ŞIFA ÖNERİLERİ:
-• Düzenli uyku rutini (paradoks ama gerekli)
-• Topraklama egzersizleri
-• Meditasyon (hareket meditasyonu olabilir)
-• Sinir sistemini destekleyen bitkiler
-• Seyahat ile dinlenme dengesi
+HOLISTIC HEALING RECOMMENDATIONS:
+• Regular sleep routine (paradox but necessary)
+• Grounding exercises
+• Meditation (can be movement meditation)
+• Herbs that support the nervous system
+• Balance between travel and rest
 ''',
 
   wealthVibration: '''
-💰 BOLLUK TİTREŞİMİ VE MADDI DÜNYA 💰
+💰 ABUNDANCE VIBRATION AND MATERIAL WORLD 💰
 
-5 sayısı, para akışında yeteneklidir - kazanmak kolay, tutmak zor.
-Fırsat görmede ustasın, ama planlama eksik kalabilir.
+The number 5 is talented in money flow - easy to earn, hard to keep.
+You're a master at spotting opportunities, but planning may fall short.
 
-DOĞAL BOLLUK YETENEKLERİ:
-• Fırsat koklama
-• Satış ve pazarlama yeteneği
-• Çok yönlü gelir kaynakları
-• Adaptasyon ve değişimle para kazanma
-• Network ve bağlantılar
+NATURAL ABUNDANCE TALENTS:
+• Spotting opportunities
+• Sales and marketing talent
+• Multiple income sources
+• Making money through adaptation and change
+• Network and connections
 
-PARA BLOKLARI:
-• "Para özgürlüğümü kısıtlar" inancı
-• Anlık harcama dürtüsü
-• "Yarın başka fırsat çıkar" rahatlığı
-• Birikim eksikliği
-• Finansal planlama eksikliği
+MONEY BLOCKS:
+• "Money restricts my freedom" belief
+• Impulse spending urge
+• "Another opportunity will come tomorrow" comfort
+• Lack of savings
+• Lack of financial planning
 
-ZENGİNLİK AKTİVASYONU:
-1. MANTRA: "Özgürlük ve bolluk birlikte akar"
-2. KRİSTAL: Sitrin, turkuaz, kaplan gözü
-3. RENK: Turkuaz ve altın
-4. SAYI: 5 ve 8 kombinasyonları (58, 85)
-5. GÜN: Çarşamba (Merkür günü) iş fırsatları için
+WEALTH ACTIVATION:
+1. MANTRA: "Freedom and abundance flow together"
+2. CRYSTAL: Citrine, turquoise, tiger's eye
+3. COLOR: Turquoise and gold
+4. NUMBER: 5 and 8 combinations (58, 85)
+5. DAY: Wednesday (Mercury day) for business opportunities
 
-YATIRIM STRATEJİSİ:
-• Çeşitlendirilmiş portföy (çeşitlilik sever)
-• Seyahat ve deneyim sektörleri
-• Teknoloji ve inovasyon
-• Otomatik tasarruf (kendini zorla)
-• Likit yatırımlar (bağlanma korkusuna uygun)
+INVESTMENT STRATEGY:
+• Diversified portfolio (loves variety)
+• Travel and experience sectors
+• Technology and innovation
+• Automatic savings (force yourself)
+• Liquid investments (suitable for fear of commitment)
 ''',
 
   loveAndRelationships: '''
-💕 AŞK VE İLİŞKİLER - KUTSAL BİRLİK YOLU 💕
+💕 LOVE AND RELATIONSHIPS - PATH OF SACRED UNION 💕
 
-5 yaşam yolunda aşk, özgürlük, macera ve çeşitlilik demektir.
-Sıkıcı, rutin ilişkiler ölümdür.
+In life path 5, love means freedom, adventure and variety.
+Boring, routine relationships are death.
 
-AŞKTA GÜÇLÜ YÖNLER:
-• Heyecanlı ve maceracı
-• Spontan ve sürpriz dolu
-• Eğlenceli ve enerjik
-• Cinsel olarak keşifçi
-• Sıkıcılıktan uzak
+STRENGTHS IN LOVE:
+• Exciting and adventurous
+• Spontaneous and full of surprises
+• Fun and energetic
+• Sexually exploratory
+• Far from boring
 
-AŞKTA ZORLUKLAR:
-• Bağlanma korkusu
-• Monotonluğa tahammülsüzlük
-• "Çim her zaman daha yeşil" sendromu
-• Kaçış eğilimi
-• Derin bağdan korkma
+CHALLENGES IN LOVE:
+• Fear of commitment
+• Intolerance of monotony
+• "The grass is always greener" syndrome
+• Tendency to escape
+• Fear of deep connection
 
-İDEAL PARTNER PROFİLİ:
-• Özgürlüğüne saygı duyan
-• Kendi hayatı ve ilgileri olan
-• Maceracı ve açık fikirli
-• Seni kısıtlamayan ama terk de etmeyen
-• Çeşitliliğe açık
+IDEAL PARTNER PROFILE:
+• Respects your freedom
+• Has their own life and interests
+• Adventurous and open-minded
+• Doesn't restrict you but doesn't abandon you either
+• Open to variety
 
-İLİŞKİDE KAÇINILMASI GEREKENLER:
-• İlk zorlukta kaçma
-• Rütini tamamen reddetme
-• Partneri değiştirme takıntısı
-• Duygusal kaçınma
-• "Daha iyi biri var" arayışı
+THINGS TO AVOID IN RELATIONSHIPS:
+• Running away at the first difficulty
+• Completely rejecting routine
+• Obsession with changing partners
+• Emotional avoidance
+• Searching for "someone better"
 
-KUTSAL BİRLİK İÇİN PRATİKLER:
-• Birlikte seyahat ve macera
-• Yeni deneyimler keşfetme
-• Spontan aktiviteler
-• Cinsel çeşitlilik ve keşif
-• Rutin içinde yenilik yaratma
+PRACTICES FOR SACRED UNION:
+• Travel and adventure together
+• Discovering new experiences
+• Spontaneous activities
+• Sexual variety and exploration
+• Creating novelty within routine
 
-KARMİK İLİŞKİLER:
-4 ve 6 sayılı partnerlerle ilişkiler genellikle karmiktir. 4, kök
-salma; 6, sorumluluk ve yuva dersini getirir.
+KARMIC RELATIONSHIPS:
+Relationships with partners numbered 4 and 6 are usually karmic. 4 brings
+the lesson of putting down roots; 6 brings responsibility and home lessons.
 
-RUH EŞİ İŞARETLERİ:
-• Birlikte özgür hissetme (bağlanma değil birleşme)
-• Her gün yeni bir macera gibi hissetme
-• Sıkılmama - sürekli keşif
-• Birbirinin alanına saygı
-• Birlikte büyüme ve değişme
+SOUL MATE SIGNS:
+• Feeling free together (union not bondage)
+• Each day feeling like a new adventure
+• Never getting bored - constant discovery
+• Respecting each other's space
+• Growing and changing together
 ''',
 
   famousExamples: [
-    'Angelina Jolie - Macera ve humaniteryanizm',
-    'Steven Spielberg - Yaratıcı vizyoner',
-    'Malcolm X - Değişim ajanı',
-    'Abraham Lincoln - Özgürlük önderi',
-    'Vincent van Gogh - Huzursuz dahi',
-    'Mick Jagger - Rock\'n roll ruhu',
-    'Uma Thurman - Çok yönlü sanatçı',
-    'Jon Bon Jovi - Özgür ruh',
+    'Angelina Jolie - Adventure and humanitarianism',
+    'Steven Spielberg - Creative visionary',
+    'Malcolm X - Agent of change',
+    'Abraham Lincoln - Leader of freedom',
+    'Vincent van Gogh - Restless genius',
+    'Mick Jagger - Rock\'n roll spirit',
+    'Uma Thurman - Versatile artist',
+    'Jon Bon Jovi - Free spirit',
   ],
 
   dailyAffirmations: [
-    'Özgürlüğüm sorumlulukla dengeli.',
-    'Değişim beni büyütür, korkutmaz.',
-    'Macerayı kucaklarken kök salıyorum.',
-    'Deneyimlerim bilgeliğe dönüşüyor.',
-    'Bağlanmak, hapsolmak değil.',
-    'Her gün yeni bir keşif.',
-    'Hız ve sabır dengede.',
-    'Evren benim oyun alanım.',
-    'Özgürlük içsel bir durumdur.',
-    'Ben değişimin taşıyıcısıyım.',
+    'My freedom is balanced with responsibility.',
+    'Change makes me grow, not fear.',
+    'I put down roots while embracing adventure.',
+    'My experiences transform into wisdom.',
+    'Commitment is not imprisonment.',
+    'Every day is a new discovery.',
+    'Speed and patience are in balance.',
+    'The universe is my playground.',
+    'Freedom is an inner state.',
+    'I am the carrier of change.',
   ],
 
   meditationMantras: [
-    'HAM - Boğaz çakrası sesi',
-    'OM BUDH BUDDHAYA NAMAHA - Merkür mantrası',
-    'OM VAYU NAMAHA - Rüzgar elementine selam',
-    'SO HAM - Nefesle hareket',
-    'OM MANI PADME HUM - Evrensel bilgelik',
-    'AUM - Değişimin sesi',
+    'HAM - Throat chakra sound',
+    'OM BUDH BUDDHAYA NAMAHA - Mercury mantra',
+    'OM VAYU NAMAHA - Salutation to the wind element',
+    'SO HAM - Movement with breath',
+    'OM MANI PADME HUM - Universal wisdom',
+    'AUM - The sound of change',
   ],
 
   healingPractice: '''
-🙏 ŞIFA PRATİĞİ: RÜZGAR MEDİTASYONU 🙏
+🙏 HEALING PRACTICE: WIND MEDITATION 🙏
 
-Bu pratik, 5 enerjisini dengelemek ve hareket ile durağanlığı
-birleştirmek için tasarlanmıştır. İdeal zaman: Dışarıda, rüzgarlı günde.
+This practice is designed to balance 5 energy and combine movement
+with stillness. Ideal time: Outdoors, on a windy day.
 
-HAZIRLIK:
-1. Açık havada, tercihen tepe veya deniz kenarında ol
-2. Rüzgarı yüzünde hissedeceğin bir yere dur
-3. Gözlerini kapa, ayaklarını toprağa sağlam bas
-4. Kollarını yanlara aç, avuçlar göğe bakıyor
+PREPARATION:
+1. Be outdoors, preferably on a hilltop or by the sea
+2. Stand where you can feel the wind on your face
+3. Close your eyes, plant your feet firmly on the ground
+4. Open your arms to the sides, palms facing the sky
 
-RÜZGARLA BAĞLANTI (5 dakika):
-1. Rüzgarın yönünü hisset
-2. Rüzgarın sesini dinle
-3. Rüzgarın bedeninde yarattığı hissi fark et
-4. Rüzgarla aynı ritimde nefes al
+CONNECTING WITH THE WIND (5 minutes):
+1. Feel the direction of the wind
+2. Listen to the sound of the wind
+3. Notice the sensation the wind creates in your body
+4. Breathe in the same rhythm as the wind
 
-HAREKET MEDİTASYONU (10 dakika):
-1. Rüzgarın seni hareket ettirmesine izin ver
-2. Kollar, gövde, baş - rüzgarla dans et
-3. Hiçbir şeyi planlamadan, sadece hareket
-4. Hızlan, yavaşla - rüzgarla birlikte
-5. Gözler kapalı veya yarı kapalı
+MOVEMENT MEDITATION (10 minutes):
+1. Allow the wind to move you
+2. Arms, torso, head - dance with the wind
+3. Without planning anything, just move
+4. Speed up, slow down - together with the wind
+5. Eyes closed or half-closed
 
-TOPRAKLAMA (5 dakika):
-1. Hareketi yavaşça durdur
-2. Ayaklarının toprağa bastığını hisset
-3. "Ben hem hareket hem durağanlığım" de
-4. Nefesini yavaşlat, bedenini sakinleştir
+GROUNDING (5 minutes):
+1. Slowly stop the movement
+2. Feel your feet pressing into the ground
+3. Say "I am both movement and stillness"
+4. Slow your breath, calm your body
 
-GÖRSELLEŞTİRME (5 dakika):
-1. Turkuaz bir rüzgar hayal et, seni saran
-2. Bu rüzgar seni taşıyor ama toprak seni tutuyor
-3. İkisinin dengesi - özgürlük ve kök
-4. Bu dengeyi bedeninde hisset
+VISUALIZATION (5 minutes):
+1. Imagine a turquoise wind surrounding you
+2. This wind carries you but the earth holds you
+3. The balance of both - freedom and roots
+4. Feel this balance in your body
 
-KAPATMA:
-1. Derin bir nefes al, ver
-2. "Bugün değişimi kabul ediyorum" niyeti
-3. Minnettarlıkla bitir
+CLOSING:
+1. Take a deep breath, exhale
+2. Set the intention "Today I accept change"
+3. Finish with gratitude
 
-Bu pratiği rüzgarlı günlerde veya huzursuz hissettiğinde yap.
-Seyahat öncesi veya büyük değişim dönemlerinde özellikle faydalı.
+Do this practice on windy days or when you feel restless.
+Especially useful before travel or during major transition periods.
 ''',
 
   yearlyGuidance: {
     '2024': '''
-2024 - MADDİ DÜNYA İLE BARIŞ (Evrensel 8)
-8 evrensel yılı, 5'ler için yerleşme ve somutlaştırma zamanı.
-Maceralarını somut başarılara dönüştür. Finansal disiplin gerekli.
+2024 - PEACE WITH THE MATERIAL WORLD (Universal 8)
+Universal year 8 is a time for 5s to settle and materialize.
+Transform your adventures into concrete successes. Financial discipline required.
 ''',
     '2025': '''
-2025 - DÖNGÜ TAMAMLAMA (Evrensel 9)
-9 evrensel yılı, eski maceraları tamamlama zamanı. Yarım kalan
-yolculukları bitir. Bırakma ve hazırlık dönemi.
+2025 - COMPLETING THE CYCLE (Universal 9)
+Universal year 9 is a time to complete old adventures. Finish
+unfinished journeys. A period of letting go and preparation.
 ''',
     '2026': '''
-2026 - YENİ MACERALAR (Evrensel 1)
-Yeni döngü başlıyor! Yeni ülkeler, yeni deneyimler, yeni başlangıçlar.
-Cesur ol, kapıları aç. Ama bu sefer bilinçli planla.
+2026 - NEW ADVENTURES (Universal 1)
+A new cycle begins! New countries, new experiences, new beginnings.
+Be brave, open doors. But this time plan consciously.
 ''',
     '2027': '''
-2027 - ORTAKLIK (Evrensel 2)
-İşbirliği ve ortaklık yılı. Tek başına değil, birlikte macera.
-İlişkilerde derinleşme fırsatı.
+2027 - PARTNERSHIP (Universal 2)
+Year of collaboration and partnership. Adventure together, not alone.
+Opportunity to deepen relationships.
 ''',
     '2028': '''
-2028 - YARATICI İFADE (Evrensel 3)
-Deneyimlerini ifadeye dönüştür. Yaz, anlat, paylaş. Seyahat
-yazarlığı, blog, vlog için ideal.
+2028 - CREATIVE EXPRESSION (Universal 3)
+Transform your experiences into expression. Write, tell, share. Ideal
+for travel writing, blogs, vlogs.
 ''',
   },
 );
 
-/// Yaşam Yolu 6 - Şifa Verici / Aile Koruyucu
+/// Life Path 6 - Healer / Family Protector
 const lifePathMega6 = LifePathMegaContent(
   number: 6,
-  title: 'Kozmik Bakıcı',
-  archetype: 'Şifacı / Aile Koruyucu / Güzellik Taşıyıcı',
+  title: 'Cosmic Caregiver',
+  archetype: 'Healer / Family Protector / Beauty Bearer',
   sacredSymbol: '♀',
-  element: 'Toprak ve Su - Verimli Bahçe',
-  planet: 'Venüs - Aşk ve Güzellik Tanrıçası',
-  tarotMajorArcana: 'Aşıklar (VI) - Seçim ve Bağlılık',
-  runicSymbol: 'Gebo ᚷ - Hediye ve Karşılıklılık',
-  colors: ['Pembe', 'Mavi', 'Yeşil', 'Pastel Tonlar'],
-  crystals: ['Pembe Kuvars', 'Yeşil Jade', 'Rodonit', 'Zümrüt', 'Larimar'],
-  chakraAlignment: 'Kalp Çakra (Anahata) - Koşulsuz Sevgi',
-  sacredGeometry: 'Altıgen (Hexagon) - Arı Peteği Düzeni',
-  frequencyHz: '528 Hz - Aşk Frekansı, DNA Onarımı',
-  musicalNote: 'La (A) - Aşk Titreşimi',
+  element: 'Earth and Water - Fertile Garden',
+  planet: 'Venus - Goddess of Love and Beauty',
+  tarotMajorArcana: 'The Lovers (VI) - Choice and Commitment',
+  runicSymbol: 'Gebo ᚷ - Gift and Reciprocity',
+  colors: ['Pink', 'Blue', 'Green', 'Pastel Tones'],
+  crystals: ['Rose Quartz', 'Green Jade', 'Rhodonite', 'Emerald', 'Larimar'],
+  chakraAlignment: 'Heart Chakra (Anahata) - Unconditional Love',
+  sacredGeometry: 'Hexagon - Honeycomb Order',
+  frequencyHz: '528 Hz - Love Frequency, DNA Repair',
+  musicalNote: 'A (La) - Love Vibration',
 
   deepSpiritualMeaning: '''
-♀ KADİM BİLGELİK: ALTININ MİSTİK SIRRI ♀
+♀ ANCIENT WISDOM: THE MYSTICAL SECRET OF SIX ♀
 
-6 sayısı, mükemmel denge ve harmoninin sayısıdır. İlk "mükemmel sayı"
-olarak kabul edilir (1+2+3=6, aynı zamanda 1x2x3=6). 6, yaratılışın
-dengesi, güzelliğin matematiğidir.
+The number 6 is the number of perfect balance and harmony. It is considered
+the first "perfect number" (1+2+3=6, also 1x2x3=6). 6 is the balance
+of creation, the mathematics of beauty.
 
-Pisagor, 6'yı "evlilik ve harmoni" sayısı olarak görürdü. 2 (dişil) ve
-3 (erkil) çarpımı, ya da 1+2+3 toplamı - her iki yoldan da dengeye ulaşır.
+Pythagoras saw 6 as the number of "marriage and harmony." The product of
+2 (feminine) and 3 (masculine), or the sum of 1+2+3 - reaching balance
+through both paths.
 
-Kabala'da 6, "Tiphereth" (Güzellik) sefirasına karşılık gelir - Hayat
-Ağacı'nın kalbi, tüm diğer sefirotların dengelendiği merkez. Güneş
-ile ilişkili, ışığın ve sevginin kaynağı.
+In Kabbalah, 6 corresponds to "Tiphereth" (Beauty) sephirah - the heart
+of the Tree of Life, the center where all other sephiroth are balanced.
+Associated with the Sun, the source of light and love.
 
-Doğada 6'nın mükemmelliği: Kar taneleri altı köşeli, arı petekleri
-altıgen, benzin halkası altı karbonlu. Doğa, 6'yı verimlilik ve
-güzellik için seçer.
+The perfection of 6 in nature: Snowflakes have six points, beehives are
+hexagonal, benzene rings have six carbons. Nature chooses 6 for efficiency
+and beauty.
 
-Tanrı'nın dünyayı 6 günde yaratması, 6'nın yaratıcı döngünün tamamlanması
-olduğunu gösterir. 7. gün dinlenme, ama 6. gün yaratımın doruk noktası.
+God creating the world in 6 days shows that 6 is the completion of the
+creative cycle. The 7th day is rest, but the 6th day is the pinnacle
+of creation.
 
-6 yaşam yolundakiler, bu kozmik dengenin, güzelliğin ve şefkatin insan
-formu taşıyıcılarıdır. Siz, dünyaya sevgi ve harmoni getirmek için
-burada olan şifacılarsınız.
+Those on life path 6 are the human form carriers of this cosmic balance,
+beauty and compassion. You are healers here to bring love and harmony
+to the world.
 ''',
 
   karmicLessons: '''
-✦ KARMİK DERSLER VE RUHSAL SINAMALAR ✦
+✦ KARMIC LESSONS AND SPIRITUAL TRIALS ✦
 
-6 yaşam yolunun karmik dersleri, başkalarına bakmak ve kendine bakmak
-arasındaki dengede yatar. Geçmiş yaşamlarında ya çok fedakar oldun
-ya da sevgiyi reddettin. Bu hayatta dengeyi bulmalısın.
+The karmic lessons of life path 6 lie in the balance between caring for
+others and caring for yourself. In past lives you were either too
+self-sacrificing or rejected love. In this life you must find balance.
 
-Birincil Karmik Ders: VERİCİLİK VE ALICILIK
-Vermek güzel ama almak da öyle. Dersin, yardım kabul etmek, kendi
-ihtiyaçlarını da görmek, şehit kompleksinden kurtulmak.
+Primary Karmic Lesson: GIVING AND RECEIVING
+Giving is beautiful but so is receiving. Your lesson is to accept help,
+see your own needs, and escape the martyr complex.
 
-İkincil Karmik Ders: MÜKEMMELİYETÇİLİK VE KABUL
-Her şey mükemmel olmak zorunda değil. Dersin, kusurları sevmek,
-"yeterince iyi"yi kabul etmek, eleştiri döngüsünden çıkmak.
+Secondary Karmic Lesson: PERFECTIONISM AND ACCEPTANCE
+Not everything has to be perfect. Your lesson is to love imperfections,
+accept "good enough," and break the criticism cycle.
 
-Üçüncül Karmik Ders: KONTROL VE GÜVEN
-Sevdiklerini korumak istiyorsun ama kontrol etmek farklı. Dersin,
-bırakmak, güvenmek, başkalarının kendi yollarını bulmalarına izin vermek.
+Tertiary Karmic Lesson: CONTROL AND TRUST
+You want to protect loved ones but control is different. Your lesson is
+to let go, trust, allow others to find their own paths.
 
-Karmik Sınama Dönemleri:
-• 24, 33, 42, 51 yaşları kritik (6+6+6...)
-• Venüs döngüleri (8 yılda bir) yoğun
-• Boğa ve Terazi mevsimleri sınav zamanı
+Karmic Trial Periods:
+• Ages 24, 33, 42, 51 are critical (6+6+6...)
+• Venus cycles (every 8 years) are intense
+• Taurus and Libra seasons are exam times
 
-Karmayı Dengeleme Yolları:
-• Kendi bakımına zaman ayırma
-• "Hayır" demeyi öğrenme
-• Mükemmeliyetçiliği gevşetme
-• Yardım kabul etme pratiği
-• Kontrol bırakma meditasyonları
+Ways to Balance Karma:
+• Making time for self-care
+• Learning to say "No"
+• Loosening perfectionism
+• Practicing accepting help
+• Letting go of control meditations
 ''',
 
   pastLifeConnections: '''
-✧ GEÇMİŞ YAŞAM BAĞLANTILARI ✧
+✧ PAST LIFE CONNECTIONS ✧
 
-6 yaşam yolunda doğanlar, genellikle şu geçmiş yaşam arketiplerini taşır:
+Those born on life path 6 usually carry these past life archetypes:
 
-EBE/ŞİFACI GEÇMİŞİ
-Doğumlara yardım eden, hastaları iyileştiren, yaşlılara bakan.
-Bakım verme, şifa, destekleme enerjisi ruhunda derin.
+MIDWIFE/HEALER PAST
+Helping with births, healing the sick, caring for the elderly.
+The energy of caregiving, healing, supporting runs deep in your soul.
 
-TAPUNAK RAHİBESİ GEÇMİŞİ
-Güzellik ve sevgi tanrıçalarına (Venüs, Afrodit, İştar, Hathor)
-hizmet eden. Güzelliği ve aşkı kutsal kabul eden.
+TEMPLE PRIESTESS PAST
+Serving goddesses of beauty and love (Venus, Aphrodite, Ishtar, Hathor).
+Considering beauty and love sacred.
 
-EV KURUCUSU/MATRUARK GEÇMİŞİ
-Ailenin direği, evin kalbi, nesilleri bir arada tutan. Gelenek,
-değerler ve birlik enerjisi sende güçlü.
+HOMEMAKER/MATRIARCH PAST
+The pillar of the family, the heart of the home, keeping generations together.
+The energy of tradition, values and unity is strong in you.
 
-SANAT VE GÜZELLİK USTASI GEÇMİŞİ
-Saray ressamı, kraliyet terzisi, mücevher ustası. Güzellik yaratma
-ve sunma yeteneğin çok eski.
+ART AND BEAUTY MASTER PAST
+Palace painter, royal tailor, jewelry master. Your talent for creating
+and presenting beauty is very ancient.
 
-Geçmiş Yaşam Tetikleyicileri:
-• Bebeklere ve çocuklara doğal sevgi
-• Ev dekorasyonuna ve estetiğe yatkınlık
-• Aile toplantılarında "ana" rolü
-• Bakım verme dürtüsü (bazen aşırı)
-• Güzellik ve uyuma derin duyarlılık
+Past Life Triggers:
+• Natural love for babies and children
+• Aptitude for home decor and aesthetics
+• The "mother" role at family gatherings
+• Caregiving impulse (sometimes excessive)
+• Deep sensitivity to beauty and harmony
 ''',
 
   soulPurpose: '''
-❂ RUHUN KUTSAL MİSYONU ❂
+❂ THE SOUL'S SACRED MISSION ❂
 
-Sen bu dünyaya özel bir misyonla geldin: SEVGİYİ SOMUTLAŞTIRMAK ve
-GÜZELLİK YARATMAK.
+You came to this world with a special mission: TO EMBODY LOVE and
+CREATE BEAUTY.
 
-Birincil Ruh Amacı: SEVGİ KANALI
-Koşulsuz sevgiyi deneyimlemek ve aktarmak. Sıcaklık, şefkat, bakım
-enerjisini dünyaya taşımak.
+Primary Soul Purpose: LOVE CHANNEL
+To experience and transmit unconditional love. To carry warmth,
+compassion, caregiving energy to the world.
 
-İkincil Ruh Amacı: GÜZELLİK YARATICI
-Çirkin olanı güzelleştirmek, uyumsuz olanı uyumlaştırmak. Estetik,
-sanat, tasarım - her formda güzellik.
+Secondary Soul Purpose: BEAUTY CREATOR
+To beautify the ugly, harmonize the discordant. Aesthetics,
+art, design - beauty in every form.
 
-Üçüncül Ruh Amacı: YUVA KURMA
-Güvenli alanlar yaratmak - fiziksel ve duygusal. İnsanların "eve
-gelmek" hissedeceği ortamlar oluşturmak.
+Tertiary Soul Purpose: HOME BUILDING
+Creating safe spaces - physical and emotional. Creating environments
+where people feel "coming home."
 
-Ruh Sözleşmesi Detayları:
-• Ailenin/topluluğun kalbi olacaksın
-• En az bir insanı koşulsuz seveceksin
-• Güzellik yaratma yeteneğini kullanacaksın
-• Kendi bakımını da öğreneceksin
-• Sevgiyi alarak ve vererek dengeleyeceksin
+Soul Contract Details:
+• You will be the heart of family/community
+• You will love at least one person unconditionally
+• You will use your talent for creating beauty
+• You will also learn self-care
+• You will balance love by receiving and giving
 
-Misyonunu Engelleyen Faktörler:
-• Aşırı fedakarlık ve kendini ihmal
-• Mükemmeliyetçilik
-• Kontrol ve müdahale
-• Eleştiri ve yargılama
-• Alıcılıktan kaçınma
+Factors Blocking Your Mission:
+• Excessive sacrifice and self-neglect
+• Perfectionism
+• Control and interference
+• Criticism and judgment
+• Avoiding receptivity
 
-Misyonunu Destekleyen Faktörler:
-• Öz bakım rutinleri
-• Yaratıcı/sanatsal ifade
-• Sınır koyma pratiği
-• Topluluk ve aile zamanı
-• Doğa ve güzellik ile bağlantı
+Factors Supporting Your Mission:
+• Self-care routines
+• Creative/artistic expression
+• Boundary-setting practice
+• Community and family time
+• Connection with nature and beauty
 ''',
 
   shadowAspects: '''
-☾ GÖLGE YÖNLERİ VE DÖNÜŞÜM ☾
+☾ SHADOW ASPECTS AND TRANSFORMATION ☾
 
-6 sayısının gölgeleri, aşırı bakım ve mükemmeliyetçilik etrafında
-döner. Sevgi, kontrol maskesi takabilir.
+The shadows of the number 6 revolve around excessive caregiving
+and perfectionism. Love can wear a mask of control.
 
-BİRİNCİL GÖLGE: MARTİR/ŞEHİT KOMPLEKSİ
-Belirtiler:
-• "Herkes için her şeyi ben yapıyorum" şikayeti
-• Yardım istemeden şikayet etme
-• Fedakarlığı kimlik olarak kullanma
-• Suçluluk duygusu aşılama
-• Pasif-agresif manipülasyon
+PRIMARY SHADOW: MARTYR COMPLEX
+Symptoms:
+• "I do everything for everyone" complaint
+• Complaining without asking for help
+• Using sacrifice as identity
+• Instilling guilt
+• Passive-aggressive manipulation
 
-Dönüşüm Yolu:
-Vermek, alıcı olmadan eksik kalır. Şehitlik, gerçek sevgi değil.
-Kendi bakımın, başkalarına bakımının temelidir.
+Transformation Path:
+Giving is incomplete without receiving. Martyrdom is not true love.
+Your self-care is the foundation of your care for others.
 
-İKİNCİL GÖLGE: MÜKEMMELİYETÇİLİK
-Belirtiler:
-• Hiçbir şey yeterince iyi değil
-• Sürekli eleştiri ve düzeltme
-• Detaylara takılma
-• Kusurları kabul edememe
-• Kendini ve başkalarını yorma
+SECONDARY SHADOW: PERFECTIONISM
+Symptoms:
+• Nothing is ever good enough
+• Constant criticism and correction
+• Getting stuck on details
+• Inability to accept flaws
+• Exhausting yourself and others
 
-Dönüşüm Yolu:
-Mükemmellik, varoluşun doğasına aykırıdır. Kusurlar, karakterdir.
-"Yeterince iyi" çoğu zaman "en iyi"den iyidir.
+Transformation Path:
+Perfection is contrary to the nature of existence. Flaws are character.
+"Good enough" is often better than "the best."
 
-ÜÇÜNCÜL GÖLGE: KONTROLCÜLÜK
-Belirtiler:
-• Sevdiklerinin hayatına müdahale
-• "Senin iyiliğin için" manipülasyonu
-• Bırakamama, güvenememe
-• Aşırı korumacılık
-• Başkalarının kararlarını yargılama
+TERTIARY SHADOW: CONTROLLING BEHAVIOR
+Symptoms:
+• Interfering in loved ones' lives
+• "For your own good" manipulation
+• Inability to let go, to trust
+• Overprotectiveness
+• Judging others' decisions
 
-Dönüşüm Yolu:
-Korumak, kontrol etmek değildir. Gerçek sevgi, özgürlük verir.
-Bırakmak, terk etmek değil - güven göstermektir.
+Transformation Path:
+Protecting is not controlling. True love gives freedom.
+Letting go is not abandoning - it is showing trust.
 
-DÖRDÜNCÜL GÖLGE: DUYGUSAL MANİPÜLASYON
-Belirtiler:
-• Suçluluk duygusu kullanma
-• Koşullu sevgi
-• "Bak senin için ne yapıyorum" tutumu
-• Fedakarlığı silah olarak kullanma
-• Duygusal borçlandırma
+QUATERNARY SHADOW: EMOTIONAL MANIPULATION
+Symptoms:
+• Using guilt
+• Conditional love
+• "Look what I'm doing for you" attitude
+• Using sacrifice as a weapon
+• Emotional debt-creating
 
-Dönüşüm Yolu:
-Gerçek sevgi koşulsuzdur. Verdiğin şeyin karşılığını bekleme.
-Sevgi, hesap defteri değil.
+Transformation Path:
+True love is unconditional. Don't expect return for what you give.
+Love is not an account book.
 
-Gölge Çalışması Ritüel:
-Pembe bir mum yak, karşısına otur. Kendine sor: "Bugün kime
-gerçekten yardım ettim, kimi kontrol etmeye çalıştım?" Dürüstçe
-cevapla. Ardından kendine de aynı şefkati göster.
+Shadow Work Ritual:
+Light a pink candle, sit in front of it. Ask yourself: "Who did I
+truly help today, who did I try to control?" Answer honestly.
+Then show yourself the same compassion.
 ''',
 
   tantricEnergySignature: '''
-💗 TANTRİK ENERJİ İMZASI 💗
+💗 TANTRIC ENERGY SIGNATURE 💗
 
-6 sayısı, saf feminen (Shakti) enerjinin besleyici, bakım veren
-ifadesini temsil eder. Venüs enerjisi - güzellik, aşk, uyum.
+The number 6 represents the nurturing, caregiving expression of
+pure feminine (Shakti) energy. Venus energy - beauty, love, harmony.
 
-KUNDALINI KARAKTERİSTİĞİ
-6'ların kundalinisi yumuşak, sıcak ve kalp merkezli hareket eder.
-Sevgi ve bağlantı anlarında aktive olur.
+KUNDALINI CHARACTERISTIC
+The kundalini of 6s moves softly, warmly and heart-centered.
+It activates during moments of love and connection.
 
-Kundalini Özellikleri:
-• Su ve toprak elementi karışımı
-• Kademeli, nazik yükseliş
-• Kalp çakrasında yoğunlaşma
-• Sevgi ve yakınlıkla tetiklenir
-• Sıcak, sarmalayan enerji hissi
+Kundalini Features:
+• Mixture of water and earth element
+• Gradual, gentle rise
+• Concentration in the heart chakra
+• Triggered by love and intimacy
+• Warm, enveloping energy sensation
 
-TANTRİK CİNSELLİK
-6 enerjisi cinsellikte romantik, duygusal bağlantı odaklı ve
-besleyici. Fiziksel olmadan önce duygusal birleşme önemli.
+TANTRIC SEXUALITY
+6 energy in sexuality is romantic, focused on emotional connection
+and nurturing. Emotional union before physical is important.
 
-Tantrik Pratikler:
-• Yavaş, sevgi dolu birleşme
-• Göz teması ve kalp bağlantısı
-• Romantik ortam yaratma
-• Dokunuş ve okşama odaklı
-• Duygusal güvenlik önce
+Tantric Practices:
+• Slow, loving union
+• Eye contact and heart connection
+• Creating romantic atmosphere
+• Focus on touch and caressing
+• Emotional safety first
 
-KUTSAL BİRLİK
-6 enerjisi, 3 ile yaratıcı uyum (3+3=6). 9 ile evrensel sevgi.
-2 ile şefkatli ortaklık.
+SACRED UNION
+6 energy has creative harmony with 3 (3+3=6). Universal love with 9.
+Compassionate partnership with 2.
 
-Uyumlu Tantrik Partnerler: 2, 3, 9
-Zorlayıcı Tantrik Kombinasyonlar: 5, 7
+Compatible Tantric Partners: 2, 3, 9
+Challenging Tantric Combinations: 5, 7
 
-ENERJİ BEDEN BAĞLANTILARI
-6 enerjisi özellikle şu noktalarda yoğunlaşır:
-• Kalp Çakra (Anahata) - sevgi, şefkat
-• Sakral Çakra (Svadhisthana) - yaratıcılık, ilişkiler
-• Boğaz Çakra (Vishuddha) - ifade, güzellik
+ENERGY BODY CONNECTIONS
+6 energy concentrates especially at these points:
+• Heart Chakra (Anahata) - love, compassion
+• Sacral Chakra (Svadhisthana) - creativity, relationships
+• Throat Chakra (Vishuddha) - expression, beauty
 
-Enerji Dengesi İçin:
-• Kalp açma meditasyonları
-• Pembe ışık görselleştirmesi
-• Doğada, özellikle bahçede zaman
-• Sanat ve güzellik ile bağlantı
-• Fiziksel dokunuş (sarılma, masaj)
+For Energy Balance:
+• Heart opening meditations
+• Pink light visualization
+• Time in nature, especially gardens
+• Connection with art and beauty
+• Physical touch (hugging, massage)
 ''',
 
   sacredGeometryConnection: '''
-⬡ KUTSAL GEOMETRİ BAĞLANTISI ⬡
+⬡ SACRED GEOMETRY CONNECTION ⬡
 
-6 sayısının kutsal geometrisi, ALTIGEN (Hexagon)'dır.
+The sacred geometry of the number 6 is the HEXAGON.
 
-ALTIGEN
-Doğanın en verimli yapısı. Arı petekleri, kar taneleri, benzin
-halkası - hepsi altıgen. Minimum malzeme, maksimum alan.
+HEXAGON
+Nature's most efficient structure. Beehives, snowflakes, benzene
+rings - all hexagonal. Minimum material, maximum space.
 
-Spiritüel Anlamı:
-• Mükemmel denge ve harmoni
-• Verimlilik ve bolluk
-• Topluluk ve işbirliği
-• Güzellik matematiği
-• Doğal düzen
+Spiritual Meaning:
+• Perfect balance and harmony
+• Efficiency and abundance
+• Community and cooperation
+• Mathematics of beauty
+• Natural order
 
-DAVUT YILDIZI (Star of David)
-İki iç içe geçmiş üçgen - yukarı bakan (maskülen) ve aşağı bakan
-(feminen). 6'nın zıtlıkların birliğini simgeler.
+STAR OF DAVID
+Two interlocking triangles - upward pointing (masculine) and downward
+pointing (feminine). 6 symbolizes the unity of opposites.
 
-ÇİÇEK OF YAŞAM (Flower of Life)
-Altıgenlerden oluşan antik sembol. Yaratılışın ve yaşamın geometrisi.
-6, bu evrensel düzenin merkezi.
+FLOWER OF LIFE
+Ancient symbol composed of hexagons. The geometry of creation and life.
+6 is the center of this universal order.
 
-Meditasyon Pratiği:
-Pembe veya yeşil bir altıgen hayal et. Altıgenin her köşesi bir
-sevdiklerini temsil eder. Merkezde sen varsın - sevgiyi alan ve veren.
-Sevgi akışını her yöne hisset.
+Meditation Practice:
+Imagine a pink or green hexagon. Each corner of the hexagon represents
+a loved one. You are in the center - receiving and giving love.
+Feel the love flowing in every direction.
 
-Kutsal Geometri Aktivasyonu:
-• Altı mum veya kristalle hexagon oluştur
-• Merkezde kalp meditasyonu yap
-• Çiçek of Life sembolüyle çalış
-• Altı günlük sevgi döngüsü pratik et
+Sacred Geometry Activation:
+• Create a hexagon with six candles or crystals
+• Do heart meditation in the center
+• Work with the Flower of Life symbol
+• Practice a six-day love cycle
 ''',
 
   kundaliniActivation: '''
-🌹 KUNDALİNİ AKTİVASYONU 🌹
+🌹 KUNDALINI ACTIVATION 🌹
 
-6 yaşam yolu, yumuşak ve kalp merkezli bir kundalini potansiyeli
-taşır. Gül gibi - nazik ama güçlü.
+Life path 6 carries a soft and heart-centered kundalini potential.
+Like a rose - gentle but powerful.
 
-KUNDALİNİ KARAKTERİSTİKLERİ
-• Sevgi ve yakınlık anlarında aktive olur
-• Yavaş, organik yükseliş
-• Kalp çakrasında yoğunlaşma
-• Rüyalarda çiçekler, bebekler, evler
-• Sıcaklık ve genişleme hissi
+KUNDALINI CHARACTERISTICS
+• Activates during moments of love and intimacy
+• Slow, organic rise
+• Concentration in the heart chakra
+• Dreams of flowers, babies, homes
+• Sensation of warmth and expansion
 
-TEHLİKELER VE UYARILAR
-6 enerjisi başkalarına odaklanır, kundalini de dışa kayabilir:
-• Başkalarının enerjisini taşıma
-• Kendi enerjisini ihmal etme
-• Duygusal vampirlere açıklık
-• Aşırı vericilik yorgunluğu
-• Sınır eksikliğinden tükenme
+DANGERS AND WARNINGS
+6 energy focuses on others, kundalini can also shift outward:
+• Carrying others' energy
+• Neglecting own energy
+• Openness to emotional vampires
+• Fatigue from excessive giving
+• Depletion from lack of boundaries
 
-GÜVENLİ AKTİVASYON YOLLARI
-1. KALP MEDITASYONU
-Kalp bölgesine odaklan, pembe veya yeşil ışık görselleştir.
-Nefesle kalbi genişlet.
+SAFE ACTIVATION METHODS
+1. HEART MEDITATION
+Focus on the heart area, visualize pink or green light.
+Expand the heart with breath.
 
-2. SEVGİ NEFESI
-Her nefes alışta sevgi çek, her nefes verişte sevgi yay.
-Kendine ve başkalarına eşit.
+2. LOVE BREATH
+With each inhale draw in love, with each exhale radiate love.
+Equally to yourself and others.
 
 3. MANTRA
-"YAM" - Kalp çakrasının sesi
-"OM SHANTI OM" - Sevgi ve barış
-"SHREEM" - Venüs mantrası
+"YAM" - Sound of the heart chakra
+"OM SHANTI OM" - Love and peace
+"SHREEM" - Venus mantra
 
-4. GÜL TERAPİSİ
-Gül yağı, gül suyu, gül bahçesi. Gül, kalp çakrasının çiçeği.
-Gül meditasyonu yap.
+4. ROSE THERAPY
+Rose oil, rose water, rose garden. The rose is the flower of the
+heart chakra. Do rose meditation.
 
-5. AİLE VE TOPLULUK
-Sevgi dolu insanlarla zaman geçir. Sarılma, fiziksel yakınlık.
-Topluluk ritüelleri.
+5. FAMILY AND COMMUNITY
+Spend time with loving people. Hugging, physical closeness.
+Community rituals.
 
-AKTİVASYON ZAMANLAMA
-• Cuma (Venüs günü) güçlendirir
-• İlkbahar (Boğa mevsimi)
-• Dolunay (kalp açılması)
-• Sevgi ve kutlama anları
+ACTIVATION TIMING
+• Friday (Venus day) strengthens
+• Spring (Taurus season)
+• Full moon (heart opening)
+• Moments of love and celebration
 
-KUNDALİNİ UYANIŞI BELİRTİLERİ
-• Göğüste sıcaklık ve genişleme
-• Ani sevgi dalgaları
-• Empati artışı
-• Güzelliğe artan duyarlılık
-• Bakım verme isteği
-• Birlik ve bağlantı hissi
+KUNDALINI AWAKENING SIGNS
+• Warmth and expansion in the chest
+• Sudden waves of love
+• Increased empathy
+• Heightened sensitivity to beauty
+• Desire to give care
+• Feeling of unity and connection
 ''',
 
   compatibilityMatrix: {
     1: '''
-6 + 1 = AİLE LİDERLİĞİ
-1'in gücü, 6'nın şefkatiyle güçlü aile yapısı oluşur. 1 liderlik
-eder, 6 yumuşatır ve destekler. Geleneksel roller iyi işler.
-Uyum puanı: 7/10
+6 + 1 = FAMILY LEADERSHIP
+1's strength with 6's compassion creates a strong family structure. 1 leads,
+6 softens and supports. Traditional roles work well.
+Compatibility score: 7/10
 ''',
     2: '''
-6 + 2 = ŞEFKAT YUVASI
-İki bakım veren enerji, çok uyumlu. Duygusal destek ve anlayış
-yüksek. Risk: Kim kime bakacak yarışı. Her iki taraf da almalı.
-Uyum puanı: 9/10
+6 + 2 = COMPASSION NEST
+Two caregiving energies, very harmonious. Emotional support and understanding
+high. Risk: Competition for who will care for whom. Both must also receive.
+Compatibility score: 9/10
 ''',
     3: '''
-6 + 3 = YARATICI YUVA
-6'nın şefkati, 3'ün yaratıcılığıyla güzel ev hayatı. Estetik,
-sanat, neşe önemli. Birlikte güzel şeyler yaratırlar.
-Uyum puanı: 9/10
+6 + 3 = CREATIVE HOME
+6's compassion with 3's creativity makes beautiful home life. Aesthetics,
+art, joy are important. Together they create beautiful things.
+Compatibility score: 9/10
 ''',
     4: '''
-6 + 4 = AİLE MİMARİ
-4'ün yapıcılığı, 6'nın şefkatiyle mükemmel aile kurar. Güvenlik,
-düzen, sıcaklık. Geleneksel ama güzel.
-Uyum puanı: 9/10
+6 + 4 = FAMILY ARCHITECTS
+4's constructiveness with 6's compassion builds the perfect family. Security,
+order, warmth. Traditional but beautiful.
+Compatibility score: 9/10
 ''',
     5: '''
-6 + 5 = FARKLI DÜNYALAR
-6'nın yuva özlemi, 5'in macera arayışıyla çelişir. 6 yerleşmek
-isterken 5 kaçar. Çok zor kombinasyon.
-Uyum puanı: 4/10
+6 + 5 = DIFFERENT WORLDS
+6's longing for home conflicts with 5's search for adventure. 6 wants to settle
+while 5 runs away. Very difficult combination.
+Compatibility score: 4/10
 ''',
     6: '''
-6 + 6 = ÇİFT KALP
-İki bakım veren, güzellik seven ruh. Muhteşem yuva ama risk:
-Her ikisi de vermek istiyor, kim alacak? Denge kritik.
-Uyum puanı: 7/10
+6 + 6 = DOUBLE HEART
+Two caregiving, beauty-loving souls. Magnificent home but risk:
+Both want to give, who will receive? Balance is critical.
+Compatibility score: 7/10
 ''',
     7: '''
-6 + 7 = FARKLI İHTİYAÇLAR
-6'nın sosyalliği ve aile odağı, 7'nin yalnızlık ihtiyacıyla
-çatışabilir. 6 reddedilmiş hissedebilir. Anlayış ve uzlaşma gerekli.
-Uyum puanı: 5/10
+6 + 7 = DIFFERENT NEEDS
+6's sociability and family focus may conflict with 7's need for solitude.
+6 may feel rejected. Understanding and compromise required.
+Compatibility score: 5/10
 ''',
     8: '''
-6 + 8 = GÜÇLÜ AİLE
-8'in maddi başarısı, 6'nın yuva yapıcılığıyla mükemmel kombinasyon.
-Başarılı aile, toplumda saygınlık. Duygusal bağ da olmalı.
-Uyum puanı: 8/10
+6 + 8 = STRONG FAMILY
+8's material success with 6's homemaking is a perfect combination.
+Successful family, community respect. Emotional bond must also exist.
+Compatibility score: 8/10
 ''',
     9: '''
-6 + 9 = EVRENSEL SEVGİ
-6'nın aile sevgisi, 9'un evrensel sevgisiyle genişler. Birlikte
-insanlığa hizmet. Yüksek hedefler, derin sevgi.
-Uyum puanı: 9/10
+6 + 9 = UNIVERSAL LOVE
+6's family love expands with 9's universal love. Together serving
+humanity. High goals, deep love.
+Compatibility score: 9/10
 ''',
     11: '''
-6 + 11 = SPİRİTÜEL AİLE
-11'in vizyonu, 6'nın şefkatiyle spiritüel yuva kurar. Öğretmenlik
-ve bakım birleşir. Manevi topluluklar.
-Uyum puanı: 8/10
+6 + 11 = SPIRITUAL FAMILY
+11's vision with 6's compassion builds a spiritual home. Teaching
+and caregiving unite. Spiritual communities.
+Compatibility score: 8/10
 ''',
     22: '''
-6 + 22 = KALICI MİRAS
-22'nin yapıcılığı, 6'nın sevgisiyle nesiller boyu kalacak aile
-yapısı veya kurumlar. Sağlam ve şefkatli.
-Uyum puanı: 8/10
+6 + 22 = LASTING LEGACY
+22's constructiveness with 6's love creates family structures or
+institutions that last for generations. Solid and compassionate.
+Compatibility score: 8/10
 ''',
     33: '''
-6 + 33 = USTA ŞİFACILAR
-33'ün şifa öğretmenliği, 6'nın bakım enerjisiyle birleşir. Birlikte
-dünyayı iyileştirebilirler.
-Uyum puanı: 9/10
+6 + 33 = MASTER HEALERS
+33's healing teaching combines with 6's caregiving energy. Together
+they can heal the world.
+Compatibility score: 9/10
 ''',
   },
 
@@ -4156,708 +4161,709 @@ Uyum puanı: 9/10
   challengingNumbers: [5, 7],
 
   careerDestiny: '''
-💼 KARİYER KADERİ VE MESLEK YOLU 💼
+💼 CAREER DESTINY AND PROFESSIONAL PATH 💼
 
-6 yaşam yolu, bakım, güzellik ve hizmet gerektiren alanlarda parlar.
-İnsanlardan kopuk, kuru işler seni tüketir.
+Life path 6 shines in fields requiring care, beauty and service.
+Jobs disconnected from people, dry work exhausts you.
 
-İDEAL KARİYER ALANLARI:
-• Sağlık ve Hemşirelik
-• Terapi ve Danışmanlık
-• Eğitim (özellikle çocuklar)
-• İç Mimarlık ve Dekorasyon
-• Moda ve Güzellik
-• Aşçılık ve Gastronomi
-• Sosyal Hizmetler
-• Veterinerlik
-• Bahçecilik ve Peyzaj
-• Kozmetik ve Cilt Bakımı
-• Çocuk Bakımı
-• Ev Hizmetleri ve Organizasyon
+IDEAL CAREER FIELDS:
+• Health and Nursing
+• Therapy and Counseling
+• Education (especially children)
+• Interior Design and Decoration
+• Fashion and Beauty
+• Cooking and Gastronomy
+• Social Services
+• Veterinary Medicine
+• Gardening and Landscaping
+• Cosmetics and Skin Care
+• Child Care
+• Home Services and Organization
 
-KAÇINILMASI GEREKEN ORTAMLAR:
-• İnsanlıktan uzak, teknik işler
-• Rekabetçi, acımasız ortamlar
-• Estetik olmayan, çirkin mekanlar
-• Hiyerarşik, katı yapılar
-• Bakım vermeye izin vermeyen roller
+ENVIRONMENTS TO AVOID:
+• Technical jobs far from humanity
+• Competitive, ruthless environments
+• Non-aesthetic, ugly places
+• Hierarchical, rigid structures
+• Roles that don't allow caregiving
 
-BAŞARI ANAHTARLARI:
-• İnsanlara yardım eden roller seç
-• Güzellik ve estetik ile çalış
-• Kendi sınırlarını koru (aşırı verme)
-• Takdir edildiğin ortamları tercih et
-• Yaratıcılığını kullan
+KEYS TO SUCCESS:
+• Choose roles that help people
+• Work with beauty and aesthetics
+• Protect your own boundaries (don't over-give)
+• Prefer environments where you're appreciated
+• Use your creativity
 
-PARA VE BOLLUK İLİŞKİSİ:
-6'lar para kazanmada "verme" motivasyonu kullanır. Ama aşırı vericilik
-finansal sorun yaratabilir. Kendi değerini bil, adil ücret talep et.
+MONEY AND ABUNDANCE RELATIONSHIP:
+6s use "giving" motivation in making money. But excessive giving can
+create financial problems. Know your worth, demand fair compensation.
 ''',
 
   healthTendencies: '''
-🏥 SAĞLIK EĞİLİMLERİ VE BEDEN BİLGELİĞİ 🏥
+🏥 HEALTH TENDENCIES AND BODY WISDOM 🏥
 
-6 sayısı, bedenin bakım ve denge sistemlerini yönetir. Sağlık
-sorunları genellikle başkalarını taşımaktan kaynaklanır.
+The number 6 governs the body's care and balance systems. Health
+issues usually stem from carrying others.
 
-HASSAS BÖLGELER:
-• Kalp ve dolaşım sistemi
-• Göğüs ve akciğerler
-• Cilt (güzellik organı)
-• Böbrekler ve mesane
-• Boyun ve omuzlar (yük taşıma)
+SENSITIVE AREAS:
+• Heart and circulatory system
+• Chest and lungs
+• Skin (the beauty organ)
+• Kidneys and bladder
+• Neck and shoulders (carrying the load)
 
-ORTAK SAĞLIK SORUNLARI:
-• Kalp çarpıntısı ve kan basıncı sorunları
-• Solunum yolu enfeksiyonları
-• Cilt sorunları (stres kaynaklı)
-• Omuz ve sırt ağrıları
-• Tükenmişlik ve yorgunluk
-• Duygusal yeme
+COMMON HEALTH ISSUES:
+• Heart palpitations and blood pressure problems
+• Respiratory infections
+• Skin problems (stress-related)
+• Shoulder and back pain
+• Burnout and fatigue
+• Emotional eating
 
-ÖNERİLEN FİZİKSEL AKTİVİTELER:
-• Yoga (kalp açıcı pozlar)
-• Dans (özellikle partner dansları)
-• Yüzme (su şifa verir)
-• Bahçecilik
-• Yürüyüş (doğada, arkadaşlarla)
+RECOMMENDED PHYSICAL ACTIVITIES:
+• Yoga (heart-opening poses)
+• Dance (especially partner dances)
+• Swimming (water heals)
+• Gardening
+• Walking (in nature, with friends)
 
-KAÇINILMASI GEREKENLER:
-• Başkalarının yükünü fiziksel taşıma
-• Duygusal stres biriktirme
-• Kendi sağlığını ihmal etme
-• Aşırı şeker ve rahatlatıcı yiyecekler
-• Uyku düzensizliği (bakım nedeniyle)
+THINGS TO AVOID:
+• Physically carrying others' burdens
+• Accumulating emotional stress
+• Neglecting your own health
+• Excessive sugar and comfort foods
+• Sleep irregularity (due to caregiving)
 
-BÜTÜNSEL ŞIFA ÖNERİLERİ:
-• Düzenli öz bakım rutini
-• Masaj ve dokunma terapisi
-• Pembe kuvars ile çalışma
-• Kalp çakra meditasyonları
-• Doğada, özellikle çiçekler arasında zaman
+HOLISTIC HEALING RECOMMENDATIONS:
+• Regular self-care routine
+• Massage and touch therapy
+• Working with rose quartz
+• Heart chakra meditations
+• Time in nature, especially among flowers
 ''',
 
   wealthVibration: '''
-💰 BOLLUK TİTREŞİMİ VE MADDI DÜNYA 💰
+💰 ABUNDANCE VIBRATION AND MATERIAL WORLD 💰
 
-6 sayısı, güzellik ve hizmet yoluyla zenginlik yaratmada yeteneklidir.
-Ama para motivasyonu değil, sevgi motivasyonu ön plandadır.
+The number 6 is talented at creating wealth through beauty and service.
+But love motivation, not money motivation, is in the foreground.
 
-DOĞAL BOLLUK YETENEKLERİ:
-• Güzellik yaratma ve satma
-• Hizmet odaklı işler kurma
-• İnsanları bir araya getirme
-• Güven ve sadakat oluşturma
-• Estetik değer yaratma
+NATURAL ABUNDANCE TALENTS:
+• Creating and selling beauty
+• Building service-oriented businesses
+• Bringing people together
+• Building trust and loyalty
+• Creating aesthetic value
 
-PARA BLOKLARI:
-• "Para için çalışmak sevgisizlik" inancı
-• Kendi değerini düşük görme
-• Aşırı vericilik (bedava çalışma)
-• Finansal sınır koyamama
-• Para istemeye utanç
+MONEY BLOCKS:
+• "Working for money is unloving" belief
+• Undervaluing yourself
+• Excessive giving (working for free)
+• Inability to set financial boundaries
+• Shame in asking for money
 
-ZENGİNLİK AKTİVASYONU:
-1. MANTRA: "Bolluğu alarak ve vererek dengeliyorum"
-2. KRİSTAL: Pembe kuvars, yeşil jade, sitrin
-3. RENK: Pembe ve yeşil (kalp renklerini)
-4. SAYI: 6 ve 8 kombinasyonları (68, 86)
-5. GÜN: Cuma (Venüs günü) finansal kararlar için
+WEALTH ACTIVATION:
+1. MANTRA: "I balance abundance by receiving and giving"
+2. CRYSTAL: Rose quartz, green jade, citrine
+3. COLOR: Pink and green (heart colors)
+4. NUMBER: 6 and 8 combinations (68, 86)
+5. DAY: Friday (Venus day) for financial decisions
 
-YATIRIM STRATEJİSİ:
-• Güzellik ve bakım sektörleri
-• Gayrimenkul (yuva yapıcı)
-• Aile odaklı yatırımlar
-• Eğitim ve sağlık
-• Çevre dostu, etik yatırımlar
+INVESTMENT STRATEGY:
+• Beauty and care sectors
+• Real estate (homemaker)
+• Family-focused investments
+• Education and health
+• Environmentally friendly, ethical investments
 ''',
 
   loveAndRelationships: '''
-💕 AŞK VE İLİŞKİLER - KUTSAL BİRLİK YOLU 💕
+💕 LOVE AND RELATIONSHIPS - PATH OF SACRED UNION 💕
 
-6 yaşam yolunda aşk, hayatın merkezindedir. İlişkiler sadece istek
-değil, varoluşsal ihtiyaç. Ama sağlıklı sevgi, koşulsuzluk ister.
+In life path 6, love is at the center of life. Relationships are not
+just desire but existential need. But healthy love requires unconditional.
 
-AŞKTA GÜÇLÜ YÖNLER:
-• Romantik ve sevgi dolu
-• Sadık ve bağlı
-• Bakım verici ve destekleyici
-• Yuva kurucu
-• Güzel anlar yaratıcı
+STRENGTHS IN LOVE:
+• Romantic and loving
+• Loyal and committed
+• Caregiving and supportive
+• Home builder
+• Creator of beautiful moments
 
-AŞKTA ZORLUKLAR:
-• Aşırı bağımlılık potansiyeli
-• Kontrolcü sevgi
-• Mükemmeliyetçilik
-• Eleştirici olma
-• Kendi ihtiyaçlarını görmezden gelme
+CHALLENGES IN LOVE:
+• Potential for excessive dependency
+• Controlling love
+• Perfectionism
+• Being critical
+• Ignoring own needs
 
-İDEAL PARTNER PROFİLİ:
-• Sevgiyi ifade edebilen
-• Takdir eden ve gösteren
-• Yuva değerlerine sahip
-• Duygusal olarak müsait
-• Karşılıklılığa açık
+IDEAL PARTNER PROFILE:
+• Can express love
+• Appreciates and shows it
+• Has home values
+• Emotionally available
+• Open to reciprocity
 
-İLİŞKİDE KAÇINILMASI GEREKENLER:
-• Partneri "düzeltmeye" çalışma
-• Koşullu sevgi ("bunu yaparsan...")
-• Aşırı bakım (boğma)
-• Fedakarlığı silah olarak kullanma
-• Kendi ihtiyaçlarını görmezden gelme
+THINGS TO AVOID IN RELATIONSHIPS:
+• Trying to "fix" partner
+• Conditional love ("if you do this...")
+• Excessive care (smothering)
+• Using sacrifice as a weapon
+• Ignoring your own needs
 
-KUTSAL BİRLİK İÇİN PRATİKLER:
-• Günlük sevgi ifadesi
-• Birlikte yuva yapma (dekorasyon, yemek)
-• Karşılıklı bakım alış verişi
-• Estetik deneyimler (müze, konser)
-• Aile ritüelleri ve gelenekleri
+PRACTICES FOR SACRED UNION:
+• Daily expression of love
+• Building home together (decor, cooking)
+• Mutual care exchange
+• Aesthetic experiences (museum, concert)
+• Family rituals and traditions
 
-KARMİK İLİŞKİLER:
-5 ve 7 sayılı partnerlerle ilişkiler genellikle karmiktir. 5, bırakma
-ve özgürlük; 7, içsel yolculuk dersini getirir.
+KARMIC RELATIONSHIPS:
+Relationships with partners numbered 5 and 7 are usually karmic. 5 brings
+the lesson of letting go and freedom; 7 brings the inner journey lesson.
 
-RUH EŞİ İŞARETLERİ:
-• "Eve gelme" hissi
-• Koşulsuz kabul
-• Karşılıklı bakım dengesi
-• Birlikte büyüme
-• Güzellik yaratma ortaklığı
+SOUL MATE SIGNS:
+• "Coming home" feeling
+• Unconditional acceptance
+• Balance of mutual care
+• Growing together
+• Partnership in creating beauty
 ''',
 
   famousExamples: [
     'John Lennon - "All You Need is Love"',
-    'Victoria Beckham - Moda ve aile',
-    'Sylvester Stallone - Aile odaklı kahraman',
-    'Eddie Murphy - Aile komedisi',
-    'Robert De Niro - Derin karakter aktörü',
-    'Bruce Willis - Aile koruyucu rolleri',
-    'Jessica Alba - Aile ve iş dengesi',
-    'Meryl Streep - Ana figürü rolleri',
+    'Victoria Beckham - Fashion and family',
+    'Sylvester Stallone - Family-focused hero',
+    'Eddie Murphy - Family comedy',
+    'Robert De Niro - Deep character actor',
+    'Bruce Willis - Family protector roles',
+    'Jessica Alba - Family and work balance',
+    'Meryl Streep - Mother figure roles',
   ],
 
   dailyAffirmations: [
-    'Kendime verdiğim sevgi, başkalarına verdiğim kadar değerli.',
-    'Mükemmel olmak zorunda değilim - yeterli olmak yeterli.',
-    'Sınır koymak sevginin bir ifadesidir.',
-    'Alarak ve vererek dengeyi koruyorum.',
-    'Güzellik benim doğal dilim.',
-    'Ailem ve sevdiklerim için şükrediyorum.',
-    'Kontrol etmek yerine güveniyorum.',
-    'Kalp merkezimden yaşıyorum.',
-    'Bakım vermek kadar almak da hakkım.',
-    'Evren beni koşulsuz seviyor.',
+    'The love I give myself is as valuable as what I give others.',
+    'I don\'t have to be perfect - being enough is enough.',
+    'Setting boundaries is an expression of love.',
+    'I maintain balance by receiving and giving.',
+    'Beauty is my natural language.',
+    'I am grateful for my family and loved ones.',
+    'I trust instead of controlling.',
+    'I live from my heart center.',
+    'Receiving care is as much my right as giving it.',
+    'The universe loves me unconditionally.',
   ],
 
   meditationMantras: [
-    'YAM - Kalp çakrasının sesi',
-    'OM SHRI MAHALAKSHMIYEI NAMAHA - Bolluk ve güzellik',
-    'SHREEM - Venüs enerjisi',
-    'OM SHANTI - Barış ve sevgi',
-    'OM MANI PADME HUM - Şefkat mantrası',
-    'HUM - Birlik ve bağlantı',
+    'YAM - Sound of the heart chakra',
+    'OM SHRI MAHALAKSHMIYEI NAMAHA - Abundance and beauty',
+    'SHREEM - Venus energy',
+    'OM SHANTI - Peace and love',
+    'OM MANI PADME HUM - Compassion mantra',
+    'HUM - Unity and connection',
   ],
 
   healingPractice: '''
-🙏 ŞIFA PRATİĞİ: KALP ÇİÇEĞİ MEDİTASYONU 🙏
+🙏 HEALING PRACTICE: HEART FLOWER MEDITATION 🙏
 
-Bu pratik, 6 enerjisini dengelemek ve kalp çakrasını açmak için
-tasarlanmıştır. İdeal zaman: Sabah veya gün batımı.
+This practice is designed to balance 6 energy and open the heart chakra.
+Ideal time: Morning or sunset.
 
-HAZIRLIK:
-1. Rahat bir yerde otur, sırtın dik
-2. Pembe veya yeşil mum yak
-3. Mümkünse yanına taze çiçek koy
-4. Pembe kuvars veya rodonit kristali tut
+PREPARATION:
+1. Sit in a comfortable place, back straight
+2. Light a pink or green candle
+3. If possible, place fresh flowers nearby
+4. Hold a rose quartz or rhodonite crystal
 
-NEFES VE BAĞLANTI (5 dakika):
-1. Derin, yavaş nefesler al
-2. Her nefes alışta göğsün genişliyor
-3. Her nefes verişte omuzlar gevşiyor
-4. Kalbine odaklan
+BREATH AND CONNECTION (5 minutes):
+1. Take deep, slow breaths
+2. With each inhale your chest expands
+3. With each exhale shoulders relax
+4. Focus on your heart
 
-KALP ÇİÇEĞİ (10 dakika):
-1. Kalbinin içinde bir tomurcuk hayal et
-2. Her nefesle tomurcuk açılıyor
-3. Pembe ve yeşil yapraklar beliriyor
-4. Sonunda tam açılmış bir gül/lotus
-5. Bu çiçek sevgi yayıyor - önce sana, sonra etrafa
+HEART FLOWER (10 minutes):
+1. Imagine a bud inside your heart
+2. With each breath the bud opens
+3. Pink and green petals appear
+4. Finally a fully bloomed rose/lotus
+5. This flower radiates love - first to you, then around
 
-SEVGİ YAYILIMI (5 dakika):
-1. Kalbindeki çiçekten pembe ışık çıkıyor
-2. Önce kendini sarıyor
-3. Sonra sevdiklerini
-4. Sonra tüm canlıları
-5. En son tüm evreni
+LOVE EXPANSION (5 minutes):
+1. Pink light emerges from the flower in your heart
+2. First it wraps around you
+3. Then your loved ones
+4. Then all living beings
+5. Finally the entire universe
 
-AFFİRMASYON (5 dakika):
-Yüksek sesle söyle:
-"Kalbim açık ve sevgi dolu."
-"Verdiğim kadar almaya da layığım."
-"Koşulsuz seviyorum ve seviliyorum."
-"Güzellik benim doğal ifadem."
+AFFIRMATION (5 minutes):
+Say out loud:
+"My heart is open and full of love."
+"I am worthy of receiving as much as I give."
+"I love and am loved unconditionally."
+"Beauty is my natural expression."
 
-KAPATMA:
-1. Çiçeği yavaşça tomurcuğa geri döndür (koruma için)
-2. Sıcaklığı kalbinde hisset
-3. "Bugün sevgiyle yaşayacağım" niyeti
-4. Minnettarlıkla bitir
+CLOSING:
+1. Slowly return the flower to a bud (for protection)
+2. Feel the warmth in your heart
+3. Set the intention "Today I will live with love"
+4. Finish with gratitude
 
-Bu pratiği her gün yap, özellikle sevgi konularında zorluk hissettiğinde.
-Cuma günleri (Venüs günü) özellikle güçlü.
+Do this practice every day, especially when you feel difficulty in love matters.
+Fridays (Venus day) are especially powerful.
 ''',
 
   yearlyGuidance: {
     '2024': '''
-2024 - AİLE VE MADDİ DENGE (Evrensel 8)
-8 evrensel yılı, 6'lar için aile ve kariyer dengesini kurma zamanı.
-Maddi güvenlik, yuva yatırımları. Fedakarlık ve alma dengesi.
+2024 - FAMILY AND MATERIAL BALANCE (Universal 8)
+Universal year 8 is a time for 6s to establish family and career balance.
+Material security, home investments. Balance of sacrifice and receiving.
 ''',
     '2025': '''
-2025 - BIRAKIM VE DÖNÜŞÜM (Evrensel 9)
-9 evrensel yılı, eski aile kalıplarını tamamlama zamanı. Koşullu
-sevgi döngülerini kır. Evrensel sevgiye genişle.
+2025 - RELEASE AND TRANSFORMATION (Universal 9)
+Universal year 9 is a time to complete old family patterns. Break
+conditional love cycles. Expand to universal love.
 ''',
     '2026': '''
-2026 - YENİ BAĞLANTILAR (Evrensel 1)
-Yeni döngü başlıyor. Yeni ilişkiler, yeni aile yapıları için temel.
-Kendi ihtiyaçlarını da düşünerek yeni başlangıçlar.
+2026 - NEW CONNECTIONS (Universal 1)
+A new cycle begins. Foundation for new relationships, new family structures.
+New beginnings while also considering your own needs.
 ''',
     '2027': '''
-2027 - ORTAKLIK DERİNLEŞME (Evrensel 2)
-Mevcut ilişkileri derinleştirme yılı. Karşılıklılık ve denge.
-Partnerlikler, işbirlikleri ön planda.
+2027 - DEEPENING PARTNERSHIP (Universal 2)
+Year of deepening existing relationships. Reciprocity and balance.
+Partnerships, collaborations in the foreground.
 ''',
     '2028': '''
-2028 - YARATICI AİLE (Evrensel 3)
-Yaratıcılık ve aile birleşiyor. Güzellik projeleri, sanatsal yuva.
-Neşe ve kutlama. Çocuklarla yaratıcı aktiviteler.
+2028 - CREATIVE FAMILY (Universal 3)
+Creativity and family unite. Beauty projects, artistic home.
+Joy and celebration. Creative activities with children.
 ''',
   },
 );
 
-/// Yaşam Yolu 7 - Mistik / Arayıcı
+/// Life Path 7 - Mystic / Seeker
 const lifePathMega7 = LifePathMegaContent(
   number: 7,
-  title: 'Kozmik Mistik',
-  archetype: 'Arayıcı / Filozof / İçsel Yolcu',
+  title: 'Cosmic Mystic',
+  archetype: 'Seeker / Philosopher / Inner Traveler',
   sacredSymbol: '♆',
-  element: 'Su ve Eter - Derin Okyanus',
-  planet: 'Neptün - Rüyalar ve Sırların Efendisi',
-  tarotMajorArcana: 'Savaş Arabası (VII) - İç Zafer',
-  runicSymbol: 'Algiz ᛉ - Koruma ve Üst Benlik',
-  colors: ['Mor', 'Lacivert', 'Gümüş', 'Siyah'],
-  crystals: ['Ametist', 'Labradorit', 'Lapis Lazuli', 'Seleneit', 'Siyah Turmalin'],
-  chakraAlignment: 'Üçüncü Göz (Ajna) - İçsel Görüş',
-  sacredGeometry: 'Heptagram - Yedi Köşeli Yıldız',
-  frequencyHz: '852 Hz - Üçüncü Göz Aktivasyonu',
-  musicalNote: 'Si (B) - Spiritüel Titreşim',
+  element: 'Water and Ether - Deep Ocean',
+  planet: 'Neptune - Lord of Dreams and Secrets',
+  tarotMajorArcana: 'The Chariot (VII) - Inner Victory',
+  runicSymbol: 'Algiz ᛉ - Protection and Higher Self',
+  colors: ['Purple', 'Navy Blue', 'Silver', 'Black'],
+  crystals: ['Amethyst', 'Labradorite', 'Lapis Lazuli', 'Selenite', 'Black Tourmaline'],
+  chakraAlignment: 'Third Eye (Ajna) - Inner Vision',
+  sacredGeometry: 'Heptagram - Seven-Pointed Star',
+  frequencyHz: '852 Hz - Third Eye Activation',
+  musicalNote: 'B (Si) - Spiritual Vibration',
 
   deepSpiritualMeaning: '''
-♆ KADİM BİLGELİK: YEDİNİN MİSTİK SIRRI ♆
+♆ ANCIENT WISDOM: THE MYSTICAL SECRET OF SEVEN ♆
 
-7 sayısı, spiritüel mükemmelliğin ve kozmik gizemin sayısıdır. Yedi gün,
-yedi gezegen, yedi nota, yedi renk, yedi çakra - evrenin gizli düzeni
-7'de kodlanmıştır.
+The number 7 is the number of spiritual perfection and cosmic mystery. Seven days,
+seven planets, seven notes, seven colors, seven chakras - the hidden order of
+the universe is encoded in 7.
 
-Pisagor, 7'yi "kutsal sayı" olarak görürdü - ne bölünür ne çarpılır
-(1-10 arasında). Yalnızdır, gizemlidir, kendine yeter. Sen de bu kozmik
-yalnızlığın taşıyıcısısın - kalabalıkta bile içsel sessizliği arayan.
+Pythagoras saw 7 as the "sacred number" - neither divisible nor multiplied
+(between 1-10). It is alone, mysterious, self-sufficient. You too are the
+carrier of this cosmic solitude - seeking inner silence even in crowds.
 
-Kabala'da 7, "Netzach" (Zafer/Sonsuzluk) sefirasına karşılık gelir -
-doğanın döngüleri, sanatsal ilham, duygusal tutku. Venüs ile ilişkili
-ama daha derin, daha mistik bir seviyede.
+In Kabbalah, 7 corresponds to "Netzach" (Victory/Eternity) sephirah -
+the cycles of nature, artistic inspiration, emotional passion. Related to
+Venus but on a deeper, more mystical level.
 
-Her büyük din 7'yi kutsal sayar: Haftanın yedi günü, yedi gök, yedi
-melek, yedi ölümcül günah, yedi erdem. Hint'te yedi rishi (bilge),
-Mısır'da yedi Hathor, İslam'da yedi kat gök.
+Every major religion considers 7 sacred: Seven days of the week, seven heavens,
+seven angels, seven deadly sins, seven virtues. In India seven rishis (sages),
+in Egypt seven Hathors, in Islam seven layers of heaven.
 
-Yaratılışın yedinci günü dinlenmedir - aktif yaratımdan içsel tefekkür.
-7 yaşam yolundakiler bu "kutsal dinlenme"nin ustalarıdır - dış dünyadan
-çekilerek iç dünyayı keşfeden.
+The seventh day of creation is rest - from active creation to inner contemplation.
+Those on life path 7 are masters of this "sacred rest" - exploring the inner
+world by withdrawing from the outer world.
 
-Sen bu kozmik gizemin taşıyıcısısın. Dünya seni "tuhaf", "farklı",
-"mesafeli" bulabilir. Ama sen sadece herkesin göremediğini görüyorsun.
+You are the carrier of this cosmic mystery. The world may find you "strange",
+"different", "distant." But you simply see what everyone else cannot.
 ''',
 
   karmicLessons: '''
-✦ KARMİK DERSLER VE RUHSAL SINAMALAR ✦
+✦ KARMIC LESSONS AND SPIRITUAL TRIALS ✦
 
-7 yaşam yolunun karmik dersleri, dünya ile bağlantı ve içsel arayış
-arasındaki dengede yatar. Geçmiş yaşamlarında ya çok dünyevi oldun
-ya da tamamen çekildin. Bu hayatta dengeyi bulmalısın.
+The karmic lessons of life path 7 lie in the balance between connection
+with the world and inner seeking. In past lives you were either too
+worldly or completely withdrawn. In this life you must find balance.
 
-Birincil Karmik Ders: İZOLASYON VE BAĞLANTI
-Yalnızlık senin doğan ama izolasyon değil. Dersin, içsel dünyada
-yaşarken dışsal dünya ile köprü kurmak, inzivayı kaçış değil şarj
-olarak kullanmak.
+Primary Karmic Lesson: ISOLATION AND CONNECTION
+Solitude is your nature but not isolation. Your lesson is to build
+bridges with the external world while living in the inner world, to
+use retreat for recharging not escaping.
 
-İkincil Karmik Ders: GÜVEN VE ŞÜPHECİLİK
-Sorgulama güçlün ama aşırı şüphecilik zehir. Dersin, analiz felcinden
-kurtulamak, bazen atlamak, güveni deneyimle öğrenmek.
+Secondary Karmic Lesson: TRUST AND SKEPTICISM
+Questioning is your strength but excessive skepticism is poison. Your
+lesson is to escape analysis paralysis, sometimes leap, learn trust
+through experience.
 
-Üçüncül Karmik Ders: BİLGİ VE BİLGELİK
-Çok bilgi toplamak bilge yapmaz. Dersin, bilgiyi deneyime dönüştürmek,
-yaşamadan teoride kalmamak.
+Tertiary Karmic Lesson: KNOWLEDGE AND WISDOM
+Collecting lots of information doesn't make you wise. Your lesson is
+to transform knowledge into experience, not remain in theory without living.
 
-Karmik Sınama Dönemleri:
-• 25, 34, 43, 52 yaşları kritik (7+7+7...)
-• Neptün kareleri ve opozisyonları
-• Balık mevsiminde dersler yoğunlaşır
+Karmic Trial Periods:
+• Ages 25, 34, 43, 52 are critical (7+7+7...)
+• Neptune squares and oppositions
+• Lessons intensify during Pisces season
 
-Karmayı Dengeleme Yolları:
-• Düzenli sosyal bağlantı (az ama kaliteli)
-• Bedensel aktiviteler (zihinden çıkma)
-• Pratik işlerle uğraşma
-• Güven inşa etme egzersizleri
-• Bilgiyi paylaşma ve öğretme
+Ways to Balance Karma:
+• Regular social connection (few but quality)
+• Physical activities (getting out of the mind)
+• Working with practical tasks
+• Trust-building exercises
+• Sharing and teaching knowledge
 ''',
 
   pastLifeConnections: '''
-✧ GEÇMİŞ YAŞAM BAĞLANTILARI ✧
+✧ PAST LIFE CONNECTIONS ✧
 
-7 yaşam yolunda doğanlar, genellikle şu geçmiş yaşam arketiplerini taşır:
+Those born on life path 7 usually carry these past life archetypes:
 
-ŞAMİN/MİSTİK GEÇMİŞİ
-Görünmeyen dünyalarla iletişim kuran, vizyonlar gören, toplumu
-yönlendiren spiritüel lider. Gizem ve sırlar sana tanıdık.
+SHAMAN/MYSTIC PAST
+Communicating with invisible worlds, seeing visions, spiritual leader
+guiding society. Mystery and secrets are familiar to you.
 
-ALİM/FİLOZOF GEÇMİŞİ
-Antik kütüphanelerde çalışan, hakikati arayan, bilgelik peşinde
-koşan. İskenderiye, Bağdat, Tibet - bilgi merkezleri seni çeker.
+SCHOLAR/PHILOSOPHER PAST
+Working in ancient libraries, seeking truth, pursuing wisdom.
+Alexandria, Baghdad, Tibet - knowledge centers draw you.
 
-KEŞIŞ/RAHIP GEÇMİŞİ
-Manastırlarda, tapınaklarda sessizlik yemini etmiş, inzivada yaşamış.
-Dünyadan çekilme ve tefekkür çok tanıdık.
+MONK/PRIEST PAST
+Took a vow of silence in monasteries, temples, lived in retreat.
+Withdrawing from the world and contemplation is very familiar.
 
-SIMYAcı/OKÜLTIST GEÇMİŞİ
-Gizli bilgilerle çalışan, dönüşümü arayan, görünmeyenle uğraşan.
-Ezoterik bilgiler sana "yeni" gelmiyor.
+ALCHEMIST/OCCULTIST PAST
+Working with secret knowledge, seeking transformation, dealing with
+the invisible. Esoteric knowledge doesn't feel "new" to you.
 
-Geçmiş Yaşam Tetikleyicileri:
-• Antik tapınaklara, manastırlara çekim
-• Gizli bilgilere açıklanamaz ilgi
-• Kalabalıkta yabancılık hissi
-• Belirli spiritüel geleneklere aşinalık
-• Rüyalarda eski metinler, semboller, ritüeller
+Past Life Triggers:
+• Attraction to ancient temples, monasteries
+• Inexplicable interest in secret knowledge
+• Feeling like a stranger in crowds
+• Familiarity with certain spiritual traditions
+• Ancient texts, symbols, rituals in dreams
 ''',
 
   soulPurpose: '''
-❂ RUHUN KUTSAL MİSYONU ❂
+❂ THE SOUL'S SACRED MISSION ❂
 
-Sen bu dünyaya özel bir misyonla geldin: HAKİKATİ ARAMAK ve
-BİLGELİĞİ TAŞIMAK.
+You came to this world with a special mission: TO SEEK TRUTH and
+CARRY WISDOM.
 
-Birincil Ruh Amacı: HAKİKAT ARAYICISI
-Yüzeyin altına inmek, gerçeği bulmak, görünmeyeni görmek. Sen
-kozmik dedektifsin - evrenin sırlarını çözmek için buradasın.
+Primary Soul Purpose: TRUTH SEEKER
+Going beneath the surface, finding reality, seeing the invisible. You
+are a cosmic detective - here to solve the secrets of the universe.
 
-İkincil Ruh Amacı: BİLGELİK KÖPRÜSÜ
-Keşfettiğin hakikatleri dünyaya taşımak. Öğretmen, yazar, rehber
-olarak bilgiyi erişilebilir kılmak.
+Secondary Soul Purpose: WISDOM BRIDGE
+Carrying the truths you discover to the world. Making knowledge
+accessible as a teacher, writer, guide.
 
-Üçüncül Ruh Amacı: İÇSEL YOLCULUK HARİTACISI
-İç dünyanın haritasını çıkarmak, başkalarına yol göstermek.
-Meditasyon, terapi, spiritüel rehberlik.
+Tertiary Soul Purpose: INNER JOURNEY CARTOGRAPHER
+Mapping the inner world, showing the way to others.
+Meditation, therapy, spiritual guidance.
 
-Ruh Sözleşmesi Detayları:
-• En az bir derin hakikati keşfedeceksin
-• İç dünyanı tam olarak keşfedeceksin
-• Bilgeliğini bir şekilde paylaşacaksın
-• Dünya ile barışık yalnızlığı öğreneceksin
-• Şüphe ile imanı dengeleyeceksin
+Soul Contract Details:
+• You will discover at least one deep truth
+• You will fully explore your inner world
+• You will share your wisdom somehow
+• You will learn solitude at peace with the world
+• You will balance doubt with faith
 
-Misyonunu Engelleyen Faktörler:
-• Aşırı izolasyon
-• Entelektüel kibir
-• Duygusal soğukluk
-• Pratik dünyadan tamamen kopma
-• Aşırı şüphecilik
+Factors Blocking Your Mission:
+• Excessive isolation
+• Intellectual arrogance
+• Emotional coldness
+• Complete disconnection from the practical world
+• Excessive skepticism
 
-Misyonunu Destekleyen Faktörler:
-• Düzenli meditasyon ve tefekkür
-• Derin çalışma ve araştırma
-• Doğada yalnız zaman
-• Spiritüel toplulukla bağlantı
-• Öğretme ve paylaşma
+Factors Supporting Your Mission:
+• Regular meditation and contemplation
+• Deep study and research
+• Alone time in nature
+• Connection with spiritual community
+• Teaching and sharing
 ''',
 
   shadowAspects: '''
-☾ GÖLGE YÖNLERİ VE DÖNÜŞÜM ☾
+☾ SHADOW ASPECTS AND TRANSFORMATION ☾
 
-7 sayısının gölgeleri, izolasyon ve entelektüel kibir etrafında
-döner. Derin sular tehlikeli olabilir.
+The shadows of the number 7 revolve around isolation and intellectual
+arrogance. Deep waters can be dangerous.
 
-BİRİNCİL GÖLGE: AŞIRI İZOLASYON
-Belirtiler:
-• İnsanlardan tamamen çekilme
-• "Kimse beni anlamıyor" yalnızlığı
-• Sosyal becerilerin körelmes
-• Yardım istememe, kabul etmeme
-• Depresyon ve karanlığa gömülme
+PRIMARY SHADOW: EXCESSIVE ISOLATION
+Symptoms:
+• Complete withdrawal from people
+• "Nobody understands me" loneliness
+• Atrophy of social skills
+• Not asking for or accepting help
+• Sinking into depression and darkness
 
-Dönüşüm Yolu:
-Yalnızlık, izolasyon değildir. Birincisi seçim, ikincisi kaçış.
-Dünya ile bağlantı kurabilirsin - kendi koşullarınla.
+Transformation Path:
+Solitude is not isolation. The first is choice, the second is escape.
+You can connect with the world - on your own terms.
 
-İKİNCİL GÖLGE: ENTELEKTÜEL KİBİR
-Belirtiler:
-• "Ben daha iyi biliyorum" tutumu
-• Başkalarını aptal görme
-• Duygusal zekayı küçümseme
-• Empati eksikliği
-• "Cahillerle" zaman kaybetmeme
+SECONDARY SHADOW: INTELLECTUAL ARROGANCE
+Symptoms:
+• "I know better" attitude
+• Seeing others as stupid
+• Belittling emotional intelligence
+• Lack of empathy
+• Not wasting time with "ignorant people"
 
-Dönüşüm Yolu:
-Bilgi, kibir için değil hizmet içindir. Her insandan öğrenilecek
-şey var. Kalp zekası, zihin zekası kadar değerli.
+Transformation Path:
+Knowledge is for service, not arrogance. There's something to learn
+from everyone. Heart intelligence is as valuable as mind intelligence.
 
-ÜÇÜNCÜL GÖLGE: DUYGUSAL SOĞUKLUK
-Belirtiler:
-• Duyguları bastırma veya inkar etme
-• Yakınlıktan kaçınma
-• "Zihinden yaşama"
-• İlişkilerde mesafe koyma
-• Savunmacılık
+TERTIARY SHADOW: EMOTIONAL COLDNESS
+Symptoms:
+• Suppressing or denying emotions
+• Avoiding intimacy
+• "Living from the mind"
+• Keeping distance in relationships
+• Defensiveness
 
-Dönüşüm Yolu:
-Düşünce ve duygu ayrılmaz. Duygular, bilginin diğer yarısıdır.
-Kırılganlık göstermek, güçsüzlük değil.
+Transformation Path:
+Thought and emotion are inseparable. Emotions are the other half of
+knowledge. Showing vulnerability is not weakness.
 
-DÖRDÜNCÜL GÖLGE: PARANOYa VE ŞÜPHECİLİK
-Belirtiler:
-• Kimseye güvenmeme
-• Komplo teorilerine eğilim
-• Her şeyi sorgulama (sağlıksız)
-• Karar verememe (analiz felci)
-• Sürekli şüphe ve korku
+QUATERNARY SHADOW: PARANOIA AND SKEPTICISM
+Symptoms:
+• Trusting no one
+• Tendency toward conspiracy theories
+• Questioning everything (unhealthily)
+• Unable to decide (analysis paralysis)
+• Constant doubt and fear
 
-Dönüşüm Yolu:
-Soru sormak güzel, ama cevap kabul etmek de gerekli. Güven, risk
-gerektirir - ama risksiz yaşam, yaşam değildir.
+Transformation Path:
+Asking questions is beautiful, but accepting answers is also necessary.
+Trust requires risk - but a life without risk is not life.
 
-Gölge Çalışması Ritüel:
-Karanlık bir odada, tek bir mor mum yak. Karanlığa bak. Korkularını,
-şüphelerini karanlığa konuş. Sonra mumu söndür, tamamen karanlıkta
-sessizce otur. Karanlığın da senin bir parçan olduğunu kabul et.
+Shadow Work Ritual:
+In a dark room, light a single purple candle. Look at the darkness.
+Speak your fears, your doubts to the darkness. Then blow out the candle,
+sit silently in complete darkness. Accept that darkness is also part of you.
 ''',
 
   tantricEnergySignature: '''
-🌙 TANTRİK ENERJİ İMZASI 🌙
+🌙 TANTRIC ENERGY SIGNATURE 🌙
 
-7 sayısı, derin, mistik ve dönüştürücü enerjiyi temsil eder.
-Ne aktif maskülen ne pasif feminen - transandan, dönüşen.
+The number 7 represents deep, mystical and transformative energy.
+Neither active masculine nor passive feminine - transcending, transforming.
 
-KUNDALINI KARAKTERİSTİĞİ
-7'lerin kundalinisi derin, sessiz ve güçlü hareket eder.
-Meditasyon ve içsel çalışma ile aktive olur.
+KUNDALINI CHARACTERISTIC
+The kundalini of 7s moves deeply, silently and powerfully.
+It activates through meditation and inner work.
 
-Kundalini Özellikleri:
-• Eter ve su elementi karışımı
-• Derin, yavaş ama güçlü yükseliş
-• Üçüncü göz çakrasında yoğunlaşma
-• Meditasyon ve sessizlikle tetiklenir
-• Vizyon ve içgörü patlamaları
+Kundalini Features:
+• Mixture of ether and water element
+• Deep, slow but powerful rise
+• Concentration in the third eye chakra
+• Triggered by meditation and silence
+• Bursts of vision and insight
 
-TANTRİK CİNSELLİK
-7 enerjisi cinsellikte derin, mistik ve dönüştürücü arar.
-Fiziksel tatminden çok spiritüel birleşme önemli.
+TANTRIC SEXUALITY
+7 energy in sexuality seeks deep, mystical and transformative.
+Spiritual union is more important than physical satisfaction.
 
-Tantrik Pratikler:
-• Derin meditasyonlu tantra
-• Göz teması ve enerji değişimi
-• Sessiz, minimal hareketli birleşme
-• Nefes senkronizasyonu
-• Spiritüel amaçlı seksüel pratikler
+Tantric Practices:
+• Tantra with deep meditation
+• Eye contact and energy exchange
+• Silent, minimal movement union
+• Breath synchronization
+• Sexual practices for spiritual purposes
 
-KUTSAL BİRLİK
-7 enerjisi, 5 ile maceracı derinlik bulabilir. 2 ile duygusal
-bağlantı mümkün. 9 ile spiritüel ikiz.
+SACRED UNION
+7 energy can find adventurous depth with 5. Emotional connection
+is possible with 2. Spiritual twin with 9.
 
-Uyumlu Tantrik Partnerler: 2, 5, 9
-Zorlayıcı Tantrik Kombinasyonlar: 3, 6
+Compatible Tantric Partners: 2, 5, 9
+Challenging Tantric Combinations: 3, 6
 
-ENERJİ BEDEN BAĞLANTILARI
-7 enerjisi özellikle şu noktalarda yoğunlaşır:
-• Üçüncü Göz (Ajna) - vizyon, içgörü
-• Taç Çakra (Sahasrara) - spiritüel bağlantı
-• Kök Çakra (Muladhara) - topraklama (dengelemek için)
+ENERGY BODY CONNECTIONS
+7 energy concentrates especially at these points:
+• Third Eye (Ajna) - vision, insight
+• Crown Chakra (Sahasrara) - spiritual connection
+• Root Chakra (Muladhara) - grounding (to balance)
 
-Enerji Dengesi İçin:
-• Derin meditasyon pratikleri
-• Sessizlik ve inziva
-• Doğada yalnız zaman
-• Mor ışık görselleştirmesi
-• Topraklama egzersizleri (çok önemli)
+For Energy Balance:
+• Deep meditation practices
+• Silence and retreat
+• Alone time in nature
+• Purple light visualization
+• Grounding exercises (very important)
 ''',
 
   sacredGeometryConnection: '''
-✡ KUTSAL GEOMETRİ BAĞLANTISI ✡
+✡ SACRED GEOMETRY CONNECTION ✡
 
-7 sayısının kutsal geometrisi, HEPTAGRAM (yedi köşeli yıldız)'dır.
+The sacred geometry of the number 7 is the HEPTAGRAM (seven-pointed star).
 
 HEPTAGRAM
-Yedi köşeli yıldız, antik gizem okullarının sembolü. Pergelle
-mükemmel çizilemez - her zaman bir "gizem" kalır. Bu, 7'nin
-ereneksel doğasını yansıtır.
+The seven-pointed star, symbol of ancient mystery schools. Cannot be
+drawn perfectly with a compass - there's always a "mystery" remaining.
+This reflects 7's transcendent nature.
 
-Spiritüel Anlamı:
-• Yedi gezegen ve yedi gün
-• Yedi çakra
-• Yedi notalık müzik skalası
-• Yedi renk (gökkuşağı)
-• Kozmik döngüler ve ritimler
+Spiritual Meaning:
+• Seven planets and seven days
+• Seven chakras
+• Seven-note musical scale
+• Seven colors (rainbow)
+• Cosmic cycles and rhythms
 
-SPI RALING LABIRINTH
-Yedi halkalı labirent, spiritüel yolculuğun sembolü. 7 yaşam
-yolundakiler bu labirentte yürüyen yolculardır.
+SPIRALING LABYRINTH
+The seven-ring labyrinth, symbol of the spiritual journey. Those on
+life path 7 are travelers walking this labyrinth.
 
-MERKABA (Yedi Boyutlu)
-Kutsal geometrinin en yüksek formlarından biri. 7, boyutlar
-arası geçişin anahtarı.
+MERKABA (Seven-Dimensional)
+One of the highest forms of sacred geometry. 7 is the key to
+inter-dimensional transition.
 
-Meditasyon Pratiği:
-Mor bir heptagram hayal et, gökyüzünde parlıyor. Her köşe bir
-çakrayı temsil eder. Heptagramın merkezine gir - burası sonsuzluğun
-ve gizemin kapısı. Orada sessizce otur.
+Meditation Practice:
+Imagine a purple heptagram, shining in the sky. Each point represents
+a chakra. Enter the center of the heptagram - this is the gate to
+infinity and mystery. Sit there in silence.
 
-Kutsal Geometri Aktivasyonu:
-• Heptagram çiz ve üzerinde meditasyon yap
-• Yedi mum veya kristalle altar kur
-• Yedi günlük spiritüel döngüler oluştur
-• Gökkuşağı meditasyonu (yedi renk)
+Sacred Geometry Activation:
+• Draw a heptagram and meditate on it
+• Set up an altar with seven candles or crystals
+• Create seven-day spiritual cycles
+• Rainbow meditation (seven colors)
 ''',
 
   kundaliniActivation: '''
-🔮 KUNDALİNİ AKTİVASYONU 🔮
+🔮 KUNDALINI ACTIVATION 🔮
 
-7 yaşam yolu, derin ve mistik bir kundalini potansiyeli taşır.
-Sessiz okyanus gibi - yüzeyde sakin, derinlerde güçlü akıntılar.
+Life path 7 carries a deep and mystical kundalini potential.
+Like a silent ocean - calm on the surface, powerful currents in the depths.
 
-KUNDALİNİ KARAKTERİSTİKLERİ
-• Meditasyon ve içsel çalışma ile aktive olur
-• Derin, yavaş ama güçlü yükseliş
-• Üçüncü göz odaklı
-• Rüyalarda semboller, sayılar, geometri
-• Ani içgörü patlamaları
+KUNDALINI CHARACTERISTICS
+• Activates through meditation and inner work
+• Deep, slow but powerful rise
+• Third eye focused
+• Symbols, numbers, geometry in dreams
+• Sudden bursts of insight
 
-TEHLİKELER VE UYARILAR
-7 enerjisi çok içe dönük olabilir:
-• Gerçeklikten kopma riski
-• Psişik aşırı yüklenme
-• Aşırı izolasyon
-• Topraklanamama
-• Paranoya ve şüphe spiralleri
+DANGERS AND WARNINGS
+7 energy can be too inward-turning:
+• Risk of disconnecting from reality
+• Psychic overload
+• Excessive isolation
+• Inability to ground
+• Paranoia and doubt spirals
 
-GÜVENLİ AKTİVASYON YOLLARI
-1. DERİN MEDİTASYON
-Sessiz, uzun meditasyonlar. Vipassana, Zen, kontemplasyon.
-En az 20-30 dakika, tercihen daha uzun.
+SAFE ACTIVATION METHODS
+1. DEEP MEDITATION
+Silent, long meditations. Vipassana, Zen, contemplation.
+At least 20-30 minutes, preferably longer.
 
-2. NEFES
-Nadi Shodhana (alternatif burun nefesi) denge için.
-Brahmari (arı nefesi) içsel titreşim için.
+2. BREATH
+Nadi Shodhana (alternate nostril breathing) for balance.
+Brahmari (bee breath) for inner vibration.
 
 3. MANTRA
-"OM" - Evrensel ses, üçüncü göz titreşimi
-"AUM" - Yaratılışın üçlü sesi
-"SHAM" - Üçüncü göz çakrasının sesi
+"OM" - Universal sound, third eye vibration
+"AUM" - Triple sound of creation
+"SHAM" - Sound of the third eye chakra
 
-4. SESSİZLİK PRATİĞİ
-Düzenli sessizlik dönemleri (sessizlik yemini).
-Gürültüden uzak, iç sese dönüş.
+4. SILENCE PRACTICE
+Regular periods of silence (vow of silence).
+Away from noise, returning to the inner voice.
 
-5. RÜYA ÇALIŞMASI
-Rüya günlüğü tutma, rüyaları analiz etme.
-Lucid dreaming teknikleri.
+5. DREAM WORK
+Keeping a dream journal, analyzing dreams.
+Lucid dreaming techniques.
 
-AKTİVASYON ZAMANLAMA
-• Gece ve şafak öncesi (en güçlü)
-• Pazartesi (Ay günü) sezgi için
-• Balık mevsimi (19 Şubat - 20 Mart)
-• Yeni ay (içe dönüş)
+ACTIVATION TIMING
+• Night and before dawn (most powerful)
+• Monday (Moon day) for intuition
+• Pisces season (February 19 - March 20)
+• New moon (turning inward)
 
-KUNDALİNİ UYANIŞI BELİRTİLERİ
-• Üçüncü göz bölgesinde basınç/titreşim
-• Canlı, profetik rüyalar
-• Ani içgörüler ve "aha" anları
-• Psişik yeteneklerin açılması
-• Sembol ve sayıların anlamlı hale gelmesi
-• Derin huzur ve sessizlik hissi
+KUNDALINI AWAKENING SIGNS
+• Pressure/vibration in the third eye area
+• Vivid, prophetic dreams
+• Sudden insights and "aha" moments
+• Opening of psychic abilities
+• Symbols and numbers becoming meaningful
+• Feeling of deep peace and silence
 ''',
 
   compatibilityMatrix: {
     1: '''
-7 + 1 = FARKLI DÜNYALAR
-1'in dış dünya odağı, 7'nin iç dünya odağıyla çelişebilir. 1, 7'yi
-pasif bulur; 7, 1'i yüzeysel. Ama karşılıklı saygı varsa öğretici.
-Uyum puanı: 5/10
+7 + 1 = DIFFERENT WORLDS
+1's outer world focus may conflict with 7's inner world focus. 1 finds 7
+passive; 7 finds 1 superficial. But educational if mutual respect exists.
+Compatibility score: 5/10
 ''',
     2: '''
-7 + 2 = SEZGİSEL BAĞ
-2'nin sezgisi, 7'nin mistisizmiyle rezonans yapar. Her ikisi de
-derin dünyalarda yaşar. 2, 7'ye duygusal sıcaklık katar.
-Uyum puanı: 7/10
+7 + 2 = INTUITIVE BOND
+2's intuition resonates with 7's mysticism. Both live in deep worlds.
+2 adds emotional warmth to 7.
+Compatibility score: 7/10
 ''',
     3: '''
-7 + 3 = YÜZEY VE DERİNLİK
-3'ün sosyalliği, 7'nin içe dönüklüğüyle çatışır. 3, 7'yi sıkıcı
-bulabilir; 7, 3'ü yüzeysel. Çok zor kombinasyon.
-Uyum puanı: 4/10
+7 + 3 = SURFACE AND DEPTH
+3's sociability conflicts with 7's introversion. 3 may find 7 boring;
+7 finds 3 superficial. Very difficult combination.
+Compatibility score: 4/10
 ''',
     4: '''
-7 + 4 = FARKLI ODAKLAR
-4'ün pratikliği, 7'nin spirituelliğiyle çelişebilir. 4, 7'yi
-hayalperest bulur; 7, 4'ü sınırlı. Ama birbirini dengeleyebilir.
-Uyum puanı: 5/10
+7 + 4 = DIFFERENT FOCUSES
+4's practicality may conflict with 7's spirituality. 4 finds 7 a dreamer;
+7 finds 4 limited. But they can balance each other.
+Compatibility score: 5/10
 ''',
     5: '''
-7 + 5 = GİZEMLİ YOLCULUK
-5'in dış macerası, 7'nin iç keşfiyle ilginç birleşim. Birlikte
-fiziksel ve spiritüel yolculuklar. Dinamik ve derin.
-Uyum puanı: 7/10
+7 + 5 = MYSTERIOUS JOURNEY
+5's outer adventure with 7's inner exploration is an interesting combination.
+Together physical and spiritual journeys. Dynamic and deep.
+Compatibility score: 7/10
 ''',
     6: '''
-7 + 6 = FARKLI İHTİYAÇLAR
-6'nın aile odağı, 7'nin yalnızlık ihtiyacıyla çatışır. 6,
-reddedilmiş hissedebilir. Çok zor ama öğretici.
-Uyum puanı: 4/10
+7 + 6 = DIFFERENT NEEDS
+6's family focus conflicts with 7's need for solitude. 6 may feel rejected.
+Very difficult but educational.
+Compatibility score: 4/10
 ''',
     7: '''
-7 + 7 = ÇİFT MİSTİK
-İki derin ruh, sonsuz iç dünya. Birlikte spiritüel derinlikler.
-Risk: Her ikisi de dünyadan kopabilir, izolasyon. Dışsal çapa şart.
-Uyum puanı: 6/10
+7 + 7 = DOUBLE MYSTIC
+Two deep souls, infinite inner world. Together spiritual depths.
+Risk: Both may disconnect from the world, isolation. External anchor required.
+Compatibility score: 6/10
 ''',
     8: '''
-7 + 8 = MADDİ VE MANEVİ
-8'in maddi odağı, 7'nin manevi odağıyla dengelenebilir. 8, 7'yi
-topraklar; 7, 8'e anlam katar. Başarılı ama çalışma gerektirir.
-Uyum puanı: 6/10
+7 + 8 = MATERIAL AND SPIRITUAL
+8's material focus can be balanced with 7's spiritual focus. 8 grounds 7;
+7 adds meaning to 8. Successful but requires work.
+Compatibility score: 6/10
 ''',
     9: '''
-7 + 9 = SPİRİTÜEL İKİZLER
-Her ikisi de derin, spiritüel sayılar. 9'un evrenselliği, 7'nin
-mistisizmiyle mükemmel uyum. Birlikte ruhani yolculuk.
-Uyum puanı: 9/10
+7 + 9 = SPIRITUAL TWINS
+Both deep, spiritual numbers. 9's universality in perfect harmony with
+7's mysticism. Together on a spiritual journey.
+Compatibility score: 9/10
 ''',
     11: '''
-7 + 11 = MİSTİK ORTAKLIK
-11'in spiritüel vizyonu, 7'nin derin arayışıyla buluşur. Güçlü
-spiritüel bağ. Birlikte öğretme ve öğrenme.
-Uyum puanı: 9/10
+7 + 11 = MYSTIC PARTNERSHIP
+11's spiritual vision meets 7's deep seeking. Strong spiritual bond.
+Together teaching and learning.
+Compatibility score: 9/10
 ''',
     22: '''
-7 + 22 = VİZYON VE YAPI
-22'nin yapıcılığı, 7'nin vizyonunu somutlaştırabilir. 7 görür,
-22 inşa eder. Spiritüel kurumlar, okulllar için ideal.
-Uyum puanı: 7/10
+7 + 22 = VISION AND STRUCTURE
+22's constructiveness can materialize 7's vision. 7 sees, 22 builds.
+Ideal for spiritual institutions, schools.
+Compatibility score: 7/10
 ''',
     33: '''
-7 + 33 = USTA VE ÖĞRENCİ
-33'ün öğretmenliği, 7'nin arayışıyla mükemmel. Derin spiritüel
-rehberlik ilişkisi. Bilgelik aktarımı.
-Uyum puanı: 8/10
+7 + 33 = MASTER AND STUDENT
+33's teaching perfect with 7's seeking. Deep spiritual guidance
+relationship. Wisdom transmission.
+Compatibility score: 8/10
 ''',
   },
 
@@ -4866,292 +4872,292 @@ Uyum puanı: 8/10
   challengingNumbers: [1, 3, 6],
 
   careerDestiny: '''
-💼 KARİYER KADERİ VE MESLEK YOLU 💼
+💼 CAREER DESTINY AND PROFESSIONAL PATH 💼
 
-7 yaşam yolu, araştırma, analiz ve spiritüel derinlik gerektiren
-alanlarda parlar. Yüzeysel, sosyal ağırlıklı işler seni tüketir.
+Life path 7 shines in fields requiring research, analysis and spiritual
+depth. Superficial, social-heavy jobs exhaust you.
 
-İDEAL KARİYER ALANLARI:
-• Araştırma (her alanda)
-• Akademisyenlik ve Bilim
-• Psikoloji ve Psikiyatri
-• Astroloji, Numeroloji, Tarot
-• Yazarlık (özellikle derin konular)
-• Felsefe ve Din Çalışmaları
-• Teknoloji ve Programlama
-• Veri Analizi
-• Detektiflik ve Soruşturma
-• Alternatif Tıp ve Şifa
-• Meditasyon ve Yoga Öğretmenliği
-• Kütüphanecilik ve Arşivcilik
+IDEAL CAREER FIELDS:
+• Research (in any field)
+• Academia and Science
+• Psychology and Psychiatry
+• Astrology, Numerology, Tarot
+• Writing (especially deep subjects)
+• Philosophy and Religious Studies
+• Technology and Programming
+• Data Analysis
+• Detective work and Investigation
+• Alternative Medicine and Healing
+• Meditation and Yoga Teaching
+• Library Science and Archiving
 
-KAÇINILMASI GEREKEN ORTAMLAR:
-• Çok sosyal, gürültülü ortamlar
-• Satış ve pazarlama
-• Yüzeysel, hızlı tempolu işler
-• Ekip çalışması ağırlıklı roller
-• Açık ofis, sürekli etkileşim
+ENVIRONMENTS TO AVOID:
+• Very social, noisy environments
+• Sales and marketing
+• Superficial, fast-paced jobs
+• Team-heavy roles
+• Open offices, constant interaction
 
-BAŞARI ANAHTARLARI:
-• Yalnız veya küçük ekiplerle çalışma seç
-• Araştırma ve analiz odaklı roller bul
-• Uzmanlık alanında derinleş
-• Öğretme ve yazma fırsatları ara
-• Düzenli inziva zamanı planla
+KEYS TO SUCCESS:
+• Choose to work alone or with small teams
+• Find research and analysis-focused roles
+• Deepen in your area of expertise
+• Seek teaching and writing opportunities
+• Plan regular retreat time
 
-PARA VE BOLLUK İLİŞKİSİ:
-7'ler maddi dünyaya mesafeli olabilir. Para "önemli değil" tutumu
-sorun yaratabilir. Pratik finansal becerilere yatırım gerekli.
+MONEY AND ABUNDANCE RELATIONSHIP:
+7s can be distant from the material world. "Money doesn't matter" attitude
+can create problems. Investment in practical financial skills required.
 ''',
 
   healthTendencies: '''
-🏥 SAĞLIK EĞİLİMLERİ VE BEDEN BİLGELİĞİ 🏥
+🏥 HEALTH TENDENCIES AND BODY WISDOM 🏥
 
-7 sayısı, bedenin sinir sistemi ve beyin fonksiyonlarını yönetir.
-Sağlık sorunları genellikle aşırı zihinsel aktivite ve stres kaynaklı.
+The number 7 governs the body's nervous system and brain functions.
+Health issues usually stem from excessive mental activity and stress.
 
-HASSAS BÖLGELER:
-• Sinir sistemi
-• Beyin ve kafa
-• Gözler (görme sorunları)
-• Sindirim sistemi (stres kaynaklı)
-• Cilt (hassasiyet)
+SENSITIVE AREAS:
+• Nervous system
+• Brain and head
+• Eyes (vision problems)
+• Digestive system (stress-related)
+• Skin (sensitivity)
 
-ORTAK SAĞLIK SORUNLARI:
-• Anksiyete ve depresyon
-• Migren ve baş ağrıları
-• Uyku sorunları (aşırı düşünme)
-• Sindirim problemleri
-• Kronik yorgunluk
-• Sosyal anksiyete
+COMMON HEALTH ISSUES:
+• Anxiety and depression
+• Migraines and headaches
+• Sleep problems (overthinking)
+• Digestive problems
+• Chronic fatigue
+• Social anxiety
 
-ÖNERİLEN FİZİKSEL AKTİVİTELER:
-• Yürüyüş (özellikle doğada, tek başına)
-• Yoga (yin yoga, restoratif)
-• Yüzme (su sakinleştirir)
-• Tai Chi ve Qi Gong
-• Meditasyon ve nefes çalışmaları
+RECOMMENDED PHYSICAL ACTIVITIES:
+• Walking (especially in nature, alone)
+• Yoga (yin yoga, restorative)
+• Swimming (water calms)
+• Tai Chi and Qi Gong
+• Meditation and breathwork
 
-KAÇINILMASI GEREKENLER:
-• Aşırı kafein ve uyarıcılar
-• Gece geç saatlere kadar düşünme
-• Sosyal izolasyon (dengeleme gerekli)
-• Fiziksel aktivite ihmalı
-• Doğadan uzak kalma
+THINGS TO AVOID:
+• Excessive caffeine and stimulants
+• Thinking until late at night
+• Social isolation (balance needed)
+• Neglecting physical activity
+• Staying away from nature
 
-BÜTÜNSEL ŞIFA ÖNERİLERİ:
-• Düzenli meditasyon pratiği
-• Doğada yalnız yürüyüşler
-• Mor ve lacivert renklerle çalışma
-• Ametist ve labradorit kristalleri
-• Digital detox dönemleri
+HOLISTIC HEALING RECOMMENDATIONS:
+• Regular meditation practice
+• Solo walks in nature
+• Working with purple and navy blue colors
+• Amethyst and labradorite crystals
+• Digital detox periods
 ''',
 
   wealthVibration: '''
-💰 BOLLUK TİTREŞİMİ VE MADDI DÜNYA 💰
+💰 ABUNDANCE VIBRATION AND MATERIAL WORLD 💰
 
-7 sayısı, maddi dünyaya en mesafeli sayıdır. Para, araç olarak
-görülmeli - amaç veya engel değil.
+The number 7 is the most distanced from the material world. Money should be
+seen as a tool - not a goal or obstacle.
 
-DOĞAL BOLLUK YETENEKLERİ:
-• Derin analiz ve araştırma
-• Uzman bilgisi monetize etme
-• Yazarlık ve danışmanlık
-• Spiritüel hizmetler
-• Niş alanlarda uzmanlık
+NATURAL ABUNDANCE TALENTS:
+• Deep analysis and research
+• Monetizing expert knowledge
+• Writing and consulting
+• Spiritual services
+• Expertise in niche areas
 
-PARA BLOKLARI:
-• "Para manevi değil" inancı
-• Maddi dünyayı ihmal etme
-• Pazarlama ve satıştan kaçınma
-• Değerini düşük biçme
-• Para konularını "sıkıcı" bulma
+MONEY BLOCKS:
+• "Money is not spiritual" belief
+• Neglecting the material world
+• Avoiding marketing and sales
+• Undervaluing yourself
+• Finding money matters "boring"
 
-ZENGİNLİK AKTİVASYONU:
-1. MANTRA: "Manevi ve maddi bolluk birlikte akar"
-2. KRİSTAL: Ametist, sitrin, pirit
-3. RENK: Mor ve altın kombinasyonu
-4. SAYI: 7 ve 8 kombinasyonları (78, 87)
-5. GÜN: Cumartesi (Satürn günü) pratik kararlar için
+WEALTH ACTIVATION:
+1. MANTRA: "Spiritual and material abundance flow together"
+2. CRYSTAL: Amethyst, citrine, pyrite
+3. COLOR: Purple and gold combination
+4. NUMBER: 7 and 8 combinations (78, 87)
+5. DAY: Saturday (Saturn's day) for practical decisions
 
-YATIRIM STRATEJİSİ:
-• Uzun vadeli, araştırmaya dayalı yatırımlar
-• Eğitim ve kişisel gelişim
-• Dijital ürünler (kitap, kurs)
-• Pasif gelir kaynakları
-• Profesyonel finansal danışmanlık al
+INVESTMENT STRATEGY:
+• Long-term, research-based investments
+• Education and personal development
+• Digital products (books, courses)
+• Passive income sources
+• Get professional financial advice
 ''',
 
   loveAndRelationships: '''
-💕 AŞK VE İLİŞKİLER - KUTSAL BİRLİK YOLU 💕
+💕 LOVE AND RELATIONSHIPS - PATH OF SACRED UNION 💕
 
-7 yaşam yolunda aşk, derin bağlantı ve anlayış demektir. Yüzeysel
-ilişkiler tatmin etmez - ya derin ya hiç.
+On life path 7, love means deep connection and understanding. Superficial
+relationships don't satisfy - it's either deep or nothing.
 
-AŞKTA GÜÇLÜ YÖNLER:
-• Derin duygusal bağ kurma
-• Sadık ve güvenilir
-• İç dünyayı paylaşma
-• Entelektüel uyum arama
-• Kaliteli zaman
+STRENGTHS IN LOVE:
+• Creating deep emotional bonds
+• Loyal and trustworthy
+• Sharing inner world
+• Seeking intellectual harmony
+• Quality time
 
-AŞKTA ZORLUKLAR:
-• Duygusal mesafe
-• Yakınlık korkusu
-• Aşırı analiz (paraliz)
-• İletişim zorlukları
-• Yalnızlık ihtiyacının yanlış anlaşılması
+CHALLENGES IN LOVE:
+• Emotional distance
+• Fear of intimacy
+• Over-analysis (paralysis)
+• Communication difficulties
+• Solitude needs being misunderstood
 
-İDEAL PARTNER PROFİLİ:
-• Seni anlamaya çalışan
-• Kendi iç dünyası zengin olan
-• Yalnızlık ihtiyacına saygı duyan
-• Entelektüel veya spiritüel derinliği olan
-• Baskıcı olmayan
+IDEAL PARTNER PROFILE:
+• Someone who tries to understand you
+• Someone with a rich inner world
+• Someone who respects your need for solitude
+• Someone with intellectual or spiritual depth
+• Someone who is not controlling
 
-İLİŞKİDE KAÇINILMASI GEREKENLER:
-• Duygusal kaçınma
-• Aşırı analiz ve eleştiri
-• Partneri dışlama
-• İletişimsizlik
-• Duvarlar örme
+THINGS TO AVOID IN RELATIONSHIPS:
+• Emotional avoidance
+• Over-analysis and criticism
+• Excluding your partner
+• Lack of communication
+• Building walls
 
-KUTSAL BİRLİK İÇİN PRATİKLER:
-• Sessiz birliktelik (konuşmadan)
-• Birlikte meditasyon
-• Derin sohbetler
-• Doğada birlikte yürüyüş
-• Kitap/film tartışmaları
+PRACTICES FOR SACRED UNION:
+• Silent togetherness (without talking)
+• Meditating together
+• Deep conversations
+• Walking in nature together
+• Book/film discussions
 
-KARMİK İLİŞKİLER:
-3 ve 6 sayılı partnerlerle ilişkiler genellikle karmiktir. 3, neşe
-ve hafiflik; 6, bağlanma ve aile dersini getirir.
+KARMIC RELATIONSHIPS:
+Relationships with partners numbered 3 and 6 are often karmic. 3 brings
+joy and lightness; 6 brings lessons of attachment and family.
 
-RUH EŞİ İŞARETLERİ:
-• Sessizlikte bile anlaşma
-• Birbirinin iç dünyasına saygı
-• Spiritüel bağlantı
-• Karşılıklı "görme"
-• Birlikte derinleşme
+SOULMATE SIGNS:
+• Understanding even in silence
+• Mutual respect for each other's inner world
+• Spiritual connection
+• Mutual "seeing"
+• Deepening together
 ''',
 
   famousExamples: [
-    'Leonardo DiCaprio - Gizemli yıldız',
-    'Julia Roberts - Derin aktris',
-    'Johnny Depp - Eksantrik sanatçı',
-    'Marilyn Monroe - Gizemli ikon',
-    'Bruce Lee - Filozof savaşçı',
-    'Stephen Hawking - Dahi fizikçi',
-    'Princess Diana - Duyarlı ruh',
-    'Eric Clapton - Derin müzisyen',
+    'Leonardo DiCaprio - Mysterious star',
+    'Julia Roberts - Deep actress',
+    'Johnny Depp - Eccentric artist',
+    'Marilyn Monroe - Mysterious icon',
+    'Bruce Lee - Philosopher warrior',
+    'Stephen Hawking - Genius physicist',
+    'Princess Diana - Sensitive soul',
+    'Eric Clapton - Deep musician',
   ],
 
   dailyAffirmations: [
-    'Yalnızlığım güç kaynağım, izolasyon değil.',
-    'İç dünyam ve dış dünya dengede.',
-    'Güvenmek güvenli.',
-    'Bilgeliğimi dünyayla paylaşıyorum.',
-    'Duygularım da hakikatimin parçası.',
-    'Şüphe sormak için, takılmak için değil.',
-    'Bağlantı kurmak beni zayıflatmaz.',
-    'Gizem benim dostum.',
-    'Sessizlikte cevapları buluyorum.',
-    'Ben arayıcıyım ve buluyorum.',
+    'My solitude is a source of strength, not isolation.',
+    'My inner and outer worlds are in balance.',
+    'It is safe to trust.',
+    'I share my wisdom with the world.',
+    'My feelings are also part of my truth.',
+    'Doubt is for questioning, not for getting stuck.',
+    'Connecting does not weaken me.',
+    'Mystery is my friend.',
+    'I find answers in silence.',
+    'I am a seeker and I find.',
   ],
 
   meditationMantras: [
-    'OM - Evrensel ses',
-    'SHAM - Üçüncü göz çakrası',
-    'AUM - Yaratılışın üçlü sesi',
-    'SO HAM - Ben O\'yum',
-    'OM NAMAH SHIVAYA - Saf bilince selam',
-    'AIM - Bilgelik ve görüş',
+    'OM - Universal sound',
+    'SHAM - Third eye chakra',
+    'AUM - Triple sound of creation',
+    'SO HAM - I am That',
+    'OM NAMAH SHIVAYA - Salute to pure consciousness',
+    'AIM - Wisdom and vision',
   ],
 
   healingPractice: '''
-🙏 ŞIFA PRATİĞİ: DERİN SESSİZLİK MEDİTASYONU 🙏
+🙏 HEALING PRACTICE: DEEP SILENCE MEDITATION 🙏
 
-Bu pratik, 7 enerjisini dengelemek ve üçüncü gözü açmak için
-tasarlanmıştır. İdeal zaman: Şafak öncesi veya gece yarısı.
+This practice is designed to balance 7 energy and open the third eye.
+Ideal time: Before dawn or at midnight.
 
-HAZIRLIK:
-1. Tamamen sessiz, karanlık bir odada otur
-2. Tüm elektronik cihazları kapat
-3. Mor veya lacivert mum yak (tek bir alev)
-4. Ametist kristali al veya önüne koy
+PREPARATION:
+1. Sit in a completely silent, dark room
+2. Turn off all electronic devices
+3. Light a purple or navy blue candle (single flame)
+4. Hold or place an amethyst crystal in front of you
 
-SESSİZLİĞE GİRİŞ (5 dakika):
-1. Gözlerini kapa
-2. Dış sesleri fark et, sonra bırak
-3. İç sesleri fark et (düşünceler), sonra bırak
-4. Sessizliğin içine in
+ENTERING SILENCE (5 minutes):
+1. Close your eyes
+2. Notice external sounds, then let go
+3. Notice internal sounds (thoughts), then let go
+4. Descend into silence
 
-NEFES VE ÜÇÜNCÜ GÖZ (10 dakika):
-1. Kaşlarının arasına, üçüncü göze odaklan
-2. Nefes al - enerji üçüncü göze çıkıyor
-3. Nefes ver - enerji tüm bedene yayılıyor
-4. Mor ışık görselleştir
-5. Bu ışık, içsel gözünü açıyor
+BREATH AND THIRD EYE (10 minutes):
+1. Focus on the third eye between your eyebrows
+2. Inhale - energy rises to the third eye
+3. Exhale - energy spreads throughout the body
+4. Visualize purple light
+5. This light opens your inner eye
 
-DERİN SESSİZLİK (15 dakika):
-1. Nefesi de bırak, sadece ol
-2. Düşünceler geçsin, takılma
-3. Sessizliğin içine daha derinine in
-4. Orada ne varsa fark et - yargılama
-5. Bekle, dinle, ol
+DEEP SILENCE (15 minutes):
+1. Let go of breath too, just be
+2. Let thoughts pass, don't attach
+3. Go deeper into silence
+4. Notice what's there - don't judge
+5. Wait, listen, be
 
-İÇGÖRÜ (5 dakika):
-1. Bir soru sor (sessizce, içinden)
-2. Cevap bekleme - cevabın gelmesine izin ver
-3. Gelen her şeyi kabul et - görsel, kelime, his
-4. Minnettarlık duy
+INSIGHT (5 minutes):
+1. Ask a question (silently, within)
+2. Don't expect an answer - allow the answer to come
+3. Accept whatever comes - visual, word, feeling
+4. Feel gratitude
 
-KAPATMA (5 dakika):
-1. Yavaşça normal bilince dön
-2. Deneyimini not et (isteğe bağlı)
-3. "Bu sessizliği taşıyorum" niyeti
-4. Günlük yaşama geçiş
+CLOSING (5 minutes):
+1. Slowly return to normal consciousness
+2. Note your experience (optional)
+3. Set intention: "I carry this silence with me"
+4. Transition to daily life
 
-Bu pratiği haftada en az 2-3 kez yap.
-Yeni ayda ve karanlık gecelerde özellikle güçlü.
+Do this practice at least 2-3 times a week.
+Especially powerful on new moons and dark nights.
 ''',
 
   yearlyGuidance: {
     '2024': '''
-2024 - MADDİ DÜNYA İLE BARIŞ (Evrensel 8)
-8 evrensel yılı, 7'ler için pratik dünyayla barışma zamanı. Spiritüel
-bilgiyi maddi başarıya dönüştür. Topraklanma önemli.
+2024 - PEACE WITH THE MATERIAL WORLD (Universal 8)
+Universal year 8 is a time for 7s to make peace with the practical world.
+Transform spiritual knowledge into material success. Grounding is important.
 ''',
     '2025': '''
-2025 - SPİRİTÜEL DERİNLİK (Evrensel 9)
-9 evrensel yılı, 7'ler için spiritüel derinleşme zamanı. Eski
-inançları gözden geçir, evrensel bilgeliğe aç.
+2025 - SPIRITUAL DEPTH (Universal 9)
+Universal year 9 is a time for 7s to deepen spiritually. Review old beliefs,
+open to universal wisdom.
 ''',
     '2026': '''
-2026 - YENİ ARAYIŞLAR (Evrensel 1)
-Yeni döngü başlıyor. Yeni araştırma alanları, yeni spiritüel pratikler.
-Cesur ol, bilinmeyene adım at.
+2026 - NEW QUESTS (Universal 1)
+A new cycle begins. New research areas, new spiritual practices.
+Be brave, step into the unknown.
 ''',
     '2027': '''
-2027 - ORTAKLIK (Evrensel 2)
-Spiritüel yolda arkadaşlık zamanı. Bir öğretmen bul veya öğrenci al.
-İlişkilerde derinleşme fırsatı.
+2027 - PARTNERSHIP (Universal 2)
+Time for companionship on the spiritual path. Find a teacher or take a student.
+Opportunity to deepen relationships.
 ''',
     '2028': '''
-2028 - İFADE (Evrensel 3)
-Bilgeliğini paylaş. Yaz, öğret, konuş. İç dünyayı dış dünyaya taşı.
-Yaratıcı ifade zamanı.
+2028 - EXPRESSION (Universal 3)
+Share your wisdom. Write, teach, speak. Carry the inner world to the outer.
+Time for creative expression.
 ''',
   },
 );
 
-// Yaşam Yolu 8, 9 ve Master Numbers içerikleri ayrı dosyada devam edecek...
+// Life Paths 8, 9 and Master Numbers content will continue in separate file...
 
 // ════════════════════════════════════════════════════════════════════════════════
-// BÖLÜM 2: İFADE SAYILARI (EXPRESSION NUMBERS)
+// SECTION 2: EXPRESSION NUMBERS
 // ════════════════════════════════════════════════════════════════════════════════
 
-/// İfade Sayısı içerik modeli
+/// Expression Number content model
 class ExpressionNumberContent {
   final int number;
   final String title;
@@ -5176,133 +5182,131 @@ class ExpressionNumberContent {
   });
 }
 
-/// İfade Sayıları İçerik Haritası
+/// Expression Numbers Content Map
 final Map<int, ExpressionNumberContent> expressionNumberContents = {
   1: const ExpressionNumberContent(
     number: 1,
-    title: 'Öncü İfade',
-    vibration: 'Liderlik ve Orijinallik Titreşimi',
+    title: 'Pioneer Expression',
+    vibration: 'Leadership and Originality Vibration',
     outerPersonality: '''
-İsminiz 1 titreşimi taşıyorsa, dış dünyanın sizi gördüğü ilk izlenim
-liderlik, güç ve bağımsızlıktır. İnsanlar sizde bir öncü, bir
-başlatıcı görürler. Karizmanız doğal ve komut edicidir.
+If your name carries the 1 vibration, the first impression the outside world
+sees in you is leadership, power, and independence. People see in you a pioneer,
+an initiator. Your charisma is natural and commanding.
 
-Toplumsal rolünüz, yeni fikirlerin sözcüsü, değişimin başlatıcısı
-olmaktır. İnsanlar sizin cesaret ve kararlılığınızdan ilham alırlar.
+Your social role is to be the spokesperson for new ideas, the initiator of
+change. People are inspired by your courage and determination.
 ''',
     namePowerAnalysis: '''
-İsminizin 1 enerjisi, kelimelerin yaratıcı gücünü taşır. Konuştuğunuzda
-insanlar dinler - çünkü kelimeleriniz aksiyon çağrısı gibidir.
+The 1 energy of your name carries the creative power of words. When you speak,
+people listen - because your words are like a call to action.
 
-İsminizi söylediğinizde, evren "başlangıç" frekansını duyar. Bu, yeni
-projeleri, yeni dönemleri çağırır. İsminiz bir anahtar - yeni kapıları
-açar.
+When you say your name, the universe hears the "beginning" frequency. This calls
+new projects, new periods. Your name is a key - it opens new doors.
 
-İsim değişikliği düşünüyorsanız, 1 enerjisini korumak veya eklemek
-liderlik kapasitesini güçlendirir.
+If you're considering a name change, preserving or adding 1 energy
+strengthens leadership capacity.
 ''',
     manifestationEnergy: '''
-1 ifade enerjisi, niyetleri doğrudan tezahür ettirir. "Ben istiyorum"
-dedğinizde evren harekete geçer. Ama dikkat: Ego istekleri ile ruh
-istekleri arasındaki farkı bil.
+Expression energy 1 directly manifests intentions. When you say "I want,"
+the universe moves. But beware: Know the difference between ego desires
+and soul desires.
 
-Manifestasyon Tekniği:
-- Tekil, net, özgün niyetler koy
-- "Ben [hedefiniz]" formatında affirmasyonlar kullan
-- Sabah güneşi ile niyet kur (1'in zamanı)
-- Kırmızı veya altın renkle çalış
+Manifestation Technique:
+- Set singular, clear, original intentions
+- Use affirmations in "I am [your goal]" format
+- Set intentions with the morning sun (1's time)
+- Work with red or gold colors
 ''',
     creativeExpressionPath: '''
-Yaratıcılığınız orijinal ve öncü olmaktan geçer. Taklit sizi öldürür -
-kendi benzersiz sesinizi bulmalısınız.
+Your creativity comes through being original and pioneering. Imitation kills you -
+you must find your own unique voice.
 
-En Uygun Yaratıcı Alanlar:
-- Girişimcilik (kendi vizyonunuz)
-- Yazarlık (özellikle liderlik, motivasyon)
-- Konuşmacılık ve sunuculuk
-- Tasarım (özgün, trend belirleyici)
-- İnovasyon ve icat
+Most Suitable Creative Fields:
+- Entrepreneurship (your own vision)
+- Writing (especially leadership, motivation)
+- Speaking and presenting
+- Design (original, trend-setting)
+- Innovation and invention
 ''',
     careerExpression: '''
-İş hayatında 1 ifade enerjisi, liderlik ve özerklik arar. Başkalarının
-emirlerini uzun süre uygulayamazsınız - kendi yolunuzu çizmelisiniz.
+In work life, expression energy 1 seeks leadership and autonomy. You cannot
+follow others' orders for long - you must chart your own course.
 
-Kariyer Önerileri:
-- Kendi işini kurma
-- Yönetici veya direktör pozisyonları
-- Serbest danışmanlık
-- Araştırma ve geliştirme (keşif)
-- Spor ve rekabet (bireysel)
+Career Suggestions:
+- Starting your own business
+- Executive or director positions
+- Independent consulting
+- Research and development (discovery)
+- Sports and competition (individual)
 ''',
-    keywords: ['Liderlik', 'Orijinallik', 'Başlatma', 'Bağımsızlık', 'Cesaret'],
+    keywords: ['Leadership', 'Originality', 'Initiation', 'Independence', 'Courage'],
   ),
 
   2: const ExpressionNumberContent(
     number: 2,
-    title: 'Diplomat İfade',
-    vibration: 'Uyum ve İşbirliği Titreşimi',
+    title: 'Diplomat Expression',
+    vibration: 'Harmony and Cooperation Vibration',
     outerPersonality: '''
-İsminiz 2 titreşimi taşıyorsa, dış dünya sizi nazik, diplomatik ve
-destekleyici biri olarak görür. İnsanlar yanınızda kendilerini dinlenmiş
-ve anlaşılmış hissederler.
+If your name carries the 2 vibration, the outside world sees you as kind,
+diplomatic, and supportive. People feel heard and understood in your presence.
 
-Toplumsal rolünüz, köprü kurmak, arabuluculuk yapmak, uyum sağlamaktır.
-İnsanlar sizin varlığınızda daha az çatışma, daha çok anlayış bulurlar.
+Your social role is to build bridges, mediate, and create harmony.
+People find less conflict and more understanding in your presence.
 ''',
     namePowerAnalysis: '''
-İsminizin 2 enerjisi, bağlantı ve birlik frekansı taşır. Adınız
-söylendiğinde, insanlar arasında görünmez iplikler örülür.
+The 2 energy of your name carries the frequency of connection and unity.
+When your name is spoken, invisible threads are woven between people.
 
-İsminiz bir köprü gibi - ayrı olanı birleştirir, kopuk olanı bağlar.
-Bu enerjinin farkında olmak, ilişkilerinizi bilinçli şekillendirmenizi
-sağlar.
+Your name is like a bridge - it unites what is separate, connects what is
+disconnected. Being aware of this energy allows you to consciously shape
+your relationships.
 
-İsim değişikliği düşünüyorsanız, 2 enerjisi ilişki ve ortaklık
-fırsatlarını artırır.
+If you're considering a name change, 2 energy increases relationship
+and partnership opportunities.
 ''',
     manifestationEnergy: '''
-2 ifade enerjisi, ortaklık ve işbirliği yoluyla tezahür eder. Tek başına
-değil, birlikte manifestasyon daha güçlüdür.
+Expression energy 2 manifests through partnership and cooperation.
+Manifestation together, not alone, is more powerful.
 
-Manifestasyon Tekniği:
-- Partner veya grupla ortak niyet koyma
-- "Biz birlikte [hedefiniz]" formatında affirmasyonlar
-- Dolunayda (Ay enerjisi) niyet kur
-- Gümüş veya turuncu renkle çalış
+Manifestation Technique:
+- Set joint intentions with a partner or group
+- Affirmations in "We together [your goal]" format
+- Set intentions during full moon (Moon energy)
+- Work with silver or orange colors
 ''',
     creativeExpressionPath: '''
-Yaratıcılığınız işbirliği ve uyumdan beslenir. Tek başına çalışmak zor -
-bir partner veya ekiple daha iyi üretirsiniz.
+Your creativity is nourished by cooperation and harmony. Working alone is hard -
+you produce better with a partner or team.
 
-En Uygun Yaratıcı Alanlar:
-- Müzik (özellikle düet, orkestra)
-- Dans (partner dansları)
-- Dekorasyon ve iç tasarım
-- Terapi ve danışmanlık sanatları
-- Editörlük ve işbirliğiçi yazarlık
+Most Suitable Creative Fields:
+- Music (especially duets, orchestra)
+- Dance (partner dances)
+- Decoration and interior design
+- Therapy and counseling arts
+- Editing and collaborative writing
 ''',
     careerExpression: '''
-İş hayatında 2 ifade enerjisi, destek ve işbirliği rolleri arar.
-Spotlight'ta olmak yerine arkada güç olmayı tercih edersiniz.
+In work life, expression energy 2 seeks support and cooperation roles.
+You prefer being the power behind the scenes rather than in the spotlight.
 
-Kariyer Önerileri:
-- İnsan kaynakları
-- Arabuluculuk ve müzakere
-- Asistanlık (üst düzey)
-- Diplomasi ve uluslararası ilişkiler
-- Terapi ve danışmanlık
+Career Suggestions:
+- Human resources
+- Mediation and negotiation
+- Executive assistance
+- Diplomacy and international relations
+- Therapy and counseling
 ''',
-    keywords: ['Diplomasi', 'İşbirliği', 'Uyum', 'Destek', 'Duyarlılık'],
+    keywords: ['Diplomacy', 'Cooperation', 'Harmony', 'Support', 'Sensitivity'],
   ),
 
-  // Diğer ifade sayıları için içerikler eklenecek (3-9, 11, 22, 33)
+  // Content for other expression numbers to be added (3-9, 11, 22, 33)
 };
 
 // ════════════════════════════════════════════════════════════════════════════════
-// BÖLÜM 3: RUH DÜRTÜSÜ SAYILARI (SOUL URGE)
+// SECTION 3: SOUL URGE NUMBERS
 // ════════════════════════════════════════════════════════════════════════════════
 
-/// Ruh Dürtüsü Sayısı içerik modeli
+/// Soul Urge Number content model
 class SoulUrgeContent {
   final int number;
   final String title;
@@ -5327,82 +5331,81 @@ class SoulUrgeContent {
   });
 }
 
-/// Ruh Dürtüsü Sayıları İçerik Haritası
+/// Soul Urge Numbers Content Map
 final Map<int, SoulUrgeContent> soulUrgeContents = {
   1: const SoulUrgeContent(
     number: 1,
-    title: 'Bağımsızlık Arzusu',
+    title: 'Independence Desire',
     heartDesire: '''
-Kalbinin en derin arzusu: ÖZGÜR VE BENZERSİZ OLMAK.
+Your heart's deepest desire: TO BE FREE AND UNIQUE.
 
-Ruhunun derinliklerinde, kalabalıktan ayrışma, kendi yolunu çizme,
-benzersiz bir iz bırakma isteği yatar. "Sıradan" olmak seni içten
-içe rahatsız eder.
+Deep in your soul lies the desire to stand apart from the crowd, chart your
+own path, and leave a unique mark. Being "ordinary" disturbs you from within.
 
-Yalnız başına durabilmek, kendi kararlarını alabilmek, hiç kimseye
-muhtaç olmamak - bunlar ruhunun susuzluğunu gideren kaynaklar.
+Being able to stand alone, make your own decisions, and not depend on anyone -
+these are the sources that quench your soul's thirst.
 ''',
     hiddenMotivations: '''
-Görünmeyen motivasyonların:
-- Tanınma ve takdir ihtiyacı (ama kabul etmek zor)
-- Kontrol etme isteği (belirsizlik korkusundan)
-- Mükemmellik arayışı (yetersizlik korkusundan)
-- Başarı zorunluluğu (değersizlik korkusundan)
+Your hidden motivations:
+- Need for recognition and appreciation (but hard to admit)
+- Desire to control (from fear of uncertainty)
+- Pursuit of perfection (from fear of inadequacy)
+- Necessity of success (from fear of worthlessness)
 
-Bu motivasyonların farkında olmak, seni yönetmelerine izin vermemek
-anlamına gelir. Gölgelerini tanı, ama onların kölesi olma.
+Being aware of these motivations means not letting them control you.
+Know your shadows, but don't be their slave.
 ''',
     spiritualCalling: '''
-Spiritüel çağrın: YARATICI GÜCE KANAL OLMAK.
+Your spiritual calling: TO BE A CHANNEL FOR CREATIVE POWER.
 
-Evren, yeniyi yaratmak için seni seçti. İlahi yaratıcılığın bireysel
-ifadesi olmak görevin. Ama dikkat: Ego yaratıcılığı ile ilahi
-yaratıcılık arasındaki fark, hizmet niyetindedir.
+The universe chose you to create the new. Your task is to be an individual
+expression of divine creativity. But beware: The difference between ego
+creativity and divine creativity is in the intention of service.
 
-Yaratırken "bu benim için mi, yoksa daha büyük bir şey için mi?"
-sorusunu sor. Cevap ikincisi olduğunda, gerçek çağrına uyumlansın.
+When creating, ask "is this for me, or for something greater?"
+When the answer is the latter, you're aligned with your true calling.
 ''',
     innerWorldDynamics: '''
-İç dünyanın dinamikleri:
-- Sürekli bir "sonraki hedef" arayışı
-- İç eleştirmen çok aktif ve sert
-- Yalnızlık, bazen tercih bazen zorunluluk
-- İç özgüven ile dış bağımsızlık dengesi
+Your inner world dynamics:
+- Constant search for the "next goal"
+- Inner critic very active and harsh
+- Solitude, sometimes choice sometimes necessity
+- Balance between inner confidence and outer independence
 
-İç sesin bazen çok yüksek, bazen çok sessiz. Dengeyi bulmak, iç
-diyaloğunu bilinçli hale getirmek ömür boyu süren bir çalışma.
+Your inner voice is sometimes too loud, sometimes too quiet. Finding balance,
+making your inner dialogue conscious is a lifelong work.
 ''',
     deepestFear: '''
-En derin korkun: DEĞERSİZ VE SIRADAN OLMAK.
+Your deepest fear: TO BE WORTHLESS AND ORDINARY.
 
-Kaybolmak, unutulmak, hiçbir iz bırakmadan geçip gitmek - bunlar
-ruhunun kabusları. Bu korku, seni harekete geçiren yakıt olabilir,
-ama aynı zamanda tüketen ateş de.
+Getting lost, being forgotten, passing without leaving a trace - these are
+your soul's nightmares. This fear can be fuel that drives you, but also
+a consuming fire.
 
-Korkunu reddetme - kabul et. "Evet, sıradanlık beni korkutuyor" de.
-Sonra fark et: Varoluşun kendisi zaten olağanüstü.
+Don't reject your fear - accept it. Say "Yes, ordinariness scares me."
+Then realize: Existence itself is already extraordinary.
 ''',
     healingPath: '''
-Şifa yolun:
-1. Değerinin üretkenliğe bağlı olmadığını bil
-2. "Yeterince iyi" olmayı kabul et
-3. Başarısızlığı öğrenme olarak gör
-4. Başkalarından yardım al
-5. Yalnızlığı seç, izolasyonu değil
-6. Ego ve ruh arasındaki farkı öğren
-7. Hizmet odaklı yaratıcılık geliştir
+Your healing path:
+1. Know that your worth is not tied to productivity
+2. Accept being "good enough"
+3. See failure as learning
+4. Accept help from others
+5. Choose solitude, not isolation
+6. Learn the difference between ego and soul
+7. Develop service-oriented creativity
 ''',
-    soulKeywords: ['Özgürlük', 'Benzersizlik', 'Başarı', 'Tanınma', 'Yaratıcılık'],
+    soulKeywords: ['Freedom', 'Uniqueness', 'Success', 'Recognition', 'Creativity'],
   ),
 
-  // Diğer ruh dürtüsü sayıları için içerikler eklenecek (2-9, 11, 22, 33)
+  // Content for other soul urge numbers to be added (2-9, 11, 22, 33)
 };
 
 // ════════════════════════════════════════════════════════════════════════════════
-// BÖLÜM 4: KARMİK BORÇ SAYILARI (13, 14, 16, 19)
+// SECTION 4: KARMIC DEBT NUMBERS (13, 14, 16, 19)
 // ════════════════════════════════════════════════════════════════════════════════
 
-/// Karmik Borç Sayısı içerik modeli
+/// Karmic Debt Number content model
 class KarmicDebtContent {
   final int number;
   final String title;
@@ -5427,551 +5430,551 @@ class KarmicDebtContent {
   });
 }
 
-/// Karmik Borç Sayıları İçerikleri
+/// Karmic Debt Numbers Content
 final Map<int, KarmicDebtContent> karmicDebtContents = {
   13: const KarmicDebtContent(
     number: 13,
-    title: 'Tembellik ve Sorumsuzluk Borcu',
+    title: 'Laziness and Irresponsibility Debt',
     pastLifeDebt: '''
-🔄 GEÇMİŞ YAŞAM BORCU: TEMBELLİK VE SORUMSUZLUK
+🔄 PAST LIFE DEBT: LAZINESS AND IRRESPONSIBILITY
 
-13 sayısı, geçmiş yaşamlarda kolay yolu seçme, sorumluluktan kaçma ve
-başkalarının sırtından geçinme kalıplarını taşır. Belki de zengin bir
-ailede doğup hiçbir şey için çalışmadın. Belki de yeteneklerini
-kullanmadan boşa harcadın.
+The number 13 carries patterns of taking the easy way, avoiding responsibility,
+and living off others from past lives. Perhaps you were born into a wealthy
+family and never worked for anything. Perhaps you wasted your talents
+without using them.
 
-Bu hayatta, 13 "sıkı çalışma" dersini getiriyor. Hiçbir şey bedava
-gelmeyecek - ama çabayla gelen her şey gerçekten senin olacak.
+In this life, 13 brings the lesson of "hard work." Nothing will come for free -
+but everything that comes through effort will truly be yours.
 
-Dikkat: 13 "uğursuz" değildir - yalnızca ödenmemiş bir faturadır.
-Fatura ödendiğinde, 4'ün yapıcı gücü sana kalır.
+Note: 13 is not "unlucky" - it's just an unpaid bill.
+When the bill is paid, the constructive power of 4 remains with you.
 ''',
     lessonsToLearn: '''
-📚 ÖĞRENILECEK DERSLER
+📚 LESSONS TO LEARN
 
-1. ÇALIŞMANIN DEĞERİ
-Emek vermeden kazanmak yok. Bu hayatta, terlemenin kutsallığını
-öğreneceksin. Çalışmak sadece hayatta kalma değil, ruhsal arınma.
+1. THE VALUE OF WORK
+No gain without effort. In this life, you will learn the sacredness of
+sweating. Work is not just survival - it's spiritual purification.
 
-2. SORUMLULUK ALMA
-Sonuçların sahibi olmak. "Ben yapmadım" yerine "ben yaptım" demek.
-Seçimlerinin sorumluluğunu almak, özgürlüğün başlangıcı.
+2. TAKING RESPONSIBILITY
+Owning the results. Saying "I did" instead of "I didn't do it."
+Taking responsibility for your choices is the beginning of freedom.
 
-3. SABIR VE SÜREÇ
-Anında sonuç beklememek. Tohum ekmek, beklemek, büyümeyi izlemek.
-Zaman, en büyük öğretmenin.
+3. PATIENCE AND PROCESS
+Not expecting instant results. Planting seeds, waiting, watching growth.
+Time is your greatest teacher.
 
-4. DİSİPLİN
-Yapma isteğin olmasa da yapabilmek. İç tembellik sesini tanımak ve
-aşmak. Rutin, sıkıcılık değil - ustalaşmanın yolu.
+4. DISCIPLINE
+Being able to do even when you don't want to. Recognizing and overcoming
+the inner voice of laziness. Routine is not boredom - it's the path to mastery.
 ''',
     redemptionPath: '''
-🛤️ KURTULUŞ YOLU
+🛤️ REDEMPTION PATH
 
-13 karmik borcunu ödemek için:
+To pay the 13 karmic debt:
 
-1. İŞ AHLAĞI GELİŞTİR
-Her gün, bir şey üret veya tamamla. Küçük başla, büyüt.
-"Bugün ne yarattım?" sorusunu her gece sor.
+1. DEVELOP WORK ETHIC
+Every day, produce or complete something. Start small, build up.
+Ask "What did I create today?" every night.
 
-2. SORUMLULUK ÜSTLENİ
-Bir proje, bir görev, bir insan için sorumluluk al.
-Takip et, tamamla, hesap ver.
+2. TAKE ON RESPONSIBILITY
+Take responsibility for a project, a task, a person.
+Follow through, complete, be accountable.
 
-3. SABIR PRATİĞİ
-Uzun vadeli bir proje başlat (1 yıl minimum).
-Her gün küçük adımlar at, sonucu sabırla bekle.
+3. PATIENCE PRACTICE
+Start a long-term project (1 year minimum).
+Take small steps every day, wait patiently for results.
 
-4. BEDEN ÇALIŞMASI
-Fiziksel emek ver - bahçe, inşaat, zanaat.
-Ter, karmik arınmanın fiziksel ifadesi.
+4. PHYSICAL LABOR
+Do physical work - gardening, construction, crafts.
+Sweat is the physical expression of karmic purification.
 
-5. BAŞKALARINA HİZMET
-Karşılıksız, gönüllü çalış. Ver ama alma beklentisi olmadan.
+5. SERVE OTHERS
+Work voluntarily, without expecting anything in return.
+Give but without expectation of receiving.
 ''',
     healingPractices: '''
-🙏 ŞİFA PRATİKLERİ
+🙏 HEALING PRACTICES
 
-GÜNLÜK PRATİK: SABAH DİSİPLİNİ
-- Her gün aynı saatte kalk (ne olursa olsun)
-- 10 dakika fiziksel egzersiz
-- Günün görevlerini yaz, akşam kontrol et
-- "Bugün çalışarak kazandığım için şükrediyorum" affirmasyonu
+DAILY PRACTICE: MORNING DISCIPLINE
+- Wake up at the same time every day (no matter what)
+- 10 minutes of physical exercise
+- Write the day's tasks, check them at night
+- Affirmation: "I am grateful for what I earned through work today"
 
-HAFTALIK PRATİK: EMEK MEDİTASYONU
-- Hafta sonunda, elleriyle bir şey yarat (yemek, zanaat, bahçe)
-- Yaratım sürecine odaklan, sonuç ikincil
-- Tamamladığında minnettarlık duy
+WEEKLY PRACTICE: LABOR MEDITATION
+- On weekends, create something with your hands (food, crafts, garden)
+- Focus on the creation process, result is secondary
+- Feel gratitude when completed
 
-AYLIK PRATİK: HESAP VERME
-- Ayın sonunda, başardıklarını ve başaramadıklarını yaz
-- Kendine dürüst ol, ama acımasız olma
-- Gelecek ay için gerçekçi hedefler koy
+MONTHLY PRACTICE: ACCOUNTABILITY
+- At month's end, write what you achieved and didn't achieve
+- Be honest with yourself, but not ruthless
+- Set realistic goals for next month
 
-KRİSTAL ÇALIŞMASI
-- Kırmızı jasper: İş enerjisi
-- Hematit: Topraklama ve disiplin
-- Sitrin: Motivasyon
+CRYSTAL WORK
+- Red jasper: Work energy
+- Hematite: Grounding and discipline
+- Citrine: Motivation
 ''',
     shadowManifestations: '''
-⚠️ GÖLGE MANIFESTASYONLARI
+⚠️ SHADOW MANIFESTATIONS
 
-13 karmik borcunu ödememek şu şekillerde ortaya çıkar:
+Not paying the 13 karmic debt manifests as:
 
-- Kronik işsizlik veya işten atılma
-- Projeleri yarıda bırakma
-- Başkalarına bağımlılık (finansal, duygusal)
-- "Şanssızlık" döngüsü
-- Fiziksel tembellik ve sağlık sorunları
-- Fırsatların kaçırılması
-- Maddi zorluklar ve borçlar
+- Chronic unemployment or getting fired
+- Leaving projects unfinished
+- Dependence on others (financial, emotional)
+- "Bad luck" cycles
+- Physical laziness and health problems
+- Missing opportunities
+- Financial difficulties and debts
 
-Bu belirtiler, borcun ödenmesi gerektiğinin işaretleri.
-Evren zorluyor çünkü öğrenmen gerekiyor.
+These symptoms are signs that the debt needs to be paid.
+The universe is pushing because you need to learn.
 ''',
     breakingThePattern: '''
-🔓 KALIPTAN KURTULUŞ
+🔓 BREAKING THE PATTERN
 
-13 döngüsünü kırmak için:
+To break the 13 cycle:
 
-1. FARKINDALIK
-"Ben tembellik kalıbı taşıyorum" - bunu kabul et.
-Reddetmek döngüyü güçlendirir.
+1. AWARENESS
+"I carry a laziness pattern" - accept this.
+Denial strengthens the cycle.
 
-2. KÜÇÜK BAŞLA
-Büyük hedefler yerine, günlük küçük taahhütler.
-Her gün 1 şey tamamla. Bu bile devrimdir.
+2. START SMALL
+Instead of big goals, daily small commitments.
+Complete 1 thing every day. Even this is revolutionary.
 
-3. HESAP VERME ORTAĞI
-Birini bul, hedeflerini paylaş, düzenli hesap ver.
-Tek başına zor - destek al.
+3. ACCOUNTABILITY PARTNER
+Find someone, share your goals, regularly be accountable.
+It's hard alone - get support.
 
-4. BAŞARISIZLIĞI KABUL ET
-Bazı günler başaramayacaksın. Bu normal.
-Önemli olan tekrar başlamak.
+4. ACCEPT FAILURE
+Some days you won't succeed. That's normal.
+What matters is starting again.
 
-5. KÜÇÜK BAŞARILARI KUTLA
-Her tamamlanan iş, bir karmik ödeme.
-Kendini takdir et, ama abartma.
+5. CELEBRATE SMALL VICTORIES
+Every completed task is a karmic payment.
+Appreciate yourself, but don't overdo it.
 ''',
     warningSign: [
-      'Kronik erteleme',
-      'İşten çıkarılma veya iş bulamama',
-      'Başladığın şeyleri bitirememe',
-      'Maddi bağımlılık',
-      'Fiziksel tembellik',
-      'Sürekli başkalarını suçlama',
+      'Chronic procrastination',
+      'Getting fired or inability to find work',
+      'Inability to finish what you start',
+      'Financial dependence',
+      'Physical laziness',
+      'Constantly blaming others',
     ],
   ),
 
   14: const KarmicDebtContent(
     number: 14,
-    title: 'Aşırılık ve Bağımlılık Borcu',
+    title: 'Excess and Addiction Debt',
     pastLifeDebt: '''
-🔄 GEÇMİŞ YAŞAM BORCU: AŞIRILIK VE BAĞIMLILIK
+🔄 PAST LIFE DEBT: EXCESS AND ADDICTION
 
-14 sayısı, geçmiş yaşamlarda özgürlüğü sorumsuzlukla karıştırma,
-aşırıya kaçma ve bağımlılık kalıplarını taşır. Belki de zevk peşinde
-koşarken başkalarını incittin. Belki de özgürlük adına her türlü sınırı
-yıktın.
+The number 14 carries patterns of confusing freedom with irresponsibility,
+going to extremes, and addiction from past lives. Perhaps you hurt others
+while chasing pleasure. Perhaps you tore down every boundary in the name
+of freedom.
 
-Bu hayatta, 14 "dengeli özgürlük" dersini getiriyor. Özgürlük,
-sorumsuzluk değil - bilinçli seçim yapabilmektir.
+In this life, 14 brings the lesson of "balanced freedom." Freedom is not
+irresponsibility - it's being able to make conscious choices.
 
-5'in macera enerjisi, kontrol edilmezse yıkıcı olabilir.
-Ama dengelendiğinde, değişimin ustası olursun.
+The adventure energy of 5, if uncontrolled, can be destructive.
+But when balanced, you become a master of change.
 ''',
     lessonsToLearn: '''
-📚 ÖĞRENILECEK DERSLER
+📚 LESSONS TO LEARN
 
-1. DENGE VE ÖLÇÜLÜLÜK
-Her şeyde orta yol. Ne aşırı tutku ne aşırı kaçınma.
-"Yeterli" kavramını öğrenmek.
+1. BALANCE AND MODERATION
+The middle way in everything. Neither excessive passion nor excessive avoidance.
+Learning the concept of "enough."
 
-2. ÖZGÜRLÜK VE SORUMLULUK
-Özgürlük, sorumsuzluk değil. Her seçimin sonucu var.
-Özgür olmak, sonuçları kabul etmek demek.
+2. FREEDOM AND RESPONSIBILITY
+Freedom is not irresponsibility. Every choice has consequences.
+Being free means accepting the results.
 
-3. BAĞIMLILIKTAN KURTULUŞ
-Madde, ilişki, aktivite - her türlü bağımlılığı tanımak.
-Kaçış aracı ile gerçek doyum arasındaki farkı bilmek.
+3. FREEDOM FROM ADDICTION
+Recognizing all types of addiction - substance, relationship, activity.
+Knowing the difference between escape tools and real satisfaction.
 
-4. DEĞİŞİMİ KABUL ETMEK
-Değişim kaçınılmaz - ama kontrollü değişim mümkün.
-Her değişiklik gerekli değil.
+4. ACCEPTING CHANGE
+Change is inevitable - but controlled change is possible.
+Not every change is necessary.
 ''',
     redemptionPath: '''
-🛤️ KURTULUŞ YOLU
+🛤️ REDEMPTION PATH
 
-14 karmik borcunu ödemek için:
+To pay the 14 karmic debt:
 
-1. BAĞIMLILIK HARİTASI
-Hayatındaki tüm bağımlılıkları yaz (madde, davranış, ilişki).
-Dürüst ol - kahveden sosyal medyaya her şey dahil.
+1. ADDICTION MAP
+Write all addictions in your life (substance, behavior, relationship).
+Be honest - everything from coffee to social media included.
 
-2. BİR ŞEYİ BIRAK
-En kolay bağımlılıkla başla, bilinçli olarak bırak.
-Başardığında, bir sonrakine geç.
+2. LET GO OF SOMETHING
+Start with the easiest addiction, consciously let go.
+When successful, move to the next.
 
-3. DENGE GÜNLÜĞÜ
-Her gün, aşırıya kaçtığın anları not et.
-Farkındalık, değişimin ilk adımı.
+3. BALANCE JOURNAL
+Every day, note the moments you went to extremes.
+Awareness is the first step of change.
 
-4. SINIR KOYMA
-"Hayır" demeyi öğren. Kendine ve başkalarına.
-Sınırsız özgürlük, hapishane olur.
+4. SET BOUNDARIES
+Learn to say "no." To yourself and others.
+Unlimited freedom becomes a prison.
 
-5. SAĞLIKLI MACERA
-Adrenalini güvenli yollarla karşıla.
-Spor, seyahat, yeni beceriler - yıkıcı olmadan heyecan.
+5. HEALTHY ADVENTURE
+Meet adrenaline through safe ways.
+Sports, travel, new skills - excitement without destruction.
 ''',
     healingPractices: '''
-🙏 ŞİFA PRATİKLERİ
+🙏 HEALING PRACTICES
 
-GÜNLÜK PRATİK: DENGE NEFESI
-- Günde 3 kez, 5'er dakika
-- 4 saniye nefes al, 4 saniye tut, 4 saniye ver
-- Denge ve kontrol niyetiyle
+DAILY PRACTICE: BALANCE BREATH
+- 3 times a day, 5 minutes each
+- Inhale 4 seconds, hold 4 seconds, exhale 4 seconds
+- With intention of balance and control
 
-HAFTALIK PRATİK: DETOKS GÜNÜ
-- Haftada bir gün, bir şeyden uzak dur
-- Teknoloji, şeker, alkol, sosyal medya - seç ve uygula
-- Bağımlılık olmadan da yaşayabileceğini hatırla
+WEEKLY PRACTICE: DETOX DAY
+- One day a week, stay away from something
+- Technology, sugar, alcohol, social media - choose and apply
+- Remember you can live without addiction
 
-AYLIK PRATİK: BAĞIMLILIK İNCELEMESİ
-- Ayda bir, hayatındaki bağımlılıkları gözden geçir
-- Hangisi azaldı, hangisi arttı?
-- Stratejini güncelle
+MONTHLY PRACTICE: ADDICTION REVIEW
+- Once a month, review addictions in your life
+- Which decreased, which increased?
+- Update your strategy
 
-KRİSTAL ÇALIŞMASI
-- Ametist: Bağımlılık şifası
-- Siyah turmalin: Koruma ve topraklama
-- Lepidolit: Duygusal denge
+CRYSTAL WORK
+- Amethyst: Addiction healing
+- Black tourmaline: Protection and grounding
+- Lepidolite: Emotional balance
 ''',
     shadowManifestations: '''
-⚠️ GÖLGE MANIFESTASYONLARI
+⚠️ SHADOW MANIFESTATIONS
 
-14 karmik borcunu ödememek şu şekillerde ortaya çıkar:
+Not paying the 14 karmic debt manifests as:
 
-- Madde bağımlılığı (alkol, uyuşturucu)
-- Davranış bağımlılığı (kumar, seks, alışveriş)
-- İlişki bağımlılığı (obsesif aşk)
-- Sürekli değişiklik ve istikrarsızlık
-- Aşırı risk alma ve kazalar
-- İlişkilerde kaos
-- Sağlık sorunları (aşırılıktan)
+- Substance addiction (alcohol, drugs)
+- Behavioral addiction (gambling, sex, shopping)
+- Relationship addiction (obsessive love)
+- Constant change and instability
+- Excessive risk-taking and accidents
+- Chaos in relationships
+- Health problems (from excess)
 
-Bu belirtiler, borcun ödenmesi gerektiğinin işaretleri.
+These symptoms are signs that the debt needs to be paid.
 ''',
     breakingThePattern: '''
-🔓 KALIPTAN KURTULUŞ
+🔓 BREAKING THE PATTERN
 
-14 döngüsünü kırmak için:
+To break the 14 cycle:
 
-1. DÜRÜSTLÜK
-"Ben aşırıya kaçma eğilimindeyim" - kabul et.
-Bağımlılık varsa, profesyonel yardım al.
+1. HONESTY
+"I have a tendency to go to extremes" - accept it.
+If there's addiction, get professional help.
 
-2. TETIKLEYICILERI TANI
-Hangi durumlarda aşırıya kaçıyorsun?
-Duygusal, çevresel, sosyal tetikleyicileri öğren.
+2. RECOGNIZE TRIGGERS
+In which situations do you go to extremes?
+Learn emotional, environmental, social triggers.
 
-3. ALTERNATİFLER OLUŞTUR
-Kaçış aracı yerine sağlıklı doyum kaynakları bul.
-Liste yap, erişilebilir tut.
+3. CREATE ALTERNATIVES
+Find healthy sources of satisfaction instead of escape tools.
+Make a list, keep it accessible.
 
-4. DESTEK SISTEMI
-Yalnız savaşma. Destek grubu, terapist, güvenilir arkadaş.
-Zayıflık değil, bilgelik.
+4. SUPPORT SYSTEM
+Don't fight alone. Support group, therapist, trusted friend.
+Not weakness, wisdom.
 
-5. BİR SEFERDE BİR GÜN
-Büyük hedefler yerine, bugün dengeli kal.
-Her gün yeni bir başlangıç.
+5. ONE DAY AT A TIME
+Instead of big goals, stay balanced today.
+Every day is a new beginning.
 ''',
     warningSign: [
-      'Madde kullanımı artışı',
-      'Kontrol kaybı anları',
-      'İlişkilerde kaos',
-      'Sürekli değişiklik arayışı',
-      'Finansal sorumsuzluk',
-      'Aşırı risk alma',
+      'Increased substance use',
+      'Moments of loss of control',
+      'Chaos in relationships',
+      'Constant search for change',
+      'Financial irresponsibility',
+      'Excessive risk-taking',
     ],
   ),
 
   16: const KarmicDebtContent(
     number: 16,
-    title: 'Ego Yıkımı ve Yeniden Doğuş Borcu',
+    title: 'Ego Destruction and Rebirth Debt',
     pastLifeDebt: '''
-🔄 GEÇMİŞ YAŞAM BORCU: KİBİR VE DÜŞÜŞ
+🔄 PAST LIFE DEBT: ARROGANCE AND FALL
 
-16 sayısı, geçmiş yaşamlarda ego şişkinliği, kibir ve başkalarını
-küçümseme kalıplarını taşır. Belki de güç pozisyonunu kötüye kullandın.
-Belki de "ben daha iyiyim" tutumu ile başkalarını incittin.
+The number 16 carries patterns of ego inflation, arrogance, and belittling
+others from past lives. Perhaps you abused a position of power.
+Perhaps you hurt others with an "I'm better" attitude.
 
-Bu hayatta, 16 "ego'nun yıkılması" dersini getiriyor. Evren, yapay
-benliğini yıkarak gerçek benliğine ulaşmanı sağlıyor.
+In this life, 16 brings the lesson of "ego destruction." The universe
+is helping you reach your true self by destroying your false self.
 
-Bu, tüm karmik borçların en zoru ama en dönüştürücüsüdür.
-Yıkımdan sonra yeniden doğuş gelir.
+This is the hardest but most transformative of all karmic debts.
+After destruction comes rebirth.
 ''',
     lessonsToLearn: '''
-📚 ÖĞRENILECEK DERSLER
+📚 LESSONS TO LEARN
 
-1. ALÇAKGÖNÜLLÜLÜK
-Ego, senin düşmanın değil - ama efendin de değil.
-Sağlıklı benlik ile şişmiş ego arasındaki farkı öğrenmek.
+1. HUMILITY
+Ego is not your enemy - but not your master either.
+Learning the difference between healthy self and inflated ego.
 
-2. DÜŞÜŞÜ KABUL ETMEK
-Hayat, seni yıkacak. Bu kötü değil - arınma.
-Düşüş, yükselişin ön koşulu.
+2. ACCEPTING THE FALL
+Life will break you down. This is not bad - it's purification.
+Fall is the prerequisite for rise.
 
-3. GERÇEKLİKLE YÜZLEŞME
-İllüzyonları bırakmak. Kendini olduğun gibi görmek.
-Acı verici ama özgürleştirici.
+3. FACING REALITY
+Letting go of illusions. Seeing yourself as you are.
+Painful but liberating.
 
-4. YENİDEN İNŞA
-Yıkımdan sonra, daha sağlam temeller üzerinde yeniden kurmak.
-Bu sefer ego değil, ruh merkezli.
+4. REBUILDING
+After destruction, rebuilding on stronger foundations.
+This time soul-centered, not ego-centered.
 ''',
     redemptionPath: '''
-🛤️ KURTULUŞ YOLU
+🛤️ REDEMPTION PATH
 
-16 karmik borcunu ödemek için:
+To pay the 16 karmic debt:
 
-1. EGO ENVANTER
-Kibirli, üstünlük tasladığın anları hatırla ve yaz.
-Acıtacak ama gerekli.
+1. EGO INVENTORY
+Remember and write moments of arrogance and superiority.
+It will hurt but it's necessary.
 
-2. ÖZÜR PRATİĞİ
-Geçmişte incittiğin insanlara özür dile (mümkünse).
-Değilse, meditasyonda özür gönder.
+2. APOLOGY PRACTICE
+Apologize to people you've hurt in the past (if possible).
+If not, send apologies in meditation.
 
-3. HİZMET
-Ego'nun hoşlanmayacağı işler yap. Mütevazı hizmet.
-Statüsüz, tanınmasız yardım.
+3. SERVICE
+Do work your ego won't like. Humble service.
+Help without status, without recognition.
 
-4. BAŞARISIZLIĞI KUCAKLA
-Bir projede bilinçli olarak "başarısız" ol.
-Mükemmel olmak zorunda olmadığını deneyimle.
+4. EMBRACE FAILURE
+Consciously "fail" at a project.
+Experience that you don't have to be perfect.
 
-5. ÖĞRETMEN BUL
-Ego'nu ezecek bir öğretmen, bir yol, bir pratik bul.
-Zen, tasavvuf, bhakti - ego eritme gelenekleri.
+5. FIND A TEACHER
+Find a teacher, a path, a practice that will crush your ego.
+Zen, Sufism, bhakti - ego-dissolving traditions.
 ''',
     healingPractices: '''
-🙏 ŞİFA PRATİKLERİ
+🙏 HEALING PRACTICES
 
-GÜNLÜK PRATİK: ALÇAKGÖNÜLLÜLÜK MEDİTASYONU
-- Her sabah, aynada kendine bak
-- "Ben öğreniyorum, ben büyüyorum, ben mükemmel değilim" de
-- Gün içinde alçakgönüllü bir eylem yap
+DAILY PRACTICE: HUMILITY MEDITATION
+- Every morning, look at yourself in the mirror
+- Say "I am learning, I am growing, I am not perfect"
+- Do a humble act during the day
 
-HAFTALIK PRATİK: ANONİM HİZMET
-- Haftada bir, tanınmadan yardım et
-- Teşekkür bekleme, hatta kaçın
-- Vermenin saf halini deneyimle
+WEEKLY PRACTICE: ANONYMOUS SERVICE
+- Once a week, help without being recognized
+- Don't expect thanks, even avoid it
+- Experience the pure form of giving
 
-AYLIK PRATİK: EGO ÖLÜRKMAYERİ
-- Ayda bir gün, tüm statü sembollerini bırak
-- Basit giysi, basit yemek, sessizlik
-- "Ben"siz bir gün geçir
+MONTHLY PRACTICE: EGO DEATH DAY
+- One day a month, let go of all status symbols
+- Simple clothes, simple food, silence
+- Spend a day without "I"
 
-KRİSTAL ÇALIŞMASI
-- Labradorit: Ego dönüşümü
-- Obsidyen: Gölge çalışması
-- Kyanit: Gerçekle yüzleşme
+CRYSTAL WORK
+- Labradorite: Ego transformation
+- Obsidian: Shadow work
+- Kyanite: Facing reality
 ''',
     shadowManifestations: '''
-⚠️ GÖLGE MANIFESTASYONLARI
+⚠️ SHADOW MANIFESTATIONS
 
-16 karmik borcunu ödememek şu şekillerde ortaya çıkar:
+Not paying the 16 karmic debt manifests as:
 
-- Ani ve sert düşüşler (kariyer, ilişki, sağlık)
-- Tekrarlayan "her şeyi kaybetme" deneyimleri
-- Narsisistik eğilimler
-- İlişkilerde sürekli çatışma
-- Yalnızlık ve izolasyon
-- Depresyon ve anlamsızlık
-- Skandallar ve itibar kaybı
+- Sudden and harsh falls (career, relationship, health)
+- Repeated "losing everything" experiences
+- Narcissistic tendencies
+- Constant conflict in relationships
+- Loneliness and isolation
+- Depression and meaninglessness
+- Scandals and loss of reputation
 
-16, evrenin "şok terapisi". Ne kadar direnirsen, o kadar sert gelir.
+16 is the universe's "shock therapy." The more you resist, the harder it comes.
 ''',
     breakingThePattern: '''
-🔓 KALIPTAN KURTULUŞ
+🔓 BREAKING THE PATTERN
 
-16 döngüsünü kırmak için:
+To break the 16 cycle:
 
-1. TESLIM OL
-Düşüşe direnme. Evrenin seni yeniden şekillendirmesine izin ver.
-"Benim iradem değil, senin iraden olsun."
+1. SURRENDER
+Don't resist the fall. Let the universe reshape you.
+"Not my will, but yours be done."
 
-2. GÖLGEYİ KUCAKLA
-En utandığın, en reddettiğin yanlarınla tanış.
-Gölge çalışması, ego eritmenin yolu.
+2. EMBRACE THE SHADOW
+Meet your most shameful, most rejected parts.
+Shadow work is the way to dissolve ego.
 
-3. MİNNETTARLIK PRATİĞİ
-Her düşüşte, öğrendiğin bir şey bul.
-"Bu bana ne öğretiyor?" sor.
+3. GRATITUDE PRACTICE
+In every fall, find something you learned.
+Ask "What is this teaching me?"
 
-4. YENİDEN TANIM
-"Ben kimim" sorusunu ego'suz cevapla.
-Başarılar, statüler, roller olmadan sen kimsin?
+4. REDEFINE
+Answer "Who am I" without ego.
+Who are you without achievements, statuses, roles?
 
-5. SABIR
-Yeniden doğuş zaman alır. Acele etme.
-Krizden hemen sonra büyük kararlar verme.
+5. PATIENCE
+Rebirth takes time. Don't rush.
+Don't make big decisions right after crisis.
 ''',
     warningSign: [
-      'Kibir ve üstünlük duygusu',
-      'Başkalarını küçümseme',
-      'İlişkilerde hakimiyet kurma',
-      'Eleştiriye aşırı tepki',
-      'Başarısızlıktan aşırı korku',
-      'İmaj takıntısı',
+      'Arrogance and superiority complex',
+      'Belittling others',
+      'Dominance in relationships',
+      'Overreaction to criticism',
+      'Excessive fear of failure',
+      'Image obsession',
     ],
   ),
 
   19: const KarmicDebtContent(
     number: 19,
-    title: 'Güç Kötüye Kullanımı Borcu',
+    title: 'Power Abuse Debt',
     pastLifeDebt: '''
-🔄 GEÇMİŞ YAŞAM BORCU: GÜÇ KÖTÜYE KULLANIMI
+🔄 PAST LIFE DEBT: POWER ABUSE
 
-19 sayısı, geçmiş yaşamlarda gücü kötüye kullanma, baskıcılık ve
-başkalarının iradesini çiğneme kalıplarını taşır. Belki de tiran,
-diktatör veya manipülatör oldun. Belki de başkalarının üzerinde
-kontrolü kendi çıkarın için kullandın.
+The number 19 carries patterns of abusing power, oppression, and trampling
+others' will from past lives. Perhaps you were a tyrant, dictator, or
+manipulator. Perhaps you used control over others for your own benefit.
 
-Bu hayatta, 19 "güçle hizmet" dersini getiriyor. Güç yok olmayacak -
-ama nasıl kullanacağını öğrenmen gerekiyor.
+In this life, 19 brings the lesson of "power through service." Power won't
+disappear - but you need to learn how to use it.
 
-1 ve 9'un birleşimi: Liderlik gücü (1) + evrensel sorumluluk (9).
-Bu, dönüştürülmüş güç potansiyelidir.
+Combination of 1 and 9: Leadership power (1) + universal responsibility (9).
+This is transformed power potential.
 ''',
     lessonsToLearn: '''
-📚 ÖĞRENILECEK DERSLER
+📚 LESSONS TO LEARN
 
-1. GÜÇ VE HİZMET
-Güç, egonun oyuncağı değil, hizmetin aracıdır.
-"Bu güç kime hizmet ediyor?" sorusunu sürekli sor.
+1. POWER AND SERVICE
+Power is not the ego's toy, but an instrument of service.
+Constantly ask "Whom does this power serve?"
 
-2. BAĞIMSIZLIK VE BAĞIMLILIK DENGESİ
-Kendi ayaklarının üzerinde durmak, ama başkalarına kapanmamak.
-Yardım almak zayıflık değil.
+2. INDEPENDENCE AND INTERDEPENDENCE BALANCE
+Standing on your own feet, but not closing off to others.
+Accepting help is not weakness.
 
-3. KONTROL BIRAKMAK
-Her şeyi kontrol edemezsin - ve bu iyi bir şey.
-Evrenin akışına güvenmek.
+3. LETTING GO OF CONTROL
+You can't control everything - and that's a good thing.
+Trusting the flow of the universe.
 
-4. KARMA FARKINDALIĞI
-Yapılan geri döner. Her eylem, bir karşı eylem yaratır.
-Bu farkındalıkla yaşamak.
+4. KARMIC AWARENESS
+What goes around comes around. Every action creates a reaction.
+Living with this awareness.
 ''',
     redemptionPath: '''
-🛤️ KURTULUŞ YOLU
+🛤️ REDEMPTION PATH
 
-19 karmik borcunu ödemek için:
+To pay the 19 karmic debt:
 
-1. GÜÇ ANALİZİ
-Gücünü nerede ve nasıl kullanıyorsun?
-Dürüstçe değerlendir - kontrol mü, hizmet mi?
+1. POWER ANALYSIS
+Where and how do you use your power?
+Honestly evaluate - control or service?
 
-2. GÜCÜ PAYLAŞ
-Başkalarını güçlendir. Mentörlük yap.
-Gücünü, başkalarının gücünü artırmak için kullan.
+2. SHARE POWER
+Empower others. Mentor.
+Use your power to increase others' power.
 
-3. YARDIM KABUL ET
-Bilinçli olarak yardım iste.
-Tek başına yapabileceğin bir şeyi, başkasıyla yap.
+3. ACCEPT HELP
+Consciously ask for help.
+Do something you could do alone, with someone else.
 
-4. SONUÇLARI KUCAKLA
-Eylemlerinin sonuçlarını tam olarak sahiplen.
-Suçlama, kaçınma yok.
+4. EMBRACE CONSEQUENCES
+Fully own the results of your actions.
+No blaming, no avoiding.
 
-5. KOŞULSUZ VER
-Karşılık beklemeden güç ve kaynakların paylaş.
-Kontrol etmeden ver.
+5. GIVE UNCONDITIONALLY
+Share power and resources without expecting return.
+Give without controlling.
 ''',
     healingPractices: '''
-🙏 ŞİFA PRATİKLERİ
+🙏 HEALING PRACTICES
 
-GÜNLÜK PRATİK: GÜÇ NİYETİ
-- Her sabah, gücünü nasıl kullanacağına niyet koy
-- "Bugün gücümü hizmet için kullanacağım"
-- Gün sonunda değerlendir
+DAILY PRACTICE: POWER INTENTION
+- Every morning, set intention for how you'll use your power
+- "Today I will use my power for service"
+- Evaluate at day's end
 
-HAFTALIK PRATİK: GÜÇLENDİRME
-- Haftada bir kişiyi bilinçli olarak güçlendir
-- Bilgi paylaş, destek ol, alan aç
-- Kendi parlaman için değil, onların parlaması için
+WEEKLY PRACTICE: EMPOWERMENT
+- Consciously empower one person each week
+- Share knowledge, be supportive, make space
+- Not for your own shine, but for theirs
 
-AYLIK PRATİK: GÜÇ DENGESİ İNCELEMESİ
-- Ayda bir, güç ilişkilerini gözden geçir
-- Nerede dominant, nerede boyun eğen?
-- Denge için ne gerekiyor?
+MONTHLY PRACTICE: POWER BALANCE REVIEW
+- Once a month, review power relationships
+- Where are you dominant, where submissive?
+- What's needed for balance?
 
-KRİSTAL ÇALIŞMASI
-- Siyah turmalin: Güç koruması
-- Rodonit: Güç ve şefkat dengesi
-- Seleneit: Arınma ve aydınlanma
+CRYSTAL WORK
+- Black tourmaline: Power protection
+- Rhodonite: Power and compassion balance
+- Selenite: Purification and enlightenment
 ''',
     shadowManifestations: '''
-⚠️ GÖLGE MANIFESTASYONLARI
+⚠️ SHADOW MANIFESTATIONS
 
-19 karmik borcunu ödememek şu şekillerde ortaya çıkar:
+Not paying the 19 karmic debt manifests as:
 
-- Güç mücadeleleri ve çatışmalar
-- İlişkilerde kontrol sorunları
-- Otoritelerle çatışma
-- Yalnızlık ve izolasyon (kimseye güvenmeme)
-- Başkalarını manipüle etme
-- Paranoya ve şüphecilik
-- Liderlik fırsatlarının kaybı
+- Power struggles and conflicts
+- Control issues in relationships
+- Conflict with authorities
+- Loneliness and isolation (not trusting anyone)
+- Manipulating others
+- Paranoia and suspicion
+- Loss of leadership opportunities
 
-19, güç paradoksudur. Ne kadar kontrol etmeye çalışırsan,
-o kadar kontrolü kaybedersin.
+19 is the power paradox. The more you try to control,
+the more you lose control.
 ''',
     breakingThePattern: '''
-🔓 KALIPTAN KURTULUŞ
+🔓 BREAKING THE PATTERN
 
-19 döngüsünü kırmak için:
+To break the 19 cycle:
 
-1. GÜÇ TANIMI
-Gerçek güç nedir? Kontrol değil - etki.
-Zorlamak değil - ilham vermek.
+1. POWER DEFINITION
+What is real power? Not control - influence.
+Not forcing - inspiring.
 
-2. GÜVEN İNŞA ET
-Bir kişiye tam güven ver. Risk al.
-Güven, kontrol illüzyonunu kırar.
+2. BUILD TRUST
+Give complete trust to one person. Take a risk.
+Trust breaks the illusion of control.
 
-3. ZAYIFLIK GÖSTER
-Kırılganlığını paylaş. Hata kabul et.
-Bu, gerçek gücün işareti.
+3. SHOW VULNERABILITY
+Share your fragility. Admit mistakes.
+This is the sign of real power.
 
-4. HİZMET LİDERLİĞİ
-Liderliği hizmet olarak yeniden tanımla.
-En önde koşan değil, herkesi taşıyan ol.
+4. SERVANT LEADERSHIP
+Redefine leadership as service.
+Not the one running in front, but the one carrying everyone.
 
-5. KARMA TEMİZLİĞİ
-Geçmişte gücünü kötüye kullandığın durumları hatırla.
-Özür dile, telafi et, öğren.
+5. KARMIC CLEANSING
+Remember situations where you abused your power.
+Apologize, compensate, learn.
 ''',
     warningSign: [
-      'Kontrolcü davranışlar',
-      'Manipülasyon eğilimi',
-      'Güç mücadeleleri',
-      'Yalnızlık tercihi (güvensizlikten)',
-      'Başkalarını küçük görme',
-      'Otorite sorunları',
+      'Controlling behaviors',
+      'Manipulation tendency',
+      'Power struggles',
+      'Preference for loneliness (from distrust)',
+      'Looking down on others',
+      'Authority issues',
     ],
   ),
 };
 
 // ════════════════════════════════════════════════════════════════════════════════
-// BÖLÜM 5: KİŞİSEL YIL DÖNGÜLERI (1-9)
+// SECTION 5: PERSONAL YEAR CYCLES (1-9)
 // ════════════════════════════════════════════════════════════════════════════════
 
-/// Kişisel Yıl içerik modeli
+/// Personal Year content model
 class PersonalYearContent {
   final int number;
   final String title;
@@ -6002,113 +6005,113 @@ class PersonalYearContent {
   });
 }
 
-/// Kişisel Yıl İçerikleri
+/// Personal Year Contents
 final Map<int, PersonalYearContent> personalYearContents = {
   1: const PersonalYearContent(
     number: 1,
-    title: 'Yeni Başlangıçlar Yılı',
-    theme: 'Tohumlar Ekmek',
+    title: 'Year of New Beginnings',
+    theme: 'Planting Seeds',
     overview: '''
-🌱 KİŞİSEL YIL 1: YENİ DÖNGÜNÜN BAŞLANGICI
+🌱 PERSONAL YEAR 1: BEGINNING OF A NEW CYCLE
 
-9 yıllık döngünün ilk yılı - her şey taze, her şey mümkün. Bu yıl
-attığın tohumlar, önümüzdeki 9 yıl boyunca büyüyecek. O yüzden
-neyin tohumunu ektiğine dikkat et.
+The first year of the 9-year cycle - everything is fresh, everything is
+possible. The seeds you plant this year will grow over the next 9 years.
+So be mindful of what seeds you plant.
 
-Bu yıl, geçmişi arkanda bırakma ve geleceğe cesaretle bakma zamanı.
-Ertelediğin projeleri başlat, yeni kapıları aç, risk al.
+This year is a time to leave the past behind and look boldly to the future.
+Start projects you've been postponing, open new doors, take risks.
 
-Enerji: Yaratıcı, başlatıcı, bağımsız
-Element: Ateş
-Renk: Kırmızı, Altın
-Planet: Güneş
+Energy: Creative, initiating, independent
+Element: Fire
+Color: Red, Gold
+Planet: Sun
 ''',
     bestActivities: '''
-Bu yıl için ideal aktiviteler:
-• Yeni iş veya proje başlatma
-• Kendi işini kurma
-• Bağımsız kararlar alma
-• Yeni beceriler öğrenme
-• Fiziksel görünümü değiştirme
-• Yeni ilişkiler başlatma
-• Seyahat ve keşif
-• Liderlik pozisyonları üstlenme
+Ideal activities for this year:
+• Starting new business or projects
+• Establishing your own business
+• Making independent decisions
+• Learning new skills
+• Changing physical appearance
+• Starting new relationships
+• Travel and exploration
+• Taking on leadership positions
 ''',
     challenges: '''
-Bu yılın zorlukları:
-• Sabırsızlık (her şey hemen olsun)
-• Aşırı bağımsızlık (yardım reddetme)
-• Ego şişkinliği
-• Çok fazla proje başlatıp hiçbirini bitirmeme
-• Geçmişe takılı kalma
+This year's challenges:
+• Impatience (wanting everything immediately)
+• Excessive independence (refusing help)
+• Ego inflation
+• Starting too many projects and finishing none
+• Getting stuck in the past
 ''',
     opportunities: '''
-Bu yılın fırsatları:
-• Kariyer sıçraması
-• Yeni ortaklıklar
-• Kişisel marka oluşturma
-• Liderlik gelişimi
-• Yaratıcı projeler
-• Kendi yolunu çizme
+This year's opportunities:
+• Career advancement
+• New partnerships
+• Building personal brand
+• Leadership development
+• Creative projects
+• Charting your own path
 ''',
     relationships: '''
-İlişkilerde 1 yılı:
-• Yeni ilişkiler için ideal
-• Mevcut ilişkilerde yeni başlangıçlar
-• Bağımsızlık ve birliktelik dengesi
-• Dominant olmaktan kaçın
-• İlişkiye liderlik getir, diktatörlük değil
+Year 1 in relationships:
+• Ideal for new relationships
+• New beginnings in existing relationships
+• Balance between independence and togetherness
+• Avoid being dominant
+• Bring leadership to relationships, not dictatorship
 ''',
     career: '''
-Kariyerde 1 yılı:
-• Yeni iş fırsatları
-• Terfi potansiyeli
-• Kendi işini kurma zamanı
-• Yeni projelere liderlik
-• İş değişikliği için uygun
-• İnovasyon ve yaratıcılık
+Year 1 in career:
+• New job opportunities
+• Promotion potential
+• Time to start your own business
+• Leading new projects
+• Suitable for job changes
+• Innovation and creativity
 ''',
     health: '''
-Sağlıkta 1 yılı:
-• Yeni egzersiz rutini başlat
-• Diyet değişikliği için uygun
-• Baş ve kalp sağlığına dikkat
-• Stres yönetimi önemli
-• Enerjin yüksek ama dengelemek gerek
+Year 1 in health:
+• Start a new exercise routine
+• Suitable for diet changes
+• Pay attention to head and heart health
+• Stress management is important
+• Your energy is high but needs balancing
 ''',
     spiritualFocus: '''
-Spiritüel odak:
-• Yeni spiritüel pratikler keşfet
-• Bireysel meditasyon
-• Güneş enerjisiyle çalış
-• İrade ve niyet çalışmaları
-• "Ben kimim?" sorusunu sor
+Spiritual focus:
+• Explore new spiritual practices
+• Individual meditation
+• Work with sun energy
+• Will and intention work
+• Ask "Who am I?"
 ''',
   ),
 
-  // Diğer kişisel yıl içerikleri (2-9) eklenecek
+  // Content for other personal years (2-9) to be added
 };
 
 // ════════════════════════════════════════════════════════════════════════════════
-// BÖLÜM 6: EZOTERİK NUMEROLOJİ
+// SECTION 6: ESOTERIC NUMEROLOGY
 // ════════════════════════════════════════════════════════════════════════════════
 
-/// Ezoterik Numeroloji Bilgi Bankası
+/// Esoteric Numerology Knowledge Base
 class EsotericNumerology {
-  /// Pisagor Mistisizmi
+  /// Pythagorean Mysticism
   static const String pythagoreanMysticism = '''
 ═══════════════════════════════════════════════════════════════
-PİSAGOR MİSTİSİZMİ VE SAYILARIN GİZLİ ÖĞRETİSİ
+PYTHAGOREAN MYSTICISM AND THE SECRET TEACHINGS OF NUMBERS
 ═══════════════════════════════════════════════════════════════
 
-Pisagor (MÖ 570-495), sadece matematikçi değil, aynı zamanda mistik
-bir okul kurucusuydu. Pisagorculuk, sayıların evrenin temel yapı
-taşları olduğunu öğretiyordu.
+Pythagoras (570-495 BC) was not only a mathematician but also the founder
+of a mystical school. Pythagoreanism taught that numbers were the
+fundamental building blocks of the universe.
 
-"Her şey sayıdır" - Pisagor
+"All is number" - Pythagoras
 
-TETRACTYS: KUTSAL 10
-Pisagor'un en kutsal sembolü Tetractys'ti:
+TETRACTYS: THE SACRED 10
+Pythagoras's most sacred symbol was the Tetractys:
         *
        * *
       * * *
@@ -6116,437 +6119,437 @@ Pisagor'un en kutsal sembolü Tetractys'ti:
 
 1 + 2 + 3 + 4 = 10
 
-Bu, evrenin yapısını gösteriyordu:
-• 1 (Monad): Birlik, kaynak, nokta
-• 2 (Dyad): Dualite, çizgi, karşıtlık
-• 3 (Triad): Harmoni, yüzey, denge
-• 4 (Tetrad): Madde, katı, dünya
+This showed the structure of the universe:
+• 1 (Monad): Unity, source, point
+• 2 (Dyad): Duality, line, opposition
+• 3 (Triad): Harmony, surface, balance
+• 4 (Tetrad): Matter, solid, world
 
-SAYILARIN DOĞASI
-Pisagorculara göre sayılar sadece miktar değil, nitelik taşıyordu:
+THE NATURE OF NUMBERS
+According to Pythagoreans, numbers carried not just quantity but quality:
 
-TEK SAYILAR (1, 3, 5, 7, 9): Erkil, aktif, güneş
-ÇİFT SAYILAR (2, 4, 6, 8): Dişil, pasif, ay
+ODD NUMBERS (1, 3, 5, 7, 9): Masculine, active, sun
+EVEN NUMBERS (2, 4, 6, 8): Feminine, passive, moon
 
-MÜKEMMELLİK SAYILARI
-6 ilk "mükemmel sayı": 1+2+3=6, aynı zamanda 1x2x3=6
-28 ikinci mükemmel sayı: 1+2+4+7+14=28
+PERFECT NUMBERS
+6 is the first "perfect number": 1+2+3=6, also 1x2x3=6
+28 is the second perfect number: 1+2+4+7+14=28
 
-GİZLİ ÖĞRETİLER
-Pisagor okulu, sayıların mistik güçlerine inanırdı:
-• 1: Yaratıcı güç, tanrısal kaynak
-• 2: İlk bölünme, dişil prensip
-• 3: İlk erkil sayı (çünkü başı, ortası, sonu var)
-• 4: Adalet, kare, stabilite
-• 5: Evlilik (2+3), insan (kol, bacak, kafa)
-• 6: Mükemmellik, yaratılış
-• 7: Şans, mistik güç, spiritüel
-• 8: Maddi başarı, sonsuzluk
-• 9: Tamamlanma, evrensellik
-• 10: Yeni başlangıç, mükemmel döngü
+SECRET TEACHINGS
+The Pythagorean school believed in the mystical powers of numbers:
+• 1: Creative power, divine source
+• 2: First division, feminine principle
+• 3: First masculine number (because it has beginning, middle, end)
+• 4: Justice, square, stability
+• 5: Marriage (2+3), human (arms, legs, head)
+• 6: Perfection, creation
+• 7: Luck, mystical power, spiritual
+• 8: Material success, infinity
+• 9: Completion, universality
+• 10: New beginning, perfect cycle
 
-Pisagor öğretileri, modern numerolojinin temelidir.
+Pythagorean teachings are the foundation of modern numerology.
 ''';
 
-  /// Kabalistik Bağlantılar
+  /// Kabbalistic Connections
   static const String kabbalisticConnections = '''
 ═══════════════════════════════════════════════════════════════
-KABALİSTİK NUMEROLOJİ VE HAYAT AĞACI
+KABBALISTIC NUMEROLOGY AND THE TREE OF LIFE
 ═══════════════════════════════════════════════════════════════
 
-Kabala (İbranice: קבלה, "almak/kabul etmek"), Yahudi mistisizminin
-kalbidir. Numeroloji, Kabala'nın temel pratiklerinden biridir.
+Kabbalah (Hebrew: קבלה, "to receive/accept") is the heart of Jewish
+mysticism. Numerology is one of Kabbalah's fundamental practices.
 
-GEMATRIA: HARFLERİN SAYISAL DEĞERİ
-İbranice her harf bir sayı değeri taşır. Aynı sayısal değere sahip
-kelimeler, mistik olarak bağlantılıdır.
+GEMATRIA: THE NUMERICAL VALUE OF LETTERS
+Every Hebrew letter carries a numerical value. Words with the same
+numerical value are mystically connected.
 
-HAYAT AĞACI (ETZ CHAIM) VE 10 SEFİRA
-Kabalistik evren, 10 sefira (emanasyon) ile tanımlanır:
+THE TREE OF LIFE (ETZ CHAIM) AND THE 10 SEFIROT
+The Kabbalistic universe is defined by 10 sefirot (emanations):
 
-1. KETHER (Taç) - Saf varlık, kaynak
-2. CHOKMAH (Bilgelik) - Yaratıcı ilham, erkil
-3. BINAH (Anlayış) - Form verme, dişil
-4. CHESED (Merhamet) - Genişleme, sevgi
-5. GEBURAH (Güç) - Sınır, yargı
-6. TIPHERETH (Güzellik) - Denge, uyum (merkez)
-7. NETZACH (Zafer) - Sebat, doğa
-8. HOD (Görkem) - İletişim, mantık
-9. YESOD (Temel) - Bilinçaltı, rüyalar
-10. MALKUTH (Krallık) - Fiziksel dünya
+1. KETHER (Crown) - Pure being, source
+2. CHOKMAH (Wisdom) - Creative inspiration, masculine
+3. BINAH (Understanding) - Giving form, feminine
+4. CHESED (Mercy) - Expansion, love
+5. GEBURAH (Strength) - Boundary, judgment
+6. TIPHERETH (Beauty) - Balance, harmony (center)
+7. NETZACH (Victory) - Perseverance, nature
+8. HOD (Splendor) - Communication, logic
+9. YESOD (Foundation) - Subconscious, dreams
+10. MALKUTH (Kingdom) - Physical world
 
-NUMEROLOJİ VE SEFİROT
-Yaşam yolu sayınız, size en yakın sefira ile rezonans yapar:
-• 1: Kether - kaynak, birlik
-• 2: Chokmah - bilgelik, başlangıç
-• 3: Binah - anlayış, form
-• 4: Chesed - merhamet, genişleme
-• 5: Geburah - güç, sınır
-• 6: Tiphereth - güzellik, denge
-• 7: Netzach - zafer, doğa
-• 8: Hod - görkem, iletişim
-• 9: Yesod - temel, bilinçaltı
-• 10 (1+0=1): Malkuth ve Kether - döngü
+NUMEROLOGY AND SEFIROT
+Your life path number resonates with the closest sefira:
+• 1: Kether - source, unity
+• 2: Chokmah - wisdom, beginning
+• 3: Binah - understanding, form
+• 4: Chesed - mercy, expansion
+• 5: Geburah - strength, boundary
+• 6: Tiphereth - beauty, balance
+• 7: Netzach - victory, nature
+• 8: Hod - splendor, communication
+• 9: Yesod - foundation, subconscious
+• 10 (1+0=1): Malkuth and Kether - cycle
 
-22 İBRANİ HARF VE MAJOR ARKANA
-22 İbranice harf, 22 Tarot Major Arkana kartına karşılık gelir.
-Her birinin sayısal ve mistik anlamı vardır.
+22 HEBREW LETTERS AND MAJOR ARCANA
+The 22 Hebrew letters correspond to the 22 Tarot Major Arcana cards.
+Each has numerical and mystical meaning.
 
-EN SOPH (SINIRSIZ)
-Sefirot'un ötesinde, tanımlanamaz, sınırsız Tanrısal Varlık -
-En Soph. Tüm sayıların öncesi ve sonrası.
+EN SOPH (THE INFINITE)
+Beyond the Sefirot, the indefinable, limitless Divine Being -
+En Soph. Before and after all numbers.
 ''';
 
-  /// Kutsal Geometri ve Sayılar
+  /// Sacred Geometry and Numbers
   static const String sacredGeometryNumbers = '''
 ═══════════════════════════════════════════════════════════════
-KUTSAL GEOMETRİ VE SAYILARIN GEOMETRİK İFADESİ
+SACRED GEOMETRY AND THE GEOMETRIC EXPRESSION OF NUMBERS
 ═══════════════════════════════════════════════════════════════
 
-Her sayı, bir geometrik formla ifade edilir. Bu formlar, evrenin
-yapı taşlarıdır.
+Every number is expressed through a geometric form. These forms are the
+building blocks of the universe.
 
-1 - NOKTA VE DAİRE
-Nokta: Boyutsuz, saf potansiyel, tekillik
-Daire: Sonsuzluk, birlik, mükemmellik
-Spiral: Noktadan doğan genişleme, evrim
+1 - POINT AND CIRCLE
+Point: Dimensionless, pure potential, singularity
+Circle: Infinity, unity, perfection
+Spiral: Expansion born from the point, evolution
 
 2 - VESICA PISCIS
-İki dairenin kesişimi, badem şekli
-Yaratılışın rahmi, kapı, geçiş
-Dualite ve birleşme
+The intersection of two circles, almond shape
+The womb of creation, door, passage
+Duality and union
 
-3 - ÜÇGEN
-İlk gerçek geometrik form
-Trinite, stabilite, yön
-Yukarı bakan: Erkil, ateş
-Aşağı bakan: Dişil, su
+3 - TRIANGLE
+The first true geometric form
+Trinity, stability, direction
+Pointing up: Masculine, fire
+Pointing down: Feminine, water
 
-4 - KARE
-Toprak, madde, stabilite
-Dört yön, dört element, dört mevsim
-Düzen ve yapı
+4 - SQUARE
+Earth, matter, stability
+Four directions, four elements, four seasons
+Order and structure
 
 5 - PENTAGRAM
-Beş köşeli yıldız, insan figürü
-Altın oran (phi), doğal güzellik
-Koruma ve güç
+Five-pointed star, human figure
+Golden ratio (phi), natural beauty
+Protection and power
 
-6 - ALTIGEN VE DAVUT YILDIZI
-Doğanın en verimli formu
-İki üçgenin birliği
-Denge ve harmoni
+6 - HEXAGON AND STAR OF DAVID
+Nature's most efficient form
+Union of two triangles
+Balance and harmony
 
 7 - HEPTAGRAM
-Yedi köşeli yıldız, mistik
-Yedi gezegen, yedi çakra
-Spiritüel mükemmellik
+Seven-pointed star, mystical
+Seven planets, seven chakras
+Spiritual perfection
 
-8 - OKTAGON VE SONSUZLUK
-Sekiz köşeli yıldız
-Sonsuzluk sembolü (∞)
-Döngüsel yeniden doğuş
+8 - OCTAGON AND INFINITY
+Eight-pointed star
+Infinity symbol (∞)
+Cyclical rebirth
 
 9 - ENNEAGRAM
-Dokuz noktalı daire
-Tamamlanma ve bütünlük
-Döngünün sonu
+Nine-pointed circle
+Completion and wholeness
+End of the cycle
 
-PLATONİK KATILAR
-Beş mükemmel geometrik katı:
-• Tetrahedron (4 yüz) - Ateş
-• Hexahedron/Küp (6 yüz) - Toprak
-• Oktahedron (8 yüz) - Hava
-• Dodecahedron (12 yüz) - Eter/Evren
-• Ikosahedron (20 yüz) - Su
+PLATONIC SOLIDS
+Five perfect geometric solids:
+• Tetrahedron (4 faces) - Fire
+• Hexahedron/Cube (6 faces) - Earth
+• Octahedron (8 faces) - Air
+• Dodecahedron (12 faces) - Ether/Universe
+• Icosahedron (20 faces) - Water
 
-METATRON KÜPÜ
-Tüm Platonik katıları içeren kutsal geometri formu.
-13 daireden oluşur, evrenin yapısını kodlar.
+METATRON'S CUBE
+Sacred geometry form containing all Platonic solids.
+Composed of 13 circles, encoding the structure of the universe.
 
-ÇİÇEK OF LIFE (HAYAT ÇİÇEĞİ)
-19 veya daha fazla örtüşen daireden oluşan antik sembol.
-Tüm kutsal geometrinin kaynağı olarak kabul edilir.
+FLOWER OF LIFE
+Ancient symbol composed of 19 or more overlapping circles.
+Considered the source of all sacred geometry.
 ''';
 
-  /// Titreşim Frekansları
+  /// Vibration Frequencies
   static const Map<int, String> vibrationFrequencies = {
-    1: '396 Hz - Korkuyu ve suçluluğu özgürleştirme',
-    2: '417 Hz - Değişimi kolaylaştırma, travma arınması',
-    3: '528 Hz - Dönüşüm ve mucizeler, DNA onarımı',
-    4: '285 Hz - Doku onarımı ve yenilenmesi',
-    5: '639 Hz - İlişkileri iyileştirme, bağlantı',
-    6: '528 Hz - Aşk frekansı, uyum',
-    7: '852 Hz - Spiritüel uyanış, üçüncü göz',
-    8: '963 Hz - Taç çakra aktivasyonu, birlik',
-    9: '174 Hz - Doğal anestezik, rahatlama',
+    1: '396 Hz - Liberating fear and guilt',
+    2: '417 Hz - Facilitating change, trauma cleansing',
+    3: '528 Hz - Transformation and miracles, DNA repair',
+    4: '285 Hz - Tissue repair and regeneration',
+    5: '639 Hz - Improving relationships, connection',
+    6: '528 Hz - Love frequency, harmony',
+    7: '852 Hz - Spiritual awakening, third eye',
+    8: '963 Hz - Crown chakra activation, unity',
+    9: '174 Hz - Natural anesthetic, relaxation',
   };
 
-  /// Renk Eşleşmeleri
+  /// Color Associations
   static const Map<int, List<String>> colorAssociations = {
-    1: ['Kırmızı', 'Altın', 'Turuncu'],
-    2: ['Turuncu', 'Gümüş', 'Açık Mavi'],
-    3: ['Sarı', 'Turuncu', 'Mor'],
-    4: ['Yeşil', 'Kahverengi', 'Gri'],
-    5: ['Turkuaz', 'Çok Renkli', 'Turuncu'],
-    6: ['Pembe', 'Mavi', 'Yeşil'],
-    7: ['Mor', 'Lacivert', 'Gümüş'],
-    8: ['Siyah', 'Lacivert', 'Koyu Yeşil'],
-    9: ['Beyaz', 'Altın', 'Kırmızı'],
+    1: ['Red', 'Gold', 'Orange'],
+    2: ['Orange', 'Silver', 'Light Blue'],
+    3: ['Yellow', 'Orange', 'Purple'],
+    4: ['Green', 'Brown', 'Gray'],
+    5: ['Turquoise', 'Multi-colored', 'Orange'],
+    6: ['Pink', 'Blue', 'Green'],
+    7: ['Purple', 'Navy Blue', 'Silver'],
+    8: ['Black', 'Navy Blue', 'Dark Green'],
+    9: ['White', 'Gold', 'Red'],
   };
 
-  /// Müzikal Notlar
+  /// Musical Notes
   static const Map<int, String> musicalNotes = {
-    1: 'Do (C) - Kök, başlangıç',
-    2: 'Re (D) - Akış, hareket',
-    3: 'Mi (E) - Güç, irade',
-    4: 'Fa (F) - Kalp, duygu',
-    5: 'Sol (G) - İletişim, ifade',
-    6: 'La (A) - Sezgi, görüş',
-    7: 'Si (B) - Spiritüel bağlantı',
-    8: 'Do (C yüksek oktav) - Yeni döngü',
-    9: 'Tüm notların sentezi - Tamamlanma',
+    1: 'C (Do) - Root, beginning',
+    2: 'D (Re) - Flow, movement',
+    3: 'E (Mi) - Power, will',
+    4: 'F (Fa) - Heart, emotion',
+    5: 'G (Sol) - Communication, expression',
+    6: 'A (La) - Intuition, vision',
+    7: 'B (Si) - Spiritual connection',
+    8: 'C (Do high octave) - New cycle',
+    9: 'Synthesis of all notes - Completion',
   };
 
-  /// Gezegen Yöneticileri
+  /// Planetary Rulers
   static const Map<int, String> planetaryRulers = {
-    1: 'Güneş - Yaratıcı güç, kimlik, ego',
-    2: 'Ay - Duygular, bilinçaltı, sezgi',
-    3: 'Jüpiter - Genişleme, şans, bilgelik',
-    4: 'Uranüs/Satürn - Yapı, sınır, disiplin',
-    5: 'Merkür - İletişim, hareket, değişim',
-    6: 'Venüs - Aşk, güzellik, uyum',
-    7: 'Neptün - Mistisizm, rüyalar, illüzyon',
-    8: 'Satürn - Güç, karma, yetki',
-    9: 'Mars - Aksiyon, tutku, cesaret',
-    11: 'Uranüs - Aydınlanma, devrim',
-    22: 'Pluto - Dönüşüm, yeniden doğuş',
-    33: 'Neptün yüksek oktav - Evrensel sevgi',
+    1: 'Sun - Creative power, identity, ego',
+    2: 'Moon - Emotions, subconscious, intuition',
+    3: 'Jupiter - Expansion, luck, wisdom',
+    4: 'Uranus/Saturn - Structure, boundary, discipline',
+    5: 'Mercury - Communication, movement, change',
+    6: 'Venus - Love, beauty, harmony',
+    7: 'Neptune - Mysticism, dreams, illusion',
+    8: 'Saturn - Power, karma, authority',
+    9: 'Mars - Action, passion, courage',
+    11: 'Uranus - Enlightenment, revolution',
+    22: 'Pluto - Transformation, rebirth',
+    33: 'Neptune high octave - Universal love',
   };
 }
 
 // ════════════════════════════════════════════════════════════════════════════════
-// BÖLÜM 7: TANTRİK NUMEROLOJİ
+// SECTION 7: TANTRIC NUMEROLOGY
 // ════════════════════════════════════════════════════════════════════════════════
 
-/// Tantrik Numeroloji Bilgi Bankası
+/// Tantric Numerology Knowledge Base
 class TantricNumerology {
-  /// Genel Bakış
+  /// Overview
   static const String overview = '''
 ═══════════════════════════════════════════════════════════════
-TANTRİK NUMEROLOJİ: SAYILARIN CİNSEL VE SPİRİTÜEL ENERJİSİ
+TANTRIC NUMEROLOGY: THE SEXUAL AND SPIRITUAL ENERGY OF NUMBERS
 ═══════════════════════════════════════════════════════════════
 
-Tantrik numeroloji, sayıların cinsel, yaratıcı ve spiritüel enerji
-boyutlarını inceler. Her sayı, kundalini enerjisinin farklı bir
-ifadesini temsil eder.
+Tantric numerology examines the sexual, creative, and spiritual energy
+dimensions of numbers. Each number represents a different expression
+of kundalini energy.
 
-Tantra'da her şey enerjidir - seksüel enerji (ojas/bindu), yaratıcı
-enerji (tejas) ve spiritüel enerji (prana) aynı kaynaktan gelir.
-Sayılar, bu enerjilerin kodlarıdır.
+In Tantra, everything is energy - sexual energy (ojas/bindu), creative
+energy (tejas), and spiritual energy (prana) come from the same source.
+Numbers are the codes of these energies.
 
-TEMEL PRENSİPLER:
-1. Shiva (1, 3, 5, 7, 9) - Maskülen, aktif, verici enerji
-2. Shakti (2, 4, 6, 8) - Feminen, alıcı, besleyici enerji
-3. Birleşim - Shiva ve Shakti'nin birliği tüm yaratımın kaynağı
+BASIC PRINCIPLES:
+1. Shiva (1, 3, 5, 7, 9) - Masculine, active, giving energy
+2. Shakti (2, 4, 6, 8) - Feminine, receiving, nurturing energy
+3. Union - The union of Shiva and Shakti is the source of all creation
 
-SİSTEM YAPISI:
-Tantrik numeroloji, 10 enerji bedeni tanımlar:
-1. Ruh Bedeni
-2. Negatif Zihin
-3. Pozitif Zihin
-4. Nötr Zihin
-5. Fiziksel Beden
-6. Ark Çizgisi
+SYSTEM STRUCTURE:
+Tantric numerology defines 10 energy bodies:
+1. Soul Body
+2. Negative Mind
+3. Positive Mind
+4. Neutral Mind
+5. Physical Body
+6. Arc Line
 7. Aura
-8. Pranik Beden
-9. İnce Beden
-10. Radyant Beden
+8. Pranic Body
+9. Subtle Body
+10. Radiant Body
 ''';
 
-  /// Kundalini Aktivasyonu Sayılarla
+  /// Kundalini Activation by Numbers
   static const Map<int, String> kundaliniByNumber = {
     1: '''
-KUNDALİNİ VE 1: GÜNEŞ KANALI
-1 sayısı, kundalininin başlangıç noktasını ve güneş kanalını (pingala)
-temsil eder. Bu enerji aktif, ısıtıcı ve yükselticidir.
+KUNDALINI AND 1: SOLAR CHANNEL
+The number 1 represents the starting point of kundalini and the solar
+channel (pingala). This energy is active, heating, and elevating.
 
-Aktivasyon: Sağ burun nefesi, güneş selamı, ateş meditasyonları
-Dikkat: Aşırı aktivasyon yanık hissine yol açabilir
+Activation: Right nostril breathing, sun salutation, fire meditations
+Caution: Excessive activation can lead to burning sensations
 ''',
     2: '''
-KUNDALİNİ VE 2: AY KANALI
-2 sayısı, kundalininin ay kanalını (ida) temsil eder. Bu enerji
-pasif, soğutucu ve dinlendiricidir.
+KUNDALINI AND 2: LUNAR CHANNEL
+The number 2 represents the lunar channel (ida) of kundalini. This
+energy is passive, cooling, and restful.
 
-Aktivasyon: Sol burun nefesi, ay selamı, su meditasyonları
-Dikkat: Aşırı aktivasyon durgunluk ve depresyona yol açabilir
+Activation: Left nostril breathing, moon salutation, water meditations
+Caution: Excessive activation can lead to stagnation and depression
 ''',
     3: '''
-KUNDALİNİ VE 3: YARATICI ATEŞ
-3 sayısı, kundalininin yaratıcı ifadesini temsil eder. Manipura
-(solar plexus) çakrası ile bağlantılı.
+KUNDALINI AND 3: CREATIVE FIRE
+The number 3 represents the creative expression of kundalini. Connected
+to the Manipura (solar plexus) chakra.
 
-Aktivasyon: Nefes ateşi (kapalabhati), karın egzersizleri
-Dikkat: Aşırı aktivasyon ego şişkinliğine yol açabilir
+Activation: Breath of fire (kapalabhati), abdominal exercises
+Caution: Excessive activation can lead to ego inflation
 ''',
     4: '''
-KUNDALİNİ VE 4: TOPRAK GÜCÜ
-4 sayısı, kundalininin topraklanmış halini temsil eder. Muladhara
-(kök) çakrası ile güçlü bağlantı.
+KUNDALINI AND 4: EARTH POWER
+The number 4 represents the grounded state of kundalini. Strong
+connection with Muladhara (root) chakra.
 
-Aktivasyon: Topraklama, kök çakra meditasyonları, fiziksel çalışma
-Dikkat: Enerjinin serbest akışını engelleyebilir
+Activation: Grounding, root chakra meditations, physical work
+Caution: Can block the free flow of energy
 ''',
     5: '''
-KUNDALİNİ VE 5: ÖZGÜR AKIŞ
-5 sayısı, kundalininin serbest, spiral hareketini temsil eder.
-Tüm kanallar arasında dans eder.
+KUNDALINI AND 5: FREE FLOW
+The number 5 represents the free, spiral movement of kundalini.
+Dances between all channels.
 
-Aktivasyon: Spiral hareketler, dans, serbest nefes
-Dikkat: Topraklamasız aktivasyon savrulmaya yol açar
+Activation: Spiral movements, dance, free breathing
+Caution: Activation without grounding leads to scattering
 ''',
     6: '''
-KUNDALİNİ VE 6: KALP MERKEZİ
-6 sayısı, kundalininin kalp çakrasında dengelenmesini temsil eder.
-Sevgi ve şefkat enerjisi.
+KUNDALINI AND 6: HEART CENTER
+The number 6 represents the balancing of kundalini in the heart chakra.
+Love and compassion energy.
 
-Aktivasyon: Kalp açma, bhakti yoga, sevgi meditasyonları
-Dikkat: Aşırı açılım duygusal kırılganlığa yol açabilir
+Activation: Heart opening, bhakti yoga, love meditations
+Caution: Excessive opening can lead to emotional vulnerability
 ''',
     7: '''
-KUNDALİNİ VE 7: ÜÇÜNCÜ GÖZ
-7 sayısı, kundalininin üçüncü göz çakrasına ulaşmasını temsil eder.
-Vizyon ve içgörü enerjisi.
+KUNDALINI AND 7: THIRD EYE
+The number 7 represents kundalini reaching the third eye chakra.
+Vision and insight energy.
 
-Aktivasyon: Trataka (mum bakışı), üçüncü göz meditasyonları
-Dikkat: Aşırı aktivasyon gerçeklikten kopmaya yol açabilir
+Activation: Trataka (candle gazing), third eye meditations
+Caution: Excessive activation can lead to disconnection from reality
 ''',
     8: '''
-KUNDALİNİ VE 8: SONSUZ DÖNGÜ
-8 sayısı, kundalininin döngüsel, sonsuz hareketini temsil eder.
-Enerji döngüsü ve yenileme.
+KUNDALINI AND 8: INFINITE CYCLE
+The number 8 represents the cyclical, infinite movement of kundalini.
+Energy cycle and renewal.
 
-Aktivasyon: Sekiz hareketi, pranayama döngüleri
-Dikkat: Aşırı odaklanma obsesyona yol açabilir
+Activation: Figure-eight movements, pranayama cycles
+Caution: Excessive focus can lead to obsession
 ''',
     9: '''
-KUNDALİNİ VE 9: EVRENSEL BİRLİK
-9 sayısı, kundalininin tam uyanışını ve evrensel birlikle birleşmesini
-temsil eder. Sahasrara (taç) çakrası.
+KUNDALINI AND 9: UNIVERSAL UNITY
+The number 9 represents the full awakening of kundalini and union with
+universal oneness. Sahasrara (crown) chakra.
 
-Aktivasyon: Derin meditasyon, samadhi pratikleri
-Dikkat: Tam uyanış hazırlık gerektirir
+Activation: Deep meditation, samadhi practices
+Caution: Full awakening requires preparation
 ''',
   };
 
-  /// Seksüel Enerji Kalıpları
+  /// Sexual Energy Patterns
   static const Map<int, String> sexualEnergyPatterns = {
     1: '''
-1 ENERJİSİ: BAŞLATICI
-Seksüel ifade: Aktif, başlatıcı, dominant
-Enerji akışı: Yönlendirici, penetratif
-Tantrik pratik: Shiva rolü, enerji verme
-Dikkat: Partnerin alıcılığına duyarlı ol
+1 ENERGY: INITIATOR
+Sexual expression: Active, initiating, dominant
+Energy flow: Directing, penetrative
+Tantric practice: Shiva role, giving energy
+Caution: Be sensitive to partner's receptivity
 ''',
     2: '''
-2 ENERJİSİ: ALICI
-Seksüel ifade: Alıcı, besleyici, duyarlı
-Enerji akışı: Çeken, sarmalayan
-Tantrik pratik: Shakti rolü, enerji alma ve dönüştürme
-Dikkat: Kendi sınırlarını koru
+2 ENERGY: RECEIVER
+Sexual expression: Receptive, nurturing, sensitive
+Energy flow: Drawing in, enveloping
+Tantric practice: Shakti role, receiving and transforming energy
+Caution: Maintain your own boundaries
 ''',
     3: '''
-3 ENERJİSİ: OYUNCU
-Seksüel ifade: Oyuncu, yaratıcı, değişken
-Enerji akışı: Dans eden, spontan
-Tantrik pratik: Oyun ve keşif, çeşitlilik
-Dikkat: Yüzeysellikten kaçın, derinleş
+3 ENERGY: PLAYFUL
+Sexual expression: Playful, creative, variable
+Energy flow: Dancing, spontaneous
+Tantric practice: Play and exploration, variety
+Caution: Avoid superficiality, go deeper
 ''',
     4: '''
-4 ENERJİSİ: RİTÜEL
-Seksüel ifade: Kararlı, güvenilir, yapılandırılmış
-Enerji akışı: Sabit, güçlü, dayanıklı
-Tantrik pratik: Tantrik ritüeller, tekrar yoluyla derinleşme
-Dikkat: Rutine hapsolma, yenilik ekle
+4 ENERGY: RITUAL
+Sexual expression: Steady, reliable, structured
+Energy flow: Stable, strong, enduring
+Tantric practice: Tantric rituals, deepening through repetition
+Caution: Don't get trapped in routine, add novelty
 ''',
     5: '''
-5 ENERJİSİ: MACERACE
-Seksüel ifade: Maceracı, keşifçi, değişken
-Enerji akışı: Dalga dalga, öngörülmez
-Tantrik pratik: Yeni deneyimler, farklı teknikler
-Dikkat: Kaçış olarak kullanma, bağlantı kur
+5 ENERGY: ADVENTURER
+Sexual expression: Adventurous, exploratory, variable
+Energy flow: Wave-like, unpredictable
+Tantric practice: New experiences, different techniques
+Caution: Don't use as escape, create connection
 ''',
     6: '''
-6 ENERJİSİ: ŞEFKATLİ
-Seksüel ifade: Romantik, duygusal, bakım veren
-Enerji akışı: Sıcak, sarmalayan, besleyici
-Tantrik pratik: Kalp merkezli birleşme
-Dikkat: Aşırı verme, karşılıklılık önemli
+6 ENERGY: COMPASSIONATE
+Sexual expression: Romantic, emotional, caregiving
+Energy flow: Warm, enveloping, nurturing
+Tantric practice: Heart-centered union
+Caution: Over-giving, reciprocity is important
 ''',
     7: '''
-7 ENERJİSİ: MİSTİK
-Seksüel ifade: Derin, mistik, spiritüel
-Enerji akışı: Transzendental, dönüştürücü
-Tantrik pratik: Meditasyonla birleşik seks, spiritüel birlik
-Dikkat: Fiziksel bedeni ihmal etme
+7 ENERGY: MYSTICAL
+Sexual expression: Deep, mystical, spiritual
+Energy flow: Transcendental, transformative
+Tantric practice: Sex combined with meditation, spiritual union
+Caution: Don't neglect the physical body
 ''',
     8: '''
-8 ENERJİSİ: GÜÇLÜ
-Seksüel ifade: Yoğun, güçlü, kontrolcü
-Enerji akışı: Konsantre, hedefli
-Tantrik pratik: Enerji kontrolü, uzun süreli pratik
-Dikkat: Güç oyunlarına dikkat, eşit ol
+8 ENERGY: POWERFUL
+Sexual expression: Intense, powerful, controlling
+Energy flow: Concentrated, targeted
+Tantric practice: Energy control, prolonged practice
+Caution: Beware of power games, be equal
 ''',
     9: '''
-9 ENERJİSİ: EVRENSEL
-Seksüel ifade: Koşulsuz, teslimiyetli, kutsal
-Enerji akışı: Her yöne, sınırsız
-Tantrik pratik: Kutsal birleşme, tanrısal sevgi
-Dikkat: Sınırlar hala önemli
+9 ENERGY: UNIVERSAL
+Sexual expression: Unconditional, surrendered, sacred
+Energy flow: In all directions, limitless
+Tantric practice: Sacred union, divine love
+Caution: Boundaries are still important
 ''',
   };
 
-  /// Kutsal Birlik Uyumu
+  /// Sacred Union Compatibility
   static const Map<String, String> sacredUnionCompatibility = {
     '1-2': '''
-MÜKEMMEL TANTRİK DENGE
-1 (Shiva) ve 2 (Shakti) birleşimi, tantrik mükemmelliğin ifadesi.
-Verici ve alıcı, aktif ve pasif dengelenir. Klasik tantrik çift.
+PERFECT TANTRIC BALANCE
+The union of 1 (Shiva) and 2 (Shakti) is the expression of tantric perfection.
+Giver and receiver, active and passive are balanced. Classic tantric pair.
 ''',
     '1-9': '''
-EVRENSEL BİRLİK
-1'in bireysel gücü, 9'un evrensel sevgisiyle birleşir. Ego
-kozmosa açılır. Derin spiritüel transformasyon mümkün.
+UNIVERSAL UNITY
+The individual power of 1 unites with the universal love of 9. Ego
+opens to cosmos. Deep spiritual transformation possible.
 ''',
     '3-6': '''
-YARATICI ŞEFKAT
-3'ün yaratıcılığı, 6'nın şefkatiyle birleşir. Neşeli, sıcak,
-yaratıcı birliktelik. Estetik ve güzellik önemli.
+CREATIVE COMPASSION
+The creativity of 3 unites with the compassion of 6. Joyful, warm,
+creative togetherness. Aesthetics and beauty important.
 ''',
     '4-8': '''
-GÜÇLÜ TEMeLLER
-4'ün stabilitesi, 8'in gücüyle birleşir. Dayanıklı, güçlü,
-kalıcı birlik. Fiziksel dünyada başarılı.
+STRONG FOUNDATIONS
+The stability of 4 unites with the power of 8. Durable, strong,
+lasting union. Successful in the physical world.
 ''',
     '5-7': '''
-MACERALARpiriyüel
-5'in dış keşfi, 7'nin iç keşfiyle birleşir. Fiziksel ve spiritüel
-yolculuk birlikte. Dinamik ve derin.
+ADVENTURE-SPIRITUAL
+The outer exploration of 5 unites with the inner exploration of 7.
+Physical and spiritual journey together. Dynamic and deep.
 ''',
     '7-9': '''
-SPİRİTÜEL İKİZLER
-Her ikisi de derin, spiritüel sayılar. Birlikte yükseliş,
-meditasyonla birleşme, kozmik bilinç deneyimi.
+SPIRITUAL TWINS
+Both are deep, spiritual numbers. Rising together,
+union through meditation, cosmic consciousness experience.
 ''',
   };
 }
 
 // ════════════════════════════════════════════════════════════════════════════════
-// YAŞAM YOLU SAYILARI HARİTASI
+// LIFE PATH NUMBERS MAP
 // ════════════════════════════════════════════════════════════════════════════════
 
-/// Tüm yaşam yolu içeriklerini içeren harita
+/// Map containing all life path contents
 final Map<int, LifePathMegaContent> lifePathMegaContents = {
   1: lifePathMega1,
   2: lifePathMega2,
@@ -6555,5 +6558,5 @@ final Map<int, LifePathMegaContent> lifePathMegaContents = {
   5: lifePathMega5,
   6: lifePathMega6,
   7: lifePathMega7,
-  // 8, 9, 11, 22, 33 için içerikler eklenecek
+  // Contents for 8, 9, 11, 22, 33 to be added
 };

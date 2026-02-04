@@ -33,17 +33,22 @@ class MobileLiteHomepage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final userProfile = ref.watch(userProfileProvider);
 
-    // Guard: Redirect to onboarding if no valid profile
+    // Guard: Show loading if no valid profile (don't redirect - causes loop)
     if (userProfile == null || userProfile.name == null || userProfile.name!.isEmpty) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        if (context.mounted) {
-          context.go(Routes.onboarding);
-        }
-      });
       return const Scaffold(
         backgroundColor: Color(0xFF0D0D1A),
         body: Center(
-          child: CircularProgressIndicator(color: Color(0xFFFFD700)),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              CircularProgressIndicator(color: Color(0xFFFFD700)),
+              SizedBox(height: 16),
+              Text(
+                'Yükleniyor...',
+                style: TextStyle(color: Colors.white70),
+              ),
+            ],
+          ),
         ),
       );
     }

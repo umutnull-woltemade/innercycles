@@ -29,17 +29,22 @@ class DesktopRichHomepage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final userProfile = ref.watch(userProfileProvider);
 
-    // Guard: Redirect to onboarding if no valid profile
+    // Guard: Show loading if no valid profile (don't redirect - causes loop)
     if (userProfile == null || userProfile.name == null || userProfile.name!.isEmpty) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        if (context.mounted) {
-          context.go(Routes.onboarding);
-        }
-      });
       return const Scaffold(
         backgroundColor: Color(0xFF0D0D1A),
         body: Center(
-          child: CircularProgressIndicator(color: Color(0xFFFFD700)),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              CircularProgressIndicator(color: Color(0xFFFFD700)),
+              SizedBox(height: 16),
+              Text(
+                'Yükleniyor...',
+                style: TextStyle(color: Colors.white70),
+              ),
+            ],
+          ),
         ),
       );
     }
@@ -329,13 +334,15 @@ class _DesktopHeader extends StatelessWidget {
           // LOGO + AI TOOLS - Birbirine bağlı görünüm
           // ═══════════════════════════════════════════════════════════════
           Flexible(
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                // Venus One Logo
-                _VenusOneLogo(),
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 400),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  // Venus One Logo
+                  _VenusOneLogo(),
 
-                // Bağlantı çizgisi 1
+                  // Bağlantı çizgisi 1
                 Container(
                   width: 20,
                   height: 2,
@@ -389,6 +396,7 @@ class _DesktopHeader extends StatelessWidget {
                   onTap: () => context.push(Routes.kozmoz),
                 ),
               ],
+              ),
             ),
           ),
 
@@ -1977,6 +1985,13 @@ class _VenusOneLogoState extends State<_VenusOneLogo>
                     'assets/brand/venus-logo/png/venus-logo-72.png',
                     width: 32,
                     height: 32,
+                    errorBuilder: (context, error, stackTrace) {
+                      return const Icon(
+                        Icons.auto_awesome,
+                        color: Colors.white,
+                        size: 32,
+                      );
+                    },
                   ),
                 ],
               ),
