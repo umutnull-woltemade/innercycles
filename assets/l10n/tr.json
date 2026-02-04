@@ -1608,6 +1608,32 @@
     "universal_symbols": "Evrensel Semboller",
     "transformation_art": "Dönüşüm Sanatı"
   },
+  "insights": {
+    "daily_energy_title": "Bugünün Enerjisi",
+    "daily_energy_content": "Ay'ın mevcut konumu duygusal derinlik getiriyor. İç sesinize kulak vermenin tam zamanı.",
+    "transit_effect_title": "Transit Etkisi",
+    "transit_effect_content": "Venüs'ün hareketleri ilişkilerinizi ve değerlerinizi ön plana çıkarıyor.",
+    "sign_message_title": "Burcunun Mesajı",
+    "dream_guide_title": "Rüya Rehberi",
+    "dream_guide_content": "Bu gece gördüğünüz rüyalar önemli mesajlar taşıyabilir. Rüyalarınızı kaydetmeyi unutmayın.",
+    "weekly_preview_title": "Haftalık Öngörü",
+    "weekly_preview_content": "Haftanın geri kalanı için kozmik enerjiler sizin lehinize çalışıyor.",
+    "sign_messages": {
+      "aries": "Cesaretin ve liderlik enerjin bugün yüksek. İnisiyatif al.",
+      "taurus": "Sabır ve kararlılığın meyvelerini toplamaya hazırsın.",
+      "gemini": "İletişim yeteneklerin parlıyor. Fikirlerini paylaş.",
+      "cancer": "Sezgilerin güçlü. Kalbinin sesini dinle.",
+      "leo": "Yaratıcılığın ve özgüvenin dorukta. Sahneye çık.",
+      "virgo": "Analitik zekân keskin. Detaylara odaklan.",
+      "libra": "Denge ve uyum arayışın destekleniyor.",
+      "scorpio": "Dönüşüm enerjin güçlü. Derinlere dal.",
+      "sagittarius": "Macera ruhu canlanıyor. Ufkunu genişlet.",
+      "capricorn": "Hedeflerine ulaşmak için disiplinli ol.",
+      "aquarius": "Yenilikçi fikirlerin değerli. Farklı düşün.",
+      "pisces": "Hayal gücün ve empatın güçlü. Sanatla ifade et.",
+      "default": "Evrenin enerjisiyle uyum içinde kal."
+    }
+  },
   "nav": {
     "also_viewed_subtitle": "Merak edenler bunlara da göz attı",
     "go_deeper_subtitle": "İç dünyanla bağlan",

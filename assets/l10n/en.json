@@ -1608,6 +1608,32 @@
     "universal_symbols": "Universal Symbols",
     "transformation_art": "Art of Transformation"
   },
+  "insights": {
+    "daily_energy_title": "Today's Energy",
+    "daily_energy_content": "The Moon's current position brings emotional depth. It's the perfect time to listen to your inner voice.",
+    "transit_effect_title": "Transit Effect",
+    "transit_effect_content": "Venus movements are highlighting your relationships and values.",
+    "sign_message_title": "Your Sign's Message",
+    "dream_guide_title": "Dream Guide",
+    "dream_guide_content": "Dreams you have tonight may carry important messages. Don't forget to record your dreams.",
+    "weekly_preview_title": "Weekly Preview",
+    "weekly_preview_content": "Cosmic energies are working in your favor for the rest of the week.",
+    "sign_messages": {
+      "aries": "Your courage and leadership energy is high today. Take initiative.",
+      "taurus": "You're ready to reap the fruits of patience and determination.",
+      "gemini": "Your communication skills are shining. Share your ideas.",
+      "cancer": "Your intuition is strong. Listen to your heart.",
+      "leo": "Your creativity and confidence are at their peak. Take the stage.",
+      "virgo": "Your analytical mind is sharp. Focus on the details.",
+      "libra": "Your search for balance and harmony is being supported.",
+      "scorpio": "Your transformation energy is powerful. Dive deep.",
+      "sagittarius": "Your adventurous spirit is awakening. Expand your horizons.",
+      "capricorn": "Be disciplined to reach your goals.",
+      "aquarius": "Your innovative ideas are valuable. Think differently.",
+      "pisces": "Your imagination and empathy are strong. Express through art.",
+      "default": "Stay in harmony with the energy of the universe."
+    }
+  },
   "nav": {
     "also_viewed_subtitle": "Others who were curious also viewed these",
     "go_deeper_subtitle": "Connect with your inner world",

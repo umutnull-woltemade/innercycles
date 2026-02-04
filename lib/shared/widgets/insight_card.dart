@@ -314,36 +314,36 @@ class InsightCardData {
 
 /// Pre-built insight card themes
 class InsightThemes {
-  static List<InsightCardData> getDailyInsights(String sunSign) {
+  static List<InsightCardData> getDailyInsights(String sunSign, AppLanguage language) {
     return [
       InsightCardData(
-        title: 'Bugunun Enerjisi',
-        content: 'Ay\'in mevcut konumu duygusal derinlik getiriyor. Ic sesinize kulak vermenin tam zamani.',
+        title: L10nService.get('insights.daily_energy_title', language),
+        content: L10nService.get('insights.daily_energy_content', language),
         emoji: '🌙',
         color: AppColors.mystic,
       ),
       InsightCardData(
-        title: 'Transit Etkisi',
-        content: 'Venus\'un hareketleri iliskilerinizi ve degerlerinizi on plana cikariyor.',
+        title: L10nService.get('insights.transit_effect_title', language),
+        content: L10nService.get('insights.transit_effect_content', language),
         emoji: '💫',
         color: AppColors.venusColor,
         isPremium: true,
       ),
       InsightCardData(
-        title: 'Burcunun Mesaji',
-        content: _getSignMessage(sunSign),
+        title: L10nService.get('insights.sign_message_title', language),
+        content: _getSignMessage(sunSign, language),
         emoji: '✨',
         color: AppColors.starGold,
       ),
       InsightCardData(
-        title: 'Ruya Rehberi',
-        content: 'Bu gece gordugunuz ruyalar onemli mesajlar tasiyabilir. Ruyalarinizi kaydetmeyi unutmayin.',
+        title: L10nService.get('insights.dream_guide_title', language),
+        content: L10nService.get('insights.dream_guide_content', language),
         emoji: '🌠',
         color: AppColors.nebulaPurple,
       ),
       InsightCardData(
-        title: 'Haftalik Ongoruu',
-        content: 'Haftanin geri kalani icin kozmik enerjiler sizin lehinize calisiyor.',
+        title: L10nService.get('insights.weekly_preview_title', language),
+        content: L10nService.get('insights.weekly_preview_content', language),
         emoji: '📅',
         color: AppColors.auroraStart,
         isPremium: true,
@@ -351,21 +351,13 @@ class InsightThemes {
     ];
   }
 
-  static String _getSignMessage(String sign) {
-    final messages = {
-      'aries': 'Cesaretin ve liderlik enerjin bugün yüksek. İnisiyatif al.',
-      'taurus': 'Sabır ve kararlılığın meyvelerini toplamaya hazırsın.',
-      'gemini': 'İletişim yeteneklerin parlıyor. Fikirlerini paylaş.',
-      'cancer': 'Sezgilerin güçlü. Kalbinin sesini dinle.',
-      'leo': 'Yaratıcılığın ve özgüvenin dorukta. Sahneye çık.',
-      'virgo': 'Analitik zekân keskin. Detaylara odaklan.',
-      'libra': 'Denge ve uyum arayışın destekleniyor.',
-      'scorpio': 'Dönüşüm enerjin güçlü. Derinlere dal.',
-      'sagittarius': 'Macera ruhu canlanıyor. Ufkunu genişlet.',
-      'capricorn': 'Hedeflerine ulaşmak için disiplinli ol.',
-      'aquarius': 'Yenilikçi fikirlerin değerli. Farklı düşün.',
-      'pisces': 'Hayal gücün ve empatın güçlü. Sanatla ifade et.',
-    };
-    return messages[sign.toLowerCase()] ?? 'Evrenin enerjisiyle uyum içinde kal.';
+  static String _getSignMessage(String sign, AppLanguage language) {
+    final signKey = sign.toLowerCase();
+    final message = L10nService.get('insights.sign_messages.$signKey', language);
+    // If key not found, return default
+    if (message.contains('[insights.sign_messages.')) {
+      return L10nService.get('insights.sign_messages.default', language);
+    }
+    return message;
   }
 }
