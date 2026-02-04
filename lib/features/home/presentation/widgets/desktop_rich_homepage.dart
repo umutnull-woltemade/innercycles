@@ -1313,153 +1313,153 @@ class _DiscoverySection extends StatelessWidget {
           const SizedBox(height: 24),
 
           // ═══════════════════════════════════════════════════════════════
-          // BURÇ & YORUMLAR
+          // HOROSCOPE READINGS
           // ═══════════════════════════════════════════════════════════════
-          _DiscoveryCategoryHeader(title: '⭐ Burç Yorumları', color: const Color(0xFFFFD700)),
+          _DiscoveryCategoryHeader(title: '⭐ ${L10nService.get('sections.horoscope_readings', language)}', color: const Color(0xFFFFD700)),
           const SizedBox(height: 12),
           Wrap(
             spacing: 12,
             runSpacing: 12,
             children: [
-              _DiscoveryCard(icon: Icons.wb_sunny_rounded, title: 'Günlük Yorum', color: const Color(0xFFFFD700), route: Routes.horoscope),
-              _DiscoveryCard(icon: Icons.calendar_view_week_rounded, title: 'Haftalık Yorum', color: const Color(0xFFFF9800), route: Routes.weeklyHoroscope),
-              _DiscoveryCard(icon: Icons.calendar_month_rounded, title: 'Aylık Yorum', color: const Color(0xFFFF5722), route: Routes.monthlyHoroscope),
-              _DiscoveryCard(icon: Icons.calendar_today_rounded, title: 'Yıllık Yorum', color: const Color(0xFFF44336), route: Routes.yearlyHoroscope),
-              _DiscoveryCard(icon: Icons.favorite_rounded, title: 'Aşk Yorumu', color: const Color(0xFFE91E63), route: Routes.loveHoroscope),
-              _DiscoveryCard(icon: Icons.people_rounded, title: 'Burç Uyumu', color: const Color(0xFFFF4081), route: Routes.compatibility),
+              _DiscoveryCard(icon: Icons.wb_sunny_rounded, title: L10nService.get('menu_features.daily_reading', language), color: const Color(0xFFFFD700), route: Routes.horoscope),
+              _DiscoveryCard(icon: Icons.calendar_view_week_rounded, title: L10nService.get('menu_features.weekly_reading', language), color: const Color(0xFFFF9800), route: Routes.weeklyHoroscope),
+              _DiscoveryCard(icon: Icons.calendar_month_rounded, title: L10nService.get('menu_features.monthly_reading', language), color: const Color(0xFFFF5722), route: Routes.monthlyHoroscope),
+              _DiscoveryCard(icon: Icons.calendar_today_rounded, title: L10nService.get('menu_features.yearly_reading', language), color: const Color(0xFFF44336), route: Routes.yearlyHoroscope),
+              _DiscoveryCard(icon: Icons.favorite_rounded, title: L10nService.get('menu_features.love_reading', language), color: const Color(0xFFE91E63), route: Routes.loveHoroscope),
+              _DiscoveryCard(icon: Icons.people_rounded, title: L10nService.get('menu_features.compatibility', language), color: const Color(0xFFFF4081), route: Routes.compatibility),
             ],
           ),
 
           const SizedBox(height: 28),
 
           // ═══════════════════════════════════════════════════════════════
-          // DOĞUM HARİTASI & ANALİZLER
+          // BIRTH CHART & ANALYSIS
           // ═══════════════════════════════════════════════════════════════
-          _DiscoveryCategoryHeader(title: '🌌 Doğum Haritası & Analizler', color: const Color(0xFF9C27B0)),
+          _DiscoveryCategoryHeader(title: '🌌 ${L10nService.get('sections.birth_chart_analysis', language)}', color: const Color(0xFF9C27B0)),
           const SizedBox(height: 12),
           Wrap(
             spacing: 12,
             runSpacing: 12,
             children: [
-              _DiscoveryCard(icon: Icons.pie_chart_rounded, title: 'Doğum Haritası', color: const Color(0xFF9C27B0), route: Routes.birthChart),
-              _DiscoveryCard(icon: Icons.compare_arrows_rounded, title: 'Synastry', color: const Color(0xFFE91E63), route: Routes.synastry),
-              _DiscoveryCard(icon: Icons.group_rounded, title: 'Composite', color: const Color(0xFFFF4081), route: Routes.compositeChart),
-              _DiscoveryCard(icon: Icons.auto_graph_rounded, title: 'Vedic Harita', color: const Color(0xFFFF9800), route: Routes.vedicChart),
-              _DiscoveryCard(icon: Icons.timeline_rounded, title: 'Progressions', color: const Color(0xFF3F51B5), route: Routes.progressions),
-              _DiscoveryCard(icon: Icons.all_inclusive_rounded, title: 'Draconic', color: const Color(0xFF673AB7), route: Routes.draconicChart),
+              _DiscoveryCard(icon: Icons.pie_chart_rounded, title: L10nService.get('menu_features.birth_chart', language), color: const Color(0xFF9C27B0), route: Routes.birthChart),
+              _DiscoveryCard(icon: Icons.compare_arrows_rounded, title: L10nService.get('menu_features.synastry', language), color: const Color(0xFFE91E63), route: Routes.synastry),
+              _DiscoveryCard(icon: Icons.group_rounded, title: L10nService.get('menu_features.composite', language), color: const Color(0xFFFF4081), route: Routes.compositeChart),
+              _DiscoveryCard(icon: Icons.auto_graph_rounded, title: L10nService.get('menu_features.vedic_chart', language), color: const Color(0xFFFF9800), route: Routes.vedicChart),
+              _DiscoveryCard(icon: Icons.timeline_rounded, title: L10nService.get('menu_features.progressions', language), color: const Color(0xFF3F51B5), route: Routes.progressions),
+              _DiscoveryCard(icon: Icons.all_inclusive_rounded, title: L10nService.get('menu_features.draconic', language), color: const Color(0xFF673AB7), route: Routes.draconicChart),
             ],
           ),
 
           const SizedBox(height: 28),
 
           // ═══════════════════════════════════════════════════════════════
-          // ZAMAN & TRANSİTLER
+          // TIME & TRANSITS
           // ═══════════════════════════════════════════════════════════════
-          _DiscoveryCategoryHeader(title: '⏰ Zaman & Transitler', color: const Color(0xFF2196F3)),
+          _DiscoveryCategoryHeader(title: '⏰ ${L10nService.get('sections.time_transits', language)}', color: const Color(0xFF2196F3)),
           const SizedBox(height: 12),
           Wrap(
             spacing: 12,
             runSpacing: 12,
             children: [
-              _DiscoveryCard(icon: Icons.compare_arrows_rounded, title: 'Transitler', color: const Color(0xFF2196F3), route: Routes.transits),
-              _DiscoveryCard(icon: Icons.access_time_rounded, title: 'Zamanlama', color: const Color(0xFF00BCD4), route: Routes.timing),
-              _DiscoveryCard(icon: Icons.cake_rounded, title: 'Solar Return', color: const Color(0xFFFF9800), route: Routes.solarReturn),
-              _DiscoveryCard(icon: Icons.loop_rounded, title: 'Saturn Dönüşü', color: const Color(0xFF607D8B), route: Routes.saturnReturn),
-              _DiscoveryCard(icon: Icons.calendar_view_month_rounded, title: 'Yıllık Öngörü', color: const Color(0xFF4CAF50), route: Routes.yearAhead),
-              _DiscoveryCard(icon: Icons.do_not_disturb_rounded, title: 'Void of Course', color: const Color(0xFF9E9E9E), route: Routes.voidOfCourse),
-              _DiscoveryCard(icon: Icons.dark_mode_rounded, title: 'Tutulma Takvimi', color: const Color(0xFF37474F), route: Routes.eclipseCalendar),
-              _DiscoveryCard(icon: Icons.event_note_rounded, title: 'Transit Takvimi', color: const Color(0xFF00ACC1), route: Routes.transitCalendar),
+              _DiscoveryCard(icon: Icons.compare_arrows_rounded, title: L10nService.get('menu_features.transits', language), color: const Color(0xFF2196F3), route: Routes.transits),
+              _DiscoveryCard(icon: Icons.access_time_rounded, title: L10nService.get('menu_features.timing', language), color: const Color(0xFF00BCD4), route: Routes.timing),
+              _DiscoveryCard(icon: Icons.cake_rounded, title: L10nService.get('menu_features.solar_return', language), color: const Color(0xFFFF9800), route: Routes.solarReturn),
+              _DiscoveryCard(icon: Icons.loop_rounded, title: L10nService.get('menu_features.saturn_return', language), color: const Color(0xFF607D8B), route: Routes.saturnReturn),
+              _DiscoveryCard(icon: Icons.calendar_view_month_rounded, title: L10nService.get('menu_features.year_ahead', language), color: const Color(0xFF4CAF50), route: Routes.yearAhead),
+              _DiscoveryCard(icon: Icons.do_not_disturb_rounded, title: L10nService.get('menu_features.void_of_course', language), color: const Color(0xFF9E9E9E), route: Routes.voidOfCourse),
+              _DiscoveryCard(icon: Icons.dark_mode_rounded, title: L10nService.get('menu_features.eclipse_calendar', language), color: const Color(0xFF37474F), route: Routes.eclipseCalendar),
+              _DiscoveryCard(icon: Icons.event_note_rounded, title: L10nService.get('menu_features.transit_calendar', language), color: const Color(0xFF00ACC1), route: Routes.transitCalendar),
             ],
           ),
 
           const SizedBox(height: 28),
 
           // ═══════════════════════════════════════════════════════════════
-          // NUMEROLOJİ & MİSTİK ARAÇLAR
+          // NUMEROLOGY & MYSTIC TOOLS
           // ═══════════════════════════════════════════════════════════════
-          _DiscoveryCategoryHeader(title: '🔢 Numeroloji & Mistik Araçlar', color: const Color(0xFF7C4DFF)),
+          _DiscoveryCategoryHeader(title: '🔢 ${L10nService.get('sections.numerology_mystic', language)}', color: const Color(0xFF7C4DFF)),
           const SizedBox(height: 12),
           Wrap(
             spacing: 12,
             runSpacing: 12,
             children: [
-              _DiscoveryCard(icon: Icons.numbers_rounded, title: 'Numeroloji', color: const Color(0xFF7C4DFF), route: Routes.numerology),
-              _DiscoveryCard(icon: Icons.style_rounded, title: 'Tarot', color: const Color(0xFF9C27B0), route: Routes.tarot),
-              _DiscoveryCard(icon: Icons.account_tree_rounded, title: 'Kabala', color: const Color(0xFF4CAF50), route: Routes.kabbalah),
-              _DiscoveryCard(icon: Icons.brightness_7_rounded, title: 'Aura', color: const Color(0xFFAB47BC), route: Routes.aura),
-              _DiscoveryCard(icon: Icons.blur_circular_rounded, title: 'Chakra', color: const Color(0xFFFF5722), route: Routes.chakraAnalysis),
-              _DiscoveryCard(icon: Icons.diamond_rounded, title: 'Kristal Rehberi', color: const Color(0xFF00BCD4), route: Routes.crystalGuide),
+              _DiscoveryCard(icon: Icons.numbers_rounded, title: L10nService.get('menu_features.numerology', language), color: const Color(0xFF7C4DFF), route: Routes.numerology),
+              _DiscoveryCard(icon: Icons.style_rounded, title: L10nService.get('menu_features.tarot', language), color: const Color(0xFF9C27B0), route: Routes.tarot),
+              _DiscoveryCard(icon: Icons.account_tree_rounded, title: L10nService.get('menu_features.kabbalah', language), color: const Color(0xFF4CAF50), route: Routes.kabbalah),
+              _DiscoveryCard(icon: Icons.brightness_7_rounded, title: L10nService.get('menu_features.aura', language), color: const Color(0xFFAB47BC), route: Routes.aura),
+              _DiscoveryCard(icon: Icons.blur_circular_rounded, title: L10nService.get('menu_features.chakra', language), color: const Color(0xFFFF5722), route: Routes.chakraAnalysis),
+              _DiscoveryCard(icon: Icons.diamond_rounded, title: L10nService.get('menu_features.crystal_guide', language), color: const Color(0xFF00BCD4), route: Routes.crystalGuide),
             ],
           ),
 
           const SizedBox(height: 28),
 
           // ═══════════════════════════════════════════════════════════════
-          // RUHSAL & WELLNESS
+          // SPIRITUAL & WELLNESS
           // ═══════════════════════════════════════════════════════════════
-          _DiscoveryCategoryHeader(title: '🧘 Ruhsal & Wellness', color: const Color(0xFF4CAF50)),
+          _DiscoveryCategoryHeader(title: '🧘 ${L10nService.get('sections.spiritual_wellness', language)}', color: const Color(0xFF4CAF50)),
           const SizedBox(height: 12),
           Wrap(
             spacing: 12,
             runSpacing: 12,
             children: [
-              _DiscoveryCard(icon: Icons.spa_rounded, title: 'Günlük Ritüeller', color: const Color(0xFF4CAF50), route: Routes.dailyRituals),
-              _DiscoveryCard(icon: Icons.nightlight_rounded, title: 'Ay Ritüelleri', color: const Color(0xFFC0C0C0), route: Routes.moonRituals),
-              _DiscoveryCard(icon: Icons.grass_rounded, title: 'Ay Bahçeciliği', color: const Color(0xFF8BC34A), route: Routes.gardeningMoon),
-              _DiscoveryCard(icon: Icons.psychology_rounded, title: 'Theta Healing', color: const Color(0xFF7C4DFF), route: Routes.thetaHealing),
-              _DiscoveryCard(icon: Icons.self_improvement_rounded, title: 'Reiki', color: const Color(0xFFFF7043), route: Routes.reiki),
+              _DiscoveryCard(icon: Icons.spa_rounded, title: L10nService.get('menu_features.daily_rituals', language), color: const Color(0xFF4CAF50), route: Routes.dailyRituals),
+              _DiscoveryCard(icon: Icons.nightlight_rounded, title: L10nService.get('menu_features.moon_rituals', language), color: const Color(0xFFC0C0C0), route: Routes.moonRituals),
+              _DiscoveryCard(icon: Icons.grass_rounded, title: L10nService.get('menu_features.moon_gardening', language), color: const Color(0xFF8BC34A), route: Routes.gardeningMoon),
+              _DiscoveryCard(icon: Icons.psychology_rounded, title: L10nService.get('menu_features.theta_healing', language), color: const Color(0xFF7C4DFF), route: Routes.thetaHealing),
+              _DiscoveryCard(icon: Icons.self_improvement_rounded, title: L10nService.get('menu_features.reiki', language), color: const Color(0xFFFF7043), route: Routes.reiki),
             ],
           ),
 
           const SizedBox(height: 28),
 
           // ═══════════════════════════════════════════════════════════════
-          // İLERİ SEVİYE ASTROLOJİ
+          // ADVANCED ASTROLOGY
           // ═══════════════════════════════════════════════════════════════
-          _DiscoveryCategoryHeader(title: '🔮 İleri Seviye Astroloji', color: const Color(0xFFFFD700)),
+          _DiscoveryCategoryHeader(title: '🔮 ${L10nService.get('sections.advanced_astrology', language)}', color: const Color(0xFFFFD700)),
           const SizedBox(height: 12),
           Wrap(
             spacing: 12,
             runSpacing: 12,
             children: [
-              _DiscoveryCard(icon: Icons.public_rounded, title: 'Dünya Haritası', color: const Color(0xFFFFD700), route: Routes.astroCartography),
-              _DiscoveryCard(icon: Icons.event_available_rounded, title: 'Electional', color: const Color(0xFFFF9800), route: Routes.electional),
-              _DiscoveryCard(icon: Icons.star_rounded, title: 'Asteroidler', color: const Color(0xFF9E9E9E), route: Routes.asteroids),
-              _DiscoveryCard(icon: Icons.location_on_rounded, title: 'Local Space', color: const Color(0xFF795548), route: Routes.localSpace),
+              _DiscoveryCard(icon: Icons.public_rounded, title: L10nService.get('home.quick_actions.astrocartography', language), color: const Color(0xFFFFD700), route: Routes.astroCartography),
+              _DiscoveryCard(icon: Icons.event_available_rounded, title: L10nService.get('home.quick_actions.electional', language), color: const Color(0xFFFF9800), route: Routes.electional),
+              _DiscoveryCard(icon: Icons.star_rounded, title: L10nService.get('home.quick_actions.asteroids', language), color: const Color(0xFF9E9E9E), route: Routes.asteroids),
+              _DiscoveryCard(icon: Icons.location_on_rounded, title: L10nService.get('home.quick_actions.local_space', language), color: const Color(0xFF795548), route: Routes.localSpace),
             ],
           ),
 
           const SizedBox(height: 28),
 
           // ═══════════════════════════════════════════════════════════════
-          // REFERANS & İÇERİK
+          // REFERENCES & LEARNING
           // ═══════════════════════════════════════════════════════════════
-          _DiscoveryCategoryHeader(title: '📚 Referans & İçerik', color: const Color(0xFF607D8B)),
+          _DiscoveryCategoryHeader(title: '📚 ${L10nService.get('sections.references_learning', language)}', color: const Color(0xFF607D8B)),
           const SizedBox(height: 12),
           Wrap(
             spacing: 12,
             runSpacing: 12,
             children: [
-              _DiscoveryCard(icon: Icons.menu_book_rounded, title: 'Sözlük', color: const Color(0xFF607D8B), route: Routes.glossary),
-              _DiscoveryCard(icon: Icons.stars_rounded, title: 'Ünlüler', color: const Color(0xFFFFB74D), route: Routes.celebrities),
-              _DiscoveryCard(icon: Icons.article_rounded, title: 'Makaleler', color: const Color(0xFF78909C), route: Routes.articles),
+              _DiscoveryCard(icon: Icons.menu_book_rounded, title: L10nService.get('menu_features.glossary', language), color: const Color(0xFF607D8B), route: Routes.glossary),
+              _DiscoveryCard(icon: Icons.stars_rounded, title: L10nService.get('menu_features.celebrities', language), color: const Color(0xFFFFB74D), route: Routes.celebrities),
+              _DiscoveryCard(icon: Icons.article_rounded, title: L10nService.get('menu_features.articles', language), color: const Color(0xFF78909C), route: Routes.articles),
             ],
           ),
 
           const SizedBox(height: 28),
 
           // ═══════════════════════════════════════════════════════════════
-          // RÜYA YORUMLARI
+          // DREAMS & SUBCONSCIOUS
           // ═══════════════════════════════════════════════════════════════
-          _DiscoveryCategoryHeader(title: '🌙 Rüya Yorumları', color: const Color(0xFF5C6BC0)),
+          _DiscoveryCategoryHeader(title: '🌙 ${L10nService.get('sections.dreams_subconscious', language)}', color: const Color(0xFF5C6BC0)),
           const SizedBox(height: 12),
           Wrap(
             spacing: 12,
             runSpacing: 12,
             children: [
-              _DiscoveryCard(icon: Icons.nights_stay_rounded, title: 'Rüya İzi', color: const Color(0xFF5C6BC0), route: Routes.dreamInterpretation),
-              _DiscoveryCard(icon: Icons.auto_stories_rounded, title: 'Rüya Sözlüğü', color: const Color(0xFF7C4DFF), route: Routes.dreamGlossary),
-              _DiscoveryCard(icon: Icons.share_rounded, title: 'Rüya Paylaş', color: const Color(0xFF9575CD), route: Routes.dreamShare),
+              _DiscoveryCard(icon: Icons.nights_stay_rounded, title: L10nService.get('menu_features.dream_trace', language), color: const Color(0xFF5C6BC0), route: Routes.dreamInterpretation),
+              _DiscoveryCard(icon: Icons.auto_stories_rounded, title: L10nService.get('menu_features.dream_dictionary', language), color: const Color(0xFF7C4DFF), route: Routes.dreamGlossary),
+              _DiscoveryCard(icon: Icons.share_rounded, title: L10nService.get('menu_features.cosmic_share', language), color: const Color(0xFF9575CD), route: Routes.dreamShare),
             ],
           ),
 
@@ -1473,92 +1473,92 @@ class _DiscoverySection extends StatelessWidget {
           const SizedBox(height: 28),
 
           // ═══════════════════════════════════════════════════════════════
-          // KİŞİLİK ANALİZLERİ
+          // PERSONALITY ANALYSIS
           // ═══════════════════════════════════════════════════════════════
-          _DiscoveryCategoryHeader(title: '🎭 Kişilik Analizleri', color: const Color(0xFFFF4081)),
+          _DiscoveryCategoryHeader(title: '🎭 ${L10nService.get('sections.personality_analysis', language)}', color: const Color(0xFFFF4081)),
           const SizedBox(height: 12),
           Wrap(
             spacing: 12,
             runSpacing: 12,
             children: [
-              _DiscoveryCard(icon: Icons.contrast_rounded, title: 'Gölge Benliğin', color: const Color(0xFF37474F), route: Routes.shadowSelf),
-              _DiscoveryCard(icon: Icons.leaderboard_rounded, title: 'Liderlik Stilin', color: const Color(0xFFFF9800), route: Routes.leadershipStyle),
-              _DiscoveryCard(icon: Icons.heart_broken_rounded, title: 'Kalp Yaran', color: const Color(0xFFE91E63), route: Routes.heartbreak),
-              _DiscoveryCard(icon: Icons.flag_rounded, title: 'Red Flaglerin', color: const Color(0xFFF44336), route: Routes.redFlags),
-              _DiscoveryCard(icon: Icons.verified_rounded, title: 'Green Flaglerin', color: const Color(0xFF4CAF50), route: Routes.greenFlags),
-              _DiscoveryCard(icon: Icons.local_fire_department_rounded, title: 'Flört Stilin', color: const Color(0xFFFF6B9D), route: Routes.flirtStyle),
+              _DiscoveryCard(icon: Icons.contrast_rounded, title: L10nService.get('menu_features.shadow_self', language), color: const Color(0xFF37474F), route: Routes.shadowSelf),
+              _DiscoveryCard(icon: Icons.leaderboard_rounded, title: L10nService.get('menu_features.leadership_style', language), color: const Color(0xFFFF9800), route: Routes.leadershipStyle),
+              _DiscoveryCard(icon: Icons.heart_broken_rounded, title: L10nService.get('menu_features.heartbreaker', language), color: const Color(0xFFE91E63), route: Routes.heartbreak),
+              _DiscoveryCard(icon: Icons.flag_rounded, title: L10nService.get('menu_features.red_flags', language), color: const Color(0xFFF44336), route: Routes.redFlags),
+              _DiscoveryCard(icon: Icons.verified_rounded, title: L10nService.get('menu_features.green_flags', language), color: const Color(0xFF4CAF50), route: Routes.greenFlags),
+              _DiscoveryCard(icon: Icons.local_fire_department_rounded, title: L10nService.get('menu_features.flirt_style', language), color: const Color(0xFFFF6B9D), route: Routes.flirtStyle),
             ],
           ),
 
           const SizedBox(height: 28),
 
           // ═══════════════════════════════════════════════════════════════
-          // MİSTİK KEŞİFLER
+          // MYSTIC DISCOVERIES
           // ═══════════════════════════════════════════════════════════════
-          _DiscoveryCategoryHeader(title: '🔮 Mistik Keşifler', color: const Color(0xFF9D4EDD)),
+          _DiscoveryCategoryHeader(title: '🔮 ${L10nService.get('sections.mystic_discoveries', language)}', color: const Color(0xFF9D4EDD)),
           const SizedBox(height: 12),
           Wrap(
             spacing: 12,
             runSpacing: 12,
             children: [
-              _DiscoveryCard(icon: Icons.style_rounded, title: 'Tarot Kartın', color: const Color(0xFF9C27B0), route: Routes.tarotCard),
-              _DiscoveryCard(icon: Icons.lens_blur_rounded, title: 'Aura Rengin', color: const Color(0xFFAB47BC), route: Routes.auraColor),
-              _DiscoveryCard(icon: Icons.radio_button_checked_rounded, title: 'Çakra Dengen', color: const Color(0xFFFF5722), route: Routes.chakraBalance),
-              _DiscoveryCard(icon: Icons.tag_rounded, title: 'Yaşam Sayın', color: const Color(0xFF7C4DFF), route: Routes.lifeNumber),
-              _DiscoveryCard(icon: Icons.account_tree_rounded, title: 'Kabala Yolun', color: const Color(0xFF4CAF50), route: Routes.kabbalaPath),
+              _DiscoveryCard(icon: Icons.style_rounded, title: L10nService.get('menu_features.tarot_card', language), color: const Color(0xFF9C27B0), route: Routes.tarotCard),
+              _DiscoveryCard(icon: Icons.lens_blur_rounded, title: L10nService.get('menu_features.aura_color', language), color: const Color(0xFFAB47BC), route: Routes.auraColor),
+              _DiscoveryCard(icon: Icons.radio_button_checked_rounded, title: L10nService.get('menu_features.chakra_balance', language), color: const Color(0xFFFF5722), route: Routes.chakraBalance),
+              _DiscoveryCard(icon: Icons.tag_rounded, title: L10nService.get('menu_features.life_number', language), color: const Color(0xFF7C4DFF), route: Routes.lifeNumber),
+              _DiscoveryCard(icon: Icons.account_tree_rounded, title: L10nService.get('menu_features.kabbalah_path', language), color: const Color(0xFF4CAF50), route: Routes.kabbalaPath),
             ],
           ),
 
           const SizedBox(height: 28),
 
           // ═══════════════════════════════════════════════════════════════
-          // İLİŞKİ ANALİZLERİ
+          // RELATIONSHIP ANALYSIS
           // ═══════════════════════════════════════════════════════════════
-          _DiscoveryCategoryHeader(title: '💕 İlişki Analizleri', color: const Color(0xFFE91E63)),
+          _DiscoveryCategoryHeader(title: '💕 ${L10nService.get('sections.relationship_analysis', language)}', color: const Color(0xFFE91E63)),
           const SizedBox(height: 12),
           Wrap(
             spacing: 12,
             runSpacing: 12,
             children: [
-              _DiscoveryCard(icon: Icons.favorite_border_rounded, title: 'Uyum Analizi', color: const Color(0xFFE91E63), route: Routes.compatibilityAnalysis),
-              _DiscoveryCard(icon: Icons.favorite_rounded, title: 'Ruh Eşin', color: const Color(0xFFFF4081), route: Routes.soulMate),
-              _DiscoveryCard(icon: Icons.loop_rounded, title: 'İlişki Karman', color: const Color(0xFF9C27B0), route: Routes.relationshipKarma),
-              _DiscoveryCard(icon: Icons.star_rounded, title: 'Ünlü İkizin', color: const Color(0xFFFFD700), route: Routes.celebrityTwin),
+              _DiscoveryCard(icon: Icons.favorite_border_rounded, title: L10nService.get('menu_features.compatibility_analysis', language), color: const Color(0xFFE91E63), route: Routes.compatibilityAnalysis),
+              _DiscoveryCard(icon: Icons.favorite_rounded, title: L10nService.get('menu_features.soulmate', language), color: const Color(0xFFFF4081), route: Routes.soulMate),
+              _DiscoveryCard(icon: Icons.loop_rounded, title: L10nService.get('menu_features.relationship_karma', language), color: const Color(0xFF9C27B0), route: Routes.relationshipKarma),
+              _DiscoveryCard(icon: Icons.star_rounded, title: L10nService.get('menu_features.celebrity_twin', language), color: const Color(0xFFFFD700), route: Routes.celebrityTwin),
             ],
           ),
 
           const SizedBox(height: 28),
 
           // ═══════════════════════════════════════════════════════════════
-          // AI ASİSTANLAR
+          // AI ASSISTANTS
           // ═══════════════════════════════════════════════════════════════
-          _DiscoveryCategoryHeader(title: '🤖 AI Asistanlar', color: const Color(0xFF6A1B9A)),
+          _DiscoveryCategoryHeader(title: '🤖 ${L10nService.get('sections.ai_assistants', language)}', color: const Color(0xFF6A1B9A)),
           const SizedBox(height: 12),
           Wrap(
             spacing: 12,
             runSpacing: 12,
             children: [
-              _DiscoveryCard(icon: Icons.auto_awesome_rounded, title: 'Kozmoz İzi', color: const Color(0xFF6A1B9A), route: Routes.kozmoz),
-              _DiscoveryCard(icon: Icons.nights_stay_rounded, title: 'Rüya İzi', color: const Color(0xFF5C6BC0), route: Routes.dreamInterpretation),
-              _DiscoveryCard(icon: Icons.star_rounded, title: 'Burç Yorumcusu', color: const Color(0xFFFF6B9D), route: Routes.horoscope),
+              _DiscoveryCard(icon: Icons.auto_awesome_rounded, title: L10nService.get('menu_features.cosmic_trace', language), color: const Color(0xFF6A1B9A), route: Routes.kozmoz),
+              _DiscoveryCard(icon: Icons.nights_stay_rounded, title: L10nService.get('menu_features.dream_trace', language), color: const Color(0xFF5C6BC0), route: Routes.dreamInterpretation),
+              _DiscoveryCard(icon: Icons.star_rounded, title: L10nService.get('menu_features.horoscope_reader', language), color: const Color(0xFFFF6B9D), route: Routes.horoscope),
             ],
           ),
 
           const SizedBox(height: 28),
 
           // ═══════════════════════════════════════════════════════════════
-          // PAYLAŞIM & PROFİL
+          // SHARING & PROFILE
           // ═══════════════════════════════════════════════════════════════
-          _DiscoveryCategoryHeader(title: '📱 Paylaşım & Profil', color: const Color(0xFFE91E63)),
+          _DiscoveryCategoryHeader(title: '📱 ${L10nService.get('sections.sharing_profile', language)}', color: const Color(0xFFE91E63)),
           const SizedBox(height: 12),
           Wrap(
             spacing: 12,
             runSpacing: 12,
             children: [
-              _DiscoveryCard(icon: Icons.share_rounded, title: 'Kozmik Paylaşım', color: const Color(0xFFE91E63), route: Routes.cosmicShare),
-              _DiscoveryCard(icon: Icons.people_alt_rounded, title: 'Kayıtlı Profiller', color: const Color(0xFF9C27B0), route: Routes.savedProfiles),
-              _DiscoveryCard(icon: Icons.compare_rounded, title: 'Karşılaştır', color: const Color(0xFFFF4081), route: Routes.comparison),
-              _DiscoveryCard(icon: Icons.workspace_premium_rounded, title: 'Premium', color: const Color(0xFFFFD700), route: Routes.premium),
+              _DiscoveryCard(icon: Icons.share_rounded, title: L10nService.get('menu_features.cosmic_share', language), color: const Color(0xFFE91E63), route: Routes.cosmicShare),
+              _DiscoveryCard(icon: Icons.people_alt_rounded, title: L10nService.get('menu_features.saved_profiles', language), color: const Color(0xFF9C27B0), route: Routes.savedProfiles),
+              _DiscoveryCard(icon: Icons.compare_rounded, title: L10nService.get('menu_features.compare', language), color: const Color(0xFFFF4081), route: Routes.comparison),
+              _DiscoveryCard(icon: Icons.workspace_premium_rounded, title: L10nService.get('menu_features.premium', language), color: const Color(0xFFFFD700), route: Routes.premium),
             ],
           ),
         ],

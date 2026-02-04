@@ -11,6 +11,7 @@ import '../../../data/services/esoteric_interpretation_service.dart';
 import '../../../data/services/ad_service.dart';
 import '../../../data/services/storage_service.dart';
 import '../../../data/services/pdf_report_service.dart';
+import '../../../data/services/l10n_service.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/ad_banner_widget.dart';
@@ -97,10 +98,12 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
   Widget build(BuildContext context) {
     final userProfile = ref.watch(userProfileProvider);
 
+    final language = ref.watch(languageProvider);
+
     if (userProfile == null) {
-      return const Scaffold(
+      return Scaffold(
         body: Center(
-          child: Text('Profil bulunamadı'),
+          child: Text(L10nService.get('natal_chart.profile_not_found', language)),
         ),
       );
     }
@@ -117,14 +120,14 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
                 ),
                 const SizedBox(height: 16),
                 Text(
-                  'Kozmik haritanız çözümleniyor...',
+                  L10nService.get('natal_chart.calculating', language),
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                         color: AppColors.textSecondary,
                       ),
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Gezegenler konumlarını fısıldıyor ✨',
+                  L10nService.get('natal_chart.planets_whispering', language),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: AppColors.textMuted,
                         fontStyle: FontStyle.italic,
@@ -182,7 +185,7 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Doğum Haritası',
+                  L10nService.get('natal_chart.title', ref.watch(languageProvider)),
                   style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                         color: isDark ? AppColors.starGold : colorScheme.primary,
                       ),
@@ -206,7 +209,7 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
               Icons.picture_as_pdf_outlined,
               color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
             ),
-            tooltip: 'PDF Raporu',
+            tooltip: L10nService.get('natal_chart.pdf_generating', ref.watch(languageProvider)).replaceAll('...', ''),
           ),
           const SizedBox(width: 4),
           Container(
@@ -512,10 +515,10 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
         indicatorSize: TabBarIndicatorSize.tab,
         splashBorderRadius: BorderRadius.circular(12),
         tabs: [
-          _buildTab(context, Icons.auto_awesome, 'Özet'),
-          _buildTab(context, Icons.public, 'Gezegenler'),
-          _buildTab(context, Icons.home_outlined, 'Evler'),
-          _buildTab(context, Icons.hub_outlined, 'Açılar'),
+          _buildTab(context, Icons.auto_awesome, L10nService.get('natal_chart.summary', ref.watch(languageProvider))),
+          _buildTab(context, Icons.public, L10nService.get('natal_chart.planets', ref.watch(languageProvider))),
+          _buildTab(context, Icons.home_outlined, L10nService.get('natal_chart.houses', ref.watch(languageProvider))),
+          _buildTab(context, Icons.hub_outlined, L10nService.get('natal_chart.aspects', ref.watch(languageProvider))),
         ],
       ),
     ).animate().fadeIn(delay: 100.ms, duration: 400.ms);
@@ -532,6 +535,7 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
   }
 
   Widget _buildOverviewTab() {
+    final language = ref.watch(languageProvider);
     return SingleChildScrollView(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       child: Column(
@@ -539,8 +543,8 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
           // Esoteric intro
           _buildEsotericIntro(
             context,
-            'Ruhunun Kozmik Haritası',
-            'Bu harita, doğduğunda gökyüzünün bir an görüntüsüdür - ama bundan çok daha fazlası. Bu, ruhunun bu dünyaya getirdiği potansiyellerin, derslerin ve armağanların şifreli bir haritasıdır. Her gezegen bir iç ses, her burç bir enerji kalıbı, her ev bir yaşam alanıdır. Bu harita seni sınırlamaz - sana kim olduğunu hatırlatır.',
+            L10nService.get('chart.cosmic_map_title', language),
+            L10nService.get('chart.cosmic_map_description', language),
             AppColors.starGold,
           ).animate().fadeIn(duration: 400.ms),
           const SizedBox(height: AppConstants.spacingLg),
@@ -1201,7 +1205,7 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
               Icon(Icons.public, color: accentColor, size: 20),
               const SizedBox(width: 8),
               Text(
-                'Doğum Haritası',
+                L10nService.get('natal_chart.title', ref.watch(languageProvider)),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       color: accentColor,
                     ),
@@ -1224,9 +1228,9 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
             runSpacing: 8,
             alignment: WrapAlignment.center,
             children: [
-              _buildLegendItem('Uyumlu', AppColors.success),
-              _buildLegendItem('Zorlayıcı', AppColors.error),
-              _buildLegendItem('Kavuşum', isDark ? AppColors.starGold : colorScheme.primary),
+              _buildLegendItem(L10nService.get('aspects.trine', ref.watch(languageProvider)), AppColors.success),
+              _buildLegendItem(L10nService.get('aspects.square', ref.watch(languageProvider)), AppColors.error),
+              _buildLegendItem(L10nService.get('aspects.conjunction', ref.watch(languageProvider)), isDark ? AppColors.starGold : colorScheme.primary),
             ],
           ),
         ],
@@ -1286,7 +1290,7 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
               Icon(Icons.auto_awesome, color: accentColor, size: 20),
               const SizedBox(width: 8),
               Text(
-                'Büyük Üçlü',
+                L10nService.get('natal_chart.big_three', ref.watch(languageProvider)),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       color: accentColor,
                     ),
@@ -1295,22 +1299,22 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
           ),
           const SizedBox(height: AppConstants.spacingMd),
           _BigThreeItem(
-            label: 'Güneş Burcu',
+            label: L10nService.get('natal_chart.sun_sign', ref.watch(languageProvider)),
             planet: sun,
-            description: 'Temel kimlik ve ego',
+            description: L10nService.get('horoscope.cosmic_overview', ref.watch(languageProvider)),
           ),
           const SizedBox(height: AppConstants.spacingSm),
           _BigThreeItem(
-            label: 'Ay Burcu',
+            label: L10nService.get('natal_chart.moon_sign', ref.watch(languageProvider)),
             planet: moon,
-            description: 'Duygular ve iç dünya',
+            description: L10nService.get('horoscope.mood', ref.watch(languageProvider)),
           ),
           if (rising != null) ...[
             const SizedBox(height: AppConstants.spacingSm),
             _BigThreeItem(
-              label: 'Yükselen',
+              label: L10nService.get('natal_chart.rising_sign', ref.watch(languageProvider)),
               planet: rising,
-              description: 'Dış imaj ve ilk izlenim',
+              description: L10nService.get('horoscope.spiritual_signature', ref.watch(languageProvider)),
             ),
           ],
         ],
@@ -1346,7 +1350,7 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
               Icon(Icons.pie_chart, color: isDark ? AppColors.auroraEnd : colorScheme.secondary, size: 20),
               const SizedBox(width: 8),
               Text(
-                'Baskın Enerjiler',
+                L10nService.get('natal_chart.dominant_energies', ref.watch(languageProvider)),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       color: isDark ? AppColors.auroraEnd : colorScheme.secondary,
                     ),
@@ -1358,8 +1362,8 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
             children: [
               Expanded(
                 child: _DominantItem(
-                  label: 'Element',
-                  value: zodiac.ElementExtension(dominantElement).nameTr,
+                  label: L10nService.get('natal_chart.element', ref.watch(languageProvider)),
+                  value: zodiac.ElementExtension(dominantElement).localizedName(ref.watch(languageProvider)),
                   icon: zodiac.ElementExtension(dominantElement).symbol,
                   color: zodiac.ElementExtension(dominantElement).color,
                 ),
@@ -1367,8 +1371,8 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
               const SizedBox(width: AppConstants.spacingMd),
               Expanded(
                 child: _DominantItem(
-                  label: 'Modalite',
-                  value: zodiac.ModalityExtension(dominantModality).nameTr,
+                  label: L10nService.get('natal_chart.modality', ref.watch(languageProvider)),
+                  value: zodiac.ModalityExtension(dominantModality).localizedName(ref.watch(languageProvider)),
                   icon: zodiac.ModalityExtension(dominantModality).symbol,
                   color: isDark ? AppColors.moonSilver : AppColors.lightTextSecondary,
                 ),
@@ -1410,7 +1414,7 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
               const Icon(Icons.replay, color: AppColors.warning, size: 20),
               const SizedBox(width: 8),
               Text(
-                'Geri Giden Gezegenler',
+                L10nService.get('natal_chart.retrograde_planets', ref.watch(languageProvider)),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       color: AppColors.warning,
                     ),

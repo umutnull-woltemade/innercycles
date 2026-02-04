@@ -1,0 +1,96 @@
+{
+  "_metadata": {
+    "description": "A/B test variants for App Store screenshot captions",
+    "version": "1.0.0",
+    "lastUpdated": "2026-02-05"
+  },
+  "screenshots": {
+    "birth_chart": {
+      "variant_a": {
+        "caption": "Your complete birth chart, calculated to the minute",
+        "focus": "clarity"
+      },
+      "variant_b": {
+        "caption": "The stars knew you before you were born",
+        "focus": "emotion"
+      }
+    },
+    "daily_horoscope": {
+      "variant_a": {
+        "caption": "Personalized daily guidance for your zodiac sign",
+        "focus": "clarity"
+      },
+      "variant_b": {
+        "caption": "Start each day knowing what the cosmos has in store",
+        "focus": "emotion"
+      }
+    },
+    "compatibility": {
+      "variant_a": {
+        "caption": "See your relationship compatibility score instantly",
+        "focus": "clarity"
+      },
+      "variant_b": {
+        "caption": "Discover if the stars align for your connection",
+        "focus": "emotion"
+      }
+    },
+    "dream_interpretation": {
+      "variant_a": {
+        "caption": "AI-powered dream analysis and symbol decoding",
+        "focus": "clarity"
+      },
+      "variant_b": {
+        "caption": "Unlock the hidden messages in your dreams",
+        "focus": "emotion"
+      }
+    },
+    "tarot": {
+      "variant_a": {
+        "caption": "Daily tarot card readings with deep interpretations",
+        "focus": "clarity"
+      },
+      "variant_b": {
+        "caption": "Let the cards reveal your path forward",
+        "focus": "emotion"
+      }
+    },
+    "numerology": {
+      "variant_a": {
+        "caption": "Calculate your life path number and destiny",
+        "focus": "clarity"
+      },
+      "variant_b": {
+        "caption": "Numbers hold the blueprint to your soul",
+        "focus": "emotion"
+      }
+    },
+    "transits": {
+      "variant_a": {
+        "caption": "Track planetary movements affecting your chart",
+        "focus": "clarity"
+      },
+      "variant_b": {
+        "caption": "The planets are always moving — stay aligned",
+        "focus": "emotion"
+      }
+    },
+    "synastry": {
+      "variant_a": {
+        "caption": "Compare two birth charts for relationship insights",
+        "focus": "clarity"
+      },
+      "variant_b": {
+        "caption": "See your cosmic connection with someone special",
+        "focus": "emotion"
+      }
+    }
+  },
+  "app_store_metadata": {
+    "title": "Venus One: Astrology & Tarot",
+    "subtitle": "Birth Charts, Daily Horoscopes & More",
+    "promotional_text": "Your personal astrologer, always with you. Get daily insights tailored to your unique birth chart.",
+    "description": "Discover the cosmic guidance you've been looking for. Venus One combines ancient astrological wisdom with modern AI to deliver personalized insights about your life, relationships, and destiny.\n\n✨ BIRTH CHART ANALYSIS\nGet your complete natal chart calculated to the exact minute. Understand your planets, houses, and aspects with detailed interpretations.\n\n🌟 DAILY HOROSCOPES\nStart each day with personalized guidance based on your unique chart — not just your Sun sign.\n\n💫 COMPATIBILITY READINGS\nExplore relationship dynamics with synastry and composite chart analysis.\n\n🔮 TAROT & NUMEROLOGY\nDaily card pulls and life path calculations to guide your journey.\n\n🌙 DREAM INTERPRETATION\nAI-powered dream analysis to unlock your subconscious messages.\n\n⏰ TRANSIT TRACKING\nKnow when important planetary alignments affect your life.\n\nDownload now and let the stars guide your way.",
+    "keywords": "astrology,horoscope,birth chart,zodiac,tarot,numerology,compatibility,daily horoscope,natal chart,star sign"
+  }
+}

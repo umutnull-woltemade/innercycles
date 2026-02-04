@@ -6,6 +6,7 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../data/models/natal_chart.dart';
 import '../../../../data/models/zodiac_sign.dart' as zodiac;
 import '../../../../data/providers/app_providers.dart';
+import '../../../../data/services/l10n_service.dart';
 import '../../../../shared/widgets/interpretive_text.dart';
 
 class ChartSummaryCard extends ConsumerWidget {
@@ -76,21 +77,21 @@ class ChartSummaryCard extends ConsumerWidget {
           const SizedBox(height: AppConstants.spacingLg),
           _buildInfoRow(
             context,
-            'Doğum Tarihi',
-            _formatDate(chart.birthDate),
+            L10nService.get('chart.birth_date', language),
+            _formatDate(chart.birthDate, language),
             Icons.calendar_today,
           ),
           if (chart.birthTime != null)
             _buildInfoRow(
               context,
-              'Doğum Saati',
+              L10nService.get('chart.birth_time', language),
               chart.birthTime!,
               Icons.access_time,
             ),
           if (chart.birthPlace != null)
             _buildInfoRow(
               context,
-              'Doğum Yeri',
+              L10nService.get('chart.birth_place', language),
               chart.birthPlace!,
               Icons.location_on,
             ),
@@ -105,17 +106,17 @@ class ChartSummaryCard extends ConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 _StatItem(
-                  label: 'Gezegen',
+                  label: L10nService.get('chart.planets', language),
                   value: '${chart.planets.length}',
                   icon: Icons.public,
                 ),
                 _StatItem(
-                  label: 'Ev',
+                  label: L10nService.get('chart.houses', language),
                   value: '${chart.houses.length}',
                   icon: Icons.home,
                 ),
                 _StatItem(
-                  label: 'Aci',
+                  label: L10nService.get('chart.aspects', language),
                   value: '${chart.aspects.length}',
                   icon: Icons.compare_arrows,
                 ),
@@ -125,12 +126,12 @@ class ChartSummaryCard extends ConsumerWidget {
           const SizedBox(height: AppConstants.spacingLg),
           // Deep Interpretation Section
           DeepInterpretationCard(
-            title: '$signName Güneşiniz',
+            title: '$signName ${L10nService.get('chart.your_sun', language)}',
             summary: _getSunSignSummary(sunSign),
             deepInterpretation: _getSunSignDeepInterpretation(sunSign),
             icon: Icons.wb_sunny,
             accentColor: signColor,
-            relatedTerms: [signName, elementName, modalityName, 'Güneş'],
+            relatedTerms: [signName, elementName, modalityName, L10nService.get('planets.sun', language)],
           ),
         ],
       ),
@@ -310,22 +311,23 @@ Duyusal deneyimler - yemek, müzik, dokunma - sizin için sadece zevk değil, ru
     );
   }
 
-  String _formatDate(DateTime date) {
-    const months = [
-      'Ocak',
-      'Şubat',
-      'Mart',
-      'Nisan',
-      'Mayıs',
-      'Haziran',
-      'Temmuz',
-      'Ağustos',
-      'Eylül',
-      'Ekim',
-      'Kasım',
-      'Aralık',
-    ];
-    return '${date.day} ${months[date.month - 1]} ${date.year}';
+  String _formatDate(DateTime date, AppLanguage language) {
+    final monthKey = [
+      'months.january',
+      'months.february',
+      'months.march',
+      'months.april',
+      'months.may',
+      'months.june',
+      'months.july',
+      'months.august',
+      'months.september',
+      'months.october',
+      'months.november',
+      'months.december',
+    ][date.month - 1];
+    final monthName = L10nService.get(monthKey, language);
+    return '${date.day} $monthName ${date.year}';
   }
 }
 
