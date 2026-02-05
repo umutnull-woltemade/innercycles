@@ -7,7 +7,7 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../data/services/l10n_service.dart';
 import '../../../../data/providers/app_providers.dart';
 
-/// Ay Bugün Hangi Burçta? - AI-First Canonical Sayfa
+/// Moon Sign Today - AI-First Canonical Page
 class MoonSignTodayScreen extends ConsumerWidget {
   const MoonSignTodayScreen({super.key});
 
@@ -17,7 +17,8 @@ class MoonSignTodayScreen extends ConsumerWidget {
     final language = ref.watch(languageProvider);
     final color = const Color(0xFFC0C0C0);
     final today = DateTime.now();
-    final moonData = _getMoonSign(today);
+    final signKey = _getMoonSignKey(today);
+    final moonData = _getMoonData(signKey, language);
 
     return Scaffold(
       body: Container(
@@ -42,44 +43,55 @@ class MoonSignTodayScreen extends ConsumerWidget {
                 ),
                 const SizedBox(height: 24),
                 Text(
-                  'Ay bugün hangi burçta?',
+                  L10nService.get('astrology.moon_sign_today.title', language),
                   style: TextStyle(fontSize: 28, fontWeight: FontWeight.w600, color: isDark ? Colors.white : AppColors.textDark, height: 1.2),
                 ).animate().fadeIn(duration: 400.ms),
                 const SizedBox(height: 8),
-                _buildTag('Astroloji', color),
+                _buildTag(L10nService.get('astrology.moon_sign_today.tag', language), color),
                 const SizedBox(height: 32),
 
-                _buildSection(isDark, 'Kısa Cevap', color, [
-                  'Ay yaklaşık 2.5 günde bir burç değiştirir.',
-                  'Bugün Ay hangi burçtaysa o enerjiye göre duygular şekillenir.',
-                  'Ay burcu günlük duygusal tonu belirler.',
-                ]),
+                _buildSection(
+                  isDark,
+                  L10nService.get('astrology.moon_sign_today.short_answer_title', language),
+                  color,
+                  L10nService.getList('astrology.moon_sign_today.short_answer_bullets', language),
+                ),
                 const SizedBox(height: 28),
 
                 // Today's moon sign
-                _buildMoonCard(context, isDark, moonData),
+                _buildMoonCard(context, isDark, moonData, language),
                 const SizedBox(height: 28),
 
-                _buildSection(isDark, 'Ay Burcu Neden Önemli?', color, [
-                  'Duygusal ihtiyaçlarını gösterir.',
-                  'İçgüdüsel tepkilerini etkiler.',
-                  'Ruh haline yön verir.',
-                  'Beslenme ve dinlenme ihtiyacını şekillendirir.',
-                ]),
+                _buildSection(
+                  isDark,
+                  L10nService.get('astrology.moon_sign_today.why_important_title', language),
+                  color,
+                  L10nService.getList('astrology.moon_sign_today.why_important_bullets', language),
+                ),
                 const SizedBox(height: 28),
 
-                _buildSection(isDark, 'Günlük Hayatta', color, [
-                  'Ay ateş burcundaysa: Enerji yükselir, sabırsızlık olabilir.',
-                  'Ay toprak burcundaysa: Pratik işler için uygun.',
-                  'Ay hava burcundaysa: İletişim ve sosyallik ön planda.',
-                  'Ay su burcundaysa: Duygusal derinlik artar.',
-                ]),
+                _buildSection(
+                  isDark,
+                  L10nService.get('astrology.moon_sign_today.daily_life_title', language),
+                  color,
+                  L10nService.getList('astrology.moon_sign_today.daily_life_bullets', language),
+                ),
                 const SizedBox(height: 32),
 
-                _buildSuggestion(context, isDark, language, '⬆️', 'Yükselen burç nedir?', Routes.horoscope),
+                _buildSuggestion(
+                  context,
+                  isDark,
+                  language,
+                  '⬆️',
+                  L10nService.get('astrology.moon_sign_today.suggestion_text', language),
+                  Routes.horoscope,
+                ),
                 const SizedBox(height: 40),
 
-                Center(child: Text('Astroloji — Venus One', style: TextStyle(fontSize: 12, color: isDark ? Colors.white38 : AppColors.textLight))),
+                Center(child: Text(
+                  L10nService.get('astrology.moon_sign_today.brand_text', language),
+                  style: TextStyle(fontSize: 12, color: isDark ? Colors.white38 : AppColors.textLight),
+                )),
                 const SizedBox(height: 20),
               ],
             ),
@@ -89,31 +101,61 @@ class MoonSignTodayScreen extends ConsumerWidget {
     );
   }
 
-  _MoonData _getMoonSign(DateTime date) {
+  String _getMoonSignKey(DateTime date) {
     // Simplified moon sign calculation based on lunar cycle
     // In production, this would use precise ephemeris data
-    final signs = [
-      _MoonData('Koç', '♈', 'Ateş', const Color(0xFFE53935), ['Enerji yüksek', 'Yeni başlangıçlar için uygun', 'Sabırsızlık olabilir']),
-      _MoonData('Boğa', '♉', 'Toprak', const Color(0xFF43A047), ['Konfor arayışı', 'Maddi konular ön planda', 'Kararlılık güçlü']),
-      _MoonData('İkizler', '♊', 'Hava', const Color(0xFFFFB300), ['İletişim akışta', 'Merak artıyor', 'Çok yönlü düşünce']),
-      _MoonData('Yengeç', '♋', 'Su', const Color(0xFF90CAF9), ['Duygusal hassasiyet', 'Ev ve aile önemli', 'Sezgiler güçlü']),
-      _MoonData('Aslan', '♌', 'Ateş', const Color(0xFFFF9800), ['Yaratıcılık artıyor', 'Görünür olma isteği', 'Cömertlik']),
-      _MoonData('Başak', '♍', 'Toprak', const Color(0xFF8D6E63), ['Detaylara odaklanma', 'Düzen ihtiyacı', 'Sağlık bilinci']),
-      _MoonData('Terazi', '♎', 'Hava', const Color(0xFFEC407A), ['İlişkiler ön planda', 'Denge arayışı', 'Estetik duyarlılık']),
-      _MoonData('Akrep', '♏', 'Su', const Color(0xFF7B1FA2), ['Yoğun duygular', 'Dönüşüm enerjisi', 'Derinlik arayışı']),
-      _MoonData('Yay', '♐', 'Ateş', const Color(0xFF5C6BC0), ['Özgürlük isteği', 'Felsefi düşünce', 'İyimserlik']),
-      _MoonData('Oğlak', '♑', 'Toprak', const Color(0xFF455A64), ['Sorumluluk bilinci', 'Kariyer odağı', 'Disiplin']),
-      _MoonData('Kova', '♒', 'Hava', const Color(0xFF00BCD4), ['Bağımsızlık', 'Yenilikçi fikirler', 'Topluluk bilinci']),
-      _MoonData('Balık', '♓', 'Su', const Color(0xFF26A69A), ['Sezgisel dönem', 'Rüyalar anlamlı', 'Empati yüksek']),
+    final signKeys = [
+      'aries', 'taurus', 'gemini', 'cancer', 'leo', 'virgo',
+      'libra', 'scorpio', 'sagittarius', 'capricorn', 'aquarius', 'pisces'
     ];
 
     // Approximate lunar cycle position (29.5 days)
     final lunarDayOfYear = date.difference(DateTime(date.year, 1, 1)).inDays;
     final signIndex = (lunarDayOfYear ~/ 2.5).toInt() % 12;
-    return signs[signIndex];
+    return signKeys[signIndex];
   }
 
-  Widget _buildMoonCard(BuildContext context, bool isDark, _MoonData data) {
+  _MoonData _getMoonData(String signKey, AppLanguage language) {
+    final signColors = {
+      'aries': const Color(0xFFE53935),
+      'taurus': const Color(0xFF43A047),
+      'gemini': const Color(0xFFFFB300),
+      'cancer': const Color(0xFF90CAF9),
+      'leo': const Color(0xFFFF9800),
+      'virgo': const Color(0xFF8D6E63),
+      'libra': const Color(0xFFEC407A),
+      'scorpio': const Color(0xFF7B1FA2),
+      'sagittarius': const Color(0xFF5C6BC0),
+      'capricorn': const Color(0xFF455A64),
+      'aquarius': const Color(0xFF00BCD4),
+      'pisces': const Color(0xFF26A69A),
+    };
+
+    final signSymbols = {
+      'aries': '♈', 'taurus': '♉', 'gemini': '♊', 'cancer': '♋',
+      'leo': '♌', 'virgo': '♍', 'libra': '♎', 'scorpio': '♏',
+      'sagittarius': '♐', 'capricorn': '♑', 'aquarius': '♒', 'pisces': '♓'
+    };
+
+    final name = L10nService.get('astrology.moon_sign_today.signs.$signKey.name', language);
+    final element = L10nService.get('astrology.moon_sign_today.signs.$signKey.element', language);
+    final bullets = L10nService.getList('astrology.moon_sign_today.signs.$signKey.bullets', language);
+
+    return _MoonData(
+      name,
+      signSymbols[signKey] ?? '♈',
+      element,
+      signColors[signKey] ?? const Color(0xFFE53935),
+      bullets,
+    );
+  }
+
+  Widget _buildMoonCard(BuildContext context, bool isDark, _MoonData data, AppLanguage language) {
+    final moonInSign = L10nService.get('astrology.moon_sign_today.moon_in_sign', language)
+        .replaceAll('{sign}', data.name);
+    final elementLabel = L10nService.get('astrology.moon_sign_today.element_label', language)
+        .replaceAll('{element}', data.element);
+
     return Container(
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
@@ -143,7 +185,7 @@ class MoonSignTodayScreen extends ConsumerWidget {
           ),
           const SizedBox(height: 12),
           Text(
-            'Ay ${data.name} Burcunda',
+            moonInSign,
             style: TextStyle(
               fontSize: 22,
               fontWeight: FontWeight.bold,
@@ -158,7 +200,7 @@ class MoonSignTodayScreen extends ConsumerWidget {
               borderRadius: BorderRadius.circular(12),
             ),
             child: Text(
-              '${data.element} Elementi',
+              elementLabel,
               style: TextStyle(fontSize: 12, color: data.color, fontWeight: FontWeight.w500),
             ),
           ),

@@ -39,37 +39,38 @@ class DreamVoicelessScreen extends ConsumerWidget {
                 const SizedBox(height: 24),
                 Text(L10nService.get('dreams.canonical.voiceless_question', language), style: TextStyle(fontSize: 28, fontWeight: FontWeight.w600, color: isDark ? Colors.white : AppColors.textDark, height: 1.2)).animate().fadeIn(duration: 400.ms),
                 const SizedBox(height: 8),
-                _buildTag('Rüya İzi', color),
+                _buildTag(L10nService.get('dreams.canonical.brand_tag', language), color),
                 const SizedBox(height: 32),
-                _buildSection(isDark, 'Kısa Cevap', color, [
-                  'Ses çıkaramamak, ifade edememe hissini yansıtır.',
-                  'Duyulmadığını veya anlaşılmadığını hissediyorsun.',
-                  'Güçsüzlük veya çaresizlik duygusu.',
+                _buildSection(isDark, L10nService.get('dreams.canonical.sections.short_answer', language), color, [
+                  L10nService.get('dreams.canonical.voiceless.short_answer_1', language),
+                  L10nService.get('dreams.canonical.voiceless.short_answer_2', language),
+                  L10nService.get('dreams.canonical.voiceless.short_answer_3', language),
                 ]),
                 const SizedBox(height: 28),
-                _buildSection(isDark, 'Neden Konuşamadın?', color, [
-                  'Sesin çıkmadı: Bastırılmış duygular.',
-                  'Kimse duymadı: Görünmez hissetme.',
-                  'Bağırdın ama çıkmadı: Yoğun hayal kırıklığı.',
+                _buildSection(isDark, L10nService.get('dreams.canonical.voiceless.why_title', language), color, [
+                  L10nService.get('dreams.canonical.voiceless.why_1', language),
+                  L10nService.get('dreams.canonical.voiceless.why_2', language),
+                  L10nService.get('dreams.canonical.voiceless.why_3', language),
                 ]),
                 const SizedBox(height: 28),
-                _buildSection(isDark, 'Ne Anlama Gelir?', color, [
-                  'Söyleyemediğin bir şey var.',
-                  'Bir konuda kendini ifade edemiyorsun.',
-                  'Duygularını bastırıyorsun.',
+                _buildSection(isDark, L10nService.get('dreams.canonical.sections.what_it_means', language), color, [
+                  L10nService.get('dreams.canonical.voiceless.meaning_1', language),
+                  L10nService.get('dreams.canonical.voiceless.meaning_2', language),
+                  L10nService.get('dreams.canonical.voiceless.meaning_3', language),
                 ]),
                 const SizedBox(height: 28),
-                _buildSection(isDark, 'Tekrar Ediyorsa', color, [
-                  'Sesini duyurmakta zorlanıyorsun.',
-                  'Sınır koymakta güçlük çekiyorsun.',
-                  'Konuşman gereken biri var.',
+                _buildSection(isDark, L10nService.get('dreams.canonical.sections.if_recurring', language), color, [
+                  L10nService.get('dreams.canonical.voiceless.recurring_1', language),
+                  L10nService.get('dreams.canonical.voiceless.recurring_2', language),
+                  L10nService.get('dreams.canonical.voiceless.recurring_3', language),
                 ]),
                 const SizedBox(height: 32),
                 _buildSuggestion(context, isDark, language, '💧', L10nService.get('dreams.canonical.water_question', language), Routes.dreamWater),
                 const SizedBox(height: 40),
-                const PageFooterWithDisclaimer(
+                PageFooterWithDisclaimer(
                   brandText: 'Rüya İzi — Venus One',
-                  disclaimerText: DisclaimerTexts.dreams,
+                  disclaimerText: DisclaimerTexts.dreams(language),
+                  language: language,
                 ),
               ],
             ),

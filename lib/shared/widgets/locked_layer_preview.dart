@@ -1,11 +1,14 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/theme/app_colors.dart';
+import '../../data/services/l10n_service.dart';
+import '../../data/providers/app_providers.dart';
 
 /// Soft paywall component - shows blurred premium content preview
 /// Creates desire without frustration - key monetization UX pattern
-class LockedLayerPreview extends StatelessWidget {
+class LockedLayerPreview extends ConsumerWidget {
   final String title;
   final String? subtitle;
   final String teaserText;
@@ -32,9 +35,10 @@ class LockedLayerPreview extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final color = accentColor ?? AppColors.starGold;
+    final language = ref.watch(languageProvider);
 
     return GestureDetector(
       onTap: onUnlock,
@@ -121,7 +125,7 @@ class LockedLayerPreview extends StatelessWidget {
                             ],
                           ),
                         ),
-                        _PremiumBadge(color: color),
+                        _PremiumBadge(color: color, language: language),
                       ],
                     ),
                     const SizedBox(height: 16),
@@ -148,7 +152,7 @@ class LockedLayerPreview extends StatelessWidget {
 
                     // Unlock CTA
                     _UnlockButton(
-                      text: unlockCTA ?? 'Kilidi Ac',
+                      text: unlockCTA ?? L10nService.get('widgets.locked_layer_preview.unlock_default', language),
                       color: color,
                       showPrice: showPriceHint,
                       priceText: priceText,
@@ -208,8 +212,9 @@ class LockedLayerPreview extends StatelessWidget {
 
 class _PremiumBadge extends StatelessWidget {
   final Color color;
+  final AppLanguage language;
 
-  const _PremiumBadge({required this.color});
+  const _PremiumBadge({required this.color, required this.language});
 
   @override
   Widget build(BuildContext context) {
@@ -237,7 +242,7 @@ class _PremiumBadge extends StatelessWidget {
           ),
           const SizedBox(width: 4),
           Text(
-            'PRO',
+            L10nService.get('widgets.locked_layer_preview.pro_badge', language),
             style: TextStyle(
               fontSize: 11,
               fontWeight: FontWeight.bold,
@@ -336,7 +341,7 @@ class _UnlockButton extends StatelessWidget {
 }
 
 /// Inline soft paywall for content sections
-class InlineLockedSection extends StatelessWidget {
+class InlineLockedSection extends ConsumerWidget {
   final Widget freeContent;
   final String lockedTitle;
   final String lockedTeaser;
@@ -355,9 +360,10 @@ class InlineLockedSection extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final color = accentColor ?? AppColors.starGold;
+    final language = ref.watch(languageProvider);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -409,7 +415,7 @@ class InlineLockedSection extends StatelessWidget {
                           ),
                           const SizedBox(height: 2),
                           Text(
-                            '+$lockedItemCount daha fazla icerik',
+                            L10nService.getWithParams('widgets.locked_layer_preview.more_content', language, params: {'count': lockedItemCount.toString()}),
                             style: TextStyle(
                               fontSize: 12,
                               color: color,
@@ -424,9 +430,9 @@ class InlineLockedSection extends StatelessWidget {
                         color: color,
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      child: const Text(
-                        'Kilidi Ac',
-                        style: TextStyle(
+                      child: Text(
+                        L10nService.get('widgets.locked_layer_preview.unlock_default', language),
+                        style: const TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,

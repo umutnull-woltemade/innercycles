@@ -1,9 +1,12 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../data/services/l10n_service.dart';
+import '../../data/providers/app_providers.dart';
 
 /// Global error fallback widget that prevents white screens
 /// Shows a user-friendly error message with recovery options
-class AppErrorWidget extends StatelessWidget {
+class AppErrorWidget extends ConsumerWidget {
   final FlutterErrorDetails details;
 
   const AppErrorWidget({
@@ -12,7 +15,9 @@ class AppErrorWidget extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final language = ref.watch(languageProvider);
+
     // Log the error in debug mode
     if (kDebugMode) {
       debugPrint('AppErrorWidget: Rendering error fallback for: ${details.exception}');
@@ -35,9 +40,9 @@ class AppErrorWidget extends StatelessWidget {
                 const SizedBox(height: 24),
 
                 // Title
-                const Text(
-                  'Bir şeyler ters gitti',
-                  style: TextStyle(
+                Text(
+                  L10nService.get('widgets.app_error.title', language),
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 20,
                     fontWeight: FontWeight.w600,
@@ -48,7 +53,7 @@ class AppErrorWidget extends StatelessWidget {
 
                 // Subtitle
                 Text(
-                  'Endişelenmeyin, yıldızlar hala sizinle.',
+                  L10nService.get('widgets.app_error.subtitle', language),
                   style: TextStyle(
                     color: Colors.white.withValues(alpha: 0.7),
                     fontSize: 14,
@@ -106,9 +111,9 @@ class AppErrorWidget extends StatelessWidget {
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
-                    child: const Text(
-                      'Ana Sayfaya Dön',
-                      style: TextStyle(
+                    child: Text(
+                      L10nService.get('widgets.app_error.back_to_home', language),
+                      style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
                       ),
@@ -129,7 +134,7 @@ class AppErrorWidget extends StatelessWidget {
                       }
                     },
                     child: Text(
-                      'Sayfayı Yenile',
+                      L10nService.get('widgets.app_error.reload_page', language),
                       style: TextStyle(
                         color: Colors.white.withValues(alpha: 0.6),
                         fontSize: 14,
@@ -146,32 +151,34 @@ class AppErrorWidget extends StatelessWidget {
 }
 
 /// Simplified error widget for production - no debug info
-class ProductionErrorWidget extends StatelessWidget {
+class ProductionErrorWidget extends ConsumerWidget {
   const ProductionErrorWidget({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final language = ref.watch(languageProvider);
+
     return Container(
       color: const Color(0xFF0D0D1A),
-      child: const SafeArea(
+      child: SafeArea(
         child: Center(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text('✨', style: TextStyle(fontSize: 64)),
-              SizedBox(height: 24),
+              const Text('✨', style: TextStyle(fontSize: 64)),
+              const SizedBox(height: 24),
               Text(
-                'Bir şeyler ters gitti',
-                style: TextStyle(
+                L10nService.get('widgets.app_error.title', language),
+                style: const TextStyle(
                   color: Colors.white,
                   fontSize: 20,
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              SizedBox(height: 12),
+              const SizedBox(height: 12),
               Text(
-                'Lütfen sayfayı yenileyin.',
-                style: TextStyle(
+                L10nService.get('widgets.app_error.please_reload', language),
+                style: const TextStyle(
                   color: Colors.white70,
                   fontSize: 14,
                 ),

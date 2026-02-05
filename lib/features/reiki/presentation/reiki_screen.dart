@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../data/providers/app_providers.dart';
+import '../../../data/services/l10n_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/entertainment_disclaimer.dart';
 
-/// Reiki Screen - Evrensel Yaşam Enerjisi Şifası
-/// Enerji kanallarını açma ve şifa pratiği
-class ReikiScreen extends StatefulWidget {
+/// Reiki Screen - Universal Life Energy Healing
+/// Opening energy channels and healing practice
+class ReikiScreen extends ConsumerStatefulWidget {
   const ReikiScreen({super.key});
 
   @override
-  State<ReikiScreen> createState() => _ReikiScreenState();
+  ConsumerState<ReikiScreen> createState() => _ReikiScreenState();
 }
 
-class _ReikiScreenState extends State<ReikiScreen>
+class _ReikiScreenState extends ConsumerState<ReikiScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
@@ -34,21 +37,22 @@ class _ReikiScreenState extends State<ReikiScreen>
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final language = ref.watch(languageProvider);
 
     return Scaffold(
       body: CosmicBackground(
         child: SafeArea(
           child: Column(
             children: [
-              _buildHeader(context, isDark),
-              _buildTabBar(isDark),
+              _buildHeader(context, isDark, language),
+              _buildTabBar(isDark, language),
               Expanded(
                 child: TabBarView(
                   controller: _tabController,
                   children: [
-                    _buildPrinciplesTab(isDark),
-                    _buildChakrasTab(isDark),
-                    _buildPracticeTab(isDark),
+                    _buildPrinciplesTab(isDark, language),
+                    _buildChakrasTab(isDark, language),
+                    _buildPracticeTab(isDark, language),
                   ],
                 ),
               ),
@@ -59,7 +63,7 @@ class _ReikiScreenState extends State<ReikiScreen>
     );
   }
 
-  Widget _buildHeader(BuildContext context, bool isDark) {
+  Widget _buildHeader(BuildContext context, bool isDark, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       child: Column(
@@ -85,7 +89,7 @@ class _ReikiScreenState extends State<ReikiScreen>
                         ),
                         const SizedBox(width: 8),
                         Text(
-                          'Reiki',
+                          L10nService.get('screens.reiki.title', language),
                           style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                                 fontWeight: FontWeight.bold,
                                 color: isDark ? Colors.white : AppColors.textDark,
@@ -95,7 +99,7 @@ class _ReikiScreenState extends State<ReikiScreen>
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      'Evrensel Yaşam Enerjisi',
+                      L10nService.get('screens.reiki.subtitle', language),
                       style: TextStyle(
                         fontSize: 12,
                         color: isDark ? Colors.white60 : AppColors.textLight,
@@ -123,7 +127,7 @@ class _ReikiScreenState extends State<ReikiScreen>
               ),
             ),
             child: Text(
-              'Reiki, Japonca "evrensel yaşam enerjisi" anlamına gelir. Ellerin üzerinden akan bu enerji, bedenin doğal şifa mekanizmalarını aktive eder ve enerji bloklarını çözer. Stres azaltma, rahatlama ve bütünsel iyileşme sağlar.',
+              L10nService.get('screens.reiki.description', language),
               style: TextStyle(
                 fontSize: 13,
                 height: 1.5,
@@ -137,7 +141,7 @@ class _ReikiScreenState extends State<ReikiScreen>
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildTabBar(bool isDark) {
+  Widget _buildTabBar(bool isDark, AppLanguage language) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -158,56 +162,56 @@ class _ReikiScreenState extends State<ReikiScreen>
           borderRadius: BorderRadius.circular(AppConstants.radiusLg),
         ),
         dividerColor: Colors.transparent,
-        tabs: const [
-          Tab(text: 'İlkeler'),
-          Tab(text: 'Çakralar'),
-          Tab(text: 'Pratik'),
+        tabs: [
+          Tab(text: L10nService.get('screens.reiki.tabs.principles', language)),
+          Tab(text: L10nService.get('screens.reiki.tabs.chakras', language)),
+          Tab(text: L10nService.get('screens.reiki.tabs.practice', language)),
         ],
       ),
     );
   }
 
-  Widget _buildPrinciplesTab(bool isDark) {
+  Widget _buildPrinciplesTab(bool isDark, AppLanguage language) {
     final principles = [
       _ReikiPrinciple(
-        japanese: 'Kyo dake wa',
-        turkish: 'Sadece bugün için',
-        description: 'Şimdiki ana odaklan. Geçmiş gitmiştir, gelecek henüz gelmedi. Sadece bugün kontrol edebilirsin.',
+        japanese: L10nService.get('screens.reiki.principles.kyo_dake_wa.japanese', language),
+        translation: L10nService.get('screens.reiki.principles.kyo_dake_wa.translation', language),
+        description: L10nService.get('screens.reiki.principles.kyo_dake_wa.description', language),
         icon: '☀️',
         color: const Color(0xFFFFD700),
       ),
       _ReikiPrinciple(
-        japanese: 'Ikaru na',
-        turkish: 'Kızma',
-        description: 'Öfke enerjini tüketir ve sağlığına zarar verir. Duygularını kabul et ama bırak gitsinler.',
+        japanese: L10nService.get('screens.reiki.principles.ikaru_na.japanese', language),
+        translation: L10nService.get('screens.reiki.principles.ikaru_na.translation', language),
+        description: L10nService.get('screens.reiki.principles.ikaru_na.description', language),
         icon: '🔥',
         color: const Color(0xFFFF5722),
       ),
       _ReikiPrinciple(
-        japanese: 'Shinpai suna',
-        turkish: 'Endişelenme',
-        description: 'Endişe, olmamış şeylere enerji vermektir. Güven ve teslimiyetle yaşa.',
+        japanese: L10nService.get('screens.reiki.principles.shinpai_suna.japanese', language),
+        translation: L10nService.get('screens.reiki.principles.shinpai_suna.translation', language),
+        description: L10nService.get('screens.reiki.principles.shinpai_suna.description', language),
         icon: '🌊',
         color: const Color(0xFF2196F3),
       ),
       _ReikiPrinciple(
-        japanese: 'Kansha shite',
-        turkish: 'Minnettar ol',
-        description: 'Şükran, en yüksek titreşimlerden biridir. Her şeyde bir nimet bul.',
+        japanese: L10nService.get('screens.reiki.principles.kansha_shite.japanese', language),
+        translation: L10nService.get('screens.reiki.principles.kansha_shite.translation', language),
+        description: L10nService.get('screens.reiki.principles.kansha_shite.description', language),
         icon: '💚',
         color: const Color(0xFF4CAF50),
       ),
       _ReikiPrinciple(
-        japanese: 'Gyo wo hageme',
-        turkish: 'İşini dürüstçe yap',
-        description: 'Ne iş yaparsan yap, bütünlük ve özveriyle yap. Hayatına anlam kat.',
+        japanese: L10nService.get('screens.reiki.principles.gyo_wo_hageme.japanese', language),
+        translation: L10nService.get('screens.reiki.principles.gyo_wo_hageme.translation', language),
+        description: L10nService.get('screens.reiki.principles.gyo_wo_hageme.description', language),
         icon: '⭐',
         color: const Color(0xFF9C27B0),
       ),
       _ReikiPrinciple(
-        japanese: 'Hito ni shinsetsu ni',
-        turkish: 'Herkese nazik ol',
-        description: 'Şefkat ve nezaket evrensel şifa enerjileridir. Kendin dahil herkese nazik ol.',
+        japanese: L10nService.get('screens.reiki.principles.hito_ni_shinsetsu_ni.japanese', language),
+        translation: L10nService.get('screens.reiki.principles.hito_ni_shinsetsu_ni.translation', language),
+        description: L10nService.get('screens.reiki.principles.hito_ni_shinsetsu_ni.description', language),
         icon: '💕',
         color: const Color(0xFFE91E63),
       ),
@@ -237,7 +241,7 @@ class _ReikiScreenState extends State<ReikiScreen>
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Gokai - Beş İlke',
+                  L10nService.get('screens.reiki.gokai.title', language),
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -246,7 +250,7 @@ class _ReikiScreenState extends State<ReikiScreen>
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  'Mikao Usui\'nin öğretileri',
+                  L10nService.get('screens.reiki.gokai.subtitle', language),
                   style: TextStyle(
                     fontSize: 13,
                     color: isDark ? Colors.white60 : AppColors.textLight,
@@ -263,79 +267,80 @@ class _ReikiScreenState extends State<ReikiScreen>
                 .slideX(begin: 0.05);
           }),
           const SizedBox(height: AppConstants.spacingXl),
-          const PageFooterWithDisclaimer(
+          PageFooterWithDisclaimer(
             brandText: 'Reiki — Venus One',
-            disclaimerText: DisclaimerTexts.astrology,
+            disclaimerText: DisclaimerTexts.astrology(language),
+            language: language,
           ),
         ],
       ),
     );
   }
 
-  Widget _buildChakrasTab(bool isDark) {
+  Widget _buildChakrasTab(bool isDark, AppLanguage language) {
     final chakras = [
       _ChakraInfo(
-        name: 'Kök Çakra',
-        sanskrit: 'Muladhara',
-        location: 'Omurga tabanı',
+        name: L10nService.get('screens.reiki.chakras.root.name', language),
+        sanskrit: L10nService.get('screens.reiki.chakras.root.sanskrit', language),
+        location: L10nService.get('screens.reiki.chakras.root.location', language),
         color: const Color(0xFFE53935),
         icon: '🔴',
-        attributes: ['Güvenlik', 'Topraklama', 'Hayatta kalma'],
-        reikiPosition: 'Elleri kalça kemiklerinin üzerine koy',
+        attributes: L10nService.getList('screens.reiki.chakras.root.attributes', language),
+        reikiPosition: L10nService.get('screens.reiki.chakras.root.reiki_position', language),
       ),
       _ChakraInfo(
-        name: 'Sakral Çakra',
-        sanskrit: 'Svadhisthana',
-        location: 'Göbek altı',
+        name: L10nService.get('screens.reiki.chakras.sacral.name', language),
+        sanskrit: L10nService.get('screens.reiki.chakras.sacral.sanskrit', language),
+        location: L10nService.get('screens.reiki.chakras.sacral.location', language),
         color: const Color(0xFFFF9800),
         icon: '🟠',
-        attributes: ['Yaratıcılık', 'Cinsellik', 'Duygular'],
-        reikiPosition: 'Elleri göbek altına koy',
+        attributes: L10nService.getList('screens.reiki.chakras.sacral.attributes', language),
+        reikiPosition: L10nService.get('screens.reiki.chakras.sacral.reiki_position', language),
       ),
       _ChakraInfo(
-        name: 'Güneş Sinir Ağı',
-        sanskrit: 'Manipura',
-        location: 'Mide bölgesi',
+        name: L10nService.get('screens.reiki.chakras.solar_plexus.name', language),
+        sanskrit: L10nService.get('screens.reiki.chakras.solar_plexus.sanskrit', language),
+        location: L10nService.get('screens.reiki.chakras.solar_plexus.location', language),
         color: const Color(0xFFFFEB3B),
         icon: '🟡',
-        attributes: ['Özgüven', 'İrade gücü', 'Kişisel güç'],
-        reikiPosition: 'Elleri mide bölgesine koy',
+        attributes: L10nService.getList('screens.reiki.chakras.solar_plexus.attributes', language),
+        reikiPosition: L10nService.get('screens.reiki.chakras.solar_plexus.reiki_position', language),
       ),
       _ChakraInfo(
-        name: 'Kalp Çakra',
-        sanskrit: 'Anahata',
-        location: 'Göğüs ortası',
+        name: L10nService.get('screens.reiki.chakras.heart.name', language),
+        sanskrit: L10nService.get('screens.reiki.chakras.heart.sanskrit', language),
+        location: L10nService.get('screens.reiki.chakras.heart.location', language),
         color: const Color(0xFF4CAF50),
         icon: '💚',
-        attributes: ['Sevgi', 'Şefkat', 'Affetme'],
-        reikiPosition: 'Elleri göğsün ortasına koy',
+        attributes: L10nService.getList('screens.reiki.chakras.heart.attributes', language),
+        reikiPosition: L10nService.get('screens.reiki.chakras.heart.reiki_position', language),
       ),
       _ChakraInfo(
-        name: 'Boğaz Çakra',
-        sanskrit: 'Vishuddha',
-        location: 'Boğaz',
+        name: L10nService.get('screens.reiki.chakras.throat.name', language),
+        sanskrit: L10nService.get('screens.reiki.chakras.throat.sanskrit', language),
+        location: L10nService.get('screens.reiki.chakras.throat.location', language),
         color: const Color(0xFF03A9F4),
         icon: '🔵',
-        attributes: ['İletişim', 'Kendini ifade', 'Gerçek'],
-        reikiPosition: 'Elleri boğazın iki yanına koy',
+        attributes: L10nService.getList('screens.reiki.chakras.throat.attributes', language),
+        reikiPosition: L10nService.get('screens.reiki.chakras.throat.reiki_position', language),
       ),
       _ChakraInfo(
-        name: 'Üçüncü Göz',
-        sanskrit: 'Ajna',
-        location: 'Kaşlar arası',
+        name: L10nService.get('screens.reiki.chakras.third_eye.name', language),
+        sanskrit: L10nService.get('screens.reiki.chakras.third_eye.sanskrit', language),
+        location: L10nService.get('screens.reiki.chakras.third_eye.location', language),
         color: const Color(0xFF3F51B5),
         icon: '🟣',
-        attributes: ['Sezgi', 'İç görü', 'Bilgelik'],
-        reikiPosition: 'Elleri alına koy',
+        attributes: L10nService.getList('screens.reiki.chakras.third_eye.attributes', language),
+        reikiPosition: L10nService.get('screens.reiki.chakras.third_eye.reiki_position', language),
       ),
       _ChakraInfo(
-        name: 'Taç Çakra',
-        sanskrit: 'Sahasrara',
-        location: 'Baş tepesi',
+        name: L10nService.get('screens.reiki.chakras.crown.name', language),
+        sanskrit: L10nService.get('screens.reiki.chakras.crown.sanskrit', language),
+        location: L10nService.get('screens.reiki.chakras.crown.location', language),
         color: const Color(0xFF9C27B0),
         icon: '👑',
-        attributes: ['Ruhsal bağlantı', 'Aydınlanma', 'Birlik'],
-        reikiPosition: 'Elleri başın tepesine koy',
+        attributes: L10nService.getList('screens.reiki.chakras.crown.attributes', language),
+        reikiPosition: L10nService.get('screens.reiki.chakras.crown.reiki_position', language),
       ),
     ];
 
@@ -343,63 +348,39 @@ class _ReikiScreenState extends State<ReikiScreen>
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       itemCount: chakras.length,
       itemBuilder: (context, index) {
-        return _buildChakraCard(chakras[index], isDark)
+        return _buildChakraCard(chakras[index], isDark, language)
             .animate(delay: (80 * index).ms)
             .fadeIn(duration: 400.ms);
       },
     );
   }
 
-  Widget _buildPracticeTab(bool isDark) {
+  Widget _buildPracticeTab(bool isDark, AppLanguage language) {
     return SingleChildScrollView(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildPracticeSection(
-            title: 'Öz-Reiki Pratiği',
+            title: L10nService.get('screens.reiki.practice.self_reiki.title', language),
             icon: '🙌',
-            steps: [
-              'Rahat bir pozisyonda otur veya uzan',
-              'Gözlerini kapat ve birkaç derin nefes al',
-              'Niyetini belirle: "Şifa enerjisine açılıyorum"',
-              'Ellerini başının tepesine koy (3-5 dk)',
-              'Ellerini gözlerinin üzerine koy (3-5 dk)',
-              'Ellerini boğazına koy (3-5 dk)',
-              'Ellerini kalbinin üzerine koy (3-5 dk)',
-              'Ellerini güneş sinir ağına koy (3-5 dk)',
-              'Ellerini göbek altına koy (3-5 dk)',
-              'Minnetle bitir',
-            ],
+            steps: L10nService.getList('screens.reiki.practice.self_reiki.steps', language),
             color: const Color(0xFFFF7043),
             isDark: isDark,
           ).animate().fadeIn(duration: 500.ms).slideY(begin: 0.1),
           const SizedBox(height: AppConstants.spacingLg),
           _buildPracticeSection(
-            title: 'Günlük Enerji Temizliği',
+            title: L10nService.get('screens.reiki.practice.daily_cleansing.title', language),
             icon: '🌊',
-            steps: [
-              'Sabah uyandığında ellerini ov',
-              'Ellerinin ısındığını ve enerjinin aktığını hisset',
-              'Ellerini auranın etrafında gezdirerek enerji alanını temizle',
-              'Negatif enerjiyi yere bırak',
-              'Pozitif niyetlerle güne başla',
-            ],
+            steps: L10nService.getList('screens.reiki.practice.daily_cleansing.steps', language),
             color: const Color(0xFF2196F3),
             isDark: isDark,
           ).animate(delay: 100.ms).fadeIn(duration: 500.ms).slideY(begin: 0.1),
           const SizedBox(height: AppConstants.spacingLg),
           _buildPracticeSection(
-            title: 'Uzaktan Reiki',
+            title: L10nService.get('screens.reiki.practice.distance_reiki.title', language),
             icon: '🌍',
-            steps: [
-              'Şifa göndereceğin kişiden izin al (zihinsel olarak)',
-              'Kişiyi veya durumu gözünde canlandır',
-              'Hon Sha Ze Sho Nen sembolünü çiz (varsa)',
-              'Sevgi ve şifa niyetini gönder',
-              'Enerjinin ulaştığını hisset',
-              'Minnetle bitir',
-            ],
+            steps: L10nService.getList('screens.reiki.practice.distance_reiki.steps', language),
             color: const Color(0xFF9C27B0),
             isDark: isDark,
           ).animate(delay: 200.ms).fadeIn(duration: 500.ms).slideY(begin: 0.1),
@@ -421,7 +402,7 @@ class _ReikiScreenState extends State<ReikiScreen>
                 const SizedBox(width: 12),
                 Expanded(
                   child: Text(
-                    'Reiki uyumlanması için bir Reiki ustasıyla çalışmanız önerilir. Bu pratikler, uyumlanmış olmasanız da enerji farkındalığı geliştirmenize yardımcı olabilir.',
+                    L10nService.get('screens.reiki.tip', language),
                     style: TextStyle(
                       fontSize: 13,
                       height: 1.5,
@@ -476,7 +457,7 @@ class _ReikiScreenState extends State<ReikiScreen>
                       ),
                     ),
                     Text(
-                      principle.turkish,
+                      principle.translation,
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -502,7 +483,7 @@ class _ReikiScreenState extends State<ReikiScreen>
     );
   }
 
-  Widget _buildChakraCard(_ChakraInfo chakra, bool isDark) {
+  Widget _buildChakraCard(_ChakraInfo chakra, bool isDark, AppLanguage language) {
     return Container(
       margin: const EdgeInsets.only(bottom: AppConstants.spacingMd),
       decoration: BoxDecoration(
@@ -606,7 +587,7 @@ class _ReikiScreenState extends State<ReikiScreen>
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Reiki Pozisyonu',
+                        L10nService.get('screens.reiki.reiki_position_label', language),
                         style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w600,
@@ -720,14 +701,14 @@ class _ReikiScreenState extends State<ReikiScreen>
 
 class _ReikiPrinciple {
   final String japanese;
-  final String turkish;
+  final String translation;
   final String description;
   final String icon;
   final Color color;
 
   _ReikiPrinciple({
     required this.japanese,
-    required this.turkish,
+    required this.translation,
     required this.description,
     required this.icon,
     required this.color,

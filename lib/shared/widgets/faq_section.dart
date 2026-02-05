@@ -3,6 +3,8 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/constants/app_constants.dart';
+import '../../data/providers/app_providers.dart';
+import '../../data/services/l10n_service.dart';
 
 /// FAQ Section Widget
 /// SEO-optimized expandable FAQ section with Schema.org markup support
@@ -11,114 +13,120 @@ class FaqSection extends StatelessWidget {
   final String? subtitle;
   final List<FaqItem> items;
   final bool initiallyExpanded;
+  final AppLanguage language;
 
   const FaqSection({
     super.key,
-    this.title = 'Sıkça Sorulan Sorular',
+    required this.title,
     this.subtitle,
     required this.items,
     this.initiallyExpanded = false,
+    this.language = AppLanguage.tr,
   });
 
   /// Create FAQ section for zodiac signs
-  factory FaqSection.zodiacSign(String signName) {
+  factory FaqSection.zodiacSign(String signName, AppLanguage language) {
     return FaqSection(
-      title: '$signName Burcu Hakkında SSS',
-      subtitle: 'En çok merak edilen sorular ve cevapları',
+      title: L10nService.get('faq.zodiac_title', language).replaceAll('{sign}', signName),
+      subtitle: L10nService.get('faq.zodiac_subtitle', language),
+      language: language,
       items: [
         FaqItem(
-          question: '$signName burcu özellikleri nelerdir?',
-          answer: '$signName burcu, zodyak kuşağındaki burçlardan biridir. Her burcun kendine özgü kişilik özellikleri, güçlü ve zayıf yönleri vardır. Doğum haritanızda Güneş burcunuz $signName olsa bile, yükselen burcunuz ve Ay burcunuz da kişiliğinizi önemli ölçüde etkiler.',
+          question: L10nService.get('faq.zodiac_q1', language).replaceAll('{sign}', signName),
+          answer: L10nService.get('faq.zodiac_a1', language).replaceAll('{sign}', signName),
         ),
         FaqItem(
-          question: '$signName burcu ile hangi burçlar uyumludur?',
-          answer: 'Burç uyumu, sadece Güneş burçlarına değil, tüm doğum haritasına bağlıdır. Genel olarak aynı element grubundaki burçlar (ateş, toprak, hava, su) birbirleriyle daha uyumlu olma eğilimindedir. Detaylı uyum analizi için synastry (karşılaştırmalı harita) analizi önerilir.',
+          question: L10nService.get('faq.zodiac_q2', language).replaceAll('{sign}', signName),
+          answer: L10nService.get('faq.zodiac_a2', language).replaceAll('{sign}', signName),
         ),
         FaqItem(
-          question: '$signName burcu günlük burç yorumları ne kadar doğrudur?',
-          answer: 'Günlük burç yorumları genel kozmik enerjileri yansıtır. Her bireyin doğum haritası benzersiz olduğundan, kişiselleştirilmiş yorumlar için doğum haritası analizi ve transit raporları daha isabetli sonuçlar verir.',
+          question: L10nService.get('faq.zodiac_q3', language).replaceAll('{sign}', signName),
+          answer: L10nService.get('faq.zodiac_a3', language).replaceAll('{sign}', signName),
         ),
         FaqItem(
-          question: 'Yükselen burcum $signName ise ne anlama gelir?',
-          answer: 'Yükselen burç (Ascendant), doğum anınızda doğu ufkunda yükselen burçtur. Dış görünüşünüzü, başkalarının sizi nasıl algıladığını ve hayata yaklaşım tarzınızı temsil eder. Yükselen burcunuzu öğrenmek için doğum saatinizi bilmeniz gerekir.',
+          question: L10nService.get('faq.zodiac_q4', language).replaceAll('{sign}', signName),
+          answer: L10nService.get('faq.zodiac_a4', language).replaceAll('{sign}', signName),
         ),
       ],
     );
   }
 
   /// Create FAQ section for birth chart
-  factory FaqSection.birthChart() {
-    return const FaqSection(
-      title: 'Doğum Haritası SSS',
-      subtitle: 'Natal chart hakkında merak edilenler',
+  factory FaqSection.birthChart(AppLanguage language) {
+    return FaqSection(
+      title: L10nService.get('faq.birth_chart_title', language),
+      subtitle: L10nService.get('faq.birth_chart_subtitle', language),
+      language: language,
       items: [
         FaqItem(
-          question: 'Doğum haritası nedir?',
-          answer: 'Doğum haritası (natal chart), doğduğunuz anda gökyüzündeki gezegenlerin konumlarını gösteren kozmik bir haritadır. Güneş, Ay ve gezegenlerin hangi burçlarda ve evlerde olduğunu, birbirleriyle yaptıkları açıları gösterir.',
+          question: L10nService.get('faq.birth_chart_q1', language),
+          answer: L10nService.get('faq.birth_chart_a1', language),
         ),
         FaqItem(
-          question: 'Doğum haritası hesaplamak için nelere ihtiyacım var?',
-          answer: 'Doğum haritası hesaplamak için doğum tarihiniz, doğum saatiniz ve doğum yeriniz gereklidir. Doğum saati ne kadar hassas olursa, yükselen burç ve ev yerleşimleri o kadar doğru hesaplanır.',
+          question: L10nService.get('faq.birth_chart_q2', language),
+          answer: L10nService.get('faq.birth_chart_a2', language),
         ),
         FaqItem(
-          question: 'Doğum saatimi bilmiyorsam ne olur?',
-          answer: 'Doğum saati bilinmediğinde genellikle öğlen 12:00 kullanılır. Bu durumda Ay burcu ve yükselen burç hatalı çıkabilir. Gezegen burç yerleşimleri ve aralarındaki açılar yine de doğru hesaplanır.',
+          question: L10nService.get('faq.birth_chart_q3', language),
+          answer: L10nService.get('faq.birth_chart_a3', language),
         ),
         FaqItem(
-          question: 'Ev sistemleri (Placidus, Whole Sign) farkı nedir?',
-          answer: 'Farklı ev sistemleri, gökyüzünü 12 eve bölerken farklı matematiksel yöntemler kullanır. Placidus en yaygın kullanılan sistemdir. Whole Sign ise her burcun bir evi temsil ettiği antik sistemdir. Her iki sistem de geçerlidir.',
+          question: L10nService.get('faq.birth_chart_q4', language),
+          answer: L10nService.get('faq.birth_chart_a4', language),
         ),
       ],
     );
   }
 
   /// Create FAQ section for tarot
-  factory FaqSection.tarot() {
-    return const FaqSection(
-      title: 'Tarot SSS',
-      subtitle: 'Tarot kartları hakkında bilmeniz gerekenler',
+  factory FaqSection.tarot(AppLanguage language) {
+    return FaqSection(
+      title: L10nService.get('faq.tarot_title', language),
+      subtitle: L10nService.get('faq.tarot_subtitle', language),
+      language: language,
       items: [
         FaqItem(
-          question: 'Tarot kartları geleceği gösterir mi?',
-          answer: 'Tarot kartları kesin geleceği değil, mevcut enerji alanınızı ve olasılıkları gösterir. Kartlar bir ayna gibi çalışır - bilinçaltınızı ve durumunuzu yansıtır. Gelecek, kararlarınız ve eylemlerinizle şekillenir.',
+          question: L10nService.get('faq.tarot_q1', language),
+          answer: L10nService.get('faq.tarot_a1', language),
         ),
         FaqItem(
-          question: 'Tarot destesi kaç karttan oluşur?',
-          answer: 'Standart tarot destesi 78 karttan oluşur: 22 Major Arcana (büyük sırlar) ve 56 Minor Arcana (küçük sırlar). Minor Arcana dört gruptan (Asalar, Kupalar, Kılıçlar, Pentaküller) ve her grupta 14 karttan oluşur.',
+          question: L10nService.get('faq.tarot_q2', language),
+          answer: L10nService.get('faq.tarot_a2', language),
         ),
         FaqItem(
-          question: 'Ters gelen kartlar ne anlama gelir?',
-          answer: 'Ters (reversed) kartlar, kartın enerjisinin bloke olduğunu, içselleştiğini veya aşırıya kaçtığını gösterebilir. Bazı tarot okuyucuları ters kartları kullanmazken, bazıları önemli bir nüans olarak değerlendirir.',
+          question: L10nService.get('faq.tarot_q3', language),
+          answer: L10nService.get('faq.tarot_a3', language),
         ),
         FaqItem(
-          question: 'Kendime tarot çekebilir miyim?',
-          answer: 'Evet, kendinize tarot çekebilirsiniz. Önemli olan niyetinizi net belirlemek ve kartları objektif yorumlamaktır. Günlük kart çekimi, öz-keşif için mükemmel bir pratiktir.',
+          question: L10nService.get('faq.tarot_q4', language),
+          answer: L10nService.get('faq.tarot_a4', language),
         ),
       ],
     );
   }
 
   /// Create FAQ section for numerology
-  factory FaqSection.numerology() {
-    return const FaqSection(
-      title: 'Numeroloji SSS',
-      subtitle: 'Sayıların gizemli dünyası',
+  factory FaqSection.numerology(AppLanguage language) {
+    return FaqSection(
+      title: L10nService.get('faq.numerology_title', language),
+      subtitle: L10nService.get('faq.numerology_subtitle', language),
+      language: language,
       items: [
         FaqItem(
-          question: 'Numeroloji nedir?',
-          answer: 'Numeroloji, sayıların sembolik ve ruhani anlamlarını inceleyen antik bir bilgelik sistemidir. Doğum tarihinizdeki ve isminizdeki sayıların yaşam yolunuz, kişiliğiniz ve potansiyeliniz hakkında bilgi verdiğine inanılır.',
+          question: L10nService.get('faq.numerology_q1', language),
+          answer: L10nService.get('faq.numerology_a1', language),
         ),
         FaqItem(
-          question: 'Yaşam yolu sayısı nasıl hesaplanır?',
-          answer: 'Yaşam yolu sayınız, doğum tarihinizdeki tüm rakamların tek haneli bir sayıya (veya 11, 22, 33 gibi master sayılara) indirgenesiyle bulunur. Örnek: 15.05.1990 = 1+5+0+5+1+9+9+0 = 30 = 3+0 = 3',
+          question: L10nService.get('faq.numerology_q2', language),
+          answer: L10nService.get('faq.numerology_a2', language),
         ),
         FaqItem(
-          question: 'Master sayılar (11, 22, 33) nedir?',
-          answer: 'Master sayılar, özel bir potansiyel ve zorluk taşıyan güçlü titreşimlerdir. 11 sezgisel aydınlanmayı, 22 master yapıcıyı, 33 ise master öğretmeni temsil eder. Bu sayılar tek haneye indirgenmez.',
+          question: L10nService.get('faq.numerology_q3', language),
+          answer: L10nService.get('faq.numerology_a3', language),
         ),
         FaqItem(
-          question: 'İsim numerolojisi nasıl çalışır?',
-          answer: 'Her harfin bir sayısal değeri vardır (Pythagoras veya Keldani sisteminde). İsminizin harflerinin sayısal değerleri toplanarak ifade sayınız, ruh sayınız ve kişilik sayınız hesaplanır.',
+          question: L10nService.get('faq.numerology_q4', language),
+          answer: L10nService.get('faq.numerology_a4', language),
         ),
       ],
     );

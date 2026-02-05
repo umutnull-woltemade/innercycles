@@ -64,7 +64,7 @@ class DreamWaterScreen extends ConsumerWidget {
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Text(
-                    'Rüya İzi',
+                    L10nService.get('dreams.canonical.brand_tag', language),
                     style: TextStyle(
                       fontSize: 12,
                       color: AppColors.waterElement,
@@ -75,15 +75,15 @@ class DreamWaterScreen extends ConsumerWidget {
 
                 const SizedBox(height: 32),
 
-                // İlk 3 bullet - Direkt cevap
+                // Short answer section
                 _buildQuotableSection(
                   isDark: isDark,
-                  title: 'Kısa Cevap',
+                  title: L10nService.get('dreams.canonical.sections.short_answer', language),
                   color: AppColors.waterElement,
                   bullets: [
-                    'Su, bilinçaltını ve duyguları simgeler.',
-                    'Suyun durumu, iç dünyanın durumunu yansıtır.',
-                    'Durgun su huzuru, dalgalı su karmaşayı gösterir.',
+                    L10nService.get('dreams.canonical.water.short_answer_1', language),
+                    L10nService.get('dreams.canonical.water.short_answer_2', language),
+                    L10nService.get('dreams.canonical.water.short_answer_3', language),
                   ],
                 ),
 
@@ -91,13 +91,13 @@ class DreamWaterScreen extends ConsumerWidget {
 
                 _buildQuotableSection(
                   isDark: isDark,
-                  title: 'Suyun Hali Ne Söyler?',
+                  title: L10nService.get('dreams.canonical.water.state_title', language),
                   color: AppColors.waterElement,
                   bullets: [
-                    'Berrak su: Zihinsel netlik ve duygusal denge.',
-                    'Bulanık su: Belirsizlik veya bastırılmış duygular.',
-                    'Akan su: Hayatın akışına uyum.',
-                    'Durgun su: İçe dönüş ve düşünme zamanı.',
+                    L10nService.get('dreams.canonical.water.state_1', language),
+                    L10nService.get('dreams.canonical.water.state_2', language),
+                    L10nService.get('dreams.canonical.water.state_3', language),
+                    L10nService.get('dreams.canonical.water.state_4', language),
                   ],
                 ),
 
@@ -105,12 +105,12 @@ class DreamWaterScreen extends ConsumerWidget {
 
                 _buildQuotableSection(
                   isDark: isDark,
-                  title: 'Hangi Duyguyu Taşır?',
+                  title: L10nService.get('dreams.canonical.water.emotion_title', language),
                   color: AppColors.waterElement,
                   bullets: [
-                    'Suda yüzmek: Duygularla barışık olmak.',
-                    'Suya düşmek: Duyguların kontrolü ele alması.',
-                    'Suda boğulmak: Bunalmış hissetmek.',
+                    L10nService.get('dreams.canonical.water.emotion_1', language),
+                    L10nService.get('dreams.canonical.water.emotion_2', language),
+                    L10nService.get('dreams.canonical.water.emotion_3', language),
                   ],
                 ),
 
@@ -118,12 +118,12 @@ class DreamWaterScreen extends ConsumerWidget {
 
                 _buildQuotableSection(
                   isDark: isDark,
-                  title: 'Tekrar Ediyorsa',
+                  title: L10nService.get('dreams.canonical.sections.if_recurring', language),
                   color: AppColors.waterElement,
                   bullets: [
-                    'Duygusal bir konuyu işlemeye çalışıyorsun.',
-                    'İçsel temizlenme ihtiyacı olabilir.',
-                    'Sezgilerine daha çok güvenmeyi öğreniyorsun.',
+                    L10nService.get('dreams.canonical.water.recurring_1', language),
+                    L10nService.get('dreams.canonical.water.recurring_2', language),
+                    L10nService.get('dreams.canonical.water.recurring_3', language),
                   ],
                 ),
 
@@ -133,9 +133,10 @@ class DreamWaterScreen extends ConsumerWidget {
 
                 const SizedBox(height: 40),
 
-                const PageFooterWithDisclaimer(
+                PageFooterWithDisclaimer(
                   brandText: 'Rüya İzi — Venus One',
-                  disclaimerText: DisclaimerTexts.dreams,
+                  disclaimerText: DisclaimerTexts.dreams(language),
+                  language: language,
                 ),
               ],
             ),

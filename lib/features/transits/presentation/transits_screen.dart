@@ -141,7 +141,8 @@ class TransitsScreen extends ConsumerWidget {
                   // Entertainment Disclaimer
                   PageFooterWithDisclaimer(
                     brandText: L10nService.get('transits.brand_footer', language),
-                    disclaimerText: DisclaimerTexts.astrology,
+                    disclaimerText: DisclaimerTexts.astrology(language),
+                    language: language,
                   ),
                   const SizedBox(height: AppConstants.spacingLg),
                 ],

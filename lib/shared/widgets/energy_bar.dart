@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/theme/app_colors.dart';
+import '../../data/providers/app_providers.dart';
+import '../../data/services/l10n_service.dart';
 
 /// ENERGY BAR WIDGET
 ///
@@ -134,7 +137,7 @@ class EnergyBar extends StatelessWidget {
 ///
 /// Günlük enerji seviyelerini gösteren kompakt kart.
 /// Aşk, Kariyer, Sağlık ve Genel enerji bar'larını içerir.
-class DailyEnergyCard extends StatelessWidget {
+class DailyEnergyCard extends ConsumerWidget {
   final int loveEnergy;   // 0-100
   final int careerEnergy; // 0-100
   final int healthEnergy; // 0-100
@@ -164,9 +167,10 @@ class DailyEnergyCard extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final accent = accentColor ?? AppColors.auroraStart;
+    final language = ref.watch(languageProvider);
 
     return Container(
       padding: const EdgeInsets.all(16),
@@ -200,7 +204,7 @@ class DailyEnergyCard extends StatelessWidget {
               const SizedBox(width: 10),
               Flexible(
                 child: Text(
-                  'Günlük Enerji',
+                  L10nService.get('energy_bar.daily_energy', language),
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
@@ -210,27 +214,27 @@ class DailyEnergyCard extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 8),
-              _buildOverallBadge(context, isDark),
+              _buildOverallBadge(context, isDark, language),
             ],
           ),
           const SizedBox(height: 16),
           // Energy bars
           EnergyBar(
-            label: 'Aşk',
+            label: L10nService.get('energy_bar.love', language),
             value: loveEnergy / 100,
             color: AppColors.fireElement,
             icon: Icons.favorite,
           ),
           const SizedBox(height: 12),
           EnergyBar(
-            label: 'Kariyer',
+            label: L10nService.get('energy_bar.career', language),
             value: careerEnergy / 100,
             color: AppColors.earthElement,
             icon: Icons.work,
           ),
           const SizedBox(height: 12),
           EnergyBar(
-            label: 'Sağlık',
+            label: L10nService.get('energy_bar.health', language),
             value: healthEnergy / 100,
             color: AppColors.airElement,
             icon: Icons.spa,
@@ -240,22 +244,22 @@ class DailyEnergyCard extends StatelessWidget {
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildOverallBadge(BuildContext context, bool isDark) {
+  Widget _buildOverallBadge(BuildContext context, bool isDark, AppLanguage language) {
     Color badgeColor;
     String label;
 
     if (overallEnergy >= 80) {
       badgeColor = AppColors.success;
-      label = 'Yüksek';
+      label = L10nService.get('energy_bar.level_high', language);
     } else if (overallEnergy >= 60) {
       badgeColor = AppColors.auroraStart;
-      label = 'İyi';
+      label = L10nService.get('energy_bar.level_good', language);
     } else if (overallEnergy >= 40) {
       badgeColor = AppColors.warning;
-      label = 'Orta';
+      label = L10nService.get('energy_bar.level_medium', language);
     } else {
       badgeColor = AppColors.error;
-      label = 'Düşük';
+      label = L10nService.get('energy_bar.level_low', language);
     }
 
     return Container(
@@ -347,7 +351,7 @@ class EnergyBarCompact extends StatelessWidget {
 }
 
 /// HORIZONTAL ENERGY SUMMARY - Yatay kompakt özet
-class EnergyBarsSummary extends StatelessWidget {
+class EnergyBarsSummary extends ConsumerWidget {
   final int loveEnergy;
   final int careerEnergy;
   final int healthEnergy;
@@ -360,8 +364,9 @@ class EnergyBarsSummary extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final language = ref.watch(languageProvider);
 
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
@@ -374,27 +379,29 @@ class EnergyBarsSummary extends StatelessWidget {
               : Colors.black.withValues(alpha: 0.05),
         ),
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          EnergyBarCompact(
-            label: 'Aşk',
-            value: loveEnergy / 100,
-            color: AppColors.fireElement,
-          ),
-          _divider(isDark),
-          EnergyBarCompact(
-            label: 'Kariyer',
-            value: careerEnergy / 100,
-            color: AppColors.earthElement,
-          ),
-          _divider(isDark),
-          EnergyBarCompact(
-            label: 'Sağlık',
-            value: healthEnergy / 100,
-            color: AppColors.airElement,
-          ),
-        ],
+      child: Builder(
+        builder: (context) => Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            EnergyBarCompact(
+              label: L10nService.get('energy_bar.love', language),
+              value: loveEnergy / 100,
+              color: AppColors.fireElement,
+            ),
+            _divider(isDark),
+            EnergyBarCompact(
+              label: L10nService.get('energy_bar.career', language),
+              value: careerEnergy / 100,
+              color: AppColors.earthElement,
+            ),
+            _divider(isDark),
+            EnergyBarCompact(
+              label: L10nService.get('energy_bar.health', language),
+              value: healthEnergy / 100,
+              color: AppColors.airElement,
+            ),
+          ],
+        ),
       ),
     ).animate().fadeIn(duration: 400.ms);
   }

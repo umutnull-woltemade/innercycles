@@ -1,11 +1,14 @@
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/constants/routes.dart';
 import '../../data/content/glossary_content.dart';
 import '../../data/models/reference_content.dart';
+import '../../data/providers/app_providers.dart';
+import '../../data/services/l10n_service.dart';
 
 /// Global glossary term cache for fast lookup
 class GlossaryCache {
@@ -327,7 +330,7 @@ class _ConstrainedTooltipOverlay extends StatelessWidget {
 }
 
 /// Rich tooltip widget with detailed glossary information
-class GlossaryRichTooltip extends StatelessWidget {
+class GlossaryRichTooltip extends ConsumerWidget {
   final GlossaryEntry entry;
   final VoidCallback onClose;
   final VoidCallback onNavigate;
@@ -340,8 +343,9 @@ class GlossaryRichTooltip extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final language = ref.watch(languageProvider);
 
     return MouseRegion(
       onExit: (_) => onClose(),
@@ -498,7 +502,7 @@ class GlossaryRichTooltip extends StatelessWidget {
                             const Text('🔮', style: TextStyle(fontSize: 12)),
                             const SizedBox(width: 6),
                             Text(
-                              'Derin Yorum',
+                              L10nService.get('widgets.interpretive_text.deep_interpretation', language),
                               style: TextStyle(
                                 fontSize: 11,
                                 fontWeight: FontWeight.bold,
@@ -599,7 +603,7 @@ class GlossaryRichTooltip extends StatelessWidget {
                         ),
                         const SizedBox(width: 6),
                         Text(
-                          'Sözlükte Görüntüle',
+                          L10nService.get('widgets.interpretive_text.view_in_glossary', language),
                           style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w600,
@@ -823,7 +827,7 @@ class _AutoGlossaryTermWidgetState extends State<_AutoGlossaryTermWidget> {
 }
 
 /// A card widget with expandable deep interpretation section
-class DeepInterpretationCard extends StatefulWidget {
+class DeepInterpretationCard extends ConsumerStatefulWidget {
   final String title;
   final String summary;
   final String deepInterpretation;
@@ -842,16 +846,17 @@ class DeepInterpretationCard extends StatefulWidget {
   });
 
   @override
-  State<DeepInterpretationCard> createState() => _DeepInterpretationCardState();
+  ConsumerState<DeepInterpretationCard> createState() => _DeepInterpretationCardState();
 }
 
-class _DeepInterpretationCardState extends State<DeepInterpretationCard> {
+class _DeepInterpretationCardState extends ConsumerState<DeepInterpretationCard> {
   bool _isExpanded = false;
 
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final accentColor = widget.accentColor ?? AppColors.auroraStart;
+    final language = ref.watch(languageProvider);
 
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
@@ -927,7 +932,9 @@ class _DeepInterpretationCardState extends State<DeepInterpretationCard> {
                   ),
                   const SizedBox(width: 4),
                   Text(
-                    _isExpanded ? 'Kisalt' : 'Derin Yorumu Oku',
+                    _isExpanded
+                        ? L10nService.get('widgets.interpretive_text.collapse', language)
+                        : L10nService.get('widgets.interpretive_text.read_deep_interpretation', language),
                     style: Theme.of(context).textTheme.labelMedium?.copyWith(
                       color: accentColor,
                       fontWeight: FontWeight.bold,
@@ -961,7 +968,7 @@ class _DeepInterpretationCardState extends State<DeepInterpretationCard> {
                       Icon(Icons.auto_stories, size: 16, color: accentColor),
                       const SizedBox(width: 8),
                       Text(
-                        'Derin Yorum',
+                        L10nService.get('widgets.interpretive_text.deep_interpretation', language),
                         style: Theme.of(context).textTheme.labelMedium?.copyWith(
                           color: accentColor,
                           fontWeight: FontWeight.bold,
@@ -1028,7 +1035,7 @@ class _DeepInterpretationCardState extends State<DeepInterpretationCard> {
 }
 
 /// A simple inline glossary tooltip wrapper with rich tooltip support
-class GlossaryTooltip extends StatefulWidget {
+class GlossaryTooltip extends ConsumerStatefulWidget {
   final String term;
   final Widget child;
   final bool useRichTooltip;
@@ -1041,10 +1048,10 @@ class GlossaryTooltip extends StatefulWidget {
   });
 
   @override
-  State<GlossaryTooltip> createState() => _GlossaryTooltipState();
+  ConsumerState<GlossaryTooltip> createState() => _GlossaryTooltipState();
 }
 
-class _GlossaryTooltipState extends State<GlossaryTooltip> {
+class _GlossaryTooltipState extends ConsumerState<GlossaryTooltip> {
   GlossaryEntry? _entry;
   final _overlayController = OverlayPortalController();
   final _link = LayerLink();
@@ -1066,9 +1073,9 @@ class _GlossaryTooltipState extends State<GlossaryTooltip> {
     _overlayController.hide();
   }
 
-  String _getTooltipMessage() {
+  String _getTooltipMessage(AppLanguage language) {
     if (_entry == null) {
-      return '${widget.term} - Sözlükte ara';
+      return L10nService.get('widgets.interpretive_text.search_in_glossary', language).replaceAll('{term}', widget.term);
     }
 
     if (_entry!.hint.isNotEmpty) {
@@ -1083,10 +1090,12 @@ class _GlossaryTooltipState extends State<GlossaryTooltip> {
 
   @override
   Widget build(BuildContext context) {
+    final language = ref.watch(languageProvider);
+
     if (!widget.useRichTooltip || _entry == null) {
       // Fall back to simple tooltip
       return Tooltip(
-        message: _getTooltipMessage(),
+        message: _getTooltipMessage(language),
         preferBelow: true,
         waitDuration: const Duration(milliseconds: 300),
         showDuration: const Duration(seconds: 8),

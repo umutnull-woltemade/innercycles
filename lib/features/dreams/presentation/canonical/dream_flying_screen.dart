@@ -39,37 +39,38 @@ class DreamFlyingScreen extends ConsumerWidget {
                 const SizedBox(height: 24),
                 Text(L10nService.get('dreams.canonical.flying_question', language), style: TextStyle(fontSize: 28, fontWeight: FontWeight.w600, color: isDark ? Colors.white : AppColors.textDark, height: 1.2)).animate().fadeIn(duration: 400.ms),
                 const SizedBox(height: 8),
-                _buildTag('Rüya İzi', color),
+                _buildTag(L10nService.get('dreams.canonical.brand_tag', language), color),
                 const SizedBox(height: 32),
-                _buildSection(isDark, 'Kısa Cevap', color, [
-                  'Uçma rüyası özgürlük ve sınırları aşma arzusunu yansıtır.',
-                  'Kontrolü ele aldığını veya almak istediğini gösterir.',
-                  'Uçuşun kolaylığı, hayatındaki akışı simgeler.',
+                _buildSection(isDark, L10nService.get('dreams.canonical.sections.short_answer', language), color, [
+                  L10nService.get('dreams.canonical.flying.short_answer_1', language),
+                  L10nService.get('dreams.canonical.flying.short_answer_2', language),
+                  L10nService.get('dreams.canonical.flying.short_answer_3', language),
                 ]),
                 const SizedBox(height: 28),
-                _buildSection(isDark, 'Uçuş Nasıl Hissettirdi?', color, [
-                  'Keyifli uçuş: Özgüven ve başarı hissi.',
-                  'Zor uçuş: Engeller veya belirsizlik.',
-                  'Düşme korkusu: Güvensizlik veya şüphe.',
+                _buildSection(isDark, L10nService.get('dreams.canonical.flying.feeling_title', language), color, [
+                  L10nService.get('dreams.canonical.flying.feeling_1', language),
+                  L10nService.get('dreams.canonical.flying.feeling_2', language),
+                  L10nService.get('dreams.canonical.flying.feeling_3', language),
                 ]),
                 const SizedBox(height: 28),
-                _buildSection(isDark, 'Ne Anlama Gelir?', color, [
-                  'Kısıtlamalardan kurtulma isteği.',
-                  'Yeni bir bakış açısı kazanma.',
-                  'Potansiyelini keşfetme zamanı.',
+                _buildSection(isDark, L10nService.get('dreams.canonical.sections.what_it_means', language), color, [
+                  L10nService.get('dreams.canonical.flying.meaning_1', language),
+                  L10nService.get('dreams.canonical.flying.meaning_2', language),
+                  L10nService.get('dreams.canonical.flying.meaning_3', language),
                 ]),
                 const SizedBox(height: 28),
-                _buildSection(isDark, 'Uçamıyorsan', color, [
-                  'Kendine güvenmekte zorlanıyorsun.',
-                  'Bir engel seni geri tutuyor.',
-                  'Kontrolü bırakma zamanı olabilir.',
+                _buildSection(isDark, L10nService.get('dreams.canonical.flying.cant_fly_title', language), color, [
+                  L10nService.get('dreams.canonical.flying.cant_fly_1', language),
+                  L10nService.get('dreams.canonical.flying.cant_fly_2', language),
+                  L10nService.get('dreams.canonical.flying.cant_fly_3', language),
                 ]),
                 const SizedBox(height: 32),
                 _buildSuggestion(context, isDark, language, '🏃', L10nService.get('dreams.canonical.running_question', language), Routes.dreamRunning),
                 const SizedBox(height: 40),
-                const PageFooterWithDisclaimer(
+                PageFooterWithDisclaimer(
                   brandText: 'Rüya İzi — Venus One',
-                  disclaimerText: DisclaimerTexts.dreams,
+                  disclaimerText: DisclaimerTexts.dreams(language),
+                  language: language,
                 ),
               ],
             ),

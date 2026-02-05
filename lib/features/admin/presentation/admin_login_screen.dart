@@ -8,7 +8,9 @@ import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/services/admin_auth_service.dart';
 import '../../../data/services/admin_analytics_service.dart';
+import '../../../data/services/l10n_service.dart';
 import '../../../data/providers/admin_providers.dart';
+import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 
 class AdminLoginScreen extends ConsumerStatefulWidget {
@@ -49,7 +51,7 @@ class _AdminLoginScreenState extends ConsumerState<AdminLoginScreen> {
   Future<void> _handleLogin() async {
     final pin = _pinController.text.trim();
     if (pin.isEmpty) {
-      setState(() => _error = 'PIN is required');
+      setState(() => _error = L10nService.get('screens.admin_login.pin_required', ref.read(languageProvider)));
       return;
     }
 
@@ -82,6 +84,7 @@ class _AdminLoginScreenState extends ConsumerState<AdminLoginScreen> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final isLocked = AdminAuthService.isLockedOut;
     final remainingAttempts = AdminAuthService.remainingAttempts;
+    final language = ref.watch(languageProvider);
 
     return Scaffold(
       body: CosmicBackground(
@@ -91,11 +94,11 @@ class _AdminLoginScreenState extends ConsumerState<AdminLoginScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildHeader(context, isDark),
+                _buildHeader(context, isDark, language),
                 const SizedBox(height: AppConstants.spacingHuge),
-                _buildLoginCard(context, isDark, isLocked, remainingAttempts),
+                _buildLoginCard(context, isDark, isLocked, remainingAttempts, language),
                 const SizedBox(height: AppConstants.spacingXl),
-                _buildSecurityInfo(context, isDark),
+                _buildSecurityInfo(context, isDark, language),
               ],
             ),
           ),
@@ -104,7 +107,7 @@ class _AdminLoginScreenState extends ConsumerState<AdminLoginScreen> {
     );
   }
 
-  Widget _buildHeader(BuildContext context, bool isDark) {
+  Widget _buildHeader(BuildContext context, bool isDark, AppLanguage language) {
     return Row(
       children: [
         IconButton(
@@ -117,7 +120,7 @@ class _AdminLoginScreenState extends ConsumerState<AdminLoginScreen> {
         const SizedBox(width: AppConstants.spacingSm),
         Flexible(
           child: Text(
-            'Admin Access',
+            L10nService.get('screens.admin_login.title', language),
             style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                   color: AppColors.starGold,
                 ),
@@ -133,6 +136,7 @@ class _AdminLoginScreenState extends ConsumerState<AdminLoginScreen> {
     bool isDark,
     bool isLocked,
     int remainingAttempts,
+    AppLanguage language,
   ) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingXl),
@@ -179,7 +183,9 @@ class _AdminLoginScreenState extends ConsumerState<AdminLoginScreen> {
 
           // Title
           Text(
-            isLocked ? 'Account Locked' : 'Enter Admin PIN',
+            isLocked
+                ? L10nService.get('screens.admin_login.account_locked', language)
+                : L10nService.get('screens.admin_login.enter_pin', language),
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
                   color: isDark
                       ? AppColors.textPrimary
@@ -192,8 +198,8 @@ class _AdminLoginScreenState extends ConsumerState<AdminLoginScreen> {
           // Subtitle
           Text(
             isLocked
-                ? 'Too many failed attempts. Please wait.'
-                : 'Secure admin access required',
+                ? L10nService.get('screens.admin_login.too_many_attempts', language)
+                : L10nService.get('screens.admin_login.secure_access_required', language),
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   color: isDark
                       ? AppColors.textSecondary
@@ -203,7 +209,7 @@ class _AdminLoginScreenState extends ConsumerState<AdminLoginScreen> {
           const SizedBox(height: AppConstants.spacingXl),
 
           if (isLocked) ...[
-            _buildLockoutTimer(context, isDark),
+            _buildLockoutTimer(context, isDark, language),
           ] else ...[
             // PIN input
             TextField(
@@ -276,7 +282,8 @@ class _AdminLoginScreenState extends ConsumerState<AdminLoginScreen> {
                     ),
                     const SizedBox(width: 6),
                     Text(
-                      '$remainingAttempts attempts remaining',
+                      L10nService.get('screens.admin_login.attempts_remaining', language)
+                          .replaceAll('{count}', '$remainingAttempts'),
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                             color: AppColors.warning,
                             fontWeight: FontWeight.w500,
@@ -345,7 +352,7 @@ class _AdminLoginScreenState extends ConsumerState<AdminLoginScreen> {
                           const Icon(Icons.login),
                           const SizedBox(width: 8),
                           Text(
-                            'Access Dashboard',
+                            L10nService.get('screens.admin_login.access_dashboard', language),
                             style: Theme.of(context)
                                 .textTheme
                                 .titleMedium
@@ -364,7 +371,7 @@ class _AdminLoginScreenState extends ConsumerState<AdminLoginScreen> {
     ).animate().fadeIn(delay: 200.ms, duration: 400.ms).slideY(begin: 0.1);
   }
 
-  Widget _buildLockoutTimer(BuildContext context, bool isDark) {
+  Widget _buildLockoutTimer(BuildContext context, bool isDark, AppLanguage language) {
     final remaining = AdminAuthService.remainingLockoutTime;
     final minutes = remaining.inMinutes;
     final seconds = remaining.inSeconds % 60;
@@ -387,7 +394,7 @@ class _AdminLoginScreenState extends ConsumerState<AdminLoginScreen> {
         ),
         const SizedBox(height: AppConstants.spacingMd),
         Text(
-          'Please wait before trying again',
+          L10nService.get('screens.admin_login.wait_before_retry', language),
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 color: isDark
                     ? AppColors.textSecondary
@@ -398,7 +405,7 @@ class _AdminLoginScreenState extends ConsumerState<AdminLoginScreen> {
     );
   }
 
-  Widget _buildSecurityInfo(BuildContext context, bool isDark) {
+  Widget _buildSecurityInfo(BuildContext context, bool isDark, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -419,7 +426,7 @@ class _AdminLoginScreenState extends ConsumerState<AdminLoginScreen> {
               ),
               const SizedBox(width: 8),
               Text(
-                'Security Features',
+                L10nService.get('screens.admin_login.security_features', language),
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       color: isDark
                           ? AppColors.textPrimary
@@ -434,25 +441,27 @@ class _AdminLoginScreenState extends ConsumerState<AdminLoginScreen> {
             context,
             isDark,
             Icons.lock_clock,
-            'Rate limiting with ${AdminAuthService.maxAttempts} attempts',
+            L10nService.get('screens.admin_login.rate_limiting', language)
+                .replaceAll('{count}', '${AdminAuthService.maxAttempts}'),
           ),
           _buildSecurityItem(
             context,
             isDark,
             Icons.timer,
-            '${AdminAuthService.lockoutDuration.inMinutes} minute lockout on failure',
+            L10nService.get('screens.admin_login.lockout_duration', language)
+                .replaceAll('{minutes}', '${AdminAuthService.lockoutDuration.inMinutes}'),
           ),
           _buildSecurityItem(
             context,
             isDark,
             Icons.vpn_key,
-            'Secure session (24h expiry)',
+            L10nService.get('screens.admin_login.secure_session', language),
           ),
           _buildSecurityItem(
             context,
             isDark,
             Icons.no_encryption_gmailerrorred,
-            'PIN never stored in plain text',
+            L10nService.get('screens.admin_login.pin_not_stored', language),
           ),
         ],
       ),

@@ -6,6 +6,7 @@ import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/numerology_service.dart';
+import '../../../data/services/l10n_service.dart';
 import '../../../data/content/numerology_content.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/next_blocks.dart';
@@ -19,6 +20,7 @@ class NumerologyScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final language = ref.watch(languageProvider);
     final userProfile = ref.watch(userProfileProvider);
 
     if (userProfile == null) {
@@ -60,7 +62,7 @@ class NumerologyScreen extends ConsumerWidget {
                 floating: true,
                 snap: true,
                 title: Text(
-                  'Sayıların sana ne söylüyor?',
+                  L10nService.get('screens.numerology.title', language),
                   style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                         color: AppColors.starGold,
                         fontSize: 20,
@@ -76,12 +78,12 @@ class NumerologyScreen extends ConsumerWidget {
                 sliver: SliverList(
                   delegate: SliverChildListDelegate([
                     // Esoteric intro
-                    _buildEsotericIntro(context),
+                    _buildEsotericIntro(context, language),
                     const SizedBox(height: AppConstants.spacingLg),
                     // Life Path Number - Main card
                     _buildMainNumberCard(
                       context,
-                      'Yaşam Yolu Sayısı',
+                      L10nService.get('screens.numerology.life_path_number', language),
                       lifePath,
                       lifePathMeaning.title,
                       lifePathMeaning.meaning,
@@ -96,7 +98,7 @@ class NumerologyScreen extends ConsumerWidget {
                         Expanded(
                           child: _buildQuickStat(
                             context,
-                            'Doğum Günü',
+                            L10nService.get('screens.numerology.birthday_number', language),
                             birthday.toString(),
                             AppColors.auroraStart,
                           ),
@@ -105,7 +107,7 @@ class NumerologyScreen extends ConsumerWidget {
                         Expanded(
                           child: _buildQuickStat(
                             context,
-                            'Kişisel Yıl',
+                            L10nService.get('screens.numerology.personal_year', language),
                             personalYear.toString(),
                             AppColors.auroraEnd,
                           ),
@@ -116,14 +118,14 @@ class NumerologyScreen extends ConsumerWidget {
 
                     // Name-based numbers (if name provided)
                     if (destinyNumber != null) ...[
-                      _buildSectionTitle(context, 'İsim Numerolojisi'),
+                      _buildSectionTitle(context, L10nService.get('screens.numerology.name_numerology', language)),
                       const SizedBox(height: AppConstants.spacingMd),
                       _buildNumberCard(
                         context,
-                        'Kader Sayısı',
+                        L10nService.get('screens.numerology.destiny_number', language),
                         destinyNumber,
                         destinyMeaning?.title ?? '',
-                        'İsminizin toplam değerinden hesaplanan bu sayı, hayatınızdaki ana amacınızı ve potansiyelinizi ortaya koyar.',
+                        L10nService.get('screens.numerology.destiny_number_desc', language),
                         AppColors.fireElement,
                       ).animate().fadeIn(delay: 200.ms, duration: 400.ms),
                       const SizedBox(height: AppConstants.spacingMd),
@@ -132,7 +134,7 @@ class NumerologyScreen extends ConsumerWidget {
                           Expanded(
                             child: _buildQuickStat(
                               context,
-                              'Ruh Dürtüsü',
+                              L10nService.get('screens.numerology.soul_urge', language),
                               soulUrgeNumber.toString(),
                               AppColors.waterElement,
                             ),
@@ -141,7 +143,7 @@ class NumerologyScreen extends ConsumerWidget {
                           Expanded(
                             child: _buildQuickStat(
                               context,
-                              'Kişilik',
+                              L10nService.get('screens.numerology.personality', language),
                               personalityNumber.toString(),
                               AppColors.earthElement,
                             ),
@@ -153,27 +155,27 @@ class NumerologyScreen extends ConsumerWidget {
 
                     // Karmic debts
                     if (karmicDebts.isNotEmpty) ...[
-                      _buildSectionTitle(context, 'Karmik Borç Sayıları'),
+                      _buildSectionTitle(context, L10nService.get('screens.numerology.karmic_debt_numbers', language)),
                       const SizedBox(height: AppConstants.spacingMd),
-                      _buildKarmicDebtCard(context, karmicDebts)
+                      _buildKarmicDebtCard(context, karmicDebts, language)
                           .animate()
                           .fadeIn(delay: 400.ms, duration: 400.ms),
                       const SizedBox(height: AppConstants.spacingLg),
                     ],
 
                     // Life Path detailed interpretation
-                    _buildSectionTitle(context, 'Yaşam Yolu Yorumu'),
+                    _buildSectionTitle(context, L10nService.get('screens.numerology.life_path_interpretation', language)),
                     const SizedBox(height: AppConstants.spacingMd),
-                    _buildInterpretationCard(context, lifePath, lifePathMeaning)
+                    _buildInterpretationCard(context, lifePath, lifePathMeaning, language)
                         .animate()
                         .fadeIn(delay: 500.ms, duration: 400.ms),
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Detailed interpretation - NEW
                     if (lifePathMeaning.detailedInterpretation.isNotEmpty) ...[
-                      _buildSectionTitle(context, 'Derin Yorum'),
+                      _buildSectionTitle(context, L10nService.get('screens.numerology.deep_interpretation', language)),
                       const SizedBox(height: AppConstants.spacingMd),
-                      _buildDetailedInterpretationCard(context, lifePathMeaning)
+                      _buildDetailedInterpretationCard(context, lifePathMeaning, language)
                           .animate()
                           .fadeIn(delay: 600.ms, duration: 400.ms),
                       const SizedBox(height: AppConstants.spacingLg),
@@ -186,7 +188,7 @@ class NumerologyScreen extends ConsumerWidget {
                         Expanded(
                           child: _buildInfoCard(
                             context,
-                            'Kariyer Yolu',
+                            L10nService.get('screens.numerology.career_path', language),
                             lifePathMeaning.careerPath,
                             Icons.work,
                             AppColors.auroraEnd,
@@ -196,7 +198,7 @@ class NumerologyScreen extends ConsumerWidget {
                         Expanded(
                           child: _buildInfoCard(
                             context,
-                            'Uyumlu Sayılar',
+                            L10nService.get('screens.numerology.compatible_numbers', language),
                             lifePathMeaning.compatibleNumbers,
                             Icons.favorite,
                             AppColors.fireElement,
@@ -207,23 +209,23 @@ class NumerologyScreen extends ConsumerWidget {
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Spiritual lesson - NEW
-                    _buildSpiritualLessonCard(context, lifePathMeaning)
+                    _buildSpiritualLessonCard(context, lifePathMeaning, language)
                         .animate()
                         .fadeIn(delay: 800.ms, duration: 400.ms),
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Shadow side - NEW
-                    _buildShadowSideCard(context, lifePathMeaning)
+                    _buildShadowSideCard(context, lifePathMeaning, language)
                         .animate()
                         .fadeIn(delay: 900.ms, duration: 400.ms),
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Explore All Life Paths
-                    _buildLifePathExplorer(context, lifePath),
+                    _buildLifePathExplorer(context, lifePath, language),
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Karmic Debt Section
-                    _buildKarmicDebtSection(context, karmicDebts),
+                    _buildKarmicDebtSection(context, karmicDebts, language),
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Quiz CTA - Google Discover Funnel
@@ -232,10 +234,10 @@ class NumerologyScreen extends ConsumerWidget {
 
                     // Kadim Not - Numeroloji bilgeliği
                     KadimNotCard(
-                      title: 'Sayıların Ezeli Dansı',
-                      content: 'Pisagor\'dan bu yana bilgeler sayıların evrenin gizli dilini taşıdığını bilir. Yaşam yolu sayın sadece bir rakam değil - ruhunun bu dünyaya getirdiği titreşim, evrenin sana verdiği benzersiz melodi. Bu melodiyi duyabilmek için önce sessizliğe ihtiyacın var.',
+                      title: L10nService.get('screens.numerology.kadim_title', language),
+                      content: L10nService.get('screens.numerology.kadim_content', language),
                       category: KadimCategory.numerology,
-                      source: 'Pisagorcu Öğreti',
+                      source: 'Pisagorcu Ogreti',
                     ),
                     const SizedBox(height: AppConstants.spacingXxl),
 
@@ -243,9 +245,10 @@ class NumerologyScreen extends ConsumerWidget {
                     const NextBlocks(currentPage: 'numerology'),
                     const SizedBox(height: AppConstants.spacingXl),
                     // Disclaimer
-                    const PageFooterWithDisclaimer(
-                      brandText: 'Numeroloji — Venus One',
-                      disclaimerText: DisclaimerTexts.numerology,
+                    PageFooterWithDisclaimer(
+                      brandText: L10nService.get('screens.numerology.brand_text', language),
+                      disclaimerText: DisclaimerTexts.numerology(language),
+                      language: language,
                     ),
                   ]),
                 ),
@@ -439,7 +442,7 @@ class NumerologyScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildKarmicDebtCard(BuildContext context, List<int> karmicDebts) {
+  Widget _buildKarmicDebtCard(BuildContext context, List<int> karmicDebts, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -462,7 +465,7 @@ class NumerologyScreen extends ConsumerWidget {
               Icon(Icons.warning_amber, color: AppColors.error, size: 20),
               const SizedBox(width: 8),
               Text(
-                'Karmik Borç Sayıları',
+                L10nService.get('screens.numerology.karmic_debt_numbers', language),
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       color: AppColors.error,
                     ),
@@ -492,7 +495,7 @@ class NumerologyScreen extends ConsumerWidget {
           ),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
-            _getKarmicDebtDescription(karmicDebts.first),
+            _getKarmicDebtDescription(karmicDebts.first, language),
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: AppColors.textSecondary,
                   height: 1.5,
@@ -513,7 +516,7 @@ class NumerologyScreen extends ConsumerWidget {
   }
 
   Widget _buildInterpretationCard(
-      BuildContext context, int number, NumerologyMeaning meaning) {
+      BuildContext context, int number, NumerologyMeaning meaning, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -530,7 +533,7 @@ class NumerologyScreen extends ConsumerWidget {
               Icon(Icons.tag, color: AppColors.auroraStart, size: 18),
               const SizedBox(width: 8),
               Text(
-                'Anahtar Kelimeler',
+                L10nService.get('screens.numerology.keywords', language),
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       color: AppColors.auroraStart,
                     ),
@@ -551,7 +554,7 @@ class NumerologyScreen extends ConsumerWidget {
               Icon(Icons.star, color: AppColors.success, size: 18),
               const SizedBox(width: 8),
               Text(
-                'Güçlü Yanlar',
+                L10nService.get('screens.numerology.strengths', language),
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       color: AppColors.success,
                     ),
@@ -572,7 +575,7 @@ class NumerologyScreen extends ConsumerWidget {
               Icon(Icons.psychology, color: AppColors.warning, size: 18),
               const SizedBox(width: 8),
               Text(
-                'Zorluklar',
+                L10nService.get('screens.numerology.challenges', language),
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       color: AppColors.warning,
                     ),
@@ -593,7 +596,7 @@ class NumerologyScreen extends ConsumerWidget {
               Icon(Icons.favorite, color: AppColors.fireElement, size: 18),
               const SizedBox(width: 8),
               Text(
-                'Aşk ve İlişki',
+                L10nService.get('screens.numerology.love_relationships', language),
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       color: AppColors.fireElement,
                     ),
@@ -612,22 +615,22 @@ class NumerologyScreen extends ConsumerWidget {
     );
   }
 
-  String _getKarmicDebtDescription(int debt) {
+  String _getKarmicDebtDescription(int debt, AppLanguage language) {
     switch (debt) {
       case 13:
-        return 'Tembellik ve sorumsuzluktan kaynaklanan karmik bir borç. Bu hayatta sıkı çalışma ve disiplin yoluyla dengelenmelidir.';
+        return L10nService.get('screens.numerology.karmic_13_desc', language);
       case 14:
-        return 'Özgürlüğü kötüye kullanmaktan kaynaklanan bir borç. Bu hayatta sorumluluk ve ölçülülük öğrenmek gerekiyor.';
+        return L10nService.get('screens.numerology.karmic_14_desc', language);
       case 16:
-        return 'Ego ve ilişki sorunlarından kaynaklanan bir borç. Alçakgönüllülük ve içsel dönüşüm gerektiriyor.';
+        return L10nService.get('screens.numerology.karmic_16_desc', language);
       case 19:
-        return 'Güç ve otoriteyi kötüye kullanmaktan kaynaklanan bir borç. Bağımsızlık ve başkalarına yardım etme dengesi öğrenmek gerekiyor.';
+        return L10nService.get('screens.numerology.karmic_19_desc', language);
       default:
-        return 'Bu sayı karmik bir borç taşıyor ve bu hayatta belirli dersler öğrenilmesini gerektiriyor.';
+        return L10nService.get('screens.numerology.karmic_default_desc', language);
     }
   }
 
-  Widget _buildEsotericIntro(BuildContext context) {
+  Widget _buildEsotericIntro(BuildContext context, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -651,7 +654,7 @@ class NumerologyScreen extends ConsumerWidget {
               const SizedBox(width: 8),
               Flexible(
                 child: Text(
-                  'Sayıların Kadim Sırrı',
+                  L10nService.get('screens.numerology.ancient_secret_title', language),
                   style: Theme.of(context).textTheme.titleSmall?.copyWith(
                         color: AppColors.starGold,
                         fontStyle: FontStyle.italic,
@@ -663,7 +666,7 @@ class NumerologyScreen extends ConsumerWidget {
           ),
           const SizedBox(height: AppConstants.spacingSm),
           Text(
-            'Numeroloji, evrenin matematiksel bir dille konuştuğu kadim bir bilgeliktir. Pisagor\'dan Kabala\'ya, tüm ezoterik gelenekler sayıların gücünü bilir. Doğum tarihin ve ismin, ruhunun bu dünyaya getirdiği titreşimi taşır. Her sayı bir frekans, bir enerji, bir kaderdir. Burada gördüklerin rastlantı değil - ruhunun şifresidir.',
+            L10nService.get('screens.numerology.ancient_secret_desc', language),
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: AppColors.textSecondary,
                   height: 1.6,
@@ -676,7 +679,7 @@ class NumerologyScreen extends ConsumerWidget {
   }
 
   Widget _buildDetailedInterpretationCard(
-      BuildContext context, NumerologyMeaning meaning) {
+      BuildContext context, NumerologyMeaning meaning, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -713,7 +716,7 @@ class NumerologyScreen extends ConsumerWidget {
               const SizedBox(width: AppConstants.spacingMd),
               Expanded(
                 child: Text(
-                  '${meaning.number} Sayısının Derinliği',
+                  L10nService.get('screens.numerology.number_depth_title', language).replaceAll('{number}', meaning.number.toString()),
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
                         color: AppColors.auroraStart,
                       ),
@@ -781,7 +784,7 @@ class NumerologyScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildSpiritualLessonCard(BuildContext context, NumerologyMeaning meaning) {
+  Widget _buildSpiritualLessonCard(BuildContext context, NumerologyMeaning meaning, AppLanguage language) {
     if (meaning.spiritualLesson.isEmpty) return const SizedBox.shrink();
 
     return Container(
@@ -818,7 +821,7 @@ class NumerologyScreen extends ConsumerWidget {
               const SizedBox(width: AppConstants.spacingMd),
               Expanded(
                 child: Text(
-                  'Ruhsal Ders',
+                  L10nService.get('screens.numerology.spiritual_lesson', language),
                   style: Theme.of(context).textTheme.titleSmall?.copyWith(
                         color: AppColors.moonSilver,
                       ),
@@ -840,7 +843,7 @@ class NumerologyScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildShadowSideCard(BuildContext context, NumerologyMeaning meaning) {
+  Widget _buildShadowSideCard(BuildContext context, NumerologyMeaning meaning, AppLanguage language) {
     if (meaning.shadowSide.isEmpty) return const SizedBox.shrink();
 
     return Container(
@@ -877,7 +880,7 @@ class NumerologyScreen extends ConsumerWidget {
               const SizedBox(width: AppConstants.spacingMd),
               Expanded(
                 child: Text(
-                  'Gölge Taraf',
+                  L10nService.get('screens.numerology.shadow_side', language),
                   style: Theme.of(context).textTheme.titleSmall?.copyWith(
                         color: AppColors.error,
                       ),
@@ -895,7 +898,7 @@ class NumerologyScreen extends ConsumerWidget {
           ),
           const SizedBox(height: AppConstants.spacingSm),
           Text(
-            'Bu yönler farkındalıkla dönüştürülebilir. Gölgeyi kabullenmek, ona güç vermek değil - onu entegre etmektir.',
+            L10nService.get('screens.numerology.shadow_side_footer', language),
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: AppColors.textMuted,
                   fontStyle: FontStyle.italic,
@@ -906,7 +909,7 @@ class NumerologyScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildLifePathExplorer(BuildContext context, int currentLifePath) {
+  Widget _buildLifePathExplorer(BuildContext context, int currentLifePath, AppLanguage language) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -915,7 +918,7 @@ class NumerologyScreen extends ConsumerWidget {
             const Icon(Icons.explore, color: AppColors.auroraStart, size: 20),
             const SizedBox(width: 8),
             Text(
-              'Tüm Yaşam Yolu Sayıları',
+              L10nService.get('screens.numerology.all_life_path_numbers', language),
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 color: AppColors.auroraStart,
                 fontWeight: FontWeight.bold,
@@ -992,7 +995,7 @@ class NumerologyScreen extends ConsumerWidget {
             const Icon(Icons.star, color: AppColors.starGold, size: 16),
             const SizedBox(width: 6),
             Text(
-              'Master Sayılar',
+              L10nService.get('screens.numerology.master_numbers', language),
               style: Theme.of(context).textTheme.labelMedium?.copyWith(
                 color: AppColors.starGold,
               ),
@@ -1045,7 +1048,7 @@ class NumerologyScreen extends ConsumerWidget {
     ).animate().fadeIn(delay: 500.ms, duration: 400.ms);
   }
 
-  Widget _buildKarmicDebtSection(BuildContext context, List<int> userKarmicDebts) {
+  Widget _buildKarmicDebtSection(BuildContext context, List<int> userKarmicDebts, AppLanguage language) {
     final allKarmicDebts = [13, 14, 16, 19];
 
     return Column(
@@ -1056,7 +1059,7 @@ class NumerologyScreen extends ConsumerWidget {
             const Icon(Icons.link, color: AppColors.error, size: 20),
             const SizedBox(width: 8),
             Text(
-              'Karmik Borç Sayıları',
+              L10nService.get('screens.numerology.karmic_debt_numbers', language),
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 color: AppColors.error,
                 fontWeight: FontWeight.bold,
@@ -1066,7 +1069,7 @@ class NumerologyScreen extends ConsumerWidget {
         ),
         const SizedBox(height: 8),
         Text(
-          'Geçmiş yaşamlardan taşınan dersler',
+          L10nService.get('screens.numerology.lessons_from_past_lives', language),
           style: Theme.of(context).textTheme.bodySmall?.copyWith(
             color: AppColors.textMuted,
             fontStyle: FontStyle.italic,
@@ -1135,7 +1138,7 @@ class NumerologyScreen extends ConsumerWidget {
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Text(
-                        'SENİN',
+                        L10nService.get('screens.numerology.yours', language),
                         style: Theme.of(context).textTheme.labelSmall?.copyWith(
                           color: color,
                           fontSize: 8,
@@ -1163,7 +1166,7 @@ class NumerologyScreen extends ConsumerWidget {
                 const SizedBox(width: 8),
                 Expanded(
                   child: Text(
-                    'Haritanda ${userKarmicDebts.join(", ")} karmik borcu var. Detaylar için dokun.',
+                    L10nService.get('screens.numerology.karmic_debt_message', language).replaceAll('{debts}', userKarmicDebts.join(", ")),
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: AppColors.error,
                     ),

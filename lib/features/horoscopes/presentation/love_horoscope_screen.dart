@@ -101,7 +101,8 @@ class _LoveHoroscopeScreenState extends ConsumerState<LoveHoroscopeScreen> {
                       // Entertainment Disclaimer
                       PageFooterWithDisclaimer(
                         brandText: L10n.get('brand_love_horoscope', language),
-                        disclaimerText: DisclaimerTexts.astrology,
+                        disclaimerText: DisclaimerTexts.astrology(language),
+                        language: language,
                       ),
                       const SizedBox(height: AppConstants.spacingLg),
                     ],

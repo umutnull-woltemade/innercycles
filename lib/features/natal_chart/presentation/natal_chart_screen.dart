@@ -262,7 +262,7 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
               ),
             ),
             Text(
-              'Raporu Disa Aktar',
+              L10nService.get('natal_chart.export_report', ref.read(languageProvider)),
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                     color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
                     fontWeight: FontWeight.bold,
@@ -272,16 +272,16 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
             _buildExportOption(
               context,
               icon: Icons.visibility_outlined,
-              title: 'Onizle',
-              subtitle: 'PDF raporunu goruntule',
+              title: L10nService.get('natal_chart.preview', ref.read(languageProvider)),
+              subtitle: L10nService.get('natal_chart.preview_pdf', ref.read(languageProvider)),
               onTap: () => _previewPdf(context),
             ),
             const SizedBox(height: 12),
             _buildExportOption(
               context,
               icon: Icons.share_outlined,
-              title: 'Paylas',
-              subtitle: 'PDF olarak paylas',
+              title: L10nService.get('common.share', ref.read(languageProvider)),
+              subtitle: L10nService.get('natal_chart.share_as_pdf', ref.read(languageProvider)),
               onTap: () => _sharePdf(context),
             ),
             const SizedBox(height: 24),
@@ -362,8 +362,9 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
   }
 
   Future<void> _previewPdf(BuildContext context) async {
+    final language = ref.read(languageProvider);
     Navigator.pop(context); // Close bottom sheet
-    _showLoadingDialog(context);
+    _showLoadingDialog(context, language);
 
     try {
       final userProfile = ref.read(userProfileProvider);
@@ -392,14 +393,15 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
     } catch (e) {
       if (context.mounted) {
         Navigator.pop(context); // Close loading dialog
-        _showErrorSnackBar(context, 'PDF olusturulamadi');
+        _showErrorSnackBar(context, L10nService.get('natal_chart.pdf_error', ref.read(languageProvider)));
       }
     }
   }
 
   Future<void> _sharePdf(BuildContext context) async {
+    final language = ref.read(languageProvider);
     Navigator.pop(context); // Close bottom sheet
-    _showLoadingDialog(context);
+    _showLoadingDialog(context, language);
 
     try {
       final userProfile = ref.read(userProfileProvider);
@@ -429,25 +431,25 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
     } catch (e) {
       if (context.mounted) {
         Navigator.pop(context); // Close loading dialog
-        _showErrorSnackBar(context, 'PDF paylasilamadi');
+        _showErrorSnackBar(context, L10nService.get('natal_chart.share_error', ref.read(languageProvider)));
       }
     }
   }
 
-  void _showLoadingDialog(BuildContext context) {
+  void _showLoadingDialog(BuildContext context, AppLanguage language) {
     showDialog(
       context: context,
       barrierDismissible: false,
-      builder: (context) => const Center(
+      builder: (context) => Center(
         child: Card(
           child: Padding(
-            padding: EdgeInsets.all(24),
+            padding: const EdgeInsets.all(24),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                CircularProgressIndicator(color: AppColors.starGold),
-                SizedBox(height: 16),
-                Text('PDF olusturuluyor...'),
+                const CircularProgressIndicator(color: AppColors.starGold),
+                const SizedBox(height: 16),
+                Text(L10nService.get('natal_chart.pdf_generating', language)),
               ],
             ),
           ),
@@ -581,13 +583,14 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
           const NextBlocks(currentPage: 'natal_chart'),
           const SizedBox(height: AppConstants.spacingXl),
           // Entertainment Disclaimer
-          const PageFooterWithDisclaimer(
-            brandText: 'Doğum Haritası — Venus One',
-            disclaimerText: DisclaimerTexts.astrology,
+          PageFooterWithDisclaimer(
+            brandText: L10nService.get('brands.natal_chart', language),
+            disclaimerText: DisclaimerTexts.astrology(language),
+            language: language,
           ),
           const SizedBox(height: AppConstants.spacingLg),
           // Back-Button-Free Navigation
-          const PageBottomNavigation(currentRoute: '/birth-chart'),
+          PageBottomNavigation(currentRoute: '/birth-chart', language: language),
         ],
       ),
     );
@@ -635,13 +638,13 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Güneş Burcun: ${sun.sign.nameTr}',
+                      '${L10nService.get('natal_chart.your_sun_sign', ref.watch(languageProvider))} ${sun.sign.nameTr}',
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
                             color: sun.sign.color,
                           ),
                     ),
                     Text(
-                      'Özünün Sırrı',
+                      L10nService.get('natal_chart.essence_secret', ref.watch(languageProvider)),
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                             color: AppColors.textMuted,
                             fontStyle: FontStyle.italic,
@@ -707,13 +710,13 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Ay Burcun: ${moon.sign.nameTr}',
+                      '${L10nService.get('natal_chart.your_moon_sign', ref.watch(languageProvider))} ${moon.sign.nameTr}',
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
                             color: AppColors.moonSilver,
                           ),
                     ),
                     Text(
-                      'Duygusal Dünyan',
+                      L10nService.get('natal_chart.emotional_world', ref.watch(languageProvider)),
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                             color: AppColors.textMuted,
                             fontStyle: FontStyle.italic,
@@ -779,13 +782,13 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Yükselen: ${rising.sign.nameTr}',
+                      '${L10nService.get('natal_chart.your_rising', ref.watch(languageProvider))} ${rising.sign.nameTr}',
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
                             color: AppColors.fireElement,
                           ),
                     ),
                     Text(
-                      'Dış İmajın & İlk İzlenim',
+                      L10nService.get('natal_chart.outer_image', ref.watch(languageProvider)),
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                             color: AppColors.textMuted,
                             fontStyle: FontStyle.italic,
@@ -855,13 +858,13 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Merkür: ${mercury.sign.nameTr}',
+                      '${L10nService.get('natal_chart.mercury_label', ref.watch(languageProvider))} ${mercury.sign.nameTr}',
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
                             color: mercury.planet.color,
                           ),
                     ),
                     Text(
-                      'Zihin & İletişim Tarzı',
+                      L10nService.get('natal_chart.mind_communication', ref.watch(languageProvider)),
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                             color: AppColors.textMuted,
                             fontStyle: FontStyle.italic,
@@ -960,13 +963,13 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Venüs: ${venus.sign.nameTr}',
+                      '${L10nService.get('natal_chart.venus_label', ref.watch(languageProvider))} ${venus.sign.nameTr}',
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
                             color: venus.planet.color,
                           ),
                     ),
                     Text(
-                      'Aşk & Değerler & Estetik',
+                      L10nService.get('natal_chart.love_values', ref.watch(languageProvider)),
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                             color: AppColors.textMuted,
                             fontStyle: FontStyle.italic,
@@ -1065,13 +1068,13 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Mars: ${mars.sign.nameTr}',
+                      '${L10nService.get('natal_chart.mars_label', ref.watch(languageProvider))} ${mars.sign.nameTr}',
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
                             color: mars.planet.color,
                           ),
                     ),
                     Text(
-                      'İrade & Motivasyon & Enerji',
+                      L10nService.get('natal_chart.will_motivation', ref.watch(languageProvider)),
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                             color: AppColors.textMuted,
                             fontStyle: FontStyle.italic,
@@ -1457,7 +1460,7 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
           ),
           const SizedBox(height: AppConstants.spacingSm),
           Text(
-            'Geri giden gezegenler, o gezegenin enerjisinin içe dönük ve yeniden değerlendirme sürecinde olduğunu gösterir.',
+            L10nService.get('natal_chart.retrograde_description', ref.watch(languageProvider)),
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
                 ),
@@ -1474,15 +1477,15 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
         children: [
           _buildEsotericIntro(
             context,
-            'Gezegenler: Ruhunun Sesleri',
-            'Her gezegen, içindeki bir arketipi, bir iç sesi temsil eder. Güneş senin özünü, Ay duygusal doğanı, Merkür zihnini, Venüs sevgi dilini, Mars iradenı taşır. Dış gezegenler ise nesil enerjilerini ve derin dönüşüm potansiyellerini gösterir. Bu sesler bazen uyum içinde, bazen çatışma halindedir - ve bu dansı anlamak, kendini tanımanın anahtarıdır.',
+            L10nService.get('natal_chart.planets_title', ref.watch(languageProvider)),
+            L10nService.get('natal_chart.planets_description', ref.watch(languageProvider)),
             AppColors.auroraStart,
           ).animate().fadeIn(duration: 400.ms),
           const SizedBox(height: AppConstants.spacingLg),
           PlanetPositionsCard(chart: _natalChart!),
           const SizedBox(height: AppConstants.spacingXl),
           // Back-Button-Free Navigation (compact)
-          const PageBottomNavigationCompact(currentRoute: '/birth-chart'),
+          PageBottomNavigationCompact(currentRoute: '/birth-chart', language: ref.watch(languageProvider)),
         ],
       ),
     );
@@ -1495,15 +1498,15 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
         children: [
           _buildEsotericIntro(
             context,
-            'Evler: Yaşamın Kutsal Alanları',
-            'On iki ev, yaşamın on iki kutsal alanını temsil eder. Her ev bir tapınak gibidir - kendi ritüelleri, dersleri ve hazineleri olan. Birinci ev "ben"in tapınağı, yedinci ev "biz"in tapınağı, onuncu ev toplumsal misyonun tapınağıdır. Hangi burç bir evi yönetiyorsa, o yaşam alanına o burçun enerjisi damgasını vurur. Evlerdeki gezegenler ise o alana özel ilgi ve potansiyel getirir.',
+            L10nService.get('natal_chart.houses_title', ref.watch(languageProvider)),
+            L10nService.get('natal_chart.houses_description', ref.watch(languageProvider)),
             AppColors.auroraEnd,
           ).animate().fadeIn(duration: 400.ms),
           const SizedBox(height: AppConstants.spacingLg),
           HousesCard(chart: _natalChart!),
           const SizedBox(height: AppConstants.spacingXl),
           // Back-Button-Free Navigation (compact)
-          const PageBottomNavigationCompact(currentRoute: '/birth-chart'),
+          PageBottomNavigationCompact(currentRoute: '/birth-chart', language: ref.watch(languageProvider)),
         ],
       ),
     );
@@ -1516,15 +1519,15 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
         children: [
           _buildEsotericIntro(
             context,
-            'Açılar: Simyanın Dansı',
-            'Açılar, içindeki farklı enerjilerin birbirleriyle nasıl ilişkilendiğini gösterir. Üçgen açılar doğal yetenekleri, kare açılar büyüme fırsatlarını, karşıt açılar dengelenmesi gereken kutuplaşmaları işaret eder. Bu bir "iyi" ya da "kötü" meselesi değil - her açı bir simya fırsatıdır. Zorluklar altına, gerilimler güce dönüşebilir. Sır, bu enerjilerle bilinçli çalışmaktır.',
+            L10nService.get('natal_chart.aspects_title', ref.watch(languageProvider)),
+            L10nService.get('natal_chart.aspects_description', ref.watch(languageProvider)),
             AppColors.fireElement,
           ).animate().fadeIn(duration: 400.ms),
           const SizedBox(height: AppConstants.spacingLg),
           AspectsCard(chart: _natalChart!),
           const SizedBox(height: AppConstants.spacingXl),
           // Back-Button-Free Navigation (compact)
-          const PageBottomNavigationCompact(currentRoute: '/birth-chart'),
+          PageBottomNavigationCompact(currentRoute: '/birth-chart', language: ref.watch(languageProvider)),
         ],
       ),
     );

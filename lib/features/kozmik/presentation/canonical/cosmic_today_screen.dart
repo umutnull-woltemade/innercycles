@@ -18,7 +18,7 @@ class CosmicTodayScreen extends ConsumerWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final language = ref.watch(languageProvider);
     final today = DateTime.now();
-    final theme = _getDailyTheme(today);
+    final theme = _getDailyTheme(today, language);
 
     return Scaffold(
       body: Container(
@@ -75,7 +75,7 @@ class CosmicTodayScreen extends ConsumerWidget {
                 const SizedBox(height: 8),
 
                 // Tag
-                Center(child: _buildTag('Kozmik', theme.color)),
+                Center(child: _buildTag(L10nService.get('cosmic_today.kozmik_tag', language), theme.color)),
                 const SizedBox(height: 40),
 
                 // 3 Bullets - Core Message
@@ -83,15 +83,15 @@ class CosmicTodayScreen extends ConsumerWidget {
                 const SizedBox(height: 36),
 
                 // Sections
-                _buildSection(isDark, 'Bugünün Vurgusu', theme.color, theme.emphasis),
+                _buildSection(isDark, L10nService.get('cosmic_today.todays_emphasis', language), theme.color, theme.emphasis),
                 const SizedBox(height: 28),
-                _buildSection(isDark, 'Duygusal Ton', theme.color, theme.emotionalTone),
+                _buildSection(isDark, L10nService.get('cosmic_today.emotional_tone', language), theme.color, theme.emotionalTone),
                 const SizedBox(height: 28),
-                _buildSection(isDark, 'Farkındalık', theme.color, theme.awareness),
+                _buildSection(isDark, L10nService.get('cosmic_today.awareness', language), theme.color, theme.awareness),
                 const SizedBox(height: 32),
 
                 // Suggestion - Kozmik → rüya + numeroloji
-                _buildSuggestion(context, isDark, language, '🌙', 'Rüya İzi\'ni keşfet', Routes.dreamRecurring),
+                _buildSuggestion(context, isDark, language, '🌙', L10nService.get('cosmic_today.discover_dream_trace', language), Routes.dreamRecurring),
                 const SizedBox(height: 40),
 
                 // Footer with disclaimer
@@ -107,22 +107,26 @@ class CosmicTodayScreen extends ConsumerWidget {
   }
 
   Widget _buildDateBadge(BuildContext context, bool isDark, DateTime date) {
-    final months = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-      decoration: BoxDecoration(
-        color: isDark ? Colors.white.withValues(alpha: 0.1) : Colors.black.withValues(alpha: 0.05),
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Text(
-        '${date.day} ${months[date.month - 1]}',
-        style: TextStyle(
-          fontSize: 13,
-          fontWeight: FontWeight.w500,
-          color: isDark ? Colors.white70 : AppColors.textDark,
+    return Consumer(builder: (context, ref, _) {
+      final language = ref.watch(languageProvider);
+      final monthKeys = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'];
+      final monthName = L10nService.get('cosmic_today.months.${monthKeys[date.month - 1]}', language);
+      return Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+        decoration: BoxDecoration(
+          color: isDark ? Colors.white.withValues(alpha: 0.1) : Colors.black.withValues(alpha: 0.05),
+          borderRadius: BorderRadius.circular(16),
         ),
-      ),
-    );
+        child: Text(
+          '${date.day} $monthName',
+          style: TextStyle(
+            fontSize: 13,
+            fontWeight: FontWeight.w500,
+            color: isDark ? Colors.white70 : AppColors.textDark,
+          ),
+        ),
+      );
+    });
   }
 
   Widget _buildTag(String text, Color color) => Container(
@@ -219,106 +223,192 @@ class CosmicTodayScreen extends ConsumerWidget {
     ),
   ).animate().fadeIn(delay: 200.ms, duration: 400.ms);
 
-  _DailyTheme _getDailyTheme(DateTime date) {
+  _DailyTheme _getDailyTheme(DateTime date, AppLanguage language) {
     // Rotate themes based on day of year
     final dayOfYear = date.difference(DateTime(date.year, 1, 1)).inDays;
-    final themes = _themes;
+    final themes = _getLocalizedThemes(language);
     return themes[dayOfYear % themes.length];
   }
 
-  static final List<_DailyTheme> _themes = [
-    _DailyTheme(
-      emoji: '🌅',
-      title: 'Yeni Başlangıçlar',
-      color: const Color(0xFFFF9800),
-      coreBullets: [
-        'Bugün enerji yenileniyor.',
-        'Geçmişin yükü hafifliyor.',
-        'Küçük adımlar büyük değişimlere kapı açar.',
-      ],
-      emphasis: ['Cesaret gerektiren bir adım atılabilir.', 'Bekleyen kararlar öne çıkıyor.', 'İlk hamle senin elinde.'],
-      emotionalTone: ['Umut ön planda.', 'Hafif bir heyecan hissedilebilir.', 'Merak duygusu güçlü.'],
-      awareness: ['Sabırsızlık tuzağına düşme.', 'Her şeyin hemen olmasını bekleme.', 'Süreç de yolculuğun parçası.'],
-    ),
-    _DailyTheme(
-      emoji: '🌊',
-      title: 'Duygusal Derinlik',
-      color: const Color(0xFF2196F3),
-      coreBullets: [
-        'İçsel sular hareket halinde.',
-        'Duygular yüzeye çıkmak istiyor.',
-        'Derinlere inmek bugün mümkün.',
-      ],
-      emphasis: ['Bastırılan duygular fark edilebilir.', 'Su elementi güçlü.', 'Sezgiler daha net.'],
-      emotionalTone: ['Hassasiyet artmış olabilir.', 'Empati duygusu yoğun.', 'Gözyaşı da temizleyicidir.'],
-      awareness: ['Duygulara kapılmak yerine gözlemle.', 'Her his geçicidir.', 'Akış halinde kal.'],
-    ),
-    _DailyTheme(
-      emoji: '🔥',
-      title: 'İçsel Güç',
-      color: const Color(0xFFE91E63),
-      coreBullets: [
-        'Ateş elementi aktif.',
-        'İrade ve kararlılık güçleniyor.',
-        'Eylem zamanı yaklaşıyor.',
-      ],
-      emphasis: ['Motivasyon yükseliyor.', 'Ertelenen işler için uygun.', 'Cesaret gerektiren adımlar atılabilir.'],
-      emotionalTone: ['Tutku hissedilebilir.', 'Sabırsızlık olası.', 'Enerji yoğun.'],
-      awareness: ['Öfkeyi fark et ama yönet.', 'Ateş yakar da ısıtır da.', 'Güçlü olmak sert olmak değil.'],
-    ),
-    _DailyTheme(
-      emoji: '🌿',
-      title: 'Topraklanma',
-      color: const Color(0xFF4CAF50),
-      coreBullets: [
-        'Toprak elementi çağırıyor.',
-        'Bedene dönmek bugün önemli.',
-        'Basit şeyler değer kazanıyor.',
-      ],
-      emphasis: ['Maddi konular ön planda.', 'Güvenlik arayışı var.', 'Somut adımlar atılabilir.'],
-      emotionalTone: ['Sakinlik aranıyor.', 'Dinlenme ihtiyacı var.', 'Yavaşlama hissi.'],
-      awareness: ['Sıkışmışlık geçici.', 'Doğayla temas iyileştirir.', 'Ayakların yere bassın.'],
-    ),
-    _DailyTheme(
-      emoji: '💨',
-      title: 'Zihinsel Açıklık',
-      color: const Color(0xFF9C27B0),
-      coreBullets: [
-        'Hava elementi hakim.',
-        'Düşünceler berraklaşıyor.',
-        'İletişim güçleniyor.',
-      ],
-      emphasis: ['Fikirler akışta.', 'Yeni bakış açıları mümkün.', 'Konuşmalar önem kazanıyor.'],
-      emotionalTone: ['Hafiflik hissi.', 'Merak artıyor.', 'Sosyal enerji yükseliyor.'],
-      awareness: ['Fazla düşünme tuzağı var.', 'Analiz felç edebilir.', 'Bazen bırak gitsin.'],
-    ),
-    _DailyTheme(
-      emoji: '🌙',
-      title: 'İçe Dönüş',
-      color: const Color(0xFF607D8B),
-      coreBullets: [
-        'Ay enerjisi güçlü.',
-        'Bilinçaltı mesajlar taşıyor.',
-        'Dinlenme ve düşünme zamanı.',
-      ],
-      emphasis: ['Rüyalar anlamlı olabilir.', 'Sezgiler güçlü.', 'Yalnızlık iyi gelebilir.'],
-      emotionalTone: ['Melankoli olası.', 'Nostaljik hisler.', 'Derinleşme isteği.'],
-      awareness: ['Karanlık da öğretir.', 'Her şeyin görünür olması gerekmez.', 'İç dünya da gerçektir.'],
-    ),
-    _DailyTheme(
-      emoji: '⭐',
-      title: 'Potansiyel',
-      color: const Color(0xFFFFD700),
-      coreBullets: [
-        'Bugün olasılıklar açık.',
-        'Henüz olmamış olan çağırıyor.',
-        'Hayal gücü değerli.',
-      ],
-      emphasis: ['Vizyoner düşünce destekleniyor.', 'Uzun vadeli planlar için uygun.', 'İlham alınabilir.'],
-      emotionalTone: ['Umut dolu.', 'Heyecan var.', 'Beklenti yükseliyor.'],
-      awareness: ['Hayal kurmak eylem değildir.', 'Potansiyel gerçekleşmeden kalabilir.', 'Küçük adımlar büyütür.'],
-    ),
-  ];
+  List<_DailyTheme> _getLocalizedThemes(AppLanguage language) {
+    return [
+      _DailyTheme(
+        emoji: '🌅',
+        title: L10nService.get('cosmic_today.themes.new_beginnings.title', language),
+        color: const Color(0xFFFF9800),
+        coreBullets: [
+          L10nService.get('cosmic_today.themes.new_beginnings.bullet1', language),
+          L10nService.get('cosmic_today.themes.new_beginnings.bullet2', language),
+          L10nService.get('cosmic_today.themes.new_beginnings.bullet3', language),
+        ],
+        emphasis: [
+          L10nService.get('cosmic_today.themes.new_beginnings.emphasis1', language),
+          L10nService.get('cosmic_today.themes.new_beginnings.emphasis2', language),
+          L10nService.get('cosmic_today.themes.new_beginnings.emphasis3', language),
+        ],
+        emotionalTone: [
+          L10nService.get('cosmic_today.themes.new_beginnings.emotional1', language),
+          L10nService.get('cosmic_today.themes.new_beginnings.emotional2', language),
+          L10nService.get('cosmic_today.themes.new_beginnings.emotional3', language),
+        ],
+        awareness: [
+          L10nService.get('cosmic_today.themes.new_beginnings.awareness1', language),
+          L10nService.get('cosmic_today.themes.new_beginnings.awareness2', language),
+          L10nService.get('cosmic_today.themes.new_beginnings.awareness3', language),
+        ],
+      ),
+      _DailyTheme(
+        emoji: '🌊',
+        title: L10nService.get('cosmic_today.themes.emotional_depth.title', language),
+        color: const Color(0xFF2196F3),
+        coreBullets: [
+          L10nService.get('cosmic_today.themes.emotional_depth.bullet1', language),
+          L10nService.get('cosmic_today.themes.emotional_depth.bullet2', language),
+          L10nService.get('cosmic_today.themes.emotional_depth.bullet3', language),
+        ],
+        emphasis: [
+          L10nService.get('cosmic_today.themes.emotional_depth.emphasis1', language),
+          L10nService.get('cosmic_today.themes.emotional_depth.emphasis2', language),
+          L10nService.get('cosmic_today.themes.emotional_depth.emphasis3', language),
+        ],
+        emotionalTone: [
+          L10nService.get('cosmic_today.themes.emotional_depth.emotional1', language),
+          L10nService.get('cosmic_today.themes.emotional_depth.emotional2', language),
+          L10nService.get('cosmic_today.themes.emotional_depth.emotional3', language),
+        ],
+        awareness: [
+          L10nService.get('cosmic_today.themes.emotional_depth.awareness1', language),
+          L10nService.get('cosmic_today.themes.emotional_depth.awareness2', language),
+          L10nService.get('cosmic_today.themes.emotional_depth.awareness3', language),
+        ],
+      ),
+      _DailyTheme(
+        emoji: '🔥',
+        title: L10nService.get('cosmic_today.themes.inner_strength.title', language),
+        color: const Color(0xFFE91E63),
+        coreBullets: [
+          L10nService.get('cosmic_today.themes.inner_strength.bullet1', language),
+          L10nService.get('cosmic_today.themes.inner_strength.bullet2', language),
+          L10nService.get('cosmic_today.themes.inner_strength.bullet3', language),
+        ],
+        emphasis: [
+          L10nService.get('cosmic_today.themes.inner_strength.emphasis1', language),
+          L10nService.get('cosmic_today.themes.inner_strength.emphasis2', language),
+          L10nService.get('cosmic_today.themes.inner_strength.emphasis3', language),
+        ],
+        emotionalTone: [
+          L10nService.get('cosmic_today.themes.inner_strength.emotional1', language),
+          L10nService.get('cosmic_today.themes.inner_strength.emotional2', language),
+          L10nService.get('cosmic_today.themes.inner_strength.emotional3', language),
+        ],
+        awareness: [
+          L10nService.get('cosmic_today.themes.inner_strength.awareness1', language),
+          L10nService.get('cosmic_today.themes.inner_strength.awareness2', language),
+          L10nService.get('cosmic_today.themes.inner_strength.awareness3', language),
+        ],
+      ),
+      _DailyTheme(
+        emoji: '🌿',
+        title: L10nService.get('cosmic_today.themes.grounding.title', language),
+        color: const Color(0xFF4CAF50),
+        coreBullets: [
+          L10nService.get('cosmic_today.themes.grounding.bullet1', language),
+          L10nService.get('cosmic_today.themes.grounding.bullet2', language),
+          L10nService.get('cosmic_today.themes.grounding.bullet3', language),
+        ],
+        emphasis: [
+          L10nService.get('cosmic_today.themes.grounding.emphasis1', language),
+          L10nService.get('cosmic_today.themes.grounding.emphasis2', language),
+          L10nService.get('cosmic_today.themes.grounding.emphasis3', language),
+        ],
+        emotionalTone: [
+          L10nService.get('cosmic_today.themes.grounding.emotional1', language),
+          L10nService.get('cosmic_today.themes.grounding.emotional2', language),
+          L10nService.get('cosmic_today.themes.grounding.emotional3', language),
+        ],
+        awareness: [
+          L10nService.get('cosmic_today.themes.grounding.awareness1', language),
+          L10nService.get('cosmic_today.themes.grounding.awareness2', language),
+          L10nService.get('cosmic_today.themes.grounding.awareness3', language),
+        ],
+      ),
+      _DailyTheme(
+        emoji: '💨',
+        title: L10nService.get('cosmic_today.themes.mental_clarity.title', language),
+        color: const Color(0xFF9C27B0),
+        coreBullets: [
+          L10nService.get('cosmic_today.themes.mental_clarity.bullet1', language),
+          L10nService.get('cosmic_today.themes.mental_clarity.bullet2', language),
+          L10nService.get('cosmic_today.themes.mental_clarity.bullet3', language),
+        ],
+        emphasis: [
+          L10nService.get('cosmic_today.themes.mental_clarity.emphasis1', language),
+          L10nService.get('cosmic_today.themes.mental_clarity.emphasis2', language),
+          L10nService.get('cosmic_today.themes.mental_clarity.emphasis3', language),
+        ],
+        emotionalTone: [
+          L10nService.get('cosmic_today.themes.mental_clarity.emotional1', language),
+          L10nService.get('cosmic_today.themes.mental_clarity.emotional2', language),
+          L10nService.get('cosmic_today.themes.mental_clarity.emotional3', language),
+        ],
+        awareness: [
+          L10nService.get('cosmic_today.themes.mental_clarity.awareness1', language),
+          L10nService.get('cosmic_today.themes.mental_clarity.awareness2', language),
+          L10nService.get('cosmic_today.themes.mental_clarity.awareness3', language),
+        ],
+      ),
+      _DailyTheme(
+        emoji: '🌙',
+        title: L10nService.get('cosmic_today.themes.introspection.title', language),
+        color: const Color(0xFF607D8B),
+        coreBullets: [
+          L10nService.get('cosmic_today.themes.introspection.bullet1', language),
+          L10nService.get('cosmic_today.themes.introspection.bullet2', language),
+          L10nService.get('cosmic_today.themes.introspection.bullet3', language),
+        ],
+        emphasis: [
+          L10nService.get('cosmic_today.themes.introspection.emphasis1', language),
+          L10nService.get('cosmic_today.themes.introspection.emphasis2', language),
+          L10nService.get('cosmic_today.themes.introspection.emphasis3', language),
+        ],
+        emotionalTone: [
+          L10nService.get('cosmic_today.themes.introspection.emotional1', language),
+          L10nService.get('cosmic_today.themes.introspection.emotional2', language),
+          L10nService.get('cosmic_today.themes.introspection.emotional3', language),
+        ],
+        awareness: [
+          L10nService.get('cosmic_today.themes.introspection.awareness1', language),
+          L10nService.get('cosmic_today.themes.introspection.awareness2', language),
+          L10nService.get('cosmic_today.themes.introspection.awareness3', language),
+        ],
+      ),
+      _DailyTheme(
+        emoji: '⭐',
+        title: L10nService.get('cosmic_today.themes.potential.title', language),
+        color: const Color(0xFFFFD700),
+        coreBullets: [
+          L10nService.get('cosmic_today.themes.potential.bullet1', language),
+          L10nService.get('cosmic_today.themes.potential.bullet2', language),
+          L10nService.get('cosmic_today.themes.potential.bullet3', language),
+        ],
+        emphasis: [
+          L10nService.get('cosmic_today.themes.potential.emphasis1', language),
+          L10nService.get('cosmic_today.themes.potential.emphasis2', language),
+          L10nService.get('cosmic_today.themes.potential.emphasis3', language),
+        ],
+        emotionalTone: [
+          L10nService.get('cosmic_today.themes.potential.emotional1', language),
+          L10nService.get('cosmic_today.themes.potential.emotional2', language),
+          L10nService.get('cosmic_today.themes.potential.emotional3', language),
+        ],
+        awareness: [
+          L10nService.get('cosmic_today.themes.potential.awareness1', language),
+          L10nService.get('cosmic_today.themes.potential.awareness2', language),
+          L10nService.get('cosmic_today.themes.potential.awareness3', language),
+        ],
+      ),
+    ];
+  }
 }
 
 class _DailyTheme {

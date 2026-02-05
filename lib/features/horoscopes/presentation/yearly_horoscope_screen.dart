@@ -8,7 +8,7 @@ import '../../../data/models/extended_horoscope.dart';
 import '../../../data/models/zodiac_sign.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/extended_horoscope_service.dart';
-import '../../../data/services/localization_service.dart';
+import '../../../data/services/l10n_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/entertainment_disclaimer.dart';
 import '../../../shared/widgets/quiz_cta_card.dart';
@@ -115,11 +115,12 @@ class _YearlyHoroscopeScreenState extends ConsumerState<YearlyHoroscopeScreen> {
                       const SizedBox(height: AppConstants.spacingXl),
                       // Entertainment Disclaimer
                       PageFooterWithDisclaimer(
-                        brandText: L10n.get(
+                        brandText: L10nService.get(
                           'brands.yearly_horoscope',
                           language,
                         ),
-                        disclaimerText: DisclaimerTexts.astrology,
+                        disclaimerText: DisclaimerTexts.astrology(language),
+                        language: language,
                       ),
                       const SizedBox(height: AppConstants.spacingLg),
                     ],
@@ -146,7 +147,7 @@ class _YearlyHoroscopeScreenState extends ConsumerState<YearlyHoroscopeScreen> {
           const SizedBox(width: AppConstants.spacingSm),
           Expanded(
             child: Text(
-              L10n.get('sections.what_awaits_this_year', language),
+              L10nService.get('sections.what_awaits_this_year', language),
               style: Theme.of(context).textTheme.headlineSmall,
             ),
           ),
@@ -298,7 +299,7 @@ class _YearlyHoroscopeScreenState extends ConsumerState<YearlyHoroscopeScreen> {
                     ),
                   ),
                   Text(
-                    '$_selectedYear ${L10n.get('sections.cosmic_summary', language)}',
+                    '$_selectedYear ${L10nService.get('sections.cosmic_summary', language)}',
                     style: Theme.of(
                       context,
                     ).textTheme.bodySmall?.copyWith(color: AppColors.starGold),
@@ -365,7 +366,7 @@ class _YearlyHoroscopeScreenState extends ConsumerState<YearlyHoroscopeScreen> {
           const Icon(Icons.auto_awesome, color: Colors.purple, size: 32),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
-            L10n.get('horoscope.yearly_theme', language),
+            L10nService.get('horoscope.yearly_theme', language),
             style: Theme.of(
               context,
             ).textTheme.titleSmall?.copyWith(color: Colors.purple),
@@ -408,7 +409,7 @@ class _YearlyHoroscopeScreenState extends ConsumerState<YearlyHoroscopeScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            L10n.get('sections.yearly_energy_map', language),
+            L10nService.get('sections.yearly_energy_map', language),
             style: Theme.of(
               context,
             ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
@@ -495,31 +496,31 @@ class _YearlyHoroscopeScreenState extends ConsumerState<YearlyHoroscopeScreen> {
     final categories = [
       {
         'icon': Icons.favorite,
-        'title': L10n.get('categories.love', language),
+        'title': L10nService.get('categories.love', language),
         'content': _horoscope!.loveYear,
         'color': Colors.pink,
       },
       {
         'icon': Icons.work,
-        'title': L10n.get('categories.career', language),
+        'title': L10nService.get('categories.career', language),
         'content': _horoscope!.careerYear,
         'color': Colors.blue,
       },
       {
         'icon': Icons.health_and_safety,
-        'title': L10n.get('categories.health', language),
+        'title': L10nService.get('categories.health', language),
         'content': _horoscope!.healthYear,
         'color': Colors.green,
       },
       {
         'icon': Icons.attach_money,
-        'title': L10n.get('categories.finance', language),
+        'title': L10nService.get('categories.finance', language),
         'content': _horoscope!.financialYear,
         'color': Colors.amber,
       },
       {
         'icon': Icons.self_improvement,
-        'title': L10n.get('sections.spiritual_journey', language),
+        'title': L10nService.get('sections.spiritual_journey', language),
         'content': _horoscope!.spiritualJourney,
         'color': Colors.purple,
       },
@@ -624,7 +625,7 @@ class _YearlyHoroscopeScreenState extends ConsumerState<YearlyHoroscopeScreen> {
               ),
               const SizedBox(width: AppConstants.spacingMd),
               Text(
-                L10n.get('sections.important_transits', language),
+                L10nService.get('sections.important_transits', language),
                 style: Theme.of(
                   context,
                 ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
@@ -684,7 +685,7 @@ class _YearlyHoroscopeScreenState extends ConsumerState<YearlyHoroscopeScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            L10n.get('sections.special_months_of_year', language),
+            L10nService.get('sections.special_months_of_year', language),
             style: Theme.of(
               context,
             ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
@@ -701,7 +702,7 @@ class _YearlyHoroscopeScreenState extends ConsumerState<YearlyHoroscopeScreen> {
                         const Icon(Icons.star, color: Colors.green, size: 16),
                         const SizedBox(width: 4),
                         Text(
-                          L10n.get('horoscope.lucky_months', language),
+                          L10nService.get('horoscope.lucky_months', language),
                           style: Theme.of(context).textTheme.bodySmall
                               ?.copyWith(
                                 color: Colors.green,
@@ -748,7 +749,7 @@ class _YearlyHoroscopeScreenState extends ConsumerState<YearlyHoroscopeScreen> {
                         ),
                         const SizedBox(width: 4),
                         Text(
-                          L10n.get('sections.caution_required', language),
+                          L10nService.get('sections.caution_required', language),
                           style: Theme.of(context).textTheme.bodySmall
                               ?.copyWith(
                                 color: Colors.orange,
@@ -809,7 +810,7 @@ class _YearlyHoroscopeScreenState extends ConsumerState<YearlyHoroscopeScreen> {
           const Icon(Icons.auto_awesome, color: AppColors.starGold, size: 32),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
-            L10n.get('sections.yearly_affirmation', language),
+            L10nService.get('sections.yearly_affirmation', language),
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
               fontWeight: FontWeight.bold,
               color: AppColors.starGold,

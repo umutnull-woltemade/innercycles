@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../data/services/l10n_service.dart';
+import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/entertainment_disclaimer.dart';
 
-/// Theta Healing Screen - Bilinçaltı Dönüşüm Pratiği
-/// Theta beyin dalgası durumunda yapılan enerji çalışması
-class ThetaHealingScreen extends StatefulWidget {
+/// Theta Healing Screen - Subconscious Transformation Practice
+/// Energy work performed in the theta brain wave state
+class ThetaHealingScreen extends ConsumerStatefulWidget {
   const ThetaHealingScreen({super.key});
 
   @override
-  State<ThetaHealingScreen> createState() => _ThetaHealingScreenState();
+  ConsumerState<ThetaHealingScreen> createState() => _ThetaHealingScreenState();
 }
 
-class _ThetaHealingScreenState extends State<ThetaHealingScreen>
+class _ThetaHealingScreenState extends ConsumerState<ThetaHealingScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
@@ -34,21 +37,22 @@ class _ThetaHealingScreenState extends State<ThetaHealingScreen>
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final language = ref.watch(languageProvider);
 
     return Scaffold(
       body: CosmicBackground(
         child: SafeArea(
           child: Column(
             children: [
-              _buildHeader(context, isDark),
-              _buildTabBar(isDark),
+              _buildHeader(context, isDark, language),
+              _buildTabBar(isDark, language),
               Expanded(
                 child: TabBarView(
                   controller: _tabController,
                   children: [
-                    _buildIntroTab(isDark),
-                    _buildTechniquesTab(isDark),
-                    _buildMeditationsTab(isDark),
+                    _buildIntroTab(isDark, language),
+                    _buildTechniquesTab(isDark, language),
+                    _buildMeditationsTab(isDark, language),
                   ],
                 ),
               ),
@@ -59,7 +63,7 @@ class _ThetaHealingScreenState extends State<ThetaHealingScreen>
     );
   }
 
-  Widget _buildHeader(BuildContext context, bool isDark) {
+  Widget _buildHeader(BuildContext context, bool isDark, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       child: Column(
@@ -80,12 +84,12 @@ class _ThetaHealingScreenState extends State<ThetaHealingScreen>
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const Text(
-                          '🧠',
+                          '\u{1F9E0}',
                           style: TextStyle(fontSize: 24),
                         ),
                         const SizedBox(width: 8),
                         Text(
-                          'Theta Healing',
+                          L10nService.get('theta_healing.title', language),
                           style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                                 fontWeight: FontWeight.bold,
                                 color: isDark ? Colors.white : AppColors.textDark,
@@ -95,7 +99,7 @@ class _ThetaHealingScreenState extends State<ThetaHealingScreen>
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      'Bilinçaltı Dönüşüm Pratiği',
+                      L10nService.get('theta_healing.subtitle', language),
                       style: TextStyle(
                         fontSize: 12,
                         color: isDark ? Colors.white60 : AppColors.textLight,
@@ -123,7 +127,7 @@ class _ThetaHealingScreenState extends State<ThetaHealingScreen>
               ),
             ),
             child: Text(
-              'Theta Healing, theta beyin dalgası durumunda (4-7 Hz) bilinçaltı inançları ve enerji bloklarını dönüştürmeye yönelik bir şifa tekniğidir. Bu pratik, sınırlayıcı inançları keşfetmenize ve pozitif değişimler yaratmanıza yardımcı olur.',
+              L10nService.get('theta_healing.intro_description', language),
               style: TextStyle(
                 fontSize: 13,
                 height: 1.5,
@@ -137,7 +141,7 @@ class _ThetaHealingScreenState extends State<ThetaHealingScreen>
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildTabBar(bool isDark) {
+  Widget _buildTabBar(bool isDark, AppLanguage language) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -158,110 +162,111 @@ class _ThetaHealingScreenState extends State<ThetaHealingScreen>
           borderRadius: BorderRadius.circular(AppConstants.radiusLg),
         ),
         dividerColor: Colors.transparent,
-        tabs: const [
-          Tab(text: 'Giriş'),
-          Tab(text: 'Teknikler'),
-          Tab(text: 'Meditasyonlar'),
+        tabs: [
+          Tab(text: L10nService.get('theta_healing.tabs.intro', language)),
+          Tab(text: L10nService.get('theta_healing.tabs.techniques', language)),
+          Tab(text: L10nService.get('theta_healing.tabs.meditations', language)),
         ],
       ),
     );
   }
 
-  Widget _buildIntroTab(bool isDark) {
+  Widget _buildIntroTab(bool isDark, AppLanguage language) {
     return SingleChildScrollView(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildInfoCard(
-            title: 'Theta Durumu Nedir?',
-            content: 'Theta beyin dalgaları (4-7 Hz), derin meditasyon, rüya görme ve yaratıcılık anlarında aktif olur. Bu durumda bilinçaltına doğrudan erişim mümkündür ve köklü değişimler yapılabilir.',
-            icon: '🌊',
+            title: L10nService.get('theta_healing.intro.theta_state_title', language),
+            content: L10nService.get('theta_healing.intro.theta_state_content', language),
+            icon: '\u{1F30A}',
             color: const Color(0xFF7C4DFF),
             isDark: isDark,
           ).animate().fadeIn(duration: 500.ms).slideY(begin: 0.1),
           const SizedBox(height: AppConstants.spacingMd),
           _buildInfoCard(
-            title: 'Sınırlayıcı İnançlar',
-            content: 'Çocukluk döneminde oluşan ve farkında olmadan hayatımızı etkileyen inanç kalıpları vardır. Theta Healing ile bu inançları tespit edip dönüştürebilirsiniz.',
-            icon: '🔓',
+            title: L10nService.get('theta_healing.intro.limiting_beliefs_title', language),
+            content: L10nService.get('theta_healing.intro.limiting_beliefs_content', language),
+            icon: '\u{1F513}',
             color: const Color(0xFFE040FB),
             isDark: isDark,
           ).animate(delay: 100.ms).fadeIn(duration: 500.ms).slideY(begin: 0.1),
           const SizedBox(height: AppConstants.spacingMd),
           _buildInfoCard(
-            title: 'Enerji Dönüşümü',
-            content: 'Bedensel, zihinsel ve ruhsal seviyedeki enerji blokları çözülür. Şifalanma süreci hücresel düzeyde başlar ve tüm varlığınıza yayılır.',
-            icon: '✨',
+            title: L10nService.get('theta_healing.intro.energy_transformation_title', language),
+            content: L10nService.get('theta_healing.intro.energy_transformation_content', language),
+            icon: '\u2728',
             color: const Color(0xFF00BCD4),
             isDark: isDark,
           ).animate(delay: 200.ms).fadeIn(duration: 500.ms).slideY(begin: 0.1),
           const SizedBox(height: AppConstants.spacingMd),
           _buildInfoCard(
-            title: '7 Düzlem Bağlantısı',
-            content: 'Theta Healing, evrenin 7 varoluş düzlemiyle çalışır: Mineraller, Bitkiler, Hayvanlar, İnsanlar, Ruhlar, Yasalar ve Yaratıcı Enerji.',
-            icon: '🌌',
+            title: L10nService.get('theta_healing.intro.seven_planes_title', language),
+            content: L10nService.get('theta_healing.intro.seven_planes_content', language),
+            icon: '\u{1F30C}',
             color: const Color(0xFFFFD700),
             isDark: isDark,
           ).animate(delay: 300.ms).fadeIn(duration: 500.ms).slideY(begin: 0.1),
           const SizedBox(height: AppConstants.spacingXl),
-          const PageFooterWithDisclaimer(
-            brandText: 'Theta Healing — Venus One',
-            disclaimerText: DisclaimerTexts.astrology,
+          PageFooterWithDisclaimer(
+            brandText: '${L10nService.get('theta_healing.title', language)} \u2014 Venus One',
+            disclaimerText: DisclaimerTexts.astrology(language),
+            language: language,
           ),
         ],
       ),
     );
   }
 
-  Widget _buildTechniquesTab(bool isDark) {
+  Widget _buildTechniquesTab(bool isDark, AppLanguage language) {
     final techniques = [
       _TechniqueTile(
-        title: 'Kazı Tekniği (Digging)',
-        description: 'Sınırlayıcı inancın kök nedenini bulmak için bilinçaltına iner ve temel inancı keşfedersiniz.',
+        title: L10nService.get('theta_healing.techniques.digging_title', language),
+        description: L10nService.get('theta_healing.techniques.digging_description', language),
         steps: [
-          'Güncel sorunu tespit edin',
-          '"Bu inanç nereden geliyor?" sorusuyla derinleşin',
-          'Çocukluk anılarına ve duygulara ulaşın',
-          'Kök inancı bulduğunuzda dönüştürün',
+          L10nService.get('theta_healing.techniques.digging_step_1', language),
+          L10nService.get('theta_healing.techniques.digging_step_2', language),
+          L10nService.get('theta_healing.techniques.digging_step_3', language),
+          L10nService.get('theta_healing.techniques.digging_step_4', language),
         ],
-        icon: '⛏️',
+        icon: '\u26CF\uFE0F',
         color: const Color(0xFFFF7043),
       ),
       _TechniqueTile(
-        title: 'İnanç Değiştirme',
-        description: 'Olumsuz bir inancı pozitif bir inançla değiştirme sürecidir.',
+        title: L10nService.get('theta_healing.techniques.belief_change_title', language),
+        description: L10nService.get('theta_healing.techniques.belief_change_description', language),
         steps: [
-          'Sınırlayıcı inancı tanımlayın',
-          'Yeni, güçlendirici bir inanç oluşturun',
-          'Theta durumuna geçin',
-          'Yaratıcıdan değişimi isteyin ve tanık olun',
+          L10nService.get('theta_healing.techniques.belief_change_step_1', language),
+          L10nService.get('theta_healing.techniques.belief_change_step_2', language),
+          L10nService.get('theta_healing.techniques.belief_change_step_3', language),
+          L10nService.get('theta_healing.techniques.belief_change_step_4', language),
         ],
-        icon: '🔄',
+        icon: '\u{1F504}',
         color: const Color(0xFF4CAF50),
       ),
       _TechniqueTile(
-        title: 'Duygu Yükleme',
-        description: 'Hiç deneyimlemediğiniz pozitif duyguları hücresel düzeyde öğretme tekniği.',
+        title: L10nService.get('theta_healing.techniques.feeling_download_title', language),
+        description: L10nService.get('theta_healing.techniques.feeling_download_description', language),
         steps: [
-          'Eksik duyguyu belirleyin (örn: güvende hissetmek)',
-          'Yaratıcıya bağlanın',
-          'Bu duyguyu bilmenin nasıl bir şey olduğunu sorun',
-          'Duyguyu her hücrenize yükleyin',
+          L10nService.get('theta_healing.techniques.feeling_download_step_1', language),
+          L10nService.get('theta_healing.techniques.feeling_download_step_2', language),
+          L10nService.get('theta_healing.techniques.feeling_download_step_3', language),
+          L10nService.get('theta_healing.techniques.feeling_download_step_4', language),
         ],
-        icon: '💜',
+        icon: '\u{1F49C}',
         color: const Color(0xFF9C27B0),
       ),
       _TechniqueTile(
-        title: 'Bedensel Tarama',
-        description: 'Bedeninizdeki enerji bloklarını ve hastalık kaynaklarını tespit etme.',
+        title: L10nService.get('theta_healing.techniques.body_scan_title', language),
+        description: L10nService.get('theta_healing.techniques.body_scan_description', language),
         steps: [
-          'Theta durumuna geçin',
-          'Bedeni tepeden tırnağa tarayın',
-          'Enerji yoğunluğu veya eksikliği olan bölgeleri not edin',
-          'Yaratıcıdan şifa isteyin',
+          L10nService.get('theta_healing.techniques.body_scan_step_1', language),
+          L10nService.get('theta_healing.techniques.body_scan_step_2', language),
+          L10nService.get('theta_healing.techniques.body_scan_step_3', language),
+          L10nService.get('theta_healing.techniques.body_scan_step_4', language),
         ],
-        icon: '🔍',
+        icon: '\u{1F50D}',
         color: const Color(0xFF2196F3),
       ),
     ];
@@ -270,7 +275,7 @@ class _ThetaHealingScreenState extends State<ThetaHealingScreen>
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       itemCount: techniques.length,
       itemBuilder: (context, index) {
-        return _buildTechniqueCard(techniques[index], isDark)
+        return _buildTechniqueCard(techniques[index], isDark, language)
             .animate(delay: (100 * index).ms)
             .fadeIn(duration: 400.ms)
             .slideX(begin: 0.05);
@@ -278,48 +283,48 @@ class _ThetaHealingScreenState extends State<ThetaHealingScreen>
     );
   }
 
-  Widget _buildMeditationsTab(bool isDark) {
+  Widget _buildMeditationsTab(bool isDark, AppLanguage language) {
     final meditations = [
       _MeditationTile(
-        title: 'Theta Durumuna Geçiş',
-        duration: '10 dk',
-        description: 'Theta beyin dalgası durumuna güvenli bir şekilde geçiş yapın.',
-        icon: '🌊',
+        title: L10nService.get('theta_healing.meditations.theta_transition_title', language),
+        duration: L10nService.get('theta_healing.meditations.theta_transition_duration', language),
+        description: L10nService.get('theta_healing.meditations.theta_transition_description', language),
+        icon: '\u{1F30A}',
         color: const Color(0xFF7C4DFF),
       ),
       _MeditationTile(
-        title: 'Yedinci Düzlem Bağlantısı',
-        duration: '15 dk',
-        description: 'Yaratıcı enerjiye bağlanın ve koşulsuz sevgiyi deneyimleyin.',
-        icon: '🌌',
+        title: L10nService.get('theta_healing.meditations.seventh_plane_title', language),
+        duration: L10nService.get('theta_healing.meditations.seventh_plane_duration', language),
+        description: L10nService.get('theta_healing.meditations.seventh_plane_description', language),
+        icon: '\u{1F30C}',
         color: const Color(0xFFFFD700),
       ),
       _MeditationTile(
-        title: 'İç Çocuk Şifası',
-        duration: '20 dk',
-        description: 'Çocukluk travmalarını şefkatle iyileştirin ve iç çocuğunuzla barışın.',
-        icon: '👶',
+        title: L10nService.get('theta_healing.meditations.inner_child_title', language),
+        duration: L10nService.get('theta_healing.meditations.inner_child_duration', language),
+        description: L10nService.get('theta_healing.meditations.inner_child_description', language),
+        icon: '\u{1F476}',
         color: const Color(0xFFFF6B9D),
       ),
       _MeditationTile(
-        title: 'Ata Temizliği',
-        duration: '25 dk',
-        description: 'Atalardan gelen karma kalıpları ve genetik inançları temizleyin.',
-        icon: '🌳',
+        title: L10nService.get('theta_healing.meditations.ancestor_clearing_title', language),
+        duration: L10nService.get('theta_healing.meditations.ancestor_clearing_duration', language),
+        description: L10nService.get('theta_healing.meditations.ancestor_clearing_description', language),
+        icon: '\u{1F333}',
         color: const Color(0xFF4CAF50),
       ),
       _MeditationTile(
-        title: 'Bolluk Manifestasyonu',
-        duration: '15 dk',
-        description: 'Bolluk bloklarını kaldırın ve bereket akışını açın.',
-        icon: '💰',
+        title: L10nService.get('theta_healing.meditations.abundance_title', language),
+        duration: L10nService.get('theta_healing.meditations.abundance_duration', language),
+        description: L10nService.get('theta_healing.meditations.abundance_description', language),
+        icon: '\u{1F4B0}',
         color: const Color(0xFF50C878),
       ),
       _MeditationTile(
-        title: 'Ruh Eşi Çekimi',
-        duration: '20 dk',
-        description: 'İlişki engellerini temizleyin ve ruh eşinizi çekin.',
-        icon: '💕',
+        title: L10nService.get('theta_healing.meditations.soulmate_title', language),
+        duration: L10nService.get('theta_healing.meditations.soulmate_duration', language),
+        description: L10nService.get('theta_healing.meditations.soulmate_description', language),
+        icon: '\u{1F495}',
         color: const Color(0xFFE91E63),
       ),
     ];
@@ -391,7 +396,7 @@ class _ThetaHealingScreenState extends State<ThetaHealingScreen>
     );
   }
 
-  Widget _buildTechniqueCard(_TechniqueTile technique, bool isDark) {
+  Widget _buildTechniqueCard(_TechniqueTile technique, bool isDark, AppLanguage language) {
     return Container(
       margin: const EdgeInsets.only(bottom: AppConstants.spacingMd),
       decoration: BoxDecoration(
@@ -457,7 +462,7 @@ class _ThetaHealingScreenState extends State<ThetaHealingScreen>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Adımlar',
+                  L10nService.get('theta_healing.techniques.steps', language),
                   style: TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.w600,

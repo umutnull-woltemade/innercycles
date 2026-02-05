@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/models/zodiac_sign.dart' as zodiac;
+import '../../data/providers/app_providers.dart';
+import '../../data/services/l10n_service.dart';
 import 'constellation_widget.dart';
 
-class ZodiacCard extends StatelessWidget {
+class ZodiacCard extends ConsumerWidget {
   final zodiac.ZodiacSign sign;
   final bool isSelected;
   final VoidCallback? onTap;
@@ -19,7 +22,8 @@ class ZodiacCard extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final language = ref.watch(languageProvider);
     return GestureDetector(
       onTap: onTap,
       child: AnimatedContainer(
@@ -65,7 +69,7 @@ class ZodiacCard extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             Text(
-              sign.nameTr,
+              sign.localizedName(language),
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     color: isSelected ? sign.color : AppColors.textPrimary,
                     fontWeight: FontWeight.w600,
@@ -80,7 +84,7 @@ class ZodiacCard extends StatelessWidget {
                     ),
               ),
               const SizedBox(height: 12),
-              _ElementBadge(element: sign.element),
+              _ElementBadge(element: sign.element, language: language),
             ],
           ],
         ),
@@ -91,8 +95,9 @@ class ZodiacCard extends StatelessWidget {
 
 class _ElementBadge extends StatelessWidget {
   final zodiac.Element element;
+  final AppLanguage language;
 
-  const _ElementBadge({required this.element});
+  const _ElementBadge({required this.element, required this.language});
 
   @override
   Widget build(BuildContext context) {
@@ -114,7 +119,7 @@ class _ElementBadge extends StatelessWidget {
           ),
           const SizedBox(width: 4),
           Text(
-            element.nameTr,
+            element.localizedName(language),
             style: Theme.of(context).textTheme.labelSmall?.copyWith(
                   color: element.color,
                   fontWeight: FontWeight.w500,
@@ -126,7 +131,7 @@ class _ElementBadge extends StatelessWidget {
   }
 }
 
-class ZodiacGridCard extends StatelessWidget {
+class ZodiacGridCard extends ConsumerWidget {
   final zodiac.ZodiacSign sign;
   final VoidCallback? onTap;
 
@@ -137,7 +142,8 @@ class ZodiacGridCard extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final language = ref.watch(languageProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return GestureDetector(
@@ -185,7 +191,7 @@ class ZodiacGridCard extends StatelessWidget {
                   ),
                   const SizedBox(width: 6),
                   Text(
-                    sign.nameTr,
+                    sign.localizedName(language),
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                           color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
                           fontWeight: FontWeight.bold,
@@ -212,12 +218,12 @@ class ZodiacGridCard extends StatelessWidget {
                 runSpacing: 4,
                 children: [
                   _MiniTag(
-                    text: sign.element.nameTr,
+                    text: sign.element.localizedName(language),
                     color: sign.element.color,
                     icon: sign.element.symbol,
                   ),
                   _MiniTag(
-                    text: sign.modality.nameTr,
+                    text: sign.modality.localizedName(language),
                     color: isDark ? AppColors.moonSilver : AppColors.lightTextSecondary,
                   ),
                 ],
@@ -234,7 +240,7 @@ class ZodiacGridCard extends StatelessWidget {
                 ),
                 const SizedBox(width: 4),
                 Text(
-                  sign.rulingPlanet,
+                  _getLocalizedRulingPlanet(sign.rulingPlanet, language),
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         color: sign.color,
                         fontSize: 13,
@@ -249,7 +255,7 @@ class ZodiacGridCard extends StatelessWidget {
               alignment: WrapAlignment.center,
               spacing: 6,
               runSpacing: 2,
-              children: sign.traits.take(2).map((trait) => Text(
+              children: sign.getLocalizedTraits(language).take(2).map((trait) => Text(
                 trait,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
@@ -266,6 +272,12 @@ class ZodiacGridCard extends StatelessWidget {
           duration: 300.ms,
           curve: Curves.easeOut,
         );
+  }
+
+  /// Helper to get localized ruling planet name using L10nService
+  String _getLocalizedRulingPlanet(String englishName, AppLanguage language) {
+    final key = 'planets.${englishName.toLowerCase()}';
+    return L10nService.get(key, language);
   }
 }
 

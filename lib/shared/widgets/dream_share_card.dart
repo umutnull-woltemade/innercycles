@@ -3,46 +3,47 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import '../../core/theme/app_colors.dart';
+import '../../data/providers/app_providers.dart';
+import '../../data/services/l10n_service.dart';
 import '../../data/services/moon_service.dart';
 
 /// Background theme for share cards
 enum DreamCardTheme {
-  mystical('Mistik', 'Derin mor ve yildizli gece'),
-  minimal('Minimal', 'Temiz ve sade'),
-  cosmic('Kozmik', 'Nebula ve galaksi'),
-  aurora('Aurora', 'Kuzey isiklari'),
-  moonlit('Ayisigi', 'Yumusak ay isigi'),
-  golden('Altin', 'Sicak altin tonlari');
+  mystical,
+  minimal,
+  cosmic,
+  aurora,
+  moonlit,
+  golden;
 
-  final String label;
-  final String description;
-  const DreamCardTheme(this.label, this.description);
+  String label(AppLanguage language) => L10nService.get('widgets.dream_share_card.themes.$name.label', language);
+  String description(AppLanguage language) => L10nService.get('widgets.dream_share_card.themes.$name.description', language);
 }
 
 /// Font style for share cards
 enum DreamCardFont {
-  elegant('Zarif', 'serif'),
-  modern('Modern', 'sans-serif'),
-  mystical('Mistik', 'display'),
-  handwritten('El Yazisi', 'cursive');
+  elegant('serif'),
+  modern('sans-serif'),
+  mystical('display'),
+  handwritten('cursive');
 
-  final String label;
   final String fontType;
-  const DreamCardFont(this.label, this.fontType);
+  const DreamCardFont(this.fontType);
+
+  String label(AppLanguage language) => L10nService.get('widgets.dream_share_card.fonts.$name', language);
 }
 
 /// Card template types
 enum DreamCardTemplate {
-  dreamQuote('Ruya Alintisi'),
-  symbolInsight('Sembol Icgorüsu'),
-  dailyMessage('Gunluk Mesaj'),
-  moonPhase('Ay Fazı Bilgeligi'),
-  personalInsight('Kisisel Icgoru'),
-  archetypeDiscovery('Arketip Keşfi'),
-  weeklySummary('Haftalik Ozet');
+  dreamQuote,
+  symbolInsight,
+  dailyMessage,
+  moonPhase,
+  personalInsight,
+  archetypeDiscovery,
+  weeklySummary;
 
-  final String label;
-  const DreamCardTemplate(this.label);
+  String label(AppLanguage language) => L10nService.get('widgets.dream_share_card.templates.$name', language);
 }
 
 /// Configuration for share card
@@ -764,6 +765,7 @@ class DreamCardTemplates {
   /// "Bu gece ruyamda..." template
   static DreamShareCard dreamQuoteCard({
     required String dreamQuote,
+    required AppLanguage language,
     String? symbol,
     DreamShareCardConfig? config,
     GlobalKey? repaintKey,
@@ -772,7 +774,7 @@ class DreamCardTemplates {
       repaintKey: repaintKey,
       headerEmoji: symbol ?? '\u{1F319}',
       mainText: '"$dreamQuote"',
-      footerText: 'Ruya Yorumu',
+      footerText: L10nService.get('widgets.dream_share_card.footer.dream_interpretation', language),
       config: config ?? const DreamShareCardConfig(template: DreamCardTemplate.dreamQuote),
     );
   }
@@ -782,6 +784,7 @@ class DreamCardTemplates {
     required String symbol,
     required String symbolEmoji,
     required String meaning,
+    required AppLanguage language,
     DreamShareCardConfig? config,
     GlobalKey? repaintKey,
   }) {
@@ -790,7 +793,7 @@ class DreamCardTemplates {
       headerEmoji: symbolEmoji,
       mainText: symbol,
       subtitle: meaning,
-      footerText: 'Sembol Icgorusu',
+      footerText: L10nService.get('widgets.dream_share_card.footer.symbol_insight', language),
       config: config ?? const DreamShareCardConfig(template: DreamCardTemplate.symbolInsight),
     );
   }
@@ -798,16 +801,18 @@ class DreamCardTemplates {
   /// Moon phase wisdom card
   static DreamShareCard moonPhaseCard({
     required String moonMessage,
+    required AppLanguage language,
     DreamShareCardConfig? config,
     GlobalKey? repaintKey,
   }) {
     final moonPhase = MoonService.getCurrentPhase();
+    final moonPhaseName = moonPhase.localizedName(language);
     return DreamShareCard(
       repaintKey: repaintKey,
       headerEmoji: moonPhase.emoji,
       mainText: moonMessage,
-      subtitle: '${moonPhase.nameTr} Enerjisi',
-      footerText: 'Ay Fazi Bilgeligi',
+      subtitle: L10nService.get('widgets.dream_share_card.moon_phase_energy', language).replaceAll('{phase}', moonPhaseName),
+      footerText: L10nService.get('widgets.dream_share_card.footer.moon_phase_wisdom', language),
       config: config ??
           const DreamShareCardConfig(
             template: DreamCardTemplate.moonPhase,
@@ -820,6 +825,7 @@ class DreamCardTemplates {
   static DreamShareCard archetypeCard({
     required String archetypeName,
     required String archetypeMessage,
+    required AppLanguage language,
     String? archetypeEmoji,
     DreamShareCardConfig? config,
     GlobalKey? repaintKey,
@@ -829,7 +835,7 @@ class DreamCardTemplates {
       headerEmoji: archetypeEmoji ?? '\u{1F3AD}',
       mainText: archetypeName,
       subtitle: archetypeMessage,
-      footerText: 'Arketip Kesfi',
+      footerText: L10nService.get('widgets.dream_share_card.footer.archetype_discovery', language),
       config: config ??
           const DreamShareCardConfig(
             template: DreamCardTemplate.archetypeDiscovery,
@@ -841,6 +847,7 @@ class DreamCardTemplates {
   /// Personal insight card
   static DreamShareCard personalInsightCard({
     required String insight,
+    required AppLanguage language,
     String? emoji,
     DreamShareCardConfig? config,
     GlobalKey? repaintKey,
@@ -849,7 +856,7 @@ class DreamCardTemplates {
       repaintKey: repaintKey,
       headerEmoji: emoji ?? '\u{2728}',
       mainText: insight,
-      footerText: 'Kisisel Icgoru',
+      footerText: L10nService.get('widgets.dream_share_card.footer.personal_insight', language),
       config: config ?? const DreamShareCardConfig(template: DreamCardTemplate.personalInsight),
     );
   }
@@ -857,6 +864,7 @@ class DreamCardTemplates {
   /// Daily dream message card
   static DreamShareCard dailyMessageCard({
     required String message,
+    required AppLanguage language,
     DreamShareCardConfig? config,
     GlobalKey? repaintKey,
   }) {
@@ -864,7 +872,7 @@ class DreamCardTemplates {
       repaintKey: repaintKey,
       headerEmoji: '\u{1F31F}',
       mainText: message,
-      footerText: 'Gunluk Ruya Mesaji',
+      footerText: L10nService.get('widgets.dream_share_card.footer.daily_dream_message', language),
       config: config ??
           const DreamShareCardConfig(
             template: DreamCardTemplate.dailyMessage,
@@ -877,6 +885,7 @@ class DreamCardTemplates {
   static DreamShareCard weeklySummaryCard({
     required String summary,
     required int dreamCount,
+    required AppLanguage language,
     DreamShareCardConfig? config,
     GlobalKey? repaintKey,
   }) {
@@ -884,8 +893,8 @@ class DreamCardTemplates {
       repaintKey: repaintKey,
       headerEmoji: '\u{1F4D6}',
       mainText: summary,
-      subtitle: '$dreamCount ruya yorumlandi',
-      footerText: 'Haftalik Ozet',
+      subtitle: L10nService.get('widgets.dream_share_card.dreams_interpreted', language).replaceAll('{count}', dreamCount.toString()),
+      footerText: L10nService.get('widgets.dream_share_card.footer.weekly_summary', language),
       config: config ??
           const DreamShareCardConfig(
             template: DreamCardTemplate.weeklySummary,

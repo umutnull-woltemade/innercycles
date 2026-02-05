@@ -41,51 +41,52 @@ class DestinyNumberScreen extends ConsumerWidget {
                 ),
                 const SizedBox(height: 24),
                 Text(
-                  'Kader sayısı nedir?',
+                  L10nService.get('numerology.destiny_number_screen.page_title', language),
                   style: TextStyle(fontSize: 28, fontWeight: FontWeight.w600, color: isDark ? Colors.white : AppColors.textDark, height: 1.2),
                 ).animate().fadeIn(duration: 400.ms),
                 const SizedBox(height: 8),
-                _buildTag('Numeroloji', color),
+                _buildTag(L10nService.get('numerology.destiny_number_screen.tag', language), color),
                 const SizedBox(height: 32),
 
-                _buildSection(isDark, 'Kısa Cevap', color, [
-                  'Kader sayısı, tam adından hesaplanan numerolojik değerdir.',
-                  'Bu hayatta neyi başarmak için geldiğini gösterir.',
-                  'İfade sayısı olarak da bilinir.',
+                _buildSection(isDark, L10nService.get('numerology.destiny_number_screen.short_answer_title', language), color, [
+                  L10nService.get('numerology.destiny_number_screen.short_answer_1', language),
+                  L10nService.get('numerology.destiny_number_screen.short_answer_2', language),
+                  L10nService.get('numerology.destiny_number_screen.short_answer_3', language),
                 ]),
                 const SizedBox(height: 28),
 
-                _buildSection(isDark, 'Nasıl Hesaplanır?', color, [
-                  'Tam adının her harfine bir sayı karşılığı atanır.',
-                  'A=1, B=2, C=3... şeklinde devam eder.',
-                  'Tüm harflerin sayıları toplanır ve tek haneye indirgenir.',
+                _buildSection(isDark, L10nService.get('numerology.destiny_number_screen.how_calculated_title', language), color, [
+                  L10nService.get('numerology.destiny_number_screen.how_calculated_1', language),
+                  L10nService.get('numerology.destiny_number_screen.how_calculated_2', language),
+                  L10nService.get('numerology.destiny_number_screen.how_calculated_3', language),
                 ]),
                 const SizedBox(height: 28),
 
-                _buildNumberChart(isDark),
+                _buildNumberChart(isDark, language),
                 const SizedBox(height: 28),
 
-                _buildSection(isDark, 'Ne Anlatır?', color, [
-                  'Bu hayatta ifade etmen gereken enerjiyi.',
-                  'Potansiyelini en iyi nasıl kullanacağını.',
-                  'Dünyaya ne katmak için geldiğini.',
-                  'Doğal yeteneklerinin yönünü.',
+                _buildSection(isDark, L10nService.get('numerology.destiny_number_screen.what_it_tells_title', language), color, [
+                  L10nService.get('numerology.destiny_number_screen.what_it_tells_1', language),
+                  L10nService.get('numerology.destiny_number_screen.what_it_tells_2', language),
+                  L10nService.get('numerology.destiny_number_screen.what_it_tells_3', language),
+                  L10nService.get('numerology.destiny_number_screen.what_it_tells_4', language),
                 ]),
                 const SizedBox(height: 28),
 
-                _buildSection(isDark, 'Yaşam Yolundan Farkı', color, [
-                  'Yaşam yolu: Yürüdüğün yol.',
-                  'Kader sayısı: Ulaşmak istediğin hedef.',
-                  'İkisi birlikte tam resmi oluşturur.',
+                _buildSection(isDark, L10nService.get('numerology.destiny_number_screen.difference_from_life_path_title', language), color, [
+                  L10nService.get('numerology.destiny_number_screen.difference_from_life_path_1', language),
+                  L10nService.get('numerology.destiny_number_screen.difference_from_life_path_2', language),
+                  L10nService.get('numerology.destiny_number_screen.difference_from_life_path_3', language),
                 ]),
                 const SizedBox(height: 32),
 
-                _buildSuggestion(context, isDark, language, '🔢', 'Yaşam yolu sayısı nedir?', Routes.numerology),
+                _buildSuggestion(context, isDark, language, '🔢', L10nService.get('numerology.destiny_number_screen.suggestion_text', language), Routes.numerology),
                 const SizedBox(height: 40),
 
-                const PageFooterWithDisclaimer(
-                  brandText: 'Numeroloji — Venus One',
-                  disclaimerText: DisclaimerTexts.numerology,
+                PageFooterWithDisclaimer(
+                  brandText: L10nService.get('numerology.destiny_number_screen.footer', language),
+                  disclaimerText: DisclaimerTexts.numerology(language),
+                  language: language,
                 ),
               ],
             ),
@@ -95,7 +96,7 @@ class DestinyNumberScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildNumberChart(bool isDark) {
+  Widget _buildNumberChart(bool isDark, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -107,7 +108,7 @@ class DestinyNumberScreen extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Harf-Sayı Tablosu',
+            L10nService.get('numerology.destiny_number_screen.letter_number_chart', language),
             style: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w600,

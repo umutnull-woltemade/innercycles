@@ -208,12 +208,13 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
           const NextBlocks(currentPage: 'horoscope_detail'),
           const SizedBox(height: AppConstants.spacingXl),
           // Back-Button-Free Navigation
-          PageBottomNavigation(currentRoute: '/horoscope/${_sign.name.toLowerCase()}'),
+          PageBottomNavigation(currentRoute: '/horoscope/${_sign.name.toLowerCase()}', language: language),
           const SizedBox(height: AppConstants.spacingLg),
           // AI-QUOTABLE: Footer with Disclaimer
           PageFooterWithDisclaimer(
             brandText: L10nService.get('horoscope.astrology_brand', language),
-            disclaimerText: DisclaimerTexts.astrology,
+            disclaimerText: DisclaimerTexts.astrology(language),
+            language: language,
           ),
           const SizedBox(height: AppConstants.spacingMd),
         ],
@@ -392,7 +393,7 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
           const InlineAdBanner(),
           const SizedBox(height: AppConstants.spacingXl),
           // Back-Button-Free Navigation (compact)
-          PageBottomNavigationCompact(currentRoute: '/horoscope/${sign.name.toLowerCase()}'),
+          PageBottomNavigationCompact(currentRoute: '/horoscope/${sign.name.toLowerCase()}', language: ref.read(languageProvider)),
         ],
       ),
     );
@@ -491,7 +492,7 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
           const InlineAdBanner(),
           const SizedBox(height: AppConstants.spacingXl),
           // Back-Button-Free Navigation (compact)
-          PageBottomNavigationCompact(currentRoute: '/horoscope/${sign.name.toLowerCase()}'),
+          PageBottomNavigationCompact(currentRoute: '/horoscope/${sign.name.toLowerCase()}', language: ref.read(languageProvider)),
         ],
       ),
     );
@@ -521,12 +522,12 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
           ),
           const SizedBox(height: AppConstants.spacingLg),
           // FAQ Section for this zodiac sign
-          FaqSection.zodiacSign(signName),
+          FaqSection.zodiacSign(signName, language),
           const SizedBox(height: AppConstants.spacingLg),
           const InlineAdBanner(),
           const SizedBox(height: AppConstants.spacingXl),
           // Back-Button-Free Navigation
-          PageBottomNavigation(currentRoute: '/horoscope/${sign.name.toLowerCase()}'),
+          PageBottomNavigation(currentRoute: '/horoscope/${sign.name.toLowerCase()}', language: language),
         ],
       ),
     );

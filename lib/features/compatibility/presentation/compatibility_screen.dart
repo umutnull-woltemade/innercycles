@@ -386,7 +386,8 @@ class _CompatibilityScreenState extends ConsumerState<CompatibilityScreen> {
         // Disclaimer
         PageFooterWithDisclaimer(
           brandText: L10nService.get('compatibility.brand_text', language),
-          disclaimerText: DisclaimerTexts.compatibility,
+          disclaimerText: DisclaimerTexts.compatibility(language),
+          language: language,
         ),
       ],
     );

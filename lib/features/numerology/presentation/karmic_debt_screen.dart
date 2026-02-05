@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/content/numerology_content.dart';
+import '../../../data/providers/app_providers.dart';
+import '../../../data/services/l10n_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/next_blocks.dart';
 import '../../../shared/widgets/kadim_not_card.dart';
@@ -13,13 +16,14 @@ import '../../../shared/widgets/page_bottom_navigation.dart';
 ///
 /// 4 Karmik Borç sayısı (13, 14, 16, 19) için detaylı içerik.
 /// Geçmiş yaşam kalıpları, mevcut dersler, iyileşme yolu.
-class KarmicDebtScreen extends StatelessWidget {
+class KarmicDebtScreen extends ConsumerWidget {
   final int debtNumber;
 
   const KarmicDebtScreen({super.key, required this.debtNumber});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final language = ref.watch(languageProvider);
     final content = karmicDebtContents[debtNumber];
 
     if (content == null) {
@@ -27,7 +31,7 @@ class KarmicDebtScreen extends StatelessWidget {
         body: CosmicBackground(
           child: Center(
             child: Text(
-              'Karmik borç bilgisi bulunamadı',
+              L10nService.get('numerology.karmic_not_found', language),
               style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                 color: AppColors.textSecondary,
               ),
@@ -47,7 +51,7 @@ class KarmicDebtScreen extends StatelessWidget {
                 floating: true,
                 snap: true,
                 expandedHeight: 260,
-                flexibleSpace: _buildHeader(context, content),
+                flexibleSpace: _buildHeader(context, content, language),
                 leading: IconButton(
                   icon: const Icon(Icons.arrow_back, color: AppColors.textPrimary),
                   onPressed: () => context.pop(),
@@ -62,48 +66,48 @@ class KarmicDebtScreen extends StatelessWidget {
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Deep Meaning
-                    _buildDeepMeaningSection(context, content),
+                    _buildDeepMeaningSection(context, content, language),
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Kadim Not
                     KadimNotCard(
-                      title: 'Karmik Bilgelik',
+                      title: L10nService.get('numerology.karmic_wisdom', language),
                       content: content.viralQuote.replaceAll('"', ''),
                       category: KadimCategory.numerology,
-                      source: 'Karmik Döngü',
+                      source: L10nService.get('numerology.karmic_cycle', language),
                     ),
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Past Life Story
-                    _buildPastLifeSection(context, content),
+                    _buildPastLifeSection(context, content, language),
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Current Life Lesson
-                    _buildCurrentLessonSection(context, content),
+                    _buildCurrentLessonSection(context, content, language),
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Challenge & Gift
-                    _buildChallengeGiftSection(context, content),
+                    _buildChallengeGiftSection(context, content, language),
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Healing Path
-                    _buildHealingPathSection(context, content),
+                    _buildHealingPathSection(context, content, language),
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Warnings & Strengths
-                    _buildWarningsStrengthsSection(context, content),
+                    _buildWarningsStrengthsSection(context, content, language),
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Life Areas
-                    _buildLifeAreasSection(context, content),
+                    _buildLifeAreasSection(context, content, language),
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Affirmation
-                    _buildAffirmationCard(context, content),
+                    _buildAffirmationCard(context, content, language),
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Other Karmic Debts
-                    _buildOtherDebtsNavigation(context, debtNumber),
+                    _buildOtherDebtsNavigation(context, debtNumber, language),
                     const SizedBox(height: AppConstants.spacingXl),
 
                     // Next Blocks
@@ -111,7 +115,7 @@ class KarmicDebtScreen extends StatelessWidget {
                     const SizedBox(height: AppConstants.spacingXl),
 
                     // Bottom Navigation
-                    const PageBottomNavigation(currentRoute: '/numerology'),
+                    PageBottomNavigation(currentRoute: '/numerology', language: language),
                   ]),
                 ),
               ),
@@ -122,7 +126,7 @@ class KarmicDebtScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildHeader(BuildContext context, KarmicDebtContent content) {
+  Widget _buildHeader(BuildContext context, KarmicDebtContent content, AppLanguage language) {
     final color = _getDebtColor(debtNumber);
 
     return FlexibleSpaceBar(
@@ -195,9 +199,9 @@ class KarmicDebtScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(color: AppColors.error.withValues(alpha: 0.5)),
               ),
-              child: const Text(
-                'KARMİK BORÇ',
-                style: TextStyle(
+              child: Text(
+                L10nService.get('numerology.karmic_debt_badge', language),
+                style: const TextStyle(
                   color: AppColors.error,
                   fontSize: 10,
                   fontWeight: FontWeight.bold,
@@ -253,7 +257,7 @@ class KarmicDebtScreen extends StatelessWidget {
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildDeepMeaningSection(BuildContext context, KarmicDebtContent content) {
+  Widget _buildDeepMeaningSection(BuildContext context, KarmicDebtContent content, AppLanguage language) {
     final color = _getDebtColor(debtNumber);
 
     return Container(
@@ -278,7 +282,7 @@ class KarmicDebtScreen extends StatelessWidget {
               Icon(Icons.auto_awesome, color: color, size: 20),
               const SizedBox(width: 8),
               Text(
-                'Derin Anlam',
+                L10nService.get('numerology.deep_meaning', language),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   color: color,
                   fontWeight: FontWeight.bold,
@@ -308,7 +312,7 @@ class KarmicDebtScreen extends StatelessWidget {
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildPastLifeSection(BuildContext context, KarmicDebtContent content) {
+  Widget _buildPastLifeSection(BuildContext context, KarmicDebtContent content, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -324,7 +328,7 @@ class KarmicDebtScreen extends StatelessWidget {
               const Icon(Icons.history, color: Colors.purple, size: 20),
               const SizedBox(width: 8),
               Text(
-                'Geçmiş Yaşam Kalıpları',
+                L10nService.get('numerology.past_life_patterns', language),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   color: Colors.purple,
                   fontWeight: FontWeight.bold,
@@ -345,7 +349,7 @@ class KarmicDebtScreen extends StatelessWidget {
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildCurrentLessonSection(BuildContext context, KarmicDebtContent content) {
+  Widget _buildCurrentLessonSection(BuildContext context, KarmicDebtContent content, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -361,7 +365,7 @@ class KarmicDebtScreen extends StatelessWidget {
               const Icon(Icons.school, color: AppColors.success, size: 20),
               const SizedBox(width: 8),
               Text(
-                'Bu Yaşamdaki Dersin',
+                L10nService.get('numerology.life_lesson', language),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   color: AppColors.success,
                   fontWeight: FontWeight.bold,
@@ -382,7 +386,7 @@ class KarmicDebtScreen extends StatelessWidget {
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildChallengeGiftSection(BuildContext context, KarmicDebtContent content) {
+  Widget _buildChallengeGiftSection(BuildContext context, KarmicDebtContent content, AppLanguage language) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -403,7 +407,7 @@ class KarmicDebtScreen extends StatelessWidget {
                     const Icon(Icons.warning, color: AppColors.error, size: 18),
                     const SizedBox(width: 6),
                     Text(
-                      'Zorluk',
+                      L10nService.get('numerology.challenge', language),
                       style: Theme.of(context).textTheme.titleSmall?.copyWith(
                         color: AppColors.error,
                         fontWeight: FontWeight.bold,
@@ -441,7 +445,7 @@ class KarmicDebtScreen extends StatelessWidget {
                     const Icon(Icons.card_giftcard, color: AppColors.starGold, size: 18),
                     const SizedBox(width: 6),
                     Text(
-                      'Armağan',
+                      L10nService.get('numerology.gift', language),
                       style: Theme.of(context).textTheme.titleSmall?.copyWith(
                         color: AppColors.starGold,
                         fontWeight: FontWeight.bold,
@@ -465,7 +469,7 @@ class KarmicDebtScreen extends StatelessWidget {
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildHealingPathSection(BuildContext context, KarmicDebtContent content) {
+  Widget _buildHealingPathSection(BuildContext context, KarmicDebtContent content, AppLanguage language) {
     final color = _getDebtColor(debtNumber);
 
     return Container(
@@ -490,7 +494,7 @@ class KarmicDebtScreen extends StatelessWidget {
               const Icon(Icons.healing, color: AppColors.auroraStart, size: 20),
               const SizedBox(width: 8),
               Text(
-                'İyileşme Yolu',
+                L10nService.get('numerology.healing_path', language),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   color: AppColors.auroraStart,
                   fontWeight: FontWeight.bold,
@@ -522,7 +526,7 @@ class KarmicDebtScreen extends StatelessWidget {
                     Icon(Icons.self_improvement, color: color, size: 16),
                     const SizedBox(width: 6),
                     Text(
-                      'Ruhsal Pratik',
+                      L10nService.get('numerology.spiritual_practice', language),
                       style: Theme.of(context).textTheme.labelMedium?.copyWith(
                         color: color,
                         fontWeight: FontWeight.bold,
@@ -546,7 +550,7 @@ class KarmicDebtScreen extends StatelessWidget {
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildWarningsStrengthsSection(BuildContext context, KarmicDebtContent content) {
+  Widget _buildWarningsStrengthsSection(BuildContext context, KarmicDebtContent content, AppLanguage language) {
     return Column(
       children: [
         // Warnings
@@ -566,7 +570,7 @@ class KarmicDebtScreen extends StatelessWidget {
                   const Icon(Icons.do_not_disturb, color: AppColors.error, size: 18),
                   const SizedBox(width: 6),
                   Text(
-                    'Dikkat Edilmesi Gerekenler',
+                    L10nService.get('numerology.warnings', language),
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       color: AppColors.error,
                       fontWeight: FontWeight.bold,
@@ -613,7 +617,7 @@ class KarmicDebtScreen extends StatelessWidget {
                   const Icon(Icons.star, color: AppColors.success, size: 18),
                   const SizedBox(width: 6),
                   Text(
-                    'Güçlü Yönler (Öğrenildiğinde)',
+                    L10nService.get('numerology.strengths_learned', language),
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       color: AppColors.success,
                       fontWeight: FontWeight.bold,
@@ -646,12 +650,12 @@ class KarmicDebtScreen extends StatelessWidget {
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildLifeAreasSection(BuildContext context, KarmicDebtContent content) {
+  Widget _buildLifeAreasSection(BuildContext context, KarmicDebtContent content, AppLanguage language) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Hayat Alanlarında Etkisi',
+          L10nService.get('numerology.life_areas_impact', language),
           style: Theme.of(context).textTheme.titleMedium?.copyWith(
             color: AppColors.textPrimary,
             fontWeight: FontWeight.bold,
@@ -696,7 +700,7 @@ class KarmicDebtScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildAffirmationCard(BuildContext context, KarmicDebtContent content) {
+  Widget _buildAffirmationCard(BuildContext context, KarmicDebtContent content, AppLanguage language) {
     final color = _getDebtColor(debtNumber);
 
     return Container(
@@ -728,7 +732,7 @@ class KarmicDebtScreen extends StatelessWidget {
           ),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
-            'Günlük Olumlama',
+            L10nService.get('numerology.daily_affirmation', language),
             style: Theme.of(context).textTheme.labelSmall?.copyWith(
               color: AppColors.textMuted,
             ),
@@ -738,7 +742,7 @@ class KarmicDebtScreen extends StatelessWidget {
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildOtherDebtsNavigation(BuildContext context, int currentDebt) {
+  Widget _buildOtherDebtsNavigation(BuildContext context, int currentDebt, AppLanguage language) {
     final allDebts = [13, 14, 16, 19];
 
     return Container(
@@ -751,7 +755,7 @@ class KarmicDebtScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Diğer Karmik Borçlar',
+            L10nService.get('numerology.other_karmic_debts', language),
             style: Theme.of(context).textTheme.titleSmall?.copyWith(
               color: AppColors.textPrimary,
             ),

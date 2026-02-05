@@ -8,6 +8,7 @@ import '../../../../data/models/aspect.dart';
 import '../../../../data/models/natal_chart.dart';
 import '../../../../data/models/planet.dart';
 import '../../../../data/providers/app_providers.dart';
+import '../../../../data/services/l10n_service.dart';
 
 class AspectsCard extends ConsumerStatefulWidget {
   final NatalChart chart;
@@ -56,13 +57,13 @@ class _AspectsCardState extends ConsumerState<AspectsCard> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Açılar (${aspects.length})',
+                      '${L10nService.get('aspects.title', language)} (${aspects.length})',
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
                         color: AppColors.textPrimary,
                       ),
                     ),
                     Text(
-                      'Gezegenler arası ilişkiler',
+                      L10nService.get('aspects.subtitle', language),
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: AppColors.textMuted,
                       ),
@@ -73,7 +74,7 @@ class _AspectsCardState extends ConsumerState<AspectsCard> {
               Row(
                 children: [
                   Text(
-                    'Sadece Ana',
+                    L10nService.get('aspects.filter_main_only', language),
                     style: Theme.of(context).textTheme.labelSmall?.copyWith(
                       color: AppColors.textMuted,
                     ),
@@ -94,7 +95,7 @@ class _AspectsCardState extends ConsumerState<AspectsCard> {
         const SizedBox(height: AppConstants.spacingMd),
 
         // Aspect type summary
-        _buildAspectSummary(context, harmoniousAspects, challengingAspects),
+        _buildAspectSummary(context, language, harmoniousAspects, challengingAspects),
         const SizedBox(height: AppConstants.spacingMd),
 
         // Harmonious aspects
@@ -102,8 +103,8 @@ class _AspectsCardState extends ConsumerState<AspectsCard> {
           _buildAspectSection(
             context,
             language,
-            'Uyumlu Açılar',
-            'Doğal yetenekler ve kolay akış',
+            L10nService.get('aspects.harmonious', language),
+            L10nService.get('aspects.harmonious_desc', language),
             harmoniousAspects,
             AppColors.success,
             100,
@@ -116,8 +117,8 @@ class _AspectsCardState extends ConsumerState<AspectsCard> {
           _buildAspectSection(
             context,
             language,
-            'Zorlu Açılar',
-            'Büyüme ve dönüşüm potansiyeli',
+            L10nService.get('aspects.challenging', language),
+            L10nService.get('aspects.challenging_desc', language),
             challengingAspects,
             AppColors.error,
             200,
@@ -130,8 +131,8 @@ class _AspectsCardState extends ConsumerState<AspectsCard> {
           _buildAspectSection(
             context,
             language,
-            'Nötr Açılar',
-            'Ayarlama ve farkındalık',
+            L10nService.get('aspects.neutral', language),
+            L10nService.get('aspects.neutral_desc', language),
             neutralAspects,
             AppColors.auroraEnd,
             300,
@@ -142,6 +143,7 @@ class _AspectsCardState extends ConsumerState<AspectsCard> {
 
   Widget _buildAspectSummary(
     BuildContext context,
+    AppLanguage language,
     List<Aspect> harmonious,
     List<Aspect> challenging,
   ) {
@@ -164,14 +166,14 @@ class _AspectsCardState extends ConsumerState<AspectsCard> {
             children: [
               _SummaryItem(
                 icon: Icons.check_circle,
-                label: 'Uyumlu',
+                label: L10nService.get('aspects.harmonious_label', language),
                 count: harmonious.length,
                 color: AppColors.success,
               ),
               Container(width: 1, height: 40, color: Colors.white12),
               _SummaryItem(
                 icon: Icons.warning,
-                label: 'Zorlu',
+                label: L10nService.get('aspects.challenging_label', language),
                 count: challenging.length,
                 color: AppColors.error,
               ),
@@ -198,7 +200,7 @@ class _AspectsCardState extends ConsumerState<AspectsCard> {
           ),
           const SizedBox(height: 8),
           Text(
-            'Enerji Dengesi: %$harmoniousRatio Uyumlu',
+            L10nService.get('aspects.energy_balance', language).replaceAll('{percent}', '$harmoniousRatio'),
             style: Theme.of(
               context,
             ).textTheme.bodySmall?.copyWith(color: AppColors.textMuted),
@@ -427,21 +429,21 @@ class _AspectRow extends StatelessWidget {
               Row(
                 children: [
                   _InfoChip(
-                    label: aspect.type.isMajor ? 'Ana Aci' : 'Minor',
+                    label: aspect.type.isMajor ? L10nService.get('aspects.main_aspect', language) : L10nService.get('aspects.minor', language),
                     color: aspect.type.isMajor
                         ? AppColors.starGold
                         : AppColors.textMuted,
                   ),
                   const SizedBox(width: 8),
                   _InfoChip(
-                    label: 'Guc: %${aspect.strength}',
+                    label: L10nService.get('aspects.strength', language).replaceAll('{percent}', '${aspect.strength}'),
                     color: aspect.type.color,
                   ),
                 ],
               ),
               const SizedBox(height: AppConstants.spacingMd),
               Text(
-                'Yorum',
+                L10nService.get('aspects.interpretation', language),
                 style: Theme.of(
                   context,
                 ).textTheme.labelSmall?.copyWith(color: AppColors.starGold),

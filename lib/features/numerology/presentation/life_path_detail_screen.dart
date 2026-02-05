@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/content/numerology_content.dart';
+import '../../../data/providers/app_providers.dart';
+import '../../../data/services/l10n_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/next_blocks.dart';
 import '../../../shared/widgets/kadim_not_card.dart';
@@ -13,13 +16,14 @@ import '../../../shared/widgets/page_bottom_navigation.dart';
 ///
 /// Her yaşam yolu sayısı (1-9) için detaylı içerik sayfası.
 /// Kadim/ezoterik dilde yazılmış derin içerikler.
-class LifePathDetailScreen extends StatelessWidget {
+class LifePathDetailScreen extends ConsumerWidget {
   final int number;
 
   const LifePathDetailScreen({super.key, required this.number});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final language = ref.watch(languageProvider);
     final content = lifePathContents[number];
 
     if (content == null) {
@@ -27,7 +31,7 @@ class LifePathDetailScreen extends StatelessWidget {
         body: CosmicBackground(
           child: Center(
             child: Text(
-              'Yaşam yolu sayısı bulunamadı',
+              L10nService.get('numerology.life_path_not_found', language),
               style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                 color: AppColors.textSecondary,
               ),
@@ -48,7 +52,7 @@ class LifePathDetailScreen extends StatelessWidget {
                 floating: true,
                 snap: true,
                 expandedHeight: 200,
-                flexibleSpace: _buildHeader(context, content),
+                flexibleSpace: _buildHeader(context, content, language),
                 leading: IconButton(
                   icon: const Icon(Icons.arrow_back, color: AppColors.textPrimary),
                   onPressed: () => context.pop(),
@@ -60,7 +64,7 @@ class LifePathDetailScreen extends StatelessWidget {
                 sliver: SliverList(
                   delegate: SliverChildListDelegate([
                     // AI-QUOTABLE: İlk 3 Bullet (Kısa Cevap)
-                    _buildQuotableBullets(context, content),
+                    _buildQuotableBullets(context, content, language),
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Quick Info Pills
@@ -70,7 +74,7 @@ class LifePathDetailScreen extends StatelessWidget {
                     // Deep Meaning
                     _buildSection(
                       context,
-                      'Derin Anlam',
+                      L10nService.get('numerology.deep_meaning', language),
                       content.deepMeaning,
                       Icons.auto_awesome,
                       AppColors.auroraStart,
@@ -80,7 +84,7 @@ class LifePathDetailScreen extends StatelessWidget {
                     // Soul Mission
                     _buildSection(
                       context,
-                      'Ruh Misyonu',
+                      L10nService.get('numerology.soul_mission', language),
                       content.soulMission,
                       Icons.self_improvement,
                       AppColors.starGold,
@@ -90,7 +94,7 @@ class LifePathDetailScreen extends StatelessWidget {
                     // Gift to World
                     _buildSection(
                       context,
-                      'Dünyaya Armağanın',
+                      L10nService.get('numerology.gift_to_world', language),
                       content.giftToWorld,
                       Icons.card_giftcard,
                       AppColors.success,
@@ -99,17 +103,17 @@ class LifePathDetailScreen extends StatelessWidget {
 
                     // Kadim Not
                     KadimNotCard(
-                      title: '${content.number} Sayısının Sırrı',
+                      title: L10nService.get('numerology.number_secret', language).replaceAll('{number}', content.number.toString()),
                       content: content.viralQuote,
                       category: KadimCategory.numerology,
-                      source: 'Kadim Numeroloji',
+                      source: L10nService.get('numerology.ancient_numerology', language),
                     ),
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Love & Relationships
                     _buildSection(
                       context,
-                      'Aşk ve İlişkiler',
+                      L10nService.get('numerology.love_relationships', language),
                       content.loveAndRelationships,
                       Icons.favorite,
                       AppColors.fireElement,
@@ -119,7 +123,7 @@ class LifePathDetailScreen extends StatelessWidget {
                     // Career Path
                     _buildSection(
                       context,
-                      'Kariyer Yolu',
+                      L10nService.get('numerology.career_path', language),
                       content.careerPath,
                       Icons.work,
                       AppColors.earthElement,
@@ -129,7 +133,7 @@ class LifePathDetailScreen extends StatelessWidget {
                     // Spiritual Lesson
                     _buildSection(
                       context,
-                      'Ruhsal Ders',
+                      L10nService.get('numerology.spiritual_lesson', language),
                       content.spiritualLesson,
                       Icons.lightbulb,
                       AppColors.moonSilver,
@@ -137,13 +141,13 @@ class LifePathDetailScreen extends StatelessWidget {
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Shadow Work
-                    _buildShadowSection(context, content.shadowWork),
+                    _buildShadowSection(context, content.shadowWork, language),
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Health & Wellness
                     _buildSection(
                       context,
-                      'Sağlık ve Wellness',
+                      L10nService.get('numerology.health_wellness', language),
                       content.healthAndWellness,
                       Icons.spa,
                       AppColors.airElement,
@@ -151,15 +155,15 @@ class LifePathDetailScreen extends StatelessWidget {
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Compatible Numbers
-                    _buildCompatibilitySection(context, content),
+                    _buildCompatibilitySection(context, content, language),
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Famous People
-                    _buildFamousPeopleSection(context, content.famousPeople),
+                    _buildFamousPeopleSection(context, content.famousPeople, language),
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Daily Affirmation
-                    _buildAffirmationCard(context, content.dailyAffirmation),
+                    _buildAffirmationCard(context, content.dailyAffirmation, language),
                     const SizedBox(height: AppConstants.spacingXl),
 
                     // Next Blocks
@@ -167,13 +171,13 @@ class LifePathDetailScreen extends StatelessWidget {
                     const SizedBox(height: AppConstants.spacingXl),
 
                     // Bottom Navigation
-                    const PageBottomNavigation(currentRoute: '/numerology'),
+                    PageBottomNavigation(currentRoute: '/numerology', language: language),
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // AI-QUOTABLE: Footer
                     Center(
                       child: Text(
-                        'Numeroloji — Venus One',
+                        L10nService.get('brands.numerology', language),
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           color: AppColors.textMuted,
                         ),
@@ -191,9 +195,9 @@ class LifePathDetailScreen extends StatelessWidget {
   }
 
   /// AI-QUOTABLE: İlk 3 bullet - direkt cevap
-  Widget _buildQuotableBullets(BuildContext context, LifePathContent content) {
+  Widget _buildQuotableBullets(BuildContext context, LifePathContent content, AppLanguage language) {
     final color = _getColorForNumber(content.number);
-    final bullets = _getQuotableBullets(content.number);
+    final bullets = _getQuotableBullets(content.number, language);
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -205,7 +209,7 @@ class LifePathDetailScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Kısa Cevap',
+            L10nService.get('numerology.quick_answer', language),
             style: Theme.of(context).textTheme.titleSmall?.copyWith(
               color: color,
               fontWeight: FontWeight.w600,
@@ -244,62 +248,22 @@ class LifePathDetailScreen extends StatelessWidget {
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  List<String> _getQuotableBullets(int number) {
-    final Map<int, List<String>> bullets = {
-      1: [
-        'Yaşam yolu 1, liderlik ve bağımsızlık enerjisi taşır.',
-        'Öncü ruh, yeni başlangıçlar için doğmuştur.',
-        'Bireysellik ve özgünlük temel yaşam temasıdır.',
-      ],
-      2: [
-        'Yaşam yolu 2, denge ve ortaklık enerjisi taşır.',
-        'Diplomasi ve uyum sağlama doğal yetenektir.',
-        'İlişkiler ve işbirliği yaşam amacının merkezindedir.',
-      ],
-      3: [
-        'Yaşam yolu 3, yaratıcılık ve ifade enerjisi taşır.',
-        'Sanat ve iletişim alanında doğal yetenek vardır.',
-        'Neşe ve ilham yaymak ruhsal misyondur.',
-      ],
-      4: [
-        'Yaşam yolu 4, düzen ve istikrar enerjisi taşır.',
-        'Sağlam temeller kurmak için doğmuştur.',
-        'Disiplin ve çalışkanlık temel yaşam temasıdır.',
-      ],
-      5: [
-        'Yaşam yolu 5, özgürlük ve değişim enerjisi taşır.',
-        'Macera ve deneyim arayışı doğaldır.',
-        'Esneklik ve uyum sağlama güçlü yanlarıdır.',
-      ],
-      6: [
-        'Yaşam yolu 6, sorumluluk ve sevgi enerjisi taşır.',
-        'Aile ve toplum için bakım vermek doğaldır.',
-        'Uyum ve güzellik yaratmak yaşam amacıdır.',
-      ],
-      7: [
-        'Yaşam yolu 7, bilgelik ve içe bakış enerjisi taşır.',
-        'Spiritüel arayış ve analiz doğal eğilimdir.',
-        'Derin anlam arayışı yaşamın merkezindedir.',
-      ],
-      8: [
-        'Yaşam yolu 8, güç ve bolluk enerjisi taşır.',
-        'Maddi ve manevi başarı için potansiyel yüksektir.',
-        'Liderlik ve yöneticilik doğal yetenektir.',
-      ],
-      9: [
-        'Yaşam yolu 9, insanlık ve tamamlanma enerjisi taşır.',
-        'Evrensel sevgi ve şefkat doğal haldir.',
-        'Başkalarına hizmet etmek ruhsal misyondur.',
-      ],
-    };
-    return bullets[number] ?? [
-      'Bu sayı özel bir enerji taşır.',
-      'Potansiyelin keşfedilmeyi bekliyor.',
-      'Yaşam yolculuğun benzersizdir.',
+  List<String> _getQuotableBullets(int number, AppLanguage language) {
+    if (number >= 1 && number <= 9) {
+      return [
+        L10nService.get('numerology.life_path_bullets_${number}_1', language),
+        L10nService.get('numerology.life_path_bullets_${number}_2', language),
+        L10nService.get('numerology.life_path_bullets_${number}_3', language),
+      ];
+    }
+    return [
+      L10nService.get('numerology.life_path_bullets_default_1', language),
+      L10nService.get('numerology.life_path_bullets_default_2', language),
+      L10nService.get('numerology.life_path_bullets_default_3', language),
     ];
   }
 
-  Widget _buildHeader(BuildContext context, LifePathContent content) {
+  Widget _buildHeader(BuildContext context, LifePathContent content, AppLanguage language) {
     final color = _getColorForNumber(content.number);
     return FlexibleSpaceBar(
       background: Container(
@@ -320,7 +284,7 @@ class LifePathDetailScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: AppConstants.spacingLg),
               child: Text(
-                'Yaşam yolu ${content.number} ne demek?',
+                L10nService.get('numerology.life_path_question', language).replaceAll('{number}', content.number.toString()),
                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                   color: AppColors.textPrimary,
                   fontWeight: FontWeight.bold,
@@ -337,7 +301,7 @@ class LifePathDetailScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Text(
-                'Numeroloji',
+                L10nService.get('numerology.numerology_tag', language),
                 style: TextStyle(
                   fontSize: 12,
                   color: color,
@@ -379,7 +343,7 @@ class LifePathDetailScreen extends StatelessWidget {
             const SizedBox(height: 12),
             // Title
             Text(
-              'Yaşam Yolu ${content.number}: ${content.title}',
+              '${L10nService.get('numerology.life_path_title', language).replaceAll('{number}', content.number.toString())}: ${content.title}',
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                 color: AppColors.textPrimary,
                 fontWeight: FontWeight.bold,
@@ -497,7 +461,7 @@ class LifePathDetailScreen extends StatelessWidget {
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildShadowSection(BuildContext context, String shadowWork) {
+  Widget _buildShadowSection(BuildContext context, String shadowWork, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -527,7 +491,7 @@ class LifePathDetailScreen extends StatelessWidget {
               ),
               const SizedBox(width: 12),
               Text(
-                'Gölge Taraf',
+                L10nService.get('numerology.shadow_side', language),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   color: AppColors.error,
                   fontWeight: FontWeight.bold,
@@ -556,7 +520,7 @@ class LifePathDetailScreen extends StatelessWidget {
                 const SizedBox(width: 8),
                 Expanded(
                   child: Text(
-                    'Gölge farkındalıkla dönüşür. Kabullenmek, entegre etmektir.',
+                    L10nService.get('numerology.shadow_transforms', language),
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: AppColors.textMuted,
                       fontStyle: FontStyle.italic,
@@ -571,7 +535,7 @@ class LifePathDetailScreen extends StatelessWidget {
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildCompatibilitySection(BuildContext context, LifePathContent content) {
+  Widget _buildCompatibilitySection(BuildContext context, LifePathContent content, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -582,7 +546,7 @@ class LifePathDetailScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Sayı Uyumu',
+            L10nService.get('numerology.number_compatibility', language),
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
               color: AppColors.textPrimary,
               fontWeight: FontWeight.bold,
@@ -594,7 +558,7 @@ class LifePathDetailScreen extends StatelessWidget {
               Expanded(
                 child: _buildCompatibilityGroup(
                   context,
-                  'Uyumlu',
+                  L10nService.get('numerology.compatible', language),
                   content.compatibleNumbers,
                   AppColors.success,
                 ),
@@ -603,7 +567,7 @@ class LifePathDetailScreen extends StatelessWidget {
               Expanded(
                 child: _buildCompatibilityGroup(
                   context,
-                  'Zorlayıcı',
+                  L10nService.get('numerology.challenging', language),
                   content.challengingNumbers,
                   AppColors.warning,
                 ),
@@ -658,7 +622,7 @@ class LifePathDetailScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildFamousPeopleSection(BuildContext context, String famousPeople) {
+  Widget _buildFamousPeopleSection(BuildContext context, String famousPeople, AppLanguage language) {
     final people = famousPeople.split(', ');
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -675,7 +639,7 @@ class LifePathDetailScreen extends StatelessWidget {
               const Icon(Icons.star, color: AppColors.starGold, size: 20),
               const SizedBox(width: 8),
               Text(
-                'Bu Yaşam Yolundaki Ünlüler',
+                L10nService.get('numerology.famous_people', language),
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
                   color: AppColors.starGold,
                 ),
@@ -707,7 +671,7 @@ class LifePathDetailScreen extends StatelessWidget {
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildAffirmationCard(BuildContext context, String affirmation) {
+  Widget _buildAffirmationCard(BuildContext context, String affirmation, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingXl),
       decoration: BoxDecoration(
@@ -743,7 +707,7 @@ class LifePathDetailScreen extends StatelessWidget {
           ),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
-            'Günlük Olumlamanız',
+            L10nService.get('numerology.your_affirmation', language),
             style: Theme.of(context).textTheme.labelSmall?.copyWith(
               color: AppColors.textMuted,
             ),

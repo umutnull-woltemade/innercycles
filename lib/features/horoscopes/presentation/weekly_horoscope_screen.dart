@@ -106,7 +106,8 @@ class _WeeklyHoroscopeScreenState extends ConsumerState<WeeklyHoroscopeScreen> {
                       // Entertainment Disclaimer
                       PageFooterWithDisclaimer(
                         brandText: L10nService.get('brands.weekly_horoscope', language),
-                        disclaimerText: DisclaimerTexts.astrology,
+                        disclaimerText: DisclaimerTexts.astrology(language),
+                        language: language,
                       ),
                       const SizedBox(height: AppConstants.spacingLg),
                     ],

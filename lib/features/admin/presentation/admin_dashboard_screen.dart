@@ -106,6 +106,7 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
 
   Widget _buildHeader(BuildContext context, bool isDark) {
     final session = AdminAuthService.currentSession;
+    final lang = ref.watch(languageProvider);
 
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -146,7 +147,7 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Admin Dashboard',
+                  L10nService.get('admin.dashboard_title', lang),
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
                     color: AppColors.starGold,
                     fontWeight: FontWeight.bold,
@@ -154,7 +155,8 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
                 ),
                 if (session != null)
                   Text(
-                    'Session expires in ${session.remainingTime.inHours}h',
+                    L10nService.get('admin.session_expires', lang)
+                        .replaceAll('{hours}', '${session.remainingTime.inHours}'),
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: isDark
                           ? AppColors.textMuted
@@ -172,12 +174,12 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
                   ? AppColors.textSecondary
                   : AppColors.lightTextSecondary,
             ),
-            tooltip: 'Refresh Data',
+            tooltip: L10nService.get('admin.refresh_data', lang),
           ),
           IconButton(
             onPressed: _handleLogout,
             icon: const Icon(Icons.logout, color: AppColors.error),
-            tooltip: 'Logout',
+            tooltip: L10nService.get('admin.logout', lang),
           ),
         ],
       ),
@@ -204,6 +206,7 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
   }
 
   Widget _buildMobileNavigation(BuildContext context, bool isDark) {
+    final lang = ref.watch(languageProvider);
     return Container(
       padding: const EdgeInsets.symmetric(
         horizontal: AppConstants.spacingMd,
@@ -211,10 +214,10 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
       ),
       child: Row(
         children: [
-          _buildNavChip(context, isDark, 0, 'Overview', Icons.dashboard),
-          _buildNavChip(context, isDark, 1, 'Growth', Icons.trending_up),
-          _buildNavChip(context, isDark, 2, 'Events', Icons.analytics),
-          _buildNavChip(context, isDark, 3, 'Notes', Icons.note_alt),
+          _buildNavChip(context, isDark, 0, L10nService.get('admin.overview', lang), Icons.dashboard),
+          _buildNavChip(context, isDark, 1, L10nService.get('admin.growth', lang), Icons.trending_up),
+          _buildNavChip(context, isDark, 2, L10nService.get('admin.events', lang), Icons.analytics),
+          _buildNavChip(context, isDark, 3, L10nService.get('admin.notes', lang), Icons.note_alt),
         ],
       ),
     );
@@ -296,26 +299,31 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
               ),
             ),
           ),
-          child: ListView(
-            padding: const EdgeInsets.all(AppConstants.spacingMd),
-            children: [
-              _buildSidebarItem(
-                context,
-                isDark,
-                0,
-                'Overview',
-                Icons.dashboard,
-              ),
-              _buildSidebarItem(
-                context,
-                isDark,
-                1,
-                'Growth',
-                Icons.trending_up,
-              ),
-              _buildSidebarItem(context, isDark, 2, 'Events', Icons.analytics),
-              _buildSidebarItem(context, isDark, 3, 'Notes', Icons.note_alt),
-            ],
+          child: Builder(
+            builder: (context) {
+              final lang = ref.watch(languageProvider);
+              return ListView(
+                padding: const EdgeInsets.all(AppConstants.spacingMd),
+                children: [
+                  _buildSidebarItem(
+                    context,
+                    isDark,
+                    0,
+                    L10nService.get('admin.overview', lang),
+                    Icons.dashboard,
+                  ),
+                  _buildSidebarItem(
+                    context,
+                    isDark,
+                    1,
+                    L10nService.get('admin.growth', lang),
+                    Icons.trending_up,
+                  ),
+                  _buildSidebarItem(context, isDark, 2, L10nService.get('admin.events', lang), Icons.analytics),
+                  _buildSidebarItem(context, isDark, 3, L10nService.get('admin.notes', lang), Icons.note_alt),
+                ],
+              );
+            },
           ),
         ),
         // Content
@@ -375,25 +383,26 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
   // ═══════════════════════════════════════════════════════════════════
 
   Widget _buildOverviewTab(BuildContext context, bool isDark) {
+    final lang = ref.watch(languageProvider);
     return SingleChildScrollView(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildSectionTitle(context, isDark, 'Key Metrics', Icons.analytics),
+          _buildSectionTitle(context, isDark, L10nService.get('admin.key_metrics', lang), Icons.analytics),
           const SizedBox(height: AppConstants.spacingMd),
           _buildKpiGrid(context, isDark),
           const SizedBox(height: AppConstants.spacingXl),
           _buildSectionTitle(
             context,
             isDark,
-            'Usage Overview',
+            L10nService.get('admin.usage_overview', lang),
             Icons.pie_chart,
           ),
           const SizedBox(height: AppConstants.spacingMd),
           _buildUsageChart(context, isDark),
           const SizedBox(height: AppConstants.spacingXl),
-          _buildSectionTitle(context, isDark, 'Quick Actions', Icons.flash_on),
+          _buildSectionTitle(context, isDark, L10nService.get('admin.quick_actions', lang), Icons.flash_on),
           const SizedBox(height: AppConstants.spacingMd),
           _buildQuickActions(context, isDark),
         ],
@@ -424,6 +433,7 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
 
   Widget _buildKpiGrid(BuildContext context, bool isDark) {
     final metrics = ref.watch(adminMetricsProvider);
+    final lang = ref.watch(languageProvider);
 
     return GridView.count(
       crossAxisCount: MediaQuery.of(context).size.width > 600 ? 4 : 2,
@@ -433,7 +443,7 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
       physics: const NeverScrollableScrollPhysics(),
       children: [
         _KpiCard(
-          title: 'D1 Return',
+          title: L10nService.get('admin.d1_return', lang),
           value: '${metrics.d1Return.toStringAsFixed(1)}%',
           change: metrics.d1Change,
           icon: Icons.replay,
@@ -441,7 +451,7 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
           isDark: isDark,
         ),
         _KpiCard(
-          title: 'D7 Return',
+          title: L10nService.get('admin.d7_return', lang),
           value: '${metrics.d7Return.toStringAsFixed(1)}%',
           change: metrics.d7Change,
           icon: Icons.calendar_today,
@@ -449,7 +459,7 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
           isDark: isDark,
         ),
         _KpiCard(
-          title: 'Avg Session',
+          title: L10nService.get('admin.avg_session', lang),
           value: metrics.avgSessionDepth.toStringAsFixed(1),
           change: metrics.sessionChange,
           icon: Icons.layers,
@@ -457,7 +467,7 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
           isDark: isDark,
         ),
         _KpiCard(
-          title: 'Reco CTR',
+          title: L10nService.get('admin.reco_ctr', lang),
           value: '${metrics.recoCtr.toStringAsFixed(1)}%',
           change: metrics.ctrChange,
           icon: Icons.touch_app,
@@ -470,6 +480,7 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
 
   Widget _buildUsageChart(BuildContext context, bool isDark) {
     final metrics = ref.watch(adminMetricsProvider);
+    final lang = ref.watch(languageProvider);
 
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -488,7 +499,7 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Tool Usage Distribution',
+            L10nService.get('admin.tool_usage_distribution', lang),
             style: Theme.of(context).textTheme.titleSmall?.copyWith(
               color: isDark
                   ? AppColors.textPrimary
@@ -575,6 +586,7 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
   }
 
   Widget _buildQuickActions(BuildContext context, bool isDark) {
+    final lang = ref.watch(languageProvider);
     return Wrap(
       spacing: AppConstants.spacingMd,
       runSpacing: AppConstants.spacingMd,
@@ -582,28 +594,28 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
         _buildActionButton(
           context,
           isDark,
-          'Export Data',
+          L10nService.get('admin.export_data', lang),
           Icons.download,
-          () => _showSnackbar('Export functionality coming soon'),
+          () => _showSnackbar(L10nService.get('admin.export_coming_soon', lang)),
         ),
         _buildActionButton(
           context,
           isDark,
-          'Clear Cache',
+          L10nService.get('admin.clear_cache', lang),
           Icons.cleaning_services,
-          () => _showSnackbar('Cache cleared'),
+          () => _showSnackbar(L10nService.get('admin.cache_cleared', lang)),
         ),
         _buildActionButton(
           context,
           isDark,
-          'Send Test Push',
+          L10nService.get('admin.send_test_push', lang),
           Icons.notifications_active,
-          () => _showSnackbar('Test push sent'),
+          () => _showSnackbar(L10nService.get('admin.test_push_sent', lang)),
         ),
         _buildActionButton(
           context,
           isDark,
-          'View Logs',
+          L10nService.get('admin.view_logs', lang),
           Icons.article,
           () => setState(() => _selectedIndex = 2),
         ),
@@ -664,6 +676,7 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
   // ═══════════════════════════════════════════════════════════════════
 
   Widget _buildGrowthTab(BuildContext context, bool isDark) {
+    final lang = ref.watch(languageProvider);
     return SingleChildScrollView(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       child: Column(
@@ -672,13 +685,13 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
           _buildSectionTitle(
             context,
             isDark,
-            'Retention Trends',
+            L10nService.get('admin.retention_trends', lang),
             Icons.trending_up,
           ),
           const SizedBox(height: AppConstants.spacingMd),
           _buildRetentionChart(context, isDark),
           const SizedBox(height: AppConstants.spacingXl),
-          _buildSectionTitle(context, isDark, 'Growth Tasks', Icons.task_alt),
+          _buildSectionTitle(context, isDark, L10nService.get('admin.growth_tasks', lang), Icons.task_alt),
           const SizedBox(height: AppConstants.spacingMd),
           _buildGrowthTasksList(context, isDark),
         ],
@@ -688,6 +701,7 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
 
   Widget _buildRetentionChart(BuildContext context, bool isDark) {
     final metrics = ref.watch(adminMetricsProvider);
+    final lang = ref.watch(languageProvider);
 
     return Container(
       height: 200,
@@ -710,7 +724,7 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'D1/D7 Retention Over Time',
+                L10nService.get('admin.retention_over_time', lang),
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
                   color: isDark
                       ? AppColors.textPrimary
@@ -762,10 +776,11 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
     bool isDark,
     List<RetentionPoint> data,
   ) {
+    final lang = ref.watch(languageProvider);
     if (data.isEmpty) {
       return Center(
         child: Text(
-          'No data available',
+          L10nService.get('admin.no_data_available', lang),
           style: TextStyle(
             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
           ),
@@ -870,12 +885,13 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
   // ═══════════════════════════════════════════════════════════════════
 
   Widget _buildEventsTab(BuildContext context, bool isDark) {
+    final lang = ref.watch(languageProvider);
     return SingleChildScrollView(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildSectionTitle(context, isDark, 'Event Log', Icons.list_alt),
+          _buildSectionTitle(context, isDark, L10nService.get('admin.event_log', lang), Icons.list_alt),
           const SizedBox(height: AppConstants.spacingMd),
           _buildEventLogTable(context, isDark),
         ],
@@ -885,6 +901,7 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
 
   Widget _buildEventLogTable(BuildContext context, bool isDark) {
     final events = ref.watch(eventLogProvider);
+    final lang = ref.watch(languageProvider);
 
     return Container(
       decoration: BoxDecoration(
@@ -915,12 +932,12 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
               children: [
                 Expanded(
                   flex: 2,
-                  child: Text('Event', style: _headerStyle(context, isDark)),
+                  child: Text(L10nService.get('admin.event', lang), style: _headerStyle(context, isDark)),
                 ),
                 Expanded(
                   flex: 1,
                   child: Text(
-                    'Count',
+                    L10nService.get('admin.count', lang),
                     style: _headerStyle(context, isDark),
                     textAlign: TextAlign.center,
                   ),
@@ -928,7 +945,7 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
                 Expanded(
                   flex: 2,
                   child: Text(
-                    'Last Fired',
+                    L10nService.get('admin.last_fired', lang),
                     style: _headerStyle(context, isDark),
                     textAlign: TextAlign.end,
                   ),
@@ -1040,11 +1057,19 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
   String _formatTime(DateTime time) {
     final now = DateTime.now();
     final diff = now.difference(time);
+    final lang = ref.read(languageProvider);
 
-    if (diff.inMinutes < 1) return 'Just now';
-    if (diff.inMinutes < 60) return '${diff.inMinutes}m ago';
-    if (diff.inHours < 24) return '${diff.inHours}h ago';
-    return '${diff.inDays}d ago';
+    if (diff.inMinutes < 1) return L10nService.get('admin.just_now', lang);
+    if (diff.inMinutes < 60) {
+      return L10nService.get('admin.minutes_ago', lang)
+          .replaceAll('{count}', '${diff.inMinutes}');
+    }
+    if (diff.inHours < 24) {
+      return L10nService.get('admin.hours_ago', lang)
+          .replaceAll('{count}', '${diff.inHours}');
+    }
+    return L10nService.get('admin.days_ago', lang)
+        .replaceAll('{count}', '${diff.inDays}');
   }
 
   // ═══════════════════════════════════════════════════════════════════
@@ -1052,19 +1077,20 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
   // ═══════════════════════════════════════════════════════════════════
 
   Widget _buildNotesTab(BuildContext context, bool isDark) {
+    final lang = ref.watch(languageProvider);
     return SingleChildScrollView(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildSectionTitle(context, isDark, 'Snapshots', Icons.camera_alt),
+          _buildSectionTitle(context, isDark, L10nService.get('admin.snapshots', lang), Icons.camera_alt),
           const SizedBox(height: AppConstants.spacingMd),
           _buildSnapshotsList(context, isDark),
           const SizedBox(height: AppConstants.spacingXl),
           _buildSectionTitle(
             context,
             isDark,
-            'Admin Notes',
+            L10nService.get('admin.admin_notes', lang),
             Icons.sticky_note_2,
           ),
           const SizedBox(height: AppConstants.spacingMd),
@@ -1090,30 +1116,35 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
         ),
       ),
       child: snapshots.isEmpty
-          ? Padding(
-              padding: const EdgeInsets.all(AppConstants.spacingXl),
-              child: Center(
-                child: Column(
-                  children: [
-                    Icon(
-                      Icons.camera_alt_outlined,
-                      size: 48,
-                      color: isDark
-                          ? AppColors.textMuted
-                          : AppColors.lightTextMuted,
+          ? Builder(
+              builder: (context) {
+                final lang = ref.watch(languageProvider);
+                return Padding(
+                  padding: const EdgeInsets.all(AppConstants.spacingXl),
+                  child: Center(
+                    child: Column(
+                      children: [
+                        Icon(
+                          Icons.camera_alt_outlined,
+                          size: 48,
+                          color: isDark
+                              ? AppColors.textMuted
+                              : AppColors.lightTextMuted,
+                        ),
+                        const SizedBox(height: 8),
+                        Text(
+                          L10nService.get('admin.no_snapshots_yet', lang),
+                          style: TextStyle(
+                            color: isDark
+                                ? AppColors.textMuted
+                                : AppColors.lightTextMuted,
+                          ),
+                        ),
+                      ],
                     ),
-                    const SizedBox(height: 8),
-                    Text(
-                      'No snapshots yet',
-                      style: TextStyle(
-                        color: isDark
-                            ? AppColors.textMuted
-                            : AppColors.lightTextMuted,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+                  ),
+                );
+              },
             )
           : ListView.separated(
               shrinkWrap: true,
@@ -1209,6 +1240,7 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
   }
 
   Widget _buildNotesCard(BuildContext context, bool isDark) {
+    final lang = ref.watch(languageProvider);
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -1228,7 +1260,7 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
           TextField(
             maxLines: 5,
             decoration: InputDecoration(
-              hintText: 'Add admin notes here...',
+              hintText: L10nService.get('admin.add_notes_hint', lang),
               hintStyle: TextStyle(
                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
               ),
@@ -1245,9 +1277,9 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               TextButton.icon(
-                onPressed: () => _showSnackbar('Note saved'),
+                onPressed: () => _showSnackbar(L10nService.get('admin.note_saved', lang)),
                 icon: const Icon(Icons.save, size: 18),
-                label: const Text('Save Note'),
+                label: Text(L10nService.get('admin.save_note', lang)),
                 style: TextButton.styleFrom(
                   foregroundColor: AppColors.starGold,
                 ),

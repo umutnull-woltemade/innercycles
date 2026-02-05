@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/constants/app_constants.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../data/services/l10n_service.dart';
 import '../../../../data/models/house.dart';
 import '../../../../data/models/natal_chart.dart';
 import '../../../../data/models/planet.dart';
@@ -36,7 +37,7 @@ class HousesCard extends ConsumerWidget {
             ),
             const SizedBox(height: AppConstants.spacingMd),
             Text(
-              'Ev Hesaplaması İçin Doğum Saati Gerekli',
+              L10nService.get('houses.birth_time_required', language),
               style: Theme.of(
                 context,
               ).textTheme.titleMedium?.copyWith(color: AppColors.textPrimary),
@@ -44,7 +45,7 @@ class HousesCard extends ConsumerWidget {
             ),
             const SizedBox(height: AppConstants.spacingSm),
             Text(
-              'Evlerin hesaplanabilmesi için doğum saati ve yeri bilgisi gereklidir. Lütfen profil ayarlarından bu bilgileri ekleyin.',
+              L10nService.get('houses.birth_time_required_desc', language),
               style: Theme.of(
                 context,
               ).textTheme.bodyMedium?.copyWith(color: AppColors.textMuted),
@@ -67,8 +68,8 @@ class HousesCard extends ConsumerWidget {
         _buildHouseTypeSection(
           context,
           language,
-          'Açısal Evler',
-          'En güçlü ve aktif evler (1, 4, 7, 10)',
+          L10nService.get('houses.angular', language),
+          L10nService.get('houses.angular_desc', language),
           angularHouses,
           AppColors.starGold,
           0,
@@ -77,8 +78,8 @@ class HousesCard extends ConsumerWidget {
         _buildHouseTypeSection(
           context,
           language,
-          'Ardıl Evler',
-          'Kaynaklar ve değerler (2, 5, 8, 11)',
+          L10nService.get('houses.succedent', language),
+          L10nService.get('houses.succedent_desc', language),
           succedentHouses,
           AppColors.auroraStart,
           100,
@@ -87,8 +88,8 @@ class HousesCard extends ConsumerWidget {
         _buildHouseTypeSection(
           context,
           language,
-          'Dusen Evler',
-          'Ogrenme ve uyum (3, 6, 9, 12)',
+          L10nService.get('houses.cadent', language),
+          L10nService.get('houses.cadent_desc', language),
           cadentHouses,
           AppColors.auroraEnd,
           200,
@@ -194,258 +195,42 @@ class _HouseRowState extends State<_HouseRow> {
     _isExpanded = false;
   }
 
-  // Ev için detaylı ezoterik yorum
+  // Ev için detaylı ezoterik yorum (i18n)
   String _getEsotericHouseInterpretation(
     int houseNumber,
     zodiac.ZodiacSign sign,
   ) {
     final signName = zodiac.ZodiacSignExtension(sign).localizedName(widget.language);
-    final interpretations = {
-      1: {
-        'title': 'Benliğin Kapısı',
-        'esoteric':
-            'Birinci ev, ruhunun bu dünyaya ilk dokunuşudur - ilk nefes, ilk bakış, ilk "ben" duygusu. Bu ev senin "kozmik masken"dir; ruhunun dünyaya kendini nasıl sunmayı seçtiğini gösterir. $signName burada yükselen olarak, hayata yaklaşımını, fiziksel görünümünü ve başkalarının seni ilk nasıl algıladığını renklendirir.',
-        'shadow':
-            'Gölge yönü: Maskenin arkasına saklanma, dış görünüşe aşırı önem verme.',
-        'gift': 'Armağan: Her anı yeni bir başlangıç olarak yaşama yeteneği.',
-        'keywords': [
-          'Kimlik',
-          'İlk İzlenim',
-          'Beden',
-          'Benlik İfadesi',
-          'Yaşam Enerjisi',
-        ],
-      },
-      2: {
-        'title': 'Değerler Tapınağı',
-        'esoteric':
-            'İkinci ev, maddi dünyanın kutsal mabedidir. Para sadece kağıt değil - senin değer sisteminin yansımasıdır. $signName bu evde konumlanarak para kazanma tarzını, neye değer verdiğini ve güvenlik ihtiyacını şekillendiriyor. Bu ev "sahip olmak" fiilinin ruhsal boyutunu taşır.',
-        'shadow':
-            'Gölge yönü: Güvenliği sadece maddiyatta arama, açgözlülük veya aşırı tutumculuk.',
-        'gift':
-            'Armağan: Bolluk bilincini geliştirme ve kaynakları bilgece kullanma.',
-        'keywords': ['Para', 'Değerler', 'Yetenekler', 'Özsaygı', 'Kaynaklar'],
-      },
-      3: {
-        'title': 'Zihnin Bahçesi',
-        'esoteric':
-            'Üçüncü ev, zihnin ve iletişimin kutsal alanıdır. $signName burada düşünme tarzını, konuşma stilini ve öğrenme biçimini belirliyor. Bu ev kardeşler, komşular ve yakın çevre ile ilişkiyi de yönetir. Zihin burada ya bir bahçe ya da bir orman olur - diktiğin tohumlar büyür.',
-        'shadow': 'Gölge yönü: Yüzeysellik, dedikodu, dikkat dağınıklığı.',
-        'gift': 'Armağan: Sözcüklerle dünyaları birleştirme gücü.',
-        'keywords': [
-          'İletişim',
-          'Öğrenme',
-          'Kardeşler',
-          'Yakın Çevre',
-          'Zihin',
-        ],
-      },
-      4: {
-        'title': 'Ruhun Kökü',
-        'esoteric':
-            'Dördüncü ev, haritanın en derin noktasıdır - ruhunun kökü. $signName burada aile kalıplarını, duygusal güvenlik ihtiyacını ve "yuva" kavramını şekillendiriyor. Bu ev ataların mirasını ve bilinçaltındaki en eski izlenimleri taşır. Nereden geldiğini bilmeden nereye gittiğini anlayamazsın.',
-        'shadow':
-            'Gölge yönü: Geçmişe takılıp kalma, aile kalıplarını körü körüne tekrarlama.',
-        'gift': 'Armağan: Derin duygusal bilgelik ve içsel huzur kapasitesi.',
-        'keywords': ['Aile', 'Kökler', 'Yuva', 'Anne', 'İç Dünya'],
-      },
-      5: {
-        'title': 'Yaratıcının Sahnesi',
-        'esoteric':
-            'Beşinci ev, ruhunun yaratıcı ifade bulduğu sahnedir. $signName burada yaratıcılık tarzını, romantik ifadeni, çocuklarla ilişkini ve "oyun"a yaklaşımını renklendirir. Bu ev kalbin neşesinin fışkırdığı yerdir - içindeki çocuğun evi.',
-        'shadow':
-            'Gölge yönü: Ego şişkinliği, dikkat bağımlılığı, riskli davranışlar.',
-        'gift':
-            'Armağan: Saf yaratıcı enerji ve başkalarına ilham verme yeteneği.',
-        'keywords': [
-          'Yaratıcılık',
-          'Romantizm',
-          'Çocuklar',
-          'Eğlence',
-          'Kendini İfade',
-        ],
-      },
-      6: {
-        'title': 'Hizmetin Atelyesi',
-        'esoteric':
-            'Altıncı ev, günlük yaşamın kutsal ritüellerinin evidir. $signName burada iş rutinlerini, sağlık alışkanlıklarını ve hizmet anlayışını belirliyor. Bu ev "nasıl hizmet ederim?" sorusunun cevabını taşır. Bedenin bir tapınaktır - altıncı ev onun bakım kılavuzudur.',
-        'shadow':
-            'Gölge yönü: Obsesif mükemmeliyetçilik, kendini ihmal ederek başkalarına hizmet.',
-        'gift': 'Armağan: Düzeni ve iyileşmeyi yaratma kapasitesi.',
-        'keywords': [
-          'Sağlık',
-          'İş Rutini',
-          'Hizmet',
-          'Detaylar',
-          'İyileştirme',
-        ],
-      },
-      7: {
-        'title': 'Aynanın Ötesi',
-        'esoteric':
-            'Yedinci ev, "öteki"nin aynasıdır - ilişkilerin, ortaklıkların ve evliliğin evidir. $signName burada partnerlerinde aradığın nitelikleri, ilişki tarzını ve "biz" kavramını şekillendiriyor. Karşına çıkan herkes içindeki bir şeyi yansıtır - bu ev o aynadır.',
-        'shadow':
-            'Gölge yönü: Kendini ilişkiler üzerinden tanımlama, bağımlı ilişkiler.',
-        'gift': 'Armağan: Derin bağlar kurma ve başkalarında kendini görme.',
-        'keywords': ['İlişkiler', 'Evlilik', 'Ortaklıklar', 'Öteki', 'Denge'],
-      },
-      8: {
-        'title': 'Dönüşümün Kuyusu',
-        'esoteric':
-            'Sekizinci ev, ölüm-yeniden doğuş döngüsünün evidir - en derin dönüşümlerin yeri. $signName burada krizlerle başa çıkma tarzını, paylaşılan kaynakları, cinselliği ve gizemlere yaklaşımını belirliyor. Bu ev, gölgelerle yüzleşme cesareti gerektirir.',
-        'shadow': 'Gölge yönü: Kontrol obsesyonu, manipülasyon, kayıp korkusu.',
-        'gift':
-            'Armağan: Anka kuşu gibi her kül yığınından yeniden doğma gücü.',
-        'keywords': [
-          'Dönüşüm',
-          'Gizem',
-          'Paylaşılan Kaynaklar',
-          'Cinsellik',
-          'Ölüm-Yeniden Doğuş',
-        ],
-      },
-      9: {
-        'title': 'Hakikat Arayışı',
-        'esoteric':
-            'Dokuzuncu ev, anlam arayışının evidir - felsefe, yüksek öğrenim, uzak yolculuklar ve spiritüel genişleme. $signName burada inanç sistemini, öğretme/öğrenme tarzını ve "büyük resmi" görme biçimini şekillendiriyor. Bu ev "neden?" sorusunun peşinden gider.',
-        'shadow': 'Gölge yönü: Dogmatizm, körü körüne inanç, yerinde duramama.',
-        'gift':
-            'Armağan: Bilgeliği deneyimden süzme ve başkalarını aydınlatma.',
-        'keywords': [
-          'Felsefe',
-          'Yüksek Öğrenim',
-          'Yolculuklar',
-          'İnanç',
-          'Genişleme',
-        ],
-      },
-      10: {
-        'title': 'Zirvenin Tacı',
-        'esoteric':
-            'Onuncu ev, haritanın zirvesidir - kariyer, toplumsal statü ve yaşam misyonunun evidir. $signName burada dünyada bırakmak istediğin izi, kariyer tarzını ve otorite figürleriyle ilişkini belirliyor. Bu ev "dünyada kim olmak istiyorum?" sorusunun cevabıdır.',
-        'shadow':
-            'Gölge yönü: Statü takıntısı, iş bağımlılığı, başarı için fedakarlık.',
-        'gift': 'Armağan: Dünyada kalıcı ve anlamlı bir iz bırakma kapasitesi.',
-        'keywords': ['Kariyer', 'Statü', 'Hedefler', 'Baba', 'Toplumsal Rol'],
-      },
-      11: {
-        'title': 'Rüyaların Kolektifi',
-        'esoteric':
-            'On birinci ev, kolektif rüyaların, ideallerin ve arkadaşlıkların evidir. $signName burada sosyal çevreni, grup dinamiklerini ve geleceğe dair vizyonunu şekillendiriyor. Bu ev "kabileni" bulmakla ilgilidir - tek başına değiştiremediğini birlikte dönüştürürsün.',
-        'shadow':
-            'Gölge yönü: Gruba uyum için bireyselligi kaybetme, ütopik hayaller.',
-        'gift':
-            'Armağan: Kolektif iyiliğe hizmet ederken bireysel özgünlüğü koruma.',
-        'keywords': [
-          'Arkadaşlıklar',
-          'Gruplar',
-          'İdealler',
-          'Gelecek Vizyonu',
-          'İnsanlık',
-        ],
-      },
-      12: {
-        'title': 'Sonsuzluğun Kapısı',
-        'esoteric':
-            'On ikinci ev, haritanın en gizemli köşesidir - bilinçaltı, spiritüellik, karma ve çözülmenin evidir. $signName burada bilinçaltı kalıplarını, spiritüel yolculuğunu ve "bırakma" derslerini taşıyor. Bu ev, egodan öteye, sonsuzluğa açılan kapıdır.',
-        'shadow': 'Gölge yönü: Kaçış eğilimi, kurban rolü, gerçeklikten kopuş.',
-        'gift': 'Armağan: Sınırsız şefkat ve evrensel birlik deneyimi.',
-        'keywords': [
-          'Bilinçaltı',
-          'Spiritüellik',
-          'Karma',
-          'Yalnızlık',
-          'Çözülme',
-        ],
-      },
-    };
-
-    final houseData = interpretations[houseNumber] ?? {};
-    return houseData['esoteric'] as String? ?? '';
+    final description = L10nService.get('houses.esoteric.$houseNumber.description', widget.language);
+    // Replace {signName} placeholder if present
+    return description.replaceAll('{signName}', signName);
   }
 
   String _getHouseShadowAndGift(int houseNumber) {
-    final interpretations = {
-      1: {
-        'shadow': 'Gölge: Maskenin arkasına saklanma',
-        'gift': 'Armağan: Yeni başlangıçlar yaratma',
-      },
-      2: {
-        'shadow': 'Gölge: Maddeye bağımlılık',
-        'gift': 'Armağan: Bolluk bilinci',
-      },
-      3: {'shadow': 'Gölge: Yüzeysellik', 'gift': 'Armağan: İletişim ustalığı'},
-      4: {
-        'shadow': 'Gölge: Geçmişe takılma',
-        'gift': 'Armağan: Duygusal bilgelik',
-      },
-      5: {'shadow': 'Gölge: Ego şişkinliği', 'gift': 'Armağan: Yaratıcı ifade'},
-      6: {
-        'shadow': 'Gölge: Mükemmeliyetçilik',
-        'gift': 'Armağan: İyileştirme gücü',
-      },
-      7: {
-        'shadow': 'Gölge: İlişki bağımlılığı',
-        'gift': 'Armağan: Derin bağlar',
-      },
-      8: {
-        'shadow': 'Gölge: Kontrol takıntısı',
-        'gift': 'Armağan: Dönüşüm gücü',
-      },
-      9: {'shadow': 'Gölge: Dogmatizm', 'gift': 'Armağan: Bilgelik'},
-      10: {
-        'shadow': 'Gölge: Statü takıntısı',
-        'gift': 'Armağan: Kalıcı iz bırakma',
-      },
-      11: {
-        'shadow': 'Gölge: Bireyselliği kaybetme',
-        'gift': 'Armağan: Kolektif vizyon',
-      },
-      12: {
-        'shadow': 'Gölge: Kaçış eğilimi',
-        'gift': 'Armağan: Sınırsız şefkat',
-      },
-    };
-    final data = interpretations[houseNumber] ?? {'shadow': '', 'gift': ''};
-    return '${data['shadow']} | ${data['gift']}';
+    final shadow = L10nService.get('houses.shadow_gift_short.$houseNumber.shadow', widget.language);
+    final gift = L10nService.get('houses.shadow_gift_short.$houseNumber.gift', widget.language);
+    return '$shadow | $gift';
   }
 
   String _getHouseSignInterpretation(int houseNumber, zodiac.ZodiacSign sign) {
     final signName = zodiac.ZodiacSignExtension(sign).localizedName(widget.language);
-    final houseThemes = {
-      1: 'kimlik, benlik ifadesi ve dış görünüş',
-      2: 'para, değerler ve maddi güvenlik',
-      3: 'iletişim, öğrenme ve yakın çevre',
-      4: 'aile, kökler ve iç dünya',
-      5: 'yaratıcılık, romantizm ve çocuklar',
-      6: 'sağlık, iş rutini ve hizmet',
-      7: 'ilişkiler, ortaklıklar ve evlilik',
-      8: 'dönüşüm, paylaşılan kaynaklar ve gizem',
-      9: 'felsefe, yüksek öğrenim ve uzak yerler',
-      10: 'kariyer, toplumsal statü ve hedefler',
-      11: 'arkadaşlıklar, gruplar ve idealler',
-      12: 'bilinçaltı, spiritüellik ve karma',
-    };
+    final signKey = sign.name.toLowerCase();
 
-    final signTraits = {
-      zodiac.ZodiacSign.aries: 'enerjik, cesur ve girişimci bir şekilde',
-      zodiac.ZodiacSign.taurus: 'istikrarlı, duyusal ve sabırlı bir şekilde',
-      zodiac.ZodiacSign.gemini: 'meraklı, iletişimci ve esnek bir şekilde',
-      zodiac.ZodiacSign.cancer: 'duygusal, koruyucu ve sezgisel bir şekilde',
-      zodiac.ZodiacSign.leo: 'yaratıcı, dramatik ve cömert bir şekilde',
-      zodiac.ZodiacSign.virgo: 'analitik, pratik ve mükemmeliyetçi bir şekilde',
-      zodiac.ZodiacSign.libra: 'dengeli, diplomatik ve estetik bir şekilde',
-      zodiac.ZodiacSign.scorpio: 'yoğun, dönüştürücü ve tutkulu bir şekilde',
-      zodiac.ZodiacSign.sagittarius: 'özgür, felsefi ve iyimser bir şekilde',
-      zodiac.ZodiacSign.capricorn: 'disiplinli, hırslı ve sorumlu bir şekilde',
-      zodiac.ZodiacSign.aquarius: 'özgün, yenilikçi ve bağımsız bir şekilde',
-      zodiac.ZodiacSign.pisces: 'sezgisel, empatik ve rüya gibi bir şekilde',
-    };
+    final theme = L10nService.get('houses.themes.$houseNumber', widget.language);
+    final trait = L10nService.get('houses.sign_traits.$signKey', widget.language);
 
-    final theme = houseThemes[houseNumber] ?? 'bu alan';
-    final trait = signTraits[sign] ?? 'benzersiz bir şekilde';
+    // Use template from JSON if available, otherwise build manually
+    final template = L10nService.get('houses.sign_interpretation_template', widget.language);
+    if (template.isNotEmpty && !template.contains('houses.sign_interpretation_template')) {
+      return template
+          .replaceAll('{houseNumber}', houseNumber.toString())
+          .replaceAll('{signName}', signName)
+          .replaceAll('{themes}', theme)
+          .replaceAll('{traits}', trait);
+    }
 
-    return '$signName enerjisi $houseNumber. evinde $theme konularına yaklaşımını $trait şekillendiriyor. Bu yerleşim, bu hayat alanında nasıl hareket ettiğini ve deneyimlediğini gösteriyor.';
+    // Fallback manual construction
+    return '$signName $houseNumber. ${L10nService.get('natal_chart.house', widget.language)} $theme $trait.';
   }
 
   String _getPlanetsInHouseInterpretation(
@@ -454,29 +239,24 @@ class _HouseRowState extends State<_HouseRow> {
   ) {
     if (planets.isEmpty) return '';
 
-    final houseAreas = {
-      1: 'kimlik ve benlik ifaden',
-      2: 'para ve değerler alanın',
-      3: 'iletişim ve öğrenme tarzın',
-      4: 'aile ve yuva dinamiklerin',
-      5: 'yaratıcılık ve romantizm alanın',
-      6: 'iş ve sağlık rutinlerin',
-      7: 'ilişki ve ortaklık dinamiklerin',
-      8: 'dönüşüm ve paylaşım alanın',
-      9: 'anlam arayışı ve öğrenme yolculuğun',
-      10: 'kariyer ve toplumsal rolün',
-      11: 'sosyal bağlantılar ve ideallerin',
-      12: 'bilinçaltı ve spiritüel yolculuğun',
-    };
-
-    final area = houseAreas[houseNumber] ?? 'bu alan';
+    final area = L10nService.get('houses.planet_areas.$houseNumber', widget.language);
     final planetNames = planets.map((p) => p.planet.localizedName(widget.language)).join(', ');
     final count = planets.length;
 
-    if (count == 1) {
-      return '$planetNames bu evde konumlanmış - $area ${planets.first.planet.meaning.toLowerCase()} enerjisiyle güçleniyor.';
+    // Build interpretation based on language
+    if (widget.language == AppLanguage.en) {
+      if (count == 1) {
+        return '$planetNames is positioned in this house - $area is strengthened with ${planets.first.planet.meaning.toLowerCase()} energy.';
+      } else {
+        return 'There are $count planets in this house: $planetNames. $area is active and intense with multiple planetary energies.';
+      }
     } else {
-      return 'Bu evde $count gezegen var: $planetNames. $area çoklu gezegen enerjileriyle aktif ve yoğun.';
+      // Turkish fallback
+      if (count == 1) {
+        return '$planetNames bu evde konumlanmış - $area ${planets.first.planet.meaning.toLowerCase()} enerjisiyle güçleniyor.';
+      } else {
+        return 'Bu evde $count gezegen var: $planetNames. $area çoklu gezegen enerjileriyle aktif ve yoğun.';
+      }
     }
   }
 
@@ -682,7 +462,7 @@ class _HouseRowState extends State<_HouseRow> {
                   Icon(Icons.auto_awesome, size: 16, color: AppColors.starGold),
                   const SizedBox(width: 8),
                   Text(
-                    'Bu Evin Anlamı',
+                    L10nService.get('houses.house_meaning', widget.language),
                     style: Theme.of(context).textTheme.labelMedium?.copyWith(
                       color: AppColors.starGold,
                       fontWeight: FontWeight.bold,
@@ -719,7 +499,8 @@ class _HouseRowState extends State<_HouseRow> {
                         ),
                         const SizedBox(width: 6),
                         Text(
-                          '${zodiac.ZodiacSignExtension(widget.house.sign).localizedName(widget.language)} Yönetiminde',
+                          L10nService.get('houses.under_sign_rule', widget.language)
+                              .replaceAll('{signName}', zodiac.ZodiacSignExtension(widget.house.sign).localizedName(widget.language)),
                           style: Theme.of(context).textTheme.labelSmall
                               ?.copyWith(
                                 color: signColor,
@@ -751,7 +532,7 @@ class _HouseRowState extends State<_HouseRow> {
                     Icon(Icons.public, size: 16, color: AppColors.auroraStart),
                     const SizedBox(width: 8),
                     Text(
-                      'Bu Evdeki Gezegenler',
+                      L10nService.get('houses.planets_in_house', widget.language),
                       style: Theme.of(context).textTheme.labelMedium?.copyWith(
                         color: AppColors.auroraStart,
                         fontWeight: FontWeight.bold,
@@ -826,7 +607,7 @@ class _HouseRowState extends State<_HouseRow> {
                       const SizedBox(width: 8),
                       Expanded(
                         child: Text(
-                          'Bu evde gezegen yok - bu alanın aktif olmadığı anlamına gelmez. Evin yönetici burcu olan ${zodiac.ZodiacSignExtension(widget.house.sign).localizedName(widget.language)} ve onun yönetici gezegeni bu alanı aktive eder.',
+                          L10nService.get('houses.no_planets_info', widget.language),
                           style: Theme.of(context).textTheme.bodySmall
                               ?.copyWith(
                                 color: AppColors.textMuted,
@@ -846,20 +627,10 @@ class _HouseRowState extends State<_HouseRow> {
   }
 
   String _getEsotericTitle(int houseNumber) {
-    final titles = {
-      1: 'Benliğin Kapısı',
-      2: 'Değerler Tapınağı',
-      3: 'Zihnin Bahçesi',
-      4: 'Ruhun Kökü',
-      5: 'Yaratıcının Sahnesi',
-      6: 'Hizmetin Atelyesi',
-      7: 'Aynanın Ötesi',
-      8: 'Dönüşümün Kuyusu',
-      9: 'Hakikat Arayışı',
-      10: 'Zirvenin Tacı',
-      11: 'Rüyaların Kolektifi',
-      12: 'Sonsuzluğun Kapısı',
-    };
-    return titles[houseNumber] ?? '$houseNumber. Ev';
+    final title = L10nService.get('houses.esoteric.$houseNumber.title', widget.language);
+    if (title.isNotEmpty && !title.contains('houses.esoteric')) {
+      return title;
+    }
+    return '$houseNumber. ${L10nService.get('natal_chart.house', widget.language)}';
   }
 }

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/constants/app_constants.dart';
+import '../../data/providers/app_providers.dart';
+import '../../data/services/l10n_service.dart';
 
 /// Premium Upsell Widget Types
 enum PremiumUpsellType {
@@ -16,118 +19,204 @@ enum PremiumUpsellType {
 
 /// Premium Upsell Widget
 /// Contextual premium feature promotion
-class PremiumUpsell extends StatelessWidget {
+class PremiumUpsell extends ConsumerWidget {
   final PremiumUpsellType type;
-  final String title;
-  final String description;
-  final String ctaText;
+  final String? titleOverride;
+  final String? descriptionOverride;
+  final String? ctaTextOverride;
   final List<String>? features;
   final IconData? icon;
   final VoidCallback? onTap;
   final bool dismissible;
+  final _UpsellPreset _preset;
 
   const PremiumUpsell({
     super.key,
     this.type = PremiumUpsellType.card,
-    this.title = 'Premium ile Daha Fazlasını Keşfet',
-    this.description = 'Sınırsız harita, detaylı raporlar ve kişiselleştirilmiş içerikler',
-    this.ctaText = 'Premium\'a Geç',
+    String? title,
+    String? description,
+    String? ctaText,
     this.features,
     this.icon,
     this.onTap,
     this.dismissible = false,
-  });
+  })  : titleOverride = title,
+        descriptionOverride = description,
+        ctaTextOverride = ctaText,
+        _preset = _UpsellPreset.defaultPreset;
 
   /// Factory for birth chart upsell
-  factory PremiumUpsell.birthChart() {
-    return const PremiumUpsell(
-      type: PremiumUpsellType.card,
-      title: 'Detaylı Harita Analizi',
-      description: 'Tüm gezegen yorumları, ev analizleri ve aspect detayları',
-      ctaText: 'Premium ile Aç',
-      icon: Icons.auto_graph,
-      features: [
-        'Tüm gezegen yorumları',
-        'Ev yerleşimi analizleri',
-        'Aspect pattern\'ler',
-        'PDF rapor indirme',
-      ],
-    );
-  }
+  const PremiumUpsell.birthChart({
+    super.key,
+    this.onTap,
+  })  : type = PremiumUpsellType.card,
+        titleOverride = null,
+        descriptionOverride = null,
+        ctaTextOverride = null,
+        features = null,
+        icon = Icons.auto_graph,
+        dismissible = false,
+        _preset = _UpsellPreset.birthChart;
 
   /// Factory for transit report upsell
-  factory PremiumUpsell.transits() {
-    return const PremiumUpsell(
-      type: PremiumUpsellType.card,
-      title: 'Kişisel Transit Raporları',
-      description: 'Transitler doğum haritanıza nasıl etkiliyor?',
-      ctaText: 'Premium ile Gör',
-      icon: Icons.timeline,
-      features: [
-        'Kişisel transit etkileri',
-        'Kritik tarih uyarıları',
-        'Retrograd raporları',
-        'Aylık transit özeti',
-      ],
-    );
-  }
+  const PremiumUpsell.transits({
+    super.key,
+    this.onTap,
+  })  : type = PremiumUpsellType.card,
+        titleOverride = null,
+        descriptionOverride = null,
+        ctaTextOverride = null,
+        features = null,
+        icon = Icons.timeline,
+        dismissible = false,
+        _preset = _UpsellPreset.transits;
 
   /// Factory for compatibility upsell
-  factory PremiumUpsell.compatibility() {
-    return const PremiumUpsell(
-      type: PremiumUpsellType.card,
-      title: 'Detaylı Uyum Raporu',
-      description: 'İlişkinizin tüm boyutlarını keşfedin',
-      ctaText: 'Premium ile Analiz Et',
-      icon: Icons.favorite,
-      features: [
-        'Synastry aspect detayları',
-        'Kompozit harita analizi',
-        'Güçlü ve zayıf yönler',
-        'İlişki dinamikleri raporu',
-      ],
-    );
-  }
+  const PremiumUpsell.compatibility({
+    super.key,
+    this.onTap,
+  })  : type = PremiumUpsellType.card,
+        titleOverride = null,
+        descriptionOverride = null,
+        ctaTextOverride = null,
+        features = null,
+        icon = Icons.favorite,
+        dismissible = false,
+        _preset = _UpsellPreset.compatibility;
 
   /// Factory for subtle inline upsell
-  factory PremiumUpsell.subtle(String featureName) {
-    return PremiumUpsell(
-      type: PremiumUpsellType.subtle,
-      title: featureName,
-      description: 'Premium özellik',
-      ctaText: 'Premium',
-    );
-  }
+  const PremiumUpsell.subtle({
+    super.key,
+    required String featureName,
+    this.onTap,
+  })  : type = PremiumUpsellType.subtle,
+        titleOverride = featureName,
+        descriptionOverride = null,
+        ctaTextOverride = null,
+        features = null,
+        icon = null,
+        dismissible = false,
+        _preset = _UpsellPreset.subtle;
 
   /// Factory for banner upsell
-  factory PremiumUpsell.banner() {
-    return const PremiumUpsell(
-      type: PremiumUpsellType.banner,
-      title: 'Kozmik Yolculuğunuzu Derinleştirin',
-      description: 'Premium ile sınırsız erişim ve kişiselleştirilmiş rehberlik',
-      ctaText: 'Hemen Başla',
-      icon: Icons.auto_awesome,
-    );
-  }
+  const PremiumUpsell.banner({
+    super.key,
+    this.onTap,
+  })  : type = PremiumUpsellType.banner,
+        titleOverride = null,
+        descriptionOverride = null,
+        ctaTextOverride = null,
+        features = null,
+        icon = Icons.auto_awesome,
+        dismissible = false,
+        _preset = _UpsellPreset.banner;
 
-  @override
-  Widget build(BuildContext context) {
-    switch (type) {
-      case PremiumUpsellType.banner:
-        return _buildBanner(context);
-      case PremiumUpsellType.card:
-        return _buildCard(context);
-      case PremiumUpsellType.inline:
-        return _buildInline(context);
-      case PremiumUpsellType.subtle:
-        return _buildSubtle(context);
-      case PremiumUpsellType.modal:
-        return _buildCard(context); // Modal uses same UI, different presentation
+  String _getTitle(AppLanguage language) {
+    if (titleOverride != null) return titleOverride!;
+    switch (_preset) {
+      case _UpsellPreset.birthChart:
+        return L10nService.get('widgets.premium_upsell.birth_chart_title', language);
+      case _UpsellPreset.transits:
+        return L10nService.get('widgets.premium_upsell.transits_title', language);
+      case _UpsellPreset.compatibility:
+        return L10nService.get('widgets.premium_upsell.compatibility_title', language);
+      case _UpsellPreset.banner:
+        return L10nService.get('widgets.premium_upsell.banner_title', language);
+      case _UpsellPreset.subtle:
+        return titleOverride ?? '';
+      case _UpsellPreset.defaultPreset:
+        return L10nService.get('widgets.premium_upsell.default_title', language);
     }
   }
 
-  Widget _buildBanner(BuildContext context) {
+  String _getDescription(AppLanguage language) {
+    if (descriptionOverride != null) return descriptionOverride!;
+    switch (_preset) {
+      case _UpsellPreset.birthChart:
+        return L10nService.get('widgets.premium_upsell.birth_chart_description', language);
+      case _UpsellPreset.transits:
+        return L10nService.get('widgets.premium_upsell.transits_description', language);
+      case _UpsellPreset.compatibility:
+        return L10nService.get('widgets.premium_upsell.compatibility_description', language);
+      case _UpsellPreset.banner:
+        return L10nService.get('widgets.premium_upsell.banner_description', language);
+      case _UpsellPreset.subtle:
+        return L10nService.get('widgets.premium_upsell.subtle_description', language);
+      case _UpsellPreset.defaultPreset:
+        return L10nService.get('widgets.premium_upsell.default_description', language);
+    }
+  }
+
+  String _getCtaText(AppLanguage language) {
+    if (ctaTextOverride != null) return ctaTextOverride!;
+    switch (_preset) {
+      case _UpsellPreset.birthChart:
+        return L10nService.get('widgets.premium_upsell.birth_chart_cta', language);
+      case _UpsellPreset.transits:
+        return L10nService.get('widgets.premium_upsell.transits_cta', language);
+      case _UpsellPreset.compatibility:
+        return L10nService.get('widgets.premium_upsell.compatibility_cta', language);
+      case _UpsellPreset.banner:
+        return L10nService.get('widgets.premium_upsell.banner_cta', language);
+      case _UpsellPreset.subtle:
+        return L10nService.get('widgets.premium_upsell.pro_badge', language);
+      case _UpsellPreset.defaultPreset:
+        return L10nService.get('widgets.premium_upsell.default_cta', language);
+    }
+  }
+
+  List<String> _getFeatures(AppLanguage language) {
+    if (features != null) return features!;
+    switch (_preset) {
+      case _UpsellPreset.birthChart:
+        return [
+          L10nService.get('widgets.premium_upsell.birth_chart_feature_1', language),
+          L10nService.get('widgets.premium_upsell.birth_chart_feature_2', language),
+          L10nService.get('widgets.premium_upsell.birth_chart_feature_3', language),
+          L10nService.get('widgets.premium_upsell.birth_chart_feature_4', language),
+        ];
+      case _UpsellPreset.transits:
+        return [
+          L10nService.get('widgets.premium_upsell.transits_feature_1', language),
+          L10nService.get('widgets.premium_upsell.transits_feature_2', language),
+          L10nService.get('widgets.premium_upsell.transits_feature_3', language),
+          L10nService.get('widgets.premium_upsell.transits_feature_4', language),
+        ];
+      case _UpsellPreset.compatibility:
+        return [
+          L10nService.get('widgets.premium_upsell.compatibility_feature_1', language),
+          L10nService.get('widgets.premium_upsell.compatibility_feature_2', language),
+          L10nService.get('widgets.premium_upsell.compatibility_feature_3', language),
+          L10nService.get('widgets.premium_upsell.compatibility_feature_4', language),
+        ];
+      default:
+        return [];
+    }
+  }
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final language = ref.watch(languageProvider);
+
+    switch (type) {
+      case PremiumUpsellType.banner:
+        return _buildBanner(context, language);
+      case PremiumUpsellType.card:
+        return _buildCard(context, language);
+      case PremiumUpsellType.inline:
+        return _buildInline(context, language);
+      case PremiumUpsellType.subtle:
+        return _buildSubtle(context, language);
+      case PremiumUpsellType.modal:
+        return _buildCard(context, language); // Modal uses same UI, different presentation
+    }
+  }
+
+  Widget _buildBanner(BuildContext context, AppLanguage language) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final title = _getTitle(language);
+    final description = _getDescription(language);
+    final ctaText = _getCtaText(language);
 
     return Container(
       width: double.infinity,
@@ -197,7 +286,7 @@ class PremiumUpsell extends StatelessWidget {
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: Text(
-                            'PREMIUM',
+                            L10nService.get('widgets.premium_upsell.premium_badge', language),
                             style: GoogleFonts.raleway(
                               fontSize: 10,
                               fontWeight: FontWeight.w700,
@@ -233,7 +322,7 @@ class PremiumUpsell extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 16),
-          _buildCtaButton(context),
+          _buildCtaButton(context, language, compact: false),
         ],
       ),
     ).animate()
@@ -241,8 +330,11 @@ class PremiumUpsell extends StatelessWidget {
         .slideY(begin: 0.1, curve: Curves.easeOut);
   }
 
-  Widget _buildCard(BuildContext context) {
+  Widget _buildCard(BuildContext context, AppLanguage language) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final title = _getTitle(language);
+    final description = _getDescription(language);
+    final featuresList = _getFeatures(language);
 
     return Container(
       margin: const EdgeInsets.symmetric(
@@ -318,7 +410,7 @@ class PremiumUpsell extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Text(
-                  'PRO',
+                  L10nService.get('widgets.premium_upsell.pro_badge', language),
                   style: GoogleFonts.raleway(
                     fontSize: 10,
                     fontWeight: FontWeight.w700,
@@ -340,9 +432,9 @@ class PremiumUpsell extends StatelessWidget {
             ),
           ),
           // Features list
-          if (features != null && features!.isNotEmpty) ...[
+          if (featuresList.isNotEmpty) ...[
             const SizedBox(height: 14),
-            ...features!.map((feature) => Padding(
+            ...featuresList.map((feature) => Padding(
                   padding: const EdgeInsets.only(bottom: 6),
                   child: Row(
                     children: [
@@ -369,7 +461,7 @@ class PremiumUpsell extends StatelessWidget {
                 )),
           ],
           const SizedBox(height: 16),
-          _buildCtaButton(context, compact: true),
+          _buildCtaButton(context, language, compact: true),
         ],
       ),
     ).animate()
@@ -377,8 +469,9 @@ class PremiumUpsell extends StatelessWidget {
         .scale(begin: const Offset(0.98, 0.98));
   }
 
-  Widget _buildInline(BuildContext context) {
+  Widget _buildInline(BuildContext context, AppLanguage language) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final title = _getTitle(language);
 
     return GestureDetector(
       onTap: onTap ?? () => context.push('/premium'),
@@ -427,8 +520,9 @@ class PremiumUpsell extends StatelessWidget {
     );
   }
 
-  Widget _buildSubtle(BuildContext context) {
+  Widget _buildSubtle(BuildContext context, AppLanguage language) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final title = _getTitle(language);
 
     return GestureDetector(
       onTap: onTap ?? () => context.push('/premium'),
@@ -459,7 +553,9 @@ class PremiumUpsell extends StatelessWidget {
     );
   }
 
-  Widget _buildCtaButton(BuildContext context, {bool compact = false}) {
+  Widget _buildCtaButton(BuildContext context, AppLanguage language, {bool compact = false}) {
+    final ctaText = _getCtaText(language);
+
     return GestureDetector(
       onTap: onTap ?? () => context.push('/premium'),
       child: Container(
@@ -506,9 +602,19 @@ class PremiumUpsell extends StatelessWidget {
   }
 }
 
+enum _UpsellPreset {
+  defaultPreset,
+  birthChart,
+  transits,
+  compatibility,
+  subtle,
+  banner,
+}
+
 /// Show premium upsell modal
 Future<void> showPremiumUpsellModal(
   BuildContext context, {
+  required AppLanguage language,
   String? title,
   String? description,
   List<String>? features,
@@ -547,15 +653,15 @@ Future<void> showPremiumUpsellModal(
               const SizedBox(height: AppConstants.spacingLg),
               PremiumUpsell(
                 type: PremiumUpsellType.card,
-                title: title ?? 'Premium ile Daha Fazlasını Keşfet',
+                title: title ?? L10nService.get('widgets.premium_upsell.modal_default_title', language),
                 description: description ??
-                    'Sınırsız erişim, detaylı raporlar ve kişiselleştirilmiş içerikler',
+                    L10nService.get('widgets.premium_upsell.modal_default_description', language),
                 features: features ??
-                    const [
-                      'Sınırsız doğum haritası',
-                      'Detaylı transit raporları',
-                      'PDF rapor indirme',
-                      'Reklamsız deneyim',
+                    [
+                      L10nService.get('widgets.premium_upsell.modal_feature_1', language),
+                      L10nService.get('widgets.premium_upsell.modal_feature_2', language),
+                      L10nService.get('widgets.premium_upsell.modal_feature_3', language),
+                      L10nService.get('widgets.premium_upsell.modal_feature_4', language),
                     ],
                 onTap: () {
                   Navigator.pop(context);
@@ -566,7 +672,7 @@ Future<void> showPremiumUpsellModal(
               TextButton(
                 onPressed: () => Navigator.pop(context),
                 child: Text(
-                  'Şimdilik Değil',
+                  L10nService.get('widgets.premium_upsell.not_now', language),
                   style: GoogleFonts.raleway(
                     fontSize: 13,
                     fontWeight: FontWeight.w500,

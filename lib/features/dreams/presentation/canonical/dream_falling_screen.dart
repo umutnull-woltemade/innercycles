@@ -69,7 +69,7 @@ class DreamFallingScreen extends ConsumerWidget {
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Text(
-                    'Rüya İzi',
+                    L10nService.get('dreams.canonical.brand_tag', language),
                     style: TextStyle(
                       fontSize: 12,
                       color: AppColors.cosmicPurple,
@@ -80,53 +80,53 @@ class DreamFallingScreen extends ConsumerWidget {
 
                 const SizedBox(height: 32),
 
-                // İlk 3 bullet - Direkt cevap (AI quotable)
+                // Short answer section
                 _buildQuotableSection(
                   isDark: isDark,
-                  title: 'Kısa Cevap',
+                  title: L10nService.get('dreams.canonical.sections.short_answer', language),
                   bullets: [
-                    'Düşme rüyası genellikle kontrol kaybı hissini yansıtır.',
-                    'Hayatta bir şeylerin elimizden kaydığını düşündüğümüzde ortaya çıkar.',
-                    'Düşerken uyanmak, bilinçaltının seni uyandırma refleksidir.',
+                    L10nService.get('dreams.canonical.falling.short_answer_1', language),
+                    L10nService.get('dreams.canonical.falling.short_answer_2', language),
+                    L10nService.get('dreams.canonical.falling.short_answer_3', language),
                   ],
                 ),
 
                 const SizedBox(height: 28),
 
-                // Anlam bölümü
+                // Meaning section
                 _buildQuotableSection(
                   isDark: isDark,
-                  title: 'Ne Anlama Gelir?',
+                  title: L10nService.get('dreams.canonical.sections.what_it_means', language),
                   bullets: [
-                    'Belirsizlik dönemlerinde daha sık görülür.',
-                    'İş, ilişki veya sağlık konusunda endişe taşıyor olabilirsin.',
-                    'Düşüşün hızı, kaygının yoğunluğunu gösterir.',
+                    L10nService.get('dreams.canonical.falling.meaning_1', language),
+                    L10nService.get('dreams.canonical.falling.meaning_2', language),
+                    L10nService.get('dreams.canonical.falling.meaning_3', language),
                   ],
                 ),
 
                 const SizedBox(height: 28),
 
-                // Duygu bölümü
+                // Emotion section
                 _buildQuotableSection(
                   isDark: isDark,
-                  title: 'Hangi Duyguyu Taşır?',
+                  title: L10nService.get('dreams.canonical.falling.emotion_title', language),
                   bullets: [
-                    'Güvensizlik veya yetersizlik hissi.',
-                    'Başarısızlık korkusu.',
-                    'Destek arayışı.',
+                    L10nService.get('dreams.canonical.falling.emotion_1', language),
+                    L10nService.get('dreams.canonical.falling.emotion_2', language),
+                    L10nService.get('dreams.canonical.falling.emotion_3', language),
                   ],
                 ),
 
                 const SizedBox(height: 28),
 
-                // Tekrar bölümü
+                // Recurring section
                 _buildQuotableSection(
                   isDark: isDark,
-                  title: 'Tekrar Ediyorsa',
+                  title: L10nService.get('dreams.canonical.sections.if_recurring', language),
                   bullets: [
-                    'Çözülmemiş bir kaygı işaret eder.',
-                    'Hayatında neyin seni dengesiz hissettirdiğine bak.',
-                    'Kontrol edemediğin durumları kabul etmek rahatlatabilir.',
+                    L10nService.get('dreams.canonical.falling.recurring_1', language),
+                    L10nService.get('dreams.canonical.falling.recurring_2', language),
+                    L10nService.get('dreams.canonical.falling.recurring_3', language),
                   ],
                 ),
 
@@ -138,9 +138,10 @@ class DreamFallingScreen extends ConsumerWidget {
                 const SizedBox(height: 40),
 
                 // Footer with disclaimer
-                const PageFooterWithDisclaimer(
+                PageFooterWithDisclaimer(
                   brandText: 'Rüya İzi — Venus One',
-                  disclaimerText: DisclaimerTexts.dreams,
+                  disclaimerText: DisclaimerTexts.dreams(language),
+                  language: language,
                 ),
               ],
             ),

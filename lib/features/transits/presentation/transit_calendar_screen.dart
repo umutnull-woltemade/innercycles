@@ -22,19 +22,16 @@ class TransitCalendarScreen extends ConsumerStatefulWidget {
 class _TransitCalendarScreenState extends ConsumerState<TransitCalendarScreen> {
   late DateTime _selectedMonth;
   DateTime? _selectedDate;
-  late List<TransitEvent> _monthEvents;
+  List<TransitEvent> _monthEvents = [];
+  AppLanguage? _lastLanguage;
 
   @override
   void initState() {
     super.initState();
     _selectedMonth = DateTime.now();
-    _monthEvents = TransitCalendarService.getMonthEvents(
-      _selectedMonth.year,
-      _selectedMonth.month,
-    );
   }
 
-  void _changeMonth(int delta) {
+  void _changeMonth(int delta, AppLanguage language) {
     setState(() {
       _selectedMonth = DateTime(
         _selectedMonth.year,
@@ -43,14 +40,27 @@ class _TransitCalendarScreenState extends ConsumerState<TransitCalendarScreen> {
       _monthEvents = TransitCalendarService.getMonthEvents(
         _selectedMonth.year,
         _selectedMonth.month,
+        language: language,
       );
       _selectedDate = null;
     });
   }
 
+  void _loadEvents(AppLanguage language) {
+    if (_monthEvents.isEmpty || _lastLanguage != language) {
+      _monthEvents = TransitCalendarService.getMonthEvents(
+        _selectedMonth.year,
+        _selectedMonth.month,
+        language: language,
+      );
+      _lastLanguage = language;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final language = ref.watch(languageProvider);
+    _loadEvents(language);
 
     return Scaffold(
       body: CosmicBackground(
@@ -140,7 +150,7 @@ class _TransitCalendarScreenState extends ConsumerState<TransitCalendarScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           IconButton(
-            onPressed: () => _changeMonth(-1),
+            onPressed: () => _changeMonth(-1, language),
             icon: const Icon(
               Icons.chevron_left,
               color: AppColors.textPrimary,
@@ -176,7 +186,7 @@ class _TransitCalendarScreenState extends ConsumerState<TransitCalendarScreen> {
             ),
           ),
           IconButton(
-            onPressed: () => _changeMonth(1),
+            onPressed: () => _changeMonth(1, language),
             icon: const Icon(
               Icons.chevron_right,
               color: AppColors.textPrimary,
@@ -240,6 +250,7 @@ class _TransitCalendarScreenState extends ConsumerState<TransitCalendarScreen> {
                           _monthEvents = TransitCalendarService.getMonthEvents(
                             _selectedMonth.year,
                             _selectedMonth.month,
+                            language: language,
                           );
                         });
                         Navigator.pop(context);
@@ -653,23 +664,24 @@ class TransitEvent {
 
 /// Transit Calendar Service
 class TransitCalendarService {
-  static List<TransitEvent> getMonthEvents(int year, int month) {
+  static List<TransitEvent> getMonthEvents(int year, int month, {AppLanguage? language}) {
     final events = <TransitEvent>[];
+    final lang = language ?? AppLanguage.en;
 
     // Generate moon phases
-    events.addAll(_generateMoonPhases(year, month));
+    events.addAll(_generateMoonPhases(year, month, lang));
 
     // Generate eclipses (if applicable)
-    events.addAll(_generateEclipses(year, month));
+    events.addAll(_generateEclipses(year, month, lang));
 
     // Generate retrogrades
-    events.addAll(_generateRetrogrades(year, month));
+    events.addAll(_generateRetrogrades(year, month, lang));
 
     // Generate sign ingresses
-    events.addAll(_generateSignIngresses(year, month));
+    events.addAll(_generateSignIngresses(year, month, lang));
 
     // Generate major aspects
-    events.addAll(_generateMajorAspects(year, month));
+    events.addAll(_generateMajorAspects(year, month, lang));
 
     // Sort by date
     events.sort((a, b) => a.date.compareTo(b.date));
@@ -677,7 +689,7 @@ class TransitCalendarService {
     return events;
   }
 
-  static List<TransitEvent> _generateMoonPhases(int year, int month) {
+  static List<TransitEvent> _generateMoonPhases(int year, int month, AppLanguage language) {
     final events = <TransitEvent>[];
 
     // Approximate new moon and full moon dates
@@ -690,13 +702,17 @@ class TransitCalendarService {
     final newMoonSign = moonSigns[(month - 1) % 12];
     final fullMoonSign = moonSigns[(month + 5) % 12];
 
+    final newMoonSignName = newMoonSign.localizedName(language);
+    final fullMoonSignName = fullMoonSign.localizedName(language);
+    final newMoonElementName = newMoonSign.element.localizedName(language);
+
     events.add(
       TransitEvent(
         date: DateTime(year, month, newMoonDay),
-        title: 'Yeni Ay - ${newMoonSign.nameTr}',
-        description:
-            '${newMoonSign.nameTr} burcunda yeni ay. Yeni başlangıçlar için ideal zaman. '
-            '${newMoonSign.element.nameTr} elementi enerjisi hakim.',
+        title: L10nService.get('transit_calendar.new_moon_title', language).replaceAll('{sign}', newMoonSignName),
+        description: L10nService.get('transit_calendar.new_moon_desc', language)
+            .replaceAll('{sign}', newMoonSignName)
+            .replaceAll('{element}', newMoonElementName),
         emoji: '🌑',
         type: TransitEventType.newMoon,
         sign: newMoonSign,
@@ -706,10 +722,8 @@ class TransitCalendarService {
     events.add(
       TransitEvent(
         date: DateTime(year, month, fullMoonDay),
-        title: 'Dolunay - ${fullMoonSign.nameTr}',
-        description:
-            '${fullMoonSign.nameTr} burcunda dolunay. Tamamlanma ve hasat zamanı. '
-            'Duygular yoğunlaşıyor.',
+        title: L10nService.get('transit_calendar.full_moon_title', language).replaceAll('{sign}', fullMoonSignName),
+        description: L10nService.get('transit_calendar.full_moon_desc', language).replaceAll('{sign}', fullMoonSignName),
         emoji: '🌕',
         type: TransitEventType.fullMoon,
         sign: fullMoonSign,
@@ -719,7 +733,7 @@ class TransitCalendarService {
     return events;
   }
 
-  static List<TransitEvent> _generateEclipses(int year, int month) {
+  static List<TransitEvent> _generateEclipses(int year, int month, AppLanguage language) {
     final events = <TransitEvent>[];
 
     // Eclipse seasons typically occur twice a year
@@ -743,16 +757,17 @@ class TransitCalendarService {
       final isSolar = month % 2 == 0;
       final eclipseDay = 8 + (year % 10);
       final eclipseSign = ZodiacSign.values[(month + 2) % 12];
+      final eclipseSignName = eclipseSign.localizedName(language);
 
       events.add(
         TransitEvent(
           date: DateTime(year, month, eclipseDay.clamp(1, 28)),
           title: isSolar
-              ? 'Güneş Tutulması - ${eclipseSign.nameTr}'
-              : 'Ay Tutulması - ${eclipseSign.nameTr}',
+              ? L10nService.get('transit_calendar.solar_eclipse_title', language).replaceAll('{sign}', eclipseSignName)
+              : L10nService.get('transit_calendar.lunar_eclipse_title', language).replaceAll('{sign}', eclipseSignName),
           description: isSolar
-              ? '${eclipseSign.nameTr} burcunda güneş tutulması. Güçlü yeni başlangıçlar. Kader kapıları açılıyor.'
-              : '${eclipseSign.nameTr} burcunda ay tutulması. Büyük kapatışlar ve sonlanmalar. Duygusal dönüşüm.',
+              ? L10nService.get('transit_calendar.solar_eclipse_desc', language).replaceAll('{sign}', eclipseSignName)
+              : L10nService.get('transit_calendar.lunar_eclipse_desc', language).replaceAll('{sign}', eclipseSignName),
           emoji: isSolar ? '🌘' : '🌒',
           type: TransitEventType.eclipse,
           sign: eclipseSign,
@@ -763,7 +778,7 @@ class TransitCalendarService {
     return events;
   }
 
-  static List<TransitEvent> _generateRetrogrades(int year, int month) {
+  static List<TransitEvent> _generateRetrogrades(int year, int month, AppLanguage language) {
     final events = <TransitEvent>[];
 
     // Mercury retrograde periods (approximately 3-4 times per year)
@@ -773,10 +788,8 @@ class TransitCalendarService {
       events.add(
         TransitEvent(
           date: DateTime(year, month, startDay),
-          title: 'Merkur Retro Basliyor',
-          description:
-              'Iletisim, seyahat ve teknolojide aksakliklar yasanabilir. '
-              'Eski konulari gozden gecirin. Yeni sozlesmeler icin bekleyin.',
+          title: L10nService.get('transit_calendar.mercury_retro_start', language),
+          description: L10nService.get('transit_calendar.mercury_retro_desc', language),
           emoji: '☿️',
           type: TransitEventType.retrograde,
         ),
@@ -788,10 +801,8 @@ class TransitCalendarService {
       events.add(
         TransitEvent(
           date: DateTime(year, month, 5),
-          title: 'Venus Retro Basliyor',
-          description:
-              'Ask ve iliskilerde tekrar degerledirme zamani. '
-              'Eski asklar geri donebilir. Estetik kararlari erteleyin.',
+          title: L10nService.get('transit_calendar.venus_retro_start', language),
+          description: L10nService.get('transit_calendar.venus_retro_desc', language),
           emoji: '♀️',
           type: TransitEventType.retrograde,
         ),
@@ -803,10 +814,8 @@ class TransitCalendarService {
       events.add(
         TransitEvent(
           date: DateTime(year, month, 20),
-          title: 'Mars Retro Basliyor',
-          description:
-              'Enerji iceride yonlendirilmeli. Agresif kararlardan kacinin. '
-              'Fiziksel aktivitelerde dikkatli olun.',
+          title: L10nService.get('transit_calendar.mars_retro_start', language),
+          description: L10nService.get('transit_calendar.mars_retro_desc', language),
           emoji: '♂️',
           type: TransitEventType.retrograde,
         ),
@@ -816,20 +825,22 @@ class TransitCalendarService {
     return events;
   }
 
-  static List<TransitEvent> _generateSignIngresses(int year, int month) {
+  static List<TransitEvent> _generateSignIngresses(int year, int month, AppLanguage language) {
     final events = <TransitEvent>[];
 
     // Sun ingress (approximately on 20-22 of each month)
     final sunIngressDay = 20 + (month % 3);
     final nextSign = ZodiacSign.values[month % 12];
+    final signName = nextSign.localizedName(language);
+    final elementName = nextSign.element.localizedName(language);
 
     events.add(
       TransitEvent(
         date: DateTime(year, month, sunIngressDay),
-        title: 'Gunes ${nextSign.nameTr} Burcuna Giriyor',
-        description:
-            '${nextSign.nameTr} sezonu basliyor. ${nextSign.element.nameTr} elementi enerjisi '
-            'yoğunlasiyor. ${nextSign.nameTr} burcunun temalari on plana cikiyor.',
+        title: L10nService.get('transit_calendar.sun_ingress_title', language).replaceAll('{sign}', signName),
+        description: L10nService.get('transit_calendar.sun_ingress_desc', language)
+            .replaceAll('{sign}', signName)
+            .replaceAll('{element}', elementName),
         emoji: '☀️',
         type: TransitEventType.signIngress,
         sign: nextSign,
@@ -839,7 +850,7 @@ class TransitCalendarService {
     return events;
   }
 
-  static List<TransitEvent> _generateMajorAspects(int year, int month) {
+  static List<TransitEvent> _generateMajorAspects(int year, int month, AppLanguage language) {
     final events = <TransitEvent>[];
 
     // Generate some significant planetary aspects
@@ -850,10 +861,8 @@ class TransitCalendarService {
       events.add(
         TransitEvent(
           date: DateTime(year, month, 15),
-          title: 'Jüpiter-Satürn Kavuşumu',
-          description:
-              'Önemli toplumsal ve kişisel dönüşüm. 20 yılda bir gerçekleşen bu '
-              'olay büyük değişimler getirir.',
+          title: L10nService.get('transit_calendar.jupiter_saturn_conjunction', language),
+          description: L10nService.get('transit_calendar.jupiter_saturn_desc', language),
           emoji: '⚡',
           type: TransitEventType.majorAspect,
         ),
@@ -866,10 +875,8 @@ class TransitCalendarService {
       events.add(
         TransitEvent(
           date: DateTime(year, month, aspectDay.clamp(1, 28)),
-          title: 'Mars-Jüpiter Üçgeni',
-          description:
-              'Enerji ve şans buluşuyor. Cesur girişimler için mükemmel zaman. '
-              'Fiziksel aktiviteler ve sporlar destekleniyor.',
+          title: L10nService.get('transit_calendar.mars_jupiter_trine', language),
+          description: L10nService.get('transit_calendar.mars_jupiter_desc', language),
           emoji: '🔥',
           type: TransitEventType.majorAspect,
         ),
@@ -882,10 +889,8 @@ class TransitCalendarService {
       events.add(
         TransitEvent(
           date: DateTime(year, month, aspectDay.clamp(1, 28)),
-          title: 'Venüs-Neptün Kavuşumu',
-          description:
-              'Romantik ve sanatsal ilham. Rüyalar ve hayal gücü güçleniyor. '
-              'Spiritüel aşk deneyimleri.',
+          title: L10nService.get('transit_calendar.venus_neptune_conjunction', language),
+          description: L10nService.get('transit_calendar.venus_neptune_desc', language),
           emoji: '💫',
           type: TransitEventType.majorAspect,
         ),

@@ -828,6 +828,7 @@ class _BirthDataPage extends StatelessWidget {
           BirthDatePicker(
             initialDate: selectedDate,
             onDateChanged: onDateSelected,
+            language: language,
           ).animate().fadeIn(delay: 400.ms, duration: 400.ms),
           const SizedBox(height: AppConstants.spacingLg),
 

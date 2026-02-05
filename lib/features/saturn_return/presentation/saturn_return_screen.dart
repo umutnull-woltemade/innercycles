@@ -74,7 +74,8 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
                 // Entertainment Disclaimer
                 PageFooterWithDisclaimer(
                   brandText: L10nService.get('saturn_return.brand_text', language),
-                  disclaimerText: DisclaimerTexts.astrology,
+                  disclaimerText: DisclaimerTexts.astrology(language),
+                  language: language,
                 ),
                 const SizedBox(height: AppConstants.spacingLg),
               ],
@@ -262,14 +263,14 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         if (yearsUntil > 0) ...[
-          _CountdownUnit(value: yearsUntil, label: 'Yil'),
+          _CountdownUnit(value: yearsUntil, label: L10nService.get('saturn_return.countdown.years', language)),
           const SizedBox(width: 16),
         ],
         if (monthsUntil > 0 || yearsUntil > 0) ...[
-          _CountdownUnit(value: monthsUntil, label: 'Ay'),
+          _CountdownUnit(value: monthsUntil, label: L10nService.get('saturn_return.countdown.months', language)),
           const SizedBox(width: 16),
         ],
-        _CountdownUnit(value: remainingDays, label: 'Gun'),
+        _CountdownUnit(value: remainingDays, label: L10nService.get('saturn_return.countdown.days', language)),
       ],
     );
   }
@@ -279,7 +280,7 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Saturn Donuslerin',
+          L10nService.get('saturn_return.your_returns', language),
           style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 color: AppColors.textPrimary,
               ),
@@ -290,14 +291,14 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
           final returnItem = entry.value;
           return Padding(
             padding: const EdgeInsets.only(bottom: AppConstants.spacingSm),
-            child: _buildReturnCard(context, returnItem),
+            child: _buildReturnCard(context, returnItem, language),
           ).animate().fadeIn(delay: (200 + index * 100).ms, duration: 400.ms);
         }),
       ],
     );
   }
 
-  Widget _buildReturnCard(BuildContext context, SaturnReturn returnItem) {
+  Widget _buildReturnCard(BuildContext context, SaturnReturn returnItem, AppLanguage language) {
     final isPast = returnItem.isPast;
     final isActive = returnItem.isActive;
 
@@ -307,15 +308,15 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
 
     if (isActive) {
       statusColor = AppColors.saturnColor;
-      statusText = 'Aktif';
+      statusText = L10nService.get('saturn_return.status.active', language);
       statusIcon = Icons.radio_button_checked;
     } else if (isPast) {
       statusColor = Colors.green;
-      statusText = 'Tamamlandi';
+      statusText = L10nService.get('saturn_return.status.completed', language);
       statusIcon = Icons.check_circle;
     } else {
       statusColor = AppColors.textMuted;
-      statusText = 'Bekliyor';
+      statusText = L10nService.get('saturn_return.status.pending', language);
       statusIcon = Icons.schedule;
     }
 
@@ -357,7 +358,7 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '${returnItem.returnNumber}. Saturn Donusu',
+                  L10nService.getWithParams('saturn_return.return_title', language, params: {'number': '${returnItem.returnNumber}'}),
                   style: Theme.of(context).textTheme.titleSmall?.copyWith(
                         color: AppColors.textPrimary,
                         fontWeight: FontWeight.w600,
@@ -365,14 +366,14 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
                 ),
                 const SizedBox(height: 2),
                 Text(
-                  _formatDateRange(returnItem.startDate, returnItem.endDate),
+                  _formatDateRange(returnItem.startDate, returnItem.endDate, language),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: AppColors.textSecondary,
                       ),
                 ),
                 const SizedBox(height: 2),
                 Text(
-                  'Yas: ${returnItem.ageAtReturn}',
+                  L10nService.getWithParams('saturn_return.age_label', language, params: {'age': '${returnItem.ageAtReturn}'}),
                   style: Theme.of(context).textTheme.labelSmall?.copyWith(
                         color: AppColors.textMuted,
                       ),
@@ -433,7 +434,7 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
               const Icon(Icons.auto_awesome, color: AppColors.starGold, size: 20),
               const SizedBox(width: 8),
               Text(
-                '${currentOrNext.returnNumber}. Donus Yorumu',
+                L10nService.getWithParams('saturn_return.interpretation_title', language, params: {'number': '${currentOrNext.returnNumber}'}),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       color: AppColors.starGold,
                       fontWeight: FontWeight.bold,
@@ -443,7 +444,7 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
           ),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
-            _getReturnInterpretation(currentOrNext.returnNumber),
+            _getReturnInterpretation(currentOrNext.returnNumber, language),
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   color: AppColors.textPrimary,
                   height: 1.6,
@@ -451,7 +452,7 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
           ),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
-            'Anahtar Temalar:',
+            L10nService.get('saturn_return.key_themes', language),
             style: Theme.of(context).textTheme.labelMedium?.copyWith(
                   color: AppColors.starGold,
                   fontWeight: FontWeight.bold,
@@ -461,7 +462,7 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
           Wrap(
             spacing: 8,
             runSpacing: 8,
-            children: _getReturnThemes(currentOrNext.returnNumber)
+            children: _getReturnThemes(currentOrNext.returnNumber, language)
                 .map((theme) => Container(
                       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                       decoration: BoxDecoration(
@@ -499,7 +500,7 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
               Text('♄', style: TextStyle(fontSize: 24, color: AppColors.saturnColor)),
               const SizedBox(width: 8),
               Text(
-                'Saturn Hakkinda',
+                L10nService.get('saturn_return.about_saturn', language),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       color: AppColors.textPrimary,
                     ),
@@ -507,13 +508,13 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
             ],
           ),
           const SizedBox(height: AppConstants.spacingMd),
-          _buildInfoRow(context, 'Yörünge Süresi', '29.5 yıl'),
-          _buildInfoRow(context, 'Temsil Ettiği', 'Sorumluluk, olgunluk, sınırlar'),
-          _buildInfoRow(context, 'Ev', 'Oğlak (10. ev)'),
-          _buildInfoRow(context, 'Element', 'Toprak'),
+          _buildInfoRow(context, L10nService.get('saturn_return.info.orbital_period', language), L10nService.get('saturn_return.info.orbital_period_value', language)),
+          _buildInfoRow(context, L10nService.get('saturn_return.info.represents', language), L10nService.get('saturn_return.info.represents_value', language)),
+          _buildInfoRow(context, L10nService.get('saturn_return.info.house', language), L10nService.get('saturn_return.info.house_value', language)),
+          _buildInfoRow(context, L10nService.get('saturn_return.info.element', language), L10nService.get('saturn_return.info.element_value', language)),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
-            'Satürn, kozmik öğretmendir. Dönüşlerinde bizi sınırlarımızla, sorumluluklarımızla ve gerçek benliğimizle yüzleştirir.',
+            L10nService.get('saturn_return.info.wisdom_quote', language),
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: AppColors.textSecondary,
                   fontStyle: FontStyle.italic,
@@ -553,51 +554,46 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
     );
   }
 
-  String _formatDateRange(DateTime start, DateTime end, [AppLanguage? language]) {
-    final months = [
-      'Ocak', 'Subat', 'Mart', 'Nisan', 'Mayis', 'Haziran',
-      'Temmuz', 'Agustos', 'Eylul', 'Ekim', 'Kasim', 'Aralik'
+  String _formatDateRange(DateTime start, DateTime end, AppLanguage language) {
+    final monthKeys = [
+      'january', 'february', 'march', 'april', 'may', 'june',
+      'july', 'august', 'september', 'october', 'november', 'december'
     ];
-    return '${months[start.month - 1]} ${start.year} - ${months[end.month - 1]} ${end.year}';
+    final startMonth = L10nService.get('saturn_return.months.${monthKeys[start.month - 1]}', language);
+    final endMonth = L10nService.get('saturn_return.months.${monthKeys[end.month - 1]}', language);
+    return '$startMonth ${start.year} - $endMonth ${end.year}';
   }
 
-  String _getActiveReturnMessage(int returnNumber, [AppLanguage? language]) {
+  String _getActiveReturnMessage(int returnNumber, AppLanguage language) {
     switch (returnNumber) {
       case 1:
-        return 'Yetişkinliğe geçiş döneminde, kariyerini ve hayat yönünü belirliyorsun. Bu dönem zorlu olabilir ama seni güçlendirecek.';
+        return L10nService.get('saturn_return.active_messages.first', language);
       case 2:
-        return 'Yaşamın ikinci yarısına geçiş. Gerçek önceliklerin netleşiyor, bilgeliği deneyimle birleştiriyorsun.';
+        return L10nService.get('saturn_return.active_messages.second', language);
       case 3:
-        return 'Mirası ve yaşam amacını gözden geçirme zamanı. Bilgeliğini gelecek nesillere aktarıyorsun.';
+        return L10nService.get('saturn_return.active_messages.third', language);
       default:
-        return 'Önemli bir yaşam dönüşümündesin.';
+        return L10nService.get('saturn_return.active_messages.default', language);
     }
   }
 
-  String _getReturnInterpretation(int returnNumber) {
+  String _getReturnInterpretation(int returnNumber, AppLanguage language) {
     switch (returnNumber) {
       case 1:
-        return 'İlk Satürn Dönüşü (27-30 yaş), yetişkinliğe geçiş kapısıdır. Bu dönemde gençlikteki hayallerle gerçeklik arasında bir dengeleme yaşarsın. Kariyer, ilişkiler ve yaşam amacı konusunda önemli kararlar alınır. Satürn seni sınırlarınla yüzleştirir ve gerçek potansiyelini ortaya çıkarmana yardımcı olur.';
+        return L10nService.get('saturn_return.interpretations.first', language);
       case 2:
-        return 'İkinci Satürn Dönüşü (57-60 yaş), yaşamın ikinci yarısına geçiştir. Bu dönemde gerçekten neyin önemli olduğunu anlarsın. Kariyerin zirvesinden bilgeliği paylaşma aşamasına geçiş olur. Fiziksel ve duygusal sağlık ön plana çıkar.';
+        return L10nService.get('saturn_return.interpretations.second', language);
       case 3:
-        return 'Üçüncü Satürn Dönüşü (87-90 yaş), yaşam mirasının değerlendirilmesi zamanıdır. Bilgeliğin ve deneyimlerin gelecek nesillere aktarılır. Ruhsal olgunluk ve iç huzur bu dönemin armağanlarıdır.';
+        return L10nService.get('saturn_return.interpretations.third', language);
       default:
         return '';
     }
   }
 
-  List<String> _getReturnThemes(int returnNumber) {
-    switch (returnNumber) {
-      case 1:
-        return ['Kariyer', 'Bağımsızlık', 'Sorumluluk', 'Kimlik', 'Sınırlar'];
-      case 2:
-        return ['Miras', 'Bilgelik', 'Sağlık', 'Öncelikler', 'Anlam'];
-      case 3:
-        return ['Kabul', 'Huzur', 'Aktarım', 'Tamamlanma', 'Ruhsallık'];
-      default:
-        return [];
-    }
+  List<String> _getReturnThemes(int returnNumber, AppLanguage language) {
+    final key = returnNumber == 1 ? 'first' : returnNumber == 2 ? 'second' : 'third';
+    final themes = L10nService.getList('saturn_return.themes.$key', language);
+    return themes.isNotEmpty ? themes : [];
   }
 }
 

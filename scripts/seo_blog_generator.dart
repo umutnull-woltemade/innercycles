@@ -207,9 +207,11 @@ void generateDailyHoroscope(String sign) {
 
   final data = zodiacData[signKey]!;
   final today = DateTime.now();
-  final dateStr = '${today.year}-${today.month.toString().padLeft(2, '0')}-${today.day.toString().padLeft(2, '0')}';
+  final dateStr =
+      '${today.year}-${today.month.toString().padLeft(2, '0')}-${today.day.toString().padLeft(2, '0')}';
 
-  final article = '''
+  final article =
+      '''
 ---
 title: "${data['name']} Horoscope for Today - $dateStr"
 description: "Get your daily ${data['name']} horoscope. Discover what the stars have in store for ${data['name']} (${data['dates']}) today."
@@ -266,7 +268,8 @@ void generateZodiacGuide(String sign) {
 
   final data = zodiacData[signKey]!;
 
-  final article = '''
+  final article =
+      '''
 ---
 title: "Everything You Need to Know About ${data['name']} ${data['symbol']}"
 description: "Complete guide to the ${data['name']} zodiac sign. Learn about ${data['name']} personality traits, compatibility, career strengths, and more."
@@ -298,7 +301,7 @@ Like all signs, ${data['name']} has areas for growth:
 
 ## ${data['name']} in Love & Relationships
 
-When it comes to matters of the heart, ${data['name']} brings their characteristic ${(data['element'] as String?)?.toLowerCase() ?? 'elemental'} energy to relationships.
+When it comes to matters of the heart, ${data['name']} brings their characteristic ${(data['element'])?.toLowerCase() ?? 'elemental'} energy to relationships.
 
 ### Most Compatible Signs
 1. ${_getMostCompatible(signKey, 0)}
@@ -340,7 +343,8 @@ This overview captures the essence of ${data['name']}, but your personal birth c
 }
 
 void generatePlanetInSign(String planet, String sign) {
-  final planetName = planet[0].toUpperCase() + planet.substring(1).toLowerCase();
+  final planetName =
+      planet[0].toUpperCase() + planet.substring(1).toLowerCase();
   final signKey = sign.toLowerCase();
 
   if (!zodiacData.containsKey(signKey)) {
@@ -350,7 +354,8 @@ void generatePlanetInSign(String planet, String sign) {
 
   final data = zodiacData[signKey]!;
 
-  final article = '''
+  final article =
+      '''
 ---
 title: "$planetName in ${data['name']}: What It Means in Your Birth Chart"
 description: "Discover what $planetName in ${data['name']} reveals about your personality, relationships, and life path. Complete astrological interpretation."
@@ -517,7 +522,8 @@ Ready to explore your cosmic blueprint? [Calculate your birth chart now](/birth-
 }
 
 void generateAspectGuide(String aspect) {
-  final aspectName = aspect[0].toUpperCase() + aspect.substring(1).toLowerCase();
+  final aspectName =
+      aspect[0].toUpperCase() + aspect.substring(1).toLowerCase();
 
   final aspectData = {
     'conjunction': {
@@ -554,7 +560,8 @@ void generateAspectGuide(String aspect) {
 
   final data = aspectData[aspect.toLowerCase()]!;
 
-  final article = '''
+  final article =
+      '''
 ---
 title: "Understanding the $aspectName Aspect in Astrology"
 description: "Learn what $aspectName aspects mean in your birth chart. Discover how ${data['degree']} aspects influence your personality and life."
@@ -567,11 +574,11 @@ schema_type: Article
 
 ## What Is a $aspectName?
 
-A $aspectName is an aspect of ${data['degree']} between two planets in a birth chart. It represents ${(data['nature'] as String?)?.toLowerCase() ?? 'dynamic'} energy — ${(data['keywords'] as String?)?.toLowerCase() ?? 'transformative'}.
+A $aspectName is an aspect of ${data['degree']} between two planets in a birth chart. It represents ${(data['nature'])?.toLowerCase() ?? 'dynamic'} energy — ${(data['keywords'])?.toLowerCase() ?? 'transformative'}.
 
 ## The Nature of $aspectName Aspects
 
-$aspectName aspects are considered ${_getAspectNature(aspect.toLowerCase())} aspects in traditional astrology. They create a ${(data['nature'] as String?)?.toLowerCase() ?? 'dynamic'} between the planets involved.
+$aspectName aspects are considered ${_getAspectNature(aspect.toLowerCase())} aspects in traditional astrology. They create a ${(data['nature'])?.toLowerCase() ?? 'dynamic'} between the planets involved.
 
 ### Key Characteristics
 - **Degree:** ${data['degree']}
@@ -661,10 +668,34 @@ String _getBestTime(String sign) {
 }
 
 String _getSignNumber(String sign) {
-  final numbers = ['first', 'second', 'third', 'fourth', 'fifth', 'sixth',
-                   'seventh', 'eighth', 'ninth', 'tenth', 'eleventh', 'twelfth'];
-  final signs = ['aries', 'taurus', 'gemini', 'cancer', 'leo', 'virgo',
-                 'libra', 'scorpio', 'sagittarius', 'capricorn', 'aquarius', 'pisces'];
+  final numbers = [
+    'first',
+    'second',
+    'third',
+    'fourth',
+    'fifth',
+    'sixth',
+    'seventh',
+    'eighth',
+    'ninth',
+    'tenth',
+    'eleventh',
+    'twelfth',
+  ];
+  final signs = [
+    'aries',
+    'taurus',
+    'gemini',
+    'cancer',
+    'leo',
+    'virgo',
+    'libra',
+    'scorpio',
+    'sagittarius',
+    'capricorn',
+    'aquarius',
+    'pisces',
+  ];
   final index = signs.indexOf(sign);
   return index >= 0 ? numbers[index] : 'first';
 }

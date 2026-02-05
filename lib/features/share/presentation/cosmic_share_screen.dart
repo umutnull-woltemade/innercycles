@@ -98,6 +98,7 @@ class _CosmicShareScreenState extends ConsumerState<CosmicShareScreen> {
                             sign: _sign,
                             userName: userProfile?.name,
                             liteMode: liteMode,
+                            language: _language,
                           ),
                         );
                         // Skip animations in lite mode for performance
@@ -365,7 +366,7 @@ class _CosmicShareScreenState extends ConsumerState<CosmicShareScreen> {
             ),
             const SizedBox(height: 16),
             Text(
-              'Instagram\'da Paylaş',
+              L10nService.get('share.share_on_instagram_dialog', _language),
               style: GoogleFonts.playfairDisplay(
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
@@ -404,11 +405,11 @@ class _CosmicShareScreenState extends ConsumerState<CosmicShareScreen> {
                       await Clipboard.setData(ClipboardData(text: fallback.copyText));
                       if (mounted) {
                         Navigator.pop(context);
-                        _showSuccessFeedback('Metin kopyalandı!');
+                        _showSuccessFeedback(L10nService.get('share.text_copied_success', _language));
                       }
                     },
                     icon: const Icon(Icons.copy, size: 18),
-                    label: const Text('Metni Kopyala'),
+                    label: Text(L10nService.get('share.copy_text', _language)),
                     style: OutlinedButton.styleFrom(
                       foregroundColor: MysticalColors.textPrimary,
                       side: BorderSide(color: MysticalColors.amethyst.withOpacity(0.5)),
@@ -424,7 +425,7 @@ class _CosmicShareScreenState extends ConsumerState<CosmicShareScreen> {
                       if (mounted) Navigator.pop(context);
                     },
                     icon: const Icon(Icons.open_in_new, size: 18),
-                    label: const Text('Instagram\'ı Aç'),
+                    label: Text(L10nService.get('share.open_instagram', _language)),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: MysticalColors.amethyst,
                       foregroundColor: Colors.white,
@@ -454,10 +455,12 @@ class _CosmicShareCard extends StatelessWidget {
   final zodiac.ZodiacSign sign;
   final String? userName;
   final bool liteMode;
+  final AppLanguage language;
 
   const _CosmicShareCard({
     required this.content,
     required this.sign,
+    required this.language,
     this.userName,
     this.liteMode = false,
   });
@@ -776,7 +779,7 @@ class _CosmicShareCard extends StatelessWidget {
               ),
               const SizedBox(width: 8),
               Text(
-                'Bugünün Mesajı',
+                L10nService.get('share.todays_message', language),
                 style: GoogleFonts.raleway(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
@@ -842,7 +845,7 @@ class _CosmicShareCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Bugünün Kozmik Enerjisi',
+            L10nService.get('share.todays_cosmic_energy', language),
             style: GoogleFonts.raleway(
               fontSize: 12,
               fontWeight: FontWeight.w600,
@@ -854,7 +857,7 @@ class _CosmicShareCard extends StatelessWidget {
 
           // Energy Level
           _buildEnergyBar(
-            label: 'Enerji Seviyesi',
+            label: L10nService.get('share.energy_level', language),
             value: content.energyMeter.energyLevel,
             color: MysticalColors.auroraGreen,
             description: content.energyMeter.energyDescription,
@@ -863,7 +866,7 @@ class _CosmicShareCard extends StatelessWidget {
 
           // Intuition
           _buildEnergyBar(
-            label: 'Sezgi Gücü',
+            label: L10nService.get('share.intuition_power', language),
             value: content.energyMeter.intuitionStrength,
             color: MysticalColors.amethyst,
             description: content.energyMeter.intuitionDescription,
@@ -912,7 +915,7 @@ class _CosmicShareCard extends StatelessWidget {
             ),
             child: Row(
               children: [
-                Text('Düşün', style: GoogleFonts.raleway(fontSize: 9, color: MysticalColors.textMuted)),
+                Text(L10nService.get('share.reflect', language), style: GoogleFonts.raleway(fontSize: 9, color: MysticalColors.textMuted)),
                 const SizedBox(width: 6),
                 Expanded(
                   child: Stack(
@@ -940,7 +943,7 @@ class _CosmicShareCard extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 6),
-                Text('Hareket', style: GoogleFonts.raleway(fontSize: 9, color: MysticalColors.textMuted)),
+                Text(L10nService.get('share.action', language), style: GoogleFonts.raleway(fontSize: 9, color: MysticalColors.textMuted)),
               ],
             ),
           ),
@@ -1071,7 +1074,7 @@ class _CosmicShareCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Dominant Gezegen',
+                    L10nService.get('share.dominant_planet', language),
                     style: GoogleFonts.raleway(
                       fontSize: 10,
                       color: MysticalColors.textMuted,
@@ -1097,7 +1100,7 @@ class _CosmicShareCard extends StatelessWidget {
               Expanded(
                 child: _buildInfluenceChip(
                   icon: Icons.bolt,
-                  label: 'Aktive Ediyor',
+                  label: L10nService.get('share.activates', language),
                   value: content.planetaryInfluence.activates,
                   color: MysticalColors.auroraGreen,
                 ),
@@ -1106,7 +1109,7 @@ class _CosmicShareCard extends StatelessWidget {
               Expanded(
                 child: _buildInfluenceChip(
                   icon: Icons.block,
-                  label: 'Engelliyor',
+                  label: L10nService.get('share.blocks', language),
                   value: content.planetaryInfluence.blocks,
                   color: MysticalColors.nebulaRose,
                 ),
@@ -1129,7 +1132,7 @@ class _CosmicShareCard extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  'BUGÜNKÜ EYLEM',
+                  L10nService.get('share.todays_action', language),
                   style: GoogleFonts.raleway(
                     fontSize: 9,
                     fontWeight: FontWeight.w600,
@@ -1230,7 +1233,7 @@ class _CosmicShareCard extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            'Gölge & Işık',
+            L10nService.get('share.shadow_light', language),
             style: GoogleFonts.playfairDisplay(
               fontSize: 14,
               fontWeight: FontWeight.w600,
@@ -1257,7 +1260,7 @@ class _CosmicShareCard extends StatelessWidget {
                           Icon(Icons.nights_stay, size: 14, color: MysticalColors.violetMist),
                           const SizedBox(width: 6),
                           Text(
-                            'Gölge',
+                            L10nService.get('share.shadow', language),
                             style: GoogleFonts.raleway(
                               fontSize: 11,
                               fontWeight: FontWeight.w600,
@@ -1267,11 +1270,11 @@ class _CosmicShareCard extends StatelessWidget {
                         ],
                       ),
                       const SizedBox(height: 10),
-                      _buildShadowItem('Meydan Okuma', content.shadowLight.shadowChallenge),
+                      _buildShadowItem(L10nService.get('share.challenge', language), content.shadowLight.shadowChallenge),
                       const SizedBox(height: 8),
-                      _buildShadowItem('Korku', content.shadowLight.shadowFear),
+                      _buildShadowItem(L10nService.get('share.fear', language), content.shadowLight.shadowFear),
                       const SizedBox(height: 8),
-                      _buildShadowItem('Kalıp', content.shadowLight.shadowPattern),
+                      _buildShadowItem(L10nService.get('share.pattern', language), content.shadowLight.shadowPattern),
                     ],
                   ),
                 ),
@@ -1293,7 +1296,7 @@ class _CosmicShareCard extends StatelessWidget {
                           Icon(Icons.wb_sunny, size: 14, color: MysticalColors.starGold),
                           const SizedBox(width: 6),
                           Text(
-                            'Işık',
+                            L10nService.get('share.light', language),
                             style: GoogleFonts.raleway(
                               fontSize: 11,
                               fontWeight: FontWeight.w600,
@@ -1303,11 +1306,11 @@ class _CosmicShareCard extends StatelessWidget {
                         ],
                       ),
                       const SizedBox(height: 10),
-                      _buildLightItem('Güç', content.shadowLight.lightStrength),
+                      _buildLightItem(L10nService.get('share.strength', language), content.shadowLight.lightStrength),
                       const SizedBox(height: 8),
-                      _buildLightItem('Fırsat', content.shadowLight.lightOpportunity),
+                      _buildLightItem(L10nService.get('share.opportunity', language), content.shadowLight.lightOpportunity),
                       const SizedBox(height: 8),
-                      _buildLightItem('Aura', content.shadowLight.lightMagnetic),
+                      _buildLightItem(L10nService.get('share.aura_label', language), content.shadowLight.lightMagnetic),
                     ],
                   ),
                 ),
@@ -1387,7 +1390,7 @@ class _CosmicShareCard extends StatelessWidget {
               Icon(Icons.format_quote, size: 16, color: MysticalColors.amethyst),
               const SizedBox(width: 8),
               Text(
-                'Kozmik Öğütler',
+                L10nService.get('share.cosmic_advice_title', language),
                 style: GoogleFonts.playfairDisplay(
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
@@ -1542,7 +1545,7 @@ class _CosmicShareCard extends StatelessWidget {
               ),
               const SizedBox(width: 8),
               Text(
-                'Bugünün Sesi',
+                L10nService.get('share.todays_voice', language),
                 style: GoogleFonts.playfairDisplay(
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
@@ -1755,7 +1758,7 @@ class _CosmicShareCard extends StatelessWidget {
               ),
               const SizedBox(width: 8),
               Text(
-                'Rüya İzi',
+                L10nService.get('share.dream_trace', language),
                 style: GoogleFonts.playfairDisplay(
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
@@ -1865,7 +1868,7 @@ class _CosmicShareCard extends StatelessWidget {
               ),
               const SizedBox(width: 8),
               Text(
-                'Bugünün Sayısı',
+                L10nService.get('share.todays_number', language),
                 style: GoogleFonts.playfairDisplay(
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
@@ -1953,7 +1956,7 @@ class _CosmicShareCard extends StatelessWidget {
                 ),
                 const SizedBox(width: 6),
                 Text(
-                  'Şanslı Saat: ${content.numerologyInsight.luckyHour}',
+                  '${L10nService.get('share.lucky_hour', language)}: ${content.numerologyInsight.luckyHour}',
                   style: GoogleFonts.raleway(
                     fontSize: 10,
                     fontWeight: FontWeight.w600,
@@ -1990,7 +1993,7 @@ class _CosmicShareCard extends StatelessWidget {
         children: [
           // Header
           Text(
-            '༄ Tantra ༄',
+            '༄ ${L10nService.get('share.tantra_title', language)} ༄',
             style: GoogleFonts.playfairDisplay(
               fontSize: 14,
               fontWeight: FontWeight.w600,
@@ -2003,7 +2006,7 @@ class _CosmicShareCard extends StatelessWidget {
           // Breath focus
           _buildTantraItem(
             icon: '🌬️',
-            label: 'Nefes',
+            label: L10nService.get('share.breath', language),
             value: content.tantraWisdom.breathFocus,
           ),
           const SizedBox(height: 10),
@@ -2011,7 +2014,7 @@ class _CosmicShareCard extends StatelessWidget {
           // Awareness point
           _buildTantraItem(
             icon: '👁️',
-            label: 'Farkındalık',
+            label: L10nService.get('share.awareness', language),
             value: content.tantraWisdom.awarenessPoint,
           ),
           const SizedBox(height: 10),
@@ -2135,7 +2138,7 @@ class _CosmicShareCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Denge Seviyesi',
+                    L10nService.get('share.balance_level', language),
                     style: GoogleFonts.raleway(
                       fontSize: 10,
                       color: MysticalColors.textMuted,
@@ -2209,7 +2212,7 @@ class _CosmicShareCard extends StatelessWidget {
               ),
               const SizedBox(width: 8),
               Text(
-                'Kozmik Zamanlama',
+                L10nService.get('share.cosmic_timing', language),
                 style: GoogleFonts.playfairDisplay(
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
@@ -2239,7 +2242,7 @@ class _CosmicShareCard extends StatelessWidget {
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        'Altın Saat',
+                        L10nService.get('share.golden_hour', language),
                         style: GoogleFonts.raleway(
                           fontSize: 9,
                           fontWeight: FontWeight.w600,
@@ -2275,7 +2278,7 @@ class _CosmicShareCard extends StatelessWidget {
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        'Dikkatli Ol',
+                        L10nService.get('share.be_careful', language),
                         style: GoogleFonts.raleway(
                           fontSize: 9,
                           fontWeight: FontWeight.w600,
@@ -2364,7 +2367,7 @@ class _CosmicShareCard extends StatelessWidget {
         ),
         const SizedBox(height: 6),
         Text(
-          'Evrenin fısıltılarını dinle',
+          L10nService.get('share.listen_to_universe', language),
           style: GoogleFonts.raleway(
             fontSize: 10,
             fontStyle: FontStyle.italic,

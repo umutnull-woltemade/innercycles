@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/content/numerology_content.dart';
+import '../../../data/providers/app_providers.dart';
+import '../../../data/services/l10n_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/kadim_not_card.dart';
 import '../../../shared/widgets/next_blocks.dart';
@@ -14,13 +17,14 @@ import '../../../shared/widgets/page_bottom_navigation.dart';
 ///
 /// 9 yıllık döngüdeki her yıl (1-9) için detaylı içerik.
 /// Kullanıcının kişisel yılına göre rehberlik sunar.
-class PersonalYearScreen extends StatelessWidget {
+class PersonalYearScreen extends ConsumerWidget {
   final int year;
 
   const PersonalYearScreen({super.key, required this.year});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final language = ref.watch(languageProvider);
     final content = personalYearContents[year];
 
     if (content == null) {
@@ -28,7 +32,7 @@ class PersonalYearScreen extends StatelessWidget {
         body: CosmicBackground(
           child: Center(
             child: Text(
-              'Kişisel yıl bilgisi bulunamadı',
+              L10nService.get('numerology.personal_year_not_found', language),
               style: Theme.of(
                 context,
               ).textTheme.bodyLarge?.copyWith(color: AppColors.textSecondary),
@@ -48,7 +52,7 @@ class PersonalYearScreen extends StatelessWidget {
                 floating: true,
                 snap: true,
                 expandedHeight: 200,
-                flexibleSpace: _buildHeader(context, content),
+                flexibleSpace: _buildHeader(context, content, language),
                 leading: IconButton(
                   icon: const Icon(
                     Icons.arrow_back,
@@ -62,32 +66,32 @@ class PersonalYearScreen extends StatelessWidget {
                 sliver: SliverList(
                   delegate: SliverChildListDelegate([
                     // Theme Card
-                    _buildThemeCard(context, content),
+                    _buildThemeCard(context, content, language),
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Guidance
-                    _buildGuidanceSection(context, content.guidance),
+                    _buildGuidanceSection(context, content.guidance, language),
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Kadim Not
                     KadimNotCard(
-                      title: '$year. Yılın Bilgeliği',
+                      title: L10nService.get('numerology.year_wisdom', language).replaceAll('{number}', year.toString()),
                       content: content.viralQuote,
                       category: KadimCategory.numerology,
-                      source: 'Döngüsel Bilgelik',
+                      source: L10nService.get('numerology.cyclical_wisdom', language),
                     ),
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Focus & Avoid
-                    _buildFocusAvoidSection(context, content),
+                    _buildFocusAvoidSection(context, content, language),
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Affirmation
-                    _buildAffirmationCard(context, content.affirmation),
+                    _buildAffirmationCard(context, content.affirmation, language),
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Year Cycle Visual
-                    _buildYearCycleVisual(context, year),
+                    _buildYearCycleVisual(context, year, language),
                     const SizedBox(height: AppConstants.spacingXl),
 
                     // Next Blocks
@@ -95,7 +99,7 @@ class PersonalYearScreen extends StatelessWidget {
                     const SizedBox(height: AppConstants.spacingXl),
 
                     // Bottom Navigation
-                    const PageBottomNavigation(currentRoute: '/numerology'),
+                    PageBottomNavigation(currentRoute: '/numerology', language: language),
                   ]),
                 ),
               ),
@@ -106,7 +110,7 @@ class PersonalYearScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildHeader(BuildContext context, PersonalYearContent content) {
+  Widget _buildHeader(BuildContext context, PersonalYearContent content, AppLanguage language) {
     final color = _getColorForYear(year);
 
     return FlexibleSpaceBar(
@@ -157,7 +161,7 @@ class PersonalYearScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Text(
-                'Kişisel Yıl',
+                L10nService.get('numerology.personal_year', language),
                 style: Theme.of(context).textTheme.labelSmall?.copyWith(
                   color: color,
                   letterSpacing: 1,
@@ -180,7 +184,7 @@ class PersonalYearScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildThemeCard(BuildContext context, PersonalYearContent content) {
+  Widget _buildThemeCard(BuildContext context, PersonalYearContent content, AppLanguage language) {
     final color = _getColorForYear(year);
 
     return Container(
@@ -208,7 +212,7 @@ class PersonalYearScreen extends StatelessWidget {
               ),
               const SizedBox(width: 12),
               Text(
-                'Yılın Teması',
+                L10nService.get('numerology.year_theme', language),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   color: color,
                   fontWeight: FontWeight.bold,
@@ -239,7 +243,7 @@ class PersonalYearScreen extends StatelessWidget {
                 Icon(Icons.bolt, color: color, size: 16),
                 const SizedBox(width: 4),
                 Text(
-                  'Enerji: ${content.energy}',
+                  '${L10nService.get('numerology.energy', language)} ${content.energy}',
                   style: Theme.of(context).textTheme.labelSmall?.copyWith(
                     color: color,
                     fontWeight: FontWeight.bold,
@@ -253,7 +257,7 @@ class PersonalYearScreen extends StatelessWidget {
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildGuidanceSection(BuildContext context, String guidance) {
+  Widget _buildGuidanceSection(BuildContext context, String guidance, AppLanguage language) {
     final color = _getColorForYear(year);
 
     return Container(
@@ -270,7 +274,7 @@ class PersonalYearScreen extends StatelessWidget {
               Icon(Icons.auto_awesome, color: color, size: 20),
               const SizedBox(width: 8),
               Text(
-                'Yılın Rehberliği',
+                L10nService.get('numerology.year_guidance', language),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   color: color,
                   fontWeight: FontWeight.bold,
@@ -294,6 +298,7 @@ class PersonalYearScreen extends StatelessWidget {
   Widget _buildFocusAvoidSection(
     BuildContext context,
     PersonalYearContent content,
+    AppLanguage language,
   ) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -321,7 +326,7 @@ class PersonalYearScreen extends StatelessWidget {
                     ),
                     const SizedBox(width: 6),
                     Text(
-                      'Odaklan',
+                      L10nService.get('numerology.focus', language),
                       style: Theme.of(context).textTheme.titleSmall?.copyWith(
                         color: AppColors.success,
                         fontWeight: FontWeight.bold,
@@ -359,7 +364,7 @@ class PersonalYearScreen extends StatelessWidget {
                     Icon(Icons.cancel, color: AppColors.error, size: 18),
                     const SizedBox(width: 6),
                     Text(
-                      'Kaçın',
+                      L10nService.get('numerology.avoid', language),
                       style: Theme.of(context).textTheme.titleSmall?.copyWith(
                         color: AppColors.error,
                         fontWeight: FontWeight.bold,
@@ -383,7 +388,7 @@ class PersonalYearScreen extends StatelessWidget {
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildAffirmationCard(BuildContext context, String affirmation) {
+  Widget _buildAffirmationCard(BuildContext context, String affirmation, AppLanguage language) {
     final color = _getColorForYear(year);
 
     return Container(
@@ -415,7 +420,7 @@ class PersonalYearScreen extends StatelessWidget {
           ),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
-            'Yılın Olumlaması',
+            L10nService.get('numerology.year_affirmation', language),
             style: Theme.of(
               context,
             ).textTheme.labelSmall?.copyWith(color: AppColors.textMuted),
@@ -425,7 +430,7 @@ class PersonalYearScreen extends StatelessWidget {
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildYearCycleVisual(BuildContext context, int currentYear) {
+  Widget _buildYearCycleVisual(BuildContext context, int currentYear, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -436,7 +441,7 @@ class PersonalYearScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            '9 Yıllık Döngü',
+            L10nService.get('numerology.nine_year_cycle', language),
             style: Theme.of(
               context,
             ).textTheme.titleSmall?.copyWith(color: AppColors.textPrimary),
@@ -482,7 +487,7 @@ class PersonalYearScreen extends StatelessWidget {
           const SizedBox(height: AppConstants.spacingMd),
           Center(
             child: Text(
-              'Şu an $currentYear. yıldasınız',
+              L10nService.get('numerology.current_year_text', language).replaceAll('{number}', currentYear.toString()),
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
                 color: AppColors.textMuted,
                 fontStyle: FontStyle.italic,

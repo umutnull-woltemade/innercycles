@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/content/venus_homepage_content.dart';
+import '../../../data/providers/app_providers.dart';
+import '../../../data/services/l10n_service.dart';
 
 /// Generic content detail screen for Venus content sections.
 /// Displays markdown-style content from VenusHomepageContent.
-class ContentDetailScreen extends StatelessWidget {
+class ContentDetailScreen extends ConsumerWidget {
   final String contentId;
 
   const ContentDetailScreen({
@@ -14,12 +17,13 @@ class ContentDetailScreen extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final section = VenusHomepageContent.getSectionById(contentId);
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final language = ref.watch(languageProvider);
 
     if (section == null) {
-      return _buildNotFound(context, isDark);
+      return _buildNotFound(context, isDark, language);
     }
 
     return Scaffold(
@@ -363,7 +367,7 @@ class ContentDetailScreen extends StatelessWidget {
         .replaceAll(RegExp(r'\*([^*]+)\*'), r'\1');
   }
 
-  Widget _buildNotFound(BuildContext context, bool isDark) {
+  Widget _buildNotFound(BuildContext context, bool isDark, AppLanguage language) {
     return Scaffold(
       backgroundColor: isDark ? AppColors.deepSpace : AppColors.lightBackground,
       body: SafeArea(
@@ -379,7 +383,7 @@ class ContentDetailScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 24),
                 Text(
-                  'İçerik Bulunamadı',
+                  L10nService.get('screens.content_detail.not_found_title', language),
                   style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.w600,
@@ -390,7 +394,7 @@ class ContentDetailScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Aradığınız içerik mevcut değil.',
+                  L10nService.get('screens.content_detail.not_found_message', language),
                   style: TextStyle(
                     fontSize: 15,
                     color: isDark
@@ -402,7 +406,7 @@ class ContentDetailScreen extends StatelessWidget {
                 ElevatedButton.icon(
                   onPressed: () => context.pop(),
                   icon: const Icon(Icons.arrow_back),
-                  label: const Text('Geri Dön'),
+                  label: Text(L10nService.get('screens.content_detail.go_back', language)),
                   style: ElevatedButton.styleFrom(
                     backgroundColor:
                         isDark ? AppColors.starGold : AppColors.lightStarGold,

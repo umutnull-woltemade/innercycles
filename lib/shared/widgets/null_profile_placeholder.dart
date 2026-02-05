@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/providers/app_providers.dart';
-import '../../data/services/localization_service.dart';
+import '../../data/services/l10n_service.dart';
 import 'cosmic_background.dart';
 
 /// Reusable placeholder widget shown when user profile is null.
@@ -43,7 +43,7 @@ class NullProfilePlaceholder extends ConsumerWidget {
                     ),
                 const SizedBox(height: 16),
                 Text(
-                  L10n.get(titleKey, language),
+                  L10nService.get(titleKey, language),
                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                         color: AppColors.textPrimary,
                         fontWeight: FontWeight.w600,
@@ -52,7 +52,7 @@ class NullProfilePlaceholder extends ConsumerWidget {
                 ).animate().fadeIn(delay: 200.ms),
                 const SizedBox(height: 8),
                 Text(
-                  L10n.get(messageKey, language),
+                  L10nService.get(messageKey, language),
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         color: AppColors.textSecondary,
                       ),
@@ -62,7 +62,7 @@ class NullProfilePlaceholder extends ConsumerWidget {
                 ElevatedButton.icon(
                   onPressed: () => context.go('/onboarding'),
                   icon: const Icon(Icons.person_add_rounded),
-                  label: Text(L10n.get('create_profile', language)),
+                  label: Text(L10nService.get('widgets.null_profile_placeholder.create_profile_button', language)),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.venusPink,
                     foregroundColor: Colors.white,

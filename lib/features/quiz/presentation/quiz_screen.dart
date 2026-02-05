@@ -3,8 +3,10 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../../data/services/l10n_service.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../domain/quiz_models.dart';
 import '../domain/quiz_service.dart';
@@ -39,8 +41,9 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
   }
 
   void _loadQuiz() {
+    final language = ref.read(languageProvider);
     setState(() {
-      _currentQuiz = QuizService.getQuiz(widget.quizType ?? 'general');
+      _currentQuiz = QuizService.getQuiz(widget.quizType ?? 'general', language);
       _isLoading = false;
     });
   }
@@ -63,7 +66,8 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
   }
 
   void _calculateResult() {
-    final result = QuizService.calculateResult(_currentQuiz, _answers);
+    final language = ref.read(languageProvider);
+    final result = QuizService.calculateResult(_currentQuiz, _answers, language);
     setState(() {
       _result = result;
     });
@@ -272,6 +276,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
 
   Widget _buildResultView(BuildContext context, bool isDark) {
     final result = _result!;
+    final language = ref.watch(languageProvider);
 
     return SingleChildScrollView(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -331,11 +336,11 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
 
           // Segment-based CTA
           if (result.segment == QuizSegment.high) ...[
-            _buildPremiumCTA(context, isDark),
+            _buildPremiumCTA(context, isDark, language),
           ] else if (result.segment == QuizSegment.medium) ...[
-            _buildSoftPremiumCTA(context, isDark),
+            _buildSoftPremiumCTA(context, isDark, language),
           ] else ...[
-            _buildExploreCTA(context, isDark),
+            _buildExploreCTA(context, isDark, language),
           ],
           const SizedBox(height: AppConstants.spacingLg),
 
@@ -343,7 +348,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
           TextButton(
             onPressed: () => context.go('/home'),
             child: Text(
-              'Ana Sayfaya Dön',
+              L10nService.get('screens.quiz.return_home', language),
               style: GoogleFonts.raleway(
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
@@ -356,7 +361,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
     );
   }
 
-  Widget _buildPremiumCTA(BuildContext context, bool isDark) {
+  Widget _buildPremiumCTA(BuildContext context, bool isDark, AppLanguage language) {
     // seg=high için agresif premium teklif (%30-40 dönüşüm hedefi)
     return GestureDetector(
       onTap: () => context.push('/premium?source=quiz_high&discount=20'),
@@ -391,7 +396,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
                   const Icon(Icons.local_offer, color: Colors.white, size: 14),
                   const SizedBox(width: 4),
                   Text(
-                    'ÖZEL %20 İNDİRİM',
+                    L10nService.get('screens.quiz.special_discount', language),
                     style: GoogleFonts.raleway(
                       fontSize: 11,
                       fontWeight: FontWeight.w700,
@@ -410,7 +415,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
             ),
             const SizedBox(height: AppConstants.spacingMd),
             Text(
-              'Kişisel Kozmik Haritanı Aç',
+              L10nService.get('screens.quiz.open_cosmic_map', language),
               style: GoogleFonts.cormorantGaramond(
                 fontSize: 22,
                 fontWeight: FontWeight.w700,
@@ -419,7 +424,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
             ),
             const SizedBox(height: AppConstants.spacingSm),
             Text(
-              'Profilin çok güçlü! Kişiselleştirilmiş içerikler seni bekliyor.',
+              L10nService.get('screens.quiz.strong_profile_message', language),
               textAlign: TextAlign.center,
               style: GoogleFonts.raleway(
                 fontSize: 14,
@@ -441,7 +446,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    'Şimdi Başla',
+                    L10nService.get('screens.quiz.start_now', language),
                     style: GoogleFonts.raleway(
                       fontSize: 14,
                       fontWeight: FontWeight.w700,
@@ -456,7 +461,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
             const SizedBox(height: AppConstants.spacingSm),
             // Urgency text
             Text(
-              'Sadece bugün geçerli',
+              L10nService.get('screens.quiz.valid_today_only', language),
               style: GoogleFonts.raleway(
                 fontSize: 11,
                 fontWeight: FontWeight.w500,
@@ -469,7 +474,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
     ).animate().fadeIn(delay: 400.ms).scale(begin: const Offset(0.95, 0.95));
   }
 
-  Widget _buildSoftPremiumCTA(BuildContext context, bool isDark) {
+  Widget _buildSoftPremiumCTA(BuildContext context, bool isDark, AppLanguage language) {
     // seg=medium için soft premium teklif
     return Column(
       children: [
@@ -490,7 +495,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
           child: Column(
             children: [
               Text(
-                'Kozmik yolculuğuna devam etmek ister misin?',
+                L10nService.get('screens.quiz.continue_cosmic_journey', language),
                 style: GoogleFonts.raleway(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
@@ -512,7 +517,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
                     borderRadius: BorderRadius.circular(30),
                   ),
                   child: Text(
-                    'Premium Özellikleri Gör',
+                    L10nService.get('screens.quiz.view_premium_features', language),
                     style: GoogleFonts.raleway(
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
@@ -528,7 +533,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
         TextButton(
           onPressed: () => context.go('/home'),
           child: Text(
-            'Ücretsiz içeriklerle devam et',
+            L10nService.get('screens.quiz.continue_free', language),
             style: GoogleFonts.raleway(
               fontSize: 14,
               fontWeight: FontWeight.w500,
@@ -540,7 +545,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
     ).animate().fadeIn(delay: 400.ms);
   }
 
-  Widget _buildExploreCTA(BuildContext context, bool isDark) {
+  Widget _buildExploreCTA(BuildContext context, bool isDark, AppLanguage language) {
     return GestureDetector(
       onTap: () => context.go('/home'),
       child: Container(
@@ -565,7 +570,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
             ),
             const SizedBox(width: AppConstants.spacingMd),
             Text(
-              'Keşfetmeye Başla',
+              L10nService.get('screens.quiz.start_exploring', language),
               style: GoogleFonts.raleway(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,

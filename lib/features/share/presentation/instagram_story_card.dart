@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../core/theme/mystical_colors.dart';
 import '../../../data/models/zodiac_sign.dart' as zodiac;
 import '../../../data/providers/app_providers.dart';
+import '../../../data/services/l10n_service.dart';
 
 /// Instagram Story formatına uygun kart (1080x1920 - 9:16)
 /// VİRAL & PAYLAŞILABILIR - Instagram trendlerine uygun
@@ -231,81 +232,10 @@ class InstagramStoryCard extends StatelessWidget {
   }
 
   List<String> _getViralHooks(zodiac.ZodiacSign sign) {
-    final hooks = {
-      zodiac.ZodiacSign.aries: [
-        'KOÇ BURCU AMA RED FLAG DEĞİL 🚩',
-        'KAÇIYOR MU KOVALIYORSAN? KOÇ İŞTE 😏',
-        'EN ATEŞLI BURÇ SIRALAMASI: 1️⃣',
-        'KOÇ ENERJİSİ BUGÜN FARKLI HİT EDİYOR',
-      ],
-      zodiac.ZodiacSign.taurus: [
-        'BOĞA AMA TOXIC DEĞİL (BELKİ) 🤭',
-        'LOYALTY TEST: BOĞA KAZANDI 💪',
-        'EN İNATÇI BURÇ? GİRİŞ ÜCRETSİZ 🐂',
-        'BOĞA ENERJİSİ = ZENGİN ENERJİSİ 💰',
-      ],
-      zodiac.ZodiacSign.gemini: [
-        'İKİZLER AMA BİPOLAR DEĞİL (TAMAM BELKİ) 🙃',
-        '2 KİŞİLİK SADECE 1 BURÇ 👯',
-        'İKİZLER BUGÜN HANGİ MOOD? 🎭',
-        'KONUŞKAN MI? İKİZLER CONFIRMED ✅',
-      ],
-      zodiac.ZodiacSign.cancer: [
-        'YENGEÇ AMA AĞLAMIYORUZ (BUGÜN) 🥲',
-        'DUYGUSAL ZEKA: YENGEÇ 100/100 🧠',
-        'KABUĞA ÇEKİLME MODU: ON 🦀',
-        'YENGEÇ SEVGİSİ = GERÇEK SEVGİ 💕',
-      ],
-      zodiac.ZodiacSign.leo: [
-        'ASLAN AMA EGO YOK (YOK DİYORUM) 👑',
-        'SPOTLIGHT KİMİN? ASLAN BURCU 🦁',
-        'DRAMA QUEEN/KING: EVET VE? 💅',
-        'ASLAN ENERJİSİ BUGÜN PARLAK ✨',
-      ],
-      zodiac.ZodiacSign.virgo: [
-        'BAŞAK AMA OBSESİF DEĞİL (ÇOK) 🧹',
-        'PERFECTIONIST? BAŞAK CONFIRMED 💯',
-        'DETAYLARA TAKILMAK: BAŞAK 101 📝',
-        'BAŞAK BURCU = KALİTE GARANTİ ✅',
-      ],
-      zodiac.ZodiacSign.libra: [
-        'TERAZİ AMA KARARSIZ DEĞİL (BELKİ) ⚖️',
-        'ESTETİK ANLAYIŞI: TERAZİ SUPREME 🎨',
-        'HERKES SEVSİN Mİ? TERAZİ EVET 🥰',
-        'TERAZİ DENGESİ BUGÜN TUTTURDU ✨',
-      ],
-      zodiac.ZodiacSign.scorpio: [
-        'AKREP AMA TOXIC DEĞİL (EĞER SEVERSEn) 🦂',
-        'GİZEMLİ Mİ? AKREP ASLA SÖYLEMEZ 🤫',
-        'AKREP BAKIŞI = RÖNTGEN CİHAZI 👀',
-        'EN TUTKULU BURÇ: AKREP DUH 🔥',
-      ],
-      zodiac.ZodiacSign.sagittarius: [
-        'YAY AMA KAÇMIYOR (HEMEN DEĞİL) 🏃',
-        'ÖZGÜRLÜK Mİ SEVGİ Mİ? YAY: İKİSİ 🌍',
-        'MACERACI MI? YAY 7/24 HAZIR ✈️',
-        'YAY ENERJİSİ = POZİTİF VİBES 🌈',
-      ],
-      zodiac.ZodiacSign.capricorn: [
-        'OĞLAK AMA WORKAHOLIC DEĞİL (AZ) 💼',
-        'CEO ENERJİSİ: OĞLAK APPROVED 📈',
-        'SORUMLU MU? OĞLAK BURCU EVET 🏆',
-        'OĞLAK HEDEFİ = GERÇEK OLUYOR 🎯',
-      ],
-      zodiac.ZodiacSign.aquarius: [
-        'KOVA AMA ALIEN DEĞİL (EMİN MİSİN?) 👽',
-        'FARKLI OLMAK: KOVA ÖYLE DOĞDU 🦄',
-        'KOVA FİKİRLERİ = GELECEKTEN 🚀',
-        'REBELLİON MODE: KOVA ON 🔥',
-      ],
-      zodiac.ZodiacSign.pisces: [
-        'BALIK AMA KAÇMIYOR (YÜZÜYOR) 🐟',
-        'HAYALPEREST Mİ? BALIK HER ZAMAN 🌙',
-        'EMPATİ SEVİYESİ: BALIK MAX 💫',
-        'BALIK ENERJİSİ = SEZGI GÜCÜ 🔮',
-      ],
-    };
-    return hooks[sign] ?? ['YILDIZLARIN FAVORİSİ ✨'];
+    final signKey = sign.name.toLowerCase();
+    final hooks = L10nService.getList('share.instagram.viral_hooks.$signKey', language);
+    if (hooks.isNotEmpty) return hooks;
+    return [L10nService.get('share.instagram.default_hook', language)];
   }
 
   // ═══════════════════════════════════════════════════════════════════════════
@@ -444,7 +374,7 @@ class InstagramStoryCard extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            '💬 BUGÜNÜN GERÇEĞI',
+            '💬 ${L10nService.get('share.instagram.todays_truth', language)}',
             style: GoogleFonts.inter(
               fontSize: 10,
               fontWeight: FontWeight.w700,
@@ -470,82 +400,10 @@ class InstagramStoryCard extends StatelessWidget {
 
   String _getViralMessage(zodiac.ZodiacSign sign) {
     final day = DateTime.now().day;
-    final messages = {
-      zodiac.ZodiacSign.aries: [
-        'Bugün biri seni kızdırmaya çalışacak ama sen zaten biliyorsun 😏',
-        'Sabırsızlığın değil, herkes yavaş işte 🔥',
-        'Ego mu? Hayır, özgüven 💪',
-        'Liderlik yapmak değil, herkes takip ediyor sadece 👑',
-      ],
-      zodiac.ZodiacSign.taurus: [
-        'Yemek mi para mı? Cevap: ikisi de 🍕💰',
-        'İnatçı değilim, haklıyım 🤷',
-        'Konfor alanım? Lüks versiyonu lütfen 💎',
-        'Sadık mıyım? Beni üzene kadar evet 🐂',
-      ],
-      zodiac.ZodiacSign.gemini: [
-        'Hangi kişiliğim? Duruma göre değişir 🎭',
-        'Sıkıldım, yeni hobi lazım. Dakika 1 gün 1 👀',
-        'Çok konuşuyorum ama hep doğru 💬',
-        'Kararsız değilim, seçenekler çok 🤔',
-      ],
-      zodiac.ZodiacSign.cancer: [
-        'Ağlamıyorum, gözüme duygularım kaçtı 🥲',
-        'Ev mi dışarı mı? Ev. Her zaman ev 🏠',
-        'Kabuğuma çekiliyorum ama WiFi var 🦀',
-        'Koruyucu değilim, sadece herkes bebek gibi 👶',
-      ],
-      zodiac.ZodiacSign.leo: [
-        'Kompliman beklemiyorum ama... neden gelmiyor? 👑',
-        'Drama queen? Hayır, oscar ödüllü 🏆',
-        'Egom mu? Adına özgüven diyelim ✨',
-        'İlgi mi istiyorum? Hak ediyorum 💅',
-      ],
-      zodiac.ZodiacSign.virgo: [
-        'Eleştirmiyorum, geliştiriyorum 📝',
-        'Mükemmeliyetçi değilim, standartlarım yüksek 💯',
-        'Takıntılı değilim, detaycıyım 🔍',
-        'Temizlik değil, hijyen bilinci 🧹',
-      ],
-      zodiac.ZodiacSign.libra: [
-        'Kararsız değilim, adil olmaya çalışıyorum ⚖️',
-        'Herkes mutlu olsun istiyorum, sorun mu? 🥰',
-        'Estetik takıntısı değil, göz zevki 🎨',
-        'Flörtöz mü? Sadece nazik 💋',
-      ],
-      zodiac.ZodiacSign.scorpio: [
-        'Gizemli değilim, sormadınız 🤫',
-        'İntikamcı değilim, sadece unutmuyorum 🦂',
-        'Yoğun mu? Sıkıcı olmaktansa... 🔥',
-        'Kıskanç değilim, sahipleniyorum 💀',
-      ],
-      zodiac.ZodiacSign.sagittarius: [
-        'Kaçmıyorum, keşfediyorum 🌍',
-        'Taahhüt mü? Yarın konuşalım ✈️',
-        'Brutally honest? Truth hurts 🎯',
-        'Pozitifim çünkü negatiflik yoruyor 🌈',
-      ],
-      zodiac.ZodiacSign.capricorn: [
-        'Workaholic değilim, başarı odaklıyım 💼',
-        'Soğuk değilim, profesyonelim 🧊',
-        'Plan yapmak hobi değil, yaşam tarzı 📈',
-        'Hırslı mı? Hedef odaklı diyelim 🎯',
-      ],
-      zodiac.ZodiacSign.aquarius: [
-        'Garip değilim, zamandan önceyim 👽',
-        'Duygusuz değilim, farklı ifade ediyorum 🤖',
-        'Asi mi? Sisteme karşı değilim, onu değiştiriyorum 🦄',
-        'Bağımsızım çünkü kimse ayak uyduramıyor 🚀',
-      ],
-      zodiac.ZodiacSign.pisces: [
-        'Hayalperest değilim, vizyonerim 🌙',
-        'Hassas mı? Empatik diyelim 💫',
-        'Kaçıyorum mu? Yüzüyorum 🐟',
-        'Duygusal zeka? Tanrı seviyesi 🔮',
-      ],
-    };
-    final signMessages = messages[sign] ?? ['Yıldızlar bugün seninle 🌟'];
-    return signMessages[day % signMessages.length];
+    final signKey = sign.name.toLowerCase();
+    final messages = L10nService.getList('share.instagram.viral_messages.$signKey', language);
+    if (messages.isNotEmpty) return messages[day % messages.length];
+    return L10nService.get('share.instagram.default_message', language);
   }
 
   // ═══════════════════════════════════════════════════════════════════════════
@@ -562,11 +420,11 @@ class InstagramStoryCard extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          _buildBigThreeItem('☀️', 'GÜNEŞ', sign),
+          _buildBigThreeItem('☀️', L10nService.get('share.instagram.sun', language), sign),
           Container(width: 1, height: 35, color: Colors.white.withOpacity(0.1)),
-          _buildBigThreeItem('🌙', 'AY', moonSign ?? sign),
+          _buildBigThreeItem('🌙', L10nService.get('share.instagram.moon', language), moonSign ?? sign),
           Container(width: 1, height: 35, color: Colors.white.withOpacity(0.1)),
-          _buildBigThreeItem('⬆️', 'YÜKSELEN', risingSign ?? sign),
+          _buildBigThreeItem('⬆️', L10nService.get('share.instagram.rising', language), risingSign ?? sign),
         ],
       ),
     );
@@ -634,21 +492,10 @@ class InstagramStoryCard extends StatelessWidget {
   }
 
   List<String> _getViralTraits(zodiac.ZodiacSign sign) {
-    final traits = {
-      zodiac.ZodiacSign.aries: ['🔥 ATEŞLI', '💪 GÜÇLÜ', '🏃 HIZLI', '👑 LİDER'],
-      zodiac.ZodiacSign.taurus: ['💰 ZENGİN VİBE', '🍕 GURME', '💎 LÜKS', '🐂 SADIK'],
-      zodiac.ZodiacSign.gemini: ['🎭 ÇİFT KİŞİLİK', '💬 KONUŞKAN', '🧠 ZEKİ', '🦋 DEĞİŞKEN'],
-      zodiac.ZodiacSign.cancer: ['🏠 EV KURDU', '🥲 DUYGUSAL', '🦀 KORUYUCU', '💕 SEVGİ DOLU'],
-      zodiac.ZodiacSign.leo: ['👑 KRAL/KRALİÇE', '✨ PARLAK', '🦁 CESUR', '💅 DRAMA'],
-      zodiac.ZodiacSign.virgo: ['💯 MÜKEMMELİYETÇİ', '🔍 DETAYCI', '📝 ORGANİZE', '🧹 TEMİZ'],
-      zodiac.ZodiacSign.libra: ['⚖️ DENGELİ', '🎨 ESTETİK', '💋 FLÖRTÖZ', '🥰 UYUMLU'],
-      zodiac.ZodiacSign.scorpio: ['🦂 GİZEMLİ', '🔥 TUTKULU', '👀 SEZGİSEL', '💀 YOĞUN'],
-      zodiac.ZodiacSign.sagittarius: ['✈️ MACERACI', '🌍 GEZGN', '🎯 DÜRÜST', '🌈 POZİTİF'],
-      zodiac.ZodiacSign.capricorn: ['💼 CEO VİBE', '🎯 HEDEF ODAKLI', '📈 BAŞARILI', '🏆 HIRSLII'],
-      zodiac.ZodiacSign.aquarius: ['👽 FARKLI', '🦄 ÖZGÜN', '🚀 YENİLİKÇİ', '🔥 ASİ'],
-      zodiac.ZodiacSign.pisces: ['🌙 HAYALPEREST', '💫 SEZGİSEL', '🐟 AKIŞKAN', '🔮 MİSTİK'],
-    };
-    return traits[sign] ?? ['✨ ÖZEL', '🌟 BENZERSİZ'];
+    final signKey = sign.name.toLowerCase();
+    final traits = L10nService.getList('share.instagram.viral_traits.$signKey', language);
+    if (traits.isNotEmpty) return traits;
+    return L10nService.getList('share.instagram.viral_traits.default', language);
   }
 
   // ═══════════════════════════════════════════════════════════════════════════
@@ -676,11 +523,11 @@ class InstagramStoryCard extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          _buildEsotericItem('💎', 'KRİSTAL', crystal['name']!, crystal['emoji']!),
+          _buildEsotericItem('💎', L10nService.get('share.instagram.crystal', language), crystal['name']!, crystal['emoji']!),
           Container(width: 1, height: 35, color: Colors.white.withOpacity(0.1)),
-          _buildEsotericItem('🃏', 'TAROT', tarot['name']!, tarot['emoji']!),
+          _buildEsotericItem('🃏', L10nService.get('share.instagram.tarot', language), tarot['name']!, tarot['emoji']!),
           Container(width: 1, height: 35, color: Colors.white.withOpacity(0.1)),
-          _buildEsotericItem('🔮', 'ÇAKRA', chakra['name']!, chakra['emoji']!),
+          _buildEsotericItem('🔮', L10nService.get('share.instagram.chakra', language), chakra['name']!, chakra['emoji']!),
         ],
       ),
     );
@@ -727,180 +574,43 @@ class InstagramStoryCard extends StatelessWidget {
 
   Map<String, String> _getDailyCrystal(zodiac.ZodiacSign sign) {
     final day = DateTime.now().day % 4;
-    final crystals = {
-      zodiac.ZodiacSign.aries: [
-        {'name': 'Karnelian', 'emoji': '🔴'},
-        {'name': 'Sitrin', 'emoji': '🟡'},
-        {'name': 'Kırmızı Jasper', 'emoji': '🔴'},
-        {'name': 'Hematit', 'emoji': '⚫'},
-      ],
-      zodiac.ZodiacSign.taurus: [
-        {'name': 'Roze Kuvars', 'emoji': '💖'},
-        {'name': 'Yeşil Aventurin', 'emoji': '💚'},
-        {'name': 'Malakit', 'emoji': '💚'},
-        {'name': 'Lapis Lazuli', 'emoji': '💙'},
-      ],
-      zodiac.ZodiacSign.gemini: [
-        {'name': 'Akvamarin', 'emoji': '💎'},
-        {'name': 'Kaplan Gözü', 'emoji': '🟤'},
-        {'name': 'Sitrin', 'emoji': '🟡'},
-        {'name': 'Fluorit', 'emoji': '💜'},
-      ],
-      zodiac.ZodiacSign.cancer: [
-        {'name': 'Ay Taşı', 'emoji': '🌙'},
-        {'name': 'İnci', 'emoji': '⚪'},
-        {'name': 'Roze Kuvars', 'emoji': '💖'},
-        {'name': 'Selenit', 'emoji': '✨'},
-      ],
-      zodiac.ZodiacSign.leo: [
-        {'name': 'Kaplan Gözü', 'emoji': '🟤'},
-        {'name': 'Güneş Taşı', 'emoji': '🧡'},
-        {'name': 'Pirit', 'emoji': '💛'},
-        {'name': 'Sitrin', 'emoji': '🟡'},
-      ],
-      zodiac.ZodiacSign.virgo: [
-        {'name': 'Amazonit', 'emoji': '💚'},
-        {'name': 'Yeşil Aventurin', 'emoji': '💚'},
-        {'name': 'Peridot', 'emoji': '💚'},
-        {'name': 'Dumanlı Kuvars', 'emoji': '🤎'},
-      ],
-      zodiac.ZodiacSign.libra: [
-        {'name': 'Lepidolit', 'emoji': '💜'},
-        {'name': 'Roze Kuvars', 'emoji': '💖'},
-        {'name': 'Lapis Lazuli', 'emoji': '💙'},
-        {'name': 'Opal', 'emoji': '🌈'},
-      ],
-      zodiac.ZodiacSign.scorpio: [
-        {'name': 'Obsidyen', 'emoji': '⚫'},
-        {'name': 'Labradorit', 'emoji': '💙'},
-        {'name': 'Granat', 'emoji': '🔴'},
-        {'name': 'Malakit', 'emoji': '💚'},
-      ],
-      zodiac.ZodiacSign.sagittarius: [
-        {'name': 'Turkuaz', 'emoji': '💎'},
-        {'name': 'Ametist', 'emoji': '💜'},
-        {'name': 'Lapis Lazuli', 'emoji': '💙'},
-        {'name': 'Sodalit', 'emoji': '💙'},
-      ],
-      zodiac.ZodiacSign.capricorn: [
-        {'name': 'Granat', 'emoji': '🔴'},
-        {'name': 'Oniks', 'emoji': '⚫'},
-        {'name': 'Dumanlı Kuvars', 'emoji': '🤎'},
-        {'name': 'Obsidyen', 'emoji': '⚫'},
-      ],
-      zodiac.ZodiacSign.aquarius: [
-        {'name': 'Ametist', 'emoji': '💜'},
-        {'name': 'Akvamarin', 'emoji': '💎'},
-        {'name': 'Labradorit', 'emoji': '💙'},
-        {'name': 'Fluorit', 'emoji': '💜'},
-      ],
-      zodiac.ZodiacSign.pisces: [
-        {'name': 'Ametist', 'emoji': '💜'},
-        {'name': 'Ay Taşı', 'emoji': '🌙'},
-        {'name': 'Akvamarin', 'emoji': '💎'},
-        {'name': 'Lepidolit', 'emoji': '💜'},
-      ],
-    };
-    final signCrystals = crystals[sign] ?? [{'name': 'Kuvars', 'emoji': '💎'}];
-    return signCrystals[day];
+    final signKey = sign.name.toLowerCase();
+    final crystals = L10nService.getMapList('share.instagram.crystals.$signKey', language);
+    if (crystals.isNotEmpty && day < crystals.length) {
+      return {'name': crystals[day]['name'] ?? '', 'emoji': crystals[day]['emoji'] ?? '💎'};
+    }
+    final defaultCrystals = L10nService.getMapList('share.instagram.crystals.default', language);
+    if (defaultCrystals.isNotEmpty) {
+      return {'name': defaultCrystals[0]['name'] ?? 'Crystal', 'emoji': defaultCrystals[0]['emoji'] ?? '💎'};
+    }
+    return {'name': 'Crystal', 'emoji': '💎'};
   }
 
   Map<String, String> _getDailyTarot(zodiac.ZodiacSign sign) {
     final day = DateTime.now().day % 4;
-    final tarots = {
-      zodiac.ZodiacSign.aries: [
-        {'name': 'İmparator', 'emoji': '👑'},
-        {'name': 'Kule', 'emoji': '🗼'},
-        {'name': 'Savaş Arabası', 'emoji': '🏎️'},
-        {'name': 'Güç', 'emoji': '💪'},
-      ],
-      zodiac.ZodiacSign.taurus: [
-        {'name': 'İmparatoriçe', 'emoji': '👸'},
-        {'name': 'Hierofant', 'emoji': '🙏'},
-        {'name': 'Dünya', 'emoji': '🌍'},
-        {'name': 'Para Asası', 'emoji': '💰'},
-      ],
-      zodiac.ZodiacSign.gemini: [
-        {'name': 'Aşıklar', 'emoji': '💑'},
-        {'name': 'Sihirbaz', 'emoji': '🎩'},
-        {'name': 'Kılıç 2', 'emoji': '⚔️'},
-        {'name': 'Sayfa', 'emoji': '📜'},
-      ],
-      zodiac.ZodiacSign.cancer: [
-        {'name': 'Savaş Arabası', 'emoji': '🏎️'},
-        {'name': 'Ay', 'emoji': '🌙'},
-        {'name': 'Kupa Asası', 'emoji': '🏆'},
-        {'name': 'Yüksek Rahibe', 'emoji': '🧙‍♀️'},
-      ],
-      zodiac.ZodiacSign.leo: [
-        {'name': 'Güç', 'emoji': '💪'},
-        {'name': 'Güneş', 'emoji': '☀️'},
-        {'name': 'Asa Kralı', 'emoji': '👑'},
-        {'name': 'Yıldız', 'emoji': '⭐'},
-      ],
-      zodiac.ZodiacSign.virgo: [
-        {'name': 'Münzevi', 'emoji': '🧘'},
-        {'name': 'Para 8', 'emoji': '💵'},
-        {'name': 'Adalet', 'emoji': '⚖️'},
-        {'name': 'Para Kraliçesi', 'emoji': '👑'},
-      ],
-      zodiac.ZodiacSign.libra: [
-        {'name': 'Adalet', 'emoji': '⚖️'},
-        {'name': 'Aşıklar', 'emoji': '💑'},
-        {'name': 'Kılıç Kraliçesi', 'emoji': '👑'},
-        {'name': 'Ölçülülük', 'emoji': '⚖️'},
-      ],
-      zodiac.ZodiacSign.scorpio: [
-        {'name': 'Ölüm', 'emoji': '💀'},
-        {'name': 'Kule', 'emoji': '🗼'},
-        {'name': 'Kupa Kralı', 'emoji': '👑'},
-        {'name': 'Şeytan', 'emoji': '😈'},
-      ],
-      zodiac.ZodiacSign.sagittarius: [
-        {'name': 'Ölçülülük', 'emoji': '⚖️'},
-        {'name': 'Çark', 'emoji': '🎡'},
-        {'name': 'Asa Şövalyesi', 'emoji': '🏇'},
-        {'name': 'Yıldız', 'emoji': '⭐'},
-      ],
-      zodiac.ZodiacSign.capricorn: [
-        {'name': 'Şeytan', 'emoji': '😈'},
-        {'name': 'İmparator', 'emoji': '👑'},
-        {'name': 'Dünya', 'emoji': '🌍'},
-        {'name': 'Para Kralı', 'emoji': '👑'},
-      ],
-      zodiac.ZodiacSign.aquarius: [
-        {'name': 'Yıldız', 'emoji': '⭐'},
-        {'name': 'Aptal', 'emoji': '🃏'},
-        {'name': 'Kılıç Asası', 'emoji': '⚔️'},
-        {'name': 'Çark', 'emoji': '🎡'},
-      ],
-      zodiac.ZodiacSign.pisces: [
-        {'name': 'Ay', 'emoji': '🌙'},
-        {'name': 'Asılı Adam', 'emoji': '🙃'},
-        {'name': 'Kupa Asası', 'emoji': '🏆'},
-        {'name': 'Yüksek Rahibe', 'emoji': '🧙‍♀️'},
-      ],
-    };
-    final signTarots = tarots[sign] ?? [{'name': 'Aptal', 'emoji': '🃏'}];
-    return signTarots[day];
+    final signKey = sign.name.toLowerCase();
+    final tarots = L10nService.getMapList('share.instagram.tarot_cards.$signKey', language);
+    if (tarots.isNotEmpty && day < tarots.length) {
+      return {'name': tarots[day]['name'] ?? '', 'emoji': tarots[day]['emoji'] ?? '🃏'};
+    }
+    final defaultTarots = L10nService.getMapList('share.instagram.tarot_cards.default', language);
+    if (defaultTarots.isNotEmpty) {
+      return {'name': defaultTarots[0]['name'] ?? 'Tarot', 'emoji': defaultTarots[0]['emoji'] ?? '🃏'};
+    }
+    return {'name': 'Tarot', 'emoji': '🃏'};
   }
 
   Map<String, String> _getDailyChakra(zodiac.ZodiacSign sign) {
-    final chakras = {
-      zodiac.ZodiacSign.aries: {'name': 'Kök', 'emoji': '🔴'},
-      zodiac.ZodiacSign.taurus: {'name': 'Sakral', 'emoji': '🟠'},
-      zodiac.ZodiacSign.gemini: {'name': 'Boğaz', 'emoji': '💙'},
-      zodiac.ZodiacSign.cancer: {'name': 'Kalp', 'emoji': '💚'},
-      zodiac.ZodiacSign.leo: {'name': 'Solar', 'emoji': '💛'},
-      zodiac.ZodiacSign.virgo: {'name': 'Solar', 'emoji': '💛'},
-      zodiac.ZodiacSign.libra: {'name': 'Kalp', 'emoji': '💚'},
-      zodiac.ZodiacSign.scorpio: {'name': 'Sakral', 'emoji': '🟠'},
-      zodiac.ZodiacSign.sagittarius: {'name': 'Üçüncü Göz', 'emoji': '💜'},
-      zodiac.ZodiacSign.capricorn: {'name': 'Kök', 'emoji': '🔴'},
-      zodiac.ZodiacSign.aquarius: {'name': 'Taç', 'emoji': '👑'},
-      zodiac.ZodiacSign.pisces: {'name': 'Taç', 'emoji': '👑'},
-    };
-    return chakras[sign] ?? {'name': 'Kalp', 'emoji': '💚'};
+    final signKey = sign.name.toLowerCase();
+    final chakra = L10nService.getMap('share.instagram.chakras.$signKey', language);
+    if (chakra.isNotEmpty) {
+      return {'name': chakra['name'] ?? '', 'emoji': chakra['emoji'] ?? '💚'};
+    }
+    final defaultChakra = L10nService.getMap('share.instagram.chakras.default', language);
+    if (defaultChakra.isNotEmpty) {
+      return {'name': defaultChakra['name'] ?? 'Heart', 'emoji': defaultChakra['emoji'] ?? '💚'};
+    }
+    return {'name': 'Heart', 'emoji': '💚'};
   }
 
   // ═══════════════════════════════════════════════════════════════════════════
@@ -930,7 +640,7 @@ class InstagramStoryCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'KOZMİK TAVSİYE',
+                  L10nService.get('share.instagram.cosmic_advice', language),
                   style: GoogleFonts.inter(
                     fontSize: 8,
                     fontWeight: FontWeight.w700,
@@ -958,82 +668,10 @@ class InstagramStoryCard extends StatelessWidget {
 
   String _getCosmicAdvice(zodiac.ZodiacSign sign) {
     final day = DateTime.now().day % 4;
-    final advices = {
-      zodiac.ZodiacSign.aries: [
-        'Sabır senin süper gücün olabilir, dene 🔥',
-        'Bugün geri adım at, yarın savaş 💪',
-        'Öfken değil, tutkun konuşsun ✨',
-        'Liderlik bazen dinlemekle başlar 👑',
-      ],
-      zodiac.ZodiacSign.taurus: [
-        'Konfor alanından bir adım at bugün 🌱',
-        'Değişim düşman değil, dost 💫',
-        'Bugün bir şeyi bırakmayı dene 🦋',
-        'Maddeyi değil, anlamı biriktir 💎',
-      ],
-      zodiac.ZodiacSign.gemini: [
-        'Bir şeye odaklan, derinleş 🎯',
-        'Bugün dinle, yarın konuş 👂',
-        'Tutarlılık senin gizli silahın 🗡️',
-        'İki seçenek arasında kal - bu sefer seç 🦋',
-      ],
-      zodiac.ZodiacSign.cancer: [
-        'Kabuğundan çık, güneşi gör ☀️',
-        'Geçmişi bırak, şimdiye gel 🌸',
-        'Duyguların gerçek değil, hisler geçici 🌊',
-        'Korumak yerine güvenmeyi dene 💕',
-      ],
-      zodiac.ZodiacSign.leo: [
-        'Işık başkalarında da parlasın bırak ✨',
-        'Ego değil, kalp konuşsun bugün 💛',
-        'Alkış beklemeden yap 👏',
-        'Zafer paylaşınca büyür 🦁',
-      ],
-      zodiac.ZodiacSign.virgo: [
-        'Kusur değil, gelişim gör bugün 🌱',
-        '"Yeterince iyi" bazen mükemmeldir 💯',
-        'Kendine de şefkat göster 💝',
-        'Detaylarda kaybolma, büyük resmi gör 🖼️',
-      ],
-      zodiac.ZodiacSign.libra: [
-        'Karar ver ve arkana bakma 🎯',
-        'Herkes mutlu olmak zorunda değil ⚖️',
-        'Kendi dengenin önce gel 🧘',
-        'Hayır demek de sevgi olabilir 💕',
-      ],
-      zodiac.ZodiacSign.scorpio: [
-        'Kontrol etme, akışa bırak 🌊',
-        'İntikam yerine serbest bırak 🦋',
-        'Güvenmek cesaret ister, cesaretlisin 💪',
-        'Gölgeler ışığın kaynağını gösterir 🔦',
-      ],
-      zodiac.ZodiacSign.sagittarius: [
-        'Şimdi de güzel, sonrasını bekle 🎯',
-        'Derinleş, yüzeyde kalma 🏊',
-        'Macera içerde de olabilir 🧠',
-        'Özgürlük sorumlulukla gelir 🦅',
-      ],
-      zodiac.ZodiacSign.capricorn: [
-        'Mola ver, dünya dönmeye devam eder 🌍',
-        'Başarı sadece zirve değil, yolculuk 🏔️',
-        'Duygular zayıflık değil, güç 💪',
-        'Bugün sadece keyif al, başarma 🎉',
-      ],
-      zodiac.ZodiacSign.aquarius: [
-        'Farklı olmak için değil, kendin için yap 🦄',
-        'Bağlanmak kaybetmek değil 💕',
-        'Bugün kalple düşün 💜',
-        'İnsanlık soyut değil, yanındakilerle başlar 👥',
-      ],
-      zodiac.ZodiacSign.pisces: [
-        'Hayal ile gerçek arasında köprü kur 🌈',
-        'Sınırlar korur, hapsetmez 🛡️',
-        'Duygular pusula, harita değil 🧭',
-        'Bugün ayaklarını yere bas 🌍',
-      ],
-    };
-    final signAdvices = advices[sign] ?? ['Yıldızlar seninle ✨'];
-    return signAdvices[day];
+    final signKey = sign.name.toLowerCase();
+    final advices = L10nService.getList('share.instagram.cosmic_advice.$signKey', language);
+    if (advices.isNotEmpty) return advices[day % advices.length];
+    return L10nService.get('share.instagram.default_advice', language);
   }
 
   // ═══════════════════════════════════════════════════════════════════════════
@@ -1060,7 +698,7 @@ class InstagramStoryCard extends StatelessWidget {
                   Text(luckEmoji, style: const TextStyle(fontSize: 16)),
                   const SizedBox(width: 6),
                   Text(
-                    'BUGÜNÜN ŞANSI',
+                    L10nService.get('share.instagram.todays_luck', language),
                     style: GoogleFonts.inter(
                       fontSize: 10,
                       fontWeight: FontWeight.w700,
@@ -1128,9 +766,9 @@ class InstagramStoryCard extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          _buildMatchItem('💕', 'UYUMLU', bestMatch, true),
+          _buildMatchItem('💕', L10nService.get('share.instagram.compatible', language), bestMatch, true),
           Container(width: 1, height: 30, color: Colors.white.withOpacity(0.1)),
-          _buildMatchItem('💔', 'DİKKAT', worstMatch, false),
+          _buildMatchItem('💔', L10nService.get('share.instagram.warning', language), worstMatch, false),
         ],
       ),
     );
@@ -1245,7 +883,7 @@ class InstagramStoryCard extends StatelessWidget {
               const Text('👆', style: TextStyle(fontSize: 14)),
               const SizedBox(width: 6),
               Text(
-                'SENİN BURÇ ANALİZİN İÇİN',
+                L10nService.get('share.instagram.for_your_sign_analysis', language),
                 style: GoogleFonts.inter(
                   fontSize: 10,
                   fontWeight: FontWeight.w700,
@@ -1296,10 +934,10 @@ class InstagramStoryCard extends StatelessWidget {
 
   String _getElementName(zodiac.Element element) {
     switch (element) {
-      case zodiac.Element.fire: return 'ATEŞ';
-      case zodiac.Element.earth: return 'TOPRAK';
-      case zodiac.Element.air: return 'HAVA';
-      case zodiac.Element.water: return 'SU';
+      case zodiac.Element.fire: return L10nService.get('elements.fire', language);
+      case zodiac.Element.earth: return L10nService.get('elements.earth', language);
+      case zodiac.Element.air: return L10nService.get('elements.air', language);
+      case zodiac.Element.water: return L10nService.get('elements.water', language);
     }
   }
 }

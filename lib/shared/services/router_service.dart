@@ -84,6 +84,7 @@ import '../../features/quiz/presentation/quiz_screen.dart';
 import '../../features/content/presentation/content_detail_screen.dart';
 import '../../data/services/admin_auth_service.dart';
 import '../../data/services/storage_service.dart';
+import '../../data/services/l10n_service.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
   return GoRouter(
@@ -867,13 +868,15 @@ final routerProvider = Provider<GoRouter>((ref) {
   );
 });
 
-class _NotFoundScreen extends StatelessWidget {
+class _NotFoundScreen extends ConsumerWidget {
   final String path;
 
   const _NotFoundScreen({required this.path});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = ref.watch(l10nServiceProvider);
+
     return Scaffold(
       backgroundColor: const Color(0xFF0D0D1A),
       body: SafeArea(
@@ -897,14 +900,14 @@ class _NotFoundScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 Text(
-                  'Sayfa Bulunamadı',
+                  l10n.get('router.not_found_title'),
                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                         color: Colors.white,
                       ),
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Aradığınız sayfa yıldızlarda kaybolmuş görünüyor.',
+                  l10n.get('router.not_found_message'),
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         color: Colors.white70,
                       ),
@@ -912,7 +915,7 @@ class _NotFoundScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Aranan: $path',
+                  l10n.getWithParams('router.not_found_path', params: {'path': path}),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: Colors.white38,
                         fontFamily: 'monospace',
@@ -922,7 +925,7 @@ class _NotFoundScreen extends StatelessWidget {
                 ElevatedButton.icon(
                   onPressed: () => context.go(Routes.home),
                   icon: const Icon(Icons.home),
-                  label: const Text('Ana Sayfaya Dön'),
+                  label: Text(l10n.get('router.return_home')),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFFFFD700),
                     foregroundColor: const Color(0xFF0D0D1A),
@@ -935,9 +938,9 @@ class _NotFoundScreen extends StatelessWidget {
                 const SizedBox(height: 16),
                 TextButton(
                   onPressed: () => context.go(Routes.horoscope),
-                  child: const Text(
-                    'Burç Yorumlarına Git',
-                    style: TextStyle(color: Color(0xFFFFD700)),
+                  child: Text(
+                    l10n.get('router.go_to_horoscope'),
+                    style: const TextStyle(color: Color(0xFFFFD700)),
                   ),
                 ),
               ],
@@ -1041,9 +1044,9 @@ class _SplashScreenState extends ConsumerState<_SplashScreen>
             ),
             const SizedBox(height: 32),
             // Ezoterik tagline
-            const Text(
-              '✨ Yıldızlar Hizalanıyor... ✨',
-              style: TextStyle(
+            Text(
+              '✨ ${L10nService.get('router.stars_aligning', ref.watch(languageProvider))} ✨',
+              style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w300,
                 color: Colors.white70,

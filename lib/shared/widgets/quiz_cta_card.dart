@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../core/constants/app_constants.dart';
 import '../../core/theme/app_colors.dart';
+import '../../data/services/l10n_service.dart';
 import '../../features/quiz/domain/quiz_models.dart';
 
 /// Quiz CTA Card - Sayfalarda gösterilen soft quiz çağrısı
 /// Google Discover → Quiz → Premium funnel için
-class QuizCTACard extends StatelessWidget {
+class QuizCTACard extends ConsumerWidget {
   final QuizCTA cta;
   final bool compact;
   final VoidCallback? onTap;
@@ -56,17 +58,49 @@ class QuizCTACard extends StatelessWidget {
     );
   }
 
-  @override
-  Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-
-    if (compact) {
-      return _buildCompactCard(context, isDark);
+  /// Get localized CTA content based on quiz type
+  ({String headline, String subtext, String buttonText}) _getLocalizedCTA(LocalizedL10n l10n) {
+    switch (cta.quizType) {
+      case 'dream':
+        return (
+          headline: l10n.get('quiz.cta.dream_headline'),
+          subtext: l10n.get('quiz.cta.dream_subtext'),
+          buttonText: l10n.get('quiz.cta.dream_button'),
+        );
+      case 'astrology':
+        return (
+          headline: l10n.get('quiz.cta.astrology_headline'),
+          subtext: l10n.get('quiz.cta.astrology_subtext'),
+          buttonText: l10n.get('quiz.cta.astrology_button'),
+        );
+      case 'numerology':
+        return (
+          headline: l10n.get('quiz.cta.numerology_headline'),
+          subtext: l10n.get('quiz.cta.numerology_subtext'),
+          buttonText: l10n.get('quiz.cta.numerology_button'),
+        );
+      default:
+        return (
+          headline: l10n.get('quiz.cta.general_headline'),
+          subtext: l10n.get('quiz.cta.general_subtext'),
+          buttonText: l10n.get('quiz.cta.general_button'),
+        );
     }
-    return _buildFullCard(context, isDark);
   }
 
-  Widget _buildFullCard(BuildContext context, bool isDark) {
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final l10n = ref.watch(l10nServiceProvider);
+    final localizedCTA = _getLocalizedCTA(l10n);
+
+    if (compact) {
+      return _buildCompactCard(context, isDark, localizedCTA);
+    }
+    return _buildFullCard(context, isDark, localizedCTA);
+  }
+
+  Widget _buildFullCard(BuildContext context, bool isDark, ({String headline, String subtext, String buttonText}) localizedCTA) {
     return GestureDetector(
       onTap: onTap ?? () => context.push('/quiz?type=${cta.quizType}'),
       child: Container(
@@ -137,7 +171,7 @@ class QuizCTACard extends StatelessWidget {
                 ],
                 Expanded(
                   child: Text(
-                    cta.headline,
+                    localizedCTA.headline,
                     style: GoogleFonts.cormorantGaramond(
                       fontSize: 20,
                       fontWeight: FontWeight.w600,
@@ -152,7 +186,7 @@ class QuizCTACard extends StatelessWidget {
 
             // Alt metin
             Text(
-              cta.subtext,
+              localizedCTA.subtext,
               style: GoogleFonts.raleway(
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
@@ -191,7 +225,7 @@ class QuizCTACard extends StatelessWidget {
                   ),
                   const SizedBox(width: 8),
                   Text(
-                    cta.buttonText,
+                    localizedCTA.buttonText,
                     style: GoogleFonts.raleway(
                       fontSize: 14,
                       fontWeight: FontWeight.w700,
@@ -207,7 +241,7 @@ class QuizCTACard extends StatelessWidget {
     ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.05);
   }
 
-  Widget _buildCompactCard(BuildContext context, bool isDark) {
+  Widget _buildCompactCard(BuildContext context, bool isDark, ({String headline, String subtext, String buttonText}) localizedCTA) {
     return GestureDetector(
       onTap: onTap ?? () => context.push('/quiz?type=${cta.quizType}'),
       child: Container(
@@ -238,7 +272,7 @@ class QuizCTACard extends StatelessWidget {
             ],
             Expanded(
               child: Text(
-                cta.headline,
+                localizedCTA.headline,
                 style: GoogleFonts.raleway(
                   fontSize: 13,
                   fontWeight: FontWeight.w500,
@@ -261,7 +295,7 @@ class QuizCTACard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Text(
-                cta.buttonText,
+                localizedCTA.buttonText,
                 style: GoogleFonts.raleway(
                   fontSize: 11,
                   fontWeight: FontWeight.w600,
@@ -277,21 +311,23 @@ class QuizCTACard extends StatelessWidget {
 }
 
 /// Inline Quiz CTA - Metin içinde kullanım için
-class InlineQuizCTA extends StatelessWidget {
-  final String text;
+class InlineQuizCTA extends ConsumerWidget {
+  final String? text;
   final String quizType;
   final VoidCallback? onTap;
 
   const InlineQuizCTA({
     super.key,
-    this.text = 'Bu sana özel mi? Kısa testle öğren →',
+    this.text,
     this.quizType = 'general',
     this.onTap,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final l10n = ref.watch(l10nServiceProvider);
+    final displayText = text ?? '${l10n.get('quiz.cta.inline_default')} \u2192';
 
     return GestureDetector(
       onTap: onTap ?? () => context.push('/quiz?type=$quizType'),
@@ -322,7 +358,7 @@ class InlineQuizCTA extends StatelessWidget {
             const SizedBox(width: 8),
             Flexible(
               child: Text(
-                text,
+                displayText,
                 style: GoogleFonts.raleway(
                   fontSize: 13,
                   fontWeight: FontWeight.w500,
@@ -338,7 +374,7 @@ class InlineQuizCTA extends StatelessWidget {
 }
 
 /// Floating Quiz CTA - Ekranın altında sabit
-class FloatingQuizCTA extends StatelessWidget {
+class FloatingQuizCTA extends ConsumerWidget {
   final QuizCTA cta;
   final VoidCallback? onTap;
   final VoidCallback? onDismiss;
@@ -350,9 +386,37 @@ class FloatingQuizCTA extends StatelessWidget {
     this.onDismiss,
   });
 
+  /// Get localized CTA content based on quiz type
+  ({String headline, String buttonText}) _getLocalizedCTA(LocalizedL10n l10n) {
+    switch (cta.quizType) {
+      case 'dream':
+        return (
+          headline: l10n.get('quiz.cta.dream_headline'),
+          buttonText: l10n.get('quiz.cta.dream_button'),
+        );
+      case 'astrology':
+        return (
+          headline: l10n.get('quiz.cta.astrology_headline'),
+          buttonText: l10n.get('quiz.cta.astrology_button'),
+        );
+      case 'numerology':
+        return (
+          headline: l10n.get('quiz.cta.numerology_headline'),
+          buttonText: l10n.get('quiz.cta.numerology_button'),
+        );
+      default:
+        return (
+          headline: l10n.get('quiz.cta.general_headline'),
+          buttonText: l10n.get('quiz.cta.general_button'),
+        );
+    }
+  }
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final l10n = ref.watch(l10nServiceProvider);
+    final localizedCTA = _getLocalizedCTA(l10n);
 
     return Container(
       margin: const EdgeInsets.all(AppConstants.spacingMd),
@@ -396,7 +460,7 @@ class FloatingQuizCTA extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  cta.headline,
+                  localizedCTA.headline,
                   style: GoogleFonts.raleway(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
@@ -423,7 +487,7 @@ class FloatingQuizCTA extends StatelessWidget {
                 borderRadius: BorderRadius.circular(24),
               ),
               child: Text(
-                cta.buttonText,
+                localizedCTA.buttonText,
                 style: GoogleFonts.raleway(
                   fontSize: 12,
                   fontWeight: FontWeight.w700,

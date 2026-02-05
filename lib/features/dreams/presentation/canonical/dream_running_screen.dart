@@ -45,37 +45,38 @@ class DreamRunningScreen extends ConsumerWidget {
                   style: TextStyle(fontSize: 28, fontWeight: FontWeight.w600, color: isDark ? Colors.white : AppColors.textDark, height: 1.2),
                 ).animate().fadeIn(duration: 400.ms),
                 const SizedBox(height: 8),
-                _buildTag('Rüya İzi', color),
+                _buildTag(L10nService.get('dreams.canonical.brand_tag', language), color),
                 const SizedBox(height: 32),
-                _buildSection(isDark, 'Kısa Cevap', color, [
-                  'Kaçma rüyası bir durumdan veya duygudan uzaklaşma isteğini gösterir.',
-                  'Yüzleşmekten kaçındığın bir konu olabilir.',
-                  'Kaçarken yakalanmak, kaçışın işe yaramadığını hissettirir.',
+                _buildSection(isDark, L10nService.get('dreams.canonical.sections.short_answer', language), color, [
+                  L10nService.get('dreams.canonical.running.short_answer_1', language),
+                  L10nService.get('dreams.canonical.running.short_answer_2', language),
+                  L10nService.get('dreams.canonical.running.short_answer_3', language),
                 ]),
                 const SizedBox(height: 28),
-                _buildSection(isDark, 'Ne Anlama Gelir?', color, [
-                  'Hayatında seni zorlayan bir durum var.',
-                  'Sorumluluktan veya çatışmadan kaçıyor olabilirsin.',
-                  'Kaçtığın şey genellikle kendi içindedir.',
+                _buildSection(isDark, L10nService.get('dreams.canonical.sections.what_it_means', language), color, [
+                  L10nService.get('dreams.canonical.running.meaning_1', language),
+                  L10nService.get('dreams.canonical.running.meaning_2', language),
+                  L10nService.get('dreams.canonical.running.meaning_3', language),
                 ]),
                 const SizedBox(height: 28),
-                _buildSection(isDark, 'Kimden/Neden Kaçıyorsun?', color, [
-                  'Tanıdık birinden: O kişiyle çözülmemiş mesele.',
-                  'Canavardan: Kendi korkuların.',
-                  'Belirsiz tehlike: Genel kaygı hali.',
+                _buildSection(isDark, L10nService.get('dreams.canonical.running.from_title', language), color, [
+                  L10nService.get('dreams.canonical.running.from_1', language),
+                  L10nService.get('dreams.canonical.running.from_2', language),
+                  L10nService.get('dreams.canonical.running.from_3', language),
                 ]),
                 const SizedBox(height: 28),
-                _buildSection(isDark, 'Tekrar Ediyorsa', color, [
-                  'Ertelediğin bir karar var.',
-                  'Kaçmak yerine yüzleşme zamanı gelmiş olabilir.',
-                  'Kaçışın sona erdiği rüya, çözümün başladığını gösterir.',
+                _buildSection(isDark, L10nService.get('dreams.canonical.sections.if_recurring', language), color, [
+                  L10nService.get('dreams.canonical.running.recurring_1', language),
+                  L10nService.get('dreams.canonical.running.recurring_2', language),
+                  L10nService.get('dreams.canonical.running.recurring_3', language),
                 ]),
                 const SizedBox(height: 32),
                 _buildSuggestion(context, isDark, language, '🌀', L10nService.get('dreams.canonical.falling_question', language), Routes.dreamFalling),
                 const SizedBox(height: 40),
-                const PageFooterWithDisclaimer(
+                PageFooterWithDisclaimer(
                   brandText: 'Rüya İzi — Venus One',
-                  disclaimerText: DisclaimerTexts.dreams,
+                  disclaimerText: DisclaimerTexts.dreams(language),
+                  language: language,
                 ),
               ],
             ),

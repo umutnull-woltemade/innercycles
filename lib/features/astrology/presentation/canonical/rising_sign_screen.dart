@@ -18,6 +18,9 @@ class RisingSignScreen extends ConsumerWidget {
     final language = ref.watch(languageProvider);
     final color = const Color(0xFFFF9800);
 
+    // Helper to get list from i18n
+    List<String> getList(String key) => L10nService.getList(key, language);
+
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
@@ -41,57 +44,35 @@ class RisingSignScreen extends ConsumerWidget {
                 ),
                 const SizedBox(height: 24),
                 Text(
-                  'Yükselen burç nedir?',
+                  L10nService.get('astrology.rising_sign.title', language),
                   style: TextStyle(fontSize: 28, fontWeight: FontWeight.w600, color: isDark ? Colors.white : AppColors.textDark, height: 1.2),
                 ).animate().fadeIn(duration: 400.ms),
                 const SizedBox(height: 8),
-                _buildTag('Astroloji', color),
+                _buildTag(L10nService.get('astrology.rising_sign.tag', language), color),
                 const SizedBox(height: 32),
 
-                _buildSection(isDark, 'Kısa Cevap', color, [
-                  'Yükselen burç, doğum anında doğu ufkunda yükselen burçtur.',
-                  'Dış dünyanın seni nasıl gördüğünü belirler.',
-                  'Güneş burcundan farklıdır ve hesaplamak için doğum saati gerekir.',
-                ]),
+                _buildSection(isDark, L10nService.get('astrology.rising_sign.short_answer_title', language), color, getList('astrology.rising_sign.short_answer_bullets')),
                 const SizedBox(height: 28),
 
-                _buildSection(isDark, 'Ne Anlatır?', color, [
-                  'İlk izlenimin: İnsanların seni ilk gördüğünde hissettikleri.',
-                  'Fiziksel görünümün: Yüz hatları ve beden yapısını etkiler.',
-                  'Savunma mekanizman: Yeni durumlarda nasıl davrandığın.',
-                  'Hayata yaklaşımın: Dünyayla nasıl etkileşime geçtiğin.',
-                ]),
+                _buildSection(isDark, L10nService.get('astrology.rising_sign.what_it_tells_title', language), color, getList('astrology.rising_sign.what_it_tells_bullets')),
                 const SizedBox(height: 28),
 
-                _buildSection(isDark, 'Güneş Burcundan Farkı', color, [
-                  'Güneş burcu: Özün, kim olduğun.',
-                  'Yükselen burç: Masken, nasıl göründüğün.',
-                  'Ay burcu: Duyguların, ne hissettiğin.',
-                  'Üçü birlikte: Tam astrolojik profil.',
-                ]),
+                _buildSection(isDark, L10nService.get('astrology.rising_sign.difference_from_sun_title', language), color, getList('astrology.rising_sign.difference_from_sun_bullets')),
                 const SizedBox(height: 28),
 
-                _buildSection(isDark, 'Nasıl Hesaplanır?', color, [
-                  'Kesin doğum saati gereklidir.',
-                  'Doğum yeri koordinatları kullanılır.',
-                  'Yaklaşık her 2 saatte bir yükselen değişir.',
-                  'Doğum saati bilinmiyorsa hesaplanamaz.',
-                ]),
+                _buildSection(isDark, L10nService.get('astrology.rising_sign.how_calculated_title', language), color, getList('astrology.rising_sign.how_calculated_bullets')),
                 const SizedBox(height: 28),
 
-                _buildSection(isDark, 'Neden Önemli?', color, [
-                  'Haritanın tüm evlerini belirler.',
-                  'Gezegenlerin hangi evlere düştüğünü etkiler.',
-                  'Kariyerden ilişkilere kadar hayat alanlarını konumlandırır.',
-                ]),
+                _buildSection(isDark, L10nService.get('astrology.rising_sign.why_important_title', language), color, getList('astrology.rising_sign.why_important_bullets')),
                 const SizedBox(height: 32),
 
-                _buildSuggestion(context, isDark, language, '☿️', 'Merkür retrosu ne demek?', Routes.transits),
+                _buildSuggestion(context, isDark, language, '☿️', L10nService.get('astrology.rising_sign.suggestion_text', language), Routes.transits),
                 const SizedBox(height: 40),
 
-                const PageFooterWithDisclaimer(
-                  brandText: 'Astroloji — Venus One',
-                  disclaimerText: DisclaimerTexts.astrology,
+                PageFooterWithDisclaimer(
+                  brandText: L10nService.get('astrology.rising_sign.brand_text', language),
+                  disclaimerText: DisclaimerTexts.astrology(language),
+                  language: language,
                 ),
               ],
             ),

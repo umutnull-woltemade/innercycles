@@ -7,7 +7,7 @@ import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/zodiac_sign.dart';
 import '../../../data/providers/app_providers.dart';
-import '../../../data/services/localization_service.dart';
+import '../../../data/services/l10n_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/entertainment_disclaimer.dart';
 import '../../../shared/widgets/next_blocks.dart';
@@ -70,9 +70,10 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
                 const NextBlocks(currentPage: 'solar_return'),
                 const SizedBox(height: AppConstants.spacingXl),
                 // Entertainment Disclaimer
-                const PageFooterWithDisclaimer(
+                PageFooterWithDisclaimer(
                   brandText: 'Solar Return — Venus One',
-                  disclaimerText: DisclaimerTexts.astrology,
+                  disclaimerText: DisclaimerTexts.astrology(language),
+                  language: language,
                 ),
               ],
             ),
@@ -94,14 +95,14 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                L10n.get('solar_return_title', language),
+                L10nService.get('screens.solar_return.title', language),
                 style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                   color: AppColors.starGold,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               Text(
-                L10n.get('solar_return_subtitle', language),
+                L10nService.get('screens.solar_return.subtitle', language),
                 style: Theme.of(
                   context,
                 ).textTheme.bodySmall?.copyWith(color: AppColors.textSecondary),
@@ -223,7 +224,7 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      '$_selectedYear ${L10n.get('solar_return_title', language)}',
+                      '$_selectedYear ${L10nService.get('screens.solar_return.title', language)}',
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
                         color: AppColors.starGold,
                         fontWeight: FontWeight.bold,
@@ -231,7 +232,7 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      L10n.get('solar_return_sun_returns', language).replaceAll('{sign}', sunSign.localizedName(language)),
+                      L10nService.get('screens.solar_return.sun_returns', language).replaceAll('{sign}', sunSign.localizedName(language)),
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: AppColors.textSecondary,
                       ),
@@ -256,12 +257,12 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
                   children: [
                     _buildInfoItem(
                       context,
-                      L10n.get('solar_return_return_date', language),
+                      L10nService.get('screens.solar_return.return_date', language),
                       _formatDate(_returnData.exactReturnDate, language),
                     ),
                     _buildInfoItem(
                       context,
-                      L10n.get('rising_sign', language),
+                      L10nService.get('rising_sign', language),
                       _returnData.risingSign.localizedName(language),
                     ),
                   ],
@@ -272,12 +273,12 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
                   children: [
                     _buildInfoItem(
                       context,
-                      L10n.get('solar_return_sun_house', language),
-                      L10n.get('solar_return_house_number', language).replaceAll('{number}', '${_returnData.sunHouse}'),
+                      L10nService.get('screens.solar_return.sun_house', language),
+                      L10nService.get('screens.solar_return.house_number', language).replaceAll('{number}', '${_returnData.sunHouse}'),
                     ),
                     _buildInfoItem(
                       context,
-                      L10n.get('moon_sign', language),
+                      L10nService.get('moon_sign', language),
                       _returnData.moonSign.localizedName(language),
                     ),
                   ],
@@ -321,7 +322,7 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
             const Icon(Icons.auto_awesome, color: AppColors.starGold, size: 20),
             const SizedBox(width: 8),
             Text(
-              L10n.get('solar_return_year_themes', language),
+              L10nService.get('screens.solar_return.year_themes', language),
               style: Theme.of(
                 context,
               ).textTheme.titleLarge?.copyWith(color: AppColors.textPrimary),
@@ -368,7 +369,7 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  L10n.get(theme.titleKey, language),
+                  L10nService.get(theme.titleKey, language),
                   style: Theme.of(context).textTheme.titleSmall?.copyWith(
                     color: theme.color,
                     fontWeight: FontWeight.bold,
@@ -376,7 +377,7 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
                 ),
                 const SizedBox(height: 2),
                 Text(
-                  L10n.get(theme.descriptionKey, language),
+                  L10nService.get(theme.descriptionKey, language),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: AppColors.textSecondary,
                   ),
@@ -402,7 +403,7 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
             ),
             const SizedBox(width: 8),
             Text(
-              L10n.get('solar_return_monthly_highlights', language),
+              L10nService.get('screens.solar_return.monthly_highlights', language),
               style: Theme.of(
                 context,
               ).textTheme.titleLarge?.copyWith(color: AppColors.textPrimary),
@@ -450,7 +451,7 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
                     Text(highlight.emoji, style: const TextStyle(fontSize: 24)),
                     const SizedBox(height: 4),
                     Text(
-                      L10n.get(highlight.keywordKey, language),
+                      L10nService.get(highlight.keywordKey, language),
                       style: Theme.of(context).textTheme.labelSmall?.copyWith(
                         color: AppColors.textSecondary,
                         fontSize: 9,
@@ -482,7 +483,7 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
             ),
             const SizedBox(width: 8),
             Text(
-              L10n.get('solar_return_important_dates', language),
+              L10nService.get('screens.solar_return.important_dates', language),
               style: Theme.of(
                 context,
               ).textTheme.titleLarge?.copyWith(color: AppColors.textPrimary),
@@ -527,12 +528,12 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          L10n.get(keyDate.titleKey, language),
+                          L10nService.get(keyDate.titleKey, language),
                           style: Theme.of(context).textTheme.titleSmall
                               ?.copyWith(color: AppColors.textPrimary),
                         ),
                         Text(
-                          L10n.get(keyDate.descriptionKey, language),
+                          L10nService.get(keyDate.descriptionKey, language),
                           style: Theme.of(context).textTheme.bodySmall
                               ?.copyWith(color: AppColors.textSecondary),
                         ),
@@ -577,7 +578,7 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
               ),
               const SizedBox(width: 8),
               Text(
-                L10n.get('solar_return_year_advice', language),
+                L10nService.get('screens.solar_return.year_advice', language),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   color: AppColors.auroraStart,
                   fontWeight: FontWeight.bold,
@@ -587,7 +588,7 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
           ),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
-            L10n.get(_returnData.yearAdviceKey, language),
+            L10nService.get(_returnData.yearAdviceKey, language),
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
               color: AppColors.textPrimary,
               height: 1.6,
@@ -600,13 +601,13 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
 
   String _formatDate(DateTime date, AppLanguage language) {
     final monthKey = _getMonthKey(date.month);
-    final monthName = L10n.get(monthKey, language);
+    final monthName = L10nService.get(monthKey, language);
     return '${date.day} $monthName ${date.year}';
   }
 
   String _getMonthAbbr(int month, AppLanguage language) {
     final monthAbbrKey = _getMonthAbbrKey(month);
-    return L10n.get(monthAbbrKey, language);
+    return L10nService.get(monthAbbrKey, language);
   }
 
   String _getMonthKey(int month) {
@@ -683,50 +684,50 @@ class SolarReturnCalculator {
   static List<SolarReturnTheme> _generateThemes(int seed, int sunHouse) {
     final allThemes = [
       SolarReturnTheme(
-        titleKey: 'solar_return_theme_career_title',
-        descriptionKey: 'solar_return_theme_career_desc',
+        titleKey: 'screens.solar_return.theme_career_title',
+        descriptionKey: 'screens.solar_return.theme_career_desc',
         emoji: '💼',
         color: AppColors.starGold,
       ),
       SolarReturnTheme(
-        titleKey: 'solar_return_theme_relationships_title',
-        descriptionKey: 'solar_return_theme_relationships_desc',
+        titleKey: 'screens.solar_return.theme_relationships_title',
+        descriptionKey: 'screens.solar_return.theme_relationships_desc',
         emoji: '💕',
         color: Colors.pink,
       ),
       SolarReturnTheme(
-        titleKey: 'solar_return_theme_personal_growth_title',
-        descriptionKey: 'solar_return_theme_personal_growth_desc',
+        titleKey: 'screens.solar_return.theme_personal_growth_title',
+        descriptionKey: 'screens.solar_return.theme_personal_growth_desc',
         emoji: '🌱',
         color: AppColors.earthElement,
       ),
       SolarReturnTheme(
-        titleKey: 'solar_return_theme_financial_title',
-        descriptionKey: 'solar_return_theme_financial_desc',
+        titleKey: 'screens.solar_return.theme_financial_title',
+        descriptionKey: 'screens.solar_return.theme_financial_desc',
         emoji: '💰',
         color: AppColors.celestialGold,
       ),
       SolarReturnTheme(
-        titleKey: 'solar_return_theme_education_travel_title',
-        descriptionKey: 'solar_return_theme_education_travel_desc',
+        titleKey: 'screens.solar_return.theme_education_travel_title',
+        descriptionKey: 'screens.solar_return.theme_education_travel_desc',
         emoji: '✈️',
         color: AppColors.airElement,
       ),
       SolarReturnTheme(
-        titleKey: 'solar_return_theme_home_family_title',
-        descriptionKey: 'solar_return_theme_home_family_desc',
+        titleKey: 'screens.solar_return.theme_home_family_title',
+        descriptionKey: 'screens.solar_return.theme_home_family_desc',
         emoji: '🏠',
         color: AppColors.waterElement,
       ),
       SolarReturnTheme(
-        titleKey: 'solar_return_theme_creativity_title',
-        descriptionKey: 'solar_return_theme_creativity_desc',
+        titleKey: 'screens.solar_return.theme_creativity_title',
+        descriptionKey: 'screens.solar_return.theme_creativity_desc',
         emoji: '🎨',
         color: AppColors.auroraStart,
       ),
       SolarReturnTheme(
-        titleKey: 'solar_return_theme_health_routine_title',
-        descriptionKey: 'solar_return_theme_health_routine_desc',
+        titleKey: 'screens.solar_return.theme_health_routine_title',
+        descriptionKey: 'screens.solar_return.theme_health_routine_desc',
         emoji: '🧘',
         color: Colors.teal,
       ),
@@ -746,18 +747,18 @@ class SolarReturnCalculator {
 
   static List<MonthlyHighlight> _generateMonthlyHighlights(int seed) {
     final keywordKeys = [
-      'solar_return_keyword_beginning',
-      'solar_return_keyword_growth',
-      'solar_return_keyword_challenge',
-      'solar_return_keyword_opportunity',
-      'solar_return_keyword_rest',
-      'solar_return_keyword_action',
-      'solar_return_keyword_reflection',
-      'solar_return_keyword_progress',
-      'solar_return_keyword_change',
-      'solar_return_keyword_balance',
-      'solar_return_keyword_harvest',
-      'solar_return_keyword_closure',
+      'screens.solar_return.keyword_beginning',
+      'screens.solar_return.keyword_growth',
+      'screens.solar_return.keyword_challenge',
+      'screens.solar_return.keyword_opportunity',
+      'screens.solar_return.keyword_rest',
+      'screens.solar_return.keyword_action',
+      'screens.solar_return.keyword_reflection',
+      'screens.solar_return.keyword_progress',
+      'screens.solar_return.keyword_change',
+      'screens.solar_return.keyword_balance',
+      'screens.solar_return.keyword_harvest',
+      'screens.solar_return.keyword_closure',
     ];
     final emojis = [
       '🚀',
@@ -793,26 +794,26 @@ class SolarReturnCalculator {
     return [
       KeyDate(
         date: DateTime(year, 3, 20 + (seed % 3)),
-        titleKey: 'solar_return_spring_equinox_title',
-        descriptionKey: 'solar_return_spring_equinox_desc',
+        titleKey: 'screens.solar_return.spring_equinox_title',
+        descriptionKey: 'screens.solar_return.spring_equinox_desc',
         emoji: '🌸',
       ),
       KeyDate(
         date: DateTime(year, 6, 20 + (seed % 2)),
-        titleKey: 'solar_return_summer_solstice_title',
-        descriptionKey: 'solar_return_summer_solstice_desc',
+        titleKey: 'screens.solar_return.summer_solstice_title',
+        descriptionKey: 'screens.solar_return.summer_solstice_desc',
         emoji: '☀️',
       ),
       KeyDate(
         date: DateTime(year, 9, 22 + (seed % 2)),
-        titleKey: 'solar_return_autumn_equinox_title',
-        descriptionKey: 'solar_return_autumn_equinox_desc',
+        titleKey: 'screens.solar_return.autumn_equinox_title',
+        descriptionKey: 'screens.solar_return.autumn_equinox_desc',
         emoji: '🍂',
       ),
       KeyDate(
         date: DateTime(year, 12, 21),
-        titleKey: 'solar_return_winter_solstice_title',
-        descriptionKey: 'solar_return_winter_solstice_desc',
+        titleKey: 'screens.solar_return.winter_solstice_title',
+        descriptionKey: 'screens.solar_return.winter_solstice_desc',
         emoji: '❄️',
       ),
     ];
@@ -820,21 +821,21 @@ class SolarReturnCalculator {
 
   static String _generateAdviceKey(int sunHouse) {
     final houseAdviceKeys = {
-      1: 'solar_return_advice_house_1',
-      2: 'solar_return_advice_house_2',
-      3: 'solar_return_advice_house_3',
-      4: 'solar_return_advice_house_4',
-      5: 'solar_return_advice_house_5',
-      6: 'solar_return_advice_house_6',
-      7: 'solar_return_advice_house_7',
-      8: 'solar_return_advice_house_8',
-      9: 'solar_return_advice_house_9',
-      10: 'solar_return_advice_house_10',
-      11: 'solar_return_advice_house_11',
-      12: 'solar_return_advice_house_12',
+      1: 'screens.solar_return.advice_house_1',
+      2: 'screens.solar_return.advice_house_2',
+      3: 'screens.solar_return.advice_house_3',
+      4: 'screens.solar_return.advice_house_4',
+      5: 'screens.solar_return.advice_house_5',
+      6: 'screens.solar_return.advice_house_6',
+      7: 'screens.solar_return.advice_house_7',
+      8: 'screens.solar_return.advice_house_8',
+      9: 'screens.solar_return.advice_house_9',
+      10: 'screens.solar_return.advice_house_10',
+      11: 'screens.solar_return.advice_house_11',
+      12: 'screens.solar_return.advice_house_12',
     };
 
-    return houseAdviceKeys[sunHouse] ?? 'solar_return_advice_default';
+    return houseAdviceKeys[sunHouse] ?? 'screens.solar_return.advice_default';
   }
 }
 

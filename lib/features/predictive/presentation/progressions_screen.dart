@@ -7,7 +7,7 @@ import '../../../data/models/zodiac_sign.dart';
 import '../../../data/models/user_profile.dart';
 import '../../../data/models/advanced_astrology.dart';
 import '../../../data/services/advanced_astrology_service.dart';
-import '../../../data/services/localization_service.dart';
+import '../../../data/services/l10n_service.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/kadim_not_card.dart';
@@ -67,14 +67,14 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
                 const Text('', style: TextStyle(fontSize: 64)),
                 const SizedBox(height: 16),
                 Text(
-                  L10n.get('progressions_profile_not_found', language),
+                  L10nService.get('screens.progressions.profile_not_found', language),
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
                         color: Colors.white,
                       ),
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  L10n.get('progressions_enter_birth_info', language),
+                  L10nService.get('screens.progressions.enter_birth_info', language),
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         color: Colors.white70,
                       ),
@@ -82,7 +82,7 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
                 const SizedBox(height: 24),
                 ElevatedButton(
                   onPressed: () => context.pop(),
-                  child: Text(L10n.get('progressions_go_back', language)),
+                  child: Text(L10nService.get('screens.progressions.go_back', language)),
                 ),
               ],
             ),
@@ -124,8 +124,8 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
                         // Kadim Not
                         KadimNotCard(
                           category: KadimCategory.astrology,
-                          title: L10n.get('progressions_kadim_title', language),
-                          content: L10n.get('progressions_kadim_content', language),
+                          title: L10nService.get('screens.progressions.kadim_title', language),
+                          content: L10nService.get('screens.progressions.kadim_content', language),
                           icon: Icons.trending_up,
                         ),
                         const SizedBox(height: AppConstants.spacingXl),
@@ -133,9 +133,10 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
                         const NextBlocks(currentPage: 'progressions'),
                         const SizedBox(height: AppConstants.spacingXl),
                         // Entertainment Disclaimer
-                        const PageFooterWithDisclaimer(
+                        PageFooterWithDisclaimer(
                           brandText: 'Progresyonlar — Venus One',
-                          disclaimerText: DisclaimerTexts.astrology,
+                          disclaimerText: DisclaimerTexts.astrology(language),
+                          language: language,
                         ),
                         const SizedBox(height: AppConstants.spacingLg),
                       ] else ...[
@@ -143,7 +144,7 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
                         const CircularProgressIndicator(color: AppColors.auroraStart),
                         const SizedBox(height: 16),
                         Text(
-                          L10n.get('progressions_calculating', language),
+                          L10nService.get('screens.progressions.calculating', language),
                           style: TextStyle(
                             color: isDark ? Colors.white70 : AppColors.textLight,
                           ),
@@ -178,7 +179,7 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
                 const Icon(Icons.trending_up, color: AppColors.auroraStart, size: 24),
                 const SizedBox(width: 8),
                 Text(
-                  L10n.get('progressions_title', language),
+                  L10nService.get('screens.progressions.title', language),
                   style: Theme.of(context).textTheme.headlineSmall,
                 ),
               ],
@@ -203,7 +204,7 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
           const SizedBox(width: 12),
           Expanded(
             child: Text(
-              L10n.get('progressions_info_banner', language),
+              L10nService.get('screens.progressions.info_banner', language),
               style: Theme.of(context).textTheme.bodySmall,
             ),
           ),
@@ -233,7 +234,7 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
               ),
               const SizedBox(width: 8),
               Text(
-                L10n.get('progressions_profile_info', language),
+                L10nService.get('screens.progressions.profile_info', language),
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
@@ -243,13 +244,13 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
             ],
           ),
           const SizedBox(height: AppConstants.spacingMd),
-          _buildInfoRow(isDark, Icons.person_outline, L10n.get('progressions_name', language), userProfile.name ?? L10n.get('progressions_user', language)),
-          _buildInfoRow(isDark, Icons.cake_outlined, L10n.get('birth_date', language), _formatDate(userProfile.birthDate, language)),
-          _buildInfoRow(isDark, Icons.wb_sunny_outlined, L10n.get('sun_sign', language), userProfile.sunSign.localizedName(language)),
+          _buildInfoRow(isDark, Icons.person_outline, L10nService.get('screens.progressions.name', language), userProfile.name ?? L10nService.get('screens.progressions.user', language)),
+          _buildInfoRow(isDark, Icons.cake_outlined, L10nService.get('birth_date', language), _formatDate(userProfile.birthDate, language)),
+          _buildInfoRow(isDark, Icons.wb_sunny_outlined, L10nService.get('sun_sign', language), userProfile.sunSign.localizedName(language)),
           if (userProfile.moonSign != null)
-            _buildInfoRow(isDark, Icons.nightlight_outlined, L10n.get('moon_sign', language), userProfile.moonSign!.localizedName(language)),
+            _buildInfoRow(isDark, Icons.nightlight_outlined, L10nService.get('moon_sign', language), userProfile.moonSign!.localizedName(language)),
           if (userProfile.risingSign != null)
-            _buildInfoRow(isDark, Icons.arrow_upward, L10n.get('rising_sign', language), userProfile.risingSign!.localizedName(language)),
+            _buildInfoRow(isDark, Icons.arrow_upward, L10nService.get('rising_sign', language), userProfile.risingSign!.localizedName(language)),
         ],
       ),
     );
@@ -287,7 +288,7 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
 
   String _formatDate(DateTime date, AppLanguage language) {
     final monthKey = _getMonthKey(date.month);
-    final monthName = L10n.get(monthKey, language);
+    final monthName = L10nService.get(monthKey, language);
     return '${date.day} $monthName ${date.year}';
   }
 
@@ -335,7 +336,7 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                L10n.get('progressions_positions', language),
+                L10nService.get('screens.progressions.positions', language),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
@@ -347,7 +348,7 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
                   borderRadius: BorderRadius.circular(AppConstants.radiusFull),
                 ),
                 child: Text(
-                  '${_progressions!.progressedAge} ${L10n.get('progressions_age', language)}',
+                  '${_progressions!.progressedAge} ${L10nService.get('screens.progressions.age', language)}',
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: AppColors.starGold,
                         fontWeight: FontWeight.bold,
@@ -361,7 +362,7 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
             children: [
               Expanded(
                 child: _buildProgressedPlanet(
-                  L10n.get('progressions_sun', language),
+                  L10nService.get('screens.progressions.sun', language),
                   '',
                   natalSun,
                   _progressions!.progressedSun,
@@ -372,7 +373,7 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
               const SizedBox(width: 8),
               Expanded(
                 child: _buildProgressedPlanet(
-                  L10n.get('progressions_moon', language),
+                  L10nService.get('screens.progressions.moon', language),
                   '',
                   natalMoon,
                   _progressions!.progressedMoon,
@@ -383,7 +384,7 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
               const SizedBox(width: 8),
               Expanded(
                 child: _buildProgressedPlanet(
-                  L10n.get('progressions_rising', language),
+                  L10nService.get('screens.progressions.rising', language),
                   '',
                   natalAscendant,
                   _progressions!.progressedAscendant,
@@ -398,7 +399,7 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
             children: [
               Expanded(
                 child: _buildProgressedPlanet(
-                  L10n.get('progressions_mercury', language),
+                  L10nService.get('screens.progressions.mercury', language),
                   '',
                   natalSun, // Simplified
                   _progressions!.progressedMercury,
@@ -409,7 +410,7 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
               const SizedBox(width: 8),
               Expanded(
                 child: _buildProgressedPlanet(
-                  L10n.get('progressions_venus', language),
+                  L10nService.get('screens.progressions.venus', language),
                   '',
                   natalSun,
                   _progressions!.progressedVenus,
@@ -420,7 +421,7 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
               const SizedBox(width: 8),
               Expanded(
                 child: _buildProgressedPlanet(
-                  L10n.get('progressions_mars', language),
+                  L10nService.get('screens.progressions.mars', language),
                   '',
                   natalSun,
                   _progressions!.progressedMars,
@@ -479,7 +480,7 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
           if (hasChanged) ...[
             const SizedBox(height: 2),
             Text(
-              L10n.get('progressions_from', language).replaceAll('{sign}', natal.localizedName(language)),
+              L10nService.get('screens.progressions.from', language).replaceAll('{sign}', natal.localizedName(language)),
               style: Theme.of(context).textTheme.labelSmall?.copyWith(
                     color: AppColors.starGold,
                     fontSize: 8,
@@ -515,7 +516,7 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
               ),
               const SizedBox(width: 12),
               Text(
-                L10n.get('progressions_current_life_phase', language),
+                L10nService.get('screens.progressions.current_life_phase', language),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
@@ -557,7 +558,7 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
               const Icon(Icons.favorite, color: Colors.pink),
               const SizedBox(width: 8),
               Text(
-                L10n.get('progressions_emotional_theme', language),
+                L10nService.get('screens.progressions.emotional_theme', language),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
@@ -600,7 +601,7 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
               ),
               const SizedBox(width: 12),
               Text(
-                L10n.get('progressions_identity_evolution', language),
+                L10nService.get('screens.progressions.identity_evolution', language),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
@@ -632,7 +633,7 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            L10n.get('progressions_active_aspects', language),
+            L10nService.get('screens.progressions.active_aspects', language),
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
@@ -672,7 +673,7 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
                           borderRadius: BorderRadius.circular(4),
                         ),
                         child: Text(
-                          aspect.isApplying ? L10n.get('progressions_applying', language) : L10n.get('progressions_separating', language),
+                          aspect.isApplying ? L10nService.get('screens.progressions.applying', language) : L10nService.get('screens.progressions.separating', language),
                           style: Theme.of(context).textTheme.labelSmall?.copyWith(
                                 color: aspect.isApplying
                                     ? Colors.green
@@ -720,7 +721,7 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
               ),
               const SizedBox(width: 12),
               Text(
-                L10n.get('progressions_significant_events', language),
+                L10nService.get('screens.progressions.significant_events', language),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
@@ -814,7 +815,7 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
           ),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
-            L10n.get('progressions_upcoming_changes', language),
+            L10nService.get('screens.progressions.upcoming_changes', language),
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                   color: AppColors.starGold,

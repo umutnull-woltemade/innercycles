@@ -135,12 +135,13 @@ class _TarotScreenState extends ConsumerState<TarotScreen> {
                     const NextBlocks(currentPage: 'tarot'),
                     const SizedBox(height: AppConstants.spacingXl),
                     // Back-Button-Free Navigation
-                    const PageBottomNavigation(currentRoute: '/tarot'),
+                    PageBottomNavigation(currentRoute: '/tarot', language: language),
                     const SizedBox(height: AppConstants.spacingLg),
                     // Disclaimer
                     PageFooterWithDisclaimer(
                       brandText: L10nService.get('brands.tarot', language),
-                      disclaimerText: DisclaimerTexts.tarot,
+                      disclaimerText: DisclaimerTexts.tarot(language),
+                      language: language,
                     ),
                   ]),
                 ),

@@ -32,10 +32,11 @@ class _YearAheadScreenState extends ConsumerState<YearAheadScreen> {
     _generateForecast();
   }
 
-  void _generateForecast() {
+  void _generateForecast([AppLanguage? language]) {
     final userProfile = ref.read(userProfileProvider);
     final sign = userProfile?.sunSign ?? ZodiacSign.aries;
-    _forecast = YearAheadService.generate(sign, _selectedYear);
+    final lang = language ?? AppLanguage.en;
+    _forecast = YearAheadService.generate(sign, _selectedYear, lang);
   }
 
   @override
@@ -43,6 +44,9 @@ class _YearAheadScreenState extends ConsumerState<YearAheadScreen> {
     final userProfile = ref.watch(userProfileProvider);
     final sign = userProfile?.sunSign ?? ZodiacSign.aries;
     final language = ref.watch(languageProvider);
+
+    // Regenerate forecast when language changes
+    _forecast = YearAheadService.generate(sign, _selectedYear, language);
 
     return Scaffold(
       body: CosmicBackground(
@@ -72,7 +76,8 @@ class _YearAheadScreenState extends ConsumerState<YearAheadScreen> {
                 // Entertainment Disclaimer
                 PageFooterWithDisclaimer(
                   brandText: '${L10nService.get('year_ahead.title', language)} — Venus One',
-                  disclaimerText: DisclaimerTexts.astrology,
+                  disclaimerText: DisclaimerTexts.astrology(language),
+                  language: language,
                 ),
               ],
             ),
@@ -176,7 +181,7 @@ class _YearAheadScreenState extends ConsumerState<YearAheadScreen> {
                   onTap: () {
                     setState(() {
                       _selectedYear = year;
-                      _generateForecast();
+                      _generateForecast(language);
                     });
                     Navigator.pop(context);
                   },
@@ -601,50 +606,37 @@ class _YearAheadScreenState extends ConsumerState<YearAheadScreen> {
 
 /// Year Ahead Service
 class YearAheadService {
-  static YearAheadForecast generate(ZodiacSign sign, int year) {
+  static YearAheadForecast generate(ZodiacSign sign, int year, AppLanguage language) {
     final seed = sign.index * 1000 + year;
     final random = Random(seed);
 
     return YearAheadForecast(
       year: year,
       sign: sign,
-      overview: _generateOverview(sign, year),
+      overview: _generateOverview(sign, year, language),
       careerScore: 50 + random.nextInt(45),
       loveScore: 50 + random.nextInt(45),
       financeScore: 50 + random.nextInt(45),
       healthScore: 50 + random.nextInt(45),
-      quarters: _generateQuarters(sign, year, random),
-      keyTransits: _generateTransits(sign, year),
-      luckyPeriods: _generateLuckyPeriods(sign, year, random),
-      challengingPeriods: _generateChallengingPeriods(year, random),
-      affirmation: _generateAffirmation(sign),
+      quarters: _generateQuarters(sign, year, random, language),
+      keyTransits: _generateTransits(sign, year, language),
+      luckyPeriods: _generateLuckyPeriods(sign, year, random, language),
+      challengingPeriods: _generateChallengingPeriods(year, random, language),
+      affirmation: _generateAffirmation(sign, language),
     );
   }
 
-  static String _generateOverview(ZodiacSign sign, int year) {
-    final overviews = {
-      ZodiacSign.aries: '$year sizin için cesaret ve yeni başlangıçlar yılı. Liderlik özellikleriniz ön plana çıkacak.',
-      ZodiacSign.taurus: '$year finansal istikrar ve kişisel değerler üzerine odaklanacağınız bir yıl olacak.',
-      ZodiacSign.gemini: '$year iletişim ve öğrenim için önemli fırsatlar getirecek. Sosyal çevreniz genişleyecek.',
-      ZodiacSign.cancer: '$year ev, aile ve duygusal güvenlik temalarına odaklanacağınız bir dönem.',
-      ZodiacSign.leo: '$year yaratıcı ifade ve kişisel parlaklık zamanı. Sahneye çıkmaktan korkmayın.',
-      ZodiacSign.virgo: '$year detaylara odaklanma ve hizmet etme enerjisi taşıyor. Sağlık ve rutin önemli.',
-      ZodiacSign.libra: '$year ilişkiler ve ortaklıklar için dönüşüm zamanı. Denge arayın.',
-      ZodiacSign.scorpio: '$year derin dönüşümler ve yenilenme getiriyor. Eski kalıpları bırakın.',
-      ZodiacSign.sagittarius: '$year macera, eğitim ve ufukları genişletme yılı. Özgürlük ön planda.',
-      ZodiacSign.capricorn: '$year kariyer zirvesi ve toplumsal başarı için uygun. Hedeflerinize odaklanın.',
-      ZodiacSign.aquarius: '$year yenilikçi fikirler ve toplumsal bağlantı için güçlü enerji taşıyor.',
-      ZodiacSign.pisces: '$year ruhsal gelişim ve yaratıcı ilham için zengin bir dönem olacak.',
-    };
-    return overviews[sign] ?? '$year sizin için önemli fırsatlar ve gelişim getiriyor.';
+  static String _generateOverview(ZodiacSign sign, int year, AppLanguage language) {
+    final signKey = sign.name.toLowerCase();
+    return L10nService.getWithParams('year_ahead.overviews.$signKey', language, params: {'year': '$year'});
   }
 
-  static List<QuarterForecast> _generateQuarters(ZodiacSign sign, int year, Random random) {
-    final themes = [
-      ['Başlangıçlar', 'Enerji', 'Yenilik', 'Cesaret'],
-      ['Büyüme', 'İstikrar', 'Uygulama', 'Toplama'],
-      ['Hasat', 'Denge', 'İlişkiler', 'Değerlendirme'],
-      ['Tamamlama', 'Planlama', 'Yansıma', 'Hazırlık'],
+  static List<QuarterForecast> _generateQuarters(ZodiacSign sign, int year, Random random, AppLanguage language) {
+    final themeKeys = [
+      ['beginnings', 'energy', 'innovation', 'courage'],
+      ['growth', 'stability', 'application', 'gathering'],
+      ['harvest', 'balance', 'relationships', 'evaluation'],
+      ['completion', 'planning', 'reflection', 'preparation'],
     ];
 
     final colors = [
@@ -660,96 +652,89 @@ class YearAheadService {
       final q = i + 1;
       final startMonth = i * 3 + 1;
       final endMonth = startMonth + 2;
-      final themeIndex = random.nextInt(themes[i].length);
+      final themeIndex = random.nextInt(themeKeys[i].length);
+      final themeKey = themeKeys[i][themeIndex];
+      final theme = L10nService.get('year_ahead.themes.$themeKey', language);
 
       return QuarterForecast(
         quarter: q,
-        name: '$q. Ceyrek',
-        dateRange: '${_getMonthName(startMonth)} - ${_getMonthName(endMonth)}',
-        theme: themes[i][themeIndex],
-        description: _getQuarterDescription(sign, q, themes[i][themeIndex]),
+        name: L10nService.getWithParams('year_ahead.quarter_name', language, params: {'number': '$q'}),
+        dateRange: '${_getMonthName(startMonth, language)} - ${_getMonthName(endMonth, language)}',
+        theme: theme,
+        description: _getQuarterDescription(sign, q, theme, language),
         color: colors[i],
         emoji: emojis[i],
       );
     });
   }
 
-  static String _getMonthName(int month) {
-    const months = ['Ocak', 'Subat', 'Mart', 'Nisan', 'Mayis', 'Haziran', 'Temmuz', 'Agustos', 'Eylul', 'Ekim', 'Kasim', 'Aralik'];
-    return months[month - 1];
+  static String _getMonthName(int month, AppLanguage language) {
+    const monthKeys = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'];
+    return L10nService.get('year_ahead.months.${monthKeys[month - 1]}', language);
   }
 
-  static String _getQuarterDescription(ZodiacSign sign, int quarter, String theme) {
-    final descriptions = {
-      1: 'Yılın başlangıcı $theme enerjisi ile geliyor. ${sign.nameTr} burcu olarak bu dönemde aktif olacaksınız.',
-      2: 'İlkbahar ve yaz arasında $theme ön plana çıkıyor. Projelerinizi somutlaştırma zamanı.',
-      3: 'Sonbahar mevsimi $theme ile ilgili konuları öne çıkarıyor. Dengeleme önemli.',
-      4: 'Yılın son çeyreği $theme üzerine düşünme ve gelecek yılı planlama zamanı.',
-    };
-    return descriptions[quarter] ?? 'Bu çeyrek $theme üzerine odaklanmanızı gerektiriyor.';
+  static String _getQuarterDescription(ZodiacSign sign, int quarter, String theme, AppLanguage language) {
+    final signName = sign.localizedName(language);
+    final quarterKey = 'q$quarter';
+    return L10nService.getWithParams('year_ahead.quarter_descriptions.$quarterKey', language, params: {'theme': theme, 'sign': signName});
   }
 
-  static List<TransitInfo> _generateTransits(ZodiacSign sign, int year) {
+  static List<TransitInfo> _generateTransits(ZodiacSign sign, int year, AppLanguage language) {
+    final signName = sign.localizedName(language);
     return [
       TransitInfo(
         planetEmoji: '♃',
-        title: 'Jupiter Transiti',
-        dateRange: 'Yil boyunca',
-        effect: 'Genislemeve sans getiren enerji. ${sign.nameTr} icin firsatlar bolgesinde.',
+        title: L10nService.get('year_ahead.transit_titles.jupiter', language),
+        dateRange: L10nService.get('year_ahead.transit_dates.year_long', language),
+        effect: L10nService.getWithParams('year_ahead.transit_effects.jupiter', language, params: {'sign': signName}),
       ),
       TransitInfo(
         planetEmoji: '♄',
-        title: 'Saturn Transiti',
-        dateRange: 'Yil boyunca',
-        effect: 'Sorumluluk ve yapilandirma zamani. Sabir gerektiren donem.',
+        title: L10nService.get('year_ahead.transit_titles.saturn', language),
+        dateRange: L10nService.get('year_ahead.transit_dates.year_long', language),
+        effect: L10nService.get('year_ahead.transit_effects.saturn', language),
       ),
       TransitInfo(
         planetEmoji: '☿',
-        title: 'Merkur Retrolari',
-        dateRange: '3-4 kez/yil',
-        effect: 'Iletisim ve teknolojide dikkat. Eski konulari tamamlama firsati.',
+        title: L10nService.get('year_ahead.transit_titles.mercury_retro', language),
+        dateRange: L10nService.get('year_ahead.transit_dates.three_four_times', language),
+        effect: L10nService.get('year_ahead.transit_effects.mercury', language),
       ),
     ];
   }
 
-  static List<String> _generateLuckyPeriods(ZodiacSign sign, int year, Random random) {
-    final months = ['Ocak', 'Subat', 'Mart', 'Nisan', 'Mayis', 'Haziran', 'Temmuz', 'Agustos', 'Eylul', 'Ekim', 'Kasim', 'Aralik'];
+  static List<String> _generateLuckyPeriods(ZodiacSign sign, int year, Random random, AppLanguage language) {
+    const monthKeys = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'];
     final luckyMonths = <String>[];
 
     for (int i = 0; i < 12; i++) {
       if (random.nextDouble() > 0.6) {
-        luckyMonths.add(months[i]);
+        luckyMonths.add(L10nService.get('year_ahead.months.${monthKeys[i]}', language));
       }
     }
 
-    return luckyMonths.isEmpty ? ['Mart', 'Haziran', 'Ekim'] : luckyMonths;
+    if (luckyMonths.isEmpty) {
+      return [
+        L10nService.get('year_ahead.months.march', language),
+        L10nService.get('year_ahead.months.june', language),
+        L10nService.get('year_ahead.months.october', language),
+      ];
+    }
+    return luckyMonths;
   }
 
-  static List<String> _generateChallengingPeriods(int year, Random random) {
+  static List<String> _generateChallengingPeriods(int year, Random random, AppLanguage language) {
     // Mercury retrograde periods
     return [
-      'Merkur Retrosu (Nisan)',
-      'Merkur Retrosu (Agustos)',
-      'Merkur Retrosu (Aralik)',
+      L10nService.get('year_ahead.mercury_retro_periods.april', language),
+      L10nService.get('year_ahead.mercury_retro_periods.august', language),
+      L10nService.get('year_ahead.mercury_retro_periods.december', language),
     ];
   }
 
-  static String _generateAffirmation(ZodiacSign sign) {
-    final affirmations = {
-      ZodiacSign.aries: 'Cesaretle ilerliyorum, yeni başlangıçlara hazırım.',
-      ZodiacSign.taurus: 'Bolluk ve bereket hayatıma akıyor.',
-      ZodiacSign.gemini: 'Her gün yeni şeyler öğreniyor ve büyüyorum.',
-      ZodiacSign.cancer: 'Duygusal güvenliğim ve huzurum sağlamdır.',
-      ZodiacSign.leo: 'Işığımı parlatıyor ve dünyayla paylaşıyorum.',
-      ZodiacSign.virgo: 'Mükemmellik yerine ilerlemeyi seçiyorum.',
-      ZodiacSign.libra: 'Hayatımda denge ve uyum yaratıyorum.',
-      ZodiacSign.scorpio: 'Dönüşümü kucaklıyor, yeniden doğuyorum.',
-      ZodiacSign.sagittarius: 'Özgürce keşfediyor ve büyüyorum.',
-      ZodiacSign.capricorn: 'Hedeflerime kararlılıkla ilerliyorum.',
-      ZodiacSign.aquarius: 'Benzersizliğimi kutluyor, farkı yaratıyorum.',
-      ZodiacSign.pisces: 'Sezgilerime güveniyorum, evrenle akıyorum.',
-    };
-    return affirmations[sign] ?? 'Her gün daha iyi bir versiyonum oluyorum.';
+  static String _generateAffirmation(ZodiacSign sign, AppLanguage language) {
+    final signKey = sign.name.toLowerCase();
+    return L10nService.get('year_ahead.affirmations.$signKey', language);
   }
 }
 

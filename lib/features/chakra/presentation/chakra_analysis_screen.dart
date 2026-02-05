@@ -106,11 +106,12 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
                       ),
                       const SizedBox(height: AppConstants.spacingXl),
                       // Entertainment Disclaimer
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: AppConstants.spacingLg),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: AppConstants.spacingLg),
                         child: PageFooterWithDisclaimer(
                           brandText: 'Chakra — Venus One',
-                          disclaimerText: DisclaimerTexts.chakra,
+                          disclaimerText: DisclaimerTexts.chakra(language),
+                          language: language,
                         ),
                       ),
                       const SizedBox(height: AppConstants.spacingLg),
@@ -496,7 +497,7 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
                       context,
                       icon: Icons.info_outline,
                       title: L10nService.get('chakra.about', language),
-                      content: chakra.description,
+                      content: chakra.getDescription(language),
                     ),
 
                     // Physical connection
@@ -504,7 +505,7 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
                       context,
                       icon: Icons.favorite_outline,
                       title: L10nService.get('chakra.physical_connections', language),
-                      content: chakra.physicalConnection,
+                      content: chakra.getPhysicalConnection(language),
                     ),
 
                     // Emotional aspects
@@ -512,14 +513,14 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
                       context,
                       icon: Icons.psychology_outlined,
                       title: L10nService.get('chakra.emotional_aspects', language),
-                      content: chakra.emotionalAspects,
+                      content: chakra.getEmotionalAspects(language),
                     ),
 
                     // Healing suggestions
                     _buildHealingSuggestions(context, chakra, language),
 
                     // Affirmation
-                    _buildAffirmationCard(context, chakra),
+                    _buildAffirmationCard(context, chakra, language),
                   ],
                 ),
               ),
@@ -573,7 +574,7 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
           ),
           const SizedBox(height: 10),
           Text(
-            chakra.balanceMessage,
+            chakra.getBalanceMessage(language),
             style: TextStyle(
               color: Colors.white.withValues(alpha: 0.7),
               fontSize: 13,
@@ -650,7 +651,7 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
             ],
           ),
           const SizedBox(height: 12),
-          ...chakra.healingSuggestions.map((suggestion) => Padding(
+          ...chakra.getHealingSuggestions(language).map((suggestion) => Padding(
                 padding: const EdgeInsets.only(bottom: 8),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -681,7 +682,7 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
           Wrap(
             spacing: 8,
             runSpacing: 8,
-            children: chakra.crystals.map((crystal) => Container(
+            children: chakra.getCrystals(language).map((crystal) => Container(
                   padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                   decoration: BoxDecoration(
                     color: chakra.color.withValues(alpha: 0.2),
@@ -702,7 +703,7 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
     );
   }
 
-  Widget _buildAffirmationCard(BuildContext context, ChakraData chakra) {
+  Widget _buildAffirmationCard(BuildContext context, ChakraData chakra, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingMd),
       decoration: BoxDecoration(
@@ -720,7 +721,7 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
           Icon(Icons.format_quote, color: chakra.color, size: 28),
           const SizedBox(height: 8),
           Text(
-            chakra.affirmation,
+            chakra.getAffirmation(language),
             style: const TextStyle(
               color: Colors.white,
               fontSize: 16,
@@ -800,7 +801,7 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
           ),
           const SizedBox(height: 12),
           Text(
-            _analysisData!.overallAnalysis,
+            _analysisData!.getOverallAnalysis(language),
             style: TextStyle(
               color: Colors.white.withValues(alpha: 0.8),
               height: 1.6,
@@ -837,7 +838,7 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
                 ),
           ),
           const SizedBox(height: 12),
-          ..._analysisData!.generalTips.map((tip) => _buildTipCard(context, tip)),
+          ..._analysisData!.getGeneralTips(language).map((tip) => _buildTipCard(context, tip)),
         ],
       ),
     );
@@ -973,13 +974,13 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
             ),
           ),
           const SizedBox(height: 16),
-          ..._analysisData!.meditations.map((meditation) => _buildMeditationCard(context, meditation)),
+          ..._analysisData!.meditations.map((meditation) => _buildMeditationCard(context, meditation, language)),
         ],
       ),
     );
   }
 
-  Widget _buildMeditationCard(BuildContext context, ChakraMeditation meditation) {
+  Widget _buildMeditationCard(BuildContext context, ChakraMeditation meditation, AppLanguage language) {
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
       decoration: BoxDecoration(
@@ -1037,7 +1038,7 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        meditation.title,
+                        meditation.getTitle(language),
                         style: const TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
@@ -1048,7 +1049,7 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
                           Icon(Icons.timer_outlined, size: 14, color: Colors.white.withValues(alpha: 0.6)),
                           const SizedBox(width: 4),
                           Text(
-                            '${meditation.duration} dakika',
+                            meditation.getFormattedDuration(language),
                             style: TextStyle(
                               color: Colors.white.withValues(alpha: 0.6),
                               fontSize: 12,
@@ -1082,7 +1083,7 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
           Padding(
             padding: const EdgeInsets.all(AppConstants.spacingMd),
             child: Text(
-              meditation.description,
+              meditation.getDescription(language),
               style: TextStyle(
                 color: Colors.white.withValues(alpha: 0.8),
                 height: 1.5,
@@ -1114,7 +1115,7 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
           ),
           const SizedBox(height: 12),
           Text(
-            _analysisData!.dailyFocus.description,
+            _analysisData!.dailyFocus.getDescription(language),
             style: TextStyle(
               color: Colors.white.withValues(alpha: 0.8),
               height: 1.6,
@@ -1179,7 +1180,7 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  _analysisData!.dailyFocus.focusReason,
+                  _analysisData!.dailyFocus.getFocusReason(language),
                   style: TextStyle(
                     color: Colors.white.withValues(alpha: 0.7),
                   ),
@@ -1199,7 +1200,7 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
                 ),
           ),
           const SizedBox(height: 12),
-          ..._analysisData!.dailyFocus.activities.map((activity) => Container(
+          ..._analysisData!.dailyFocus.getActivities(language).map((activity) => Container(
                 margin: const EdgeInsets.only(bottom: 8),
                 padding: const EdgeInsets.all(AppConstants.spacingMd),
                 decoration: BoxDecoration(
@@ -1234,12 +1235,16 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
   }
 
   IconData _getActivityIcon(String activity) {
-    if (activity.toLowerCase().contains('meditasyon')) return Icons.self_improvement;
-    if (activity.toLowerCase().contains('yoga')) return Icons.sports_gymnastics;
-    if (activity.toLowerCase().contains('nefes')) return Icons.air;
-    if (activity.toLowerCase().contains('yuru')) return Icons.directions_walk;
-    if (activity.toLowerCase().contains('su')) return Icons.water_drop;
-    if (activity.toLowerCase().contains('yaz')) return Icons.edit_note;
+    final lowerActivity = activity.toLowerCase();
+    // Turkish and English keywords for activity detection
+    if (lowerActivity.contains('meditasyon') || lowerActivity.contains('meditation')) return Icons.self_improvement;
+    if (lowerActivity.contains('yoga')) return Icons.sports_gymnastics;
+    if (lowerActivity.contains('nefes') || lowerActivity.contains('breath')) return Icons.air;
+    if (lowerActivity.contains('yürü') || lowerActivity.contains('walk') || lowerActivity.contains('barefoot')) return Icons.directions_walk;
+    if (lowerActivity.contains('su') || lowerActivity.contains('water') || lowerActivity.contains('swim')) return Icons.water_drop;
+    if (lowerActivity.contains('yaz') || lowerActivity.contains('write') || lowerActivity.contains('journal')) return Icons.edit_note;
+    if (lowerActivity.contains('taş') || lowerActivity.contains('crystal') || lowerActivity.contains('stone')) return Icons.diamond;
+    if (lowerActivity.contains('olumlama') || lowerActivity.contains('affirmation')) return Icons.format_quote;
     return Icons.circle_outlined;
   }
 }
@@ -1250,8 +1255,7 @@ class ChakraAnalysisData {
   final List<ChakraData> chakras;
   final ChakraData strongestChakra;
   final ChakraData needsAttention;
-  final String overallAnalysis;
-  final List<String> generalTips;
+  final ZodiacSign sign;
   final List<ChakraMeditation> meditations;
   final DailyChakraFocus dailyFocus;
 
@@ -1259,76 +1263,147 @@ class ChakraAnalysisData {
     required this.chakras,
     required this.strongestChakra,
     required this.needsAttention,
-    required this.overallAnalysis,
-    required this.generalTips,
+    required this.sign,
     required this.meditations,
     required this.dailyFocus,
   });
+
+  String getOverallAnalysis(AppLanguage language) {
+    final signName = sign.getLocalizedName(language);
+    final strongestName = strongestChakra.localizedName(language);
+    final weakestName = needsAttention.localizedName(language);
+    final emotionalAspects = strongestChakra.getEmotionalAspects(language).toLowerCase();
+
+    return L10nService.getWithParams('chakra.overall_analysis', language, params: {
+      'sign': signName,
+      'strongest': strongestName,
+      'weakest': weakestName,
+      'emotional_aspects': emotionalAspects,
+    });
+  }
+
+  List<String> getGeneralTips(AppLanguage language) {
+    return L10nService.getList('chakra.general_tips_list', language);
+  }
 }
 
 class ChakraData {
   final String name;
-  final String nameTr;
+  final String key; // key for l10n lookup (root, sacral, solar_plexus, heart, throat, third_eye, crown)
   final String sanskritName;
   final String symbol;
   final Color color;
   final double balance;
-  final String description;
-  final String physicalConnection;
-  final String emotionalAspects;
-  final String balanceMessage;
-  final List<String> healingSuggestions;
-  final List<String> crystals;
-  final String affirmation;
 
   ChakraData({
     required this.name,
-    required this.nameTr,
+    required this.key,
     required this.sanskritName,
     required this.symbol,
     required this.color,
     required this.balance,
-    required this.description,
-    required this.physicalConnection,
-    required this.emotionalAspects,
-    required this.balanceMessage,
-    required this.healingSuggestions,
-    required this.crystals,
-    required this.affirmation,
   });
 
   String localizedName(AppLanguage language) {
-    final key = 'chakra.names.${name.toLowerCase().replaceAll(' ', '_')}';
-    return L10nService.get(key, language);
+    return L10nService.get('chakra.names.$key', language);
+  }
+
+  String getDescription(AppLanguage language) {
+    return L10nService.get('chakra.data.$key.description', language);
+  }
+
+  String getPhysicalConnection(AppLanguage language) {
+    return L10nService.get('chakra.data.$key.physical_connection', language);
+  }
+
+  String getEmotionalAspects(AppLanguage language) {
+    return L10nService.get('chakra.data.$key.emotional_aspects', language);
+  }
+
+  String getBalanceMessage(AppLanguage language) {
+    if (balance > 0.7) {
+      return L10nService.get('chakra.data.$key.balance_high', language);
+    } else if (balance < 0.4) {
+      return L10nService.get('chakra.data.$key.balance_low', language);
+    } else {
+      return L10nService.get('chakra.data.$key.balance_mid', language);
+    }
+  }
+
+  List<String> getHealingSuggestions(AppLanguage language) {
+    final suggestions = L10nService.getList('chakra.data.$key.healing_suggestions', language);
+    return suggestions.isNotEmpty ? suggestions : [];
+  }
+
+  List<String> getCrystals(AppLanguage language) {
+    final crystals = L10nService.getList('chakra.data.$key.crystals', language);
+    return crystals.isNotEmpty ? crystals : [];
+  }
+
+  String getAffirmation(AppLanguage language) {
+    return L10nService.get('chakra.data.$key.affirmation', language);
   }
 }
 
 class ChakraMeditation {
   final ChakraData chakra;
-  final String title;
-  final String description;
+  final String titleKey; // key for l10n lookup (grounding, heart_opening, third_eye_activation)
   final int duration;
 
   ChakraMeditation({
     required this.chakra,
-    required this.title,
-    required this.description,
+    required this.titleKey,
     required this.duration,
   });
+
+  String getTitle(AppLanguage language) {
+    return L10nService.get('chakra.meditation_titles.$titleKey', language);
+  }
+
+  String getDescription(AppLanguage language) {
+    return L10nService.get('chakra.meditation_descriptions.$titleKey', language);
+  }
+
+  String getFormattedDuration(AppLanguage language) {
+    return L10nService.getWithParams('chakra.minutes', language, params: {'duration': duration.toString()});
+  }
 }
 
 class DailyChakraFocus {
   final ChakraData focusChakra;
-  final String description;
-  final String focusReason;
-  final List<String> activities;
 
   DailyChakraFocus({
     required this.focusChakra,
-    required this.description,
-    required this.focusReason,
-    required this.activities,
   });
+
+  String getDescription(AppLanguage language) {
+    return L10nService.getWithParams('chakra.daily_description', language,
+      params: {'chakra': focusChakra.localizedName(language)});
+  }
+
+  String getFocusReason(AppLanguage language) {
+    return L10nService.getWithParams('chakra.daily_reason', language,
+      params: {'chakra': focusChakra.name});
+  }
+
+  List<String> getActivities(AppLanguage language) {
+    final healingSuggestions = focusChakra.getHealingSuggestions(language);
+    final crystals = focusChakra.getCrystals(language);
+
+    final activities = <String>[];
+    if (healingSuggestions.isNotEmpty) {
+      activities.add(healingSuggestions.first);
+    }
+    activities.add(L10nService.getWithParams('chakra.daily_activities.meditation_5min', language,
+      params: {'chakra': focusChakra.localizedName(language)}));
+    if (crystals.isNotEmpty) {
+      activities.add(L10nService.getWithParams('chakra.daily_activities.carry_crystal', language,
+        params: {'crystal': crystals.first}));
+    }
+    activities.add(L10nService.get('chakra.daily_activities.affirmation_3x', language));
+
+    return activities;
+  }
 }
 
 // ============== Service ==============
@@ -1343,8 +1418,7 @@ class ChakraAnalysisService {
       chakras: chakras,
       strongestChakra: strongest,
       needsAttention: weakest,
-      overallAnalysis: _getOverallAnalysis(sign, strongest, weakest),
-      generalTips: _getGeneralTips(sign),
+      sign: sign,
       meditations: _getMeditations(chakras),
       dailyFocus: _getDailyFocus(chakras),
     );
@@ -1358,177 +1432,59 @@ class ChakraAnalysisService {
     return [
       ChakraData(
         name: 'Root',
-        nameTr: 'Kök Çakrası',
+        key: 'root',
         sanskritName: 'Muladhara',
         symbol: 'LAM',
         color: const Color(0xFFE53935),
         balance: baseBalances[0],
-        description:
-            'Muladhara - "Kök Destek" - 4 yapraklı kırmızı lotus olarak sembolize edilir. '
-            'Omurganın tabanında yer alan bu çakra, hayatta kalma içgüdüleri, güvenlik, '
-            'topraklanma ve maddi dünya ile bağlantını temsil eder. Toprak elementi ile ilişkilidir. '
-            'Atalarından gelen enerji burada saklanır. Dengeli olduğunda güvenli ve istikrarlı hissedersin.',
-        physicalConnection: 'Bacaklar, ayaklar, kemikler, bağışıklık sistemi',
-        emotionalAspects: 'Güvenlik hissi, istikrar, temel ihtiyaçlar',
-        balanceMessage: baseBalances[0] > 0.7
-            ? 'Güçlü bir temele sahipsin, kendini güvenli hissediyorsun.'
-            : baseBalances[0] < 0.4
-                ? 'Topraklanmaya ihtiyacın var. Doğada zaman geçir.'
-                : 'Dengeleniyor - düzenli pratikle güçlendir.',
-        healingSuggestions: [
-          'Çıplak ayakla yerde yürü',
-          'Kırmızı renkli yiyecekler tüket',
-          'Ağaç sarılma meditasyonu yap',
-        ],
-        crystals: ['Kırmızı Jasper', 'Siyah Turmalin', 'Hematit'],
-        affirmation: 'Ben güvendeyim. Evren beni koruyor ve destekliyor.',
       ),
       ChakraData(
         name: 'Sacral',
-        nameTr: 'Sakral Çakrası',
+        key: 'sacral',
         sanskritName: 'Svadhisthana',
         symbol: 'VAM',
         color: const Color(0xFFFF9800),
         balance: baseBalances[1],
-        description:
-            'Sakral chakra, yaratıcılık, duygular, cinsellik ve zevk alma kapasitesi ile bağlantılıdır.',
-        physicalConnection: 'Üreme organları, böbrekler, alt sırt',
-        emotionalAspects: 'Duygusal akış, tutku, yaratıcılık',
-        balanceMessage: baseBalances[1] > 0.7
-            ? 'Yaratıcı enerjin akıyor, duygularınla barışıksın.'
-            : baseBalances[1] < 0.4
-                ? 'Duygularını ifade etmekte zorluk yaşıyorsun.'
-                : 'Yaratıcı projelerle bu enerjiyi canlandır.',
-        healingSuggestions: [
-          'Dans et veya bedenini özgürce hareket ettir',
-          'Turuncu renkli yiyecekler tüket',
-          'Suyla temas kur - yüzme, banyo',
-        ],
-        crystals: ['Karneol', 'Turuncu Kalsit', 'Ay Taşı'],
-        affirmation: 'Duygularım özgürce akıyor. Yaratıcılığımı kucaklıyorum.',
       ),
       ChakraData(
         name: 'Solar Plexus',
-        nameTr: 'Güneş Ağı Çakrası',
+        key: 'solar_plexus',
         sanskritName: 'Manipura',
         symbol: 'RAM',
         color: const Color(0xFFFFEB3B),
         balance: baseBalances[2],
-        description:
-            'Güneş ağı chakrası, kişisel güç, özgüven, irade gücü ve kimlik duygusu ile ilişkilidir.',
-        physicalConnection: 'Sindirim sistemi, mide, karaciğer',
-        emotionalAspects: 'Özgüven, kişisel güç, karar verme',
-        balanceMessage: baseBalances[2] > 0.7
-            ? 'Güçlü bir benlik algına sahipsin.'
-            : baseBalances[2] < 0.4
-                ? 'Özgüvenini yeniden inşa etmen gerekiyor.'
-                : 'Hedeflerine odaklanarak güçlen.',
-        healingSuggestions: [
-          'Güneş ışığında zaman geçir',
-          'Karın bölgesini güçlendiren egzersizler yap',
-          'Sarı renkli besinler tüket',
-        ],
-        crystals: ['Sitrin', 'Kaplan Gözü', 'Sarı Jasper'],
-        affirmation: 'Ben güçlüyüm. Hayatım üzerinde tam kontrole sahibim.',
       ),
       ChakraData(
         name: 'Heart',
-        nameTr: 'Kalp Çakrası',
+        key: 'heart',
         sanskritName: 'Anahata',
         symbol: 'YAM',
         color: const Color(0xFF4CAF50),
         balance: baseBalances[3],
-        description:
-            'Anahata - "Vurulamayan Ses" - 12 yapraklı yeşil lotus olarak sembolize edilir. '
-            'Kalp çakrası, sevgi, şefkat, affetme ve koşulsuz kabul enerjisidir. '
-            'Fiziksel ve ruhsal bedeni birleştiren köprüdür. Hava elementi ile bağlantılıdır. '
-            'Dengeli olduğunda evrensel sevgiyi deneyimler, tüm canlılara şefkat duyarsın.',
-        physicalConnection: 'Kalp, akciğer, göğüs, kollar, eller',
-        emotionalAspects: 'Koşulsuz sevgi, empati, bağışlama',
-        balanceMessage: baseBalances[3] > 0.7
-            ? 'Kalbin sevgiyle dolu, ilişkilerinde uyumlusun.'
-            : baseBalances[3] < 0.4
-                ? 'Kendine ve başkalarına şefkat göster.'
-                : 'Affetme pratikleriyle kalbini aç.',
-        healingSuggestions: [
-          'Minnettarlık günlüğü tut',
-          'Yeşil renkli sebzeler tüket',
-          'Sevdiklerinle kaliteli zaman geçir',
-        ],
-        crystals: ['Gül Kuvars', 'Yeşil Aventurin', 'Zümrüt'],
-        affirmation: 'Kalbim sevgiyle dolu. Vermek ve almak için açığım.',
       ),
       ChakraData(
         name: 'Throat',
-        nameTr: 'Boğaz Çakrası',
+        key: 'throat',
         sanskritName: 'Vishuddha',
         symbol: 'HAM',
         color: const Color(0xFF03A9F4),
         balance: baseBalances[4],
-        description:
-            'Boğaz chakrası, iletişim, öz-ifade, doğruluk ve yaratıcı ses ile ilişkilidir.',
-        physicalConnection: 'Boğaz, tiroid, boyun, kulaklar',
-        emotionalAspects: 'İletişim, öz-ifade, doğruluk',
-        balanceMessage: baseBalances[4] > 0.7
-            ? 'Kendini rahatça ifade edebiliyorsun.'
-            : baseBalances[4] < 0.4
-                ? 'Sesini duyurmakta zorluk yaşıyorsun.'
-                : 'Günlük yazma pratikleriyle güçlen.',
-        healingSuggestions: [
-          'Şarkı söyle veya mantra oku',
-          'Duygularını yazmaya başla',
-          'Mavi renkli çayı iç (kelebek bezelye)',
-        ],
-        crystals: ['Akuamarin', 'Lapis Lazuli', 'Mavi Kantaşı'],
-        affirmation: 'Sesim değerli. Gerçeğimi sevgiyle paylaşıyorum.',
       ),
       ChakraData(
         name: 'Third Eye',
-        nameTr: 'Üçüncü Göz Çakrası',
+        key: 'third_eye',
         sanskritName: 'Ajna',
         symbol: 'OM',
         color: const Color(0xFF3F51B5),
         balance: baseBalances[5],
-        description:
-            'Üçüncü göz chakrası, sezgi, iç görüş, hayal gücü ve ruhsal farkındalık ile bağlantılıdır.',
-        physicalConnection: 'Beyin, gözler, hipofiz bezi',
-        emotionalAspects: 'Sezgi, iç bilgelik, vizyon',
-        balanceMessage: baseBalances[5] > 0.7
-            ? 'Sezgilerin güçlü, iç sesinle bağdaşsın.'
-            : baseBalances[5] < 0.4
-                ? 'Sezgilerini dinlemeyi öğren.'
-                : 'Meditasyonla iç görüşünü geliştir.',
-        healingSuggestions: [
-          'Gece gökyüzünü seyret',
-          'Rüya günlüğü tut',
-          'Sezgisel yazma pratiği yap',
-        ],
-        crystals: ['Ametist', 'Labradorit', 'Sodalit'],
-        affirmation: 'Sezgilerime güveniyorum. İç bilgeliğim beni yönlendiriyor.',
       ),
       ChakraData(
         name: 'Crown',
-        nameTr: 'Taç Çakrası',
+        key: 'crown',
         sanskritName: 'Sahasrara',
         symbol: 'AUM',
         color: const Color(0xFF9C27B0),
         balance: baseBalances[6],
-        description:
-            'Taç chakrası, ruhani bağlantı, aydınlanma, evrensel bilinç ve yaşam amacı ile ilişkilidir.',
-        physicalConnection: 'Beyin, sinir sistemi, epifiz bezi',
-        emotionalAspects: 'Ruhani bağlantı, anlam arayışı, birlik',
-        balanceMessage: baseBalances[6] > 0.7
-            ? 'Evrenle derin bir bağlantın var.'
-            : baseBalances[6] < 0.4
-                ? 'Ruhani pratiklerle bağlantını güçlendir.'
-                : 'Sessizlik ve meditasyonla aç.',
-        healingSuggestions: [
-          'Sessizlikte zaman geçir',
-          'Farkındalık meditasyonu yap',
-          'Doğada yalnız kal',
-        ],
-        crystals: ['Berrak Kuvars', 'Ametist', 'Selenit'],
-        affirmation: 'Evrenle birim. İlahi rehberliğe açığım.',
       ),
     ];
   }
@@ -1569,42 +1525,21 @@ class ChakraAnalysisService {
     }
   }
 
-  static String _getOverallAnalysis(ZodiacSign sign, ChakraData strongest, ChakraData weakest) {
-    return '''${sign.nameTr} burcu olarak, enerji sistemin ${strongest.nameTr} bölgesinde özellikle güçlü. Bu, ${strongest.emotionalAspects.toLowerCase()} konularında doğal bir yeteneğe sahip olduğun anlamına gelir.
-
-Ancak ${weakest.nameTr} bölgesine daha fazla dikkat göstermen faydalı olacaktır. Bu chakrayı dengelemek için önerilen pratikleri günlük rutinine ekleyebilirsin.
-
-Genel olarak, chakra sistemin harmonik bir şekilde çalışıyor. Düzenli meditasyon ve farkındalık pratikleri ile bu dengeyi koruyabilirsin.''';
-  }
-
-  static List<String> _getGeneralTips(ZodiacSign sign) {
-    return [
-      'Her gün en az 10 dakika meditasyon yap',
-      'Doğada zaman geçirerek topraklan',
-      'Renkli ve dengeli beslen',
-      'Düzenli fiziksel aktivite yap',
-      'Duygularını günlüğe yaz',
-    ];
-  }
-
   static List<ChakraMeditation> _getMeditations(List<ChakraData> chakras) {
     return [
       ChakraMeditation(
         chakra: chakras[0],
-        title: 'Topraklanma Meditasyonu',
-        description: 'Ayaklarından yeryüzüne uzanan kökler hayal et. Güvenlik ve istikrar hisset.',
+        titleKey: 'grounding',
         duration: 10,
       ),
       ChakraMeditation(
         chakra: chakras[3],
-        title: 'Kalp Açma Meditasyonu',
-        description: 'Kalbinde yeşil bir ışık hayal et. Her nefeste bu ışık büyüsün.',
+        titleKey: 'heart_opening',
         duration: 15,
       ),
       ChakraMeditation(
         chakra: chakras[5],
-        title: 'Üçüncü Göz Aktivasyonu',
-        description: 'Kaşların arasındaki noktaya odaklan. Mor bir ışık görebildiğini hayal et.',
+        titleKey: 'third_eye_activation',
         duration: 12,
       ),
     ];
@@ -1617,15 +1552,6 @@ Genel olarak, chakra sistemin harmonik bir şekilde çalışıyor. Düzenli medi
 
     return DailyChakraFocus(
       focusChakra: focusChakra,
-      description:
-          'Bugün ${focusChakra.nameTr} enerjisi ön planda. Bu enerjiyle uyumlu aktiviteler yaparak gününü daha verimli geçirebilirsin.',
-      focusReason: 'Haftanın bu günü ${focusChakra.name} enerjisine karşılık geliyor.',
-      activities: [
-        focusChakra.healingSuggestions[0],
-        '${focusChakra.nameTr} için 5 dakikalık meditasyon yap',
-        '${focusChakra.crystals[0]} taşını yanında taşı',
-        'Gün içinde olumlamayı 3 kez tekrarla',
-      ],
     );
   }
 }

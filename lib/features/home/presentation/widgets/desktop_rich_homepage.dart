@@ -138,7 +138,7 @@ class DesktopRichHomepage extends ConsumerWidget {
                   const SizedBox(height: 32),
 
                   // Bottom navigation
-                  const PageBottomNavigation(currentRoute: '/'),
+                  PageBottomNavigation(currentRoute: '/', language: language),
                 ],
               ),
             ),

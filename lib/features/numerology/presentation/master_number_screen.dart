@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/content/numerology_content.dart';
+import '../../../data/providers/app_providers.dart';
+import '../../../data/services/l10n_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/next_blocks.dart';
 import '../../../shared/widgets/kadim_not_card.dart';
@@ -13,13 +16,14 @@ import '../../../shared/widgets/page_bottom_navigation.dart';
 ///
 /// Master sayılar (11, 22, 33) için detaylı içerik sayfası.
 /// Özel ve nadir olan bu sayıların derin anlamlarını açıklar.
-class MasterNumberScreen extends StatelessWidget {
+class MasterNumberScreen extends ConsumerWidget {
   final int number;
 
   const MasterNumberScreen({super.key, required this.number});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final language = ref.watch(languageProvider);
     final content = masterNumberContents[number];
 
     if (content == null) {
@@ -27,7 +31,7 @@ class MasterNumberScreen extends StatelessWidget {
         body: CosmicBackground(
           child: Center(
             child: Text(
-              'Master sayı bulunamadı',
+              L10nService.get('numerology.master_not_found', language),
               style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                 color: AppColors.textSecondary,
               ),
@@ -47,7 +51,7 @@ class MasterNumberScreen extends StatelessWidget {
                 floating: true,
                 snap: true,
                 expandedHeight: 220,
-                flexibleSpace: _buildHeader(context, content),
+                flexibleSpace: _buildHeader(context, content, language),
                 leading: IconButton(
                   icon: const Icon(Icons.arrow_back, color: AppColors.textPrimary),
                   onPressed: () => context.pop(),
@@ -58,13 +62,13 @@ class MasterNumberScreen extends StatelessWidget {
                 sliver: SliverList(
                   delegate: SliverChildListDelegate([
                     // Master Number Badge
-                    _buildMasterBadge(context, content),
+                    _buildMasterBadge(context, content, language),
                     const SizedBox(height: AppConstants.spacingXl),
 
                     // Deep Meaning
                     _buildSection(
                       context,
-                      'Derin Anlam',
+                      L10nService.get('numerology.deep_meaning', language),
                       content.deepMeaning,
                       Icons.auto_awesome,
                       _getColorForMaster(number),
@@ -74,7 +78,7 @@ class MasterNumberScreen extends StatelessWidget {
                     // Soul Mission
                     _buildSection(
                       context,
-                      'Ruh Misyonu',
+                      L10nService.get('numerology.soul_mission', language),
                       content.soulMission,
                       Icons.self_improvement,
                       AppColors.starGold,
@@ -83,21 +87,21 @@ class MasterNumberScreen extends StatelessWidget {
 
                     // Kadim Not
                     KadimNotCard(
-                      title: 'Master $number\'in Sırrı',
+                      title: L10nService.get('numerology.master_secret', language).replaceAll('{number}', number.toString()),
                       content: content.viralQuote,
                       category: KadimCategory.numerology,
-                      source: 'Kadim Numeroloji',
+                      source: L10nService.get('numerology.ancient_numerology', language),
                     ),
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Challenge
-                    _buildChallengeSection(context, content.challenge),
+                    _buildChallengeSection(context, content.challenge, language),
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Spiritual Lesson
                     _buildSection(
                       context,
-                      'Ruhsal Ders',
+                      L10nService.get('numerology.spiritual_lesson', language),
                       content.spiritualLesson,
                       Icons.lightbulb,
                       AppColors.moonSilver,
@@ -105,11 +109,11 @@ class MasterNumberScreen extends StatelessWidget {
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Keywords
-                    _buildKeywordsSection(context, content.keywords),
+                    _buildKeywordsSection(context, content.keywords, language),
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Master Number Tip
-                    _buildMasterTip(context, number),
+                    _buildMasterTip(context, number, language),
                     const SizedBox(height: AppConstants.spacingXl),
 
                     // Next Blocks
@@ -117,7 +121,7 @@ class MasterNumberScreen extends StatelessWidget {
                     const SizedBox(height: AppConstants.spacingXl),
 
                     // Bottom Navigation
-                    const PageBottomNavigation(currentRoute: '/numerology'),
+                    PageBottomNavigation(currentRoute: '/numerology', language: language),
                   ]),
                 ),
               ),
@@ -128,7 +132,7 @@ class MasterNumberScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildHeader(BuildContext context, MasterNumberContent content) {
+  Widget _buildHeader(BuildContext context, MasterNumberContent content, AppLanguage language) {
     final color = _getColorForMaster(number);
 
     return FlexibleSpaceBar(
@@ -227,7 +231,7 @@ class MasterNumberScreen extends StatelessWidget {
                 border: Border.all(color: color.withValues(alpha: 0.4)),
               ),
               child: Text(
-                'MASTER SAYI',
+                L10nService.get('numerology.master_number_badge', language),
                 style: Theme.of(context).textTheme.labelSmall?.copyWith(
                   color: color,
                   letterSpacing: 2,
@@ -258,7 +262,7 @@ class MasterNumberScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildMasterBadge(BuildContext context, MasterNumberContent content) {
+  Widget _buildMasterBadge(BuildContext context, MasterNumberContent content, AppLanguage language) {
     final color = _getColorForMaster(number);
 
     return Container(
@@ -283,7 +287,7 @@ class MasterNumberScreen extends StatelessWidget {
               Icon(Icons.star, color: AppColors.starGold, size: 20),
               const SizedBox(width: 8),
               Text(
-                'Master Sayı Özelliği',
+                L10nService.get('numerology.master_feature', language),
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
                   color: AppColors.starGold,
                 ),
@@ -310,7 +314,7 @@ class MasterNumberScreen extends StatelessWidget {
               borderRadius: BorderRadius.circular(16),
             ),
             child: Text(
-              '${content.element} Enerjisi',
+              L10nService.get('numerology.element_energy', language).replaceAll('{element}', content.element),
               style: Theme.of(context).textTheme.labelSmall?.copyWith(
                 color: color,
                 fontWeight: FontWeight.bold,
@@ -379,7 +383,7 @@ class MasterNumberScreen extends StatelessWidget {
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildChallengeSection(BuildContext context, String challenge) {
+  Widget _buildChallengeSection(BuildContext context, String challenge, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -409,7 +413,7 @@ class MasterNumberScreen extends StatelessWidget {
               ),
               const SizedBox(width: 12),
               Text(
-                'Zorluklar',
+                L10nService.get('numerology.challenges', language),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   color: AppColors.warning,
                   fontWeight: FontWeight.bold,
@@ -430,7 +434,7 @@ class MasterNumberScreen extends StatelessWidget {
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildKeywordsSection(BuildContext context, List<String> keywords) {
+  Widget _buildKeywordsSection(BuildContext context, List<String> keywords, AppLanguage language) {
     final color = _getColorForMaster(number);
 
     return Container(
@@ -447,7 +451,7 @@ class MasterNumberScreen extends StatelessWidget {
               Icon(Icons.tag, color: color, size: 20),
               const SizedBox(width: 8),
               Text(
-                'Anahtar Kelimeler',
+                L10nService.get('numerology.keywords', language),
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
                   color: color,
                 ),
@@ -480,12 +484,19 @@ class MasterNumberScreen extends StatelessWidget {
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildMasterTip(BuildContext context, int number) {
-    final tips = {
-      11: 'Master 11 olarak, yüksek sezgi ve hassasiyetinizi korumak için düzenli meditasyon ve topraklanma pratiği yapın. Enerji vampirlerinden kendinizi koruyun.',
-      22: 'Master 22 olarak, büyük vizyonlarınızı adım adım inşa edin. Mükemmeliyetçilik felç edebilir - "yapılmış, mükemmelden iyidir" ilkesini benimseyin.',
-      33: 'Master 33 olarak, başkalarına şifa verirken kendinizi ihmal etmeyin. Sınırlar sevgisizlik değil - önce kendi maskenizi takın.',
-    };
+  Widget _buildMasterTip(BuildContext context, int number, AppLanguage language) {
+    String getTip(int num) {
+      switch (num) {
+        case 11:
+          return L10nService.get('numerology.master_tip_11', language);
+        case 22:
+          return L10nService.get('numerology.master_tip_22', language);
+        case 33:
+          return L10nService.get('numerology.master_tip_33', language);
+        default:
+          return '';
+      }
+    }
 
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -514,18 +525,20 @@ class MasterNumberScreen extends StatelessWidget {
                 child: const Icon(Icons.tips_and_updates, color: AppColors.auroraStart, size: 20),
               ),
               const SizedBox(width: 12),
-              Text(
-                'Master $number İçin Pratik Tavsiye',
-                style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                  color: AppColors.auroraStart,
-                  fontWeight: FontWeight.bold,
+              Expanded(
+                child: Text(
+                  L10nService.get('numerology.master_practical_advice', language).replaceAll('{number}', number.toString()),
+                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                    color: AppColors.auroraStart,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ],
           ),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
-            tips[number] ?? '',
+            getTip(number),
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
               color: AppColors.textSecondary,
               height: 1.6,

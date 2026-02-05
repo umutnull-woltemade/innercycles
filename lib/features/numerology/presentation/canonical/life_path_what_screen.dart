@@ -79,7 +79,7 @@ class LifePathWhatScreen extends ConsumerWidget {
                 _buildSuggestion(context, isDark, language, '🔢', 'Günlük sayı enerjisi ne anlatır?', Routes.numerology),
                 const SizedBox(height: 40),
 
-                Center(child: Text('Numeroloji — Venus One', style: TextStyle(fontSize: 12, color: isDark ? Colors.white38 : AppColors.textLight))),
+                Center(child: Text(L10nService.get('numerology.brand_footer', language), style: TextStyle(fontSize: 12, color: isDark ? Colors.white38 : AppColors.textLight))),
                 const SizedBox(height: 20),
               ],
             ),

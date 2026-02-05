@@ -155,12 +155,13 @@ class _HoroscopeScreenState extends ConsumerState<HoroscopeScreen> {
                       ),
                       const SizedBox(height: AppConstants.spacingXl),
                       // Back-Button-Free Navigation
-                      const PageBottomNavigation(currentRoute: '/horoscope'),
+                      PageBottomNavigation(currentRoute: '/horoscope', language: language),
                       const SizedBox(height: AppConstants.spacingLg),
                       // Footer with branding
                       PageFooterWithDisclaimer(
                         brandText: L10nService.get('brands.horoscope', language),
-                        disclaimerText: DisclaimerTexts.astrology,
+                        disclaimerText: DisclaimerTexts.astrology(language),
+                        language: language,
                       ),
                     ],
                   ),

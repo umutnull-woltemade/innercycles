@@ -256,8 +256,8 @@ class NextBlocks extends StatelessWidget {
           ),
           _NextBlock(
             icon: Icons.star_outline,
-            title: 'Master 11',
-            subtitle: t('nav.expression_number'),
+            title: t('nav.expression_number'),
+            subtitle: t('nav.master_mystery'),
             route: '/numerology/master/11',
           ),
           _NextBlock(
@@ -521,13 +521,13 @@ class NextBlocks extends StatelessWidget {
           ),
           _NextBlock(
             icon: Icons.blur_circular_outlined,
-            title: 'Chakra Analizi',
-            subtitle: 'Enerji merkezlerin',
+            title: t('nav.chakra_analysis'),
+            subtitle: t('nav.energy_centers'),
             route: Routes.chakraAnalysis,
           ),
           _NextBlock(
             icon: Icons.account_tree_outlined,
-            title: 'Kabala',
+            title: t('nav.kabbalah'),
             subtitle: t('nav.cosmic_wisdom'),
             route: Routes.kabbalah,
           ),
@@ -557,7 +557,7 @@ class NextBlocks extends StatelessWidget {
           _NextBlock(
             icon: Icons.star_outline,
             title: t('nav.expression_number'),
-            subtitle: '11, 22, 33 gizemi',
+            subtitle: t('nav.master_mystery'),
             route: '/numerology/master/11',
           ),
           _NextBlock(
@@ -569,7 +569,7 @@ class NextBlocks extends StatelessWidget {
           _NextBlock(
             icon: Icons.style_outlined,
             title: t('nav.tarot'),
-            subtitle: 'Kartlar ne diyor?',
+            subtitle: t('nav.tarot_guidance'),
             route: Routes.tarot,
           ),
         ];
@@ -651,7 +651,7 @@ class NextBlocks extends StatelessWidget {
           _NextBlock(
             icon: Icons.schedule_outlined,
             title: t('nav.transits'),
-            subtitle: 'En iyi zamanlar',
+            subtitle: t('nav.best_times'),
             route: Routes.timing,
           ),
         ];
@@ -691,7 +691,7 @@ class NextBlocks extends StatelessWidget {
           ),
           _NextBlock(
             icon: Icons.numbers_outlined,
-            title: 'Numeroloji',
+            title: t('nav.numerology'),
             subtitle: t('nav.numerology_insight'),
             route: Routes.numerology,
           ),
@@ -701,8 +701,8 @@ class NextBlocks extends StatelessWidget {
         return [
           _NextBlock(
             icon: Icons.blur_circular_outlined,
-            title: 'Chakra Analizi',
-            subtitle: 'Enerji merkezlerin',
+            title: t('nav.chakra_analysis'),
+            subtitle: t('nav.energy_centers'),
             route: Routes.chakraAnalysis,
           ),
           _NextBlock(
@@ -714,25 +714,25 @@ class NextBlocks extends StatelessWidget {
           ),
           _NextBlock(
             icon: Icons.numbers_outlined,
-            title: 'Numeroloji',
+            title: t('nav.numerology'),
             subtitle: t('nav.numerology_insight'),
             route: Routes.numerology,
           ),
           _NextBlock(
             icon: Icons.style_outlined,
             title: t('nav.tarot'),
-            subtitle: 'Kartlar ne diyor?',
+            subtitle: t('nav.tarot_guidance'),
             route: Routes.tarot,
           ),
           _NextBlock(
             icon: Icons.spa_outlined,
             title: t('nav.rituals'),
-            subtitle: 'Enerji pratikleri',
+            subtitle: t('nav.energy_practices'),
             route: Routes.dailyRituals,
           ),
           _NextBlock(
             icon: Icons.diamond_outlined,
-            title: 'Kristal Rehberi',
+            title: t('nav.crystal_guide'),
             subtitle: t('nav.cosmic_wisdom'),
             route: Routes.crystalGuide,
           ),
@@ -831,7 +831,7 @@ class NextBlocks extends StatelessWidget {
           _NextBlock(
             icon: Icons.calendar_month_outlined,
             title: t('nav.weekly_reading'),
-            subtitle: 'Bu hafta seni neler bekliyor',
+            subtitle: t('nav.what_awaits_this_week'),
             route: Routes.weeklyHoroscope,
           ),
           _NextBlock(
@@ -843,13 +843,13 @@ class NextBlocks extends StatelessWidget {
           _NextBlock(
             icon: Icons.style_outlined,
             title: t('nav.tarot'),
-            subtitle: 'Kartlar ne diyor?',
+            subtitle: t('nav.tarot_guidance'),
             route: Routes.tarot,
           ),
           _NextBlock(
             icon: Icons.favorite_border_outlined,
             title: t('nav.compatibility'),
-            subtitle: 'Kiminle uyumlusun?',
+            subtitle: t('nav.who_compatible'),
             route: Routes.compatibility,
           ),
           _NextBlock(
@@ -865,7 +865,7 @@ class NextBlocks extends StatelessWidget {
           _NextBlock(
             icon: Icons.calendar_view_month_outlined,
             title: t('nav.monthly_reading'),
-            subtitle: 'Bu ay seni neler bekliyor',
+            subtitle: t('nav.what_awaits_this_month'),
             route: Routes.monthlyHoroscope,
           ),
           _NextBlock(
@@ -890,7 +890,7 @@ class NextBlocks extends StatelessWidget {
           _NextBlock(
             icon: Icons.style_outlined,
             title: t('nav.tarot'),
-            subtitle: 'Kartlar ne diyor?',
+            subtitle: t('nav.tarot_guidance'),
             route: Routes.tarot,
           ),
           _NextBlock(
@@ -1008,18 +1008,18 @@ class NextBlocks extends StatelessWidget {
           _NextBlock(
             icon: Icons.style_outlined,
             title: t('nav.tarot'),
-            subtitle: 'Kartlar ne diyor?',
+            subtitle: t('nav.tarot_guidance'),
             route: Routes.tarot,
           ),
           _NextBlock(
             icon: Icons.favorite_border_outlined,
             title: t('nav.compatibility'),
-            subtitle: 'Kiminle uyumlusun?',
+            subtitle: t('nav.who_compatible'),
             route: Routes.compatibility,
           ),
           _NextBlock(
             icon: Icons.home_outlined,
-            title: 'Ana Sayfa',
+            title: t('nav.home'),
             subtitle: t('common.all_features'),
             route: Routes.home,
           ),
@@ -1151,18 +1151,21 @@ class _NextBlockCard extends StatelessWidget {
 class NextBlocksCompact extends StatelessWidget {
   final String currentPage;
   final int maxItems;
+  final AppLanguage language;
 
   const NextBlocksCompact({
     super.key,
     required this.currentPage,
     this.maxItems = 3,
+    this.language = AppLanguage.en,
   });
 
   @override
   Widget build(BuildContext context) {
     return NextBlocks(
       currentPage: currentPage,
-      title: 'Sonraki',
+      title: L10nService.get('nav.up_next', language),
+      language: language,
     );
   }
 }

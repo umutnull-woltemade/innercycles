@@ -459,9 +459,10 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen>
         const NextBlocks(currentPage: 'synastry'),
         const SizedBox(height: AppConstants.spacingXl),
         // Disclaimer
-        const PageFooterWithDisclaimer(
+        PageFooterWithDisclaimer(
           brandText: 'Sinastri — Venus One',
-          disclaimerText: DisclaimerTexts.compatibility,
+          disclaimerText: DisclaimerTexts.compatibility(language),
+          language: language,
         ),
       ],
     );

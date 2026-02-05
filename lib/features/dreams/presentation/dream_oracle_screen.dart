@@ -55,16 +55,16 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
   // Services
   final DreamInterpretationService _dreamService = DreamInterpretationService();
 
-  // Loading messages
-  final List<String> _loadingMessages = [
-    'Bilinçaltının derinliklerine iniliyor...',
-    'Semboller çözümleniyor...',
-    'Arketiplerle bağlantı kuruluyor...',
-    'Ay fazı etkisi hesaplanıyor...',
-    'Kadim bilgelik danışılıyor...',
-    'Gölge ve ışık analiz ediliyor...',
-    'Kozmik zamanlama okunuyor...',
-    'Rüya yorumu şekilleniyor...',
+  // Loading messages keys
+  List<String> _getLoadingMessages(AppLanguage lang) => [
+    L10nService.get('dreams.oracle.loading.diving_subconscious', lang),
+    L10nService.get('dreams.oracle.loading.decoding_symbols', lang),
+    L10nService.get('dreams.oracle.loading.connecting_archetypes', lang),
+    L10nService.get('dreams.oracle.loading.calculating_moon', lang),
+    L10nService.get('dreams.oracle.loading.consulting_wisdom', lang),
+    L10nService.get('dreams.oracle.loading.analyzing_shadow', lang),
+    L10nService.get('dreams.oracle.loading.reading_cosmic', lang),
+    L10nService.get('dreams.oracle.loading.shaping_interpretation', lang),
   ];
   int _currentLoadingIndex = 0;
 
@@ -109,7 +109,7 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
 
   Future<void> _interpretDream() async {
     if (_dreamController.text.trim().isEmpty) {
-      _showError('Lutfen ruyani anlat');
+      _showError(L10nService.get('dreams.oracle.please_describe', ref.read(languageProvider)));
       return;
     }
 
@@ -161,18 +161,19 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
         setState(() {
           _state = DreamOracleState.input;
         });
-        _showError('Bir hata olustu. Lutfen tekrar dene.');
+        _showError(L10nService.get('dreams.oracle.error_occurred', ref.read(languageProvider)));
       }
     }
   }
 
   void _startLoadingMessageCycle() {
+    const loadingMessageCount = 8; // Number of loading messages
     Future.doWhile(() async {
       await Future.delayed(const Duration(milliseconds: 1500));
       if (_state == DreamOracleState.loading && mounted) {
         setState(() {
           _currentLoadingIndex =
-              (_currentLoadingIndex + 1) % _loadingMessages.length;
+              (_currentLoadingIndex + 1) % loadingMessageCount;
         });
         return true;
       }
@@ -257,7 +258,7 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Ruya Orakeli',
+                  L10nService.get('dreams.oracle.title', ref.watch(languageProvider)),
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
                         color: MysticalColors.textPrimary,
                         fontWeight: FontWeight.bold,
@@ -286,7 +287,7 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
               onPressed: _resetToInput,
               icon: const Icon(Icons.refresh),
               color: MysticalColors.starGold,
-              tooltip: 'Yeni Ruya',
+              tooltip: L10nService.get('dreams.oracle.new_dream', ref.watch(languageProvider)),
             ),
         ],
       ),
@@ -428,7 +429,7 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
                 const Text('\u{2728}', style: TextStyle(fontSize: 20)),
                 const SizedBox(width: Spacing.sm),
                 Text(
-                  'Ruyani Anlat',
+                  L10nService.get('dreams.oracle.describe_dream', ref.watch(languageProvider)),
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
                         color: isDark
                             ? MysticalColors.textPrimary
@@ -440,13 +441,13 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
                 // Voice-to-text icon (placeholder)
                 IconButton(
                   onPressed: () {
-                    _showError('Sesli giris yakinda aktif olacak');
+                    _showError(L10nService.get('dreams.oracle.voice_input_soon', ref.read(languageProvider)));
                   },
                   icon: Icon(
                     Icons.mic_outlined,
                     color: MysticalColors.amethyst,
                   ),
-                  tooltip: 'Sesli Anlat',
+                  tooltip: L10nService.get('dreams.oracle.voice_describe', ref.watch(languageProvider)),
                 ),
               ],
             ),
@@ -465,7 +466,7 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
               ),
               decoration: InputDecoration(
                 hintText:
-                    'Gordugum ruyada...\n\nNe gordun? Kimler vardi? Neler oldu? Ne hissettin?',
+                    L10nService.get('dreams.oracle.dream_hint', ref.watch(languageProvider)),
                 hintStyle: TextStyle(
                   color: (isDark
                           ? MysticalColors.textSecondary
@@ -490,7 +491,7 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Text(
-                  '${_dreamController.text.length} karakter',
+                  '${_dreamController.text.length} ${L10nService.get('dreams.oracle.characters', ref.watch(languageProvider))}',
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: MysticalColors.textMuted,
                       ),
@@ -515,7 +516,7 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
             const Text('\u{1F3AD}', style: TextStyle(fontSize: 18)),
             const SizedBox(width: Spacing.sm),
             Text(
-              'Ruyandaki Duygu',
+              L10nService.get('dreams.oracle.dream_emotion', ref.watch(languageProvider)),
               style: Theme.of(context).textTheme.titleSmall?.copyWith(
                     color: isDark
                         ? MysticalColors.textPrimary
@@ -579,7 +580,7 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Bu ruya tekrarliyor mu?',
+                  L10nService.get('dreams.oracle.is_recurring', ref.watch(languageProvider)),
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                         color: isDark
                             ? MysticalColors.textPrimary
@@ -588,7 +589,7 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
                       ),
                 ),
                 Text(
-                  'Tekrarlayan ruyalar ozel mesajlar tasir',
+                  L10nService.get('dreams.oracle.recurring_message', ref.watch(languageProvider)),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: MysticalColors.textMuted,
                       ),
@@ -620,7 +621,7 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
             const Text('\u{1F4DD}', style: TextStyle(fontSize: 18)),
             const SizedBox(width: Spacing.sm),
             Text(
-              'Hayatindaki Durum (Istege Bagli)',
+              L10nService.get('dreams.oracle.life_situation', ref.watch(languageProvider)),
               style: Theme.of(context).textTheme.titleSmall?.copyWith(
                     color: isDark
                         ? MysticalColors.textPrimary
@@ -649,7 +650,7 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
                   isDark ? MysticalColors.textPrimary : MysticalColors.textDark,
             ),
             decoration: InputDecoration(
-              hintText: 'Su an hayatinda neler oluyor? (kariyer, iliski, vb.)',
+              hintText: L10nService.get('dreams.oracle.life_hint', ref.watch(languageProvider)),
               hintStyle: TextStyle(
                 color: MysticalColors.textMuted.withOpacity(0.6),
               ),
@@ -673,7 +674,7 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
             const Text('\u{1F52E}', style: TextStyle(fontSize: 18)),
             const SizedBox(width: Spacing.sm),
             Text(
-              'Yorum Turu',
+              L10nService.get('dreams.oracle.interpretation_style', ref.watch(languageProvider)),
               style: Theme.of(context).textTheme.titleSmall?.copyWith(
                     color: isDark
                         ? MysticalColors.textPrimary
@@ -736,7 +737,7 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Gunun Ay Fazi',
+                  L10nService.get('dreams.oracle.moon_phase_today', ref.watch(languageProvider)),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: MysticalColors.textSecondary,
                       ),
@@ -771,7 +772,7 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
     return SizedBox(
       width: double.infinity,
       child: GradientButton(
-        label: 'Ruyami Yorumla',
+        label: L10nService.get('dreams.oracle.interpret_dream', ref.watch(languageProvider)),
         icon: Icons.auto_awesome,
         onPressed: _interpretDream,
         gradient: LinearGradient(
@@ -801,7 +802,7 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
           const SizedBox(height: Spacing.xxl),
           // Loading message
           Text(
-            _loadingMessages[_currentLoadingIndex],
+            _getLoadingMessages(ref.watch(languageProvider))[_currentLoadingIndex],
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                   color: MysticalColors.textSecondary,
                   fontStyle: FontStyle.italic,
@@ -1107,7 +1108,7 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
 
     return _buildSectionCard(
       emoji: '\u{1F3DB}',
-      title: 'Kadim Giris',
+      title: L10nService.get('dreams.oracle.sections.ancient_intro', ref.watch(languageProvider)),
       accentColor: MysticalColors.antiqueGold,
       delayIndex: 0,
       content: Text(
@@ -1127,7 +1128,7 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
 
     return _buildSectionCard(
       emoji: '\u{1F4AC}',
-      title: 'Ana Mesaj',
+      title: L10nService.get('dreams.oracle.sections.core_message', ref.watch(languageProvider)),
       accentColor: MysticalColors.starGold,
       delayIndex: 1,
       content: Container(
@@ -1160,7 +1161,7 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
 
     return _buildSectionCard(
       emoji: '\u{1F50D}',
-      title: 'Sembol Analizi',
+      title: L10nService.get('dreams.oracle.sections.symbol_analysis', ref.watch(languageProvider)),
       accentColor: MysticalColors.nebulaTeal,
       delayIndex: 2,
       content: Column(
@@ -1176,7 +1177,7 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
 
     return _buildSectionCard(
       emoji: '\u{1F3AD}',
-      title: 'Arketip Baglantisi: ${_interpretation!.archetypeName}',
+      title: '${L10nService.get('dreams.oracle.sections.archetype_connection', ref.watch(languageProvider))}: ${_interpretation!.archetypeName}',
       accentColor: MysticalColors.orchid,
       delayIndex: 3,
       content: Text(
@@ -1196,7 +1197,7 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
 
     return _buildSectionCard(
       emoji: '\u{2764}',
-      title: 'Duygusal Okuma',
+      title: L10nService.get('dreams.oracle.sections.emotional_reading', ref.watch(languageProvider)),
       accentColor: MysticalColors.nebulaRose,
       delayIndex: 4,
       content: Column(
@@ -1232,26 +1233,26 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
           ),
           const SizedBox(height: Spacing.lg),
           _buildEmotionalItem(
-            'Yuzey Mesaji',
+            L10nService.get('dreams.oracle.emotional.surface_message', ref.watch(languageProvider)),
             reading.surfaceMessage,
             isDark,
           ),
           const SizedBox(height: Spacing.md),
           _buildEmotionalItem(
-            'Derin Anlam',
+            L10nService.get('dreams.oracle.emotional.deep_meaning', ref.watch(languageProvider)),
             reading.deeperMeaning,
             isDark,
           ),
           const SizedBox(height: Spacing.md),
           _buildEmotionalItem(
-            'Golge Sorusu',
+            L10nService.get('dreams.oracle.emotional.shadow_question', ref.watch(languageProvider)),
             reading.shadowQuestion,
             isDark,
             isQuestion: true,
           ),
           const SizedBox(height: Spacing.md),
           _buildEmotionalItem(
-            'Entegrasyon Yolu',
+            L10nService.get('dreams.oracle.emotional.integration_path', ref.watch(languageProvider)),
             reading.integrationPath,
             isDark,
           ),
@@ -1293,7 +1294,7 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
 
     return _buildSectionCard(
       emoji: '\u{1FA90}',
-      title: 'Astro Zamanlama',
+      title: L10nService.get('dreams.oracle.sections.astro_timing', ref.watch(languageProvider)),
       accentColor: MysticalColors.stardustBlue,
       delayIndex: 5,
       content: Column(
@@ -1354,7 +1355,7 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Neden Simdi?',
+                  L10nService.get('dreams.oracle.timing.why_now', ref.watch(languageProvider)),
                   style: TextStyle(
                     color: MysticalColors.stardustBlue,
                     fontWeight: FontWeight.w600,
@@ -1386,7 +1387,7 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
 
     return _buildSectionCard(
       emoji: '\u{2600}\u{FE0F}\u{1F311}',
-      title: 'Isik ve Golge',
+      title: L10nService.get('dreams.oracle.sections.light_shadow', ref.watch(languageProvider)),
       accentColor: MysticalColors.lavender,
       delayIndex: 6,
       content: Column(
@@ -1394,7 +1395,7 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
           // Light
           _buildLightShadowItem(
             '\u{2600}\u{FE0F}',
-            'Isik Yonu',
+            L10nService.get('dreams.oracle.light_shadow.light_side', ref.watch(languageProvider)),
             ls.lightMessage,
             MysticalColors.starGold,
             isDark,
@@ -1403,7 +1404,7 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
           // Shadow
           _buildLightShadowItem(
             '\u{1F311}',
-            'Golge Yonu',
+            L10nService.get('dreams.oracle.light_shadow.shadow_side', ref.watch(languageProvider)),
             ls.shadowMessage,
             MysticalColors.cosmicPurple,
             isDark,
@@ -1430,7 +1431,7 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
                         style: TextStyle(fontSize: 16)),
                     const SizedBox(width: Spacing.sm),
                     Text(
-                      'Entegrasyon Yolu',
+                      L10nService.get('dreams.oracle.emotional.integration_path', ref.watch(languageProvider)),
                       style: TextStyle(
                         color: MysticalColors.lavender,
                         fontWeight: FontWeight.w600,
@@ -1501,16 +1502,17 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final guidance = _interpretation!.guidance;
 
+    final lang = ref.watch(languageProvider);
     return _buildSectionCard(
       emoji: '\u{1F9ED}',
-      title: 'Pratik Rehberlik',
+      title: L10nService.get('dreams.oracle.sections.practical_guidance', lang),
       accentColor: MysticalColors.auroraGreen,
       delayIndex: 7,
       content: Column(
         children: [
           _buildGuidanceItem(
             '\u{1F3AF}',
-            'Bugun Ne Yap',
+            L10nService.get('dreams.oracle.guidance.today_action', lang),
             guidance.todayAction,
             MysticalColors.auroraGreen,
             isDark,
@@ -1518,7 +1520,7 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
           const SizedBox(height: Spacing.md),
           _buildGuidanceItem(
             '\u{1F4C5}',
-            'Haftalik Odak',
+            L10nService.get('dreams.oracle.guidance.weekly_focus', lang),
             guidance.weeklyFocus,
             MysticalColors.stardustBlue,
             isDark,
@@ -1526,7 +1528,7 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
           const SizedBox(height: Spacing.md),
           _buildGuidanceItem(
             '\u{2753}',
-            'Yansitma Sorusu',
+            L10nService.get('dreams.oracle.guidance.reflection_question', lang),
             '"${guidance.reflectionQuestion}"',
             MysticalColors.amethyst,
             isDark,
@@ -1535,7 +1537,7 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
           const SizedBox(height: Spacing.md),
           _buildGuidanceItem(
             '\u{26A0}\u{FE0F}',
-            'Kacin',
+            L10nService.get('dreams.oracle.guidance.avoid', lang),
             guidance.avoidance,
             MysticalColors.solarOrange,
             isDark,
@@ -1600,24 +1602,39 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
 
   Widget _buildLucidPotentialSection() {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final lang = ref.watch(languageProvider);
     final potential = _interpretation!.lucidPotential ?? 'Orta';
+    final potentialLevel = _getLucidPotentialLevel(potential);
 
     Color getColor() {
-      switch (potential) {
-        case 'Cok Yuksek':
+      switch (potentialLevel) {
+        case 'very_high':
           return MysticalColors.starGold;
-        case 'Yuksek':
+        case 'high':
           return MysticalColors.auroraGreen;
-        case 'Orta':
+        case 'medium':
           return MysticalColors.stardustBlue;
         default:
           return MysticalColors.textMuted;
       }
     }
 
+    String getLocalizedPotential() {
+      switch (potentialLevel) {
+        case 'very_high':
+          return L10nService.get('dreams.oracle.lucid.very_high', lang);
+        case 'high':
+          return L10nService.get('dreams.oracle.lucid.high', lang);
+        case 'medium':
+          return L10nService.get('dreams.oracle.lucid.medium', lang);
+        default:
+          return L10nService.get('dreams.oracle.lucid.low', lang);
+      }
+    }
+
     return _buildSectionCard(
       emoji: '\u{1F4AB}',
-      title: 'Lucid Ruya Potansiyeli',
+      title: L10nService.get('dreams.oracle.sections.lucid_potential', lang),
       accentColor: MysticalColors.etherealCyan,
       delayIndex: 8,
       content: Column(
@@ -1660,7 +1677,7 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
                   borderRadius: BorderRadius.circular(Spacing.radiusFull),
                 ),
                 child: Text(
-                  potential,
+                  getLocalizedPotential(),
                   style: TextStyle(
                     color: getColor(),
                     fontWeight: FontWeight.bold,
@@ -1672,8 +1689,7 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
           ),
           const SizedBox(height: Spacing.lg),
           Text(
-            'Bu ruyada lucid (bilinçli) ruya gorme potansiyeliniz yukseldi. '
-            'Gelecek gece uyumadan once niyet koymayi deneyin.',
+            L10nService.get('dreams.oracle.lucid.potential_message', ref.watch(languageProvider)),
             style: TextStyle(
               color:
                   isDark ? MysticalColors.textSecondary : MysticalColors.textDarkSecondary,
@@ -1685,13 +1701,27 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
     );
   }
 
+  /// Maps Turkish potential values to language-agnostic keys
+  String _getLucidPotentialLevel(String potential) {
+    final normalizedPotential = potential.toLowerCase();
+    if (normalizedPotential.contains('cok') || normalizedPotential.contains('very')) {
+      return 'very_high';
+    } else if (normalizedPotential.contains('yuksek') || normalizedPotential.contains('high')) {
+      return 'high';
+    } else if (normalizedPotential.contains('orta') || normalizedPotential.contains('medium')) {
+      return 'medium';
+    }
+    return 'low';
+  }
+
   double _getPotentialProgress(String potential) {
-    switch (potential) {
-      case 'Cok Yuksek':
+    final level = _getLucidPotentialLevel(potential);
+    switch (level) {
+      case 'very_high':
         return 1.0;
-      case 'Yuksek':
+      case 'high':
         return 0.75;
-      case 'Orta':
+      case 'medium':
         return 0.5;
       default:
         return 0.25;
@@ -1727,7 +1757,7 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
           ),
           const SizedBox(height: Spacing.lg),
           Text(
-            'Fisildayan Cumle',
+            L10nService.get('dreams.oracle.sections.whisper_quote', ref.watch(languageProvider)),
             style: TextStyle(
               color: MysticalColors.starGold,
               fontSize: 12,
@@ -1985,7 +2015,7 @@ class _EmotionChip extends StatelessWidget {
 }
 
 /// Style chip for interpretation style selector
-class _StyleChip extends StatelessWidget {
+class _StyleChip extends ConsumerWidget {
   final InterpretationStyle style;
   final bool isSelected;
   final VoidCallback onTap;
@@ -1997,8 +2027,9 @@ class _StyleChip extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final lang = ref.watch(languageProvider);
 
     return GestureDetector(
       onTap: onTap,
@@ -2043,7 +2074,7 @@ class _StyleChip extends StatelessWidget {
             Text(style.emoji, style: const TextStyle(fontSize: 24)),
             const SizedBox(height: Spacing.xs),
             Text(
-              style.label,
+              style.getLabel(lang),
               style: TextStyle(
                 color: isSelected
                     ? style.color
@@ -2062,21 +2093,22 @@ class _StyleChip extends StatelessWidget {
 }
 
 /// Expandable symbol card for symbol analysis
-class _ExpandableSymbolCard extends StatefulWidget {
+class _ExpandableSymbolCard extends ConsumerStatefulWidget {
   final SymbolInterpretation symbol;
 
   const _ExpandableSymbolCard({required this.symbol});
 
   @override
-  State<_ExpandableSymbolCard> createState() => _ExpandableSymbolCardState();
+  ConsumerState<_ExpandableSymbolCard> createState() => _ExpandableSymbolCardState();
 }
 
-class _ExpandableSymbolCardState extends State<_ExpandableSymbolCard> {
+class _ExpandableSymbolCardState extends ConsumerState<_ExpandableSymbolCard> {
   bool _isExpanded = false;
 
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final lang = ref.watch(languageProvider);
 
     return Container(
       margin: const EdgeInsets.only(bottom: Spacing.md),
@@ -2162,7 +2194,7 @@ class _ExpandableSymbolCardState extends State<_ExpandableSymbolCard> {
                   Divider(color: MysticalColors.textMuted.withOpacity(0.2)),
                   const SizedBox(height: Spacing.md),
                   _buildSymbolDetail(
-                    'Kisisel Baglam',
+                    L10nService.get('dreams.oracle.symbol.personal_context', lang),
                     widget.symbol.personalContext,
                     isDark,
                   ),
@@ -2171,7 +2203,7 @@ class _ExpandableSymbolCardState extends State<_ExpandableSymbolCard> {
                     children: [
                       Expanded(
                         child: _buildSymbolDetail(
-                          '\u{2600}\u{FE0F} Isik Yonu',
+                          '\u{2600}\u{FE0F} ${L10nService.get('dreams.oracle.symbol.light_side', lang)}',
                           widget.symbol.lightAspect,
                           isDark,
                         ),
@@ -2179,7 +2211,7 @@ class _ExpandableSymbolCardState extends State<_ExpandableSymbolCard> {
                       const SizedBox(width: Spacing.md),
                       Expanded(
                         child: _buildSymbolDetail(
-                          '\u{1F311} Golge Yonu',
+                          '\u{1F311} ${L10nService.get('dreams.oracle.symbol.shadow_side', lang)}',
                           widget.symbol.shadowAspect,
                           isDark,
                         ),
@@ -2193,7 +2225,7 @@ class _ExpandableSymbolCardState extends State<_ExpandableSymbolCard> {
                       runSpacing: Spacing.xs,
                       children: [
                         Text(
-                          'Iliskili: ',
+                          L10nService.get('dreams.oracle.symbol.related', lang),
                           style: TextStyle(
                             color: MysticalColors.textMuted,
                             fontSize: 11,
@@ -2276,45 +2308,48 @@ enum DreamOracleState {
 /// Interpretation styles
 enum InterpretationStyle {
   jungian(
-    'Jungian',
+    'dreams.oracle.styles.jungian',
     '\u{1F9E0}',
-    'Derinlik Psikolojisi',
+    'dreams.oracle.styles.jungian_desc',
     MysticalColors.amethyst,
   ),
   spiritual(
-    'Spiritüel',
+    'dreams.oracle.styles.spiritual',
     '\u{2728}',
-    'Mistik Yorum',
+    'dreams.oracle.styles.spiritual_desc',
     MysticalColors.starGold,
   ),
   turkishFolk(
-    'Halk Tabiri',
+    'dreams.oracle.styles.folk',
     '\u{1F9FF}',
-    'Turk Gelenegine Gore',
+    'dreams.oracle.styles.folk_desc',
     MysticalColors.nebulaRose,
   ),
   islamic(
-    'Islami',
+    'dreams.oracle.styles.islamic',
     '\u{1F54C}',
-    'Islami Tabir',
+    'dreams.oracle.styles.islamic_desc',
     MysticalColors.auroraGreen,
   ),
   quick(
-    'Hizli',
+    'dreams.oracle.styles.quick',
     '\u{26A1}',
-    '3 Dakikada Yorum',
+    'dreams.oracle.styles.quick_desc',
     MysticalColors.etherealCyan,
   );
 
-  final String label;
+  final String labelKey;
   final String emoji;
-  final String description;
+  final String descriptionKey;
   final Color color;
 
   const InterpretationStyle(
-    this.label,
+    this.labelKey,
     this.emoji,
-    this.description,
+    this.descriptionKey,
     this.color,
   );
+
+  String getLabel(AppLanguage lang) => L10nService.get(labelKey, lang);
+  String getDescription(AppLanguage lang) => L10nService.get(descriptionKey, lang);
 }

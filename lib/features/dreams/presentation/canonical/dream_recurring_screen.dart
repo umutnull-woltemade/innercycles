@@ -63,7 +63,7 @@ class DreamRecurringScreen extends ConsumerWidget {
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Text(
-                    'Rüya İzi',
+                    L10nService.get('dreams.canonical.brand_tag', language),
                     style: TextStyle(
                       fontSize: 12,
                       color: AppColors.mystic,
@@ -76,12 +76,12 @@ class DreamRecurringScreen extends ConsumerWidget {
 
                 _buildQuotableSection(
                   isDark: isDark,
-                  title: 'Kısa Cevap',
+                  title: L10nService.get('dreams.canonical.sections.short_answer', language),
                   color: AppColors.mystic,
                   bullets: [
-                    'Tekrar eden rüyalar çözülmemiş bir konuya işaret eder.',
-                    'Bilinçaltı, dikkatini çekmeye çalışıyor.',
-                    'Mesaj anlaşılana kadar tekrar eder.',
+                    L10nService.get('dreams.canonical.recurring.short_answer_1', language),
+                    L10nService.get('dreams.canonical.recurring.short_answer_2', language),
+                    L10nService.get('dreams.canonical.recurring.short_answer_3', language),
                   ],
                 ),
 
@@ -89,13 +89,13 @@ class DreamRecurringScreen extends ConsumerWidget {
 
                 _buildQuotableSection(
                   isDark: isDark,
-                  title: 'Neden Tekrar Eder?',
+                  title: L10nService.get('dreams.canonical.recurring.why_title', language),
                   color: AppColors.mystic,
                   bullets: [
-                    'İşlenmemiş bir duygu veya travma.',
-                    'Hayatında süregelen bir stres kaynağı.',
-                    'Bastırılmış bir korku veya arzu.',
-                    'Önemli bir karar vermekten kaçınmak.',
+                    L10nService.get('dreams.canonical.recurring.why_1', language),
+                    L10nService.get('dreams.canonical.recurring.why_2', language),
+                    L10nService.get('dreams.canonical.recurring.why_3', language),
+                    L10nService.get('dreams.canonical.recurring.why_4', language),
                   ],
                 ),
 
@@ -103,13 +103,13 @@ class DreamRecurringScreen extends ConsumerWidget {
 
                 _buildQuotableSection(
                   isDark: isDark,
-                  title: 'Ne Yapmalısın?',
+                  title: L10nService.get('dreams.canonical.recurring.what_to_do_title', language),
                   color: AppColors.mystic,
                   bullets: [
-                    'Rüyayı not al, detayları kaydet.',
-                    'Hangi duyguyu hissettirdiğini sorgula.',
-                    'Hayatında neyle bağlantılı olabileceğini düşün.',
-                    'Konuyu bilinçli olarak ele almaya çalış.',
+                    L10nService.get('dreams.canonical.recurring.what_to_do_1', language),
+                    L10nService.get('dreams.canonical.recurring.what_to_do_2', language),
+                    L10nService.get('dreams.canonical.recurring.what_to_do_3', language),
+                    L10nService.get('dreams.canonical.recurring.what_to_do_4', language),
                   ],
                 ),
 
@@ -117,12 +117,12 @@ class DreamRecurringScreen extends ConsumerWidget {
 
                 _buildQuotableSection(
                   isDark: isDark,
-                  title: 'Ne Zaman Durur?',
+                  title: L10nService.get('dreams.canonical.recurring.when_stops_title', language),
                   color: AppColors.mystic,
                   bullets: [
-                    'Mesajı anladığında.',
-                    'İlgili konuda adım attığında.',
-                    'Duygusal yükü bıraktığında.',
+                    L10nService.get('dreams.canonical.recurring.when_stops_1', language),
+                    L10nService.get('dreams.canonical.recurring.when_stops_2', language),
+                    L10nService.get('dreams.canonical.recurring.when_stops_3', language),
                   ],
                 ),
 
@@ -132,9 +132,10 @@ class DreamRecurringScreen extends ConsumerWidget {
 
                 const SizedBox(height: 40),
 
-                const PageFooterWithDisclaimer(
+                PageFooterWithDisclaimer(
                   brandText: 'Rüya İzi — Venus One',
-                  disclaimerText: DisclaimerTexts.dreams,
+                  disclaimerText: DisclaimerTexts.dreams(language),
+                  language: language,
                 ),
               ],
             ),

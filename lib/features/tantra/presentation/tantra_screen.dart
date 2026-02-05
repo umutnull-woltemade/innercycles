@@ -213,9 +213,10 @@ class _TantraScreenState extends ConsumerState<TantraScreen>
           }),
           const SizedBox(height: AppConstants.spacingXl),
           // Entertainment Disclaimer
-          const PageFooterWithDisclaimer(
+          PageFooterWithDisclaimer(
             brandText: 'Tantra — Venus One',
-            disclaimerText: DisclaimerTexts.astrology,
+            disclaimerText: DisclaimerTexts.astrology(language),
+            language: language,
           ),
         ],
       ),

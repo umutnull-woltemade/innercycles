@@ -205,26 +205,27 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
   }
 
   Map<String, int> _calculateMoonPhaseDistribution(List<Dream> dreams) {
+    // Use internal keys for moon phases
     Map<String, int> moonPhases = {
-      'Yeni Ay': 0,
-      'Hilal (Buyuyen)': 0,
-      'Ilk Dordun': 0,
-      'Siskin Ay': 0,
-      'Dolunay': 0,
-      'Basak Ay': 0,
-      'Son Dordun': 0,
-      'Hilal (Azalan)': 0,
+      'new_moon': 0,
+      'waxing_crescent': 0,
+      'first_quarter': 0,
+      'waxing_gibbous': 0,
+      'full_moon': 0,
+      'waning_gibbous': 0,
+      'last_quarter': 0,
+      'waning_crescent': 0,
     };
 
     for (final dream in dreams) {
-      final phase = _getMoonPhase(dream.dreamDate);
+      final phase = _getMoonPhaseKey(dream.dreamDate);
       moonPhases[phase] = (moonPhases[phase] ?? 0) + 1;
     }
 
     return moonPhases;
   }
 
-  String _getMoonPhase(DateTime date) {
+  String _getMoonPhaseKey(DateTime date) {
     // Approximate moon phase calculation
     // Moon cycle is about 29.53 days
     // Reference: January 6, 2000 was a new moon
@@ -232,14 +233,19 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
     final daysSinceReference = date.difference(reference).inDays;
     final moonAge = daysSinceReference % 29.53;
 
-    if (moonAge < 1.85) return 'Yeni Ay';
-    if (moonAge < 7.38) return 'Hilal (Buyuyen)';
-    if (moonAge < 9.23) return 'Ilk Dordun';
-    if (moonAge < 14.77) return 'Siskin Ay';
-    if (moonAge < 16.61) return 'Dolunay';
-    if (moonAge < 22.15) return 'Basak Ay';
-    if (moonAge < 24.00) return 'Son Dordun';
-    return 'Hilal (Azalan)';
+    if (moonAge < 1.85) return 'new_moon';
+    if (moonAge < 7.38) return 'waxing_crescent';
+    if (moonAge < 9.23) return 'first_quarter';
+    if (moonAge < 14.77) return 'waxing_gibbous';
+    if (moonAge < 16.61) return 'full_moon';
+    if (moonAge < 22.15) return 'waning_gibbous';
+    if (moonAge < 24.00) return 'last_quarter';
+    return 'waning_crescent';
+  }
+
+  String _getMoonPhaseDisplayName(String key) {
+    final lang = ref.read(languageProvider);
+    return L10nService.get('dreams.moon_phases.$key', lang);
   }
 
   Map<String, int> _extractCharacterFrequency(List<Dream> dreams) {
@@ -277,25 +283,28 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
   }
 
   String _getCharacterDisplayName(String key) {
-    final names = {
-      'anne': 'Anne',
-      'baba': 'Baba',
-      'kardes': 'Kardes',
-      'arkadasim': 'Arkadas',
-      'sevgilim': 'Sevgili',
-      'esi': 'Es',
-      'cocuk': 'Cocuk',
-      'bebek': 'Bebek',
-      'dede': 'Dede',
-      'nine': 'Nine',
-      'ogretmen': 'Ogretmen',
-      'patron': 'Patron',
-      'yabanci': 'Yabanci',
-      'taninmayan': 'Taninmayan',
-      'unlu': 'Unlu Kisi',
-      'hayvan': 'Hayvan',
+    final lang = ref.read(languageProvider);
+    // Map search keys to i18n keys
+    final keyMap = {
+      'anne': 'anne',
+      'baba': 'baba',
+      'kardes': 'kardes',
+      'arkadasim': 'arkadas',
+      'sevgilim': 'sevgili',
+      'esi': 'es',
+      'cocuk': 'cocuk',
+      'bebek': 'bebek',
+      'dede': 'dede',
+      'nine': 'nine',
+      'ogretmen': 'ogretmen',
+      'patron': 'patron',
+      'yabanci': 'yabanci',
+      'taninmayan': 'taninmayan',
+      'unlu': 'unlu',
+      'hayvan': 'hayvan',
     };
-    return names[key] ?? key;
+    final i18nKey = keyMap[key] ?? key;
+    return L10nService.get('dreams.statistics.characters.$i18nKey', lang);
   }
 
   Map<String, int> _extractLocationFrequency(List<Dream> dreams) {
@@ -333,25 +342,8 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
   }
 
   String _getLocationDisplayName(String key) {
-    final names = {
-      'ev': 'Ev',
-      'okul': 'Okul',
-      'is': 'Is Yeri',
-      'deniz': 'Deniz',
-      'orman': 'Orman',
-      'dag': 'Dag',
-      'sehir': 'Sehir',
-      'koy': 'Koy',
-      'hastane': 'Hastane',
-      'ucak': 'Ucak',
-      'araba': 'Araba',
-      'tren': 'Tren',
-      'uzay': 'Uzay',
-      'ada': 'Ada',
-      'magara': 'Magara',
-      'kale': 'Kale',
-    };
-    return names[key] ?? key;
+    final lang = ref.read(languageProvider);
+    return L10nService.get('dreams.statistics.locations.$key', lang);
   }
 
   List<RecurringDreamPattern> _detectRecurringPatterns(List<Dream> dreams) {
@@ -369,7 +361,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
       if (entry.value.length >= 3) {
         patterns.add(
           RecurringDreamPattern(
-            type: 'Sembol',
+            type: 'symbol', // Use key, will be localized in display
             identifier: entry.key,
             count: entry.value.length,
             firstOccurrence: entry.value.last.dreamDate,
@@ -391,7 +383,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
       if (entry.value.length >= 3) {
         patterns.add(
           RecurringDreamPattern(
-            type: 'Tema',
+            type: 'theme', // Use key, will be localized in display
             identifier: entry.key,
             count: entry.value.length,
             firstOccurrence: entry.value.last.dreamDate,
@@ -515,6 +507,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
     List<Dream> dreams,
     DreamMemory memory,
   ) {
+    final lang = ref.read(languageProvider);
     List<DreamAchievement> achievements = [];
 
     // Dream count milestones
@@ -522,8 +515,8 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
       achievements.add(
         DreamAchievement(
           id: 'first_dream',
-          title: 'Ilk Adim',
-          description: 'Ilk ruyani kaydettin',
+          title: L10nService.get('dreams.statistics.achievements_list.first_step', lang),
+          description: L10nService.get('dreams.statistics.achievements_list.first_step_desc', lang),
           emoji: '🌱',
           isUnlocked: true,
           unlockedAt: dreams.last.createdAt,
@@ -535,8 +528,8 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
       achievements.add(
         DreamAchievement(
           id: 'dream_explorer',
-          title: 'Ruya Kasifu',
-          description: '10 ruya kaydettin',
+          title: L10nService.get('dreams.statistics.achievements_list.dream_explorer', lang),
+          description: L10nService.get('dreams.statistics.achievements_list.dream_explorer_desc', lang),
           emoji: '🔍',
           isUnlocked: true,
         ),
@@ -547,8 +540,8 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
       achievements.add(
         DreamAchievement(
           id: 'dream_voyager',
-          title: 'Ruya Gezgini',
-          description: '50 ruya kaydettin',
+          title: L10nService.get('dreams.statistics.achievements_list.dream_traveler', lang),
+          description: L10nService.get('dreams.statistics.achievements_list.dream_traveler_desc', lang),
           emoji: '🚀',
           isUnlocked: true,
         ),
@@ -559,8 +552,8 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
       achievements.add(
         DreamAchievement(
           id: 'dream_master',
-          title: 'Ruya Ustasi',
-          description: '100 ruya kaydettin',
+          title: L10nService.get('dreams.statistics.achievements_list.dream_master', lang),
+          description: L10nService.get('dreams.statistics.achievements_list.dream_master_desc', lang),
           emoji: '👑',
           isUnlocked: true,
         ),
@@ -572,8 +565,8 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
       achievements.add(
         DreamAchievement(
           id: 'week_streak',
-          title: 'Haftalik Seri',
-          description: '7 gun ust uste ruya kaydettin',
+          title: L10nService.get('dreams.statistics.achievements_list.weekly_streak', lang),
+          description: L10nService.get('dreams.statistics.achievements_list.weekly_streak_desc', lang),
           emoji: '🔥',
           isUnlocked: true,
         ),
@@ -584,8 +577,8 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
       achievements.add(
         DreamAchievement(
           id: 'month_streak',
-          title: 'Aylik Seri',
-          description: '30 gun ust uste ruya kaydettin',
+          title: L10nService.get('dreams.statistics.achievements_list.monthly_streak', lang),
+          description: L10nService.get('dreams.statistics.achievements_list.monthly_streak_desc', lang),
           emoji: '⚡',
           isUnlocked: true,
         ),
@@ -598,8 +591,8 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
       achievements.add(
         DreamAchievement(
           id: 'symbol_finder',
-          title: 'Sembol Avcisi',
-          description: '10 farkli sembol kesfettin',
+          title: L10nService.get('dreams.statistics.achievements_list.symbol_hunter', lang),
+          description: L10nService.get('dreams.statistics.achievements_list.symbol_hunter_desc', lang),
           emoji: '🎯',
           isUnlocked: true,
         ),
@@ -610,8 +603,8 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
       achievements.add(
         DreamAchievement(
           id: 'symbol_master',
-          title: 'Sembol Ustasi',
-          description: '25 farkli sembol kesfettin',
+          title: L10nService.get('dreams.statistics.achievements_list.symbol_master', lang),
+          description: L10nService.get('dreams.statistics.achievements_list.symbol_master_desc', lang),
           emoji: '🏆',
           isUnlocked: true,
         ),
@@ -631,8 +624,8 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
       achievements.add(
         DreamAchievement(
           id: 'first_lucid',
-          title: 'Uyanis',
-          description: 'Ilk bilincli ruyani yasadin',
+          title: L10nService.get('dreams.statistics.achievements_list.awakening', lang),
+          description: L10nService.get('dreams.statistics.achievements_list.awakening_desc', lang),
           emoji: '✨',
           isUnlocked: true,
         ),
@@ -643,8 +636,8 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
       achievements.add(
         DreamAchievement(
           id: 'lucid_master',
-          title: 'Bilincli Ruya Ustasi',
-          description: '10 bilincli ruya yasadin',
+          title: L10nService.get('dreams.statistics.achievements_list.lucid_master', lang),
+          description: L10nService.get('dreams.statistics.achievements_list.lucid_master_desc', lang),
           emoji: '🌟',
           isUnlocked: true,
         ),
@@ -656,8 +649,8 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
       achievements.add(
         DreamAchievement(
           id: 'dream_explorer_locked',
-          title: 'Ruya Kasifu',
-          description: '10 ruya kaydet',
+          title: L10nService.get('dreams.statistics.achievements_list.dream_explorer', lang),
+          description: L10nService.get('dreams.statistics.achievements_list.dream_explorer_desc', lang),
           emoji: '🔒',
           isUnlocked: false,
           progress: dreams.length / 10,
@@ -669,8 +662,8 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
       achievements.add(
         DreamAchievement(
           id: 'week_streak_locked',
-          title: 'Haftalik Seri',
-          description: '7 gun ust uste ruya kaydet',
+          title: L10nService.get('dreams.statistics.achievements_list.weekly_streak', lang),
+          description: L10nService.get('dreams.statistics.achievements_list.weekly_streak_desc', lang),
           emoji: '🔒',
           isUnlocked: false,
           progress: memory.milestones.longestStreak / 7,
@@ -1297,36 +1290,22 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
     ).animate().fadeIn(delay: 300.ms).slideY(begin: 0.1);
   }
 
-  String _getMoonPhaseEmoji(String phase) {
+  String _getMoonPhaseEmoji(String phaseKey) {
     final emojis = {
-      'Yeni Ay': '\u{1F311}',
-      'Hilal (Buyuyen)': '\u{1F312}',
-      'Ilk Dordun': '\u{1F313}',
-      'Siskin Ay': '\u{1F314}',
-      'Dolunay': '\u{1F315}',
-      'Basak Ay': '\u{1F316}',
-      'Son Dordun': '\u{1F317}',
-      'Hilal (Azalan)': '\u{1F318}',
+      'new_moon': '\u{1F311}',
+      'waxing_crescent': '\u{1F312}',
+      'first_quarter': '\u{1F313}',
+      'waxing_gibbous': '\u{1F314}',
+      'full_moon': '\u{1F315}',
+      'waning_gibbous': '\u{1F316}',
+      'last_quarter': '\u{1F317}',
+      'waning_crescent': '\u{1F318}',
     };
-    return emojis[phase] ?? '\u{1F319}';
+    return emojis[phaseKey] ?? '\u{1F319}';
   }
 
-  String _getLocalizedMoonPhase(String phase, AppLanguage language) {
-    final phaseMap = {
-      'Yeni Ay': 'dreams.moon_phases.new_moon',
-      'Hilal (Buyuyen)': 'dreams.moon_phases.waxing_crescent',
-      'Ilk Dordun': 'dreams.moon_phases.first_quarter',
-      'Siskin Ay': 'dreams.moon_phases.waxing_gibbous',
-      'Dolunay': 'dreams.moon_phases.full_moon',
-      'Basak Ay': 'dreams.moon_phases.waning_gibbous',
-      'Son Dordun': 'dreams.moon_phases.last_quarter',
-      'Hilal (Azalan)': 'dreams.moon_phases.waning_crescent',
-    };
-    final key = phaseMap[phase];
-    if (key != null) {
-      return L10nService.get(key, language);
-    }
-    return phase;
+  String _getLocalizedMoonPhase(String phaseKey, AppLanguage language) {
+    return L10nService.get('dreams.moon_phases.$phaseKey', language);
   }
 
   Widget _buildAchievementsSection() {

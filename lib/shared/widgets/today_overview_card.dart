@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 import '../../core/theme/app_colors.dart';
+import '../../data/providers/app_providers.dart';
+import '../../data/services/l10n_service.dart';
 import '../../data/services/moon_service.dart';
 
 /// Personalized "Your Day" summary card for home dashboard
@@ -14,6 +16,7 @@ class TodayOverviewCard extends StatelessWidget {
   final VoidCallback? onTap;
   final VoidCallback? onTransitsTap;
   final VoidCallback? onDreamTap;
+  final AppLanguage language;
 
   const TodayOverviewCard({
     super.key,
@@ -24,7 +27,10 @@ class TodayOverviewCard extends StatelessWidget {
     this.onTap,
     this.onTransitsTap,
     this.onDreamTap,
+    this.language = AppLanguage.en,
   });
+
+  String t(String key) => L10nService.get(key, language);
 
   @override
   Widget build(BuildContext context) {
@@ -191,7 +197,7 @@ class TodayOverviewCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Ay $moonInSign Burcunda',
+                          t('widgets.today_overview_card.moon_in_sign').replaceAll('{sign}', moonInSign.toString()),
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
@@ -236,7 +242,7 @@ class TodayOverviewCard extends StatelessWidget {
                 Expanded(
                   child: _QuickActionCard(
                     icon: Icons.auto_awesome,
-                    label: 'Bugünün\nTransitleri',
+                    label: t('widgets.today_overview_card.todays_transits'),
                     color: AppColors.auroraStart,
                     onTap: onTransitsTap,
                   ),
@@ -245,11 +251,11 @@ class TodayOverviewCard extends StatelessWidget {
                 Expanded(
                   child: _QuickActionCard(
                     icon: Icons.nightlight_round,
-                    label: 'Rüyanı\nKaydet',
+                    label: t('widgets.today_overview_card.save_dream'),
                     color: AppColors.mystic,
                     onTap: onDreamTap,
                     showBadge: true,
-                    badgeText: 'Yeni',
+                    badgeText: t('widgets.today_overview_card.new_badge'),
                   ),
                 ),
               ],
@@ -282,7 +288,7 @@ class TodayOverviewCard extends StatelessWidget {
                       ),
                       const SizedBox(width: 8),
                       Text(
-                        'Bugünün Odak Noktası',
+                        t('widgets.today_overview_card.todays_focus'),
                         style: TextStyle(
                           fontSize: 13,
                           fontWeight: FontWeight.w600,
@@ -312,7 +318,7 @@ class TodayOverviewCard extends StatelessWidget {
             // Bottom CTA
             Center(
               child: Text(
-                'Detaylı günlük yorumun için dokun',
+                t('widgets.today_overview_card.tap_for_details'),
                 style: TextStyle(
                   fontSize: 12,
                   color: isDark
@@ -329,79 +335,67 @@ class TodayOverviewCard extends StatelessWidget {
 
   String _getTimeBasedGreeting() {
     final hour = DateTime.now().hour;
-    if (hour < 6) return 'GECE YARISI';
-    if (hour < 12) return 'GUNAYDIN';
-    if (hour < 17) return 'IYI GUNLER';
-    if (hour < 21) return 'IYI AKSAMLAR';
-    return 'IYI GECELER';
+    if (hour < 6) return t('widgets.today_overview_card.greetings.midnight');
+    if (hour < 12) return t('widgets.today_overview_card.greetings.good_morning');
+    if (hour < 17) return t('widgets.today_overview_card.greetings.good_day');
+    if (hour < 21) return t('widgets.today_overview_card.greetings.good_evening');
+    return t('widgets.today_overview_card.greetings.good_night');
   }
 
   _TodayEnergy _getTodayEnergy(String moonPhase) {
     switch (moonPhase.toLowerCase()) {
       case 'new moon':
         return _TodayEnergy(
-          'Yeni Baslangiclarin Gunui',
+          t('widgets.today_overview_card.energy.new_beginnings'),
           AppColors.mysticBlue,
           'seed',
         );
       case 'waxing crescent':
-        return _TodayEnergy('Buyume Enerjisi', AppColors.success, 'sprout');
+        return _TodayEnergy(t('widgets.today_overview_card.energy.growth_energy'), AppColors.success, 'sprout');
       case 'first quarter':
-        return _TodayEnergy('Aksiyon Zamani', AppColors.fireElement, 'fire');
+        return _TodayEnergy(t('widgets.today_overview_card.energy.action_time'), AppColors.fireElement, 'fire');
       case 'waxing gibbous':
-        return _TodayEnergy('Gelistirme Gunui', AppColors.auroraStart, 'star');
+        return _TodayEnergy(t('widgets.today_overview_card.energy.development_day'), AppColors.auroraStart, 'star');
       case 'full moon':
-        return _TodayEnergy('Dolunay Gucui', AppColors.starGold, 'moon');
+        return _TodayEnergy(t('widgets.today_overview_card.energy.full_moon_power'), AppColors.starGold, 'moon');
       case 'waning gibbous':
-        return _TodayEnergy('Minnet Zamani', AppColors.venusColor, 'heart');
+        return _TodayEnergy(t('widgets.today_overview_card.energy.gratitude_time'), AppColors.venusColor, 'heart');
       case 'last quarter':
-        return _TodayEnergy('Serbest Birakma', AppColors.waterElement, 'water');
+        return _TodayEnergy(t('widgets.today_overview_card.energy.letting_go'), AppColors.waterElement, 'water');
       case 'waning crescent':
-        return _TodayEnergy('Dinlenme Donemii', AppColors.moonSilver, 'rest');
+        return _TodayEnergy(t('widgets.today_overview_card.energy.rest_period'), AppColors.moonSilver, 'rest');
       default:
-        return _TodayEnergy('Kozmik Enerji', AppColors.cosmic, 'sparkle');
+        return _TodayEnergy(t('widgets.today_overview_card.energy.cosmic_energy'), AppColors.cosmic, 'sparkle');
     }
   }
 
   String _getMoonMessage(String phase, String sign) {
-    final messages = {
-      'Koc': 'Cesur adimlar atmak icin ideal.',
-      'Boga': 'Konfor ve istikrar arayin.',
-      'Ikizler': 'Iletisim ve ogrenmee gunui.',
-      'Yengec': 'Duygusal derinlik zamani.',
-      'Aslan': 'Yaraticilik ve ifade gunui.',
-      'Basak': 'Detaylara odaklanin.',
-      'Terazi': 'Denge ve uyum arayin.',
-      'Akrep': 'Donusum enerjisi yuksek.',
-      'Yay': 'Macera ve keşif zamani.',
-      'Oglak': 'Hedeflere odaklanin.',
-      'Kova': 'Yenilikci fikirler icin acik olun.',
-      'Balik': 'Sezgilerinize guvenin.',
+    // Map Turkish sign names to English keys
+    final signKeyMap = {
+      'Koc': 'aries',
+      'Boga': 'taurus',
+      'Ikizler': 'gemini',
+      'Yengec': 'cancer',
+      'Aslan': 'leo',
+      'Basak': 'virgo',
+      'Terazi': 'libra',
+      'Akrep': 'scorpio',
+      'Yay': 'sagittarius',
+      'Oglak': 'capricorn',
+      'Kova': 'aquarius',
+      'Balik': 'pisces',
     };
-    return messages[sign] ?? 'Evrenin enerjisiyle uyum icinde kalin.';
+    final signKey = signKeyMap[sign] ?? 'default';
+    return t('widgets.today_overview_card.moon_messages.$signKey');
   }
 
   String _getDailyFocus(String sunSign, String moonSign) {
     // Simplified personalized focus based on sun sign and current moon
-    final focuses = {
-      'aries':
-          'Bugün enerjin yüksek. Ertelediğin bir projeyi başlatmak için mükemmel zaman.',
-      'taurus':
-          'Maddi konularda netlik günü. Bütçeni gözden geçir, küçük bir keyif al.',
-      'gemini':
-          'İletişim kanalların açık. Önemli bir konuşma için ideal atmosfer.',
-      'cancer': 'Ev ve aile odaklı enerji. Yakınlarınla kaliteli zaman geçir.',
-      'leo': 'Yaratıcılığın dorukta. Kendini ifade etmekten çekinme.',
-      'virgo': 'Detaylara dikkat günü. Organize ol, listeler yap.',
-      'libra': 'İlişkilerde denge ara. Bir uzlaşma noktası bul.',
-      'scorpio': 'Derinlere dal. Bilinçaltından gelen mesajlara kulak ver.',
-      'sagittarius': 'Öğrenme ve keşif enerjisi. Yeni bir şey öğren.',
-      'capricorn': 'Kariyer odaklı gün. Uzun vadeli hedeflerine odaklan.',
-      'aquarius': 'Sosyal bağlantılar güçlü. Topluluk aktivitelerine katıl.',
-      'pisces': 'Sezgisel enerji yüksek. Meditasyon ve hayal kurma zamanı.',
-    };
-    return focuses[sunSign.toLowerCase()] ??
-        'Bugün evrenin enerjisiyle uyum içinde kal.';
+    final signKey = sunSign.toLowerCase();
+    final validSigns = ['aries', 'taurus', 'gemini', 'cancer', 'leo', 'virgo',
+                        'libra', 'scorpio', 'sagittarius', 'capricorn', 'aquarius', 'pisces'];
+    final key = validSigns.contains(signKey) ? signKey : 'default';
+    return t('widgets.today_overview_card.daily_focus.$key');
   }
 }
 

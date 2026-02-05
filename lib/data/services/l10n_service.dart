@@ -2,7 +2,44 @@ import 'dart:convert';
 import 'dart:developer' as developer;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../providers/app_providers.dart';
+
+/// Provider for L10n wrapper with current language
+/// Usage: final l10n = ref.watch(l10nServiceProvider);
+///        final text = l10n.get('key');
+final l10nServiceProvider = Provider<LocalizedL10n>((ref) {
+  final language = ref.watch(languageProvider);
+  return LocalizedL10n(language);
+});
+
+/// Wrapper class for L10nService with current language bound
+/// Allows calling l10n.get('key') instead of L10nService.get('key', language)
+class LocalizedL10n {
+  final AppLanguage _language;
+
+  const LocalizedL10n(this._language);
+
+  /// Get translation for the current language
+  String get(String key) => L10nService.get(key, _language);
+
+  /// Get translation with parameters for the current language
+  String getWithParams(String key, {required Map<String, String> params}) =>
+      L10nService.getWithParams(key, _language, params: params);
+
+  /// Get list of strings for the current language
+  List<String> getList(String key) => L10nService.getList(key, _language);
+
+  /// Get map for the current language
+  Map<String, String> getMap(String key) => L10nService.getMap(key, _language);
+
+  /// Get list of maps for the current language
+  List<Map<String, String>> getMapList(String key) =>
+      L10nService.getMapList(key, _language);
+
+  /// Get the current language
+  AppLanguage get language => _language;
+}
 
 /// Strict isolation L10n service - NO CROSS-LANGUAGE FALLBACK
 ///
@@ -144,6 +181,47 @@ class L10nService {
     }
 
     _logMissingKeyForAIRepair(key, language, 'KEY_NOT_LIST');
+    return [];
+  }
+
+  /// Get a map from a translation key
+  /// Returns empty map if key is not found or is not a map
+  static Map<String, String> getMap(String key, AppLanguage language) {
+    if (!_translations.containsKey(language)) {
+      _logMissingKeyForAIRepair(key, language, 'LOCALE_NOT_LOADED');
+      return {};
+    }
+
+    final value = _resolveKeyRaw(key, _translations[language]!);
+
+    if (value is Map) {
+      return value.map((k, v) => MapEntry(k.toString(), v.toString()));
+    }
+
+    _logMissingKeyForAIRepair(key, language, 'KEY_NOT_MAP');
+    return {};
+  }
+
+  /// Get a list of maps from a translation key
+  /// Returns empty list if key is not found or is not a list of maps
+  static List<Map<String, String>> getMapList(String key, AppLanguage language) {
+    if (!_translations.containsKey(language)) {
+      _logMissingKeyForAIRepair(key, language, 'LOCALE_NOT_LOADED');
+      return [];
+    }
+
+    final value = _resolveKeyRaw(key, _translations[language]!);
+
+    if (value is List) {
+      return value.map((item) {
+        if (item is Map) {
+          return item.map((k, v) => MapEntry(k.toString(), v.toString()));
+        }
+        return <String, String>{};
+      }).toList();
+    }
+
+    _logMissingKeyForAIRepair(key, language, 'KEY_NOT_MAP_LIST');
     return [];
   }
 

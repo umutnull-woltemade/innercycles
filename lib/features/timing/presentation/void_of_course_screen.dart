@@ -84,7 +84,7 @@ class VoidOfCourseScreen extends ConsumerWidget {
                     .fadeIn(delay: 400.ms, duration: 400.ms)
                     .slideY(begin: 0.1),
                 const SizedBox(height: AppConstants.spacingXxl),
-                const PageBottomNavigation(currentRoute: '/timing'),
+                PageBottomNavigation(currentRoute: '/timing', language: language),
               ],
             ),
           ),

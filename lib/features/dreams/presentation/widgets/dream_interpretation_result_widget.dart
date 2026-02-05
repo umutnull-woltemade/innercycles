@@ -5,12 +5,15 @@ library;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:share_plus/share_plus.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../data/models/dream_interpretation_models.dart';
+import '../../../../data/providers/app_providers.dart';
+import '../../../../data/services/l10n_service.dart';
 
 /// Ana yorum sonucu widget'ı
-class DreamInterpretationResultWidget extends StatelessWidget {
+class DreamInterpretationResultWidget extends ConsumerWidget {
   final FullDreamInterpretation interpretation;
   final VoidCallback? onExploreLink;
 
@@ -21,7 +24,8 @@ class DreamInterpretationResultWidget extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final lang = ref.watch(languageProvider);
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
       decoration: BoxDecoration(
@@ -52,48 +56,49 @@ class DreamInterpretationResultWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Header
-              _buildHeader(context),
+              _buildHeader(context, lang),
 
               // 1. Kadim Giriş
               _buildSection(
                 context,
+                lang,
                 emoji: '📜',
-                title: 'Kadim Bilgelik',
+                title: L10nService.get('dreams.result_widget.ancient_wisdom', lang),
                 content: interpretation.ancientIntro,
                 delay: 100,
               ),
 
               // 2. Ana Mesaj
-              _buildCoreMessage(context),
+              _buildCoreMessage(context, lang),
 
               // 3. Sembol Analizi
               if (interpretation.symbols.isNotEmpty)
-                _buildSymbolsSection(context),
+                _buildSymbolsSection(context, lang),
 
               // 4. Arketip Bağlantısı
-              _buildArchetypeSection(context),
+              _buildArchetypeSection(context, lang),
 
               // 5. Duygusal Okuma
-              _buildEmotionalSection(context),
+              _buildEmotionalSection(context, lang),
 
               // 6. Astrolojik Zamanlama
-              _buildAstroSection(context),
+              _buildAstroSection(context, lang),
 
               // 7. Işık/Gölge
-              _buildLightShadowSection(context),
+              _buildLightShadowSection(context, lang),
 
               // 8. Pratik Rehberlik
-              _buildGuidanceSection(context),
+              _buildGuidanceSection(context, lang),
 
               // 9. Fısıldayan Cümle
-              _buildWhisperQuote(context),
+              _buildWhisperQuote(context, lang),
 
               // 10. Paylaşılabilir Kart
-              _buildShareCard(context),
+              _buildShareCard(context, lang),
 
               // 11. Keşfet Linkleri
               if (interpretation.explorationLinks.isNotEmpty)
-                _buildExplorationLinks(context),
+                _buildExplorationLinks(context, lang),
 
               const SizedBox(height: 20),
             ],
@@ -103,7 +108,7 @@ class DreamInterpretationResultWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildHeader(BuildContext context) {
+  Widget _buildHeader(BuildContext context, AppLanguage lang) {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
@@ -144,7 +149,7 @@ class DreamInterpretationResultWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '7 BOYUTLU RÜYA YORUMU',
+                  L10nService.get('dreams.result_widget.title_badge', lang),
                   style: Theme.of(context).textTheme.labelSmall?.copyWith(
                         color: AppColors.starGold,
                         fontWeight: FontWeight.w600,
@@ -153,7 +158,7 @@ class DreamInterpretationResultWidget extends StatelessWidget {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  'Bilinçaltının Mesajı',
+                  L10nService.get('dreams.result_widget.subconscious_message', lang),
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
                         color: AppColors.textPrimary,
                         fontWeight: FontWeight.bold,
@@ -195,7 +200,8 @@ class DreamInterpretationResultWidget extends StatelessWidget {
   }
 
   Widget _buildSection(
-    BuildContext context, {
+    BuildContext context,
+    AppLanguage lang, {
     required String emoji,
     required String title,
     required String content,
@@ -232,7 +238,7 @@ class DreamInterpretationResultWidget extends StatelessWidget {
     ).animate().fadeIn(duration: 300.ms, delay: delay.ms).slideX(begin: -0.05, end: 0);
   }
 
-  Widget _buildCoreMessage(BuildContext context) {
+  Widget _buildCoreMessage(BuildContext context, AppLanguage lang) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
       padding: const EdgeInsets.all(16),
@@ -256,7 +262,7 @@ class DreamInterpretationResultWidget extends StatelessWidget {
               const Text('✨', style: TextStyle(fontSize: 18)),
               const SizedBox(width: 8),
               Text(
-                'ANA MESAJ',
+                L10nService.get('dreams.result_widget.core_message', lang),
                 style: Theme.of(context).textTheme.labelSmall?.copyWith(
                       color: AppColors.starGold,
                       fontWeight: FontWeight.w700,
@@ -279,7 +285,7 @@ class DreamInterpretationResultWidget extends StatelessWidget {
     ).animate().fadeIn(duration: 400.ms, delay: 200.ms).scale(begin: const Offset(0.95, 0.95), end: const Offset(1, 1));
   }
 
-  Widget _buildSymbolsSection(BuildContext context) {
+  Widget _buildSymbolsSection(BuildContext context, AppLanguage lang) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
       child: Column(
@@ -290,7 +296,7 @@ class DreamInterpretationResultWidget extends StatelessWidget {
               const Text('🔍', style: TextStyle(fontSize: 18)),
               const SizedBox(width: 8),
               Text(
-                'SEMBOL ANALİZİ',
+                L10nService.get('dreams.result_widget.symbol_analysis', lang),
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       color: AppColors.starGold,
                       fontWeight: FontWeight.w600,
@@ -302,14 +308,14 @@ class DreamInterpretationResultWidget extends StatelessWidget {
           ...interpretation.symbols.asMap().entries.map((entry) {
             final index = entry.key;
             final symbol = entry.value;
-            return _buildSymbolCard(context, symbol, index);
+            return _buildSymbolCard(context, lang, symbol, index);
           }),
         ],
       ),
     ).animate().fadeIn(duration: 300.ms, delay: 300.ms);
   }
 
-  Widget _buildSymbolCard(BuildContext context, SymbolInterpretation symbol, int index) {
+  Widget _buildSymbolCard(BuildContext context, AppLanguage lang, SymbolInterpretation symbol, int index) {
     return Container(
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(14),
@@ -339,10 +345,10 @@ class DreamInterpretationResultWidget extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 10),
-          _buildSymbolDetail(context, '🌍', 'Evrensel', symbol.universalMeaning),
-          _buildSymbolDetail(context, '👤', 'Kişisel', symbol.personalContext),
-          _buildSymbolDetail(context, '🌑', 'Gölge', symbol.shadowAspect),
-          _buildSymbolDetail(context, '☀️', 'Işık', symbol.lightAspect),
+          _buildSymbolDetail(context, '🌍', L10nService.get('dreams.result_widget.universal', lang), symbol.universalMeaning),
+          _buildSymbolDetail(context, '👤', L10nService.get('dreams.result_widget.personal', lang), symbol.personalContext),
+          _buildSymbolDetail(context, '🌑', L10nService.get('dreams.result_widget.shadow', lang), symbol.shadowAspect),
+          _buildSymbolDetail(context, '☀️', L10nService.get('dreams.result_widget.light', lang), symbol.lightAspect),
         ],
       ),
     ).animate().fadeIn(duration: 200.ms, delay: (400 + index * 100).ms).slideX(begin: 0.05, end: 0);
@@ -376,7 +382,7 @@ class DreamInterpretationResultWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildArchetypeSection(BuildContext context) {
+  Widget _buildArchetypeSection(BuildContext context, AppLanguage lang) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
       padding: const EdgeInsets.all(16),
@@ -400,7 +406,7 @@ class DreamInterpretationResultWidget extends StatelessWidget {
               const Text('🎭', style: TextStyle(fontSize: 20)),
               const SizedBox(width: 10),
               Text(
-                'ARKETİP: ${interpretation.archetypeName.toUpperCase()}',
+                '${L10nService.get('dreams.result_widget.archetype', lang)}: ${interpretation.archetypeName.toUpperCase()}',
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       color: AppColors.textPrimary,
                       fontWeight: FontWeight.bold,
@@ -421,7 +427,7 @@ class DreamInterpretationResultWidget extends StatelessWidget {
     ).animate().fadeIn(duration: 300.ms, delay: 500.ms);
   }
 
-  Widget _buildEmotionalSection(BuildContext context) {
+  Widget _buildEmotionalSection(BuildContext context, AppLanguage lang) {
     final emotional = interpretation.emotionalReading;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
@@ -433,7 +439,7 @@ class DreamInterpretationResultWidget extends StatelessWidget {
               Text(emotional.dominantEmotion.emoji, style: const TextStyle(fontSize: 20)),
               const SizedBox(width: 10),
               Text(
-                'DUYGUSAL OKUMA: ${emotional.dominantEmotion.label.toUpperCase()}',
+                '${L10nService.get('dreams.result_widget.emotional_reading', lang)}: ${emotional.dominantEmotion.label.toUpperCase()}',
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       color: AppColors.starGold,
                       fontWeight: FontWeight.w600,
@@ -442,10 +448,10 @@ class DreamInterpretationResultWidget extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 12),
-          _buildEmotionalRow(context, '📍', 'Yüzey', emotional.surfaceMessage),
-          _buildEmotionalRow(context, '🔮', 'Derinlik', emotional.deeperMeaning),
-          _buildEmotionalRow(context, '❓', 'Gölge Sorusu', emotional.shadowQuestion),
-          _buildEmotionalRow(context, '🛤️', 'Entegrasyon', emotional.integrationPath),
+          _buildEmotionalRow(context, '📍', L10nService.get('dreams.result_widget.surface', lang), emotional.surfaceMessage),
+          _buildEmotionalRow(context, '🔮', L10nService.get('dreams.result_widget.depth', lang), emotional.deeperMeaning),
+          _buildEmotionalRow(context, '❓', L10nService.get('dreams.result_widget.shadow_question', lang), emotional.shadowQuestion),
+          _buildEmotionalRow(context, '🛤️', L10nService.get('dreams.result_widget.integration', lang), emotional.integrationPath),
         ],
       ),
     ).animate().fadeIn(duration: 300.ms, delay: 600.ms);
@@ -480,7 +486,7 @@ class DreamInterpretationResultWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildAstroSection(BuildContext context) {
+  Widget _buildAstroSection(BuildContext context, AppLanguage lang) {
     final astro = interpretation.astroTiming;
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
@@ -505,7 +511,7 @@ class DreamInterpretationResultWidget extends StatelessWidget {
               Text(astro.moonPhase.emoji, style: const TextStyle(fontSize: 22)),
               const SizedBox(width: 10),
               Text(
-                'ASTROLOJİK ZAMANLAMA',
+                L10nService.get('dreams.result_widget.astro_timing', lang),
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       color: AppColors.textPrimary,
                       fontWeight: FontWeight.bold,
@@ -549,7 +555,7 @@ class DreamInterpretationResultWidget extends StatelessWidget {
                 const SizedBox(width: 8),
                 Expanded(
                   child: Text(
-                    'Neden şimdi? ${astro.whyNow}',
+                    '${L10nService.get('dreams.result_widget.why_now', lang)} ${astro.whyNow}',
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           color: AppColors.textSecondary,
                           fontStyle: FontStyle.italic,
@@ -564,7 +570,7 @@ class DreamInterpretationResultWidget extends StatelessWidget {
     ).animate().fadeIn(duration: 300.ms, delay: 700.ms);
   }
 
-  Widget _buildLightShadowSection(BuildContext context) {
+  Widget _buildLightShadowSection(BuildContext context, AppLanguage lang) {
     final ls = interpretation.lightShadow;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
@@ -595,7 +601,7 @@ class DreamInterpretationResultWidget extends StatelessWidget {
                       const Text('☀️', style: TextStyle(fontSize: 16)),
                       const SizedBox(width: 6),
                       Text(
-                        'IŞIK',
+                        L10nService.get('dreams.result_widget.light_label', lang),
                         style: Theme.of(context).textTheme.labelSmall?.copyWith(
                               color: Colors.amber,
                               fontWeight: FontWeight.bold,
@@ -641,7 +647,7 @@ class DreamInterpretationResultWidget extends StatelessWidget {
                       const Text('🌑', style: TextStyle(fontSize: 16)),
                       const SizedBox(width: 6),
                       Text(
-                        'GÖLGE',
+                        L10nService.get('dreams.result_widget.shadow_label', lang),
                         style: Theme.of(context).textTheme.labelSmall?.copyWith(
                               color: Colors.indigo[300],
                               fontWeight: FontWeight.bold,
@@ -666,7 +672,7 @@ class DreamInterpretationResultWidget extends StatelessWidget {
     ).animate().fadeIn(duration: 300.ms, delay: 800.ms);
   }
 
-  Widget _buildGuidanceSection(BuildContext context) {
+  Widget _buildGuidanceSection(BuildContext context, AppLanguage lang) {
     final guidance = interpretation.guidance;
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
@@ -686,7 +692,7 @@ class DreamInterpretationResultWidget extends StatelessWidget {
               const Text('🧭', style: TextStyle(fontSize: 20)),
               const SizedBox(width: 10),
               Text(
-                'PRATİK REHBERLİK',
+                L10nService.get('dreams.result_widget.practical_guidance', lang),
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       color: AppColors.starGold,
                       fontWeight: FontWeight.bold,
@@ -695,9 +701,9 @@ class DreamInterpretationResultWidget extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 14),
-          _buildGuidanceItem(context, '📅', 'Bugün', guidance.todayAction),
-          _buildGuidanceItem(context, '📆', 'Bu Hafta', guidance.weeklyFocus),
-          _buildGuidanceItem(context, '🚫', 'Kaçın', guidance.avoidance),
+          _buildGuidanceItem(context, '📅', L10nService.get('dreams.result_widget.today', lang), guidance.todayAction),
+          _buildGuidanceItem(context, '📆', L10nService.get('dreams.result_widget.this_week', lang), guidance.weeklyFocus),
+          _buildGuidanceItem(context, '🚫', L10nService.get('dreams.result_widget.avoid', lang), guidance.avoidance),
           const Divider(color: AppColors.mystic, height: 20),
           Container(
             padding: const EdgeInsets.all(12),
@@ -715,7 +721,7 @@ class DreamInterpretationResultWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Yansıtma Sorusu',
+                        L10nService.get('dreams.result_widget.reflection_question', lang),
                         style: Theme.of(context).textTheme.labelSmall?.copyWith(
                               color: AppColors.textSecondary,
                             ),
@@ -770,7 +776,7 @@ class DreamInterpretationResultWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildWhisperQuote(BuildContext context) {
+  Widget _buildWhisperQuote(BuildContext context, AppLanguage lang) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
@@ -808,7 +814,7 @@ class DreamInterpretationResultWidget extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            '— Fısıldayan Bilgelik',
+            '— ${L10nService.get('dreams.result_widget.whisper_wisdom', lang)}',
             style: Theme.of(context).textTheme.labelSmall?.copyWith(
                   color: AppColors.textSecondary,
                 ),
@@ -821,7 +827,7 @@ class DreamInterpretationResultWidget extends StatelessWidget {
         .shimmer(duration: 2000.ms, delay: 1200.ms, color: AppColors.starGold.withValues(alpha: 0.3));
   }
 
-  Widget _buildShareCard(BuildContext context) {
+  Widget _buildShareCard(BuildContext context, AppLanguage lang) {
     final card = interpretation.shareCard;
     return GestureDetector(
       onTap: () => _shareCard(context, card),
@@ -866,7 +872,7 @@ class DreamInterpretationResultWidget extends StatelessWidget {
                       const Icon(Icons.share, color: Colors.white, size: 14),
                       const SizedBox(width: 4),
                       Text(
-                        'Paylaş',
+                        L10nService.get('dreams.result_widget.share', lang),
                         style: Theme.of(context).textTheme.labelSmall?.copyWith(
                               color: Colors.white,
                             ),
@@ -888,7 +894,7 @@ class DreamInterpretationResultWidget extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             Text(
-              '— Rüya Yorumu | venusone.com',
+              '— ${L10nService.get('dreams.result_widget.share_footer', lang)}',
               style: Theme.of(context).textTheme.labelSmall?.copyWith(
                     color: Colors.white.withValues(alpha: 0.7),
                   ),
@@ -899,7 +905,7 @@ class DreamInterpretationResultWidget extends StatelessWidget {
     ).animate().fadeIn(duration: 400.ms, delay: 1100.ms).scale(begin: const Offset(0.95, 0.95), end: const Offset(1, 1));
   }
 
-  Widget _buildExplorationLinks(BuildContext context) {
+  Widget _buildExplorationLinks(BuildContext context, AppLanguage lang) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
       child: Column(
@@ -910,7 +916,7 @@ class DreamInterpretationResultWidget extends StatelessWidget {
               const Text('🔗', style: TextStyle(fontSize: 18)),
               const SizedBox(width: 8),
               Text(
-                'KEŞFET',
+                L10nService.get('dreams.result_widget.explore', lang),
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       color: AppColors.starGold,
                       fontWeight: FontWeight.w600,

@@ -37,88 +37,90 @@ class _DreamInterpretationScreenState
   final Map<String, String> _contextAnswers = {};
   bool _awaitingAnswer = false;
 
-  // Önerilen rüya paylaşım örnekleri - MEGA GELİŞTİRİLMİŞ
-  final List<Map<String, dynamic>> _suggestedDreamPrompts = [
-    // 🌊 SU & DOĞA RÜYALARI
-    {'emoji': '🌊', 'text': 'Denizde yüzüyordum ama suyun altında nefes alabiliyordum', 'category': 'su'},
-    {'emoji': '🌧️', 'text': 'Şiddetli yağmur altında koşuyordum ama ıslanmıyordum', 'category': 'su'},
-    {'emoji': '🏊', 'text': 'Derin bir göle dalıyordum ve dibinde ışık görüyordum', 'category': 'su'},
-    {'emoji': '🌈', 'text': 'Şelalenin arkasında gizli bir geçit keşfettim', 'category': 'su'},
+  // Suggested dream prompts - i18n method
+  List<Map<String, dynamic>> _getSuggestedDreamPrompts(AppLanguage language) {
+    return [
+      // Water & Nature dreams
+      {'emoji': '🌊', 'text': L10nService.get('widgets.dreams.prompts.water_breathing', language), 'category': 'su'},
+      {'emoji': '🌧️', 'text': L10nService.get('widgets.dreams.prompts.rain_running', language), 'category': 'su'},
+      {'emoji': '🏊', 'text': L10nService.get('widgets.dreams.prompts.lake_diving', language), 'category': 'su'},
+      {'emoji': '🌈', 'text': L10nService.get('widgets.dreams.prompts.waterfall_passage', language), 'category': 'su'},
 
-    // 🐍 HAYVAN RÜYALARI
-    {'emoji': '🐍', 'text': 'Yılan gördüm, bana doğru yaklaşıyordu ama korkmadım', 'category': 'hayvan'},
-    {'emoji': '🦅', 'text': 'Bir kartalın sırtında uçuyordum ve şehri görüyordum', 'category': 'hayvan'},
-    {'emoji': '🐺', 'text': 'Kurt sürüsü beni takip ediyordu ama bana zarar vermediler', 'category': 'hayvan'},
-    {'emoji': '🦋', 'text': 'Kelebeklerin içinden geçtim ve kendimi dönüşmüş hissettim', 'category': 'hayvan'},
-    {'emoji': '🐱', 'text': 'Konuşan bir kedi bana önemli bir şey söyledi', 'category': 'hayvan'},
+      // Animal dreams
+      {'emoji': '🐍', 'text': L10nService.get('widgets.dreams.prompts.snake_approaching', language), 'category': 'hayvan'},
+      {'emoji': '🦅', 'text': L10nService.get('widgets.dreams.prompts.eagle_riding', language), 'category': 'hayvan'},
+      {'emoji': '🐺', 'text': L10nService.get('widgets.dreams.prompts.wolf_pack', language), 'category': 'hayvan'},
+      {'emoji': '🦋', 'text': L10nService.get('widgets.dreams.prompts.butterfly_transform', language), 'category': 'hayvan'},
+      {'emoji': '🐱', 'text': L10nService.get('widgets.dreams.prompts.talking_cat', language), 'category': 'hayvan'},
 
-    // ✈️ UÇMA & DÜŞME RÜYALARI
-    {'emoji': '🦸', 'text': 'Uçuyordum ve çok özgür hissediyordum', 'category': 'ucmak'},
-    {'emoji': '⬇️', 'text': 'Yüksekten düşüyordum ama yere çarpmadan önce uyandım', 'category': 'dusmek'},
-    {'emoji': '🎈', 'text': 'Balonlarla havada süzülüyordum ve aşağıdaki insanları izliyordum', 'category': 'ucmak'},
-    {'emoji': '🪂', 'text': 'Paraşütle atlıyordum ama paraşüt açılmıyordu', 'category': 'dusmek'},
+      // Flying & Falling dreams
+      {'emoji': '🦸', 'text': L10nService.get('widgets.dreams.prompts.flying_free', language), 'category': 'ucmak'},
+      {'emoji': '⬇️', 'text': L10nService.get('widgets.dreams.prompts.falling_high', language), 'category': 'dusmek'},
+      {'emoji': '🎈', 'text': L10nService.get('widgets.dreams.prompts.balloon_floating', language), 'category': 'ucmak'},
+      {'emoji': '🪂', 'text': L10nService.get('widgets.dreams.prompts.parachute_fail', language), 'category': 'dusmek'},
 
-    // 🏃 KAÇIŞ & KOVALANMA RÜYALARI
-    {'emoji': '🏃', 'text': 'Bir şeyden kaçıyordum ama bacaklarım hareket etmiyordu', 'category': 'kovalanmak'},
-    {'emoji': '👤', 'text': 'Tanımadığım biri beni takip ediyordu, yüzünü göremiyordum', 'category': 'kovalanmak'},
-    {'emoji': '🚪', 'text': 'Koridorda koşuyordum ama kapılar sürekli kayboluyordu', 'category': 'kovalanmak'},
-    {'emoji': '🌑', 'text': 'Karanlıkta saklanan bir şeyden kaçıyordum', 'category': 'kovalanmak'},
+      // Chase dreams
+      {'emoji': '🏃', 'text': L10nService.get('widgets.dreams.prompts.running_stuck', language), 'category': 'kovalanmak'},
+      {'emoji': '👤', 'text': L10nService.get('widgets.dreams.prompts.shadow_follower', language), 'category': 'kovalanmak'},
+      {'emoji': '🚪', 'text': L10nService.get('widgets.dreams.prompts.corridor_doors', language), 'category': 'kovalanmak'},
+      {'emoji': '🌑', 'text': L10nService.get('widgets.dreams.prompts.darkness_escape', language), 'category': 'kovalanmak'},
 
-    // 🏠 EV & MEKAN RÜYALARI
-    {'emoji': '🏠', 'text': 'Evimde hiç görmediğim gizli odalar keşfettim', 'category': 'ev'},
-    {'emoji': '🏚️', 'text': 'Çocukluk evimdeydim ama her şey farklıydı', 'category': 'ev'},
-    {'emoji': '🏰', 'text': 'Bir sarayda kaybolmuştum ve çıkışı bulamıyordum', 'category': 'ev'},
-    {'emoji': '🛗', 'text': 'Asansör sürekli yanlış katlara gidiyordu', 'category': 'ev'},
+      // House & Place dreams
+      {'emoji': '🏠', 'text': L10nService.get('widgets.dreams.prompts.secret_rooms', language), 'category': 'ev'},
+      {'emoji': '🏚️', 'text': L10nService.get('widgets.dreams.prompts.childhood_home', language), 'category': 'ev'},
+      {'emoji': '🏰', 'text': L10nService.get('widgets.dreams.prompts.palace_lost', language), 'category': 'ev'},
+      {'emoji': '🛗', 'text': L10nService.get('widgets.dreams.prompts.elevator_wrong', language), 'category': 'ev'},
 
-    // 👥 İNSAN & İLİŞKİ RÜYALARI
-    {'emoji': '👨‍👩‍👧', 'text': 'Ölen bir yakınımı gördüm, benimle konuştu', 'category': 'insan'},
-    {'emoji': '💔', 'text': 'Eski sevgilimi gördüm ama tanımadığım biriymiş gibi davrandı', 'category': 'insan'},
-    {'emoji': '👶', 'text': 'Kucağımda bir bebek vardı ama kimin bebeği bilmiyordum', 'category': 'bebek'},
-    {'emoji': '👰', 'text': 'Düğünümü gördüm ama damat/gelin yüzü bulanıktı', 'category': 'gelin'},
-    {'emoji': '👯', 'text': 'Kendimi dışarıdan izliyordum, iki tane bendim', 'category': 'insan'},
+      // People & Relationship dreams
+      {'emoji': '👨‍👩‍👧', 'text': L10nService.get('widgets.dreams.prompts.deceased_relative', language), 'category': 'insan'},
+      {'emoji': '💔', 'text': L10nService.get('widgets.dreams.prompts.ex_stranger', language), 'category': 'insan'},
+      {'emoji': '👶', 'text': L10nService.get('widgets.dreams.prompts.unknown_baby', language), 'category': 'bebek'},
+      {'emoji': '👰', 'text': L10nService.get('widgets.dreams.prompts.wedding_blur', language), 'category': 'gelin'},
+      {'emoji': '👯', 'text': L10nService.get('widgets.dreams.prompts.watching_self', language), 'category': 'insan'},
 
-    // 🦷 BEDEN RÜYALARI
-    {'emoji': '🦷', 'text': 'Dişlerim dökülüyordu ve durduramıyordum', 'category': 'dis'},
-    {'emoji': '💇', 'text': 'Saçlarım bir anda uzadı veya döküldü', 'category': 'beden'},
-    {'emoji': '👁️', 'text': 'Aynaya baktım ama başka birini gördüm', 'category': 'beden'},
-    {'emoji': '🫀', 'text': 'Vücudumun bir kısmı hareket etmiyordu', 'category': 'beden'},
+      // Body dreams
+      {'emoji': '🦷', 'text': L10nService.get('widgets.dreams.prompts.teeth_falling', language), 'category': 'dis'},
+      {'emoji': '💇', 'text': L10nService.get('widgets.dreams.prompts.hair_change', language), 'category': 'beden'},
+      {'emoji': '👁️', 'text': L10nService.get('widgets.dreams.prompts.mirror_other', language), 'category': 'beden'},
+      {'emoji': '🫀', 'text': L10nService.get('widgets.dreams.prompts.body_frozen', language), 'category': 'beden'},
 
-    // 🔥 ELEMENT RÜYALARI
-    {'emoji': '🔥', 'text': 'Her yer yanıyordu ama ben yanmıyordum', 'category': 'ates'},
-    {'emoji': '⚡', 'text': 'Yıldırım çarpıyordu ve bir güç hissettim', 'category': 'element'},
-    {'emoji': '🌪️', 'text': 'Kasırganın içindeydim ama sakin hissediyordum', 'category': 'element'},
-    {'emoji': '❄️', 'text': 'Her yer donmuştu ve buzda yürüyordum', 'category': 'element'},
+      // Element dreams
+      {'emoji': '🔥', 'text': L10nService.get('widgets.dreams.prompts.fire_immune', language), 'category': 'ates'},
+      {'emoji': '⚡', 'text': L10nService.get('widgets.dreams.prompts.lightning_power', language), 'category': 'element'},
+      {'emoji': '🌪️', 'text': L10nService.get('widgets.dreams.prompts.tornado_calm', language), 'category': 'element'},
+      {'emoji': '❄️', 'text': L10nService.get('widgets.dreams.prompts.ice_walking', language), 'category': 'element'},
 
-    // 📚 SINAV & PERFORMANS RÜYALARI
-    {'emoji': '📝', 'text': 'Sınava hazırlıksız girdim, hiçbir şey bilmiyordum', 'category': 'sinav'},
-    {'emoji': '🎤', 'text': 'Sahnede konuşmam gerekiyordu ama sesim çıkmıyordu', 'category': 'sinav'},
-    {'emoji': '🏃‍♂️', 'text': 'Yarışıyordum ama koşamıyordum', 'category': 'sinav'},
-    {'emoji': '🎭', 'text': 'Rol yapmam gerekiyordu ama repliklerimi unutmuştum', 'category': 'sinav'},
+      // Exam & Performance dreams
+      {'emoji': '📝', 'text': L10nService.get('widgets.dreams.prompts.exam_unprepared', language), 'category': 'sinav'},
+      {'emoji': '🎤', 'text': L10nService.get('widgets.dreams.prompts.stage_voiceless', language), 'category': 'sinav'},
+      {'emoji': '🏃‍♂️', 'text': L10nService.get('widgets.dreams.prompts.race_stuck', language), 'category': 'sinav'},
+      {'emoji': '🎭', 'text': L10nService.get('widgets.dreams.prompts.acting_forgot', language), 'category': 'sinav'},
 
-    // 💀 ÖLÜM & DÖNÜŞÜM RÜYALARI
-    {'emoji': '💀', 'text': 'Öldüğümü gördüm ama ruhum izliyordu', 'category': 'olum'},
-    {'emoji': '⚰️', 'text': 'Cenaze törenimdeydim, herkes ağlıyordu', 'category': 'olum'},
-    {'emoji': '🔄', 'text': 'Öldüm ama başka bir bedende uyandım', 'category': 'olum'},
-    {'emoji': '👻', 'text': 'Hayalet olmuştum ve kimse beni göremiyordu', 'category': 'olum'},
+      // Death & Transformation dreams
+      {'emoji': '💀', 'text': L10nService.get('widgets.dreams.prompts.death_watching', language), 'category': 'olum'},
+      {'emoji': '⚰️', 'text': L10nService.get('widgets.dreams.prompts.funeral_crying', language), 'category': 'olum'},
+      {'emoji': '🔄', 'text': L10nService.get('widgets.dreams.prompts.death_rebirth', language), 'category': 'olum'},
+      {'emoji': '👻', 'text': L10nService.get('widgets.dreams.prompts.ghost_invisible', language), 'category': 'olum'},
 
-    // 💰 PARA & BOLLUK RÜYALARI
-    {'emoji': '💰', 'text': 'Yerde altınlar buldum ama toplayamıyordum', 'category': 'para'},
-    {'emoji': '🏆', 'text': 'Piyango kazandım ama bilet kayboldu', 'category': 'para'},
-    {'emoji': '💎', 'text': 'Mücevherlerle dolu bir hazine sandığı açtım', 'category': 'para'},
+      // Money & Abundance dreams
+      {'emoji': '💰', 'text': L10nService.get('widgets.dreams.prompts.gold_uncollectable', language), 'category': 'para'},
+      {'emoji': '🏆', 'text': L10nService.get('widgets.dreams.prompts.lottery_lost', language), 'category': 'para'},
+      {'emoji': '💎', 'text': L10nService.get('widgets.dreams.prompts.treasure_chest', language), 'category': 'para'},
 
-    // 🚗 ARAÇ & YOLCULUK RÜYALARI
-    {'emoji': '🚗', 'text': 'Araba kullanıyordum ama frenler tutmuyordu', 'category': 'araba'},
-    {'emoji': '✈️', 'text': 'Uçak düşüyordu ama sakin hissediyordum', 'category': 'yolculuk'},
-    {'emoji': '🚂', 'text': 'Treni kaçırdım ve bir daha gelmeyeceğini biliyordum', 'category': 'yolculuk'},
-    {'emoji': '🛤️', 'text': 'Sonu görünmeyen bir yolda yürüyordum', 'category': 'yolculuk'},
+      // Vehicle & Journey dreams
+      {'emoji': '🚗', 'text': L10nService.get('widgets.dreams.prompts.car_brakes_fail', language), 'category': 'araba'},
+      {'emoji': '✈️', 'text': L10nService.get('widgets.dreams.prompts.plane_calm', language), 'category': 'yolculuk'},
+      {'emoji': '🚂', 'text': L10nService.get('widgets.dreams.prompts.train_missed', language), 'category': 'yolculuk'},
+      {'emoji': '🛤️', 'text': L10nService.get('widgets.dreams.prompts.endless_road', language), 'category': 'yolculuk'},
 
-    // 🔮 MİSTİK & SPİRİTÜEL RÜYALAR
-    {'emoji': '🔮', 'text': 'Geleceği gördüm ve bir şey değişiyordu', 'category': 'mistik'},
-    {'emoji': '👼', 'text': 'Bir melek veya ışık varlığı gördüm', 'category': 'mistik'},
-    {'emoji': '🌙', 'text': 'Ay çok büyüktü ve bana mesaj veriyordu', 'category': 'mistik'},
-    {'emoji': '⭐', 'text': 'Yıldızlara yükseliyordum ve evren açıldı', 'category': 'mistik'},
-    {'emoji': '🪬', 'text': 'Bir portal açıldı ve başka bir dünyaya geçtim', 'category': 'mistik'},
-  ];
+      // Mystical & Spiritual dreams
+      {'emoji': '🔮', 'text': L10nService.get('widgets.dreams.prompts.seeing_future', language), 'category': 'mistik'},
+      {'emoji': '👼', 'text': L10nService.get('widgets.dreams.prompts.angel_light', language), 'category': 'mistik'},
+      {'emoji': '🌙', 'text': L10nService.get('widgets.dreams.prompts.moon_message', language), 'category': 'mistik'},
+      {'emoji': '⭐', 'text': L10nService.get('widgets.dreams.prompts.stars_rising', language), 'category': 'mistik'},
+      {'emoji': '🪬', 'text': L10nService.get('widgets.dreams.prompts.portal_world', language), 'category': 'mistik'},
+    ];
+  }
 
   @override
   void initState() {
@@ -146,14 +148,12 @@ class _DreamInterpretationScreenState
     final language = ref.read(languageProvider);
     final signName = sign.localizedName(language);
 
+    final welcomeText = L10nService.get('widgets.dreams.welcome_message', language)
+        .replaceAll('{signName}', signName);
+
     setState(() {
       _messages.add(ChatMessage(
-        text:
-            'Merhaba, ben Ruya Izi. $signName burcunun kozmik enerjisiyle sana rehberlik etmek icin buradayim.\n\n'
-            'Gordugun ruyayi detayli bir sekilde anlat. Ne gordun? Neler hissettin? '
-            'Ruyandaki semboller, renkler ve duygular hakkinda ne kadar cok bilgi verirsen, '
-            'kozmik yorumum o kadar derin olacak.\n\n'
-            '⚠️ ${DisclaimerTexts.dreams}',
+        text: '$welcomeText⚠️ ${DisclaimerTexts.dreams(language)}',
         isUser: false,
         timestamp: DateTime.now(),
       ));
@@ -237,7 +237,7 @@ class _DreamInterpretationScreenState
       setState(() {
         _isTyping = false;
         _messages.add(ChatMessage(
-          text: 'Bir sorun olustu. Lutfen tekrar dene.',
+          text: L10nService.get('widgets.dreams.error_try_again', ref.read(languageProvider)),
           isUser: false,
           timestamp: DateTime.now(),
         ));
@@ -298,7 +298,7 @@ class _DreamInterpretationScreenState
       setState(() {
         _isTyping = false;
         _messages.add(ChatMessage(
-          text: interpretedSession.interpretation ?? 'Yorum olusturulamadi.',
+          text: interpretedSession.interpretation ?? L10nService.get('widgets.dreams.interpretation_failed', ref.read(languageProvider)),
           isUser: false,
           timestamp: DateTime.now(),
           isInterpretation: true,
@@ -310,7 +310,7 @@ class _DreamInterpretationScreenState
       await Future.delayed(const Duration(milliseconds: 1500));
       setState(() {
         _messages.add(ChatMessage(
-          text: 'Baska bir ruya paylasmak istersen, dinlemeye hazirim.',
+          text: L10nService.get('widgets.dreams.share_another', ref.read(languageProvider)),
           isUser: false,
           timestamp: DateTime.now(),
         ));
@@ -1113,7 +1113,7 @@ ${_getZodiacAdvice(sign)}''';
                 const Text('💭', style: TextStyle(fontSize: 16)),
                 const SizedBox(width: 8),
                 Text(
-                  'Ornek Ruya Paylasımlari:',
+                  L10nService.get('dreams.example_prompts_label', ref.read(languageProvider)),
                   style: TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.w600,
@@ -1127,9 +1127,9 @@ ${_getZodiacAdvice(sign)}''';
             height: 110,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: _suggestedDreamPrompts.length,
+              itemCount: _getSuggestedDreamPrompts(ref.read(languageProvider)).length,
               itemBuilder: (context, index) {
-                final prompt = _suggestedDreamPrompts[index];
+                final prompt = _getSuggestedDreamPrompts(ref.read(languageProvider))[index];
                 return Padding(
                   padding: const EdgeInsets.only(right: 10),
                   child: InkWell(
@@ -1190,7 +1190,7 @@ ${_getZodiacAdvice(sign)}''';
           const SizedBox(height: 8),
           Center(
             child: Text(
-              'Bir tanesine dokun veya kendi ruyani yaz',
+              L10nService.get('widgets.dreams.tap_or_write_hint', ref.read(languageProvider)),
               style: TextStyle(
                 fontSize: 11,
                 color: AppColors.textSecondary.withOpacity(0.7),
@@ -1276,7 +1276,7 @@ ${_getZodiacAdvice(sign)}''';
                         const Text('\u{2728}', style: TextStyle(fontSize: 14)),
                         const SizedBox(width: 6),
                         Text(
-                          'RUYA YORUMU',
+                          L10nService.get('widgets.dreams.interpretation_label', ref.watch(languageProvider)),
                           style: Theme.of(context).textTheme.labelSmall?.copyWith(
                             color: AppColors.starGold,
                             fontWeight: FontWeight.w600,
@@ -1293,7 +1293,7 @@ ${_getZodiacAdvice(sign)}''';
                         const Text('\u{2753}', style: TextStyle(fontSize: 12)),
                         const SizedBox(width: 4),
                         Text(
-                          'SORU',
+                          L10nService.get('widgets.dreams.question_label', ref.watch(languageProvider)),
                           style: Theme.of(context).textTheme.labelSmall?.copyWith(
                             color: AppColors.mystic,
                             fontWeight: FontWeight.w600,
@@ -1424,7 +1424,7 @@ ${_getZodiacAdvice(sign)}''';
                   minLines: 1,
                   textInputAction: TextInputAction.send,
                   decoration: InputDecoration(
-                    hintText: 'Rüyanı detaylı anlat... (Enter ile gönder, Shift+Enter yeni satır)',
+                    hintText: L10nService.get('dreams.input_placeholder', ref.read(languageProvider)),
                     hintStyle: TextStyle(color: AppColors.textSecondary.withOpacity(0.6)),
                     border: InputBorder.none,
                     contentPadding: const EdgeInsets.symmetric(
@@ -1489,93 +1489,108 @@ ${_getZodiacAdvice(sign)}''';
     final currentQuestion = _currentSession!.contextQuestions[_currentQuestionIndex].toLowerCase();
     List<Map<String, String>> quickAnswers = [];
 
+    final language = ref.read(languageProvider);
     // Generate rich contextual quick answers based on question type
     if (currentQuestion.contains('korku') ||
         currentQuestion.contains('duygu') ||
         currentQuestion.contains('hissett') ||
-        currentQuestion.contains('nasıl')) {
+        currentQuestion.contains('nasıl') ||
+        currentQuestion.contains('fear') ||
+        currentQuestion.contains('feel')) {
       quickAnswers = [
-        {'emoji': '😨', 'text': 'Korku ve endişe hissettim'},
-        {'emoji': '😌', 'text': 'Huzur ve güven hissettim'},
-        {'emoji': '🤔', 'text': 'Merak ve şaşkınlık duydum'},
-        {'emoji': '😢', 'text': 'Üzüntü ve melankoli'},
-        {'emoji': '😊', 'text': 'Mutluluk ve sevinç'},
-        {'emoji': '😤', 'text': 'Öfke ve kızgınlık'},
+        {'emoji': '😨', 'text': L10nService.get('widgets.dreams.quick_answers.fear_anxiety', language)},
+        {'emoji': '😌', 'text': L10nService.get('widgets.dreams.quick_answers.peace_trust', language)},
+        {'emoji': '🤔', 'text': L10nService.get('widgets.dreams.quick_answers.curiosity_surprise', language)},
+        {'emoji': '😢', 'text': L10nService.get('widgets.dreams.quick_answers.sadness_melancholy', language)},
+        {'emoji': '😊', 'text': L10nService.get('widgets.dreams.quick_answers.happiness_joy', language)},
+        {'emoji': '😤', 'text': L10nService.get('widgets.dreams.quick_answers.anger_frustration', language)},
       ];
     } else if (currentQuestion.contains('ortam') ||
                currentQuestion.contains('nerede') ||
                currentQuestion.contains('mekan') ||
-               currentQuestion.contains('yer')) {
+               currentQuestion.contains('yer') ||
+               currentQuestion.contains('where') ||
+               currentQuestion.contains('place')) {
       quickAnswers = [
-        {'emoji': '🏠', 'text': 'Evimde veya tanıdık bir mekanda'},
-        {'emoji': '🌳', 'text': 'Doğada, ormanda veya bahçede'},
-        {'emoji': '🌊', 'text': 'Su kenarında, deniz veya göl'},
-        {'emoji': '🏔️', 'text': 'Dağda veya yüksek bir yerde'},
-        {'emoji': '🌑', 'text': 'Karanlık, belirsiz bir ortamda'},
-        {'emoji': '❓', 'text': 'Tanımadığım garip bir yer'},
+        {'emoji': '🏠', 'text': L10nService.get('widgets.dreams.quick_answers.home_familiar', language)},
+        {'emoji': '🌳', 'text': L10nService.get('widgets.dreams.quick_answers.nature_forest', language)},
+        {'emoji': '🌊', 'text': L10nService.get('widgets.dreams.quick_answers.water_seaside', language)},
+        {'emoji': '🏔️', 'text': L10nService.get('widgets.dreams.quick_answers.mountain_high', language)},
+        {'emoji': '🌑', 'text': L10nService.get('widgets.dreams.quick_answers.dark_uncertain', language)},
+        {'emoji': '❓', 'text': L10nService.get('widgets.dreams.quick_answers.strange_unknown', language)},
       ];
     } else if (currentQuestion.contains('kim') ||
                currentQuestion.contains('biri') ||
                currentQuestion.contains('kişi') ||
-               currentQuestion.contains('başka')) {
+               currentQuestion.contains('başka') ||
+               currentQuestion.contains('who') ||
+               currentQuestion.contains('person')) {
       quickAnswers = [
-        {'emoji': '🚶', 'text': 'Tamamen yalnızdım'},
-        {'emoji': '👨‍👩‍👧', 'text': 'Ailemden biri vardı'},
-        {'emoji': '💑', 'text': 'Sevgilim/eşim vardı'},
-        {'emoji': '👥', 'text': 'Arkadaşlarım vardı'},
-        {'emoji': '👤', 'text': 'Tanımadığım insanlar vardı'},
-        {'emoji': '😶', 'text': 'Vardı ama yüzünü göremedim'},
+        {'emoji': '🚶', 'text': L10nService.get('widgets.dreams.quick_answers.completely_alone', language)},
+        {'emoji': '👨‍👩‍👧', 'text': L10nService.get('widgets.dreams.quick_answers.family_member', language)},
+        {'emoji': '💑', 'text': L10nService.get('widgets.dreams.quick_answers.partner_spouse', language)},
+        {'emoji': '👥', 'text': L10nService.get('widgets.dreams.quick_answers.friends_present', language)},
+        {'emoji': '👤', 'text': L10nService.get('widgets.dreams.quick_answers.strangers_present', language)},
+        {'emoji': '😶', 'text': L10nService.get('widgets.dreams.quick_answers.faceless_person', language)},
       ];
     } else if (currentQuestion.contains('renk') ||
-               currentQuestion.contains('görün')) {
+               currentQuestion.contains('görün') ||
+               currentQuestion.contains('color') ||
+               currentQuestion.contains('appear')) {
       quickAnswers = [
-        {'emoji': '⚫', 'text': 'Karanlık, siyah tonlar'},
-        {'emoji': '⚪', 'text': 'Parlak, beyaz ve aydınlık'},
-        {'emoji': '🔵', 'text': 'Mavi ve huzurlu tonlar'},
-        {'emoji': '🔴', 'text': 'Kırmızı, turuncu sıcak renkler'},
-        {'emoji': '🌈', 'text': 'Canlı ve renkli bir ortam'},
-        {'emoji': '🌫️', 'text': 'Sisli, bulanık görüntüler'},
+        {'emoji': '⚫', 'text': L10nService.get('widgets.dreams.quick_answers.dark_black', language)},
+        {'emoji': '⚪', 'text': L10nService.get('widgets.dreams.quick_answers.bright_white', language)},
+        {'emoji': '🔵', 'text': L10nService.get('widgets.dreams.quick_answers.blue_peaceful', language)},
+        {'emoji': '🔴', 'text': L10nService.get('widgets.dreams.quick_answers.red_warm', language)},
+        {'emoji': '🌈', 'text': L10nService.get('widgets.dreams.quick_answers.colorful_vibrant', language)},
+        {'emoji': '🌫️', 'text': L10nService.get('widgets.dreams.quick_answers.foggy_blurry', language)},
       ];
     } else if (currentQuestion.contains('doğru') ||
                currentQuestion.contains('sana') ||
                currentQuestion.contains('yaklaş') ||
-               currentQuestion.contains('hareket')) {
+               currentQuestion.contains('hareket') ||
+               currentQuestion.contains('toward') ||
+               currentQuestion.contains('move')) {
       quickAnswers = [
-        {'emoji': '➡️', 'text': 'Evet, bana doğru geliyordu'},
-        {'emoji': '⬅️', 'text': 'Hayır, benden uzaklaşıyordu'},
-        {'emoji': '⏸️', 'text': 'Sadece duruyordu, hareketsizdi'},
-        {'emoji': '🔄', 'text': 'Etrafımda dönüyordu'},
-        {'emoji': '🏃', 'text': 'Çok hızlı hareket ediyordu'},
-        {'emoji': '❓', 'text': 'Tam hatırlamıyorum'},
+        {'emoji': '➡️', 'text': L10nService.get('widgets.dreams.quick_answers.yes_approaching', language)},
+        {'emoji': '⬅️', 'text': L10nService.get('widgets.dreams.quick_answers.no_leaving', language)},
+        {'emoji': '⏸️', 'text': L10nService.get('widgets.dreams.quick_answers.just_standing', language)},
+        {'emoji': '🔄', 'text': L10nService.get('widgets.dreams.quick_answers.circling_around', language)},
+        {'emoji': '🏃', 'text': L10nService.get('widgets.dreams.quick_answers.moving_fast', language)},
+        {'emoji': '❓', 'text': L10nService.get('widgets.dreams.quick_answers.dont_remember', language)},
       ];
     } else if (currentQuestion.contains('ses') ||
                currentQuestion.contains('konuş') ||
-               currentQuestion.contains('duy')) {
+               currentQuestion.contains('duy') ||
+               currentQuestion.contains('sound') ||
+               currentQuestion.contains('hear')) {
       quickAnswers = [
-        {'emoji': '🔇', 'text': 'Sessizlik vardı'},
-        {'emoji': '🗣️', 'text': 'Sesler ve konuşmalar duydum'},
-        {'emoji': '🎵', 'text': 'Müzik veya melodiler vardı'},
-        {'emoji': '😱', 'text': 'Korkutucu sesler duydum'},
-        {'emoji': '💭', 'text': 'İç sesimi duyuyordum'},
-        {'emoji': '❓', 'text': 'Hatırlamıyorum'},
+        {'emoji': '🔇', 'text': L10nService.get('widgets.dreams.quick_answers.silence_present', language)},
+        {'emoji': '🗣️', 'text': L10nService.get('widgets.dreams.quick_answers.voices_talking', language)},
+        {'emoji': '🎵', 'text': L10nService.get('widgets.dreams.quick_answers.music_melodies', language)},
+        {'emoji': '😱', 'text': L10nService.get('widgets.dreams.quick_answers.scary_sounds', language)},
+        {'emoji': '💭', 'text': L10nService.get('widgets.dreams.quick_answers.inner_voice', language)},
+        {'emoji': '❓', 'text': L10nService.get('widgets.dreams.quick_answers.cant_remember', language)},
       ];
     } else if (currentQuestion.contains('son') ||
                currentQuestion.contains('bit') ||
-               currentQuestion.contains('uyan')) {
+               currentQuestion.contains('uyan') ||
+               currentQuestion.contains('end') ||
+               currentQuestion.contains('wake')) {
       quickAnswers = [
-        {'emoji': '😰', 'text': 'Korkuyla uyandım'},
-        {'emoji': '😊', 'text': 'Huzurla, yavaşça uyandım'},
-        {'emoji': '❓', 'text': 'Rüya aniden bitti'},
-        {'emoji': '🔄', 'text': 'Rüya başka bir sahneye geçti'},
-        {'emoji': '⏰', 'text': 'Alarm çaldı, rüya yarıda kaldı'},
-        {'emoji': '💭', 'text': 'Devamını görmek istedim'},
+        {'emoji': '😰', 'text': L10nService.get('widgets.dreams.quick_answers.woke_scared', language)},
+        {'emoji': '😊', 'text': L10nService.get('widgets.dreams.quick_answers.woke_peaceful', language)},
+        {'emoji': '❓', 'text': L10nService.get('widgets.dreams.quick_answers.dream_ended', language)},
+        {'emoji': '🔄', 'text': L10nService.get('widgets.dreams.quick_answers.dream_shifted', language)},
+        {'emoji': '⏰', 'text': L10nService.get('widgets.dreams.quick_answers.alarm_interrupted', language)},
+        {'emoji': '💭', 'text': L10nService.get('widgets.dreams.quick_answers.wanted_continue', language)},
       ];
     } else {
       quickAnswers = [
-        {'emoji': '💭', 'text': 'Detay eklemek istiyorum'},
-        {'emoji': '🔮', 'text': 'Yorumla'},
-        {'emoji': '🤷', 'text': 'Emin değilim'},
-        {'emoji': '❓', 'text': 'Hatırlamıyorum'},
+        {'emoji': '💭', 'text': L10nService.get('widgets.dreams.quick_answers.add_detail', language)},
+        {'emoji': '🔮', 'text': L10nService.get('widgets.dreams.quick_answers.interpret_now', language)},
+        {'emoji': '🤷', 'text': L10nService.get('widgets.dreams.quick_answers.not_sure', language)},
+        {'emoji': '❓', 'text': L10nService.get('widgets.dreams.quick_answers.cant_remember', language)},
       ];
     }
 
@@ -1660,24 +1675,25 @@ class ChatMessage {
 }
 
 /// Dream symbols reference sheet
-class _DreamSymbolsSheet extends StatelessWidget {
+class _DreamSymbolsSheet extends ConsumerWidget {
   const _DreamSymbolsSheet();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final language = ref.watch(languageProvider);
     final symbols = [
-      {'emoji': '\u{1F40D}', 'name': 'Yilan', 'meaning': 'Donusum, iyilesme, gizli korkular'},
-      {'emoji': '\u{1F30A}', 'name': 'Su', 'meaning': 'Duygular, bilincalti, arinma'},
-      {'emoji': '\u{1F525}', 'name': 'Ates', 'meaning': 'Tutku, ofke, donusum'},
-      {'emoji': '\u{1F3E0}', 'name': 'Ev', 'meaning': 'Benlik, guvenlik, aile'},
-      {'emoji': '\u{2708}', 'name': 'Ucmak', 'meaning': 'Ozgurluk, yukselis, kacis'},
-      {'emoji': '\u{1F319}', 'name': 'Ay', 'meaning': 'Sezgi, kadinsi enerji, donguler'},
-      {'emoji': '\u{2600}', 'name': 'Gunes', 'meaning': 'Bilinc, basari, erkeksi enerji'},
-      {'emoji': '\u{1F480}', 'name': 'Olum', 'meaning': 'Transformasyon, son, yeni baslangic'},
-      {'emoji': '\u{1F436}', 'name': 'Kopek', 'meaning': 'Sadakat, koruma, dostluk'},
-      {'emoji': '\u{1F431}', 'name': 'Kedi', 'meaning': 'Bagimsizlik, sezgi, gizemlilik'},
-      {'emoji': '\u{1F4B0}', 'name': 'Para', 'meaning': 'Ozdeger, bolluk, guvenlik'},
-      {'emoji': '\u{2764}', 'name': 'Ask', 'meaning': 'Baglanma, arzu, kabul'},
+      {'emoji': '\u{1F40D}', 'name': L10nService.get('widgets.dreams.symbols.snake_name', language), 'meaning': L10nService.get('widgets.dreams.symbols.snake_meaning', language)},
+      {'emoji': '\u{1F30A}', 'name': L10nService.get('widgets.dreams.symbols.water_name', language), 'meaning': L10nService.get('widgets.dreams.symbols.water_meaning', language)},
+      {'emoji': '\u{1F525}', 'name': L10nService.get('widgets.dreams.symbols.fire_name', language), 'meaning': L10nService.get('widgets.dreams.symbols.fire_meaning', language)},
+      {'emoji': '\u{1F3E0}', 'name': L10nService.get('widgets.dreams.symbols.house_name', language), 'meaning': L10nService.get('widgets.dreams.symbols.house_meaning', language)},
+      {'emoji': '\u{2708}', 'name': L10nService.get('widgets.dreams.symbols.flying_name', language), 'meaning': L10nService.get('widgets.dreams.symbols.flying_meaning', language)},
+      {'emoji': '\u{1F319}', 'name': L10nService.get('widgets.dreams.symbols.moon_name', language), 'meaning': L10nService.get('widgets.dreams.symbols.moon_meaning', language)},
+      {'emoji': '\u{2600}', 'name': L10nService.get('widgets.dreams.symbols.sun_name', language), 'meaning': L10nService.get('widgets.dreams.symbols.sun_meaning', language)},
+      {'emoji': '\u{1F480}', 'name': L10nService.get('widgets.dreams.symbols.death_name', language), 'meaning': L10nService.get('widgets.dreams.symbols.death_meaning', language)},
+      {'emoji': '\u{1F436}', 'name': L10nService.get('widgets.dreams.symbols.dog_name', language), 'meaning': L10nService.get('widgets.dreams.symbols.dog_meaning', language)},
+      {'emoji': '\u{1F431}', 'name': L10nService.get('widgets.dreams.symbols.cat_name', language), 'meaning': L10nService.get('widgets.dreams.symbols.cat_meaning', language)},
+      {'emoji': '\u{1F4B0}', 'name': L10nService.get('widgets.dreams.symbols.money_name', language), 'meaning': L10nService.get('widgets.dreams.symbols.money_meaning', language)},
+      {'emoji': '\u{2764}', 'name': L10nService.get('widgets.dreams.symbols.love_name', language), 'meaning': L10nService.get('widgets.dreams.symbols.love_meaning', language)},
     ];
 
     return Container(
@@ -1713,7 +1729,7 @@ class _DreamSymbolsSheet extends StatelessWidget {
                 const Text('\u{1F52E}', style: TextStyle(fontSize: 28)),
                 const SizedBox(width: 12),
                 Text(
-                  'Ruya Sembolleri Rehberi',
+                  L10nService.get('widgets.dreams.symbols_guide_title', language),
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
                         color: AppColors.textPrimary,
                         fontWeight: FontWeight.bold,

@@ -1,28 +1,28 @@
 /// Quiz Segmentation Models
-/// Google Discover → Quiz → Premium funnel için model sınıfları
+/// Model classes for Google Discover -> Quiz -> Premium funnel
 library;
 
-/// Quiz segmentasyonu - kullanıcının premium'a dönüşüm olasılığı
+/// Quiz segmentation - user's likelihood of premium conversion
 enum QuizSegment {
-  low, // Düşük - Soft CTA veya skip
-  medium, // Orta - Normal premium teklifi
-  high, // Yüksek - Agresif premium teklif (%30-40 dönüşüm hedefi)
+  low, // Low - Soft CTA or skip
+  medium, // Medium - Normal premium offer
+  high, // High - Aggressive premium offer (30-40% conversion target)
 }
 
-/// Quiz tipi
+/// Quiz type
 enum QuizType {
-  dream, // Rüya yorumu quiz'i
-  astrology, // Astroloji quiz'i
-  numerology, // Numeroloji quiz'i
-  general, // Genel keşif quiz'i
-  personality, // Kişilik testi
+  dream, // Dream interpretation quiz
+  astrology, // Astrology quiz
+  numerology, // Numerology quiz
+  general, // General discovery quiz
+  personality, // Personality test
 }
 
-/// Tek bir quiz cevabı
+/// Single quiz answer
 class QuizAnswer {
   final String text;
   final String? emoji;
-  final int weight; // Segment hesaplama için ağırlık (1-5)
+  final int weight; // Weight for segment calculation (1-5)
   final Map<String, dynamic>? metadata;
 
   const QuizAnswer({
@@ -33,7 +33,7 @@ class QuizAnswer {
   });
 }
 
-/// Tek bir quiz sorusu
+/// Single quiz question
 class QuizQuestion {
   final String text;
   final String? emoji;
@@ -48,7 +48,7 @@ class QuizQuestion {
   });
 }
 
-/// Quiz sonucu
+/// Quiz result
 class QuizResult {
   final String title;
   final String description;
@@ -56,7 +56,7 @@ class QuizResult {
   final QuizSegment segment;
   final int score;
   final Map<String, dynamic>? insights;
-  final String? recommendedRoute; // Premium sonrası yönlendirme
+  final String? recommendedRoute; // Post-premium redirect
 
   const QuizResult({
     required this.title,
@@ -69,7 +69,7 @@ class QuizResult {
   });
 }
 
-/// Tam quiz yapısı
+/// Complete quiz structure
 class Quiz {
   final String id;
   final String title;
@@ -92,7 +92,7 @@ class Quiz {
   int get questionCount => questions.length;
 }
 
-/// Quiz CTA içeriği - sayfalarda gösterilecek
+/// Quiz CTA content - displayed on pages
 class QuizCTA {
   final String headline;
   final String subtext;
@@ -108,38 +108,42 @@ class QuizCTA {
     this.emoji,
   });
 
-  /// Rüya sayfası için varsayılan CTA
+  /// Default CTA for dream page
+  /// Note: Actual text comes from L10nService via quiz.cta.* keys
   static const QuizCTA dream = QuizCTA(
-    headline: 'Bu rüya herkeste aynı anlama gelmez...',
-    subtext: 'Kısa bir test, bunun sana özel olup olmadığını gösterebilir.',
-    buttonText: 'Kısa Testi Gör',
+    headline: 'quiz.cta.dream_headline',
+    subtext: 'quiz.cta.dream_subtext',
+    buttonText: 'quiz.cta.dream_button',
     quizType: 'dream',
     emoji: '🔮',
   );
 
-  /// Burç sayfası için CTA
+  /// CTA for astrology page
+  /// Note: Actual text comes from L10nService via quiz.cta.* keys
   static const QuizCTA astrology = QuizCTA(
-    headline: 'Burç yorumun sana ne kadar uyuyor?',
-    subtext: '3 soruluk test ile kozmik uyumunu keşfet.',
-    buttonText: 'Testi Başlat',
+    headline: 'quiz.cta.astrology_headline',
+    subtext: 'quiz.cta.astrology_subtext',
+    buttonText: 'quiz.cta.astrology_button',
     quizType: 'astrology',
     emoji: '⭐',
   );
 
-  /// Numeroloji sayfası için CTA
+  /// CTA for numerology page
+  /// Note: Actual text comes from L10nService via quiz.cta.* keys
   static const QuizCTA numerology = QuizCTA(
-    headline: 'Sayılar sana ne söylüyor?',
-    subtext: 'Yaşam yolunu keşfetmek için kısa bir test.',
-    buttonText: 'Sayı Testini Gör',
+    headline: 'quiz.cta.numerology_headline',
+    subtext: 'quiz.cta.numerology_subtext',
+    buttonText: 'quiz.cta.numerology_button',
     quizType: 'numerology',
     emoji: '🔢',
   );
 
-  /// Genel keşif CTA
+  /// General discovery CTA
+  /// Note: Actual text comes from L10nService via quiz.cta.* keys
   static const QuizCTA general = QuizCTA(
-    headline: 'Kozmik profilini keşfet',
-    subtext: 'Kısa bir test ile ruhsal yolculuğuna başla.',
-    buttonText: 'Teste Başla',
+    headline: 'quiz.cta.general_headline',
+    subtext: 'quiz.cta.general_subtext',
+    buttonText: 'quiz.cta.general_button',
     quizType: 'general',
     emoji: '✨',
   );

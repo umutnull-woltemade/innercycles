@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/theme/app_colors.dart';
+import '../../data/services/l10n_service.dart';
+import '../../data/providers/app_providers.dart';
 
 /// Dream logging prompt card for home screen
 /// Key retention mechanic - creates daily habit loop
-class DreamPromptCard extends StatelessWidget {
+class DreamPromptCard extends ConsumerWidget {
   final VoidCallback? onTap;
   final int? currentStreak;
   final DateTime? lastDreamDate;
@@ -19,11 +22,12 @@ class DreamPromptCard extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final language = ref.watch(languageProvider);
     final hasRecentDream = lastDreamDate != null &&
         DateTime.now().difference(lastDreamDate!).inHours < 24;
-    final greeting = _getTimeBasedPrompt();
+    final greeting = _getTimeBasedPrompt(language);
 
     return GestureDetector(
       onTap: onTap,
@@ -71,7 +75,7 @@ class DreamPromptCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        hasRecentDream ? 'Ruyan Kaydedildi' : greeting,
+                        hasRecentDream ? L10nService.get('widgets.dream_prompt_card.dream_recorded', language) : greeting,
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -81,8 +85,8 @@ class DreamPromptCard extends StatelessWidget {
                       const SizedBox(height: 4),
                       Text(
                         hasRecentDream
-                            ? 'Ruyani incelemek icin dokun'
-                            : 'Bilinçaltinin mesajlarini kesfet',
+                            ? L10nService.get('widgets.dream_prompt_card.tap_to_review', language)
+                            : L10nService.get('widgets.dream_prompt_card.discover_subconscious', language),
                         style: TextStyle(
                           fontSize: 13,
                           color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
@@ -122,7 +126,7 @@ class DreamPromptCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Ruya Gunluuguu',
+                            L10nService.get('widgets.dream_prompt_card.dream_journal', language),
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
@@ -131,7 +135,7 @@ class DreamPromptCard extends StatelessWidget {
                           ),
                           const SizedBox(height: 2),
                           Text(
-                            'Ruyalarini kaydet, oruntuleri kesfet',
+                            L10nService.get('widgets.dream_prompt_card.save_dreams_discover_patterns', language),
                             style: TextStyle(
                               fontSize: 12,
                               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
@@ -157,22 +161,22 @@ class DreamPromptCard extends StatelessWidget {
                 children: [
                   _QuickPromptChip(
                     emoji: '🌊',
-                    label: 'Su gorduum',
+                    label: L10nService.get('widgets.dream_prompt_card.quick_prompts.water', language),
                     onTap: () {}, // Pre-fill dream with water symbol
                   ),
                   _QuickPromptChip(
                     emoji: '✈️',
-                    label: 'Ucuyordum',
+                    label: L10nService.get('widgets.dream_prompt_card.quick_prompts.flying', language),
                     onTap: () {},
                   ),
                   _QuickPromptChip(
                     emoji: '🏃',
-                    label: 'Kaciyordum',
+                    label: L10nService.get('widgets.dream_prompt_card.quick_prompts.running', language),
                     onTap: () {},
                   ),
                   _QuickPromptChip(
                     emoji: '🐍',
-                    label: 'Yilan',
+                    label: L10nService.get('widgets.dream_prompt_card.quick_prompts.snake', language),
                     onTap: () {},
                   ),
                 ],
@@ -218,7 +222,9 @@ class DreamPromptCard extends StatelessWidget {
                   ),
                   const SizedBox(width: 8),
                   Text(
-                    hasRecentDream ? 'Ruya Yorumunu Gor' : 'Ruyami Anlat',
+                    hasRecentDream
+                        ? L10nService.get('widgets.dream_prompt_card.view_dream_interpretation', language)
+                        : L10nService.get('widgets.dream_prompt_card.tell_my_dream', language),
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
@@ -235,7 +241,7 @@ class DreamPromptCard extends StatelessWidget {
               const SizedBox(height: 12),
               Center(
                 child: Text(
-                  '✨ AI destekli derin ruya analizi',
+                  '✨ ${L10nService.get('widgets.dream_prompt_card.ai_powered_analysis', language)}',
                   style: TextStyle(
                     fontSize: 11,
                     color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
@@ -250,11 +256,11 @@ class DreamPromptCard extends StatelessWidget {
     ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.1, duration: 400.ms);
   }
 
-  String _getTimeBasedPrompt() {
+  String _getTimeBasedPrompt(AppLanguage language) {
     final hour = DateTime.now().hour;
-    if (hour < 12) return 'Bu Gece Ne Gordun?';
-    if (hour < 18) return 'Dun Gece Ruya Gordun mu?';
-    return 'Ruyalarini Kaydet';
+    if (hour < 12) return L10nService.get('widgets.dream_prompt_card.time_prompts.morning', language);
+    if (hour < 18) return L10nService.get('widgets.dream_prompt_card.time_prompts.afternoon', language);
+    return L10nService.get('widgets.dream_prompt_card.time_prompts.evening', language);
   }
 }
 
@@ -409,7 +415,7 @@ class _QuickPromptChip extends StatelessWidget {
 }
 
 /// Compact dream prompt for home header
-class CompactDreamPrompt extends StatelessWidget {
+class CompactDreamPrompt extends ConsumerWidget {
   final VoidCallback? onTap;
   final int? streak;
 
@@ -420,8 +426,9 @@ class CompactDreamPrompt extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final language = ref.watch(languageProvider);
 
     return GestureDetector(
       onTap: onTap,
@@ -445,7 +452,7 @@ class CompactDreamPrompt extends StatelessWidget {
             Text('🌙', style: const TextStyle(fontSize: 18)),
             const SizedBox(width: 8),
             Text(
-              'Ruya Kaydet',
+              L10nService.get('widgets.dream_prompt_card.save_dream', language),
               style: TextStyle(
                 fontSize: 13,
                 fontWeight: FontWeight.w600,

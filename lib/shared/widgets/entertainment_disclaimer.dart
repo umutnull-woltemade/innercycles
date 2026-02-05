@@ -1,25 +1,29 @@
 import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
+import '../../data/providers/app_providers.dart';
+import '../../data/services/l10n_service.dart';
 
-/// Eğlence Amaçlı Disclaimer Widget
+/// Entertainment Disclaimer Widget
 ///
-/// Tüm yorumlama içeren sayfalarda kullanılır.
-/// App Store uyumluluğu ve yasal koruma için gereklidir.
+/// Used on all interpretation-containing pages.
+/// Required for App Store compliance and legal protection.
 ///
-/// KULLANIM:
+/// USAGE:
 /// ```dart
-/// // Sayfa sonuna ekle (footer'dan önce)
-/// const EntertainmentDisclaimer(),
+/// // Add to end of page (before footer)
+/// EntertainmentDisclaimer(language: language),
 /// ```
 
 class EntertainmentDisclaimer extends StatelessWidget {
   final bool compact;
   final String? customText;
+  final AppLanguage language;
 
   const EntertainmentDisclaimer({
     super.key,
     this.compact = false,
     this.customText,
+    this.language = AppLanguage.tr,
   });
 
   @override
@@ -27,7 +31,7 @@ class EntertainmentDisclaimer extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     final text = customText ??
-      'Bu içerik eğlence amaçlıdır ve profesyonel tavsiye yerine geçmez.';
+      L10nService.get('widgets.entertainment_disclaimer.general', language);
 
     if (compact) {
       return Padding(
@@ -82,44 +86,46 @@ class EntertainmentDisclaimer extends StatelessWidget {
   }
 }
 
-/// Kategori bazlı disclaimer metinleri
+/// Category-based disclaimer texts
 class DisclaimerTexts {
-  static const String general =
-    'Bu içerik eğlence amaçlıdır ve profesyonel tavsiye yerine geçmez.';
+  static String general(AppLanguage language) =>
+    L10nService.get('widgets.entertainment_disclaimer.general', language);
 
-  static const String dreams =
-    'Rüya yorumları eğlence amaçlıdır. Psikolojik destek için uzmana başvurun.';
+  static String dreams(AppLanguage language) =>
+    L10nService.get('widgets.entertainment_disclaimer.dreams', language);
 
-  static const String health =
-    'Bu içerik tıbbi tavsiye değildir. Sağlık konularında doktorunuza danışın.';
+  static String health(AppLanguage language) =>
+    L10nService.get('widgets.entertainment_disclaimer.health', language);
 
-  static const String astrology =
-    'Astrolojik yorumlar eğlence amaçlıdır ve bilimsel kesinlik taşımaz.';
+  static String astrology(AppLanguage language) =>
+    L10nService.get('widgets.entertainment_disclaimer.astrology', language);
 
-  static const String tarot =
-    'Tarot okumaları eğlence amaçlıdır ve geleceği garanti etmez.';
+  static String tarot(AppLanguage language) =>
+    L10nService.get('widgets.entertainment_disclaimer.tarot', language);
 
-  static const String numerology =
-    'Numeroloji yorumları eğlence amaçlıdır ve kişisel rehberlik yerine geçmez.';
+  static String numerology(AppLanguage language) =>
+    L10nService.get('widgets.entertainment_disclaimer.numerology', language);
 
-  static const String chakra =
-    'Enerji yorumları eğlence amaçlıdır. Sağlık sorunları için uzmana başvurun.';
+  static String chakra(AppLanguage language) =>
+    L10nService.get('widgets.entertainment_disclaimer.chakra', language);
 
-  static const String compatibility =
-    'Uyum analizleri eğlence amaçlıdır ve ilişki kararlarınızı belirlememeli.';
+  static String compatibility(AppLanguage language) =>
+    L10nService.get('widgets.entertainment_disclaimer.compatibility', language);
 }
 
-/// Sayfa footer'ı ile disclaimer birlikte
+/// Page footer with disclaimer
 class PageFooterWithDisclaimer extends StatelessWidget {
-  final String brandText; // "Rüya İzi — Venus One"
+  final String brandText; // "Dream Trace — Venus One"
   final String? disclaimerText;
   final bool showDisclaimer;
+  final AppLanguage language;
 
   const PageFooterWithDisclaimer({
     super.key,
     required this.brandText,
     this.disclaimerText,
     this.showDisclaimer = true,
+    this.language = AppLanguage.tr,
   });
 
   @override
@@ -132,6 +138,7 @@ class PageFooterWithDisclaimer extends StatelessWidget {
           EntertainmentDisclaimer(
             compact: true,
             customText: disclaimerText,
+            language: language,
           ),
           const SizedBox(height: 8),
         ],

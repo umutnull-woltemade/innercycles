@@ -1,70 +1,129 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../core/theme/app_colors.dart';
+import '../../data/services/l10n_service.dart';
 
 /// Breadcrumb Navigation Widget
 /// SEO-friendly breadcrumb trail for hierarchical navigation
-class BreadcrumbNavigation extends StatelessWidget {
+class BreadcrumbNavigation extends ConsumerWidget {
   final List<BreadcrumbItem> items;
   final Color? activeColor;
   final Color? inactiveColor;
+  final String? _signName;
+  final String? _signSymbol;
+  final String? _toolName;
+  final String? _parentLabel;
+  final String? _parentRoute;
+  final String? _currentLabel;
+  final _BreadcrumbType _type;
 
   const BreadcrumbNavigation({
     super.key,
     required this.items,
     this.activeColor,
     this.inactiveColor,
-  });
+  })  : _signName = null,
+        _signSymbol = null,
+        _toolName = null,
+        _parentLabel = null,
+        _parentRoute = null,
+        _currentLabel = null,
+        _type = _BreadcrumbType.custom;
 
   /// Creates breadcrumbs for a zodiac sign page
-  factory BreadcrumbNavigation.zodiacSign(String signName, String signSymbol) {
-    return BreadcrumbNavigation(
-      items: [
-        const BreadcrumbItem(label: 'Ana Sayfa', route: '/'),
-        const BreadcrumbItem(label: 'Burç Yorumları', route: '/horoscope'),
-        BreadcrumbItem(label: '$signSymbol $signName', route: null),
-      ],
-    );
-  }
+  const BreadcrumbNavigation.zodiacSign(String signName, String signSymbol, {super.key})
+      : items = const [],
+        activeColor = null,
+        inactiveColor = null,
+        _signName = signName,
+        _signSymbol = signSymbol,
+        _toolName = null,
+        _parentLabel = null,
+        _parentRoute = null,
+        _currentLabel = null,
+        _type = _BreadcrumbType.zodiacSign;
 
   /// Creates breadcrumbs for a tool page
-  factory BreadcrumbNavigation.tool(String toolName, String toolRoute) {
-    return BreadcrumbNavigation(
-      items: [
-        const BreadcrumbItem(label: 'Ana Sayfa', route: '/'),
-        BreadcrumbItem(label: toolName, route: null),
-      ],
-    );
-  }
+  const BreadcrumbNavigation.tool(String toolName, String toolRoute, {super.key})
+      : items = const [],
+        activeColor = null,
+        inactiveColor = null,
+        _signName = null,
+        _signSymbol = null,
+        _toolName = toolName,
+        _parentLabel = null,
+        _parentRoute = null,
+        _currentLabel = null,
+        _type = _BreadcrumbType.tool;
 
   /// Creates breadcrumbs for horoscope page
-  factory BreadcrumbNavigation.horoscope() {
-    return const BreadcrumbNavigation(
-      items: [
-        BreadcrumbItem(label: 'Ana Sayfa', route: '/'),
-        BreadcrumbItem(label: 'Burç Yorumları', route: null),
-      ],
-    );
-  }
+  const BreadcrumbNavigation.horoscope({super.key})
+      : items = const [],
+        activeColor = null,
+        inactiveColor = null,
+        _signName = null,
+        _signSymbol = null,
+        _toolName = null,
+        _parentLabel = null,
+        _parentRoute = null,
+        _currentLabel = null,
+        _type = _BreadcrumbType.horoscope;
 
   /// Creates breadcrumbs for any nested page
-  factory BreadcrumbNavigation.nested({
+  const BreadcrumbNavigation.nested({
+    super.key,
     required String parentLabel,
     required String parentRoute,
     required String currentLabel,
-  }) {
-    return BreadcrumbNavigation(
-      items: [
-        const BreadcrumbItem(label: 'Ana Sayfa', route: '/'),
-        BreadcrumbItem(label: parentLabel, route: parentRoute),
-        BreadcrumbItem(label: currentLabel, route: null),
-      ],
-    );
+  })  : items = const [],
+        activeColor = null,
+        inactiveColor = null,
+        _signName = null,
+        _signSymbol = null,
+        _toolName = null,
+        _parentLabel = parentLabel,
+        _parentRoute = parentRoute,
+        _currentLabel = currentLabel,
+        _type = _BreadcrumbType.nested;
+
+  List<BreadcrumbItem> _buildItems(LocalizedL10n l10n) {
+    final homeLabel = l10n.get('widgets.breadcrumb_navigation.home');
+    final horoscopeLabel = l10n.get('widgets.breadcrumb_navigation.horoscope_interpretations');
+
+    switch (_type) {
+      case _BreadcrumbType.zodiacSign:
+        return [
+          BreadcrumbItem(label: homeLabel, route: '/'),
+          BreadcrumbItem(label: horoscopeLabel, route: '/horoscope'),
+          BreadcrumbItem(label: '$_signSymbol $_signName', route: null),
+        ];
+      case _BreadcrumbType.tool:
+        return [
+          BreadcrumbItem(label: homeLabel, route: '/'),
+          BreadcrumbItem(label: _toolName!, route: null),
+        ];
+      case _BreadcrumbType.horoscope:
+        return [
+          BreadcrumbItem(label: homeLabel, route: '/'),
+          BreadcrumbItem(label: horoscopeLabel, route: null),
+        ];
+      case _BreadcrumbType.nested:
+        return [
+          BreadcrumbItem(label: homeLabel, route: '/'),
+          BreadcrumbItem(label: _parentLabel!, route: _parentRoute),
+          BreadcrumbItem(label: _currentLabel!, route: null),
+        ];
+      case _BreadcrumbType.custom:
+        return items;
+    }
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = ref.watch(l10nServiceProvider);
+    final builtItems = _buildItems(l10n);
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final defaultActiveColor = isDark ? AppColors.textPrimary : AppColors.lightTextPrimary;
     final defaultInactiveColor = isDark
@@ -75,10 +134,10 @@ class BreadcrumbNavigation extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
       child: Wrap(
         crossAxisAlignment: WrapCrossAlignment.center,
-        children: items.asMap().entries.map((entry) {
+        children: builtItems.asMap().entries.map((entry) {
           final index = entry.key;
           final item = entry.value;
-          final isLast = index == items.length - 1;
+          final isLast = index == builtItems.length - 1;
           final isClickable = item.route != null && !isLast;
 
           return Row(
@@ -191,4 +250,13 @@ class BreadcrumbNavigationCompact extends StatelessWidget {
       ),
     );
   }
+}
+
+/// Internal enum to track breadcrumb type
+enum _BreadcrumbType {
+  custom,
+  zodiacSign,
+  tool,
+  horoscope,
+  nested,
 }

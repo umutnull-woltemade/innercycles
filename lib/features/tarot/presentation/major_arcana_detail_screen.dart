@@ -123,7 +123,7 @@ class MajorArcanaDetailScreen extends ConsumerWidget {
                     const SizedBox(height: AppConstants.spacingXl),
 
                     // Bottom Navigation
-                    const PageBottomNavigation(currentRoute: '/tarot'),
+                    PageBottomNavigation(currentRoute: '/tarot', language: language),
                   ]),
                 ),
               ),

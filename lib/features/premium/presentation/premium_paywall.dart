@@ -5,7 +5,9 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../../core/constants/app_constants.dart';
 import '../../../data/models/experiment_config.dart';
+import '../../../data/providers/app_providers.dart';
 import '../../../data/services/experiment_service.dart';
+import '../../../data/services/l10n_service.dart';
 import '../../../data/services/monetization_service.dart';
 import '../../../data/services/premium_service.dart';
 import 'widgets/paywall_benefit_item.dart';
@@ -138,6 +140,7 @@ class _PremiumPaywallState extends ConsumerState<PremiumPaywall> {
   @override
   Widget build(BuildContext context) {
     final bottomPadding = MediaQuery.of(context).padding.bottom;
+    final language = ref.watch(languageProvider);
 
     return Container(
       decoration: const BoxDecoration(
@@ -205,9 +208,9 @@ class _PremiumPaywallState extends ConsumerState<PremiumPaywall> {
                   const SizedBox(height: 24),
 
                   // Title
-                  const Text(
-                    'Unlock Your Full Journey',
-                    style: TextStyle(
+                  Text(
+                    L10nService.get('premium.paywall.title', language),
+                    style: const TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.w600,
                       color: PaywallColors.textPrimary,
@@ -219,9 +222,9 @@ class _PremiumPaywallState extends ConsumerState<PremiumPaywall> {
                   const SizedBox(height: 8),
 
                   // Subtitle
-                  const Text(
-                    'Experience astrology without interruption',
-                    style: TextStyle(
+                  Text(
+                    L10nService.get('premium.paywall.subtitle', language),
+                    style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w400,
                       color: PaywallColors.textSecondary,
@@ -233,20 +236,20 @@ class _PremiumPaywallState extends ConsumerState<PremiumPaywall> {
                   const SizedBox(height: 32),
 
                   // Benefits
-                  const PaywallBenefitItem(
-                    text: 'Ad-free, calm experience',
+                  PaywallBenefitItem(
+                    text: L10nService.get('premium.paywall.benefit_ad_free', language),
                   ),
-                  const PaywallBenefitItem(
-                    text: 'Unlimited personal insights',
+                  PaywallBenefitItem(
+                    text: L10nService.get('premium.paywall.benefit_unlimited', language),
                   ),
-                  const PaywallBenefitItem(
-                    text: 'Priority cosmic guidance',
+                  PaywallBenefitItem(
+                    text: L10nService.get('premium.paywall.benefit_priority', language),
                   ),
 
                   const SizedBox(height: 32),
 
                   // Primary CTA
-                  _buildPrimaryCta(),
+                  _buildPrimaryCta(language),
 
                   const SizedBox(height: 16),
 
@@ -260,9 +263,9 @@ class _PremiumPaywallState extends ConsumerState<PremiumPaywall> {
                         vertical: 12,
                       ),
                     ),
-                    child: const Text(
-                      'Not now, maybe later',
-                      style: TextStyle(
+                    child: Text(
+                      L10nService.get('premium.paywall.not_now', language),
+                      style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w400,
                       ),
@@ -273,7 +276,7 @@ class _PremiumPaywallState extends ConsumerState<PremiumPaywall> {
 
                   // Legal text
                   Text(
-                    'Auto-renews monthly. Cancel anytime in Settings.',
+                    L10nService.get('premium.paywall.legal_text', language),
                     style: TextStyle(
                       fontSize: 11,
                       color: PaywallColors.textSecondary.withValues(alpha: 0.7),
@@ -291,7 +294,7 @@ class _PremiumPaywallState extends ConsumerState<PremiumPaywall> {
                       GestureDetector(
                         onTap: _openPrivacyPolicy,
                         child: Text(
-                          'Privacy Policy',
+                          L10nService.get('premium.paywall.privacy_policy', language),
                           style: TextStyle(
                             fontSize: 11,
                             color: PaywallColors.textSecondary.withValues(alpha: 0.7),
@@ -309,7 +312,7 @@ class _PremiumPaywallState extends ConsumerState<PremiumPaywall> {
                       GestureDetector(
                         onTap: _openTermsOfService,
                         child: Text(
-                          'Terms of Use',
+                          L10nService.get('premium.paywall.terms_of_use', language),
                           style: TextStyle(
                             fontSize: 11,
                             color: PaywallColors.textSecondary.withValues(alpha: 0.7),
@@ -328,7 +331,7 @@ class _PremiumPaywallState extends ConsumerState<PremiumPaywall> {
     );
   }
 
-  Widget _buildPrimaryCta() {
+  Widget _buildPrimaryCta(AppLanguage language) {
     final priceDisplay = _pricingVariant?.formattedPrice ?? '\$7.99/month';
 
     return Container(
@@ -370,9 +373,9 @@ class _PremiumPaywallState extends ConsumerState<PremiumPaywall> {
                 : Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text(
-                        'Continue with Pro',
-                        style: TextStyle(
+                      Text(
+                        L10nService.get('premium.paywall.continue_pro', language),
+                        style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
                           color: PaywallColors.background,
@@ -397,7 +400,7 @@ class _PremiumPaywallState extends ConsumerState<PremiumPaywall> {
 }
 
 /// Retention message dialog for critical churn defense
-class RetentionMessageDialog extends StatelessWidget {
+class RetentionMessageDialog extends ConsumerWidget {
   const RetentionMessageDialog({super.key});
 
   static Future<void> show(BuildContext context) {
@@ -409,7 +412,8 @@ class RetentionMessageDialog extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final language = ref.watch(languageProvider);
     return Dialog(
       backgroundColor: PaywallColors.cardBackground,
       shape: RoundedRectangleBorder(
@@ -434,9 +438,9 @@ class RetentionMessageDialog extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            const Text(
-              "We'll be here",
-              style: TextStyle(
+            Text(
+              L10nService.get('premium.retention.title', language),
+              style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
                 color: PaywallColors.textPrimary,
@@ -444,9 +448,9 @@ class RetentionMessageDialog extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 12),
-            const Text(
-              "Take all the time you need. Your journey continues whenever you're ready.",
-              style: TextStyle(
+            Text(
+              L10nService.get('premium.retention.message', language),
+              style: const TextStyle(
                 fontSize: 14,
                 color: PaywallColors.textSecondary,
                 height: 1.5,
@@ -466,9 +470,9 @@ class RetentionMessageDialog extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                   ),
                 ),
-                child: const Text(
-                  'Got it',
-                  style: TextStyle(
+                child: Text(
+                  L10nService.get('premium.retention.got_it', language),
+                  style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
                   ),

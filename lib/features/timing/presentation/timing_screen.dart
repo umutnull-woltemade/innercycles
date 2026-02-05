@@ -35,6 +35,7 @@ class _TimingScreenState extends ConsumerState<TimingScreen> {
       sunSign: sign,
       birthDate: birthDate,
       category: _selectedCategory,
+      language: language,
     );
 
     return Scaffold(
@@ -78,7 +79,8 @@ class _TimingScreenState extends ConsumerState<TimingScreen> {
                     // Entertainment Disclaimer
                     PageFooterWithDisclaimer(
                       brandText: L10nService.get('timing.brand_footer', language),
-                      disclaimerText: DisclaimerTexts.astrology,
+                      disclaimerText: DisclaimerTexts.astrology(language),
+                      language: language,
                     ),
                     const SizedBox(height: AppConstants.spacingLg),
                   ],
@@ -293,7 +295,7 @@ class _TimingScreenState extends ConsumerState<TimingScreen> {
                   onTap: () => context.push('/void-of-course'),
                   child: _MiniIndicator(
                     icon: vocStatus.isVoid ? Icons.do_not_disturb : Icons.check_circle,
-                    label: 'VOC',
+                    label: L10nService.get('timing.voc_short', language),
                     value: vocStatus.isVoid ? L10nService.get('timing.active', language) : L10nService.get('timing.none', language),
                     color: vocStatus.isVoid ? Colors.purple : Colors.green,
                   ),
@@ -301,7 +303,7 @@ class _TimingScreenState extends ConsumerState<TimingScreen> {
                 Container(width: 1, height: 40, color: Colors.white12),
                 _MiniIndicator(
                   icon: Icons.replay,
-                  label: 'Retro',
+                  label: L10nService.get('timing.retro_short', language),
                   value: retrogrades.isEmpty ? L10nService.get('timing.none', language) : '${retrogrades.length}',
                   color: retrogrades.isEmpty ? Colors.green : Colors.orange,
                 ),
@@ -1431,6 +1433,7 @@ class TimingService {
     required ZodiacSign sunSign,
     required DateTime birthDate,
     required TimingCategory category,
+    required AppLanguage language,
   }) {
     final now = DateTime.now();
     final seed = now.year * 10000 + now.month * 100 + now.day + sunSign.index;
@@ -1452,11 +1455,11 @@ class TimingService {
 
       allRecommendations.add(TimingRecommendation(
         category: TimingCategory.love,
-        activity: 'Romantik Anlaşma',
-        description: _getLoveDescription(moonSign, vocStatus.isVoid, retrogrades),
+        activity: L10nService.get('timing.rec_love_activity', language),
+        description: _getLoveDescription(moonSign, vocStatus.isVoid, retrogrades, language),
         rating: loveRating,
-        bestTime: _getBestLoveTime(moonSign),
-        tip: loveRating >= 4 ? 'Duygularını ifade et' : 'Sabırla bekle',
+        bestTime: _getBestLoveTime(moonSign, language),
+        tip: loveRating >= 4 ? L10nService.get('timing.tip_express_feelings', language) : L10nService.get('timing.tip_wait_patiently', language),
       ));
     }
 
@@ -1470,11 +1473,11 @@ class TimingService {
 
       allRecommendations.add(TimingRecommendation(
         category: TimingCategory.career,
-        activity: 'İş Görüşmeleri',
-        description: _getCareerDescription(moonSign, vocStatus.isVoid, retrogrades),
+        activity: L10nService.get('timing.rec_career_activity', language),
+        description: _getCareerDescription(moonSign, vocStatus.isVoid, retrogrades, language),
         rating: careerRating,
-        bestTime: _getBestCareerTime(moonSign),
-        tip: careerRating >= 4 ? 'İnisiyatif al' : 'Araştırma yap',
+        bestTime: _getBestCareerTime(moonSign, language),
+        tip: careerRating >= 4 ? L10nService.get('timing.tip_take_initiative', language) : L10nService.get('timing.tip_do_research', language),
       ));
     }
 
@@ -1487,11 +1490,11 @@ class TimingService {
 
       allRecommendations.add(TimingRecommendation(
         category: TimingCategory.money,
-        activity: 'Finansal Kararlar',
-        description: _getMoneyDescription(moonSign, vocStatus.isVoid),
+        activity: L10nService.get('timing.rec_money_activity', language),
+        description: _getMoneyDescription(moonSign, vocStatus.isVoid, language),
         rating: moneyRating,
-        bestTime: _getBestMoneyTime(moonSign),
-        tip: moneyRating >= 4 ? 'Yatırım zamanı' : 'Biriktir',
+        bestTime: _getBestMoneyTime(moonSign, language),
+        tip: moneyRating >= 4 ? L10nService.get('timing.tip_investment_time', language) : L10nService.get('timing.tip_save', language),
       ));
     }
 
@@ -1503,11 +1506,11 @@ class TimingService {
 
       allRecommendations.add(TimingRecommendation(
         category: TimingCategory.health,
-        activity: 'Sağlık Aktiviteleri',
-        description: _getHealthDescription(moonSign),
+        activity: L10nService.get('timing.rec_health_activity', language),
+        description: _getHealthDescription(moonSign, language),
         rating: healthRating,
-        bestTime: _getBestHealthTime(moonSign),
-        tip: healthRating >= 4 ? 'Yeni rutinler başlat' : 'Dinlen',
+        bestTime: _getBestHealthTime(moonSign, language),
+        tip: healthRating >= 4 ? L10nService.get('timing.tip_start_new_routines', language) : L10nService.get('timing.tip_rest', language),
       ));
     }
 
@@ -1520,11 +1523,11 @@ class TimingService {
 
       allRecommendations.add(TimingRecommendation(
         category: TimingCategory.travel,
-        activity: 'Seyahat Planlama',
-        description: _getTravelDescription(moonSign, retrogrades),
+        activity: L10nService.get('timing.rec_travel_activity', language),
+        description: _getTravelDescription(moonSign, retrogrades, language),
         rating: travelRating,
-        bestTime: _getBestTravelTime(moonSign),
-        tip: travelRating >= 4 ? 'Maceraya atıl' : 'Yerel kal',
+        bestTime: _getBestTravelTime(moonSign, language),
+        tip: travelRating >= 4 ? L10nService.get('timing.tip_jump_into_adventure', language) : L10nService.get('timing.tip_stay_local', language),
       ));
     }
 
@@ -1536,11 +1539,11 @@ class TimingService {
 
       allRecommendations.add(TimingRecommendation(
         category: TimingCategory.creative,
-        activity: 'Yaratici Projeler',
-        description: _getCreativeDescription(moonSign),
+        activity: L10nService.get('timing.rec_creative_activity', language),
+        description: _getCreativeDescription(moonSign, language),
         rating: creativeRating,
-        bestTime: _getBestCreativeTime(moonSign),
-        tip: creativeRating >= 4 ? 'İlham doruklarda' : 'İzle ve öğren',
+        bestTime: _getBestCreativeTime(moonSign, language),
+        tip: creativeRating >= 4 ? L10nService.get('timing.tip_inspiration_peak', language) : L10nService.get('timing.tip_watch_and_learn', language),
       ));
     }
 
@@ -1591,137 +1594,137 @@ class TimingService {
   }
 
   // Description generators
-  static String _getLoveDescription(MoonSign moon, bool voc, List<String> retros) {
-    if (voc) return 'Boş seyir nedeniyle duygusal kararlar ertelenmeli. Mevcut ilişkilere odaklanın.';
-    if (retros.contains('venus')) return 'Venüs retrosu eski aşklar hakkında düşündürür. Yeni başlangıçlar için beklemeniz uygun.';
+  static String _getLoveDescription(MoonSign moon, bool voc, List<String> retros, AppLanguage language) {
+    if (voc) return L10nService.get('timing.rec_love_desc_voc', language);
+    if (retros.contains('venus')) return L10nService.get('timing.rec_love_desc_venus_retro', language);
 
     switch (moon) {
-      case MoonSign.libra: return 'İlişki enerjisi yüksek. Partner ile uyum ve romantizm için ideal bir zaman.';
-      case MoonSign.taurus: return 'Fiziksel yakınlık ve güvenlik önemli. Samimi anlar için uygun.';
-      case MoonSign.cancer: return 'Duygusal derinlik artıyor. Ailenizle ve sevilenlerle kaliteli zaman geçirin.';
-      case MoonSign.scorpio: return 'Tutkulu ve yoğun duygular hakim. Derin bağlantı kurmak için cesur olun.';
-      default: return 'Aşk hayatında yeni fırsatlar belirebilir. Açık olmak önemli.';
+      case MoonSign.libra: return L10nService.get('timing.rec_love_desc_libra', language);
+      case MoonSign.taurus: return L10nService.get('timing.rec_love_desc_taurus', language);
+      case MoonSign.cancer: return L10nService.get('timing.rec_love_desc_cancer', language);
+      case MoonSign.scorpio: return L10nService.get('timing.rec_love_desc_scorpio', language);
+      default: return L10nService.get('timing.rec_love_desc_default', language);
     }
   }
 
-  static String _getCareerDescription(MoonSign moon, bool voc, List<String> retros) {
-    if (voc) return 'Önemli iş kararları ertelenmeli. Mevcut projelere devam edin.';
-    if (retros.contains('mercury')) return 'İletişim hatalarına dikkat. Sözleşmeleri dikkatli inceleyin.';
+  static String _getCareerDescription(MoonSign moon, bool voc, List<String> retros, AppLanguage language) {
+    if (voc) return L10nService.get('timing.rec_career_desc_voc', language);
+    if (retros.contains('mercury')) return L10nService.get('timing.rec_career_desc_mercury_retro', language);
 
     switch (moon) {
-      case MoonSign.capricorn: return 'Kariyer hedefleri netleşir. Uzun vadeli planlar yapmak için ideal.';
-      case MoonSign.virgo: return 'Detaylara odaklanın. Analiz ve organizasyon işleri destekleniyor.';
-      case MoonSign.aries: return 'Liderlik enerjisi yüksek. Yeni projeler başlatmak için cesaret edin.';
-      default: return 'İş hayatında stabil bir gün. Rutinlere bağlı kalmak faydalı.';
+      case MoonSign.capricorn: return L10nService.get('timing.rec_career_desc_capricorn', language);
+      case MoonSign.virgo: return L10nService.get('timing.rec_career_desc_virgo', language);
+      case MoonSign.aries: return L10nService.get('timing.rec_career_desc_aries', language);
+      default: return L10nService.get('timing.rec_career_desc_default', language);
     }
   }
 
-  static String _getMoneyDescription(MoonSign moon, bool voc) {
-    if (voc) return 'Büyük finansal kararlar ertelenmeli. Araştırma ve planlama için kullanın.';
+  static String _getMoneyDescription(MoonSign moon, bool voc, AppLanguage language) {
+    if (voc) return L10nService.get('timing.rec_money_desc_voc', language);
 
     switch (moon) {
-      case MoonSign.taurus: return 'Finansal istikrar önemli. Uzun vadeli yatırımlar düşünülebilir.';
-      case MoonSign.scorpio: return 'Gizli fırsatlar ortaya çıkabilir. Araştırma ve analiz yapın.';
-      case MoonSign.capricorn: return 'Pratik finansal kararlar için ideal. Bütçe planlaması yapın.';
-      default: return 'Para konularında dikkatli ilerleyin. Büyük harcamalardan kaçının.';
+      case MoonSign.taurus: return L10nService.get('timing.rec_money_desc_taurus', language);
+      case MoonSign.scorpio: return L10nService.get('timing.rec_money_desc_scorpio', language);
+      case MoonSign.capricorn: return L10nService.get('timing.rec_money_desc_capricorn', language);
+      default: return L10nService.get('timing.rec_money_desc_default', language);
     }
   }
 
-  static String _getHealthDescription(MoonSign moon) {
+  static String _getHealthDescription(MoonSign moon, AppLanguage language) {
     switch (moon) {
-      case MoonSign.virgo: return 'Detoks ve temizlik için ideal. Sağlıklı rutinler oluşturun.';
-      case MoonSign.pisces: return 'Ruhsal denge önemli. Meditasyon ve rahatlama önerilir.';
-      case MoonSign.aries: return 'Fiziksel aktivite için yüksek enerji. Spor ve egzersiz yapın.';
-      case MoonSign.cancer: return 'Duygusal sağlık ön planda. Kendinize şefkat gösterin.';
-      default: return 'Genel sağlık için uygun. Dengeli beslenme ve dinlenme önemli.';
+      case MoonSign.virgo: return L10nService.get('timing.rec_health_desc_virgo', language);
+      case MoonSign.pisces: return L10nService.get('timing.rec_health_desc_pisces', language);
+      case MoonSign.aries: return L10nService.get('timing.rec_health_desc_aries', language);
+      case MoonSign.cancer: return L10nService.get('timing.rec_health_desc_cancer', language);
+      default: return L10nService.get('timing.rec_health_desc_default', language);
     }
   }
 
-  static String _getTravelDescription(MoonSign moon, List<String> retros) {
-    if (retros.contains('mercury')) return 'Seyahat aksaklıklarına hazırlıklı olun. Plan B hazır tutun.';
+  static String _getTravelDescription(MoonSign moon, List<String> retros, AppLanguage language) {
+    if (retros.contains('mercury')) return L10nService.get('timing.rec_travel_desc_mercury_retro', language);
 
     switch (moon) {
-      case MoonSign.sagittarius: return 'Macera ruhu yüksek! Yeni yerler keşfetmek için mükemmel.';
-      case MoonSign.gemini: return 'Kısa seyahatler ve yerel keşifler için ideal bir dönem.';
-      default: return 'Seyahat planlaması için uygun. Detayları önceden belirleyin.';
+      case MoonSign.sagittarius: return L10nService.get('timing.rec_travel_desc_sagittarius', language);
+      case MoonSign.gemini: return L10nService.get('timing.rec_travel_desc_gemini', language);
+      default: return L10nService.get('timing.rec_travel_desc_default', language);
     }
   }
 
-  static String _getCreativeDescription(MoonSign moon) {
+  static String _getCreativeDescription(MoonSign moon, AppLanguage language) {
     switch (moon) {
-      case MoonSign.leo: return 'Yaratıcı ifade dorukta! Sanatsal projeler ve performans için ideal.';
-      case MoonSign.pisces: return 'Hayal gücü ve ilham yüksek. Sezgisel yaratıcılık destekleniyor.';
-      case MoonSign.aquarius: return 'Yenilikçi fikirler akıyor. Alternatif yaklaşımlar deneyin.';
-      default: return 'Yaratıcı enerji stabil. Mevcut projelere devam etmek için uygun.';
+      case MoonSign.leo: return L10nService.get('timing.rec_creative_desc_leo', language);
+      case MoonSign.pisces: return L10nService.get('timing.rec_creative_desc_pisces', language);
+      case MoonSign.aquarius: return L10nService.get('timing.rec_creative_desc_aquarius', language);
+      default: return L10nService.get('timing.rec_creative_desc_default', language);
     }
   }
 
   // Best time generators
-  static String _getBestLoveTime(MoonSign moon) {
+  static String _getBestLoveTime(MoonSign moon, AppLanguage language) {
     switch (moon) {
       case MoonSign.libra:
       case MoonSign.taurus:
-        return 'Akşam 18:00-21:00';
+        return L10nService.get('timing.best_time_evening_18_21', language);
       case MoonSign.cancer:
-        return 'Gece 20:00-23:00';
+        return L10nService.get('timing.best_time_night_20_23', language);
       default:
-        return 'Akşam saatleri';
+        return L10nService.get('timing.best_time_evening_hours', language);
     }
   }
 
-  static String _getBestCareerTime(MoonSign moon) {
+  static String _getBestCareerTime(MoonSign moon, AppLanguage language) {
     switch (moon) {
       case MoonSign.capricorn:
       case MoonSign.virgo:
-        return 'Sabah 09:00-12:00';
+        return L10nService.get('timing.best_time_morning_09_12', language);
       case MoonSign.aries:
-        return 'Sabah erken 08:00-10:00';
+        return L10nService.get('timing.best_time_early_morning_08_10', language);
       default:
-        return 'Ogle saatleri';
+        return L10nService.get('timing.best_time_noon_hours', language);
     }
   }
 
-  static String _getBestMoneyTime(MoonSign moon) {
+  static String _getBestMoneyTime(MoonSign moon, AppLanguage language) {
     switch (moon) {
       case MoonSign.taurus:
-        return 'Ogle 11:00-14:00';
+        return L10nService.get('timing.best_time_noon_11_14', language);
       case MoonSign.capricorn:
-        return 'Sabah 10:00-12:00';
+        return L10nService.get('timing.best_time_morning_10_12', language);
       default:
-        return 'Is saatleri';
+        return L10nService.get('timing.best_time_business_hours', language);
     }
   }
 
-  static String _getBestHealthTime(MoonSign moon) {
+  static String _getBestHealthTime(MoonSign moon, AppLanguage language) {
     switch (moon) {
       case MoonSign.aries:
-        return 'Sabah erken 06:00-09:00';
+        return L10nService.get('timing.best_time_early_morning_06_09', language);
       case MoonSign.virgo:
-        return 'Sabah 07:00-10:00';
+        return L10nService.get('timing.best_time_morning_07_10', language);
       default:
-        return 'Gun boyunca';
+        return L10nService.get('timing.best_time_all_day', language);
     }
   }
 
-  static String _getBestTravelTime(MoonSign moon) {
+  static String _getBestTravelTime(MoonSign moon, AppLanguage language) {
     switch (moon) {
       case MoonSign.sagittarius:
-        return 'Sabah erken';
+        return L10nService.get('timing.best_time_early_morning', language);
       case MoonSign.gemini:
-        return 'Ogle sonrasi';
+        return L10nService.get('timing.best_time_afternoon', language);
       default:
-        return 'Esnek';
+        return L10nService.get('timing.best_time_flexible', language);
     }
   }
 
-  static String _getBestCreativeTime(MoonSign moon) {
+  static String _getBestCreativeTime(MoonSign moon, AppLanguage language) {
     switch (moon) {
       case MoonSign.pisces:
-        return 'Gece gec saatler';
+        return L10nService.get('timing.best_time_late_night', language);
       case MoonSign.leo:
-        return 'Ogle sonrasi 14:00-18:00';
+        return L10nService.get('timing.best_time_afternoon_14_18', language);
       default:
-        return 'Aksam saatleri';
+        return L10nService.get('timing.best_time_evening_hours', language);
     }
   }
 

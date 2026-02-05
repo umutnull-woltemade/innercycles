@@ -42,49 +42,49 @@ class DailyNumberScreen extends ConsumerWidget {
                 ),
                 const SizedBox(height: 24),
                 Text(
-                  'Günlük sayı enerjisi ne anlatır?',
+                  L10nService.get('numerology.daily_number.page_title', language),
                   style: TextStyle(fontSize: 28, fontWeight: FontWeight.w600, color: isDark ? Colors.white : AppColors.textDark, height: 1.2),
                 ).animate().fadeIn(duration: 400.ms),
                 const SizedBox(height: 8),
-                _buildTag('Numeroloji', color),
+                _buildTag(L10nService.get('numerology.daily_number.tag', language), color),
                 const SizedBox(height: 32),
 
-                _buildSection(isDark, 'Kısa Cevap', color, [
-                  'Günlük sayı enerjisi, o günün numerolojik titreşimini gösterir.',
-                  'Bugünün tarihinden hesaplanır.',
-                  'Günün genel enerjisini ve potansiyelini yansıtır.',
+                _buildSection(isDark, L10nService.get('numerology.daily_number.short_answer_title', language), color, [
+                  L10nService.get('numerology.daily_number.short_answer_1', language),
+                  L10nService.get('numerology.daily_number.short_answer_2', language),
+                  L10nService.get('numerology.daily_number.short_answer_3', language),
                 ]),
                 const SizedBox(height: 28),
 
                 // Today's number highlight
-                _buildTodayNumber(context, isDark, dailyNumber, today),
+                _buildTodayNumber(context, isDark, dailyNumber, today, language),
                 const SizedBox(height: 28),
 
-                _buildSection(isDark, 'Nasıl Hesaplanır?', color, [
-                  'Günün tarihinin tüm rakamları toplanır.',
-                  'Tek haneli sayıya indirgenir.',
-                  'Örnek: 24.01.2026 → 2+4+0+1+2+0+2+6 = 17 → 1+7 = 8',
+                _buildSection(isDark, L10nService.get('numerology.daily_number.how_calculated_title', language), color, [
+                  L10nService.get('numerology.daily_number.how_calculated_1', language),
+                  L10nService.get('numerology.daily_number.how_calculated_2', language),
+                  L10nService.get('numerology.daily_number.how_calculated_3', language),
                 ]),
                 const SizedBox(height: 28),
 
-                _buildSection(isDark, 'Ne İşe Yarar?', color, [
-                  'Günün enerjisine uyum sağlamana yardım eder.',
-                  'Hangi aktivitelerin desteklendiğini gösterir.',
-                  'Dikkat edilmesi gereken alanları işaret eder.',
+                _buildSection(isDark, L10nService.get('numerology.daily_number.what_for_title', language), color, [
+                  L10nService.get('numerology.daily_number.what_for_1', language),
+                  L10nService.get('numerology.daily_number.what_for_2', language),
+                  L10nService.get('numerology.daily_number.what_for_3', language),
                 ]),
                 const SizedBox(height: 28),
 
-                _buildSection(isDark, 'Önemli Not', color, [
-                  'Günlük sayı herkesi etkiler.',
-                  'Kişisel sayınla birleşince daha özel anlam kazanır.',
-                  'Zorunluluk değil, farkındalık aracıdır.',
+                _buildSection(isDark, L10nService.get('numerology.daily_number.important_note_title', language), color, [
+                  L10nService.get('numerology.daily_number.important_note_1', language),
+                  L10nService.get('numerology.daily_number.important_note_2', language),
+                  L10nService.get('numerology.daily_number.important_note_3', language),
                 ]),
                 const SizedBox(height: 32),
 
-                _buildSuggestion(context, isDark, language, '🎯', 'Kader sayısı nedir?', Routes.numerology),
+                _buildSuggestion(context, isDark, language, '🎯', L10nService.get('numerology.daily_number.suggestion_text', language), Routes.numerology),
                 const SizedBox(height: 40),
 
-                Center(child: Text('Numeroloji — Venus One', style: TextStyle(fontSize: 12, color: isDark ? Colors.white38 : AppColors.textLight))),
+                Center(child: Text(L10nService.get('numerology.daily_number.footer', language), style: TextStyle(fontSize: 12, color: isDark ? Colors.white38 : AppColors.textLight))),
                 const SizedBox(height: 20),
               ],
             ),
@@ -107,21 +107,16 @@ class DailyNumberScreen extends ConsumerWidget {
     return sum;
   }
 
-  Widget _buildTodayNumber(BuildContext context, bool isDark, int number, DateTime date) {
-    final meanings = {
-      1: 'Başlangıçlar ve liderlik günü',
-      2: 'İşbirliği ve denge günü',
-      3: 'Yaratıcılık ve ifade günü',
-      4: 'Yapılanma ve düzen günü',
-      5: 'Değişim ve özgürlük günü',
-      6: 'Aile ve sorumluluk günü',
-      7: 'İçe dönüş ve analiz günü',
-      8: 'Bolluk ve güç günü',
-      9: 'Tamamlanma ve bırakma günü',
-      11: 'Sezgi ve ilham günü',
-      22: 'Büyük projeler günü',
-      33: 'Şifa ve öğretme günü',
-    };
+  Widget _buildTodayNumber(BuildContext context, bool isDark, int number, DateTime date, AppLanguage language) {
+    String getMeaning(int num) {
+      final key = 'numerology.daily_number.meaning_$num';
+      final meaning = L10nService.get(key, language);
+      // If key not found (returns the key itself), use default
+      if (meaning == key) {
+        return L10nService.get('numerology.daily_number.meaning_default', language);
+      }
+      return meaning;
+    }
 
     return Container(
       padding: const EdgeInsets.all(24),
@@ -140,7 +135,7 @@ class DailyNumberScreen extends ConsumerWidget {
       child: Column(
         children: [
           Text(
-            'Bugünün Sayısı',
+            L10nService.get('numerology.daily_number.todays_number', language),
             style: TextStyle(fontSize: 13, color: isDark ? Colors.white60 : AppColors.textLight),
           ),
           const SizedBox(height: 8),
@@ -154,7 +149,7 @@ class DailyNumberScreen extends ConsumerWidget {
           ).animate().scale(duration: 500.ms, curve: Curves.elasticOut),
           const SizedBox(height: 8),
           Text(
-            meanings[number] ?? 'Güçlü enerji günü',
+            getMeaning(number),
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w500,

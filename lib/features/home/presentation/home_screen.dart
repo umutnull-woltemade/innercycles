@@ -81,7 +81,7 @@ class HomeScreen extends ConsumerWidget {
                 _buildAllServicesButton(context, ref),
                 const SizedBox(height: AppConstants.spacingXxl),
                 // Back-Button-Free Navigation
-                const PageBottomNavigation(currentRoute: '/'),
+                PageBottomNavigation(currentRoute: '/', language: ref.watch(languageProvider)),
               ],
             ),
           ),
@@ -1099,7 +1099,7 @@ class HomeScreen extends ConsumerWidget {
         // ═══════════════════════════════════════════════════════════════
         // 12 ASTROLOJİK EV - Kompakt görünüm
         // ═══════════════════════════════════════════════════════════════
-        _buildCompactHousesSection(context),
+        _buildCompactHousesSection(context, ref),
         const SizedBox(height: AppConstants.spacingXxl),
         // ═══════════════════════════════════════════════════════════════
         // KALAN ÇÖZÜMLEMELERİMİZ - Genel araçlar
@@ -1109,21 +1109,22 @@ class HomeScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildCompactHousesSection(BuildContext context) {
-    // 12 ev sistemi - büyük pencere görünümü
+  Widget _buildCompactHousesSection(BuildContext context, WidgetRef ref) {
+    final language = ref.watch(languageProvider);
+    // 12 ev sistemi - buyuk pencere gorunumu
     final houses = [
-      {'num': 1, 'name': 'Benlik', 'icon': Icons.person, 'color': Colors.red, 'desc': 'Kim olduğun'},
-      {'num': 2, 'name': 'Para', 'icon': Icons.attach_money, 'color': Colors.green, 'desc': 'Değerlerin'},
-      {'num': 3, 'name': 'İletişim', 'icon': Icons.chat_bubble, 'color': Colors.orange, 'desc': 'Nasıl düşünürsün'},
-      {'num': 4, 'name': 'Aile', 'icon': Icons.home, 'color': Colors.blue, 'desc': 'Köklerin'},
-      {'num': 5, 'name': 'Yaratıcılık', 'icon': Icons.palette, 'color': Colors.purple, 'desc': 'İfade tarzın'},
-      {'num': 6, 'name': 'Sağlık', 'icon': Icons.favorite, 'color': Colors.teal, 'desc': 'Günlük rutinin'},
-      {'num': 7, 'name': 'İlişki', 'icon': Icons.people, 'color': Colors.pink, 'desc': 'Ortaklıkların'},
-      {'num': 8, 'name': 'Dönüşüm', 'icon': Icons.autorenew, 'color': Colors.deepPurple, 'desc': 'Gizli güçlerin'},
-      {'num': 9, 'name': 'Felsefe', 'icon': Icons.school, 'color': Colors.indigo, 'desc': 'Arayışların'},
-      {'num': 10, 'name': 'Kariyer', 'icon': Icons.work, 'color': Colors.amber, 'desc': 'Hedeflerin'},
-      {'num': 11, 'name': 'Arkadaş', 'icon': Icons.groups, 'color': Colors.cyan, 'desc': 'Toplulukların'},
-      {'num': 12, 'name': 'Bilinçaltı', 'icon': Icons.psychology, 'color': Colors.deepOrange, 'desc': 'İç dünyan'},
+      {'num': 1, 'name': L10nService.get('houses.compact.1.name', language), 'icon': Icons.person, 'color': Colors.red, 'desc': L10nService.get('houses.compact.1.desc', language)},
+      {'num': 2, 'name': L10nService.get('houses.compact.2.name', language), 'icon': Icons.attach_money, 'color': Colors.green, 'desc': L10nService.get('houses.compact.2.desc', language)},
+      {'num': 3, 'name': L10nService.get('houses.compact.3.name', language), 'icon': Icons.chat_bubble, 'color': Colors.orange, 'desc': L10nService.get('houses.compact.3.desc', language)},
+      {'num': 4, 'name': L10nService.get('houses.compact.4.name', language), 'icon': Icons.home, 'color': Colors.blue, 'desc': L10nService.get('houses.compact.4.desc', language)},
+      {'num': 5, 'name': L10nService.get('houses.compact.5.name', language), 'icon': Icons.palette, 'color': Colors.purple, 'desc': L10nService.get('houses.compact.5.desc', language)},
+      {'num': 6, 'name': L10nService.get('houses.compact.6.name', language), 'icon': Icons.favorite, 'color': Colors.teal, 'desc': L10nService.get('houses.compact.6.desc', language)},
+      {'num': 7, 'name': L10nService.get('houses.compact.7.name', language), 'icon': Icons.people, 'color': Colors.pink, 'desc': L10nService.get('houses.compact.7.desc', language)},
+      {'num': 8, 'name': L10nService.get('houses.compact.8.name', language), 'icon': Icons.autorenew, 'color': Colors.deepPurple, 'desc': L10nService.get('houses.compact.8.desc', language)},
+      {'num': 9, 'name': L10nService.get('houses.compact.9.name', language), 'icon': Icons.school, 'color': Colors.indigo, 'desc': L10nService.get('houses.compact.9.desc', language)},
+      {'num': 10, 'name': L10nService.get('houses.compact.10.name', language), 'icon': Icons.work, 'color': Colors.amber, 'desc': L10nService.get('houses.compact.10.desc', language)},
+      {'num': 11, 'name': L10nService.get('houses.compact.11.name', language), 'icon': Icons.groups, 'color': Colors.cyan, 'desc': L10nService.get('houses.compact.11.desc', language)},
+      {'num': 12, 'name': L10nService.get('houses.compact.12.name', language), 'icon': Icons.psychology, 'color': Colors.deepOrange, 'desc': L10nService.get('houses.compact.12.desc', language)},
     ];
 
     return Container(
@@ -1184,14 +1185,14 @@ class HomeScreen extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      '🏠 12 Astrolojik Ev',
+                      L10nService.get('houses.section_title', language),
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
                           ),
                     ),
                     Text(
-                      'Hayatınızın farklı alanlarını keşfedin',
+                      L10nService.get('houses.section_subtitle', language),
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                             color: Colors.white70,
                             fontSize: 11,
@@ -1213,7 +1214,7 @@ class HomeScreen extends ConsumerWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
-                          'Detay',
+                          L10nService.get('houses.detail_button', language),
                           style: Theme.of(context).textTheme.labelSmall?.copyWith(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w500,
@@ -1243,7 +1244,7 @@ class HomeScreen extends ConsumerWidget {
                 return Padding(
                   padding: EdgeInsets.only(right: index < 11 ? 8 : 0),
                   child: GestureDetector(
-                    onTap: () => _showHouseDetail(context, house),
+                    onTap: () => _showHouseDetail(context, house, language),
                     child: Container(
                       width: 60,
                       decoration: BoxDecoration(
@@ -1300,89 +1301,24 @@ class HomeScreen extends ConsumerWidget {
     ).animate().fadeIn(delay: 900.ms, duration: 400.ms);
   }
 
-  void _showHouseDetail(BuildContext context, Map<String, dynamic> house) {
+  void _showHouseDetail(BuildContext context, Map<String, dynamic> house, AppLanguage language) {
     final houseNum = house['num'] as int;
 
     final houseColor = house['color'] as Color;
     final houseIcon = house['icon'] as IconData;
 
-    // Ev detay bilgileri
-    final houseDetails = {
-      1: {
-        'title': '1. Ev - Benlik Evi',
-        'keywords': 'Kimlik • Görünüş • Başlangıçlar',
-        'description': 'Kişiliğinizi, fiziksel görünümünüzü ve dünyaya nasıl sunulduğunuzu temsil eder. Yükselen burç bu evi yönetir.',
-        'areas': ['Kişisel imaj', 'Fiziksel sağlık', 'İlk izlenimler', 'Yeni başlangıçlar'],
-      },
-      2: {
-        'title': '2. Ev - Para ve Değerler Evi',
-        'keywords': 'Para • Değerler • Güvenlik',
-        'description': 'Maddi değerlerinizi, para kazanma yeteneğinizi ve öz değerinizi temsil eder.',
-        'areas': ['Gelir kaynakları', 'Maddi güvenlik', 'Öz değer', 'Yetenekler'],
-      },
-      3: {
-        'title': '3. Ev - İletişim Evi',
-        'keywords': 'İletişim • Öğrenme • Kardeşler',
-        'description': 'Düşünce tarzınızı, iletişim becerilerinizi ve yakın çevrenizle ilişkilerinizi temsil eder.',
-        'areas': ['Konuşma ve yazma', 'Kısa yolculuklar', 'Kardeş ilişkileri', 'Temel eğitim'],
-      },
-      4: {
-        'title': '4. Ev - Aile ve Kökler Evi',
-        'keywords': 'Ev • Aile • Kökler',
-        'description': 'Ailenizi, yuvanızı, duygusal temelerinizi ve yaşamınızın son dönemini temsil eder.',
-        'areas': ['Aile bağları', 'Ev ortamı', 'Duygusal güvenlik', 'Anne figürü'],
-      },
-      5: {
-        'title': '5. Ev - Yaratıcılık ve Aşk Evi',
-        'keywords': 'Aşk • Yaratıcılık • Eğlence',
-        'description': 'Yaratıcı ifadenizi, romantizmi, çocukları ve eğlence anlayışınızı temsil eder.',
-        'areas': ['Romantik ilişkiler', 'Çocuklar', 'Sanatsal ifade', 'Hobiler'],
-      },
-      6: {
-        'title': '6. Ev - Sağlık ve Hizmet Evi',
-        'keywords': 'Sağlık • Günlük İş • Rutin',
-        'description': 'Günlük rutinlerinizi, iş alışkanlıklarınızı ve fiziksel sağlığınızı temsil eder.',
-        'areas': ['Sağlık alışkanlıkları', 'İş ortamı', 'Günlük rutinler', 'Hizmet'],
-      },
-      7: {
-        'title': '7. Ev - Evlilik ve Ortaklık Evi',
-        'keywords': 'Partner • Evlilik • Ortaklık',
-        'description': 'Ciddi ilişkilerinizi, evliliği ve her türlü ortaklığı temsil eder.',
-        'areas': ['Evlilik', 'İş ortaklıkları', 'Sözleşmeler', 'Açık düşmanlar'],
-      },
-      8: {
-        'title': '8. Ev - Dönüşüm Evi',
-        'keywords': 'Cinsellik • Dönüşüm • Miras',
-        'description': 'Derin dönüşümü, ortak kaynakları, cinselliği ve ruhsal yeniden doğuşu temsil eder.',
-        'areas': ['Cinsel enerji', 'Miras', 'Borçlar', 'Psikolojik derinlik'],
-      },
-      9: {
-        'title': '9. Ev - Felsefe ve Yolculuk Evi',
-        'keywords': 'Felsefe • Yolculuk • İnanç',
-        'description': 'Yüksek öğrenimi, uzun yolculukları, felsefeyi ve spiritüel arayışı temsil eder.',
-        'areas': ['Yüksek eğitim', 'Uzak yolculuklar', 'Felsefe ve din', 'Yayıncılık'],
-      },
-      10: {
-        'title': '10. Ev - Kariyer ve Statü Evi',
-        'keywords': 'Kariyer • Statü • Başarı',
-        'description': 'Kariyerinizi, toplumsal statünüzü, hedeflerinizi ve başarılarınızı temsil eder.',
-        'areas': ['Kariyer hedefleri', 'Toplumsal konum', 'Baba figürü', 'Otorite'],
-      },
-      11: {
-        'title': '11. Ev - Arkadaşlık ve İdealler Evi',
-        'keywords': 'Arkadaş • Topluluk • Hayaller',
-        'description': 'Arkadaşlıklarınızı, sosyal grupları, gelecek umutlarınızı ve ideallerinizi temsil eder.',
-        'areas': ['Arkadaşlıklar', 'Sosyal gruplar', 'Geleceğe dair umutlar', 'İnsani idealler'],
-      },
-      12: {
-        'title': '12. Ev - Bilinçaltı ve Gizlilik Evi',
-        'keywords': 'Bilinçaltı • Spiritüel • Karma',
-        'description': 'Bilinçaltınızı, gizli düşmanları, spiritüel yolculuğu ve karmik dersleri temsil eder.',
-        'areas': ['Bilinçaltı dürtüler', 'Yalnızlık zamanları', 'Spiritüel gelişim', 'Karma'],
-      },
-    };
+    // Ev detay bilgileri - i18n
+    final title = L10nService.get('houses.detail.$houseNum.title', language);
+    final keywords = L10nService.get('houses.detail.$houseNum.keywords', language);
+    final description = L10nService.get('houses.detail.$houseNum.description', language);
+    final areas = L10nService.getList('houses.detail.$houseNum.areas', language);
 
-    final detail = houseDetails[houseNum]!;
+    final detail = {
+      'title': title,
+      'keywords': keywords,
+      'description': description,
+      'areas': areas,
+    };
 
     showModalBottomSheet(
       context: context,
@@ -1442,7 +1378,7 @@ class HomeScreen extends ConsumerWidget {
             const SizedBox(height: AppConstants.spacingMd),
             // Areas
             Text(
-              'Bu Evin Yönettiği Alanlar:',
+              L10nService.get('houses.areas_governed', language),
               style: Theme.of(context).textTheme.labelMedium?.copyWith(
                     color: houseColor,
                     fontWeight: FontWeight.bold,
@@ -1479,7 +1415,7 @@ class HomeScreen extends ConsumerWidget {
                   context.push(Routes.birthChart);
                 },
                 icon: const Icon(Icons.auto_awesome),
-                label: const Text('Haritamda Bu Evi Gör'),
+                label: Text(L10nService.get('houses.view_house_on_chart', language)),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: houseColor,
                   foregroundColor: Colors.white,
@@ -1550,7 +1486,7 @@ class HomeScreen extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                '🔮 Kalan Çözümlemelerimiz',
+                L10nService.get('home.other_tools.title', language),
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
                       color: AppColors.moonSilver,
                       fontWeight: FontWeight.bold,
@@ -1558,7 +1494,7 @@ class HomeScreen extends ConsumerWidget {
               ),
               const SizedBox(height: 4),
               Text(
-                'Genel astroloji araçları ve burç yorumları',
+                L10nService.get('home.other_tools.subtitle', language),
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: AppColors.textSecondary,
                     ),
@@ -1584,7 +1520,7 @@ class HomeScreen extends ConsumerWidget {
                 icon: Icons.calendar_view_week,
                 label: L10nService.get('tabs.weekly', language),
                 color: AppColors.earthElement,
-                tooltip: 'Bu haftanın kozmik enerjileri ve tavsiyeleri',
+                tooltip: L10nService.get('home.other_tools.weekly_tooltip', language),
                 onTap: () => context.push(Routes.weeklyHoroscope),
               ),
             ),
@@ -1599,7 +1535,7 @@ class HomeScreen extends ConsumerWidget {
                 icon: Icons.calendar_month,
                 label: L10nService.get('tabs.monthly', language),
                 color: AppColors.waterElement,
-                tooltip: 'Bu ayın astrolojik temaları ve fırsatları',
+                tooltip: L10nService.get('home.tooltips.monthly', language),
                 onTap: () => context.push(Routes.monthlyHoroscope),
               ),
             ),
@@ -1609,7 +1545,7 @@ class HomeScreen extends ConsumerWidget {
                 icon: Icons.calendar_today,
                 label: L10nService.get('tabs.yearly', language),
                 color: AppColors.fireElement,
-                tooltip: 'Yılın genel akışı ve büyük döngüler',
+                tooltip: L10nService.get('home.tooltips.yearly', language),
                 onTap: () => context.push(Routes.yearlyHoroscope),
               ),
             ),
@@ -1656,7 +1592,7 @@ class HomeScreen extends ConsumerWidget {
                 icon: Icons.style,
                 label: L10nService.get('onboarding.features.tarot', language),
                 color: AppColors.auroraStart,
-                tooltip: 'Günlük kart çekimi ve tarot okumları',
+                tooltip: L10nService.get('home.tooltips.tarot', language),
                 onTap: () => context.push(Routes.tarot),
               ),
             ),
@@ -1913,9 +1849,9 @@ class HomeScreen extends ConsumerWidget {
                       shaderCallback: (bounds) => const LinearGradient(
                         colors: [Color(0xFFE040FB), Color(0xFFFFD700), Color(0xFFFF4081)],
                       ).createShader(bounds),
-                      child: const Text(
-                        'Bütün Kozmoz',
-                        style: TextStyle(
+                      child: Text(
+                        L10nService.get('home.tooltips.all_kozmoz', language),
+                        style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
@@ -1925,7 +1861,7 @@ class HomeScreen extends ConsumerWidget {
                     const SizedBox(height: 4),
                     Text(
                       isAvailable
-                          ? 'Tüm kozmik araçlar ve içerikler'
+                          ? L10nService.get('home.tooltips.all_cosmic_tools', language)
                           : L10nService.get('common.coming_soon', language),
                       style: TextStyle(
                         fontSize: 12,
@@ -2118,67 +2054,68 @@ class _SearchBottomSheetState extends ConsumerState<_SearchBottomSheet> {
   final TextEditingController _searchController = TextEditingController();
   String _searchQuery = '';
 
-  // All available features with categories
-  static final List<_SearchItem> _allFeatures = [
-    // Keşfet (Explore) - Main features
-    _SearchItem('Günlük Burç', 'Günlük burç yorumları', Icons.wb_sunny, Routes.horoscope, _SearchCategory.explore, ['günlük', 'burç', 'yorum', 'daily']),
-    _SearchItem('Haftalık Burç', 'Haftalık burç yorumları', Icons.calendar_view_week, Routes.weeklyHoroscope, _SearchCategory.explore, ['haftalık', 'weekly']),
-    _SearchItem('Aylık Burç', 'Aylık burç yorumları', Icons.calendar_month, Routes.monthlyHoroscope, _SearchCategory.explore, ['aylık', 'monthly']),
-    _SearchItem('Yıllık Burç', 'Yıllık burç yorumları', Icons.calendar_today, Routes.yearlyHoroscope, _SearchCategory.explore, ['yıllık', 'yearly']),
-    _SearchItem('Aşk Burcu', 'Aşk ve ilişki yorumları', Icons.favorite, Routes.loveHoroscope, _SearchCategory.explore, ['aşk', 'love', 'ilişki']),
-    _SearchItem('Doğum Haritası', 'Natal chart analizi', Icons.auto_awesome, Routes.birthChart, _SearchCategory.explore, ['doğum', 'natal', 'harita', 'chart']),
-    _SearchItem('Uyumluluk', 'Burç uyumluluk analizi', Icons.people, Routes.compatibility, _SearchCategory.explore, ['uyumluluk', 'compatibility']),
-    _SearchItem('Transitler', 'Güncel gezegen transitler', Icons.public, Routes.transits, _SearchCategory.explore, ['transit', 'gezegen']),
-    _SearchItem('Numeroloji', 'Sayıların gizemi', Icons.pin, Routes.numerology, _SearchCategory.explore, ['numeroloji', 'sayı', 'number']),
-    _SearchItem('Kabala', 'Kabalistik analiz', Icons.account_tree, Routes.kabbalah, _SearchCategory.explore, ['kabala', 'kabbalah']),
-    _SearchItem('Tarot', 'Tarot kartları', Icons.style, Routes.tarot, _SearchCategory.explore, ['tarot', 'kart', 'fal']),
-    _SearchItem('Aura', 'Aura renkleri', Icons.blur_circular, Routes.aura, _SearchCategory.explore, ['aura', 'enerji']),
+  // All available features with categories - using i18n
+  List<_SearchItem> _getAllFeatures(AppLanguage language) => [
+    // Kesfet (Explore) - Main features
+    _SearchItem(L10nService.get('home.search_items.daily_horoscope.title', language), L10nService.get('home.search_items.daily_horoscope.desc', language), Icons.wb_sunny, Routes.horoscope, _SearchCategory.explore, ['gunluk', 'burc', 'yorum', 'daily', 'horoscope']),
+    _SearchItem(L10nService.get('home.search_items.weekly_horoscope.title', language), L10nService.get('home.search_items.weekly_horoscope.desc', language), Icons.calendar_view_week, Routes.weeklyHoroscope, _SearchCategory.explore, ['haftalik', 'weekly']),
+    _SearchItem(L10nService.get('home.search_items.monthly_horoscope.title', language), L10nService.get('home.search_items.monthly_horoscope.desc', language), Icons.calendar_month, Routes.monthlyHoroscope, _SearchCategory.explore, ['aylik', 'monthly']),
+    _SearchItem(L10nService.get('home.search_items.yearly_horoscope.title', language), L10nService.get('home.search_items.yearly_horoscope.desc', language), Icons.calendar_today, Routes.yearlyHoroscope, _SearchCategory.explore, ['yillik', 'yearly']),
+    _SearchItem(L10nService.get('home.search_items.love_horoscope.title', language), L10nService.get('home.search_items.love_horoscope.desc', language), Icons.favorite, Routes.loveHoroscope, _SearchCategory.explore, ['ask', 'love', 'iliski']),
+    _SearchItem(L10nService.get('home.search_items.birth_chart.title', language), L10nService.get('home.search_items.birth_chart.desc', language), Icons.auto_awesome, Routes.birthChart, _SearchCategory.explore, ['dogum', 'natal', 'harita', 'chart', 'birth']),
+    _SearchItem(L10nService.get('home.search_items.compatibility.title', language), L10nService.get('home.search_items.compatibility.desc', language), Icons.people, Routes.compatibility, _SearchCategory.explore, ['uyumluluk', 'compatibility']),
+    _SearchItem(L10nService.get('home.search_items.transits.title', language), L10nService.get('home.search_items.transits.desc', language), Icons.public, Routes.transits, _SearchCategory.explore, ['transit', 'gezegen', 'planet']),
+    _SearchItem(L10nService.get('home.search_items.numerology.title', language), L10nService.get('home.search_items.numerology.desc', language), Icons.pin, Routes.numerology, _SearchCategory.explore, ['numeroloji', 'sayi', 'number']),
+    _SearchItem(L10nService.get('home.search_items.kabbalah.title', language), L10nService.get('home.search_items.kabbalah.desc', language), Icons.account_tree, Routes.kabbalah, _SearchCategory.explore, ['kabala', 'kabbalah']),
+    _SearchItem(L10nService.get('home.search_items.tarot.title', language), L10nService.get('home.search_items.tarot.desc', language), Icons.style, Routes.tarot, _SearchCategory.explore, ['tarot', 'kart', 'card']),
+    _SearchItem(L10nService.get('home.search_items.aura.title', language), L10nService.get('home.search_items.aura.desc', language), Icons.blur_circular, Routes.aura, _SearchCategory.explore, ['aura', 'enerji', 'energy']),
 
-    // Daha Fazla Araç (More Tools) - Advanced features
-    _SearchItem('Transit Takvimi', 'Aylık transit takvimi', Icons.event_note, Routes.transitCalendar, _SearchCategory.moreTools, ['transit', 'takvim', 'calendar']),
-    _SearchItem('Tutulma Takvimi', 'Güneş ve Ay tutulmaları', Icons.dark_mode, Routes.eclipseCalendar, _SearchCategory.moreTools, ['tutulma', 'eclipse', 'güneş', 'ay']),
-    _SearchItem('Sinastri', 'İlişki analizi', Icons.people_alt, Routes.synastry, _SearchCategory.moreTools, ['sinastri', 'synastry', 'ilişki']),
-    _SearchItem('Kompozit', 'Kompozit harita', Icons.compare_arrows, Routes.compositeChart, _SearchCategory.moreTools, ['kompozit', 'composite']),
-    _SearchItem('Progresyon', 'Secondary progressions', Icons.auto_graph, Routes.progressions, _SearchCategory.moreTools, ['progresyon', 'progression']),
-    _SearchItem('Saturn Dönüşü', 'Saturn Return analizi', Icons.refresh, Routes.saturnReturn, _SearchCategory.moreTools, ['saturn', 'dönüş', 'return']),
-    _SearchItem('Solar Return', 'Güneş dönüşü', Icons.wb_sunny_outlined, Routes.solarReturn, _SearchCategory.moreTools, ['solar', 'güneş', 'dönüş']),
-    _SearchItem('Yıl Önü', 'Yıl öngörüsü', Icons.upcoming, Routes.yearAhead, _SearchCategory.moreTools, ['yıl', 'öngörü', 'year']),
-    _SearchItem('Zamanlama', 'En uygun zamanlar', Icons.access_time, Routes.timing, _SearchCategory.moreTools, ['zaman', 'timing']),
-    _SearchItem('Vedik', 'Vedik astroloji', Icons.brightness_3, Routes.vedicChart, _SearchCategory.moreTools, ['vedik', 'vedic', 'hint']),
-    _SearchItem('Astro Harita', 'Astrocartography', Icons.map, Routes.astroCartography, _SearchCategory.moreTools, ['astro', 'harita', 'cartography']),
-    _SearchItem('Yerel Uzay', 'Local space astroloji', Icons.explore, Routes.localSpace, _SearchCategory.moreTools, ['yerel', 'local', 'space']),
-    _SearchItem('Elektif', 'En iyi zamanlar', Icons.schedule, Routes.electional, _SearchCategory.moreTools, ['elektif', 'electional']),
-    _SearchItem('Drakonik', 'Drakonik harita', Icons.psychology, Routes.draconicChart, _SearchCategory.moreTools, ['drakonik', 'draconic']),
-    _SearchItem('Asteroidler', 'Asteroid konumları', Icons.star_outline, Routes.asteroids, _SearchCategory.moreTools, ['asteroid', 'yıldız']),
-    _SearchItem('Bahçe Ayı', 'Aya göre bahçecilik', Icons.eco, Routes.gardeningMoon, _SearchCategory.moreTools, ['bahçe', 'garden', 'ay', 'moon']),
-    _SearchItem('Ünlüler', 'Ünlü haritaları', Icons.people, Routes.celebrities, _SearchCategory.moreTools, ['ünlü', 'celebrity']),
-    _SearchItem('Makaleler', 'Astroloji yazıları', Icons.article, Routes.articles, _SearchCategory.moreTools, ['makale', 'article', 'yazı']),
-    _SearchItem('Sözlük', 'Astroloji terimleri', Icons.menu_book, Routes.glossary, _SearchCategory.moreTools, ['sözlük', 'glossary', 'terim']),
-    _SearchItem('Profil', 'Profil ayarları', Icons.person, Routes.profile, _SearchCategory.moreTools, ['profil', 'profile']),
-    _SearchItem('Kayıtlı Profiller', 'Kaydedilmiş profiller', Icons.people_outline, Routes.savedProfiles, _SearchCategory.moreTools, ['kayıtlı', 'profil', 'saved']),
-    _SearchItem('Karşılaştırma', 'Profil karşılaştırma', Icons.compare, Routes.comparison, _SearchCategory.moreTools, ['karşılaştır', 'compare']),
-    _SearchItem('Ayarlar', 'Uygulama ayarları', Icons.settings, Routes.settings, _SearchCategory.moreTools, ['ayar', 'settings']),
-    _SearchItem('Premium', 'Premium özellikler', Icons.workspace_premium, Routes.premium, _SearchCategory.moreTools, ['premium', 'pro']),
+    // Daha Fazla Arac (More Tools) - Advanced features
+    _SearchItem(L10nService.get('home.search_items.transit_calendar.title', language), L10nService.get('home.search_items.transit_calendar.desc', language), Icons.event_note, Routes.transitCalendar, _SearchCategory.moreTools, ['transit', 'takvim', 'calendar']),
+    _SearchItem(L10nService.get('home.search_items.eclipse_calendar.title', language), L10nService.get('home.search_items.eclipse_calendar.desc', language), Icons.dark_mode, Routes.eclipseCalendar, _SearchCategory.moreTools, ['tutulma', 'eclipse', 'gunes', 'ay']),
+    _SearchItem(L10nService.get('home.search_items.synastry.title', language), L10nService.get('home.search_items.synastry.desc', language), Icons.people_alt, Routes.synastry, _SearchCategory.moreTools, ['sinastri', 'synastry', 'iliski', 'relationship']),
+    _SearchItem(L10nService.get('home.search_items.composite.title', language), L10nService.get('home.search_items.composite.desc', language), Icons.compare_arrows, Routes.compositeChart, _SearchCategory.moreTools, ['kompozit', 'composite']),
+    _SearchItem(L10nService.get('home.search_items.progressions.title', language), L10nService.get('home.search_items.progressions.desc', language), Icons.auto_graph, Routes.progressions, _SearchCategory.moreTools, ['progresyon', 'progression']),
+    _SearchItem(L10nService.get('home.search_items.saturn_return.title', language), L10nService.get('home.search_items.saturn_return.desc', language), Icons.refresh, Routes.saturnReturn, _SearchCategory.moreTools, ['saturn', 'donus', 'return']),
+    _SearchItem(L10nService.get('home.search_items.solar_return.title', language), L10nService.get('home.search_items.solar_return.desc', language), Icons.wb_sunny_outlined, Routes.solarReturn, _SearchCategory.moreTools, ['solar', 'gunes', 'donus']),
+    _SearchItem(L10nService.get('home.search_items.year_ahead.title', language), L10nService.get('home.search_items.year_ahead.desc', language), Icons.upcoming, Routes.yearAhead, _SearchCategory.moreTools, ['yil', 'ongoru', 'year', 'ahead']),
+    _SearchItem(L10nService.get('home.search_items.timing.title', language), L10nService.get('home.search_items.timing.desc', language), Icons.access_time, Routes.timing, _SearchCategory.moreTools, ['zaman', 'timing', 'time']),
+    _SearchItem(L10nService.get('home.search_items.vedic.title', language), L10nService.get('home.search_items.vedic.desc', language), Icons.brightness_3, Routes.vedicChart, _SearchCategory.moreTools, ['vedik', 'vedic', 'hint']),
+    _SearchItem(L10nService.get('home.search_items.astro_map.title', language), L10nService.get('home.search_items.astro_map.desc', language), Icons.map, Routes.astroCartography, _SearchCategory.moreTools, ['astro', 'harita', 'cartography', 'map']),
+    _SearchItem(L10nService.get('home.search_items.local_space.title', language), L10nService.get('home.search_items.local_space.desc', language), Icons.explore, Routes.localSpace, _SearchCategory.moreTools, ['yerel', 'local', 'space']),
+    _SearchItem(L10nService.get('home.search_items.electional.title', language), L10nService.get('home.search_items.electional.desc', language), Icons.schedule, Routes.electional, _SearchCategory.moreTools, ['elektif', 'electional']),
+    _SearchItem(L10nService.get('home.search_items.draconic.title', language), L10nService.get('home.search_items.draconic.desc', language), Icons.psychology, Routes.draconicChart, _SearchCategory.moreTools, ['drakonik', 'draconic']),
+    _SearchItem(L10nService.get('home.search_items.asteroids.title', language), L10nService.get('home.search_items.asteroids.desc', language), Icons.star_outline, Routes.asteroids, _SearchCategory.moreTools, ['asteroid', 'yildiz']),
+    _SearchItem(L10nService.get('home.search_items.gardening_moon.title', language), L10nService.get('home.search_items.gardening_moon.desc', language), Icons.eco, Routes.gardeningMoon, _SearchCategory.moreTools, ['bahce', 'garden', 'ay', 'moon']),
+    _SearchItem(L10nService.get('home.search_items.celebrities.title', language), L10nService.get('home.search_items.celebrities.desc', language), Icons.people, Routes.celebrities, _SearchCategory.moreTools, ['unlu', 'celebrity']),
+    _SearchItem(L10nService.get('home.search_items.articles.title', language), L10nService.get('home.search_items.articles.desc', language), Icons.article, Routes.articles, _SearchCategory.moreTools, ['makale', 'article', 'yazi']),
+    _SearchItem(L10nService.get('home.search_items.glossary.title', language), L10nService.get('home.search_items.glossary.desc', language), Icons.menu_book, Routes.glossary, _SearchCategory.moreTools, ['sozluk', 'glossary', 'terim']),
+    _SearchItem(L10nService.get('home.search_items.profile.title', language), L10nService.get('home.search_items.profile.desc', language), Icons.person, Routes.profile, _SearchCategory.moreTools, ['profil', 'profile']),
+    _SearchItem(L10nService.get('home.search_items.saved_profiles.title', language), L10nService.get('home.search_items.saved_profiles.desc', language), Icons.people_outline, Routes.savedProfiles, _SearchCategory.moreTools, ['kayitli', 'profil', 'saved']),
+    _SearchItem(L10nService.get('home.search_items.comparison.title', language), L10nService.get('home.search_items.comparison.desc', language), Icons.compare, Routes.comparison, _SearchCategory.moreTools, ['karsilastir', 'compare']),
+    _SearchItem(L10nService.get('home.search_items.settings.title', language), L10nService.get('home.search_items.settings.desc', language), Icons.settings, Routes.settings, _SearchCategory.moreTools, ['ayar', 'settings']),
+    _SearchItem(L10nService.get('home.search_items.premium.title', language), L10nService.get('home.search_items.premium.desc', language), Icons.workspace_premium, Routes.premium, _SearchCategory.moreTools, ['premium', 'pro']),
     // Spiritual & Wellness
-    _SearchItem('Günlük Ritüel', 'Sabah ve akşam ritüelleri', Icons.self_improvement, Routes.dailyRituals, _SearchCategory.explore, ['ritüel', 'ritual', 'meditasyon', 'sabah', 'akşam']),
-    _SearchItem('Chakra Analizi', 'Enerji merkezleri', Icons.blur_circular, Routes.chakraAnalysis, _SearchCategory.explore, ['chakra', 'çakra', 'enerji', 'denge']),
+    _SearchItem(L10nService.get('home.search_items.daily_ritual.title', language), L10nService.get('home.search_items.daily_ritual.desc', language), Icons.self_improvement, Routes.dailyRituals, _SearchCategory.explore, ['rituel', 'ritual', 'meditasyon', 'sabah', 'aksam']),
+    _SearchItem(L10nService.get('home.search_items.chakra_analysis.title', language), L10nService.get('home.search_items.chakra_analysis.desc', language), Icons.blur_circular, Routes.chakraAnalysis, _SearchCategory.explore, ['chakra', 'cakra', 'enerji', 'denge']),
   ];
 
-  List<_SearchItem> get _filteredFeatures {
-    if (_searchQuery.isEmpty) return _allFeatures;
+  List<_SearchItem> _getFilteredFeatures(AppLanguage language) {
+    final allFeatures = _getAllFeatures(language);
+    if (_searchQuery.isEmpty) return allFeatures;
     final query = _searchQuery.toLowerCase();
-    return _allFeatures.where((item) {
+    return allFeatures.where((item) {
       return item.title.toLowerCase().contains(query) ||
           item.description.toLowerCase().contains(query) ||
           item.keywords.any((k) => k.toLowerCase().contains(query));
     }).toList();
   }
 
-  List<_SearchItem> get _exploreFeatures =>
-      _filteredFeatures.where((f) => f.category == _SearchCategory.explore).toList();
+  List<_SearchItem> _getExploreFeatures(AppLanguage language) =>
+      _getFilteredFeatures(language).where((f) => f.category == _SearchCategory.explore).toList();
 
-  List<_SearchItem> get _moreToolsFeatures =>
-      _filteredFeatures.where((f) => f.category == _SearchCategory.moreTools).toList();
+  List<_SearchItem> _getMoreToolsFeatures(AppLanguage language) =>
+      _getFilteredFeatures(language).where((f) => f.category == _SearchCategory.moreTools).toList();
 
   @override
   void dispose() {
@@ -2247,18 +2184,18 @@ class _SearchBottomSheetState extends ConsumerState<_SearchBottomSheet> {
                   controller: scrollController,
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   children: [
-                    if (_exploreFeatures.isNotEmpty) ...[
+                    if (_getExploreFeatures(language).isNotEmpty) ...[
                       _buildCategoryHeader(L10nService.get('home.explore_category', language), Icons.explore),
                       const SizedBox(height: 8),
-                      ..._exploreFeatures.map((f) => _buildSearchResultItem(f)),
+                      ..._getExploreFeatures(language).map((f) => _buildSearchResultItem(f)),
                       const SizedBox(height: 24),
                     ],
-                    if (_moreToolsFeatures.isNotEmpty) ...[
+                    if (_getMoreToolsFeatures(language).isNotEmpty) ...[
                       _buildCategoryHeader(L10nService.get('home.more_tools_category', language), Icons.build),
                       const SizedBox(height: 8),
-                      ..._moreToolsFeatures.map((f) => _buildSearchResultItem(f)),
+                      ..._getMoreToolsFeatures(language).map((f) => _buildSearchResultItem(f)),
                     ],
-                    if (_filteredFeatures.isEmpty)
+                    if (_getFilteredFeatures(language).isEmpty)
                       Center(
                         child: Padding(
                           padding: const EdgeInsets.all(32),
@@ -2791,7 +2728,7 @@ class _KozmozMasterSectionState extends ConsumerState<_KozmozMasterSection> {
           context: question,
         );
       } else {
-        response = _generateSmartLocalResponse(question, sign);
+        response = _generateSmartLocalResponse(question, sign, ref.read(languageProvider));
       }
 
       setState(() {
@@ -2822,24 +2759,24 @@ class _KozmozMasterSectionState extends ConsumerState<_KozmozMasterSection> {
     return AdviceArea.spiritual;
   }
 
-  String _generateSmartLocalResponse(String question, ZodiacSign sign) {
+  String _generateSmartLocalResponse(String question, ZodiacSign sign, AppLanguage language) {
     final lowerQuestion = question.toLowerCase();
 
     // Burç uyumu ve dedikodu soruları
     if (lowerQuestion.contains('koç') && (lowerQuestion.contains('erkek') || lowerQuestion.contains('kadın') || lowerQuestion.contains('anlaş'))) {
-      return '♈ Koç erkeği/kadınıyla ilişki mi düşünüyorsun? ${sign.nameTr} burcu olarak şunu bilmelisin:\n\n🔥 Koç burçları ateşli, tutkulu ve sabırsızdır. İlk adımı onlar atmak ister!\n\n💕 Seninle uyumu: ${_getCompatibilityWithAries(sign)}\n\n⚠️ Dikkat: Koçlar çabuk sıkılabilir, heyecanı canlı tut. Meydan okumayı severler ama ego çatışmalarından kaçın.\n\n💡 İpucu: Bağımsızlıklarına saygı göster, maceraya ortak ol!';
+      return '♈ Koç erkeği/kadınıyla ilişki mi düşünüyorsun? ${sign.nameTr} burcu olarak şunu bilmelisin:\n\n🔥 Koç burçları ateşli, tutkulu ve sabırsızdır. İlk adımı onlar atmak ister!\n\n💕 Seninle uyumu: ${_getCompatibilityWithAries(sign, language)}\n\n⚠️ Dikkat: Koçlar çabuk sıkılabilir, heyecanı canlı tut. Meydan okumayı severler ama ego çatışmalarından kaçın.\n\n💡 İpucu: Bağımsızlıklarına saygı göster, maceraya ortak ol!';
     }
 
     if (lowerQuestion.contains('akrep') && (lowerQuestion.contains('kadın') || lowerQuestion.contains('erkek') || lowerQuestion.contains('gizemli'))) {
-      return '♏ Akrep burçları yüzyılın en gizemli ve yoğun aşıklarıdır!\n\n🔮 Neden gizemli? Pluto\'nun çocukları olarak derinliklerde yaşarlar. Duygularını kolay açmazlar ama bir kez bağlandılar mı ölümüne sadıktırlar.\n\n${sign.nameTr} burcu olarak seninle uyumu: ${_getCompatibilityWithScorpio(sign)}\n\n⚠️ Dikkat: Kıskançlık ve sahiplenme güçlü olabilir. Güven inşa et, sırlarını paylaş.\n\n💋 Bonus: Yatakta en tutkulu burçlardan biri... 🔥';
+      return '♏ Akrep burçları yüzyılın en gizemli ve yoğun aşıklarıdır!\n\n🔮 Neden gizemli? Pluto\'nun çocukları olarak derinliklerde yaşarlar. Duygularını kolay açmazlar ama bir kez bağlandılar mı ölümüne sadıktırlar.\n\n${sign.nameTr} burcu olarak seninle uyumu: ${_getCompatibilityWithScorpio(sign, language)}\n\n⚠️ Dikkat: Kıskançlık ve sahiplenme güçlü olabilir. Güven inşa et, sırlarını paylaş.\n\n💋 Bonus: Yatakta en tutkulu burçlardan biri... 🔥';
     }
 
     if (lowerQuestion.contains('aslan') && (lowerQuestion.contains('ilgi') || lowerQuestion.contains('bekler') || lowerQuestion.contains('ego'))) {
-      return '♌ Aslan burçları neden sürekli ilgi bekler?\n\n👑 Güneş\'in çocukları olarak doğuştan "star" olarak doğdular! İlgi ve takdir onların oksijeni.\n\n🎭 Gerçek: Aslında çok cömert ve sıcak kalplidirler. İlgi istedikleri kadar sevgi de verirler.\n\n${sign.nameTr} burcu olarak seninle uyumu: ${_getCompatibilityWithLeo(sign)}\n\n💡 İpucu: Onları öv, takdir et, sahneyi paylaş. Karşılığında en sadık ve koruyucu partnere sahip olursun!';
+      return '♌ Aslan burçları neden sürekli ilgi bekler?\n\n👑 Güneş\'in çocukları olarak doğuştan "star" olarak doğdular! İlgi ve takdir onların oksijeni.\n\n🎭 Gerçek: Aslında çok cömert ve sıcak kalplidirler. İlgi istedikleri kadar sevgi de verirler.\n\n${sign.nameTr} burcu olarak seninle uyumu: ${_getCompatibilityWithLeo(sign, language)}\n\n💡 İpucu: Onları öv, takdir et, sahneyi paylaş. Karşılığında en sadık ve koruyucu partnere sahip olursun!';
     }
 
     if (lowerQuestion.contains('ikizler') && (lowerQuestion.contains('karar') || lowerQuestion.contains('veremez') || lowerQuestion.contains('değişken'))) {
-      return '♊ İkizler neden karar veremez?\n\n🌀 Merkür\'ün çocukları olarak çift taraflı düşünürler - her şeyin iki yüzünü görürler!\n\n💬 Gerçek: Aslında karar verememe değil, tüm seçenekleri değerlendirme ihtiyacı. Çok zekiler!\n\n${sign.nameTr} burcu olarak seninle uyumu: ${_getCompatibilityWithGemini(sign)}\n\n⚠️ Dikkat: Sıkılabilirler, entelektüel uyarılma şart. Konuşma, tartışma, fikir alışverişi anahtar!\n\n😜 Bonus: İkizlerle asla sıkılmazsın - her gün farklı bir insan gibidirler!';
+      return '♊ İkizler neden karar veremez?\n\n🌀 Merkür\'ün çocukları olarak çift taraflı düşünürler - her şeyin iki yüzünü görürler!\n\n💬 Gerçek: Aslında karar verememe değil, tüm seçenekleri değerlendirme ihtiyacı. Çok zekiler!\n\n${sign.nameTr} burcu olarak seninle uyumu: ${_getCompatibilityWithGemini(sign, language)}\n\n⚠️ Dikkat: Sıkılabilirler, entelektüel uyarılma şart. Konuşma, tartışma, fikir alışverişi anahtar!\n\n😜 Bonus: İkizlerle asla sıkılmazsın - her gün farklı bir insan gibidirler!';
     }
 
     if (lowerQuestion.contains('ateş') && lowerQuestion.contains('su')) {
@@ -2860,190 +2797,82 @@ class _KozmozMasterSectionState extends ConsumerState<_KozmozMasterSection> {
 
     // Zenginlik soruları
     if (lowerQuestion.contains('zengin') || lowerQuestion.contains('para') || lowerQuestion.contains('bolluk')) {
-      return '💰 ${sign.nameTr} burcu olarak finansal geleceğin parlak görünüyor!\n\n✨ Jüpiter\'in bereketli enerjisi bu yıl mali fırsatlar getiriyor. Özellikle ${_getLuckyMonths(sign)} aylarında yeni gelir kaynakları belirleyebilir.\n\n💎 Güçlü yönlerin: ${_getFinancialStrength(sign)}\n\n🎯 Tavsiyem: Sabırlı ol, fırsatları değerlendir, bilinçli harca. Evren sana bolluk gönderiyor! 🌟';
+      return '💰 ${sign.nameTr} burcu olarak finansal geleceğin parlak görünüyor!\n\n✨ Jüpiter\'in bereketli enerjisi bu yıl mali fırsatlar getiriyor. Özellikle ${_getLuckyMonths(sign, language)} aylarında yeni gelir kaynakları belirleyebilir.\n\n💎 Güçlü yönlerin: ${_getFinancialStrength(sign, language)}\n\n🎯 Tavsiyem: Sabırlı ol, fırsatları değerlendir, bilinçli harca. Evren sana bolluk gönderiyor! 🌟';
     }
 
     // Ruh eşi soruları
     if (lowerQuestion.contains('ruh eşi') || lowerQuestion.contains('kader') || lowerQuestion.contains('büyük aşk')) {
-      return '💕 ${sign.nameTr} için ruh eşi yorumu:\n\n🌟 Kuzey Düğüm sinyalleri seninle konuşuyor. Ruh eşin beklenmedik bir şekilde karşına çıkabilir.\n\n🔮 Dikkat etmen gereken burçlar: ${_getSoulMateCompatibility(sign)}\n\n⏰ Zamanlama: Venüs transitlerini takip et. Özellikle Venüs retrosundan sonra yeni başlangıçlar mümkün.\n\n💫 İpucu: Ruh eşini bulmak için önce kendini bul. İç dünyan ne kadar huzurlu olursa, doğru kişi o kadar çabuk belirir!';
+      return '💕 ${sign.nameTr} için ruh eşi yorumu:\n\n🌟 Kuzey Düğüm sinyalleri seninle konuşuyor. Ruh eşin beklenmedik bir şekilde karşına çıkabilir.\n\n🔮 Dikkat etmen gereken burçlar: ${_getSoulMateCompatibility(sign, language)}\n\n⏰ Zamanlama: Venüs transitlerini takip et. Özellikle Venüs retrosundan sonra yeni başlangıçlar mümkün.\n\n💫 İpucu: Ruh eşini bulmak için önce kendini bul. İç dünyan ne kadar huzurlu olursa, doğru kişi o kadar çabuk belirir!';
     }
 
     // Aşk soruları
     if (lowerQuestion.contains('aşk') || lowerQuestion.contains('ilişki') || lowerQuestion.contains('sevgili') || lowerQuestion.contains('evlilik')) {
-      return '💕 ${sign.nameTr} için aşk yorumu:\n\n🌹 Venüs şu an ${sign.element == 'Ateş' ? 'tutkunu artırıyor' : sign.element == 'Su' ? 'duygusal derinliğini güçlendiriyor' : sign.element == 'Toprak' ? 'sadakatini ödüllendiriyor' : 'iletişimini destekliyor'}.\n\n✨ Yakın dönemde romantik sürprizler olabilir. Kalbini aç, evren seninle iletişim kurmaya çalışıyor.\n\n💫 Tavsiye: ${_getLoveAdvice(sign)}';
+      return '💕 ${sign.nameTr} için aşk yorumu:\n\n🌹 Venüs şu an ${sign.element == 'Ateş' ? 'tutkunu artırıyor' : sign.element == 'Su' ? 'duygusal derinliğini güçlendiriyor' : sign.element == 'Toprak' ? 'sadakatini ödüllendiriyor' : 'iletişimini destekliyor'}.\n\n✨ Yakın dönemde romantik sürprizler olabilir. Kalbini aç, evren seninle iletişim kurmaya çalışıyor.\n\n💫 Tavsiye: ${_getLoveAdvice(sign, language)}';
     }
 
     // Genel/Spiritüel sorular
-    return '✨ Sevgili ${sign.nameTr}, evren bugün seninle konuşuyor!\n\n🔮 ${_getDailyMessage(sign)}\n\n💫 Bugünün enerjisi: ${_getDailyEnergy(sign)}\n\n🌟 Tavsiye: İç sesini dinle, sezgilerine güven. Cevaplar kalbinde saklı.';
+    return '✨ Sevgili ${sign.nameTr}, evren bugün seninle konuşuyor!\n\n🔮 ${_getDailyMessage(sign, language)}\n\n💫 Bugünün enerjisi: ${_getDailyEnergy(sign, language)}\n\n🌟 Tavsiye: İç sesini dinle, sezgilerine güven. Cevaplar kalbinde saklı.';
   }
 
-  String _getLuckyMonths(ZodiacSign sign) {
-    final months = {
-      ZodiacSign.aries: 'Mart, Temmuz, Kasım',
-      ZodiacSign.taurus: 'Nisan, Ağustos, Aralık',
-      ZodiacSign.gemini: 'Mayıs, Eylül, Ocak',
-      ZodiacSign.cancer: 'Haziran, Ekim, Şubat',
-      ZodiacSign.leo: 'Temmuz, Kasım, Mart',
-      ZodiacSign.virgo: 'Ağustos, Aralık, Nisan',
-      ZodiacSign.libra: 'Eylül, Ocak, Mayıs',
-      ZodiacSign.scorpio: 'Ekim, Şubat, Haziran',
-      ZodiacSign.sagittarius: 'Kasım, Mart, Temmuz',
-      ZodiacSign.capricorn: 'Aralık, Nisan, Ağustos',
-      ZodiacSign.aquarius: 'Ocak, Mayıs, Eylül',
-      ZodiacSign.pisces: 'Şubat, Haziran, Ekim',
-    };
-    return months[sign] ?? 'bahar ayları';
+  String _getLuckyMonths(ZodiacSign sign, AppLanguage language) {
+    final signKey = sign.name.toLowerCase();
+    return L10nService.get('home.zodiac.lucky_months.$signKey', language) ??
+        L10nService.get('home.zodiac.lucky_months.default', language);
   }
 
-  String _getFinancialStrength(ZodiacSign sign) {
-    final strengths = {
-      ZodiacSign.aries: 'Girişimcilik ve cesaret. Yeni projeler başlatmak senin işin!',
-      ZodiacSign.taurus: 'Sabır ve istikrar. Yatırımlar seninle güvende.',
-      ZodiacSign.gemini: 'İletişim ve çok yönlülük. Birden fazla gelir kaynağı yaratabilirsin.',
-      ZodiacSign.cancer: 'Sezgi ve koruyuculuk. Aile işleri ve gayrimenkul avantajlı.',
-      ZodiacSign.leo: 'Liderlik ve yaratıcılık. Gösterime dayalı işler parlıyor.',
-      ZodiacSign.virgo: 'Detaycılık ve analiz. Finans ve muhasebe alanları güçlü.',
-      ZodiacSign.libra: 'Diplomasi ve ortaklıklar. İş birlikleri bereketli.',
-      ZodiacSign.scorpio: 'Derinlik ve dönüşüm. Yatırım ve araştırma alanları parlıyor.',
-      ZodiacSign.sagittarius: 'Vizyon ve genişleme. Uluslararası fırsatlar seni bekliyor.',
-      ZodiacSign.capricorn: 'Disiplin ve hırs. Uzun vadeli planlar meyvesini verecek.',
-      ZodiacSign.aquarius: 'Yenilikçilik ve teknoloji. Dijital alanda fırsatlar var.',
-      ZodiacSign.pisces: 'Yaratıcılık ve sezgi. Sanat ve spiritüel alanlar bereketli.',
-    };
-    return strengths[sign] ?? 'Yeteneklerini kullanmak';
+  String _getFinancialStrength(ZodiacSign sign, AppLanguage language) {
+    final signKey = sign.name.toLowerCase();
+    return L10nService.get('home.zodiac.financial_strength.$signKey', language) ??
+        L10nService.get('home.zodiac.financial_strength.default', language);
   }
 
-  String _getSoulMateCompatibility(ZodiacSign sign) {
-    final soulmates = {
-      ZodiacSign.aries: 'Aslan, Yay, İkizler - ateşli ve maceraperest ruhlar',
-      ZodiacSign.taurus: 'Başak, Oğlak, Yengeç - güvenilir ve sadık kalpler',
-      ZodiacSign.gemini: 'Terazi, Kova, Koç - entelektüel ve özgür ruhlar',
-      ZodiacSign.cancer: 'Akrep, Balık, Boğa - duygusal ve koruyucu kalpler',
-      ZodiacSign.leo: 'Yay, Koç, Terazi - parlak ve cömert ruhlar',
-      ZodiacSign.virgo: 'Oğlak, Boğa, Akrep - detaycı ve sadık kalpler',
-      ZodiacSign.libra: 'Kova, İkizler, Aslan - uyumlu ve estetik ruhlar',
-      ZodiacSign.scorpio: 'Balık, Yengeç, Başak - derin ve tutkulu kalpler',
-      ZodiacSign.sagittarius: 'Koç, Aslan, Kova - maceraperest ve özgür ruhlar',
-      ZodiacSign.capricorn: 'Boğa, Başak, Balık - kararlı ve sadık kalpler',
-      ZodiacSign.aquarius: 'İkizler, Terazi, Yay - yenilikçi ve bağımsız ruhlar',
-      ZodiacSign.pisces: 'Yengeç, Akrep, Oğlak - romantik ve şefkatli kalpler',
-    };
-    return soulmates[sign] ?? 'tüm burçlarla uyum potansiyeli var';
+  String _getSoulMateCompatibility(ZodiacSign sign, AppLanguage language) {
+    final signKey = sign.name.toLowerCase();
+    return L10nService.get('home.zodiac.soulmate_compatibility.$signKey', language) ??
+        L10nService.get('home.zodiac.soulmate_compatibility.default', language);
   }
 
-  String _getLoveAdvice(ZodiacSign sign) {
-    final advices = {
-      ZodiacSign.aries: 'Sabırlı ol, ani kararlar verme. Doğru kişi seni bekletmeye değer.',
-      ZodiacSign.taurus: 'Değişime açık ol. Bazen konfor alanından çıkmak gerekir.',
-      ZodiacSign.gemini: 'Bir ilişkiye odaklan. Çok seçenek bazen kafa karıştırır.',
-      ZodiacSign.cancer: 'Kalbin kabuğunu aç. Korunmak için herkesi uzak tutma.',
-      ZodiacSign.leo: 'Bazen arka planda dur. İlişki iki kişiliktir.',
-      ZodiacSign.virgo: 'Mükemmeliyetçiliği bırak. Kusursuz aşk diye bir şey yok.',
-      ZodiacSign.libra: 'Kendi sesini dinle. Herkesi memnun etmeye çalışma.',
-      ZodiacSign.scorpio: 'Güvenmeyi öğren. Herkes seni incitmeye çalışmıyor.',
-      ZodiacSign.sagittarius: 'Özgürlüğünü korurken bağlanmayı da öğren.',
-      ZodiacSign.capricorn: 'İşi bir kenara bırak, duygularına yer aç.',
-      ZodiacSign.aquarius: 'Duygusal mesafeyi azalt. Yakınlık zayıflık değil.',
-      ZodiacSign.pisces: 'Gerçekçi ol. Hayallerdeki aşk yerine gerçek olanı gör.',
-    };
-    return advices[sign] ?? 'Kalbini aç, sevgiye izin ver.';
+  String _getLoveAdvice(ZodiacSign sign, AppLanguage language) {
+    final signKey = sign.name.toLowerCase();
+    return L10nService.get('home.zodiac.love_advice.$signKey', language) ??
+        L10nService.get('home.zodiac.love_advice.default', language);
   }
 
-  String _getDailyMessage(ZodiacSign sign) {
-    final messages = {
-      ZodiacSign.aries: 'Bugün cesaretin ödüllendirilecek. Korkularını yenmeye hazır ol!',
-      ZodiacSign.taurus: 'Bugün hak ettiğini alacaksın. Sabır meyvesini veriyor.',
-      ZodiacSign.gemini: 'Bugün iletişim gücün dorukta. Fikirlerini paylaş!',
-      ZodiacSign.cancer: 'Bugün sezgilerin seni doğru yöne götürecek. Güven!',
-      ZodiacSign.leo: 'Bugün parlama zamanı. Sahne senin, ışığını göster!',
-      ZodiacSign.virgo: 'Bugün detaylar önemli. Dikkatli ol, fırsatlar gizli.',
-      ZodiacSign.libra: 'Bugün denge günü. Uyum kur, güzellik yarat.',
-      ZodiacSign.scorpio: 'Bugün dönüşüm zamanı. Eskiyi bırak, yeniye hazır ol.',
-      ZodiacSign.sagittarius: 'Bugün macera günü. Yeni deneyimlere açık ol!',
-      ZodiacSign.capricorn: 'Bugün başarı günü. Hedeflerine bir adım daha yaklaş.',
-      ZodiacSign.aquarius: 'Bugün yenilik günü. Farklı ol, fark yarat!',
-      ZodiacSign.pisces: 'Bugün yaratıcılık günü. Hayal gücünü kullan!',
-    };
-    return messages[sign] ?? 'Bugün senin günün!';
+  String _getDailyMessage(ZodiacSign sign, AppLanguage language) {
+    final signKey = sign.name.toLowerCase();
+    return L10nService.get('home.zodiac.daily_message.$signKey', language) ??
+        L10nService.get('home.zodiac.daily_message.default', language);
   }
 
-  String _getDailyEnergy(ZodiacSign sign) {
-    final energies = ['Pozitif', 'Güçlü', 'Yaratıcı', 'Tutkulu', 'Dengeli', 'Huzurlu', 'Enerjik', 'Sezgisel'];
-    final index = (DateTime.now().day + sign.index) % energies.length;
-    return energies[index];
+  String _getDailyEnergy(ZodiacSign sign, AppLanguage language) {
+    final energyKeys = ['positive', 'strong', 'creative', 'passionate', 'balanced', 'peaceful', 'energetic', 'intuitive'];
+    final index = (DateTime.now().day + sign.index) % energyKeys.length;
+    return L10nService.get('home.zodiac.daily_energy.${energyKeys[index]}', language);
   }
 
   // Burç uyumu hesaplama fonksiyonları
-  String _getCompatibilityWithAries(ZodiacSign userSign) {
-    final compatibilities = {
-      ZodiacSign.aries: '🔥🔥🔥 Mükemmel! İki ateş bir arada.',
-      ZodiacSign.taurus: '⚠️ Zorlu. Sabır gerekli.',
-      ZodiacSign.gemini: '✨ Harika! Maceraperest ikili.',
-      ZodiacSign.cancer: '💔 Zor. Anlayış şart.',
-      ZodiacSign.leo: '🔥🔥 Süper! Tutku patlaması.',
-      ZodiacSign.virgo: '😐 Orta. Denge bulunmalı.',
-      ZodiacSign.libra: '💕 İyi! Zıt ama çekici.',
-      ZodiacSign.scorpio: '🌋 Yoğun! Ya harika ya felaket.',
-      ZodiacSign.sagittarius: '🎯 Mükemmel! En uyumlu çift.',
-      ZodiacSign.capricorn: '😅 Zorlu ama güçlü olabilir.',
-      ZodiacSign.aquarius: '💫 İyi! Bağımsız ruhlar.',
-      ZodiacSign.pisces: '🌊 Karışık. Nazik ol.',
-    };
-    return compatibilities[userSign] ?? 'Analiz ediliyor...';
+  String _getCompatibilityWithAries(ZodiacSign userSign, AppLanguage language) {
+    final signKey = userSign.name.toLowerCase();
+    return L10nService.get('home.zodiac.compatibility.aries.$signKey', language) ??
+        L10nService.get('home.zodiac.compatibility.aries.default', language);
   }
 
-  String _getCompatibilityWithScorpio(ZodiacSign userSign) {
-    final compatibilities = {
-      ZodiacSign.aries: '🌋 Yoğun! Tutku dolu.',
-      ZodiacSign.taurus: '💕💕 Harika! Mükemmel çekim.',
-      ZodiacSign.gemini: '😰 Zor. Derinlik farkı.',
-      ZodiacSign.cancer: '🌊💕 Mükemmel! Su uyumu.',
-      ZodiacSign.leo: '🔥⚡ Güç savaşı!',
-      ZodiacSign.virgo: '✨ İyi! Güven inşa edilirse.',
-      ZodiacSign.libra: '😐 Orta. Derinlik farkı.',
-      ZodiacSign.scorpio: '🦂🦂 Yoğun! Ya ruh eşi ya düşman.',
-      ZodiacSign.sagittarius: '⚠️ Zorlu. Güven sorunu.',
-      ZodiacSign.capricorn: '💪 Güçlü! Güç çifti.',
-      ZodiacSign.aquarius: '❄️ Çok zor. Zıt kutuplar.',
-      ZodiacSign.pisces: '💕💕💕 EN İYİ! Ruhsal bağ.',
-    };
-    return compatibilities[userSign] ?? 'Analiz ediliyor...';
+  String _getCompatibilityWithScorpio(ZodiacSign userSign, AppLanguage language) {
+    final signKey = userSign.name.toLowerCase();
+    return L10nService.get('home.zodiac.compatibility.scorpio.$signKey', language) ??
+        L10nService.get('home.zodiac.compatibility.scorpio.default', language);
   }
 
-  String _getCompatibilityWithLeo(ZodiacSign userSign) {
-    final compatibilities = {
-      ZodiacSign.aries: '🔥🔥 Süper! Ateş uyumu.',
-      ZodiacSign.taurus: '😤 Zorlu. İkisi de inatçı.',
-      ZodiacSign.gemini: '🎭 İyi! Eğlenceli çift.',
-      ZodiacSign.cancer: '🏠 Aile odaklı olabilir.',
-      ZodiacSign.leo: '👑👑 Harika veya felaket.',
-      ZodiacSign.virgo: '😐 Orta. Denge zor.',
-      ZodiacSign.libra: '💕 Mükemmel! Romantik çift.',
-      ZodiacSign.scorpio: '⚡ Güç savaşı!',
-      ZodiacSign.sagittarius: '🔥🎯 Harika! Macera dolu.',
-      ZodiacSign.capricorn: '🏆 Güç çifti olabilir.',
-      ZodiacSign.aquarius: '💫 Zıt ama çekici.',
-      ZodiacSign.pisces: '🌊 Romantik. Hayran olur.',
-    };
-    return compatibilities[userSign] ?? 'Analiz ediliyor...';
+  String _getCompatibilityWithLeo(ZodiacSign userSign, AppLanguage language) {
+    final signKey = userSign.name.toLowerCase();
+    return L10nService.get('home.zodiac.compatibility.leo.$signKey', language) ??
+        L10nService.get('home.zodiac.compatibility.leo.default', language);
   }
 
-  String _getCompatibilityWithGemini(ZodiacSign userSign) {
-    final compatibilities = {
-      ZodiacSign.aries: '✨ Harika! Enerjik.',
-      ZodiacSign.taurus: '😅 Zorlu. Hız farkı.',
-      ZodiacSign.gemini: '💬💬 İlginç! Eğlenceli.',
-      ZodiacSign.cancer: '🌙 Duygusal zorluklar.',
-      ZodiacSign.leo: '🎭 İyi! Sosyal çift.',
-      ZodiacSign.virgo: '🧠 Zihinsel uyum.',
-      ZodiacSign.libra: '💕💕 Mükemmel! Hava uyumu.',
-      ZodiacSign.scorpio: '😰 Çok zor. Derinlik farkı.',
-      ZodiacSign.sagittarius: '🎯✈️ Harika! Macera.',
-      ZodiacSign.capricorn: '📊 Zorlu. Ciddiyet farkı.',
-      ZodiacSign.aquarius: '💫💫 Süper! Entelektüel.',
-      ZodiacSign.pisces: '🌊 Karışık. Köprü kurun.',
-    };
-    return compatibilities[userSign] ?? 'Analiz ediliyor...';
+  String _getCompatibilityWithGemini(ZodiacSign userSign, AppLanguage language) {
+    final signKey = userSign.name.toLowerCase();
+    return L10nService.get('home.zodiac.compatibility.gemini.$signKey', language) ??
+        L10nService.get('home.zodiac.compatibility.gemini.default', language);
   }
 
   @override
@@ -3187,7 +3016,7 @@ class _KozmozMasterSectionState extends ConsumerState<_KozmozMasterSection> {
                           ),
                           const SizedBox(height: 4),
                           Text(
-                            '${sign.nameTr} burcu için kişiselleştirilmiş kozmik rehberlik',
+                            L10nService.getWithParams('home.zodiac.personalized_guidance', language, params: {'sign': sign.getLocalizedName(language)}),
                             style: TextStyle(
                               color: Colors.white70,
                               fontSize: 13,
@@ -3441,7 +3270,7 @@ class _KozmozMasterSectionState extends ConsumerState<_KozmozMasterSection> {
                           Icon(Icons.lightbulb_outline, color: Colors.amber, size: 16),
                           const SizedBox(width: 6),
                           Text(
-                            'Başka sorular',
+                            L10nService.get('home.other_questions', language),
                             style: TextStyle(
                               color: Colors.amber,
                               fontWeight: FontWeight.bold,
@@ -3575,7 +3404,7 @@ class _AiChatSectionState extends ConsumerState<_AiChatSection> {
           context: question,
         );
       } else {
-        response = _generateSmartLocalResponse(question, sign);
+        response = _generateSmartLocalResponse(question, sign, ref.read(languageProvider));
       }
 
       setState(() {
@@ -3608,24 +3437,24 @@ class _AiChatSectionState extends ConsumerState<_AiChatSection> {
     return AdviceArea.spiritual;
   }
 
-  String _generateSmartLocalResponse(String question, ZodiacSign sign) {
+  String _generateSmartLocalResponse(String question, ZodiacSign sign, AppLanguage language) {
     final lowerQuestion = question.toLowerCase();
 
     // Burç uyumu ve dedikodu soruları
     if (lowerQuestion.contains('koç') && (lowerQuestion.contains('erkek') || lowerQuestion.contains('kadın') || lowerQuestion.contains('anlaş'))) {
-      return '♈ Koç erkeği/kadınıyla ilişki mi düşünüyorsun? ${sign.nameTr} burcu olarak şunu bilmelisin:\n\n🔥 Koç burçları ateşli, tutkulu ve sabırsızdır. İlk adımı onlar atmak ister!\n\n💕 Seninle uyumu: ${_getCompatibilityWithAries(sign)}\n\n⚠️ Dikkat: Koçlar çabuk sıkılabilir, heyecanı canlı tut. Meydan okumayı severler ama ego çatışmalarından kaçın.\n\n💡 İpucu: Bağımsızlıklarına saygı göster, maceraya ortak ol!';
+      return '♈ Koç erkeği/kadınıyla ilişki mi düşünüyorsun? ${sign.nameTr} burcu olarak şunu bilmelisin:\n\n🔥 Koç burçları ateşli, tutkulu ve sabırsızdır. İlk adımı onlar atmak ister!\n\n💕 Seninle uyumu: ${_getCompatibilityWithAries(sign, language)}\n\n⚠️ Dikkat: Koçlar çabuk sıkılabilir, heyecanı canlı tut. Meydan okumayı severler ama ego çatışmalarından kaçın.\n\n💡 İpucu: Bağımsızlıklarına saygı göster, maceraya ortak ol!';
     }
 
     if (lowerQuestion.contains('akrep') && (lowerQuestion.contains('kadın') || lowerQuestion.contains('erkek') || lowerQuestion.contains('gizemli'))) {
-      return '♏ Akrep burçları yüzyılın en gizemli ve yoğun aşıklarıdır!\n\n🔮 Neden gizemli? Pluto\'nun çocukları olarak derinliklerde yaşarlar. Duygularını kolay açmazlar ama bir kez bağlandılar mı ölümüne sadıktırlar.\n\n${sign.nameTr} burcu olarak seninle uyumu: ${_getCompatibilityWithScorpio(sign)}\n\n⚠️ Dikkat: Kıskançlık ve sahiplenme güçlü olabilir. Güven inşa et, sırlarını paylaş.\n\n💋 Bonus: Yatakta en tutkulu burçlardan biri... 🔥';
+      return '♏ Akrep burçları yüzyılın en gizemli ve yoğun aşıklarıdır!\n\n🔮 Neden gizemli? Pluto\'nun çocukları olarak derinliklerde yaşarlar. Duygularını kolay açmazlar ama bir kez bağlandılar mı ölümüne sadıktırlar.\n\n${sign.nameTr} burcu olarak seninle uyumu: ${_getCompatibilityWithScorpio(sign, language)}\n\n⚠️ Dikkat: Kıskançlık ve sahiplenme güçlü olabilir. Güven inşa et, sırlarını paylaş.\n\n💋 Bonus: Yatakta en tutkulu burçlardan biri... 🔥';
     }
 
     if (lowerQuestion.contains('aslan') && (lowerQuestion.contains('ilgi') || lowerQuestion.contains('bekler') || lowerQuestion.contains('ego'))) {
-      return '♌ Aslan burçları neden sürekli ilgi bekler?\n\n👑 Güneş\'in çocukları olarak doğuştan "star" olarak doğdular! İlgi ve takdir onların oksijeni.\n\n🎭 Gerçek: Aslında çok cömert ve sıcak kalplidirler. İlgi istedikleri kadar sevgi de verirler.\n\n${sign.nameTr} burcu olarak seninle uyumu: ${_getCompatibilityWithLeo(sign)}\n\n💡 İpucu: Onları öv, takdir et, sahneyi paylaş. Karşılığında en sadık ve koruyucu partnere sahip olursun!';
+      return '♌ Aslan burçları neden sürekli ilgi bekler?\n\n👑 Güneş\'in çocukları olarak doğuştan "star" olarak doğdular! İlgi ve takdir onların oksijeni.\n\n🎭 Gerçek: Aslında çok cömert ve sıcak kalplidirler. İlgi istedikleri kadar sevgi de verirler.\n\n${sign.nameTr} burcu olarak seninle uyumu: ${_getCompatibilityWithLeo(sign, language)}\n\n💡 İpucu: Onları öv, takdir et, sahneyi paylaş. Karşılığında en sadık ve koruyucu partnere sahip olursun!';
     }
 
     if (lowerQuestion.contains('ikizler') && (lowerQuestion.contains('karar') || lowerQuestion.contains('veremez') || lowerQuestion.contains('değişken'))) {
-      return '♊ İkizler neden karar veremez?\n\n🌀 Merkür\'ün çocukları olarak çift taraflı düşünürler - her şeyin iki yüzünü görürler!\n\n💬 Gerçek: Aslında karar verememe değil, tüm seçenekleri değerlendirme ihtiyacı. Çok zekiler!\n\n${sign.nameTr} burcu olarak seninle uyumu: ${_getCompatibilityWithGemini(sign)}\n\n⚠️ Dikkat: Sıkılabilirler, entelektüel uyarılma şart. Konuşma, tartışma, fikir alışverişi anahtar!\n\n😜 Bonus: İkizlerle asla sıkılmazsın - her gün farklı bir insan gibidirler!';
+      return '♊ İkizler neden karar veremez?\n\n🌀 Merkür\'ün çocukları olarak çift taraflı düşünürler - her şeyin iki yüzünü görürler!\n\n💬 Gerçek: Aslında karar verememe değil, tüm seçenekleri değerlendirme ihtiyacı. Çok zekiler!\n\n${sign.nameTr} burcu olarak seninle uyumu: ${_getCompatibilityWithGemini(sign, language)}\n\n⚠️ Dikkat: Sıkılabilirler, entelektüel uyarılma şart. Konuşma, tartışma, fikir alışverişi anahtar!\n\n😜 Bonus: İkizlerle asla sıkılmazsın - her gün farklı bir insan gibidirler!';
     }
 
     if (lowerQuestion.contains('ateş') && lowerQuestion.contains('su')) {
@@ -3724,7 +3553,7 @@ class _AiChatSectionState extends ConsumerState<_AiChatSection> {
   }
 
   // Burç uyumu hesaplama fonksiyonları
-  String _getCompatibilityWithAries(ZodiacSign userSign) {
+  String _getCompatibilityWithAries(ZodiacSign userSign, AppLanguage language) {
     final compatibilities = {
       ZodiacSign.aries: '🔥🔥🔥 Mükemmel! İki ateş bir arada - tutku patlaması. Ama ego çatışmasına dikkat!',
       ZodiacSign.taurus: '⚠️ Zorlu. Koç hızlı, Boğa yavaş. Sabır gerekli, ama zıtlıklar çeker.',
@@ -3742,7 +3571,7 @@ class _AiChatSectionState extends ConsumerState<_AiChatSection> {
     return compatibilities[userSign] ?? 'Burç uyumunuz analiz ediliyor...';
   }
 
-  String _getCompatibilityWithScorpio(ZodiacSign userSign) {
+  String _getCompatibilityWithScorpio(ZodiacSign userSign, AppLanguage language) {
     final compatibilities = {
       ZodiacSign.aries: '🌋 Yoğun! İkisi de tutkulu. Savaş ya da aşk - ortası yok.',
       ZodiacSign.taurus: '💕💕 Harika! Karşı burçlar ama mükemmel çekim. Derin bağ potansiyeli.',
@@ -3760,7 +3589,7 @@ class _AiChatSectionState extends ConsumerState<_AiChatSection> {
     return compatibilities[userSign] ?? 'Burç uyumunuz analiz ediliyor...';
   }
 
-  String _getCompatibilityWithLeo(ZodiacSign userSign) {
+  String _getCompatibilityWithLeo(ZodiacSign userSign, AppLanguage language) {
     final compatibilities = {
       ZodiacSign.aries: '🔥🔥 Süper! Ateş + Ateş. Tutku var ama ego kontrolü şart.',
       ZodiacSign.taurus: '😤 Zorlu. İkisi de inatçı. Ama çekim güçlü.',
@@ -3778,7 +3607,7 @@ class _AiChatSectionState extends ConsumerState<_AiChatSection> {
     return compatibilities[userSign] ?? 'Burç uyumunuz analiz ediliyor...';
   }
 
-  String _getCompatibilityWithGemini(ZodiacSign userSign) {
+  String _getCompatibilityWithGemini(ZodiacSign userSign, AppLanguage language) {
     final compatibilities = {
       ZodiacSign.aries: '✨ Harika! Enerjik ve eğlenceli. Hiç sıkılmaz.',
       ZodiacSign.taurus: '😅 Zorlu. Boğa yavaş, İkizler hızlı. Sabır lazım.',
@@ -3798,6 +3627,7 @@ class _AiChatSectionState extends ConsumerState<_AiChatSection> {
 
   @override
   Widget build(BuildContext context) {
+    final language = ref.watch(languageProvider);
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -4070,7 +3900,7 @@ class _AiChatSectionState extends ConsumerState<_AiChatSection> {
                     Icon(Icons.lightbulb_outline, color: Colors.amber, size: 16),
                     const SizedBox(width: 6),
                     Text(
-                      'Popüler Sorular',
+                      L10nService.get('home.zodiac.popular_questions', language),
                       style: Theme.of(context).textTheme.labelMedium?.copyWith(
                             color: Colors.amber,
                             fontWeight: FontWeight.bold,

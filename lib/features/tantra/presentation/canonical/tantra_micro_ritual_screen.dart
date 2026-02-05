@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/constants/routes.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../data/services/l10n_service.dart';
+import '../../../../data/providers/app_providers.dart';
 
-/// Tantra Mikro Ritüel - AI-First Canonical Sayfa
-/// 2-3 satır, fiziksel yönlendirme YOK, cinsel ima YOK
-/// Story-safe, marka izi görünür
-class TantraMicroRitualScreen extends StatelessWidget {
+/// Tantra Mikro Rituel - AI-First Canonical Sayfa
+/// 2-3 satir, fiziksel yonlendirme YOK, cinsel ima YOK
+/// Story-safe, marka izi gorunur
+class TantraMicroRitualScreen extends ConsumerWidget {
   const TantraMicroRitualScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final AppLanguage language = ref.watch(languageProvider);
     final today = DateTime.now();
     final ritual = _getDailyRitual(today);
 
@@ -41,7 +45,7 @@ class TantraMicroRitualScreen extends StatelessWidget {
                       icon: Icon(Icons.arrow_back_ios, color: isDark ? Colors.white70 : AppColors.textDark),
                     ),
                     const Spacer(),
-                    _buildDateBadge(context, isDark, today),
+                    _buildDateBadge(context, isDark, today, language),
                   ],
                 ),
                 const SizedBox(height: 48),
@@ -55,7 +59,7 @@ class TantraMicroRitualScreen extends StatelessWidget {
 
                 // Title
                 Text(
-                  'Bugünün Mikro Ritüeli',
+                  L10nService.get('screens.tantra_micro_ritual.todays_micro_ritual', language),
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
@@ -67,7 +71,7 @@ class TantraMicroRitualScreen extends StatelessWidget {
 
                 // Ritual Name
                 Text(
-                  ritual.name,
+                  L10nService.get('screens.tantra_micro_ritual.rituals.${ritual.key}.name', language),
                   style: TextStyle(
                     fontSize: 28,
                     fontWeight: FontWeight.w600,
@@ -79,7 +83,7 @@ class TantraMicroRitualScreen extends StatelessWidget {
                 const SizedBox(height: 8),
 
                 // Tag
-                _buildTag('Tantra', const Color(0xFFE57373)),
+                _buildTag(L10nService.get('screens.tantra_micro_ritual.tantra_tag', language), const Color(0xFFE57373)),
                 const SizedBox(height: 48),
 
                 // Core Message Box - 2-3 lines
@@ -99,7 +103,7 @@ class TantraMicroRitualScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       Text(
-                        ritual.instruction,
+                        L10nService.get('screens.tantra_micro_ritual.rituals.${ritual.key}.instruction', language),
                         style: TextStyle(
                           fontSize: 18,
                           height: 1.6,
@@ -122,11 +126,11 @@ class TantraMicroRitualScreen extends StatelessWidget {
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Text('✨', style: TextStyle(fontSize: 20)),
+                      const Text('\u2728', style: TextStyle(fontSize: 20)),
                       const SizedBox(width: 12),
                       Flexible(
                         child: Text(
-                          ritual.intention,
+                          L10nService.get('screens.tantra_micro_ritual.rituals.${ritual.key}.intention', language),
                           style: TextStyle(
                             fontSize: 15,
                             fontStyle: FontStyle.italic,
@@ -140,12 +144,18 @@ class TantraMicroRitualScreen extends StatelessWidget {
                 const SizedBox(height: 64),
 
                 // Suggestion Box - Link to Dreams
-                _buildSuggestion(context, isDark, '🌙', 'Rüya İzi\'ni keşfet', Routes.dreamRecurring),
+                _buildSuggestion(
+                  context,
+                  isDark,
+                  '\ud83c\udf19',
+                  L10nService.get('screens.tantra_micro_ritual.discover_dream_trace', language),
+                  Routes.dreamRecurring,
+                ),
                 const SizedBox(height: 48),
 
                 // Footer
                 Text(
-                  'Tantra — Venus One',
+                  L10nService.get('screens.tantra_micro_ritual.brand_footer', language),
                   style: TextStyle(fontSize: 12, color: isDark ? Colors.white38 : AppColors.textLight),
                 ),
                 const SizedBox(height: 20),
@@ -157,8 +167,12 @@ class TantraMicroRitualScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildDateBadge(BuildContext context, bool isDark, DateTime date) {
-    final months = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
+  Widget _buildDateBadge(BuildContext context, bool isDark, DateTime date, AppLanguage language) {
+    final monthKeys = [
+      'january', 'february', 'march', 'april', 'may', 'june',
+      'july', 'august', 'september', 'october', 'november', 'december'
+    ];
+    final monthName = L10nService.get('screens.tantra_micro_ritual.months.${monthKeys[date.month - 1]}', language);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       decoration: BoxDecoration(
@@ -166,7 +180,7 @@ class TantraMicroRitualScreen extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
       ),
       child: Text(
-        '${date.day} ${months[date.month - 1]}',
+        '${date.day} $monthName',
         style: TextStyle(
           fontSize: 13,
           fontWeight: FontWeight.w500,
@@ -214,61 +228,22 @@ class TantraMicroRitualScreen extends StatelessWidget {
   }
 
   static final List<_MicroRitual> _rituals = [
-    _MicroRitual(
-      emoji: '🕯️',
-      name: 'Nefes Farkındalığı',
-      instruction: 'Gözlerini kapat. Üç derin nefes al. Her nefeste "şimdi buradayım" de.',
-      intention: 'Farkındalık başlangıçtır.',
-    ),
-    _MicroRitual(
-      emoji: '🌸',
-      name: 'Kalp Dinleme',
-      instruction: 'Elini kalbinin üzerine koy. Bir dakika sadece kalbinin sesini dinle.',
-      intention: 'Kalp bilir.',
-    ),
-    _MicroRitual(
-      emoji: '🌊',
-      name: 'Akış Niyeti',
-      instruction: 'Bugün bir şeyi zorlamak yerine akışa bırak. Sadece izle ne olacağını.',
-      intention: 'Kontrol bırakılınca akış başlar.',
-    ),
-    _MicroRitual(
-      emoji: '✨',
-      name: 'Minnet Anı',
-      instruction: 'Bugün için minnettar olduğun üç şeyi içinden say. Hisset.',
-      intention: 'Minnet kapıları açar.',
-    ),
-    _MicroRitual(
-      emoji: '🌙',
-      name: 'Sessizlik Dakikası',
-      instruction: 'Bir dakika hiçbir şey yapma. Sadece ol.',
-      intention: 'Sessizlikte cevaplar var.',
-    ),
-    _MicroRitual(
-      emoji: '🔥',
-      name: 'Niyet Belirleme',
-      instruction: 'Bugün için tek bir niyet belirle. Onu içinden üç kez tekrarla.',
-      intention: 'Niyet yön verir.',
-    ),
-    _MicroRitual(
-      emoji: '💫',
-      name: 'Beden Taraması',
-      instruction: 'Ayak parmaklarından başa kadar bedenini tara. Gergin yerlerini fark et.',
-      intention: 'Fark etmek ilk adımdır.',
-    ),
+    _MicroRitual(emoji: '\ud83d\udd6f\ufe0f', key: 'breath_awareness'),
+    _MicroRitual(emoji: '\ud83c\udf38', key: 'heart_listening'),
+    _MicroRitual(emoji: '\ud83c\udf0a', key: 'flow_intention'),
+    _MicroRitual(emoji: '\u2728', key: 'gratitude_moment'),
+    _MicroRitual(emoji: '\ud83c\udf19', key: 'silence_minute'),
+    _MicroRitual(emoji: '\ud83d\udd25', key: 'intention_setting'),
+    _MicroRitual(emoji: '\ud83d\udcab', key: 'body_scan'),
   ];
 }
 
 class _MicroRitual {
   final String emoji;
-  final String name;
-  final String instruction;
-  final String intention;
+  final String key;
 
   const _MicroRitual({
     required this.emoji,
-    required this.name,
-    required this.instruction,
-    required this.intention,
+    required this.key,
   });
 }

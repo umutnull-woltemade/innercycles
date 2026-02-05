@@ -6,6 +6,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import '../../../core/theme/app_colors.dart';
@@ -13,6 +14,8 @@ import '../../../core/theme/mystical_colors.dart';
 import '../../../core/theme/spacing.dart';
 import '../../../data/models/dream_interpretation_models.dart';
 import '../../../data/content/dream_symbols_database.dart';
+import '../../../data/providers/app_providers.dart';
+import '../../../data/services/l10n_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 
 // ============================================================================
@@ -20,14 +23,14 @@ import '../../../shared/widgets/cosmic_background.dart';
 // ============================================================================
 
 /// Ana ruya sembolleri sozluk ekrani
-class DreamGlossaryScreen extends StatefulWidget {
+class DreamGlossaryScreen extends ConsumerStatefulWidget {
   const DreamGlossaryScreen({super.key});
 
   @override
-  State<DreamGlossaryScreen> createState() => _DreamGlossaryScreenState();
+  ConsumerState<DreamGlossaryScreen> createState() => _DreamGlossaryScreenState();
 }
 
-class _DreamGlossaryScreenState extends State<DreamGlossaryScreen>
+class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
     with SingleTickerProviderStateMixin {
   final TextEditingController _searchController = TextEditingController();
   final ScrollController _scrollController = ScrollController();
@@ -54,22 +57,22 @@ class _DreamGlossaryScreenState extends State<DreamGlossaryScreen>
     'T', 'U', 'V', 'Y', 'Z'
   ];
 
-  // Categories with labels
-  static const List<_CategoryItem> _categories = [
-    _CategoryItem(null, 'Tumu', ''),
-    _CategoryItem(SymbolCategory.hayvan, 'Hayvanlar', ''),
-    _CategoryItem(SymbolCategory.dogaOlayi, 'Doga', ''),
-    _CategoryItem(SymbolCategory.insan, 'Insanlar', ''),
-    _CategoryItem(SymbolCategory.mekan, 'Mekanlar', ''),
-    _CategoryItem(SymbolCategory.eylem, 'Eylemler', ''),
-    _CategoryItem(SymbolCategory.nesne, 'Nesneler', ''),
-    _CategoryItem(SymbolCategory.soyut, 'Soyut', ''),
+  // Categories with labels - built dynamically with language
+  List<_CategoryItem> _buildCategories(AppLanguage language) => [
+    _CategoryItem(null, L10nService.get('screens.dream_glossary.categories.all', language), ''),
+    _CategoryItem(SymbolCategory.hayvan, L10nService.get('screens.dream_glossary.categories.animals', language), ''),
+    _CategoryItem(SymbolCategory.dogaOlayi, L10nService.get('screens.dream_glossary.categories.nature', language), ''),
+    _CategoryItem(SymbolCategory.insan, L10nService.get('screens.dream_glossary.categories.people', language), ''),
+    _CategoryItem(SymbolCategory.mekan, L10nService.get('screens.dream_glossary.categories.places', language), ''),
+    _CategoryItem(SymbolCategory.eylem, L10nService.get('screens.dream_glossary.categories.actions', language), ''),
+    _CategoryItem(SymbolCategory.nesne, L10nService.get('screens.dream_glossary.categories.objects', language), ''),
+    _CategoryItem(SymbolCategory.soyut, L10nService.get('screens.dream_glossary.categories.abstract', language), ''),
   ];
 
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: _categories.length, vsync: this);
+    _tabController = TabController(length: 8, vsync: this); // 8 categories
     _tabController.addListener(_onTabChanged);
     _filterSymbols();
     _personalDictionary.init();
@@ -87,8 +90,10 @@ class _DreamGlossaryScreenState extends State<DreamGlossaryScreen>
 
   void _onTabChanged() {
     if (_tabController.indexIsChanging) return;
+    final language = ref.read(languageProvider);
+    final categories = _buildCategories(language);
     setState(() {
-      _selectedCategory = _categories[_tabController.index].category;
+      _selectedCategory = categories[_tabController.index].category;
       _filterSymbols();
     });
   }
@@ -151,7 +156,7 @@ class _DreamGlossaryScreenState extends State<DreamGlossaryScreen>
     );
   }
 
-  void _showSymbolDetails(DreamSymbolData symbol) {
+  void _showSymbolDetails(DreamSymbolData symbol, AppLanguage language) {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -159,6 +164,7 @@ class _DreamGlossaryScreenState extends State<DreamGlossaryScreen>
       builder: (context) => _SymbolDetailSheet(
         symbol: symbol,
         personalDictionary: _personalDictionary,
+        language: language,
         onDreamed: () {
           _personalDictionary.markAsDreamed(symbol.symbol);
           setState(() {});
@@ -169,19 +175,22 @@ class _DreamGlossaryScreenState extends State<DreamGlossaryScreen>
 
   @override
   Widget build(BuildContext context) {
+    final language = ref.watch(languageProvider);
+    final categories = _buildCategories(language);
+
     return Scaffold(
       body: CosmicBackground(
         child: SafeArea(
           child: Column(
             children: [
               // Header
-              _buildHeader(context),
+              _buildHeader(context, language),
 
               // Search bar
-              _buildSearchBar(),
+              _buildSearchBar(language),
 
               // Category tabs
-              _buildCategoryTabs(),
+              _buildCategoryTabs(categories),
 
               // Content with alphabet sidebar
               Expanded(
@@ -189,7 +198,7 @@ class _DreamGlossaryScreenState extends State<DreamGlossaryScreen>
                   children: [
                     // Main content
                     Expanded(
-                      child: _buildSymbolGrid(),
+                      child: _buildSymbolGrid(language),
                     ),
 
                     // Alphabet sidebar
@@ -204,7 +213,7 @@ class _DreamGlossaryScreenState extends State<DreamGlossaryScreen>
     );
   }
 
-  Widget _buildHeader(BuildContext context) {
+  Widget _buildHeader(BuildContext context, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: BoxDecoration(
@@ -246,14 +255,15 @@ class _DreamGlossaryScreenState extends State<DreamGlossaryScreen>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Ruya Sembolleri',
+                  L10nService.get('screens.dream_glossary.title', language),
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
                         color: AppColors.textPrimary,
                         fontWeight: FontWeight.bold,
                       ),
                 ),
                 Text(
-                  '${DreamSymbolsDatabase.allSymbols.length} sembol',
+                  L10nService.get('screens.dream_glossary.symbol_count', language)
+                      .replaceAll('{count}', '${DreamSymbolsDatabase.allSymbols.length}'),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: AppColors.textSecondary,
                       ),
@@ -263,16 +273,16 @@ class _DreamGlossaryScreenState extends State<DreamGlossaryScreen>
           ),
           // Personal dictionary button
           IconButton(
-            onPressed: () => _showPersonalDictionary(),
+            onPressed: () => _showPersonalDictionary(language),
             icon: const Icon(Icons.bookmark, color: MysticalColors.starGold),
-            tooltip: 'Kisisel Sozlugum',
+            tooltip: L10nService.get('screens.dream_glossary.personal_dictionary', language),
           ),
         ],
       ),
     ).animate().fadeIn(duration: 400.ms).slideY(begin: -0.2, end: 0);
   }
 
-  Widget _buildSearchBar() {
+  Widget _buildSearchBar(AppLanguage language) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Container(
@@ -294,7 +304,7 @@ class _DreamGlossaryScreenState extends State<DreamGlossaryScreen>
           style: const TextStyle(color: AppColors.textPrimary),
           onChanged: _onSearchChanged,
           decoration: InputDecoration(
-            hintText: 'Sembol ara...',
+            hintText: L10nService.get('screens.dream_glossary.search_hint', language),
             hintStyle: TextStyle(color: AppColors.textSecondary.withOpacity(0.6)),
             prefixIcon: const Icon(Icons.search, color: MysticalColors.starGold),
             suffixIcon: _searchQuery.isNotEmpty
@@ -317,7 +327,7 @@ class _DreamGlossaryScreenState extends State<DreamGlossaryScreen>
     ).animate().fadeIn(delay: 100.ms).slideY(begin: 0.1, end: 0);
   }
 
-  Widget _buildCategoryTabs() {
+  Widget _buildCategoryTabs(List<_CategoryItem> categories) {
     return Container(
       height: 44,
       margin: const EdgeInsets.only(bottom: 8),
@@ -339,7 +349,7 @@ class _DreamGlossaryScreenState extends State<DreamGlossaryScreen>
           fontSize: 13,
         ),
         dividerColor: Colors.transparent,
-        tabs: _categories.map((cat) {
+        tabs: categories.map((cat) {
           return Tab(
             child: Row(
               mainAxisSize: MainAxisSize.min,
@@ -357,7 +367,7 @@ class _DreamGlossaryScreenState extends State<DreamGlossaryScreen>
     ).animate().fadeIn(delay: 150.ms);
   }
 
-  Widget _buildSymbolGrid() {
+  Widget _buildSymbolGrid(AppLanguage language) {
     if (_filteredSymbols.isEmpty) {
       return Center(
         child: Column(
@@ -366,14 +376,14 @@ class _DreamGlossaryScreenState extends State<DreamGlossaryScreen>
             const Text('\u{1F50D}', style: TextStyle(fontSize: 48)),
             const SizedBox(height: 16),
             Text(
-              'Sembol bulunamadi',
+              L10nService.get('screens.dream_glossary.no_results', language),
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     color: AppColors.textSecondary,
                   ),
             ),
             const SizedBox(height: 8),
             Text(
-              'Farkli bir arama deneyin',
+              L10nService.get('screens.dream_glossary.try_different_search', language),
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: AppColors.textMuted,
                   ),
@@ -395,7 +405,7 @@ class _DreamGlossaryScreenState extends State<DreamGlossaryScreen>
           symbol: symbol,
           isDreamed: isDreamed,
           searchQuery: _searchQuery,
-          onTap: () => _showSymbolDetails(symbol),
+          onTap: () => _showSymbolDetails(symbol, language),
         ).animate().fadeIn(delay: (30 * (index % 20)).ms).slideX(
               begin: 0.1,
               end: 0,
@@ -443,16 +453,17 @@ class _DreamGlossaryScreenState extends State<DreamGlossaryScreen>
     );
   }
 
-  void _showPersonalDictionary() {
+  void _showPersonalDictionary(AppLanguage language) {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
       builder: (context) => _PersonalDictionarySheet(
         personalDictionary: _personalDictionary,
+        language: language,
         onSymbolTap: (symbol) {
           Navigator.pop(context);
-          _showSymbolDetails(symbol);
+          _showSymbolDetails(symbol, language);
         },
       ),
     );
@@ -648,11 +659,13 @@ class _SymbolCard extends StatelessWidget {
 class _SymbolDetailSheet extends StatelessWidget {
   final DreamSymbolData symbol;
   final PersonalDictionaryService personalDictionary;
+  final AppLanguage language;
   final VoidCallback onDreamed;
 
   const _SymbolDetailSheet({
     required this.symbol,
     required this.personalDictionary,
+    required this.language,
     required this.onDreamed,
   });
 
@@ -764,7 +777,7 @@ class _SymbolDetailSheet extends StatelessWidget {
                 // Universal meanings
                 _buildSection(
                   context,
-                  title: 'Evrensel Anlamlar',
+                  title: L10nService.get('screens.dream_glossary.sections.universal_meanings', language),
                   emoji: '\u{1F30D}',
                   content: symbol.universalMeanings
                       .map((m) => '\u{2022} $m')
@@ -774,7 +787,7 @@ class _SymbolDetailSheet extends StatelessWidget {
                 // Light aspect
                 _buildSection(
                   context,
-                  title: 'Isik Yonu',
+                  title: L10nService.get('screens.dream_glossary.sections.light_aspect', language),
                   emoji: '\u{2728}',
                   content: symbol.lightAspect,
                   color: MysticalColors.starGold,
@@ -783,7 +796,7 @@ class _SymbolDetailSheet extends StatelessWidget {
                 // Shadow aspect
                 _buildSection(
                   context,
-                  title: 'Golge Yonu',
+                  title: L10nService.get('screens.dream_glossary.sections.shadow_aspect', language),
                   emoji: '\u{1F311}',
                   content: symbol.shadowAspect,
                   color: MysticalColors.amethyst,
@@ -888,7 +901,7 @@ class _SymbolDetailSheet extends StatelessWidget {
               const Text('\u{1F3DB}', style: TextStyle(fontSize: 18)),
               const SizedBox(width: 8),
               Text(
-                'Kulturel Yorumlar',
+                L10nService.get('screens.dream_glossary.sections.cultural_interpretations', language),
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       color: MysticalColors.etherealCyan,
                       fontWeight: FontWeight.w600,
@@ -901,7 +914,7 @@ class _SymbolDetailSheet extends StatelessWidget {
           // Turkish interpretation
           _buildInterpretationRow(
             context,
-            label: 'Turk',
+            label: L10nService.get('screens.dream_glossary.interpretation_labels.turkish', language),
             content: _getTurkishInterpretation(),
           ),
           const SizedBox(height: 8),
@@ -909,7 +922,7 @@ class _SymbolDetailSheet extends StatelessWidget {
           // Islamic interpretation
           _buildInterpretationRow(
             context,
-            label: 'Islam',
+            label: L10nService.get('screens.dream_glossary.interpretation_labels.islamic', language),
             content: _getIslamicInterpretation(),
           ),
           const SizedBox(height: 8),
@@ -917,7 +930,7 @@ class _SymbolDetailSheet extends StatelessWidget {
           // Western interpretation
           _buildInterpretationRow(
             context,
-            label: 'Bati',
+            label: L10nService.get('screens.dream_glossary.interpretation_labels.western', language),
             content: _getWesternInterpretation(),
           ),
         ],
@@ -949,7 +962,7 @@ class _SymbolDetailSheet extends StatelessWidget {
               const Text('\u{1F9E0}', style: TextStyle(fontSize: 18)),
               const SizedBox(width: 8),
               Text(
-                'Psikolojik Yorumlar',
+                L10nService.get('screens.dream_glossary.sections.psychological_interpretations', language),
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       color: MysticalColors.orchid,
                       fontWeight: FontWeight.w600,
@@ -962,7 +975,7 @@ class _SymbolDetailSheet extends StatelessWidget {
           // Jungian
           _buildInterpretationRow(
             context,
-            label: 'Jung',
+            label: L10nService.get('screens.dream_glossary.interpretation_labels.jung', language),
             content: _getJungianInterpretation(),
           ),
           const SizedBox(height: 8),
@@ -970,7 +983,7 @@ class _SymbolDetailSheet extends StatelessWidget {
           // Freudian
           _buildInterpretationRow(
             context,
-            label: 'Freud',
+            label: L10nService.get('screens.dream_glossary.interpretation_labels.freud', language),
             content: _getFreudianInterpretation(),
           ),
         ],
@@ -1041,7 +1054,7 @@ class _SymbolDetailSheet extends StatelessWidget {
               const Text('\u{1F517}', style: TextStyle(fontSize: 18)),
               const SizedBox(width: 8),
               Text(
-                'Iliskili Semboller',
+                L10nService.get('screens.dream_glossary.sections.related_symbols', language),
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       color: MysticalColors.stardustBlue,
                       fontWeight: FontWeight.w600,
@@ -1131,7 +1144,9 @@ class _SymbolDetailSheet extends StatelessWidget {
             ),
             const SizedBox(width: 10),
             Text(
-              hasDreamed ? 'Ruya Defterimde' : 'Bunu Ruyamda Gordum',
+              hasDreamed
+                  ? L10nService.get('screens.dream_glossary.dreamed_button.in_journal', language)
+                  : L10nService.get('screens.dream_glossary.dreamed_button.i_dreamed_this', language),
               style: TextStyle(
                 color: hasDreamed ? MysticalColors.starGold : Colors.black87,
                 fontWeight: FontWeight.w600,
@@ -1148,26 +1163,35 @@ class _SymbolDetailSheet extends StatelessWidget {
   String _getTurkishInterpretation() {
     // Generate context-aware Turkish interpretation
     final base = symbol.universalMeanings.first;
-    return 'Turk kultur ve folklorunda ${symbol.symbolTr.toLowerCase()} $base ile iliskilendirilir.';
+    return L10nService.get('screens.dream_glossary.interpretation_templates.turkish', language)
+        .replaceAll('{symbol}', symbol.symbolTr.toLowerCase())
+        .replaceAll('{meaning}', base);
   }
 
   String _getIslamicInterpretation() {
     // Generate context-aware Islamic interpretation
-    return 'Islam ruya yorumunda ${symbol.symbolTr.toLowerCase()} genellikle ruhani mesajlar ve ilahi isaretler tasir.';
+    return L10nService.get('screens.dream_glossary.interpretation_templates.islamic', language)
+        .replaceAll('{symbol}', symbol.symbolTr.toLowerCase());
   }
 
   String _getWesternInterpretation() {
     // Generate context-aware Western interpretation
-    return 'Bati geleneginde ${symbol.symbolTr.toLowerCase()} ${symbol.universalMeanings.first.toLowerCase()} sembolize eder.';
+    return L10nService.get('screens.dream_glossary.interpretation_templates.western', language)
+        .replaceAll('{symbol}', symbol.symbolTr.toLowerCase())
+        .replaceAll('{meaning}', symbol.universalMeanings.first.toLowerCase());
   }
 
   String _getJungianInterpretation() {
     final archetypes = symbol.archetypes.join(', ');
-    return '${symbol.symbolTr} $archetypes arketipleriyle baglantilidir. ${symbol.shadowAspect}';
+    return L10nService.get('screens.dream_glossary.interpretation_templates.jungian', language)
+        .replaceAll('{symbol}', symbol.symbolTr)
+        .replaceAll('{archetypes}', archetypes)
+        .replaceAll('{shadow}', symbol.shadowAspect);
   }
 
   String _getFreudianInterpretation() {
-    return 'Freudyen perspektiften ${symbol.symbolTr.toLowerCase()}, bilincdisi arzular ve bastirilan duygularla iliskili olabilir.';
+    return L10nService.get('screens.dream_glossary.interpretation_templates.freudian', language)
+        .replaceAll('{symbol}', symbol.symbolTr.toLowerCase());
   }
 }
 
@@ -1177,10 +1201,12 @@ class _SymbolDetailSheet extends StatelessWidget {
 
 class _PersonalDictionarySheet extends StatelessWidget {
   final PersonalDictionaryService personalDictionary;
+  final AppLanguage language;
   final void Function(DreamSymbolData symbol) onSymbolTap;
 
   const _PersonalDictionarySheet({
     required this.personalDictionary,
+    required this.language,
     required this.onSymbolTap,
   });
 
@@ -1227,14 +1253,15 @@ class _PersonalDictionarySheet extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Kisisel Ruya Sozlugum',
+                        L10nService.get('screens.dream_glossary.personal_dictionary_sheet.title', language),
                         style: Theme.of(context).textTheme.titleLarge?.copyWith(
                               color: AppColors.textPrimary,
                               fontWeight: FontWeight.bold,
                             ),
                       ),
                       Text(
-                        '${dreamedSymbols.length} sembol',
+                        L10nService.get('screens.dream_glossary.personal_dictionary_sheet.symbol_count', language)
+                            .replaceAll('{count}', '${dreamedSymbols.length}'),
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
                               color: MysticalColors.starGold,
                             ),
@@ -1276,14 +1303,14 @@ class _PersonalDictionarySheet extends StatelessWidget {
           const Text('\u{1F319}', style: TextStyle(fontSize: 64)),
           const SizedBox(height: 16),
           Text(
-            'Henuz sembol eklemediniz',
+            L10nService.get('screens.dream_glossary.personal_dictionary_sheet.no_symbols_yet', language),
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   color: AppColors.textSecondary,
                 ),
           ),
           const SizedBox(height: 8),
           Text(
-            'Ruyalarinizda gordugu sembolleri\nburaya ekleyebilirsiniz',
+            L10nService.get('screens.dream_glossary.personal_dictionary_sheet.add_symbols_hint', language),
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: AppColors.textMuted,
@@ -1345,7 +1372,8 @@ class _PersonalDictionarySheet extends StatelessWidget {
                               style: TextStyle(fontSize: 12)),
                           const SizedBox(width: 4),
                           Text(
-                            '${entry.count} kez',
+                            L10nService.get('screens.dream_glossary.personal_dictionary_sheet.times_count', language)
+                                .replaceAll('{count}', '${entry.count}'),
                             style: Theme.of(context).textTheme.bodySmall?.copyWith(
                                   color: MysticalColors.starGold,
                                 ),
@@ -1381,11 +1409,22 @@ class _PersonalDictionarySheet extends StatelessWidget {
     final now = DateTime.now();
     final diff = now.difference(date);
 
-    if (diff.inDays == 0) return 'Bugun';
-    if (diff.inDays == 1) return 'Dun';
-    if (diff.inDays < 7) return '${diff.inDays} gun once';
-    if (diff.inDays < 30) return '${diff.inDays ~/ 7} hafta once';
-    return '${diff.inDays ~/ 30} ay once';
+    if (diff.inDays == 0) {
+      return L10nService.get('screens.dream_glossary.date_formats.today', language);
+    }
+    if (diff.inDays == 1) {
+      return L10nService.get('screens.dream_glossary.date_formats.yesterday', language);
+    }
+    if (diff.inDays < 7) {
+      return L10nService.get('screens.dream_glossary.date_formats.days_ago', language)
+          .replaceAll('{count}', '${diff.inDays}');
+    }
+    if (diff.inDays < 30) {
+      return L10nService.get('screens.dream_glossary.date_formats.weeks_ago', language)
+          .replaceAll('{count}', '${diff.inDays ~/ 7}');
+    }
+    return L10nService.get('screens.dream_glossary.date_formats.months_ago', language)
+        .replaceAll('{count}', '${diff.inDays ~/ 30}');
   }
 }
 

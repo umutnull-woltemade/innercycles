@@ -39,37 +39,38 @@ class DreamLosingScreen extends ConsumerWidget {
                 const SizedBox(height: 24),
                 Text(L10nService.get('dreams.canonical.losing_question', language), style: TextStyle(fontSize: 28, fontWeight: FontWeight.w600, color: isDark ? Colors.white : AppColors.textDark, height: 1.2)).animate().fadeIn(duration: 400.ms),
                 const SizedBox(height: 8),
-                _buildTag('Rüya İzi', color),
+                _buildTag(L10nService.get('dreams.canonical.brand_tag', language), color),
                 const SizedBox(height: 32),
-                _buildSection(isDark, 'Kısa Cevap', color, [
-                  'Birini kaybetmek rüyası genellikle ayrılık korkusunu yansıtır.',
-                  'Gerçek bir kayıp olmak zorunda değil, bağ kaybı hissidir.',
-                  'O kişiyle ilgili çözülmemiş duygular olabilir.',
+                _buildSection(isDark, L10nService.get('dreams.canonical.sections.short_answer', language), color, [
+                  L10nService.get('dreams.canonical.losing.short_answer_1', language),
+                  L10nService.get('dreams.canonical.losing.short_answer_2', language),
+                  L10nService.get('dreams.canonical.losing.short_answer_3', language),
                 ]),
                 const SizedBox(height: 28),
-                _buildSection(isDark, 'Kim Kayboldu?', color, [
-                  'Sevdiğin biri: Ona olan bağlılığın ve kayıp korkun.',
-                  'Tanımadığın biri: Kendinle bağlantın.',
-                  'Çocuk: İçindeki masumiyet veya yeni başlangıçlar.',
+                _buildSection(isDark, L10nService.get('dreams.canonical.losing.who_title', language), color, [
+                  L10nService.get('dreams.canonical.losing.who_1', language),
+                  L10nService.get('dreams.canonical.losing.who_2', language),
+                  L10nService.get('dreams.canonical.losing.who_3', language),
                 ]),
                 const SizedBox(height: 28),
-                _buildSection(isDark, 'Ne Anlama Gelir?', color, [
-                  'Değişim korkusu yaşıyor olabilirsin.',
-                  'Bir ilişkide mesafe hissediyorsun.',
-                  'Geçmişte yaşanan bir ayrılığı işliyorsun.',
+                _buildSection(isDark, L10nService.get('dreams.canonical.sections.what_it_means', language), color, [
+                  L10nService.get('dreams.canonical.losing.meaning_1', language),
+                  L10nService.get('dreams.canonical.losing.meaning_2', language),
+                  L10nService.get('dreams.canonical.losing.meaning_3', language),
                 ]),
                 const SizedBox(height: 28),
-                _buildSection(isDark, 'Tekrar Ediyorsa', color, [
-                  'Kaybetme korkun derinleşmiş olabilir.',
-                  'O kişiyle konuşman gereken bir şey var.',
-                  'Bağımsızlık ve bağlılık arasında denge arıyorsun.',
+                _buildSection(isDark, L10nService.get('dreams.canonical.sections.if_recurring', language), color, [
+                  L10nService.get('dreams.canonical.losing.recurring_1', language),
+                  L10nService.get('dreams.canonical.losing.recurring_2', language),
+                  L10nService.get('dreams.canonical.losing.recurring_3', language),
                 ]),
                 const SizedBox(height: 32),
                 _buildSuggestion(context, isDark, language, '🕳️', L10nService.get('dreams.canonical.darkness_question', language), Routes.dreamDarkness),
                 const SizedBox(height: 40),
-                const PageFooterWithDisclaimer(
+                PageFooterWithDisclaimer(
                   brandText: 'Rüya İzi — Venus One',
-                  disclaimerText: DisclaimerTexts.dreams,
+                  disclaimerText: DisclaimerTexts.dreams(language),
+                  language: language,
                 ),
               ],
             ),

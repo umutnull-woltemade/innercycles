@@ -107,9 +107,10 @@ class KabbalahScreen extends ConsumerWidget {
                         .fadeIn(delay: 400.ms, duration: 400.ms),
                     const SizedBox(height: AppConstants.spacingXl),
                     // Entertainment Disclaimer
-                    const PageFooterWithDisclaimer(
+                    PageFooterWithDisclaimer(
                       brandText: 'Kabala — Venus One',
-                      disclaimerText: DisclaimerTexts.astrology,
+                      disclaimerText: DisclaimerTexts.astrology(language),
+                      language: language,
                     ),
                     const SizedBox(height: AppConstants.spacingLg),
                   ]),

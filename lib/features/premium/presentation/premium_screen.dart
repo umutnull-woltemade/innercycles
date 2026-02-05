@@ -759,11 +759,6 @@ class _BestValueBadge extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final language = ref.watch(languageProvider);
-    // Use localized "Best Value" text - adding key to locale files
-    final bestValueText = language == AppLanguage.en ? 'Best Value'
-        : language == AppLanguage.de ? 'Bestes Angebot'
-        : language == AppLanguage.fr ? 'Meilleure Offre'
-        : 'En İyi Değer';
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
       decoration: BoxDecoration(
@@ -773,7 +768,7 @@ class _BestValueBadge extends ConsumerWidget {
         borderRadius: BorderRadius.circular(12),
       ),
       child: Text(
-        bestValueText,
+        L10nService.get('premium.best_value', language),
         style: const TextStyle(
           color: Colors.black,
           fontSize: 10,

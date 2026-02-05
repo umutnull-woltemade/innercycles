@@ -3,15 +3,19 @@ import 'package:flutter/material.dart';
 
 import '../../core/constants/app_constants.dart';
 import '../../core/theme/app_colors.dart';
+import '../../data/providers/app_providers.dart';
+import '../../data/services/l10n_service.dart';
 
 class BirthDatePicker extends StatefulWidget {
   final DateTime? initialDate;
   final ValueChanged<DateTime> onDateChanged;
+  final AppLanguage language;
 
   const BirthDatePicker({
     super.key,
     this.initialDate,
     required this.onDateChanged,
+    this.language = AppLanguage.tr,
   });
 
   @override
@@ -27,19 +31,19 @@ class _BirthDatePickerState extends State<BirthDatePicker> {
   late FixedExtentScrollController _monthController;
   late FixedExtentScrollController _yearController;
 
-  final List<String> _months = [
-    'Ocak',
-    'Şubat',
-    'Mart',
-    'Nisan',
-    'Mayıs',
-    'Haziran',
-    'Temmuz',
-    'Ağustos',
-    'Eylül',
-    'Ekim',
-    'Kasım',
-    'Aralık',
+  List<String> get _months => [
+    L10nService.get('months.january', widget.language),
+    L10nService.get('months.february', widget.language),
+    L10nService.get('months.march', widget.language),
+    L10nService.get('months.april', widget.language),
+    L10nService.get('months.may', widget.language),
+    L10nService.get('months.june', widget.language),
+    L10nService.get('months.july', widget.language),
+    L10nService.get('months.august', widget.language),
+    L10nService.get('months.september', widget.language),
+    L10nService.get('months.october', widget.language),
+    L10nService.get('months.november', widget.language),
+    L10nService.get('months.december', widget.language),
   ];
 
   @override
@@ -112,7 +116,7 @@ class _BirthDatePickerState extends State<BirthDatePicker> {
                 _notifyDateChanged();
               },
               itemBuilder: (index) => '${index + 1}',
-              label: 'Gün',
+              label: L10nService.get('widgets.birth_date_picker.day', widget.language),
             ),
           ),
 
@@ -139,7 +143,7 @@ class _BirthDatePickerState extends State<BirthDatePicker> {
                 _notifyDateChanged();
               },
               itemBuilder: (index) => _months[index],
-              label: 'Ay',
+              label: L10nService.get('widgets.birth_date_picker.month', widget.language),
             ),
           ),
 
@@ -166,7 +170,7 @@ class _BirthDatePickerState extends State<BirthDatePicker> {
                 _notifyDateChanged();
               },
               itemBuilder: (index) => '${now.year - index}',
-              label: 'Yıl',
+              label: L10nService.get('widgets.birth_date_picker.year', widget.language),
             ),
           ),
         ],
@@ -188,7 +192,7 @@ class _BirthDatePickerState extends State<BirthDatePicker> {
           // Day dropdown
           Expanded(
             child: _buildDropdown(
-              label: 'Gün',
+              label: L10nService.get('widgets.birth_date_picker.day', widget.language),
               value: _selectedDay,
               items: List.generate(daysInMonth, (i) => i + 1),
               itemLabel: (i) => '$i',
@@ -205,7 +209,7 @@ class _BirthDatePickerState extends State<BirthDatePicker> {
           Expanded(
             flex: 2,
             child: _buildDropdown(
-              label: 'Ay',
+              label: L10nService.get('widgets.birth_date_picker.month', widget.language),
               value: _selectedMonth,
               items: List.generate(12, (i) => i + 1),
               itemLabel: (i) => _months[i - 1],
@@ -227,7 +231,7 @@ class _BirthDatePickerState extends State<BirthDatePicker> {
           // Year dropdown
           Expanded(
             child: _buildDropdown(
-              label: 'Yıl',
+              label: L10nService.get('widgets.birth_date_picker.year', widget.language),
               value: _selectedYear,
               items: List.generate(100, (i) => now.year - i),
               itemLabel: (i) => '$i',
@@ -389,23 +393,29 @@ class _WheelPicker extends StatelessWidget {
 class SelectedDateDisplay extends StatelessWidget {
   final DateTime? date;
   final VoidCallback? onTap;
+  final AppLanguage language;
 
-  const SelectedDateDisplay({super.key, this.date, this.onTap});
+  const SelectedDateDisplay({
+    super.key,
+    this.date,
+    this.onTap,
+    this.language = AppLanguage.tr,
+  });
 
-  String _getMonthName(int month) {
-    const months = [
-      'Ocak',
-      'Şubat',
-      'Mart',
-      'Nisan',
-      'Mayıs',
-      'Haziran',
-      'Temmuz',
-      'Ağustos',
-      'Eylül',
-      'Ekim',
-      'Kasım',
-      'Aralık',
+  String _getMonthName(int month, AppLanguage lang) {
+    final months = [
+      L10nService.get('months.january', lang),
+      L10nService.get('months.february', lang),
+      L10nService.get('months.march', lang),
+      L10nService.get('months.april', lang),
+      L10nService.get('months.may', lang),
+      L10nService.get('months.june', lang),
+      L10nService.get('months.july', lang),
+      L10nService.get('months.august', lang),
+      L10nService.get('months.september', lang),
+      L10nService.get('months.october', lang),
+      L10nService.get('months.november', lang),
+      L10nService.get('months.december', lang),
     ];
     return months[month - 1];
   }
@@ -443,7 +453,7 @@ class SelectedDateDisplay extends StatelessWidget {
             ),
             const SizedBox(width: AppConstants.spacingMd),
             Text(
-              '${_getMonthName(date!.month)} ${date!.day}, ${date!.year}',
+              '${_getMonthName(date!.month, language)} ${date!.day}, ${date!.year}',
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 color: AppColors.textPrimary,
                 fontWeight: FontWeight.w500,

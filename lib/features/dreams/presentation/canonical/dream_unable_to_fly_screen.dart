@@ -39,39 +39,40 @@ class DreamUnableToFlyScreen extends ConsumerWidget {
                 const SizedBox(height: 24),
                 Text(L10nService.get('dreams.canonical.unable_to_fly_question', language), style: TextStyle(fontSize: 28, fontWeight: FontWeight.w600, color: isDark ? Colors.white : AppColors.textDark, height: 1.2)).animate().fadeIn(duration: 400.ms),
                 const SizedBox(height: 8),
-                _buildTag('Rüya İzi', color),
+                _buildTag(L10nService.get('dreams.canonical.brand_tag', language), color),
                 const SizedBox(height: 32),
-                _buildSection(isDark, 'Kısa Cevap', color, [
-                  'Uçamamak, potansiyelini kullanamama hissini yansıtır.',
-                  'Bir engel veya sınırlama algılıyorsun.',
-                  'Özgürlük istiyorsun ama bir şey seni tutuyor.',
+                _buildSection(isDark, L10nService.get('dreams.canonical.sections.short_answer', language), color, [
+                  L10nService.get('dreams.canonical.unable_to_fly.short_answer_1', language),
+                  L10nService.get('dreams.canonical.unable_to_fly.short_answer_2', language),
+                  L10nService.get('dreams.canonical.unable_to_fly.short_answer_3', language),
                 ]),
                 const SizedBox(height: 28),
-                _buildSection(isDark, 'Neden Uçamıyorsun?', color, [
-                  'Ağırlık: Sorumluluklar seni aşağı çekiyor.',
-                  'Korku: Başarıdan veya başarısızlıktan çekiniyorsun.',
-                  'Düşme: Güven eksikliği hissediyorsun.',
-                  'Fiziksel engel: Dış koşullar seni sınırlıyor.',
+                _buildSection(isDark, L10nService.get('dreams.canonical.unable_to_fly.why_title', language), color, [
+                  L10nService.get('dreams.canonical.unable_to_fly.why_1', language),
+                  L10nService.get('dreams.canonical.unable_to_fly.why_2', language),
+                  L10nService.get('dreams.canonical.unable_to_fly.why_3', language),
+                  L10nService.get('dreams.canonical.unable_to_fly.why_4', language),
                 ]),
                 const SizedBox(height: 28),
-                _buildSection(isDark, 'Ne Anlama Gelir?', color, [
-                  'Kendine inanmakta zorlanıyorsun.',
-                  'Bir fırsatı kaçırma korkun var.',
-                  'Kontrolü bırakman gerekiyor olabilir.',
+                _buildSection(isDark, L10nService.get('dreams.canonical.sections.what_it_means', language), color, [
+                  L10nService.get('dreams.canonical.unable_to_fly.meaning_1', language),
+                  L10nService.get('dreams.canonical.unable_to_fly.meaning_2', language),
+                  L10nService.get('dreams.canonical.unable_to_fly.meaning_3', language),
                 ]),
                 const SizedBox(height: 28),
-                _buildSection(isDark, 'Tekrar Ediyorsa', color, [
-                  'Sürekli ertelediğin bir şey var.',
-                  'İç eleştirmen çok güçlü.',
-                  'Uçmayı öğrenmek için düşmeyi kabul etmelisin.',
+                _buildSection(isDark, L10nService.get('dreams.canonical.sections.if_recurring', language), color, [
+                  L10nService.get('dreams.canonical.unable_to_fly.recurring_1', language),
+                  L10nService.get('dreams.canonical.unable_to_fly.recurring_2', language),
+                  L10nService.get('dreams.canonical.unable_to_fly.recurring_3', language),
                 ]),
                 const SizedBox(height: 32),
                 // Döngüyü kapat: ucamamak → dusmek
                 _buildSuggestion(context, isDark, language, '🌀', L10nService.get('dreams.canonical.falling_question', language), Routes.dreamFalling),
                 const SizedBox(height: 40),
-                const PageFooterWithDisclaimer(
+                PageFooterWithDisclaimer(
                   brandText: 'Rüya İzi — Venus One',
-                  disclaimerText: DisclaimerTexts.dreams,
+                  disclaimerText: DisclaimerTexts.dreams(language),
+                  language: language,
                 ),
               ],
             ),

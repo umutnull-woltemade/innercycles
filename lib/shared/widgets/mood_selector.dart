@@ -1,29 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/theme/app_colors.dart';
+import '../../data/providers/app_providers.dart';
+import '../../data/services/l10n_service.dart';
 
 /// Mood tracking widget for personalization and emotional data collection
 /// Enables behavioral adaptation and personalized content
 enum Mood {
-  happy('Mutlu', '😊', Color(0xFF4CAF50)),
-  sad('Huzunlu', '😔', Color(0xFF5C6BC0)),
-  anxious('Kaygili', '😰', Color(0xFFFF7043)),
-  tired('Yorgun', '😴', Color(0xFF78909C)),
-  thoughtful('Dusunceli', '🤔', Color(0xFF9575CD)),
-  excited('Heyecanli', '🤩', Color(0xFFFFCA28)),
-  calm('Huzurlu', '😌', Color(0xFF26A69A)),
-  confused('Kafasi Karisik', '😵‍💫', Color(0xFFEC407A));
+  happy('😊', Color(0xFF4CAF50)),
+  sad('😔', Color(0xFF5C6BC0)),
+  anxious('😰', Color(0xFFFF7043)),
+  tired('😴', Color(0xFF78909C)),
+  thoughtful('🤔', Color(0xFF9575CD)),
+  excited('🤩', Color(0xFFFFCA28)),
+  calm('😌', Color(0xFF26A69A)),
+  confused('😵‍💫', Color(0xFFEC407A));
 
-  final String label;
   final String emoji;
   final Color color;
 
-  const Mood(this.label, this.emoji, this.color);
+  const Mood(this.emoji, this.color);
+
+  /// Get localized label for this mood
+  String getLabel(AppLanguage language) {
+    return L10nService.get('widgets.mood_selector.moods.${name}', language);
+  }
 }
 
 /// Horizontal mood selector with emoji display
-class MoodSelector extends StatefulWidget {
+class MoodSelector extends ConsumerStatefulWidget {
   final Mood? selectedMood;
   final Function(Mood) onSelect;
   final String? title;
@@ -40,15 +47,16 @@ class MoodSelector extends StatefulWidget {
   });
 
   @override
-  State<MoodSelector> createState() => _MoodSelectorState();
+  ConsumerState<MoodSelector> createState() => _MoodSelectorState();
 }
 
-class _MoodSelectorState extends State<MoodSelector> {
+class _MoodSelectorState extends ConsumerState<MoodSelector> {
   Mood? _hoveredMood;
 
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final language = ref.watch(languageProvider);
     final moods = widget.compact
         ? [Mood.happy, Mood.sad, Mood.anxious, Mood.tired, Mood.thoughtful]
         : Mood.values;
@@ -85,6 +93,7 @@ class _MoodSelectorState extends State<MoodSelector> {
                   isSelected: isSelected,
                   isHovered: isHovered,
                   showLabel: widget.showLabels,
+                  language: language,
                   onTap: () {
                     HapticFeedback.lightImpact();
                     widget.onSelect(mood);
@@ -107,6 +116,7 @@ class _MoodChip extends StatelessWidget {
   final bool isSelected;
   final bool isHovered;
   final bool showLabel;
+  final AppLanguage language;
   final VoidCallback onTap;
   final Function(bool) onHover;
 
@@ -115,6 +125,7 @@ class _MoodChip extends StatelessWidget {
     required this.isSelected,
     required this.isHovered,
     required this.showLabel,
+    required this.language,
     required this.onTap,
     required this.onHover,
   });
@@ -182,7 +193,7 @@ class _MoodChip extends StatelessWidget {
               if (showLabel) ...[
                 const SizedBox(width: 8),
                 Text(
-                  mood.label,
+                  mood.getLabel(language),
                   style: TextStyle(
                     fontSize: 13,
                     fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
@@ -207,7 +218,7 @@ class _MoodChip extends StatelessWidget {
 }
 
 /// Quick mood check card for home screen
-class MoodCheckCard extends StatelessWidget {
+class MoodCheckCard extends ConsumerWidget {
   final Mood? currentMood;
   final Function(Mood) onMoodSelected;
   final VoidCallback? onSkip;
@@ -220,8 +231,11 @@ class MoodCheckCard extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final language = ref.watch(languageProvider);
+
+    String t(String key) => L10nService.get(key, language);
 
     return Container(
       padding: const EdgeInsets.all(20),
@@ -267,7 +281,7 @@ class MoodCheckCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Bugun Nasil Hissediyorsun?',
+                      t('widgets.mood_selector.how_do_you_feel'),
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
@@ -276,7 +290,7 @@ class MoodCheckCard extends StatelessWidget {
                     ),
                     const SizedBox(height: 2),
                     Text(
-                      'Ruh halin yorumlarini kisisellestirir',
+                      t('widgets.mood_selector.mood_personalizes'),
                       style: TextStyle(
                         fontSize: 12,
                         color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
@@ -289,7 +303,7 @@ class MoodCheckCard extends StatelessWidget {
                 TextButton(
                   onPressed: onSkip,
                   child: Text(
-                    'Atla',
+                    t('widgets.mood_selector.skip'),
                     style: TextStyle(
                       fontSize: 12,
                       color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
@@ -326,7 +340,8 @@ class MoodCheckCard extends StatelessWidget {
                     ),
                     const SizedBox(width: 8),
                     Text(
-                      '${currentMood!.label} hissediyorsun',
+                      t('widgets.mood_selector.feeling_template')
+                          .replaceAll('{mood}', currentMood!.getLabel(language)),
                       style: TextStyle(
                         fontSize: 13,
                         fontWeight: FontWeight.w500,

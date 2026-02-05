@@ -38,16 +38,18 @@ class _DailyRitualsScreenState extends ConsumerState<DailyRitualsScreen>
     super.dispose();
   }
 
-  void _generateRituals() {
+  void _generateRituals([AppLanguage? lang]) {
     final userProfile = ref.read(userProfileProvider);
     final sign = userProfile?.sunSign ?? ZodiacSign.aries;
     final moonPhase = MoonService.getCurrentPhase();
     final moonSign = MoonService.getCurrentMoonSign();
+    final language = lang ?? ref.read(languageProvider);
 
     _ritualData = DailyRitualsService.generate(
       sunSign: sign,
       moonPhase: moonPhase,
       moonSign: moonSign,
+      language: language ?? AppLanguage.tr,
     );
   }
 
@@ -56,6 +58,9 @@ class _DailyRitualsScreenState extends ConsumerState<DailyRitualsScreen>
     final userProfile = ref.watch(userProfileProvider);
     final sign = userProfile?.sunSign ?? ZodiacSign.aries;
     final language = ref.watch(languageProvider);
+
+    // Regenerate rituals when language changes
+    _generateRituals(language);
 
     return Scaffold(
       body: CosmicBackground(
@@ -1454,73 +1459,109 @@ class DailyRitualsService {
     required ZodiacSign sunSign,
     required MoonPhase moonPhase,
     required MoonSign moonSign,
+    required AppLanguage language,
   }) {
     final seed = DateTime.now().day + sunSign.index + moonPhase.index;
     final random = Random(seed);
 
     return DailyRitualData(
-      morningRitual: _generateMorningRitual(sunSign, moonPhase, random),
-      meditation: _generateMeditation(sunSign, moonSign, random),
-      affirmations: _generateAffirmations(sunSign, moonPhase),
-      eveningRitual: _generateEveningRitual(sunSign, moonPhase, random),
+      morningRitual: _generateMorningRitual(sunSign, moonPhase, random, language),
+      meditation: _generateMeditation(sunSign, moonSign, random, language),
+      affirmations: _generateAffirmations(sunSign, moonPhase, language),
+      eveningRitual: _generateEveningRitual(sunSign, moonPhase, random, language),
     );
   }
 
-  static MorningRitual _generateMorningRitual(ZodiacSign sign, MoonPhase moonPhase, Random random) {
+  static MorningRitual _generateMorningRitual(ZodiacSign sign, MoonPhase moonPhase, Random random, AppLanguage language) {
     final crystals = [
-      CrystalSuggestion(name: 'Ametist', emoji: '💜', benefit: 'Ic huzur ve sezgi'),
-      CrystalSuggestion(name: 'Sitrin', emoji: '💛', benefit: 'Bolluk ve pozitif enerji'),
-      CrystalSuggestion(name: 'Gul Kuvars', emoji: '💗', benefit: 'Ask ve kendini sevme'),
-      CrystalSuggestion(name: 'Kaplan Gozu', emoji: '🧡', benefit: 'Cesaret ve odaklanma'),
-      CrystalSuggestion(name: 'Aventurin', emoji: '💚', benefit: 'Sans ve firsatlar'),
-      CrystalSuggestion(name: 'Lapis Lazuli', emoji: '💙', benefit: 'Bilgelik ve gercek'),
+      CrystalSuggestion(
+        name: L10nService.get('rituals.crystals.amethyst', language),
+        emoji: '💜',
+        benefit: L10nService.get('rituals.crystals.amethyst_benefit', language),
+      ),
+      CrystalSuggestion(
+        name: L10nService.get('rituals.crystals.citrine', language),
+        emoji: '💛',
+        benefit: L10nService.get('rituals.crystals.citrine_benefit', language),
+      ),
+      CrystalSuggestion(
+        name: L10nService.get('rituals.crystals.rose_quartz', language),
+        emoji: '💗',
+        benefit: L10nService.get('rituals.crystals.rose_quartz_benefit', language),
+      ),
+      CrystalSuggestion(
+        name: L10nService.get('rituals.crystals.tigers_eye', language),
+        emoji: '🧡',
+        benefit: L10nService.get('rituals.crystals.tigers_eye_benefit', language),
+      ),
+      CrystalSuggestion(
+        name: L10nService.get('rituals.crystals.aventurine', language),
+        emoji: '💚',
+        benefit: L10nService.get('rituals.crystals.aventurine_benefit', language),
+      ),
+      CrystalSuggestion(
+        name: L10nService.get('rituals.crystals.lapis_lazuli', language),
+        emoji: '💙',
+        benefit: L10nService.get('rituals.crystals.lapis_lazuli_benefit', language),
+      ),
     ];
 
     final oils = [
-      EssentialOilSuggestion(name: 'Lavanta', emoji: '💜', usage: 'Huzur icin birkaç damla yayin'),
-      EssentialOilSuggestion(name: 'Limon', emoji: '🍋', usage: 'Canlandirici sabah enerjisi'),
-      EssentialOilSuggestion(name: 'Nane', emoji: '🌿', usage: 'Zihinsel berraklik icin'),
-      EssentialOilSuggestion(name: 'Portakal', emoji: '🍊', usage: 'Mutluluk ve neşe icin'),
-      EssentialOilSuggestion(name: 'Okaliptus', emoji: '🌲', usage: 'Temizlik ve yenilenme'),
+      EssentialOilSuggestion(
+        name: L10nService.get('rituals.oils.lavender', language),
+        emoji: '💜',
+        usage: L10nService.get('rituals.oils.lavender_usage', language),
+      ),
+      EssentialOilSuggestion(
+        name: L10nService.get('rituals.oils.lemon', language),
+        emoji: '🍋',
+        usage: L10nService.get('rituals.oils.lemon_usage', language),
+      ),
+      EssentialOilSuggestion(
+        name: L10nService.get('rituals.oils.peppermint', language),
+        emoji: '🌿',
+        usage: L10nService.get('rituals.oils.peppermint_usage', language),
+      ),
+      EssentialOilSuggestion(
+        name: L10nService.get('rituals.oils.orange', language),
+        emoji: '🍊',
+        usage: L10nService.get('rituals.oils.orange_usage', language),
+      ),
+      EssentialOilSuggestion(
+        name: L10nService.get('rituals.oils.eucalyptus', language),
+        emoji: '🌲',
+        usage: L10nService.get('rituals.oils.eucalyptus_usage', language),
+      ),
     ];
 
-    final intentions = {
-      ZodiacSign.aries: 'Bugün cesaretle yeni başlangıçlar yapıyorum.',
-      ZodiacSign.taurus: 'Bugün bolluğu ve güvenliği çekiyorum.',
-      ZodiacSign.gemini: 'Bugün merakımla dünyayı keşfediyorum.',
-      ZodiacSign.cancer: 'Bugün sevdiklerime şefkat sunuyorum.',
-      ZodiacSign.leo: 'Bugün ışığımı parlak bir şekilde paylaşıyorum.',
-      ZodiacSign.virgo: 'Bugün detaylarda mükemmelliği buluyorum.',
-      ZodiacSign.libra: 'Bugün denge ve uyum yaratıyorum.',
-      ZodiacSign.scorpio: 'Bugün derinlere dalıyor, dönüşüyorum.',
-      ZodiacSign.sagittarius: 'Bugün özgürce keşfediyor ve büyüyorum.',
-      ZodiacSign.capricorn: 'Bugün hedeflerime kararlılıkla ilerliyorum.',
-      ZodiacSign.aquarius: 'Bugün benzersizliğimi kutluyorum.',
-      ZodiacSign.pisces: 'Bugün sezgilerimle akışta kalıyorum.',
-    };
+    final intentionKey = 'rituals.intentions.${sign.name}';
+    final intention = L10nService.get(intentionKey, language);
+    final finalIntention = intention == intentionKey
+        ? L10nService.get('rituals.intentions.default', language)
+        : intention;
 
     return MorningRitual(
       bestTime: '06:00 - 08:00',
-      intention: intentions[sign] ?? 'Bugün en iyi versiyonum oluyorum.',
+      intention: finalIntention,
       steps: [
         RitualStep(
-          title: 'Uyanis Nefesi',
-          description: 'Yatakta uzanırken 3 derin nefes alın. Her nefeste vücudunuzu uyanmaya davet edin.',
+          title: L10nService.get('rituals.steps.awakening_breath', language),
+          description: L10nService.get('rituals.steps.awakening_breath_desc', language),
           durationMinutes: 2,
         ),
         RitualStep(
-          title: 'Niyet Belirleme',
-          description: 'Günün niyetinizi yüksek sesle söyleyin veya yazın.',
+          title: L10nService.get('rituals.steps.set_intention', language),
+          description: L10nService.get('rituals.steps.set_intention_desc', language),
           durationMinutes: 3,
         ),
         RitualStep(
-          title: 'Vücut Uyandırma',
-          description: 'Hafif esnemeler ve dönüşlerle vücudu nazikçe harekete geçirin.',
+          title: L10nService.get('rituals.steps.body_awakening', language),
+          description: L10nService.get('rituals.steps.body_awakening_desc', language),
           durationMinutes: 5,
         ),
         RitualStep(
-          title: 'Sukran Anı',
-          description: 'Yeni bir güne uyanmış olduğunuz için teşekkür edin.',
+          title: L10nService.get('rituals.steps.gratitude_moment', language),
+          description: L10nService.get('rituals.steps.gratitude_moment_desc', language),
           durationMinutes: 2,
         ),
       ],
@@ -1529,139 +1570,179 @@ class DailyRitualsService {
     );
   }
 
-  static MeditationData _generateMeditation(ZodiacSign sunSign, MoonSign moonSign, Random random) {
+  static MeditationData _generateMeditation(ZodiacSign sunSign, MoonSign moonSign, Random random, AppLanguage language) {
     final meditations = [
       MeditationData(
-        type: 'Nefes Meditasyonu',
+        type: L10nService.get('rituals.meditations.breath_meditation', language),
         emoji: '🌬️',
-        focus: 'Nefese odaklanma',
-        description: 'Nefes meditasyonu, zihni sakinleştirmenin en etkili yoludur. Bugün sadece nefesinize odaklanarak iç huzuru bulun.',
+        focus: L10nService.get('rituals.meditations.breath_focus', language),
+        description: L10nService.get('rituals.meditations.breath_desc', language),
         recommendedDuration: 15,
         steps: [
-          'Rahat bir pozisyonda oturun veya uzanın',
-          'Gözlerinizi yavaşça kapatın',
-          'Nefesinizi izlemeye başlayın',
-          'Düşünceler geldiğinde nazikçe nefese dönün',
-          'Vücudunuzun gevşediğini hissedin',
+          L10nService.get('rituals.meditation_steps.sit_comfortably', language),
+          L10nService.get('rituals.meditation_steps.close_eyes', language),
+          L10nService.get('rituals.meditation_steps.watch_breath', language),
+          L10nService.get('rituals.meditation_steps.return_to_breath', language),
+          L10nService.get('rituals.meditation_steps.feel_body_relax', language),
         ],
-        breathingPattern: BreathingPattern(name: '4-7-8 Nefes', inhaleSeconds: 4, holdSeconds: 7, exhaleSeconds: 8, cycles: 4),
-        chakraFocus: ChakraInfo(name: 'Kalp Çakrası', symbol: '💚', color: Colors.green, focus: 'Şefkat ve sevgi'),
+        breathingPattern: BreathingPattern(
+          name: L10nService.get('rituals.breathing_patterns.four_seven_eight', language),
+          inhaleSeconds: 4,
+          holdSeconds: 7,
+          exhaleSeconds: 8,
+          cycles: 4,
+        ),
+        chakraFocus: ChakraInfo(
+          name: L10nService.get('rituals.chakras.heart', language),
+          symbol: '💚',
+          color: Colors.green,
+          focus: L10nService.get('rituals.chakras.heart_focus', language),
+        ),
       ),
       MeditationData(
-        type: 'Body Scan',
+        type: L10nService.get('rituals.meditations.body_scan', language),
         emoji: '🧘',
-        focus: 'Vücut farkındalığı',
-        description: 'Vücut taraması meditasyonu ile bedeninizle bağlantı kurun ve gerginlikleri fark edin.',
+        focus: L10nService.get('rituals.meditations.body_awareness', language),
+        description: L10nService.get('rituals.meditations.body_scan_desc', language),
         recommendedDuration: 20,
         steps: [
-          'Sırt üstü uzanın',
-          'Ayak parmaklarınızdan başlayın',
-          'Her bölgeye dikkat verin ve gevşetin',
-          'Yavaşça yukarı doğru ilerleyin',
-          'Tüm vücudu bir bütün olarak hissedin',
+          L10nService.get('rituals.meditation_steps.lie_on_back', language),
+          L10nService.get('rituals.meditation_steps.start_from_toes', language),
+          L10nService.get('rituals.meditation_steps.pay_attention', language),
+          L10nService.get('rituals.meditation_steps.move_upward', language),
+          L10nService.get('rituals.meditation_steps.feel_whole_body', language),
         ],
-        breathingPattern: BreathingPattern(name: 'Doğal Nefes', inhaleSeconds: 4, holdSeconds: 0, exhaleSeconds: 6, cycles: 10),
-        chakraFocus: ChakraInfo(name: 'Kök Çakra', symbol: '🔴', color: Colors.red, focus: 'Topraklanma ve güvenlik'),
+        breathingPattern: BreathingPattern(
+          name: L10nService.get('rituals.breathing_patterns.natural_breath', language),
+          inhaleSeconds: 4,
+          holdSeconds: 0,
+          exhaleSeconds: 6,
+          cycles: 10,
+        ),
+        chakraFocus: ChakraInfo(
+          name: L10nService.get('rituals.chakras.root', language),
+          symbol: '🔴',
+          color: Colors.red,
+          focus: L10nService.get('rituals.chakras.root_focus', language),
+        ),
       ),
       MeditationData(
-        type: 'Sevgi-Şefkat',
+        type: L10nService.get('rituals.meditations.loving_kindness', language),
         emoji: '💕',
-        focus: 'Metta meditasyonu',
-        description: 'Kendinize ve başkalarına şefkat göndererek kalp merkezinizi açın.',
+        focus: L10nService.get('rituals.meditations.metta_meditation', language),
+        description: L10nService.get('rituals.meditations.loving_kindness_desc', language),
         recommendedDuration: 15,
         steps: [
-          'Rahatça oturun ve gözlerinizi kapatın',
-          'Önce kendinize sevgi gönderin',
-          'Sevdiğiniz birine sevgi gönderin',
-          'Tanımadığınız birine sevgi gönderin',
-          'Tüm varlıklara sevgi gönderin',
+          L10nService.get('rituals.meditation_steps.sit_comfortably', language),
+          L10nService.get('rituals.meditation_steps.send_love_self', language),
+          L10nService.get('rituals.meditation_steps.send_love_loved', language),
+          L10nService.get('rituals.meditation_steps.send_love_stranger', language),
+          L10nService.get('rituals.meditation_steps.send_love_all', language),
         ],
-        breathingPattern: BreathingPattern(name: 'Kalp Nefesi', inhaleSeconds: 4, holdSeconds: 4, exhaleSeconds: 4, cycles: 6),
-        chakraFocus: ChakraInfo(name: 'Kalp Çakrası', symbol: '💚', color: Colors.green, focus: 'Koşulsuz sevgi'),
+        breathingPattern: BreathingPattern(
+          name: L10nService.get('rituals.breathing_patterns.heart_breath', language),
+          inhaleSeconds: 4,
+          holdSeconds: 4,
+          exhaleSeconds: 4,
+          cycles: 6,
+        ),
+        chakraFocus: ChakraInfo(
+          name: L10nService.get('rituals.chakras.heart', language),
+          symbol: '💚',
+          color: Colors.green,
+          focus: L10nService.get('rituals.chakras.unconditional_love', language),
+        ),
       ),
       MeditationData(
-        type: 'Görselleştirme',
+        type: L10nService.get('rituals.meditations.visualization', language),
         emoji: '🌟',
-        focus: 'Hayal gücü',
-        description: 'Zihinsel görselleştirme ile hedeflerinizi ve hayallerinizi canlandırın.',
+        focus: L10nService.get('rituals.meditations.imagination', language),
+        description: L10nService.get('rituals.meditations.visualization_desc', language),
         recommendedDuration: 20,
         steps: [
-          'Rahat bir pozisyon alın',
-          'Gözlerinizi kapatın ve gevşeyin',
-          'Hedefinizi net bir şekilde hayal edin',
-          'Tüm duyularınızla deneyimleyin',
-          'Bu gerçekliği kabul edin ve minnet duyun',
+          L10nService.get('rituals.meditation_steps.sit_comfortably', language),
+          L10nService.get('rituals.meditation_steps.close_eyes', language),
+          L10nService.get('rituals.meditation_steps.imagine_goal', language),
+          L10nService.get('rituals.meditation_steps.experience_senses', language),
+          L10nService.get('rituals.meditation_steps.accept_reality', language),
         ],
-        breathingPattern: BreathingPattern(name: 'Yaratıcı Nefes', inhaleSeconds: 5, holdSeconds: 3, exhaleSeconds: 5, cycles: 5),
-        chakraFocus: ChakraInfo(name: 'Üçüncü Göz', symbol: '💜', color: Colors.indigo, focus: 'Sezgi ve vizyon'),
+        breathingPattern: BreathingPattern(
+          name: L10nService.get('rituals.breathing_patterns.creative_breath', language),
+          inhaleSeconds: 5,
+          holdSeconds: 3,
+          exhaleSeconds: 5,
+          cycles: 5,
+        ),
+        chakraFocus: ChakraInfo(
+          name: L10nService.get('rituals.chakras.third_eye', language),
+          symbol: '💜',
+          color: Colors.indigo,
+          focus: L10nService.get('rituals.chakras.third_eye_focus', language),
+        ),
       ),
     ];
 
     return meditations[random.nextInt(meditations.length)];
   }
 
-  static AffirmationsData _generateAffirmations(ZodiacSign sign, MoonPhase moonPhase) {
-    final mainAffirmations = {
-      ZodiacSign.aries: 'Ben cesur, güçlü ve kararlıyım.',
-      ZodiacSign.taurus: 'Bolluk ve bereket bana doğru akıyor.',
-      ZodiacSign.gemini: 'Her gün yeni bilgiler ve bağlantılar çekiyorum.',
-      ZodiacSign.cancer: 'Duygusal güvenliğim sağlam, sevgi veriyorum ve alıyorum.',
-      ZodiacSign.leo: 'Işığım parlak, yaratıcılığım sınırsız.',
-      ZodiacSign.virgo: 'Mükemmellik değil, ilerleme önemli.',
-      ZodiacSign.libra: 'Hayatımda denge ve uyum yaratıyorum.',
-      ZodiacSign.scorpio: 'Dönüşümü kucaklıyorum, her gün yeniden doğuyorum.',
-      ZodiacSign.sagittarius: 'Özgürce keşfediyorum, hayat bir maceradır.',
-      ZodiacSign.capricorn: 'Hedeflerime kararlılıkla ilerliyorum.',
-      ZodiacSign.aquarius: 'Benzersizliğim dünyaya armağanımdır.',
-      ZodiacSign.pisces: 'Sezgilerime güveniyorum, evrenle akışta kalıyorum.',
-    };
+  static AffirmationsData _generateAffirmations(ZodiacSign sign, MoonPhase moonPhase, AppLanguage language) {
+    final affirmationKey = 'rituals.main_affirmations.${sign.name}';
+    final mainAffirmation = L10nService.get(affirmationKey, language);
+    final finalMainAffirmation = mainAffirmation == affirmationKey
+        ? L10nService.get('rituals.main_affirmations.default', language)
+        : mainAffirmation;
 
     return AffirmationsData(
-      mainAffirmation: mainAffirmations[sign] ?? 'Ben değerli ve yeteriyim.',
+      mainAffirmation: finalMainAffirmation,
       morningAffirmations: [
-        'Bugün harika şeyler olacak.',
-        'Enerjim yüksek ve odağım net.',
-        'Tüm fırsatlara açığım.',
+        L10nService.get('rituals.affirmation_lists.morning_1', language),
+        L10nService.get('rituals.affirmation_lists.morning_2', language),
+        L10nService.get('rituals.affirmation_lists.morning_3', language),
       ],
       noonAffirmations: [
-        'İlerliyorum ve büyüyorum.',
-        'Zorluklarla başa çıkabilecek güçteyim.',
-        'Şu an mükemmel bir andır.',
+        L10nService.get('rituals.affirmation_lists.noon_1', language),
+        L10nService.get('rituals.affirmation_lists.noon_2', language),
+        L10nService.get('rituals.affirmation_lists.noon_3', language),
       ],
       eveningAffirmations: [
-        'Bugün için teşekkür ederim.',
-        'Yarın için hazırım.',
-        'Huzurla dinlenmeyi hak ediyorum.',
+        L10nService.get('rituals.affirmation_lists.evening_1', language),
+        L10nService.get('rituals.affirmation_lists.evening_2', language),
+        L10nService.get('rituals.affirmation_lists.evening_3', language),
       ],
     );
   }
 
-  static EveningRitual _generateEveningRitual(ZodiacSign sign, MoonPhase moonPhase, Random random) {
+  static EveningRitual _generateEveningRitual(ZodiacSign sign, MoonPhase moonPhase, Random random, AppLanguage language) {
     return EveningRitual(
       bestTime: '21:00 - 22:00',
       reflectionPrompts: [
-        'Bugün neyi başardım?',
-        'Ne öğrendim?',
-        'Yarın neyi farklı yapmak isterim?',
+        L10nService.get('rituals.reflection_prompts.what_accomplished', language),
+        L10nService.get('rituals.reflection_prompts.what_learned', language),
+        L10nService.get('rituals.reflection_prompts.what_different', language),
       ],
       gratitudePrompts: [
-        'Hayatımdaki bir kişi',
-        'Bugün yaşadığım bir deneyim',
-        'Sahip olduğum bir şey',
+        L10nService.get('rituals.gratitude_prompts.person', language),
+        L10nService.get('rituals.gratitude_prompts.experience', language),
+        L10nService.get('rituals.gratitude_prompts.possession', language),
       ],
       releasingRitual: ReleasingRitual(
-        description: 'Günün stresini ve olumsuz enerjileri bilinçli olarak bırakın. Her nefesinizde gitmesine izin verin.',
-        thingsToRelease: ['Günün stresi', 'Endişeler', 'Yarıda kalan işler', 'Olumsuz düşünceler'],
+        description: L10nService.get('rituals.releasing.description', language),
+        thingsToRelease: [
+          L10nService.get('rituals.releasing.daily_stress', language),
+          L10nService.get('rituals.releasing.worries', language),
+          L10nService.get('rituals.releasing.unfinished_tasks', language),
+          L10nService.get('rituals.releasing.negative_thoughts', language),
+        ],
       ),
       sleepPreparation: SleepPreparation(
         steps: [
-          'Elektronik cihazları kapatın',
-          'Odayı karartın ve serinletin',
-          'Rahat bir pozisyon alın',
-          'Nefeslerinizi yavaşlatın',
-          'Vücudunuzu gevşetin',
+          L10nService.get('rituals.sleep_prep.turn_off_devices', language),
+          L10nService.get('rituals.sleep_prep.darken_room', language),
+          L10nService.get('rituals.sleep_prep.comfortable_position', language),
+          L10nService.get('rituals.sleep_prep.slow_breath', language),
+          L10nService.get('rituals.sleep_prep.relax_body', language),
         ],
-        sleepAffirmation: 'Huzurla uyuyorum, yarın için yenileniyorum.',
+        sleepAffirmation: L10nService.get('rituals.sleep_prep.sleep_affirmation', language),
       ),
     );
   }

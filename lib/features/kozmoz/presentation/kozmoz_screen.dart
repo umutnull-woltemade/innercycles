@@ -184,7 +184,7 @@ class _KozmozScreenState extends ConsumerState<KozmozScreen>
       _messages.add(_ChatMessage(
         text: '$hello $userName! 🌟\n\n'
             '$introMessage\n\n'
-            '⚠️ ${DisclaimerTexts.astrology}',
+            '⚠️ ${DisclaimerTexts.astrology(language)}',
         isUser: false,
         timestamp: DateTime.now(),
       ));
@@ -2336,9 +2336,9 @@ ${_getOverallBalance(sign)}
                   shaderCallback: (bounds) => const LinearGradient(
                     colors: [Color(0xFFFFD700), Color(0xFFFF6B9D), Color(0xFF9D4EDD)],
                   ).createShader(bounds),
-                  child: const Text(
-                    'Kozmoz İzi',
-                    style: TextStyle(
+                  child: Text(
+                    L10nService.get('kozmoz.header_title', ref.read(languageProvider)),
+                    style: const TextStyle(
                       fontSize: 22,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
@@ -2346,7 +2346,7 @@ ${_getOverallBalance(sign)}
                   ),
                 ),
                 Text(
-                  'Kozmik AI Asistanın',
+                  L10nService.get('kozmoz.header_subtitle', ref.read(languageProvider)),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: AppColors.textSecondary,
                       ),
@@ -2357,7 +2357,7 @@ ${_getOverallBalance(sign)}
           IconButton(
             onPressed: () => _showFeaturesSheet(context),
             icon: const Icon(Icons.apps_rounded, color: AppColors.starGold),
-            tooltip: 'Tüm Çözümlemeler',
+            tooltip: L10nService.get('kozmoz.all_analyses', ref.read(languageProvider)),
           ),
         ],
       ),
@@ -2504,7 +2504,7 @@ ${_getOverallBalance(sign)}
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            '💡 Önerilen Sorular:',
+            '💡 ${L10nService.get('kozmoz.suggested_questions', ref.read(languageProvider))}',
             style: TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.w600,
@@ -2610,7 +2610,7 @@ ${_getOverallBalance(sign)}
                   minLines: 1,
                   textInputAction: TextInputAction.send,
                   decoration: InputDecoration(
-                    hintText: 'Kozmoz\'a sor... (Enter ile gönder)',
+                    hintText: L10nService.get('kozmoz.ask_placeholder', ref.read(languageProvider)),
                     hintStyle: TextStyle(color: AppColors.textSecondary.withOpacity(0.6)),
                     border: InputBorder.none,
                     contentPadding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
@@ -2678,22 +2678,23 @@ class _ChatMessage {
 // FEATURES SHEET - Tüm özelliklere hızlı erişim
 // ═══════════════════════════════════════════════════════════════
 
-class _FeaturesSheet extends StatelessWidget {
+class _FeaturesSheet extends ConsumerWidget {
   final List<Map<String, dynamic>> _features = [
-    {'emoji': '⭐', 'name': 'Burç Yorumları', 'route': Routes.horoscope},
-    {'emoji': '🗺️', 'name': 'Doğum Haritası', 'route': Routes.birthChart},
-    {'emoji': '💕', 'name': 'Burç Uyumu', 'route': Routes.compatibility},
-    {'emoji': '🪐', 'name': 'Transitler', 'route': Routes.transits},
-    {'emoji': '🔢', 'name': 'Numeroloji', 'route': Routes.numerology},
-    {'emoji': '🎴', 'name': 'Tarot', 'route': Routes.tarot},
-    {'emoji': '🌙', 'name': 'Rüya İzi', 'route': Routes.dreamInterpretation},
-    {'emoji': '✨', 'name': 'Aura Analizi', 'route': Routes.aura},
-    {'emoji': '🔮', 'name': 'Çakra Analizi', 'route': Routes.chakraAnalysis},
-    {'emoji': '📅', 'name': 'Zamanlama', 'route': Routes.timing},
+    {'emoji': '⭐', 'nameKey': 'kozmoz.features.zodiac_readings', 'route': Routes.horoscope},
+    {'emoji': '🗺️', 'nameKey': 'kozmoz.features.birth_chart', 'route': Routes.birthChart},
+    {'emoji': '💕', 'nameKey': 'kozmoz.features.zodiac_compatibility', 'route': Routes.compatibility},
+    {'emoji': '🪐', 'nameKey': 'kozmoz.features.transits', 'route': Routes.transits},
+    {'emoji': '🔢', 'nameKey': 'kozmoz.features.numerology', 'route': Routes.numerology},
+    {'emoji': '🎴', 'nameKey': 'kozmoz.features.tarot', 'route': Routes.tarot},
+    {'emoji': '🌙', 'nameKey': 'kozmoz.features.dream_trace', 'route': Routes.dreamInterpretation},
+    {'emoji': '✨', 'nameKey': 'kozmoz.features.aura_analysis', 'route': Routes.aura},
+    {'emoji': '🔮', 'nameKey': 'kozmoz.features.chakra_analysis', 'route': Routes.chakraAnalysis},
+    {'emoji': '📅', 'nameKey': 'kozmoz.features.timing', 'route': Routes.timing},
   ];
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final language = ref.watch(languageProvider);
     return Container(
       height: MediaQuery.of(context).size.height * 0.5,
       decoration: BoxDecoration(
@@ -2722,7 +2723,7 @@ class _FeaturesSheet extends StatelessWidget {
                 const Text('🚀', style: TextStyle(fontSize: 24)),
                 const SizedBox(width: 12),
                 Text(
-                  'Hızlı Erişim',
+                  L10nService.get('kozmoz.quick_access', language),
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
                         color: AppColors.textPrimary,
                         fontWeight: FontWeight.bold,
@@ -2768,7 +2769,7 @@ class _FeaturesSheet extends StatelessWidget {
                         Text(feature['emoji'], style: const TextStyle(fontSize: 28)),
                         const SizedBox(height: 8),
                         Text(
-                          feature['name'],
+                          L10nService.get(feature['nameKey'], language),
                           style: const TextStyle(
                             fontSize: 11,
                             color: AppColors.textPrimary,

@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/constants/app_constants.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../data/services/l10n_service.dart';
 import '../../../../data/models/natal_chart.dart';
 import '../../../../data/models/planet.dart';
 import '../../../../data/models/zodiac_sign.dart' as zodiac;
@@ -48,16 +49,16 @@ class PlanetPositionsCard extends ConsumerWidget {
 
     return Column(
       children: [
-        _buildSection(context, language, 'Kişisel Gezegenler', 'Benlik ve günlük yaşam', personalPlanets, 0),
+        _buildSection(context, language, L10nService.get('planets.personal', language), L10nService.get('planets.personal_desc', language), personalPlanets, 0),
         const SizedBox(height: AppConstants.spacingMd),
-        _buildSection(context, language, 'Sosyal Gezegenler', 'Toplumsal rol', socialPlanets, 100),
+        _buildSection(context, language, L10nService.get('planets.social', language), L10nService.get('planets.social_desc', language), socialPlanets, 100),
         const SizedBox(height: AppConstants.spacingMd),
-        _buildSection(context, language, 'Dış Gezegenler', 'Nesil ve dönüşüm', outerPlanets, 200),
+        _buildSection(context, language, L10nService.get('planets.outer', language), L10nService.get('planets.outer_desc', language), outerPlanets, 200),
         const SizedBox(height: AppConstants.spacingMd),
-        _buildSection(context, language, 'Diğer Noktalar', 'Ay düğümleri, Chiron, Lilith', otherPoints, 300),
+        _buildSection(context, language, L10nService.get('planets.other_points', language), L10nService.get('planets.other_points_desc', language), otherPoints, 300),
         if (angles.isNotEmpty) ...[
           const SizedBox(height: AppConstants.spacingMd),
-          _buildSection(context, language, 'Açılar', 'Yükselen, MC, IC, Alçalan', angles, 400),
+          _buildSection(context, language, L10nService.get('planets.angles', language), L10nService.get('planets.angles_desc', language), angles, 400),
         ],
       ],
     );
