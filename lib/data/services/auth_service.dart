@@ -45,6 +45,30 @@ class AuthUserInfo {
 
 enum AuthProvider { apple, email }
 
+/// Apple Sign In error types for localization in UI layer
+enum AppleAuthErrorType {
+  failed,
+  invalidResponse,
+  notHandled,
+  notInteractive,
+  unknown,
+  notAvailable,
+  tokenFailed,
+  supabaseError,
+}
+
+/// Custom exception for Apple Sign In errors - localized in UI layer
+class AppleAuthException implements Exception {
+  final AppleAuthErrorType type;
+  final String? originalMessage;
+
+  const AppleAuthException(this.type, [this.originalMessage]);
+
+  @override
+  String toString() =>
+      'AppleAuthException: $type${originalMessage != null ? ' - $originalMessage' : ''}';
+}
+
 /// Unified Authentication Service - Supabase
 /// Supports Apple and Email/Password authentication
 class AuthService {
@@ -121,26 +145,24 @@ class AuthService {
         debugPrint('🍎 User canceled sign in');
         return null; // User canceled, don't show error
       }
-      if (e.code == AuthorizationErrorCode.failed) {
-        throw Exception('Apple sign in failed. Please try again.');
+      // Throw typed exceptions - localized in UI layer
+      switch (e.code) {
+        case AuthorizationErrorCode.failed:
+          throw const AppleAuthException(AppleAuthErrorType.failed);
+        case AuthorizationErrorCode.invalidResponse:
+          throw const AppleAuthException(AppleAuthErrorType.invalidResponse);
+        case AuthorizationErrorCode.notHandled:
+          throw const AppleAuthException(AppleAuthErrorType.notHandled);
+        case AuthorizationErrorCode.notInteractive:
+          throw const AppleAuthException(AppleAuthErrorType.notInteractive);
+        case AuthorizationErrorCode.unknown:
+        default:
+          throw const AppleAuthException(AppleAuthErrorType.unknown);
       }
-      if (e.code == AuthorizationErrorCode.invalidResponse) {
-        throw Exception('Invalid response received from Apple.');
-      }
-      if (e.code == AuthorizationErrorCode.notHandled) {
-        throw Exception('Apple sign in could not be handled.');
-      }
-      if (e.code == AuthorizationErrorCode.notInteractive) {
-        throw Exception('Apple sign in failed in interactive mode.');
-      }
-      if (e.code == AuthorizationErrorCode.unknown) {
-        throw Exception('Apple sign in encountered an unknown error.');
-      }
-      rethrow;
     } on AuthException catch (e) {
-      // Supabase auth error
+      // Supabase auth error - pass original message for debugging
       debugPrint('🍎 Supabase Auth Error: ${e.message}');
-      throw Exception('Authentication error: ${e.message}');
+      throw AppleAuthException(AppleAuthErrorType.supabaseError, e.message);
     } catch (e) {
       debugPrint('🍎 Apple Sign-In error: $e');
       if (e.toString().contains('canceled') ||
@@ -190,8 +212,7 @@ class AuthService {
     debugPrint('🍎 Apple Sign In available: $isAvailable');
 
     if (!isAvailable) {
-      throw Exception(
-          'Apple Sign In is not available on this device. iOS 13+ required.');
+      throw const AppleAuthException(AppleAuthErrorType.notAvailable);
     }
 
     // Generate nonce (for security)
@@ -212,7 +233,7 @@ class AuthService {
 
     final idToken = appleCredential.identityToken;
     if (idToken == null) {
-      throw Exception('Could not retrieve Apple ID token');
+      throw const AppleAuthException(AppleAuthErrorType.tokenFailed);
     }
 
     // If Supabase is not configured, return only Apple auth info

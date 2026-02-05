@@ -55,17 +55,18 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       debugPrint('Apple Sign-In UI error: $e');
       if (mounted) {
         setState(() {
-          // Hata mesajini kullaniciya goster
-          final errorStr = e.toString();
-          if (errorStr.contains('Exception:')) {
-            _errorMessage = errorStr.replaceAll('Exception:', '').trim();
-          } else if (errorStr.contains('canceled') ||
-              errorStr.contains('cancelled')) {
-            // Iptal durumunda hata gosterme
-            _errorMessage = null;
+          final language = ref.read(languageProvider);
+          // Handle typed Apple auth exceptions with localized messages
+          if (e is AppleAuthException) {
+            _errorMessage = _getLocalizedAppleError(e.type, language);
           } else {
-            final language = ref.read(languageProvider);
-            _errorMessage = L10nService.get('auth.apple_sign_in_failed', language);
+            final errorStr = e.toString();
+            if (errorStr.contains('canceled') || errorStr.contains('cancelled')) {
+              // User canceled - don't show error
+              _errorMessage = null;
+            } else {
+              _errorMessage = L10nService.get('auth.apple_sign_in_failed', language);
+            }
           }
         });
       }
@@ -89,6 +90,21 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
   void _skipLogin() {
     context.go(Routes.onboarding);
+  }
+
+  /// Get localized error message for Apple auth errors
+  String _getLocalizedAppleError(AppleAuthErrorType type, AppLanguage language) {
+    final key = switch (type) {
+      AppleAuthErrorType.failed => 'auth.apple_error_failed',
+      AppleAuthErrorType.invalidResponse => 'auth.apple_error_invalid_response',
+      AppleAuthErrorType.notHandled => 'auth.apple_error_not_handled',
+      AppleAuthErrorType.notInteractive => 'auth.apple_error_not_interactive',
+      AppleAuthErrorType.unknown => 'auth.apple_error_unknown',
+      AppleAuthErrorType.notAvailable => 'auth.apple_error_not_available',
+      AppleAuthErrorType.tokenFailed => 'auth.apple_error_token_failed',
+      AppleAuthErrorType.supabaseError => 'auth.apple_sign_in_failed',
+    };
+    return L10nService.get(key, language);
   }
 
   @override
