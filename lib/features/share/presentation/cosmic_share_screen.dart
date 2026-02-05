@@ -282,24 +282,53 @@ class _CosmicShareScreenState extends ConsumerState<CosmicShareScreen> {
       if (!mounted) return;
 
       if (result.success) {
-        _showSuccessFeedback(result.message);
-      } else if (result.error == ShareError.webFallback && result.fallbackData != null) {
-        // Show web fallback dialog
-        _showWebFallbackDialog(result.fallbackData!);
+        if (result.error == ShareError.webFallback && result.fallbackData != null) {
+          // Show web fallback dialog
+          _showWebFallbackDialog(result.fallbackData!);
+        } else {
+          _showSuccessFeedback(_getLocalizedShareMessage(result.error, success: true));
+        }
       } else if (result.error == ShareError.dismissed) {
         // User cancelled - no feedback needed
       } else {
-        _showErrorFeedback(result.message);
+        _showErrorFeedback(_getLocalizedShareMessage(result.error, success: false));
       }
     } catch (e) {
+      debugPrint('Share error: $e');
       if (mounted) {
-        _showErrorFeedback('${L10nService.get('share.share_error', _language)}: $e');
+        _showErrorFeedback(L10nService.get('share.share_error', _language));
       }
     } finally {
       if (mounted) {
         setState(() => _isCapturing = false);
       }
     }
+  }
+
+  List<String> _getLocalizedInstructions() {
+    return [
+      L10nService.get('share.instruction_1', _language),
+      L10nService.get('share.instruction_2', _language),
+      L10nService.get('share.instruction_3', _language),
+      L10nService.get('share.instruction_4', _language),
+    ];
+  }
+
+  String _getLocalizedShareMessage(ShareError? error, {required bool success}) {
+    if (success) {
+      return L10nService.get('share.success_shared', _language);
+    }
+
+    final key = switch (error) {
+      ShareError.captureFailed => 'share.error_capture_failed',
+      ShareError.saveFailed => 'share.error_save_failed',
+      ShareError.dismissed => 'share.error_dismissed',
+      ShareError.platformError => 'share.error_share_failed',
+      ShareError.webFallback => 'share.success_shared',
+      ShareError.unknown => 'share.error_share_failed',
+      null => 'share.error_share_failed',
+    };
+    return L10nService.get(key, _language);
   }
 
   void _showSuccessFeedback(String message) {
@@ -374,7 +403,7 @@ class _CosmicShareScreenState extends ConsumerState<CosmicShareScreen> {
               ),
             ),
             const SizedBox(height: 16),
-            ...fallback.instructions.map((instruction) => Padding(
+            ..._getLocalizedInstructions().map((instruction) => Padding(
               padding: const EdgeInsets.only(bottom: 8),
               child: Row(
                 children: [

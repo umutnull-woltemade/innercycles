@@ -38,10 +38,9 @@ class InstagramShareService {
       // 1. Capture the image
       final imageBytes = await _captureImage(boundary);
       if (imageBytes == null) {
-        return ShareResult(
+        return const ShareResult(
           success: false,
           error: ShareError.captureFailed,
-          message: 'Görsel oluşturulamadı',
         );
       }
 
@@ -53,10 +52,9 @@ class InstagramShareService {
       // 3. For native platforms, save to temp file first
       final file = await _saveToTempFile(imageBytes);
       if (file == null) {
-        return ShareResult(
+        return const ShareResult(
           success: false,
           error: ShareError.saveFailed,
-          message: 'Dosya kaydedilemedi',
         );
       }
 
@@ -68,10 +66,10 @@ class InstagramShareService {
         return await _shareGeneric(file, shareText, hashtags);
       }
     } catch (e) {
-      return ShareResult(
+      debugPrint('Share error: $e');
+      return const ShareResult(
         success: false,
         error: ShareError.unknown,
-        message: 'Paylaşım hatası: $e',
       );
     }
   }
@@ -127,32 +125,29 @@ class InstagramShareService {
       );
 
       if (result.status == ShareResultStatus.success) {
-        return ShareResult(
+        return const ShareResult(
           success: true,
           platform: SharePlatform.ios,
-          message: 'Paylaşıldı!',
         );
       } else if (result.status == ShareResultStatus.dismissed) {
-        return ShareResult(
+        return const ShareResult(
           success: false,
           error: ShareError.dismissed,
           platform: SharePlatform.ios,
-          message: 'Paylaşım iptal edildi',
         );
       } else {
-        return ShareResult(
+        return const ShareResult(
           success: false,
           error: ShareError.unknown,
           platform: SharePlatform.ios,
-          message: 'Paylaşım tamamlanamadı',
         );
       }
     } catch (e) {
-      return ShareResult(
+      debugPrint('iOS share error: $e');
+      return const ShareResult(
         success: false,
         error: ShareError.platformError,
         platform: SharePlatform.ios,
-        message: 'iOS paylaşım hatası: $e',
       );
     }
   }
@@ -173,32 +168,29 @@ class InstagramShareService {
       );
 
       if (result.status == ShareResultStatus.success) {
-        return ShareResult(
+        return const ShareResult(
           success: true,
           platform: SharePlatform.android,
-          message: 'Paylaşıldı!',
         );
       } else if (result.status == ShareResultStatus.dismissed) {
-        return ShareResult(
+        return const ShareResult(
           success: false,
           error: ShareError.dismissed,
           platform: SharePlatform.android,
-          message: 'Paylaşım iptal edildi',
         );
       } else {
-        return ShareResult(
+        return const ShareResult(
           success: false,
           error: ShareError.unknown,
           platform: SharePlatform.android,
-          message: 'Paylaşım tamamlanamadı',
         );
       }
     } catch (e) {
-      return ShareResult(
+      debugPrint('Android share error: $e');
+      return const ShareResult(
         success: false,
         error: ShareError.platformError,
         platform: SharePlatform.android,
-        message: 'Android paylaşım hatası: $e',
       );
     }
   }
@@ -229,17 +221,15 @@ class InstagramShareService {
         );
 
         if (result.status == ShareResultStatus.success) {
-          return ShareResult(
+          return const ShareResult(
             success: true,
             platform: SharePlatform.web,
-            message: 'Paylaşıldı!',
           );
         } else if (result.status == ShareResultStatus.dismissed) {
-          return ShareResult(
+          return const ShareResult(
             success: false,
             error: ShareError.dismissed,
             platform: SharePlatform.web,
-            message: 'Paylaşım iptal edildi',
           );
         }
       } catch (e) {
@@ -255,24 +245,18 @@ class InstagramShareService {
       return ShareResult(
         success: true,
         platform: SharePlatform.web,
-        message: 'Görsel indirildi! Metin panoya kopyalandı.',
+        error: ShareError.webFallback,
         fallbackData: ShareFallbackData(
           downloadUrl: '',
           copyText: fullText,
-          instructions: [
-            '1. Görsel indirildi ✓',
-            '2. Metin panoya kopyalandı ✓',
-            '3. Instagram\'ı aç',
-            '4. Hikaye olarak paylaş ve metni yapıştır',
-          ],
         ),
       );
     } catch (e) {
-      return ShareResult(
+      debugPrint('Web share error: $e');
+      return const ShareResult(
         success: false,
         error: ShareError.platformError,
         platform: SharePlatform.web,
-        message: 'Web paylaşım hatası: $e',
       );
     }
   }
@@ -288,18 +272,29 @@ class InstagramShareService {
         XFile(file.path),
       ], text: _buildShareText(shareText, hashtags));
 
-      return ShareResult(
-        success: result.status == ShareResultStatus.success,
-        platform: SharePlatform.other,
-        message: result.status == ShareResultStatus.success
-            ? 'Paylaşıldı!'
-            : 'Paylaşım tamamlanamadı',
-      );
+      if (result.status == ShareResultStatus.success) {
+        return const ShareResult(
+          success: true,
+          platform: SharePlatform.other,
+        );
+      } else if (result.status == ShareResultStatus.dismissed) {
+        return const ShareResult(
+          success: false,
+          error: ShareError.dismissed,
+          platform: SharePlatform.other,
+        );
+      } else {
+        return const ShareResult(
+          success: false,
+          error: ShareError.unknown,
+          platform: SharePlatform.other,
+        );
+      }
     } catch (e) {
-      return ShareResult(
+      debugPrint('Generic share error: $e');
+      return const ShareResult(
         success: false,
         error: ShareError.unknown,
-        message: 'Paylaşım hatası: $e',
       );
     }
   }
@@ -359,14 +354,12 @@ class ShareResult {
   final bool success;
   final ShareError? error;
   final SharePlatform? platform;
-  final String message;
   final ShareFallbackData? fallbackData;
 
   const ShareResult({
     required this.success,
     this.error,
     this.platform,
-    required this.message,
     this.fallbackData,
   });
 }
@@ -385,11 +378,9 @@ enum SharePlatform { ios, android, web, other }
 class ShareFallbackData {
   final String downloadUrl;
   final String copyText;
-  final List<String> instructions;
 
   const ShareFallbackData({
     required this.downloadUrl,
     required this.copyText,
-    required this.instructions,
   });
 }
