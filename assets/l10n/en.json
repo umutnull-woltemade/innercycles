@@ -2300,7 +2300,104 @@
     "astrology_brand": "Astrology — Venus One",
     "astrology": "Astrology",
     "hermetic_teaching": "Hermetic Teaching",
-    "weekly_affirmation_label": "Weekly Affirmation"
+    "weekly_affirmation_label": "Weekly Affirmation",
+    "quotable_bullets": {
+      "aries": [
+        "Your energy is high today, a good time to take initiative.",
+        "Be careful not to fall into the trap of impatience.",
+        "Important news may come in the evening hours."
+      ],
+      "taurus": [
+        "You may gain clarity on financial matters today.",
+        "Stay true to your routines, changes can wait for now.",
+        "An ideal day to spend quality time with loved ones."
+      ],
+      "gemini": [
+        "Your communication skills are at the forefront today.",
+        "Good time for conversations you've been putting off.",
+        "Your mind is working fast, don't forget to take notes."
+      ],
+      "cancer": [
+        "You may have an emotionally sensitive day.",
+        "Home and family matters come to the fore.",
+        "Trust your intuition, it will guide you correctly."
+      ],
+      "leo": [
+        "You don't need extra effort to stand out today.",
+        "You may find inspiration for creative projects.",
+        "Your leadership qualities will be appreciated."
+      ],
+      "virgo": [
+        "A day when you need to focus on details.",
+        "Good time to review your health routines.",
+        "Be careful to keep your critical view constructive."
+      ],
+      "libra": [
+        "Your search for balance in relationships stands out today.",
+        "A good day for making aesthetic decisions.",
+        "You may make progress on partnership matters."
+      ],
+      "scorpio": [
+        "You may dive into deep thoughts today.",
+        "A hidden matter may come to light.",
+        "Transformation energy is strong, good time to let go of old patterns."
+      ],
+      "sagittarius": [
+        "Your spirit of adventure is reviving today.",
+        "A great day to learn something new.",
+        "News may come from distant places."
+      ],
+      "capricorn": [
+        "You can take concrete steps toward your career goals.",
+        "Your disciplined approach will bear fruit today.",
+        "Good time for making long-term plans."
+      ],
+      "aquarius": [
+        "You can make a difference with your original ideas.",
+        "Group activities and friendships are at the forefront.",
+        "Luck is on your side in technology-related matters."
+      ],
+      "pisces": [
+        "Your intuition is especially strong today.",
+        "Ideal for artistic and spiritual activities.",
+        "Pay attention to your dreams, they may carry important messages."
+      ],
+      "default": [
+        "Cosmic energies are with you today.",
+        "Listen to your inner voice.",
+        "New opportunities are at the door."
+      ]
+    },
+    "sign_summaries": {
+      "aries": "[[Aries]] is the first sign of the [[Zodiac]] and carries [[Cardinal]] [[Fire]] energy. Ruled by [[Mars]], it has a strong drive toward action, leadership, and new beginnings.",
+      "taurus": "[[Taurus]] represents stability and security with [[Fixed]] [[Earth]] energy. Under [[Venus]] rule, beauty, value, and material comfort are the main motivations.",
+      "gemini": "[[Gemini]] represents communication and intelligence with [[Mutable]] [[Air]] energy. Under [[Mercury]] rule, learning and sharing knowledge is vital.",
+      "cancer": "[[Cancer]] represents emotional depth and protection with [[Cardinal]] [[Water]] energy. Under [[Moon]] rule, home and family are the most important themes.",
+      "leo": "[[Leo]] represents creativity and free will with [[Fixed]] [[Fire]] energy. Under [[Sun]] rule, self-expression and shining is your natural tendency.",
+      "virgo": "[[Virgo]] represents analysis and service with [[Mutable]] [[Earth]] energy. Under [[Mercury]] rule, details and perfection are important.",
+      "libra": "[[Libra]] represents balance and relationships with [[Cardinal]] [[Air]] energy. Under [[Venus]] rule, harmony and aesthetics are core values.",
+      "scorpio": "[[Scorpio]] represents transformation and intensity with [[Fixed]] [[Water]] energy. Under [[Pluto]] rule, depth and power themes are prominent.",
+      "sagittarius": "[[Sagittarius]] represents adventure and philosophy with [[Mutable]] [[Fire]] energy. Under [[Jupiter]] rule, expansion and search for meaning is your natural state.",
+      "capricorn": "[[Capricorn]] represents success and discipline with [[Cardinal]] [[Earth]] energy. Under [[Saturn]] rule, structure and responsibility are core values.",
+      "aquarius": "[[Aquarius]] represents innovation and humanity with [[Fixed]] [[Air]] energy. Under [[Uranus]] rule, freedom and progress are the most important themes.",
+      "pisces": "[[Pisces]] represents spirituality and intuition with [[Mutable]] [[Water]] energy. Under [[Neptune]] rule, imagination and empathy are your strengths.",
+      "default": "Loading detailed information about this sign..."
+    },
+    "deep_interpretations": {
+      "aries": "[[Aries]] is located at the starting point of the [[Zodiac]] circle and represents the \"I am\" principle. This period, beginning with the [[Spring equinox]], reflects the energy of rebirth and growth in nature.\n\nUnder the rule of planet [[Mars]], Aries are action-oriented. Their natural relationship with the [[1st House]] determines identity, physical appearance, and how one approaches the world. The [[Fire]] element provides courage and passion, while the [[Cardinal]] quality brings leadership and initiative.\n\nIn evolutionary astrology, Aries represents the beginning of the [[Soul's journey]]. It takes the first steps in ego development and the individuation process. [[Shadow]] aspects include impatience and acting without thinking.\n\nPlanets in Aries generally display fast, direct, and competitive energy. During [[Mars]] [[Retrograde]] periods, it's beneficial to direct this energy toward inner motivation.",
+      "taurus": "[[Taurus]] is the second sign of the [[Zodiac]] and represents the \"I have\" principle. As the most stable form of the [[Earth]] element, Taurus manages values and resources.\n\nUnder the rule of planet [[Venus]], Taurus shows deep appreciation for sensory experiences and beauty. Their natural relationship with the [[2nd House]] covers self-worth, material resources, and talents.\n\nThe [[Fixed]] quality gives Taurus endurance and determination. Once started, projects continue until completion. However, this can also lead to the [[Shadow]] aspect of stubbornness.\n\nPlanets in Taurus display slow but determined energy. [[Venus]] transits indicate important periods especially for Taurus and [[Libra]] signs.",
+      "gemini": "[[Gemini]] represents the \"I think\" principle and is the first [[Air]] sign of the [[Zodiac]]. Under [[Mercury]] rule, mental agility and communication abilities are strong.\n\nTheir natural relationship with the [[3rd House]] covers immediate environment, siblings, short trips, and basic communication. The [[Mutable]] quality provides the ability to adapt and be flexible.\n\nGemini's [[Duality]] symbolism - twin siblings - represents the two aspects of the mind: rational and intuitive. This energy, sometimes perceived as scattered, is actually the ability to see multiple perspectives.\n\n[[Mercury Retrograde]] periods are especially important for Gemini. These times are valuable for introspection and looking back. The [[Shadow]] aspect is superficiality and indecisiveness.",
+      "cancer": "[[Cancer]] is the fourth sign of the [[Zodiac]] and represents the [[Cardinal]] form of the [[Water]] element. With the \"I feel\" principle, it embodies emotional intelligence and intuition.\n\nUnder [[Moon]] rule, Cancers display emotional depth and protective instincts. Their natural relationship with the [[4th House]] covers home, family roots, inner world, and emotional security.\n\nThe [[Mother archetype]] resonates strongly with Cancer. Nurturing energy and caregiving ability are naturally developed. [[Moon phases]] are especially effective for Cancer natives.\n\n[[Shadow]] aspects include overprotection, emotional manipulation, and tendency to get stuck in the past. Learning to set [[Emotional boundaries]] is the evolutionary task.",
+      "leo": "[[Leo]] is the fifth sign of the [[Zodiac]] and represents the [[Fixed]] form of the [[Fire]] element. With the \"I create\" principle, self-expression and creativity are central.\n\nThe [[Sun]] is the ruler of this sign and is \"at home\" - in its strongest state. Their natural relationship with the [[5th House]] covers creativity, romance, children, and entertainment. The [[Heart chakra]] is strongly connected to Leo.\n\nLeo's attraction to drama and the stage stems from a spiritual need: to be seen and feel valued. This is not an ego matter, but the natural expression of the [[Sun]].\n\n[[Shadow]] aspects include arrogance, excessive pride, and tendency to ignore others' light. Humility and sharing are qualities to develop on the evolutionary journey.",
+      "virgo": "[[Virgo]] is the sixth sign of the [[Zodiac]] and represents the [[Mutable]] form of the [[Earth]] element. With the \"I analyze\" principle, service and pursuit of perfection are central.\n\nUnder [[Mercury]] rule, Virgo displays analytical intelligence and detail orientation. Their natural relationship with the [[6th House]] covers health, daily routines, service, and work environment.\n\nVirgo's perfectionist tendency actually comes from the concept of [[Sacred service]] - the desire to do one's job in the best way. [[Healing]] abilities are generally strong.\n\n[[Shadow]] aspects include being overly critical, worry, and self-deprecation. Accepting oneself and freeing from the pressure of flawlessness is the evolutionary task.",
+      "libra": "[[Libra]] is the seventh sign of the [[Zodiac]] and represents the [[Cardinal]] form of the [[Air]] element. With the \"I balance\" principle, relationship and harmony are central.\n\nUnder [[Venus]] rule, Libra displays aesthetic sensitivity and social grace. Their natural relationship with the [[7th House]] covers partnerships, marriage, and the concept of \"the other.\"\n\nLibra's search for balance actually comes from the concept of [[Cosmic justice]]. Understanding the [[Projection]] mechanism is important for this sign - what we see in others belongs to us.\n\nThe [[Sun]] is \"in fall\" in this sign - individuality themes can be challenging. [[Shadow]] aspects include indecisiveness, passive-aggressive behaviors, and avoiding conflict. Developing self-identity is the evolutionary task.",
+      "scorpio": "[[Scorpio]] is the eighth sign of the [[Zodiac]] and represents the [[Fixed]] form of the [[Water]] element. With the \"I transform\" principle, depth and power are central.\n\nUnder [[Pluto]] (modern) and [[Mars]] (traditional) rule, Scorpio displays intense emotional depth and penetrative intelligence. Their natural relationship with the [[8th House]] covers shared resources, sexuality, death-rebirth, and psychological transformation.\n\nScorpio's intensity actually comes from [[Spiritual alchemy]] - the desire to turn lead into gold. [[Kundalini]] energy is strongly related to this sign.\n\n[[Shadow]] aspects include jealousy, obsession, revenge, and need for control. Letting go and trusting are the most important lessons on the evolutionary journey.",
+      "sagittarius": "[[Sagittarius]] is the ninth sign of the [[Zodiac]] and represents the [[Mutable]] form of the [[Fire]] element. With the \"I explore\" principle, freedom and search for meaning are central.\n\nUnder [[Jupiter]] rule, Sagittarius displays optimism, generosity, and expansion energy. Their natural relationship with the [[9th House]] covers long journeys, higher education, philosophy, and belief systems.\n\nThe archer symbolism of Sagittarius - bow and arrow - represents goal-oriented vision and high ideals. [[Centaur]] mythology symbolizes the union of human and animal nature.\n\n[[Shadow]] aspects include excessive optimism, scatteredness, irresponsibility, and not keeping promises. Deepening and commitment are evolutionary tasks.",
+      "capricorn": "[[Capricorn]] is the tenth sign of the [[Zodiac]] and represents the [[Cardinal]] form of the [[Earth]] element. With the \"I achieve\" principle, discipline and responsibility are central.\n\nUnder [[Saturn]] rule, Capricorn works with themes of structure, time, and maturity. Their natural relationship with the [[10th House]] covers career, social status, reputation, and the [[Father archetype]].\n\nCapricorn's mountain goat symbolism represents determination to climb challenging peaks and reach the goal. Time is this sign's ally - wisdom and success increase with age.\n\n[[Saturn Return]] (approximately every 29 years) is especially meaningful for Capricorns. [[Shadow]] aspects include rigidity, pessimism, and excessive seriousness. Joy and flexibility are evolutionary tasks.",
+      "aquarius": "[[Aquarius]] is the eleventh sign of the [[Zodiac]] and represents the [[Fixed]] form of the [[Air]] element. With the \"I know\" principle, innovation and humanity are central.\n\nUnder [[Uranus]] (modern) and [[Saturn]] (traditional) rule, Aquarius works with revolutionary ideas and social consciousness. Their natural relationship with the [[11th House]] covers groups, friendships, hopes, and humanitarian ideals.\n\nThe water-bearer symbolism of Aquarius represents the distribution of wisdom to humanity. [[Collective consciousness]] and future-oriented vision are strongly related to this sign.\n\n[[Shadow]] aspects include emotional distance, excessive intellectualism, and neglecting individuals while thinking \"for everyone.\" Emotional closeness is the evolutionary task.",
+      "pisces": "[[Pisces]] is the twelfth and last sign of the [[Zodiac]] and represents the [[Mutable]] form of the [[Water]] element. With the \"I believe\" principle, spirituality and transcendence are central.\n\nUnder [[Neptune]] (modern) and [[Jupiter]] (traditional) rule, Pisces works with mysticism, empathy, and cosmic consciousness. Their natural relationship with the [[12th House]] covers the unconscious, spiritual practices, seclusion, and [[Karmic]] themes.\n\nThe two fish symbolism of Pisces - swimming in opposite directions - represents the tension between material and spiritual worlds. Direct access to the [[Collective unconscious]] is this sign's gift.\n\n[[Shadow]] aspects include escape tendencies (addiction), lack of boundaries, and victim mentality. Healthy boundaries and connection with reality are evolutionary tasks.",
+      "default": "Loading sign interpretation..."
+    }
   },
   "tabs": {
     "daily": "Daily",

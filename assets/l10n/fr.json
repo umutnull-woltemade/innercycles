@@ -1692,7 +1692,104 @@
     "hermetic_teaching": "Enseignement Hermétique",
     "weekly_affirmation_label": "Affirmation de la Semaine",
     "title": "Horoscope",
-    "reading": "Reading"
+    "reading": "Reading",
+    "quotable_bullets": {
+      "aries": [
+        "Ton énergie est élevée aujourd'hui, bon moment pour prendre des initiatives.",
+        "Fais attention à ne pas tomber dans le piège de l'impatience.",
+        "Des nouvelles importantes pourraient arriver en soirée."
+      ],
+      "taurus": [
+        "Tu pourrais obtenir de la clarté sur les questions financières aujourd'hui.",
+        "Reste fidèle à tes routines, les changements peuvent attendre pour l'instant.",
+        "Une journée idéale pour passer du temps de qualité avec tes proches."
+      ],
+      "gemini": [
+        "Tes compétences en communication sont au premier plan aujourd'hui.",
+        "Bon moment pour les conversations que tu as repoussées.",
+        "Ton esprit travaille vite, n'oublie pas de prendre des notes."
+      ],
+      "cancer": [
+        "Tu pourrais avoir une journée émotionnellement sensible.",
+        "La maison et la famille passent au premier plan.",
+        "Fais confiance à ton intuition, elle te guidera correctement."
+      ],
+      "leo": [
+        "Tu n'as pas besoin d'effort supplémentaire pour te démarquer aujourd'hui.",
+        "Tu pourrais trouver l'inspiration pour des projets créatifs.",
+        "Tes qualités de leadership seront appréciées."
+      ],
+      "virgo": [
+        "Une journée où tu dois te concentrer sur les détails.",
+        "Bon moment pour revoir tes routines de santé.",
+        "Fais attention à garder ta vue critique constructive."
+      ],
+      "libra": [
+        "Ta recherche d'équilibre dans les relations ressort aujourd'hui.",
+        "Une bonne journée pour prendre des décisions esthétiques.",
+        "Tu pourrais progresser sur les questions de partenariat."
+      ],
+      "scorpio": [
+        "Tu pourrais plonger dans des pensées profondes aujourd'hui.",
+        "Une affaire cachée pourrait refaire surface.",
+        "L'énergie de transformation est forte, bon moment pour lâcher les vieux schémas."
+      ],
+      "sagittarius": [
+        "Ton esprit d'aventure se réveille aujourd'hui.",
+        "Une excellente journée pour apprendre quelque chose de nouveau.",
+        "Des nouvelles de lieux lointains pourraient arriver."
+      ],
+      "capricorn": [
+        "Tu peux prendre des mesures concrètes vers tes objectifs de carrière.",
+        "Ton approche disciplinée portera ses fruits aujourd'hui.",
+        "Bon moment pour faire des plans à long terme."
+      ],
+      "aquarius": [
+        "Tu peux faire la différence avec tes idées originales.",
+        "Les activités de groupe et les amitiés sont au premier plan.",
+        "La chance est de ton côté dans les sujets liés à la technologie."
+      ],
+      "pisces": [
+        "Ton intuition est particulièrement forte aujourd'hui.",
+        "Idéal pour les activités artistiques et spirituelles.",
+        "Fais attention à tes rêves, ils pourraient porter des messages importants."
+      ],
+      "default": [
+        "Les énergies cosmiques sont avec toi aujourd'hui.",
+        "Écoute ta voix intérieure.",
+        "De nouvelles opportunités sont à ta porte."
+      ]
+    },
+    "sign_summaries": {
+      "aries": "Le [[Bélier]] est le premier signe du [[Zodiaque]] et porte l'énergie [[Cardinale]] de [[Feu]]. Gouverné par [[Mars]], il a une forte impulsion vers l'action, le leadership et les nouveaux départs.",
+      "taurus": "Le [[Taureau]] représente la stabilité et la sécurité avec l'énergie [[Fixe]] de [[Terre]]. Sous la domination de [[Vénus]], la beauté, la valeur et le confort matériel sont les principales motivations.",
+      "gemini": "Les [[Gémeaux]] représentent la communication et l'intelligence avec l'énergie [[Mutable]] d'[[Air]]. Sous la domination de [[Mercure]], l'apprentissage et le partage des connaissances sont vitaux.",
+      "cancer": "Le [[Cancer]] représente la profondeur émotionnelle et la protection avec l'énergie [[Cardinale]] d'[[Eau]]. Sous la domination de la [[Lune]], le foyer et la famille sont les thèmes les plus importants.",
+      "leo": "Le [[Lion]] représente la créativité et le libre arbitre avec l'énergie [[Fixe]] de [[Feu]]. Sous la domination du [[Soleil]], l'expression de soi et briller est ta tendance naturelle.",
+      "virgo": "La [[Vierge]] représente l'analyse et le service avec l'énergie [[Mutable]] de [[Terre]]. Sous la domination de [[Mercure]], les détails et la perfection sont importants.",
+      "libra": "La [[Balance]] représente l'équilibre et les relations avec l'énergie [[Cardinale]] d'[[Air]]. Sous la domination de [[Vénus]], l'harmonie et l'esthétique sont des valeurs fondamentales.",
+      "scorpio": "Le [[Scorpion]] représente la transformation et l'intensité avec l'énergie [[Fixe]] d'[[Eau]]. Sous la domination de [[Pluton]], les thèmes de profondeur et de pouvoir sont prédominants.",
+      "sagittarius": "Le [[Sagittaire]] représente l'aventure et la philosophie avec l'énergie [[Mutable]] de [[Feu]]. Sous la domination de [[Jupiter]], l'expansion et la quête de sens sont ton état naturel.",
+      "capricorn": "Le [[Capricorne]] représente le succès et la discipline avec l'énergie [[Cardinale]] de [[Terre]]. Sous la domination de [[Saturne]], la structure et la responsabilité sont des valeurs fondamentales.",
+      "aquarius": "Le [[Verseau]] représente l'innovation et l'humanité avec l'énergie [[Fixe]] d'[[Air]]. Sous la domination d'[[Uranus]], la liberté et le progrès sont les thèmes les plus importants.",
+      "pisces": "Les [[Poissons]] représentent la spiritualité et l'intuition avec l'énergie [[Mutable]] d'[[Eau]]. Sous la domination de [[Neptune]], l'imagination et l'empathie sont tes forces.",
+      "default": "Chargement des informations détaillées sur ce signe..."
+    },
+    "deep_interpretations": {
+      "aries": "Le [[Bélier]] se situe au point de départ du cercle du [[Zodiaque]] et représente le principe \"Je suis\". Cette période, commençant avec l'[[équinoxe de printemps]], reflète l'énergie de renaissance et de croissance dans la nature.\n\nSous la domination de [[Mars]], les Béliers sont orientés vers l'action. Leur relation naturelle avec la [[1ère Maison]] détermine l'identité, l'apparence physique et comment on aborde le monde. L'élément [[Feu]] apporte courage et passion, tandis que la qualité [[Cardinale]] apporte leadership et initiative.\n\nDans l'astrologie évolutive, le Bélier représente le début du [[voyage de l'âme]]. Il fait les premiers pas dans le développement de l'ego et le processus d'individuation. Les aspects [[Ombre]] comprennent l'impatience et agir sans réfléchir.\n\nLes planètes en Bélier affichent généralement une énergie rapide, directe et compétitive. Pendant les périodes de [[Mars]] [[Rétrograde]], il est bénéfique de diriger cette énergie vers la motivation intérieure.",
+      "taurus": "Le [[Taureau]] est le deuxième signe du [[Zodiaque]] et représente le principe \"Je possède\". En tant que forme la plus stable de l'élément [[Terre]], le Taureau gère les valeurs et les ressources.\n\nSous la domination de [[Vénus]], les Taureaux montrent une profonde appréciation pour les expériences sensorielles et la beauté. Leur relation naturelle avec la [[2ème Maison]] couvre l'estime de soi, les ressources matérielles et les talents.\n\nLa qualité [[Fixe]] donne au Taureau endurance et détermination. Une fois commencés, les projets continuent jusqu'à leur achèvement. Cependant, cela peut aussi mener à l'aspect [[Ombre]] de l'entêtement.\n\nLes planètes en Taureau affichent une énergie lente mais déterminée. Les transits de [[Vénus]] indiquent des périodes importantes particulièrement pour les signes Taureau et [[Balance]].",
+      "gemini": "Les [[Gémeaux]] représentent le principe \"Je pense\" et sont le premier signe d'[[Air]] du [[Zodiaque]]. Sous la domination de [[Mercure]], l'agilité mentale et les capacités de communication sont fortes.\n\nLeur relation naturelle avec la [[3ème Maison]] couvre l'environnement immédiat, les frères et sœurs, les courts voyages et la communication de base. La qualité [[Mutable]] offre la capacité de s'adapter et d'être flexible.\n\nLe symbolisme de la [[Dualité]] des Gémeaux - les jumeaux - représente les deux aspects de l'esprit : rationnel et intuitif. Cette énergie, parfois perçue comme dispersée, est en fait la capacité de voir plusieurs perspectives.\n\nLes périodes de [[Mercure Rétrograde]] sont particulièrement importantes pour les Gémeaux. Ces moments sont précieux pour l'introspection et le regard en arrière. L'aspect [[Ombre]] est la superficialité et l'indécision.",
+      "cancer": "Le [[Cancer]] est le quatrième signe du [[Zodiaque]] et représente la forme [[Cardinale]] de l'élément [[Eau]]. Avec le principe \"Je ressens\", il incarne l'intelligence émotionnelle et l'intuition.\n\nSous la domination de la [[Lune]], les Cancers affichent profondeur émotionnelle et instincts protecteurs. Leur relation naturelle avec la [[4ème Maison]] couvre le foyer, les racines familiales, le monde intérieur et la sécurité émotionnelle.\n\nL'[[archétype de la Mère]] résonne fortement avec le Cancer. L'énergie nourricière et la capacité de prendre soin sont naturellement développées. Les [[phases lunaires]] sont particulièrement efficaces pour les natifs du Cancer.\n\nLes aspects [[Ombre]] comprennent la surprotection, la manipulation émotionnelle et la tendance à rester coincé dans le passé. Apprendre à établir des [[limites émotionnelles]] est la tâche évolutive.",
+      "leo": "Le [[Lion]] est le cinquième signe du [[Zodiaque]] et représente la forme [[Fixe]] de l'élément [[Feu]]. Avec le principe \"Je crée\", l'expression de soi et la créativité sont au centre.\n\nLe [[Soleil]] est le dirigeant de ce signe et est \"chez lui\" - dans son état le plus fort. Leur relation naturelle avec la [[5ème Maison]] couvre la créativité, la romance, les enfants et le divertissement. Le [[chakra du cœur]] est fortement connecté au Lion.\n\nL'attraction du Lion pour le drame et la scène provient d'un besoin spirituel : être vu et se sentir valorisé. Ce n'est pas une question d'ego, mais l'expression naturelle du [[Soleil]].\n\nLes aspects [[Ombre]] comprennent l'arrogance, la fierté excessive et la tendance à ignorer la lumière des autres. L'humilité et le partage sont des qualités à développer sur le voyage évolutif.",
+      "virgo": "La [[Vierge]] est le sixième signe du [[Zodiaque]] et représente la forme [[Mutable]] de l'élément [[Terre]]. Avec le principe \"J'analyse\", le service et la quête de perfection sont au centre.\n\nSous la domination de [[Mercure]], la Vierge affiche intelligence analytique et orientation vers les détails. Leur relation naturelle avec la [[6ème Maison]] couvre la santé, les routines quotidiennes, le service et l'environnement de travail.\n\nLa tendance perfectionniste de la Vierge vient en fait du concept de [[Service sacré]] - le désir de faire son travail de la meilleure façon. Les capacités de [[guérison]] sont généralement fortes.\n\nLes aspects [[Ombre]] comprennent être trop critique, l'inquiétude et l'auto-dépréciation. S'accepter soi-même et se libérer de la pression de l'imperfection est la tâche évolutive.",
+      "libra": "La [[Balance]] est le septième signe du [[Zodiaque]] et représente la forme [[Cardinale]] de l'élément [[Air]]. Avec le principe \"J'équilibre\", la relation et l'harmonie sont au centre.\n\nSous la domination de [[Vénus]], la Balance affiche sensibilité esthétique et grâce sociale. Leur relation naturelle avec la [[7ème Maison]] couvre les partenariats, le mariage et le concept de \"l'autre\".\n\nLa recherche d'équilibre de la Balance vient en fait du concept de [[Justice cosmique]]. Comprendre le mécanisme de [[Projection]] est important pour ce signe - ce que nous voyons chez les autres nous appartient.\n\nLe [[Soleil]] est \"en chute\" dans ce signe - les thèmes d'individualité peuvent être difficiles. Les aspects [[Ombre]] comprennent l'indécision, les comportements passifs-agressifs et l'évitement des conflits. Développer l'identité personnelle est la tâche évolutive.",
+      "scorpio": "Le [[Scorpion]] est le huitième signe du [[Zodiaque]] et représente la forme [[Fixe]] de l'élément [[Eau]]. Avec le principe \"Je transforme\", la profondeur et le pouvoir sont au centre.\n\nSous la domination de [[Pluton]] (moderne) et [[Mars]] (traditionnel), le Scorpion affiche une intense profondeur émotionnelle et une intelligence pénétrante. Leur relation naturelle avec la [[8ème Maison]] couvre les ressources partagées, la sexualité, la mort-renaissance et la transformation psychologique.\n\nL'intensité du Scorpion vient en fait de l'[[Alchimie spirituelle]] - le désir de transformer le plomb en or. L'énergie [[Kundalini]] est fortement liée à ce signe.\n\nLes aspects [[Ombre]] comprennent la jalousie, l'obsession, la vengeance et le besoin de contrôle. Lâcher prise et faire confiance sont les leçons les plus importantes du voyage évolutif.",
+      "sagittarius": "Le [[Sagittaire]] est le neuvième signe du [[Zodiaque]] et représente la forme [[Mutable]] de l'élément [[Feu]]. Avec le principe \"J'explore\", la liberté et la quête de sens sont au centre.\n\nSous la domination de [[Jupiter]], le Sagittaire affiche optimisme, générosité et énergie d'expansion. Leur relation naturelle avec la [[9ème Maison]] couvre les longs voyages, l'éducation supérieure, la philosophie et les systèmes de croyances.\n\nLe symbolisme de l'archer du Sagittaire - l'arc et la flèche - représente la vision orientée vers les objectifs et les hauts idéaux. La mythologie du [[Centaure]] symbolise l'union de la nature humaine et animale.\n\nLes aspects [[Ombre]] comprennent l'optimisme excessif, l'éparpillement, l'irresponsabilité et ne pas tenir ses promesses. L'approfondissement et l'engagement sont des tâches évolutives.",
+      "capricorn": "Le [[Capricorne]] est le dixième signe du [[Zodiaque]] et représente la forme [[Cardinale]] de l'élément [[Terre]]. Avec le principe \"J'accomplis\", la discipline et la responsabilité sont au centre.\n\nSous la domination de [[Saturne]], le Capricorne travaille avec les thèmes de structure, de temps et de maturité. Leur relation naturelle avec la [[10ème Maison]] couvre la carrière, le statut social, la réputation et l'[[archétype du Père]].\n\nLe symbolisme de la chèvre de montagne du Capricorne représente la détermination à gravir des sommets difficiles et atteindre l'objectif. Le temps est l'allié de ce signe - la sagesse et le succès augmentent avec l'âge.\n\nLe [[Retour de Saturne]] (environ tous les 29 ans) est particulièrement significatif pour les Capricornes. Les aspects [[Ombre]] comprennent la rigidité, le pessimisme et le sérieux excessif. La joie et la flexibilité sont des tâches évolutives.",
+      "aquarius": "Le [[Verseau]] est le onzième signe du [[Zodiaque]] et représente la forme [[Fixe]] de l'élément [[Air]]. Avec le principe \"Je sais\", l'innovation et l'humanité sont au centre.\n\nSous la domination d'[[Uranus]] (moderne) et [[Saturne]] (traditionnel), le Verseau travaille avec des idées révolutionnaires et la conscience sociale. Leur relation naturelle avec la [[11ème Maison]] couvre les groupes, les amitiés, les espoirs et les idéaux humanitaires.\n\nLe symbolisme du porteur d'eau du Verseau représente la distribution de la sagesse à l'humanité. La [[Conscience collective]] et la vision orientée vers l'avenir sont fortement liées à ce signe.\n\nLes aspects [[Ombre]] comprennent la distance émotionnelle, l'intellectualisation excessive et négliger les individus tout en pensant \"pour tous\". La proximité émotionnelle est la tâche évolutive.",
+      "pisces": "Les [[Poissons]] sont le douzième et dernier signe du [[Zodiaque]] et représentent la forme [[Mutable]] de l'élément [[Eau]]. Avec le principe \"Je crois\", la spiritualité et la transcendance sont au centre.\n\nSous la domination de [[Neptune]] (moderne) et [[Jupiter]] (traditionnel), les Poissons travaillent avec le mysticisme, l'empathie et la conscience cosmique. Leur relation naturelle avec la [[12ème Maison]] couvre l'inconscient, les pratiques spirituelles, l'isolement et les thèmes [[Karmiques]].\n\nLe symbolisme des deux poissons - nageant dans des directions opposées - représente la tension entre les mondes matériel et spirituel. L'accès direct à l'[[inconscient collectif]] est le don de ce signe.\n\nLes aspects [[Ombre]] comprennent les tendances à la fuite (addiction), le manque de limites et la mentalité de victime. Des limites saines et la connexion avec la réalité sont des tâches évolutives.",
+      "default": "Chargement de l'interprétation du signe..."
+    }
   },
   "tabs": {
     "daily": "Quotidien",

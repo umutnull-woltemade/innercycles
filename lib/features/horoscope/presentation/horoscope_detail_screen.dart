@@ -277,74 +277,17 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
   }
 
   List<String> _getQuotableBullets(ZodiacSign sign, dynamic horoscope) {
-    // Generate 3 AI-quotable bullets based on sign and horoscope
-    final Map<ZodiacSign, List<String>> signBullets = {
-      ZodiacSign.aries: [
-        'Bugün enerjin yüksek, inisiyatif almak için uygun.',
-        'Sabırsızlık tuzağına düşmemeye dikkat et.',
-        'Akşam saatlerinde önemli bir haber gelebilir.',
-      ],
-      ZodiacSign.taurus: [
-        'Bugün maddi konularda netlik kazanabilirsin.',
-        'Rutinlerine sadık kal, değişiklik şimdilik bekleyebilir.',
-        'Sevdiklerinle kaliteli zaman geçirmek için ideal bir gün.',
-      ],
-      ZodiacSign.gemini: [
-        'İletişim becerilerin bugün ön planda.',
-        'Ertelediğin konuşmaları yapmak için uygun.',
-        'Zihnin hızlı çalışıyor, notlar almayı unutma.',
-      ],
-      ZodiacSign.cancer: [
-        'Duygusal olarak hassas bir gün geçirebilirsin.',
-        'Ev ve aile konuları ön plana çıkıyor.',
-        'Sezgilerine güven, seni doğru yönlendirecekler.',
-      ],
-      ZodiacSign.leo: [
-        'Bugün dikkat çekmek için ekstra çaba harcamana gerek yok.',
-        'Yaratıcı projeler için ilham alabilirsin.',
-        'Liderlik vasıfların takdir görecek.',
-      ],
-      ZodiacSign.virgo: [
-        'Detaylara odaklanman gereken bir gün.',
-        'Sağlık rutinlerini gözden geçirmek için uygun.',
-        'Eleştirel bakış açını yapıcı tutmaya dikkat et.',
-      ],
-      ZodiacSign.libra: [
-        'İlişkilerde denge arayışın bugün öne çıkıyor.',
-        'Estetik kararlar almak için uygun bir gün.',
-        'Ortaklık konularında ilerleme kaydedebilirsin.',
-      ],
-      ZodiacSign.scorpio: [
-        'Bugün derin düşüncelere dalabilirsin.',
-        'Gizli kalmış bir konu gün yüzüne çıkabilir.',
-        'Dönüşüm enerjisi güçlü, eski kalıpları bırakmak için uygun.',
-      ],
-      ZodiacSign.sagittarius: [
-        'Macera ruhu bugün canlanıyor.',
-        'Yeni bir şey öğrenmek için harika bir gün.',
-        'Uzak yerlerden haberler gelebilir.',
-      ],
-      ZodiacSign.capricorn: [
-        'Kariyer hedeflerin için somut adımlar atabilirsin.',
-        'Disiplinli yaklaşımın bugün meyvelerini verecek.',
-        'Uzun vadeli planlar yapmak için uygun.',
-      ],
-      ZodiacSign.aquarius: [
-        'Özgün fikirlerinle fark yaratabilirsin.',
-        'Grup aktiviteleri ve arkadaşlıklar ön planda.',
-        'Teknoloji ile ilgili konularda şans senden yana.',
-      ],
-      ZodiacSign.pisces: [
-        'Sezgilerin bugün özellikle güçlü.',
-        'Sanatsal ve spiritüel aktiviteler için ideal.',
-        'Rüyalarına dikkat et, önemli mesajlar taşıyabilirler.',
-      ],
-    };
-    return signBullets[sign] ?? [
-      'Bugün kozmik enerjiler seninle.',
-      'İç sesine kulak ver.',
-      'Yeni fırsatlar kapıda.',
-    ];
+    final language = ref.read(languageProvider);
+    final signKey = sign.name.toLowerCase();
+
+    // Get localized bullets from JSON
+    final bullets = L10nService.getList('horoscope.quotable_bullets.$signKey', language);
+    if (bullets.isNotEmpty) {
+      return bullets;
+    }
+
+    // Fallback to default
+    return L10nService.getList('horoscope.quotable_bullets.default', language);
   }
 
   Widget _buildWeeklyContent(BuildContext context, WeeklyHoroscope horoscope, ZodiacSign sign) {
@@ -534,122 +477,15 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
   }
 
   String _getSignSummary(ZodiacSign sign) {
-    final summaries = {
-      ZodiacSign.aries: '[[Koç]] burcu, [[Zodyak]]\'ın ilk işaretidir ve [[Kardinal]] [[Ateş]] enerjisini taşır. [[Mars]] tarafından yönetilir ve aksiyona, liderliğe ve yeni başlangıçlara yönelik güçlü bir dürtüye sahiptir.',
-      ZodiacSign.taurus: '[[Boğa]] burcu, [[Sabit]] [[Toprak]] enerjisiyle istikrar ve güvenliği temsil eder. [[Venüs]] yönetiminde, güzellik, değer ve maddi konfor temel motivasyonlardır.',
-      ZodiacSign.gemini: '[[İkizler]] burcu, [[Değişken]] [[Hava]] enerjisiyle iletişim ve zekâyı temsil eder. [[Merkür]] yönetiminde, öğrenme ve bilgi paylaşımı hayati öneme sahiptir.',
-      ZodiacSign.cancer: '[[Yengeç]] burcu, [[Kardinal]] [[Su]] enerjisiyle duygusal derinliği ve koruyuculuğu temsil eder. [[Ay]] yönetiminde, ev ve aile en önemli temalardır.',
-      ZodiacSign.leo: '[[Aslan]] burcu, [[Sabit]] [[Ateş]] enerjisiyle yaratıcılığı ve özgür iradeyi temsil eder. [[Güneş]] yönetiminde, kendini ifade etme ve parlamak doğal eğiliminizdir.',
-      ZodiacSign.virgo: '[[Başak]] burcu, [[Değişken]] [[Toprak]] enerjisiyle analiz ve hizmeti temsil eder. [[Merkür]] yönetiminde, detaylar ve mükemmellik önemlidir.',
-      ZodiacSign.libra: '[[Terazi]] burcu, [[Kardinal]] [[Hava]] enerjisiyle denge ve ilişkileri temsil eder. [[Venüs]] yönetiminde, uyum ve estetik temel değerlerdir.',
-      ZodiacSign.scorpio: '[[Akrep]] burcu, [[Sabit]] [[Su]] enerjisiyle dönüşüm ve yoğunluğu temsil eder. [[Pluto]] yönetiminde, derinlik ve güç temaları ön plandadır.',
-      ZodiacSign.sagittarius: '[[Yay]] burcu, [[Değişken]] [[Ateş]] enerjisiyle macera ve felsefeyi temsil eder. [[Jüpiter]] yönetiminde, genişleme ve anlam arayışı doğal halinizdir.',
-      ZodiacSign.capricorn: '[[Oğlak]] burcu, [[Kardinal]] [[Toprak]] enerjisiyle başarı ve disiplini temsil eder. [[Satürn]] yönetiminde, yapı ve sorumluluk temel değerleridir.',
-      ZodiacSign.aquarius: '[[Kova]] burcu, [[Sabit]] [[Hava]] enerjisiyle yenilik ve insanlığı temsil eder. [[Uranüs]] yönetiminde, özgürlük ve ilerleme en önemli temalardır.',
-      ZodiacSign.pisces: '[[Balık]] burcu, [[Değişken]] [[Su]] enerjisiyle spiritüalite ve sezgiyi temsil eder. [[Neptün]] yönetiminde, hayal gücü ve empati güçlü yanlarınızdır.',
-    };
-    return summaries[sign] ?? 'Bu burç hakkında detaylı bilgi yükleniyor...';
+    final language = ref.read(languageProvider);
+    final signKey = sign.name.toLowerCase();
+    return L10nService.get('horoscope.sign_summaries.$signKey', language);
   }
 
   String _getSignDeepInterpretation(ZodiacSign sign) {
-    final interpretations = {
-      ZodiacSign.aries: '''[[Koç]] burcu, [[Zodyak]] çemberinin başlangıç noktasında yer alır ve "Ben varım" ilkesini temsil eder. [[İlkbahar ekinoksu]] ile başlayan bu dönem, doğadaki yeniden doğuş ve büyüme enerjisini yansıtır.
-
-[[Mars]] gezegeninin yönetiminde, Koçlar aksiyona yöneliktir. [[1. Ev]] ile doğal ilişkileri, kimlik, fiziksel görünüm ve dünyaya nasıl yaklaşıldığını belirler. [[Ateş]] elementi cesaret ve tutkuyu, [[Kardinal]] nitelik ise liderlik ve inisiyatifi sağlar.
-
-Evrimsel astrolojide, Koç [[Ruhsal yolculuk]]un başlangıcını temsil eder. Ego'nun gelişimi ve bireyselleşme sürecinin ilk adımlarını atar. [[Gölge]] yönleri ise sabırsızlık ve düşünmeden hareket etme eğilimidir.
-
-Koç burcundaki gezegenler genellikle hızlı, direkt ve rekabetçi bir enerji sergiler. [[Mars]] [[Retro]]sü dönemlerinde, bu enerjiyi içsel motivasyona yönlendirmek faydalıdır.''',
-
-      ZodiacSign.taurus: '''[[Boğa]] burcu, [[Zodyak]]'ın ikinci işaretidir ve "Ben sahip olurum" ilkesini temsil eder. [[Toprak]] elementinin en istikrarlı formu olan Boğa, değerleri ve kaynakları yönetir.
-
-[[Venüs]] gezegeninin yönetiminde, Boğalar duyusal deneyimlere ve güzelliğe derin bir takdir gösterir. [[2. Ev]] ile doğal ilişkileri, öz-değer, maddi kaynaklar ve yetenekleri kapsar.
-
-[[Sabit]] niteliği, Boğa'ya dayanıklılık ve kararlılık verir. Bir kere başlanan projeler tamamlanana kadar devam eder. Ancak bu aynı zamanda [[Gölge]] yönü olan inatçılığa da yol açabilir.
-
-Boğa burcundaki gezegenler yavaş ama kararlı bir enerji sergiler. [[Venüs]] geçişleri, özellikle Boğa ve [[Terazi]] burçları için önemli dönemleri işaret eder.''',
-
-      ZodiacSign.gemini: '''[[İkizler]] burcu, "Ben düşünürüm" ilkesini temsil eder ve [[Zodyak]]'ın ilk [[Hava]] işaretidir. [[Merkür]] yönetiminde, zihinsel çeviklik ve iletişim yetenekleri güçlüdür.
-
-[[3. Ev]] ile doğal ilişkileri, yakın çevre, kardeşler, kısa yolculuklar ve temel iletişimi kapsar. [[Değişken]] niteliği, uyum sağlama ve esneklik yeteneği verir.
-
-İkizler'in [[Dualite]] sembolizmi - ikiz kardeşler - zihnin iki yönünü temsil eder: rasyonel ve sezgisel. Bu enerji bazen dağınıklık olarak algılansa da aslında çoklu bakış açılarını görme yeteneğidir.
-
-[[Merkür Retro]]su dönemleri İkizler için özellikle önemlidir. Bu zamanlar iç gözlem ve geçmişe bakış için değerlidir. [[Gölge]] yönü ise yüzeysellik ve kararsızlıktır.''',
-
-      ZodiacSign.cancer: '''[[Yengeç]] burcu, [[Zodyak]]'ın dördüncü işaretidir ve [[Su]] elementinin [[Kardinal]] formunu temsil eder. "Ben hissederim" ilkesiyle duygusal zekâ ve sezgiyi somutlaştırır.
-
-[[Ay]] yönetiminde, Yengeçler duygusal derinlik ve koruyucu içgüdüler sergiler. [[4. Ev]] ile doğal ilişkileri, ev, aile kökleri, iç dünya ve duygusal güvenliği kapsar.
-
-[[Anne arketipi]] Yengeç ile güçlü bir şekilde rezonans eder. Besleyici enerji ve bakım yeteneği doğal olarak gelişmiştir. [[Ay fazları]] Yengeç burçluları için özellikle etkilidir.
-
-[[Gölge]] yönleri ise aşırı koruyuculuk, duygusal manipülasyon ve geçmişe takılı kalma eğilimleridir. [[Duygusal sınırlar]] koymayı öğrenmek evrimsel görevdir.''',
-
-      ZodiacSign.leo: '''[[Aslan]] burcu, [[Zodyak]]'ın beşinci işaretidir ve [[Ateş]] elementinin [[Sabit]] formunu temsil eder. "Ben yaratırım" ilkesiyle öz-ifade ve yaratıcılık merkezdedir.
-
-[[Güneş]] bu burcun yöneticisidir ve "evindedir" - en güçlü hali. [[5. Ev]] ile doğal ilişkileri yaratıcılık, romantizm, çocuklar ve eğlenceyi kapsar. [[Kalp çakrası]] Aslan ile güçlü bir şekilde bağlantılıdır.
-
-Aslan'ın dramaya ve sahneye olan çekimi, ruhsal bir ihtiyaçtan kaynaklanır: görülmek ve değerli hissetmek. Bu bir ego meselesi değil, [[Güneş]]'in doğal ifadesidir.
-
-[[Gölge]] yönleri ise kibirlilik, aşırı gurur ve başkalarının ışığını görmezden gelme eğilimidir. Alçakgönüllülük ve paylaşma, evrimsel yolculukta geliştirilecek niteliklerdir.''',
-
-      ZodiacSign.virgo: '''[[Başak]] burcu, [[Zodyak]]'ın altıncı işaretidir ve [[Toprak]] elementinin [[Değişken]] formunu temsil eder. "Ben analiz ederim" ilkesiyle hizmet ve mükemmellik arayışı merkezdedir.
-
-[[Merkür]] yönetiminde, Başak analitik zekâ ve detay odaklılık sergiler. [[6. Ev]] ile doğal ilişkileri, sağlık, günlük rutinler, hizmet ve iş ortamını kapsar.
-
-Başak'ın mükemmeliyetçilik eğilimi, aslında [[Kutsal hizmet]] kavramından gelir - işini en iyi şekilde yapma arzusu. [[Şifacılık]] yetenekleri genellikle güçlüdür.
-
-[[Gölge]] yönleri ise aşırı eleştirel olma, endişe ve kendini aşağılamadır. Özünü kabul etme ve kusursuzluk baskısından kurtulma evrimsel görevdir.''',
-
-      ZodiacSign.libra: '''[[Terazi]] burcu, [[Zodyak]]'ın yedinci işaretidir ve [[Hava]] elementinin [[Kardinal]] formunu temsil eder. "Ben dengelerim" ilkesiyle ilişki ve uyum merkezdedir.
-
-[[Venüs]] yönetiminde, Terazi estetik duyarlılık ve sosyal zerafet sergiler. [[7. Ev]] ile doğal ilişkileri, ortaklıklar, evlilik ve "öteki" kavramını kapsar.
-
-Terazi'nin denge arayışı, aslında [[Kozmik adalet]] kavramından gelir. [[Projeksiyon]] mekanizmasını anlamak bu burç için önemlidir - başkalarında gördüklerimiz bize aittir.
-
-[[Güneş]] bu burçta "düşüştedir" - bireysellik temaları zorlayıcı olabilir. [[Gölge]] yönleri ise kararsızlık, pasif-agresif davranışlar ve çatışmadan kaçınma. Öz-kimlik geliştirme evrimsel görevdir.''',
-
-      ZodiacSign.scorpio: '''[[Akrep]] burcu, [[Zodyak]]'ın sekizinci işaretidir ve [[Su]] elementinin [[Sabit]] formunu temsil eder. "Ben dönüştürürüm" ilkesiyle derinlik ve güç merkezdedir.
-
-[[Pluto]] (modern) ve [[Mars]] (geleneksel) yönetiminde, Akrep yoğun duygusal derinlik ve penetratif zekâ sergiler. [[8. Ev]] ile doğal ilişkileri, paylaşılan kaynaklar, cinsellik, ölüm-yeniden doğuş ve psikolojik dönüşümü kapsar.
-
-Akrep'in yoğunluğu, aslında [[Ruhsal simya]] - kurşunu altına çevirme arzusundan gelir. [[Kundalini]] enerjisi bu burçla güçlü bir şekilde ilişkilidir.
-
-[[Gölge]] yönleri ise kıskançlık, obsesyon, intikam ve kontrol ihtiyacıdır. Bırakma ve güvenme, evrimsel yolculukta en önemli derslerdir.''',
-
-      ZodiacSign.sagittarius: '''[[Yay]] burcu, [[Zodyak]]'ın dokuzuncu işaretidir ve [[Ateş]] elementinin [[Değişken]] formunu temsil eder. "Ben keşfederim" ilkesiyle özgürlük ve anlam arayışı merkezdedir.
-
-[[Jüpiter]] yönetiminde, Yay iyimserlik, cömertlik ve genişleme enerjisi sergiler. [[9. Ev]] ile doğal ilişkileri, uzun yolculuklar, yüksek öğrenim, felsefe ve inanç sistemlerini kapsar.
-
-Yay'ın okçu sembolizmi - ok ve yay - hedeflere yönelik vizyonu ve yüksek idealleri temsil eder. [[Centaur]] mitolojisi, insan ve hayvan doğasının birleşmesini simgeler.
-
-[[Gölge]] yönleri ise aşırı iyimserlik, dağınıklık, sorumsuzluk ve vaatleri tutamama. Derinleşme ve taahhüt, evrimsel görevlerdir.''',
-
-      ZodiacSign.capricorn: '''[[Oğlak]] burcu, [[Zodyak]]'ın onuncu işaretidir ve [[Toprak]] elementinin [[Kardinal]] formunu temsil eder. "Ben başarırım" ilkesiyle disiplin ve sorumluluk merkezdedir.
-
-[[Satürn]] yönetiminde, Oğlak yapı, zaman ve olgunluk temaları ile çalışır. [[10. Ev]] ile doğal ilişkileri, kariyer, toplumsal statü, itibar ve [[Baba arketipi]]ni kapsar.
-
-Oğlak'ın dağ keçisi sembolizmi, zorlu zirvelere tırmanma ve hedefe ulaşma kararlılığını temsil eder. Zaman bu burcun müttefikidir - yaş ile bilgelik ve başarı artar.
-
-[[Satürn Dönüşü]] (yaklaşık her 29 yılda bir) Oğlaklar için özellikle anlamlıdır. [[Gölge]] yönleri ise katılık, pesimizm ve aşırı ciddiyet. Neşe ve esneklik, evrimsel görevlerdir.''',
-
-      ZodiacSign.aquarius: '''[[Kova]] burcu, [[Zodyak]]'ın onbirinci işaretidir ve [[Hava]] elementinin [[Sabit]] formunu temsil eder. "Ben bilirim" ilkesiyle yenilik ve insanlık merkezdedir.
-
-[[Uranüs]] (modern) ve [[Satürn]] (geleneksel) yönetiminde, Kova devrimci fikirler ve toplumsal bilinç ile çalışır. [[11. Ev]] ile doğal ilişkileri, gruplar, dostluklar, umutlar ve insani idealleri kapsar.
-
-Kova'nın su taşıyıcısı sembolizmi, bilgeliğin insanlığa dağıtılmasını temsil eder. [[Kolektif bilinç]] ve geleceğe yönelik vizyon bu burçla güçlü bir şekilde ilişkilidir.
-
-[[Gölge]] yönleri ise duygusal mesafe, aşırı entelektüalizm ve "herkes için" düşünürken bireyleri ihmal etme. Duygusal yakınlık, evrimsel görevdir.''',
-
-      ZodiacSign.pisces: '''[[Balık]] burcu, [[Zodyak]]'ın onikinci ve son işaretidir ve [[Su]] elementinin [[Değişken]] formunu temsil eder. "Ben inanırım" ilkesiyle spiritüalite ve transendans merkezdedir.
-
-[[Neptün]] (modern) ve [[Jüpiter]] (geleneksel) yönetiminde, Balık mistisizm, empati ve kozmik bilinç ile çalışır. [[12. Ev]] ile doğal ilişkileri, bilinçdışı, spiritüel pratikler, inziva ve [[Karmik]] temalar kapsar.
-
-Balık'ın iki balık sembolizmi - zıt yönlere yüzen - maddi ve spiritüel dünyalar arasındaki gerilimi temsil eder. [[Kolektif bilinçaltı]]'na doğrudan erişim bu burcun armağanıdır.
-
-[[Gölge]] yönleri ise kaçış eğilimleri (bağımlılık), sınır yokluğu ve kurban zihniyeti. Sağlıklı sınırlar ve gerçeklikle bağlantı evrimsel görevlerdir.''',
-    };
-    return interpretations[sign] ?? 'Burç yorumu yükleniyor...';
+    final language = ref.read(languageProvider);
+    final signKey = sign.name.toLowerCase();
+    return L10nService.get('horoscope.deep_interpretations.$signKey', language);
   }
 
   List<String> _getLocalizedMonths(AppLanguage language) {
@@ -672,7 +508,9 @@ Balık'ın iki balık sembolizmi - zıt yönlere yüzen - maddi ve spiritüel d�
 
   Widget _buildWeekHeader(BuildContext context, WeeklyHoroscope horoscope) {
     final weekEnd = horoscope.weekStart.add(const Duration(days: 6));
-    final format = DateFormat('d MMM', 'tr');
+    final language = ref.read(languageProvider);
+    final localeCode = language == AppLanguage.tr ? 'tr' : language == AppLanguage.de ? 'de' : language == AppLanguage.fr ? 'fr' : 'en';
+    final format = DateFormat('d MMM', localeCode);
 
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingMd),

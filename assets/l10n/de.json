@@ -1692,7 +1692,104 @@
     "hermetic_teaching": "Hermetische Lehre",
     "weekly_affirmation_label": "Wochen-Affirmation",
     "title": "Horoscope",
-    "reading": "Reading"
+    "reading": "Reading",
+    "quotable_bullets": {
+      "aries": [
+        "Deine Energie ist heute hoch, eine gute Zeit für Initiative.",
+        "Achte darauf, nicht in die Falle der Ungeduld zu geraten.",
+        "In den Abendstunden könnten wichtige Nachrichten kommen."
+      ],
+      "taurus": [
+        "Du könntest heute Klarheit in finanziellen Angelegenheiten gewinnen.",
+        "Bleib deinen Routinen treu, Änderungen können vorerst warten.",
+        "Ein idealer Tag, um Qualitätszeit mit deinen Lieben zu verbringen."
+      ],
+      "gemini": [
+        "Deine Kommunikationsfähigkeiten stehen heute im Vordergrund.",
+        "Gute Zeit für aufgeschobene Gespräche.",
+        "Dein Verstand arbeitet schnell, vergiss nicht, Notizen zu machen."
+      ],
+      "cancer": [
+        "Du könntest einen emotional sensiblen Tag haben.",
+        "Heim und Familie treten in den Vordergrund.",
+        "Vertraue deiner Intuition, sie wird dich richtig führen."
+      ],
+      "leo": [
+        "Du brauchst heute keine extra Mühe, um aufzufallen.",
+        "Du könntest Inspiration für kreative Projekte finden.",
+        "Deine Führungsqualitäten werden geschätzt."
+      ],
+      "virgo": [
+        "Ein Tag, an dem du dich auf Details konzentrieren musst.",
+        "Gute Zeit, deine Gesundheitsroutinen zu überprüfen.",
+        "Achte darauf, deinen kritischen Blick konstruktiv zu halten."
+      ],
+      "libra": [
+        "Deine Suche nach Balance in Beziehungen steht heute im Vordergrund.",
+        "Ein guter Tag für ästhetische Entscheidungen.",
+        "Du könntest bei Partnerschaftsangelegenheiten vorankommen."
+      ],
+      "scorpio": [
+        "Du könntest heute in tiefe Gedanken versinken.",
+        "Eine verborgene Angelegenheit könnte ans Licht kommen.",
+        "Transformationsenergie ist stark, gute Zeit, alte Muster loszulassen."
+      ],
+      "sagittarius": [
+        "Dein Abenteuersinn erwacht heute wieder.",
+        "Ein großartiger Tag, um etwas Neues zu lernen.",
+        "Nachrichten von weit entfernten Orten könnten kommen."
+      ],
+      "capricorn": [
+        "Du kannst konkrete Schritte in Richtung deiner Karriereziele machen.",
+        "Dein disziplinierter Ansatz wird heute Früchte tragen.",
+        "Gute Zeit für langfristige Planung."
+      ],
+      "aquarius": [
+        "Du kannst mit deinen originellen Ideen einen Unterschied machen.",
+        "Gruppenaktivitäten und Freundschaften stehen im Vordergrund.",
+        "Das Glück ist auf deiner Seite bei technologiebezogenen Themen."
+      ],
+      "pisces": [
+        "Deine Intuition ist heute besonders stark.",
+        "Ideal für künstlerische und spirituelle Aktivitäten.",
+        "Achte auf deine Träume, sie könnten wichtige Botschaften tragen."
+      ],
+      "default": [
+        "Kosmische Energien sind heute mit dir.",
+        "Höre auf deine innere Stimme.",
+        "Neue Möglichkeiten stehen vor der Tür."
+      ]
+    },
+    "sign_summaries": {
+      "aries": "[[Widder]] ist das erste Zeichen des [[Tierkreises]] und trägt [[Kardinale]] [[Feuer]]-Energie. Unter [[Mars]]-Herrschaft hat es einen starken Antrieb zu Aktion, Führung und Neuanfängen.",
+      "taurus": "[[Stier]] repräsentiert Stabilität und Sicherheit mit [[Fixer]] [[Erde]]-Energie. Unter [[Venus]]-Herrschaft sind Schönheit, Wert und materieller Komfort die Hauptmotivationen.",
+      "gemini": "[[Zwillinge]] repräsentiert Kommunikation und Intelligenz mit [[Veränderlicher]] [[Luft]]-Energie. Unter [[Merkur]]-Herrschaft ist Lernen und Wissensaustausch lebenswichtig.",
+      "cancer": "[[Krebs]] repräsentiert emotionale Tiefe und Schutz mit [[Kardinaler]] [[Wasser]]-Energie. Unter [[Mond]]-Herrschaft sind Heim und Familie die wichtigsten Themen.",
+      "leo": "[[Löwe]] repräsentiert Kreativität und freien Willen mit [[Fixer]] [[Feuer]]-Energie. Unter [[Sonnen]]-Herrschaft ist Selbstausdruck und Strahlen deine natürliche Tendenz.",
+      "virgo": "[[Jungfrau]] repräsentiert Analyse und Dienst mit [[Veränderlicher]] [[Erde]]-Energie. Unter [[Merkur]]-Herrschaft sind Details und Perfektion wichtig.",
+      "libra": "[[Waage]] repräsentiert Balance und Beziehungen mit [[Kardinaler]] [[Luft]]-Energie. Unter [[Venus]]-Herrschaft sind Harmonie und Ästhetik Kernwerte.",
+      "scorpio": "[[Skorpion]] repräsentiert Transformation und Intensität mit [[Fixer]] [[Wasser]]-Energie. Unter [[Pluto]]-Herrschaft stehen Tiefe und Machtthemen im Vordergrund.",
+      "sagittarius": "[[Schütze]] repräsentiert Abenteuer und Philosophie mit [[Veränderlicher]] [[Feuer]]-Energie. Unter [[Jupiter]]-Herrschaft sind Expansion und Sinnsuche dein natürlicher Zustand.",
+      "capricorn": "[[Steinbock]] repräsentiert Erfolg und Disziplin mit [[Kardinaler]] [[Erde]]-Energie. Unter [[Saturn]]-Herrschaft sind Struktur und Verantwortung Kernwerte.",
+      "aquarius": "[[Wassermann]] repräsentiert Innovation und Menschlichkeit mit [[Fixer]] [[Luft]]-Energie. Unter [[Uranus]]-Herrschaft sind Freiheit und Fortschritt die wichtigsten Themen.",
+      "pisces": "[[Fische]] repräsentiert Spiritualität und Intuition mit [[Veränderlicher]] [[Wasser]]-Energie. Unter [[Neptun]]-Herrschaft sind Vorstellungskraft und Empathie deine Stärken.",
+      "default": "Detaillierte Informationen zu diesem Zeichen werden geladen..."
+    },
+    "deep_interpretations": {
+      "aries": "[[Widder]] befindet sich am Ausgangspunkt des [[Tierkreises]] und repräsentiert das Prinzip \"Ich bin\". Diese Periode, die mit der [[Frühlingstagundnachtgleiche]] beginnt, spiegelt die Energie der Wiedergeburt und des Wachstums in der Natur wider.\n\nUnter der Herrschaft von [[Mars]] sind Widder aktionsorientiert. Ihre natürliche Verbindung zum [[1. Haus]] bestimmt Identität, körperliche Erscheinung und wie man sich der Welt nähert. Das [[Feuer]]-Element bietet Mut und Leidenschaft, während die [[Kardinale]] Qualität Führung und Initiative bringt.\n\nIn der evolutionären Astrologie repräsentiert Widder den Beginn der [[Seelenreise]]. Es macht die ersten Schritte in der Ego-Entwicklung und dem Individuationsprozess. [[Schatten]]-Aspekte beinhalten Ungeduld und Handeln ohne Nachdenken.\n\nPlaneten im Widder zeigen generell schnelle, direkte und wettbewerbsorientierte Energie. Während [[Mars]] [[Rückläufig]]-Perioden ist es vorteilhaft, diese Energie auf innere Motivation zu lenken.",
+      "taurus": "[[Stier]] ist das zweite Zeichen des [[Tierkreises]] und repräsentiert das Prinzip \"Ich besitze\". Als stabilste Form des [[Erde]]-Elements verwaltet Stier Werte und Ressourcen.\n\nUnter der Herrschaft von [[Venus]] zeigt Stier tiefe Wertschätzung für sinnliche Erfahrungen und Schönheit. Ihre natürliche Verbindung zum [[2. Haus]] umfasst Selbstwert, materielle Ressourcen und Talente.\n\nDie [[Fixe]] Qualität gibt Stier Ausdauer und Entschlossenheit. Einmal begonnene Projekte werden bis zur Fertigstellung fortgesetzt. Dies kann jedoch auch zum [[Schatten]]-Aspekt der Sturheit führen.\n\nPlaneten im Stier zeigen langsame aber entschlossene Energie. [[Venus]]-Transite zeigen wichtige Perioden besonders für Stier und [[Waage]]-Zeichen an.",
+      "gemini": "[[Zwillinge]] repräsentiert das Prinzip \"Ich denke\" und ist das erste [[Luft]]-Zeichen des [[Tierkreises]]. Unter [[Merkur]]-Herrschaft sind geistige Beweglichkeit und Kommunikationsfähigkeiten stark.\n\nIhre natürliche Verbindung zum [[3. Haus]] umfasst die unmittelbare Umgebung, Geschwister, kurze Reisen und grundlegende Kommunikation. Die [[Veränderliche]] Qualität bietet die Fähigkeit, sich anzupassen und flexibel zu sein.\n\nDie [[Dualitäts]]-Symbolik der Zwillinge - Zwillingsgeschwister - repräsentiert die zwei Aspekte des Geistes: rational und intuitiv. Diese Energie, manchmal als zerstreut wahrgenommen, ist tatsächlich die Fähigkeit, mehrere Perspektiven zu sehen.\n\n[[Merkur Rückläufig]]-Perioden sind besonders wichtig für Zwillinge. Diese Zeiten sind wertvoll für Introspektion und Rückblick. Der [[Schatten]]-Aspekt ist Oberflächlichkeit und Unentschlossenheit.",
+      "cancer": "[[Krebs]] ist das vierte Zeichen des [[Tierkreises]] und repräsentiert die [[Kardinale]] Form des [[Wasser]]-Elements. Mit dem Prinzip \"Ich fühle\" verkörpert es emotionale Intelligenz und Intuition.\n\nUnter [[Mond]]-Herrschaft zeigen Krebse emotionale Tiefe und schützende Instinkte. Ihre natürliche Verbindung zum [[4. Haus]] umfasst Heim, Familienwurzeln, innere Welt und emotionale Sicherheit.\n\nDer [[Mutter-Archetyp]] resoniert stark mit Krebs. Nährende Energie und Fürsorgefähigkeit sind natürlich entwickelt. [[Mondphasen]] sind besonders wirksam für Krebs-Geborene.\n\n[[Schatten]]-Aspekte beinhalten Überbeschützung, emotionale Manipulation und Tendenz, in der Vergangenheit festzuhängen. Das Setzen von [[emotionalen Grenzen]] zu lernen ist die evolutionäre Aufgabe.",
+      "leo": "[[Löwe]] ist das fünfte Zeichen des [[Tierkreises]] und repräsentiert die [[Fixe]] Form des [[Feuer]]-Elements. Mit dem Prinzip \"Ich erschaffe\" steht Selbstausdruck und Kreativität im Zentrum.\n\nDie [[Sonne]] ist der Herrscher dieses Zeichens und ist \"zu Hause\" - in ihrem stärksten Zustand. Ihre natürliche Verbindung zum [[5. Haus]] umfasst Kreativität, Romantik, Kinder und Unterhaltung. Das [[Herzchakra]] ist stark mit Löwe verbunden.\n\nDie Anziehung des Löwen zu Drama und Bühne entspringt einem spirituellen Bedürfnis: gesehen zu werden und sich wertvoll zu fühlen. Dies ist keine Ego-Angelegenheit, sondern der natürliche Ausdruck der [[Sonne]].\n\n[[Schatten]]-Aspekte beinhalten Arroganz, übermäßigen Stolz und Tendenz, das Licht anderer zu ignorieren. Demut und Teilen sind Qualitäten, die auf der evolutionären Reise entwickelt werden müssen.",
+      "virgo": "[[Jungfrau]] ist das sechste Zeichen des [[Tierkreises]] und repräsentiert die [[Veränderliche]] Form des [[Erde]]-Elements. Mit dem Prinzip \"Ich analysiere\" steht Dienst und das Streben nach Perfektion im Zentrum.\n\nUnter [[Merkur]]-Herrschaft zeigt Jungfrau analytische Intelligenz und Detailorientierung. Ihre natürliche Verbindung zum [[6. Haus]] umfasst Gesundheit, tägliche Routinen, Dienst und Arbeitsumgebung.\n\nDie perfektionistische Tendenz der Jungfrau kommt tatsächlich vom Konzept des [[Heiligen Dienstes]] - dem Wunsch, seine Arbeit bestmöglich zu machen. [[Heilungs]]-Fähigkeiten sind generell stark.\n\n[[Schatten]]-Aspekte beinhalten übermäßige Kritik, Sorge und Selbstabwertung. Sich selbst zu akzeptieren und vom Druck der Makellosigkeit zu befreien ist die evolutionäre Aufgabe.",
+      "libra": "[[Waage]] ist das siebte Zeichen des [[Tierkreises]] und repräsentiert die [[Kardinale]] Form des [[Luft]]-Elements. Mit dem Prinzip \"Ich balanciere\" steht Beziehung und Harmonie im Zentrum.\n\nUnter [[Venus]]-Herrschaft zeigt Waage ästhetische Sensibilität und soziale Anmut. Ihre natürliche Verbindung zum [[7. Haus]] umfasst Partnerschaften, Ehe und das Konzept des \"Anderen\".\n\nDie Suche der Waage nach Balance kommt tatsächlich vom Konzept der [[Kosmischen Gerechtigkeit]]. Den [[Projektions]]-Mechanismus zu verstehen ist wichtig für dieses Zeichen - was wir in anderen sehen, gehört zu uns.\n\nDie [[Sonne]] ist in diesem Zeichen \"im Fall\" - Individualitätsthemen können herausfordernd sein. [[Schatten]]-Aspekte beinhalten Unentschlossenheit, passiv-aggressives Verhalten und Konfliktvermeidung. Selbstidentität zu entwickeln ist die evolutionäre Aufgabe.",
+      "scorpio": "[[Skorpion]] ist das achte Zeichen des [[Tierkreises]] und repräsentiert die [[Fixe]] Form des [[Wasser]]-Elements. Mit dem Prinzip \"Ich transformiere\" steht Tiefe und Macht im Zentrum.\n\nUnter [[Pluto]] (modern) und [[Mars]] (traditionell)-Herrschaft zeigt Skorpion intensive emotionale Tiefe und durchdringende Intelligenz. Ihre natürliche Verbindung zum [[8. Haus]] umfasst geteilte Ressourcen, Sexualität, Tod-Wiedergeburt und psychologische Transformation.\n\nDie Intensität des Skorpions kommt tatsächlich von der [[Spirituellen Alchemie]] - dem Wunsch, Blei in Gold zu verwandeln. [[Kundalini]]-Energie ist stark mit diesem Zeichen verbunden.\n\n[[Schatten]]-Aspekte beinhalten Eifersucht, Obsession, Rache und Kontrollbedürfnis. Loslassen und Vertrauen sind die wichtigsten Lektionen auf der evolutionären Reise.",
+      "sagittarius": "[[Schütze]] ist das neunte Zeichen des [[Tierkreises]] und repräsentiert die [[Veränderliche]] Form des [[Feuer]]-Elements. Mit dem Prinzip \"Ich erkunde\" steht Freiheit und Sinnsuche im Zentrum.\n\nUnter [[Jupiter]]-Herrschaft zeigt Schütze Optimismus, Großzügigkeit und Expansionsenergie. Ihre natürliche Verbindung zum [[9. Haus]] umfasst weite Reisen, höhere Bildung, Philosophie und Glaubenssysteme.\n\nDie Bogenschützen-Symbolik des Schützen - Pfeil und Bogen - repräsentiert zielgerichtete Vision und hohe Ideale. [[Zentaur]]-Mythologie symbolisiert die Vereinigung von Mensch und Tiernatur.\n\n[[Schatten]]-Aspekte beinhalten übermäßigen Optimismus, Zerstreutheit, Verantwortungslosigkeit und Versprechen nicht einhalten. Vertiefung und Engagement sind evolutionäre Aufgaben.",
+      "capricorn": "[[Steinbock]] ist das zehnte Zeichen des [[Tierkreises]] und repräsentiert die [[Kardinale]] Form des [[Erde]]-Elements. Mit dem Prinzip \"Ich erreiche\" steht Disziplin und Verantwortung im Zentrum.\n\nUnter [[Saturn]]-Herrschaft arbeitet Steinbock mit Themen von Struktur, Zeit und Reife. Ihre natürliche Verbindung zum [[10. Haus]] umfasst Karriere, sozialen Status, Reputation und den [[Vater-Archetyp]].\n\nDie Bergziegen-Symbolik des Steinbocks repräsentiert die Entschlossenheit, schwierige Gipfel zu erklimmen und das Ziel zu erreichen. Zeit ist der Verbündete dieses Zeichens - Weisheit und Erfolg nehmen mit dem Alter zu.\n\n[[Saturn-Rückkehr]] (etwa alle 29 Jahre) ist besonders bedeutsam für Steinböcke. [[Schatten]]-Aspekte beinhalten Starrheit, Pessimismus und übermäßige Ernsthaftigkeit. Freude und Flexibilität sind evolutionäre Aufgaben.",
+      "aquarius": "[[Wassermann]] ist das elfte Zeichen des [[Tierkreises]] und repräsentiert die [[Fixe]] Form des [[Luft]]-Elements. Mit dem Prinzip \"Ich weiß\" steht Innovation und Menschlichkeit im Zentrum.\n\nUnter [[Uranus]] (modern) und [[Saturn]] (traditionell)-Herrschaft arbeitet Wassermann mit revolutionären Ideen und sozialem Bewusstsein. Ihre natürliche Verbindung zum [[11. Haus]] umfasst Gruppen, Freundschaften, Hoffnungen und humanitäre Ideale.\n\nDie Wasserträger-Symbolik des Wassermanns repräsentiert die Verteilung von Weisheit an die Menschheit. [[Kollektives Bewusstsein]] und zukunftsorientierte Vision sind stark mit diesem Zeichen verbunden.\n\n[[Schatten]]-Aspekte beinhalten emotionale Distanz, übermäßige Intellektualisierung und Vernachlässigung von Individuen während man \"für alle\" denkt. Emotionale Nähe ist die evolutionäre Aufgabe.",
+      "pisces": "[[Fische]] ist das zwölfte und letzte Zeichen des [[Tierkreises]] und repräsentiert die [[Veränderliche]] Form des [[Wasser]]-Elements. Mit dem Prinzip \"Ich glaube\" steht Spiritualität und Transzendenz im Zentrum.\n\nUnter [[Neptun]] (modern) und [[Jupiter]] (traditionell)-Herrschaft arbeitet Fische mit Mystizismus, Empathie und kosmischem Bewusstsein. Ihre natürliche Verbindung zum [[12. Haus]] umfasst das Unbewusste, spirituelle Praktiken, Abgeschiedenheit und [[Karmische]] Themen.\n\nDie Zwei-Fische-Symbolik der Fische - in entgegengesetzte Richtungen schwimmend - repräsentiert die Spannung zwischen materieller und spiritueller Welt. Direkter Zugang zum [[kollektiven Unbewussten]] ist das Geschenk dieses Zeichens.\n\n[[Schatten]]-Aspekte beinhalten Fluchttendenzen (Sucht), Grenzenlosigkeit und Opfermentalität. Gesunde Grenzen und Verbindung zur Realität sind evolutionäre Aufgaben.",
+      "default": "Zeicheninterpretation wird geladen..."
+    }
   },
   "tabs": {
     "daily": "Täglich",
