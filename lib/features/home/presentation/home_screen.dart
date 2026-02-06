@@ -805,8 +805,8 @@ class HomeScreen extends ConsumerWidget {
                         const SizedBox(height: 2),
                         Text(
                           vocStatus.timeRemainingFormatted != null
-                              ? 'Önemli kararlar ertelensin. ${vocStatus.timeRemainingFormatted} kaldı.'
-                              : 'Önemli kararlar ve başlangıçları erteleyiniz.',
+                              ? L10nService.get('home.voc_delay_decisions', _language).replaceAll('{time}', vocStatus.timeRemainingFormatted!)
+                              : L10nService.get('home.voc_postpone_important', _language),
                           style: Theme.of(context).textTheme.bodySmall?.copyWith(
                                 color: AppColors.textSecondary,
                                 fontSize: 11,
@@ -823,7 +823,7 @@ class HomeScreen extends ConsumerWidget {
                           style: TextStyle(fontSize: 18, color: Colors.purple.withAlpha(180)),
                         ),
                         Text(
-                          'Sonraki',
+                          L10nService.get('common.next', _language),
                           style: Theme.of(context).textTheme.labelSmall?.copyWith(
                                 color: AppColors.textMuted,
                                 fontSize: 9,
@@ -1903,27 +1903,16 @@ class HomeScreen extends ConsumerWidget {
 
   Widget _buildAllSigns(BuildContext context, WidgetRef ref) {
     final language = ref.watch(languageProvider);
-    // Burç tarihleri
-    final signDates = {
-      ZodiacSign.aries: '21 Mar - 19 Nis',
-      ZodiacSign.taurus: '20 Nis - 20 May',
-      ZodiacSign.gemini: '21 May - 20 Haz',
-      ZodiacSign.cancer: '21 Haz - 22 Tem',
-      ZodiacSign.leo: '23 Tem - 22 Ağu',
-      ZodiacSign.virgo: '23 Ağu - 22 Eyl',
-      ZodiacSign.libra: '23 Eyl - 22 Eki',
-      ZodiacSign.scorpio: '23 Eki - 21 Kas',
-      ZodiacSign.sagittarius: '22 Kas - 21 Ara',
-      ZodiacSign.capricorn: '22 Ara - 19 Oca',
-      ZodiacSign.aquarius: '20 Oca - 18 Şub',
-      ZodiacSign.pisces: '19 Şub - 20 Mar',
-    };
+    // Zodiac date ranges - using L10nService
+    String getSignDates(ZodiacSign sign) {
+      return L10nService.get('zodiac.dates.${sign.name}', language);
+    }
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          '✨ Burçlar',
+          '✨ ${L10nService.get('common.zodiac_signs', language)}',
           style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
@@ -2010,7 +1999,7 @@ class HomeScreen extends ConsumerWidget {
                           overflow: TextOverflow.ellipsis,
                         ),
                         Text(
-                          signDates[sign] ?? '',
+                          getSignDates(sign),
                           style: Theme.of(context).textTheme.labelSmall?.copyWith(
                                 color: Colors.white60,
                                 fontSize: 7,
@@ -2669,33 +2658,40 @@ class _KozmozMasterSectionState extends ConsumerState<_KozmozMasterSection> {
     {'text': '💋 Aşk hayatım ne zaman düzelir?', 'category': 'love', 'gradient': [Color(0xFFE91E63), Color(0xFFAD1457)]},
   ];
 
-  // Extended questions list
-  static const List<Map<String, dynamic>> _allQuestions = [
-    // Burç Uyumu & Dedikodu
-    {'text': '♈ Koç erkeğiyle anlaşabilir miyim?', 'category': 'compatibility'},
-    {'text': '♏ Akrep kadınları neden bu kadar gizemli?', 'category': 'compatibility'},
-    {'text': '♌ Aslan burcu neden hep ilgi bekler?', 'category': 'compatibility'},
-    {'text': '♊ İkizler neden karar veremez?', 'category': 'compatibility'},
-    {'text': '🔥 Ateş grubuyla su grubu uyumlu mu?', 'category': 'compatibility'},
-    {'text': '💫 En sadık burç hangisi?', 'category': 'compatibility'},
-    {'text': '😈 En kıskanç burç hangisi?', 'category': 'compatibility'},
-    {'text': '💋 Yatakta en ateşli burç hangisi?', 'category': 'compatibility'},
-    // Aşk & İlişki
-    {'text': '💕 Bugün aşkta şansım nasıl?', 'category': 'love'},
-    {'text': '💔 Eski sevgilim geri döner mi?', 'category': 'love'},
-    {'text': '🤫 Beni aldatır mı?', 'category': 'love'},
-    {'text': '💍 Evlilik teklifi ne zaman gelir?', 'category': 'love'},
-    {'text': '😍 O benden hoşlanıyor mu?', 'category': 'love'},
-    {'text': '💬 Neden mesaj atmıyor?', 'category': 'love'},
-    // Kariyer & Para
-    {'text': '💼 Terfi alacak mıyım?', 'category': 'career'},
-    {'text': '📈 İş değişikliği yapmalı mıyım?', 'category': 'career'},
-    {'text': '🎰 Şans oyunları oynamalı mıyım?', 'category': 'career'},
-    // Spiritüel
-    {'text': '✨ Şans yıldızım ne zaman parlayacak?', 'category': 'spiritual'},
-    {'text': '🌙 Merkür retrosu beni nasıl etkiler?', 'category': 'spiritual'},
-    {'text': '🦋 Hayatımda büyük değişim ne zaman?', 'category': 'general'},
+  // Extended questions list - keys for localization
+  static const List<Map<String, dynamic>> _allQuestionKeys = [
+    // Zodiac Compatibility
+    {'key': 'home.questions.aries_man', 'category': 'compatibility'},
+    {'key': 'home.questions.scorpio_women', 'category': 'compatibility'},
+    {'key': 'home.questions.leo_attention', 'category': 'compatibility'},
+    {'key': 'home.questions.gemini_decisions', 'category': 'compatibility'},
+    {'key': 'home.questions.fire_water', 'category': 'compatibility'},
+    {'key': 'home.questions.most_loyal', 'category': 'compatibility'},
+    {'key': 'home.questions.most_jealous', 'category': 'compatibility'},
+    {'key': 'home.questions.most_passionate', 'category': 'compatibility'},
+    // Love & Relationships
+    {'key': 'home.questions.love_luck_today', 'category': 'love'},
+    {'key': 'home.questions.ex_return', 'category': 'love'},
+    {'key': 'home.questions.cheating', 'category': 'love'},
+    {'key': 'home.questions.marriage_proposal', 'category': 'love'},
+    {'key': 'home.questions.does_like_me', 'category': 'love'},
+    {'key': 'home.questions.no_message', 'category': 'love'},
+    // Career & Money
+    {'key': 'home.questions.promotion', 'category': 'career'},
+    {'key': 'home.questions.job_change', 'category': 'career'},
+    {'key': 'home.questions.gambling', 'category': 'career'},
+    // Spiritual
+    {'key': 'home.questions.lucky_star', 'category': 'spiritual'},
+    {'key': 'home.questions.mercury_retrograde', 'category': 'spiritual'},
+    {'key': 'home.questions.big_change', 'category': 'general'},
   ];
+
+  List<Map<String, dynamic>> _getLocalizedQuestions() {
+    return _allQuestionKeys.map((q) => {
+      'text': L10nService.get(q['key'] as String, _language),
+      'category': q['category'],
+    }).toList();
+  }
 
   @override
   void dispose() {
@@ -3284,9 +3280,9 @@ class _KozmozMasterSectionState extends ConsumerState<_KozmozMasterSection> {
                         height: 36,
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
-                          itemCount: _allQuestions.length,
+                          itemCount: _getLocalizedQuestions().length,
                           itemBuilder: (context, index) {
-                            final question = _allQuestions[index];
+                            final question = _getLocalizedQuestions()[index];
                             return Padding(
                               padding: const EdgeInsets.only(right: 8),
                               child: GestureDetector(
