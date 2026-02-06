@@ -1694,7 +1694,7 @@ class HomeScreen extends ConsumerWidget {
               ),
               const SizedBox(height: 4),
               Text(
-                'Meditasyon, ritüeller ve enerji dengeleme',
+                L10nService.get('home.meditation_subtitle', _language),
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: AppColors.textSecondary,
                     ),
@@ -1772,7 +1772,7 @@ class HomeScreen extends ConsumerWidget {
             const Icon(Icons.auto_awesome, color: Colors.white, size: 24),
             const SizedBox(width: 12),
             Text(
-              'Tüm Çözümlemeler',
+              L10nService.get('home.all_analyses', _language),
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 17,

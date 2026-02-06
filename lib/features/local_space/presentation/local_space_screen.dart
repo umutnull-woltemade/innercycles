@@ -51,10 +51,11 @@ class _LocalSpaceScreenState extends ConsumerState<LocalSpaceScreen>
     // Use profile data - default to Istanbul if no coordinates
     final latitude = userProfile.birthLatitude ?? 41.0082;
     final longitude = userProfile.birthLongitude ?? 28.9784;
+    final language = ref.read(languageProvider);
 
     setState(() {
       _chart = _service.generateLocalSpaceChart(
-        userName: userProfile.name ?? 'Kullanıcı',
+        userName: userProfile.name ?? L10nService.get('local_space.user', language),
         birthDate: userProfile.birthDate,
         latitude: latitude,
         longitude: longitude,
