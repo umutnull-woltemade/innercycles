@@ -557,7 +557,7 @@ class AuraScreen extends ConsumerWidget {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  _getChakraBalancingAdvice(weakest.key),
+                  _getChakraBalancingAdvice(weakest.key, language),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: AppColors.textSecondary,
                         height: 1.5,
@@ -674,7 +674,7 @@ class AuraScreen extends ConsumerWidget {
                           ),
                     ),
                     Text(
-                      _getChakraArea(chakra),
+                      _getChakraArea(chakra, language),
                       style: Theme.of(context).textTheme.labelSmall?.copyWith(
                             color: AppColors.textMuted,
                             fontSize: 10,
@@ -787,35 +787,30 @@ class AuraScreen extends ConsumerWidget {
     );
   }
 
-  String _getChakraArea(Chakra chakra) {
-    switch (chakra) {
-      case Chakra.root: return 'Güvenlik, Hayatta Kalma';
-      case Chakra.sacral: return 'Yaratıcılık, Duygular';
-      case Chakra.solarPlexus: return 'Güç, Özgüven';
-      case Chakra.heart: return 'Sevgi, Bağlantı';
-      case Chakra.throat: return 'İletişim, İfade';
-      case Chakra.thirdEye: return 'Sezgi, Bilgelik';
-      case Chakra.crown: return 'Spiritüellik, Bilinç';
-    }
+  String _getChakraArea(Chakra chakra, AppLanguage language) {
+    final key = switch (chakra) {
+      Chakra.root => 'aura.chakra_area_root',
+      Chakra.sacral => 'aura.chakra_area_sacral',
+      Chakra.solarPlexus => 'aura.chakra_area_solar',
+      Chakra.heart => 'aura.chakra_area_heart',
+      Chakra.throat => 'aura.chakra_area_throat',
+      Chakra.thirdEye => 'aura.chakra_area_third_eye',
+      Chakra.crown => 'aura.chakra_area_crown',
+    };
+    return L10nService.get(key, language);
   }
 
-  String _getChakraBalancingAdvice(Chakra chakra) {
-    switch (chakra) {
-      case Chakra.root:
-        return 'Doğada yürüyüş yapın, kırmızı giyinin. Topraklanma meditasyonları ve fiziksel egzersizler bu chakrayı güçlendirir.';
-      case Chakra.sacral:
-        return 'Yaratıcı aktiviteler yapın, dans edin. Turuncu renkli yiyecekler tüketin ve su elementine yakın olun.';
-      case Chakra.solarPlexus:
-        return 'Güneş ışığında vakit geçirin. Nefes egzersizleri yapın ve kendinize pozitif olumlamalar söyleyin.';
-      case Chakra.heart:
-        return 'Sevdiklerinizle zaman geçirin. Şükran günlüğü tutun ve yeşil alanlarla vakit geçirin.';
-      case Chakra.throat:
-        return 'Duygularınızı ifade edin, şarkı söyleyin. Mavi tonlarda giyinin ve bol su için.';
-      case Chakra.thirdEye:
-        return 'Meditasyon yapın ve rüyalarınızı kaydedin. Mor/çivit renklerine odaklanın.';
-      case Chakra.crown:
-        return 'Sessizlikte vakit geçirin, meditasyon yapın. Beyaz veya mor giyin ve doğayla bağlantı kurun.';
-    }
+  String _getChakraBalancingAdvice(Chakra chakra, AppLanguage language) {
+    final key = switch (chakra) {
+      Chakra.root => 'aura.chakra_advice_root',
+      Chakra.sacral => 'aura.chakra_advice_sacral',
+      Chakra.solarPlexus => 'aura.chakra_advice_solar',
+      Chakra.heart => 'aura.chakra_advice_heart',
+      Chakra.throat => 'aura.chakra_advice_throat',
+      Chakra.thirdEye => 'aura.chakra_advice_third_eye',
+      Chakra.crown => 'aura.chakra_advice_crown',
+    };
+    return L10nService.get(key, language);
   }
 
   Widget _buildDailyEnergyCard(BuildContext context, DailyAuraEnergy energy, AppLanguage language) {

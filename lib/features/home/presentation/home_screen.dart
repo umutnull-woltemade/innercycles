@@ -3207,7 +3207,7 @@ class _KozmozMasterSectionState extends ConsumerState<_KozmozMasterSection> {
                           controller: _questionController,
                           style: const TextStyle(color: Colors.white, fontSize: 14),
                           decoration: InputDecoration(
-                            hintText: 'Yıldızlara sormak istediğin her şey...',
+                            hintText: L10nService.get('home.ask_stars_hint', _language),
                             hintStyle: TextStyle(color: Colors.white38, fontSize: 13),
                             prefixIcon: ShaderMask(
                               shaderCallback: (bounds) => const LinearGradient(
@@ -3838,7 +3838,7 @@ class _AiChatSectionState extends ConsumerState<_AiChatSection> {
                     controller: _questionController,
                     style: const TextStyle(color: Colors.white, fontSize: 14),
                     decoration: InputDecoration(
-                      hintText: 'Yıldızlara bir soru sor...',
+                      hintText: L10nService.get('home.ask_stars_short', _language),
                       hintStyle: TextStyle(color: Colors.white38, fontSize: 13),
                       prefixIcon: Icon(Icons.chat_bubble_outline, color: Colors.white38, size: 20),
                       filled: true,

@@ -889,7 +889,7 @@ class _CosmicShareCard extends StatelessWidget {
             label: L10nService.get('share.energy_level', language),
             value: content.energyMeter.energyLevel,
             color: MysticalColors.auroraGreen,
-            description: content.energyMeter.energyDescription,
+            description: _getLocalizedDescription(content.energyMeter.energyDescription),
           ),
           const SizedBox(height: 14),
 
@@ -898,7 +898,7 @@ class _CosmicShareCard extends StatelessWidget {
             label: L10nService.get('share.intuition_power', language),
             value: content.energyMeter.intuitionStrength,
             color: MysticalColors.amethyst,
-            description: content.energyMeter.intuitionDescription,
+            description: _getLocalizedDescription(content.energyMeter.intuitionDescription),
           ),
           const SizedBox(height: 14),
 
@@ -913,7 +913,7 @@ class _CosmicShareCard extends StatelessWidget {
                       .withOpacity(0.2),
                 ),
                 child: Text(
-                  content.energyMeter.emotionalIntensity,
+                  _getLocalizedIntensity(content.energyMeter.emotionalIntensity),
                   style: GoogleFonts.raleway(
                     fontSize: 11,
                     fontWeight: FontWeight.w600,
@@ -924,7 +924,7 @@ class _CosmicShareCard extends StatelessWidget {
               const SizedBox(width: 8),
               Expanded(
                 child: Text(
-                  content.energyMeter.intensityDescription,
+                  _getLocalizedDescription(content.energyMeter.intensityDescription),
                   style: GoogleFonts.raleway(
                     fontSize: 10,
                     color: MysticalColors.textSecondary,
@@ -1055,17 +1055,32 @@ class _CosmicShareCard extends StatelessWidget {
 
   Color _getIntensityColor(String intensity) {
     switch (intensity) {
-      case 'Sakin':
+      case 'calm':
         return MysticalColors.auroraGreen;
-      case 'Yükselen':
+      case 'rising':
         return MysticalColors.amber;
-      case 'Yoğun':
+      case 'intense':
         return MysticalColors.solarOrange;
-      case 'Fırtınalı':
+      case 'stormy':
         return MysticalColors.nebulaRose;
       default:
         return MysticalColors.textSecondary;
     }
+  }
+
+  String _getLocalizedIntensity(String intensity) {
+    final key = switch (intensity) {
+      'calm' => 'share.intensity_calm',
+      'rising' => 'share.intensity_rising',
+      'intense' => 'share.intensity_intense',
+      'stormy' => 'share.intensity_stormy',
+      _ => 'share.intensity_default',
+    };
+    return L10nService.get(key, language);
+  }
+
+  String _getLocalizedDescription(String descKey) {
+    return L10nService.get('share.$descKey', language);
   }
 
   /// Section 4: Planetary Influence Snapshot

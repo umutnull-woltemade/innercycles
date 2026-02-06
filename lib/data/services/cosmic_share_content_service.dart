@@ -310,10 +310,18 @@ class CosmicShareContentService {
     final energyLevel = 45 + (seed % 50);
     final intuitionLevel = 30 + ((seed * 7) % 65);
 
-    final intensityOptions = ['Sakin', 'Yükselen', 'Yoğun', 'Fırtınalı'];
+    // Use English keys for intensity - localized in UI
+    final intensityOptions = ['calm', 'rising', 'intense', 'stormy'];
     final intensityIndex = (seed ~/ 10) % intensityOptions.length;
 
     final balanceRatio = (seed % 100) / 100.0;
+
+    // Use English keys for balance description - localized in UI
+    final balanceKey = balanceRatio > 0.6
+        ? 'action_day'
+        : balanceRatio < 0.4
+            ? 'reflection_day'
+            : 'balanced_day';
 
     return CosmicEnergyMeter(
       energyLevel: energyLevel,
@@ -323,11 +331,7 @@ class CosmicShareContentService {
       intuitionStrength: intuitionLevel,
       intuitionDescription: _getIntuitionDescription(intuitionLevel),
       actionReflectionBalance: balanceRatio,
-      balanceDescription: balanceRatio > 0.6
-          ? 'Bugün hareket günü. Düşünmeyi bırak, yap.'
-          : balanceRatio < 0.4
-              ? 'İçe dön. Cevaplar sessizlikte gizli.'
-              : 'Dengeli bir gün. Hem düşün hem hareket et.',
+      balanceDescription: balanceKey,
     );
   }
 
@@ -631,34 +635,37 @@ class CosmicShareContentService {
   }
 
   static String _getEnergyDescription(int level) {
-    if (level >= 80) return 'Kozmik enerjin dorukta. Her şey mümkün.';
-    if (level >= 60) return 'Güçlü bir akış var. Fırsatları yakala.';
-    if (level >= 40) return 'Dengeli enerji. Sabırlı ol.';
-    if (level >= 20) return 'Dinlenme zamanı. Kendine nazik ol.';
-    return 'İçe dönük enerji. Şarj ol.';
+    // Returns localization key - localized in UI layer
+    if (level >= 80) return 'energy_peak_desc';
+    if (level >= 60) return 'energy_high_desc';
+    if (level >= 40) return 'energy_balanced_desc';
+    if (level >= 20) return 'energy_low_desc';
+    return 'energy_recharge_desc';
   }
 
   static String _getIntensityDescription(String intensity) {
+    // Returns localization key - localized in UI layer
     switch (intensity) {
-      case 'Sakin':
-        return 'Duygular kontrol altında. Net düşünme zamanı.';
-      case 'Yükselen':
-        return 'Duygular yüzeye çıkıyor. Farkındalık gerekli.';
-      case 'Yoğun':
-        return 'Güçlü hisler akıyor. Tepkilere dikkat.';
-      case 'Fırtınalı':
-        return 'Duygusal dalgalanma. Merkeze dön.';
+      case 'calm':
+        return 'intensity_calm_desc';
+      case 'rising':
+        return 'intensity_rising_desc';
+      case 'intense':
+        return 'intensity_intense_desc';
+      case 'stormy':
+        return 'intensity_stormy_desc';
       default:
-        return 'Duygusal akış devam ediyor.';
+        return 'intensity_default_desc';
     }
   }
 
   static String _getIntuitionDescription(int level) {
-    if (level >= 80) return 'Üçüncü gözün açık. İlk hissine güven.';
-    if (level >= 60) return 'Sezgilerin güçlü. İç sesin dinle.';
-    if (level >= 40) return 'Sezgi ve mantık dengede.';
-    if (level >= 20) return 'Bugün mantığa yaslan.';
-    return 'Analitik düşünme zamanı.';
+    // Returns localization key - localized in UI layer
+    if (level >= 80) return 'intuition_peak_desc';
+    if (level >= 60) return 'intuition_high_desc';
+    if (level >= 40) return 'intuition_balanced_desc';
+    if (level >= 20) return 'intuition_low_desc';
+    return 'intuition_analytical_desc';
   }
 
   static List<Planet> _getDominantPlanets(ZodiacSign sign, DateTime today) {
