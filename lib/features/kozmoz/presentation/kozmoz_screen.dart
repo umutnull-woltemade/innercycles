@@ -28,128 +28,118 @@ class _KozmozScreenState extends ConsumerState<KozmozScreen>
   bool _isTyping = false;
   late AnimationController _pulseController;
 
-  // Önerilen sorular - kategorilere göre - MEGA GELİŞTİRİLMİŞ
-  final List<Map<String, dynamic>> _suggestedQuestions = [
-    // 🌟 GÜNLÜK & HAFTALIK YORUMLAR
-    {'emoji': '🌅', 'text': 'Bugün hangi saatler benim için en şanslı ve enerjim en yüksek olacak?', 'category': 'gunluk'},
-    {'emoji': '⚡', 'text': 'Bugün dikkat etmem gereken tehlikeli saatler ve olası engeller neler?', 'category': 'gunluk'},
-    {'emoji': '🎯', 'text': 'Bu hafta burçum için en önemli üç tavsiye nedir?', 'category': 'gunluk'},
-    {'emoji': '✨', 'text': 'Güneş, Ay ve yükselen burcuma göre bugünkü kozmik hava durumum ne?', 'category': 'gunluk'},
-
-    // 💕 AŞK & İLİŞKİLER
-    {'emoji': '💘', 'text': 'Venüs ve Mars geçişlerine göre aşk hayatımda bu ay neler bekleniyor?', 'category': 'ask'},
-    {'emoji': '🔥', 'text': 'Doğum haritama göre ideal partnerim nasıl biri ve nerede tanışabilirim?', 'category': 'ask'},
-    {'emoji': '💔', 'text': 'İlişkimde yaşadığım zorlukların astrolojik kök nedenleri neler olabilir?', 'category': 'ask'},
-    {'emoji': '👫', 'text': 'Partnerimle synastry uyum analizimiz nasıl, güçlü ve zayıf noktalarımız neler?', 'category': 'ask'},
-    {'emoji': '💍', 'text': 'Evlilik için en uygun astrolojik zamanlar bu yıl ne zaman?', 'category': 'ask'},
-
-    // 💼 KARİYER & PARA
-    {'emoji': '📈', 'text': 'Doğum haritama göre en uygun kariyer yolları ve sektörler neler?', 'category': 'kariyer'},
-    {'emoji': '💰', 'text': 'Maddi bolluk ve finansal başarı için hangi dönemler benim için şanslı?', 'category': 'kariyer'},
-    {'emoji': '🚀', 'text': 'İş kurmak veya terfi almak için en uygun astrolojik pencere ne zaman?', 'category': 'kariyer'},
-    {'emoji': '🤝', 'text': 'İş ortaklığı ve işbirliği için hangi burçlarla çalışmalıyım?', 'category': 'kariyer'},
-
-    // 🪐 TRANSİTLER & ZAMANLAMALAR
-    {'emoji': '♄', 'text': 'Saturn return dönemim ne zaman ve bu büyük dönüşüme nasıl hazırlanmalıyım?', 'category': 'transit'},
-    {'emoji': '🌑', 'text': 'Merkür retrosu beni nasıl etkiliyor ve bu dönemde nelere dikkat etmeliyim?', 'category': 'transit'},
-    {'emoji': '🌕', 'text': 'Bir sonraki dolunay burçumda mı ve hangi alanları tetikleyecek?', 'category': 'transit'},
-    {'emoji': '♃', 'text': 'Jüpiter transitim hangi evde ve bu dönem hangi konularda şanslıyım?', 'category': 'transit'},
-    {'emoji': '⏳', 'text': 'Bu yıl benim için kritik dönüm noktaları ve önemli tarihler neler?', 'category': 'transit'},
-
-    // 🗺️ DOĞUM HARİTASI DERİN ANALİZ
-    {'emoji': '☀️', 'text': 'Güneş, Ay ve yükselen üçlümün kombinasyonu kişiliğimi nasıl şekillendiriyor?', 'category': 'harita'},
-    {'emoji': '🌙', 'text': 'Ay düğümlerim ruhsal evrim yolculuğum hakkında ne söylüyor?', 'category': 'harita'},
-    {'emoji': '🏠', 'text': 'Doğum haritamdaki boş evler ve dolu evler yaşamımı nasıl etkiliyor?', 'category': 'harita'},
-    {'emoji': '⚔️', 'text': 'Haritamdaki zor açılar (kareler, karşıtlıklar) hangi yaşam derslerini getiriyor?', 'category': 'harita'},
-    {'emoji': '🎁', 'text': 'MC ve IC eksenime göre kariyer ve aile hayatım nasıl şekillenmeli?', 'category': 'harita'},
-
-    // 🔢 NUMEROLOJİ
-    {'emoji': '1️⃣', 'text': 'Yaşam yolu sayım, kaderimi ve hayat amacımı nasıl etkiliyor?', 'category': 'numeroloji'},
-    {'emoji': '🔮', 'text': 'İsim numerolojim kişiliğim ve kaderim hakkında ne diyor?', 'category': 'numeroloji'},
-    {'emoji': '📅', 'text': 'Bu yıl kişisel yıl sayım kaç ve bu dönemde hangi temaları yaşayacağım?', 'category': 'numeroloji'},
-    {'emoji': '🎂', 'text': 'Doğum gününün sayısı güçlü yanlarım ve zayıf yanlarım hakkında ne anlatıyor?', 'category': 'numeroloji'},
-
-    // 🎴 TAROT & KEHâNET
-    {'emoji': '🃏', 'text': 'Bugün için evrenin bana göndermek istediği en önemli tarot mesajı nedir?', 'category': 'tarot'},
-    {'emoji': '🌟', 'text': 'Şu anki durumum için geçmiş-şimdi-gelecek tarot açılımı yapabilir misin?', 'category': 'tarot'},
-    {'emoji': '❓', 'text': 'Kafamdaki soruya evet/hayır tarot cevabı alabilir miyim?', 'category': 'tarot'},
-
-    // 🧘 SPİRİTÜEL GELİŞİM
-    {'emoji': '🦋', 'text': 'Şu anki ruhsal uyanış ve bilinç genişlemesi sürecimde neredeyim?', 'category': 'spiritüel'},
-    {'emoji': '🧬', 'text': 'Karmik borçlarım ve geçmiş yaşam kalıntılarım bu hayatı nasıl etkiliyor?', 'category': 'spiritüel'},
-    {'emoji': '🌈', 'text': 'Çakra sistemim ve enerji bedenimin durumu nasıl, hangi çakralarım bloke?', 'category': 'spiritüel'},
-    {'emoji': '💎', 'text': 'Burcuma ve doğum haritama göre şifa taşlarım ve kristallerim neler olmalı?', 'category': 'spiritüel'},
-    {'emoji': '🕯️', 'text': 'Bugünkü ay fazına uygun ritüel ve meditasyon önerilerin neler?', 'category': 'spiritüel'},
-
-    // 🔍 DERİN SORULAR
-    {'emoji': '🎯', 'text': 'Doğum haritama göre bu hayattaki gerçek amacım ve misyonum ne?', 'category': 'derin'},
-    {'emoji': '⚡', 'text': 'Gizli yeteneklerim, aktive olmayı bekleyen potansiyelim nedir?', 'category': 'derin'},
-    {'emoji': '🌪️', 'text': 'Hayatımda döngüsel olarak tekrarlayan kalıplar ve bunların astrolojik açıklaması ne?', 'category': 'derin'},
-    {'emoji': '🔓', 'text': 'Beni geride tutan blokajlar ve onların kozmik kökleri neler?', 'category': 'derin'},
-
-    // 🌙 RÜYA & BİLİNÇALTI (YENİ)
-    {'emoji': '💭', 'text': 'Rüyalarım astrolojik olarak ne anlama geliyor? Bugün gördüğüm rüyayı yorumla.', 'category': 'ruya'},
-    {'emoji': '🌌', 'text': 'Bilinçaltım bu dönemde hangi mesajları gönderiyor?', 'category': 'ruya'},
-    {'emoji': '🛏️', 'text': 'Uyku kalitem ve rüya döngülerim ay fazlarından nasıl etkileniyor?', 'category': 'ruya'},
-    {'emoji': '👁️‍🗨️', 'text': 'Lüsid rüya görmek için en uygun kozmik zamanlar ne zaman?', 'category': 'ruya'},
-
-    // ༄ TANTRA & ENERJİ (YENİ)
-    {'emoji': '🔥', 'text': 'Kundalini enerjimin şu anki durumu ve uyanış süreci hakkında ne söyleyebilirsin?', 'category': 'tantra'},
-    {'emoji': '💫', 'text': 'Cinsel enerjimi yaratıcı ve ruhsal güce nasıl dönüştürebilirim?', 'category': 'tantra'},
-    {'emoji': '🧘', 'text': 'Burcuma özel nefes çalışması ve meditasyon teknikleri neler?', 'category': 'tantra'},
-    {'emoji': '⚡', 'text': 'Enerji bedenimde blokajlar var mı? Nasıl temizleyebilirim?', 'category': 'tantra'},
-
-    // 🌿 ŞIFA & SAĞLIK (YENİ)
-    {'emoji': '🩺', 'text': 'Doğum haritama göre zayıf organlarım ve dikkat etmem gereken sağlık konuları neler?', 'category': 'saglik'},
-    {'emoji': '🍃', 'text': 'Burcuma uygun bitkisel şifa yöntemleri ve doğal tedaviler neler?', 'category': 'saglik'},
-    {'emoji': '🥗', 'text': 'Astrolojik beslenme: Burcuma göre hangi yiyecekler bana iyi geliyor?', 'category': 'saglik'},
-    {'emoji': '🧪', 'text': 'Detoks ve arınma için en uygun ay fazları ve dönemler ne zaman?', 'category': 'saglik'},
-
-    // 🏠 EV & AİLE (YENİ)
-    {'emoji': '🏡', 'text': 'Ev satın alma veya taşınma için en uygun astrolojik dönem ne zaman?', 'category': 'ev'},
-    {'emoji': '👨‍👩‍👧‍👦', 'text': 'Aile dinamiklerim ve anne-baba ilişkilerim astrolojik olarak nasıl açıklanıyor?', 'category': 'ev'},
-    {'emoji': '👶', 'text': 'Çocuk sahibi olmak için en uygun kozmik zamanlar ne zaman?', 'category': 'ev'},
-    {'emoji': '🐕', 'text': 'Evcil hayvan sahiplenmek için uygun dönem ve burcuma uygun hayvan türleri neler?', 'category': 'ev'},
-
-    // ✈️ SEYAHAT & MACERA (YENİ)
-    {'emoji': '🗺️', 'text': 'Astrolojik coğrafya: Hangi şehir ve ülkeler benim için şanslı?', 'category': 'seyahat'},
-    {'emoji': '✈️', 'text': 'Seyahat planlamak için en uygun ve en riskli dönemler ne zaman?', 'category': 'seyahat'},
-    {'emoji': '🏖️', 'text': 'Tatil planlarken hangi destinasyonlar enerjime uygun?', 'category': 'seyahat'},
-
-    // 📚 EĞİTİM & ÖĞRENME (YENİ)
-    {'emoji': '📖', 'text': 'Hangi konuları öğrenmek için doğal yeteneğim var?', 'category': 'egitim'},
-    {'emoji': '🎓', 'text': 'Sınav, mülakatlar ve önemli sunumlar için en uygun tarihler neler?', 'category': 'egitim'},
-    {'emoji': '✍️', 'text': 'Yaratıcı yazarlık ve sanatsal ifade için en verimli dönemlerim ne zaman?', 'category': 'egitim'},
-
-    // 🌑 GÖLGE ÇALIŞMASI (YENİ)
-    {'emoji': '🖤', 'text': 'Gölge benliğim nedir ve onunla nasıl barışabilirim?', 'category': 'golge'},
-    {'emoji': '😈', 'text': 'Korkularım ve bastırılmış duygularımın astrolojik kökeni ne?', 'category': 'golge'},
-    {'emoji': '🌑', 'text': 'Karanlık ay dönemlerinde hangi gölge çalışmalarını yapmalıyım?', 'category': 'golge'},
-    {'emoji': '🪞', 'text': 'Projeksiyon kalıplarım: Başkalarında beni rahatsız eden şeyler aslında neyi gösteriyor?', 'category': 'golge'},
-
-    // 🌟 MANİFESTASYON (YENİ)
-    {'emoji': '✨', 'text': 'Manifestasyon için en güçlü kozmik pencereler bu ay ne zaman?', 'category': 'manifestasyon'},
-    {'emoji': '🎯', 'text': 'Niyetlerimi güçlendirmek için hangi ay fazlarını kullanmalıyım?', 'category': 'manifestasyon'},
-    {'emoji': '📝', 'text': 'Bolluk ve bereket çekmek için burcuma özel ritüeller neler?', 'category': 'manifestasyon'},
-    {'emoji': '🌈', 'text': 'Vizyon panosu oluşturmak için en uygun astrolojik zaman ne?', 'category': 'manifestasyon'},
-
-    // 🔮 MİSTİK SORULAR (YENİ)
-    {'emoji': '🌀', 'text': 'Geçmiş yaşamlarım hakkında doğum haritam ne söylüyor?', 'category': 'mistik'},
-    {'emoji': '👼', 'text': 'Koruyucu meleklerim ve ruhsal rehberlerim kimler?', 'category': 'mistik'},
-    {'emoji': '🌠', 'text': 'Yıldız tohumları ve kozmik kökenlerim hakkında ne biliyorsun?', 'category': 'mistik'},
-    {'emoji': '🕸️', 'text': 'Akashik kayıtlarım bu hayat hakkında ne diyor?', 'category': 'mistik'},
-
-    // 💎 KRİSTAL & TAŞ (YENİ)
-    {'emoji': '💎', 'text': 'Burcuma ve doğum haritama göre güç taşlarım neler?', 'category': 'kristal'},
-    {'emoji': '🔮', 'text': 'Bu dönem hangi kristalleri taşımalıyım ve nasıl aktive etmeliyim?', 'category': 'kristal'},
-    {'emoji': '💍', 'text': 'Mücevher seçerken hangi taşlardan kaçınmalıyım?', 'category': 'kristal'},
-
-    // 🌿 RİTÜEL & TÖRENSELLİK (YENİ)
-    {'emoji': '🕯️', 'text': 'Dolunay ritüeli: Bu ay neyi bırakmalı, neyi kutlamalıyım?', 'category': 'ritual'},
-    {'emoji': '🌑', 'text': 'Yeni ay niyeti: Bu döngüde hangi tohumları ekmeliyim?', 'category': 'ritual'},
-    {'emoji': '🌸', 'text': 'Mevsimsel geçiş ritüelleri: Bu mevsimi nasıl karşılamalıyım?', 'category': 'ritual'},
-    {'emoji': '🔥', 'text': 'Enerji temizliği için en etkili ritüeller ve zamanlamalar neler?', 'category': 'ritual'},
+  // Question keys with emoji and category for localization
+  static const List<Map<String, String>> _questionKeys = [
+    // Daily
+    {'emoji': '🌅', 'key': 'kozmoz.questions.daily_lucky_hours', 'category': 'gunluk'},
+    {'emoji': '⚡', 'key': 'kozmoz.questions.daily_danger_hours', 'category': 'gunluk'},
+    {'emoji': '🎯', 'key': 'kozmoz.questions.weekly_advice', 'category': 'gunluk'},
+    {'emoji': '✨', 'key': 'kozmoz.questions.cosmic_weather', 'category': 'gunluk'},
+    // Love
+    {'emoji': '💘', 'key': 'kozmoz.questions.venus_mars_love', 'category': 'ask'},
+    {'emoji': '🔥', 'key': 'kozmoz.questions.ideal_partner', 'category': 'ask'},
+    {'emoji': '💔', 'key': 'kozmoz.questions.relationship_challenges', 'category': 'ask'},
+    {'emoji': '👫', 'key': 'kozmoz.questions.synastry_analysis', 'category': 'ask'},
+    {'emoji': '💍', 'key': 'kozmoz.questions.marriage_timing', 'category': 'ask'},
+    // Career
+    {'emoji': '📈', 'key': 'kozmoz.questions.career_paths', 'category': 'kariyer'},
+    {'emoji': '💰', 'key': 'kozmoz.questions.financial_success', 'category': 'kariyer'},
+    {'emoji': '🚀', 'key': 'kozmoz.questions.business_timing', 'category': 'kariyer'},
+    {'emoji': '🤝', 'key': 'kozmoz.questions.business_partners', 'category': 'kariyer'},
+    // Transit
+    {'emoji': '♄', 'key': 'kozmoz.questions.saturn_return', 'category': 'transit'},
+    {'emoji': '🌑', 'key': 'kozmoz.questions.mercury_retrograde', 'category': 'transit'},
+    {'emoji': '🌕', 'key': 'kozmoz.questions.full_moon', 'category': 'transit'},
+    {'emoji': '♃', 'key': 'kozmoz.questions.jupiter_transit', 'category': 'transit'},
+    {'emoji': '⏳', 'key': 'kozmoz.questions.critical_dates', 'category': 'transit'},
+    // Chart
+    {'emoji': '☀️', 'key': 'kozmoz.questions.big_three', 'category': 'harita'},
+    {'emoji': '🌙', 'key': 'kozmoz.questions.lunar_nodes', 'category': 'harita'},
+    {'emoji': '🏠', 'key': 'kozmoz.questions.houses', 'category': 'harita'},
+    {'emoji': '⚔️', 'key': 'kozmoz.questions.difficult_aspects', 'category': 'harita'},
+    {'emoji': '🎁', 'key': 'kozmoz.questions.mc_ic_axis', 'category': 'harita'},
+    // Numerology
+    {'emoji': '1️⃣', 'key': 'kozmoz.questions.life_path', 'category': 'numeroloji'},
+    {'emoji': '🔮', 'key': 'kozmoz.questions.name_numerology', 'category': 'numeroloji'},
+    {'emoji': '📅', 'key': 'kozmoz.questions.personal_year', 'category': 'numeroloji'},
+    {'emoji': '🎂', 'key': 'kozmoz.questions.birthday_number', 'category': 'numeroloji'},
+    // Tarot
+    {'emoji': '🃏', 'key': 'kozmoz.questions.daily_tarot', 'category': 'tarot'},
+    {'emoji': '🌟', 'key': 'kozmoz.questions.three_card_spread', 'category': 'tarot'},
+    {'emoji': '❓', 'key': 'kozmoz.questions.yes_no_tarot', 'category': 'tarot'},
+    // Spiritual
+    {'emoji': '🦋', 'key': 'kozmoz.questions.spiritual_awakening', 'category': 'spiritüel'},
+    {'emoji': '🧬', 'key': 'kozmoz.questions.karmic_debts', 'category': 'spiritüel'},
+    {'emoji': '🌈', 'key': 'kozmoz.questions.chakra_status', 'category': 'spiritüel'},
+    {'emoji': '💎', 'key': 'kozmoz.questions.healing_crystals', 'category': 'spiritüel'},
+    {'emoji': '🕯️', 'key': 'kozmoz.questions.moon_rituals', 'category': 'spiritüel'},
+    // Deep
+    {'emoji': '🎯', 'key': 'kozmoz.questions.life_purpose', 'category': 'derin'},
+    {'emoji': '⚡', 'key': 'kozmoz.questions.hidden_talents', 'category': 'derin'},
+    {'emoji': '🌪️', 'key': 'kozmoz.questions.repeating_patterns', 'category': 'derin'},
+    {'emoji': '🔓', 'key': 'kozmoz.questions.blockages', 'category': 'derin'},
+    // Dreams
+    {'emoji': '💭', 'key': 'kozmoz.questions.dream_meaning', 'category': 'ruya'},
+    {'emoji': '🌌', 'key': 'kozmoz.questions.subconscious_messages', 'category': 'ruya'},
+    {'emoji': '🛏️', 'key': 'kozmoz.questions.sleep_cycles', 'category': 'ruya'},
+    {'emoji': '👁️‍🗨️', 'key': 'kozmoz.questions.lucid_dreaming', 'category': 'ruya'},
+    // Tantra
+    {'emoji': '🔥', 'key': 'kozmoz.questions.kundalini', 'category': 'tantra'},
+    {'emoji': '💫', 'key': 'kozmoz.questions.sexual_energy', 'category': 'tantra'},
+    {'emoji': '🧘', 'key': 'kozmoz.questions.breathing_techniques', 'category': 'tantra'},
+    {'emoji': '⚡', 'key': 'kozmoz.questions.energy_blockages', 'category': 'tantra'},
+    // Health
+    {'emoji': '🩺', 'key': 'kozmoz.questions.weak_organs', 'category': 'saglik'},
+    {'emoji': '🍃', 'key': 'kozmoz.questions.herbal_healing', 'category': 'saglik'},
+    {'emoji': '🥗', 'key': 'kozmoz.questions.astro_nutrition', 'category': 'saglik'},
+    {'emoji': '🧪', 'key': 'kozmoz.questions.detox_timing', 'category': 'saglik'},
+    // Home
+    {'emoji': '🏡', 'key': 'kozmoz.questions.home_buying', 'category': 'ev'},
+    {'emoji': '👨‍👩‍👧‍👦', 'key': 'kozmoz.questions.family_dynamics', 'category': 'ev'},
+    {'emoji': '👶', 'key': 'kozmoz.questions.having_children', 'category': 'ev'},
+    {'emoji': '🐕', 'key': 'kozmoz.questions.pets', 'category': 'ev'},
+    // Travel
+    {'emoji': '🗺️', 'key': 'kozmoz.questions.lucky_places', 'category': 'seyahat'},
+    {'emoji': '✈️', 'key': 'kozmoz.questions.travel_timing', 'category': 'seyahat'},
+    {'emoji': '🏖️', 'key': 'kozmoz.questions.vacation_destinations', 'category': 'seyahat'},
+    // Education
+    {'emoji': '📖', 'key': 'kozmoz.questions.learning_talents', 'category': 'egitim'},
+    {'emoji': '🎓', 'key': 'kozmoz.questions.exam_dates', 'category': 'egitim'},
+    {'emoji': '✍️', 'key': 'kozmoz.questions.creative_periods', 'category': 'egitim'},
+    // Shadow
+    {'emoji': '🖤', 'key': 'kozmoz.questions.shadow_self', 'category': 'golge'},
+    {'emoji': '😈', 'key': 'kozmoz.questions.fears_origins', 'category': 'golge'},
+    {'emoji': '🌑', 'key': 'kozmoz.questions.dark_moon_work', 'category': 'golge'},
+    {'emoji': '🪞', 'key': 'kozmoz.questions.projection_patterns', 'category': 'golge'},
+    // Manifestation
+    {'emoji': '✨', 'key': 'kozmoz.questions.manifestation_timing', 'category': 'manifestasyon'},
+    {'emoji': '🎯', 'key': 'kozmoz.questions.intention_moon', 'category': 'manifestasyon'},
+    {'emoji': '📝', 'key': 'kozmoz.questions.abundance_rituals', 'category': 'manifestasyon'},
+    {'emoji': '🌈', 'key': 'kozmoz.questions.vision_board', 'category': 'manifestasyon'},
+    // Mystic
+    {'emoji': '🌀', 'key': 'kozmoz.questions.past_lives', 'category': 'mistik'},
+    {'emoji': '👼', 'key': 'kozmoz.questions.guardian_angels', 'category': 'mistik'},
+    {'emoji': '🌠', 'key': 'kozmoz.questions.star_seeds', 'category': 'mistik'},
+    {'emoji': '🕸️', 'key': 'kozmoz.questions.akashic_records', 'category': 'mistik'},
+    // Crystal
+    {'emoji': '💎', 'key': 'kozmoz.questions.power_stones', 'category': 'kristal'},
+    {'emoji': '🔮', 'key': 'kozmoz.questions.current_crystals', 'category': 'kristal'},
+    {'emoji': '💍', 'key': 'kozmoz.questions.stones_to_avoid', 'category': 'kristal'},
+    // Ritual
+    {'emoji': '🕯️', 'key': 'kozmoz.questions.full_moon_ritual', 'category': 'ritual'},
+    {'emoji': '🌑', 'key': 'kozmoz.questions.new_moon_intention', 'category': 'ritual'},
+    {'emoji': '🌸', 'key': 'kozmoz.questions.seasonal_rituals', 'category': 'ritual'},
+    {'emoji': '🔥', 'key': 'kozmoz.questions.energy_cleansing', 'category': 'ritual'},
   ];
+
+  /// Returns localized questions based on current language
+  List<Map<String, dynamic>> _getLocalizedQuestions(AppLanguage language) {
+    return _questionKeys.map((q) => {
+      'emoji': q['emoji']!,
+      'text': L10nService.get(q['key']!, language),
+      'category': q['category']!,
+    }).toList();
+  }
 
   @override
   void initState() {
@@ -173,8 +163,8 @@ class _KozmozScreenState extends ConsumerState<KozmozScreen>
   void _addWelcomeMessage() {
     final userProfile = ref.read(userProfileProvider);
     final sign = userProfile?.sunSign ?? zodiac.ZodiacSign.aries;
-    final userName = userProfile?.name ?? 'Yolcu';
     final language = ref.read(languageProvider);
+    final userName = userProfile?.name ?? L10nService.get('kozmoz.traveler', language);
 
     final hello = L10nService.get('kozmoz.greeting_hello', language);
     final introMessage = L10nService.get('kozmoz.intro_message', language)
@@ -2498,13 +2488,15 @@ ${_getOverallBalance(sign)}
   }
 
   Widget _buildSuggestedQuestions() {
+    final language = ref.read(languageProvider);
+    final localizedQuestions = _getLocalizedQuestions(language);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            '💡 ${L10nService.get('kozmoz.suggested_questions', ref.read(languageProvider))}',
+            '💡 ${L10nService.get('kozmoz.suggested_questions', language)}',
             style: TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.w600,
@@ -2516,9 +2508,9 @@ ${_getOverallBalance(sign)}
             height: 100,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: _suggestedQuestions.length,
+              itemCount: localizedQuestions.length,
               itemBuilder: (context, index) {
-                final q = _suggestedQuestions[index];
+                final q = localizedQuestions[index];
                 return Padding(
                   padding: const EdgeInsets.only(right: 8),
                   child: InkWell(
