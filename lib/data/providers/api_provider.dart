@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../services/api/astrology_api_service.dart';
+import 'app_providers.dart';
 
 /// Provider for the main astrology API service
 final astrologyApiProvider = Provider<AstrologyApiService>((ref) {
@@ -84,9 +85,9 @@ final retrogradesPlanetProvider =
 final dailyHoroscopeProvider =
     FutureProvider.family<HoroscopeDto, String>((ref, sign) async {
   final api = ref.watch(horoscopeApiProvider);
-  // Get locale for language
-  final language = 'en'; // TODO: Get from app locale
-  final response = await api.getDailyHoroscope(sign, language: language);
+  // Get language from app locale
+  final appLanguage = ref.watch(languageProvider);
+  final response = await api.getDailyHoroscope(sign, language: appLanguage.name);
   if (response.isSuccess && response.data != null) {
     return response.data!;
   }

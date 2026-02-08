@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import '../../core/constants/routes.dart';
 import '../../data/services/ad_service.dart';
 import '../../data/services/premium_service.dart';
 import '../../data/services/l10n_service.dart';
@@ -96,7 +98,7 @@ class _RewardedAdButtonState extends ConsumerState<RewardedAdButton> {
           TextButton(
             onPressed: () {
               Navigator.pop(context);
-              // TODO: Navigate to premium subscription page
+              context.push(Routes.premium);
             },
             child: Text(
               L10nService.get('ads.go_premium', language),
