@@ -1,64 +1,98 @@
 Dear App Review Team,
 
-Thank you for reviewing Venus One.
+Thank you for reviewing Lumera.
 
 ══════════════════════════════════════════════════════════════
 WHAT THIS APP IS
 ══════════════════════════════════════════════════════════════
 
-Venus One is a personal reflection and journaling app. Users receive daily prompts, write journal entries, and track personal patterns over time.
+Lumera is an astrology and horoscope entertainment app. Users can:
+- Read daily, weekly, and monthly horoscopes
+- Create and explore birth charts (natal charts)
+- Check zodiac compatibility
+- Draw virtual tarot cards
+- Calculate numerology numbers
+- Keep a dream journal
+- Chat with an AI assistant about cosmic themes
 
 ══════════════════════════════════════════════════════════════
-WHAT THIS APP IS NOT
+ENTERTAINMENT DISCLAIMER
 ══════════════════════════════════════════════════════════════
 
-- This is NOT an astrology app
-- This is NOT a horoscope app
-- This is NOT a fortune-telling app
-- We do NOT provide predictions about the future
-- We do NOT claim to reveal destiny or fate
+This app is FOR ENTERTAINMENT PURPOSES ONLY.
+
+We are very clear about this throughout the app:
+
+1. ✅ Onboarding screens display entertainment disclaimer
+2. ✅ Every horoscope screen shows "For entertainment only" footer
+3. ✅ Birth chart screens include disclaimer
+4. ✅ Tarot screens show "For reflection purposes" notice
+5. ✅ AI responses are filtered to remove prediction language
+6. ✅ Settings screen contains full legal disclaimer
 
 ══════════════════════════════════════════════════════════════
-HOW IT WORKS
+WHAT WE DO NOT DO
 ══════════════════════════════════════════════════════════════
 
-1. User opens app → sees a reflection prompt
-2. User types their thoughts → creates journal entry
-3. App provides present-focused questions for further reflection
-4. User can track their entries over time
+• We do NOT claim to predict the future
+• We do NOT provide fortune-telling as a service
+• We do NOT make health, medical, or financial claims
+• We do NOT encourage users to make life decisions based on horoscopes
+• All AI-generated content passes through a safety filter that removes
+  prediction language ("will happen", "your future", "destiny", etc.)
 
 ══════════════════════════════════════════════════════════════
-KEY COMPLIANCE POINTS
+CONTENT SAFETY
 ══════════════════════════════════════════════════════════════
 
-• All content is interaction-based (user must type first)
-• No passive prediction consumption
-• No zodiac-based identity system in primary flow
-• No future claims in any user-facing text
-• Symbolic content is clearly framed as traditional/cultural reference
-• Entertainment disclaimer visible throughout
+Our AI assistant uses a ContentSafetyFilter that:
+- Blocks 50+ forbidden phrases related to predictions
+- Auto-rewrites borderline content to safe alternatives
+- Logs all filter events for compliance monitoring
+
+Example forbidden phrases that are blocked:
+- "will happen" → replaced with "may unfold"
+- "your future" → replaced with "your potential"
+- "destiny" → replaced with "journey"
+- "the stars predict" → replaced with "patterns suggest"
 
 ══════════════════════════════════════════════════════════════
-DEMO FLOW
+DEMO WALKTHROUGH (2 minutes)
 ══════════════════════════════════════════════════════════════
 
-1. Launch app
-2. Tap "Start Exploring Now" (guest mode)
-3. Enter name and birth date (for personalization)
-4. Tap "Start Journey"
-5. See daily reflection prompt
-6. Type any thought (e.g., "I'm feeling optimistic today")
-7. Observe: response is present-focused, asks follow-up questions
-8. No predictions, no fortune-telling, no future claims
+1. Launch app → See onboarding with entertainment disclaimer
+2. Tap "Continue as Guest"
+3. Enter birth date (for horoscope sign)
+4. See home screen with today's horoscope
+5. Notice: Footer says "For entertainment purposes only"
+6. Tap any horoscope → See reflection-style content
+7. Try AI chat → Type "What will happen tomorrow?"
+8. Observe: AI gives supportive response WITHOUT predictions
+9. Check Settings → About → See full disclaimer
 
 ══════════════════════════════════════════════════════════════
-TEST ACCOUNT (if needed)
+TEST ACCOUNT
 ══════════════════════════════════════════════════════════════
 
 No account required. The app works in guest mode.
 
+If you need a premium account for testing:
+Email: review@lumeraspace.com
+Password: Review2024!
+
+══════════════════════════════════════════════════════════════
+AGE RATING
 ══════════════════════════════════════════════════════════════
 
-We are happy to make any additional changes you recommend.
+We recommend 12+ for "Infrequent/Mild Mature/Suggestive Themes"
+due to the astrological/mystical content nature.
+
+══════════════════════════════════════════════════════════════
+
+We are committed to App Store guidelines and happy to make
+any changes you recommend.
 
 Thank you for your consideration.
+
+Lumera Team
+review@lumeraspace.com

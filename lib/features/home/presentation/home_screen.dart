@@ -18,6 +18,7 @@ import '../../../data/services/moon_service.dart';
 import '../../../data/services/ai_content_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/page_bottom_navigation.dart';
+import '../../../shared/widgets/entertainment_disclaimer.dart';
 import '../widgets/insight_section.dart';
 
 class HomeScreen extends ConsumerWidget {
@@ -91,7 +92,15 @@ class HomeScreen extends ConsumerWidget {
                 // TÜM ÇÖZÜMLEMELERİ GÖR - Ana katalog butonu
                 // ═══════════════════════════════════════════════════════════════
                 _buildAllServicesButton(context, ref),
-                const SizedBox(height: AppConstants.spacingXxl),
+                const SizedBox(height: AppConstants.spacingXl),
+                // ═══════════════════════════════════════════════════════════════
+                // ENTERTAINMENT DISCLAIMER - App Store 4.3(b) Compliance
+                // ═══════════════════════════════════════════════════════════════
+                EntertainmentDisclaimer(
+                  language: ref.watch(languageProvider),
+                  compact: true,
+                ),
+                const SizedBox(height: AppConstants.spacingMd),
                 // Back-Button-Free Navigation
                 PageBottomNavigation(currentRoute: '/', language: ref.watch(languageProvider)),
               ],

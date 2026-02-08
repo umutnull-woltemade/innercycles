@@ -20,6 +20,7 @@ import '../../../data/services/storage_service.dart';
 import '../../../shared/widgets/birth_date_picker.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/gradient_button.dart';
+import '../../../shared/widgets/entertainment_disclaimer.dart';
 
 class OnboardingScreen extends ConsumerStatefulWidget {
   const OnboardingScreen({super.key});
@@ -400,6 +401,14 @@ class _WelcomePageState extends State<_WelcomePage>
                 ),
                 child: Text(L10nService.get('common.continue', widget.language), style: const TextStyle(fontSize: 18)),
               ),
+              const SizedBox(height: 32),
+              // ═══════════════════════════════════════════════════════════════
+              // ENTERTAINMENT DISCLAIMER - App Store 4.3(b) Compliance
+              // ═══════════════════════════════════════════════════════════════
+              EntertainmentDisclaimer(
+                language: widget.language,
+                compact: true,
+              ),
             ],
           ),
         ),
@@ -479,6 +488,16 @@ class _WelcomePageState extends State<_WelcomePage>
               ),
               textAlign: TextAlign.center,
             ).animate().fadeIn(delay: 1200.ms),
+
+            const SizedBox(height: 24),
+
+            // ═══════════════════════════════════════════════════════════════
+            // ENTERTAINMENT DISCLAIMER - App Store 4.3(b) Compliance
+            // ═══════════════════════════════════════════════════════════════
+            EntertainmentDisclaimer(
+              language: widget.language,
+              compact: true,
+            ),
 
             const SizedBox(height: 20),
           ],
