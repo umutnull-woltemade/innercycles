@@ -129,8 +129,8 @@ class VoidOfCourseScreen extends ConsumerWidget {
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                AppColors.mysticBlue.withOpacity(0.3),
-                AppColors.cosmicPurple.withOpacity(0.3),
+                AppColors.mysticBlue.withValues(alpha: 0.3),
+                AppColors.cosmicPurple.withValues(alpha: 0.3),
               ],
             ),
             shape: BoxShape.circle,
@@ -153,15 +153,15 @@ class VoidOfCourseScreen extends ConsumerWidget {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            statusColor.withOpacity(0.2),
-            statusColor.withOpacity(0.05),
+            statusColor.withValues(alpha: 0.2),
+            statusColor.withValues(alpha: 0.05),
           ],
         ),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: statusColor.withOpacity(0.4), width: 2),
+        border: Border.all(color: statusColor.withValues(alpha: 0.4), width: 2),
         boxShadow: [
           BoxShadow(
-            color: statusColor.withOpacity(0.2),
+            color: statusColor.withValues(alpha: 0.2),
             blurRadius: 20,
             offset: const Offset(0, 8),
           ),
@@ -181,7 +181,7 @@ class VoidOfCourseScreen extends ConsumerWidget {
                   shape: BoxShape.circle,
                   boxShadow: [
                     BoxShadow(
-                      color: statusColor.withOpacity(0.5),
+                      color: statusColor.withValues(alpha: 0.5),
                       blurRadius: 8,
                     ),
                   ],
@@ -234,7 +234,7 @@ class VoidOfCourseScreen extends ConsumerWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
               decoration: BoxDecoration(
-                color: statusColor.withOpacity(0.1),
+                color: statusColor.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Row(
@@ -303,13 +303,13 @@ class VoidOfCourseScreen extends ConsumerWidget {
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: isDark
-            ? AppColors.surfaceDark.withOpacity(0.7)
+            ? AppColors.surfaceDark.withValues(alpha: 0.7)
             : AppColors.lightCard,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
           color: isDark
-              ? Colors.white.withOpacity(0.1)
-              : Colors.black.withOpacity(0.05),
+              ? Colors.white.withValues(alpha: 0.1)
+              : Colors.black.withValues(alpha: 0.05),
         ),
       ),
       child: Column(
@@ -393,9 +393,9 @@ class VoidOfCourseScreen extends ConsumerWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.1),
+        color: color.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: color.withOpacity(0.3)),
+        border: Border.all(color: color.withValues(alpha: 0.3)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -454,13 +454,13 @@ class VoidOfCourseScreen extends ConsumerWidget {
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: isDark
-            ? AppColors.surfaceDark.withOpacity(0.7)
+            ? AppColors.surfaceDark.withValues(alpha: 0.7)
             : AppColors.lightCard,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
           color: isDark
-              ? Colors.white.withOpacity(0.1)
-              : Colors.black.withOpacity(0.05),
+              ? Colors.white.withValues(alpha: 0.1)
+              : Colors.black.withValues(alpha: 0.05),
         ),
       ),
       child: Column(
@@ -513,7 +513,7 @@ class VoidOfCourseScreen extends ConsumerWidget {
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: isDark
-            ? AppColors.surfaceLight.withOpacity(0.1)
+            ? AppColors.surfaceLight.withValues(alpha: 0.1)
             : AppColors.lightSurfaceVariant,
         borderRadius: BorderRadius.circular(12),
       ),
@@ -523,7 +523,7 @@ class VoidOfCourseScreen extends ConsumerWidget {
             width: 50,
             height: 50,
             decoration: BoxDecoration(
-              color: AppColors.warning.withOpacity(0.2),
+              color: AppColors.warning.withValues(alpha: 0.2),
               borderRadius: BorderRadius.circular(10),
             ),
             child: Column(
@@ -584,7 +584,7 @@ class VoidOfCourseScreen extends ConsumerWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
               decoration: BoxDecoration(
-                color: AppColors.warning.withOpacity(0.1),
+                color: AppColors.warning.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Text(

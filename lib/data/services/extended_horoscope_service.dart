@@ -5,6 +5,7 @@ import '../models/zodiac_sign.dart';
 import '../models/extended_horoscope.dart';
 import '../providers/app_providers.dart';
 import 'extended_horoscope_content.dart';
+import 'l10n_service.dart';
 
 class ExtendedHoroscopeService {
   // ============ WEEKLY HOROSCOPE ============
@@ -205,9 +206,16 @@ class ExtendedHoroscopeService {
 
   // ============ ECLIPSE CALENDAR ============
 
-  static List<EclipseEvent> getEclipsesForYear(int year) {
+  static List<EclipseEvent> getEclipsesForYear(int year, {AppLanguage language = AppLanguage.tr}) {
     // Real eclipse data for 2024-2026
     final eclipses = <EclipseEvent>[];
+
+    // Helper to get localized eclipse content
+    String getEclipseText(String eclipseId, String field) {
+      final key = 'eclipses.$eclipseId.$field';
+      final localized = L10nService.get(key, language);
+      return localized != key ? localized : ''; // Return empty if not found, will use fallback
+    }
 
     if (year == 2024) {
       eclipses.addAll([
@@ -215,10 +223,10 @@ class ExtendedHoroscopeService {
           date: DateTime(2024, 3, 25),
           type: EclipseType.lunarPenumbral,
           zodiacSign: ZodiacSign.libra,
-          title: 'Terazi Burcunda Yarıgölge Ay Tutulması',
-          description: 'Bu tutulma ilişkilerinizde denge arayışını tetikliyor.',
-          spiritualMeaning: 'İlişkilerdeki dengesizlikleri fark etme ve düzeltme zamanı. Terazi enerjisi, adalet ve harmoni arayışını güçlendiriyor.',
-          practicalAdvice: 'Partnerlilkte karşılıklı ihtiyaçları gözden geçirin. Taviz vermek ile sınır koymak arasındaki dengeyi bulun.',
+          title: getEclipseText('2024_03_25', 'title').isNotEmpty ? getEclipseText('2024_03_25', 'title') : (language == AppLanguage.tr ? 'Terazi Burcunda Yarıgölge Ay Tutulması' : 'Penumbral Lunar Eclipse in Libra'),
+          description: getEclipseText('2024_03_25', 'description').isNotEmpty ? getEclipseText('2024_03_25', 'description') : (language == AppLanguage.tr ? 'Bu tutulma ilişkilerinizde denge arayışını tetikliyor.' : 'This eclipse triggers a search for balance in your relationships.'),
+          spiritualMeaning: getEclipseText('2024_03_25', 'spiritual').isNotEmpty ? getEclipseText('2024_03_25', 'spiritual') : (language == AppLanguage.tr ? 'İlişkilerdeki dengesizlikleri fark etme ve düzeltme zamanı. Terazi enerjisi, adalet ve harmoni arayışını güçlendiriyor.' : 'Time to recognize and correct imbalances in relationships. Libra energy strengthens the search for justice and harmony.'),
+          practicalAdvice: getEclipseText('2024_03_25', 'advice').isNotEmpty ? getEclipseText('2024_03_25', 'advice') : (language == AppLanguage.tr ? 'Partnerlilkte karşılıklı ihtiyaçları gözden geçirin. Taviz vermek ile sınır koymak arasındaki dengeyi bulun.' : 'Review mutual needs in partnerships. Find the balance between compromise and setting boundaries.'),
           mostAffectedSigns: [ZodiacSign.libra, ZodiacSign.aries, ZodiacSign.cancer, ZodiacSign.capricorn],
           isVisible: true,
           peakTime: '10:13 UTC',
@@ -228,10 +236,10 @@ class ExtendedHoroscopeService {
           date: DateTime(2024, 4, 8),
           type: EclipseType.solarTotal,
           zodiacSign: ZodiacSign.aries,
-          title: 'Koç Burcunda Tam Güneş Tutulması',
-          description: 'Güçlü bir yeni başlangıç enerjisi. Cesaretle ileri atılma zamanı.',
-          spiritualMeaning: 'Kimlik dönüşümü ve yeniden doğuş. Eski benliği bırakıp, yeni bir sayfa açma fırsatı.',
-          practicalAdvice: 'Büyük kararlar almak için ideal. Yeni projelere başlayın, cesur adımlar atın.',
+          title: getEclipseText('2024_04_08', 'title').isNotEmpty ? getEclipseText('2024_04_08', 'title') : (language == AppLanguage.tr ? 'Koç Burcunda Tam Güneş Tutulması' : 'Total Solar Eclipse in Aries'),
+          description: getEclipseText('2024_04_08', 'description').isNotEmpty ? getEclipseText('2024_04_08', 'description') : (language == AppLanguage.tr ? 'Güçlü bir yeni başlangıç enerjisi. Cesaretle ileri atılma zamanı.' : 'Powerful new beginning energy. Time to step forward with courage.'),
+          spiritualMeaning: getEclipseText('2024_04_08', 'spiritual').isNotEmpty ? getEclipseText('2024_04_08', 'spiritual') : (language == AppLanguage.tr ? 'Kimlik dönüşümü ve yeniden doğuş. Eski benliği bırakıp, yeni bir sayfa açma fırsatı.' : 'Identity transformation and rebirth. Opportunity to leave the old self behind and open a new chapter.'),
+          practicalAdvice: getEclipseText('2024_04_08', 'advice').isNotEmpty ? getEclipseText('2024_04_08', 'advice') : (language == AppLanguage.tr ? 'Büyük kararlar almak için ideal. Yeni projelere başlayın, cesur adımlar atın.' : 'Ideal for making big decisions. Start new projects, take bold steps.'),
           mostAffectedSigns: [ZodiacSign.aries, ZodiacSign.libra, ZodiacSign.cancer, ZodiacSign.capricorn],
           isVisible: false,
           peakTime: '18:17 UTC',
@@ -241,10 +249,10 @@ class ExtendedHoroscopeService {
           date: DateTime(2024, 9, 18),
           type: EclipseType.lunarPartial,
           zodiacSign: ZodiacSign.pisces,
-          title: 'Balık Burcunda Kısmi Ay Tutulması',
-          description: 'Duygusal derinlik ve ruhsal uyanış.',
-          spiritualMeaning: 'İç sesin güçlendiği bir dönem. Sezgilerinize güvenin, rüyalarınıza dikkat edin.',
-          practicalAdvice: 'Meditasyon ve içe dönüş pratikleri için ideal. Duygusal bagajlarınızı bırakın.',
+          title: getEclipseText('2024_09_18', 'title').isNotEmpty ? getEclipseText('2024_09_18', 'title') : (language == AppLanguage.tr ? 'Balık Burcunda Kısmi Ay Tutulması' : 'Partial Lunar Eclipse in Pisces'),
+          description: getEclipseText('2024_09_18', 'description').isNotEmpty ? getEclipseText('2024_09_18', 'description') : (language == AppLanguage.tr ? 'Duygusal derinlik ve ruhsal uyanış.' : 'Emotional depth and spiritual awakening.'),
+          spiritualMeaning: getEclipseText('2024_09_18', 'spiritual').isNotEmpty ? getEclipseText('2024_09_18', 'spiritual') : (language == AppLanguage.tr ? 'İç sesin güçlendiği bir dönem. Sezgilerinize güvenin, rüyalarınıza dikkat edin.' : 'A period when your inner voice strengthens. Trust your intuitions, pay attention to your dreams.'),
+          practicalAdvice: getEclipseText('2024_09_18', 'advice').isNotEmpty ? getEclipseText('2024_09_18', 'advice') : (language == AppLanguage.tr ? 'Meditasyon ve içe dönüş pratikleri için ideal. Duygusal bagajlarınızı bırakın.' : 'Ideal for meditation and introspection practices. Let go of emotional baggage.'),
           mostAffectedSigns: [ZodiacSign.pisces, ZodiacSign.virgo, ZodiacSign.gemini, ZodiacSign.sagittarius],
           isVisible: true,
           peakTime: '02:44 UTC',
@@ -254,10 +262,10 @@ class ExtendedHoroscopeService {
           date: DateTime(2024, 10, 2),
           type: EclipseType.solarAnnular,
           zodiacSign: ZodiacSign.libra,
-          title: 'Terazi Burcunda Halkalı Güneş Tutulması',
-          description: 'İlişki dinamiklerinde köklü değişiklikler.',
-          spiritualMeaning: 'Ortaklıklar ve bağlantılar konusunda yeni bir vizyon. Karşılıklılık ilkesini yeniden tanımlama.',
-          practicalAdvice: 'Sözleşmeler, anlaşmalar ve resmi birliktelikler için dikkatli olun. Yeni ortaklıklar kurulabilir.',
+          title: getEclipseText('2024_10_02', 'title').isNotEmpty ? getEclipseText('2024_10_02', 'title') : (language == AppLanguage.tr ? 'Terazi Burcunda Halkalı Güneş Tutulması' : 'Annular Solar Eclipse in Libra'),
+          description: getEclipseText('2024_10_02', 'description').isNotEmpty ? getEclipseText('2024_10_02', 'description') : (language == AppLanguage.tr ? 'İlişki dinamiklerinde köklü değişiklikler.' : 'Fundamental changes in relationship dynamics.'),
+          spiritualMeaning: getEclipseText('2024_10_02', 'spiritual').isNotEmpty ? getEclipseText('2024_10_02', 'spiritual') : (language == AppLanguage.tr ? 'Ortaklıklar ve bağlantılar konusunda yeni bir vizyon. Karşılıklılık ilkesini yeniden tanımlama.' : 'A new vision for partnerships and connections. Redefining the principle of reciprocity.'),
+          practicalAdvice: getEclipseText('2024_10_02', 'advice').isNotEmpty ? getEclipseText('2024_10_02', 'advice') : (language == AppLanguage.tr ? 'Sözleşmeler, anlaşmalar ve resmi birliktelikler için dikkatli olun. Yeni ortaklıklar kurulabilir.' : 'Be careful with contracts, agreements, and formal partnerships. New partnerships may form.'),
           mostAffectedSigns: [ZodiacSign.libra, ZodiacSign.aries, ZodiacSign.cancer, ZodiacSign.capricorn],
           isVisible: false,
           peakTime: '18:45 UTC',
@@ -270,10 +278,10 @@ class ExtendedHoroscopeService {
           date: DateTime(2025, 3, 14),
           type: EclipseType.lunarTotal,
           zodiacSign: ZodiacSign.virgo,
-          title: 'Başak Burcunda Tam Ay Tutulması',
-          description: 'Detaylara dikkat ve mükemmeliyetçilikle yüzleşme.',
-          spiritualMeaning: 'Kendini eleştirme kalıplarını bırakma. Kusurlarınızı kabullenme ve şefkat geliştirme.',
-          practicalAdvice: 'Sağlık rutinlerinizi gözden geçirin. İş süreçlerini iyileştirin ama takıntılı olmayın.',
+          title: getEclipseText('2025_03_14', 'title').isNotEmpty ? getEclipseText('2025_03_14', 'title') : (language == AppLanguage.tr ? 'Başak Burcunda Tam Ay Tutulması' : 'Total Lunar Eclipse in Virgo'),
+          description: getEclipseText('2025_03_14', 'description').isNotEmpty ? getEclipseText('2025_03_14', 'description') : (language == AppLanguage.tr ? 'Detaylara dikkat ve mükemmeliyetçilikle yüzleşme.' : 'Attention to details and confronting perfectionism.'),
+          spiritualMeaning: getEclipseText('2025_03_14', 'spiritual').isNotEmpty ? getEclipseText('2025_03_14', 'spiritual') : (language == AppLanguage.tr ? 'Kendini eleştirme kalıplarını bırakma. Kusurlarınızı kabullenme ve şefkat geliştirme.' : 'Releasing self-criticism patterns. Accepting your flaws and developing compassion.'),
+          practicalAdvice: getEclipseText('2025_03_14', 'advice').isNotEmpty ? getEclipseText('2025_03_14', 'advice') : (language == AppLanguage.tr ? 'Sağlık rutinlerinizi gözden geçirin. İş süreçlerini iyileştirin ama takıntılı olmayın.' : 'Review your health routines. Improve work processes but don\'t become obsessive.'),
           mostAffectedSigns: [ZodiacSign.virgo, ZodiacSign.pisces, ZodiacSign.gemini, ZodiacSign.sagittarius],
           isVisible: true,
           peakTime: '06:58 UTC',
@@ -283,10 +291,10 @@ class ExtendedHoroscopeService {
           date: DateTime(2025, 3, 29),
           type: EclipseType.solarPartial,
           zodiacSign: ZodiacSign.aries,
-          title: 'Koç Burcunda Kısmi Güneş Tutulması',
-          description: 'Yeni başlangıçlar için enerji patlaması.',
-          spiritualMeaning: 'Öncü ruhunuzu kucaklayın. Liderlik potansiyelinizi aktive edin.',
-          practicalAdvice: 'Girişimcilik ve yeni projeler için ideal. Korku yerine cesareti seçin.',
+          title: getEclipseText('2025_03_29', 'title').isNotEmpty ? getEclipseText('2025_03_29', 'title') : (language == AppLanguage.tr ? 'Koç Burcunda Kısmi Güneş Tutulması' : 'Partial Solar Eclipse in Aries'),
+          description: getEclipseText('2025_03_29', 'description').isNotEmpty ? getEclipseText('2025_03_29', 'description') : (language == AppLanguage.tr ? 'Yeni başlangıçlar için enerji patlaması.' : 'Energy burst for new beginnings.'),
+          spiritualMeaning: getEclipseText('2025_03_29', 'spiritual').isNotEmpty ? getEclipseText('2025_03_29', 'spiritual') : (language == AppLanguage.tr ? 'Öncü ruhunuzu kucaklayın. Liderlik potansiyelinizi aktive edin.' : 'Embrace your pioneering spirit. Activate your leadership potential.'),
+          practicalAdvice: getEclipseText('2025_03_29', 'advice').isNotEmpty ? getEclipseText('2025_03_29', 'advice') : (language == AppLanguage.tr ? 'Girişimcilik ve yeni projeler için ideal. Korku yerine cesareti seçin.' : 'Ideal for entrepreneurship and new projects. Choose courage over fear.'),
           mostAffectedSigns: [ZodiacSign.aries, ZodiacSign.libra, ZodiacSign.cancer, ZodiacSign.capricorn],
           isVisible: false,
           peakTime: '10:50 UTC',
@@ -296,10 +304,10 @@ class ExtendedHoroscopeService {
           date: DateTime(2025, 9, 7),
           type: EclipseType.lunarTotal,
           zodiacSign: ZodiacSign.pisces,
-          title: 'Balık Burcunda Tam Ay Tutulması',
-          description: 'Derin duygusal arınma ve ruhsal yükseliş.',
-          spiritualMeaning: 'Kolektif bilinçle bağlantı. Şifa ve sezgisel yeteneklerin güçlenmesi.',
-          practicalAdvice: 'Sanatsal ve yaratıcı çalışmalar için bereketli. Bağımlılıklarla yüzleşme zamanı.',
+          title: getEclipseText('2025_09_07', 'title').isNotEmpty ? getEclipseText('2025_09_07', 'title') : (language == AppLanguage.tr ? 'Balık Burcunda Tam Ay Tutulması' : 'Total Lunar Eclipse in Pisces'),
+          description: getEclipseText('2025_09_07', 'description').isNotEmpty ? getEclipseText('2025_09_07', 'description') : (language == AppLanguage.tr ? 'Derin duygusal arınma ve ruhsal yükseliş.' : 'Deep emotional cleansing and spiritual ascension.'),
+          spiritualMeaning: getEclipseText('2025_09_07', 'spiritual').isNotEmpty ? getEclipseText('2025_09_07', 'spiritual') : (language == AppLanguage.tr ? 'Kolektif bilinçle bağlantı. Şifa ve sezgisel yeteneklerin güçlenmesi.' : 'Connection with collective consciousness. Strengthening of healing and intuitive abilities.'),
+          practicalAdvice: getEclipseText('2025_09_07', 'advice').isNotEmpty ? getEclipseText('2025_09_07', 'advice') : (language == AppLanguage.tr ? 'Sanatsal ve yaratıcı çalışmalar için bereketli. Bağımlılıklarla yüzleşme zamanı.' : 'Fruitful for artistic and creative work. Time to confront addictions.'),
           mostAffectedSigns: [ZodiacSign.pisces, ZodiacSign.virgo, ZodiacSign.gemini, ZodiacSign.sagittarius],
           isVisible: true,
           peakTime: '18:11 UTC',
@@ -309,10 +317,10 @@ class ExtendedHoroscopeService {
           date: DateTime(2025, 9, 21),
           type: EclipseType.solarPartial,
           zodiacSign: ZodiacSign.virgo,
-          title: 'Başak Burcunda Kısmi Güneş Tutulması',
-          description: 'Pratik düzenlemeler ve sağlık odağı.',
-          spiritualMeaning: 'Hizmet ve alçakgönüllülük temalı bir döngü. Günlük ritüellerin kutsallığını keşfetme.',
-          practicalAdvice: 'Sağlık check-up\'ları planlayın. İş yerinde verimlilik artışı için adımlar atın.',
+          title: getEclipseText('2025_09_21', 'title').isNotEmpty ? getEclipseText('2025_09_21', 'title') : (language == AppLanguage.tr ? 'Başak Burcunda Kısmi Güneş Tutulması' : 'Partial Solar Eclipse in Virgo'),
+          description: getEclipseText('2025_09_21', 'description').isNotEmpty ? getEclipseText('2025_09_21', 'description') : (language == AppLanguage.tr ? 'Pratik düzenlemeler ve sağlık odağı.' : 'Practical adjustments and health focus.'),
+          spiritualMeaning: getEclipseText('2025_09_21', 'spiritual').isNotEmpty ? getEclipseText('2025_09_21', 'spiritual') : (language == AppLanguage.tr ? 'Hizmet ve alçakgönüllülük temalı bir döngü. Günlük ritüellerin kutsallığını keşfetme.' : 'A cycle themed around service and humility. Discovering the sacredness of daily rituals.'),
+          practicalAdvice: getEclipseText('2025_09_21', 'advice').isNotEmpty ? getEclipseText('2025_09_21', 'advice') : (language == AppLanguage.tr ? 'Sağlık check-up\'ları planlayın. İş yerinde verimlilik artışı için adımlar atın.' : 'Schedule health check-ups. Take steps for productivity increase at work.'),
           mostAffectedSigns: [ZodiacSign.virgo, ZodiacSign.pisces, ZodiacSign.gemini, ZodiacSign.sagittarius],
           isVisible: false,
           peakTime: '19:42 UTC',
@@ -325,10 +333,10 @@ class ExtendedHoroscopeService {
           date: DateTime(2026, 2, 17),
           type: EclipseType.solarAnnular,
           zodiacSign: ZodiacSign.aquarius,
-          title: 'Kova Burcunda Halkalı Güneş Tutulması',
-          description: 'İnsanlık ve topluluk bilinci öne çıkıyor.',
-          spiritualMeaning: 'Kolektif amaçlarla bireysel hedeflerin uyumu. Gelecek vizyonu netleşiyor.',
-          practicalAdvice: 'Sosyal projeler ve grup çalışmaları için ideal. Teknoloji ve inovasyon alanında fırsatlar.',
+          title: getEclipseText('2026_02_17', 'title').isNotEmpty ? getEclipseText('2026_02_17', 'title') : (language == AppLanguage.tr ? 'Kova Burcunda Halkalı Güneş Tutulması' : 'Annular Solar Eclipse in Aquarius'),
+          description: getEclipseText('2026_02_17', 'description').isNotEmpty ? getEclipseText('2026_02_17', 'description') : (language == AppLanguage.tr ? 'İnsanlık ve topluluk bilinci öne çıkıyor.' : 'Humanity and community consciousness come to the fore.'),
+          spiritualMeaning: getEclipseText('2026_02_17', 'spiritual').isNotEmpty ? getEclipseText('2026_02_17', 'spiritual') : (language == AppLanguage.tr ? 'Kolektif amaçlarla bireysel hedeflerin uyumu. Gelecek vizyonu netleşiyor.' : 'Alignment of collective purposes with individual goals. Future vision becomes clearer.'),
+          practicalAdvice: getEclipseText('2026_02_17', 'advice').isNotEmpty ? getEclipseText('2026_02_17', 'advice') : (language == AppLanguage.tr ? 'Sosyal projeler ve grup çalışmaları için ideal. Teknoloji ve inovasyon alanında fırsatlar.' : 'Ideal for social projects and group work. Opportunities in technology and innovation.'),
           mostAffectedSigns: [ZodiacSign.aquarius, ZodiacSign.leo, ZodiacSign.taurus, ZodiacSign.scorpio],
           isVisible: false,
           peakTime: '12:02 UTC',
@@ -338,10 +346,10 @@ class ExtendedHoroscopeService {
           date: DateTime(2026, 3, 3),
           type: EclipseType.lunarTotal,
           zodiacSign: ZodiacSign.virgo,
-          title: 'Başak Burcunda Tam Ay Tutulması',
-          description: 'Mükemmeliyetçilik ve hizmet temalarının doruk noktası.',
-          spiritualMeaning: 'Eleştirici zihni şefkatle dengeleme. İyileştirme ve arınma süreçleri.',
-          practicalAdvice: 'Sağlık konularına öncelik verin. Organizasyon ve planlama zamanı.',
+          title: getEclipseText('2026_03_03', 'title').isNotEmpty ? getEclipseText('2026_03_03', 'title') : (language == AppLanguage.tr ? 'Başak Burcunda Tam Ay Tutulması' : 'Total Lunar Eclipse in Virgo'),
+          description: getEclipseText('2026_03_03', 'description').isNotEmpty ? getEclipseText('2026_03_03', 'description') : (language == AppLanguage.tr ? 'Mükemmeliyetçilik ve hizmet temalarının doruk noktası.' : 'Culmination of perfectionism and service themes.'),
+          spiritualMeaning: getEclipseText('2026_03_03', 'spiritual').isNotEmpty ? getEclipseText('2026_03_03', 'spiritual') : (language == AppLanguage.tr ? 'Eleştirici zihni şefkatle dengeleme. İyileştirme ve arınma süreçleri.' : 'Balancing the critical mind with compassion. Healing and purification processes.'),
+          practicalAdvice: getEclipseText('2026_03_03', 'advice').isNotEmpty ? getEclipseText('2026_03_03', 'advice') : (language == AppLanguage.tr ? 'Sağlık konularına öncelik verin. Organizasyon ve planlama zamanı.' : 'Prioritize health matters. Time for organization and planning.'),
           mostAffectedSigns: [ZodiacSign.virgo, ZodiacSign.pisces, ZodiacSign.gemini, ZodiacSign.sagittarius],
           isVisible: true,
           peakTime: '11:33 UTC',
@@ -351,10 +359,10 @@ class ExtendedHoroscopeService {
           date: DateTime(2026, 8, 12),
           type: EclipseType.solarTotal,
           zodiacSign: ZodiacSign.leo,
-          title: 'Aslan Burcunda Tam Güneş Tutulması',
-          description: 'Yaratıcılık ve kendini ifade patlaması.',
-          spiritualMeaning: 'İç güneşinizi parlatın. Otantik benliğinizi cesaretle ortaya koyun.',
-          practicalAdvice: 'Sanat, eğlence ve yaratıcı projeler için mükemmel. Çocuklarla ilgili konular öne çıkabilir.',
+          title: getEclipseText('2026_08_12', 'title').isNotEmpty ? getEclipseText('2026_08_12', 'title') : (language == AppLanguage.tr ? 'Aslan Burcunda Tam Güneş Tutulması' : 'Total Solar Eclipse in Leo'),
+          description: getEclipseText('2026_08_12', 'description').isNotEmpty ? getEclipseText('2026_08_12', 'description') : (language == AppLanguage.tr ? 'Yaratıcılık ve kendini ifade patlaması.' : 'Explosion of creativity and self-expression.'),
+          spiritualMeaning: getEclipseText('2026_08_12', 'spiritual').isNotEmpty ? getEclipseText('2026_08_12', 'spiritual') : (language == AppLanguage.tr ? 'İç güneşinizi parlatın. Otantik benliğinizi cesaretle ortaya koyun.' : 'Shine your inner sun. Courageously reveal your authentic self.'),
+          practicalAdvice: getEclipseText('2026_08_12', 'advice').isNotEmpty ? getEclipseText('2026_08_12', 'advice') : (language == AppLanguage.tr ? 'Sanat, eğlence ve yaratıcı projeler için mükemmel. Çocuklarla ilgili konular öne çıkabilir.' : 'Perfect for art, entertainment, and creative projects. Matters related to children may come to the fore.'),
           mostAffectedSigns: [ZodiacSign.leo, ZodiacSign.aquarius, ZodiacSign.taurus, ZodiacSign.scorpio],
           isVisible: true,
           peakTime: '17:46 UTC',
@@ -364,10 +372,10 @@ class ExtendedHoroscopeService {
           date: DateTime(2026, 8, 28),
           type: EclipseType.lunarPartial,
           zodiacSign: ZodiacSign.pisces,
-          title: 'Balık Burcunda Kısmi Ay Tutulması',
-          description: 'Duygusal ve ruhsal boyutlarda son düzenlemeler.',
-          spiritualMeaning: 'Mistik deneyimler ve sezgisel açılımlar. Geçmişle barışma.',
-          practicalAdvice: 'Meditatif pratikler ve ruhsal çalışmalar için ideal. Bağımlılık konularına dikkat.',
+          title: getEclipseText('2026_08_28', 'title').isNotEmpty ? getEclipseText('2026_08_28', 'title') : (language == AppLanguage.tr ? 'Balık Burcunda Kısmi Ay Tutulması' : 'Partial Lunar Eclipse in Pisces'),
+          description: getEclipseText('2026_08_28', 'description').isNotEmpty ? getEclipseText('2026_08_28', 'description') : (language == AppLanguage.tr ? 'Duygusal ve ruhsal boyutlarda son düzenlemeler.' : 'Final adjustments in emotional and spiritual dimensions.'),
+          spiritualMeaning: getEclipseText('2026_08_28', 'spiritual').isNotEmpty ? getEclipseText('2026_08_28', 'spiritual') : (language == AppLanguage.tr ? 'Mistik deneyimler ve sezgisel açılımlar. Geçmişle barışma.' : 'Mystical experiences and intuitive openings. Making peace with the past.'),
+          practicalAdvice: getEclipseText('2026_08_28', 'advice').isNotEmpty ? getEclipseText('2026_08_28', 'advice') : (language == AppLanguage.tr ? 'Meditatif pratikler ve ruhsal çalışmalar için ideal. Bağımlılık konularına dikkat.' : 'Ideal for meditative practices and spiritual work. Pay attention to addiction matters.'),
           mostAffectedSigns: [ZodiacSign.pisces, ZodiacSign.virgo, ZodiacSign.gemini, ZodiacSign.sagittarius],
           isVisible: true,
           peakTime: '04:13 UTC',
@@ -379,12 +387,12 @@ class ExtendedHoroscopeService {
     return eclipses;
   }
 
-  static EclipseEvent? getNextEclipse() {
+  static EclipseEvent? getNextEclipse({AppLanguage language = AppLanguage.tr}) {
     final now = DateTime.now();
     final currentYear = now.year;
 
     for (int year = currentYear; year <= currentYear + 2; year++) {
-      final eclipses = getEclipsesForYear(year);
+      final eclipses = getEclipsesForYear(year, language: language);
       for (final eclipse in eclipses) {
         if (eclipse.date.isAfter(now)) {
           return eclipse;

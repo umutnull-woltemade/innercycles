@@ -4,8 +4,10 @@ import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:purchases_ui_flutter/purchases_ui_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../core/constants/app_constants.dart';
+import '../providers/app_providers.dart';
 import 'ad_service.dart';
 import 'analytics_service.dart';
+import 'l10n_service.dart';
 
 /// Premium subscription tiers
 enum PremiumTier {
@@ -16,16 +18,22 @@ enum PremiumTier {
 }
 
 extension PremiumTierExtension on PremiumTier {
-  String get displayName {
+  String get displayName => localizedDisplayName(AppLanguage.tr);
+
+  String localizedDisplayName(AppLanguage language) {
+    final key = 'premium.tiers.$name.name';
+    final localized = L10nService.get(key, language);
+    if (localized != key) return localized;
+    // Fallback
     switch (this) {
       case PremiumTier.free:
-        return 'Ücretsiz';
+        return 'Free';
       case PremiumTier.monthly:
-        return 'Aylık Premium';
+        return 'Monthly Premium';
       case PremiumTier.yearly:
-        return 'Yıllık Premium';
+        return 'Yearly Premium';
       case PremiumTier.lifetime:
-        return 'Ömür Boyu Premium';
+        return 'Lifetime Premium';
     }
   }
 
@@ -34,49 +42,61 @@ extension PremiumTierExtension on PremiumTier {
       case PremiumTier.free:
         return '₺0';
       case PremiumTier.monthly:
-        return '₺29/ay';
+        return '₺29/mo';
       case PremiumTier.yearly:
-        return '₺79/yıl';
+        return '₺79/yr';
       case PremiumTier.lifetime:
         return '₺249';
     }
   }
 
-  String get savings {
+  String get savings => localizedSavings(AppLanguage.tr);
+
+  String localizedSavings(AppLanguage language) {
+    final key = 'premium.tiers.$name.savings';
+    final localized = L10nService.get(key, language);
+    if (localized != key) return localized;
+    // Fallback
     switch (this) {
       case PremiumTier.free:
         return '';
       case PremiumTier.monthly:
         return '';
       case PremiumTier.yearly:
-        return '%77 tasarruf';
+        return '77% savings';
       case PremiumTier.lifetime:
-        return 'Tek seferlik ödeme';
+        return 'One-time payment';
     }
   }
 
-  List<String> get features {
+  List<String> get features => localizedFeatures(AppLanguage.tr);
+
+  List<String> localizedFeatures(AppLanguage language) {
+    final key = 'premium.tiers.$name.features';
+    final localized = L10nService.getList(key, language);
+    if (localized.isNotEmpty && localized.first != key) return localized;
+    // Fallback
     switch (this) {
       case PremiumTier.free:
         return [
-          'Günlük burç fısıltıları',
-          'Temel doğum haritası',
-          'Günlük tarot kartı',
-          'Reklam destekli',
+          'Daily horoscope whispers',
+          'Basic birth chart',
+          'Daily tarot card',
+          'Ad-supported',
         ];
       case PremiumTier.monthly:
       case PremiumTier.yearly:
       case PremiumTier.lifetime:
         return [
-          'Tüm temel özellikler',
-          'Saf kozmik deneyim (reklamsız)',
-          'Derin gezegen yorumları',
-          'Sınırsız tarot seansları',
-          'Ruh ikizi uyum analizi',
-          'Kabalistik sırlar',
-          'Aurik enerji okuması',
-          'Gezegen transitleri',
-          'Öncelikli kozmik rehberlik',
+          'All basic features',
+          'Pure cosmic experience (ad-free)',
+          'Deep planet interpretations',
+          'Unlimited tarot sessions',
+          'Soul mate compatibility analysis',
+          'Kabbalistic secrets',
+          'Auric energy reading',
+          'Planet transits',
+          'Priority cosmic guidance',
         ];
     }
   }

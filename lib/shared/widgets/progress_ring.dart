@@ -39,7 +39,7 @@ class ProgressRing extends StatelessWidget {
     final progress = total > 0 ? (current / total).clamp(0.0, 1.0) : 0.0;
     final color = progressColor ?? _getProgressColor(progress);
     final bgColor = backgroundColor ??
-        (isDark ? Colors.white.withOpacity(0.1) : Colors.black.withOpacity(0.08));
+        (isDark ? Colors.white.withValues(alpha: 0.1) : Colors.black.withValues(alpha: 0.08));
 
     Widget ring = SizedBox(
       width: size,
@@ -170,7 +170,7 @@ class _RingPainter extends CustomPainter {
 
     if (hasGlow && progress > 0) {
       final glowPaint = Paint()
-        ..color = color.withOpacity(0.3)
+        ..color = color.withValues(alpha: 0.3)
         ..style = PaintingStyle.stroke
         ..strokeWidth = strokeWidth + 4
         ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 4);
@@ -225,13 +225,13 @@ class StreakDisplay extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            displayColor.withOpacity(0.2),
-            displayColor.withOpacity(0.05),
+            displayColor.withValues(alpha: 0.2),
+            displayColor.withValues(alpha: 0.05),
           ],
         ),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: displayColor.withOpacity(0.4),
+          color: displayColor.withValues(alpha: 0.4),
         ),
       ),
       child: Row(
@@ -309,14 +309,14 @@ class StatsCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: isDark ? AppColors.surfaceLight.withOpacity(0.5) : Colors.white,
+        color: isDark ? AppColors.surfaceLight.withValues(alpha: 0.5) : Colors.white,
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
-          color: isDark ? Colors.white.withOpacity(0.1) : Colors.black.withOpacity(0.05),
+          color: isDark ? Colors.white.withValues(alpha: 0.1) : Colors.black.withValues(alpha: 0.05),
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),

@@ -165,9 +165,9 @@ class SettingsScreen extends ConsumerWidget {
                 ),
                 decoration: BoxDecoration(
                   color: isSelected
-                      ? AppColors.auroraStart.withOpacity(0.2)
+                      ? AppColors.auroraStart.withValues(alpha: 0.2)
                       : (isDark
-                          ? AppColors.surfaceLight.withOpacity(0.3)
+                          ? AppColors.surfaceLight.withValues(alpha: 0.3)
                           : AppColors.lightSurfaceVariant),
                   borderRadius: BorderRadius.circular(AppConstants.radiusFull),
                   border: Border.all(
@@ -250,9 +250,9 @@ class SettingsScreen extends ConsumerWidget {
                   ),
                   decoration: BoxDecoration(
                     color: isSelected
-                        ? AppColors.celestialGold.withOpacity(0.2)
+                        ? AppColors.celestialGold.withValues(alpha: 0.2)
                         : (isDark
-                            ? AppColors.surfaceLight.withOpacity(0.3)
+                            ? AppColors.surfaceLight.withValues(alpha: 0.3)
                             : AppColors.lightSurfaceVariant),
                     borderRadius: BorderRadius.circular(AppConstants.radiusFull),
                     border: Border.all(
@@ -296,9 +296,9 @@ class SettingsScreen extends ConsumerWidget {
             Container(
               padding: const EdgeInsets.all(AppConstants.spacingMd),
               decoration: BoxDecoration(
-                color: AppColors.celestialGold.withOpacity(0.1),
+                color: AppColors.celestialGold.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(AppConstants.radiusSm),
-                border: Border.all(color: AppColors.celestialGold.withOpacity(0.3)),
+                border: Border.all(color: AppColors.celestialGold.withValues(alpha: 0.3)),
               ),
               child: Row(
                 children: [
@@ -357,7 +357,7 @@ class SettingsScreen extends ConsumerWidget {
               decoration: BoxDecoration(
                 gradient: isPremium
                     ? LinearGradient(
-                        colors: [AppColors.success, AppColors.success.withOpacity(0.8)],
+                        colors: [AppColors.success, AppColors.success.withValues(alpha: 0.8)],
                       )
                     : AppColors.goldGradient,
                 borderRadius: BorderRadius.circular(12),
@@ -647,13 +647,13 @@ class _SettingsSection extends StatelessWidget {
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
         color: isDark
-            ? AppColors.surfaceDark.withOpacity(0.7)
+            ? AppColors.surfaceDark.withValues(alpha: 0.7)
             : AppColors.lightCard,
         borderRadius: BorderRadius.circular(AppConstants.radiusLg),
         border: Border.all(
           color: isDark
-              ? Colors.white.withOpacity(0.1)
-              : Colors.black.withOpacity(0.05),
+              ? Colors.white.withValues(alpha: 0.1)
+              : Colors.black.withValues(alpha: 0.05),
         ),
       ),
       child: Column(
@@ -711,15 +711,15 @@ class _ThemeOption extends StatelessWidget {
           gradient: isSelected
               ? LinearGradient(
                   colors: [
-                    AppColors.auroraStart.withOpacity(0.3),
-                    AppColors.auroraEnd.withOpacity(0.3),
+                    AppColors.auroraStart.withValues(alpha: 0.3),
+                    AppColors.auroraEnd.withValues(alpha: 0.3),
                   ],
                 )
               : null,
           color: isSelected
               ? null
               : (isDark
-                  ? AppColors.surfaceLight.withOpacity(0.3)
+                  ? AppColors.surfaceLight.withValues(alpha: 0.3)
                   : AppColors.lightSurfaceVariant),
           borderRadius: BorderRadius.circular(AppConstants.radiusMd),
           border: Border.all(

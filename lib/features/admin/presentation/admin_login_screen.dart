@@ -142,18 +142,18 @@ class _AdminLoginScreenState extends ConsumerState<AdminLoginScreen> {
       padding: const EdgeInsets.all(AppConstants.spacingXl),
       decoration: BoxDecoration(
         color: isDark
-            ? AppColors.surfaceDark.withOpacity(0.8)
+            ? AppColors.surfaceDark.withValues(alpha: 0.8)
             : AppColors.lightCard,
         borderRadius: BorderRadius.circular(AppConstants.radiusLg),
         border: Border.all(
           color: isDark
-              ? AppColors.starGold.withOpacity(0.3)
-              : AppColors.lightStarGold.withOpacity(0.3),
+              ? AppColors.starGold.withValues(alpha: 0.3)
+              : AppColors.lightStarGold.withValues(alpha: 0.3),
           width: 2,
         ),
         boxShadow: [
           BoxShadow(
-            color: AppColors.starGold.withOpacity(0.1),
+            color: AppColors.starGold.withValues(alpha: 0.1),
             blurRadius: 20,
             spreadRadius: 2,
           ),
@@ -169,7 +169,7 @@ class _AdminLoginScreenState extends ConsumerState<AdminLoginScreen> {
               shape: BoxShape.circle,
               gradient: LinearGradient(
                 colors: isLocked
-                    ? [AppColors.error, AppColors.error.withOpacity(0.7)]
+                    ? [AppColors.error, AppColors.error.withValues(alpha: 0.7)]
                     : [AppColors.starGold, AppColors.celestialGold],
               ),
             ),
@@ -236,7 +236,7 @@ class _AdminLoginScreenState extends ConsumerState<AdminLoginScreen> {
                 counterText: '',
                 filled: true,
                 fillColor: isDark
-                    ? AppColors.surfaceLight.withOpacity(0.5)
+                    ? AppColors.surfaceLight.withValues(alpha: 0.5)
                     : AppColors.lightSurfaceVariant,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(AppConstants.radiusMd),
@@ -269,7 +269,7 @@ class _AdminLoginScreenState extends ConsumerState<AdminLoginScreen> {
                   vertical: AppConstants.spacingSm,
                 ),
                 decoration: BoxDecoration(
-                  color: AppColors.warning.withOpacity(0.2),
+                  color: AppColors.warning.withValues(alpha: 0.2),
                   borderRadius: BorderRadius.circular(AppConstants.radiusSm),
                 ),
                 child: Row(
@@ -299,9 +299,9 @@ class _AdminLoginScreenState extends ConsumerState<AdminLoginScreen> {
               Container(
                 padding: const EdgeInsets.all(AppConstants.spacingMd),
                 decoration: BoxDecoration(
-                  color: AppColors.error.withOpacity(0.1),
+                  color: AppColors.error.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(AppConstants.radiusSm),
-                  border: Border.all(color: AppColors.error.withOpacity(0.3)),
+                  border: Border.all(color: AppColors.error.withValues(alpha: 0.3)),
                 ),
                 child: Row(
                   children: [
@@ -410,7 +410,7 @@ class _AdminLoginScreenState extends ConsumerState<AdminLoginScreen> {
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
         color: isDark
-            ? AppColors.surfaceLight.withOpacity(0.3)
+            ? AppColors.surfaceLight.withValues(alpha: 0.3)
             : AppColors.lightSurfaceVariant,
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
       ),

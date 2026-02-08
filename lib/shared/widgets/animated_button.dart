@@ -124,7 +124,7 @@ class _AnimatedGradientButtonState extends State<AnimatedGradientButton>
                       ? null
                       : [
                           BoxShadow(
-                            color: colors.first.withOpacity(_isPressed ? 0.3 : 0.5),
+                            color: colors.first.withValues(alpha: _isPressed ? 0.3 : 0.5),
                             blurRadius: _isPressed ? 8 : 16,
                             offset: Offset(0, _isPressed ? 2 : 6),
                           ),
@@ -212,7 +212,7 @@ class _AnimatedIconButtonState extends State<AnimatedIconButton> {
         (isDark ? AppColors.textPrimary : AppColors.lightTextPrimary);
     final bgColor = widget.backgroundColor ??
         (isDark
-            ? AppColors.surfaceLight.withOpacity(0.1)
+            ? AppColors.surfaceLight.withValues(alpha: 0.1)
             : AppColors.lightSurfaceVariant);
 
     Widget button = GestureDetector(
@@ -235,13 +235,13 @@ class _AnimatedIconButtonState extends State<AnimatedIconButton> {
           width: widget.size,
           height: widget.size,
           decoration: BoxDecoration(
-            color: _isPressed ? bgColor.withOpacity(0.8) : bgColor,
+            color: _isPressed ? bgColor.withValues(alpha: 0.8) : bgColor,
             shape: BoxShape.circle,
             boxShadow: _isPressed
                 ? null
                 : [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
+                      color: Colors.black.withValues(alpha: 0.1),
                       blurRadius: 4,
                       offset: const Offset(0, 2),
                     ),
@@ -318,7 +318,7 @@ class _CosmicFloatingButtonState extends State<CosmicFloatingButton> {
             borderRadius: BorderRadius.circular(widget.extended ? 30 : 56),
             boxShadow: [
               BoxShadow(
-                color: AppColors.starGold.withOpacity(0.4),
+                color: AppColors.starGold.withValues(alpha: 0.4),
                 blurRadius: _isPressed ? 8 : 16,
                 offset: Offset(0, _isPressed ? 2 : 6),
               ),
@@ -401,7 +401,7 @@ class _AnimatedOutlinedButtonState extends State<AnimatedOutlinedButton> {
           height: widget.height,
           padding: const EdgeInsets.symmetric(horizontal: 20),
           decoration: BoxDecoration(
-            color: _isPressed ? color.withOpacity(0.1) : Colors.transparent,
+            color: _isPressed ? color.withValues(alpha: 0.1) : Colors.transparent,
             borderRadius: BorderRadius.circular(12),
             border: Border.all(
               color: color,
@@ -469,15 +469,15 @@ class AnimatedChip extends StatelessWidget {
           gradient: isSelected
               ? LinearGradient(
                   colors: [
-                    color.withOpacity(0.8),
-                    color.withOpacity(0.6),
+                    color.withValues(alpha: 0.8),
+                    color.withValues(alpha: 0.6),
                   ],
                 )
               : null,
           color: isSelected
               ? null
               : (isDark
-                  ? AppColors.surfaceLight.withOpacity(0.1)
+                  ? AppColors.surfaceLight.withValues(alpha: 0.1)
                   : AppColors.lightSurfaceVariant),
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
@@ -487,7 +487,7 @@ class AnimatedChip extends StatelessWidget {
           boxShadow: isSelected
               ? [
                   BoxShadow(
-                    color: color.withOpacity(0.3),
+                    color: color.withValues(alpha: 0.3),
                     blurRadius: 8,
                     offset: const Offset(0, 2),
                   ),

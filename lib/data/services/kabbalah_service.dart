@@ -102,7 +102,7 @@ class KabbalahService {
       sefirahCompatibility: sefirahCompatibility,
       soulCompatibility: soulCompatibility,
       overallScore: overallScore,
-      interpretation: _getCompatibilityInterpretation(sefirah1, sefirah2, overallScore),
+      interpretation: _getCompatibilityInterpretation(sefirah1, sefirah2, overallScore, language: AppLanguage.tr),
     );
   }
 
@@ -116,8 +116,8 @@ class KabbalahService {
       date: date,
       sefirah: sefirah,
       number: reduced,
-      guidance: _getDailyGuidance(sefirah),
-      meditation: _getDailyMeditation(sefirah),
+      guidance: _getDailyGuidance(sefirah, language: AppLanguage.tr),
+      meditation: _getDailyMeditation(sefirah, language: AppLanguage.tr),
     );
   }
 
@@ -203,65 +203,90 @@ class KabbalahService {
     return 55;
   }
 
-  static String _getCompatibilityInterpretation(Sefirah s1, Sefirah s2, int score) {
+  static String _getCompatibilityInterpretation(Sefirah s1, Sefirah s2, int score, {AppLanguage language = AppLanguage.tr}) {
+    final s1Name = s1.localizedName(language);
+    final s2Name = s2.localizedName(language);
+    String key;
     if (score >= 90) {
-      return 'Ruhlarınız arasında derin bir bağ var. ${s1.nameTr} ve ${s2.nameTr} enerjileri birbirini tamamlıyor, birlikte yüksek bir spiritüel uyum oluşturuyorsunuz.';
+      key = 'kabbalah.compatibility.very_high';
     } else if (score >= 80) {
-      return 'Güçlü bir enerji bağlantınız var. ${s1.nameTr} ve ${s2.nameTr} birbirini destekleyen enerjiler taşıyor.';
+      key = 'kabbalah.compatibility.high';
     } else if (score >= 70) {
-      return '${s1.nameTr} ve ${s2.nameTr} farklı enerjiler taşısa da, bu farklılıklar büyüme fırsatı sunuyor.';
+      key = 'kabbalah.compatibility.medium';
     } else {
-      return '${s1.nameTr} ve ${s2.nameTr} enerjileri birbirinden farklı. Bu ilişki, her iki tarafın da öğrenmesi gereken dersler içeriyor.';
+      key = 'kabbalah.compatibility.low';
+    }
+    final localized = L10nService.get(key, language);
+    if (localized != key) {
+      return localized.replaceAll('{s1}', s1Name).replaceAll('{s2}', s2Name);
+    }
+    // Fallback
+    if (score >= 90) {
+      return 'There is a deep bond between your souls. $s1Name and $s2Name energies complement each other, together forming high spiritual harmony.';
+    } else if (score >= 80) {
+      return 'You have a strong energy connection. $s1Name and $s2Name carry supportive energies.';
+    } else if (score >= 70) {
+      return 'Although $s1Name and $s2Name carry different energies, these differences offer growth opportunities.';
+    } else {
+      return '$s1Name and $s2Name energies are different. This relationship contains lessons for both sides to learn.';
     }
   }
 
-  static String _getDailyGuidance(Sefirah sefirah) {
+  static String _getDailyGuidance(Sefirah sefirah, {AppLanguage language = AppLanguage.tr}) {
+    final key = 'kabbalah.daily_guidance.${sefirah.name}';
+    final localized = L10nService.get(key, language);
+    if (localized != key) return localized;
+    // Fallback English
     switch (sefirah) {
       case Sefirah.keter:
-        return 'Bugün sonsuz potansiyele bağlanma günü. Meditasyona ve içsel sessizliğe zaman ayırın. İlahi iradenin size yol göstermesine izin verin.';
+        return 'Today is a day to connect with infinite potential. Make time for meditation and inner silence. Let divine will guide you.';
       case Sefirah.chokhmah:
-        return 'Bugün bilgelik ve içgörü günü. Ani ilhamlar gelebilir. Yeni fikirlere ve vizyonlara açık olun.';
+        return 'Today is a day of wisdom and insight. Sudden inspirations may come. Be open to new ideas and visions.';
       case Sefirah.binah:
-        return 'Bugün anlayış ve kavrayış günü. Detaylara odaklanın, analiz yapın. Duygusal derinliğinize güvenin.';
+        return 'Today is a day of understanding and comprehension. Focus on details, analyze. Trust your emotional depth.';
       case Sefirah.chesed:
-        return 'Bugün sevgi ve merhamet günü. Başkalarına yardım edin, cömert olun. Kalp chakranızı açık tutun.';
+        return 'Today is a day of love and compassion. Help others, be generous. Keep your heart chakra open.';
       case Sefirah.gevurah:
-        return 'Bugün güç ve disiplin günü. Sınırlarınızı koruyun, gerekli kararları alın. İç gücünüze güvenin.';
+        return 'Today is a day of strength and discipline. Protect your boundaries, make necessary decisions. Trust your inner power.';
       case Sefirah.tiferet:
-        return 'Bugün denge ve güzellik günü. Zıtlıkları dengelemeye çalışın. İç ve dış güzelliği takdir edin.';
+        return 'Today is a day of balance and beauty. Try to balance opposites. Appreciate inner and outer beauty.';
       case Sefirah.netzach:
-        return 'Bugün azim ve zafer günü. Hedeflerinize odaklanın, pes etmeyin. Yaratıcı enerjinizi kullanın.';
+        return 'Today is a day of determination and victory. Focus on your goals, don\'t give up. Use your creative energy.';
       case Sefirah.hod:
-        return 'Bugün iletişim ve analiz günü. Düşüncelerinizi netleştirin, bilgi paylaşın. Zihinsel berraklık arayın.';
+        return 'Today is a day of communication and analysis. Clarify your thoughts, share knowledge. Seek mental clarity.';
       case Sefirah.yesod:
-        return 'Bugün temel ve bağlantı günü. Rüyalarınıza dikkat edin, sezgilerinize güvenin. Astral bağlantılar güçlü.';
+        return 'Today is a day of foundation and connection. Pay attention to your dreams, trust your intuitions. Astral connections are strong.';
       case Sefirah.malkut:
-        return 'Bugün maddi dünya ve manifestasyon günü. Pratik işlere odaklanın, somut adımlar atın. Doğayla bağlantı kurun.';
+        return 'Today is a day of material world and manifestation. Focus on practical matters, take concrete steps. Connect with nature.';
     }
   }
 
-  static String _getDailyMeditation(Sefirah sefirah) {
+  static String _getDailyMeditation(Sefirah sefirah, {AppLanguage language = AppLanguage.tr}) {
+    final key = 'kabbalah.daily_meditation.${sefirah.name}';
+    final localized = L10nService.get(key, language);
+    if (localized != key) return localized;
+    // Fallback English
     switch (sefirah) {
       case Sefirah.keter:
-        return 'Göz kapaklarınızı kapatın ve başınızın üstünde parlak beyaz bir ışık hayal edin. Bu ışığın sizi sonsuzla birleştirdiğini hissedin.';
+        return 'Close your eyelids and imagine a bright white light above your head. Feel this light uniting you with infinity.';
       case Sefirah.chokhmah:
-        return 'Gri bir alan hayal edin - ne tamamen aydınlık ne tamamen karanlık. Bu belirsizlikte yeni fikirlerin doğduğunu hissedin.';
+        return 'Imagine a gray space - neither completely light nor completely dark. Feel new ideas being born in this uncertainty.';
       case Sefirah.binah:
-        return 'Derin mavi bir okyanusun içinde olduğunuzu hayal edin. Sonsuz derinliğin size anlayış getirdiğini hissedin.';
+        return 'Imagine you are in a deep blue ocean. Feel the infinite depth bringing you understanding.';
       case Sefirah.chesed:
-        return 'Kalbinizden altın ışık yayıldığını hayal edin. Bu ışığın tüm varlıklara sevgi ve merhamet taşıdığını hissedin.';
+        return 'Imagine golden light radiating from your heart. Feel this light carrying love and compassion to all beings.';
       case Sefirah.gevurah:
-        return 'Kırmızı bir alev hayal edin - yakıcı ama arındırıcı. Bu ateşin gereksiz olan her şeyi temizlediğini hissedin.';
+        return 'Imagine a red flame - burning but purifying. Feel this fire cleansing everything unnecessary.';
       case Sefirah.tiferet:
-        return 'Altın güneş ışığı ile yıkandığınızı hayal edin. Bu ışığın tüm zıtlıkları dengede tuttuğunu hissedin.';
+        return 'Imagine being bathed in golden sunlight. Feel this light keeping all opposites in balance.';
       case Sefirah.netzach:
-        return 'Yemyeşil bir ormanın ortasında olduğunuzu hayal edin. Doğanın dayanıklılığı ve zaferini hissedin.';
+        return 'Imagine you are in the middle of a lush green forest. Feel nature\'s resilience and victory.';
       case Sefirah.hod:
-        return 'Turuncu bir ışık küresinin zihninizi aydınlattığını hayal edin. Düşüncelerinizin berraklaştığını hissedin.';
+        return 'Imagine an orange sphere of light illuminating your mind. Feel your thoughts becoming clearer.';
       case Sefirah.yesod:
-        return 'Mor bir ışığın göbek bölgenizi sardığını hayal edin. Rüya alemine ve bilinçaltına açılan kapının aralandığını hissedin.';
+        return 'Imagine a purple light surrounding your navel area. Feel the door to the dream realm and subconscious opening.';
       case Sefirah.malkut:
-        return 'Ayaklarınızın yeryüzüne kök saldığını hayal edin. Dünyanın enerjisinin size güç verdiğini hissedin.';
+        return 'Imagine your feet rooting into the earth. Feel the earth\'s energy giving you strength.';
     }
   }
 }
@@ -316,28 +341,34 @@ extension SefirahExtension on Sefirah {
     return L10nService.get(key, language);
   }
 
-  String get meaning {
+  String get meaning => localizedMeaning(AppLanguage.tr);
+
+  String localizedMeaning(AppLanguage language) {
+    final key = 'kabbalah.sefirah_meanings.${name.toLowerCase()}';
+    final localized = L10nService.get(key, language);
+    if (localized != key) return localized;
+    // Fallback English
     switch (this) {
       case Sefirah.keter:
-        return 'Sonsuzlukla birleşme noktası. İlahi iradenin kaynağı. Tüm potansiyellerin başlangıcı.';
+        return 'Point of union with infinity. Source of divine will. Beginning of all potentials.';
       case Sefirah.chokhmah:
-        return 'Saf bilgelik ve ilham. Yaratıcı kıvılcım. Eril enerji ve vizyonun kaynağı.';
+        return 'Pure wisdom and inspiration. Creative spark. Source of masculine energy and vision.';
       case Sefirah.binah:
-        return 'Derin anlayış ve kavrayış. Form veren enerji. Dişil bilgelik ve sezgi.';
+        return 'Deep understanding and comprehension. Form-giving energy. Feminine wisdom and intuition.';
       case Sefirah.chesed:
-        return 'Koşulsuz sevgi ve merhamet. Genişleme ve bolluk. Cömertlik ve şifa.';
+        return 'Unconditional love and compassion. Expansion and abundance. Generosity and healing.';
       case Sefirah.gevurah:
-        return 'İç güç ve disiplin. Sınırlar ve adalet. Arındırma ve odaklanma.';
+        return 'Inner strength and discipline. Boundaries and justice. Purification and focus.';
       case Sefirah.tiferet:
-        return 'Denge ve uyum merkezi. Güzellik ve hakikat. Kalp ve ruhun birleşimi.';
+        return 'Center of balance and harmony. Beauty and truth. Union of heart and soul.';
       case Sefirah.netzach:
-        return 'Azim ve dayanıklılık. Duygusal güç ve tutku. Yaratıcı ifade.';
+        return 'Determination and resilience. Emotional strength and passion. Creative expression.';
       case Sefirah.hod:
-        return 'Zihinsel berraklık ve iletişim. Analitik düşünce. Spiritüel anlayış.';
+        return 'Mental clarity and communication. Analytical thinking. Spiritual understanding.';
       case Sefirah.yesod:
-        return 'Astral bağlantı ve rüyalar. Bilinçaltı ve sezgi. Manifestasyonun temeli.';
+        return 'Astral connection and dreams. Subconscious and intuition. Foundation of manifestation.';
       case Sefirah.malkut:
-        return 'Fiziksel dünya ve madde. Topraklanma ve gerçekleşme. Günlük yaşam.';
+        return 'Physical world and matter. Grounding and realization. Daily life.';
     }
   }
 
@@ -417,7 +448,24 @@ Malkut'un gizemi şudur: Yolculuk yukarı çıkmak için önce burada, maddede b
   }
 
   /// İlahi İsim - her Sefirah'ın ilişkilendirildiği Tanrı ismi
-  String get divineName {
+  String get divineName => divineNameEn; // Divine names are universal
+
+  String get divineNameEn {
+    switch (this) {
+      case Sefirah.keter: return 'Ehyeh Asher Ehyeh (I Am That I Am)';
+      case Sefirah.chokhmah: return 'Yah (Yod-Heh)';
+      case Sefirah.binah: return 'YHVH Elohim';
+      case Sefirah.chesed: return 'El (God)';
+      case Sefirah.gevurah: return 'Elohim Gibor (Mighty God)';
+      case Sefirah.tiferet: return 'YHVH Eloah ve-Daath';
+      case Sefirah.netzach: return 'YHVH Tzavaot (Lord of Hosts)';
+      case Sefirah.hod: return 'Elohim Tzavaot';
+      case Sefirah.yesod: return 'El Chai (Living God)';
+      case Sefirah.malkut: return 'Adonai (Lord)';
+    }
+  }
+
+  String get divineNameTr {
     switch (this) {
       case Sefirah.keter: return 'Ehyeh Asher Ehyeh (Ben Olanım)';
       case Sefirah.chokhmah: return 'Yah (Yod-Heh)';
@@ -432,8 +480,29 @@ Malkut'un gizemi şudur: Yolculuk yukarı çıkmak için önce burada, maddede b
     }
   }
 
+  String localizedDivineName(AppLanguage language) {
+    return language == AppLanguage.tr ? divineNameTr : divineNameEn;
+  }
+
   /// Başmelek - her Sefirah'ın koruyucu meleği
-  String get archangel {
+  String get archangel => archangelEn;
+
+  String get archangelEn {
+    switch (this) {
+      case Sefirah.keter: return 'Metatron';
+      case Sefirah.chokhmah: return 'Raziel (Angel of Secrets)';
+      case Sefirah.binah: return 'Tzafkiel (God\'s Watcher)';
+      case Sefirah.chesed: return 'Tzadkiel (God\'s Justice)';
+      case Sefirah.gevurah: return 'Kamael (Who Sees God)';
+      case Sefirah.tiferet: return 'Mikhael (Who Is Like God)';
+      case Sefirah.netzach: return 'Haniel (Grace of God)';
+      case Sefirah.hod: return 'Raphael (God Heals)';
+      case Sefirah.yesod: return 'Gabriel (Strength of God)';
+      case Sefirah.malkut: return 'Sandalphon';
+    }
+  }
+
+  String get archangelTr {
     switch (this) {
       case Sefirah.keter: return 'Metatron';
       case Sefirah.chokhmah: return 'Raziel (Sırların Meleği)';
@@ -448,8 +517,29 @@ Malkut'un gizemi şudur: Yolculuk yukarı çıkmak için önce burada, maddede b
     }
   }
 
+  String localizedArchangel(AppLanguage language) {
+    return language == AppLanguage.tr ? archangelTr : archangelEn;
+  }
+
   /// Gezegen etkisi
-  String get planet {
+  String get planet => planetEn;
+
+  String get planetEn {
+    switch (this) {
+      case Sefirah.keter: return 'Primum Mobile (First Movement)';
+      case Sefirah.chokhmah: return 'Fixed Stars';
+      case Sefirah.binah: return 'Saturn';
+      case Sefirah.chesed: return 'Jupiter';
+      case Sefirah.gevurah: return 'Mars';
+      case Sefirah.tiferet: return 'Sun';
+      case Sefirah.netzach: return 'Venus';
+      case Sefirah.hod: return 'Mercury';
+      case Sefirah.yesod: return 'Moon';
+      case Sefirah.malkut: return 'Earth (Elements)';
+    }
+  }
+
+  String get planetTr {
     switch (this) {
       case Sefirah.keter: return 'Primum Mobile (İlk Hareket)';
       case Sefirah.chokhmah: return 'Sabit Yıldızlar';
@@ -464,8 +554,32 @@ Malkut'un gizemi şudur: Yolculuk yukarı çıkmak için önce burada, maddede b
     }
   }
 
+  String localizedPlanet(AppLanguage language) {
+    return language == AppLanguage.tr ? planetTr : planetEn;
+  }
+
   /// Hayat Ağacı'ndaki sütun
-  String get pillar {
+  String get pillar => pillarEn;
+
+  String get pillarEn {
+    switch (this) {
+      case Sefirah.keter:
+      case Sefirah.tiferet:
+      case Sefirah.yesod:
+      case Sefirah.malkut:
+        return 'Middle Pillar (Balance)';
+      case Sefirah.chokhmah:
+      case Sefirah.chesed:
+      case Sefirah.netzach:
+        return 'Right Pillar (Mercy)';
+      case Sefirah.binah:
+      case Sefirah.gevurah:
+      case Sefirah.hod:
+        return 'Left Pillar (Severity)';
+    }
+  }
+
+  String get pillarTr {
     switch (this) {
       case Sefirah.keter:
       case Sefirah.tiferet:
@@ -481,6 +595,10 @@ Malkut'un gizemi şudur: Yolculuk yukarı çıkmak için önce burada, maddede b
       case Sefirah.hod:
         return 'Sol Sütun (Şiddet)';
     }
+  }
+
+  String localizedPillar(AppLanguage language) {
+    return language == AppLanguage.tr ? pillarTr : pillarEn;
   }
 
   /// Ruh düzeyi
@@ -519,7 +637,24 @@ Malkut'un gizemi şudur: Yolculuk yukarı çıkmak için önce burada, maddede b
   }
 
   /// Erdem (olumlu nitelik)
-  String get virtue {
+  String get virtue => virtueEn;
+
+  String get virtueEn {
+    switch (this) {
+      case Sefirah.keter: return 'Infinite Will, Unity Consciousness';
+      case Sefirah.chokhmah: return 'Pure Wisdom, Inspiration';
+      case Sefirah.binah: return 'Deep Understanding, Silence';
+      case Sefirah.chesed: return 'Compassion, Generosity';
+      case Sefirah.gevurah: return 'Courage, Discipline';
+      case Sefirah.tiferet: return 'Kindness, Balance, Beauty';
+      case Sefirah.netzach: return 'Determination, Loyalty';
+      case Sefirah.hod: return 'Honesty, Openness';
+      case Sefirah.yesod: return 'Purity, Independence';
+      case Sefirah.malkut: return 'Discernment, Grounding';
+    }
+  }
+
+  String get virtueTr {
     switch (this) {
       case Sefirah.keter: return 'Sonsuz İrade, Birlik Bilinci';
       case Sefirah.chokhmah: return 'Saf Bilgelik, İlham';
@@ -534,8 +669,29 @@ Malkut'un gizemi şudur: Yolculuk yukarı çıkmak için önce burada, maddede b
     }
   }
 
+  String localizedVirtue(AppLanguage language) {
+    return language == AppLanguage.tr ? virtueTr : virtueEn;
+  }
+
   /// Kusur (dengelenmemiş hali)
-  String get vice {
+  String get vice => viceEn;
+
+  String get viceEn {
+    switch (this) {
+      case Sefirah.keter: return 'Lack of commitment';
+      case Sefirah.chokhmah: return 'Evil, Destructiveness';
+      case Sefirah.binah: return 'Greed, Jealousy';
+      case Sefirah.chesed: return 'Extravagance, Dependency';
+      case Sefirah.gevurah: return 'Cruelty, Ruthlessness';
+      case Sefirah.tiferet: return 'Pride, False glory';
+      case Sefirah.netzach: return 'Lust, Obsession';
+      case Sefirah.hod: return 'Dishonesty, Deceit';
+      case Sefirah.yesod: return 'Indecision, Fantasy-prone';
+      case Sefirah.malkut: return 'Laziness, Materialism';
+    }
+  }
+
+  String get viceTr {
     switch (this) {
       case Sefirah.keter: return 'Bağlılık eksikliği';
       case Sefirah.chokhmah: return 'Kötülük, Yıkıcılık';
@@ -550,7 +706,28 @@ Malkut'un gizemi şudur: Yolculuk yukarı çıkmak için önce burada, maddede b
     }
   }
 
-  String get color {
+  String localizedVice(AppLanguage language) {
+    return language == AppLanguage.tr ? viceTr : viceEn;
+  }
+
+  String get color => colorEn;
+
+  String get colorEn {
+    switch (this) {
+      case Sefirah.keter: return 'White/Brilliant';
+      case Sefirah.chokhmah: return 'Gray/Silver';
+      case Sefirah.binah: return 'Black/Dark Blue';
+      case Sefirah.chesed: return 'Blue';
+      case Sefirah.gevurah: return 'Red';
+      case Sefirah.tiferet: return 'Gold/Yellow';
+      case Sefirah.netzach: return 'Green';
+      case Sefirah.hod: return 'Orange';
+      case Sefirah.yesod: return 'Purple';
+      case Sefirah.malkut: return 'Earth Tones';
+    }
+  }
+
+  String get colorTr {
     switch (this) {
       case Sefirah.keter: return 'Beyaz/Parlak';
       case Sefirah.chokhmah: return 'Gri/Gümüş';
@@ -563,6 +740,10 @@ Malkut'un gizemi şudur: Yolculuk yukarı çıkmak için önce burada, maddede b
       case Sefirah.yesod: return 'Mor';
       case Sefirah.malkut: return 'Toprak Tonları';
     }
+  }
+
+  String localizedColor(AppLanguage language) {
+    return language == AppLanguage.tr ? colorTr : colorEn;
   }
 
   int get number {

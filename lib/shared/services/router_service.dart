@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../../core/constants/routes.dart';
+import '../../core/config/feature_flags.dart';
 import '../../data/providers/app_providers.dart';
 import '../../features/onboarding/presentation/onboarding_screen.dart';
 import '../../features/home/presentation/responsive_home_screen.dart';
@@ -50,6 +51,7 @@ import '../../features/chakra/presentation/chakra_analysis_screen.dart';
 import '../../features/profile/presentation/saved_profiles_screen.dart';
 import '../../features/profile/presentation/comparison_screen.dart';
 import '../../features/kozmoz/presentation/kozmoz_screen.dart';
+import '../../features/insight/presentation/insight_screen.dart';
 import '../../features/cosmic_discovery/presentation/cosmic_discovery_screen.dart';
 import '../../features/dreams/presentation/dream_interpretation_screen.dart';
 import '../../features/dreams/presentation/dream_oracle_screen.dart';
@@ -80,6 +82,7 @@ import '../../features/numerology/presentation/karmic_debt_screen.dart';
 import '../../features/all_services/presentation/all_services_screen.dart';
 import '../../features/admin/presentation/admin_login_screen.dart';
 import '../../features/admin/presentation/admin_dashboard_screen.dart';
+import '../../features/observatory/presentation/observatory_screen.dart';
 import '../../features/quiz/presentation/quiz_screen.dart';
 import '../../features/content/presentation/content_detail_screen.dart';
 import '../../data/services/admin_auth_service.dart';
@@ -101,6 +104,15 @@ final routerProvider = Provider<GoRouter>((ref) {
       // Allow admin routes without onboarding
       if (path.startsWith('/admin')) {
         return null;
+      }
+
+      // ════════════════════════════════════════════════════════════════
+      // APP STORE 4.3(b) COMPLIANCE: Block high-risk routes
+      // Redirect blocked routes to Insight (safe alternative)
+      // ════════════════════════════════════════════════════════════════
+      if (!FeatureFlags.isRouteEnabled(path)) {
+        debugPrint('🚫 Route blocked by FeatureFlags: $path → /insight');
+        return FeatureFlags.getRedirectRoute();
       }
 
       // WEB: Skip storage check - web has no persistence (memory-only mode)
@@ -132,6 +144,14 @@ final routerProvider = Provider<GoRouter>((ref) {
         // Mobile (<768px): MobileLiteHomepage - fast, no heavy effects
         // Desktop (>=768px): DesktopRichHomepage - visual, immersive
         builder: (context, state) => const ResponsiveHomeScreen(),
+      ),
+      // ════════════════════════════════════════════════════════════════
+      // INSIGHT - Apple-Safe Personal Reflection Assistant
+      // Single unified entry point for dream reflection & self-exploration
+      // ════════════════════════════════════════════════════════════════
+      GoRoute(
+        path: Routes.insight,
+        builder: (context, state) => const InsightScreen(),
       ),
       GoRoute(
         path: Routes.horoscope,
@@ -864,6 +884,19 @@ final routerProvider = Provider<GoRouter>((ref) {
         },
         builder: (context, state) => const AdminDashboardScreen(),
       ),
+      // ═══════════════════════════════════════════════════════════════
+      // OBSERVATORY - Internal Tech & Content Observatory
+      // ═══════════════════════════════════════════════════════════════
+      GoRoute(
+        path: Routes.observatory,
+        redirect: (context, state) {
+          if (!AdminAuthService.isAuthenticated) {
+            return Routes.adminLogin;
+          }
+          return null;
+        },
+        builder: (context, state) => const ObservatoryScreen(),
+      ),
     ],
   );
 });
@@ -937,9 +970,9 @@ class _NotFoundScreen extends ConsumerWidget {
                 ),
                 const SizedBox(height: 16),
                 TextButton(
-                  onPressed: () => context.go(Routes.horoscope),
+                  onPressed: () => context.go(Routes.insight),
                   child: Text(
-                    l10n.get('router.go_to_horoscope'),
+                    l10n.get('router.go_to_insight'),
                     style: const TextStyle(color: Color(0xFFFFD700)),
                   ),
                 ),

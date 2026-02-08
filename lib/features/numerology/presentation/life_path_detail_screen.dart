@@ -743,14 +743,26 @@ class LifePathDetailScreen extends ConsumerWidget {
   }
 
   Color _getElementColor(String element) {
+    // Support both Turkish and English element names
     switch (element.toLowerCase()) {
       case 'ateş':
+      case 'fire':
+      case 'feuer':
+      case 'feu':
         return AppColors.fireElement;
       case 'toprak':
+      case 'earth':
+      case 'erde':
+      case 'terre':
         return AppColors.earthElement;
       case 'hava':
+      case 'air':
+      case 'luft':
         return AppColors.airElement;
       case 'su':
+      case 'water':
+      case 'wasser':
+      case 'eau':
         return AppColors.waterElement;
       default:
         return AppColors.auroraStart;

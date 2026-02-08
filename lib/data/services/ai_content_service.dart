@@ -6,7 +6,10 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/zodiac_sign.dart';
 import '../content/cosmic_messages_content.dart';
+import '../providers/app_providers.dart';
 import 'analytics_service.dart';
+import 'content_safety_filter.dart';
+import 'l10n_service.dart';
 
 /// AI-powered content generation service
 /// Supports OpenAI, Anthropic, or falls back to local generation
@@ -133,18 +136,11 @@ class AiContentService {
     required ZodiacSign sign,
     String? userName,
     String? mood,
+    AppLanguage language = AppLanguage.en,
   }) async {
     if (isAiAvailable && userName != null) {
       try {
-        final prompt = '''
-Kullanici icin kisa, ilham verici bir kozmik mesaj yaz.
-Isim: $userName
-Burc: ${sign.nameTr}
-${mood != null ? 'Ruh hali: $mood' : ''}
-
-Mesaj 2-3 cumle olsun, mistik ve motive edici bir tonda yaz.
-Turkce yaz, emoji kullanma.
-''';
+        final prompt = _buildCosmicMessagePrompt(sign, userName, mood, language);
 
         final response = await _generateWithAi(prompt);
         if (response != null && response.isNotEmpty) {
@@ -161,22 +157,62 @@ Turkce yaz, emoji kullanma.
     return CosmicMessagesContent.getDailyCosmicMessage(sign);
   }
 
+  String _buildCosmicMessagePrompt(ZodiacSign sign, String userName, String? mood, AppLanguage language) {
+    switch (language) {
+      case AppLanguage.tr:
+        return '''
+Kullanici icin kisa, ilham verici bir kozmik mesaj yaz.
+Isim: $userName
+Burc: ${sign.nameTr}
+${mood != null ? 'Ruh hali: $mood' : ''}
+
+Mesaj 2-3 cumle olsun, mistik ve motive edici bir tonda yaz.
+Turkce yaz, emoji kullanma.
+''';
+      case AppLanguage.de:
+        return '''
+Write a short, inspiring cosmic message for the user.
+Name: $userName
+Sign: ${sign.name}
+${mood != null ? 'Mood: $mood' : ''}
+
+Message should be 2-3 sentences, written in a mystical and motivating tone.
+Write in German, no emojis.
+''';
+      case AppLanguage.fr:
+        return '''
+Write a short, inspiring cosmic message for the user.
+Name: $userName
+Sign: ${sign.name}
+${mood != null ? 'Mood: $mood' : ''}
+
+Message should be 2-3 sentences, written in a mystical and motivating tone.
+Write in French, no emojis.
+''';
+      case AppLanguage.en:
+      default:
+        return '''
+Write a short, inspiring cosmic message for the user.
+Name: $userName
+Sign: ${sign.name}
+${mood != null ? 'Mood: $mood' : ''}
+
+Message should be 2-3 sentences, written in a mystical and motivating tone.
+Write in English, no emojis.
+''';
+    }
+  }
+
   /// Generate personalized advice for specific area
   Future<String> generatePersonalizedAdvice({
     required ZodiacSign sign,
     required AdviceArea area,
     String? context,
+    AppLanguage language = AppLanguage.en,
   }) async {
     if (isAiAvailable) {
       try {
-        final areaName = _getAreaName(area);
-        final prompt = '''
-${sign.nameTr} burcu icin $areaName konusunda kisa bir tavsiye yaz.
-${context != null ? 'Baglam: $context' : ''}
-
-2-3 cumle olsun, pozitif ve destekleyici bir tonda.
-Turkce yaz, astrolojik kavramlari basit tut.
-''';
+        final prompt = _buildAdvicePrompt(sign, area, context, language);
 
         final response = await _generateWithAi(prompt);
         if (response != null && response.isNotEmpty) {
@@ -196,20 +232,56 @@ Turkce yaz, astrolojik kavramlari basit tut.
     return _getLocalAdvice(sign, area);
   }
 
+  String _buildAdvicePrompt(ZodiacSign sign, AdviceArea area, String? context, AppLanguage language) {
+    final areaName = _getAreaName(area, language);
+    final signName = language == AppLanguage.tr ? sign.nameTr : sign.name;
+
+    switch (language) {
+      case AppLanguage.tr:
+        return '''
+$signName burcu icin $areaName konusunda kisa bir tavsiye yaz.
+${context != null ? 'Baglam: $context' : ''}
+
+2-3 cumle olsun, pozitif ve destekleyici bir tonda.
+Turkce yaz, astrolojik kavramlari basit tut.
+''';
+      case AppLanguage.de:
+        return '''
+Write short advice for $signName sign about $areaName.
+${context != null ? 'Context: $context' : ''}
+
+2-3 sentences, positive and supportive tone.
+Write in German, keep astrological terms simple.
+''';
+      case AppLanguage.fr:
+        return '''
+Write short advice for $signName sign about $areaName.
+${context != null ? 'Context: $context' : ''}
+
+2-3 sentences, positive and supportive tone.
+Write in French, keep astrological terms simple.
+''';
+      case AppLanguage.en:
+      default:
+        return '''
+Write short advice for $signName sign about $areaName.
+${context != null ? 'Context: $context' : ''}
+
+2-3 sentences, positive and supportive tone.
+Write in English, keep astrological terms simple.
+''';
+    }
+  }
+
   /// Generate daily affirmation
   Future<String> generateAffirmation({
     required ZodiacSign sign,
     String? focus,
+    AppLanguage language = AppLanguage.en,
   }) async {
     if (isAiAvailable) {
       try {
-        final prompt = '''
-${sign.nameTr} burcu icin guclu bir gunluk olumlamac yaz.
-${focus != null ? 'Odak: $focus' : ''}
-
-"Bugun..." ile baslasin, kisa ve guclu olsun (1 cumle).
-Turkce yaz.
-''';
+        final prompt = _buildAffirmationPrompt(sign, focus, language);
 
         final response = await _generateWithAi(prompt);
         if (response != null && response.isNotEmpty) {
@@ -223,6 +295,46 @@ Turkce yaz.
     }
 
     return CosmicMessagesContent.getMorningAffirmation(sign);
+  }
+
+  String _buildAffirmationPrompt(ZodiacSign sign, String? focus, AppLanguage language) {
+    final signName = language == AppLanguage.tr ? sign.nameTr : sign.name;
+
+    switch (language) {
+      case AppLanguage.tr:
+        return '''
+$signName burcu icin guclu bir gunluk olumlama yaz.
+${focus != null ? 'Odak: $focus' : ''}
+
+"Bugun..." ile baslasin, kisa ve guclu olsun (1 cumle).
+Turkce yaz.
+''';
+      case AppLanguage.de:
+        return '''
+Write a powerful daily affirmation for $signName sign.
+${focus != null ? 'Focus: $focus' : ''}
+
+Start with "Today...", keep it short and powerful (1 sentence).
+Write in German.
+''';
+      case AppLanguage.fr:
+        return '''
+Write a powerful daily affirmation for $signName sign.
+${focus != null ? 'Focus: $focus' : ''}
+
+Start with "Aujourd'hui...", keep it short and powerful (1 sentence).
+Write in French.
+''';
+      case AppLanguage.en:
+      default:
+        return '''
+Write a powerful daily affirmation for $signName sign.
+${focus != null ? 'Focus: $focus' : ''}
+
+Start with "Today...", keep it short and powerful (1 sentence).
+Write in English.
+''';
+    }
   }
 
   /// Clear cached content
@@ -345,44 +457,62 @@ Turkce yaz.
   /// APEX FAIL CONDITIONS - Validate dream interpretation
   /// Returns false if interpretation violates core APEX rules
   bool _validateDreamInterpretation(String interpretation) {
-    final lowerInterpretation = interpretation.toLowerCase();
-    final firstParagraph = interpretation.split('\n').first.toLowerCase();
+    return _validateInsightResponse(interpretation);
+  }
 
-    // FAIL CONDITION 1: Starts with zodiac/astrology
+  /// UNIFIED INSIGHT VALIDATION - Apple-Safe Response Validation
+  /// Used for both dream interpretations and general insight responses
+  /// Returns false if response violates App Store guidelines
+  bool _validateInsightResponse(String response) {
+    final lowerResponse = response.toLowerCase();
+    final firstParagraph = response.split('\n').first.toLowerCase();
+
+    // FAIL CONDITION 1: Starts with zodiac/astrology terms (TR + EN)
     final zodiacStarters = [
+      // Turkish
       'burc', 'burç', 'koc', 'koç', 'boga', 'boğa', 'ikizler', 'yengec', 'yengeç',
       'aslan', 'basak', 'başak', 'terazi', 'akrep', 'yay', 'oglak', 'oğlak',
-      'kova', 'balik', 'balık', 'astroloji', 'zodyak', 'gezegen', 'mars', 'venus',
-      'merkur', 'merkür', 'jupiter', 'saturn', 'satürn', 'neptun', 'neptün',
-      'uranüs', 'pluto', 'pluton'
+      'kova', 'balik', 'balık', 'astroloji', 'zodyak', 'gezegen',
+      // English
+      'aries', 'taurus', 'gemini', 'cancer', 'leo', 'virgo', 'libra',
+      'scorpio', 'sagittarius', 'capricorn', 'aquarius', 'pisces',
+      'zodiac', 'horoscope', 'astrology', 'astrological',
+      // Planets (both)
+      'mars', 'venus', 'merkur', 'merkür', 'mercury', 'jupiter', 'saturn',
+      'satürn', 'neptun', 'neptün', 'neptune', 'uranüs', 'uranus',
+      'pluto', 'pluton',
     ];
 
     for (final starter in zodiacStarters) {
       if (firstParagraph.contains(starter)) {
         if (kDebugMode) {
-          debugPrint('APEX FAIL: Interpretation starts with zodiac term: $starter');
+          debugPrint('INSIGHT FAIL: Response starts with zodiac term: $starter');
         }
         return false;
       }
     }
 
-    // FAIL CONDITION 2: Sounds like horoscope text
-    final horoscopePhrases = [
-      'bugunun enerjisi',
-      'günün enerjisi',
-      'yildizlar sana',
-      'yıldızlar sana',
-      'kozmik enerji',
-      'evren sana',
-      'gezegenlerin etkileri',
-      'astrolojik acidan',
-      'astrolojik açıdan',
+    // FAIL CONDITION 2: Contains fortune-telling/prediction phrases (TR + EN)
+    final forbiddenPhrases = [
+      // Turkish prediction phrases
+      'bugunun enerjisi', 'günün enerjisi', 'yildizlar sana', 'yıldızlar sana',
+      'kozmik enerji', 'evren sana', 'gezegenlerin etkileri',
+      'astrolojik acidan', 'astrolojik açıdan', 'kaderin', 'kaderiniz',
+      'gelecekte', 'geleceginde', 'geleceğinde', 'olacak', 'olacaktır',
+      'kehanet', 'fal', 'tarot', 'numeroloji',
+      // English prediction phrases
+      'your destiny', 'the stars say', 'the universe is telling',
+      'will happen', 'is destined', 'fate reveals', 'fortune tells',
+      'cosmic energy', 'planetary influence', 'mercury retrograde',
+      'the cards reveal', 'your horoscope', 'zodiac reading',
+      'according to the stars', 'the planets indicate',
+      'you are destined', 'prophecy', 'divination',
     ];
 
-    for (final phrase in horoscopePhrases) {
-      if (firstParagraph.contains(phrase)) {
+    for (final phrase in forbiddenPhrases) {
+      if (lowerResponse.contains(phrase)) {
         if (kDebugMode) {
-          debugPrint('APEX FAIL: Interpretation sounds like horoscope: $phrase');
+          debugPrint('INSIGHT FAIL: Contains forbidden phrase: $phrase');
         }
         return false;
       }
@@ -390,61 +520,72 @@ Turkce yaz.
 
     // FAIL CONDITION 3: Contains definitive/certain language (should use possibility language)
     final certaintyPhrases = [
-      'kesinlikle',
-      'mutlaka',
-      'su anlama gelir',
-      'şu anlama gelir',
-      'demek ki',
-      'olmali',
-      'olmalı',
-      'yapman gerekir',
-      'yapmalısın',
+      // Turkish
+      'kesinlikle', 'mutlaka', 'su anlama gelir', 'şu anlama gelir',
+      'demek ki', 'olmali', 'olmalı', 'yapman gerekir', 'yapmalısın',
+      // English
+      'definitely will', 'certainly going to', 'guaranteed to',
+      'this means you will', 'you must', 'you need to',
+      'without doubt', 'absolutely will',
     ];
 
     int certaintyCount = 0;
     for (final phrase in certaintyPhrases) {
-      if (lowerInterpretation.contains(phrase)) {
+      if (lowerResponse.contains(phrase)) {
         certaintyCount++;
       }
     }
     // Allow max 1 certainty phrase
     if (certaintyCount > 1) {
       if (kDebugMode) {
-        debugPrint('APEX FAIL: Too much certainty language ($certaintyCount instances)');
+        debugPrint('INSIGHT FAIL: Too much certainty language ($certaintyCount instances)');
       }
       return false;
     }
 
-    // FAIL CONDITION 4: Too short (less than 300 characters = likely generic)
-    if (interpretation.length < 300) {
+    // FAIL CONDITION 4: Too short (less than 200 characters = likely generic)
+    if (response.length < 200) {
       if (kDebugMode) {
-        debugPrint('APEX FAIL: Interpretation too short (${interpretation.length} chars)');
+        debugPrint('INSIGHT FAIL: Response too short (${response.length} chars)');
       }
       return false;
     }
 
-    // FAIL CONDITION 5: Contains advice/commands (should be reflective)
-    final advicePhrases = [
-      'sunu yap',
-      'şunu yap',
-      'bunu yap',
-      'yapmalisin',
-      'yapmalısın',
-      'git ve',
-      'hemen',
-      'derhal',
+    // FAIL CONDITION 5: Contains direct commands (should be reflective)
+    final commandPhrases = [
+      // Turkish
+      'sunu yap', 'şunu yap', 'bunu yap', 'yapmalisin', 'yapmalısın',
+      'git ve', 'hemen', 'derhal',
+      // English
+      'you should do', 'go and', 'immediately', 'right now',
+      'do this', 'you have to',
     ];
 
-    for (final phrase in advicePhrases) {
-      if (lowerInterpretation.contains(phrase)) {
+    for (final phrase in commandPhrases) {
+      if (lowerResponse.contains(phrase)) {
         if (kDebugMode) {
-          debugPrint('APEX FAIL: Contains direct advice: $phrase');
+          debugPrint('INSIGHT FAIL: Contains direct command: $phrase');
         }
         return false;
       }
     }
 
+    // PASS: Response is safe for App Store
     return true;
+  }
+
+  /// Sanitize AI response using ContentSafetyFilter.
+  /// This is a secondary filter that catches edge cases and
+  /// replaces any remaining risky phrases with safe alternatives.
+  String _sanitizeResponse(String response) {
+    // First check if content needs filtering
+    if (ContentSafetyFilter.containsForbiddenContent(response)) {
+      if (kDebugMode) {
+        debugPrint('AI_SANITIZE: Filtering forbidden content from response');
+      }
+      return ContentSafetyFilter.validateAndFilter(response, context: 'AI_RESPONSE');
+    }
+    return response;
   }
 
   /// Extract main symbol from dream description
@@ -816,7 +957,56 @@ CIKTI KURALLARI:
     return 'Eger istersen, bu ruyanin ${sign.nameTr} burcuyla olan baglantisini daha detayli inceleyebiliriz.';
   }
 
-  // Dream symbol acknowledgments
+  // Map Turkish symbol keys to localization keys
+  static const Map<String, String> _symbolKeyMap = {
+    'yilan': 'snake',
+    'su': 'water',
+    'ucmak': 'flying',
+    'dusmek': 'falling',
+    'dis': 'teeth',
+    'olum': 'death',
+    'kovalanmak': 'being_chased',
+    'bebek': 'baby',
+    'ev': 'house',
+    'araba': 'car',
+    'kopek': 'dog',
+    'kedi': 'cat',
+    'para': 'money',
+    'sinav': 'exam',
+    'ciplaklık': 'nakedness',
+    'kaybolmak': 'getting_lost',
+    'ates': 'fire',
+    'kan': 'blood',
+    'gelin': 'wedding',
+    'hastalik': 'illness',
+    'genel': 'general',
+  };
+
+  /// Get localized symbol acknowledgment
+  static String getSymbolAcknowledgment(String symbolKey, AppLanguage language) {
+    final localizedKey = _symbolKeyMap[symbolKey] ?? 'general';
+    final localized = L10nService.get('dreams.symbol_acknowledgments.$localizedKey', language);
+    // If localization exists, use it
+    if (localized != 'dreams.symbol_acknowledgments.$localizedKey') {
+      return localized;
+    }
+    // Fallback to hardcoded Turkish
+    return _dreamSymbolAcknowledgments[symbolKey] ?? _dreamSymbolAcknowledgments['genel']!;
+  }
+
+  /// Get localized context questions for a symbol
+  static List<String> getContextQuestions(String symbolKey, AppLanguage language) {
+    final localizedKey = _symbolKeyMap[symbolKey] ?? 'general';
+    final localized = L10nService.getList('dreams.context_questions.$localizedKey', language);
+    // If localization exists and has content, use it
+    if (localized.isNotEmpty && localized.first != 'dreams.context_questions.$localizedKey') {
+      return localized;
+    }
+    // Fallback to hardcoded Turkish
+    return _dreamContextQuestions[symbolKey] ?? _dreamContextQuestions['genel']!;
+  }
+
+  // Dream symbol acknowledgments (fallback)
   static final Map<String, String> _dreamSymbolAcknowledgments = {
     'yilan': 'Yilan, ruyalarin en guclu ve cok katmanli sembollerinden biridir. Donusum, sifa, gizli bilgi veya ic tehditler gibi pek cok anlam tasiyabilir.',
     'su': 'Su, ruyalarda duygusal durumu ve bilincdisini temsil eden evrensel bir semboldur. Suyun hali - durgun, dalgali, temiz veya bulanik - onemli ipuclari tasir.',
@@ -835,7 +1025,7 @@ CIKTI KURALLARI:
     'ciplaklık': 'Cipkallik ruyalari, savunmasizlik, autentik benligin ifasi veya maskelerden arinma ile iliskilidir.',
     'kaybolmak': 'Kaybolma ruyalari, hayatta yon kaybetme, kimlik arayisi veya belirsizlik hislerini yansitabilir.',
     'ates': 'Ates, tutku, ofke, donusum veya arinmayi temsil edebilir. Yanginin kontrollu veya kontrolsuz olmasi onemlidir.',
-    'kan': 'Kan, yasam enerjisi, duygusal yaralar veya aile baglariyla iliskili temaları işaret edebilir.',
+    'kan': 'Kan, yasam enerjisi, duygusal yaralar veya aile baglariyla iliskili temalar isaret edebilir.',
     'gelin': 'Gelin/dugun ruyalari, birlesme, taahhut veya hayatin yeni bir evresine gecisi simgeleyebilir.',
     'hastalik': 'Hastalik ruyalari, duygusal veya ruhsal dengesizliklere, dikkat edilmesi gereken alanlara isaret edebilir.',
     'genel': 'Her ruya sembolu kisisel anlam tasir. Onemli olan, bu sembolun senin icin ne ifade ettigini kesfetmektir.',
@@ -1170,7 +1360,9 @@ Turkce yaz, mistik ve destekleyici bir ton kullan.
 
         if (response.statusCode == 200) {
           final data = jsonDecode(response.body);
-          return data['choices'][0]['message']['content'];
+          final content = data['choices'][0]['message']['content'] as String;
+          // Apply safety filter to all AI responses
+          return _sanitizeResponse(content);
         } else if (kDebugMode) {
           debugPrint('OpenAI API error: ${response.statusCode} - ${response.body}');
         }
@@ -1206,7 +1398,9 @@ Turkce yaz, mistik ve destekleyici bir ton kullan.
 
         if (response.statusCode == 200) {
           final data = jsonDecode(response.body);
-          return data['content'][0]['text'];
+          final content = data['content'][0]['text'] as String;
+          // Apply safety filter to all AI responses
+          return _sanitizeResponse(content);
         } else if (kDebugMode) {
           debugPrint('Anthropic API error: ${response.statusCode} - ${response.body}');
         }
@@ -1277,18 +1471,41 @@ Turkce yaz, mistik ve destekleyici bir ton kullan.
     );
   }
 
-  String _getAreaName(AdviceArea area) {
-    switch (area) {
-      case AdviceArea.love:
-        return 'ask ve iliskiler';
-      case AdviceArea.career:
-        return 'kariyer ve is';
-      case AdviceArea.health:
-        return 'saglik ve enerji';
-      case AdviceArea.money:
-        return 'para ve bolluk';
-      case AdviceArea.spiritual:
-        return 'spirituel gelisim';
+  String _getAreaName(AdviceArea area, [AppLanguage language = AppLanguage.en]) {
+    switch (language) {
+      case AppLanguage.tr:
+        switch (area) {
+          case AdviceArea.love: return 'ask ve iliskiler';
+          case AdviceArea.career: return 'kariyer ve is';
+          case AdviceArea.health: return 'saglik ve enerji';
+          case AdviceArea.money: return 'para ve bolluk';
+          case AdviceArea.spiritual: return 'spirituel gelisim';
+        }
+      case AppLanguage.de:
+        switch (area) {
+          case AdviceArea.love: return 'Liebe und Beziehungen';
+          case AdviceArea.career: return 'Karriere und Arbeit';
+          case AdviceArea.health: return 'Gesundheit und Energie';
+          case AdviceArea.money: return 'Geld und Fülle';
+          case AdviceArea.spiritual: return 'spirituelle Entwicklung';
+        }
+      case AppLanguage.fr:
+        switch (area) {
+          case AdviceArea.love: return 'amour et relations';
+          case AdviceArea.career: return 'carrière et travail';
+          case AdviceArea.health: return 'santé et énergie';
+          case AdviceArea.money: return 'argent et abondance';
+          case AdviceArea.spiritual: return 'développement spirituel';
+        }
+      case AppLanguage.en:
+      default:
+        switch (area) {
+          case AdviceArea.love: return 'love and relationships';
+          case AdviceArea.career: return 'career and work';
+          case AdviceArea.health: return 'health and energy';
+          case AdviceArea.money: return 'money and abundance';
+          case AdviceArea.spiritual: return 'spiritual growth';
+        }
     }
   }
 

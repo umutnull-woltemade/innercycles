@@ -1,0 +1,64 @@
+Dear App Review Team,
+
+Thank you for reviewing Venus One.
+
+══════════════════════════════════════════════════════════════
+WHAT THIS APP IS
+══════════════════════════════════════════════════════════════
+
+Venus One is a personal reflection and journaling app. Users receive daily prompts, write journal entries, and track personal patterns over time.
+
+══════════════════════════════════════════════════════════════
+WHAT THIS APP IS NOT
+══════════════════════════════════════════════════════════════
+
+- This is NOT an astrology app
+- This is NOT a horoscope app
+- This is NOT a fortune-telling app
+- We do NOT provide predictions about the future
+- We do NOT claim to reveal destiny or fate
+
+══════════════════════════════════════════════════════════════
+HOW IT WORKS
+══════════════════════════════════════════════════════════════
+
+1. User opens app → sees a reflection prompt
+2. User types their thoughts → creates journal entry
+3. App provides present-focused questions for further reflection
+4. User can track their entries over time
+
+══════════════════════════════════════════════════════════════
+KEY COMPLIANCE POINTS
+══════════════════════════════════════════════════════════════
+
+• All content is interaction-based (user must type first)
+• No passive prediction consumption
+• No zodiac-based identity system in primary flow
+• No future claims in any user-facing text
+• Symbolic content is clearly framed as traditional/cultural reference
+• Entertainment disclaimer visible throughout
+
+══════════════════════════════════════════════════════════════
+DEMO FLOW
+══════════════════════════════════════════════════════════════
+
+1. Launch app
+2. Tap "Start Exploring Now" (guest mode)
+3. Enter name and birth date (for personalization)
+4. Tap "Start Journey"
+5. See daily reflection prompt
+6. Type any thought (e.g., "I'm feeling optimistic today")
+7. Observe: response is present-focused, asks follow-up questions
+8. No predictions, no fortune-telling, no future claims
+
+══════════════════════════════════════════════════════════════
+TEST ACCOUNT (if needed)
+══════════════════════════════════════════════════════════════
+
+No account required. The app works in guest mode.
+
+══════════════════════════════════════════════════════════════
+
+We are happy to make any additional changes you recommend.
+
+Thank you for your consideration.

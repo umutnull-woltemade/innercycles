@@ -60,7 +60,7 @@ class DreamWaterScreen extends ConsumerWidget {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                   decoration: BoxDecoration(
-                    color: AppColors.waterElement.withOpacity(0.15),
+                    color: AppColors.waterElement.withValues(alpha: 0.15),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Text(
@@ -134,7 +134,7 @@ class DreamWaterScreen extends ConsumerWidget {
                 const SizedBox(height: 40),
 
                 PageFooterWithDisclaimer(
-                  brandText: 'Rüya İzi — Venus One',
+                  brandText: L10nService.get('dreams.brand_footer', language),
                   disclaimerText: DisclaimerTexts.dreams(language),
                   language: language,
                 ),
@@ -160,7 +160,7 @@ class DreamWaterScreen extends ConsumerWidget {
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w600,
-            color: isDark ? color : color.withOpacity(0.8),
+            color: isDark ? color : color.withValues(alpha: 0.8),
           ),
         ),
         const SizedBox(height: 12),
@@ -201,13 +201,13 @@ class DreamWaterScreen extends ConsumerWidget {
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           color: isDark
-              ? Colors.white.withOpacity(0.05)
-              : AppColors.waterElement.withOpacity(0.08),
+              ? Colors.white.withValues(alpha: 0.05)
+              : AppColors.waterElement.withValues(alpha: 0.08),
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
             color: isDark
-                ? Colors.white.withOpacity(0.1)
-                : AppColors.waterElement.withOpacity(0.2),
+                ? Colors.white.withValues(alpha: 0.1)
+                : AppColors.waterElement.withValues(alpha: 0.2),
           ),
         ),
         child: Row(

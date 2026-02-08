@@ -65,7 +65,7 @@ class DreamFallingScreen extends ConsumerWidget {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                   decoration: BoxDecoration(
-                    color: AppColors.cosmicPurple.withOpacity(0.15),
+                    color: AppColors.cosmicPurple.withValues(alpha: 0.15),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Text(
@@ -139,7 +139,7 @@ class DreamFallingScreen extends ConsumerWidget {
 
                 // Footer with disclaimer
                 PageFooterWithDisclaimer(
-                  brandText: 'Rüya İzi — Venus One',
+                  brandText: L10nService.get('dreams.brand_footer', language),
                   disclaimerText: DisclaimerTexts.dreams(language),
                   language: language,
                 ),
@@ -205,13 +205,13 @@ class DreamFallingScreen extends ConsumerWidget {
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           color: isDark
-              ? Colors.white.withOpacity(0.05)
-              : AppColors.cosmicPurple.withOpacity(0.08),
+              ? Colors.white.withValues(alpha: 0.05)
+              : AppColors.cosmicPurple.withValues(alpha: 0.08),
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
             color: isDark
-                ? Colors.white.withOpacity(0.1)
-                : AppColors.cosmicPurple.withOpacity(0.2),
+                ? Colors.white.withValues(alpha: 0.1)
+                : AppColors.cosmicPurple.withValues(alpha: 0.2),
           ),
         ),
         child: Row(

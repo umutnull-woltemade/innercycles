@@ -1,12 +1,26 @@
 import '../models/planet.dart';
 import '../models/zodiac_sign.dart';
 import '../models/house.dart';
+import '../providers/app_providers.dart';
+import 'l10n_service.dart';
 
 /// Service for generating personalized esoteric interpretations
 class EsotericInterpretationService {
 
+  /// Helper to get localized esoteric interpretation
+  static String _getLocalizedInterpretation(
+    String category,
+    String key,
+    String fallback, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
+    final fullKey = 'esoteric.$category.$key';
+    final localized = L10nService.get(fullKey, language);
+    return localized != fullKey ? localized : fallback;
+  }
+
   /// Get personalized sun sign interpretation
-  static String getSunInterpretation(ZodiacSign sign) {
+  static String getSunInterpretation(ZodiacSign sign, {AppLanguage language = AppLanguage.tr}) {
     final interpretations = {
       ZodiacSign.aries: '''
 Ateş elementiyle yaratılmış ruhun, kozmik iradenin ilk kıvılcımını taşıyor. Koç enerjisi sende, evrenin "Ol!" emrini temsil ediyor - saf yaratıcı güç, başlatıcı enerji.
@@ -118,11 +132,12 @@ Aşırı hassasiyetin, psişik antenin güçlü olduğunun işareti. Enerjetik k
 ''',
     };
 
-    return interpretations[sign] ?? '';
+    final fallback = interpretations[sign] ?? '';
+    return _getLocalizedInterpretation('sun', sign.name, fallback, language: language);
   }
 
   /// Get personalized moon sign interpretation
-  static String getMoonInterpretation(ZodiacSign sign) {
+  static String getMoonInterpretation(ZodiacSign sign, {AppLanguage language = AppLanguage.tr}) {
     final interpretations = {
       ZodiacSign.aries: '''
 Duygusal dünyan ateşle yanıyor - hızlı, yoğun, anlık. Hislerini bastıramazsın, onlar volkanik patlamalar gibi yükselir ve sakinleşir.
@@ -210,11 +225,12 @@ Kaçış eğilimi duygusal yüklenmelerde ortaya çıkabilir. Sınır koymayı v
 ''',
     };
 
-    return interpretations[sign] ?? '';
+    final fallback = interpretations[sign] ?? '';
+    return _getLocalizedInterpretation('moon', sign.name, fallback, language: language);
   }
 
   /// Get personalized rising sign interpretation
-  static String getRisingInterpretation(ZodiacSign sign) {
+  static String getRisingInterpretation(ZodiacSign sign, {AppLanguage language = AppLanguage.tr}) {
     final interpretations = {
       ZodiacSign.aries: '''
 Dünyaya bir savaşçı gibi giriyorsun - enerjik, doğrudan, cesur. İlk izlenimin "güçlü biri" olarak algılanması.
@@ -326,13 +342,16 @@ Yükselen Balık olarak öğrenme alanın: sınır koymak, rüyalar ile gerçekl
 ''',
     };
 
-    return interpretations[sign] ?? '';
+    final fallback = interpretations[sign] ?? '';
+    return _getLocalizedInterpretation('rising', sign.name, fallback, language: language);
   }
 
   /// Get esoteric interpretation for a house with planets
-  static String getHouseInterpretation(House house, List<PlanetPosition> planets) {
+  static String getHouseInterpretation(House house, List<PlanetPosition> planets, {AppLanguage language = AppLanguage.tr}) {
     if (planets.isEmpty) {
-      return 'Bu ev şu anda boş - ama bu "aktif değil" anlamına gelmez. Evin yönetici gezegeni ve yönetici gezegenin konumu bu alanı aktive eder.';
+      return _getLocalizedInterpretation('house', 'empty',
+        'Bu ev şu anda boş - ama bu "aktif değil" anlamına gelmez. Evin yönetici gezegeni ve yönetici gezegenin konumu bu alanı aktive eder.',
+        language: language);
     }
 
     final planetNames = planets.map((p) => p.planet.nameTr).join(', ');
@@ -369,7 +388,7 @@ Yükselen Balık olarak öğrenme alanın: sınır koymak, rüyalar ile gerçekl
   }
 
   /// Get Mercury sign interpretation - Mind & Communication
-  static String getMercuryInterpretation(ZodiacSign sign) {
+  static String getMercuryInterpretation(ZodiacSign sign, {AppLanguage language = AppLanguage.tr}) {
     final interpretations = {
       ZodiacSign.aries: '''
 Zihnin bir ok gibi hızlı ve doğrudan. Düşüncelerini anında ifade edersin, diplomasi yerine dürüstlük tercih edersin. Fikirlerini savunmaktan çekinmezsin.
@@ -456,11 +475,12 @@ Zihnin sezgisel ve imgelem dolu. Düşüncelerini sanatsal, sembolik, rüya gibi
 Öğrenme stilin sezgisel ve yaratıcı - müzikle, görsellerle, hikayelerle öğrenirsin.
 ''',
     };
-    return interpretations[sign] ?? '';
+    final fallback = interpretations[sign] ?? '';
+    return _getLocalizedInterpretation('mercury', sign.name, fallback, language: language);
   }
 
   /// Get Venus sign interpretation - Love & Values
-  static String getVenusInterpretation(ZodiacSign sign) {
+  static String getVenusInterpretation(ZodiacSign sign, {AppLanguage language = AppLanguage.tr}) {
     final interpretations = {
       ZodiacSign.aries: '''
 Aşkta bir savaşçısın - tutkulu, doğrudan, fetihçi. İlk adımı atmaktan çekinmezsin, kovalamacayı seversin.
@@ -571,11 +591,12 @@ Aşkta bir rüyacısın - romantik, fedakar, sınırsız. Koşulsuz sevgi senin 
 Estetik anlayışın rüya gibi - pastel, şeffaf, romantik, fairy-tale stiller.
 ''',
     };
-    return interpretations[sign] ?? '';
+    final fallback = interpretations[sign] ?? '';
+    return _getLocalizedInterpretation('venus', sign.name, fallback, language: language);
   }
 
   /// Get Mars sign interpretation - Action & Desire
-  static String getMarsInterpretation(ZodiacSign sign) {
+  static String getMarsInterpretation(ZodiacSign sign, {AppLanguage language = AppLanguage.tr}) {
     final interpretations = {
       ZodiacSign.aries: '''
 İraden bir ateş topu - hızlı, direkt, cesaretli. Engellerle karşılaştığında önce vurur sonra düşünürsün.
@@ -686,11 +707,12 @@ Motivasyonun ilham ve anlam. Sıradan görevler seni motive etmez, büyük amaç
 Cinsel enerjin romantik ve fantezi dolu. Duygusal ve ruhsal bağ şart.
 ''',
     };
-    return interpretations[sign] ?? '';
+    final fallback = interpretations[sign] ?? '';
+    return _getLocalizedInterpretation('mars', sign.name, fallback, language: language);
   }
 
   /// Get detailed planet in house interpretation
-  static String getPlanetInHouseInterpretation(Planet planet, int houseNumber) {
+  static String getPlanetInHouseInterpretation(Planet planet, int houseNumber, {AppLanguage language = AppLanguage.tr}) {
     final key = '${planet.name}_$houseNumber';
     final interpretations = {
       // Sun in Houses
@@ -833,11 +855,12 @@ Cinsel enerjin romantik ve fantezi dolu. Duygusal ve ruhsal bağ şart.
       'pluto_11': 'Plüton 11. evde - Gruplar ve ideallerde dönüşüm. Güçlü sosyal etki, kolektif karmayı dönüştürme.',
       'pluto_12': 'Plüton 12. evde - Bilinçaltında derin güç. Geçmiş yaşam karması, spiritüel dönüşüm. Şifacı potansiyeli.',
     };
-    return interpretations[key] ?? '';
+    final fallback = interpretations[key] ?? '';
+    return _getLocalizedInterpretation('planet_house', key, fallback, language: language);
   }
 
   /// Get Jupiter sign interpretation - Growth & Expansion
-  static String getJupiterInterpretation(ZodiacSign sign) {
+  static String getJupiterInterpretation(ZodiacSign sign, {AppLanguage language = AppLanguage.tr}) {
     final interpretations = {
       ZodiacSign.aries: '''
 Jüpiter Koç burcunda - şansın ve büyümen cesaret, girişimcilik ve öncü olmakla bağlantılı. Risk aldığında evren seni ödüllendiriyor.
@@ -948,11 +971,12 @@ Felsefik bakış açın "hepimiz biriz" üzerine kurulu. Koşulsuz sevgi senin b
 Doğal sezgi, spiritüel koruma ve mucize çekme gücün var. Evren seninle konuşuyor - dinle.
 ''',
     };
-    return interpretations[sign] ?? '';
+    final fallback = interpretations[sign] ?? '';
+    return _getLocalizedInterpretation('jupiter', sign.name, fallback, language: language);
   }
 
   /// Get Saturn sign interpretation - Structure & Discipline
-  static String getSaturnInterpretation(ZodiacSign sign) {
+  static String getSaturnInterpretation(ZodiacSign sign, {AppLanguage language = AppLanguage.tr}) {
     final interpretations = {
       ZodiacSign.aries: '''
 Satürn Koç burcunda - düşüş pozisyonu. Bağımsızlık ve eylem konularında karmik dersler var. Sabır öğrenme alanın.
@@ -1063,11 +1087,12 @@ Olgunlaşma yolun rüyaları gerçeğe dönüştürmek. Spiritüel deneyimlere p
 Ustalaştığında: Ayakları yerde bir mistik olursun. Ruhsal bilgeliği somutlaştırırsın.
 ''',
     };
-    return interpretations[sign] ?? '';
+    final fallback = interpretations[sign] ?? '';
+    return _getLocalizedInterpretation('saturn', sign.name, fallback, language: language);
   }
 
   /// Get Uranus sign interpretation - Innovation & Liberation
-  static String getUranusInterpretation(ZodiacSign sign) {
+  static String getUranusInterpretation(ZodiacSign sign, {AppLanguage language = AppLanguage.tr}) {
     final interpretations = {
       ZodiacSign.aries: '''
 Uranüs Koç burcunda (2010-2019) - Nesil yerleşimi. Bireysellik ve bağımsızlıkta radikal yenilik enerjisi taşıyorsun.
@@ -1178,11 +1203,12 @@ Kolektif tema: "Ruhaniyet nedir? Gerçeklik nedir?" sorularını yeniden tanıml
 Kişisel uyanışın spiritüel ve yaratıcı alanlarda. Geleneksel din ve sanat anlayışını sorgularsın.
 ''',
     };
-    return interpretations[sign] ?? '';
+    final fallback = interpretations[sign] ?? '';
+    return _getLocalizedInterpretation('uranus', sign.name, fallback, language: language);
   }
 
   /// Get Neptune sign interpretation - Dreams & Spirituality
-  static String getNeptuneInterpretation(ZodiacSign sign) {
+  static String getNeptuneInterpretation(ZodiacSign sign, {AppLanguage language = AppLanguage.tr}) {
     final interpretations = {
       ZodiacSign.aries: '''
 Neptün Koç burcunda (2025-2039) - Nesil yerleşimi. Bireysel kimlik ve öncülükte spiritüel dönüşüm başlıyor.
@@ -1293,11 +1319,12 @@ Kolektif rüya: Evrensel sevgi, tüm varlıklarla birlik, koşulsuz şefkat. Oky
 Dikkat alanı: Gerçeklikten kaçış, bağımlılıklar, sınır problemleri. Topraklanmış spiritüalite öğrenme alanı.
 ''',
     };
-    return interpretations[sign] ?? '';
+    final fallback = interpretations[sign] ?? '';
+    return _getLocalizedInterpretation('neptune', sign.name, fallback, language: language);
   }
 
   /// Get Pluto sign interpretation - Transformation & Power
-  static String getPlutoInterpretation(ZodiacSign sign) {
+  static String getPlutoInterpretation(ZodiacSign sign, {AppLanguage language = AppLanguage.tr}) {
     final interpretations = {
       ZodiacSign.aries: '''
 Plüton Koç burcunda (1822-1853, 2023-2044) - Nesil yerleşimi. Kimlik ve bireysellikte radikal dönüşüm başlıyor.
@@ -1408,11 +1435,12 @@ Kolektif dönüşüm: Din ve ruhaniyet anlayışının ölümü ve yeniden doğu
 Gölge çalışması: Kaçış, illüzyon, kurban psikolojisi. Topraklanmış aşkınlık.
 ''',
     };
-    return interpretations[sign] ?? '';
+    final fallback = interpretations[sign] ?? '';
+    return _getLocalizedInterpretation('pluto', sign.name, fallback, language: language);
   }
 
   /// Get element balance interpretation
-  static String getElementBalanceInterpretation(Map<Element, int> elementCounts) {
+  static String getElementBalanceInterpretation(Map<Element, int> elementCounts, {AppLanguage language = AppLanguage.tr}) {
     final total = elementCounts.values.fold(0, (sum, count) => sum + count);
     if (total == 0) return '';
 

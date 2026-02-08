@@ -100,9 +100,9 @@ class _CosmicDiscoveryScreenState extends ConsumerState<CosmicDiscoveryScreen>
             child: Container(
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.1),
+                color: Colors.white.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: Colors.white.withOpacity(0.2)),
+                border: Border.all(color: Colors.white.withValues(alpha: 0.2)),
               ),
               child: const Icon(Icons.arrow_back_rounded, color: Colors.white, size: 22),
             ),
@@ -122,7 +122,7 @@ class _CosmicDiscoveryScreenState extends ConsumerState<CosmicDiscoveryScreen>
                           colors: [widget.primaryColor, Colors.white, widget.primaryColor],
                         ).createShader(bounds),
                         child: Text(
-                          widget.title,
+                          widget.type.getLocalizedTitle(language),
                           style: const TextStyle(
                             fontSize: 22,
                             fontWeight: FontWeight.bold,
@@ -135,10 +135,10 @@ class _CosmicDiscoveryScreenState extends ConsumerState<CosmicDiscoveryScreen>
                   ],
                 ),
                 Text(
-                  widget.subtitle,
+                  widget.type.getLocalizedSubtitle(language),
                   style: TextStyle(
                     fontSize: 12,
-                    color: Colors.white.withOpacity(0.7),
+                    color: Colors.white.withValues(alpha: 0.7),
                   ),
                 ),
               ],
@@ -151,10 +151,10 @@ class _CosmicDiscoveryScreenState extends ConsumerState<CosmicDiscoveryScreen>
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [widget.primaryColor.withOpacity(0.3), widget.primaryColor.withOpacity(0.1)],
+                  colors: [widget.primaryColor.withValues(alpha: 0.3), widget.primaryColor.withValues(alpha: 0.1)],
                 ),
                 borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: widget.primaryColor.withOpacity(0.5)),
+                border: Border.all(color: widget.primaryColor.withValues(alpha: 0.5)),
               ),
               child: const Icon(Icons.share_rounded, color: Colors.white, size: 22),
             ),
@@ -172,16 +172,16 @@ class _CosmicDiscoveryScreenState extends ConsumerState<CosmicDiscoveryScreen>
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            widget.primaryColor.withOpacity(0.3),
-            widget.primaryColor.withOpacity(0.1),
-            Colors.black.withOpacity(0.3),
+            widget.primaryColor.withValues(alpha: 0.3),
+            widget.primaryColor.withValues(alpha: 0.1),
+            Colors.black.withValues(alpha: 0.3),
           ],
         ),
         borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: widget.primaryColor.withOpacity(0.5), width: 2),
+        border: Border.all(color: widget.primaryColor.withValues(alpha: 0.5), width: 2),
         boxShadow: [
           BoxShadow(
-            color: widget.primaryColor.withOpacity(0.3),
+            color: widget.primaryColor.withValues(alpha: 0.3),
             blurRadius: 20,
             offset: const Offset(0, 10),
           ),
@@ -199,7 +199,7 @@ class _CosmicDiscoveryScreenState extends ConsumerState<CosmicDiscoveryScreen>
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   gradient: RadialGradient(
-                    colors: [sign.color.withOpacity(0.4), sign.color.withOpacity(0.1)],
+                    colors: [sign.color.withValues(alpha: 0.4), sign.color.withValues(alpha: 0.1)],
                   ),
                   shape: BoxShape.circle,
                   border: Border.all(color: sign.color, width: 2),
@@ -249,12 +249,12 @@ class _CosmicDiscoveryScreenState extends ConsumerState<CosmicDiscoveryScreen>
         padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [widget.primaryColor, widget.primaryColor.withOpacity(0.7)],
+            colors: [widget.primaryColor, widget.primaryColor.withValues(alpha: 0.7)],
           ),
           borderRadius: BorderRadius.circular(30),
           boxShadow: [
             BoxShadow(
-              color: widget.primaryColor.withOpacity(0.5),
+              color: widget.primaryColor.withValues(alpha: 0.5),
               blurRadius: 20,
               offset: const Offset(0, 8),
             ),
@@ -293,12 +293,12 @@ class _CosmicDiscoveryScreenState extends ConsumerState<CosmicDiscoveryScreen>
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [
-                Colors.white.withOpacity(0.1),
-                Colors.white.withOpacity(0.05),
+                Colors.white.withValues(alpha: 0.1),
+                Colors.white.withValues(alpha: 0.05),
               ],
             ),
             borderRadius: BorderRadius.circular(20),
-            border: Border.all(color: widget.primaryColor.withOpacity(0.3)),
+            border: Border.all(color: widget.primaryColor.withValues(alpha: 0.3)),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -347,9 +347,9 @@ class _CosmicDiscoveryScreenState extends ConsumerState<CosmicDiscoveryScreen>
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: widget.primaryColor.withOpacity(0.1),
+        color: widget.primaryColor.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: widget.primaryColor.withOpacity(0.3)),
+        border: Border.all(color: widget.primaryColor.withValues(alpha: 0.3)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -372,7 +372,7 @@ class _CosmicDiscoveryScreenState extends ConsumerState<CosmicDiscoveryScreen>
           AutoGlossaryText(
             text: content,
             style: TextStyle(
-              color: Colors.white.withOpacity(0.9),
+              color: Colors.white.withValues(alpha: 0.9),
               fontSize: 14,
               height: 1.5,
             ),
@@ -387,9 +387,9 @@ class _CosmicDiscoveryScreenState extends ConsumerState<CosmicDiscoveryScreen>
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.amber.withOpacity(0.1),
+        color: Colors.amber.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Colors.amber.withOpacity(0.5)),
+        border: Border.all(color: Colors.amber.withValues(alpha: 0.5)),
       ),
       child: Row(
         children: [
@@ -417,12 +417,12 @@ class _CosmicDiscoveryScreenState extends ConsumerState<CosmicDiscoveryScreen>
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            const Color(0xFFE91E63).withOpacity(0.2),
-            const Color(0xFFFF5722).withOpacity(0.1),
+            const Color(0xFFE91E63).withValues(alpha: 0.2),
+            const Color(0xFFFF5722).withValues(alpha: 0.1),
           ],
         ),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: const Color(0xFFE91E63).withOpacity(0.5)),
+        border: Border.all(color: const Color(0xFFE91E63).withValues(alpha: 0.5)),
       ),
       child: Column(
         children: [
@@ -536,6 +536,56 @@ enum CosmicDiscoveryType {
   soulMate,
   relationshipKarma,
   celebrityTwin,
+}
+
+/// Extension for getting localized title/subtitle for CosmicDiscoveryType
+extension CosmicDiscoveryTypeL10n on CosmicDiscoveryType {
+  /// Get the l10n key for this type (maps enum to JSON key)
+  String get _l10nKey {
+    switch (this) {
+      case CosmicDiscoveryType.dailySummary: return 'daily_summary';
+      case CosmicDiscoveryType.moonEnergy: return 'moon_energy';
+      case CosmicDiscoveryType.moonRituals: return 'moon_rituals';
+      case CosmicDiscoveryType.loveEnergy: return 'love_energy';
+      case CosmicDiscoveryType.abundanceEnergy: return 'abundance_energy';
+      case CosmicDiscoveryType.spiritualTransformation: return 'spiritual_transformation';
+      case CosmicDiscoveryType.lifePurpose: return 'life_purpose';
+      case CosmicDiscoveryType.subconsciousPatterns: return 'subconscious_patterns';
+      case CosmicDiscoveryType.karmaLessons: return 'karma_lessons';
+      case CosmicDiscoveryType.soulContract: return 'soul_contract';
+      case CosmicDiscoveryType.innerPower: return 'inner_power';
+      case CosmicDiscoveryType.shadowSelf: return 'shadow_self';
+      case CosmicDiscoveryType.leadershipStyle: return 'leadership_style';
+      case CosmicDiscoveryType.heartbreak: return 'heartbreak';
+      case CosmicDiscoveryType.redFlags: return 'red_flags';
+      case CosmicDiscoveryType.greenFlags: return 'green_flags';
+      case CosmicDiscoveryType.flirtStyle: return 'flirt_style';
+      case CosmicDiscoveryType.tarotCard: return 'tarot_card';
+      case CosmicDiscoveryType.auraColor: return 'aura_color';
+      case CosmicDiscoveryType.crystalGuide: return 'crystal_guide';
+      case CosmicDiscoveryType.chakraBalance: return 'chakra_balance';
+      case CosmicDiscoveryType.lifeNumber: return 'life_number';
+      case CosmicDiscoveryType.kabbalaPath: return 'kabbala_path';
+      case CosmicDiscoveryType.saturnLessons: return 'saturn_lessons';
+      case CosmicDiscoveryType.birthdayEnergy: return 'birthday_energy';
+      case CosmicDiscoveryType.eclipseEffect: return 'eclipse_effect';
+      case CosmicDiscoveryType.transitFlow: return 'transit_flow';
+      case CosmicDiscoveryType.compatibilityAnalysis: return 'compatibility_analysis';
+      case CosmicDiscoveryType.soulMate: return 'soul_mate';
+      case CosmicDiscoveryType.relationshipKarma: return 'relationship_karma';
+      case CosmicDiscoveryType.celebrityTwin: return 'celebrity_twin';
+    }
+  }
+
+  /// Get localized title for this type
+  String getLocalizedTitle(AppLanguage language) {
+    return L10nService.get('cosmic_discovery.routes.$_l10nKey.title', language);
+  }
+
+  /// Get localized subtitle for this type
+  String getLocalizedSubtitle(AppLanguage language) {
+    return L10nService.get('cosmic_discovery.routes.$_l10nKey.subtitle', language);
+  }
 }
 
 /// Kozmik Keşif İçerik Sağlayıcı

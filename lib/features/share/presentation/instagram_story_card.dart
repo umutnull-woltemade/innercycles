@@ -38,7 +38,7 @@ class InstagramStoryCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: sign.color.withOpacity(0.4),
+            color: sign.color.withValues(alpha: 0.4),
             blurRadius: 30,
             spreadRadius: 5,
           ),
@@ -125,7 +125,7 @@ class InstagramStoryCard extends StatelessWidget {
           end: Alignment.bottomRight,
           colors: [
             const Color(0xFF0D0D1A),
-            sign.color.withOpacity(0.4),
+            sign.color.withValues(alpha: 0.4),
             const Color(0xFF1A0D2E),
             const Color(0xFF0D0D1A),
           ],
@@ -155,8 +155,8 @@ class InstagramStoryCard extends StatelessWidget {
               shape: BoxShape.circle,
               gradient: RadialGradient(
                 colors: [
-                  sign.color.withOpacity(0.5),
-                  sign.color.withOpacity(0.1),
+                  sign.color.withValues(alpha: 0.5),
+                  sign.color.withValues(alpha: 0.1),
                   Colors.transparent,
                 ],
               ),
@@ -173,8 +173,8 @@ class InstagramStoryCard extends StatelessWidget {
               shape: BoxShape.circle,
               gradient: RadialGradient(
                 colors: [
-                  MysticalColors.cosmicPurple.withOpacity(0.4),
-                  MysticalColors.cosmicPurple.withOpacity(0.1),
+                  MysticalColors.cosmicPurple.withValues(alpha: 0.4),
+                  MysticalColors.cosmicPurple.withValues(alpha: 0.1),
                   Colors.transparent,
                 ],
               ),
@@ -197,13 +197,13 @@ class InstagramStoryCard extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            const Color(0xFFFF6B9D).withOpacity(0.3),
-            const Color(0xFF9C27B0).withOpacity(0.3),
+            const Color(0xFFFF6B9D).withValues(alpha: 0.3),
+            const Color(0xFF9C27B0).withValues(alpha: 0.3),
           ],
         ),
         borderRadius: BorderRadius.circular(25),
         border: Border.all(
-          color: const Color(0xFFFF6B9D).withOpacity(0.5),
+          color: const Color(0xFFFF6B9D).withValues(alpha: 0.5),
           width: 1.5,
         ),
       ),
@@ -255,7 +255,7 @@ class InstagramStoryCard extends StatelessWidget {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 border: Border.all(
-                  color: sign.color.withOpacity(0.3),
+                  color: sign.color.withValues(alpha: 0.3),
                   width: 2,
                 ),
               ),
@@ -268,13 +268,13 @@ class InstagramStoryCard extends StatelessWidget {
                 shape: BoxShape.circle,
                 gradient: RadialGradient(
                   colors: [
-                    sign.color.withOpacity(0.5),
-                    sign.color.withOpacity(0.2),
+                    sign.color.withValues(alpha: 0.5),
+                    sign.color.withValues(alpha: 0.2),
                   ],
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: sign.color.withOpacity(0.6),
+                    color: sign.color.withValues(alpha: 0.6),
                     blurRadius: 40,
                     spreadRadius: 8,
                   ),
@@ -307,7 +307,7 @@ class InstagramStoryCard extends StatelessWidget {
             color: Colors.white,
             letterSpacing: 8,
             shadows: [
-              Shadow(color: sign.color.withOpacity(0.8), blurRadius: 15),
+              Shadow(color: sign.color.withValues(alpha: 0.8), blurRadius: 15),
             ],
           ),
         ),
@@ -323,9 +323,9 @@ class InstagramStoryCard extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
               decoration: BoxDecoration(
-                color: sign.color.withOpacity(0.25),
+                color: sign.color.withValues(alpha: 0.25),
                 borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: sign.color.withOpacity(0.5)),
+                border: Border.all(color: sign.color.withValues(alpha: 0.5)),
               ),
               child: Text(
                 '${_getElementEmoji(sign.element)} ${_getElementName(sign.element)}',
@@ -340,7 +340,7 @@ class InstagramStoryCard extends StatelessWidget {
               sign.dateRange,
               style: GoogleFonts.inter(
                 fontSize: 10,
-                color: Colors.white.withOpacity(0.7),
+                color: Colors.white.withValues(alpha: 0.7),
                 letterSpacing: 1,
               ),
             ),
@@ -364,12 +364,12 @@ class InstagramStoryCard extends StatelessWidget {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            sign.color.withOpacity(0.2),
-            const Color(0xFF9C27B0).withOpacity(0.15),
+            sign.color.withValues(alpha: 0.2),
+            const Color(0xFF9C27B0).withValues(alpha: 0.15),
           ],
         ),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: sign.color.withOpacity(0.4)),
+        border: Border.all(color: sign.color.withValues(alpha: 0.4)),
       ),
       child: Column(
         children: [
@@ -389,7 +389,7 @@ class InstagramStoryCard extends StatelessWidget {
             style: GoogleFonts.inter(
               fontSize: 14,
               fontWeight: FontWeight.w600,
-              color: Colors.white.withOpacity(0.95),
+              color: Colors.white.withValues(alpha: 0.95),
               height: 1.4,
             ),
           ),
@@ -413,17 +413,17 @@ class InstagramStoryCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.05),
+        color: Colors.white.withValues(alpha: 0.05),
         borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: Colors.white.withOpacity(0.1)),
+        border: Border.all(color: Colors.white.withValues(alpha: 0.1)),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           _buildBigThreeItem('☀️', L10nService.get('share.instagram.sun', language), sign),
-          Container(width: 1, height: 35, color: Colors.white.withOpacity(0.1)),
+          Container(width: 1, height: 35, color: Colors.white.withValues(alpha: 0.1)),
           _buildBigThreeItem('🌙', L10nService.get('share.instagram.moon', language), moonSign ?? sign),
-          Container(width: 1, height: 35, color: Colors.white.withOpacity(0.1)),
+          Container(width: 1, height: 35, color: Colors.white.withValues(alpha: 0.1)),
           _buildBigThreeItem('⬆️', L10nService.get('share.instagram.rising', language), risingSign ?? sign),
         ],
       ),
@@ -450,7 +450,7 @@ class InstagramStoryCard extends StatelessWidget {
           style: GoogleFonts.inter(
             fontSize: 10,
             fontWeight: FontWeight.w600,
-            color: Colors.white.withOpacity(0.8),
+            color: Colors.white.withValues(alpha: 0.8),
           ),
         ),
       ],
@@ -472,12 +472,12 @@ class InstagramStoryCard extends StatelessWidget {
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              sign.color.withOpacity(0.35),
-              sign.color.withOpacity(0.15),
+              sign.color.withValues(alpha: 0.35),
+              sign.color.withValues(alpha: 0.15),
             ],
           ),
           borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: sign.color.withOpacity(0.5)),
+          border: Border.all(color: sign.color.withValues(alpha: 0.5)),
         ),
         child: Text(
           trait,
@@ -513,20 +513,20 @@ class InstagramStoryCard extends StatelessWidget {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            const Color(0xFF9C27B0).withOpacity(0.25),
-            const Color(0xFF673AB7).withOpacity(0.15),
+            const Color(0xFF9C27B0).withValues(alpha: 0.25),
+            const Color(0xFF673AB7).withValues(alpha: 0.15),
           ],
         ),
         borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: const Color(0xFF9C27B0).withOpacity(0.4)),
+        border: Border.all(color: const Color(0xFF9C27B0).withValues(alpha: 0.4)),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           _buildEsotericItem('💎', L10nService.get('share.instagram.crystal', language), crystal['name']!, crystal['emoji']!),
-          Container(width: 1, height: 35, color: Colors.white.withOpacity(0.1)),
+          Container(width: 1, height: 35, color: Colors.white.withValues(alpha: 0.1)),
           _buildEsotericItem('🃏', L10nService.get('share.instagram.tarot', language), tarot['name']!, tarot['emoji']!),
-          Container(width: 1, height: 35, color: Colors.white.withOpacity(0.1)),
+          Container(width: 1, height: 35, color: Colors.white.withValues(alpha: 0.1)),
           _buildEsotericItem('🔮', L10nService.get('share.instagram.chakra', language), chakra['name']!, chakra['emoji']!),
         ],
       ),
@@ -546,7 +546,7 @@ class InstagramStoryCard extends StatelessWidget {
               style: GoogleFonts.inter(
                 fontSize: 8,
                 fontWeight: FontWeight.w600,
-                color: Colors.white.withOpacity(0.6),
+                color: Colors.white.withValues(alpha: 0.6),
                 letterSpacing: 1,
               ),
             ),
@@ -563,7 +563,7 @@ class InstagramStoryCard extends StatelessWidget {
               style: GoogleFonts.inter(
                 fontSize: 9,
                 fontWeight: FontWeight.w700,
-                color: Colors.white.withOpacity(0.9),
+                color: Colors.white.withValues(alpha: 0.9),
               ),
             ),
           ],
@@ -624,12 +624,12 @@ class InstagramStoryCard extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            MysticalColors.starGold.withOpacity(0.2),
-            const Color(0xFFFF6B9D).withOpacity(0.15),
+            MysticalColors.starGold.withValues(alpha: 0.2),
+            const Color(0xFFFF6B9D).withValues(alpha: 0.15),
           ],
         ),
         borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: MysticalColors.starGold.withOpacity(0.4)),
+        border: Border.all(color: MysticalColors.starGold.withValues(alpha: 0.4)),
       ),
       child: Row(
         children: [
@@ -654,7 +654,7 @@ class InstagramStoryCard extends StatelessWidget {
                   style: GoogleFonts.inter(
                     fontSize: 10,
                     fontWeight: FontWeight.w500,
-                    color: Colors.white.withOpacity(0.9),
+                    color: Colors.white.withValues(alpha: 0.9),
                     height: 1.3,
                   ),
                 ),
@@ -684,9 +684,9 @@ class InstagramStoryCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.05),
+        color: Colors.white.withValues(alpha: 0.05),
         borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: MysticalColors.starGold.withOpacity(0.3)),
+        border: Border.all(color: MysticalColors.starGold.withValues(alpha: 0.3)),
       ),
       child: Column(
         children: [
@@ -702,7 +702,7 @@ class InstagramStoryCard extends StatelessWidget {
                     style: GoogleFonts.inter(
                       fontSize: 10,
                       fontWeight: FontWeight.w700,
-                      color: Colors.white.withOpacity(0.7),
+                      color: Colors.white.withValues(alpha: 0.7),
                       letterSpacing: 1,
                     ),
                   ),
@@ -732,7 +732,7 @@ class InstagramStoryCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(4),
             child: LinearProgressIndicator(
               value: luck / 10,
-              backgroundColor: Colors.white.withOpacity(0.1),
+              backgroundColor: Colors.white.withValues(alpha: 0.1),
               valueColor: AlwaysStoppedAnimation<Color>(
                 luck >= 8 ? Colors.green : luck >= 6 ? MysticalColors.starGold : Colors.orange,
               ),
@@ -756,18 +756,18 @@ class InstagramStoryCard extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            const Color(0xFFE91E63).withOpacity(0.2),
-            const Color(0xFF9C27B0).withOpacity(0.15),
+            const Color(0xFFE91E63).withValues(alpha: 0.2),
+            const Color(0xFF9C27B0).withValues(alpha: 0.15),
           ],
         ),
         borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: const Color(0xFFE91E63).withOpacity(0.4)),
+        border: Border.all(color: const Color(0xFFE91E63).withValues(alpha: 0.4)),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           _buildMatchItem('💕', L10nService.get('share.instagram.compatible', language), bestMatch, true),
-          Container(width: 1, height: 30, color: Colors.white.withOpacity(0.1)),
+          Container(width: 1, height: 30, color: Colors.white.withValues(alpha: 0.1)),
           _buildMatchItem('💔', L10nService.get('share.instagram.warning', language), worstMatch, false),
         ],
       ),
@@ -786,7 +786,7 @@ class InstagramStoryCard extends StatelessWidget {
               style: GoogleFonts.inter(
                 fontSize: 9,
                 fontWeight: FontWeight.w600,
-                color: Colors.white.withOpacity(0.6),
+                color: Colors.white.withValues(alpha: 0.6),
                 letterSpacing: 1,
               ),
             ),
@@ -796,10 +796,10 @@ class InstagramStoryCard extends StatelessWidget {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
           decoration: BoxDecoration(
-            color: (isGood ? Colors.green : Colors.red).withOpacity(0.2),
+            color: (isGood ? Colors.green : Colors.red).withValues(alpha: 0.2),
             borderRadius: BorderRadius.circular(8),
             border: Border.all(
-              color: (isGood ? Colors.green : Colors.red).withOpacity(0.4),
+              color: (isGood ? Colors.green : Colors.red).withValues(alpha: 0.4),
             ),
           ),
           child: Row(
@@ -812,7 +812,7 @@ class InstagramStoryCard extends StatelessWidget {
                 style: GoogleFonts.inter(
                   fontSize: 10,
                   fontWeight: FontWeight.w600,
-                  color: Colors.white.withOpacity(0.9),
+                  color: Colors.white.withValues(alpha: 0.9),
                 ),
               ),
             ],
@@ -870,12 +870,12 @@ class InstagramStoryCard extends StatelessWidget {
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                MysticalColors.starGold.withOpacity(0.3),
-                const Color(0xFFFF6B9D).withOpacity(0.2),
+                MysticalColors.starGold.withValues(alpha: 0.3),
+                const Color(0xFFFF6B9D).withValues(alpha: 0.2),
               ],
             ),
             borderRadius: BorderRadius.circular(20),
-            border: Border.all(color: MysticalColors.starGold.withOpacity(0.5)),
+            border: Border.all(color: MysticalColors.starGold.withValues(alpha: 0.5)),
           ),
           child: Row(
             mainAxisSize: MainAxisSize.min,
@@ -901,7 +901,7 @@ class InstagramStoryCard extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(width: 30, height: 1, color: MysticalColors.starGold.withOpacity(0.4)),
+            Container(width: 30, height: 1, color: MysticalColors.starGold.withValues(alpha: 0.4)),
             const SizedBox(width: 10),
             Text(
               '✨ ASTROBOBO ✨',
@@ -913,7 +913,7 @@ class InstagramStoryCard extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 10),
-            Container(width: 30, height: 1, color: MysticalColors.starGold.withOpacity(0.4)),
+            Container(width: 30, height: 1, color: MysticalColors.starGold.withValues(alpha: 0.4)),
           ],
         ),
       ],
@@ -958,7 +958,7 @@ class _StarsPainter extends CustomPainter {
       final radius = random.nextDouble() * 1.5 + 0.5;
       final opacity = random.nextDouble() * 0.5 + 0.3;
 
-      paint.color = Colors.white.withOpacity(opacity);
+      paint.color = Colors.white.withValues(alpha: opacity);
       canvas.drawCircle(Offset(x, y), radius, paint);
     }
   }
@@ -975,7 +975,7 @@ class _ConstellationPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = color.withOpacity(0.15)
+      ..color = color.withValues(alpha: 0.15)
       ..strokeWidth = 1
       ..style = PaintingStyle.stroke;
 
@@ -989,7 +989,7 @@ class _ConstellationPainter extends CustomPainter {
 
       canvas.drawLine(Offset(startX, startY), Offset(endX, endY), paint);
 
-      final dotPaint = Paint()..color = color.withOpacity(0.3);
+      final dotPaint = Paint()..color = color.withValues(alpha: 0.3);
       canvas.drawCircle(Offset(startX, startY), 2, dotPaint);
       canvas.drawCircle(Offset(endX, endY), 2, dotPaint);
     }

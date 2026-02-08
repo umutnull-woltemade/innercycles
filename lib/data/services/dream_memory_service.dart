@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/dream_memory.dart';
+import '../providers/app_providers.dart';
+import 'l10n_service.dart';
 
 /// Dream Memory Service - Manages dream storage, retrieval, and pattern detection
 /// This is the core retention engine - creates emotional continuity between sessions
@@ -209,7 +211,7 @@ class DreamMemoryService {
   }
 
   /// Detect new patterns (called after saving a dream)
-  Future<PatternAlert?> detectNewPattern(Dream dream) async {
+  Future<PatternAlert?> detectNewPattern(Dream dream, {AppLanguage language = AppLanguage.tr}) async {
     final memory = await getDreamMemory();
 
     // Check for recurring symbol alert
@@ -218,8 +220,11 @@ class DreamMemoryService {
       if (occurrence != null && occurrence.count == 3) {
         return PatternAlert(
           type: PatternAlertType.recurringSymbol,
-          title: 'Tekrarlayan Sembol Tespit Edildi',
-          message: '${_getSymbolEmoji(symbol)} "$symbol" sembolü rüyalarında 3. kez belirdi. Bu senin için özel bir anlam taşıyor olabilir.',
+          title: L10nService.get('dreams.alerts.recurring_symbol_title', language),
+          message: L10nService.getWithParams('dreams.alerts.recurring_symbol_message', language, params: {
+            'emoji': _getSymbolEmoji(symbol),
+            'symbol': symbol,
+          }),
           symbol: symbol,
           count: 3,
         );
@@ -230,8 +235,8 @@ class DreamMemoryService {
     if (memory.milestones.currentStreak == 7) {
       return PatternAlert(
         type: PatternAlertType.streakMilestone,
-        title: '7 Günlük Seri!',
-        message: 'Harika! 7 gündür rüyalarını kaydediyorsun. Bilinçaltınla bağlantın güçleniyor.',
+        title: L10nService.get('dreams.alerts.streak_7_title', language),
+        message: L10nService.get('dreams.alerts.streak_7_message', language),
         count: 7,
       );
     }
@@ -240,8 +245,8 @@ class DreamMemoryService {
     if (memory.milestones.dreamCount == 10) {
       return PatternAlert(
         type: PatternAlertType.dreamMilestone,
-        title: '10. Rüya!',
-        message: 'İlk 10 rüyana ulaştın. Artık örüntüler ortaya çıkmaya başlıyor.',
+        title: L10nService.get('dreams.alerts.dream_10_title', language),
+        message: L10nService.get('dreams.alerts.dream_10_message', language),
         count: 10,
       );
     }

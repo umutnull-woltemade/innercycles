@@ -260,24 +260,30 @@ extension MoonPhaseExtension on MoonPhase {
     }
   }
 
-  String get meaning {
+  String get meaning => localizedMeaning(AppLanguage.tr);
+
+  String localizedMeaning(AppLanguage language) {
+    final key = 'moon.phase_meanings.${_moonPhaseToKey(this)}';
+    final localized = L10nService.get(key, language);
+    if (localized != key) return localized;
+    // Fallback
     switch (this) {
       case MoonPhase.newMoon:
-        return 'Yeni başlangıçlar, niyet koyma ve içe dönüş zamanı.';
+        return 'A time for new beginnings, setting intentions, and introspection.';
       case MoonPhase.waxingCrescent:
-        return 'Niyetleri güçlendirme, harekete geçme ve büyüme zamanı.';
+        return 'A time to strengthen intentions, take action, and grow.';
       case MoonPhase.firstQuarter:
-        return 'Karar verme, engelleri aşma ve kararlılık zamanı.';
+        return 'A time for decision-making, overcoming obstacles, and determination.';
       case MoonPhase.waxingGibbous:
-        return 'İnce ayarlamalar, sabır ve detaylara odaklanma zamanı.';
+        return 'A time for fine-tuning, patience, and focusing on details.';
       case MoonPhase.fullMoon:
-        return 'Tamamlanma, aydınlanma ve duyguların zirve yaptığı zaman.';
+        return 'A time of completion, illumination, and peak emotions.';
       case MoonPhase.waningGibbous:
-        return 'Paylaşma, öğretme ve şükran zamanı.';
+        return 'A time for sharing, teaching, and gratitude.';
       case MoonPhase.lastQuarter:
-        return 'Bırakma, affetme ve temizlik zamanı.';
+        return 'A time for release, forgiveness, and cleansing.';
       case MoonPhase.waningCrescent:
-        return 'Dinlenme, şifa ve yansıtma zamanı.';
+        return 'A time for rest, healing, and reflection.';
     }
   }
 }

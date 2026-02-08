@@ -425,12 +425,18 @@ class _DreamInterpretationScreenState
 
     // Build final interpretation
     final buffer = StringBuffer();
+    final language = ref.read(languageProvider);
 
     if (themes.isEmpty) {
       // Generic interpretation based on zodiac
       buffer.writeln(_getGenericInterpretation(sign, dreamText));
     } else {
-      buffer.writeln('${sign.symbol} ${sign.localizedName(ref.read(languageProvider))} burcunun kozmik perspektifinden ruya yorumun:\n');
+      final signPerspective = L10nService.getWithParams(
+        'widgets.dreams.interpretations.sign_perspective',
+        language,
+        params: {'sign': sign.localizedName(language)},
+      );
+      buffer.writeln('${sign.symbol} $signPerspective\n');
 
       for (final entry in themes.entries) {
         buffer.writeln(entry.value);
@@ -444,522 +450,483 @@ class _DreamInterpretationScreenState
   }
 
   String _getWaterInterpretation(zodiac.ZodiacSign sign) {
-    final interpretations = {
-      zodiac.ZodiacSign.aries: '''🌊 SU RÜYASI - ${sign.localizedName(ref.read(languageProvider)).toUpperCase()} YORUMU
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    final language = ref.read(languageProvider);
+    final signName = sign.localizedName(language).toUpperCase();
+    final elementName = sign.element.localizedName(language);
 
-💧 TEMEL ANLAM
-Su, ateş burcun için duygusal derinliklere inme çağrısıdır. Bilinçdışı enerjilerin yüzeye çıkmak istiyor.
-
-🔥 ATEŞ ELEMENTİ PERSPEKTİFİ
-Suyun yatıştırıcı enerjisi, ateş doğanı dengelemek için gelmiş. Sabır ve dinlenme zamanı. Aksiyondan önce düşünme dönemi.
-
-🌙 PSİKOLOJİK BOYUT
-Su: Bilinçaltı, duygular, anne arketipi
-Koç olarak: Bastırdığın duygular yüzeye çıkmak istiyor
-Mesaj: Sadece koşmak değil, bazen duraksayıp hissetmek de gerekir
-
-✨ PRATİK UYGULAMA
-• Su kenarında meditasyon yap
-• Duş alırken niyetini belirle
-• Gözyaşlarına izin ver
-• Duygularını yazıya dök''',
-
-      zodiac.ZodiacSign.taurus: '''🌊 SU RÜYASI - ${sign.localizedName(ref.read(languageProvider)).toUpperCase()} YORUMU
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-💧 TEMEL ANLAM
-Su, toprak burcun için bereket ve bolluğun sembolü. Maddi ve duygusal akış hayatına giriyor.
-
-🌍 TOPRAK ELEMENTİ PERSPEKTİFİ
-Su toprağı besler - bu rüya büyüme ve bereket habercisi. Doğal ritmine güven, zorlamadan akışa bırak.
-
-🌙 PSİKOLOJİK BOYUT
-Su: Duygusal güvenlik, konfor, beslenme
-Boğa olarak: İç huzurun maddi güvenlikle bağlantısı
-Mesaj: Duygusal zenginlik maddi zenginliği çeker
-
-✨ PRATİK UYGULAMA
-• Bitkilerini sula, bahçeyle ilgilen
-• Banyo ritüeli yap
-• Finansal akışı görselleştir
-• Rahatlama ve konfor önceliğin olsun''',
-
-      zodiac.ZodiacSign.cancer: '''🌊 SU RÜYASI - ${sign.localizedName(ref.read(languageProvider)).toUpperCase()} YORUMU
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-💧 KENDİ ELEMENTİN - ÇOK GÜÇLÜ!
-Su senin elementi - bu rüya son derece anlamlı! Ruhsal derinliklerinden gelen güçlü bir mesaj var.
-
-🌊 SU ELEMENTİ DERİNLİĞİ
-Bu rüya ev, aile ve köklerinle derin bir bağlantıyı işaret ediyor. Anne arketipi aktif. İçsel yuvan çağırıyor.
-
-🌙 PSİKOLOJİK BOYUT
-Su: Bilinçaltı, sezgi, koruyucu içgüdü
-Yengeç olarak: Ruhsal koruma ve yuva ihtiyacı
-Mesaj: Eve dön - iç evine, ruhsal evine
-
-✨ PRATİK UYGULAMA
-• Ay ışığında su doldur ve iç
-• Aile fotoğraflarına bak
-• Deniz tuzu banyosu al
-• Ev temizliği yap - enerjiyi yenile
-• Annevi figürlerle bağlantı kur''',
-
-      zodiac.ZodiacSign.scorpio: '''🌊 SU RÜYASI - ${sign.localizedName(ref.read(languageProvider)).toUpperCase()} YORUMU
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-💧 KENDİ ELEMENTİN - TRANSFORMASYON!
-Su senin elementi ve bu rüya derin dönüşümü işaret ediyor! Yenilenme zamanı geldi.
-
-🦂 AKREP DERİNLİĞİ
-Suyun derinliklerine dalmaktan korkma. Orada hazineler var. Ölüm ve yeniden doğuş döngüsü aktif.
-
-🌙 PSİKOLOJİK BOYUT
-Su: Bilinçaltının en derin katmanları
-Akrep olarak: Gölge çalışması zamanı
-Mesaj: Karanlıktan korkmak yerine, onu aydınlat
-
-✨ PRATİK UYGULAMA
-• Derin meditasyonlar yap
-• Gölge jurnal tut
-• Bırakma ritüeli uygula
-• Plutonyen dönüşümü kucakla
-• Terapi veya danışmanlık düşün''',
-
-      zodiac.ZodiacSign.pisces: '''🌊 SU RÜYASI - ${sign.localizedName(ref.read(languageProvider)).toUpperCase()} YORUMU
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-💧 KENDİ ELEMENTİN - SPİRİTÜEL BAĞLANTI!
-Su senin elementi - spiritüel alemlerle bağlantın çok güçlü! Sezgilerine tamamen güvenebilirsin.
-
-🐟 BALIK MİSTİSİZMİ
-Evrenle bir olma deneyimi yaşıyorsun. Yaratıcı ilham akıyor. Sanatsal ifade için ideal dönem.
-
-🌙 PSİKOLOJİK BOYUT
-Su: Evrensel bilinç, şifa, kolektif bilinçaltı
-Balık olarak: Mistik deneyimler ve içsel rehberlik
-Mesaj: Sen sudan ötesin - okyanussun
-
-✨ PRATİK UYGULAMA
-• Sanatsal yaratım - resim, müzik, yazı
-• Deniz veya göl kenarında meditasyon
-• Lucid rüya pratikleri
-• Şifa çalışmaları
-• Spiritüel rehberliğe açık ol'''
+    // Map sign to JSON key
+    final signKeyMap = {
+      zodiac.ZodiacSign.aries: 'aries',
+      zodiac.ZodiacSign.taurus: 'taurus',
+      zodiac.ZodiacSign.cancer: 'cancer',
+      zodiac.ZodiacSign.scorpio: 'scorpio',
+      zodiac.ZodiacSign.pisces: 'pisces',
     };
 
+    final signKey = signKeyMap[sign];
+
+    if (signKey != null) {
+      final title = L10nService.getWithParams('widgets.dreams.interpretations.water.title', language, params: {'sign': signName});
+      final divider = L10nService.get('widgets.dreams.interpretations.water.divider', language);
+      final basicLabel = L10nService.get('widgets.dreams.interpretations.water.basic_meaning_label', language);
+      final elementLabel = L10nService.getWithParams('widgets.dreams.interpretations.water.element_perspective_label', language, params: {'element': elementName.toUpperCase()});
+      final psychLabel = L10nService.get('widgets.dreams.interpretations.water.psychological_label', language);
+      final practiceLabel = L10nService.get('widgets.dreams.interpretations.water.practice_label', language);
+
+      final basicMeaning = L10nService.get('widgets.dreams.interpretations.water.$signKey.basic_meaning', language);
+      final elementPerspective = L10nService.get('widgets.dreams.interpretations.water.$signKey.element_perspective', language);
+      final psychological = L10nService.get('widgets.dreams.interpretations.water.$signKey.psychological', language);
+      final practice = L10nService.get('widgets.dreams.interpretations.water.$signKey.practice', language);
+
+      return '''$title
+$divider
+
+$basicLabel
+$basicMeaning
+
+$elementLabel
+$elementPerspective
+
+$psychLabel
+$psychological
+
+$practiceLabel
+$practice''';
+    }
+
     // Default interpretation for other signs
-    return interpretations[sign] ?? '''🌊 SU RÜYASI - ${sign.localizedName(ref.read(languageProvider)).toUpperCase()} YORUMU
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    final title = L10nService.getWithParams('widgets.dreams.interpretations.water.title', language, params: {'sign': signName});
+    final divider = L10nService.get('widgets.dreams.interpretations.water.divider', language);
+    final basicLabel = L10nService.get('widgets.dreams.interpretations.water.basic_meaning_label', language);
+    final elementLabel = L10nService.getWithParams('widgets.dreams.interpretations.water.element_perspective_label', language, params: {'element': elementName.toUpperCase()});
+    final practiceLabel = L10nService.get('widgets.dreams.interpretations.water.practice_label', language);
 
-💧 TEMEL ANLAM
-Su, ${sign.element.localizedName(ref.read(languageProvider))} burcun için duygusal mesajlar taşıyor. Bilinçaltı akışa geçmek istiyor.
+    final basicMeaning = L10nService.getWithParams('widgets.dreams.interpretations.water.default.basic_meaning', language, params: {'element': elementName});
+    final elementPerspective = L10nService.get('widgets.dreams.interpretations.water.default.element_perspective', language);
+    final practice = L10nService.get('widgets.dreams.interpretations.water.default.practice', language);
 
-🌙 ${sign.element.localizedName(ref.read(languageProvider)).toUpperCase()} ELEMENTİ PERSPEKTİFİ
-Suyun akışkan enerjisi seninle iletişim kuruyor. Duygusal derinliklere inme çağrısı.
+    return '''$title
+$divider
 
-✨ PRATİK UYGULAMA
-• Su kenarında zaman geçir
-• Duygularını ifade et
-• Akışa güven, zorlamayı bırak
-• Sezgilerine kulak ver''';
+$basicLabel
+$basicMeaning
+
+$elementLabel
+$elementPerspective
+
+$practiceLabel
+$practice''';
   }
 
   String _getFlyingInterpretation(zodiac.ZodiacSign sign) {
-    return '''✈️ UÇMA RÜYASI - ${sign.localizedName(ref.read(languageProvider)).toUpperCase()} YORUMU
+    final language = ref.read(languageProvider);
+    final signName = sign.localizedName(language).toUpperCase();
+    final elementName = sign.element.localizedName(language);
+    final elementKey = _getElementKey(sign.element);
+    final elementMessage = L10nService.get('widgets.dreams.interpretations.element_messages.${elementKey}_flying', language);
+
+    final title = L10nService.getWithParams('widgets.dreams.interpretations.flying.title', language, params: {'sign': signName});
+    final basicLabel = L10nService.get('widgets.dreams.interpretations.flying.basic_meaning_label', language);
+    final basicMeaning = L10nService.get('widgets.dreams.interpretations.flying.basic_meaning', language);
+    final specialLabel = L10nService.getWithParams('widgets.dreams.interpretations.flying.special_interpretation_label', language, params: {'sign': '${sign.symbol} $signName'});
+    final specialInterpretation = L10nService.get('widgets.dreams.interpretations.flying.special_interpretation', language);
+    final psychLabel = L10nService.get('widgets.dreams.interpretations.flying.psychological_label', language);
+    final psychological = L10nService.get('widgets.dreams.interpretations.flying.psychological', language);
+    final flightStyleLabel = L10nService.get('widgets.dreams.interpretations.flying.flight_style_label', language);
+    final flightStyle = L10nService.get('widgets.dreams.interpretations.flying.flight_style', language);
+    final practiceLabel = L10nService.get('widgets.dreams.interpretations.flying.practice_label', language);
+    final practice = L10nService.get('widgets.dreams.interpretations.flying.practice', language);
+    final cosmicLabel = L10nService.get('widgets.dreams.interpretations.flying.cosmic_message_label', language);
+    final cosmicMessage = L10nService.getWithParams('widgets.dreams.interpretations.flying.cosmic_message', language, params: {'element': elementName, 'element_message': elementMessage});
+
+    return '''$title
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-🦅 TEMEL ANLAM
-Uçmak, özgürlük ve sınırları aşma arzusunu temsil eder. Ruhun yükselişi ve bilinç genişlemesi.
+$basicLabel
+$basicMeaning
 
-${sign.symbol} ${sign.localizedName(ref.read(languageProvider)).toUpperCase()} İÇİN ÖZEL YORUM
-Bu rüya sana hayatında yeni zirveler fethetme potansiyelini gösteriyor. Kendini sınırlayan inançlardan kurtulma zamanı geldi.
+$specialLabel
+$specialInterpretation
 
-🌙 PSİKOLOJİK BOYUT
-• Uçuş yüksekliği: Bilinç seviyeni gösterir
-• Uçuş hızı: Değişim hızını simgeler
-• Zorluk: Yaşadığın engelleri yansıtır
-• Kolaylık: İçsel özgürlük seviyeni gösterir
+$psychLabel
+$psychological
 
-📍 UÇUŞ STİLİNE GÖRE
-• Süzülerek: Hayatta akışta olma hali
-• Çırpınarak: Zorlu ama başarılan hedefler
-• Yükselememe: Bastırılmış potansiyel
-• Düşme: Kontrolü kaybetme korkusu
+$flightStyleLabel
+$flightStyle
 
-✨ PRATİK UYGULAMA
-• Korkularını yaz ve yak
-• Yüksek bir yere çık, manzaraya bak
-• "Uçabiliyorum" afirmasyonu tekrarla
-• Lucid rüya için niyet koy
+$practiceLabel
+$practice
 
-💫 KOZMIK MESAJ
-Evren sana "kanatların var, kullan" diyor. ${sign.element.localizedName(ref.read(languageProvider))} elementi olarak ${_getElementFlyingMessage(sign.element)}.''';
+$cosmicLabel
+$cosmicMessage''';
   }
 
-  String _getElementFlyingMessage(zodiac.Element element) {
+  String _getElementKey(zodiac.Element element) {
     switch (element) {
       case zodiac.Element.fire:
-        return 'cesaretle yükselme zamanı';
+        return 'fire';
       case zodiac.Element.earth:
-        return 'pratik hedeflerini yükselt';
+        return 'earth';
       case zodiac.Element.air:
-        return 'fikirlerinin kanatlarıyla uç';
+        return 'air';
       case zodiac.Element.water:
-        return 'duygusal özgürlüğünü yakala';
+        return 'water';
     }
   }
 
   String _getFallingInterpretation(zodiac.ZodiacSign sign) {
-    return '''⬇️ DÜŞME RÜYASI - ${sign.localizedName(ref.read(languageProvider)).toUpperCase()} YORUMU
+    final language = ref.read(languageProvider);
+    final signName = sign.localizedName(language).toUpperCase();
+    final elementName = sign.element.localizedName(language);
+
+    final title = L10nService.getWithParams('widgets.dreams.interpretations.falling.title', language, params: {'sign': signName});
+    final basicLabel = L10nService.get('widgets.dreams.interpretations.falling.basic_meaning_label', language);
+    final basicMeaning = L10nService.get('widgets.dreams.interpretations.falling.basic_meaning', language);
+    final specialInterpretation = L10nService.get('widgets.dreams.interpretations.falling.special_interpretation', language);
+    final psychLabel = L10nService.get('widgets.dreams.interpretations.falling.psychological_label', language);
+    final psychological = L10nService.get('widgets.dreams.interpretations.falling.psychological', language);
+    final attentionLabel = L10nService.get('widgets.dreams.interpretations.falling.attention_label', language);
+    final attention = L10nService.get('widgets.dreams.interpretations.falling.attention', language);
+    final practiceLabel = L10nService.get('widgets.dreams.interpretations.falling.practice_label', language);
+    final practice = L10nService.get('widgets.dreams.interpretations.falling.practice', language);
+    final cosmicLabel = L10nService.get('widgets.dreams.interpretations.falling.cosmic_message_label', language);
+    final cosmicMessage = L10nService.getWithParams('widgets.dreams.interpretations.falling.cosmic_message', language, params: {'element': elementName});
+
+    return '''$title
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-🌪️ TEMEL ANLAM
-Düşmek, kontrolü kaybetme korkusunu veya hayatındaki bir alanda güvensizliği yansıtır.
+$basicLabel
+$basicMeaning
 
-${sign.symbol} ${sign.localizedName(ref.read(languageProvider)).toUpperCase()} İÇİN ÖZEL YORUM
-Temellendirme çalışmalarına odaklan. Bu rüya sana "ayaklarının yere basması gerekiyor" mesajı veriyor.
+${sign.symbol} $signName
+$specialInterpretation
 
-🌙 PSİKOLOJİK BOYUT
-• Nereden düştün: Hangi alanda güvensizlik
-• Düşüş hızı: Kontrolsüzlük seviyesi
-• Yere çarpma: Korkuların realize olma endişesi
-• Uyanma öncesi: Kaçış mekanizması aktif
+$psychLabel
+$psychological
 
-⚠️ DİKKAT EDİLECEKLER
-• Hayatında kontrolü kaybettiğin alanlar
-• Aşırı stres ve kaygı belirtileri
-• Temel ihtiyaçların karşılanması
-• İş-yaşam dengesi
+$attentionLabel
+$attention
 
-✨ PRATİK UYGULAMA
-• Çıplak ayakla toprağa bas
-• Kök çakra meditasyonu yap
-• Güvenlik ihtiyaçlarını listele
-• Nefes egzersizleri uygula
+$practiceLabel
+$practice
 
-💫 KOZMIK MESAJ
-Düşmek aslında bırakmaktır. Kontrol illüzyonunu bırak, evrene güven. ${sign.element.localizedName(ref.read(languageProvider))} elementi olarak topraklanma pratiği özellikle önemli.''';
+$cosmicLabel
+$cosmicMessage''';
   }
 
   String _getDeathInterpretation(zodiac.ZodiacSign sign) {
-    return '''💀 ÖLÜM RÜYASI - ${sign.localizedName(ref.read(languageProvider)).toUpperCase()} YORUMU
+    final language = ref.read(languageProvider);
+    final signName = sign.localizedName(language).toUpperCase();
+
+    final title = L10nService.getWithParams('widgets.dreams.interpretations.death.title', language, params: {'sign': signName});
+    final notScaryLabel = L10nService.get('widgets.dreams.interpretations.death.not_scary_label', language);
+    final notScary = L10nService.get('widgets.dreams.interpretations.death.not_scary', language);
+    final specialInterpretation = L10nService.get('widgets.dreams.interpretations.death.special_interpretation', language);
+    final psychLabel = L10nService.get('widgets.dreams.interpretations.death.psychological_label', language);
+    final psychological = L10nService.get('widgets.dreams.interpretations.death.psychological', language);
+    final transformLabel = L10nService.get('widgets.dreams.interpretations.death.transformation_label', language);
+    final transformation = L10nService.get('widgets.dreams.interpretations.death.transformation', language);
+    final practiceLabel = L10nService.get('widgets.dreams.interpretations.death.practice_label', language);
+    final practice = L10nService.get('widgets.dreams.interpretations.death.practice', language);
+    final cosmicLabel = L10nService.get('widgets.dreams.interpretations.death.cosmic_message_label', language);
+    final cosmicMessage = L10nService.getWithParams('widgets.dreams.interpretations.death.cosmic_message', language, params: {'sign': sign.localizedName(language)});
+
+    return '''$title
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-🦋 TEMEL ANLAM - KORKULACAK BİR ŞEY DEĞİL!
-Rüyalarda ölüm, transformasyonun ve yeni başlangıçların sembolüdür. Bu bir son değil, dönüşümdür!
+$notScaryLabel
+$notScary
 
-${sign.symbol} ${sign.localizedName(ref.read(languageProvider)).toUpperCase()} İÇİN ÖZEL YORUM
-Bu rüya eski kalıpların ölmesi ve yeni benliğin doğması anlamına gelir. Hayatında neyi bırakman gerektiğini düşün.
+${sign.symbol} $signName
+$specialInterpretation
 
-🌙 PSİKOLOJİK BOYUT
-• Kendi ölümün: Ego dönüşümü, yeni benlik
-• Başkasının ölümü: O kişinin temsil ettiği şey bitiyor
-• Tanımadık birinin ölümü: Genel yaşam değişimi
-• Ölümden dönüş: Yenilenme ve güç kazanma
+$psychLabel
+$psychological
 
-🔄 DÖNÜŞÜM ALANLARI
-• Kariyer değişimi
-• İlişki dönüşümü
-• İnançların yenilenmesi
-• Kimlik evrimi
-• Yaşam tarzı değişikliği
+$transformLabel
+$transformation
 
-✨ PRATİK UYGULAMA
-• Neyi bırakman gerekiyor - liste yap
-• Eski fotoğrafları gözden geçir
-• Kıyafet dolabını temizle
-• "Ölmesi gereken" alışkanlıkları belirle
+$practiceLabel
+$practice
 
-💫 KOZMIK MESAJ
-Anka kuşu gibi küllerinden doğuyorsun. ${sign.localizedName(ref.read(languageProvider))} enerjisi bu dönüşümü güçlendiriyor. Yeni sen doğuyor!''';
+$cosmicLabel
+$cosmicMessage''';
   }
 
   String _getChaseInterpretation(zodiac.ZodiacSign sign) {
-    return '''🏃 KOVALANMA RÜYASI - ${sign.localizedName(ref.read(languageProvider)).toUpperCase()} YORUMU
+    final language = ref.read(languageProvider);
+    final signName = sign.localizedName(language).toUpperCase();
+    final elementName = sign.element.localizedName(language);
+
+    final title = L10nService.getWithParams('widgets.dreams.interpretations.chase.title', language, params: {'sign': signName});
+    final basicLabel = L10nService.get('widgets.dreams.interpretations.chase.basic_meaning_label', language);
+    final basicMeaning = L10nService.get('widgets.dreams.interpretations.chase.basic_meaning', language);
+    final specialInterpretation = L10nService.getWithParams('widgets.dreams.interpretations.chase.special_interpretation', language, params: {'element': elementName});
+    final psychLabel = L10nService.get('widgets.dreams.interpretations.chase.psychological_label', language);
+    final psychological = L10nService.get('widgets.dreams.interpretations.chase.psychological', language);
+    final chaserLabel = L10nService.get('widgets.dreams.interpretations.chase.chaser_label', language);
+    final chaser = L10nService.get('widgets.dreams.interpretations.chase.chaser', language);
+    final practiceLabel = L10nService.get('widgets.dreams.interpretations.chase.practice_label', language);
+    final practice = L10nService.get('widgets.dreams.interpretations.chase.practice', language);
+    final cosmicLabel = L10nService.get('widgets.dreams.interpretations.chase.cosmic_message_label', language);
+    final cosmicMessage = L10nService.get('widgets.dreams.interpretations.chase.cosmic_message', language);
+
+    return '''$title
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-😰 TEMEL ANLAM
-Kovalanmak, hayatında kaçtığın bir konuyla yüzleşme çağrısıdır. Kaçtıkça kovalayan büyür!
+$basicLabel
+$basicMeaning
 
-${sign.symbol} ${sign.localizedName(ref.read(languageProvider)).toUpperCase()} İÇİN ÖZEL YORUM
-${sign.element.localizedName(ref.read(languageProvider))} enerjinle, cesaretle dön ve neyin peşinde olduğunu sor. Genellikle kaçtığımız şey, en çok ihtiyacımız olan derslerdir.
+${sign.symbol} $signName
+$specialInterpretation
 
-🌙 PSİKOLOJİK BOYUT (JUNG ANALİZİ)
-• Kovalayan: Gölge arketipi - reddedilen yönlerin
-• Kaçış: Yüzleşmekten kaçınma
-• Yakalanma: Gölgeyle entegrasyon fırsatı
-• Kaçamama: İnkar artık işe yaramıyor
+$psychLabel
+$psychological
 
-🔍 KOVALAYAN NE OLABİLİR?
-• Korku veya kaygı
-• Bastırılmış öfke
-• Ertelenen sorumluluklar
-• Kaçınılan ilişki meseleleri
-• Karşılanmamış ihtiyaçlar
+$chaserLabel
+$chaser
 
-✨ PRATİK UYGULAMA
-• Rüyanda dur ve kovalayıcıyla konuş
-• "Ne istiyorsun?" diye sor
-• Aktif hayal tekniği uygula
-• Kaçtığın konuyu belirle ve küçük adımlar at
+$practiceLabel
+$practice
 
-💫 KOZMIK MESAJ
-Kovalayan aslında sensin - bastırdığın bir yönün. Kucakla ve entegre et. Düşmanın dostun olabilir.''';
+$cosmicLabel
+$cosmicMessage''';
   }
 
   String _getAnimalInterpretation(zodiac.ZodiacSign sign) {
-    return '''🐾 HAYVAN RÜYASI - ${sign.localizedName(ref.read(languageProvider)).toUpperCase()} YORUMU
+    final language = ref.read(languageProvider);
+    final signName = sign.localizedName(language).toUpperCase();
+    final elementName = sign.element.localizedName(language);
+
+    final title = L10nService.getWithParams('widgets.dreams.interpretations.animal.title', language, params: {'sign': signName});
+    final basicLabel = L10nService.get('widgets.dreams.interpretations.animal.basic_meaning_label', language);
+    final basicMeaning = L10nService.get('widgets.dreams.interpretations.animal.basic_meaning', language);
+    final specialInterpretation = L10nService.get('widgets.dreams.interpretations.animal.special_interpretation', language);
+    final symbolsLabel = L10nService.get('widgets.dreams.interpretations.animal.common_symbols_label', language);
+    final symbols = L10nService.get('widgets.dreams.interpretations.animal.common_symbols', language);
+    final psychLabel = L10nService.get('widgets.dreams.interpretations.animal.psychological_label', language);
+    final psychological = L10nService.get('widgets.dreams.interpretations.animal.psychological', language);
+    final practiceLabel = L10nService.get('widgets.dreams.interpretations.animal.practice_label', language);
+    final practice = L10nService.get('widgets.dreams.interpretations.animal.practice', language);
+    final cosmicLabel = L10nService.get('widgets.dreams.interpretations.animal.cosmic_message_label', language);
+    final cosmicMessage = L10nService.getWithParams('widgets.dreams.interpretations.animal.cosmic_message', language, params: {'element': elementName});
+
+    return '''$title
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-🦁 TEMEL ANLAM
-Hayvanlar, içgüdüsel doğamızı ve bastırılmış enerjileri temsil eder. Her hayvan bir totem mesajı taşır.
+$basicLabel
+$basicMeaning
 
-${sign.symbol} ${sign.localizedName(ref.read(languageProvider)).toUpperCase()} İÇİN ÖZEL YORUM
-Bu rüya, doğal içgüdülerinle yeniden bağlanma çağrısı. Hangi hayvan gördüysen, onun totem enerjisini araştır.
+${sign.symbol} $signName
+$specialInterpretation
 
-🐍 YAYGIN HAYVAN SEMBOLLERİ
-• Yılan: Dönüşüm, şifa, kundalini
-• Köpek: Sadakat, koruma, arkadaşlık
-• Kedi: Bağımsızlık, gizem, sezgi
-• Kuş: Özgürlük, ruhsal mesajlar
-• Kurt: Topluluk, liderlik, öğretmen
-• Ayı: Güç, koruma, içe dönüş
-• At: Özgürlük, güç, tutku
+$symbolsLabel
+$symbols
 
-🌙 PSİKOLOJİK BOYUT
-• Hayvan davranışı: Senin bastırdığın davranış
-• Hayvanla ilişkin: İçgüdülerinle ilişkin
-• Hayvanın rengi: Duygusal ton
-• Hayvan saldırıyorsa: Bastırılmış enerji patlaması
+$psychLabel
+$psychological
 
-✨ PRATİK UYGULAMA
-• O hayvanı araştır - mitoloji, sembolizm
-• Hayvan meditasyonu yap
-• Totem kartları çek
-• O hayvanla ilgili bir nesne edin
+$practiceLabel
+$practice
 
-💫 KOZMIK MESAJ
-Hayvan rehberin seninle iletişim kuruyor. ${sign.element.localizedName(ref.read(languageProvider))} elementi olarak bu bağlantı özellikle güçlü.''';
+$cosmicLabel
+$cosmicMessage''';
   }
 
   String _getHouseInterpretation(zodiac.ZodiacSign sign) {
-    return '''🏠 EV/BİNA RÜYASI - ${sign.localizedName(ref.read(languageProvider)).toUpperCase()} YORUMU
+    final language = ref.read(languageProvider);
+    final signName = sign.localizedName(language).toUpperCase();
+    final elementName = sign.element.localizedName(language);
+
+    final title = L10nService.getWithParams('widgets.dreams.interpretations.house.title', language, params: {'sign': signName});
+    final basicLabel = L10nService.get('widgets.dreams.interpretations.house.basic_meaning_label', language);
+    final basicMeaning = L10nService.get('widgets.dreams.interpretations.house.basic_meaning', language);
+    final specialInterpretation = L10nService.getWithParams('widgets.dreams.interpretations.house.special_interpretation', language, params: {'element': elementName});
+    final roomLabel = L10nService.get('widgets.dreams.interpretations.house.room_meanings_label', language);
+    final roomMeanings = L10nService.get('widgets.dreams.interpretations.house.room_meanings', language);
+    final statesLabel = L10nService.get('widgets.dreams.interpretations.house.house_states_label', language);
+    final houseStates = L10nService.get('widgets.dreams.interpretations.house.house_states', language);
+    final practiceLabel = L10nService.get('widgets.dreams.interpretations.house.practice_label', language);
+    final practice = L10nService.get('widgets.dreams.interpretations.house.practice', language);
+    final cosmicLabel = L10nService.get('widgets.dreams.interpretations.house.cosmic_message_label', language);
+    final cosmicMessage = L10nService.get('widgets.dreams.interpretations.house.cosmic_message', language);
+
+    return '''$title
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-🏛️ TEMEL ANLAM
-Ev ve binalar, ruhsal yapını ve iç dünyayı sembolize eder. Her oda benliğinin farklı yönlerini temsil eder.
+$basicLabel
+$basicMeaning
 
-${sign.symbol} ${sign.localizedName(ref.read(languageProvider)).toUpperCase()} İÇİN ÖZEL YORUM
-Hangi "odaya" girmekten kaçındığını düşün. ${sign.element.localizedName(ref.read(languageProvider))} elementi olarak iç dünyanın yapısı önemli.
+${sign.symbol} $signName
+$specialInterpretation
 
-🚪 ODA ANLAMLARI
-• Bodrum: Bilinçaltı, bastırılmış anılar
-• Çatı katı: Yüksek bilinç, spiritüellik
-• Mutfak: Beslenme, yaratıcılık
-• Yatak odası: Mahremiyet, cinsellik
-• Banyo: Arınma, duygusal temizlik
-• Salon: Sosyal yön, dış dünya ilişkisi
-• Gizli odalar: Keşfedilmemiş potansiyel
+$roomLabel
+$roomMeanings
 
-🔑 EV DURUMLARI
-• Yeni ev: Yeni benlik, değişim
-• Harap ev: İhmal edilen yönler
-• Çocukluk evi: Kökler, geçmiş
-• Yabancı ev: Bilinmeyen potansiyel
+$statesLabel
+$houseStates
 
-✨ PRATİK UYGULAMA
-• Evinizde en az gittiğiniz odayı temizle
-• Ev köşelerini enerjiyle yenile
-• İç dünyanın haritasını çiz
-• "Ruhsal evin" meditasyonu yap
+$practiceLabel
+$practice
 
-💫 KOZMIK MESAJ
-Evin sensin. Her odası bir yönün. Hepsini keşfet ve sahiplen.''';
+$cosmicLabel
+$cosmicMessage''';
   }
 
   String _getLoveInterpretation(zodiac.ZodiacSign sign) {
-    return '''💕 AŞK RÜYASI - ${sign.localizedName(ref.read(languageProvider)).toUpperCase()} YORUMU
+    final language = ref.read(languageProvider);
+    final signName = sign.localizedName(language).toUpperCase();
+    final elementName = sign.element.localizedName(language);
+    final elementKey = _getElementKey(sign.element);
+    final elementMessage = L10nService.get('widgets.dreams.interpretations.element_messages.${elementKey}_love', language);
+
+    final title = L10nService.getWithParams('widgets.dreams.interpretations.love.title', language, params: {'sign': signName});
+    final basicLabel = L10nService.get('widgets.dreams.interpretations.love.basic_meaning_label', language);
+    final basicMeaning = L10nService.get('widgets.dreams.interpretations.love.basic_meaning', language);
+    final specialInterpretation = L10nService.get('widgets.dreams.interpretations.love.special_interpretation', language);
+    final typesLabel = L10nService.get('widgets.dreams.interpretations.love.dream_types_label', language);
+    final types = L10nService.get('widgets.dreams.interpretations.love.dream_types', language);
+    final scenariosLabel = L10nService.get('widgets.dreams.interpretations.love.scenarios_label', language);
+    final scenarios = L10nService.get('widgets.dreams.interpretations.love.scenarios', language);
+    final psychLabel = L10nService.get('widgets.dreams.interpretations.love.psychological_label', language);
+    final psychological = L10nService.get('widgets.dreams.interpretations.love.psychological', language);
+    final practiceLabel = L10nService.get('widgets.dreams.interpretations.love.practice_label', language);
+    final practice = L10nService.get('widgets.dreams.interpretations.love.practice', language);
+    final cosmicLabel = L10nService.get('widgets.dreams.interpretations.love.cosmic_message_label', language);
+    final cosmicMessage = L10nService.getWithParams('widgets.dreams.interpretations.love.cosmic_message', language, params: {'element': elementName, 'element_message': elementMessage});
+
+    return '''$title
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-❤️ TEMEL ANLAM
-Aşk temalı rüyalar, ilişki dinamiklerini ve duygusal ihtiyaçları yansıtır.
+$basicLabel
+$basicMeaning
 
-${sign.symbol} ${sign.localizedName(ref.read(languageProvider)).toUpperCase()} İÇİN ÖZEL YORUM
-Bu rüya, aşk hayatında yeni bir dönemin habercisi olabilir. "Kendinle olan ilişkim nasıl?" sorusunu sor.
+${sign.symbol} $signName
+$specialInterpretation
 
-💑 AŞK RÜYASI TİPLERİ
-• Eski sevgili: Tamamlanmamış duygular
-• Yabancı biri: Yeni potansiyel veya arzu
-• Partnerin: İlişki dinamikleri
-• Ünlü biri: Arzu edilen özellikler
-• Platonik aşk: Duygusal ihtiyaçlar
+$typesLabel
+$types
 
-🌹 RÜYA SENARYOLARI
-• Öpüşmek: Birleşme arzusu
-• Ayrılık: Kaybetme korkusu
-• Evlilik: Taahhüt isteği
-• Aldatılma: Güvensizlik
-• Kavga: İç çatışma
+$scenariosLabel
+$scenarios
 
-🌙 PSİKOLOJİK BOYUT
-• Anima/Animus: Karşı cins arketipi
-• Projeksiyon: Kendi özelliklerini görme
-• İhtiyaç: Karşılanmamış duygusal gereksinimler
+$psychLabel
+$psychological
 
-✨ PRATİK UYGULAMA
-• Aşk dili testini yap
-• İlişki ihtiyaçlarını listele
-• Özdeğer çalışması yap
-• Kalp çakrası meditasyonu
+$practiceLabel
+$practice
 
-💫 KOZMIK MESAJ
-Önce kendini sev. ${sign.element.localizedName(ref.read(languageProvider))} elementi aşk yaşamında ${_getElementLoveMessage(sign.element)}.''';
-  }
-
-  String _getElementLoveMessage(zodiac.Element element) {
-    switch (element) {
-      case zodiac.Element.fire:
-        return 'tutku ve heyecan istiyor';
-      case zodiac.Element.earth:
-        return 'güvenlik ve sadakat arıyor';
-      case zodiac.Element.air:
-        return 'iletişim ve zihinsel bağ öncelikli';
-      case zodiac.Element.water:
-        return 'derin duygusal bağ kurmak istiyor';
-    }
+$cosmicLabel
+$cosmicMessage''';
   }
 
   String _getMoneyInterpretation(zodiac.ZodiacSign sign) {
-    return '''💰 PARA/ZENGİNLİK RÜYASI - ${sign.localizedName(ref.read(languageProvider)).toUpperCase()} YORUMU
+    final language = ref.read(languageProvider);
+    final signName = sign.localizedName(language).toUpperCase();
+    final elementName = sign.element.localizedName(language);
+    final elementKey = _getElementKey(sign.element);
+    final elementMessage = L10nService.get('widgets.dreams.interpretations.element_messages.${elementKey}_money', language);
+
+    final title = L10nService.getWithParams('widgets.dreams.interpretations.money.title', language, params: {'sign': signName});
+    final basicLabel = L10nService.get('widgets.dreams.interpretations.money.basic_meaning_label', language);
+    final basicMeaning = L10nService.get('widgets.dreams.interpretations.money.basic_meaning', language);
+    final specialInterpretation = L10nService.get('widgets.dreams.interpretations.money.special_interpretation', language);
+    final typesLabel = L10nService.get('widgets.dreams.interpretations.money.dream_types_label', language);
+    final types = L10nService.get('widgets.dreams.interpretations.money.dream_types', language);
+    final symbolsLabel = L10nService.get('widgets.dreams.interpretations.money.symbols_label', language);
+    final symbols = L10nService.get('widgets.dreams.interpretations.money.symbols', language);
+    final psychLabel = L10nService.get('widgets.dreams.interpretations.money.psychological_label', language);
+    final psychological = L10nService.get('widgets.dreams.interpretations.money.psychological', language);
+    final practiceLabel = L10nService.get('widgets.dreams.interpretations.money.practice_label', language);
+    final practice = L10nService.get('widgets.dreams.interpretations.money.practice', language);
+    final cosmicLabel = L10nService.get('widgets.dreams.interpretations.money.cosmic_message_label', language);
+    final cosmicMessage = L10nService.getWithParams('widgets.dreams.interpretations.money.cosmic_message', language, params: {'element': elementName, 'element_message': elementMessage});
+
+    return '''$title
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-🏆 TEMEL ANLAM
-Para ve zenginlik rüyaları, öz değer ve bolluk bilincini temsil eder. Maddi değil, içsel zenginlik mesajı taşır.
+$basicLabel
+$basicMeaning
 
-${sign.symbol} ${sign.localizedName(ref.read(languageProvider)).toUpperCase()} İÇİN ÖZEL YORUM
-Bu rüya, maddi dünyayla ilişkini sorgulamaya davet ediyor. Gerçek zenginlik içsel huzur ve minnettarlıktır.
+${sign.symbol} $signName
+$specialInterpretation
 
-💎 PARA RÜYASI TİPLERİ
-• Para bulmak: Gelen fırsatlar, şans
-• Para kaybetmek: Güvensizlik, kayıp korkusu
-• Zengin olmak: Potansiyelin farkındalığı
-• Para saymak: Kontrol ihtiyacı
-• Para vermek: Cömertlik veya güç kaybı
+$typesLabel
+$types
 
-🪙 SEMBOLLER
-• Altın: Ruhsal zenginlik, bilgelik
-• Nakit: Günlük güvenlik
-• Hazine: Gizli potansiyel
-• Mücevher: Öz değer
-• Banka: Güvenlik ve yapı
+$symbolsLabel
+$symbols
 
-🌙 PSİKOLOJİK BOYUT
-• Para = Enerji alışverişi
-• Zenginlik = Öz değer algısı
-• Yoksulluk = Yetersizlik hissi
-• Bolluk = Evrenle uyum
+$psychLabel
+$psychological
 
-✨ PRATİK UYGULAMA
-• Bolluk afirmasyonları tekrarla
-• Şükran listesi tut
-• Para ile ilişkini sorgula
-• Cömertlik pratiği yap
+$practiceLabel
+$practice
 
-💫 KOZMIK MESAJ
-Evren bolluk sunar - alıcı ol. ${sign.element.localizedName(ref.read(languageProvider))} elementi finansal konularda ${_getElementMoneyMessage(sign.element)}.''';
-  }
-
-  String _getElementMoneyMessage(zodiac.Element element) {
-    switch (element) {
-      case zodiac.Element.fire:
-        return 'cesaretli yatırımlar önerir';
-      case zodiac.Element.earth:
-        return 'güvenli ve kararlı birikimi destekler';
-      case zodiac.Element.air:
-        return 'çoklu gelir kaynaklarını işaret eder';
-      case zodiac.Element.water:
-        return 'sezgisel finansal kararlar önerir';
-    }
+$cosmicLabel
+$cosmicMessage''';
   }
 
   String _getGenericInterpretation(zodiac.ZodiacSign sign, String dreamText) {
-    return '''${sign.symbol} ${sign.localizedName(ref.read(languageProvider)).toUpperCase()} KOZMİK RÜYA YORUMU
+    final language = ref.read(languageProvider);
+    final signName = sign.localizedName(language).toUpperCase();
+    final elementName = sign.element.localizedName(language);
+    final elementKey = _getElementKey(sign.element);
+    final elementMessage = L10nService.get('widgets.dreams.interpretations.element_messages.${elementKey}_generic', language);
+
+    final title = L10nService.getWithParams('widgets.dreams.interpretations.generic.title', language, params: {'sign': signName});
+    final subconLabel = L10nService.get('widgets.dreams.interpretations.generic.subconscious_label', language);
+    final subconscious = L10nService.get('widgets.dreams.interpretations.generic.subconscious', language);
+    final elementLabel = L10nService.getWithParams('widgets.dreams.interpretations.generic.element_perspective_label', language, params: {'element': elementName.toUpperCase()});
+    final elementPerspective = L10nService.getWithParams('widgets.dreams.interpretations.generic.element_perspective', language, params: {'element': elementName, 'element_message': elementMessage});
+    final emotionLabel = L10nService.get('widgets.dreams.interpretations.generic.emotion_label', language);
+    final emotion = L10nService.get('widgets.dreams.interpretations.generic.emotion', language);
+    final symbolLabel = L10nService.get('widgets.dreams.interpretations.generic.symbol_reading_label', language);
+    final symbolReading = L10nService.get('widgets.dreams.interpretations.generic.symbol_reading', language);
+    final practiceLabel = L10nService.get('widgets.dreams.interpretations.generic.practice_label', language);
+    final practice = L10nService.get('widgets.dreams.interpretations.generic.practice', language);
+    final adviceLabel = L10nService.getWithParams('widgets.dreams.interpretations.generic.advice_label', language, params: {'sign': signName});
+
+    return '''${sign.symbol} $title
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-🔮 BİLİNÇALTI MESAJI
-Anlattığın rüya, bilinçaltının sana önemli mesajlar ilettiğini gösteriyor.
+$subconLabel
+$subconscious
 
-💫 ${sign.element.localizedName(ref.read(languageProvider)).toUpperCase()} ELEMENTİ PERSPEKTİFİ
-${sign.element.localizedName(ref.read(languageProvider))} elementinin enerjisiyle, bu rüyanın temel mesajı ${_getElementMessage(sign)} ile ilgili görünüyor.
+$elementLabel
+$elementPerspective
 
-🌙 DUYGU ANALİZİ
-Rüyandaki duygulara odaklan:
-• Korku: Güvenlik ihtiyacı
-• Mutluluk: Doğru yoldasın işareti
-• Şaşkınlık: Bilinmeyen keşfediliyor
-• Üzüntü: Tamamlanmamış duygu
-• Öfke: Bastırılmış enerji
+$emotionLabel
+$emotion
 
-📍 SEMBOL OKUMA
-Rüyandaki ana sembolleri not et:
-• Kişiler: Senin yönlerini temsil ediyor
-• Mekanlar: İç dünyanın haritası
-• Objeler: Araçlar ve kaynaklar
-• Eylemler: Hayat yaklaşımın
+$symbolLabel
+$symbolReading
 
-✨ PRATİK UYGULAMA
-• Rüya defteri tut
-• Uyumadan önce niyet koy
-• Sembolleri araştır
-• Meditasyonla bağlan
+$practiceLabel
+$practice
 
-💫 ${sign.localizedName(ref.read(languageProvider)).toUpperCase()} TAVSİYESİ
+$adviceLabel
 ${_getZodiacAdvice(sign)}''';
   }
 
-  String _getElementMessage(zodiac.ZodiacSign sign) {
-    switch (sign.element) {
-      case zodiac.Element.fire:
-        return 'tutku, aksiyon ve yaratici güc';
-      case zodiac.Element.earth:
-        return 'güvenlik, maddi dünya ve pratik adimlar';
-      case zodiac.Element.air:
-        return 'iletisim, fikirler ve sosyal baglantilar';
-      case zodiac.Element.water:
-        return 'duygular, sezgi ve ruhsal derinlik';
-    }
-  }
-
   String _getZodiacAdvice(zodiac.ZodiacSign sign) {
-    final advice = {
-      zodiac.ZodiacSign.aries:
-          'Tavsiyem: Sabah uyandığında ilk düsüncelerini not al. Ates enerjin, bilinçaltı mesajları hızla unutturabilir.',
-      zodiac.ZodiacSign.taurus:
-          'Tavsiyem: Ruyalarını bir ruya defterine yaz. Toprak enerjin, somut kayıtlarla daha iyi çalısır.',
-      zodiac.ZodiacSign.gemini:
-          'Tavsiyem: Rüyanı birine anlat. Hava enerjin, sözel ifadeyle anlam bulmayı sever.',
-      zodiac.ZodiacSign.cancer:
-          'Tavsiyem: Ay fazlarına dikkat et. Dolunay ve yeniay zamanları ruyaların daha güçlü olacak.',
-      zodiac.ZodiacSign.leo:
-          'Tavsiyem: Rüyalarını yaratıcı bir sekilde ifade et - çiz, yaz, paylas. Ates enerjin ifadeyi sever.',
-      zodiac.ZodiacSign.virgo:
-          'Tavsiyem: Ruya sembolleri listesi tut. Toprak enerjin, sistematik analizi takdir eder.',
-      zodiac.ZodiacSign.libra:
-          'Tavsiyem: Rüyalarındaki iliskilere odaklan. Hava enerjin, sosyal dinamiklerden ders çıkarır.',
-      zodiac.ZodiacSign.scorpio:
-          'Tavsiyem: Derin meditasyon yap. Su enerjin, bilincalti derinliklerine dalmak icin cok güclü.',
-      zodiac.ZodiacSign.sagittarius:
-          'Tavsiyem: Rüyalarını felsefi açıdan yorumla. Ates enerjin, büyük resmi görmeyi sever.',
-      zodiac.ZodiacSign.capricorn:
-          'Tavsiyem: Ruyalarini pratik yaşama nasıl uygularsın düsün. Toprak enerjin, somut sonuclar ister.',
-      zodiac.ZodiacSign.aquarius:
-          'Tavsiyem: Ruya toplulukarina katıl. Hava enerjin, kolektif bilgelikten beslenİr.',
-      zodiac.ZodiacSign.pisces:
-          'Tavsiyem: Uyumadan önce niyet koy. Su enerjin, spiritüel rehberlikle doğrudan bağlanabilir.',
+    final language = ref.read(languageProvider);
+    final signKeyMap = {
+      zodiac.ZodiacSign.aries: 'aries',
+      zodiac.ZodiacSign.taurus: 'taurus',
+      zodiac.ZodiacSign.gemini: 'gemini',
+      zodiac.ZodiacSign.cancer: 'cancer',
+      zodiac.ZodiacSign.leo: 'leo',
+      zodiac.ZodiacSign.virgo: 'virgo',
+      zodiac.ZodiacSign.libra: 'libra',
+      zodiac.ZodiacSign.scorpio: 'scorpio',
+      zodiac.ZodiacSign.sagittarius: 'sagittarius',
+      zodiac.ZodiacSign.capricorn: 'capricorn',
+      zodiac.ZodiacSign.aquarius: 'aquarius',
+      zodiac.ZodiacSign.pisces: 'pisces',
     };
-    return advice[sign] ?? advice[zodiac.ZodiacSign.aries]!;
+    final signKey = signKeyMap[sign] ?? 'aries';
+    return L10nService.get('widgets.dreams.interpretations.zodiac_advice.$signKey', language);
   }
 
   void _scrollToBottom() {
@@ -1001,7 +968,7 @@ ${_getZodiacAdvice(sign)}''';
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: [
-            AppColors.mystic.withOpacity(0.3),
+            AppColors.mystic.withValues(alpha: 0.3),
             Colors.transparent,
           ],
         ),
@@ -1022,14 +989,14 @@ ${_getZodiacAdvice(sign)}''';
                 decoration: BoxDecoration(
                   gradient: RadialGradient(
                     colors: [
-                      AppColors.mystic.withOpacity(0.5 + _pulseController.value * 0.3),
-                      AppColors.nebulaPurple.withOpacity(0.3),
+                      AppColors.mystic.withValues(alpha: 0.5 + _pulseController.value * 0.3),
+                      AppColors.nebulaPurple.withValues(alpha: 0.3),
                     ],
                   ),
                   shape: BoxShape.circle,
                   boxShadow: [
                     BoxShadow(
-                      color: AppColors.mystic.withOpacity(0.4 * _pulseController.value),
+                      color: AppColors.mystic.withValues(alpha: 0.4 * _pulseController.value),
                       blurRadius: 15,
                       spreadRadius: 2,
                     ),
@@ -1146,17 +1113,17 @@ ${_getZodiacAdvice(sign)}''';
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
                           colors: [
-                            AppColors.mystic.withOpacity(0.25),
-                            AppColors.nebulaPurple.withOpacity(0.15),
+                            AppColors.mystic.withValues(alpha: 0.25),
+                            AppColors.nebulaPurple.withValues(alpha: 0.15),
                           ],
                         ),
                         borderRadius: BorderRadius.circular(14),
                         border: Border.all(
-                          color: AppColors.mystic.withOpacity(0.35),
+                          color: AppColors.mystic.withValues(alpha: 0.35),
                         ),
                         boxShadow: [
                           BoxShadow(
-                            color: AppColors.mystic.withOpacity(0.1),
+                            color: AppColors.mystic.withValues(alpha: 0.1),
                             blurRadius: 8,
                             offset: const Offset(0, 2),
                           ),
@@ -1193,7 +1160,7 @@ ${_getZodiacAdvice(sign)}''';
               L10nService.get('widgets.dreams.tap_or_write_hint', ref.read(languageProvider)),
               style: TextStyle(
                 fontSize: 11,
-                color: AppColors.textSecondary.withOpacity(0.7),
+                color: AppColors.textSecondary.withValues(alpha: 0.7),
                 fontStyle: FontStyle.italic,
               ),
             ),
@@ -1219,8 +1186,8 @@ ${_getZodiacAdvice(sign)}''';
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    AppColors.mystic.withOpacity(0.5),
-                    AppColors.nebulaPurple.withOpacity(0.3),
+                    AppColors.mystic.withValues(alpha: 0.5),
+                    AppColors.nebulaPurple.withValues(alpha: 0.3),
                   ],
                 ),
                 shape: BoxShape.circle,
@@ -1238,12 +1205,12 @@ ${_getZodiacAdvice(sign)}''';
                   end: Alignment.bottomRight,
                   colors: isUser
                       ? [
-                          AppColors.cosmicPurple.withOpacity(0.4),
-                          AppColors.nebulaPurple.withOpacity(0.3),
+                          AppColors.cosmicPurple.withValues(alpha: 0.4),
+                          AppColors.nebulaPurple.withValues(alpha: 0.3),
                         ]
                       : [
-                          AppColors.mystic.withOpacity(0.2),
-                          const Color(0xFF1A1A2E).withOpacity(0.8),
+                          AppColors.mystic.withValues(alpha: 0.2),
+                          const Color(0xFF1A1A2E).withValues(alpha: 0.8),
                         ],
                 ),
                 borderRadius: BorderRadius.only(
@@ -1254,14 +1221,14 @@ ${_getZodiacAdvice(sign)}''';
                 ),
                 border: Border.all(
                   color: isUser
-                      ? AppColors.cosmicPurple.withOpacity(0.3)
-                      : AppColors.mystic.withOpacity(0.2),
+                      ? AppColors.cosmicPurple.withValues(alpha: 0.3)
+                      : AppColors.mystic.withValues(alpha: 0.2),
                   width: 1,
                 ),
                 boxShadow: [
                   BoxShadow(
                     color: (isUser ? AppColors.cosmicPurple : AppColors.mystic)
-                        .withOpacity(0.1),
+                        .withValues(alpha: 0.1),
                     blurRadius: 8,
                     offset: const Offset(0, 2),
                   ),
@@ -1336,8 +1303,8 @@ ${_getZodiacAdvice(sign)}''';
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  AppColors.mystic.withOpacity(0.5),
-                  AppColors.nebulaPurple.withOpacity(0.3),
+                  AppColors.mystic.withValues(alpha: 0.5),
+                  AppColors.nebulaPurple.withValues(alpha: 0.3),
                 ],
               ),
               shape: BoxShape.circle,
@@ -1348,10 +1315,10 @@ ${_getZodiacAdvice(sign)}''';
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             decoration: BoxDecoration(
-              color: AppColors.mystic.withOpacity(0.15),
+              color: AppColors.mystic.withValues(alpha: 0.15),
               borderRadius: BorderRadius.circular(18),
               border: Border.all(
-                color: AppColors.mystic.withOpacity(0.2),
+                color: AppColors.mystic.withValues(alpha: 0.2),
               ),
             ),
             child: Row(
@@ -1383,7 +1350,7 @@ ${_getZodiacAdvice(sign)}''';
           begin: Alignment.bottomCenter,
           end: Alignment.topCenter,
           colors: [
-            AppColors.nebulaPurple.withOpacity(0.5),
+            AppColors.nebulaPurple.withValues(alpha: 0.5),
             Colors.transparent,
           ],
         ),
@@ -1400,13 +1367,13 @@ ${_getZodiacAdvice(sign)}''';
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    AppColors.mystic.withOpacity(0.15),
-                    const Color(0xFF1A1A2E).withOpacity(0.9),
+                    AppColors.mystic.withValues(alpha: 0.15),
+                    const Color(0xFF1A1A2E).withValues(alpha: 0.9),
                   ],
                 ),
                 borderRadius: BorderRadius.circular(24),
                 border: Border.all(
-                  color: AppColors.mystic.withOpacity(0.3),
+                  color: AppColors.mystic.withValues(alpha: 0.3),
                 ),
               ),
               child: RawKeyboardListener(
@@ -1425,7 +1392,7 @@ ${_getZodiacAdvice(sign)}''';
                   textInputAction: TextInputAction.send,
                   decoration: InputDecoration(
                     hintText: L10nService.get('dreams.input_placeholder', ref.read(languageProvider)),
-                    hintStyle: TextStyle(color: AppColors.textSecondary.withOpacity(0.6)),
+                    hintStyle: TextStyle(color: AppColors.textSecondary.withValues(alpha: 0.6)),
                     border: InputBorder.none,
                     contentPadding: const EdgeInsets.symmetric(
                       horizontal: 18,
@@ -1452,7 +1419,7 @@ ${_getZodiacAdvice(sign)}''';
                 shape: BoxShape.circle,
                 boxShadow: [
                   BoxShadow(
-                    color: AppColors.mystic.withOpacity(0.4),
+                    color: AppColors.mystic.withValues(alpha: 0.4),
                     blurRadius: 12,
                     spreadRadius: 1,
                   ),
@@ -1611,17 +1578,17 @@ ${_getZodiacAdvice(sign)}''';
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  AppColors.cosmicPurple.withOpacity(0.3),
-                  AppColors.mystic.withOpacity(0.2),
+                  AppColors.cosmicPurple.withValues(alpha: 0.3),
+                  AppColors.mystic.withValues(alpha: 0.2),
                 ],
               ),
               borderRadius: BorderRadius.circular(20),
               border: Border.all(
-                color: AppColors.mystic.withOpacity(0.4),
+                color: AppColors.mystic.withValues(alpha: 0.4),
               ),
               boxShadow: [
                 BoxShadow(
-                  color: AppColors.mystic.withOpacity(0.1),
+                  color: AppColors.mystic.withValues(alpha: 0.1),
                   blurRadius: 4,
                 ),
               ],
@@ -1717,7 +1684,7 @@ class _DreamSymbolsSheet extends ConsumerWidget {
             width: 40,
             height: 4,
             decoration: BoxDecoration(
-              color: AppColors.textSecondary.withOpacity(0.3),
+              color: AppColors.textSecondary.withValues(alpha: 0.3),
               borderRadius: BorderRadius.circular(2),
             ),
           ),
@@ -1756,13 +1723,13 @@ class _DreamSymbolsSheet extends ConsumerWidget {
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
-                        AppColors.mystic.withOpacity(0.2),
-                        const Color(0xFF1A1A2E).withOpacity(0.8),
+                        AppColors.mystic.withValues(alpha: 0.2),
+                        const Color(0xFF1A1A2E).withValues(alpha: 0.8),
                       ],
                     ),
                     borderRadius: BorderRadius.circular(14),
                     border: Border.all(
-                      color: AppColors.mystic.withOpacity(0.2),
+                      color: AppColors.mystic.withValues(alpha: 0.2),
                     ),
                   ),
                   child: Row(
@@ -1788,7 +1755,7 @@ class _DreamSymbolsSheet extends ConsumerWidget {
                             Text(
                               symbol['meaning']!,
                               style: TextStyle(
-                                color: AppColors.textSecondary.withOpacity(0.8),
+                                color: AppColors.textSecondary.withValues(alpha: 0.8),
                                 fontSize: 10,
                               ),
                               maxLines: 2,

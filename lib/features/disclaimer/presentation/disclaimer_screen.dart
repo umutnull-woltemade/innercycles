@@ -41,7 +41,7 @@ class DisclaimerScreen extends ConsumerWidget {
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: AppColors.cosmicPurple.withOpacity(0.4),
+                        color: AppColors.cosmicPurple.withValues(alpha: 0.4),
                         blurRadius: 20,
                         spreadRadius: 2,
                       ),

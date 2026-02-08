@@ -220,7 +220,11 @@ class KarmicDebtScreen extends ConsumerWidget {
             ).animate().fadeIn(delay: 300.ms),
             const SizedBox(height: 4),
             Text(
-              '${content.reducesTo} sayısına indirgenir • ${content.archetype}',
+              L10nService.getWithParams(
+                'numerology.reduces_to_archetype',
+                language,
+                params: {'number': content.reducesTo.toString(), 'archetype': content.archetype},
+              ),
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
                 color: AppColors.textMuted,
               ),
@@ -662,11 +666,11 @@ class KarmicDebtScreen extends ConsumerWidget {
           ),
         ),
         const SizedBox(height: AppConstants.spacingMd),
-        _buildLifeAreaCard(context, 'İlişkiler', Icons.favorite, Colors.pink, content.relationships),
+        _buildLifeAreaCard(context, L10nService.get('numerology.relationships', language), Icons.favorite, Colors.pink, content.relationships),
         const SizedBox(height: 8),
-        _buildLifeAreaCard(context, 'Kariyer', Icons.work, Colors.blue, content.career),
+        _buildLifeAreaCard(context, L10nService.get('numerology.career', language), Icons.work, Colors.blue, content.career),
         const SizedBox(height: 8),
-        _buildLifeAreaCard(context, 'Sağlık', Icons.health_and_safety, Colors.green, content.health),
+        _buildLifeAreaCard(context, L10nService.get('numerology.health', language), Icons.health_and_safety, Colors.green, content.health),
       ],
     ).animate().fadeIn(duration: 400.ms);
   }

@@ -216,7 +216,6 @@ class PremiumUpsell extends ConsumerWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final title = _getTitle(language);
     final description = _getDescription(language);
-    final ctaText = _getCtaText(language);
 
     return Container(
       width: double.infinity,
@@ -230,19 +229,19 @@ class PremiumUpsell extends ConsumerWidget {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            AppColors.auroraStart.withOpacity(isDark ? 0.3 : 0.15),
-            AppColors.auroraEnd.withOpacity(isDark ? 0.2 : 0.1),
-            AppColors.starGold.withOpacity(isDark ? 0.15 : 0.08),
+            AppColors.auroraStart.withValues(alpha: isDark ? 0.3 : 0.15),
+            AppColors.auroraEnd.withValues(alpha: isDark ? 0.2 : 0.1),
+            AppColors.starGold.withValues(alpha: isDark ? 0.15 : 0.08),
           ],
         ),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: AppColors.starGold.withOpacity(0.3),
+          color: AppColors.starGold.withValues(alpha: 0.3),
           width: 1.5,
         ),
         boxShadow: [
           BoxShadow(
-            color: AppColors.auroraStart.withOpacity(0.2),
+            color: AppColors.auroraStart.withValues(alpha: 0.2),
             blurRadius: 20,
             offset: const Offset(0, 8),
           ),
@@ -348,8 +347,8 @@ class PremiumUpsell extends ConsumerWidget {
           end: Alignment.bottomRight,
           colors: isDark
               ? [
-                  AppColors.surfaceLight.withOpacity(0.1),
-                  AppColors.surfaceDark.withOpacity(0.5),
+                  AppColors.surfaceLight.withValues(alpha: 0.1),
+                  AppColors.surfaceDark.withValues(alpha: 0.5),
                 ]
               : [
                   AppColors.lightCard,
@@ -359,12 +358,12 @@ class PremiumUpsell extends ConsumerWidget {
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
           color: isDark
-              ? AppColors.starGold.withOpacity(0.2)
-              : AppColors.lightStarGold.withOpacity(0.3),
+              ? AppColors.starGold.withValues(alpha: 0.2)
+              : AppColors.lightStarGold.withValues(alpha: 0.3),
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(isDark ? 0.3 : 0.1),
+            color: Colors.black.withValues(alpha: isDark ? 0.3 : 0.1),
             blurRadius: 15,
             offset: const Offset(0, 6),
           ),
@@ -380,8 +379,8 @@ class PremiumUpsell extends ConsumerWidget {
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
                   color: isDark
-                      ? AppColors.starGold.withOpacity(0.15)
-                      : AppColors.lightStarGold.withOpacity(0.15),
+                      ? AppColors.starGold.withValues(alpha: 0.15)
+                      : AppColors.lightStarGold.withValues(alpha: 0.15),
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Icon(
@@ -451,7 +450,7 @@ class PremiumUpsell extends ConsumerWidget {
                             fontSize: 12,
                             fontWeight: FontWeight.w500,
                             color: isDark
-                                ? AppColors.textSecondary.withOpacity(0.9)
+                                ? AppColors.textSecondary.withValues(alpha: 0.9)
                                 : AppColors.lightTextSecondary,
                           ),
                         ),
@@ -482,13 +481,13 @@ class PremiumUpsell extends ConsumerWidget {
         ),
         decoration: BoxDecoration(
           color: isDark
-              ? AppColors.starGold.withOpacity(0.1)
-              : AppColors.lightStarGold.withOpacity(0.1),
+              ? AppColors.starGold.withValues(alpha: 0.1)
+              : AppColors.lightStarGold.withValues(alpha: 0.1),
           borderRadius: BorderRadius.circular(8),
           border: Border.all(
             color: isDark
-                ? AppColors.starGold.withOpacity(0.2)
-                : AppColors.lightStarGold.withOpacity(0.25),
+                ? AppColors.starGold.withValues(alpha: 0.2)
+                : AppColors.lightStarGold.withValues(alpha: 0.25),
           ),
         ),
         child: Row(
@@ -533,8 +532,8 @@ class PremiumUpsell extends ConsumerWidget {
             Icons.workspace_premium,
             size: 12,
             color: isDark
-                ? AppColors.starGold.withOpacity(0.7)
-                : AppColors.lightStarGold.withOpacity(0.8),
+                ? AppColors.starGold.withValues(alpha: 0.7)
+                : AppColors.lightStarGold.withValues(alpha: 0.8),
           ),
           const SizedBox(width: 4),
           Text(
@@ -543,8 +542,8 @@ class PremiumUpsell extends ConsumerWidget {
               fontSize: 11,
               fontWeight: FontWeight.w500,
               color: isDark
-                  ? AppColors.starGold.withOpacity(0.7)
-                  : AppColors.lightStarGold.withOpacity(0.8),
+                  ? AppColors.starGold.withValues(alpha: 0.7)
+                  : AppColors.lightStarGold.withValues(alpha: 0.8),
               decoration: TextDecoration.underline,
             ),
           ),
@@ -571,7 +570,7 @@ class PremiumUpsell extends ConsumerWidget {
           borderRadius: BorderRadius.circular(compact ? 10 : 12),
           boxShadow: [
             BoxShadow(
-              color: AppColors.starGold.withOpacity(0.3),
+              color: AppColors.starGold.withValues(alpha: 0.3),
               blurRadius: 12,
               offset: const Offset(0, 4),
             ),
@@ -645,8 +644,8 @@ Future<void> showPremiumUpsellModal(
                 height: 4,
                 decoration: BoxDecoration(
                   color: isDark
-                      ? AppColors.textMuted.withOpacity(0.3)
-                      : AppColors.lightTextMuted.withOpacity(0.3),
+                      ? AppColors.textMuted.withValues(alpha: 0.3)
+                      : AppColors.lightTextMuted.withValues(alpha: 0.3),
                   borderRadius: BorderRadius.circular(2),
                 ),
               ),

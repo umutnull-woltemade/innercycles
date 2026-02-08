@@ -2,6 +2,7 @@ import 'dart:math';
 
 import '../models/advanced_astrology.dart';
 import '../models/zodiac_sign.dart';
+import '../providers/app_providers.dart';
 
 // ============ NEW MODEL CLASSES ============
 
@@ -675,7 +676,7 @@ class TransitService {
   }
 
   /// Get retrograde periods for a year
-  static List<TransitPeriod> getRetrogradePeriods(int year) {
+  static List<TransitPeriod> getRetrogradePeriods(int year, {AppLanguage language = AppLanguage.tr}) {
     final periods = <TransitPeriod>[];
     final seed = year * 1000;
     final seededRandom = Random(seed);
@@ -692,7 +693,9 @@ class TransitService {
           startSign: ZodiacSign.values[seededRandom.nextInt(12)],
           endSign: ZodiacSign.values[seededRandom.nextInt(12)],
           isRetrograde: true,
-          description: 'Merkur geri gidiyor. Iletisim, teknoloji ve seyahatte dikkatli olun.',
+          description: language == AppLanguage.tr
+            ? 'Merkür geri gidiyor. İletişim, teknoloji ve seyahatte dikkatli olun.'
+            : 'Mercury is retrograde. Be careful with communication, technology, and travel.',
         ));
       }
     }
@@ -707,7 +710,9 @@ class TransitService {
         startSign: ZodiacSign.values[seededRandom.nextInt(12)],
         endSign: ZodiacSign.values[seededRandom.nextInt(12)],
         isRetrograde: true,
-        description: 'Venus geri gidiyor. Iliski ve degerler yeniden degerlendiriliyor.',
+        description: language == AppLanguage.tr
+          ? 'Venüs geri gidiyor. İlişki ve değerler yeniden değerlendiriliyor.'
+          : 'Venus is retrograde. Relationships and values are being re-evaluated.',
       ));
     }
 
@@ -721,7 +726,9 @@ class TransitService {
         startSign: ZodiacSign.values[seededRandom.nextInt(12)],
         endSign: ZodiacSign.values[seededRandom.nextInt(12)],
         isRetrograde: true,
-        description: 'Mars geri gidiyor. Enerji icsel yonlendirilmeli. Eski projeler tamamlanabilir.',
+        description: language == AppLanguage.tr
+          ? 'Mars geri gidiyor. Enerji içsel yönlendirilmeli. Eski projeler tamamlanabilir.'
+          : 'Mars is retrograde. Energy should be directed inward. Old projects can be completed.',
       ));
     }
 
@@ -734,7 +741,9 @@ class TransitService {
       startSign: ZodiacSign.values[seededRandom.nextInt(12)],
       endSign: ZodiacSign.values[seededRandom.nextInt(12)],
       isRetrograde: true,
-      description: 'Jupiter geri gidiyor. Icki buyume ve felsefik sorgulamalar.',
+      description: language == AppLanguage.tr
+        ? 'Jüpiter geri gidiyor. İçki büyüme ve felsefi sorgulamalar.'
+        : 'Jupiter is retrograde. Inner growth and philosophical questioning.',
     ));
 
     // Saturn retrograde (~4.5 months per year)
@@ -746,7 +755,9 @@ class TransitService {
       startSign: ZodiacSign.values[seededRandom.nextInt(12)],
       endSign: ZodiacSign.values[seededRandom.nextInt(12)],
       isRetrograde: true,
-      description: 'Saturn geri gidiyor. Sorumluluklar ve sinirlar yeniden degerlendirilir.',
+      description: language == AppLanguage.tr
+        ? 'Satürn geri gidiyor. Sorumluluklar ve sınırlar yeniden değerlendirilir.'
+        : 'Saturn is retrograde. Responsibilities and boundaries are being re-evaluated.',
     ));
 
     periods.sort((a, b) => a.startDate.compareTo(b.startDate));
@@ -2790,24 +2801,29 @@ class AdvancedAstrologyService {
     ZodiacSign progressedSun,
     ZodiacSign natalMoon,
     ZodiacSign progressedMoon,
-    Random seededRandom,
-  ) {
+    Random seededRandom, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     final aspects = <ProgressedAspect>[];
 
     aspects.add(ProgressedAspect(
-      progressedPlanet: 'Güneş',
-      natalPlanet: 'Güneş',
+      progressedPlanet: language == AppLanguage.tr ? 'Güneş' : 'Sun',
+      natalPlanet: language == AppLanguage.tr ? 'Güneş' : 'Sun',
       type: AspectType.values[seededRandom.nextInt(AspectType.values.length)],
-      interpretation: 'İlerlemişş Güneş, natal Güneşinizle etkileşimde. Kimlik ve yaşam amacı temaları gündemde.',
+      interpretation: language == AppLanguage.tr
+        ? 'İlerlemişş Güneş, natal Güneşinizle etkileşimde. Kimlik ve yaşam amacı temaları gündemde.'
+        : 'Progressed Sun is interacting with your natal Sun. Identity and life purpose themes are on the agenda.',
       exactDate: DateTime.now().add(Duration(days: seededRandom.nextInt(365))),
       isApplying: seededRandom.nextBool(),
     ));
 
     aspects.add(ProgressedAspect(
-      progressedPlanet: 'Ay',
-      natalPlanet: 'Ay',
+      progressedPlanet: language == AppLanguage.tr ? 'Ay' : 'Moon',
+      natalPlanet: language == AppLanguage.tr ? 'Ay' : 'Moon',
       type: AspectType.values[seededRandom.nextInt(AspectType.values.length)],
-      interpretation: 'İlerlemişş Ay, natal Ayınızla arada. Duygusal dönem ve iç dünyanız ön planda.',
+      interpretation: language == AppLanguage.tr
+        ? 'İlerlemişş Ay, natal Ayınızla arada. Duygusal dönem ve iç dünyanız ön planda.'
+        : 'Progressed Moon is interacting with your natal Moon. Emotional period and inner world are in focus.',
       exactDate: DateTime.now().add(Duration(days: seededRandom.nextInt(90))),
       isApplying: seededRandom.nextBool(),
     ));
@@ -2815,7 +2831,7 @@ class AdvancedAstrologyService {
     return aspects;
   }
 
-  static List<ProgressionEvent> _generateProgressionEvents(DateTime birthDate, int age, Random seededRandom) {
+  static List<ProgressionEvent> _generateProgressionEvents(DateTime birthDate, int age, Random seededRandom, {AppLanguage language = AppLanguage.tr}) {
     final events = <ProgressionEvent>[];
     final now = DateTime.now();
 
@@ -2823,8 +2839,10 @@ class AdvancedAstrologyService {
     if (age > 30) {
       events.add(ProgressionEvent(
         date: birthDate.add(Duration(days: 30 * 365)),
-        event: 'İlerlemişş Güneş burç değişimi',
-        description: '30 yaşında ilerlemişş Güneşiniz yeni bir burca geçti. Kimliğinizde önemli bir evrim.',
+        event: language == AppLanguage.tr ? 'İlerlemişş Güneş burç değişimi' : 'Progressed Sun sign change',
+        description: language == AppLanguage.tr
+          ? '30 yaşında ilerlemişş Güneşiniz yeni bir burca geçti. Kimliğinizde önemli bir evrim.'
+          : 'At age 30, your progressed Sun moved to a new sign. An important evolution in your identity.',
         type: ProgressionEventType.sunSignChange,
       ));
     }
@@ -2832,15 +2850,19 @@ class AdvancedAstrologyService {
     // Upcoming events
     events.add(ProgressionEvent(
       date: now.add(Duration(days: seededRandom.nextInt(365) + 30)),
-      event: 'İlerlemişş Yeni Ay',
-      description: 'İlerlemişş Güneş ve Ay kavuşumu. Yeni başlangıçlar için güçlü bir zaman.',
+      event: language == AppLanguage.tr ? 'İlerlemişş Yeni Ay' : 'Progressed New Moon',
+      description: language == AppLanguage.tr
+        ? 'İlerlemişş Güneş ve Ay kavuşumu. Yeni başlangıçlar için güçlü bir zaman.'
+        : 'Progressed Sun and Moon conjunction. A powerful time for new beginnings.',
       type: ProgressionEventType.newMoon,
     ));
 
     events.add(ProgressionEvent(
       date: now.add(Duration(days: seededRandom.nextInt(180) + 10)),
-      event: 'Önemli Açı Aktivasyonu',
-      description: 'İlerlemişş bir gezegen natal haritanızda önemli bir noktayla açı yapıyor.',
+      event: language == AppLanguage.tr ? 'Önemli Açı Aktivasyonu' : 'Major Aspect Activation',
+      description: language == AppLanguage.tr
+        ? 'İlerlemişş bir gezegen natal haritanızda önemli bir noktayla açı yapıyor.'
+        : 'A progressed planet is making an aspect to an important point in your natal chart.',
       type: ProgressionEventType.majorAspect,
     ));
 

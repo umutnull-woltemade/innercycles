@@ -200,7 +200,7 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: [AppColors.mystic.withOpacity(0.3), Colors.transparent],
+          colors: [AppColors.mystic.withValues(alpha: 0.3), Colors.transparent],
         ),
       ),
       child: Row(
@@ -218,8 +218,8 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
             decoration: BoxDecoration(
               gradient: RadialGradient(
                 colors: [
-                  AppColors.mystic.withOpacity(0.5),
-                  AppColors.nebulaPurple.withOpacity(0.3),
+                  AppColors.mystic.withValues(alpha: 0.5),
+                  AppColors.nebulaPurple.withValues(alpha: 0.3),
                 ],
               ),
               shape: BoxShape.circle,
@@ -265,7 +265,7 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       decoration: BoxDecoration(
-        color: AppColors.surfaceDark.withOpacity(0.5),
+        color: AppColors.surfaceDark.withValues(alpha: 0.5),
         borderRadius: BorderRadius.circular(16),
       ),
       child: TabBar(
@@ -379,12 +379,12 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
                       colors: [AppColors.mystic, AppColors.cosmicPurple],
                     )
                   : null,
-              color: isSelected ? null : AppColors.surfaceDark.withOpacity(0.5),
+              color: isSelected ? null : AppColors.surfaceDark.withValues(alpha: 0.5),
               borderRadius: BorderRadius.circular(20),
               border: Border.all(
                 color: isSelected
                     ? Colors.transparent
-                    : AppColors.mystic.withOpacity(0.3),
+                    : AppColors.mystic.withValues(alpha: 0.3),
               ),
             ),
             child: Text(
@@ -542,7 +542,7 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
         return LinearGradient(
           colors: [
             const Color(0xFF2D2410),
-            AppColors.starGold.withOpacity(0.3),
+            AppColors.starGold.withValues(alpha: 0.3),
           ],
         );
     }
@@ -608,9 +608,9 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: AppColors.surfaceDark.withOpacity(0.5),
+        color: AppColors.surfaceDark.withValues(alpha: 0.5),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: AppColors.mystic.withOpacity(0.2)),
+        border: Border.all(color: AppColors.mystic.withValues(alpha: 0.2)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -674,12 +674,12 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
                       colors: [AppColors.mystic, AppColors.cosmicPurple],
                     )
                   : null,
-              color: isSelected ? null : AppColors.surfaceDark.withOpacity(0.5),
+              color: isSelected ? null : AppColors.surfaceDark.withValues(alpha: 0.5),
               borderRadius: BorderRadius.circular(12),
               border: Border.all(
                 color: isSelected
                     ? Colors.transparent
-                    : AppColors.mystic.withOpacity(0.3),
+                    : AppColors.mystic.withValues(alpha: 0.3),
               ),
             ),
             child: Text(
@@ -752,8 +752,8 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
               height: 44,
               decoration: BoxDecoration(
                 color: isSelected
-                    ? AppColors.mystic.withOpacity(0.3)
-                    : AppColors.surfaceDark.withOpacity(0.5),
+                    ? AppColors.mystic.withValues(alpha: 0.3)
+                    : AppColors.surfaceDark.withValues(alpha: 0.5),
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(
                   color: isSelected ? AppColors.mystic : Colors.transparent,
@@ -847,7 +847,7 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
                         },
                         child: Container(
                           decoration: BoxDecoration(
-                            color: AppColors.surfaceLight.withOpacity(0.3),
+                            color: AppColors.surfaceLight.withValues(alpha: 0.3),
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Center(
@@ -899,7 +899,7 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
       margin: const EdgeInsets.only(bottom: 8),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
       decoration: BoxDecoration(
-        color: AppColors.surfaceDark.withOpacity(0.3),
+        color: AppColors.surfaceDark.withValues(alpha: 0.3),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(
@@ -951,7 +951,7 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
               boxShadow: [
                 if (isSelected)
                   BoxShadow(
-                    color: color.withOpacity(0.5),
+                    color: color.withValues(alpha: 0.5),
                     blurRadius: 12,
                     spreadRadius: 2,
                   ),
@@ -1041,12 +1041,12 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              AppColors.surfaceDark.withOpacity(0.8),
-              AppColors.surfaceDark.withOpacity(0.4),
+              AppColors.surfaceDark.withValues(alpha: 0.8),
+              AppColors.surfaceDark.withValues(alpha: 0.4),
             ],
           ),
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: AppColors.mystic.withOpacity(0.2)),
+          border: Border.all(color: AppColors.mystic.withValues(alpha: 0.2)),
         ),
         child: Row(
           children: [
@@ -1054,7 +1054,7 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
               width: 50,
               height: 50,
               decoration: BoxDecoration(
-                color: AppColors.mystic.withOpacity(0.2),
+                color: AppColors.mystic.withValues(alpha: 0.2),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Center(
@@ -1131,12 +1131,12 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-              AppColors.mystic.withOpacity(0.3),
-              AppColors.nebulaPurple.withOpacity(0.5),
+              AppColors.mystic.withValues(alpha: 0.3),
+              AppColors.nebulaPurple.withValues(alpha: 0.5),
             ],
           ),
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: AppColors.mystic.withOpacity(0.5)),
+          border: Border.all(color: AppColors.mystic.withValues(alpha: 0.5)),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -1161,7 +1161,7 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.1),
+                color: Colors.white.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: const Text(
@@ -1234,7 +1234,7 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
               margin: const EdgeInsets.only(bottom: 8),
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: AppColors.surfaceDark.withOpacity(0.5),
+                color: AppColors.surfaceDark.withValues(alpha: 0.5),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Row(
@@ -1269,12 +1269,12 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            AppColors.mystic.withOpacity(0.1),
-            AppColors.nebulaPurple.withOpacity(0.1),
+            AppColors.mystic.withValues(alpha: 0.1),
+            AppColors.nebulaPurple.withValues(alpha: 0.1),
           ],
         ),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: AppColors.mystic.withOpacity(0.3)),
+        border: Border.all(color: AppColors.mystic.withValues(alpha: 0.3)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1351,9 +1351,9 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
           margin: const EdgeInsets.only(bottom: 8),
           padding: const EdgeInsets.all(14),
           decoration: BoxDecoration(
-            color: AppColors.surfaceDark.withOpacity(0.5),
+            color: AppColors.surfaceDark.withValues(alpha: 0.5),
             borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: AppColors.mystic.withOpacity(0.2)),
+            border: Border.all(color: AppColors.mystic.withValues(alpha: 0.2)),
           ),
           child: Row(
             children: [
@@ -1387,7 +1387,7 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
         gradient: LinearGradient(
           begin: Alignment.bottomCenter,
           end: Alignment.topCenter,
-          colors: [AppColors.nebulaPurple.withOpacity(0.8), Colors.transparent],
+          colors: [AppColors.nebulaPurple.withValues(alpha: 0.8), Colors.transparent],
         ),
       ),
       child: Row(
@@ -1671,12 +1671,12 @@ class DreamQuickShareButton extends ConsumerWidget {
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              AppColors.mystic.withOpacity(0.3),
-              AppColors.cosmicPurple.withOpacity(0.3),
+              AppColors.mystic.withValues(alpha: 0.3),
+              AppColors.cosmicPurple.withValues(alpha: 0.3),
             ],
           ),
           borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: AppColors.mystic.withOpacity(0.5)),
+          border: Border.all(color: AppColors.mystic.withValues(alpha: 0.5)),
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,

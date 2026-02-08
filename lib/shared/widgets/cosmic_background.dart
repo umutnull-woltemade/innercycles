@@ -105,8 +105,8 @@ class _SimplifiedWebBackground extends StatelessWidget {
                 shape: BoxShape.circle,
                 gradient: RadialGradient(
                   colors: [
-                    const Color(0xFF9C27B0).withOpacity(0.15),
-                    const Color(0xFF9C27B0).withOpacity(0.0),
+                    const Color(0xFF9C27B0).withValues(alpha: 0.15),
+                    const Color(0xFF9C27B0).withValues(alpha: 0.0),
                   ],
                 ),
               ),
@@ -122,8 +122,8 @@ class _SimplifiedWebBackground extends StatelessWidget {
                 shape: BoxShape.circle,
                 gradient: RadialGradient(
                   colors: [
-                    const Color(0xFF2196F3).withOpacity(0.12),
-                    const Color(0xFF2196F3).withOpacity(0.0),
+                    const Color(0xFF2196F3).withValues(alpha: 0.12),
+                    const Color(0xFF2196F3).withValues(alpha: 0.0),
                   ],
                 ),
               ),
@@ -161,7 +161,7 @@ class _SimpleStarsPainter extends CustomPainter {
       ..style = PaintingStyle.fill;
 
     for (final star in _stars) {
-      paint.color = Colors.white.withOpacity(star.opacity);
+      paint.color = Colors.white.withValues(alpha: star.opacity);
       canvas.drawCircle(
         Offset(star.x * size.width, star.y * size.height),
         star.size,
@@ -398,9 +398,9 @@ class _CosmicPainter extends CustomPainter {
         center,
         math.max(radiusX, radiusY),
         [
-          nebula.color.withOpacity(nebula.opacity),
-          nebula.color.withOpacity(nebula.opacity * 0.5),
-          nebula.color.withOpacity(0),
+          nebula.color.withValues(alpha: nebula.opacity),
+          nebula.color.withValues(alpha: nebula.opacity * 0.5),
+          nebula.color.withValues(alpha: 0),
         ],
         [0.0, 0.5, 1.0],
       );
@@ -430,9 +430,9 @@ class _CosmicPainter extends CustomPainter {
         center,
         radius,
         [
-          orb.color.withOpacity(orb.opacity),
-          orb.color.withOpacity(orb.opacity * 0.3),
-          orb.color.withOpacity(0),
+          orb.color.withValues(alpha: orb.opacity),
+          orb.color.withValues(alpha: orb.opacity * 0.3),
+          orb.color.withValues(alpha: 0),
         ],
         [0.0, 0.4, 1.0],
       );
@@ -459,13 +459,13 @@ class _CosmicPainter extends CustomPainter {
           center,
           star.size * 3,
           Paint()
-            ..color = star.color.withOpacity(star.opacity * 0.3)
+            ..color = star.color.withValues(alpha: star.opacity * 0.3)
             ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 8),
         );
       }
 
       // Ana yıldız
-      paint.color = star.color.withOpacity(star.opacity);
+      paint.color = star.color.withValues(alpha: star.opacity);
       canvas.drawCircle(center, star.size, paint);
     }
   }
@@ -483,7 +483,7 @@ class _CosmicPainter extends CustomPainter {
           text: symbol.symbol,
           style: TextStyle(
             fontSize: symbol.size,
-            color: symbol.color.withOpacity(symbol.opacity),
+            color: symbol.color.withValues(alpha: symbol.opacity),
           ),
         ),
         textDirection: TextDirection.ltr,

@@ -120,9 +120,11 @@ class _ShareSummaryScreenState extends ConsumerState<ShareSummaryScreen> {
         text: L10nService.get('share.share_text', language),
       );
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('${L10nService.get('share.share_error', language)}: $e')),
-      );
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('${L10nService.get('share.share_error', language)}: $e')),
+        );
+      }
     } finally {
       setState(() => _isCapturing = false);
     }

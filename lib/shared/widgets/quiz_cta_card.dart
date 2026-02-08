@@ -112,8 +112,8 @@ class QuizCTACard extends ConsumerWidget {
             end: Alignment.bottomRight,
             colors: isDark
                 ? [
-                    AppColors.cosmicPurple.withOpacity(0.8),
-                    AppColors.nebulaPurple.withOpacity(0.9),
+                    AppColors.cosmicPurple.withValues(alpha: 0.8),
+                    AppColors.nebulaPurple.withValues(alpha: 0.9),
                   ]
                 : [
                     AppColors.lightSurfaceVariant,
@@ -123,15 +123,15 @@ class QuizCTACard extends ConsumerWidget {
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
             color: isDark
-                ? AppColors.auroraStart.withOpacity(0.3)
-                : AppColors.lightAuroraStart.withOpacity(0.2),
+                ? AppColors.auroraStart.withValues(alpha: 0.3)
+                : AppColors.lightAuroraStart.withValues(alpha: 0.2),
             width: 1.5,
           ),
           boxShadow: [
             BoxShadow(
               color: isDark
-                  ? AppColors.auroraStart.withOpacity(0.15)
-                  : Colors.black.withOpacity(0.08),
+                  ? AppColors.auroraStart.withValues(alpha: 0.15)
+                  : Colors.black.withValues(alpha: 0.08),
               blurRadius: 20,
               offset: const Offset(0, 8),
             ),
@@ -154,7 +154,7 @@ class QuizCTACard extends ConsumerWidget {
                       borderRadius: BorderRadius.circular(14),
                       boxShadow: [
                         BoxShadow(
-                          color: AppColors.auroraStart.withOpacity(0.3),
+                          color: AppColors.auroraStart.withValues(alpha: 0.3),
                           blurRadius: 10,
                           offset: const Offset(0, 4),
                         ),
@@ -209,7 +209,7 @@ class QuizCTACard extends ConsumerWidget {
                 borderRadius: BorderRadius.circular(30),
                 boxShadow: [
                   BoxShadow(
-                    color: AppColors.auroraStart.withOpacity(0.3),
+                    color: AppColors.auroraStart.withValues(alpha: 0.3),
                     blurRadius: 12,
                     offset: const Offset(0, 4),
                   ),
@@ -252,13 +252,13 @@ class QuizCTACard extends ConsumerWidget {
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              AppColors.auroraStart.withOpacity(isDark ? 0.2 : 0.1),
-              AppColors.auroraEnd.withOpacity(isDark ? 0.15 : 0.08),
+              AppColors.auroraStart.withValues(alpha: isDark ? 0.2 : 0.1),
+              AppColors.auroraEnd.withValues(alpha: isDark ? 0.15 : 0.08),
             ],
           ),
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
-            color: AppColors.auroraStart.withOpacity(0.2),
+            color: AppColors.auroraStart.withValues(alpha: 0.2),
           ),
         ),
         child: Row(
@@ -338,13 +338,13 @@ class InlineQuizCTA extends ConsumerWidget {
         ),
         decoration: BoxDecoration(
           color: isDark
-              ? AppColors.auroraStart.withOpacity(0.1)
-              : AppColors.lightAuroraStart.withOpacity(0.08),
+              ? AppColors.auroraStart.withValues(alpha: 0.1)
+              : AppColors.lightAuroraStart.withValues(alpha: 0.08),
           borderRadius: BorderRadius.circular(8),
           border: Border.all(
             color: isDark
-                ? AppColors.auroraStart.withOpacity(0.2)
-                : AppColors.lightAuroraStart.withOpacity(0.15),
+                ? AppColors.auroraStart.withValues(alpha: 0.2)
+                : AppColors.lightAuroraStart.withValues(alpha: 0.15),
           ),
         ),
         child: Row(
@@ -425,21 +425,21 @@ class FloatingQuizCTA extends ConsumerWidget {
         gradient: LinearGradient(
           colors: isDark
               ? [
-                  AppColors.surfaceDark.withOpacity(0.95),
-                  AppColors.cosmicPurple.withOpacity(0.95),
+                  AppColors.surfaceDark.withValues(alpha: 0.95),
+                  AppColors.cosmicPurple.withValues(alpha: 0.95),
                 ]
               : [
-                  AppColors.lightCard.withOpacity(0.98),
-                  AppColors.lightSurfaceVariant.withOpacity(0.98),
+                  AppColors.lightCard.withValues(alpha: 0.98),
+                  AppColors.lightSurfaceVariant.withValues(alpha: 0.98),
                 ],
         ),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: AppColors.auroraStart.withOpacity(0.3),
+          color: AppColors.auroraStart.withValues(alpha: 0.3),
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.2),
+            color: Colors.black.withValues(alpha: 0.2),
             blurRadius: 20,
             offset: const Offset(0, -4),
           ),

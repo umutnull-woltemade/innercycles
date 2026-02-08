@@ -303,6 +303,38 @@ class L10nService {
     return _translations.keys.toSet();
   }
 
+  /// Get all translation keys for a specific language (for observatory)
+  /// Returns a set of dot-notation keys like "screens.home.title"
+  static Set<String> getAllKeys(String localeCode) {
+    final language = supportedLanguages.firstWhere(
+      (l) => l.name == localeCode,
+      orElse: () => AppLanguage.en,
+    );
+
+    if (!_translations.containsKey(language)) {
+      return {};
+    }
+
+    return _flattenKeys(_translations[language]!);
+  }
+
+  /// Flatten nested JSON keys into dot-notation for key counting
+  static Set<String> _flattenKeys(Map<String, dynamic> map, [String prefix = '']) {
+    final keys = <String>{};
+
+    for (final entry in map.entries) {
+      final key = prefix.isEmpty ? entry.key : '$prefix.${entry.key}';
+
+      if (entry.value is Map<String, dynamic>) {
+        keys.addAll(_flattenKeys(entry.value as Map<String, dynamic>, key));
+      } else {
+        keys.add(key);
+      }
+    }
+
+    return keys;
+  }
+
   /// Reload a specific language (useful for hot reload during development)
   static Future<void> reload(AppLanguage language) async {
     _translations.remove(language);

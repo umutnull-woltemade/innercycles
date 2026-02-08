@@ -217,10 +217,10 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
             decoration: BoxDecoration(
               color: isDark
                   ? AppColors.surfaceLight.withAlpha(128)
-                  : _natalChart!.sunSign.color.withOpacity(0.1),
+                  : _natalChart!.sunSign.color.withValues(alpha: 0.1),
               shape: BoxShape.circle,
               border: isDark ? null : Border.all(
-                color: _natalChart!.sunSign.color.withOpacity(0.3),
+                color: _natalChart!.sunSign.color.withValues(alpha: 0.3),
                 width: 2,
               ),
             ),
@@ -307,12 +307,12 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           color: isDark
-              ? AppColors.surfaceLight.withOpacity(0.1)
+              ? AppColors.surfaceLight.withValues(alpha: 0.1)
               : AppColors.lightSurfaceVariant,
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
             color: isDark
-                ? AppColors.surfaceLight.withOpacity(0.2)
+                ? AppColors.surfaceLight.withValues(alpha: 0.2)
                 : Colors.grey.shade200,
           ),
         ),
@@ -321,7 +321,7 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: AppColors.starGold.withOpacity(0.1),
+                color: AppColors.starGold.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Icon(
@@ -481,7 +481,7 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
         borderRadius: BorderRadius.circular(16),
         boxShadow: isDark ? null : [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: 10,
             offset: const Offset(0, 2),
           ),
@@ -501,7 +501,7 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
           borderRadius: BorderRadius.circular(12),
           boxShadow: [
             BoxShadow(
-              color: colorScheme.primary.withOpacity(0.3),
+              color: colorScheme.primary.withValues(alpha: 0.3),
               blurRadius: 8,
               offset: const Offset(0, 2),
             ),
@@ -1145,7 +1145,7 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
         border: Border.all(color: color.withAlpha(isDark ? 51 : 40)),
         boxShadow: isDark ? null : [
           BoxShadow(
-            color: Colors.black.withOpacity(0.04),
+            color: Colors.black.withValues(alpha: 0.04),
             blurRadius: 8,
             offset: const Offset(0, 2),
           ),
@@ -1194,7 +1194,7 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
         border: Border.all(color: accentColor.withAlpha(isDark ? 76 : 50)),
         boxShadow: isDark ? null : [
           BoxShadow(
-            color: Colors.black.withOpacity(0.06),
+            color: Colors.black.withValues(alpha: 0.06),
             blurRadius: 12,
             offset: const Offset(0, 4),
           ),
@@ -1279,7 +1279,7 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
         border: Border.all(color: AppColors.auroraStart.withAlpha(isDark ? 76 : 50)),
         boxShadow: isDark ? null : [
           BoxShadow(
-            color: Colors.black.withOpacity(0.06),
+            color: Colors.black.withValues(alpha: 0.06),
             blurRadius: 12,
             offset: const Offset(0, 4),
           ),
@@ -1339,7 +1339,7 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
         border: Border.all(color: AppColors.auroraEnd.withAlpha(isDark ? 76 : 50)),
         boxShadow: isDark ? null : [
           BoxShadow(
-            color: Colors.black.withOpacity(0.06),
+            color: Colors.black.withValues(alpha: 0.06),
             blurRadius: 12,
             offset: const Offset(0, 4),
           ),
@@ -1403,7 +1403,7 @@ class _NatalChartScreenState extends ConsumerState<NatalChartScreen>
         border: Border.all(color: AppColors.warning.withAlpha(isDark ? 76 : 50)),
         boxShadow: isDark ? null : [
           BoxShadow(
-            color: Colors.black.withOpacity(0.06),
+            color: Colors.black.withValues(alpha: 0.06),
             blurRadius: 12,
             offset: const Offset(0, 4),
           ),
@@ -1560,7 +1560,7 @@ class _BigThreeItem extends StatelessWidget {
             color: planet!.sign.color.withAlpha(isDark ? 51 : 25),
             borderRadius: BorderRadius.circular(8),
             border: isDark ? null : Border.all(
-              color: planet!.sign.color.withOpacity(0.3),
+              color: planet!.sign.color.withValues(alpha: 0.3),
             ),
           ),
           child: Center(
@@ -1624,7 +1624,7 @@ class _DominantItem extends StatelessWidget {
         color: color.withAlpha(isDark ? 25 : 15),
         borderRadius: BorderRadius.circular(AppConstants.radiusSm),
         border: isDark ? null : Border.all(
-          color: color.withOpacity(0.2),
+          color: color.withValues(alpha: 0.2),
         ),
       ),
       child: Column(

@@ -160,10 +160,10 @@ class _CosmicShareScreenState extends ConsumerState<CosmicShareScreen> {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
           decoration: BoxDecoration(
-            color: MysticalColors.amethyst.withOpacity(0.1),
+            color: MysticalColors.amethyst.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
-              color: MysticalColors.amethyst.withOpacity(0.2),
+              color: MysticalColors.amethyst.withValues(alpha: 0.2),
             ),
           ),
           child: Column(
@@ -208,7 +208,7 @@ class _CosmicShareScreenState extends ConsumerState<CosmicShareScreen> {
               borderRadius: BorderRadius.circular(30),
               boxShadow: [
                 BoxShadow(
-                  color: MysticalColors.amethyst.withOpacity(0.4),
+                  color: MysticalColors.amethyst.withValues(alpha: 0.4),
                   blurRadius: 20,
                   spreadRadius: 2,
                 ),
@@ -432,7 +432,7 @@ class _CosmicShareScreenState extends ConsumerState<CosmicShareScreen> {
                   child: OutlinedButton.icon(
                     onPressed: () async {
                       await Clipboard.setData(ClipboardData(text: fallback.copyText));
-                      if (mounted) {
+                      if (context.mounted) {
                         Navigator.pop(context);
                         _showSuccessFeedback(L10nService.get('share.text_copied_success', _language));
                       }
@@ -441,7 +441,7 @@ class _CosmicShareScreenState extends ConsumerState<CosmicShareScreen> {
                     label: Text(L10nService.get('share.copy_text', _language)),
                     style: OutlinedButton.styleFrom(
                       foregroundColor: MysticalColors.textPrimary,
-                      side: BorderSide(color: MysticalColors.amethyst.withOpacity(0.5)),
+                      side: BorderSide(color: MysticalColors.amethyst.withValues(alpha: 0.5)),
                       padding: const EdgeInsets.symmetric(vertical: 12),
                     ),
                   ),
@@ -451,7 +451,7 @@ class _CosmicShareScreenState extends ConsumerState<CosmicShareScreen> {
                   child: ElevatedButton.icon(
                     onPressed: () async {
                       await InstagramShareService.openInstagram();
-                      if (mounted) Navigator.pop(context);
+                      if (context.mounted) Navigator.pop(context);
                     },
                     icon: const Icon(Icons.open_in_new, size: 18),
                     label: Text(L10nService.get('share.open_instagram', _language)),
@@ -507,7 +507,7 @@ class _CosmicShareCard extends StatelessWidget {
           end: Alignment.bottomCenter,
           colors: [
             MysticalColors.bgCosmic,
-            MysticalColors.cosmicPurple.withOpacity(0.95),
+            MysticalColors.cosmicPurple.withValues(alpha: 0.95),
             MysticalColors.midnightBlue,
             MysticalColors.bgDeepSpace,
           ],
@@ -517,14 +517,14 @@ class _CosmicShareCard extends StatelessWidget {
         boxShadow: liteMode
             ? [
                 BoxShadow(
-                  color: sign.color.withOpacity(0.15),
+                  color: sign.color.withValues(alpha: 0.15),
                   blurRadius: 12,
                   spreadRadius: 1,
                 ),
               ]
             : [
                 BoxShadow(
-                  color: sign.color.withOpacity(0.3),
+                  color: sign.color.withValues(alpha: 0.3),
                   blurRadius: 40,
                   spreadRadius: 5,
                 ),
@@ -637,13 +637,13 @@ class _CosmicShareCard extends StatelessWidget {
           height: size,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: Colors.white.withOpacity(opacity),
+            color: Colors.white.withValues(alpha: opacity),
             // MOBILE: No shadow in lite mode
             boxShadow: liteMode
                 ? null
                 : [
                     BoxShadow(
-                      color: Colors.white.withOpacity(opacity * 0.5),
+                      color: Colors.white.withValues(alpha: opacity * 0.5),
                       blurRadius: size * 2,
                       spreadRadius: size * 0.5,
                     ),
@@ -664,12 +664,12 @@ class _CosmicShareCard extends StatelessWidget {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            sign.color.withOpacity(0.15),
-            MysticalColors.cosmicPurple.withOpacity(0.3),
+            sign.color.withValues(alpha: 0.15),
+            MysticalColors.cosmicPurple.withValues(alpha: 0.3),
           ],
         ),
         border: Border.all(
-          color: sign.color.withOpacity(0.3),
+          color: sign.color.withValues(alpha: 0.3),
           width: 1,
         ),
       ),
@@ -716,13 +716,13 @@ class _CosmicShareCard extends StatelessWidget {
               shape: BoxShape.circle,
               gradient: RadialGradient(
                 colors: [
-                  sign.color.withOpacity(0.4),
-                  sign.color.withOpacity(0.1),
+                  sign.color.withValues(alpha: 0.4),
+                  sign.color.withValues(alpha: 0.1),
                 ],
               ),
               boxShadow: [
                 BoxShadow(
-                  color: sign.color.withOpacity(0.3),
+                  color: sign.color.withValues(alpha: 0.3),
                   blurRadius: 20,
                   spreadRadius: 5,
                 ),
@@ -736,7 +736,7 @@ class _CosmicShareCard extends StatelessWidget {
                   color: sign.color,
                   shadows: [
                     Shadow(
-                      color: sign.color.withOpacity(0.5),
+                      color: sign.color.withValues(alpha: 0.5),
                       blurRadius: 10,
                     ),
                   ],
@@ -791,9 +791,9 @@ class _CosmicShareCard extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
-        color: MysticalColors.bgElevated.withOpacity(0.5),
+        color: MysticalColors.bgElevated.withValues(alpha: 0.5),
         border: Border.all(
-          color: MysticalColors.amethyst.withOpacity(0.2),
+          color: MysticalColors.amethyst.withValues(alpha: 0.2),
         ),
       ),
       child: Column(
@@ -835,7 +835,7 @@ class _CosmicShareCard extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
-                color: sign.color.withOpacity(0.15),
+                color: sign.color.withValues(alpha: 0.15),
               ),
               child: Text(
                 content.personalMessage.emotionalCore,
@@ -862,12 +862,12 @@ class _CosmicShareCard extends StatelessWidget {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            MysticalColors.nebulaTeal.withOpacity(0.2),
-            MysticalColors.cosmicPurple.withOpacity(0.2),
+            MysticalColors.nebulaTeal.withValues(alpha: 0.2),
+            MysticalColors.cosmicPurple.withValues(alpha: 0.2),
           ],
         ),
         border: Border.all(
-          color: MysticalColors.nebulaTeal.withOpacity(0.3),
+          color: MysticalColors.nebulaTeal.withValues(alpha: 0.3),
         ),
       ),
       child: Column(
@@ -910,7 +910,7 @@ class _CosmicShareCard extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
                   color: _getIntensityColor(content.energyMeter.emotionalIntensity)
-                      .withOpacity(0.2),
+                      .withValues(alpha: 0.2),
                 ),
                 child: Text(
                   _getLocalizedIntensity(content.energyMeter.emotionalIntensity),
@@ -940,7 +940,7 @@ class _CosmicShareCard extends StatelessWidget {
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: Colors.white.withOpacity(0.05),
+              color: Colors.white.withValues(alpha: 0.05),
             ),
             child: Row(
               children: [
@@ -953,7 +953,7 @@ class _CosmicShareCard extends StatelessWidget {
                         height: 6,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(3),
-                          color: Colors.white.withOpacity(0.1),
+                          color: Colors.white.withValues(alpha: 0.1),
                         ),
                       ),
                       FractionallySizedBox(
@@ -1018,7 +1018,7 @@ class _CosmicShareCard extends StatelessWidget {
               height: 8,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(4),
-                color: Colors.white.withOpacity(0.1),
+                color: Colors.white.withValues(alpha: 0.1),
               ),
             ),
             FractionallySizedBox(
@@ -1028,11 +1028,11 @@ class _CosmicShareCard extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(4),
                   gradient: LinearGradient(
-                    colors: [color.withOpacity(0.7), color],
+                    colors: [color.withValues(alpha: 0.7), color],
                   ),
                   boxShadow: [
                     BoxShadow(
-                      color: color.withOpacity(0.4),
+                      color: color.withValues(alpha: 0.4),
                       blurRadius: 6,
                     ),
                   ],
@@ -1089,9 +1089,9 @@ class _CosmicShareCard extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
-        color: MysticalColors.bgElevated.withOpacity(0.4),
+        color: MysticalColors.bgElevated.withValues(alpha: 0.4),
         border: Border.all(
-          color: MysticalColors.starGold.withOpacity(0.2),
+          color: MysticalColors.starGold.withValues(alpha: 0.2),
         ),
       ),
       child: Column(
@@ -1107,7 +1107,7 @@ class _CosmicShareCard extends StatelessWidget {
                   color: MysticalColors.starGold,
                   shadows: [
                     Shadow(
-                      color: MysticalColors.starGold.withOpacity(0.5),
+                      color: MysticalColors.starGold.withValues(alpha: 0.5),
                       blurRadius: 8,
                     ),
                   ],
@@ -1168,9 +1168,9 @@ class _CosmicShareCard extends StatelessWidget {
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: MysticalColors.starGold.withOpacity(0.1),
+              color: MysticalColors.starGold.withValues(alpha: 0.1),
               border: Border.all(
-                color: MysticalColors.starGold.withOpacity(0.2),
+                color: MysticalColors.starGold.withValues(alpha: 0.2),
               ),
             ),
             child: Column(
@@ -1224,7 +1224,7 @@ class _CosmicShareCard extends StatelessWidget {
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: color.withOpacity(0.1),
+        color: color.withValues(alpha: 0.1),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1269,8 +1269,8 @@ class _CosmicShareCard extends StatelessWidget {
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,
           colors: [
-            MysticalColors.midnightBlue.withOpacity(0.6),
-            MysticalColors.cosmicPurple.withOpacity(0.6),
+            MysticalColors.midnightBlue.withValues(alpha: 0.6),
+            MysticalColors.cosmicPurple.withValues(alpha: 0.6),
           ],
         ),
       ),
@@ -1294,7 +1294,7 @@ class _CosmicShareCard extends StatelessWidget {
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
-                    color: Colors.black.withOpacity(0.3),
+                    color: Colors.black.withValues(alpha: 0.3),
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -1330,7 +1330,7 @@ class _CosmicShareCard extends StatelessWidget {
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
-                    color: MysticalColors.starGold.withOpacity(0.1),
+                    color: MysticalColors.starGold.withValues(alpha: 0.1),
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -1423,7 +1423,7 @@ class _CosmicShareCard extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: MysticalColors.amethyst.withOpacity(0.3),
+          color: MysticalColors.amethyst.withValues(alpha: 0.3),
         ),
       ),
       child: Column(
@@ -1454,8 +1454,8 @@ class _CosmicShareCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                   gradient: LinearGradient(
                     colors: [
-                      MysticalColors.amethyst.withOpacity(0.1 + entry.key * 0.05),
-                      MysticalColors.cosmicPurple.withOpacity(0.2),
+                      MysticalColors.amethyst.withValues(alpha: 0.1 + entry.key * 0.05),
+                      MysticalColors.cosmicPurple.withValues(alpha: 0.2),
                     ],
                   ),
                 ),
@@ -1487,12 +1487,12 @@ class _CosmicShareCard extends StatelessWidget {
           center: Alignment.center,
           radius: 1.0,
           colors: [
-            MysticalColors.orchid.withOpacity(0.15),
-            MysticalColors.cosmicPurple.withOpacity(0.3),
+            MysticalColors.orchid.withValues(alpha: 0.15),
+            MysticalColors.cosmicPurple.withValues(alpha: 0.3),
           ],
         ),
         border: Border.all(
-          color: MysticalColors.orchid.withOpacity(0.3),
+          color: MysticalColors.orchid.withValues(alpha: 0.3),
         ),
       ),
       child: Column(
@@ -1502,7 +1502,7 @@ class _CosmicShareCard extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
-              color: MysticalColors.orchid.withOpacity(0.2),
+              color: MysticalColors.orchid.withValues(alpha: 0.2),
             ),
             child: Text(
               content.symbolicMessage.type.toUpperCase(),
@@ -1524,7 +1524,7 @@ class _CosmicShareCard extends StatelessWidget {
               color: MysticalColors.orchid,
               shadows: [
                 Shadow(
-                  color: MysticalColors.orchid.withOpacity(0.5),
+                  color: MysticalColors.orchid.withValues(alpha: 0.5),
                   blurRadius: 12,
                 ),
               ],
@@ -1566,12 +1566,12 @@ class _CosmicShareCard extends StatelessWidget {
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: [
-            MysticalColors.starGold.withOpacity(0.08),
-            MysticalColors.cosmicPurple.withOpacity(0.15),
+            MysticalColors.starGold.withValues(alpha: 0.08),
+            MysticalColors.cosmicPurple.withValues(alpha: 0.15),
           ],
         ),
         border: Border.all(
-          color: MysticalColors.starGold.withOpacity(0.2),
+          color: MysticalColors.starGold.withValues(alpha: 0.2),
         ),
       ),
       child: Column(
@@ -1619,9 +1619,9 @@ class _CosmicShareCard extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
-                  color: Colors.black.withOpacity(0.25),
+                  color: Colors.black.withValues(alpha: 0.25),
                   border: Border.all(
-                    color: MysticalColors.starGold.withOpacity(0.15),
+                    color: MysticalColors.starGold.withValues(alpha: 0.15),
                   ),
                 ),
                 child: Text(
@@ -1649,9 +1649,9 @@ class _CosmicShareCard extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
-        color: MysticalColors.nebulaTeal.withOpacity(0.15),
+        color: MysticalColors.nebulaTeal.withValues(alpha: 0.15),
         border: Border.all(
-          color: MysticalColors.nebulaTeal.withOpacity(0.25),
+          color: MysticalColors.nebulaTeal.withValues(alpha: 0.25),
         ),
       ),
       child: Column(
@@ -1662,7 +1662,7 @@ class _CosmicShareCard extends StatelessWidget {
             height: 40,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: MysticalColors.nebulaTeal.withOpacity(0.2),
+              color: MysticalColors.nebulaTeal.withValues(alpha: 0.2),
             ),
             child: Icon(
               Icons.groups_outlined,
@@ -1710,8 +1710,8 @@ class _CosmicShareCard extends StatelessWidget {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            MysticalColors.violetMist.withOpacity(0.08),
-            MysticalColors.cosmicPurple.withOpacity(0.12),
+            MysticalColors.violetMist.withValues(alpha: 0.08),
+            MysticalColors.cosmicPurple.withValues(alpha: 0.12),
           ],
         ),
       ),
@@ -1763,7 +1763,7 @@ class _CosmicShareCard extends StatelessWidget {
       height: 4,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: MysticalColors.violetMist.withOpacity(0.5),
+        color: MysticalColors.violetMist.withValues(alpha: 0.5),
       ),
     );
   }
@@ -1782,12 +1782,12 @@ class _CosmicShareCard extends StatelessWidget {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            MysticalColors.midnightBlue.withOpacity(0.8),
-            MysticalColors.cosmicPurple.withOpacity(0.6),
+            MysticalColors.midnightBlue.withValues(alpha: 0.8),
+            MysticalColors.cosmicPurple.withValues(alpha: 0.6),
           ],
         ),
         border: Border.all(
-          color: MysticalColors.moonSilver.withOpacity(0.2),
+          color: MysticalColors.moonSilver.withValues(alpha: 0.2),
         ),
       ),
       child: Column(
@@ -1819,9 +1819,9 @@ class _CosmicShareCard extends StatelessWidget {
             height: 50,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: MysticalColors.moonSilver.withOpacity(0.1),
+              color: MysticalColors.moonSilver.withValues(alpha: 0.1),
               border: Border.all(
-                color: MysticalColors.moonSilver.withOpacity(0.3),
+                color: MysticalColors.moonSilver.withValues(alpha: 0.3),
               ),
             ),
             child: Center(
@@ -1850,7 +1850,7 @@ class _CosmicShareCard extends StatelessWidget {
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: Colors.black.withOpacity(0.2),
+              color: Colors.black.withValues(alpha: 0.2),
             ),
             child: Text(
               content.dreamInsight.dreamPrompt,
@@ -1889,12 +1889,12 @@ class _CosmicShareCard extends StatelessWidget {
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,
           colors: [
-            MysticalColors.starGold.withOpacity(0.1),
-            MysticalColors.amber.withOpacity(0.08),
+            MysticalColors.starGold.withValues(alpha: 0.1),
+            MysticalColors.amber.withValues(alpha: 0.08),
           ],
         ),
         border: Border.all(
-          color: MysticalColors.starGold.withOpacity(0.25),
+          color: MysticalColors.starGold.withValues(alpha: 0.25),
         ),
       ),
       child: Column(
@@ -1939,13 +1939,13 @@ class _CosmicShareCard extends StatelessWidget {
               shape: BoxShape.circle,
               gradient: RadialGradient(
                 colors: [
-                  MysticalColors.starGold.withOpacity(0.3),
-                  MysticalColors.starGold.withOpacity(0.1),
+                  MysticalColors.starGold.withValues(alpha: 0.3),
+                  MysticalColors.starGold.withValues(alpha: 0.1),
                 ],
               ),
               boxShadow: [
                 BoxShadow(
-                  color: MysticalColors.starGold.withOpacity(0.2),
+                  color: MysticalColors.starGold.withValues(alpha: 0.2),
                   blurRadius: 15,
                   spreadRadius: 2,
                 ),
@@ -1988,7 +1988,7 @@ class _CosmicShareCard extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
-              color: MysticalColors.starGold.withOpacity(0.15),
+              color: MysticalColors.starGold.withValues(alpha: 0.15),
             ),
             child: Row(
               mainAxisSize: MainAxisSize.min,
@@ -2025,12 +2025,12 @@ class _CosmicShareCard extends StatelessWidget {
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: [
-            MysticalColors.nebulaRose.withOpacity(0.08),
-            MysticalColors.orchid.withOpacity(0.12),
+            MysticalColors.nebulaRose.withValues(alpha: 0.08),
+            MysticalColors.orchid.withValues(alpha: 0.12),
           ],
         ),
         border: Border.all(
-          color: MysticalColors.nebulaRose.withOpacity(0.2),
+          color: MysticalColors.nebulaRose.withValues(alpha: 0.2),
         ),
       ),
       child: Column(
@@ -2068,7 +2068,7 @@ class _CosmicShareCard extends StatelessWidget {
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: MysticalColors.nebulaRose.withOpacity(0.1),
+              color: MysticalColors.nebulaRose.withValues(alpha: 0.1),
             ),
             child: Text(
               content.tantraWisdom.innerConnection,
@@ -2133,12 +2133,12 @@ class _CosmicShareCard extends StatelessWidget {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            MysticalColors.auroraGreen.withOpacity(0.1),
-            MysticalColors.etherealCyan.withOpacity(0.08),
+            MysticalColors.auroraGreen.withValues(alpha: 0.1),
+            MysticalColors.etherealCyan.withValues(alpha: 0.08),
           ],
         ),
         border: Border.all(
-          color: MysticalColors.auroraGreen.withOpacity(0.25),
+          color: MysticalColors.auroraGreen.withValues(alpha: 0.25),
         ),
       ),
       child: Column(
@@ -2205,7 +2205,7 @@ class _CosmicShareCard extends StatelessWidget {
                     height: 6,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(3),
-                      color: Colors.white.withOpacity(0.1),
+                      color: Colors.white.withValues(alpha: 0.1),
                     ),
                   ),
                   FractionallySizedBox(
@@ -2216,7 +2216,7 @@ class _CosmicShareCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(3),
                         gradient: LinearGradient(
                           colors: [
-                            MysticalColors.auroraGreen.withOpacity(0.7),
+                            MysticalColors.auroraGreen.withValues(alpha: 0.7),
                             MysticalColors.auroraGreen,
                           ],
                         ),
@@ -2238,9 +2238,9 @@ class _CosmicShareCard extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
-        color: MysticalColors.bgElevated.withOpacity(0.5),
+        color: MysticalColors.bgElevated.withValues(alpha: 0.5),
         border: Border.all(
-          color: MysticalColors.etherealCyan.withOpacity(0.2),
+          color: MysticalColors.etherealCyan.withValues(alpha: 0.2),
         ),
       ),
       child: Column(
@@ -2276,7 +2276,7 @@ class _CosmicShareCard extends StatelessWidget {
                   padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: MysticalColors.auroraGreen.withOpacity(0.1),
+                    color: MysticalColors.auroraGreen.withValues(alpha: 0.1),
                   ),
                   child: Column(
                     children: [
@@ -2312,7 +2312,7 @@ class _CosmicShareCard extends StatelessWidget {
                   padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: MysticalColors.nebulaRose.withOpacity(0.1),
+                    color: MysticalColors.nebulaRose.withValues(alpha: 0.1),
                   ),
                   child: Column(
                     children: [
@@ -2351,7 +2351,7 @@ class _CosmicShareCard extends StatelessWidget {
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: Colors.white.withOpacity(0.05),
+              color: Colors.white.withValues(alpha: 0.05),
             ),
             child: Row(
               children: [
@@ -2442,8 +2442,8 @@ class _CosmicBackgroundPainter extends CustomPainter {
 
       final gradient = RadialGradient(
         colors: [
-          accentColor.withOpacity(0.08),
-          MysticalColors.cosmicPurple.withOpacity(0.04),
+          accentColor.withValues(alpha: 0.08),
+          MysticalColors.cosmicPurple.withValues(alpha: 0.04),
           Colors.transparent,
         ],
         stops: const [0.0, 0.5, 1.0],
@@ -2460,7 +2460,7 @@ class _CosmicBackgroundPainter extends CustomPainter {
       ..shader = null
       ..style = PaintingStyle.stroke
       ..strokeWidth = 0.3
-      ..color = MysticalColors.starGold.withOpacity(0.04);
+      ..color = MysticalColors.starGold.withValues(alpha: 0.04);
 
     final centerX = size.width * 0.5;
     final centerY = size.height * 0.35;
@@ -2481,7 +2481,7 @@ class _CosmicBackgroundPainter extends CustomPainter {
     paint.style = PaintingStyle.stroke;
     for (int i = 0; i < 4; i++) {
       paint
-        ..color = accentColor.withOpacity(0.02 + i * 0.01)
+        ..color = accentColor.withValues(alpha: 0.02 + i * 0.01)
         ..strokeWidth = 0.5 + i * 0.2;
 
       final orbitCenter = Offset(
@@ -2498,7 +2498,7 @@ class _CosmicBackgroundPainter extends CustomPainter {
 
     // 4. Constellation lines
     paint
-      ..color = Colors.white.withOpacity(0.05)
+      ..color = Colors.white.withValues(alpha: 0.05)
       ..strokeWidth = 0.5;
 
     final constellationPoints = <Offset>[];
@@ -2524,7 +2524,7 @@ class _CosmicBackgroundPainter extends CustomPainter {
 
       paint
         ..style = PaintingStyle.fill
-        ..color = Colors.white.withOpacity(opacity);
+        ..color = Colors.white.withValues(alpha: opacity);
       canvas.drawCircle(Offset(x, y), starSize, paint);
     }
 
@@ -2532,7 +2532,7 @@ class _CosmicBackgroundPainter extends CustomPainter {
     paint
       ..style = PaintingStyle.stroke
       ..strokeWidth = 0.3
-      ..color = MysticalColors.starGold.withOpacity(0.03);
+      ..color = MysticalColors.starGold.withValues(alpha: 0.03);
 
     final zodiacCenter = Offset(size.width * 0.5, size.height * 0.7);
     final zodiacRadius = 100.0;
@@ -2556,7 +2556,7 @@ class _CosmicBackgroundPainter extends CustomPainter {
 
     // 7. Moon phases arc (bottom)
     paint
-      ..color = MysticalColors.moonSilver.withOpacity(0.04)
+      ..color = MysticalColors.moonSilver.withValues(alpha: 0.04)
       ..strokeWidth = 0.5;
 
     final moonArcRect = Rect.fromCenter(

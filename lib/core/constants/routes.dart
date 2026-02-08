@@ -143,9 +143,18 @@ class Routes {
   static const String tantraBreath = '/tantra/breath-awareness';
   static const String tantraIntention = '/tantra/intention-ritual';
 
-  // Cosmic Spiritual Tools - In Header
-  static const String kozmikIletisim = '/cosmic-chat';  // Chatbot - Dream interpretation chat
-  static const String ruyaDongusu = '/dream-oracle';    // Dream Oracle - 7-dimensional form
+  // ════════════════════════════════════════════════════════════════
+  // INSIGHT - Unified Personal Reflection Assistant (Apple-Safe)
+  // Single entry point replacing Kozmoz and Dream Oracle
+  // ════════════════════════════════════════════════════════════════
+  static const String insight = '/insight';  // Primary entry - "Start a Reflection"
+
+  // Legacy routes (DEPRECATED - kept for backward compatibility)
+  // These should redirect to /insight
+  @Deprecated('Use insight instead - merging into single assistant for App Store compliance')
+  static const String kozmikIletisim = '/cosmic-chat';  // DEPRECATED
+  @Deprecated('Use insight instead - merging into single assistant for App Store compliance')
+  static const String ruyaDongusu = '/dream-oracle';    // DEPRECATED
 
   // Profile Management
   static const String savedProfiles = '/saved-profiles';
@@ -207,6 +216,16 @@ class Routes {
   // ════════════════════════════════════════════════════════════════
   static const String adminLogin = '/admin/login';
   static const String admin = '/admin';
+
+  // ════════════════════════════════════════════════════════════════
+  // OBSERVATORY - Owner-Only Platform Control System
+  // ════════════════════════════════════════════════════════════════
+  static const String observatory = '/admin/observatory';
+  static const String observatoryTech = '/admin/observatory/tech';
+  static const String observatoryLanguage = '/admin/observatory/language';
+  static const String observatoryContent = '/admin/observatory/content';
+  static const String observatorySafety = '/admin/observatory/safety';
+  static const String observatoryPlatform = '/admin/observatory/platform';
 
   // ════════════════════════════════════════════════════════════════
   // LEGACY TURKISH ROUTE REDIRECTS (for SEO backward compatibility)

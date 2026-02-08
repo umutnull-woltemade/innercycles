@@ -244,19 +244,18 @@ class _HouseRowState extends State<_HouseRow> {
     final count = planets.length;
 
     // Build interpretation based on language
-    if (widget.language == AppLanguage.en) {
-      if (count == 1) {
-        return '$planetNames is positioned in this house - $area is strengthened with ${planets.first.planet.meaning.toLowerCase()} energy.';
-      } else {
-        return 'There are $count planets in this house: $planetNames. $area is active and intense with multiple planetary energies.';
-      }
+    if (count == 1) {
+      return L10nService.getWithParams('houses.planet_single', widget.language, params: {
+        'planet': planetNames,
+        'area': area,
+        'energy': planets.first.planet.meaning.toLowerCase(),
+      });
     } else {
-      // Turkish fallback
-      if (count == 1) {
-        return '$planetNames bu evde konumlanmış - $area ${planets.first.planet.meaning.toLowerCase()} enerjisiyle güçleniyor.';
-      } else {
-        return 'Bu evde $count gezegen var: $planetNames. $area çoklu gezegen enerjileriyle aktif ve yoğun.';
-      }
+      return L10nService.getWithParams('houses.planet_multiple', widget.language, params: {
+        'count': count.toString(),
+        'planets': planetNames,
+        'area': area,
+      });
     }
   }
 

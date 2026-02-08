@@ -490,9 +490,9 @@ class _BelowTheFold extends ConsumerWidget {
           ...VenusHomepageContent.sections.take(6).map((section) =>
             _VenusContentTile(
               emoji: section.emoji,
-              title: section.title,
-              subtitle: section.subtitle,
-              badge: section.badge,
+              title: section.getTitle(language),
+              subtitle: section.getSubtitle(language),
+              badge: section.getBadge(language),
               route: section.route,
               isDark: isDark,
             ),
@@ -516,9 +516,9 @@ class _BelowTheFold extends ConsumerWidget {
           ...VenusHomepageContent.sections.skip(6).map((section) =>
             _VenusContentTile(
               emoji: section.emoji,
-              title: section.title,
-              subtitle: section.subtitle,
-              badge: section.badge,
+              title: section.getTitle(language),
+              subtitle: section.getSubtitle(language),
+              badge: section.getBadge(language),
               route: section.route,
               isDark: isDark,
             ),
@@ -556,8 +556,8 @@ class _BelowTheFold extends ConsumerWidget {
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
                   color: isDark
-                      ? AppColors.textMuted.withOpacity(0.7)
-                      : AppColors.lightTextMuted.withOpacity(0.7),
+                      ? AppColors.textMuted.withValues(alpha: 0.7)
+                      : AppColors.lightTextMuted.withValues(alpha: 0.7),
                   letterSpacing: 2,
                 ),
               ),
@@ -604,12 +604,12 @@ class _VenusContentTile extends StatelessWidget {
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
               color: isDark
-                  ? AppColors.surfaceDark.withOpacity(0.5)
+                  ? AppColors.surfaceDark.withValues(alpha: 0.5)
                   : AppColors.lightSurfaceVariant,
               borderRadius: BorderRadius.circular(12),
               border: Border.all(
                 color: isDark
-                    ? AppColors.cosmicPurple.withOpacity(0.3)
+                    ? AppColors.cosmicPurple.withValues(alpha: 0.3)
                     : Colors.grey.shade200,
               ),
             ),
@@ -621,8 +621,8 @@ class _VenusContentTile extends StatelessWidget {
                   height: 44,
                   decoration: BoxDecoration(
                     color: isDark
-                        ? AppColors.cosmicPurple.withOpacity(0.4)
-                        : AppColors.lightStarGold.withOpacity(0.1),
+                        ? AppColors.cosmicPurple.withValues(alpha: 0.4)
+                        : AppColors.lightStarGold.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Center(
@@ -652,8 +652,8 @@ class _VenusContentTile extends StatelessWidget {
                               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                               decoration: BoxDecoration(
                                 color: badge == 'Yeni'
-                                    ? AppColors.starGold.withOpacity(0.2)
-                                    : AppColors.cosmicPurple.withOpacity(0.2),
+                                    ? AppColors.starGold.withValues(alpha: 0.2)
+                                    : AppColors.cosmicPurple.withValues(alpha: 0.2),
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               child: Text(
@@ -729,13 +729,13 @@ class _QuickDiscoveryChip extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
           decoration: BoxDecoration(
             color: isDark
-                ? AppColors.cosmicPurple.withOpacity(0.3)
+                ? AppColors.cosmicPurple.withValues(alpha: 0.3)
                 : AppColors.lightSurfaceVariant,
             borderRadius: BorderRadius.circular(20),
             border: Border.all(
               color: isDark
-                  ? AppColors.starGold.withOpacity(0.3)
-                  : AppColors.lightStarGold.withOpacity(0.3),
+                  ? AppColors.starGold.withValues(alpha: 0.3)
+                  : AppColors.lightStarGold.withValues(alpha: 0.3),
             ),
           ),
           child: Row(
@@ -795,8 +795,8 @@ class _EntryPointTile extends StatelessWidget {
             decoration: BoxDecoration(
               color: isHighlighted
                   ? (isDark
-                      ? AppColors.starGold.withOpacity(0.1)
-                      : AppColors.lightStarGold.withOpacity(0.1))
+                      ? AppColors.starGold.withValues(alpha: 0.1)
+                      : AppColors.lightStarGold.withValues(alpha: 0.1))
                   : (isDark
                       ? AppColors.surfaceDark
                       : AppColors.lightCard),
@@ -804,8 +804,8 @@ class _EntryPointTile extends StatelessWidget {
               border: isHighlighted
                   ? Border.all(
                       color: isDark
-                          ? AppColors.starGold.withOpacity(0.3)
-                          : AppColors.lightStarGold.withOpacity(0.3),
+                          ? AppColors.starGold.withValues(alpha: 0.3)
+                          : AppColors.lightStarGold.withValues(alpha: 0.3),
                       width: 1,
                     )
                   : null,

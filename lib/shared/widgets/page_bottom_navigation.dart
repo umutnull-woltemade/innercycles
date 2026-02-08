@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../core/theme/app_colors.dart';
@@ -41,12 +42,12 @@ class PageBottomNavigation extends StatelessWidget {
           colors: isDark
               ? [
                   Colors.transparent,
-                  AppColors.deepSpace.withOpacity(0.3),
-                  AppColors.deepSpace.withOpacity(0.6),
+                  AppColors.deepSpace.withValues(alpha: 0.3),
+                  AppColors.deepSpace.withValues(alpha: 0.6),
                 ]
               : [
                   Colors.transparent,
-                  AppColors.lightBackground.withOpacity(0.5),
+                  AppColors.lightBackground.withValues(alpha: 0.5),
                   AppColors.lightBackground,
                 ],
         ),
@@ -55,37 +56,41 @@ class PageBottomNavigation extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 32),
-          // Section 1: Bunu Okuyanlar Şuna da Baktı
+          // Section 1: Also Viewed
           if (navigation.alsoViewed.isNotEmpty)
             _NavigationSection(
-              title: NavigationSectionTitles.alsoViewed,
+              title: L10nService.get('navigation.section_titles.also_viewed', language),
               subtitle: L10nService.get('nav.also_viewed_subtitle', language),
               cards: navigation.alsoViewed,
               sectionIndex: 0,
+              language: language,
             ),
-          // Section 2: Bir Adım Daha Derinleş
+          // Section 2: Go Deeper
           if (navigation.goDeeper.isNotEmpty)
             _NavigationSection(
-              title: NavigationSectionTitles.goDeeper,
+              title: L10nService.get('navigation.section_titles.go_deeper', language),
               subtitle: L10nService.get('nav.go_deeper_subtitle', language),
               cards: navigation.goDeeper,
               sectionIndex: 1,
+              language: language,
               isHighlighted: true,
             ),
-          // Section 3: Keşfetmeye Devam Et
+          // Section 3: Keep Exploring
           if (navigation.keepExploring.isNotEmpty)
             _NavigationSection(
-              title: NavigationSectionTitles.keepExploring,
+              title: L10nService.get('navigation.section_titles.keep_exploring', language),
               subtitle: L10nService.get('nav.keep_exploring_subtitle', language),
               cards: navigation.keepExploring,
               sectionIndex: 2,
+              language: language,
             ),
-          // Section 4: Geri Dönmeden Devam Et
+          // Section 4: Continue Without Going Back
           if (navigation.continueWithoutBack.isNotEmpty)
             _QuickLinksSection(
-              title: NavigationSectionTitles.continueWithoutBack,
+              title: L10nService.get('navigation.section_titles.continue_without_back', language),
               cards: navigation.continueWithoutBack,
               sectionIndex: 3,
+              language: language,
             ),
           const SizedBox(height: 40),
         ],
@@ -101,12 +106,14 @@ class _NavigationSection extends StatelessWidget {
   final List<NavigationCard> cards;
   final int sectionIndex;
   final bool isHighlighted;
+  final AppLanguage language;
 
   const _NavigationSection({
     required this.title,
     required this.subtitle,
     required this.cards,
     required this.sectionIndex,
+    required this.language,
     this.isHighlighted = false,
   });
 
@@ -165,8 +172,8 @@ class _NavigationSection extends StatelessWidget {
                       fontSize: 13,
                       fontWeight: FontWeight.w500,
                       color: isDark
-                          ? AppColors.textSecondary.withOpacity(0.7)
-                          : AppColors.lightTextSecondary.withOpacity(0.8),
+                          ? AppColors.textSecondary.withValues(alpha: 0.7)
+                          : AppColors.lightTextSecondary.withValues(alpha: 0.8),
                     ),
                   ),
                 ),
@@ -186,6 +193,7 @@ class _NavigationSection extends StatelessWidget {
                   padding: const EdgeInsetsDirectional.only(end: 12),
                   child: _NavigationCardWidget(
                     card: cards[index],
+                    language: language,
                     isHighlighted: isHighlighted,
                   ),
                 ).animate(delay: Duration(milliseconds: 50 * index))
@@ -205,9 +213,11 @@ class _NavigationSection extends StatelessWidget {
 class _NavigationCardWidget extends StatelessWidget {
   final NavigationCard card;
   final bool isHighlighted;
+  final AppLanguage language;
 
   const _NavigationCardWidget({
     required this.card,
+    required this.language,
     this.isHighlighted = false,
   });
 
@@ -227,12 +237,12 @@ class _NavigationCardWidget extends StatelessWidget {
                   end: Alignment.bottomRight,
                   colors: isHighlighted
                       ? [
-                          AppColors.auroraStart.withOpacity(0.15),
-                          AppColors.auroraEnd.withOpacity(0.1),
+                          AppColors.auroraStart.withValues(alpha: 0.15),
+                          AppColors.auroraEnd.withValues(alpha: 0.1),
                         ]
                       : [
-                          AppColors.surfaceLight.withOpacity(0.5),
-                          AppColors.surfaceDark.withOpacity(0.3),
+                          AppColors.surfaceLight.withValues(alpha: 0.5),
+                          AppColors.surfaceDark.withValues(alpha: 0.3),
                         ],
                 )
               : LinearGradient(
@@ -240,8 +250,8 @@ class _NavigationCardWidget extends StatelessWidget {
                   end: Alignment.bottomRight,
                   colors: isHighlighted
                       ? [
-                          AppColors.lightAuroraStart.withOpacity(0.1),
-                          AppColors.lightAuroraEnd.withOpacity(0.05),
+                          AppColors.lightAuroraStart.withValues(alpha: 0.1),
+                          AppColors.lightAuroraEnd.withValues(alpha: 0.05),
                         ]
                       : [
                           AppColors.lightCard,
@@ -252,24 +262,24 @@ class _NavigationCardWidget extends StatelessWidget {
           border: Border.all(
             color: isDark
                 ? (isHighlighted
-                    ? AppColors.auroraStart.withOpacity(0.3)
-                    : AppColors.textMuted.withOpacity(0.1))
+                    ? AppColors.auroraStart.withValues(alpha: 0.3)
+                    : AppColors.textMuted.withValues(alpha: 0.1))
                 : (isHighlighted
-                    ? AppColors.lightAuroraStart.withOpacity(0.3)
-                    : AppColors.lightTextMuted.withOpacity(0.15)),
+                    ? AppColors.lightAuroraStart.withValues(alpha: 0.3)
+                    : AppColors.lightTextMuted.withValues(alpha: 0.15)),
             width: 1,
           ),
           boxShadow: [
             BoxShadow(
               color: isDark
-                  ? Colors.black.withOpacity(0.2)
-                  : Colors.black.withOpacity(0.05),
+                  ? Colors.black.withValues(alpha: 0.2)
+                  : Colors.black.withValues(alpha: 0.05),
               blurRadius: 10,
               offset: const Offset(0, 4),
             ),
             if (isHighlighted)
               BoxShadow(
-                color: AppColors.auroraStart.withOpacity(0.15),
+                color: AppColors.auroraStart.withValues(alpha: 0.15),
                 blurRadius: 20,
                 spreadRadius: -5,
               ),
@@ -287,7 +297,7 @@ class _NavigationCardWidget extends StatelessWidget {
             const SizedBox(height: 8),
             // Title
             Text(
-              card.title,
+              card.getLocalizedTitle(language),
               style: GoogleFonts.raleway(
                 fontSize: 14,
                 fontWeight: FontWeight.w700,
@@ -301,12 +311,12 @@ class _NavigationCardWidget extends StatelessWidget {
             // Description
             Expanded(
               child: Text(
-                card.description,
+                card.getLocalizedDescription(language),
                 style: GoogleFonts.raleway(
                   fontSize: 12,
                   fontWeight: FontWeight.w500,
                   color: isDark
-                      ? AppColors.textSecondary.withOpacity(0.8)
+                      ? AppColors.textSecondary.withValues(alpha: 0.8)
                       : AppColors.lightTextSecondary,
                   height: 1.3,
                 ),
@@ -326,11 +336,13 @@ class _QuickLinksSection extends StatelessWidget {
   final String title;
   final List<NavigationCard> cards;
   final int sectionIndex;
+  final AppLanguage language;
 
   const _QuickLinksSection({
     required this.title,
     required this.cards,
     required this.sectionIndex,
+    required this.language,
   });
 
   @override
@@ -352,8 +364,8 @@ class _QuickLinksSection extends StatelessWidget {
                   colors: [
                     Colors.transparent,
                     isDark
-                        ? AppColors.textMuted.withOpacity(0.2)
-                        : AppColors.lightTextMuted.withOpacity(0.2),
+                        ? AppColors.textMuted.withValues(alpha: 0.2)
+                        : AppColors.lightTextMuted.withValues(alpha: 0.2),
                     Colors.transparent,
                   ],
                 ),
@@ -402,14 +414,15 @@ class _QuickLinksSection extends StatelessWidget {
 }
 
 /// Quick Link Chip - Compact navigation button
-class _QuickLinkChip extends StatelessWidget {
+class _QuickLinkChip extends ConsumerWidget {
   final NavigationCard card;
 
   const _QuickLinkChip({required this.card});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final language = ref.watch(languageProvider);
 
     return GestureDetector(
       onTap: () => context.push(card.route),
@@ -419,13 +432,13 @@ class _QuickLinkChip extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         decoration: BoxDecoration(
           color: isDark
-              ? AppColors.surfaceLight.withOpacity(0.3)
+              ? AppColors.surfaceLight.withValues(alpha: 0.3)
               : AppColors.lightSurfaceVariant,
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
             color: isDark
-                ? AppColors.textMuted.withOpacity(0.15)
-                : AppColors.lightTextMuted.withOpacity(0.2),
+                ? AppColors.textMuted.withValues(alpha: 0.15)
+                : AppColors.lightTextMuted.withValues(alpha: 0.2),
             width: 1,
           ),
         ),
@@ -437,7 +450,7 @@ class _QuickLinkChip extends StatelessWidget {
               const SizedBox(width: 8),
             ],
             Text(
-              card.title,
+              card.getLocalizedTitle(language),
               style: GoogleFonts.raleway(
                 fontSize: 13,
                 fontWeight: FontWeight.w600,
@@ -482,7 +495,7 @@ class PageBottomNavigationCompact extends StatelessWidget {
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: isDark
-              ? [Colors.transparent, AppColors.deepSpace.withOpacity(0.5)]
+              ? [Colors.transparent, AppColors.deepSpace.withValues(alpha: 0.5)]
               : [Colors.transparent, AppColors.lightBackground],
         ),
       ),

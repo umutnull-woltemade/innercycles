@@ -55,6 +55,9 @@ enum AppleAuthErrorType {
   notAvailable,
   tokenFailed,
   supabaseError,
+  networkError,
+  timeout,
+  serverError,
 }
 
 /// Custom exception for Apple Sign In errors - localized in UI layer
@@ -160,17 +163,68 @@ class AuthService {
           throw const AppleAuthException(AppleAuthErrorType.unknown);
       }
     } on AuthException catch (e) {
-      // Supabase auth error - pass original message for debugging
+      // Supabase auth error - map to specific types for better localization
       debugPrint('🍎 Supabase Auth Error: ${e.message}');
+      final message = e.message.toLowerCase();
+
+      // Map Supabase errors to specific types
+      if (message.contains('invalid_grant') || message.contains('expired')) {
+        throw const AppleAuthException(
+          AppleAuthErrorType.tokenFailed,
+          'Session expired. Please try again.',
+        );
+      }
+      if (message.contains('network') || message.contains('connection') ||
+          message.contains('socket') || message.contains('timeout')) {
+        throw const AppleAuthException(
+          AppleAuthErrorType.networkError,
+          'Network connection failed.',
+        );
+      }
+      if (message.contains('server') || message.contains('500') ||
+          message.contains('502') || message.contains('503')) {
+        throw const AppleAuthException(
+          AppleAuthErrorType.serverError,
+          'Server temporarily unavailable.',
+        );
+      }
       throw AppleAuthException(AppleAuthErrorType.supabaseError, e.message);
     } catch (e) {
       debugPrint('🍎 Apple Sign-In error: $e');
-      if (e.toString().contains('canceled') ||
-          e.toString().contains('cancelled') ||
-          e.toString().contains('user_canceled')) {
-        return null; // User canceled
+      final errorStr = e.toString().toLowerCase();
+
+      // User cancellation - don't show error
+      if (errorStr.contains('canceled') ||
+          errorStr.contains('cancelled') ||
+          errorStr.contains('user_canceled') ||
+          errorStr.contains('user canceled')) {
+        return null;
       }
-      rethrow;
+
+      // Network/connectivity errors
+      if (errorStr.contains('network') ||
+          errorStr.contains('connection') ||
+          errorStr.contains('socket') ||
+          errorStr.contains('unreachable') ||
+          errorStr.contains('no internet')) {
+        throw const AppleAuthException(AppleAuthErrorType.networkError);
+      }
+
+      // Timeout errors
+      if (errorStr.contains('timeout') || errorStr.contains('timed out')) {
+        throw const AppleAuthException(AppleAuthErrorType.timeout);
+      }
+
+      // Server errors
+      if (errorStr.contains('server') ||
+          errorStr.contains('500') ||
+          errorStr.contains('internal error')) {
+        throw const AppleAuthException(AppleAuthErrorType.serverError);
+      }
+
+      // For any other unhandled error, throw as unknown with original message
+      // This ensures we never show raw Turkish error messages
+      throw AppleAuthException(AppleAuthErrorType.unknown, e.toString());
     }
   }
 

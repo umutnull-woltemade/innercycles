@@ -8,6 +8,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../core/constants/app_constants.dart';
 import '../../../core/constants/routes.dart';
+import '../../../core/config/feature_flags.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/cities/world_cities.dart';
 import '../../../data/models/user_profile.dart';
@@ -136,13 +137,21 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                       onContinue: _nextPage,
                       language: language,
                     ),
-                    _YourSignPage(
-                      selectedDate: _selectedDate,
-                      selectedTime: _selectedTime,
-                      birthPlace: _birthPlace,
-                      onComplete: _completeOnboarding,
-                      language: language,
-                    ),
+                    // App Store 4.3(b) Compliance: Show neutral ready page
+                    // instead of zodiac sign reveal when in review mode
+                    FeatureFlags.showZodiacOnboarding
+                        ? _YourSignPage(
+                            selectedDate: _selectedDate,
+                            selectedTime: _selectedTime,
+                            birthPlace: _birthPlace,
+                            onComplete: _completeOnboarding,
+                            language: language,
+                          )
+                        : _ReadyPage(
+                            selectedDate: _selectedDate,
+                            onComplete: _completeOnboarding,
+                            language: language,
+                          ),
                   ],
                 ),
               ),
@@ -1807,7 +1816,7 @@ class _YourSignPage extends StatelessWidget {
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
                 color: available
                     ? pastelColor
-                    : AppColors.textMuted.withOpacity(0.5),
+                    : AppColors.textMuted.withValues(alpha: 0.5),
                 fontSize: 13,
                 fontWeight: FontWeight.w500,
               ),
@@ -1820,12 +1829,12 @@ class _YourSignPage extends StatelessWidget {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: available
-                  ? pastelColor.withOpacity(0.2)
+                  ? pastelColor.withValues(alpha: 0.2)
                   : Colors.transparent,
               border: Border.all(
                 color: available
                     ? pastelColor
-                    : AppColors.textMuted.withOpacity(0.3),
+                    : AppColors.textMuted.withValues(alpha: 0.3),
                 width: 1.5,
               ),
             ),
@@ -2022,7 +2031,7 @@ class _CosmicWelcomeOverlayState extends State<_CosmicWelcomeOverlay>
                           '✨ ${L10nService.get('onboarding.tap_to_continue', widget.language)} ✨',
                           style: TextStyle(
                             fontSize: 14,
-                            color: Colors.white.withOpacity(0.5),
+                            color: Colors.white.withValues(alpha: 0.5),
                             letterSpacing: 1,
                           ),
                         ),
@@ -2034,6 +2043,192 @@ class _CosmicWelcomeOverlayState extends State<_CosmicWelcomeOverlay>
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+/// ════════════════════════════════════════════════════════════════════════════
+/// APP STORE 4.3(b) COMPLIANT READY PAGE
+/// ════════════════════════════════════════════════════════════════════════════
+/// Neutral completion page that does NOT show zodiac sign.
+/// Used during App Store review mode to avoid triggering 4.3(b) rejection.
+class _ReadyPage extends StatelessWidget {
+  final DateTime? selectedDate;
+  final VoidCallback onComplete;
+  final AppLanguage language;
+
+  const _ReadyPage({
+    required this.selectedDate,
+    required this.onComplete,
+    required this.language,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const SizedBox(height: 40),
+
+          // Success checkmark with glow
+          Container(
+            width: 120,
+            height: 120,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  const Color(0xFF667EEA).withAlpha(40),
+                  const Color(0xFF9B59B6).withAlpha(40),
+                ],
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: const Color(0xFF667EEA).withAlpha(60),
+                  blurRadius: 40,
+                  spreadRadius: 10,
+                ),
+              ],
+            ),
+            child: const Icon(
+              Icons.check_circle_outline,
+              size: 64,
+              color: Color(0xFF4CAF50),
+            ),
+          ).animate().scale(
+                begin: const Offset(0.5, 0.5),
+                curve: Curves.elasticOut,
+                duration: 600.ms,
+              ),
+
+          const SizedBox(height: 32),
+
+          // Title - neutral, no zodiac
+          Text(
+            L10nService.get('onboarding.profile_ready', language),
+            style: const TextStyle(
+              fontSize: 28,
+              fontWeight: FontWeight.w300,
+              color: Colors.white,
+              letterSpacing: 1,
+            ),
+            textAlign: TextAlign.center,
+          ).animate().fadeIn(delay: 200.ms, duration: 400.ms),
+
+          const SizedBox(height: 16),
+
+          // Subtitle - reflection focused
+          Text(
+            L10nService.get('onboarding.ready_subtitle', language),
+            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                  color: AppColors.textSecondary,
+                  fontSize: 16,
+                ),
+            textAlign: TextAlign.center,
+          ).animate().fadeIn(delay: 400.ms, duration: 400.ms),
+
+          const SizedBox(height: 48),
+
+          // Feature preview - safe features only
+          Container(
+            padding: const EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              color: AppColors.surfaceLight.withAlpha(30),
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(color: Colors.white.withAlpha(20)),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  L10nService.get('onboarding.whats_included', language),
+                  style: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: Color(0xFFE6E6FA),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                _buildFeatureItem(
+                  context,
+                  Icons.edit_note,
+                  L10nService.get('onboarding.feature_reflection', language),
+                ),
+                _buildFeatureItem(
+                  context,
+                  Icons.nights_stay,
+                  L10nService.get('onboarding.feature_dreams', language),
+                ),
+                _buildFeatureItem(
+                  context,
+                  Icons.auto_graph,
+                  L10nService.get('onboarding.feature_patterns', language),
+                ),
+                _buildFeatureItem(
+                  context,
+                  Icons.library_books,
+                  L10nService.get('onboarding.feature_symbols', language),
+                ),
+              ],
+            ),
+          ).animate().fadeIn(delay: 600.ms, duration: 400.ms).slideY(begin: 0.2),
+
+          const SizedBox(height: 24),
+
+          // Disclaimer
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            decoration: BoxDecoration(
+              color: Colors.white.withAlpha(10),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Row(
+              children: [
+                Icon(
+                  Icons.info_outline,
+                  size: 16,
+                  color: AppColors.textMuted,
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    L10nService.get('disclaimer.reflection_only', language),
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: AppColors.textMuted,
+                          fontSize: 12,
+                        ),
+                  ),
+                ),
+              ],
+            ),
+          ).animate().fadeIn(delay: 800.ms, duration: 400.ms),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildFeatureItem(BuildContext context, IconData icon, String text) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 6),
+      child: Row(
+        children: [
+          Icon(icon, size: 20, color: const Color(0xFF667EEA)),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Text(
+              text,
+              style: const TextStyle(
+                fontSize: 14,
+                color: Colors.white70,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

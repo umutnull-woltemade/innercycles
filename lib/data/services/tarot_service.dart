@@ -1,5 +1,6 @@
 import 'dart:math';
 import '../providers/app_providers.dart';
+import 'l10n_service.dart';
 
 /// Tarot kart okuma servisi
 class TarotService {
@@ -70,7 +71,7 @@ class TarotService {
   }
 
   /// Evet/Hayır sorusu için tek kart
-  static YesNoReading drawYesNoCard() {
+  static YesNoReading drawYesNoCard({AppLanguage language = AppLanguage.tr}) {
     final card = drawSingleCard();
 
     // Ters kartlar genelde "hayır" veya "bekle"
@@ -78,27 +79,48 @@ class TarotService {
     final positiveCards = [1, 3, 6, 9, 10, 11, 14, 17, 19, 21]; // Fool, Empress, Lovers, etc.
     final negativeCards = [12, 13, 15, 16, 18]; // Hanged Man, Death, Devil, Tower, Moon
 
+    final cardName = card.localizedName(language);
     String answer;
     String explanation;
 
     if (card.isReversed) {
       if (positiveCards.contains(card.number)) {
-        answer = 'Belki - Dikkatli ol';
-        explanation = '${card.nameTr} ters geldi. Normalde olumlu bir enerji taşısa da, şu an engellerle karşılaşabilirsin.';
+        answer = L10nService.get('tarot.yes_no_answers.maybe', language);
+        explanation = L10nService.getWithParams(
+          'tarot.yes_no_answers.positive_card_reversed',
+          language,
+          params: {'card': cardName},
+        );
       } else {
-        answer = 'Hayır - Şu an değil';
-        explanation = '${card.nameTr} ters konumda. Bu, olumsuz enerjilerin baskın olduğunu gösteriyor. Beklemeni öneririm.';
+        answer = L10nService.get('tarot.yes_no_answers.no', language);
+        explanation = L10nService.getWithParams(
+          'tarot.yes_no_answers.negative_card_reversed',
+          language,
+          params: {'card': cardName},
+        );
       }
     } else {
       if (negativeCards.contains(card.number)) {
-        answer = 'Dikkatli ol';
-        explanation = '${card.nameTr} bir dönüşüm kartı. Evet mümkün, ama beklenmedik değişimlere hazır ol.';
+        answer = L10nService.get('tarot.yes_no_answers.careful', language);
+        explanation = L10nService.getWithParams(
+          'tarot.yes_no_answers.transformation_card',
+          language,
+          params: {'card': cardName},
+        );
       } else if (positiveCards.contains(card.number)) {
-        answer = 'Evet';
-        explanation = '${card.nameTr} olumlu enerji taşıyor. Yolun açık görünüyor.';
+        answer = L10nService.get('tarot.yes_no_answers.yes', language);
+        explanation = L10nService.getWithParams(
+          'tarot.yes_no_answers.positive_card',
+          language,
+          params: {'card': cardName},
+        );
       } else {
-        answer = 'Muhtemelen evet';
-        explanation = '${card.nameTr} genel olarak olumlu bir işaret. Temkinli iyimserlik yerin de.';
+        answer = L10nService.get('tarot.yes_no_answers.probably_yes', language);
+        explanation = L10nService.getWithParams(
+          'tarot.yes_no_answers.neutral_card',
+          language,
+          params: {'card': cardName},
+        );
       }
     }
 
@@ -170,6 +192,11 @@ class TarotCard {
 
   /// Localized card name based on language
   String localizedName(AppLanguage language) {
+    final key = _getCardKey();
+    final localized = L10nService.get('tarot.cards.$key.name', language);
+    if (localized != 'tarot.cards.$key.name') {
+      return localized;
+    }
     switch (language) {
       case AppLanguage.tr:
         return nameTr;
@@ -183,6 +210,12 @@ class TarotCard {
 
   /// Localized keywords based on language
   String localizedKeywords(AppLanguage language) {
+    final key = _getCardKey();
+    final localizedKeywords = L10nService.get('tarot.cards.$key.keywords', language);
+    // If localization exists, use it; otherwise fall back to hardcoded
+    if (localizedKeywords != 'tarot.cards.$key.keywords') {
+      return localizedKeywords;
+    }
     switch (language) {
       case AppLanguage.tr:
         return keywordsTr;
@@ -192,6 +225,70 @@ class TarotCard {
       default:
         return keywords;
     }
+  }
+
+  /// Get the card key for L10nService lookup
+  String _getCardKey() {
+    switch (number) {
+      case 0: return 'fool';
+      case 1: return 'magician';
+      case 2: return 'high_priestess';
+      case 3: return 'empress';
+      case 4: return 'emperor';
+      case 5: return 'hierophant';
+      case 6: return 'lovers';
+      case 7: return 'chariot';
+      case 8: return 'strength';
+      case 9: return 'hermit';
+      case 10: return 'wheel_of_fortune';
+      case 11: return 'justice';
+      case 12: return 'hanged_man';
+      case 13: return 'death';
+      case 14: return 'temperance';
+      case 15: return 'devil';
+      case 16: return 'tower';
+      case 17: return 'star';
+      case 18: return 'moon';
+      case 19: return 'sun';
+      case 20: return 'judgement';
+      case 21: return 'world';
+      default: return 'fool';
+    }
+  }
+
+  /// Localized upright meaning
+  String localizedUprightMeaning(AppLanguage language) {
+    final key = _getCardKey();
+    final localized = L10nService.get('tarot.cards.$key.upright', language);
+    if (localized != 'tarot.cards.$key.upright') {
+      return localized;
+    }
+    return uprightMeaning;
+  }
+
+  /// Localized reversed meaning
+  String localizedReversedMeaning(AppLanguage language) {
+    final key = _getCardKey();
+    final localized = L10nService.get('tarot.cards.$key.reversed', language);
+    if (localized != 'tarot.cards.$key.reversed') {
+      return localized;
+    }
+    return reversedMeaning;
+  }
+
+  /// Localized advice
+  String localizedAdvice(AppLanguage language) {
+    final key = _getCardKey();
+    final localized = L10nService.get('tarot.cards.$key.advice', language);
+    if (localized != 'tarot.cards.$key.advice') {
+      return localized;
+    }
+    return advice;
+  }
+
+  /// Get current meaning based on reversed state and language
+  String localizedCurrentMeaning(AppLanguage language) {
+    return isReversed ? localizedReversedMeaning(language) : localizedUprightMeaning(language);
   }
 
   /// Büyük Arkana kartları
@@ -551,7 +648,7 @@ class TarotCard {
   ];
 }
 
-/// Üç kart açılımı
+/// Three card spread
 class ThreeCardSpread {
   final TarotCard past;
   final TarotCard present;
@@ -563,23 +660,45 @@ class ThreeCardSpread {
     required this.future,
   });
 
-  String get interpretation {
+  /// Get localized interpretation
+  String localizedInterpretation(AppLanguage language) {
+    final pastLabel = L10nService.get('tarot.spread_labels.past_label', language);
+    final presentLabel = L10nService.get('tarot.spread_labels.present_label', language);
+    final futureLabel = L10nService.get('tarot.spread_labels.future_label', language);
+    final reversedSuffix = L10nService.get('tarot.spread_labels.reversed_suffix', language);
+    final generalLabel = L10nService.get('tarot.spread_labels.general_interpretation', language);
+
+    final pastReversed = past.isReversed ? reversedSuffix : '';
+    final presentReversed = present.isReversed ? reversedSuffix : '';
+    final futureReversed = future.isReversed ? reversedSuffix : '';
+
+    final pastKeyword = past.localizedKeywords(language).split(',').first.trim().toLowerCase();
+    final presentKeyword = present.localizedKeywords(language).split(',').first.trim().toLowerCase();
+    final futureKeyword = future.localizedKeywords(language).split(',').first.trim().toLowerCase();
+
+    final pastEnergy = L10nService.get('tarot.spread_labels.past_energy', language).replaceAll('{keyword}', pastKeyword);
+    final presentEnergy = L10nService.get('tarot.spread_labels.present_energy', language).replaceAll('{keyword}', presentKeyword);
+    final futureEnergy = L10nService.get('tarot.spread_labels.future_energy', language).replaceAll('{keyword}', futureKeyword);
+
     return '''
-**Geçmiş (${past.nameTr}${past.isReversed ? ' - Ters' : ''}):**
-${past.currentMeaning}
+**$pastLabel (${past.localizedName(language)}$pastReversed):**
+${past.localizedCurrentMeaning(language)}
 
-**Şimdi (${present.nameTr}${present.isReversed ? ' - Ters' : ''}):**
-${present.currentMeaning}
+**$presentLabel (${present.localizedName(language)}$presentReversed):**
+${present.localizedCurrentMeaning(language)}
 
-**Gelecek (${future.nameTr}${future.isReversed ? ' - Ters' : ''}):**
-${future.currentMeaning}
+**$futureLabel (${future.localizedName(language)}$futureReversed):**
+${future.localizedCurrentMeaning(language)}
 
-**Genel Yorum:**
-Geçmişte ${past.keywordsTr.split(',').first.trim().toLowerCase()} enerjisi etkindİ.
-Şu an ${present.keywordsTr.split(',').first.trim().toLowerCase()} ile çalışıyorsun.
-Gelecekte ${future.keywordsTr.split(',').first.trim().toLowerCase()} seni bekliyor.
+**$generalLabel:**
+$pastEnergy
+$presentEnergy
+$futureEnergy
 ''';
   }
+
+  /// Legacy getter for backward compatibility (uses Turkish)
+  String get interpretation => localizedInterpretation(AppLanguage.tr);
 }
 
 /// Kelt Haçı açılımı
@@ -609,7 +728,7 @@ class CelticCrossSpread {
   });
 }
 
-/// Aşk açılımı
+/// Love spread
 class LoveSpread {
   final TarotCard youCard;
   final TarotCard partnerCard;
@@ -625,24 +744,41 @@ class LoveSpread {
     required this.adviceCard,
   });
 
-  String get interpretation {
+  /// Get localized interpretation
+  String localizedInterpretation(AppLanguage language) {
+    final youLabel = L10nService.get('tarot.spread_labels.you_label', language);
+    final partnerLabel = L10nService.get('tarot.spread_labels.partner_label', language);
+    final relationshipLabel = L10nService.get('tarot.spread_labels.relationship_label', language);
+    final challengeLabel = L10nService.get('tarot.spread_labels.challenge_label', language);
+    final adviceLabel = L10nService.get('tarot.spread_labels.advice_label', language);
+    final reversedSuffix = L10nService.get('tarot.spread_labels.reversed_suffix', language);
+
+    final youReversed = youCard.isReversed ? reversedSuffix : '';
+    final partnerReversed = partnerCard.isReversed ? reversedSuffix : '';
+    final relationshipReversed = relationshipCard.isReversed ? reversedSuffix : '';
+    final challengeReversed = challengeCard.isReversed ? reversedSuffix : '';
+    final adviceReversed = adviceCard.isReversed ? reversedSuffix : '';
+
     return '''
-**Sen (${youCard.nameTr}${youCard.isReversed ? ' - Ters' : ''}):**
-${youCard.currentMeaning}
+**$youLabel (${youCard.localizedName(language)}$youReversed):**
+${youCard.localizedCurrentMeaning(language)}
 
-**Partner/Potansiyel Partner (${partnerCard.nameTr}${partnerCard.isReversed ? ' - Ters' : ''}):**
-${partnerCard.currentMeaning}
+**$partnerLabel (${partnerCard.localizedName(language)}$partnerReversed):**
+${partnerCard.localizedCurrentMeaning(language)}
 
-**İlişkinin Enerjisi (${relationshipCard.nameTr}${relationshipCard.isReversed ? ' - Ters' : ''}):**
-${relationshipCard.currentMeaning}
+**$relationshipLabel (${relationshipCard.localizedName(language)}$relationshipReversed):**
+${relationshipCard.localizedCurrentMeaning(language)}
 
-**Zorluk (${challengeCard.nameTr}${challengeCard.isReversed ? ' - Ters' : ''}):**
-${challengeCard.currentMeaning}
+**$challengeLabel (${challengeCard.localizedName(language)}$challengeReversed):**
+${challengeCard.localizedCurrentMeaning(language)}
 
-**Tavsiye (${adviceCard.nameTr}${adviceCard.isReversed ? ' - Ters' : ''}):**
-${adviceCard.advice}
+**$adviceLabel (${adviceCard.localizedName(language)}$adviceReversed):**
+${adviceCard.localizedAdvice(language)}
 ''';
   }
+
+  /// Legacy getter for backward compatibility (uses Turkish)
+  String get interpretation => localizedInterpretation(AppLanguage.tr);
 }
 
 /// Evet/Hayır okuma sonucu

@@ -64,13 +64,13 @@ class TodayOverviewCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(24),
           border: Border.all(
             color: isDark
-                ? AppColors.starGold.withOpacity(0.3)
-                : AppColors.lightStarGold.withOpacity(0.4),
+                ? AppColors.starGold.withValues(alpha: 0.3)
+                : AppColors.lightStarGold.withValues(alpha: 0.4),
             width: 1.5,
           ),
           boxShadow: [
             BoxShadow(
-              color: AppColors.starGold.withOpacity(isDark ? 0.15 : 0.1),
+              color: AppColors.starGold.withValues(alpha: isDark ? 0.15 : 0.1),
               blurRadius: 24,
               offset: const Offset(0, 8),
             ),
@@ -120,13 +120,13 @@ class TodayOverviewCard extends StatelessWidget {
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
-                        todayEnergy.color.withOpacity(0.3),
-                        todayEnergy.color.withOpacity(0.1),
+                        todayEnergy.color.withValues(alpha: 0.3),
+                        todayEnergy.color.withValues(alpha: 0.1),
                       ],
                     ),
                     borderRadius: BorderRadius.circular(20),
                     border: Border.all(
-                      color: todayEnergy.color.withOpacity(0.5),
+                      color: todayEnergy.color.withValues(alpha: 0.5),
                     ),
                   ),
                   child: Row(
@@ -158,8 +158,8 @@ class TodayOverviewCard extends StatelessWidget {
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                 color: isDark
-                    ? Colors.white.withOpacity(0.05)
-                    : Colors.black.withOpacity(0.03),
+                    ? Colors.white.withValues(alpha: 0.05)
+                    : Colors.black.withValues(alpha: 0.03),
                 borderRadius: BorderRadius.circular(16),
               ),
               child: Row(
@@ -173,12 +173,12 @@ class TodayOverviewCard extends StatelessWidget {
                       gradient: RadialGradient(
                         colors: [
                           AppColors.moonSilver,
-                          AppColors.moonSilver.withOpacity(0.3),
+                          AppColors.moonSilver.withValues(alpha: 0.3),
                         ],
                       ),
                       boxShadow: [
                         BoxShadow(
-                          color: AppColors.moonSilver.withOpacity(0.4),
+                          color: AppColors.moonSilver.withValues(alpha: 0.4),
                           blurRadius: 12,
                           spreadRadius: 2,
                         ),
@@ -269,12 +269,12 @@ class TodayOverviewCard extends StatelessWidget {
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    AppColors.starGold.withOpacity(0.15),
-                    AppColors.starGold.withOpacity(0.05),
+                    AppColors.starGold.withValues(alpha: 0.15),
+                    AppColors.starGold.withValues(alpha: 0.05),
                   ],
                 ),
                 borderRadius: BorderRadius.circular(16),
-                border: Border.all(color: AppColors.starGold.withOpacity(0.3)),
+                border: Border.all(color: AppColors.starGold.withValues(alpha: 0.3)),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -459,16 +459,16 @@ class _QuickActionCard extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
             decoration: BoxDecoration(
-              color: color.withOpacity(isDark ? 0.15 : 0.1),
+              color: color.withValues(alpha: isDark ? 0.15 : 0.1),
               borderRadius: BorderRadius.circular(16),
-              border: Border.all(color: color.withOpacity(0.3)),
+              border: Border.all(color: color.withValues(alpha: 0.3)),
             ),
             child: Row(
               children: [
                 Container(
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    color: color.withOpacity(0.2),
+                    color: color.withValues(alpha: 0.2),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Icon(icon, size: 20, color: color),
@@ -490,7 +490,7 @@ class _QuickActionCard extends StatelessWidget {
                 Icon(
                   Icons.chevron_right,
                   size: 18,
-                  color: color.withOpacity(0.7),
+                  color: color.withValues(alpha: 0.7),
                 ),
               ],
             ),

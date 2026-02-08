@@ -127,8 +127,8 @@ class BreadcrumbNavigation extends ConsumerWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final defaultActiveColor = isDark ? AppColors.textPrimary : AppColors.lightTextPrimary;
     final defaultInactiveColor = isDark
-        ? AppColors.textSecondary.withOpacity(0.7)
-        : AppColors.lightTextSecondary.withOpacity(0.8);
+        ? AppColors.textSecondary.withValues(alpha: 0.7)
+        : AppColors.lightTextSecondary.withValues(alpha: 0.8);
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
@@ -152,8 +152,8 @@ class BreadcrumbNavigation extends ConsumerWidget {
                       ? BoxDecoration(
                           borderRadius: BorderRadius.circular(4),
                           color: isDark
-                              ? Colors.white.withOpacity(0.05)
-                              : Colors.black.withOpacity(0.03),
+                              ? Colors.white.withValues(alpha: 0.05)
+                              : Colors.black.withValues(alpha: 0.03),
                         )
                       : null,
                   child: Text(
@@ -220,12 +220,12 @@ class BreadcrumbNavigationCompact extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           color: isDark
-              ? AppColors.surfaceLight.withOpacity(0.1)
+              ? AppColors.surfaceLight.withValues(alpha: 0.1)
               : AppColors.lightSurfaceVariant,
           border: Border.all(
             color: isDark
-                ? AppColors.textMuted.withOpacity(0.1)
-                : AppColors.lightTextMuted.withOpacity(0.15),
+                ? AppColors.textMuted.withValues(alpha: 0.1)
+                : AppColors.lightTextMuted.withValues(alpha: 0.15),
           ),
         ),
         child: Row(

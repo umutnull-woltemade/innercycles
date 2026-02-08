@@ -1,11 +1,16 @@
 import 'dart:math';
 import '../models/zodiac_sign.dart';
+import '../providers/app_providers.dart';
 
 /// Horoscope content templates for algorithmic generation
 /// Uses seeded random selection for deterministic, reproducible daily readings
 class HoroscopeTemplates {
   // General daily opening statements (50+ variations)
-  static const List<String> generalOpenings = [
+  static List<String> getGeneralOpenings({AppLanguage language = AppLanguage.tr}) {
+    return language == AppLanguage.tr ? _generalOpeningsTr : _generalOpeningsEn;
+  }
+
+  static const List<String> _generalOpeningsTr = [
     'Bugün enerjin yüksek ve motivasyonun güçlü.',
     'Evren sana yeni fırsatlar sunuyor.',
     'İç sesin bugün özellikle güçlü konuşuyor.',
@@ -58,8 +63,65 @@ class HoroscopeTemplates {
     'Evren seninle işbirliği yapıyor.',
   ];
 
+  static const List<String> _generalOpeningsEn = [
+    'Your energy is high and your motivation is strong today.',
+    'The universe is offering you new opportunities.',
+    'Your inner voice speaks especially loud today.',
+    'Winds of change are blowing today.',
+    'The stars are in a favorable alignment for you.',
+    'Today is a day to focus on yourself.',
+    'Patience will be your greatest strength today.',
+    'Your creativity peaks today.',
+    'Your emotional awareness is increasing today.',
+    'An ideal day for new beginnings.',
+    'Today might be the time to face the past.',
+    'The universe is guiding you to the right path.',
+    'Your inner peace will be at the forefront today.',
+    'A suitable day for steps that require courage.',
+    'You need to pay attention to details today.',
+    'Your social connections are strengthening today.',
+    'A day to be careful about financial matters.',
+    'Your intuition won\'t mislead you today.',
+    'You might receive unexpected news.',
+    'Your self-confidence is rising today.',
+    'The universe is sending you a message.',
+    'An important day for your spiritual development.',
+    'Practical thinking is at the forefront today.',
+    'Romantic energies are strengthening.',
+    'Career-focused thoughts will be prominent.',
+    'Family matters may come up today.',
+    'Your communication skills shine today.',
+    'You might hear from old friends today.',
+    'An inspiring day for new projects.',
+    'Prioritize rest today.',
+    'The universe gives you courage.',
+    'A powerful day for inner transformation.',
+    'Don\'t be afraid to push your limits today.',
+    'Positive energies surround you.',
+    'Balance logic and emotion today.',
+    'An opportunity to meet new people may arise.',
+    'Focus on your goals today.',
+    'The universe supports you.',
+    'Internal conflicts may find resolution today.',
+    'Show your leadership qualities today.',
+    'Artistic inspirations are strengthening.',
+    'Review your routines today.',
+    'Unexpected opportunities might knock on your door.',
+    'Your empathy power increases today.',
+    'The universe is giving you a patience lesson.',
+    'An ideal day for a journey into your inner world.',
+    'Spread positive energy to those around you today.',
+    'A day when you feel motivated for personal growth.',
+    'Don\'t be afraid to take risks today.',
+    'The universe is collaborating with you.',
+  ];
+
   // Love/Relationship advice (50+ variations)
-  static const List<String> loveAdvice = [
+  static List<String> getLoveAdvice({AppLanguage language = AppLanguage.tr}) {
+    return language == AppLanguage.tr ? _loveAdviceTr : _loveAdviceEn;
+  }
+
+  static const List<String> _loveAdviceTr = [
     'Aşk hayatında güzel sürprizler olabilir.',
     'Partnerinle derin bir bağ kurabilirsin.',
     'Yalnızsan, yeni biri ile tanışma ihtimalin yüksek.',
@@ -112,8 +174,65 @@ class HoroscopeTemplates {
     'Aşkta yeni başlangıçlar mümkün.',
   ];
 
+  static const List<String> _loveAdviceEn = [
+    'There might be beautiful surprises in your love life.',
+    'You can form a deep bond with your partner.',
+    'If you\'re single, there\'s a high chance of meeting someone new.',
+    'Romantic gestures will be reciprocated today.',
+    'Focus on strengthening communication in your relationship.',
+    'Don\'t hesitate to express your feelings.',
+    'Listen to your partner\'s needs.',
+    'You will gain clarity in your love life.',
+    'An old love might come to mind.',
+    'Heartbreaks may begin healing today.',
+    'You might receive a romantic invitation.',
+    'Spend quality time with your partner.',
+    'Your flirting energy is high today.',
+    'Trust issues may come up in your relationship.',
+    'Strengthen bonds with your loved ones.',
+    'Be patient in love, everything takes time.',
+    'An opportunity for emotional intimacy is arising.',
+    'Set common goals with your partner.',
+    'A new page is opening in your love life.',
+    'Review past relationship patterns.',
+    'Bring romance into daily life.',
+    'Accept your partner as they are.',
+    'Taking risks in love might reward you.',
+    'Deepen your emotional bonds.',
+    'Try to establish balance in your relationship.',
+    'Loving moments await you.',
+    'Time for clarification in love life.',
+    'Establish open communication with your partner.',
+    'Romantic dreams may come true.',
+    'Time to take bold steps in love.',
+    'Progress in emotional healing process.',
+    'New love doors are opening.',
+    'Grow together with your partner.',
+    'Be open to surprises in love life.',
+    'Listen to your heart\'s voice.',
+    'Harmony in your relationship is increasing.',
+    'Romantic energies at peak.',
+    'Passion in love is reigniting.',
+    'Collect beautiful memories with your partner.',
+    'You will receive emotional support.',
+    'Clarity coming in love life.',
+    'New acquaintances might be important.',
+    'Try to empathize with your partner.',
+    'Time for maturing in love.',
+    'Focus on creating a romantic atmosphere.',
+    'Emotional commitment strengthening.',
+    'Positive developments in love life.',
+    'Talk about the future with your partner.',
+    'Your heart is open and ready.',
+    'New beginnings in love are possible.',
+  ];
+
   // Career/Work advice (50+ variations)
-  static const List<String> careerAdvice = [
+  static List<String> getCareerAdvice({AppLanguage language = AppLanguage.tr}) {
+    return language == AppLanguage.tr ? _careerAdviceTr : _careerAdviceEn;
+  }
+
+  static const List<String> _careerAdviceTr = [
     'İş hayatında önemli fırsatlar doğabilir.',
     'Profesyonel becerilerini sergileme zamanı.',
     'Yeni projeler için uygun bir gün.',
@@ -166,8 +285,65 @@ class HoroscopeTemplates {
     'Profesyonel hedeflerine ulaşıyorsun.',
   ];
 
+  static const List<String> _careerAdviceEn = [
+    'Important opportunities may arise in your work life.',
+    'Time to showcase your professional skills.',
+    'A suitable day for new projects.',
+    'Review your career goals.',
+    'Show leadership qualities at work.',
+    'Be careful about financial matters.',
+    'Work in harmony with your colleagues.',
+    'New job opportunities might knock on your door.',
+    'Expand your professional network.',
+    'Find creative solutions in work life.',
+    'Clarify your career plans.',
+    'Strengthen relationships with your superiors.',
+    'Show patience in work life.',
+    'An ideal day for learning new skills.',
+    'Invest in your professional development.',
+    'Take initiative at work.',
+    'A suitable day for financial planning.',
+    'You might consider a career change.',
+    'Try to establish balance in work life.',
+    'Focus on your professional goals.',
+    'New clients or partnerships are possible.',
+    'Be diplomatic at work.',
+    'Be open to career opportunities.',
+    'Take steps for financial stability.',
+    'Productivity in work life is increasing.',
+    'Strengthen your professional reputation.',
+    'New projects might be inspiring.',
+    'You will get support from colleagues.',
+    'You\'re progressing toward career goals.',
+    'A suitable day for financial decisions.',
+    'Changes in work life may occur.',
+    'Attend professional training.',
+    'You might take on new responsibilities.',
+    'Spread positive energy at work.',
+    'Review your career plans.',
+    'Evaluate financial opportunities.',
+    'Success in work life is approaching.',
+    'Protect your professional relationships.',
+    'Time to present new ideas.',
+    'Your problem-solving skills at work are shining.',
+    'An important day in career journey.',
+    'Progress toward financial goals.',
+    'Motivation in work life is increasing.',
+    'Professional development opportunities.',
+    'You might establish new partnerships.',
+    'Establish careful communication at work.',
+    'Prepare for career breakthroughs.',
+    'Your financial awareness is increasing.',
+    'New doors are opening in work life.',
+    'You\'re reaching your professional goals.',
+  ];
+
   // Health/Wellness advice (50+ variations)
-  static const List<String> healthAdvice = [
+  static List<String> getHealthAdvice({AppLanguage language = AppLanguage.tr}) {
+    return language == AppLanguage.tr ? _healthAdviceTr : _healthAdviceEn;
+  }
+
+  static const List<String> _healthAdviceTr = [
     'Sağlığına ekstra dikkat göster.',
     'Fiziksel aktiviteye zaman ayır.',
     'Beslenme alışkanlıklarını gözden geçir.',
@@ -220,8 +396,65 @@ class HoroscopeTemplates {
     'Fiziksel aktiviteyle gününe başla.',
   ];
 
+  static const List<String> _healthAdviceEn = [
+    'Pay extra attention to your health.',
+    'Make time for physical activity.',
+    'Review your eating habits.',
+    'Focus on stress management.',
+    'Try to maintain your sleep schedule.',
+    'Take care of your mental health.',
+    'Your motivation to exercise is high.',
+    'Consider meditation or yoga.',
+    'Pay attention to increasing water intake.',
+    'Your energy levels will be balanced.',
+    'Spending time in nature will be good for you.',
+    'Try to set healthy boundaries.',
+    'You might feel physical fatigue.',
+    'Invest in your mental health.',
+    'Don\'t neglect health checkups.',
+    'Your energy levels are high today.',
+    'Stay away from stressful situations.',
+    'Create healthy routines.',
+    'Breathing exercises might be beneficial.',
+    'Physical activity will boost your mood.',
+    'Pay attention to your sleep quality.',
+    'Make conscious decisions about health.',
+    'Maintain energy balance.',
+    'Pay attention to stress\'s effect on your body.',
+    'Prioritize healthy eating.',
+    'Work for physical and mental balance.',
+    'Make time for rest.',
+    'Consider professional support for your health.',
+    'Your energy levels are rising.',
+    'Try stress relief methods.',
+    'Review health routines.',
+    'Physical activity will be motivating.',
+    'You need mental rest.',
+    'An ideal day for healthy habits.',
+    'Pay attention to energy management.',
+    'Develop stress coping strategies.',
+    'Focus on health goals.',
+    'Your physical endurance is increasing.',
+    'You will feel mental clarity.',
+    'Take steps for a healthy lifestyle.',
+    'Energy and motivation are high.',
+    'Identify stress sources.',
+    'A positive day for health.',
+    'Establish physical and emotional balance.',
+    'Spend time with yourself for mental health.',
+    'Become aware of health matters.',
+    'Keep your energy level balanced.',
+    'Try stress reduction techniques.',
+    'Make healthy choices.',
+    'Start your day with physical activity.',
+  ];
+
   // Planetary influence modifiers
-  static const Map<String, List<String>> planetaryModifiers = {
+  static Map<String, List<String>> getPlanetaryModifiers({AppLanguage language = AppLanguage.tr}) {
+    return language == AppLanguage.tr ? _planetaryModifiersTr : _planetaryModifiersEn;
+  }
+
+  static const Map<String, List<String>> _planetaryModifiersTr = {
     'mercury_retrograde': [
       'Merkür retrosu nedeniyle iletişimde dikkatli ol.',
       'Teknolojik aksaklıklar yaşanabilir.',
@@ -259,8 +492,50 @@ class HoroscopeTemplates {
     ],
   };
 
+  static const Map<String, List<String>> _planetaryModifiersEn = {
+    'mercury_retrograde': [
+      'Be careful with communication due to Mercury retrograde.',
+      'Technological glitches may occur.',
+      'Time to reconsider old matters.',
+      'Examine contracts carefully.',
+      'Someone from the past might come to mind.',
+    ],
+    'venus_retrograde': [
+      'Venus retrograde is affecting your love life.',
+      'Time to question old relationships.',
+      'Postpone financial decisions.',
+      'Be careful about beauty and aesthetics.',
+      'Reevaluate your values.',
+    ],
+    'mars_retrograde': [
+      'Mars retrograde may cause low energy.',
+      'Pay attention to anger control.',
+      'Avoid starting major projects.',
+      'Be careful during physical activities.',
+      'Motivation fluctuations may occur.',
+    ],
+    'full_moon': [
+      'Full moon brings emotional intensity.',
+      'Inner insights are strengthening.',
+      'Energy of completion and conclusion.',
+      'Time for emotional cleansing.',
+      'Trust your intuition.',
+    ],
+    'new_moon': [
+      'New moon is ideal for new beginnings.',
+      'Time to set intentions.',
+      'An introverted period.',
+      'Plan new projects.',
+      'Time to plant seeds.',
+    ],
+  };
+
   // Lucky colors by zodiac sign
-  static const Map<ZodiacSign, List<String>> luckyColors = {
+  static Map<ZodiacSign, List<String>> getLuckyColors({AppLanguage language = AppLanguage.tr}) {
+    return language == AppLanguage.tr ? _luckyColorsTr : _luckyColorsEn;
+  }
+
+  static const Map<ZodiacSign, List<String>> _luckyColorsTr = {
     ZodiacSign.aries: ['Kırmızı', 'Turuncu', 'Sarı', 'Beyaz'],
     ZodiacSign.taurus: ['Yeşil', 'Pembe', 'Mavi', 'Toprak Tonları'],
     ZodiacSign.gemini: ['Sarı', 'Açık Mavi', 'Yeşil', 'Beyaz'],
@@ -273,6 +548,21 @@ class HoroscopeTemplates {
     ZodiacSign.capricorn: ['Siyah', 'Koyu Yeşil', 'Kahverengi', 'Gri'],
     ZodiacSign.aquarius: ['Mavi', 'Turkuaz', 'Mor', 'Gümüş'],
     ZodiacSign.pisces: ['Deniz Mavisi', 'Yeşil', 'Mor', 'Lila'],
+  };
+
+  static const Map<ZodiacSign, List<String>> _luckyColorsEn = {
+    ZodiacSign.aries: ['Red', 'Orange', 'Yellow', 'White'],
+    ZodiacSign.taurus: ['Green', 'Pink', 'Blue', 'Earth Tones'],
+    ZodiacSign.gemini: ['Yellow', 'Light Blue', 'Green', 'White'],
+    ZodiacSign.cancer: ['Silver', 'White', 'Cream', 'Light Blue'],
+    ZodiacSign.leo: ['Gold', 'Orange', 'Yellow', 'Purple'],
+    ZodiacSign.virgo: ['Green', 'Brown', 'Beige', 'Navy Blue'],
+    ZodiacSign.libra: ['Pink', 'Light Blue', 'Lavender', 'Green'],
+    ZodiacSign.scorpio: ['Burgundy', 'Black', 'Purple', 'Dark Red'],
+    ZodiacSign.sagittarius: ['Purple', 'Blue', 'Orange', 'Turquoise'],
+    ZodiacSign.capricorn: ['Black', 'Dark Green', 'Brown', 'Gray'],
+    ZodiacSign.aquarius: ['Blue', 'Turquoise', 'Purple', 'Silver'],
+    ZodiacSign.pisces: ['Sea Blue', 'Green', 'Purple', 'Lilac'],
   };
 
   /// Generate a seeded random number
@@ -291,15 +581,21 @@ class HoroscopeTemplates {
 
   /// Generate daily horoscope reading
   static Map<String, dynamic> generateDailyReading(
-      DateTime date, ZodiacSign sign) {
+      DateTime date, ZodiacSign sign, {AppLanguage language = AppLanguage.tr}) {
     final seed = _generateSeed(date, sign);
     final random = Random(seed);
 
-    // Generate readings
-    final general = _getSeededItem(generalOpenings, seed, 0);
-    final love = _getSeededItem(loveAdvice, seed, 100);
-    final career = _getSeededItem(careerAdvice, seed, 200);
-    final health = _getSeededItem(healthAdvice, seed, 300);
+    // Generate readings with language support
+    final generalList = getGeneralOpenings(language: language);
+    final loveList = getLoveAdvice(language: language);
+    final careerList = getCareerAdvice(language: language);
+    final healthList = getHealthAdvice(language: language);
+    final colorList = getLuckyColors(language: language);
+
+    final general = _getSeededItem(generalList, seed, 0);
+    final love = _getSeededItem(loveList, seed, 100);
+    final career = _getSeededItem(careerList, seed, 200);
+    final health = _getSeededItem(healthList, seed, 300);
 
     // Generate scores (based on seed for consistency)
     final moodScore = 0.5 + (random.nextDouble() * 0.5); // 0.5-1.0
@@ -311,7 +607,8 @@ class HoroscopeTemplates {
     final luckyNumber = 1 + random.nextInt(99);
 
     // Lucky color
-    final colors = luckyColors[sign] ?? ['Beyaz'];
+    final defaultColor = language == AppLanguage.tr ? 'Beyaz' : 'White';
+    final colors = colorList[sign] ?? [defaultColor];
     final luckyColor = colors[random.nextInt(colors.length)];
 
     return {
@@ -331,8 +628,9 @@ class HoroscopeTemplates {
   }
 
   /// Apply planetary modifier if applicable
-  static String applyModifier(String reading, String modifier) {
-    final modifiers = planetaryModifiers[modifier];
+  static String applyModifier(String reading, String modifier, {AppLanguage language = AppLanguage.tr}) {
+    final modifierMap = getPlanetaryModifiers(language: language);
+    final modifiers = modifierMap[modifier];
     if (modifiers != null && modifiers.isNotEmpty) {
       final random = Random();
       return '$reading ${modifiers[random.nextInt(modifiers.length)]}';
@@ -342,19 +640,38 @@ class HoroscopeTemplates {
 
   /// Generate compatibility summary
   static String generateCompatibilitySummary(
-      ZodiacSign sign1, ZodiacSign sign2, int overallScore) {
-    if (overallScore >= 80) {
-      return '${sign1.nameTr} ve ${sign2.nameTr} arasında güçlü bir uyum var. '
-          'Bu ilişki karşılıklı anlayış ve derin bağ potansiyeli taşıyor.';
-    } else if (overallScore >= 60) {
-      return '${sign1.nameTr} ve ${sign2.nameTr} iyi bir uyum sergiliyor. '
-          'Bazı farklılıklar olsa da, birbirini tamamlama potansiyeli yüksek.';
-    } else if (overallScore >= 40) {
-      return '${sign1.nameTr} ve ${sign2.nameTr} arasında orta düzeyde uyum var. '
-          'İlişkinin gelişmesi için karşılıklı çaba gerekebilir.';
+      ZodiacSign sign1, ZodiacSign sign2, int overallScore, {AppLanguage language = AppLanguage.tr}) {
+    final sign1Name = language == AppLanguage.tr ? sign1.nameTr : sign1.name;
+    final sign2Name = language == AppLanguage.tr ? sign2.nameTr : sign2.name;
+
+    if (language == AppLanguage.tr) {
+      if (overallScore >= 80) {
+        return '$sign1Name ve $sign2Name arasında güçlü bir uyum var. '
+            'Bu ilişki karşılıklı anlayış ve derin bağ potansiyeli taşıyor.';
+      } else if (overallScore >= 60) {
+        return '$sign1Name ve $sign2Name iyi bir uyum sergiliyor. '
+            'Bazı farklılıklar olsa da, birbirini tamamlama potansiyeli yüksek.';
+      } else if (overallScore >= 40) {
+        return '$sign1Name ve $sign2Name arasında orta düzeyde uyum var. '
+            'İlişkinin gelişmesi için karşılıklı çaba gerekebilir.';
+      } else {
+        return '$sign1Name ve $sign2Name arasında zorlayıcı bir dinamik var. '
+            'Bu ilişki büyüme fırsatları sunarken, sabır ve anlayış gerektiriyor.';
+      }
     } else {
-      return '${sign1.nameTr} ve ${sign2.nameTr} arasında zorlayıcı bir dinamik var. '
-          'Bu ilişki büyüme fırsatları sunarken, sabır ve anlayış gerektiriyor.';
+      if (overallScore >= 80) {
+        return 'There is strong compatibility between $sign1Name and $sign2Name. '
+            'This relationship carries potential for mutual understanding and deep connection.';
+      } else if (overallScore >= 60) {
+        return '$sign1Name and $sign2Name show good compatibility. '
+            'Despite some differences, there is high potential to complement each other.';
+      } else if (overallScore >= 40) {
+        return 'There is moderate compatibility between $sign1Name and $sign2Name. '
+            'Mutual effort may be needed for the relationship to develop.';
+      } else {
+        return 'There is a challenging dynamic between $sign1Name and $sign2Name. '
+            'While this relationship offers growth opportunities, it requires patience and understanding.';
+      }
     }
   }
 }

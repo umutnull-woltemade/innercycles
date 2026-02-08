@@ -243,11 +243,6 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
     return 'waning_crescent';
   }
 
-  String _getMoonPhaseDisplayName(String key) {
-    final lang = ref.read(languageProvider);
-    return L10nService.get('dreams.moon_phases.$key', lang);
-  }
-
   Map<String, int> _extractCharacterFrequency(List<Dream> dreams) {
     Map<String, int> characters = {};
     final characterPatterns = [
@@ -705,7 +700,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: [AppColors.mystic.withOpacity(0.3), Colors.transparent],
+          colors: [AppColors.mystic.withValues(alpha: 0.3), Colors.transparent],
         ),
       ),
       child: Row(
@@ -723,8 +718,8 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
             decoration: BoxDecoration(
               gradient: RadialGradient(
                 colors: [
-                  AppColors.mystic.withOpacity(0.5),
-                  AppColors.nebulaPurple.withOpacity(0.3),
+                  AppColors.mystic.withValues(alpha: 0.5),
+                  AppColors.nebulaPurple.withValues(alpha: 0.3),
                 ],
               ),
               shape: BoxShape.circle,
@@ -769,9 +764,9 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 16),
       decoration: BoxDecoration(
-        color: AppColors.surfaceDark.withOpacity(0.5),
+        color: AppColors.surfaceDark.withValues(alpha: 0.5),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: AppColors.mystic.withOpacity(0.2)),
+        border: Border.all(color: AppColors.mystic.withValues(alpha: 0.2)),
       ),
       child: TabBar(
         controller: _tabController,
@@ -779,8 +774,8 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
         indicator: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              AppColors.mystic.withOpacity(0.4),
-              AppColors.cosmicPurple.withOpacity(0.3),
+              AppColors.mystic.withValues(alpha: 0.4),
+              AppColors.cosmicPurple.withValues(alpha: 0.3),
             ],
           ),
           borderRadius: BorderRadius.circular(10),
@@ -906,12 +901,12 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            AppColors.mystic.withOpacity(0.2),
-            AppColors.cosmicPurple.withOpacity(0.1),
+            AppColors.mystic.withValues(alpha: 0.2),
+            AppColors.cosmicPurple.withValues(alpha: 0.1),
           ],
         ),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: AppColors.mystic.withOpacity(0.3)),
+        border: Border.all(color: AppColors.mystic.withValues(alpha: 0.3)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1064,9 +1059,9 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: AppColors.surfaceDark.withOpacity(0.5),
+        color: AppColors.surfaceDark.withValues(alpha: 0.5),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: AppColors.mystic.withOpacity(0.2)),
+        border: Border.all(color: AppColors.mystic.withValues(alpha: 0.2)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1156,9 +1151,9 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: AppColors.surfaceDark.withOpacity(0.5),
+        color: AppColors.surfaceDark.withValues(alpha: 0.5),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: AppColors.moonSilver.withOpacity(0.2)),
+        border: Border.all(color: AppColors.moonSilver.withValues(alpha: 0.2)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1183,7 +1178,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [AppColors.mystic.withOpacity(0.2), Colors.transparent],
+                colors: [AppColors.mystic.withValues(alpha: 0.2), Colors.transparent],
               ),
               borderRadius: BorderRadius.circular(12),
             ),
@@ -1322,12 +1317,12 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            AppColors.starGold.withOpacity(0.1),
-            AppColors.surfaceDark.withOpacity(0.5),
+            AppColors.starGold.withValues(alpha: 0.1),
+            AppColors.surfaceDark.withValues(alpha: 0.5),
           ],
         ),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: AppColors.starGold.withOpacity(0.3)),
+        border: Border.all(color: AppColors.starGold.withValues(alpha: 0.3)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1371,12 +1366,12 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
         color: isUnlocked
-            ? AppColors.starGold.withOpacity(0.2)
-            : Colors.white.withOpacity(0.05),
+            ? AppColors.starGold.withValues(alpha: 0.2)
+            : Colors.white.withValues(alpha: 0.05),
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
           color: isUnlocked
-              ? AppColors.starGold.withOpacity(0.5)
+              ? AppColors.starGold.withValues(alpha: 0.5)
               : Colors.white12,
         ),
       ),
@@ -1453,9 +1448,9 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: AppColors.surfaceDark.withOpacity(0.5),
+        color: AppColors.surfaceDark.withValues(alpha: 0.5),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: AppColors.mystic.withOpacity(0.2)),
+        border: Border.all(color: AppColors.mystic.withValues(alpha: 0.2)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1556,9 +1551,9 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: AppColors.surfaceDark.withOpacity(0.5),
+        color: AppColors.surfaceDark.withValues(alpha: 0.5),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: AppColors.mystic.withOpacity(0.2)),
+        border: Border.all(color: AppColors.mystic.withValues(alpha: 0.2)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1595,10 +1590,10 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
                     vertical: 6,
                   ),
                   decoration: BoxDecoration(
-                    color: AppColors.mystic.withOpacity(opacity * 0.2),
+                    color: AppColors.mystic.withValues(alpha: opacity * 0.2),
                     borderRadius: BorderRadius.circular(20),
                     border: Border.all(
-                      color: AppColors.mystic.withOpacity(opacity * 0.5),
+                      color: AppColors.mystic.withValues(alpha: opacity * 0.5),
                     ),
                   ),
                   child: Row(
@@ -1613,7 +1608,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
                         symbolInfo?.nameTr ?? entry.key,
                         style: TextStyle(
                           fontSize: size - 4,
-                          color: AppColors.textPrimary.withOpacity(opacity),
+                          color: AppColors.textPrimary.withValues(alpha: opacity),
                         ),
                       ),
                     ],
@@ -1638,12 +1633,12 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            AppColors.auroraStart.withOpacity(0.1),
-            AppColors.surfaceDark.withOpacity(0.5),
+            AppColors.auroraStart.withValues(alpha: 0.1),
+            AppColors.surfaceDark.withValues(alpha: 0.5),
           ],
         ),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: AppColors.auroraStart.withOpacity(0.3)),
+        border: Border.all(color: AppColors.auroraStart.withValues(alpha: 0.3)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1671,7 +1666,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
               margin: const EdgeInsets.only(bottom: 12),
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.05),
+                color: Colors.white.withValues(alpha: 0.05),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Row(
@@ -1711,7 +1706,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
                       vertical: 4,
                     ),
                     decoration: BoxDecoration(
-                      color: AppColors.auroraStart.withOpacity(0.2),
+                      color: AppColors.auroraStart.withValues(alpha: 0.2),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Text(
@@ -1742,9 +1737,9 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: AppColors.surfaceDark.withOpacity(0.5),
+        color: AppColors.surfaceDark.withValues(alpha: 0.5),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: AppColors.mystic.withOpacity(0.2)),
+        border: Border.all(color: AppColors.mystic.withValues(alpha: 0.2)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1775,9 +1770,9 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
                   vertical: 8,
                 ),
                 decoration: BoxDecoration(
-                  color: AppColors.mystic.withOpacity(0.15),
+                  color: AppColors.mystic.withValues(alpha: 0.15),
                   borderRadius: BorderRadius.circular(20),
-                  border: Border.all(color: AppColors.mystic.withOpacity(0.3)),
+                  border: Border.all(color: AppColors.mystic.withValues(alpha: 0.3)),
                 ),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
@@ -1796,7 +1791,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
                         vertical: 2,
                       ),
                       decoration: BoxDecoration(
-                        color: AppColors.starGold.withOpacity(0.3),
+                        color: AppColors.starGold.withValues(alpha: 0.3),
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Text(
@@ -1858,9 +1853,9 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: AppColors.surfaceDark.withOpacity(0.5),
+        color: AppColors.surfaceDark.withValues(alpha: 0.5),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: AppColors.mystic.withOpacity(0.2)),
+        border: Border.all(color: AppColors.mystic.withValues(alpha: 0.2)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1913,7 +1908,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
                         borderRadius: BorderRadius.circular(6),
                         boxShadow: [
                           BoxShadow(
-                            color: AppColors.mystic.withOpacity(0.3),
+                            color: AppColors.mystic.withValues(alpha: 0.3),
                             blurRadius: 8,
                             offset: const Offset(0, 2),
                           ),
@@ -1961,9 +1956,9 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: AppColors.surfaceDark.withOpacity(0.5),
+        color: AppColors.surfaceDark.withValues(alpha: 0.5),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: AppColors.mystic.withOpacity(0.2)),
+        border: Border.all(color: AppColors.mystic.withValues(alpha: 0.2)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -2023,9 +2018,9 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: AppColors.surfaceDark.withOpacity(0.5),
+        color: AppColors.surfaceDark.withValues(alpha: 0.5),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: AppColors.mystic.withOpacity(0.2)),
+        border: Border.all(color: AppColors.mystic.withValues(alpha: 0.2)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -2056,10 +2051,10 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
                   vertical: 8,
                 ),
                 decoration: BoxDecoration(
-                  color: AppColors.waterElement.withOpacity(0.15),
+                  color: AppColors.waterElement.withValues(alpha: 0.15),
                   borderRadius: BorderRadius.circular(16),
                   border: Border.all(
-                    color: AppColors.waterElement.withOpacity(0.3),
+                    color: AppColors.waterElement.withValues(alpha: 0.3),
                   ),
                 ),
                 child: Row(
@@ -2081,7 +2076,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
                         vertical: 2,
                       ),
                       decoration: BoxDecoration(
-                        color: AppColors.waterElement.withOpacity(0.3),
+                        color: AppColors.waterElement.withValues(alpha: 0.3),
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Text(
@@ -2113,9 +2108,9 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: AppColors.surfaceDark.withOpacity(0.5),
+        color: AppColors.surfaceDark.withValues(alpha: 0.5),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: AppColors.mystic.withOpacity(0.2)),
+        border: Border.all(color: AppColors.mystic.withValues(alpha: 0.2)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -2146,10 +2141,10 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
                   vertical: 8,
                 ),
                 decoration: BoxDecoration(
-                  color: AppColors.earthElement.withOpacity(0.15),
+                  color: AppColors.earthElement.withValues(alpha: 0.15),
                   borderRadius: BorderRadius.circular(16),
                   border: Border.all(
-                    color: AppColors.earthElement.withOpacity(0.3),
+                    color: AppColors.earthElement.withValues(alpha: 0.3),
                   ),
                 ),
                 child: Row(
@@ -2171,7 +2166,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
                         vertical: 2,
                       ),
                       decoration: BoxDecoration(
-                        color: AppColors.earthElement.withOpacity(0.3),
+                        color: AppColors.earthElement.withValues(alpha: 0.3),
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Text(
@@ -2224,12 +2219,12 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            AppColors.auroraStart.withOpacity(0.1),
-            AppColors.surfaceDark.withOpacity(0.5),
+            AppColors.auroraStart.withValues(alpha: 0.1),
+            AppColors.surfaceDark.withValues(alpha: 0.5),
           ],
         ),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: AppColors.auroraStart.withOpacity(0.3)),
+        border: Border.all(color: AppColors.auroraStart.withValues(alpha: 0.3)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -2289,9 +2284,9 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: AppColors.surfaceDark.withOpacity(0.5),
+        color: AppColors.surfaceDark.withValues(alpha: 0.5),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: AppColors.mystic.withOpacity(0.2)),
+        border: Border.all(color: AppColors.mystic.withValues(alpha: 0.2)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -2376,9 +2371,9 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
           decoration: BoxDecoration(
-            color: color.withOpacity(0.15),
+            color: color.withValues(alpha: 0.15),
             borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: color.withOpacity(0.3)),
+            border: Border.all(color: color.withValues(alpha: 0.3)),
           ),
           child: Row(
             mainAxisSize: MainAxisSize.min,
@@ -2413,12 +2408,12 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            AppColors.nebulaPurple.withOpacity(0.3),
-            AppColors.surfaceDark.withOpacity(0.5),
+            AppColors.nebulaPurple.withValues(alpha: 0.3),
+            AppColors.surfaceDark.withValues(alpha: 0.5),
           ],
         ),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: AppColors.mystic.withOpacity(0.3)),
+        border: Border.all(color: AppColors.mystic.withValues(alpha: 0.3)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -2523,7 +2518,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
             decoration: BoxDecoration(
               color: isComplete
                   ? AppColors.success
-                  : Colors.white.withOpacity(0.1),
+                  : Colors.white.withValues(alpha: 0.1),
               shape: BoxShape.circle,
               border: Border.all(
                 color: isComplete ? AppColors.success : Colors.white24,
@@ -2562,12 +2557,12 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            AppColors.starGold.withOpacity(0.1),
-            AppColors.surfaceDark.withOpacity(0.5),
+            AppColors.starGold.withValues(alpha: 0.1),
+            AppColors.surfaceDark.withValues(alpha: 0.5),
           ],
         ),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: AppColors.starGold.withOpacity(0.3)),
+        border: Border.all(color: AppColors.starGold.withValues(alpha: 0.3)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -2629,12 +2624,12 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: isUnlocked
-            ? AppColors.starGold.withOpacity(0.1)
-            : Colors.white.withOpacity(0.03),
+            ? AppColors.starGold.withValues(alpha: 0.1)
+            : Colors.white.withValues(alpha: 0.03),
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
           color: isUnlocked
-              ? AppColors.starGold.withOpacity(0.3)
+              ? AppColors.starGold.withValues(alpha: 0.3)
               : Colors.white10,
         ),
       ),
@@ -2679,7 +2674,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
             Container(
               padding: const EdgeInsets.all(6),
               decoration: BoxDecoration(
-                color: AppColors.starGold.withOpacity(0.2),
+                color: AppColors.starGold.withValues(alpha: 0.2),
                 shape: BoxShape.circle,
               ),
               child: Icon(Icons.check, size: 16, color: AppColors.starGold),
@@ -2827,8 +2822,8 @@ class _LineChartPainter extends CustomPainter {
         begin: Alignment.topCenter,
         end: Alignment.bottomCenter,
         colors: [
-          AppColors.mystic.withOpacity(0.3),
-          AppColors.mystic.withOpacity(0.0),
+          AppColors.mystic.withValues(alpha: 0.3),
+          AppColors.mystic.withValues(alpha: 0.0),
         ],
       ).createShader(Rect.fromLTWH(0, 0, size.width, size.height));
 
@@ -2844,7 +2839,7 @@ class _LineChartPainter extends CustomPainter {
         canvas.drawCircle(
           point,
           6,
-          Paint()..color = AppColors.mystic.withOpacity(0.3),
+          Paint()..color = AppColors.mystic.withValues(alpha: 0.3),
         );
       }
     }
@@ -2902,7 +2897,7 @@ class _TrendChartPainter extends CustomPainter {
       canvas.drawPath(
         path,
         Paint()
-          ..color = AppColors.auroraStart.withOpacity(0.3)
+          ..color = AppColors.auroraStart.withValues(alpha: 0.3)
           ..strokeWidth = 8
           ..style = PaintingStyle.stroke
           ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 4),
@@ -2938,7 +2933,7 @@ class _ProgressCirclePainter extends CustomPainter {
       center,
       radius,
       Paint()
-        ..color = Colors.white.withOpacity(0.1)
+        ..color = Colors.white.withValues(alpha: 0.1)
         ..style = PaintingStyle.stroke
         ..strokeWidth = 10,
     );
@@ -2965,7 +2960,7 @@ class _ProgressCirclePainter extends CustomPainter {
       2 * math.pi * progress,
       false,
       Paint()
-        ..color = color.withOpacity(0.3)
+        ..color = color.withValues(alpha: 0.3)
         ..style = PaintingStyle.stroke
         ..strokeWidth = 14
         ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 4),

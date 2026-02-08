@@ -23,10 +23,10 @@ class ShimmerLoading extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final baseColor = isDark
-        ? AppColors.surfaceLight.withOpacity(0.1)
+        ? AppColors.surfaceLight.withValues(alpha: 0.1)
         : Colors.grey.shade200;
     final highlightColor = isDark
-        ? AppColors.surfaceLight.withOpacity(0.2)
+        ? AppColors.surfaceLight.withValues(alpha: 0.2)
         : Colors.grey.shade100;
 
     return Container(
@@ -69,13 +69,13 @@ class SkeletonCard extends StatelessWidget {
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
         color: isDark
-            ? AppColors.surfaceDark.withOpacity(0.5)
+            ? AppColors.surfaceDark.withValues(alpha: 0.5)
             : AppColors.lightCard,
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         border: Border.all(
           color: isDark
-              ? Colors.white.withOpacity(0.05)
-              : Colors.black.withOpacity(0.05),
+              ? Colors.white.withValues(alpha: 0.05)
+              : Colors.black.withValues(alpha: 0.05),
         ),
       ),
       child: Column(
@@ -170,13 +170,13 @@ class SkeletonListItem extends StatelessWidget {
       padding: const EdgeInsets.all(AppConstants.spacingMd),
       decoration: BoxDecoration(
         color: isDark
-            ? AppColors.surfaceDark.withOpacity(0.5)
+            ? AppColors.surfaceDark.withValues(alpha: 0.5)
             : AppColors.lightCard,
         borderRadius: BorderRadius.circular(AppConstants.radiusSm),
         border: Border.all(
           color: isDark
-              ? Colors.white.withOpacity(0.05)
-              : Colors.black.withOpacity(0.05),
+              ? Colors.white.withValues(alpha: 0.05)
+              : Colors.black.withValues(alpha: 0.05),
         ),
       ),
       child: Row(
@@ -262,13 +262,13 @@ class SkeletonGridItem extends StatelessWidget {
       padding: const EdgeInsets.all(AppConstants.spacingMd),
       decoration: BoxDecoration(
         color: isDark
-            ? AppColors.surfaceDark.withOpacity(0.5)
+            ? AppColors.surfaceDark.withValues(alpha: 0.5)
             : AppColors.lightCard,
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         border: Border.all(
           color: isDark
-              ? Colors.white.withOpacity(0.05)
-              : Colors.black.withOpacity(0.05),
+              ? Colors.white.withValues(alpha: 0.05)
+              : Colors.black.withValues(alpha: 0.05),
         ),
       ),
       child: Column(
@@ -313,8 +313,8 @@ class HoroscopeCardSkeleton extends StatelessWidget {
           end: Alignment.bottomRight,
           colors: isDark
               ? [
-                  AppColors.surfaceDark.withOpacity(0.8),
-                  AppColors.surfaceDark.withOpacity(0.5),
+                  AppColors.surfaceDark.withValues(alpha: 0.8),
+                  AppColors.surfaceDark.withValues(alpha: 0.5),
                 ]
               : [
                   AppColors.lightCard,
@@ -324,8 +324,8 @@ class HoroscopeCardSkeleton extends StatelessWidget {
         borderRadius: BorderRadius.circular(AppConstants.radiusLg),
         border: Border.all(
           color: isDark
-              ? Colors.white.withOpacity(0.1)
-              : Colors.black.withOpacity(0.05),
+              ? Colors.white.withValues(alpha: 0.1)
+              : Colors.black.withValues(alpha: 0.05),
         ),
       ),
       child: Column(
@@ -428,7 +428,7 @@ class CosmicLoadingIndicator extends StatelessWidget {
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   border: Border.all(
-                    color: AppColors.starGold.withOpacity(0.3),
+                    color: AppColors.starGold.withValues(alpha: 0.3),
                     width: 2,
                   ),
                 ),
@@ -442,7 +442,7 @@ class CosmicLoadingIndicator extends StatelessWidget {
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   border: Border.all(
-                    color: AppColors.cosmicPurple.withOpacity(0.4),
+                    color: AppColors.cosmicPurple.withValues(alpha: 0.4),
                     width: 2,
                   ),
                 ),
@@ -458,7 +458,7 @@ class CosmicLoadingIndicator extends StatelessWidget {
                   gradient: RadialGradient(
                     colors: [
                       AppColors.starGold,
-                      AppColors.starGold.withOpacity(0.5),
+                      AppColors.starGold.withValues(alpha: 0.5),
                     ],
                   ),
                 ),
@@ -537,7 +537,7 @@ class PulsatingDot extends StatelessWidget {
         shape: BoxShape.circle,
         boxShadow: [
           BoxShadow(
-            color: color.withOpacity(0.5),
+            color: color.withValues(alpha: 0.5),
             blurRadius: 4,
           ),
         ],

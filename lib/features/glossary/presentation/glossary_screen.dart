@@ -358,7 +358,7 @@ class _GlossaryScreenState extends ConsumerState<GlossaryScreen> {
               children: [
                 Expanded(
                   child: Text(
-                    entry.termTr,
+                    entry.localizedTerm(language),
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
@@ -383,19 +383,20 @@ class _GlossaryScreenState extends ConsumerState<GlossaryScreen> {
                   ),
               ],
             ),
+            // Show alternate term (English for TR, Turkish for other languages)
             Text(
-              entry.term,
+              language == AppLanguage.tr ? entry.term : entry.termTr,
               style: TextStyle(
                 fontSize: 13,
                 fontStyle: FontStyle.italic,
                 color: isDark ? Colors.white60 : AppColors.textLight,
               ),
             ),
-            // Hint - kısa ipucu
-            if (entry.hint.isNotEmpty) ...[
+            // Hint - localized
+            if (entry.localizedHint(language).isNotEmpty) ...[
               const SizedBox(height: 4),
               Text(
-                '✨ ${entry.hint}',
+                '✨ ${entry.localizedHint(language)}',
                 style: TextStyle(
                   fontSize: 12,
                   color: AppColors.starGold,
@@ -409,9 +410,9 @@ class _GlossaryScreenState extends ConsumerState<GlossaryScreen> {
           color: isDark ? Colors.white60 : AppColors.textLight,
         ),
         children: [
-          // Tanım
+          // Tanım (Definition) - localized
           Text(
-            entry.definition,
+            entry.localizedDefinition(language),
             style: TextStyle(
               fontSize: 14,
               height: 1.6,
@@ -419,8 +420,8 @@ class _GlossaryScreenState extends ConsumerState<GlossaryScreen> {
             ),
           ),
 
-          // Derin Açıklama
-          if (entry.deepExplanation != null) ...[
+          // Derin Açıklama (Deep Explanation) - localized
+          if (entry.localizedDeepExplanation(language) != null) ...[
             const SizedBox(height: AppConstants.spacingMd),
             Container(
               padding: const EdgeInsets.all(AppConstants.spacingMd),
@@ -455,7 +456,7 @@ class _GlossaryScreenState extends ConsumerState<GlossaryScreen> {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    entry.deepExplanation!,
+                    entry.localizedDeepExplanation(language)!,
                     style: TextStyle(
                       fontSize: 13,
                       height: 1.6,
@@ -467,8 +468,8 @@ class _GlossaryScreenState extends ConsumerState<GlossaryScreen> {
             ),
           ],
 
-          // Örnek
-          if (entry.example != null) ...[
+          // Örnek (Example) - localized
+          if (entry.localizedExample(language) != null) ...[
             const SizedBox(height: AppConstants.spacingMd),
             Container(
               padding: const EdgeInsets.all(AppConstants.spacingMd),
@@ -486,7 +487,7 @@ class _GlossaryScreenState extends ConsumerState<GlossaryScreen> {
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
-                      entry.example!,
+                      entry.localizedExample(language)!,
                       style: TextStyle(
                         fontSize: 13,
                         fontStyle: FontStyle.italic,

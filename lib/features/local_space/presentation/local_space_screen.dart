@@ -59,6 +59,7 @@ class _LocalSpaceScreenState extends ConsumerState<LocalSpaceScreen>
         birthDate: userProfile.birthDate,
         latitude: latitude,
         longitude: longitude,
+        language: language,
       );
     });
   }
@@ -533,20 +534,27 @@ class _LocalSpaceScreenState extends ConsumerState<LocalSpaceScreen>
   }
 
   Color _getPlanetColor(String planet) {
+    // Support both Turkish and English planet names
     switch (planet) {
       case 'Güneş':
+      case 'Sun':
         return Colors.amber;
       case 'Ay':
+      case 'Moon':
         return Colors.blueGrey;
       case 'Merkür':
+      case 'Mercury':
         return Colors.cyan;
       case 'Venüs':
+      case 'Venus':
         return Colors.pink;
       case 'Mars':
         return Colors.red;
       case 'Jüpiter':
+      case 'Jupiter':
         return Colors.purple;
       case 'Satürn':
+      case 'Saturn':
         return Colors.brown;
       default:
         return Colors.blue;
@@ -872,20 +880,27 @@ class _LocalSpaceScreenState extends ConsumerState<LocalSpaceScreen>
   }
 
   String _getPlanetEmoji(String planet) {
+    // Support both Turkish and English planet names
     switch (planet) {
       case 'Güneş':
+      case 'Sun':
         return '☀️';
       case 'Ay':
+      case 'Moon':
         return '🌙';
       case 'Merkür':
+      case 'Mercury':
         return '☿️';
       case 'Venüs':
+      case 'Venus':
         return '♀️';
       case 'Mars':
         return '♂️';
       case 'Jüpiter':
+      case 'Jupiter':
         return '♃';
       case 'Satürn':
+      case 'Saturn':
         return '♄';
       default:
         return '⭐';
@@ -981,20 +996,27 @@ class _CompassPainter extends CustomPainter {
   }
 
   Color _getPlanetColor(String planet) {
+    // Support both Turkish and English planet names
     switch (planet) {
       case 'Güneş':
+      case 'Sun':
         return Colors.amber;
       case 'Ay':
+      case 'Moon':
         return Colors.blueGrey;
       case 'Merkür':
+      case 'Mercury':
         return Colors.cyan;
       case 'Venüs':
+      case 'Venus':
         return Colors.pink;
       case 'Mars':
         return Colors.red;
       case 'Jüpiter':
+      case 'Jupiter':
         return Colors.purple;
       case 'Satürn':
+      case 'Saturn':
         return Colors.brown;
       default:
         return Colors.blue;

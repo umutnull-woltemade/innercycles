@@ -121,7 +121,7 @@ class DreamShareCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(24),
         boxShadow: [
           BoxShadow(
-            color: _getAccentColor().withOpacity(0.3),
+            color: _getAccentColor().withValues(alpha: 0.3),
             blurRadius: 20,
             offset: const Offset(0, 8),
           ),
@@ -214,10 +214,10 @@ class DreamShareCard extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.1),
+              color: Colors.white.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(20),
               border: Border.all(
-                color: Colors.white.withOpacity(0.2),
+                color: Colors.white.withValues(alpha: 0.2),
               ),
             ),
             child: Row(
@@ -276,7 +276,7 @@ class DreamShareCard extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.1),
+              color: Colors.white.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(20),
             ),
             child: Text(
@@ -302,7 +302,7 @@ class DreamShareCard extends StatelessWidget {
       letterSpacing: 0.3,
       shadows: [
         Shadow(
-          color: Colors.black.withOpacity(0.3),
+          color: Colors.black.withValues(alpha: 0.3),
           blurRadius: 8,
           offset: const Offset(0, 2),
         ),
@@ -327,7 +327,7 @@ class DreamShareCard extends StatelessWidget {
   TextStyle _getSubtitleStyle() {
     return TextStyle(
       fontSize: 14,
-      color: Colors.white.withOpacity(0.8),
+      color: Colors.white.withValues(alpha: 0.8),
       letterSpacing: 0.5,
     );
   }
@@ -340,7 +340,7 @@ class DreamShareCard extends StatelessWidget {
           '\u{2728}',
           style: TextStyle(
             fontSize: 12,
-            color: Colors.white.withOpacity(0.5),
+            color: Colors.white.withValues(alpha: 0.5),
           ),
         ),
         const SizedBox(width: 4),
@@ -348,7 +348,7 @@ class DreamShareCard extends StatelessWidget {
           'venusone.com',
           style: TextStyle(
             fontSize: 10,
-            color: Colors.white.withOpacity(0.5),
+            color: Colors.white.withValues(alpha: 0.5),
             letterSpacing: 1,
           ),
         ),
@@ -394,7 +394,7 @@ class _MysticalBackground extends StatelessWidget {
           colors: [
             const Color(0xFF1A0A2E),
             const Color(0xFF16082A),
-            accentColor.withOpacity(0.3),
+            accentColor.withValues(alpha: 0.3),
             const Color(0xFF0D0517),
           ],
           stops: const [0.0, 0.3, 0.7, 1.0],
@@ -432,8 +432,8 @@ class _MinimalBackground extends StatelessWidget {
             shape: BoxShape.circle,
             gradient: RadialGradient(
               colors: [
-                accentColor.withOpacity(0.2),
-                accentColor.withOpacity(0),
+                accentColor.withValues(alpha: 0.2),
+                accentColor.withValues(alpha: 0),
               ],
             ),
           ),
@@ -455,7 +455,7 @@ class _CosmicBackground extends StatelessWidget {
           center: const Alignment(-0.3, -0.5),
           radius: 1.5,
           colors: [
-            accentColor.withOpacity(0.4),
+            accentColor.withValues(alpha: 0.4),
             const Color(0xFF0D0517),
             const Color(0xFF1A0A2E),
           ],
@@ -477,8 +477,8 @@ class _CosmicBackground extends StatelessWidget {
                 shape: BoxShape.circle,
                 gradient: RadialGradient(
                   colors: [
-                    Colors.purple.withOpacity(0.3),
-                    Colors.purple.withOpacity(0),
+                    Colors.purple.withValues(alpha: 0.3),
+                    Colors.purple.withValues(alpha: 0),
                   ],
                 ),
               ),
@@ -494,8 +494,8 @@ class _CosmicBackground extends StatelessWidget {
                 shape: BoxShape.circle,
                 gradient: RadialGradient(
                   colors: [
-                    Colors.blue.withOpacity(0.2),
-                    Colors.blue.withOpacity(0),
+                    Colors.blue.withValues(alpha: 0.2),
+                    Colors.blue.withValues(alpha: 0),
                   ],
                 ),
               ),
@@ -574,10 +574,10 @@ class _MoonlitBackground extends StatelessWidget {
               height: 60,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.white.withOpacity(0.9),
+                color: Colors.white.withValues(alpha: 0.9),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.white.withOpacity(0.3),
+                    color: Colors.white.withValues(alpha: 0.3),
                     blurRadius: 40,
                     spreadRadius: 20,
                   ),
@@ -608,7 +608,7 @@ class _GoldenBackground extends StatelessWidget {
           colors: [
             const Color(0xFF1A1508),
             const Color(0xFF2D2410),
-            accentColor.withOpacity(0.2),
+            accentColor.withValues(alpha: 0.2),
             const Color(0xFF1A1508),
           ],
         ),
@@ -644,7 +644,7 @@ class _StarsPainter extends CustomPainter {
       final starSize = ((random * (i + 1)) % 3 + 1).toDouble() * 0.5;
       final opacity = ((random * (i + 1)) % 60 + 40) / 100;
 
-      paint.color = Colors.white.withOpacity(opacity);
+      paint.color = Colors.white.withValues(alpha: opacity);
       canvas.drawCircle(Offset(x, y), starSize, paint);
     }
   }
@@ -662,9 +662,9 @@ class _AuroraPainter extends CustomPainter {
         Offset.zero,
         Offset(size.width, 0),
         [
-          Colors.green.withOpacity(0.1),
-          Colors.cyan.withOpacity(0.15),
-          Colors.purple.withOpacity(0.1),
+          Colors.green.withValues(alpha: 0.1),
+          Colors.cyan.withValues(alpha: 0.15),
+          Colors.purple.withValues(alpha: 0.1),
         ],
       );
 
@@ -700,7 +700,7 @@ class _SparklesPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = color.withOpacity(0.4)
+      ..color = color.withValues(alpha: 0.4)
       ..style = PaintingStyle.fill;
 
     final random = 42;
@@ -710,7 +710,7 @@ class _SparklesPainter extends CustomPainter {
       final y = ((random * (i + 1) * 29) % size.height.toInt()).toDouble();
       final sparkleSize = ((random * (i + 1)) % 4 + 1).toDouble();
 
-      paint.color = color.withOpacity(((random * (i + 1)) % 40 + 20) / 100);
+      paint.color = color.withValues(alpha: ((random * (i + 1)) % 40 + 20) / 100);
 
       // Draw 4-pointed star
       final path = Path();

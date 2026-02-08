@@ -13,6 +13,7 @@ import 'package:share_plus/share_plus.dart';
 import '../../../core/theme/mystical_colors.dart';
 import '../../../core/theme/spacing.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/entertainment_disclaimer.dart';
 import '../../../shared/widgets/gradient_button.dart';
 import '../../../data/models/dream_interpretation_models.dart';
 import '../../../data/providers/app_providers.dart';
@@ -237,7 +238,7 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: [
-            MysticalColors.cosmicPurple.withOpacity(0.8),
+            MysticalColors.cosmicPurple.withValues(alpha: 0.8),
             Colors.transparent,
           ],
         ),
@@ -304,15 +305,15 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
             gradient: RadialGradient(
               colors: [
                 MysticalColors.amethyst
-                    .withOpacity(0.5 + _pulseController.value * 0.3),
-                MysticalColors.cosmicPurple.withOpacity(0.3),
+                    .withValues(alpha: 0.5 + _pulseController.value * 0.3),
+                MysticalColors.cosmicPurple.withValues(alpha: 0.3),
               ],
             ),
             shape: BoxShape.circle,
             boxShadow: [
               BoxShadow(
                 color:
-                    MysticalColors.amethyst.withOpacity(0.4 * _pulseController.value),
+                    MysticalColors.amethyst.withValues(alpha: 0.4 * _pulseController.value),
                 blurRadius: 15 + _pulseController.value * 10,
                 spreadRadius: 2,
               ),
@@ -391,21 +392,21 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
           end: Alignment.bottomRight,
           colors: isDark
               ? [
-                  MysticalColors.amethyst.withOpacity(0.15),
+                  MysticalColors.amethyst.withValues(alpha: 0.15),
                   MysticalColors.bgCosmic,
                 ]
               : [
-                  MysticalColors.lavender.withOpacity(0.2),
+                  MysticalColors.lavender.withValues(alpha: 0.2),
                   MysticalColors.bgLightElevated,
                 ],
         ),
         borderRadius: BorderRadius.circular(Spacing.radiusLg),
         border: Border.all(
-          color: MysticalColors.amethyst.withOpacity(0.3),
+          color: MysticalColors.amethyst.withValues(alpha: 0.3),
         ),
         boxShadow: [
           BoxShadow(
-            color: MysticalColors.amethyst.withOpacity(0.1),
+            color: MysticalColors.amethyst.withValues(alpha: 0.1),
             blurRadius: 20,
             offset: const Offset(0, 8),
           ),
@@ -420,7 +421,7 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
             decoration: BoxDecoration(
               border: Border(
                 bottom: BorderSide(
-                  color: MysticalColors.amethyst.withOpacity(0.2),
+                  color: MysticalColors.amethyst.withValues(alpha: 0.2),
                 ),
               ),
             ),
@@ -471,7 +472,7 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
                   color: (isDark
                           ? MysticalColors.textSecondary
                           : MysticalColors.textDarkSecondary)
-                      .withOpacity(0.6),
+                      .withValues(alpha: 0.6),
                   height: 1.6,
                 ),
                 border: InputBorder.none,
@@ -559,13 +560,13 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
       padding: const EdgeInsets.all(Spacing.lg),
       decoration: BoxDecoration(
         color: isDark
-            ? MysticalColors.bgElevated.withOpacity(0.5)
+            ? MysticalColors.bgElevated.withValues(alpha: 0.5)
             : MysticalColors.bgLightElevated,
         borderRadius: BorderRadius.circular(Spacing.radiusMd),
         border: Border.all(
           color: _isRecurring
-              ? MysticalColors.starGold.withOpacity(0.5)
-              : MysticalColors.textMuted.withOpacity(0.2),
+              ? MysticalColors.starGold.withValues(alpha: 0.5)
+              : MysticalColors.textMuted.withValues(alpha: 0.2),
         ),
       ),
       child: Row(
@@ -635,11 +636,11 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
         Container(
           decoration: BoxDecoration(
             color: isDark
-                ? MysticalColors.bgElevated.withOpacity(0.5)
+                ? MysticalColors.bgElevated.withValues(alpha: 0.5)
                 : MysticalColors.bgLightElevated,
             borderRadius: BorderRadius.circular(Spacing.radiusMd),
             border: Border.all(
-              color: MysticalColors.textMuted.withOpacity(0.2),
+              color: MysticalColors.textMuted.withValues(alpha: 0.2),
             ),
           ),
           child: TextField(
@@ -652,7 +653,7 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
             decoration: InputDecoration(
               hintText: L10nService.get('dreams.oracle.life_hint', ref.watch(languageProvider)),
               hintStyle: TextStyle(
-                color: MysticalColors.textMuted.withOpacity(0.6),
+                color: MysticalColors.textMuted.withValues(alpha: 0.6),
               ),
               border: InputBorder.none,
               contentPadding: const EdgeInsets.all(Spacing.lg),
@@ -716,13 +717,13 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            MysticalColors.midnightBlue.withOpacity(0.3),
-            MysticalColors.cosmicPurple.withOpacity(0.2),
+            MysticalColors.midnightBlue.withValues(alpha: 0.3),
+            MysticalColors.cosmicPurple.withValues(alpha: 0.2),
           ],
         ),
         borderRadius: BorderRadius.circular(Spacing.radiusMd),
         border: Border.all(
-          color: MysticalColors.moonSilver.withOpacity(0.3),
+          color: MysticalColors.moonSilver.withValues(alpha: 0.3),
         ),
       ),
       child: Row(
@@ -827,7 +828,7 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
                   shape: BoxShape.circle,
                   color: index <= _currentLoadingIndex
                       ? MysticalColors.starGold
-                      : MysticalColors.textMuted.withOpacity(0.3),
+                      : MysticalColors.textMuted.withValues(alpha: 0.3),
                 ),
               );
             }),
@@ -856,7 +857,7 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     border: Border.all(
-                      color: MysticalColors.starGold.withOpacity(0.3),
+                      color: MysticalColors.starGold.withValues(alpha: 0.3),
                       width: 2,
                     ),
                   ),
@@ -873,7 +874,7 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
                             shape: BoxShape.circle,
                             boxShadow: [
                               BoxShadow(
-                                color: MysticalColors.starGold.withOpacity(0.5),
+                                color: MysticalColors.starGold.withValues(alpha: 0.5),
                                 blurRadius: 10,
                               ),
                             ],
@@ -898,7 +899,7 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     border: Border.all(
-                      color: MysticalColors.amethyst.withOpacity(0.4),
+                      color: MysticalColors.amethyst.withValues(alpha: 0.4),
                       width: 2,
                     ),
                   ),
@@ -915,7 +916,7 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
                             shape: BoxShape.circle,
                             boxShadow: [
                               BoxShadow(
-                                color: MysticalColors.amethyst.withOpacity(0.5),
+                                color: MysticalColors.amethyst.withValues(alpha: 0.5),
                                 blurRadius: 8,
                               ),
                             ],
@@ -939,8 +940,8 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
                   shape: BoxShape.circle,
                   gradient: RadialGradient(
                     colors: [
-                      MysticalColors.starGold.withOpacity(0.8),
-                      MysticalColors.amethyst.withOpacity(0.4),
+                      MysticalColors.starGold.withValues(alpha: 0.8),
+                      MysticalColors.amethyst.withValues(alpha: 0.4),
                       Colors.transparent,
                     ],
                   ),
@@ -1018,6 +1019,14 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
 
           // Exploration Links
           _buildExplorationLinks(),
+          const SizedBox(height: Spacing.xl),
+
+          // Entertainment Disclaimer
+          PageFooterWithDisclaimer(
+            brandText: 'Dream Oracle — Venus One',
+            disclaimerText: DisclaimerTexts.dreams(ref.watch(languageProvider)),
+            language: ref.watch(languageProvider),
+          ),
           const SizedBox(height: Spacing.huge),
         ],
       ),
@@ -1041,21 +1050,21 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
           end: Alignment.bottomRight,
           colors: isDark
               ? [
-                  color.withOpacity(0.15),
+                  color.withValues(alpha: 0.15),
                   MysticalColors.bgCosmic,
                 ]
               : [
-                  color.withOpacity(0.1),
+                  color.withValues(alpha: 0.1),
                   MysticalColors.bgLightElevated,
                 ],
         ),
         borderRadius: BorderRadius.circular(Spacing.radiusLg),
         border: Border.all(
-          color: color.withOpacity(0.3),
+          color: color.withValues(alpha: 0.3),
         ),
         boxShadow: [
           BoxShadow(
-            color: color.withOpacity(0.1),
+            color: color.withValues(alpha: 0.1),
             blurRadius: 16,
             offset: const Offset(0, 6),
           ),
@@ -1070,7 +1079,7 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
             decoration: BoxDecoration(
               border: Border(
                 bottom: BorderSide(
-                  color: color.withOpacity(0.2),
+                  color: color.withValues(alpha: 0.2),
                 ),
               ),
             ),
@@ -1134,10 +1143,10 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
       content: Container(
         padding: const EdgeInsets.all(Spacing.lg),
         decoration: BoxDecoration(
-          color: MysticalColors.starGold.withOpacity(0.1),
+          color: MysticalColors.starGold.withValues(alpha: 0.1),
           borderRadius: BorderRadius.circular(Spacing.radiusMd),
           border: Border.all(
-            color: MysticalColors.starGold.withOpacity(0.3),
+            color: MysticalColors.starGold.withValues(alpha: 0.3),
           ),
         ),
         child: Text(
@@ -1210,7 +1219,7 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
               vertical: Spacing.sm,
             ),
             decoration: BoxDecoration(
-              color: MysticalColors.nebulaRose.withOpacity(0.2),
+              color: MysticalColors.nebulaRose.withValues(alpha: 0.2),
               borderRadius: BorderRadius.circular(Spacing.radiusFull),
             ),
             child: Row(
@@ -1342,7 +1351,7 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
           Container(
             padding: const EdgeInsets.all(Spacing.md),
             decoration: BoxDecoration(
-              color: MysticalColors.stardustBlue.withOpacity(0.1),
+              color: MysticalColors.stardustBlue.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(Spacing.radiusMd),
               border: Border(
                 left: BorderSide(
@@ -1416,8 +1425,8 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  MysticalColors.starGold.withOpacity(0.1),
-                  MysticalColors.cosmicPurple.withOpacity(0.1),
+                  MysticalColors.starGold.withValues(alpha: 0.1),
+                  MysticalColors.cosmicPurple.withValues(alpha: 0.1),
                 ],
               ),
               borderRadius: BorderRadius.circular(Spacing.radiusMd),
@@ -1558,7 +1567,7 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
     return Container(
       padding: const EdgeInsets.all(Spacing.md),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.1),
+        color: color.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(Spacing.radiusMd),
         border: Border(
           left: BorderSide(color: color, width: 3),
@@ -1657,7 +1666,7 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
                         borderRadius: BorderRadius.circular(4),
                         gradient: LinearGradient(
                           colors: [
-                            getColor().withOpacity(0.5),
+                            getColor().withValues(alpha: 0.5),
                             getColor(),
                           ],
                         ),
@@ -1673,7 +1682,7 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
                   vertical: Spacing.xs,
                 ),
                 decoration: BoxDecoration(
-                  color: getColor().withOpacity(0.2),
+                  color: getColor().withValues(alpha: 0.2),
                   borderRadius: BorderRadius.circular(Spacing.radiusFull),
                 ),
                 child: Text(
@@ -1736,14 +1745,14 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            MysticalColors.cosmicPurple.withOpacity(0.8),
-            MysticalColors.midnightBlue.withOpacity(0.9),
+            MysticalColors.cosmicPurple.withValues(alpha: 0.8),
+            MysticalColors.midnightBlue.withValues(alpha: 0.9),
           ],
         ),
         borderRadius: BorderRadius.circular(Spacing.radiusLg),
         boxShadow: [
           BoxShadow(
-            color: MysticalColors.amethyst.withOpacity(0.3),
+            color: MysticalColors.amethyst.withValues(alpha: 0.3),
             blurRadius: 20,
             offset: const Offset(0, 8),
           ),
@@ -1795,7 +1804,7 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
             label: Text(L10nService.get('dreams.share', ref.watch(languageProvider))),
             style: OutlinedButton.styleFrom(
               foregroundColor: MysticalColors.starGold,
-              side: BorderSide(color: MysticalColors.starGold.withOpacity(0.5)),
+              side: BorderSide(color: MysticalColors.starGold.withValues(alpha: 0.5)),
               padding: const EdgeInsets.symmetric(vertical: Spacing.md),
             ),
           ),
@@ -1808,7 +1817,7 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
             label: Text(L10nService.get('dreams.save', ref.watch(languageProvider))),
             style: OutlinedButton.styleFrom(
               foregroundColor: MysticalColors.amethyst,
-              side: BorderSide(color: MysticalColors.amethyst.withOpacity(0.5)),
+              side: BorderSide(color: MysticalColors.amethyst.withValues(alpha: 0.5)),
               padding: const EdgeInsets.symmetric(vertical: Spacing.md),
             ),
           ),
@@ -1860,11 +1869,11 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
             padding: const EdgeInsets.all(Spacing.lg),
             decoration: BoxDecoration(
               color: isDark
-                  ? MysticalColors.bgElevated.withOpacity(0.5)
+                  ? MysticalColors.bgElevated.withValues(alpha: 0.5)
                   : MysticalColors.bgLightElevated,
               borderRadius: BorderRadius.circular(Spacing.radiusMd),
               border: Border.all(
-                color: MysticalColors.amethyst.withOpacity(0.2),
+                color: MysticalColors.amethyst.withValues(alpha: 0.2),
               ),
             ),
             child: Row(
@@ -1910,10 +1919,12 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
   void _shareDream() {
     if (_interpretation == null) return;
 
+    final lang = ref.read(languageProvider);
+    final hashtags = L10nService.get('dreams.oracle.share_hashtags', lang);
+
     final shareText = '${_interpretation!.shareCard.emoji} '
         '"${_interpretation!.shareCard.quote}"\n\n'
-        '- Ruya Orakeli\n'
-        '#RuyaYorumu #Bilinçaltı';
+        '$hashtags';
 
     Share.share(shareText);
   }
@@ -1966,27 +1977,27 @@ class _EmotionChip extends StatelessWidget {
           gradient: isSelected
               ? LinearGradient(
                   colors: [
-                    MysticalColors.amethyst.withOpacity(0.4),
-                    MysticalColors.amethyst.withOpacity(0.2),
+                    MysticalColors.amethyst.withValues(alpha: 0.4),
+                    MysticalColors.amethyst.withValues(alpha: 0.2),
                   ],
                 )
               : null,
           color: isSelected
               ? null
               : isDark
-                  ? MysticalColors.bgElevated.withOpacity(0.5)
+                  ? MysticalColors.bgElevated.withValues(alpha: 0.5)
                   : MysticalColors.bgLightElevated,
           borderRadius: BorderRadius.circular(Spacing.radiusFull),
           border: Border.all(
             color: isSelected
                 ? MysticalColors.amethyst
-                : MysticalColors.textMuted.withOpacity(0.3),
+                : MysticalColors.textMuted.withValues(alpha: 0.3),
             width: isSelected ? 2 : 1,
           ),
           boxShadow: isSelected
               ? [
                   BoxShadow(
-                    color: MysticalColors.amethyst.withOpacity(0.3),
+                    color: MysticalColors.amethyst.withValues(alpha: 0.3),
                     blurRadius: 8,
                   ),
                 ]
@@ -2043,27 +2054,27 @@ class _StyleChip extends ConsumerWidget {
           gradient: isSelected
               ? LinearGradient(
                   colors: [
-                    style.color.withOpacity(0.4),
-                    style.color.withOpacity(0.2),
+                    style.color.withValues(alpha: 0.4),
+                    style.color.withValues(alpha: 0.2),
                   ],
                 )
               : null,
           color: isSelected
               ? null
               : isDark
-                  ? MysticalColors.bgElevated.withOpacity(0.5)
+                  ? MysticalColors.bgElevated.withValues(alpha: 0.5)
                   : MysticalColors.bgLightElevated,
           borderRadius: BorderRadius.circular(Spacing.radiusMd),
           border: Border.all(
             color: isSelected
                 ? style.color
-                : MysticalColors.textMuted.withOpacity(0.3),
+                : MysticalColors.textMuted.withValues(alpha: 0.3),
             width: isSelected ? 2 : 1,
           ),
           boxShadow: isSelected
               ? [
                   BoxShadow(
-                    color: style.color.withOpacity(0.3),
+                    color: style.color.withValues(alpha: 0.3),
                     blurRadius: 8,
                   ),
                 ]
@@ -2114,11 +2125,11 @@ class _ExpandableSymbolCardState extends ConsumerState<_ExpandableSymbolCard> {
       margin: const EdgeInsets.only(bottom: Spacing.md),
       decoration: BoxDecoration(
         color: isDark
-            ? MysticalColors.bgElevated.withOpacity(0.5)
+            ? MysticalColors.bgElevated.withValues(alpha: 0.5)
             : MysticalColors.bgLightElevated,
         borderRadius: BorderRadius.circular(Spacing.radiusMd),
         border: Border.all(
-          color: MysticalColors.nebulaTeal.withOpacity(0.3),
+          color: MysticalColors.nebulaTeal.withValues(alpha: 0.3),
         ),
       ),
       child: Column(
@@ -2191,7 +2202,7 @@ class _ExpandableSymbolCardState extends ConsumerState<_ExpandableSymbolCard> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Divider(color: MysticalColors.textMuted.withOpacity(0.2)),
+                  Divider(color: MysticalColors.textMuted.withValues(alpha: 0.2)),
                   const SizedBox(height: Spacing.md),
                   _buildSymbolDetail(
                     L10nService.get('dreams.oracle.symbol.personal_context', lang),
@@ -2238,7 +2249,7 @@ class _ExpandableSymbolCardState extends ConsumerState<_ExpandableSymbolCard> {
                               vertical: 2,
                             ),
                             decoration: BoxDecoration(
-                              color: MysticalColors.nebulaTeal.withOpacity(0.2),
+                              color: MysticalColors.nebulaTeal.withValues(alpha: 0.2),
                               borderRadius:
                                   BorderRadius.circular(Spacing.radiusSm),
                             ),

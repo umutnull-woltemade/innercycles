@@ -133,7 +133,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
                 child: LinearProgressIndicator(
                   value: progress,
                   backgroundColor: isDark
-                      ? AppColors.surfaceLight.withOpacity(0.3)
+                      ? AppColors.surfaceLight.withValues(alpha: 0.3)
                       : AppColors.lightSurfaceVariant,
                   valueColor: const AlwaysStoppedAnimation<Color>(AppColors.auroraStart),
                   minHeight: 6,
@@ -218,7 +218,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
           color: isSelected
               ? null
               : isDark
-                  ? AppColors.surfaceLight.withOpacity(0.5)
+                  ? AppColors.surfaceLight.withValues(alpha: 0.5)
                   : AppColors.lightCard,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
@@ -232,7 +232,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
           boxShadow: isSelected
               ? [
                   BoxShadow(
-                    color: AppColors.auroraStart.withOpacity(0.3),
+                    color: AppColors.auroraStart.withValues(alpha: 0.3),
                     blurRadius: 12,
                     offset: const Offset(0, 4),
                   ),
@@ -294,7 +294,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
               shape: BoxShape.circle,
               boxShadow: [
                 BoxShadow(
-                  color: AppColors.auroraStart.withOpacity(0.4),
+                  color: AppColors.auroraStart.withValues(alpha: 0.4),
                   blurRadius: 24,
                   offset: const Offset(0, 8),
                 ),
@@ -375,7 +375,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
           borderRadius: BorderRadius.circular(16),
           boxShadow: [
             BoxShadow(
-              color: AppColors.starGold.withOpacity(0.4),
+              color: AppColors.starGold.withValues(alpha: 0.4),
               blurRadius: 16,
               offset: const Offset(0, 6),
             ),
@@ -387,7 +387,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.2),
+                color: Colors.white.withValues(alpha: 0.2),
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Row(
@@ -429,7 +429,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
               style: GoogleFonts.raleway(
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
-                color: Colors.white.withOpacity(0.9),
+                color: Colors.white.withValues(alpha: 0.9),
               ),
             ),
             const SizedBox(height: AppConstants.spacingMd),
@@ -465,7 +465,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
               style: GoogleFonts.raleway(
                 fontSize: 11,
                 fontWeight: FontWeight.w500,
-                color: Colors.white.withOpacity(0.7),
+                color: Colors.white.withValues(alpha: 0.7),
               ),
             ),
           ],
@@ -483,13 +483,13 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
           padding: const EdgeInsets.all(AppConstants.spacingLg),
           decoration: BoxDecoration(
             color: isDark
-                ? AppColors.surfaceLight.withOpacity(0.5)
+                ? AppColors.surfaceLight.withValues(alpha: 0.5)
                 : AppColors.lightCard,
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
               color: isDark
-                  ? AppColors.starGold.withOpacity(0.3)
-                  : AppColors.lightStarGold.withOpacity(0.3),
+                  ? AppColors.starGold.withValues(alpha: 0.3)
+                  : AppColors.lightStarGold.withValues(alpha: 0.3),
             ),
           ),
           child: Column(
@@ -554,8 +554,8 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              AppColors.auroraStart.withOpacity(0.8),
-              AppColors.auroraEnd.withOpacity(0.8),
+              AppColors.auroraStart.withValues(alpha: 0.8),
+              AppColors.auroraEnd.withValues(alpha: 0.8),
             ],
           ),
           borderRadius: BorderRadius.circular(16),

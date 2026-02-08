@@ -112,10 +112,10 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
         color: isDark
-            ? AppColors.surfaceDark.withOpacity(0.8)
+            ? AppColors.surfaceDark.withValues(alpha: 0.8)
             : AppColors.lightCard,
         border: Border(
-          bottom: BorderSide(color: AppColors.starGold.withOpacity(0.3)),
+          bottom: BorderSide(color: AppColors.starGold.withValues(alpha: 0.3)),
         ),
       ),
       child: Row(
@@ -240,11 +240,11 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
             padding: const EdgeInsets.symmetric(vertical: 10),
             decoration: BoxDecoration(
               color: isSelected
-                  ? AppColors.starGold.withOpacity(0.2)
+                  ? AppColors.starGold.withValues(alpha: 0.2)
                   : Colors.transparent,
               borderRadius: BorderRadius.circular(AppConstants.radiusSm),
               border: isSelected
-                  ? Border.all(color: AppColors.starGold.withOpacity(0.5))
+                  ? Border.all(color: AppColors.starGold.withValues(alpha: 0.5))
                   : null,
             ),
             child: Column(
@@ -289,13 +289,13 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
           width: 200,
           decoration: BoxDecoration(
             color: isDark
-                ? AppColors.surfaceDark.withOpacity(0.5)
+                ? AppColors.surfaceDark.withValues(alpha: 0.5)
                 : AppColors.lightSurfaceVariant,
             border: Border(
               right: BorderSide(
                 color: isDark
-                    ? Colors.white.withOpacity(0.1)
-                    : Colors.black.withOpacity(0.05),
+                    ? Colors.white.withValues(alpha: 0.1)
+                    : Colors.black.withValues(alpha: 0.05),
               ),
             ),
           ),
@@ -369,7 +369,7 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
           ),
         ),
         selected: isSelected,
-        selectedTileColor: AppColors.starGold.withOpacity(0.1),
+        selectedTileColor: AppColors.starGold.withValues(alpha: 0.1),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppConstants.radiusSm),
         ),
@@ -486,13 +486,13 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
         color: isDark
-            ? AppColors.surfaceDark.withOpacity(0.7)
+            ? AppColors.surfaceDark.withValues(alpha: 0.7)
             : AppColors.lightCard,
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         border: Border.all(
           color: isDark
-              ? Colors.white.withOpacity(0.1)
-              : Colors.black.withOpacity(0.05),
+              ? Colors.white.withValues(alpha: 0.1)
+              : Colors.black.withValues(alpha: 0.05),
         ),
       ),
       child: Column(
@@ -575,7 +575,7 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
             borderRadius: BorderRadius.circular(4),
             child: LinearProgressIndicator(
               value: percentage / 100,
-              backgroundColor: color.withOpacity(0.2),
+              backgroundColor: color.withValues(alpha: 0.2),
               valueColor: AlwaysStoppedAnimation(color),
               minHeight: 8,
             ),
@@ -591,6 +591,14 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
       spacing: AppConstants.spacingMd,
       runSpacing: AppConstants.spacingMd,
       children: [
+        _buildActionButton(
+          context,
+          isDark,
+          'Observatory',
+          Icons.insights,
+          () => context.go(Routes.observatory),
+          isHighlighted: true,
+        ),
         _buildActionButton(
           context,
           isDark,
@@ -628,8 +636,9 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
     bool isDark,
     String label,
     IconData icon,
-    VoidCallback onTap,
-  ) {
+    VoidCallback onTap, {
+    bool isHighlighted = false,
+  }) {
     return Material(
       color: Colors.transparent,
       child: InkWell(
@@ -641,14 +650,18 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
             vertical: AppConstants.spacingMd,
           ),
           decoration: BoxDecoration(
-            color: isDark
-                ? AppColors.surfaceLight.withOpacity(0.5)
-                : AppColors.lightSurfaceVariant,
+            color: isHighlighted
+                ? AppColors.starGold.withValues(alpha: 0.15)
+                : (isDark
+                    ? AppColors.surfaceLight.withValues(alpha: 0.5)
+                    : AppColors.lightSurfaceVariant),
             borderRadius: BorderRadius.circular(AppConstants.radiusMd),
             border: Border.all(
-              color: isDark
-                  ? Colors.white.withOpacity(0.1)
-                  : Colors.black.withOpacity(0.05),
+              color: isHighlighted
+                  ? AppColors.starGold.withValues(alpha: 0.5)
+                  : (isDark
+                      ? Colors.white.withValues(alpha: 0.1)
+                      : Colors.black.withValues(alpha: 0.05)),
             ),
           ),
           child: Row(
@@ -659,9 +672,12 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
               Text(
                 label,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: isDark
-                      ? AppColors.textPrimary
-                      : AppColors.lightTextPrimary,
+                  color: isHighlighted
+                      ? AppColors.starGold
+                      : (isDark
+                          ? AppColors.textPrimary
+                          : AppColors.lightTextPrimary),
+                  fontWeight: isHighlighted ? FontWeight.bold : null,
                 ),
               ),
             ],
@@ -708,13 +724,13 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
         color: isDark
-            ? AppColors.surfaceDark.withOpacity(0.7)
+            ? AppColors.surfaceDark.withValues(alpha: 0.7)
             : AppColors.lightCard,
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         border: Border.all(
           color: isDark
-              ? Colors.white.withOpacity(0.1)
-              : Colors.black.withOpacity(0.05),
+              ? Colors.white.withValues(alpha: 0.1)
+              : Colors.black.withValues(alpha: 0.05),
         ),
       ),
       child: Column(
@@ -800,13 +816,13 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
     return Container(
       decoration: BoxDecoration(
         color: isDark
-            ? AppColors.surfaceDark.withOpacity(0.7)
+            ? AppColors.surfaceDark.withValues(alpha: 0.7)
             : AppColors.lightCard,
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         border: Border.all(
           color: isDark
-              ? Colors.white.withOpacity(0.1)
-              : Colors.black.withOpacity(0.05),
+              ? Colors.white.withValues(alpha: 0.1)
+              : Colors.black.withValues(alpha: 0.05),
         ),
       ),
       child: ListView.separated(
@@ -816,8 +832,8 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
         separatorBuilder: (_, __) => Divider(
           height: 1,
           color: isDark
-              ? Colors.white.withOpacity(0.1)
-              : Colors.black.withOpacity(0.05),
+              ? Colors.white.withValues(alpha: 0.1)
+              : Colors.black.withValues(alpha: 0.05),
         ),
         itemBuilder: (context, index) {
           final task = tasks[index];
@@ -866,7 +882,7 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.2),
+        color: color.withValues(alpha: 0.2),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Text(
@@ -906,13 +922,13 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
     return Container(
       decoration: BoxDecoration(
         color: isDark
-            ? AppColors.surfaceDark.withOpacity(0.7)
+            ? AppColors.surfaceDark.withValues(alpha: 0.7)
             : AppColors.lightCard,
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         border: Border.all(
           color: isDark
-              ? Colors.white.withOpacity(0.1)
-              : Colors.black.withOpacity(0.05),
+              ? Colors.white.withValues(alpha: 0.1)
+              : Colors.black.withValues(alpha: 0.05),
         ),
       ),
       child: Column(
@@ -922,7 +938,7 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
             padding: const EdgeInsets.all(AppConstants.spacingMd),
             decoration: BoxDecoration(
               color: isDark
-                  ? AppColors.surfaceLight.withOpacity(0.3)
+                  ? AppColors.surfaceLight.withValues(alpha: 0.3)
                   : AppColors.lightSurfaceVariant,
               borderRadius: const BorderRadius.vertical(
                 top: Radius.circular(AppConstants.radiusMd),
@@ -961,8 +977,8 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
             separatorBuilder: (_, __) => Divider(
               height: 1,
               color: isDark
-                  ? Colors.white.withOpacity(0.05)
-                  : Colors.black.withOpacity(0.05),
+                  ? Colors.white.withValues(alpha: 0.05)
+                  : Colors.black.withValues(alpha: 0.05),
             ),
             itemBuilder: (context, index) {
               final event = events[index];
@@ -1106,13 +1122,13 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
     return Container(
       decoration: BoxDecoration(
         color: isDark
-            ? AppColors.surfaceDark.withOpacity(0.7)
+            ? AppColors.surfaceDark.withValues(alpha: 0.7)
             : AppColors.lightCard,
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         border: Border.all(
           color: isDark
-              ? Colors.white.withOpacity(0.1)
-              : Colors.black.withOpacity(0.05),
+              ? Colors.white.withValues(alpha: 0.1)
+              : Colors.black.withValues(alpha: 0.05),
         ),
       ),
       child: snapshots.isEmpty
@@ -1153,8 +1169,8 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
               separatorBuilder: (_, __) => Divider(
                 height: 1,
                 color: isDark
-                    ? Colors.white.withOpacity(0.1)
-                    : Colors.black.withOpacity(0.05),
+                    ? Colors.white.withValues(alpha: 0.1)
+                    : Colors.black.withValues(alpha: 0.05),
               ),
               itemBuilder: (context, index) {
                 final snapshot = snapshots[index];
@@ -1162,7 +1178,7 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
                   leading: Container(
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
-                      color: AppColors.starGold.withOpacity(0.2),
+                      color: AppColors.starGold.withValues(alpha: 0.2),
                       shape: BoxShape.circle,
                     ),
                     child: Icon(
@@ -1245,13 +1261,13 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
         color: isDark
-            ? AppColors.surfaceDark.withOpacity(0.7)
+            ? AppColors.surfaceDark.withValues(alpha: 0.7)
             : AppColors.lightCard,
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         border: Border.all(
           color: isDark
-              ? Colors.white.withOpacity(0.1)
-              : Colors.black.withOpacity(0.05),
+              ? Colors.white.withValues(alpha: 0.1)
+              : Colors.black.withValues(alpha: 0.05),
         ),
       ),
       child: Column(
@@ -1332,10 +1348,10 @@ class _KpiCard extends StatelessWidget {
       padding: const EdgeInsets.all(AppConstants.spacingMd),
       decoration: BoxDecoration(
         color: isDark
-            ? AppColors.surfaceDark.withOpacity(0.7)
+            ? AppColors.surfaceDark.withValues(alpha: 0.7)
             : AppColors.lightCard,
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-        border: Border.all(color: color.withOpacity(0.3)),
+        border: Border.all(color: color.withValues(alpha: 0.3)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1349,7 +1365,7 @@ class _KpiCard extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                 decoration: BoxDecoration(
                   color: (isPositive ? AppColors.success : AppColors.error)
-                      .withOpacity(0.2),
+                      .withValues(alpha: 0.2),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Row(

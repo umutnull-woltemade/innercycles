@@ -86,3 +86,4 @@ flutter:
     - assets/brand/venus-logo/png/
     - assets/.env
     - assets/l10n/
+    - assets/demo/

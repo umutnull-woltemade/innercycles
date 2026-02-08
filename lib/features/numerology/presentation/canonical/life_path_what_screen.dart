@@ -40,43 +40,43 @@ class LifePathWhatScreen extends ConsumerWidget {
                 ),
                 const SizedBox(height: 24),
                 Text(
-                  'Yaşam yolu sayısı nedir?',
+                  L10nService.get('canonical.life_path.title', language),
                   style: TextStyle(fontSize: 28, fontWeight: FontWeight.w600, color: isDark ? Colors.white : AppColors.textDark, height: 1.2),
                 ).animate().fadeIn(duration: 400.ms),
                 const SizedBox(height: 8),
-                _buildTag('Numeroloji', color),
+                _buildTag(L10nService.get('numerology.title', language), color),
                 const SizedBox(height: 32),
 
-                _buildSection(isDark, 'Kısa Cevap', color, [
-                  'Yaşam yolu sayısı, doğum tarihinden hesaplanan temel numerolojik sayındır.',
-                  'Bu hayatta hangi yolda yürüyeceğini gösterir.',
-                  '1\'den 9\'a kadar (ve 11, 22, 33 üstat sayıları) değer alır.',
+                _buildSection(isDark, L10nService.get('canonical.short_answer', language), color, [
+                  L10nService.get('canonical.life_path.answer1', language),
+                  L10nService.get('canonical.life_path.answer2', language),
+                  L10nService.get('canonical.life_path.answer3', language),
                 ]),
                 const SizedBox(height: 28),
 
-                _buildSection(isDark, 'Nasıl Hesaplanır?', color, [
-                  'Doğum tarihinin tüm rakamları toplanır.',
-                  'Tek haneli bir sayıya ulaşana kadar indirgenir.',
-                  'Örnek: 15.03.1990 → 1+5+0+3+1+9+9+0 = 28 → 2+8 = 10 → 1+0 = 1',
+                _buildSection(isDark, L10nService.get('canonical.life_path.how_calculated', language), color, [
+                  L10nService.get('canonical.life_path.calc1', language),
+                  L10nService.get('canonical.life_path.calc2', language),
+                  L10nService.get('canonical.life_path.calc3', language),
                 ]),
                 const SizedBox(height: 28),
 
-                _buildSection(isDark, 'Ne Anlatır?', color, [
-                  'Ruhunun bu hayattaki amacını.',
-                  'Doğal yeteneklerini ve güçlü yanlarını.',
-                  'Karşılaşacağın zorlukları ve dersleri.',
-                  'Hayatında tekrar eden temaları.',
+                _buildSection(isDark, L10nService.get('canonical.life_path.what_tells', language), color, [
+                  L10nService.get('canonical.life_path.tells1', language),
+                  L10nService.get('canonical.life_path.tells2', language),
+                  L10nService.get('canonical.life_path.tells3', language),
+                  L10nService.get('canonical.life_path.tells4', language),
                 ]),
                 const SizedBox(height: 28),
 
-                _buildSection(isDark, 'Önemli Not', color, [
-                  'Yaşam yolu sayısı kader değildir.',
-                  'Potansiyeli gösterir, kararlar senin.',
-                  'Her sayının hem ışık hem gölge yönü vardır.',
+                _buildSection(isDark, L10nService.get('canonical.important_note', language), color, [
+                  L10nService.get('canonical.life_path.note1', language),
+                  L10nService.get('canonical.life_path.note2', language),
+                  L10nService.get('canonical.life_path.note3', language),
                 ]),
                 const SizedBox(height: 32),
 
-                _buildSuggestion(context, isDark, language, '🔢', 'Günlük sayı enerjisi ne anlatır?', Routes.numerology),
+                _buildSuggestion(context, isDark, language, '🔢', L10nService.get('canonical.life_path.suggestion', language), Routes.numerology),
                 const SizedBox(height: 40),
 
                 Center(child: Text(L10nService.get('numerology.brand_footer', language), style: TextStyle(fontSize: 12, color: isDark ? Colors.white38 : AppColors.textLight))),

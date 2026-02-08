@@ -91,13 +91,13 @@ class TantraMicroRitualScreen extends ConsumerWidget {
                   padding: const EdgeInsets.all(24),
                   decoration: BoxDecoration(
                     color: isDark
-                        ? Colors.white.withOpacity(0.05)
-                        : Colors.white.withOpacity(0.9),
+                        ? Colors.white.withValues(alpha: 0.05)
+                        : Colors.white.withValues(alpha: 0.9),
                     borderRadius: BorderRadius.circular(20),
                     border: Border.all(
                       color: isDark
-                          ? const Color(0xFFE57373).withOpacity(0.2)
-                          : const Color(0xFFE57373).withOpacity(0.15),
+                          ? const Color(0xFFE57373).withValues(alpha: 0.2)
+                          : const Color(0xFFE57373).withValues(alpha: 0.15),
                     ),
                   ),
                   child: Column(
@@ -120,7 +120,7 @@ class TantraMicroRitualScreen extends ConsumerWidget {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
                   decoration: BoxDecoration(
-                    color: const Color(0xFFE57373).withOpacity(isDark ? 0.15 : 0.1),
+                    color: const Color(0xFFE57373).withValues(alpha: isDark ? 0.15 : 0.1),
                     borderRadius: BorderRadius.circular(16),
                   ),
                   child: Row(
@@ -176,7 +176,7 @@ class TantraMicroRitualScreen extends ConsumerWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       decoration: BoxDecoration(
-        color: isDark ? Colors.white.withOpacity(0.1) : Colors.black.withOpacity(0.05),
+        color: isDark ? Colors.white.withValues(alpha: 0.1) : Colors.black.withValues(alpha: 0.05),
         borderRadius: BorderRadius.circular(16),
       ),
       child: Text(
@@ -193,7 +193,7 @@ class TantraMicroRitualScreen extends ConsumerWidget {
   Widget _buildTag(String text, Color color) => Container(
     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
     decoration: BoxDecoration(
-      color: color.withOpacity(0.15),
+      color: color.withValues(alpha: 0.15),
       borderRadius: BorderRadius.circular(14),
     ),
     child: Text(text, style: TextStyle(fontSize: 13, color: color, fontWeight: FontWeight.w500)),
@@ -204,9 +204,9 @@ class TantraMicroRitualScreen extends ConsumerWidget {
     child: Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: isDark ? Colors.white.withOpacity(0.05) : Colors.white.withOpacity(0.8),
+        color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.white.withValues(alpha: 0.8),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: isDark ? Colors.white.withOpacity(0.1) : Colors.black.withOpacity(0.1)),
+        border: Border.all(color: isDark ? Colors.white.withValues(alpha: 0.1) : Colors.black.withValues(alpha: 0.1)),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,

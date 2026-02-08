@@ -10,6 +10,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 // Web-specific imports (conditionally compiled)
 import 'web_download_stub.dart' if (dart.library.html) 'web_download_impl.dart';
+import '../providers/app_providers.dart';
 
 /// Instagram Share Service
 ///
@@ -33,6 +34,7 @@ class InstagramShareService {
     required RenderRepaintBoundary boundary,
     required String shareText,
     String? hashtags,
+    AppLanguage language = AppLanguage.tr,
   }) async {
     try {
       // 1. Capture the image
@@ -46,7 +48,7 @@ class InstagramShareService {
 
       // 2. Platform-specific share
       if (kIsWeb) {
-        return await _shareOnWeb(imageBytes, shareText, hashtags);
+        return await _shareOnWeb(imageBytes, shareText, hashtags, language: language);
       }
 
       // 3. For native platforms, save to temp file first
@@ -59,11 +61,11 @@ class InstagramShareService {
       }
 
       if (Platform.isIOS) {
-        return await _shareOnIOS(file, shareText, hashtags);
+        return await _shareOnIOS(file, shareText, hashtags, language: language);
       } else if (Platform.isAndroid) {
-        return await _shareOnAndroid(file, shareText, hashtags);
+        return await _shareOnAndroid(file, shareText, hashtags, language: language);
       } else {
-        return await _shareGeneric(file, shareText, hashtags);
+        return await _shareGeneric(file, shareText, hashtags, language: language);
       }
     } catch (e) {
       debugPrint('Share error: $e');
@@ -113,15 +115,17 @@ class InstagramShareService {
   static Future<ShareResult> _shareOnIOS(
     File file,
     String shareText,
-    String? hashtags,
-  ) async {
+    String? hashtags, {
+    AppLanguage language = AppLanguage.tr,
+  }) async {
     try {
       final fullText = _buildShareText(shareText, hashtags);
+      final subject = language == AppLanguage.tr ? 'Kozmik Enerji' : 'Cosmic Energy';
 
       final result = await Share.shareXFiles(
         [XFile(file.path)],
         text: fullText,
-        subject: 'Kozmik Enerji',
+        subject: subject,
       );
 
       if (result.status == ShareResultStatus.success) {
@@ -156,15 +160,17 @@ class InstagramShareService {
   static Future<ShareResult> _shareOnAndroid(
     File file,
     String shareText,
-    String? hashtags,
-  ) async {
+    String? hashtags, {
+    AppLanguage language = AppLanguage.tr,
+  }) async {
     try {
       final fullText = _buildShareText(shareText, hashtags);
+      final subject = language == AppLanguage.tr ? 'Kozmik Enerji' : 'Cosmic Energy';
 
       final result = await Share.shareXFiles(
         [XFile(file.path, mimeType: 'image/png')],
         text: fullText,
-        subject: 'Kozmik Enerji',
+        subject: subject,
       );
 
       if (result.status == ShareResultStatus.success) {
@@ -199,14 +205,16 @@ class InstagramShareService {
   static Future<ShareResult> _shareOnWeb(
     Uint8List imageBytes,
     String shareText,
-    String? hashtags,
-  ) async {
+    String? hashtags, {
+    AppLanguage language = AppLanguage.tr,
+  }) async {
     try {
       final fullText = _buildShareText(shareText, hashtags);
       final timestamp = DateTime.now().millisecondsSinceEpoch;
       final fileName = 'venusone_cosmic_$timestamp.png';
 
       // Try Web Share API with files first (modern browsers on HTTPS)
+      final subject = language == AppLanguage.tr ? 'Kozmik Enerji' : 'Cosmic Energy';
       try {
         final xFile = XFile.fromData(
           imageBytes,
@@ -217,7 +225,7 @@ class InstagramShareService {
         final result = await Share.shareXFiles(
           [xFile],
           text: fullText,
-          subject: 'Kozmik Enerji',
+          subject: subject,
         );
 
         if (result.status == ShareResultStatus.success) {
@@ -265,8 +273,9 @@ class InstagramShareService {
   static Future<ShareResult> _shareGeneric(
     File file,
     String shareText,
-    String? hashtags,
-  ) async {
+    String? hashtags, {
+    AppLanguage language = AppLanguage.tr,
+  }) async {
     try {
       final result = await Share.shareXFiles([
         XFile(file.path),

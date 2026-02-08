@@ -10,6 +10,8 @@ import 'package:uuid/uuid.dart';
 import '../models/dream_interpretation_models.dart';
 import 'dream_memory_service.dart';
 import 'dream_interpretation_service.dart';
+import 'l10n_service.dart';
+import '../providers/app_providers.dart';
 
 // ════════════════════════════════════════════════════════════════
 // DREAM ENTRY MODEL
@@ -981,103 +983,197 @@ class DreamJournalService {
     List<String> topSymbols,
     int lucidCount,
     int nightmareCount,
-    String period,
-  ) {
+    String period, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     if (count == 0) {
-      return period == 'weekly'
-          ? 'Bu hafta henuz ruya kaydetmedin. Bilincaltinin sesini dinlemeye hazir misin?'
-          : 'Bu ay ruya kaydettikce, oruntuleri kesfedecekim.';
+      final weeklyKey = 'dream_journal.insights.no_dreams_weekly';
+      final monthlyKey = 'dream_journal.insights.no_dreams_monthly';
+      final weeklyLocalized = L10nService.get(weeklyKey, language);
+      final monthlyLocalized = L10nService.get(monthlyKey, language);
+
+      if (period == 'weekly') {
+        return weeklyLocalized != weeklyKey
+            ? weeklyLocalized
+            : 'No dreams recorded this week. Ready to listen to your subconscious?';
+      }
+      return monthlyLocalized != monthlyKey
+          ? monthlyLocalized
+          : 'As you record dreams this month, I will discover patterns.';
     }
 
     final dominantEmotion = emotions.entries.isNotEmpty
         ? emotions.entries.first.key
         : EmotionalTone.merak;
 
-    final symbolNote = topSymbols.isNotEmpty
-        ? '"${topSymbols.first}" sembolu ruyalarinda sik beliriyor.'
-        : '';
+    String symbolNote = '';
+    if (topSymbols.isNotEmpty) {
+      final symbolKey = 'dream_journal.insights.symbol_frequent';
+      final symbolLocalized = L10nService.get(symbolKey, language);
+      symbolNote = symbolLocalized != symbolKey
+          ? symbolLocalized.replaceAll('{symbol}', topSymbols.first)
+          : '"${topSymbols.first}" symbol appears frequently in your dreams.';
+    }
 
-    final lucidNote = lucidCount > 0
-        ? ' $lucidCount lucid ruya deneyimledin - farkindalik gelisiyor!'
-        : '';
+    String lucidNote = '';
+    if (lucidCount > 0) {
+      final lucidKey = 'dream_journal.insights.lucid_count';
+      final lucidLocalized = L10nService.get(lucidKey, language);
+      lucidNote = lucidLocalized != lucidKey
+          ? ' ${lucidLocalized.replaceAll('{count}', lucidCount.toString())}'
+          : ' $lucidCount lucid dreams experienced - awareness is developing!';
+    }
 
-    final nightmareNote = nightmareCount > 0
-        ? ' $nightmareCount kabus, golge entegrasyonu icin firsat sunuyor.'
-        : '';
+    String nightmareNote = '';
+    if (nightmareCount > 0) {
+      final nightmareKey = 'dream_journal.insights.nightmare_count';
+      final nightmareLocalized = L10nService.get(nightmareKey, language);
+      nightmareNote = nightmareLocalized != nightmareKey
+          ? ' ${nightmareLocalized.replaceAll('{count}', nightmareCount.toString())}'
+          : ' $nightmareCount nightmares offer opportunity for shadow integration.';
+    }
 
-    return '$count ruya kaydettin. Dominant duygu: ${dominantEmotion.label}. '
-        '$symbolNote$lucidNote$nightmareNote';
+    // Get localized emotion label
+    final emotionKey = 'dream_journal.emotions.${dominantEmotion.name}';
+    final emotionLocalized = L10nService.get(emotionKey, language);
+    final emotionLabel = emotionLocalized != emotionKey ? emotionLocalized : dominantEmotion.label;
+
+    final summaryKey = 'dream_journal.insights.summary';
+    final summaryLocalized = L10nService.get(summaryKey, language);
+    final summaryText = summaryLocalized != summaryKey
+        ? summaryLocalized
+            .replaceAll('{count}', count.toString())
+            .replaceAll('{emotion}', emotionLabel)
+        : '$count dreams recorded. Dominant emotion: ${dominantEmotion.label}. ';
+
+    return '$summaryText$symbolNote$lucidNote$nightmareNote';
   }
 
   List<String> _generateRecommendations(
     Map<EmotionalTone, int> emotions,
     int nightmareCount,
     int lucidCount,
-    int totalDreams,
-  ) {
+    int totalDreams, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     final recommendations = <String>[];
 
+    String getLocalized(String key, String fallback) {
+      final localized = L10nService.get(key, language);
+      return localized != key ? localized : fallback;
+    }
+
     if (totalDreams < 3) {
-      recommendations.add('Her gun ruya gunlugu tutarak oruntuleri kesfet.');
+      recommendations.add(getLocalized(
+        'dream_journal.recommendations.keep_journal',
+        'Discover patterns by keeping a dream journal every day.',
+      ));
     }
 
     if (nightmareCount > 2) {
-      recommendations.add('Kabuslarla calisma: Lucid teknikleriyle donustur.');
-      recommendations.add('Uyku oncesi rahatlama ritueli olustur.');
+      recommendations.add(getLocalized(
+        'dream_journal.recommendations.nightmare_work',
+        'Working with nightmares: Transform them with lucid techniques.',
+      ));
+      recommendations.add(getLocalized(
+        'dream_journal.recommendations.relaxation_ritual',
+        'Create a pre-sleep relaxation ritual.',
+      ));
     }
 
     if (lucidCount == 0 && totalDreams >= 7) {
-      recommendations.add('Reality check teknigini dene - lucid ruya potansiyelin var.');
+      recommendations.add(getLocalized(
+        'dream_journal.recommendations.reality_check',
+        'Try reality check technique - you have lucid dream potential.',
+      ));
     }
 
     if (emotions.isNotEmpty) {
       final dominant = emotions.entries.first.key;
       if (dominant == EmotionalTone.korku) {
-        recommendations.add('Korku temasini incele - golge calismasi yapabilirsin.');
+        recommendations.add(getLocalized(
+          'dream_journal.recommendations.fear_theme',
+          'Examine the fear theme - you can do shadow work.',
+        ));
       } else if (dominant == EmotionalTone.ozlem) {
-        recommendations.add('Ozlem duygusu uzerine yansitma gunlugu tut.');
+        recommendations.add(getLocalized(
+          'dream_journal.recommendations.longing_journal',
+          'Keep a reflection journal on the feeling of longing.',
+        ));
       }
     }
 
     if (recommendations.isEmpty) {
-      recommendations.add('Ruya yolculugun harika gidiyor. Kaydetmeye devam et!');
+      recommendations.add(getLocalized(
+        'dream_journal.recommendations.keep_going',
+        'Your dream journey is going great. Keep recording!',
+      ));
     }
 
     return recommendations;
   }
 
-  String _detectDominantTheme(List<DreamEntry> dreams) {
-    if (dreams.isEmpty) return 'Belirsiz';
+  String _detectDominantTheme(List<DreamEntry> dreams, {AppLanguage language = AppLanguage.tr}) {
+    String getThemeLocalized(String key, String fallback) {
+      final localized = L10nService.get('dream_journal.themes.$key', language);
+      return localized != 'dream_journal.themes.$key' ? localized : fallback;
+    }
 
-    final themeCounts = <String, int>{};
+    if (dreams.isEmpty) return getThemeLocalized('unknown', 'Unknown');
+
+    final themeKeys = <String, int>{};
     for (final dream in dreams) {
       if (dream.isLucid) {
-        themeCounts['Farkindalik'] = (themeCounts['Farkindalik'] ?? 0) + 1;
+        themeKeys['awareness'] = (themeKeys['awareness'] ?? 0) + 1;
       }
       if (dream.isNightmare) {
-        themeCounts['Golge Calismasi'] = (themeCounts['Golge Calismasi'] ?? 0) + 1;
+        themeKeys['shadow_work'] = (themeKeys['shadow_work'] ?? 0) + 1;
       }
       if (dream.isRecurring) {
-        themeCounts['Tekrarlayan Kalip'] = (themeCounts['Tekrarlayan Kalip'] ?? 0) + 1;
+        themeKeys['recurring_pattern'] = (themeKeys['recurring_pattern'] ?? 0) + 1;
       }
       if (dream.userRole == DreamRole.kahraman) {
-        themeCounts['Kahraman Yolculugu'] = (themeCounts['Kahraman Yolculugu'] ?? 0) + 1;
+        themeKeys['hero_journey'] = (themeKeys['hero_journey'] ?? 0) + 1;
       }
       if (dream.userRole == DreamRole.arayan) {
-        themeCounts['Arayis'] = (themeCounts['Arayis'] ?? 0) + 1;
+        themeKeys['seeking'] = (themeKeys['seeking'] ?? 0) + 1;
       }
     }
 
-    if (themeCounts.isEmpty) return 'Kesfediliyor';
+    if (themeKeys.isEmpty) return getThemeLocalized('exploring', 'Exploring');
 
-    final sorted = themeCounts.entries.toList()
+    final sorted = themeKeys.entries.toList()
       ..sort((a, b) => b.value.compareTo(a.value));
-    return sorted.first.key;
+    final themeKey = sorted.first.key;
+
+    // Return localized theme name
+    switch (themeKey) {
+      case 'awareness':
+        return getThemeLocalized('awareness', 'Awareness');
+      case 'shadow_work':
+        return getThemeLocalized('shadow_work', 'Shadow Work');
+      case 'recurring_pattern':
+        return getThemeLocalized('recurring_pattern', 'Recurring Pattern');
+      case 'hero_journey':
+        return getThemeLocalized('hero_journey', 'Hero Journey');
+      case 'seeking':
+        return getThemeLocalized('seeking', 'Seeking');
+      default:
+        return getThemeLocalized('exploring', 'Exploring');
+    }
   }
 
-  String _assessShadowWorkProgress(List<DreamEntry> dreams) {
+  String _assessShadowWorkProgress(List<DreamEntry> dreams, {AppLanguage language = AppLanguage.tr}) {
+    String getLocalized(String key, String fallback) {
+      final fullKey = 'dream_journal.shadow.$key';
+      final localized = L10nService.get(fullKey, language);
+      return localized != fullKey ? localized : fallback;
+    }
+
     final nightmares = dreams.where((d) => d.isNightmare).toList();
-    if (nightmares.isEmpty) return 'Golge henuz belirgin degil.';
+    if (nightmares.isEmpty) {
+      return getLocalized('not_visible', 'Shadow is not visible yet.');
+    }
 
     final recentNightmares = nightmares.where((d) {
       return d.dreamDate.isAfter(DateTime.now().subtract(const Duration(days: 7)));
@@ -1088,14 +1184,20 @@ class DreamJournalService {
     }).length;
 
     if (recentNightmares < olderNightmares) {
-      return 'Golge entegrasyonu ilerliyor - kabuslar azaliyor.';
+      return getLocalized('progressing', 'Shadow integration is progressing - nightmares are decreasing.');
     } else if (recentNightmares > 0) {
-      return 'Aktif golge calismasi donemi - kabuslarla yuzlesme zamani.';
+      return getLocalized('active', 'Active shadow work period - time to face nightmares.');
     }
-    return 'Golge sakin, entegrasyon suruyor.';
+    return getLocalized('calm', 'Shadow is calm, integration continues.');
   }
 
-  String _assessArchetypeJourney(List<DreamEntry> dreams) {
+  String _assessArchetypeJourney(List<DreamEntry> dreams, {AppLanguage language = AppLanguage.tr}) {
+    String getLocalized(String key, String fallback) {
+      final fullKey = 'dream_journal.archetype.$key';
+      final localized = L10nService.get(fullKey, language);
+      return localized != fullKey ? localized : fallback;
+    }
+
     final roleCounts = <DreamRole, int>{};
     for (final dream in dreams) {
       if (dream.userRole != null) {
@@ -1103,7 +1205,9 @@ class DreamJournalService {
       }
     }
 
-    if (roleCounts.isEmpty) return 'Arketip yolculugu basliyor.';
+    if (roleCounts.isEmpty) {
+      return getLocalized('starting', 'Archetype journey is beginning.');
+    }
 
     final sorted = roleCounts.entries.toList()
       ..sort((a, b) => b.value.compareTo(a.value));
@@ -1111,17 +1215,17 @@ class DreamJournalService {
 
     switch (dominant) {
       case DreamRole.kahraman:
-        return 'Kahraman arketipi aktif - cesaretle ilerle!';
+        return getLocalized('hero', 'Hero archetype active - proceed with courage!');
       case DreamRole.arayan:
-        return 'Arayici arketipi - icsel bir yolculuktasin.';
+        return getLocalized('seeker', 'Seeker archetype - you are on an inner journey.');
       case DreamRole.kurtarici:
-        return 'Kurtarici arketipi - baskalarini destekliyorsun.';
+        return getLocalized('rescuer', 'Rescuer archetype - you are supporting others.');
       case DreamRole.izleyici:
-        return 'Gozlemci arketipi - farkindalik gelistiriyorsun.';
+        return getLocalized('observer', 'Observer archetype - you are developing awareness.');
       case DreamRole.kacan:
-        return 'Kacis temasi - neyle yuzlesmekten kaciniyorsun?';
+        return getLocalized('fleeing', 'Escape theme - what are you avoiding facing?');
       default:
-        return 'Arketip yolculugun evrim geçiriyor.';
+        return getLocalized('evolving', 'Your archetype journey is evolving.');
     }
   }
 
@@ -1155,9 +1259,15 @@ class DreamJournalService {
           .intersection(dream3.detectedSymbols.toSet());
 
       if (common.isNotEmpty) {
+        final seriesKey = 'dream_journal.series_title';
+        final seriesLocalized = L10nService.get(seriesKey, AppLanguage.tr);
+        final seriesTitle = seriesLocalized != seriesKey
+            ? seriesLocalized.replaceAll('{symbol}', common.first)
+            : 'Series: ${common.first}';
+
         series.add(DreamSeries(
           id: uuid.v4(),
-          title: 'Seri: ${common.first}',
+          title: seriesTitle,
           dreamIds: [dream1.id, dream2.id, dream3.id],
           startDate: dream3.dreamDate,
           commonSymbols: common.toList(),
@@ -1169,8 +1279,14 @@ class DreamJournalService {
     return series;
   }
 
-  String _detectStoryArc(List<DreamEntry> dreams) {
-    if (dreams.length < 2) return 'Tek bolum';
+  String _detectStoryArc(List<DreamEntry> dreams, {AppLanguage language = AppLanguage.tr}) {
+    String getLocalized(String key, String fallback) {
+      final fullKey = 'dream_journal.story_arc.$key';
+      final localized = L10nService.get(fullKey, language);
+      return localized != fullKey ? localized : fallback;
+    }
+
+    if (dreams.length < 2) return getLocalized('single', 'Single episode');
 
     final intensities = dreams.map((d) => d.emotionalIntensity).toList();
     final avgFirst = intensities.take(dreams.length ~/ 2).reduce((a, b) => a + b) /
@@ -1179,11 +1295,11 @@ class DreamJournalService {
         (dreams.length - dreams.length ~/ 2);
 
     if (avgSecond > avgFirst) {
-      return 'Yukselen ark - yogunluk artiyor';
+      return getLocalized('rising', 'Rising arc - intensity increasing');
     } else if (avgSecond < avgFirst) {
-      return 'Cozum arki - rahatlama geliyor';
+      return getLocalized('resolution', 'Resolution arc - relief coming');
     }
-    return 'Duz ark - sabit enerji';
+    return getLocalized('flat', 'Flat arc - stable energy');
   }
 
   /// Find similar dreams to a given dream

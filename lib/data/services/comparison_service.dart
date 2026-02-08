@@ -1,5 +1,6 @@
 import '../models/user_profile.dart';
 import '../models/zodiac_sign.dart' as zodiac;
+import '../providers/app_providers.dart';
 
 typedef ZodiacSign = zodiac.ZodiacSign;
 typedef Element = zodiac.Element;
@@ -66,6 +67,31 @@ class ComparisonResult {
     if (overallScore >= 55) return 'Compatible';
     if (overallScore >= 40) return 'Moderate';
     return 'Challenging';
+  }
+
+  /// Get localized level based on language
+  String localizedLevel(AppLanguage language) {
+    return language == AppLanguage.tr ? levelTr : levelEn;
+  }
+
+  /// Get localized summary based on language
+  String localizedSummary(AppLanguage language) {
+    return language == AppLanguage.tr ? summaryTr : summaryEn;
+  }
+
+  /// Get localized strengths based on language
+  List<String> localizedStrengths(AppLanguage language) {
+    return language == AppLanguage.tr ? strengthsTr : strengthsEn;
+  }
+
+  /// Get localized challenges based on language
+  List<String> localizedChallenges(AppLanguage language) {
+    return language == AppLanguage.tr ? challengesTr : challengesEn;
+  }
+
+  /// Get localized advice based on language
+  String localizedAdvice(AppLanguage language) {
+    return language == AppLanguage.tr ? adviceTr : adviceEn;
   }
 }
 

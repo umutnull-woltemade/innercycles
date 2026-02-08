@@ -79,14 +79,14 @@ class DreamSearchingScreen extends ConsumerWidget {
 
   Widget _buildTag(String text, Color color) => Container(
     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-    decoration: BoxDecoration(color: color.withOpacity(0.15), borderRadius: BorderRadius.circular(12)),
+    decoration: BoxDecoration(color: color.withValues(alpha: 0.15), borderRadius: BorderRadius.circular(12)),
     child: Text(text, style: TextStyle(fontSize: 12, color: color, fontWeight: FontWeight.w500)),
   );
 
   Widget _buildSection(bool isDark, String title, Color color, List<String> bullets) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      Text(title, style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: isDark ? color : color.withOpacity(0.8))),
+      Text(title, style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: isDark ? color : color.withValues(alpha: 0.8))),
       const SizedBox(height: 12),
       ...bullets.map((b) => Padding(
         padding: const EdgeInsets.only(bottom: 8),
@@ -103,7 +103,7 @@ class DreamSearchingScreen extends ConsumerWidget {
     onTap: () => context.push(route),
     child: Container(
       padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(color: isDark ? Colors.white.withOpacity(0.05) : Colors.white.withOpacity(0.8), borderRadius: BorderRadius.circular(12), border: Border.all(color: isDark ? Colors.white.withOpacity(0.1) : Colors.black.withOpacity(0.1))),
+      decoration: BoxDecoration(color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.white.withValues(alpha: 0.8), borderRadius: BorderRadius.circular(12), border: Border.all(color: isDark ? Colors.white.withValues(alpha: 0.1) : Colors.black.withValues(alpha: 0.1))),
       child: Row(children: [
         Text(emoji, style: const TextStyle(fontSize: 24)),
         const SizedBox(width: 12),

@@ -7,11 +7,12 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../content/dream_advanced_content.dart';
 import '../models/dream_interpretation_models.dart';
 import '../models/dream_memory.dart';
+import '../providers/app_providers.dart';
 import 'dream_interpretation_service.dart';
 import 'dream_memory_service.dart';
+import 'l10n_service.dart';
 
 // ════════════════════════════════════════════════════════════════════════════
 // USER DREAM PROFILE
@@ -19,15 +20,42 @@ import 'dream_memory_service.dart';
 
 /// Dream interpretation styles
 enum DreamStyle {
-  jungian('Jungian', 'Archetype-focused, shadow work, unconscious analysis'),
-  spiritual('Spiritual', 'Cosmic messages, spiritual guidance, mystical interpretation'),
-  practical('Practical', 'Daily life focused, action suggestions, concrete advice'),
-  esoteric('Esoteric', 'Ancient wisdom, symbolism, hidden teachings'),
-  psychological('Psychological', 'Modern psychology perspective, emotional analysis');
+  jungian,
+  spiritual,
+  practical,
+  esoteric,
+  psychological;
 
-  final String label;
-  final String description;
-  const DreamStyle(this.label, this.description);
+  String get label => localizedLabel(AppLanguage.en);
+  String get description => localizedDescription(AppLanguage.en);
+
+  String localizedLabel(AppLanguage language) {
+    final key = 'dream_personalization.styles.$name.label';
+    final localized = L10nService.get(key, language);
+    if (localized != key) return localized;
+    // Fallback
+    return switch (this) {
+      DreamStyle.jungian => 'Jungian',
+      DreamStyle.spiritual => 'Spiritual',
+      DreamStyle.practical => 'Practical',
+      DreamStyle.esoteric => 'Esoteric',
+      DreamStyle.psychological => 'Psychological',
+    };
+  }
+
+  String localizedDescription(AppLanguage language) {
+    final key = 'dream_personalization.styles.$name.description';
+    final localized = L10nService.get(key, language);
+    if (localized != key) return localized;
+    // Fallback
+    return switch (this) {
+      DreamStyle.jungian => 'Archetype-focused, shadow work, unconscious analysis',
+      DreamStyle.spiritual => 'Cosmic messages, spiritual guidance, mystical interpretation',
+      DreamStyle.practical => 'Daily life focused, action suggestions, concrete advice',
+      DreamStyle.esoteric => 'Ancient wisdom, symbolism, hidden teachings',
+      DreamStyle.psychological => 'Modern psychology perspective, emotional analysis',
+    };
+  }
 }
 
 /// User dream profile - The fundamental model for personalization
@@ -315,147 +343,41 @@ class DreamContext {
 
 /// Life phases and dream influences
 class LifePhaseData {
-  static const Map<String, LifePhaseInfo> phases = {
-    'student': LifePhaseInfo(
-      id: 'student',
-      label: 'Student',
-      emoji: '📚',
-      commonDreamThemes: [
-        'Exams',
-        'being late',
-        'being caught unprepared',
-        'school',
-      ],
-      interpretationFocus: 'Performance anxiety, future uncertainty, learning',
-      advice:
-          'Exam themes in dreams usually reflect evaluation moments in your life.',
-    ),
-    'new_parent': LifePhaseInfo(
-      id: 'new_parent',
-      label: 'New Parent',
-      emoji: '👶',
-      commonDreamThemes: [
-        'Baby',
-        'protection',
-        'losing',
-        'inadequacy',
-        'great responsibility',
-      ],
-      interpretationFocus:
-          'Protective instinct, identity change, new responsibilities',
-      advice:
-          'Baby dreams can also represent new projects or new aspects of your identity.',
-    ),
-    'career_change': LifePhaseInfo(
-      id: 'career_change',
-      label: 'Career Change',
-      emoji: '💼',
-      commonDreamThemes: [
-        'Getting lost',
-        'new buildings',
-        'journey',
-        'being late',
-        'unprepared',
-      ],
-      interpretationFocus: 'Identity questioning, insecurity, opportunities',
-      advice:
-          'New places in your dreams represent new possibilities, getting lost represents uncertainty.',
-    ),
-    'grieving': LifePhaseInfo(
-      id: 'grieving',
-      label: 'In Grieving Process',
-      emoji: '🖤',
-      commonDreamThemes: [
-        'Lost person',
-        'saying goodbye',
-        'searching',
-        'reunion',
-      ],
-      interpretationFocus: 'Processing loss, unfinished business, spiritual connection',
-      advice:
-          'Seeing the person you lost in your dreams is a natural part of the grieving process and carries healing.',
-    ),
-    'retired': LifePhaseInfo(
-      id: 'retired',
-      label: 'Retired',
-      emoji: '🌅',
-      commonDreamThemes: [
-        'Former workplace',
-        'time',
-        'youth',
-        'completion',
-        'legacy',
-      ],
-      interpretationFocus: 'Life review, searching for meaning, legacy',
-      advice:
-          'Dreams about the past are a process of reviewing your life and gathering wisdom.',
-    ),
-    'relationship_crisis': LifePhaseInfo(
-      id: 'relationship_crisis',
-      label: 'Relationship Crisis',
-      emoji: '💔',
-      commonDreamThemes: [
-        'Partner',
-        'betrayal',
-        'argument',
-        'separation',
-        'unfamiliar partner',
-      ],
-      interpretationFocus: 'Relationship dynamics, trust, communication',
-      advice:
-          'Partner dreams often reflect your relationship with your inner anima/animus.',
-    ),
-    'health_crisis': LifePhaseInfo(
-      id: 'health_crisis',
-      label: 'Health Struggle',
-      emoji: '🏥',
-      commonDreamThemes: [
-        'Body',
-        'healing',
-        'hospital',
-        'transformation',
-        'death and rebirth',
-      ],
-      interpretationFocus: 'Body awareness, healing, mortality awareness',
-      advice:
-          'Dreams about the body usually carry messages related to your physical condition.',
-    ),
-    'spiritual_awakening': LifePhaseInfo(
-      id: 'spiritual_awakening',
-      label: 'Spiritual Awakening',
-      emoji: '✨',
-      commonDreamThemes: [
-        'Light',
-        'guides',
-        'flight',
-        'cosmic experiences',
-        'death and rebirth',
-      ],
-      interpretationFocus: 'Spiritual development, transcendent experiences, searching for meaning',
-      advice:
-          'Spiritual dreams are signs of your ascension, take their messages seriously.',
-    ),
-    'new_beginning': LifePhaseInfo(
-      id: 'new_beginning',
-      label: 'New Beginning',
-      emoji: '🌱',
-      commonDreamThemes: [
-        'Baby',
-        'seeds',
-        'new house',
-        'start of journey',
-      ],
-      interpretationFocus: 'Potential, hope, growth opportunities',
-      advice:
-          'New beginning symbols show the potential within you and your areas for growth.',
-    ),
+  static const List<String> _phaseIds = [
+    'student',
+    'new_parent',
+    'career_change',
+    'grieving',
+    'retired',
+    'relationship_crisis',
+    'health_crisis',
+    'spiritual_awakening',
+    'new_beginning',
+  ];
+
+  static const Map<String, String> _phaseEmojis = {
+    'student': '📚',
+    'new_parent': '👶',
+    'career_change': '💼',
+    'grieving': '🖤',
+    'retired': '🌅',
+    'relationship_crisis': '💔',
+    'health_crisis': '🏥',
+    'spiritual_awakening': '✨',
+    'new_beginning': '🌱',
   };
 
-  static LifePhaseInfo? getPhase(String phaseId) {
-    return phases[phaseId.toLowerCase().replaceAll(' ', '_')];
+  static LifePhaseInfo? getPhase(String phaseId, {AppLanguage language = AppLanguage.en}) {
+    final normalizedId = phaseId.toLowerCase().replaceAll(' ', '_');
+    if (!_phaseIds.contains(normalizedId)) return null;
+    return LifePhaseInfo.fromId(normalizedId, language);
   }
 
-  static List<String> get allPhaseIds => phases.keys.toList();
+  static List<String> get allPhaseIds => _phaseIds;
+
+  static List<LifePhaseInfo> getAllPhases(AppLanguage language) {
+    return _phaseIds.map((id) => LifePhaseInfo.fromId(id, language)).toList();
+  }
 }
 
 /// Life phase information
@@ -475,6 +397,18 @@ class LifePhaseInfo {
     required this.interpretationFocus,
     required this.advice,
   });
+
+  factory LifePhaseInfo.fromId(String id, AppLanguage language) {
+    final baseKey = 'dream_personalization.life_phases.$id';
+    return LifePhaseInfo(
+      id: id,
+      label: L10nService.get('$baseKey.label', language),
+      emoji: LifePhaseData._phaseEmojis[id] ?? '📝',
+      commonDreamThemes: L10nService.getList('$baseKey.common_dream_themes', language),
+      interpretationFocus: L10nService.get('$baseKey.interpretation_focus', language),
+      advice: L10nService.get('$baseKey.advice', language),
+    );
+  }
 }
 
 // ════════════════════════════════════════════════════════════════════════════
@@ -947,7 +881,9 @@ class DreamPersonalizationService {
             .replaceAll('psychological', 'spiritual');
       case DreamStyle.esoteric:
         // Ancient wisdom emphasis
-        return text.replaceAll('analysis', 'reading').replaceAll('interpretation', 'discovery');
+        return text
+            .replaceAll('analysis', 'reading')
+            .replaceAll('interpretation', 'discovery');
       case DreamStyle.psychological:
         // Scientific language
         return text
@@ -1059,9 +995,7 @@ class DreamPersonalizationService {
       buffer.writeln('- Moon Sign: ${context.moonSign}');
     }
     if (context.activeTransits.isNotEmpty) {
-      buffer.writeln(
-        '- Active Transits: ${context.activeTransits.join(", ")}',
-      );
+      buffer.writeln('- Active Transits: ${context.activeTransits.join(", ")}');
     }
     if (context.currentRetrograde != null) {
       buffer.writeln('- Retrograde: ${context.currentRetrograde}');
@@ -1106,7 +1040,9 @@ class DreamPersonalizationService {
 
     // Special instructions
     buffer.writeln('SPECIAL INSTRUCTIONS:');
-    buffer.writeln('1. Integrate the user\'s zodiac profile into the interpretation');
+    buffer.writeln(
+      '1. Integrate the user\'s zodiac profile into the interpretation',
+    );
     buffer.writeln('2. Consider personal symbol meanings');
     buffer.writeln('3. Give advice appropriate to life phase');
     buffer.writeln('4. Connect with previous dreams (if any)');
@@ -1131,7 +1067,11 @@ class DreamPersonalizationService {
     return Map.fromEntries(sorted.take(10));
   }
 
-  String _getStyleGuide(DreamStyle style) {
+  String _getStyleGuide(DreamStyle style, {AppLanguage language = AppLanguage.en}) {
+    final key = 'dream_personalization.style_guides.${style.name}';
+    final localized = L10nService.get(key, language);
+    if (localized != key) return localized;
+    // Fallback
     switch (style) {
       case DreamStyle.jungian:
         return '''
@@ -1171,7 +1111,7 @@ class DreamPersonalizationService {
   // ═══════════════════════════════════════════════════════════════════════
 
   /// Get personal patterns
-  List<String> getPersonalPatterns(UserDreamProfile profile) {
+  List<String> getPersonalPatterns(UserDreamProfile profile, {AppLanguage language = AppLanguage.en}) {
     final patterns = <String>[];
 
     // Symbol patterns
@@ -1179,58 +1119,88 @@ class DreamPersonalizationService {
     if (topSymbols.isNotEmpty) {
       final topSymbol = topSymbols.entries.first;
       if (topSymbol.value >= 3) {
-        patterns.add(
-          'The ${topSymbol.key.toUpperCase()} symbol appears frequently in your dreams (${topSymbol.value} times). '
-          'This may hold special meaning for you.',
-        );
+        final key = 'dream_personalization.patterns.symbol_frequency';
+        final localized = L10nService.get(key, language);
+        if (localized != key) {
+          patterns.add(localized
+              .replaceAll('{symbol}', topSymbol.key.toUpperCase())
+              .replaceAll('{count}', topSymbol.value.toString()));
+        } else {
+          patterns.add(
+            'The ${topSymbol.key.toUpperCase()} symbol appears frequently in your dreams (${topSymbol.value} times). '
+            'This may hold special meaning for you.',
+          );
+        }
       }
     }
 
     // Emotional patterns
     if (profile.dominantDreamEmotion != null) {
-      patterns.add(
-        'The ${profile.dominantDreamEmotion!.label.toLowerCase()} emotion is most dominant in your dreams. '
-        '${profile.dominantDreamEmotion!.hint}',
-      );
+      final key = 'dream_personalization.patterns.dominant_emotion';
+      final localized = L10nService.get(key, language);
+      if (localized != key) {
+        patterns.add(localized
+            .replaceAll('{emotion}', profile.dominantDreamEmotion!.label.toLowerCase())
+            .replaceAll('{hint}', profile.dominantDreamEmotion!.hint));
+      } else {
+        patterns.add(
+          'The ${profile.dominantDreamEmotion!.label.toLowerCase()} emotion is most dominant in your dreams. '
+          '${profile.dominantDreamEmotion!.hint}',
+        );
+      }
     }
 
     // Lucid dream tendency
     if (profile.lucidDreamFrequency > 0.3) {
-      patterns.add(
-        'Your lucid dream experience is above average. You can use '
-        'MILD or reality check techniques to develop this awareness.',
-      );
+      final key = 'dream_personalization.patterns.lucid_tendency';
+      final localized = L10nService.get(key, language);
+      patterns.add(localized != key
+          ? localized
+          : 'Your lucid dream experience is above average. You can use '
+              'MILD or reality check techniques to develop this awareness.');
     }
 
     // Nightmare frequency
     if (profile.nightmareFrequency > 0.2) {
-      patterns.add(
-        'Your nightmare frequency seems a bit high. This may indicate '
-        'unprocessed emotional material or stress periods.',
-      );
+      final key = 'dream_personalization.patterns.nightmare_frequency';
+      final localized = L10nService.get(key, language);
+      patterns.add(localized != key
+          ? localized
+          : 'Your nightmare frequency seems a bit high. This may indicate '
+              'unprocessed emotional material or stress periods.');
     }
 
     // Recurring themes
     if (profile.recurringThemes.isNotEmpty) {
-      patterns.add(
-        'Recurring themes: ${profile.recurringThemes.join(", ")}. '
-        'These themes show topics that your subconscious is continuously processing.',
-      );
+      final key = 'dream_personalization.patterns.recurring_themes';
+      final localized = L10nService.get(key, language);
+      if (localized != key) {
+        patterns.add(localized.replaceAll('{themes}', profile.recurringThemes.join(", ")));
+      } else {
+        patterns.add(
+          'Recurring themes: ${profile.recurringThemes.join(", ")}. '
+          'These themes show topics that your subconscious is continuously processing.',
+        );
+      }
     }
 
     return patterns;
   }
 
   /// User-specific transit information
-  Future<List<String>> getRelevantTransitsForUser(String userId) async {
+  Future<List<String>> getRelevantTransitsForUser(String userId, {AppLanguage language = AppLanguage.en}) async {
     final profile = await getOrCreateProfile(userId);
     final now = DateTime.now();
 
     final transits = <String>[];
 
     if (profile.sunSign == null) {
+      final key = 'dream_personalization.transits.add_birth_info';
+      final localized = L10nService.get(key, language);
       return [
-        'You can see your personal transits by adding your birth information.',
+        localized != key
+            ? localized
+            : 'You can see your personal transits by adding your birth information.',
       ];
     }
 
@@ -1238,30 +1208,50 @@ class DreamPersonalizationService {
     final currentMoonSign = _calculateMoonSign(now);
     if (currentMoonSign != null) {
       if (currentMoonSign == profile.sunSign) {
-        transits.add(
-          'Moon is in your sign (${profile.sunSign}) - Emotional intensity and intuition increase',
-        );
+        final key = 'dream_personalization.transits.moon_in_sign';
+        final localized = L10nService.get(key, language);
+        transits.add(localized != key
+            ? localized.replaceAll('{sign}', profile.sunSign!)
+            : 'Moon is in your sign (${profile.sunSign}) - Emotional intensity and intuition increase');
       }
       if (currentMoonSign == profile.moonSign) {
-        transits.add(
-          'Moon is in your natal Moon sign (${profile.moonSign}) - Deep connection with inner world',
-        );
+        final key = 'dream_personalization.transits.moon_natal';
+        final localized = L10nService.get(key, language);
+        transits.add(localized != key
+            ? localized.replaceAll('{sign}', profile.moonSign!)
+            : 'Moon is in your natal Moon sign (${profile.moonSign}) - Deep connection with inner world');
       }
     }
 
     // Check retrograde
     final retrograde = _getCurrentRetrograde(now);
     if (retrograde != null) {
-      transits.add('$retrograde retrograde active - Dreams about the past likely');
+      final key = 'dream_personalization.transits.retrograde_active';
+      final localized = L10nService.get(key, language);
+      transits.add(localized != key
+          ? localized.replaceAll('{planet}', retrograde)
+          : '$retrograde retrograde active - Dreams about the past likely');
     }
 
     // Moon phase - basic info without undefined AstroDreamCorrelations
     final moonPhase = MoonPhaseCalculator.calculate(now);
-    transits.add('Moon phase: ${moonPhase.name} - affects dream clarity');
+    final phaseKey = 'dream_personalization.transits.moon_phase';
+    final phaseLocalized = L10nService.get(phaseKey, language);
+    transits.add(phaseLocalized != phaseKey
+        ? phaseLocalized.replaceAll('{phase}', moonPhase.name)
+        : 'Moon phase: ${moonPhase.name} - affects dream clarity');
 
-    return transits.isEmpty
-        ? ['No significant active transits at the moment.']
-        : transits;
+    if (transits.isEmpty) {
+      final noTransitKey = 'dream_personalization.transits.no_transits';
+      final noTransitLocalized = L10nService.get(noTransitKey, language);
+      return [
+        noTransitLocalized != noTransitKey
+            ? noTransitLocalized
+            : 'No significant active transits at the moment.',
+      ];
+    }
+
+    return transits;
   }
 
   // ═══════════════════════════════════════════════════════════════════════
@@ -1349,19 +1339,42 @@ class DreamPersonalizationService {
 /// Personalization helpers
 class PersonalizationHelpers {
   /// Language level suggestion based on age
-  static String getLanguageLevelForAge(int age) {
-    if (age < 18) return 'young';
-    if (age < 30) return 'young adult';
-    if (age < 50) return 'middle age';
-    if (age < 65) return 'mature';
-    return 'elder sage';
+  static String getLanguageLevelForAge(int age, {AppLanguage language = AppLanguage.en}) {
+    String levelKey;
+    if (age < 18) {
+      levelKey = 'young';
+    } else if (age < 30) {
+      levelKey = 'young_adult';
+    } else if (age < 50) {
+      levelKey = 'middle_age';
+    } else if (age < 65) {
+      levelKey = 'mature';
+    } else {
+      levelKey = 'elder_sage';
+    }
+    final key = 'dream_personalization.language_levels.$levelKey';
+    final localized = L10nService.get(key, language);
+    if (localized != key) return localized;
+    // Fallback
+    return levelKey.replaceAll('_', ' ');
   }
 
   /// Focus symbols for life area
-  static List<String> getFocusSymbolsForLifeArea(String area) {
+  static List<String> getFocusSymbolsForLifeArea(String area, {AppLanguage language = AppLanguage.en}) {
+    final key = 'dream_personalization.focus_symbols.${area.toLowerCase()}';
+    final localized = L10nService.getList(key, language);
+    if (localized.isNotEmpty && localized.first != key) return localized;
+    // Fallback
     final focusSymbols = {
       'career': ['office', 'boss', 'money', 'success', 'stairs', 'building'],
-      'love': ['partner', 'marriage', 'heart', 'kiss', 'stranger', 'separation'],
+      'love': [
+        'partner',
+        'marriage',
+        'heart',
+        'kiss',
+        'stranger',
+        'separation',
+      ],
       'health': ['hospital', 'doctor', 'body', 'medicine', 'healing', 'pain'],
       'family': ['mother', 'father', 'home', 'child', 'sibling', 'relative'],
       'finance': ['money', 'bank', 'debt', 'wealth', 'loss', 'finding'],
@@ -1373,7 +1386,11 @@ class PersonalizationHelpers {
   }
 
   /// Additional interpretation based on season
-  static String getSeasonalInsight(String season) {
+  static String getSeasonalInsight(String season, {AppLanguage language = AppLanguage.en}) {
+    final key = 'dream_personalization.seasonal_insights.${season.toLowerCase()}';
+    final localized = L10nService.get(key, language);
+    if (localized != key) return localized;
+    // Fallback
     switch (season.toLowerCase()) {
       case 'spring':
         return 'Spring energy supports new beginnings and rebirth. '
@@ -1393,10 +1410,13 @@ class PersonalizationHelpers {
   }
 
   /// Dream tendency based on day of the week
-  static String getDayOfWeekInsight(String day) {
+  static String getDayOfWeekInsight(String day, {AppLanguage language = AppLanguage.en}) {
+    final key = 'dream_personalization.day_insights.$day';
+    final localized = L10nService.get(key, language);
+    if (localized != key) return localized;
+    // Fallback
     final insights = {
-      'Monday':
-          'Monday dreams usually reflect work and responsibility themes.',
+      'Monday': 'Monday dreams usually reflect work and responsibility themes.',
       'Tuesday':
           'Mars day Tuesday is prone to action and energy-filled dreams.',
       'Wednesday':

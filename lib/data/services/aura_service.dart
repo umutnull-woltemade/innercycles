@@ -68,37 +68,50 @@ class AuraService {
   }
 
   /// Aura temizleme önerileri
-  static List<AuraCleansingTip> getCleansingTips(AuraColor aura) {
+  static List<AuraCleansingTip> getCleansingTips(AuraColor aura, {AppLanguage language = AppLanguage.tr}) {
     final tips = <AuraCleansingTip>[];
 
-    // Genel temizleme
+    String getTipLocalized(String tipKey, String fallback) {
+      final key = 'aura.cleansing_tips.$tipKey';
+      final localized = L10nService.get(key, language);
+      return localized != key ? localized : fallback;
+    }
+
+    final colorName = aura.localizedName(language);
+
     tips.add(AuraCleansingTip(
-      title: 'Meditasyon',
-      description: '${aura.nameTr} auranı güçlendirmek için günde 10-15 dakika ${aura.meditationFocus} üzerine meditasyon yap.',
+      title: getTipLocalized('meditation_title', 'Meditation'),
+      description: getTipLocalized('meditation_desc', 'Meditate on ${aura.meditationFocus} for 10-15 minutes daily to strengthen your $colorName aura.')
+          .replaceAll('{color}', colorName)
+          .replaceAll('{focus}', aura.localizedMeditationFocus(language)),
       icon: 'meditation',
     ));
 
     tips.add(AuraCleansingTip(
-      title: 'Kristal Terapi',
-      description: '${aura.recommendedCrystal} kristali auranı dengelemek için idealdir.',
+      title: getTipLocalized('crystal_title', 'Crystal Therapy'),
+      description: getTipLocalized('crystal_desc', '${aura.recommendedCrystal} crystal is ideal for balancing your aura.')
+          .replaceAll('{crystal}', aura.localizedCrystal(language)),
       icon: 'crystal',
     ));
 
     tips.add(AuraCleansingTip(
-      title: 'Renk Terapisi',
-      description: '${aura.nameTr} tonlarında kıyafetler giy veya bu renkte nesnelerle çevrili ol.',
+      title: getTipLocalized('color_title', 'Color Therapy'),
+      description: getTipLocalized('color_desc', 'Wear clothes in $colorName tones or surround yourself with objects in this color.')
+          .replaceAll('{color}', colorName),
       icon: 'color',
     ));
 
     tips.add(AuraCleansingTip(
-      title: 'Doğa Bağlantısı',
-      description: aura.natureConnection,
+      title: getTipLocalized('nature_title', 'Nature Connection'),
+      description: aura.localizedNatureConnection(language),
       icon: 'nature',
     ));
 
     tips.add(AuraCleansingTip(
-      title: 'Ses Terapisi',
-      description: '${aura.soundFrequency} Hz frekansında müzik dinle veya ${aura.chakra.mantras} mantrasını söyle.',
+      title: getTipLocalized('sound_title', 'Sound Therapy'),
+      description: getTipLocalized('sound_desc', 'Listen to music at ${aura.soundFrequency} Hz frequency or chant the ${aura.chakra.mantras} mantra.')
+          .replaceAll('{frequency}', aura.soundFrequency.toString())
+          .replaceAll('{mantra}', aura.chakra.mantras),
       icon: 'sound',
     ));
 
@@ -190,19 +203,27 @@ class AuraService {
 
   static AuraColor _getMoodAura(String mood) {
     final moodLower = mood.toLowerCase();
-    if (moodLower.contains('mutlu') || moodLower.contains('neşeli')) {
+    // Turkish and English mood keywords
+    if (moodLower.contains('mutlu') || moodLower.contains('neşeli') ||
+        moodLower.contains('happy') || moodLower.contains('joyful')) {
       return AuraColor.yellow;
-    } else if (moodLower.contains('sakin') || moodLower.contains('huzurlu')) {
+    } else if (moodLower.contains('sakin') || moodLower.contains('huzurlu') ||
+               moodLower.contains('calm') || moodLower.contains('peaceful')) {
       return AuraColor.blue;
-    } else if (moodLower.contains('tutkulu') || moodLower.contains('enerjik')) {
+    } else if (moodLower.contains('tutkulu') || moodLower.contains('enerjik') ||
+               moodLower.contains('passionate') || moodLower.contains('energetic')) {
       return AuraColor.red;
-    } else if (moodLower.contains('yaratıcı') || moodLower.contains('ilhamlı')) {
+    } else if (moodLower.contains('yaratıcı') || moodLower.contains('ilhamlı') ||
+               moodLower.contains('creative') || moodLower.contains('inspired')) {
       return AuraColor.orange;
-    } else if (moodLower.contains('sevgi') || moodLower.contains('romantik')) {
+    } else if (moodLower.contains('sevgi') || moodLower.contains('romantik') ||
+               moodLower.contains('loving') || moodLower.contains('romantic')) {
       return AuraColor.pink;
-    } else if (moodLower.contains('spiritüel') || moodLower.contains('derin')) {
+    } else if (moodLower.contains('spiritüel') || moodLower.contains('derin') ||
+               moodLower.contains('spiritual') || moodLower.contains('deep')) {
       return AuraColor.violet;
-    } else if (moodLower.contains('topraklanmış') || moodLower.contains('güvende')) {
+    } else if (moodLower.contains('topraklanmış') || moodLower.contains('güvende') ||
+               moodLower.contains('grounded') || moodLower.contains('safe')) {
       return AuraColor.green;
     }
     return AuraColor.white;
@@ -250,28 +271,33 @@ class AuraService {
     return harmonious[a]?.contains(b) ?? false;
   }
 
-  static String _getSpiritualAdvice(AuraColor aura) {
+  static String _getSpiritualAdvice(AuraColor aura, {AppLanguage language = AppLanguage.tr}) {
+    final key = 'aura.spiritual_advice.${aura.name.toLowerCase()}';
+    final localized = L10nService.get(key, language);
+    if (localized != key) return localized;
+
+    // English fallback
     switch (aura) {
       case AuraColor.red:
-        return 'Enerjini toprakla. Fiziksel aktivite ve doğa yürüyüşleri auranı dengeleyecektir.';
+        return 'Ground your energy. Physical activity and nature walks will balance your aura.';
       case AuraColor.orange:
-        return 'Yaratıcılığını ifade et. Sanat, dans veya müzik auranı güçlendirecektir.';
+        return 'Express your creativity. Art, dance or music will strengthen your aura.';
       case AuraColor.yellow:
-        return 'Zihinsel berraklığını koru. Öğrenme ve öğretme auranı parlatacaktır.';
+        return 'Keep your mental clarity. Learning and teaching will polish your aura.';
       case AuraColor.green:
-        return 'Kalbini aç. Şifa çalışmaları ve başkalarına yardım auranı büyütecektir.';
+        return 'Open your heart. Healing work and helping others will grow your aura.';
       case AuraColor.blue:
-        return 'Hakikatini konuş. Dürüst iletişim ve özgün ifade auranı güçlendirecektir.';
+        return 'Speak your truth. Honest communication and authentic expression will strengthen your aura.';
       case AuraColor.indigo:
-        return 'Sezgine güven. Meditasyon ve rüya çalışması auranı derinleştirecektir.';
+        return 'Trust your intuition. Meditation and dream work will deepen your aura.';
       case AuraColor.violet:
-        return 'Kozmik bağlantını güçlendir. Spiritüel pratikler ve hizmet auranı yükseltecektir.';
+        return 'Strengthen your cosmic connection. Spiritual practices and service will elevate your aura.';
       case AuraColor.pink:
-        return 'Koşulsuz sevgiyi yay. Şefkat ve empati auranı genişletecektir.';
+        return 'Spread unconditional love. Compassion and empathy will expand your aura.';
       case AuraColor.white:
-        return 'Saflığını koru. Arınma ritüelleri ve meditasyon auranı koruyacaktır.';
+        return 'Maintain your purity. Purification rituals and meditation will protect your aura.';
       case AuraColor.gold:
-        return 'İlahi bağlantını hatırla. Dua ve şükran auranı parlatacaktır.';
+        return 'Remember your divine connection. Prayer and gratitude will polish your aura.';
     }
   }
 
@@ -283,38 +309,52 @@ class AuraService {
     return 60;
   }
 
-  static String _getDailyGuidance(AuraColor base, AuraColor today) {
+  static String _getDailyGuidance(AuraColor base, AuraColor today, {AppLanguage language = AppLanguage.tr}) {
+    String key;
+    String fallback;
+
     if (base == today) {
-      return 'Bugün auran en güçlü halinde. Doğal yeteneklerini kullanmak için ideal bir gün.';
+      key = 'aura.daily_guidance.strongest';
+      fallback = 'Today your aura is at its strongest. Ideal day to use your natural talents.';
     } else if (_areHarmoniousColors(base, today)) {
-      return 'Bugünün enerjisi auranla uyumlu. Akışta kal ve fırsatları değerlendir.';
+      key = 'aura.daily_guidance.harmonious';
+      fallback = "Today's energy is harmonious with your aura. Stay in flow and seize opportunities.";
     } else {
-      return 'Bugün farklı bir enerji akışı var. Esneklik ve adaptasyon önemli. Dengeyi bul.';
+      key = 'aura.daily_guidance.different';
+      fallback = 'Today has a different energy flow. Flexibility and adaptation are important. Find balance.';
     }
+
+    final localized = L10nService.get(key, language);
+    return localized != key ? localized : fallback;
   }
 
-  static String _getDailyAffirmation(AuraColor aura) {
+  static String _getDailyAffirmation(AuraColor aura, {AppLanguage language = AppLanguage.tr}) {
+    final key = 'aura.affirmations.${aura.name.toLowerCase()}';
+    final localized = L10nService.get(key, language);
+    if (localized != key) return localized;
+
+    // English fallback
     switch (aura) {
       case AuraColor.red:
-        return 'Güçlü ve güvendeyim. Korkusuzca ilerlerim.';
+        return 'I am strong and safe. I move forward fearlessly.';
       case AuraColor.orange:
-        return 'Yaratıcılığım sınırsız. Neşeyle ifade ederim.';
+        return 'My creativity is limitless. I express with joy.';
       case AuraColor.yellow:
-        return 'Zihnim berrak, iradem güçlü. Başarı benim.';
+        return 'My mind is clear, my will is strong. Success is mine.';
       case AuraColor.green:
-        return 'Kalbim açık, sevgim sonsuz. Şifa taşıyorum.';
+        return 'My heart is open, my love is infinite. I carry healing.';
       case AuraColor.blue:
-        return 'Hakikatimi konuşurum. Sesim güçlüdür.';
+        return 'I speak my truth. My voice is powerful.';
       case AuraColor.indigo:
-        return 'Sezgilerime güvenirim. İç bilgeliğim rehberimdir.';
+        return 'I trust my intuition. My inner wisdom guides me.';
       case AuraColor.violet:
-        return 'Evrenle birlikteyim. Yüksek amacıma hizmet ederim.';
+        return 'I am one with the universe. I serve my higher purpose.';
       case AuraColor.pink:
-        return 'Sevgi veririm, sevgi alırım. Şefkat doğamdır.';
+        return 'I give love, I receive love. Compassion is my nature.';
       case AuraColor.white:
-        return 'Saf ışıktayım. İlahi koruma benimledir.';
+        return 'I am in pure light. Divine protection is with me.';
       case AuraColor.gold:
-        return 'İlahi enerjiyim. Bolluk ve bereket benimle akar.';
+        return 'I am divine energy. Abundance and prosperity flow with me.';
     }
   }
 }
@@ -366,7 +406,36 @@ extension AuraColorExtension on AuraColor {
 
   String localizedName(AppLanguage language) {
     final key = 'aura.colors.${name.toLowerCase()}';
-    return L10nService.get(key, language);
+    final localized = L10nService.get(key, language);
+    return localized != key ? localized : name;
+  }
+
+  String localizedMeditationFocus(AppLanguage language) {
+    final key = 'aura.meditation_focus.${name.toLowerCase()}';
+    final localized = L10nService.get(key, language);
+    if (localized != key) return localized;
+    return language == AppLanguage.tr ? meditationFocusTr : meditationFocusEn;
+  }
+
+  String localizedCrystal(AppLanguage language) {
+    final key = 'aura.crystals.${name.toLowerCase()}';
+    final localized = L10nService.get(key, language);
+    if (localized != key) return localized;
+    return language == AppLanguage.tr ? recommendedCrystalTr : recommendedCrystalEn;
+  }
+
+  String localizedNatureConnection(AppLanguage language) {
+    final key = 'aura.nature.${name.toLowerCase()}';
+    final localized = L10nService.get(key, language);
+    if (localized != key) return localized;
+    return language == AppLanguage.tr ? natureConnectionTr : natureConnectionEn;
+  }
+
+  String localizedMeaning(AppLanguage language) {
+    final key = 'aura.meanings.${name.toLowerCase()}';
+    final localized = L10nService.get(key, language);
+    if (localized != key) return localized;
+    return language == AppLanguage.tr ? meaningTr : meaningEn;
   }
 
   Color get color {
@@ -384,7 +453,9 @@ extension AuraColorExtension on AuraColor {
     }
   }
 
-  String get meaning {
+  String get meaning => meaningTr;
+
+  String get meaningTr {
     switch (this) {
       case AuraColor.red:
         return 'Güçlü yaşam enerjisi, tutku ve fiziksel güç. Topraklı ve hayatta kalmaya odaklı.';
@@ -406,6 +477,31 @@ extension AuraColorExtension on AuraColor {
         return 'Saflık, ilahi koruma ve yüksek spiritüel gelişim. Aydınlanmış.';
       case AuraColor.gold:
         return 'İlahi bilgelik, koruma ve bolluk. Spiritüel liderlik.';
+    }
+  }
+
+  String get meaningEn {
+    switch (this) {
+      case AuraColor.red:
+        return 'Strong life energy, passion and physical power. Grounded and focused on survival.';
+      case AuraColor.orange:
+        return 'Creativity, emotional expression and sociability. Joyful and adventurous spirit.';
+      case AuraColor.yellow:
+        return 'Mental power, optimism and self-confidence. Intellectual and analytical.';
+      case AuraColor.green:
+        return 'Healing energy, balance and growth. Heart-centered and nurturing.';
+      case AuraColor.blue:
+        return 'Communication, truth and calmness. Trustworthy and peaceful.';
+      case AuraColor.indigo:
+        return 'Deep intuition, spiritual awareness and insight. Mystical and visionary.';
+      case AuraColor.violet:
+        return 'Spiritual connection, transformation and wisdom. Higher consciousness.';
+      case AuraColor.pink:
+        return 'Unconditional love, compassion and romance. Sensitive and loving.';
+      case AuraColor.white:
+        return 'Purity, divine protection and high spiritual development. Enlightened.';
+      case AuraColor.gold:
+        return 'Divine wisdom, protection and abundance. Spiritual leadership.';
     }
   }
 
@@ -439,7 +535,9 @@ extension AuraColorExtension on AuraColor {
     }
   }
 
-  String get meditationFocus {
+  String get meditationFocus => meditationFocusTr;
+
+  String get meditationFocusTr {
     switch (this) {
       case AuraColor.red: return 'topraklanma ve güvenlik';
       case AuraColor.orange: return 'yaratıcılık ve duygusal akış';
@@ -454,7 +552,24 @@ extension AuraColorExtension on AuraColor {
     }
   }
 
-  String get recommendedCrystal {
+  String get meditationFocusEn {
+    switch (this) {
+      case AuraColor.red: return 'grounding and security';
+      case AuraColor.orange: return 'creativity and emotional flow';
+      case AuraColor.yellow: return 'personal power and confidence';
+      case AuraColor.green: return 'heart opening and healing';
+      case AuraColor.blue: return 'communication and authentic expression';
+      case AuraColor.indigo: return 'third eye and intuition';
+      case AuraColor.violet: return 'crown chakra and universal connection';
+      case AuraColor.pink: return 'unconditional love and compassion';
+      case AuraColor.white: return 'purification and protection';
+      case AuraColor.gold: return 'divine connection and abundance';
+    }
+  }
+
+  String get recommendedCrystal => recommendedCrystalTr;
+
+  String get recommendedCrystalTr {
     switch (this) {
       case AuraColor.red: return 'Kırmızı Jasper veya Garnet';
       case AuraColor.orange: return 'Karneol veya Turuncu Kalsit';
@@ -469,7 +584,24 @@ extension AuraColorExtension on AuraColor {
     }
   }
 
-  String get natureConnection {
+  String get recommendedCrystalEn {
+    switch (this) {
+      case AuraColor.red: return 'Red Jasper or Garnet';
+      case AuraColor.orange: return 'Carnelian or Orange Calcite';
+      case AuraColor.yellow: return 'Citrine or Tiger\'s Eye';
+      case AuraColor.green: return 'Green Aventurine or Emerald';
+      case AuraColor.blue: return 'Lapis Lazuli or Aquamarine';
+      case AuraColor.indigo: return 'Amethyst or Sodalite';
+      case AuraColor.violet: return 'Purple Amethyst or Sugilite';
+      case AuraColor.pink: return 'Rose Quartz or Rhodonite';
+      case AuraColor.white: return 'Clear Quartz or Selenite';
+      case AuraColor.gold: return 'Golden Topaz or Pyrite';
+    }
+  }
+
+  String get natureConnection => natureConnectionTr;
+
+  String get natureConnectionTr {
     switch (this) {
       case AuraColor.red: return 'Yalın ayak toprakta yürü. Ağaçlara sarıl.';
       case AuraColor.orange: return 'Gün batımını izle. Su kenarında zaman geçir.';
@@ -481,6 +613,21 @@ extension AuraColorExtension on AuraColor {
       case AuraColor.pink: return 'Çiçek bahçelerinde zaman geçir.';
       case AuraColor.white: return 'Kar veya bulutları izle. Temiz havada ol.';
       case AuraColor.gold: return 'Gün doğumunu izle. Güneş ışığında ol.';
+    }
+  }
+
+  String get natureConnectionEn {
+    switch (this) {
+      case AuraColor.red: return 'Walk barefoot on the earth. Hug trees.';
+      case AuraColor.orange: return 'Watch the sunset. Spend time by the water.';
+      case AuraColor.yellow: return 'Take a sunbath. Be in flower gardens.';
+      case AuraColor.green: return 'Walk in the forest. Care for plants.';
+      case AuraColor.blue: return 'Be by the sea or lake. Watch the sky.';
+      case AuraColor.indigo: return 'Watch the night sky and stars.';
+      case AuraColor.violet: return 'Be in mountains or high places.';
+      case AuraColor.pink: return 'Spend time in flower gardens.';
+      case AuraColor.white: return 'Watch snow or clouds. Be in fresh air.';
+      case AuraColor.gold: return 'Watch the sunrise. Be in sunlight.';
     }
   }
 

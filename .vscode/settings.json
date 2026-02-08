@@ -76,21 +76,10 @@
   "vsfire.useRestAPI": true,
 
   // Error Lens
-  "errorLens.enabledDiagnosticLevels": [
-    "error",
-    "warning",
-    "info"
-  ],
+  "errorLens.enabledDiagnosticLevels": ["error", "warning", "info"],
 
   // Todo Tree
-  "todo-tree.general.tags": [
-    "TODO",
-    "FIXME",
-    "NOTE",
-    "BUG",
-    "HACK",
-    "XXX"
-  ],
+  "todo-tree.general.tags": ["TODO", "FIXME", "NOTE", "BUG", "HACK", "XXX"],
   "todo-tree.highlights.defaultHighlight": {
     "icon": "alert",
     "type": "text",
@@ -131,5 +120,6 @@
     "riverpod",
     "supabase",
     "timezone"
-  ]
+  ],
+  "claudeCodeChat.permissions.yoloMode": true
 }

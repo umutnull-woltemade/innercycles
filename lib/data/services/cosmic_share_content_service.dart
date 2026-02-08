@@ -1,6 +1,8 @@
 import 'dart:math';
 import '../models/zodiac_sign.dart';
 import '../models/planet.dart';
+import '../providers/app_providers.dart';
+import 'l10n_service.dart';
 import 'moon_service.dart';
 
 /// Service for generating viral, shareable cosmic content
@@ -13,30 +15,31 @@ class CosmicShareContentService {
     required DateTime birthDate,
     ZodiacSign? risingSign,
     ZodiacSign? moonSign,
+    AppLanguage language = AppLanguage.tr,
   }) {
     final today = DateTime.now();
     final moonPhase = MoonService.getCurrentPhase(today);
     final dayOfYear = today.difference(DateTime(today.year, 1, 1)).inDays;
 
     return CosmicShareContent(
-      heroBlock: _generateHeroBlock(sunSign, today, moonPhase),
-      personalMessage: _generatePersonalMessage(sunSign, risingSign, moonSign),
-      energyMeter: _generateEnergyMeter(sunSign, dayOfYear),
-      planetaryInfluence: _generatePlanetaryInfluence(sunSign, today),
-      shadowLight: _generateShadowLight(sunSign),
-      cosmicAdvice: _generateCosmicAdvice(sunSign),
-      symbolicMessage: _generateSymbolicMessage(sunSign, dayOfYear),
-      viralHook: _generateViralHook(sunSign),
-      sharePrompt: _generateSharePrompt(),
-      collectiveMoment: _generateCollectiveMoment(sunSign, moonPhase),
-      premiumCuriosity: _generatePremiumCuriosity(sunSign),
-      microMessages: _generateMicroMessages(sunSign),
+      heroBlock: _generateHeroBlock(sunSign, today, moonPhase, language: language),
+      personalMessage: _generatePersonalMessage(sunSign, risingSign, moonSign, language: language),
+      energyMeter: _generateEnergyMeter(sunSign, dayOfYear, language: language),
+      planetaryInfluence: _generatePlanetaryInfluence(sunSign, today, language: language),
+      shadowLight: _generateShadowLight(sunSign, language: language),
+      cosmicAdvice: _generateCosmicAdvice(sunSign, language: language),
+      symbolicMessage: _generateSymbolicMessage(sunSign, dayOfYear, language: language),
+      viralHook: _generateViralHook(sunSign, language: language),
+      sharePrompt: _generateSharePrompt(language: language),
+      collectiveMoment: _generateCollectiveMoment(sunSign, moonPhase, language: language),
+      premiumCuriosity: _generatePremiumCuriosity(sunSign, language: language),
+      microMessages: _generateMicroMessages(sunSign, language: language),
       // MASTER LEVEL additions
-      dreamInsight: _generateDreamInsight(sunSign, moonPhase),
-      numerologyInsight: _generateNumerologyInsight(today),
-      tantraWisdom: _generateTantraWisdom(sunSign),
-      chakraSnapshot: _generateChakraSnapshot(sunSign, dayOfYear),
-      timingHint: _generateTimingHint(sunSign, today),
+      dreamInsight: _generateDreamInsight(sunSign, moonPhase, language: language),
+      numerologyInsight: _generateNumerologyInsight(today, language: language),
+      tantraWisdom: _generateTantraWisdom(sunSign, language: language),
+      chakraSnapshot: _generateChakraSnapshot(sunSign, dayOfYear, language: language),
+      timingHint: _generateTimingHint(sunSign, today, language: language),
     );
   }
 
@@ -44,8 +47,12 @@ class CosmicShareContentService {
   // MASTER LEVEL: NEW GENERATORS
   // ═══════════════════════════════════════════════════════════════
 
-  static DreamInsight _generateDreamInsight(ZodiacSign sign, MoonPhase moonPhase) {
-    final symbols = {
+  static DreamInsight _generateDreamInsight(ZodiacSign sign, MoonPhase moonPhase, {AppLanguage language = AppLanguage.tr}) {
+    // Get localized symbol meaning
+    final symbolKey = 'cosmic_share.dream_symbols.${sign.name}';
+    final localizedSymbol = L10nService.get(symbolKey, language);
+
+    final trSymbols = {
       ZodiacSign.aries: ['🔥', 'Ateş — dönüşüm ve tutku'],
       ZodiacSign.taurus: ['🌳', 'Ağaç — kökler ve büyüme'],
       ZodiacSign.gemini: ['🪞', 'Ayna — iç yansıma'],
@@ -59,15 +66,45 @@ class CosmicShareContentService {
       ZodiacSign.aquarius: ['⚡', 'Şimşek — ani farkındalık'],
       ZodiacSign.pisces: ['🐚', 'Deniz kabuğu — içsel ses'],
     };
+    final enSymbols = {
+      ZodiacSign.aries: ['🔥', 'Fire — transformation and passion'],
+      ZodiacSign.taurus: ['🌳', 'Tree — roots and growth'],
+      ZodiacSign.gemini: ['🪞', 'Mirror — inner reflection'],
+      ZodiacSign.cancer: ['🌊', 'Water — emotional depth'],
+      ZodiacSign.leo: ['👑', 'Crown — inner power'],
+      ZodiacSign.virgo: ['🔮', 'Crystal — clarity'],
+      ZodiacSign.libra: ['⚖️', 'Scales — seeking balance'],
+      ZodiacSign.scorpio: ['🦋', 'Butterfly — metamorphosis'],
+      ZodiacSign.sagittarius: ['🏹', 'Arrow — aim and direction'],
+      ZodiacSign.capricorn: ['⛰️', 'Mountain — summit journey'],
+      ZodiacSign.aquarius: ['⚡', 'Lightning — sudden awareness'],
+      ZodiacSign.pisces: ['🐚', 'Seashell — inner voice'],
+    };
 
-    final prompts = [
+    final symbols = language == AppLanguage.tr ? trSymbols : enSymbols;
+    final defaultSymbol = language == AppLanguage.tr ? ['✨', 'Yıldız — sonsuz potansiyel'] : ['✨', 'Star — infinite potential'];
+
+    // Get localized dream prompts
+    final promptKey = 'cosmic_share.dream_prompts.${_random.nextInt(4) + 1}';
+    final localizedPrompt = L10nService.get(promptKey, language);
+    final trPrompts = [
       'Bu gece rüyanda neyi görmek isterdin?',
       'Gözlerini kapattığında hangi renk beliriyor?',
       'Bilinçaltın sana ne fısıldıyor?',
       'Ay ışığında hangi kapı açılıyor?',
     ];
+    final enPrompts = [
+      'What would you like to see in your dreams tonight?',
+      'What color appears when you close your eyes?',
+      'What is your subconscious whispering to you?',
+      'What door opens in the moonlight?',
+    ];
+    final prompts = language == AppLanguage.tr ? trPrompts : enPrompts;
 
-    final nightMessages = {
+    // Get localized night messages
+    final nightKey = 'cosmic_share.night_messages.${moonPhase.name}';
+    final localizedNight = L10nService.get(nightKey, language);
+    final trNightMessages = {
       MoonPhase.newMoon: 'Karanlıkta bile ışık var.',
       MoonPhase.waxingCrescent: 'Tohumlar sessizce büyüyor.',
       MoonPhase.firstQuarter: 'Yarısı aydınlık, yarısı gizem.',
@@ -77,25 +114,41 @@ class CosmicShareContentService {
       MoonPhase.lastQuarter: 'Eski döngü kapanıyor.',
       MoonPhase.waningCrescent: 'Dinlenme zamanı.',
     };
+    final enNightMessages = {
+      MoonPhase.newMoon: 'There is light even in darkness.',
+      MoonPhase.waxingCrescent: 'Seeds are quietly growing.',
+      MoonPhase.firstQuarter: 'Half illuminated, half mystery.',
+      MoonPhase.waxingGibbous: 'Fullness is approaching.',
+      MoonPhase.fullMoon: 'Everything is illuminated.',
+      MoonPhase.waningGibbous: 'Release with gratitude.',
+      MoonPhase.lastQuarter: 'The old cycle is closing.',
+      MoonPhase.waningCrescent: 'Time to rest.',
+    };
+    final nightMessages = language == AppLanguage.tr ? trNightMessages : enNightMessages;
+    final defaultNightMsg = language == AppLanguage.tr ? 'Rüyaların rehberin olsun.' : 'Let your dreams guide you.';
 
-    final symbolData = symbols[sign] ?? ['✨', 'Yıldız — sonsuz potansiyel'];
+    final symbolData = symbols[sign] ?? defaultSymbol;
 
     return DreamInsight(
       symbol: symbolData[0],
-      symbolMeaning: symbolData[1],
-      dreamPrompt: prompts[_random.nextInt(prompts.length)],
-      nightMessage: nightMessages[moonPhase] ?? 'Rüyaların rehberin olsun.',
+      symbolMeaning: localizedSymbol != symbolKey ? localizedSymbol : symbolData[1],
+      dreamPrompt: localizedPrompt != promptKey ? localizedPrompt : prompts[_random.nextInt(prompts.length)],
+      nightMessage: localizedNight != nightKey ? localizedNight : (nightMessages[moonPhase] ?? defaultNightMsg),
     );
   }
 
-  static NumerologyInsight _generateNumerologyInsight(DateTime today) {
+  static NumerologyInsight _generateNumerologyInsight(DateTime today, {AppLanguage language = AppLanguage.tr}) {
     // Calculate day number (reduce to single digit)
     int daySum = today.day + today.month + today.year;
     while (daySum > 9 && daySum != 11 && daySum != 22 && daySum != 33) {
       daySum = daySum.toString().split('').map(int.parse).reduce((a, b) => a + b);
     }
 
-    final meanings = {
+    // Get localized meaning
+    final meaningKey = 'cosmic_share.numerology.meanings.$daySum';
+    final localizedMeaning = L10nService.get(meaningKey, language);
+
+    final trMeanings = {
       1: 'Başlangıçların enerjisi',
       2: 'Ortaklık ve denge',
       3: 'Yaratıcılık akışta',
@@ -109,8 +162,28 @@ class CosmicShareContentService {
       22: 'Usta inşaatçı',
       33: 'Kozmik öğretmen',
     };
+    final enMeanings = {
+      1: 'Energy of beginnings',
+      2: 'Partnership and balance',
+      3: 'Creativity in flow',
+      4: 'Time to lay foundations',
+      5: 'Winds of change',
+      6: 'Love and responsibility',
+      7: 'Inner journey',
+      8: 'Gateway to abundance',
+      9: 'Energy of completion',
+      11: 'Portal of enlightenment',
+      22: 'Master builder',
+      33: 'Cosmic teacher',
+    };
+    final meanings = language == AppLanguage.tr ? trMeanings : enMeanings;
+    final defaultMeaning = language == AppLanguage.tr ? 'Evrensel enerji' : 'Universal energy';
 
-    final vibrations = {
+    // Get localized vibration
+    final vibrationKey = 'cosmic_share.numerology.vibrations.$daySum';
+    final localizedVibration = L10nService.get(vibrationKey, language);
+
+    final trVibrations = {
       1: 'Cesur ve kararlı',
       2: 'Hassas ve sezgisel',
       3: 'Neşeli ve ifade dolu',
@@ -124,6 +197,22 @@ class CosmicShareContentService {
       22: 'Yapıcı ve manifestör',
       33: 'Şifacı ve yüksek bilinç',
     };
+    final enVibrations = {
+      1: 'Brave and determined',
+      2: 'Sensitive and intuitive',
+      3: 'Joyful and expressive',
+      4: 'Practical and disciplined',
+      5: 'Adventurous and free',
+      6: 'Compassionate and protective',
+      7: 'Mystical and analytical',
+      8: 'Powerful and ambitious',
+      9: 'Wise and humanitarian',
+      11: 'Visionary and inspiring',
+      22: 'Builder and manifestor',
+      33: 'Healer and higher consciousness',
+    };
+    final vibrations = language == AppLanguage.tr ? trVibrations : enVibrations;
+    final defaultVibration = language == AppLanguage.tr ? 'Dengeli titreşim' : 'Balanced vibration';
 
     // Calculate lucky hour based on day number
     final luckyHours = ['06:00', '09:00', '11:11', '14:00', '17:00', '19:00', '21:00', '23:00'];
@@ -131,21 +220,36 @@ class CosmicShareContentService {
 
     return NumerologyInsight(
       dayNumber: daySum,
-      numberMeaning: meanings[daySum] ?? 'Evrensel enerji',
-      vibration: vibrations[daySum] ?? 'Dengeli titreşim',
+      numberMeaning: localizedMeaning != meaningKey ? localizedMeaning : (meanings[daySum] ?? defaultMeaning),
+      vibration: localizedVibration != vibrationKey ? localizedVibration : (vibrations[daySum] ?? defaultVibration),
       luckyHour: luckyHour,
     );
   }
 
-  static TantraWisdom _generateTantraWisdom(ZodiacSign sign) {
-    final breathFocuses = [
+  static TantraWisdom _generateTantraWisdom(ZodiacSign sign, {AppLanguage language = AppLanguage.tr}) {
+    final breathIndex = _random.nextInt(4) + 1;
+    final breathKey = 'cosmic_share.tantra.breath_focus.$breathIndex';
+    final localizedBreath = L10nService.get(breathKey, language);
+
+    final trBreathFocuses = [
       'Nefesini kalbinin merkezine yönlendir.',
       'Her nefeste evrenle bir ol.',
       'Nefes alırken ışık, verirken huzur.',
       'Sessizlikte nefesinin sesini dinle.',
     ];
+    final enBreathFocuses = [
+      'Direct your breath to the center of your heart.',
+      'Be one with the universe with every breath.',
+      'Light as you inhale, peace as you exhale.',
+      'Listen to the sound of your breath in silence.',
+    ];
+    final breathFocuses = language == AppLanguage.tr ? trBreathFocuses : enBreathFocuses;
 
-    final awarenessPoints = {
+    // Awareness points
+    final awarenessKey = 'cosmic_share.tantra.awareness.${sign.name}';
+    final localizedAwareness = L10nService.get(awarenessKey, language);
+
+    final trAwarenessPoints = {
       ZodiacSign.aries: 'Başının tepesi — taç çakra',
       ZodiacSign.taurus: 'Boğazın — ifade merkezi',
       ZodiacSign.gemini: 'Ellerinin içi — enerji portali',
@@ -159,24 +263,59 @@ class CosmicShareContentService {
       ZodiacSign.aquarius: 'Üçüncü göz — sezgi kapısı',
       ZodiacSign.pisces: 'Ayak tabanları — topraklama',
     };
+    final enAwarenessPoints = {
+      ZodiacSign.aries: 'Top of your head — crown chakra',
+      ZodiacSign.taurus: 'Your throat — expression center',
+      ZodiacSign.gemini: 'Palms of your hands — energy portal',
+      ZodiacSign.cancer: 'Center of your heart — love center',
+      ZodiacSign.leo: 'Center of your chest',
+      ZodiacSign.virgo: 'Solar plexus — power center',
+      ZodiacSign.libra: 'Bridge between heart and mind',
+      ZodiacSign.scorpio: 'Sacral region — creative energy',
+      ZodiacSign.sagittarius: 'Hips — movement energy',
+      ZodiacSign.capricorn: 'Knees — point of humility',
+      ZodiacSign.aquarius: 'Third eye — gate of intuition',
+      ZodiacSign.pisces: 'Soles of your feet — grounding',
+    };
+    final awarenessPoints = language == AppLanguage.tr ? trAwarenessPoints : enAwarenessPoints;
+    final defaultAwareness = language == AppLanguage.tr ? 'Kalbinin derinliği' : 'Depth of your heart';
 
-    final connections = [
+    // Inner connection
+    final connectionIndex = _random.nextInt(5) + 1;
+    final connectionKey = 'cosmic_share.tantra.connection.$connectionIndex';
+    final localizedConnection = L10nService.get(connectionKey, language);
+
+    final trConnections = [
       'Bedenin tapınağın, ruhun sakin.',
       'İçindeki sonsuzluğu hisset.',
       'Şu an mükemmel. Olduğun gibi.',
       'Evren seninle nefes alıyor.',
       'Her an yeni bir başlangıç.',
     ];
+    final enConnections = [
+      'Your body is your temple, your soul is at peace.',
+      'Feel the infinity within you.',
+      'This moment is perfect. Just as you are.',
+      'The universe breathes with you.',
+      'Every moment is a new beginning.',
+    ];
+    final connections = language == AppLanguage.tr ? trConnections : enConnections;
 
     return TantraWisdom(
-      breathFocus: breathFocuses[_random.nextInt(breathFocuses.length)],
-      awarenessPoint: awarenessPoints[sign] ?? 'Kalbinin derinliği',
-      innerConnection: connections[_random.nextInt(connections.length)],
+      breathFocus: localizedBreath != breathKey ? localizedBreath : breathFocuses[_random.nextInt(breathFocuses.length)],
+      awarenessPoint: localizedAwareness != awarenessKey ? localizedAwareness : (awarenessPoints[sign] ?? defaultAwareness),
+      innerConnection: localizedConnection != connectionKey ? localizedConnection : connections[_random.nextInt(connections.length)],
     );
   }
 
-  static ChakraSnapshot _generateChakraSnapshot(ZodiacSign sign, int dayOfYear) {
-    final chakras = {
+  static ChakraSnapshot _generateChakraSnapshot(ZodiacSign sign, int dayOfYear, {AppLanguage language = AppLanguage.tr}) {
+    // Get localized chakra data
+    final chakraNameKey = 'cosmic_share.chakras.${sign.name}.name';
+    final chakraMsgKey = 'cosmic_share.chakras.${sign.name}.message';
+    final localizedName = L10nService.get(chakraNameKey, language);
+    final localizedMsg = L10nService.get(chakraMsgKey, language);
+
+    final trChakras = {
       ZodiacSign.aries: ['Kök Çakra', '🔴', 'Güvenlik ve topraklama'],
       ZodiacSign.taurus: ['Sakral Çakra', '🟠', 'Yaratıcılık ve tutku'],
       ZodiacSign.gemini: ['Boğaz Çakra', '🔵', 'İletişim ve ifade'],
@@ -190,19 +329,36 @@ class CosmicShareContentService {
       ZodiacSign.aquarius: ['Taç Çakra', '🤍', 'Evrensel bağlantı'],
       ZodiacSign.pisces: ['Üçüncü Göz', '💜', 'Sezgi ve rüyalar'],
     };
+    final enChakras = {
+      ZodiacSign.aries: ['Root Chakra', '🔴', 'Security and grounding'],
+      ZodiacSign.taurus: ['Sacral Chakra', '🟠', 'Creativity and passion'],
+      ZodiacSign.gemini: ['Throat Chakra', '🔵', 'Communication and expression'],
+      ZodiacSign.cancer: ['Heart Chakra', '💚', 'Love and compassion'],
+      ZodiacSign.leo: ['Solar Plexus', '💛', 'Power and confidence'],
+      ZodiacSign.virgo: ['Solar Plexus', '💛', 'Analysis and order'],
+      ZodiacSign.libra: ['Heart Chakra', '💚', 'Balance and harmony'],
+      ZodiacSign.scorpio: ['Sacral Chakra', '🟠', 'Transformation and rebirth'],
+      ZodiacSign.sagittarius: ['Third Eye', '💜', 'Vision and wisdom'],
+      ZodiacSign.capricorn: ['Root Chakra', '🔴', 'Structure and discipline'],
+      ZodiacSign.aquarius: ['Crown Chakra', '🤍', 'Universal connection'],
+      ZodiacSign.pisces: ['Third Eye', '💜', 'Intuition and dreams'],
+    };
 
-    final chakraData = chakras[sign] ?? ['Kalp Çakra', '💚', 'Sevgi merkezi'];
+    final chakras = language == AppLanguage.tr ? trChakras : enChakras;
+    final defaultChakra = language == AppLanguage.tr ? ['Kalp Çakra', '💚', 'Sevgi merkezi'] : ['Heart Chakra', '💚', 'Love center'];
+
+    final chakraData = chakras[sign] ?? defaultChakra;
     final balance = 0.5 + (dayOfYear % 50) / 100.0; // 0.5 - 1.0 arası
 
     return ChakraSnapshot(
-      activeChakra: chakraData[0],
+      activeChakra: localizedName != chakraNameKey ? localizedName : chakraData[0],
       chakraSymbol: chakraData[1],
-      chakraMessage: chakraData[2],
+      chakraMessage: localizedMsg != chakraMsgKey ? localizedMsg : chakraData[2],
       balanceLevel: balance.clamp(0.0, 1.0),
     );
   }
 
-  static CosmicTimingHint _generateTimingHint(ZodiacSign sign, DateTime today) {
+  static CosmicTimingHint _generateTimingHint(ZodiacSign sign, DateTime today, {AppLanguage language = AppLanguage.tr}) {
     final goldenHours = {
       ZodiacSign.aries: '06:00 - 08:00',
       ZodiacSign.taurus: '10:00 - 12:00',
@@ -233,7 +389,12 @@ class CosmicShareContentService {
       ZodiacSign.pisces: '14:00 - 15:00',
     };
 
-    final rituals = [
+    // Get localized ritual
+    final ritualIndex = _random.nextInt(6) + 1;
+    final ritualKey = 'cosmic_share.rituals.$ritualIndex';
+    final localizedRitual = L10nService.get(ritualKey, language);
+
+    final trRituals = [
       'Niyetini kağıda yaz, sonra yak.',
       '3 dakika sessizce nefes al.',
       'Bir bardak su içerken minnetle dol.',
@@ -241,23 +402,49 @@ class CosmicShareContentService {
       'Bugün için tek bir kelime seç.',
       'Kalbine elini koy, dinle.',
     ];
+    final enRituals = [
+      'Write your intention on paper, then burn it.',
+      'Breathe quietly for 3 minutes.',
+      'Fill with gratitude while drinking a glass of water.',
+      'Look at the sun or moon, give thanks.',
+      'Choose one word for today.',
+      'Place your hand on your heart, listen.',
+    ];
+    final rituals = language == AppLanguage.tr ? trRituals : enRituals;
 
     return CosmicTimingHint(
       goldenHour: goldenHours[sign] ?? '12:00 - 14:00',
       avoidHour: avoidHours[sign] ?? '15:00 - 16:00',
-      ritualSuggestion: rituals[_random.nextInt(rituals.length)],
+      ritualSuggestion: localizedRitual != ritualKey ? localizedRitual : rituals[_random.nextInt(rituals.length)],
     );
   }
 
   static HeroBlock _generateHeroBlock(
     ZodiacSign sign,
     DateTime today,
-    MoonPhase moonPhase,
-  ) {
+    MoonPhase moonPhase, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     final headlines = _heroHeadlines[sign] ?? _defaultHeroHeadlines;
     final headline = headlines[_random.nextInt(headlines.length)];
 
-    final cosmicTitles = {
+    // Get localized cosmic title
+    final key = 'cosmic_share.cosmic_titles.${sign.name}';
+    final localizedTitle = L10nService.get(key, language);
+    final cosmicTitle = localizedTitle != key ? localizedTitle : _getCosmicTitleFallback(sign, language);
+
+    return HeroBlock(
+      signTitle: cosmicTitle,
+      signSymbol: sign.symbol,
+      cosmicHeadline: headline,
+      dateFormatted: _formatDate(today, language: language),
+      moonPhaseText: _getMoonPhaseText(moonPhase, language: language),
+      moonPhaseEmoji: _getMoonPhaseEmoji(moonPhase),
+    );
+  }
+
+  static String _getCosmicTitleFallback(ZodiacSign sign, AppLanguage language) {
+    final trTitles = {
       ZodiacSign.aries: 'Ateşin Çocuğu',
       ZodiacSign.taurus: 'Toprağın Koruyucusu',
       ZodiacSign.gemini: 'Rüzgârın Elçisi',
@@ -271,22 +458,29 @@ class CosmicShareContentService {
       ZodiacSign.aquarius: 'Geleceğin Vizyoneri',
       ZodiacSign.pisces: 'Sonsuzluğun Rüyacısı',
     };
-
-    return HeroBlock(
-      signTitle: cosmicTitles[sign] ?? sign.nameTr,
-      signSymbol: sign.symbol,
-      cosmicHeadline: headline,
-      dateFormatted: _formatTurkishDate(today),
-      moonPhaseText: _getMoonPhaseText(moonPhase),
-      moonPhaseEmoji: _getMoonPhaseEmoji(moonPhase),
-    );
+    final enTitles = {
+      ZodiacSign.aries: 'Child of Fire',
+      ZodiacSign.taurus: 'Guardian of Earth',
+      ZodiacSign.gemini: 'Messenger of Wind',
+      ZodiacSign.cancer: 'Heir of the Moon',
+      ZodiacSign.leo: 'Throne of the Sun',
+      ZodiacSign.virgo: 'Healer of Stars',
+      ZodiacSign.libra: 'Master of Balance',
+      ZodiacSign.scorpio: 'Alchemist of Transformation',
+      ZodiacSign.sagittarius: 'Explorer of Horizons',
+      ZodiacSign.capricorn: 'Architect of Time',
+      ZodiacSign.aquarius: 'Visionary of the Future',
+      ZodiacSign.pisces: 'Dreamer of Infinity',
+    };
+    return language == AppLanguage.tr ? trTitles[sign]! : enTitles[sign]!;
   }
 
   static PersonalCosmicMessage _generatePersonalMessage(
     ZodiacSign sunSign,
     ZodiacSign? risingSign,
-    ZodiacSign? moonSign,
-  ) {
+    ZodiacSign? moonSign, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     final messages = _personalMessages[sunSign] ?? _defaultPersonalMessages;
     final message = messages[_random.nextInt(messages.length)];
 
@@ -300,11 +494,11 @@ class CosmicShareContentService {
 
     return PersonalCosmicMessage(
       message: enhancedMessage.trim(),
-      emotionalCore: _getEmotionalCore(sunSign),
+      emotionalCore: _getEmotionalCore(sunSign, language: language),
     );
   }
 
-  static CosmicEnergyMeter _generateEnergyMeter(ZodiacSign sign, int dayOfYear) {
+  static CosmicEnergyMeter _generateEnergyMeter(ZodiacSign sign, int dayOfYear, {AppLanguage language = AppLanguage.tr}) {
     // Pseudo-randomized but consistent for the same day
     final seed = dayOfYear + sign.index;
     final energyLevel = 45 + (seed % 50);
@@ -325,11 +519,11 @@ class CosmicShareContentService {
 
     return CosmicEnergyMeter(
       energyLevel: energyLevel,
-      energyDescription: _getEnergyDescription(energyLevel),
+      energyDescription: _getEnergyDescription(energyLevel, language: language),
       emotionalIntensity: intensityOptions[intensityIndex],
-      intensityDescription: _getIntensityDescription(intensityOptions[intensityIndex]),
+      intensityDescription: _getIntensityDescription(intensityOptions[intensityIndex], language: language),
       intuitionStrength: intuitionLevel,
-      intuitionDescription: _getIntuitionDescription(intuitionLevel),
+      intuitionDescription: _getIntuitionDescription(intuitionLevel, language: language),
       actionReflectionBalance: balanceRatio,
       balanceDescription: balanceKey,
     );
@@ -337,17 +531,28 @@ class CosmicShareContentService {
 
   static PlanetaryInfluence _generatePlanetaryInfluence(
     ZodiacSign sign,
-    DateTime today,
-  ) {
+    DateTime today, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     final dominantPlanets = _getDominantPlanets(sign, today);
     final dominant = dominantPlanets.first;
 
-    final planetData = _planetInfluenceData[dominant] ??
-        PlanetInfluenceData(
-          activates: 'İç gücünüzü',
-          blocks: 'Şüphelerinizi',
-          action: 'Kalbinizin sesini dinleyin.',
-        );
+    final planetData = _getPlanetInfluenceData(dominant, language: language);
+    final signName = language == AppLanguage.tr ? sign.nameTr : sign.name;
+    final compatibleSign = _getCompatibleSign(sign);
+    final compatibleName = language == AppLanguage.tr ? compatibleSign.nameTr : compatibleSign.name;
+
+    // Get localized exclusivity text
+    final exclKey = 'cosmic_share.planetary.exclusivity';
+    final localizedExcl = L10nService.get(exclKey, language);
+    String exclusivityText;
+    if (localizedExcl != exclKey) {
+      exclusivityText = localizedExcl.replaceAll('{sign1}', signName).replaceAll('{sign2}', compatibleName);
+    } else {
+      exclusivityText = language == AppLanguage.tr
+          ? 'Bu gezegen etkisi bugün sadece $signName ve $compatibleName için bu kadar güçlü.'
+          : 'This planetary influence is especially strong today only for $signName and $compatibleName.';
+    }
 
     return PlanetaryInfluence(
       dominantPlanet: dominant,
@@ -355,13 +560,112 @@ class CosmicShareContentService {
       activates: planetData.activates,
       blocks: planetData.blocks,
       oneAction: planetData.action,
-      exclusivityText: 'Bu gezegen etkisi bugün sadece ${sign.nameTr} ve ${_getCompatibleSign(sign).nameTr} için bu kadar güçlü.',
+      exclusivityText: exclusivityText,
     );
   }
 
-  static ShadowLightDuality _generateShadowLight(ZodiacSign sign) {
-    final shadowData = _shadowData[sign] ?? _defaultShadowData;
-    final lightData = _lightData[sign] ?? _defaultLightData;
+  static PlanetInfluenceData _getPlanetInfluenceData(Planet planet, {AppLanguage language = AppLanguage.tr}) {
+    final activatesKey = 'cosmic_share.planetary.${planet.name}.activates';
+    final blocksKey = 'cosmic_share.planetary.${planet.name}.blocks';
+    final actionKey = 'cosmic_share.planetary.${planet.name}.action';
+
+    final localizedActivates = L10nService.get(activatesKey, language);
+    final localizedBlocks = L10nService.get(blocksKey, language);
+    final localizedAction = L10nService.get(actionKey, language);
+
+    final trData = {
+      Planet.sun: PlanetInfluenceData(
+        activates: 'Özgüvenini ve yaşam enerjini',
+        blocks: 'Gölgede kalmayı ve küçümsenmeyi',
+        action: 'Bugün görünür ol. Işığını saklamanın zamanı değil.',
+      ),
+      Planet.moon: PlanetInfluenceData(
+        activates: 'Sezgilerini ve duygusal zekânı',
+        blocks: 'Mantıksal aşırılığı ve duygusal kaçınmayı',
+        action: 'Bir duyguyu bastırmak yerine, onu dinle.',
+      ),
+      Planet.mercury: PlanetInfluenceData(
+        activates: 'İletişim gücünü ve zihinsel netliği',
+        blocks: 'Sessizliği ve yanlış anlaşılmayı',
+        action: 'Söylemen gereken bir şey var. Bugün söyle.',
+      ),
+      Planet.venus: PlanetInfluenceData(
+        activates: 'Çekiciliğini ve ilişki enerjini',
+        blocks: 'Yalnızlığı ve özdeğer eksikliğini',
+        action: 'Kendine güzel bir şey yap. Hak ediyorsun.',
+      ),
+      Planet.mars: PlanetInfluenceData(
+        activates: 'Savaşçı ruhunu ve harekete geçme gücünü',
+        blocks: 'Pasifliği ve ertelemeyi',
+        action: 'Bir konuda adım at. Düşünme, yap.',
+      ),
+      Planet.jupiter: PlanetInfluenceData(
+        activates: 'Bolluğu ve genişleme enerjini',
+        blocks: 'Kısıtlayıcı düşünceleri ve küçük oynamayı',
+        action: 'Bugün büyük düşün. Evren seni destekliyor.',
+      ),
+      Planet.saturn: PlanetInfluenceData(
+        activates: 'Disiplinini ve uzun vadeli vizyonunu',
+        blocks: 'Kısa yolları ve sorumsuzluğu',
+        action: 'Zor ama doğru olanı seç.',
+      ),
+    };
+
+    final enData = {
+      Planet.sun: PlanetInfluenceData(
+        activates: 'Your confidence and life energy',
+        blocks: 'Staying in the shadows and being underestimated',
+        action: 'Be visible today. This is not the time to hide your light.',
+      ),
+      Planet.moon: PlanetInfluenceData(
+        activates: 'Your intuition and emotional intelligence',
+        blocks: 'Logical extremes and emotional avoidance',
+        action: 'Instead of suppressing a feeling, listen to it.',
+      ),
+      Planet.mercury: PlanetInfluenceData(
+        activates: 'Your communication power and mental clarity',
+        blocks: 'Silence and misunderstandings',
+        action: 'There is something you need to say. Say it today.',
+      ),
+      Planet.venus: PlanetInfluenceData(
+        activates: 'Your attractiveness and relationship energy',
+        blocks: 'Loneliness and lack of self-worth',
+        action: 'Do something beautiful for yourself. You deserve it.',
+      ),
+      Planet.mars: PlanetInfluenceData(
+        activates: 'Your warrior spirit and power to take action',
+        blocks: 'Passivity and procrastination',
+        action: 'Take a step on something. Don\'t think, do.',
+      ),
+      Planet.jupiter: PlanetInfluenceData(
+        activates: 'Abundance and expansion energy',
+        blocks: 'Limiting thoughts and playing small',
+        action: 'Think big today. The universe supports you.',
+      ),
+      Planet.saturn: PlanetInfluenceData(
+        activates: 'Your discipline and long-term vision',
+        blocks: 'Shortcuts and irresponsibility',
+        action: 'Choose what is difficult but right.',
+      ),
+    };
+
+    final data = language == AppLanguage.tr ? trData : enData;
+    final defaultData = language == AppLanguage.tr
+        ? PlanetInfluenceData(activates: 'İç gücünüzü', blocks: 'Şüphelerinizi', action: 'Kalbinizin sesini dinleyin.')
+        : PlanetInfluenceData(activates: 'Your inner power', blocks: 'Your doubts', action: 'Listen to your heart.');
+
+    final fallbackData = data[planet] ?? defaultData;
+
+    return PlanetInfluenceData(
+      activates: localizedActivates != activatesKey ? localizedActivates : fallbackData.activates,
+      blocks: localizedBlocks != blocksKey ? localizedBlocks : fallbackData.blocks,
+      action: localizedAction != actionKey ? localizedAction : fallbackData.action,
+    );
+  }
+
+  static ShadowLightDuality _generateShadowLight(ZodiacSign sign, {AppLanguage language = AppLanguage.tr}) {
+    final shadowData = _getShadowData(sign, language: language);
+    final lightData = _getLightData(sign, language: language);
 
     return ShadowLightDuality(
       shadowChallenge: shadowData.challenge,
@@ -373,38 +677,578 @@ class CosmicShareContentService {
     );
   }
 
-  static List<String> _generateCosmicAdvice(ZodiacSign sign) {
-    final allAdvice = _cosmicAdvice[sign] ?? _defaultCosmicAdvice;
-    final shuffled = List<String>.from(allAdvice)..shuffle(_random);
-    return shuffled.take(3).toList();
+  static ShadowData _getShadowData(ZodiacSign sign, {AppLanguage language = AppLanguage.tr}) {
+    final challengeKey = 'cosmic_share.shadow.${sign.name}.challenge';
+    final fearKey = 'cosmic_share.shadow.${sign.name}.fear';
+    final patternKey = 'cosmic_share.shadow.${sign.name}.pattern';
+
+    final localizedChallenge = L10nService.get(challengeKey, language);
+    final localizedFear = L10nService.get(fearKey, language);
+    final localizedPattern = L10nService.get(patternKey, language);
+
+    final fallbackData = _shadowData[sign] ?? _defaultShadowData;
+
+    // If we need English fallback and localization not found
+    if (language != AppLanguage.tr && localizedChallenge == challengeKey) {
+      return _getEnglishShadowData(sign);
+    }
+
+    return ShadowData(
+      challenge: localizedChallenge != challengeKey ? localizedChallenge : fallbackData.challenge,
+      fear: localizedFear != fearKey ? localizedFear : fallbackData.fear,
+      pattern: localizedPattern != patternKey ? localizedPattern : fallbackData.pattern,
+    );
   }
 
-  static SymbolicMessage _generateSymbolicMessage(ZodiacSign sign, int dayOfYear) {
-    final archetypes = _archetypes[sign] ?? _defaultArchetypes;
-    final index = dayOfYear % archetypes.length;
-    return archetypes[index];
+  static ShadowData _getEnglishShadowData(ZodiacSign sign) {
+    final enShadowData = {
+      ZodiacSign.aries: ShadowData(
+        challenge: 'Impatience is pushing you toward wrong decisions.',
+        fear: 'Fear of appearing inadequate',
+        pattern: 'Acting without thinking, then regret.',
+      ),
+      ZodiacSign.taurus: ShadowData(
+        challenge: 'Stubbornness is causing missed opportunities.',
+        fear: 'Loss of control and insecurity',
+        pattern: 'Resisting change, then forced adaptation.',
+      ),
+      ZodiacSign.gemini: ShadowData(
+        challenge: 'Scattered energy is blocking focus.',
+        fear: 'Being stuck and bored',
+        pattern: 'Start everything, finish nothing.',
+      ),
+      ZodiacSign.cancer: ShadowData(
+        challenge: 'Over-emotionality is clouding decisions.',
+        fear: 'Rejection and abandonment',
+        pattern: 'Going defensive, raising walls.',
+      ),
+      ZodiacSign.leo: ShadowData(
+        challenge: 'Ego is pushing others away.',
+        fear: 'Feeling invisible and unimportant',
+        pattern: 'Seeking approval, then disappointment.',
+      ),
+      ZodiacSign.virgo: ShadowData(
+        challenge: 'Perfectionism is paralyzing.',
+        fear: 'Criticism and making mistakes',
+        pattern: 'Over-analyzing, then inaction.',
+      ),
+      ZodiacSign.libra: ShadowData(
+        challenge: 'Indecision is stealing time.',
+        fear: 'Conflict and being unloved',
+        pattern: 'Trying to please everyone, losing yourself.',
+      ),
+      ZodiacSign.scorpio: ShadowData(
+        challenge: 'Need for control is poisoning relationships.',
+        fear: 'Betrayal and loss of power',
+        pattern: 'Testing, then self-fulfilling prophecy.',
+      ),
+      ZodiacSign.sagittarius: ShadowData(
+        challenge: 'Escape tendency is magnifying problems.',
+        fear: 'Commitment and being limited',
+        pattern: 'Leave when it gets hard, then regret.',
+      ),
+      ZodiacSign.capricorn: ShadowData(
+        challenge: 'Work addiction is neglecting relationships.',
+        fear: 'Failure and loss of status',
+        pattern: 'Escape from feeling, bury in work.',
+      ),
+      ZodiacSign.aquarius: ShadowData(
+        challenge: 'Emotional distance is isolating.',
+        fear: 'Ordinariness and conformity pressure',
+        pattern: 'Being different for the sake of it, losing essence.',
+      ),
+      ZodiacSign.pisces: ShadowData(
+        challenge: 'Escape mechanisms are disconnecting from reality.',
+        fear: 'Pain and disappointment',
+        pattern: 'Dream, then crash with reality.',
+      ),
+    };
+    return enShadowData[sign] ?? ShadowData(
+      challenge: 'Inner conflicts are blocking clarity.',
+      fear: 'Fear of the unknown',
+      pattern: 'Repeating cycles.',
+    );
   }
 
-  static String _generateViralHook(ZodiacSign sign) {
-    final hooks = [
-      'Bugün ${sign.nameTr} burçları bir şeylerin farkına varıyor.',
+  static LightData _getLightData(ZodiacSign sign, {AppLanguage language = AppLanguage.tr}) {
+    final strengthKey = 'cosmic_share.light.${sign.name}.strength';
+    final opportunityKey = 'cosmic_share.light.${sign.name}.opportunity';
+    final magneticKey = 'cosmic_share.light.${sign.name}.magnetic';
+
+    final localizedStrength = L10nService.get(strengthKey, language);
+    final localizedOpportunity = L10nService.get(opportunityKey, language);
+    final localizedMagnetic = L10nService.get(magneticKey, language);
+
+    final fallbackData = _lightData[sign] ?? _defaultLightData;
+
+    // If we need English fallback and localization not found
+    if (language != AppLanguage.tr && localizedStrength == strengthKey) {
+      return _getEnglishLightData(sign);
+    }
+
+    return LightData(
+      strength: localizedStrength != strengthKey ? localizedStrength : fallbackData.strength,
+      opportunity: localizedOpportunity != opportunityKey ? localizedOpportunity : fallbackData.opportunity,
+      magnetic: localizedMagnetic != magneticKey ? localizedMagnetic : fallbackData.magnetic,
+    );
+  }
+
+  static LightData _getEnglishLightData(ZodiacSign sign) {
+    final enLightData = {
+      ZodiacSign.aries: LightData(
+        strength: 'Courage and pioneering spirit',
+        opportunity: 'Ideal day for a new beginning',
+        magnetic: 'Your energy is contagious, people are drawn to you.',
+      ),
+      ZodiacSign.taurus: LightData(
+        strength: 'Loyalty and reliability',
+        opportunity: 'Time to clarify your values',
+        magnetic: 'Your calmness gives confidence, people find peace near you.',
+      ),
+      ZodiacSign.gemini: LightData(
+        strength: 'Adaptability and communication',
+        opportunity: 'Openness for an important conversation',
+        magnetic: 'Your wit sparkles, your ideas attract interest.',
+      ),
+      ZodiacSign.cancer: LightData(
+        strength: 'Empathy and protectiveness',
+        opportunity: 'Deepening emotional bonds',
+        magnetic: 'Your warmth feels like home, people open up to you.',
+      ),
+      ZodiacSign.leo: LightData(
+        strength: 'Creativity and generosity',
+        opportunity: 'Courage to express yourself',
+        magnetic: 'Your presence radiates light, all eyes on you.',
+      ),
+      ZodiacSign.virgo: LightData(
+        strength: 'Analytical power and service heart',
+        opportunity: 'Problem-solving ability at peak',
+        magnetic: 'Your competence inspires trust, you\'re like a consultant.',
+      ),
+      ZodiacSign.libra: LightData(
+        strength: 'Diplomacy and aesthetics',
+        opportunity: 'Power to resolve conflicts',
+        magnetic: 'Your elegance enchants, everyone wants to be with you.',
+      ),
+      ZodiacSign.scorpio: LightData(
+        strength: 'Depth and transformative power',
+        opportunity: 'Bringing healing to an old wound',
+        magnetic: 'Mystery is attractive, people want to understand you.',
+      ),
+      ZodiacSign.sagittarius: LightData(
+        strength: 'Optimism and vision',
+        opportunity: 'New horizons opening',
+        magnetic: 'Your adventurous spirit is contagious, you bring excitement.',
+      ),
+      ZodiacSign.capricorn: LightData(
+        strength: 'Discipline and resilience',
+        opportunity: 'Clarity for a long-term step',
+        magnetic: 'Your authority commands respect, your word is heard.',
+      ),
+      ZodiacSign.aquarius: LightData(
+        strength: 'Originality and humanitarianism',
+        opportunity: 'Offering a different perspective',
+        magnetic: 'Your uniqueness attracts, you\'re a source of inspiration.',
+      ),
+      ZodiacSign.pisces: LightData(
+        strength: 'Intuition and creative imagination',
+        opportunity: 'An artistic or spiritual opening',
+        magnetic: 'Your mysterious aura enchants, you\'re like a dream.',
+      ),
+    };
+    return enLightData[sign] ?? LightData(
+      strength: 'Inner strength and potential',
+      opportunity: 'New opportunities emerging',
+      magnetic: 'Your energy attracts people.',
+    );
+  }
+
+  static List<String> _generateCosmicAdvice(ZodiacSign sign, {AppLanguage language = AppLanguage.tr}) {
+    // Check for localized advice
+    final key = 'cosmic_share.advice.${sign.name}';
+    final localized = L10nService.get(key, language);
+
+    if (localized != key) {
+      // If we have localized data, it should be comma-separated or we use the array from JSON
+      // For now, use fallback with English support
+    }
+
+    // Fallback - use Turkish or get English
+    if (language == AppLanguage.tr) {
+      final allAdvice = _cosmicAdvice[sign] ?? _defaultCosmicAdvice;
+      final shuffled = List<String>.from(allAdvice)..shuffle(_random);
+      return shuffled.take(3).toList();
+    } else {
+      final allAdvice = _getEnglishCosmicAdvice(sign);
+      final shuffled = List<String>.from(allAdvice)..shuffle(_random);
+      return shuffled.take(3).toList();
+    }
+  }
+
+  static List<String> _getEnglishCosmicAdvice(ZodiacSign sign) {
+    final enCosmicAdvice = {
+      ZodiacSign.aries: [
+        'Stop. Breathe. Then move.',
+        'Your anger is a messenger, but you are the decision maker.',
+        'Building peace also requires courage, not just winning battles.',
+        'Being right matters more than being first.',
+        'No need for power displays, you are already powerful.',
+      ],
+      ZodiacSign.taurus: [
+        'Letting go is not losing.',
+        'Your comfort zone is safe but growth isn\'t there.',
+        'Your possessions don\'t define you.',
+        'Be slow but don\'t stop.',
+        'Stay where you\'re valued, leave where you\'re not.',
+      ],
+      ZodiacSign.gemini: [
+        'You don\'t have to follow every thought.',
+        'Silence is also an answer.',
+        'Depth is sometimes more valuable than breadth.',
+        'Being between two paths is also a path.',
+        'Listening is also communication.',
+      ],
+      ZodiacSign.cancer: [
+        'Protecting isn\'t loving, it can be suffocating.',
+        'The past is a teacher, not a home.',
+        'Are your walls protecting you or imprisoning you?',
+        'Vulnerability is not weakness.',
+        'Sometimes the best care is letting go.',
+      ],
+      ZodiacSign.leo: [
+        'Don\'t let your light extinguish others.',
+        'You are valuable even without applause.',
+        'Kingdoms are won through service.',
+        'Pride can be a prison, not protection.',
+        'Who are you when you\'re invisible?',
+      ],
+      ZodiacSign.virgo: [
+        'Be real, not perfect.',
+        'Criticize yourself first, then others.',
+        '"Good enough" is sometimes perfect.',
+        'Asking for help is not weakness.',
+        'If analysis paralyzes, feel instead.',
+      ],
+      ZodiacSign.libra: [
+        'Saying no is also love.',
+        'Find balance within, not outside.',
+        'Conflict is an opportunity for growth.',
+        'Everyone\'s happiness is not your responsibility.',
+        'Indecision is also a decision.',
+      ],
+      ZodiacSign.scorpio: [
+        'Control is an illusion.',
+        'Trust is not a risk, it\'s a gift.',
+        'You don\'t have to know everything.',
+        'Revenge poisons you, forgiveness liberates.',
+        'Depth is beautiful, but there\'s life on the surface too.',
+      ],
+      ZodiacSign.sagittarius: [
+        'Escape is not a solution.',
+        'Attachment is not imprisonment.',
+        'The answer could be right here too.',
+        'Don\'t promise, do.',
+        'Adventure exists within too.',
+      ],
+      ZodiacSign.capricorn: [
+        'Success doesn\'t guarantee happiness.',
+        'Don\'t let work become escape.',
+        'The journey matters, not the summit.',
+        'Your feelings also deserve respect.',
+        'Taking a break is not giving up.',
+      ],
+      ZodiacSign.aquarius: [
+        'Don\'t be different just to be different.',
+        'Not everyone has to understand.',
+        'Heart is as important as mind.',
+        'Revolution starts within.',
+        'Independence is not loneliness.',
+      ],
+      ZodiacSign.pisces: [
+        'Dreams are beautiful, reality is too.',
+        'You don\'t have to carry everyone\'s pain.',
+        'Boundaries are not lovelessness.',
+        'Dreaming is not action.',
+        'Don\'t escape, face it.',
+      ],
+    };
+    return enCosmicAdvice[sign] ?? [
+      'Be kind to yourself.',
+      'Patience is needed today.',
+      'Trust your intuition.',
+    ];
+  }
+
+  static SymbolicMessage _generateSymbolicMessage(ZodiacSign sign, int dayOfYear, {AppLanguage language = AppLanguage.tr}) {
+    if (language == AppLanguage.tr) {
+      final archetypes = _archetypes[sign] ?? _defaultArchetypes;
+      final index = dayOfYear % archetypes.length;
+      return archetypes[index];
+    } else {
+      final archetypes = _getEnglishArchetypes(sign);
+      final index = dayOfYear % archetypes.length;
+      return archetypes[index];
+    }
+  }
+
+  static List<SymbolicMessage> _getEnglishArchetypes(ZodiacSign sign) {
+    final enArchetypes = {
+      ZodiacSign.aries: [
+        SymbolicMessage(
+          type: 'Archetype',
+          symbol: 'Warrior',
+          title: 'The Warrior Within',
+          meaning: 'The warrior archetype is active today. But the true warrior knows: The greatest victory is conquering yourself.',
+          imageHint: 'aries_warrior',
+        ),
+        SymbolicMessage(
+          type: 'Tarot',
+          symbol: 'Emperor',
+          title: 'IV - The Emperor',
+          meaning: 'Structure, authority and control. Your leadership energy is strong today. But beware: Power brings responsibility.',
+          imageHint: 'emperor',
+        ),
+      ],
+      ZodiacSign.taurus: [
+        SymbolicMessage(
+          type: 'Archetype',
+          symbol: 'Gardener',
+          title: 'The Patient Gardener',
+          meaning: 'Seeds bear fruit in time. Today you will see what you planted with patience sprouting.',
+          imageHint: 'taurus_gardener',
+        ),
+        SymbolicMessage(
+          type: 'Tarot',
+          symbol: 'Empress',
+          title: 'III - The Empress',
+          meaning: 'Abundance, sensuality and creativity. Time to feel life\'s beauties.',
+          imageHint: 'empress',
+        ),
+      ],
+      ZodiacSign.gemini: [
+        SymbolicMessage(
+          type: 'Archetype',
+          symbol: 'Messenger',
+          title: 'Messenger of the Gods',
+          meaning: 'Like Hermes, you build bridges between worlds. Your words carry power today.',
+          imageHint: 'gemini_messenger',
+        ),
+        SymbolicMessage(
+          type: 'Tarot',
+          symbol: 'Lovers',
+          title: 'VI - The Lovers',
+          meaning: 'Choices and connections. Time to unite two paths, not choose between them.',
+          imageHint: 'lovers',
+        ),
+      ],
+      ZodiacSign.cancer: [
+        SymbolicMessage(
+          type: 'Archetype',
+          symbol: 'Mother',
+          title: 'The Great Mother',
+          meaning: 'Nurturing, protecting, embracing. Today, mother both others and yourself.',
+          imageHint: 'cancer_mother',
+        ),
+        SymbolicMessage(
+          type: 'Tarot',
+          symbol: 'Moon',
+          title: 'XVIII - The Moon',
+          meaning: 'Subconscious, intuition and hidden fears. You can find your way even in darkness.',
+          imageHint: 'moon',
+        ),
+      ],
+      ZodiacSign.leo: [
+        SymbolicMessage(
+          type: 'Archetype',
+          symbol: 'King',
+          title: 'The Just King',
+          meaning: 'The true king rules hearts, not thrones. Rule today with generosity.',
+          imageHint: 'leo_king',
+        ),
+        SymbolicMessage(
+          type: 'Tarot',
+          symbol: 'Strength',
+          title: 'VIII - Strength',
+          meaning: 'Taming the inner lion. Strength lies in gentleness, not control.',
+          imageHint: 'strength',
+        ),
+      ],
+      ZodiacSign.virgo: [
+        SymbolicMessage(
+          type: 'Archetype',
+          symbol: 'Healer',
+          title: 'The Sacred Healer',
+          meaning: 'Your hands carry healing. Today you have the potential to heal everything you touch.',
+          imageHint: 'virgo_healer',
+        ),
+        SymbolicMessage(
+          type: 'Tarot',
+          symbol: 'Hermit',
+          title: 'IX - The Hermit',
+          meaning: 'Inner search and wisdom. Answers are not outside, but in the depths.',
+          imageHint: 'hermit',
+        ),
+      ],
+      ZodiacSign.libra: [
+        SymbolicMessage(
+          type: 'Archetype',
+          symbol: 'Diplomat',
+          title: 'Peace Ambassador',
+          meaning: 'Building bridges, healing wounds. Today you will bring harmony.',
+          imageHint: 'libra_diplomat',
+        ),
+        SymbolicMessage(
+          type: 'Tarot',
+          symbol: 'Justice',
+          title: 'XI - Justice',
+          meaning: 'Balance, truth and decisions. The scales are balanced — now is the time to choose.',
+          imageHint: 'justice',
+        ),
+      ],
+      ZodiacSign.scorpio: [
+        SymbolicMessage(
+          type: 'Archetype',
+          symbol: 'Alchemist',
+          title: 'The Dark Alchemist',
+          meaning: 'You turn lead into gold. You have the power to transform pain into wisdom, loss into gain.',
+          imageHint: 'scorpio_alchemist',
+        ),
+        SymbolicMessage(
+          type: 'Tarot',
+          symbol: 'Death',
+          title: 'XIII - Death',
+          meaning: 'Transformation and rebirth. Endings are doorways to beginnings.',
+          imageHint: 'death',
+        ),
+      ],
+      ZodiacSign.sagittarius: [
+        SymbolicMessage(
+          type: 'Archetype',
+          symbol: 'Explorer',
+          title: 'Horizon Explorer',
+          meaning: 'The unknown is calling you. Today the courage to cross boundaries is within you.',
+          imageHint: 'sagittarius_explorer',
+        ),
+        SymbolicMessage(
+          type: 'Tarot',
+          symbol: 'Temperance',
+          title: 'XIV - Temperance',
+          meaning: 'Balance and patience. Find the middle way between extremes.',
+          imageHint: 'temperance',
+        ),
+      ],
+      ZodiacSign.capricorn: [
+        SymbolicMessage(
+          type: 'Archetype',
+          symbol: 'Sage',
+          title: 'Sage of the Mountain',
+          meaning: 'Those who climb to the summit return to guide others. Your experience lights the way for others.',
+          imageHint: 'capricorn_sage',
+        ),
+        SymbolicMessage(
+          type: 'Tarot',
+          symbol: 'Devil',
+          title: 'XV - The Devil',
+          meaning: 'Chains or choices? Do the things you\'re attached to define you?',
+          imageHint: 'devil',
+        ),
+      ],
+      ZodiacSign.aquarius: [
+        SymbolicMessage(
+          type: 'Archetype',
+          symbol: 'Revolutionary',
+          title: 'Visionary Revolutionary',
+          meaning: 'You see the future from today. Your ideas are ahead of their time.',
+          imageHint: 'aquarius_revolutionary',
+        ),
+        SymbolicMessage(
+          type: 'Tarot',
+          symbol: 'Star',
+          title: 'XVII - The Star',
+          meaning: 'Hope, inspiration and guidance. Even in the darkest night, stars shine.',
+          imageHint: 'star',
+        ),
+      ],
+      ZodiacSign.pisces: [
+        SymbolicMessage(
+          type: 'Archetype',
+          symbol: 'Dreamer',
+          title: 'Mystic Dreamer',
+          meaning: 'You swim between worlds. Your dreams carry messages, listen.',
+          imageHint: 'pisces_dreamer',
+        ),
+        SymbolicMessage(
+          type: 'Tarot',
+          symbol: 'Moon',
+          title: 'XVIII - The Moon',
+          meaning: 'Intuition, illusion and subconscious. Look behind what\'s visible.',
+          imageHint: 'moon',
+        ),
+      ],
+    };
+    return enArchetypes[sign] ?? [
+      SymbolicMessage(
+        type: 'Archetype',
+        symbol: 'Traveler',
+        title: 'Cosmic Traveler',
+        meaning: 'The journey continues. Every step is a discovery.',
+        imageHint: 'traveler',
+      ),
+    ];
+  }
+
+  static String _generateViralHook(ZodiacSign sign, {AppLanguage language = AppLanguage.tr}) {
+    final hookIndex = _random.nextInt(12) + 1;
+    final key = 'cosmic_share.viral_hooks.$hookIndex';
+    final localized = L10nService.get(key, language);
+
+    final signName = language == AppLanguage.tr ? sign.nameTr : sign.name;
+
+    if (localized != key) {
+      return localized.replaceAll('{sign}', signName);
+    }
+
+    // Fallback
+    final trHooks = [
+      'Bugün $signName burçları bir şeylerin farkına varıyor.',
       'Bu enerji sadece birkaç burcu etkiliyor — sen de onlardan birisin.',
-      '${sign.nameTr} burçları için kritik bir dönem başlıyor.',
-      'Şu an ${sign.nameTr} burçlarının çoğu bunu hissediyor.',
+      '$signName burçları için kritik bir dönem başlıyor.',
+      'Şu an $signName burçlarının çoğu bunu hissediyor.',
       'Bu kozmik hizalanma nadir görülüyor.',
-      'Evren bugün ${sign.nameTr} burçlarına mesaj gönderiyor.',
+      'Evren bugün $signName burçlarına mesaj gönderiyor.',
       'Rüyaların bugün sana bir şey söylüyor.',
       'Sayılar bugün seninle konuşuyor.',
       'Çakraların uyandığını hissedebiliyor musun?',
-      '${sign.nameTr} enerjisi bugün farklı akıyor.',
+      '$signName enerjisi bugün farklı akıyor.',
       'Bu farkındalık tesadüf değil.',
       'Evrenin sana özel bir notu var.',
     ];
+    final enHooks = [
+      'Today $signName signs are becoming aware of something.',
+      'This energy only affects a few signs — you are one of them.',
+      'A critical period is beginning for $signName signs.',
+      'Right now, most $signName signs are feeling this.',
+      'This cosmic alignment is rare.',
+      'The universe is sending a message to $signName signs today.',
+      'Your dreams are telling you something today.',
+      'Numbers are speaking to you today.',
+      'Can you feel your chakras awakening?',
+      '$signName energy is flowing differently today.',
+      'This awareness is no coincidence.',
+      'The universe has a special note for you.',
+    ];
+    final hooks = language == AppLanguage.tr ? trHooks : enHooks;
     return hooks[_random.nextInt(hooks.length)];
   }
 
-  static String _generateSharePrompt() {
-    final prompts = [
+  static String _generateSharePrompt({AppLanguage language = AppLanguage.tr}) {
+    final promptIndex = _random.nextInt(10) + 1;
+    final key = 'cosmic_share.share_prompts.$promptIndex';
+    final localized = L10nService.get(key, language);
+    if (localized != key) return localized;
+
+    // Fallback
+    final trPrompts = [
       'Bu sana dokunduysa, birinin de buna ihtiyacı var.',
       'Tanıdığın biri bugün bunu görmeli.',
       'Kalbine dokunan şeyleri paylaşmaktan korkma.',
@@ -416,59 +1260,224 @@ class CosmicShareContentService {
       'İçsel yolculuğunu paylaş.',
       'Farkındalık bulaşıcıdır.',
     ];
+    final enPrompts = [
+      'If this touched you, someone else needs it too.',
+      'Someone you know should see this today.',
+      'Don\'t be afraid to share what touches your heart.',
+      'Maybe this message isn\'t for you, but will reach someone through you.',
+      'The universe\'s messages grow stronger when shared.',
+      'Cosmic energy multiplies when shared.',
+      'For those who follow the Dream Trail.',
+      'What is today\'s number telling you?',
+      'Share your inner journey.',
+      'Awareness is contagious.',
+    ];
+    final prompts = language == AppLanguage.tr ? trPrompts : enPrompts;
     return prompts[_random.nextInt(prompts.length)];
   }
 
-  static CollectiveMoment _generateCollectiveMoment(ZodiacSign sign, MoonPhase moonPhase) {
-    final mainTexts = [
+  static CollectiveMoment _generateCollectiveMoment(ZodiacSign sign, MoonPhase moonPhase, {AppLanguage language = AppLanguage.tr}) {
+    final signName = language == AppLanguage.tr ? sign.nameTr : sign.name;
+
+    final mainIndex = _random.nextInt(5) + 1;
+    final mainKey = 'cosmic_share.collective.main.$mainIndex';
+    final localizedMain = L10nService.get(mainKey, language);
+
+    final subIndex = _random.nextInt(5) + 1;
+    final subKey = 'cosmic_share.collective.sub.$subIndex';
+    final localizedSub = L10nService.get(subKey, language);
+
+    // Fallback
+    final trMainTexts = [
       'Senin burcundan pek çok kişi bugün aynı şeyi hissediyor.',
       'Bu enerji şu an sadece birkaç burcu bu kadar derinden etkiliyor.',
-      '${sign.nameTr} burçları için bu dönem özel bir anlam taşıyor.',
-      'Bugün ${sign.nameTr} burçlarının çoğu benzer bir iç sese kulak veriyor.',
+      '$signName burçları için bu dönem özel bir anlam taşıyor.',
+      'Bugün $signName burçlarının çoğu benzer bir iç sese kulak veriyor.',
       'Bu kozmik dalga seninle aynı burçta olanları özellikle sarıyor.',
     ];
+    final enMainTexts = [
+      'Many people of your sign are feeling the same thing today.',
+      'This energy is affecting only a few signs so deeply right now.',
+      'This period carries special meaning for $signName signs.',
+      'Today most $signName signs are listening to a similar inner voice.',
+      'This cosmic wave is especially embracing those who share your sign.',
+    ];
+    final mainTexts = language == AppLanguage.tr ? trMainTexts : enMainTexts;
 
-    final subTexts = [
+    final trSubTexts = [
       'Yalnız değilsin.',
       'Evren bu mesajı seçilmiş olanlara gönderiyor.',
       'Bazı şeyler tesadüf değil.',
       'Aynı gökyüzünün altında, aynı hislerle.',
       'Bu farkındalık nadir ve değerli.',
     ];
+    final enSubTexts = [
+      'You are not alone.',
+      'The universe sends this message to the chosen ones.',
+      'Some things are not coincidence.',
+      'Under the same sky, with the same feelings.',
+      'This awareness is rare and precious.',
+    ];
+    final subTexts = language == AppLanguage.tr ? trSubTexts : enSubTexts;
 
     return CollectiveMoment(
-      mainText: mainTexts[_random.nextInt(mainTexts.length)],
-      subText: subTexts[_random.nextInt(subTexts.length)],
+      mainText: localizedMain != mainKey ? localizedMain.replaceAll('{sign}', signName) : mainTexts[_random.nextInt(mainTexts.length)],
+      subText: localizedSub != subKey ? localizedSub : subTexts[_random.nextInt(subTexts.length)],
     );
   }
 
-  static SoftPremiumCuriosity _generatePremiumCuriosity(ZodiacSign sign) {
-    final curiosityTexts = [
+  static SoftPremiumCuriosity _generatePremiumCuriosity(ZodiacSign sign, {AppLanguage language = AppLanguage.tr}) {
+    final curiosityIndex = _random.nextInt(5) + 1;
+    final curiosityKey = 'cosmic_share.premium.curiosity.$curiosityIndex';
+    final localizedCuriosity = L10nService.get(curiosityKey, language);
+
+    final invitationIndex = _random.nextInt(5) + 1;
+    final invitationKey = 'cosmic_share.premium.invitation.$invitationIndex';
+    final localizedInvitation = L10nService.get(invitationKey, language);
+
+    // Fallback
+    final trCuriosityTexts = [
       'Bu, bugünün sadece bir katmanı.',
       'Bazı kalıplar yüzeyde görünmez.',
       'Her güne ait bir de gizli hikaye var.',
       'Derinlerde daha fazlası saklı.',
       'Bu mesaj bir kapı — gerisinde neler olduğunu merak ediyorsan...',
     ];
+    final enCuriosityTexts = [
+      'This is just one layer of today.',
+      'Some patterns don\'t appear on the surface.',
+      'Every day has a hidden story.',
+      'There\'s more hidden in the depths.',
+      'This message is a door — if you wonder what lies beyond...',
+    ];
+    final curiosityTexts = language == AppLanguage.tr ? trCuriosityTexts : enCuriosityTexts;
 
-    final invitationTexts = [
+    final trInvitationTexts = [
       'Bazıları bu kalıbı daha derinden keşfetmeyi seçiyor.',
       'Merak edenler için her zaman bir sonraki katman var.',
       'Belki bir gün bu hikayenin tamamını görmek istersin.',
       'Evrenin sana söyleyecek daha çok şeyi var.',
       'İstersen, bu sadece başlangıç olabilir.',
     ];
+    final enInvitationTexts = [
+      'Some choose to explore this pattern more deeply.',
+      'For the curious, there\'s always a next layer.',
+      'Maybe one day you\'ll want to see the full story.',
+      'The universe has much more to tell you.',
+      'If you wish, this could be just the beginning.',
+    ];
+    final invitationTexts = language == AppLanguage.tr ? trInvitationTexts : enInvitationTexts;
 
     return SoftPremiumCuriosity(
-      curiosityText: curiosityTexts[_random.nextInt(curiosityTexts.length)],
-      invitationText: invitationTexts[_random.nextInt(invitationTexts.length)],
+      curiosityText: localizedCuriosity != curiosityKey ? localizedCuriosity : curiosityTexts[_random.nextInt(curiosityTexts.length)],
+      invitationText: localizedInvitation != invitationKey ? localizedInvitation : invitationTexts[_random.nextInt(invitationTexts.length)],
     );
   }
 
-  static List<String> _generateMicroMessages(ZodiacSign sign) {
-    final allMicroMessages = _microMessagesBySign[sign] ?? _defaultMicroMessages;
-    final shuffled = List<String>.from(allMicroMessages)..shuffle(_random);
-    return shuffled.take(3).toList();
+  static List<String> _generateMicroMessages(ZodiacSign sign, {AppLanguage language = AppLanguage.tr}) {
+    if (language == AppLanguage.tr) {
+      final allMicroMessages = _microMessagesBySign[sign] ?? _defaultMicroMessages;
+      final shuffled = List<String>.from(allMicroMessages)..shuffle(_random);
+      return shuffled.take(3).toList();
+    } else {
+      final allMicroMessages = _getEnglishMicroMessages(sign);
+      final shuffled = List<String>.from(allMicroMessages)..shuffle(_random);
+      return shuffled.take(3).toList();
+    }
+  }
+
+  static List<String> _getEnglishMicroMessages(ZodiacSign sign) {
+    final enMicroMessages = {
+      ZodiacSign.aries: [
+        'Your silence speaks louder than words today.',
+        'Not everyone deserves access to your energy.',
+        'Patience is your sharpest weapon today.',
+        'Slowing down is not falling behind.',
+        'No need to show strength — you\'re already visible.',
+      ],
+      ZodiacSign.taurus: [
+        'Is what you\'re holding carrying you, or are you carrying it?',
+        'Your comfort zone is beautiful but don\'t let it become a prison.',
+        'Letting go is sometimes the greatest ownership.',
+        'Change is not an enemy — it\'s an invitation.',
+        'Your roots are strong. Let your branches grow too.',
+      ],
+      ZodiacSign.gemini: [
+        'You don\'t have to follow every thought.',
+        'Silence is also an answer.',
+        'You have two faces — both are you.',
+        'Depth is sometimes more valuable than breadth.',
+        'Your contradictions enrich you.',
+      ],
+      ZodiacSign.cancer: [
+        'Vulnerability is not weakness.',
+        'Protecting isn\'t loving, it can be suffocating.',
+        'The past is a teacher, not a home.',
+        'Are your walls protecting you or imprisoning you?',
+        'You don\'t need to be perfect to be loved.',
+      ],
+      ZodiacSign.leo: [
+        'You are valuable even without applause.',
+        'Who are you when you\'re invisible?',
+        'Don\'t let your light extinguish others.',
+        'Kingdoms are won through service.',
+        'You are already light — you don\'t have to be the sun.',
+      ],
+      ZodiacSign.virgo: [
+        'Be real, not flawless.',
+        '"Good enough" is sometimes perfect.',
+        'Asking for help is not weakness.',
+        'Criticize yourself first, then others.',
+        'Don\'t get lost in details — see the big picture.',
+      ],
+      ZodiacSign.libra: [
+        'Saying no is also love.',
+        'Everyone\'s happiness is not your responsibility.',
+        'Find balance within, not outside.',
+        'Conflict is an opportunity for growth.',
+        'Indecision is also a decision.',
+      ],
+      ZodiacSign.scorpio: [
+        'Control is an illusion.',
+        'You don\'t have to know everything.',
+        'Trust is not a risk, it\'s a gift.',
+        'Depth is beautiful — but there\'s life on the surface too.',
+        'Forgiveness liberates you.',
+      ],
+      ZodiacSign.sagittarius: [
+        'Escape is not a solution.',
+        'The answer could be right here.',
+        'Attachment is not imprisonment.',
+        'Adventure exists within too.',
+        'Don\'t promise, do.',
+      ],
+      ZodiacSign.capricorn: [
+        'Success doesn\'t guarantee happiness.',
+        'Taking a break is not giving up.',
+        'Your feelings also deserve respect.',
+        'The journey matters, not the summit.',
+        'Don\'t let work become escape.',
+      ],
+      ZodiacSign.aquarius: [
+        'Don\'t be different just to be different.',
+        'Not everyone has to understand.',
+        'Heart is as important as mind.',
+        'Revolution starts within.',
+        'Independence is not loneliness.',
+      ],
+      ZodiacSign.pisces: [
+        'Dreams are beautiful — reality is too.',
+        'You don\'t have to carry everyone\'s pain.',
+        'Boundaries are not lovelessness.',
+        'Dreaming is not action.',
+        'Don\'t escape, face it.',
+      ],
+    };
+    return enMicroMessages[sign] ?? [
+      'Be kind to yourself today.',
+      'Trust your intuition.',
+      'The answer is already within you.',
+    ];
   }
 
   static const Map<ZodiacSign, List<String>> _microMessagesBySign = {
@@ -565,34 +1574,56 @@ class CosmicShareContentService {
   ];
 
   // Helper methods
-  static String _formatTurkishDate(DateTime date) {
-    final months = [
-      'Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran',
-      'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'
-    ];
-    final days = ['Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi', 'Pazar'];
+  static String _formatDate(DateTime date, {AppLanguage language = AppLanguage.tr}) {
+    final monthKey = 'common.months.${date.month}';
+    final dayKey = 'common.days.${date.weekday}';
+
+    final localizedMonth = L10nService.get(monthKey, language);
+    final localizedDay = L10nService.get(dayKey, language);
+
+    // If localization found, use it; otherwise fallback
+    if (localizedMonth != monthKey && localizedDay != dayKey) {
+      return '${date.day} $localizedMonth ${date.year} · $localizedDay';
+    }
+
+    // Fallback
+    final trMonths = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
+    final enMonths = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    final trDays = ['Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi', 'Pazar'];
+    final enDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+
+    final months = language == AppLanguage.tr ? trMonths : enMonths;
+    final days = language == AppLanguage.tr ? trDays : enDays;
     return '${date.day} ${months[date.month - 1]} ${date.year} · ${days[date.weekday - 1]}';
   }
 
-  static String _getMoonPhaseText(MoonPhase phase) {
-    switch (phase) {
-      case MoonPhase.newMoon:
-        return 'Yeni Ay — Başlangıçların zamanı';
-      case MoonPhase.waxingCrescent:
-        return 'Hilal Ay — Niyetler filizleniyor';
-      case MoonPhase.firstQuarter:
-        return 'İlk Dördün — Karar zamanı';
-      case MoonPhase.waxingGibbous:
-        return 'Şişkin Ay — Momentum artıyor';
-      case MoonPhase.fullMoon:
-        return 'Dolunay — Aydınlanma ve tamamlanma';
-      case MoonPhase.waningGibbous:
-        return 'Küçülen Ay — Minnettarlık zamanı';
-      case MoonPhase.lastQuarter:
-        return 'Son Dördün — Bırakma zamanı';
-      case MoonPhase.waningCrescent:
-        return 'Balzamik Ay — Dinlenme ve hazırlık';
-    }
+  static String _getMoonPhaseText(MoonPhase phase, {AppLanguage language = AppLanguage.tr}) {
+    final key = 'cosmic_share.moon_phases.${phase.name}';
+    final localized = L10nService.get(key, language);
+    if (localized != key) return localized;
+
+    // Fallback
+    final trTexts = {
+      MoonPhase.newMoon: 'Yeni Ay — Başlangıçların zamanı',
+      MoonPhase.waxingCrescent: 'Hilal Ay — Niyetler filizleniyor',
+      MoonPhase.firstQuarter: 'İlk Dördün — Karar zamanı',
+      MoonPhase.waxingGibbous: 'Şişkin Ay — Momentum artıyor',
+      MoonPhase.fullMoon: 'Dolunay — Aydınlanma ve tamamlanma',
+      MoonPhase.waningGibbous: 'Küçülen Ay — Minnettarlık zamanı',
+      MoonPhase.lastQuarter: 'Son Dördün — Bırakma zamanı',
+      MoonPhase.waningCrescent: 'Balzamik Ay — Dinlenme ve hazırlık',
+    };
+    final enTexts = {
+      MoonPhase.newMoon: 'New Moon — Time of beginnings',
+      MoonPhase.waxingCrescent: 'Waxing Crescent — Intentions sprouting',
+      MoonPhase.firstQuarter: 'First Quarter — Decision time',
+      MoonPhase.waxingGibbous: 'Waxing Gibbous — Momentum building',
+      MoonPhase.fullMoon: 'Full Moon — Illumination and completion',
+      MoonPhase.waningGibbous: 'Waning Gibbous — Time for gratitude',
+      MoonPhase.lastQuarter: 'Last Quarter — Time to release',
+      MoonPhase.waningCrescent: 'Balsamic Moon — Rest and preparation',
+    };
+    return language == AppLanguage.tr ? trTexts[phase]! : enTexts[phase]!;
   }
 
   static String _getMoonPhaseEmoji(MoonPhase phase) {
@@ -616,8 +1647,12 @@ class CosmicShareContentService {
     }
   }
 
-  static String _getEmotionalCore(ZodiacSign sign) {
-    final cores = {
+  static String _getEmotionalCore(ZodiacSign sign, {AppLanguage language = AppLanguage.tr}) {
+    final key = 'cosmic_share.emotional_cores.${sign.name}';
+    final localized = L10nService.get(key, language);
+    if (localized != key) return localized;
+
+    final trCores = {
       ZodiacSign.aries: 'Cesaretinin kaynağı',
       ZodiacSign.taurus: 'Huzurunun temeli',
       ZodiacSign.gemini: 'Merakının kıvılcımı',
@@ -631,41 +1666,113 @@ class CosmicShareContentService {
       ZodiacSign.aquarius: 'Farklılığının değeri',
       ZodiacSign.pisces: 'Sezgilerinin sesi',
     };
-    return cores[sign] ?? 'Ruhunun özü';
+    final enCores = {
+      ZodiacSign.aries: 'Source of your courage',
+      ZodiacSign.taurus: 'Foundation of your peace',
+      ZodiacSign.gemini: 'Spark of your curiosity',
+      ZodiacSign.cancer: 'Depth of your emotions',
+      ZodiacSign.leo: 'Center of your light',
+      ZodiacSign.virgo: 'Your pursuit of perfection',
+      ZodiacSign.libra: 'Essence of your harmony',
+      ZodiacSign.scorpio: 'Your transformative power',
+      ZodiacSign.sagittarius: 'Your passion for freedom',
+      ZodiacSign.capricorn: 'Source of your determination',
+      ZodiacSign.aquarius: 'Value of your uniqueness',
+      ZodiacSign.pisces: 'Voice of your intuition',
+    };
+    final cores = language == AppLanguage.tr ? trCores : enCores;
+    return cores[sign] ?? (language == AppLanguage.tr ? 'Ruhunun özü' : 'Essence of your soul');
   }
 
-  static String _getEnergyDescription(int level) {
-    // Returns localization key - localized in UI layer
-    if (level >= 80) return 'energy_peak_desc';
-    if (level >= 60) return 'energy_high_desc';
-    if (level >= 40) return 'energy_balanced_desc';
-    if (level >= 20) return 'energy_low_desc';
-    return 'energy_recharge_desc';
-  }
-
-  static String _getIntensityDescription(String intensity) {
-    // Returns localization key - localized in UI layer
-    switch (intensity) {
-      case 'calm':
-        return 'intensity_calm_desc';
-      case 'rising':
-        return 'intensity_rising_desc';
-      case 'intense':
-        return 'intensity_intense_desc';
-      case 'stormy':
-        return 'intensity_stormy_desc';
-      default:
-        return 'intensity_default_desc';
+  static String _getEnergyDescription(int level, {AppLanguage language = AppLanguage.tr}) {
+    String key;
+    if (level >= 80) {
+      key = 'cosmic_share.energy.peak';
+    } else if (level >= 60) {
+      key = 'cosmic_share.energy.high';
+    } else if (level >= 40) {
+      key = 'cosmic_share.energy.balanced';
+    } else if (level >= 20) {
+      key = 'cosmic_share.energy.low';
+    } else {
+      key = 'cosmic_share.energy.recharge';
     }
+
+    final localized = L10nService.get(key, language);
+    if (localized != key) return localized;
+
+    // Fallback
+    final trDescs = {
+      'cosmic_share.energy.peak': 'Doruk noktasında',
+      'cosmic_share.energy.high': 'Yüksek enerji',
+      'cosmic_share.energy.balanced': 'Dengeli akış',
+      'cosmic_share.energy.low': 'Dinlenme modunda',
+      'cosmic_share.energy.recharge': 'Şarj zamanı',
+    };
+    final enDescs = {
+      'cosmic_share.energy.peak': 'At peak level',
+      'cosmic_share.energy.high': 'High energy',
+      'cosmic_share.energy.balanced': 'Balanced flow',
+      'cosmic_share.energy.low': 'Resting mode',
+      'cosmic_share.energy.recharge': 'Time to recharge',
+    };
+    return language == AppLanguage.tr ? trDescs[key]! : enDescs[key]!;
   }
 
-  static String _getIntuitionDescription(int level) {
-    // Returns localization key - localized in UI layer
-    if (level >= 80) return 'intuition_peak_desc';
-    if (level >= 60) return 'intuition_high_desc';
-    if (level >= 40) return 'intuition_balanced_desc';
-    if (level >= 20) return 'intuition_low_desc';
-    return 'intuition_analytical_desc';
+  static String _getIntensityDescription(String intensity, {AppLanguage language = AppLanguage.tr}) {
+    final key = 'cosmic_share.intensity.$intensity';
+    final localized = L10nService.get(key, language);
+    if (localized != key) return localized;
+
+    // Fallback
+    final trDescs = {
+      'calm': 'Sakin ve dingin',
+      'rising': 'Yükselen dalga',
+      'intense': 'Yoğun ve derin',
+      'stormy': 'Fırtınalı enerji',
+    };
+    final enDescs = {
+      'calm': 'Calm and serene',
+      'rising': 'Rising wave',
+      'intense': 'Intense and deep',
+      'stormy': 'Stormy energy',
+    };
+    return language == AppLanguage.tr ? (trDescs[intensity] ?? 'Dengeli') : (enDescs[intensity] ?? 'Balanced');
+  }
+
+  static String _getIntuitionDescription(int level, {AppLanguage language = AppLanguage.tr}) {
+    String key;
+    if (level >= 80) {
+      key = 'cosmic_share.intuition.peak';
+    } else if (level >= 60) {
+      key = 'cosmic_share.intuition.high';
+    } else if (level >= 40) {
+      key = 'cosmic_share.intuition.balanced';
+    } else if (level >= 20) {
+      key = 'cosmic_share.intuition.low';
+    } else {
+      key = 'cosmic_share.intuition.analytical';
+    }
+
+    final localized = L10nService.get(key, language);
+    if (localized != key) return localized;
+
+    // Fallback
+    final trDescs = {
+      'cosmic_share.intuition.peak': 'Sezgiler dorukta',
+      'cosmic_share.intuition.high': 'Güçlü sezgisel akış',
+      'cosmic_share.intuition.balanced': 'Dengeli farkındalık',
+      'cosmic_share.intuition.low': 'Mantık önde',
+      'cosmic_share.intuition.analytical': 'Analitik mod',
+    };
+    final enDescs = {
+      'cosmic_share.intuition.peak': 'Intuition at peak',
+      'cosmic_share.intuition.high': 'Strong intuitive flow',
+      'cosmic_share.intuition.balanced': 'Balanced awareness',
+      'cosmic_share.intuition.low': 'Logic leads',
+      'cosmic_share.intuition.analytical': 'Analytical mode',
+    };
+    return language == AppLanguage.tr ? trDescs[key]! : enDescs[key]!;
   }
 
   static List<Planet> _getDominantPlanets(ZodiacSign sign, DateTime today) {
@@ -878,44 +1985,6 @@ class CosmicShareContentService {
     ZodiacSign.capricorn: 'Ay\'ın Oğlak\'ta olması disiplinini güçlendiriyor.',
     ZodiacSign.aquarius: 'Ay\'ın Kova\'da olması yenilikçiliğini öne çıkarıyor.',
     ZodiacSign.pisces: 'Ay\'ın Balık\'ta olması sezgilerini zirveye taşıyor.',
-  };
-
-  static final Map<Planet, PlanetInfluenceData> _planetInfluenceData = {
-    Planet.sun: PlanetInfluenceData(
-      activates: 'Özgüvenini ve yaşam enerjini',
-      blocks: 'Gölgede kalmayı ve küçümsenmeyi',
-      action: 'Bugün görünür ol. Işığını saklamanın zamanı değil.',
-    ),
-    Planet.moon: PlanetInfluenceData(
-      activates: 'Sezgilerini ve duygusal zekânı',
-      blocks: 'Mantıksal aşırılığı ve duygusal kaçınmayı',
-      action: 'Bir duyguyu bastırmak yerine, onu dinle.',
-    ),
-    Planet.mercury: PlanetInfluenceData(
-      activates: 'İletişim gücünü ve zihinsel netliği',
-      blocks: 'Sessizliği ve yanlış anlaşılmayı',
-      action: 'Söylemen gereken bir şey var. Bugün söyle.',
-    ),
-    Planet.venus: PlanetInfluenceData(
-      activates: 'Çekiciliğini ve ilişki enerjini',
-      blocks: 'Yalnızlığı ve özdeğer eksikliğini',
-      action: 'Kendine güzel bir şey yap. Hak ediyorsun.',
-    ),
-    Planet.mars: PlanetInfluenceData(
-      activates: 'Savaşçı ruhunu ve harekete geçme gücünü',
-      blocks: 'Pasifliği ve ertelemeyi',
-      action: 'Bir konuda adım at. Düşünme, yap.',
-    ),
-    Planet.jupiter: PlanetInfluenceData(
-      activates: 'Bolluğu ve genişleme enerjini',
-      blocks: 'Kısıtlayıcı düşünceleri ve küçük oynamayı',
-      action: 'Bugün büyük düşün. Evren seni destekliyor.',
-    ),
-    Planet.saturn: PlanetInfluenceData(
-      activates: 'Disiplinini ve uzun vadeli vizyonunu',
-      blocks: 'Kısa yolları ve sorumsuzluğu',
-      action: 'Zor ama doğru olanı seç.',
-    ),
   };
 
   static final Map<ZodiacSign, ShadowData> _shadowData = {

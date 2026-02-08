@@ -103,6 +103,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       AppleAuthErrorType.notAvailable => 'auth.apple_error_not_available',
       AppleAuthErrorType.tokenFailed => 'auth.apple_error_token_failed',
       AppleAuthErrorType.supabaseError => 'auth.apple_sign_in_failed',
+      AppleAuthErrorType.networkError => 'auth.apple_error_network',
+      AppleAuthErrorType.timeout => 'auth.apple_error_timeout',
+      AppleAuthErrorType.serverError => 'auth.apple_error_server',
     };
     return L10nService.get(key, language);
   }
@@ -546,9 +549,9 @@ class _EmailLoginScreenState extends ConsumerState<EmailLoginScreen> {
                     Container(
                       padding: const EdgeInsets.all(12),
                       decoration: BoxDecoration(
-                        color: AppColors.error.withOpacity(0.1),
+                        color: AppColors.error.withValues(alpha: 0.1),
                         borderRadius: BorderRadius.circular(8),
-                        border: Border.all(color: AppColors.error.withOpacity(0.3)),
+                        border: Border.all(color: AppColors.error.withValues(alpha: 0.3)),
                       ),
                       child: Row(
                         children: [

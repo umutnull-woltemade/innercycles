@@ -123,7 +123,7 @@ class _RewardedAdButtonState extends ConsumerState<RewardedAdButton> {
         boxShadow: [
           BoxShadow(
             color: (isPremium ? const Color(0xFFFFD700) : const Color(0xFF6B46C1))
-                .withOpacity(0.3),
+                .withValues(alpha: 0.3),
             blurRadius: 8,
             offset: const Offset(0, 4),
           ),
@@ -174,7 +174,7 @@ class _RewardedAdButtonState extends ConsumerState<RewardedAdButton> {
                       Text(
                         widget.rewardDescription,
                         style: TextStyle(
-                          color: Colors.white.withOpacity(0.8),
+                          color: Colors.white.withValues(alpha: 0.8),
                           fontSize: 10,
                         ),
                       ),
@@ -219,7 +219,7 @@ class PremiumContentCard extends ConsumerWidget {
         color: const Color(0xFF1A1A2E),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: const Color(0xFF6B46C1).withOpacity(0.3),
+          color: const Color(0xFF6B46C1).withValues(alpha: 0.3),
         ),
       ),
       child: Stack(
@@ -251,7 +251,7 @@ class PremiumContentCard extends ConsumerWidget {
                   end: Alignment.bottomCenter,
                   colors: [
                     Colors.transparent,
-                    Colors.black.withOpacity(0.8),
+                    Colors.black.withValues(alpha: 0.8),
                   ],
                 ),
               ),
@@ -279,7 +279,7 @@ class PremiumContentCard extends ConsumerWidget {
                       description,
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        color: Colors.white.withOpacity(0.7),
+                        color: Colors.white.withValues(alpha: 0.7),
                         fontSize: 13,
                       ),
                     ),

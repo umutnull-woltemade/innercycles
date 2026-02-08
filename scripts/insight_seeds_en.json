@@ -1,0 +1,132 @@
+{
+  "version": "1.0.0",
+  "description": "Apple-safe fallback content for Insight assistant - NO predictions, NO astrology",
+  "dream_reflections": {
+    "falling": {
+      "response": "Falling dreams are among the most common experiences people report. Many find these dreams surface during times when they're navigating uncertainty or feeling like aspects of life are beyond their control.\n\nI'm curious whether this dream has been recurring - the pattern itself might be worth exploring. What's been happening in your waking life lately? Sometimes our minds process daytime concerns through nighttime imagery.\n\nWhat does falling feel like in the dream - is it frightening, freeing, or something else entirely?",
+      "follow_up_questions": [
+        "Was it a sudden fall or a gradual descent?",
+        "Did you land or wake up mid-fall?",
+        "What were you falling from?"
+      ]
+    },
+    "water": {
+      "response": "Water dreams are something many people experience. Water can represent different things for different people - sometimes emotions, sometimes change, sometimes cleansing.\n\nWhat was the water like in your dream? Was it calm, turbulent, deep, shallow? The specific qualities might connect to what's happening in your waking life.\n\nHow did you feel during the dream?",
+      "follow_up_questions": [
+        "Were you in the water or observing it?",
+        "Was the water clear or murky?",
+        "Was it a familiar body of water?"
+      ]
+    },
+    "flying": {
+      "response": "Flying dreams are among the most memorable dream experiences. Many people associate them with feelings of freedom, gaining perspective, or escaping limitations.\n\nWas the flight effortless or were you struggling? Were you flying high or staying close to the ground? These details might hold personal meaning for you.\n\nHow did you feel while flying - exhilarated, scared, in control?",
+      "follow_up_questions": [
+        "Did you have wings or were you floating?",
+        "Where were you flying to or from?",
+        "Were there others flying with you?"
+      ]
+    },
+    "chase": {
+      "response": "Being chased in dreams is something many people experience. It often surfaces when we're feeling pressured or avoiding something in waking life.\n\nDo you remember what was chasing you? And were you able to escape or were you caught? These details might be worth exploring for what they mean to you.\n\nIs there anything that's been 'chasing' you in your mind lately - something you've been avoiding?",
+      "follow_up_questions": [
+        "Could you see what was chasing you clearly?",
+        "Where were you running to?",
+        "How did the chase end?"
+      ]
+    },
+    "teeth": {
+      "response": "Teeth dreams are among the most commonly reported dream themes. Different people experience them differently - some see teeth falling out, some breaking, some loose.\n\nMany people associate these dreams with concerns about self-image, communication, or some kind of transition in their lives.\n\nWhat exactly happened in the dream, and how did it make you feel?",
+      "follow_up_questions": [
+        "Was it one tooth or multiple?",
+        "Did it hurt in the dream?",
+        "Was anyone else present when it happened?"
+      ]
+    },
+    "general": {
+      "response": "Thank you for sharing your dream. Dreams can be a way our mind processes thoughts and feelings that our waking mind doesn't always get to address.\n\nWhat was the dominant feeling during the dream? And do you sense any connection to what's been happening in your life recently?\n\nWhat part of the dream stayed with you most?",
+      "follow_up_questions": [
+        "How did you feel when you woke up?",
+        "Have you had similar dreams before?",
+        "Is there a specific element that stands out?"
+      ]
+    }
+  },
+  "pattern_reflections": {
+    "general": {
+      "response": "Noticing a pattern is a powerful sign of self-awareness. Many people live inside cycles without ever recognizing them.\n\nDo you remember when this pattern first started? And what feelings or situations typically accompany this pattern?\n\nHow do you feel when you notice yourself in this pattern?",
+      "follow_up_questions": [
+        "What triggers this pattern?",
+        "What would breaking the pattern look like?",
+        "What does this pattern give you?"
+      ]
+    }
+  },
+  "emotional_reflections": {
+    "anxiety": {
+      "response": "Anxiety can be a challenging feeling to sit with. It's often our body's way of saying something needs our attention - even if it's not always accurate.\n\nWhere do you feel the anxiety most - in your body, your thoughts, or both? And what typically triggers it?\n\nIs there anything that's been helping you cope with this anxiety right now?",
+      "follow_up_questions": [
+        "When did you first notice this feeling?",
+        "What makes it better or worse?",
+        "How does it affect your daily life?"
+      ]
+    },
+    "sadness": {
+      "response": "Sadness is a natural emotion that helps us process our experiences. Sometimes it signals that something matters to us.\n\nWhen did this sadness start? And do you know what it's connected to - a specific event, or is it more of a general feeling?\n\nHow are you taking care of yourself right now?",
+      "follow_up_questions": [
+        "Is this sadness about something specific?",
+        "Have you been able to talk to anyone about it?",
+        "What usually helps when you feel this way?"
+      ]
+    },
+    "anger": {
+      "response": "Anger often signals that our boundaries have been crossed or that we sense something isn't fair. It's an important emotion to pay attention to.\n\nWhat do you think is at the root of this anger? And how do you typically express this feeling - do you hold it in or let it out?\n\nCould there be other feelings underneath this anger?",
+      "follow_up_questions": [
+        "What triggered this feeling?",
+        "How do you usually handle anger?",
+        "Is there something you need to address?"
+      ]
+    },
+    "general": {
+      "response": "Being in touch with your emotions is an important self-awareness skill. Whatever you're feeling is valid.\n\nHow long has this feeling been present? And where do you feel it in your body?\n\nWhat do you need most right now?",
+      "follow_up_questions": [
+        "Can you describe the feeling more?",
+        "What would help right now?",
+        "Have you felt this way before?"
+      ]
+    }
+  },
+  "decision_reflections": {
+    "general": {
+      "response": "Decision-making can be challenging, especially when there are multiple valid options. Being able to see both sides is actually a sign of thoughtful consideration.\n\nIf you imagined the best outcome of each choice, which one excites you more? And what would be the worst outcome of each?\n\nWhat does your gut tell you?",
+      "follow_up_questions": [
+        "What values are at stake here?",
+        "What would future you thank you for?",
+        "What's holding you back from deciding?"
+      ]
+    }
+  },
+  "relationship_reflections": {
+    "general": {
+      "response": "Relationships can be some of the most meaningful yet challenging aspects of our lives. Each relationship has its own dynamics.\n\nWhat are you feeling most in this relationship right now? And do you know what you're hoping for from this relationship?\n\nIn an ideal scenario, what would this relationship look like?",
+      "follow_up_questions": [
+        "What's working in this relationship?",
+        "What would you like to change?",
+        "Have you communicated how you feel?"
+      ]
+    }
+  },
+  "self_discovery_reflections": {
+    "general": {
+      "response": "The journey of self-understanding is a lifelong process. The fact that you're asking questions shows you're already on this path.\n\nWhen in your life do you feel most like yourself? And when do you struggle to feel like yourself?\n\nHow would someone who knows you best describe you?",
+      "follow_up_questions": [
+        "What are you most curious about?",
+        "What brings you joy?",
+        "What would you change if you could?"
+      ]
+    }
+  },
+  "welcome_messages": {
+    "default": "Hi! I'm here to help you reflect on what's on your mind. Whether it's a dream, a feeling, a decision, or just something you want to explore - I'm here to listen and ask questions that might help you see things from a new angle.\n\nThis is a space for personal reflection, not advice. What's on your mind today?"
+  },
+  "disclaimer": "This is for personal reflection and entertainment only. It does not provide professional advice."
+}

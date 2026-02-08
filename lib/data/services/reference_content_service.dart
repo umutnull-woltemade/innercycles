@@ -43,6 +43,7 @@ class ReferenceContentService {
       final termLower = entry.term.toLowerCase();
       final termTrLower = entry.termTr.toLowerCase();
       final definitionLower = entry.definition.toLowerCase();
+      final definitionEnLower = entry.definitionEn?.toLowerCase() ?? '';
       final planetInHouse = entry.planetInHouse?.toLowerCase() ?? '';
 
       // Exact match
@@ -66,10 +67,11 @@ class ReferenceContentService {
         continue;
       }
 
-      // Contains in definition or deep explanation
+      // Contains in definition (TR or EN) or deep explanation (TR or EN)
       if (definitionLower.contains(normalizedQuery) ||
-          (entry.deepExplanation?.toLowerCase().contains(normalizedQuery) ??
-              false)) {
+          definitionEnLower.contains(normalizedQuery) ||
+          (entry.deepExplanation?.toLowerCase().contains(normalizedQuery) ?? false) ||
+          (entry.deepExplanationEn?.toLowerCase().contains(normalizedQuery) ?? false)) {
         relatedMatches.add(entry);
         continue;
       }

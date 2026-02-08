@@ -114,7 +114,7 @@ class _ScreenshotShareScreenState extends ConsumerState<ScreenshotShareScreen> {
                 child: Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(0.4),
+                    color: Colors.black.withValues(alpha: 0.4),
                     shape: BoxShape.circle,
                   ),
                   child: const Icon(
@@ -137,7 +137,7 @@ class _ScreenshotShareScreenState extends ConsumerState<ScreenshotShareScreen> {
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                   decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(0.5),
+                    color: Colors.black.withValues(alpha: 0.5),
                     borderRadius: BorderRadius.circular(24),
                   ),
                   child: Row(
@@ -288,7 +288,7 @@ class _ShareImageCard extends StatelessWidget {
                           color: sign.color,
                           shadows: [
                             Shadow(
-                              color: sign.color.withOpacity(0.5),
+                              color: sign.color.withValues(alpha: 0.5),
                               blurRadius: 20,
                             ),
                           ],
@@ -311,7 +311,7 @@ class _ShareImageCard extends StatelessWidget {
                         '${_formatDate(DateTime.now(), language)} • ${moonPhase.emoji}',
                         style: TextStyle(
                           fontSize: 12,
-                          color: Colors.white.withOpacity(0.5),
+                          color: Colors.white.withValues(alpha: 0.5),
                         ),
                       ),
                     ],
@@ -322,8 +322,8 @@ class _ShareImageCard extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
                     decoration: BoxDecoration(
                       border: Border(
-                        top: BorderSide(color: sign.color.withOpacity(0.3), width: 1),
-                        bottom: BorderSide(color: sign.color.withOpacity(0.3), width: 1),
+                        top: BorderSide(color: sign.color.withValues(alpha: 0.3), width: 1),
+                        bottom: BorderSide(color: sign.color.withValues(alpha: 0.3), width: 1),
                       ),
                     ),
                     child: Text(
@@ -350,7 +350,7 @@ class _ShareImageCard extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 15,
                       fontStyle: FontStyle.italic,
-                      color: Colors.white.withOpacity(0.8),
+                      color: Colors.white.withValues(alpha: 0.8),
                       height: 1.4,
                     ),
                   ),
@@ -363,7 +363,7 @@ class _ShareImageCard extends StatelessWidget {
                         L10nService.get('share.energy', language),
                         style: TextStyle(
                           fontSize: 12,
-                          color: Colors.white.withOpacity(0.5),
+                          color: Colors.white.withValues(alpha: 0.5),
                         ),
                       ),
                       const SizedBox(width: 10),
@@ -386,7 +386,7 @@ class _ShareImageCard extends StatelessWidget {
                       _buildShadowLightPill(
                         '🌑',
                         content.shadow,
-                        Colors.white.withOpacity(0.5),
+                        Colors.white.withValues(alpha: 0.5),
                       ),
                       const SizedBox(height: 8),
                       _buildShadowLightPill(
@@ -401,7 +401,7 @@ class _ShareImageCard extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                     decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.05),
+                      color: Colors.white.withValues(alpha: 0.05),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Text(
@@ -412,7 +412,7 @@ class _ShareImageCard extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 13,
                         fontStyle: FontStyle.italic,
-                        color: Colors.white.withOpacity(0.7),
+                        color: Colors.white.withValues(alpha: 0.7),
                         height: 1.3,
                       ),
                     ),
@@ -436,7 +436,7 @@ class _ShareImageCard extends StatelessWidget {
                   'venusone.com',
                   style: TextStyle(
                     fontSize: 11,
-                    color: Colors.white.withOpacity(0.3),
+                    color: Colors.white.withValues(alpha: 0.3),
                     letterSpacing: 2,
                   ),
                 ),
@@ -454,7 +454,7 @@ class _ShareImageCard extends StatelessWidget {
       height: 8,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(4),
-        color: Colors.white.withOpacity(0.1),
+        color: Colors.white.withValues(alpha: 0.1),
       ),
       child: FractionallySizedBox(
         alignment: Alignment.centerLeft,
@@ -478,10 +478,10 @@ class _ShareImageCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.05),
+        color: Colors.white.withValues(alpha: 0.05),
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
-          color: color.withOpacity(0.2),
+          color: color.withValues(alpha: 0.2),
           width: 1,
         ),
       ),

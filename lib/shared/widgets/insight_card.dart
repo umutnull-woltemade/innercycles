@@ -47,24 +47,24 @@ class InsightCard extends StatelessWidget {
             end: Alignment.bottomRight,
             colors: isDark
                 ? [
-                    color.withOpacity(0.2),
-                    color.withOpacity(0.05),
+                    color.withValues(alpha: 0.2),
+                    color.withValues(alpha: 0.05),
                     AppColors.surfaceDark,
                   ]
                 : [
-                    color.withOpacity(0.15),
-                    color.withOpacity(0.05),
+                    color.withValues(alpha: 0.15),
+                    color.withValues(alpha: 0.05),
                     Colors.white,
                   ],
           ),
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
-            color: color.withOpacity(0.3),
+            color: color.withValues(alpha: 0.3),
             width: 1,
           ),
           boxShadow: [
             BoxShadow(
-              color: color.withOpacity(0.15),
+              color: color.withValues(alpha: 0.15),
               blurRadius: 16,
               offset: const Offset(0, 6),
             ),
@@ -101,10 +101,10 @@ class InsightCard extends StatelessWidget {
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                         decoration: BoxDecoration(
-                          color: AppColors.starGold.withOpacity(0.2),
+                          color: AppColors.starGold.withValues(alpha: 0.2),
                           borderRadius: BorderRadius.circular(8),
                           border: Border.all(
-                            color: AppColors.starGold.withOpacity(0.5),
+                            color: AppColors.starGold.withValues(alpha: 0.5),
                           ),
                         ),
                         child: Row(
@@ -191,7 +191,7 @@ class InsightCard extends StatelessWidget {
                         end: Alignment.bottomCenter,
                         colors: [
                           Colors.transparent,
-                          (isDark ? AppColors.surfaceDark : Colors.white).withOpacity(0.7),
+                          (isDark ? AppColors.surfaceDark : Colors.white).withValues(alpha: 0.7),
                         ],
                         stops: const [0.3, 1.0],
                       ),

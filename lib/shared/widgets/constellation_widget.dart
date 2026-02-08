@@ -144,7 +144,7 @@ class _ConstellationPainter extends CustomPainter {
     List<StarConnection> connections,
   ) {
     final linePaint = Paint()
-      ..color = color.withOpacity(lineOpacity * starBrightness)
+      ..color = color.withValues(alpha: lineOpacity * starBrightness)
       ..style = PaintingStyle.stroke
       ..strokeWidth =
           size.width *
@@ -174,7 +174,7 @@ class _ConstellationPainter extends CustomPainter {
     // Draw glow effect for brightest star
     if (isBrightest && showGlow) {
       final glowPaint = Paint()
-        ..color = color.withOpacity(0.3 * starBrightness)
+        ..color = color.withValues(alpha: 0.3 * starBrightness)
         ..maskFilter = MaskFilter.blur(BlurStyle.normal, radius * 2);
 
       canvas.drawCircle(center, radius * 3, glowPaint);
@@ -182,7 +182,7 @@ class _ConstellationPainter extends CustomPainter {
 
     // Draw star core
     final starPaint = Paint()
-      ..color = color.withOpacity(0.9 * starBrightness)
+      ..color = color.withValues(alpha: 0.9 * starBrightness)
       ..style = PaintingStyle.fill;
 
     canvas.drawCircle(center, radius, starPaint);
@@ -190,7 +190,7 @@ class _ConstellationPainter extends CustomPainter {
     // Draw bright center for larger stars
     if (radius > 2) {
       final corePaint = Paint()
-        ..color = Colors.white.withOpacity(0.7 * starBrightness)
+        ..color = Colors.white.withValues(alpha: 0.7 * starBrightness)
         ..style = PaintingStyle.fill;
 
       canvas.drawCircle(center, radius * 0.4, corePaint);

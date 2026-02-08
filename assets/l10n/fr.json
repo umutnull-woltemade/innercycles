@@ -257,7 +257,11 @@
       "gambling": "🎰 Devrais-je jouer aux jeux de hasard?",
       "lucky_star": "✨ Quand mon etoile de chance brillera-t-elle?",
       "mercury_retrograde": "🌙 Comment Mercure retrograde m'affecte-t-il?",
-      "big_change": "🦋 Quand un grand changement arrivera-t-il dans ma vie?"
+      "big_change": "🦋 Quand un grand changement arrivera-t-il dans ma vie?",
+      "rich_become": "💰 Vais-je devenir riche?",
+      "future_love": "🔮 Comment sera mon futur amour?",
+      "attention_this_week": "🎭 À quoi dois-je faire attention cette semaine?",
+      "soulmate_find": "💑 Quand vais-je trouver mon âme sœur?"
     },
     "cosmic_connection_lost": "Connexion cosmique temporairement perdue. Veuillez réessayer.",
     "share_on_instagram": "Partager sur Instagram",
@@ -1053,6 +1057,20 @@
       "auric_reading": "Lecture de l'énergie aurique",
       "planet_transits": "Transits planétaires",
       "priority_guidance": "Guidance cosmique prioritaire"
+    },
+    "tiers": {
+      "monthly": {
+        "name": "Mensuel",
+        "savings": ""
+      },
+      "yearly": {
+        "name": "Annuel",
+        "savings": "Économisez 50%"
+      },
+      "lifetime": {
+        "name": "À vie",
+        "savings": "Paiement unique"
+      }
     }
   },
   "zodiac": {
@@ -1599,6 +1617,28 @@
     "sesquisquare": "Sesqui-Carré",
     "applying": "Appliquant",
     "separating": "Séparant"
+  },
+  "insight": {
+    "title": "Réflexion",
+    "greeting": "Bonjour {name} !",
+    "intro": "Je suis là pour vous aider à réfléchir à ce qui vous préoccupe. Que ce soit un rêve, un sentiment, une décision ou simplement quelque chose que vous souhaitez explorer – je suis là pour écouter et poser des questions qui pourraient vous aider à voir les choses sous un nouvel angle.",
+    "disclaimer": "C'est un espace de réflexion personnelle, pas de conseil.",
+    "input_hint": "Qu'avez-vous en tête ?",
+    "default_user": "là",
+    "start_reflection": "Commencer une Réflexion",
+    "typing": "Réflexion...",
+    "error": "Quelque chose s'est mal passé. Veuillez réessayer.",
+    "welcome": {
+      "morning": "Bonjour ! Sur quoi aimeriez-vous réfléchir aujourd'hui ?",
+      "afternoon": "Bon après-midi ! Qu'avez-vous en tête ?",
+      "evening": "Bonsoir ! Prêt pour une réflexion ?",
+      "night": "Salut ! Qu'est-ce qui vous tient éveillé ?"
+    },
+    "suggestions": {
+      "dream": "Partager un rêve",
+      "feeling": "Comment je me sens",
+      "decision": "Besoin de décider"
+    }
   },
   "elements": {
     "fire": "Feu",
@@ -2757,6 +2797,196 @@
       "southwest": "Sud-Ouest",
       "west": "Ouest",
       "northwest": "Nord-Ouest"
+    },
+    "planet_meanings": {
+      "sun": "Votre identité et force vitale est active en direction {direction}. Cette direction est une source d'énergie et de vitalité pour vous.",
+      "moon": "Vos besoins émotionnels sont nourris depuis {direction}. Cette direction vous donne un sentiment de paix et de sécurité.",
+      "mercury": "La direction {direction} soutient votre activité de communication et de réflexion. L'apprentissage est plus facile dans cette direction.",
+      "venus": "Votre énergie d'amour et de beauté vient de {direction}. Les relations se développent dans cette direction.",
+      "mars": "Votre pouvoir d'action et de motivation est concentré en {direction}. Cette direction vous donne de l'énergie.",
+      "jupiter": "La direction {direction} porte un potentiel de chance et de croissance. Les opportunités viennent de cette direction.",
+      "saturn": "La direction {direction} nécessite structure et discipline. Vous devez être patient ici.",
+      "default": "La direction {direction} a une signification spéciale pour vous."
+    },
+    "home_advice": {
+      "sun": "Gardez la partie {direction} de votre maison lumineuse. Les plantes et la lumière naturelle augmentent votre énergie ici.",
+      "moon": "Utilisez le coin {direction} comme espace de détente. Vous pouvez y faire de la méditation ou du yoga.",
+      "mercury": "Placez votre bureau ou bibliothèque en {direction}. La concentration augmente.",
+      "venus": "Embellissez le coin {direction}. Ajoutez des fleurs, des œuvres d'art ou des éléments romantiques.",
+      "mars": "Créez un espace d'exercice ou un coin de vie actif en {direction}.",
+      "jupiter": "Considérez {direction} comme une zone d'expansion. Faites-y du travail de planification et de vision.",
+      "saturn": "Gardez le coin {direction} ordonné et organisé. Le chaos peut causer des problèmes dans cette direction.",
+      "default": "Évaluez consciemment la direction {direction}."
+    },
+    "travel_advice": {
+      "sun": "Les voyages vers {direction} vous aident à vous retrouver.",
+      "moon": "Les endroits en direction {direction} sont idéaux pour la guérison émotionnelle. Envisagez des visites familiales.",
+      "mercury": "Les voyages vers {direction} pour l'éducation ou les affaires sont productifs.",
+      "venus": "La direction {direction} est parfaite pour des vacances romantiques. Recommandé pour les couples.",
+      "mars": "Planifiez des voyages aventureux vers {direction}. Envisagez des activités sportives.",
+      "jupiter": "Les longs voyages en direction {direction} apportent la chance. Explorez les cultures étrangères.",
+      "saturn": "Faites des voyages planifiés et organisés vers {direction}. Ne vous précipitez pas.",
+      "default": "Vous pouvez envisager de voyager vers {direction}."
+    },
+    "direction_themes": {
+      "neutral": "La direction {direction} a une énergie neutre.",
+      "positive": "La direction {direction} porte une forte énergie positive.",
+      "careful": "La direction {direction} nécessite attention et conscience.",
+      "balanced": "La direction {direction} a un flux d'énergie équilibré."
+    },
+    "analysis": {
+      "home_title": "Analyse de l'Espace Local de Votre Maison",
+      "home_intro": "Pour optimiser l'aménagement de votre maison selon les énergies planétaires:",
+      "home_conclusion": "Ces arrangements alignent l'énergie de votre maison avec votre thème natal.",
+      "office_title": "Analyse de l'Espace Local de Votre Lieu de Travail",
+      "office_intro": "Recommandations pour le succès professionnel:",
+      "desk_position": "Positionnez votre bureau face à la direction {direction}.",
+      "communication_devices": "Placez vos appareils de communication en {direction}.",
+      "growth_goals": "Accrochez vos objectifs de croissance sur le mur {direction}."
+    }
+  },
+  "child_horoscope": {
+    "personality": {
+      "aries": "A natural-born leader with boundless energy and enthusiasm. Your Aries child is adventurous, courageous, and loves to be first at everything.",
+      "taurus": "A gentle soul who appreciates comfort and stability. Your Taurus child is patient, determined, and has a strong appreciation for beauty.",
+      "gemini": "A curious mind that never stops asking questions. Your Gemini child is communicative, adaptable, and loves learning new things.",
+      "cancer": "A sensitive and nurturing spirit. Your Cancer child is intuitive, caring, and deeply connected to family.",
+      "leo": "A bright star who loves to shine. Your Leo child is confident, creative, and has a natural flair for drama.",
+      "virgo": "A thoughtful perfectionist with attention to detail. Your Virgo child is helpful, analytical, and loves organizing things.",
+      "libra": "A natural peacemaker who values harmony. Your Libra child is charming, fair-minded, and loves making friends.",
+      "scorpio": "An intense and passionate soul. Your Scorpio child is determined, intuitive, and fiercely loyal.",
+      "sagittarius": "A free spirit with an adventurous heart. Your Sagittarius child is optimistic, honest, and loves exploring.",
+      "capricorn": "A responsible old soul. Your Capricorn child is ambitious, disciplined, and wise beyond their years.",
+      "aquarius": "A unique individual who thinks differently. Your Aquarius child is inventive, independent, and humanitarian.",
+      "pisces": "A dreamy and imaginative spirit. Your Pisces child is compassionate, artistic, and deeply intuitive."
+    },
+    "learning_style": {
+      "aries": "Learns best through hands-on activities and competition. Needs variety and challenges to stay engaged.",
+      "taurus": "Learns best with a steady, methodical approach. Needs time to absorb information and appreciate routine.",
+      "gemini": "Learns best through conversation and variety. Needs mental stimulation and diverse topics.",
+      "cancer": "Learns best in a secure, nurturing environment. Needs emotional connection to the material.",
+      "leo": "Learns best when praised and given the spotlight. Needs creative expression and recognition.",
+      "virgo": "Learns best with organized, detailed instruction. Needs clear expectations and practical applications.",
+      "libra": "Learns best through partnership and discussion. Needs balance between subjects and social interaction.",
+      "scorpio": "Learns best through deep investigation. Needs to understand the 'why' behind everything.",
+      "sagittarius": "Learns best through exploration and big-picture thinking. Needs freedom and adventure in learning.",
+      "capricorn": "Learns best with structure and clear goals. Needs to see the practical purpose of knowledge.",
+      "aquarius": "Learns best through unconventional methods. Needs freedom to think independently and innovate.",
+      "pisces": "Learns best through imagination and creativity. Needs artistic outlets and gentle guidance."
+    },
+    "social_style": {
+      "aries": "Natural leader among peers, sometimes bossy but always exciting to be around.",
+      "taurus": "Loyal friend who values long-term relationships over many acquaintances.",
+      "gemini": "Social butterfly who makes friends easily but may have trouble with deep connections.",
+      "cancer": "Prefers a small circle of close friends, very protective of loved ones.",
+      "leo": "Popular and generous, loves being the center of their friend group.",
+      "virgo": "Selective with friendships, helpful and reliable to those they trust.",
+      "libra": "Natural diplomat who brings harmony to groups and dislikes conflict.",
+      "scorpio": "Intense in friendships, prefers quality over quantity in relationships.",
+      "sagittarius": "Friendly and open, makes friends from all backgrounds easily.",
+      "capricorn": "Mature in social settings, often befriends older children or adults.",
+      "aquarius": "Friendly but independent, values uniqueness in themselves and friends.",
+      "pisces": "Empathetic friend who absorbs others' emotions, needs alone time to recharge."
+    },
+    "emotional_needs": {
+      "aries": "Needs encouragement for their initiatives and space to be independent.",
+      "taurus": "Needs physical comfort, routine, and reassurance of stability.",
+      "gemini": "Needs mental stimulation and freedom to express their thoughts.",
+      "cancer": "Needs emotional security, family time, and a cozy home environment.",
+      "leo": "Needs appreciation, attention, and opportunities to express creativity.",
+      "virgo": "Needs order, purpose, and gentle encouragement without harsh criticism.",
+      "libra": "Needs harmony, fairness, and help making decisions.",
+      "scorpio": "Needs trust, privacy, and deep emotional connections.",
+      "sagittarius": "Needs freedom, adventure, and honest communication.",
+      "capricorn": "Needs respect, responsibility, and recognition of achievements.",
+      "aquarius": "Needs acceptance of their uniqueness and intellectual freedom.",
+      "pisces": "Needs understanding, creative outlets, and protection from harsh realities."
+    },
+    "talents": {
+      "aries": ["Sports and athletics", "Leadership roles", "Pioneering new activities"],
+      "taurus": ["Music and arts", "Gardening and nature", "Building and creating"],
+      "gemini": ["Writing and communication", "Languages", "Quick thinking"],
+      "cancer": ["Caregiving", "Cooking and homemaking", "Memory and history"],
+      "leo": ["Performing arts", "Creative expression", "Inspiring others"],
+      "virgo": ["Organization", "Analysis and problem-solving", "Helping others"],
+      "libra": ["Art and design", "Mediation", "Social skills"],
+      "scorpio": ["Research and investigation", "Psychology", "Transformation"],
+      "sagittarius": ["Philosophy", "Travel and culture", "Teaching"],
+      "capricorn": ["Business and management", "Planning", "Persistence"],
+      "aquarius": ["Technology", "Innovation", "Humanitarian causes"],
+      "pisces": ["Art and music", "Healing", "Imagination and storytelling"]
+    },
+    "challenges": {
+      "aries": ["Impatience", "Difficulty with authority", "Need for immediate gratification"],
+      "taurus": ["Stubbornness", "Resistance to change", "Possessiveness"],
+      "gemini": ["Inconsistency", "Difficulty focusing", "Superficiality"],
+      "cancer": ["Over-sensitivity", "Clinginess", "Mood swings"],
+      "leo": ["Need for attention", "Pride", "Difficulty sharing spotlight"],
+      "virgo": ["Perfectionism", "Self-criticism", "Worry"],
+      "libra": ["Indecisiveness", "People-pleasing", "Avoiding conflict"],
+      "scorpio": ["Jealousy", "Secretiveness", "Intensity"],
+      "sagittarius": ["Restlessness", "Tactlessness", "Over-promising"],
+      "capricorn": ["Over-seriousness", "Fear of failure", "Workaholism"],
+      "aquarius": ["Emotional detachment", "Rebelliousness", "Stubbornness"],
+      "pisces": ["Escapism", "Over-sensitivity", "Difficulty with boundaries"]
+    },
+    "parenting_tips": {
+      "aries": "Channel their energy into sports and activities. Give them leadership opportunities and praise their courage.",
+      "taurus": "Provide stability and routine. Give them time to adjust to changes and appreciate their patience.",
+      "gemini": "Keep them mentally stimulated with books and conversations. Be patient with their changing interests.",
+      "cancer": "Create a secure home environment. Honor their emotions and maintain family traditions.",
+      "leo": "Give them opportunities to shine and be creative. Praise their efforts while teaching humility.",
+      "virgo": "Be gentle with criticism. Help them see the big picture and not get lost in details.",
+      "libra": "Help them make decisions by limiting choices. Teach them it's okay to have opinions.",
+      "scorpio": "Respect their privacy and emotional depth. Build trust through honesty and consistency.",
+      "sagittarius": "Give them freedom within boundaries. Encourage their curiosity and love of learning.",
+      "capricorn": "Recognize their achievements and let them have fun. Don't put too much pressure on them.",
+      "aquarius": "Accept their uniqueness and encourage their ideas. Give them space to be independent.",
+      "pisces": "Protect their sensitivity while building resilience. Encourage their creativity and imagination."
+    },
+    "daily_horoscopes": [
+      "Today is a wonderful day for creative play and imagination.",
+      "Your child may need extra cuddles and comfort today.",
+      "A great day for learning something new and exciting.",
+      "Social activities and friendship will bring joy today.",
+      "Encourage outdoor adventures and physical activity.",
+      "Today favors quiet activities like reading or drawing.",
+      "Your child's natural talents will shine today.",
+      "A good day for family bonding and togetherness.",
+      "Creativity and artistic expression are highlighted today.",
+      "Patience may be needed today - go with the flow.",
+      "Today brings opportunities for growth and learning.",
+      "Encourage your child's independence today."
+    ],
+    "family_dynamics": {
+      "fire": "Your family has a dynamic, energetic quality with lots of enthusiasm and activity.",
+      "earth": "Your family values stability, security, and practical approaches to life.",
+      "air": "Your family thrives on communication, ideas, and intellectual stimulation.",
+      "water": "Your family is deeply emotional, intuitive, and values emotional connections."
+    },
+    "family_strengths": {
+      "fire": ["High energy and enthusiasm", "Natural leadership", "Adventurous spirit"],
+      "earth": ["Stability and reliability", "Practical problem-solving", "Strong values"],
+      "air": ["Open communication", "Intellectual curiosity", "Adaptability"],
+      "water": ["Emotional depth", "Intuitive understanding", "Nurturing nature"]
+    },
+    "family_challenges": {
+      "fire_dominant": "Too much fire energy may lead to conflicts and impatience.",
+      "earth_dominant": "Too much earth energy may create resistance to change.",
+      "air_dominant": "Too much air energy may lead to lack of emotional depth.",
+      "water_dominant": "Too much water energy may create emotional overwhelm.",
+      "balanced": "Your family has a nice balance of elements, creating harmony."
+    },
+    "communication_style": {
+      "air_heavy": "Your family communicates openly and values intellectual discussion.",
+      "water_heavy": "Your family communicates through emotions and intuitive understanding.",
+      "default": "Your family has a balanced communication style mixing logic and emotion."
+    },
+    "daily_advice": {
+      "fire": "Channel your family's energy into active pursuits today.",
+      "earth": "Focus on practical tasks and enjoy simple pleasures together.",
+      "air": "Engage in meaningful conversations and share ideas.",
+      "water": "Nurture emotional connections and spend quality time together."
     }
   },
   "asteroids": {
@@ -2808,7 +3038,40 @@
     "advice": "Conseils",
     "share_on_instagram": "Partagez cette decouverte sur Instagram!",
     "share": "Partager",
-    "share_coming_soon": "Fonction de partage bientot disponible!"
+    "share_coming_soon": "Fonction de partage bientot disponible!",
+    "routes": {
+      "daily_summary": { "title": "Résumé du Jour", "subtitle": "Votre guide d'énergie cosmique quotidien" },
+      "moon_energy": { "title": "Énergie Lunaire", "subtitle": "Le message de la Lune aujourd'hui" },
+      "moon_rituals": { "title": "Rituels Lunaires", "subtitle": "Harmonie avec le cycle lunaire" },
+      "crystal_guide": { "title": "Guide des Cristaux", "subtitle": "Énergie des pierres de guérison" },
+      "love_energy": { "title": "Énergie d'Amour", "subtitle": "Le guide cosmique de votre cœur" },
+      "abundance_energy": { "title": "Énergie d'Abondance", "subtitle": "Découvrez la source de la prospérité" },
+      "spiritual_transformation": { "title": "Transformation Spirituelle", "subtitle": "Carte de votre voyage intérieur" },
+      "life_purpose": { "title": "Votre But de Vie", "subtitle": "Découvrez pourquoi vous êtes ici" },
+      "subconscious_patterns": { "title": "Vos Schémas Subconscients", "subtitle": "Décodez vos programmes cachés" },
+      "karma_lessons": { "title": "Vos Leçons Karmiques", "subtitle": "Ce que votre âme doit apprendre" },
+      "soul_contract": { "title": "Votre Contrat d'Âme", "subtitle": "L'accord fait avant la naissance" },
+      "inner_power": { "title": "Votre Pouvoir Intérieur", "subtitle": "Activez vos super pouvoirs" },
+      "shadow_self": { "title": "Votre Ombre", "subtitle": "Rencontrez votre côté sombre" },
+      "leadership_style": { "title": "Votre Style de Leadership", "subtitle": "Découvrez quel type de leader vous êtes" },
+      "heartbreak": { "title": "Votre Chagrin d'Amour", "subtitle": "Vos points sensibles en amour" },
+      "red_flags": { "title": "Vos Signaux d'Alerte", "subtitle": "Aspects à surveiller" },
+      "green_flags": { "title": "Vos Signaux Positifs", "subtitle": "Découvrez vos qualités merveilleuses" },
+      "flirt_style": { "title": "Votre Style de Flirt", "subtitle": "Apprenez comment vous séduisez" },
+      "tarot_card": { "title": "Votre Carte de Tarot", "subtitle": "La carte qui représente votre âme" },
+      "aura_color": { "title": "Votre Couleur d'Aura", "subtitle": "La couleur de votre champ énergétique" },
+      "chakra_balance": { "title": "Votre Équilibre des Chakras", "subtitle": "État de vos centres d'énergie" },
+      "life_number": { "title": "Votre Nombre de Vie", "subtitle": "Découvrez votre destin numérologique" },
+      "kabbala_path": { "title": "Votre Chemin Kabbalistique", "subtitle": "Votre place sur l'Arbre de Vie" },
+      "saturn_lessons": { "title": "Vos Leçons de Saturne", "subtitle": "Votre voyage de maturation" },
+      "birthday_energy": { "title": "Votre Énergie d'Anniversaire", "subtitle": "Message de votre retour solaire" },
+      "eclipse_effect": { "title": "Effet d'Éclipse", "subtitle": "Comment les éclipses vous affectent" },
+      "transit_flow": { "title": "Flux des Transits", "subtitle": "Effets des transits planétaires" },
+      "compatibility_analysis": { "title": "Analyse de Compatibilité", "subtitle": "Découvrez le potentiel relationnel" },
+      "soul_mate": { "title": "Votre Âme Sœur", "subtitle": "Identifiez votre partenaire cosmique" },
+      "relationship_karma": { "title": "Votre Karma Relationnel", "subtitle": "Schémas karmiques dans vos relations" },
+      "celebrity_twin": { "title": "Votre Jumeau Célèbre", "subtitle": "Quelle célébrité partage votre énergie?" }
+    }
   },
   "tarot": {
     "title": "Que vous disent les cartes?",
@@ -2855,7 +3118,190 @@
     "wisdom_source": "Sagesse Archetypale",
     "jungian_source": "Symbolisme Jungien",
     "reading": "Reading",
-    "page_title": "What do the cards tell you?"
+    "page_title": "Que vous disent les cartes ?",
+    "yes_no_answers": {
+      "yes": "Oui",
+      "no": "Non - Pas maintenant",
+      "maybe": "Peut-être - Soyez prudent",
+      "careful": "Soyez prudent",
+      "probably_yes": "Probablement oui",
+      "positive_card_reversed": "{card} est arrivée inversée. Bien que normalement positive, vous pourriez rencontrer des obstacles maintenant.",
+      "negative_card_reversed": "{card} est en position inversée. Cela montre que les énergies négatives dominent. Je recommande d'attendre.",
+      "transformation_card": "{card} est une carte de transformation. Oui est possible, mais soyez prêt pour des changements inattendus.",
+      "positive_card": "{card} porte une énergie positive. Le chemin semble dégagé.",
+      "neutral_card": "{card} est généralement un signe positif. Un optimisme prudent est approprié."
+    },
+    "spread_labels": {
+      "past_label": "Passe",
+      "present_label": "Present",
+      "future_label": "Futur",
+      "reversed_suffix": " - Inverse",
+      "you_label": "Vous",
+      "partner_label": "Partenaire/Partenaire Potentiel",
+      "relationship_label": "Energie de la Relation",
+      "challenge_label": "Defi",
+      "advice_label": "Conseil",
+      "general_interpretation": "Interpretation Generale",
+      "past_energy": "Dans le passe, l'energie de {keyword} etait active.",
+      "present_energy": "Actuellement, vous travaillez avec {keyword}.",
+      "future_energy": "Dans le futur, {keyword} vous attend."
+    },
+    "cards": {
+      "fool": {
+        "name": "Le Mat",
+        "keywords": "Nouveaux departs, innocence, spontaneite",
+        "upright": "Vous etes au seuil d'un nouveau voyage. Laissez aller vos peurs et sautez dans l'inconnu. L'univers vous soutient.",
+        "reversed": "L'imprudence ou la peur vous retient. N'agissez pas sans reflechir, mais n'attendez pas trop longtemps non plus.",
+        "advice": "Ecoutez ce que votre coeur vous dit. Parfois la plus grande sagesse est d'accepter ce que vous ne savez pas."
+      },
+      "magician": {
+        "name": "Le Magicien",
+        "keywords": "Manifestation, volonte, habilete",
+        "upright": "Tous les outils sont entre vos mains. Vous avez le pouvoir de manifester ce que vous voulez. Clarifiez votre intention et agissez.",
+        "reversed": "Vous gaspillez peut-etre votre potentiel. Attention a la manipulation ou la tromperie.",
+        "advice": "Equilibrez les quatre elements - pensee, emotion, action et matiere. Utilisez votre pouvoir creatif consciemment."
+      },
+      "high_priestess": {
+        "name": "La Papesse",
+        "keywords": "Intuition, mystere, connaissance interieure",
+        "upright": "Faites confiance a votre intuition. Les reponses sont en vous. Il y a un grand pouvoir dans le silence et l'ecoute.",
+        "reversed": "Vous reprimez peut-etre votre voix interieure. Des secrets ou des informations cachees peuvent faire surface.",
+        "advice": "Temps pour la meditation et le voyage interieur. Faites attention a vos reves et intuitions."
+      },
+      "empress": {
+        "name": "L'Imperatrice",
+        "keywords": "Abondance, fertilite, bienveillance",
+        "upright": "L'energie d'abondance et de benediction est forte. Vous etes dans un cycle de creativite et de fertilite.",
+        "reversed": "Prenez soin de vous. Ne vous negligez pas en prenant soin des autres. Il peut y avoir des blocages creatifs.",
+        "advice": "Connectez-vous avec la nature. Appreciez la beaute. Montrez de la compassion pour vous et les autres."
+      },
+      "emperor": {
+        "name": "L'Empereur",
+        "keywords": "Autorite, structure, controle",
+        "upright": "Temps pour le leadership et la structure. La discipline et la determination apporteront le succes.",
+        "reversed": "Controle excessif ou rigidite. La flexibilite est necessaire. Conflit avec les figures d'autorite.",
+        "advice": "Fixez des limites fortes mais ne soyez pas dictateur. Prenez vos responsabilites, mais donnez aussi de l'espace aux autres."
+      },
+      "hierophant": {
+        "name": "Le Hierophante",
+        "keywords": "Tradition, conformite, spiritualite",
+        "upright": "Les voies traditionnelles et les institutions sont importantes. Un enseignant ou guide peut apparaitre.",
+        "reversed": "Temps de questionner les traditions. Trouvez votre propre chemin spirituel. Eloignez-vous du dogmatisme.",
+        "advice": "La sagesse peut etre trouvee partout. Apprenez de la tradition mais cherchez aussi votre propre verite."
+      },
+      "lovers": {
+        "name": "Les Amoureux",
+        "keywords": "Amour, harmonie, choix",
+        "upright": "Un choix ou union important. L'energie d'amour et d'harmonie est forte. Ecoutez votre coeur.",
+        "reversed": "Disharmonie dans les relations. Un choix qui contredit vos valeurs. Conflit interieur.",
+        "advice": "Le vrai amour commence par s'aimer soi-meme. Dans vos choix, ecoutez votre coeur et votre esprit."
+      },
+      "chariot": {
+        "name": "Le Chariot",
+        "keywords": "Determination, volonte, victoire",
+        "upright": "La victoire est proche. Votre volonte et determination vous porteront vers votre but. Vous surmonterez les obstacles.",
+        "reversed": "Perte de controle ou confusion de direction. Des forces opposees vous tirent.",
+        "advice": "Concentrez-vous sur votre objectif. Equilibrez vos conflits interieurs. Perseverez sur le chemin de la victoire."
+      },
+      "strength": {
+        "name": "La Force",
+        "keywords": "Courage, compassion, force interieure",
+        "upright": "La vraie force reside dans la compassion. Vous surmonterez les difficultes avec votre courage interieur.",
+        "reversed": "Manque de confiance en soi ou emotions reprimees. Redecouvrez votre force interieure.",
+        "advice": "Ne niez pas votre nature sauvage, aimez-la et apprivoisez-la. La douceur n'est pas une faiblesse."
+      },
+      "hermit": {
+        "name": "L'Ermite",
+        "keywords": "Recherche de l'ame, introspection, solitude",
+        "upright": "Temps de vous tourner vers l'interieur et de contempler. Eloignez-vous des foules, trouvez votre propre lumiere.",
+        "reversed": "Isolation excessive ou repli. Ou le contraire - fuite de la solitude.",
+        "advice": "Il y a des reponses dans le silence. Soyez votre propre guide mais ne restez pas completement seul."
+      },
+      "wheel_of_fortune": {
+        "name": "La Roue de Fortune",
+        "keywords": "Changement, cycles, destin",
+        "upright": "De grands changements sont a venir. La chance tourne. La phase ascendante du cycle commence.",
+        "reversed": "Malchance ou phase descendante du cycle. Cela aussi passera. Soyez patient.",
+        "advice": "Les hauts et les bas de la vie sont naturels. Soyez reconnaissant au sommet, patient dans la chute."
+      },
+      "justice": {
+        "name": "La Justice",
+        "keywords": "Equite, verite, karma",
+        "upright": "La justice sera rendue. L'honnetete et la verite sont importantes. Le karma est a l'oeuvre.",
+        "reversed": "Injustice ou desequilibre. Eviter la responsabilite. Auto-tromperie.",
+        "advice": "Acceptez les consequences de vos actions. Soyez honnete - d'abord avec vous-meme."
+      },
+      "hanged_man": {
+        "name": "Le Pendu",
+        "keywords": "Suspension, lacher prise, nouvelle perspective",
+        "upright": "Attendez et abandonnez-vous. Regardez sous un angle different. Un sacrifice peut etre necessaire.",
+        "reversed": "Sacrifice inutile ou role de victime. Ou resistance a l'abandon.",
+        "advice": "Parfois le chemin en avant est de s'arreter. Changez votre perspective, la reponse apparaitra."
+      },
+      "death": {
+        "name": "La Mort",
+        "keywords": "Transformation, fins, changement",
+        "upright": "Une grande transformation. La fin de quelque chose, le debut de quelque chose de nouveau. Resister prolonge la douleur.",
+        "reversed": "Resistance au changement. Incapacite a lacher prise. Stagnation.",
+        "advice": "La mort est la porte de la renaissance. Laissez aller l'ancien pour faire place au nouveau."
+      },
+      "temperance": {
+        "name": "La Temperance",
+        "keywords": "Equilibre, moderation, patience",
+        "upright": "Temps pour l'equilibre et l'harmonie. La patience et la moderation apportent le succes. L'energie de guerison est forte.",
+        "reversed": "Desequilibre ou extremes. Impatience. Disharmonie.",
+        "advice": "Trouvez le juste milieu. En melangeant les opposes, atteignez la synthese doree."
+      },
+      "devil": {
+        "name": "Le Diable",
+        "keywords": "Servitude, addiction, materialisme",
+        "upright": "Vos addictions et peurs vous retiennent captif. Affrontez vos aspects sombres.",
+        "reversed": "Temps de briser les chaines. La liberation commence. Se liberer de l'addiction.",
+        "advice": "Vous avez mis les chaines, vous pouvez aussi les enlever. Dansez avec votre ombre, mais ne soyez pas son esclave."
+      },
+      "tower": {
+        "name": "La Tour",
+        "keywords": "Changement soudain, revelation, bouleversement",
+        "upright": "Changement soudain et destructeur. Les fondations pourries s'effondrent. Mais c'est une purification.",
+        "reversed": "Catastrophe evitee ou resistance au changement. Destruction interieure.",
+        "advice": "Parfois tout doit s'effondrer pour que le vrai reste. Acceptez la tempete."
+      },
+      "star": {
+        "name": "L'Etoile",
+        "keywords": "Espoir, inspiration, serenite",
+        "upright": "Temps pour l'espoir et l'inspiration. Guerison et renouveau. L'univers vous parle.",
+        "reversed": "Desespoir ou perte de foi. Deconnexion de la connexion cosmique.",
+        "advice": "Meme apres la nuit la plus sombre, les etoiles brillent. Ne perdez pas espoir."
+      },
+      "moon": {
+        "name": "La Lune",
+        "keywords": "Illusion, peur, subconscient",
+        "upright": "Le subconscient fait surface. Affrontez les illusions et les peurs. Faites attention aux reves.",
+        "reversed": "Surmonter les peurs. S'eveiller des illusions. Clarte.",
+        "advice": "Les ombres ne sont pas reelles. Faites confiance a votre intuition en marchant dans l'obscurite."
+      },
+      "sun": {
+        "name": "Le Soleil",
+        "keywords": "Joie, succes, vitalite",
+        "upright": "Temps pour la lumiere, la joie et le succes. Tout est illumine. Celebration!",
+        "reversed": "Ombres temporaires ou succes retarde. Renouvelez la connexion avec votre enfant interieur.",
+        "advice": "N'ayez pas peur de laisser briller votre lumiere. Votre joie est contagieuse. Celebrez la vie!"
+      },
+      "judgement": {
+        "name": "Le Jugement",
+        "keywords": "Reflexion, bilan, eveil",
+        "upright": "Un grand eveil et appel. Bilan avec le passe. Renaissance.",
+        "reversed": "Doute de soi ou etre coince dans le passe. Ne pas entendre l'appel.",
+        "advice": "Acceptez votre passe, vivez votre present, creez votre futur. Repondez a votre appel."
+      },
+      "world": {
+        "name": "Le Monde",
+        "keywords": "Accomplissement, integration, realisation",
+        "upright": "Le cycle s'acheve. Succes et integrite. Passage a un nouveau niveau.",
+        "reversed": "Affaires inachevees ou cycles incomplets. Une etape de plus est necessaire.",
+        "advice": "Chaque fin est un nouveau debut. Celebrez vos accomplissements et preparez-vous pour le prochain cycle."
+      }
+    }
   },
   "chakra": {
     "title": "Analyse des Chakras",
@@ -3103,7 +3549,83 @@
     "chakra_advice_heart": "Passez du temps avec vos proches. Tenez un journal de gratitude et passez du temps dans des espaces verts.",
     "chakra_advice_throat": "Exprimez vos sentiments, chantez. Portez des tons bleus et buvez beaucoup d'eau.",
     "chakra_advice_third_eye": "Meditez et notez vos reves. Concentrez-vous sur les couleurs violettes/indigo.",
-    "chakra_advice_crown": "Passez du temps dans le silence, meditez. Portez du blanc ou du violet et connectez-vous avec la nature."
+    "chakra_advice_crown": "Passez du temps dans le silence, meditez. Portez du blanc ou du violet et connectez-vous avec la nature.",
+    "spiritual_advice": {
+      "red": "Ancrez votre energie. L'activite physique et les promenades dans la nature equilibreront votre aura.",
+      "orange": "Exprimez votre creativite. L'art, la danse ou la musique renforceront votre aura.",
+      "yellow": "Gardez votre clarte mentale. Apprendre et enseigner poliront votre aura.",
+      "green": "Ouvrez votre coeur. Le travail de guerison et l'aide aux autres feront grandir votre aura.",
+      "blue": "Dites votre verite. La communication honnete et l'expression authentique renforceront votre aura.",
+      "indigo": "Faites confiance a votre intuition. La meditation et le travail sur les reves approfondiront votre aura.",
+      "violet": "Renforcez votre connexion cosmique. Les pratiques spirituelles et le service eleveront votre aura.",
+      "pink": "Repandez l'amour inconditionnel. La compassion et l'empathie etendront votre aura.",
+      "white": "Maintenez votre purete. Les rituels de purification et la meditation protegeront votre aura.",
+      "gold": "Souvenez-vous de votre connexion divine. La priere et la gratitude poliront votre aura."
+    },
+    "affirmations": {
+      "red": "Je suis fort et en securite. J'avance sans peur.",
+      "orange": "Ma creativite est illimitee. Je m'exprime avec joie.",
+      "yellow": "Mon esprit est clair, ma volonte est forte. Le succes est mien.",
+      "green": "Mon coeur est ouvert, mon amour est infini. Je porte la guerison.",
+      "blue": "Je dis ma verite. Ma voix est puissante.",
+      "indigo": "Je fais confiance a mon intuition. Ma sagesse interieure me guide.",
+      "violet": "Je suis un avec l'univers. Je sers mon but superieur.",
+      "pink": "Je donne de l'amour, je recois de l'amour. La compassion est ma nature.",
+      "white": "Je suis dans la lumiere pure. La protection divine est avec moi.",
+      "gold": "Je suis energie divine. L'abondance et la prosperite coulent avec moi."
+    },
+    "daily_guidance": {
+      "strongest": "Aujourd'hui votre aura est a son plus fort. Jour ideal pour utiliser vos talents naturels.",
+      "harmonious": "L'energie d'aujourd'hui est harmonieuse avec votre aura. Restez dans le flux et saisissez les opportunites.",
+      "different": "Aujourd'hui a un flux d'energie different. Flexibilite et adaptation sont importants. Trouvez l'equilibre."
+    },
+    "cleansing_tips": {
+      "meditation_title": "Meditation",
+      "meditation_desc": "Meditez sur {focus} pendant 10-15 minutes par jour pour renforcer votre aura {color}.",
+      "crystal_title": "Therapie par les cristaux",
+      "crystal_desc": "Le cristal {crystal} est ideal pour equilibrer votre aura.",
+      "color_title": "Chromotherapie",
+      "color_desc": "Portez des vetements dans les tons {color} ou entourez-vous d'objets de cette couleur.",
+      "nature_title": "Connexion a la nature",
+      "sound_title": "Sonotherapie",
+      "sound_desc": "Ecoutez de la musique a la frequence {frequency} Hz ou chantez le mantra {mantra}."
+    },
+    "meditation_focus": {
+      "red": "ancrage et securite",
+      "orange": "creativite et flux emotionnel",
+      "yellow": "pouvoir personnel et confiance",
+      "green": "ouverture du coeur et guerison",
+      "blue": "communication et expression authentique",
+      "indigo": "troisieme oeil et intuition",
+      "violet": "chakra couronne et connexion universelle",
+      "pink": "amour inconditionnel et compassion",
+      "white": "purification et protection",
+      "gold": "connexion divine et abondance"
+    },
+    "crystals": {
+      "red": "Jaspe rouge ou Grenat",
+      "orange": "Cornaline ou Calcite orange",
+      "yellow": "Citrine ou Oeil de tigre",
+      "green": "Aventurine verte ou Emeraude",
+      "blue": "Lapis-lazuli ou Aigue-marine",
+      "indigo": "Amethyste ou Sodalite",
+      "violet": "Amethyste violette ou Sugilite",
+      "pink": "Quartz rose ou Rhodonite",
+      "white": "Quartz clair ou Selenite",
+      "gold": "Topaze doree ou Pyrite"
+    },
+    "nature": {
+      "red": "Marchez pieds nus sur la terre. Enlacez les arbres.",
+      "orange": "Regardez le coucher de soleil. Passez du temps pres de l'eau.",
+      "yellow": "Prenez des bains de soleil. Soyez dans les jardins fleuris.",
+      "green": "Promenez-vous en foret. Prenez soin des plantes.",
+      "blue": "Soyez pres de la mer ou d'un lac. Regardez le ciel.",
+      "indigo": "Observez le ciel nocturne et les etoiles.",
+      "violet": "Soyez en montagne ou en altitude.",
+      "pink": "Passez du temps dans les jardins fleuris.",
+      "white": "Observez la neige ou les nuages. Soyez au grand air.",
+      "gold": "Regardez le lever du soleil. Soyez dans la lumiere du soleil."
+    }
   },
   "kabbalah": {
     "title": "Kabbale",
@@ -5078,6 +5600,215 @@
         "money_meaning": "Self-worth, abundance, security",
         "love_name": "Love",
         "love_meaning": "Connection, desire, acceptance"
+      },
+      "interpretations": {
+        "sign_perspective": "{sign} cosmic perspective on your dream:",
+        "water": {
+          "title": "🌊 WATER DREAM - {sign} INTERPRETATION",
+          "divider": "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
+          "basic_meaning_label": "💧 BASIC MEANING",
+          "element_perspective_label": "🔥 {element} ELEMENT PERSPECTIVE",
+          "psychological_label": "🌙 PSYCHOLOGICAL DIMENSION",
+          "practice_label": "✨ PRACTICAL APPLICATION",
+          "aries": {
+            "basic_meaning": "Water, for your fire sign, is a call to dive into emotional depths. Subconscious energies want to surface.",
+            "element_perspective": "Water's calming energy has come to balance your fire nature. Time for patience and rest. A period of reflection before action.",
+            "psychological": "Water: Subconscious, emotions, mother archetype\nAs Aries: Suppressed emotions want to surface\nMessage: Not just running, but sometimes pausing to feel is needed",
+            "practice": "• Meditate by the water\n• Set your intention while showering\n• Allow your tears\n• Write your feelings down"
+          },
+          "taurus": {
+            "basic_meaning": "Water, for your earth sign, symbolizes fertility and abundance. Material and emotional flow is entering your life.",
+            "element_perspective": "Water nourishes earth - this dream is a harbinger of growth and prosperity. Trust your natural rhythm, let go without forcing.",
+            "psychological": "Water: Emotional security, comfort, nourishment\nAs Taurus: The connection between inner peace and material security\nMessage: Emotional wealth attracts material wealth",
+            "practice": "• Water your plants, tend your garden\n• Take a bath ritual\n• Visualize financial flow\n• Make relaxation and comfort your priority"
+          },
+          "cancer": {
+            "basic_meaning": "Water is your element - this dream is extremely meaningful! There is a powerful message from your spiritual depths.",
+            "element_perspective": "This dream indicates a deep connection with home, family and your roots. The mother archetype is active. Your inner home is calling.",
+            "psychological": "Water: Subconscious, intuition, protective instinct\nAs Cancer: The need for spiritual protection and home\nMessage: Return home - to your inner home, your spiritual home",
+            "practice": "• Fill water under moonlight and drink\n• Look at family photos\n• Take a sea salt bath\n• Clean the house - renew the energy\n• Connect with mother figures"
+          },
+          "scorpio": {
+            "basic_meaning": "Water is your element and this dream indicates deep transformation! Time for renewal has come.",
+            "element_perspective": "Don't fear diving into the depths of water. There are treasures there. The cycle of death and rebirth is active.",
+            "psychological": "Water: The deepest layers of the subconscious\nAs Scorpio: Time for shadow work\nMessage: Instead of fearing darkness, illuminate it",
+            "practice": "• Do deep meditations\n• Keep a shadow journal\n• Practice letting go ritual\n• Embrace Plutonian transformation\n• Consider therapy or counseling"
+          },
+          "pisces": {
+            "basic_meaning": "Water is your element - your connection with spiritual realms is very strong! You can fully trust your intuition.",
+            "element_perspective": "You're experiencing oneness with the universe. Creative inspiration is flowing. Ideal period for artistic expression.",
+            "psychological": "Water: Universal consciousness, healing, collective subconscious\nAs Pisces: Mystical experiences and inner guidance\nMessage: You are beyond water - you are the ocean",
+            "practice": "• Artistic creation - painting, music, writing\n• Meditation by sea or lake\n• Lucid dream practices\n• Healing work\n• Be open to spiritual guidance"
+          },
+          "default": {
+            "basic_meaning": "Water carries emotional messages for your {element} sign. The subconscious wants to flow.",
+            "element_perspective": "Water's fluid energy is communicating with you. A call to dive into emotional depths.",
+            "practice": "• Spend time by water\n• Express your emotions\n• Trust the flow, let go of forcing\n• Listen to your intuition"
+          }
+        },
+        "flying": {
+          "title": "✈️ FLYING DREAM - {sign} INTERPRETATION",
+          "basic_meaning_label": "🦅 BASIC MEANING",
+          "basic_meaning": "Flying represents the desire for freedom and transcending limits. The soul's ascension and consciousness expansion.",
+          "special_interpretation_label": "{sign} SPECIAL INTERPRETATION",
+          "special_interpretation": "This dream shows you the potential to conquer new heights in your life. Time to break free from limiting beliefs has come.",
+          "psychological_label": "🌙 PSYCHOLOGICAL DIMENSION",
+          "psychological": "• Flight altitude: Indicates your level of consciousness\n• Flight speed: Symbolizes the speed of change\n• Difficulty: Reflects the obstacles you face\n• Ease: Shows your inner freedom level",
+          "flight_style_label": "📍 BY FLIGHT STYLE",
+          "flight_style": "• Gliding: State of flow in life\n• Flapping: Difficult but achieved goals\n• Unable to rise: Suppressed potential\n• Falling: Fear of losing control",
+          "practice_label": "✨ PRACTICAL APPLICATION",
+          "practice": "• Write your fears and burn them\n• Go to a high place, look at the view\n• Repeat 'I can fly' affirmation\n• Set intention for lucid dreaming",
+          "cosmic_message_label": "💫 COSMIC MESSAGE",
+          "cosmic_message": "The universe is saying 'you have wings, use them.' As a {element} element, {element_message}."
+        },
+        "falling": {
+          "title": "⬇️ FALLING DREAM - {sign} INTERPRETATION",
+          "basic_meaning_label": "🌪️ BASIC MEANING",
+          "basic_meaning": "Falling reflects the fear of losing control or insecurity in an area of your life.",
+          "special_interpretation": "Focus on grounding work. This dream is giving you the message 'your feet need to touch the ground.'",
+          "psychological_label": "🌙 PSYCHOLOGICAL DIMENSION",
+          "psychological": "• Where you fell from: Which area has insecurity\n• Fall speed: Level of loss of control\n• Hitting ground: Anxiety about fears being realized\n• Waking before: Escape mechanism active",
+          "attention_label": "⚠️ THINGS TO WATCH",
+          "attention": "• Areas in life where you've lost control\n• Signs of excessive stress and anxiety\n• Meeting of basic needs\n• Work-life balance",
+          "practice_label": "✨ PRACTICAL APPLICATION",
+          "practice": "• Walk barefoot on the earth\n• Do root chakra meditation\n• List your security needs\n• Practice breathing exercises",
+          "cosmic_message_label": "💫 COSMIC MESSAGE",
+          "cosmic_message": "Falling is actually letting go. Let go of the illusion of control, trust the universe. As a {element} element, grounding practice is especially important."
+        },
+        "death": {
+          "title": "💀 DEATH DREAM - {sign} INTERPRETATION",
+          "not_scary_label": "🦋 BASIC MEANING - NOTHING TO FEAR!",
+          "not_scary": "Death in dreams symbolizes transformation and new beginnings. This is not an end, it is transformation!",
+          "special_interpretation": "This dream means old patterns are dying and a new self is being born. Think about what you need to let go of in your life.",
+          "psychological_label": "🌙 PSYCHOLOGICAL DIMENSION",
+          "psychological": "• Your own death: Ego transformation, new self\n• Someone else's death: What that person represents is ending\n• Unknown person's death: General life change\n• Return from death: Renewal and gaining power",
+          "transformation_label": "🔄 TRANSFORMATION AREAS",
+          "transformation": "• Career change\n• Relationship transformation\n• Renewal of beliefs\n• Identity evolution\n• Lifestyle change",
+          "practice_label": "✨ PRACTICAL APPLICATION",
+          "practice": "• Make a list of what needs to let go\n• Review old photos\n• Clean out your wardrobe\n• Identify habits that need to 'die'",
+          "cosmic_message_label": "💫 COSMIC MESSAGE",
+          "cosmic_message": "You're being reborn from your ashes like a phoenix. {sign} energy empowers this transformation. A new you is being born!"
+        },
+        "chase": {
+          "title": "🏃 CHASE DREAM - {sign} INTERPRETATION",
+          "basic_meaning_label": "😰 BASIC MEANING",
+          "basic_meaning": "Being chased is a call to face something you're running from in life. The more you run, the bigger the chaser grows!",
+          "special_interpretation": "With your {element} energy, bravely turn around and ask what's chasing you. Usually what we run from are the lessons we need most.",
+          "psychological_label": "🌙 PSYCHOLOGICAL DIMENSION (JUNG ANALYSIS)",
+          "psychological": "• The chaser: Shadow archetype - your rejected aspects\n• Running: Avoidance of confrontation\n• Being caught: Opportunity for shadow integration\n• Can't escape: Denial no longer works",
+          "chaser_label": "🔍 WHAT COULD BE CHASING YOU?",
+          "chaser": "• Fear or anxiety\n• Suppressed anger\n• Postponed responsibilities\n• Avoided relationship issues\n• Unmet needs",
+          "practice_label": "✨ PRACTICAL APPLICATION",
+          "practice": "• In your dream, stop and talk to the chaser\n• Ask 'What do you want?'\n• Practice active imagination technique\n• Identify what you're running from and take small steps",
+          "cosmic_message_label": "💫 COSMIC MESSAGE",
+          "cosmic_message": "The chaser is actually you - a suppressed aspect of yourself. Embrace and integrate it. Your enemy can become your friend."
+        },
+        "animal": {
+          "title": "🐾 ANIMAL DREAM - {sign} INTERPRETATION",
+          "basic_meaning_label": "🦁 BASIC MEANING",
+          "basic_meaning": "Animals represent our instinctual nature and suppressed energies. Each animal carries a totem message.",
+          "special_interpretation": "This dream is a call to reconnect with your natural instincts. Research the totem energy of whichever animal you saw.",
+          "common_symbols_label": "🐍 COMMON ANIMAL SYMBOLS",
+          "common_symbols": "• Snake: Transformation, healing, kundalini\n• Dog: Loyalty, protection, friendship\n• Cat: Independence, mystery, intuition\n• Bird: Freedom, spiritual messages\n• Wolf: Community, leadership, teacher\n• Bear: Strength, protection, introspection\n• Horse: Freedom, power, passion",
+          "psychological_label": "🌙 PSYCHOLOGICAL DIMENSION",
+          "psychological": "• Animal's behavior: Your suppressed behavior\n• Your relationship with animal: Your relationship with instincts\n• Animal's color: Emotional tone\n• If animal attacks: Suppressed energy eruption",
+          "practice_label": "✨ PRACTICAL APPLICATION",
+          "practice": "• Research that animal - mythology, symbolism\n• Do animal meditation\n• Draw totem cards\n• Get an object related to that animal",
+          "cosmic_message_label": "💫 COSMIC MESSAGE",
+          "cosmic_message": "Your animal guide is communicating with you. As a {element} element, this connection is especially strong."
+        },
+        "house": {
+          "title": "🏠 HOUSE/BUILDING DREAM - {sign} INTERPRETATION",
+          "basic_meaning_label": "🏛️ BASIC MEANING",
+          "basic_meaning": "Houses and buildings symbolize your spiritual structure and inner world. Each room represents different aspects of your self.",
+          "special_interpretation": "Think about which 'room' you're avoiding entering. As a {element} element, the structure of your inner world is important.",
+          "room_meanings_label": "🚪 ROOM MEANINGS",
+          "room_meanings": "• Basement: Subconscious, suppressed memories\n• Attic: Higher consciousness, spirituality\n• Kitchen: Nourishment, creativity\n• Bedroom: Privacy, sexuality\n• Bathroom: Purification, emotional cleansing\n• Living room: Social aspect, relationship with outer world\n• Secret rooms: Unexplored potential",
+          "house_states_label": "🔑 HOUSE STATES",
+          "house_states": "• New house: New self, change\n• Ruined house: Neglected aspects\n• Childhood home: Roots, past\n• Strange house: Unknown potential",
+          "practice_label": "✨ PRACTICAL APPLICATION",
+          "practice": "• Clean the room you visit least in your home\n• Renew house corners with energy\n• Draw a map of your inner world\n• Do 'spiritual home' meditation",
+          "cosmic_message_label": "💫 COSMIC MESSAGE",
+          "cosmic_message": "The house is you. Each room is an aspect of you. Explore and own them all."
+        },
+        "love": {
+          "title": "💕 LOVE DREAM - {sign} INTERPRETATION",
+          "basic_meaning_label": "❤️ BASIC MEANING",
+          "basic_meaning": "Love-themed dreams reflect relationship dynamics and emotional needs.",
+          "special_interpretation": "This dream may be a harbinger of a new period in your love life. Ask 'How is my relationship with myself?'",
+          "dream_types_label": "💑 LOVE DREAM TYPES",
+          "dream_types": "• Ex-partner: Incomplete feelings\n• Stranger: New potential or desire\n• Your partner: Relationship dynamics\n• Celebrity: Desired qualities\n• Platonic love: Emotional needs",
+          "scenarios_label": "🌹 DREAM SCENARIOS",
+          "scenarios": "• Kissing: Desire for union\n• Separation: Fear of loss\n• Marriage: Desire for commitment\n• Being cheated on: Insecurity\n• Fighting: Inner conflict",
+          "psychological_label": "🌙 PSYCHOLOGICAL DIMENSION",
+          "psychological": "• Anima/Animus: Opposite gender archetype\n• Projection: Seeing your own qualities\n• Need: Unmet emotional requirements",
+          "practice_label": "✨ PRACTICAL APPLICATION",
+          "practice": "• Take a love language test\n• List your relationship needs\n• Work on self-worth\n• Heart chakra meditation",
+          "cosmic_message_label": "💫 COSMIC MESSAGE",
+          "cosmic_message": "Love yourself first. {element} element in love life {element_message}."
+        },
+        "money": {
+          "title": "💰 MONEY/WEALTH DREAM - {sign} INTERPRETATION",
+          "basic_meaning_label": "🏆 BASIC MEANING",
+          "basic_meaning": "Money and wealth dreams represent self-worth and abundance consciousness. They carry a message of inner, not material, wealth.",
+          "special_interpretation": "This dream invites you to question your relationship with the material world. True wealth is inner peace and gratitude.",
+          "dream_types_label": "💎 MONEY DREAM TYPES",
+          "dream_types": "• Finding money: Incoming opportunities, luck\n• Losing money: Insecurity, fear of loss\n• Being rich: Awareness of potential\n• Counting money: Need for control\n• Giving money: Generosity or power loss",
+          "symbols_label": "🪙 SYMBOLS",
+          "symbols": "• Gold: Spiritual wealth, wisdom\n• Cash: Daily security\n• Treasure: Hidden potential\n• Jewels: Self-worth\n• Bank: Security and structure",
+          "psychological_label": "🌙 PSYCHOLOGICAL DIMENSION",
+          "psychological": "• Money = Energy exchange\n• Wealth = Self-worth perception\n• Poverty = Feeling of inadequacy\n• Abundance = Harmony with universe",
+          "practice_label": "✨ PRACTICAL APPLICATION",
+          "practice": "• Repeat abundance affirmations\n• Keep a gratitude list\n• Question your relationship with money\n• Practice generosity",
+          "cosmic_message_label": "💫 COSMIC MESSAGE",
+          "cosmic_message": "The universe offers abundance - be a receiver. {element} element in financial matters {element_message}."
+        },
+        "generic": {
+          "title": "{sign} COSMIC DREAM INTERPRETATION",
+          "subconscious_label": "🔮 SUBCONSCIOUS MESSAGE",
+          "subconscious": "The dream you described shows that your subconscious is sending you important messages.",
+          "element_perspective_label": "💫 {element} ELEMENT PERSPECTIVE",
+          "element_perspective": "With your {element} element's energy, the core message of this dream seems to be related to {element_message}.",
+          "emotion_label": "🌙 EMOTION ANALYSIS",
+          "emotion": "Focus on the emotions in your dream:\n• Fear: Need for security\n• Happiness: Sign that you're on the right path\n• Confusion: The unknown is being explored\n• Sadness: Incomplete feeling\n• Anger: Suppressed energy",
+          "symbol_reading_label": "📍 SYMBOL READING",
+          "symbol_reading": "Note the main symbols in your dream:\n• People: Represent your aspects\n• Places: Map of your inner world\n• Objects: Tools and resources\n• Actions: Your approach to life",
+          "practice_label": "✨ PRACTICAL APPLICATION",
+          "practice": "• Keep a dream journal\n• Set intention before sleeping\n• Research symbols\n• Connect through meditation",
+          "advice_label": "💫 {sign} ADVICE"
+        },
+        "element_messages": {
+          "fire_flying": "time to rise with courage",
+          "earth_flying": "elevate your practical goals",
+          "air_flying": "fly with the wings of your ideas",
+          "water_flying": "capture your emotional freedom",
+          "fire_love": "wants passion and excitement",
+          "earth_love": "seeks security and loyalty",
+          "air_love": "prioritizes communication and mental connection",
+          "water_love": "wants to create deep emotional bonds",
+          "fire_money": "suggests bold investments",
+          "earth_money": "supports safe and steady accumulation",
+          "air_money": "indicates multiple income sources",
+          "water_money": "suggests intuitive financial decisions",
+          "fire_generic": "passion, action and creative power",
+          "earth_generic": "security, material world and practical steps",
+          "air_generic": "communication, ideas and social connections",
+          "water_generic": "emotions, intuition and spiritual depth"
+        },
+        "zodiac_advice": {
+          "aries": "Advice: Write down your first thoughts when you wake up in the morning. Your fire energy can quickly make you forget subconscious messages.",
+          "taurus": "Advice: Write your dreams in a dream journal. Your earth energy works better with tangible records.",
+          "gemini": "Advice: Tell your dream to someone. Your air energy loves to find meaning through verbal expression.",
+          "cancer": "Advice: Pay attention to moon phases. Your dreams will be stronger during full moon and new moon times.",
+          "leo": "Advice: Express your dreams creatively - draw, write, share. Your fire energy loves expression.",
+          "virgo": "Advice: Keep a list of dream symbols. Your earth energy appreciates systematic analysis.",
+          "libra": "Advice: Focus on relationships in your dreams. Your air energy draws lessons from social dynamics.",
+          "scorpio": "Advice: Do deep meditation. Your water energy is very powerful for diving into subconscious depths.",
+          "sagittarius": "Advice: Interpret your dreams philosophically. Your fire energy loves to see the big picture.",
+          "capricorn": "Advice: Think about how to apply your dreams to practical life. Your earth energy wants concrete results.",
+          "aquarius": "Advice: Join dream communities. Your air energy is nourished by collective wisdom.",
+          "pisces": "Advice: Set intention before sleep. Your water energy can connect directly with spiritual guidance."
+        }
       }
     }
   },
@@ -5883,8 +6614,12 @@
     "spiritual_practice": "Spiritual Practice",
     "warnings": "Things to Watch",
     "strengths_learned": "Strengths (When Learned)",
-    "life_areas_impact": "Impact on Life Areas",
-    "daily_affirmation": "Daily Affirmation",
+    "life_areas_impact": "Impact sur les Domaines de Vie",
+    "reduces_to_archetype": "Se réduit à {number} • {archetype}",
+    "relationships": "Relations",
+    "career": "Carrière",
+    "health": "Santé",
+    "daily_affirmation": "Affirmation Quotidienne",
     "other_karmic_debts": "Other Karmic Debts",
     "life_path_not_found": "Life path number not found",
     "soul_mission": "Soul Mission",
@@ -6022,9 +6757,9 @@
     }
   },
   "nav": {
-    "also_viewed_subtitle": "Others who were curious also viewed these",
-    "go_deeper_subtitle": "Connect with your inner world",
-    "keep_exploring_subtitle": "Different perspectives",
+    "also_viewed_subtitle": "D'autres curieux ont également consulté ceci",
+    "go_deeper_subtitle": "Connectez-vous avec votre monde intérieur",
+    "keep_exploring_subtitle": "Différentes perspectives",
     "keep_exploring": "Continue Exploring",
     "daily_reading": "Daily Reading",
     "daily_energy": "Today's Energy",
@@ -6478,6 +7213,1041 @@
         "awareness2": "Potential can remain unrealized.",
         "awareness3": "Small steps grow it."
       }
+    }
+  },
+  "navigation": {
+    "section_titles": {
+      "also_viewed": "Les lecteurs ont aussi consulté",
+      "go_deeper": "Allez plus loin",
+      "keep_exploring": "Continuez à explorer",
+      "continue_without_back": "Continuer sans revenir"
+    },
+    "cards": {
+      "todays_cosmic_energy": {
+        "title": "Énergie cosmique du jour",
+        "description": "Que murmure le ciel aujourd'hui ? Consultez les horoscopes quotidiens."
+      },
+      "birth_chart_question": {
+        "title": "Que dit mon thème natal ?",
+        "description": "Découvrez votre empreinte cosmique — calcul gratuit."
+      },
+      "partner_compatible": {
+        "title": "Sommes-nous compatibles ?",
+        "description": "Voyez la danse de deux thèmes."
+      },
+      "current_transits": {
+        "title": "Transits actuels",
+        "description": "Comment les mouvements célestes vous affectent-ils ?"
+      },
+      "dream_interpretation": {
+        "title": "Racontez votre rêve, explorons ensemble",
+        "description": "Qu'avez-vous vu cette nuit ? Embarquons pour un voyage symbolique."
+      },
+      "cosmic_guidance": {
+        "title": "Guidance cosmique",
+        "description": "Posez votre question intérieure, laissez les étoiles répondre."
+      },
+      "tarot_insight": {
+        "title": "Insight avec le Tarot",
+        "description": "Regardez dans le miroir de votre subconscient — tirez une carte quotidienne."
+      },
+      "number_secrets": {
+        "title": "Secret de vos nombres",
+        "description": "Que racontent votre date de naissance et votre nom ?"
+      },
+      "energy_field": {
+        "title": "Votre champ énergétique",
+        "description": "Les couleurs de votre aura et l'équilibre des chakras."
+      },
+      "kozmoz_discovery": {
+        "title": "Découverte Kozmoz",
+        "description": "Toutes les fonctionnalités en un seul endroit"
+      },
+      "astrology_glossary": {
+        "title": "Glossaire d'astrologie",
+        "description": "Apprenez les termes"
+      },
+      "premium_features": {
+        "title": "Fonctionnalités Premium",
+        "description": "Outils d'astrologie avancés"
+      },
+      "most_read_scorpio": {
+        "title": "Le plus lu : Scorpion",
+        "description": "Que disent les eaux mystérieuses aujourd'hui ?"
+      },
+      "rising_trend_aquarius": {
+        "title": "Tendance montante : Verseau",
+        "description": "Les vents du changement soufflent."
+      },
+      "weekly_overview": {
+        "title": "Aperçu hebdomadaire",
+        "description": "Qu'attend tous les signes cette semaine ?"
+      },
+      "monthly_depth": {
+        "title": "Profondeur mensuelle",
+        "description": "Quel est le grand thème du mois ?"
+      },
+      "calculate_birth_chart": {
+        "title": "Calculez votre thème natal",
+        "description": "Voyez au-delà de votre signe solaire."
+      },
+      "relationship_compatibility": {
+        "title": "Compatibilité relationnelle",
+        "description": "Vous et l'autre — comment est la danse cosmique ?"
+      },
+      "daily_tarot": {
+        "title": "Tarot quotidien",
+        "description": "Que disent les cartes aujourd'hui ?"
+      },
+      "home": {
+        "title": "Accueil",
+        "description": "Retour au début"
+      },
+      "kozmoz_hub": {
+        "title": "Hub Kozmoz",
+        "description": "Toutes les fonctionnalités"
+      },
+      "all_signs": {
+        "title": "Tous les signes",
+        "description": "Explorez les 12 signes"
+      },
+      "sign_compatibility": {
+        "title": "Compatibilité des signes",
+        "description": "Analyse de couple"
+      },
+      "synastry_analysis": {
+        "title": "Analyse de synastrie",
+        "description": "Comparez les thèmes en détail."
+      },
+      "composite_chart": {
+        "title": "Thème composite",
+        "description": "Le thème propre de la relation."
+      },
+      "solar_return": {
+        "title": "Retour solaire",
+        "description": "Comment est le thème de cette année ?"
+      },
+      "progressions": {
+        "title": "Progressions",
+        "description": "Suivez votre évolution intérieure."
+      },
+      "vedic_chart": {
+        "title": "Thème védique",
+        "description": "Perspective de l'astrologie indienne."
+      },
+      "draconic_chart": {
+        "title": "Thème draconique",
+        "description": "Votre origine spirituelle."
+      },
+      "asteroids": {
+        "title": "Astéroïdes",
+        "description": "Chiron, Lilith et autres."
+      },
+      "numerology": {
+        "title": "Numérologie",
+        "description": "Sagesse des nombres."
+      },
+      "kabbalah": {
+        "title": "Kabbale",
+        "description": "Connexion Tarot et Arbre de Vie."
+      },
+      "aura_reading": {
+        "title": "Lecture d'aura",
+        "description": "Découvrez votre champ énergétique."
+      },
+      "chakra_analysis": {
+        "title": "Analyse des chakras",
+        "description": "Vos centres énergétiques."
+      },
+      "moon_rituals": {
+        "title": "Rituels lunaires",
+        "description": "Pratiques de purification énergétique."
+      },
+      "saturn_return": {
+        "title": "Retour de Saturne",
+        "description": "Crise des 29 ans."
+      },
+      "retrograde_calendar": {
+        "title": "Calendrier des rétrogrades",
+        "description": "Quand Mercure est-il rétrograde ?"
+      },
+      "electional_astrology": {
+        "title": "Astrologie élective",
+        "description": "Choisissez les bons moments."
+      },
+      "celebrity_couples": {
+        "title": "Couples de célébrités",
+        "description": "Compatibilité des célébrités"
+      },
+      "dream_tonight": {
+        "title": "Qu'avez-vous rêvé cette nuit ?",
+        "description": "Comment l'énergie de votre signe se reflète-t-elle dans les rêves ?"
+      },
+      "daily_cosmic_message": {
+        "title": "Votre message cosmique quotidien",
+        "description": "Que veut vous dire l'univers aujourd'hui ?"
+      },
+      "chart_connected_dreams": {
+        "title": "Rêves liés au thème",
+        "description": "Comment les planètes se reflètent-elles dans vos rêves ?"
+      },
+      "personal_cosmic_message": {
+        "title": "Message cosmique personnel",
+        "description": "Guidance spécifique à votre thème."
+      },
+      "daily_horoscope": {
+        "title": "Horoscope quotidien",
+        "description": "Lisez avec le tarot."
+      },
+      "decode_dream_symbols": {
+        "title": "Décodez vos symboles de rêve",
+        "description": "Cartes et rêves parlent un langage similaire."
+      },
+      "cosmic_guidance_beyond": {
+        "title": "Guidance cosmique",
+        "description": "Un message au-delà des cartes."
+      },
+      "birth_chart": {
+        "title": "Thème natal",
+        "description": "Votre identité cosmique."
+      },
+      "tarot_ritual": {
+        "title": "Rituel de tarot",
+        "description": "Méditation de tirage de carte."
+      },
+      "all_analyses": {
+        "title": "Toutes les analyses",
+        "description": "Autres chemins d'exploration"
+      },
+      "kabbalah_numbers": {
+        "title": "Nombres kabbalistiques",
+        "description": "Origine mystique des nombres."
+      },
+      "tarot": {
+        "title": "Tarot",
+        "description": "Carte du jour."
+      },
+      "dream_with_numbers": {
+        "title": "Interprétation des rêves avec les nombres",
+        "description": "Que signifient les nombres dans vos rêves ?"
+      },
+      "personal_year_message": {
+        "title": "Message de l'année personnelle",
+        "description": "L'énergie numérique de cette année."
+      },
+      "aura_colors": {
+        "title": "Couleurs de l'aura",
+        "description": "Votre champ énergétique."
+      },
+      "chakra_balance": {
+        "title": "Équilibre des chakras",
+        "description": "Nombres et chakras."
+      },
+      "number_meanings": {
+        "title": "Significations des nombres",
+        "description": "1-9 et nombres maîtres"
+      },
+      "synastry_depth": {
+        "title": "Profondeur de synastrie",
+        "description": "Comparez les thèmes en détail."
+      },
+      "love_horoscope": {
+        "title": "Horoscope amoureux",
+        "description": "Énergie amoureuse hebdomadaire"
+      },
+      "venus_and_mars": {
+        "title": "Vénus et Mars",
+        "description": "Examinez les planètes de l'amour."
+      },
+      "relationship_dreams": {
+        "title": "Rêves relationnels",
+        "description": "Que signifient les rêves sur votre partenaire ?"
+      },
+      "relationship_guidance": {
+        "title": "Guidance relationnelle",
+        "description": "Perspective cosmique."
+      },
+      "love_tarot": {
+        "title": "Tarot amoureux",
+        "description": "Tirez une carte pour les relations."
+      },
+      "numerical_harmony": {
+        "title": "Harmonie numérique",
+        "description": "Numérologie avec les noms."
+      },
+      "venus_transit": {
+        "title": "Transit de Vénus",
+        "description": "Où est la planète de l'amour ?"
+      },
+      "energy_dreams": {
+        "title": "Rêves énergétiques",
+        "description": "Signification des rêves de couleur et de lumière."
+      },
+      "daily_energy_message": {
+        "title": "Message énergétique quotidien",
+        "description": "Le flux d'énergie d'aujourd'hui."
+      },
+      "color_meanings": {
+        "title": "Significations des couleurs",
+        "description": "Glossaire des couleurs d'aura"
+      },
+      "tarot_and_paths": {
+        "title": "Tarot et chemins",
+        "description": "22 Arcanes majeurs, 22 chemins."
+      },
+      "astrology_connection": {
+        "title": "Connexion astrologique",
+        "description": "Sefirot et planètes."
+      },
+      "chakra_system": {
+        "title": "Système des chakras",
+        "description": "Cartes énergétiques Est et Ouest."
+      },
+      "mystic_dreams": {
+        "title": "Rêves mystiques",
+        "description": "Symboles spirituels et rêves."
+      },
+      "sefirot_meditation": {
+        "title": "Méditation des Sefirot",
+        "description": "Voyage sur l'Arbre de Vie."
+      },
+      "sefirot_glossary": {
+        "title": "Glossaire des Sefirot",
+        "description": "Significations des 10 sefirot"
+      },
+      "my_birth_chart": {
+        "title": "Mon thème natal",
+        "description": "Votre identité cosmique"
+      },
+      "transit_dreams": {
+        "title": "Rêves pendant les transits",
+        "description": "Que disent les rêves pendant les transits intenses ?"
+      },
+      "personal_transit_guidance": {
+        "title": "Guidance personnelle des transits",
+        "description": "Message spécial pour cette période."
+      },
+      "planet_glossary": {
+        "title": "Glossaire des planètes",
+        "description": "Significations des transits"
+      },
+      "moon_phases_dreams": {
+        "title": "Phases lunaires et rêves",
+        "description": "Comment le cycle lunaire affecte-t-il les rêves ?"
+      },
+      "sign_dream_patterns": {
+        "title": "Signes et motifs de rêves",
+        "description": "Comment votre signe se reflète-t-il dans les rêves ?"
+      },
+      "subconscious_tarot": {
+        "title": "Subconscient et Tarot",
+        "description": "Rêves et cartes parlent un langage similaire."
+      },
+      "twelfth_house_dreams": {
+        "title": "12e maison et rêves",
+        "description": "La maison des rêves dans votre thème natal."
+      },
+      "your_cosmic_message": {
+        "title": "Votre message cosmique",
+        "description": "Guidance au-delà du rêve."
+      },
+      "tell_another_dream": {
+        "title": "Racontez un autre rêve",
+        "description": "Commencez un nouveau voyage."
+      },
+      "chakra_and_dreams": {
+        "title": "Chakra et rêves",
+        "description": "Centres énergétiques et subconscient."
+      },
+      "neptune_transit": {
+        "title": "Transit de Neptune",
+        "description": "Où est la planète des rêves ?"
+      },
+      "symbol_glossary": {
+        "title": "Glossaire des symboles",
+        "description": "Symboles de rêves"
+      },
+      "daily_horoscope_reading": {
+        "title": "Lecture d'horoscope quotidien",
+        "description": "L'énergie cosmique du jour."
+      },
+      "moon_phase": {
+        "title": "Phase lunaire",
+        "description": "L'influence de la lune aujourd'hui."
+      },
+      "transits": {
+        "title": "Transits",
+        "description": "Le ciel aujourd'hui."
+      },
+      "tell_your_dream": {
+        "title": "Racontez votre rêve",
+        "description": "Comment le message cosmique se reflète-t-il dans les rêves ?"
+      },
+      "cosmic_discovery": {
+        "title": "Découverte cosmique",
+        "description": "Obtenez plus d'insights."
+      },
+      "kabbalah_sefirot": {
+        "title": "Sefirot kabbalistiques",
+        "description": "Chemins sur l'Arbre de Vie."
+      },
+      "kabbalah_meditation": {
+        "title": "Méditation kabbalistique",
+        "description": "Voyage sur l'Arbre de Vie."
+      },
+      "moon_calendar": {
+        "title": "Calendrier lunaire",
+        "description": "Phases et énergies lunaires."
+      },
+      "ritual_guide": {
+        "title": "Guide des rituels",
+        "description": "Pratiques pour chaque phase."
+      },
+      "post_ritual_dreams": {
+        "title": "Rêves post-rituels",
+        "description": "Comment les rituels affectent-ils les rêves ?"
+      },
+      "intention_guidance": {
+        "title": "Guidance d'intention",
+        "description": "Fixez des intentions selon la lune."
+      },
+      "rituals": {
+        "title": "Rituels",
+        "description": "Pratiques énergétiques"
+      },
+      "glossary": {
+        "title": "Glossaire",
+        "description": "Termes d'astrologie"
+      },
+      "aura": {
+        "title": "Aura",
+        "description": "Analyse du champ énergétique"
+      },
+      "aura_cleansing": {
+        "title": "Nettoyage de l'aura",
+        "description": "Pratiques de purification énergétique."
+      },
+      "energy_guidance": {
+        "title": "Guidance énergétique",
+        "description": "Flux d'énergie quotidien."
+      },
+      "seven_chakra_guide": {
+        "title": "Guide des sept chakras",
+        "description": "Comprenez vos centres énergétiques."
+      },
+      "chakra_balancing": {
+        "title": "Équilibrage des chakras",
+        "description": "Pratiques pour l'équilibre."
+      },
+      "advanced_astrology": {"description": "Astrologie avancée"},
+      "astrological_perspective": {"description": "Perspective astrologique."},
+      "cards_message": {"description": "Le message des cartes."},
+      "chakra_balancing_practices": {"description": "Pratiques d'équilibrage des chakras."},
+      "chakra_special_message": {"description": "Message spécial pour vos chakras."},
+      "compare_chart_today": {"description": "Comparez votre thème avec le ciel d'aujourd'hui."},
+      "cosmic_energy": {"description": "Énergie cosmique."},
+      "cosmic_energy_map": {"description": "Carte d'énergie cosmique."},
+      "cosmic_identity": {"description": "Votre identité cosmique."},
+      "cosmic_message_dreams": {"description": "Comment le message cosmique se reflète-t-il dans les rêves ?"},
+      "cosmic_perspective": {"description": "Perspective cosmique."},
+      "daily_card": {"description": "Carte du jour."},
+      "discover_energy_centers": {"description": "Découvrez vos centres énergétiques."},
+      "east_west_energy_maps": {"description": "Cartes énergétiques Est-Ouest."},
+      "energy_blockages_dreams": {"description": "Comment les blocages énergétiques se reflètent-ils dans les rêves ?"},
+      "energy_field_chakras": {"description": "Votre champ énergétique et chakras."},
+      "energy_reading": {"description": "Lecture énergétique."},
+      "energy_reading_path": {"description": "Chemin de lecture énergétique."},
+      "energy_work_rituals": {"description": "Travail énergétique avec les rituels."},
+      "gematria_and_numbers": {"description": "Gematria et nombres."},
+      "get_more_insight": {"description": "Obtenez plus d'insights."},
+      "get_personal_message": {"description": "Obtenez un message personnel."},
+      "guidance_beyond_dream": {"description": "Guidance au-delà du rêve."},
+      "inner_evolution_tracking": {"description": "Suivi de l'évolution intérieure."},
+      "learn_concepts": {"description": "Apprenez les concepts"},
+      "moon_planet_positions": {"description": "Positions de la lune et des planètes."},
+      "moon_practices": {"description": "Pratiques lunaires."},
+      "my_cosmic_identity": {"description": "Mon identité cosmique."},
+      "my_energy_centers": {"description": "Mes centres énergétiques."},
+      "numbers_and_chakras": {"description": "Nombres et chakras."},
+      "numbers_in_cards": {"description": "Nombres dans les cartes."},
+      "numerical_compatibility": {"description": "Analyse de compatibilité numérique."},
+      "numerical_vibrations": {"description": "Vibrations numériques."},
+      "numerology_mystery": {"description": "Le mystère des nombres — un voyage similaire."},
+      "other_exploration_paths": {"description": "Autres chemins d'exploration"},
+      "other_practices": {"description": "Autres pratiques"},
+      "other_systems": {"description": "Autres systèmes"},
+      "planets_and_chakras": {"description": "Planètes et chakras."},
+      "read_with_numbers": {"description": "Lisez avec les nombres."},
+      "read_with_tarot": {"description": "Lisez avec le tarot."},
+      "secret_of_numbers": {"description": "Le secret des nombres."},
+      "sefirot_energies": {"description": "Énergies des Sefirot."},
+      "sign_pages": {"description": "Pages des signes"},
+      "sky_today": {"description": "Le ciel aujourd'hui."},
+      "speak_subconscious": {"description": "Parlez à votre subconscient."},
+      "spiritual_practices": {"description": "Pratiques spirituelles."},
+      "tarot_terms": {"description": "Termes du tarot"},
+      "terms": {"description": "Termes"},
+      "this_years_chart": {"description": "Le thème de cette année."},
+      "todays_energy": {"description": "L'énergie d'aujourd'hui."},
+      "transits_affecting_chart": {"description": "Comment les transits affectent-ils mon thème ?"},
+      "twelve_signs": {"description": "12 signes"}
+    },
+    "zodiac": {
+      "aries": { "name": "Bélier", "ruler": "Mars", "sign_title": "Bélier", "dreams_title": "Rêves du Bélier", "ruler_transit": "Transit de Mars" },
+      "taurus": { "name": "Taureau", "ruler": "Vénus", "sign_title": "Taureau", "dreams_title": "Rêves du Taureau", "ruler_transit": "Transit de Vénus" },
+      "gemini": { "name": "Gémeaux", "ruler": "Mercure", "sign_title": "Gémeaux", "dreams_title": "Rêves des Gémeaux", "ruler_transit": "Transit de Mercure" },
+      "cancer": { "name": "Cancer", "ruler": "Lune", "sign_title": "Cancer", "dreams_title": "Rêves du Cancer", "ruler_transit": "Transit de la Lune" },
+      "leo": { "name": "Lion", "ruler": "Soleil", "sign_title": "Lion", "dreams_title": "Rêves du Lion", "ruler_transit": "Transit du Soleil" },
+      "virgo": { "name": "Vierge", "ruler": "Mercure", "sign_title": "Vierge", "dreams_title": "Rêves de la Vierge", "ruler_transit": "Transit de Mercure" },
+      "libra": { "name": "Balance", "ruler": "Vénus", "sign_title": "Balance", "dreams_title": "Rêves de la Balance", "ruler_transit": "Transit de Vénus" },
+      "scorpio": { "name": "Scorpion", "ruler": "Pluton", "sign_title": "Scorpion", "dreams_title": "Rêves du Scorpion", "ruler_transit": "Transit de Pluton" },
+      "sagittarius": { "name": "Sagittaire", "ruler": "Jupiter", "sign_title": "Sagittaire", "dreams_title": "Rêves du Sagittaire", "ruler_transit": "Transit de Jupiter" },
+      "capricorn": { "name": "Capricorne", "ruler": "Saturne", "sign_title": "Capricorne", "dreams_title": "Rêves du Capricorne", "ruler_transit": "Transit de Saturne" },
+      "aquarius": { "name": "Verseau", "ruler": "Uranus", "sign_title": "Verseau", "dreams_title": "Rêves du Verseau", "ruler_transit": "Transit d'Uranus" },
+      "pisces": { "name": "Poissons", "ruler": "Neptune", "sign_title": "Poissons", "dreams_title": "Rêves des Poissons", "ruler_transit": "Transit de Neptune" }
+    },
+    "phrases": {
+      "how_this_pair_dances": "Comment ce couple danse-t-il ?",
+      "same_element_different_energy": "Même élément, énergie différente.",
+      "sibling_element_energy": "Énergie d'élément frère.",
+      "what_awaits_this_week": "Qu'est-ce qui vous attend cette semaine ?",
+      "which_dreams_this_sign_sees": "Quels rêves les personnes de ce signe font-elles le plus ?",
+      "special_message_for_today": "Message spécial pour aujourd'hui",
+      "cosmic_guidance": "Recevez une guidance cosmique.",
+      "beyond_your_sun_sign": "Qu'y a-t-il au-delà de votre Soleil {sign} ?",
+      "where_is_your_ruler": "Où est votre planète maîtresse maintenant ?",
+      "reading_aligned_with_energy": "Une lecture alignée avec l'énergie {sign}.",
+      "compatibility_with": "Compatibilité avec {sign}",
+      "weekly_reading": "Lecture hebdomadaire {sign}"
+    }
+  },
+  "glossary": {
+    "hints": {
+      "natal_chart": "Votre carte d'identité cosmique",
+      "ascendant": "Votre porte vers le monde",
+      "descendant": "Miroir dans les relations",
+      "midheaven": "Carrière et image publique",
+      "ic": "Racines et monde intérieur",
+      "transit": "Météo cosmique actuelle",
+      "retrograde": "Période de rétrospection",
+      "orb": "Plage de tolérance de l'aspect",
+      "cusp": "Point de transition de maison ou signe",
+      "element": "Quatre énergies fondamentales",
+      "modality": "Trois modes de mouvement",
+      "dignity": "Puissance de la planète dans son signe",
+      "sun": "Votre essence et force vitale",
+      "moon": "Vos émotions et instincts",
+      "mercury": "Esprit et communication",
+      "venus": "Amour, beauté et valeurs",
+      "mars": "Action, passion et énergie",
+      "jupiter": "Chance, croissance et sagesse",
+      "saturn": "Structure, discipline et temps",
+      "uranus": "Révolution, liberté et changement",
+      "neptune": "Rêves, inspiration et illusion",
+      "pluto": "Transformation, pouvoir et renaissance"
+    }
+  },
+  "pdf_report": {
+    "labels": {
+      "lucky_number": "Nombre Chanceux",
+      "lucky_color": "Couleur Chanceuse",
+      "caution": "Attention",
+      "compatibility_report": "Rapport de Compatibilité"
+    },
+    "colors": {
+      "red": "Rouge",
+      "blue": "Bleu",
+      "green": "Vert",
+      "purple": "Violet",
+      "orange": "Orange",
+      "yellow": "Jaune",
+      "pink": "Rose",
+      "white": "Blanc"
+    },
+    "caution_areas": {
+      "communication": "Communication",
+      "finance": "Finances",
+      "health": "Santé",
+      "relationships": "Relations",
+      "work": "Travail",
+      "family": "Famille"
+    },
+    "planet_meanings": {
+      "sun": "Identité, ego, but de vie",
+      "moon": "Émotions, instincts, mère",
+      "mercury": "Communication, pensée, apprentissage",
+      "venus": "Amour, beauté, valeurs",
+      "mars": "Énergie, passion, action",
+      "jupiter": "Expansion, chance, philosophie",
+      "saturn": "Discipline, responsabilité, limites",
+      "uranus": "Changement, liberté, innovation",
+      "neptune": "Imagination, spiritualité, intuition",
+      "pluto": "Transformation, pouvoir, renaissance",
+      "north_node": "But de vie, voyage spirituel",
+      "south_node": "Vie passée, talents naturels",
+      "chiron": "Guérisseur blessé, voyage de guérison",
+      "lilith": "Ombre, désirs refoulés",
+      "ascendant": "Apparence extérieure, première impression",
+      "midheaven": "Carrière, image publique",
+      "ic": "Maison, famille, racines",
+      "descendant": "Relations, partenariat"
+    },
+    "sun_sign_interpretations": {
+      "aries": "En tant que leader né, vous êtes courageux et entreprenant. Vous n'hésitez pas face aux nouveaux départs, et votre esprit de compétition vous pousse en avant.",
+      "taurus": "Vous avez une nature déterminée et fiable. La sécurité matérielle et le confort sont importants pour vous; votre patience et votre persévérance vous aident à atteindre vos objectifs.",
+      "gemini": "Vous êtes curieux avec des intérêts variés. Vos compétences en communication sont fortes, et vous appréciez les conversations intellectuelles.",
+      "cancer": "Vous vous distinguez par votre profondeur émotionnelle et votre intuition. La famille et le foyer sont très importants pour vous; vous avez une nature protectrice et nourricière.",
+      "leo": "Vous attirez l'attention par votre créativité et votre charisme. Vous possédez des qualités de leadership et aimez être au centre de l'attention.",
+      "virgo": "Vous êtes connu pour votre esprit analytique et votre attention aux détails. Votre approche perfectionniste est à la fois votre force et un domaine à développer.",
+      "libra": "Vous recherchez l'équilibre et l'harmonie. Les relations sont très importantes pour vous, et votre sens de la justice est fort; vous êtes connu pour vos compétences diplomatiques.",
+      "scorpio": "Vous avez une nature profonde et intense. Votre capacité à résoudre les mystères et votre pouvoir de transformation vous rendent unique; votre loyauté est incontestable.",
+      "sagittarius": "Vous êtes connu pour votre esprit libre et votre soif d'aventure. Vous avez une nature philosophique et cherchez constamment à apprendre et explorer.",
+      "capricorn": "Votre ambition et votre détermination vous aident à atteindre vos objectifs. Vous êtes discipliné et responsable, valorisant les plans à long terme.",
+      "aquarius": "Vous vous distinguez par votre pensée innovante et indépendante. Vous avez de grands idéaux pour l'humanité et n'hésitez pas à être non conventionnel.",
+      "pisces": "Vous êtes connu pour votre nature intuitive et empathique. Vos talents artistiques et vos inclinations spirituelles vous rendent spécial."
+    },
+    "moon_sign_interpretations": {
+      "aries": "Vos réactions émotionnelles sont rapides et passionnées. Vous pouvez ressentir de l'impatience, mais votre courage émotionnel est impressionnant.",
+      "taurus": "La sécurité émotionnelle est très importante pour vous. Vous avez une nature émotionnelle stable et fiable, bien que vous puissiez résister au changement.",
+      "gemini": "Vous êtes habile à exprimer vos émotions. La curiosité et la communication font partie de vos besoins émotionnels.",
+      "cancer": "Avec la Lune dans son signe d'origine, votre intuition émotionnelle est très forte. Vous portez l'archétype universel de la mère/du père.",
+      "leo": "Vous avez une nature émotionnelle chaleureuse et enthousiaste. Être aimé et apprécié est votre besoin émotionnel.",
+      "virgo": "Votre capacité d'analyse émotionnelle est forte. Servir les autres vous apporte une satisfaction émotionnelle.",
+      "libra": "Les relations sont essentielles à votre équilibre émotionnel. L'harmonie et l'esthétique vous apportent la paix.",
+      "scorpio": "Vous vivez des expériences émotionnelles profondes et intenses. La transformation et la guérison émotionnelles sont vos thèmes centraux.",
+      "sagittarius": "Vous avez besoin de liberté émotionnelle. Votre optimisme et votre esprit d'aventure vous nourrissent.",
+      "capricorn": "Vous essayez de garder vos émotions sous contrôle. La maturité et la responsabilité émotionnelles sont des thèmes importants pour vous.",
+      "aquarius": "L'indépendance émotionnelle est importante pour vous. Vos sentiments pour l'humanité sont forts.",
+      "pisces": "Vous avez une nature émotionnelle intuitive et empathique. Les expériences spirituelles font partie de votre nourriture émotionnelle."
+    },
+    "ascendant_interpretations": {
+      "aries": "En première impression, vous apparaissez énergique, déterminé et leader. Vous projetez une image courageuse et entrepreneuriale.",
+      "taurus": "Vous êtes perçu comme calme, fiable et ancré. Votre apparence physique est impressionnante.",
+      "gemini": "Vous rayonnez d'une énergie curieuse, communicative et jeune. Vous êtes perçu comme agile et spirituel.",
+      "cancer": "Vous êtes vu comme chaleureux, protecteur et nourricier. La maison et la famille sont des thèmes proéminents dans votre vie.",
+      "leo": "Vous êtes perçu comme charismatique, accrocheur et confiant. La scène est une arène naturelle pour vous.",
+      "virgo": "Vous êtes vu comme organisé, analytique et orienté vers les détails. Vous projetez une image serviable et pratique.",
+      "libra": "Vous êtes perçu comme élégant, équilibré et diplomatique. Les relations sont au centre de votre vie.",
+      "scorpio": "Vous êtes vu comme mystérieux, intense et magnétique. Vous avez une présence puissante.",
+      "sagittarius": "Vous êtes perçu comme optimiste, aventureux et libre d'esprit. Vous portez une aura philosophique.",
+      "capricorn": "Vous êtes vu comme sérieux, professionnel et ambitieux. Vous pouvez être perçu comme une figure d'autorité.",
+      "aquarius": "Vous êtes perçu comme différent, innovant et indépendant. Vous affichez un style original.",
+      "pisces": "Vous êtes vu comme rêveur, artistique et spirituel. Vous rayonnez d'une énergie empathique et compréhensive."
+    },
+    "headers": {
+      "birth_chart_report": "Rapport de Thème Natal",
+      "cosmic_guide": "Votre Guide Cosmique",
+      "page": "Page"
+    },
+    "sections": {
+      "big_three": "LES TROIS GRANDS",
+      "planet_positions": "POSITIONS DES PLANÈTES",
+      "element_distribution": "DISTRIBUTION DES ÉLÉMENTS",
+      "modality_distribution": "DISTRIBUTION DES MODALITÉS",
+      "personality_interpretation": "INTERPRÉTATION DE LA PERSONNALITÉ",
+      "daily_horoscope": "HOROSCOPE DU JOUR",
+      "daily_recommendation": "RECOMMANDATION DU JOUR",
+      "overall_compatibility": "COMPATIBILITÉ GLOBALE",
+      "category_compatibility": "COMPATIBILITÉ PAR CATÉGORIE",
+      "detailed_analysis": "ANALYSE DÉTAILLÉE"
+    },
+    "birth_data": {
+      "birth_date": "Date de Naissance",
+      "birth_time": "Heure de Naissance",
+      "birth_place": "Lieu de Naissance",
+      "unknown": "Inconnu"
+    },
+    "big_three_items": {
+      "sun_sign": "Signe Solaire",
+      "moon_sign": "Signe Lunaire",
+      "ascendant": "Ascendant",
+      "sun_description": "Identité fondamentale, ego et but de vie",
+      "moon_description": "Nature émotionnelle, monde intérieur et intuition",
+      "ascendant_description": "Apparence extérieure et comment les autres vous voient"
+    },
+    "table_headers": {
+      "planet": "Planète",
+      "sign": "Signe",
+      "house": "Maison",
+      "meaning": "Signification"
+    },
+    "units": {
+      "sign_suffix": "Signe",
+      "house_suffix": "Maison",
+      "planets": "planètes"
+    },
+    "defaults": {
+      "user": "Utilisateur",
+      "person_1": "Personne 1",
+      "person_2": "Personne 2"
+    },
+    "moon_labels": {
+      "moon_phase": "Phase Lunaire",
+      "moon_sign": "Signe Lunaire"
+    },
+    "interpretations": {
+      "sun_in_sign": "Soleil en {sign}",
+      "moon_in_sign": "Lune en {sign}",
+      "ascendant_in_sign": "Ascendant en {sign}"
+    },
+    "modality_meanings": {
+      "cardinal": "Initiateur, leader, entreprenant",
+      "fixed": "Déterminé, stable, résilient",
+      "mutable": "Flexible, adaptable, changeant"
+    }
+  },
+  "moon": {
+    "phase_meanings": {
+      "new_moon": "Un moment pour de nouveaux départs, fixer des intentions et l'introspection.",
+      "waxing_crescent": "Un moment pour renforcer les intentions, agir et grandir.",
+      "first_quarter": "Un moment pour prendre des décisions, surmonter les obstacles et la détermination.",
+      "waxing_gibbous": "Un moment pour les ajustements, la patience et se concentrer sur les détails.",
+      "full_moon": "Un moment d'accomplissement, d'illumination et d'émotions intenses.",
+      "waning_gibbous": "Un moment pour partager, enseigner et la gratitude.",
+      "last_quarter": "Un moment pour libérer, pardonner et purifier.",
+      "waning_crescent": "Un moment pour le repos, la guérison et la réflexion."
+    }
+  },
+  "dream_personalization": {
+    "styles": {
+      "jungian": {
+        "label": "Jungien",
+        "description": "Centré sur les archétypes, travail de l'ombre, analyse de l'inconscient"
+      },
+      "spiritual": {
+        "label": "Spirituel",
+        "description": "Messages cosmiques, guidance spirituelle, interprétation mystique"
+      },
+      "practical": {
+        "label": "Pratique",
+        "description": "Orienté vie quotidienne, suggestions d'actions, conseils concrets"
+      },
+      "esoteric": {
+        "label": "Ésotérique",
+        "description": "Sagesse ancienne, symbolisme, enseignements cachés"
+      },
+      "psychological": {
+        "label": "Psychologique",
+        "description": "Perspective psychologique moderne, analyse émotionnelle"
+      }
+    },
+    "life_phases": {
+      "student": {
+        "label": "Étudiant",
+        "common_dream_themes": ["Examens", "être en retard", "être pris au dépourvu", "école"],
+        "interpretation_focus": "Anxiété de performance, incertitude future, apprentissage",
+        "advice": "Les thèmes d'examens dans les rêves reflètent souvent les moments d'évaluation dans votre vie."
+      },
+      "new_parent": {
+        "label": "Nouveau Parent",
+        "common_dream_themes": ["Bébé", "protection", "perte", "inadéquation", "grande responsabilité"],
+        "interpretation_focus": "Instinct protecteur, changement d'identité, nouvelles responsabilités",
+        "advice": "Les rêves de bébé peuvent aussi représenter de nouveaux projets ou de nouveaux aspects de votre identité."
+      },
+      "career_change": {
+        "label": "Changement de Carrière",
+        "common_dream_themes": ["Se perdre", "nouveaux bâtiments", "voyage", "être en retard", "non préparé"],
+        "interpretation_focus": "Questionnement identitaire, insécurité, opportunités",
+        "advice": "Les nouveaux endroits dans vos rêves représentent de nouvelles possibilités, se perdre représente l'incertitude."
+      },
+      "grieving": {
+        "label": "En Deuil",
+        "common_dream_themes": ["Personne décédée", "dire au revoir", "chercher", "retrouvailles"],
+        "interpretation_focus": "Traitement de la perte, affaires inachevées, connexion spirituelle",
+        "advice": "Voir la personne que vous avez perdue dans vos rêves est une partie naturelle du processus de deuil et porte la guérison."
+      },
+      "retired": {
+        "label": "Retraité",
+        "common_dream_themes": ["Ancien lieu de travail", "temps", "jeunesse", "accomplissement", "héritage"],
+        "interpretation_focus": "Bilan de vie, recherche de sens, héritage",
+        "advice": "Les rêves sur le passé sont un processus de révision de votre vie et de collecte de sagesse."
+      },
+      "relationship_crisis": {
+        "label": "Crise Relationnelle",
+        "common_dream_themes": ["Partenaire", "trahison", "dispute", "séparation", "partenaire inconnu"],
+        "interpretation_focus": "Dynamiques relationnelles, confiance, communication",
+        "advice": "Les rêves de partenaire reflètent souvent votre relation avec votre anima/animus intérieur."
+      },
+      "health_crisis": {
+        "label": "Combat pour la Santé",
+        "common_dream_themes": ["Corps", "guérison", "hôpital", "transformation", "mort et renaissance"],
+        "interpretation_focus": "Conscience corporelle, guérison, conscience de la mortalité",
+        "advice": "Les rêves sur le corps portent généralement des messages liés à votre condition physique."
+      },
+      "spiritual_awakening": {
+        "label": "Éveil Spirituel",
+        "common_dream_themes": ["Lumière", "guides", "vol", "expériences cosmiques", "mort et renaissance"],
+        "interpretation_focus": "Développement spirituel, expériences transcendantes, recherche de sens",
+        "advice": "Les rêves spirituels sont des signes de votre ascension, prenez leurs messages au sérieux."
+      },
+      "new_beginning": {
+        "label": "Nouveau Départ",
+        "common_dream_themes": ["Bébé", "graines", "nouvelle maison", "début de voyage"],
+        "interpretation_focus": "Potentiel, espoir, opportunités de croissance",
+        "advice": "Les symboles de nouveau départ montrent le potentiel en vous et vos domaines de croissance."
+      }
+    }
+  },
+  "kabbalah": {
+    "sefirah_names": {
+      "keter": "Couronne (Keter)",
+      "chokhmah": "Sagesse (Chokhmah)",
+      "binah": "Compréhension (Binah)",
+      "chesed": "Bonté (Chesed)",
+      "gevurah": "Force (Gevurah)",
+      "tiferet": "Beauté (Tiferet)",
+      "netzach": "Victoire (Netzach)",
+      "hod": "Splendeur (Hod)",
+      "yesod": "Fondation (Yesod)",
+      "malkut": "Royaume (Malkut)"
+    },
+    "sefirah_meanings": {
+      "keter": "Point d'union avec l'infini. Source de la volonté divine. Début de tous les potentiels.",
+      "chokhmah": "Sagesse pure et inspiration. L'étincelle créative. Source de l'énergie masculine et de la vision.",
+      "binah": "Compréhension profonde et perspicacité. Énergie formatrice. Sagesse féminine et intuition.",
+      "chesed": "Amour inconditionnel et compassion. Expansion et abondance. Générosité et guérison.",
+      "gevurah": "Force intérieure et discipline. Limites et justice. Purification et concentration.",
+      "tiferet": "Centre d'équilibre et d'harmonie. Beauté et vérité. Union du cœur et de l'âme.",
+      "netzach": "Détermination et endurance. Force émotionnelle et passion. Expression créative.",
+      "hod": "Clarté mentale et communication. Pensée analytique. Compréhension spirituelle.",
+      "yesod": "Connexion astrale et rêves. Subconscient et intuition. Base de la manifestation.",
+      "malkut": "Monde physique et matière. Ancrage et réalisation. Vie quotidienne."
+    },
+    "compatibility": {
+      "very_high": "Il y a une connexion profonde entre vos âmes. Les énergies {s1} et {s2} se complètent, ensemble vous formez une haute harmonie spirituelle.",
+      "high": "Vous avez une forte connexion énergétique. {s1} et {s2} portent des énergies de soutien.",
+      "medium": "Bien que {s1} et {s2} portent des énergies différentes, ces différences offrent des opportunités de croissance.",
+      "low": "Les énergies {s1} et {s2} sont différentes. Cette relation contient des leçons pour les deux parties."
+    },
+    "daily_guidance": {
+      "keter": "Aujourd'hui est un jour pour se connecter au potentiel infini. Prenez du temps pour la méditation et le silence intérieur.",
+      "chokhmah": "Aujourd'hui est un jour de sagesse et d'intuition. Des inspirations soudaines peuvent venir. Soyez ouvert aux nouvelles idées.",
+      "binah": "Aujourd'hui est un jour de compréhension. Concentrez-vous sur les détails, analysez. Faites confiance à votre profondeur émotionnelle.",
+      "chesed": "Aujourd'hui est un jour d'amour et de compassion. Aidez les autres, soyez généreux. Gardez votre chakra du cœur ouvert.",
+      "gevurah": "Aujourd'hui est un jour de force et de discipline. Protégez vos limites, prenez les décisions nécessaires.",
+      "tiferet": "Aujourd'hui est un jour d'équilibre et de beauté. Essayez d'équilibrer les opposés. Appréciez la beauté intérieure et extérieure.",
+      "netzach": "Aujourd'hui est un jour de détermination et de victoire. Concentrez-vous sur vos objectifs, n'abandonnez pas.",
+      "hod": "Aujourd'hui est un jour de communication et d'analyse. Clarifiez vos pensées, partagez vos connaissances.",
+      "yesod": "Aujourd'hui est un jour de fondation et de connexion. Faites attention à vos rêves, faites confiance à votre intuition.",
+      "malkut": "Aujourd'hui est un jour du monde matériel et de la manifestation. Concentrez-vous sur les questions pratiques."
+    },
+    "daily_meditation": {
+      "keter": "Fermez les yeux et imaginez une lumière blanche brillante au-dessus de votre tête. Sentez cette lumière vous unir à l'infini.",
+      "chokhmah": "Imaginez un espace gris - ni complètement clair ni complètement sombre. Sentez de nouvelles idées naître dans cette incertitude.",
+      "binah": "Imaginez que vous êtes dans un océan bleu profond. Sentez la profondeur infinie vous apporter la compréhension.",
+      "chesed": "Imaginez une lumière dorée rayonnant de votre cœur. Sentez cette lumière porter l'amour à tous les êtres.",
+      "gevurah": "Imaginez une flamme rouge - brûlante mais purifiante. Sentez ce feu nettoyer tout ce qui est inutile.",
+      "tiferet": "Imaginez-vous baigné dans la lumière dorée du soleil. Sentez cette lumière maintenir tous les opposés en équilibre.",
+      "netzach": "Imaginez-vous au milieu d'une forêt verte luxuriante. Sentez la résilience et la victoire de la nature.",
+      "hod": "Imaginez une sphère de lumière orange illuminant votre esprit. Sentez vos pensées devenir plus claires.",
+      "yesod": "Imaginez une lumière violette entourant votre zone du nombril. Sentez la porte du royaume des rêves s'ouvrir.",
+      "malkut": "Imaginez vos pieds s'enraciner dans la terre. Sentez l'énergie de la terre vous donner de la force."
+    }
+  },
+  "dream_journal": {
+    "series_title": "Série: {symbol}",
+    "emotions": {
+      "korku": "Peur",
+      "huzur": "Paix",
+      "merak": "Curiosité",
+      "sucluluk": "Culpabilité",
+      "ozlem": "Nostalgie",
+      "heyecan": "Excitation",
+      "donukluk": "Engourdissement",
+      "ofke": "Colère"
+    },
+    "insights": {
+      "no_dreams_weekly": "Aucun rêve enregistré cette semaine. Prêt à écouter votre subconscient?",
+      "no_dreams_monthly": "En enregistrant des rêves ce mois-ci, je découvrirai des motifs.",
+      "symbol_frequent": "Le symbole \"{symbol}\" apparaît fréquemment dans vos rêves.",
+      "lucid_count": "{count} rêves lucides vécus - la conscience se développe!",
+      "nightmare_count": "{count} cauchemars offrent une opportunité d'intégration de l'ombre.",
+      "summary": "{count} rêves enregistrés. Émotion dominante: {emotion}. "
+    },
+    "recommendations": {
+      "keep_journal": "Découvrez des motifs en tenant un journal des rêves chaque jour.",
+      "nightmare_work": "Travail avec les cauchemars: Transformez-les avec des techniques lucides.",
+      "relaxation_ritual": "Créez un rituel de relaxation avant le sommeil.",
+      "reality_check": "Essayez la technique de vérification de la réalité - vous avez un potentiel de rêve lucide.",
+      "fear_theme": "Examinez le thème de la peur - vous pouvez faire un travail d'ombre.",
+      "longing_journal": "Tenez un journal de réflexion sur le sentiment de nostalgie.",
+      "keep_going": "Votre voyage onirique se passe très bien. Continuez à enregistrer!"
+    },
+    "themes": {
+      "unknown": "Inconnu",
+      "exploring": "Exploration",
+      "awareness": "Conscience",
+      "shadow_work": "Travail de l'Ombre",
+      "recurring_pattern": "Motif Récurrent",
+      "hero_journey": "Voyage du Héros",
+      "seeking": "Recherche"
+    },
+    "shadow": {
+      "not_visible": "L'ombre n'est pas encore visible.",
+      "progressing": "L'intégration de l'ombre progresse - les cauchemars diminuent.",
+      "active": "Période de travail d'ombre active - temps de faire face aux cauchemars.",
+      "calm": "L'ombre est calme, l'intégration continue."
+    },
+    "archetype": {
+      "starting": "Le voyage archétypal commence.",
+      "hero": "Archétype du héros actif - avancez avec courage!",
+      "seeker": "Archétype du chercheur - vous êtes en voyage intérieur.",
+      "rescuer": "Archétype du sauveur - vous soutenez les autres.",
+      "observer": "Archétype de l'observateur - vous développez la conscience.",
+      "fleeing": "Thème de fuite - qu'évitez-vous d'affronter?",
+      "evolving": "Votre voyage archétypal évolue."
+    },
+    "story_arc": {
+      "single": "Épisode unique",
+      "rising": "Arc ascendant - l'intensité augmente",
+      "resolution": "Arc de résolution - le soulagement arrive",
+      "flat": "Arc plat - énergie stable"
+    }
+  },
+  "dream_interpretation": {
+    "lucid_potential": {
+      "very_high": "Très Élevé",
+      "high": "Élevé",
+      "medium": "Moyen",
+      "low": "Faible"
+    },
+    "surface_messages": {
+      "korku": "Une alarme résonne en vous. Votre subconscient veut vous avertir de quelque chose.",
+      "huzur": "Vous êtes en équilibre intérieur. Ce rêve célèbre votre paix.",
+      "merak": "De nouvelles portes s'ouvrent dans votre esprit. Ce rêve vous invite à explorer.",
+      "sucluluk": "Un poids de conscience veut parler. Vous portez peut-être une dette du passé.",
+      "ozlem": "Une partie précieuse de votre âme manque. Quelque chose vous rappelle.",
+      "heyecan": "L'énergie monte - quelque chose de nouveau est à l'horizon.",
+      "donukluk": "Les émotions sont temporairement atténuées - un mécanisme de protection.",
+      "ofke": "Des limites ont été dépassées - le pouvoir veut être récupéré."
+    },
+    "deeper_meanings": {
+      "korku": "Sous la peur se trouve généralement l'amour. Que craignez-vous de perdre?",
+      "huzur": "Cette paix signale un conflit résolu. Quelle guerre intérieure s'est terminée?",
+      "merak": "La curiosité est l'appel de l'âme à grandir. Vous êtes prêt à vous ouvrir à l'inconnu.",
+      "sucluluk": "La culpabilité est parfois l'internalisation des voix des autres. À qui est cette voix?",
+      "ozlem": "Le désir ardent est le souhait de retourner à la plénitude perdue. Quand vous êtes-vous senti entier?",
+      "heyecan": "L'excitation est le sommet de l'énergie vitale. Où dirigerez-vous cette énergie?",
+      "donukluk": "L'engourdissement est une protection contre trop de ressenti. Qu'évitez-vous de ressentir?",
+      "ofke": "La colère est la voix du pouvoir supprimé. Où voulez-vous récupérer votre pouvoir?"
+    },
+    "shadow_questions": {
+      "korku": "Que se passerait-il si ce que vous craignez se réalisait?",
+      "huzur": "Quelle pensée sabote cette paix?",
+      "merak": "Quelle question avez-vous peur de trouver la réponse?",
+      "sucluluk": "Qu'est-ce qui changerait si vous vous pardonniez?",
+      "ozlem": "Si ce que vous désirez revenait, pourriez-vous l'accepter?",
+      "heyecan": "Que reste-t-il quand cette excitation s'estompe?",
+      "donukluk": "Si vous deviez ressentir, que ressentiriez-vous?",
+      "ofke": "Quelle douleur se cache sous la colère?"
+    },
+    "integration_paths": {
+      "korku": "Affrontez votre peur, mais soyez doux. Approchez ce que vous craignez à petits pas.",
+      "huzur": "Souvenez-vous de cette paix et portez-la dans la vie quotidienne. Renforcez avec la méditation.",
+      "merak": "Écrivez vos questions, apprenez à vivre avec les questions plutôt que chercher des réponses.",
+      "sucluluk": "Examinez la culpabilité: est-elle réelle ou apprise? Écrivez-vous une lettre.",
+      "ozlem": "Honorez le désir ardent mais restez présent. Accepter la perte ouvre des portes vers l'avenir.",
+      "heyecan": "Transformez l'excitation en action. Faites un pas aujourd'hui.",
+      "donukluk": "Retournez à votre corps. Bougez, respirez, commencez lentement à ressentir.",
+      "ofke": "Exprimez la colère sainement: sport, écriture, créativité. Mais ne blessez personne."
+    },
+    "avoidances": {
+      "korku": "Cette semaine, évitez les décisions impulsives prises pour échapper à la peur.",
+      "huzur": "Éloignez-vous doucement de ceux qui veulent perturber votre paix.",
+      "merak": "Évitez l'impatience avec les questions sans réponse.",
+      "sucluluk": "Évitez de vous juger excessivement.",
+      "ozlem": "Évitez de rester coincé dans le passé.",
+      "heyecan": "Évitez de disperser votre énergie, restez concentré.",
+      "donukluk": "Évitez de normaliser l'engourdissement.",
+      "ofke": "Évitez de projeter la colère sur les autres."
+    },
+    "whisper_quotes": {
+      "0": "La nuit a parlé pour vous, maintenant parlez pendant le jour.",
+      "1": "Celui qui se souvient des rêves a commencé à écouter son âme.",
+      "2": "Chaque symbole est une clé, chaque émotion une porte.",
+      "3": "Le subconscient ne ment pas, il parle juste en code.",
+      "4": "Vous ne pouvez pas échapper à votre ombre, mais vous pouvez danser avec elle.",
+      "5": "La sagesse ancienne murmure, celui qui entend dans le silence écoute."
+    },
+    "light_shadow": {
+      "empty_light": "Ce rêve vient d'une zone propre et lumineuse de votre monde intérieur.",
+      "light_aspect": "Aspect lumineux: {aspects} Embrassez ce potentiel.",
+      "empty_shadow": "L'ombre est toujours là, mais dans ce rêve elle attend doucement.",
+      "shadow_aspect": "Avertissement d'ombre: {aspects} Soyez conscient, mais n'ayez pas peur."
+    },
+    "archetype_integration": {
+      "shadow": "Faites ami avec l'Ombre. Reconnaissez et acceptez les parties que vous rejetez.",
+      "anima": "Honorez la sagesse féminine en vous. Faites confiance à votre intuition.",
+      "animus": "Utilisez le pouvoir masculin en vous de manière équilibrée. Soyez décisif mais doux.",
+      "hero": "Votre courage est précieux mais n'oubliez pas l'humilité.",
+      "wise_old": "Partagez votre sagesse mais restez ouvert à l'apprentissage.",
+      "great_mother": "Dirigez votre capacité de soin vers vous-même et les autres.",
+      "trickster": "Utilisez votre côté joueur de manière créative, pas destructive.",
+      "child": "Maintenez votre connexion avec votre enfant intérieur, nourrissez votre curiosité."
+    },
+    "today_action": {
+      "fear": "Aujourd'hui, faites un petit pas vers quelque chose que vous craignez.",
+      "longing": "Aujourd'hui, écrivez un souvenir de la personne/situation que vous désirez.",
+      "symbol": "Aujourd'hui, passez 5 minutes à réfléchir au symbole {symbol}.",
+      "default": "Aujourd'hui, écrivez ce rêve dans un journal et notez vos sentiments."
+    },
+    "reflection": {
+      "empty": "Qu'est-ce que ce rêve essaie de me dire?",
+      "symbol": "Que représente le symbole {symbol} dans ma vie?"
+    },
+    "weekly_focus": "Cette semaine, concentrez-vous sur le message de l'archétype {archetype}. Utilisez l'énergie {phase}.",
+    "time_layers": {
+      "gecmis": "Ce rêve porte des affaires inachevées du passé.",
+      "simdi": "Ce rêve reflète une situation dans votre vie actuelle.",
+      "gelecek": "Ce rêve est un présage d'un changement qui approche.",
+      "dongusel": "Ce schéma récurrent pointe vers un cycle qui doit être brisé."
+    },
+    "core_message": {
+      "empty": "Votre subconscient vous parle directement sans symboles. Il y a un message émotionnel au cœur de ce rêve.",
+      "with_symbol": "{emoji} Le symbole {symbol} est le messager principal de votre subconscient. {timeMessage} {emotionMessage} {moonMeaning}"
+    },
+    "why_now": "Ce rêve est venu maintenant parce que {phaseContext} et {layerContext} L'univers a envoyé ce message au moment parfait pour vous.",
+    "why_now_simple": "Ce rêve est venu maintenant parce que l'univers vous envoie un message.",
+    "archetype_fallback": "Une figure émerge des profondeurs de votre subconscient.",
+    "zodiac_fallback": "Faites attention à vos rêves, il y a des messages.",
+    "defaults": {
+      "surface_message": "Votre subconscient veut vous parler.",
+      "deeper_meaning": "Ce rêve porte un message dans ses profondeurs.",
+      "shadow_question": "Qu'évitez-vous de voir?",
+      "integration_path": "Écrivez votre rêve dans un journal et explorez ses symboles.",
+      "light_message": "Ce rêve cache un cadeau.",
+      "shadow_message": "Il y a un domaine nécessitant de la conscience.",
+      "light_shadow_integration": "Gardez la lumière et l'ombre en équilibre.",
+      "archetype": "Soi",
+      "today_action": "Écrivez ce rêve dans un journal.",
+      "reflection_question": "Quelle situation dans ma vie ce rêve reflète-t-il?",
+      "weekly_focus": "Faites attention aux symboles de rêve.",
+      "avoidance": "Évitez d'ignorer le rêve."
+    },
+    "exploration": {
+      "birth_chart_title": "Explorez votre thème natal",
+      "birth_chart_desc": "Voyez la connexion entre les symboles de votre rêve et votre thème natal",
+      "moon_calendar_title": "Consultez le calendrier lunaire",
+      "moon_calendar_desc": "Apprenez la signification de la phase lunaire lors de votre rêve",
+      "transits_title": "Examinez vos transits",
+      "transits_desc": "L'effet des transits planétaires actuels sur votre rêve",
+      "tarot_title": "Tirez le Tarot",
+      "tarot_desc": "Approfondissez le message de votre rêve avec le tarot",
+      "neptune_title": "Transit de Neptune",
+      "neptune_desc": "Les symboles d'eau sont connectés à l'énergie de Neptune",
+      "pluto_title": "Analyse de Pluton",
+      "pluto_desc": "Les symboles de transformation résonnent avec Pluton",
+      "category_astrology": "Astrologie",
+      "category_moon": "Lune",
+      "category_divination": "Divination"
+    },
+    "moon_phases": {
+      "new_moon": "Ce rêve venant en nouvelle lune porte une graine de nouvelle intention. Faites un vœu aujourd'hui.",
+      "crescent": "Les rêves pendant le croissant de lune montrent un potentiel de croissance. Avancez avec courage.",
+      "first_quarter": "Ce rêve au premier quartier pointe vers un point de décision. Vous êtes entre deux chemins.",
+      "full_moon": "Les rêves en pleine lune sont le sommet de la conscience. Acceptez ce que vous voyez.",
+      "last_quarter": "Ce rêve au dernier quartier montre qu'il est temps de lâcher prise. Que devez-vous libérer?",
+      "dark_moon": "Les rêves en lune noire portent les messages les plus anciens. Écoutez profondément."
     }
   }
 }

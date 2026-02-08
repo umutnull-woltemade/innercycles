@@ -410,16 +410,18 @@ class GlossaryRichTooltip extends ConsumerWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          // Primary term in user's language
                           Text(
-                            entry.termTr,
+                            entry.localizedTerm(language),
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
                               color: isDark ? Colors.white : AppColors.textDark,
                             ),
                           ),
+                          // Alternate term (other language)
                           Text(
-                            entry.term,
+                            language == AppLanguage.tr ? entry.term : entry.termTr,
                             style: TextStyle(
                               fontSize: 12,
                               fontStyle: FontStyle.italic,
@@ -440,8 +442,8 @@ class GlossaryRichTooltip extends ConsumerWidget {
                   ],
                 ),
 
-                // Hint (if available)
-                if (entry.hint.isNotEmpty) ...[
+                // Hint (if available) - localized
+                if (entry.localizedHint(language).isNotEmpty) ...[
                   const SizedBox(height: 12),
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
@@ -456,7 +458,7 @@ class GlossaryRichTooltip extends ConsumerWidget {
                         const SizedBox(width: 6),
                         Flexible(
                           child: Text(
-                            entry.hint,
+                            entry.localizedHint(language),
                             style: TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.w600,
@@ -469,10 +471,10 @@ class GlossaryRichTooltip extends ConsumerWidget {
                   ),
                 ],
 
-                // Definition
+                // Definition - localized
                 const SizedBox(height: 12),
                 Text(
-                  entry.definition,
+                  entry.localizedDefinition(language),
                   style: TextStyle(
                     fontSize: 13,
                     height: 1.5,
@@ -482,8 +484,8 @@ class GlossaryRichTooltip extends ConsumerWidget {
                   overflow: TextOverflow.ellipsis,
                 ),
 
-                // Deep explanation preview (if available)
-                if (entry.deepExplanation != null) ...[
+                // Deep explanation preview (if available) - localized
+                if (entry.localizedDeepExplanation(language) != null) ...[
                   const SizedBox(height: 10),
                   Container(
                     padding: const EdgeInsets.all(10),
@@ -513,7 +515,7 @@ class GlossaryRichTooltip extends ConsumerWidget {
                         ),
                         const SizedBox(height: 6),
                         Text(
-                          entry.deepExplanation!,
+                          entry.localizedDeepExplanation(language)!,
                           style: TextStyle(
                             fontSize: 11,
                             height: 1.4,
@@ -527,8 +529,8 @@ class GlossaryRichTooltip extends ConsumerWidget {
                   ),
                 ],
 
-                // Example (if available)
-                if (entry.example != null) ...[
+                // Example (if available) - localized
+                if (entry.localizedExample(language) != null) ...[
                   const SizedBox(height: 8),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -537,7 +539,7 @@ class GlossaryRichTooltip extends ConsumerWidget {
                       const SizedBox(width: 6),
                       Expanded(
                         child: Text(
-                          entry.example!,
+                          entry.localizedExample(language)!,
                           style: TextStyle(
                             fontSize: 11,
                             fontStyle: FontStyle.italic,
@@ -1078,14 +1080,16 @@ class _GlossaryTooltipState extends ConsumerState<GlossaryTooltip> {
       return L10nService.get('widgets.interpretive_text.search_in_glossary', language).replaceAll('{term}', widget.term);
     }
 
-    if (_entry!.hint.isNotEmpty) {
-      return '✨ ${_entry!.termTr}: ${_entry!.hint}';
+    final localizedHint = _entry!.localizedHint(language);
+    if (localizedHint.isNotEmpty) {
+      return '✨ ${_entry!.localizedTerm(language)}: $localizedHint';
     }
 
-    final shortDef = _entry!.definition.length > 150
-        ? '${_entry!.definition.substring(0, 150)}...'
-        : _entry!.definition;
-    return '📖 ${_entry!.termTr}: $shortDef';
+    final localizedDef = _entry!.localizedDefinition(language);
+    final shortDef = localizedDef.length > 150
+        ? '${localizedDef.substring(0, 150)}...'
+        : localizedDef;
+    return '📖 ${_entry!.localizedTerm(language)}: $shortDef';
   }
 
   @override
@@ -1192,7 +1196,7 @@ class GlossaryTerm extends StatelessWidget {
 }
 
 /// Compact glossary badge for showing term with category icon
-class GlossaryBadge extends StatelessWidget {
+class GlossaryBadge extends ConsumerWidget {
   final String term;
   final bool showIcon;
 
@@ -1203,7 +1207,8 @@ class GlossaryBadge extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final language = ref.watch(languageProvider);
     final entry = GlossaryCache().getEntry(term);
 
     if (entry == null) {
@@ -1234,7 +1239,7 @@ class GlossaryBadge extends StatelessWidget {
               const SizedBox(width: 4),
             ],
             Text(
-              entry.termTr,
+              entry.localizedTerm(language),
               style: TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.w600,

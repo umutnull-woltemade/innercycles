@@ -11,9 +11,9 @@ class AppConstants {
   static const String termsOfServiceUrl = 'https://venusone.com/terms';
   static const String supportEmail = 'support@venusone.com';
 
-  // RevenueCat API Keys
-  static const String revenueCatAppleApiKey = 'test_FplulzHEctJYysDPRwkIMOtcuyf';
-  static const String revenueCatGoogleApiKey = 'test_FplulzHEctJYysDPRwkIMOtcuyf';
+  // RevenueCat API Keys (Production)
+  static const String revenueCatAppleApiKey = 'appl_DaPzIEYbCInFGHwqlzOqcnKZhLY';
+  static const String revenueCatGoogleApiKey = 'goog_REPLACE_WITH_PRODUCTION_KEY'; // TODO: Add Google key when ready
 
   // RevenueCat Product IDs
   static const String monthlyProductId = 'monthly';
@@ -49,15 +49,15 @@ class AppConstants {
   // Paywall Cooldown (during churn defense)
   static const Duration paywallCooldown = Duration(hours: 48);
 
-  // AdMob IDs (Production) - Replace with your actual IDs
-  static const String admobAppIdAndroid = 'ca-app-pub-XXXXXXXXXXXXXXXX~XXXXXXXXXX';
+  // AdMob IDs (Production)
+  static const String admobAppIdAndroid = 'ca-app-pub-REPLACE_WITH_YOUR_APP_ID'; // TODO: Add Android when ready
   static const String admobAppIdIos = 'ca-app-pub-5137678816003178~8037799627';
-  static const String admobBannerIdAndroid = 'ca-app-pub-XXXXXXXXXXXXXXXX/XXXXXXXXXX';
-  static const String admobBannerIdIos = 'ca-app-pub-XXXXXXXXXXXXXXXX/XXXXXXXXXX';
-  static const String admobInterstitialIdAndroid = 'ca-app-pub-XXXXXXXXXXXXXXXX/XXXXXXXXXX';
-  static const String admobInterstitialIdIos = 'ca-app-pub-XXXXXXXXXXXXXXXX/XXXXXXXXXX';
-  static const String admobRewardedIdAndroid = 'ca-app-pub-XXXXXXXXXXXXXXXX/XXXXXXXXXX';
-  static const String admobRewardedIdIos = 'ca-app-pub-XXXXXXXXXXXXXXXX/XXXXXXXXXX';
+  static const String admobBannerIdAndroid = 'ca-app-pub-REPLACE/BANNER_UNIT_ID'; // TODO: Add Android when ready
+  static const String admobBannerIdIos = 'ca-app-pub-5137678816003178/4989405392';
+  static const String admobInterstitialIdAndroid = 'ca-app-pub-REPLACE/INTERSTITIAL_ID'; // TODO: Add Android when ready
+  static const String admobInterstitialIdIos = 'ca-app-pub-5137678816003178/4040012155';
+  static const String admobRewardedIdAndroid = 'ca-app-pub-REPLACE/REWARDED_ID'; // TODO: Add Android when ready
+  static const String admobRewardedIdIos = 'ca-app-pub-5137678816003178/7883054243';
 
   // Storage keys
   static const String userProfileKey = 'user_profile';

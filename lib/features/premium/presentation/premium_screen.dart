@@ -119,14 +119,14 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                AppColors.starGold.withOpacity(0.4),
-                AppColors.auroraStart.withOpacity(0.4),
+                AppColors.starGold.withValues(alpha: 0.4),
+                AppColors.auroraStart.withValues(alpha: 0.4),
               ],
             ),
             shape: BoxShape.circle,
             boxShadow: [
               BoxShadow(
-                color: AppColors.starGold.withOpacity(0.5),
+                color: AppColors.starGold.withValues(alpha: 0.5),
                 blurRadius: 40,
                 spreadRadius: 10,
               ),
@@ -159,7 +159,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
       decoration: BoxDecoration(
         gradient: AppColors.cardGradient,
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-        border: Border.all(color: AppColors.starGold.withOpacity(0.3)),
+        border: Border.all(color: AppColors.starGold.withValues(alpha: 0.3)),
       ),
       child: Column(
         children: [
@@ -253,14 +253,14 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                AppColors.starGold.withOpacity(0.3),
-                AppColors.auroraStart.withOpacity(0.3),
+                AppColors.starGold.withValues(alpha: 0.3),
+                AppColors.auroraStart.withValues(alpha: 0.3),
               ],
             ),
             shape: BoxShape.circle,
             boxShadow: [
               BoxShadow(
-                color: AppColors.starGold.withOpacity(0.3),
+                color: AppColors.starGold.withValues(alpha: 0.3),
                 blurRadius: 30,
                 spreadRadius: 5,
               ),
@@ -277,9 +277,9 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingMd),
       decoration: BoxDecoration(
-        color: Colors.orange.withOpacity(0.1),
+        color: Colors.orange.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(AppConstants.radiusSm),
-        border: Border.all(color: Colors.orange.withOpacity(0.3)),
+        border: Border.all(color: Colors.orange.withValues(alpha: 0.3)),
       ),
       child: Row(
         children: [
@@ -321,7 +321,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
               borderRadius: BorderRadius.circular(AppConstants.radiusMd),
               boxShadow: [
                 BoxShadow(
-                  color: AppColors.starGold.withOpacity(0.4),
+                  color: AppColors.starGold.withValues(alpha: 0.4),
                   blurRadius: 12,
                   offset: const Offset(0, 4),
                 ),
@@ -384,7 +384,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
       decoration: BoxDecoration(
         gradient: AppColors.cardGradient,
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-        border: Border.all(color: AppColors.starGold.withOpacity(0.3)),
+        border: Border.all(color: AppColors.starGold.withValues(alpha: 0.3)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -444,7 +444,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
           borderRadius: BorderRadius.circular(AppConstants.radiusMd),
           boxShadow: [
             BoxShadow(
-              color: AppColors.starGold.withOpacity(0.4),
+              color: AppColors.starGold.withValues(alpha: 0.4),
               blurRadius: 12,
               offset: const Offset(0, 4),
             ),
@@ -503,7 +503,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
               final restored = await ref
                   .read(premiumProvider.notifier)
                   .restorePurchases();
-              if (mounted) {
+              if (context.mounted) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text(
@@ -597,7 +597,7 @@ class _FeatureItem extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(4),
             decoration: BoxDecoration(
-              color: AppColors.starGold.withOpacity(0.2),
+              color: AppColors.starGold.withValues(alpha: 0.2),
               shape: BoxShape.circle,
             ),
             child: const Icon(Icons.check, color: AppColors.starGold, size: 14),
@@ -642,8 +642,8 @@ class _PlanCard extends StatelessWidget {
             gradient: isSelected
                 ? LinearGradient(
                     colors: [
-                      AppColors.starGold.withOpacity(0.2),
-                      AppColors.auroraStart.withOpacity(0.1),
+                      AppColors.starGold.withValues(alpha: 0.2),
+                      AppColors.auroraStart.withValues(alpha: 0.1),
                     ],
                   )
                 : AppColors.cardGradient,
@@ -651,7 +651,7 @@ class _PlanCard extends StatelessWidget {
             border: Border.all(
               color: isSelected
                   ? AppColors.starGold
-                  : AppColors.textMuted.withOpacity(0.3),
+                  : AppColors.textMuted.withValues(alpha: 0.3),
               width: isSelected ? 2 : 1,
             ),
           ),

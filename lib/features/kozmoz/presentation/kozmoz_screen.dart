@@ -210,59 +210,58 @@ class _KozmozScreenState extends ConsumerState<KozmozScreen>
 
     String response;
 
-    // Mesaj içeriğine göre yanıt üret - MEGA GENİŞLETİLMİŞ
-    if (_containsAny(lowerMessage, ['bugün', 'günlük', 'gün nasıl', 'bu gün'])) {
+    // Multi-language keyword matching
+    if (_matchesDailyKeywords(lowerMessage, language)) {
       response = _getDailyResponse(sign, language);
-    } else if (_containsAny(lowerMessage, ['aşk', 'sevgili', 'ilişki', 'partner', 'evlilik', 'flört'])) {
+    } else if (_matchesLoveKeywords(lowerMessage, language)) {
       response = _getLoveResponse(sign, language);
-    } else if (_containsAny(lowerMessage, ['kariyer', 'iş', 'para', 'maddi', 'finans', 'terfi'])) {
+    } else if (_matchesCareerKeywords(lowerMessage, language)) {
       response = _getCareerResponse(sign, language);
-    } else if (_containsAny(lowerMessage, ['ay', 'ay fazı', 'dolunay', 'yeniay', 'lunar'])) {
+    } else if (_matchesMoonKeywords(lowerMessage, language)) {
       response = _getMoonResponse(sign, language);
-    } else if (_containsAny(lowerMessage, ['saturn', 'transit', 'gezegen', 'retro', 'merkür'])) {
+    } else if (_matchesTransitKeywords(lowerMessage, language)) {
       response = _getTransitResponse(sign, language);
-    } else if (_containsAny(lowerMessage, ['yükselen', 'ascendant', 'rising'])) {
+    } else if (_matchesRisingKeywords(lowerMessage, language)) {
       response = _getRisingResponse(sign, language);
-    } else if (_containsAny(lowerMessage, ['uyum', 'uyumlu', 'hangi burç'])) {
+    } else if (_matchesCompatibilityKeywords(lowerMessage, language)) {
       response = _getCompatibilityResponse(sign, language);
-    } else if (_containsAny(lowerMessage, ['numeroloji', 'sayı', 'yaşam yolu'])) {
+    } else if (_matchesNumerologyKeywords(lowerMessage, language)) {
       response = _getNumerologyResponse(sign, language);
-    } else if (_containsAny(lowerMessage, ['tarot', 'kart', 'fal'])) {
+    } else if (_matchesTarotKeywords(lowerMessage, language)) {
       response = _getTarotResponse(sign, language);
-    } else if (_containsAny(lowerMessage, ['aura', 'enerji beden'])) {
+    } else if (_matchesAuraKeywords(lowerMessage, language)) {
       response = _getAuraResponse(sign, language);
-    } else if (_containsAny(lowerMessage, ['ruhsal', 'dönüşüm', 'spiritüel', 'uyanış'])) {
+    } else if (_matchesSpiritualKeywords(lowerMessage, language)) {
       response = _getSpiritualResponse(sign, language);
-    } else if (_containsAny(lowerMessage, ['hayat amacı', 'amaç', 'misyon'])) {
+    } else if (_matchesLifePurposeKeywords(lowerMessage, language)) {
       response = _getLifePurposeResponse(sign, language);
-    } else if (_containsAny(lowerMessage, ['yetenek', 'potansiyel', 'güçlü'])) {
+    } else if (_matchesTalentKeywords(lowerMessage, language)) {
       response = _getTalentResponse(sign, language);
-    // YENİ KATEGORİLER - 10x GELİŞTİRME
-    } else if (_containsAny(lowerMessage, ['rüya', 'bilinçaltı', 'uyku', 'lüsid'])) {
+    } else if (_matchesDreamKeywords(lowerMessage, language)) {
       response = _getDreamResponse(sign, language);
-    } else if (_containsAny(lowerMessage, ['tantra', 'kundalini', 'cinsel enerji', 'nefes'])) {
+    } else if (_matchesTantraKeywords(lowerMessage, language)) {
       response = _getTantraResponse(sign, language);
-    } else if (_containsAny(lowerMessage, ['sağlık', 'hastalık', 'organ', 'beslenme', 'detoks'])) {
+    } else if (_matchesHealthKeywords(lowerMessage, language)) {
       response = _getHealthResponse(sign, language);
-    } else if (_containsAny(lowerMessage, ['ev', 'taşınma', 'aile', 'çocuk', 'evcil'])) {
+    } else if (_matchesHomeKeywords(lowerMessage, language)) {
       response = _getHomeResponse(sign, language);
-    } else if (_containsAny(lowerMessage, ['seyahat', 'şehir', 'ülke', 'tatil', 'destinasyon'])) {
+    } else if (_matchesTravelKeywords(lowerMessage, language)) {
       response = _getTravelResponse(sign, language);
-    } else if (_containsAny(lowerMessage, ['eğitim', 'öğrenme', 'sınav', 'mülakat', 'yazarlık'])) {
+    } else if (_matchesEducationKeywords(lowerMessage, language)) {
       response = _getEducationResponse(sign, language);
-    } else if (_containsAny(lowerMessage, ['gölge', 'korku', 'karanlık', 'projeksiyon', 'bastır'])) {
+    } else if (_matchesShadowKeywords(lowerMessage, language)) {
       response = _getShadowResponse(sign, language);
-    } else if (_containsAny(lowerMessage, ['manifestasyon', 'niyet', 'bolluk', 'çekim', 'vizyon'])) {
+    } else if (_matchesManifestationKeywords(lowerMessage, language)) {
       response = _getManifestationResponse(sign, language);
-    } else if (_containsAny(lowerMessage, ['geçmiş yaşam', 'melek', 'rehber', 'akashik', 'yıldız tohum'])) {
+    } else if (_matchesMysticKeywords(lowerMessage, language)) {
       response = _getMysticResponse(sign, language);
-    } else if (_containsAny(lowerMessage, ['kristal', 'taş', 'mücevher', 'ametist', 'kuvars'])) {
+    } else if (_matchesCrystalKeywords(lowerMessage, language)) {
       response = _getCrystalResponse(sign, language);
-    } else if (_containsAny(lowerMessage, ['ritüel', 'tören', 'mevsim', 'temizlik', 'arın'])) {
+    } else if (_matchesRitualKeywords(lowerMessage, language)) {
       response = _getRitualResponse(sign, language);
-    } else if (_containsAny(lowerMessage, ['çakra', 'bloke', 'enerji merkezi'])) {
+    } else if (_matchesChakraKeywords(lowerMessage, language)) {
       response = _getChakraResponse(sign, language);
-    } else if (_containsAny(lowerMessage, ['merhaba', 'selam', 'hey', 'nasılsın'])) {
+    } else if (_matchesGreetingKeywords(lowerMessage, language)) {
       response = _getGreetingResponse(sign, language);
     } else {
       response = _getGeneralResponse(sign, userMessage, language);
@@ -285,568 +284,1049 @@ class _KozmozScreenState extends ConsumerState<KozmozScreen>
   }
 
   // ═══════════════════════════════════════════════════════════════
+  // MULTI-LANGUAGE KEYWORD MATCHERS
+  // ═══════════════════════════════════════════════════════════════
+
+  bool _matchesDailyKeywords(String text, AppLanguage language) {
+    const keywords = {
+      AppLanguage.tr: ['bugün', 'günlük', 'gün nasıl', 'bu gün'],
+      AppLanguage.en: ['today', 'daily', 'how is my day', 'this day'],
+      AppLanguage.de: ['heute', 'täglich', 'wie ist mein tag', 'dieser tag'],
+      AppLanguage.fr: ['aujourd\'hui', 'quotidien', 'comment est ma journée', 'ce jour'],
+    };
+    return _containsAny(text, keywords[language] ?? keywords[AppLanguage.en]!);
+  }
+
+  bool _matchesLoveKeywords(String text, AppLanguage language) {
+    const keywords = {
+      AppLanguage.tr: ['aşk', 'sevgili', 'ilişki', 'partner', 'evlilik', 'flört'],
+      AppLanguage.en: ['love', 'relationship', 'partner', 'marriage', 'dating', 'romance'],
+      AppLanguage.de: ['liebe', 'beziehung', 'partner', 'ehe', 'dating', 'romantik'],
+      AppLanguage.fr: ['amour', 'relation', 'partenaire', 'mariage', 'romance', 'flirt'],
+    };
+    return _containsAny(text, keywords[language] ?? keywords[AppLanguage.en]!);
+  }
+
+  bool _matchesCareerKeywords(String text, AppLanguage language) {
+    const keywords = {
+      AppLanguage.tr: ['kariyer', 'iş', 'para', 'maddi', 'finans', 'terfi'],
+      AppLanguage.en: ['career', 'job', 'money', 'financial', 'finance', 'promotion', 'work'],
+      AppLanguage.de: ['karriere', 'arbeit', 'geld', 'finanziell', 'finanzen', 'beförderung'],
+      AppLanguage.fr: ['carrière', 'travail', 'argent', 'financier', 'finances', 'promotion'],
+    };
+    return _containsAny(text, keywords[language] ?? keywords[AppLanguage.en]!);
+  }
+
+  bool _matchesMoonKeywords(String text, AppLanguage language) {
+    const keywords = {
+      AppLanguage.tr: ['ay', 'ay fazı', 'dolunay', 'yeniay', 'lunar'],
+      AppLanguage.en: ['moon', 'moon phase', 'full moon', 'new moon', 'lunar'],
+      AppLanguage.de: ['mond', 'mondphase', 'vollmond', 'neumond', 'lunar'],
+      AppLanguage.fr: ['lune', 'phase lunaire', 'pleine lune', 'nouvelle lune', 'lunaire'],
+    };
+    return _containsAny(text, keywords[language] ?? keywords[AppLanguage.en]!);
+  }
+
+  bool _matchesTransitKeywords(String text, AppLanguage language) {
+    const keywords = {
+      AppLanguage.tr: ['saturn', 'transit', 'gezegen', 'retro', 'merkür'],
+      AppLanguage.en: ['saturn', 'transit', 'planet', 'retrograde', 'mercury'],
+      AppLanguage.de: ['saturn', 'transit', 'planet', 'rückläufig', 'merkur'],
+      AppLanguage.fr: ['saturne', 'transit', 'planète', 'rétrograde', 'mercure'],
+    };
+    return _containsAny(text, keywords[language] ?? keywords[AppLanguage.en]!);
+  }
+
+  bool _matchesRisingKeywords(String text, AppLanguage language) {
+    const keywords = {
+      AppLanguage.tr: ['yükselen', 'ascendant', 'rising'],
+      AppLanguage.en: ['rising', 'ascendant', 'rising sign'],
+      AppLanguage.de: ['aszendent', 'aufsteigend', 'rising'],
+      AppLanguage.fr: ['ascendant', 'montant', 'rising'],
+    };
+    return _containsAny(text, keywords[language] ?? keywords[AppLanguage.en]!);
+  }
+
+  bool _matchesCompatibilityKeywords(String text, AppLanguage language) {
+    const keywords = {
+      AppLanguage.tr: ['uyum', 'uyumlu', 'hangi burç'],
+      AppLanguage.en: ['compatibility', 'compatible', 'which sign', 'match'],
+      AppLanguage.de: ['kompatibilität', 'kompatibel', 'welches zeichen', 'passt'],
+      AppLanguage.fr: ['compatibilité', 'compatible', 'quel signe', 'correspondance'],
+    };
+    return _containsAny(text, keywords[language] ?? keywords[AppLanguage.en]!);
+  }
+
+  bool _matchesNumerologyKeywords(String text, AppLanguage language) {
+    const keywords = {
+      AppLanguage.tr: ['numeroloji', 'sayı', 'yaşam yolu'],
+      AppLanguage.en: ['numerology', 'number', 'life path'],
+      AppLanguage.de: ['numerologie', 'zahl', 'lebenspfad'],
+      AppLanguage.fr: ['numérologie', 'nombre', 'chemin de vie'],
+    };
+    return _containsAny(text, keywords[language] ?? keywords[AppLanguage.en]!);
+  }
+
+  bool _matchesTarotKeywords(String text, AppLanguage language) {
+    const keywords = {
+      AppLanguage.tr: ['tarot', 'kart', 'fal'],
+      AppLanguage.en: ['tarot', 'card', 'fortune', 'reading'],
+      AppLanguage.de: ['tarot', 'karte', 'wahrsagen', 'lesen'],
+      AppLanguage.fr: ['tarot', 'carte', 'divination', 'lecture'],
+    };
+    return _containsAny(text, keywords[language] ?? keywords[AppLanguage.en]!);
+  }
+
+  bool _matchesAuraKeywords(String text, AppLanguage language) {
+    const keywords = {
+      AppLanguage.tr: ['aura', 'enerji beden'],
+      AppLanguage.en: ['aura', 'energy body', 'energy field'],
+      AppLanguage.de: ['aura', 'energiekörper', 'energiefeld'],
+      AppLanguage.fr: ['aura', 'corps énergétique', 'champ énergétique'],
+    };
+    return _containsAny(text, keywords[language] ?? keywords[AppLanguage.en]!);
+  }
+
+  bool _matchesSpiritualKeywords(String text, AppLanguage language) {
+    const keywords = {
+      AppLanguage.tr: ['ruhsal', 'dönüşüm', 'spiritüel', 'uyanış'],
+      AppLanguage.en: ['spiritual', 'transformation', 'awakening', 'soul'],
+      AppLanguage.de: ['spirituell', 'transformation', 'erwachen', 'seele'],
+      AppLanguage.fr: ['spirituel', 'transformation', 'éveil', 'âme'],
+    };
+    return _containsAny(text, keywords[language] ?? keywords[AppLanguage.en]!);
+  }
+
+  bool _matchesLifePurposeKeywords(String text, AppLanguage language) {
+    const keywords = {
+      AppLanguage.tr: ['hayat amacı', 'amaç', 'misyon'],
+      AppLanguage.en: ['life purpose', 'purpose', 'mission', 'destiny'],
+      AppLanguage.de: ['lebenszweck', 'zweck', 'mission', 'bestimmung'],
+      AppLanguage.fr: ['but de vie', 'but', 'mission', 'destinée'],
+    };
+    return _containsAny(text, keywords[language] ?? keywords[AppLanguage.en]!);
+  }
+
+  bool _matchesTalentKeywords(String text, AppLanguage language) {
+    const keywords = {
+      AppLanguage.tr: ['yetenek', 'potansiyel', 'güçlü'],
+      AppLanguage.en: ['talent', 'potential', 'strength', 'gift', 'ability'],
+      AppLanguage.de: ['talent', 'potenzial', 'stärke', 'gabe', 'fähigkeit'],
+      AppLanguage.fr: ['talent', 'potentiel', 'force', 'don', 'capacité'],
+    };
+    return _containsAny(text, keywords[language] ?? keywords[AppLanguage.en]!);
+  }
+
+  bool _matchesDreamKeywords(String text, AppLanguage language) {
+    const keywords = {
+      AppLanguage.tr: ['rüya', 'bilinçaltı', 'uyku', 'lüsid'],
+      AppLanguage.en: ['dream', 'subconscious', 'sleep', 'lucid'],
+      AppLanguage.de: ['traum', 'unterbewusstsein', 'schlaf', 'luzid'],
+      AppLanguage.fr: ['rêve', 'subconscient', 'sommeil', 'lucide'],
+    };
+    return _containsAny(text, keywords[language] ?? keywords[AppLanguage.en]!);
+  }
+
+  bool _matchesTantraKeywords(String text, AppLanguage language) {
+    const keywords = {
+      AppLanguage.tr: ['tantra', 'kundalini', 'cinsel enerji', 'nefes'],
+      AppLanguage.en: ['tantra', 'kundalini', 'sexual energy', 'breath', 'breathing'],
+      AppLanguage.de: ['tantra', 'kundalini', 'sexuelle energie', 'atem', 'atmung'],
+      AppLanguage.fr: ['tantra', 'kundalini', 'énergie sexuelle', 'souffle', 'respiration'],
+    };
+    return _containsAny(text, keywords[language] ?? keywords[AppLanguage.en]!);
+  }
+
+  bool _matchesHealthKeywords(String text, AppLanguage language) {
+    const keywords = {
+      AppLanguage.tr: ['sağlık', 'hastalık', 'organ', 'beslenme', 'detoks'],
+      AppLanguage.en: ['health', 'illness', 'organ', 'nutrition', 'detox', 'wellness'],
+      AppLanguage.de: ['gesundheit', 'krankheit', 'organ', 'ernährung', 'entgiftung'],
+      AppLanguage.fr: ['santé', 'maladie', 'organe', 'nutrition', 'détox', 'bien-être'],
+    };
+    return _containsAny(text, keywords[language] ?? keywords[AppLanguage.en]!);
+  }
+
+  bool _matchesHomeKeywords(String text, AppLanguage language) {
+    const keywords = {
+      AppLanguage.tr: ['ev', 'taşınma', 'aile', 'çocuk', 'evcil'],
+      AppLanguage.en: ['home', 'moving', 'family', 'child', 'pet', 'house'],
+      AppLanguage.de: ['haus', 'umzug', 'familie', 'kind', 'haustier', 'zuhause'],
+      AppLanguage.fr: ['maison', 'déménagement', 'famille', 'enfant', 'animal', 'foyer'],
+    };
+    return _containsAny(text, keywords[language] ?? keywords[AppLanguage.en]!);
+  }
+
+  bool _matchesTravelKeywords(String text, AppLanguage language) {
+    const keywords = {
+      AppLanguage.tr: ['seyahat', 'şehir', 'ülke', 'tatil', 'destinasyon'],
+      AppLanguage.en: ['travel', 'city', 'country', 'vacation', 'destination', 'trip'],
+      AppLanguage.de: ['reise', 'stadt', 'land', 'urlaub', 'reiseziel'],
+      AppLanguage.fr: ['voyage', 'ville', 'pays', 'vacances', 'destination'],
+    };
+    return _containsAny(text, keywords[language] ?? keywords[AppLanguage.en]!);
+  }
+
+  bool _matchesEducationKeywords(String text, AppLanguage language) {
+    const keywords = {
+      AppLanguage.tr: ['eğitim', 'öğrenme', 'sınav', 'mülakat', 'yazarlık'],
+      AppLanguage.en: ['education', 'learning', 'exam', 'interview', 'writing', 'study'],
+      AppLanguage.de: ['bildung', 'lernen', 'prüfung', 'vorstellungsgespräch', 'schreiben'],
+      AppLanguage.fr: ['éducation', 'apprentissage', 'examen', 'entretien', 'écriture'],
+    };
+    return _containsAny(text, keywords[language] ?? keywords[AppLanguage.en]!);
+  }
+
+  bool _matchesShadowKeywords(String text, AppLanguage language) {
+    const keywords = {
+      AppLanguage.tr: ['gölge', 'korku', 'karanlık', 'projeksiyon', 'bastır'],
+      AppLanguage.en: ['shadow', 'fear', 'dark', 'projection', 'suppress', 'shadow work'],
+      AppLanguage.de: ['schatten', 'angst', 'dunkel', 'projektion', 'unterdrücken'],
+      AppLanguage.fr: ['ombre', 'peur', 'sombre', 'projection', 'réprimer'],
+    };
+    return _containsAny(text, keywords[language] ?? keywords[AppLanguage.en]!);
+  }
+
+  bool _matchesManifestationKeywords(String text, AppLanguage language) {
+    const keywords = {
+      AppLanguage.tr: ['manifestasyon', 'niyet', 'bolluk', 'çekim', 'vizyon'],
+      AppLanguage.en: ['manifestation', 'intention', 'abundance', 'attraction', 'vision'],
+      AppLanguage.de: ['manifestation', 'absicht', 'fülle', 'anziehung', 'vision'],
+      AppLanguage.fr: ['manifestation', 'intention', 'abondance', 'attraction', 'vision'],
+    };
+    return _containsAny(text, keywords[language] ?? keywords[AppLanguage.en]!);
+  }
+
+  bool _matchesMysticKeywords(String text, AppLanguage language) {
+    const keywords = {
+      AppLanguage.tr: ['geçmiş yaşam', 'melek', 'rehber', 'akashik', 'yıldız tohum'],
+      AppLanguage.en: ['past life', 'angel', 'guide', 'akashic', 'starseed', 'past lives'],
+      AppLanguage.de: ['vergangenes leben', 'engel', 'führer', 'akashisch', 'sternensaat'],
+      AppLanguage.fr: ['vie passée', 'ange', 'guide', 'akashique', 'graine d\'étoile'],
+    };
+    return _containsAny(text, keywords[language] ?? keywords[AppLanguage.en]!);
+  }
+
+  bool _matchesCrystalKeywords(String text, AppLanguage language) {
+    const keywords = {
+      AppLanguage.tr: ['kristal', 'taş', 'mücevher', 'ametist', 'kuvars'],
+      AppLanguage.en: ['crystal', 'stone', 'gem', 'amethyst', 'quartz'],
+      AppLanguage.de: ['kristall', 'stein', 'edelstein', 'amethyst', 'quarz'],
+      AppLanguage.fr: ['cristal', 'pierre', 'gemme', 'améthyste', 'quartz'],
+    };
+    return _containsAny(text, keywords[language] ?? keywords[AppLanguage.en]!);
+  }
+
+  bool _matchesRitualKeywords(String text, AppLanguage language) {
+    const keywords = {
+      AppLanguage.tr: ['ritüel', 'tören', 'mevsim', 'temizlik', 'arın'],
+      AppLanguage.en: ['ritual', 'ceremony', 'season', 'cleansing', 'purify'],
+      AppLanguage.de: ['ritual', 'zeremonie', 'jahreszeit', 'reinigung', 'reinigen'],
+      AppLanguage.fr: ['rituel', 'cérémonie', 'saison', 'nettoyage', 'purifier'],
+    };
+    return _containsAny(text, keywords[language] ?? keywords[AppLanguage.en]!);
+  }
+
+  bool _matchesChakraKeywords(String text, AppLanguage language) {
+    const keywords = {
+      AppLanguage.tr: ['çakra', 'bloke', 'enerji merkezi'],
+      AppLanguage.en: ['chakra', 'blocked', 'energy center', 'chakras'],
+      AppLanguage.de: ['chakra', 'blockiert', 'energiezentrum', 'chakren'],
+      AppLanguage.fr: ['chakra', 'bloqué', 'centre d\'énergie', 'chakras'],
+    };
+    return _containsAny(text, keywords[language] ?? keywords[AppLanguage.en]!);
+  }
+
+  bool _matchesGreetingKeywords(String text, AppLanguage language) {
+    const keywords = {
+      AppLanguage.tr: ['merhaba', 'selam', 'hey', 'nasılsın'],
+      AppLanguage.en: ['hello', 'hi', 'hey', 'how are you', 'greetings'],
+      AppLanguage.de: ['hallo', 'hi', 'hey', 'wie geht es dir', 'grüß'],
+      AppLanguage.fr: ['bonjour', 'salut', 'hey', 'comment allez-vous', 'coucou'],
+    };
+    return _containsAny(text, keywords[language] ?? keywords[AppLanguage.en]!);
+  }
+
+  // ═══════════════════════════════════════════════════════════════
   // MEGA GELİŞTİRİLMİŞ YANIT GENERATÖRLERİ - 5000x DETAYLI
   // ═══════════════════════════════════════════════════════════════
 
   String _getDailyResponse(zodiac.ZodiacSign sign, AppLanguage language) {
     final now = DateTime.now();
-    final moonSign = _getRandomMoonSign();
+    final moonSign = _getLocalizedMoonSign(language);
     final luckyHours = _getLuckyHours(sign);
     final dangerHours = _getDangerHours(sign);
     final element = sign.element;
 
-    return '''${sign.symbol} ${sign.localizedName(language).toUpperCase()} GÜNLÜK KOZMİK RAPOR
+    final header = L10nService.getWithParams('kozmoz.responses.daily_report_header', language, params: {
+      'sign': sign.localizedName(language).toUpperCase(),
+    });
+    final moonInSign = L10nService.getWithParams('kozmoz.responses.moon_in_sign', language, params: {
+      'sign': moonSign,
+    });
+    final morningEnergy = L10nService.get('kozmoz.responses.morning_energy', language);
+    final noonEnergy = L10nService.get('kozmoz.responses.noon_energy', language);
+    final eveningEnergy = L10nService.get('kozmoz.responses.evening_energy', language);
+    final luckyHoursLabel = L10nService.get('kozmoz.responses.lucky_hours', language);
+    final luckyHoursNote = L10nService.get('kozmoz.responses.lucky_hours_note', language);
+    final carefulHours = L10nService.get('kozmoz.responses.careful_hours', language);
+    final carefulHoursNote = L10nService.get('kozmoz.responses.careful_hours_note', language);
+    final goldenAdvice = L10nService.get('kozmoz.responses.golden_advice', language);
+    final dailyAffirmationLabel = L10nService.get('kozmoz.responses.daily_affirmation', language);
+    final cosmicNote = L10nService.get('kozmoz.responses.cosmic_note', language);
+    final cosmicNoteText = L10nService.getWithParams('kozmoz.responses.cosmic_note_text', language, params: {
+      'element': element.localizedName(language),
+      'element_note': _getElementDailyNote(element, language),
+    });
+    final remember = L10nService.get('kozmoz.responses.remember', language);
+
+    return '''${sign.symbol} $header
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-📅 ${now.day}.${now.month}.${now.year} | Ay: $moonSign Burcunda
+📅 ${now.day}.${now.month}.${now.year} | $moonInSign
 
-🌅 SABAH ENERJİSİ (06:00 - 12:00)
-${_getMorningEnergy(sign)}
+🌅 $morningEnergy
+${_getMorningEnergy(sign, language)}
 
-☀️ ÖĞLE ENERJİSİ (12:00 - 18:00)
-${_getAfternoonEnergy(sign)}
+☀️ $noonEnergy
+${_getAfternoonEnergy(sign, language)}
 
-🌙 AKŞAM ENERJİSİ (18:00 - 24:00)
-${_getEveningEnergy(sign)}
+🌙 $eveningEnergy
+${_getEveningEnergy(sign, language)}
 
-⭐ ŞANS SAATLERİN
+⭐ $luckyHoursLabel
 $luckyHours
-Bu saatlerde önemli görüşmeler, iş teklifleri ve yeni başlangıçlar için ideal.
+$luckyHoursNote
 
-⚠️ DİKKATLİ OLMASI GEREKEN SAATLER
+⚠️ $carefulHours
 $dangerHours
-Bu saatlerde büyük kararlardan, tartışmalardan ve riskli yatırımlardan kaçın.
+$carefulHoursNote
 
-🎯 BUGÜNÜN 3 ALTIN TAVSİYESİ
-${_getDailyAdvice(sign)}
+🎯 $goldenAdvice
+${_getDailyAdvice(sign, language)}
 
-💫 GÜNÜN AFİRMASYONU
-"${_getDailyAffirmation(sign)}"
+💫 $dailyAffirmationLabel
+"${_getDailyAffirmation(sign, language)}"
 
-🔮 KOZMİK NOT
-${element.localizedName(language)} elementi olarak bugün ${_getElementDailyNote(element)}. Evrenin sana gönderdiği işaretlere açık ol - belki bir şarkı, bir kitap sayfası veya bir yabancının sözleri önemli mesajlar taşıyabilir.
+🔮 $cosmicNote
+$cosmicNoteText
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-✨ Unutma: Her gün yeni bir başlangıç fırsatıdır!''';
+✨ $remember''';
   }
 
   String _getLoveResponse(zodiac.ZodiacSign sign, AppLanguage language) {
-    final venusSign = _getRandomMoonSign();
-    final marsSign = _getRandomMoonSign();
+    final venusSign = _getLocalizedMoonSign(language);
+    final marsSign = _getLocalizedMoonSign(language);
 
-    return '''${sign.symbol} ${sign.localizedName(language).toUpperCase()} AŞK & İLİŞKİ ANALİZİ
+    final header = L10nService.getWithParams('kozmoz.responses.love_analysis_header', language, params: {
+      'sign': sign.localizedName(language).toUpperCase(),
+    });
+    final venusPos = L10nService.getWithParams('kozmoz.responses.venus_position', language, params: {
+      'venus_sign': venusSign,
+    });
+    final marsPos = L10nService.getWithParams('kozmoz.responses.mars_position', language, params: {
+      'mars_sign': marsSign,
+    });
+    final loveEnergy = L10nService.get('kozmoz.responses.love_energy', language);
+    final loveLanguage = L10nService.get('kozmoz.responses.love_language', language);
+    final idealPartner = L10nService.get('kozmoz.responses.ideal_partner', language);
+    final bestMatches = L10nService.get('kozmoz.responses.best_matches', language);
+    final perfectMatch = L10nService.get('kozmoz.responses.perfect_match', language);
+    final goodMatch = L10nService.get('kozmoz.responses.good_match', language);
+    final relationshipWarnings = L10nService.get('kozmoz.responses.relationship_warnings', language);
+    final lovePeriod = L10nService.get('kozmoz.responses.love_period', language);
+    final loveRitual = L10nService.get('kozmoz.responses.love_ritual', language);
+    final cosmicLoveAdvice = L10nService.get('kozmoz.responses.cosmic_love_advice', language);
+    final loveReminder = L10nService.get('kozmoz.responses.love_reminder', language);
+
+    return '''${sign.symbol} $header
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-💕 VENÜS POZİSYONU: $venusSign Burcunda
-♂️ MARS POZİSYONU: $marsSign Burcunda
+💕 $venusPos
+♂️ $marsPos
 
-❤️ AŞK ENERJİN ŞU AN
-${_getDetailedLoveEnergy(sign)}
+❤️ $loveEnergy
+${_getDetailedLoveEnergy(sign, language)}
 
-🔥 SEVGİ DİLİN
-${_getLoveLanguage(sign)}
+🔥 $loveLanguage
+${_getLoveLanguage(sign, language)}
 
-💘 İDEAL PARTNER PROFİLİN
-${_getIdealPartner(sign)}
+💘 $idealPartner
+${_getIdealPartner(sign, language)}
 
-👫 EN UYUMLU BURÇLARIN
+👫 $bestMatches
 ━━━━━━━━━━━━━━━━━━━━
-🟢 MÜKEMMEL UYUM (90-100%)
-${_getPerfectMatches(sign)}
+🟢 $perfectMatch
+${_getPerfectMatches(sign, language)}
 
-🟡 İYİ UYUM (70-89%)
-${_getGoodMatches(sign)}
+🟡 $goodMatch
+${_getGoodMatches(sign, language)}
 
-🟠 ORTA UYUM (50-69%)
-${_getMediumMatches(sign)}
+💔 $relationshipWarnings
+${_getRelationshipWarnings(sign, language)}
 
-🔴 ZORLAYICI UYUM (30-49%)
-${_getChallengingMatches(sign)}
+🌹 $lovePeriod
+${_getCurrentLovePeriod(sign, language)}
 
-💔 İLİŞKİDE DİKKAT ETMELERİN
-${_getRelationshipWarnings(sign)}
+✨ $loveRitual
+${_getLoveRitual(sign, language)}
 
-🌹 BU DÖNEM AŞK İÇİN
-${_getCurrentLovePeriod(sign)}
-
-✨ AŞK RİTÜELİ ÖNERİSİ
-${_getLoveRitual(sign)}
-
-🔮 KOZMİK AŞK TAVSİYESİ
-${_getLoveAdvice(sign)}
+🔮 $cosmicLoveAdvice
+${_getLoveAdvice(sign, language)}
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-💝 Gerçek aşk, önce kendinle başlar!''';
+💝 $loveReminder''';
   }
 
   String _getCareerResponse(zodiac.ZodiacSign sign, AppLanguage language) {
-    return '''${sign.symbol} ${sign.localizedName(language).toUpperCase()} KARİYER & FİNANS ANALİZİ
+    final header = L10nService.getWithParams('kozmoz.responses.career_analysis_header', language, params: {
+      'sign': sign.localizedName(language).toUpperCase(),
+    });
+    final naturalTalents = L10nService.get('kozmoz.responses.natural_talents', language);
+    final careerPaths = L10nService.get('kozmoz.responses.career_paths', language);
+    final industryRec = L10nService.get('kozmoz.responses.industry_recommendations', language);
+    final financialTend = L10nService.get('kozmoz.responses.financial_tendencies', language);
+    final investmentStyle = L10nService.get('kozmoz.responses.investment_style', language);
+    final businessPartners = L10nService.get('kozmoz.responses.business_partner_signs', language);
+    final careerPeriods = L10nService.get('kozmoz.responses.career_important_periods', language);
+    final promotionOpp = L10nService.get('kozmoz.responses.promotion_opportunities', language);
+    final careerWarnings = L10nService.get('kozmoz.responses.career_warnings', language);
+    final successStrategy = L10nService.get('kozmoz.responses.success_strategy', language);
+    final shortTermGoals = L10nService.get('kozmoz.responses.short_term_goals', language);
+    final longTermVision = L10nService.get('kozmoz.responses.long_term_vision', language);
+    final careerReminder = L10nService.get('kozmoz.responses.career_reminder', language);
+
+    return '''${sign.symbol} $header
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-💼 DOĞAL YETENEKLERİN
-${_getDetailedCareerTalents(sign)}
+💼 $naturalTalents
+${_getDetailedCareerTalents(sign, language)}
 
-🏆 EN UYGUN KARİYER YOLLARI
-${_getBestCareerPaths(sign)}
+🏆 $careerPaths
+${_getBestCareerPaths(sign, language)}
 
-📊 SEKTÖR ÖNERİLERİ
-${_getIndustryRecommendations(sign)}
+📊 $industryRec
+${_getIndustryRecommendations(sign, language)}
 
-💰 FİNANSAL EĞİLİMLERİN
-${_getFinancialTendencies(sign)}
+💰 $financialTend
+${_getFinancialTendencies(sign, language)}
 
-📈 YATIRIM STİLİN
-${_getInvestmentStyle(sign)}
+📈 $investmentStyle
+${_getInvestmentStyle(sign, language)}
 
-🤝 İŞ ORTAKLIĞI İÇİN UYUMLU BURÇLAR
-${_getBusinessPartners(sign)}
+🤝 $businessPartners
+${_getBusinessPartners(sign, language)}
 
-⏰ KARİYER İÇİN ÖNEMLİ DÖNEMLER
-${_getCareerTimings(sign)}
+⏰ $careerPeriods
+${_getCareerTimings(sign, language)}
 
-🚀 TERFİ & İŞ FIRSATLARI
-${_getPromotionAdvice(sign)}
+🚀 $promotionOpp
+${_getPromotionAdvice(sign, language)}
 
-⚠️ KARİYERDE DİKKAT ETMELERİN
-${_getCareerWarnings(sign)}
+⚠️ $careerWarnings
+${_getCareerWarnings(sign, language)}
 
-💡 BAŞARI STRATEJİN
-${_getSuccessStrategy(sign)}
+💡 $successStrategy
+${_getSuccessStrategy(sign, language)}
 
-🎯 KISA VADELİ HEDEFLER (3 Ay)
-${_getShortTermGoals(sign)}
+🎯 $shortTermGoals
+${_getShortTermGoals(sign, language)}
 
-🌟 UZUN VADELİ VİZYON (5 Yıl)
-${_getLongTermVision(sign)}
+🌟 $longTermVision
+${_getLongTermVision(sign, language)}
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-💎 Başarı, tutkunla yeteneğinin kesiştiği noktada doğar!''';
+💎 $careerReminder''';
   }
 
   String _getMoonResponse(zodiac.ZodiacSign sign, AppLanguage language) {
     final moonPhase = _getCurrentMoonPhase();
-    final moonSign = _getRandomMoonSign();
+    final moonSign = _getLocalizedMoonSign(language);
     final daysToNext = 3 + DateTime.now().day % 5;
 
-    return '''🌙 ${sign.localizedName(language).toUpperCase()} İÇİN AY FAZI ANALİZİ
+    final header = L10nService.getWithParams('kozmoz.responses.moon_phase_header', language, params: {
+      'sign': sign.localizedName(language).toUpperCase(),
+    });
+    final moonCycle = L10nService.get('kozmoz.responses.moon_cycle', language);
+    final currentPhase = L10nService.getWithParams('kozmoz.responses.current_phase', language, params: {
+      'phase': moonPhase,
+    });
+    final moonInSign = L10nService.getWithParams('kozmoz.responses.moon_in_sign', language, params: {
+      'sign': moonSign,
+    });
+    final nextPhase = L10nService.getWithParams('kozmoz.responses.next_phase', language, params: {
+      'days': daysToNext.toString(),
+    });
+    final whatToAvoid = L10nService.get('kozmoz.responses.what_to_avoid', language);
+    final moonRitual = L10nService.get('kozmoz.responses.moon_ritual', language);
+    final crystalSugg = L10nService.get('kozmoz.responses.crystal_suggestion', language);
+    final colorsAromas = L10nService.get('kozmoz.responses.colors_aromas', language);
+    final mantraAffirm = L10nService.get('kozmoz.responses.mantra_affirmation', language);
+    final moonSignEffect = L10nService.getWithParams('kozmoz.responses.moon_sign_effect', language, params: {
+      'moon_sign': moonSign,
+    });
+    final upcomingDates = L10nService.get('kozmoz.responses.upcoming_moon_dates', language);
+    final moonReminder = L10nService.get('kozmoz.responses.moon_reminder', language);
+
+    return '''🌙 $header
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-🌑🌒🌓🌔🌕🌖🌗🌘 AY DÖNGÜSÜ
+🌑🌒🌓🌔🌕🌖🌗🌘 $moonCycle
 
-📍 ŞU ANKİ AY FAZI: $moonPhase
-📍 AY BURCU: $moonSign
-📍 SONRAKİ FAZ: $daysToNext gün sonra
+📍 $currentPhase
+📍 $moonInSign
+📍 $nextPhase
 
-${_getDetailedMoonPhaseEffect(moonPhase, sign)}
+${_getDetailedMoonPhaseEffect(moonPhase, sign, language)}
 
-🔮 BU AY FAZINDA YAPILMASI GEREKENLER
-${_getMoonPhaseDoList(moonPhase)}
+❌ $whatToAvoid
+${_getMoonPhaseDontList(moonPhase, language)}
 
-❌ BU AY FAZINDA KAÇINILMASI GEREKENLER
-${_getMoonPhaseDontList(moonPhase)}
+🧘 $moonRitual
+${_getDetailedMoonRitual(moonPhase, sign, language)}
 
-🧘 AY RİTÜELİ
-${_getDetailedMoonRitual(moonPhase, sign)}
+💎 $crystalSugg
+${_getMoonCrystals(moonPhase, language)}
 
-💎 KRİSTAL & TAŞ ÖNERİSİ
-${_getMoonCrystals(moonPhase)}
+🕯️ $colorsAromas
+${_getMoonColors(moonPhase, language)}
 
-🕯️ RENK & MUM
-${_getMoonColors(moonPhase)}
+📿 $mantraAffirm
+"${_getMoonMantra(moonPhase, language)}"
 
-🌿 AROMATERAPI
-${_getMoonAromas(moonPhase)}
+🌙 $moonSignEffect
+${_getMoonSignEffect(moonSign, sign, language)}
 
-📿 MANTRA & AFİRMASYON
-"${_getMoonMantra(moonPhase)}"
-
-🌙 AY BURCU ETKİSİ: $moonSign
-${_getMoonSignEffect(moonSign, sign)}
-
-📅 ÖNÜMÜZDEKİ ÖNEMLİ AY TARİHLERİ
-${_getUpcomingMoonDates()}
+📅 $upcomingDates
+${_getUpcomingMoonDates(language)}
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🌟 Ay'ın döngüsü, içsel döngünün aynasıdır!''';
+🌟 $moonReminder''';
   }
 
   String _getTransitResponse(zodiac.ZodiacSign sign, AppLanguage language) {
-    return '''🪐 ${sign.localizedName(language).toUpperCase()} İÇİN AKTİF TRANSİTLER
+    final header = L10nService.getWithParams('kozmoz.responses.transit_header', language, params: {
+      'sign': sign.localizedName(language).toUpperCase(),
+    });
+    final saturnTransit = L10nService.get('kozmoz.responses.saturn_transit', language);
+    final jupiterTransit = L10nService.get('kozmoz.responses.jupiter_transit', language);
+    final plutoTransit = L10nService.get('kozmoz.responses.pluto_transit', language);
+    final uranusTransit = L10nService.get('kozmoz.responses.uranus_transit', language);
+    final neptuneTransit = L10nService.get('kozmoz.responses.neptune_transit', language);
+    final mercuryStatus = L10nService.get('kozmoz.responses.mercury_status', language);
+    final venusStatus = L10nService.get('kozmoz.responses.venus_status', language);
+    final marsStatus = L10nService.get('kozmoz.responses.mars_status', language);
+
+    return '''🪐 $header
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-♄ SATURN TRANSİTİ
-${_getSaturnTransit(sign)}
+♄ $saturnTransit
+${_getSaturnTransit(sign, language)}
 
-♃ JÜPİTER TRANSİTİ
-${_getJupiterTransit(sign)}
+♃ $jupiterTransit
+${_getJupiterTransit(sign, language)}
 
-♇ PLUTO TRANSİTİ
-${_getPlutoTransit(sign)}
+♇ $plutoTransit
+${_getPlutoTransit(sign, language)}
 
-♅ URANÜS TRANSİTİ
-${_getUranusTransit(sign)}
+♅ $uranusTransit
+${_getUranusTransit(sign, language)}
 
-♆ NEPTÜN TRANSİTİ
-${_getNeptuneTransit(sign)}
+♆ $neptuneTransit
+${_getNeptuneTransit(sign, language)}
 
-☿ MERKÜR DURUMU
-${_getMercuryStatus(sign)}
+☿ $mercuryStatus
+${_getMercuryStatus(sign, language)}
 
-♀ VENÜS DURUMU
-${_getVenusStatus(sign)}
+♀ $venusStatus
+${_getVenusStatus(sign, language)}
 
-♂ MARS DURUMU
-${_getMarsStatus(sign)}
+♂ $marsStatus
+${_getMarsStatus(sign, language)}
 
-⚡ KRİTİK DÖNEMLER
-${_getCriticalPeriods(sign)}
+⚡ ${L10nService.get('kozmoz.responses.critical_periods', language)}
+${_getCriticalPeriods(sign, language)}
 
-🌟 FIRSAT PENCERELERİ
-${_getOpportunityWindows(sign)}
+🌟 ${L10nService.get('kozmoz.responses.opportunity_windows', language)}
+${_getOpportunityWindows(sign, language)}
 
-🔮 TRANSİT YORUMU
-${_getTransitSummary(sign)}
+🔮 ${L10nService.get('kozmoz.responses.transit_interpretation', language)}
+${_getTransitSummary(sign, language)}
 
-💡 ÖNERİLER
-${_getTransitRecommendations(sign)}
+💡 ${L10nService.get('kozmoz.responses.transit_recommendations', language)}
+${_getTransitRecommendations(sign, language)}
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🌌 Transitler bizi zorlamaz, dönüştürür!''';
+🌌 ${L10nService.get('kozmoz.responses.transit_reminder', language)}''';
   }
 
   String _getRisingResponse(zodiac.ZodiacSign sign, AppLanguage language) {
-    return '''⬆️ ${sign.localizedName(language).toUpperCase()} & YÜKSELEN BURÇ ANALİZİ
+    final header = L10nService.getWithParams('kozmoz.responses.rising_sign_header', language, params: {
+      'sign': sign.localizedName(language).toUpperCase(),
+    });
+    final whatIs = L10nService.get('kozmoz.responses.rising_sign_what_is', language);
+    final description = L10nService.get('kozmoz.responses.rising_sign_description', language);
+    final aspects = L10nService.get('kozmoz.responses.rising_sign_aspects', language);
+    final twelveRising = L10nService.get('kozmoz.responses.twelve_rising_signs', language);
+    final risingAries = L10nService.get('kozmoz.responses.rising_aries', language);
+    final risingTaurus = L10nService.get('kozmoz.responses.rising_taurus', language);
+    final risingGemini = L10nService.get('kozmoz.responses.rising_gemini', language);
+    final risingCancer = L10nService.get('kozmoz.responses.rising_cancer', language);
+    final risingLeo = L10nService.get('kozmoz.responses.rising_leo', language);
+    final risingVirgo = L10nService.get('kozmoz.responses.rising_virgo', language);
+    final risingLibra = L10nService.get('kozmoz.responses.rising_libra', language);
+    final risingScorpio = L10nService.get('kozmoz.responses.rising_scorpio', language);
+    final risingSagittarius = L10nService.get('kozmoz.responses.rising_sagittarius', language);
+    final risingCapricorn = L10nService.get('kozmoz.responses.rising_capricorn', language);
+    final risingAquarius = L10nService.get('kozmoz.responses.rising_aquarius', language);
+    final risingPisces = L10nService.get('kozmoz.responses.rising_pisces', language);
+    final calculateTip = L10nService.get('kozmoz.responses.calculate_rising_tip', language);
+    final calculateNote = L10nService.get('kozmoz.responses.calculate_rising_note', language);
+    final reminder = L10nService.get('kozmoz.responses.rising_reminder', language);
+
+    return '''⬆️ $header
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-🌟 YÜKSELEN BURÇ NEDİR?
-Yükselen burç (Ascendant), doğum anında doğu ufkunda yükselen burçtur ve:
-• Dünyaya nasıl göründüğünü
-• İlk izlenimi
-• Fiziksel görünümü
-• Hayata yaklaşımını belirler
+🌟 $whatIs
+$description
+$aspects
 
-${_getRisingSignDetails(sign)}
+${_getRisingSignDetails(sign, language)}
 
-🎭 12 YÜKSELEN BURÇ VE ETKİLERİ
+🎭 $twelveRising
 
-♈ KOÇ YÜKSELEN
-${_getRisingAriesEffect()}
+♈ $risingAries
+${_getRisingAriesEffect(language)}
 
-♉ BOĞA YÜKSELEN
-${_getRisingTaurusEffect()}
+♉ $risingTaurus
+${_getRisingTaurusEffect(language)}
 
-♊ İKİZLER YÜKSELEN
-${_getRisingGeminiEffect()}
+♊ $risingGemini
+${_getRisingGeminiEffect(language)}
 
-♋ YENGEÇ YÜKSELEN
-${_getRisingCancerEffect()}
+♋ $risingCancer
+${_getRisingCancerEffect(language)}
 
-♌ ASLAN YÜKSELEN
-${_getRisingLeoEffect()}
+♌ $risingLeo
+${_getRisingLeoEffect(language)}
 
-♍ BAŞAK YÜKSELEN
-${_getRisingVirgoEffect()}
+♍ $risingVirgo
+${_getRisingVirgoEffect(language)}
 
-♎ TERAZİ YÜKSELEN
-${_getRisingLibraEffect()}
+♎ $risingLibra
+${_getRisingLibraEffect(language)}
 
-♏ AKREP YÜKSELEN
-${_getRisingScorpioEffect()}
+♏ $risingScorpio
+${_getRisingScorpioEffect(language)}
 
-♐ YAY YÜKSELEN
-${_getRisingSagittariusEffect()}
+♐ $risingSagittarius
+${_getRisingSagittariusEffect(language)}
 
-♑ OĞLAK YÜKSELEN
-${_getRisingCapricornEffect()}
+♑ $risingCapricorn
+${_getRisingCapricornEffect(language)}
 
-♒ KOVA YÜKSELEN
-${_getRisingAquariusEffect()}
+♒ $risingAquarius
+${_getRisingAquariusEffect(language)}
 
-♓ BALIK YÜKSELEN
-${_getRisingPiscesEffect()}
+♓ $risingPisces
+${_getRisingPiscesEffect(language)}
 
-💡 YÜKSELEN BURCUNU HESAPLAMAK İÇİN
-Doğum saatin ve doğum yerin gerekli. Ana sayfadan "Doğum Haritası" bölümüne giderek tam haritanı çıkarabilirsin!
+💡 $calculateTip
+$calculateNote
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-✨ Yükselen burcun, ruhunun dünyaya açılan kapısıdır!''';
+✨ $reminder''';
   }
 
   String _getCompatibilityResponse(zodiac.ZodiacSign sign, AppLanguage language) {
-    return '''${sign.symbol} ${sign.localizedName(language).toUpperCase()} DETAYLI UYUM ANALİZİ
+    final header = L10nService.getWithParams('kozmoz.responses.compatibility_header', language, params: {
+      'sign': sign.localizedName(language).toUpperCase(),
+    });
+    final elementCompat = L10nService.get('kozmoz.responses.element_compatibility', language);
+    final signBySign = L10nService.get('kozmoz.responses.sign_by_sign_details', language);
+    final bestMatches = L10nService.get('kozmoz.responses.best_matches', language);
+    final challengingMatches = L10nService.get('kozmoz.responses.challenging_matches', language);
+    final romanticVsBusiness = L10nService.get('kozmoz.responses.romantic_vs_business', language);
+    final synastryTips = L10nService.get('kozmoz.responses.synastry_tips', language);
+    final compatTips = L10nService.get('kozmoz.responses.compatibility_tips', language);
+    final reminder = L10nService.get('kozmoz.responses.compatibility_reminder', language);
+
+    return '''${sign.symbol} $header
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-🔥 ELEMENT UYUMU
-${_getElementCompatibility(sign)}
+🔥 $elementCompat
+${_getElementCompatibility(sign, language)}
 
-💑 BURÇ BURÇ UYUM DETAYLARI
+💑 $signBySign
 
-${_getAllSignCompatibility(sign)}
+${_getAllSignCompatibility(sign, language)}
 
-🎯 EN UYUMLU 3 BURCUN
-${_getTop3Compatible(sign)}
+🎯 $bestMatches
+${_getTop3Compatible(sign, language)}
 
-⚡ EN ZORLAYICI 3 BURCUN
-${_getTop3Challenging(sign)}
+⚡ $challengingMatches
+${_getTop3Challenging(sign, language)}
 
-💕 ROMANTIK UYUM VS İŞ UYUMU
-${_getRomanticVsBusiness(sign)}
+💕 $romanticVsBusiness
+${_getRomanticVsBusiness(sign, language)}
 
-🔮 SYNASTRİ İPUÇLARI
-${_getSynastryTips(sign)}
+🔮 $synastryTips
+${_getSynastryTips(sign, language)}
 
-💡 UYUMU ARTIRMA ÖNERİLERİ
-${_getCompatibilityTips(sign)}
+💡 $compatTips
+${_getCompatibilityTips(sign, language)}
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-❤️ Gerçek uyum, farklılıkları kucaklamaktır!''';
+❤️ $reminder''';
   }
 
   String _getNumerologyResponse(zodiac.ZodiacSign sign, AppLanguage language) {
-    return '''🔢 ${sign.localizedName(language).toUpperCase()} & NUMEROLOJİ BİLGELİĞİ
+    final header = L10nService.getWithParams('kozmoz.responses.numerology_header', language, params: {
+      'sign': sign.localizedName(language).toUpperCase(),
+    });
+    final lifePathNumbers = L10nService.get('kozmoz.responses.life_path_numbers', language);
+    final lifePath1 = L10nService.get('kozmoz.responses.life_path_1', language);
+    final lifePath2 = L10nService.get('kozmoz.responses.life_path_2', language);
+    final lifePath3 = L10nService.get('kozmoz.responses.life_path_3', language);
+    final lifePath4 = L10nService.get('kozmoz.responses.life_path_4', language);
+    final lifePath5 = L10nService.get('kozmoz.responses.life_path_5', language);
+    final lifePath6 = L10nService.get('kozmoz.responses.life_path_6', language);
+    final lifePath7 = L10nService.get('kozmoz.responses.life_path_7', language);
+    final lifePath8 = L10nService.get('kozmoz.responses.life_path_8', language);
+    final lifePath9 = L10nService.get('kozmoz.responses.life_path_9', language);
+    final masterNumbers = L10nService.get('kozmoz.responses.master_numbers', language);
+    final personalYearCalc = L10nService.get('kozmoz.responses.personal_year_calc', language);
+    final signNumerology = L10nService.getWithParams('kozmoz.responses.sign_numerology_connection', language, params: {
+      'sign': sign.localizedName(language),
+    });
+    final reminder = L10nService.get('kozmoz.responses.numerology_reminder', language);
+
+    return '''🔢 $header
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-📊 YAŞAM YOLU SAYILARI
+📊 $lifePathNumbers
 
-1️⃣ YAŞAM YOLU 1 - LİDER
-${_getLifePath1Details()}
+1️⃣ $lifePath1
+${_getLifePath1Details(language)}
 
-2️⃣ YAŞAM YOLU 2 - DİPLOMAT
-${_getLifePath2Details()}
+2️⃣ $lifePath2
+${_getLifePath2Details(language)}
 
-3️⃣ YAŞAM YOLU 3 - YARATICI
-${_getLifePath3Details()}
+3️⃣ $lifePath3
+${_getLifePath3Details(language)}
 
-4️⃣ YAŞAM YOLU 4 - İNŞACI
-${_getLifePath4Details()}
+4️⃣ $lifePath4
+${_getLifePath4Details(language)}
 
-5️⃣ YAŞAM YOLU 5 - ÖZGÜR RUH
-${_getLifePath5Details()}
+5️⃣ $lifePath5
+${_getLifePath5Details(language)}
 
-6️⃣ YAŞAM YOLU 6 - BAKICI
-${_getLifePath6Details()}
+6️⃣ $lifePath6
+${_getLifePath6Details(language)}
 
-7️⃣ YAŞAM YOLU 7 - MİSTİK
-${_getLifePath7Details()}
+7️⃣ $lifePath7
+${_getLifePath7Details(language)}
 
-8️⃣ YAŞAM YOLU 8 - GÜÇ SAHİBİ
-${_getLifePath8Details()}
+8️⃣ $lifePath8
+${_getLifePath8Details(language)}
 
-9️⃣ YAŞAM YOLU 9 - İNSANCIL
-${_getLifePath9Details()}
+9️⃣ $lifePath9
+${_getLifePath9Details(language)}
 
-🌟 MASTER SAYILAR
-${_getMasterNumbers()}
+🌟 $masterNumbers
+${_getMasterNumbers(language)}
 
-📅 KİŞİSEL YIL HESABI
-${_getPersonalYearInfo()}
+📅 $personalYearCalc
+${_getPersonalYearInfo(language)}
 
-🔮 ${sign.localizedName(language)} VE NUMEROLOJİ
-${_getSignNumerologyConnection(sign)}
+🔮 $signNumerology
+${_getSignNumerologyConnection(sign, language)}
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-💫 Sayılar, evrenin gizli dilidir!''';
+💫 $reminder''';
   }
 
   String _getTarotResponse(zodiac.ZodiacSign sign, AppLanguage language) {
-    final cards = ['Sihirbaz', 'Yüksek Rahibe', 'İmparatoriçe', 'İmparator', 'Hierofant',
-                   'Aşıklar', 'Savaş Arabası', 'Güç', 'Ermiş', 'Kader Çarkı',
-                   'Adalet', 'Asılan Adam', 'Ölüm', 'Denge', 'Şeytan',
-                   'Kule', 'Yıldız', 'Ay', 'Güneş', 'Yargı', 'Dünya'];
-    final card1 = cards[DateTime.now().microsecond % cards.length];
-    final card2 = cards[(DateTime.now().millisecond + 7) % cards.length];
-    final card3 = cards[(DateTime.now().second + 3) % cards.length];
+    final cardKeys = ['magician', 'high_priestess', 'empress', 'emperor', 'hierophant',
+                   'lovers', 'chariot', 'strength', 'hermit', 'wheel_of_fortune',
+                   'justice', 'hanged_man', 'death', 'temperance', 'devil',
+                   'tower', 'star', 'moon', 'sun', 'judgement', 'world'];
+    final cardIdx1 = DateTime.now().microsecond % cardKeys.length;
+    final cardIdx2 = (DateTime.now().millisecond + 7) % cardKeys.length;
+    final cardIdx3 = (DateTime.now().second + 3) % cardKeys.length;
+    final card1 = L10nService.get('tarot.major_arcana.${cardKeys[cardIdx1]}.name', language);
+    final card2 = L10nService.get('tarot.major_arcana.${cardKeys[cardIdx2]}.name', language);
+    final card3 = L10nService.get('tarot.major_arcana.${cardKeys[cardIdx3]}.name', language);
 
-    return '''🎴 ${sign.localizedName(language).toUpperCase()} İÇİN TAROT OKUMASI
+    final header = L10nService.getWithParams('kozmoz.responses.tarot_header', language, params: {
+      'sign': sign.localizedName(language).toUpperCase(),
+    });
+    final threeCardSpread = L10nService.get('kozmoz.responses.three_card_spread', language);
+    final pastCard = L10nService.getWithParams('kozmoz.responses.past_card', language, params: {'card': card1});
+    final presentCard = L10nService.getWithParams('kozmoz.responses.present_card', language, params: {'card': card2});
+    final futureCard = L10nService.getWithParams('kozmoz.responses.future_card', language, params: {'card': card3});
+    final combinedReading = L10nService.get('kozmoz.responses.combined_reading', language);
+    final adviceCard = L10nService.get('kozmoz.responses.advice_card', language);
+    final signNumerology = L10nService.getWithParams('kozmoz.responses.sign_numerology_connection', language, params: {
+      'sign': sign.localizedName(language),
+    });
+    final cardOfTheDay = L10nService.get('kozmoz.responses.card_of_the_day', language);
+    final cardMessage = L10nService.get('kozmoz.responses.card_message', language);
+    final reminder = L10nService.get('kozmoz.responses.tarot_reminder', language);
+
+    return '''🎴 $header
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-🔮 3 KARTLIK AÇILIM
+🔮 $threeCardSpread
 ━━━━━━━━━━━━━━━━━━━━
 
-⏮️ GEÇMİŞ: $card1
-${_getDetailedTarotMeaning(card1)}
+⏮️ $pastCard
+${_getDetailedTarotMeaning(card1, language)}
 
-⏸️ ŞİMDİ: $card2
-${_getDetailedTarotMeaning(card2)}
+⏸️ $presentCard
+${_getDetailedTarotMeaning(card2, language)}
 
-⏭️ GELECEK: $card3
-${_getDetailedTarotMeaning(card3)}
+⏭️ $futureCard
+${_getDetailedTarotMeaning(card3, language)}
 
-🎯 GENEL YORUM
-${_getTarotReading(card1, card2, card3, sign)}
+🎯 $combinedReading
+${_getTarotReading(card1, card2, card3, sign, language)}
 
-💡 TAVSİYE
-${_getTarotAdvice(card2, sign)}
+💡 $adviceCard
+${_getTarotAdvice(card2, sign, language)}
 
-🌟 ${sign.localizedName(language)} VE TAROT
-${_getSignTarotConnection(sign)}
+🌟 $signNumerology
+${_getSignTarotConnection(sign, language)}
 
-✨ GÜNÜN KARTI
-Bugün için çekilen ana kart: $card2
+✨ $cardOfTheDay
+$card2
 
-Bu kartın sana mesajı:
-"${_getTarotMessage(card2)}"
+$cardMessage
+"${_getTarotMessage(card2, language)}"
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🃏 Kartlar geleceği değil, potansiyelleri gösterir!''';
+🃏 $reminder''';
   }
 
   String _getAuraResponse(zodiac.ZodiacSign sign, AppLanguage language) {
-    return '''✨ ${sign.localizedName(language).toUpperCase()} AURA & ENERJİ ANALİZİ
+    final header = L10nService.getWithParams('kozmoz.responses.aura_header', language, params: {
+      'sign': sign.localizedName(language).toUpperCase(),
+    });
+    final auraColors = L10nService.get('kozmoz.responses.aura_colors', language);
+    final energyFrequency = L10nService.get('kozmoz.responses.energy_frequency', language);
+    final energyLevel = L10nService.get('kozmoz.responses.energy_level', language);
+    final auraLayers = L10nService.get('kozmoz.responses.aura_layers', language);
+    final energyBlocks = L10nService.get('kozmoz.responses.energy_blocks', language);
+    final auraStrengthening = L10nService.get('kozmoz.responses.aura_strengthening', language);
+    final energyCleansing = L10nService.get('kozmoz.responses.energy_cleansing', language);
+    final protectionShield = L10nService.get('kozmoz.responses.protection_shield', language);
+    final compatibleCrystals = L10nService.get('kozmoz.responses.compatible_crystals', language);
+    final colorTherapy = L10nService.get('kozmoz.responses.color_therapy', language);
+    final energyMeditation = L10nService.get('kozmoz.responses.energy_meditation', language);
+    final reminder = L10nService.get('kozmoz.responses.aura_reminder', language);
+
+    return '''✨ $header
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-🌈 AURA RENKLERİN
-${_getDetailedAuraColors(sign)}
+🌈 $auraColors
+${_getDetailedAuraColors(sign, language)}
 
-💎 ENERJİ FREKANSın
-${_getEnergyFrequency(sign)}
+💎 $energyFrequency
+${_getEnergyFrequency(sign, language)}
 
-🔋 ENERJİ SEVİYEN
-${_getEnergyLevel(sign)}
+🔋 $energyLevel
+${_getEnergyLevel(sign, language)}
 
-🧿 AURA KATMANLARIN
-${_getAuraLayers(sign)}
+🧿 $auraLayers
+${_getAuraLayers(sign, language)}
 
-⚡ ENERJİ BLOKLARI
-${_getEnergyBlocks(sign)}
+⚡ $energyBlocks
+${_getEnergyBlocks(sign, language)}
 
-🌟 AURANI GÜÇLENDİRME
-${_getAuraStrengtheningDetailed(sign)}
+🌟 $auraStrengthening
+${_getAuraStrengtheningDetailed(sign, language)}
 
-💆 ENERJİ TEMİZLİĞİ
-${_getEnergyCleansing(sign)}
+💆 $energyCleansing
+${_getEnergyCleansing(sign, language)}
 
-🔮 KORUMA KALKANI
-${_getProtectionShield(sign)}
+🔮 $protectionShield
+${_getProtectionShield(sign, language)}
 
-💎 UYUMLU KRİSTALLER
-${_getAuraCrystals(sign)}
+💎 $compatibleCrystals
+${_getAuraCrystals(sign, language)}
 
-🕯️ RENK TERAPİSİ
-${_getColorTherapy(sign)}
+🕯️ $colorTherapy
+${_getColorTherapy(sign, language)}
 
-🧘 ENERJİ MEDİTASYONU
-${_getEnergyMeditation(sign)}
+🧘 $energyMeditation
+${_getEnergyMeditation(sign, language)}
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🌟 Auran, ruhunun ışıltısıdır!''';
+🌟 $reminder''';
   }
 
   String _getSpiritualResponse(zodiac.ZodiacSign sign, AppLanguage language) {
-    return '''🦋 ${sign.localizedName(language).toUpperCase()} RUHSAL GELİŞİM YOLCULUĞU
+    final header = L10nService.getWithParams('kozmoz.responses.spiritual_header', language, params: {
+      'sign': sign.localizedName(language).toUpperCase(),
+    });
+    final evolutionLevel = L10nService.get('kozmoz.responses.spiritual_evolution_level', language);
+    final lifeMission = L10nService.get('kozmoz.responses.life_mission', language);
+    final karmicLessons = L10nService.get('kozmoz.responses.karmic_lessons', language);
+    final repeatingPatterns = L10nService.get('kozmoz.responses.repeating_patterns', language);
+    final spiritualPowers = L10nService.get('kozmoz.responses.spiritual_powers', language);
+    final meditationPractices = L10nService.get('kozmoz.responses.meditation_practices', language);
+    final mantras = L10nService.get('kozmoz.responses.mantras', language);
+    final nightRituals = L10nService.get('kozmoz.responses.night_rituals', language);
+    final morningRituals = L10nService.get('kozmoz.responses.morning_rituals', language);
+    final spiritualTools = L10nService.get('kozmoz.responses.spiritual_tools', language);
+    final higherSelfConnection = L10nService.get('kozmoz.responses.higher_self_connection', language);
+    final auraCleansing = L10nService.get('kozmoz.responses.aura_cleansing', language);
+    final reminder = L10nService.get('kozmoz.responses.spiritual_reminder', language);
+
+    return '''🦋 $header
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-🌟 RUHSAL EVRİM SEVİYEN
-${_getSpiritualLevel(sign)}
+🌟 $evolutionLevel
+${_getSpiritualLevel(sign, language)}
 
-🎯 BU HAYATTA MİSYONUN
-${_getLifeMission(sign)}
+🎯 $lifeMission
+${_getLifeMission(sign, language)}
 
-🧬 KARMİK DERSLERİN
-${_getKarmicLessons(sign)}
+🧬 $karmicLessons
+${_getKarmicLessons(sign, language)}
 
-🔄 TEKRARLAYAN KALIPLAR
-${_getRepeatingPatterns(sign)}
+🔄 $repeatingPatterns
+${_getRepeatingPatterns(sign, language)}
 
-💫 RUHSAL GÜÇLER
-${_getSpiritualGifts(sign)}
+💫 $spiritualPowers
+${_getSpiritualGifts(sign, language)}
 
-🧘 MEDİTASYON & PRATİKLER
-${_getSpiritualPracticesDetailed(sign)}
+🧘 $meditationPractices
+${_getSpiritualPracticesDetailed(sign, language)}
 
-📿 MANTRALAR
-${_getMantras(sign)}
+📿 $mantras
+${_getMantras(sign, language)}
 
-🌙 GECE RİTÜELLERİ
-${_getNightRituals(sign)}
+🌙 $nightRituals
+${_getNightRituals(sign, language)}
 
-☀️ SABAH RİTÜELLERİ
-${_getMorningRituals(sign)}
+☀️ $morningRituals
+${_getMorningRituals(sign, language)}
 
-🔮 SPİRİTÜEL ARAÇLAR
-${_getSpiritualTools(sign)}
+🔮 $spiritualTools
+${_getSpiritualTools(sign, language)}
 
-💎 YÜKSEK BENLİĞİNLE BAĞLANTI
-${_getHigherSelfConnection(sign)}
+💎 $higherSelfConnection
+${_getHigherSelfConnection(sign, language)}
 
-🌈 AURA TEMİZLİĞİ
-${_getAuraCleansing(sign)}
+🌈 $auraCleansing
+${_getAuraCleansing(sign, language)}
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-✨ Ruhsal yolculuk, eve dönüş yolculuğudur!''';
+✨ $reminder''';
   }
 
   String _getLifePurposeResponse(zodiac.ZodiacSign sign, AppLanguage language) {
-    return '''🎯 ${sign.localizedName(language).toUpperCase()} HAYAT AMACI & MİSYON ANALİZİ
+    final header = L10nService.getWithParams('kozmoz.responses.life_purpose_header', language, params: {
+      'sign': sign.localizedName(language).toUpperCase(),
+    });
+    final spiritualMission = L10nService.get('kozmoz.responses.spiritual_mission', language);
+    final lifeMission = L10nService.get('kozmoz.responses.life_mission', language);
+    final lessonsToLearn = L10nService.get('kozmoz.responses.lessons_to_learn', language);
+    final strengths = L10nService.get('kozmoz.responses.strengths', language);
+    final obstaclesToOvercome = L10nService.get('kozmoz.responses.obstacles_to_overcome', language);
+    final potentialUnlocks = L10nService.get('kozmoz.responses.potential_unlocks', language);
+    final journeyStages = L10nService.get('kozmoz.responses.journey_stages', language);
+    final universalContribution = L10nService.get('kozmoz.responses.universal_contribution', language);
+    final lifeRoadmap = L10nService.get('kozmoz.responses.life_roadmap', language);
+    final reminder = L10nService.get('kozmoz.responses.purpose_reminder', language);
+
+    return '''🎯 $header
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-🌟 RUHSAL MİSYONUN
-${_getDetailedLifeMission(sign)}
+🌟 $spiritualMission
+${_getDetailedLifeMission(sign, language)}
 
-🎯 BU HAYATTA AMACIN
-${_getLifePurposeDetails(sign)}
+🎯 $lifeMission
+${_getLifePurposeDetails(sign, language)}
 
-📚 ÖĞRENMEN GEREKEN DERSLER
-${_getLifeLessonsDetailed(sign)}
+📚 $lessonsToLearn
+${_getLifeLessonsDetailed(sign, language)}
 
-💪 GÜÇLÜ YÖNLERİN
-${_getStrengthsForPurpose(sign)}
+💪 $strengths
+${_getStrengthsForPurpose(sign, language)}
 
-⚠️ AŞMAN GEREKEN ENGELLER
-${_getObstaclesForPurpose(sign)}
+⚠️ $obstaclesToOvercome
+${_getObstaclesForPurpose(sign, language)}
 
-🔑 POTANSIYEL KILITLERI
-${_getPotentialUnlocks(sign)}
+🔑 $potentialUnlocks
+${_getPotentialUnlocks(sign, language)}
 
-🌈 YOLCULUĞUN AŞAMALARI
-${_getJourneyStages(sign)}
+🌈 $journeyStages
+${_getJourneyStages(sign, language)}
 
-💫 EVRENSEL KATKI
-${_getUniversalContribution(sign)}
+💫 $universalContribution
+${_getUniversalContribution(sign, language)}
 
-🧭 YOL HARİTASI
-${_getLifeRoadmap(sign)}
+🧭 $lifeRoadmap
+${_getLifeRoadmap(sign, language)}
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-✨ Amacın zaten içinde, keşfetmeyi bekliyor!''';
+✨ $reminder''';
   }
 
   String _getTalentResponse(zodiac.ZodiacSign sign, AppLanguage language) {
-    return '''⚡ ${sign.localizedName(language).toUpperCase()} GİZLİ YETENEKLER & POTANSİYEL
+    final header = L10nService.getWithParams('kozmoz.responses.talents_header', language, params: {
+      'sign': sign.localizedName(language).toUpperCase(),
+    });
+    final innateTalents = L10nService.get('kozmoz.responses.innate_talents', language);
+    final hiddenPotentials = L10nService.get('kozmoz.responses.hidden_potentials', language);
+    final waitingActivation = L10nService.get('kozmoz.responses.waiting_activation', language);
+    final strongestAreas = L10nService.get('kozmoz.responses.strongest_areas', language);
+    final improvementAreas = L10nService.get('kozmoz.responses.improvement_areas', language);
+    final unlockingPotential = L10nService.get('kozmoz.responses.unlocking_potential', language);
+    final careerUse = L10nService.get('kozmoz.responses.career_use', language);
+    final relationshipUse = L10nService.get('kozmoz.responses.relationship_use', language);
+    final spiritualUse = L10nService.get('kozmoz.responses.spiritual_use', language);
+    final activationCalendar = L10nService.get('kozmoz.responses.activation_calendar', language);
+    final reminder = L10nService.get('kozmoz.responses.talents_reminder', language);
+
+    return '''⚡ $header
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-🎁 DOĞUŞTAN GELEN YETENEKLER
-${_getInbornTalents(sign)}
+🎁 $innateTalents
+${_getInbornTalents(sign, language)}
 
-💎 GİZLİ POTANSİYELLER
-${_getHiddenPotentials(sign)}
+💎 $hiddenPotentials
+${_getHiddenPotentials(sign, language)}
 
-🔓 AKTİVE EDİLMEYİ BEKLEYENLER
-${_getWaitingActivation(sign)}
+🔓 $waitingActivation
+${_getWaitingActivation(sign, language)}
 
-🎯 EN GÜÇLÜ ALANLAR
-${_getStrongestAreas(sign)}
+🎯 $strongestAreas
+${_getStrongestAreas(sign, language)}
 
-📈 GELİŞTİRİLEBİLİR ALANLAR
-${_getImprovementAreas(sign)}
+📈 $improvementAreas
+${_getImprovementAreas(sign, language)}
 
-🚀 POTANSİYELİNİ AÇIĞA ÇIKARMA
-${_getUnlockingPotential(sign)}
+🚀 $unlockingPotential
+${_getUnlockingPotential(sign, language)}
 
-💼 KARİYERDE KULLANIM
-${_getTalentCareerUse(sign)}
+💼 $careerUse
+${_getTalentCareerUse(sign, language)}
 
-❤️ İLİŞKİLERDE KULLANIM
-${_getTalentRelationshipUse(sign)}
+❤️ $relationshipUse
+${_getTalentRelationshipUse(sign, language)}
 
-🧘 SPİRİTÜEL KULLANIM
-${_getTalentSpiritualUse(sign)}
+🧘 $spiritualUse
+${_getTalentSpiritualUse(sign, language)}
 
-📅 AKTİVASYON TAKVİMİ
-${_getActivationCalendar(sign)}
+📅 $activationCalendar
+${_getActivationCalendar(sign, language)}
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🌟 Yeteneklerin, ruhunun parmak izleridir!''';
+🌟 $reminder''';
   }
 
   String _getGreetingResponse(zodiac.ZodiacSign sign, AppLanguage language) {
@@ -860,160 +1340,87 @@ ${_getActivationCalendar(sign)}
       greeting = L10nService.get('kozmoz.good_evening', language);
     }
     final dear = L10nService.get('kozmoz.dear', language);
+    final introMessage = L10nService.getWithParams('kozmoz.responses.greeting_intro', language, params: {
+      'element': sign.element.localizedName(language),
+    });
 
     return '''$greeting, $dear ${sign.localizedName(language)}! 🌟
 
-Ben Kozmoz, senin kişisel kozmik AI rehberin!
-
-${sign.symbol} ${sign.element.localizedName(language)} elementinin güçlü enerjisiyle bugün sana yardımcı olmak için buradayım.
-
-Benimle konuşabileceğin konular:
-
-🔮 BURÇ & YORUM
-• Günlük/Haftalık/Aylık burç yorumları
-• Güneş, Ay ve Yükselen burç analizleri
-• Element ve modalite yorumları
-
-💕 AŞK & İLİŞKİLER
-• Burç uyumu ve synastry
-• İdeal partner profili
-• İlişki tavsiyeleri
-
-💼 KARİYER & FİNANS
-• Uygun kariyer yolları
-• Para çekme dönemleri
-• İş ortaklığı uyumları
-
-🌙 KOZMİK ZAMANLAMALAR
-• Ay fazları ve etkileri
-• Gezegen transitleri
-• Önemli tarihler
-
-🔢 NUMEROLOJİ & MİSTİK
-• Yaşam yolu sayın
-• Tarot mesajları
-• Aura analizi
-
-🧘 SPİRİTÜEL GELİŞİM
-• Meditasyon ve ritüeller
-• Karmik dersler
-• Ruhsal yolculuk
-
-Ne hakkında konuşmak istersin? ✨''';
+$introMessage''';
   }
 
   String _getGeneralResponse(zodiac.ZodiacSign sign, String message, AppLanguage language) {
-    return '''${sign.symbol} ${sign.localizedName(language).toUpperCase()} KOZMİK BİLGELİK
+    final header = L10nService.getWithParams('kozmoz.responses.general_response_header', language, params: {
+      'sign': sign.localizedName(language).toUpperCase(),
+    });
+    final universalMessage = L10nService.get('kozmoz.responses.universal_message', language);
+    final cosmicPerspective = L10nService.get('kozmoz.responses.cosmic_perspective', language);
+    final elementMessage = L10nService.getWithParams('kozmoz.responses.element_message', language, params: {
+      'element': sign.element.localizedName(language),
+    });
+    final universalGuidance = L10nService.get('kozmoz.responses.universal_guidance', language);
+    final practicalAdvice = L10nService.get('kozmoz.responses.practical_advice', language);
+    final wisdomAffirmation = L10nService.get('kozmoz.responses.wisdom_affirmation', language);
+    final moreHelp = L10nService.get('kozmoz.responses.more_help', language);
+    final exampleQuestions = L10nService.get('kozmoz.responses.example_questions', language);
+
+    return '''${sign.symbol} $header
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Sorduğun konu hakkında evrensel enerjiler şunları söylüyor:
+$universalMessage
 
-🌟 KOZMİK BAKIŞ AÇISI
-${_getDeepWisdom(sign)}
+🌟 $cosmicPerspective
+${_getDeepWisdom(sign, language)}
 
-💫 ${sign.element.localizedName(language)} ELEMENTİNDEN MESAJ
-${_getElementMessage(sign)}
+💫 $elementMessage
+${_getElementMessage(sign, language)}
 
-🔮 EVRENSEL REHBERLİK
-${_getUniversalGuidance(sign)}
+🔮 $universalGuidance
+${_getUniversalGuidance(sign, language)}
 
-💡 PRATİK TAVSİYELER
-${_getPracticalAdvice(sign)}
+💡 $practicalAdvice
+${_getPracticalAdvice(sign, language)}
 
-✨ GÜN İÇİN AFİRMASYON
-"${_getWisdomAffirmation(sign)}"
+✨ $wisdomAffirmation
+"${_getWisdomAffirmation(sign, language)}"
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Daha spesifik yardım için bana şunları sorabilirsin:
-• "Bugün için burç yorumum"
-• "Aşk hayatım nasıl olacak?"
-• "Kariyer için tavsiye"
-• "Ay fazı etkisi"
-• "Tarot mesajı"
-• "Numeroloji analizi"
-• Ve çok daha fazlası...
-
-Merak ettiğin her konuyu sorabilirsin! 🌌''';
+$moreHelp
+$exampleQuestions''';
   }
 
   // ═══════════════════════════════════════════════════════════════
   // YARDIMCI FONKSİYONLAR
   // ═══════════════════════════════════════════════════════════════
 
-  String _getRandomMoonSign() {
-    final signs = ['Koç', 'Boğa', 'İkizler', 'Yengeç', 'Aslan', 'Başak', 'Terazi', 'Akrep', 'Yay', 'Oğlak', 'Kova', 'Balık'];
-    return signs[DateTime.now().day % 12];
+  String _getLocalizedMoonSign(AppLanguage language) {
+    final signIndex = DateTime.now().day % 12;
+    final signs = zodiac.ZodiacSign.values;
+    return signs[signIndex].localizedName(language);
   }
 
-  String _getElementLoveStyle(zodiac.Element element) {
-    switch (element) {
-      case zodiac.Element.fire:
-        return 'tutkulu ve spontan bir aşık olursun';
-      case zodiac.Element.earth:
-        return 'sadık ve güvenilir bir partner olursun';
-      case zodiac.Element.air:
-        return 'entelektüel bağ ve iletişim senin için önemli';
-      case zodiac.Element.water:
-        return 'derin duygusal bağlar kurarsın';
-    }
+  String _getElementLoveStyle(zodiac.Element element, AppLanguage language) {
+    final elementKey = element.name.toLowerCase();
+    return L10nService.get('kozmoz.element_daily_notes.$elementKey', language);
   }
 
-  String _getCompatibleSigns(zodiac.ZodiacSign sign) {
-    final compatibility = {
-      zodiac.ZodiacSign.aries: 'Aslan, Yay, İkizler',
-      zodiac.ZodiacSign.taurus: 'Başak, Oğlak, Yengeç',
-      zodiac.ZodiacSign.gemini: 'Terazi, Kova, Koç',
-      zodiac.ZodiacSign.cancer: 'Akrep, Balık, Boğa',
-      zodiac.ZodiacSign.leo: 'Koç, Yay, İkizler',
-      zodiac.ZodiacSign.virgo: 'Boğa, Oğlak, Yengeç',
-      zodiac.ZodiacSign.libra: 'İkizler, Kova, Aslan',
-      zodiac.ZodiacSign.scorpio: 'Yengeç, Balık, Başak',
-      zodiac.ZodiacSign.sagittarius: 'Koç, Aslan, Terazi',
-      zodiac.ZodiacSign.capricorn: 'Boğa, Başak, Akrep',
-      zodiac.ZodiacSign.aquarius: 'İkizler, Terazi, Yay',
-      zodiac.ZodiacSign.pisces: 'Yengeç, Akrep, Oğlak',
-    };
-    return compatibility[sign] ?? 'Tüm burçlarla potansiyel var';
+  String _getCompatibleSigns(zodiac.ZodiacSign sign, AppLanguage language) {
+    final signKey = sign.name.toLowerCase();
+    return L10nService.get('kozmoz.compatible_signs.$signKey', language);
   }
 
-  String _getChallengingSigns(zodiac.ZodiacSign sign) {
-    final challenging = {
-      zodiac.ZodiacSign.aries: 'Yengeç, Oğlak',
-      zodiac.ZodiacSign.taurus: 'Aslan, Kova',
-      zodiac.ZodiacSign.gemini: 'Başak, Balık',
-      zodiac.ZodiacSign.cancer: 'Koç, Terazi',
-      zodiac.ZodiacSign.leo: 'Boğa, Akrep',
-      zodiac.ZodiacSign.virgo: 'İkizler, Yay',
-      zodiac.ZodiacSign.libra: 'Yengeç, Oğlak',
-      zodiac.ZodiacSign.scorpio: 'Aslan, Kova',
-      zodiac.ZodiacSign.sagittarius: 'Başak, Balık',
-      zodiac.ZodiacSign.capricorn: 'Koç, Terazi',
-      zodiac.ZodiacSign.aquarius: 'Boğa, Akrep',
-      zodiac.ZodiacSign.pisces: 'İkizler, Yay',
-    };
-    return challenging[sign] ?? 'Kare açılı burçlar';
+  String _getChallengingSigns(zodiac.ZodiacSign sign, AppLanguage language) {
+    final signKey = sign.name.toLowerCase();
+    return L10nService.get('kozmoz.challenging_signs.$signKey', language);
   }
 
 
 
 
-  String _getCareerStrengths(zodiac.ZodiacSign sign) {
-    final strengths = {
-      zodiac.ZodiacSign.aries: 'Liderlik, girişimcilik, hızlı karar alma',
-      zodiac.ZodiacSign.taurus: 'Sabır, güvenilirlik, finansal zeka',
-      zodiac.ZodiacSign.gemini: 'İletişim, adaptasyon, çoklu görev',
-      zodiac.ZodiacSign.cancer: 'Empati, takım çalışması, müşteri ilişkileri',
-      zodiac.ZodiacSign.leo: 'Yaratıcılık, sunum, motivasyon',
-      zodiac.ZodiacSign.virgo: 'Analiz, detay odaklılık, organizasyon',
-      zodiac.ZodiacSign.libra: 'Diplomasi, işbirliği, estetik',
-      zodiac.ZodiacSign.scorpio: 'Araştırma, strateji, dönüşüm yönetimi',
-      zodiac.ZodiacSign.sagittarius: 'Vizyon, eğitim, uluslararası ilişkiler',
-      zodiac.ZodiacSign.capricorn: 'Planlama, disiplin, uzun vadeli hedefler',
-      zodiac.ZodiacSign.aquarius: 'İnovasyon, teknoloji, sosyal projeler',
-      zodiac.ZodiacSign.pisces: 'Yaratıcılık, sezgi, şifa alanları',
-    };
-    return strengths[sign] ?? 'Çok yönlü yetenekler';
+  String _getCareerStrengths(zodiac.ZodiacSign sign, AppLanguage language) {
+    final signKey = sign.name.toLowerCase();
+    return L10nService.get('kozmoz.career_strengths.$signKey', language);
   }
 
 
@@ -1030,64 +1437,25 @@ Merak ettiğin her konuyu sorabilirsin! 🌌''';
 
 
 
-  String _getLifePurposeDescription(zodiac.ZodiacSign sign) {
-    final purposes = {
-      zodiac.ZodiacSign.aries: 'Cesaretle öncülük yapmak ve yeni yollar açmak',
-      zodiac.ZodiacSign.taurus: 'Güvenlik ve güzellik yaratmak',
-      zodiac.ZodiacSign.gemini: 'Bilgiyi yaymak ve bağlantılar kurmak',
-      zodiac.ZodiacSign.cancer: 'Beslemek ve duygusal güvenlik sağlamak',
-      zodiac.ZodiacSign.leo: 'Işık olmak ve ilham vermek',
-      zodiac.ZodiacSign.virgo: 'Hizmet etmek ve mükemmelleştirmek',
-      zodiac.ZodiacSign.libra: 'Denge ve uyum yaratmak',
-      zodiac.ZodiacSign.scorpio: 'Dönüştürmek ve derinlere inmek',
-      zodiac.ZodiacSign.sagittarius: 'Keşfetmek ve bilgeliği paylaşmak',
-      zodiac.ZodiacSign.capricorn: 'İnşa etmek ve miras bırakmak',
-      zodiac.ZodiacSign.aquarius: 'İnovasyon yapmak ve insanlığa hizmet etmek',
-      zodiac.ZodiacSign.pisces: 'Şifa vermek ve evrensel aşkı yaymak',
-    };
-    return purposes[sign] ?? 'Benzersiz bir amaca hizmet etmek';
+  String _getLifePurposeDescription(zodiac.ZodiacSign sign, AppLanguage language) {
+    final signKey = sign.name.toLowerCase();
+    return L10nService.get('kozmoz.life_missions.$signKey', language);
   }
 
 
 
 
-  String _getLifeLesson(zodiac.ZodiacSign sign) {
-    final lessons = {
-      zodiac.ZodiacSign.aries: 'Sabır ve işbirliği',
-      zodiac.ZodiacSign.taurus: 'Esneklik ve değişime açıklık',
-      zodiac.ZodiacSign.gemini: 'Odaklanma ve derinlik',
-      zodiac.ZodiacSign.cancer: 'Bırakma ve bağımsızlık',
-      zodiac.ZodiacSign.leo: 'Alçakgönüllülük ve paylaşma',
-      zodiac.ZodiacSign.virgo: 'Mükemmeliyetçiliği bırakma',
-      zodiac.ZodiacSign.libra: 'Karar verme ve bağımsızlık',
-      zodiac.ZodiacSign.scorpio: 'Güven ve bırakma',
-      zodiac.ZodiacSign.sagittarius: 'Sorumluluk ve taahhüt',
-      zodiac.ZodiacSign.capricorn: 'Eğlence ve spontanlık',
-      zodiac.ZodiacSign.aquarius: 'Duygusal bağlanma',
-      zodiac.ZodiacSign.pisces: 'Sınırlar ve pratiklik',
-    };
-    return lessons[sign] ?? 'Dengeyi bulmak';
+  String _getLifeLesson(zodiac.ZodiacSign sign, AppLanguage language) {
+    final signKey = sign.name.toLowerCase();
+    return L10nService.get('kozmoz.life_lessons.$signKey', language);
   }
 
 
 
 
-  String _getNaturalTalents(zodiac.ZodiacSign sign) {
-    final talents = {
-      zodiac.ZodiacSign.aries: '• Liderlik\n• Hızlı karar verme\n• Cesaret',
-      zodiac.ZodiacSign.taurus: '• Finansal zeka\n• Sanat/müzik\n• Sabır',
-      zodiac.ZodiacSign.gemini: '• İletişim\n• Yazarlık\n• Adaptasyon',
-      zodiac.ZodiacSign.cancer: '• Empati\n• Besleyicilik\n• Sezgi',
-      zodiac.ZodiacSign.leo: '• Yaratıcılık\n• Performans\n• İlham verme',
-      zodiac.ZodiacSign.virgo: '• Analiz\n• Organizasyon\n• Şifa',
-      zodiac.ZodiacSign.libra: '• Diplomasi\n• Estetik\n• İşbirliği',
-      zodiac.ZodiacSign.scorpio: '• Dönüştürme\n• Araştırma\n• Derinlik',
-      zodiac.ZodiacSign.sagittarius: '• Öğretme\n• Felsefi düşünce\n• Macera',
-      zodiac.ZodiacSign.capricorn: '• Strateji\n• Disiplin\n• İş kurma',
-      zodiac.ZodiacSign.aquarius: '• İnovasyon\n• Vizyon\n• İnsancıllık',
-      zodiac.ZodiacSign.pisces: '• Sanat\n• Şifa\n• Spiritüel bağlantı',
-    };
-    return talents[sign] ?? '• Çok yönlü yetenekler';
+  String _getNaturalTalents(zodiac.ZodiacSign sign, AppLanguage language) {
+    final signKey = sign.name.toLowerCase();
+    return L10nService.get('kozmoz.hidden_talents.$signKey', language);
   }
 
 
@@ -1134,569 +1502,364 @@ Merak ettiğin her konuyu sorabilirsin! 🌌''';
     return hours[sign] ?? '12:00-13:00 - Dikkatli ol';
   }
 
-  String _getMorningEnergy(zodiac.ZodiacSign sign) {
-    final energies = {
-      zodiac.ZodiacSign.aries: 'Yüksek enerjiyle uyanıyorsun! Fiziksel aktivite ve yeni başlangıçlar için harika.',
-      zodiac.ZodiacSign.taurus: 'Yavaş ama kararlı bir başlangıç. Kahvaltına özen göster, günün temeli.',
-      zodiac.ZodiacSign.gemini: 'Zihin aktif, fikirler uçuşuyor. İletişim ve toplantılar için ideal.',
-      zodiac.ZodiacSign.cancer: 'Ev ve aile odaklı enerji. Sevdiklerinle bağlantı kur.',
-      zodiac.ZodiacSign.leo: 'Yaratıcı enerji yükseliyor. Kendini ifade et ve ışığını yay.',
-      zodiac.ZodiacSign.virgo: 'Detaylara odaklan, organizasyon zamanı. Listeler yap.',
-      zodiac.ZodiacSign.libra: 'Denge arayışı. Estetik ve güzellikle ilgilen.',
-      zodiac.ZodiacSign.scorpio: 'Derin düşünceler. Araştırma ve analiz için uygun.',
-      zodiac.ZodiacSign.sagittarius: 'Macera ruhu! Yeni şeyler öğren, keşfet.',
-      zodiac.ZodiacSign.capricorn: 'Disiplinli ve odaklı. En zor işleri sabah yap.',
-      zodiac.ZodiacSign.aquarius: 'İnovatif fikirler. Alışılmadık çözümler bul.',
-      zodiac.ZodiacSign.pisces: 'Rüyalardan kalıntılar. Sezgilerini dinle, meditasyon yap.',
-    };
-    return energies[sign] ?? 'Yeni güne pozitif başla!';
+  String _getMorningEnergy(zodiac.ZodiacSign sign, AppLanguage language) {
+    final signKey = sign.name.toLowerCase();
+    return L10nService.get('kozmoz.daily_energies.morning.$signKey', language);
   }
 
-  String _getAfternoonEnergy(zodiac.ZodiacSign sign) {
-    final energies = {
-      zodiac.ZodiacSign.aries: 'Rekabet enerjisi yükseliyor. Spor, yarışma veya iş görüşmeleri için ideal.',
-      zodiac.ZodiacSign.taurus: 'Maddi konular ön planda. Finansal kararlar ve alışveriş.',
-      zodiac.ZodiacSign.gemini: 'Sosyal enerji dorukta. Network, görüşmeler, yazışmalar.',
-      zodiac.ZodiacSign.cancer: 'Duygusal derinlik. İlişkilere dikkat, sezgiler güçlü.',
-      zodiac.ZodiacSign.leo: 'Liderlik zamanı. Toplantılar, sunumlar, performans.',
-      zodiac.ZodiacSign.virgo: 'Pratik işler. Sağlık, düzen, hizmet odaklı aktiviteler.',
-      zodiac.ZodiacSign.libra: 'İşbirlikleri ve ortaklıklar. Müzakereler için uygun.',
-      zodiac.ZodiacSign.scorpio: 'Dönüşüm enerjisi. Eski kalıpları kır, yenile.',
-      zodiac.ZodiacSign.sagittarius: 'Genişleme zamanı. Eğitim, yayıncılık, seyahat planları.',
-      zodiac.ZodiacSign.capricorn: 'Kariyer odaklı. Hedefler, stratejiler, uzun vadeli planlar.',
-      zodiac.ZodiacSign.aquarius: 'Sosyal projeler. Grup aktiviteleri, topluluk çalışmaları.',
-      zodiac.ZodiacSign.pisces: 'Yaratıcı enerji. Sanat, müzik, spiritüel pratikler.',
-    };
-    return energies[sign] ?? 'Gün ortası enerjini kullan!';
+  String _getAfternoonEnergy(zodiac.ZodiacSign sign, AppLanguage language) {
+    final signKey = sign.name.toLowerCase();
+    return L10nService.get('kozmoz.daily_energies.afternoon.$signKey', language);
   }
 
-  String _getEveningEnergy(zodiac.ZodiacSign sign) {
-    final energies = {
-      zodiac.ZodiacSign.aries: 'Enerjiyi yavaşla. Fiziksel aktivite sonrası dinlenme.',
-      zodiac.ZodiacSign.taurus: 'Rahatlama zamanı. Güzel bir yemek, konfor, huzur.',
-      zodiac.ZodiacSign.gemini: 'Zihinsel dinlenme. Kitap, film, hafif sohbetler.',
-      zodiac.ZodiacSign.cancer: 'Yuva zamanı. Aile, ev, duygusal güvenlik.',
-      zodiac.ZodiacSign.leo: 'Romantizm ve eğlence. Sosyal etkinlikler, kutlamalar.',
-      zodiac.ZodiacSign.virgo: 'Günü değerlendir. Planlama, hazırlık, düzen.',
-      zodiac.ZodiacSign.libra: 'İlişki zamanı. Partner, arkadaşlar, sosyal bağlar.',
-      zodiac.ZodiacSign.scorpio: 'Derin bağlantılar. İntimai ilişkiler, gizli görüşmeler.',
-      zodiac.ZodiacSign.sagittarius: 'Yeni ufuklar. Gelecek planları, rüyalar, umutlar.',
-      zodiac.ZodiacSign.capricorn: 'Değerlendirme zamanı. Günün hasadı, ders çıkarma.',
-      zodiac.ZodiacSign.aquarius: 'Farklı aktiviteler. Alışılmadık hobiler, keşifler.',
-      zodiac.ZodiacSign.pisces: 'Spiritüel zaman. Meditasyon, rüya hazırlığı, hayal kurma.',
-    };
-    return energies[sign] ?? 'Akşamın huzurunu yaşa!';
+  String _getEveningEnergy(zodiac.ZodiacSign sign, AppLanguage language) {
+    final signKey = sign.name.toLowerCase();
+    return L10nService.get('kozmoz.daily_energies.evening.$signKey', language);
   }
 
-  String _getDailyAdvice(zodiac.ZodiacSign sign) {
-    final advice = {
-      zodiac.ZodiacSign.aries: '1. Sabırlı ol, her şey hemen olmak zorunda değil\n2. Başkalarını dinle, sadece konuşma\n3. Enerjini fiziksel aktiviteyle dengele',
-      zodiac.ZodiacSign.taurus: '1. Değişime açık ol, konfor alanından çık\n2. Maddi güvenlik önemli ama obsesyon yapma\n3. Doğada zaman geçir',
-      zodiac.ZodiacSign.gemini: '1. Bir konuya odaklan, dağılma\n2. Sözlerinin arkasında dur\n3. Derin ilişkilere zaman ayır',
-      zodiac.ZodiacSign.cancer: '1. Duygularını ifade et, içine atma\n2. Geçmişte takılı kalma\n3. Kendin için de zaman ayır',
-      zodiac.ZodiacSign.leo: '1. Alçakgönüllülüğü unutma\n2. Başkalarının parlamamasına izin ver\n3. Eleştirilere açık ol',
-      zodiac.ZodiacSign.virgo: '1. Mükemmeliyetçiliği bırak\n2. Kendini eleştirmeyi bırak\n3. Spontanlığa izin ver',
-      zodiac.ZodiacSign.libra: '1. Karar ver ve arkasında dur\n2. Kendi ihtiyaçlarını önce koy\n3. Çatışmadan kaçma',
-      zodiac.ZodiacSign.scorpio: '1. Bırakmayı öğren, kontrol etme\n2. Güvenmeyi dene\n3. Yüzeyde kal bazen, her şey derin olmak zorunda değil',
-      zodiac.ZodiacSign.sagittarius: '1. Detaylara dikkat et\n2. Sözlerini tut, aşırı vaat verme\n3. Şimdiki ana odaklan',
-      zodiac.ZodiacSign.capricorn: '1. Eğlenmeyi unutma\n2. Duygularına yer aç\n3. Başarı dışında da değerin var',
-      zodiac.ZodiacSign.aquarius: '1. Duygusal bağlara izin ver\n2. Bazen geleneksel yollar da işe yarar\n3. Yakın ilişkilere zaman ayır',
-      zodiac.ZodiacSign.pisces: '1. Ayaklarını yere bas, pratik ol\n2. Sınırlarını koru\n3. Kendi gerçekliğinde kal',
-    };
-    return advice[sign] ?? '1. Kendine iyi bak\n2. Sezgilerine güven\n3. Pozitif kal';
+  String _getDailyAdvice(zodiac.ZodiacSign sign, AppLanguage language) {
+    final signKey = sign.name.toLowerCase();
+    return L10nService.get('kozmoz.daily_advice.$signKey', language);
   }
 
-  String _getDailyAffirmation(zodiac.ZodiacSign sign) {
-    final affirmations = {
-      zodiac.ZodiacSign.aries: 'Ben güçlüyüm ve her zorluğun üstesinden gelirim. Cesaretim sınırsız.',
-      zodiac.ZodiacSign.taurus: 'Bolluk ve bereket hayatıma akıyor. Güvendeyim ve huzurluyum.',
-      zodiac.ZodiacSign.gemini: 'Zihnim berrak, iletişimim güçlü. Her duruma adapte olurum.',
-      zodiac.ZodiacSign.cancer: 'Sevgi veriyorum ve alıyorum. Duygularım beni güçlendiriyor.',
-      zodiac.ZodiacSign.leo: 'İçimdeki ışık parlıyor. Yaratıcılığım ve cesaretim sonsuz.',
-      zodiac.ZodiacSign.virgo: 'Mükemmelim olduğum gibi. Her adımım değerli ve anlamlı.',
-      zodiac.ZodiacSign.libra: 'Denge içindeyim. İlişkilerim uyumlu ve besleyici.',
-      zodiac.ZodiacSign.scorpio: 'Dönüşüm gücüm beni yeniliyor. Her son yeni bir başlangıç.',
-      zodiac.ZodiacSign.sagittarius: 'Evren genişliyor, ben de. Her deneyim beni zenginleştiriyor.',
-      zodiac.ZodiacSign.capricorn: 'Hedeflerime kararlılıkla ilerliyorum. Başarı benim doğam.',
-      zodiac.ZodiacSign.aquarius: 'Benzersizliğim gücüm. Dünyayı daha iyi bir yer yapıyorum.',
-      zodiac.ZodiacSign.pisces: 'Sezgilerim beni yönlendiriyor. Evrenle bir bütünüm.',
-    };
-    return affirmations[sign] ?? 'Bugün harika şeyler olacak!';
+  String _getDailyAffirmation(zodiac.ZodiacSign sign, AppLanguage language) {
+    final signKey = sign.name.toLowerCase();
+    return L10nService.get('kozmoz.daily_affirmations.$signKey', language);
   }
 
-  String _getElementDailyNote(zodiac.Element element) {
-    switch (element) {
-      case zodiac.Element.fire:
-        return 'aksiyona geçme ve liderlik sergileme enerjin yüksek. Ancak sabrı elden bırakma';
-      case zodiac.Element.earth:
-        return 'pratik konulara odaklanma ve maddi güvenlik arayışın ön planda. Toprakla bağlantı kur';
-      case zodiac.Element.air:
-        return 'iletişim ve sosyal etkileşimler için ideal bir gün. Fikirlerini paylaş';
-      case zodiac.Element.water:
-        return 'duygusal derinlik ve sezgisel bilgelik zamanı. İç sesini dinle';
-    }
+  String _getElementDailyNote(zodiac.Element element, AppLanguage language) {
+    final elementKey = element.name.toLowerCase();
+    return L10nService.get('kozmoz.element_daily_notes.$elementKey', language);
   }
 
   // AŞK FONKSİYONLARI
-  String _getDetailedLoveEnergy(zodiac.ZodiacSign sign) {
-    final energies = {
-      zodiac.ZodiacSign.aries: 'Tutkulu, spontan ve maceracı bir aşk enerjin var. İlk adımı atmaktan çekinmezsin. Fetih ve heyecan arayışındasın.',
-      zodiac.ZodiacSign.taurus: 'Sadık, duyusal ve kararlı bir aşık olursun. Güvenlik ve istikrar ararsın. Romantizm ve fiziksel dokunuş çok önemli.',
-      zodiac.ZodiacSign.gemini: 'Entelektüel bağ kurarsın. İletişim ve zihinsel uyum olmazsa olmaz. Çok yönlü ve oyuncu bir aşıksın.',
-      zodiac.ZodiacSign.cancer: 'Derin duygusal bağlar kurarsın. Koruyucu ve besleyici bir aşıksın. Aile ve yuva kurma içgüdün güçlü.',
-      zodiac.ZodiacSign.leo: 'Cömert ve romantik bir aşıksın. Hayranlık ve takdir beklersin. Muhteşem jestler ve gösterişli aşk senin tarzın.',
-      zodiac.ZodiacSign.virgo: 'Özenli ve düşünceli bir aşıksın. Detaylara dikkat eder, hizmet ederek seversin. Mükemmeli ararsın.',
-      zodiac.ZodiacSign.libra: 'Ortaklık ve uyum ararsın. Romantik ve estetik bir aşıksın. İlişkide denge ve adalet önemli.',
-      zodiac.ZodiacSign.scorpio: 'Yoğun ve tutkulu bir aşıksın. Derin bağlanma ve sadakat beklersin. Tamamen ya da hiç yaklaşımın var.',
-      zodiac.ZodiacSign.sagittarius: 'Özgür ruhlu ve maceracı bir aşıksın. Büyüme ve keşif birlikte olmalı. Felsefi uyum ararsın.',
-      zodiac.ZodiacSign.capricorn: 'Kararlı ve güvenilir bir aşıksın. Uzun vadeli düşünür, yatırım yaparsın. Statü ve güvenlik önemli.',
-      zodiac.ZodiacSign.aquarius: 'Arkadaşlık temelli bir aşk anlayışın var. Bireyselliğe saygı beklersin. Sıradışı ilişkiler seni çeker.',
-      zodiac.ZodiacSign.pisces: 'Romantik ve idealist bir aşıksın. Derin ruhsal bağ ararsın. Fedakâr ve şefkatli seversin.',
-    };
-    return energies[sign] ?? 'Eşsiz bir aşk enerjin var!';
+  String _getDetailedLoveEnergy(zodiac.ZodiacSign sign, AppLanguage language) {
+    final signKey = sign.name.toLowerCase();
+    return L10nService.get('kozmoz.love_energies.$signKey', language);
   }
 
-  String _getLoveLanguage(zodiac.ZodiacSign sign) {
-    final languages = {
-      zodiac.ZodiacSign.aries: '⚡ FİZİKSEL DOKUNUŞ & AKSİYON\nEnerjik aktiviteler, spontan öpücükler, maceralı tarihler',
-      zodiac.ZodiacSign.taurus: '🎁 HEDİYELER & FİZİKSEL DOKUNUŞ\nDüşünceli hediyeler, masajlar, güzel yemekler',
-      zodiac.ZodiacSign.gemini: '💬 NİTELİKLİ ZAMAN & KELİMELER\nDerin sohbetler, mesajlaşmalar, birlikte öğrenme',
-      zodiac.ZodiacSign.cancer: '🏠 HİZMET & NİTELİKLİ ZAMAN\nEvde birlikte zaman, bakım, duygusal destek',
-      zodiac.ZodiacSign.leo: '🌟 TAKDİR KELİMELERİ & HEDİYELER\nİltifatlar, hayranlık, gösterişli sürprizler',
-      zodiac.ZodiacSign.virgo: '🛠️ HİZMET ETMEK & EYLEMLER\nPratik yardımlar, detaylara dikkat, düşünceli davranışlar',
-      zodiac.ZodiacSign.libra: '💐 HEDİYELER & NİTELİKLİ ZAMAN\nRomantik tarihler, güzel mekanlar, estetik deneyimler',
-      zodiac.ZodiacSign.scorpio: '🔥 FİZİKSEL DOKUNUŞ & SADAKAT\nYoğun intimité, derin bağlanma, tamamen paylaşım',
-      zodiac.ZodiacSign.sagittarius: '✈️ MACERA & NİTELİKLİ ZAMAN\nSeyahatler, yeni deneyimler, felsefi sohbetler',
-      zodiac.ZodiacSign.capricorn: '🏆 EYLEMLER & SADAKAT\nSomut destek, kariyer desteği, uzun vadeli taahhüt',
-      zodiac.ZodiacSign.aquarius: '💡 FİKİR PAYLAŞIMI & ÖZGÜRLÜK\nEntelektüel tartışmalar, bireysel alan, arkadaşlık',
-      zodiac.ZodiacSign.pisces: '🌊 NİTELİKLİ ZAMAN & KELİMELER\nRomantik anlar, duygusal ifadeler, ruhsal bağ',
-    };
-    return languages[sign] ?? '❤️ Sevgi dillerin eşsiz!';
+  String _getLoveLanguage(zodiac.ZodiacSign sign, AppLanguage language) {
+    final signKey = sign.name.toLowerCase();
+    return L10nService.get('kozmoz.love_languages.$signKey', language);
   }
 
-  String _getIdealPartner(zodiac.ZodiacSign sign) {
-    final partners = {
-      zodiac.ZodiacSign.aries: 'Bağımsız, enerjik, maceraya açık. Senin liderliğine saygı duyan ama kendi ayakları üzerinde duran biri. Yarışmaktan korkmayan, meydan okuyan partner.',
-      zodiac.ZodiacSign.taurus: 'Güvenilir, sadık, maddi güvenlik sağlayan. Dokunmayı seven, yemek ve güzel şeyleri paylaşan. Sabırlı ve kararlı biri.',
-      zodiac.ZodiacSign.gemini: 'Zeki, iletişimci, meraklı. Seninle saatlerce konuşabilecek, yeni fikirler sunan. Esnek ve değişime açık biri.',
-      zodiac.ZodiacSign.cancer: 'Duygusal olarak erişilebilir, koruyucu, aile odaklı. Evine ve ailesine değer veren. Sezgisel ve şefkatli biri.',
-      zodiac.ZodiacSign.leo: 'Sana hayran, destekleyici ama kendi ışığı olan. Sosyal ve eğlenceli. Seni yücelten ama ego yarışına girmeyen biri.',
-      zodiac.ZodiacSign.virgo: 'Düzenli, güvenilir, pratik. Detaylara dikkat eden, sağlıklı yaşam tarzını paylaşan. Eleştiriye açık ve gelişime inanan biri.',
-      zodiac.ZodiacSign.libra: 'Estetik anlayışı güçlü, diplomatik, uyumlu. Kararlılık gösterebilen, sosyal ve kültürlü. Adil ve dengeli biri.',
-      zodiac.ZodiacSign.scorpio: 'Sadık, yoğun, derin. Sırlarını güvenle paylaşabileceğin, tamamen bağlanan. Yüzeysellikten kaçınan, tutkulu biri.',
-      zodiac.ZodiacSign.sagittarius: 'Özgür ruhlu, maceracı, felsefi. Büyümene alan veren, seyahat ve keşfe açık. İyimser ve eğlenceli biri.',
-      zodiac.ZodiacSign.capricorn: 'Hırslı, güvenilir, uzun vadeli düşünen. Hedeflerini destekleyen, statü bilinçli. Çalışkan ve kararlı biri.',
-      zodiac.ZodiacSign.aquarius: 'Benzersiz, bağımsız, ilerici. Bireyselliğine saygı duyan, arkadaşça ilişki kuran. Dünyayı değiştirmek isteyen biri.',
-      zodiac.ZodiacSign.pisces: 'Romantik, sezgisel, şefkatli. Ruhsal bağ kurabilen, sanatsal. Hayallerini paylaşan, empatik biri.',
-    };
-    return partners[sign] ?? 'Sana layık mükemmel partner!';
+  String _getIdealPartner(zodiac.ZodiacSign sign, AppLanguage language) {
+    final signKey = sign.name.toLowerCase();
+    return L10nService.get('kozmoz.ideal_partners.$signKey', language);
   }
 
-  String _getPerfectMatches(zodiac.ZodiacSign sign) {
-    final matches = {
-      zodiac.ZodiacSign.aries: '♌ ASLAN - Ateşin ateşle buluşması, tutku dolu\n♐ YAY - Macera ortakları, özgür ruhlar\n♊ İKİZLER - Heyecan ve iletişim',
-      zodiac.ZodiacSign.taurus: '♍ BAŞAK - Pratik uyum, güvenilirlik\n♑ OĞLAK - Maddi güvenlik, uzun vade\n♋ YENGEÇ - Duygusal derinlik, ev/yuva',
-      zodiac.ZodiacSign.gemini: '♎ TERAZİ - Entelektüel uyum, sosyallik\n♒ KOVA - Fikir paylaşımı, yenilikçilik\n♈ KOÇ - Enerji ve heyecan',
-      zodiac.ZodiacSign.cancer: '♏ AKREP - Duygusal derinlik, sadakat\n♓ BALIK - Ruhsal bağ, sezgisellik\n♉ BOĞA - Güvenlik, konfor',
-      zodiac.ZodiacSign.leo: '♈ KOÇ - Tutku ve aksiyon\n♐ YAY - Macera ve optimizm\n♊ İKİZLER - Eğlence ve iletişim',
-      zodiac.ZodiacSign.virgo: '♉ BOĞA - Pratik uyum, istikrar\n♑ OĞLAK - Hedef odaklılık, çalışkanlık\n♋ YENGEÇ - Bakım ve şefkat',
-      zodiac.ZodiacSign.libra: '♊ İKİZLER - Sosyal uyum, iletişim\n♒ KOVA - Entelektüel bağ, arkadaşlık\n♌ ASLAN - Romantizm ve estetik',
-      zodiac.ZodiacSign.scorpio: '♋ YENGEÇ - Duygusal derinlik\n♓ BALIK - Ruhsal bağ, sezgisellik\n♍ BAŞAK - Sadakat, analiz',
-      zodiac.ZodiacSign.sagittarius: '♈ KOÇ - Macera ortakları\n♌ ASLAN - Optimizm, yaratıcılık\n♎ TERAZİ - Sosyallik, denge',
-      zodiac.ZodiacSign.capricorn: '♉ BOĞA - Maddi güvenlik, sadakat\n♍ BAŞAK - Çalışkanlık, pratiklik\n♏ AKREP - Derinlik, tutku',
-      zodiac.ZodiacSign.aquarius: '♊ İKİZLER - Entelektüel uyum\n♎ TERAZİ - Sosyal adalet, estetik\n♐ YAY - Özgürlük, felsefe',
-      zodiac.ZodiacSign.pisces: '♋ YENGEÇ - Duygusal bağ\n♏ AKREP - Ruhsal derinlik\n♑ OĞLAK - Koruyucu, yapıcı',
-    };
-    return matches[sign] ?? 'Mükemmel uyumlar!';
+  String _getPerfectMatches(zodiac.ZodiacSign sign, AppLanguage language) {
+    final signKey = sign.name.toLowerCase();
+    return L10nService.get('kozmoz.perfect_matches.$signKey', language);
   }
 
-  String _getGoodMatches(zodiac.ZodiacSign sign) => 'Aynı element burçları ve destekleyici açılarla uyumlu burçlar';
-  String _getMediumMatches(zodiac.ZodiacSign sign) => 'Farklı elementlerden öğrenme fırsatı sunan burçlar';
-  String _getChallengingMatches(zodiac.ZodiacSign sign) => _getChallengingSigns(sign);
-  String _getRelationshipWarnings(zodiac.ZodiacSign sign) {
-    final warnings = {
-      zodiac.ZodiacSign.aries: '• Sabırsızlık ve öfke patlamaları\n• Bağımsızlık takıntısı\n• Rekabet içgüdüsü',
-      zodiac.ZodiacSign.taurus: '• İnatçılık ve değişime direnç\n• Kıskançlık ve sahiplenme\n• Maddi bağımlılık',
-      zodiac.ZodiacSign.gemini: '• Tutarsızlık ve değişkenlik\n• Yüzeysellik riski\n• Çoklu ilgi dağınıklığı',
-      zodiac.ZodiacSign.cancer: '• Aşırı duygusallık ve küslük\n• Geçmişe takılma\n• Pasif agresiflik',
-      zodiac.ZodiacSign.leo: '• Ego çatışmaları\n• İlgi beklentisi\n• Drama yaratma eğilimi',
-      zodiac.ZodiacSign.virgo: '• Aşırı eleştiri\n• Mükemmeliyetçilik\n• Endişe ve kaygı',
-      zodiac.ZodiacSign.libra: '• Kararsızlık\n• Çatışmadan kaçınma\n• Kendi ihtiyaçlarını ihmal',
-      zodiac.ZodiacSign.scorpio: '• Kıskançlık ve şüphe\n• Kontrol eğilimi\n• İntikam hissi',
-      zodiac.ZodiacSign.sagittarius: '• Taahhüt korkusu\n• Aşırı doğruluk/kırıcılık\n• Dikkat dağınıklığı',
-      zodiac.ZodiacSign.capricorn: '• İş öncelikli tutum\n• Duygusal mesafe\n• Statü takıntısı',
-      zodiac.ZodiacSign.aquarius: '• Duygusal mesafe\n• Asi tutum\n• Bağlanma zorluğu',
-      zodiac.ZodiacSign.pisces: '• Gerçeklikten kopuş\n• Kurban rolü\n• Sınır eksikliği',
-    };
-    return warnings[sign] ?? '• Farkındalıkla hareket et';
+  String _getGoodMatches(zodiac.ZodiacSign sign, AppLanguage language) {
+    final signKey = sign.name.toLowerCase();
+    return L10nService.get('kozmoz.compatible_signs.$signKey', language);
+  }
+  String _getRelationshipWarnings(zodiac.ZodiacSign sign, AppLanguage language) {
+    final signKey = sign.name.toLowerCase();
+    return L10nService.get('kozmoz.relationship_warnings.$signKey', language);
   }
 
-  String _getCurrentLovePeriod(zodiac.ZodiacSign sign) => 'Venüs ve Mars transitlerinin etkisiyle bu dönem ${sign.element.nameTr} elementi için romantizm ve tutku enerjisi aktif. Yeni ilişkiler için kapılar açık.';
-  String _getLoveRitual(zodiac.ZodiacSign sign) => '🕯️ Cuma günü pembe mum yak\n🌹 Gül yaprağı banyosu al\n💌 Sevgi niyetini yazılı ifade et\n🔮 Venüs saatinde meditasyon yap';
-  String _getLoveAdvice(zodiac.ZodiacSign sign) => 'Önce kendini sev, sonra sevgiyi al. ${sign.nameTr} olarak ${sign.element.nameTr} elementinin bilgeliğiyle hareket et.';
+  String _getCurrentLovePeriod(zodiac.ZodiacSign sign, AppLanguage language) {
+    final elementName = sign.element.localizedName(language);
+    return L10nService.getWithParams('kozmoz.responses.love_period', language, params: {
+      'element': elementName,
+    });
+  }
+  String _getLoveRitual(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.get('kozmoz.responses.love_ritual', language);
+  String _getLoveAdvice(zodiac.ZodiacSign sign, AppLanguage language) {
+    final signName = sign.localizedName(language);
+    final elementName = sign.element.localizedName(language);
+    return L10nService.getWithParams('kozmoz.responses.cosmic_love_advice', language, params: {
+      'sign': signName,
+      'element': elementName,
+    });
+  }
 
   // KARİYER FONKSİYONLARI
-  String _getDetailedCareerTalents(zodiac.ZodiacSign sign) {
-    final talents = {
-      zodiac.ZodiacSign.aries: '• Doğal liderlik ve girişimcilik\n• Hızlı karar alma yeteneği\n• Risk almaktan korkmama\n• Rekabetçi ortamlarda parladın\n• Kriz yönetimi ve acil durum müdahalesi',
-      zodiac.ZodiacSign.taurus: '• Finansal zeka ve para yönetimi\n• Sabırlı ve kararlı çalışma\n• Estetik ve güzellik algısı\n• Pratik problem çözme\n• Uzun vadeli projelerde başarı',
-      zodiac.ZodiacSign.gemini: '• Güçlü iletişim becerileri\n• Çoklu görev yönetimi\n• Hızlı öğrenme ve adaptasyon\n• Network kurma yeteneği\n• Yazılı ve sözlü ifade gücü',
-      zodiac.ZodiacSign.cancer: '• Empati ve müşteri ilişkileri\n• Takım oluşturma ve koruma\n• Sezgisel karar alma\n• Besleyici liderlik stili\n• Duygusal zeka',
-      zodiac.ZodiacSign.leo: '• Yaratıcılık ve performans\n• Motivasyonel liderlik\n• Sunum ve sahne becerileri\n• Marka oluşturma\n• İlham verici vizyon',
-      zodiac.ZodiacSign.virgo: '• Analitik düşünme ve detay odaklılık\n• Organizasyon ve planlama\n• Kalite kontrol\n• Süreç iyileştirme\n• Sağlık ve wellness bilgisi',
-      zodiac.ZodiacSign.libra: '• Diplomasi ve müzakere\n• Estetik ve tasarım\n• İşbirliği kurma\n• Adalet duygusu\n• Sosyal ilişki yönetimi',
-      zodiac.ZodiacSign.scorpio: '• Araştırma ve analiz\n• Strateji geliştirme\n• Dönüşüm yönetimi\n• Gizli bilgileri ortaya çıkarma\n• Psikolojik içgörü',
-      zodiac.ZodiacSign.sagittarius: '• Vizyon ve büyük resim\n• Eğitim ve mentorluk\n• Uluslararası ilişkiler\n• Yayıncılık ve iletişim\n• Felsefe ve strateji',
-      zodiac.ZodiacSign.capricorn: '• Uzun vadeli planlama\n• Disiplin ve kararlılık\n• Yapı oluşturma\n• Otorite ve yönetim\n• Miras bırakma odaklılık',
-      zodiac.ZodiacSign.aquarius: '• İnovasyon ve teknoloji\n• Topluluk oluşturma\n• Sıradışı çözümler\n• İnsancıl projeler\n• Gelecek vizyonu',
-      zodiac.ZodiacSign.pisces: '• Yaratıcılık ve hayal gücü\n• Sezgisel karar alma\n• Şifa ve yardım meslekleri\n• Sanat ve müzik\n• Spiritüel danışmanlık',
-    };
-    return talents[sign] ?? 'Çok yönlü kariyer yeteneklerin var!';
+  String _getDetailedCareerTalents(zodiac.ZodiacSign sign, AppLanguage language) {
+    final signKey = sign.name.toLowerCase();
+    return L10nService.get('kozmoz.career_talents.$signKey', language);
   }
 
-  String _getBestCareerPaths(zodiac.ZodiacSign sign) {
-    final paths = {
-      zodiac.ZodiacSign.aries: '🎖️ Yönetici/CEO\n🏋️ Spor ve fitness\n🚀 Girişimcilik\n🚒 Acil servisler\n⚔️ Askeri/Güvenlik',
-      zodiac.ZodiacSign.taurus: '💰 Finans ve bankacılık\n🎨 Sanat ve tasarım\n🍳 Gastronomi\n🏠 Gayrimenkul\n🌿 Tarım ve doğa',
-      zodiac.ZodiacSign.gemini: '📝 Yazarlık ve gazetecilik\n📢 Pazarlama ve reklam\n🎓 Eğitim\n📱 Sosyal medya\n💼 Satış ve PR',
-      zodiac.ZodiacSign.cancer: '🏥 Sağlık ve bakım\n🏠 Emlak ve iç tasarım\n👨‍👩‍👧 Aile danışmanlığı\n🍽️ Catering/Otelcilik\n👶 Çocuk gelişimi',
-      zodiac.ZodiacSign.leo: '🎭 Oyunculuk ve eğlence\n🎨 Yaratıcı yönetmenlik\n💄 Moda ve güzellik\n🎤 Koçluk ve motivasyon\n👑 Liderlik pozisyonları',
-      zodiac.ZodiacSign.virgo: '⚕️ Sağlık ve tıp\n📊 Veri analizi\n✍️ Editörlük\n🧹 Organizasyon hizmetleri\n🔬 Araştırma',
-      zodiac.ZodiacSign.libra: '⚖️ Hukuk ve arabuluculuk\n🎨 Tasarım ve estetik\n💑 İlişki danışmanlığı\n🎭 Sanat küratörlüğü\n🤝 İK ve diplomasi',
-      zodiac.ZodiacSign.scorpio: '🔍 Dedektiflik/Araştırma\n💆 Psikoloji/Terapi\n🏦 Yatırım bankacılığı\n🧬 Tıbbi araştırma\n🔮 Alternatif terapiler',
-      zodiac.ZodiacSign.sagittarius: '✈️ Seyahat ve turizm\n📚 Akademi ve yayıncılık\n⚖️ Felsefe ve hukuk\n🌍 Uluslararası ilişkiler\n🎯 Koçluk',
-      zodiac.ZodiacSign.capricorn: '🏢 Kurumsal yönetim\n🏛️ Devlet/Bürokrasi\n📈 Finans yönetimi\n🏗️ İnşaat ve mühendislik\n👔 CEO/CFO pozisyonları',
-      zodiac.ZodiacSign.aquarius: '💻 Teknoloji ve yazılım\n🔬 Bilim ve AR-GE\n🌍 Sivil toplum\n🎨 Dijital sanat\n🚀 Uzay ve havacılık',
-      zodiac.ZodiacSign.pisces: '🎨 Sanat ve müzik\n🎬 Film ve sinema\n💆 Şifa meslekleri\n🧘 Yoga/Meditasyon\n📷 Fotoğrafçılık',
-    };
-    return paths[sign] ?? 'Birçok kariyer yolu sana uygun!';
+  String _getBestCareerPaths(zodiac.ZodiacSign sign, AppLanguage language) {
+    final signKey = sign.name.toLowerCase();
+    return L10nService.get('kozmoz.career_paths.$signKey', language);
   }
 
-  String _getIndustryRecommendations(zodiac.ZodiacSign sign) => '${sign.element.nameTr} elementi olarak güçlü olduğun sektörler: ${_getCareerStrengths(sign)}';
-  String _getFinancialTendencies(zodiac.ZodiacSign sign) {
-    final tendencies = {
-      zodiac.ZodiacSign.aries: 'Hızlı kazanç ve risk almaya meyillisin. Sabırlı yatırımlar öğren.',
-      zodiac.ZodiacSign.taurus: 'Doğal para yöneticisisin. Birikime eğilimlisin ama aşırı tutumlu olma.',
-      zodiac.ZodiacSign.gemini: 'Birden fazla gelir kaynağı oluşturabilirsin. Finansal planlama öğren.',
-      zodiac.ZodiacSign.cancer: 'Aile ve ev için biriktirirsin. Duygusal harcamalardan kaçın.',
-      zodiac.ZodiacSign.leo: 'Cömertsin, gösterişe meyillisin. Lüks harcamaları dengele.',
-      zodiac.ZodiacSign.virgo: 'Detaylı bütçe yaparsın. Aşırı tutumluluğun tadını çıkar.',
-      zodiac.ZodiacSign.libra: 'Estetik ve güzelliğe harcarsın. Dengeli bütçe oluştur.',
-      zodiac.ZodiacSign.scorpio: 'Stratejik yatırımcısın. Kontrol ihtiyacını dengele.',
-      zodiac.ZodiacSign.sagittarius: 'Cömert ve iyimsersin. Büyük resmi gör ama detayları ihmal etme.',
-      zodiac.ZodiacSign.capricorn: 'Uzun vadeli yatırımcısın. Status sembolleri için aşırı harcama.',
-      zodiac.ZodiacSign.aquarius: 'Alışılmadık yatırımlara meyillisin. Pratik olanı ihmal etme.',
-      zodiac.ZodiacSign.pisces: 'Cömert ve fedakarsın. Sınır koyma ve bütçe öğren.',
-    };
-    return tendencies[sign] ?? 'Finansal farkındalık geliştir!';
+  String _getIndustryRecommendations(zodiac.ZodiacSign sign, AppLanguage language) {
+    final elementName = sign.element.localizedName(language);
+    final strengths = _getCareerStrengths(sign, language);
+    return '$elementName: $strengths';
+  }
+  String _getFinancialTendencies(zodiac.ZodiacSign sign, AppLanguage language) {
+    final signKey = sign.name.toLowerCase();
+    return L10nService.get('kozmoz.financial_tendencies.$signKey', language);
   }
 
-  String _getInvestmentStyle(zodiac.ZodiacSign sign) => 'Element: ${sign.element.nameTr} - Bu, yatırım tarzını etkiler.';
-  String _getBusinessPartners(zodiac.ZodiacSign sign) => _getCompatibleSigns(sign);
-  String _getCareerTimings(zodiac.ZodiacSign sign) => 'Jüpiter ve Saturn transitlerini takip et. Bu yıl kariyer için kritik dönemler var.';
-  String _getPromotionAdvice(zodiac.ZodiacSign sign) => '${sign.nameTr} olarak liderlik özelliklerini kullan. Görünür ol ve değerini göster.';
-  String _getCareerWarnings(zodiac.ZodiacSign sign) => 'Aşırı çalışma, iş-yaşam dengesizliği ve tükenmişlik riskine dikkat et.';
-  String _getSuccessStrategy(zodiac.ZodiacSign sign) => '${sign.element.nameTr} elementinin güçlerini kullan, zayıflıklarının farkında ol.';
-  String _getShortTermGoals(zodiac.ZodiacSign sign) => '• Becerilerini geliştir\n• Network\'ünü genişlet\n• Görünürlüğünü artır';
-  String _getLongTermVision(zodiac.ZodiacSign sign) => '${sign.nameTr} olarak uzun vadede ${_getLifePurposeDescription(sign)}';
+  String _getInvestmentStyle(zodiac.ZodiacSign sign, AppLanguage language) {
+    final elementName = sign.element.localizedName(language);
+    return '$elementName';
+  }
+  String _getBusinessPartners(zodiac.ZodiacSign sign, AppLanguage language) => _getCompatibleSigns(sign, language);
+  String _getCareerTimings(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.get('kozmoz.responses.career_important_periods', language);
+  String _getPromotionAdvice(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.get('kozmoz.responses.promotion_opportunities', language);
+  String _getCareerWarnings(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.get('kozmoz.responses.career_warnings', language);
+  String _getSuccessStrategy(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.get('kozmoz.responses.success_strategy', language);
+  String _getShortTermGoals(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.get('kozmoz.responses.short_term_goals', language);
+  String _getLongTermVision(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.get('kozmoz.responses.long_term_vision', language);
 
   // AY FONKSİYONLARI
-  String _getDetailedMoonPhaseEffect(String phase, zodiac.ZodiacSign sign) {
-    final effects = {
-      'Yeni Ay / Hilal': '''🌑 YENİ AY ENERJİSİ
+
+  // Helper to map phase names to JSON keys
+  String _getPhaseKey(String phase) {
+    if (phase.contains('Yeni') || phase.toLowerCase().contains('new')) {
+      return 'new_moon';
+    } else if (phase.contains('İlk') || phase.toLowerCase().contains('first')) {
+      return 'first_quarter';
+    } else if (phase.contains('Dolunay') || phase.toLowerCase().contains('full')) {
+      return 'full_moon';
+    } else if (phase.contains('Son') || phase.toLowerCase().contains('last')) {
+      return 'last_quarter';
+    }
+    return 'new_moon'; // default
+  }
+
+  String _getDetailedMoonPhaseEffect(String phase, zodiac.ZodiacSign sign, AppLanguage language) {
+    final phaseKey = _getPhaseKey(phase);
+    final title = L10nService.get('kozmoz.moon_phase_effects.$phaseKey.title', language);
+    final description = L10nService.get('kozmoz.moon_phase_effects.$phaseKey.description', language);
+    final effects = L10nService.get('kozmoz.moon_phase_effects.$phaseKey.effects', language);
+    final forSignLabel = L10nService.getWithParams('kozmoz.responses.for_sign_effects', language, params: {
+      'sign': sign.localizedName(language),
+    });
+
+    final emoji = phaseKey == 'new_moon' ? '🌑' :
+                  phaseKey == 'first_quarter' ? '🌓' :
+                  phaseKey == 'full_moon' ? '🌕' : '🌗';
+
+    return '''$emoji $title
 ━━━━━━━━━━━━━━━━
-Bu faz, tohumların ekildiği, yeni başlangıçların yapıldığı dönemdir.
+$description
 
-${sign.nameTr} için özel etkileri:
-• Yeni projeler başlatmak için ideal
-• Niyetleri belirle ve yaz
-• İçsel yolculuk ve meditasyon zamanı
-• Enerji içe dönük, dinlenme önemli
-• Yeni alışkanlıklar başlatmak için güçlü''',
-
-      'İlk Dördün': '''🌓 İLK DÖRDÜN ENERJİSİ
-━━━━━━━━━━━━━━━━
-Bu faz, aksiyona geçme ve engellerle yüzleşme zamanıdır.
-
-${sign.nameTr} için özel etkileri:
-• Kararlar alma zamanı
-• Engellerle yüzleş ve aş
-• Momentum oluştur
-• Zorluklar büyüme fırsatı
-• Cesaret ve kararlılık gerekli''',
-
-      'Dolunay': '''🌕 DOLUNAY ENERJİSİ
-━━━━━━━━━━━━━━━━
-Bu faz, sonuçların ortaya çıktığı, duygusal doruk zamanıdır.
-
-${sign.nameTr} için özel etkileri:
-• Duygular yoğunlaşır
-• İlişkilerde zirveler ve çatışmalar
-• Projelerin meyve vermesi
-• Farkındalık ve aydınlanma
-• Kutlama veya bırakma zamanı''',
-
-      'Son Dördün': '''🌗 SON DÖRDÜN ENERJİSİ
-━━━━━━━━━━━━━━━━
-Bu faz, bırakma, temizlik ve hazırlık zamanıdır.
-
-${sign.nameTr} için özel etkileri:
-• Artık işe yaramayanı bırak
-• Fiziksel ve duygusal temizlik
-• Tamamlanmamış işleri bitir
-• Yeni döngüye hazırlan
-• Affetme ve salıverme''',
-    };
-    return effects[phase] ?? 'Ay enerjisi aktif!';
+$forSignLabel
+$effects''';
   }
 
-  String _getMoonPhaseDoList(String phase) {
-    final doList = {
-      'Yeni Ay / Hilal': '✅ Niyet belirle ve yaz\n✅ Yeni projeler başlat\n✅ Tohum ek (gerçek veya mecazi)\n✅ Meditasyon ve içe dönüş\n✅ Vizyon tahtası oluştur',
-      'İlk Dördün': '✅ Aksiyona geç\n✅ Kararlar al\n✅ Engellerle yüzleş\n✅ Momentum oluştur\n✅ Cesaret göster',
-      'Dolunay': '✅ Kutla ve şükret\n✅ Kristallerini şarj et\n✅ Ay ışığında banyo\n✅ İlişkilere dikkat et\n✅ Farkındalık meditasyonu',
-      'Son Dördün': '✅ Temizlik yap\n✅ Bağışla ve bırak\n✅ Tamamlanmamış işleri bitir\n✅ Fiziksel detoks\n✅ Eski eşyaları ayıkla',
-    };
-    return doList[phase] ?? 'Ay döngüsüne uyum sağla';
+  String _getMoonPhaseDontList(String phase, AppLanguage language) {
+    final phaseKey = _getPhaseKey(phase);
+    return L10nService.get('kozmoz.moon_dont_list.$phaseKey', language);
   }
 
-  String _getMoonPhaseDontList(String phase) {
-    final dontList = {
-      'Yeni Ay / Hilal': '❌ Büyük lansman yapma\n❌ Önemli görüşmeler\n❌ Yorucu aktiviteler\n❌ Dışa dönük etkinlikler\n❌ Acele kararlar',
-      'İlk Dördün': '❌ Geri çekilme\n❌ Kararsız kalma\n❌ Erteleme\n❌ Özür dileme modu\n❌ Pes etme',
-      'Dolunay': '❌ Kavga ve tartışma\n❌ Büyük kararlar\n❌ Duygusal tepkiler\n❌ Alkol aşırılığı\n❌ Riskli yatırımlar',
-      'Son Dördün': '❌ Yeni başlangıçlar\n❌ Büyük satın almalar\n❌ Yeni ilişkiler\n❌ Uzun vadeli taahhütler\n❌ Enerji gerektiren işler',
-    };
-    return dontList[phase] ?? 'Ay enerjisine dikkat et';
+  String _getDetailedMoonRitual(String phase, zodiac.ZodiacSign sign, AppLanguage language) {
+    final phaseKey = _getPhaseKey(phase);
+    return L10nService.get('kozmoz.moon_rituals.$phaseKey', language);
   }
 
-  String _getDetailedMoonRitual(String phase, zodiac.ZodiacSign sign) {
-    final rituals = {
-      'Yeni Ay / Hilal': '🕯️ Siyah mum yak (eski enerjiyi çöz)\n📝 12 niyet yaz\n🧘 20 dakika sessiz otur\n🌱 Bir bitki ek\n💧 Yeni Ay suyu hazırla',
-      'İlk Dördün': '🕯️ Kırmızı mum yak (aksiyon enerjisi)\n📋 Engel listesi yap ve yak\n🏃 Fiziksel aktivite\n💪 Cesaret afirmasyonları\n⚔️ Sembolik meydan okuma',
-      'Dolunay': '🕯️ Beyaz mum yak (aydınlanma)\n🌙 Ay ışığında dur\n💎 Kristalleri şarj et\n📿 Şükran listesi yaz\n🛁 Tuzlu su banyosu',
-      'Son Dördün': '🕯️ Mavi mum yak (huzur ve bırakma)\n🔥 Bırakma kağıdı yaz ve yak\n🧹 Fiziksel temizlik\n💆 Enerji temizliği\n🧘 Bırakma meditasyonu',
-    };
-    return rituals[phase] ?? 'Ay ritüeli uygula';
+  String _getMoonCrystals(String phase, AppLanguage language) {
+    final phaseKey = _getPhaseKey(phase);
+    return L10nService.get('kozmoz.moon_crystals.$phaseKey', language);
   }
 
-  String _getMoonCrystals(String phase) {
-    final crystals = {
-      'Yeni Ay / Hilal': '🖤 Obsidyen - koruma ve başlangıç\n⬛ Siyah Turmalin - negatif enerji temizliği\n🔮 Labradorit - sezgi ve dönüşüm',
-      'İlk Dördün': '🔴 Kırmızı Jasper - cesaret ve eylem\n🟠 Karneol - motivasyon\n🟡 Sitrin - başarı enerjisi',
-      'Dolunay': '⚪ Ay Taşı - duygusal denge\n🔮 Ametist - spiritüel bağlantı\n💎 Kuvars - amplifikasyon',
-      'Son Dördün': '💜 Ametist - bırakma ve huzur\n🟣 Lepidolit - geçiş desteği\n🩵 Akvamarin - berraklık',
-    };
-    return crystals[phase] ?? 'Ay taşı kullan';
+  String _getMoonColors(String phase, AppLanguage language) {
+    final phaseKey = _getPhaseKey(phase);
+    return L10nService.get('kozmoz.moon_colors.$phaseKey', language);
   }
 
-  String _getMoonColors(String phase) {
-    final colors = {
-      'Yeni Ay / Hilal': 'Siyah, koyu mor, gece mavisi - içe dönüş renkleri',
-      'İlk Dördün': 'Kırmızı, turuncu, sarı - aksiyon renkleri',
-      'Dolunay': 'Beyaz, gümüş, açık mor - aydınlanma renkleri',
-      'Son Dördün': 'Mavi, mor, turkuaz - bırakma renkleri',
-    };
-    return colors[phase] ?? 'Ay renklerini kullan';
+  String _getMoonMantra(String phase, AppLanguage language) {
+    final phaseKey = _getPhaseKey(phase);
+    return L10nService.get('kozmoz.moon_mantras.$phaseKey', language);
   }
 
-  String _getMoonAromas(String phase) {
-    final aromas = {
-      'Yeni Ay / Hilal': '🌿 Adaçayı, sedir, paçuli',
-      'İlk Dördün': '🍊 Portakal, zencefil, karanfil',
-      'Dolunay': '🌹 Gül, yasemin, beyaz çay',
-      'Son Dördün': '💜 Lavanta, okaliptüs, nane',
-    };
-    return aromas[phase] ?? 'Doğal aromalar kullan';
+  String _getMoonSignEffect(String moonSign, zodiac.ZodiacSign sign, AppLanguage language) {
+    return L10nService.getWithParams('kozmoz.responses.moon_sign_effect_detail', language, params: {
+      'moon_sign': moonSign,
+      'sign': sign.localizedName(language),
+    });
   }
 
-  String _getMoonMantra(String phase) {
-    final mantras = {
-      'Yeni Ay / Hilal': 'Yeni başlangıçlara açığım. Niyetlerim evrenle uyumlu.',
-      'İlk Dördün': 'Engeller beni güçlendirir. Cesaretle ilerliyorum.',
-      'Dolunay': 'Işığımla parlıyorum. Bolluğu kabul ediyorum.',
-      'Son Dördün': 'Artık işe yaramayanı bırakıyorum. Özgürleşiyorum.',
-    };
-    return mantras[phase] ?? 'Ay enerjisiyle uyumluyum.';
+  String _getUpcomingMoonDates(AppLanguage language) {
+    return L10nService.get('kozmoz.responses.upcoming_moon_dates_detail', language);
   }
-
-  String _getMoonSignEffect(String moonSign, zodiac.ZodiacSign sign) => 'Ay $moonSign burcundayken, ${sign.nameTr} olarak duygusal farkındalığın artıyor.';
-  String _getUpcomingMoonDates() => '🌑 Yeni Ay: Yaklaşık 2 hafta sonra\n🌕 Dolunay: Yaklaşık 1 hafta sonra';
 
   // TRANSİT FONKSİYONLARI
-  String _getSaturnTransit(zodiac.ZodiacSign sign) => '♄ Saturn seni olgunlaştırıyor ve sorumluluk öğretiyor. Yapı, disiplin ve uzun vadeli hedefler ön planda.';
-  String _getJupiterTransit(zodiac.ZodiacSign sign) => '♃ Jüpiter genişleme ve şans getiriyor. Fırsatlara açık ol.';
-  String _getPlutoTransit(zodiac.ZodiacSign sign) => '♇ Pluto derin dönüşüm gerektiriyor. Ölüm ve yeniden doğuş temaları.';
-  String _getUranusTransit(zodiac.ZodiacSign sign) => '♅ Uranüs ani değişimler ve özgürleşme getiriyor.';
-  String _getNeptuneTransit(zodiac.ZodiacSign sign) => '♆ Neptün rüyalar, illüzyonlar ve spiritüel uyanış.';
-  String _getMercuryStatus(zodiac.ZodiacSign sign) => '☿ Merkür iletişim ve düşünce süreçlerini etkiliyor.';
-  String _getVenusStatus(zodiac.ZodiacSign sign) => '♀ Venüs aşk, güzellik ve para konularında etkili.';
-  String _getMarsStatus(zodiac.ZodiacSign sign) => '♂ Mars enerji, tutku ve çatışma alanlarını tetikliyor.';
-  String _getCriticalPeriods(zodiac.ZodiacSign sign) => 'Merkür retro dönemleri, tutulmalar ve gezegen kavuşumları kritik.';
-  String _getOpportunityWindows(zodiac.ZodiacSign sign) => 'Jüpiter açıları, Yeni Ay\'lar ve Venus-Jupiter aspektleri fırsat pencereleri.';
-  String _getTransitSummary(zodiac.ZodiacSign sign) => '${sign.nameTr} için bu dönem dönüşüm ve büyüme enerjileri aktif.';
-  String _getTransitRecommendations(zodiac.ZodiacSign sign) => '• Sabırlı ol\n• Akışa güven\n• Farkındalıkla hareket et\n• Esnekliğini koru';
+  String _getSaturnTransit(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.get('kozmoz.transit.saturn_detail', language);
+  String _getJupiterTransit(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.get('kozmoz.transit.jupiter_detail', language);
+  String _getPlutoTransit(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.get('kozmoz.transit.pluto_detail', language);
+  String _getUranusTransit(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.get('kozmoz.transit.uranus_detail', language);
+  String _getNeptuneTransit(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.get('kozmoz.transit.neptune_detail', language);
+  String _getMercuryStatus(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.get('kozmoz.transit.mercury_detail', language);
+  String _getVenusStatus(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.get('kozmoz.transit.venus_detail', language);
+  String _getMarsStatus(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.get('kozmoz.transit.mars_detail', language);
+  String _getCriticalPeriods(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.get('kozmoz.transit.critical_periods', language);
+  String _getOpportunityWindows(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.get('kozmoz.transit.opportunity_windows', language);
+  String _getTransitSummary(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.getWithParams('kozmoz.transit.summary', language, params: {
+    'sign': sign.localizedName(language),
+  });
+  String _getTransitRecommendations(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.get('kozmoz.transit.recommendations', language);
 
   // YÜKSELEN BURÇ FONKSİYONLARI
-  String _getRisingSignDetails(zodiac.ZodiacSign sign) => '${sign.nameTr} Güneş burcun, yükselen burcunla birlikte kişiliğinin tam resmini çizer.';
-  String _getRisingAriesEffect() => 'Dinamik, cesur, rekabetçi ilk izlenim. Sporcu görünüm.';
-  String _getRisingTaurusEffect() => 'Sakin, güvenilir, duyusal ilk izlenim. Şık ve zarif.';
-  String _getRisingGeminiEffect() => 'Zeki, sosyal, meraklı ilk izlenim. Genç görünüm.';
-  String _getRisingCancerEffect() => 'Sıcak, koruyucu, duygusal ilk izlenim. Anne/baba figürü.';
-  String _getRisingLeoEffect() => 'Karizmatik, gösterişli, kendinden emin. Asil duruş.';
-  String _getRisingVirgoEffect() => 'Düzenli, mütevazı, analitik ilk izlenim. Temiz görünüm.';
-  String _getRisingLibraEffect() => 'Zarif, çekici, diplomatik ilk izlenim. Estetik.';
-  String _getRisingScorpioEffect() => 'Yoğun, gizemli, manyetik ilk izlenim. Derin bakışlar.';
-  String _getRisingSagittariusEffect() => 'Neşeli, açık sözlü, maceracı ilk izlenim. Sportif.';
-  String _getRisingCapricornEffect() => 'Ciddi, olgun, profesyonel ilk izlenim. Otorite.';
-  String _getRisingAquariusEffect() => 'Farklı, orijinal, dostça ilk izlenim. Sıradışı stil.';
-  String _getRisingPiscesEffect() => 'Rüya gibi, şefkatli, artistik ilk izlenim. Büyülü.';
+  String _getRisingSignDetails(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.getWithParams('kozmoz.rising.details', language, params: {
+    'sign': sign.localizedName(language),
+  });
+  String _getRisingAriesEffect(AppLanguage language) => L10nService.get('kozmoz.rising.aries', language);
+  String _getRisingTaurusEffect(AppLanguage language) => L10nService.get('kozmoz.rising.taurus', language);
+  String _getRisingGeminiEffect(AppLanguage language) => L10nService.get('kozmoz.rising.gemini', language);
+  String _getRisingCancerEffect(AppLanguage language) => L10nService.get('kozmoz.rising.cancer', language);
+  String _getRisingLeoEffect(AppLanguage language) => L10nService.get('kozmoz.rising.leo', language);
+  String _getRisingVirgoEffect(AppLanguage language) => L10nService.get('kozmoz.rising.virgo', language);
+  String _getRisingLibraEffect(AppLanguage language) => L10nService.get('kozmoz.rising.libra', language);
+  String _getRisingScorpioEffect(AppLanguage language) => L10nService.get('kozmoz.rising.scorpio', language);
+  String _getRisingSagittariusEffect(AppLanguage language) => L10nService.get('kozmoz.rising.sagittarius', language);
+  String _getRisingCapricornEffect(AppLanguage language) => L10nService.get('kozmoz.rising.capricorn', language);
+  String _getRisingAquariusEffect(AppLanguage language) => L10nService.get('kozmoz.rising.aquarius', language);
+  String _getRisingPiscesEffect(AppLanguage language) => L10nService.get('kozmoz.rising.pisces', language);
 
   // UYUM FONKSİYONLARI
-  String _getElementCompatibility(zodiac.ZodiacSign sign) {
-    switch (sign.element) {
-      case zodiac.Element.fire:
-        return '🔥 Ateş elementi: Ateş ve Hava ile en uyumlu. Su ve Toprak zorlayıcı.';
-      case zodiac.Element.earth:
-        return '🌍 Toprak elementi: Toprak ve Su ile en uyumlu. Ateş ve Hava zorlayıcı.';
-      case zodiac.Element.air:
-        return '💨 Hava elementi: Hava ve Ateş ile en uyumlu. Su ve Toprak zorlayıcı.';
-      case zodiac.Element.water:
-        return '💧 Su elementi: Su ve Toprak ile en uyumlu. Ateş ve Hava zorlayıcı.';
-    }
+  String _getElementCompatibility(zodiac.ZodiacSign sign, AppLanguage language) {
+    final elementKey = sign.element.name.toLowerCase();
+    return L10nService.get('kozmoz.element_compatibility.$elementKey', language);
   }
 
-  String _getAllSignCompatibility(zodiac.ZodiacSign sign) => '12 burçla detaylı uyum analizi için synastry bölümünü kullan.';
-  String _getTop3Compatible(zodiac.ZodiacSign sign) => _getCompatibleSigns(sign);
-  String _getTop3Challenging(zodiac.ZodiacSign sign) => _getChallengingSigns(sign);
-  String _getRomanticVsBusiness(zodiac.ZodiacSign sign) => 'Romantik uyum farklı, iş uyumu farklı elementlerde güçlü olabilir.';
-  String _getSynastryTips(zodiac.ZodiacSign sign) => 'Sadece Güneş burcu değil, Ay ve Yükselen de önemli!';
-  String _getCompatibilityTips(zodiac.ZodiacSign sign) => '• İletişim kur\n• Farklılıkları kabul et\n• Ortak hedefler bul';
+  String _getAllSignCompatibility(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.get('synastry.title', language);
+  String _getTop3Compatible(zodiac.ZodiacSign sign, AppLanguage language) => _getCompatibleSigns(sign, language);
+  String _getTop3Challenging(zodiac.ZodiacSign sign, AppLanguage language) => _getChallengingSigns(sign, language);
+  String _getRomanticVsBusiness(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.get('kozmoz.responses.romantic_vs_business', language);
+  String _getSynastryTips(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.get('kozmoz.responses.synastry_tips', language);
+  String _getCompatibilityTips(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.get('kozmoz.responses.compatibility_tips', language);
 
   // NUMEROLOJİ FONKSİYONLARI
-  String _getLifePath1Details() => 'Lider, bağımsız, öncü. Girişimcilik ve yenilikçilik.';
-  String _getLifePath2Details() => 'Diplomat, işbirlikçi, hassas. İlişkiler ve ortaklıklar.';
-  String _getLifePath3Details() => 'Yaratıcı, ifade edici, sosyal. Sanat ve iletişim.';
-  String _getLifePath4Details() => 'İnşacı, pratik, güvenilir. Yapı ve organizasyon.';
-  String _getLifePath5Details() => 'Özgür ruh, maceracı, değişken. Seyahat ve deneyim.';
-  String _getLifePath6Details() => 'Bakıcı, sorumlu, aile odaklı. Ev ve topluluk.';
-  String _getLifePath7Details() => 'Araştırmacı, spiritüel, içe dönük. Bilgelik ve analiz.';
-  String _getLifePath8Details() => 'Güç odaklı, başarılı, materyalist. İş ve finans.';
-  String _getLifePath9Details() => 'İnsancıl, bilge, tamamlayıcı. Hizmet ve bütünlük.';
-  String _getMasterNumbers() => '11 (Aydınlatıcı), 22 (Usta İnşacı), 33 (Usta Öğretmen)';
-  String _getPersonalYearInfo() => 'Kişisel yıl sayın, o yılın temasını belirler.';
-  String _getSignNumerologyConnection(zodiac.ZodiacSign sign) => '${sign.nameTr} ve numeroloji kombinasyonu güçlü bir harita oluşturur.';
+  String _getLifePath1Details(AppLanguage language) => L10nService.get('kozmoz.numerology.life_path_1', language);
+  String _getLifePath2Details(AppLanguage language) => L10nService.get('kozmoz.numerology.life_path_2', language);
+  String _getLifePath3Details(AppLanguage language) => L10nService.get('kozmoz.numerology.life_path_3', language);
+  String _getLifePath4Details(AppLanguage language) => L10nService.get('kozmoz.numerology.life_path_4', language);
+  String _getLifePath5Details(AppLanguage language) => L10nService.get('kozmoz.numerology.life_path_5', language);
+  String _getLifePath6Details(AppLanguage language) => L10nService.get('kozmoz.numerology.life_path_6', language);
+  String _getLifePath7Details(AppLanguage language) => L10nService.get('kozmoz.numerology.life_path_7', language);
+  String _getLifePath8Details(AppLanguage language) => L10nService.get('kozmoz.numerology.life_path_8', language);
+  String _getLifePath9Details(AppLanguage language) => L10nService.get('kozmoz.numerology.life_path_9', language);
+  String _getMasterNumbers(AppLanguage language) => L10nService.get('kozmoz.numerology.master_numbers', language);
+  String _getPersonalYearInfo(AppLanguage language) => L10nService.get('kozmoz.numerology.personal_year_info', language);
+  String _getSignNumerologyConnection(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.getWithParams('kozmoz.numerology.sign_connection', language, params: {
+    'sign': sign.localizedName(language),
+  });
 
   // TAROT FONKSİYONLARI
-  String _getDetailedTarotMeaning(String card) {
-    final meanings = {
-      'Sihirbaz': 'İrade gücü, yaratıcılık, beceri. Potansiyelini kullan.',
-      'Yüksek Rahibe': 'Sezgi, gizli bilgi, içsel bilgelik. Dinle.',
-      'İmparatoriçe': 'Bereket, annelik, doğa. Yaratıcılık akıyor.',
-      'İmparator': 'Otorite, yapı, liderlik. Düzen kur.',
-      'Hierofant': 'Gelenek, öğretmenlik, spiritüel rehberlik.',
-      'Aşıklar': 'Seçim, ilişki, uyum. Kalbin yolunu takip et.',
-      'Savaş Arabası': 'Zafer, irade, ilerleme. Kararlılıkla git.',
-      'Güç': 'İç güç, cesaret, sabır. Yumuşak güç.',
-      'Ermiş': 'İçsel yolculuk, yalnızlık, bilgelik arayışı.',
-      'Kader Çarkı': 'Değişim, döngüler, kader. Akışa güven.',
-      'Adalet': 'Denge, doğruluk, sonuçlar. Adil ol.',
-      'Asılan Adam': 'Teslim ol, farklı perspektif, bekle.',
-      'Ölüm': 'Dönüşüm, son, yeni başlangıç. Bırak.',
-      'Denge': 'Ölçülülük, sabır, harmoni. Dengele.',
-      'Şeytan': 'Bağımlılık, gölge, zincirler. Özgürleş.',
-      'Kule': 'Yıkım, uyanış, ani değişim. Yeniden inşa et.',
-      'Yıldız': 'Umut, ilham, iyileşme. Işık var.',
-      'Ay': 'Yanılsama, korku, bilinçaltı. Gerçeği gör.',
-      'Güneş': 'Başarı, mutluluk, berraklık. Parla.',
-      'Yargı': 'Yeniden doğuş, çağrı, hesaplaşma. Uyan.',
-      'Dünya': 'Tamamlanma, başarı, bütünlük. Döngü tamam.',
+  String _getDetailedTarotMeaning(String card, AppLanguage language) {
+    // Map card names to localization keys
+    final cardKeyMap = {
+      'Sihirbaz': 'magician', 'The Magician': 'magician',
+      'Yüksek Rahibe': 'high_priestess', 'The High Priestess': 'high_priestess',
+      'İmparatoriçe': 'empress', 'The Empress': 'empress',
+      'İmparator': 'emperor', 'The Emperor': 'emperor',
+      'Hierofant': 'hierophant', 'The Hierophant': 'hierophant',
+      'Aşıklar': 'lovers', 'The Lovers': 'lovers',
+      'Savaş Arabası': 'chariot', 'The Chariot': 'chariot',
+      'Güç': 'strength', 'Strength': 'strength',
+      'Ermiş': 'hermit', 'The Hermit': 'hermit',
+      'Kader Çarkı': 'wheel', 'Wheel of Fortune': 'wheel',
+      'Adalet': 'justice', 'Justice': 'justice',
+      'Asılan Adam': 'hanged_man', 'The Hanged Man': 'hanged_man',
+      'Ölüm': 'death', 'Death': 'death',
+      'Denge': 'temperance', 'Temperance': 'temperance',
+      'Şeytan': 'devil', 'The Devil': 'devil',
+      'Kule': 'tower', 'The Tower': 'tower',
+      'Yıldız': 'star', 'The Star': 'star',
+      'Ay': 'moon', 'The Moon': 'moon',
+      'Güneş': 'sun', 'The Sun': 'sun',
+      'Yargı': 'judgement', 'Judgement': 'judgement',
+      'Dünya': 'world', 'The World': 'world',
     };
-    return meanings[card] ?? 'Derin mesaj taşıyor';
+    final cardKey = cardKeyMap[card] ?? 'default';
+    return L10nService.get('kozmoz.tarot.meanings.$cardKey', language);
   }
 
-  String _getTarotReading(String card1, String card2, String card3, zodiac.ZodiacSign sign) => 'Geçmiş ($card1), şimdi ($card2), gelecek ($card3) birlikte okunduğunda evrim yolculuğunu gösteriyor.';
-  String _getTarotAdvice(String card, zodiac.ZodiacSign sign) => '$card kartının ${sign.nameTr} için mesajı: İçsel bilgeliğine güven.';
-  String _getSignTarotConnection(zodiac.ZodiacSign sign) => '${sign.nameTr} Major Arcana\'da özel bir karta karşılık gelir.';
-  String _getTarotMessage(String card) => 'Bu kart şu an hayatında önemli bir mesaj taşıyor. Dikkatle dinle.';
+  String _getTarotReading(String card1, String card2, String card3, zodiac.ZodiacSign sign, AppLanguage language) => L10nService.getWithParams('kozmoz.tarot.reading', language, params: {
+    'card1': card1,
+    'card2': card2,
+    'card3': card3,
+  });
+  String _getTarotAdvice(String card, zodiac.ZodiacSign sign, AppLanguage language) => L10nService.getWithParams('kozmoz.tarot.advice', language, params: {
+    'card': card,
+    'sign': sign.localizedName(language),
+  });
+  String _getSignTarotConnection(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.getWithParams('kozmoz.tarot.sign_connection', language, params: {
+    'sign': sign.localizedName(language),
+  });
+  String _getTarotMessage(String card, AppLanguage language) => L10nService.get('kozmoz.tarot.message', language);
 
   // AURA FONKSİYONLARI
-  String _getDetailedAuraColors(zodiac.ZodiacSign sign) {
-    final colors = {
-      zodiac.Element.fire: '🔴 Kırmızı - Tutku ve enerji\n🟠 Turuncu - Yaratıcılık ve cesaret\n🟡 Altın - Liderlik ve güç',
-      zodiac.Element.earth: '🟢 Yeşil - Şifa ve büyüme\n🟤 Kahverengi - Topraklanma\n🟫 Bronz - Güvenilirlik',
-      zodiac.Element.air: '🔵 Mavi - İletişim ve barış\n⚪ Beyaz - Berraklık\n🩶 Gümüş - Sezgi',
-      zodiac.Element.water: '💜 Mor - Spiritüellik\n🔵 Lacivert - Derinlik\n🩵 Turkuaz - Şifa',
-    };
-    return colors[sign.element] ?? '🌈 Gökkuşağı aura';
+  String _getDetailedAuraColors(zodiac.ZodiacSign sign, AppLanguage language) {
+    final elementKey = sign.element.name.toLowerCase();
+    return L10nService.get('kozmoz.aura.colors.$elementKey', language);
   }
 
-  String _getEnergyFrequency(zodiac.ZodiacSign sign) => '${sign.element.nameTr} elementi olarak özel bir enerji frekansın var.';
-  String _getEnergyLevel(zodiac.ZodiacSign sign) => '${sign.nameTr} olarak enerji seviyen genellikle yüksek.';
-  String _getAuraLayers(zodiac.ZodiacSign sign) => 'Fiziksel, duygusal, zihinsel ve spiritüel katmanların var.';
-  String _getEnergyBlocks(zodiac.ZodiacSign sign) => 'Korku, öfke ve geçmiş travmalar blok yaratabilir.';
-  String _getAuraStrengthening(zodiac.Element element) {
-    switch (element) {
-      case zodiac.Element.fire:
-        return '• Güneş ışığında vakit geçir\n• Kırmızı/turuncu renkler giy\n• Dinamik egzersizler yap';
-      case zodiac.Element.earth:
-        return '• Doğada yürüyüşe çık\n• Bitkilerle ilgilen\n• Toprakla temas et';
-      case zodiac.Element.air:
-        return '• Nefes egzersizleri yap\n• Açık havada zaman geçir\n• Müzik dinle veya çal';
-      case zodiac.Element.water:
-        return '• Su kenarında vakit geçir\n• Duş/banyo ritüelleri yap\n• Meditasyon ve yoga uygula';
-    }
+  String _getEnergyFrequency(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.getWithParams('kozmoz.aura.energy_frequency', language, params: {
+    'element': sign.element.localizedName(language),
+  });
+  String _getEnergyLevel(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.getWithParams('kozmoz.aura.energy_level', language, params: {
+    'sign': sign.localizedName(language),
+  });
+  String _getAuraLayers(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.get('kozmoz.aura.layers', language);
+  String _getEnergyBlocks(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.get('kozmoz.aura.blocks', language);
+  String _getAuraStrengthening(zodiac.Element element, AppLanguage language) {
+    final elementKey = element.name.toLowerCase();
+    return L10nService.get('kozmoz.aura.strengthening.$elementKey', language);
   }
-  String _getAuraStrengtheningDetailed(zodiac.ZodiacSign sign) => _getAuraStrengthening(sign.element);
-  String _getEnergyCleansing(zodiac.ZodiacSign sign) => 'Tuzlu su banyosu, adaçayı tütsüsü, doğada yürüyüş';
-  String _getProtectionShield(zodiac.ZodiacSign sign) => 'Günlük koruma meditasyonu ve kristal koruma ağı';
-  String _getAuraCrystals(zodiac.ZodiacSign sign) => 'Kuvars, ametist, turmalin, obsidyen';
-  String _getColorTherapy(zodiac.ZodiacSign sign) => '${sign.element.nameTr} elementinin renklerini giy ve çevrene ekle.';
-  String _getEnergyMeditation(zodiac.ZodiacSign sign) => '10 dakika nefes meditasyonu, auranı görselleştir.';
+  String _getAuraStrengtheningDetailed(zodiac.ZodiacSign sign, AppLanguage language) => _getAuraStrengthening(sign.element, language);
+  String _getEnergyCleansing(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.get('kozmoz.aura.cleansing', language);
+  String _getProtectionShield(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.get('kozmoz.aura.protection', language);
+  String _getAuraCrystals(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.get('kozmoz.aura.crystals', language);
+  String _getColorTherapy(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.getWithParams('kozmoz.aura.color_therapy', language, params: {
+    'element': sign.element.localizedName(language),
+  });
+  String _getEnergyMeditation(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.get('kozmoz.aura.meditation', language);
 
   // SPİRİTÜEL FONKSİYONLAR
-  String _getSpiritualLevel(zodiac.ZodiacSign sign) => '${sign.nameTr} olarak ruhsal evrim yolculuğundasın.';
-  String _getLifeMission(zodiac.ZodiacSign sign) => _getLifePurposeDescription(sign);
-  String _getKarmicLessons(zodiac.ZodiacSign sign) => '${sign.nameTr} için karmik dersler ${_getLifeLesson(sign)}';
-  String _getRepeatingPatterns(zodiac.ZodiacSign sign) => 'Tekrarlayan ilişki ve yaşam kalıplarına dikkat et.';
-  String _getSpiritualGifts(zodiac.ZodiacSign sign) => '${sign.element.nameTr} elementi sana özel spiritüel yetenekler verdi.';
-  String _getSpiritualPracticesDetailed(zodiac.ZodiacSign sign) => '• Günlük meditasyon\n• Jurnal tutma\n• Nefes çalışması\n• Yoga/tai chi';
-  String _getMantras(zodiac.ZodiacSign sign) => '"Ben ${sign.nameTr} gücüyle parladım."';
-  String _getNightRituals(zodiac.ZodiacSign sign) => '🌙 Şükran notu yaz\n🕯️ Mum yak\n📖 İlham verici okuma\n🧘 Bırakma meditasyonu';
-  String _getMorningRituals(zodiac.ZodiacSign sign) => '☀️ Nefes al\n🧘 5 dakika meditasyon\n📝 Niyet belirle\n💧 Limonlu su iç';
-  String _getSpiritualTools(zodiac.ZodiacSign sign) => 'Tarot, rünler, kristaller, tütsü, jurnal';
-  String _getHigherSelfConnection(zodiac.ZodiacSign sign) => 'Sessizlikte yüksek benliğinle bağlan, sezgilerine güven.';
-  String _getAuraCleansing(zodiac.ZodiacSign sign) => 'Haftalık enerji temizliği yap: tütsü, tuz, ışık.';
+  String _getSpiritualLevel(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.get('kozmoz.responses.spiritual_evolution_level', language);
+  String _getLifeMission(zodiac.ZodiacSign sign, AppLanguage language) => _getLifePurposeDescription(sign, language);
+  String _getKarmicLessons(zodiac.ZodiacSign sign, AppLanguage language) => '${sign.localizedName(language)}: ${_getLifeLesson(sign, language)}';
+  String _getRepeatingPatterns(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.get('kozmoz.responses.repeating_patterns', language);
+  String _getSpiritualGifts(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.get('kozmoz.responses.spiritual_powers', language);
+  String _getSpiritualPracticesDetailed(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.get('kozmoz.responses.meditation_practices', language);
+  String _getMantras(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.get('kozmoz.responses.mantra_affirmation', language);
+  String _getNightRituals(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.get('kozmoz.responses.night_rituals', language);
+  String _getMorningRituals(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.get('kozmoz.responses.morning_rituals', language);
+  String _getSpiritualTools(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.get('kozmoz.responses.spiritual_tools', language);
+  String _getHigherSelfConnection(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.get('kozmoz.responses.higher_self_connection', language);
+  String _getAuraCleansing(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.get('kozmoz.responses.aura_cleansing', language);
 
   // HAYAT AMACI FONKSİYONLARI
-  String _getDetailedLifeMission(zodiac.ZodiacSign sign) => '${sign.nameTr} olarak bu hayatta ${_getLifePurposeDescription(sign)}';
-  String _getLifePurposeDetails(zodiac.ZodiacSign sign) => '${sign.element.nameTr} elementi ve ${sign.modality.name} modalitesi ile benzersiz bir amaç taşıyorsun.';
-  String _getLifeLessonsDetailed(zodiac.ZodiacSign sign) => '• Ana ders: ${_getLifeLesson(sign)}\n• Tamamlayıcı dersler: Denge ve farkındalık';
-  String _getStrengthsForPurpose(zodiac.ZodiacSign sign) => _getCareerStrengths(sign);
-  String _getObstaclesForPurpose(zodiac.ZodiacSign sign) => 'Korkular, sınırlayıcı inançlar, geçmiş kalıplar';
-  String _getPotentialUnlocks(zodiac.ZodiacSign sign) => '• Farkındalık\n• Cesaret\n• Tutarlı çalışma\n• Mentorluk';
-  String _getJourneyStages(zodiac.ZodiacSign sign) => '1. Farkındalık\n2. Keşif\n3. Pratik\n4. Ustalık\n5. Öğretme';
-  String _getUniversalContribution(zodiac.ZodiacSign sign) => '${sign.nameTr} olarak dünyaya ${sign.element.nameTr} bilgeliğini getiriyorsun.';
-  String _getLifeRoadmap(zodiac.ZodiacSign sign) => 'Kısa vade: Öğren\nOrta vade: Uygula\nUzun vade: Paylaş';
+  String _getDetailedLifeMission(zodiac.ZodiacSign sign, AppLanguage language) => '${sign.localizedName(language)}: ${_getLifePurposeDescription(sign, language)}';
+  String _getLifePurposeDetails(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.get('kozmoz.responses.purpose_details', language);
+  String _getLifeLessonsDetailed(zodiac.ZodiacSign sign, AppLanguage language) => _getLifeLesson(sign, language);
+  String _getStrengthsForPurpose(zodiac.ZodiacSign sign, AppLanguage language) => _getCareerStrengths(sign, language);
+  String _getObstaclesForPurpose(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.get('kozmoz.responses.obstacles_to_overcome', language);
+  String _getPotentialUnlocks(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.get('kozmoz.responses.potential_unlocks', language);
+  String _getJourneyStages(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.get('kozmoz.responses.journey_stages', language);
+  String _getUniversalContribution(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.get('kozmoz.responses.universal_contribution', language);
+  String _getLifeRoadmap(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.get('kozmoz.responses.life_roadmap', language);
 
   // YETENEK FONKSİYONLARI
-  String _getInbornTalents(zodiac.ZodiacSign sign) => _getNaturalTalents(sign);
-  String _getHiddenPotentials(zodiac.ZodiacSign sign) => '${sign.element.nameTr} elementi gizli potansiyelini barındırıyor.';
-  String _getWaitingActivation(zodiac.ZodiacSign sign) => 'Cesaret, pratik ve farkındalıkla aktive edilebilir yeteneklerin var.';
-  String _getStrongestAreas(zodiac.ZodiacSign sign) => _getCareerStrengths(sign);
-  String _getImprovementAreas(zodiac.ZodiacSign sign) => '${_getLifeLesson(sign)} - Bu alanı geliştir.';
-  String _getUnlockingPotential(zodiac.ZodiacSign sign) => '• Günlük pratik\n• Mentordan öğren\n• Cesaretle dene\n• Hatalardan öğren';
-  String _getTalentCareerUse(zodiac.ZodiacSign sign) => 'Yeteneklerini iş hayatında: ${_getCareerStrengths(sign)}';
-  String _getTalentRelationshipUse(zodiac.ZodiacSign sign) => 'İlişkilerde: ${_getElementLoveStyle(sign.element)}';
-  String _getTalentSpiritualUse(zodiac.ZodiacSign sign) => 'Spiritüel yolda: ${sign.element.nameTr} bilgeliğini kullan.';
-  String _getActivationCalendar(zodiac.ZodiacSign sign) => 'Jüpiter transitleri ve Yeni Ay\'lar aktivasyon için güçlü.';
+  String _getInbornTalents(zodiac.ZodiacSign sign, AppLanguage language) => _getNaturalTalents(sign, language);
+  String _getHiddenPotentials(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.get('kozmoz.responses.hidden_potentials', language);
+  String _getWaitingActivation(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.get('kozmoz.responses.waiting_activation', language);
+  String _getStrongestAreas(zodiac.ZodiacSign sign, AppLanguage language) => _getCareerStrengths(sign, language);
+  String _getImprovementAreas(zodiac.ZodiacSign sign, AppLanguage language) => _getLifeLesson(sign, language);
+  String _getUnlockingPotential(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.get('kozmoz.responses.unlocking_potential', language);
+  String _getTalentCareerUse(zodiac.ZodiacSign sign, AppLanguage language) => _getCareerStrengths(sign, language);
+  String _getTalentRelationshipUse(zodiac.ZodiacSign sign, AppLanguage language) => _getElementLoveStyle(sign.element, language);
+  String _getTalentSpiritualUse(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.get('kozmoz.responses.spiritual_use', language);
+  String _getActivationCalendar(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.get('kozmoz.responses.activation_calendar', language);
 
   // GENEL BİLGELİK FONKSİYONLARI
-  String _getDeepWisdom(zodiac.ZodiacSign sign) => 'Evren seninle konuşuyor. ${sign.element.nameTr} elementi aracılığıyla mesajlarını dinle.';
-  String _getElementMessage(zodiac.ZodiacSign sign) => '${sign.element.nameTr} bilgeliği: ${_getElementDailyNote(sign.element)}';
-  String _getUniversalGuidance(zodiac.ZodiacSign sign) => 'Her şey mükemmel zamanlamayla gerçekleşir. Sabırlı ol ve güven.';
-  String _getPracticalAdvice(zodiac.ZodiacSign sign) => '• Sezgilerine güven\n• Aksiyona geç\n• Sabırlı ol\n• Şükret';
-  String _getWisdomAffirmation(zodiac.ZodiacSign sign) => 'Ben evrenle uyum içindeyim ve en yüksek iyiliğim için yol açılıyor.';
+  String _getDeepWisdom(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.get('kozmoz.responses.cosmic_perspective', language);
+  String _getElementMessage(zodiac.ZodiacSign sign, AppLanguage language) => _getElementDailyNote(sign.element, language);
+  String _getUniversalGuidance(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.get('kozmoz.responses.universal_guidance', language);
+  String _getPracticalAdvice(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.get('kozmoz.responses.practical_advice', language);
+  String _getWisdomAffirmation(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.get('kozmoz.responses.wisdom_affirmation', language);
 
   // ═══════════════════════════════════════════════════════════════
   // 10x GELİŞTİRME: YENİ YANIT FONKSİYONLARI
@@ -2204,39 +2367,135 @@ ${_getOverallBalance(sign)}
   String _getElementLucidTip(zodiac.Element e) => e == zodiac.Element.fire ? 'Enerji yüksekken, geceyarısı öncesi' : e == zodiac.Element.earth ? 'Dolunay gecelerinde' : e == zodiac.Element.air ? 'Rüzgarlı gecelerde' : 'Yeni Ay döneminde';
   String _getElementTantra(zodiac.Element e) => e == zodiac.Element.fire ? 'Nefes ateşi, enerji hareketi' : e == zodiac.Element.earth ? 'Duyusal farkındalık, topraklama' : e == zodiac.Element.air ? 'Pranayama, nefes kontrolü' : 'Duygusal akış, su meditasyonu';
   String _getElementBreath(zodiac.Element e) => e == zodiac.Element.fire ? 'Kapalı Burun (Bhastrika)' : e == zodiac.Element.earth ? '4-7-8 Nefesi' : e == zodiac.Element.air ? 'Alternatif Burun' : 'Okyanus Nefesi (Ujjayi)';
-  String _getElementNutrition(zodiac.Element e) => e == zodiac.Element.fire ? 'Baharatlı, protein zengin' : e == zodiac.Element.earth ? 'Kök sebzeler, tahıllar' : e == zodiac.Element.air ? 'Hafif, çiğ yiyecekler' : 'Sulak meyveler, deniz ürünleri';
-  String _getElementExercise(zodiac.Element e) => e == zodiac.Element.fire ? 'HIIT, boks, koşu' : e == zodiac.Element.earth ? 'Yoga, yürüyüş, ağırlık' : e == zodiac.Element.air ? 'Dans, zumba, bisiklet' : 'Yüzme, su aerobiği';
-  String _getElementHealthTip(zodiac.Element e) => e == zodiac.Element.fire ? 'Dinlenmeyi ihmal etme' : e == zodiac.Element.earth ? 'Hareketsizliğe dikkat' : e == zodiac.Element.air ? 'Sinir sistemi için mola' : 'Sınır koyma öğren';
-  String _getElementPet(zodiac.Element e) => e == zodiac.Element.fire ? 'Köpek, at' : e == zodiac.Element.earth ? 'Kedi, tavşan' : e == zodiac.Element.air ? 'Kuş, papağan' : 'Balık, kaplumbağa';
-  String _getElementHome(zodiac.Element e) => e == zodiac.Element.fire ? 'Güneşli, enerjik, açık renkler' : e == zodiac.Element.earth ? 'Doğal, toprak tonları, bitkiler' : e == zodiac.Element.air ? 'Minimalist, havadar, açık' : 'Su öğeleri, maviler, akıcı';
-  String _getElementVacation(zodiac.Element e) => e == zodiac.Element.fire ? 'Macera, safari, dağ tırmanışı' : e == zodiac.Element.earth ? 'Spa, şarap turları, doğa' : e == zodiac.Element.air ? 'Şehir turları, festivaller' : 'Deniz, göl, retreat';
-  String _getElementLearning(zodiac.Element e) => e == zodiac.Element.fire ? 'Pratik, el yapımı, spor' : e == zodiac.Element.earth ? 'Sistematik, adım adım' : e == zodiac.Element.air ? 'Teorik, tartışma, sosyal' : 'Sezgisel, sanatsal, duygusal';
-  String _getElementLearningStyle(zodiac.Element e) => e == zodiac.Element.fire ? 'Kinestetik öğrenci' : e == zodiac.Element.earth ? 'Görsel öğrenci' : e == zodiac.Element.air ? 'İşitsel öğrenci' : 'Sezgisel öğrenci';
-  String _getElementProductiveTime(zodiac.Element e) => e == zodiac.Element.fire ? 'Sabah 6-10, öğlen 12-14' : e == zodiac.Element.earth ? 'Sabah 8-12, akşam 16-18' : e == zodiac.Element.air ? 'Öğle 10-14, gece 20-22' : 'Gece yarısı, erken sabah';
-  String _getElementSuppressed(zodiac.Element e) => e == zodiac.Element.fire ? 'Korku, güvensizlik' : e == zodiac.Element.earth ? 'Spontanlık, risk alma' : e == zodiac.Element.air ? 'Derin duygular, bağlanma' : 'Öfke, sınır koyma';
-  String _getElementManifesting(zodiac.Element e) => e == zodiac.Element.fire ? 'Aksiyon odaklı, hızlı' : e == zodiac.Element.earth ? 'Somut, sabırlı, uzun vadeli' : e == zodiac.Element.air ? 'Vizyon, iletişim, bağlantı' : 'Sezgisel, duygusal, akış';
-  String _getElementIntention(zodiac.Element e) => e == zodiac.Element.fire ? 'Cesaret, liderlik, başarı' : e == zodiac.Element.earth ? 'Güvenlik, bolluk, istikrar' : e == zodiac.Element.air ? 'İletişim, öğrenme, seyahat' : 'Sevgi, şifa, ruhsal büyüme';
-  String _getElementGuides(zodiac.Element e) => e == zodiac.Element.fire ? 'Savaşçı, kahraman arketipleri' : e == zodiac.Element.earth ? 'Doğa ruhları, toprak melekleri' : e == zodiac.Element.air ? 'Elçi melekler, bilgelik varlıkları' : 'Su perileri, şifa melekleri';
-  String _getElementAvoidStones(zodiac.Element e) => e == zodiac.Element.fire ? 'Çok sakinleştirici taşlar' : e == zodiac.Element.earth ? 'Çok enerji veren taşlar' : e == zodiac.Element.air ? 'Çok topraklayıcı taşlar' : 'Çok ateşli taşlar';
-  String _getElementChakraBalance(zodiac.Element e) => e == zodiac.Element.fire ? 'Solar pleksus ve kök çakra güçlü' : e == zodiac.Element.earth ? 'Kök ve sakral çakra dominant' : e == zodiac.Element.air ? 'Boğaz ve üçüncü göz aktif' : 'Kalp ve taç çakra hassas';
+  String _getElementNutrition(zodiac.Element e) {
+    final language = ref.read(languageProvider);
+    return L10nService.get('kozmoz.element_nutrition.${e.name}', language);
+  }
+  String _getElementExercise(zodiac.Element e) {
+    final language = ref.read(languageProvider);
+    return L10nService.get('kozmoz.element_exercise.${e.name}', language);
+  }
+  String _getElementHealthTip(zodiac.Element e) {
+    final language = ref.read(languageProvider);
+    return L10nService.get('kozmoz.element_health_tip.${e.name}', language);
+  }
+  String _getElementPet(zodiac.Element e) {
+    final language = ref.read(languageProvider);
+    return L10nService.get('kozmoz.element_pet.${e.name}', language);
+  }
+  String _getElementHome(zodiac.Element e) {
+    final language = ref.read(languageProvider);
+    return L10nService.get('kozmoz.element_home.${e.name}', language);
+  }
+  String _getElementVacation(zodiac.Element e) {
+    final language = ref.read(languageProvider);
+    return L10nService.get('kozmoz.element_vacation.${e.name}', language);
+  }
+  String _getElementLearning(zodiac.Element e) {
+    final language = ref.read(languageProvider);
+    return L10nService.get('kozmoz.element_learning.${e.name}', language);
+  }
+  String _getElementLearningStyle(zodiac.Element e) {
+    final language = ref.read(languageProvider);
+    return L10nService.get('kozmoz.element_learning_style.${e.name}', language);
+  }
+  String _getElementProductiveTime(zodiac.Element e) {
+    final language = ref.read(languageProvider);
+    return L10nService.get('kozmoz.element_productive_time.${e.name}', language);
+  }
+  String _getElementSuppressed(zodiac.Element e) {
+    final language = ref.read(languageProvider);
+    return L10nService.get('kozmoz.element_suppressed.${e.name}', language);
+  }
+  String _getElementManifesting(zodiac.Element e) {
+    final language = ref.read(languageProvider);
+    return L10nService.get('kozmoz.element_manifesting.${e.name}', language);
+  }
+  String _getElementIntention(zodiac.Element e) {
+    final language = ref.read(languageProvider);
+    return L10nService.get('kozmoz.element_intention.${e.name}', language);
+  }
+  String _getElementGuides(zodiac.Element e) {
+    final language = ref.read(languageProvider);
+    return L10nService.get('kozmoz.element_guides.${e.name}', language);
+  }
+  String _getElementAvoidStones(zodiac.Element e) {
+    final language = ref.read(languageProvider);
+    return L10nService.get('kozmoz.element_avoid_stones.${e.name}', language);
+  }
+  String _getElementChakraBalance(zodiac.Element e) {
+    final language = ref.read(languageProvider);
+    return L10nService.get('kozmoz.element_chakra_balance.${e.name}', language);
+  }
 
   // Burç bazlı yardımcı fonksiyonlar
-  String _getSignSubconscious(zodiac.ZodiacSign s) => 'İçsel korkular ve arzular.';
-  String _getSignDreamSymbols(zodiac.ZodiacSign s) => 'Burç sembollerinin rüya yorumu.';
-  String _getSignHerb(zodiac.ZodiacSign s) => s == zodiac.ZodiacSign.aries ? 'Zencefil' : s == zodiac.ZodiacSign.taurus ? 'Papatya' : 'Lavanta';
-  String _getSignMeditation(zodiac.ZodiacSign s) => '${s.element.nameTr} elementi meditasyonu.';
-  String _getSignChakra(zodiac.ZodiacSign s) => '${s.element.nameTr} elementi çakrası.';
-  String _getSignHerbs(zodiac.ZodiacSign s) => 'Burca özel şifalı bitkiler listesi.';
-  String _getSignDestinations(zodiac.ZodiacSign s) => 'Astrolojik coğrafya önerileri.';
-  String _getSignCreativity(zodiac.ZodiacSign s) => 'Yaratıcı ifade kanalları.';
-  String _getSignSubjects(zodiac.ZodiacSign s) => 'Doğal yatkınlık alanları.';
-  String _getSignShadow(zodiac.ZodiacSign s) => 'Gölge yönleri ve dönüşüm.';
-  String _getSignFears(zodiac.ZodiacSign s) => 'Bilinçaltı korkular.';
-  String _getOppositeSign(zodiac.ZodiacSign s) => s == zodiac.ZodiacSign.aries ? 'Terazi' : s == zodiac.ZodiacSign.taurus ? 'Akrep' : 'Karşıt burç';
-  String _getSignAngel(zodiac.ZodiacSign s) => 'Koruyucu melek ismi.';
-  String _getSignConstellation(zodiac.ZodiacSign s) => '${s.nameTr} takımyıldızı.';
-  String _getSignMainStones(zodiac.ZodiacSign s) => 'Ana güç taşları listesi.';
-  String _getHealthWeakness(zodiac.ZodiacSign s) => 'Sağlık açısından hassas bölgeler.';
+  String _getSignSubconscious(zodiac.ZodiacSign s) {
+    final language = ref.read(languageProvider);
+    return L10nService.get('kozmoz.sign_subconscious.${s.name}', language);
+  }
+  String _getSignDreamSymbols(zodiac.ZodiacSign s) {
+    final language = ref.read(languageProvider);
+    return L10nService.get('kozmoz.sign_dream_symbols.${s.name}', language);
+  }
+  String _getSignHerb(zodiac.ZodiacSign s) {
+    final language = ref.read(languageProvider);
+    return L10nService.get('kozmoz.sign_herb.${s.name}', language);
+  }
+  String _getSignMeditation(zodiac.ZodiacSign s) {
+    final language = ref.read(languageProvider);
+    final signName = language == AppLanguage.tr ? s.nameTr : s.name;
+    return L10nService.getWithParams('kozmoz.sign_meditation', language, params: {'sign': signName});
+  }
+  String _getSignChakra(zodiac.ZodiacSign s) {
+    final language = ref.read(languageProvider);
+    final elementName = language == AppLanguage.tr ? s.element.nameTr : s.element.name;
+    return L10nService.getWithParams('kozmoz.sign_chakra', language, params: {'element': elementName});
+  }
+  String _getSignHerbs(zodiac.ZodiacSign s) {
+    final language = ref.read(languageProvider);
+    return L10nService.get('kozmoz.sign_herbs.${s.name}', language);
+  }
+  String _getSignDestinations(zodiac.ZodiacSign s) {
+    final language = ref.read(languageProvider);
+    return L10nService.get('kozmoz.sign_destinations.${s.name}', language);
+  }
+  String _getSignCreativity(zodiac.ZodiacSign s) {
+    final language = ref.read(languageProvider);
+    return L10nService.get('kozmoz.sign_creativity.${s.name}', language);
+  }
+  String _getSignSubjects(zodiac.ZodiacSign s) {
+    final language = ref.read(languageProvider);
+    return L10nService.get('kozmoz.sign_subjects.${s.name}', language);
+  }
+  String _getSignShadow(zodiac.ZodiacSign s) {
+    final language = ref.read(languageProvider);
+    return L10nService.get('kozmoz.sign_shadow.${s.name}', language);
+  }
+  String _getSignFears(zodiac.ZodiacSign s) {
+    final language = ref.read(languageProvider);
+    return L10nService.get('kozmoz.sign_fears.${s.name}', language);
+  }
+  String _getOppositeSign(zodiac.ZodiacSign s) {
+    final language = ref.read(languageProvider);
+    return L10nService.get('kozmoz.opposite_sign.${s.name}', language);
+  }
+  String _getSignAngel(zodiac.ZodiacSign s) {
+    final language = ref.read(languageProvider);
+    return L10nService.get('kozmoz.sign_angel.${s.name}', language);
+  }
+  String _getSignConstellation(zodiac.ZodiacSign s) {
+    final language = ref.read(languageProvider);
+    final signName = language == AppLanguage.tr ? s.nameTr : s.name;
+    return L10nService.getWithParams('kozmoz.sign_constellation', language, params: {'sign': signName});
+  }
+  String _getSignMainStones(zodiac.ZodiacSign s) {
+    final language = ref.read(languageProvider);
+    return L10nService.get('kozmoz.sign_main_stones.${s.name}', language);
+  }
+  String _getHealthWeakness(zodiac.ZodiacSign s) {
+    final language = ref.read(languageProvider);
+    return L10nService.get('kozmoz.health_weakness.${s.name}', language);
+  }
 
   void _scrollToBottom() {
     Future.delayed(const Duration(milliseconds: 100), () {
@@ -2280,7 +2539,7 @@ ${_getOverallBalance(sign)}
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: [
-            AppColors.nebulaPurple.withOpacity(0.5),
+            AppColors.nebulaPurple.withValues(alpha: 0.5),
             Colors.transparent,
           ],
         ),
@@ -2300,14 +2559,14 @@ ${_getOverallBalance(sign)}
                 decoration: BoxDecoration(
                   gradient: RadialGradient(
                     colors: [
-                      const Color(0xFF9D4EDD).withOpacity(0.5 + _pulseController.value * 0.3),
-                      AppColors.nebulaPurple.withOpacity(0.3),
+                      const Color(0xFF9D4EDD).withValues(alpha: 0.5 + _pulseController.value * 0.3),
+                      AppColors.nebulaPurple.withValues(alpha: 0.3),
                     ],
                   ),
                   shape: BoxShape.circle,
                   boxShadow: [
                     BoxShadow(
-                      color: const Color(0xFF9D4EDD).withOpacity(0.4 * _pulseController.value),
+                      color: const Color(0xFF9D4EDD).withValues(alpha: 0.4 * _pulseController.value),
                       blurRadius: 15,
                       spreadRadius: 2,
                     ),
@@ -2383,8 +2642,8 @@ ${_getOverallBalance(sign)}
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    const Color(0xFF9D4EDD).withOpacity(0.5),
-                    AppColors.nebulaPurple.withOpacity(0.3),
+                    const Color(0xFF9D4EDD).withValues(alpha: 0.5),
+                    AppColors.nebulaPurple.withValues(alpha: 0.3),
                   ],
                 ),
                 shape: BoxShape.circle,
@@ -2402,12 +2661,12 @@ ${_getOverallBalance(sign)}
                   end: Alignment.bottomRight,
                   colors: isUser
                       ? [
-                          AppColors.cosmicPurple.withOpacity(0.4),
-                          AppColors.nebulaPurple.withOpacity(0.3),
+                          AppColors.cosmicPurple.withValues(alpha: 0.4),
+                          AppColors.nebulaPurple.withValues(alpha: 0.3),
                         ]
                       : [
-                          const Color(0xFF9D4EDD).withOpacity(0.2),
-                          const Color(0xFF1A1A2E).withOpacity(0.8),
+                          const Color(0xFF9D4EDD).withValues(alpha: 0.2),
+                          const Color(0xFF1A1A2E).withValues(alpha: 0.8),
                         ],
                 ),
                 borderRadius: BorderRadius.only(
@@ -2418,8 +2677,8 @@ ${_getOverallBalance(sign)}
                 ),
                 border: Border.all(
                   color: isUser
-                      ? AppColors.cosmicPurple.withOpacity(0.3)
-                      : const Color(0xFF9D4EDD).withOpacity(0.2),
+                      ? AppColors.cosmicPurple.withValues(alpha: 0.3)
+                      : const Color(0xFF9D4EDD).withValues(alpha: 0.2),
                   width: 1,
                 ),
               ),
@@ -2452,8 +2711,8 @@ ${_getOverallBalance(sign)}
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  const Color(0xFF9D4EDD).withOpacity(0.5),
-                  AppColors.nebulaPurple.withOpacity(0.3),
+                  const Color(0xFF9D4EDD).withValues(alpha: 0.5),
+                  AppColors.nebulaPurple.withValues(alpha: 0.3),
                 ],
               ),
               shape: BoxShape.circle,
@@ -2464,9 +2723,9 @@ ${_getOverallBalance(sign)}
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             decoration: BoxDecoration(
-              color: const Color(0xFF9D4EDD).withOpacity(0.15),
+              color: const Color(0xFF9D4EDD).withValues(alpha: 0.15),
               borderRadius: BorderRadius.circular(18),
-              border: Border.all(color: const Color(0xFF9D4EDD).withOpacity(0.2)),
+              border: Border.all(color: const Color(0xFF9D4EDD).withValues(alpha: 0.2)),
             ),
             child: Row(
               mainAxisSize: MainAxisSize.min,
@@ -2522,13 +2781,13 @@ ${_getOverallBalance(sign)}
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
                           colors: [
-                            const Color(0xFF9D4EDD).withOpacity(0.2),
-                            AppColors.cosmicPurple.withOpacity(0.1),
+                            const Color(0xFF9D4EDD).withValues(alpha: 0.2),
+                            AppColors.cosmicPurple.withValues(alpha: 0.1),
                           ],
                         ),
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(
-                          color: const Color(0xFF9D4EDD).withOpacity(0.3),
+                          color: const Color(0xFF9D4EDD).withValues(alpha: 0.3),
                         ),
                       ),
                       child: Column(
@@ -2568,7 +2827,7 @@ ${_getOverallBalance(sign)}
           begin: Alignment.bottomCenter,
           end: Alignment.topCenter,
           colors: [
-            AppColors.nebulaPurple.withOpacity(0.5),
+            AppColors.nebulaPurple.withValues(alpha: 0.5),
             Colors.transparent,
           ],
         ),
@@ -2580,12 +2839,12 @@ ${_getOverallBalance(sign)}
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    const Color(0xFF9D4EDD).withOpacity(0.15),
-                    const Color(0xFF1A1A2E).withOpacity(0.9),
+                    const Color(0xFF9D4EDD).withValues(alpha: 0.15),
+                    const Color(0xFF1A1A2E).withValues(alpha: 0.9),
                   ],
                 ),
                 borderRadius: BorderRadius.circular(24),
-                border: Border.all(color: const Color(0xFF9D4EDD).withOpacity(0.3)),
+                border: Border.all(color: const Color(0xFF9D4EDD).withValues(alpha: 0.3)),
               ),
               child: RawKeyboardListener(
                 focusNode: FocusNode(),
@@ -2603,7 +2862,7 @@ ${_getOverallBalance(sign)}
                   textInputAction: TextInputAction.send,
                   decoration: InputDecoration(
                     hintText: L10nService.get('kozmoz.ask_placeholder', ref.read(languageProvider)),
-                    hintStyle: TextStyle(color: AppColors.textSecondary.withOpacity(0.6)),
+                    hintStyle: TextStyle(color: AppColors.textSecondary.withValues(alpha: 0.6)),
                     border: InputBorder.none,
                     contentPadding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
                   ),
@@ -2624,7 +2883,7 @@ ${_getOverallBalance(sign)}
                 shape: BoxShape.circle,
                 boxShadow: [
                   BoxShadow(
-                    color: const Color(0xFF9D4EDD).withOpacity(0.4),
+                    color: const Color(0xFF9D4EDD).withValues(alpha: 0.4),
                     blurRadius: 12,
                     spreadRadius: 1,
                   ),
@@ -2704,7 +2963,7 @@ class _FeaturesSheet extends ConsumerWidget {
             width: 40,
             height: 4,
             decoration: BoxDecoration(
-              color: AppColors.textSecondary.withOpacity(0.3),
+              color: AppColors.textSecondary.withValues(alpha: 0.3),
               borderRadius: BorderRadius.circular(2),
             ),
           ),
@@ -2746,13 +3005,13 @@ class _FeaturesSheet extends ConsumerWidget {
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         colors: [
-                          const Color(0xFF9D4EDD).withOpacity(0.2),
-                          AppColors.cosmicPurple.withOpacity(0.1),
+                          const Color(0xFF9D4EDD).withValues(alpha: 0.2),
+                          AppColors.cosmicPurple.withValues(alpha: 0.1),
                         ],
                       ),
                       borderRadius: BorderRadius.circular(16),
                       border: Border.all(
-                        color: const Color(0xFF9D4EDD).withOpacity(0.3),
+                        color: const Color(0xFF9D4EDD).withValues(alpha: 0.3),
                       ),
                     ),
                     child: Column(

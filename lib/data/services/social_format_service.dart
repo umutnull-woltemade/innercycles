@@ -1,6 +1,7 @@
 import 'dart:math';
 import '../models/zodiac_sign.dart';
 import '../models/planet.dart';
+import '../providers/app_providers.dart';
 import 'cosmic_share_content_service.dart';
 
 /// Service for generating auto-cropped social media formats from master content
@@ -11,12 +12,13 @@ class SocialFormatService {
   static SocialFormats generateAllFormats({
     required CosmicShareContent masterContent,
     required ZodiacSign sign,
+    AppLanguage language = AppLanguage.tr,
   }) {
     return SocialFormats(
-      storySlides: _generateStorySlides(masterContent, sign),
-      squarePost: _generateSquarePost(masterContent, sign),
-      portraitPost: _generatePortraitPost(masterContent, sign),
-      reelsScript: _generateReelsScript(masterContent, sign),
+      storySlides: _generateStorySlides(masterContent, sign, language: language),
+      squarePost: _generateSquarePost(masterContent, sign, language: language),
+      portraitPost: _generatePortraitPost(masterContent, sign, language: language),
+      reelsScript: _generateReelsScript(masterContent, sign, language: language),
       videoPrompt: _generateVideoPrompt(sign),
     );
   }
@@ -24,15 +26,23 @@ class SocialFormatService {
   /// PART 2A: Instagram Story Version (9:16) - 6 Slides
   static List<StorySlide> _generateStorySlides(
     CosmicShareContent content,
-    ZodiacSign sign,
-  ) {
+    ZodiacSign sign, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
+    final signName = language == AppLanguage.tr ? sign.nameTr : sign.name;
+    final planetName = language == AppLanguage.tr
+        ? content.planetaryInfluence.dominantPlanet.nameTr
+        : content.planetaryInfluence.dominantPlanet.name;
+    final shadowLabel = language == AppLanguage.tr ? 'Gölgen' : 'Shadow';
+    final lightLabel = language == AppLanguage.tr ? 'Işığın' : 'Light';
+
     return [
       // Slide 1: Hook
       StorySlide(
         slideNumber: 1,
         type: SlideType.hook,
         mainText: content.heroBlock.cosmicHeadline,
-        subText: '${sign.symbol} ${sign.nameTr}',
+        subText: '${sign.symbol} $signName',
         accent: content.heroBlock.moonPhaseEmoji,
         backgroundColor: 'cosmic_gradient_1',
       ),
@@ -66,7 +76,7 @@ class SocialFormatService {
         slideNumber: 4,
         type: SlideType.coreMessage,
         mainText: content.planetaryInfluence.oneAction,
-        subText: '${content.planetaryInfluence.planetSymbol} ${content.planetaryInfluence.dominantPlanet.nameTr}',
+        subText: '${content.planetaryInfluence.planetSymbol} $planetName',
         accent: content.planetaryInfluence.planetSymbol,
         backgroundColor: 'cosmic_gradient_4',
       ),
@@ -75,8 +85,8 @@ class SocialFormatService {
       StorySlide(
         slideNumber: 5,
         type: SlideType.shadowLight,
-        mainText: 'Gölgen: ${content.shadowLight.shadowChallenge}',
-        subText: 'Işığın: ${content.shadowLight.lightStrength}',
+        mainText: '$shadowLabel: ${content.shadowLight.shadowChallenge}',
+        subText: '$lightLabel: ${content.shadowLight.lightStrength}',
         accent: '☯',
         backgroundColor: 'cosmic_gradient_5',
       ),
@@ -96,8 +106,9 @@ class SocialFormatService {
   /// PART 2B: Instagram Square Post (1:1)
   static SocialPost _generateSquarePost(
     CosmicShareContent content,
-    ZodiacSign sign,
-  ) {
+    ZodiacSign sign, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     final headline = content.heroBlock.cosmicHeadline;
     final bestMicro = content.microMessages.isNotEmpty
         ? content.microMessages[0]
@@ -108,15 +119,16 @@ class SocialFormatService {
       headline: headline,
       bodyLines: [bestMicro],
       caption: _generateCaption(content, sign),
-      hashtags: _generateHashtags(sign),
+      hashtags: _generateHashtags(sign, language: language),
     );
   }
 
   /// PART 2B: Instagram Portrait Post (4:5)
   static SocialPost _generatePortraitPost(
     CosmicShareContent content,
-    ZodiacSign sign,
-  ) {
+    ZodiacSign sign, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     final headline = '${sign.symbol} ${content.heroBlock.signTitle}';
 
     return SocialPost(
@@ -127,15 +139,19 @@ class SocialFormatService {
         content.microMessages.isNotEmpty ? content.microMessages[0] : '',
       ],
       caption: _generateCaption(content, sign),
-      hashtags: _generateHashtags(sign),
+      hashtags: _generateHashtags(sign, language: language),
     );
   }
 
   /// PART 2C: Reels/Shorts Video Script (15-20 sec)
   static ReelsScript _generateReelsScript(
     CosmicShareContent content,
-    ZodiacSign sign,
-  ) {
+    ZodiacSign sign, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
+    final signName = language == AppLanguage.tr ? sign.nameTr : sign.name;
+    final todayForYou = language == AppLanguage.tr ? 'Bugün senin için...' : 'Today for you...';
+
     return ReelsScript(
       totalDuration: 18,
       segments: [
@@ -144,8 +160,8 @@ class SocialFormatService {
           startTime: 0,
           endTime: 3,
           type: SegmentType.hook,
-          textOverlay: '${sign.symbol} ${sign.nameTr}',
-          subtext: 'Bugün senin için...',
+          textOverlay: '${sign.symbol} $signName',
+          subtext: todayForYou,
           animation: 'fade_zoom_in',
         ),
 
@@ -262,19 +278,34 @@ ${content.sharePrompt}
 ''';
   }
 
-  static List<String> _generateHashtags(ZodiacSign sign) {
-    return [
-      '#${sign.name.toLowerCase()}',
-      '#${sign.nameTr.toLowerCase().replaceAll(' ', '')}',
-      '#astroloji',
-      '#burcyorumu',
-      '#kozmikenerji',
-      '#gunlukburc',
-      '#venusone',
-      '#astrology',
-      '#zodiac',
-      '#horoscope',
-    ];
+  static List<String> _generateHashtags(ZodiacSign sign, {AppLanguage language = AppLanguage.tr}) {
+    if (language == AppLanguage.tr) {
+      return [
+        '#${sign.name.toLowerCase()}',
+        '#${sign.nameTr.toLowerCase().replaceAll(' ', '')}',
+        '#astroloji',
+        '#burcyorumu',
+        '#kozmikenerji',
+        '#gunlukburc',
+        '#venusone',
+        '#astrology',
+        '#zodiac',
+        '#horoscope',
+      ];
+    } else {
+      return [
+        '#${sign.name.toLowerCase()}',
+        '#astrology',
+        '#zodiac',
+        '#horoscope',
+        '#cosmicenergy',
+        '#dailyhoroscope',
+        '#venusone',
+        '#starsign',
+        '#zodiacsigns',
+        '#celestial',
+      ];
+    }
   }
 }
 

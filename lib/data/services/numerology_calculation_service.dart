@@ -2,6 +2,8 @@
 /// Includes Pythagorean and Chaldean systems with Turkish letter support
 library;
 
+import '../providers/app_providers.dart';
+
 // ============================================================================
 // SUPPORTING CLASSES
 // ============================================================================
@@ -593,80 +595,124 @@ class NumerologyCalculationService {
   }
 
   /// Get detailed Karmic Lesson information
-  static KarmicLesson? getKarmicLessonDetails(int number) {
-    final lessons = {
+  static KarmicLesson? getKarmicLessonDetails(int number, {AppLanguage language = AppLanguage.tr}) {
+    // Turkish lessons
+    final lessonsTr = {
       1: const KarmicLesson(
         number: 1,
-        description:
-            'Ozguven ve bagimsizlik konusunda dersler ogrenmeniz gerekiyor.',
-        howToHeal:
-            'Kendi kararlarinizi vermeyi, liderlik almaya ve kendinize guvenmeyi ogrenmek.',
-        affirmations: ['Ben guclu ve bagimsizim', 'Kendi yolumu yaratiyorum'],
+        description: 'Özgüven ve bağımsızlık konusunda dersler öğrenmeniz gerekiyor.',
+        howToHeal: 'Kendi kararlarınızı vermeyi, liderlik almayı ve kendinize güvenmeyi öğrenmek.',
+        affirmations: ['Ben güçlü ve bağımsızım', 'Kendi yolumu yaratıyorum'],
       ),
       2: const KarmicLesson(
         number: 2,
-        description: 'Isbirligi ve diplomasi konusunda gelismeniz gerekiyor.',
-        howToHeal:
-            'Sabir, empati ve baskalariyla uyum icinde calismayi ogrenmek.',
-        affirmations: ['Isbirligine acigim', 'Uyum yaratiyorum'],
+        description: 'İşbirliği ve diplomasi konusunda gelişmeniz gerekiyor.',
+        howToHeal: 'Sabır, empati ve başkalarıyla uyum içinde çalışmayı öğrenmek.',
+        affirmations: ['İşbirliğine açığım', 'Uyum yaratıyorum'],
       ),
       3: const KarmicLesson(
         number: 3,
-        description: 'Yaratici ifade ve iletisim konusunda engelleriniz var.',
-        howToHeal:
-            'Kendinizi ifade etmekten korkmamak, yaraticiligi kucaklamak.',
-        affirmations: [
-          'Yaraticiligimi ozgurce ifade ediyorum',
-          'Sesim degerli',
-        ],
+        description: 'Yaratıcı ifade ve iletişim konusunda engelleriniz var.',
+        howToHeal: 'Kendinizi ifade etmekten korkmamak, yaratıcılığı kucaklamak.',
+        affirmations: ['Yaratıcılığımı özgürce ifade ediyorum', 'Sesim değerli'],
       ),
       4: const KarmicLesson(
         number: 4,
-        description:
-            'Disiplin, organizasyon ve pratiklik konusunda calismaniz gerekiyor.',
-        howToHeal: 'Duzenli calisma, planlama ve sabir gelistirmek.',
-        affirmations: [
-          'Duzen ve stabilite yaratiyorum',
-          'Sabirla insa ediyorum',
-        ],
+        description: 'Disiplin, organizasyon ve pratiklik konusunda çalışmanız gerekiyor.',
+        howToHeal: 'Düzenli çalışma, planlama ve sabır geliştirmek.',
+        affirmations: ['Düzen ve stabilite yaratıyorum', 'Sabırla inşa ediyorum'],
       ),
       5: const KarmicLesson(
         number: 5,
-        description:
-            'Degisim, ozgurluk ve adaptasyon konusunda dersleriniz var.',
-        howToHeal:
-            'Degisimi kucaklamak, esnek olmak, yeni deneyimlere acik olmak.',
-        affirmations: ['Degisime acigim', 'Ozgurlugumu kutluyorum'],
+        description: 'Değişim, özgürlük ve adaptasyon konusunda dersleriniz var.',
+        howToHeal: 'Değişimi kucaklamak, esnek olmak, yeni deneyimlere açık olmak.',
+        affirmations: ['Değişime açığım', 'Özgürlüğümü kutluyorum'],
       ),
       6: const KarmicLesson(
         number: 6,
-        description:
-            'Sorumluluk, aile ve bakim verme konusunda ogreniminiz var.',
-        howToHeal: 'Baskalarina sefkat gostermek, sorumluluk almak.',
-        affirmations: ['Sevgiyle bakim veriyorum', 'Ailem icin varim'],
+        description: 'Sorumluluk, aile ve bakım verme konusunda öğreniminiz var.',
+        howToHeal: 'Başkalarına şefkat göstermek, sorumluluk almak.',
+        affirmations: ['Sevgiyle bakım veriyorum', 'Ailem için varım'],
       ),
       7: const KarmicLesson(
         number: 7,
-        description:
-            'Spiritüel arayis ve icsel bilgelik konusunda gelismeniz gerekiyor.',
-        howToHeal:
-            'Meditasyon, kendini tanimayla, derin dusunce ile baglanmak.',
-        affirmations: ['Icsel bilgeligimi dinliyorum', 'Derinlige iniyorum'],
+        description: 'Spiritüel arayış ve içsel bilgelik konusunda gelişmeniz gerekiyor.',
+        howToHeal: 'Meditasyon, kendini tanımayla, derin düşünce ile bağlanmak.',
+        affirmations: ['İçsel bilgeliğimi dinliyorum', 'Derinliğe iniyorum'],
       ),
       8: const KarmicLesson(
         number: 8,
-        description: 'Maddi dunya, guc ve otorite konusunda dersleriniz var.',
-        howToHeal: 'Finansal bilinclilik, guc dengesini ogrenmek.',
-        affirmations: ['Bollugu hak ediyorum', 'Gucumu bilgece kullaniyorum'],
+        description: 'Maddi dünya, güç ve otorite konusunda dersleriniz var.',
+        howToHeal: 'Finansal bilinçlilik, güç dengesini öğrenmek.',
+        affirmations: ['Bolluğu hak ediyorum', 'Gücümü bilgece kullanıyorum'],
       ),
       9: const KarmicLesson(
         number: 9,
-        description:
-            'Evrensel sevgi, sefkat ve birakma konusunda ogreniminiz var.',
-        howToHeal: 'Kosulsuz sevgi, affetme ve hizmet etmeyi ogrenmek.',
-        affirmations: ['Kosulsuz seviyorum', 'Kolayca birakiyorum'],
+        description: 'Evrensel sevgi, şefkat ve bırakma konusunda öğreniminiz var.',
+        howToHeal: 'Koşulsuz sevgi, affetme ve hizmet etmeyi öğrenmek.',
+        affirmations: ['Koşulsuz seviyorum', 'Kolayca bırakıyorum'],
       ),
     };
+
+    // English lessons
+    final lessonsEn = {
+      1: const KarmicLesson(
+        number: 1,
+        description: 'You need to learn lessons about self-confidence and independence.',
+        howToHeal: 'Learn to make your own decisions, take leadership, and trust yourself.',
+        affirmations: ['I am strong and independent', 'I create my own path'],
+      ),
+      2: const KarmicLesson(
+        number: 2,
+        description: 'You need to develop in cooperation and diplomacy.',
+        howToHeal: 'Learn patience, empathy, and working in harmony with others.',
+        affirmations: ['I am open to cooperation', 'I create harmony'],
+      ),
+      3: const KarmicLesson(
+        number: 3,
+        description: 'You have blocks in creative expression and communication.',
+        howToHeal: 'Don\'t fear expressing yourself, embrace creativity.',
+        affirmations: ['I freely express my creativity', 'My voice is valuable'],
+      ),
+      4: const KarmicLesson(
+        number: 4,
+        description: 'You need to work on discipline, organization, and practicality.',
+        howToHeal: 'Develop regular work habits, planning, and patience.',
+        affirmations: ['I create order and stability', 'I build with patience'],
+      ),
+      5: const KarmicLesson(
+        number: 5,
+        description: 'You have lessons in change, freedom, and adaptation.',
+        howToHeal: 'Embrace change, be flexible, be open to new experiences.',
+        affirmations: ['I am open to change', 'I celebrate my freedom'],
+      ),
+      6: const KarmicLesson(
+        number: 6,
+        description: 'You have learning about responsibility, family, and caregiving.',
+        howToHeal: 'Show compassion to others, take responsibility.',
+        affirmations: ['I give care with love', 'I am here for my family'],
+      ),
+      7: const KarmicLesson(
+        number: 7,
+        description: 'You need to develop in spiritual seeking and inner wisdom.',
+        howToHeal: 'Connect through meditation, self-knowledge, and deep thought.',
+        affirmations: ['I listen to my inner wisdom', 'I go into depth'],
+      ),
+      8: const KarmicLesson(
+        number: 8,
+        description: 'You have lessons about the material world, power, and authority.',
+        howToHeal: 'Learn financial awareness and power balance.',
+        affirmations: ['I deserve abundance', 'I use my power wisely'],
+      ),
+      9: const KarmicLesson(
+        number: 9,
+        description: 'You have learning about universal love, compassion, and letting go.',
+        howToHeal: 'Learn unconditional love, forgiveness, and service.',
+        affirmations: ['I love unconditionally', 'I let go easily'],
+      ),
+    };
+
+    final lessons = language == AppLanguage.tr ? lessonsTr : lessonsEn;
     return lessons[number];
   }
 

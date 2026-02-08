@@ -156,12 +156,12 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
               colors: [
-                AppColors.starGold.withOpacity(0.3),
-                AppColors.starGold.withOpacity(0.1),
+                AppColors.starGold.withValues(alpha: 0.3),
+                AppColors.starGold.withValues(alpha: 0.1),
               ],
             ),
             border: Border.all(
-              color: AppColors.starGold.withOpacity(0.5),
+              color: AppColors.starGold.withValues(alpha: 0.5),
               width: 2,
             ),
           ),
@@ -192,7 +192,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
               decoration: BoxDecoration(
-                color: sign.color.withOpacity(0.2),
+                color: sign.color.withValues(alpha: 0.2),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Text(
@@ -218,13 +218,13 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
         color: isDark
-            ? AppColors.surfaceDark.withOpacity(0.7)
+            ? AppColors.surfaceDark.withValues(alpha: 0.7)
             : AppColors.lightCard,
         borderRadius: BorderRadius.circular(AppConstants.radiusLg),
         border: Border.all(
           color: isDark
-              ? Colors.white.withOpacity(0.1)
-              : Colors.black.withOpacity(0.05),
+              ? Colors.white.withValues(alpha: 0.1)
+              : Colors.black.withValues(alpha: 0.05),
         ),
       ),
       child: Column(
@@ -338,7 +338,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             ),
             filled: true,
             fillColor: isDark
-                ? AppColors.surfaceLight.withOpacity(0.3)
+                ? AppColors.surfaceLight.withValues(alpha: 0.3)
                 : AppColors.lightSurfaceVariant,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(AppConstants.radiusMd),
@@ -379,7 +379,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             padding: const EdgeInsets.all(AppConstants.spacingMd),
             decoration: BoxDecoration(
               color: isDark
-                  ? AppColors.surfaceLight.withOpacity(0.3)
+                  ? AppColors.surfaceLight.withValues(alpha: 0.3)
                   : AppColors.lightSurfaceVariant,
               borderRadius: BorderRadius.circular(AppConstants.radiusMd),
             ),
@@ -422,13 +422,13 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
         color: isDark
-            ? AppColors.surfaceDark.withOpacity(0.7)
+            ? AppColors.surfaceDark.withValues(alpha: 0.7)
             : AppColors.lightCard,
         borderRadius: BorderRadius.circular(AppConstants.radiusLg),
         border: Border.all(
           color: isDark
-              ? Colors.white.withOpacity(0.1)
-              : Colors.black.withOpacity(0.05),
+              ? Colors.white.withValues(alpha: 0.1)
+              : Colors.black.withValues(alpha: 0.05),
         ),
       ),
       child: Column(
@@ -646,7 +646,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                     children: [
                       FilterChip(
                         label: Text(
-                          'Türkiye',
+                          L10nService.get('input.turkey_kktc', language),
                           style: TextStyle(
                             color: showTurkeyOnly
                                 ? Colors.white
@@ -830,11 +830,11 @@ class _CosmicSignCard extends StatelessWidget {
       padding: const EdgeInsets.all(AppConstants.spacingMd),
       decoration: BoxDecoration(
         color: isDark
-            ? AppColors.surfaceLight.withOpacity(0.3)
+            ? AppColors.surfaceLight.withValues(alpha: 0.3)
             : AppColors.lightSurfaceVariant,
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         border: sign != null
-            ? Border.all(color: sign!.color.withOpacity(0.3))
+            ? Border.all(color: sign!.color.withValues(alpha: 0.3))
             : null,
       ),
       child: Column(

@@ -33,11 +33,11 @@ class ContentDetailScreen extends ConsumerWidget {
           slivers: [
             // Header with back button
             SliverToBoxAdapter(
-              child: _buildHeader(context, section, isDark),
+              child: _buildHeader(context, section, isDark, language),
             ),
             // Content
             SliverToBoxAdapter(
-              child: _buildContent(context, section, isDark),
+              child: _buildContent(context, section, isDark, language),
             ),
             // Bottom spacing
             const SliverToBoxAdapter(
@@ -53,6 +53,7 @@ class ContentDetailScreen extends ConsumerWidget {
     BuildContext context,
     VenusContentSection section,
     bool isDark,
+    AppLanguage language,
   ) {
     return Container(
       padding: const EdgeInsets.fromLTRB(8, 8, 20, 20),
@@ -94,8 +95,8 @@ class ContentDetailScreen extends ConsumerWidget {
                   height: 56,
                   decoration: BoxDecoration(
                     color: isDark
-                        ? AppColors.cosmicPurple.withOpacity(0.4)
-                        : AppColors.lightStarGold.withOpacity(0.15),
+                        ? AppColors.cosmicPurple.withValues(alpha: 0.4)
+                        : AppColors.lightStarGold.withValues(alpha: 0.15),
                     borderRadius: BorderRadius.circular(14),
                   ),
                   child: Center(
@@ -110,7 +111,7 @@ class ContentDetailScreen extends ConsumerWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      if (section.badge != null)
+                      if (section.getBadge(language) != null)
                         Container(
                           margin: const EdgeInsets.only(bottom: 4),
                           padding: const EdgeInsets.symmetric(
@@ -118,17 +119,17 @@ class ContentDetailScreen extends ConsumerWidget {
                             vertical: 2,
                           ),
                           decoration: BoxDecoration(
-                            color: section.badge == 'Yeni'
-                                ? AppColors.starGold.withOpacity(0.2)
-                                : AppColors.cosmicPurple.withOpacity(0.2),
+                            color: section.getBadge(language) == 'Yeni' || section.getBadge(language) == 'New'
+                                ? AppColors.starGold.withValues(alpha: 0.2)
+                                : AppColors.cosmicPurple.withValues(alpha: 0.2),
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Text(
-                            section.badge!,
+                            section.getBadge(language)!,
                             style: TextStyle(
                               fontSize: 10,
                               fontWeight: FontWeight.w600,
-                              color: section.badge == 'Yeni'
+                              color: section.getBadge(language) == 'Yeni' || section.getBadge(language) == 'New'
                                   ? AppColors.starGold
                                   : (isDark
                                       ? AppColors.textSecondary
@@ -137,7 +138,7 @@ class ContentDetailScreen extends ConsumerWidget {
                           ),
                         ),
                       Text(
-                        section.title,
+                        section.getTitle(language),
                         style: TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.w700,
@@ -148,7 +149,7 @@ class ContentDetailScreen extends ConsumerWidget {
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        section.subtitle,
+                        section.getSubtitle(language),
                         style: TextStyle(
                           fontSize: 14,
                           color: isDark
@@ -171,9 +172,10 @@ class ContentDetailScreen extends ConsumerWidget {
     BuildContext context,
     VenusContentSection section,
     bool isDark,
+    AppLanguage language,
   ) {
     // Parse markdown-style content
-    final lines = section.fullContent.split('\n');
+    final lines = section.getFullContent(language).split('\n');
     final widgets = <Widget>[];
 
     for (final line in lines) {

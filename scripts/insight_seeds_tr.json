@@ -1,0 +1,132 @@
+{
+  "version": "1.0.0",
+  "description": "Apple-safe fallback content for Insight assistant - Turkish - NO predictions, NO astrology",
+  "dream_reflections": {
+    "falling": {
+      "response": "Düşme rüyaları birçok insanın deneyimlediği yaygın rüyalardandır. Pek çok kişi bu rüyaları belirsizlik dönemlerinde veya hayatın bazı yönlerinin kontrolden çıktığını hissettiklerinde görür.\n\nBu rüyanın tekrarlayıp tekrarlamadığını merak ediyorum - kalıpların kendisi de keşfetmeye değer olabilir. Son zamanlarda uyanık hayatında neler oluyor? Bazen zihnimiz gündüz kaygılarını gece imgelerle işler.\n\nRüyada düşmek nasıl hissettiriyor - korkutucu mu, özgürleştirici mi, yoksa başka bir şey mi?",
+      "follow_up_questions": [
+        "Ani bir düşüş müydü yoksa yavaş mıydı?",
+        "Yere çarptın mı yoksa düşerken uyandın mı?",
+        "Nereden düşüyordun?"
+      ]
+    },
+    "water": {
+      "response": "Su rüyaları birçok insanın deneyimlediği yaygın temalardandır. Su, farklı insanlar için farklı şeyler ifade edebilir - bazen duygular, bazen değişim, bazen arınma.\n\nRüyandaki su nasıldı? Sakin miydi, çalkantılı mıydı, derin miydi, sığ mıydı? Bu özellikler uyanık hayatında olup bitenlerle bağlantılı olabilir.\n\nRüya sırasında nasıl hissettin?",
+      "follow_up_questions": [
+        "Suyun içinde miydin yoksa dışarıdan mı izliyordun?",
+        "Su berrak mıydı yoksa bulanık mı?",
+        "Tanıdık bir su kütlesi miydi?"
+      ]
+    },
+    "flying": {
+      "response": "Uçma rüyaları en çok hatırlanan rüya deneyimlerinden biridir. Pek çok kişi bunları özgürlük, perspektif kazanma veya sınırlamalardan kaçış ile ilişkilendirir.\n\nUçuş kolay mıydı yoksa zorluk mu çektin? Yüksekten mi uçuyordun yoksa yere yakın mıydın? Bu detaylar kişisel anlamlar taşıyabilir.\n\nUçarken nasıl hissettin - neşeli mi, korkmuş mu, kontrollü mü?",
+      "follow_up_questions": [
+        "Kanatların var mıydı yoksa süzülüyor muydun?",
+        "Nereye veya nereden uçuyordun?",
+        "Seninle birlikte uçan başkaları var mıydı?"
+      ]
+    },
+    "chase": {
+      "response": "Kovalanma rüyaları birçok insanın deneyimlediği yaygın rüyalardandır. Genellikle baskı altında hissettiğimiz veya uyanık hayatta bir şeylerden kaçındığımız zamanlarda ortaya çıkarlar.\n\nSeni neyin kovaladığını hatırlıyor musun? Ve kaçmayı başarabildin mi yoksa yakalandın mı? Bu detaylar senin için ne anlama geldiğini keşfetmeye değer olabilir.\n\nSon zamanlarda zihninde seni 'kovalayan' veya kaçınmak istediğin bir şey var mı?",
+      "follow_up_questions": [
+        "Seni kovalayan şeyi net görebiliyor muydun?",
+        "Nereye doğru kaçıyordun?",
+        "Kovalamaca nasıl bitti?"
+      ]
+    },
+    "teeth": {
+      "response": "Diş rüyaları en yaygın bildirilen rüya temalarından biridir. Farklı kişiler bunları farklı şekillerde deneyimler - bazıları dişlerin döküldüğünü, bazıları kırıldığını, bazıları da sallandığını görür.\n\nPek çok kişi bu rüyaları özsaygı, iletişim veya hayatlarında bir tür geçiş dönemiyle ilgili endişelerle ilişkilendirir.\n\nRüyada tam olarak ne oldu ve nasıl hissettin?",
+      "follow_up_questions": [
+        "Tek bir diş miydi yoksa birden fazla mı?",
+        "Rüyada acıyor muydu?",
+        "Olduğunda yanında başka biri var mıydı?"
+      ]
+    },
+    "general": {
+      "response": "Rüyanı paylaştığın için teşekkürler. Rüyalar, uyanık zihnimizin her zaman işleyemediği düşünce ve duyguları işlemenin bir yolu olabilir.\n\nRüya sırasında baskın duygu neydi? Ve son zamanlarda hayatında olup bitenlerle herhangi bir bağlantı hissediyor musun?\n\nRüyada hangi kısım en çok aklında kaldı?",
+      "follow_up_questions": [
+        "Uyandığında nasıl hissettin?",
+        "Daha önce benzer rüyalar gördün mü?",
+        "Öne çıkan belirli bir unsur var mı?"
+      ]
+    }
+  },
+  "pattern_reflections": {
+    "general": {
+      "response": "Bir kalıp fark etmek güçlü bir öz-farkındalık işaretidir. Pek çok insan döngüleri tanımlamadan onların içinde yaşar.\n\nBu kalıbın ne zaman başladığını hatırlıyor musun? Ve bu kalıba genellikle ne gibi duygular veya durumlar eşlik ediyor?\n\nBu örüntüyü fark ettiğinde ne hissediyorsun?",
+      "follow_up_questions": [
+        "Bu kalıbı ne tetikliyor?",
+        "Kalıbı kırmak nasıl görünürdü?",
+        "Bu kalıp sana ne veriyor?"
+      ]
+    }
+  },
+  "emotional_reflections": {
+    "anxiety": {
+      "response": "Kaygı zorlu bir duygu olabilir. Genellikle vücudumuzun bir şeyin dikkatimizi gerektirdiğini söyleme şeklidir - her zaman doğru olmasa bile.\n\nKaygıyı en çok nerede hissediyorsun - vücudunda mı, düşüncelerinde mi, ikisinde de mi? Ve genellikle ne tarafından tetikleniyor?\n\nBu kaygıyla başa çıkmak için şu anda sana yardımcı olan bir şey var mı?",
+      "follow_up_questions": [
+        "Bu hissi ilk ne zaman fark ettin?",
+        "Onu daha iyi veya daha kötü yapan ne?",
+        "Günlük hayatını nasıl etkiliyor?"
+      ]
+    },
+    "sadness": {
+      "response": "Üzüntü, deneyimlerimizi işlememize yardımcı olan doğal bir duygudur. Bazen bir şeyin bizim için önemli olduğunu gösterir.\n\nBu üzüntü ne zaman başladı? Ve neye bağlı olduğunu biliyor musun - belirli bir olay mı, yoksa daha genel bir his mi?\n\nŞu anda kendine nasıl bakıyorsun?",
+      "follow_up_questions": [
+        "Bu üzüntü belirli bir şeyle mi ilgili?",
+        "Biriyle bu konuda konuşabildin mi?",
+        "Bu şekilde hissettiğinde genellikle ne yardımcı olur?"
+      ]
+    },
+    "anger": {
+      "response": "Öfke genellikle sınırlarımızın aşıldığını veya bir şeyin adil olmadığını hissettiğimizi gösterir. Dikkat edilmesi gereken önemli bir duygudur.\n\nBu öfkenin kaynağında ne olduğunu düşünüyorsun? Ve bu duyguyu nasıl ifade ediyorsun - içine mi atıyorsun, yoksa dışa mı vuruyorsun?\n\nBu öfkenin altında başka duygular olabilir mi?",
+      "follow_up_questions": [
+        "Bu hissi ne tetikledi?",
+        "Öfkeyi genellikle nasıl yönetirsin?",
+        "Ele alman gereken bir şey var mı?"
+      ]
+    },
+    "general": {
+      "response": "Duygularınla temas halinde olmak önemli bir öz-farkındalık becerisidir. Hissettiğin her duygu geçerlidir.\n\nBu duygu ne zamandan beri var? Ve vücudunda nerede hissediyorsun?\n\nŞu anda en çok neye ihtiyacın var?",
+      "follow_up_questions": [
+        "Hissi daha fazla tanımlayabilir misin?",
+        "Şu anda ne yardımcı olurdu?",
+        "Daha önce böyle hissettin mi?"
+      ]
+    }
+  },
+  "decision_reflections": {
+    "general": {
+      "response": "Karar vermek zor olabilir, özellikle birden fazla geçerli seçenek olduğunda. Her iki yönü de görebilmek aslında düşünceli bir yaklaşımın işaretidir.\n\nHer seçeneğin en iyi sonucunu hayal etsen, hangisi seni daha çok heyecanlandırıyor? Ve her birinin en kötü sonucu ne olurdu?\n\nİçgüdün ne söylüyor?",
+      "follow_up_questions": [
+        "Burada hangi değerler söz konusu?",
+        "Gelecekteki sen sana ne için teşekkür ederdi?",
+        "Karar vermeni engelleyen ne?"
+      ]
+    }
+  },
+  "relationship_reflections": {
+    "general": {
+      "response": "İlişkiler hayatımızın en anlamlı ama aynı zamanda en zorlu yönlerinden biri olabilir. Her ilişki kendi dinamiğini taşır.\n\nBu ilişkide şu anda en çok neyi hissediyorsun? Ve bu ilişkiden ne beklediğini biliyor musun?\n\nİdeal senaryoda bu ilişki nasıl görünürdü?",
+      "follow_up_questions": [
+        "Bu ilişkide işe yarayan ne?",
+        "Neyi değiştirmek isterdin?",
+        "Nasıl hissettiğini ifade ettin mi?"
+      ]
+    }
+  },
+  "self_discovery_reflections": {
+    "general": {
+      "response": "Kendini tanıma yolculuğu ömür boyu süren bir süreçtir. Sorular sorman, zaten bu yolda olduğunu gösteriyor.\n\nHayatında en çok ne zaman kendin gibi hissediyorsun? Ve ne zaman kendin gibi hissetmekte zorlanıyorsun?\n\nSeni en iyi tanıyan biri seni nasıl tarif ederdi?",
+      "follow_up_questions": [
+        "En çok neyi merak ediyorsun?",
+        "Sana ne neşe veriyor?",
+        "Değiştirebilseydin neyi değiştirirdin?"
+      ]
+    }
+  },
+  "welcome_messages": {
+    "default": "Merhaba! Aklındakileri yansıtmana yardımcı olmak için buradayım. İster bir rüya, ister bir duygu, ister bir karar, ister sadece keşfetmek istediğin bir şey olsun - dinlemek ve farklı bir açıdan görmenize yardımcı olabilecek sorular sormak için buradayım.\n\nBurası tavsiye değil, kişisel yansıma için bir alan. Bugün aklında ne var?"
+  },
+  "disclaimer": "Bu sadece kişisel yansıma ve eğlence amaçlıdır. Profesyonel tavsiye sağlamaz."
+}

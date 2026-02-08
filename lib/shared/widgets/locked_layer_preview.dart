@@ -51,8 +51,8 @@ class LockedLayerPreview extends ConsumerWidget {
             end: Alignment.bottomRight,
             colors: isDark
                 ? [
-                    AppColors.surfaceLight.withOpacity(0.8),
-                    AppColors.surfaceDark.withOpacity(0.9),
+                    AppColors.surfaceLight.withValues(alpha: 0.8),
+                    AppColors.surfaceDark.withValues(alpha: 0.9),
                   ]
                 : [
                     Colors.white,
@@ -61,12 +61,12 @@ class LockedLayerPreview extends ConsumerWidget {
           ),
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
-            color: color.withOpacity(0.4),
+            color: color.withValues(alpha: 0.4),
             width: 1.5,
           ),
           boxShadow: [
             BoxShadow(
-              color: color.withOpacity(0.15),
+              color: color.withValues(alpha: 0.15),
               blurRadius: 20,
               offset: const Offset(0, 8),
             ),
@@ -89,7 +89,7 @@ class LockedLayerPreview extends ConsumerWidget {
                           Container(
                             padding: const EdgeInsets.all(10),
                             decoration: BoxDecoration(
-                              color: color.withOpacity(0.15),
+                              color: color.withValues(alpha: 0.15),
                               borderRadius: BorderRadius.circular(12),
                             ),
                             child: Icon(
@@ -172,7 +172,7 @@ class LockedLayerPreview extends ConsumerWidget {
                         end: Alignment.bottomCenter,
                         colors: [
                           Colors.transparent,
-                          (isDark ? AppColors.surfaceDark : Colors.white).withOpacity(0.3),
+                          (isDark ? AppColors.surfaceDark : Colors.white).withValues(alpha: 0.3),
                         ],
                         stops: const [0.5, 1.0],
                       ),
@@ -189,7 +189,7 @@ class LockedLayerPreview extends ConsumerWidget {
                 child: Container(
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    color: color.withOpacity(0.2),
+                    color: color.withValues(alpha: 0.2),
                     shape: BoxShape.circle,
                   ),
                   child: Icon(
@@ -223,13 +223,13 @@ class _PremiumBadge extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            color.withOpacity(0.3),
-            color.withOpacity(0.1),
+            color.withValues(alpha: 0.3),
+            color.withValues(alpha: 0.1),
           ],
         ),
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
-          color: color.withOpacity(0.5),
+          color: color.withValues(alpha: 0.5),
         ),
       ),
       child: Row(
@@ -254,7 +254,7 @@ class _PremiumBadge extends StatelessWidget {
       ),
     ).animate(onPlay: (controller) => controller.repeat(reverse: true)).shimmer(
           duration: 2000.ms,
-          color: color.withOpacity(0.3),
+          color: color.withValues(alpha: 0.3),
         );
   }
 }
@@ -285,13 +285,13 @@ class _UnlockButton extends StatelessWidget {
           gradient: LinearGradient(
             colors: [
               color,
-              color.withOpacity(0.8),
+              color.withValues(alpha: 0.8),
             ],
           ),
           borderRadius: BorderRadius.circular(14),
           boxShadow: [
             BoxShadow(
-              color: color.withOpacity(0.4),
+              color: color.withValues(alpha: 0.4),
               blurRadius: 12,
               offset: const Offset(0, 4),
             ),
@@ -320,7 +320,7 @@ class _UnlockButton extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.2),
+                  color: Colors.white.withValues(alpha: 0.2),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Text(
@@ -381,13 +381,13 @@ class InlineLockedSection extends ConsumerWidget {
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  color.withOpacity(0.1),
-                  color.withOpacity(0.05),
+                  color.withValues(alpha: 0.1),
+                  color.withValues(alpha: 0.05),
                 ],
               ),
               borderRadius: BorderRadius.circular(16),
               border: Border.all(
-                color: color.withOpacity(0.3),
+                color: color.withValues(alpha: 0.3),
                 style: BorderStyle.solid,
               ),
             ),
@@ -453,8 +453,8 @@ class InlineLockedSection extends ConsumerWidget {
                         height: 48,
                         decoration: BoxDecoration(
                           color: isDark
-                              ? Colors.white.withOpacity(0.05)
-                              : Colors.black.withOpacity(0.03),
+                              ? Colors.white.withValues(alpha: 0.05)
+                              : Colors.black.withValues(alpha: 0.03),
                           borderRadius: BorderRadius.circular(8),
                         ),
                       ),

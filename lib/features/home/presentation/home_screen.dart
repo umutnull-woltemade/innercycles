@@ -8,6 +8,7 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/constants/routes.dart';
+import '../../../core/config/feature_flags.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/zodiac_sign.dart';
 import '../../../data/providers/app_providers.dart';
@@ -17,6 +18,7 @@ import '../../../data/services/moon_service.dart';
 import '../../../data/services/ai_content_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/page_bottom_navigation.dart';
+import '../widgets/insight_section.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
@@ -55,9 +57,10 @@ class HomeScreen extends ConsumerWidget {
                 _buildHeader(context, ref, userProfile.name, sign),
                 const SizedBox(height: AppConstants.spacingLg),
                 // ════════════════════════════════════════════════════════════
-                // KOZMOZ USTASI - Ana sayfanın yıldızı, AI destekli asistan
+                // INSIGHT - Apple-Safe Personal Reflection Assistant
+                // Replaces Kozmoz for App Store compliance
                 // ════════════════════════════════════════════════════════════
-                const _KozmozMasterSection(),
+                const InsightSection(),
                 const SizedBox(height: AppConstants.spacingLg),
                 // Mercury Retrograde Alert
                 if (MoonService.isPlanetRetrograde('mercury'))
@@ -66,14 +69,23 @@ class HomeScreen extends ConsumerWidget {
                 // Moon Phase & Sign Widget
                 _buildMoonWidget(context, ref),
                 const SizedBox(height: AppConstants.spacingXl),
-                _buildQuickActions(context, ref),
-                const SizedBox(height: AppConstants.spacingXl),
+                // ════════════════════════════════════════════════════════════
+                // APP STORE 4.3(b): Show quick actions only when not in review mode
+                // ════════════════════════════════════════════════════════════
+                if (!FeatureFlags.appStoreReviewMode) ...[
+                  _buildQuickActions(context, ref),
+                  const SizedBox(height: AppConstants.spacingXl),
+                ],
                 // ═══════════════════════════════════════════════════════════════
                 // RUHSAL & WELLNESS - Meditasyon, ritüeller, chakra
                 // ═══════════════════════════════════════════════════════════════
                 _buildSpiritualSection(context, ref),
                 const SizedBox(height: AppConstants.spacingXl),
-                _buildAllSigns(context, ref),
+                // ════════════════════════════════════════════════════════════
+                // APP STORE 4.3(b): Hide zodiac sign grid in review mode
+                // ════════════════════════════════════════════════════════════
+                if (FeatureFlags.showZodiacIdentity)
+                  _buildAllSigns(context, ref),
                 const SizedBox(height: AppConstants.spacingXl),
                 // ═══════════════════════════════════════════════════════════════
                 // TÜM ÇÖZÜMLEMELERİ GÖR - Ana katalog butonu
@@ -104,21 +116,26 @@ class HomeScreen extends ConsumerWidget {
               onLanguageChanged: (lang) => ref.read(languageProvider.notifier).state = lang,
             ),
             const Spacer(),
-            // Kozmik Iletisim Butonu - Chatbot
-            _KozmikIletisimButton(
-              onTap: () => context.push(Routes.kozmikIletisim),
-            ),
-            const SizedBox(width: 8),
-            // Ruya Dongusu Butonu - 7 Boyutlu Form
-            _RuyaDongusuButton(
-              onTap: () => context.push(Routes.ruyaDongusu),
-            ),
-            const SizedBox(width: 8),
-            // KOZMOZ Butonu - Her zaman parlayan özel buton
-            _KozmozButton(
-              onTap: () => context.push(Routes.kozmoz),
-            ),
-            const SizedBox(width: 8),
+            // ════════════════════════════════════════════════════════════
+            // APP STORE 4.3(b) COMPLIANCE: Hide high-risk buttons in review mode
+            // ════════════════════════════════════════════════════════════
+            if (FeatureFlags.showKozmoz) ...[
+              // Kozmik Iletisim Butonu - Chatbot
+              _KozmikIletisimButton(
+                onTap: () => context.push(Routes.kozmikIletisim),
+              ),
+              const SizedBox(width: 8),
+              // Ruya Dongusu Butonu - 7 Boyutlu Form
+              _RuyaDongusuButton(
+                onTap: () => context.push(Routes.ruyaDongusu),
+              ),
+              const SizedBox(width: 8),
+              // KOZMOZ Butonu - Her zaman parlayan özel buton
+              _KozmozButton(
+                onTap: () => context.push(Routes.kozmoz),
+              ),
+              const SizedBox(width: 8),
+            ],
             // Arama Butonu - Büyük ve animasyonlu
             _AnimatedHeaderButton(
               icon: Icons.search_rounded,
@@ -163,7 +180,12 @@ class HomeScreen extends ConsumerWidget {
     final birthPlace = userProfile?.birthPlace;
 
     return GestureDetector(
-      onTap: () => context.push('${Routes.horoscope}/${sign.name.toLowerCase()}'),
+      // App Store 4.3(b): Navigate to Insight instead of horoscope in review mode
+      onTap: () => context.push(
+        FeatureFlags.showHoroscopes
+          ? '${Routes.horoscope}/${sign.name.toLowerCase()}'
+          : Routes.insight
+      ),
       child: Container(
         width: double.infinity,
         padding: const EdgeInsets.all(16),
@@ -172,16 +194,16 @@ class HomeScreen extends ConsumerWidget {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-              sign.color.withOpacity(0.25),
-              sign.color.withOpacity(0.1),
-              const Color(0xFF1A1A2E).withOpacity(0.9),
+              sign.color.withValues(alpha: 0.25),
+              sign.color.withValues(alpha: 0.1),
+              const Color(0xFF1A1A2E).withValues(alpha: 0.9),
             ],
           ),
           borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: sign.color.withOpacity(0.4), width: 1.5),
+          border: Border.all(color: sign.color.withValues(alpha: 0.4), width: 1.5),
           boxShadow: [
             BoxShadow(
-              color: sign.color.withOpacity(0.2),
+              color: sign.color.withValues(alpha: 0.2),
               blurRadius: 20,
               offset: const Offset(0, 8),
             ),
@@ -208,15 +230,15 @@ class HomeScreen extends ConsumerWidget {
                   decoration: BoxDecoration(
                     gradient: RadialGradient(
                       colors: [
-                        sign.color.withOpacity(0.5),
-                        sign.color.withOpacity(0.15),
+                        sign.color.withValues(alpha: 0.5),
+                        sign.color.withValues(alpha: 0.15),
                       ],
                     ),
                     shape: BoxShape.circle,
-                    border: Border.all(color: sign.color.withOpacity(0.7), width: 2),
+                    border: Border.all(color: sign.color.withValues(alpha: 0.7), width: 2),
                     boxShadow: [
                       BoxShadow(
-                        color: sign.color.withOpacity(0.4),
+                        color: sign.color.withValues(alpha: 0.4),
                         blurRadius: 12,
                       ),
                     ],
@@ -246,7 +268,7 @@ class HomeScreen extends ConsumerWidget {
                               ),
                             ),
                             const SizedBox(width: 8),
-                            Text('•', style: TextStyle(color: Colors.white.withOpacity(0.5))),
+                            Text('•', style: TextStyle(color: Colors.white.withValues(alpha: 0.5))),
                             const SizedBox(width: 8),
                           ],
                           Text(
@@ -264,23 +286,23 @@ class HomeScreen extends ConsumerWidget {
                       if (birthDate != null)
                         Row(
                           children: [
-                            Icon(Icons.cake_outlined, size: 14, color: Colors.white.withOpacity(0.6)),
+                            Icon(Icons.cake_outlined, size: 14, color: Colors.white.withValues(alpha: 0.6)),
                             const SizedBox(width: 6),
                             Text(
                               _formatBirthDate(birthDate, language),
                               style: TextStyle(
-                                color: Colors.white.withOpacity(0.8),
+                                color: Colors.white.withValues(alpha: 0.8),
                                 fontSize: 13,
                               ),
                             ),
                             if (birthTime != null && birthTime.isNotEmpty) ...[
                               const SizedBox(width: 10),
-                              Icon(Icons.access_time, size: 14, color: Colors.white.withOpacity(0.6)),
+                              Icon(Icons.access_time, size: 14, color: Colors.white.withValues(alpha: 0.6)),
                               const SizedBox(width: 4),
                               Text(
                                 birthTime,
                                 style: TextStyle(
-                                  color: Colors.white.withOpacity(0.8),
+                                  color: Colors.white.withValues(alpha: 0.8),
                                   fontSize: 13,
                                 ),
                               ),
@@ -292,13 +314,13 @@ class HomeScreen extends ConsumerWidget {
                         const SizedBox(height: 4),
                         Row(
                           children: [
-                            Icon(Icons.location_on_outlined, size: 14, color: Colors.white.withOpacity(0.6)),
+                            Icon(Icons.location_on_outlined, size: 14, color: Colors.white.withValues(alpha: 0.6)),
                             const SizedBox(width: 6),
                             Flexible(
                               child: Text(
                                 birthPlace,
                                 style: TextStyle(
-                                  color: Colors.white.withOpacity(0.7),
+                                  color: Colors.white.withValues(alpha: 0.7),
                                   fontSize: 12,
                                 ),
                                 overflow: TextOverflow.ellipsis,
@@ -318,7 +340,7 @@ class HomeScreen extends ConsumerWidget {
                     Text(
                       L10nService.get('home.luck', language),
                       style: TextStyle(
-                        color: Colors.white.withOpacity(0.5),
+                        color: Colors.white.withValues(alpha: 0.5),
                         fontSize: 10,
                       ),
                     ),
@@ -347,12 +369,12 @@ class HomeScreen extends ConsumerWidget {
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
-                      AppColors.starGold.withOpacity(0.2),
-                      sign.color.withOpacity(0.1),
+                      AppColors.starGold.withValues(alpha: 0.2),
+                      sign.color.withValues(alpha: 0.1),
                     ],
                   ),
                   borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: AppColors.starGold.withOpacity(0.4)),
+                  border: Border.all(color: AppColors.starGold.withValues(alpha: 0.4)),
                 ),
                 child: Row(
                   children: [
@@ -362,7 +384,7 @@ class HomeScreen extends ConsumerWidget {
                       child: Text(
                         horoscope.cosmicMessage,
                         style: TextStyle(
-                          color: Colors.white.withOpacity(0.95),
+                          color: Colors.white.withValues(alpha: 0.95),
                           fontStyle: FontStyle.italic,
                           fontSize: 14,
                           height: 1.3,
@@ -382,27 +404,27 @@ class HomeScreen extends ConsumerWidget {
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
-                      Colors.purple.withOpacity(0.7),
-                      Colors.pink.withOpacity(0.6),
-                      Colors.orange.withOpacity(0.5),
-                      Colors.cyan.withOpacity(0.6),
+                      Colors.purple.withValues(alpha: 0.7),
+                      Colors.pink.withValues(alpha: 0.6),
+                      Colors.orange.withValues(alpha: 0.5),
+                      Colors.cyan.withValues(alpha: 0.6),
                     ],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ),
                   borderRadius: BorderRadius.circular(16),
                   border: Border.all(
-                    color: Colors.white.withOpacity(0.4),
+                    color: Colors.white.withValues(alpha: 0.4),
                     width: 2,
                   ),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.purple.withOpacity(0.4),
+                      color: Colors.purple.withValues(alpha: 0.4),
                       blurRadius: 16,
                       spreadRadius: 2,
                     ),
                     BoxShadow(
-                      color: Colors.pink.withOpacity(0.3),
+                      color: Colors.pink.withValues(alpha: 0.3),
                       blurRadius: 12,
                       offset: const Offset(3, 3),
                     ),
@@ -421,7 +443,7 @@ class HomeScreen extends ConsumerWidget {
                         fontWeight: FontWeight.w700,
                         letterSpacing: 0.5,
                         shadows: [
-                          Shadow(color: Colors.black.withOpacity(0.3), blurRadius: 4),
+                          Shadow(color: Colors.black.withValues(alpha: 0.3), blurRadius: 4),
                         ],
                       ),
                     ),
@@ -438,10 +460,10 @@ class HomeScreen extends ConsumerWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
-                    colors: [sign.color.withOpacity(0.4), sign.color.withOpacity(0.2)],
+                    colors: [sign.color.withValues(alpha: 0.4), sign.color.withValues(alpha: 0.2)],
                   ),
                   borderRadius: BorderRadius.circular(20),
-                  border: Border.all(color: sign.color.withOpacity(0.5)),
+                  border: Border.all(color: sign.color.withValues(alpha: 0.5)),
                 ),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
@@ -468,10 +490,8 @@ class HomeScreen extends ConsumerWidget {
 
   Widget _buildMercuryRetrogradeAlert(BuildContext context, WidgetRef ref) {
     final language = ref.watch(languageProvider);
+    // ignore: unused_local_variable
     final retroEnd = MoonService.getCurrentMercuryRetrogradeEnd();
-    final daysLeft = retroEnd != null
-        ? retroEnd.difference(DateTime.now()).inDays
-        : 0;
 
     return Container(
       width: double.infinity,
@@ -805,8 +825,8 @@ class HomeScreen extends ConsumerWidget {
                         const SizedBox(height: 2),
                         Text(
                           vocStatus.timeRemainingFormatted != null
-                              ? L10nService.get('home.voc_delay_decisions', _language).replaceAll('{time}', vocStatus.timeRemainingFormatted!)
-                              : L10nService.get('home.voc_postpone_important', _language),
+                              ? L10nService.get('home.voc_delay_decisions', language).replaceAll('{time}', vocStatus.timeRemainingFormatted!)
+                              : L10nService.get('home.voc_postpone_important', language),
                           style: Theme.of(context).textTheme.bodySmall?.copyWith(
                                 color: AppColors.textSecondary,
                                 fontSize: 11,
@@ -823,7 +843,7 @@ class HomeScreen extends ConsumerWidget {
                           style: TextStyle(fontSize: 18, color: Colors.purple.withAlpha(180)),
                         ),
                         Text(
-                          L10nService.get('common.next', _language),
+                          L10nService.get('common.next', language),
                           style: Theme.of(context).textTheme.labelSmall?.copyWith(
                                 color: AppColors.textMuted,
                                 fontSize: 9,
@@ -1094,6 +1114,7 @@ class HomeScreen extends ConsumerWidget {
         // Share Summary Button
         _ShareSummaryButton(
           onTap: () => context.push(Routes.shareSummary),
+          language: language,
         ).animate().fadeIn(delay: 850.ms, duration: 400.ms),
         const SizedBox(height: AppConstants.spacingXxl),
         // ═══════════════════════════════════════════════════════════════
@@ -1694,7 +1715,7 @@ class HomeScreen extends ConsumerWidget {
               ),
               const SizedBox(height: 4),
               Text(
-                L10nService.get('home.meditation_subtitle', _language),
+                L10nService.get('home.meditation_subtitle', language),
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: AppColors.textSecondary,
                     ),
@@ -1730,7 +1751,8 @@ class HomeScreen extends ConsumerWidget {
   }
 
   // Tüm Çözümlemeler - Psikedelik buton (Kozmik Mesaj altı, Yıldız Kapısı üstü)
-  Widget _buildPsychedelicAllServicesButton(BuildContext context) {
+  Widget _buildPsychedelicAllServicesButton(BuildContext context, WidgetRef ref) {
+    final language = ref.watch(languageProvider);
     return GestureDetector(
       onTap: () => context.push(Routes.allServices),
       child: Container(
@@ -1739,27 +1761,27 @@ class HomeScreen extends ConsumerWidget {
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              Colors.purple.withOpacity(0.7),
-              Colors.pink.withOpacity(0.6),
-              Colors.orange.withOpacity(0.5),
-              Colors.cyan.withOpacity(0.6),
+              Colors.purple.withValues(alpha: 0.7),
+              Colors.pink.withValues(alpha: 0.6),
+              Colors.orange.withValues(alpha: 0.5),
+              Colors.cyan.withValues(alpha: 0.6),
             ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
-            color: Colors.white.withOpacity(0.4),
+            color: Colors.white.withValues(alpha: 0.4),
             width: 2,
           ),
           boxShadow: [
             BoxShadow(
-              color: Colors.purple.withOpacity(0.4),
+              color: Colors.purple.withValues(alpha: 0.4),
               blurRadius: 16,
               spreadRadius: 4,
             ),
             BoxShadow(
-              color: Colors.pink.withOpacity(0.3),
+              color: Colors.pink.withValues(alpha: 0.3),
               blurRadius: 20,
               spreadRadius: 2,
               offset: const Offset(5, 5),
@@ -1772,14 +1794,14 @@ class HomeScreen extends ConsumerWidget {
             const Icon(Icons.auto_awesome, color: Colors.white, size: 24),
             const SizedBox(width: 12),
             Text(
-              L10nService.get('home.all_analyses', _language),
+              L10nService.get('home.all_analyses', language),
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 17,
                 fontWeight: FontWeight.w700,
                 letterSpacing: 0.8,
                 shadows: [
-                  Shadow(color: Colors.black.withOpacity(0.3), blurRadius: 4),
+                  Shadow(color: Colors.black.withValues(alpha: 0.3), blurRadius: 4),
                 ],
               ),
             ),
@@ -1809,19 +1831,19 @@ class HomeScreen extends ConsumerWidget {
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
               colors: [
-                const Color(0xFF9C27B0).withOpacity(0.35),
-                const Color(0xFF673AB7).withOpacity(0.25),
-                const Color(0xFFE91E63).withOpacity(0.2),
+                const Color(0xFF9C27B0).withValues(alpha: 0.35),
+                const Color(0xFF673AB7).withValues(alpha: 0.25),
+                const Color(0xFFE91E63).withValues(alpha: 0.2),
               ],
             ),
             borderRadius: BorderRadius.circular(20),
             border: Border.all(
-              color: const Color(0xFF9C27B0).withOpacity(0.4),
+              color: const Color(0xFF9C27B0).withValues(alpha: 0.4),
               width: 2,
             ),
             boxShadow: [
               BoxShadow(
-                color: const Color(0xFF9C27B0).withOpacity(0.25),
+                color: const Color(0xFF9C27B0).withValues(alpha: 0.25),
                 blurRadius: 15,
                 spreadRadius: 0,
               ),
@@ -1865,7 +1887,7 @@ class HomeScreen extends ConsumerWidget {
                           : L10nService.get('common.coming_soon', language),
                       style: TextStyle(
                         fontSize: 12,
-                        color: Colors.white.withOpacity(0.7),
+                        color: Colors.white.withValues(alpha: 0.7),
                       ),
                     ),
                   ],
@@ -1875,9 +1897,9 @@ class HomeScreen extends ConsumerWidget {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                   decoration: BoxDecoration(
-                    color: Colors.orange.withOpacity(0.25),
+                    color: Colors.orange.withValues(alpha: 0.25),
                     borderRadius: BorderRadius.circular(12),
-                    border: Border.all(color: Colors.orange.withOpacity(0.5)),
+                    border: Border.all(color: Colors.orange.withValues(alpha: 0.5)),
                   ),
                   child: Text(
                     L10nService.get('common.coming_soon', language),
@@ -1892,7 +1914,7 @@ class HomeScreen extends ConsumerWidget {
                 Icon(
                   Icons.arrow_forward_ios_rounded,
                   size: 20,
-                  color: Colors.white.withOpacity(0.5),
+                  color: Colors.white.withValues(alpha: 0.5),
                 ),
             ],
           ),
@@ -2521,7 +2543,7 @@ class _LanguageSelectorButton extends StatelessWidget {
               : AppColors.lightSurfaceVariant,
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
-            color: colorScheme.primary.withOpacity(0.3),
+            color: colorScheme.primary.withValues(alpha: 0.3),
             width: 1.5,
           ),
         ),
@@ -2592,9 +2614,9 @@ class _LanguageSelectorButton extends StatelessWidget {
                         height: 48,
                         decoration: BoxDecoration(
                           color: isSelected
-                              ? colorScheme.primary.withOpacity(0.2)
+                              ? colorScheme.primary.withValues(alpha: 0.2)
                               : (isDark
-                                  ? AppColors.surfaceLight.withOpacity(0.3)
+                                  ? AppColors.surfaceLight.withValues(alpha: 0.3)
                                   : AppColors.lightSurfaceVariant),
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(
@@ -2623,8 +2645,9 @@ class _LanguageSelectorButton extends StatelessWidget {
 
 class _ShareSummaryButton extends StatefulWidget {
   final VoidCallback onTap;
+  final AppLanguage language;
 
-  const _ShareSummaryButton({required this.onTap});
+  const _ShareSummaryButton({required this.onTap, required this.language});
 
   @override
   State<_ShareSummaryButton> createState() => _ShareSummaryButtonState();
@@ -2648,15 +2671,17 @@ class _KozmozMasterSectionState extends ConsumerState<_KozmozMasterSection> {
   bool _isExpanded = false;
   final List<Map<String, String>> _chatHistory = [];
 
-  // Featured questions - en viral ve ilgi çekici sorular
-  static const List<Map<String, dynamic>> _featuredQuestions = [
-    {'text': '💕 Ruh eşimi ne zaman bulacağım?', 'category': 'love', 'gradient': [Color(0xFFE91E63), Color(0xFFFF5722)]},
-    {'text': '💰 Bu yıl zengin olur muyum?', 'category': 'money', 'gradient': [Color(0xFF4CAF50), Color(0xFF8BC34A)]},
-    {'text': '🔮 Geleceğim nasıl görünüyor?', 'category': 'future', 'gradient': [Color(0xFF9C27B0), Color(0xFF673AB7)]},
-    {'text': '⭐ Bugün şansım nasıl?', 'category': 'daily', 'gradient': [Color(0xFFFFD700), Color(0xFFFF9800)]},
-    {'text': '😈 En karanlık sırrım ne?', 'category': 'shadow', 'gradient': [Color(0xFF424242), Color(0xFF880E4F)]},
-    {'text': '💋 Aşk hayatım ne zaman düzelir?', 'category': 'love', 'gradient': [Color(0xFFE91E63), Color(0xFFAD1457)]},
-  ];
+  // Featured questions - localized via i18n
+  List<Map<String, dynamic>> _getFeaturedQuestions(AppLanguage language) {
+    return [
+      {'text': '💕 ${L10nService.get('home.featured_questions.soulmate', language)}', 'category': 'love', 'gradient': [const Color(0xFFE91E63), const Color(0xFFFF5722)]},
+      {'text': '💰 ${L10nService.get('home.featured_questions.rich', language)}', 'category': 'money', 'gradient': [const Color(0xFF4CAF50), const Color(0xFF8BC34A)]},
+      {'text': '🔮 ${L10nService.get('home.featured_questions.future', language)}', 'category': 'future', 'gradient': [const Color(0xFF9C27B0), const Color(0xFF673AB7)]},
+      {'text': '⭐ ${L10nService.get('home.featured_questions.luck_today', language)}', 'category': 'daily', 'gradient': [const Color(0xFFFFD700), const Color(0xFFFF9800)]},
+      {'text': '😈 ${L10nService.get('home.featured_questions.darkest_secret', language)}', 'category': 'shadow', 'gradient': [const Color(0xFF424242), const Color(0xFF880E4F)]},
+      {'text': '💋 ${L10nService.get('home.featured_questions.love_improve', language)}', 'category': 'love', 'gradient': [const Color(0xFFE91E63), const Color(0xFFAD1457)]},
+    ];
+  }
 
   // Extended questions list - keys for localization
   static const List<Map<String, dynamic>> _allQuestionKeys = [
@@ -2686,9 +2711,9 @@ class _KozmozMasterSectionState extends ConsumerState<_KozmozMasterSection> {
     {'key': 'home.questions.big_change', 'category': 'general'},
   ];
 
-  List<Map<String, dynamic>> _getLocalizedQuestions() {
+  List<Map<String, dynamic>> _getLocalizedQuestions(AppLanguage language) {
     return _allQuestionKeys.map((q) => {
-      'text': L10nService.get(q['key'] as String, _language),
+      'text': L10nService.get(q['key'] as String, language),
       'category': q['category'],
     }).toList();
   }
@@ -2757,87 +2782,176 @@ class _KozmozMasterSectionState extends ConsumerState<_KozmozMasterSection> {
 
   String _generateSmartLocalResponse(String question, ZodiacSign sign, AppLanguage language) {
     final lowerQuestion = question.toLowerCase();
+    final signName = sign.localizedName(language);
 
-    // Burç uyumu ve dedikodu soruları
-    if (lowerQuestion.contains('koç') && (lowerQuestion.contains('erkek') || lowerQuestion.contains('kadın') || lowerQuestion.contains('anlaş'))) {
-      return '♈ Koç erkeği/kadınıyla ilişki mi düşünüyorsun? ${sign.nameTr} burcu olarak şunu bilmelisin:\n\n🔥 Koç burçları ateşli, tutkulu ve sabırsızdır. İlk adımı onlar atmak ister!\n\n💕 Seninle uyumu: ${_getCompatibilityWithAries(sign, language)}\n\n⚠️ Dikkat: Koçlar çabuk sıkılabilir, heyecanı canlı tut. Meydan okumayı severler ama ego çatışmalarından kaçın.\n\n💡 İpucu: Bağımsızlıklarına saygı göster, maceraya ortak ol!';
+    // Aries relationship questions
+    if (_matchesAriesQuestion(lowerQuestion, language)) {
+      return L10nService.getWithParams('home.zodiac.smart_responses.aries_relationship', language, params: {
+        'sign': signName,
+        'compatibility': _getCompatibilityWithAries(sign, language),
+      });
     }
 
-    if (lowerQuestion.contains('akrep') && (lowerQuestion.contains('kadın') || lowerQuestion.contains('erkek') || lowerQuestion.contains('gizemli'))) {
-      return '♏ Akrep burçları yüzyılın en gizemli ve yoğun aşıklarıdır!\n\n🔮 Neden gizemli? Pluto\'nun çocukları olarak derinliklerde yaşarlar. Duygularını kolay açmazlar ama bir kez bağlandılar mı ölümüne sadıktırlar.\n\n${sign.nameTr} burcu olarak seninle uyumu: ${_getCompatibilityWithScorpio(sign, language)}\n\n⚠️ Dikkat: Kıskançlık ve sahiplenme güçlü olabilir. Güven inşa et, sırlarını paylaş.\n\n💋 Bonus: Yatakta en tutkulu burçlardan biri... 🔥';
+    // Scorpio relationship questions
+    if (_matchesScorpioQuestion(lowerQuestion, language)) {
+      return L10nService.getWithParams('home.zodiac.smart_responses.scorpio_relationship', language, params: {
+        'sign': signName,
+        'compatibility': _getCompatibilityWithScorpio(sign, language),
+      });
     }
 
-    if (lowerQuestion.contains('aslan') && (lowerQuestion.contains('ilgi') || lowerQuestion.contains('bekler') || lowerQuestion.contains('ego'))) {
-      return '♌ Aslan burçları neden sürekli ilgi bekler?\n\n👑 Güneş\'in çocukları olarak doğuştan "star" olarak doğdular! İlgi ve takdir onların oksijeni.\n\n🎭 Gerçek: Aslında çok cömert ve sıcak kalplidirler. İlgi istedikleri kadar sevgi de verirler.\n\n${sign.nameTr} burcu olarak seninle uyumu: ${_getCompatibilityWithLeo(sign, language)}\n\n💡 İpucu: Onları öv, takdir et, sahneyi paylaş. Karşılığında en sadık ve koruyucu partnere sahip olursun!';
+    // Leo attention questions
+    if (_matchesLeoQuestion(lowerQuestion, language)) {
+      return L10nService.getWithParams('home.zodiac.smart_responses.leo_attention', language, params: {
+        'sign': signName,
+        'compatibility': _getCompatibilityWithLeo(sign, language),
+      });
     }
 
-    if (lowerQuestion.contains('ikizler') && (lowerQuestion.contains('karar') || lowerQuestion.contains('veremez') || lowerQuestion.contains('değişken'))) {
-      return '♊ İkizler neden karar veremez?\n\n🌀 Merkür\'ün çocukları olarak çift taraflı düşünürler - her şeyin iki yüzünü görürler!\n\n💬 Gerçek: Aslında karar verememe değil, tüm seçenekleri değerlendirme ihtiyacı. Çok zekiler!\n\n${sign.nameTr} burcu olarak seninle uyumu: ${_getCompatibilityWithGemini(sign, language)}\n\n⚠️ Dikkat: Sıkılabilirler, entelektüel uyarılma şart. Konuşma, tartışma, fikir alışverişi anahtar!\n\n😜 Bonus: İkizlerle asla sıkılmazsın - her gün farklı bir insan gibidirler!';
+    // Gemini decision questions
+    if (_matchesGeminiQuestion(lowerQuestion, language)) {
+      return L10nService.getWithParams('home.zodiac.smart_responses.gemini_decisions', language, params: {
+        'sign': signName,
+        'compatibility': _getCompatibilityWithGemini(sign, language),
+      });
     }
 
-    if (lowerQuestion.contains('ateş') && lowerQuestion.contains('su')) {
-      return '🔥💧 Ateş ve Su grupları uyumlu mu?\n\n⚡ Zorlu ama mümkün! Ateş (Koç, Aslan, Yay) tutku ve enerji getirir. Su (Yengeç, Akrep, Balık) duygusal derinlik katar.\n\n✅ Artıları:\n• Tutku + Duygusallık = Yoğun romantizm\n• Birbirlerini dengeleyebilirler\n• Çekim gücü yüksek\n\n❌ Eksileri:\n• Ateş çok hızlı, Su çok hassas\n• İletişim kopuklukları yaşanabilir\n• Ateş suyu buharlaştırabilir, Su ateşi söndürebilir\n\n💡 Çözüm: Sabır, anlayış ve orta yol bulmak şart!';
+    // Fire and water compatibility
+    if (_matchesFireWaterQuestion(lowerQuestion, language)) {
+      return L10nService.get('home.zodiac.smart_responses.fire_water_compatibility', language);
     }
 
-    if (lowerQuestion.contains('sadık') || lowerQuestion.contains('en sadık')) {
-      return '💫 En sadık burçlar sıralaması:\n\n🥇 1. AKREP - Bir kez bağlandı mı ölümüne sadık! Ama ihanet edersen unutmaz.\n\n🥈 2. BOĞA - Toprak elementi, güvenilir ve sadık. Değişimi sevmez.\n\n🥉 3. YENGEÇ - Aile odaklı, koruyucu ve sadık. Duygusal bağ güçlü.\n\n4. OĞLAK - Sorumlu ve bağlı. Evliliği ciddiye alır.\n\n5. ASLAN - Sadık ama ilgi ister. İlgi alırsa sadık kalır.\n\n⚠️ En az sadık: İkizler (değişken), Yay (özgürlükçü), Kova (bağımsız)';
+    // Most loyal signs
+    if (_matchesLoyalQuestion(lowerQuestion, language)) {
+      return L10nService.get('home.zodiac.smart_responses.most_loyal', language);
     }
 
-    if (lowerQuestion.contains('kıskanç') || lowerQuestion.contains('kıskançlık')) {
-      return '😈 En kıskanç burçlar:\n\n🔥 1. AKREP - Kıskançlık kralı/kraliçesi! Sahiplenme yoğun, güven sorunu var.\n\n2. ASLAN - Ego meselesi. "Benim olan başkasının olamaz" zihniyeti.\n\n3. BOĞA - Sahiplenme güdüsü güçlü. Yavaş güvenir ama kıskançlık patlamaları olabilir.\n\n4. YENGEÇ - Duygusal kıskançlık. Güvensizlik hissederse kapanır.\n\n5. KOÇ - Ani öfke patlamaları olabilir ama çabuk geçer.\n\n😎 En az kıskanç: Yay, Kova, İkizler - özgürlüğe değer verirler!';
+    // Most jealous signs
+    if (_matchesJealousQuestion(lowerQuestion, language)) {
+      return L10nService.get('home.zodiac.smart_responses.most_jealous', language);
     }
 
-    if (lowerQuestion.contains('yatakta') || lowerQuestion.contains('ateşli') || lowerQuestion.contains('cinsel')) {
-      return '💋 Yatakta en ateşli burçlar:\n\n🔥 1. AKREP - Tartışmasız şampiyon! Tutku, yoğunluk, derinlik... Seksi bir sanat formuna dönüştürürler.\n\n2. KOÇ - Ateşli ve enerjik. Spontan ve maceraperest.\n\n3. ASLAN - Dramatik ve gösterişli. Performans önemli!\n\n4. BOĞA - Duyusal zevklerin ustası. Yavaş ama etkili.\n\n5. BALIK - Romantik ve hayalperest. Duygusal bağ + fiziksel = mükemmel!\n\n😌 En az: Başak (aşırı analitik), Oğlak (iş odaklı), Kova (kafası başka yerde)';
+    // Most passionate signs
+    if (_matchesPassionateQuestion(lowerQuestion, language)) {
+      return L10nService.get('home.zodiac.smart_responses.most_passionate', language);
     }
 
-    // Zenginlik soruları
-    if (lowerQuestion.contains('zengin') || lowerQuestion.contains('para') || lowerQuestion.contains('bolluk')) {
-      return '💰 ${sign.nameTr} burcu olarak finansal geleceğin parlak görünüyor!\n\n✨ Jüpiter\'in bereketli enerjisi bu yıl mali fırsatlar getiriyor. Özellikle ${_getLuckyMonths(sign, language)} aylarında yeni gelir kaynakları belirleyebilir.\n\n💎 Güçlü yönlerin: ${_getFinancialStrength(sign, language)}\n\n🎯 Tavsiyem: Sabırlı ol, fırsatları değerlendir, bilinçli harca. Evren sana bolluk gönderiyor! 🌟';
+    // Financial/wealth questions
+    if (_matchesWealthQuestion(lowerQuestion, language)) {
+      return L10nService.getWithParams('home.zodiac.smart_responses.financial_future', language, params: {
+        'sign': signName,
+        'lucky_months': _getLuckyMonths(sign, language),
+        'financial_strength': _getFinancialStrength(sign, language),
+      });
     }
 
-    // Ruh eşi soruları
-    if (lowerQuestion.contains('ruh eşi') || lowerQuestion.contains('kader') || lowerQuestion.contains('büyük aşk')) {
-      return '💕 ${sign.nameTr} için ruh eşi yorumu:\n\n🌟 Kuzey Düğüm sinyalleri seninle konuşuyor. Ruh eşin beklenmedik bir şekilde karşına çıkabilir.\n\n🔮 Dikkat etmen gereken burçlar: ${_getSoulMateCompatibility(sign, language)}\n\n⏰ Zamanlama: Venüs transitlerini takip et. Özellikle Venüs retrosundan sonra yeni başlangıçlar mümkün.\n\n💫 İpucu: Ruh eşini bulmak için önce kendini bul. İç dünyan ne kadar huzurlu olursa, doğru kişi o kadar çabuk belirir!';
+    // Soulmate questions
+    if (_matchesSoulmateQuestion(lowerQuestion, language)) {
+      return L10nService.getWithParams('home.zodiac.smart_responses.soulmate', language, params: {
+        'sign': signName,
+        'soulmate_compatibility': _getSoulMateCompatibility(sign, language),
+      });
     }
 
-    // Aşk soruları
-    if (lowerQuestion.contains('aşk') || lowerQuestion.contains('ilişki') || lowerQuestion.contains('sevgili') || lowerQuestion.contains('evlilik')) {
-      return '💕 ${sign.nameTr} için aşk yorumu:\n\n🌹 Venüs şu an ${sign.element == 'Ateş' ? 'tutkunu artırıyor' : sign.element == 'Su' ? 'duygusal derinliğini güçlendiriyor' : sign.element == 'Toprak' ? 'sadakatini ödüllendiriyor' : 'iletişimini destekliyor'}.\n\n✨ Yakın dönemde romantik sürprizler olabilir. Kalbini aç, evren seninle iletişim kurmaya çalışıyor.\n\n💫 Tavsiye: ${_getLoveAdvice(sign, language)}';
+    // Love questions
+    if (_matchesLoveQuestion(lowerQuestion, language)) {
+      final venusEffectKey = sign.element == Element.fire ? 'venus_fire' :
+                             sign.element == Element.water ? 'venus_water' :
+                             sign.element == Element.earth ? 'venus_earth' : 'venus_air';
+      return L10nService.getWithParams('home.zodiac.smart_responses.love_reading', language, params: {
+        'sign': signName,
+        'venus_effect': L10nService.get('home.zodiac.smart_responses.$venusEffectKey', language),
+        'love_advice': _getLoveAdvice(sign, language),
+      });
     }
 
-    // Genel/Spiritüel sorular
-    return '✨ Sevgili ${sign.nameTr}, evren bugün seninle konuşuyor!\n\n🔮 ${_getDailyMessage(sign, language)}\n\n💫 Bugünün enerjisi: ${_getDailyEnergy(sign, language)}\n\n🌟 Tavsiye: İç sesini dinle, sezgilerine güven. Cevaplar kalbinde saklı.';
+    // General/Spiritual questions (default)
+    return L10nService.getWithParams('home.zodiac.smart_responses.general_spiritual', language, params: {
+      'sign': signName,
+      'daily_message': _getDailyMessage(sign, language),
+      'daily_energy': _getDailyEnergy(sign, language),
+    });
+  }
+
+  // Question matching helpers for multi-language support
+  bool _matchesAriesQuestion(String q, AppLanguage lang) {
+    if (lang == AppLanguage.tr) return q.contains('koç') && (q.contains('erkek') || q.contains('kadın') || q.contains('anlaş'));
+    return q.contains('aries') && (q.contains('man') || q.contains('woman') || q.contains('along'));
+  }
+
+  bool _matchesScorpioQuestion(String q, AppLanguage lang) {
+    if (lang == AppLanguage.tr) return q.contains('akrep') && (q.contains('kadın') || q.contains('erkek') || q.contains('gizemli'));
+    return q.contains('scorpio') && (q.contains('woman') || q.contains('man') || q.contains('mysterious'));
+  }
+
+  bool _matchesLeoQuestion(String q, AppLanguage lang) {
+    if (lang == AppLanguage.tr) return q.contains('aslan') && (q.contains('ilgi') || q.contains('bekler') || q.contains('ego'));
+    return q.contains('leo') && (q.contains('attention') || q.contains('need') || q.contains('ego'));
+  }
+
+  bool _matchesGeminiQuestion(String q, AppLanguage lang) {
+    if (lang == AppLanguage.tr) return q.contains('ikizler') && (q.contains('karar') || q.contains('veremez') || q.contains('değişken'));
+    return q.contains('gemini') && (q.contains('decision') || q.contains('decide') || q.contains('changeable'));
+  }
+
+  bool _matchesFireWaterQuestion(String q, AppLanguage lang) {
+    if (lang == AppLanguage.tr) return q.contains('ateş') && q.contains('su');
+    return q.contains('fire') && q.contains('water');
+  }
+
+  bool _matchesLoyalQuestion(String q, AppLanguage lang) {
+    if (lang == AppLanguage.tr) return q.contains('sadık') || q.contains('en sadık');
+    return q.contains('loyal') || q.contains('most loyal');
+  }
+
+  bool _matchesJealousQuestion(String q, AppLanguage lang) {
+    if (lang == AppLanguage.tr) return q.contains('kıskanç') || q.contains('kıskançlık');
+    return q.contains('jealous') || q.contains('jealousy');
+  }
+
+  bool _matchesPassionateQuestion(String q, AppLanguage lang) {
+    if (lang == AppLanguage.tr) return q.contains('yatakta') || q.contains('ateşli') || q.contains('cinsel');
+    return q.contains('bed') || q.contains('passionate') || q.contains('sexual');
+  }
+
+  bool _matchesWealthQuestion(String q, AppLanguage lang) {
+    if (lang == AppLanguage.tr) return q.contains('zengin') || q.contains('para') || q.contains('bolluk');
+    return q.contains('rich') || q.contains('money') || q.contains('wealth') || q.contains('abundance');
+  }
+
+  bool _matchesSoulmateQuestion(String q, AppLanguage lang) {
+    if (lang == AppLanguage.tr) return q.contains('ruh eşi') || q.contains('kader') || q.contains('büyük aşk');
+    return q.contains('soulmate') || q.contains('soul mate') || q.contains('destiny') || q.contains('true love');
+  }
+
+  bool _matchesLoveQuestion(String q, AppLanguage lang) {
+    if (lang == AppLanguage.tr) return q.contains('aşk') || q.contains('ilişki') || q.contains('sevgili') || q.contains('evlilik');
+    return q.contains('love') || q.contains('relationship') || q.contains('partner') || q.contains('marriage');
   }
 
   String _getLuckyMonths(ZodiacSign sign, AppLanguage language) {
     final signKey = sign.name.toLowerCase();
-    return L10nService.get('home.zodiac.lucky_months.$signKey', language) ??
-        L10nService.get('home.zodiac.lucky_months.default', language);
+    return L10nService.get('home.zodiac.lucky_months.$signKey', language);
   }
 
   String _getFinancialStrength(ZodiacSign sign, AppLanguage language) {
     final signKey = sign.name.toLowerCase();
-    return L10nService.get('home.zodiac.financial_strength.$signKey', language) ??
-        L10nService.get('home.zodiac.financial_strength.default', language);
+    return L10nService.get('home.zodiac.financial_strength.$signKey', language);
   }
 
   String _getSoulMateCompatibility(ZodiacSign sign, AppLanguage language) {
     final signKey = sign.name.toLowerCase();
-    return L10nService.get('home.zodiac.soulmate_compatibility.$signKey', language) ??
-        L10nService.get('home.zodiac.soulmate_compatibility.default', language);
+    return L10nService.get('home.zodiac.soulmate_compatibility.$signKey', language);
   }
 
   String _getLoveAdvice(ZodiacSign sign, AppLanguage language) {
     final signKey = sign.name.toLowerCase();
-    return L10nService.get('home.zodiac.love_advice.$signKey', language) ??
-        L10nService.get('home.zodiac.love_advice.default', language);
+    return L10nService.get('home.zodiac.love_advice.$signKey', language);
   }
 
   String _getDailyMessage(ZodiacSign sign, AppLanguage language) {
     final signKey = sign.name.toLowerCase();
-    return L10nService.get('home.zodiac.daily_message.$signKey', language) ??
-        L10nService.get('home.zodiac.daily_message.default', language);
+    return L10nService.get('home.zodiac.daily_message.$signKey', language);
   }
 
   String _getDailyEnergy(ZodiacSign sign, AppLanguage language) {
@@ -2849,26 +2963,22 @@ class _KozmozMasterSectionState extends ConsumerState<_KozmozMasterSection> {
   // Burç uyumu hesaplama fonksiyonları
   String _getCompatibilityWithAries(ZodiacSign userSign, AppLanguage language) {
     final signKey = userSign.name.toLowerCase();
-    return L10nService.get('home.zodiac.compatibility.aries.$signKey', language) ??
-        L10nService.get('home.zodiac.compatibility.aries.default', language);
+    return L10nService.get('home.zodiac.compatibility.aries.$signKey', language);
   }
 
   String _getCompatibilityWithScorpio(ZodiacSign userSign, AppLanguage language) {
     final signKey = userSign.name.toLowerCase();
-    return L10nService.get('home.zodiac.compatibility.scorpio.$signKey', language) ??
-        L10nService.get('home.zodiac.compatibility.scorpio.default', language);
+    return L10nService.get('home.zodiac.compatibility.scorpio.$signKey', language);
   }
 
   String _getCompatibilityWithLeo(ZodiacSign userSign, AppLanguage language) {
     final signKey = userSign.name.toLowerCase();
-    return L10nService.get('home.zodiac.compatibility.leo.$signKey', language) ??
-        L10nService.get('home.zodiac.compatibility.leo.default', language);
+    return L10nService.get('home.zodiac.compatibility.leo.$signKey', language);
   }
 
   String _getCompatibilityWithGemini(ZodiacSign userSign, AppLanguage language) {
     final signKey = userSign.name.toLowerCase();
-    return L10nService.get('home.zodiac.compatibility.gemini.$signKey', language) ??
-        L10nService.get('home.zodiac.compatibility.gemini.default', language);
+    return L10nService.get('home.zodiac.compatibility.gemini.$signKey', language);
   }
 
   @override
@@ -3052,7 +3162,7 @@ class _KozmozMasterSectionState extends ConsumerState<_KozmozMasterSection> {
                   child: Wrap(
                     spacing: 8,
                     runSpacing: 8,
-                    children: _featuredQuestions.map((q) {
+                    children: _getFeaturedQuestions(language).map((q) {
                       final gradientColors = q['gradient'] as List<Color>;
                       return GestureDetector(
                         onTap: () => _askQuestion(q['text'] as String),
@@ -3203,7 +3313,7 @@ class _KozmozMasterSectionState extends ConsumerState<_KozmozMasterSection> {
                           controller: _questionController,
                           style: const TextStyle(color: Colors.white, fontSize: 14),
                           decoration: InputDecoration(
-                            hintText: L10nService.get('home.ask_stars_hint', _language),
+                            hintText: L10nService.get('home.ask_stars_hint', ref.watch(languageProvider)),
                             hintStyle: TextStyle(color: Colors.white38, fontSize: 13),
                             prefixIcon: ShaderMask(
                               shaderCallback: (bounds) => const LinearGradient(
@@ -3280,9 +3390,9 @@ class _KozmozMasterSectionState extends ConsumerState<_KozmozMasterSection> {
                         height: 36,
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
-                          itemCount: _getLocalizedQuestions().length,
+                          itemCount: _getLocalizedQuestions(language).length,
                           itemBuilder: (context, index) {
-                            final question = _getLocalizedQuestions()[index];
+                            final question = _getLocalizedQuestions(language)[index];
                             return Padding(
                               padding: const EdgeInsets.only(right: 8),
                               child: GestureDetector(
@@ -3338,37 +3448,39 @@ class _AiChatSectionState extends ConsumerState<_AiChatSection> {
   bool _isLoading = false;
   final List<Map<String, String>> _chatHistory = [];
 
-  // Hazır sorular - MASTER seviye genişletilmiş liste
-  static const List<Map<String, dynamic>> _suggestedQuestions = [
-    // Burç Uyumu & Dedikodu
-    {'text': '♈ Koç erkeğiyle anlaşabilir miyim?', 'category': 'compatibility', 'icon': '♈'},
-    {'text': '♏ Akrep kadınları neden bu kadar gizemli?', 'category': 'compatibility', 'icon': '♏'},
-    {'text': '♌ Aslan burcu neden hep ilgi bekler?', 'category': 'compatibility', 'icon': '♌'},
-    {'text': '♊ İkizler neden karar veremez?', 'category': 'compatibility', 'icon': '♊'},
-    {'text': '🔥 Ateş grubuyla su grubu uyumlu mu?', 'category': 'compatibility', 'icon': '🔥'},
-    {'text': '💫 En sadık burç hangisi?', 'category': 'compatibility', 'icon': '💫'},
-    {'text': '😈 En kıskanç burç hangisi?', 'category': 'compatibility', 'icon': '😈'},
-    {'text': '💋 Yatakta en ateşli burç hangisi?', 'category': 'compatibility', 'icon': '💋'},
-    // Aşk & İlişki Dedikodu
-    {'text': '💕 Bugün aşkta şansım nasıl?', 'category': 'love', 'icon': '💕'},
-    {'text': '💑 Ruh eşimi ne zaman bulacağım?', 'category': 'love', 'icon': '💑'},
-    {'text': '💔 Eski sevgilim geri döner mi?', 'category': 'love', 'icon': '💔'},
-    {'text': '🤫 Beni aldatır mı?', 'category': 'love', 'icon': '🤫'},
-    {'text': '💍 Evlilik teklifi ne zaman gelir?', 'category': 'love', 'icon': '💍'},
-    {'text': '😍 O benden hoşlanıyor mu?', 'category': 'love', 'icon': '😍'},
-    {'text': '💬 Neden mesaj atmıyor?', 'category': 'love', 'icon': '💬'},
-    {'text': '🔮 Gelecek aşkım nasıl biri?', 'category': 'love', 'icon': '🔮'},
-    // Kariyer & Para
-    {'text': '💼 Terfi alacak mıyım?', 'category': 'career', 'icon': '💼'},
-    {'text': '💰 Zengin olacak mıyım?', 'category': 'career', 'icon': '💰'},
-    {'text': '📈 İş değişikliği yapmalı mıyım?', 'category': 'career', 'icon': '📈'},
-    {'text': '🎰 Şans oyunları oynamalı mıyım?', 'category': 'career', 'icon': '🎰'},
-    // Spiritüel & Genel
-    {'text': '✨ Şans yıldızım ne zaman parlayacak?', 'category': 'spiritual', 'icon': '✨'},
-    {'text': '🌙 Merkür retrosu beni nasıl etkiler?', 'category': 'spiritual', 'icon': '🌙'},
-    {'text': '🦋 Hayatımda büyük değişim ne zaman?', 'category': 'general', 'icon': '🦋'},
-    {'text': '🎭 Bu hafta dikkat etmem gereken ne?', 'category': 'general', 'icon': '🎭'},
-  ];
+  // Suggested questions - localized via i18n
+  List<Map<String, dynamic>> _getSuggestedQuestions(AppLanguage language) {
+    return [
+      // Zodiac Compatibility
+      {'text': L10nService.get('home.questions.aries_man', language), 'category': 'compatibility', 'icon': '♈'},
+      {'text': L10nService.get('home.questions.scorpio_women', language), 'category': 'compatibility', 'icon': '♏'},
+      {'text': L10nService.get('home.questions.leo_attention', language), 'category': 'compatibility', 'icon': '♌'},
+      {'text': L10nService.get('home.questions.gemini_decisions', language), 'category': 'compatibility', 'icon': '♊'},
+      {'text': L10nService.get('home.questions.fire_water', language), 'category': 'compatibility', 'icon': '🔥'},
+      {'text': L10nService.get('home.questions.most_loyal', language), 'category': 'compatibility', 'icon': '💫'},
+      {'text': L10nService.get('home.questions.most_jealous', language), 'category': 'compatibility', 'icon': '😈'},
+      {'text': L10nService.get('home.questions.most_passionate', language), 'category': 'compatibility', 'icon': '💋'},
+      // Love & Relationships
+      {'text': L10nService.get('home.questions.love_luck_today', language), 'category': 'love', 'icon': '💕'},
+      {'text': L10nService.get('home.questions.soulmate_find', language), 'category': 'love', 'icon': '💑'},
+      {'text': L10nService.get('home.questions.ex_return', language), 'category': 'love', 'icon': '💔'},
+      {'text': L10nService.get('home.questions.cheating', language), 'category': 'love', 'icon': '🤫'},
+      {'text': L10nService.get('home.questions.marriage_proposal', language), 'category': 'love', 'icon': '💍'},
+      {'text': L10nService.get('home.questions.does_like_me', language), 'category': 'love', 'icon': '😍'},
+      {'text': L10nService.get('home.questions.no_message', language), 'category': 'love', 'icon': '💬'},
+      {'text': L10nService.get('home.questions.future_love', language), 'category': 'love', 'icon': '🔮'},
+      // Career & Money
+      {'text': L10nService.get('home.questions.promotion', language), 'category': 'career', 'icon': '💼'},
+      {'text': L10nService.get('home.questions.rich_become', language), 'category': 'career', 'icon': '💰'},
+      {'text': L10nService.get('home.questions.job_change', language), 'category': 'career', 'icon': '📈'},
+      {'text': L10nService.get('home.questions.gambling', language), 'category': 'career', 'icon': '🎰'},
+      // Spiritual & General
+      {'text': L10nService.get('home.questions.lucky_star', language), 'category': 'spiritual', 'icon': '✨'},
+      {'text': L10nService.get('home.questions.mercury_retrograde', language), 'category': 'spiritual', 'icon': '🌙'},
+      {'text': L10nService.get('home.questions.big_change', language), 'category': 'general', 'icon': '🦋'},
+      {'text': L10nService.get('home.questions.attention_this_week', language), 'category': 'general', 'icon': '🎭'},
+    ];
+  }
 
   @override
   void dispose() {
@@ -3417,17 +3529,28 @@ class _AiChatSectionState extends ConsumerState<_AiChatSection> {
 
   AdviceArea _determineAdviceArea(String question) {
     final lowerQuestion = question.toLowerCase();
+    // Multi-language keywords for love
     if (lowerQuestion.contains('aşk') || lowerQuestion.contains('ilişki') || lowerQuestion.contains('partner') ||
-        lowerQuestion.contains('sevgili') || lowerQuestion.contains('evlilik') || lowerQuestion.contains('ruh eşi')) {
+        lowerQuestion.contains('sevgili') || lowerQuestion.contains('evlilik') || lowerQuestion.contains('ruh eşi') ||
+        lowerQuestion.contains('love') || lowerQuestion.contains('relationship') || lowerQuestion.contains('marriage') ||
+        lowerQuestion.contains('soulmate')) {
       return AdviceArea.love;
+    // Multi-language keywords for career
     } else if (lowerQuestion.contains('kariyer') || lowerQuestion.contains('iş') || lowerQuestion.contains('para') ||
-        lowerQuestion.contains('maaş') || lowerQuestion.contains('terfi')) {
+        lowerQuestion.contains('maaş') || lowerQuestion.contains('terfi') ||
+        lowerQuestion.contains('career') || lowerQuestion.contains('job') || lowerQuestion.contains('money') ||
+        lowerQuestion.contains('salary') || lowerQuestion.contains('promotion')) {
       return AdviceArea.career;
+    // Multi-language keywords for health
     } else if (lowerQuestion.contains('sağlık') || lowerQuestion.contains('enerji') || lowerQuestion.contains('stres') ||
-        lowerQuestion.contains('uyku')) {
+        lowerQuestion.contains('uyku') ||
+        lowerQuestion.contains('health') || lowerQuestion.contains('energy') || lowerQuestion.contains('stress') ||
+        lowerQuestion.contains('sleep')) {
       return AdviceArea.health;
+    // Multi-language keywords for spiritual
     } else if (lowerQuestion.contains('ruhsal') || lowerQuestion.contains('spiritüel') || lowerQuestion.contains('meditasyon') ||
-        lowerQuestion.contains('karma') || lowerQuestion.contains('evren')) {
+        lowerQuestion.contains('karma') || lowerQuestion.contains('evren') ||
+        lowerQuestion.contains('spiritual') || lowerQuestion.contains('meditation') || lowerQuestion.contains('universe')) {
       return AdviceArea.spiritual;
     }
     return AdviceArea.spiritual;
@@ -3435,190 +3558,203 @@ class _AiChatSectionState extends ConsumerState<_AiChatSection> {
 
   String _generateSmartLocalResponse(String question, ZodiacSign sign, AppLanguage language) {
     final lowerQuestion = question.toLowerCase();
+    final signName = sign.localizedName(language);
 
-    // Burç uyumu ve dedikodu soruları
-    if (lowerQuestion.contains('koç') && (lowerQuestion.contains('erkek') || lowerQuestion.contains('kadın') || lowerQuestion.contains('anlaş'))) {
-      return '♈ Koç erkeği/kadınıyla ilişki mi düşünüyorsun? ${sign.nameTr} burcu olarak şunu bilmelisin:\n\n🔥 Koç burçları ateşli, tutkulu ve sabırsızdır. İlk adımı onlar atmak ister!\n\n💕 Seninle uyumu: ${_getCompatibilityWithAries(sign, language)}\n\n⚠️ Dikkat: Koçlar çabuk sıkılabilir, heyecanı canlı tut. Meydan okumayı severler ama ego çatışmalarından kaçın.\n\n💡 İpucu: Bağımsızlıklarına saygı göster, maceraya ortak ol!';
+    // Aries relationship questions
+    if (_matchesAriesQuestion2(lowerQuestion, language)) {
+      return L10nService.getWithParams('home.zodiac.smart_responses.aries_relationship', language, params: {
+        'sign': signName,
+        'compatibility': _getCompatibilityWithAries(sign, language),
+      });
     }
 
-    if (lowerQuestion.contains('akrep') && (lowerQuestion.contains('kadın') || lowerQuestion.contains('erkek') || lowerQuestion.contains('gizemli'))) {
-      return '♏ Akrep burçları yüzyılın en gizemli ve yoğun aşıklarıdır!\n\n🔮 Neden gizemli? Pluto\'nun çocukları olarak derinliklerde yaşarlar. Duygularını kolay açmazlar ama bir kez bağlandılar mı ölümüne sadıktırlar.\n\n${sign.nameTr} burcu olarak seninle uyumu: ${_getCompatibilityWithScorpio(sign, language)}\n\n⚠️ Dikkat: Kıskançlık ve sahiplenme güçlü olabilir. Güven inşa et, sırlarını paylaş.\n\n💋 Bonus: Yatakta en tutkulu burçlardan biri... 🔥';
+    // Scorpio relationship questions
+    if (_matchesScorpioQuestion2(lowerQuestion, language)) {
+      return L10nService.getWithParams('home.zodiac.smart_responses.scorpio_relationship', language, params: {
+        'sign': signName,
+        'compatibility': _getCompatibilityWithScorpio(sign, language),
+      });
     }
 
-    if (lowerQuestion.contains('aslan') && (lowerQuestion.contains('ilgi') || lowerQuestion.contains('bekler') || lowerQuestion.contains('ego'))) {
-      return '♌ Aslan burçları neden sürekli ilgi bekler?\n\n👑 Güneş\'in çocukları olarak doğuştan "star" olarak doğdular! İlgi ve takdir onların oksijeni.\n\n🎭 Gerçek: Aslında çok cömert ve sıcak kalplidirler. İlgi istedikleri kadar sevgi de verirler.\n\n${sign.nameTr} burcu olarak seninle uyumu: ${_getCompatibilityWithLeo(sign, language)}\n\n💡 İpucu: Onları öv, takdir et, sahneyi paylaş. Karşılığında en sadık ve koruyucu partnere sahip olursun!';
+    // Leo attention questions
+    if (_matchesLeoQuestion2(lowerQuestion, language)) {
+      return L10nService.getWithParams('home.zodiac.smart_responses.leo_attention', language, params: {
+        'sign': signName,
+        'compatibility': _getCompatibilityWithLeo(sign, language),
+      });
     }
 
-    if (lowerQuestion.contains('ikizler') && (lowerQuestion.contains('karar') || lowerQuestion.contains('veremez') || lowerQuestion.contains('değişken'))) {
-      return '♊ İkizler neden karar veremez?\n\n🌀 Merkür\'ün çocukları olarak çift taraflı düşünürler - her şeyin iki yüzünü görürler!\n\n💬 Gerçek: Aslında karar verememe değil, tüm seçenekleri değerlendirme ihtiyacı. Çok zekiler!\n\n${sign.nameTr} burcu olarak seninle uyumu: ${_getCompatibilityWithGemini(sign, language)}\n\n⚠️ Dikkat: Sıkılabilirler, entelektüel uyarılma şart. Konuşma, tartışma, fikir alışverişi anahtar!\n\n😜 Bonus: İkizlerle asla sıkılmazsın - her gün farklı bir insan gibidirler!';
+    // Gemini decision questions
+    if (_matchesGeminiQuestion2(lowerQuestion, language)) {
+      return L10nService.getWithParams('home.zodiac.smart_responses.gemini_decisions', language, params: {
+        'sign': signName,
+        'compatibility': _getCompatibilityWithGemini(sign, language),
+      });
     }
 
-    if (lowerQuestion.contains('ateş') && lowerQuestion.contains('su')) {
-      return '🔥💧 Ateş ve Su grupları uyumlu mu?\n\n⚡ Zorlu ama mümkün! Ateş (Koç, Aslan, Yay) tutku ve enerji getirir. Su (Yengeç, Akrep, Balık) duygusal derinlik katar.\n\n✅ Artıları:\n• Tutku + Duygusallık = Yoğun romantizm\n• Birbirlerini dengeleyebilirler\n• Çekim gücü yüksek\n\n❌ Eksileri:\n• Ateş çok hızlı, Su çok hassas\n• İletişim kopuklukları yaşanabilir\n• Ateş suyu buharlaştırabilir, Su ateşi söndürebilir\n\n💡 Çözüm: Sabır, anlayış ve orta yol bulmak şart!';
+    // Fire and water compatibility
+    if (_matchesFireWaterQuestion2(lowerQuestion, language)) {
+      return L10nService.get('home.zodiac.smart_responses.fire_water_compatibility', language);
     }
 
-    if (lowerQuestion.contains('sadık') || lowerQuestion.contains('en sadık')) {
-      return '💫 En sadık burçlar sıralaması:\n\n🥇 1. AKREP - Bir kez bağlandı mı ölümüne sadık! Ama ihanet edersen unutmaz.\n\n🥈 2. BOĞA - Toprak elementi, güvenilir ve sadık. Değişimi sevmez.\n\n🥉 3. YENGEÇ - Aile odaklı, koruyucu ve sadık. Duygusal bağ güçlü.\n\n4. OĞLAK - Sorumlu ve bağlı. Evliliği ciddiye alır.\n\n5. ASLAN - Sadık ama ilgi ister. İlgi alırsa sadık kalır.\n\n⚠️ En az sadık: İkizler (değişken), Yay (özgürlükçü), Kova (bağımsız)';
+    // Most loyal signs
+    if (_matchesLoyalQuestion2(lowerQuestion, language)) {
+      return L10nService.get('home.zodiac.smart_responses.most_loyal', language);
     }
 
-    if (lowerQuestion.contains('kıskanç') || lowerQuestion.contains('kıskançlık')) {
-      return '😈 En kıskanç burçlar:\n\n🔥 1. AKREP - Kıskançlık kralı/kraliçesi! Sahiplenme yoğun, güven sorunu var.\n\n2. ASLAN - Ego meselesi. "Benim olan başkasının olamaz" zihniyeti.\n\n3. BOĞA - Sahiplenme güdüsü güçlü. Yavaş güvenir ama kıskançlık patlamaları olabilir.\n\n4. YENGEÇ - Duygusal kıskançlık. Güvensizlik hissederse kapanır.\n\n5. KOÇ - Ani öfke patlamaları olabilir ama çabuk geçer.\n\n😎 En az kıskanç: Yay, Kova, İkizler - özgürlüğe değer verirler!';
+    // Most jealous signs
+    if (_matchesJealousQuestion2(lowerQuestion, language)) {
+      return L10nService.get('home.zodiac.smart_responses.most_jealous', language);
     }
 
-    if (lowerQuestion.contains('yatakta') || lowerQuestion.contains('ateşli') || lowerQuestion.contains('cinsel')) {
-      return '💋 Yatakta en ateşli burçlar:\n\n🔥 1. AKREP - Tartışmasız şampiyon! Tutku, yoğunluk, derinlik... Seksi bir sanat formuna dönüştürürler.\n\n2. KOÇ - Ateşli ve enerjik. Spontan ve maceraperest.\n\n3. ASLAN - Dramatik ve gösterişli. Performans önemli!\n\n4. BOĞA - Duyusal zevklerin ustası. Yavaş ama etkili.\n\n5. BALIK - Romantik ve hayalperest. Duygusal bağ + fiziksel = mükemmel!\n\n😌 En az: Başak (aşırı analitik), Oğlak (iş odaklı), Kova (kafası başka yerde)';
+    // Most passionate signs
+    if (_matchesPassionateQuestion2(lowerQuestion, language)) {
+      return L10nService.get('home.zodiac.smart_responses.most_passionate', language);
     }
 
-    // Aşk soruları
-    if (lowerQuestion.contains('aşk') || lowerQuestion.contains('ilişki') || lowerQuestion.contains('sevgili') ||
-        lowerQuestion.contains('ruh eşi') || lowerQuestion.contains('evlilik')) {
-      final responses = {
-        ZodiacSign.aries: '🔥 Koç burcu olarak tutkunuz ve enerjiniz aşkta sizi öne çıkarıyor. Venüs bugün cesaretli adımları destekliyor. Kalbinizin sesini dinleyin, duygularınızı açıkça ifade edin. Yeni bir romantik döngü başlıyor olabilir.',
-        ZodiacSign.taurus: '🌹 Boğa burcu olarak sadakatiniz ve duyusal yaklaşımınız ilişkilerde güç kaynağınız. Venüs sizin yönetici gezegeniniz olarak güven ve romantizmi artırıyor. Sabırla bekleyin, doğru kişi yolda.',
-        ZodiacSign.gemini: '💬 İkizler burcu olarak iletişim gücünüz aşkta sizi öne çıkarıyor. Merkür derin sohbetleri destekliyor. Merakınızı partnerinize yönlendirin, zihinsel bağ duygusal bağı güçlendirir.',
-        ZodiacSign.cancer: '🌙 Yengeç burcu olarak duygusal derinliğiniz ilişkilerde büyük avantaj. Ay enerjisi sezgilerinizi keskinleştiriyor. Koruyucu içgüdülerinizi kullanın ama aşırı hassas olmaktan kaçının.',
-        ZodiacSign.leo: '👑 Aslan burcu olarak cömertliğiniz ve sıcaklığınız aşkta mıknatıs gibi çekiyor. Güneş parlamanızı destekliyor. Romantik jestler yapın, ama partnerinize de sahne verin.',
-        ZodiacSign.virgo: '💎 Başak burcu olarak küçük detaylara verdiğiniz önem ilişkilerde fark yaratıyor. Merkür analitik yaklaşımınızı güçlendiriyor. Mükemmeliyetçiliği bırakın, sevgiyi olduğu gibi kabul edin.',
-        ZodiacSign.libra: '⚖️ Terazi burcu olarak uyum arayışınız ilişkilerde denge sağlıyor. Venüs romantik atmosferleri destekliyor. Adalet duygusunu aşkta da kullanın, karşılıklı saygı şart.',
-        ZodiacSign.scorpio: '🦂 Akrep burcu olarak tutkunuz ve yoğunluğunuz aşkta güçlü bağlar kuruyor. Pluto derin dönüşümü destekliyor. Güven inşa etmeye odaklanın, kıskançlığı yönetin.',
-        ZodiacSign.sagittarius: '🏹 Yay burcu olarak özgürlük aşkınız ve maceracı ruhunuz ilişkilere heyecan katıyor. Jüpiter genişlemeyi destekliyor. Partner ile birlikte keşfedin, büyüyün.',
-        ZodiacSign.capricorn: '🏔️ Oğlak burcu olarak ciddiyetiniz ve bağlılığınız uzun vadeli ilişkiler için ideal. Satürn sadakati ödüllendiriyor. Duygularınızı ifade etmekten çekinmeyin.',
-        ZodiacSign.aquarius: '🌊 Kova burcu olarak özgünlüğünüz ve entelektüel yaklaşımınız ilişkilere farklı bir boyut katıyor. Uranüs sürprizler getiriyor. Arkadaşlık temelli aşk sizin için ideal.',
-        ZodiacSign.pisces: '🐟 Balık burcu olarak romantizminiz ve empati gücünüz aşkta derin bağlar kurmanızı sağlıyor. Neptün ruhsal bağları güçlendiriyor. Hayalleriniz gerçeğe dönüşüyor.',
-      };
-      return responses[sign] ?? '💕 Aşk hayatınızda pozitif enerjiler hissediyorum. Kalbinizi açın, evren sizi destekliyor.';
+    // Financial/wealth questions
+    if (_matchesWealthQuestion2(lowerQuestion, language)) {
+      return L10nService.getWithParams('home.zodiac.smart_responses.financial_future', language, params: {
+        'sign': signName,
+        'lucky_months': _getLuckyMonths2(sign, language),
+        'financial_strength': _getFinancialStrength2(sign, language),
+      });
     }
 
-    // Kariyer & Para soruları
-    if (lowerQuestion.contains('kariyer') || lowerQuestion.contains('iş') || lowerQuestion.contains('para') ||
-        lowerQuestion.contains('maaş') || lowerQuestion.contains('terfi')) {
-      final responses = {
-        ZodiacSign.aries: '🚀 Koç burcu olarak liderlik yetenekleriniz kariyerde öne çıkıyor. Mars cesaret veriyor, yeni projeler başlatmak için ideal zaman. Girişimci ruhunuzu kullanın!',
-        ZodiacSign.taurus: '💎 Boğa burcu olarak sabırlı ve istikrarlı yaklaşımınız finansal güvenlik getiriyor. Venüs bolluk kapılarını açıyor. Yatırımlar için dikkatli ama kararlı olun.',
-        ZodiacSign.gemini: '🌐 İkizler burcu olarak iletişim yetenekleriniz kariyerde avantaj. Merkür network fırsatları sunuyor. Çok yönlülüğünüzü kullanın, farklı alanlarda parlamak mümkün.',
-        ZodiacSign.cancer: '🏠 Yengeç burcu olarak sezgisel yaklaşımınız iş kararlarında rehber. Ay enerjisi ev tabanlı işleri destekliyor. Güvendiğiniz insanlarla çalışın.',
-        ZodiacSign.leo: '👑 Aslan burcu olarak yaratıcılığınız ve liderliğiniz kariyerde parlamanızı sağlıyor. Güneş sahne önü rolleri aydınlatıyor. Kendinizi gösterin!',
-        ZodiacSign.virgo: '📊 Başak burcu olarak analitik yetenekleriniz ve detay odaklılığınız kariyerde değerli. Merkür organizasyon projelerini destekliyor. Sistemler kurun.',
-        ZodiacSign.libra: '🤝 Terazi burcu olarak diplomasi yeteneğiniz iş hayatında köprüler kuruyor. Venüs ortaklıkları kutsuyor. İş birlikleri ve ortaklıklar faydalı.',
-        ZodiacSign.scorpio: '🔍 Akrep burcu olarak araştırma yetenekleriniz ve derinlemesine analiz gücünüz kariyerde avantaj. Pluto gizli fırsatları ortaya çıkarıyor.',
-        ZodiacSign.sagittarius: '🌍 Yay burcu olarak vizyoner bakış açınız ve genişleme arzunuz kariyerde yeni ufuklar açıyor. Jüpiter uluslararası fırsatları destekliyor.',
-        ZodiacSign.capricorn: '🏆 Oğlak burcu olarak disiplininiz ve hırsınız kariyer zirvesine taşıyor. Satürn uzun vadeli başarıyı ödüllendiriyor. Hedeflerinize odaklanın.',
-        ZodiacSign.aquarius: '💡 Kova burcu olarak yenilikçi fikirleriniz ve bağımsız ruhunuz kariyerde fark yaratıyor. Uranüs teknoloji alanlarını aydınlatıyor.',
-        ZodiacSign.pisces: '🎨 Balık burcu olarak yaratıcılığınız ve sezgisel yaklaşımınız kariyerde benzersiz değer katıyor. Neptün sanatsal alanları kutsuyor.',
-      };
-      return responses[sign] ?? '💼 Kariyer yolculuğunuzda pozitif gelişmeler görüyorum. Yeteneklerinize güvenin, fırsatlar kapıda.';
+    // Soulmate questions
+    if (_matchesSoulmateQuestion2(lowerQuestion, language)) {
+      return L10nService.getWithParams('home.zodiac.smart_responses.soulmate', language, params: {
+        'sign': signName,
+        'soulmate_compatibility': _getSoulMateCompatibility2(sign, language),
+      });
     }
 
-    // Sağlık & Enerji soruları
-    if (lowerQuestion.contains('sağlık') || lowerQuestion.contains('enerji') || lowerQuestion.contains('stres') ||
-        lowerQuestion.contains('uyku') || lowerQuestion.contains('yorgun')) {
-      final responses = {
-        ZodiacSign.aries: '🔥 Koç burcu olarak yüksek enerjinizi yönetmek önemli. Mars fiziksel aktiviteyi destekliyor. Yoğun sporlar ve açık hava egzersizleri size iyi gelecek.',
-        ZodiacSign.taurus: '🌿 Boğa burcu olarak duyusal keyifler ruhunuzu besliyor. Venüs spa ve masajı destekliyor. Doğal yiyecekler ve topraklanma egzersizleri önerilir.',
-        ZodiacSign.gemini: '🧠 İkizler burcu olarak zihinsel detoks önemli. Merkür bilgi bombardımanından uzaklaşmayı öneriyor. Hafif yürüyüşler ve meditasyon faydalı.',
-        ZodiacSign.cancer: '💧 Yengeç burcu olarak su elementi şifa veriyor. Ay duygusal arınmayı destekliyor. Deniz tuzu banyoları ve su terapisi önerilir.',
-        ZodiacSign.leo: '❤️ Aslan burcu olarak kalp sağlığına dikkat önemli. Güneş kardiyovasküler egzersizleri destekliyor. Dans ve yaratıcı ifade enerjinizi dengeler.',
-        ZodiacSign.virgo: '🌱 Başak burcu olarak detoks ve arınma ritüelleri şifa verir. Merkür sağlıklı rutinleri destekliyor. Mükemmeliyetçiliği bırakın, dinlenin.',
-        ZodiacSign.libra: '⚖️ Terazi burcu olarak denge çalışmaları önemli. Venüs yoga ve pilates destekliyor. Güzellik ritüelleri ruhunuzu besliyor.',
-        ZodiacSign.scorpio: '🦋 Akrep burcu olarak derin dönüşüm ve şifa çalışmaları faydalı. Pluto gölge çalışmasını destekliyor. Meditasyon gücünüzü artırır.',
-        ZodiacSign.sagittarius: '🏃 Yay burcu olarak hareket ve macera şart! Jüpiter doğada vakit geçirmeyi destekliyor. Stretching ve kalça egzersizleri önemli.',
-        ZodiacSign.capricorn: '🦴 Oğlak burcu olarak kemik ve eklem sağlığına dikkat önemli. Satürn dinlenmeyi ve rejenerasyonu destekliyor. Aşırı çalışmaktan kaçının.',
-        ZodiacSign.aquarius: '⚡ Kova burcu olarak sinir sistemi dengelemesi gerekli. Uranüs teknolojiden uzaklaşmayı öneriyor. Sosyal aktiviteler ruh sağlığını destekler.',
-        ZodiacSign.pisces: '🌊 Balık burcu olarak su elementleriyle şifa bulursunuz. Neptün yüzme ve banyo ritüellerini destekliyor. Uyku kalitesine dikkat edin.',
-      };
-      return responses[sign] ?? '⚡ Enerjinizi dengelemek için doğayla bağlantı kurun, meditasyon yapın ve bedeninizi dinleyin.';
+    // Love questions
+    if (_matchesLoveQuestion2(lowerQuestion, language)) {
+      final venusEffectKey = sign.element == Element.fire ? 'venus_fire' :
+                             sign.element == Element.water ? 'venus_water' :
+                             sign.element == Element.earth ? 'venus_earth' : 'venus_air';
+      return L10nService.getWithParams('home.zodiac.smart_responses.love_reading', language, params: {
+        'sign': signName,
+        'venus_effect': L10nService.get('home.zodiac.smart_responses.$venusEffectKey', language),
+        'love_advice': _getLoveAdvice2(sign, language),
+      });
     }
 
-    // Genel/Spiritüel sorular
-    final generalResponses = {
-      ZodiacSign.aries: '🔥 Sevgili ${sign.nameTr}, ateş enerjiniz bugün doruklarda. Mars gücünüzü destekliyor, cesaretinizle yeni kapılar açacaksınız. Evren "harekete geç" diyor. Kalbinizin sesini dinleyin, başarı kaçınılmaz.',
-      ZodiacSign.taurus: '🌹 Sevgili ${sign.nameTr}, toprak enerjisi sizi besliyor. Venüs güzelliğinizi ve bolluğunuzu artırıyor. Sabırla bekleyin, zamanı gelince en tatlı meyveler sizin olacak. Bugün kendinizi şımartın.',
-      ZodiacSign.gemini: '💬 Sevgili ${sign.nameTr}, zihinsel çevikliğiniz bugün süper güç. Merkür düşüncelerinizi keskinleştiriyor. İletişim yeteneğinizi kullanın, fikirleriniz dünyayı değiştirebilir.',
-      ZodiacSign.cancer: '🌙 Sevgili ${sign.nameTr}, Ay ışığı ruhunuzu aydınlatıyor. Sezgileriniz çok güçlü, onları dinleyin. Duygusal zekânız rehberiniz olsun, şefkatiniz şifa verir.',
-      ZodiacSign.leo: '👑 Sevgili ${sign.nameTr}, Güneş enerjiniz maksimumda. Yaratıcılığınız ve liderliğiniz parlıyor. Sahneye çıkın, ilgi odağı olun. Cömertliğiniz bereketinizi artırır.',
-      ZodiacSign.virgo: '💎 Sevgili ${sign.nameTr}, analitik zekânız bugün lazer gibi. Detaylarda sihir gizli. Organizasyon yeteneğinizi kullanın, şifalı ellerinizle fark yaratın.',
-      ZodiacSign.libra: '⚖️ Sevgili ${sign.nameTr}, denge ve uyum enerjisi güçlü. Venüs diplomasi yeteneğinizi artırıyor. Güzellik yaratın, güzellik çekin. İlişkilerde harmoni zamanı.',
-      ZodiacSign.scorpio: '🦂 Sevgili ${sign.nameTr}, dönüşüm enerjisi yoğun. Sezgileriniz keskin, gizli gerçekler ortaya çıkıyor. Tutku ve güç sizinle. Derinliklerde hazineler bekliyor.',
-      ZodiacSign.sagittarius: '🏹 Sevgili ${sign.nameTr}, macera ruhu uyanıyor. Jüpiter şansınızı genişletiyor. Yeni ufuklar, yeni deneyimler sizi bekliyor. Bilgelik arayışınız ödüllendirilecek.',
-      ZodiacSign.capricorn: '🏔️ Sevgili ${sign.nameTr}, Satürn disiplin ve yapı veriyor. Hedeflerinize kararlılıkla ilerleyin. Uzun vadeli planlar için mükemmel zaman. Zirve yakın.',
-      ZodiacSign.aquarius: '🌊 Sevgili ${sign.nameTr}, yenilikçi enerjiniz dorukta. Uranüs beklenmedik fırsatlar getiriyor. Değişime açık olun, benzersizliğiniz süper gücünüz.',
-      ZodiacSign.pisces: '🐟 Sevgili ${sign.nameTr}, spiritüel bağlantınız güçlü. Neptün yaratıcılığınızı ve sezgilerinizi besliyor. Rüyalarınız mesaj taşıyor, evrenle bir olun.',
-    };
+    // General/Spiritual questions (default)
+    return L10nService.getWithParams('home.zodiac.smart_responses.general_spiritual', language, params: {
+      'sign': signName,
+      'daily_message': _getDailyMessage2(sign, language),
+      'daily_energy': _getDailyEnergy2(sign, language),
+    });
+  }
 
-    return generalResponses[sign] ?? '✨ Evren bugün sizinle konuşuyor. İçsel sesinizi dinleyin, cevaplar kalbinizde saklı.';
+  // Question matching helpers for multi-language support
+  bool _matchesAriesQuestion2(String q, AppLanguage lang) {
+    if (lang == AppLanguage.tr) return q.contains('koç') && (q.contains('erkek') || q.contains('kadın') || q.contains('anlaş'));
+    return q.contains('aries') && (q.contains('man') || q.contains('woman') || q.contains('along'));
+  }
+
+  bool _matchesScorpioQuestion2(String q, AppLanguage lang) {
+    if (lang == AppLanguage.tr) return q.contains('akrep') && (q.contains('kadın') || q.contains('erkek') || q.contains('gizemli'));
+    return q.contains('scorpio') && (q.contains('woman') || q.contains('man') || q.contains('mysterious'));
+  }
+
+  bool _matchesLeoQuestion2(String q, AppLanguage lang) {
+    if (lang == AppLanguage.tr) return q.contains('aslan') && (q.contains('ilgi') || q.contains('bekler') || q.contains('ego'));
+    return q.contains('leo') && (q.contains('attention') || q.contains('need') || q.contains('ego'));
+  }
+
+  bool _matchesGeminiQuestion2(String q, AppLanguage lang) {
+    if (lang == AppLanguage.tr) return q.contains('ikizler') && (q.contains('karar') || q.contains('veremez') || q.contains('değişken'));
+    return q.contains('gemini') && (q.contains('decision') || q.contains('decide') || q.contains('changeable'));
+  }
+
+  bool _matchesFireWaterQuestion2(String q, AppLanguage lang) {
+    if (lang == AppLanguage.tr) return q.contains('ateş') && q.contains('su');
+    return q.contains('fire') && q.contains('water');
+  }
+
+  bool _matchesLoyalQuestion2(String q, AppLanguage lang) {
+    if (lang == AppLanguage.tr) return q.contains('sadık') || q.contains('en sadık');
+    return q.contains('loyal') || q.contains('most loyal');
+  }
+
+  bool _matchesJealousQuestion2(String q, AppLanguage lang) {
+    if (lang == AppLanguage.tr) return q.contains('kıskanç') || q.contains('kıskançlık');
+    return q.contains('jealous') || q.contains('jealousy');
+  }
+
+  bool _matchesPassionateQuestion2(String q, AppLanguage lang) {
+    if (lang == AppLanguage.tr) return q.contains('yatakta') || q.contains('ateşli') || q.contains('cinsel');
+    return q.contains('bed') || q.contains('passionate') || q.contains('sexual');
+  }
+
+  bool _matchesWealthQuestion2(String q, AppLanguage lang) {
+    if (lang == AppLanguage.tr) return q.contains('zengin') || q.contains('para') || q.contains('bolluk');
+    return q.contains('rich') || q.contains('money') || q.contains('wealth') || q.contains('abundance');
+  }
+
+  bool _matchesSoulmateQuestion2(String q, AppLanguage lang) {
+    if (lang == AppLanguage.tr) return q.contains('ruh eşi') || q.contains('kader') || q.contains('büyük aşk');
+    return q.contains('soulmate') || q.contains('soul mate') || q.contains('destiny') || q.contains('true love');
+  }
+
+  bool _matchesLoveQuestion2(String q, AppLanguage lang) {
+    if (lang == AppLanguage.tr) return q.contains('aşk') || q.contains('ilişki') || q.contains('sevgili') || q.contains('evlilik');
+    return q.contains('love') || q.contains('relationship') || q.contains('partner') || q.contains('marriage');
+  }
+
+  String _getLuckyMonths2(ZodiacSign sign, AppLanguage language) {
+    final signKey = sign.name.toLowerCase();
+    return L10nService.get('home.zodiac.lucky_months.$signKey', language);
+  }
+
+  String _getFinancialStrength2(ZodiacSign sign, AppLanguage language) {
+    final signKey = sign.name.toLowerCase();
+    return L10nService.get('home.zodiac.financial_strength.$signKey', language);
+  }
+
+  String _getSoulMateCompatibility2(ZodiacSign sign, AppLanguage language) {
+    final signKey = sign.name.toLowerCase();
+    return L10nService.get('home.zodiac.soulmate_compatibility.$signKey', language);
+  }
+
+  String _getLoveAdvice2(ZodiacSign sign, AppLanguage language) {
+    final signKey = sign.name.toLowerCase();
+    return L10nService.get('home.zodiac.love_advice.$signKey', language);
+  }
+
+  String _getDailyMessage2(ZodiacSign sign, AppLanguage language) {
+    final signKey = sign.name.toLowerCase();
+    return L10nService.get('home.zodiac.daily_message.$signKey', language);
+  }
+
+  String _getDailyEnergy2(ZodiacSign sign, AppLanguage language) {
+    final energyKeys = ['positive', 'strong', 'creative', 'passionate', 'balanced', 'peaceful', 'energetic', 'intuitive'];
+    final index = (DateTime.now().day + sign.index) % energyKeys.length;
+    return L10nService.get('home.zodiac.daily_energy.${energyKeys[index]}', language);
   }
 
   // Burç uyumu hesaplama fonksiyonları
   String _getCompatibilityWithAries(ZodiacSign userSign, AppLanguage language) {
-    final compatibilities = {
-      ZodiacSign.aries: '🔥🔥🔥 Mükemmel! İki ateş bir arada - tutku patlaması. Ama ego çatışmasına dikkat!',
-      ZodiacSign.taurus: '⚠️ Zorlu. Koç hızlı, Boğa yavaş. Sabır gerekli, ama zıtlıklar çeker.',
-      ZodiacSign.gemini: '✨ Harika! İkisi de maceraperest. Hiç sıkılmazlar, iletişim güçlü.',
-      ZodiacSign.cancer: '💔 Zor. Yengeç hassas, Koç düşüncesiz olabilir. Anlayış şart.',
-      ZodiacSign.leo: '🔥🔥 Süper! İki ateş burcu = tutku. Liderlik paylaşılmalı.',
-      ZodiacSign.virgo: '😐 Orta. Başak detaycı, Koç aceleci. Denge bulunmalı.',
-      ZodiacSign.libra: '💕 İyi! Zıt kutuplar ama çekim var. Terazi dengeler.',
-      ZodiacSign.scorpio: '🌋 Yoğun! İkisi de tutkulu ve inatçı. Ya harika ya felaket.',
-      ZodiacSign.sagittarius: '🎯 Mükemmel! En uyumlu çift. Macera, özgürlük, eğlence.',
-      ZodiacSign.capricorn: '😅 Zorlu. Oğlak planlı, Koç spontan. Çalışırsa güçlü olur.',
-      ZodiacSign.aquarius: '💫 İyi! İkisi de bağımsız. Arkadaşlık + aşk = ideal.',
-      ZodiacSign.pisces: '🌊 Karışık. Balık hassas, Koç sert. Nazik ol.',
-    };
-    return compatibilities[userSign] ?? 'Burç uyumunuz analiz ediliyor...';
+    final signKey = userSign.name.toLowerCase();
+    return L10nService.get('home.zodiac.compatibility.aries.$signKey', language);
   }
 
   String _getCompatibilityWithScorpio(ZodiacSign userSign, AppLanguage language) {
-    final compatibilities = {
-      ZodiacSign.aries: '🌋 Yoğun! İkisi de tutkulu. Savaş ya da aşk - ortası yok.',
-      ZodiacSign.taurus: '💕💕 Harika! Karşı burçlar ama mükemmel çekim. Derin bağ potansiyeli.',
-      ZodiacSign.gemini: '😰 Zor. İkizler hafif, Akrep derin. Anlaşmak güç.',
-      ZodiacSign.cancer: '🌊💕 Mükemmel! Su elementleri. Duygusal bağ çok güçlü.',
-      ZodiacSign.leo: '🔥⚡ Güç savaşı! İkisi de hakim olmak ister. Ya harika ya felaket.',
-      ZodiacSign.virgo: '✨ İyi! Analitik ikili. Güven inşa edilirse kalıcı.',
-      ZodiacSign.libra: '😐 Orta. Terazi yüzeysel bulabilir, Akrep derin ister.',
-      ZodiacSign.scorpio: '🦂🦂 Yoğun! Aynı burç. Ya ruh eşi ya düşman.',
-      ZodiacSign.sagittarius: '⚠️ Zorlu. Yay özgür, Akrep sahiplenici. Güven sorunu.',
-      ZodiacSign.capricorn: '💪 Güçlü! İkisi de kararlı ve hırslı. Güç çifti.',
-      ZodiacSign.aquarius: '❄️ Çok zor. Kova mesafeli, Akrep yoğun. Zıt kutuplar.',
-      ZodiacSign.pisces: '💕💕💕 EN İYİ! Su grubu uyumu. Ruhsal bağ mükemmel.',
-    };
-    return compatibilities[userSign] ?? 'Burç uyumunuz analiz ediliyor...';
+    final signKey = userSign.name.toLowerCase();
+    return L10nService.get('home.zodiac.compatibility.scorpio.$signKey', language);
   }
 
   String _getCompatibilityWithLeo(ZodiacSign userSign, AppLanguage language) {
-    final compatibilities = {
-      ZodiacSign.aries: '🔥🔥 Süper! Ateş + Ateş. Tutku var ama ego kontrolü şart.',
-      ZodiacSign.taurus: '😤 Zorlu. İkisi de inatçı. Ama çekim güçlü.',
-      ZodiacSign.gemini: '🎭 İyi! Eğlenceli çift. Sosyal ve aktif.',
-      ZodiacSign.cancer: '🏠 Aile odaklı olabilir. Yengeç ilgi verir, Aslan alır.',
-      ZodiacSign.leo: '👑👑 Harika veya felaket. İki kral/kraliçe. Sahne paylaşılmalı!',
-      ZodiacSign.virgo: '😐 Orta. Başak eleştirir, Aslan övülmek ister. Denge zor.',
-      ZodiacSign.libra: '💕 Mükemmel! Romantik çift. Güzellik ve ışık.',
-      ZodiacSign.scorpio: '⚡ Güç savaşı! İkisi de dominant. Ya muhteşem ya berbat.',
-      ZodiacSign.sagittarius: '🔥🎯 Harika! Ateş grubu. Macera, eğlence, tutku.',
-      ZodiacSign.capricorn: '🏆 Güç çifti olabilir. Birlikte başarı.',
-      ZodiacSign.aquarius: '💫 Zıt ama çekici. Bağımsızlık vs. sahiplenme.',
-      ZodiacSign.pisces: '🌊 Romantik. Balık hayran olur, Aslan korur.',
-    };
-    return compatibilities[userSign] ?? 'Burç uyumunuz analiz ediliyor...';
+    final signKey = userSign.name.toLowerCase();
+    return L10nService.get('home.zodiac.compatibility.leo.$signKey', language);
   }
 
   String _getCompatibilityWithGemini(ZodiacSign userSign, AppLanguage language) {
-    final compatibilities = {
-      ZodiacSign.aries: '✨ Harika! Enerjik ve eğlenceli. Hiç sıkılmaz.',
-      ZodiacSign.taurus: '😅 Zorlu. Boğa yavaş, İkizler hızlı. Sabır lazım.',
-      ZodiacSign.gemini: '💬💬 İlginç! Çok konuşma, az eylem riski. Ama eğlenceli.',
-      ZodiacSign.cancer: '🌙 Duygusal zorluklar. Yengeç güvenlik, İkizler özgürlük ister.',
-      ZodiacSign.leo: '🎭 İyi! Sosyal ve parlak çift. Eğlence potansiyeli yüksek.',
-      ZodiacSign.virgo: '🧠 Zihinsel uyum. İkisi de Merkür yönetiminde. Analitik.',
-      ZodiacSign.libra: '💕💕 Mükemmel! Hava grubu. İletişim ve sosyallik.',
-      ZodiacSign.scorpio: '😰 Çok zor. Akrep derin, İkizler yüzeysel bulunur.',
-      ZodiacSign.sagittarius: '🎯✈️ Harika! Karşı burçlar ama mükemmel macera.',
-      ZodiacSign.capricorn: '📊 Zorlu. Oğlak ciddi, İkizler hafif. Denge lazım.',
-      ZodiacSign.aquarius: '💫💫 Süper! Hava grubu. Entelektüel cennet.',
-      ZodiacSign.pisces: '🌊 Karışık. Balık duygusal, İkizler mantıksal. Köprü kurun.',
-    };
-    return compatibilities[userSign] ?? 'Burç uyumunuz analiz ediliyor...';
+    final signKey = userSign.name.toLowerCase();
+    return L10nService.get('home.zodiac.compatibility.gemini.$signKey', language);
   }
 
   @override
@@ -3721,7 +3857,7 @@ class _AiChatSectionState extends ConsumerState<_AiChatSection> {
                       ),
                       const SizedBox(height: 2),
                       Text(
-                        'Yıldızların bilgeliğini keşfet ✨',
+                        L10nService.get('home.discover_stars_wisdom', language),
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
                               color: Colors.white70,
                               fontSize: 12,
@@ -3834,7 +3970,7 @@ class _AiChatSectionState extends ConsumerState<_AiChatSection> {
                     controller: _questionController,
                     style: const TextStyle(color: Colors.white, fontSize: 14),
                     decoration: InputDecoration(
-                      hintText: L10nService.get('home.ask_stars_short', _language),
+                      hintText: L10nService.get('home.ask_stars_short', language),
                       hintStyle: TextStyle(color: Colors.white38, fontSize: 13),
                       prefixIcon: Icon(Icons.chat_bubble_outline, color: Colors.white38, size: 20),
                       filled: true,
@@ -3909,9 +4045,9 @@ class _AiChatSectionState extends ConsumerState<_AiChatSection> {
                   height: 36,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: _suggestedQuestions.length,
+                    itemCount: _getSuggestedQuestions(language).length,
                     itemBuilder: (context, index) {
-                      final question = _suggestedQuestions[index];
+                      final question = _getSuggestedQuestions(language)[index];
                       return Padding(
                         padding: EdgeInsets.only(right: 8),
                         child: _buildSuggestionChip(question['text'] as String),
@@ -4127,7 +4263,7 @@ class _ShareSummaryButtonState extends State<_ShareSummaryButton> {
                           ),
                           const SizedBox(height: 3),
                           Text(
-                            'Hikayende kozmik enerjini paylaş!',
+                            L10nService.get('home.share_cosmic_energy', widget.language),
                             style: GoogleFonts.raleway(
                               fontSize: 11,
                               fontWeight: FontWeight.w500,
@@ -4181,12 +4317,12 @@ class _KozmozButtonState extends State<_KozmozButton> {
             borderRadius: BorderRadius.circular(16),
             boxShadow: [
               BoxShadow(
-                color: const Color(0xFFFFD700).withOpacity(0.5),
+                color: const Color(0xFFFFD700).withValues(alpha: 0.5),
                 blurRadius: 20,
                 spreadRadius: 3,
               ),
               BoxShadow(
-                color: const Color(0xFF00D9FF).withOpacity(0.3),
+                color: const Color(0xFF00D9FF).withValues(alpha: 0.3),
                 blurRadius: 20,
                 spreadRadius: 1,
               ),
@@ -4195,7 +4331,7 @@ class _KozmozButtonState extends State<_KozmozButton> {
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
             decoration: BoxDecoration(
-              color: const Color(0xFF0D0D1A).withOpacity(0.85),
+              color: const Color(0xFF0D0D1A).withValues(alpha: 0.85),
               borderRadius: BorderRadius.circular(12),
             ),
             child: Row(
@@ -4242,7 +4378,7 @@ class _KozmozButtonState extends State<_KozmozButton> {
                       letterSpacing: 2,
                       shadows: [
                         Shadow(
-                          color: const Color(0xFFFFD700).withOpacity(0.5),
+                          color: const Color(0xFFFFD700).withValues(alpha: 0.5),
                           blurRadius: 8,
                         ),
                       ],
@@ -4306,25 +4442,25 @@ class _KozmikIletisimButtonState extends State<_KozmikIletisimButton>
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [
-                    const Color(0xFF7B2CBF).withOpacity(0.85),
-                    const Color(0xFF5A189A).withOpacity(0.9),
-                    const Color(0xFF3C096C).withOpacity(0.95),
+                    const Color(0xFF7B2CBF).withValues(alpha: 0.85),
+                    const Color(0xFF5A189A).withValues(alpha: 0.9),
+                    const Color(0xFF3C096C).withValues(alpha: 0.95),
                   ],
                 ),
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
-                  color: const Color(0xFFE0AAFF).withOpacity(_isHovered ? 0.8 : 0.5),
+                  color: const Color(0xFFE0AAFF).withValues(alpha: _isHovered ? 0.8 : 0.5),
                   width: 1.5,
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: const Color(0xFF7B2CBF).withOpacity(glowIntensity),
+                    color: const Color(0xFF7B2CBF).withValues(alpha: glowIntensity),
                     blurRadius: 16,
                     spreadRadius: 2,
                   ),
                   if (_isHovered)
                     BoxShadow(
-                      color: const Color(0xFFE0AAFF).withOpacity(0.4),
+                      color: const Color(0xFFE0AAFF).withValues(alpha: 0.4),
                       blurRadius: 22,
                       spreadRadius: 3,
                     ),
@@ -4339,7 +4475,7 @@ class _KozmikIletisimButtonState extends State<_KozmikIletisimButton>
                       fontSize: 14,
                       shadows: [
                         Shadow(
-                          color: Colors.white.withOpacity(0.5),
+                          color: Colors.white.withValues(alpha: 0.5),
                           blurRadius: 6,
                         ),
                       ],
@@ -4355,7 +4491,7 @@ class _KozmikIletisimButtonState extends State<_KozmikIletisimButton>
                       letterSpacing: 0.8,
                       shadows: [
                         Shadow(
-                          color: const Color(0xFFE0AAFF).withOpacity(0.6),
+                          color: const Color(0xFFE0AAFF).withValues(alpha: 0.6),
                           blurRadius: 5,
                         ),
                       ],
@@ -4420,25 +4556,25 @@ class _RuyaDongusuButtonState extends State<_RuyaDongusuButton>
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [
-                    const Color(0xFF4361EE).withOpacity(0.85),
-                    const Color(0xFF3A0CA3).withOpacity(0.9),
-                    const Color(0xFF240046).withOpacity(0.95),
+                    const Color(0xFF4361EE).withValues(alpha: 0.85),
+                    const Color(0xFF3A0CA3).withValues(alpha: 0.9),
+                    const Color(0xFF240046).withValues(alpha: 0.95),
                   ],
                 ),
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
-                  color: const Color(0xFF72EFDD).withOpacity(_isHovered ? 0.8 : 0.5),
+                  color: const Color(0xFF72EFDD).withValues(alpha: _isHovered ? 0.8 : 0.5),
                   width: 1.5,
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: const Color(0xFF4361EE).withOpacity(glowIntensity),
+                    color: const Color(0xFF4361EE).withValues(alpha: glowIntensity),
                     blurRadius: 16,
                     spreadRadius: 2,
                   ),
                   if (_isHovered)
                     BoxShadow(
-                      color: const Color(0xFF72EFDD).withOpacity(0.4),
+                      color: const Color(0xFF72EFDD).withValues(alpha: 0.4),
                       blurRadius: 22,
                       spreadRadius: 3,
                     ),
@@ -4456,7 +4592,7 @@ class _RuyaDongusuButtonState extends State<_RuyaDongusuButton>
                         fontSize: 14,
                         shadows: [
                           Shadow(
-                            color: Colors.white.withOpacity(0.5),
+                            color: Colors.white.withValues(alpha: 0.5),
                             blurRadius: 6,
                           ),
                         ],
@@ -4473,7 +4609,7 @@ class _RuyaDongusuButtonState extends State<_RuyaDongusuButton>
                       letterSpacing: 0.8,
                       shadows: [
                         Shadow(
-                          color: const Color(0xFF72EFDD).withOpacity(0.6),
+                          color: const Color(0xFF72EFDD).withValues(alpha: 0.6),
                           blurRadius: 5,
                         ),
                       ],

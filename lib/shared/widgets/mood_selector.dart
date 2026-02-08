@@ -25,7 +25,7 @@ enum Mood {
 
   /// Get localized label for this mood
   String getLabel(AppLanguage language) {
-    return L10nService.get('widgets.mood_selector.moods.${name}', language);
+    return L10nService.get('widgets.mood_selector.moods.$name', language);
   }
 }
 
@@ -150,29 +150,29 @@ class _MoodChip extends StatelessWidget {
             gradient: isSelected
                 ? LinearGradient(
                     colors: [
-                      mood.color.withOpacity(0.4),
-                      mood.color.withOpacity(0.2),
+                      mood.color.withValues(alpha: 0.4),
+                      mood.color.withValues(alpha: 0.2),
                     ],
                   )
                 : null,
             color: isSelected
                 ? null
                 : isDark
-                    ? AppColors.surfaceLight.withOpacity(isHovered ? 0.8 : 0.5)
-                    : AppColors.lightSurfaceVariant.withOpacity(isHovered ? 1 : 0.7),
+                    ? AppColors.surfaceLight.withValues(alpha: isHovered ? 0.8 : 0.5)
+                    : AppColors.lightSurfaceVariant.withValues(alpha: isHovered ? 1 : 0.7),
             borderRadius: BorderRadius.circular(showLabel ? 24 : 16),
             border: Border.all(
               color: isSelected
                   ? mood.color
                   : isDark
-                      ? Colors.white.withOpacity(0.1)
-                      : Colors.black.withOpacity(0.05),
+                      ? Colors.white.withValues(alpha: 0.1)
+                      : Colors.black.withValues(alpha: 0.05),
               width: isSelected ? 2 : 1,
             ),
             boxShadow: isSelected
                 ? [
                     BoxShadow(
-                      color: mood.color.withOpacity(0.3),
+                      color: mood.color.withValues(alpha: 0.3),
                       blurRadius: 12,
                       spreadRadius: 0,
                     ),
@@ -245,17 +245,17 @@ class MoodCheckCard extends ConsumerWidget {
           end: Alignment.bottomRight,
           colors: isDark
               ? [
-                  AppColors.mystic.withOpacity(0.15),
-                  AppColors.surfaceDark.withOpacity(0.9),
+                  AppColors.mystic.withValues(alpha: 0.15),
+                  AppColors.surfaceDark.withValues(alpha: 0.9),
                 ]
               : [
-                  AppColors.mystic.withOpacity(0.1),
+                  AppColors.mystic.withValues(alpha: 0.1),
                   Colors.white,
                 ],
         ),
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
-          color: AppColors.mystic.withOpacity(0.3),
+          color: AppColors.mystic.withValues(alpha: 0.3),
         ),
       ),
       child: Column(
@@ -266,7 +266,7 @@ class MoodCheckCard extends ConsumerWidget {
               Container(
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                  color: AppColors.mystic.withOpacity(0.2),
+                  color: AppColors.mystic.withValues(alpha: 0.2),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Icon(
@@ -325,10 +325,10 @@ class MoodCheckCard extends ConsumerWidget {
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 decoration: BoxDecoration(
-                  color: currentMood!.color.withOpacity(0.15),
+                  color: currentMood!.color.withValues(alpha: 0.15),
                   borderRadius: BorderRadius.circular(20),
                   border: Border.all(
-                    color: currentMood!.color.withOpacity(0.3),
+                    color: currentMood!.color.withValues(alpha: 0.3),
                   ),
                 ),
                 child: Row(

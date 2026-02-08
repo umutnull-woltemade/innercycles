@@ -5,6 +5,8 @@ import 'package:printing/printing.dart';
 import '../models/user_profile.dart';
 import '../models/zodiac_sign.dart';
 import '../models/planet.dart';
+import '../providers/app_providers.dart';
+import 'l10n_service.dart';
 import 'moon_service.dart';
 
 /// PDF Report Generator Service for Birth Charts and Horoscopes
@@ -12,6 +14,9 @@ class PdfReportService {
   static final PdfReportService _instance = PdfReportService._internal();
   factory PdfReportService() => _instance;
   PdfReportService._internal();
+
+  // Current language for report generation (set during report generation)
+  AppLanguage _currentLanguage = AppLanguage.tr;
 
   // Brand colors
   static const _primaryColor = PdfColor.fromInt(0xFF7C3AED);
@@ -25,7 +30,9 @@ class PdfReportService {
     required Map<Planet, int> planetHouses,
     required ZodiacSign? ascendant,
     required ZodiacSign? moonSign,
+    AppLanguage language = AppLanguage.tr,
   }) async {
+    _currentLanguage = language;
     final pdf = pw.Document();
 
     // Load fonts
@@ -172,7 +179,7 @@ class PdfReportService {
             ),
           ),
           pw.Text(
-            'Dogum Haritasi Raporu',
+            L10nService.get('pdf_report.headers.birth_chart_report', _currentLanguage),
             style: const pw.TextStyle(
               fontSize: 10,
               color: _textMuted,
@@ -195,14 +202,14 @@ class PdfReportService {
         mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
         children: [
           pw.Text(
-            'Venus One - Kozmik Rehberiniz',
+            'Venus One - ${L10nService.get('pdf_report.headers.cosmic_guide', _currentLanguage)}',
             style: const pw.TextStyle(
               fontSize: 8,
               color: _textMuted,
             ),
           ),
           pw.Text(
-            'Sayfa ${context.pageNumber}/${context.pagesCount}',
+            '${L10nService.get('pdf_report.headers.page', _currentLanguage)} ${context.pageNumber}/${context.pagesCount}',
             style: const pw.TextStyle(
               fontSize: 8,
               color: _textMuted,
@@ -229,7 +236,7 @@ class PdfReportService {
           ),
           pw.SizedBox(height: 10),
           pw.Text(
-            profile.name ?? 'Kullanici',
+            profile.name ?? L10nService.get('pdf_report.defaults.user', _currentLanguage),
             style: pw.TextStyle(
               fontSize: 28,
               fontWeight: pw.FontWeight.bold,
@@ -238,7 +245,7 @@ class PdfReportService {
           ),
           pw.SizedBox(height: 5),
           pw.Text(
-            '${profile.sunSign.nameTr} Burcu',
+            '${profile.sunSign.localizedName(_currentLanguage)} ${L10nService.get('pdf_report.units.sign_suffix', _currentLanguage)}',
             style: const pw.TextStyle(
               fontSize: 16,
               color: _textMuted,
@@ -260,16 +267,16 @@ class PdfReportService {
         mainAxisAlignment: pw.MainAxisAlignment.spaceAround,
         children: [
           _buildBirthDataItem(
-            'Dogum Tarihi',
+            L10nService.get('pdf_report.birth_data.birth_date', _currentLanguage),
             '${profile.birthDate.day}.${profile.birthDate.month}.${profile.birthDate.year}',
           ),
           _buildBirthDataItem(
-            'Dogum Saati',
-            profile.birthTime ?? 'Bilinmiyor',
+            L10nService.get('pdf_report.birth_data.birth_time', _currentLanguage),
+            profile.birthTime ?? L10nService.get('pdf_report.birth_data.unknown', _currentLanguage),
           ),
           _buildBirthDataItem(
-            'Dogum Yeri',
-            profile.birthPlace ?? 'Bilinmiyor',
+            L10nService.get('pdf_report.birth_data.birth_place', _currentLanguage),
+            profile.birthPlace ?? L10nService.get('pdf_report.birth_data.unknown', _currentLanguage),
           ),
         ],
       ),
@@ -303,11 +310,12 @@ class PdfReportService {
     ZodiacSign? moonSign,
     ZodiacSign? ascendant,
   ) {
+    final unknown = L10nService.get('pdf_report.birth_data.unknown', _currentLanguage);
     return pw.Column(
       crossAxisAlignment: pw.CrossAxisAlignment.start,
       children: [
         pw.Text(
-          'BUYuK UC',
+          L10nService.get('pdf_report.sections.big_three', _currentLanguage),
           style: pw.TextStyle(
             fontSize: 18,
             fontWeight: pw.FontWeight.bold,
@@ -319,28 +327,28 @@ class PdfReportService {
           children: [
             pw.Expanded(
               child: _buildBigThreeItem(
-                'Gunes Burcu',
+                L10nService.get('pdf_report.big_three_items.sun_sign', _currentLanguage),
                 sunSign.symbol,
-                sunSign.nameTr,
-                'Temel kimligin, ego ve yasam amacin',
+                sunSign.localizedName(_currentLanguage),
+                L10nService.get('pdf_report.big_three_items.sun_description', _currentLanguage),
               ),
             ),
             pw.SizedBox(width: 10),
             pw.Expanded(
               child: _buildBigThreeItem(
-                'Ay Burcu',
+                L10nService.get('pdf_report.big_three_items.moon_sign', _currentLanguage),
                 moonSign?.symbol ?? '?',
-                moonSign?.nameTr ?? 'Bilinmiyor',
-                'Duygusal dogan, ic dunya ve sezgiler',
+                moonSign?.localizedName(_currentLanguage) ?? unknown,
+                L10nService.get('pdf_report.big_three_items.moon_description', _currentLanguage),
               ),
             ),
             pw.SizedBox(width: 10),
             pw.Expanded(
               child: _buildBigThreeItem(
-                'Yukselan',
+                L10nService.get('pdf_report.big_three_items.ascendant', _currentLanguage),
                 ascendant?.symbol ?? '?',
-                ascendant?.nameTr ?? 'Bilinmiyor',
-                'Dis gorunum ve baskalarinin seni nasil gordugu',
+                ascendant?.localizedName(_currentLanguage) ?? unknown,
+                L10nService.get('pdf_report.big_three_items.ascendant_description', _currentLanguage),
               ),
             ),
           ],
@@ -405,7 +413,7 @@ class PdfReportService {
       crossAxisAlignment: pw.CrossAxisAlignment.start,
       children: [
         pw.Text(
-          'GEZEGEN KONUMLARI',
+          L10nService.get('pdf_report.sections.planet_positions', _currentLanguage),
           style: pw.TextStyle(
             fontSize: 18,
             fontWeight: pw.FontWeight.bold,
@@ -422,10 +430,10 @@ class PdfReportService {
                 color: PdfColor.fromInt(0xFFF3E8FF),
               ),
               children: [
-                _buildTableCell('Gezegen', isHeader: true),
-                _buildTableCell('Burc', isHeader: true),
-                _buildTableCell('Ev', isHeader: true),
-                _buildTableCell('Anlami', isHeader: true),
+                _buildTableCell(L10nService.get('pdf_report.table_headers.planet', _currentLanguage), isHeader: true),
+                _buildTableCell(L10nService.get('pdf_report.table_headers.sign', _currentLanguage), isHeader: true),
+                _buildTableCell(L10nService.get('pdf_report.table_headers.house', _currentLanguage), isHeader: true),
+                _buildTableCell(L10nService.get('pdf_report.table_headers.meaning', _currentLanguage), isHeader: true),
               ],
             ),
             // Data rows
@@ -435,10 +443,10 @@ class PdfReportService {
               final house = houses[planet] ?? 1;
               return pw.TableRow(
                 children: [
-                  _buildTableCell('${planet.symbol} ${planet.nameTr}'),
-                  _buildTableCell('${sign.symbol} ${sign.nameTr}'),
-                  _buildTableCell('$house. Ev'),
-                  _buildTableCell(_getPlanetMeaning(planet), fontSize: 8),
+                  _buildTableCell('${planet.symbol} ${planet.localizedName(_currentLanguage)}'),
+                  _buildTableCell('${sign.symbol} ${sign.localizedName(_currentLanguage)}'),
+                  _buildTableCell('$house. ${L10nService.get('pdf_report.table_headers.house', _currentLanguage)}'),
+                  _buildTableCell(_getPlanetMeaning(planet, _currentLanguage), fontSize: 8),
                 ],
               );
             }),
@@ -472,7 +480,7 @@ class PdfReportService {
       crossAxisAlignment: pw.CrossAxisAlignment.start,
       children: [
         pw.Text(
-          'ELEMENT DAGILIMI',
+          L10nService.get('pdf_report.sections.element_distribution', _currentLanguage),
           style: pw.TextStyle(
             fontSize: 18,
             fontWeight: pw.FontWeight.bold,
@@ -493,6 +501,7 @@ class PdfReportService {
 
   pw.Widget _buildElementItem(Element element, int count, int total) {
     final percentage = (count / total * 100).round();
+    final planetsLabel = L10nService.get('pdf_report.units.planets', _currentLanguage);
     return pw.Column(
       children: [
         pw.Text(
@@ -501,7 +510,7 @@ class PdfReportService {
         ),
         pw.SizedBox(height: 4),
         pw.Text(
-          element.nameTr,
+          element.localizedName(_currentLanguage),
           style: pw.TextStyle(
             fontSize: 12,
             fontWeight: pw.FontWeight.bold,
@@ -509,7 +518,7 @@ class PdfReportService {
         ),
         pw.SizedBox(height: 2),
         pw.Text(
-          '$count gezegen ($percentage%)',
+          '$count $planetsLabel ($percentage%)',
           style: const pw.TextStyle(
             fontSize: 10,
             color: _textMuted,
@@ -529,7 +538,7 @@ class PdfReportService {
       crossAxisAlignment: pw.CrossAxisAlignment.start,
       children: [
         pw.Text(
-          'MODALITE DAGILIMI',
+          L10nService.get('pdf_report.sections.modality_distribution', _currentLanguage),
           style: pw.TextStyle(
             fontSize: 18,
             fontWeight: pw.FontWeight.bold,
@@ -550,6 +559,7 @@ class PdfReportService {
 
   pw.Widget _buildModalityItem(Modality modality, int count, int total) {
     final percentage = (count / total * 100).round();
+    final planetsLabel = L10nService.get('pdf_report.units.planets', _currentLanguage);
     return pw.Container(
       width: 150,
       padding: const pw.EdgeInsets.all(10),
@@ -560,7 +570,7 @@ class PdfReportService {
       child: pw.Column(
         children: [
           pw.Text(
-            modality.nameTr,
+            modality.localizedName(_currentLanguage),
             style: pw.TextStyle(
               fontSize: 14,
               fontWeight: pw.FontWeight.bold,
@@ -568,7 +578,7 @@ class PdfReportService {
           ),
           pw.SizedBox(height: 4),
           pw.Text(
-            '$count gezegen ($percentage%)',
+            '$count $planetsLabel ($percentage%)',
             style: const pw.TextStyle(
               fontSize: 10,
               color: _textMuted,
@@ -589,14 +599,12 @@ class PdfReportService {
   }
 
   String _getModalityMeaning(Modality modality) {
-    switch (modality) {
-      case Modality.cardinal:
-        return 'Baslatan, lider, girisimci';
-      case Modality.fixed:
-        return 'Kararli, istikrarli, direncli';
-      case Modality.mutable:
-        return 'Esnek, uyumlu, degisken';
-    }
+    final key = switch (modality) {
+      Modality.cardinal => 'cardinal',
+      Modality.fixed => 'fixed',
+      Modality.mutable => 'mutable',
+    };
+    return L10nService.get('pdf_report.modality_meanings.$key', _currentLanguage);
   }
 
   pw.Widget _buildPersonalityInterpretation(
@@ -608,7 +616,7 @@ class PdfReportService {
       crossAxisAlignment: pw.CrossAxisAlignment.start,
       children: [
         pw.Text(
-          'KISILIK YORUMU',
+          L10nService.get('pdf_report.sections.personality_interpretation', _currentLanguage),
           style: pw.TextStyle(
             fontSize: 18,
             fontWeight: pw.FontWeight.bold,
@@ -626,7 +634,7 @@ class PdfReportService {
             crossAxisAlignment: pw.CrossAxisAlignment.start,
             children: [
               pw.Text(
-                'Gunes ${sunSign.nameTr} Burcunda',
+                L10nService.getWithParams('pdf_report.interpretations.sun_in_sign', _currentLanguage, params: {'sign': sunSign.localizedName(_currentLanguage)}),
                 style: pw.TextStyle(
                   fontSize: 14,
                   fontWeight: pw.FontWeight.bold,
@@ -634,13 +642,13 @@ class PdfReportService {
               ),
               pw.SizedBox(height: 8),
               pw.Text(
-                _getSunSignInterpretation(sunSign),
+                _getSunSignInterpretation(sunSign, _currentLanguage),
                 style: const pw.TextStyle(fontSize: 10),
               ),
               if (moonSign != null) ...[
                 pw.SizedBox(height: 15),
                 pw.Text(
-                  'Ay ${moonSign.nameTr} Burcunda',
+                  L10nService.getWithParams('pdf_report.interpretations.moon_in_sign', _currentLanguage, params: {'sign': moonSign.localizedName(_currentLanguage)}),
                   style: pw.TextStyle(
                     fontSize: 14,
                     fontWeight: pw.FontWeight.bold,
@@ -648,14 +656,14 @@ class PdfReportService {
                 ),
                 pw.SizedBox(height: 8),
                 pw.Text(
-                  _getMoonSignInterpretation(moonSign),
+                  _getMoonSignInterpretation(moonSign, _currentLanguage),
                   style: const pw.TextStyle(fontSize: 10),
                 ),
               ],
               if (ascendant != null) ...[
                 pw.SizedBox(height: 15),
                 pw.Text(
-                  'Yukselan ${ascendant.nameTr} Burcunda',
+                  L10nService.getWithParams('pdf_report.interpretations.ascendant_in_sign', _currentLanguage, params: {'sign': ascendant.localizedName(_currentLanguage)}),
                   style: pw.TextStyle(
                     fontSize: 14,
                     fontWeight: pw.FontWeight.bold,
@@ -663,7 +671,7 @@ class PdfReportService {
                 ),
                 pw.SizedBox(height: 8),
                 pw.Text(
-                  _getAscendantInterpretation(ascendant),
+                  _getAscendantInterpretation(ascendant, _currentLanguage),
                   style: const pw.TextStyle(fontSize: 10),
                 ),
               ],
@@ -699,7 +707,7 @@ class PdfReportService {
             crossAxisAlignment: pw.CrossAxisAlignment.start,
             children: [
               pw.Text(
-                'GUNLUK BURC YORUMU',
+                L10nService.get('pdf_report.sections.daily_horoscope', _currentLanguage),
                 style: pw.TextStyle(
                   fontSize: 10,
                   fontWeight: pw.FontWeight.bold,
@@ -709,7 +717,7 @@ class PdfReportService {
               ),
               pw.SizedBox(height: 5),
               pw.Text(
-                profile.sunSign.nameTr,
+                profile.sunSign.localizedName(_currentLanguage),
                 style: pw.TextStyle(
                   fontSize: 24,
                   fontWeight: pw.FontWeight.bold,
@@ -747,14 +755,14 @@ class PdfReportService {
               ),
               pw.SizedBox(height: 4),
               pw.Text(
-                'Ay Evresi',
+                L10nService.get('pdf_report.moon_labels.moon_phase', _currentLanguage),
                 style: const pw.TextStyle(
                   fontSize: 8,
                   color: _textMuted,
                 ),
               ),
               pw.Text(
-                phase.nameTr,
+                phase.localizedName(_currentLanguage),
                 style: pw.TextStyle(
                   fontSize: 10,
                   fontWeight: pw.FontWeight.bold,
@@ -770,14 +778,14 @@ class PdfReportService {
               ),
               pw.SizedBox(height: 4),
               pw.Text(
-                'Ay Burcu',
+                L10nService.get('pdf_report.moon_labels.moon_sign', _currentLanguage),
                 style: const pw.TextStyle(
                   fontSize: 8,
                   color: _textMuted,
                 ),
               ),
               pw.Text(
-                sign.nameTr,
+                sign.localizedName(_currentLanguage),
                 style: pw.TextStyle(
                   fontSize: 10,
                   fontWeight: pw.FontWeight.bold,
@@ -812,7 +820,7 @@ class PdfReportService {
       crossAxisAlignment: pw.CrossAxisAlignment.start,
       children: [
         pw.Text(
-          'GUNUN ONERISI',
+          L10nService.get('pdf_report.sections.daily_recommendation', _currentLanguage),
           style: pw.TextStyle(
             fontSize: 14,
             fontWeight: pw.FontWeight.bold,
@@ -824,22 +832,22 @@ class PdfReportService {
           children: [
             pw.Expanded(
               child: _buildRecommendationItem(
-                'Sanslı Sayin',
+                L10nService.get('pdf_report.labels.lucky_number', _currentLanguage),
                 _getLuckyNumber(sign).toString(),
               ),
             ),
             pw.SizedBox(width: 10),
             pw.Expanded(
               child: _buildRecommendationItem(
-                'Sanslı Renk',
-                _getLuckyColor(sign),
+                L10nService.get('pdf_report.labels.lucky_color', _currentLanguage),
+                _getLuckyColor(sign, _currentLanguage),
               ),
             ),
             pw.SizedBox(width: 10),
             pw.Expanded(
               child: _buildRecommendationItem(
-                'Dikkat',
-                _getCautionArea(sign),
+                L10nService.get('pdf_report.labels.caution', _currentLanguage),
+                _getCautionArea(sign, _currentLanguage),
               ),
             ),
           ],
@@ -905,7 +913,7 @@ class PdfReportService {
             ),
           ),
           pw.Text(
-            'Uyum Raporu',
+            L10nService.get('pdf_report.labels.compatibility_report', _currentLanguage),
             style: const pw.TextStyle(
               fontSize: 10,
               color: _textMuted,
@@ -942,14 +950,14 @@ class PdfReportService {
               ),
               pw.SizedBox(height: 5),
               pw.Text(
-                profile1.name ?? 'Kisi 1',
+                profile1.name ?? L10nService.get('pdf_report.defaults.person_1', _currentLanguage),
                 style: pw.TextStyle(
                   fontSize: 14,
                   fontWeight: pw.FontWeight.bold,
                 ),
               ),
               pw.Text(
-                profile1.sunSign.nameTr,
+                profile1.sunSign.localizedName(_currentLanguage),
                 style: const pw.TextStyle(
                   fontSize: 10,
                   color: _textMuted,
@@ -972,14 +980,14 @@ class PdfReportService {
               ),
               pw.SizedBox(height: 5),
               pw.Text(
-                profile2.name ?? 'Kisi 2',
+                profile2.name ?? L10nService.get('pdf_report.defaults.person_2', _currentLanguage),
                 style: pw.TextStyle(
                   fontSize: 14,
                   fontWeight: pw.FontWeight.bold,
                 ),
               ),
               pw.Text(
-                profile2.sunSign.nameTr,
+                profile2.sunSign.localizedName(_currentLanguage),
                 style: const pw.TextStyle(
                   fontSize: 10,
                   color: _textMuted,
@@ -997,7 +1005,7 @@ class PdfReportService {
       child: pw.Column(
         children: [
           pw.Text(
-            'GENEL UYUM',
+            L10nService.get('pdf_report.sections.overall_compatibility', _currentLanguage),
             style: pw.TextStyle(
               fontSize: 12,
               fontWeight: pw.FontWeight.bold,
@@ -1037,7 +1045,7 @@ class PdfReportService {
       crossAxisAlignment: pw.CrossAxisAlignment.start,
       children: [
         pw.Text(
-          'KATEGORI BAZLI UYUM',
+          L10nService.get('pdf_report.sections.category_compatibility', _currentLanguage),
           style: pw.TextStyle(
             fontSize: 14,
             fontWeight: pw.FontWeight.bold,
@@ -1107,7 +1115,7 @@ class PdfReportService {
         crossAxisAlignment: pw.CrossAxisAlignment.start,
         children: [
           pw.Text(
-            'DETAYLI ANALIZ',
+            L10nService.get('pdf_report.sections.detailed_analysis', _currentLanguage),
             style: pw.TextStyle(
               fontSize: 12,
               fontWeight: pw.FontWeight.bold,
@@ -1137,99 +1145,43 @@ class PdfReportService {
     return const PdfColor.fromInt(0xFFF44336);
   }
 
-  String _getPlanetMeaning(Planet planet) {
-    switch (planet) {
-      case Planet.sun:
-        return 'Kimlik, ego, yaşam amacı';
-      case Planet.moon:
-        return 'Duygular, içgüdü, anne';
-      case Planet.mercury:
-        return 'İletişim, düşünce, öğrenme';
-      case Planet.venus:
-        return 'Aşk, güzellik, değerler';
-      case Planet.mars:
-        return 'Enerji, tutku, eylem';
-      case Planet.jupiter:
-        return 'Genişleme, şans, felsefe';
-      case Planet.saturn:
-        return 'Disiplin, sorumluluk, sınırlar';
-      case Planet.uranus:
-        return 'Değişim, özgürlük, yenilik';
-      case Planet.neptune:
-        return 'Hayal gücü, spiritualite, sezgi';
-      case Planet.pluto:
-        return 'Dönüşüm, güç, yeniden doğuş';
-      case Planet.northNode:
-        return 'Hayat amacı, ruhsal yolculuk';
-      case Planet.southNode:
-        return 'Geçmiş yaşam, doğal yetenekler';
-      case Planet.chiron:
-        return 'Yaralı şifacı, şifa yolculuğu';
-      case Planet.lilith:
-        return 'Gölge ben, bastırılan arzular';
-      case Planet.ascendant:
-        return 'Dış görünüm, ilk izlenim';
-      case Planet.midheaven:
-        return 'Kariyer, toplumsal imaj';
-      case Planet.ic:
-        return 'Ev, aile, kökler';
-      case Planet.descendant:
-        return 'İlişkiler, partnerlik';
-    }
+  String _getPlanetMeaning(Planet planet, AppLanguage language) {
+    final key = switch (planet) {
+      Planet.sun => 'sun',
+      Planet.moon => 'moon',
+      Planet.mercury => 'mercury',
+      Planet.venus => 'venus',
+      Planet.mars => 'mars',
+      Planet.jupiter => 'jupiter',
+      Planet.saturn => 'saturn',
+      Planet.uranus => 'uranus',
+      Planet.neptune => 'neptune',
+      Planet.pluto => 'pluto',
+      Planet.northNode => 'north_node',
+      Planet.southNode => 'south_node',
+      Planet.chiron => 'chiron',
+      Planet.lilith => 'lilith',
+      Planet.ascendant => 'ascendant',
+      Planet.midheaven => 'midheaven',
+      Planet.ic => 'ic',
+      Planet.descendant => 'descendant',
+    };
+    return L10nService.get('pdf_report.planet_meanings.$key', language);
   }
 
-  String _getSunSignInterpretation(ZodiacSign sign) {
-    final interpretations = <ZodiacSign, String>{
-      ZodiacSign.aries: 'Doğal bir lider olarak, cesur ve girişimcisiniz. Yeni başlangıçlara atılmaktan çekinmiyorsunuz ve rekabetçi ruhunuz sizi ileriye taşıyor.',
-      ZodiacSign.taurus: 'Kararlı ve güvenilir bir yapıya sahipsiniz. Maddi güvenlik ve konfor sizin için önemli, sabır ve inatçılığınız hedeflerinize ulaşmanızı sağlıyor.',
-      ZodiacSign.gemini: 'Meraklı ve çeşitli ilgi alanlarına sahip birisiniz. İletişim yetenekleriniz güçlü ve sosyal çevrenizdeki entelektüel sohbetleri seviyorsunuz.',
-      ZodiacSign.cancer: 'Duygusal derinliğiniz ve sezgilerinizle öne çıkıyorsunuz. Aile ve ev sizin için büyük önem taşıyor, koruyucu ve besleyici bir doğanız var.',
-      ZodiacSign.leo: 'Yaratıcılığınız ve çekiciliğinizle dikkat çekiyorsunuz. Liderlik özellikleri taşıyor ve ilgi odağı olmaktan hoşlanıyorsunuz.',
-      ZodiacSign.virgo: 'Analitik zekanız ve detaylara verdiğiniz önemle tanınıyorsunuz. Mükemmeliyetçi yaklaşımınız hem gücünüz hem de geliştirmeniz gereken bir alan.',
-      ZodiacSign.libra: 'Denge ve harmoni arayışındasınız. İlişkileriniz sizin için çok önemli ve adalet duygunuz güçlü, diplomatik yeteneklerinizle tanınıyorsunuz.',
-      ZodiacSign.scorpio: 'Derin ve yoğun bir yapınız var. Gizleri çözme yeteneğiniz ve dönüşüm gücü sizi farklı kılıyor, sadakatiniz tartışmasız.',
-      ZodiacSign.sagittarius: 'Özgür ruhunuz ve macera arayışınızla tanınıyorsunuz. Felsefi bir yapıya sahip, sürekli öğrenme ve keşfetme arzusu içerisindesiniz.',
-      ZodiacSign.capricorn: 'Hırsınız ve azminizle hedeflerinize ulaşıyorsunuz. Disiplinli ve sorumluluk sahibisiniz, uzun vadeli planlara değer veriyorsunuz.',
-      ZodiacSign.aquarius: 'Yenilikçi ve bağımsız düşüncenizle öne çıkıyorsunuz. İnsanlık için büyük ideallere sahipsiniz ve sıra dışı olmaktan çekinmiyorsunuz.',
-      ZodiacSign.pisces: 'Sezgisel ve empatik doğanızla tanınıyorsunuz. Sanatsal yetenekleriniz ve spiritüel eğilimleriniz sizi özel kılıyor.',
-    };
-    return interpretations[sign] ?? 'Birçok benzersiz yeteneğe sahipsiniz.';
+  String _getSunSignInterpretation(ZodiacSign sign, AppLanguage language) {
+    final key = sign.name.toLowerCase();
+    return L10nService.get('pdf_report.sun_sign_interpretations.$key', language);
   }
 
-  String _getMoonSignInterpretation(ZodiacSign sign) {
-    final interpretations = <ZodiacSign, String>{
-      ZodiacSign.aries: 'Duygusal tepkileriniz hızlı ve tutkulu. Sabırsızlık yaşayabilirsiniz ama duygusal cesaretiniz etkileyici.',
-      ZodiacSign.taurus: 'Duygusal güvenlik sizin için çok önemli. Sabit ve güvenilir duygusal yapınız var, değişime direnç gösterebilirsiniz.',
-      ZodiacSign.gemini: 'Duygularınızı ifade etmekte yeteneklisiniz. Merak ve iletişim duygusal ihtiyaçlarınızın bir parçası.',
-      ZodiacSign.cancer: 'Ay kendi evinde olduğu için duygusal sezgileriniz çok güçlü. Evrensel anne/baba arketipini taşıyorsunuz.',
-      ZodiacSign.leo: 'Sıcak ve coşkulu bir duygusal yapınız var. Sevilmek ve takdir edilmek duygusal ihtiyacınız.',
-      ZodiacSign.virgo: 'Duygusal analiz yeteneğiniz güçlü. Başkalarına hizmet etmek size duygusal tatmin getiriyor.',
-      ZodiacSign.libra: 'İlişkiler duygusal dengeniz için çok önemli. Harmoni ve estetik size huzur veriyor.',
-      ZodiacSign.scorpio: 'Derin ve yoğun duygusal deneyimler yaşıyorsunuz. Duygusal dönüşüm ve iyileşme temel temalarınız.',
-      ZodiacSign.sagittarius: 'Duygusal özgürlüğe ihtiyaç duyuyorsunuz. İyimserlik ve macera ruhunuz sizi besliyor.',
-      ZodiacSign.capricorn: 'Duygularınızı kontrol altına almaya çalışıyorsunuz. Duygusal olgunluk ve sorumluluk önemli temalarınız.',
-      ZodiacSign.aquarius: 'Duygusal bağımsızlık sizin için önemli. İnsanlık için duyduğunuz duygu güçlü.',
-      ZodiacSign.pisces: 'Sezgisel ve empatik duygusal yapınız var. Spiritüel deneyimler duygusal beslenmenizin parçası.',
-    };
-    return interpretations[sign] ?? 'Duygusal dünyanız zengin ve çeşitli.';
+  String _getMoonSignInterpretation(ZodiacSign sign, AppLanguage language) {
+    final key = sign.name.toLowerCase();
+    return L10nService.get('pdf_report.moon_sign_interpretations.$key', language);
   }
 
-  String _getAscendantInterpretation(ZodiacSign sign) {
-    final interpretations = <ZodiacSign, String>{
-      ZodiacSign.aries: 'İlk izlenim olarak enerjik, kararlı ve lider ruhlu görünüyorsunuz. Cesur ve girişimci bir imaj çiziyorsunuz.',
-      ZodiacSign.taurus: 'Sakin, güvenilir ve ayakları yere basan biri olarak algılanıyorsunuz. Fiziksel görünümünüz etkileyici.',
-      ZodiacSign.gemini: 'Meraklı, iletişime açık ve genç bir enerji yansıtıyorsunuz. Çevik ve esprili olarak algılanıyorsunuz.',
-      ZodiacSign.cancer: 'Sıcak, koruyucu ve besleyici biri olarak görülüyorsunuz. Ev ve aile temaları hayatınızda belirgin.',
-      ZodiacSign.leo: 'Karizmatik, dikkat çekici ve kendine güvenen biri olarak algılanıyorsunuz. Sahne sizin için doğal bir alan.',
-      ZodiacSign.virgo: 'Düzenli, analitik ve detaycı biri olarak görülüyorsunuz. Yardımsever ve pratik bir imaj çiziyorsunuz.',
-      ZodiacSign.libra: 'Zarif, dengeli ve diplomatik biri olarak algılanıyorsunuz. İlişkiler hayatınızın merkezinde.',
-      ZodiacSign.scorpio: 'Gizemli, yoğun ve manyetik biri olarak görülüyorsunuz. Güçlü bir var oluşunuz var.',
-      ZodiacSign.sagittarius: 'İyimser, maceracı ve özgür ruhlu biri olarak algılanıyorsunuz. Felsefi bir hava taşıyorsunuz.',
-      ZodiacSign.capricorn: 'Ciddi, profesyonel ve hırslı biri olarak görülüyorsunuz. Otorite figürü olarak algılanabilirsiniz.',
-      ZodiacSign.aquarius: 'Farklı, yenilikçi ve bağımsız biri olarak algılanıyorsunuz. Orijinal bir stil sergiliyorsunuz.',
-      ZodiacSign.pisces: 'Hayalperest, sanatsal ve spiritüel biri olarak görülüyorsunuz. Empatik ve anlayışlı bir enerji yayıyorsunuz.',
-    };
-    return interpretations[sign] ?? 'Benzersiz bir dış görünümünüz var.';
+  String _getAscendantInterpretation(ZodiacSign sign, AppLanguage language) {
+    final key = sign.name.toLowerCase();
+    return L10nService.get('pdf_report.ascendant_interpretations.$key', language);
   }
 
   int _getLuckyNumber(ZodiacSign sign) {
@@ -1238,25 +1190,18 @@ class PdfReportService {
     return (seed % 9) + 1;
   }
 
-  String _getLuckyColor(ZodiacSign sign) {
-    final colors = ['Kırmızı', 'Mavi', 'Yeşil', 'Mor', 'Turuncu', 'Sarı', 'Pembe', 'Beyaz'];
+  String _getLuckyColor(ZodiacSign sign, AppLanguage language) {
+    final colorKeys = ['red', 'blue', 'green', 'purple', 'orange', 'yellow', 'pink', 'white'];
     final now = DateTime.now();
-    final index = (now.day + sign.index) % colors.length;
-    return colors[index];
+    final index = (now.day + sign.index) % colorKeys.length;
+    return L10nService.get('pdf_report.colors.${colorKeys[index]}', language);
   }
 
-  String _getCautionArea(ZodiacSign sign) {
-    final areas = [
-      'İletişim',
-      'Finans',
-      'Sağlık',
-      'İlişkiler',
-      'İş',
-      'Aile',
-    ];
+  String _getCautionArea(ZodiacSign sign, AppLanguage language) {
+    final areaKeys = ['communication', 'finance', 'health', 'relationships', 'work', 'family'];
     final now = DateTime.now();
-    final index = (now.day + sign.index + 3) % areas.length;
-    return areas[index];
+    final index = (now.day + sign.index + 3) % areaKeys.length;
+    return L10nService.get('pdf_report.caution_areas.${areaKeys[index]}', language);
   }
 
   // ============== Public Methods ==============

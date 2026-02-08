@@ -23,6 +23,8 @@ import '../models/planet.dart' as planet_model;
 import '../models/zodiac_sign.dart';
 import '../content/dream_symbols_database.dart';
 import '../content/dream_content_expanded.dart';
+import '../providers/app_providers.dart';
+import 'l10n_service.dart';
 
 import 'dream_interpretation_service.dart';
 
@@ -71,6 +73,45 @@ enum DreamTime {
   final String nameTr;
   final String description;
   const DreamTime(this.nameTr, this.description);
+}
+
+/// Extension for localized InterpretationStyle names
+extension InterpretationStyleL10n on InterpretationStyle {
+  String localizedName(AppLanguage language) {
+    final key = 'dream_ai.interpretation_styles.$name';
+    final localized = L10nService.get(key, language);
+    return localized != key ? localized : nameTr;
+  }
+}
+
+/// Extension for localized PromptType names
+extension PromptTypeL10n on PromptType {
+  String localizedName(AppLanguage language) {
+    final key = 'dream_ai.prompt_types.${name}_name';
+    final localized = L10nService.get(key, language);
+    return localized != key ? localized : nameTr;
+  }
+
+  String localizedDescription(AppLanguage language) {
+    final key = 'dream_ai.prompt_types.${name}_desc';
+    final localized = L10nService.get(key, language);
+    return localized != key ? localized : description;
+  }
+}
+
+/// Extension for localized DreamTime names
+extension DreamTimeL10n on DreamTime {
+  String localizedName(AppLanguage language) {
+    final key = 'dream_ai.dream_times.${name}_name';
+    final localized = L10nService.get(key, language);
+    return localized != key ? localized : nameTr;
+  }
+
+  String localizedDescription(AppLanguage language) {
+    final key = 'dream_ai.dream_times.${name}_desc';
+    final localized = L10nService.get(key, language);
+    return localized != key ? localized : description;
+  }
 }
 
 // ════════════════════════════════════════════════════════════════════════════
@@ -1320,40 +1361,49 @@ JSON çıktısı da ekle.
     return '${date.day}.${date.month}.${date.year}';
   }
 
-  static String _getMoonPhaseEffect(MoonPhase phase) {
+  static String _getMoonPhaseEffect(MoonPhase phase, {AppLanguage language = AppLanguage.tr}) {
+    final key = 'dream_ai.moon_effects.${phase.name}';
+    final localized = L10nService.get(key, language);
+    if (localized != key) return localized;
+
+    // Fallback
     switch (phase) {
       case MoonPhase.yeniay:
-        return 'Derin ama hatırlanması zor';
+        return language == AppLanguage.tr ? 'Derin ama hatırlanması zor' : 'Deep but hard to remember';
       case MoonPhase.hilal:
-        return 'Artan netlik, büyüme temaları';
+        return language == AppLanguage.tr ? 'Artan netlik, büyüme temaları' : 'Increasing clarity, growth themes';
       case MoonPhase.ilkDordun:
-        return 'Gerilim, karar noktaları';
+        return language == AppLanguage.tr ? 'Gerilim, karar noktaları' : 'Tension, decision points';
       case MoonPhase.dolunay:
-        return 'En canlı, en net, en yoğun';
+        return language == AppLanguage.tr ? 'En canlı, en net, en yoğun' : 'Most vivid, clearest, most intense';
       case MoonPhase.sonDordun:
-        return 'Bırakma temaları, temizlik';
+        return language == AppLanguage.tr ? 'Bırakma temaları, temizlik' : 'Release themes, cleansing';
       case MoonPhase.karanlikAy:
-        return 'En derin, en gizli mesajlar';
+        return language == AppLanguage.tr ? 'En derin, en gizli mesajlar' : 'Deepest, most hidden messages';
     }
   }
 
-  static String _estimateMoonSign(DateTime date) {
-    // Basit tahmin (ay yaklaşık 2.5 günde burç değiştirir)
-    final signs = ['Koç', 'Boğa', 'İkizler', 'Yengeç', 'Aslan', 'Başak',
+  static String _estimateMoonSign(DateTime date, {AppLanguage language = AppLanguage.tr}) {
+    // Simple estimate (moon changes sign approximately every 2.5 days)
+    final trSigns = ['Koç', 'Boğa', 'İkizler', 'Yengeç', 'Aslan', 'Başak',
                    'Terazi', 'Akrep', 'Yay', 'Oğlak', 'Kova', 'Balık'];
+    final enSigns = ['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo',
+                   'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'];
     final dayOfYear = date.difference(DateTime(date.year, 1, 1)).inDays;
     final signIndex = ((dayOfYear / 2.5) % 12).floor();
-    return signs[signIndex];
+    return language == AppLanguage.tr ? trSigns[signIndex] : enSigns[signIndex];
   }
 
-  static String _getRetrogradeInfo(DateTime date) {
-    // Genel retro bilgisi (gerçek hesaplama için ephemeris gerekli)
+  static String _getRetrogradeInfo(DateTime date, {AppLanguage language = AppLanguage.tr}) {
+    // General retrograde info (real calculation needs ephemeris)
     final buffer = StringBuffer();
     final month = date.month;
 
-    // Merkür retro dönemleri (yaklaşık)
+    // Mercury retrograde periods (approximate)
     if ((month >= 1 && month <= 2) || (month >= 5 && month <= 6) || (month >= 9 && month <= 10)) {
-      buffer.writeln('☿ Merkür Retro olabilir - iletişim ve geçmiş temaları');
+      final key = 'dream_ai.retrograde.mercury';
+      final localized = L10nService.get(key, language);
+      buffer.writeln(localized != key ? localized : '☿ Mercury may be retrograde - communication and past themes');
     }
 
     return buffer.toString();
@@ -1525,156 +1575,252 @@ JSON çıktısı da ekle.
     List<DreamSymbolData> symbols,
     EmotionalTone emotion,
     TimeLayer timeLayer,
-    MoonPhase moonPhase,
-  ) {
+    MoonPhase moonPhase, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     if (symbols.isEmpty) {
-      return 'Bilinçaltın seninle simgesiz, doğrudan konuşuyor. Bu rüyanın özünde bir duygu mesajı var.';
+      final key = 'dream_ai.core_message.empty';
+      final localized = L10nService.get(key, language);
+      return localized != key ? localized : 'Your subconscious is speaking directly to you without symbols. There is an emotional message at the core of this dream.';
     }
 
     final mainSymbol = symbols.first;
-    return '${mainSymbol.emoji} ${mainSymbol.symbolTr} sembolü bilinçaltının ana mesajcısı. '
-        '${emotion.hint} ${moonPhase.meaning}';
+    final symbolName = language == AppLanguage.tr ? mainSymbol.symbolTr : mainSymbol.symbol;
+    final key = 'dream_ai.core_message.with_symbol';
+    final localized = L10nService.get(key, language);
+    final template = localized != key ? localized : '{emoji} The {symbol} symbol is the main messenger of your subconscious. {emotionHint} {moonMeaning}';
+    return template
+        .replaceAll('{emoji}', mainSymbol.emoji)
+        .replaceAll('{symbol}', symbolName)
+        .replaceAll('{emotionHint}', emotion.hint)
+        .replaceAll('{moonMeaning}', moonPhase.meaning);
   }
 
   static EmotionalReading _generateEmotionalReading(
     EmotionalTone emotion,
-    InterpretationStyle style,
-  ) {
-    // Stil bazlı mesajlar
-    final surfaceMessages = {
-      EmotionalTone.korku: 'Yüzeyde bir alarm çalıyor - dikkatini çeken bir tehdit var.',
-      EmotionalTone.huzur: 'İç dünyanda bir denge hissediyorsun - bu değerli.',
-      EmotionalTone.merak: 'Keşfetme dürtüsü aktif - sorular cevaplardan daha önemli.',
-      EmotionalTone.sucluluk: 'Bir şey yanlış hissettiriyor - ama gerçekten öyle mi?',
-      EmotionalTone.ozlem: 'Kalbinde bir boşluk var - doldurulması gereken.',
-      EmotionalTone.heyecan: 'Enerji yükseliyor - yeni bir şey kapıda.',
-      EmotionalTone.donukluk: 'Duygular geçici olarak susturulmuş - koruma mekanizması.',
-      EmotionalTone.ofke: 'Sınırlar zorlanmış - güç geri alınmak istiyor.',
-    };
+    InterpretationStyle style, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
+    // Use the already localized translations from dream_interpretation section
+    String getSurface() {
+      final key = 'dream_interpretation.surface_messages.${emotion.name}';
+      final localized = L10nService.get(key, language);
+      if (localized != key) return localized;
+      // Fallback
+      final fallbacks = {
+        EmotionalTone.korku: 'An alarm is sounding within. Your subconscious wants to warn you about something.',
+        EmotionalTone.huzur: 'You are in inner balance. This dream celebrates your peace.',
+        EmotionalTone.merak: 'New doors are opening in your mind. This dream is inviting you to explore.',
+        EmotionalTone.sucluluk: 'A burden of consciousness wants to speak. You might be carrying a debt from the past.',
+        EmotionalTone.ozlem: 'A valuable part of your soul is missing. Something is calling you back.',
+        EmotionalTone.heyecan: 'Energy is rising - something new is on the horizon.',
+        EmotionalTone.donukluk: 'Emotions are temporarily muted - a protection mechanism.',
+        EmotionalTone.ofke: 'Boundaries have been pushed - power wants to be reclaimed.',
+      };
+      return fallbacks[emotion]!;
+    }
 
-    final deeperMeanings = {
-      EmotionalTone.korku: 'Korkunun altında genellikle sevgi vardır. Neyi kaybetmekten korkuyorsun?',
-      EmotionalTone.huzur: 'Bu huzur, çatışmanın çözüldüğüne işaret. Hangi iç savaş sona erdi?',
-      EmotionalTone.merak: 'Merak, ruhun büyüme çağrısıdır. Bilinmeyene açılmaya hazırsın.',
-      EmotionalTone.sucluluk: 'Suçluluk bazen başkalarının sesini içselleştirmektir. Bu ses kimin?',
-      EmotionalTone.ozlem: 'Özlem, kaybedilen bütünlüğe dönüş arzusudur. Ne zaman bütün hissettin?',
-      EmotionalTone.heyecan: 'Heyecan, yaşam enerjisinin doruğudur. Bu enerjiyi nereye yönlendireceksin?',
-      EmotionalTone.donukluk: 'Donukluk, çok fazla hissetmekten korumadır. Neyi hissetmekten kaçınıyorsun?',
-      EmotionalTone.ofke: 'Öfke, bastırılmış gücün sesidir. Gücünü nerede geri istiyorsun?',
-    };
+    String getDeeper() {
+      final key = 'dream_interpretation.deeper_meanings.${emotion.name}';
+      final localized = L10nService.get(key, language);
+      if (localized != key) return localized;
+      final fallbacks = {
+        EmotionalTone.korku: 'Beneath fear there is usually love. What are you afraid of losing?',
+        EmotionalTone.huzur: 'This peace signals conflict resolved. Which inner war has ended?',
+        EmotionalTone.merak: 'Curiosity is the soul\'s call to grow. You are ready to open to the unknown.',
+        EmotionalTone.sucluluk: 'Guilt is sometimes internalizing others\' voices. Whose voice is this?',
+        EmotionalTone.ozlem: 'Longing is the desire to return to lost wholeness. When did you feel whole?',
+        EmotionalTone.heyecan: 'Excitement is the peak of life energy. Where will you direct this energy?',
+        EmotionalTone.donukluk: 'Numbness is protection from feeling too much. What are you avoiding feeling?',
+        EmotionalTone.ofke: 'Anger is the voice of suppressed power. Where do you want your power back?',
+      };
+      return fallbacks[emotion]!;
+    }
 
-    final shadowQuestions = {
-      EmotionalTone.korku: 'Korktuğun şey gerçekleşse ne olurdu?',
-      EmotionalTone.huzur: 'Bu huzuru sabote eden düşünce hangisi?',
-      EmotionalTone.merak: 'Cevabını bulmaktan korktuğun soru ne?',
-      EmotionalTone.sucluluk: 'Kendini affetsen ne değişirdi?',
-      EmotionalTone.ozlem: 'Özlediğin şey geri gelse, onu kabul edebilir misin?',
-      EmotionalTone.heyecan: 'Bu heyecan sönse ne kalır?',
-      EmotionalTone.donukluk: 'Hissetseydin ne hissederdin?',
-      EmotionalTone.ofke: 'Öfkenin altında hangi acı var?',
-    };
+    String getShadow() {
+      final key = 'dream_interpretation.shadow_questions.${emotion.name}';
+      final localized = L10nService.get(key, language);
+      if (localized != key) return localized;
+      final fallbacks = {
+        EmotionalTone.korku: 'What would happen if what you fear came true?',
+        EmotionalTone.huzur: 'Which thought sabotages this peace?',
+        EmotionalTone.merak: 'What question are you afraid to find the answer to?',
+        EmotionalTone.sucluluk: 'What would change if you forgave yourself?',
+        EmotionalTone.ozlem: 'If what you long for returned, could you accept it?',
+        EmotionalTone.heyecan: 'What remains when this excitement fades?',
+        EmotionalTone.donukluk: 'If you were to feel, what would you feel?',
+        EmotionalTone.ofke: 'What pain lies beneath the anger?',
+      };
+      return fallbacks[emotion]!;
+    }
 
-    final integrationPaths = {
-      EmotionalTone.korku: 'Korkuyla yüzleş, ama nazik ol. Korktuğun şeye küçük adımlarla yaklaş.',
-      EmotionalTone.huzur: 'Bu huzuru hatırla ve günlük hayatına taşı. Meditasyonla pekiştir.',
-      EmotionalTone.merak: 'Sorularını yaz, cevapları aramak yerine sorularla yaşamayı öğren.',
-      EmotionalTone.sucluluk: 'Suçluluğu incele: gerçek mi, öğrenilmiş mi? Kendine mektup yaz.',
-      EmotionalTone.ozlem: 'Özlemi onurlandır ama şimdide kal. Kaybı kabul, geleceğe kapı açar.',
-      EmotionalTone.heyecan: 'Heyecanı eyleme dönüştür. Bugün bir adım at.',
-      EmotionalTone.donukluk: 'Bedenine dön. Hareket et, nefes al, yavaş yavaş hisset.',
-      EmotionalTone.ofke: 'Öfkeyi sağlıklı ifade et: spor, yazı, yaratıcılık. Ama birini incitme.',
-    };
+    String getIntegration() {
+      final key = 'dream_interpretation.integration_paths.${emotion.name}';
+      final localized = L10nService.get(key, language);
+      if (localized != key) return localized;
+      final fallbacks = {
+        EmotionalTone.korku: 'Face your fear, but be gentle. Approach what you fear in small steps.',
+        EmotionalTone.huzur: 'Remember this peace and carry it into daily life. Reinforce with meditation.',
+        EmotionalTone.merak: 'Write down your questions, learn to live with questions rather than seeking answers.',
+        EmotionalTone.sucluluk: 'Examine the guilt: is it real or learned? Write a letter to yourself.',
+        EmotionalTone.ozlem: 'Honor the longing but stay present. Accepting loss opens doors to the future.',
+        EmotionalTone.heyecan: 'Transform excitement into action. Take a step today.',
+        EmotionalTone.donukluk: 'Return to your body. Move, breathe, slowly begin to feel.',
+        EmotionalTone.ofke: 'Express anger healthily: sports, writing, creativity. But don\'t hurt anyone.',
+      };
+      return fallbacks[emotion]!;
+    }
 
     return EmotionalReading(
       dominantEmotion: emotion,
-      surfaceMessage: surfaceMessages[emotion]!,
-      deeperMeaning: deeperMeanings[emotion]!,
-      shadowQuestion: shadowQuestions[emotion]!,
-      integrationPath: integrationPaths[emotion]!,
+      surfaceMessage: getSurface(),
+      deeperMeaning: getDeeper(),
+      shadowQuestion: getShadow(),
+      integrationPath: getIntegration(),
     );
   }
 
   static PracticalGuidance _generateGuidance(
     List<DreamSymbolData> symbols,
     EmotionalTone emotion,
-    InterpretationStyle style,
-  ) {
+    InterpretationStyle style, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     String todayAction;
     if (emotion == EmotionalTone.korku) {
-      todayAction = 'Bugün korktuğun bir şeye küçük bir adım at.';
+      final key = 'dream_interpretation.today_action.fear';
+      final localized = L10nService.get(key, language);
+      todayAction = localized != key ? localized : 'Today, take a small step toward something you fear.';
     } else if (emotion == EmotionalTone.ozlem) {
-      todayAction = 'Bugün özlediğin kişiye/duruma dair bir anı yaz.';
+      final key = 'dream_interpretation.today_action.longing';
+      final localized = L10nService.get(key, language);
+      todayAction = localized != key ? localized : 'Today, write a memory about the person/situation you long for.';
     } else if (symbols.isNotEmpty) {
-      todayAction = 'Bugün ${symbols.first.symbolTr} sembolü hakkında 5 dakika düşün.';
+      final symbolName = language == AppLanguage.tr ? symbols.first.symbolTr : symbols.first.symbol;
+      final key = 'dream_interpretation.today_action.symbol';
+      final localized = L10nService.get(key, language);
+      final template = localized != key ? localized : 'Today, spend 5 minutes thinking about the {symbol} symbol.';
+      todayAction = template.replaceAll('{symbol}', symbolName);
     } else {
-      todayAction = 'Bugün bu rüyayı bir günlüğe yaz ve duygularını kaydet.';
+      final key = 'dream_interpretation.today_action.default';
+      final localized = L10nService.get(key, language);
+      todayAction = localized != key ? localized : 'Today, write this dream in a journal and record your feelings.';
     }
 
     String reflectionQuestion;
     if (symbols.isNotEmpty) {
-      reflectionQuestion = '${symbols.first.symbolTr} sembolü hayatımda neyi temsil ediyor?';
+      final symbolName = language == AppLanguage.tr ? symbols.first.symbolTr : symbols.first.symbol;
+      final key = 'dream_interpretation.reflection.symbol';
+      final localized = L10nService.get(key, language);
+      final template = localized != key ? localized : 'What does the {symbol} symbol represent in my life?';
+      reflectionQuestion = template.replaceAll('{symbol}', symbolName);
     } else {
-      reflectionQuestion = 'Bu rüya bana ne söylemeye çalışıyor?';
+      final key = 'dream_interpretation.reflection.empty';
+      final localized = L10nService.get(key, language);
+      reflectionQuestion = localized != key ? localized : 'What is this dream trying to tell me?';
     }
 
-    final avoidances = {
-      EmotionalTone.korku: 'Bu hafta korkudan kaçmak için yapılan impulsif kararlardan kaçın.',
-      EmotionalTone.huzur: 'Huzuru bozmak isteyenlerden nazikçe mesafe koy.',
-      EmotionalTone.merak: 'Cevapsız sorulara tahammülsüzlükten kaçın.',
-      EmotionalTone.sucluluk: 'Kendini aşırı yargılamaktan kaçın.',
-      EmotionalTone.ozlem: 'Geçmişte takılıp kalmaktan kaçın.',
-      EmotionalTone.heyecan: 'Enerjini dağıtmaktan kaçın, odaklan.',
-      EmotionalTone.donukluk: 'Hissizliği normalleştirmekten kaçın.',
-      EmotionalTone.ofke: 'Öfkeyi başkalarına yansıtmaktan kaçın.',
-    };
+    String getAvoidance() {
+      final key = 'dream_interpretation.avoidances.${emotion.name}';
+      final localized = L10nService.get(key, language);
+      if (localized != key) return localized;
+      final fallbacks = {
+        EmotionalTone.korku: 'This week, avoid impulsive decisions made to escape fear.',
+        EmotionalTone.huzur: 'Gently distance yourself from those who want to disturb your peace.',
+        EmotionalTone.merak: 'Avoid impatience with unanswered questions.',
+        EmotionalTone.sucluluk: 'Avoid judging yourself excessively.',
+        EmotionalTone.ozlem: 'Avoid getting stuck in the past.',
+        EmotionalTone.heyecan: 'Avoid scattering your energy, stay focused.',
+        EmotionalTone.donukluk: 'Avoid normalizing numbness.',
+        EmotionalTone.ofke: 'Avoid projecting anger onto others.',
+      };
+      return fallbacks[emotion]!;
+    }
+
+    final weeklyKey = 'dream_ai.weekly_focus_default';
+    final weeklyLocalized = L10nService.get(weeklyKey, language);
+    final weeklyFocus = weeklyLocalized != weeklyKey
+        ? weeklyLocalized
+        : 'This week, pay attention to dream symbols and your emotional reactions.';
 
     return PracticalGuidance(
       todayAction: todayAction,
       reflectionQuestion: reflectionQuestion,
-      weeklyFocus: 'Bu hafta rüya sembollerine ve duygusal tepkilerine dikkat et.',
-      avoidance: avoidances[emotion]!,
+      weeklyFocus: weeklyFocus,
+      avoidance: getAvoidance(),
     );
   }
 
-  static String _getMoonPhaseMessage(MoonPhase phase) {
+  static String _getMoonPhaseMessage(MoonPhase phase, {AppLanguage language = AppLanguage.tr}) {
+    final key = 'dream_interpretation.moon_phases.${phase.name}';
+    final localized = L10nService.get(key, language);
+    if (localized != key) return localized;
+
+    // Fallback
     switch (phase) {
       case MoonPhase.yeniay:
-        return 'Yeniay fazında gelen bu rüya, yeni bir niyet tohumu taşıyor.';
+        return language == AppLanguage.tr
+            ? 'Yeniay fazında gelen bu rüya, yeni bir niyet tohumu taşıyor.'
+            : 'This dream coming in the new moon phase carries a seed of new intention.';
       case MoonPhase.hilal:
-        return 'Hilal Ay döneminde gelen rüyalar büyüme potansiyelini gösterir.';
+        return language == AppLanguage.tr
+            ? 'Hilal Ay döneminde gelen rüyalar büyüme potansiyelini gösterir.'
+            : 'Dreams during the crescent moon show growth potential.';
       case MoonPhase.ilkDordun:
-        return 'İlk Dördün\'de gelen bu rüya bir karar noktasına işaret ediyor.';
+        return language == AppLanguage.tr
+            ? 'İlk Dördün\'de gelen bu rüya bir karar noktasına işaret ediyor.'
+            : 'This dream in the first quarter points to a decision point.';
       case MoonPhase.dolunay:
-        return 'Dolunay\'da gelen rüyalar farkındalık doruk noktasıdır.';
+        return language == AppLanguage.tr
+            ? 'Dolunay\'da gelen rüyalar farkındalık doruk noktasıdır.'
+            : 'Dreams in the full moon are the peak of awareness.';
       case MoonPhase.sonDordun:
-        return 'Son Dördün fazında gelen bu rüya bırakma zamanını gösteriyor.';
+        return language == AppLanguage.tr
+            ? 'Son Dördün fazında gelen bu rüya bırakma zamanını gösteriyor.'
+            : 'This dream in the last quarter shows it is time to let go.';
       case MoonPhase.karanlikAy:
-        return 'Karanlık Ay\'da gelen rüyalar en kadim mesajları taşır.';
+        return language == AppLanguage.tr
+            ? 'Karanlık Ay\'da gelen rüyalar en kadim mesajları taşır.'
+            : 'Dreams in the dark moon carry the most ancient messages.';
     }
   }
 
-  static String _getWhyNowMessage(MoonPhase phase, TimeLayer layer) {
-    return 'Bu rüya tam da şu an geldi çünkü ${phase.meaning} ve ${layer.meaning} '
-        'Evren, bu mesajı senin için mükemmel zamanda gönderdi.';
+  static String _getWhyNowMessage(MoonPhase phase, TimeLayer layer, {AppLanguage language = AppLanguage.tr}) {
+    final key = 'dream_interpretation.why_now';
+    final localized = L10nService.get(key, language);
+    final template = localized != key
+        ? localized
+        : 'This dream came right now because {phaseContext} and {layerContext} The universe sent this message at the perfect time for you.';
+    return template.replaceAll('{phaseContext}', phase.meaning).replaceAll('{layerContext}', layer.meaning);
   }
 
-  static String _generateLightMessage(List<DreamSymbolData> symbols) {
+  static String _generateLightMessage(List<DreamSymbolData> symbols, {AppLanguage language = AppLanguage.tr}) {
     if (symbols.isEmpty) {
-      return 'Bu rüya, iç dünyanın temiz ve aydınlık bir alanından geliyor.';
+      final key = 'dream_interpretation.light_shadow.empty_light';
+      final localized = L10nService.get(key, language);
+      return localized != key ? localized : 'This dream comes from a clean and bright area of your inner world.';
     }
     final lightAspects = symbols.map((s) => s.lightAspect).take(2).join(' ');
-    return 'Işık yönü: $lightAspects Bu potansiyeli kucakla.';
+    final key = 'dream_interpretation.light_shadow.light_aspect';
+    final localized = L10nService.get(key, language);
+    final template = localized != key ? localized : 'Light aspect: {aspects} Embrace this potential.';
+    return template.replaceAll('{aspects}', lightAspects);
   }
 
-  static String _generateShadowMessage(List<DreamSymbolData> symbols) {
+  static String _generateShadowMessage(List<DreamSymbolData> symbols, {AppLanguage language = AppLanguage.tr}) {
     if (symbols.isEmpty) {
-      return 'Gölge her zaman vardır, ama bu rüyada nazikçe bekliyor.';
+      final key = 'dream_interpretation.light_shadow.empty_shadow';
+      final localized = L10nService.get(key, language);
+      return localized != key ? localized : 'Shadow is always there, but in this dream it waits gently.';
     }
     final shadowAspects = symbols.map((s) => s.shadowAspect).take(2).join(' ');
-    return 'Gölge uyarısı: $shadowAspects Farkında ol, ama korkma.';
+    final key = 'dream_interpretation.light_shadow.shadow_aspect';
+    final localized = L10nService.get(key, language);
+    final template = localized != key ? localized : 'Shadow warning: {aspects} Be aware, but don\'t fear.';
+    return template.replaceAll('{aspects}', shadowAspects);
   }
 
-  static String _calculateLucidPotential(EmotionalTone emotion, MoonPhase phase) {
+  static String _calculateLucidPotential(EmotionalTone emotion, MoonPhase phase, {AppLanguage language = AppLanguage.tr}) {
     int score = 0;
 
     switch (phase) {
@@ -1698,48 +1844,54 @@ JSON çıktısı da ekle.
       score += 1;
     }
 
-    if (score >= 4) return 'Çok Yüksek';
-    if (score >= 3) return 'Yüksek';
-    if (score >= 2) return 'Orta';
-    return 'Düşük';
+    if (score >= 4) return L10nService.get('dream_interpretation.lucid_potential.very_high', language);
+    if (score >= 3) return L10nService.get('dream_interpretation.lucid_potential.high', language);
+    if (score >= 2) return L10nService.get('dream_interpretation.lucid_potential.medium', language);
+    return L10nService.get('dream_interpretation.lucid_potential.low', language);
   }
 
-  static String _generateWhisper() {
+  static String _generateWhisper({AppLanguage language = AppLanguage.tr}) {
+    final index = Random().nextInt(8);
+    final key = 'dream_ai.whisper_quotes.$index';
+    final localized = L10nService.get(key, language);
+    if (localized != key) return localized;
+
+    // Fallback quotes
     final quotes = [
-      'Gece senin için konuştu, gündüz sen konuş.',
-      'Rüya hatırlayan, ruhunu dinlemeye başlamıştır.',
-      'Her sembol bir anahtar, her duygu bir kapı.',
-      'Bilinçaltı yalan söylemez, sadece şifreyle konuşur.',
-      'Gölgenden kaçamazsın, ama onunla dans edebilirsin.',
-      'Kadim bilgelik fısıldar, sessizlikte duyan işitir.',
-      'Rüyalar ruhun aynadaki yansımasıdır.',
-      'En karanlık gece bile sabahı doğurur.',
+      'The night spoke for you, now you speak during the day.',
+      'One who remembers dreams has begun to listen to their soul.',
+      'Every symbol is a key, every emotion a door.',
+      'The subconscious doesn\'t lie, it just speaks in code.',
+      'You can\'t escape your shadow, but you can dance with it.',
+      'Ancient wisdom whispers, the one who hears in silence listens.',
+      'Dreams are the soul\'s reflection in the mirror.',
+      'Even the darkest night gives birth to morning.',
     ];
     return quotes[Random().nextInt(quotes.length)];
   }
 
-  static List<DreamExplorationLink> _generateDefaultExplorationLinks() {
-    return const [
+  static List<DreamExplorationLink> _generateDefaultExplorationLinks({AppLanguage language = AppLanguage.tr}) {
+    return [
       DreamExplorationLink(
-        title: 'Doğum Haritanı Keşfet',
-        description: 'Rüyandaki sembollerin natal haritanla bağlantısını gör',
+        title: L10nService.get('dream_interpretation.exploration.birth_chart_title', language),
+        description: L10nService.get('dream_interpretation.exploration.birth_chart_desc', language),
         route: '/birth-chart',
         emoji: '🗺️',
-        category: 'Astroloji',
+        category: L10nService.get('dream_interpretation.exploration.category_astrology', language),
       ),
       DreamExplorationLink(
-        title: 'Ay Takvimine Bak',
-        description: 'Rüyanın geldiği ay fazının anlamını öğren',
+        title: L10nService.get('dream_interpretation.exploration.moon_calendar_title', language),
+        description: L10nService.get('dream_interpretation.exploration.moon_calendar_desc', language),
         route: '/moon-rituals',
         emoji: '🌙',
-        category: 'Ay',
+        category: L10nService.get('dream_interpretation.exploration.category_moon', language),
       ),
       DreamExplorationLink(
-        title: 'Tarot Çek',
-        description: 'Rüyanın mesajını tarot ile derinleştir',
+        title: L10nService.get('dream_interpretation.exploration.tarot_title', language),
+        description: L10nService.get('dream_interpretation.exploration.tarot_desc', language),
         route: '/tarot',
         emoji: '🃏',
-        category: 'Kehanet',
+        category: L10nService.get('dream_interpretation.exploration.category_divination', language),
       ),
     ];
   }

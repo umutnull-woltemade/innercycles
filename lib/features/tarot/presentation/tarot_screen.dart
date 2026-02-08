@@ -53,8 +53,9 @@ class _TarotScreenState extends ConsumerState<TarotScreen> {
   }
 
   void _drawYesNo() {
+    final language = ref.read(languageProvider);
     setState(() {
-      _yesNoReading = TarotService.drawYesNoCard();
+      _yesNoReading = TarotService.drawYesNoCard(language: language);
       _selectedSpread = 'yesno';
       _isRevealed = false;
     });
@@ -487,8 +488,17 @@ class _TarotScreenState extends ConsumerState<TarotScreen> {
   }
 
   Color _getAnswerColor(String answer) {
-    if (answer.contains('Evet')) return Colors.green;
-    if (answer.contains('Hayır')) return Colors.red;
+    // Check for positive answers in all supported languages
+    final positivePatterns = ['Evet', 'Yes', 'Ja', 'Oui', 'Probably'];
+    final negativePatterns = ['Hayır', 'No', 'Nein', 'Non'];
+
+    final lowerAnswer = answer.toLowerCase();
+    if (positivePatterns.any((p) => lowerAnswer.contains(p.toLowerCase()))) {
+      return Colors.green;
+    }
+    if (negativePatterns.any((p) => lowerAnswer.contains(p.toLowerCase()))) {
+      return Colors.red;
+    }
     return AppColors.warning;
   }
 

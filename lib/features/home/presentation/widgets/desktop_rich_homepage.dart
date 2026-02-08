@@ -165,13 +165,13 @@ class _QuickDiscoveryBar extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            Colors.white.withOpacity(0.03),
-            Colors.white.withOpacity(0.01),
+            Colors.white.withValues(alpha: 0.03),
+            Colors.white.withValues(alpha: 0.01),
           ],
         ),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: Colors.white.withOpacity(0.08),
+          color: Colors.white.withValues(alpha: 0.08),
         ),
       ),
       child: SingleChildScrollView(
@@ -276,7 +276,7 @@ class _QuickDiscoveryItemState extends State<_QuickDiscoveryItem> {
           padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
           decoration: BoxDecoration(
             color: _isHovered
-                ? AppColors.starGold.withOpacity(0.15)
+                ? AppColors.starGold.withValues(alpha: 0.15)
                 : Colors.transparent,
             borderRadius: BorderRadius.circular(12),
           ),
@@ -325,13 +325,13 @@ class _DesktopHeader extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            Colors.white.withOpacity(0.05),
-            Colors.white.withOpacity(0.02),
+            Colors.white.withValues(alpha: 0.05),
+            Colors.white.withValues(alpha: 0.02),
           ],
         ),
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
-          color: Colors.white.withOpacity(0.1),
+          color: Colors.white.withValues(alpha: 0.1),
           width: 1,
         ),
       ),
@@ -357,14 +357,14 @@ class _DesktopHeader extends StatelessWidget {
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
-                        AppColors.starGold.withOpacity(0.8),
-                        const Color(0xFF9D4EDD).withOpacity(0.6),
+                        AppColors.starGold.withValues(alpha: 0.8),
+                        const Color(0xFF9D4EDD).withValues(alpha: 0.6),
                       ],
                     ),
                     borderRadius: BorderRadius.circular(1),
                     boxShadow: [
                       BoxShadow(
-                        color: AppColors.starGold.withOpacity(0.4),
+                        color: AppColors.starGold.withValues(alpha: 0.4),
                         blurRadius: 4,
                       ),
                     ],
@@ -384,14 +384,14 @@ class _DesktopHeader extends StatelessWidget {
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
-                        const Color(0xFF5C6BC0).withOpacity(0.6),
-                        const Color(0xFF6A1B9A).withOpacity(0.8),
+                        const Color(0xFF5C6BC0).withValues(alpha: 0.6),
+                        const Color(0xFF6A1B9A).withValues(alpha: 0.8),
                       ],
                     ),
                     borderRadius: BorderRadius.circular(1),
                     boxShadow: [
                       BoxShadow(
-                        color: const Color(0xFF5C6BC0).withOpacity(0.3),
+                        color: const Color(0xFF5C6BC0).withValues(alpha: 0.3),
                         blurRadius: 4,
                       ),
                     ],
@@ -439,7 +439,7 @@ class _DesktopHeader extends StatelessWidget {
                       language == AppLanguage.en ? sign.name : sign.nameTr,
                       style: TextStyle(
                         fontSize: 13,
-                        color: AppColors.textSecondary.withOpacity(0.8),
+                        color: AppColors.textSecondary.withValues(alpha: 0.8),
                       ),
                     ),
                   ],
@@ -491,10 +491,10 @@ class _HeaderIconButton extends StatelessWidget {
           width: 44,
           height: 44,
           decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.05),
+            color: Colors.white.withValues(alpha: 0.05),
             borderRadius: BorderRadius.circular(12),
             border: Border.all(
-              color: Colors.white.withOpacity(0.1),
+              color: Colors.white.withValues(alpha: 0.1),
             ),
           ),
           child: Icon(
@@ -530,19 +530,19 @@ class _HeroSection extends StatelessWidget {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            AppColors.auroraStart.withOpacity(0.2),
-            AppColors.auroraEnd.withOpacity(0.1),
+            AppColors.auroraStart.withValues(alpha: 0.2),
+            AppColors.auroraEnd.withValues(alpha: 0.1),
             Colors.transparent,
           ],
         ),
         borderRadius: BorderRadius.circular(24),
         border: Border.all(
-          color: AppColors.auroraStart.withOpacity(0.3),
+          color: AppColors.auroraStart.withValues(alpha: 0.3),
           width: 1,
         ),
         boxShadow: [
           BoxShadow(
-            color: AppColors.auroraStart.withOpacity(0.1),
+            color: AppColors.auroraStart.withValues(alpha: 0.1),
             blurRadius: 40,
             spreadRadius: 0,
           ),
@@ -560,10 +560,10 @@ class _HeroSection extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                   decoration: BoxDecoration(
-                    color: AppColors.starGold.withOpacity(0.15),
+                    color: AppColors.starGold.withValues(alpha: 0.15),
                     borderRadius: BorderRadius.circular(20),
                     border: Border.all(
-                      color: AppColors.starGold.withOpacity(0.3),
+                      color: AppColors.starGold.withValues(alpha: 0.3),
                     ),
                   ),
                   child: Text(
@@ -596,7 +596,7 @@ class _HeroSection extends StatelessWidget {
                   message,
                   style: TextStyle(
                     fontSize: 16,
-                    color: AppColors.textSecondary.withOpacity(0.9),
+                    color: AppColors.textSecondary.withValues(alpha: 0.9),
                     height: 1.6,
                   ),
                 ),
@@ -746,14 +746,14 @@ class _AnimatedZodiacSymbolState extends State<_AnimatedZodiacSymbol>
             shape: BoxShape.circle,
             gradient: RadialGradient(
               colors: [
-                widget.sign.color.withOpacity(0.3),
-                widget.sign.color.withOpacity(0.1),
+                widget.sign.color.withValues(alpha: 0.3),
+                widget.sign.color.withValues(alpha: 0.1),
                 Colors.transparent,
               ],
             ),
             boxShadow: [
               BoxShadow(
-                color: widget.sign.color.withOpacity(0.3),
+                color: widget.sign.color.withValues(alpha: 0.3),
                 blurRadius: 60,
                 spreadRadius: 10,
               ),
@@ -771,7 +771,7 @@ class _AnimatedZodiacSymbolState extends State<_AnimatedZodiacSymbol>
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     border: Border.all(
-                      color: widget.sign.color.withOpacity(0.3),
+                      color: widget.sign.color.withValues(alpha: 0.3),
                       width: 1,
                     ),
                   ),
@@ -786,7 +786,7 @@ class _AnimatedZodiacSymbolState extends State<_AnimatedZodiacSymbol>
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     border: Border.all(
-                      color: AppColors.starGold.withOpacity(0.2),
+                      color: AppColors.starGold.withValues(alpha: 0.2),
                       width: 1,
                     ),
                   ),
@@ -800,7 +800,7 @@ class _AnimatedZodiacSymbolState extends State<_AnimatedZodiacSymbol>
                   color: widget.sign.color,
                   shadows: [
                     Shadow(
-                      color: widget.sign.color.withOpacity(0.5),
+                      color: widget.sign.color.withValues(alpha: 0.5),
                       blurRadius: 20,
                     ),
                   ],
@@ -835,13 +835,13 @@ class _MoonPhaseSection extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            Colors.white.withOpacity(0.05),
-            Colors.white.withOpacity(0.02),
+            Colors.white.withValues(alpha: 0.05),
+            Colors.white.withValues(alpha: 0.02),
           ],
         ),
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
-          color: Colors.white.withOpacity(0.1),
+          color: Colors.white.withValues(alpha: 0.1),
         ),
       ),
       child: Row(
@@ -854,7 +854,7 @@ class _MoonPhaseSection extends StatelessWidget {
               shape: BoxShape.circle,
               gradient: RadialGradient(
                 colors: [
-                  AppColors.moonSilver.withOpacity(0.3),
+                  AppColors.moonSilver.withValues(alpha: 0.3),
                   Colors.transparent,
                 ],
               ),
@@ -889,7 +889,7 @@ class _MoonPhaseSection extends StatelessWidget {
                       : 'Ay ${moonSign.nameTr} burcunda',
                   style: TextStyle(
                     fontSize: 14,
-                    color: AppColors.textSecondary.withOpacity(0.8),
+                    color: AppColors.textSecondary.withValues(alpha: 0.8),
                   ),
                 ),
               ],
@@ -901,10 +901,10 @@ class _MoonPhaseSection extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
               decoration: BoxDecoration(
-                color: AppColors.error.withOpacity(0.15),
+                color: AppColors.error.withValues(alpha: 0.15),
                 borderRadius: BorderRadius.circular(8),
                 border: Border.all(
-                  color: AppColors.error.withOpacity(0.3),
+                  color: AppColors.error.withValues(alpha: 0.3),
                 ),
               ),
               child: Row(
@@ -1032,23 +1032,23 @@ class _QuickActionCardState extends State<_QuickActionCard> {
               end: Alignment.bottomRight,
               colors: [
                 widget.isHighlighted
-                    ? widget.color.withOpacity(_isHovered ? 0.3 : 0.2)
-                    : Colors.white.withOpacity(_isHovered ? 0.08 : 0.05),
+                    ? widget.color.withValues(alpha: _isHovered ? 0.3 : 0.2)
+                    : Colors.white.withValues(alpha: _isHovered ? 0.08 : 0.05),
                 widget.isHighlighted
-                    ? widget.color.withOpacity(_isHovered ? 0.15 : 0.1)
-                    : Colors.white.withOpacity(_isHovered ? 0.04 : 0.02),
+                    ? widget.color.withValues(alpha: _isHovered ? 0.15 : 0.1)
+                    : Colors.white.withValues(alpha: _isHovered ? 0.04 : 0.02),
               ],
             ),
             borderRadius: BorderRadius.circular(20),
             border: Border.all(
               color: widget.isHighlighted
-                  ? widget.color.withOpacity(0.4)
-                  : Colors.white.withOpacity(_isHovered ? 0.2 : 0.1),
+                  ? widget.color.withValues(alpha: 0.4)
+                  : Colors.white.withValues(alpha: _isHovered ? 0.2 : 0.1),
             ),
             boxShadow: _isHovered
                 ? [
                     BoxShadow(
-                      color: widget.color.withOpacity(0.2),
+                      color: widget.color.withValues(alpha: 0.2),
                       blurRadius: 20,
                       spreadRadius: 0,
                     ),
@@ -1065,7 +1065,7 @@ class _QuickActionCardState extends State<_QuickActionCard> {
                 width: 48,
                 height: 48,
                 decoration: BoxDecoration(
-                  color: widget.color.withOpacity(0.15),
+                  color: widget.color.withValues(alpha: 0.15),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Icon(
@@ -1088,7 +1088,7 @@ class _QuickActionCardState extends State<_QuickActionCard> {
                 widget.subtitle,
                 style: TextStyle(
                   fontSize: 13,
-                  color: AppColors.textSecondary.withOpacity(0.8),
+                  color: AppColors.textSecondary.withValues(alpha: 0.8),
                 ),
               ),
             ],
@@ -1116,13 +1116,13 @@ class _ZodiacWheelSection extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            Colors.white.withOpacity(0.05),
-            Colors.white.withOpacity(0.02),
+            Colors.white.withValues(alpha: 0.05),
+            Colors.white.withValues(alpha: 0.02),
           ],
         ),
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
-          color: Colors.white.withOpacity(0.1),
+          color: Colors.white.withValues(alpha: 0.1),
         ),
       ),
       child: Column(
@@ -1141,7 +1141,7 @@ class _ZodiacWheelSection extends StatelessWidget {
             L10nService.get('zodiac.discover_all_signs', language),
             style: TextStyle(
               fontSize: 14,
-              color: AppColors.textSecondary.withOpacity(0.8),
+              color: AppColors.textSecondary.withValues(alpha: 0.8),
             ),
           ),
           const SizedBox(height: 24),
@@ -1197,19 +1197,19 @@ class _ZodiacChipState extends State<_ZodiacChip> {
             gradient: widget.isSelected || _isHovered
                 ? LinearGradient(
                     colors: [
-                      widget.sign.color.withOpacity(0.3),
-                      widget.sign.color.withOpacity(0.15),
+                      widget.sign.color.withValues(alpha: 0.3),
+                      widget.sign.color.withValues(alpha: 0.15),
                     ],
                   )
                 : null,
             color: widget.isSelected || _isHovered
                 ? null
-                : Colors.white.withOpacity(0.05),
+                : Colors.white.withValues(alpha: 0.05),
             borderRadius: BorderRadius.circular(12),
             border: Border.all(
               color: widget.isSelected
-                  ? widget.sign.color.withOpacity(0.5)
-                  : Colors.white.withOpacity(_isHovered ? 0.2 : 0.1),
+                  ? widget.sign.color.withValues(alpha: 0.5)
+                  : Colors.white.withValues(alpha: _isHovered ? 0.2 : 0.1),
             ),
           ),
           child: Row(
@@ -1259,13 +1259,13 @@ class _DiscoverySection extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            Colors.white.withOpacity(0.05),
-            Colors.white.withOpacity(0.02),
+            Colors.white.withValues(alpha: 0.05),
+            Colors.white.withValues(alpha: 0.02),
           ],
         ),
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
-          color: Colors.white.withOpacity(0.1),
+          color: Colors.white.withValues(alpha: 0.1),
         ),
       ),
       child: Column(
@@ -1635,13 +1635,13 @@ class _DiscoveryCardState extends State<_DiscoveryCard> {
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
           decoration: BoxDecoration(
             color: _isHovered
-                ? widget.color.withOpacity(0.15)
-                : Colors.white.withOpacity(0.05),
+                ? widget.color.withValues(alpha: 0.15)
+                : Colors.white.withValues(alpha: 0.05),
             borderRadius: BorderRadius.circular(14),
             border: Border.all(
               color: _isHovered
-                  ? widget.color.withOpacity(0.4)
-                  : Colors.white.withOpacity(0.1),
+                  ? widget.color.withValues(alpha: 0.4)
+                  : Colors.white.withValues(alpha: 0.1),
             ),
           ),
           child: Row(
@@ -1726,30 +1726,30 @@ class _AllServicesButtonState extends State<_AllServicesButton>
                       const Color(0xFF9C27B0),
                       const Color(0xFFE040FB),
                       (_controller.value * 2).clamp(0, 1),
-                    )!.withOpacity(_isHovered ? 0.4 : 0.25),
+                    )!.withValues(alpha: _isHovered ? 0.4 : 0.25),
                     Color.lerp(
                       const Color(0xFF673AB7),
                       const Color(0xFF7C4DFF),
                       ((_controller.value - 0.3).abs() * 2).clamp(0, 1),
-                    )!.withOpacity(_isHovered ? 0.35 : 0.2),
+                    )!.withValues(alpha: _isHovered ? 0.35 : 0.2),
                     Color.lerp(
                       const Color(0xFFE91E63),
                       const Color(0xFFFF4081),
                       ((_controller.value - 0.6).abs() * 2).clamp(0, 1),
-                    )!.withOpacity(_isHovered ? 0.3 : 0.15),
+                    )!.withValues(alpha: _isHovered ? 0.3 : 0.15),
                   ],
                 ),
                 borderRadius: BorderRadius.circular(20),
                 border: Border.all(
                   color: _isHovered
-                      ? const Color(0xFFE040FB).withOpacity(0.6)
-                      : const Color(0xFF9C27B0).withOpacity(0.3),
+                      ? const Color(0xFFE040FB).withValues(alpha: 0.6)
+                      : const Color(0xFF9C27B0).withValues(alpha: 0.3),
                   width: 2,
                 ),
                 boxShadow: _isHovered
                     ? [
                         BoxShadow(
-                          color: const Color(0xFF9C27B0).withOpacity(0.3),
+                          color: const Color(0xFF9C27B0).withValues(alpha: 0.3),
                           blurRadius: 20,
                           spreadRadius: 2,
                         ),
@@ -1805,7 +1805,7 @@ class _AllServicesButtonState extends State<_AllServicesButton>
                         L10nService.get('home.all_services_desc', widget.language),
                         style: TextStyle(
                           fontSize: 13,
-                          color: Colors.white.withOpacity(0.7),
+                          color: Colors.white.withValues(alpha: 0.7),
                         ),
                       ),
                     ],
@@ -1819,7 +1819,7 @@ class _AllServicesButtonState extends State<_AllServicesButton>
                       size: 24,
                       color: _isHovered
                           ? const Color(0xFFE040FB)
-                          : Colors.white.withOpacity(0.5),
+                          : Colors.white.withValues(alpha: 0.5),
                     ),
                   ),
                 ],
@@ -1848,13 +1848,13 @@ class _HouseSystemSection extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            Colors.white.withOpacity(0.05),
-            Colors.white.withOpacity(0.02),
+            Colors.white.withValues(alpha: 0.05),
+            Colors.white.withValues(alpha: 0.02),
           ],
         ),
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
-          color: Colors.white.withOpacity(0.1),
+          color: Colors.white.withValues(alpha: 0.1),
           width: 1,
         ),
       ),
@@ -1866,7 +1866,7 @@ class _HouseSystemSection extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
-                  color: const Color(0xFF4A90A4).withOpacity(0.2),
+                  color: const Color(0xFF4A90A4).withValues(alpha: 0.2),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: const Icon(
@@ -1984,24 +1984,24 @@ class _VenusOneLogoState extends ConsumerState<_VenusOneLogo>
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
               colors: [
-                AppColors.cosmicPurple.withOpacity(_isHovered ? 0.4 : 0.3),
-                AppColors.auroraStart.withOpacity(_isHovered ? 0.3 : 0.2),
-                AppColors.deepSpace.withOpacity(_isHovered ? 0.5 : 0.4),
+                AppColors.cosmicPurple.withValues(alpha: _isHovered ? 0.4 : 0.3),
+                AppColors.auroraStart.withValues(alpha: _isHovered ? 0.3 : 0.2),
+                AppColors.deepSpace.withValues(alpha: _isHovered ? 0.5 : 0.4),
               ],
             ),
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
-              color: AppColors.starGold.withOpacity(_isHovered ? 0.8 : 0.5),
+              color: AppColors.starGold.withValues(alpha: _isHovered ? 0.8 : 0.5),
               width: _isHovered ? 2 : 1.5,
             ),
             boxShadow: [
               BoxShadow(
-                color: AppColors.starGold.withOpacity(_isHovered ? 0.4 : 0.2),
+                color: AppColors.starGold.withValues(alpha: _isHovered ? 0.4 : 0.2),
                 blurRadius: _isHovered ? 20 : 12,
                 spreadRadius: _isHovered ? 2 : 0,
               ),
               BoxShadow(
-                color: AppColors.auroraStart.withOpacity(0.3),
+                color: AppColors.auroraStart.withValues(alpha: 0.3),
                 blurRadius: 15,
                 offset: const Offset(0, 4),
               ),
@@ -2025,7 +2025,7 @@ class _VenusOneLogoState extends ConsumerState<_VenusOneLogo>
                           shape: BoxShape.circle,
                           gradient: RadialGradient(
                             colors: [
-                              AppColors.starGold.withOpacity(0.3 + 0.1 * math.sin(_controller.value * 2 * math.pi)),
+                              AppColors.starGold.withValues(alpha: 0.3 + 0.1 * math.sin(_controller.value * 2 * math.pi)),
                               Colors.transparent,
                             ],
                           ),
@@ -2082,7 +2082,7 @@ class _VenusOneLogoState extends ConsumerState<_VenusOneLogo>
                         style: TextStyle(
                           fontSize: 8,
                           fontWeight: FontWeight.w500,
-                          color: AppColors.moonSilver.withOpacity(0.8),
+                          color: AppColors.moonSilver.withValues(alpha: 0.8),
                           letterSpacing: 1,
                         ),
                       );
@@ -2163,19 +2163,19 @@ class _KozmozHeaderButtonState extends State<_KozmozHeaderButton>
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [
-                    const Color(0xFF6A1B9A).withOpacity(_isHovered ? 0.6 : 0.4),
-                    const Color(0xFF9C27B0).withOpacity(_isHovered ? 0.5 : 0.3),
-                    const Color(0xFFE040FB).withOpacity(_isHovered ? 0.4 : 0.2),
+                    const Color(0xFF6A1B9A).withValues(alpha: _isHovered ? 0.6 : 0.4),
+                    const Color(0xFF9C27B0).withValues(alpha: _isHovered ? 0.5 : 0.3),
+                    const Color(0xFFE040FB).withValues(alpha: _isHovered ? 0.4 : 0.2),
                   ],
                 ),
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
-                  color: const Color(0xFFE040FB).withOpacity(_isHovered ? 0.8 : 0.5),
+                  color: const Color(0xFFE040FB).withValues(alpha: _isHovered ? 0.8 : 0.5),
                   width: 1.5,
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: const Color(0xFF9C27B0).withOpacity(glowValue),
+                    color: const Color(0xFF9C27B0).withValues(alpha: glowValue),
                     blurRadius: _isHovered ? 16 : 10,
                     spreadRadius: _isHovered ? 2 : 0,
                   ),
@@ -2257,19 +2257,19 @@ class _DreamHeaderButtonState extends State<_DreamHeaderButton>
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    const Color(0xFF1A237E).withOpacity(_isHovered ? 0.6 : 0.4),
-                    const Color(0xFF303F9F).withOpacity(_isHovered ? 0.5 : 0.3),
-                    const Color(0xFF5C6BC0).withOpacity(_isHovered ? 0.4 : 0.2),
+                    const Color(0xFF1A237E).withValues(alpha: _isHovered ? 0.6 : 0.4),
+                    const Color(0xFF303F9F).withValues(alpha: _isHovered ? 0.5 : 0.3),
+                    const Color(0xFF5C6BC0).withValues(alpha: _isHovered ? 0.4 : 0.2),
                   ],
                 ),
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
-                  color: const Color(0xFF7C4DFF).withOpacity(_isHovered ? 0.8 : 0.5),
+                  color: const Color(0xFF7C4DFF).withValues(alpha: _isHovered ? 0.8 : 0.5),
                   width: 1.5,
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: const Color(0xFF3F51B5).withOpacity(glowValue),
+                    color: const Color(0xFF3F51B5).withValues(alpha: glowValue),
                     blurRadius: _isHovered ? 16 : 10,
                     spreadRadius: _isHovered ? 2 : 0,
                   ),
@@ -2351,19 +2351,19 @@ class _HoroscopeHeaderButtonState extends State<_HoroscopeHeaderButton>
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [
-                    const Color(0xFFFF6B9D).withOpacity(_isHovered ? 0.6 : 0.4),
-                    const Color(0xFFE91E63).withOpacity(_isHovered ? 0.5 : 0.3),
-                    const Color(0xFFAD1457).withOpacity(_isHovered ? 0.4 : 0.2),
+                    const Color(0xFFFF6B9D).withValues(alpha: _isHovered ? 0.6 : 0.4),
+                    const Color(0xFFE91E63).withValues(alpha: _isHovered ? 0.5 : 0.3),
+                    const Color(0xFFAD1457).withValues(alpha: _isHovered ? 0.4 : 0.2),
                   ],
                 ),
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
-                  color: const Color(0xFFFF6B9D).withOpacity(_isHovered ? 0.8 : 0.5),
+                  color: const Color(0xFFFF6B9D).withValues(alpha: _isHovered ? 0.8 : 0.5),
                   width: 1.5,
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: const Color(0xFFE91E63).withOpacity(glowValue),
+                    color: const Color(0xFFE91E63).withValues(alpha: glowValue),
                     blurRadius: _isHovered ? 16 : 10,
                     spreadRadius: _isHovered ? 2 : 0,
                   ),

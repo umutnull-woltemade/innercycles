@@ -177,8 +177,8 @@ class FaqSection extends StatelessWidget {
                         fontSize: 13,
                         fontWeight: FontWeight.w500,
                         color: isDark
-                            ? AppColors.textSecondary.withOpacity(0.7)
-                            : AppColors.lightTextSecondary.withOpacity(0.8),
+                            ? AppColors.textSecondary.withValues(alpha: 0.7)
+                            : AppColors.lightTextSecondary.withValues(alpha: 0.8),
                       ),
                     ),
                   ),
@@ -245,17 +245,17 @@ class _FaqItemWidgetState extends State<_FaqItemWidget> {
       margin: const EdgeInsets.only(bottom: AppConstants.spacingMd),
       decoration: BoxDecoration(
         color: isDark
-            ? AppColors.surfaceLight.withOpacity(_isExpanded ? 0.08 : 0.05)
+            ? AppColors.surfaceLight.withValues(alpha: _isExpanded ? 0.08 : 0.05)
             : (_isExpanded ? AppColors.lightCard : AppColors.lightSurfaceVariant),
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
           color: isDark
               ? (_isExpanded
-                  ? AppColors.starGold.withOpacity(0.2)
-                  : AppColors.textMuted.withOpacity(0.1))
+                  ? AppColors.starGold.withValues(alpha: 0.2)
+                  : AppColors.textMuted.withValues(alpha: 0.1))
               : (_isExpanded
-                  ? AppColors.lightStarGold.withOpacity(0.3)
-                  : AppColors.lightTextMuted.withOpacity(0.15)),
+                  ? AppColors.lightStarGold.withValues(alpha: 0.3)
+                  : AppColors.lightTextMuted.withValues(alpha: 0.15)),
           width: _isExpanded ? 1.5 : 1,
         ),
       ),
@@ -280,8 +280,8 @@ class _FaqItemWidgetState extends State<_FaqItemWidget> {
             height: 32,
             decoration: BoxDecoration(
               color: isDark
-                  ? AppColors.starGold.withOpacity(_isExpanded ? 0.2 : 0.1)
-                  : AppColors.lightStarGold.withOpacity(_isExpanded ? 0.2 : 0.1),
+                  ? AppColors.starGold.withValues(alpha: _isExpanded ? 0.2 : 0.1)
+                  : AppColors.lightStarGold.withValues(alpha: _isExpanded ? 0.2 : 0.1),
               shape: BoxShape.circle,
             ),
             child: Center(
@@ -361,13 +361,13 @@ class FaqInline extends StatelessWidget {
       padding: const EdgeInsets.all(AppConstants.spacingMd),
       decoration: BoxDecoration(
         color: isDark
-            ? AppColors.surfaceLight.withOpacity(0.05)
+            ? AppColors.surfaceLight.withValues(alpha: 0.05)
             : AppColors.lightSurfaceVariant,
         borderRadius: BorderRadius.circular(10),
         border: Border.all(
           color: isDark
-              ? AppColors.textMuted.withOpacity(0.1)
-              : AppColors.lightTextMuted.withOpacity(0.15),
+              ? AppColors.textMuted.withValues(alpha: 0.1)
+              : AppColors.lightTextMuted.withValues(alpha: 0.15),
         ),
       ),
       child: Column(

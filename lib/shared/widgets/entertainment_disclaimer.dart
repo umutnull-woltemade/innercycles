@@ -111,6 +111,16 @@ class DisclaimerTexts {
 
   static String compatibility(AppLanguage language) =>
     L10nService.get('widgets.entertainment_disclaimer.compatibility', language);
+
+  /// Apple-safe disclaimer for Insight assistant
+  /// Emphasizes reflection, not prediction
+  static String insight(AppLanguage language) =>
+    L10nService.get('widgets.entertainment_disclaimer.insight', language);
+
+  /// Apple-safe reflection disclaimer
+  /// Used in the unified Insight assistant
+  static String reflection(AppLanguage language) =>
+    L10nService.get('widgets.entertainment_disclaimer.reflection', language);
 }
 
 /// Page footer with disclaimer

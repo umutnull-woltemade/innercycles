@@ -1,14 +1,19 @@
 import 'zodiac_sign.dart';
 import '../providers/app_providers.dart';
+import '../services/l10n_service.dart';
 
 /// Astrology Glossary Entry with enhanced features
 class GlossaryEntry {
   final String term;
   final String termTr;
-  final String hint; // Kısa ipucu - kartın üstünde görünür
-  final String definition; // Detaylı açıklama
-  final String? deepExplanation; // Derin ezoterik açıklama
-  final String? example;
+  final String hint; // Kısa ipucu (Turkish) - kartın üstünde görünür
+  final String? hintEn; // English hint
+  final String definition; // Detaylı açıklama (Turkish)
+  final String? definitionEn; // English definition
+  final String? deepExplanation; // Derin ezoterik açıklama (Turkish)
+  final String? deepExplanationEn; // English deep explanation
+  final String? example; // Turkish example
+  final String? exampleEn; // English example
   final GlossaryCategory category;
   final List<String> relatedTerms;
   final List<GlossaryReference> references; // Kaynak ve referanslar
@@ -19,9 +24,13 @@ class GlossaryEntry {
     required this.term,
     required this.termTr,
     required this.hint,
+    this.hintEn,
     required this.definition,
+    this.definitionEn,
     this.deepExplanation,
+    this.deepExplanationEn,
     this.example,
+    this.exampleEn,
     required this.category,
     this.relatedTerms = const [],
     this.references = const [],
@@ -29,13 +38,58 @@ class GlossaryEntry {
     this.signRuler,
   });
 
+  /// Get localized hint based on language
+  /// Falls back to Turkish hint if English not available
+  String localizedHint(AppLanguage language) {
+    if (language == AppLanguage.tr) return hint;
+    // For non-Turkish, try hintEn first, then try l10n lookup, then fallback to hint
+    if (hintEn != null && hintEn!.isNotEmpty) return hintEn!;
+    // Try to get from l10n using term as key
+    final l10nKey = 'glossary.hints.${term.toLowerCase().replaceAll(' ', '_').replaceAll('(', '').replaceAll(')', '')}';
+    final l10nHint = L10nService.get(l10nKey, language);
+    if (!l10nHint.startsWith('[')) return l10nHint;
+    return hint; // Fallback to Turkish
+  }
+
+  /// Get localized term based on language
+  String localizedTerm(AppLanguage language) {
+    return language == AppLanguage.tr ? termTr : term;
+  }
+
+  /// Get localized definition based on language
+  /// Falls back to Turkish definition if English not available
+  String localizedDefinition(AppLanguage language) {
+    if (language == AppLanguage.tr) return definition;
+    return definitionEn ?? definition;
+  }
+
+  /// Get localized deep explanation based on language
+  /// Falls back to Turkish if English not available
+  String? localizedDeepExplanation(AppLanguage language) {
+    if (deepExplanation == null) return null;
+    if (language == AppLanguage.tr) return deepExplanation;
+    return deepExplanationEn ?? deepExplanation;
+  }
+
+  /// Get localized example based on language
+  /// Falls back to Turkish if English not available
+  String? localizedExample(AppLanguage language) {
+    if (example == null) return null;
+    if (language == AppLanguage.tr) return example;
+    return exampleEn ?? example;
+  }
+
   Map<String, dynamic> toJson() => {
         'term': term,
         'termTr': termTr,
         'hint': hint,
+        'hintEn': hintEn,
         'definition': definition,
+        'definitionEn': definitionEn,
         'deepExplanation': deepExplanation,
+        'deepExplanationEn': deepExplanationEn,
         'example': example,
+        'exampleEn': exampleEn,
         'category': category.index,
         'relatedTerms': relatedTerms,
         'references': references.map((r) => r.toJson()).toList(),
@@ -47,9 +101,13 @@ class GlossaryEntry {
         term: json['term'] as String,
         termTr: json['termTr'] as String,
         hint: json['hint'] as String? ?? '',
+        hintEn: json['hintEn'] as String?,
         definition: json['definition'] as String,
+        definitionEn: json['definitionEn'] as String?,
         deepExplanation: json['deepExplanation'] as String?,
+        deepExplanationEn: json['deepExplanationEn'] as String?,
         example: json['example'] as String?,
+        exampleEn: json['exampleEn'] as String?,
         category: GlossaryCategory.values[json['category'] as int],
         relatedTerms: List<String>.from(json['relatedTerms'] as List? ?? []),
         references: (json['references'] as List?)

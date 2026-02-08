@@ -141,8 +141,8 @@ class _ToastWidget extends StatelessWidget {
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
                           colors: [
-                            AppColors.cosmicPurple.withOpacity(0.95),
-                            AppColors.mysticBlue.withOpacity(0.95),
+                            AppColors.cosmicPurple.withValues(alpha: 0.95),
+                            AppColors.mysticBlue.withValues(alpha: 0.95),
                           ],
                         )
                       : null,
@@ -154,7 +154,7 @@ class _ToastWidget extends StatelessWidget {
                   ),
                   boxShadow: [
                     BoxShadow(
-                      color: config.color.withOpacity(0.3),
+                      color: config.color.withValues(alpha: 0.3),
                       blurRadius: 20,
                       offset: const Offset(0, 8),
                     ),
@@ -165,7 +165,7 @@ class _ToastWidget extends StatelessWidget {
                     Container(
                       padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
-                        color: config.color.withOpacity(0.2),
+                        color: config.color.withValues(alpha: 0.2),
                         shape: BoxShape.circle,
                       ),
                       child: Icon(
@@ -191,7 +191,7 @@ class _ToastWidget extends StatelessWidget {
                           Text(
                             message,
                             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                  color: config.textColor.withOpacity(0.9),
+                                  color: config.textColor.withValues(alpha: 0.9),
                                 ),
                             maxLines: 3,
                             overflow: TextOverflow.ellipsis,
@@ -203,7 +203,7 @@ class _ToastWidget extends StatelessWidget {
                       onPressed: onDismiss,
                       icon: Icon(
                         Icons.close,
-                        color: config.textColor.withOpacity(0.6),
+                        color: config.textColor.withValues(alpha: 0.6),
                         size: 20,
                       ),
                       padding: EdgeInsets.zero,
@@ -229,51 +229,51 @@ class _ToastWidget extends StatelessWidget {
           icon: Icons.check_circle_outline,
           color: AppColors.success,
           backgroundColor: isDark
-              ? AppColors.success.withOpacity(0.15)
-              : AppColors.success.withOpacity(0.1),
-          borderColor: AppColors.success.withOpacity(0.4),
+              ? AppColors.success.withValues(alpha: 0.15)
+              : AppColors.success.withValues(alpha: 0.1),
+          borderColor: AppColors.success.withValues(alpha: 0.4),
           iconColor: AppColors.success,
-          textColor: isDark ? Colors.white : AppColors.success.withOpacity(0.9),
+          textColor: isDark ? Colors.white : AppColors.success.withValues(alpha: 0.9),
         );
       case ToastType.error:
         return _ToastConfig(
           icon: Icons.error_outline,
           color: AppColors.error,
           backgroundColor: isDark
-              ? AppColors.error.withOpacity(0.15)
-              : AppColors.error.withOpacity(0.1),
-          borderColor: AppColors.error.withOpacity(0.4),
+              ? AppColors.error.withValues(alpha: 0.15)
+              : AppColors.error.withValues(alpha: 0.1),
+          borderColor: AppColors.error.withValues(alpha: 0.4),
           iconColor: AppColors.error,
-          textColor: isDark ? Colors.white : AppColors.error.withOpacity(0.9),
+          textColor: isDark ? Colors.white : AppColors.error.withValues(alpha: 0.9),
         );
       case ToastType.warning:
         return _ToastConfig(
           icon: Icons.warning_amber_outlined,
           color: AppColors.warning,
           backgroundColor: isDark
-              ? AppColors.warning.withOpacity(0.15)
-              : AppColors.warning.withOpacity(0.1),
-          borderColor: AppColors.warning.withOpacity(0.4),
+              ? AppColors.warning.withValues(alpha: 0.15)
+              : AppColors.warning.withValues(alpha: 0.1),
+          borderColor: AppColors.warning.withValues(alpha: 0.4),
           iconColor: AppColors.warning,
-          textColor: isDark ? Colors.white : AppColors.warning.withOpacity(0.9),
+          textColor: isDark ? Colors.white : AppColors.warning.withValues(alpha: 0.9),
         );
       case ToastType.info:
         return _ToastConfig(
           icon: Icons.info_outline,
           color: AppColors.airElement,
           backgroundColor: isDark
-              ? AppColors.airElement.withOpacity(0.15)
-              : AppColors.airElement.withOpacity(0.1),
-          borderColor: AppColors.airElement.withOpacity(0.4),
+              ? AppColors.airElement.withValues(alpha: 0.15)
+              : AppColors.airElement.withValues(alpha: 0.1),
+          borderColor: AppColors.airElement.withValues(alpha: 0.4),
           iconColor: AppColors.airElement,
-          textColor: isDark ? Colors.white : AppColors.airElement.withOpacity(0.9),
+          textColor: isDark ? Colors.white : AppColors.airElement.withValues(alpha: 0.9),
         );
       case ToastType.cosmic:
         return _ToastConfig(
           icon: Icons.auto_awesome,
           color: AppColors.starGold,
           backgroundColor: Colors.transparent,
-          borderColor: AppColors.starGold.withOpacity(0.5),
+          borderColor: AppColors.starGold.withValues(alpha: 0.5),
           iconColor: AppColors.starGold,
           textColor: Colors.white,
         );
@@ -343,9 +343,9 @@ class CosmicSnackBar {
           icon: Icons.check_circle_outline,
           color: AppColors.success,
           backgroundColor: isDark
-              ? AppColors.success.withOpacity(0.2)
-              : AppColors.success.withOpacity(0.15),
-          borderColor: AppColors.success.withOpacity(0.4),
+              ? AppColors.success.withValues(alpha: 0.2)
+              : AppColors.success.withValues(alpha: 0.15),
+          borderColor: AppColors.success.withValues(alpha: 0.4),
           iconColor: isDark ? Colors.white : AppColors.success,
           textColor: isDark ? Colors.white : Colors.black87,
         );
@@ -354,9 +354,9 @@ class CosmicSnackBar {
           icon: Icons.error_outline,
           color: AppColors.error,
           backgroundColor: isDark
-              ? AppColors.error.withOpacity(0.2)
-              : AppColors.error.withOpacity(0.15),
-          borderColor: AppColors.error.withOpacity(0.4),
+              ? AppColors.error.withValues(alpha: 0.2)
+              : AppColors.error.withValues(alpha: 0.15),
+          borderColor: AppColors.error.withValues(alpha: 0.4),
           iconColor: isDark ? Colors.white : AppColors.error,
           textColor: isDark ? Colors.white : Colors.black87,
         );
@@ -365,9 +365,9 @@ class CosmicSnackBar {
           icon: Icons.warning_amber_outlined,
           color: AppColors.warning,
           backgroundColor: isDark
-              ? AppColors.warning.withOpacity(0.2)
-              : AppColors.warning.withOpacity(0.15),
-          borderColor: AppColors.warning.withOpacity(0.4),
+              ? AppColors.warning.withValues(alpha: 0.2)
+              : AppColors.warning.withValues(alpha: 0.15),
+          borderColor: AppColors.warning.withValues(alpha: 0.4),
           iconColor: isDark ? Colors.white : AppColors.warning,
           textColor: isDark ? Colors.white : Colors.black87,
         );
@@ -376,9 +376,9 @@ class CosmicSnackBar {
           icon: Icons.info_outline,
           color: AppColors.airElement,
           backgroundColor: isDark
-              ? AppColors.airElement.withOpacity(0.2)
-              : AppColors.airElement.withOpacity(0.15),
-          borderColor: AppColors.airElement.withOpacity(0.4),
+              ? AppColors.airElement.withValues(alpha: 0.2)
+              : AppColors.airElement.withValues(alpha: 0.15),
+          borderColor: AppColors.airElement.withValues(alpha: 0.4),
           iconColor: isDark ? Colors.white : AppColors.airElement,
           textColor: isDark ? Colors.white : Colors.black87,
         );
@@ -387,9 +387,9 @@ class CosmicSnackBar {
           icon: Icons.auto_awesome,
           color: AppColors.starGold,
           backgroundColor: isDark
-              ? AppColors.cosmicPurple.withOpacity(0.3)
-              : AppColors.cosmicPurple.withOpacity(0.2),
-          borderColor: AppColors.starGold.withOpacity(0.5),
+              ? AppColors.cosmicPurple.withValues(alpha: 0.3)
+              : AppColors.cosmicPurple.withValues(alpha: 0.2),
+          borderColor: AppColors.starGold.withValues(alpha: 0.5),
           iconColor: AppColors.starGold,
           textColor: isDark ? Colors.white : Colors.black87,
         );

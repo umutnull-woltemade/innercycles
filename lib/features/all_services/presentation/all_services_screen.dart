@@ -152,7 +152,7 @@ class _AllServicesScreenState extends ConsumerState<AllServicesScreen>
                   gradient: LinearGradient(
                     colors: [
                       Colors.transparent,
-                      AppColors.starGold.withOpacity(0.6),
+                      AppColors.starGold.withValues(alpha: 0.6),
                       Colors.transparent,
                     ],
                   ),
@@ -192,7 +192,7 @@ class _AllServicesScreenState extends ConsumerState<AllServicesScreen>
                   letterSpacing: 4,
                   color: isDark
                       ? Colors.white38
-                      : AppColors.textLight.withOpacity(0.6),
+                      : AppColors.textLight.withValues(alpha: 0.6),
                   fontWeight: FontWeight.w300,
                 ),
               ),
@@ -207,7 +207,7 @@ class _AllServicesScreenState extends ConsumerState<AllServicesScreen>
                   gradient: LinearGradient(
                     colors: [
                       Colors.transparent,
-                      AppColors.starGold.withOpacity(0.6),
+                      AppColors.starGold.withValues(alpha: 0.6),
                       Colors.transparent,
                     ],
                   ),
@@ -260,7 +260,7 @@ class _AllServicesScreenState extends ConsumerState<AllServicesScreen>
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         colors: [
-                          color.withOpacity(0.3),
+                          color.withValues(alpha: 0.3),
                           Colors.transparent,
                         ],
                       ),
@@ -306,13 +306,13 @@ class _AllServicesScreenState extends ConsumerState<AllServicesScreen>
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
         decoration: BoxDecoration(
           color: isDark
-              ? Colors.white.withOpacity(0.04)
-              : Colors.white.withOpacity(0.7),
+              ? Colors.white.withValues(alpha: 0.04)
+              : Colors.white.withValues(alpha: 0.7),
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
             color: isDark
-                ? Colors.white.withOpacity(0.08)
-                : categoryColor.withOpacity(0.15),
+                ? Colors.white.withValues(alpha: 0.08)
+                : categoryColor.withValues(alpha: 0.15),
           ),
         ),
         child: Text(

@@ -1,11 +1,26 @@
 import '../models/zodiac_sign.dart';
 import '../providers/app_providers.dart';
 
-/// Content for ExtendedHoroscopeService (English Only)
+/// Content for ExtendedHoroscopeService with multi-language support
 class ExtendedHoroscopeContent {
   // ============ WEEKLY CONTENT ============
 
   static List<String> getWeeklyOverviews(ZodiacSign sign, AppLanguage language) {
+    if (language == AppLanguage.tr) {
+      final signName = sign.nameTr;
+      final elementName = sign.element.nameTr;
+      return [
+        'Bu hafta $signName burcu için kozmik enerjiler yoğunlaşıyor. Gezegenler sizin lehinize hizalanırken, büyük fırsatların kapıları aralanıyor. İç sesinize kulak verin ve sezgilerinizi takip edin.',
+        'Evren bu hafta size güçlü mesajlar gönderiyor. $signName enerjisi dorukta ve potansiyelinizi ortaya koyma zamanı. Cesur adımlar atın, korkularınızı geride bırakın.',
+        'Hafta boyunca $elementName elementi güçleniyor. Bu enerjiyi kendi avantajınıza kullanın. İç dünyanızda derin dönüşümler yaşanırken, dış dünyada da somut değişiklikler görülecek.',
+        'Yıldızlar bu hafta $signName burcu için parlak bir tablo çiziyor. Yeni bağlantılar, beklenmedik fırsatlar ve ruhsal açılımlar sizi bekliyor. Açık kalın ve akışa güvenin.',
+        'Gökyüzündeki gezegen dansı $signName burcuna özel mesajlar taşıyor. Bu hafta kader anları yaşayabilir, hayatınızı değiştirecek kararlar alabilirsiniz. Sezgileriniz her zamankinden keskin.',
+        '$signName burcu için bu hafta enerji akışı olumlu yönde. Engeller kalkıyor, yollar açılıyor. Uzun süredir beklediğiniz haber veya gelişme bu hafta gelebilir.',
+        'Kozmik rüzgarlar $signName burcunun yelkenlerini şişiriyor. Hangi yöne gitmek istediğinizi biliyorsanız, evren sizi desteklemeye hazır. Niyetlerinizi net tutun.',
+        'Bu hafta evrensel enerji $signName burcunu kucaklıyor. Yaratıcılık, ilham ve motivasyon dorukta. Ertelediğiniz projelere başlamak için ideal bir zamanlama.',
+      ];
+    }
+
     final signName = sign.name;
     final elementName = sign.element.name;
 
@@ -22,6 +37,18 @@ class ExtendedHoroscopeContent {
   }
 
   static List<String> getWeeklyLoveContent(AppLanguage language) {
+    if (language == AppLanguage.tr) {
+      return [
+        'Aşk hayatınızda bu hafta hareketli bir dönem başlıyor. Venüs etkisi altında, ilişkilerinizde daha derin bağlar kurabilirsiniz. Bekarlar için sürpriz karşılaşmalar olası.',
+        'Kalp çakranız bu hafta aktive oluyor. Duygusal açıdan hassas olabilirsiniz ama bu, sevgiyi daha derin hissetmenize de olanak tanıyor. Partnerinizle özel anlar yaratın.',
+        'Romantik enerjiler yükseliyor. İlişkinizde yeni bir sayfa açılabilir veya bekarlar için önemli bir tanışma gerçekleşebilir. Kalbinizi açık tutun.',
+        'Bu hafta aşk, beklenmedik yerlerden gelebilir. Sezgilerinize güvenin ve evrenin size sunduğu işaretleri takip edin. Kadersel bağlantılar mümkün.',
+        'Venüs\'ün olumlu açıları aşk hayatınızı ışıklandırıyor. Çiftler için tutku yeniden alevlenirken, bekarlar manyetik çekicilik yayıyor. Flört enerjisi güçlü.',
+        'İlişkilerde iletişim bu hafta kritik öneme sahip. Duygularınızı açıkça ifade edin, karşı tarafı dinleyin. Yanlış anlamalar çözülüyor, bağlar güçleniyor.',
+        'Romantik sürprizlere hazır olun. Evren aşk konusunda size güzel haberler getirebilir. Geçmişten biri yeniden hayatınıza girebilir veya yeni biri çıkabilir.',
+        'Aşkta cesur olma haftası. Duygularınızı bastırmayın, risk alın. Karşılık görmekten korkmayın - evren cesareti ödüllendirir.',
+      ];
+    }
     return [
       'A lively period is starting in your love life this week. Under Venus\' influence, you can establish deeper connections in your relationships. Surprise encounters are likely for singles.',
       'Your heart chakra is being activated this week. You may be emotionally sensitive but this also allows you to feel love more deeply. Create special moments with your partner.',
@@ -35,6 +62,18 @@ class ExtendedHoroscopeContent {
   }
 
   static List<String> getWeeklyCareerContent(AppLanguage language) {
+    if (language == AppLanguage.tr) {
+      return [
+        'Kariyer alanında bu hafta önemli gelişmeler yaşanabilir. Liderlik yetenekleriniz ön plana çıkıyor. Fikirlerinizi cesurca paylaşın.',
+        'Profesyonel yaşamınızda yeni kapılar açılıyor. Bu hafta stratejik düşünün ve uzun vadeli planlarınızı gözden geçirin. Değişimler lehinize.',
+        'İş yerinde yaratıcılığınız dorukta. Yenilikçi fikirleriniz dikkat çekecek. Ekip çalışması ve işbirlikleri bereketli sonuçlar getirebilir.',
+        'Maddi konularda olumlu haberler gelebilir. Bu hafta finansal kararlarınızda sezgilerinize güvenin ama mantığı da ihmal etmeyin.',
+        'Kariyer basamaklarında yükseliş zamanı. Üstlerinizin dikkatini çekebilir, terfi veya zam haberi gelebilir. Kendinizi görünür kılın.',
+        'İş görüşmeleri ve müzakereler için elverişli bir hafta. İsteklerinizi net ifade edin, hak ettiğinizi isteyin. Evren sizi destekliyor.',
+        'Yeni iş fırsatları kapınızı çalabilir. LinkedIn profilinizi güncelleyin, ağınızı genişletin. Beklenmedik yerlerden teklifler gelebilir.',
+        'Projeleriniz bu hafta hız kazanıyor. Engeller kalkıyor, süreçler hızlanıyor. Ertelenen onaylar, beklenen kararlar bu hafta gelebilir.',
+      ];
+    }
     return [
       'Important developments may occur in your career this week. Your leadership abilities are coming to the fore. Share your ideas boldly.',
       'New doors are opening in your professional life. Think strategically this week and review your long-term plans. Changes are in your favor.',
@@ -48,6 +87,14 @@ class ExtendedHoroscopeContent {
   }
 
   static List<String> getWeeklyHealthContent(AppLanguage language) {
+    if (language == AppLanguage.tr) {
+      return [
+        'Enerji seviyeniz bu hafta yüksek. Fiziksel aktivitelere zaman ayırın. Bedeninizin size gönderdiği sinyallere dikkat edin.',
+        'Zihinsel ve duygusal sağlığınıza odaklanın. Stres yönetimi için meditasyon veya yoga deneyin. Doğada vakit geçirmek size iyi gelecek.',
+        'Bu hafta beslenme düzeninizi gözden geçirin. Vücudunuzun ihtiyaç duyduğu besinleri verin. Uyku düzeninize dikkat edin.',
+        'Enerji dengenizi korumak için molalar verin. Kendinize şefkat gösterin ve aşırı yorgunluktan kaçının. Şifa enerjileri güçlü.',
+      ];
+    }
     return [
       'Your energy level is high this week. Make time for physical activities. Pay attention to the signals your body sends you.',
       'Focus on your mental and emotional health. Try meditation or yoga for stress management. Spending time in nature will do you good.',
@@ -57,6 +104,14 @@ class ExtendedHoroscopeContent {
   }
 
   static List<String> getWeeklyFinancialContent(AppLanguage language) {
+    if (language == AppLanguage.tr) {
+      return [
+        'Finansal konularda bu hafta dikkatli olun. Büyük harcamalardan önce iki kez düşünün. Tasarruf planları yapmanın tam zamanı.',
+        'Maddi bolluk enerjisi güçleniyor. Beklenmedik kazançlar veya fırsatlar gelebilir. Ama ayaklarınızı yere basın.',
+        'Yatırımlar için araştırma yapın ama aceleci davranmayın. Bu hafta finansal bilincinizi geliştirmek için ideal.',
+        'Para konularında yeni bir bakış açısı geliştirin. Bolluk bilincini aktive edin ve kıtlık korkularını bırakın.',
+      ];
+    }
     return [
       'Be careful in financial matters this week. Think twice before big expenses. It\'s the perfect time to make savings plans.',
       'Financial abundance energy is strengthening. Unexpected gains or opportunities may come. But keep your feet on the ground.',
@@ -66,6 +121,16 @@ class ExtendedHoroscopeContent {
   }
 
   static List<String> getWeeklyAffirmations(AppLanguage language) {
+    if (language == AppLanguage.tr) {
+      return [
+        'Evrenin bolluğuna açığım ve her şey yolunda.',
+        'Her gün her anlamda daha iyiye gidiyorum.',
+        'İçimdeki gücü fark ediyorum ve onu kullanıyorum.',
+        'Sevgiyi çekiyorum ve sevgi veriyorum.',
+        'Korkularımı bırakıyor, güvenle ilerliyorum.',
+        'Ruhsal yolculuğumda doğru yöndeyim.',
+      ];
+    }
     return [
       'I am open to the universe\'s abundance and everything is fine.',
       'Every day I am getting better in every way.',
@@ -77,10 +142,23 @@ class ExtendedHoroscopeContent {
   }
 
   static List<String> getDays(AppLanguage language) {
+    if (language == AppLanguage.tr) {
+      return ['Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi', 'Pazar'];
+    }
     return ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
   }
 
   static List<String> getKeyDateEvents(AppLanguage language) {
+    if (language == AppLanguage.tr) {
+      return [
+        'romantik fırsatlar',
+        'kariyer atılımları',
+        'finansal kararlar',
+        'sağlık odağı',
+        'sosyal etkinlikler',
+        'iç huzur',
+      ];
+    }
     return [
       'romantic opportunities',
       'career breakthroughs',
@@ -94,6 +172,21 @@ class ExtendedHoroscopeContent {
   // ============ MONTHLY CONTENT ============
 
   static List<String> getMonthlyOverviews(ZodiacSign sign, AppLanguage language) {
+    if (language == AppLanguage.tr) {
+      final signName = sign.nameTr;
+      final elementName = sign.element.nameTr;
+      return [
+        'Bu ay $signName burcu için dönüşüm ve yenilenme zamanı. Gezegenler güçlü açılar oluşturarak, hayatınızda köklü değişikliklere zemin hazırlıyor. İç dünyanızda başlayan dönüşüm, dış dünyanıza yansıyacak.',
+        'Ayın enerjileri $signName burcunu destekliyor. Bu dönem kendinizi keşfetmek, potansiyelinizi gerçekleştirmek ve ruhsal olarak büyümek için ideal. Evrenin size sunduğu fırsatları değerlendirin.',
+        'Kozmik akış bu ay sizden yana. $elementName enerjisi güçlenirken, doğal yetenekleriniz ve güçlü yanlarınız ön plana çıkıyor. Özgüvenle hareket edin ve hedeflerinize odaklanın.',
+        'Gezegenler bu ay $signName burcu için özel bir koreografi sergiliyor. Kader kapıları aralanıyor, yeni olanaklar beliriyor. Hayatınızın akışını değiştirecek olaylar yaşanabilir.',
+        'Ay boyunca $signName burcunun enerjisi yoğun. Duygusal iniş çıkışlar yaşanabilir ama her biri sizi daha güçlü kılacak. Sabırlı olun, süreç size çalışıyor.',
+        'Bu ay evrensel enerji $signName burcunu sarmalıyor. Uzun süredir beklediğiniz değişimler başlıyor. Korkularınızı bırakın, yeniye açılın.',
+        'Kozmik takvim bu ay sizin için önemli sayfalar açıyor. Kişisel ve profesyonel yaşamınızda dönüm noktaları var. Her kararınız geleceğinizi şekillendiriyor.',
+        '$signName burcu için bereketli bir ay başlıyor. Emeklerinizin karşılığını alma, hedeflerinize yaklaşma zamanı. Evren çabalarınızı görüyor ve ödüllendiriyor.',
+      ];
+    }
+
     final signName = sign.name;
     final elementName = sign.element.name;
 
@@ -110,6 +203,18 @@ class ExtendedHoroscopeContent {
   }
 
   static List<String> getMonthlyLoveContent(AppLanguage language) {
+    if (language == AppLanguage.tr) {
+      return [
+        'Aşk hayatınızda bu ay önemli gelişmeler var. Venüs\'ün etkisi altında, ilişkileriniz derinleşiyor ve yeni romantik bağlar kurulabilir. Kalbinizi açık tutun.',
+        'Bu ay ilişkilerde dönüşüm yaşanıyor. Eski kalıpları kırmak ve daha otantik bağlar kurmak için ideal bir dönem. Cesur olun ve duygularınızı ifade edin.',
+        'Romantik enerjiler yoğunlaşıyor. Bekarlar için önemli karşılaşmalar, çiftler için tutkulu bir dönem başlıyor. Aşkın büyüsüne kendinizi bırakın.',
+        'Kalp çakranız bu ay fazla mesai yapıyor. Derin duygusal bağlantılar, anlamlı konuşmalar ve romantik anlar sizi bekliyor. Savunmalarınızı indirin.',
+        'Ay boyunca romantik atmosfer güçlü. Sürpriz randevular, beklenmedik itiraflar veya ilişkinizde yeni bir sayfa açılması mümkün.',
+        'İlişkilerde netlik zamanı. Belirsizlikler çözülüyor, duygular berraklaşıyor. "Nerede duruyorum?" sorusunun cevabını bu ay alabilirsiniz.',
+        'Aşkta şanslı bir ay başlıyor. Bekarlar için kader anları, çiftler için yeniden aşık olma dönemi. Romantizm havada.',
+        'Bu ay duygusal bağlar güçleniyor. Sevdiklerinizle geçirdiğiniz her an değerli. Kaliteli zaman yaratın, anılar biriktirin.',
+      ];
+    }
     return [
       'There are important developments in your love life this month. Under Venus\' influence, your relationships are deepening and new romantic bonds can be formed. Keep your heart open.',
       'Transformation is happening in relationships this month. An ideal period to break old patterns and establish more authentic bonds. Be brave and express your feelings.',
@@ -123,6 +228,18 @@ class ExtendedHoroscopeContent {
   }
 
   static List<String> getMonthlyCareerContent(AppLanguage language) {
+    if (language == AppLanguage.tr) {
+      return [
+        'Kariyer hedefleriniz bu ay netleşiyor. Profesyonel alanda yeni fırsatlar ve ilerleme potansiyeli var. Liderlik yeteneklerinizi gösterme zamanı.',
+        'İş hayatınızda stratejik hamleler yapın. Bu ay uzun vadeli planlar için zemin hazırlayabilir, önemli kararlar alabilirsiniz. Vizyonunuza güvenin.',
+        'Profesyonel ilişkileriniz güçleniyor. Ağ kurma ve işbirlikleri için bereketli bir dönem. Fikirlerinizi paylaşın ve destek arayın.',
+        'Kariyer alanında ay boyunca hareketlilik var. Toplantılar, görüşmeler, yeni projeler... Enerji yüksek, fırsatlar bol. Aktif olun.',
+        'Bu ay iş yerinde öne çıkma zamanı. Yeteneklerinizi sergileyin, fikirlerinizi sunun. Üstlerinizin dikkatini çekme şansınız yüksek.',
+        'Profesyonel alanda kararlılık ve odaklanma gerekiyor. Dikkat dağıtıcılardan uzak durun, önceliklerinizi belirleyin. Sonuçlar gelecek.',
+        'İş hayatında değişim rüzgarları esiyor. Yeni roller, sorumluluklar veya tamamen farklı bir kariyer yolu gündeme gelebilir.',
+        'Ay boyunca iş dünyasında şansınız parlak. Beklenmedik fırsatlar, olumlu haberler veya maddi kazançlar mümkün.',
+      ];
+    }
     return [
       'Your career goals are becoming clear this month. There is new opportunity and advancement potential in the professional field. Time to show your leadership abilities.',
       'Make strategic moves in your work life. This month you can prepare the ground for long-term plans and make important decisions. Trust your vision.',
@@ -136,6 +253,13 @@ class ExtendedHoroscopeContent {
   }
 
   static List<String> getMonthlyHealthContent(AppLanguage language) {
+    if (language == AppLanguage.tr) {
+      return [
+        'Sağlığınıza bu ay özel önem verin. Beslenme, uyku ve egzersiz dengesini gözden geçirin. Bedeniniz size mesajlar gönderiyor - dinleyin.',
+        'Enerji seviyelerinizi optimize etmek için doğru zamanlama önemli. Stres yönetimi ve zihinsel sağlık bu ay odak noktası olsun.',
+        'Bütünsel sağlık yaklaşımını benimseyin. Beden, zihin ve ruh dengesini kurarak, yaşam kalitenizi artırın.',
+      ];
+    }
     return [
       'Pay special attention to your health this month. Review your nutrition, sleep and exercise balance. Your body is sending you messages - listen.',
       'Proper timing is important to optimize your energy levels. Stress management and mental health should be the focus this month.',
@@ -144,6 +268,13 @@ class ExtendedHoroscopeContent {
   }
 
   static List<String> getMonthlyFinancialContent(AppLanguage language) {
+    if (language == AppLanguage.tr) {
+      return [
+        'Finansal konularda bu ay olumlu gelişmeler var. Gelir potansiyeliniz artıyor, yeni gelir kaynakları için fırsatlar beliriyor.',
+        'Maddi bolluk enerjisi güçleniyor. Geçmişte yapılan yatırımlar meyvelerini vermeye başlayabilir.',
+        'Bütçe yönetimi önemli. İhtiyaçlarla istekleri ayırt edin, gereksiz harcamaları kısın.',
+      ];
+    }
     return [
       'Positive developments in financial matters this month. Your income potential is increasing, opportunities for new sources of income are emerging.',
       'Financial abundance energy is strengthening. Investments made in the past may start to bear fruit.',
@@ -152,6 +283,13 @@ class ExtendedHoroscopeContent {
   }
 
   static List<String> getMonthlySpiritualContent(AppLanguage language) {
+    if (language == AppLanguage.tr) {
+      return [
+        'Bu ay ruhsal pratiğinizi derinleştirmek için ideal. Meditasyon, yoga veya nefes çalışması iç dönüşümünüzü hızlandırabilir.',
+        'Sezgileriniz güçleniyor. İç sesinizden ve rüyalarınızdan gelen mesajlara dikkat edin. Evren sizi yönlendiriyor.',
+        'Ruhunuzun derinliğini keşfetme zamanı. İçe dönük pratikler ve öz-sorgulama soruları derin farkındalıklar getirebilir.',
+      ];
+    }
     return [
       'This month is ideal for deepening your spiritual practice. Meditation, yoga or breath work can accelerate your inner transformation.',
       'Your intuition is strengthening. Pay attention to the messages coming from your inner voice and dreams. The universe is guiding you.',
@@ -160,6 +298,16 @@ class ExtendedHoroscopeContent {
   }
 
   static List<String> getMonthlyMantras(AppLanguage language) {
+    if (language == AppLanguage.tr) {
+      return [
+        'Her geçen gün dönüşüyor ve yenileniyorum.',
+        'Evrenin akışına güveniyorum.',
+        'Sevgi ve bolluğu hak ediyorum.',
+        'Her zorluk, büyüme için bir fırsat.',
+        'Kendimle ve dünyayla barış içindeyim.',
+        'İçimdeki ışık yolumu aydınlatıyor.',
+      ];
+    }
     return [
       'I am transforming and renewing with each passing day.',
       'I trust the flow of the universe.',
@@ -171,6 +319,22 @@ class ExtendedHoroscopeContent {
   }
 
   static List<String> getMonths(AppLanguage language) {
+    if (language == AppLanguage.tr) {
+      return [
+        'Ocak',
+        'Şubat',
+        'Mart',
+        'Nisan',
+        'Mayıs',
+        'Haziran',
+        'Temmuz',
+        'Ağustos',
+        'Eylül',
+        'Ekim',
+        'Kasım',
+        'Aralık'
+      ];
+    }
     return [
       'January',
       'February',
@@ -190,6 +354,16 @@ class ExtendedHoroscopeContent {
   // ============ YEARLY CONTENT ============
 
   static List<String> getYearlyOverviews(ZodiacSign sign, AppLanguage language) {
+    if (language == AppLanguage.tr) {
+      final signName = sign.nameTr;
+      return [
+        'Bu yıl $signName burcu için önemli bir dönüm noktası. Kozmik enerjiler derin dönüşüm ve kişisel büyümeyi destekliyor. Sürece güvenin ve değişimi kucaklayın.',
+        '$signName için manifestasyon yılı başlıyor. Besleyip büyüttüğünüz hayaller gerçeğe dönüşmeye hazır. Odaklanın, tutarlı çalışın ve mucizelerin açılmasını izleyin.',
+        'Yıldızlar bu yıl $signName\'ın evrimi için hizalanıyor. Zorluklar öğretmen oluyor, engeller basamak taşına dönüşüyor. Dayanıklılığınız en büyük varlığınız olacak.',
+        'Genişleme, bu yıl $signName için ana tema. İster kariyer, ister ilişkiler, ister kişisel gelişim olsun - hayatın her alanında büyüme bekliyor.',
+      ];
+    }
+
     final signName = sign.name;
 
     return [
@@ -201,6 +375,13 @@ class ExtendedHoroscopeContent {
   }
 
   static List<String> getYearlyLoveContent(AppLanguage language) {
+    if (language == AppLanguage.tr) {
+      return [
+        'Bu yıl aşk sahnenin merkezinde. Derin bağlantılar, ruh eşi karşılaşmaları ve ilişki kilometre taşları bekliyor. Kalbinizi aşkın büyüsüne açın.',
+        'Kalp meseleleri için dönüştürücü bir yıl. Eski kalıplar kırılıyor, otantik aşk ortaya çıkıyor. İster bekar ister çift olun, derin büyüme bekliyor.',
+        'Venüs yıl boyunca aşk hayatınızı kutsayacak. Romantizm, tutku ve duygusal derinlik ilişkilerinizi karakterize ediyor. Aşk bir yol buluyor.',
+      ];
+    }
     return [
       'Love takes center stage this year. Deep connections, soulmate encounters, and relationship milestones await. Open your heart to the magic of love.',
       'A transformative year for matters of the heart. Old patterns break, authentic love emerges. Whether single or coupled, profound growth awaits.',
@@ -209,6 +390,13 @@ class ExtendedHoroscopeContent {
   }
 
   static List<String> getYearlyCareerContent(AppLanguage language) {
+    if (language == AppLanguage.tr) {
+      return [
+        'Bu yılı profesyonel atılımlar tanımlıyor. Terfiler, yeni fırsatlar ve emeklerinizin takdiri bekliyor. Sıkı çalışmanız karşılığını buluyor.',
+        'Bu yıl kariyer evrimi hızlanıyor. İster basamakları tırmanın ister tamamen yol değiştirin, önemli profesyonel büyüme yıldızlarda yazılı.',
+        'Yıl boyunca liderlik fırsatları beliriyor. Gücünüze adım atın, vizyonunuzu paylaşın ve profesyonel etkinizin genişlemesini izleyin.',
+      ];
+    }
     return [
       'Professional breakthroughs define this year. Promotions, new opportunities, and recognition for your efforts await. Your hard work pays off.',
       'Career evolution accelerates this year. Whether climbing the ladder or changing paths entirely, significant professional growth is written in the stars.',
@@ -217,6 +405,13 @@ class ExtendedHoroscopeContent {
   }
 
   static List<String> getYearlyHealthContent(AppLanguage language) {
+    if (language == AppLanguage.tr) {
+      return [
+        'Bu yıl bütünsel sağlık odağı çağrısında bulunuyor. Zihin, beden ve ruh uyumu öncelik haline geliyor. Esenliğinize yatırım yapın.',
+        'Bu yıl enerji yönetimi anahtar. Aktivite ile dinlenmeyi, üretkenlik ile rahatlamayı dengeleyin. Bedeninizin bilgeliğini dinleyin.',
+        'Yıl boyunca şifa enerjileri güçlü. Eski sağlık kalıpları dönüşebilir, yeni canlılık ortaya çıkar. Bedeninizin doğal iyileşmesini destekleyin.',
+      ];
+    }
     return [
       'This year calls for holistic health focus. Mind, body, and spirit alignment becomes priority. Invest in your wellbeing.',
       'Energy management is key this year. Balance activity with rest, productivity with relaxation. Listen to your body\'s wisdom.',
@@ -225,6 +420,13 @@ class ExtendedHoroscopeContent {
   }
 
   static List<String> getYearlyFinancialContent(AppLanguage language) {
+    if (language == AppLanguage.tr) {
+      return [
+        'Bu yıl finansal bolluk akıyor. Yeni gelir akışları, yatırım fırsatları ve maddi büyüme bekliyor. Refah bilinci aktive oluyor.',
+        'Stratejik finansal planlama bu yıl temettü ödüyor. Uzun vadeli düşünce, akıllı yatırımlar ve disiplinli harcama kalıcı zenginlik yaratır.',
+        'Jüpiter\'in bereketleri finansal genişleme getiriyor. Büyüme ve refah fırsatları beliriyor. Beklenmedik bolluğa açık kalın.',
+      ];
+    }
     return [
       'Financial abundance flows this year. New income streams, investment opportunities, and material growth await. Prosperity consciousness activates.',
       'Strategic financial planning pays dividends this year. Long-term thinking, wise investments, and disciplined spending create lasting wealth.',
@@ -233,6 +435,13 @@ class ExtendedHoroscopeContent {
   }
 
   static List<String> getYearlySpiritualContent(AppLanguage language) {
+    if (language == AppLanguage.tr) {
+      return [
+        'Ruhsal uyanış yılı açılıyor. Derin içgörüler, mistik deneyimler ve ruh büyümesi bu yolculuğu karakterize ediyor. Yolunuza güvenin.',
+        'Bu yıl ruhsal pratiğiniz derinleşiyor. İster meditasyon, ister dua, ister tefekkür olsun, ilahi ile bağlantınız güçleniyor.',
+        'Karmik tamamlanmalar ve yeni başlangıçlar bu yılı ruhsal olarak işaretliyor. Eski döngüler sona eriyor, ruh evriminin yeni bölümleri başlıyor.',
+      ];
+    }
     return [
       'A year of spiritual awakening unfolds. Deep insights, mystical experiences, and soul growth characterize this journey. Trust your path.',
       'Your spiritual practice deepens this year. Whether meditation, prayer, or contemplation, your connection to the divine strengthens.',
@@ -241,6 +450,16 @@ class ExtendedHoroscopeContent {
   }
 
   static List<String> getYearlyAffirmations(AppLanguage language) {
+    if (language == AppLanguage.tr) {
+      return [
+        'Bu yıl en yüksek potansiyelimi kucaklıyorum.',
+        'Yoluma çıkan tüm bereketleri hak ediyorum.',
+        'Her gün büyüme için yeni fırsatlar getiriyor.',
+        'Yolculuğa güveniyorum ve akışa teslim oluyorum.',
+        'Bolluk bana kolayca ve zahmetsizce akıyor.',
+        'Kaderimin yaratıcısı benim.',
+      ];
+    }
     return [
       'This year I embrace my highest potential.',
       'I am worthy of all the blessings coming my way.',
@@ -252,6 +471,18 @@ class ExtendedHoroscopeContent {
   }
 
   static List<String> getYearlyThemes(AppLanguage language) {
+    if (language == AppLanguage.tr) {
+      return [
+        'Dönüşüm ve Yeniden Doğuş',
+        'Manifestasyon ve Bolluk',
+        'Aşk ve Bağlantı',
+        'Kariyer İlerlemesi',
+        'Ruhsal Uyanış',
+        'Kişisel Güçlenme',
+        'Şifa ve Yenilenme',
+        'Yaratıcı İfade',
+      ];
+    }
     return [
       'Transformation and Rebirth',
       'Manifestation and Abundance',
@@ -267,6 +498,16 @@ class ExtendedHoroscopeContent {
   // ============ LOVE HOROSCOPE CONTENT ============
 
   static List<String> getRomanticOutlooks(ZodiacSign sign, AppLanguage language) {
+    if (language == AppLanguage.tr) {
+      final signName = sign.nameTr;
+      return [
+        'Venüs bugün $signName burcuna romantik bereketler yağdırıyor. Aşk havada ve kalbiniz almaya hazır. Beklenmedik bağlantılara açık kalın.',
+        '$signName için tutku tutuşuyor. İster bekar ister çift olun, yoğun romantik enerji sizi sarıyor. Arzularınızı cesurca ifade edin.',
+        'Duygusal derinlik bugün $signName burcunun aşk hayatını karakterize ediyor. Anlamlı sohbetler ve ruh bağlantıları destekleniyor. Savunmasızlık gücünüzdür.',
+        '$signName için romantizm beklenmedik bir şekilde çiçekleniyor. Evren güzel buluşmalar ve şefkatli anlar ayarlıyor. Aşkın büyüsüne güvenin.',
+      ];
+    }
+
     final signName = sign.name;
 
     return [
@@ -278,6 +519,14 @@ class ExtendedHoroscopeContent {
   }
 
   static List<String> getSingleAdvice(AppLanguage language) {
+    if (language == AppLanguage.tr) {
+      return [
+        'Manyetik enerjiniz bugün yüksek. Kendinizi ortaya koyun - evren anlamlı bağlantılar ayarlıyor. Aşk genellikle en beklemediğimiz anda bizi bulur.',
+        'Önce öz-sevgiye odaklanın. Kendi bardağınızı doldurduğunuzda, enerjinize uyan partnerler çekersiniz. Sizi kutlayan bir aşkı hak ediyorsunuz.',
+        'Açık ama seçici kalın. Her bağlantı sürmek için değildir, ama her karşılaşma bir şey öğretir. Zamanınızı kimin hak ettiği konusunda sezgilerinize güvenin.',
+        'Yıldızlar sabır öneriyor. Kişiniz yolda. Bu zamanı kendinizin en iyi versiyonu olmak için kullanın.',
+      ];
+    }
     return [
       'Your magnetic energy is high today. Put yourself out there - the universe is arranging meaningful connections. Love often finds us when we least expect it.',
       'Focus on self-love first. When you fill your own cup, you attract partners who match your energy. You deserve a love that celebrates you.',
@@ -287,6 +536,14 @@ class ExtendedHoroscopeContent {
   }
 
   static List<String> getCouplesAdvice(AppLanguage language) {
+    if (language == AppLanguage.tr) {
+      return [
+        'Bugün kıvılcımı yeniden yakın. Özel bir şey planlayın, takdirinizi ifade edin, neden aşık olduğunuzu hatırlayın. Küçük jestler büyük etkiler yaratır.',
+        'Bugün iletişim süper gücünüz. Duygularınızı açıkça paylaşın, derinden dinleyin. Anlayış, kalpler arasındaki her boşluğu köprüler.',
+        'Bugün tutku ve şefkat birlikte dans ediyor. Arzuyu duygusal bağlantıyla dengeleyin. Fiziksel ve ruhsal yakınlık güzelce iç içe geçiyor.',
+        'Büyüme birlikte gerçekleşir. Birbirinizin hayallerini destekleyin, zaferleri kutlayın, zorluklarda teselli edin. Ortaklığınız bir takım.',
+      ];
+    }
     return [
       'Rekindle the spark today. Plan something special, express your appreciation, remember why you fell in love. Small gestures create big impacts.',
       'Communication is your superpower today. Share your feelings openly, listen deeply. Understanding bridges any gap between hearts.',
@@ -296,6 +553,14 @@ class ExtendedHoroscopeContent {
   }
 
   static List<String> getSoulConnectionContent(AppLanguage language) {
+    if (language == AppLanguage.tr) {
+      return [
+        'Ruh bağlantıları zaman ve mekanı aşar. Aradığınız aşk sizi de arıyor. Kalp bağlantılarının kozmik zamanlamasına güvenin.',
+        'Kalbiniz, zihninizin kavrayamadığını biliyor. Derin ruh bağları, aşkın gizemli yollarına teslim olduğumuzda oluşur.',
+        'Geçmiş yaşam bağlantıları yüzeye çıkabilir. O anı tanıma, o açıklanamaz aşinalık - bunlar ruh imzalarıdır.',
+        'Evren gerçek aşk için işbirliği yapıyor. Kalpler buluşmak için yazılmışsa, hiçbir engel aşılamaz değildir. Romantik kaderinize inanın.',
+      ];
+    }
     return [
       'Soul connections transcend time and space. The love you seek is also seeking you. Trust the cosmic timing of heart connections.',
       'Your heart knows what your mind can\'t comprehend. Deep soul bonds form when we surrender to love\'s mysterious ways.',
@@ -305,6 +570,14 @@ class ExtendedHoroscopeContent {
   }
 
   static List<String> getVenusInfluence(AppLanguage language) {
+    if (language == AppLanguage.tr) {
+      return [
+        'Venüs bugün aşk sektörünüzü kutsuyor. Güzellik, uyum ve romantik fırsatlar bol. Aşkın yol göstermesine izin verin.',
+        'Aşk gezegeni çekiciliğinizi artırıyor. Başkalarını yakına çeken çekici bir enerji yayıyorsunuz. Bu manyetizmayı akıllıca kullanın.',
+        'Venüs kalıcı aşktan fısıldıyor. Bugün kurulan temeller yıllarca ilişkileri destekleyebilir. Partnerleri akıllıca seçin.',
+        'Venüs\'ün bakışı altında, aşk yumuşar ve tatlanır. Sert sözler erir, çatışmalar çözülür. Şefkatin iyileştirici gücünü kucaklayın.',
+      ];
+    }
     return [
       'Venus blesses your love sector today. Beauty, harmony, and romantic opportunities abound. Let love lead the way.',
       'The planet of love amplifies your charm. You radiate attractive energy that draws others near. Use this magnetism wisely.',
@@ -314,6 +587,14 @@ class ExtendedHoroscopeContent {
   }
 
   static List<String> getIntimacyAdvice(AppLanguage language) {
+    if (language == AppLanguage.tr) {
+      return [
+        'Duygusal yakınlık fiziksel bağlantıyı derinleştirir. İç dünyanızı, korkularınızı ve hayallerinizi paylaşın. Savunmasızlık en derin bağları yaratır.',
+        'Bariyerler düştüğünde tutku akar. Ketlerden kurtulun, otantik ifadeyi kucaklayın. Gerçek yakınlık cesaret gerektirir.',
+        'Kutsal duyusallık bugün uyanıyor. Bedeninizi ve partnerinizinkini zevk tapınakları olarak onurlandırın. Farkındalıklı mevcudiyet her dokunuşu artırır.',
+        'Yakınlık, kelimesiz bir sohbettir. Kalbinizle dinleyin, ruhunuzla karşılık verin. Beden aşkın dilini konuşur.',
+      ];
+    }
     return [
       'Emotional intimacy deepens physical connection. Share your inner world, your fears and dreams. Vulnerability creates the deepest bonds.',
       'Passion flows when barriers fall. Let go of inhibitions, embrace authentic expression. True intimacy requires courage.',

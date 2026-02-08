@@ -40,8 +40,8 @@ class DreamPromptCard extends ConsumerWidget {
             end: Alignment.bottomRight,
             colors: isDark
                 ? [
-                    const Color(0xFF1A1A3E).withOpacity(0.9),
-                    const Color(0xFF0D0D2A).withOpacity(0.95),
+                    const Color(0xFF1A1A3E).withValues(alpha: 0.9),
+                    const Color(0xFF0D0D2A).withValues(alpha: 0.95),
                   ]
                 : [
                     const Color(0xFFF0F0FF),
@@ -50,12 +50,12 @@ class DreamPromptCard extends ConsumerWidget {
           ),
           borderRadius: BorderRadius.circular(24),
           border: Border.all(
-            color: AppColors.mystic.withOpacity(0.4),
+            color: AppColors.mystic.withValues(alpha: 0.4),
             width: 1.5,
           ),
           boxShadow: [
             BoxShadow(
-              color: AppColors.mystic.withOpacity(0.2),
+              color: AppColors.mystic.withValues(alpha: 0.2),
               blurRadius: 20,
               offset: const Offset(0, 8),
             ),
@@ -109,8 +109,8 @@ class DreamPromptCard extends ConsumerWidget {
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   color: isDark
-                      ? Colors.white.withOpacity(0.05)
-                      : Colors.black.withOpacity(0.03),
+                      ? Colors.white.withValues(alpha: 0.05)
+                      : Colors.black.withValues(alpha: 0.03),
                   borderRadius: BorderRadius.circular(16),
                 ),
                 child: Row(
@@ -146,7 +146,7 @@ class DreamPromptCard extends ConsumerWidget {
                     ),
                     Icon(
                       Icons.chevron_right,
-                      color: AppColors.mystic.withOpacity(0.7),
+                      color: AppColors.mystic.withValues(alpha: 0.7),
                     ),
                   ],
                 ),
@@ -193,8 +193,8 @@ class DreamPromptCard extends ConsumerWidget {
                 gradient: LinearGradient(
                   colors: hasRecentDream
                       ? [
-                          AppColors.mystic.withOpacity(0.3),
-                          AppColors.mystic.withOpacity(0.1),
+                          AppColors.mystic.withValues(alpha: 0.3),
+                          AppColors.mystic.withValues(alpha: 0.1),
                         ]
                       : [
                           AppColors.mystic,
@@ -206,7 +206,7 @@ class DreamPromptCard extends ConsumerWidget {
                     ? null
                     : [
                         BoxShadow(
-                          color: AppColors.mystic.withOpacity(0.4),
+                          color: AppColors.mystic.withValues(alpha: 0.4),
                           blurRadius: 12,
                           offset: const Offset(0, 4),
                         ),
@@ -278,25 +278,25 @@ class _DreamIcon extends StatelessWidget {
         gradient: RadialGradient(
           colors: hasRecentDream
               ? [
-                  AppColors.success.withOpacity(0.3),
-                  AppColors.success.withOpacity(0.1),
+                  AppColors.success.withValues(alpha: 0.3),
+                  AppColors.success.withValues(alpha: 0.1),
                 ]
               : [
-                  AppColors.mystic.withOpacity(0.3),
-                  AppColors.mystic.withOpacity(0.1),
+                  AppColors.mystic.withValues(alpha: 0.3),
+                  AppColors.mystic.withValues(alpha: 0.1),
                 ],
         ),
         shape: BoxShape.circle,
         border: Border.all(
           color: hasRecentDream
-              ? AppColors.success.withOpacity(0.5)
-              : AppColors.mystic.withOpacity(0.5),
+              ? AppColors.success.withValues(alpha: 0.5)
+              : AppColors.mystic.withValues(alpha: 0.5),
           width: 2,
         ),
         boxShadow: [
           BoxShadow(
             color: (hasRecentDream ? AppColors.success : AppColors.mystic)
-                .withOpacity(0.3),
+                .withValues(alpha: 0.3),
             blurRadius: 16,
             spreadRadius: 2,
           ),
@@ -331,13 +331,13 @@ class _StreakBadge extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            AppColors.starGold.withOpacity(0.3),
-            AppColors.starGold.withOpacity(0.1),
+            AppColors.starGold.withValues(alpha: 0.3),
+            AppColors.starGold.withValues(alpha: 0.1),
           ],
         ),
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
-          color: AppColors.starGold.withOpacity(0.5),
+          color: AppColors.starGold.withValues(alpha: 0.5),
         ),
       ),
       child: Row(
@@ -360,7 +360,7 @@ class _StreakBadge extends StatelessWidget {
       ),
     ).animate(onPlay: (c) => c.repeat(reverse: true)).shimmer(
           duration: 2000.ms,
-          color: AppColors.starGold.withOpacity(0.3),
+          color: AppColors.starGold.withValues(alpha: 0.3),
         );
   }
 }
@@ -386,13 +386,13 @@ class _QuickPromptChip extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         decoration: BoxDecoration(
           color: isDark
-              ? Colors.white.withOpacity(0.08)
-              : Colors.black.withOpacity(0.05),
+              ? Colors.white.withValues(alpha: 0.08)
+              : Colors.black.withValues(alpha: 0.05),
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
             color: isDark
-                ? Colors.white.withOpacity(0.1)
-                : Colors.black.withOpacity(0.08),
+                ? Colors.white.withValues(alpha: 0.1)
+                : Colors.black.withValues(alpha: 0.08),
           ),
         ),
         child: Row(
@@ -437,13 +437,13 @@ class CompactDreamPrompt extends ConsumerWidget {
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              AppColors.mystic.withOpacity(0.2),
-              AppColors.mystic.withOpacity(0.1),
+              AppColors.mystic.withValues(alpha: 0.2),
+              AppColors.mystic.withValues(alpha: 0.1),
             ],
           ),
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: AppColors.mystic.withOpacity(0.3),
+            color: AppColors.mystic.withValues(alpha: 0.3),
           ),
         ),
         child: Row(
@@ -464,7 +464,7 @@ class CompactDreamPrompt extends ConsumerWidget {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                 decoration: BoxDecoration(
-                  color: AppColors.starGold.withOpacity(0.3),
+                  color: AppColors.starGold.withValues(alpha: 0.3),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Text(
