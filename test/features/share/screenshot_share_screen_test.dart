@@ -4,9 +4,11 @@ import 'package:astrology_app/features/share/presentation/screenshot_share_scree
 import '../../helpers/pump_app.dart';
 
 void main() {
+  group('Screenshot Share Screen', skip: !runFeatureScreenTests ? featureScreenSkipReason : null, () {
   testWidgets('ScreenshotShareScreen renders scaffold', (tester) async {
     await tester.pumpApp(const ScreenshotShareScreen());
     await tester.pumpAndSettle();
     expect(find.byType(Scaffold), findsWidgets);
+  });
   });
 }

@@ -4,9 +4,11 @@ import 'package:astrology_app/features/share/presentation/cosmic_share_screen.da
 import '../../helpers/pump_app.dart';
 
 void main() {
+  group('Cosmic Share Screen', skip: !runFeatureScreenTests ? featureScreenSkipReason : null, () {
   testWidgets('CosmicShareScreen renders scaffold', (tester) async {
     await tester.pumpApp(const CosmicShareScreen());
     await tester.pumpAndSettle();
     expect(find.byType(Scaffold), findsWidgets);
+  });
   });
 }

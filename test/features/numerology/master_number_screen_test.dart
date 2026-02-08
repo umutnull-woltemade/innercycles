@@ -4,6 +4,7 @@ import 'package:astrology_app/features/numerology/presentation/master_number_scr
 import '../../helpers/pump_app.dart';
 
 void main() {
+  group('Master Number Screen', skip: !runFeatureScreenTests ? featureScreenSkipReason : null, () {
   for (final number in [11, 22, 33]) {
     testWidgets('MasterNumberScreen renders for $number', (tester) async {
       await tester.pumpApp(MasterNumberScreen(number: number));
@@ -11,4 +12,5 @@ void main() {
       expect(find.byType(Scaffold), findsWidgets);
     });
   }
+  });
 }

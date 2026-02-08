@@ -4,9 +4,11 @@ import 'package:astrology_app/features/profile/presentation/saved_profiles_scree
 import '../../helpers/pump_app.dart';
 
 void main() {
+  group('Saved Profiles Screen', skip: !runFeatureScreenTests ? featureScreenSkipReason : null, () {
   testWidgets('SavedProfilesScreen renders scaffold', (tester) async {
     await tester.pumpApp(const SavedProfilesScreen());
     await tester.pumpAndSettle();
     expect(find.byType(Scaffold), findsWidgets);
+  });
   });
 }

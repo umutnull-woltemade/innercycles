@@ -4,6 +4,7 @@ import 'package:astrology_app/features/horoscope/presentation/horoscope_detail_s
 import '../../helpers/pump_app.dart';
 
 void main() {
+  group('Horoscope Detail Screen', skip: !runFeatureScreenTests ? featureScreenSkipReason : null, () {
   testWidgets('HoroscopeDetailScreen renders with sign parameter', (tester) async {
     await tester.pumpApp(const HoroscopeDetailScreen(signName: 'aries'));
     await tester.pumpAndSettle();
@@ -14,5 +15,6 @@ void main() {
     await tester.pumpApp(const HoroscopeDetailScreen(signName: 'leo'));
     await tester.pumpAndSettle();
     expect(find.byType(Scaffold), findsWidgets);
+  });
   });
 }

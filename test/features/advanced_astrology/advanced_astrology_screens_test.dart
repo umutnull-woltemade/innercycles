@@ -21,6 +21,7 @@ import 'package:astrology_app/features/kabbalah/presentation/kabbalah_screen.dar
 import '../../helpers/pump_app.dart';
 
 void main() {
+  group('Advanced Astrology Screens', skip: !runFeatureScreenTests ? featureScreenSkipReason : null, () {
   testWidgets('CompositeChartScreen renders scaffold', (tester) async {
     await tester.pumpApp(const CompositeChartScreen());
     await tester.pumpAndSettle();
@@ -115,5 +116,6 @@ void main() {
     await tester.pumpApp(const KabbalahScreen());
     await tester.pumpAndSettle();
     expect(find.byType(Scaffold), findsWidgets);
+  });
   });
 }

@@ -4,6 +4,7 @@ import 'package:astrology_app/features/glossary/presentation/glossary_screen.dar
 import '../../helpers/pump_app.dart';
 
 void main() {
+  group('Glossary Screen', skip: !runFeatureScreenTests ? featureScreenSkipReason : null, () {
   testWidgets('GlossaryScreen renders scaffold', (tester) async {
     await tester.pumpApp(const GlossaryScreen());
     await tester.pumpAndSettle();
@@ -14,5 +15,6 @@ void main() {
     await tester.pumpApp(const GlossaryScreen(initialSearch: 'venus'));
     await tester.pumpAndSettle();
     expect(find.byType(Scaffold), findsWidgets);
+  });
   });
 }

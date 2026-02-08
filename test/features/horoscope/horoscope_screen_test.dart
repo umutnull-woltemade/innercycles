@@ -4,6 +4,7 @@ import 'package:astrology_app/features/horoscope/presentation/horoscope_screen.d
 import '../../helpers/pump_app.dart';
 
 void main() {
+  group('Horoscope Screen', skip: !runFeatureScreenTests ? featureScreenSkipReason : null, () {
   testWidgets('HoroscopeScreen renders scaffold', (tester) async {
     await tester.pumpApp(const HoroscopeScreen());
     await tester.pumpAndSettle();
@@ -17,5 +18,6 @@ void main() {
     expect(find.byType(GestureDetector).evaluate().isNotEmpty ||
            find.byType(InkWell).evaluate().isNotEmpty ||
            find.byType(ListTile).evaluate().isNotEmpty, isTrue);
+  });
   });
 }

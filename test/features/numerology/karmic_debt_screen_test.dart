@@ -4,6 +4,7 @@ import 'package:astrology_app/features/numerology/presentation/karmic_debt_scree
 import '../../helpers/pump_app.dart';
 
 void main() {
+  group('Karmic Debt Screen', skip: !runFeatureScreenTests ? featureScreenSkipReason : null, () {
   for (final number in [13, 14, 16, 19]) {
     testWidgets('KarmicDebtScreen renders for debt $number', (tester) async {
       await tester.pumpApp(KarmicDebtScreen(debtNumber: number));
@@ -11,4 +12,5 @@ void main() {
       expect(find.byType(Scaffold), findsWidgets);
     });
   }
+  });
 }

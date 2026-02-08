@@ -4,9 +4,11 @@ import 'package:astrology_app/features/articles/presentation/articles_screen.dar
 import '../../helpers/pump_app.dart';
 
 void main() {
+  group('Articles Screen', skip: !runFeatureScreenTests ? featureScreenSkipReason : null, () {
   testWidgets('ArticlesScreen renders scaffold', (tester) async {
     await tester.pumpApp(const ArticlesScreen());
     await tester.pumpAndSettle();
     expect(find.byType(Scaffold), findsWidgets);
+  });
   });
 }

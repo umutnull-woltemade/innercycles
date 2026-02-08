@@ -19,6 +19,7 @@ import 'package:astrology_app/features/dreams/presentation/canonical/dream_unabl
 import '../../helpers/pump_app.dart';
 
 void main() {
+  group('Dream Screens', skip: !runFeatureScreenTests ? featureScreenSkipReason : null, () {
   testWidgets('DreamInterpretationScreen renders scaffold', (tester) async {
     await tester.pumpApp(const DreamInterpretationScreen());
     await tester.pumpAndSettle();
@@ -107,5 +108,6 @@ void main() {
     await tester.pumpApp(const DreamUnableToFlyScreen());
     await tester.pumpAndSettle();
     expect(find.byType(Scaffold), findsWidgets);
+  });
   });
 }

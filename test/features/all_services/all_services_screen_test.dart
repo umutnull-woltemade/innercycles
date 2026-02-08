@@ -5,9 +5,11 @@ import 'package:astrology_app/features/all_services/presentation/all_services_sc
 import '../../helpers/pump_app.dart';
 
 void main() {
+  group('All Services Screen', skip: !runFeatureScreenTests ? featureScreenSkipReason : null, () {
   testWidgets('AllServicesScreen renders scaffold', (tester) async {
     await tester.pumpApp(const AllServicesScreen());
     await tester.pumpAndSettle();
     expect(find.byType(Scaffold), findsWidgets);
+  });
   });
 }

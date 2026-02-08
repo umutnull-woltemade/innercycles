@@ -101,7 +101,7 @@ void main() {
   // GROUP 1: HOME SCREEN CRITICAL ELEMENTS
   // ═══════════════════════════════════════════════════════════════════════════
 
-  group('CRITICAL UI:', skip: !_runCriticalUITests ? _skipReason : null, Home Screen', () {
+  group('CRITICAL UI: Home Screen', skip: !_runCriticalUITests ? _skipReason : null, () {
     testWidgets('[CRITICAL] Home screen renders scaffold', (tester) async {
       await pumpAtRoute(tester, Routes.home);
       expect(
@@ -200,7 +200,7 @@ void main() {
   // GROUP 2: ONBOARDING FLOW CRITICAL ELEMENTS
   // ═══════════════════════════════════════════════════════════════════════════
 
-  group('CRITICAL UI:', skip: !_runCriticalUITests ? _skipReason : null, Onboarding Flow', () {
+  group('CRITICAL UI: Onboarding Flow', skip: !_runCriticalUITests ? _skipReason : null, () {
     testWidgets('[CRITICAL] Onboarding screen renders', (tester) async {
       await pumpAtRoute(tester, Routes.onboarding, onboardingComplete: false);
       expect(
@@ -248,7 +248,7 @@ void main() {
   // GROUP 3: SETTINGS SCREEN CRITICAL ELEMENTS
   // ═══════════════════════════════════════════════════════════════════════════
 
-  group('CRITICAL UI:', skip: !_runCriticalUITests ? _skipReason : null, Settings Screen', () {
+  group('CRITICAL UI: Settings Screen', skip: !_runCriticalUITests ? _skipReason : null, () {
     testWidgets('[CRITICAL] Settings screen renders', (tester) async {
       await pumpAtRoute(tester, Routes.settings);
       expect(
@@ -308,7 +308,7 @@ void main() {
   // GROUP 4: PREMIUM/PAYWALL CRITICAL ELEMENTS
   // ═══════════════════════════════════════════════════════════════════════════
 
-  group('CRITICAL UI:', skip: !_runCriticalUITests ? _skipReason : null, Premium Screen', () {
+  group('CRITICAL UI: Premium Screen', skip: !_runCriticalUITests ? _skipReason : null, () {
     testWidgets('[CRITICAL] Premium screen renders', (tester) async {
       await pumpAtRoute(tester, Routes.premium);
       expect(
@@ -363,7 +363,7 @@ void main() {
   // GROUP 5: PROFILE MANAGEMENT CRITICAL ELEMENTS
   // ═══════════════════════════════════════════════════════════════════════════
 
-  group('CRITICAL UI:', skip: !_runCriticalUITests ? _skipReason : null, Profile Screen', () {
+  group('CRITICAL UI: Profile Screen', skip: !_runCriticalUITests ? _skipReason : null, () {
     testWidgets('[MAJOR] Profile screen renders', (tester) async {
       await pumpAtRoute(tester, Routes.profile);
       expect(
@@ -390,7 +390,7 @@ void main() {
     });
   });
 
-  group('CRITICAL UI:', skip: !_runCriticalUITests ? _skipReason : null, Saved Profiles Screen', () {
+  group('CRITICAL UI: Saved Profiles Screen', skip: !_runCriticalUITests ? _skipReason : null, () {
     testWidgets('[MAJOR] Saved profiles screen renders', (tester) async {
       await pumpAtRoute(tester, Routes.savedProfiles);
       expect(
@@ -405,7 +405,7 @@ void main() {
   // GROUP 6: SEARCH/GLOSSARY CRITICAL ELEMENTS
   // ═══════════════════════════════════════════════════════════════════════════
 
-  group('CRITICAL UI:', skip: !_runCriticalUITests ? _skipReason : null, Glossary/Search Screen', () {
+  group('CRITICAL UI: Glossary/Search Screen', skip: !_runCriticalUITests ? _skipReason : null, () {
     testWidgets('[MAJOR] Glossary screen renders', (tester) async {
       await pumpAtRoute(tester, Routes.glossary);
       expect(
@@ -447,7 +447,7 @@ void main() {
   // GROUP 7: CORE NAVIGATION ROUTES
   // ═══════════════════════════════════════════════════════════════════════════
 
-  group('CRITICAL UI:', skip: !_runCriticalUITests ? _skipReason : null, Core Navigation Routes', () {
+  group('CRITICAL UI: Core Navigation Routes', skip: !_runCriticalUITests ? _skipReason : null, () {
     final coreRoutes = [
       Routes.home,
       Routes.horoscope,
@@ -474,7 +474,7 @@ void main() {
   // GROUP 8: ALL SERVICES HUB
   // ═══════════════════════════════════════════════════════════════════════════
 
-  group('CRITICAL UI:', skip: !_runCriticalUITests ? _skipReason : null, All Services Hub', () {
+  group('CRITICAL UI: All Services Hub', skip: !_runCriticalUITests ? _skipReason : null, () {
     testWidgets('[MAJOR] All services screen renders', (tester) async {
       await pumpAtRoute(tester, Routes.allServices);
       expect(
@@ -505,7 +505,7 @@ void main() {
   // GROUP 9: HOROSCOPE FEATURE
   // ═══════════════════════════════════════════════════════════════════════════
 
-  group('CRITICAL UI:', skip: !_runCriticalUITests ? _skipReason : null, Horoscope Feature', () {
+  group('CRITICAL UI: Horoscope Feature', skip: !_runCriticalUITests ? _skipReason : null, () {
     testWidgets('[MAJOR] Horoscope screen renders', (tester) async {
       await pumpAtRoute(tester, Routes.horoscope);
       expect(
@@ -556,7 +556,7 @@ void main() {
   // GROUP 10: ADMIN ACCESS
   // ═══════════════════════════════════════════════════════════════════════════
 
-  group('CRITICAL UI:', skip: !_runCriticalUITests ? _skipReason : null, Admin Access', () {
+  group('CRITICAL UI: Admin Access', skip: !_runCriticalUITests ? _skipReason : null, () {
     testWidgets('[IMPORTANT] Admin login screen renders', (tester) async {
       await pumpAtRoute(tester, Routes.adminLogin);
       expect(
@@ -571,7 +571,7 @@ void main() {
   // GROUP 11: SHARE FUNCTIONALITY
   // ═══════════════════════════════════════════════════════════════════════════
 
-  group('CRITICAL UI:', skip: !_runCriticalUITests ? _skipReason : null, Share Functionality', () {
+  group('CRITICAL UI: Share Functionality', skip: !_runCriticalUITests ? _skipReason : null, () {
     testWidgets('[IMPORTANT] Cosmic share screen renders', (tester) async {
       await pumpAtRoute(tester, Routes.cosmicShare);
       expect(
@@ -595,7 +595,7 @@ void main() {
   // GROUP 12: 404 HANDLING
   // ═══════════════════════════════════════════════════════════════════════════
 
-  group('CRITICAL UI:', skip: !_runCriticalUITests ? _skipReason : null, Error Handling', () {
+  group('CRITICAL UI: Error Handling', skip: !_runCriticalUITests ? _skipReason : null, () {
     testWidgets('[CRITICAL] Unknown route shows 404', (tester) async {
       await pumpAtRoute(tester, '/this-route-does-not-exist-xyz');
       expect(

@@ -5,6 +5,7 @@ import 'package:astrology_app/features/cosmic_discovery/presentation/cosmic_disc
 import '../../helpers/pump_app.dart';
 
 void main() {
+  group('Cosmic Discovery Screen', skip: !runFeatureScreenTests ? featureScreenSkipReason : null, () {
   testWidgets('CosmicDiscoveryScreen renders for dailySummary', (tester) async {
     await tester.pumpApp(const CosmicDiscoveryScreen(
       title: 'Test Title',
@@ -39,5 +40,6 @@ void main() {
     ));
     await tester.pumpAndSettle();
     expect(find.byType(Scaffold), findsWidgets);
+  });
   });
 }

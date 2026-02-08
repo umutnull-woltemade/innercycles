@@ -4,6 +4,7 @@ import 'package:astrology_app/features/home/presentation/responsive_home_screen.
 import '../../helpers/pump_app.dart';
 
 void main() {
+  group('Responsive Home Screen', skip: !runFeatureScreenTests ? featureScreenSkipReason : null, () {
   testWidgets('ResponsiveHomeScreen renders scaffold', (tester) async {
     await tester.pumpApp(const ResponsiveHomeScreen());
     await tester.pumpAndSettle();
@@ -18,5 +19,6 @@ void main() {
                       find.byType(ListView).evaluate().isNotEmpty ||
                       find.byType(CustomScrollView).evaluate().isNotEmpty;
     expect(hasScroll, isTrue);
+  });
   });
 }

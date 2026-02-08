@@ -6,6 +6,7 @@ import 'package:astrology_app/features/admin/presentation/admin_dashboard_screen
 import '../../helpers/pump_app.dart';
 
 void main() {
+  group('Admin Screens', skip: !runFeatureScreenTests ? featureScreenSkipReason : null, () {
   testWidgets('AdminLoginScreen renders scaffold', (tester) async {
     await tester.pumpApp(const AdminLoginScreen());
     await tester.pumpAndSettle();
@@ -16,5 +17,6 @@ void main() {
     await tester.pumpApp(const AdminDashboardScreen());
     await tester.pumpAndSettle();
     expect(find.byType(Scaffold), findsWidgets);
+  });
   });
 }

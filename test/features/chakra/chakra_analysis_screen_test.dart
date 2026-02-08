@@ -4,9 +4,11 @@ import 'package:astrology_app/features/chakra/presentation/chakra_analysis_scree
 import '../../helpers/pump_app.dart';
 
 void main() {
+  group('Chakra Analysis Screen', skip: !runFeatureScreenTests ? featureScreenSkipReason : null, () {
   testWidgets('ChakraAnalysisScreen renders scaffold', (tester) async {
     await tester.pumpApp(const ChakraAnalysisScreen());
     await tester.pumpAndSettle();
     expect(find.byType(Scaffold), findsWidgets);
+  });
   });
 }

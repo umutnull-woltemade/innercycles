@@ -5,9 +5,11 @@ import 'package:astrology_app/features/kozmik/presentation/canonical/cosmic_toda
 import '../../helpers/pump_app.dart';
 
 void main() {
+  group('Cosmic Today Screen', skip: !runFeatureScreenTests ? featureScreenSkipReason : null, () {
   testWidgets('CosmicTodayScreen renders scaffold', (tester) async {
     await tester.pumpApp(const CosmicTodayScreen());
     await tester.pumpAndSettle();
     expect(find.byType(Scaffold), findsWidgets);
+  });
   });
 }

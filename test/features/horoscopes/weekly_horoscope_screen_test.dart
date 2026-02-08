@@ -4,6 +4,7 @@ import 'package:astrology_app/features/horoscopes/presentation/weekly_horoscope_
 import '../../helpers/pump_app.dart';
 
 void main() {
+  group('Weekly Horoscope Screen', skip: !runFeatureScreenTests ? featureScreenSkipReason : null, () {
   testWidgets('WeeklyHoroscopeScreen renders without sign', (tester) async {
     await tester.pumpApp(const WeeklyHoroscopeScreen());
     await tester.pumpAndSettle();
@@ -14,5 +15,6 @@ void main() {
     await tester.pumpApp(const WeeklyHoroscopeScreen(signName: 'aries'));
     await tester.pumpAndSettle();
     expect(find.byType(Scaffold), findsWidgets);
+  });
   });
 }

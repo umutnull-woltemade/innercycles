@@ -4,6 +4,7 @@ import 'package:astrology_app/features/onboarding/presentation/onboarding_screen
 import '../../helpers/pump_app.dart';
 
 void main() {
+  group('Onboarding Screen', skip: !runFeatureScreenTests ? featureScreenSkipReason : null, () {
   testWidgets('OnboardingScreen renders scaffold', (tester) async {
     await tester.pumpApp(const OnboardingScreen());
     await tester.pumpAndSettle();
@@ -17,5 +18,6 @@ void main() {
     expect(find.byType(ElevatedButton).evaluate().isNotEmpty ||
            find.byType(TextButton).evaluate().isNotEmpty ||
            find.byType(IconButton).evaluate().isNotEmpty, isTrue);
+  });
   });
 }

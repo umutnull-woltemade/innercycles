@@ -4,6 +4,7 @@ import 'package:astrology_app/features/tarot/presentation/major_arcana_detail_sc
 import '../../helpers/pump_app.dart';
 
 void main() {
+  group('Major Arcana Detail Screen', skip: !runFeatureScreenTests ? featureScreenSkipReason : null, () {
   testWidgets('MajorArcanaDetailScreen renders for card 0 (The Fool)', (tester) async {
     await tester.pumpApp(const MajorArcanaDetailScreen(cardNumber: 0));
     await tester.pumpAndSettle();
@@ -14,5 +15,6 @@ void main() {
     await tester.pumpApp(const MajorArcanaDetailScreen(cardNumber: 21));
     await tester.pumpAndSettle();
     expect(find.byType(Scaffold), findsWidgets);
+  });
   });
 }

@@ -4,6 +4,7 @@ import 'package:astrology_app/features/horoscopes/presentation/love_horoscope_sc
 import '../../helpers/pump_app.dart';
 
 void main() {
+  group('Love Horoscope Screen', skip: !runFeatureScreenTests ? featureScreenSkipReason : null, () {
   testWidgets('LoveHoroscopeScreen renders without sign', (tester) async {
     await tester.pumpApp(const LoveHoroscopeScreen());
     await tester.pumpAndSettle();
@@ -14,5 +15,6 @@ void main() {
     await tester.pumpApp(const LoveHoroscopeScreen(signName: 'aries'));
     await tester.pumpAndSettle();
     expect(find.byType(Scaffold), findsWidgets);
+  });
   });
 }

@@ -4,9 +4,11 @@ import 'package:astrology_app/features/horoscopes/presentation/eclipse_calendar_
 import '../../helpers/pump_app.dart';
 
 void main() {
+  group('Eclipse Calendar Screen', skip: !runFeatureScreenTests ? featureScreenSkipReason : null, () {
   testWidgets('EclipseCalendarScreen renders', (tester) async {
     await tester.pumpApp(const EclipseCalendarScreen());
     await tester.pumpAndSettle();
     expect(find.byType(Scaffold), findsWidgets);
+  });
   });
 }

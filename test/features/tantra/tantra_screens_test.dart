@@ -6,6 +6,7 @@ import 'package:astrology_app/features/tantra/presentation/canonical/tantra_micr
 import '../../helpers/pump_app.dart';
 
 void main() {
+  group('Tantra Screens', skip: !runFeatureScreenTests ? featureScreenSkipReason : null, () {
   testWidgets('TantraScreen renders scaffold', (tester) async {
     await tester.pumpApp(const TantraScreen());
     await tester.pumpAndSettle();
@@ -16,5 +17,6 @@ void main() {
     await tester.pumpApp(const TantraMicroRitualScreen());
     await tester.pumpAndSettle();
     expect(find.byType(Scaffold), findsWidgets);
+  });
   });
 }

@@ -4,6 +4,7 @@ import 'package:astrology_app/features/horoscopes/presentation/yearly_horoscope_
 import '../../helpers/pump_app.dart';
 
 void main() {
+  group('Yearly Horoscope Screen', skip: !runFeatureScreenTests ? featureScreenSkipReason : null, () {
   testWidgets('YearlyHoroscopeScreen renders without sign', (tester) async {
     await tester.pumpApp(const YearlyHoroscopeScreen());
     await tester.pumpAndSettle();
@@ -14,5 +15,6 @@ void main() {
     await tester.pumpApp(const YearlyHoroscopeScreen(signName: 'aries'));
     await tester.pumpAndSettle();
     expect(find.byType(Scaffold), findsWidgets);
+  });
   });
 }

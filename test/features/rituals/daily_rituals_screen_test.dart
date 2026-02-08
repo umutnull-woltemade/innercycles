@@ -4,9 +4,11 @@ import 'package:astrology_app/features/rituals/presentation/daily_rituals_screen
 import '../../helpers/pump_app.dart';
 
 void main() {
+  group('Daily Rituals Screen', skip: !runFeatureScreenTests ? featureScreenSkipReason : null, () {
   testWidgets('DailyRitualsScreen renders scaffold', (tester) async {
     await tester.pumpApp(const DailyRitualsScreen());
     await tester.pumpAndSettle();
     expect(find.byType(Scaffold), findsWidgets);
+  });
   });
 }

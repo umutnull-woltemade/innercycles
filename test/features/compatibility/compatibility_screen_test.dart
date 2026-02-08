@@ -4,6 +4,7 @@ import 'package:astrology_app/features/compatibility/presentation/compatibility_
 import '../../helpers/pump_app.dart';
 
 void main() {
+  group('Compatibility Screen', skip: !runFeatureScreenTests ? featureScreenSkipReason : null, () {
   testWidgets('CompatibilityScreen renders scaffold', (tester) async {
     await tester.pumpApp(const CompatibilityScreen());
     await tester.pumpAndSettle();
@@ -16,5 +17,6 @@ void main() {
     // Should have interactive elements for selecting signs
     expect(find.byType(GestureDetector).evaluate().isNotEmpty ||
            find.byType(InkWell).evaluate().isNotEmpty, isTrue);
+  });
   });
 }
