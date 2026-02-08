@@ -42,6 +42,7 @@ class TantraMicroRitualScreen extends ConsumerWidget {
                   children: [
                     IconButton(
                       onPressed: () => context.pop(),
+                      tooltip: L10nService.get('common.back', language),
                       icon: Icon(Icons.arrow_back_ios, color: isDark ? Colors.white70 : AppColors.textDark),
                     ),
                     const Spacer(),
