@@ -43,7 +43,7 @@ class AnalyticsService {
   void logScreenView(String screenName, {String? screenClass}) {
     logEvent('screen_view', {
       'screen_name': screenName,
-      if (screenClass != null) 'screen_class': screenClass,
+      'screen_class': ?screenClass,
     });
   }
 
@@ -58,7 +58,7 @@ class AnalyticsService {
       'product_id': productId,
       'tier': tier,
       'success': success.toString(),
-      if (error != null) 'error': error,
+      'error': ?error,
     });
   }
 
@@ -66,7 +66,7 @@ class AnalyticsService {
   void logAdEvent(String adType, String action, {String? placement}) {
     logEvent('ad_$action', {
       'ad_type': adType,
-      if (placement != null) 'placement': placement,
+      'placement': ?placement,
     });
   }
 
@@ -279,7 +279,7 @@ class AnalyticsService {
   }) {
     logEvent('subscription_expired', {
       'previous_tier': previousTier,
-      if (expiryDate != null) 'expiry_date': expiryDate,
+      'expiry_date': ?expiryDate,
     });
   }
 }

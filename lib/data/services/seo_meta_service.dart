@@ -865,8 +865,8 @@ class FaqSchemaGenerator {
     final schema = {
       '@context': 'https://schema.org',
       '@type': 'FAQPage',
-      if (pageName != null) 'name': pageName,
-      if (pageUrl != null) 'url': pageUrl,
+      'name': ?pageName,
+      'url': ?pageUrl,
       'mainEntity': faqItems,
     };
 
@@ -893,7 +893,7 @@ class FaqSchemaGenerator {
           'headline': title,
           'description': description,
           'url': url,
-          if (imageUrl != null) 'image': imageUrl,
+          'image': ?imageUrl,
           'datePublished': datePublished ?? now,
           'dateModified': dateModified ?? now,
           'author': {

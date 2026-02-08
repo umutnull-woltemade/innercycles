@@ -462,7 +462,7 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.symmetric(horizontal: 4),
         itemCount: DreamCardTheme.values.length,
-        separatorBuilder: (_, __) => const SizedBox(width: 12),
+        separatorBuilder: (_, _) => const SizedBox(width: 12),
         itemBuilder: (context, index) {
           final theme = DreamCardTheme.values[index];
           final isSelected = _config.theme == theme;

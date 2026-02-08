@@ -66,10 +66,10 @@ class HoroscopeApiService {
       '/horoscopes',
       queryParams: {
         'sign': sign.toLowerCase(),
-        if (type != null) 'type': type,
-        if (category != null) 'category': category,
+        'type': ?type,
+        'category': ?category,
         if (date != null) 'date': date.toIso8601String(),
-        if (language != null) 'language': language,
+        'language': ?language,
       },
       fromJson: (json) => HoroscopeDto.fromJson(json),
     );

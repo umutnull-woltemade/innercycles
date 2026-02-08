@@ -149,7 +149,7 @@ class _ObservatoryDashboardScreenState
                           : AppColors.lightTextMuted,
                     ),
                   ),
-                  error: (_, __) => Text(
+                  error: (_, _) => Text(
                     'Error loading data',
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: AppColors.error,
@@ -492,7 +492,7 @@ class _ObservatoryDashboardScreenState
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         itemCount: inventory.engines.length,
-        separatorBuilder: (_, __) => Divider(
+        separatorBuilder: (_, _) => Divider(
           height: 1,
           color: isDark
               ? Colors.white.withValues(alpha: 0.1)
@@ -792,7 +792,7 @@ class _ObservatoryDashboardScreenState
       child: ListView.separated(
         shrinkWrap: true,
         itemCount: coverage.missingTranslations.length,
-        separatorBuilder: (_, __) => Divider(
+        separatorBuilder: (_, _) => Divider(
           height: 1,
           color: isDark
               ? Colors.white.withValues(alpha: 0.05)
@@ -1177,7 +1177,7 @@ class _ObservatoryDashboardScreenState
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         itemCount: safety.topPatterns.length,
-        separatorBuilder: (_, __) => Divider(
+        separatorBuilder: (_, _) => Divider(
           height: 1,
           color: isDark
               ? Colors.white.withValues(alpha: 0.05)
@@ -1373,7 +1373,7 @@ class _ObservatoryDashboardScreenState
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         itemCount: platform.ciWorkflows.length,
-        separatorBuilder: (_, __) => Divider(
+        separatorBuilder: (_, _) => Divider(
           height: 1,
           color: isDark
               ? Colors.white.withValues(alpha: 0.05)

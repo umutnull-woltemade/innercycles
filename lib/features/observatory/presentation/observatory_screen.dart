@@ -152,7 +152,7 @@ class _ObservatoryScreenState extends ConsumerState<ObservatoryScreen>
                           : AppColors.lightTextMuted,
                     ),
                   ),
-                  error: (_, __) => Text(
+                  error: (_, _) => Text(
                     'Error loading data',
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: AppColors.error,
@@ -481,7 +481,7 @@ class _ObservatoryScreenState extends ConsumerState<ObservatoryScreen>
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         itemCount: inventory.engines.length,
-        separatorBuilder: (_, __) => Divider(
+        separatorBuilder: (_, _) => Divider(
           height: 1,
           color: isDark
               ? Colors.white.withValues(alpha: 0.05)
@@ -721,7 +721,7 @@ class _ObservatoryScreenState extends ConsumerState<ObservatoryScreen>
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         itemCount: missing.length.clamp(0, 20),
-        separatorBuilder: (_, __) => Divider(
+        separatorBuilder: (_, _) => Divider(
           height: 1,
           color: isDark
               ? Colors.white.withValues(alpha: 0.05)
@@ -1253,7 +1253,7 @@ class _ObservatoryScreenState extends ConsumerState<ObservatoryScreen>
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         itemCount: patterns.length,
-        separatorBuilder: (_, __) => Divider(
+        separatorBuilder: (_, _) => Divider(
           height: 1,
           color: isDark
               ? Colors.white.withValues(alpha: 0.05)
@@ -1325,7 +1325,7 @@ class _ObservatoryScreenState extends ConsumerState<ObservatoryScreen>
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         itemCount: events.length.clamp(0, 10),
-        separatorBuilder: (_, __) => Divider(
+        separatorBuilder: (_, _) => Divider(
           height: 1,
           color: isDark
               ? Colors.white.withValues(alpha: 0.05)
@@ -1458,7 +1458,7 @@ class _ObservatoryScreenState extends ConsumerState<ObservatoryScreen>
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         itemCount: workflows.length,
-        separatorBuilder: (_, __) => Divider(
+        separatorBuilder: (_, _) => Divider(
           height: 1,
           color: isDark
               ? Colors.white.withValues(alpha: 0.05)

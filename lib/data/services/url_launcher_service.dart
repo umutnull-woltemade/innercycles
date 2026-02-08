@@ -64,8 +64,8 @@ class UrlLauncherService {
       scheme: 'mailto',
       path: AppConstants.supportEmail,
       queryParameters: {
-        if (subject != null) 'subject': subject,
-        if (body != null) 'body': body,
+        'subject': ?subject,
+        'body': ?body,
       },
     );
 
