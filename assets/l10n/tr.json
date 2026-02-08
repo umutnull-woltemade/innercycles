@@ -112,7 +112,14 @@
       "psychological": "Psikolojik Profil",
       "numerology": "Numeroloji",
       "elements": "Element Dengesi"
-    }
+    },
+    "profile_ready": "Profilin Hazır",
+    "ready_subtitle": "Kişiselleştirilmiş yansıtma deneyimin şimdi kuruldu. İç görülerini keşfetmeye başla.",
+    "whats_included": "Neler Dahil",
+    "feature_reflection": "Günlük yansıtma soruları",
+    "feature_dreams": "Rüya günlüğü ve yorumlama",
+    "feature_patterns": "Kişisel kalıp takibi",
+    "feature_symbols": "Sembol keşif kütüphanesi"
   },
   "input": {
     "name": "İsim Soyisim",

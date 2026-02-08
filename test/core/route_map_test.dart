@@ -259,8 +259,8 @@ void main() {
 
       for (final path in kesifPaths) {
         expect(path, isNotEmpty);
-        expect(path.startsWith('/kesif/'), isTrue,
-            reason: '$path should be under /kesif/');
+        expect(path.startsWith('/discovery/') || path.startsWith('/kesif/'), isTrue,
+            reason: '$path should be under /discovery/ or /kesif/');
       }
     });
 

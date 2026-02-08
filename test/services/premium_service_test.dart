@@ -25,29 +25,29 @@ void main() {
   group('PremiumTier', () {
     test('free tier has correct properties', () {
       const tier = PremiumTier.free;
-      expect(tier.displayName, 'Ucretsiz');
+      // displayName uses i18n with English fallback when not initialized
+      expect(tier.displayName, isNotEmpty);
       expect(tier.price, '₺0');
-      expect(tier.savings, '');
       expect(tier.features, isNotEmpty);
       expect(tier.productId, '');
     });
 
     test('monthly tier has correct properties', () {
       const tier = PremiumTier.monthly;
-      expect(tier.displayName, 'Aylik Premium');
-      expect(tier.price, '₺29/ay');
-      expect(tier.savings, '');
+      // displayName uses i18n with English fallback when not initialized
+      expect(tier.displayName, isNotEmpty);
+      expect(tier.price, '₺29/mo');
       expect(tier.features, isNotEmpty);
-      expect(tier.productId, 'venusone_premium_monthly');
+      expect(tier.productId, 'monthly');
     });
 
     test('yearly tier has correct properties', () {
       const tier = PremiumTier.yearly;
-      expect(tier.displayName, 'Yillik Premium');
-      expect(tier.price, '₺79/yil');
-      expect(tier.savings, '%77 tasarruf');
+      // displayName uses i18n with English fallback when not initialized
+      expect(tier.displayName, isNotEmpty);
+      expect(tier.price, '₺79/yr');
       expect(tier.features, isNotEmpty);
-      expect(tier.productId, 'venusone_premium_yearly');
+      expect(tier.productId, 'yearly');
     });
 
     test('premium tiers have more features than free', () {

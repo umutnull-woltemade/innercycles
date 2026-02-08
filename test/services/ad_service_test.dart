@@ -96,46 +96,47 @@ void main() {
   });
 
   group('AppConstants AdMob IDs', () {
-    test('Android banner ID is placeholder', () {
-      expect(
-        AppConstants.admobBannerIdAndroid.contains('XXXXXXXX'),
-        true,
-      );
+    // These tests verify that AdMob IDs are valid (either real production IDs
+    // or Google's test IDs, but NOT empty or placeholder strings)
+
+    bool isValidAdMobId(String id) {
+      // Must start with ca-app-pub- prefix
+      if (!id.startsWith('ca-app-pub-')) return false;
+      // Must not be a placeholder with XXXXXXXX
+      if (id.contains('XXXXXXXX')) return false;
+      // Must have reasonable length
+      if (id.length < 30) return false;
+      return true;
+    }
+
+    test('Android banner ID is valid', () {
+      expect(isValidAdMobId(AppConstants.admobBannerIdAndroid), true,
+          reason: 'Android banner ID should be a valid AdMob ID format');
     });
 
-    test('iOS banner ID is placeholder', () {
-      expect(
-        AppConstants.admobBannerIdIos.contains('XXXXXXXX'),
-        true,
-      );
+    test('iOS banner ID is valid', () {
+      expect(isValidAdMobId(AppConstants.admobBannerIdIos), true,
+          reason: 'iOS banner ID should be a valid AdMob ID format');
     });
 
-    test('Android interstitial ID is placeholder', () {
-      expect(
-        AppConstants.admobInterstitialIdAndroid.contains('XXXXXXXX'),
-        true,
-      );
+    test('Android interstitial ID is valid', () {
+      expect(isValidAdMobId(AppConstants.admobInterstitialIdAndroid), true,
+          reason: 'Android interstitial ID should be a valid AdMob ID format');
     });
 
-    test('iOS interstitial ID is placeholder', () {
-      expect(
-        AppConstants.admobInterstitialIdIos.contains('XXXXXXXX'),
-        true,
-      );
+    test('iOS interstitial ID is valid', () {
+      expect(isValidAdMobId(AppConstants.admobInterstitialIdIos), true,
+          reason: 'iOS interstitial ID should be a valid AdMob ID format');
     });
 
-    test('Android rewarded ID is placeholder', () {
-      expect(
-        AppConstants.admobRewardedIdAndroid.contains('XXXXXXXX'),
-        true,
-      );
+    test('Android rewarded ID is valid', () {
+      expect(isValidAdMobId(AppConstants.admobRewardedIdAndroid), true,
+          reason: 'Android rewarded ID should be a valid AdMob ID format');
     });
 
-    test('iOS rewarded ID is placeholder', () {
-      expect(
-        AppConstants.admobRewardedIdIos.contains('XXXXXXXX'),
-        true,
-      );
+    test('iOS rewarded ID is valid', () {
+      expect(isValidAdMobId(AppConstants.admobRewardedIdIos), true,
+          reason: 'iOS rewarded ID should be a valid AdMob ID format');
     });
   });
 }
