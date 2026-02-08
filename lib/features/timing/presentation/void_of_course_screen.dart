@@ -102,6 +102,7 @@ class VoidOfCourseScreen extends ConsumerWidget {
             Icons.arrow_back_ios,
             color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
           ),
+          tooltip: L10nService.get('common.back', language),
         ),
         const SizedBox(width: AppConstants.spacingSm),
         Expanded(

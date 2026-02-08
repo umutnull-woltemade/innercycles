@@ -83,7 +83,8 @@ class ContentDetailScreen extends ConsumerWidget {
               color: isDark ? Colors.white70 : AppColors.lightTextPrimary,
               size: 20,
             ),
-          ),
+          tooltip: L10nService.get('common.back', language),
+        ),
           const SizedBox(height: 16),
           // Emoji and title
           Padding(

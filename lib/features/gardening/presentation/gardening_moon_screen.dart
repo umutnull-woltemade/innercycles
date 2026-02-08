@@ -95,7 +95,8 @@ class _GardeningMoonScreenState extends ConsumerState<GardeningMoonScreen> {
               Icons.arrow_back_ios,
               color: isDark ? Colors.white : AppColors.textDark,
             ),
-          ),
+          tooltip: L10nService.get('common.back', language),
+        ),
           Expanded(
             child: Column(
               children: [

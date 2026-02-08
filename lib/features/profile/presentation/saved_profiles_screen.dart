@@ -56,7 +56,8 @@ class SavedProfilesScreen extends ConsumerWidget {
               Icons.arrow_back_ios_new,
               color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
             ),
-          ),
+          tooltip: L10nService.get('common.back', language),
+        ),
           const SizedBox(width: AppConstants.spacingSm),
           Expanded(
             child: Column(
