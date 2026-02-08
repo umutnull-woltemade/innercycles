@@ -8,6 +8,7 @@
 /// Exit codes:
 /// - 0: All languages have 100% coverage
 /// - 1: Coverage is below 100% or keys are missing
+library;
 ///
 /// Usage:
 ///   dart run scripts/i18n_coverage_check.dart

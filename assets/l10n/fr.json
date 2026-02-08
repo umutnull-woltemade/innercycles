@@ -1300,14 +1300,6 @@
     "uranus": "Uranus",
     "neptune": "Neptune",
     "pluto": "Pluton",
-    "north_node": "Nœud Nord",
-    "south_node": "Nœud Sud",
-    "chiron": "Chiron",
-    "lilith": "Lilith",
-    "ascendant": "Ascendant",
-    "midheaven": "Milieu du Ciel",
-    "ic": "FC",
-    "descendant": "Descendant",
     "interpretations": {
       "default": "{planet} en {sign} - les domaines {meaning} ont l'énergie de ce signe active.",
       "retrograde": "Rétrograde: L'énergie de cette planète est intérieure et en processus de réévaluation. Dans les domaines {planet}, révision et réflexion sont nécessaires.",
@@ -1847,13 +1839,7 @@
     "opposition": "Opposition",
     "trine": "Trigone",
     "square": "Carré",
-    "sextile": "Sextile",
-    "quincunx": "Quinconce",
-    "semi_sextile": "Semi-Sextile",
-    "semi_square": "Semi-Carré",
-    "sesquisquare": "Sesqui-Carré",
-    "applying": "Appliquant",
-    "separating": "Séparant"
+    "sextile": "Sextile"
   },
   "insight": {
     "title": "Réflexion",
@@ -4459,15 +4445,7 @@
     },
     "soul_contract": {
       "advice": "Ton contrat d'âme est un pacte sacré. Honore-le en vivant ta vérité.",
-      "contract_partners": "Partenaires de contrat d'âme : Personnes qui apportent des leçons profondes",
-      "details_intro": "Ton contrat cosmique :",
-      "details_template": "Basé sur ton Nœud Nord et Chiron, ton contrat d'âme révèle les objectifs les plus profonds et les accords que tu as faits avant ta naissance.",
       "main": "{name}, en tant que {sign}, tu es venu sur cette terre avec un contrat d'âme unique. Ce contrat contient tes tâches d'apprentissage, tes relations karmiques et tes missions spirituelles.",
-      "mission_clues": "Indices sur ta mission spirituelle :",
-      "north_node_purpose": "But du Nœud Nord : Où ton âme grandit",
-      "pre_birth_agreements": "Accords pré-naissance : Ce que tu as décidé avant l'incarnation",
-      "sacred_wounds": "Blessures sacrées : Ce que tu dois guérir",
-      "sign_purpose": "La mission de ton signe :",
       "contract_details": "Détails du contrat :",
       "contract_intro": "Ton contrat d'âme comprend ton but de vie, tes leçons karmiques et tes accords spirituels.",
       "contract_items": "Articles principaux de ton contrat d'âme :",
@@ -4680,9 +4658,6 @@
           "power3": "Flux de guérison - Apporter la guérison spirituelle"
         }
       },
-      "title": "Tes pouvoirs intérieurs",
-      "subtitle": "Les capacités cachées de ton signe",
-      "unlock": "Déverrouille ton pouvoir cosmique",
       "advice": "Pour activer ton pouvoir intérieur : Concentre-toi sur tes forces et permets-toi de les vivre pleinement.",
       "details_intro": "Tes super-pouvoirs :",
       "main": "{name}, le pouvoir en toi est plus grand que tu ne le penses. En tant que {sign}, tu portes des dons cosmiques uniques."
@@ -4748,8 +4723,6 @@
         "details": "Empathie et compassion\nCréativité et imagination\nProfondeur spirituelle\nTalent artistique\nIntuition",
         "advice": "Ces qualités te rendent unique. Ton empathie guérit les autres !"
       },
-      "title": "Tes Green Flags",
-      "subtitle": "Tes qualités positives",
       "intro": "{name}, voici tes Green Flags ! En tant que {sign}, sois fier de ces qualités positives.",
       "trait_unique": "Ces qualités te rendent unique."
     },
@@ -4814,8 +4787,6 @@
         "details": "Fuite de la réalité\nSensibilité excessive\nRôle de victime\nLimites faibles\nRisque de dépendance",
         "advice": "Reconnais ces schémas et travaille consciemment dessus. L'ancrage est aussi spirituel !"
       },
-      "title": "Tes Red Flags",
-      "subtitle": "Reconnaître tes côtés sombres",
       "intro": "{name}, voici tes Red Flags ! En tant que {sign}, il est important d'être conscient de ces côtés sombres."
     },
     "shadow_self": {
@@ -7264,11 +7235,6 @@
     "transit_desc": "Transits planetaires importants"
   },
   "widgets": {
-    "birth_date_picker": {
-      "day": "Jour",
-      "month": "Mois",
-      "year": "Annee"
-    },
     "dream_share_card": {
       "themes": {
         "mystical": {
@@ -8808,7 +8774,6 @@
       "capricorn": "Sérieux et responsable",
       "aquarius": "Unique et non conventionnel",
       "pisces": "Empathique et rêveur",
-      "default": "Votre ascendant façonne la première impression",
       "details": "Votre ascendant influence la façon dont les autres vous perçoivent au premier regard."
     },
     "danger_hours": {
@@ -8883,8 +8848,7 @@
       "sagittarius": "Chercher et diffuser la sagesse",
       "capricorn": "Construire quelque chose de durable",
       "aquarius": "Innover et agir humainement",
-      "pisces": "Incarner compassion et spiritualité",
-      "default": "Votre mission se déploie"
+      "pisces": "Incarner compassion et spiritualité"
     },
     "life_lessons": {
       "aries": "Apprendre patience et coopération",
@@ -8898,8 +8862,7 @@
       "sagittarius": "Responsabilité et constance",
       "capricorn": "Ouverture émotionnelle et jeu",
       "aquarius": "Approfondir connexion émotionnelle",
-      "pisces": "Limites et praticité",
-      "default": "La vie enseigne constamment"
+      "pisces": "Limites et praticité"
     },
     "lucky_hours": {
       "aries": "Heures du matin quand Mars est fort",
@@ -8913,23 +8876,9 @@
       "sagittarius": "Fin de matinée pour l'expansion",
       "capricorn": "Tôt le matin pour la productivité",
       "aquarius": "Heures inhabituelles pour l'innovation",
-      "pisces": "Crépuscule pour l'inspiration",
-      "default": "Certaines heures sont particulièrement favorables"
+      "pisces": "Crépuscule pour l'inspiration"
     },
     "transit": {
-      "aries": "Les transits de Mars activent votre énergie",
-      "taurus": "Les transits de Vénus apportent beauté et richesse",
-      "gemini": "Les transits de Mercure favorisent communication",
-      "cancer": "Les transits lunaires renforcent les émotions",
-      "leo": "Les transits solaires augmentent la confiance",
-      "virgo": "Les transits de Mercure améliorent l'analyse",
-      "libra": "Les transits de Vénus harmonisent relations",
-      "scorpio": "Les transits de Pluton transforment profondément",
-      "sagittarius": "Les transits de Jupiter élargissent horizons",
-      "capricorn": "Les transits de Saturne solidifient structures",
-      "aquarius": "Les transits d'Uranus apportent changement",
-      "pisces": "Les transits de Neptune approfondissent spiritualité",
-      "default": "Les transits influencent votre vie",
       "critical_periods": "Attention aux aspects planétaires difficiles cette semaine",
       "jupiter_detail": "Jupiter apporte expansion et opportunités de croissance",
       "mars_detail": "Mars augmente l'énergie, la motivation et parfois les conflits",
@@ -8944,19 +8893,6 @@
       "venus_detail": "Vénus influence l'amour, la beauté et les relations"
     },
     "numerology": {
-      "aries": "Les nombres 1 et 9 renforcent votre énergie",
-      "taurus": "Les nombres 2 et 6 apportent harmonie",
-      "gemini": "Les nombres 3 et 5 favorisent communication",
-      "cancer": "Les nombres 2 et 7 approfondissent intuition",
-      "leo": "Les nombres 1 et 4 renforcent leadership",
-      "virgo": "Les nombres 5 et 6 favorisent précision",
-      "libra": "Les nombres 6 et 9 harmonisent",
-      "scorpio": "Les nombres 8 et 0 transforment",
-      "sagittarius": "Les nombres 3 et 9 élargissent",
-      "capricorn": "Les nombres 4 et 8 solidifient",
-      "aquarius": "Les nombres 4 et 7 innovent",
-      "pisces": "Les nombres 7 et 11 spiritualisent",
-      "default": "Les nombres ont une signification spéciale",
       "life_path_1": "Leader, indépendant, pionnier. Entrepreneuriat et innovation.",
       "life_path_2": "Diplomate, partenaire, médiateur. Coopération et harmonie.",
       "life_path_3": "Créatif, communicateur, optimiste. Art et expression de soi.",
@@ -10511,18 +10447,6 @@
       "full_moon": "Les rêves en pleine lune sont le sommet de la conscience. Acceptez ce que vous voyez.",
       "last_quarter": "Ce rêve au dernier quartier montre qu'il est temps de lâcher prise. Que devez-vous libérer?",
       "dark_moon": "Les rêves en lune noire portent les messages les plus anciens. Écoutez profondément."
-    },
-    "entertainment_disclaimer": {
-      "general": "Uniquement à des fins de divertissement et d'autoréflexion.",
-      "dreams": "Les réflexions sur les rêves sont pour l'exploration personnelle, pas l'interprétation professionnelle.",
-      "health": "Pas de conseils médicaux. Consultez des professionnels de santé.",
-      "astrology": "Uniquement pour le divertissement. Pas de conseils prédictifs.",
-      "tarot": "Uniquement à des fins de réflexion. Pas de voyance.",
-      "numerology": "Uniquement pour l'auto-exploration. Pas de prédiction.",
-      "chakra": "Uniquement pour la prise de conscience. Pas de prescription médicale ou spirituelle.",
-      "compatibility": "Uniquement pour la réflexion. Pas de conseils relationnels.",
-      "insight": "Uniquement pour la réflexion personnelle. Pas de conseils professionnels.",
-      "reflection": "Ceci est un espace d'autoréflexion, pas de prédiction ou de conseil."
     }
   },
   "observatory": {

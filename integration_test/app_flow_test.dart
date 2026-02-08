@@ -245,8 +245,8 @@ void main() {
       expect(find.byType(Scaffold), findsWidgets);
     });
 
-    testWidgets('dream oracle loads', (tester) async {
-      await tester.pumpAppWithRouter(initialLocation: Routes.ruyaDongusu);
+    testWidgets('insight screen loads', (tester) async {
+      await tester.pumpAppWithRouter(initialLocation: Routes.insight);
       expect(find.byType(Scaffold), findsWidgets);
     });
   });

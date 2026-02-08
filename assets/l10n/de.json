@@ -1300,14 +1300,6 @@
     "uranus": "Uranus",
     "neptune": "Neptun",
     "pluto": "Pluto",
-    "north_node": "Nordknoten",
-    "south_node": "Südknoten",
-    "chiron": "Chiron",
-    "lilith": "Lilith",
-    "ascendant": "Aszendent",
-    "midheaven": "Medium Coeli",
-    "ic": "IC",
-    "descendant": "Deszendent",
     "interpretations": {
       "default": "{planet} in {sign} - {meaning} Bereiche haben die Energie dieses Zeichens aktiv.",
       "retrograde": "Rückläufig: Die Energie dieses Planeten ist nach innen gerichtet und in einem Neubewertungsprozess. In {planet} Bereichen sind Überprüfung und Reflexion nötig.",
@@ -1847,13 +1839,7 @@
     "opposition": "Opposition",
     "trine": "Trigon",
     "square": "Quadrat",
-    "sextile": "Sextil",
-    "quincunx": "Quinkunx",
-    "semi_sextile": "Halbsextil",
-    "semi_square": "Halbquadrat",
-    "sesquisquare": "Anderthalbquadrat",
-    "applying": "Anwendend",
-    "separating": "Trennend"
+    "sextile": "Sextil"
   },
   "insight": {
     "title": "Einsicht",
@@ -4864,15 +4850,7 @@
     },
     "soul_contract": {
       "advice": "Dein Seelenvertrag ist ein heiliger Pakt. Ehre ihn, indem du deiner Wahrheit lebst.",
-      "contract_partners": "Seelenvertragspartner: Menschen, die tiefe Lektionen bringen",
-      "details_intro": "Dein kosmischer Vertrag:",
-      "details_template": "Basierend auf deinem Nordknoten und Chiron enthüllt dein Seelenvertrag die tiefsten Zwecke und Vereinbarungen, die du vor deiner Geburt gemacht hast.",
       "main": "{name}, als {sign} kamst du mit einem einzigartigen Seelenvertrag auf diese Erde. Dieser Vertrag enthält deine Lernaufgaben, karmischen Beziehungen und spirituellen Missionen.",
-      "mission_clues": "Hinweise auf deine spirituelle Mission:",
-      "north_node_purpose": "Nordknoten-Zweck: Wohin deine Seele wächst",
-      "pre_birth_agreements": "Vor-Geburts-Vereinbarungen: Was du vor der Inkarnation beschlossen hast",
-      "sacred_wounds": "Heilige Wunden: Was du heilen sollst",
-      "sign_purpose": "Deine Zeichen-Mission:",
       "contract_details": "Vertragsdetails:",
       "contract_intro": "Dein Seelenvertrag umfasst deinen Lebenszweck, karmische Lektionen und spirituelle Vereinbarungen.",
       "contract_items": "Hauptartikel deines Seelenvertrags:",
@@ -5085,9 +5063,6 @@
           "power3": "Heilungs-Strom - Spirituelle Heilung bringen"
         }
       },
-      "title": "Deine inneren Kräfte",
-      "subtitle": "Die verborgenen Fähigkeiten deines Zeichens",
-      "unlock": "Entsperre deine kosmische Kraft",
       "advice": "Um deine innere Kraft zu aktivieren: Konzentriere dich auf deine Stärken und erlaube dir, sie voll auszuleben.",
       "details_intro": "Deine Superkräfte:",
       "main": "{name}, die Kraft in dir ist größer als du ahnst. Als {sign} trägst du einzigartige kosmische Gaben."
@@ -5153,8 +5128,6 @@
         "details": "Empathie und Mitgefühl\nKreativität und Fantasie\nSpirituelle Tiefe\nKünstlerische Begabung\nIntuition",
         "advice": "Diese Eigenschaften machen dich einzigartig. Deine Empathie heilt andere!"
       },
-      "title": "Deine Green Flags",
-      "subtitle": "Deine positiven Eigenschaften",
       "intro": "{name}, hier sind deine Green Flags! Als {sign} sei stolz auf diese positiven Eigenschaften.",
       "trait_unique": "Diese Eigenschaften machen dich einzigartig."
     },
@@ -5219,8 +5192,6 @@
         "details": "Flucht vor der Realität\nÜbermäßige Empfindlichkeit\nOpferrolle\nSchwache Grenzen\nSuchtgefahr",
         "advice": "Erkenne diese Muster und arbeite bewusst daran. Erdung ist auch spirituell!"
       },
-      "title": "Deine Red Flags",
-      "subtitle": "Deine Schattenseiten erkennen",
       "intro": "{name}, hier sind deine Red Flags! Als {sign} ist es wichtig, sich dieser Schattenseiten bewusst zu sein."
     },
     "shadow_self": {
@@ -7278,11 +7249,6 @@
     "transit_desc": "Wichtige Planetentransite"
   },
   "widgets": {
-    "birth_date_picker": {
-      "day": "Tag",
-      "month": "Monat",
-      "year": "Jahr"
-    },
     "dream_share_card": {
       "themes": {
         "mystical": {
@@ -8822,7 +8788,6 @@
       "capricorn": "Seriös und verantwortungsbewusst auftretend",
       "aquarius": "Einzigartig und unkonventionell erscheinend",
       "pisces": "Einfühlsam und verträumt wahrgenommen",
-      "default": "Dein Aszendent prägt den ersten Eindruck",
       "details": "Dein Aszendent beeinflusst, wie andere dich auf den ersten Blick wahrnehmen."
     },
     "danger_hours": {
@@ -8897,8 +8862,7 @@
       "sagittarius": "Weisheit suchen und verbreiten",
       "capricorn": "Dauerhaftes aufbauen",
       "aquarius": "Innovieren und humanitär wirken",
-      "pisces": "Mitgefühl und Spiritualität verkörpern",
-      "default": "Deine Mission entfaltet sich"
+      "pisces": "Mitgefühl und Spiritualität verkörpern"
     },
     "life_lessons": {
       "aries": "Geduld und Kooperation lernen",
@@ -8912,8 +8876,7 @@
       "sagittarius": "Verantwortung und Beständigkeit",
       "capricorn": "Emotionale Offenheit und Spielen",
       "aquarius": "Emotionale Verbindung vertiefen",
-      "pisces": "Grenzen und Praktikabilität",
-      "default": "Das Leben lehrt ständig"
+      "pisces": "Grenzen und Praktikabilität"
     },
     "lucky_hours": {
       "aries": "Morgenstunden, wenn Mars stark ist",
@@ -8927,23 +8890,9 @@
       "sagittarius": "Späte Morgenstunden für Expansion",
       "capricorn": "Frühe Morgenstunden für Produktivität",
       "aquarius": "Ungewöhnliche Stunden für Innovation",
-      "pisces": "Dämmerung für Inspiration",
-      "default": "Bestimmte Stunden sind besonders günstig"
+      "pisces": "Dämmerung für Inspiration"
     },
     "transit": {
-      "aries": "Mars-Transite aktivieren deine Energie",
-      "taurus": "Venus-Transite bringen Schönheit und Reichtum",
-      "gemini": "Merkur-Transite fördern Kommunikation",
-      "cancer": "Mond-Transite verstärken Emotionen",
-      "leo": "Sonnen-Transite erhöhen Selbstbewusstsein",
-      "virgo": "Merkur-Transite verbessern Analyse",
-      "libra": "Venus-Transite harmonisieren Beziehungen",
-      "scorpio": "Pluto-Transite transformieren tiefgreifend",
-      "sagittarius": "Jupiter-Transite erweitern Horizonte",
-      "capricorn": "Saturn-Transite festigen Strukturen",
-      "aquarius": "Uranus-Transite bringen Veränderung",
-      "pisces": "Neptun-Transite vertiefen Spiritualität",
-      "default": "Transite beeinflussen dein Leben",
       "critical_periods": "Achte auf herausfordernde planetare Aspekte diese Woche",
       "jupiter_detail": "Jupiter bringt Expansion und Wachstumsmöglichkeiten",
       "mars_detail": "Mars steigert Energie, Motivation und manchmal Konflikte",
@@ -8958,19 +8907,6 @@
       "venus_detail": "Venus beeinflusst Liebe, Schönheit und Beziehungen"
     },
     "numerology": {
-      "aries": "Zahlen 1 und 9 verstärken deine Energie",
-      "taurus": "Zahlen 2 und 6 bringen Harmonie",
-      "gemini": "Zahlen 3 und 5 fördern Kommunikation",
-      "cancer": "Zahlen 2 und 7 vertiefen Intuition",
-      "leo": "Zahlen 1 und 4 stärken Führung",
-      "virgo": "Zahlen 5 und 6 fördern Präzision",
-      "libra": "Zahlen 6 und 9 harmonisieren",
-      "scorpio": "Zahlen 8 und 0 transformieren",
-      "sagittarius": "Zahlen 3 und 9 erweitern",
-      "capricorn": "Zahlen 4 und 8 festigen",
-      "aquarius": "Zahlen 4 und 7 innovieren",
-      "pisces": "Zahlen 7 und 11 spiritualisieren",
-      "default": "Zahlen haben besondere Bedeutung",
       "life_path_1": "Anführer, unabhängig, Pionier. Unternehmertum und Innovation.",
       "life_path_2": "Diplomat, Partner, Vermittler. Zusammenarbeit und Harmonie.",
       "life_path_3": "Kreativer, Kommunikator, Optimist. Kunst und Selbstausdruck.",
@@ -10525,18 +10461,6 @@
       "full_moon": "Träume im Vollmond sind der Höhepunkt des Bewusstseins. Akzeptiere, was du siehst.",
       "last_quarter": "Dieser Traum im letzten Viertel zeigt, dass es Zeit ist loszulassen. Was musst du freisetzen?",
       "dark_moon": "Träume in der Dunkelmond-Phase tragen die ältesten Botschaften. Höre tief zu."
-    },
-    "entertainment_disclaimer": {
-      "general": "Nur zur Unterhaltung und Selbstreflexion.",
-      "dreams": "Traumreflexionen dienen der persönlichen Erforschung, nicht der professionellen Interpretation.",
-      "health": "Keine medizinische Beratung. Konsultieren Sie Gesundheitsfachleute.",
-      "astrology": "Nur zur Unterhaltung. Keine vorhersagende Beratung.",
-      "tarot": "Nur zur Reflexion. Keine Wahrsagerei.",
-      "numerology": "Nur zur Selbsterforschung. Nicht vorhersagend.",
-      "chakra": "Nur zur Bewusstmachung. Keine medizinische oder spirituelle Verschreibung.",
-      "compatibility": "Nur zur Reflexion. Keine Beziehungsberatung.",
-      "insight": "Nur zur persönlichen Reflexion. Keine professionelle Beratung.",
-      "reflection": "Dies ist ein Raum zur Selbstreflexion, nicht zur Vorhersage oder Beratung."
     }
   },
   "observatory": {

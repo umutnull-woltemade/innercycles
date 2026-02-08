@@ -54,7 +54,6 @@ import '../../features/kozmoz/presentation/kozmoz_screen.dart';
 import '../../features/insight/presentation/insight_screen.dart';
 import '../../features/cosmic_discovery/presentation/cosmic_discovery_screen.dart';
 import '../../features/dreams/presentation/dream_interpretation_screen.dart';
-import '../../features/dreams/presentation/dream_oracle_screen.dart';
 import '../../features/dreams/presentation/dream_glossary_screen.dart';
 import '../../features/dreams/presentation/dream_share_screen.dart';
 import '../../features/dreams/presentation/canonical/dream_falling_screen.dart';
@@ -498,12 +497,18 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: Routes.tantraMicroRitual,
         builder: (context, state) => const TantraMicroRitualScreen(),
       ),
-      // Kozmik Iletisim - REMOVED (duplicate of dreamInterpretation)
-      // Route: /kozmik-iletisim now returns 404 - use /dream-interpretation instead
-      // Ruya Dongusu - 7 Boyutlu form bazli ruya yorumlama
+      // ════════════════════════════════════════════════════════════════
+      // DEPRECATED ROUTES - Redirect to Insight for App Store 4.3(b) compliance
+      // ════════════════════════════════════════════════════════════════
+      // Kozmik Iletisim - redirects to Insight
+      GoRoute(
+        path: Routes.kozmikIletisim,
+        redirect: (context, state) => Routes.insight,
+      ),
+      // Ruya Dongusu - redirects to Insight
       GoRoute(
         path: Routes.ruyaDongusu,
-        builder: (context, state) => const DreamOracleScreen(),
+        redirect: (context, state) => Routes.insight,
       ),
       // ════════════════════════════════════════════════════════════════
       // KOZMİK - Günlük Tema (AI-First Canonical)

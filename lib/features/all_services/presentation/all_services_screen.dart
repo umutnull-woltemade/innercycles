@@ -417,8 +417,8 @@ class _AllServicesScreenState extends ConsumerState<AllServicesScreen>
         {'name': L10nService.get('menu_features.dream_trace', language), 'route': Routes.dreamInterpretation},
         {'name': L10nService.get('menu_features.dream_dictionary', language), 'route': Routes.dreamGlossary},
         {'name': L10nService.get('common.share', language), 'route': Routes.dreamShare},
-        {'name': L10nService.get('menu_features.cosmic_trace', language), 'route': Routes.kozmikIletisim},
-        {'name': L10nService.get('menu_features.dream_journal', language), 'route': Routes.ruyaDongusu},
+        {'name': L10nService.get('menu_features.cosmic_trace', language), 'route': Routes.insight},
+        {'name': L10nService.get('menu_features.dream_journal', language), 'route': Routes.insight},
       ],
     },
     {

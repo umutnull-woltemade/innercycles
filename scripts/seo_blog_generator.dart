@@ -12,6 +12,7 @@
 ///   - planet-in-sign <planet> <sign>
 ///   - birth-chart-guide
 ///   - aspect-guide <aspect>
+library;
 
 import 'dart:io';
 

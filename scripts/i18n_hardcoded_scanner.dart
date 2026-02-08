@@ -8,6 +8,7 @@
 /// Exit codes:
 /// - 0: No violations found
 /// - 1: Violations found
+library;
 ///
 /// Usage:
 ///   dart run scripts/i18n_hardcoded_scanner.dart

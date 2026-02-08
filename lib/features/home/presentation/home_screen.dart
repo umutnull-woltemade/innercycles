@@ -129,14 +129,14 @@ class HomeScreen extends ConsumerWidget {
             // APP STORE 4.3(b) COMPLIANCE: Hide high-risk buttons in review mode
             // ════════════════════════════════════════════════════════════
             if (FeatureFlags.showKozmoz) ...[
-              // Kozmik Iletisim Butonu - Chatbot
+              // Kozmik Iletisim Butonu - Chatbot (now redirects to Insight)
               _KozmikIletisimButton(
-                onTap: () => context.push(Routes.kozmikIletisim),
+                onTap: () => context.push(Routes.insight),
               ),
               const SizedBox(width: 8),
-              // Ruya Dongusu Butonu - 7 Boyutlu Form
+              // Ruya Dongusu Butonu - 7 Boyutlu Form (now redirects to Insight)
               _RuyaDongusuButton(
-                onTap: () => context.push(Routes.ruyaDongusu),
+                onTap: () => context.push(Routes.insight),
               ),
               const SizedBox(width: 8),
               // KOZMOZ Butonu - Her zaman parlayan özel buton

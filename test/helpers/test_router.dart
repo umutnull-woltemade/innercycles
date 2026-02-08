@@ -59,8 +59,8 @@ import 'package:astrology_app/features/rituals/presentation/daily_rituals_screen
 import 'package:astrology_app/features/chakra/presentation/chakra_analysis_screen.dart';
 import 'package:astrology_app/features/cosmic_discovery/presentation/cosmic_discovery_screen.dart';
 import 'package:astrology_app/features/dreams/presentation/dream_interpretation_screen.dart';
-import 'package:astrology_app/features/dreams/presentation/dream_oracle_screen.dart';
 import 'package:astrology_app/features/dreams/presentation/dream_glossary_screen.dart';
+import 'package:astrology_app/features/insight/presentation/insight_screen.dart';
 import 'package:astrology_app/features/dreams/presentation/canonical/dream_falling_screen.dart';
 import 'package:astrology_app/features/dreams/presentation/canonical/dream_water_screen.dart';
 import 'package:astrology_app/features/dreams/presentation/canonical/dream_recurring_screen.dart';
@@ -428,14 +428,19 @@ final List<RouteBase> _testRoutes = [
     path: Routes.tantraMicroRitual,
     builder: (context, state) => const TantraMicroRitualScreen(),
   ),
-  // Kozmik
+  // Insight - unified entry point for reflection (App Store 4.3(b) compliant)
+  GoRoute(
+    path: Routes.insight,
+    builder: (context, state) => const InsightScreen(),
+  ),
+  // Deprecated routes redirect to Insight
   GoRoute(
     path: Routes.kozmikIletisim,
-    builder: (context, state) => const DreamInterpretationScreen(),
+    redirect: (context, state) => Routes.insight,
   ),
   GoRoute(
     path: Routes.ruyaDongusu,
-    builder: (context, state) => const DreamOracleScreen(),
+    redirect: (context, state) => Routes.insight,
   ),
   GoRoute(
     path: Routes.cosmicToday,

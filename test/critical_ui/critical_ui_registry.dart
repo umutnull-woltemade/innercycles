@@ -210,11 +210,11 @@ const List<CriticalUIElement> criticalUIElements = [
   CriticalUIElement(
     id: 'home_chatbot_button',
     name: 'Kozmik İletişim Button',
-    description: 'AI Chatbot entry point - cosmic communication',
+    description: 'AI Chatbot entry point - cosmic communication (redirects to Insight)',
     type: CriticalUIType.primaryAction,
     severity: FailureSeverity.major,
     sourceRoute: Routes.home,
-    targetRoute: Routes.kozmikIletisim,
+    targetRoute: Routes.insight,
     findStrategy: CriticalUIFindStrategy(
       byKey: 'home_chatbot_button',
       byText: 'Kozmik İletişim',
@@ -224,11 +224,11 @@ const List<CriticalUIElement> criticalUIElements = [
   CriticalUIElement(
     id: 'home_dream_oracle_button',
     name: 'Rüya Döngüsü Button',
-    description: 'Dream Oracle entry point - 7-dimension form',
+    description: 'Dream Oracle entry point - 7-dimension form (redirects to Insight)',
     type: CriticalUIType.primaryAction,
     severity: FailureSeverity.major,
     sourceRoute: Routes.home,
-    targetRoute: Routes.ruyaDongusu,
+    targetRoute: Routes.insight,
     findStrategy: CriticalUIFindStrategy(
       byKey: 'home_dream_oracle_button',
       byText: 'Rüya Döngüsü',
