@@ -16,9 +16,7 @@ import '../../../core/constants/app_constants.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/observatory_models.dart';
-import '../../../data/providers/app_providers.dart';
 import '../../../data/services/admin_auth_service.dart';
-import '../../../data/services/l10n_service.dart';
 import '../../../data/services/observatory_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 

@@ -13,7 +13,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../models/observatory_models.dart';
-import '../providers/app_providers.dart';
 import 'content_safety_filter.dart';
 
 /// Provider for observatory service
