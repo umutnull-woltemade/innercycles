@@ -1275,8 +1275,9 @@ class SynastryCalculator {
     int baseScore = 50;
     if (sameElement) {
       baseScore += 20;
-    } else if (compatibleElements)
+    } else if (compatibleElements) {
       baseScore += 10;
+    }
 
     // Add some variation
     final emotionalScore = (baseScore + random.nextInt(30)).clamp(30, 95);

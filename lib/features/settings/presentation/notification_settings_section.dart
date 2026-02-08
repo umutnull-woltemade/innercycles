@@ -333,7 +333,8 @@ class _NotificationSettingsSectionState extends ConsumerState<NotificationSettin
           Switch.adaptive(
             value: value,
             onChanged: onChanged,
-            activeColor: AppColors.starGold,
+            activeTrackColor: AppColors.starGold.withValues(alpha: 0.5),
+            thumbColor: WidgetStatePropertyAll(AppColors.starGold),
           ),
         ],
       ),

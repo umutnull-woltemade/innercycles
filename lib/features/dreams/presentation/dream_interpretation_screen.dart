@@ -1376,11 +1376,12 @@ ${_getZodiacAdvice(sign)}''';
                   color: AppColors.mystic.withValues(alpha: 0.3),
                 ),
               ),
-              child: RawKeyboardListener(
+              child: KeyboardListener(
                 focusNode: FocusNode(),
-                onKey: (event) {
-                  if (event.isKeyPressed(LogicalKeyboardKey.enter) &&
-                      !event.isShiftPressed) {
+                onKeyEvent: (event) {
+                  if (event is KeyDownEvent &&
+                      event.logicalKey == LogicalKeyboardKey.enter &&
+                      !HardwareKeyboard.instance.isShiftPressed) {
                     _sendMessage();
                   }
                 },

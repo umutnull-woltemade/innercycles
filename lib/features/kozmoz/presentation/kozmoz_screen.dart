@@ -1601,7 +1601,7 @@ $exampleQuestions''';
 
   String _getInvestmentStyle(zodiac.ZodiacSign sign, AppLanguage language) {
     final elementName = sign.element.localizedName(language);
-    return '$elementName';
+    return elementName;
   }
   String _getBusinessPartners(zodiac.ZodiacSign sign, AppLanguage language) => _getCompatibleSigns(sign, language);
   String _getCareerTimings(zodiac.ZodiacSign sign, AppLanguage language) => L10nService.get('kozmoz.responses.career_important_periods', language);
@@ -2846,11 +2846,12 @@ ${_getOverallBalance(sign)}
                 borderRadius: BorderRadius.circular(24),
                 border: Border.all(color: const Color(0xFF9D4EDD).withValues(alpha: 0.3)),
               ),
-              child: RawKeyboardListener(
+              child: KeyboardListener(
                 focusNode: FocusNode(),
-                onKey: (event) {
-                  if (event.isKeyPressed(LogicalKeyboardKey.enter) &&
-                      !event.isShiftPressed) {
+                onKeyEvent: (event) {
+                  if (event is KeyDownEvent &&
+                      event.logicalKey == LogicalKeyboardKey.enter &&
+                      !HardwareKeyboard.instance.isShiftPressed) {
                     _sendMessage();
                   }
                 },

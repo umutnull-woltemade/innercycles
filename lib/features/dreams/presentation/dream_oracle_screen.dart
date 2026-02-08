@@ -604,7 +604,8 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
               HapticFeedback.lightImpact();
               setState(() => _isRecurring = value);
             },
-            activeColor: MysticalColors.starGold,
+            activeTrackColor: MysticalColors.starGold.withValues(alpha: 0.5),
+            thumbColor: WidgetStatePropertyAll(MysticalColors.starGold),
           ),
         ],
       ),
