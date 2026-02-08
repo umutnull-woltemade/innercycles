@@ -2513,6 +2513,18 @@
       "general_subtext": "Kısa bir test ile ruhsal yolculuğuna başla.",
       "general_button": "Teste Başla",
       "inline_default": "Bu sana özel mi? Kısa testle öğren"
+    },
+    "entertainment_disclaimer": {
+      "general": "Sadece eğlence ve kişisel düşünme amaçlıdır.",
+      "dreams": "Rüya yorumları kişisel keşif içindir, profesyonel yorum değildir.",
+      "health": "Tıbbi tavsiye değildir. Sağlık profesyonellerine danışın.",
+      "astrology": "Sadece eğlence amaçlıdır. Tahmin tavsiyesi değildir.",
+      "tarot": "Sadece düşünme amaçlıdır. Fal bakımı değildir.",
+      "numerology": "Sadece öz-keşif amaçlıdır. Tahmin değildir.",
+      "chakra": "Sadece farkındalık amaçlıdır. Tıbbi veya ruhani reçete değildir.",
+      "compatibility": "Sadece düşünme amaçlıdır. İlişki tavsiyesi değildir.",
+      "insight": "Sadece kişisel düşünme amaçlıdır. Profesyonel tavsiye değildir.",
+      "reflection": "Burası öz-yansıtma alanıdır, tahmin veya tavsiye değil."
     }
   },
   "insight": {
@@ -10293,6 +10305,42 @@
       "full_moon": "Dolunay'da gelen rüyalar farkındalığın doruğudur. Gördüğünü kabul et.",
       "last_quarter": "Son dördün fazında gelen bu rüya bırakma zamanının geldiğini gösteriyor. Neyi serbest bırakman gerekiyor?",
       "dark_moon": "Karanlık ay döneminde gelen rüyalar en kadim mesajları taşır. Derinden dinle."
+    }
+  },
+  "observatory": {
+    "title": "Teknik & İçerik Gözlemevi",
+    "subtitle": "Dahili Platform Kontrolü",
+    "last_updated": "Son güncelleme: {time}",
+    "loading": "Yükleniyor...",
+    "error_loading": "Veri yüklenirken hata",
+    "refresh": "Verileri Yenile",
+    "export": "Rapor Dışa Aktar",
+    "tabs": {
+      "summary": "Özet",
+      "language": "Dil",
+      "content": "İçerik",
+      "safety": "Güvenlik",
+      "platform": "Platform"
+    },
+    "sections": {
+      "system_status": "Sistem Durumu",
+      "tech_inventory": "Teknoloji Envanteri",
+      "translation_coverage": "Çeviri Kapsamı",
+      "locale_breakdown": "Dil Bazlı Dağılım",
+      "missing_translations": "Eksik Çeviriler",
+      "content_flow": "İçerik Akışı",
+      "safety_engines": "Güvenlik Motorları",
+      "build_status": "Derleme Durumu"
+    },
+    "labels": {
+      "user_facing": "KULLANICI",
+      "internal": "DAHİLİ",
+      "inputs": "Girdiler",
+      "outputs": "Çıktılar",
+      "safety_role": "Güvenlik Rolü",
+      "coverage": "Kapsam",
+      "missing": "Eksik",
+      "total_keys": "Toplam Anahtar"
     }
   }
 }

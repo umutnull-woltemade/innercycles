@@ -8252,6 +8252,54 @@
       "full_moon": "Träume im Vollmond sind der Höhepunkt des Bewusstseins. Akzeptiere, was du siehst.",
       "last_quarter": "Dieser Traum im letzten Viertel zeigt, dass es Zeit ist loszulassen. Was musst du freisetzen?",
       "dark_moon": "Träume in der Dunkelmond-Phase tragen die ältesten Botschaften. Höre tief zu."
+    },
+    "entertainment_disclaimer": {
+      "general": "Nur zur Unterhaltung und Selbstreflexion.",
+      "dreams": "Traumreflexionen dienen der persönlichen Erforschung, nicht der professionellen Interpretation.",
+      "health": "Keine medizinische Beratung. Konsultieren Sie Gesundheitsfachleute.",
+      "astrology": "Nur zur Unterhaltung. Keine vorhersagende Beratung.",
+      "tarot": "Nur zur Reflexion. Keine Wahrsagerei.",
+      "numerology": "Nur zur Selbsterforschung. Nicht vorhersagend.",
+      "chakra": "Nur zur Bewusstmachung. Keine medizinische oder spirituelle Verschreibung.",
+      "compatibility": "Nur zur Reflexion. Keine Beziehungsberatung.",
+      "insight": "Nur zur persönlichen Reflexion. Keine professionelle Beratung.",
+      "reflection": "Dies ist ein Raum zur Selbstreflexion, nicht zur Vorhersage oder Beratung."
+    }
+  },
+  "observatory": {
+    "title": "Tech & Content Observatorium",
+    "subtitle": "Interne Plattformkontrolle",
+    "last_updated": "Zuletzt aktualisiert: {time}",
+    "loading": "Laden...",
+    "error_loading": "Fehler beim Laden der Daten",
+    "refresh": "Daten aktualisieren",
+    "export": "Bericht exportieren",
+    "tabs": {
+      "summary": "Übersicht",
+      "language": "Sprache",
+      "content": "Inhalt",
+      "safety": "Sicherheit",
+      "platform": "Plattform"
+    },
+    "sections": {
+      "system_status": "Systemstatus",
+      "tech_inventory": "Technologie-Inventar",
+      "translation_coverage": "Übersetzungsabdeckung",
+      "locale_breakdown": "Aufschlüsselung nach Sprache",
+      "missing_translations": "Fehlende Übersetzungen",
+      "content_flow": "Inhaltsfluss",
+      "safety_engines": "Sicherheits-Engines",
+      "build_status": "Build-Status"
+    },
+    "labels": {
+      "user_facing": "BENUTZER",
+      "internal": "INTERN",
+      "inputs": "Eingaben",
+      "outputs": "Ausgaben",
+      "safety_role": "Sicherheitsrolle",
+      "coverage": "Abdeckung",
+      "missing": "Fehlend",
+      "total_keys": "Gesamtschlüssel"
     }
   }
 }

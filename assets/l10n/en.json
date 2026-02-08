@@ -10327,5 +10327,41 @@
       "last_quarter": "This dream coming in the last quarter phase shows it is time to let go. What do you need to release?",
       "dark_moon": "Dreams coming in the dark moon carry the most ancient messages. Listen deeply."
     }
+  },
+  "observatory": {
+    "title": "Tech & Content Observatory",
+    "subtitle": "Internal Platform Control",
+    "last_updated": "Last updated: {time}",
+    "loading": "Loading...",
+    "error_loading": "Error loading data",
+    "refresh": "Refresh Data",
+    "export": "Export Report",
+    "tabs": {
+      "summary": "Summary",
+      "language": "Language",
+      "content": "Content",
+      "safety": "Safety",
+      "platform": "Platform"
+    },
+    "sections": {
+      "system_status": "System Status",
+      "tech_inventory": "Technology Inventory",
+      "translation_coverage": "Translation Coverage",
+      "locale_breakdown": "Per-Locale Breakdown",
+      "missing_translations": "Missing Translations",
+      "content_flow": "Content Flow",
+      "safety_engines": "Safety Engines",
+      "build_status": "Build Status"
+    },
+    "labels": {
+      "user_facing": "USER",
+      "internal": "INTERNAL",
+      "inputs": "Inputs",
+      "outputs": "Outputs",
+      "safety_role": "Safety Role",
+      "coverage": "Coverage",
+      "missing": "Missing",
+      "total_keys": "Total Keys"
+    }
   }
 }

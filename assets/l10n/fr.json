@@ -8248,6 +8248,54 @@
       "full_moon": "Les rêves en pleine lune sont le sommet de la conscience. Acceptez ce que vous voyez.",
       "last_quarter": "Ce rêve au dernier quartier montre qu'il est temps de lâcher prise. Que devez-vous libérer?",
       "dark_moon": "Les rêves en lune noire portent les messages les plus anciens. Écoutez profondément."
+    },
+    "entertainment_disclaimer": {
+      "general": "Uniquement à des fins de divertissement et d'autoréflexion.",
+      "dreams": "Les réflexions sur les rêves sont pour l'exploration personnelle, pas l'interprétation professionnelle.",
+      "health": "Pas de conseils médicaux. Consultez des professionnels de santé.",
+      "astrology": "Uniquement pour le divertissement. Pas de conseils prédictifs.",
+      "tarot": "Uniquement à des fins de réflexion. Pas de voyance.",
+      "numerology": "Uniquement pour l'auto-exploration. Pas de prédiction.",
+      "chakra": "Uniquement pour la prise de conscience. Pas de prescription médicale ou spirituelle.",
+      "compatibility": "Uniquement pour la réflexion. Pas de conseils relationnels.",
+      "insight": "Uniquement pour la réflexion personnelle. Pas de conseils professionnels.",
+      "reflection": "Ceci est un espace d'autoréflexion, pas de prédiction ou de conseil."
+    }
+  },
+  "observatory": {
+    "title": "Observatoire Tech & Contenu",
+    "subtitle": "Contrôle Interne de la Plateforme",
+    "last_updated": "Dernière mise à jour: {time}",
+    "loading": "Chargement...",
+    "error_loading": "Erreur lors du chargement des données",
+    "refresh": "Actualiser les données",
+    "export": "Exporter le rapport",
+    "tabs": {
+      "summary": "Résumé",
+      "language": "Langue",
+      "content": "Contenu",
+      "safety": "Sécurité",
+      "platform": "Plateforme"
+    },
+    "sections": {
+      "system_status": "État du Système",
+      "tech_inventory": "Inventaire Technologique",
+      "translation_coverage": "Couverture des Traductions",
+      "locale_breakdown": "Répartition par Langue",
+      "missing_translations": "Traductions Manquantes",
+      "content_flow": "Flux de Contenu",
+      "safety_engines": "Moteurs de Sécurité",
+      "build_status": "État du Build"
+    },
+    "labels": {
+      "user_facing": "UTILISATEUR",
+      "internal": "INTERNE",
+      "inputs": "Entrées",
+      "outputs": "Sorties",
+      "safety_role": "Rôle de Sécurité",
+      "coverage": "Couverture",
+      "missing": "Manquant",
+      "total_keys": "Clés Totales"
     }
   }
 }
