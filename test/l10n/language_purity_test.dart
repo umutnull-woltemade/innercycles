@@ -208,7 +208,7 @@ void main() {
     });
   });
 
-  group('Key Consistency', skip: 'DE and FR translations incomplete - skip until full i18n coverage', () {
+  group('Key Consistency', () {
     test('All locales have identical key sets', () {
       final enKeys = _extractAllKeys(enContent);
       final trKeys = _extractAllKeys(trContent);
