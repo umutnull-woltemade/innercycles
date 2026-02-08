@@ -18,6 +18,7 @@ import '../../../shared/widgets/gradient_button.dart';
 import '../../../data/models/dream_interpretation_models.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/dream_interpretation_service.dart';
+import '../../../data/services/dream_journal_service.dart';
 import '../../../data/services/l10n_service.dart';
 
 // ============================================================================
@@ -1930,18 +1931,73 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
     Share.share(shareText);
   }
 
-  void _saveDream() {
-    // TODO: Implement save to dream journal
+  Future<void> _saveDream() async {
+    if (_interpretation == null) return;
+
     final lang = ref.read(languageProvider);
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(L10nService.get('dreams.saved_to_journal', lang)),
-        backgroundColor: MysticalColors.auroraGreen,
-        behavior: SnackBarBehavior.floating,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(Spacing.radiusMd),
-        ),
-      ),
+    final journalAsync = ref.read(dreamJournalServiceProvider);
+
+    await journalAsync.when(
+      data: (journalService) async {
+        // Extract detected symbols from interpretation
+        final symbols = _interpretation!.symbols
+            .map((s) => s.symbol)
+            .toList();
+
+        // Create dream entry
+        final entry = DreamEntry(
+          id: _interpretation!.dreamId,
+          dreamDate: DateTime.now(),
+          recordedAt: DateTime.now(),
+          title: _dreamController.text.length > 50
+              ? '${_dreamController.text.substring(0, 50)}...'
+              : _dreamController.text,
+          content: _dreamController.text,
+          detectedSymbols: symbols,
+          dominantEmotion: _selectedEmotion ?? EmotionalTone.merak,
+          emotionalIntensity: 7, // Default high intensity for interpreted dreams
+          isRecurring: _isRecurring,
+          moonPhase: _currentMoonPhase,
+          interpretation: _interpretation,
+          lifeSituation: _lifeContextController.text.isNotEmpty
+              ? _lifeContextController.text
+              : null,
+        );
+
+        await journalService.saveDream(entry);
+
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(L10nService.get('dreams.saved_to_journal', lang)),
+              backgroundColor: MysticalColors.auroraGreen,
+              behavior: SnackBarBehavior.floating,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(Spacing.radiusMd),
+              ),
+            ),
+          );
+        }
+      },
+      loading: () {
+        // Show loading indicator
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(L10nService.get('common.loading', lang)),
+            backgroundColor: MysticalColors.amethyst,
+            behavior: SnackBarBehavior.floating,
+          ),
+        );
+      },
+      error: (error, stack) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(L10nService.get('errors.save_failed', lang)),
+            backgroundColor: MysticalColors.solarOrange,
+            behavior: SnackBarBehavior.floating,
+          ),
+        );
+      },
     );
   }
 }

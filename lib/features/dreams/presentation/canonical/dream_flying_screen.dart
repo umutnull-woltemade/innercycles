@@ -35,7 +35,7 @@ class DreamFlyingScreen extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                IconButton(onPressed: () => context.pop(), icon: Icon(Icons.arrow_back_ios, color: isDark ? Colors.white70 : AppColors.textDark)),
+                IconButton(onPressed: () => context.pop(), tooltip: L10nService.get('common.back', language), icon: Icon(Icons.arrow_back_ios, color: isDark ? Colors.white70 : AppColors.textDark)),
                 const SizedBox(height: 24),
                 Text(L10nService.get('dreams.canonical.flying_question', language), style: TextStyle(fontSize: 28, fontWeight: FontWeight.w600, color: isDark ? Colors.white : AppColors.textDark, height: 1.2)).animate().fadeIn(duration: 400.ms),
                 const SizedBox(height: 8),

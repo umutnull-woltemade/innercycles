@@ -10484,5 +10484,10 @@
       "missing": "Manquant",
       "total_keys": "Clés Totales"
     }
+  },
+  "errors": {
+    "save_failed": "Échec de la sauvegarde. Veuillez réessayer.",
+    "network_error": "Erreur réseau. Veuillez vérifier votre connexion.",
+    "generic_error": "Une erreur s'est produite. Veuillez réessayer."
   }
 }

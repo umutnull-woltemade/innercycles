@@ -7,6 +7,7 @@ import '../models/house.dart';
 import '../services/horoscope_service.dart';
 import '../services/api/astrology_api_service.dart';
 import '../services/storage_service.dart';
+import '../services/dream_journal_service.dart';
 
 // User profile state using Notifier (Riverpod 2.x+)
 final userProfileProvider =
@@ -284,4 +285,13 @@ final apiCompatibilityProvider = FutureProvider.family<SignCompatibilityDto,
     return response.data!;
   }
   throw Exception(response.error ?? 'Failed to calculate compatibility');
+});
+
+// =============================================================================
+// Dream Journal Provider
+// =============================================================================
+
+/// Dream Journal Service provider - async initialization
+final dreamJournalServiceProvider = FutureProvider<DreamJournalService>((ref) async {
+  return await DreamJournalService.init();
 });

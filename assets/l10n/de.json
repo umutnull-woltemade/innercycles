@@ -10498,5 +10498,10 @@
       "missing": "Fehlend",
       "total_keys": "Gesamtschlüssel"
     }
+  },
+  "errors": {
+    "save_failed": "Speichern fehlgeschlagen. Bitte versuchen Sie es erneut.",
+    "network_error": "Netzwerkfehler. Bitte überprüfen Sie Ihre Verbindung.",
+    "generic_error": "Etwas ist schief gelaufen. Bitte versuchen Sie es erneut."
   }
 }

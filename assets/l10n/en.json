@@ -122,18 +122,18 @@
     "feature_symbols": "Symbol exploration library"
   },
   "disclaimer": {
-    "reflection_only": "For reflection and self-exploration only. Not predictions or advice.",
-    "entertainment": "For entertainment purposes only.",
-    "not_professional": "Not professional advice.",
-    "reflection_space": "This is a space for self-reflection, not prediction."
+    "before_using": "Before Using",
+    "text_1": "The information provided in this app is for entertainment and informational purposes only.",
+    "text_2": "It should not be considered as professional advice for health, financial, legal, or psychological matters.",
+    "text_3": "Please consult qualified professionals for important life decisions."
   },
   "router": {
-    "go_to_insight": "Go to Insights",
     "not_found_title": "Page Not Found",
-    "not_found_message": "The page you're looking for doesn't exist.",
-    "not_found_path": "Path: {path}",
-    "return_home": "Return Home",
-    "stars_aligning": "Preparing your experience..."
+    "not_found_message": "The page you're looking for seems lost among the stars.",
+    "not_found_path": "Looking for: {path}",
+    "return_home": "Return to Home",
+    "go_to_horoscope": "Go to Horoscope",
+    "stars_aligning": "Stars are aligning..."
   },
   "input": {
     "name": "Full Name",
@@ -262,7 +262,7 @@
     "ask_stars_hint": "Ask the stars anything...",
     "ask_stars_short": "Ask the stars a question...",
     "discover_stars_wisdom": "Discover the wisdom of the stars ✨",
-    "share_cosmic_energy": "Share your cosmic energy in your story!",
+    "share_cosmic_energy": "Share your daily energy on your story!",
     "voc_delay_decisions": "Postpone important decisions. {time} remaining.",
     "voc_postpone_important": "Postpone important decisions and new beginnings.",
     "meditation_subtitle": "Meditation, rituals and energy balancing",
@@ -295,7 +295,6 @@
     },
     "cosmic_connection_lost": "Connection temporarily lost. Please try again.",
     "share_on_instagram": "Share on Instagram",
-    "share_cosmic_energy": "Share your daily energy on your story!",
     "search_features": {
       "horoscope_title": "Daily Reflection",
       "horoscope_desc": "Daily personalized guidance",
@@ -1255,22 +1254,57 @@
       "free": {
         "name": "Free",
         "savings": "",
-        "features": ["Daily horoscope whispers", "Basic birth chart", "Daily tarot card", "Ad-supported"]
+        "features": [
+          "Daily horoscope whispers",
+          "Basic birth chart",
+          "Daily tarot card",
+          "Ad-supported"
+        ]
       },
       "monthly": {
         "name": "Monthly Premium",
         "savings": "",
-        "features": ["All basic features", "Pure cosmic experience (ad-free)", "Deep planet interpretations", "Unlimited tarot sessions", "Soul mate compatibility analysis", "Kabbalistic secrets", "Auric energy reading", "Planet transits", "Priority cosmic guidance"]
+        "features": [
+          "All basic features",
+          "Pure cosmic experience (ad-free)",
+          "Deep planet interpretations",
+          "Unlimited tarot sessions",
+          "Soul mate compatibility analysis",
+          "Kabbalistic secrets",
+          "Auric energy reading",
+          "Planet transits",
+          "Priority cosmic guidance"
+        ]
       },
       "yearly": {
         "name": "Yearly Premium",
         "savings": "77% savings",
-        "features": ["All basic features", "Pure cosmic experience (ad-free)", "Deep planet interpretations", "Unlimited tarot sessions", "Soul mate compatibility analysis", "Kabbalistic secrets", "Auric energy reading", "Planet transits", "Priority cosmic guidance"]
+        "features": [
+          "All basic features",
+          "Pure cosmic experience (ad-free)",
+          "Deep planet interpretations",
+          "Unlimited tarot sessions",
+          "Soul mate compatibility analysis",
+          "Kabbalistic secrets",
+          "Auric energy reading",
+          "Planet transits",
+          "Priority cosmic guidance"
+        ]
       },
       "lifetime": {
         "name": "Lifetime Premium",
         "savings": "One-time payment",
-        "features": ["All basic features", "Pure cosmic experience (ad-free)", "Deep planet interpretations", "Unlimited tarot sessions", "Soul mate compatibility analysis", "Kabbalistic secrets", "Auric energy reading", "Planet transits", "Priority cosmic guidance"]
+        "features": [
+          "All basic features",
+          "Pure cosmic experience (ad-free)",
+          "Deep planet interpretations",
+          "Unlimited tarot sessions",
+          "Soul mate compatibility analysis",
+          "Kabbalistic secrets",
+          "Auric energy reading",
+          "Planet transits",
+          "Priority cosmic guidance"
+        ]
       }
     }
   },
@@ -2834,12 +2868,6 @@
     "watch_ad": "Watch Ad",
     "go_premium": "Go Premium"
   },
-  "disclaimer": {
-    "before_using": "Before Using",
-    "text_1": "The information provided in this app is for entertainment and informational purposes only.",
-    "text_2": "It should not be considered as professional advice for health, financial, legal, or psychological matters.",
-    "text_3": "Please consult qualified professionals for important life decisions."
-  },
   "admin": {
     "logout": "Logout",
     "logout_confirm": "Are you sure you want to logout from admin?",
@@ -2886,17 +2914,686 @@
     "save_note": "Save Note"
   },
   "navigation": {
-    "search": "Search",
-    "profile": "Profile",
-    "settings": "Settings"
-  },
-  "router": {
-    "not_found_title": "Page Not Found",
-    "not_found_message": "The page you're looking for seems lost among the stars.",
-    "not_found_path": "Looking for: {path}",
-    "return_home": "Return to Home",
-    "go_to_horoscope": "Go to Horoscope",
-    "stars_aligning": "Stars are aligning..."
+    "section_titles": {
+      "also_viewed": "Readers Also Viewed",
+      "go_deeper": "Go Deeper",
+      "keep_exploring": "Keep Exploring",
+      "continue_without_back": "Continue Without Going Back"
+    },
+    "cards": {
+      "todays_cosmic_energy": {
+        "title": "Today's Cosmic Energy",
+        "description": "What is the sky whispering today? Check out daily readings."
+      },
+      "birth_chart_question": {
+        "title": "What Does My Birth Chart Say?",
+        "description": "Discover your cosmic fingerprint — calculate for free."
+      },
+      "partner_compatible": {
+        "title": "Are We Compatible?",
+        "description": "See the dance of two charts."
+      },
+      "current_transits": {
+        "title": "Current Transits",
+        "description": "How are the sky movements affecting you?"
+      },
+      "dream_interpretation": {
+        "title": "Tell Your Dream, Let's Explore Together",
+        "description": "What did you see tonight? Let's embark on a symbolic journey."
+      },
+      "cosmic_guidance": {
+        "title": "Get Cosmic Guidance",
+        "description": "Ask your inner question, let the stars answer."
+      },
+      "tarot_insight": {
+        "title": "Insight with Tarot",
+        "description": "Look into the mirror of your subconscious — draw a daily card."
+      },
+      "number_secrets": {
+        "title": "Secret of Your Numbers",
+        "description": "What does your birth date and name tell?"
+      },
+      "energy_field": {
+        "title": "Your Energy Field",
+        "description": "The colors of your aura and chakra balance."
+      },
+      "kozmoz_discovery": {
+        "title": "Kozmoz Discovery",
+        "description": "All features in one place"
+      },
+      "astrology_glossary": {
+        "title": "Astrology Glossary",
+        "description": "Learn the terms"
+      },
+      "premium_features": {
+        "title": "Premium Features",
+        "description": "Advanced astrology tools"
+      },
+      "most_read_scorpio": {
+        "title": "Most Read: Scorpio",
+        "description": "What do the mysterious waters say today?"
+      },
+      "rising_trend_aquarius": {
+        "title": "Rising Trend: Aquarius",
+        "description": "The winds of change are blowing."
+      },
+      "weekly_overview": {
+        "title": "Weekly Overview",
+        "description": "What awaits all signs this week?"
+      },
+      "monthly_depth": {
+        "title": "Monthly Depth",
+        "description": "What is the big theme of the month?"
+      },
+      "calculate_birth_chart": {
+        "title": "Calculate Your Birth Chart",
+        "description": "See beyond your sun sign."
+      },
+      "relationship_compatibility": {
+        "title": "Relationship Compatibility",
+        "description": "You and them — how is the cosmic dance?"
+      },
+      "daily_tarot": {
+        "title": "Daily Tarot",
+        "description": "What do the cards say today?"
+      },
+      "home": {
+        "title": "Home",
+        "description": "Go back"
+      },
+      "kozmoz_hub": {
+        "title": "Kozmoz Hub",
+        "description": "All features"
+      },
+      "all_signs": {
+        "title": "All Signs",
+        "description": "Explore 12 signs"
+      },
+      "sign_compatibility": {
+        "title": "Sign Compatibility",
+        "description": "Dual analysis"
+      },
+      "synastry_analysis": {
+        "title": "Synastry Analysis",
+        "description": "Compare charts in detail."
+      },
+      "composite_chart": {
+        "title": "Composite Chart",
+        "description": "The relationship's own chart."
+      },
+      "solar_return": {
+        "title": "Solar Return",
+        "description": "How is this year's chart?"
+      },
+      "progressions": {
+        "title": "Progressions",
+        "description": "Track your inner evolution."
+      },
+      "vedic_chart": {
+        "title": "Vedic Chart",
+        "description": "Indian astrology perspective."
+      },
+      "draconic_chart": {
+        "title": "Draconic Chart",
+        "description": "Your spiritual origin."
+      },
+      "asteroids": {
+        "title": "Asteroids",
+        "description": "Chiron, Lilith and others."
+      },
+      "numerology": {
+        "title": "Numerology",
+        "description": "Wisdom of numbers."
+      },
+      "kabbalah": {
+        "title": "Kabbalah",
+        "description": "Tarot and Tree of Life connection."
+      },
+      "aura_reading": {
+        "title": "Aura Reading",
+        "description": "Discover your energy field."
+      },
+      "chakra_analysis": {
+        "title": "Chakra Analysis",
+        "description": "Your energy centers."
+      },
+      "moon_rituals": {
+        "title": "Moon Rituals",
+        "description": "Energy cleansing practices."
+      },
+      "saturn_return": {
+        "title": "Saturn Return",
+        "description": "29-year crisis."
+      },
+      "retrograde_calendar": {
+        "title": "Retrograde Calendar",
+        "description": "When is Mercury retrograde?"
+      },
+      "electional_astrology": {
+        "title": "Electional Astrology",
+        "description": "Choose the right times."
+      },
+      "celebrity_couples": {
+        "title": "Celebrity Couples",
+        "description": "Celebrity compatibility"
+      },
+      "dream_tonight": {
+        "title": "What Did You Dream Tonight?",
+        "description": "How does your sign energy reflect in dreams?"
+      },
+      "daily_cosmic_message": {
+        "title": "Your Daily Cosmic Message",
+        "description": "What does the universe want to tell you today?"
+      },
+      "compare_chart_today": {
+        "description": "Compare your chart with today's sky."
+      },
+      "chart_connected_dreams": {
+        "title": "Chart-Connected Dreams",
+        "description": "How do planets reflect in your dreams?"
+      },
+      "personal_cosmic_message": {
+        "title": "Personal Cosmic Message",
+        "description": "Guidance specific to your chart."
+      },
+      "numerology_mystery": {
+        "description": "The mystery of numbers — a similar journey."
+      },
+      "daily_horoscope": {
+        "title": "Daily Horoscope",
+        "description": "Read along with tarot."
+      },
+      "read_with_tarot": {
+        "description": "Read along with tarot."
+      },
+      "decode_dream_symbols": {
+        "title": "Decode Your Dream Symbols",
+        "description": "Cards and dreams speak a similar language."
+      },
+      "cosmic_guidance_beyond": {
+        "title": "Cosmic Guidance",
+        "description": "A message beyond the cards."
+      },
+      "birth_chart": {
+        "title": "Birth Chart",
+        "description": "Your cosmic identity."
+      },
+      "cosmic_identity": {
+        "description": "Your cosmic identity."
+      },
+      "tarot_ritual": {
+        "title": "Tarot Ritual",
+        "description": "Card drawing meditation."
+      },
+      "all_analyses": {
+        "title": "All Analyses",
+        "description": "Other exploration paths"
+      },
+      "other_exploration_paths": {
+        "description": "Other exploration paths"
+      },
+      "tarot_terms": {
+        "description": "Tarot terms"
+      },
+      "kabbalah_numbers": {
+        "title": "Kabbalah Numbers",
+        "description": "Mystical origin of numbers."
+      },
+      "astrological_perspective": {
+        "description": "Astrological perspective."
+      },
+      "tarot": {
+        "title": "Tarot",
+        "description": "Daily card."
+      },
+      "numbers_in_cards": {
+        "description": "Numbers in cards."
+      },
+      "numerical_compatibility": {
+        "description": "Numerical compatibility analysis."
+      },
+      "dream_with_numbers": {
+        "title": "Dream Interpretation with Numbers",
+        "description": "What do numbers in your dreams mean?"
+      },
+      "personal_year_message": {
+        "title": "Personal Year Message",
+        "description": "This year's numerical energy."
+      },
+      "read_with_numbers": {
+        "description": "Read along with numbers."
+      },
+      "aura_colors": {
+        "title": "Aura Colors",
+        "description": "Your energy field."
+      },
+      "chakra_balance": {
+        "title": "Chakra Balance",
+        "description": "Numbers and chakras."
+      },
+      "numbers_and_chakras": {
+        "description": "Numbers and chakras."
+      },
+      "other_systems": {
+        "description": "Other systems"
+      },
+      "number_meanings": {
+        "title": "Number Meanings",
+        "description": "1-9 and master numbers"
+      },
+      "synastry_depth": {
+        "title": "Synastry Depth",
+        "description": "Compare charts in detail."
+      },
+      "love_horoscope": {
+        "title": "Love Horoscope",
+        "description": "Weekly love energy"
+      },
+      "venus_and_mars": {
+        "title": "Venus and Mars",
+        "description": "Examine the love planets."
+      },
+      "relationship_dreams": {
+        "title": "Relationship Dreams",
+        "description": "What do dreams about your partner mean?"
+      },
+      "relationship_guidance": {
+        "title": "Relationship Guidance",
+        "description": "Cosmic perspective."
+      },
+      "cosmic_perspective": {
+        "description": "Cosmic perspective."
+      },
+      "love_tarot": {
+        "title": "Love Tarot",
+        "description": "Draw a card for relationships."
+      },
+      "numerical_harmony": {
+        "title": "Numerical Harmony",
+        "description": "Numerology with names."
+      },
+      "venus_transit": {
+        "title": "Venus Transit",
+        "description": "Where is the love planet?"
+      },
+      "sign_pages": {
+        "description": "Sign pages"
+      },
+      "discover_energy_centers": {
+        "description": "Discover your energy centers."
+      },
+      "cosmic_energy_map": {
+        "description": "Cosmic energy map."
+      },
+      "energy_reading_path": {
+        "description": "Energy reading path."
+      },
+      "energy_dreams": {
+        "title": "Energy Dreams",
+        "description": "Meaning of color and light dreams."
+      },
+      "daily_energy_message": {
+        "title": "Daily Energy Message",
+        "description": "Today's energy flow."
+      },
+      "numerical_vibrations": {
+        "description": "Numerical vibrations."
+      },
+      "sefirot_energies": {
+        "description": "Sefirot energies."
+      },
+      "cosmic_energy": {
+        "description": "Cosmic energy."
+      },
+      "color_meanings": {
+        "title": "Color Meanings",
+        "description": "Aura colors glossary"
+      },
+      "tarot_and_paths": {
+        "title": "Tarot and Paths",
+        "description": "22 Major Arcana, 22 paths."
+      },
+      "gematria_and_numbers": {
+        "description": "Gematria and numbers."
+      },
+      "astrology_connection": {
+        "title": "Astrology Connection",
+        "description": "Sefirot and planets."
+      },
+      "chakra_system": {
+        "title": "Chakra System",
+        "description": "East and West energy maps."
+      },
+      "mystic_dreams": {
+        "title": "Mystic Dreams",
+        "description": "Spiritual symbols and dreams."
+      },
+      "sefirot_meditation": {
+        "title": "Sefirot Meditation",
+        "description": "Journey on the Tree of Life."
+      },
+      "spiritual_practices": {
+        "description": "Spiritual practices."
+      },
+      "sefirot_glossary": {
+        "title": "Sefirot Glossary",
+        "description": "10 sefirah meanings"
+      },
+      "my_birth_chart": {
+        "title": "My Birth Chart",
+        "description": "Your cosmic identity"
+      },
+      "transits_affecting_chart": {
+        "description": "How are transits affecting my chart?"
+      },
+      "this_years_chart": {
+        "description": "This year's chart."
+      },
+      "inner_evolution_tracking": {
+        "description": "Inner evolution tracking."
+      },
+      "transit_dreams": {
+        "title": "Dreams During Transits",
+        "description": "What do dreams tell during intense transits?"
+      },
+      "personal_transit_guidance": {
+        "title": "Personal Transit Guidance",
+        "description": "Special message for this period."
+      },
+      "todays_energy": {
+        "description": "Today's energy."
+      },
+      "planet_glossary": {
+        "title": "Planet Glossary",
+        "description": "Transit meanings"
+      },
+      "moon_phases_dreams": {
+        "title": "Moon Phases and Dreams",
+        "description": "How does the moon cycle affect dreams?"
+      },
+      "sign_dream_patterns": {
+        "title": "Sign and Dream Patterns",
+        "description": "How does your sign reflect in dreams?"
+      },
+      "subconscious_tarot": {
+        "title": "Subconscious and Tarot",
+        "description": "Dreams and cards speak a similar language."
+      },
+      "twelfth_house_dreams": {
+        "title": "12th House and Dreams",
+        "description": "The dream house in your natal chart."
+      },
+      "your_cosmic_message": {
+        "title": "Your Cosmic Message",
+        "description": "Guidance beyond the dream."
+      },
+      "guidance_beyond_dream": {
+        "description": "Guidance beyond the dream."
+      },
+      "tell_another_dream": {
+        "title": "Tell Another Dream",
+        "description": "Start a new journey."
+      },
+      "chakra_and_dreams": {
+        "title": "Chakra and Dreams",
+        "description": "Energy centers and subconscious."
+      },
+      "neptune_transit": {
+        "title": "Neptune Transit",
+        "description": "Where is the dream planet?"
+      },
+      "symbol_glossary": {
+        "title": "Symbol Glossary",
+        "description": "Dream symbols"
+      },
+      "daily_horoscope_reading": {
+        "title": "Daily Horoscope Reading",
+        "description": "Today's cosmic energy."
+      },
+      "cards_message": {
+        "description": "The message of the cards."
+      },
+      "moon_phase": {
+        "title": "Moon Phase",
+        "description": "Today's moon influence."
+      },
+      "transits": {
+        "title": "Transits",
+        "description": "The sky today."
+      },
+      "sky_today": {
+        "description": "The sky today."
+      },
+      "tell_your_dream": {
+        "title": "Tell Your Dream",
+        "description": "How does cosmic message reflect in dreams?"
+      },
+      "cosmic_message_dreams": {
+        "description": "How does cosmic message reflect in dreams?"
+      },
+      "cosmic_discovery": {
+        "title": "Cosmic Discovery",
+        "description": "Get more insight."
+      },
+      "get_more_insight": {
+        "description": "Get more insight."
+      },
+      "my_cosmic_identity": {
+        "description": "My cosmic identity."
+      },
+      "my_energy_centers": {
+        "description": "My energy centers."
+      },
+      "advanced_astrology": {
+        "description": "Advanced astrology"
+      },
+      "learn_concepts": {
+        "description": "Learn the concepts"
+      },
+      "energy_field_chakras": {
+        "description": "Your energy field and chakras."
+      },
+      "chakra_balancing_practices": {
+        "description": "Chakra balancing practices."
+      },
+      "kabbalah_sefirot": {
+        "title": "Kabbalah Sefirot",
+        "description": "East-West energy maps."
+      },
+      "east_west_energy_maps": {
+        "description": "East-West energy maps."
+      },
+      "planets_and_chakras": {
+        "description": "Planets and chakras."
+      },
+      "energy_blockages_dreams": {
+        "description": "How do energy blockages reflect in dreams?"
+      },
+      "energy_guidance": {
+        "title": "Energy Guidance",
+        "description": "Special message for your chakras."
+      },
+      "chakra_special_message": {
+        "description": "Special message for your chakras."
+      },
+      "energy_reading": {
+        "description": "Energy reading."
+      },
+      "seven_chakra_guide": {
+        "title": "7 Chakra Guide",
+        "description": "Detailed explanations"
+      },
+      "moon_calendar": {
+        "title": "Moon Calendar",
+        "description": "New moon and full moon dates."
+      },
+      "chakra_balancing": {
+        "title": "Chakra Balancing",
+        "description": "Energy work with rituals."
+      },
+      "energy_work_rituals": {
+        "description": "Energy work with rituals."
+      },
+      "aura_cleansing": {
+        "title": "Aura Cleansing",
+        "description": "Purify your energy field."
+      },
+      "post_ritual_dreams": {
+        "title": "Post-Ritual Dreams",
+        "description": "How do rituals affect dreams?"
+      },
+      "intention_guidance": {
+        "title": "Intention Guidance",
+        "description": "Cosmic message for this month."
+      },
+      "moon_planet_positions": {
+        "description": "Moon and planet positions."
+      },
+      "kabbalah_meditation": {
+        "title": "Kabbalah Meditation",
+        "description": "Sefirot journey."
+      },
+      "other_practices": {
+        "description": "Other practices"
+      },
+      "ritual_guide": {
+        "title": "Ritual Guide",
+        "description": "Step by step instructions"
+      },
+      "daily_card": {
+        "description": "Daily card."
+      },
+      "speak_subconscious": {
+        "description": "Speak with your subconscious."
+      },
+      "get_personal_message": {
+        "description": "Get a personal message."
+      },
+      "secret_of_numbers": {
+        "description": "The secret of numbers."
+      },
+      "aura": {
+        "title": "Aura",
+        "description": "Your energy field."
+      },
+      "rituals": {
+        "title": "Rituals",
+        "description": "Moon practices."
+      },
+      "moon_practices": {
+        "description": "Moon practices."
+      },
+      "twelve_signs": {
+        "description": "12 signs"
+      },
+      "glossary": {
+        "title": "Glossary",
+        "description": "Terms"
+      },
+      "terms": {
+        "description": "Terms"
+      }
+    },
+    "zodiac": {
+      "aries": {
+        "name": "Aries",
+        "ruler": "Mars",
+        "sign_title": "Aries",
+        "dreams_title": "Aries Dreams",
+        "ruler_transit": "Mars Transit"
+      },
+      "taurus": {
+        "name": "Taurus",
+        "ruler": "Venus",
+        "sign_title": "Taurus",
+        "dreams_title": "Taurus Dreams",
+        "ruler_transit": "Venus Transit"
+      },
+      "gemini": {
+        "name": "Gemini",
+        "ruler": "Mercury",
+        "sign_title": "Gemini",
+        "dreams_title": "Gemini Dreams",
+        "ruler_transit": "Mercury Transit"
+      },
+      "cancer": {
+        "name": "Cancer",
+        "ruler": "Moon",
+        "sign_title": "Cancer",
+        "dreams_title": "Cancer Dreams",
+        "ruler_transit": "Moon Transit"
+      },
+      "leo": {
+        "name": "Leo",
+        "ruler": "Sun",
+        "sign_title": "Leo",
+        "dreams_title": "Leo Dreams",
+        "ruler_transit": "Sun Transit"
+      },
+      "virgo": {
+        "name": "Virgo",
+        "ruler": "Mercury",
+        "sign_title": "Virgo",
+        "dreams_title": "Virgo Dreams",
+        "ruler_transit": "Mercury Transit"
+      },
+      "libra": {
+        "name": "Libra",
+        "ruler": "Venus",
+        "sign_title": "Libra",
+        "dreams_title": "Libra Dreams",
+        "ruler_transit": "Venus Transit"
+      },
+      "scorpio": {
+        "name": "Scorpio",
+        "ruler": "Pluto",
+        "sign_title": "Scorpio",
+        "dreams_title": "Scorpio Dreams",
+        "ruler_transit": "Pluto Transit"
+      },
+      "sagittarius": {
+        "name": "Sagittarius",
+        "ruler": "Jupiter",
+        "sign_title": "Sagittarius",
+        "dreams_title": "Sagittarius Dreams",
+        "ruler_transit": "Jupiter Transit"
+      },
+      "capricorn": {
+        "name": "Capricorn",
+        "ruler": "Saturn",
+        "sign_title": "Capricorn",
+        "dreams_title": "Capricorn Dreams",
+        "ruler_transit": "Saturn Transit"
+      },
+      "aquarius": {
+        "name": "Aquarius",
+        "ruler": "Uranus",
+        "sign_title": "Aquarius",
+        "dreams_title": "Aquarius Dreams",
+        "ruler_transit": "Uranus Transit"
+      },
+      "pisces": {
+        "name": "Pisces",
+        "ruler": "Neptune",
+        "sign_title": "Pisces",
+        "dreams_title": "Pisces Dreams",
+        "ruler_transit": "Neptune Transit"
+      }
+    },
+    "phrases": {
+      "how_this_pair_dances": "How does this pair dance?",
+      "same_element_different_energy": "Same element, different energy.",
+      "sibling_element_energy": "Sibling element energy.",
+      "what_awaits_this_week": "What to explore this week?",
+      "which_dreams_this_sign_sees": "What dreams do people of this sign see most?",
+      "special_message_for_today": "Special Message for Today",
+      "cosmic_guidance": "Get cosmic guidance.",
+      "beyond_your_sun_sign": "What's beyond your {sign} Sun?",
+      "where_is_your_ruler": "Where is your ruler planet now?",
+      "reading_aligned_with_energy": "A reading aligned with {sign} energy.",
+      "compatibility_with": "Compatibility with {sign}",
+      "weekly_reading": "Weekly {sign} Reading"
+    }
   },
   "sections": {
     "weekly_energy_chart": "Weekly Energy Chart",
@@ -4277,7 +4974,18 @@
     "todays_aura_energy": "Today's Aura Energy",
     "daily_affirmation": "Your Daily Affirmation",
     "cleansing": "Aura Cleansing",
-    "spiritual_advice": "Spiritual Advice",
+    "spiritual_advice": {
+      "red": "Ground your energy. Physical activity and nature walks will balance your aura.",
+      "orange": "Express your creativity. Art, dance or music will strengthen your aura.",
+      "yellow": "Keep your mental clarity. Learning and teaching will polish your aura.",
+      "green": "Open your heart. Healing work and helping others will grow your aura.",
+      "blue": "Speak your truth. Honest communication and authentic expression will strengthen your aura.",
+      "indigo": "Trust your intuition. Meditation and dream work will deepen your aura.",
+      "violet": "Strengthen your cosmic connection. Spiritual practices and service will elevate your aura.",
+      "pink": "Spread unconditional love. Compassion and empathy will expand your aura.",
+      "white": "Maintain your purity. Purification rituals and meditation will protect your aura.",
+      "gold": "Remember your divine connection. Prayer and gratitude will polish your aura."
+    },
     "balancing_advice": "Balancing Advice",
     "mantra": "Mantra",
     "strongest": "Strongest",
@@ -4315,18 +5023,6 @@
     "chakra_advice_throat": "Express your feelings, sing. Wear shades of blue and drink plenty of water.",
     "chakra_advice_third_eye": "Meditate and record your dreams. Focus on purple/indigo colors.",
     "chakra_advice_crown": "Spend time in silence, meditate. Wear white or purple and connect with nature.",
-    "spiritual_advice": {
-      "red": "Ground your energy. Physical activity and nature walks will balance your aura.",
-      "orange": "Express your creativity. Art, dance or music will strengthen your aura.",
-      "yellow": "Keep your mental clarity. Learning and teaching will polish your aura.",
-      "green": "Open your heart. Healing work and helping others will grow your aura.",
-      "blue": "Speak your truth. Honest communication and authentic expression will strengthen your aura.",
-      "indigo": "Trust your intuition. Meditation and dream work will deepen your aura.",
-      "violet": "Strengthen your cosmic connection. Spiritual practices and service will elevate your aura.",
-      "pink": "Spread unconditional love. Compassion and empathy will expand your aura.",
-      "white": "Maintain your purity. Purification rituals and meditation will protect your aura.",
-      "gold": "Remember your divine connection. Prayer and gratitude will polish your aura."
-    },
     "affirmations": {
       "red": "I am strong and safe. I move forward fearlessly.",
       "orange": "My creativity is limitless. I express with joy.",
@@ -4405,32 +5101,6 @@
     }
   },
   "kabbalah": {
-    "title": "Kabbalah",
-    "tree_of_life_secret": "The Secret of the Tree of Life",
-    "tree_of_life_intro": "Kabbalah is an ancient wisdom system that explains the structure of the universe and the soul. The Tree of Life (Etz Chaim) consists of ten Sefirot - each representing a different aspect of divine energy. Your name and birth date determine your place on this cosmic tree. This knowledge will guide you on your spiritual journey.",
-    "life_path_sefirah": "Your Life Path Sefirah",
-    "name_kabbalah": "Name Kabbalah",
-    "name_analysis": "Name Analysis",
-    "kabbalah_number": "Kabbalah",
-    "soul_number": "Soul",
-    "persona_number": "Persona",
-    "name_sefirah": "Name Sefirah",
-    "personal_interpretation": "Personal Kabbalistic Interpretation",
-    "daily_energy": "Daily Kabbalah Energy",
-    "todays_sefirah": "Today's Sefirah",
-    "daily_meditation": "Daily Meditation",
-    "tree_of_life": "Tree of Life",
-    "your_place_on_tree": "Your Place on the Tree of Life",
-    "marked_red": "Marked in red: Your Life Path Sefirah",
-    "marked_blue": "Marked in blue: Your Name Sefirah",
-    "spiritual_journey": "Your Spiritual Journey",
-    "color": "Color",
-    "number": "Number",
-    "pillar": "Pillar",
-    "archangel": "Archangel",
-    "virtue": "Virtue",
-    "caution": "Caution",
-    "planet": "Planet",
     "sefirah_names": {
       "keter": "Crown (Keter)",
       "chokhmah": "Wisdom (Chokhmah)",
@@ -4443,58 +5113,47 @@
       "yesod": "Foundation (Yesod)",
       "malkut": "Kingdom (Malkut)"
     },
-    "soul_label": "Soul",
-    "persona_label": "Persona",
-    "soul_meanings": {
-      "1": "Seeking unity, spiritual longing",
-      "2": "Intuitive wisdom, inspiration",
-      "3": "Deep understanding, comprehension",
-      "4": "Need for love, compassion",
-      "5": "Seeking power, independence",
-      "6": "Longing for harmony, balance",
-      "7": "Passion, creative expression",
-      "8": "Love of knowledge, communication",
-      "9": "Dreams, intuitive depth",
-      "10": "Grounding, manifestation",
-      "default": "Mystical depth"
+    "sefirah_meanings": {
+      "keter": "Point of union with infinity. Source of divine will. Beginning of all potentials.",
+      "chokhmah": "Pure wisdom and inspiration. Creative spark. Source of masculine energy and vision.",
+      "binah": "Deep understanding and comprehension. Form-giving energy. Feminine wisdom and intuition.",
+      "chesed": "Unconditional love and compassion. Expansion and abundance. Generosity and healing.",
+      "gevurah": "Inner strength and discipline. Boundaries and justice. Purification and focus.",
+      "tiferet": "Center of balance and harmony. Beauty and truth. Union of heart and soul.",
+      "netzach": "Determination and resilience. Emotional strength and passion. Creative expression.",
+      "hod": "Mental clarity and communication. Analytical thinking. Spiritual understanding.",
+      "yesod": "Astral connection and dreams. Subconscious and intuition. Foundation of manifestation.",
+      "malkut": "Physical world and matter. Grounding and realization. Daily life."
     },
-    "persona_meanings": {
-      "1": "Leader appearance, inspiring",
-      "2": "Wise appearance, counselor",
-      "3": "Analytical, thoughtful",
-      "4": "Helpful, warm",
-      "5": "Strong, determined",
-      "6": "Balanced, harmonious",
-      "7": "Passionate, attractive",
-      "8": "Intelligent, talkative",
-      "9": "Mysterious, intuitive",
-      "10": "Practical, reliable",
-      "default": "Versatile"
+    "compatibility": {
+      "very_high": "There is a deep bond between your souls. {s1} and {s2} energies complement each other, together forming high spiritual harmony.",
+      "high": "You have a strong energy connection. {s1} and {s2} carry supportive energies.",
+      "medium": "Although {s1} and {s2} carry different energies, these differences offer growth opportunities.",
+      "low": "{s1} and {s2} energies are different. This relationship contains lessons for both sides to learn."
     },
-    "interpretation": {
-      "name_intro": "\"{name}\" carries the energy of {sefirah} with Gematria value {gematria}. ",
-      "sefirah_keter": "Your soul is connected to infinity - you were born as a carrier of divine will. Your intuition is strong, your vision is vast. ",
-      "sefirah_chokhmah": "You carry seeds of wisdom - sudden insights and inspirations are natural for you. A visionary soul. ",
-      "sefirah_binah": "You have deep understanding capacity - you process concepts deeply and give them form. Analytical and intuitive. ",
-      "sefirah_chesed": "Compassion and love are your nature - you carry healing, nurturing energy. Generosity is in your spirit. ",
-      "sefirah_gevurah": "Your inner strength is powerful - discipline and determination are your weapons. Your sense of justice is sharp. ",
-      "sefirah_tiferet": "You are at the balance point - you naturally create beauty and harmony. Heart-centered. ",
-      "sefirah_netzach": "Perseverance and passion are your path - your creative energy is inexhaustible. You won't stop until you reach your goals. ",
-      "sefirah_hod": "Your communication and analysis skills are strong - you express your thoughts clearly. Mental brilliance. ",
-      "sefirah_yesod": "You have intuitive depth - dreams and symbols speak to you. Your astral connection is strong. ",
-      "sefirah_malkut": "You are grounded and practical - you have the ability to turn ideas into reality. The world is your kingdom. ",
-      "balance_harmony": "Your inner world and outer projection are in harmony - an authentic personality.",
-      "balance_dynamic": "There is an interesting dynamic between your inner and outer worlds - this tension carries growth potential.",
-      "balance_mystery": "Your deep inner world and the face you show are different - this mystery makes you powerful."
+    "daily_guidance": {
+      "keter": "Today is a day to connect with infinite potential. Make time for meditation and inner silence. Let divine will guide you.",
+      "chokhmah": "Today is a day of wisdom and insight. Sudden inspirations may come. Be open to new ideas and visions.",
+      "binah": "Today is a day of understanding and comprehension. Focus on details, analyze. Trust your emotional depth.",
+      "chesed": "Today is a day of love and compassion. Help others, be generous. Keep your heart chakra open.",
+      "gevurah": "Today is a day of strength and discipline. Protect your boundaries, make necessary decisions. Trust your inner power.",
+      "tiferet": "Today is a day of balance and beauty. Try to balance opposites. Appreciate inner and outer beauty.",
+      "netzach": "Today is a day of determination and victory. Focus on your goals, don't give up. Use your creative energy.",
+      "hod": "Today is a day of communication and analysis. Clarify your thoughts, share knowledge. Seek mental clarity.",
+      "yesod": "Today is a day of foundation and connection. Pay attention to your dreams, trust your intuitions. Astral connections are strong.",
+      "malkut": "Today is a day of material world and manifestation. Focus on practical matters, take concrete steps. Connect with nature."
     },
-    "tree_interpretation": {
-      "middle_pillar": "You are on the Middle Pillar in the Tree of Life. The middle pillar is the path of balance - your task is to unite opposites and create harmony. ",
-      "right_pillar": "You are on the Right Pillar in the Tree of Life. The right pillar is the path of mercy and expansion - love, generosity, and creativity are your domain. ",
-      "left_pillar": "You are on the Left Pillar in the Tree of Life. The left pillar is the path of form and discipline - setting boundaries, analysis, and power are your domain. ",
-      "same_sefirah": "Your name and birth date point to the same Sefirah - you are very powerful in this energy!",
-      "full_journey": "The journey between {lifePath} and {namePath} encompasses the entire Tree of Life - you are experiencing a deep spiritual evolution.",
-      "unique_signature": "{lifePath} is your birth energy, {namePath} is the vibration that comes with your name - these two together create a unique spiritual signature.",
-      "single_sefirah": "The energy of {lifePath} represents the main lesson you need to learn in this life."
+    "daily_meditation": {
+      "keter": "Close your eyelids and imagine a bright white light above your head. Feel this light uniting you with infinity.",
+      "chokhmah": "Imagine a gray space - neither completely light nor completely dark. Feel new ideas being born in this uncertainty.",
+      "binah": "Imagine you are in a deep blue ocean. Feel the infinite depth bringing you understanding.",
+      "chesed": "Imagine golden light radiating from your heart. Feel this light carrying love and compassion to all beings.",
+      "gevurah": "Imagine a red flame - burning but purifying. Feel this fire cleansing everything unnecessary.",
+      "tiferet": "Imagine being bathed in golden sunlight. Feel this light keeping all opposites in balance.",
+      "netzach": "Imagine you are in the middle of a lush green forest. Feel nature's resilience and victory.",
+      "hod": "Imagine an orange sphere of light illuminating your mind. Feel your thoughts becoming clearer.",
+      "yesod": "Imagine a purple light surrounding your navel area. Feel the door to the dream realm and subconscious opening.",
+      "malkut": "Imagine your feet rooting into the earth. Feel the earth's energy giving you strength."
     }
   },
   "saturn_return": {
@@ -4824,33 +5483,143 @@
       "default": "Observe your child's emotional needs."
     },
     "talents": {
-      "aries": ["Sports", "Leadership", "Entrepreneurship", "Quick thinking"],
-      "taurus": ["Music", "Art", "Gardening", "Crafts"],
-      "gemini": ["Writing", "Speaking", "Language learning", "Multitasking"],
-      "cancer": ["Cooking", "Caregiving", "History", "Psychology"],
-      "leo": ["Theater", "Dance", "Creative arts", "Organization"],
-      "virgo": ["Analysis", "Crafts", "Health", "Organizing"],
-      "libra": ["Art", "Diplomacy", "Design", "Social skills"],
-      "scorpio": ["Research", "Psychology", "Strategy", "Observation"],
-      "sagittarius": ["Sports", "Philosophy", "Travel", "Teaching"],
-      "capricorn": ["Organization", "Planning", "Business building", "Music"],
-      "aquarius": ["Technology", "Innovation", "Social causes", "Science"],
-      "pisces": ["Art", "Music", "Poetry", "Healing"],
-      "default": ["Talents to discover"]
+      "aries": [
+        "Sports",
+        "Leadership",
+        "Entrepreneurship",
+        "Quick thinking"
+      ],
+      "taurus": [
+        "Music",
+        "Art",
+        "Gardening",
+        "Crafts"
+      ],
+      "gemini": [
+        "Writing",
+        "Speaking",
+        "Language learning",
+        "Multitasking"
+      ],
+      "cancer": [
+        "Cooking",
+        "Caregiving",
+        "History",
+        "Psychology"
+      ],
+      "leo": [
+        "Theater",
+        "Dance",
+        "Creative arts",
+        "Organization"
+      ],
+      "virgo": [
+        "Analysis",
+        "Crafts",
+        "Health",
+        "Organizing"
+      ],
+      "libra": [
+        "Art",
+        "Diplomacy",
+        "Design",
+        "Social skills"
+      ],
+      "scorpio": [
+        "Research",
+        "Psychology",
+        "Strategy",
+        "Observation"
+      ],
+      "sagittarius": [
+        "Sports",
+        "Philosophy",
+        "Travel",
+        "Teaching"
+      ],
+      "capricorn": [
+        "Organization",
+        "Planning",
+        "Business building",
+        "Music"
+      ],
+      "aquarius": [
+        "Technology",
+        "Innovation",
+        "Social causes",
+        "Science"
+      ],
+      "pisces": [
+        "Art",
+        "Music",
+        "Poetry",
+        "Healing"
+      ],
+      "default": [
+        "Talents to discover"
+      ]
     },
     "challenges": {
-      "aries": ["Impatience", "Anger control", "Waiting in line"],
-      "taurus": ["Resistance to change", "Stubbornness", "Sharing"],
-      "gemini": ["Concentration", "Indecisiveness", "Listening"],
-      "cancer": ["Over-sensitivity", "Dependency", "Mood swings"],
-      "leo": ["Need for attention", "Pride", "Taking criticism"],
-      "virgo": ["Perfectionism", "Worry", "Self-criticism"],
-      "libra": ["Decision making", "Conflict avoidance", "People pleasing"],
-      "scorpio": ["Jealousy", "Trust issues", "Need for control"],
-      "sagittarius": ["Over-optimism", "Commitment", "Impulsivity"],
-      "capricorn": ["Over-seriousness", "Work-play balance", "Emotional expression"],
-      "aquarius": ["Emotional distance", "Rebellion", "Conformity"],
-      "pisces": ["Boundaries", "Realism", "Escapism"]
+      "aries": [
+        "Impatience",
+        "Anger control",
+        "Waiting in line"
+      ],
+      "taurus": [
+        "Resistance to change",
+        "Stubbornness",
+        "Sharing"
+      ],
+      "gemini": [
+        "Concentration",
+        "Indecisiveness",
+        "Listening"
+      ],
+      "cancer": [
+        "Over-sensitivity",
+        "Dependency",
+        "Mood swings"
+      ],
+      "leo": [
+        "Need for attention",
+        "Pride",
+        "Taking criticism"
+      ],
+      "virgo": [
+        "Perfectionism",
+        "Worry",
+        "Self-criticism"
+      ],
+      "libra": [
+        "Decision making",
+        "Conflict avoidance",
+        "People pleasing"
+      ],
+      "scorpio": [
+        "Jealousy",
+        "Trust issues",
+        "Need for control"
+      ],
+      "sagittarius": [
+        "Over-optimism",
+        "Commitment",
+        "Impulsivity"
+      ],
+      "capricorn": [
+        "Over-seriousness",
+        "Work-play balance",
+        "Emotional expression"
+      ],
+      "aquarius": [
+        "Emotional distance",
+        "Rebellion",
+        "Conformity"
+      ],
+      "pisces": [
+        "Boundaries",
+        "Realism",
+        "Escapism"
+      ]
     },
     "parenting_tips": {
       "aries": "Give plenty of room for physical activity. Play competitive games but also teach losing. Allow them to make independent decisions.",
@@ -4885,10 +5654,30 @@
       "default": "Your family has a unique dynamic."
     },
     "family_strengths": {
-      "fire": ["Energy and enthusiasm", "Courage", "Being inspiring", "Motivation"],
-      "earth": ["Reliability", "Practicality", "Loyalty", "Stability"],
-      "air": ["Communication", "Flexibility", "Sociability", "Innovation"],
-      "water": ["Empathy", "Emotional support", "Intuition", "Compassion"]
+      "fire": [
+        "Energy and enthusiasm",
+        "Courage",
+        "Being inspiring",
+        "Motivation"
+      ],
+      "earth": [
+        "Reliability",
+        "Practicality",
+        "Loyalty",
+        "Stability"
+      ],
+      "air": [
+        "Communication",
+        "Flexibility",
+        "Sociability",
+        "Innovation"
+      ],
+      "water": [
+        "Empathy",
+        "Emotional support",
+        "Intuition",
+        "Compassion"
+      ]
     },
     "family_challenges": {
       "fire_dominant": "Anger outbursts and impatience",
@@ -7384,13 +8173,10 @@
         "Spirituality"
       ]
     },
-    "share_on_instagram_dialog": "Share on Instagram",
     "text_copied_success": "Text copied!",
     "open_instagram": "Open Instagram",
     "todays_message": "Today's Message",
     "todays_cosmic_energy": "Today's Cosmic Energy",
-    "energy_level": "Energy Level",
-    "intuition_power": "Intuition Power",
     "reflect": "Reflect",
     "action": "Action",
     "dominant_planet": "Dominant Planet",
@@ -7704,7 +8490,7 @@
       "love_energy": "YOUR LOVE ENERGY",
       "love_language": "YOUR LOVE LANGUAGE",
       "ideal_partner": "YOUR IDEAL PARTNER PROFILE",
-      "best_matches": "YOUR MOST COMPATIBLE SIGNS",
+      "best_matches": "YOUR TOP 3 COMPATIBLE SIGNS",
       "perfect_match": "PERFECT MATCH (90-100%)",
       "good_match": "GOOD MATCH (70-89%)",
       "relationship_warnings": "THINGS TO WATCH IN RELATIONSHIP",
@@ -7789,7 +8575,6 @@
       "compatibility_header": "{sign} DETAILED COMPATIBILITY ANALYSIS",
       "element_compatibility": "ELEMENT COMPATIBILITY",
       "sign_by_sign_details": "SIGN BY SIGN COMPATIBILITY DETAILS",
-      "best_matches": "YOUR TOP 3 COMPATIBLE SIGNS",
       "challenging_matches": "YOUR TOP 3 CHALLENGING SIGNS",
       "romantic_vs_business": "ROMANTIC COMPATIBILITY VS BUSINESS COMPATIBILITY",
       "synastry_tips": "SYNASTRY TIPS",
@@ -9148,616 +9933,6 @@
       }
     }
   },
-  "navigation": {
-    "section_titles": {
-      "also_viewed": "Readers Also Viewed",
-      "go_deeper": "Go Deeper",
-      "keep_exploring": "Keep Exploring",
-      "continue_without_back": "Continue Without Going Back"
-    },
-    "cards": {
-      "todays_cosmic_energy": {
-        "title": "Today's Cosmic Energy",
-        "description": "What is the sky whispering today? Check out daily readings."
-      },
-      "birth_chart_question": {
-        "title": "What Does My Birth Chart Say?",
-        "description": "Discover your cosmic fingerprint — calculate for free."
-      },
-      "partner_compatible": {
-        "title": "Are We Compatible?",
-        "description": "See the dance of two charts."
-      },
-      "current_transits": {
-        "title": "Current Transits",
-        "description": "How are the sky movements affecting you?"
-      },
-      "dream_interpretation": {
-        "title": "Tell Your Dream, Let's Explore Together",
-        "description": "What did you see tonight? Let's embark on a symbolic journey."
-      },
-      "cosmic_guidance": {
-        "title": "Get Cosmic Guidance",
-        "description": "Ask your inner question, let the stars answer."
-      },
-      "tarot_insight": {
-        "title": "Insight with Tarot",
-        "description": "Look into the mirror of your subconscious — draw a daily card."
-      },
-      "number_secrets": {
-        "title": "Secret of Your Numbers",
-        "description": "What does your birth date and name tell?"
-      },
-      "energy_field": {
-        "title": "Your Energy Field",
-        "description": "The colors of your aura and chakra balance."
-      },
-      "kozmoz_discovery": {
-        "title": "Kozmoz Discovery",
-        "description": "All features in one place"
-      },
-      "astrology_glossary": {
-        "title": "Astrology Glossary",
-        "description": "Learn the terms"
-      },
-      "premium_features": {
-        "title": "Premium Features",
-        "description": "Advanced astrology tools"
-      },
-      "most_read_scorpio": {
-        "title": "Most Read: Scorpio",
-        "description": "What do the mysterious waters say today?"
-      },
-      "rising_trend_aquarius": {
-        "title": "Rising Trend: Aquarius",
-        "description": "The winds of change are blowing."
-      },
-      "weekly_overview": {
-        "title": "Weekly Overview",
-        "description": "What awaits all signs this week?"
-      },
-      "monthly_depth": {
-        "title": "Monthly Depth",
-        "description": "What is the big theme of the month?"
-      },
-      "calculate_birth_chart": {
-        "title": "Calculate Your Birth Chart",
-        "description": "See beyond your sun sign."
-      },
-      "relationship_compatibility": {
-        "title": "Relationship Compatibility",
-        "description": "You and them — how is the cosmic dance?"
-      },
-      "daily_tarot": {
-        "title": "Daily Tarot",
-        "description": "What do the cards say today?"
-      },
-      "home": {
-        "title": "Home",
-        "description": "Go back"
-      },
-      "kozmoz_hub": {
-        "title": "Kozmoz Hub",
-        "description": "All features"
-      },
-      "all_signs": {
-        "title": "All Signs",
-        "description": "Explore 12 signs"
-      },
-      "sign_compatibility": {
-        "title": "Sign Compatibility",
-        "description": "Dual analysis"
-      },
-      "synastry_analysis": {
-        "title": "Synastry Analysis",
-        "description": "Compare charts in detail."
-      },
-      "composite_chart": {
-        "title": "Composite Chart",
-        "description": "The relationship's own chart."
-      },
-      "solar_return": {
-        "title": "Solar Return",
-        "description": "How is this year's chart?"
-      },
-      "progressions": {
-        "title": "Progressions",
-        "description": "Track your inner evolution."
-      },
-      "vedic_chart": {
-        "title": "Vedic Chart",
-        "description": "Indian astrology perspective."
-      },
-      "draconic_chart": {
-        "title": "Draconic Chart",
-        "description": "Your spiritual origin."
-      },
-      "asteroids": {
-        "title": "Asteroids",
-        "description": "Chiron, Lilith and others."
-      },
-      "numerology": {
-        "title": "Numerology",
-        "description": "Wisdom of numbers."
-      },
-      "kabbalah": {
-        "title": "Kabbalah",
-        "description": "Tarot and Tree of Life connection."
-      },
-      "aura_reading": {
-        "title": "Aura Reading",
-        "description": "Discover your energy field."
-      },
-      "chakra_analysis": {
-        "title": "Chakra Analysis",
-        "description": "Your energy centers."
-      },
-      "moon_rituals": {
-        "title": "Moon Rituals",
-        "description": "Energy cleansing practices."
-      },
-      "saturn_return": {
-        "title": "Saturn Return",
-        "description": "29-year crisis."
-      },
-      "retrograde_calendar": {
-        "title": "Retrograde Calendar",
-        "description": "When is Mercury retrograde?"
-      },
-      "electional_astrology": {
-        "title": "Electional Astrology",
-        "description": "Choose the right times."
-      },
-      "celebrity_couples": {
-        "title": "Celebrity Couples",
-        "description": "Celebrity compatibility"
-      },
-      "dream_tonight": {
-        "title": "What Did You Dream Tonight?",
-        "description": "How does your sign energy reflect in dreams?"
-      },
-      "daily_cosmic_message": {
-        "title": "Your Daily Cosmic Message",
-        "description": "What does the universe want to tell you today?"
-      },
-      "compare_chart_today": {
-        "description": "Compare your chart with today's sky."
-      },
-      "chart_connected_dreams": {
-        "title": "Chart-Connected Dreams",
-        "description": "How do planets reflect in your dreams?"
-      },
-      "personal_cosmic_message": {
-        "title": "Personal Cosmic Message",
-        "description": "Guidance specific to your chart."
-      },
-      "numerology_mystery": {
-        "description": "The mystery of numbers — a similar journey."
-      },
-      "daily_horoscope": {
-        "title": "Daily Horoscope",
-        "description": "Read along with tarot."
-      },
-      "read_with_tarot": {
-        "description": "Read along with tarot."
-      },
-      "decode_dream_symbols": {
-        "title": "Decode Your Dream Symbols",
-        "description": "Cards and dreams speak a similar language."
-      },
-      "cosmic_guidance_beyond": {
-        "title": "Cosmic Guidance",
-        "description": "A message beyond the cards."
-      },
-      "birth_chart": {
-        "title": "Birth Chart",
-        "description": "Your cosmic identity."
-      },
-      "cosmic_identity": {
-        "description": "Your cosmic identity."
-      },
-      "tarot_ritual": {
-        "title": "Tarot Ritual",
-        "description": "Card drawing meditation."
-      },
-      "all_analyses": {
-        "title": "All Analyses",
-        "description": "Other exploration paths"
-      },
-      "other_exploration_paths": {
-        "description": "Other exploration paths"
-      },
-      "tarot_terms": {
-        "description": "Tarot terms"
-      },
-      "kabbalah_numbers": {
-        "title": "Kabbalah Numbers",
-        "description": "Mystical origin of numbers."
-      },
-      "astrological_perspective": {
-        "description": "Astrological perspective."
-      },
-      "tarot": {
-        "title": "Tarot",
-        "description": "Daily card."
-      },
-      "numbers_in_cards": {
-        "description": "Numbers in cards."
-      },
-      "numerical_compatibility": {
-        "description": "Numerical compatibility analysis."
-      },
-      "dream_with_numbers": {
-        "title": "Dream Interpretation with Numbers",
-        "description": "What do numbers in your dreams mean?"
-      },
-      "personal_year_message": {
-        "title": "Personal Year Message",
-        "description": "This year's numerical energy."
-      },
-      "read_with_numbers": {
-        "description": "Read along with numbers."
-      },
-      "aura_colors": {
-        "title": "Aura Colors",
-        "description": "Your energy field."
-      },
-      "chakra_balance": {
-        "title": "Chakra Balance",
-        "description": "Numbers and chakras."
-      },
-      "numbers_and_chakras": {
-        "description": "Numbers and chakras."
-      },
-      "other_systems": {
-        "description": "Other systems"
-      },
-      "number_meanings": {
-        "title": "Number Meanings",
-        "description": "1-9 and master numbers"
-      },
-      "synastry_depth": {
-        "title": "Synastry Depth",
-        "description": "Compare charts in detail."
-      },
-      "love_horoscope": {
-        "title": "Love Horoscope",
-        "description": "Weekly love energy"
-      },
-      "venus_and_mars": {
-        "title": "Venus and Mars",
-        "description": "Examine the love planets."
-      },
-      "relationship_dreams": {
-        "title": "Relationship Dreams",
-        "description": "What do dreams about your partner mean?"
-      },
-      "relationship_guidance": {
-        "title": "Relationship Guidance",
-        "description": "Cosmic perspective."
-      },
-      "cosmic_perspective": {
-        "description": "Cosmic perspective."
-      },
-      "love_tarot": {
-        "title": "Love Tarot",
-        "description": "Draw a card for relationships."
-      },
-      "numerical_harmony": {
-        "title": "Numerical Harmony",
-        "description": "Numerology with names."
-      },
-      "venus_transit": {
-        "title": "Venus Transit",
-        "description": "Where is the love planet?"
-      },
-      "sign_pages": {
-        "description": "Sign pages"
-      },
-      "discover_energy_centers": {
-        "description": "Discover your energy centers."
-      },
-      "cosmic_energy_map": {
-        "description": "Cosmic energy map."
-      },
-      "energy_reading_path": {
-        "description": "Energy reading path."
-      },
-      "energy_dreams": {
-        "title": "Energy Dreams",
-        "description": "Meaning of color and light dreams."
-      },
-      "daily_energy_message": {
-        "title": "Daily Energy Message",
-        "description": "Today's energy flow."
-      },
-      "numerical_vibrations": {
-        "description": "Numerical vibrations."
-      },
-      "sefirot_energies": {
-        "description": "Sefirot energies."
-      },
-      "cosmic_energy": {
-        "description": "Cosmic energy."
-      },
-      "color_meanings": {
-        "title": "Color Meanings",
-        "description": "Aura colors glossary"
-      },
-      "tarot_and_paths": {
-        "title": "Tarot and Paths",
-        "description": "22 Major Arcana, 22 paths."
-      },
-      "gematria_and_numbers": {
-        "description": "Gematria and numbers."
-      },
-      "astrology_connection": {
-        "title": "Astrology Connection",
-        "description": "Sefirot and planets."
-      },
-      "chakra_system": {
-        "title": "Chakra System",
-        "description": "East and West energy maps."
-      },
-      "mystic_dreams": {
-        "title": "Mystic Dreams",
-        "description": "Spiritual symbols and dreams."
-      },
-      "sefirot_meditation": {
-        "title": "Sefirot Meditation",
-        "description": "Journey on the Tree of Life."
-      },
-      "spiritual_practices": {
-        "description": "Spiritual practices."
-      },
-      "sefirot_glossary": {
-        "title": "Sefirot Glossary",
-        "description": "10 sefirah meanings"
-      },
-      "my_birth_chart": {
-        "title": "My Birth Chart",
-        "description": "Your cosmic identity"
-      },
-      "transits_affecting_chart": {
-        "description": "How are transits affecting my chart?"
-      },
-      "this_years_chart": {
-        "description": "This year's chart."
-      },
-      "inner_evolution_tracking": {
-        "description": "Inner evolution tracking."
-      },
-      "transit_dreams": {
-        "title": "Dreams During Transits",
-        "description": "What do dreams tell during intense transits?"
-      },
-      "personal_transit_guidance": {
-        "title": "Personal Transit Guidance",
-        "description": "Special message for this period."
-      },
-      "todays_energy": {
-        "description": "Today's energy."
-      },
-      "planet_glossary": {
-        "title": "Planet Glossary",
-        "description": "Transit meanings"
-      },
-      "moon_phases_dreams": {
-        "title": "Moon Phases and Dreams",
-        "description": "How does the moon cycle affect dreams?"
-      },
-      "sign_dream_patterns": {
-        "title": "Sign and Dream Patterns",
-        "description": "How does your sign reflect in dreams?"
-      },
-      "subconscious_tarot": {
-        "title": "Subconscious and Tarot",
-        "description": "Dreams and cards speak a similar language."
-      },
-      "twelfth_house_dreams": {
-        "title": "12th House and Dreams",
-        "description": "The dream house in your natal chart."
-      },
-      "your_cosmic_message": {
-        "title": "Your Cosmic Message",
-        "description": "Guidance beyond the dream."
-      },
-      "guidance_beyond_dream": {
-        "description": "Guidance beyond the dream."
-      },
-      "tell_another_dream": {
-        "title": "Tell Another Dream",
-        "description": "Start a new journey."
-      },
-      "chakra_and_dreams": {
-        "title": "Chakra and Dreams",
-        "description": "Energy centers and subconscious."
-      },
-      "neptune_transit": {
-        "title": "Neptune Transit",
-        "description": "Where is the dream planet?"
-      },
-      "symbol_glossary": {
-        "title": "Symbol Glossary",
-        "description": "Dream symbols"
-      },
-      "daily_horoscope_reading": {
-        "title": "Daily Horoscope Reading",
-        "description": "Today's cosmic energy."
-      },
-      "cards_message": {
-        "description": "The message of the cards."
-      },
-      "moon_phase": {
-        "title": "Moon Phase",
-        "description": "Today's moon influence."
-      },
-      "transits": {
-        "title": "Transits",
-        "description": "The sky today."
-      },
-      "sky_today": {
-        "description": "The sky today."
-      },
-      "tell_your_dream": {
-        "title": "Tell Your Dream",
-        "description": "How does cosmic message reflect in dreams?"
-      },
-      "cosmic_message_dreams": {
-        "description": "How does cosmic message reflect in dreams?"
-      },
-      "cosmic_discovery": {
-        "title": "Cosmic Discovery",
-        "description": "Get more insight."
-      },
-      "get_more_insight": {
-        "description": "Get more insight."
-      },
-      "my_cosmic_identity": {
-        "description": "My cosmic identity."
-      },
-      "my_energy_centers": {
-        "description": "My energy centers."
-      },
-      "advanced_astrology": {
-        "description": "Advanced astrology"
-      },
-      "learn_concepts": {
-        "description": "Learn the concepts"
-      },
-      "energy_field_chakras": {
-        "description": "Your energy field and chakras."
-      },
-      "chakra_balancing_practices": {
-        "description": "Chakra balancing practices."
-      },
-      "kabbalah_sefirot": {
-        "title": "Kabbalah Sefirot",
-        "description": "East-West energy maps."
-      },
-      "east_west_energy_maps": {
-        "description": "East-West energy maps."
-      },
-      "planets_and_chakras": {
-        "description": "Planets and chakras."
-      },
-      "energy_blockages_dreams": {
-        "description": "How do energy blockages reflect in dreams?"
-      },
-      "energy_guidance": {
-        "title": "Energy Guidance",
-        "description": "Special message for your chakras."
-      },
-      "chakra_special_message": {
-        "description": "Special message for your chakras."
-      },
-      "energy_reading": {
-        "description": "Energy reading."
-      },
-      "seven_chakra_guide": {
-        "title": "7 Chakra Guide",
-        "description": "Detailed explanations"
-      },
-      "moon_calendar": {
-        "title": "Moon Calendar",
-        "description": "New moon and full moon dates."
-      },
-      "chakra_balancing": {
-        "title": "Chakra Balancing",
-        "description": "Energy work with rituals."
-      },
-      "energy_work_rituals": {
-        "description": "Energy work with rituals."
-      },
-      "aura_cleansing": {
-        "title": "Aura Cleansing",
-        "description": "Purify your energy field."
-      },
-      "post_ritual_dreams": {
-        "title": "Post-Ritual Dreams",
-        "description": "How do rituals affect dreams?"
-      },
-      "intention_guidance": {
-        "title": "Intention Guidance",
-        "description": "Cosmic message for this month."
-      },
-      "moon_planet_positions": {
-        "description": "Moon and planet positions."
-      },
-      "kabbalah_meditation": {
-        "title": "Kabbalah Meditation",
-        "description": "Sefirot journey."
-      },
-      "other_practices": {
-        "description": "Other practices"
-      },
-      "ritual_guide": {
-        "title": "Ritual Guide",
-        "description": "Step by step instructions"
-      },
-      "daily_card": {
-        "description": "Daily card."
-      },
-      "speak_subconscious": {
-        "description": "Speak with your subconscious."
-      },
-      "get_personal_message": {
-        "description": "Get a personal message."
-      },
-      "secret_of_numbers": {
-        "description": "The secret of numbers."
-      },
-      "aura": {
-        "title": "Aura",
-        "description": "Your energy field."
-      },
-      "rituals": {
-        "title": "Rituals",
-        "description": "Moon practices."
-      },
-      "moon_practices": {
-        "description": "Moon practices."
-      },
-      "twelve_signs": {
-        "description": "12 signs"
-      },
-      "glossary": {
-        "title": "Glossary",
-        "description": "Terms"
-      },
-      "terms": {
-        "description": "Terms"
-      }
-    },
-    "zodiac": {
-      "aries": { "name": "Aries", "ruler": "Mars", "sign_title": "Aries", "dreams_title": "Aries Dreams", "ruler_transit": "Mars Transit" },
-      "taurus": { "name": "Taurus", "ruler": "Venus", "sign_title": "Taurus", "dreams_title": "Taurus Dreams", "ruler_transit": "Venus Transit" },
-      "gemini": { "name": "Gemini", "ruler": "Mercury", "sign_title": "Gemini", "dreams_title": "Gemini Dreams", "ruler_transit": "Mercury Transit" },
-      "cancer": { "name": "Cancer", "ruler": "Moon", "sign_title": "Cancer", "dreams_title": "Cancer Dreams", "ruler_transit": "Moon Transit" },
-      "leo": { "name": "Leo", "ruler": "Sun", "sign_title": "Leo", "dreams_title": "Leo Dreams", "ruler_transit": "Sun Transit" },
-      "virgo": { "name": "Virgo", "ruler": "Mercury", "sign_title": "Virgo", "dreams_title": "Virgo Dreams", "ruler_transit": "Mercury Transit" },
-      "libra": { "name": "Libra", "ruler": "Venus", "sign_title": "Libra", "dreams_title": "Libra Dreams", "ruler_transit": "Venus Transit" },
-      "scorpio": { "name": "Scorpio", "ruler": "Pluto", "sign_title": "Scorpio", "dreams_title": "Scorpio Dreams", "ruler_transit": "Pluto Transit" },
-      "sagittarius": { "name": "Sagittarius", "ruler": "Jupiter", "sign_title": "Sagittarius", "dreams_title": "Sagittarius Dreams", "ruler_transit": "Jupiter Transit" },
-      "capricorn": { "name": "Capricorn", "ruler": "Saturn", "sign_title": "Capricorn", "dreams_title": "Capricorn Dreams", "ruler_transit": "Saturn Transit" },
-      "aquarius": { "name": "Aquarius", "ruler": "Uranus", "sign_title": "Aquarius", "dreams_title": "Aquarius Dreams", "ruler_transit": "Uranus Transit" },
-      "pisces": { "name": "Pisces", "ruler": "Neptune", "sign_title": "Pisces", "dreams_title": "Pisces Dreams", "ruler_transit": "Neptune Transit" }
-    },
-    "phrases": {
-      "how_this_pair_dances": "How does this pair dance?",
-      "same_element_different_energy": "Same element, different energy.",
-      "sibling_element_energy": "Sibling element energy.",
-      "what_awaits_this_week": "What to explore this week?",
-      "which_dreams_this_sign_sees": "What dreams do people of this sign see most?",
-      "special_message_for_today": "Special Message for Today",
-      "cosmic_guidance": "Get cosmic guidance.",
-      "beyond_your_sun_sign": "What's beyond your {sign} Sun?",
-      "where_is_your_ruler": "Where is your ruler planet now?",
-      "reading_aligned_with_energy": "A reading aligned with {sign} energy.",
-      "compatibility_with": "Compatibility with {sign}",
-      "weekly_reading": "Weekly {sign} Reading"
-    }
-  },
   "glossary": {
     "hints": {
       "natal_chart": "Your cosmic identity card",
@@ -9959,55 +10134,106 @@
     "life_phases": {
       "student": {
         "label": "Student",
-        "common_dream_themes": ["Exams", "being late", "being caught unprepared", "school"],
+        "common_dream_themes": [
+          "Exams",
+          "being late",
+          "being caught unprepared",
+          "school"
+        ],
         "interpretation_focus": "Performance anxiety, future uncertainty, learning",
         "advice": "Exam themes in dreams usually reflect evaluation moments in your life."
       },
       "new_parent": {
         "label": "New Parent",
-        "common_dream_themes": ["Baby", "protection", "losing", "inadequacy", "great responsibility"],
+        "common_dream_themes": [
+          "Baby",
+          "protection",
+          "losing",
+          "inadequacy",
+          "great responsibility"
+        ],
         "interpretation_focus": "Protective instinct, identity change, new responsibilities",
         "advice": "Baby dreams can also represent new projects or new aspects of your identity."
       },
       "career_change": {
         "label": "Career Change",
-        "common_dream_themes": ["Getting lost", "new buildings", "journey", "being late", "unprepared"],
+        "common_dream_themes": [
+          "Getting lost",
+          "new buildings",
+          "journey",
+          "being late",
+          "unprepared"
+        ],
         "interpretation_focus": "Identity questioning, insecurity, opportunities",
         "advice": "New places in your dreams represent new possibilities, getting lost represents uncertainty."
       },
       "grieving": {
         "label": "In Grieving Process",
-        "common_dream_themes": ["Lost person", "saying goodbye", "searching", "reunion"],
+        "common_dream_themes": [
+          "Lost person",
+          "saying goodbye",
+          "searching",
+          "reunion"
+        ],
         "interpretation_focus": "Processing loss, unfinished business, spiritual connection",
         "advice": "Seeing the person you lost in your dreams is a natural part of the grieving process and carries healing."
       },
       "retired": {
         "label": "Retired",
-        "common_dream_themes": ["Former workplace", "time", "youth", "completion", "legacy"],
+        "common_dream_themes": [
+          "Former workplace",
+          "time",
+          "youth",
+          "completion",
+          "legacy"
+        ],
         "interpretation_focus": "Life review, searching for meaning, legacy",
         "advice": "Dreams about the past are a process of reviewing your life and gathering wisdom."
       },
       "relationship_crisis": {
         "label": "Relationship Crisis",
-        "common_dream_themes": ["Partner", "betrayal", "argument", "separation", "unfamiliar partner"],
+        "common_dream_themes": [
+          "Partner",
+          "betrayal",
+          "argument",
+          "separation",
+          "unfamiliar partner"
+        ],
         "interpretation_focus": "Relationship dynamics, trust, communication",
         "advice": "Partner dreams often reflect your relationship with your inner anima/animus."
       },
       "health_crisis": {
         "label": "Health Struggle",
-        "common_dream_themes": ["Body", "healing", "hospital", "transformation", "death and rebirth"],
+        "common_dream_themes": [
+          "Body",
+          "healing",
+          "hospital",
+          "transformation",
+          "death and rebirth"
+        ],
         "interpretation_focus": "Body awareness, healing, mortality awareness",
         "advice": "Dreams about the body usually carry messages related to your physical condition."
       },
       "spiritual_awakening": {
         "label": "Spiritual Awakening",
-        "common_dream_themes": ["Light", "guides", "flight", "cosmic experiences", "death and rebirth"],
+        "common_dream_themes": [
+          "Light",
+          "guides",
+          "flight",
+          "cosmic experiences",
+          "death and rebirth"
+        ],
         "interpretation_focus": "Spiritual development, transcendent experiences, searching for meaning",
         "advice": "Spiritual dreams are signs of your ascension, take their messages seriously."
       },
       "new_beginning": {
         "label": "New Beginning",
-        "common_dream_themes": ["Baby", "seeds", "new house", "start of journey"],
+        "common_dream_themes": [
+          "Baby",
+          "seeds",
+          "new house",
+          "start of journey"
+        ],
         "interpretation_focus": "Potential, hope, growth opportunities",
         "advice": "New beginning symbols show the potential within you and your areas for growth."
       }
@@ -10057,69 +10283,62 @@
       "elder_sage": "elder sage"
     },
     "focus_symbols": {
-      "career": ["office", "boss", "money", "success", "stairs", "building"],
-      "love": ["partner", "marriage", "heart", "kiss", "stranger", "separation"],
-      "health": ["hospital", "doctor", "body", "medicine", "healing", "pain"],
-      "family": ["mother", "father", "home", "child", "sibling", "relative"],
-      "finance": ["money", "bank", "debt", "wealth", "loss", "finding"],
-      "education": ["school", "exam", "teacher", "book", "learning", "diploma"],
-      "spiritual": ["light", "flight", "angel", "god", "temple", "meditation"]
-    }
-  },
-  "kabbalah": {
-    "sefirah_names": {
-      "keter": "Crown (Keter)",
-      "chokhmah": "Wisdom (Chokhmah)",
-      "binah": "Understanding (Binah)",
-      "chesed": "Mercy (Chesed)",
-      "gevurah": "Strength (Gevurah)",
-      "tiferet": "Beauty (Tiferet)",
-      "netzach": "Victory (Netzach)",
-      "hod": "Glory (Hod)",
-      "yesod": "Foundation (Yesod)",
-      "malkut": "Kingdom (Malkut)"
-    },
-    "sefirah_meanings": {
-      "keter": "Point of union with infinity. Source of divine will. Beginning of all potentials.",
-      "chokhmah": "Pure wisdom and inspiration. Creative spark. Source of masculine energy and vision.",
-      "binah": "Deep understanding and comprehension. Form-giving energy. Feminine wisdom and intuition.",
-      "chesed": "Unconditional love and compassion. Expansion and abundance. Generosity and healing.",
-      "gevurah": "Inner strength and discipline. Boundaries and justice. Purification and focus.",
-      "tiferet": "Center of balance and harmony. Beauty and truth. Union of heart and soul.",
-      "netzach": "Determination and resilience. Emotional strength and passion. Creative expression.",
-      "hod": "Mental clarity and communication. Analytical thinking. Spiritual understanding.",
-      "yesod": "Astral connection and dreams. Subconscious and intuition. Foundation of manifestation.",
-      "malkut": "Physical world and matter. Grounding and realization. Daily life."
-    },
-    "compatibility": {
-      "very_high": "There is a deep bond between your souls. {s1} and {s2} energies complement each other, together forming high spiritual harmony.",
-      "high": "You have a strong energy connection. {s1} and {s2} carry supportive energies.",
-      "medium": "Although {s1} and {s2} carry different energies, these differences offer growth opportunities.",
-      "low": "{s1} and {s2} energies are different. This relationship contains lessons for both sides to learn."
-    },
-    "daily_guidance": {
-      "keter": "Today is a day to connect with infinite potential. Make time for meditation and inner silence. Let divine will guide you.",
-      "chokhmah": "Today is a day of wisdom and insight. Sudden inspirations may come. Be open to new ideas and visions.",
-      "binah": "Today is a day of understanding and comprehension. Focus on details, analyze. Trust your emotional depth.",
-      "chesed": "Today is a day of love and compassion. Help others, be generous. Keep your heart chakra open.",
-      "gevurah": "Today is a day of strength and discipline. Protect your boundaries, make necessary decisions. Trust your inner power.",
-      "tiferet": "Today is a day of balance and beauty. Try to balance opposites. Appreciate inner and outer beauty.",
-      "netzach": "Today is a day of determination and victory. Focus on your goals, don't give up. Use your creative energy.",
-      "hod": "Today is a day of communication and analysis. Clarify your thoughts, share knowledge. Seek mental clarity.",
-      "yesod": "Today is a day of foundation and connection. Pay attention to your dreams, trust your intuitions. Astral connections are strong.",
-      "malkut": "Today is a day of material world and manifestation. Focus on practical matters, take concrete steps. Connect with nature."
-    },
-    "daily_meditation": {
-      "keter": "Close your eyelids and imagine a bright white light above your head. Feel this light uniting you with infinity.",
-      "chokhmah": "Imagine a gray space - neither completely light nor completely dark. Feel new ideas being born in this uncertainty.",
-      "binah": "Imagine you are in a deep blue ocean. Feel the infinite depth bringing you understanding.",
-      "chesed": "Imagine golden light radiating from your heart. Feel this light carrying love and compassion to all beings.",
-      "gevurah": "Imagine a red flame - burning but purifying. Feel this fire cleansing everything unnecessary.",
-      "tiferet": "Imagine being bathed in golden sunlight. Feel this light keeping all opposites in balance.",
-      "netzach": "Imagine you are in the middle of a lush green forest. Feel nature's resilience and victory.",
-      "hod": "Imagine an orange sphere of light illuminating your mind. Feel your thoughts becoming clearer.",
-      "yesod": "Imagine a purple light surrounding your navel area. Feel the door to the dream realm and subconscious opening.",
-      "malkut": "Imagine your feet rooting into the earth. Feel the earth's energy giving you strength."
+      "career": [
+        "office",
+        "boss",
+        "money",
+        "success",
+        "stairs",
+        "building"
+      ],
+      "love": [
+        "partner",
+        "marriage",
+        "heart",
+        "kiss",
+        "stranger",
+        "separation"
+      ],
+      "health": [
+        "hospital",
+        "doctor",
+        "body",
+        "medicine",
+        "healing",
+        "pain"
+      ],
+      "family": [
+        "mother",
+        "father",
+        "home",
+        "child",
+        "sibling",
+        "relative"
+      ],
+      "finance": [
+        "money",
+        "bank",
+        "debt",
+        "wealth",
+        "loss",
+        "finding"
+      ],
+      "education": [
+        "school",
+        "exam",
+        "teacher",
+        "book",
+        "learning",
+        "diploma"
+      ],
+      "spiritual": [
+        "light",
+        "flight",
+        "angel",
+        "god",
+        "temple",
+        "meditation"
+      ]
     }
   },
   "dream_journal": {
@@ -10363,5 +10582,10 @@
       "missing": "Missing",
       "total_keys": "Total Keys"
     }
+  },
+  "errors": {
+    "save_failed": "Failed to save. Please try again.",
+    "network_error": "Network error. Please check your connection.",
+    "generic_error": "Something went wrong. Please try again."
   }
 }

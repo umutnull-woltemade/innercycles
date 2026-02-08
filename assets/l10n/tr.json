@@ -281,7 +281,6 @@
     },
     "cosmic_connection_lost": "Kozmik bağlantı geçici olarak kesildi. Lütfen tekrar deneyin.",
     "share_on_instagram": "Instagram'da Paylaş",
-    "share_cosmic_energy": "Hikayende kozmik enerjini paylaş!",
     "search_features": {
       "horoscope_title": "Günlük Burç",
       "horoscope_desc": "Günlük kozmik rehberlik",
@@ -1241,22 +1240,57 @@
       "free": {
         "name": "Ücretsiz",
         "savings": "",
-        "features": ["Günlük burç fısıltıları", "Temel doğum haritası", "Günlük tarot kartı", "Reklam destekli"]
+        "features": [
+          "Günlük burç fısıltıları",
+          "Temel doğum haritası",
+          "Günlük tarot kartı",
+          "Reklam destekli"
+        ]
       },
       "monthly": {
         "name": "Aylık Premium",
         "savings": "",
-        "features": ["Tüm temel özellikler", "Saf kozmik deneyim (reklamsız)", "Derin gezegen yorumları", "Sınırsız tarot seansları", "Ruh ikizi uyum analizi", "Kabalistik sırlar", "Aurik enerji okuması", "Gezegen transitleri", "Öncelikli kozmik rehberlik"]
+        "features": [
+          "Tüm temel özellikler",
+          "Saf kozmik deneyim (reklamsız)",
+          "Derin gezegen yorumları",
+          "Sınırsız tarot seansları",
+          "Ruh ikizi uyum analizi",
+          "Kabalistik sırlar",
+          "Aurik enerji okuması",
+          "Gezegen transitleri",
+          "Öncelikli kozmik rehberlik"
+        ]
       },
       "yearly": {
         "name": "Yıllık Premium",
         "savings": "%77 tasarruf",
-        "features": ["Tüm temel özellikler", "Saf kozmik deneyim (reklamsız)", "Derin gezegen yorumları", "Sınırsız tarot seansları", "Ruh ikizi uyum analizi", "Kabalistik sırlar", "Aurik enerji okuması", "Gezegen transitleri", "Öncelikli kozmik rehberlik"]
+        "features": [
+          "Tüm temel özellikler",
+          "Saf kozmik deneyim (reklamsız)",
+          "Derin gezegen yorumları",
+          "Sınırsız tarot seansları",
+          "Ruh ikizi uyum analizi",
+          "Kabalistik sırlar",
+          "Aurik enerji okuması",
+          "Gezegen transitleri",
+          "Öncelikli kozmik rehberlik"
+        ]
       },
       "lifetime": {
         "name": "Ömür Boyu Premium",
         "savings": "Tek seferlik ödeme",
-        "features": ["Tüm temel özellikler", "Saf kozmik deneyim (reklamsız)", "Derin gezegen yorumları", "Sınırsız tarot seansları", "Ruh ikizi uyum analizi", "Kabalistik sırlar", "Aurik enerji okuması", "Gezegen transitleri", "Öncelikli kozmik rehberlik"]
+        "features": [
+          "Tüm temel özellikler",
+          "Saf kozmik deneyim (reklamsız)",
+          "Derin gezegen yorumları",
+          "Sınırsız tarot seansları",
+          "Ruh ikizi uyum analizi",
+          "Kabalistik sırlar",
+          "Aurik enerji okuması",
+          "Gezegen transitleri",
+          "Öncelikli kozmik rehberlik"
+        ]
       }
     }
   },
@@ -2872,9 +2906,686 @@
     "save_note": "Notu Kaydet"
   },
   "navigation": {
-    "search": "Ara",
-    "profile": "Profil",
-    "settings": "Ayar"
+    "section_titles": {
+      "also_viewed": "Bunu Okuyanlar Şuna da Baktı",
+      "go_deeper": "Bir Adım Daha Derinleş",
+      "keep_exploring": "Keşfetmeye Devam Et",
+      "continue_without_back": "Geri Dönmeden Devam Et"
+    },
+    "cards": {
+      "todays_cosmic_energy": {
+        "title": "Bugünün Kozmik Enerjisi",
+        "description": "Gökyüzü bugün ne fısıldıyor? Günlük burç yorumlarına göz at."
+      },
+      "birth_chart_question": {
+        "title": "Doğum Haritam Ne Söylüyor?",
+        "description": "Kozmik parmak izini keşfet — ücretsiz hesapla."
+      },
+      "partner_compatible": {
+        "title": "Partnerimle Uyumlu muyuz?",
+        "description": "İki haritanın dansını gör."
+      },
+      "current_transits": {
+        "title": "Şu Anki Transitler",
+        "description": "Gökyüzündeki hareketler seni nasıl etkiliyor?"
+      },
+      "dream_interpretation": {
+        "title": "Rüyanı Anlat, Birlikte Keşfedelim",
+        "description": "Bu gece ne gördün? Sembolik bir yolculuğa çıkalım."
+      },
+      "cosmic_guidance": {
+        "title": "Kozmik Rehberlik Al",
+        "description": "İçindeki soruyu sor, yıldızlar yanıt versin."
+      },
+      "tarot_insight": {
+        "title": "Tarot ile İçgörü",
+        "description": "Bilinçaltının aynasına bak — günlük kart çek."
+      },
+      "number_secrets": {
+        "title": "Sayılarının Sırrı",
+        "description": "Doğum tarihin ve ismin ne anlatıyor?"
+      },
+      "energy_field": {
+        "title": "Enerji Alanın",
+        "description": "Auranın renkleri ve chakra dengen."
+      },
+      "kozmoz_discovery": {
+        "title": "Kozmoz Keşif",
+        "description": "Tüm özellikler tek yerde"
+      },
+      "astrology_glossary": {
+        "title": "Astroloji Sözlüğü",
+        "description": "Terimleri öğren"
+      },
+      "premium_features": {
+        "title": "Premium Özellikler",
+        "description": "Gelişmiş astroloji araçları"
+      },
+      "most_read_scorpio": {
+        "title": "En Çok Okunan: Akrep",
+        "description": "Gizemli sular bugün ne diyor?"
+      },
+      "rising_trend_aquarius": {
+        "title": "Yükselen Trend: Kova",
+        "description": "Değişimin rüzgarları esiyor."
+      },
+      "weekly_overview": {
+        "title": "Haftalık Genel Bakış",
+        "description": "Bu hafta tüm burçları neler bekliyor?"
+      },
+      "monthly_depth": {
+        "title": "Aylık Derinlik",
+        "description": "Ayın büyük teması ne?"
+      },
+      "calculate_birth_chart": {
+        "title": "Doğum Haritanı Hesapla",
+        "description": "Güneş burcunun ötesini gör."
+      },
+      "relationship_compatibility": {
+        "title": "İlişki Uyumu",
+        "description": "Sen ve o — kozmik dans nasıl?"
+      },
+      "daily_tarot": {
+        "title": "Günlük Tarot",
+        "description": "Kartlar bugün ne diyor?"
+      },
+      "home": {
+        "title": "Ana Sayfa",
+        "description": "Başa dön"
+      },
+      "kozmoz_hub": {
+        "title": "Kozmoz Hub",
+        "description": "Tüm özellikler"
+      },
+      "all_signs": {
+        "title": "Tüm Burçlar",
+        "description": "12 burcu gez"
+      },
+      "sign_compatibility": {
+        "title": "Burç Uyumu",
+        "description": "İkili analiz"
+      },
+      "synastry_analysis": {
+        "title": "Synastry Analizi",
+        "description": "Haritaları detaylı karşılaştır."
+      },
+      "composite_chart": {
+        "title": "Kompozit Harita",
+        "description": "İlişkinin kendi haritası."
+      },
+      "solar_return": {
+        "title": "Solar Return",
+        "description": "Bu yılın haritası nasıl?"
+      },
+      "progressions": {
+        "title": "Progresyonlar",
+        "description": "İçsel evrimini takip et."
+      },
+      "vedic_chart": {
+        "title": "Vedik Harita",
+        "description": "Hint astrolojisi perspektifi."
+      },
+      "draconic_chart": {
+        "title": "Drakonik Harita",
+        "description": "Ruhsal kökenin."
+      },
+      "asteroids": {
+        "title": "Asteroidler",
+        "description": "Chiron, Lilith ve diğerleri."
+      },
+      "numerology": {
+        "title": "Numeroloji",
+        "description": "Sayıların bilgeliği."
+      },
+      "kabbalah": {
+        "title": "Kabala",
+        "description": "Tarot ve Hayat Ağacı bağlantısı."
+      },
+      "aura_reading": {
+        "title": "Aura Okuma",
+        "description": "Enerji alanını keşfet."
+      },
+      "chakra_analysis": {
+        "title": "Chakra Analizi",
+        "description": "Enerji merkezlerin."
+      },
+      "moon_rituals": {
+        "title": "Ay Ritüelleri",
+        "description": "Enerji temizliği pratikleri."
+      },
+      "saturn_return": {
+        "title": "Satürn Dönüşü",
+        "description": "29 yaş krizi."
+      },
+      "retrograde_calendar": {
+        "title": "Retrograd Takvimi",
+        "description": "Merkür retrosu ne zaman?"
+      },
+      "electional_astrology": {
+        "title": "Electional Astroloji",
+        "description": "Uygun zamanları seç."
+      },
+      "celebrity_couples": {
+        "title": "Ünlü Çiftler",
+        "description": "Ünlülerin uyumu"
+      },
+      "dream_tonight": {
+        "title": "Bu Gece Rüyanda Ne Gördün?",
+        "description": "Burç enerjin rüyalarına nasıl yansıyor?"
+      },
+      "daily_cosmic_message": {
+        "title": "Günlük Kozmik Mesajın",
+        "description": "Bugün evren sana ne söylemek istiyor?"
+      },
+      "compare_chart_today": {
+        "description": "Haritanı bugünün gökyüzüyle karşılaştır."
+      },
+      "chart_connected_dreams": {
+        "title": "Haritanla Bağlantılı Rüyalar",
+        "description": "Gezegenler rüyalarına nasıl yansıyor?"
+      },
+      "personal_cosmic_message": {
+        "title": "Kişisel Kozmik Mesaj",
+        "description": "Haritana özel rehberlik."
+      },
+      "numerology_mystery": {
+        "description": "Sayıların gizemi — benzer bir yolculuk."
+      },
+      "daily_horoscope": {
+        "title": "Günlük Burç",
+        "description": "Tarotla birlikte oku."
+      },
+      "read_with_tarot": {
+        "description": "Tarotla birlikte oku."
+      },
+      "decode_dream_symbols": {
+        "title": "Rüyandaki Sembolleri Çöz",
+        "description": "Kartlar ve rüyalar benzer bir dil konuşur."
+      },
+      "cosmic_guidance_beyond": {
+        "title": "Kozmik Rehberlik",
+        "description": "Kartların ötesinde bir mesaj."
+      },
+      "birth_chart": {
+        "title": "Doğum Haritası",
+        "description": "Kozmik kimliğin."
+      },
+      "cosmic_identity": {
+        "description": "Kozmik kimliğin."
+      },
+      "tarot_ritual": {
+        "title": "Tarot Ritüeli",
+        "description": "Kart çekme meditasyonu."
+      },
+      "all_analyses": {
+        "title": "Tüm Çözümlemeler",
+        "description": "Diğer keşif yolları"
+      },
+      "other_exploration_paths": {
+        "description": "Diğer keşif yolları"
+      },
+      "tarot_terms": {
+        "description": "Tarot terimleri"
+      },
+      "kabbalah_numbers": {
+        "title": "Kabala Sayıları",
+        "description": "Sayıların mistik kökeni."
+      },
+      "astrological_perspective": {
+        "description": "Astrolojik perspektif."
+      },
+      "tarot": {
+        "title": "Tarot",
+        "description": "Günlük kart."
+      },
+      "numbers_in_cards": {
+        "description": "Kartlardaki sayılar."
+      },
+      "numerical_compatibility": {
+        "description": "Sayısal uyum analizi."
+      },
+      "dream_with_numbers": {
+        "title": "Sayılarla Rüya Yorumu",
+        "description": "Rüyandaki sayılar ne anlatıyor?"
+      },
+      "personal_year_message": {
+        "title": "Kişisel Yıl Mesajı",
+        "description": "Bu yılın sayısal enerjisi."
+      },
+      "read_with_numbers": {
+        "description": "Sayılarla birlikte oku."
+      },
+      "aura_colors": {
+        "title": "Aura Renkleri",
+        "description": "Enerji alanın."
+      },
+      "chakra_balance": {
+        "title": "Chakra Dengesi",
+        "description": "Sayılar ve chakralar."
+      },
+      "numbers_and_chakras": {
+        "description": "Sayılar ve chakralar."
+      },
+      "other_systems": {
+        "description": "Diğer sistemler"
+      },
+      "number_meanings": {
+        "title": "Sayı Anlamları",
+        "description": "1-9 ve master sayılar"
+      },
+      "synastry_depth": {
+        "title": "Synastry Derinliği",
+        "description": "Haritaları detaylı karşılaştır."
+      },
+      "love_horoscope": {
+        "title": "Aşk Burcu Yorumu",
+        "description": "Haftalık aşk enerjisi"
+      },
+      "venus_and_mars": {
+        "title": "Venüs ve Mars",
+        "description": "Aşk gezegenlerini incele."
+      },
+      "relationship_dreams": {
+        "title": "İlişki Rüyaları",
+        "description": "Partnerinle ilgili rüyalar ne anlatıyor?"
+      },
+      "relationship_guidance": {
+        "title": "İlişki Rehberliği",
+        "description": "Kozmik perspektif."
+      },
+      "cosmic_perspective": {
+        "description": "Kozmik perspektif."
+      },
+      "love_tarot": {
+        "title": "Aşk Tarot'u",
+        "description": "İlişki için kart çek."
+      },
+      "numerical_harmony": {
+        "title": "Sayısal Uyum",
+        "description": "İsimlerle numeroloji."
+      },
+      "venus_transit": {
+        "title": "Venüs Transiti",
+        "description": "Aşk gezegeni nerede?"
+      },
+      "sign_pages": {
+        "description": "Burç sayfaları"
+      },
+      "discover_energy_centers": {
+        "description": "Enerji merkezlerini keşfet."
+      },
+      "cosmic_energy_map": {
+        "description": "Kozmik enerji haritası."
+      },
+      "energy_reading_path": {
+        "description": "Enerji okuma yolu."
+      },
+      "energy_dreams": {
+        "title": "Enerji Rüyaları",
+        "description": "Renkler ve ışık rüyalarının anlamı."
+      },
+      "daily_energy_message": {
+        "title": "Günlük Enerji Mesajı",
+        "description": "Bugünün enerji akışı."
+      },
+      "numerical_vibrations": {
+        "description": "Sayısal titreşimler."
+      },
+      "sefirot_energies": {
+        "description": "Sefirot enerjileri."
+      },
+      "cosmic_energy": {
+        "description": "Kozmik enerji."
+      },
+      "color_meanings": {
+        "title": "Renk Anlamları",
+        "description": "Aura renkleri sözlüğü"
+      },
+      "tarot_and_paths": {
+        "title": "Tarot ve Patikalar",
+        "description": "22 Major Arcana, 22 patika."
+      },
+      "gematria_and_numbers": {
+        "description": "Gematria ve sayılar."
+      },
+      "astrology_connection": {
+        "title": "Astroloji Bağlantısı",
+        "description": "Sefirot ve gezegenler."
+      },
+      "chakra_system": {
+        "title": "Chakra Sistemi",
+        "description": "Doğu ve Batı enerji haritaları."
+      },
+      "mystic_dreams": {
+        "title": "Mistik Rüyalar",
+        "description": "Ruhani semboller ve rüyalar."
+      },
+      "sefirot_meditation": {
+        "title": "Sefirot Meditasyonu",
+        "description": "Hayat Ağacında yolculuk."
+      },
+      "spiritual_practices": {
+        "description": "Spiritüel pratikler."
+      },
+      "sefirot_glossary": {
+        "title": "Sefirot Sözlüğü",
+        "description": "10 sefirah anlamları"
+      },
+      "my_birth_chart": {
+        "title": "Doğum Haritam",
+        "description": "Kozmik kimliğin"
+      },
+      "transits_affecting_chart": {
+        "description": "Transitler haritama nasıl etkiliyor?"
+      },
+      "this_years_chart": {
+        "description": "Bu yılın haritası."
+      },
+      "inner_evolution_tracking": {
+        "description": "İçsel evrim takibi."
+      },
+      "transit_dreams": {
+        "title": "Transit Döneminde Rüyalar",
+        "description": "Yoğun transitlerde rüyalar ne anlatır?"
+      },
+      "personal_transit_guidance": {
+        "title": "Kişisel Transit Rehberliği",
+        "description": "Bu dönem için özel mesaj."
+      },
+      "todays_energy": {
+        "description": "Bugünün enerjisi."
+      },
+      "planet_glossary": {
+        "title": "Gezegen Sözlüğü",
+        "description": "Transit anlamları"
+      },
+      "moon_phases_dreams": {
+        "title": "Ay Fazları ve Rüyalar",
+        "description": "Ayın döngüsü rüyaları nasıl etkiler?"
+      },
+      "sign_dream_patterns": {
+        "title": "Burç ve Rüya Kalıpları",
+        "description": "Burcun rüyalarına nasıl yansıyor?"
+      },
+      "subconscious_tarot": {
+        "title": "Bilinçaltı ve Tarot",
+        "description": "Rüyalar ve kartlar benzer dil konuşur."
+      },
+      "twelfth_house_dreams": {
+        "title": "12. Ev ve Rüyalar",
+        "description": "Natal haritanda rüya evi."
+      },
+      "your_cosmic_message": {
+        "title": "Kozmik Mesajın",
+        "description": "Rüyanın ötesinde rehberlik."
+      },
+      "guidance_beyond_dream": {
+        "description": "Rüyanın ötesinde rehberlik."
+      },
+      "tell_another_dream": {
+        "title": "Başka Bir Rüya Anlat",
+        "description": "Yeni bir yolculuğa başla."
+      },
+      "chakra_and_dreams": {
+        "title": "Chakra ve Rüyalar",
+        "description": "Enerji merkezleri ve bilinçaltı."
+      },
+      "neptune_transit": {
+        "title": "Neptün Transiti",
+        "description": "Rüya gezegeni nerede?"
+      },
+      "symbol_glossary": {
+        "title": "Sembol Sözlüğü",
+        "description": "Rüya sembolleri"
+      },
+      "daily_horoscope_reading": {
+        "title": "Günlük Burç Yorumu",
+        "description": "Bugünün kozmik enerjisi."
+      },
+      "cards_message": {
+        "description": "Kartların mesajı."
+      },
+      "moon_phase": {
+        "title": "Ay Fazı",
+        "description": "Ayın bugünkü etkisi."
+      },
+      "transits": {
+        "title": "Transitler",
+        "description": "Gökyüzü bugün."
+      },
+      "sky_today": {
+        "description": "Gökyüzü bugün."
+      },
+      "tell_your_dream": {
+        "title": "Rüyanı Anlat",
+        "description": "Kozmik mesajın rüyalara nasıl yansıyor?"
+      },
+      "cosmic_message_dreams": {
+        "description": "Kozmik mesajın rüyalara nasıl yansıyor?"
+      },
+      "cosmic_discovery": {
+        "title": "Kozmik Keşif",
+        "description": "Daha fazla içgörü al."
+      },
+      "get_more_insight": {
+        "description": "Daha fazla içgörü al."
+      },
+      "my_cosmic_identity": {
+        "description": "Kozmik kimliğim."
+      },
+      "my_energy_centers": {
+        "description": "Enerji merkezlerim."
+      },
+      "advanced_astrology": {
+        "description": "Gelişmiş astroloji"
+      },
+      "learn_concepts": {
+        "description": "Kavramları öğren"
+      },
+      "energy_field_chakras": {
+        "description": "Enerji alanın ve chakralar."
+      },
+      "chakra_balancing_practices": {
+        "description": "Chakra dengeleme pratikleri."
+      },
+      "kabbalah_sefirot": {
+        "title": "Kabala Sefirotları",
+        "description": "Doğu-Batı enerji haritaları."
+      },
+      "east_west_energy_maps": {
+        "description": "Doğu-Batı enerji haritaları."
+      },
+      "planets_and_chakras": {
+        "description": "Gezegenler ve chakralar."
+      },
+      "energy_blockages_dreams": {
+        "description": "Enerji blokajları rüyalara nasıl yansır?"
+      },
+      "energy_guidance": {
+        "title": "Enerji Rehberliği",
+        "description": "Chakralarına özel mesaj."
+      },
+      "chakra_special_message": {
+        "description": "Chakralarına özel mesaj."
+      },
+      "energy_reading": {
+        "description": "Enerji okuma."
+      },
+      "seven_chakra_guide": {
+        "title": "7 Chakra Rehberi",
+        "description": "Detaylı açıklamalar"
+      },
+      "moon_calendar": {
+        "title": "Ay Takvimi",
+        "description": "Yeniay ve dolunay tarihleri."
+      },
+      "chakra_balancing": {
+        "title": "Chakra Dengeleme",
+        "description": "Ritüellerle enerji çalışması."
+      },
+      "energy_work_rituals": {
+        "description": "Ritüellerle enerji çalışması."
+      },
+      "aura_cleansing": {
+        "title": "Aura Temizliği",
+        "description": "Enerji alanını arındır."
+      },
+      "post_ritual_dreams": {
+        "title": "Ritüel Sonrası Rüyalar",
+        "description": "Ritüeller rüyaları nasıl etkiler?"
+      },
+      "intention_guidance": {
+        "title": "Niyet Rehberliği",
+        "description": "Bu ay için kozmik mesaj."
+      },
+      "moon_planet_positions": {
+        "description": "Ay ve gezegen konumları."
+      },
+      "kabbalah_meditation": {
+        "title": "Kabala Meditasyonu",
+        "description": "Sefirot yolculuğu."
+      },
+      "other_practices": {
+        "description": "Diğer pratikler"
+      },
+      "ritual_guide": {
+        "title": "Ritüel Rehberi",
+        "description": "Adım adım talimatlar"
+      },
+      "daily_card": {
+        "description": "Günlük kart."
+      },
+      "speak_subconscious": {
+        "description": "Bilinçaltınla konuş."
+      },
+      "get_personal_message": {
+        "description": "Kişisel mesaj al."
+      },
+      "secret_of_numbers": {
+        "description": "Sayıların sırrı."
+      },
+      "aura": {
+        "title": "Aura",
+        "description": "Enerji alanın."
+      },
+      "rituals": {
+        "title": "Ritüeller",
+        "description": "Ay pratikleri."
+      },
+      "moon_practices": {
+        "description": "Ay pratikleri."
+      },
+      "twelve_signs": {
+        "description": "12 burç"
+      },
+      "glossary": {
+        "title": "Sözlük",
+        "description": "Terimler"
+      },
+      "terms": {
+        "description": "Terimler"
+      }
+    },
+    "zodiac": {
+      "aries": {
+        "name": "Koç",
+        "ruler": "Mars",
+        "sign_title": "Koç Burcu",
+        "dreams_title": "Koç Rüyaları",
+        "ruler_transit": "Mars Transiti"
+      },
+      "taurus": {
+        "name": "Boğa",
+        "ruler": "Venüs",
+        "sign_title": "Boğa Burcu",
+        "dreams_title": "Boğa Rüyaları",
+        "ruler_transit": "Venüs Transiti"
+      },
+      "gemini": {
+        "name": "İkizler",
+        "ruler": "Merkür",
+        "sign_title": "İkizler Burcu",
+        "dreams_title": "İkizler Rüyaları",
+        "ruler_transit": "Merkür Transiti"
+      },
+      "cancer": {
+        "name": "Yengeç",
+        "ruler": "Ay",
+        "sign_title": "Yengeç Burcu",
+        "dreams_title": "Yengeç Rüyaları",
+        "ruler_transit": "Ay Transiti"
+      },
+      "leo": {
+        "name": "Aslan",
+        "ruler": "Güneş",
+        "sign_title": "Aslan Burcu",
+        "dreams_title": "Aslan Rüyaları",
+        "ruler_transit": "Güneş Transiti"
+      },
+      "virgo": {
+        "name": "Başak",
+        "ruler": "Merkür",
+        "sign_title": "Başak Burcu",
+        "dreams_title": "Başak Rüyaları",
+        "ruler_transit": "Merkür Transiti"
+      },
+      "libra": {
+        "name": "Terazi",
+        "ruler": "Venüs",
+        "sign_title": "Terazi Burcu",
+        "dreams_title": "Terazi Rüyaları",
+        "ruler_transit": "Venüs Transiti"
+      },
+      "scorpio": {
+        "name": "Akrep",
+        "ruler": "Pluto",
+        "sign_title": "Akrep Burcu",
+        "dreams_title": "Akrep Rüyaları",
+        "ruler_transit": "Pluto Transiti"
+      },
+      "sagittarius": {
+        "name": "Yay",
+        "ruler": "Jüpiter",
+        "sign_title": "Yay Burcu",
+        "dreams_title": "Yay Rüyaları",
+        "ruler_transit": "Jüpiter Transiti"
+      },
+      "capricorn": {
+        "name": "Oğlak",
+        "ruler": "Satürn",
+        "sign_title": "Oğlak Burcu",
+        "dreams_title": "Oğlak Rüyaları",
+        "ruler_transit": "Satürn Transiti"
+      },
+      "aquarius": {
+        "name": "Kova",
+        "ruler": "Uranüs",
+        "sign_title": "Kova Burcu",
+        "dreams_title": "Kova Rüyaları",
+        "ruler_transit": "Uranüs Transiti"
+      },
+      "pisces": {
+        "name": "Balık",
+        "ruler": "Neptün",
+        "sign_title": "Balık Burcu",
+        "dreams_title": "Balık Rüyaları",
+        "ruler_transit": "Neptün Transiti"
+      }
+    },
+    "phrases": {
+      "how_this_pair_dances": "Bu ikili nasıl dans ediyor?",
+      "same_element_different_energy": "Aynı element, farklı enerji.",
+      "sibling_element_energy": "Kardeş element enerjisi.",
+      "what_awaits_this_week": "Bu hafta seni neler bekliyor?",
+      "which_dreams_this_sign_sees": "Bu burçta insanlar en çok hangi rüyaları görür?",
+      "special_message_for_today": "Bugün Sana Özel Mesaj",
+      "cosmic_guidance": "Kozmik rehberlik al.",
+      "beyond_your_sun_sign": "{sign} Güneşinin ötesinde ne var?",
+      "where_is_your_ruler": "Yönetici gezegenin şu an nerede?",
+      "reading_aligned_with_energy": "{sign} enerjisiyle uyumlu bir okuma.",
+      "compatibility_with": "{sign} ile Uyumun",
+      "weekly_reading": "Haftalık {sign} Yorumu"
+    }
   },
   "router": {
     "not_found_title": "Sayfa Bulunamadı",
@@ -4263,7 +4974,18 @@
     "todays_aura_energy": "Bugünün Aura Enerjisi",
     "daily_affirmation": "Günlük Olumlamanız",
     "cleansing": "Aura Temizleme",
-    "spiritual_advice": "Spiritüel Tavsiye",
+    "spiritual_advice": {
+      "red": "Enerjini toprakla. Fiziksel aktivite ve doğa yürüyüşleri auranı dengeleyecektir.",
+      "orange": "Yaratıcılığını ifade et. Sanat, dans veya müzik auranı güçlendirecektir.",
+      "yellow": "Zihinsel berraklığını koru. Öğrenme ve öğretme auranı parlatacaktır.",
+      "green": "Kalbini aç. Şifa çalışmaları ve başkalarına yardım auranı büyütecektir.",
+      "blue": "Hakikatini konuş. Dürüst iletişim ve özgün ifade auranı güçlendirecektir.",
+      "indigo": "Sezgine güven. Meditasyon ve rüya çalışması auranı derinleştirecektir.",
+      "violet": "Kozmik bağlantını güçlendir. Spiritüel pratikler ve hizmet auranı yükseltecektir.",
+      "pink": "Koşulsuz sevgiyi yay. Şefkat ve empati auranı genişletecektir.",
+      "white": "Saflığını koru. Arınma ritüelleri ve meditasyon auranı koruyacaktır.",
+      "gold": "İlahi bağlantını hatırla. Dua ve şükran auranı parlatacaktır."
+    },
     "balancing_advice": "Dengeleme Tavsiyesi",
     "mantra": "Mantra",
     "strongest": "En Güçlü",
@@ -4301,18 +5023,6 @@
     "chakra_advice_throat": "Duygularınızı ifade edin, şarkı söyleyin. Mavi tonlarda giyinin ve bol su için.",
     "chakra_advice_third_eye": "Meditasyon yapın ve rüyalarınızı kaydedin. Mor/çivit renklerine odaklanın.",
     "chakra_advice_crown": "Sessizlikte vakit geçirin, meditasyon yapın. Beyaz veya mor giyin ve doğayla bağlantı kurun.",
-    "spiritual_advice": {
-      "red": "Enerjini toprakla. Fiziksel aktivite ve doğa yürüyüşleri auranı dengeleyecektir.",
-      "orange": "Yaratıcılığını ifade et. Sanat, dans veya müzik auranı güçlendirecektir.",
-      "yellow": "Zihinsel berraklığını koru. Öğrenme ve öğretme auranı parlatacaktır.",
-      "green": "Kalbini aç. Şifa çalışmaları ve başkalarına yardım auranı büyütecektir.",
-      "blue": "Hakikatini konuş. Dürüst iletişim ve özgün ifade auranı güçlendirecektir.",
-      "indigo": "Sezgine güven. Meditasyon ve rüya çalışması auranı derinleştirecektir.",
-      "violet": "Kozmik bağlantını güçlendir. Spiritüel pratikler ve hizmet auranı yükseltecektir.",
-      "pink": "Koşulsuz sevgiyi yay. Şefkat ve empati auranı genişletecektir.",
-      "white": "Saflığını koru. Arınma ritüelleri ve meditasyon auranı koruyacaktır.",
-      "gold": "İlahi bağlantını hatırla. Dua ve şükran auranı parlatacaktır."
-    },
     "affirmations": {
       "red": "Güçlü ve güvendeyim. Korkusuzca ilerlerim.",
       "orange": "Yaratıcılığım sınırsız. Neşeyle ifade ederim.",
@@ -4391,32 +5101,6 @@
     }
   },
   "kabbalah": {
-    "title": "Kabala",
-    "tree_of_life_secret": "Hayat Ağacının Sırrı",
-    "tree_of_life_intro": "Kabala, evrenin ve ruhun yapısını anlatan kadim bir bilgelik sistemidir. Hayat Ağacı (Etz Chaim), on Sefirah'tan oluşur - her biri ilahi enerjinin farklı bir yönünü temsil eder. İsmin ve doğum tarihin, bu kozmik ağaçtaki yerini belirler. Bu bilgi, ruhsal yolculuğunda sana rehberlik edecektir.",
-    "life_path_sefirah": "Yaşam Yolu Sefirah'ın",
-    "name_kabbalah": "İsim Kabalası",
-    "name_analysis": "İsim Analizi",
-    "kabbalah_number": "Kabala",
-    "soul_number": "Ruh",
-    "persona_number": "Persona",
-    "name_sefirah": "İsim Sefirah'ın",
-    "personal_interpretation": "Kişisel Kabalistik Yorum",
-    "daily_energy": "Günlük Kabala Enerjisi",
-    "todays_sefirah": "Bugünün Sefirah'ı",
-    "daily_meditation": "Günlük Meditasyon",
-    "tree_of_life": "Hayat Ağacı",
-    "your_place_on_tree": "Hayat Ağacındaki Yerin",
-    "marked_red": "Kırmızı ile işaretli: Yaşam Yolu Sefirah'ın",
-    "marked_blue": "Mavi ile işaretli: İsim Sefirah'ın",
-    "spiritual_journey": "Spiritüel Yolculuğun",
-    "color": "Renk",
-    "number": "Sayı",
-    "pillar": "Sütun",
-    "archangel": "Melek",
-    "virtue": "Erdem",
-    "caution": "Dikkat",
-    "planet": "Gezegen",
     "sefirah_names": {
       "keter": "Taç (Keter)",
       "chokhmah": "Bilgelik (Hokmah)",
@@ -4425,62 +5109,51 @@
       "gevurah": "Güç (Gevurah)",
       "tiferet": "Güzellik (Tiferet)",
       "netzach": "Zafer (Netsah)",
-      "hod": "Görkem (Hod)",
+      "hod": "İhtişam (Hod)",
       "yesod": "Temel (Yesod)",
-      "malkut": "Krallık (Malkut)"
+      "malkut": "Krallık (Malhut)"
     },
-    "soul_label": "Ruh",
-    "persona_label": "Persona",
-    "soul_meanings": {
-      "1": "Birlik arayışı, spiritüel özlem",
-      "2": "Sezgisel bilgelik, ilham",
-      "3": "Derin anlayış, kavrayış",
-      "4": "Sevgi ihtiyacı, şefkat",
-      "5": "Güç arayışı, bağımsızlık",
-      "6": "Uyum özlemi, denge",
-      "7": "Tutku, yaratıcı ifade",
-      "8": "Bilgi aşkı, iletişim",
-      "9": "Rüyalar, sezgisel derinlik",
-      "10": "Topraklanma, gerçekleşme",
-      "default": "Mistik derinlik"
+    "sefirah_meanings": {
+      "keter": "Sonsuzlukla birleşme noktası. İlahi iradenin kaynağı. Tüm potansiyellerin başlangıcı.",
+      "chokhmah": "Saf bilgelik ve ilham. Yaratıcı kıvılcım. Eril enerjinin ve vizyonun kaynağı.",
+      "binah": "Derin anlayış ve kavrayış. Form veren enerji. Dişil bilgelik ve sezgi.",
+      "chesed": "Koşulsuz sevgi ve şefkat. Genişleme ve bolluk. Cömertlik ve şifa.",
+      "gevurah": "İç güç ve disiplin. Sınırlar ve adalet. Arınma ve odaklanma.",
+      "tiferet": "Denge ve uyumun merkezi. Güzellik ve hakikat. Kalp ve ruhun birleşimi.",
+      "netzach": "Kararlılık ve dayanıklılık. Duygusal güç ve tutku. Yaratıcı ifade.",
+      "hod": "Zihinsel berraklık ve iletişim. Analitik düşünce. Manevi anlayış.",
+      "yesod": "Astral bağlantı ve rüyalar. Bilinçaltı ve sezgi. Tezahürün temeli.",
+      "malkut": "Fiziksel dünya ve madde. Topraklama ve gerçekleştirme. Günlük yaşam."
     },
-    "persona_meanings": {
-      "1": "Lider görünüm, ilham verici",
-      "2": "Bilge görünüm, danışman",
-      "3": "Analitik, düşünceli",
-      "4": "Yardımsever, sıcak",
-      "5": "Güçlü, kararlı",
-      "6": "Dengeli, uyumlu",
-      "7": "Tutkulu, çekici",
-      "8": "Zeki, konuşkan",
-      "9": "Gizemli, sezgisel",
-      "10": "Pratik, güvenilir",
-      "default": "Çok yönlü"
+    "compatibility": {
+      "very_high": "Ruhlarınız arasında derin bir bağ var. {s1} ve {s2} enerjileri birbirini tamamlıyor, birlikte yüksek spiritüel uyum oluşturuyorsunuz.",
+      "high": "Güçlü bir enerji bağlantınız var. {s1} ve {s2} destekleyici enerjiler taşıyor.",
+      "medium": "{s1} ve {s2} farklı enerjiler taşısa da, bu farklar büyüme fırsatları sunuyor.",
+      "low": "{s1} ve {s2} enerjileri farklı. Bu ilişki her iki taraf için de öğrenilecek dersler içeriyor."
     },
-    "interpretation": {
-      "name_intro": "\"{name}\" ismi, Gematria değeri {gematria} ile {sefirah} enerjisini taşıyor. ",
-      "sefirah_keter": "Ruhun sonsuzlukla bağlantılı - ilahi iradenin taşıyıcısı olarak doğdun. Sezgilerin güçlü, vizyonun geniş. ",
-      "sefirah_chokhmah": "Bilgelik tohumlarını taşıyorsun - ani içgörüler ve ilhamlar senin için doğal. Vizyoner bir ruh. ",
-      "sefirah_binah": "Derin anlayış kapasiten var - kavramları derinlemesine işler, form verirsin. Analitik ve sezgisel. ",
-      "sefirah_chesed": "Merhamet ve sevgi senin doğan - şifa verici, besleyici bir enerji taşıyorsun. Cömertlik ruhunda. ",
-      "sefirah_gevurah": "İç gücün güçlü - disiplin ve kararlılık senin silahların. Adalet duygun keskin. ",
-      "sefirah_tiferet": "Denge noktasındasın - güzellik ve uyumu doğal olarak yaratırsın. Kalp merkezlisin. ",
-      "sefirah_netzach": "Azim ve tutku senin yolun - yaratıcı enerjin tükenmez. Hedeflerine ulaşana dek durmazsın. ",
-      "sefirah_hod": "İletişim ve analiz yeteneğin güçlü - düşüncelerini berrak ifade edersin. Zihinsel parlaklık. ",
-      "sefirah_yesod": "Sezgisel derinliğin var - rüyalar ve semboller seninle konuşur. Astral bağlantın güçlü. ",
-      "sefirah_malkut": "Topraklanmış ve pratiksin - fikirleri gerçeğe dönüştürme yeteneğin var. Dünya senin krallığın. ",
-      "balance_harmony": "İç dünyan ile dışa yansıttığın uyum içinde - otantik bir kişilik.",
-      "balance_dynamic": "İç ve dış dünyaların arasında ilginç bir dinamik var - bu gerilim büyüme potansiyeli taşıyor.",
-      "balance_mystery": "Derin iç dünyan ile gösterdiğin yüz farklı - bu gizem seni güçlü kılıyor."
+    "daily_guidance": {
+      "keter": "Bugün sonsuz potansiyelle bağlantı kurma günü. Meditasyon ve iç sessizlik için zaman ayır. İlahi iradenin seni yönlendirmesine izin ver.",
+      "chokhmah": "Bugün bilgelik ve içgörü günü. Ani ilhamlar gelebilir. Yeni fikirlere ve vizyonlara açık ol.",
+      "binah": "Bugün anlayış ve kavrayış günü. Detaylara odaklan, analiz et. Duygusal derinliğine güven.",
+      "chesed": "Bugün sevgi ve şefkat günü. Başkalarına yardım et, cömert ol. Kalp çakranı açık tut.",
+      "gevurah": "Bugün güç ve disiplin günü. Sınırlarını koru, gerekli kararları al. İç gücüne güven.",
+      "tiferet": "Bugün denge ve güzellik günü. Karşıtları dengelemeye çalış. İç ve dış güzelliği takdir et.",
+      "netzach": "Bugün kararlılık ve zafer günü. Hedeflerine odaklan, vazgeçme. Yaratıcı enerjini kullan.",
+      "hod": "Bugün iletişim ve analiz günü. Düşüncelerini netleştir, bilgi paylaş. Zihinsel berraklık ara.",
+      "yesod": "Bugün temel ve bağlantı günü. Rüyalarına dikkat et, sezgilerine güven. Astral bağlantılar güçlü.",
+      "malkut": "Bugün maddi dünya ve tezahür günü. Pratik konulara odaklan, somut adımlar at. Doğayla bağlantı kur."
     },
-    "tree_interpretation": {
-      "middle_pillar": "Hayat Ağacı'nda Orta Sütun'da yer alıyorsun. Orta sütun, denge yoludur - zıtlıkları birleştirme, uyum yaratma görevin var. ",
-      "right_pillar": "Hayat Ağacı'nda Sağ Sütun'da yer alıyorsun. Sağ sütun, rahmet ve genişleme yoludur - sevgi, cömertlik ve yaratıcılık senin alanın. ",
-      "left_pillar": "Hayat Ağacı'nda Sol Sütun'da yer alıyorsun. Sol sütun, form ve disiplin yoludur - sınır koyma, analiz ve güç senin alanın. ",
-      "same_sefirah": "İsmin ve doğum tarihin aynı Sefirah'a işaret ediyor - bu enerjide çok güçlüsün!",
-      "full_journey": "{lifePath} ile {namePath} arasındaki yolculuğun, Hayat Ağacı'nın tamamını kapsıyor - derin bir ruhsal evrim yaşıyorsun.",
-      "unique_signature": "{lifePath} doğuştan enerjin, {namePath} ise isminle gelen titreşimin - bu ikisi birlikte benzersiz bir spiritüel imza oluşturuyor.",
-      "single_sefirah": "{lifePath} enerjisi, bu yaşamda öğrenmen gereken ana dersi temsil ediyor."
+    "daily_meditation": {
+      "keter": "Gözkapaklarını kapat ve başının üzerinde parlak beyaz bir ışık hayal et. Bu ışığın seni sonsuzlukla birleştirdiğini hisset.",
+      "chokhmah": "Gri bir boşluk hayal et - ne tamamen aydınlık ne de tamamen karanlık. Bu belirsizlikte yeni fikirlerin doğduğunu hisset.",
+      "binah": "Derin mavi bir okyanusun içinde olduğunu hayal et. Sonsuz derinliğin sana anlayış getirdiğini hisset.",
+      "chesed": "Kalbinden altın ışık yayıldığını hayal et. Bu ışığın tüm varlıklara sevgi ve şefkat taşıdığını hisset.",
+      "gevurah": "Kırmızı bir alev hayal et - yakan ama arındıran. Bu ateşin gereksiz olan her şeyi temizlediğini hisset.",
+      "tiferet": "Altın güneş ışığında yıkandığını hayal et. Bu ışığın tüm karşıtları dengede tuttuğunu hisset.",
+      "netzach": "Yemyeşil bir ormanın ortasında olduğunu hayal et. Doğanın dayanıklılığını ve zaferini hisset.",
+      "hod": "Zihnini aydınlatan turuncu bir ışık küresi hayal et. Düşüncelerinin berraklaştığını hisset.",
+      "yesod": "Göbek bölgeni saran mor bir ışık hayal et. Rüya alemine ve bilinçaltına kapının açıldığını hisset.",
+      "malkut": "Ayaklarının toprağa kök saldığını hayal et. Toprağın enerjisinin sana güç verdiğini hisset."
     }
   },
   "saturn_return": {
@@ -4810,33 +5483,143 @@
       "default": "Çocuğunuzun duygusal ihtiyaçlarını gözlemleyin."
     },
     "talents": {
-      "aries": ["Spor", "Liderlik", "Girişimcilik", "Hızlı düşünme"],
-      "taurus": ["Müzik", "Sanat", "Bahçecilik", "El işleri"],
-      "gemini": ["Yazma", "Konuşma", "Dil öğrenme", "Çoklu görev"],
-      "cancer": ["Yemek yapma", "Bakım verme", "Tarih", "Psikoloji"],
-      "leo": ["Tiyatro", "Dans", "Yaratıcı sanatlar", "Organizasyon"],
-      "virgo": ["Analiz", "El işleri", "Sağlık", "Düzenleme"],
-      "libra": ["Sanat", "Diplomasi", "Tasarım", "Sosyal beceriler"],
-      "scorpio": ["Araştırma", "Psikoloji", "Strateji", "Gözlem"],
-      "sagittarius": ["Spor", "Felsefe", "Seyahat", "Öğretme"],
-      "capricorn": ["Organizasyon", "Planlama", "İş kurma", "Müzik"],
-      "aquarius": ["Teknoloji", "Yenilik", "Sosyal konular", "Bilim"],
-      "pisces": ["Sanat", "Müzik", "Şiir", "Şifa"],
-      "default": ["Keşfedilecek yetenekler"]
+      "aries": [
+        "Spor",
+        "Liderlik",
+        "Girişimcilik",
+        "Hızlı düşünme"
+      ],
+      "taurus": [
+        "Müzik",
+        "Sanat",
+        "Bahçecilik",
+        "El işleri"
+      ],
+      "gemini": [
+        "Yazma",
+        "Konuşma",
+        "Dil öğrenme",
+        "Çoklu görev"
+      ],
+      "cancer": [
+        "Yemek yapma",
+        "Bakım verme",
+        "Tarih",
+        "Psikoloji"
+      ],
+      "leo": [
+        "Tiyatro",
+        "Dans",
+        "Yaratıcı sanatlar",
+        "Organizasyon"
+      ],
+      "virgo": [
+        "Analiz",
+        "El işleri",
+        "Sağlık",
+        "Düzenleme"
+      ],
+      "libra": [
+        "Sanat",
+        "Diplomasi",
+        "Tasarım",
+        "Sosyal beceriler"
+      ],
+      "scorpio": [
+        "Araştırma",
+        "Psikoloji",
+        "Strateji",
+        "Gözlem"
+      ],
+      "sagittarius": [
+        "Spor",
+        "Felsefe",
+        "Seyahat",
+        "Öğretme"
+      ],
+      "capricorn": [
+        "Organizasyon",
+        "Planlama",
+        "İş kurma",
+        "Müzik"
+      ],
+      "aquarius": [
+        "Teknoloji",
+        "Yenilik",
+        "Sosyal konular",
+        "Bilim"
+      ],
+      "pisces": [
+        "Sanat",
+        "Müzik",
+        "Şiir",
+        "Şifa"
+      ],
+      "default": [
+        "Keşfedilecek yetenekler"
+      ]
     },
     "challenges": {
-      "aries": ["Sabırsızlık", "Öfke kontrolü", "Sıra bekleme"],
-      "taurus": ["Değişime direnç", "İnatçılık", "Paylaşma"],
-      "gemini": ["Konsantrasyon", "Kararsızlık", "Dinleme"],
-      "cancer": ["Aşırı hassasiyet", "Bağımlılık", "Ruh hali değişimleri"],
-      "leo": ["Dikkat ihtiyacı", "Kibir", "Eleştiri alma"],
-      "virgo": ["Mükemmeliyetçilik", "Endişe", "Öz eleştiri"],
-      "libra": ["Karar verme", "Çatışmadan kaçınma", "İnsanları memnun etme"],
-      "scorpio": ["Kıskançlık", "Güven sorunları", "Kontrol ihtiyacı"],
-      "sagittarius": ["Aşırı iyimserlik", "Taahhüt", "Dürtüsellik"],
-      "capricorn": ["Aşırı ciddiyet", "İş-oyun dengesi", "Duygusal ifade"],
-      "aquarius": ["Duygusal mesafe", "İsyankarlık", "Uyum"],
-      "pisces": ["Sınırlar", "Gerçekçilik", "Kaçış eğilimi"]
+      "aries": [
+        "Sabırsızlık",
+        "Öfke kontrolü",
+        "Sıra bekleme"
+      ],
+      "taurus": [
+        "Değişime direnç",
+        "İnatçılık",
+        "Paylaşma"
+      ],
+      "gemini": [
+        "Konsantrasyon",
+        "Kararsızlık",
+        "Dinleme"
+      ],
+      "cancer": [
+        "Aşırı hassasiyet",
+        "Bağımlılık",
+        "Ruh hali değişimleri"
+      ],
+      "leo": [
+        "Dikkat ihtiyacı",
+        "Kibir",
+        "Eleştiri alma"
+      ],
+      "virgo": [
+        "Mükemmeliyetçilik",
+        "Endişe",
+        "Öz eleştiri"
+      ],
+      "libra": [
+        "Karar verme",
+        "Çatışmadan kaçınma",
+        "İnsanları memnun etme"
+      ],
+      "scorpio": [
+        "Kıskançlık",
+        "Güven sorunları",
+        "Kontrol ihtiyacı"
+      ],
+      "sagittarius": [
+        "Aşırı iyimserlik",
+        "Taahhüt",
+        "Dürtüsellik"
+      ],
+      "capricorn": [
+        "Aşırı ciddiyet",
+        "İş-oyun dengesi",
+        "Duygusal ifade"
+      ],
+      "aquarius": [
+        "Duygusal mesafe",
+        "İsyankarlık",
+        "Uyum"
+      ],
+      "pisces": [
+        "Sınırlar",
+        "Gerçekçilik",
+        "Kaçış eğilimi"
+      ]
     },
     "parenting_tips": {
       "aries": "Fiziksel aktiviteye bolca alan tanıyın. Rekabetçi oyunlar oynayın ama kaybetmeyi de öğretin. Bağımsız kararlar almasına izin verin.",
@@ -4871,10 +5654,30 @@
       "default": "Aileniz benzersiz bir dinamiğe sahip."
     },
     "family_strengths": {
-      "fire": ["Enerji ve coşku", "Cesaret", "İlham vericilik", "Motivasyon"],
-      "earth": ["Güvenilirlik", "Pratiklik", "Sadakat", "İstikrar"],
-      "air": ["İletişim", "Esneklik", "Sosyallik", "Yenilikçilik"],
-      "water": ["Empati", "Duygusal destek", "Sezgi", "Şefkat"]
+      "fire": [
+        "Enerji ve coşku",
+        "Cesaret",
+        "İlham vericilik",
+        "Motivasyon"
+      ],
+      "earth": [
+        "Güvenilirlik",
+        "Pratiklik",
+        "Sadakat",
+        "İstikrar"
+      ],
+      "air": [
+        "İletişim",
+        "Esneklik",
+        "Sosyallik",
+        "Yenilikçilik"
+      ],
+      "water": [
+        "Empati",
+        "Duygusal destek",
+        "Sezgi",
+        "Şefkat"
+      ]
     },
     "family_challenges": {
       "fire_dominant": "Öfke patlamaları ve sabırsızlık",
@@ -7370,13 +8173,10 @@
         "Ruhsallık"
       ]
     },
-    "share_on_instagram_dialog": "Instagram'da Paylaş",
     "text_copied_success": "Metin kopyalandı!",
     "open_instagram": "Instagram'ı Aç",
     "todays_message": "Bugünün Mesajı",
     "todays_cosmic_energy": "Bugünün Kozmik Enerjisi",
-    "energy_level": "Enerji Seviyesi",
-    "intuition_power": "Sezgi Gücü",
     "reflect": "Düşün",
     "action": "Hareket",
     "dominant_planet": "Dominant Gezegen",
@@ -7690,7 +8490,7 @@
       "love_energy": "AŞK ENERJİN ŞU AN",
       "love_language": "SEVGİ DİLİN",
       "ideal_partner": "İDEAL PARTNER PROFİLİN",
-      "best_matches": "EN UYUMLU BURÇLARIN",
+      "best_matches": "EN UYUMLU 3 BURCUN",
       "perfect_match": "MÜKEMMEL UYUM (90-100%)",
       "good_match": "İYİ UYUM (70-89%)",
       "relationship_warnings": "İLİŞKİDE DİKKAT ETMELERİN",
@@ -7775,7 +8575,6 @@
       "compatibility_header": "{sign} DETAYLI UYUM ANALİZİ",
       "element_compatibility": "ELEMENT UYUMU",
       "sign_by_sign_details": "BURÇ BURÇ UYUM DETAYLARI",
-      "best_matches": "EN UYUMLU 3 BURCUN",
       "challenging_matches": "EN ZORLAYICI 3 BURCUN",
       "romantic_vs_business": "ROMANTİK UYUM VS İŞ UYUMU",
       "synastry_tips": "SİNASTRİ İPUÇLARI",
@@ -9134,616 +9933,6 @@
       }
     }
   },
-  "navigation": {
-    "section_titles": {
-      "also_viewed": "Bunu Okuyanlar Şuna da Baktı",
-      "go_deeper": "Bir Adım Daha Derinleş",
-      "keep_exploring": "Keşfetmeye Devam Et",
-      "continue_without_back": "Geri Dönmeden Devam Et"
-    },
-    "cards": {
-      "todays_cosmic_energy": {
-        "title": "Bugünün Kozmik Enerjisi",
-        "description": "Gökyüzü bugün ne fısıldıyor? Günlük burç yorumlarına göz at."
-      },
-      "birth_chart_question": {
-        "title": "Doğum Haritam Ne Söylüyor?",
-        "description": "Kozmik parmak izini keşfet — ücretsiz hesapla."
-      },
-      "partner_compatible": {
-        "title": "Partnerimle Uyumlu muyuz?",
-        "description": "İki haritanın dansını gör."
-      },
-      "current_transits": {
-        "title": "Şu Anki Transitler",
-        "description": "Gökyüzündeki hareketler seni nasıl etkiliyor?"
-      },
-      "dream_interpretation": {
-        "title": "Rüyanı Anlat, Birlikte Keşfedelim",
-        "description": "Bu gece ne gördün? Sembolik bir yolculuğa çıkalım."
-      },
-      "cosmic_guidance": {
-        "title": "Kozmik Rehberlik Al",
-        "description": "İçindeki soruyu sor, yıldızlar yanıt versin."
-      },
-      "tarot_insight": {
-        "title": "Tarot ile İçgörü",
-        "description": "Bilinçaltının aynasına bak — günlük kart çek."
-      },
-      "number_secrets": {
-        "title": "Sayılarının Sırrı",
-        "description": "Doğum tarihin ve ismin ne anlatıyor?"
-      },
-      "energy_field": {
-        "title": "Enerji Alanın",
-        "description": "Auranın renkleri ve chakra dengen."
-      },
-      "kozmoz_discovery": {
-        "title": "Kozmoz Keşif",
-        "description": "Tüm özellikler tek yerde"
-      },
-      "astrology_glossary": {
-        "title": "Astroloji Sözlüğü",
-        "description": "Terimleri öğren"
-      },
-      "premium_features": {
-        "title": "Premium Özellikler",
-        "description": "Gelişmiş astroloji araçları"
-      },
-      "most_read_scorpio": {
-        "title": "En Çok Okunan: Akrep",
-        "description": "Gizemli sular bugün ne diyor?"
-      },
-      "rising_trend_aquarius": {
-        "title": "Yükselen Trend: Kova",
-        "description": "Değişimin rüzgarları esiyor."
-      },
-      "weekly_overview": {
-        "title": "Haftalık Genel Bakış",
-        "description": "Bu hafta tüm burçları neler bekliyor?"
-      },
-      "monthly_depth": {
-        "title": "Aylık Derinlik",
-        "description": "Ayın büyük teması ne?"
-      },
-      "calculate_birth_chart": {
-        "title": "Doğum Haritanı Hesapla",
-        "description": "Güneş burcunun ötesini gör."
-      },
-      "relationship_compatibility": {
-        "title": "İlişki Uyumu",
-        "description": "Sen ve o — kozmik dans nasıl?"
-      },
-      "daily_tarot": {
-        "title": "Günlük Tarot",
-        "description": "Kartlar bugün ne diyor?"
-      },
-      "home": {
-        "title": "Ana Sayfa",
-        "description": "Başa dön"
-      },
-      "kozmoz_hub": {
-        "title": "Kozmoz Hub",
-        "description": "Tüm özellikler"
-      },
-      "all_signs": {
-        "title": "Tüm Burçlar",
-        "description": "12 burcu gez"
-      },
-      "sign_compatibility": {
-        "title": "Burç Uyumu",
-        "description": "İkili analiz"
-      },
-      "synastry_analysis": {
-        "title": "Synastry Analizi",
-        "description": "Haritaları detaylı karşılaştır."
-      },
-      "composite_chart": {
-        "title": "Kompozit Harita",
-        "description": "İlişkinin kendi haritası."
-      },
-      "solar_return": {
-        "title": "Solar Return",
-        "description": "Bu yılın haritası nasıl?"
-      },
-      "progressions": {
-        "title": "Progresyonlar",
-        "description": "İçsel evrimini takip et."
-      },
-      "vedic_chart": {
-        "title": "Vedik Harita",
-        "description": "Hint astrolojisi perspektifi."
-      },
-      "draconic_chart": {
-        "title": "Drakonik Harita",
-        "description": "Ruhsal kökenin."
-      },
-      "asteroids": {
-        "title": "Asteroidler",
-        "description": "Chiron, Lilith ve diğerleri."
-      },
-      "numerology": {
-        "title": "Numeroloji",
-        "description": "Sayıların bilgeliği."
-      },
-      "kabbalah": {
-        "title": "Kabala",
-        "description": "Tarot ve Hayat Ağacı bağlantısı."
-      },
-      "aura_reading": {
-        "title": "Aura Okuma",
-        "description": "Enerji alanını keşfet."
-      },
-      "chakra_analysis": {
-        "title": "Chakra Analizi",
-        "description": "Enerji merkezlerin."
-      },
-      "moon_rituals": {
-        "title": "Ay Ritüelleri",
-        "description": "Enerji temizliği pratikleri."
-      },
-      "saturn_return": {
-        "title": "Satürn Dönüşü",
-        "description": "29 yaş krizi."
-      },
-      "retrograde_calendar": {
-        "title": "Retrograd Takvimi",
-        "description": "Merkür retrosu ne zaman?"
-      },
-      "electional_astrology": {
-        "title": "Electional Astroloji",
-        "description": "Uygun zamanları seç."
-      },
-      "celebrity_couples": {
-        "title": "Ünlü Çiftler",
-        "description": "Ünlülerin uyumu"
-      },
-      "dream_tonight": {
-        "title": "Bu Gece Rüyanda Ne Gördün?",
-        "description": "Burç enerjin rüyalarına nasıl yansıyor?"
-      },
-      "daily_cosmic_message": {
-        "title": "Günlük Kozmik Mesajın",
-        "description": "Bugün evren sana ne söylemek istiyor?"
-      },
-      "compare_chart_today": {
-        "description": "Haritanı bugünün gökyüzüyle karşılaştır."
-      },
-      "chart_connected_dreams": {
-        "title": "Haritanla Bağlantılı Rüyalar",
-        "description": "Gezegenler rüyalarına nasıl yansıyor?"
-      },
-      "personal_cosmic_message": {
-        "title": "Kişisel Kozmik Mesaj",
-        "description": "Haritana özel rehberlik."
-      },
-      "numerology_mystery": {
-        "description": "Sayıların gizemi — benzer bir yolculuk."
-      },
-      "daily_horoscope": {
-        "title": "Günlük Burç",
-        "description": "Tarotla birlikte oku."
-      },
-      "read_with_tarot": {
-        "description": "Tarotla birlikte oku."
-      },
-      "decode_dream_symbols": {
-        "title": "Rüyandaki Sembolleri Çöz",
-        "description": "Kartlar ve rüyalar benzer bir dil konuşur."
-      },
-      "cosmic_guidance_beyond": {
-        "title": "Kozmik Rehberlik",
-        "description": "Kartların ötesinde bir mesaj."
-      },
-      "birth_chart": {
-        "title": "Doğum Haritası",
-        "description": "Kozmik kimliğin."
-      },
-      "cosmic_identity": {
-        "description": "Kozmik kimliğin."
-      },
-      "tarot_ritual": {
-        "title": "Tarot Ritüeli",
-        "description": "Kart çekme meditasyonu."
-      },
-      "all_analyses": {
-        "title": "Tüm Çözümlemeler",
-        "description": "Diğer keşif yolları"
-      },
-      "other_exploration_paths": {
-        "description": "Diğer keşif yolları"
-      },
-      "tarot_terms": {
-        "description": "Tarot terimleri"
-      },
-      "kabbalah_numbers": {
-        "title": "Kabala Sayıları",
-        "description": "Sayıların mistik kökeni."
-      },
-      "astrological_perspective": {
-        "description": "Astrolojik perspektif."
-      },
-      "tarot": {
-        "title": "Tarot",
-        "description": "Günlük kart."
-      },
-      "numbers_in_cards": {
-        "description": "Kartlardaki sayılar."
-      },
-      "numerical_compatibility": {
-        "description": "Sayısal uyum analizi."
-      },
-      "dream_with_numbers": {
-        "title": "Sayılarla Rüya Yorumu",
-        "description": "Rüyandaki sayılar ne anlatıyor?"
-      },
-      "personal_year_message": {
-        "title": "Kişisel Yıl Mesajı",
-        "description": "Bu yılın sayısal enerjisi."
-      },
-      "read_with_numbers": {
-        "description": "Sayılarla birlikte oku."
-      },
-      "aura_colors": {
-        "title": "Aura Renkleri",
-        "description": "Enerji alanın."
-      },
-      "chakra_balance": {
-        "title": "Chakra Dengesi",
-        "description": "Sayılar ve chakralar."
-      },
-      "numbers_and_chakras": {
-        "description": "Sayılar ve chakralar."
-      },
-      "other_systems": {
-        "description": "Diğer sistemler"
-      },
-      "number_meanings": {
-        "title": "Sayı Anlamları",
-        "description": "1-9 ve master sayılar"
-      },
-      "synastry_depth": {
-        "title": "Synastry Derinliği",
-        "description": "Haritaları detaylı karşılaştır."
-      },
-      "love_horoscope": {
-        "title": "Aşk Burcu Yorumu",
-        "description": "Haftalık aşk enerjisi"
-      },
-      "venus_and_mars": {
-        "title": "Venüs ve Mars",
-        "description": "Aşk gezegenlerini incele."
-      },
-      "relationship_dreams": {
-        "title": "İlişki Rüyaları",
-        "description": "Partnerinle ilgili rüyalar ne anlatıyor?"
-      },
-      "relationship_guidance": {
-        "title": "İlişki Rehberliği",
-        "description": "Kozmik perspektif."
-      },
-      "cosmic_perspective": {
-        "description": "Kozmik perspektif."
-      },
-      "love_tarot": {
-        "title": "Aşk Tarot'u",
-        "description": "İlişki için kart çek."
-      },
-      "numerical_harmony": {
-        "title": "Sayısal Uyum",
-        "description": "İsimlerle numeroloji."
-      },
-      "venus_transit": {
-        "title": "Venüs Transiti",
-        "description": "Aşk gezegeni nerede?"
-      },
-      "sign_pages": {
-        "description": "Burç sayfaları"
-      },
-      "discover_energy_centers": {
-        "description": "Enerji merkezlerini keşfet."
-      },
-      "cosmic_energy_map": {
-        "description": "Kozmik enerji haritası."
-      },
-      "energy_reading_path": {
-        "description": "Enerji okuma yolu."
-      },
-      "energy_dreams": {
-        "title": "Enerji Rüyaları",
-        "description": "Renkler ve ışık rüyalarının anlamı."
-      },
-      "daily_energy_message": {
-        "title": "Günlük Enerji Mesajı",
-        "description": "Bugünün enerji akışı."
-      },
-      "numerical_vibrations": {
-        "description": "Sayısal titreşimler."
-      },
-      "sefirot_energies": {
-        "description": "Sefirot enerjileri."
-      },
-      "cosmic_energy": {
-        "description": "Kozmik enerji."
-      },
-      "color_meanings": {
-        "title": "Renk Anlamları",
-        "description": "Aura renkleri sözlüğü"
-      },
-      "tarot_and_paths": {
-        "title": "Tarot ve Patikalar",
-        "description": "22 Major Arcana, 22 patika."
-      },
-      "gematria_and_numbers": {
-        "description": "Gematria ve sayılar."
-      },
-      "astrology_connection": {
-        "title": "Astroloji Bağlantısı",
-        "description": "Sefirot ve gezegenler."
-      },
-      "chakra_system": {
-        "title": "Chakra Sistemi",
-        "description": "Doğu ve Batı enerji haritaları."
-      },
-      "mystic_dreams": {
-        "title": "Mistik Rüyalar",
-        "description": "Ruhani semboller ve rüyalar."
-      },
-      "sefirot_meditation": {
-        "title": "Sefirot Meditasyonu",
-        "description": "Hayat Ağacında yolculuk."
-      },
-      "spiritual_practices": {
-        "description": "Spiritüel pratikler."
-      },
-      "sefirot_glossary": {
-        "title": "Sefirot Sözlüğü",
-        "description": "10 sefirah anlamları"
-      },
-      "my_birth_chart": {
-        "title": "Doğum Haritam",
-        "description": "Kozmik kimliğin"
-      },
-      "transits_affecting_chart": {
-        "description": "Transitler haritama nasıl etkiliyor?"
-      },
-      "this_years_chart": {
-        "description": "Bu yılın haritası."
-      },
-      "inner_evolution_tracking": {
-        "description": "İçsel evrim takibi."
-      },
-      "transit_dreams": {
-        "title": "Transit Döneminde Rüyalar",
-        "description": "Yoğun transitlerde rüyalar ne anlatır?"
-      },
-      "personal_transit_guidance": {
-        "title": "Kişisel Transit Rehberliği",
-        "description": "Bu dönem için özel mesaj."
-      },
-      "todays_energy": {
-        "description": "Bugünün enerjisi."
-      },
-      "planet_glossary": {
-        "title": "Gezegen Sözlüğü",
-        "description": "Transit anlamları"
-      },
-      "moon_phases_dreams": {
-        "title": "Ay Fazları ve Rüyalar",
-        "description": "Ayın döngüsü rüyaları nasıl etkiler?"
-      },
-      "sign_dream_patterns": {
-        "title": "Burç ve Rüya Kalıpları",
-        "description": "Burcun rüyalarına nasıl yansıyor?"
-      },
-      "subconscious_tarot": {
-        "title": "Bilinçaltı ve Tarot",
-        "description": "Rüyalar ve kartlar benzer dil konuşur."
-      },
-      "twelfth_house_dreams": {
-        "title": "12. Ev ve Rüyalar",
-        "description": "Natal haritanda rüya evi."
-      },
-      "your_cosmic_message": {
-        "title": "Kozmik Mesajın",
-        "description": "Rüyanın ötesinde rehberlik."
-      },
-      "guidance_beyond_dream": {
-        "description": "Rüyanın ötesinde rehberlik."
-      },
-      "tell_another_dream": {
-        "title": "Başka Bir Rüya Anlat",
-        "description": "Yeni bir yolculuğa başla."
-      },
-      "chakra_and_dreams": {
-        "title": "Chakra ve Rüyalar",
-        "description": "Enerji merkezleri ve bilinçaltı."
-      },
-      "neptune_transit": {
-        "title": "Neptün Transiti",
-        "description": "Rüya gezegeni nerede?"
-      },
-      "symbol_glossary": {
-        "title": "Sembol Sözlüğü",
-        "description": "Rüya sembolleri"
-      },
-      "daily_horoscope_reading": {
-        "title": "Günlük Burç Yorumu",
-        "description": "Bugünün kozmik enerjisi."
-      },
-      "cards_message": {
-        "description": "Kartların mesajı."
-      },
-      "moon_phase": {
-        "title": "Ay Fazı",
-        "description": "Ayın bugünkü etkisi."
-      },
-      "transits": {
-        "title": "Transitler",
-        "description": "Gökyüzü bugün."
-      },
-      "sky_today": {
-        "description": "Gökyüzü bugün."
-      },
-      "tell_your_dream": {
-        "title": "Rüyanı Anlat",
-        "description": "Kozmik mesajın rüyalara nasıl yansıyor?"
-      },
-      "cosmic_message_dreams": {
-        "description": "Kozmik mesajın rüyalara nasıl yansıyor?"
-      },
-      "cosmic_discovery": {
-        "title": "Kozmik Keşif",
-        "description": "Daha fazla içgörü al."
-      },
-      "get_more_insight": {
-        "description": "Daha fazla içgörü al."
-      },
-      "my_cosmic_identity": {
-        "description": "Kozmik kimliğim."
-      },
-      "my_energy_centers": {
-        "description": "Enerji merkezlerim."
-      },
-      "advanced_astrology": {
-        "description": "Gelişmiş astroloji"
-      },
-      "learn_concepts": {
-        "description": "Kavramları öğren"
-      },
-      "energy_field_chakras": {
-        "description": "Enerji alanın ve chakralar."
-      },
-      "chakra_balancing_practices": {
-        "description": "Chakra dengeleme pratikleri."
-      },
-      "kabbalah_sefirot": {
-        "title": "Kabala Sefirotları",
-        "description": "Doğu-Batı enerji haritaları."
-      },
-      "east_west_energy_maps": {
-        "description": "Doğu-Batı enerji haritaları."
-      },
-      "planets_and_chakras": {
-        "description": "Gezegenler ve chakralar."
-      },
-      "energy_blockages_dreams": {
-        "description": "Enerji blokajları rüyalara nasıl yansır?"
-      },
-      "energy_guidance": {
-        "title": "Enerji Rehberliği",
-        "description": "Chakralarına özel mesaj."
-      },
-      "chakra_special_message": {
-        "description": "Chakralarına özel mesaj."
-      },
-      "energy_reading": {
-        "description": "Enerji okuma."
-      },
-      "seven_chakra_guide": {
-        "title": "7 Chakra Rehberi",
-        "description": "Detaylı açıklamalar"
-      },
-      "moon_calendar": {
-        "title": "Ay Takvimi",
-        "description": "Yeniay ve dolunay tarihleri."
-      },
-      "chakra_balancing": {
-        "title": "Chakra Dengeleme",
-        "description": "Ritüellerle enerji çalışması."
-      },
-      "energy_work_rituals": {
-        "description": "Ritüellerle enerji çalışması."
-      },
-      "aura_cleansing": {
-        "title": "Aura Temizliği",
-        "description": "Enerji alanını arındır."
-      },
-      "post_ritual_dreams": {
-        "title": "Ritüel Sonrası Rüyalar",
-        "description": "Ritüeller rüyaları nasıl etkiler?"
-      },
-      "intention_guidance": {
-        "title": "Niyet Rehberliği",
-        "description": "Bu ay için kozmik mesaj."
-      },
-      "moon_planet_positions": {
-        "description": "Ay ve gezegen konumları."
-      },
-      "kabbalah_meditation": {
-        "title": "Kabala Meditasyonu",
-        "description": "Sefirot yolculuğu."
-      },
-      "other_practices": {
-        "description": "Diğer pratikler"
-      },
-      "ritual_guide": {
-        "title": "Ritüel Rehberi",
-        "description": "Adım adım talimatlar"
-      },
-      "daily_card": {
-        "description": "Günlük kart."
-      },
-      "speak_subconscious": {
-        "description": "Bilinçaltınla konuş."
-      },
-      "get_personal_message": {
-        "description": "Kişisel mesaj al."
-      },
-      "secret_of_numbers": {
-        "description": "Sayıların sırrı."
-      },
-      "aura": {
-        "title": "Aura",
-        "description": "Enerji alanın."
-      },
-      "rituals": {
-        "title": "Ritüeller",
-        "description": "Ay pratikleri."
-      },
-      "moon_practices": {
-        "description": "Ay pratikleri."
-      },
-      "twelve_signs": {
-        "description": "12 burç"
-      },
-      "glossary": {
-        "title": "Sözlük",
-        "description": "Terimler"
-      },
-      "terms": {
-        "description": "Terimler"
-      }
-    },
-    "zodiac": {
-      "aries": { "name": "Koç", "ruler": "Mars", "sign_title": "Koç Burcu", "dreams_title": "Koç Rüyaları", "ruler_transit": "Mars Transiti" },
-      "taurus": { "name": "Boğa", "ruler": "Venüs", "sign_title": "Boğa Burcu", "dreams_title": "Boğa Rüyaları", "ruler_transit": "Venüs Transiti" },
-      "gemini": { "name": "İkizler", "ruler": "Merkür", "sign_title": "İkizler Burcu", "dreams_title": "İkizler Rüyaları", "ruler_transit": "Merkür Transiti" },
-      "cancer": { "name": "Yengeç", "ruler": "Ay", "sign_title": "Yengeç Burcu", "dreams_title": "Yengeç Rüyaları", "ruler_transit": "Ay Transiti" },
-      "leo": { "name": "Aslan", "ruler": "Güneş", "sign_title": "Aslan Burcu", "dreams_title": "Aslan Rüyaları", "ruler_transit": "Güneş Transiti" },
-      "virgo": { "name": "Başak", "ruler": "Merkür", "sign_title": "Başak Burcu", "dreams_title": "Başak Rüyaları", "ruler_transit": "Merkür Transiti" },
-      "libra": { "name": "Terazi", "ruler": "Venüs", "sign_title": "Terazi Burcu", "dreams_title": "Terazi Rüyaları", "ruler_transit": "Venüs Transiti" },
-      "scorpio": { "name": "Akrep", "ruler": "Pluto", "sign_title": "Akrep Burcu", "dreams_title": "Akrep Rüyaları", "ruler_transit": "Pluto Transiti" },
-      "sagittarius": { "name": "Yay", "ruler": "Jüpiter", "sign_title": "Yay Burcu", "dreams_title": "Yay Rüyaları", "ruler_transit": "Jüpiter Transiti" },
-      "capricorn": { "name": "Oğlak", "ruler": "Satürn", "sign_title": "Oğlak Burcu", "dreams_title": "Oğlak Rüyaları", "ruler_transit": "Satürn Transiti" },
-      "aquarius": { "name": "Kova", "ruler": "Uranüs", "sign_title": "Kova Burcu", "dreams_title": "Kova Rüyaları", "ruler_transit": "Uranüs Transiti" },
-      "pisces": { "name": "Balık", "ruler": "Neptün", "sign_title": "Balık Burcu", "dreams_title": "Balık Rüyaları", "ruler_transit": "Neptün Transiti" }
-    },
-    "phrases": {
-      "how_this_pair_dances": "Bu ikili nasıl dans ediyor?",
-      "same_element_different_energy": "Aynı element, farklı enerji.",
-      "sibling_element_energy": "Kardeş element enerjisi.",
-      "what_awaits_this_week": "Bu hafta seni neler bekliyor?",
-      "which_dreams_this_sign_sees": "Bu burçta insanlar en çok hangi rüyaları görür?",
-      "special_message_for_today": "Bugün Sana Özel Mesaj",
-      "cosmic_guidance": "Kozmik rehberlik al.",
-      "beyond_your_sun_sign": "{sign} Güneşinin ötesinde ne var?",
-      "where_is_your_ruler": "Yönetici gezegenin şu an nerede?",
-      "reading_aligned_with_energy": "{sign} enerjisiyle uyumlu bir okuma.",
-      "compatibility_with": "{sign} ile Uyumun",
-      "weekly_reading": "Haftalık {sign} Yorumu"
-    }
-  },
   "glossary": {
     "hints": {
       "natal_chart": "Kozmik kimlik kartın",
@@ -9945,55 +10134,106 @@
     "life_phases": {
       "student": {
         "label": "Öğrenci",
-        "common_dream_themes": ["Sınavlar", "geç kalmak", "hazırlıksız yakalanmak", "okul"],
+        "common_dream_themes": [
+          "Sınavlar",
+          "geç kalmak",
+          "hazırlıksız yakalanmak",
+          "okul"
+        ],
         "interpretation_focus": "Performans kaygısı, gelecek belirsizliği, öğrenme",
         "advice": "Rüyalardaki sınav temaları genellikle hayatınızdaki değerlendirilme anlarını yansıtır."
       },
       "new_parent": {
         "label": "Yeni Ebeveyn",
-        "common_dream_themes": ["Bebek", "koruma", "kaybetme", "yetersizlik", "büyük sorumluluk"],
+        "common_dream_themes": [
+          "Bebek",
+          "koruma",
+          "kaybetme",
+          "yetersizlik",
+          "büyük sorumluluk"
+        ],
         "interpretation_focus": "Koruma içgüdüsü, kimlik değişimi, yeni sorumluluklar",
         "advice": "Bebek rüyaları aynı zamanda yeni projelerinizi veya kimliğinizin yeni yönlerini temsil edebilir."
       },
       "career_change": {
         "label": "Kariyer Değişikliği",
-        "common_dream_themes": ["Kaybolmak", "yeni binalar", "yolculuk", "geç kalmak", "hazırlıksız"],
+        "common_dream_themes": [
+          "Kaybolmak",
+          "yeni binalar",
+          "yolculuk",
+          "geç kalmak",
+          "hazırlıksız"
+        ],
         "interpretation_focus": "Kimlik sorgulaması, güvensizlik, fırsatlar",
         "advice": "Rüyalarınızdaki yeni yerler yeni olasılıkları, kaybolmak belirsizliği temsil eder."
       },
       "grieving": {
         "label": "Yas Sürecinde",
-        "common_dream_themes": ["Kaybedilen kişi", "vedalaşma", "arama", "kavuşma"],
+        "common_dream_themes": [
+          "Kaybedilen kişi",
+          "vedalaşma",
+          "arama",
+          "kavuşma"
+        ],
         "interpretation_focus": "Kaybı işleme, yarım kalan işler, ruhani bağlantı",
         "advice": "Kaybettiğiniz kişiyi rüyalarınızda görmek, yas sürecinin doğal bir parçasıdır ve şifa taşır."
       },
       "retired": {
         "label": "Emekli",
-        "common_dream_themes": ["Eski iş yeri", "zaman", "gençlik", "tamamlanma", "miras"],
+        "common_dream_themes": [
+          "Eski iş yeri",
+          "zaman",
+          "gençlik",
+          "tamamlanma",
+          "miras"
+        ],
         "interpretation_focus": "Hayat değerlendirmesi, anlam arayışı, miras",
         "advice": "Geçmişle ilgili rüyalar, hayatınızı gözden geçirme ve bilgelik toplama sürecidir."
       },
       "relationship_crisis": {
         "label": "İlişki Krizi",
-        "common_dream_themes": ["Partner", "ihanet", "kavga", "ayrılık", "tanımadık partner"],
+        "common_dream_themes": [
+          "Partner",
+          "ihanet",
+          "kavga",
+          "ayrılık",
+          "tanımadık partner"
+        ],
         "interpretation_focus": "İlişki dinamikleri, güven, iletişim",
         "advice": "Partner rüyaları çoğunlukla iç anima/animusunuzla ilişkinizi yansıtır."
       },
       "health_crisis": {
         "label": "Sağlık Mücadelesi",
-        "common_dream_themes": ["Beden", "iyileşme", "hastane", "dönüşüm", "ölüm ve yeniden doğuş"],
+        "common_dream_themes": [
+          "Beden",
+          "iyileşme",
+          "hastane",
+          "dönüşüm",
+          "ölüm ve yeniden doğuş"
+        ],
         "interpretation_focus": "Beden farkındalığı, şifa, ölümlülük farkındalığı",
         "advice": "Bedenle ilgili rüyalar genellikle fiziksel durumunuzla ilgili mesajlar taşır."
       },
       "spiritual_awakening": {
         "label": "Ruhani Uyanış",
-        "common_dream_themes": ["Işık", "rehberler", "uçuş", "kozmik deneyimler", "ölüm ve yeniden doğuş"],
+        "common_dream_themes": [
+          "Işık",
+          "rehberler",
+          "uçuş",
+          "kozmik deneyimler",
+          "ölüm ve yeniden doğuş"
+        ],
         "interpretation_focus": "Ruhani gelişim, aşkın deneyimler, anlam arayışı",
         "advice": "Spiritüel rüyalar yükselişinizin işaretleridir, mesajlarını ciddiye alın."
       },
       "new_beginning": {
         "label": "Yeni Başlangıç",
-        "common_dream_themes": ["Bebek", "tohumlar", "yeni ev", "yolculuğun başlangıcı"],
+        "common_dream_themes": [
+          "Bebek",
+          "tohumlar",
+          "yeni ev",
+          "yolculuğun başlangıcı"
+        ],
         "interpretation_focus": "Potansiyel, umut, büyüme fırsatları",
         "advice": "Yeni başlangıç sembolleri içinizdeki potansiyeli ve büyüme alanlarınızı gösterir."
       }
@@ -10043,69 +10283,62 @@
       "elder_sage": "bilge yaşlı"
     },
     "focus_symbols": {
-      "career": ["ofis", "patron", "para", "başarı", "merdiven", "bina"],
-      "love": ["partner", "evlilik", "kalp", "öpücük", "yabancı", "ayrılık"],
-      "health": ["hastane", "doktor", "beden", "ilaç", "iyileşme", "ağrı"],
-      "family": ["anne", "baba", "ev", "çocuk", "kardeş", "akraba"],
-      "finance": ["para", "banka", "borç", "servet", "kayıp", "bulma"],
-      "education": ["okul", "sınav", "öğretmen", "kitap", "öğrenme", "diploma"],
-      "spiritual": ["ışık", "uçuş", "melek", "tanrı", "tapınak", "meditasyon"]
-    }
-  },
-  "kabbalah": {
-    "sefirah_names": {
-      "keter": "Taç (Keter)",
-      "chokhmah": "Bilgelik (Hokmah)",
-      "binah": "Anlayış (Binah)",
-      "chesed": "Merhamet (Hesed)",
-      "gevurah": "Güç (Gevurah)",
-      "tiferet": "Güzellik (Tiferet)",
-      "netzach": "Zafer (Netsah)",
-      "hod": "İhtişam (Hod)",
-      "yesod": "Temel (Yesod)",
-      "malkut": "Krallık (Malhut)"
-    },
-    "sefirah_meanings": {
-      "keter": "Sonsuzlukla birleşme noktası. İlahi iradenin kaynağı. Tüm potansiyellerin başlangıcı.",
-      "chokhmah": "Saf bilgelik ve ilham. Yaratıcı kıvılcım. Eril enerjinin ve vizyonun kaynağı.",
-      "binah": "Derin anlayış ve kavrayış. Form veren enerji. Dişil bilgelik ve sezgi.",
-      "chesed": "Koşulsuz sevgi ve şefkat. Genişleme ve bolluk. Cömertlik ve şifa.",
-      "gevurah": "İç güç ve disiplin. Sınırlar ve adalet. Arınma ve odaklanma.",
-      "tiferet": "Denge ve uyumun merkezi. Güzellik ve hakikat. Kalp ve ruhun birleşimi.",
-      "netzach": "Kararlılık ve dayanıklılık. Duygusal güç ve tutku. Yaratıcı ifade.",
-      "hod": "Zihinsel berraklık ve iletişim. Analitik düşünce. Manevi anlayış.",
-      "yesod": "Astral bağlantı ve rüyalar. Bilinçaltı ve sezgi. Tezahürün temeli.",
-      "malkut": "Fiziksel dünya ve madde. Topraklama ve gerçekleştirme. Günlük yaşam."
-    },
-    "compatibility": {
-      "very_high": "Ruhlarınız arasında derin bir bağ var. {s1} ve {s2} enerjileri birbirini tamamlıyor, birlikte yüksek spiritüel uyum oluşturuyorsunuz.",
-      "high": "Güçlü bir enerji bağlantınız var. {s1} ve {s2} destekleyici enerjiler taşıyor.",
-      "medium": "{s1} ve {s2} farklı enerjiler taşısa da, bu farklar büyüme fırsatları sunuyor.",
-      "low": "{s1} ve {s2} enerjileri farklı. Bu ilişki her iki taraf için de öğrenilecek dersler içeriyor."
-    },
-    "daily_guidance": {
-      "keter": "Bugün sonsuz potansiyelle bağlantı kurma günü. Meditasyon ve iç sessizlik için zaman ayır. İlahi iradenin seni yönlendirmesine izin ver.",
-      "chokhmah": "Bugün bilgelik ve içgörü günü. Ani ilhamlar gelebilir. Yeni fikirlere ve vizyonlara açık ol.",
-      "binah": "Bugün anlayış ve kavrayış günü. Detaylara odaklan, analiz et. Duygusal derinliğine güven.",
-      "chesed": "Bugün sevgi ve şefkat günü. Başkalarına yardım et, cömert ol. Kalp çakranı açık tut.",
-      "gevurah": "Bugün güç ve disiplin günü. Sınırlarını koru, gerekli kararları al. İç gücüne güven.",
-      "tiferet": "Bugün denge ve güzellik günü. Karşıtları dengelemeye çalış. İç ve dış güzelliği takdir et.",
-      "netzach": "Bugün kararlılık ve zafer günü. Hedeflerine odaklan, vazgeçme. Yaratıcı enerjini kullan.",
-      "hod": "Bugün iletişim ve analiz günü. Düşüncelerini netleştir, bilgi paylaş. Zihinsel berraklık ara.",
-      "yesod": "Bugün temel ve bağlantı günü. Rüyalarına dikkat et, sezgilerine güven. Astral bağlantılar güçlü.",
-      "malkut": "Bugün maddi dünya ve tezahür günü. Pratik konulara odaklan, somut adımlar at. Doğayla bağlantı kur."
-    },
-    "daily_meditation": {
-      "keter": "Gözkapaklarını kapat ve başının üzerinde parlak beyaz bir ışık hayal et. Bu ışığın seni sonsuzlukla birleştirdiğini hisset.",
-      "chokhmah": "Gri bir boşluk hayal et - ne tamamen aydınlık ne de tamamen karanlık. Bu belirsizlikte yeni fikirlerin doğduğunu hisset.",
-      "binah": "Derin mavi bir okyanusun içinde olduğunu hayal et. Sonsuz derinliğin sana anlayış getirdiğini hisset.",
-      "chesed": "Kalbinden altın ışık yayıldığını hayal et. Bu ışığın tüm varlıklara sevgi ve şefkat taşıdığını hisset.",
-      "gevurah": "Kırmızı bir alev hayal et - yakan ama arındıran. Bu ateşin gereksiz olan her şeyi temizlediğini hisset.",
-      "tiferet": "Altın güneş ışığında yıkandığını hayal et. Bu ışığın tüm karşıtları dengede tuttuğunu hisset.",
-      "netzach": "Yemyeşil bir ormanın ortasında olduğunu hayal et. Doğanın dayanıklılığını ve zaferini hisset.",
-      "hod": "Zihnini aydınlatan turuncu bir ışık küresi hayal et. Düşüncelerinin berraklaştığını hisset.",
-      "yesod": "Göbek bölgeni saran mor bir ışık hayal et. Rüya alemine ve bilinçaltına kapının açıldığını hisset.",
-      "malkut": "Ayaklarının toprağa kök saldığını hayal et. Toprağın enerjisinin sana güç verdiğini hisset."
+      "career": [
+        "ofis",
+        "patron",
+        "para",
+        "başarı",
+        "merdiven",
+        "bina"
+      ],
+      "love": [
+        "partner",
+        "evlilik",
+        "kalp",
+        "öpücük",
+        "yabancı",
+        "ayrılık"
+      ],
+      "health": [
+        "hastane",
+        "doktor",
+        "beden",
+        "ilaç",
+        "iyileşme",
+        "ağrı"
+      ],
+      "family": [
+        "anne",
+        "baba",
+        "ev",
+        "çocuk",
+        "kardeş",
+        "akraba"
+      ],
+      "finance": [
+        "para",
+        "banka",
+        "borç",
+        "servet",
+        "kayıp",
+        "bulma"
+      ],
+      "education": [
+        "okul",
+        "sınav",
+        "öğretmen",
+        "kitap",
+        "öğrenme",
+        "diploma"
+      ],
+      "spiritual": [
+        "ışık",
+        "uçuş",
+        "melek",
+        "tanrı",
+        "tapınak",
+        "meditasyon"
+      ]
     }
   },
   "dream_journal": {
@@ -10349,5 +10582,10 @@
       "missing": "Eksik",
       "total_keys": "Toplam Anahtar"
     }
+  },
+  "errors": {
+    "save_failed": "Kaydetme başarısız. Lütfen tekrar deneyin.",
+    "network_error": "Ağ hatası. Lütfen bağlantınızı kontrol edin.",
+    "generic_error": "Bir şeyler ters gitti. Lütfen tekrar deneyin."
   }
 }
