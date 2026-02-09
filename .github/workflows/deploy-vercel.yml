@@ -54,7 +54,16 @@ jobs:
       - name: Deploy to Preview
         id: deploy
         run: |
-          URL=$(vercel deploy --token=${{ secrets.VERCEL_TOKEN }} --yes 2>&1 | grep -E '^https://' | head -1)
+          # Deploy and capture output
+          OUTPUT=$(vercel deploy --token=${{ secrets.VERCEL_TOKEN }} --yes 2>&1)
+          echo "Vercel Output:"
+          echo "$OUTPUT"
+          # Extract clean URL - match only the https://...vercel.app portion
+          URL=$(echo "$OUTPUT" | grep -oE 'https://[a-zA-Z0-9-]+\.vercel\.app' | head -1)
+          if [ -z "$URL" ]; then
+            echo "ERROR: Could not extract preview URL from Vercel output"
+            exit 1
+          fi
           echo "url=$URL" >> $GITHUB_OUTPUT
           echo "Preview URL: $URL"
           # Extract deployment ID from URL for potential rollback
