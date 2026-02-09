@@ -131,7 +131,7 @@ test.describe('White Screen Protection', () => {
     await page.goto(BASE_URL);
 
     // Wait for potential loading states to resolve
-    await page.waitForTimeout(20000);
+    await page.waitForTimeout(10000);
 
     // Check that we're not stuck on loading
     const loadingElement = page.locator('#loading');

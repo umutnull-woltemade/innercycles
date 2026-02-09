@@ -77,7 +77,7 @@ jobs:
     name: Smoke Test Preview
     needs: build-and-preview
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
 
     steps:
       - name: Checkout
