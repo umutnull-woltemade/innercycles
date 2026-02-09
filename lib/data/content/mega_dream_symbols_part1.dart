@@ -358,7 +358,7 @@ class MegaDreamSymbolsPart1 {
         EmotionalTone.heyecan: 'Dalgayi yakala - firsat penceresi',
         EmotionalTone.korku: 'Dalgayla bogusma - ezilme',
         EmotionalTone.huzur: 'Dalgalarla dans etme',
-        EmotionalTone.merak: 'Sonraki dalga ne getirecek?',
+        EmotionalTone.merak: 'Sonraki dalga hangi temalari tasiyacak?',
       },
       archetypes: ['Ritim', 'Dongu', 'Guc'],
       relatedSymbols: ['ocean', 'surf', 'tide', 'beach'],

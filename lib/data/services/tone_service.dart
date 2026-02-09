@@ -193,7 +193,7 @@ class MarketingCopy {
   // Push notifications
   static String get cosmicMissesYou => ToneService.getText(
     'The cosmos misses you!',
-    'The cosmos awaits your return.',
+    'Welcome back to your reflection space.',
   );
 
   static String get dontMiss => ToneService.getText(
@@ -203,7 +203,7 @@ class MarketingCopy {
 
   static String get readyForYou => ToneService.getText(
     'Ready for you!',
-    'Awaiting you.',
+    'Ready for you.',
   );
 
   // Error messages

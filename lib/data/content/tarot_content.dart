@@ -1,8 +1,20 @@
-/// TAROT CONTENT - ARCHETYPAL SYMBOLS
+/// TAROT CONTENT - ARCHETYPAL SYMBOLS FOR REFLECTION
 ///
-/// Detailed ancient/esoteric content for 22 Major Arcana cards.
-/// For each card: meaning, reversed meaning, symbolism, archetype, advice, meditation.
+/// Detailed archetypal content for 22 Major Arcana cards.
+/// For each card: symbolic meaning, reflection themes, archetype, journaling prompts.
+/// Content is designed for self-reflection, not fortune-telling or prediction.
 library;
+
+/// Content disclaimer for all tarot content
+const String tarotContentDisclaimer = '''
+Tarot cards are symbolic tools for self-reflection and personal exploration.
+They do not predict future events or outcomes.
+
+Card interpretations describe archetypal themes and psychological patterns,
+not destined events. Use these themes as journaling prompts and reflection topics.
+
+This is not fortune-telling. It is a tool for inner exploration.
+''';
 
 import '../providers/app_providers.dart';
 
@@ -110,20 +122,26 @@ Life is a leap - every moment. Let go of the illusion of control and surrender t
 Saying "I don't know" takes courage. And sometimes it's the wisest answer.
 ''',
     loveReading: '''
-A new beginning in love is at your door. Perhaps a new relationship, perhaps a new chapter in your current one.
+Reflection theme: New beginnings in relationships.
 
-Let go of your patterns, don't carry past wounds into this relationship. Every person is a new universe - see them that way.
+This card may invite you to reflect on patterns you carry from past relationships.
+Consider: How do you approach new connections? What would it mean to see each person as a fresh beginning?
 
-Warning: Don't fall blindly in love. Trust your intuition, but keep your eyes open too.
+Journaling prompt: "What past patterns might I want to release in my approach to relationships?"
+
+*This is a reflection theme, not a prediction of romantic events.*
 ''',
     careerReading: '''
-A new career path, an unexpected opportunity, or a completely different field.
+Reflection theme: Professional new beginnings and calculated risk.
 
-Don't be afraid to take risks - but take calculated risks. Sometimes the most "illogical" decisions are the right ones.
+This card may invite you to reflect on opportunities you haven't explored.
+Consider: What "illogical" ideas have you dismissed? What would feel like a fresh start professionally?
 
-Excellent energy for entrepreneurship, freelance work, or creative projects.
+Journaling prompt: "What professional leap have I been hesitant to take, and what holds me back?"
+
+*This is a reflection theme, not a career prediction.*
 ''',
-    advice: 'Jump. Don\'t think, feel. Trust the unknown. Now is the time.',
+    advice: 'A reflection invitation: Consider what it would mean to trust the unknown. What would change if you approached today with beginner\'s mind?',
     meditation: '''
 Close your eyes. Imagine you're standing at the edge of a cliff. You can't see below - only clouds.
 
@@ -619,7 +637,7 @@ Get ahead in competition. But play fair - cheating is short-term victory, long-t
 Sales, leadership, entrepreneurship, sports fields are prominent.
 ''',
     advice:
-        'Focus on your path. Obstacles will come - manage them, don\'t let them manage you.',
+        'Focus on your path. When obstacles arise, consider how to manage them rather than letting them manage you.',
     meditation: '''
 Close your eyes. You're standing in a war chariot. Before you are two forces - one pulling you left, one right.
 
@@ -1114,7 +1132,7 @@ Time to integrate different skills, projects, teams.
 Health, therapy, consulting, mediation fields are suitable.
 ''',
     advice:
-        'Establish balance. Be patient. Unite opposites - the result will be greater than both.',
+        'Establish balance. Be patient. Uniting opposites often creates something greater than either alone.',
     meditation: '''
 Close your eyes. You have two cups in your hands - fire in one, water in the other.
 

@@ -1,77 +1,82 @@
-/// Horoscope Mega Content - Günlük/Haftalık/Aylık/Yıllık Burç Yorumları
-/// Her burç için kapsamlı yorum şablonları ve dinamik içerik
+/// Archetype Reflection Content - Reflection themes based on archetypes and symbols
+/// Comprehensive reflection templates for personal growth and self-awareness
+/// Content is designed for reflection purposes only, not prediction.
 library;
 
+/// Content disclaimer for all content in this file
+const String megaContentDisclaimer =
+    'This content is for reflection and self-awareness only. It does not predict events or outcomes.';
+
 // ════════════════════════════════════════════════════════════════════════════
-// GÜNLÜK BURÇ YORUMU ŞABLONLARİ
+// GÜNLÜK REFLEKSIYON TEMA ŞABLONLARI
 // ════════════════════════════════════════════════════════════════════════════
 
 class DailyHoroscopeTemplates {
-  /// Ay fazlarına göre genel tema şablonları
+  /// Ay fazlarına göre refleksiyon tema şablonları (kültürel sembolizm)
   static const Map<String, MoonPhaseTheme> moonPhaseThemes = {
     'new_moon': MoonPhaseTheme(
       phase: 'Yeni Ay',
-      generalTheme: 'Yeni başlangıçlar ve tohumlar ekme zamanı',
+      generalTheme: 'Birçok kültürde yeni başlangıçlarla ilişkilendirilen bir dönem',
       energyLevel: 'İçsel, yansıtıcı',
-      bestFor: ['Niyet belirleme', 'Yeni projeler başlatma', 'İç görü çalışması'],
-      avoid: ['Büyük kararlar', 'Kamusal girişimler', 'Aşırı sosyalleşme'],
-      affirmation: 'Bugün tohum ektiğim niyetler, zamanla meyve verecek.',
+      bestFor: ['Niyet belirleme üzerine düşünme', 'Yeni projeler planlama', 'İç görü çalışması'],
+      avoid: ['Bu dönemde bazı insanlar büyük kararları ertelemeyi tercih eder'],
+      affirmation: 'Niyetlerimi netleştirmek için bir fırsat olarak düşünebilirim.',
     ),
     'waxing_crescent': MoonPhaseTheme(
       phase: 'Hilal (Büyüyen)',
-      generalTheme: 'Momentum oluşturma ve harekete geçme',
+      generalTheme: 'Geleneksel olarak momentum ve hareket ile ilişkilendirilen dönem',
       energyLevel: 'Artan, motive',
-      bestFor: ['Planları harekete geçirme', 'İlk adımları atma', 'Engellerin üstesinden gelme'],
-      avoid: ['Tembellik', 'Erteleme', 'Şüpheye kapılma'],
-      affirmation: 'Her küçük adım beni hedefime yaklaştırıyor.',
+      bestFor: ['Planları gözden geçirme', 'İlk adımlar üzerine düşünme', 'Engeller üzerine refleksiyon'],
+      avoid: ['Erteleme kalıplarını fark etme fırsatı'],
+      affirmation: 'Her adım bir öğrenme fırsatı olarak düşünülebilir.',
     ),
     'first_quarter': MoonPhaseTheme(
       phase: 'İlk Dördün',
-      generalTheme: 'Meydan okumalar ve kararlılık testi',
+      generalTheme: 'Zorluklar ve kararlılık üzerine düşünme daveti',
       energyLevel: 'Gerilimli, zorlayıcı',
-      bestFor: ['Zorlukları aşma', 'Kararlı duruş', 'Stratejik değişiklikler'],
-      avoid: ['Vazgeçme', 'Öfke patlamaları', 'Sabırsızlık'],
-      affirmation: 'Zorluklarla yüzleşmek beni güçlendiriyor.',
+      bestFor: ['Zorluklar üzerine refleksiyon', 'Kararlılık teması', 'Strateji değerlendirmesi'],
+      avoid: ['Sabırsızlık kalıplarını fark etme'],
+      affirmation: 'Zorluklarla yüzleşmek üzerine düşünmek isteyebilirim.',
     ),
     'waxing_gibbous': MoonPhaseTheme(
       phase: 'Şişkin Ay (Büyüyen)',
-      generalTheme: 'Rafine etme ve mükemmelleştirme',
+      generalTheme: 'İyileştirme ve detaylar üzerine düşünme daveti',
       energyLevel: 'Yoğun, detay odaklı',
-      bestFor: ['İnce ayarlar yapma', 'Analiz ve değerlendirme', 'Hazırlıkları tamamlama'],
-      avoid: ['Mükemmeliyetçilik', 'Aşırı eleştiri', 'Kaygıya kapılma'],
-      affirmation: 'Detaylara dikkat ederken büyük resmi de görüyorum.',
+      bestFor: ['İnce ayarlar üzerine düşünme', 'Analiz ve değerlendirme', 'Hazırlık refleksiyonu'],
+      avoid: ['Mükemmeliyetçilik kalıplarını fark etme'],
+      affirmation: 'Detaylar ve büyük resim arasındaki denge üzerine düşünebilirim.',
     ),
     'full_moon': MoonPhaseTheme(
       phase: 'Dolunay',
-      generalTheme: 'Doruk, aydınlanma ve sonuçlar',
+      generalTheme: 'Birçok gelenekte tamamlanma ve şükran ile ilişkilendirilen dönem',
       energyLevel: 'Maksimum, yoğun',
-      bestFor: ['Kutlama', 'Farkındalık', 'İlişkiler', 'Bırakma ritüelleri'],
-      avoid: ['Aşırı tepkiler', 'Büyük kararlar', 'Çatışma arama'],
-      affirmation: 'Işık her şeyi açığa çıkarıyor, ben de gerçeğimi kucaklıyorum.',
+      bestFor: ['Şükran pratiği', 'Farkındalık', 'İlişkiler üzerine refleksiyon', 'Bırakma temaları'],
+      avoid: ['Aşırı tepki kalıplarını fark etme'],
+      affirmation: 'Başarılarımı ve öğrendiklerimi takdir etmek için bir fırsat.',
     ),
     'waning_gibbous': MoonPhaseTheme(
       phase: 'Şişkin Ay (Küçülen)',
-      generalTheme: 'Paylaşma ve şükran',
+      generalTheme: 'Paylaşma ve şükran temaları üzerine düşünme daveti',
       energyLevel: 'Azalan, içsel dönen',
-      bestFor: ['Öğrenilenleri paylaşma', 'Şükran', 'Başkalarına yardım'],
-      avoid: ['Yeni başlangıçlar', 'Aşırı harcama', 'Ego'],
-      affirmation: 'Öğrendiklerimi paylaşarak çoğaltıyorum.',
+      bestFor: ['Öğrenilenleri paylaşma üzerine düşünme', 'Şükran pratiği', 'Başkalarına yardım teması'],
+      avoid: ['Ego kalıplarını fark etme'],
+      affirmation: 'Öğrendiklerimi paylaşmak üzerine düşünmek isteyebilirim.',
     ),
     'last_quarter': MoonPhaseTheme(
       phase: 'Son Dördün',
-      generalTheme: 'Bırakma ve temizlik',
+      generalTheme: 'Bırakma ve temizlik temaları üzerine düşünme daveti',
       energyLevel: 'Gerilimli, dönüştürücü',
-      bestFor: ['Eski kalıpları kırma', 'Temizlik', 'Bağışlama'],
-      avoid: ['Geçmişe takılma', 'Pişmanlık', 'Direnç'],
-      affirmation: 'Bıraktıklarım yerini yenilere açıyor.',
+      bestFor: ['Eski kalıplar üzerine refleksiyon', 'Temizlik teması', 'Bağışlama üzerine düşünme'],
+      avoid: ['Geçmişe takılma kalıplarını fark etme'],
+      affirmation: 'Bırakma ve yenilenme temaları üzerine düşünebilirim.',
     ),
     'waning_crescent': MoonPhaseTheme(
       phase: 'Hilal (Küçülen)',
-      generalTheme: 'Dinlenme ve içsel hazırlık',
+      generalTheme: 'Dinlenme ve içsel hazırlık temaları üzerine düşünme daveti',
       energyLevel: 'Minimum, içsel',
       bestFor: ['Meditasyon', 'Rüyalara dikkat', 'Sessizlik', 'Kendine bakım'],
-      avoid: ['Yeni projeler', 'Sosyal etkinlikler', 'Fiziksel aşırılıklar'],
-      affirmation: 'Dinlenmek de bir üretkenlik biçimidir.',
+      avoid: ['Aşırı yorgunluk kalıplarını fark etme'],
+      affirmation: 'Dinlenmenin değeri üzerine düşünmek isteyebilirim.',
     ),
   };
 
@@ -149,51 +154,51 @@ class DailyHoroscopeTemplates {
     ),
   };
 
-  /// Her burç için günlük yorum alanları
+  /// Her arketip için günlük refleksiyon alanları
   static const Map<String, DailyHoroscopeAreas> horoscopeAreas = {
     'love': DailyHoroscopeAreas(
-      area: 'Aşk',
+      area: 'İlişkiler',
       icon: '💕',
       questions: [
-        'İlişkimde bugün ne beklemeliyim?',
-        'Bekar olarak bugün şansım nasıl?',
-        'Duygusal enerji bugün nasıl?',
+        'İlişkilerimde hangi kalıpları fark ediyorum?',
+        'Bağlantı ve yalnızlık üzerine ne düşünüyorum?',
+        'Duygusal farkındalığım nasıl?',
       ],
     ),
     'career': DailyHoroscopeAreas(
-      area: 'Kariyer',
+      area: 'Profesyonel',
       icon: '💼',
       questions: [
-        'İş yerinde bugün nasıl bir gün geçireceğim?',
-        'Finansal fırsatlar var mı?',
-        'Mesleki gelişim için ipuçları',
+        'İş hayatımla ilgili hangi temalar üzerine düşünebilirim?',
+        'Profesyonel değerlerim neler?',
+        'Mesleki gelişim üzerine refleksiyon',
       ],
     ),
     'health': DailyHoroscopeAreas(
-      area: 'Sağlık',
+      area: 'Wellness',
       icon: '🏃',
       questions: [
-        'Enerji seviyem bugün nasıl?',
-        'Nelere dikkat etmeliyim?',
-        'Stres yönetimi önerileri',
+        'Enerji seviyemi nasıl değerlendiriyorum?',
+        'Öz-bakım kalıplarım hakkında ne fark ediyorum?',
+        'Stres ve dinlenme dengem nasıl?',
       ],
     ),
     'money': DailyHoroscopeAreas(
-      area: 'Para',
+      area: 'Değerler',
       icon: '💰',
       questions: [
-        'Finansal kararlar için uygun bir gün mü?',
-        'Beklenmedik gelir/gider var mı?',
-        'Yatırım zamanlaması',
+        'Finansal değerlerim ve alışkanlıklarım üzerine ne düşünüyorum?',
+        'Bolluk ve kıtlık zihniyeti üzerine refleksiyon',
+        'Harcama kalıplarım hakkında ne fark ediyorum?',
       ],
     ),
     'mood': DailyHoroscopeAreas(
-      area: 'Ruh Hali',
+      area: 'Duygusal Farkındalık',
       icon: '🎭',
       questions: [
-        'Genel duygusal durum nasıl?',
-        'Motivasyon seviyesi',
-        'İç huzur için öneriler',
+        'Duygusal durumum hakkında ne fark ediyorum?',
+        'Motivasyon kaynakları üzerine düşünme',
+        'İç huzur için neler yapabilirim?',
       ],
     ),
   };
@@ -216,121 +221,157 @@ class ZodiacDailyContent {
 class AriesDailyTemplates {
   const AriesDailyTemplates();
 
-  /// Yüksek enerjili günler için şablonlar
+  /// Ateş arketipi yüksek enerji refleksiyon temaları
   static const List<String> highEnergyDays = [
     '''
-Mars enerjisi bugün tam güçte! {sign} olarak doğal liderliğin parıldıyor.
-Eylem zamanı - düşünmeden önce hareket etmek için mükemmel bir gün.
+## Mars Arketipi: Eylem ve İnisiyatif Refleksiyonu
 
-🔥 GÜNÜN ENERJİSİ: Ateşli ve dinamik
-Bugün önüne çıkan her fırsat bir atlama tahtası. Tereddüt etme,
-en iyi fikirlerin hareket ederken gelecek.
+Mars arketipi, mitolojide ve modern psikolojide eylem, girişkenlik ve
+isteklerimizi takip etme kapasitemizi simgeler. Koç arketipi ile
+ilişkilendirilen bu enerji, cesaret ve kişisel itici güç temalarını keşfetmeye davet eder.
 
-💡 GÜNÜN TAVSİYESİ:
-Rekabeti sev ama düşmanlar yaratma. Enerjini spor veya fiziksel
-aktiviteyle kanalize et - aksi halde gerilim olarak patlayabilir.
+🔥 REFLEKSIYON TEMASI: Ateşli ve dinamik
+Hayatında inisiyatif almak istediğin alanlar neler?
+Sağlıklı girişkenlik senin için şu an nasıl görünüyor?
 
-⚡ DİKKAT:
-Aceleci kararlar verme eğilimin var. "Hızlı" ile "acele" arasındaki
-farkı gözet. Önce soluğunu al, sonra atıl.
+💡 DÜŞÜNME DAVETI:
+Rekabet ve iş birliği arasındaki denge üzerine düşünmek isteyebilirsin.
+Enerjini yapıcı yollarla kanalize etme fırsatları hakkında ne düşünüyorsun?
+
+⚡ FARKINDLIK ALANI:
+Aceleci kararlar ve bilinçli eylem arasındaki fark üzerine düşünebilirsin.
+Sabır ve harekete geçme arasındaki dengeyi nasıl buluyorsun?
+
+*Bu içerik refleksiyon amaçlıdır. Olayları tahmin etmez.*
 ''',
     '''
-Bugün bir savaşçı gibi hissedeceksin - ve haklısın da! Koç enerjisi
-zirvede. Her engel aşılabilir, her rakip yenilebilir görünüyor.
+## Öncü Arketipi: Cesaret ve Liderlik Refleksiyonu
 
-🎯 ODAK ALANI: Başarı ve zafer
-"Başaramam" kelimesi bugün sözlüğünde yok. Bu özgüveni akıllıca kullan.
-Büyük hedefler koy ama detayları unutma.
+Koç arketipi, öncü enerjisini temsil eder. Bu, savaşmak değil,
+yol göstermek ve aydınlatmak anlamına da gelebilir.
 
-🚀 FIRSAT:
-Uzun süredir ertelediğin o girişimi bugün başlat. Mars seni destekliyor.
-Cesaretin ödüllendirildiği bir gün.
+🎯 REFLEKSIYON ALANI: Başarı ve hedefler
+"Başarı" senin için ne anlama geliyor? Bu kavram üzerine düşünmek isteyebilirsin.
+Büyük hedefler ve detaylar arasındaki denge hakkında ne düşünüyorsun?
 
-⚠️ UYARI:
-Ego patlamaları gündemde olabilir. Haklı olmak ile mutlu olmak
-arasında seçim yapman gerekebilir.
+🚀 DÜŞÜNME DAVETI:
+Ertelediğin girişimler veya projeler var mı? Bu konu üzerine düşünebilirsin.
+Cesaret ve tedbirlilik arasındaki denge hakkında refleksiyon yapabilirsin.
+
+⚠️ FARKINDLIK:
+Ego ve özgüven arasındaki fark üzerine düşünmek faydalı olabilir.
+Haklı olmak ile ilişki sağlığı arasındaki denge hakkında ne düşünüyorsun?
+
+*Bu içerik refleksiyon amaçlıdır. Olayları tahmin etmez.*
 ''',
   ];
 
-  /// Düşük enerjili günler için şablonlar
+  /// Düşük enerji dönemleri için refleksiyon temaları
   static const List<String> lowEnergyDays = [
     '''
-Bugün Mars retrosu etkisinde gibi hissedebilirsin. Enerjin her zamanki
-gibi patlamıyor - ve bu aslında iyi bir şey.
+## Dinlenme ve Strateji: İçsel Dönem Refleksiyonu
 
-🌙 GÜNÜN TEMASI: Yavaşla ve dinle
-Her gün savaş meydanı olmak zorunda değil. Bugün stratejik geri çekilme
-zamanı. Düşün, planla, biriktir.
+Enerji seviyesi düşük hissedilen dönemler, içe dönmek ve
+strateji geliştirmek için bir davet olarak düşünülebilir.
+
+🌙 REFLEKSIYON TEMASI: Yavaşlama ve dinleme
+Her gün aksiyon odaklı olmak zorunda değil. Stratejik geri çekilme
+kavramı üzerine düşünmek isteyebilirsin.
 
 🧘 İÇ DÜNYA:
-Normalde dışa dönük enerjin bugün içe dönüyor. Meditasyon veya sessiz
-yürüyüş sana iyi gelecek.
+İçe dönük zaman geçirmenin değeri üzerine düşünebilirsin.
+Meditasyon veya sessiz yürüyüş hakkında ne düşünüyorsun?
 
-📝 TAVSİYE:
-Büyük hamleler yapma, enerji biriktir. Yarın için hazırlan.
-Sabır bir güç gösterisidir.
+📝 DÜŞÜNME DAVETI:
+Sabır bir güç gösterisi olarak düşünülebilir.
+Enerji biriktirme ve hareket arasındaki denge hakkında refleksiyon yapabilirsin.
+
+*Bu içerik refleksiyon amaçlıdır. Olayları tahmin etmez.*
 ''',
   ];
 
-  /// Aşk alanı şablonları
+  /// İlişki refleksiyon temaları
   static const Map<String, List<String>> loveTemplates = {
     'single': [
       '''
-Bekar {sign} için bugün flört enerjisi yüksek! Cesaretin ve doğrudanlığın
-potansiyel partnerleri etkileyecek. İlk adımı atmaktan çekinme.
+## Bağlantı Refleksiyonu: İlişki Temaları
 
-❤️ ÇEKİM PUANI: %{attraction}
-Bugün manyetik alanın güçlü. Göz göze gelişler, anlık bağlantılar
-muhtemel. Spontan ol!
+İlişkiler ve bağlantı, birçok insanın düzenli olarak düşünmeyi
+anlamlı bulduğu alanlardır. Romantik karşılaşmalar tahmin etmek
+yerine, bağlantının kendisi ile ilişkinizi düşünmeye davet eder.
 
-💘 İPUCU:
-Koç'un doğrudan yaklaşımı bazılarını korkutabilir. Biraz gizem ekle -
-hemen her kartı gösterme.
+🤔 KENDİ KENDİNE SORULAR:
+• Anlamlı bağlantılarda hangi özelliklere değer veriyorsun?
+• Yeni ilişkilere veya arkadaşlıklara genellikle nasıl yaklaşıyorsun?
+• Sosyal ortamlarda otantik kendini ifade etmek senin için nasıl görünüyor?
+
+💘 GÜNLÜK SORUSU:
+"Günün etkileşimlerine başkalarına karşı gerçek merakla yaklaşsaydım ne değişirdi?"
+
+*Bu içerik ilişki temaları üzerine refleksiyon için tasarlanmıştır.
+Romantik sonuçları tahmin etmez.*
 ''',
     ],
     'relationship': [
       '''
-İlişkideki {sign} için bugün tutku ve enerji var ama sabır da gerekiyor.
-Partnerin senin hızına yetişemeyebilir - anlayış göster.
+## İlişki Dinamikleri: Refleksiyon Temaları
 
-💑 İLİŞKİ ENERJİSİ: Dinamik ama zorlayıcı
-Birlikte fiziksel aktivite yapın - spor, dans, macera. Oturarak tartışma
-yerine hareket ederek bağlanın.
+Mevcut ilişkilerdeki dinamikler üzerine düşünmek,
+öz-farkındalık ve büyüme için değerli olabilir.
 
-⚡ DİKKAT:
-Küçük şeyleri büyütme eğilimin var. Her tartışmayı kazanmak zorunda
-değilsin. Bazen geri adım atmak ileri gitmektir.
+💑 REFLEKSIYON ALANLARI:
+• Partnerinle iletişim kalıpların nasıl?
+• Birlikte aktivite yapmanın ilişkinize katkısı hakkında ne düşünüyorsun?
+• Tartışmalar sırasında tutumun hakkında farkındalık geliştirmek isteyebilirsin.
+
+⚡ DÜŞÜNME DAVETI:
+Küçük şeyleri büyütme eğilimi üzerine düşünmek faydalı olabilir.
+Haklı olmak ile ilişki sağlığı arasındaki denge hakkında ne düşünüyorsun?
+
+*Bu içerik ilişki refleksiyonu için tasarlanmıştır. Tavsiye niteliği taşımaz.*
 ''',
     ],
   };
 
-  /// Kariyer alanı şablonları
+  /// Profesyonel refleksiyon temaları
   static const Map<String, List<String>> careerTemplates = {
     'positive': [
       '''
-İş hayatında bugün Koç liderlik enerjisi parlıyor! İnsiyatif almak,
-yeni projeler başlatmak için ideal.
+## Liderlik ve İnisiyatif: Profesyonel Refleksiyon Temaları
 
-📈 KARİYER PUANI: %{score}
-Üstlerin cesaretini fark edecek. Terfi veya tanınma gündemde olabilir.
-Sesini çıkar, fikirlerini paylaş.
+Öncü arketipi, profesyonel yaşamımıza nasıl yaklaştığımız
+üzerine refleksiyon yapmaya davet eder. Bu, kariyer sonuçlarını
+tahmin etmek değil, iş ve hırs ile ilişkinizi düşünmektir.
 
-💼 FIRSAT:
-Uzun süredir düşündüğün o projeyi sun. Risk almak bugün ödüllendiriliyor.
+🤔 DÜŞÜNME ALANLARI:
+• Düşündüğün ama hayata geçirmekte tereddüt ettiğin girişimler var mı?
+• Profesyonel ortamlarda konuşmak ile dinlemek arasındaki dengeyi nasıl kuruyorsun?
+• Mevcut rolündeki anlamlı katkı nasıl görünüyor?
+
+💼 GÜNLÜK SORUSU:
+"Profesyonel içgüdülerime tam güvenseydim neyi farklı yapardım?"
+
+*Bu içerik profesyonel öz-refleksiyon için temalar sunar.
+Kariyer kararları kendi yargınıza ve gerektiğinde profesyonel tavsiyeye dayalı olmalıdır.*
 ''',
     ],
     'challenging': [
       '''
-İş yerinde bugün biraz gerilim var. Koç'un sabırsızlığı çatışmalara
-yol açabilir. Dikkatli ol!
+## Profesyonel Zorluklar: Refleksiyon Temaları
 
-⚠️ ZORLUK:
-Otoriteyle sürtüşme riski var. Haklı olsan bile, nasıl söylediğin
-ne söylediğinden önemli.
+Zorlayıcı dönemler, kalıplarımızı fark etmek ve büyümek için
+fırsatlar olarak düşünülebilir.
 
-🛠️ STRATEJİ:
-Savaşlarını seç. Her tepeye tırmanmak zorunda değilsin. Büyük
-resmi gör, küçük engellere takılma.
+🤔 REFLEKSIYON ALANLARI:
+• Otoriteyle ilişkin hakkında ne fark ediyorsun?
+• "Ne" söylediğin ile "nasıl" söylediğin arasındaki fark üzerine düşünebilirsin.
+• Hangi mücadelelerin gerçekten önemli olduğunu nasıl belirliyorsun?
+
+🛠️ DÜŞÜNME DAVETI:
+Stratejik düşünme ve reaktif davranış arasındaki fark
+üzerine düşünmek isteyebilirsin. Büyük resmi görmek hakkında ne düşünüyorsun?
+
+*Bu içerik profesyonel refleksiyon için tasarlanmıştır. Tavsiye niteliği taşımaz.*
 ''',
     ],
   };
@@ -341,145 +382,169 @@ class TaurusDailyTemplates {
 
   static const List<String> highEnergyDays = [
     '''
-Venüs enerjisi bugün seni kucaklıyor, {sign}. Duyusal zevkler, güzellik
-ve konfor gündemde. Hayatın tadını çıkarma zamanı!
+## Venüs Arketipi: Güzellik ve Değer Refleksiyonu
 
-🌸 GÜNÜN ENERJİSİ: Zengin ve huzurlu
-Acele etme, her anın keyfini çıkar. Lezzetli bir yemek, güzel bir müzik,
-yumuşak dokular - beş duyunu şımartmak için izin ver.
+Venüs arketipi, sevgi, güzellik ve değerler temalarını simgeler.
+Boğa arketipi ile ilişkilendirilen bu enerji, duyusal deneyimler
+ve öz-değer üzerine düşünmeye davet eder.
 
-💎 DEĞER ODAĞI:
-Bugün değerli olan şeylere odaklan - hem maddi hem manevi.
-Neyin gerçekten önemli olduğunu hatırla.
+🌸 REFLEKSIYON TEMASI: Zenginlik ve huzur
+Her anın tadını çıkarmak üzerine düşünmek isteyebilirsin.
+Beş duyun ve farkındalık arasındaki ilişki hakkında ne düşünüyorsun?
 
-🌿 TAVSİYE:
-Doğayla vakit geçir. Toprakla bağlantı kurmak seni merkeze getirir.
+💎 DEĞER REFLEKSIYONU:
+Hem maddi hem manevi değerler üzerine düşünebilirsin.
+Senin için gerçekten önemli olan nedir?
+
+🌿 DÜŞÜNME DAVETI:
+Doğayla bağlantı kurmanın değeri üzerine düşünmek isteyebilirsin.
+Topraklama pratiği hakkında ne düşünüyorsun?
+
+*Bu içerik refleksiyon amaçlıdır. Olayları tahmin etmez.*
 ''',
   ];
 
   static const Map<String, List<String>> loveTemplates = {
     'single': [
       '''
-Bekar {sign} için bugün romantik potansiyel yüksek! Venüs çekiciliğini
-artırıyor. Sakin, güvenilir enerjin dikkat çekecek.
+## Bağlantı ve Değer: İlişki Refleksiyonu
 
-❤️ ÇEKİM PUANI: %{attraction}
-Hızlı ilişkiler aramıyorsun - ve bu doğru. Kalıcı bağlantılar için
-sabırlı yaklaşımın seni doğru kişiye götürecek.
+İlişkilere sabırlı ve değer odaklı bir yaklaşım üzerine düşünmek
+anlamlı olabilir. Bu, romantik sonuçları tahmin etmek değil,
+bağlantı tarzın hakkında farkındalık geliştirmektir.
 
-💕 İPUCU:
-Güzel bir restoran veya sanat galerisi gibi yerlerde şansın daha yüksek.
-Estetik zevklerini paylaşan biriyle karşılaşabilirsin.
+🤔 KENDİ KENDİNE SORULAR:
+• Sakin ve güvenilir enerji senin için ne anlama geliyor?
+• Kalıcı bağlantılar için sabırlı yaklaşım hakkında ne düşünüyorsun?
+• Estetik değerlerini paylaşan biriyle bağlantı kurma fikri nasıl hissettiriyor?
+
+💕 GÜNLÜK SORUSU:
+"İlişkilerde neye değer veriyorum ve bunu nasıl ifade ediyorum?"
+
+*Bu içerik ilişki temaları üzerine refleksiyon için tasarlanmıştır.*
 ''',
     ],
     'relationship': [
       '''
-İlişkideki {sign} için bugün sevgi dolu ve besleyici bir gün.
-Partnerin için bir şeyler pişir, masaj yap, fiziksel yakınlık göster.
+## İlişkide Besleyici Enerji: Refleksiyon Temaları
 
-💑 İLİŞKİ ENERJİSİ: Sıcak ve güven dolu
-Derin sohbetler yerine sessiz birliktelik. Sadece birlikte olmak,
-bir şey yapmak zorunda olmadan, bugün en değerli hediye.
+Mevcut ilişkilerde besleyicilik ve fiziksel yakınlık temaları
+üzerine düşünmek değerli olabilir.
 
-🌹 ROMANTİK JEST:
-Küçük ama anlamlı bir hediye. Çiçek, çikolata veya favori yemeği.
-Maddi değil, düşünce önemli.
+💑 REFLEKSIYON ALANLARI:
+• Partnerine sevgi gösterme şeklin hakkında ne fark ediyorsun?
+• Sessiz birlikteliğin değeri üzerine düşünmek isteyebilirsin.
+• Küçük jestlerin önemi hakkında ne düşünüyorsun?
+
+🌹 DÜŞÜNME DAVETI:
+Fiziksel yakınlık ve duygusal bağlantı arasındaki ilişki
+üzerine düşünebilirsin. Hediye vermek ve almak senin için ne anlama geliyor?
+
+*Bu içerik ilişki refleksiyonu için tasarlanmıştır. Tavsiye niteliği taşımaz.*
 ''',
     ],
   };
 }
 
 // ════════════════════════════════════════════════════════════════════════════
-// HAFTALIK BURÇ YORUMLARI
+// HAFTALIK REFLEKSIYON TEMALARI
 // ════════════════════════════════════════════════════════════════════════════
 
 class WeeklyHoroscopeContent {
   static const String introduction = '''
-Haftalık burç yorumları, haftanın genel enerjisini ve her gün için
-özel vurguları içerir. Gezegen transitlerinin hafta boyunca etkilerini
-ve önemli tarihlerı öğrenin.
+Haftalık refleksiyon temaları, haftanın genel temasını ve her gün için
+düşünme davetlerini içerir. Bu içerik tahmin değil, kişisel
+farkındalık ve refleksiyon için tasarlanmıştır.
 ''';
 
-  /// Haftalık yorum yapı şablonu
+  /// Haftalık refleksiyon yapı şablonu
   static const WeeklyStructure structure = WeeklyStructure(
     sections: [
-      'Haftanın Genel Enerjisi',
-      'Önemli Gezegen Hareketleri',
-      'Aşk ve İlişkiler Haftalığı',
-      'Kariyer ve Finans Haftalığı',
-      'Sağlık ve Enerji Takibi',
-      'Şanslı Gün ve Saatler',
-      'Haftanın Tavsiyesi',
+      'Haftanın Refleksiyon Teması',
+      'Sembolik Gezegensel Temalar',
+      'İlişki Refleksiyonu',
+      'Profesyonel Refleksiyon',
+      'Wellness ve Enerji Farkındalığı',
+      'Kültürel Sembolik Bilgi',
+      'Haftanın Günlük Sorusu',
     ],
     dailyHighlights: true,
-    luckyNumbers: true,
-    luckyColors: true,
+    luckyNumbers: false, // Kaldırıldı - tahmin içerir
+    luckyColors: true, // Kültürel bilgi olarak korundu
   );
 
-  /// Haftalık tema şablonları (gezegen hareketlerine göre)
+  /// Haftalık tema şablonları (kültürel sembolizm olarak çerçevelenmiş)
   static const Map<String, WeeklyTheme> weeklyThemes = {
     'mercury_retrograde': WeeklyTheme(
-      theme: 'Merkür Retrosu Haftası',
+      theme: 'Merkür Retrosu: Kültürel Bir Yavaşlama Sembolü',
       generalAdvice: '''
-Bu hafta iletişim ve teknoloji konularında ekstra dikkatli ol!
-Merkür retrosu her şeyin yavaşladığı, geçmişin gündeme geldiği bir dönem.
+Merkür retrosu, astrolojik gelenekte yaygın olarak tanınan bir dönemdir,
+ancak etkileri bilimsel gerçeklik değil, kişisel inanç meselesidir.
+Kültürel olarak, birçok kişi bu dönemi iletişim kalıpları üzerine
+yavaşlama ve düşünme için sembolik bir hatırlatıcı olarak kullanır.
 
-DİKKAT EDİLECEKLER:
-• Önemli belgeleri iki kez kontrol et
-• Eski arkadaşlar veya eski sevgililer ortaya çıkabilir
-• Teknolojik aksaklıklara hazırlıklı ol
-• Yeni sözleşmeler imzalamaktan kaçın
-• Seyahat planlarını esnek tut
+REFLEKSIYON TEMALARI (Tahmin Değil):
+• Önemli belgeler ve iletişimleri ekstra dikkatle gözden geçirmek üzerine düşünebilirsin
+• Geçmiş ilişkiler ve sana ne öğrettikleri üzerine refleksiyon yapabilirsin
+• Teknolojinin hedeflerine nasıl hizmet ettiği (veya dikkatini dağıttığı) üzerine düşünmek isteyebilirsin
 
-POZİTİF KULLANIM:
-• Yarım kalan projeleri tamamla
-• Geçmişi gözden geçir ve öğren
-• İletişimi tamir et, barış
-• Detaylara dikkat et
+TARİHSEL & KÜLTÜREL BAĞLAM:
+Merkür retrosu kavramı, Dünya'dan gözlemlendiğinde Merkür'ün görünürdeki
+geriye doğru hareketinden gelir. Tarih boyunca, Merkür (veya Hermes)
+çeşitli kültürlerde iletişim, ticaret ve seyahati simgelemiştir.
+
+GÜNLÜK SORUSU:
+"Hangi bitmemiş konuşmalar veya projeler dikkatimden faydalanabilir?"
+
+*Bu içerik kültürel/sembolik bir geleneği tanımlar. Olayları veya sonuçları tahmin etmez.*
 ''',
-      doList: ['Yedekleme yap', 'Eski dostlara ulaş', 'Tamir ve bakım'],
-      dontList: ['Yeni başlangıçlar', 'Büyük alımlar', 'Önemli sözleşmeler'],
+      doList: ['İletişim üzerine refleksiyon', 'Geçmiş dersleri gözden geçirme', 'Bilinçli iletişim'],
+      dontList: [], // Kaldırıldı - tahmin içeriyordu
     ),
     'venus_retrograde': WeeklyTheme(
-      theme: 'Venüs Retrosu Haftası',
+      theme: 'Venüs Retrosu: İlişki ve Değer Refleksiyonu',
       generalAdvice: '''
-Aşk ve değerler sorgulanıyor. Venüs retrosu ilişkileri ve
-finansmanı yeniden değerlendirme zamanı.
+Venüs retrosu, astrolojik gelenekte aşk ve değerler üzerine
+refleksiyon dönemi olarak yorumlanır. Bilimsel olarak kanıtlanmış
+etkileri olmamasına rağmen, birçok kişi bu dönemi ilişkiler ve
+değerler üzerine düşünmek için bir hatırlatıcı olarak kullanır.
 
-AŞK HAYATINDA:
-• Eski aşklar geri dönebilir
-• Mevcut ilişkiler test edilir
-• Ne istediğini sorgula
-• Yeni ilişki başlatmak için bekle
+İLİŞKİ REFLEKSIYON TEMALARI:
+• Geçmiş ilişkilerden öğrendiğin dersler üzerine düşünebilirsin
+• Mevcut ilişkilerindeki kalıplar hakkında farkındalık geliştirmek isteyebilirsin
+• Gerçekten ne istediğin üzerine refleksiyon yapabilirsin
 
-FİNANSAL:
-• Büyük harcamalardan kaçın
-• Değerlerin üzerine düşün
-• İmpulsif alışverişe hayır
+DEĞER REFLEKSIYONU:
+• Neye değer verdiğin üzerine düşünmek isteyebilirsin
+• Harcama kalıpların ve değerlerin arasındaki uyum hakkında ne düşünüyorsun?
+• İmpulsif kararlar ve bilinçli seçimler arasındaki fark üzerine refleksiyon
+
+*Bu içerik ilişki ve değer refleksiyonu için tasarlanmıştır. Olayları tahmin etmez.*
 ''',
-      doList: ['İlişki değerlendirmesi', 'Öz-değer çalışması', 'Sanat ve güzellik'],
-      dontList: ['Estetik operasyonlar', 'Büyük alımlar', 'Yeni ilişki'],
+      doList: ['İlişki refleksiyonu', 'Öz-değer keşfi', 'Güzellik takdiri'],
+      dontList: [], // Kaldırıldı - tahmin içeriyordu
     ),
     'mars_retrograde': WeeklyTheme(
-      theme: 'Mars Retrosu Haftası',
+      theme: 'Mars Retrosu: Enerji ve Eylem Refleksiyonu',
       generalAdvice: '''
-Eylem enerjisi içe dönüyor. Mars retrosu fiziksel aktivite,
-öfke ve motivasyonu etkiler.
+Mars retrosu, geleneksel olarak eylem enerjisinin içe döndüğü
+bir dönem olarak yorumlanır. Bu dönem, motivasyon ve enerji
+yönetimi üzerine düşünmek için bir davet olarak kullanılabilir.
 
-ENERJİ YÖNETİMİ:
-• Yorgunluk hissedebilirsin
-• Öfke patlamalarına dikkat
-• Fiziksel zorlamadan kaçın
-• Strateji geliştirme zamanı
+ENERJİ REFLEKSIYON TEMALARI:
+• Enerji seviyelerinle ilişkin hakkında düşünmek isteyebilirsin
+• Öfke ve frustrasyon kalıpların üzerine farkındalık geliştirebilirsin
+• Dinlenme ve aktivite arasındaki denge hakkında ne düşünüyorsun?
 
-TAVSİYELER:
-• Sabırlı ol
-• Büyük kavgalardan kaçın
-• Yoga ve meditasyon
-• Enerji biriktir
+DÜŞÜNME DAVETLERİ:
+• Sabır kavramı senin için ne anlama geliyor?
+• Strateji geliştirme vs. ani tepki verme üzerine refleksiyon
+• Enerji biriktirme ve harcama arasındaki denge
+
+*Bu içerik enerji ve eylem refleksiyonu için tasarlanmıştır. Olayları tahmin etmez.*
 ''',
-      doList: ['Strateji planlama', 'Dinlenme', 'İçsel motivasyon'],
-      dontList: ['Saldırgan davranış', 'Riskli sporlar', 'Yeni savaşlar'],
+      doList: ['Strateji refleksiyonu', 'Dinlenme ve yenilenme', 'İçsel motivasyon keşfi'],
+      dontList: [], // Kaldırıldı - tahmin içeriyordu
     ),
   };
 }
@@ -566,7 +631,7 @@ Neye değer veriyorsun? Yanıtları bul.
 öğrenme ve sosyal bağlantılar hızlanıyor.
 
 Yaz gündönümü bu ayda - yılın en uzun günü. Kutla, paylaş,
-bağlan. Sosyal takvimin dolu olacak.
+bağlan. Sosyal bağlantı temaları güçlü.
 ''',
     ),
     7: MonthlyTheme(

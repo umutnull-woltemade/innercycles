@@ -294,7 +294,7 @@ Mars' rulership gives Aries the warrior spirit, competitiveness, and power to ta
       overview:
           '''Taurus is the second sign of the zodiac, symbolizing stability, security, and life's pleasures. Those born between April 20 - May 20 belong to this sign. Ruled by Venus, this earth sign is known for loyalty, determination, and sensual pleasures.
 
-Taurus individuals build life's solid foundations. They are reliable, patient, and determined. A Taurus friend, business partner, or lover will be one of the most trustworthy people in your life.
+Taurus individuals often value building life's solid foundations. They are traditionally associated with reliability, patience, and determination. Those who resonate with Taurus traits may explore themes of trustworthiness and stability.
 
 The Bull, symbol of this sign, represents strength and endurance. The earth element gives them practicality, tangibility, and a grounded perspective. Venus' rulership brings deep interest in beauty, art, and love.''',
 

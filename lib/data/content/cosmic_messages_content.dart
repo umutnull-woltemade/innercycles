@@ -1,39 +1,49 @@
 import '../models/zodiac_sign.dart';
 
-/// Evrenin mesajları - Cosmic messages for daily inspiration
+/// Daily reflection themes and mindfulness prompts
+/// Content designed for personal reflection and self-awareness
 class CosmicMessagesContent {
   CosmicMessagesContent._();
 
-  /// Get a cosmic message for a specific zodiac sign based on day
+  /// Disclaimer for all content
+  static const String contentDisclaimer =
+      'This content is for reflection and self-awareness only. It does not predict events or outcomes.';
+
+  /// Get a reflection theme for a specific archetype based on day
   static String getDailyCosmicMessage(ZodiacSign sign, {DateTime? date}) {
-    final dayOfYear = (date ?? DateTime.now()).difference(DateTime(DateTime.now().year, 1, 1)).inDays;
+    final dayOfYear = (date ?? DateTime.now())
+        .difference(DateTime(DateTime.now().year, 1, 1))
+        .inDays;
     final messages = _cosmicMessages[sign] ?? _universalMessages;
     return messages[dayOfYear % messages.length];
   }
 
-  /// Get a random universal cosmic message
+  /// Get a random universal reflection theme
   static String getUniversalMessage({DateTime? date}) {
-    final dayOfYear = (date ?? DateTime.now()).difference(DateTime(DateTime.now().year, 1, 1)).inDays;
+    final dayOfYear = (date ?? DateTime.now())
+        .difference(DateTime(DateTime.now().year, 1, 1))
+        .inDays;
     return _universalMessages[dayOfYear % _universalMessages.length];
   }
 
-  /// Get morning affirmation for sign
+  /// Get morning reflection prompt for archetype
   static String getMorningAffirmation(ZodiacSign sign) {
     final dayOfWeek = DateTime.now().weekday;
     final affirmations = _morningAffirmations[sign] ?? _universalAffirmations;
     return affirmations[dayOfWeek % affirmations.length];
   }
 
-  /// Get evening reflection for sign
+  /// Get evening reflection prompt for archetype
   static String getEveningReflection(ZodiacSign sign) {
     final dayOfWeek = DateTime.now().weekday;
     final reflections = _eveningReflections[sign] ?? _universalReflections;
     return reflections[dayOfWeek % reflections.length];
   }
 
-  /// Get cosmic insight based on moon phase
+  /// Get reflection theme based on moon phase (cultural symbolism)
   static String getMoonPhaseInsight(String moonPhase) {
-    return _moonPhaseInsights[moonPhase] ?? _moonPhaseInsights['waxing_crescent']!;
+    return _moonPhaseInsights[moonPhase] ??
+        _moonPhaseInsights['waxing_crescent']!;
   }
 
   /// Get daily intention suggestion
@@ -43,315 +53,315 @@ class CosmicMessagesContent {
     return intentions[dayOfWeek % intentions.length];
   }
 
-  /// Universal cosmic messages - applicable to all signs
+  /// Universal reflection themes - applicable to all
   static final List<String> _universalMessages = [
-    'Evren bugün senin yanında dans ediyor. Her nefes, kozmik bir hediye.',
-    'Yıldızlar ruhunun haritasını çiziyor. Işığını paylaş, karanlığı aydınlat.',
-    'Bugün, evrenin sana fısıldadığı bir sır var. Kalbini dinle.',
-    'Kozmik enerji dalga dalga akıyor. Akışa teslim ol, mucizeler gelsin.',
-    'Galaksilerin ötesinden gelen bir mesaj: Sen yeterlisin, tam olduğun gibi.',
-    'Ay ışığı ruhunu yıkasın, güneş ışığı kalbini ısıtsın.',
-    'Evrendeki her atom seninle birlikte titreşiyor. Birliğin gücünü hisset.',
-    'Bugün bir kapı açılıyor. Cesaretinle adım at, yeni başlangıçlar seni bekliyor.',
-    'Yıldız tozundan yaratıldın, yıldızlara döneceksin. Arada, parla.',
-    'Kozmik düzen lehine çalışıyor. Güven ve bırak, evren yolunu açsın.',
-    'Ruhunun melodisi bugün evrenle uyum içinde. Şarkını söyle.',
-    'Karanlıktan korma, senin içindeki ışık yeterli. Parlamaya devam et.',
-    'Evrenin nabzı bugün senin kalbinde atıyor. Ritmi hisset.',
-    'Sonsuzluğun bir parçasısın. Sınırlarını aş, potansiyelini keşfet.',
-    'Bugün, evrenin en güzel sürprizi olabilir. Gözlerini aç.',
-    'Kozmik bilgelik içinden akıyor. Sezgilerine kulak ver.',
-    'Yıldızlar seninle konuşuyor. Sessizlikte mesajlarını al.',
-    'Her son bir başlangıç, her başlangıç bir hediye. Dönüşümü kutla.',
-    'Evrenin tüm bolluğu sana açık. Almaya izin ver.',
-    'Bugün bir mucize günü. Gözlerini açık tut, kalbini hazır.',
-    'Kozmik aşk seni sarıyor. Sevildiğini bil, sev.',
-    'Ruhun galaksiler kadar engin. Derinliklerini keşfet.',
-    'Evren seninle gülüyor bugün. Neşeni paylaş.',
-    'Yıldız tozu kanında akıyor. Büyünü hatırla.',
-    'Bugün, evrenin en güzel versiyonun olmak için mükemmel bir gün.',
-    'Kozmik zaman senin lehinede. Sabırla bekle, güzellikler gelsin.',
-    'İçindeki ışık, bin güneş kadar parlak. Karartmalarına izin verme.',
-    'Evrenin her köşesinde seninle aynı ışıktan ruhlar var. Yalnız değilsin.',
-    'Bugün, ruhunun şarkısını söyle. Evren dinliyor.',
-    'Kozmik enerjiler dönüşüm için mükemmel. Eskiyi bırak, yeniye merhaba de.',
+    'Bu an için bir nefes al. Şu anki haline nazik bir bakış atabilirsin.',
+    'Bugün kendine nasıl davrandığını fark etmek isteyebilirsin. Şefkatli bir yaklaşım düşünülebilir.',
+    'İç dünyana dönmek için güzel bir zaman olabilir. Kalbinin sana ne söylediğini dinleyebilirsin.',
+    'Akışta olmak nasıl bir his? Bu soru üzerine düşünmek isteyebilirsin.',
+    'Kendinle ilgili bugün takdir edebileceğin bir şey var mı?',
+    'Doğayla bağlantı kurmak için bir fırsat arayabilirsin.',
+    'Birlik ve bağlantı hissi üzerine düşünmek isteyebilirsin.',
+    'Yeni bir şey denemek için kendine alan tanıyabilirsin.',
+    'Yaratıcı enerjini keşfetmek için bir davet olarak düşünebilirsin.',
+    'Güven duygusu üzerine düşünmek faydalı olabilir.',
+    'İç sesine kulak vermek isteyebilirsin.',
+    'İçindeki güç hakkında düşünmek anlamlı olabilir.',
+    'Ritim ve denge üzerine bir refleksiyon zamanı olabilir.',
+    'Potansiyelini keşfetmek için merakla yaklaşabilirsin.',
+    'Bugün nelere dikkat çekmek istiyorsun?',
+    'Sezgilerine güvenmek nasıl hissettiriyor?',
+    'Sessizlikte ne buluyorsun? Bu soru üzerine düşünebilirsin.',
+    'Değişim ve dönüşüm temaları üzerine düşünmek isteyebilirsin.',
+    'Bolluk kavramı senin için ne anlama geliyor?',
+    'Bugün için bir farkındalık pratiği düşünebilirsin.',
+    'Sevgi ve bağlantı üzerine düşünmek anlamlı olabilir.',
+    'İç dünyanın derinliklerini keşfetmek isteyebilirsin.',
+    'Neşe ve hafiflik temaları üzerine bir refleksiyon.',
+    'Kendini hatırlamak için bir an ayırabilirsin.',
+    'En iyi halin nasıl görünüyor? Bu soru üzerine düşünebilirsin.',
+    'Sabır ve zamanlama üzerine düşünmek faydalı olabilir.',
+    'İçindeki ışık hakkında düşünmek isteyebilirsin.',
+    'Bağlantı ve topluluk hissi üzerine bir refleksiyon.',
+    'Kendini ifade etmek için bir alan yaratabilirsin.',
+    'Dönüşüm ve yenilenme temaları üzerine düşünebilirsin.',
   ];
 
-  /// Zodiac-specific cosmic messages
+  /// Archetype-specific reflection themes
   static final Map<ZodiacSign, List<String>> _cosmicMessages = {
     ZodiacSign.aries: [
-      'Ateş ruhun bugün savaşçı enerjisiyle parlıyor. Cesaretinle dağları yerinden oynat.',
-      'Mars sana güç veriyor. Öncü ol, yol aç, arkandan gelenler teşekkür edecek.',
-      'Koç enerjin bugün doruklarda. Başlamak istediğin her şey için mükemmel zaman.',
-      'Evren cesur ruhları ödüllendirir. Bugün risk al, kazanç seni bekliyor.',
-      'İçindeki savaşçı uyanıyor. Korkularını yenmek için mükemmel bir gün.',
-      'Ateşin karanlığı eritiyor. Işığınla aydınlat, liderliğinle ilham ver.',
-      'Bugün her engel bir merdiven basamağı. Tırman, zirve yakın.',
+      'Ateş arketipi, cesaret ve inisiyatif temalarını simgeler. Bu özellikler üzerine düşünmek isteyebilirsin.',
+      'Öncü olmak ne anlama geliyor? Bu soru üzerine bir refleksiyon yapabilirsin.',
+      'Yeni başlangıçlar teması üzerine düşünmek anlamlı olabilir.',
+      'Cesaret ve korku arasındaki denge üzerine düşünebilirsin.',
+      'İçindeki güç hakkında ne fark ediyorsun?',
+      'Liderlik ve ilham verme temaları üzerine bir refleksiyon.',
+      'Engeller karşısında tutumun hakkında düşünmek isteyebilirsin.',
     ],
     ZodiacSign.taurus: [
-      'Toprak ana bugün seni besliyor. Köklerini derinleştir, dallarını göğe uzat.',
-      'Venüs güzelliğini artırıyor. Duyularını şımart, hayattan zevk al.',
-      'Sabır en büyük gücün. Bekle, zamanı gelince en tatlı meyveler senin olacak.',
-      'Bugün bolluk kapıları açılıyor. Güvenle al, minnetle ver.',
-      'Dokunuşun şifa veriyor. Kendinle ve sevdiklerinle fiziksel bağ kur.',
-      'Değerin yıldızlarda yazılı. Kimseye ispat etmene gerek yok.',
-      'Topraklanma günü. Doğayla bağlan, enerjini dengele.',
+      'Toprak arketipi, istikrar ve değer temalarını simgeler. Bu alanlar üzerine düşünebilirsin.',
+      'Güzellik ve duyusal deneyimler hayatında nasıl yer alıyor?',
+      'Sabır teması üzerine bir refleksiyon anlamlı olabilir.',
+      'Bolluk kavramı senin için ne ifade ediyor?',
+      'Fiziksel dünya ile bağlantın hakkında düşünebilirsin.',
+      'Öz-değer üzerine düşünmek isteyebilirsin.',
+      'Doğa ile bağlantı kurmak için bir davet olarak düşünebilirsin.',
     ],
     ZodiacSign.gemini: [
-      'Zihnin bugün galaksiler arası bir radyo gibi. Mesajları al, bilgiyi yay.',
-      'Merkür iletişimini güçlendiriyor. Kelimelerinle büyüle, fikirlerin dünyaları değiştirsin.',
-      'İkili doğan merak ediyor. Sorular sor, cevaplar kendiliğinden gelecek.',
-      'Bugün her konuşma bir fırsat. Network kur, bağlantılar hayat kurtarır.',
-      'Zihinsel çevikliğin süper gücün. Hızlı düşün, hızlı hareket et.',
-      'Çok yönlülüğün bir hediye. Bugün tüm yeteneklerini sergile.',
-      'Hava elementi seni taşıyor. Hafifle, uç, özgür ol.',
+      'Hava arketipi, iletişim ve bağlantı temalarını simgeler. Bu alanlar üzerine düşünebilirsin.',
+      'Merak ve öğrenme hayatında nasıl yer alıyor?',
+      'Sorular sormak üzerine bir refleksiyon yapabilirsin.',
+      'Bağlantılar ve iletişim temaları üzerine düşünmek isteyebilirsin.',
+      'Zihinsel çeviklik hakkında ne fark ediyorsun?',
+      'Çok yönlülük teması üzerine düşünebilirsin.',
+      'Hafiflik ve esneklik üzerine bir refleksiyon.',
     ],
     ZodiacSign.cancer: [
-      'Ay ışığı bugün ruhunu okşuyor. Duygularına alan ver, akışa izin ver.',
-      'Yuva içgüdün güçleniyor. Sevdiklerini koru, sıcaklığını paylaş.',
-      'Sezgilerin kristal berraklığında. İç sesin seni yanıltmaz.',
-      'Bugün duygusal şifa günü. Gözyaşları arındırır, gülüşler iyileştirir.',
-      'Annesel enerjin evrenle akıyor. Besle, büyüt, sev.',
-      'Kabuk içindeki inci sensin. Savunmalarını indir, gerçek güzelliğini göster.',
-      'Ay döngüleriyle dans et. Her faz bir ders, her değişim bir hediye.',
+      'Su arketipi, duygusal derinlik ve şefkat temalarını simgeler. Bu alanlar üzerine düşünebilirsin.',
+      'Yuva ve aidiyet hissi senin için ne anlama geliyor?',
+      'Sezgilerine güvenmek üzerine bir refleksiyon yapabilirsin.',
+      'Duygusal iyileşme temaları üzerine düşünmek isteyebilirsin.',
+      'Besleyici enerji hakkında ne fark ediyorsun?',
+      'Savunmasızlık ve güç arasındaki ilişki üzerine düşünebilirsin.',
+      'Döngüler ve değişim üzerine bir refleksiyon.',
     ],
     ZodiacSign.leo: [
-      'Güneş bugün sadece senin için doğuyor. Sahnenin ortasına çık, parla.',
-      'Aslan kalbin cesaretle atıyor. Kükre, sesini duyur, kraliyetini kur.',
-      'Yaratıcılığın volkanik. Sanatta, hayatta, aşkta... Yaratıcı gücünü kullan.',
-      'Bugün ilgi odağı olmak için mükemmel. Işığını saklamayı bırak.',
-      'Cömertliğin bereketini artırıyor. Ver ve kat kat al.',
-      'Asaletin doğuştan. Taç takmana gerek yok, sen zaten kralsın.',
-      'Güneş enerjin şarj oluyor. Bugün karanlık yok, sadece ışık.',
+      'Ateş arketipi, yaratıcılık ve kendini ifade etme temalarını simgeler. Bu alanlar üzerine düşünebilirsin.',
+      'Otantik olmak senin için ne anlama geliyor?',
+      'Yaratıcı ifade üzerine bir refleksiyon yapabilirsin.',
+      'Görünür olmak temaları üzerine düşünmek isteyebilirsin.',
+      'Cömertlik hakkında ne fark ediyorsun?',
+      'Kendini sevmek üzerine düşünebilirsin.',
+      'Işık ve parlaklık metaforu üzerine bir refleksiyon.',
     ],
     ZodiacSign.virgo: [
-      'Kusursuzluk arayışın bugün evrensel düzenle buluşuyor. Detaylar sihir yaratır.',
-      'Şifalı ellerin bugün güçlü. Kendine ve başkalarına iyilik yap.',
-      'Analitik zekân lazer gibi. Karmaşık problemleri çöz, düzeni kur.',
-      'Bugün organize et, planla, sistemleştir. Kaos düzene dönüşüyor.',
-      'Mükemmeliyetçiliği bırak, ilerlemeyi kutla. Her adım önemli.',
-      'Hizmet ruhun parıldıyor. Yardım et, destek ol, fark yarat.',
-      'Toprak elementinin pratik büyüsü. Hayalleri gerçeğe dönüştür.',
+      'Toprak arketipi, detay ve hizmet temalarını simgeler. Bu alanlar üzerine düşünebilirsin.',
+      'Şifa ve iyileştirme senin için ne anlama geliyor?',
+      'Analiz ve anlama üzerine bir refleksiyon yapabilirsin.',
+      'Düzen ve sistem temaları üzerine düşünmek isteyebilirsin.',
+      'İlerleme ve mükemmellik arasındaki denge hakkında ne fark ediyorsun?',
+      'Hizmet etmek üzerine düşünebilirsin.',
+      'Pratiklik ve gerçekçilik üzerine bir refleksiyon.',
     ],
     ZodiacSign.libra: [
-      'Denge terazin bugün kozmik uyumla sallanıyor. İç huzurunu bul.',
-      'Venüs güzelliğini ve çekiciliğini artırıyor. Diplomasi sanatını icra et.',
-      'İlişkilerde harmoni zamanı. Köprüler kur, bağları güçlendir.',
-      'Bugün estetik duyarlılığın dorukta. Güzellik yarat, güzellik çek.',
-      'Adalet duygun evrensel. Doğru olanı savun, sesini yükselt.',
-      'Partnerlik enerjin güçlü. Birlikte daha güçlüsünüz.',
-      'Hava elementi seni yukarı taşıyor. Perspektif kazan, büyük resmi gör.',
+      'Hava arketipi, denge ve uyum temalarını simgeler. Bu alanlar üzerine düşünebilirsin.',
+      'Güzellik ve estetik hayatında nasıl yer alıyor?',
+      'İlişkilerde denge üzerine bir refleksiyon yapabilirsin.',
+      'Estetik duyarlılık temaları üzerine düşünmek isteyebilirsin.',
+      'Adalet hakkında ne düşünüyorsun?',
+      'Partnerlik ve iş birliği üzerine düşünebilirsin.',
+      'Perspektif kazanmak üzerine bir refleksiyon.',
     ],
     ZodiacSign.scorpio: [
-      'Dönüşümün simyacısı, bugün karanlık altın oluyor. Gölgeleri kucakla.',
-      'Pluto derinliklerden güç veriyor. Gizli hazineleri keşfet.',
-      'Yoğun sezgilerin bugün zirve yapıyor. Görünmeyeni gör.',
-      'Tutku ve güç birleşiyor. İstediğin her şeyi çekme kapasiten var.',
-      'Ölüm ve yeniden doğuş döngüsü. Bitir, başla, dönüş.',
-      'Gizemler sana açılıyor. Okült bilgelik içinden akıyor.',
-      'Su elementinin en derin hali. Okyanus ol, sonsuzluğu barındır.',
+      'Su arketipi, dönüşüm ve derinlik temalarını simgeler. Bu alanlar üzerine düşünebilirsin.',
+      'Dönüşüm senin için ne anlama geliyor?',
+      'Derinlik ve yoğunluk üzerine bir refleksiyon yapabilirsin.',
+      'Tutku temaları üzerine düşünmek isteyebilirsin.',
+      'Yeniden doğuş metaforu hakkında ne düşünüyorsun?',
+      'Gizem ve keşif üzerine düşünebilirsin.',
+      'Derinlik ve sonsuzluk üzerine bir refleksiyon.',
     ],
     ZodiacSign.sagittarius: [
-      'Okçu, bugün hedefin sonsuzluk. Okunu fırlat, yıldızlara ulaş.',
-      'Jüpiter şansını ve bilgeliğini genişletiyor. Fırsatlar yağmur gibi.',
-      'Macera ruhu uyanıyor. Keşfet, öğren, büyü.',
-      'Bugün felsefi derinlikler seni çağırıyor. Hayatın anlamını sorgula.',
-      'Özgürlük en büyük değerin. Zincirleri kır, kanatlanı aç.',
-      'Optimizmin bulaşıcı. Umut taşı, ışık yay.',
-      'Ateş elementi seni ileri itiyor. Dur durak bilmeden keşfet.',
+      'Ateş arketipi, keşif ve anlam arayışı temalarını simgeler. Bu alanlar üzerine düşünebilirsin.',
+      'Macera ve keşif senin için ne anlama geliyor?',
+      'Büyüme ve öğrenme üzerine bir refleksiyon yapabilirsin.',
+      'Felsefi sorular üzerine düşünmek isteyebilirsin.',
+      'Özgürlük hakkında ne hissediyorsun?',
+      'İyimserlik üzerine düşünebilirsin.',
+      'Keşif ve ilerleme üzerine bir refleksiyon.',
     ],
     ZodiacSign.capricorn: [
-      'Dağ keçisi, bugün zirveye bir adım daha yakınsın. Tırman, vazgeçme.',
-      'Satürn disiplin ve yapı veriyor. Sağlam temeller, kalıcı başarılar.',
-      'Uzun vadeli hedeflerin netleşiyor. Sabırla işle, zafer kaçınılmaz.',
-      'Bugün otorite ve sorumluluk günü. Liderliğini göster.',
-      'Pratik zekân parlıyor. Somut sonuçlar üret.',
-      'Kariyer enerjin dorukta. Profesyonel alanda kendini kanıtla.',
-      'Toprak elementi sağlamlık veriyor. Köklerin derin, yapın sağlam.',
+      'Toprak arketipi, hedefler ve yapı temalarını simgeler. Bu alanlar üzerine düşünebilirsin.',
+      'Disiplin ve kararlılık senin için ne anlama geliyor?',
+      'Uzun vadeli hedefler üzerine bir refleksiyon yapabilirsin.',
+      'Sorumluluk temaları üzerine düşünmek isteyebilirsin.',
+      'Pratiklik hakkında ne düşünüyorsun?',
+      'Kariyer ve amaç üzerine düşünebilirsin.',
+      'Sağlam temeller üzerine bir refleksiyon.',
     ],
     ZodiacSign.aquarius: [
-      'Geleceğin vizyoneri, bugün zamanın ötesinde düşün. Devrim yarat.',
-      'Uranüs ani aydınlanmalar getiriyor. Beklenmedik fikirler, radikal çözümler.',
-      'İnsanlığa hizmet günü. Topluluk için çalış, kolektif bilince katkıda bulun.',
-      'Bugün sıra dışı olmak süper gücün. Farklılığını kutla.',
-      'Teknoloji ve yenilik alanında parlıyorsun. İcat et, yenile.',
-      'Özgürlükçü ruhun evrenle rezonans halinde. Zincirleri kır.',
-      'Hava elementi entelektüel yükselişler getiriyor. Düşün, paylaş, ilham ver.',
+      'Hava arketipi, yenilik ve topluluk temalarını simgeler. Bu alanlar üzerine düşünebilirsin.',
+      'Benzersizlik senin için ne anlama geliyor?',
+      'Topluluk ve bağlantı üzerine bir refleksiyon yapabilirsin.',
+      'Yenilikçi düşünme temaları üzerine düşünmek isteyebilirsin.',
+      'Teknoloji ve ilerleme hakkında ne düşünüyorsun?',
+      'Özgürlük ve bağımsızlık üzerine düşünebilirsin.',
+      'Gelecek vizyonu üzerine bir refleksiyon.',
     ],
     ZodiacSign.pisces: [
-      'Rüyaların gezgini, bugün gerçeklik ve hayal iç içe. Her ikisinde de yüz.',
-      'Neptün sezgilerini ve yaratıcılığını besliyor. Sanatın içinden aksın.',
-      'Spiritüel bağlantın güçleniyor. Evrenle bir ol.',
-      'Bugün empati süper gücün. Başkalarını hisset, şifa ver.',
-      'Hayal gücün sınırsız. Düşle, hayal et, yaratı.',
-      'Su elementinin en mistik hali. Akışa teslim ol.',
-      'Şefkat ve merhamet kalbinden akıyor. Sev, affet, kucakla.',
+      'Su arketipi, hayal gücü ve sezgi temalarını simgeler. Bu alanlar üzerine düşünebilirsin.',
+      'Rüyalar ve hayal gücü hayatında nasıl yer alıyor?',
+      'Sezgisel bilgi üzerine bir refleksiyon yapabilirsin.',
+      'Empati temaları üzerine düşünmek isteyebilirsin.',
+      'Yaratıcılık hakkında ne fark ediyorsun?',
+      'Akış ve teslimiyet üzerine düşünebilirsin.',
+      'Şefkat ve merhamet üzerine bir refleksiyon.',
     ],
   };
 
-  /// Morning affirmations by sign
+  /// Morning reflection prompts by archetype
   static final Map<ZodiacSign, List<String>> _morningAffirmations = {
     ZodiacSign.aries: [
-      'Bugün cesaretimle dağları aşacağım.',
-      'Liderlik enerjim her kapıyı açar.',
-      'Korkusuzca ileri atılıyorum.',
-      'Yeni başlangıçların gücü benimle.',
-      'Ateş ruhum her engeli eritir.',
-      'Bugün öncü oluyorum.',
-      'Enerjim sınırsız, gücüm sonsuz.',
+      'Bugün sabırla hareket etmeyi seçebilirim.',
+      'Cesaretimi yapıcı yollarla kullanmayı düşünebilirim.',
+      'Liderlik temaları üzerine farkındalık geliştiriyorum.',
+      'Yeni başlangıçlara açık olmayı seçebilirim.',
+      'Enerjimi bilinçli yönlendirmeyi deniyorum.',
+      'Öncü olmak hakkında düşünüyorum.',
+      'Gücümü nasıl kullandığımı fark ediyorum.',
     ],
     ZodiacSign.taurus: [
-      'Bugün bolluk ve bereket beni buluyor.',
-      'Değerim tartışılmaz, özgüvenim sağlam.',
-      'Sabırla beklediğim güzellikler geliyor.',
-      'Toprak gibiyim: güçlü, kararlı, verimli.',
-      'Bugün hayatın tadını çıkarıyorum.',
-      'Güvenlik ve konfor benim hakkım.',
-      'Her anın keyfini sürüyorum.',
+      'Bugün bolluğa açık olmayı seçebilirim.',
+      'Değerimi hatırlamayı deniyorum.',
+      'Sabır üzerine düşünüyorum.',
+      'Güç ve kararlılık temaları üzerine farkındalık geliştiriyorum.',
+      'Hayatın tadını çıkarmayı seçebilirim.',
+      'Güvenlik hissi üzerine düşünüyorum.',
+      'Her anın keyfini fark etmeyi deniyorum.',
     ],
     ZodiacSign.gemini: [
-      'Zihinsel çevikliğim her problemi çözer.',
-      'Bugün iletişim süper gücüm.',
-      'Merakım kapıları açıyor.',
-      'Çok yönlülüğüm en büyük avantajım.',
-      'Her konuşma bir fırsat.',
-      'Fikirlerim dünyayı değiştiriyor.',
-      'Öğrenmeye her zaman açığım.',
+      'Zihinsel çevikliğimi fark ediyorum.',
+      'İletişim üzerine bilinçli olmayı seçebilirim.',
+      'Merakımı keşfediyorum.',
+      'Çok yönlülüğüm üzerine düşünüyorum.',
+      'Her konuşmanın değerini fark edebilirim.',
+      'Fikirlerimi paylaşmayı düşünüyorum.',
+      'Öğrenmeye açık olmayı seçebilirim.',
     ],
     ZodiacSign.cancer: [
-      'Bugün duygularım bana rehberlik ediyor.',
-      'Sezgilerim her zaman doğru.',
-      'Sevgi vermek ve almak için açığım.',
-      'İç dünyam güvenli bir liman.',
-      'Şefkatim dünyayı iyileştiriyor.',
-      'Ailemi ve sevdiklerimi koruyorum.',
-      'Duygusal zekam süper gücüm.',
+      'Bugün duygularıma alan tanımayı seçebilirim.',
+      'Sezgilerime güvenmeyi deniyorum.',
+      'Sevgi alıp vermeye açık olmayı düşünüyorum.',
+      'İç dünyam üzerine farkındalık geliştiriyorum.',
+      'Şefkati keşfediyorum.',
+      'Aile ve bağlantı üzerine düşünüyorum.',
+      'Duygusal zekam üzerine farkındalık geliştiriyorum.',
     ],
     ZodiacSign.leo: [
-      'Bugün tüm ışığımla parlıyorum.',
-      'Yaratıcılığım sınır tanımıyor.',
-      'Sahnenin ortasında yerim var.',
-      'Cömertliğim bereketimi artırıyor.',
-      'Kalbim aslan gibi cesur.',
-      'İlham kaynağı oluyorum.',
-      'Kendimi sevmek en büyük gücüm.',
+      'Bugün otantik olmayı seçebilirim.',
+      'Yaratıcılığımı ifade etmeyi deniyorum.',
+      'Görünür olmak üzerine düşünüyorum.',
+      'Cömertlik temaları üzerine farkındalık geliştiriyorum.',
+      'Cesaretimi keşfediyorum.',
+      'İlham verme üzerine düşünüyorum.',
+      'Kendimi sevmeyi hatırlıyorum.',
     ],
     ZodiacSign.virgo: [
-      'Bugün mükemmelliğe değil, ilerlemeye odaklanıyorum.',
-      'Analitik zekam her detayı görüyor.',
-      'Hizmet etmek beni yüceltiyor.',
-      'Düzen ve sistemlerim hayatımı kolaylaştırıyor.',
-      'Sağlığım en büyük zenginliğim.',
-      'Pratik çözümlerim fark yaratıyor.',
-      'Kendime ve başkalarına şifa veriyorum.',
+      'Bugün ilerlemeye odaklanmayı seçebilirim.',
+      'Analitik yeteneklerimi fark ediyorum.',
+      'Hizmet etmek üzerine düşünüyorum.',
+      'Düzen ve organizasyon temaları üzerine farkındalık geliştiriyorum.',
+      'Sağlığımı önemsiyorum.',
+      'Pratik çözümler üzerine düşünüyorum.',
+      'Şifa temaları üzerine farkındalık geliştiriyorum.',
     ],
     ZodiacSign.libra: [
-      'Bugün iç huzurumu buluyorum.',
-      'İlişkilerimde uyum yaratıyorum.',
-      'Güzellik ve estetik hayatımı zenginleştiriyor.',
-      'Adalet ve denge yolumda.',
-      'Diplomatik yeteneklerim kapıları açıyor.',
-      'Partnerliklerim beni güçlendiriyor.',
-      'Sevgi ve barış yayıyorum.',
+      'Bugün iç dengeyi aramayı seçebilirim.',
+      'İlişkilerimde uyum üzerine düşünüyorum.',
+      'Güzellik ve estetik temaları üzerine farkındalık geliştiriyorum.',
+      'Adalet ve denge üzerine düşünüyorum.',
+      'Diplomatik yeteneklerimi keşfediyorum.',
+      'Partnerlik üzerine düşünüyorum.',
+      'Barış ve sevgi temaları üzerine farkındalık geliştiriyorum.',
     ],
     ZodiacSign.scorpio: [
-      'Bugün dönüşüm gücümü kullanıyorum.',
-      'Derinliklerde hazineler beni bekliyor.',
-      'Sezgilerim asla yanıltmaz.',
-      'Tutkum her şeyi mümkün kılıyor.',
-      'Gölgelerim aydınlanıyor.',
-      'Yeniden doğuş zamanı.',
-      'Gücüm içimden geliyor.',
+      'Bugün dönüşüme açık olmayı seçebilirim.',
+      'Derinlik üzerine düşünüyorum.',
+      'Sezgilerimi fark ediyorum.',
+      'Tutku temaları üzerine farkındalık geliştiriyorum.',
+      'Gölgelerimi keşfediyorum.',
+      'Yeniden doğuş üzerine düşünüyorum.',
+      'İç gücümü fark ediyorum.',
     ],
     ZodiacSign.sagittarius: [
-      'Bugün yeni ufuklara yelken açıyorum.',
-      'Şansım her zaman yanımda.',
-      'Macera ruhu beni ileri taşıyor.',
-      'Bilgelik arayışım devam ediyor.',
-      'Özgürlük en büyük değerim.',
-      'İyimserliğim bulaşıcı.',
-      'Her gün yeni bir keşif.',
+      'Bugün yeni ufuklar aramayı seçebilirim.',
+      'İyimserliğimi fark ediyorum.',
+      'Macera ruhu üzerine düşünüyorum.',
+      'Bilgelik arayışı üzerine farkındalık geliştiriyorum.',
+      'Özgürlük temaları üzerine düşünüyorum.',
+      'İyimserliği keşfediyorum.',
+      'Her günün bir keşif olduğunu hatırlıyorum.',
     ],
     ZodiacSign.capricorn: [
-      'Bugün hedeflerime bir adım daha yaklaşıyorum.',
-      'Disiplinim beni zirveye taşıyor.',
-      'Sabır ve azimle her şeyi başarıyorum.',
-      'Kariyerimde yükseliyorum.',
-      'Temelleri sağlam atıyorum.',
-      'Otoritem saygı kazanıyor.',
-      'Başarı benim için kaçınılmaz.',
+      'Bugün hedeflerime odaklanmayı seçebilirim.',
+      'Disiplinimi fark ediyorum.',
+      'Sabır ve azim üzerine düşünüyorum.',
+      'Kariyer temaları üzerine farkındalık geliştiriyorum.',
+      'Sağlam temeller üzerine düşünüyorum.',
+      'Otorite ve sorumluluk üzerine düşünüyorum.',
+      'Başarı kavramını keşfediyorum.',
     ],
     ZodiacSign.aquarius: [
-      'Bugün geleceği şekillendiriyorum.',
-      'Benzersizliğim en büyük gücüm.',
-      'İnsanlığa katkıda bulunuyorum.',
-      'Yenilikçi fikirlerim dünyayı değiştiriyor.',
-      'Özgür düşünce gücümü artırıyor.',
-      'Topluluk bilinci beni yönlendiriyor.',
-      'Devrimci ruhumla ilham veriyorum.',
+      'Bugün geleceği düşünmeyi seçebilirim.',
+      'Benzersizliğimi fark ediyorum.',
+      'Topluluk katkısı üzerine düşünüyorum.',
+      'Yenilikçi fikirler üzerine farkındalık geliştiriyorum.',
+      'Özgür düşünce üzerine düşünüyorum.',
+      'Topluluk bilinci üzerine düşünüyorum.',
+      'İlham verme temaları üzerine farkındalık geliştiriyorum.',
     ],
     ZodiacSign.pisces: [
-      'Bugün sezgilerim rehberim.',
-      'Yaratıcılığım sınırsız.',
-      'Spiritüel bağlantım güçlü.',
-      'Empatim dünyayı iyileştiriyor.',
-      'Rüyalarım gerçeğe dönüşüyor.',
-      'Koşulsuz sevgi veriyorum.',
-      'Evrenle bir oluyorum.',
+      'Bugün sezgilerime güvenmeyi seçebilirim.',
+      'Yaratıcılığımı fark ediyorum.',
+      'Spiritüel bağlantı üzerine düşünüyorum.',
+      'Empati temaları üzerine farkındalık geliştiriyorum.',
+      'Rüyalarıma dikkat ediyorum.',
+      'Koşulsuz sevgi üzerine düşünüyorum.',
+      'Bütünlük hissi üzerine farkındalık geliştiriyorum.',
     ],
   };
 
   static final List<String> _universalAffirmations = [
-    'Bugün hayatımın en güzel günü.',
-    'Evren benim yanımda.',
-    'Her şey yolunda gidiyor.',
-    'Sevgi ve ışık içindeyim.',
-    'Bolluk ve bereket beni buluyor.',
-    'Gücüm içimden geliyor.',
-    'Her an için minnettarım.',
+    'Bugün için farkındalık geliştirmeyi seçebilirim.',
+    'Kendimle nazik olmayı deniyorum.',
+    'Her şeyin yolunda olduğunu hatırlıyorum.',
+    'Sevgi ve ışık temaları üzerine düşünüyorum.',
+    'Bolluk kavramı üzerine farkındalık geliştiriyorum.',
+    'İç gücümü fark ediyorum.',
+    'Minnettarlık pratiği yapıyorum.',
   ];
 
-  /// Evening reflections by sign
+  /// Evening reflection prompts by archetype
   static final Map<ZodiacSign, List<String>> _eveningReflections = {
     ZodiacSign.aries: [
-      'Bugün cesaretinle neler başardın? Kendini kutla.',
-      'Hangi engelleri aştın? Gücünü hatırla.',
-      'Sabır gösterebildin mi? İlerlemen için önemli.',
+      'Bugün cesaretinle neler fark ettin? Kendini takdir edebilirsin.',
+      'Hangi engeller üzerine düşündün? Gücünü hatırlayabilirsin.',
+      'Sabır gösterebildin mi? İlerlemen için düşünebilirsin.',
     ],
     ZodiacSign.taurus: [
       'Bugün hangi güzelliklerden zevk aldın?',
       'Kendine nasıl değer verdin?',
-      'Minnettarlık listeni gözden geçir.',
+      'Minnettarlık listeni gözden geçirebilirsin.',
     ],
     ZodiacSign.gemini: [
-      'Bugün ne öğrendin? Bilgi ruhunu besler.',
-      'Hangi bağlantıları kurdun?',
+      'Bugün ne öğrendin? Bilgi üzerine düşünebilirsin.',
+      'Hangi bağlantıları fark ettin?',
       'Fikirlerini kimlerle paylaştın?',
     ],
     ZodiacSign.cancer: [
       'Bugün duygularınla nasıl bağ kurdun?',
-      'Sevdiklerine nasıl baktın?',
-      'İç dünyan huzurlu mu?',
+      'Sevdiklerine nasıl ilgi gösterdin?',
+      'İç dünyan hakkında ne fark ettin?',
     ],
     ZodiacSign.leo: [
-      'Bugün nasıl parladın?',
-      'Yaratıcılığını nasıl ifade ettin?',
-      'Kimlere ışık oldun?',
+      'Bugün kendini nasıl ifade ettin?',
+      'Yaratıcılığını nasıl kullandın?',
+      'Kimlere ilham verdin?',
     ],
     ZodiacSign.virgo: [
       'Bugün kendine nasıl hizmet ettin?',
-      'Hangi detaylar fark yarattı?',
+      'Hangi detaylar dikkatini çekti?',
       'Sağlığına nasıl baktın?',
     ],
     ZodiacSign.libra: [
       'Bugün dengeyi nasıl buldun?',
       'İlişkilerinde uyum sağladın mı?',
-      'Güzellik nasıl hayatına dokundu?',
+      'Güzellik hayatına nasıl dokundu?',
     ],
     ZodiacSign.scorpio: [
-      'Bugün hangi derinliklere indin?',
+      'Bugün hangi derinlikleri keşfettin?',
       'Neyi dönüştürdün?',
-      'Hangi gizli güçleri keşfettin?',
+      'Hangi içgörüler kazandın?',
     ],
     ZodiacSign.sagittarius: [
       'Bugün ne keşfettin?',
@@ -366,282 +376,307 @@ class CosmicMessagesContent {
     ZodiacSign.aquarius: [
       'Bugün nasıl fark yarattın?',
       'Topluma nasıl katkıda bulundun?',
-      'Hangi yenilikçi fikirler geldi?',
+      'Hangi yenilikçi fikirler aklına geldi?',
     ],
     ZodiacSign.pisces: [
-      'Bugün sezgilerin seni nereye götürdü?',
-      'Hangi rüyalar gerçeğe dönüştü?',
-      'Spiritüel bağlantın nasıl?',
+      'Bugün sezgilerin seni nereye yönlendirdi?',
+      'Hangi yaratıcı düşünceler ortaya çıktı?',
+      'Spiritüel bağlantın nasıl hissettirdi?',
     ],
   };
 
   static final List<String> _universalReflections = [
-    'Bugün için minnettarlık listeni gözden geçir.',
+    'Bugün için minnettarlık listeni gözden geçirebilirsin.',
     'Hangi anlar seni gülümsetti?',
-    'Yarın için bir niyet belirle.',
+    'Yarın için bir niyet belirleyebilirsin.',
   ];
 
-  /// Moon phase insights
+  /// Moon phase reflection themes (cultural symbolism)
   static final Map<String, String> _moonPhaseInsights = {
-    'new_moon': 'Yeni Ay zamanı - yeni başlangıçlar için tohum ek. Niyetlerini netleştir, içe dön, planla.',
-    'waxing_crescent': 'Hilal Ay - niyetlerini eyleme dönüştür. İnanç ve umut zamanı.',
-    'first_quarter': 'İlk Dördün - engellerle yüzleş, kararlı ol. Aksiyon zamanı.',
-    'waxing_gibbous': 'Kabaran Ay - ince ayar yap, sabırlı ol. Sonuçlar yaklaşıyor.',
-    'full_moon': 'Dolunay - enerji doruğunda! Manifestasyonlar gerçekleşiyor, şükret ve kutla.',
-    'waning_gibbous': 'Azalan Ay - bilgeliği paylaş, minnettarlık prat. Hasat zamanı.',
-    'last_quarter': 'Son Dördün - bırakma ve affetme zamanı. Eskiyi serbest bırak.',
-    'waning_crescent': 'Son Hilal - dinlen, rüya gör, arın. Döngü tamamlanıyor.',
+    'new_moon':
+        'Yeni Ay, birçok kültürde yeni başlangıçlarla ilişkilendirilir. Bu dönem, niyetleri netleştirmek ve içe dönmek için bir davet olarak düşünülebilir.',
+    'waxing_crescent':
+        'Hilal Ay, geleneksel olarak büyüme ve inanç temaları ile ilişkilendirilir. Niyetleri eyleme dönüştürmek üzerine düşünebilirsin.',
+    'first_quarter':
+        'İlk Dördün, karar verme ve eylem temaları ile ilişkilendirilir. Engellerle nasıl yüzleştiğin üzerine düşünebilirsin.',
+    'waxing_gibbous':
+        'Kabaran Ay, ince ayar ve sabır temaları ile ilişkilendirilir. Çabalarının meyvelerini görmek üzerine düşünebilirsin.',
+    'full_moon':
+        'Dolunay, birçok gelenekte tamamlanma ve şükran ile ilişkilendirilir. Başarılarını kutlamak için bir zaman olarak düşünülebilir.',
+    'waning_gibbous':
+        'Azalan Ay, bilgelik paylaşımı ve minnettarlık temaları ile ilişkilendirilir. Öğrendiklerini paylaşmak üzerine düşünebilirsin.',
+    'last_quarter':
+        'Son Dördün, bırakma ve affetme temaları ile ilişkilendirilir. Artık hizmet etmeyeni serbest bırakmak üzerine düşünebilirsin.',
+    'waning_crescent':
+        'Son Hilal, dinlenme ve arınma temaları ile ilişkilendirilir. Yenilenme için zaman ayırmak üzerine düşünebilirsin.',
   };
 
-  /// Daily intentions by sign
+  /// Daily intentions by archetype
   static final Map<ZodiacSign, List<String>> _dailyIntentions = {
     ZodiacSign.aries: [
-      'Bugün sabırla hareket ediyorum.',
-      'Cesaretimi pozitif yönde kullanıyorum.',
-      'Liderliğimi sevgiyle gösteriyorum.',
-      'Her engeli fırsat olarak görüyorum.',
-      'Enerjimi bilinçli yönlendiriyorum.',
-      'Yeni başlangıçlara açığım.',
-      'Gücümü başkalarını yükseltmek için kullanıyorum.',
+      'Bugün sabırla hareket etmeyi seçebilirim.',
+      'Cesaretimi yapıcı yönde kullanmayı deniyorum.',
+      'Liderliğimi sevgiyle göstermeyi düşünüyorum.',
+      'Her engeli öğrenme fırsatı olarak görebilirim.',
+      'Enerjimi bilinçli yönlendirmeyi seçebilirim.',
+      'Yeni başlangıçlara açık olmayı deniyorum.',
+      'Gücümü başkalarını desteklemek için kullanmayı düşünüyorum.',
     ],
     ZodiacSign.taurus: [
-      'Bugün bolluğa açılıyorum.',
-      'Hayatın küçük zevklerinin tadını çıkarıyorum.',
-      'Sabırla güzel şeylerin gelmesine izin veriyorum.',
-      'Değerimi biliyorum ve savunuyorum.',
-      'Güvenlik içinde özgürüm.',
-      'Doğayla bağlantı kuruyorum.',
-      'Minnettarlık pratik yapıyorum.',
+      'Bugün bolluğa açık olmayı seçebilirim.',
+      'Hayatın küçük zevklerini fark etmeyi deniyorum.',
+      'Sabırla güzel şeylerin gelmesine izin vermeyi düşünüyorum.',
+      'Değerimi bilmeyi ve savunmayı seçebilirim.',
+      'Güvenlik içinde özgür hissetmeyi deniyorum.',
+      'Doğayla bağlantı kurmayı düşünüyorum.',
+      'Minnettarlık pratiği yapmayı seçebilirim.',
     ],
     ZodiacSign.gemini: [
-      'Bugün bilinçli iletişim kuruyorum.',
-      'Öğrenmeye açık bir zihinle yaklaşıyorum.',
-      'Merakımı pozitif yönde kullanıyorum.',
-      'Fikirlerimi netleştiriyorum.',
-      'Dinlemeye odaklanıyorum.',
-      'Çok yönlülüğümü kutluyorum.',
-      'Bağlantılarımı derinleştiriyorum.',
+      'Bugün bilinçli iletişim kurmayı seçebilirim.',
+      'Öğrenmeye açık bir zihinle yaklaşmayı deniyorum.',
+      'Merakımı yapıcı yönde kullanmayı düşünüyorum.',
+      'Fikirlerimi netleştirmeyi seçebilirim.',
+      'Dinlemeye odaklanmayı deniyorum.',
+      'Çok yönlülüğümü kutlamayı düşünüyorum.',
+      'Bağlantılarımı derinleştirmeyi seçebilirim.',
     ],
     ZodiacSign.cancer: [
-      'Bugün duygularıma alan tanıyorum.',
-      'Sezgilerime güveniyorum.',
-      'Sevdiklerime sevgimi gösteriyorum.',
-      'Kendime şefkatle davranıyorum.',
-      'Güvenli sınırlar oluşturuyorum.',
-      'Geçmişi iyileştiriyorum.',
-      'Yuva enerjisi yaratıyorum.',
+      'Bugün duygularıma alan tanımayı seçebilirim.',
+      'Sezgilerime güvenmeyi deniyorum.',
+      'Sevdiklerime sevgimi göstermeyi düşünüyorum.',
+      'Kendime şefkatle davranmayı seçebilirim.',
+      'Güvenli sınırlar oluşturmayı deniyorum.',
+      'Geçmişi iyileştirmeyi düşünüyorum.',
+      'Yuva enerjisi yaratmayı seçebilirim.',
     ],
     ZodiacSign.leo: [
-      'Bugün otantik ben oluyorum.',
-      'Yaratıcılığımı ifade ediyorum.',
-      'Başkalarının ışımasına alan açıyorum.',
-      'Cömertlikle veriyorum.',
-      'Kendimi sevgiyle kutluyorum.',
-      'İlham kaynağı oluyorum.',
-      'Kalbimden konuşuyorum.',
+      'Bugün otantik ben olmayı seçebilirim.',
+      'Yaratıcılığımı ifade etmeyi deniyorum.',
+      'Başkalarının parlamasına alan açmayı düşünüyorum.',
+      'Cömertlikle vermeyi seçebilirim.',
+      'Kendimi sevgiyle kutlamayı deniyorum.',
+      'İlham kaynağı olmayı düşünüyorum.',
+      'Kalbimden konuşmayı seçebilirim.',
     ],
     ZodiacSign.virgo: [
-      'Bugün mükemmeliyetçiliği bırakıyorum.',
-      'Kendime şefkat gösteriyorum.',
-      'Detaylarda anlam buluyorum.',
-      'Sağlığıma öncelik veriyorum.',
-      'Hizmet ederken sınır koyuyorum.',
-      'İlerlemeyi kutluyorum.',
-      'Düzeni sevgiyle yaratıyorum.',
+      'Bugün mükemmeliyetçiliği bırakmayı seçebilirim.',
+      'Kendime şefkat göstermeyi deniyorum.',
+      'Detaylarda anlam bulmayı düşünüyorum.',
+      'Sağlığıma öncelik vermeyi seçebilirim.',
+      'Hizmet ederken sınır koymayı deniyorum.',
+      'İlerlemeyi kutlamayı düşünüyorum.',
+      'Düzeni sevgiyle yaratmayı seçebilirim.',
     ],
     ZodiacSign.libra: [
-      'Bugün iç dengeyi buluyorum.',
-      'İlişkilerimde sınır koyuyorum.',
-      'Güzellik yaratıyorum.',
-      'Kararlarımda kendime güveniyorum.',
-      'Uyumu içeriden başlatıyorum.',
-      'Adalet için sesimi yükseltiyorum.',
-      'Barışı yayıyorum.',
+      'Bugün iç dengeyi bulmayı seçebilirim.',
+      'İlişkilerimde sağlıklı sınır koymayı deniyorum.',
+      'Güzellik yaratmayı düşünüyorum.',
+      'Kararlarımda kendime güvenmeyi seçebilirim.',
+      'Uyumu içeriden başlatmayı deniyorum.',
+      'Adalet için sesimi yükseltmeyi düşünüyorum.',
+      'Barışı yaymayı seçebilirim.',
     ],
     ZodiacSign.scorpio: [
-      'Bugün dönüşüme açığım.',
-      'Derinliği kucaklıyorum.',
-      'Gölgelerimi aydınlatıyorum.',
-      'Tutkumu bilinçli yönlendiriyorum.',
-      'Güvenmeyi öğreniyorum.',
-      'Yeniden doğuşu kutluyorum.',
-      'Gücümü bilgelikle kullanıyorum.',
+      'Bugün dönüşüme açık olmayı seçebilirim.',
+      'Derinliği kucaklamayı deniyorum.',
+      'Gölgelerimi aydınlatmayı düşünüyorum.',
+      'Tutkumu bilinçli yönlendirmeyi seçebilirim.',
+      'Güvenmeyi öğrenmeyi deniyorum.',
+      'Yeniden doğuşu kutlamayı düşünüyorum.',
+      'Gücümü bilgelikle kullanmayı seçebilirim.',
     ],
     ZodiacSign.sagittarius: [
-      'Bugün yeni ufuklar arıyorum.',
-      'Bilgelik arayışımı sürdürüyorum.',
-      'Özgürlüğümü sorumlulukla kullanıyorum.',
-      'İyimserliği yayıyorum.',
-      'Maceraya evet diyorum.',
-      'Büyük resmi görüyorum.',
-      'İnancımı güçlendiriyorum.',
+      'Bugün yeni ufuklar aramayı seçebilirim.',
+      'Bilgelik arayışımı sürdürmeyi deniyorum.',
+      'Özgürlüğümü sorumlulukla kullanmayı düşünüyorum.',
+      'İyimserliği yaymayı seçebilirim.',
+      'Maceraya evet demeyi deniyorum.',
+      'Büyük resmi görmeyi düşünüyorum.',
+      'İnancımı güçlendirmeyi seçebilirim.',
     ],
     ZodiacSign.capricorn: [
-      'Bugün hedeflerime odaklanıyorum.',
-      'Sabırla ilerliyorum.',
-      'Disiplinimi sevgiyle uyguluyorum.',
-      'Başarıyı kutluyorum.',
-      'Dinlenmeye de izin veriyorum.',
-      'Sorumluluklarımı dengeliyorum.',
-      'Zirveye yaklaşıyorum.',
+      'Bugün hedeflerime odaklanmayı seçebilirim.',
+      'Sabırla ilerlemeyi deniyorum.',
+      'Disiplinimi sevgiyle uygulamayı düşünüyorum.',
+      'Başarıyı kutlamayı seçebilirim.',
+      'Dinlenmeye de izin vermeyi deniyorum.',
+      'Sorumluluklarımı dengelemeyi düşünüyorum.',
+      'Zirveye yaklaşmayı seçebilirim.',
     ],
     ZodiacSign.aquarius: [
-      'Bugün benzersizliğimi kutluyorum.',
-      'İnsanlığa hizmet ediyorum.',
-      'Yenilikçi düşünüyorum.',
-      'Toplulukla bağ kuruyorum.',
-      'Geleceği şekillendiriyorum.',
-      'Özgür düşünceyi savunuyorum.',
-      'Değişimi kucaklıyorum.',
+      'Bugün benzersizliğimi kutlamayı seçebilirim.',
+      'İnsanlığa hizmet etmeyi deniyorum.',
+      'Yenilikçi düşünmeyi düşünüyorum.',
+      'Toplulukla bağ kurmayı seçebilirim.',
+      'Geleceği şekillendirmeyi deniyorum.',
+      'Özgür düşünceyi savunmayı düşünüyorum.',
+      'Değişimi kucaklamayı seçebilirim.',
     ],
     ZodiacSign.pisces: [
-      'Bugün sezgilerime güveniyorum.',
-      'Spiritüel bağlantımı derinleştiriyorum.',
-      'Yaratıcılığımı ifade ediyorum.',
-      'Empatiyle sınır koyuyorum.',
-      'Rüyalarıma dikkat ediyorum.',
-      'Evrenle bir oluyorum.',
-      'Koşulsuz sevgi veriyorum.',
+      'Bugün sezgilerime güvenmeyi seçebilirim.',
+      'Spiritüel bağlantımı derinleştirmeyi deniyorum.',
+      'Yaratıcılığımı ifade etmeyi düşünüyorum.',
+      'Empatiyle sınır koymayı seçebilirim.',
+      'Rüyalarıma dikkat etmeyi deniyorum.',
+      'Bütünlük hissi üzerine düşünüyorum.',
+      'Koşulsuz sevgi vermeyi seçebilirim.',
     ],
   };
 
   static final List<String> _universalIntentions = [
-    'Bugün farkındalıkla yaşıyorum.',
-    'Her ana teşekkür ediyorum.',
-    'Sevgi ve ışık yayıyorum.',
-    'Potansiyelimi keşfediyorum.',
-    'Şu anda kalıyorum.',
-    'Kendimle barışık oluyorum.',
-    'Evrene güveniyorum.',
+    'Bugün farkındalıkla yaşamayı seçebilirim.',
+    'Her ana teşekkür etmeyi deniyorum.',
+    'Sevgi ve ışık yaymayı düşünüyorum.',
+    'Potansiyelimi keşfetmeyi seçebilirim.',
+    'Şu anda kalmayı deniyorum.',
+    'Kendimle barışık olmayı düşünüyorum.',
+    'Güven duygusunu keşfetmeyi seçebilirim.',
   ];
 
-  /// Get extended cosmic wisdom for deeper readings
+  /// Get extended reflection wisdom for deeper readings
   static String getExtendedCosmicWisdom(ZodiacSign sign, {DateTime? date}) {
-    final dayOfYear = (date ?? DateTime.now()).difference(DateTime(DateTime.now().year, 1, 1)).inDays;
+    final dayOfYear = (date ?? DateTime.now())
+        .difference(DateTime(DateTime.now().year, 1, 1))
+        .inDays;
     final wisdoms = _extendedCosmicWisdoms[sign] ?? _universalExtendedWisdoms;
     return wisdoms[dayOfYear % wisdoms.length];
   }
 
-  /// Get planet-based daily guidance
+  /// Get archetype-based guidance theme
   static String getPlanetaryGuidance(String planet) {
-    return _planetaryGuidance[planet.toLowerCase()] ?? _planetaryGuidance['sun']!;
+    return _planetaryGuidance[planet.toLowerCase()] ??
+        _planetaryGuidance['sun']!;
   }
 
-  /// Get element-based message
+  /// Get element-based reflection theme
   static String getElementMessage(String element) {
     return _elementMessages[element.toLowerCase()] ?? _elementMessages['fire']!;
   }
 
-  /// Get house-based daily insight
+  /// Get house-based reflection theme
   static String getHouseInsight(int houseNumber) {
     return _houseInsights[houseNumber] ?? _houseInsights[1]!;
   }
 
-  /// Extended cosmic wisdoms for deeper readings
+  /// Extended reflection themes for deeper readings
   static final Map<ZodiacSign, List<String>> _extendedCosmicWisdoms = {
     ZodiacSign.aries: [
-      'Koç burcu, içindeki savaşçı bugün uyanıyor. Mars enerjin dorukta, cesaretinle yeni kapılar açacaksın. Ancak unutma, gerçek güç kontrollü güçtür. Sabırsızlığın seni yanlış yöne çekmesin. Bugün başlattığın her şey uzun vadeli sonuçlar doğuracak.',
-      'Ateş elementinin öncüsü olarak, bugün liderlik enerjin etrafındakileri etkiliyor. Yeni projeler, yeni ilişkiler, yeni başlangıçlar için evren sana yeşil ışık yakıyor. Korkuyu bir kenara bırak ve kalbinin gösterdiği yöne doğru cesurca ilerle.',
-      'Kozmik enerjiler bugün sana "harekete geç" diyor. Beklemek için zaman yok, düşünmek için zaman yok. Sezgilerin seni doğru yola götürecek. İçgüdülerine güven, çünkü evren senin yanında.',
+      'Ateş arketipi, cesaret, inisiyatif ve liderlik temalarını simgeler. Bu özellikler hayatında nasıl ortaya çıkıyor? Gerçek gücün kontrollü güç olduğu düşünülebilir. Sabırsızlık ile kararlılık arasındaki dengeyi düşünmek isteyebilirsin.',
+      'Öncü arketipi olarak, liderlik enerjisi üzerine düşünebilirsin. Yeni projeler, yeni ilişkiler, yeni başlangıçlar... Hangi alanlarda inisiyatif almak istiyorsun? Korku ve cesaret arasındaki ilişkiyi keşfedebilirsin.',
+      'Eylem ve düşünce arasındaki denge üzerine bir refleksiyon yapabilirsin. Sezgilerine güvenmek ne anlama geliyor? İçgüdülerinle nasıl bir ilişkin var?',
     ],
     ZodiacSign.taurus: [
-      'Boğa burcu, Venüs\'ün çocuğu olarak bugün güzellik ve bolluk enerjisi seni sarıyor. Maddi dünya seninle uyum içinde. Ancak gerçek zenginlik içsel huzurda yatıyor. Bugün hem maddi hem manevi bolluğa açıl.',
-      'Toprak elementinin en istikrarlı temsilcisi olarak, bugün sabır ve kararlılığın meyvelerini toplamaya hazırsın. Hızlı koşanlar yorulur, ama sen adım adım zirveye ulaşırsın. Güven kendine, zamanlaması mükemmel.',
-      'Duyusal zevkler bugün seni çağırıyor. Güzel bir yemek, hoş bir müzik, sevilen birinin dokunuşu... Bunlar sadece zevk değil, ruhunu besleyen iksirler. Kendini şımartmaya izin ver.',
+      'Toprak arketipi, istikrar, değer ve duyusal deneyim temalarını simgeler. Maddi dünya ile ilişkin üzerine düşünebilirsin. Gerçek zenginliğin ne olduğunu keşfetmek isteyebilirsin.',
+      'Sabır ve kararlılık temaları üzerine bir refleksiyon. Hızlı sonuçlar yerine sürdürülebilir ilerleme üzerine düşünmek faydalı olabilir. Zamanlamanın önemi hakkında ne düşünüyorsun?',
+      'Duyusal zevkler ve öz-bakım temaları üzerine düşünebilirsin. Güzel bir yemek, hoş bir müzik, sevilen birinin varlığı... Bunların ruhunu nasıl beslediğini fark edebilirsin.',
     ],
     ZodiacSign.gemini: [
-      'İkizler burcu, Merkür\'ün hareketli çocuğu olarak bugün zihinsel çevikliğin doruklarda. Bilgi seni bekliyor, bağlantılar kapıda. Her konuşma bir fırsat, her karşılaşma bir ders taşıyor.',
-      'Çok yönlülüğün bugün süper gücün. Aynı anda birçok projeyi yönetebilir, farklı insanlarla farklı konularda derinlemesine sohbet edebilirsin. Bu senin doğal halin, bunu kutla.',
-      'Merak ediyor musun? İyi, çünkü merak bilgeliğin kapısıdır. Bugün soru sor, araştır, öğren. Evren senin öğrenci olmana bayılıyor, çünkü öğrendiklerini paylaşarak öğretmen olursun.',
+      'Hava arketipi, iletişim, merak ve çok yönlülük temalarını simgeler. Zihinsel çevikliğin hayatına nasıl katkıda bulunuyor? Bilgi ve bağlantı üzerine düşünmek isteyebilirsin.',
+      'Çok yönlülük teması üzerine bir refleksiyon. Aynı anda birçok ilgi alanına sahip olmak senin için ne anlama geliyor? Bu özelliğini nasıl değerlendiriyorsun?',
+      'Merak ve öğrenme üzerine düşünebilirsin. Sorular sormak ve araştırmak hayatında nasıl yer alıyor? Öğrendiklerini paylaşmak hakkında ne hissediyorsun?',
     ],
     ZodiacSign.cancer: [
-      'Yengeç burcu, Ay\'ın hassas çocuğu olarak bugün duygusal radar sezgilerinin en güçlü olduğu gün. İç sesin sana ne fısıldıyor? Dinle, çünkü evrenin mesajı orada gizli.',
-      'Yuva, aile, kökler... Bunlar senin için sadece kelimeler değil, ruhunun demir atma noktaları. Bugün sevdiklerine zaman ayır, onları koru, sıcaklığını paylaş. Şefkatin şifa verir.',
-      'Duygularından korkma. Gözyaşları zayıflık değil, arınma. Gülüşler mutluluk değil, şifa. Bugün duygularına alan ver, onları yaşa ve bırak. Özgürleşeceksin.',
+      'Su arketipi, duygusal derinlik, sezgi ve koruma temalarını simgeler. İç sesin sana ne söylüyor? Duygusal radarın üzerine düşünmek isteyebilirsin.',
+      'Yuva, aile ve kökler temaları üzerine bir refleksiyon. Bunlar senin için ne anlama geliyor? Sevdiklerinle ilişkin hakkında düşünebilirsin.',
+      'Duygularla ilişki üzerine düşünebilirsin. Duygusal ifade senin için ne anlama geliyor? Şefkat ve savunmasızlık arasındaki dengeyi keşfedebilirsin.',
     ],
     ZodiacSign.leo: [
-      'Aslan burcu, Güneş\'in görkemli çocuğu olarak bugün ışığın karanlığı eritiyor. Parlamak senin doğan hakkın, saklanmak ise en büyük günahın. Sahneye çık ve dünyaya kim olduğunu göster.',
-      'Yaratıcılığın bugün volkanik. Sanat, müzik, dans, yazı... Her türlü yaratıcı ifade senin için enerji kanalı. Yarattığın her şey ruhunun bir parçasını taşıyor.',
-      'Cömertliğin bereketini artırıyor. Verdiğin her şey kat kat geri dönecek. Bugün paylaş - sevgini, zamanını, kaynaklarını. Evren cömert ruhlara cömertçe karşılık verir.',
+      'Ateş arketipi, yaratıcılık, kendini ifade etme ve görünürlük temalarını simgeler. Parlamak senin için ne anlama geliyor? Otantik olmak üzerine düşünmek isteyebilirsin.',
+      'Yaratıcılık teması üzerine bir refleksiyon. Sanat, müzik, dans, yazı... Her türlü yaratıcı ifade senin için ne ifade ediyor? Yaratıcılığınla nasıl bir ilişkin var?',
+      'Cömertlik ve paylaşım temaları üzerine düşünebilirsin. Vermek ve almak arasındaki denge hakkında ne düşünüyorsun? Cömertliğin farklı biçimlerini keşfedebilirsin.',
     ],
     ZodiacSign.virgo: [
-      'Başak burcu, analitik zekanın en keskin olduğu gün bugün. Detaylar seni çağırıyor, düzen seni bekliyor. Ancak unutma, mükemmellik bir hedef değil, bir yolculuk. İlerlemen mükemmelliğinden daha değerli.',
-      'Şifa ellerin bugün aktif. Kendine ve başkalarına iyilik yapma zamanı. Küçük yardımlar büyük farklar yaratır. Hizmet etmek seni küçültmez, yüceltir.',
-      'Pratik zekân bugün süper güç. Karmaşık problemlere basit çözümler bulabilirsin. Sistemler kur, düzen oluştur, verimlilik artır. Dünya senin organize edici gücüne ihtiyaç duyuyor.',
+      'Toprak arketipi, detay, hizmet ve şifa temalarını simgeler. Analitik zekanın hayatına nasıl katkıda bulunuyor? Düzen ve anlam arayışı üzerine düşünmek isteyebilirsin.',
+      'Şifa ve hizmet temaları üzerine bir refleksiyon. Kendine ve başkalarına nasıl iyilik yapıyorsun? Küçük eylemlerin büyük etkileri hakkında düşünebilirsin.',
+      'Mükemmellik ve ilerleme arasındaki denge üzerine düşünebilirsin. İlerlemeyi kutlamak senin için ne anlama geliyor? Pratik zekânı nasıl değerlendiriyorsun?',
     ],
     ZodiacSign.libra: [
-      'Terazi burcu, Venüs\'ün dengeli çocuğu olarak bugün harmoni enerjisi etrafını sarıyor. İlişkilerde barış, sanatta güzellik, hayatta denge... Bunlar senin doğal halin.',
-      'Diplomasi yeteneğin bugün zirve yapıyor. Çatışmaları çözebilir, köprüler kurabilir, insanları bir araya getirebilirsin. Bu bir yetenek değil, bir misyon.',
-      'Estetik duyarlılığın bugün dorukta. Güzellik sadece görsel değil, ruhsal. Etrafına güzellik yay, güzel düşün, güzel konuş. Evren sana güzellikle karşılık verecek.',
+      'Hava arketipi, denge, uyum ve ilişki temalarını simgeler. Harmoni senin için ne anlama geliyor? İlişkilerde dengeyi bulmak üzerine düşünmek isteyebilirsin.',
+      'Diplomasi ve iletişim temaları üzerine bir refleksiyon. Çatışmaları nasıl yönetiyorsun? İnsanları bir araya getirmek hakkında ne düşünüyorsun?',
+      'Estetik ve güzellik üzerine düşünebilirsin. Güzellik sadece görsel değil, ruhsal da olabilir. Güzellik yaratmak ve takdir etmek senin için ne anlama geliyor?',
     ],
     ZodiacSign.scorpio: [
-      'Akrep burcu, dönüşümün simyacısı olarak bugün karanlık altına dönüşüyor. Gölgelerden korkma, çünkü en değerli hazineler orada gizli. Derinliklere dal, cesurca.',
-      'Sezgilerin bugün lazer gibi keskin. Görünmeyeni görebilir, bilinmeyeni bilebilirsin. Bu güce saygıyla yaklaş, çünkü bilgi güçtür ve güç sorumluluk getirir.',
-      'Tutku ve yoğunluk senin doğal enerjin. Bugün bu enerjiyi yaratıcı ve dönüştürücü yollarla kullan. İstediğin her şeyi çekme kapasiten var, niyetine dikkat et.',
+      'Su arketipi, dönüşüm, derinlik ve yoğunluk temalarını simgeler. Dönüşüm senin için ne anlama geliyor? Gölgelerle ilişkin üzerine düşünmek isteyebilirsin.',
+      'Sezgi ve içgörü temaları üzerine bir refleksiyon. Görünmeyeni görmek, bilinmeyeni bilmek... Bu yeteneklerle nasıl bir ilişkin var?',
+      'Tutku ve yoğunluk üzerine düşünebilirsin. Bu enerjiyi nasıl yönlendiriyorsun? Yaratıcı ve dönüştürücü yollar hakkında ne düşünüyorsun?',
     ],
     ZodiacSign.sagittarius: [
-      'Yay burcu, Jüpiter\'in maceraperest çocuğu olarak bugün yeni ufuklar seni çağırıyor. Fiziksel, zihinsel veya ruhsal... Her türlü yolculuk için mükemmel zaman.',
-      'Bilgelik arayışın bugün güçleniyor. Felsefe, din, spiritüellik... Hayatın büyük sorularına cevap arıyorsun. Cevaplar içinde, dışarıda sadece işaretler var.',
-      'İyimserliğin bulaşıcı. Bugün umut taşı, ışık yay, insanlara inanmayı öğret. Karanlık zamanlarda bile güneşin doğacağını bilen sen, diğerlerine hatırlat.',
+      'Ateş arketipi, keşif, anlam arayışı ve özgürlük temalarını simgeler. Yeni ufuklar senin için ne anlama geliyor? Fiziksel, zihinsel veya ruhsal yolculuklar üzerine düşünmek isteyebilirsin.',
+      'Bilgelik arayışı teması üzerine bir refleksiyon. Felsefe, spiritualite, hayatın büyük soruları... Bu konulara nasıl yaklaşıyorsun?',
+      'İyimserlik ve umut temaları üzerine düşünebilirsin. Zor zamanlarda bile umut taşımak ne anlama geliyor? İyimserliğinin kaynağını keşfedebilirsin.',
     ],
     ZodiacSign.capricorn: [
-      'Oğlak burcu, Satürn\'ün disiplinli çocuğu olarak bugün zirveye bir adım daha yakınsın. Hedeflerine odaklan, planını takip et, vazgeçme. Başarı senin için kaçınılmaz.',
-      'Uzun vadeli düşünme yeteneğin bugün avantaj. Herkes bugünü düşünürken, sen yarını planlıyorsun. Temelleri sağlam atan her zaman kazanır.',
-      'Otorite ve sorumluluk seni korkutmasın, bunlar senin doğal alanın. Liderlik etmeye, yönetmeye, organize etmeye hazırsın. Dünya senin yapıcı enerjine ihtiyaç duyuyor.',
+      'Toprak arketipi, hedefler, yapı ve sorumluluk temalarını simgeler. Zirveye ulaşmak senin için ne anlama geliyor? Yolculuk ve varış noktası arasındaki ilişkiyi düşünmek isteyebilirsin.',
+      'Uzun vadeli düşünme teması üzerine bir refleksiyon. Herkes şimdiyi düşünürken, geleceği planlamak hakkında ne hissediyorsun? Temeller ve yapılar üzerine düşünebilirsin.',
+      'Otorite ve sorumluluk temaları üzerine düşünebilirsin. Liderlik etmek, yönetmek, organize etmek... Bu roller hayatında nasıl yer alıyor?',
     ],
     ZodiacSign.aquarius: [
-      'Kova burcu, Uranüs\'ün devrimci çocuğu olarak bugün geleceği şekillendiriyorsun. Vizyoner bakış açın, yenilikçi fikirlerin dünyayı değiştirebilir. Hayal et ve cesurca paylaş.',
-      'İnsanlığa hizmet bugün önceliğin. Bireysel başarılar güzel ama kolektif ilerleme daha anlamlı. Topluluk bilinci senin güç kaynağın.',
-      'Benzersizliğin süper gücün. Herkes gibi olmak zorunda değilsin, zaten herkes olmak istemiyor. Farklılığını kutla, özgünlüğünle gurur duy.',
+      'Hava arketipi, yenilik, topluluk ve benzersizlik temalarını simgeler. Geleceği şekillendirmek senin için ne anlama geliyor? Vizyoner bakış açın üzerine düşünmek isteyebilirsin.',
+      'Topluluk ve kolektif bilinç temaları üzerine bir refleksiyon. Bireysel başarılar ile kolektif ilerleme arasındaki denge hakkında ne düşünüyorsun?',
+      'Benzersizlik ve özgünlük üzerine düşünebilirsin. Farklı olmak senin için ne anlama geliyor? Özgünlüğünü kutlamak hakkında ne hissediyorsun?',
     ],
     ZodiacSign.pisces: [
-      'Balık burcu, Neptün\'ün mistik çocuğu olarak bugün perde aralanıyor. Görünmeyen dünyalar, duyulmayan sesler, hissedilmeyen enerjiler... Hepsine erişimin var.',
-      'Yaratıcılığın bugün okyanus gibi derin. Sanat, müzik, şiir, dans... Her türlü yaratıcı ifade ruhundan akıyor. Yarattığın her şey evrenle bir olmanın kanıtı.',
-      'Empatin bugün hem güç hem de yük. Başkalarının duygularını hissedebilirsin ama kendi sınırlarını koru. Şifa vermek güzel, ama önce kendini iyileştir.',
+      'Su arketipi, hayal gücü, sezgi ve şefkat temalarını simgeler. Görünmeyen dünyalar, duyulmayan sesler, hissedilmeyen enerjiler... Bunlara erişimin hakkında düşünmek isteyebilirsin.',
+      'Yaratıcılık ve hayal gücü temaları üzerine bir refleksiyon. Sanat, müzik, şiir, dans... Yaratıcı ifade senin için ne anlama geliyor?',
+      'Empati ve şefkat üzerine düşünebilirsin. Başkalarının duygularını hissetmek ne anlama geliyor? Kendi sınırlarını korurken şefkatli olmak hakkında ne düşünüyorsun?',
     ],
   };
 
   static final List<String> _universalExtendedWisdoms = [
-    'Evren bugün seninle dans ediyor. Her nefes, kozmik bir hediye. Her kalp atışı, evrensel ritimle uyum içinde. Farkındalıkla yaşa, her anın değerini bil.',
-    'Yıldızlar ruhunun haritasını çiziyor. Geçmiş, şimdi ve gelecek... Hepsi şu anda buluşuyor. Zamanın ötesinde bir perspektifle hayata bak.',
-    'Kozmik enerji bugün dönüşüm için mükemmel. Eskiyi bırak, yeniye merhaba de. Değişim korkunç değil, doğal. Değişime direnmek yorar, akışa teslim ol.',
+    'Farkındalık ve şimdiki an üzerine bir refleksiyon. Her nefes, her kalp atışı... Bu anın değerini fark etmek isteyebilirsin.',
+    'Zaman ve perspektif üzerine düşünebilirsin. Geçmiş, şimdi ve gelecek... Bunlar arasındaki ilişkiyi keşfetmek faydalı olabilir.',
+    'Değişim ve dönüşüm temaları üzerine bir refleksiyon. Eskiyi bırakmak ve yeniye açılmak senin için ne anlama geliyor?',
   ];
 
-  /// Planetary guidance messages
+  /// Archetype guidance themes (formerly planetary)
   static final Map<String, String> _planetaryGuidance = {
-    'sun': 'Güneş enerjisi bugün kimliğini ve yaşam gücünü aydınlatıyor. Kendini ifade et, parla, merkezinde kal. Güneş gibi etrafına ışık ve sıcaklık yay.',
-    'moon': 'Ay bugün duygusal dünyani aktive ediyor. Sezgilerine güven, iç sesini dinle, hislerini kabul et. Ay döngüleriyle uyum içinde hareket et.',
-    'mercury': 'Merkür iletişim ve düşünce kanallarını açıyor. Konuş, yaz, öğren, öğret. Fikirlerini paylaş, bilgi al ver. Zihinsel çevikliğini kullan.',
-    'venus': 'Venüs sevgi, güzellik ve değerler konusunda rehberlik ediyor. Aşkı kabul et, güzellik yarat, kendine değer ver. Hayatın tadını çıkar.',
-    'mars': 'Mars aksiyon ve enerji veriyor. Harekete geç, cesaretini kullan, hedeflerine doğru ilerle. Tutkunla motive ol, ama öfkeni kontrol et.',
-    'jupiter': 'Jüpiter şans ve genişleme getiriyor. Fırsatlara açık ol, risk al, büyük düşün. Bolluk ve bilgelik kapıları açılıyor.',
-    'saturn': 'Satürn disiplin ve yapı öğretiyor. Sabırlı ol, sorumlu davran, uzun vadeli düşün. Sınırlamalar aslında koruma.',
-    'uranus': 'Uranüs ani değişimler ve aydınlanmalar getiriyor. Beklenmedik olaylara açık ol, eski kalıpları kır, özgür düşün.',
-    'neptune': 'Neptün spiritüel bağlantıyı güçlendiriyor. Rüyalara dikkat et, sezgilerine güven, yaratıcılığını kullan. Görünmeyeni gör.',
-    'pluto': 'Pluto derin dönüşümü tetikliyor. Gölgelerle yüzleş, ölüp yeniden doğ, gücünü keşfet. Korkularının ötesine geç.',
+    'sun':
+        'Güneş arketipi, kimlik ve yaşam gücü temalarını simgeler. Kendini ifade etmek ve merkezinde kalmak üzerine düşünmek isteyebilirsin.',
+    'moon':
+        'Ay arketipi, duygusal dünya ve sezgi temalarını simgeler. İç sesini dinlemek ve hislerini kabul etmek üzerine düşünebilirsin.',
+    'mercury':
+        'Merkür arketipi, iletişim ve düşünce temalarını simgeler. Konuşmak, yazmak, öğrenmek ve öğretmek üzerine düşünmek isteyebilirsin.',
+    'venus':
+        'Venüs arketipi, sevgi, güzellik ve değerler temalarını simgeler. Aşkı kabul etmek ve güzellik yaratmak üzerine düşünebilirsin.',
+    'mars':
+        'Mars arketipi, aksiyon ve enerji temalarını simgeler. Harekete geçmek ve cesareti kullanmak üzerine düşünmek isteyebilirsin.',
+    'jupiter':
+        'Jüpiter arketipi, büyüme ve genişleme temalarını simgeler. Fırsatlara açık olmak ve büyük düşünmek üzerine düşünebilirsin.',
+    'saturn':
+        'Satürn arketipi, disiplin ve yapı temalarını simgeler. Sabırlı olmak ve sorumlu davranmak üzerine düşünmek isteyebilirsin.',
+    'uranus':
+        'Uranüs arketipi, değişim ve yenilik temalarını simgeler. Beklenmedik olaylara açık olmak ve eski kalıpları sorgulamak üzerine düşünebilirsin.',
+    'neptune':
+        'Neptün arketipi, spiritualite ve hayal gücü temalarını simgeler. Rüyalara dikkat etmek ve yaratıcılığı kullanmak üzerine düşünmek isteyebilirsin.',
+    'pluto':
+        'Pluto arketipi, dönüşüm ve derinlik temalarını simgeler. Gölgelerle yüzleşmek ve gücü keşfetmek üzerine düşünebilirsin.',
   };
 
-  /// Element-based messages
+  /// Element-based reflection themes
   static final Map<String, String> _elementMessages = {
-    'fire': 'Ateş elementi bugün tutkunu, cesaretini ve yaşam enerjini ateşliyor. Harekete geç, risk al, parla. Ateş gibi dönüştürücü ol, ama kontrolü elden bırakma.',
-    'earth': 'Toprak elementi bugün pratikliğini, istikrarını ve maddi bilincini güçlendiriyor. Temelleri sağlam at, sabırla çalış, somut sonuçlar üret.',
-    'air': 'Hava elementi bugün zihinsel çevikliğini, iletişimini ve sosyal bağlantılarını destekliyor. Düşün, konuş, bağlan. Fikirlerini paylaş, öğren.',
-    'water': 'Su elementi bugün duygusal derinliğini, sezgilerini ve empati gücünü aktive ediyor. Hisset, sezgilerine güven, akışa teslim ol.',
+    'fire':
+        'Ateş elementi, tutku, cesaret ve yaşam enerjisi ile ilişkilendirilir. Harekete geçmek ve parlamak temaları üzerine düşünmek isteyebilirsin.',
+    'earth':
+        'Toprak elementi, pratiklik, istikrar ve maddi bilinç ile ilişkilendirilir. Temeller atmak ve sabırla çalışmak üzerine düşünebilirsin.',
+    'air':
+        'Hava elementi, zihinsel çeviklik, iletişim ve sosyal bağlantılar ile ilişkilendirilir. Düşünmek, konuşmak ve bağlanmak üzerine düşünmek isteyebilirsin.',
+    'water':
+        'Su elementi, duygusal derinlik, sezgi ve empati ile ilişkilendirilir. Hissetmek ve akışa teslim olmak üzerine düşünebilirsin.',
   };
 
-  /// House-based daily insights
+  /// House-based reflection themes
   static final Map<int, String> _houseInsights = {
-    1: '1. Ev bugün aktif - Kişisel kimliğin, fiziksel görünümün ve yeni başlangıçlar enerjin güçleniyor. Kendini göster, inisiyatif al.',
-    2: '2. Ev bugün aktif - Para, değerler ve öz-değer konuları ön planda. Maddi güvenliğine odaklan, yeteneklerini değerlendir.',
-    3: '3. Ev bugün aktif - İletişim, kısa yolculuklar ve öğrenme zamanı. Konuş, yaz, kardeşlerinle iletişim kur, yeni şeyler öğren.',
-    4: '4. Ev bugün aktif - Ev, aile ve duygusal kökler günü. Yuvanı düzenle, aileyle zaman geçir, iç huzurunu bul.',
-    5: '5. Ev bugün aktif - Yaratıcılık, romantizm ve eğlence zamanı. Sanatla uğraş, aşkın tadını çıkar, çocuk gibi oyna.',
-    6: '6. Ev bugün aktif - Sağlık, günlük rutinler ve hizmet günü. Sağlığına dikkat et, işlerini organize et, yardımsever ol.',
-    7: '7. Ev bugün aktif - İlişkiler ve ortaklıklar odakta. Partnerine zaman ayır, iş birliği yap, dengeli ilişkiler kur.',
-    8: '8. Ev bugün aktif - Dönüşüm, ortak kaynaklar ve derin bağlantılar günü. Değişimi kucakla, paylaş, derinlere dal.',
-    9: '9. Ev bugün aktif - Felsefe, uzak yolculuklar ve yüksek öğrenim zamanı. Bilgelik ara, yeni kültürler keşfet, büyük resmi gör.',
-    10: '10. Ev bugün aktif - Kariyer, toplumsal statü ve hedefler günü. Profesyonel alanda parla, hedeflerine odaklan, liderlik et.',
-    11: '11. Ev bugün aktif - Arkadaşlıklar, gruplar ve idealler zamanı. Sosyal çevrende aktif ol, toplulukla bağlan, geleceği planla.',
-    12: '12. Ev bugün aktif - Bilinçaltı, spiritüellik ve arınma günü. Meditasyon yap, rüyalarına dikkat et, geçmişi bırak.',
+    1: '1. Ev temaları: Kişisel kimlik, fiziksel görünüm ve yeni başlangıçlar. Kendini göstermek ve inisiyatif almak üzerine düşünmek isteyebilirsin.',
+    2: '2. Ev temaları: Değerler ve öz-değer. Maddi güvenlik ve yeteneklerin üzerine düşünebilirsin.',
+    3: '3. Ev temaları: İletişim ve öğrenme. Konuşmak, yazmak ve yeni şeyler öğrenmek üzerine düşünmek isteyebilirsin.',
+    4: '4. Ev temaları: Ev, aile ve duygusal kökler. Yuva ve iç huzur üzerine düşünebilirsin.',
+    5: '5. Ev temaları: Yaratıcılık, eğlence ve kendini ifade etme. Sanat ve oyun üzerine düşünmek isteyebilirsin.',
+    6: '6. Ev temaları: Sağlık, günlük rutinler ve hizmet. Sağlığına dikkat etmek ve yardımsever olmak üzerine düşünebilirsin.',
+    7: '7. Ev temaları: İlişkiler ve ortaklıklar. Partnerine zaman ayırmak ve iş birliği yapmak üzerine düşünmek isteyebilirsin.',
+    8: '8. Ev temaları: Dönüşüm ve derin bağlantılar. Değişimi kucaklamak ve paylaşmak üzerine düşünebilirsin.',
+    9: '9. Ev temaları: Felsefe ve yüksek öğrenim. Bilgelik aramak ve büyük resmi görmek üzerine düşünmek isteyebilirsin.',
+    10: '10. Ev temaları: Kariyer ve hedefler. Profesyonel alanda parlamak ve hedeflere odaklanmak üzerine düşünebilirsin.',
+    11: '11. Ev temaları: Arkadaşlıklar ve topluluk. Sosyal çevrede aktif olmak ve geleceği planlamak üzerine düşünmek isteyebilirsin.',
+    12: '12. Ev temaları: Bilinçaltı ve spiritualite. Meditasyon yapmak ve geçmişi bırakmak üzerine düşünebilirsin.',
   };
 }

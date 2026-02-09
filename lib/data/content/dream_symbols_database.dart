@@ -122,7 +122,7 @@ class DreamSymbolsDatabase {
       ],
       emotionVariants: {
         EmotionalTone.korku: 'İhanet korkusu veya bastırılmış cinsellik - kim veya ne tehdit ediyor?',
-        EmotionalTone.merak: 'Bilgelik arayışı - dönüşüm kapıda',
+        EmotionalTone.merak: 'Bilgelik arayışı - dönüşüm temaları öne çıkıyor',
         EmotionalTone.heyecan: 'Kundalini uyanışı - yaratıcı/cinsel enerji yükseliyor',
         EmotionalTone.ofke: 'Zehirli bir durum veya kişi - sınırları koru',
       },
@@ -403,7 +403,7 @@ class DreamSymbolsDatabase {
         EmotionalTone.korku: 'Karanlık orman: yolunu kaybetme, kimlik krizi',
         EmotionalTone.huzur: 'Aydınlık orman: doğayla bütünleşme',
         EmotionalTone.merak: 'Keşfedilecek patikalar: iç yolculuk',
-        EmotionalTone.heyecan: 'Macera başlıyor: dönüşüm kapıda',
+        EmotionalTone.heyecan: 'Macera başlıyor: dönüşüm temaları belirgin',
       },
       archetypes: ['Bilinçdışı', 'Dönüşüm Mekanı', 'Doğa'],
       relatedSymbols: ['tree', 'path', 'darkness', 'animals'],

@@ -339,8 +339,8 @@ Birlikte, korku yerine cesaretle yaşamayı öğrenirler.
       title: 'Vertex - Güneş Kavuşumu',
       description: '''
 Vertex, "kader kapısı" olarak bilinir. Güneş'le kavuştuğunda,
-kaderinizi değiştirecek bir kişiyle karşılaşırsınız.
-Bu karşılaşma genellikle ani, beklenmedik ve hayat değiştiricidir.
+hayatınızda önemli bir rol oynayabilecek biriyle karşılaşma teması güçlüdür.
+Bu tür karşılaşmalar genellikle ani, beklenmedik ve dönüştürücü olabilir.
 ''',
       deepMeaning: '''
 Vertex, Batı ufkunda, 7. Ev civarında bulunan matematiksel bir noktadır.
@@ -400,9 +400,9 @@ Birlikte, duygusal derinlik ve ruhsal beslenme yaşarlar.
       type: SoulmateIndicatorType.vertex,
       title: 'Vertex - Venüs Kavuşumu',
       description: '''
-Venüs-Vertex kavuşumu, kadersel aşkın en güçlü göstergelerinden biridir.
-Bu, "yazılmış aşk" enerjisidir - evren bu buluşmayı planlamıştır.
-Aşk, kaçınılmaz ve dönüştürücü bir güç olarak deneyimlenir.
+Venüs-Vertex kavuşumu, derin aşk temalarının en güçlü göstergelerinden biridir.
+Bu, "yazılmış aşk" enerjisi olarak yorumlanabilir - sembolik olarak önemli bir buluşma teması.
+Aşk, dönüştürücü bir güç olarak deneyimlenebilir.
 ''',
       deepMeaning: '''
 Venüs, aşkın ve güzelliğin gezegenidir. Kader kapısı Vertex ile
@@ -442,9 +442,9 @@ Juno, Roma mitolojisinde Jüpiter'in sadık eşidir. Astrolojide,
 uzun vadeli taahhüt, evlilik ve ortaklık konularını yönetir.
 Güneş ile kavuştuğunda, "ideal eş" arketipi aktive olur.
 
-Güneş kişisi, Juno kişisinin evlilik vizyonunu somutlaştırır.
-Bu bağlantı, "onunla evleneceğimi hissettim" deneyimini yaratır.
-Uzun vadeli taahhüt doğal ve kaçınılmaz görünür.
+Güneş kişisi, Juno kişisinin evlilik vizyonunu somutlaştırabilir.
+Bu bağlantı, "onunla evleneceğimi hissettim" deneyimini yaratabilir.
+Uzun vadeli taahhüt doğal ve güçlü bir tema olarak ortaya çıkabilir.
 ''',
       recognition: '''
 Güneş kişisi, Juno kişisinin evlilik ve ortaklık ideallerine
@@ -926,8 +926,8 @@ kökten dönüştürür - bazen yıkarak, bazen yeniden inşa ederek.
 ''',
       cosmicPurpose: '''
 Pluto, ölüm ve yeniden doğuşun gezegenidir. Güneş'e dokunduğunda,
-ego ölür ve yeni bir kimlik doğar. Bu süreç acı verici ama gereklidir.
-İkiz alev yolculuğunda, bu dönüşüm kaçınılmazdır.
+ego ölür ve yeni bir kimlik doğar. Bu süreç acı verici ama gerekli olabilir.
+İkiz alev yolculuğunda, bu dönüşüm güçlü bir tema olarak ortaya çıkar.
 ''',
       challengeGift: '''
 Zorluk: Pluto kişisi kontrol edici ve manipülatif olabilir.
@@ -1222,8 +1222,8 @@ potansiyel olarak en yıkıcı bağlantılardan biridir.
 ''',
       cosmicPurpose: '''
 Mars ateşi 8. evin derin sularıyla buluştuğunda,
-buhar patlamaları olur. Bu ilişkide tutku kontrol edilemez,
-çekim karşı konulamaz, dönüşüm kaçınılmazdır.
+buhar patlamaları olur. Bu ilişkide tutku yoğun,
+çekim güçlü ve dönüşüm teması belirgin olabilir.
 ''',
       challengeGift: '''
 Zorluk: Güç savaşları, cinsel manipülasyon, şiddet potansiyeli.
@@ -1278,8 +1278,8 @@ Bu, ikiz alev yolculuğunun en zorlu ama en ödüllendirici aşamasıdır.
 class KarmicRelationshipPatterns {
   static const String introduction = '''
 Karmik ilişkiler, ruhların geçmiş yaşamlardan taşıdığı tamamlanmamış işleri
-çözmek için bir araya geldiği bağlantılardır. Bu ilişkiler genellikle yoğun,
-zorlayıcı ve kaçınılmaz hissedilir.
+çözmek için bir araya geldiği bağlantılar olarak yorumlanır. Bu ilişkiler genellikle yoğun,
+zorlayıcı ve derin anlamlı hissedilebilir.
 
 "Karma" kelimesi Sanskritçe'de "eylem" anlamına gelir. Astrolojide karmik
 bağlantılar, geçmiş yaşamlarda atılan tohumların bu yaşamda meyve vermesini
@@ -2138,8 +2138,8 @@ Risk: Obsesyon, şiddet ve enerji tükenmesi.
       title: '8. Ev Pluto Bağlantısı - Derin Simya',
       energyExchange: '''
 Bir kişinin Plutosu diğerinin 8. evine düştüğünde, simyanın
-en derin formu aktive olur. Pluto evinde güçlüdür ve
-dönüşüm kaçınılmazdır.
+en derin formu aktive olabilir. Pluto evinde güçlüdür ve
+dönüşüm teması belirgin şekilde ortaya çıkabilir.
 
 Enerji alışverişi, sözcüklerin ötesindedir. Bu, hücresel düzeyde
 bir yeniden programlama, ruhsal bir başkalaşımdır.
@@ -2689,9 +2689,9 @@ Sorular:
       id: 'composite_pluto_conjunction_sun',
       title: 'Kompozit Pluto-Güneş Kavuşumu',
       soulPurpose: '''
-Bu ilişkinin ruh amacı, radikal dönüşüm ve güç ustası olmaktır.
-Pluto-Güneş kavuşumu, ilişkinin özünde dönüşüm olduğunu gösterir.
-Birlikte olduğunuzda, her şey değişir - kaçınılmaz olarak.
+Bu ilişkinin ruh amacı, radikal dönüşüm ve güç ustası olmak olarak yorumlanabilir.
+Pluto-Güneş kavuşumu, ilişkinin özünde dönüşüm temasının olduğunu gösterir.
+Birlikte olduğunuzda, her şey değişir - güçlü bir dönüşüm potansiyeli var.
 
 Bu ilişki, "hafif" olamaz. Her karşılaşma yoğun, her an derin,
 her deneyim dönüştürücüdür.

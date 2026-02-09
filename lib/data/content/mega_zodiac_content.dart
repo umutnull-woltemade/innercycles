@@ -241,7 +241,7 @@ ve empatik olmak Koc'un spirituel evriminin anahtaridir.
         'Enerjini koru. Gereksiz tartismalardan kacin.',
         'Ic huzur bul. Meditasyon yap.',
         'Sabir dersi. Beklemek de eylemdir.',
-        'Yeniden sarj ol. Yarin guclu doneceksin.',
+        'Yeniden sarj ol. Dinlenme ve yenilenme temasi.',
       ],
       'love': [
         'Ask hayatinda tutku dalgasi',

@@ -2130,7 +2130,7 @@ Harekete geçen, yol açan, mücadele eden eril enerji.
 ''',
       balancePractice: '''
 Koç'un ateşi, Su elementi ile dengelenir. Yengeç veya Balık
-enerjisi getirecek pratikler: yüzme, duygusal ifade, empati
+enerjisi için önerilen pratikler: yüzme, duygusal ifade, empati
 çalışması. Mars enerjisini Venüs ile yumuşat.
 ''',
       sacredUnionLesson: '''
@@ -2157,7 +2157,7 @@ ve somut. Maddi dünyada manifestasyon ustası.
 ''',
       balancePractice: '''
 Boğa'nın ataleti, Ateş elementi ile dengelenir. Koç veya Aslan
-enerjisi getirecek pratikler: fiziksel aktivite, risk alma,
+enerjisi için önerilen pratikler: fiziksel aktivite, risk alma,
 spontanlık. Venüs'ü Mars ile harekete geçir.
 ''',
       sacredUnionLesson: '''
@@ -2184,7 +2184,7 @@ Shiva, entelektüel ve iletişimci.
 ''',
       balancePractice: '''
 İkizler'in dağınıklığı, Toprak elementi ile dengelenir. Başak
-veya Oğlak enerjisi getirecek pratikler: odaklanma egzersizleri,
+veya Oğlak enerjisi için önerilen pratikler: odaklanma egzersizleri,
 bir konuyu derinleştirme, topraklama.
 ''',
       sacredUnionLesson: '''
@@ -2211,7 +2211,7 @@ duygusal zeka ve aile bağlılığı ile hareket eder.
 ''',
       balancePractice: '''
 Yengeç'in aşırı duygusallığı, Hava elementi ile dengelenir.
-Terazi veya Kova enerjisi getirecek pratikler: nesnellik,
+Terazi veya Kova enerjisi için önerilen pratikler: nesnellik,
 duygusal mesafe, bağımsızlık çalışması.
 ''',
       sacredUnionLesson: '''
@@ -2238,7 +2238,7 @@ ve koruyucu kral arketipidir.
 ''',
       balancePractice: '''
 Aslan'ın egosu, Su elementi ile dengelenir. Akrep veya
-Balık enerjisi getirecek pratikler: alçakgönüllülük, hizmet,
+Balık enerjisi için önerilen pratikler: alçakgönüllülük, hizmet,
 ego çalışması, başkalarının ışığına yer açma.
 ''',
       sacredUnionLesson: '''
@@ -2265,7 +2265,7 @@ Başak erkeğinde Shiva, ustaca hizmet eder.
 ''',
       balancePractice: '''
 Başak'ın aşırı eleştirelliği, Ateş elementi ile dengelenir.
-Koç veya Yay enerjisi getirecek pratikler: spontanlık,
+Koç veya Yay enerjisi için önerilen pratikler: spontanlık,
 büyük resme bakma, mükemmeliyetçiliği bırakma.
 ''',
       sacredUnionLesson: '''
@@ -2292,7 +2292,7 @@ Terazi erkeğinde Shiva, romantik ve estetik.
 ''',
       balancePractice: '''
 Terazi'nin kararsızlığı, Toprak elementi ile dengelenir.
-Boğa veya Oğlak enerjisi getirecek pratikler: karar verme
+Boğa veya Oğlak enerjisi için önerilen pratikler: karar verme
 cesareti, tek başına durmak, kendi merkezini bulmak.
 ''',
       sacredUnionLesson: '''
@@ -2319,7 +2319,7 @@ döngüsünü yöneten. Akrep erkeğinde Shiva derinlikli ve güçlü.
 ''',
       balancePractice: '''
 Akrep'in aşırı yoğunluğu, Hava elementi ile dengelenir.
-İkizler veya Kova enerjisi getirecek pratikler: hafiflik,
+İkizler veya Kova enerjisi için önerilen pratikler: hafiflik,
 mizah, obsesyondan kopuş, yüzeyde kalabilme.
 ''',
       sacredUnionLesson: '''
@@ -2346,7 +2346,7 @@ Shiva, rehber ve vizyoner.
 ''',
       balancePractice: '''
 Yay'ın aşırı idealizmi, Toprak elementi ile dengelenir.
-Boğa veya Başak enerjisi getirecek pratikler: pratik adımlar,
+Boğa veya Başak enerjisi için önerilen pratikler: pratik adımlar,
 detaylara dikkat, şimdiki anı yaşama.
 ''',
       sacredUnionLesson: '''
@@ -2373,7 +2373,7 @@ Shiva sorumlu, inşa edici ve kararlı.
 ''',
       balancePractice: '''
 Oğlak'ın katılığı, Su elementi ile dengelenir. Yengeç veya
-Balık enerjisi getirecek pratikler: duygusal ifade, oyun,
+Balık enerjisi için önerilen pratikler: duygusal ifade, oyun,
 kontrolü bırakma, süreçten keyif alma.
 ''',
       sacredUnionLesson: '''
@@ -2400,7 +2400,7 @@ Shiva devrimci, idealist ve özgün.
 ''',
       balancePractice: '''
 Kova'nın mesafesi, Ateş elementi ile dengelenir. Aslan veya
-Koç enerjisi getirecek pratikler: kişisel bağ, tutku, bireysel
+Koç enerjisi için önerilen pratikler: kişisel bağ, tutku, bireysel
 ilişkilere yatırım.
 ''',
       sacredUnionLesson: '''
@@ -2427,7 +2427,7 @@ mistik, şair ve şifacı.
 ''',
       balancePractice: '''
 Balık'ın sınırsızlığı, Toprak elementi ile dengelenir.
-Başak veya Boğa enerjisi getirecek pratikler: sınır koyma,
+Başak veya Boğa enerjisi için önerilen pratikler: sınır koyma,
 pratik adımlar, ayakları yere basma.
 ''',
       sacredUnionLesson: '''

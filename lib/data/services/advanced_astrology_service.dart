@@ -2440,7 +2440,7 @@ class AdvancedAstrologyService {
   static List<String> _getRelationshipThemes(ZodiacSign sun, ZodiacSign moon) {
     return [
       'Bu ilişki, ${sun.nameTr} enerjisinin cesaret ve tutku kattığını, ${moon.nameTr} ayının ise duygusal derinlik sağladığını gösteriyor. Birlikte hem ateş hem su taşıyorsunuz.',
-      'Kompozit haritanız, karşılıklı büyüme ve dönüşüm üzerine kurulu bir ilişki olduğunu ortaya koyuyor. Her ikiniz de bu birliktelikten dönüşmüş çıkacaksınız.',
+      'Kompozit haritanız, karşılıklı büyüme ve dönüşüm üzerine kurulu bir ilişki olduğunu ortaya koyuyor. Bu birliktelik dönüşüm temaları taşıyor.',
       'Ruhsal bağlantınız güçlü. Bu ilişki, sadece romantik değil, aynı zamanda karmik bir anlam taşıyor. Birbirinize öğretecek çok şeyiniz var.',
     ];
   }
@@ -2449,7 +2449,7 @@ class AdvancedAstrologyService {
     return [
       '${moon.nameTr} ayıyla, duygusal dünyanız ${moon.element.nameTr} elementi tarafından şekilleniyor. Hislerinizi paylaşmak ve anlamak bu ilişkinin temelini oluşturuyor.',
       'Duygusal iletişimde derinlik arıyorsunuz. Yüzeysel bağlantılar sizi tatmin etmez - gerçek yakınlık ve güven istiyorsunuz.',
-      'Birbirinizin duygusal ihtiyaçlarını anlamak için zaman ve sabır gerekiyor. Ama bu çaba, karşılıklı şifa ve büyümeyi beraberinde getirecek.',
+      'Birbirinizin duygusal ihtiyaçlarını anlamak için zaman ve sabır gerekiyor. Bu çaba, karşılıklı şifa ve büyüme için önemli bir temel oluşturur.',
     ];
   }
 

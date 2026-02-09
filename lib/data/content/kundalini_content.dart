@@ -5445,7 +5445,7 @@ Güçlü 8. ev vurgusu (gezegen kümeleri, yönetici güçlü):
 Güneş 8. evde: Ego dönüşümü merkezi tema
 Ay 8. evde: Duygusal yoğunluk, psişik alıcılık
 Mars 8. evde: Güçlü Kundalini potansiyeli, cesur dönüşüm
-Pluto 8. evde: En yoğun - derin, kaçınılmaz dönüşümler
+Pluto 8. evde: En yoğun - derin, güçlü dönüşüm temaları
 Neptün 8. evde: Spiritüel arayış, çözülme deneyimleri
 Uranüs 8. evde: Ani, şoke edici uyanışlar
 ''';

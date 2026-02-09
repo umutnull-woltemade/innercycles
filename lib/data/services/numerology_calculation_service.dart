@@ -855,13 +855,13 @@ class NumerologyCalculationService {
 
   static String _getPinnacleMeaning(int number) {
     final meanings = {
-      1: 'Liderlik ve bagimsizlik donemi. Kendi yolunuzu cizeceksiniz.',
+      1: 'Liderlik ve bagimsizlik donemi. Kendi yolunuzu cizme temasi.',
       2: 'Isbirligi ve iliski donemi. Diplomasi onemli.',
       3: 'Yaraticilik ve ifade donemi. Kendinizi gosterin.',
       4: 'Insaat ve temel atma donemi. Siki calisma gerekli.',
-      5: 'Degisim ve ozgurluk donemi. Macera sizi bekliyor.',
+      5: 'Degisim ve ozgurluk donemi. Macera temalarini kesfedin.',
       6: 'Sorumluluk ve aile donemi. Bakim ve sevgi.',
-      7: 'Icsel arayis ve spiritüellik donemi. Kendinizi kesfedeceksiniz.',
+      7: 'Icsel arayis ve spiritüellik donemi. Kendinizi kesfetme temasi.',
       8: 'Maddi basari ve guc donemi. Kariyer odakli olun.',
       9: 'Tamamlanma ve hizmet donemi. Baskalarina yardim edin.',
       11: 'Spiritüel aydinlanma ve ilham donemi. Sezgilerinize guvenin.',

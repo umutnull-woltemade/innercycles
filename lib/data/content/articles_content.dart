@@ -755,45 +755,38 @@ Her 12 yılda Jüpiter doğum konumuna döner (12, 24, 36, 48... yaşlar). Bu ö
 
       AstrologyArticle(
         id: '20',
-        title: 'Tutulmalar ve Kader Anları',
+        title: 'Tutulmalar ve Sembolik Anlamları',
         summary:
-            'Güneş ve Ay tutulmalarının astrolojik önemi ve hayatınıza etkileri.',
+            'Güneş ve Ay tutulmalarının kültürel ve sembolik önemi.',
         content: '''
-Tutulmalar, astrolojide en güçlü kozmik olaylardan biridir. Yılda 4-6 tutulma gerçekleşir.
+Tutulmalar, birçok kültürde önemli astronomik olaylardır. Yılda 4-6 tutulma gerçekleşir.
 
 ## Tutulma Türleri
 
-**Güneş Tutulması** (Yeni Ay'da): Yeni başlangıçlar, kapıların açılması
+**Güneş Tutulması** (Yeni Ay'da): Geleneksel olarak yeni başlangıç temaları ile ilişkilendirilir
 
-**Ay Tutulması** (Dolunay'da): Sonuçlanmalar, ortaya çıkışlar
+**Ay Tutulması** (Dolunay'da): Geleneksel olarak tamamlanma ve yansıtma temaları ile ilişkilendirilir
 
-## Tutulmalar Neden Güçlü?
+## Tutulmaların Kültürel Önemi
 
-Tutulmalar Ay düğümleri yakınında gerçekleşir, bu yüzden karmik ve kadersel niteliktedir.
+Tutulmalar tarih boyunca birçok kültürde sembolik anlam taşımıştır. Yansıtma ve düşünme için kullanılmıştır.
 
-## Tutulmanın Etkisi
+## Tutulma Döneminde Düşünme Temaları
 
-- Doğum haritanızda hangi eve düşerse o alan etkilenir
-- Etkisi 6 ay öncesi ve sonrasına yayılabilir
-- Kadersel olaylar tetiklenir
-- Ani değişimler mümkün
+- Hayatınızdaki değişim alanları üzerine düşünün
+- Tamamlanması gereken projeler
+- Yeni başlangıç fırsatları
+- İç gözlem ve meditasyon
 
-## Tutulma Döneminde
+## Hatırlatma
 
-✓ Olaylara dikkat edin
-✓ Kapanan kapıları zorlamayın
-✓ Açılan fırsatları değerlendirin
-✓ Meditasyon ve içsel çalışma
-
-✗ Büyük kararlar vermeyin
-✗ Ritüeller için ideal değil
-✗ Aceleci davranmayın
+Bu içerik kültürel ve sembolik bir bakış açısı sunar. Olayları tahmin etmez.
         ''',
         category: ArticleCategory.currentTransits,
         publishedAt: DateTime.now().subtract(const Duration(days: 5)),
         author: 'Venus One Team',
         readTimeMinutes: 9,
-        tags: ['tutulma', 'güneş tutulması', 'ay tutulması', 'kader'],
+        tags: ['tutulma', 'güneş tutulması', 'ay tutulması', 'sembolik'],
       ),
 
       AstrologyArticle(

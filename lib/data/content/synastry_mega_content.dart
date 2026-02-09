@@ -1,6 +1,18 @@
-/// Synastry Mega Content - İlişki Uyumu Derinlemesine Analizi
-/// Gezegen açıları, ev örtüşmeleri, kompozit harita yorumları
+/// Synastry Mega Content - İlişki Kalıpları Refleksiyon Aracı
+/// Arketipsel temalar, sembolik kalıplar, ilişki refleksiyonu
+/// Bu içerik uyumluluk tahmini değil, öz-farkındalık için tasarlanmıştır.
 library;
+
+/// Content disclaimer for all synastry content
+const String synastryContentDisclaimer = '''
+Synastry is a symbolic framework for reflecting on relationship patterns.
+It does not predict compatibility or relationship outcomes.
+
+No chart or analysis can determine whether a relationship will "work."
+Relationship decisions are personal and should not be based on astrological interpretations.
+
+This is a tool for self-reflection about relationship dynamics, not a compatibility predictor.
+''';
 
 // ════════════════════════════════════════════════════════════════════════════
 // SİNASTRİ TEMELLERİ
@@ -8,18 +20,18 @@ library;
 
 class SynastryFundamentals {
   static const String introduction = '''
-Sinastri, iki kişinin doğum haritalarını üst üste bindirerek aralarındaki
-kozmik bağlantıları analiz eden astroloji dalıdır. Bu teknik, romantik
-ilişkilerden iş ortaklıklarına, aile bağlarından dostluklara kadar her
-türlü insan ilişkisini derinlemesine anlamaya yardımcı olur.
+Sinastri, iki kişinin sembolik haritalarını karşılaştırarak ilişki kalıpları
+üzerine refleksiyon yapmaya yardımcı olan bir araçtır. Bu teknik, ilişki
+dinamiklerini anlamak için bir çerçeve sunar - ama uyumluluk tahmini yapmaz.
 
-İki harita arasındaki açılar (aspektler), bir ilişkinin doğasını ortaya koyar:
-- Uyumlu açılar (trigon, sekstil) kolay akan enerjiyi gösterir
-- Zorlu açılar (kare, karşıt) büyüme potansiyeli taşıyan gerilimleri işaret eder
-- Kavuşumlar (konjunksiyon) güçlü birleşim noktalarını belirler
+Sembolik açılar (aspektler), ilişki temalarını keşfetmek için kullanılabilir:
+- Uyumlu açılar (trigon, sekstil): Kolay akan enerji temaları
+- Zorlayıcı açılar (kare, karşıt): Büyüme potansiyeli taşıyan gerilim temaları
+- Kavuşumlar (konjunksiyon): Güçlü birleşim noktası temaları
 
-Unutulmamalıdır ki "zor" açılar kötü değildir - en tutkulu, dönüştürücü
-ilişkiler genellikle zorlu açılar içerir. Önemli olan bilinçli farkındalıktır.
+ÖNEMLİ NOT: "Zor" açılar kötü değildir ve "uyumlu" açılar bir ilişkinin
+başarılı olacağını garanti etmez. Hiçbir grafik veya analiz, bir ilişkinin
+"işe yarayıp yaramayacağını" söyleyemez. Bu içerik öz-farkındalık içindir.
 ''';
 
   static const Map<String, AspectTypeInfo> aspectTypes = {
@@ -1327,8 +1339,8 @@ class ZodiacCompatibility {
         sexualScore: 90,
         shortDescription: 'İki ateş, büyük tutku ama güç mücadelesi',
         detailedAnalysis: '''
-İki Koç bir araya geldiğinde, yangın kaçınılmazdır - ister tutku ateşi,
-ister öfke ateşi. Bu kombinasyon yoğun enerji, rekabet ve heyecan vaat eder.
+İki Koç bir araya geldiğinde, yangın olası - ister tutku ateşi,
+ister öfke ateşi. Bu kombinasyon yoğun enerji, rekabet ve heyecan temaları taşır.
 
 GÜÇLÜ YÖNLER:
 • Karşılıklı anlayış - aynı dili konuşuyorlar

@@ -1,7 +1,11 @@
-/// Engagement-Driven Content Library for Venus One
-/// Deep content expansion with navigation strategy for each page
-/// Generated for maximum user engagement and session depth
+/// Reflection-Focused Content Library for Venus One
+/// Lifestyle reflection and self-awareness content
+/// Content designed for personal growth and mindful exploration
 library;
+
+/// Content disclaimer for all content in this file
+const String engagementContentDisclaimer =
+    'All content is for reflection and self-awareness purposes only. This is not prediction or fortune-telling.';
 
 // ============================================================
 // PAGE 1: HOMEPAGE (/)
@@ -19,22 +23,22 @@ class HomepageContent {
   // - Astro-Seek: Tool-first approach, data richness visible
   // - Venus One Gap: Needs stronger emotional hook + clear value proposition
 
-  static const String heroTitle = 'Your Cosmic Journey Begins Here';
+  static const String heroTitle = 'Your Reflection Journey Begins Here';
 
   static const String heroSubtitle =
-      'What is the sky whispering to you? Your birth chart, daily energy, and inner guidance — all in one place.';
+      'Explore archetypal themes for self-discovery. Personality insights, daily reflection prompts, and mindfulness tools — all in one place.';
 
   static const String introSection = '''
-Venus One presents astrology not as a fortune-telling tool, but as a journey of self-discovery.
+Venus One is a lifestyle reflection app that uses symbolic themes from various cultural traditions to support personal growth and self-awareness.
 
 What you'll find here:
-• Personalized birth chart analysis
-• Daily, weekly, and monthly horoscope readings
-• Relationship compatibility and synastry analyses
-• Tarot, numerology, and energy readings
-• Transit effects personalized for you
+• Personality archetype exploration
+• Daily, weekly, and seasonal reflection prompts
+• Relationship pattern reflection tools
+• Card-based journaling and number symbolism
+• Symbolic theme exploration for self-discovery
 
-Astrology is the art of reading celestial symbols. These symbols are not fixed destinies, but potentials and tendencies. We don't tell you "this will happen" — we ask "this energy might flow in this direction, what do you feel?"
+Archetypes are cultural patterns that can serve as mirrors for self-reflection. These symbols are not fixed destinies, but tools for exploring your inner world. We don't tell you "this will happen" — we invite you to ask "what does this theme evoke in me?"
 ''';
 
   static const String whatWeOfferSection = '''
@@ -86,13 +90,13 @@ Astrology is not empirical science. It's a symbolic language system spanning tho
 ''';
 
   static const String curiosityHooksSection = '''
-## People Here Also Wonder About...
+## People Here Also Explore...
 
-→ "Why does my Ascendant feel different from my Sun sign?"
-→ "Do retrograde periods really affect my life?"
-→ "Are we compatible with my partner, what do our charts say?"
-→ "Do my dreams have an astrological meaning?"
-→ "What kind of decisions should I make during which planetary transit?"
+→ "What makes my personality archetype unique?"
+→ "How can cultural symbols help me reflect on my life?"
+→ "What patterns do I notice in my relationships?"
+→ "How can I use dream journaling for self-discovery?"
+→ "What seasonal themes might be meaningful to reflect on?"
 ''';
 
   static const List<Map<String, String>> faqs = [

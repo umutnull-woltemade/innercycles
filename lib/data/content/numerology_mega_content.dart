@@ -242,13 +242,13 @@ Tertiary Soul Purpose: TO BEGIN ANEW
 As old systems collapse, building new paradigms is your work. Innovation,
 revolution, transformation - these are your keywords.
 
-Soul Contract Details:
-Before entering this incarnation, your soul signed these contracts:
-• You will be a pioneer in at least one field
-• You will be an example of courage to others
-• You will face your fears and overcome them
-• You will contribute to society while preserving your individuality
-• You will serve everyone you lead
+Soul Contract Themes (for reflection):
+These symbolic themes may resonate with your personal development journey:
+• Exploring pioneering and innovative qualities
+• Developing courage and inspiring others
+• Working through fears and challenges
+• Balancing individuality with community contribution
+• Developing leadership through service
 
 Factors That Block Your Mission:
 • Fear of failure
@@ -832,7 +832,7 @@ year will shape the next 9 years.
 2025 - COMPLETION YEAR (Universal 9)
 Universal year 9 is a time for finishing and preparation. Complete old
 projects, cut unnecessary ties. Prepare for new cycle. Themes of sacrifice
-and service will come to fore.
+and service may come to the fore for reflection.
 ''',
     '2026': '''
 2026 - NEW CYCLE BEGINNING (Universal 1)
@@ -842,7 +842,7 @@ Start projects you've postponed. Be bold, take risks. The universe is with you.
     '2027': '''
 2027 - PARTNERSHIP YEAR (Universal 2)
 2 energy calls 1s to balance. Collaborations, relationships in foreground.
-Diplomacy and patience will be needed. Time to grow together, not alone.
+Diplomacy and patience are themes to consider. A time to reflect on growing together.
 ''',
     '2028': '''
 2028 - CREATIVITY YEAR (Universal 3)
@@ -981,12 +981,12 @@ Tertiary Soul Purpose: BRINGING BALANCE
 In chaotic environments, you are the point of balance. The eye in the storm,
 the neutral zone in battle. This is not avoidance - it's conscious positioning.
 
-Soul Contract Details:
-• You will experience deep healing in at least one relationship
-• You will play a key role in resolving others' conflicts
-• You will learn to find and express your own voice
-• You will master setting boundaries
-• You will be a bridge between the visible and invisible
+Soul Contract Themes:
+• Deep healing in relationships is a core theme
+• Playing a key role in resolving conflicts is part of your journey
+• Finding and expressing your own voice is an important area
+• Setting healthy boundaries is a growth area
+• Exploring being a bridge between the visible and invisible
 
 Factors That Block Your Mission:
 • Excessive avoidance of conflict
@@ -1708,12 +1708,12 @@ Tertiary Soul Purpose: COMMUNICATION BRIDGE
 Making complex ideas understandable, connecting different worlds together.
 Serving as translator, interpreter, mediator.
 
-Soul Contract Details:
-• You will master at least one creative field
-• You will inspire others
-• You will learn to transform difficult times with joy
-• You will find and use your authentic voice
-• You will carry beauty to the world
+Soul Contract Themes:
+• Mastering at least one creative field is a core theme
+• Inspiring others is part of your journey
+• Transforming difficult times with joy is a growth area
+• Discovering and expressing your authentic voice
+• Carrying beauty to the world is an important theme
 
 Factors Blocking Your Mission:
 • Perfectionism (nothing is good enough)
@@ -2429,12 +2429,12 @@ Tertiary Soul Purpose: LEAVING A LEGACY
 Creating something to pass on to future generations. This could be
 a building, a company, a system, or a tradition.
 
-Soul Contract Details:
-• You will build at least one permanent structure (physical or institutional)
-• You will be the foundational pillar of your family/community
-• You will teach discipline and work ethic
-• You will learn to make peace with change
-• You will balance material security with spiritual peace
+Soul Contract Themes:
+• Building permanent structures (physical or institutional) is a core theme
+• Exploring your role as a foundational pillar in family/community
+• Teaching discipline and work ethic is part of your journey
+• Making peace with change is a growth area
+• Balancing material security with spiritual peace is an important theme
 
 Factors Blocking Your Mission:
 • Excessive rigidity and control
@@ -3147,12 +3147,12 @@ Tertiary Soul Purpose: FREEDOM TEACHER
 Showing others what freedom is and how to experience it.
 Liberation from fears, transcending limits.
 
-Soul Contract Details:
-• You will experience very different experiences throughout your life
-• You will go through at least one major change/transformation
-• You will help others in their change
-• You will learn the balance of freedom and responsibility
-• You will show the world from different windows
+Soul Contract Themes:
+• Experiencing diverse life experiences is a core theme
+• Going through major change/transformation is part of your journey
+• Helping others in their change processes is an important area
+• Learning the balance of freedom and responsibility is a growth theme
+• Showing the world from different perspectives is an important theme
 
 Factors Blocking Your Mission:
 • Excessive scatter
@@ -3856,12 +3856,12 @@ Tertiary Soul Purpose: HOME BUILDING
 Creating safe spaces - physical and emotional. Creating environments
 where people feel "coming home."
 
-Soul Contract Details:
-• You will be the heart of family/community
-• You will love at least one person unconditionally
-• You will use your talent for creating beauty
-• You will also learn self-care
-• You will balance love by receiving and giving
+Soul Contract Themes:
+• Developing your role as the heart of family/community
+• Loving unconditionally is a core theme
+• Using your talent for creating beauty is part of your journey
+• Self-care is an important growth area
+• Balancing love through receiving and giving is an important theme
 
 Factors Blocking Your Mission:
 • Excessive sacrifice and self-neglect
@@ -4566,12 +4566,12 @@ Tertiary Soul Purpose: INNER JOURNEY CARTOGRAPHER
 Mapping the inner world, showing the way to others.
 Meditation, therapy, spiritual guidance.
 
-Soul Contract Details:
-• You will discover at least one deep truth
-• You will fully explore your inner world
-• You will share your wisdom somehow
-• You will learn solitude at peace with the world
-• You will balance doubt with faith
+Soul Contract Themes:
+• Discovering deep truths is a core theme
+• Fully exploring your inner world is part of your journey
+• Sharing your wisdom is an important area
+• Learning solitude at peace with the world is a growth theme
+• Balancing doubt with faith is an important theme
 
 Factors Blocking Your Mission:
 • Excessive isolation
@@ -5443,7 +5443,7 @@ and living off others from past lives. Perhaps you were born into a wealthy
 family and never worked for anything. Perhaps you wasted your talents
 without using them.
 
-In this life, 13 brings the lesson of "hard work." Nothing will come for free -
+In this symbolic framework, 13 represents themes of "hard work" and earned achievements -
 but everything that comes through effort will truly be yours.
 
 Note: 13 is not "unlucky" - it's just an unpaid bill.
@@ -5453,8 +5453,8 @@ When the bill is paid, the constructive power of 4 remains with you.
 📚 LESSONS TO LEARN
 
 1. THE VALUE OF WORK
-No gain without effort. In this life, you will learn the sacredness of
-sweating. Work is not just survival - it's spiritual purification.
+No gain without effort. In this life, the sacredness of sweating is a central theme.
+Work is not just survival - it's spiritual purification.
 
 2. TAKING RESPONSIBILITY
 Owning the results. Saying "I did" instead of "I didn't do it."

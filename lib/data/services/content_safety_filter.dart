@@ -61,6 +61,16 @@ class ContentSafetyFilter {
     RegExp(r'\bkesinlikle olacak\b', caseSensitive: false),
     RegExp(r'\bmutlaka gerçekleşecek\b', caseSensitive: false),
     RegExp(r'\byıldızlar söylüyor\b', caseSensitive: false),
+    RegExp(r'\bseni bekliyor\b', caseSensitive: false),
+    RegExp(r'\bşans kapıları\b', caseSensitive: false),
+
+    // Additional English patterns
+    RegExp(r'\byou will receive\b', caseSensitive: false),
+    RegExp(r'\byou will find\b', caseSensitive: false),
+    RegExp(r'\byou will get\b', caseSensitive: false),
+    RegExp(r'\bexpect to receive\b', caseSensitive: false),
+    RegExp(r'\bdoors will open\b', caseSensitive: false),
+    RegExp(r'\bsoulmate will\b', caseSensitive: false),
   ];
 
   // ══════════════════════════════════════════════════════════════════════════
@@ -105,6 +115,16 @@ class ContentSafetyFilter {
     'kesinlikle olacak': 'sıklıkla görülür',
     'mutlaka gerçekleşecek': 'yaygın olarak yorumlanır',
     'yıldızlar söylüyor': 'bu şekilde yorumlanabilir',
+    'seni bekliyor': 'düşünebilirsin',
+    'şans kapıları': 'fırsat temaları',
+
+    // Additional English replacements
+    'you will receive': 'you may consider',
+    'you will find': 'you might explore',
+    'you will get': 'you could experience',
+    'expect to receive': 'may encounter',
+    'doors will open': 'opportunities may appear',
+    'soulmate will': 'connection themes',
   };
 
   // ══════════════════════════════════════════════════════════════════════════

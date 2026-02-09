@@ -867,7 +867,7 @@ Jüpiter Koç burcunda - şansın ve büyümen cesaret, girişimcilik ve öncü 
 
 Felsefik bakış açın "yaparak öğrenmek" üzerine kurulu. Kitaplardan değil, deneyimlerden bilgelik kazanırsın. Bağımsız düşünce senin için kutsal.
 
-Şans kapıların yeni başlangıçlarda, liderlik pozisyonlarında ve cesaret gerektiren durumlarda açılıyor. Korkmadan atıl!
+Büyüme alanların yeni başlangıçlarda, liderlik pozisyonlarında ve cesaret gerektiren durumlarda açılıyor. Korkmadan atıl!
 
 Dikkat: Aşırı özgüven ve dürtüsellik abartılabilir. Jüpiter her şeyi büyütür - öfkeni de, aceleciliğini de.
 ''',
@@ -876,7 +876,7 @@ Jüpiter Boğa burcunda - şansın ve büyümen maddi dünya, konfor ve duyusal 
 
 Felsefik bakış açın "yavaş ve istikrarlı kazanır" üzerine kurulu. Sabır ve kararlılık senin bilgelik yolun.
 
-Şans kapıların finansal konularda, gayrimenkul, sanat, güzellik ve kaliteli şeylerde açılıyor. Değer yarattığında kazanırsın.
+Büyüme alanların finansal konularda, gayrimenkul, sanat, güzellik ve kaliteli şeylerde açılıyor. Değer yarattığında kazanırsın.
 
 Dikkat: Aşırı maddecilik ve konfor bağımlılığı abartılabilir. Jüpiter her şeyi büyütür - hırsını da, inatçılığını da.
 ''',
@@ -885,7 +885,7 @@ Jüpiter İkizler burcunda - şansın ve büyümen iletişim, öğrenme ve bağl
 
 Felsefik bakış açın "her şeyi sorgula" üzerine kurulu. Tek bir doğru yok, çoklu perspektifler var.
 
-Şans kapıların yazarlık, medya, eğitim, ticaret ve ağ kurmada açılıyor. İletişim kurduğunda büyürsün.
+Büyüme alanların yazarlık, medya, eğitim, ticaret ve ağ kurmada açılıyor. İletişim kurduğunda büyürsün.
 
 Dikkat: Dağınıklık ve yüzeysellik abartılabilir. Jüpiter her şeyi büyütür - merakını da, dikkat dağınıklığını da.
 ''',
@@ -894,7 +894,7 @@ Jüpiter Yengeç burcunda - yücelme pozisyonu! Şansın ve büyümen aile, yuva
 
 Felsefik bakış açın "sevgi en büyük güç" üzerine kurulu. Şefkat ve koruma senin bilgelik yolun.
 
-Şans kapıların aile işlerinde, gayrimenkul, yiyecek sektörü, bakım hizmetlerinde açılıyor. Besleyince büyürsün.
+Büyüme alanların aile işlerinde, gayrimenkul, yiyecek sektörü, bakım hizmetlerinde açılıyor. Besleyince büyürsün.
 
 Jüpiter burada çok güçlü - cömertlik, şifa yeteneği ve bolluk doğal olarak akıyor. Ev ve aile konularında şanslısın.
 ''',
@@ -903,7 +903,7 @@ Jüpiter Aslan burcunda - şansın ve büyümen yaratıcılık, kendini ifade ve
 
 Felsefik bakış açın "herkes özel ve değerli" üzerine kurulu. Kendine inanmak senin bilgelik yolun.
 
-Şans kapıların sahne sanatları, eğlence, çocuklarla ilgili işler ve yaratıcı projelerde açılıyor. Cömertçe verdiğinde alırsın.
+Büyüme alanların sahne sanatları, eğlence, çocuklarla ilgili işler ve yaratıcı projelerde açılıyor. Cömertçe verdiğinde alırsın.
 
 Dikkat: Ego ve abartı büyüyebilir. Jüpiter her şeyi büyütür - özgüvenini de, gösterişini de.
 ''',
@@ -912,7 +912,7 @@ Jüpiter Başak burcunda - düşüş pozisyonu ama bu "kötü" değil. Şansın 
 
 Felsefik bakış açın "Tanrı detaylarda gizli" üzerine kurulu. Pratik bilgelik ve faydalı olmak senin yolun.
 
-Şans kapıların sağlık, analiz, düzenleme ve iyileştirme işlerinde açılıyor. Faydalı olduğunda büyürsün.
+Büyüme alanların sağlık, analiz, düzenleme ve iyileştirme işlerinde açılıyor. Faydalı olduğunda büyürsün.
 
 Zorluk: Jüpiter genişlemek ister, Başak daraltır - bu gerilimi "kaliteli büyüme" ile çözersin.
 ''',
@@ -921,7 +921,7 @@ Jüpiter Terazi burcunda - şansın ve büyümen ilişkiler, ortaklıklar ve den
 
 Felsefik bakış açın "adalet ve güzellik" üzerine kurulu. Uyum aramak senin bilgelik yolun.
 
-Şans kapıların evlilik, iş ortaklıkları, hukuk, sanat ve diplomaside açılıyor. Dengelediğinde büyürsün.
+Büyüme alanların evlilik, iş ortaklıkları, hukuk, sanat ve diplomaside açılıyor. Dengelediğinde büyürsün.
 
 Dikkat: Kararsızlık ve başkalarına bağımlılık abartılabilir. Jüpiter her şeyi büyütür - uyumunu da, bağımlılığını da.
 ''',
@@ -930,7 +930,7 @@ Jüpiter Akrep burcunda - şansın ve büyümen derin dönüşüm, gizli bilgile
 
 Felsefik bakış açın "karanlıktan geçerek aydınlığa" üzerine kurulu. Ölüm ve yeniden doğuş senin bilgelik yolun.
 
-Şans kapıların psikoloji, araştırma, miras, ortak finans ve şifa işlerinde açılıyor. Dönüştürünce büyürsün.
+Büyüme alanların psikoloji, araştırma, miras, ortak finans ve şifa işlerinde açılıyor. Dönüştürünce büyürsün.
 
 Dikkat: Obsesyon ve aşırı yoğunluk abartılabilir. Jüpiter her şeyi büyütür - tutkunu da, intikamını da.
 ''',
@@ -939,7 +939,7 @@ Jüpiter Yay burcunda - kendi evinde, çok güçlü! Şansın ve büyümen özg�
 
 Felsefik bakış açın "hakikat seni özgür kılar" üzerine kurulu. Öğrenmek ve öğretmek senin bilgelik yolun.
 
-Şans kapıların yurtdışı, yüksek öğrenim, yayıncılık, felsefe ve spiritüel arayışta açılıyor. Genişledikçe büyürsün.
+Büyüme alanların yurtdışı, yüksek öğrenim, yayıncılık, felsefe ve spiritüel arayışta açılıyor. Genişledikçe büyürsün.
 
 Doğal iyimserlik, şans ve koruma var. Evren seni seviyor - ama sorumluluk almayı da öğren.
 ''',
@@ -948,7 +948,7 @@ Jüpiter Oğlak burcunda - düşüş pozisyonu ama bu "kötü" değil. Şansın 
 
 Felsefik bakış açın "yavaş ama emin" üzerine kurulu. Sabır ve çalışma senin bilgelik yolun.
 
-Şans kapıların iş dünyası, yönetim, geleneksel kurumlar ve otorite pozisyonlarında açılıyor. İnşa ettikçe büyürsün.
+Büyüme alanların iş dünyası, yönetim, geleneksel kurumlar ve otorite pozisyonlarında açılıyor. İnşa ettikçe büyürsün.
 
 Zorluk: Jüpiter genişlemek ister, Oğlak kısıtlar - bu gerilimi "disiplinli büyüme" ile çözersin.
 ''',
@@ -957,7 +957,7 @@ Jüpiter Kova burcunda - şansın ve büyümen yenilik, insanlık ve özgünlük
 
 Felsefik bakış açın "herkes için özgürlük ve eşitlik" üzerine kurulu. Kolektif bilinç senin bilgelik yolun.
 
-Şans kapıların teknoloji, sosyal hareketler, gruplar ve geleceğe yönelik projelerde açılıyor. Yenilik yaptıkça büyürsün.
+Büyüme alanların teknoloji, sosyal hareketler, gruplar ve geleceğe yönelik projelerde açılıyor. Yenilik yaptıkça büyürsün.
 
 Dikkat: Aşırı idealizm ve soğukluk abartılabilir. Jüpiter her şeyi büyütür - vizyonunu da, mesafeni de.
 ''',
@@ -966,7 +966,7 @@ Jüpiter Balık burcunda - geleneksel yönetici, çok güçlü! Şansın ve büy
 
 Felsefik bakış açın "hepimiz biriz" üzerine kurulu. Koşulsuz sevgi senin bilgelik yolun.
 
-Şans kapıların sanat, müzik, spiritüel işler, şifa ve hayır işlerinde açılıyor. Verdiğinde alırsın.
+Büyüme alanların sanat, müzik, spiritüel işler, şifa ve hayır işlerinde açılıyor. Verdiğinde alırsın.
 
 Doğal sezgi, spiritüel koruma ve mucize çekme gücün var. Evren seninle konuşuyor - dinle.
 ''',
@@ -1419,7 +1419,7 @@ Gölge çalışması: Güç hırsı, korumazlık, sistemsel baskı. Yeni yapıla
       ZodiacSign.aquarius: '''
 Plüton Kova burcunda (2024-2044) - Nesil yerleşimi. Teknoloji ve toplumda kökten dönüşüm başlıyor.
 
-Bu kuşak, yapay zeka devrimi, toplumsal yeniden yapılanma ve insanlık dönüşümünü yaşayacak.
+Bu kuşağın temaları: yapay zeka devrimi, toplumsal yeniden yapılanma ve insanlık dönüşümü.
 
 Kolektif dönüşüm: Toplum ve teknoloji anlayışının ölümü ve yeniden doğuşu. İnsanlık 2.0.
 
@@ -1428,7 +1428,7 @@ Gölge çalışması: Soğukluk, aşırı rasyonellik, insansızlaşma. Kalp ve 
       ZodiacSign.pisces: '''
 Plüton Balık burcunda (2044-2068) - Nesil yerleşimi. Maneviyat ve bilinçte kökten dönüşüm gelecek.
 
-Bu kuşak, spiritüel devrim ve bilinç evrimini yaşayacak. Eski ruhani yapıların çözülmesi.
+Bu kuşağın temaları: spiritüel devrim ve bilinç evrimi. Eski ruhani yapıların çözülmesi.
 
 Kolektif dönüşüm: Din ve ruhaniyet anlayışının ölümü ve yeniden doğuşu. Kozmik bilinç.
 

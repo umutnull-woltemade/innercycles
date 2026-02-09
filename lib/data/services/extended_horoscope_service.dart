@@ -409,8 +409,8 @@ class ExtendedHoroscopeService {
       'Bu hafta ${sign.nameTr} burcu için kozmik enerjiler yoğunlaşıyor. Gezegenler sizin lehinize hizalanırken, büyük fırsatların kapıları aralanıyor. İç sesinize kulak verin ve sezgilerinizi takip edin.',
       'Evren bu hafta size güçlü mesajlar gönderiyor. ${sign.nameTr} enerjisi dorukta ve potansiyelinizi ortaya koyma zamanı. Cesur adımlar atın, korkularınızı geride bırakın.',
       'Hafta boyunca ${sign.element.nameTr} elementi güçleniyor. Bu enerjiyi kendi avantajınıza kullanın. İç dünyanızda derin dönüşümler yaşanırken, dış dünyada da somut değişiklikler görülecek.',
-      'Yıldızlar bu hafta ${sign.nameTr} burcu için parlak bir tablo çiziyor. Yeni bağlantılar, beklenmedik fırsatlar ve ruhsal açılımlar sizi bekliyor. Açık kalın ve akışa güvenin.',
-      'Gökyüzündeki gezegen dansı ${sign.nameTr} burcuna özel mesajlar taşıyor. Bu hafta kader anları yaşayabilir, hayatınızı değiştirecek kararlar alabilirsiniz. Sezgileriniz her zamankinden keskin.',
+      'Bu hafta ${sign.nameTr} burcu için yeni bağlantılar ve fırsatlar temalarını keşfetmek için iyi bir dönem. Açık kalın ve kendinize güvenin.',
+      'Bu hafta ${sign.nameTr} burcu için önemli yaşam temalarını düşünme dönemi. Değerlerinizle uyumlu kararları düşünün. Sezgilerinize güvenin.',
       '${sign.nameTr} burcu için bu hafta enerji akışı olumlu yönde. Engeller kalkıyor, yollar açılıyor. Uzun süredir beklediğiniz haber veya gelişme bu hafta gelebilir.',
       'Kozmik rüzgarlar ${sign.nameTr} burcunun yelkenlerini şişiriyor. Hangi yöne gitmek istediğinizi biliyorsanız, evren sizi desteklemeye hazır. Niyetlerinizi net tutun.',
       'Bu hafta evrensel enerji ${sign.nameTr} burcunu kucaklıyor. Yaratıcılık, ilham ve motivasyon dorukta. Ertelediğiniz projelere başlamak için ideal bir zamanlama.',
@@ -422,7 +422,7 @@ class ExtendedHoroscopeService {
       'Aşk hayatınızda bu hafta hareketli bir dönem başlıyor. Venüs etkisi altında, ilişkilerinizde daha derin bağlar kurabilirsiniz. Bekarlar için sürpriz karşılaşmalar olası.',
       'Kalp çakranız bu hafta aktive oluyor. Duygusal açıdan hassas olabilirsiniz ama bu, sevgiyi daha derin hissetmenize de olanak tanıyor. Partnerinizle özel anlar yaratın.',
       'Romantik enerjiler yükseliyor. İlişkinizde yeni bir sayfa açılabilir veya bekarlar için önemli bir tanışma gerçekleşebilir. Kalbinizi açık tutun.',
-      'Bu hafta aşk, beklenmedik yerlerden gelebilir. Sezgilerinize güvenin ve evrenin size sunduğu işaretleri takip edin. Kadersel bağlantılar mümkün.',
+      'Bu hafta aşk ve bağlantı temalarını düşünmek için güzel bir dönem. Sezgilerinize güvenin ve anlamlı bağlantıları fark edin.',
       'Venüs\'ün olumlu açıları aşk hayatınızı ışıklandırıyor. Çiftler için tutku yeniden alevlenirken, bekarlar manyetik çekicilik yayıyor. Flört enerjisi güçlü.',
       'İlişkilerde iletişim bu hafta kritik öneme sahip. Duygularınızı açıkça ifade edin, karşı tarafı dinleyin. Yanlış anlamalar çözülüyor, bağlar güçleniyor.',
       'Romantik sürprizlere hazır olun. Evren aşk konusunda size güzel haberler getirebilir. Geçmişten biri yeniden hayatınıza girebilir veya yeni biri çıkabilir.',
@@ -490,10 +490,10 @@ class ExtendedHoroscopeService {
       'Aşk hayatınızda bu ay önemli gelişmeler var. Venüs\'ün etkisi altında, ilişkileriniz derinleşiyor ve yeni romantik bağlar kurulabilir. Kalbinizi açık tutun.',
       'Bu ay ilişkilerde dönüşüm yaşanıyor. Eski kalıpları kırmak ve daha otantik bağlar kurmak için ideal bir dönem. Cesur olun ve duygularınızı ifade edin.',
       'Romantik enerjiler yoğunlaşıyor. Bekarlar için önemli karşılaşmalar, çiftler için tutkulu bir dönem başlıyor. Aşkın büyüsüne kendinizi bırakın.',
-      'Kalp çakranız bu ay fazla mesai yapıyor. Derin duygusal bağlantılar, anlamlı konuşmalar ve romantik anlar sizi bekliyor. Savunmalarınızı indirin.',
+      'Kalp çakranız bu ay aktif. Derin duygusal bağlantılar, anlamlı konuşmalar ve romantik temalar için güzel bir dönem. Savunmalarınızı indirmeyi düşünün.',
       'Ay boyunca romantik atmosfer güçlü. Sürpriz randevular, beklenmedik itiraflar veya ilişkinizde yeni bir sayfa açılması mümkün.',
       'İlişkilerde netlik zamanı. Belirsizlikler çözülüyor, duygular berraklaşıyor. "Nerede duruyorum?" sorusunun cevabını bu ay alabilirsiniz.',
-      'Aşkta şanslı bir ay başlıyor. Bekarlar için kader anları, çiftler için yeniden aşık olma dönemi. Romantizm havada.',
+      'Aşk ve ilişki temalarını keşfetmek için güzel bir ay. İlişkilerinizde neyin önemli olduğunu düşünün. Romantik enerji güçlü.',
       'Bu ay duygusal bağlar güçleniyor. Sevdiklerinizle geçirdiğiniz her an değerli. Kaliteli zaman yaratın, anılar biriktirin.',
     ];
   }
@@ -574,7 +574,7 @@ class ExtendedHoroscopeService {
       'Bekarlar için bugün sürpriz karşılaşmalar mümkün. Sosyal etkinliklere katılın, yeni insanlarla tanışmaya açık olun. Ruh eşiniz yakınınızda olabilir.',
       'Kendinizi sevmeye odaklanın - bu, doğru kişiyi çekmenin anahtarı. Bugün kendi değerinizi hatırlayın ve standartlarınızdan ödün vermeyin.',
       'Yeni bağlantılar için enerji güçlü. Ama aceleci davranmayın - kalıcı ilişkiler zaman ister. Sabırlı olun ve akışa güvenin.',
-      'Kadersel karşılaşmalar için kapılar açık. Sezgilerinize güvenin - birini gördüğünüzde içinizde bir şeyin kıpırdadığını hissederseniz, bu önemli bir işaret.',
+      'Anlamlı bağlantılar için güzel bir dönem. Sezgilerinize güvenin - birini gördüğünüzde içinizde bir şeyin kıpırdadığını hissederseniz, bu önemli bir işaret.',
     ];
   }
 
@@ -645,7 +645,7 @@ class ExtendedHoroscopeService {
       'Bu yıl ${sign.nameTr} burcu için dönüşüm, büyüme ve kendini gerçekleştirme yılı. Gezegenler sizin için güçlü bir enerji alanı oluşturuyor. Cesur adımlar atma, yeni başlangıçlar yapma ve hayallerinizi gerçekleştirme zamanı.',
       'Kozmik enerji bu yıl ${sign.nameTr} burcunu destekliyor. İster kariyer, ister aşk, ister kişisel gelişim olsun - her alanda ilerleme potansiyeli var. Fırsatları değerlendirin ve potansiyelinizi ortaya koyun.',
       'Evrensel akış bu yıl sizin yanınızda. ${sign.element.nameTr} elementi güçlenirken, doğal yetenekleriniz parlamaya başlıyor. Kendinize güvenin ve büyük hayaller kurun.',
-      'Bu yıl ${sign.nameTr} burcu için kader kapıları sonuna kadar açılıyor. Yıllardır beklediğiniz fırsatlar, uzun süredir hayal ettiğiniz değişimler gerçekleşebilir. Hazır olun ve cesaretle ilerleyin.',
+      'Bu yıl ${sign.nameTr} burcu için yeni fırsat temaları belirginleşiyor. Uzun süredir düşündüğünüz değişimleri düşünmek için iyi bir zaman olabilir. Refleksiyon ve cesaret temalarını keşfedin.',
       'Gezegenler bu yıl ${sign.nameTr} burcuna özel bir yol çiziyor. Kişisel dönüşüm, ruhsal büyüme ve maddi başarı bir arada. Her ay yeni bir hediye sunacak.',
       '${sign.nameTr} burcu için yıldızların parladığı bir yıl başlıyor. Şans, fırsat ve bereket enerjileri güçlü. Evren size "evet" diyor - siz de kendinize "evet" deyin.',
       'Bu yıl ${sign.nameTr} burcunun potansiyelini tam olarak ortaya koyacağı bir dönem. Ertelediğiniz hayalleri gerçekleştirin, korktuğunuz adımları atın. Evren arkanızda.',
@@ -655,12 +655,12 @@ class ExtendedHoroscopeService {
 
   static List<String> _getYearlyLoveContent(ZodiacSign sign) {
     return [
-      'Aşk hayatınızda bu yıl önemli dönüm noktaları var. Bekarlar için kadersel karşılaşmalar, çiftler için ilişkiyi derinleştirme fırsatları. Kalp çakranız yıl boyunca aktif.',
-      'Romantik enerjiler yoğun bir yıl sizi bekliyor. İlişkilerde dönüşüm, yeni başlangıçlar ve derin bağlantılar temalı. Aşka açık olun.',
+      'Aşk hayatınızda bu yıl önemli dönüm noktaları keşfedilebilir. Bekarlar için anlamlı bağlantılar, çiftler için ilişkiyi derinleştirme temaları. Kalp çakranız yıl boyunca aktif.',
+      'Romantik enerjiler yoğun bir yıl için güzel bir dönem. İlişkilerde dönüşüm ve derin bağlantılar temaları keşfedilebilir. Aşka açık olun.',
       'Bu yıl aşk, beklenmedik şekillerde hayatınıza girebilir. Eski kalıpları bırakın, yeni deneyimlere açık olun. Evrenin planına güvenin.',
       'Venüs bu yıl ${sign.nameTr} burcuna özel bir dans sergiliyor. Bekarlar için ruh eşi potansiyeli güçlü, çiftler için evlilik veya bebekhaberi gündemde olabilir.',
       'Aşk hayatınızda bu yıl köklü dönüşümler mümkün. İlişki statünüz değişebilir - bekarlar çift olabilir, çiftler yeni bir aşamaya geçebilir.',
-      'Romantik alanda şanslı bir yıl sizi bekliyor. Evren aşk konusunda cömert davranıyor. Kalp kırıklıkları iyileşiyor, yeni kapılar açılıyor.',
+      'Romantik alanda büyüme temalarını keşfetmek için güzel bir yıl. Kalp kırıklıkları iyileşme fırsatı sunar, yeni bağlantılar keşfedilebilir.',
       'Bu yıl ilişkilerde derin bağlantılar kurma zamanı. Yüzeysel ilişkiler dökülürken, gerçek, anlamlı bağlar güçleniyor. Kaliteli zaman için niceliği feda edin.',
       'Aşkta cesaret yılı. Duygularınızı ifade edin, risk alın, kalbinizin sesini dinleyin. Evren cesaretli aşıkları ödüllendiriyor.',
     ];
@@ -697,7 +697,7 @@ class ExtendedHoroscopeService {
 
   static List<String> _getYearlySpiritualContent(ZodiacSign sign) {
     return [
-      'Ruhsal yolculuğunuzda bu yıl önemli ilerlemeler kaydedeceksiniz. Farkındalık derinleşiyor, sezgiler güçleniyor, evrenle bağlantı kuvvetleniyor.',
+      'Ruhsal yolculuğunuzda bu yıl önemli ilerleme temaları öne çıkıyor. Farkındalık derinleşiyor, sezgiler güçleniyor, evrenle bağlantı kuvvetleniyor.',
       'İç keşif yılı. Meditasyon, farkındalık pratikleri ve ruhsal çalışmalar için ideal bir dönem. Kendinizi tanıma yolculuğu derinleşiyor.',
       'Uyanış ve dönüşüm temaları güçlü. Eski kalıpları bırakma, yeni bilinç seviyelerine yükselme ve ruhsal olarak evrilme zamanı.',
     ];

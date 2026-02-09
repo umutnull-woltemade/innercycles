@@ -1564,7 +1564,7 @@ Turkce yaz, mistik ve destekleyici bir ton kullan.
   ];
 
   static final List<String> _defaultLoveAdvice = [
-    'Kalbini ac, ask kapida bekliyor. Iliskilerde durustluk en buyuk gucun.',
+    'Kalbini acmayi dusun. Iliskilerde durustluk onemli bir tema.',
     'Romantik enerjiler guclu. Sevdiklerinle kaliteli zaman gecir.',
     'Duygusal baglar derinlesiyor. Kendini ifade etmekten cekinme.',
   ];
@@ -1572,12 +1572,12 @@ Turkce yaz, mistik ve destekleyici bir ton kullan.
   static final List<String> _defaultCareerAdvice = [
     'Kariyer firsatlari beliriyor. Yeni projeler icin mukemmel zamanlama.',
     'Profesyonel gelisim icin kapilar aciliyor. Yeteneklerini sergile.',
-    'Is hayatinda pozitif gelismeler. Sabirla bekle, emeklerin karsilik bulacak.',
+    'Is hayatinda pozitif gelisim temalari. Sabir ve emek onemli temalar.',
   ];
 
   static final List<String> _defaultHealthAdvice = [
     'Enerjin yuksek, dengeni koru. Hareket et, saglikli beslen.',
-    'Ic huzurunu bul. Meditasyon ve nefes calismalari faydali olacak.',
+    'Ic huzur temalari one cikiyor. Meditasyon ve nefes calismalari faydali olabilir.',
     'Bedenini dinle, ihtiyaclarina kulak ver. Dinlenme de onemli.',
   ];
 
@@ -1590,13 +1590,13 @@ Turkce yaz, mistik ve destekleyici bir ton kullan.
     ],
     ZodiacSign.taurus: [
       'Toprak enerjisi seni besliyor. Maddi konularda sans yildizin parliyor.',
-      'Venus guzelligini ve cekiciligini artiriyor. Askta ve iste basari seni bekliyor.',
-      'Sabir ve kararliligim meyvelerini toplayacaksin. Guven, devam et.',
+      'Venus guzellik ve cekicilik temalarini vurguluyor. Ask ve is alanlari uzerinde dusunebilirsin.',
+      'Sabir ve kararlilik temalari one cikiyor. Guven ve devamlilik uzerine dusun.',
     ],
     ZodiacSign.gemini: [
       'Zihinsel cevikligin bugun super guc. Iletisimde parliyorsun.',
       'Merkur dusuncelerini keskinlestiriyor. Yeni fikirler, yeni baglantilar.',
-      'Sosyal enerjin yuksek. Network kur, firsatlar kapida.',
+      'Sosyal enerji temalari one cikiyor. Network kurmayi dusunebilirsin.',
     ],
     ZodiacSign.cancer: [
       'Ay isigi ruhunu aydinlatiyor. Sezgilerin cok guclu, dinle.',
@@ -1606,7 +1606,7 @@ Turkce yaz, mistik ve destekleyici bir ton kullan.
     ZodiacSign.leo: [
       'Gunes enerjin maksimumda. Parla, sahneye cik, ilgi odagi ol.',
       'Yaraticiligin volkanik. Sanatsal projeler icin mukemmel gun.',
-      'Kraliyet enerjin hissediliyor. Liderlik pozisyonlari seni bekliyor.',
+      'Kraliyet arketipi temaları one cikiyor. Liderlik uzerine dusunebilirsin.',
     ],
     ZodiacSign.virgo: [
       'Analitik zekan bugun lazer gibi. Detaylarda sihir gizli.',
@@ -1624,12 +1624,12 @@ Turkce yaz, mistik ve destekleyici bir ton kullan.
       'Tutku ve guc birlesiyor. Istedigin her seyi cekme kapasiten var.',
     ],
     ZodiacSign.sagittarius: [
-      'Macera ruhu uyaniyor. Yeni ufuklar, yeni deneyimler seni bekliyor.',
-      'Jupiter sansini genisletiyor. Firsatlar yagmur gibi yagiyor.',
+      'Macera ruhu temalari one cikiyor. Yeni ufuklar ve deneyimler uzerine dusunebilirsin.',
+      'Jupiter genisleme temalarini vurguluyor. Firsat alanlari uzerine dusunebilirsin.',
       'Felsefi derinlik gunu. Hayatin anlamini sorgula, bilgelik bul.',
     ],
     ZodiacSign.capricorn: [
-      'Kariyer enerjin zirve yapiyor. Profesyonel basarilar kapida.',
+      'Kariyer temalari one cikiyor. Profesyonel gelisim uzerine dusunebilirsin.',
       'Saturn disiplin ve yapi veriyor. Hedeflerine kararlilikla ilerle.',
       'Uzun vadeli planlar icin mukemmel gun. Temelleri saglam at.',
     ],
@@ -1647,8 +1647,8 @@ Turkce yaz, mistik ve destekleyici bir ton kullan.
 
   static final Map<ZodiacSign, List<String>> _localLoveAdvice = {
     ZodiacSign.aries: [
-      'Tutkulu enerjin ask hayatini atesliyor. Beklenmedik romantik anlar seni bekliyor.',
-      'Iliskide inisiyatif al. Cesur adimlar romantik surprizler getirecek.',
+      'Tutku temalari ask hayatinda one cikiyor. Romantik anlar uzerine dusunebilirsin.',
+      'Iliskide inisiyatif temasi one cikiyor. Cesur adimlar uzerine dusunebilirsin.',
     ],
     ZodiacSign.taurus: [
       'Duyusal zevkler ve romantik aksam yemekleri icin ideal gun.',
@@ -1660,10 +1660,10 @@ Turkce yaz, mistik ve destekleyici bir ton kullan.
     ],
     ZodiacSign.cancer: [
       'Duygusal derinlik iliskini besliyor. Kalbini ac, sevgiyi kabul et.',
-      'Yuva kurma icgudun guclu. Partner ile gelecek planlari yap.',
+      'Yuva kurma icgudusu temalari one cikiyor. Partner ile ortak hedefler uzerine dusun.',
     ],
     ZodiacSign.leo: [
-      'Romantik jestler ve dikkat cekici anlar seni bekliyor.',
+      'Romantik jestler ve dikkat cekici anlar temalari one cikiyor.',
       'Askta drama ve tutku var. Kalbini takip et, cesur ol.',
     ],
     ZodiacSign.virgo: [
@@ -1672,14 +1672,14 @@ Turkce yaz, mistik ve destekleyici bir ton kullan.
     ],
     ZodiacSign.libra: [
       'Romantik uyum mukemmel. Iliskilerde denge ve harmoni zamani.',
-      'Estetik randevular ve guzel anlar seni bekliyor.',
+      'Estetik randevular ve guzel anlar temalari one cikiyor.',
     ],
     ZodiacSign.scorpio: [
       'Yogun tutkular ve derin baglantilar gunu. Guven insa et.',
       'Cinsel ve duygusal birliktelik gucleniyor. Donusum zamani.',
     ],
     ZodiacSign.sagittarius: [
-      'Macera dolu romantizm seni bekliyor. Yeni yerler, yeni deneyimler.',
+      'Macera dolu romantizm temalari one cikiyor. Yeni yerler ve deneyimler uzerine dusunebilirsin.',
       'Entelektuel bag fiziksel cekimi artiriyor. Birlikte ogren.',
     ],
     ZodiacSign.capricorn: [
@@ -1687,7 +1687,7 @@ Turkce yaz, mistik ve destekleyici bir ton kullan.
       'Sadakat ve bagliligin karsilik buluyor. Guven insa ediliyor.',
     ],
     ZodiacSign.aquarius: [
-      'Sira disi romantik deneyimler seni bekliyor. Ozgun ol.',
+      'Sira disi romantik deneyimler temalari one cikiyor. Ozgunluk uzerine dusunebilirsin.',
       'Arkadaslik temelli ask gucleniyor. Entellektuel bag onemli.',
     ],
     ZodiacSign.pisces: [
@@ -1699,11 +1699,11 @@ Turkce yaz, mistik ve destekleyici bir ton kullan.
   static final Map<ZodiacSign, List<String>> _localCareerAdvice = {
     ZodiacSign.aries: [
       'Liderlik pozisyonlari parliyor. Girisimci projeler baslat.',
-      'Rekabet avantajin var. Cesaretle ileri atil, kazanacaksin.',
+      'Rekabet temalari one cikiyor. Cesaret uzerine dusunebilirsin.',
     ],
     ZodiacSign.taurus: [
       'Finansal firsatlar beliriyor. Yatirimlar icin uygun zaman.',
-      'Sabirli calisman meyvesini veriyor. Bolluk akiyor.',
+      'Sabirli calisma temalari one cikiyor. Bolluk uzerine dusunebilirsin.',
     ],
     ZodiacSign.gemini: [
       'Iletisim ve network projeleri one cikiyor. Baglantilari kullan.',
@@ -1715,7 +1715,7 @@ Turkce yaz, mistik ve destekleyici bir ton kullan.
     ],
     ZodiacSign.leo: [
       'Yaratici projeler ve sahne onu roller icin ideal zaman.',
-      'Liderlik ve yoneticilik firsatlari kapida. Parla!',
+      'Liderlik ve yoneticilik temalari one cikiyor. Parlamanin yollarini dusun.',
     ],
     ZodiacSign.virgo: [
       'Detay odakli islerde basari potansiyeli yuksek. Analiz yetenegini kullan.',
@@ -1734,7 +1734,7 @@ Turkce yaz, mistik ve destekleyici bir ton kullan.
       'Genisleme firsatlari. Yeni pazarlar, yeni ufuklar.',
     ],
     ZodiacSign.capricorn: [
-      'Kariyer zirvesine tirmanis hizlaniyor. Disiplin meyvesini veriyor.',
+      'Kariyer gelisimi temalari one cikiyor. Disiplin uzerine dusunebilirsin.',
       'Yoneticilik ve otorite pozisyonlari icin mukemmel zaman.',
     ],
     ZodiacSign.aquarius: [
@@ -1743,7 +1743,7 @@ Turkce yaz, mistik ve destekleyici bir ton kullan.
     ],
     ZodiacSign.pisces: [
       'Yaratici ve spirituel alanlarda kariyer firsatlari var.',
-      'Sezgisel kararlar dogru sonuclar getiriyor. Ic sesini dinle.',
+      'Sezgisel karar temalari one cikiyor. Ic sesini dinlemeyi dusun.',
     ],
   };
 

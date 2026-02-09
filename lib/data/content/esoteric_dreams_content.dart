@@ -2534,7 +2534,7 @@ alandır. Kadim geleneklerde rüya pratikleri, bilinç genişletme, şifa,
 kehanet ve spiritüel ilerleme için kullanılmıştır.
 
 Bu bölümde, farklı geleneklerden rüya pratiklerini, ritüellerini ve
-tekniklerini bulacaksınız. Bu pratikler, rüya hatırlamasından lucid
+teknikleri sunuyoruz. Bu pratikler, rüya hatırlamasından lucid
 rüyaya, rüya inkübasyonundan Tibet rüya yogasına kadar uzanır.
 
 "Uyumak bir sanattır, rüya görmek bir bilimdir, uyanmak bir mucizedir."

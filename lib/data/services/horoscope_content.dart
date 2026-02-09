@@ -1,13 +1,18 @@
 import '../models/zodiac_sign.dart';
 import '../providers/app_providers.dart';
 
-/// Centralized horoscope content provider with multi-language support.
-/// All horoscope texts are stored here and accessed via language parameter.
+/// Centralized archetype reflection content provider with multi-language support.
+/// All reflection texts are stored here and accessed via language parameter.
+/// Content is designed for self-reflection and personal growth, not prediction.
 class HoroscopeContent {
   HoroscopeContent._();
 
+  /// Disclaimer for all content
+  static const String contentDisclaimer =
+      'This content is for reflection and self-awareness only. It does not predict events or outcomes.';
+
   // ═══════════════════════════════════════════════════════════════════════════
-  // ESOTERIC SUMMARIES - Burç bazlı mistik özetler
+  // ARCHETYPE SUMMARIES - Arketip bazlı refleksiyon temaları
   // ═══════════════════════════════════════════════════════════════════════════
 
   static List<String> getEsotericSummaries(ZodiacSign sign, AppLanguage lang) {
@@ -32,12 +37,12 @@ class HoroscopeContent {
     ZodiacSign.taurus: {
       AppLanguage.tr: [
         'Toprak ananın kutsal kızı olarak, bugün bedeninin bir tapınak olduğunu hatırla. Her nefes, her lokma, her dokunuşun içinde tanrısallık saklı. Venüs seni maddi dünyanın ötesinde bir güzelliğe çağırıyor - ruhun güzelliğine.',
-        'Boğanın sabırlılığı, aslında zamansız bilgeliğe erişimin anahtarıdır. Acelenin olmadığı yerde, evren sırlarını fısıldamaya başlar. Bugün yavaşla ve dinle - toprağın altında akan kadim nehirlerin sesini duyacaksın.',
+        'Boğanın sabırlılığı, aslında zamansız bilgeliğe erişimin anahtarıdır. Acelenin olmadığı yerde, evren sırlarını fısıldamaya başlar. Bugün yavaşla ve dinle - toprağın altında akan kadim nehirlerin sesini duymak güzel bir tema.',
         'Değerlilik duygum bugün sıcak bir ışık gibi içinde parlayacak. Sen, evrenin en nadide hazinelerinden birisin. Bu bir ego tatmini değil - bu, Venüs\'ün sana hatırlatmak istediği kozmik bir gerçek. Kendinle barışık ol.',
       ],
       AppLanguage.en: [
         'As the sacred daughter of Mother Earth, remember today that your body is a temple. Divinity is hidden in every breath, every bite, every touch. Venus calls you to a beauty beyond the material world - the beauty of the soul.',
-        'The patience of Taurus is actually the key to accessing timeless wisdom. Where there is no rush, the universe begins to whisper its secrets. Slow down today and listen - you will hear the sound of ancient rivers flowing beneath the earth.',
+        'The patience of Taurus is actually the key to accessing timeless wisdom. Where there is no rush, the universe begins to whisper its secrets. Slow down today and listen - consider the sound of ancient rivers flowing beneath the earth.',
         'Your sense of worth will shine like a warm light within you today. You are one of the universe\'s rarest treasures. This is not ego gratification - this is a cosmic truth that Venus wants to remind you of. Be at peace with yourself.',
       ],
     },
@@ -45,7 +50,7 @@ class HoroscopeContent {
       AppLanguage.tr: [
         'İkizlerin gizemi, birliğin içindeki çokluktadır. Bugün zihnin, bin bir gece masallarındaki sihirli halı gibi - seni farklı alemlere taşıyacak. Her düşünce bir kapı, her kelime bir anahtar. Merkür seni bilginin labirentlerinde gezintiye çıkarıyor.',
         'Simyacıların "kutsal evlilik"i, içindeki erkek ve dişi enerjilerin birleşimini temsil eder. İkizler burcu olarak, bu dengeyi doğal olarak taşıyorsun. Bugün iç sesinle dış sesin arasında köprü kur.',
-        'Hafiflik senin süper gücün. Kelebeğin kanat çırpışı nasıl uzaklarda fırtınalar yaratırsa, sen de bugün küçük ama derin etkiler bırakacaksın. Konuşmalarının arkasındaki niyet, kelimelerin ötesine taşacak.',
+        'Hafiflik senin süper gücün. Kelebeğin kanat çırpışı nasıl uzaklarda fırtınalar yaratırsa, sen de bugün küçük ama derin etkiler bırakabilirsin. Konuşmalarının arkasındaki niyet, kelimelerin ötesine taşır.',
       ],
       AppLanguage.en: [
         'The mystery of the Twins lies in the plurality within unity. Today your mind is like the magic carpet from Arabian Nights - it will carry you to different realms. Every thought is a door, every word is a key. Mercury takes you on a journey through the labyrinths of knowledge.',
@@ -79,12 +84,12 @@ class HoroscopeContent {
     },
     ZodiacSign.virgo: {
       AppLanguage.tr: [
-        'Kutsal bakire arketipi, saflığın ve bütünlüğün sembolüdür. Bugün detaylarda tanrıyı göreceksin - her küçük düzende, her ince ayarda ilahi bir düzen saklı. Merkür seni mükemmelliğin peşine değil, anlamlılığın peşine yönlendiriyor.',
+        'Kutsal bakire arketipi, saflığın ve bütünlüğün sembolüdür. Bugün detaylarda tanrıyı görmek güzel bir tema - her küçük düzende, her ince ayarda ilahi bir düzen saklı. Merkür seni mükemmelliğin peşine değil, anlamlılığın peşine yönlendiriyor.',
         'Şifacı arketipi bugün güçleniyor. Ama önce kendini iyileştirmelisin. Başkalarına sunduğun hizmet, önce kendi ruhuna sunduğun sevgiden akmalı. Kendine şefkat göster.',
         'Başak burcunun gizli gücü, kaosu düzene çevirebilme yeteneğidir. Bugün zihinsel berraklık dorukta - karmaşık durumlar basitleşiyor, çözümler belirginleşiyor. Bu bir armağan - iyi kullan.',
       ],
       AppLanguage.en: [
-        'The sacred virgin archetype is the symbol of purity and wholeness. Today you will see the divine in details - in every small order, every fine adjustment, a divine order is hidden. Mercury guides you not toward perfection, but toward meaningfulness.',
+        'The sacred virgin archetype is the symbol of purity and wholeness. Consider seeing the divine in details today - in every small order, every fine adjustment, a divine order is hidden. Mercury guides you not toward perfection, but toward meaningfulness.',
         'The healer archetype is strengthening today. But first you must heal yourself. The service you offer others must flow from the love you first give to your own soul. Show yourself compassion.',
         'The secret power of Virgo is the ability to turn chaos into order. Today mental clarity is at its peak - complex situations are simplifying, solutions are becoming clear. This is a gift - use it well.',
       ],
@@ -115,24 +120,24 @@ class HoroscopeContent {
     },
     ZodiacSign.sagittarius: {
       AppLanguage.tr: [
-        'Kozmik gezgin olarak, bugün fiziksel değil ruhsal bir yolculuğa çıkıyorsun. Jüpiter seni sınırların ötesine, bilinen dünyanın kenarlarına çağırıyor. Orada ne bulacaksın? Belki de her zaman aradığın cevap: kendin.',
+        'Kozmik gezgin olarak, bugün fiziksel değil ruhsal bir yolculuğa çıkıyorsun. Jüpiter seni sınırların ötesine, bilinen dünyanın kenarlarına çağırıyor. Orada ne bulabilirsin? Belki de her zaman aradığın cevap: kendin.',
         'Okun hedefi, sadece uzaktaki bir nokta değil - o nokta senin en yüksek potansiyelin. Bugün nişan al, ama acelenin olmadığını fark et. Okun uçuşu, hedefe varmasından daha değerlidir.',
         'Filozof arketipi içinde uyanıyor. Sorular cevaplardan daha kıymetli. Bugün "neden" diye sormaktan çekinme - evren, meraklılarına sırlarını fısıldar.',
       ],
       AppLanguage.en: [
-        'As a cosmic traveler, today you embark on a spiritual journey, not a physical one. Jupiter calls you beyond limits, to the edges of the known world. What will you find there? Perhaps the answer you\'ve always sought: yourself.',
+        'As a cosmic traveler, today you embark on a spiritual journey, not a physical one. Jupiter calls you beyond limits, to the edges of the known world. What might you find there? Perhaps the answer you\'ve always sought: yourself.',
         'The arrow\'s target is not just a distant point - that point is your highest potential. Today, take aim, but realize there\'s no rush. The arrow\'s flight is more valuable than reaching the target.',
         'The philosopher archetype awakens within you. Questions are more precious than answers. Today, don\'t hesitate to ask "why" - the universe whispers its secrets to the curious.',
       ],
     },
     ZodiacSign.capricorn: {
       AppLanguage.tr: [
-        'Dağın zirvesine tırman, ama zirve seni bekliyor olması değil, yolculuğun seni dönüştürmesi önemlidir. Satürn sana sabır ve disiplin veriyor - ama bugün bunların ötesinde bir şey var: içsel otorite.',
+        'Dağın zirvesine tırmanma temasını düşün - önemli olan zirve değil, yolculuğun seni nasıl dönüştürdüğü. Satürn sabır ve disiplin temalarını vurguluyor - ama bunların ötesinde içsel otorite var.',
         'Zamanın efendisi olarak, bugün geçmiş ve geleceğin arasındaki ince çizgide duruyorsun. Atalarının mirası omuzlarında, ama yükü taşımak değil, onu dönüştürmek senin görevin.',
         'Oğlak burcunun gizli yüzü, karanlığın içinde bile parlayan yıldızdır. Dışarıdan soğuk görünebilirsin, ama içinde bir volkan var. Bugün o içsel ateşi onurlandır.',
       ],
       AppLanguage.en: [
-        'Climb the mountain peak, but what matters is not that the peak awaits you, but that the journey transforms you. Saturn gives you patience and discipline - but today there\'s something beyond: inner authority.',
+        'Consider the theme of climbing the mountain peak - what matters is not the peak itself, but how the journey transforms you. Saturn emphasizes patience and discipline themes - but beyond these lies inner authority.',
         'As the master of time, today you stand on the thin line between past and future. Your ancestors\' legacy is on your shoulders, but your task is not to carry the burden, but to transform it.',
         'The secret face of Capricorn is the star that shines even in darkness. You may appear cold on the outside, but there\'s a volcano within. Today, honor that inner fire.',
       ],
@@ -152,19 +157,19 @@ class HoroscopeContent {
     ZodiacSign.pisces: {
       AppLanguage.tr: [
         'Rüyaların ve gerçekliğin sınırlarını eriten mistik olarak, bugün iki dünya arasında köprü kuruyorsun. Neptün seni hayalin ötesine, vizyonun alemine çağırıyor. Orada gördüklerini dünyaya getir.',
-        'Okyanusun damlası olarak, tüm okyanusun bilgisini taşıyorsun. Bugün sezgilerin açık - görünmeyeni görecek, duyulmayanı duyacaksın. Bu bir lanet değil, bir armağan.',
+        'Okyanusun damlası olarak, tüm okyanusun bilgisini taşıyorsun. Bugün sezgilerin açık - görünmeyeni görme ve duyulmayanı duyma teması güçlü. Bu bir lanet değil, bir armağan.',
         'Şifa veren yaralı arketipi içinde canlanıyor. Kendi acıların, başkalarını iyileştirmeni sağlayan ilaç oldu. Bugün o ilacı paylaş - ama kendine de bir doz ayır.',
       ],
       AppLanguage.en: [
         'As the mystic who dissolves the boundaries between dreams and reality, today you build a bridge between two worlds. Neptune calls you beyond imagination, to the realm of vision. Bring what you see there to the world.',
-        'As a drop of the ocean, you carry the knowledge of the entire ocean. Today your intuitions are open - you will see the unseen, hear the unheard. This is not a curse, but a gift.',
+        'As a drop of the ocean, you carry the knowledge of the entire ocean. Today your intuitions are open - consider exploring the unseen, hearing the unheard. This is not a curse, but a gift.',
         'The wounded healer archetype comes alive within you. Your own pain became the medicine that heals others. Today, share that medicine - but save a dose for yourself.',
       ],
     },
   };
 
   // ═══════════════════════════════════════════════════════════════════════════
-  // LOVE ADVICES - Aşk tavsiyeleri
+  // RELATIONSHIP REFLECTION THEMES - İlişki refleksiyon temaları
   // ═══════════════════════════════════════════════════════════════════════════
 
   static List<String> getLoveAdvices(AppLanguage lang) {
@@ -173,29 +178,29 @@ class HoroscopeContent {
 
   static final Map<AppLanguage, List<String>> _loveAdvices = {
     AppLanguage.tr: [
-      'Aşk, ruhun aynaya bakışıdır. Bugün partnerinde gördüğün, aslında kendi iç dünyanın yansımasıdır. Bu yansımaya sevgiyle bak - çünkü kendini sevmeden başkasını sevemezsin.',
-      'Kalpten kalbe uzanan görünmez ipler var. Bugün o ipleri hisset - kimi çekiyor, kimi itiyor? Çekimi takip et, ama bilincini kaybetme. Aşk bir teslimiyet, ama bilinçli bir teslimiyet.',
-      'Kutsal birleşme, iki yarının bütün olması değil - iki bütünün birleşmesidir. Önce kendin bütün ol. Sonra başka bir bütünle dans et. Bu, gerçek aşkın simyası.',
-      'Venüs bugün kalbini okşuyor. Eski yaralar iyileşiyor, yeni kapılar açılıyor. Aşk kapına geldiğinde, onu tanıyacak mısın? Bazen aşk, beklediğimiz kılıkta gelmez.',
-      'Ruh eşinin arayışı, aslında kendi ruhunun arayışıdır. Dışarıda aradığın, içinde zaten var. Bugün iç denize dal - orada seni bekleyen bir hazine var.',
-      'Bağ kurmak, zincirlemek değil - köprü inşa etmektir. Bugün ilişkilerindeki köprüleri güçlendir. Ama köprünün iki ucunun da sağlam olması gerek.',
-      'Aşkın alevi, kontrol edilmezse yakar. Ama bilinçli alev, aydınlatır ve ısıtır. Bugün tutkunu bilinçle harmanla. Sonuç: dönüştürücü bir ilişki.',
-      'Kalp çakran bugün aktif. Yeşilin şifa gücünü hisset. Geçmişte kırılmış kalbin artık kaynıyor. Yeni bağlar kurmaya hazırsın.',
+      'Aşk, ruhun aynaya bakışı olarak düşünülebilir. Partnerinde gördüğün, kendi iç dünyanın bir yansıması olabilir. Bu yansımaya sevgiyle bakmak üzerine düşünmek isteyebilirsin.',
+      'Kalpten kalbe uzanan bağlantılar üzerine düşünebilirsin. Hangi bağlantılar seni çekiyor, hangileri itiyor? Bilinçli teslimiyet teması üzerine bir refleksiyon yapabilirsin.',
+      'Kutsal birleşme, iki yarının bütün olması değil - iki bütünün birleşmesi olarak düşünülebilir. Önce kendin bütün olmak üzerine düşünmek isteyebilirsin.',
+      'Venüs arketipi, sevgi ve bağlantı temalarını simgeler. Eski yaralar ve yeni başlangıçlar üzerine düşünebilirsin. Aşkın farklı biçimleri hakkında düşünmek isteyebilirsin.',
+      'Ruh eşi arayışı, aslında kendi ruhunun arayışı olarak yorumlanabilir. Dışarıda aradığın, içinde zaten var mı? Bu soru üzerine düşünmek isteyebilirsin.',
+      'Bağ kurmak, köprü inşa etmek gibidir. İlişkilerindeki köprüler üzerine düşünebilirsin. Sağlam temeller ve karşılıklı destek temaları üzerine bir refleksiyon.',
+      'Aşkın alevi, bilinçle yönlendirildiğinde aydınlatıcı olabilir. Tutku ve farkındalık arasındaki denge üzerine düşünmek isteyebilirsin.',
+      'Kalp merkezi ve şefkat temaları üzerine düşünebilirsin. Geçmişteki deneyimler ve yeni bağlantılar kurma kapasitesi hakkında bir refleksiyon.',
     ],
     AppLanguage.en: [
-      'Love is the soul looking in a mirror. What you see in your partner today is actually a reflection of your inner world. Look at this reflection with love - because you cannot love another without loving yourself.',
-      'There are invisible threads extending from heart to heart. Feel those threads today - which ones pull, which ones push? Follow the pull, but don\'t lose your awareness. Love is surrender, but conscious surrender.',
-      'Sacred union is not two halves becoming whole - it is two wholes uniting. First, become whole yourself. Then dance with another whole. This is the alchemy of true love.',
-      'Venus caresses your heart today. Old wounds are healing, new doors are opening. When love comes to your door, will you recognize it? Sometimes love doesn\'t come in the guise we expect.',
-      'The search for your soulmate is actually the search for your own soul. What you seek outside already exists within. Today, dive into the inner sea - a treasure awaits you there.',
-      'Making connections is not chaining - it\'s building bridges. Today, strengthen the bridges in your relationships. But both ends of the bridge need to be solid.',
-      'The flame of love burns when uncontrolled. But conscious flame illuminates and warms. Today, blend your passion with awareness. The result: a transformative relationship.',
-      'Your heart chakra is active today. Feel the healing power of green. Your broken heart from the past is now mending. You are ready to form new bonds.',
+      'Love can be seen as the soul looking in a mirror. What you see in your partner may be a reflection of your inner world. You might consider reflecting on looking at this reflection with love.',
+      'You may want to reflect on connections extending from heart to heart. Which connections draw you, which push away? A reflection on the theme of conscious surrender.',
+      'Sacred union is not two halves becoming whole - it can be seen as two wholes uniting. You might consider reflecting on becoming whole yourself first.',
+      'The Venus archetype symbolizes themes of love and connection. You may reflect on old wounds and new beginnings. You might want to think about different forms of love.',
+      'The search for a soulmate can be interpreted as the search for your own soul. Is what you seek outside already within? You may want to reflect on this question.',
+      'Making connections is like building bridges. You can reflect on the bridges in your relationships. A reflection on themes of solid foundations and mutual support.',
+      'The flame of love can be illuminating when consciously directed. You might want to reflect on the balance between passion and awareness.',
+      'You may reflect on themes of the heart center and compassion. A reflection on past experiences and capacity for forming new connections.',
     ],
   };
 
   // ═══════════════════════════════════════════════════════════════════════════
-  // CAREER ADVICES - Kariyer tavsiyeleri
+  // PROFESSIONAL REFLECTION THEMES - Profesyonel refleksiyon temaları
   // ═══════════════════════════════════════════════════════════════════════════
 
   static List<String> getCareerAdvices(AppLanguage lang) {
@@ -204,29 +209,29 @@ class HoroscopeContent {
 
   static final Map<AppLanguage, List<String>> _careerAdvices = {
     AppLanguage.tr: [
-      'İş hayatın, ruhani yolculuğunun bir yansımasıdır. Bugün yaptığın işin arkasındaki derin anlamı keşfet. Para kazanmak değil, değer yaratmak - işte gerçek zenginlik.',
-      'Yeteneklerin, evrenin sana verdiği hediyelerdir. Bugün o hediyeleri dünyayla paylaş. Korku değil, cömertlik rehberin olsun. Verdikçe alacaksın.',
-      'Liderlik, önde yürümek değil - ışık tutmaktır. Bugün başkalarına yol gösterme fırsatın var. Ama önce kendi yolunu aydınlat.',
-      'Maddi dünya, ruhani dünyanın aynasıdır. Kariyer hedeflerin, ruhani hedeflerinle uyumlu mu? Bugün bu soruyu kendine sor. Cevap seni şaşırtabilir.',
-      'Başarının gerçek ölçüsü, ne kadar kazandığın değil - ne kadar anlamlı iş yaptığındır. Bugün anlam ara. Onu bulduğunda, başarı peşinden gelecek.',
-      'Bolluk bilinci bugün aktive oluyor. Kıtlık korkusunu bırak. Evren sonsuz bolluk sunuyor - seni sınırlayan sadece inançların.',
-      'Yaratıcılığının profesyonel alandaki gücünü keşfet. Bugün alışıldık yolları terk et. Yenilikçi fikirlerin, seni farklı kılacak.',
-      'Sabır ve zamanlama her şey. Bugün aceleci kararlar verme. Bekle, gözle, sonra hareket et. Evrenin ritmiyle uyumlu ol.',
+      'İş hayatı, kişisel yolculuğun bir yansıması olarak düşünülebilir. Yaptığın işin arkasındaki derin anlam üzerine düşünmek isteyebilirsin. Değer yaratma teması üzerine bir refleksiyon.',
+      'Yeteneklerin, benzersiz hediyeler olarak görülebilir. Bu hediyeleri dünyayla paylaşmak üzerine düşünebilirsin. Cömertlik ve korku arasındaki denge üzerine bir refleksiyon.',
+      'Liderlik, ışık tutmak olarak yorumlanabilir. Başkalarına yol gösterme ve kendi yolunu aydınlatma temaları üzerine düşünmek isteyebilirsin.',
+      'Kariyer hedeflerin, kişisel değerlerinle uyumlu mu? Bu soruyu kendine sormak üzerine düşünebilirsin. Uyum ve anlam temaları üzerine bir refleksiyon.',
+      'Başarının gerçek ölçüsü üzerine düşünmek isteyebilirsin. Anlamlı iş yapmak teması üzerine bir refleksiyon. Anlam arayışı hakkında ne düşünüyorsun?',
+      'Bolluk bilinci üzerine düşünebilirsin. Kıtlık korkusu ve sınırlayıcı inançlar temaları üzerine bir refleksiyon yapabilirsin.',
+      'Yaratıcılığının profesyonel alandaki rolü üzerine düşünmek isteyebilirsin. Alışıldık yollar ve yenilikçi fikirler arasındaki denge üzerine bir refleksiyon.',
+      'Sabır ve zamanlama temaları üzerine düşünebilirsin. Aceleci kararlar ve bilinçli hareket arasındaki denge hakkında düşünmek isteyebilirsin.',
     ],
     AppLanguage.en: [
-      'Your work life is a reflection of your spiritual journey. Discover the deeper meaning behind your work today. Creating value, not making money - that\'s true wealth.',
-      'Your talents are gifts from the universe. Share those gifts with the world today. Let generosity, not fear, be your guide. The more you give, the more you receive.',
-      'Leadership is not walking ahead - it\'s holding the light. Today you have the opportunity to guide others. But first, illuminate your own path.',
-      'The material world is a mirror of the spiritual world. Are your career goals aligned with your spiritual goals? Ask yourself this question today. The answer may surprise you.',
-      'The true measure of success is not how much you earn - but how meaningful your work is. Seek meaning today. When you find it, success will follow.',
-      'Abundance consciousness activates today. Let go of scarcity fear. The universe offers infinite abundance - only your beliefs limit you.',
-      'Discover the power of your creativity in the professional arena. Leave conventional paths today. Your innovative ideas will set you apart.',
-      'Patience and timing are everything. Don\'t make hasty decisions today. Wait, observe, then act. Be in harmony with the universe\'s rhythm.',
+      'Work life can be seen as a reflection of your personal journey. You might want to reflect on the deeper meaning behind your work. A reflection on the theme of creating value.',
+      'Your talents can be seen as unique gifts. You may reflect on sharing these gifts with the world. A reflection on the balance between generosity and fear.',
+      'Leadership can be interpreted as holding the light. You might want to reflect on themes of guiding others and illuminating your own path.',
+      'Are your career goals aligned with your personal values? You may want to reflect on asking yourself this question. A reflection on themes of alignment and meaning.',
+      'You might want to reflect on the true measure of success. A reflection on the theme of doing meaningful work. What do you think about the search for meaning?',
+      'You can reflect on abundance consciousness. You may want to do a reflection on themes of scarcity fear and limiting beliefs.',
+      'You might want to reflect on the role of your creativity in the professional arena. A reflection on the balance between conventional paths and innovative ideas.',
+      'You can reflect on themes of patience and timing. You might want to think about the balance between hasty decisions and conscious action.',
     ],
   };
 
   // ═══════════════════════════════════════════════════════════════════════════
-  // HEALTH ADVICES - Sağlık tavsiyeleri
+  // WELLNESS REFLECTION THEMES - Sağlık ve wellness refleksiyon temaları
   // ═══════════════════════════════════════════════════════════════════════════
 
   static List<String> getHealthAdvices(AppLanguage lang) {
@@ -235,24 +240,24 @@ class HoroscopeContent {
 
   static final Map<AppLanguage, List<String>> _healthAdvices = {
     AppLanguage.tr: [
-      'Bedenin, ruhunun tapınağıdır. Bugün o tapınağı onurlandır. Her lokma bir ayin, her nefes bir dua, her hareket bir dans olsun.',
-      'Enerji bedenin bugün hassas. Çevrendeki enerjilere dikkat et. Seni tüketen ortamlardan uzaklaş, seni besleyen ortamlara yakın dur.',
-      'Topraklama bugün önemli. Çıplak ayaklarını toprağa bas, ellerini sulara değdir. Doğayla bağlanmak, en güçlü şifadır.',
-      'Nefes, yaşam gücünün taşıyıcısıdır. Bugün bilinçli nefes al. Her nefesle ışık al, her verişle karanlık bırak.',
-      'Uyku, küçük ölümdür - ve her uyku, yeniden doğuştur. Bugün uyku düzenine dikkat et. Rüyaların mesajlar taşıyor.',
-      'Su elementiyle çalışmak bugün şifa getirecek. Banyo yap, yüz, ya da sadece suyu izle. Su, duygu bedenini arındırıyor.',
-      'Hareket meditasyonu bugün sana uygun. Yoga, dans, ya da sadece yürüyüş - bedenini bilinçle hareket ettir.',
-      'Kök çakra bugün dikkat istiyor. Güvenlik, istikrar, topraklanma - bunlara odaklan. Temeller sağlam olunca, üst katlar güvende.',
+      'Bedenin, ruhunun tapınağı olarak düşünülebilir. Bu metafor üzerine düşünmek isteyebilirsin. Her lokma, her nefes, her hareket üzerine farkındalık geliştirmek anlamlı olabilir.',
+      'Enerji ve çevre arasındaki ilişki üzerine düşünebilirsin. Seni tüketen ve besleyen ortamlar hakkında farkındalık geliştirmek isteyebilirsin.',
+      'Topraklama pratiği üzerine düşünmek faydalı olabilir. Doğayla bağlantı kurmanın yolları hakkında bir refleksiyon yapabilirsin.',
+      'Nefes, yaşam gücü ile ilişkilendirilen bir tema. Bilinçli nefes almak üzerine düşünmek isteyebilirsin. Nefes pratiği hakkında ne düşünüyorsun?',
+      'Uyku ve dinlenme temaları üzerine düşünebilirsin. Uyku düzenin hakkında farkındalık geliştirmek isteyebilirsin. Rüyalar ve bilinçaltı üzerine bir refleksiyon.',
+      'Su elementi, arınma ve duygusal iyileşme ile ilişkilendirilir. Su ile çalışmak üzerine düşünmek isteyebilirsin.',
+      'Hareket meditasyonu üzerine düşünebilirsin. Yoga, dans, ya da yürüyüş - bedenini bilinçle hareket ettirmek hakkında bir refleksiyon.',
+      'Temel ihtiyaçlar ve güvenlik hissi üzerine düşünmek isteyebilirsin. Güvenlik, istikrar, topraklanma temaları üzerine bir refleksiyon yapabilirsin.',
     ],
     AppLanguage.en: [
-      'Your body is the temple of your soul. Honor that temple today. Let every bite be a ritual, every breath a prayer, every movement a dance.',
-      'Your energy body is sensitive today. Pay attention to the energies around you. Distance yourself from draining environments, stay close to nourishing ones.',
-      'Grounding is important today. Place your bare feet on the earth, touch your hands to water. Connecting with nature is the most powerful healing.',
-      'Breath is the carrier of life force. Breathe consciously today. Take in light with each inhale, release darkness with each exhale.',
-      'Sleep is a small death - and every sleep is a rebirth. Pay attention to your sleep pattern today. Your dreams carry messages.',
-      'Working with the water element will bring healing today. Take a bath, swim, or just watch water. Water purifies your emotional body.',
-      'Movement meditation suits you today. Yoga, dance, or just walking - move your body with awareness.',
-      'The root chakra demands attention today. Security, stability, grounding - focus on these. When foundations are solid, the upper floors are safe.',
+      'Your body can be seen as the temple of your soul. You might want to reflect on this metaphor. Developing awareness about every bite, every breath, every movement may be meaningful.',
+      'You can reflect on the relationship between energy and environment. You may want to develop awareness about draining and nourishing environments.',
+      'Reflecting on grounding practice may be beneficial. You can do a reflection on ways of connecting with nature.',
+      'Breath is a theme associated with life force. You might want to reflect on conscious breathing. What do you think about breathing practice?',
+      'You can reflect on themes of sleep and rest. You may want to develop awareness about your sleep pattern. A reflection on dreams and the subconscious.',
+      'The water element is associated with purification and emotional healing. You might want to reflect on working with water.',
+      'You can reflect on movement meditation. A reflection on moving your body consciously - yoga, dance, or walking.',
+      'You might want to reflect on basic needs and sense of security. You can do a reflection on themes of security, stability, grounding.',
     ],
   };
 
@@ -337,7 +342,7 @@ class HoroscopeContent {
   };
 
   // ═══════════════════════════════════════════════════════════════════════════
-  // COSMIC MESSAGES - Evrenin günlük mesajları
+  // REFLECTION MESSAGES - Arketip bazlı refleksiyon mesajları
   // ═══════════════════════════════════════════════════════════════════════════
 
   static List<String> getCosmicMessages(ZodiacSign sign, AppLanguage lang) {
@@ -351,12 +356,12 @@ class HoroscopeContent {
       AppLanguage.tr: [
         '🔥 Bugün cesaretin rehberin, kalbin pusulan olsun.',
         '⚔️ İçindeki savaşçı bilge, dışındaki dünya hazır.',
-        '🌟 Işığını yakma zamanı - dünya seni görmeyi bekliyor.',
+        '🌟 Işığını yakma zamanı - parlama teması güçlü.',
       ],
       AppLanguage.en: [
         '🔥 Let your courage be your guide, your heart your compass today.',
         '⚔️ The warrior within is wise, the world outside is ready.',
-        '🌟 Time to ignite your light - the world awaits to see you.',
+        '🌟 Time to ignite your light - themes of shining are strong.',
       ],
     },
     ZodiacSign.taurus: {
@@ -494,7 +499,7 @@ class HoroscopeContent {
   };
 
   // ═══════════════════════════════════════════════════════════════════════════
-  // PAST INSIGHTS - Geçmişin yankısı
+  // PAST REFLECTION THEMES - Geçmiş refleksiyon temaları
   // ═══════════════════════════════════════════════════════════════════════════
 
   static List<String> getPastInsights(ZodiacSign sign, AppLanguage lang) {
@@ -506,32 +511,32 @@ class HoroscopeContent {
   static final Map<ZodiacSign, Map<AppLanguage, List<String>>> _pastInsights = {
     ZodiacSign.aries: {
       AppLanguage.tr: [
-        'Geçmişte attığın cesur adımların meyvelerini bugün topluyorsun. O zaman göze aldığın riskler, şimdi seni güçlendiren deneyimlere dönüştü.',
-        'Mars enerjisinin geçmişteki izleri bugün belirginleşiyor. Bir zamanlar savaştığın ama kazanamadığını düşündüğün bir mücadele var mı?',
-        'Atalarından gelen savaşçı ruhu taşıyorsun. Onların cesareti, senin damarlarında akıyor.',
+        'Geçmişte attığın cesur adımlar üzerine düşünmek isteyebilirsin. O zaman göze aldığın riskler, güçlendirici deneyimlere dönüşmüş olabilir.',
+        'Mars arketipinin geçmişteki etkileri üzerine düşünebilirsin. Savaştığın ama kazanamadığını düşündüğün bir mücadele var mı?',
+        'Atalarından gelen savaşçı ruhu temaları üzerine bir refleksiyon yapabilirsin. Cesaret mirası hakkında ne düşünüyorsun?',
       ],
       AppLanguage.en: [
-        'Today you harvest the fruits of the brave steps you took in the past. The risks you took then have transformed into experiences that strengthen you now.',
-        'The traces of Mars energy from the past are becoming evident today. Is there a battle you fought but thought you didn\'t win?',
-        'You carry the warrior spirit from your ancestors. Their courage flows in your veins.',
+        'You might want to reflect on the brave steps you took in the past. The risks you took then may have transformed into strengthening experiences.',
+        'You can reflect on the past influences of the Mars archetype. Is there a battle you fought but thought you didn\'t win?',
+        'You may want to do a reflection on themes of the warrior spirit from your ancestors. What do you think about the legacy of courage?',
       ],
     },
     ZodiacSign.taurus: {
       AppLanguage.tr: [
-        'Geçmişte ektiğin tohumlar artık filizleniyor. Sabırla beklediğin zamanlar boşa gitmedi; evren her şeyi kayıt altına aldı.',
-        'Venüs\'ün geçmişteki izleri kalbinde hâlâ canlı. Bir zamanlar çok değer verdiğin ama kaybettiğini düşündüğün bir şey aslında hiç kaybolmadı.',
-        'Toprak hafızası atalarının bilgeliğini taşır. Onların el emeği, alın teri, sabırla inşa ettikleri her şey senin DNA\'nda kodlu.',
+        'Geçmişte ektiğin tohumlar üzerine düşünmek isteyebilirsin. Sabırla beklediğin zamanlar hakkında bir refleksiyon yapabilirsin.',
+        'Venüs arketipinin geçmişteki izleri üzerine düşünebilirsin. Bir zamanlar çok değer verdiğin şeyler hakkında ne hissediyorsun?',
+        'Atalarının bilgeliği ve mirası üzerine bir refleksiyon yapabilirsin. El emeği ve sabır temaları hakkında düşünmek isteyebilirsin.',
       ],
       AppLanguage.en: [
-        'The seeds you planted in the past are now sprouting. The times you waited patiently were not in vain; the universe recorded everything.',
-        'The traces of Venus from the past are still alive in your heart. Something you once valued deeply but thought you lost was never really lost.',
-        'Earth memory carries the wisdom of your ancestors. Their handiwork, their sweat, everything they patiently built is coded in your DNA.',
+        'You might want to reflect on the seeds you planted in the past. You can do a reflection on the times you waited patiently.',
+        'You can reflect on the past traces of the Venus archetype. How do you feel about things you once valued deeply?',
+        'You may want to do a reflection on the wisdom and legacy of your ancestors. You might want to think about themes of handiwork and patience.',
       ],
     },
     ZodiacSign.gemini: {
       AppLanguage.tr: [
-        'Geçmişte söylediğin veya söyleyemediğin kelimeler bugün yankılanıyor. İletişimin gücünü o zaman tam anlamamış olabilirsin.',
-        'Merkür\'ün hafızasında saklı sırlar var. Geçmişte öğrendiğin ama kullanmadığın bir bilgi, bugün hayatına anlam katacak.',
+        'Geçmişte söylediğin veya söyleyemediğin kelimeler üzerine düşünmek isteyebilirsin. İletişimin gücü hakkında bir refleksiyon.',
+        'Merkür arketipinin hafızası üzerine düşünebilirsin. Geçmişte öğrendiğin ama kullanmadığın bilgiler hakkında ne düşünüyorsun?',
         'Zihnin bir zaman makinesi gibi çalışıyor. Geçmişe seyahat ettiğinde, oradan sadece nostalji değil, bilgelik de getir.',
       ],
       AppLanguage.en: [
@@ -820,146 +825,146 @@ class HoroscopeContent {
   static final Map<ZodiacSign, Map<AppLanguage, List<String>>> _futureGuidances = {
     ZodiacSign.aries: {
       AppLanguage.tr: [
-        'Gelecek, senin için yeni savaş alanları değil, yeni zafer alanları hazırlıyor.',
-        'Ufukta parlayan ışık, yeni başlangıçların habercisi. Ama bu sefer acele etme.',
-        'Mars önümüzdeki dönemde seni destekleyecek, ama farklı bir şekilde. Ham güç yerine, rafine güç.',
+        'Büyüme temalarını düşünürken, yeni savaş alanları yerine zafer ve başarı konseptleri üzerine odaklanabilirsin.',
+        'Yeni başlangıçlar teması üzerinde düşün. Acele etmek yerine sabırlı ilerlemek faydalı olabilir.',
+        'Mars arketipi güç temalarını vurguluyor - ham güç yerine, rafine edilmiş güç üzerine düşünebilirsin.',
       ],
       AppLanguage.en: [
-        'The future prepares new victory fields for you, not new battlefields.',
-        'The light shining on the horizon heralds new beginnings. But this time don\'t rush.',
-        'Mars will support you in the coming period, but differently. Refined power instead of raw power.',
+        'When reflecting on growth themes, consider focusing on victory and success concepts rather than new battles.',
+        'Reflect on the theme of new beginnings. Moving patiently rather than rushing may be beneficial.',
+        'The Mars archetype emphasizes power themes - consider refined power rather than raw force.',
       ],
     },
     ZodiacSign.taurus: {
       AppLanguage.tr: [
-        'Gelecek, bolluk vaadediyor - ama bu bolluk sadece maddi değil. Ruhsal zenginlik de.',
-        'Venüs önümüzdeki dönemde sana güzellik ve uyum getirecek.',
-        'Toprak elementi gelecekte seni taşımaya devam edecek, ama yeni bir biçimde.',
+        'Bolluk teması üzerine düşünürken, sadece maddi değil ruhsal zenginlik konseptlerini de dahil et.',
+        'Venüs arketipi güzellik ve uyum temalarını vurguluyor. Bu alanlar üzerine refleksiyon yapabilirsin.',
+        'Toprak elementi topraklanma ve stabilite temalarını taşıyor. Yeni formlarda deneyimlemeyi düşünebilirsin.',
       ],
       AppLanguage.en: [
-        'The future promises abundance - but this abundance is not just material. Spiritual wealth too.',
-        'Venus will bring you beauty and harmony in the coming period.',
-        'The earth element will continue to carry you in the future, but in a new form.',
+        'When reflecting on abundance themes, include spiritual wealth concepts, not just material.',
+        'The Venus archetype emphasizes beauty and harmony themes. You can reflect on these areas.',
+        'The earth element carries grounding and stability themes. Consider experiencing them in new forms.',
       ],
     },
     ZodiacSign.gemini: {
       AppLanguage.tr: [
-        'Gelecek, senin için bilgi ve bilgeliğin birleştiği bir dönem.',
-        'Merkür gelecekte sana yeni iletişim kanalları açacak.',
-        'İkili doğan gelecekte bütünleşme fırsatı bulacak.',
+        'Bilgi ve bilgeliğin birleştiği temalar üzerine düşünmek faydalı olabilir.',
+        'Merkür arketipi iletişim ve bağlantı temalarını vurguluyor. Bu alanları keşfedebilirsin.',
+        'İkili doğan olarak, bütünleşme ve denge temaları üzerine refleksiyon yapabilirsin.',
       ],
       AppLanguage.en: [
-        'The future is a period where knowledge and wisdom merge for you.',
-        'Mercury will open new communication channels for you in the future.',
-        'The twin nature will find an opportunity for integration in the future.',
+        'Reflecting on themes where knowledge and wisdom merge may be beneficial.',
+        'The Mercury archetype emphasizes communication and connection themes. You can explore these areas.',
+        'Reflect on how your dual nature might integrate and find balance.',
       ],
     },
     ZodiacSign.cancer: {
       AppLanguage.tr: [
-        'Gelecek, evinin - hem fiziksel hem ruhsal - dönüşümünü getiriyor.',
-        'Ay döngüleri önümüzdeki dönemde seni destekleyecek.',
-        'Aile bağların gelecekte yeni bir biçim alacak.',
+        'Evin dönüşümü teması - hem fiziksel hem ruhsal - üzerine düşünmek faydalı olabilir.',
+        'Ay döngüleri duygusal akış ve iç huzur temalarını vurguluyor.',
+        'Aile bağlarının farklı formları üzerine refleksiyon yapabilirsin.',
       ],
       AppLanguage.en: [
-        'The future brings the transformation of your home - both physical and spiritual.',
-        'Moon cycles will support you in the coming period.',
-        'Your family ties will take a new form in the future.',
+        'Reflecting on the transformation of your home - both physical and spiritual - may be beneficial.',
+        'Moon cycles emphasize themes of emotional flow and inner peace.',
+        'You can reflect on different forms of family connections.',
       ],
     },
     ZodiacSign.leo: {
       AppLanguage.tr: [
-        'Gelecek, senin için yaratıcı patlama zamanı.',
-        'Güneş önümüzdeki dönemde seni özel bir şekilde aydınlatacak.',
-        'Liderlik rolün gelecekte evrilecek.',
+        'Yaratıcı patlama ve kendini ifade etme temaları üzerine düşünmek faydalı olabilir.',
+        'Güneş arketipi aydınlanma ve görünürlük temalarını vurguluyor.',
+        'Liderlik rolünün evrilmesi üzerine refleksiyon yapabilirsin.',
       ],
       AppLanguage.en: [
-        'The future is a time of creative explosion for you.',
-        'The Sun will illuminate you in a special way in the coming period.',
-        'Your leadership role will evolve in the future.',
+        'Reflecting on themes of creative explosion and self-expression may be beneficial.',
+        'The Sun archetype emphasizes themes of illumination and visibility.',
+        'You can reflect on how your leadership role might evolve.',
       ],
     },
     ZodiacSign.virgo: {
       AppLanguage.tr: [
-        'Gelecek, senin için mükemmeliyetçiliğin rahatladığı bir dönem.',
-        'Merkür önümüzdeki dönemde pratik zekana destek verecek.',
-        'Şifacı rolün gelecekte derinleşecek.',
+        'Mükemmeliyetçiliğin rahatlaması ve kendine şefkat temaları üzerine düşünebilirsin.',
+        'Merkür arketipi pratik zeka ve analitik düşünce temalarını vurguluyor.',
+        'Şifacı rolünün derinleşmesi üzerine refleksiyon yapabilirsin.',
       ],
       AppLanguage.en: [
-        'The future is a period when your perfectionism relaxes.',
-        'Mercury will support your practical intelligence in the coming period.',
-        'Your healer role will deepen in the future.',
+        'You can reflect on themes of relaxing perfectionism and self-compassion.',
+        'The Mercury archetype emphasizes practical intelligence and analytical thinking themes.',
+        'You can reflect on how your healer role might deepen.',
       ],
     },
     ZodiacSign.libra: {
       AppLanguage.tr: [
-        'Gelecek, ilişkilerinde köklü değişiklikler getiriyor.',
-        'Venüs önümüzdeki dönemde aşk alanını canlandıracak.',
-        'Adalet arayışın gelecekte karşılık bulacak.',
+        'İlişkilerdeki köklü değişiklikler ve dönüşüm temaları üzerine düşünebilirsin.',
+        'Venüs arketipi aşk ve güzellik temalarını vurguluyor.',
+        'Adalet ve denge kavramlarının hayatındaki yeri üzerine refleksiyon yapabilirsin.',
       ],
       AppLanguage.en: [
-        'The future brings fundamental changes in your relationships.',
-        'Venus will enliven the love area in the coming period.',
-        'Your search for justice will be answered in the future.',
+        'You can reflect on themes of fundamental changes and transformation in relationships.',
+        'The Venus archetype emphasizes love and beauty themes.',
+        'Consider what justice and balance mean to you in this season of life.',
       ],
     },
     ZodiacSign.scorpio: {
       AppLanguage.tr: [
-        'Gelecek, senin için büyük dönüşümün tamamlandığı dönem.',
-        'Plüton önümüzdeki dönemde sana güç ve derinlik verecek.',
-        'Gizli yeteneklerin gelecekte ortaya çıkacak.',
+        'Büyük dönüşüm ve tamamlanma temaları üzerine düşünmek faydalı olabilir.',
+        'Plüton arketipi güç ve derinlik temalarını vurguluyor.',
+        'Gizli yeteneklerinin ortaya çıkması üzerine refleksiyon yapabilirsin.',
       ],
       AppLanguage.en: [
-        'The future is the period when your great transformation is completed.',
-        'Pluto will give you power and depth in the coming period.',
-        'Your hidden talents will emerge in the future.',
+        'Reflecting on themes of great transformation and completion may be beneficial.',
+        'The Pluto archetype emphasizes power and depth themes.',
+        'You can reflect on how your hidden talents might emerge.',
       ],
     },
     ZodiacSign.sagittarius: {
       AppLanguage.tr: [
-        'Gelecek, uzun zamandır hayal ettiğin macerayı getiriyor.',
-        'Jüpiter önümüzdeki dönemde kapıları ardına kadar açacak.',
-        'Öğretmen rolün gelecekte belirginleşecek.',
+        'Macera ve keşif temaları üzerine düşünmek faydalı olabilir.',
+        'Jüpiter arketipi genişleme ve fırsat temalarını vurguluyor.',
+        'Öğretmen ve bilge rolünün gelişmesi üzerine refleksiyon yapabilirsin.',
       ],
       AppLanguage.en: [
-        'The future brings the adventure you\'ve long dreamed of.',
-        'Jupiter will open doors wide in the coming period.',
-        'Your teacher role will become more prominent in the future.',
+        'Reflecting on themes of adventure and exploration may be beneficial.',
+        'The Jupiter archetype emphasizes expansion and opportunity themes.',
+        'Reflect on how your wisdom and teaching qualities might develop.',
       ],
     },
     ZodiacSign.capricorn: {
       AppLanguage.tr: [
-        'Gelecek, zirveye ulaşmanın zamanı. Yıllarca tırmandığın dağın tepesi görünüyor.',
-        'Satürn önümüzdeki dönemde ödülleri dağıtacak.',
-        'Miras ve gelenek konuları gelecekte önem kazanacak.',
+        'Zirveye ulaşma ve başarı temaları üzerine düşünmek faydalı olabilir.',
+        'Satürn arketipi disiplin ve ödül temalarını vurguluyor.',
+        'Miras ve gelenek kavramlarının hayatındaki yeri üzerine refleksiyon yapabilirsin.',
       ],
       AppLanguage.en: [
-        'The future is the time to reach the summit. The peak of the mountain you\'ve climbed for years is visible.',
-        'Saturn will distribute rewards in the coming period.',
-        'Legacy and tradition matters will gain importance in the future.',
+        'Reflecting on themes of reaching the summit and achievement may be beneficial.',
+        'The Saturn archetype emphasizes discipline and reward themes.',
+        'You can reflect on the place of legacy and tradition in your life.',
       ],
     },
     ZodiacSign.aquarius: {
       AppLanguage.tr: [
-        'Gelecek, vizyonlarının gerçekleşme zamanı.',
-        'Uranüs önümüzdeki dönemde beklenmedik kapılar açacak.',
-        'Topluluk ve kolektif çalışma gelecekte öne çıkacak.',
+        'Vizyonların gerçekleşmesi ve manifestasyon temaları üzerine düşünebilirsin.',
+        'Uranüs arketipi beklenmedik değişim ve yenilik temalarını vurguluyor.',
+        'Topluluk ve kolektif çalışma kavramlarının değerleriyle nasıl rezonans ettiği üzerine refleksiyon yapabilirsin.',
       ],
       AppLanguage.en: [
-        'The future is the time for your visions to manifest.',
-        'Uranus will open unexpected doors in the coming period.',
-        'Community and collective work will come to the fore in the future.',
+        'You can reflect on themes of manifesting your visions.',
+        'The Uranus archetype emphasizes unexpected change and innovation themes.',
+        'Consider how community and collective work resonate with your values.',
       ],
     },
     ZodiacSign.pisces: {
       AppLanguage.tr: [
-        'Gelecek, rüyalarının gerçeğe dönüştüğü dönem.',
-        'Neptün önümüzdeki dönemde ilhamı artıracak.',
-        'Şifa yolculuğun gelecekte tamamlanmaya yaklaşıyor.',
+        'Rüyaların gerçeğe dönüşmesi temaları üzerine düşünmek faydalı olabilir.',
+        'Neptün arketipi ilham ve sezgi temalarını vurguluyor.',
+        'Şifa yolculuğunun tamamlanması üzerine refleksiyon yapabilirsin.',
       ],
       AppLanguage.en: [
-        'The future is the period when your dreams turn into reality.',
-        'Neptune will increase inspiration in the coming period.',
-        'Your healing journey is nearing completion in the future.',
+        'Reflecting on themes of dreams becoming reality may be beneficial.',
+        'The Neptune archetype emphasizes inspiration and intuition themes.',
+        'You can reflect on the completion of your healing journey.',
       ],
     },
   };

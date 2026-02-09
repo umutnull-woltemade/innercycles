@@ -1,14 +1,27 @@
-/// NUMEROLOGY CONTENT - KADİM SAYI BİLGELİĞİ
+/// NUMEROLOGY CONTENT - SAYI SEMBOLİZMİ VE REFLEKSIYON
 ///
 /// Yaşam Yolu Sayıları (1-9), Master Sayılar (11, 22, 33),
-/// Kişisel Yıl döngüleri ve derinlikli içerikler.
+/// Kişisel refleksiyon temaları ve arketipsel içerikler.
 ///
-/// Her içerik kadim/ezoterik dilde yazılmıştır:
+/// Her içerik refleksiyon amaçlı yazılmıştır:
 /// - Sembolik ve arketipsel dil
-/// - Bilgelik odaklı yaklaşım
-/// - Pratik uygulamalar
-/// - Viral paylaşım ögeleri
+/// - Öz-farkındalık odaklı yaklaşım
+/// - Günlük soruları ve refleksiyon temaları
+/// - Kültürel ve tarihsel bağlam
+///
+/// Bu içerik tahmin değil, kişisel refleksiyon için tasarlanmıştır.
 library;
+
+/// Content disclaimer for all numerology content
+const String numerologyContentDisclaimer = '''
+Number symbolism is a cultural tradition spanning thousands of years.
+These descriptions are archetypal patterns for self-reflection, not predictions.
+
+Numerology does not scientifically determine personality or predict events.
+It can be used as a framework for self-exploration and journaling.
+
+This is not fortune-telling. It is a tool for inner reflection.
+''';
 
 /// ═══════════════════════════════════════════════════════════════════════════
 /// YAŞAM YOLU SAYILARI (LIFE PATH) 1-9
@@ -430,7 +443,7 @@ Kaçınılması gereken: Hareketsiz yaşam, aşırı çalışma, molasız tempo.
     yearlyGuidance: {
       '2024': '2024 temel atma yılı. Uzun vadeli planlarını şimdi başlat.',
       '2025':
-          '2025\'te esneklik öğreneceksin. Kontrol etmeye çalışma, akışa gir.',
+          '2025\'te esneklik teması öne çıkıyor. Kontrol etmeye çalışma, akışa gir.',
       '2026': '2026 hasat yılı. Çalışmalarının meyvelerini görmeye başlarsın.',
     },
   ),
@@ -776,8 +789,8 @@ Kaçınılması gereken: İşkoliklik, stresi yemeyle bastırma, uyku ihmalı.
     yearlyGuidance: {
       '2024':
           '2024 finansal fırsatlar yılı. Yatırım yap, ama etik çizgini koru.',
-      '2025': '2025\'te güç dengesini öğreneceksin. Yönetirken empati göster.',
-      '2026': '2026 karma hasat yılı. Geçmişte ektiğin tohumlar meyve verecek.',
+      '2025': '2025\'te güç dengesi teması öne çıkıyor. Yönetirken empati göster.',
+      '2026': '2026 karma hasat temalı bir yıl. Geçmişte ektiğin tohumların meyve verme zamanı.',
     },
   ),
 
@@ -1138,7 +1151,7 @@ Sıkı çalışma mevsimi - ama sabırlı ol. Temellerin sağlamsa, üzerine her
 ''',
     focus: 'Organizasyon, planlama, çalışma, sağlık rutinleri',
     avoid: 'Kaytarmak, temel atmadan bina dikmek, aşırı çalışma',
-    affirmation: 'Sağlam temeller kuruyorum. Çalışmam meyvelerini verecek.',
+    affirmation: 'Sağlam temeller kuruyorum. Çalışmam meyvelerini veriyor.',
     viralQuote:
         '"4. Yıl: Çalış, inşa et, sabredÇalışmak zor, ama meyve tatlı."',
   ),
@@ -1383,7 +1396,7 @@ Mantra: "Ben sorumluluklarımı sevgiyle üstleniyorum."
     affirmation:
         'Çalışmak kutsaldır. Her görev, ruhumu arındırıyor. Disiplinim özgürlüğümdür.',
     viralQuote:
-        '"13 Karmik Borcu: Geçmişte kaytardın, şimdi çalışacaksın. Ama şikayet etme - her damla ter, bir karma damlası siliniyor."',
+        '"13 Karmik Borcu: Geçmişte kaytardın, şimdi çalışma teması güçlü. Şikayet etme - her damla ter, bir karma damlası siliniyor."',
     warnings: [
       'Kolay para tuzaklarından kaç',
       'İşleri yarım bırakma',
@@ -1427,7 +1440,7 @@ Geçmiş yaşamlarında muhtemelen:
 • Tutkularının kölesi oldun
 • Özgürlük adına sorumsuzca davrandın
 
-Bu yaşamda bu kalıplarla yüzleşeceksin. Ama bilinçli seçimlerle döngüyü kırabilirsin.
+Bu yaşamda bu kalıplarla yüzleşme teması var. Bilinçli seçimlerle döngüyü kırabilirsin.
 ''',
     currentLifeLesson: '''
 Bu yaşamdaki dersin: DENGELİ ÖZGÜRLÜK.
@@ -1494,7 +1507,7 @@ Mantra: "Ben özgürüm çünkü hiçbir şeye bağımlı değilim."
     affirmation:
         'Gerçek özgürlüğü içimde buluyorum. Disiplinim beni özgürleştiriyor, kısıtlamıyor.',
     viralQuote:
-        '"14 Karmik Borcu: Özgürlüğü suistimal ettin, şimdi gerçek özgürlüğü öğreneceksin. Hiçbir şeye bağımlı olmamak - işte gerçek özgürlük."',
+        '"14 Karmik Borcu: Özgürlüğü suistimal ettin, şimdi gerçek özgürlüğü öğrenme teması var. Hiçbir şeye bağımlı olmamak - işte gerçek özgürlük."',
     warnings: [
       'Bağımlılık yapan her şeyden uzak dur',
       'Aşırılıklardan kaçın',

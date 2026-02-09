@@ -7,8 +7,8 @@
   },
   "app": {
     "name": "Venus One",
-    "tagline": "Les Secrets du Ciel Vous Attendent",
-    "loading_text": "Les étoiles s'alignent, votre destin se dévoile..."
+    "tagline": "Votre Voyage Intérieur Commence",
+    "loading_text": "Votre espace de réflexion se prépare..."
   },
   "common": {
     "cancel": "Annuler",
@@ -76,12 +76,12 @@
     "evening": "Les étoiles du soir brillent",
     "late_night": "Le clair de lune guide votre chemin",
     "cosmic_welcome": [
-      "Les étoiles vous attendaient",
-      "Votre voyage cosmique commence",
-      "L'univers vous a trouvé",
-      "Votre âme est rentrée chez elle",
-      "La porte du destin s'est ouverte",
-      "Votre lumière commence à briller"
+      "Le temps de réflexion commence",
+      "Votre voyage de conscience commence",
+      "Bienvenue dans l'exploration intérieure",
+      "Prenez du temps pour vous",
+      "Votre espace de pensée est prêt",
+      "Commencez votre réflexion quotidienne"
     ]
   },
   "onboarding": {
@@ -253,22 +253,22 @@
       "most_loyal": "💫 Quel signe est le plus fidele?",
       "most_jealous": "😈 Quel signe est le plus jaloux?",
       "most_passionate": "💋 Quel signe est le plus passionne au lit?",
-      "love_luck_today": "💕 Comment est ma chance en amour aujourd'hui?",
-      "ex_return": "💔 Mon ex va-t-il revenir?",
-      "cheating": "🤫 Va-t-il/elle me tromper?",
-      "marriage_proposal": "💍 Quand vais-je recevoir une demande en mariage?",
-      "does_like_me": "😍 Est-ce qu'il/elle m'aime bien?",
-      "no_message": "💬 Pourquoi ne m'envoie-t-il/elle pas de message?",
-      "promotion": "💼 Vais-je etre promu(e)?",
-      "job_change": "📈 Devrais-je changer de travail?",
-      "gambling": "🎰 Devrais-je jouer aux jeux de hasard?",
-      "lucky_star": "✨ Quand mon etoile de chance brillera-t-elle?",
-      "mercury_retrograde": "🌙 Comment Mercure retrograde m'affecte-t-il?",
-      "big_change": "🦋 Quand un grand changement arrivera-t-il dans ma vie?",
-      "rich_become": "💰 Vais-je devenir riche?",
-      "future_love": "🔮 Comment sera mon futur amour?",
-      "attention_this_week": "🎭 À quoi dois-je faire attention cette semaine?",
-      "soulmate_find": "💑 Quand vais-je trouver mon âme sœur?"
+      "love_luck_today": "💕 Quels thèmes amoureux puis-je explorer aujourd'hui?",
+      "ex_return": "💔 Que puis-je apprendre de mes relations passées?",
+      "cheating": "🤫 Quels schémas de confiance est-ce que je remarque en moi?",
+      "marriage_proposal": "💍 Quelles sont mes pensées sur l'engagement?",
+      "does_like_me": "😍 Comment est-ce que j'interprète les signaux de connexion?",
+      "no_message": "💬 Pourquoi suis-je anxieux(se) au sujet de la communication?",
+      "promotion": "💼 Quels thèmes de croissance professionnelle est-ce que j'explore?",
+      "job_change": "📈 Quels facteurs sont importants dans les décisions de carrière?",
+      "gambling": "🎰 Comment est-ce que j'aborde le risque et l'incertitude?",
+      "lucky_star": "✨ Pour quelles opportunités suis-je reconnaissant(e)?",
+      "mercury_retrograde": "🌙 Quels thèmes de communication émergent maintenant?",
+      "big_change": "🦋 Quels thèmes de transformation résonnent avec moi?",
+      "rich_become": "💰 Quelle est ma relation avec l'abondance?",
+      "future_love": "🔮 Quels schémas est-ce que je remarque dans mes relations?",
+      "attention_this_week": "🎭 Quels thèmes méritent mon attention cette semaine?",
+      "soulmate_find": "💑 Quelles qualités est-ce que je valorise dans une connexion profonde?"
     },
     "cosmic_connection_lost": "Connexion cosmique temporairement perdue. Veuillez réessayer.",
     "share_on_instagram": "Partager sur Instagram",
@@ -316,12 +316,12 @@
       "timing_desc": "Timing propice"
     },
     "featured_questions": {
-      "soulmate": "Quand trouverai-je mon âme sœur?",
-      "rich": "Deviendrai-je riche cette année?",
-      "future": "À quoi ressemble mon avenir?",
-      "luck_today": "Comment est ma chance aujourd'hui?",
-      "darkest_secret": "Quel est mon secret le plus sombre?",
-      "love_improve": "Quand ma vie amoureuse s'améliorera-t-elle?"
+      "soulmate": "Quelles qualités est-ce que je recherche dans une connexion profonde?",
+      "rich": "Quelle est ma relation avec l'abondance?",
+      "future": "Quelles perspectives la réflexion peut-elle m'offrir?",
+      "luck_today": "Quels thèmes résonnent avec moi aujourd'hui?",
+      "darkest_secret": "Quels aspects de l'ombre est-ce que j'explore?",
+      "love_improve": "Comment puis-je nourrir mes relations?"
     },
     "quick_actions": {
       "horoscope": "Horoscope",
@@ -687,18 +687,18 @@
       },
       "smart_responses": {
         "aries_relationship": "♈ Tu penses à une relation avec un Bélier ? En tant que {sign}, voici ce que tu dois savoir :\n\n🔥 Les Béliers sont passionnés, impulsifs et adorent la chasse. Ils ont besoin d'un partenaire qui peut gérer leur énergie !",
-        "default_response": "✨ L'univers te parle aujourd'hui. Écoute ta voix intérieure, les réponses sont cachées dans ton cœur.",
-        "financial_future": "💰 En tant que {sign}, ton avenir financier semble prometteur !\n\n✨ L'énergie abondante de Jupiter apporte des opportunités financières. Reste ouvert aux nouvelles sources de revenus.",
+        "default_response": "✨ Prends un moment pour réfléchir à ce qui compte pour toi aujourd'hui. Quels thèmes résonnent avec ta situation actuelle?",
+        "financial_future": "💰 En tant que {sign}, voici quelques thèmes financiers sur lesquels réfléchir:\n\n✨ L'archétype de Jupiter symbolise la croissance et l'expansion. Quels domaines souhaites-tu développer? Ceci est pour la réflexion uniquement, pas des conseils financiers.",
         "fire_water_compatibility": "🔥💧 Les signes de Feu et d'Eau sont-ils compatibles ?\n\n⚡ Difficile mais possible ! Le Feu (Bélier, Lion, Sagittaire) et l'Eau (Cancer, Scorpion, Poissons) peuvent s'équilibrer.",
         "gemini_decisions": "♊ Pourquoi les Gémeaux ne peuvent-ils pas prendre de décisions ?\n\n🌀 En tant qu'enfants de Mercure, ils pensent de manière duale - ils voient les deux côtés de chaque situation !",
-        "general_spiritual": "✨ Cher {sign}, l'univers te parle aujourd'hui !\n\n🔮 {daily_message}\n\n💫 Énergie d'aujourd'hui : {daily_energy}",
+        "general_spiritual": "✨ Cher {sign}, voici le thème de réflexion d'aujourd'hui:\n\n🔮 {daily_message}\n\n💫 Thème d'aujourd'hui: {daily_energy}",
         "leo_attention": "♌ Pourquoi les Lions cherchent-ils toujours l'attention ?\n\n👑 En tant qu'enfants du Soleil, ils sont nés \"stars\" ! L'attention et la reconnaissance sont leur carburant.",
-        "love_reading": "💕 Lecture d'amour pour {sign} :\n\n🌹 Vénus est actuellement {venus_effect}.\n\n✨ Des surprises romantiques pourraient arriver dans les prochains jours !",
+        "love_reading": "💕 Réflexion relationnelle pour {sign}:\n\n🌹 Les thèmes de Vénus suggèrent actuellement {venus_effect}.\n\n✨ C'est un bon moment pour réfléchir à vos valeurs relationnelles.",
         "most_jealous": "😈 Signes les plus jaloux :\n\n🔥 1. SCORPION - Roi/Reine de la jalousie ! Possessivité intense, problèmes de confiance.",
         "most_loyal": "💫 Classement des signes les plus fidèles :\n\n🥇 1. SCORPION - Une fois engagé, fidèle jusqu'à la mort ! Mais ils n'oublient jamais la trahison.",
         "most_passionate": "💋 Signes les plus passionnés au lit :\n\n🔥 1. SCORPION - Champion incontesté ! Passion, intensité, profondeur...",
         "scorpio_relationship": "♏ Les Scorpions sont les amoureux les plus mystérieux et intenses du siècle !\n\n🔮 Pourquoi mystérieux ? En tant qu'enfants de Pluton, ils explorent les profondeurs de l'existence.",
-        "soulmate": "💕 Lecture d'âme sœur pour {sign} :\n\n🌟 Les signaux du Nœud Nord te parlent. Ton âme sœur pourrait apparaître de manière inattendue !",
+        "soulmate": "💕 Réflexion relationnelle pour {sign}:\n\n🌟 Le Nœud Nord dans ton thème suggère des thèmes de croissance relationnelle. Quelles qualités valorises-tu le plus dans les connexions profondes?",
         "venus_air": "soutient ta communication",
         "venus_earth": "récompense ta fidélité",
         "venus_fire": "augmente ta passion",

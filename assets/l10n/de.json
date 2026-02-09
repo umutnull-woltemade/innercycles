@@ -7,8 +7,8 @@
   },
   "app": {
     "name": "Venus One",
-    "tagline": "Die Geheimnisse des Himmels Erwarten Dich",
-    "loading_text": "Die Sterne richten sich aus, dein Schicksal entfaltet sich..."
+    "tagline": "Deine Innere Reise Beginnt",
+    "loading_text": "Dein Reflexionsbereich wird vorbereitet..."
   },
   "common": {
     "cancel": "Abbrechen",
@@ -76,12 +76,12 @@
     "evening": "Die Abendsterne leuchten",
     "late_night": "Mondlicht weist dir den Weg",
     "cosmic_welcome": [
-      "Die Sterne haben auf dich gewartet",
-      "Deine kosmische Reise beginnt",
-      "Das Universum hat dich gefunden",
-      "Deine Seele ist heimgekehrt",
-      "Das Tor des Schicksals hat sich geöffnet",
-      "Dein Licht beginnt zu strahlen"
+      "Zeit für Reflexion beginnt",
+      "Deine Achtsamkeitsreise beginnt",
+      "Willkommen zur inneren Erkundung",
+      "Nimm dir Zeit für dich selbst",
+      "Dein Gedankenraum ist bereit",
+      "Beginne deine tägliche Reflexion"
     ]
   },
   "onboarding": {
@@ -253,22 +253,22 @@
       "most_loyal": "💫 Welches Zeichen ist am treuesten?",
       "most_jealous": "😈 Welches Zeichen ist am eifersuechtigsten?",
       "most_passionate": "💋 Welches Zeichen ist am leidenschaftlichsten im Bett?",
-      "love_luck_today": "💕 Wie steht es heute um mein Liebesglueck?",
-      "ex_return": "💔 Kommt mein Ex zurueck?",
-      "cheating": "🤫 Werden sie mich betruegen?",
-      "marriage_proposal": "💍 Wann bekomme ich einen Heiratsantrag?",
-      "does_like_me": "😍 Mag er/sie mich?",
-      "no_message": "💬 Warum schreibt er/sie nicht?",
-      "promotion": "💼 Werde ich befoerdert?",
-      "job_change": "📈 Sollte ich den Job wechseln?",
-      "gambling": "🎰 Sollte ich Gluecksspiele spielen?",
-      "lucky_star": "✨ Wann scheint mein Gluecksstern?",
-      "mercury_retrograde": "🌙 Wie beeinflusst mich Merkur ruecklaeufig?",
-      "big_change": "🦋 Wann passiert eine grosse Veraenderung in meinem Leben?",
-      "rich_become": "💰 Werde ich reich werden?",
-      "future_love": "🔮 Wie wird meine zukünftige Liebe sein?",
-      "attention_this_week": "🎭 Worauf sollte ich diese Woche achten?",
-      "soulmate_find": "💑 Wann finde ich meinen Seelenverwandten?"
+      "love_luck_today": "💕 Welche Liebes-Themen kann ich heute reflektieren?",
+      "ex_return": "💔 Was kann ich aus vergangenen Beziehungen lernen?",
+      "cheating": "🤫 Welche Vertrauensmuster bemerke ich bei mir?",
+      "marriage_proposal": "💍 Was denke ich über Verbindlichkeit?",
+      "does_like_me": "😍 Wie interpretiere ich Verbindungssignale?",
+      "no_message": "💬 Warum bin ich wegen Kommunikation besorgt?",
+      "promotion": "💼 Welche Karriere-Themen beschäftigen mich?",
+      "job_change": "📈 Welche Faktoren sind bei Karriereentscheidungen wichtig?",
+      "gambling": "🎰 Wie gehe ich mit Risiko und Unsicherheit um?",
+      "lucky_star": "✨ Für welche Möglichkeiten bin ich dankbar?",
+      "mercury_retrograde": "🌙 Welche Kommunikations-Themen kommen jetzt auf?",
+      "big_change": "🦋 Welche Transformations-Themen sprechen mich an?",
+      "rich_become": "💰 Wie ist meine Beziehung zu Fülle?",
+      "future_love": "🔮 Welche Muster bemerke ich in Beziehungen?",
+      "attention_this_week": "🎭 Welche Themen verdienen diese Woche meine Aufmerksamkeit?",
+      "soulmate_find": "💑 Welche Eigenschaften schätze ich in tiefen Verbindungen?"
     },
     "cosmic_connection_lost": "Kosmische Verbindung vorübergehend unterbrochen. Bitte erneut versuchen.",
     "share_on_instagram": "Auf Instagram teilen",
@@ -316,12 +316,12 @@
       "timing_desc": "Günstiges Timing"
     },
     "featured_questions": {
-      "soulmate": "Wann finde ich meinen Seelenverwandten?",
-      "rich": "Werde ich dieses Jahr reich?",
-      "future": "Wie sieht meine Zukunft aus?",
-      "luck_today": "Wie ist mein Glück heute?",
-      "darkest_secret": "Was ist mein dunkelstes Geheimnis?",
-      "love_improve": "Wann verbessert sich mein Liebesleben?"
+      "soulmate": "Welche Eigenschaften suche ich in tiefen Verbindungen?",
+      "rich": "Wie ist meine Beziehung zu Fülle?",
+      "future": "Welche Einsichten kann Reflexion mir bieten?",
+      "luck_today": "Welche Themen resonieren heute mit mir?",
+      "darkest_secret": "Welche Schattenaspekte erkunde ich?",
+      "love_improve": "Wie kann ich meine Beziehungen pflegen?"
     },
     "quick_actions": {
       "horoscope": "Horoskop",

@@ -232,7 +232,7 @@ ve bireyselleşmenin (individuation) anahtarıdır.
 
 Düğümler her 18.6 yılda bir burçlar kuşağını tamamlar. Düğüm dönüşleri
 (18-19, 37-38, 55-56 yaşları) ruhun evriminde kritik dönüm noktalarıdır -
-kaderin kapılarının açıldığı, karmik hesaplaşmaların yaşandığı zamanlar.
+dönüşüm ve büyüme için sembolik olarak güçlü dönemler olarak kabul edilir.
 ''';
 
   static const String rahuDetailedMeaning = '''
@@ -354,8 +354,8 @@ takip etmek. İlk adımı atmaya cesaret etmek.
     soulEvolutionPath: '''
 Ruhunun evrimi, Terazi'nin ilişkisel bilgeliğini Koç'un bireysel
 cesaretine dönüştürmekten geçiyor. Bu demek değil ki ilişkilerden
-vazgeçeceksin - aksine, gerçek bir birey olarak ilişkilere daha
-değerli katkılar sunabileceksin.
+vazgeçme teması var - aksine, gerçek bir birey olarak ilişkilere daha
+değerli katkılar sunabilme potansiyeli taşıyorsun.
 
 Evrim Aşamaları:
 
@@ -478,9 +478,9 @@ Sen bu hayata otantik bireyselliğin ne demek olduğunu öğrenmek ve
 özgürleşerek kendi yolunu cesurca yürümek.
 
 Ama bu solo bir yolculuk değil. Gerçek bireyselliğe ulaştığında,
-ilişkilerine çok daha değerli katkılar sunabileceksin. Çünkü artık
-ihtiyaçtan değil, seçimden seveceksin. Bağımlılıktan değil,
-özgürlükten paylaşacaksın.
+ilişkilerine çok daha değerli katkılar sunabilme potansiyelin var. Çünkü artık
+ihtiyaçtan değil, seçimden sevme teması güçlü. Bağımlılıktan değil,
+özgürlükten paylaşma potansiyeli taşıyorsun.
 
 Somut Misyon Alanları:
 - Liderlik ve girişimcilik

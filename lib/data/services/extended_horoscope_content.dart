@@ -13,8 +13,8 @@ class ExtendedHoroscopeContent {
         'Bu hafta $signName burcu için kozmik enerjiler yoğunlaşıyor. Gezegenler sizin lehinize hizalanırken, büyük fırsatların kapıları aralanıyor. İç sesinize kulak verin ve sezgilerinizi takip edin.',
         'Evren bu hafta size güçlü mesajlar gönderiyor. $signName enerjisi dorukta ve potansiyelinizi ortaya koyma zamanı. Cesur adımlar atın, korkularınızı geride bırakın.',
         'Hafta boyunca $elementName elementi güçleniyor. Bu enerjiyi kendi avantajınıza kullanın. İç dünyanızda derin dönüşümler yaşanırken, dış dünyada da somut değişiklikler görülecek.',
-        'Yıldızlar bu hafta $signName burcu için parlak bir tablo çiziyor. Yeni bağlantılar, beklenmedik fırsatlar ve ruhsal açılımlar sizi bekliyor. Açık kalın ve akışa güvenin.',
-        'Gökyüzündeki gezegen dansı $signName burcuna özel mesajlar taşıyor. Bu hafta kader anları yaşayabilir, hayatınızı değiştirecek kararlar alabilirsiniz. Sezgileriniz her zamankinden keskin.',
+        'Bu hafta $signName burcu için yeni bağlantılar ve fırsatlar temalarını keşfetmek için iyi bir zaman. Açık kalın ve kendinize güvenin.',
+        'Bu hafta $signName burcu için önemli yaşam temalarını düşünmeye davet eden bir dönem. Değerlerinizle uyumlu kararları düşünün. Seçimlerinizi yönlendirirken iç bilgeliğinize güvenin.',
         '$signName burcu için bu hafta enerji akışı olumlu yönde. Engeller kalkıyor, yollar açılıyor. Uzun süredir beklediğiniz haber veya gelişme bu hafta gelebilir.',
         'Kozmik rüzgarlar $signName burcunun yelkenlerini şişiriyor. Hangi yöne gitmek istediğinizi biliyorsanız, evren sizi desteklemeye hazır. Niyetlerinizi net tutun.',
         'Bu hafta evrensel enerji $signName burcunu kucaklıyor. Yaratıcılık, ilham ve motivasyon dorukta. Ertelediğiniz projelere başlamak için ideal bir zamanlama.',
@@ -25,11 +25,11 @@ class ExtendedHoroscopeContent {
     final elementName = sign.element.name;
 
     return [
-      'This week cosmic energies are intensifying for $signName. As planets align in your favor, doors to great opportunities are opening. Listen to your inner voice and follow your intuition.',
+      'This week is a good time for $signName to explore themes of new connections and opportunities. Stay open and trust yourself. Listen to your inner voice.',
       'The universe is sending you powerful messages this week. $signName energy is at its peak and it\'s time to show your potential. Take bold steps, leave your fears behind.',
       'Throughout the week the $elementName element is strengthening. Use this energy to your advantage. While deep transformations occur in your inner world, concrete changes will also be seen in the outer world.',
-      'The stars paint a bright picture for $signName this week. New connections, unexpected opportunities and spiritual openings await you. Stay open and trust the flow.',
-      'The planetary dance in the sky carries special messages for $signName. This week you may experience destiny moments and make life-changing decisions. Your intuition is sharper than ever.',
+      'This week offers $signName themes of new connections and opportunities for exploration. Stay open and trust your intuition.',
+      'This week invites $signName to reflect on important life themes. Consider what decisions align with your values. Trust your inner wisdom as you navigate choices.',
       'For $signName this week the energy flow is positive. Obstacles are being removed, paths are opening. The news or development you\'ve been waiting for may come this week.',
       'Cosmic winds are filling $signName\'s sails. If you know which direction you want to go, the universe is ready to support you. Keep your intentions clear.',
       'This week universal energy embraces $signName. Creativity, inspiration and motivation are at their peak. Ideal timing to start projects you\'ve been postponing.',
@@ -42,7 +42,7 @@ class ExtendedHoroscopeContent {
         'Aşk hayatınızda bu hafta hareketli bir dönem başlıyor. Venüs etkisi altında, ilişkilerinizde daha derin bağlar kurabilirsiniz. Bekarlar için sürpriz karşılaşmalar olası.',
         'Kalp çakranız bu hafta aktive oluyor. Duygusal açıdan hassas olabilirsiniz ama bu, sevgiyi daha derin hissetmenize de olanak tanıyor. Partnerinizle özel anlar yaratın.',
         'Romantik enerjiler yükseliyor. İlişkinizde yeni bir sayfa açılabilir veya bekarlar için önemli bir tanışma gerçekleşebilir. Kalbinizi açık tutun.',
-        'Bu hafta aşk, beklenmedik yerlerden gelebilir. Sezgilerinize güvenin ve evrenin size sunduğu işaretleri takip edin. Kadersel bağlantılar mümkün.',
+        'Bu hafta aşk ve bağlantı temalarını keşfetmeye davet ediliyor. Sezgilerinize güvenin ve etrafınızdaki anlamlı bağlantıları fark edin.',
         'Venüs\'ün olumlu açıları aşk hayatınızı ışıklandırıyor. Çiftler için tutku yeniden alevlenirken, bekarlar manyetik çekicilik yayıyor. Flört enerjisi güçlü.',
         'İlişkilerde iletişim bu hafta kritik öneme sahip. Duygularınızı açıkça ifade edin, karşı tarafı dinleyin. Yanlış anlamalar çözülüyor, bağlar güçleniyor.',
         'Romantik sürprizlere hazır olun. Evren aşk konusunda size güzel haberler getirebilir. Geçmişten biri yeniden hayatınıza girebilir veya yeni biri çıkabilir.',
@@ -53,7 +53,7 @@ class ExtendedHoroscopeContent {
       'A lively period is starting in your love life this week. Under Venus\' influence, you can establish deeper connections in your relationships. Surprise encounters are likely for singles.',
       'Your heart chakra is being activated this week. You may be emotionally sensitive but this also allows you to feel love more deeply. Create special moments with your partner.',
       'Romantic energies are rising. A new chapter may open in your relationship or an important meeting may happen for singles. Keep your heart open.',
-      'This week love can come from unexpected places. Trust your intuition and follow the signs the universe offers you. Fateful connections are possible.',
+      'This week invites exploration of love and connection themes. Trust your intuition and notice meaningful connections around you.',
       'Venus\' favorable aspects are illuminating your love life. While passion reignites for couples, singles are radiating magnetic charm. Flirtation energy is strong.',
       'Communication in relationships is critically important this week. Express your feelings openly, listen to the other side. Misunderstandings are being resolved, bonds are strengthening.',
       'Get ready for romantic surprises. The universe may bring you good news about love. Someone from the past may re-enter your life or someone new may appear.',
@@ -76,7 +76,7 @@ class ExtendedHoroscopeContent {
     }
     return [
       'Important developments may occur in your career this week. Your leadership abilities are coming to the fore. Share your ideas boldly.',
-      'New doors are opening in your professional life. Think strategically this week and review your long-term plans. Changes are in your favor.',
+      'New professional opportunities may be worth exploring. Think strategically this week and review your long-term plans.',
       'Your creativity at work is at its peak. Your innovative ideas will attract attention. Teamwork and collaborations can bring fruitful results.',
       'Positive news may come in financial matters. Trust your intuition in your financial decisions this week but don\'t neglect logic either.',
       'Time to climb the career ladder. You may catch the attention of your superiors, news of promotion or raise may come. Make yourself visible.',
@@ -90,7 +90,7 @@ class ExtendedHoroscopeContent {
     if (language == AppLanguage.tr) {
       return [
         'Enerji seviyeniz bu hafta yüksek. Fiziksel aktivitelere zaman ayırın. Bedeninizin size gönderdiği sinyallere dikkat edin.',
-        'Zihinsel ve duygusal sağlığınıza odaklanın. Stres yönetimi için meditasyon veya yoga deneyin. Doğada vakit geçirmek size iyi gelecek.',
+        'Zihinsel ve duygusal sağlığınıza odaklanın. Stres yönetimi için meditasyon veya yoga deneyin. Doğada vakit geçirmek faydalı olabilir.',
         'Bu hafta beslenme düzeninizi gözden geçirin. Vücudunuzun ihtiyaç duyduğu besinleri verin. Uyku düzeninize dikkat edin.',
         'Enerji dengenizi korumak için molalar verin. Kendinize şefkat gösterin ve aşırı yorgunluktan kaçının. Şifa enerjileri güçlü.',
       ];
@@ -179,7 +179,7 @@ class ExtendedHoroscopeContent {
         'Bu ay $signName burcu için dönüşüm ve yenilenme zamanı. Gezegenler güçlü açılar oluşturarak, hayatınızda köklü değişikliklere zemin hazırlıyor. İç dünyanızda başlayan dönüşüm, dış dünyanıza yansıyacak.',
         'Ayın enerjileri $signName burcunu destekliyor. Bu dönem kendinizi keşfetmek, potansiyelinizi gerçekleştirmek ve ruhsal olarak büyümek için ideal. Evrenin size sunduğu fırsatları değerlendirin.',
         'Kozmik akış bu ay sizden yana. $elementName enerjisi güçlenirken, doğal yetenekleriniz ve güçlü yanlarınız ön plana çıkıyor. Özgüvenle hareket edin ve hedeflerinize odaklanın.',
-        'Gezegenler bu ay $signName burcu için özel bir koreografi sergiliyor. Kader kapıları aralanıyor, yeni olanaklar beliriyor. Hayatınızın akışını değiştirecek olaylar yaşanabilir.',
+        'Bu ay $signName burcu için yeni olasılıklar ve temalar düşünmeye davet eden bir dönem. Yaşamınızdaki değişim ve büyüme alanlarını keşfedin.',
         'Ay boyunca $signName burcunun enerjisi yoğun. Duygusal iniş çıkışlar yaşanabilir ama her biri sizi daha güçlü kılacak. Sabırlı olun, süreç size çalışıyor.',
         'Bu ay evrensel enerji $signName burcunu sarmalıyor. Uzun süredir beklediğiniz değişimler başlıyor. Korkularınızı bırakın, yeniye açılın.',
         'Kozmik takvim bu ay sizin için önemli sayfalar açıyor. Kişisel ve profesyonel yaşamınızda dönüm noktaları var. Her kararınız geleceğinizi şekillendiriyor.',
@@ -194,7 +194,7 @@ class ExtendedHoroscopeContent {
       'This month is a time of transformation and renewal for $signName. Planets are forming strong aspects, preparing the ground for fundamental changes in your life. The transformation that begins in your inner world will reflect on your outer world.',
       'The energies of the month support $signName. This period is ideal for discovering yourself, realizing your potential and growing spiritually. Take advantage of the opportunities the universe offers you.',
       'Cosmic flow is on your side this month. As $elementName energy strengthens, your natural talents and strengths come to the fore. Act with confidence and focus on your goals.',
-      'Planets are performing a special choreography for $signName this month. Doors of fate are opening, new possibilities are emerging. Events that will change the flow of your life may occur.',
+      'This month invites $signName to consider new possibilities and themes. Explore areas of change and growth in your life.',
       'Throughout the month $signName\'s energy is intense. There may be emotional ups and downs but each one will make you stronger. Be patient, the process is working for you.',
       'This month universal energy surrounds $signName. The changes you\'ve been waiting for are starting. Let go of your fears, be open to the new.',
       'The cosmic calendar is opening important pages for you this month. There are turning points in your personal and professional life. Every decision you make shapes your future.',
@@ -208,10 +208,10 @@ class ExtendedHoroscopeContent {
         'Aşk hayatınızda bu ay önemli gelişmeler var. Venüs\'ün etkisi altında, ilişkileriniz derinleşiyor ve yeni romantik bağlar kurulabilir. Kalbinizi açık tutun.',
         'Bu ay ilişkilerde dönüşüm yaşanıyor. Eski kalıpları kırmak ve daha otantik bağlar kurmak için ideal bir dönem. Cesur olun ve duygularınızı ifade edin.',
         'Romantik enerjiler yoğunlaşıyor. Bekarlar için önemli karşılaşmalar, çiftler için tutkulu bir dönem başlıyor. Aşkın büyüsüne kendinizi bırakın.',
-        'Kalp çakranız bu ay fazla mesai yapıyor. Derin duygusal bağlantılar, anlamlı konuşmalar ve romantik anlar sizi bekliyor. Savunmalarınızı indirin.',
+        'Kalp çakranız bu ay aktif. Derin duygusal bağlantılar, anlamlı konuşmalar ve romantik anlar için güzel bir dönem. Savunmalarınızı indirmeyi düşünün.',
         'Ay boyunca romantik atmosfer güçlü. Sürpriz randevular, beklenmedik itiraflar veya ilişkinizde yeni bir sayfa açılması mümkün.',
         'İlişkilerde netlik zamanı. Belirsizlikler çözülüyor, duygular berraklaşıyor. "Nerede duruyorum?" sorusunun cevabını bu ay alabilirsiniz.',
-        'Aşkta şanslı bir ay başlıyor. Bekarlar için kader anları, çiftler için yeniden aşık olma dönemi. Romantizm havada.',
+        'Aşk ve ilişki temalarını keşfetmek için güzel bir ay. İlişkilerinizde neyin önemli olduğunu düşünün. Romantik enerji güçlü.',
         'Bu ay duygusal bağlar güçleniyor. Sevdiklerinizle geçirdiğiniz her an değerli. Kaliteli zaman yaratın, anılar biriktirin.',
       ];
     }
@@ -219,10 +219,10 @@ class ExtendedHoroscopeContent {
       'There are important developments in your love life this month. Under Venus\' influence, your relationships are deepening and new romantic bonds can be formed. Keep your heart open.',
       'Transformation is happening in relationships this month. An ideal period to break old patterns and establish more authentic bonds. Be brave and express your feelings.',
       'Romantic energies are intensifying. Important encounters for singles, a passionate period for couples begins. Let yourself be swept away by the magic of love.',
-      'Your heart chakra is working overtime this month. Deep emotional connections, meaningful conversations and romantic moments await you. Lower your defenses.',
+      'Your heart chakra is active this month. A good time for deep emotional connections, meaningful conversations and romantic themes. Consider lowering your defenses.',
       'Strong romantic atmosphere throughout the month. Surprise dates, unexpected confessions or opening a new chapter in your relationship are possible.',
       'Time for clarity in relationships. Uncertainties are being resolved, emotions are becoming clear. You may get the answer to "Where do I stand?" this month.',
-      'A lucky month begins in love. Destiny moments for singles, a period of falling in love again for couples. Romance is in the air.',
+      'A beautiful month for exploring love and relationship themes. Consider what matters most in your relationships. Romantic energy is strong.',
       'Emotional bonds are strengthening this month. Every moment you spend with loved ones is precious. Create quality time, collect memories.',
     ];
   }
@@ -235,7 +235,7 @@ class ExtendedHoroscopeContent {
         'Profesyonel ilişkileriniz güçleniyor. Ağ kurma ve işbirlikleri için bereketli bir dönem. Fikirlerinizi paylaşın ve destek arayın.',
         'Kariyer alanında ay boyunca hareketlilik var. Toplantılar, görüşmeler, yeni projeler... Enerji yüksek, fırsatlar bol. Aktif olun.',
         'Bu ay iş yerinde öne çıkma zamanı. Yeteneklerinizi sergileyin, fikirlerinizi sunun. Üstlerinizin dikkatini çekme şansınız yüksek.',
-        'Profesyonel alanda kararlılık ve odaklanma gerekiyor. Dikkat dağıtıcılardan uzak durun, önceliklerinizi belirleyin. Sonuçlar gelecek.',
+        'Profesyonel alanda kararlılık ve odaklanma temaları öne çıkıyor. Dikkat dağıtıcılardan uzak durun, önceliklerinizi belirleyin.',
         'İş hayatında değişim rüzgarları esiyor. Yeni roller, sorumluluklar veya tamamen farklı bir kariyer yolu gündeme gelebilir.',
         'Ay boyunca iş dünyasında şansınız parlak. Beklenmedik fırsatlar, olumlu haberler veya maddi kazançlar mümkün.',
       ];
@@ -246,7 +246,7 @@ class ExtendedHoroscopeContent {
       'Your professional relationships are strengthening. A fruitful period for networking and collaborations. Share your ideas and seek support.',
       'There is activity in the career field throughout the month. Meetings, interviews, new projects... Energy is high, opportunities are plentiful. Be active.',
       'Time to stand out at work this month. Showcase your talents, present your ideas. Your chances of catching your superiors\' attention are high.',
-      'Determination and focus are needed in the professional field. Stay away from distractions, set your priorities. Results will come.',
+      'Determination and focus support professional growth. Consider what distractions to minimize and how to set priorities.',
       'Winds of change are blowing in your work life. New roles, responsibilities or a completely different career path may come up.',
       'Your luck shines bright in the business world throughout the month. Unexpected opportunities, positive news or financial gains are possible.',
     ];
@@ -359,8 +359,8 @@ class ExtendedHoroscopeContent {
       return [
         'Bu yıl $signName burcu için önemli bir dönüm noktası. Kozmik enerjiler derin dönüşüm ve kişisel büyümeyi destekliyor. Sürece güvenin ve değişimi kucaklayın.',
         '$signName için manifestasyon yılı başlıyor. Besleyip büyüttüğünüz hayaller gerçeğe dönüşmeye hazır. Odaklanın, tutarlı çalışın ve mucizelerin açılmasını izleyin.',
-        'Yıldızlar bu yıl $signName\'ın evrimi için hizalanıyor. Zorluklar öğretmen oluyor, engeller basamak taşına dönüşüyor. Dayanıklılığınız en büyük varlığınız olacak.',
-        'Genişleme, bu yıl $signName için ana tema. İster kariyer, ister ilişkiler, ister kişisel gelişim olsun - hayatın her alanında büyüme bekliyor.',
+        'Bu yıl $signName için evrim temalarını keşfetme dönemi. Zorluklar öğretmen olabilir, engeller basamak taşına dönüşebilir. Dayanıklılık önemli bir tema.',
+        'Genişleme, bu yıl $signName için bir tema olabilir. İster kariyer, ister ilişkiler, ister kişisel gelişim olsun - her alanda büyüme potansiyeli var.',
       ];
     }
 
@@ -368,23 +368,23 @@ class ExtendedHoroscopeContent {
 
     return [
       'This year marks a major turning point for $signName. Cosmic energies support deep transformation and personal growth. Trust the process and embrace change.',
-      'A year of manifestation awaits $signName. Dreams you\'ve nurtured are ready to become reality. Stay focused, work consistently, and watch miracles unfold.',
-      'The stars align for $signName\'s evolution this year. Challenges become teachers, obstacles become stepping stones. Your resilience will be your greatest asset.',
-      'Expansion is the theme for $signName this year. Whether in career, relationships, or personal development, growth awaits in every area of life.',
+      'A year of manifestation themes for $signName. Dreams you\'ve nurtured can move toward reality with focused effort. Stay consistent and trust the process.',
+      'This year invites $signName to reflect on personal evolution. Consider how challenges can become teachers and obstacles can become opportunities for growth.',
+      'Expansion themes emerge for $signName this year. Whether in career, relationships, or personal development, growth potential exists in many areas of life.',
     ];
   }
 
   static List<String> getYearlyLoveContent(AppLanguage language) {
     if (language == AppLanguage.tr) {
       return [
-        'Bu yıl aşk sahnenin merkezinde. Derin bağlantılar, ruh eşi karşılaşmaları ve ilişki kilometre taşları bekliyor. Kalbinizi aşkın büyüsüne açın.',
-        'Kalp meseleleri için dönüştürücü bir yıl. Eski kalıplar kırılıyor, otantik aşk ortaya çıkıyor. İster bekar ister çift olun, derin büyüme bekliyor.',
+        'Bu yıl aşk temaları ön plana çıkabilir. Derin bağlantılar ve ilişki temaları keşfedilebilir. Kalbinizi açık tutmayı düşünün.',
+        'Kalp meseleleri için dönüştürücü bir yıl olabilir. Eski kalıpları kırmak ve otantik bağlantılar keşfetmek için güzel bir dönem.',
         'Venüs yıl boyunca aşk hayatınızı kutsayacak. Romantizm, tutku ve duygusal derinlik ilişkilerinizi karakterize ediyor. Aşk bir yol buluyor.',
       ];
     }
     return [
-      'Love takes center stage this year. Deep connections, soulmate encounters, and relationship milestones await. Open your heart to the magic of love.',
-      'A transformative year for matters of the heart. Old patterns break, authentic love emerges. Whether single or coupled, profound growth awaits.',
+      'Love themes take center stage this year. Deep connections and relationship growth can be explored. Consider opening your heart to meaningful connections.',
+      'A transformative year for matters of the heart. Old patterns can break, authentic love can emerge. Whether single or coupled, profound growth is possible.',
       'Venus blesses your love life throughout the year. Romance, passion, and emotional depth characterize your relationships. Love finds a way.',
     ];
   }
@@ -392,13 +392,13 @@ class ExtendedHoroscopeContent {
   static List<String> getYearlyCareerContent(AppLanguage language) {
     if (language == AppLanguage.tr) {
       return [
-        'Bu yılı profesyonel atılımlar tanımlıyor. Terfiler, yeni fırsatlar ve emeklerinizin takdiri bekliyor. Sıkı çalışmanız karşılığını buluyor.',
+        'Bu yıl profesyonel atılımlar için güzel bir dönem olabilir. Terfiler, yeni fırsatlar ve emeklerinizin takdiri temalarını keşfedin.',
         'Bu yıl kariyer evrimi hızlanıyor. İster basamakları tırmanın ister tamamen yol değiştirin, önemli profesyonel büyüme yıldızlarda yazılı.',
         'Yıl boyunca liderlik fırsatları beliriyor. Gücünüze adım atın, vizyonunuzu paylaşın ve profesyonel etkinizin genişlemesini izleyin.',
       ];
     }
     return [
-      'Professional breakthroughs define this year. Promotions, new opportunities, and recognition for your efforts await. Your hard work pays off.',
+      'Professional breakthrough themes emerge this year. Promotions, new opportunities, and recognition for your efforts are possible. Your hard work can pay off.',
       'Career evolution accelerates this year. Whether climbing the ladder or changing paths entirely, significant professional growth is written in the stars.',
       'Leadership opportunities emerge throughout the year. Step into your power, share your vision, and watch your professional influence expand.',
     ];
@@ -422,13 +422,13 @@ class ExtendedHoroscopeContent {
   static List<String> getYearlyFinancialContent(AppLanguage language) {
     if (language == AppLanguage.tr) {
       return [
-        'Bu yıl finansal bolluk akıyor. Yeni gelir akışları, yatırım fırsatları ve maddi büyüme bekliyor. Refah bilinci aktive oluyor.',
+        'Bu yıl finansal bolluk temaları öne çıkıyor. Yeni gelir akışları, yatırım fırsatları ve maddi büyüme alanları keşfedilebilir.',
         'Stratejik finansal planlama bu yıl temettü ödüyor. Uzun vadeli düşünce, akıllı yatırımlar ve disiplinli harcama kalıcı zenginlik yaratır.',
         'Jüpiter\'in bereketleri finansal genişleme getiriyor. Büyüme ve refah fırsatları beliriyor. Beklenmedik bolluğa açık kalın.',
       ];
     }
     return [
-      'Financial abundance flows this year. New income streams, investment opportunities, and material growth await. Prosperity consciousness activates.',
+      'Financial abundance themes emerge this year. New income streams, investment opportunities, and material growth areas can be explored.',
       'Strategic financial planning pays dividends this year. Long-term thinking, wise investments, and disciplined spending create lasting wealth.',
       'Jupiter\'s blessings bring financial expansion. Opportunities for growth and prosperity emerge. Stay open to unexpected abundance.',
     ];
@@ -457,7 +457,7 @@ class ExtendedHoroscopeContent {
         'Her gün büyüme için yeni fırsatlar getiriyor.',
         'Yolculuğa güveniyorum ve akışa teslim oluyorum.',
         'Bolluk bana kolayca ve zahmetsizce akıyor.',
-        'Kaderimin yaratıcısı benim.',
+        'Hayatımın yönünü ben belirlerim.',
       ];
     }
     return [
@@ -466,7 +466,7 @@ class ExtendedHoroscopeContent {
       'Every day brings new opportunities for growth.',
       'I trust the journey and surrender to the flow.',
       'Abundance flows to me easily and effortlessly.',
-      'I am the creator of my destiny.',
+      'I choose the direction of my life.',
     ];
   }
 
@@ -558,14 +558,14 @@ class ExtendedHoroscopeContent {
         'Ruh bağlantıları zaman ve mekanı aşar. Aradığınız aşk sizi de arıyor. Kalp bağlantılarının kozmik zamanlamasına güvenin.',
         'Kalbiniz, zihninizin kavrayamadığını biliyor. Derin ruh bağları, aşkın gizemli yollarına teslim olduğumuzda oluşur.',
         'Geçmiş yaşam bağlantıları yüzeye çıkabilir. O anı tanıma, o açıklanamaz aşinalık - bunlar ruh imzalarıdır.',
-        'Evren gerçek aşk için işbirliği yapıyor. Kalpler buluşmak için yazılmışsa, hiçbir engel aşılamaz değildir. Romantik kaderinize inanın.',
+        'Derin bağlantılar zaman alır ama anlamlıdır. Kalp bağlantılarınızı besleyin ve ilişkilerinize değer verin.',
       ];
     }
     return [
       'Soul connections transcend time and space. The love you seek is also seeking you. Trust the cosmic timing of heart connections.',
       'Your heart knows what your mind can\'t comprehend. Deep soul bonds form when we surrender to love\'s mysterious ways.',
       'Past life connections may surface. That instant recognition, that unexplainable familiarity - these are soul signatures.',
-      'The universe conspires for true love. When hearts are meant to meet, no obstacle is insurmountable. Have faith in your romantic destiny.',
+      'Deep connections take time but are meaningful. Nurture your heart connections and value your relationships.',
     ];
   }
 

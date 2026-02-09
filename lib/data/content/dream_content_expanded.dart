@@ -93,7 +93,7 @@ class KadimGirisTemplates {
     SymbolCategory.dogaOlayi: [
       'Doğa olayları, kozmik güçlerin dilidir. Evren senin aracılığınla konuşuyor.',
       'Fırtına, yağmur, deprem - iç dünyanın iklimi dışarıda görünüyor.',
-      'Doğa olayları dönüşümün habercisidir. Hangi değişim kapıda?',
+      'Doğa olayları dönüşümün habercisidir. Hangi değişim temaları öne çıkıyor?',
     ],
     SymbolCategory.soyut: [
       'Soyut rüyalar en derin mesajları taşır. Kavramlar imgelere dönüşüyor.',
@@ -597,7 +597,7 @@ class EkSemboller {
       emotionVariants: {
         EmotionalTone.korku: 'Kötü şans habercisi - uyarı',
         EmotionalTone.merak: 'Sihirli mesaj - dinle',
-        EmotionalTone.donukluk: 'Karanlık haberci - değişim kapıda',
+        EmotionalTone.donukluk: 'Karanlık haberci - değişim temaları belirgin',
         EmotionalTone.heyecan: 'Büyü aktif - dönüşüm başlıyor',
       },
       archetypes: ['Haberci', 'Sihirbaz', 'Gölge'],
@@ -905,7 +905,7 @@ class EkSemboller {
       emotionVariants: {
         EmotionalTone.ofke: 'Sınırlar ihlal edildi - savaş',
         EmotionalTone.korku: 'Yenilgi korkusu - güçsüzlük',
-        EmotionalTone.heyecan: 'Güç gösterisi - kazanacaksın',
+        EmotionalTone.heyecan: 'Güç gösterisi - zafer teması',
         EmotionalTone.donukluk: 'Bitmek bilmeyen savaş - yorgunluk',
       },
       archetypes: ['Savaşçı', 'Savunucu', 'Mücadeleci'],

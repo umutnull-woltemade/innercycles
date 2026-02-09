@@ -648,7 +648,7 @@ class GlossaryContent {
       termTr: 'Yod (Tanrı Parmağı)',
       hint: 'Kader noktası',
       definition: 'İki gezegen altıgen yaparken, üçüncü gezegen ikisine de quincunx yapar. Özel bir misyonu gösterir.',
-      deepExplanation: 'Nadir bulunan, güçlü karmik yapılandırma. "Tanrı\'nın parmağı" anlamına gelir. Kaçınılmaz bir kader hissi, özel bir yaşam amacı. Tepe noktasındaki gezegen kilit rol oynar.',
+      deepExplanation: 'Nadir bulunan, güçlü karmik yapılandırma. "Tanrı\'nın parmağı" anlamına gelir. Güçlü bir yaşam amacı hissi veren tema. Tepe noktasındaki gezegen kilit rol oynar.',
       category: GlossaryCategory.aspects,
       relatedTerms: ['Quincunx', 'Altıgen', 'Kader'],
     ),

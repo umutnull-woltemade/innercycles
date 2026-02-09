@@ -1014,7 +1014,7 @@ class CosmicShareContentService {
           type: 'Archetype',
           symbol: 'Gardener',
           title: 'The Patient Gardener',
-          meaning: 'Seeds bear fruit in time. Today you will see what you planted with patience sprouting.',
+          meaning: 'Seeds bear fruit in time. Consider how what you planted with patience is now sprouting.',
           imageHint: 'taurus_gardener',
         ),
         SymbolicMessage(
@@ -1094,7 +1094,7 @@ class CosmicShareContentService {
           type: 'Archetype',
           symbol: 'Diplomat',
           title: 'Peace Ambassador',
-          meaning: 'Building bridges, healing wounds. Today you will bring harmony.',
+          meaning: 'Building bridges, healing wounds. A theme of harmony today.',
           imageHint: 'libra_diplomat',
         ),
         SymbolicMessage(
@@ -1872,7 +1872,7 @@ class CosmicShareContentService {
     ],
     ZodiacSign.scorpio: [
       'Karanlıktan korkmuyorsun.',
-      'Dönüşüm kapıda. Hazır mısın?',
+      'Dönüşüm temaları güçlü. Hazır mısın?',
       'Derinliklerde hazine var.',
     ],
     ZodiacSign.sagittarius: [
@@ -1904,7 +1904,7 @@ class CosmicShareContentService {
 
   static const Map<ZodiacSign, List<String>> _personalMessages = {
     ZodiacSign.aries: [
-      'İçindeki ateş bugün farklı yanıyor. Belki de savaşman gereken şey dışarıda değil, kendi içinde. O sabırsızlık, o hemen şimdi isteği — dur bir an. Gerçek cesaret bazen beklemektir. Bugün acele etme, ama hareketsiz de kalma. Ortada bir yol var ve sen onu bulacaksın.',
+      'İçindeki ateş bugün farklı yanıyor. Belki de savaşman gereken şey dışarıda değil, kendi içinde. O sabırsızlık, o hemen şimdi isteği — dur bir an. Gerçek cesaret bazen beklemektir. Bugün acele etme, ama hareketsiz de kalma. Ortada bir yol var ve sen onu bulabilirsin.',
       'Herkes senin gücünü görüyor ama kimse yorgunluğunu bilmiyor. Bugün kendine şunu sor: Kimin için savaşıyorum? Cevap "kendim için" değilse, strateji değiştirme zamanı. Enerjin sınırsız değil, onu doğru yere yatır.',
     ],
     ZodiacSign.taurus: [
@@ -1941,7 +1941,7 @@ class CosmicShareContentService {
     ],
     ZodiacSign.capricorn: [
       'Zirveye tırmanırken manzarayı gördün mü? Dur bir an. Başarı listeleri değil, anılar bırakır. Bugün hedefleri unut, anı yaşa. Disiplin ara verince çökmez, nefes alır.',
-      'Güçlü olmak zorunda değilsin. Her zaman değil. Bugün zırhı indir, kırılganlığını göster. Saygı değil, sevgi kazanacaksın.',
+      'Güçlü olmak zorunda değilsin. Her zaman değil. Bugün zırhı indir, kırılganlığını göster. Saygı değil, sevgi kazanma teması güçlü.',
     ],
     ZodiacSign.aquarius: [
       'Herkesten farklısın ve bu yorucu olabiliyor. Bugün anlaşılmak için değiştirme kendini. Evren seni böyle yarattı — orijinal. Kalabalıkta yalnız hissetmek, yanlış kalabalıkta olmak demek.',
@@ -2240,7 +2240,7 @@ class CosmicShareContentService {
         type: 'Arketip',
         symbol: 'Bahçıvan',
         title: 'Sabırlı Bahçıvan',
-        meaning: 'Tohumlar zamanla meyve verir. Bugün sabırla ektiğin şeylerin yeşerdiğini göreceksin.',
+        meaning: 'Tohumlar zamanla meyve verir. Bugün sabırla ektiğin şeylerin yeşermesi teması güçlü.',
         imageHint: 'taurus_gardener',
       ),
       SymbolicMessage(
@@ -2320,7 +2320,7 @@ class CosmicShareContentService {
         type: 'Arketip',
         symbol: 'Diplomat',
         title: 'Barış Elçisi',
-        meaning: 'Köprüler kuran, yaralar saran. Bugün uyumu sen getireceksin.',
+        meaning: 'Köprüler kuran, yaralar saran. Bugün uyum teması öne çıkıyor.',
         imageHint: 'libra_diplomat',
       ),
       SymbolicMessage(

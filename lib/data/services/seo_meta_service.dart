@@ -158,7 +158,7 @@ class SeoMetaService {
 
     // Haftalık Burç
     'weekly-horoscope': PageMeta(
-      title: 'Haftalık Burç Yorumları — Bu Hafta Burçları Neler Bekliyor | Venus One',
+      title: 'Haftalık Burç Yorumları — Bu Hafta İçin Refleksiyon Temaları | Venus One',
       description: 'Haftalık burç yorumları. Haftanın öne çıkan günleri, kozmik enerjileri ve 12 burç için detaylı haftalık analiz.',
       keywords: ['haftalık burç', 'bu hafta burçlar', 'haftalık yorum', 'haftalık astroloji'],
       canonicalPath: '/weekly-horoscope',
@@ -168,7 +168,7 @@ class SeoMetaService {
 
     // Aylık Burç
     'monthly-horoscope': PageMeta(
-      title: 'Aylık Burç Yorumları — Bu Ay Burçları Neler Bekliyor | Venus One',
+      title: 'Aylık Burç Yorumları — Bu Ay İçin Refleksiyon Temaları | Venus One',
       description: 'Aylık burç yorumları. Ayın önemli transitleri, dolunay/yeniay etkileri ve 12 burç için detaylı aylık analiz.',
       keywords: ['aylık burç', 'bu ay burçlar', 'aylık yorum', 'aylık astroloji'],
       canonicalPath: '/monthly-horoscope',
@@ -1602,7 +1602,7 @@ class SubscriptionTriggerTexts {
         },
         'quiz_reminder': {
           'title': 'Kozmik profilin hazır',
-          'body': 'Kişiselleştirilmiş içerikler seni bekliyor',
+          'body': 'Kişiselleştirilmiş içeriklerin hazır',
           'cta': 'Aç',
         },
         'transit_alert': {
@@ -1612,7 +1612,7 @@ class SubscriptionTriggerTexts {
         },
         'weekly_horoscope': {
           'title': 'Haftalık burcun hazır',
-          'body': 'Bu hafta seni neler bekliyor?',
+          'body': 'Bu hafta hangi temaları keşfedebilirsin?',
           'cta': 'Oku',
         },
       };
@@ -1635,7 +1635,7 @@ class SubscriptionTriggerTexts {
         },
         'weekly_horoscope': {
           'title': 'Your weekly horoscope is ready',
-          'body': 'What awaits you this week?',
+          'body': 'What themes can you explore this week?',
           'cta': 'Read',
         },
       };
@@ -1657,7 +1657,7 @@ class SubscriptionTriggerTexts {
           'cta': 'Detaylı Analizi Gör',
         },
         'subscription_offer': {
-          'subject': '✨ Sınırsız kozmik rehberlik seni bekliyor',
+          'subject': '✨ Sınırsız kozmik rehberliği keşfet',
           'preview': 'Günlük yorumlar, kişisel transitler ve daha fazlası',
           'cta': 'Hemen Başla',
         },
@@ -1675,7 +1675,7 @@ class SubscriptionTriggerTexts {
           'cta': 'See Detailed Analysis',
         },
         'subscription_offer': {
-          'subject': '✨ Unlimited cosmic guidance awaits you',
+          'subject': '✨ Explore unlimited cosmic guidance',
           'preview': 'Daily readings, personal transits, and more',
           'cta': 'Start Now',
         },

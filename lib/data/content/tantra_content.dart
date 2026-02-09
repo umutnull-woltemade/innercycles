@@ -5164,7 +5164,7 @@ Partner dinamikleri derin dönüşüm getirir.
           'sign': 'Akrep',
           'interpretation': '''
 8. Ev Akrep'te: En güçlü dönüşüm konumu. Derin, yoğun ve
-kaçınılmaz dönüşümler. Ölüm-yeniden doğuş deneyimleri güçlü.
+güçlü dönüşüm temaları. Ölüm-yeniden doğuş deneyimleri güçlü.
 Tantrik potansiyel en yüksek.
 ''',
           'tantricPath': 'Yoğunluk ve derinlik yoluyla dönüşüm',

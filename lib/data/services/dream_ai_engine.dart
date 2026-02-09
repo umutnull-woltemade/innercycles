@@ -1610,7 +1610,7 @@ JSON çıktısı da ekle.
       final fallbacks = {
         EmotionalTone.korku: 'An alarm is sounding within. Your subconscious wants to warn you about something.',
         EmotionalTone.huzur: 'You are in inner balance. This dream celebrates your peace.',
-        EmotionalTone.merak: 'New doors are opening in your mind. This dream is inviting you to explore.',
+        EmotionalTone.merak: 'New perspectives are emerging in your mind. This dream invites you to explore.',
         EmotionalTone.sucluluk: 'A burden of consciousness wants to speak. You might be carrying a debt from the past.',
         EmotionalTone.ozlem: 'A valuable part of your soul is missing. Something is calling you back.',
         EmotionalTone.heyecan: 'Energy is rising - something new is on the horizon.',

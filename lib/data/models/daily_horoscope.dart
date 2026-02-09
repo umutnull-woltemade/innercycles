@@ -98,7 +98,7 @@ class DailyHoroscope {
       ],
       Element.air: [
         'Your mind is exceptionally sharp today. New ideas and connections flow effortlessly.',
-        'Communication is your superpower right now. Express your thoughts with clarity and watch doors open.',
+        'Communication is a key theme today. Express your thoughts with clarity and notice new connections forming.',
         'Social opportunities abound. Your wit and charm attract interesting people into your orbit.',
       ],
       Element.water: [
