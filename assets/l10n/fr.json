@@ -221,6 +221,57 @@
     "retrograde_description": "Retrograde planets turn that planet's energy inward. During these periods, it's beneficial to direct that energy toward inner motivation."
   },
   "home": {
+    "greeting": "Bonjour, {name}!",
+    "todays_cosmic_message": "Message Cosmique du Jour",
+    "chips": {
+      "dream": "Rêve",
+      "kozmoz": "Kozmoz",
+      "birth_chart": "Thème Natal",
+      "theta_healing": "Theta Healing",
+      "astrocartography": "Astrocartographie",
+      "reiki": "Reiki",
+      "tarot": "Tarot",
+      "horoscope": "Horoscope",
+      "tantra": "Tantra"
+    },
+    "sections": {
+      "star_gate": "Porte des Étoiles",
+      "hidden_knowledge": "Savoir Caché"
+    },
+    "entries": {
+      "cosmic_flow": {
+        "title": "Flux Cosmique",
+        "subtitle": "Énergie et guidance quotidiennes"
+      },
+      "cosmic_share": {
+        "title": "Partage Cosmique",
+        "subtitle": "Partagez votre énergie cosmique"
+      },
+      "tarot": {
+        "title": "Lecture de Tarot",
+        "subtitle": "Découvrez les messages des cartes"
+      },
+      "compatibility": {
+        "title": "Compatibilité",
+        "subtitle": "Explorez les thèmes relationnels"
+      },
+      "birth_chart": {
+        "title": "Thème Natal",
+        "subtitle": "Votre empreinte cosmique"
+      },
+      "numerology": {
+        "title": "Numérologie",
+        "subtitle": "Nombres et significations"
+      },
+      "dream": {
+        "title": "Interprétation des Rêves",
+        "subtitle": "Explorez les symboles oniriques"
+      },
+      "chakra": {
+        "title": "Équilibre des Chakras",
+        "subtitle": "Alignement des centres énergétiques"
+      }
+    },
     "todays_cosmic_whisper": "Le Murmure Cosmique du Jour",
     "special_readings": "Nos Lectures Spéciales",
     "personalized_readings": "Lectures personnalisées basées sur vos données de naissance",
@@ -7912,6 +7963,11 @@
       "general_subtext": "Start your spiritual journey with a short test.",
       "general_button": "Start Test",
       "inline_default": "Is this unique to you? Find out with a short test"
+    },
+    "birth_date_picker": {
+      "day": "Jour",
+      "month": "Mois",
+      "year": "Année"
     },
     "entertainment_disclaimer": {
       "astrology": "À des fins de divertissement uniquement. Pas de conseils prédictifs.",

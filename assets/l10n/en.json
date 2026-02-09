@@ -235,6 +235,57 @@
     "retrograde_description": "Retrograde planets turn that planet's energy inward. During these periods, it's beneficial to direct that energy toward inner motivation."
   },
   "home": {
+    "greeting": "Hi, {name}!",
+    "todays_cosmic_message": "Today's Cosmic Message",
+    "chips": {
+      "dream": "Dream",
+      "kozmoz": "Kozmoz",
+      "birth_chart": "Birth Chart",
+      "theta_healing": "Theta Healing",
+      "astrocartography": "Astrocartography",
+      "reiki": "Reiki",
+      "tarot": "Tarot",
+      "horoscope": "Horoscope",
+      "tantra": "Tantra"
+    },
+    "sections": {
+      "star_gate": "Star Gate",
+      "hidden_knowledge": "Hidden Knowledge"
+    },
+    "entries": {
+      "cosmic_flow": {
+        "title": "Cosmic Flow",
+        "subtitle": "Daily energy and guidance"
+      },
+      "cosmic_share": {
+        "title": "Cosmic Share",
+        "subtitle": "Share your cosmic energy"
+      },
+      "tarot": {
+        "title": "Tarot Reading",
+        "subtitle": "Discover card insights"
+      },
+      "compatibility": {
+        "title": "Compatibility",
+        "subtitle": "Explore relationship themes"
+      },
+      "birth_chart": {
+        "title": "Birth Chart",
+        "subtitle": "Your cosmic blueprint"
+      },
+      "numerology": {
+        "title": "Numerology",
+        "subtitle": "Numbers and meaning"
+      },
+      "dream": {
+        "title": "Dream Interpretation",
+        "subtitle": "Explore dream symbols"
+      },
+      "chakra": {
+        "title": "Chakra Balance",
+        "subtitle": "Energy center alignment"
+      }
+    },
     "luck": "Luck",
     "detailed_reading": "Detailed Reading",
     "mercury_retrograde": "Mercury Retrograde",
@@ -1891,6 +1942,23 @@
     "opposition": "Opposition"
   },
   "widgets": {
+    "birth_date_picker": {
+      "day": "Day",
+      "month": "Month",
+      "year": "Year"
+    },
+    "entertainment_disclaimer": {
+      "general": "For entertainment purposes only",
+      "dreams": "Dream interpretations are symbolic reflections",
+      "health": "Not medical advice. Consult professionals for health concerns",
+      "astrology": "Astrology is a tool for self-reflection, not prediction",
+      "tarot": "Tarot readings are for personal insight only",
+      "numerology": "Numerology offers symbolic perspectives",
+      "chakra": "Chakra information is for self-reflection purposes",
+      "compatibility": "Compatibility insights are for reflection only",
+      "insight": "These insights are for personal reflection",
+      "reflection": "Use this as a tool for self-discovery"
+    },
     "dream_share_card": {
       "themes": {
         "mystical": {

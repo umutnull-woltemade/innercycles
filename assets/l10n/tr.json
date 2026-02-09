@@ -221,6 +221,57 @@
     "retrograde_description": "Retro gezegenler, o gezegenin enerjisini içe döndürür. Bu dönemlerde o enerjiyi içsel motivasyona yönlendirmek faydalıdır."
   },
   "home": {
+    "greeting": "Merhaba, {name}!",
+    "todays_cosmic_message": "Bugünün Kozmik Mesajı",
+    "chips": {
+      "dream": "Rüya",
+      "kozmoz": "Kozmoz",
+      "birth_chart": "Doğum Haritası",
+      "theta_healing": "Theta Healing",
+      "astrocartography": "Astrokartografi",
+      "reiki": "Reiki",
+      "tarot": "Tarot",
+      "horoscope": "Burç",
+      "tantra": "Tantra"
+    },
+    "sections": {
+      "star_gate": "Yıldız Kapısı",
+      "hidden_knowledge": "Gizli Bilgi"
+    },
+    "entries": {
+      "cosmic_flow": {
+        "title": "Kozmik Akış",
+        "subtitle": "Günlük enerji ve rehberlik"
+      },
+      "cosmic_share": {
+        "title": "Kozmik Paylaşım",
+        "subtitle": "Kozmik enerjini paylaş"
+      },
+      "tarot": {
+        "title": "Tarot Falı",
+        "subtitle": "Kart içgörülerini keşfet"
+      },
+      "compatibility": {
+        "title": "Uyum Analizi",
+        "subtitle": "İlişki temalarını keşfet"
+      },
+      "birth_chart": {
+        "title": "Doğum Haritası",
+        "subtitle": "Kozmik şablonun"
+      },
+      "numerology": {
+        "title": "Numeroloji",
+        "subtitle": "Sayılar ve anlamları"
+      },
+      "dream": {
+        "title": "Rüya Yorumu",
+        "subtitle": "Rüya sembollerini keşfet"
+      },
+      "chakra": {
+        "title": "Çakra Dengesi",
+        "subtitle": "Enerji merkezi uyumu"
+      }
+    },
     "luck": "Şans",
     "detailed_reading": "Detaylı Yorum",
     "mercury_retrograde": "Merkür Retrosu",
@@ -1877,6 +1928,23 @@
     "opposition": "Karşıt"
   },
   "widgets": {
+    "birth_date_picker": {
+      "day": "Gün",
+      "month": "Ay",
+      "year": "Yıl"
+    },
+    "entertainment_disclaimer": {
+      "general": "Sadece eğlence amaçlıdır",
+      "dreams": "Rüya yorumları sembolik refleksiyonlardır",
+      "health": "Tıbbi tavsiye değildir. Sağlık konularında uzmana danışın",
+      "astrology": "Astroloji bir öz-refleksiyon aracıdır, kehanet değil",
+      "tarot": "Tarot falları sadece kişisel içgörü içindir",
+      "numerology": "Numeroloji sembolik perspektifler sunar",
+      "chakra": "Çakra bilgisi öz-refleksiyon amaçlıdır",
+      "compatibility": "Uyum içgörüleri sadece refleksiyon içindir",
+      "insight": "Bu içgörüler kişisel refleksiyon içindir",
+      "reflection": "Bunu kendini keşfetme aracı olarak kullan"
+    },
     "dream_share_card": {
       "themes": {
         "mystical": {

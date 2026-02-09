@@ -221,6 +221,57 @@
     "retrograde_description": "Retrograde planets turn that planet's energy inward. During these periods, it's beneficial to direct that energy toward inner motivation."
   },
   "home": {
+    "greeting": "Hallo, {name}!",
+    "todays_cosmic_message": "Kosmische Botschaft des Tages",
+    "chips": {
+      "dream": "Traum",
+      "kozmoz": "Kozmoz",
+      "birth_chart": "Geburtshoroskop",
+      "theta_healing": "Theta Healing",
+      "astrocartography": "Astrokartographie",
+      "reiki": "Reiki",
+      "tarot": "Tarot",
+      "horoscope": "Horoskop",
+      "tantra": "Tantra"
+    },
+    "sections": {
+      "star_gate": "Sternentor",
+      "hidden_knowledge": "Verborgenes Wissen"
+    },
+    "entries": {
+      "cosmic_flow": {
+        "title": "Kosmischer Fluss",
+        "subtitle": "Tägliche Energie und Führung"
+      },
+      "cosmic_share": {
+        "title": "Kosmisches Teilen",
+        "subtitle": "Teile deine kosmische Energie"
+      },
+      "tarot": {
+        "title": "Tarot Lesung",
+        "subtitle": "Entdecke Karteneinblicke"
+      },
+      "compatibility": {
+        "title": "Kompatibilität",
+        "subtitle": "Beziehungsthemen erkunden"
+      },
+      "birth_chart": {
+        "title": "Geburtshoroskop",
+        "subtitle": "Dein kosmischer Bauplan"
+      },
+      "numerology": {
+        "title": "Numerologie",
+        "subtitle": "Zahlen und Bedeutung"
+      },
+      "dream": {
+        "title": "Traumdeutung",
+        "subtitle": "Traumsymbole erkunden"
+      },
+      "chakra": {
+        "title": "Chakra Balance",
+        "subtitle": "Energiezentren-Ausrichtung"
+      }
+    },
     "todays_cosmic_whisper": "Kosmisches Flüstern des Tages",
     "special_readings": "Unsere Speziellen Deutungen",
     "personalized_readings": "Personalisierte Analysen basierend auf deinen Geburtsdaten",
@@ -7926,6 +7977,11 @@
       "general_subtext": "Start your spiritual journey with a short test.",
       "general_button": "Start Test",
       "inline_default": "Is this unique to you? Find out with a short test"
+    },
+    "birth_date_picker": {
+      "day": "Tag",
+      "month": "Monat",
+      "year": "Jahr"
     },
     "entertainment_disclaimer": {
       "astrology": "Nur zur Unterhaltung. Keine vorhersagende Beratung.",
