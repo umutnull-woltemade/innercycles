@@ -966,7 +966,7 @@
       "advice_house_10": "Focus on your career goals. Establish your place in society.",
       "advice_house_11": "Expand your social circle. Work towards your future dreams.",
       "advice_house_12": "Year of introspection. Spiritual development and rest should be prioritized.",
-      "advice_default": "This year will bring important transformations for you."
+      "advice_default": "Dieses Jahr lädt zur Reflexion über wichtige Transformationsthemen ein."
     },
     "reiki": {
       "title": "Reiki",
@@ -3906,18 +3906,18 @@
       "three_four_times": "3-4 times/year"
     },
     "overviews": {
-      "aries": "{year} is a year of courage and new beginnings for you. Your leadership qualities will come to the fore.",
-      "taurus": "{year} will be a year focused on financial stability and personal values.",
-      "gemini": "{year} will bring important opportunities for communication and learning. Your social circle will expand.",
-      "cancer": "{year} is a period focused on home, family, and emotional security themes.",
-      "leo": "{year} is a time for creative expression and personal brilliance. Don't be afraid to take the stage.",
-      "virgo": "{year} carries attention to detail and service energy. Health and routine are important.",
-      "libra": "{year} is a time of transformation for relationships and partnerships. Seek balance.",
-      "scorpio": "{year} brings deep transformations and renewal. Let go of old patterns.",
-      "sagittarius": "{year} is a year of adventure, education, and expanding horizons. Freedom comes first.",
-      "capricorn": "{year} is suitable for career peaks and social success. Focus on your goals.",
-      "aquarius": "{year} carries strong energy for innovative ideas and social connections.",
-      "pisces": "{year} will be a rich period for spiritual development and creative inspiration."
+      "aries": "{year} lädt zur Reflexion über Mut und Neuanfänge ein. Erkunden Sie Ihre Führungsqualitäten.",
+      "taurus": "{year} hebt Themen von finanzieller Stabilität und persönlichen Werten hervor.",
+      "gemini": "{year} bringt Kommunikations- und Lernthemen in den Fokus. Erkunden Sie Ihre sozialen Verbindungen.",
+      "cancer": "{year} lädt zur Erkundung von Heim-, Familien- und emotionalen Sicherheitsthemen ein.",
+      "leo": "{year} hebt Themen von kreativem Ausdruck und persönlicher Brillanz hervor.",
+      "virgo": "{year} betont Detailgenauigkeit und Dienstthemen. Reflektieren Sie über Gesundheit und Routine.",
+      "libra": "{year} lädt zur Reflexion über Beziehungs- und Partnerschaftsthemen ein. Erkunden Sie Balance.",
+      "scorpio": "{year} hebt tiefe Transformation und Erneuerungsthemen hervor. Erwägen Sie, alte Muster loszulassen.",
+      "sagittarius": "{year} betont Abenteuer-, Bildungs- und Horizonterweiterungsthemen. Erkunden Sie Freiheit.",
+      "capricorn": "{year} hebt Karriere- und Erfolgsthemen hervor. Überdenken Sie Ihre Ziele.",
+      "aquarius": "{year} bringt innovative Ideen und soziale Verbindungsthemen in den Fokus.",
+      "pisces": "{year} lädt zur Erkundung von spiritueller Entwicklung und kreativer Inspiration ein."
     },
     "quarter_descriptions": {
       "q1": "The beginning of the year comes with {theme} energy. As a {sign} sign, you will be active during this period.",
@@ -5901,7 +5901,7 @@
       "default": "I am valuable and enough."
     },
     "affirmation_lists": {
-      "morning_1": "Great things will happen today.",
+      "morning_1": "Ich bin heute offen für großartige Dinge.",
       "morning_2": "My energy is high and my focus is clear.",
       "morning_3": "I am open to all opportunities.",
       "noon_1": "I am progressing and growing.",

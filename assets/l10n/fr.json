@@ -966,7 +966,7 @@
       "advice_house_10": "Focus on your career goals. Establish your place in society.",
       "advice_house_11": "Expand your social circle. Work towards your future dreams.",
       "advice_house_12": "Year of introspection. Spiritual development and rest should be prioritized.",
-      "advice_default": "This year will bring important transformations for you."
+      "advice_default": "Cette année invite à réfléchir sur des thèmes de transformation importants."
     },
     "reiki": {
       "title": "Reiki",
@@ -3906,21 +3906,21 @@
       "three_four_times": "3-4 times/year"
     },
     "overviews": {
-      "aries": "{year} is a year of courage and new beginnings for you. Your leadership qualities will come to the fore.",
-      "taurus": "{year} will be a year focused on financial stability and personal values.",
-      "gemini": "{year} will bring important opportunities for communication and learning. Your social circle will expand.",
-      "cancer": "{year} is a period focused on home, family, and emotional security themes.",
-      "leo": "{year} is a time for creative expression and personal brilliance. Don't be afraid to take the stage.",
-      "virgo": "{year} carries attention to detail and service energy. Health and routine are important.",
-      "libra": "{year} is a time of transformation for relationships and partnerships. Seek balance.",
-      "scorpio": "{year} brings deep transformations and renewal. Let go of old patterns.",
-      "sagittarius": "{year} is a year of adventure, education, and expanding horizons. Freedom comes first.",
-      "capricorn": "{year} is suitable for career peaks and social success. Focus on your goals.",
-      "aquarius": "{year} carries strong energy for innovative ideas and social connections.",
-      "pisces": "{year} will be a rich period for spiritual development and creative inspiration."
+      "aries": "{year} invite à réfléchir sur le courage et les nouveaux départs. Explorez vos qualités de leadership.",
+      "taurus": "{year} met en lumière les thèmes de stabilité financière et de valeurs personnelles.",
+      "gemini": "{year} met en focus les thèmes de communication et d'apprentissage. Explorez vos connexions sociales.",
+      "cancer": "{year} invite à explorer les thèmes de foyer, famille et sécurité émotionnelle.",
+      "leo": "{year} met en lumière les thèmes d'expression créative et de brillance personnelle.",
+      "virgo": "{year} souligne les thèmes d'attention aux détails et de service. Réfléchissez sur la santé et la routine.",
+      "libra": "{year} invite à réfléchir sur les thèmes de relations et de partenariats. Explorez l'équilibre.",
+      "scorpio": "{year} met en lumière les thèmes de transformation profonde et de renouveau.",
+      "sagittarius": "{year} souligne les thèmes d'aventure, d'éducation et d'élargissement des horizons.",
+      "capricorn": "{year} met en lumière les thèmes de carrière et de succès. Révisez vos objectifs.",
+      "aquarius": "{year} met en focus les thèmes d'idées innovantes et de connexions sociales.",
+      "pisces": "{year} invite à explorer les thèmes de développement spirituel et d'inspiration créative."
     },
     "quarter_descriptions": {
-      "q1": "The beginning of the year comes with {theme} energy. As a {sign} sign, you will be active during this period.",
+      "q1": "Le début de l'année est associé au thème {theme}. En tant que {sign}, soyez attentif pendant cette période.",
       "q2": "Between spring and summer, {theme} comes to the fore. Time to materialize your projects.",
       "q3": "The autumn season highlights issues related to {theme}. Balance is important.",
       "q4": "The last quarter of the year is time for reflection on {theme} and planning for next year."
@@ -4236,7 +4236,7 @@
       "Today is a wonderful day for creative play and imagination.",
       "Your child may need extra cuddles and comfort today.",
       "A great day for learning something new and exciting.",
-      "Social activities and friendship will bring joy today.",
+      "Les activités sociales et l'amitié peuvent apporter de la joie aujourd'hui.",
       "Encourage outdoor adventures and physical activity.",
       "Today favors quiet activities like reading or drawing.",
       "Your child's natural talents will shine today.",
@@ -5887,7 +5887,7 @@
       "default": "I am valuable and enough."
     },
     "affirmation_lists": {
-      "morning_1": "Great things will happen today.",
+      "morning_1": "Je suis ouvert(e) aux grandes choses aujourd'hui.",
       "morning_2": "My energy is high and my focus is clear.",
       "morning_3": "I am open to all opportunities.",
       "noon_1": "I am progressing and growing.",

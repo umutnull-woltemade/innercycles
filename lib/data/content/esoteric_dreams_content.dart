@@ -696,7 +696,7 @@ Her çakranın:
 • Dengesiz hali - uyarıcı rüya temaları
 • Açılma süreci - dönüşüm rüyaları
 
-Bu bölüm, rüyalarınızı çakra perspektifinden yorumlamanıza yardımcı olacak.
+Bu bölüm, rüyalarınızı çakra perspektifinden keşfetmenize yardımcı olabilir.
 ''';
 
   /// Kök Çakra (Muladhara) rüyaları

@@ -29,7 +29,7 @@ class HoroscopeContent {
         'Kozmik savaşçı arketipi içinde uyanıyor. Cesaretinin kökü, maddi dünyada değil, ruhsal alemde yatıyor. Bugün eylemlerinin arkasındaki niyet, sonucundan daha önemli. Bilincinle hareket et.',
       ],
       AppLanguage.en: [
-        'The fire within you never tires of burning, because you are the fire itself. Today your soul awakens to remember the secret of beginnings. Being a pioneer is your destiny - but this time, step forward to illuminate rather than fight. The warrior within you is now transforming into a wise leader.',
+        'The fire within you never tires of burning, because you are the fire itself. Today your soul awakens to remember the secret of beginnings. Being a pioneer is a theme you may explore - consider stepping forward to illuminate rather than fight. The warrior within you may be transforming into a wise leader.',
         'Mars energy flows through your veins like volcanic power today. Ancient esoteric teachings say that the soul of Aries is the "First Light" - the light that existed before darkness, the creation itself. Today you are called to carry that light. Shine fearlessly.',
         'The cosmic warrior archetype awakens within you. The root of your courage lies not in the material world, but in the spiritual realm. Today the intention behind your actions is more important than the outcome. Move with consciousness.',
       ],

@@ -562,7 +562,7 @@ class _ShareImageCard extends StatelessWidget {
     // Libra / Terazi
     ['Denge noktasındasın.', 'Güzellik ve adalet senin.', 'İlişkilerde dönüşüm zamanı.'],
     // Scorpio / Akrep
-    ['Karanlıktan korkmuyorsun.', 'Dönüşüm kapıda.', 'Derinliklerde hazine var.'],
+    ['Karanlıktan korkmuyorsun.', 'Dönüşüm temaları öne çıkıyor.', 'Derinliklerde hazine var.'],
     // Sagittarius / Yay
     ['Ufuk seni çağırıyor.', 'Ok yaydan çıkmak üzere.', 'Özgürlük senin doğum hakkın.'],
     // Capricorn / Oğlak

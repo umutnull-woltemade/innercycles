@@ -2951,7 +2951,7 @@ Shakti burada:
 • Bilinç durumlarını yönetir
 
 Shakti ve Shiva burada neredeyse birleşmiş - sadece
-en ince ayrım kalmış. Taç chakrada tam birleşim olacak.
+en ince ayrım kalmış. Taç chakra tam birleşimi temsil eder.
 ''',
     petalCount: 2,
     yantra: '''

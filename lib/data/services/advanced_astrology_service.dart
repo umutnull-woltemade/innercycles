@@ -1331,7 +1331,7 @@ class ReturnChartService {
     final moonSign = planets['Moon']?.sign.nameTr ?? 'bilinmeyen';
 
     return 'Solar Return haritanizda yukselen ${ascendant.nameTr} burcunda. '
-        'Bu yil boyunca ${ascendant.element.nameTr} elementi temalari on planda olacak. '
+        'Bu yil boyunca ${ascendant.element.nameTr} elementi temalari uzerine dusunmek faydali olabilir. '
         'Gunes $sunHouse. evde, bu alan yilin ana odak noktasi. '
         'Ay $moonSign burcunda, duygusal ihtiyaclariniz bu burç enerjileriyle sekilleniyor.';
   }
