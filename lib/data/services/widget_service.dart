@@ -21,12 +21,12 @@ class WidgetService {
   /// Check if widgets are supported (iOS only)
   bool get isSupported => !kIsWeb && Platform.isIOS;
 
-  /// Update daily horoscope widget data
+  /// Update daily reflection widget data
   Future<void> updateDailyHoroscope({
     required String zodiacSign,
     required String zodiacEmoji,
     required String dailyMessage,
-    required int luckyNumber,
+    required int focusNumber,
     required String element,
     required int moodRating, // 1-5
   }) async {
@@ -37,7 +37,7 @@ class WidgetService {
         'widget_zodiac_sign': zodiacSign,
         'widget_zodiac_emoji': zodiacEmoji,
         'widget_daily_message': dailyMessage,
-        'widget_lucky_number': luckyNumber,
+        'widget_focus_number': focusNumber,
         'widget_element': element,
         'widget_mood_rating': moodRating.clamp(1, 5),
       });
@@ -107,7 +107,7 @@ class WidgetService {
     required String element,
     required String dailyMessage,
     required String shortMessage,
-    required int luckyNumber,
+    required int focusNumber,
     required int moodRating,
     required String moonPhase,
     required String moonEmoji,
@@ -123,11 +123,11 @@ class WidgetService {
       final lockEnergy = ((energyLevel / 100) * 4 + 1).round().clamp(1, 5);
 
       await _channel.invokeMethod('updateWidgetData', {
-        // Daily horoscope
+        // Daily reflection
         'widget_zodiac_sign': zodiacSign,
         'widget_zodiac_emoji': zodiacEmoji,
         'widget_daily_message': dailyMessage,
-        'widget_lucky_number': luckyNumber,
+        'widget_focus_number': focusNumber,
         'widget_element': element,
         'widget_mood_rating': moodRating.clamp(1, 5),
         // Cosmic energy

@@ -495,21 +495,21 @@ void main() {
       });
     });
 
-    group('Lucky Numbers', () {
-      test('getLuckyNumbers returns multiple numbers', () {
-        final lucky = NumerologyCalculationService.getLuckyNumbers(
+    group('Focus Numbers', () {
+      test('getFocusNumbers returns multiple numbers', () {
+        final focus = NumerologyCalculationService.getFocusNumbers(
           DateTime(1985, 10, 22),
           'John Doe',
         );
-        expect(lucky.isNotEmpty, isTrue);
+        expect(focus.isNotEmpty, isTrue);
       });
 
-      test('getDailyLuckyNumbers includes personal day', () {
-        final lucky = NumerologyCalculationService.getDailyLuckyNumbers(
+      test('getDailyFocusNumbers includes personal day', () {
+        final focus = NumerologyCalculationService.getDailyFocusNumbers(
           DateTime(1985, 10, 22),
           DateTime.now(),
         );
-        expect(lucky.isNotEmpty, isTrue);
+        expect(focus.isNotEmpty, isTrue);
       });
     });
 
@@ -539,7 +539,7 @@ void main() {
           2024,
         );
         expect(forecast.personalNumber, isPositive);
-        expect(forecast.luckyNumbers, isNotEmpty);
+        expect(forecast.focusNumbers, isNotEmpty);
       });
     });
 

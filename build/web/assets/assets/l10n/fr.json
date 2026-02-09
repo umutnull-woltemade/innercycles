@@ -7,8 +7,8 @@
   },
   "app": {
     "name": "Venus One",
-    "tagline": "Les Secrets du Ciel Vous Attendent",
-    "loading_text": "Les étoiles s'alignent, votre destin se dévoile..."
+    "tagline": "Votre Voyage Intérieur Commence",
+    "loading_text": "Votre espace de réflexion se prépare..."
   },
   "common": {
     "cancel": "Annuler",
@@ -76,12 +76,12 @@
     "evening": "Les étoiles du soir brillent",
     "late_night": "Le clair de lune guide votre chemin",
     "cosmic_welcome": [
-      "Les étoiles vous attendaient",
-      "Votre voyage cosmique commence",
-      "L'univers vous a trouvé",
-      "Votre âme est rentrée chez elle",
-      "La porte du destin s'est ouverte",
-      "Votre lumière commence à briller"
+      "Le temps de réflexion commence",
+      "Votre voyage de conscience commence",
+      "Bienvenue dans l'exploration intérieure",
+      "Prenez du temps pour vous",
+      "Votre espace de pensée est prêt",
+      "Commencez votre réflexion quotidienne"
     ]
   },
   "onboarding": {
@@ -221,6 +221,57 @@
     "retrograde_description": "Retrograde planets turn that planet's energy inward. During these periods, it's beneficial to direct that energy toward inner motivation."
   },
   "home": {
+    "greeting": "Bonjour, {name}!",
+    "todays_cosmic_message": "Message Cosmique du Jour",
+    "chips": {
+      "dream": "Rêve",
+      "kozmoz": "Kozmoz",
+      "birth_chart": "Thème Natal",
+      "theta_healing": "Theta Healing",
+      "astrocartography": "Astrocartographie",
+      "reiki": "Reiki",
+      "tarot": "Tarot",
+      "horoscope": "Horoscope",
+      "tantra": "Tantra"
+    },
+    "sections": {
+      "star_gate": "Porte des Étoiles",
+      "hidden_knowledge": "Savoir Caché"
+    },
+    "entries": {
+      "cosmic_flow": {
+        "title": "Flux Cosmique",
+        "subtitle": "Énergie et guidance quotidiennes"
+      },
+      "cosmic_share": {
+        "title": "Partage Cosmique",
+        "subtitle": "Partagez votre énergie cosmique"
+      },
+      "tarot": {
+        "title": "Lecture de Tarot",
+        "subtitle": "Découvrez les messages des cartes"
+      },
+      "compatibility": {
+        "title": "Compatibilité",
+        "subtitle": "Explorez les thèmes relationnels"
+      },
+      "birth_chart": {
+        "title": "Thème Natal",
+        "subtitle": "Votre empreinte cosmique"
+      },
+      "numerology": {
+        "title": "Numérologie",
+        "subtitle": "Nombres et significations"
+      },
+      "dream": {
+        "title": "Interprétation des Rêves",
+        "subtitle": "Explorez les symboles oniriques"
+      },
+      "chakra": {
+        "title": "Équilibre des Chakras",
+        "subtitle": "Alignement des centres énergétiques"
+      }
+    },
     "todays_cosmic_whisper": "Le Murmure Cosmique du Jour",
     "special_readings": "Nos Lectures Spéciales",
     "personalized_readings": "Lectures personnalisées basées sur vos données de naissance",
@@ -253,22 +304,22 @@
       "most_loyal": "💫 Quel signe est le plus fidele?",
       "most_jealous": "😈 Quel signe est le plus jaloux?",
       "most_passionate": "💋 Quel signe est le plus passionne au lit?",
-      "love_luck_today": "💕 Comment est ma chance en amour aujourd'hui?",
-      "ex_return": "💔 Mon ex va-t-il revenir?",
-      "cheating": "🤫 Va-t-il/elle me tromper?",
-      "marriage_proposal": "💍 Quand vais-je recevoir une demande en mariage?",
-      "does_like_me": "😍 Est-ce qu'il/elle m'aime bien?",
-      "no_message": "💬 Pourquoi ne m'envoie-t-il/elle pas de message?",
-      "promotion": "💼 Vais-je etre promu(e)?",
-      "job_change": "📈 Devrais-je changer de travail?",
-      "gambling": "🎰 Devrais-je jouer aux jeux de hasard?",
-      "lucky_star": "✨ Quand mon etoile de chance brillera-t-elle?",
-      "mercury_retrograde": "🌙 Comment Mercure retrograde m'affecte-t-il?",
-      "big_change": "🦋 Quand un grand changement arrivera-t-il dans ma vie?",
-      "rich_become": "💰 Vais-je devenir riche?",
-      "future_love": "🔮 Comment sera mon futur amour?",
-      "attention_this_week": "🎭 À quoi dois-je faire attention cette semaine?",
-      "soulmate_find": "💑 Quand vais-je trouver mon âme sœur?"
+      "love_luck_today": "💕 Quels thèmes amoureux puis-je explorer aujourd'hui?",
+      "ex_return": "💔 Que puis-je apprendre de mes relations passées?",
+      "cheating": "🤫 Quels schémas de confiance est-ce que je remarque en moi?",
+      "marriage_proposal": "💍 Quelles sont mes pensées sur l'engagement?",
+      "does_like_me": "😍 Comment est-ce que j'interprète les signaux de connexion?",
+      "no_message": "💬 Pourquoi suis-je anxieux(se) au sujet de la communication?",
+      "promotion": "💼 Quels thèmes de croissance professionnelle est-ce que j'explore?",
+      "job_change": "📈 Quels facteurs sont importants dans les décisions de carrière?",
+      "gambling": "🎰 Comment est-ce que j'aborde le risque et l'incertitude?",
+      "lucky_star": "✨ Pour quelles opportunités suis-je reconnaissant(e)?",
+      "mercury_retrograde": "🌙 Quels thèmes de communication émergent maintenant?",
+      "big_change": "🦋 Quels thèmes de transformation résonnent avec moi?",
+      "rich_become": "💰 Quelle est ma relation avec l'abondance?",
+      "future_love": "🔮 Quels schémas est-ce que je remarque dans mes relations?",
+      "attention_this_week": "🎭 Quels thèmes méritent mon attention cette semaine?",
+      "soulmate_find": "💑 Quelles qualités est-ce que je valorise dans une connexion profonde?"
     },
     "cosmic_connection_lost": "Connexion cosmique temporairement perdue. Veuillez réessayer.",
     "share_on_instagram": "Partager sur Instagram",
@@ -316,12 +367,12 @@
       "timing_desc": "Timing propice"
     },
     "featured_questions": {
-      "soulmate": "Quand trouverai-je mon âme sœur?",
-      "rich": "Deviendrai-je riche cette année?",
-      "future": "À quoi ressemble mon avenir?",
-      "luck_today": "Comment est ma chance aujourd'hui?",
-      "darkest_secret": "Quel est mon secret le plus sombre?",
-      "love_improve": "Quand ma vie amoureuse s'améliorera-t-elle?"
+      "soulmate": "Quelles qualités est-ce que je recherche dans une connexion profonde?",
+      "rich": "Quelle est ma relation avec l'abondance?",
+      "future": "Quelles perspectives la réflexion peut-elle m'offrir?",
+      "luck_today": "Quels thèmes résonnent avec moi aujourd'hui?",
+      "darkest_secret": "Quels aspects de l'ombre est-ce que j'explore?",
+      "love_improve": "Comment puis-je nourrir mes relations?"
     },
     "quick_actions": {
       "horoscope": "Horoscope",
@@ -527,7 +578,7 @@
         "desc": "Centres énergétiques"
       }
     },
-    "luck": "Luck",
+    "luck": "Thème du Jour",
     "detailed_reading": "Detailed Reading",
     "mercury_retrograde": "Mercury Retrograde",
     "mercury_retrograde_warning": "Be careful with communication and technology!",
@@ -687,18 +738,18 @@
       },
       "smart_responses": {
         "aries_relationship": "♈ Tu penses à une relation avec un Bélier ? En tant que {sign}, voici ce que tu dois savoir :\n\n🔥 Les Béliers sont passionnés, impulsifs et adorent la chasse. Ils ont besoin d'un partenaire qui peut gérer leur énergie !",
-        "default_response": "✨ L'univers te parle aujourd'hui. Écoute ta voix intérieure, les réponses sont cachées dans ton cœur.",
-        "financial_future": "💰 En tant que {sign}, ton avenir financier semble prometteur !\n\n✨ L'énergie abondante de Jupiter apporte des opportunités financières. Reste ouvert aux nouvelles sources de revenus.",
+        "default_response": "✨ Prends un moment pour réfléchir à ce qui compte pour toi aujourd'hui. Quels thèmes résonnent avec ta situation actuelle?",
+        "financial_future": "💰 En tant que {sign}, voici quelques thèmes financiers sur lesquels réfléchir:\n\n✨ L'archétype de Jupiter symbolise la croissance et l'expansion. Quels domaines souhaites-tu développer? Ceci est pour la réflexion uniquement, pas des conseils financiers.",
         "fire_water_compatibility": "🔥💧 Les signes de Feu et d'Eau sont-ils compatibles ?\n\n⚡ Difficile mais possible ! Le Feu (Bélier, Lion, Sagittaire) et l'Eau (Cancer, Scorpion, Poissons) peuvent s'équilibrer.",
         "gemini_decisions": "♊ Pourquoi les Gémeaux ne peuvent-ils pas prendre de décisions ?\n\n🌀 En tant qu'enfants de Mercure, ils pensent de manière duale - ils voient les deux côtés de chaque situation !",
-        "general_spiritual": "✨ Cher {sign}, l'univers te parle aujourd'hui !\n\n🔮 {daily_message}\n\n💫 Énergie d'aujourd'hui : {daily_energy}",
+        "general_spiritual": "✨ Cher {sign}, voici le thème de réflexion d'aujourd'hui:\n\n🔮 {daily_message}\n\n💫 Thème d'aujourd'hui: {daily_energy}",
         "leo_attention": "♌ Pourquoi les Lions cherchent-ils toujours l'attention ?\n\n👑 En tant qu'enfants du Soleil, ils sont nés \"stars\" ! L'attention et la reconnaissance sont leur carburant.",
-        "love_reading": "💕 Lecture d'amour pour {sign} :\n\n🌹 Vénus est actuellement {venus_effect}.\n\n✨ Des surprises romantiques pourraient arriver dans les prochains jours !",
+        "love_reading": "💕 Réflexion relationnelle pour {sign}:\n\n🌹 Les thèmes de Vénus suggèrent actuellement {venus_effect}.\n\n✨ C'est un bon moment pour réfléchir à vos valeurs relationnelles.",
         "most_jealous": "😈 Signes les plus jaloux :\n\n🔥 1. SCORPION - Roi/Reine de la jalousie ! Possessivité intense, problèmes de confiance.",
         "most_loyal": "💫 Classement des signes les plus fidèles :\n\n🥇 1. SCORPION - Une fois engagé, fidèle jusqu'à la mort ! Mais ils n'oublient jamais la trahison.",
         "most_passionate": "💋 Signes les plus passionnés au lit :\n\n🔥 1. SCORPION - Champion incontesté ! Passion, intensité, profondeur...",
         "scorpio_relationship": "♏ Les Scorpions sont les amoureux les plus mystérieux et intenses du siècle !\n\n🔮 Pourquoi mystérieux ? En tant qu'enfants de Pluton, ils explorent les profondeurs de l'existence.",
-        "soulmate": "💕 Lecture d'âme sœur pour {sign} :\n\n🌟 Les signaux du Nœud Nord te parlent. Ton âme sœur pourrait apparaître de manière inattendue !",
+        "soulmate": "💕 Réflexion relationnelle pour {sign}:\n\n🌟 Le Nœud Nord dans ton thème suggère des thèmes de croissance relationnelle. Quelles qualités valorises-tu le plus dans les connexions profondes?",
         "venus_air": "soutient ta communication",
         "venus_earth": "récompense ta fidélité",
         "venus_fire": "augmente ta passion",
@@ -823,8 +874,8 @@
       "birthday_number": "Birthday",
       "personal_year": "Personal Year",
       "name_numerology": "Name Numerology",
-      "destiny_number": "Destiny Number",
-      "destiny_number_desc": "Calculated from the total value of your name, this number reveals your main purpose and potential in life.",
+      "destiny_number": "Nombre d'Expression",
+      "destiny_number_desc": "Calculé à partir de votre nom, ce nombre reflète les thèmes et caractéristiques potentiels de votre vie.",
       "soul_urge": "Soul Urge",
       "personality": "Personality",
       "karmic_debt_numbers": "Karmic Debt Numbers",
@@ -845,7 +896,7 @@
       "challenges": "Challenges",
       "love_relationships": "Love & Relationships",
       "ancient_secret_title": "Ancient Secret of Numbers",
-      "ancient_secret_desc": "Numerology is an ancient wisdom where the universe speaks in a mathematical language. From Pythagoras to Kabbalah, all esoteric traditions knew the power of numbers. Your birth date and name carry the vibration your soul brought into this world. Each number is a frequency, an energy, a destiny. What you see here is not coincidence - it is the code of your soul.",
+      "ancient_secret_desc": "La numérologie est une sagesse ancienne où l'univers parle dans un langage mathématique. De Pythagore à la Kabbale, toutes les traditions ésotériques connaissaient le pouvoir des nombres. Votre date de naissance et votre nom portent la vibration que votre âme a apportée à ce monde. Chaque nombre est une fréquence, une énergie, un thème à explorer. Ce que vous voyez ici n'est pas une coïncidence - c'est un outil de réflexion personnelle.",
       "number_depth_title": "Depth of Number {number}",
       "kadim_title": "Eternal Dance of Numbers",
       "kadim_content": "Since Pythagoras, sages have known that numbers carry the hidden language of the universe. Your life path number is not just a digit - it is the vibration your soul brought into this world, the unique melody the universe gave you. To hear this melody, you first need silence.",
@@ -915,7 +966,7 @@
       "advice_house_10": "Focus on your career goals. Establish your place in society.",
       "advice_house_11": "Expand your social circle. Work towards your future dreams.",
       "advice_house_12": "Year of introspection. Spiritual development and rest should be prioritized.",
-      "advice_default": "This year will bring important transformations for you."
+      "advice_default": "Cette année invite à réfléchir sur des thèmes de transformation importants."
     },
     "reiki": {
       "title": "Reiki",
@@ -1950,27 +2001,27 @@
     "celestial_sync": "Synchronisation Céleste",
     "sign_depth": "Profondeur du Signe",
     "mood": "Humeur",
-    "lucky_color": "Couleur Porte-Bonheur",
-    "lucky_number": "Chiffre Porte-Bonheur",
+    "lucky_color": "Couleur de Réflexion",
+    "lucky_number": "Nombre de Focus",
     "feature_coming_soon": "Cette fonctionnalité arrive bientôt",
-    "what_says_today": "Que dit votre signe aujourd'hui?",
-    "select_discover_energy": "Sélectionnez votre signe, découvrez votre énergie cosmique",
+    "what_says_today": "Quels thèmes résonnent avec votre signe aujourd'hui?",
+    "select_discover_energy": "Sélectionnez votre signe, découvrez vos thèmes de réflexion",
     "love_relationships": "Amour & Relations",
     "career_finance": "Carrière & Finances",
     "health_wellness": "Santé & Bien-être",
     "health_energy": "Santé & Énergie",
     "spiritual_guidance": "Guidance Spirituelle",
     "important_days": "Jours Importants",
-    "lucky_days": "Jours Chanceux",
+    "lucky_days": "Jours Favorables",
     "important_transits": "Transits Importants",
-    "daily_reading": "Lecture du Jour",
-    "luck_rate": "Taux de Chance",
-    "cosmic_tips": "Conseils Cosmiques",
+    "daily_reading": "Réflexion du Jour",
+    "luck_rate": "Niveau d'Énergie",
+    "cosmic_tips": "Conseils de Réflexion",
     "key_dates": "Dates Clés",
     "yearly_theme": "Thème Annuel",
     "yearly_summary": "Résumé Annuel",
     "special_months": "Mois Spéciaux",
-    "lucky_months": "Mois Chanceux",
+    "lucky_months": "Mois Favorables",
     "planet_transits": "Transits Planétaires",
     "your_zodiac_readings": "Vos Lectures Zodiacales",
     "sign_today": "Comment va {sign} aujourd'hui?",
@@ -2829,7 +2880,7 @@
     "important_transits": "Transits Planétaires Importants",
     "special_months_of_year": "Mois Spéciaux de l'Année",
     "caution_required": "Prudence Requise",
-    "horoscope_readings": "Horoscope Readings",
+    "horoscope_readings": "Réflexions Quotidiennes",
     "birth_chart_analysis": "Birth Chart & Analysis",
     "time_transits": "Time & Transits",
     "numerology_mystic": "Numerology & Mystic Tools",
@@ -3809,7 +3860,7 @@
     "year_summary": "Resume de l'Annee",
     "quarterly_forecasts": "Previsions Trimestrielles",
     "important_transits": "Transits Importants",
-    "lucky_periods": "Periodes Chanceuses",
+    "lucky_periods": "Périodes Favorables",
     "challenging_periods": "Periodes a Surveiller",
     "year_affirmation": "Affirmation de l'Annee",
     "quarter_name": "Q{number}",
@@ -3855,27 +3906,27 @@
       "three_four_times": "3-4 times/year"
     },
     "overviews": {
-      "aries": "{year} is a year of courage and new beginnings for you. Your leadership qualities will come to the fore.",
-      "taurus": "{year} will be a year focused on financial stability and personal values.",
-      "gemini": "{year} will bring important opportunities for communication and learning. Your social circle will expand.",
-      "cancer": "{year} is a period focused on home, family, and emotional security themes.",
-      "leo": "{year} is a time for creative expression and personal brilliance. Don't be afraid to take the stage.",
-      "virgo": "{year} carries attention to detail and service energy. Health and routine are important.",
-      "libra": "{year} is a time of transformation for relationships and partnerships. Seek balance.",
-      "scorpio": "{year} brings deep transformations and renewal. Let go of old patterns.",
-      "sagittarius": "{year} is a year of adventure, education, and expanding horizons. Freedom comes first.",
-      "capricorn": "{year} is suitable for career peaks and social success. Focus on your goals.",
-      "aquarius": "{year} carries strong energy for innovative ideas and social connections.",
-      "pisces": "{year} will be a rich period for spiritual development and creative inspiration."
+      "aries": "{year} invite à réfléchir sur le courage et les nouveaux départs. Explorez vos qualités de leadership.",
+      "taurus": "{year} met en lumière les thèmes de stabilité financière et de valeurs personnelles.",
+      "gemini": "{year} met en focus les thèmes de communication et d'apprentissage. Explorez vos connexions sociales.",
+      "cancer": "{year} invite à explorer les thèmes de foyer, famille et sécurité émotionnelle.",
+      "leo": "{year} met en lumière les thèmes d'expression créative et de brillance personnelle.",
+      "virgo": "{year} souligne les thèmes d'attention aux détails et de service. Réfléchissez sur la santé et la routine.",
+      "libra": "{year} invite à réfléchir sur les thèmes de relations et de partenariats. Explorez l'équilibre.",
+      "scorpio": "{year} met en lumière les thèmes de transformation profonde et de renouveau.",
+      "sagittarius": "{year} souligne les thèmes d'aventure, d'éducation et d'élargissement des horizons.",
+      "capricorn": "{year} met en lumière les thèmes de carrière et de succès. Révisez vos objectifs.",
+      "aquarius": "{year} met en focus les thèmes d'idées innovantes et de connexions sociales.",
+      "pisces": "{year} invite à explorer les thèmes de développement spirituel et d'inspiration créative."
     },
     "quarter_descriptions": {
-      "q1": "The beginning of the year comes with {theme} energy. As a {sign} sign, you will be active during this period.",
+      "q1": "Le début de l'année est associé au thème {theme}. En tant que {sign}, soyez attentif pendant cette période.",
       "q2": "Between spring and summer, {theme} comes to the fore. Time to materialize your projects.",
       "q3": "The autumn season highlights issues related to {theme}. Balance is important.",
       "q4": "The last quarter of the year is time for reflection on {theme} and planning for next year."
     },
     "transit_effects": {
-      "jupiter": "Energy bringing expansion and luck. In the opportunity zone for {sign}.",
+      "jupiter": "Energy bringing expansion and growth. In the opportunity zone for {sign}.",
       "saturn": "Time for responsibility and structuring. A period requiring patience.",
       "mercury": "Attention in communication and technology. Opportunity to complete old matters."
     },
@@ -4185,7 +4236,7 @@
       "Today is a wonderful day for creative play and imagination.",
       "Your child may need extra cuddles and comfort today.",
       "A great day for learning something new and exciting.",
-      "Social activities and friendship will bring joy today.",
+      "Les activités sociales et l'amitié peuvent apporter de la joie aujourd'hui.",
       "Encourage outdoor adventures and physical activity.",
       "Today favors quiet activities like reading or drawing.",
       "Your child's natural talents will shine today.",
@@ -5194,9 +5245,9 @@
       },
       "wheel_of_fortune": {
         "name": "La Roue de Fortune",
-        "keywords": "Changement, cycles, destin",
-        "upright": "De grands changements sont a venir. La chance tourne. La phase ascendante du cycle commence.",
-        "reversed": "Malchance ou phase descendante du cycle. Cela aussi passera. Soyez patient.",
+        "keywords": "Changement, cycles, transformation",
+        "upright": "De grands changements sont a venir. Le cycle tourne. La phase ascendante du cycle commence.",
+        "reversed": "Phase descendante du cycle. Cela aussi passera. Soyez patient.",
         "advice": "Les hauts et les bas de la vie sont naturels. Soyez reconnaissant au sommet, patient dans la chute."
       },
       "justice": {
@@ -5731,7 +5782,7 @@
       "tigers_eye": "Tiger's Eye",
       "tigers_eye_benefit": "Courage and focus",
       "aventurine": "Aventurine",
-      "aventurine_benefit": "Luck and opportunities",
+      "aventurine_benefit": "Growth and opportunities",
       "lapis_lazuli": "Lapis Lazuli",
       "lapis_lazuli_benefit": "Wisdom and truth"
     },
@@ -5836,7 +5887,7 @@
       "default": "I am valuable and enough."
     },
     "affirmation_lists": {
-      "morning_1": "Great things will happen today.",
+      "morning_1": "Je suis ouvert(e) aux grandes choses aujourd'hui.",
       "morning_2": "My energy is high and my focus is clear.",
       "morning_3": "I am open to all opportunities.",
       "noon_1": "I am progressing and growing.",
@@ -6291,7 +6342,7 @@
     "todays_voice": "Voix du jour",
     "dream_trace": "Trace de reve",
     "todays_number": "Nombre du jour",
-    "lucky_hour": "Heure de chance",
+    "lucky_hour": "Heure de Focus",
     "tantra_title": "Tantra",
     "breath": "Souffle",
     "awareness": "Conscience",
@@ -6405,7 +6456,7 @@
           "Ground yourself today 🌍"
         ]
       },
-      "todays_luck": "TODAY'S LUCK",
+      "todays_luck": "TODAY'S THEME",
       "compatible": "COMPATIBLE",
       "warning": "WARNING",
       "for_your_sign_analysis": "FOR YOUR SIGN ANALYSIS",
@@ -7693,7 +7744,7 @@
           "basic_meaning": "Money and wealth dreams represent self-worth and abundance consciousness. They carry a message of inner, not material, wealth.",
           "special_interpretation": "This dream invites you to question your relationship with the material world. True wealth is inner peace and gratitude.",
           "dream_types_label": "💎 MONEY DREAM TYPES",
-          "dream_types": "• Finding money: Incoming opportunities, luck\n• Losing money: Insecurity, fear of loss\n• Being rich: Awareness of potential\n• Counting money: Need for control\n• Giving money: Generosity or power loss",
+          "dream_types": "• Finding money: Incoming opportunities, abundance\n• Losing money: Insecurity, fear of loss\n• Being rich: Awareness of potential\n• Counting money: Need for control\n• Giving money: Generosity or power loss",
           "symbols_label": "🪙 SYMBOLS",
           "symbols": "• Gold: Spiritual wealth, wisdom\n• Cash: Daily security\n• Treasure: Hidden potential\n• Jewels: Self-worth\n• Bank: Security and structure",
           "psychological_label": "🌙 PSYCHOLOGICAL DIMENSION",
@@ -7885,7 +7936,7 @@
     "result_astrology_medium_title": "Star Traveler",
     "result_astrology_medium_desc": "Your connection with astrology is developing. By exploring your birth chart, you can better understand yourself.",
     "result_astrology_low_title": "Cosmic Explorer",
-    "result_astrology_low_desc": "The stars await you! Start your cosmic journey with simple horoscope readings.",
+    "result_astrology_low_desc": "The stars await you! Start your cosmic journey with daily reflection themes.",
     "result_numerology_high_title": "Number Master",
     "result_numerology_high_desc": "You have a strong connection with numbers! Discover the hidden messages on your life path with your personal numerology report.",
     "result_numerology_medium_title": "Number Traveler",
@@ -7912,6 +7963,11 @@
       "general_subtext": "Start your spiritual journey with a short test.",
       "general_button": "Start Test",
       "inline_default": "Is this unique to you? Find out with a short test"
+    },
+    "birth_date_picker": {
+      "day": "Jour",
+      "month": "Mois",
+      "year": "Année"
     },
     "entertainment_disclaimer": {
       "astrology": "À des fins de divertissement uniquement. Pas de conseils prédictifs.",
@@ -8321,13 +8377,13 @@
     "good_afternoon": "Good afternoon",
     "good_evening": "Good evening",
     "dear": "dear",
-    "intro_message": "I am Kozmoz Trace, your cosmic guide. I am here to answer your questions about astrology, horoscope readings, transits, numerology and more with the energy of your {sign} sign.",
+    "intro_message": "I am Kozmoz Trace, your cosmic guide. I am here to help you explore astrology, daily reflections, transits, numerology and more with the energy of your {sign} sign.",
     "ask_placeholder": "Ask Kozmoz... (Press Enter to send)",
     "quick_access": "Quick Access",
     "suggested_questions": "Suggested Questions:",
     "all_analyses": "All Analyses",
     "features": {
-      "zodiac_readings": "Horoscope Readings",
+      "zodiac_readings": "Daily Reflections",
       "birth_chart": "Birth Chart",
       "zodiac_compatibility": "Zodiac Compatibility",
       "transits": "Transits",
@@ -8864,7 +8920,7 @@
       "aquarius": "Approfondir connexion émotionnelle",
       "pisces": "Limites et praticité"
     },
-    "lucky_hours": {
+    "focus_hours": {
       "aries": "Heures du matin quand Mars est fort",
       "taurus": "Après-midi quand Vénus règne",
       "gemini": "Matinée quand Mercure est actif",
@@ -8912,8 +8968,8 @@
       "morning_energy": "ÉNERGIE DU MATIN (06:00 - 12:00)",
       "noon_energy": "ÉNERGIE DE MIDI (12:00 - 18:00)",
       "evening_energy": "ÉNERGIE DU SOIR (18:00 - 24:00)",
-      "lucky_hours": "HEURES FAVORABLES",
-      "lucky_hours_note": "Ces heures sont idéales pour les réunions importantes, les offres d'emploi et les nouveaux départs.",
+      "lucky_hours": "HEURES DE FOCUS",
+      "lucky_hours_note": "Ces heures peuvent être propices au travail concentré et aux activités de pleine conscience.",
       "careful_hours": "HEURES À SURVEILLER",
       "careful_hours_note": "Évitez les grandes décisions, les disputes et les investissements risqués pendant ces heures.",
       "golden_advice": "LES 3 CONSEILS D'OR DU JOUR",
@@ -9548,14 +9604,14 @@
     "planet_moon_meaning": "Emotions, intuition, home",
     "planet_mars_meaning": "Action, courage, energy",
     "planet_mercury_meaning": "Communication, learning, travel",
-    "planet_jupiter_meaning": "Luck, expansion, abundance",
-    "planet_venus_meaning": "Love, beauty, harmony",
+    "planet_jupiter_meaning": "Croissance, expansion, abondance",
+    "planet_venus_meaning": "Amour, beauté, harmonie",
     "planet_saturn_meaning": "Discipline, structure, patience",
-    "lucky_elements": "Lucky Elements Today",
-    "lucky_numbers": "Lucky Numbers",
-    "lucky_color": "Lucky Color",
+    "lucky_elements": "Éléments de Réflexion Aujourd'hui",
+    "lucky_numbers": "Nombres de Focus",
+    "lucky_color": "Couleur Thématique",
     "lucky_direction": "Direction",
-    "lucky_hour": "Lucky Hour",
+    "lucky_hour": "Heure de Focus",
     "lucky_flower": "Flower",
     "lucky_stone": "Stone",
     "biorhythm_cycle": "Biorhythm Cycle",
@@ -9571,7 +9627,7 @@
     "aspect_sun_harmonious": "Vitality and confidence are enhanced. Great for leadership and creative expression.",
     "aspect_moon_harmonious": "Emotional harmony flows. Good for nurturing and connecting with loved ones.",
     "aspect_venus_harmonious": "Love and beauty are highlighted. Ideal for relationships and artistic pursuits.",
-    "aspect_jupiter_harmonious": "Luck and expansion favor you. Good for taking calculated risks.",
+    "aspect_jupiter_harmonious": "Growth and expansion favor you. Good for taking calculated risks.",
     "aspect_default_harmonious": "Positive energy supports your endeavors today.",
     "aspect_mars_challenging": "Watch for impulsiveness or conflict. Channel energy into physical activity.",
     "aspect_saturn_challenging": "May feel restrictions or delays. Practice patience and persistence.",
@@ -9682,7 +9738,7 @@
     "full_moon_title": "Full Moon - {sign}",
     "full_moon_desc": "Full moon in {sign}. Time for completion and harvest. Emotions intensify.",
     "solar_eclipse_title": "Solar Eclipse - {sign}",
-    "solar_eclipse_desc": "Solar eclipse in {sign}. Powerful new beginnings. Doors of destiny are opening.",
+    "solar_eclipse_desc": "Éclipse solaire en {sign}. Thèmes de nouveaux départs à explorer. Réfléchissez aux possibilités.",
     "lunar_eclipse_title": "Lunar Eclipse - {sign}",
     "lunar_eclipse_desc": "Lunar eclipse in {sign}. Major closures and endings. Emotional transformation.",
     "mercury_retro_start": "Mercury Retrograde Begins",
@@ -9696,7 +9752,7 @@
     "jupiter_saturn_conjunction": "Jupiter-Saturn Conjunction",
     "jupiter_saturn_desc": "Important social and personal transformation. This event, occurring once every 20 years, brings great changes.",
     "mars_jupiter_trine": "Mars-Jupiter Trine",
-    "mars_jupiter_desc": "Energy and luck meet. Perfect time for bold ventures. Physical activities and sports are supported.",
+    "mars_jupiter_desc": "Energy and growth meet. Perfect time for bold ventures. Physical activities and sports are supported.",
     "venus_neptune_conjunction": "Venus-Neptune Conjunction",
     "venus_neptune_desc": "Romantic and artistic inspiration. Dreams and imagination strengthen. Spiritual love experiences."
   },
@@ -9891,7 +9947,7 @@
       "mercury": "Esprit et communication",
       "venus": "Amour, beauté et valeurs",
       "mars": "Action, passion et énergie",
-      "jupiter": "Chance, croissance et sagesse",
+      "jupiter": "Expansion, croissance et sagesse",
       "saturn": "Structure, discipline et temps",
       "uranus": "Révolution, liberté et changement",
       "neptune": "Rêves, inspiration et illusion",
@@ -9900,8 +9956,8 @@
   },
   "pdf_report": {
     "labels": {
-      "lucky_number": "Nombre Chanceux",
-      "lucky_color": "Couleur Chanceuse",
+      "lucky_number": "Nombre de Focus",
+      "lucky_color": "Couleur Thématique",
       "caution": "Attention",
       "compatibility_report": "Rapport de Compatibilité"
     },

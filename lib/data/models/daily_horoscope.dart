@@ -1,6 +1,7 @@
 import 'zodiac_sign.dart';
 
-/// Daily horoscope reading for a zodiac sign
+/// Daily reflection content for a zodiac sign
+/// This content is for self-reflection only, not prediction.
 class DailyHoroscope {
   final ZodiacSign sign;
   final DateTime date;
@@ -8,12 +9,12 @@ class DailyHoroscope {
   final String loveReading;
   final String careerReading;
   final String healthReading;
-  final int luckyNumber;
-  final String luckyColor;
-  final double moodRating; // 1-5 stars
+  final int focusNumber;
+  final String reflectionColor;
+  final double moodRating; // 1-5 (thematic intensity)
   final String focusOfTheDay;
   final List<String> affirmations;
-  final String compatibility; // Best match for the day
+  final String compatibility; // Complementary archetype for the day
 
   const DailyHoroscope({
     required this.sign,
@@ -22,8 +23,8 @@ class DailyHoroscope {
     required this.loveReading,
     required this.careerReading,
     required this.healthReading,
-    required this.luckyNumber,
-    required this.luckyColor,
+    required this.focusNumber,
+    required this.reflectionColor,
     required this.moodRating,
     required this.focusOfTheDay,
     required this.affirmations,
@@ -37,8 +38,8 @@ class DailyHoroscope {
     'loveReading': loveReading,
     'careerReading': careerReading,
     'healthReading': healthReading,
-    'luckyNumber': luckyNumber,
-    'luckyColor': luckyColor,
+    'focusNumber': focusNumber,
+    'reflectionColor': reflectionColor,
     'moodRating': moodRating,
     'focusOfTheDay': focusOfTheDay,
     'affirmations': affirmations,
@@ -53,8 +54,8 @@ class DailyHoroscope {
       loveReading: json['loveReading'] as String,
       careerReading: json['careerReading'] as String,
       healthReading: json['healthReading'] as String,
-      luckyNumber: json['luckyNumber'] as int,
-      luckyColor: json['luckyColor'] as String,
+      focusNumber: json['focusNumber'] as int? ?? json['luckyNumber'] as int? ?? 7,
+      reflectionColor: json['reflectionColor'] as String? ?? json['luckyColor'] as String? ?? 'Gold',
       moodRating: (json['moodRating'] as num).toDouble(),
       focusOfTheDay: json['focusOfTheDay'] as String,
       affirmations: List<String>.from(json['affirmations'] as List),
@@ -62,10 +63,10 @@ class DailyHoroscope {
     );
   }
 
-  /// Generate a placeholder horoscope for a sign and date
+  /// Generate a placeholder reflection content for a sign and date
   factory DailyHoroscope.generate(ZodiacSign sign, DateTime date) {
     final seed = date.day + date.month * 31 + sign.index;
-    final luckyNumbers = [3, 7, 9, 11, 13, 17, 21, 22, 27, 33, 42, 77];
+    final focusNumbers = [3, 7, 9, 11, 13, 17, 21, 22, 27, 33, 42, 77];
     final colors = ['Gold', 'Silver', 'Purple', 'Blue', 'Green', 'Red', 'White', 'Pink'];
 
     return DailyHoroscope(
@@ -75,8 +76,8 @@ class DailyHoroscope {
       loveReading: _getLoveReading(sign, date),
       careerReading: _getCareerReading(sign, date),
       healthReading: _getHealthReading(sign, date),
-      luckyNumber: luckyNumbers[seed % luckyNumbers.length],
-      luckyColor: colors[seed % colors.length],
+      focusNumber: focusNumbers[seed % focusNumbers.length],
+      reflectionColor: colors[seed % colors.length],
       moodRating: 3.0 + (seed % 20) / 10,
       focusOfTheDay: _getFocusOfTheDay(sign, date),
       affirmations: _getAffirmations(sign),

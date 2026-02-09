@@ -341,13 +341,13 @@ class HomeScreen extends ConsumerWidget {
                     ],
                   ),
                 ),
-                // Luck stars
+                // Energy level indicator (thematic intensity, not prediction)
                 Column(
                   children: [
-                    _buildLuckStars(horoscope.luckRating),
+                    _buildEnergyIndicator(horoscope.energyLevel),
                     const SizedBox(height: 2),
                     Text(
-                      L10nService.get('home.luck', language),
+                      L10nService.get('home.daily_theme', language),
                       style: TextStyle(
                         color: Colors.white.withValues(alpha: 0.5),
                         fontSize: 10,
@@ -364,14 +364,14 @@ class HomeScreen extends ConsumerWidget {
               children: [
                 _MiniChip(icon: Icons.mood, label: horoscope.mood, color: sign.color),
                 const SizedBox(width: 8),
-                _MiniChip(icon: Icons.palette, label: horoscope.luckyColor, color: sign.color),
+                _MiniChip(icon: Icons.palette, label: horoscope.reflectionColor, color: sign.color),
                 const SizedBox(width: 8),
-                _MiniChip(icon: Icons.tag, label: horoscope.luckyNumber, color: sign.color),
+                _MiniChip(icon: Icons.tag, label: horoscope.focusNumber, color: sign.color),
               ],
             ),
             const SizedBox(height: 12),
             // Kozmik mesaj
-            if (horoscope.cosmicMessage.isNotEmpty)
+            if (horoscope.dailyTheme.isNotEmpty)
               Container(
                 width: double.infinity,
                 padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
@@ -391,7 +391,7 @@ class HomeScreen extends ConsumerWidget {
                     const SizedBox(width: 10),
                     Expanded(
                       child: Text(
-                        horoscope.cosmicMessage,
+                        horoscope.dailyTheme,
                         style: TextStyle(
                           color: Colors.white.withValues(alpha: 0.95),
                           fontStyle: FontStyle.italic,
@@ -891,13 +891,14 @@ class HomeScreen extends ConsumerWidget {
     return '${date.day} $monthName ${date.year}';
   }
 
-  Widget _buildLuckStars(int rating) {
+  /// Displays thematic energy intensity (for visual purposes only, not prediction)
+  Widget _buildEnergyIndicator(int level) {
     return Row(
       children: List.generate(5, (index) {
         return Icon(
-          index < rating ? Icons.star : Icons.star_border,
-          size: 16,
-          color: AppColors.starGold,
+          index < level ? Icons.circle : Icons.circle_outlined,
+          size: 10,
+          color: AppColors.starGold.withValues(alpha: index < level ? 1.0 : 0.3),
         );
       }),
     );

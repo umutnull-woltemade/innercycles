@@ -154,11 +154,11 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
           // AI-QUOTABLE: İlk 3 Bullet (Kısa Cevap)
           _buildQuotableBullets(context, sign, horoscope),
           const SizedBox(height: AppConstants.spacingLg),
-          // Date and luck
-          _buildDateSection(context, horoscope.luckRating),
+          // Date and energy theme
+          _buildDateSection(context, horoscope.energyLevel),
           const SizedBox(height: AppConstants.spacingMd),
           // Daily Energy Bar
-          DailyEnergyCard.fromLuckRating(horoscope.luckRating, accentColor: sign.color),
+          DailyEnergyCard.fromEnergyLevel(horoscope.energyLevel, accentColor: sign.color),
           const SizedBox(height: AppConstants.spacingXl),
           // Main horoscope
           _buildMainHoroscope(context, horoscope.summary, sign),
@@ -190,7 +190,7 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
           const SizedBox(height: AppConstants.spacingXl),
           // Quick facts
           _buildQuickFacts(context, horoscope.mood,
-              horoscope.luckyColor, horoscope.luckyNumber, sign),
+              horoscope.reflectionColor, horoscope.focusNumber, sign),
           const SizedBox(height: AppConstants.spacingLg),
           // Kadim Not - Astroloji bilgeliği
           KadimNotCard(

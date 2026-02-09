@@ -153,10 +153,10 @@ class DailyEnergyCard extends ConsumerWidget {
     this.accentColor,
   });
 
-  /// Helper factory to create from luck/mood values
-  factory DailyEnergyCard.fromLuckRating(int luckRating, {Color? accentColor}) {
-    // Convert 1-5 luck rating to energy percentages
-    final baseEnergy = (luckRating / 5.0);
+  /// Helper factory to create from energy level values (thematic intensity, not prediction)
+  factory DailyEnergyCard.fromEnergyLevel(int energyLevel, {Color? accentColor}) {
+    // Convert 1-5 energy level to theme percentages for display
+    final baseEnergy = (energyLevel / 5.0);
     return DailyEnergyCard(
       loveEnergy: ((baseEnergy + 0.1) * 100).round().clamp(30, 100),
       careerEnergy: ((baseEnergy - 0.05) * 100).round().clamp(30, 100),
@@ -165,6 +165,10 @@ class DailyEnergyCard extends ConsumerWidget {
       accentColor: accentColor,
     );
   }
+
+  /// Backward compatibility alias
+  factory DailyEnergyCard.fromLuckRating(int luckRating, {Color? accentColor}) =>
+      DailyEnergyCard.fromEnergyLevel(luckRating, accentColor: accentColor);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

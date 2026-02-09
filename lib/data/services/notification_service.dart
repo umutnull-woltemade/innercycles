@@ -205,7 +205,7 @@ class NotificationService {
       zodiacSign: sign.name,
       zodiacEmoji: zodiacEmoji,
       dailyMessage: message,
-      luckyNumber: DateTime.now().day % 9 + 1, // Simple lucky number
+      focusNumber: DateTime.now().day % 9 + 1, // Daily focus number
       element: element,
       moodRating: 4, // Will be updated by actual content
     );
@@ -222,7 +222,7 @@ class NotificationService {
     required String dailyMessage,
     required String shortMessage,
     required int moodRating,
-    required int luckyNumber,
+    required int focusNumber,
     required String moonPhase,
     required String planetaryFocus,
     required int energyLevel,
@@ -240,7 +240,7 @@ class NotificationService {
       element: element,
       dailyMessage: dailyMessage,
       shortMessage: shortMessage,
-      luckyNumber: luckyNumber,
+      focusNumber: focusNumber,
       moodRating: moodRating,
       moonPhase: moonPhase,
       moonEmoji: moonEmoji,

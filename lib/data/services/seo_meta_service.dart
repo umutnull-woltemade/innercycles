@@ -36,11 +36,11 @@ class SeoMetaService {
       schemaType: SchemaType.webApplication,
     ),
 
-    // Günlük Burç Yorumu
+    // Günlük Burç Refleksiyonu
     'horoscope': PageMeta(
-      title: 'Günlük Burç Yorumları — 12 Burç İçin Detaylı Yorum | Venus One',
-      description: 'Günlük, haftalık ve aylık burç yorumları. Aşk, kariyer, sağlık ve para konularında kozmik enerji analizi. Tüm burçlar için kişiselleştirilmiş yorumlar.',
-      keywords: ['günlük burç yorumu', 'haftalık burç', 'aylık burç', 'burç falı', 'burç analizi'],
+      title: 'Günlük Refleksiyon Temaları — 12 Burç İçin | Venus One',
+      description: 'Günlük, haftalık ve aylık refleksiyon temaları. Aşk, kariyer, sağlık ve wellness konularında farkındalık içgörüleri. Kişisel gelişim için refleksiyon aracı.',
+      keywords: ['günlük refleksiyon', 'burç temaları', 'farkındalık', 'kişisel gelişim', 'öz-yansıtma'],
       canonicalPath: '/horoscope',
       ogType: 'article',
       schemaType: SchemaType.article,
@@ -1625,12 +1625,12 @@ class SubscriptionTriggerTexts {
         },
         'quiz_reminder': {
           'title': 'Your cosmic profile is ready',
-          'body': 'Personalized content is waiting for you',
+          'body': 'Explore personalized content',
           'cta': 'Open',
         },
         'transit_alert': {
           'title': 'There\'s an important transit this week',
-          'body': 'Learn how it will affect you',
+          'body': 'Learn about this transit theme',
           'cta': 'See Details',
         },
         'weekly_horoscope': {

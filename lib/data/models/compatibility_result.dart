@@ -1,7 +1,9 @@
 import 'zodiac_sign.dart';
 import 'birth_chart.dart';
 
-/// Result of compatibility analysis between two signs or charts
+/// Result of compatibility reflection analysis between two signs or charts.
+/// This analysis is for self-reflection and entertainment only.
+/// Scores represent thematic harmony patterns, not predictions or guarantees.
 class CompatibilityResult {
   final ZodiacSign sign1;
   final ZodiacSign sign2;

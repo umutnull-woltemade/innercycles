@@ -49,8 +49,8 @@ void main() {
       expect(horoscope.loveAdvice, isNotEmpty);
       expect(horoscope.careerAdvice, isNotEmpty);
       expect(horoscope.healthAdvice, isNotEmpty);
-      expect(horoscope.luckyNumber, isNotEmpty);
-      expect(horoscope.luckyColor, isNotEmpty);
+      expect(horoscope.focusNumber, isNotEmpty);
+      expect(horoscope.reflectionColor, isNotEmpty);
       expect(horoscope.mood, isNotEmpty);
       expect(horoscope.isAiGenerated, false);
     });
@@ -129,8 +129,8 @@ void main() {
         loveAdvice: 'Love advice',
         careerAdvice: 'Career advice',
         healthAdvice: 'Health advice',
-        luckyNumber: '7',
-        luckyColor: 'Gold',
+        focusNumber: '7',
+        reflectionColor: 'Gold',
         mood: 'Happy',
       );
 
@@ -139,8 +139,8 @@ void main() {
       expect(horoscope.loveAdvice, 'Love advice');
       expect(horoscope.careerAdvice, 'Career advice');
       expect(horoscope.healthAdvice, 'Health advice');
-      expect(horoscope.luckyNumber, '7');
-      expect(horoscope.luckyColor, 'Gold');
+      expect(horoscope.focusNumber, '7');
+      expect(horoscope.reflectionColor, 'Gold');
       expect(horoscope.mood, 'Happy');
       expect(horoscope.isAiGenerated, false);
     });
@@ -152,8 +152,8 @@ void main() {
         loveAdvice: 'Test',
         careerAdvice: 'Test',
         healthAdvice: 'Test',
-        luckyNumber: '1',
-        luckyColor: 'Red',
+        focusNumber: '1',
+        reflectionColor: 'Red',
         mood: 'Intense',
       );
 
@@ -167,8 +167,8 @@ void main() {
         loveAdvice: 'AI Love',
         careerAdvice: 'AI Career',
         healthAdvice: 'AI Health',
-        luckyNumber: '42',
-        luckyColor: 'Purple',
+        focusNumber: '42',
+        reflectionColor: 'Purple',
         mood: 'Adventurous',
         isAiGenerated: true,
       );

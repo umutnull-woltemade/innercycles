@@ -345,13 +345,13 @@ class HoroscopeContent {
   // REFLECTION MESSAGES - Arketip bazlı refleksiyon mesajları
   // ═══════════════════════════════════════════════════════════════════════════
 
-  static List<String> getCosmicMessages(ZodiacSign sign, AppLanguage lang) {
-    final content = _cosmicMessages[sign];
+  static List<String> getDailyThemes(ZodiacSign sign, AppLanguage lang) {
+    final content = _dailyThemes[sign];
     if (content == null) return [];
     return content[lang] ?? content[AppLanguage.tr] ?? [];
   }
 
-  static final Map<ZodiacSign, Map<AppLanguage, List<String>>> _cosmicMessages = {
+  static final Map<ZodiacSign, Map<AppLanguage, List<String>>> _dailyThemes = {
     ZodiacSign.aries: {
       AppLanguage.tr: [
         '🔥 Bugün cesaretin rehberin, kalbin pusulan olsun.',
@@ -816,13 +816,13 @@ class HoroscopeContent {
   // FUTURE GUIDANCES - Geleceğin fısıltısı
   // ═══════════════════════════════════════════════════════════════════════════
 
-  static List<String> getFutureGuidances(ZodiacSign sign, AppLanguage lang) {
-    final content = _futureGuidances[sign];
+  static List<String> getFutureIntentions(ZodiacSign sign, AppLanguage lang) {
+    final content = _futureIntentions[sign];
     if (content == null) return [];
     return content[lang] ?? content[AppLanguage.tr] ?? [];
   }
 
-  static final Map<ZodiacSign, Map<AppLanguage, List<String>>> _futureGuidances = {
+  static final Map<ZodiacSign, Map<AppLanguage, List<String>>> _futureIntentions = {
     ZodiacSign.aries: {
       AppLanguage.tr: [
         'Büyüme temalarını düşünürken, yeni savaş alanları yerine zafer ve başarı konseptleri üzerine odaklanabilirsin.',

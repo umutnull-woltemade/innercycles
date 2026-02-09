@@ -103,8 +103,8 @@ class NumerologyForecast {
   final String healthAdvice;
   final String financialAdvice;
   final String spiritualAdvice;
-  final List<int> luckyNumbers;
-  final List<String> luckyDays;
+  final List<int> focusNumbers; // Numbers for thematic focus, not prediction
+  final List<String> reflectionDays; // Days for reflection, not luck
   final List<String> favorableActivities;
   final List<String> challengesToWatch;
   final String affirmation;
@@ -118,8 +118,8 @@ class NumerologyForecast {
     required this.healthAdvice,
     this.financialAdvice = '',
     this.spiritualAdvice = '',
-    required this.luckyNumbers,
-    required this.luckyDays,
+    required this.focusNumbers,
+    required this.reflectionDays,
     this.favorableActivities = const [],
     this.challengesToWatch = const [],
     this.affirmation = '',
@@ -1592,55 +1592,55 @@ class NumerologyCalculationService {
   }
 
   // ==========================================================================
-  // LUCKY NUMBERS
+  // FOCUS NUMBERS (for reflection themes, not predictions)
   // ==========================================================================
 
-  /// Get lucky numbers based on birth date and name
-  static List<int> getLuckyNumbers(
+  /// Get focus numbers based on birth date and name for reflection
+  static List<int> getFocusNumbers(
     DateTime birthDate,
     String name, {
     bool chaldean = false,
   }) {
-    final luckyNumbers = <int>{};
+    final focusNumbers = <int>{};
 
-    // Life Path is always lucky
-    luckyNumbers.add(calculateLifePath(birthDate));
+    // Life Path is a core theme
+    focusNumbers.add(calculateLifePath(birthDate));
 
     // Expression number
-    luckyNumbers.add(calculateExpression(name, chaldean: chaldean));
+    focusNumbers.add(calculateExpression(name, chaldean: chaldean));
 
     // Soul Urge
-    luckyNumbers.add(calculateSoulUrge(name, chaldean: chaldean));
+    focusNumbers.add(calculateSoulUrge(name, chaldean: chaldean));
 
     // Birthday number
-    luckyNumbers.add(calculateBirthday(birthDate.day));
+    focusNumbers.add(calculateBirthday(birthDate.day));
 
     // Maturity number
     final maturity = calculateMaturity(
       calculateLifePath(birthDate),
       calculateExpression(name, chaldean: chaldean),
     );
-    luckyNumbers.add(maturity);
+    focusNumbers.add(maturity);
 
     // Add complementary numbers
     final lifePath = calculateLifePath(birthDate);
     final complementary = _getComplementaryNumbers(lifePath);
-    luckyNumbers.addAll(complementary);
+    focusNumbers.addAll(complementary);
 
     // Remove any that reduced to 0
-    luckyNumbers.remove(0);
+    focusNumbers.remove(0);
 
-    return luckyNumbers.toList()..sort();
+    return focusNumbers.toList()..sort();
   }
 
-  /// Get daily lucky numbers
-  static List<int> getDailyLuckyNumbers(
+  /// Get daily focus numbers for reflection
+  static List<int> getDailyFocusNumbers(
     DateTime birthDate,
     DateTime currentDate, {
     String? name,
     bool chaldean = false,
   }) {
-    final luckyNumbers = <int>{};
+    final focusNumbers = <int>{};
 
     // Personal day number
     final personalYear = calculatePersonalYear(birthDate, currentDate.year);
@@ -1649,7 +1649,7 @@ class NumerologyCalculationService {
       currentDate.month,
     );
     final personalDay = calculatePersonalDay(personalMonth, currentDate.day);
-    luckyNumbers.add(personalDay);
+    focusNumbers.add(personalDay);
 
     // Universal day number
     final universalDay = calculateUniversalDay(
@@ -1657,26 +1657,26 @@ class NumerologyCalculationService {
       currentDate.month,
       currentDate.day,
     );
-    luckyNumbers.add(universalDay);
+    focusNumbers.add(universalDay);
 
-    // Life Path always lucky
-    luckyNumbers.add(calculateLifePath(birthDate));
+    // Life Path is a core theme
+    focusNumbers.add(calculateLifePath(birthDate));
 
     // Day of the week number (1-7)
     final dayOfWeek = currentDate.weekday;
-    luckyNumbers.add(dayOfWeek);
+    focusNumbers.add(dayOfWeek);
 
     // Combine personal and universal for synergy number
     final synergyNumber = _reduceToSingleDigit(personalDay + universalDay);
-    luckyNumbers.add(synergyNumber);
+    focusNumbers.add(synergyNumber);
 
     // If name provided, add expression
     if (name != null) {
-      luckyNumbers.add(calculateExpression(name, chaldean: chaldean));
+      focusNumbers.add(calculateExpression(name, chaldean: chaldean));
     }
 
-    luckyNumbers.remove(0);
-    return luckyNumbers.toList()..sort();
+    focusNumbers.remove(0);
+    return focusNumbers.toList()..sort();
   }
 
   static List<int> _getComplementaryNumbers(int number) {
@@ -1866,30 +1866,30 @@ class NumerologyCalculationService {
         ? personalNumber
         : number;
 
-    // Generate lucky days based on period type
-    List<String> luckyDays;
+    // Generate reflection days based on period type (for thematic focus, not prediction)
+    List<String> reflectionDays;
     if (periodType == 'daily') {
-      luckyDays = ['Bugun sans sizinle!'];
+      reflectionDays = ['Bugün farkındalık için güzel bir gün'];
     } else if (periodType == 'weekly') {
-      luckyDays = _getWeeklyLuckyDays(number);
+      reflectionDays = _getWeeklyReflectionDays(number);
     } else if (periodType == 'monthly') {
-      luckyDays = _getMonthlyLuckyDays(number, date.year, date.month);
+      reflectionDays = _getMonthlyReflectionDays(number, date.year, date.month);
     } else {
-      luckyDays = _getYearlyLuckyMonths(number);
+      reflectionDays = _getYearlyReflectionMonths(number);
     }
 
     return NumerologyForecast(
       personalNumber: displayNumber,
-      theme: themes[displayNumber] ?? 'Ozel Donen',
+      theme: themes[displayNumber] ?? 'Özel Dönem',
       generalAdvice:
-          generalAdvices[displayNumber] ?? 'Icsel rehberliginizi dinleyin.',
-      loveAdvice: loveAdvices[displayNumber] ?? 'Kalbiizi dinleyin.',
-      careerAdvice: careerAdvices[displayNumber] ?? 'Hedeflerinize odaklanin.',
+          generalAdvices[displayNumber] ?? 'İçsel rehberliğinizi dinleyin.',
+      loveAdvice: loveAdvices[displayNumber] ?? 'Kalbinizi dinleyin.',
+      careerAdvice: careerAdvices[displayNumber] ?? 'Hedeflerinize odaklanın.',
       healthAdvice: healthAdvices[displayNumber] ?? 'Dengenizi koruyun.',
       financialAdvice: _getFinancialAdvice(displayNumber),
       spiritualAdvice: _getSpiritualAdvice(displayNumber),
-      luckyNumbers: getDailyLuckyNumbers(birthDate, date, name: name),
-      luckyDays: luckyDays,
+      focusNumbers: getDailyFocusNumbers(birthDate, date, name: name),
+      reflectionDays: reflectionDays,
       favorableActivities: _getFavorableActivities(displayNumber),
       challengesToWatch: _getChallengesToWatch(displayNumber),
       affirmation: _getAffirmation(displayNumber),
@@ -1932,7 +1932,7 @@ class NumerologyCalculationService {
     return advices[number] ?? 'Gunluk meditasyon yapin.';
   }
 
-  static List<String> _getWeeklyLuckyDays(int number) {
+  static List<String> _getWeeklyReflectionDays(int number) {
     final dayMappings = {
       1: ['Pazar', 'Sali'],
       2: ['Pazartesi', 'Cuma'],
@@ -1947,22 +1947,22 @@ class NumerologyCalculationService {
     return dayMappings[number] ?? ['Pazartesi', 'Cuma'];
   }
 
-  static List<String> _getMonthlyLuckyDays(int number, int year, int month) {
-    // Return days of the month that match the personal number
-    final luckyDays = <String>[];
+  static List<String> _getMonthlyReflectionDays(int number, int year, int month) {
+    // Return days of the month that match the personal number for reflection focus
+    final reflectionDays = <String>[];
     final daysInMonth = DateTime(year, month + 1, 0).day;
 
     for (var day = 1; day <= daysInMonth; day++) {
       final dayNumber = _reduceToSingleDigit(day);
       if (dayNumber == number || _reduceToSingleDigit(day + number) == number) {
-        luckyDays.add('$day. gun');
+        reflectionDays.add('$day. gün');
       }
     }
 
-    return luckyDays.take(5).toList();
+    return reflectionDays.take(5).toList();
   }
 
-  static List<String> _getYearlyLuckyMonths(int number) {
+  static List<String> _getYearlyReflectionMonths(int number) {
     final months = [
       'Ocak',
       'Subat',

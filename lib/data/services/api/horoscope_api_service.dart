@@ -83,8 +83,8 @@ class HoroscopeDto {
   final String? category;
   final String content;
   final Map<String, dynamic>? ratings;
-  final String? luckyNumber;
-  final String? luckyColor;
+  final String? focusNumber;
+  final String? reflectionColor;
   final String? compatibility;
   final String? mood;
   final DateTime validFrom;
@@ -98,8 +98,8 @@ class HoroscopeDto {
     this.category,
     required this.content,
     this.ratings,
-    this.luckyNumber,
-    this.luckyColor,
+    this.focusNumber,
+    this.reflectionColor,
     this.compatibility,
     this.mood,
     required this.validFrom,
@@ -115,8 +115,8 @@ class HoroscopeDto {
       category: json['category'] as String?,
       content: json['content'] as String,
       ratings: json['ratings'] as Map<String, dynamic>?,
-      luckyNumber: json['luckyNumber']?.toString(),
-      luckyColor: json['luckyColor'] as String?,
+      focusNumber: json['focusNumber']?.toString() ?? json['luckyNumber']?.toString(),
+      reflectionColor: json['reflectionColor'] as String? ?? json['luckyColor'] as String?,
       compatibility: json['compatibility'] as String?,
       mood: json['mood'] as String?,
       validFrom: DateTime.parse(json['validFrom'] as String),

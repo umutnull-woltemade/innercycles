@@ -11,8 +11,10 @@ import '../../../data/services/l10n_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/entertainment_disclaimer.dart';
 
-/// Kozmoz - AI Astroloji Asistanı
-/// Kullanıcının astroloji, burç, transit, numeroloji sorularını yanıtlar
+/// Kozmoz - AI Reflection Assistant
+/// Provides symbolic and archetypal insights for self-reflection.
+/// This is NOT a prediction or advice service.
+/// All responses are for personal reflection and entertainment only.
 class KozmozScreen extends ConsumerStatefulWidget {
   const KozmozScreen({super.key});
 
@@ -28,96 +30,97 @@ class _KozmozScreenState extends ConsumerState<KozmozScreen>
   bool _isTyping = false;
   late AnimationController _pulseController;
 
-  // Question keys with emoji and category for localization
+  // Reflection topics with emoji and category for localization
+  // All topics are framed for self-reflection, not prediction or advice
   static const List<Map<String, String>> _questionKeys = [
-    // Daily
-    {'emoji': '🌅', 'key': 'kozmoz.questions.daily_lucky_hours', 'category': 'gunluk'},
-    {'emoji': '⚡', 'key': 'kozmoz.questions.daily_danger_hours', 'category': 'gunluk'},
-    {'emoji': '🎯', 'key': 'kozmoz.questions.weekly_advice', 'category': 'gunluk'},
-    {'emoji': '✨', 'key': 'kozmoz.questions.cosmic_weather', 'category': 'gunluk'},
-    // Love
-    {'emoji': '💘', 'key': 'kozmoz.questions.venus_mars_love', 'category': 'ask'},
-    {'emoji': '🔥', 'key': 'kozmoz.questions.ideal_partner', 'category': 'ask'},
-    {'emoji': '💔', 'key': 'kozmoz.questions.relationship_challenges', 'category': 'ask'},
-    {'emoji': '👫', 'key': 'kozmoz.questions.synastry_analysis', 'category': 'ask'},
-    {'emoji': '💍', 'key': 'kozmoz.questions.marriage_timing', 'category': 'ask'},
-    // Career
-    {'emoji': '📈', 'key': 'kozmoz.questions.career_paths', 'category': 'kariyer'},
-    {'emoji': '💰', 'key': 'kozmoz.questions.financial_success', 'category': 'kariyer'},
-    {'emoji': '🚀', 'key': 'kozmoz.questions.business_timing', 'category': 'kariyer'},
-    {'emoji': '🤝', 'key': 'kozmoz.questions.business_partners', 'category': 'kariyer'},
-    // Transit
-    {'emoji': '♄', 'key': 'kozmoz.questions.saturn_return', 'category': 'transit'},
-    {'emoji': '🌑', 'key': 'kozmoz.questions.mercury_retrograde', 'category': 'transit'},
-    {'emoji': '🌕', 'key': 'kozmoz.questions.full_moon', 'category': 'transit'},
-    {'emoji': '♃', 'key': 'kozmoz.questions.jupiter_transit', 'category': 'transit'},
-    {'emoji': '⏳', 'key': 'kozmoz.questions.critical_dates', 'category': 'transit'},
-    // Chart
-    {'emoji': '☀️', 'key': 'kozmoz.questions.big_three', 'category': 'harita'},
-    {'emoji': '🌙', 'key': 'kozmoz.questions.lunar_nodes', 'category': 'harita'},
-    {'emoji': '🏠', 'key': 'kozmoz.questions.houses', 'category': 'harita'},
-    {'emoji': '⚔️', 'key': 'kozmoz.questions.difficult_aspects', 'category': 'harita'},
-    {'emoji': '🎁', 'key': 'kozmoz.questions.mc_ic_axis', 'category': 'harita'},
-    // Numerology
-    {'emoji': '1️⃣', 'key': 'kozmoz.questions.life_path', 'category': 'numeroloji'},
-    {'emoji': '🔮', 'key': 'kozmoz.questions.name_numerology', 'category': 'numeroloji'},
-    {'emoji': '📅', 'key': 'kozmoz.questions.personal_year', 'category': 'numeroloji'},
-    {'emoji': '🎂', 'key': 'kozmoz.questions.birthday_number', 'category': 'numeroloji'},
-    // Tarot
-    {'emoji': '🃏', 'key': 'kozmoz.questions.daily_tarot', 'category': 'tarot'},
-    {'emoji': '🌟', 'key': 'kozmoz.questions.three_card_spread', 'category': 'tarot'},
-    {'emoji': '❓', 'key': 'kozmoz.questions.yes_no_tarot', 'category': 'tarot'},
-    // Spiritual
-    {'emoji': '🦋', 'key': 'kozmoz.questions.spiritual_awakening', 'category': 'spiritüel'},
-    {'emoji': '🧬', 'key': 'kozmoz.questions.karmic_debts', 'category': 'spiritüel'},
-    {'emoji': '🌈', 'key': 'kozmoz.questions.chakra_status', 'category': 'spiritüel'},
-    {'emoji': '💎', 'key': 'kozmoz.questions.healing_crystals', 'category': 'spiritüel'},
-    {'emoji': '🕯️', 'key': 'kozmoz.questions.moon_rituals', 'category': 'spiritüel'},
-    // Deep
-    {'emoji': '🎯', 'key': 'kozmoz.questions.life_purpose', 'category': 'derin'},
-    {'emoji': '⚡', 'key': 'kozmoz.questions.hidden_talents', 'category': 'derin'},
-    {'emoji': '🌪️', 'key': 'kozmoz.questions.repeating_patterns', 'category': 'derin'},
-    {'emoji': '🔓', 'key': 'kozmoz.questions.blockages', 'category': 'derin'},
-    // Dreams
-    {'emoji': '💭', 'key': 'kozmoz.questions.dream_meaning', 'category': 'ruya'},
-    {'emoji': '🌌', 'key': 'kozmoz.questions.subconscious_messages', 'category': 'ruya'},
-    {'emoji': '🛏️', 'key': 'kozmoz.questions.sleep_cycles', 'category': 'ruya'},
-    {'emoji': '👁️‍🗨️', 'key': 'kozmoz.questions.lucid_dreaming', 'category': 'ruya'},
-    // Tantra
-    {'emoji': '🔥', 'key': 'kozmoz.questions.kundalini', 'category': 'tantra'},
-    {'emoji': '💫', 'key': 'kozmoz.questions.sexual_energy', 'category': 'tantra'},
-    {'emoji': '🧘', 'key': 'kozmoz.questions.breathing_techniques', 'category': 'tantra'},
-    {'emoji': '⚡', 'key': 'kozmoz.questions.energy_blockages', 'category': 'tantra'},
-    // Health
-    {'emoji': '🩺', 'key': 'kozmoz.questions.weak_organs', 'category': 'saglik'},
-    {'emoji': '🍃', 'key': 'kozmoz.questions.herbal_healing', 'category': 'saglik'},
-    {'emoji': '🥗', 'key': 'kozmoz.questions.astro_nutrition', 'category': 'saglik'},
-    {'emoji': '🧪', 'key': 'kozmoz.questions.detox_timing', 'category': 'saglik'},
-    // Home
-    {'emoji': '🏡', 'key': 'kozmoz.questions.home_buying', 'category': 'ev'},
+    // Daily Reflection
+    {'emoji': '🌅', 'key': 'kozmoz.questions.daily_focus_times', 'category': 'gunluk'},
+    {'emoji': '⚡', 'key': 'kozmoz.questions.daily_energy_themes', 'category': 'gunluk'},
+    {'emoji': '🎯', 'key': 'kozmoz.questions.weekly_reflection', 'category': 'gunluk'},
+    {'emoji': '✨', 'key': 'kozmoz.questions.daily_awareness', 'category': 'gunluk'},
+    // Relationship Reflection
+    {'emoji': '💘', 'key': 'kozmoz.questions.venus_mars_themes', 'category': 'ask'},
+    {'emoji': '🔥', 'key': 'kozmoz.questions.relationship_values', 'category': 'ask'},
+    {'emoji': '💔', 'key': 'kozmoz.questions.relationship_patterns', 'category': 'ask'},
+    {'emoji': '👫', 'key': 'kozmoz.questions.connection_dynamics', 'category': 'ask'},
+    {'emoji': '💍', 'key': 'kozmoz.questions.commitment_reflection', 'category': 'ask'},
+    // Career Reflection
+    {'emoji': '📈', 'key': 'kozmoz.questions.career_strengths', 'category': 'kariyer'},
+    {'emoji': '💰', 'key': 'kozmoz.questions.financial_awareness', 'category': 'kariyer'},
+    {'emoji': '🚀', 'key': 'kozmoz.questions.professional_growth', 'category': 'kariyer'},
+    {'emoji': '🤝', 'key': 'kozmoz.questions.collaboration_styles', 'category': 'kariyer'},
+    // Symbolic Transits
+    {'emoji': '♄', 'key': 'kozmoz.questions.saturn_themes', 'category': 'transit'},
+    {'emoji': '🌑', 'key': 'kozmoz.questions.mercury_themes', 'category': 'transit'},
+    {'emoji': '🌕', 'key': 'kozmoz.questions.lunar_themes', 'category': 'transit'},
+    {'emoji': '♃', 'key': 'kozmoz.questions.jupiter_themes', 'category': 'transit'},
+    {'emoji': '⏳', 'key': 'kozmoz.questions.seasonal_themes', 'category': 'transit'},
+    // Personal Profile
+    {'emoji': '☀️', 'key': 'kozmoz.questions.core_identity', 'category': 'harita'},
+    {'emoji': '🌙', 'key': 'kozmoz.questions.growth_themes', 'category': 'harita'},
+    {'emoji': '🏠', 'key': 'kozmoz.questions.life_areas', 'category': 'harita'},
+    {'emoji': '⚔️', 'key': 'kozmoz.questions.challenge_themes', 'category': 'harita'},
+    {'emoji': '🎁', 'key': 'kozmoz.questions.purpose_themes', 'category': 'harita'},
+    // Number Symbolism
+    {'emoji': '1️⃣', 'key': 'kozmoz.questions.life_path_reflection', 'category': 'numeroloji'},
+    {'emoji': '🔮', 'key': 'kozmoz.questions.name_symbolism', 'category': 'numeroloji'},
+    {'emoji': '📅', 'key': 'kozmoz.questions.yearly_themes', 'category': 'numeroloji'},
+    {'emoji': '🎂', 'key': 'kozmoz.questions.birthday_symbolism', 'category': 'numeroloji'},
+    // Tarot Reflection
+    {'emoji': '🃏', 'key': 'kozmoz.questions.daily_card_reflection', 'category': 'tarot'},
+    {'emoji': '🌟', 'key': 'kozmoz.questions.three_card_reflection', 'category': 'tarot'},
+    {'emoji': '❓', 'key': 'kozmoz.questions.card_meditation', 'category': 'tarot'},
+    // Inner Growth
+    {'emoji': '🦋', 'key': 'kozmoz.questions.personal_growth', 'category': 'spiritüel'},
+    {'emoji': '🧬', 'key': 'kozmoz.questions.pattern_awareness', 'category': 'spiritüel'},
+    {'emoji': '🌈', 'key': 'kozmoz.questions.energy_awareness', 'category': 'spiritüel'},
+    {'emoji': '💎', 'key': 'kozmoz.questions.crystal_symbolism', 'category': 'spiritüel'},
+    {'emoji': '🕯️', 'key': 'kozmoz.questions.mindfulness_practices', 'category': 'spiritüel'},
+    // Self-Discovery
+    {'emoji': '🎯', 'key': 'kozmoz.questions.purpose_exploration', 'category': 'derin'},
+    {'emoji': '⚡', 'key': 'kozmoz.questions.strength_discovery', 'category': 'derin'},
+    {'emoji': '🌪️', 'key': 'kozmoz.questions.pattern_recognition', 'category': 'derin'},
+    {'emoji': '🔓', 'key': 'kozmoz.questions.growth_opportunities', 'category': 'derin'},
+    // Dream Reflection
+    {'emoji': '💭', 'key': 'kozmoz.questions.dream_symbolism', 'category': 'ruya'},
+    {'emoji': '🌌', 'key': 'kozmoz.questions.subconscious_themes', 'category': 'ruya'},
+    {'emoji': '🛏️', 'key': 'kozmoz.questions.rest_awareness', 'category': 'ruya'},
+    {'emoji': '👁️‍🗨️', 'key': 'kozmoz.questions.awareness_practices', 'category': 'ruya'},
+    // Mindfulness & Breath
+    {'emoji': '🔥', 'key': 'kozmoz.questions.energy_awareness_deep', 'category': 'tantra'},
+    {'emoji': '💫', 'key': 'kozmoz.questions.vitality_themes', 'category': 'tantra'},
+    {'emoji': '🧘', 'key': 'kozmoz.questions.breathing_awareness', 'category': 'tantra'},
+    {'emoji': '⚡', 'key': 'kozmoz.questions.balance_themes', 'category': 'tantra'},
+    // Wellness Reflection (NOT medical advice)
+    {'emoji': '🩺', 'key': 'kozmoz.questions.body_awareness', 'category': 'saglik'},
+    {'emoji': '🍃', 'key': 'kozmoz.questions.nature_connection', 'category': 'saglik'},
+    {'emoji': '🥗', 'key': 'kozmoz.questions.nourishment_themes', 'category': 'saglik'},
+    {'emoji': '🧪', 'key': 'kozmoz.questions.cleansing_awareness', 'category': 'saglik'},
+    // Home & Family Reflection
+    {'emoji': '🏡', 'key': 'kozmoz.questions.home_environment', 'category': 'ev'},
     {'emoji': '👨‍👩‍👧‍👦', 'key': 'kozmoz.questions.family_dynamics', 'category': 'ev'},
-    {'emoji': '👶', 'key': 'kozmoz.questions.having_children', 'category': 'ev'},
-    {'emoji': '🐕', 'key': 'kozmoz.questions.pets', 'category': 'ev'},
-    // Travel
-    {'emoji': '🗺️', 'key': 'kozmoz.questions.lucky_places', 'category': 'seyahat'},
-    {'emoji': '✈️', 'key': 'kozmoz.questions.travel_timing', 'category': 'seyahat'},
-    {'emoji': '🏖️', 'key': 'kozmoz.questions.vacation_destinations', 'category': 'seyahat'},
-    // Education
-    {'emoji': '📖', 'key': 'kozmoz.questions.learning_talents', 'category': 'egitim'},
-    {'emoji': '🎓', 'key': 'kozmoz.questions.exam_dates', 'category': 'egitim'},
-    {'emoji': '✍️', 'key': 'kozmoz.questions.creative_periods', 'category': 'egitim'},
-    // Shadow
-    {'emoji': '🖤', 'key': 'kozmoz.questions.shadow_self', 'category': 'golge'},
-    {'emoji': '😈', 'key': 'kozmoz.questions.fears_origins', 'category': 'golge'},
-    {'emoji': '🌑', 'key': 'kozmoz.questions.dark_moon_work', 'category': 'golge'},
-    {'emoji': '🪞', 'key': 'kozmoz.questions.projection_patterns', 'category': 'golge'},
-    // Manifestation
-    {'emoji': '✨', 'key': 'kozmoz.questions.manifestation_timing', 'category': 'manifestasyon'},
-    {'emoji': '🎯', 'key': 'kozmoz.questions.intention_moon', 'category': 'manifestasyon'},
-    {'emoji': '📝', 'key': 'kozmoz.questions.abundance_rituals', 'category': 'manifestasyon'},
-    {'emoji': '🌈', 'key': 'kozmoz.questions.vision_board', 'category': 'manifestasyon'},
-    // Mystic
-    {'emoji': '🌀', 'key': 'kozmoz.questions.past_lives', 'category': 'mistik'},
+    {'emoji': '👶', 'key': 'kozmoz.questions.nurturing_themes', 'category': 'ev'},
+    {'emoji': '🐕', 'key': 'kozmoz.questions.companion_themes', 'category': 'ev'},
+    // Exploration
+    {'emoji': '🗺️', 'key': 'kozmoz.questions.inspiring_places', 'category': 'seyahat'},
+    {'emoji': '✈️', 'key': 'kozmoz.questions.travel_themes', 'category': 'seyahat'},
+    {'emoji': '🏖️', 'key': 'kozmoz.questions.rest_destinations', 'category': 'seyahat'},
+    // Learning
+    {'emoji': '📖', 'key': 'kozmoz.questions.learning_styles', 'category': 'egitim'},
+    {'emoji': '🎓', 'key': 'kozmoz.questions.study_themes', 'category': 'egitim'},
+    {'emoji': '✍️', 'key': 'kozmoz.questions.creative_expression', 'category': 'egitim'},
+    // Shadow Work
+    {'emoji': '🖤', 'key': 'kozmoz.questions.shadow_awareness', 'category': 'golge'},
+    {'emoji': '😈', 'key': 'kozmoz.questions.fear_exploration', 'category': 'golge'},
+    {'emoji': '🌑', 'key': 'kozmoz.questions.inner_work', 'category': 'golge'},
+    {'emoji': '🪞', 'key': 'kozmoz.questions.self_reflection', 'category': 'golge'},
+    // Intention Setting
+    {'emoji': '✨', 'key': 'kozmoz.questions.intention_themes', 'category': 'manifestasyon'},
+    {'emoji': '🎯', 'key': 'kozmoz.questions.goal_reflection', 'category': 'manifestasyon'},
+    {'emoji': '📝', 'key': 'kozmoz.questions.gratitude_practice', 'category': 'manifestasyon'},
+    {'emoji': '🌈', 'key': 'kozmoz.questions.vision_exploration', 'category': 'manifestasyon'},
+    // Archetypal Themes
+    {'emoji': '🌀', 'key': 'kozmoz.questions.archetypal_patterns', 'category': 'mistik'},
     {'emoji': '👼', 'key': 'kozmoz.questions.guardian_angels', 'category': 'mistik'},
     {'emoji': '🌠', 'key': 'kozmoz.questions.star_seeds', 'category': 'mistik'},
     {'emoji': '🕸️', 'key': 'kozmoz.questions.akashic_records', 'category': 'mistik'},

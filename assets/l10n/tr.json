@@ -121,6 +121,13 @@
     "feature_patterns": "Kişisel kalıp takibi",
     "feature_symbols": "Sembol keşif kütüphanesi"
   },
+  "disclaimer": {
+    "before_using": "Kullanmadan Önce",
+    "text_1": "Bu uygulamada sunulan bilgiler yalnızca eğlence ve bilgilendirme amaçlıdır.",
+    "text_2": "Sağlık, finansal, hukuki veya psikolojik konularda profesyonel tavsiye olarak değerlendirilmemelidir.",
+    "text_3": "Önemli yaşam kararları için lütfen nitelikli uzmanlarla görüşün.",
+    "reflection_only": "Bu içerik yalnızca öz-yansıtma ve farkındalık içindir."
+  },
   "input": {
     "name": "İsim Soyisim",
     "name_required": "İsim *",
@@ -248,8 +255,8 @@
         "subtitle": "Kozmik enerjini paylaş"
       },
       "tarot": {
-        "title": "Tarot Falı",
-        "subtitle": "Kart içgörülerini keşfet"
+        "title": "Tarot Refleksiyonu",
+        "subtitle": "Sembolik içgörüler"
       },
       "compatibility": {
         "title": "Uyum Analizi",
@@ -272,7 +279,8 @@
         "subtitle": "Enerji merkezi uyumu"
       }
     },
-    "luck": "Şans",
+    "luck": "Günün Teması",
+    "daily_theme": "Günün Teması",
     "detailed_reading": "Detaylı Yorum",
     "mercury_retrograde": "Merkür Retrosu",
     "mercury_retrograde_warning": "İletişim ve teknolojide dikkatli ol!",
@@ -322,7 +330,7 @@
       "promotion": "💼 Kariyer gelişimi konusunda ne düşünüyorum?",
       "job_change": "📈 Kariyer kararlarımda neler önemli?",
       "gambling": "🎰 Risk ve belirsizliğe nasıl yaklaşıyorum?",
-      "lucky_star": "✨ Hangi fırsatlar için minnettarım?",
+      "gratitude_star": "✨ Hangi fırsatlar için minnettarım?",
       "mercury_retrograde": "🌙 Şu an hangi iletişim temaları öne çıkıyor?",
       "big_change": "🦋 Hangi dönüşüm temaları bende yankı buluyor?",
       "rich_become": "💰 Bolluk kavramıyla ilişkim nasıl?",
@@ -335,7 +343,7 @@
     "search_features": {
       "horoscope_title": "Günlük Burç",
       "horoscope_desc": "Günlük kozmik rehberlik",
-      "tarot_title": "Tarot Falı",
+      "tarot_title": "Tarot Refleksiyonu",
       "tarot_desc": "Kartların bilgeliğini keşfet",
       "dreams_title": "Rüya Yorumu",
       "dreams_desc": "Rüyalarındaki mesajları keşfet",
@@ -589,7 +597,7 @@
     "zodiac": {
       "personalized_guidance": "{sign} burcu için kişiselleştirilmiş kozmik rehberlik",
       "popular_questions": "Popüler Sorular",
-      "lucky_months": {
+      "favorable_months": {
         "aries": "Mart, Temmuz, Kasım",
         "taurus": "Nisan, Ağustos, Aralık",
         "gemini": "Mayıs, Eylül, Ocak",
@@ -1161,7 +1169,7 @@
       "significant_events": "Önemli Progrese Olaylar",
       "upcoming_changes": "Yaklaşan Değişimler",
       "kadim_title": "Kadim Bilgi: Progresyonlar",
-      "kadim_content": "Sekonder progresyonlar, astrolojinin en eski tahmin tekniklerinden biridir. Doğumdan sonraki her günün bir yıla karşılık geldiği ilkesine dayanarak, ruhun içsel psikolojik evrimini ortaya koyar."
+      "kadim_content": "Sekonder progresyonlar, astrolojinin en eski zamanlama ve içsel gelişim tekniklerinden biridir. Doğumdan sonraki her günün bir yıla karşılık geldiği ilkesine dayanarak, ruhun içsel psikolojik evrimini ve dönüşüm temalarını ortaya koyar. Bu bir tahmin aracı değil, öz-farkındalık için sembolik bir çerçevedir."
     },
     "tantra_micro_ritual": {
       "todays_micro_ritual": "Bugünün Mikro Ritüeli",
@@ -1231,7 +1239,7 @@
     "modern": "Modern Astroloji",
     "esoteric": "Ezoterik",
     "psychological": "Psikolojik",
-    "predictive": "Tahmin",
+    "predictive": "Zamanlama",
     "relationships": "İlişkiler"
   },
   "celebrity_categories": {
@@ -1388,8 +1396,8 @@
     "pluto": "Plüton",
     "interpretations": {
       "jupiter": {
-        "line1": "{planet} {sign} burcunda - büyüme ve şans alanın bu burç enerjisiyle renkleniyor.",
-        "line2": "{sign}'nin özellikleri, nasıl genişlediğini, neye inandığını ve şansını nerede bulduğunu gösteriyor. Felsefik bakış açın, öğrenme stilin ve hayata karşı iyimserliğin bu burçla şekilleniyor.",
+        "line1": "{planet} {sign} burcunda - büyüme ve genişleme alanın bu burç enerjisiyle renkleniyor.",
+        "line2": "{sign}'nin özellikleri, nasıl genişlediğini, neye inandığını ve fırsatları nerede gördüğünü gösteriyor. Felsefik bakış açın, öğrenme stilin ve hayata karşı iyimserliğin bu burçla şekilleniyor.",
         "line3": "{meaning} alanlarında {sign} enerjisi etkin. Bu yerleşim, ruhsal büyüme potansiyelini ve hayatında bereketin nasıl aktığını gösteriyor."
       },
       "saturn": {
@@ -1937,8 +1945,8 @@
       "general": "Sadece eğlence amaçlıdır",
       "dreams": "Rüya yorumları sembolik refleksiyonlardır",
       "health": "Tıbbi tavsiye değildir. Sağlık konularında uzmana danışın",
-      "astrology": "Astroloji bir öz-refleksiyon aracıdır, kehanet değil",
-      "tarot": "Tarot falları sadece kişisel içgörü içindir",
+      "astrology": "Astroloji bir öz-refleksiyon aracıdır, tahmin değil",
+      "tarot": "Tarot okumaları sadece kişisel içgörü içindir",
       "numerology": "Numeroloji sembolik perspektifler sunar",
       "chakra": "Çakra bilgisi öz-refleksiyon amaçlıdır",
       "compatibility": "Uyum içgörüleri sadece refleksiyon içindir",
@@ -2403,7 +2411,7 @@
           "basic_meaning": "Para ve zenginlik rüyaları, öz değer ve bolluk bilincini temsil eder. Maddi değil, içsel zenginlik mesajı taşır.",
           "special_interpretation": "Bu rüya, maddi dünyayla ilişkini sorgulamaya davet ediyor. Gerçek zenginlik içsel huzur ve minnettarlıktır.",
           "dream_types_label": "💎 PARA RÜYASI TİPLERİ",
-          "dream_types": "• Para bulmak: Gelen fırsatlar, şans\n• Para kaybetmek: Güvensizlik, kayıp korkusu\n• Zengin olmak: Potansiyelin farkındalığı\n• Para saymak: Kontrol ihtiyacı\n• Para vermek: Cömertlik veya güç kaybı",
+          "dream_types": "• Para bulmak: Gelen fırsatlar, bolluk\n• Para kaybetmek: Güvensizlik, kayıp korkusu\n• Zengin olmak: Potansiyelin farkındalığı\n• Para saymak: Kontrol ihtiyacı\n• Para vermek: Cömertlik veya güç kaybı",
           "symbols_label": "🪙 SEMBOLLER",
           "symbols": "• Altın: Ruhsal zenginlik, bilgelik\n• Nakit: Günlük güvenlik\n• Hazine: Gizli potansiyel\n• Mücevher: Öz değer\n• Banka: Güvenlik ve yapı",
           "psychological_label": "🌙 PSİKOLOJİK BOYUT",
@@ -2628,7 +2636,7 @@
       "dreams": "Rüya yorumları kişisel keşif içindir, profesyonel yorum değildir.",
       "health": "Tıbbi tavsiye değildir. Sağlık profesyonellerine danışın.",
       "astrology": "Sadece eğlence amaçlıdır. Tahmin tavsiyesi değildir.",
-      "tarot": "Sadece düşünme amaçlıdır. Fal bakımı değildir.",
+      "tarot": "Sadece düşünme amaçlıdır. Tahmin değildir.",
       "numerology": "Sadece öz-keşif amaçlıdır. Tahmin değildir.",
       "chakra": "Sadece farkındalık amaçlıdır. Tıbbi veya ruhani reçete değildir.",
       "compatibility": "Sadece düşünme amaçlıdır. İlişki tavsiyesi değildir.",
@@ -2747,27 +2755,27 @@
     "celestial_sync": "Göksel Senkronizasyon",
     "sign_depth": "Burcunun Derinliği",
     "mood": "Ruh Hali",
-    "lucky_color": "Şanslı Renk",
-    "lucky_number": "Şanslı Sayı",
+    "lucky_color": "Refleksiyon Rengi",
+    "lucky_number": "Odak Sayısı",
     "feature_coming_soon": "Bu özellik yakında eklenecek",
-    "what_says_today": "Bugün burcun ne diyor?",
-    "select_discover_energy": "Burcunu seç, kozmik enerjini keşfet",
+    "what_says_today": "Bugün hangi temalar seninle rezonans kuruyor?",
+    "select_discover_energy": "Burcunu seç, refleksiyon temalarını keşfet",
     "love_relationships": "Aşk & İlişkiler",
     "career_finance": "Kariyer & Finans",
     "health_wellness": "Sağlık & İyilik",
     "health_energy": "Sağlık & Enerji",
     "spiritual_guidance": "Ruhsal Rehberlik",
     "important_days": "Önemli Günler",
-    "lucky_days": "Şanslı Günler",
+    "lucky_days": "Uygun Günler",
     "important_transits": "Önemli Transitler",
-    "daily_reading": "Günün Yorumu",
-    "luck_rate": "Şans Oranı",
-    "cosmic_tips": "Kozmik İpuçları",
+    "daily_reading": "Günlük Refleksiyon",
+    "luck_rate": "Enerji Seviyesi",
+    "cosmic_tips": "Refleksiyon İpuçları",
     "key_dates": "Önemli Tarihler",
     "yearly_theme": "Yılın Teması",
     "yearly_summary": "Yıllık Özet",
     "special_months": "Özel Aylar",
-    "lucky_months": "Şanslı Aylar",
+    "lucky_months": "Uygun Aylar",
     "planet_transits": "Gezegen Transitleri",
     "your_zodiac_readings": "Burç Çözümlemelerin",
     "sign_today": "{sign} burcu bugün nasıl?",
@@ -2829,7 +2837,7 @@
       "aquarius": [
         "Özgün fikirlerinle fark yaratabilirsin.",
         "Grup aktiviteleri ve arkadaşlıklar ön planda.",
-        "Teknoloji ile ilgili konularda şans senden yana."
+        "Teknoloji ile ilgili konularda fırsatlar fark edilebilir."
       ],
       "pisces": [
         "Sezgilerin bugün özellikle güçlü.",
@@ -3842,7 +3850,7 @@
         "tells2": "Doğal yeteneklerini ve güçlü yanlarını.",
         "tells3": "Karşılaşacağın zorlukları ve dersleri.",
         "tells4": "Hayatında tekrar eden temaları.",
-        "note1": "Yaşam yolu sayısı kader değildir.",
+        "note1": "Yaşam yolu sayısı bir potansiyeldir.",
         "note2": "Potansiyeli gösterir, kararlar senin.",
         "note3": "Her sayının hem ışık hem gölge yönü vardır.",
         "suggestion": "Günlük sayı enerjisi ne anlatır?"
@@ -5318,7 +5326,7 @@
     "year_summary": "Yıl Özeti",
     "quarterly_forecasts": "Çeyreklik Öngörüler",
     "important_transits": "Önemli Geçişler",
-    "lucky_periods": "Şanslı Dönemler",
+    "lucky_periods": "Uygun Dönemler",
     "challenging_periods": "Dikkat Edilmesi Gereken Dönemler",
     "year_affirmation": "Yıl Affirmasyonu",
     "quarter_name": "{number}. Çeyrek",
@@ -5384,7 +5392,7 @@
       "q4": "Yılın son çeyreği {theme} üzerine düşünme ve gelecek yılı planlama zamanı."
     },
     "transit_effects": {
-      "jupiter": "Genişleme ve şans getiren enerji. {sign} için fırsatlar bölgesinde.",
+      "jupiter": "Genişleme ve büyüme enerjisi. {sign} için fırsatlar bölgesinde.",
       "saturn": "Sorumluluk ve yapılandırma zamanı. Sabır gerektiren dönem.",
       "mercury": "İletişim ve teknolojide dikkat. Eski konuları tamamlama fırsatı."
     },
@@ -5448,7 +5456,7 @@
       "mercury": "{direction} yönü iletişim ve düşünce aktivitenizi destekliyor. Öğrenme bu yönde kolay.",
       "venus": "Aşk ve güzellik enerjiniz {direction}'dan geliyor. İlişkiler bu yönde gelişir.",
       "mars": "Eylem ve motivasyon gücünüz {direction}'da yoğunlaşıyor. Bu yön size enerji verir.",
-      "jupiter": "{direction} yönü şans ve büyüme potansiyeli taşıyor. Fırsatlar bu yönden gelir.",
+      "jupiter": "{direction} yönü genişleme ve büyüme potansiyeli taşıyor. Fırsatlar bu yönde fark edilebilir.",
       "saturn": "{direction} yönü yapı ve disiplin gerektiriyor. Burada sabırlı olmanız gerekir.",
       "default": "{direction} yönü sizin için özel anlam taşıyor."
     },
@@ -5468,7 +5476,7 @@
       "mercury": "{direction}'ya eğitim veya iş amaçlı seyahatler verimli olur.",
       "venus": "{direction} yönü romantik tatiller için mükemmel. Çiftler için önerilir.",
       "mars": "{direction}'ya macera dolu seyahatler planlayın. Spor aktiviteleri düşünün.",
-      "jupiter": "{direction} yönünde uzak seyahatler şans getirir. Yabancı kültürleri keşfedin.",
+      "jupiter": "{direction} yönünde uzak seyahatler ilham verici olabilir. Yabancı kültürleri keşfedin.",
       "saturn": "{direction}'ya planlı ve organize seyahatler yapın. Acele etmeyin.",
       "default": "{direction} yönüne seyahat düşünebilirsiniz."
     },
@@ -6573,7 +6581,7 @@
   },
   "tarot": {
     "title": "Tarot",
-    "reading": "Falı",
+    "reading": "Okuması",
     "page_title": "Kartlar sana ne söylüyor?",
     "ancient_wisdom_title": "Kadim Bilgeliğin Anahtarları",
     "ancient_wisdom_intro": "Tarot, bilinçaltının aynasıdır. Bu kartlar geleceği değil, olasılıkları gösterir. Her çekiş, şu anki enerji alanını ve potansiyel yolları ortaya koyar. Kartlara bir soru sor veya sadece rehberlik iste. Sezgine güven - cevaplar zaten içinde.",
@@ -6716,10 +6724,10 @@
         "advice": "Sessizlikte cevaplar var. Kendi rehberin ol ama tamamen yalnız kalma."
       },
       "wheel_of_fortune": {
-        "name": "Kader Çarkı",
-        "keywords": "Değişim, döngüler, kader",
+        "name": "Değişim Çarkı",
+        "keywords": "Değişim, döngüler, dönüşüm",
         "upright": "Değişim temaları öne çıkıyor. Döngüler ve dönüşümler üzerine düşünün.",
-        "reversed": "Kötü şans veya döngünün düşüş evresi. Bu da geçecek. Sabırlı ol.",
+        "reversed": "Zorluklar veya döngünün düşüş evresi. Bu da geçecek. Sabırlı ol.",
         "advice": "Hayatın iniş çıkışları doğal. Tepeye çıktığında şükret, düştüğünde sabret."
       },
       "justice": {
@@ -6863,7 +6871,7 @@
       "tigers_eye": "Kaplan Gözü",
       "tigers_eye_benefit": "Cesaret ve odaklanma",
       "aventurine": "Aventurin",
-      "aventurine_benefit": "Şans ve fırsatlar",
+      "aventurine_benefit": "Büyüme ve fırsatlar",
       "lapis_lazuli": "Lapis Lazuli",
       "lapis_lazuli_benefit": "Bilgelik ve gerçek"
     },
@@ -7195,7 +7203,7 @@
           "Bugün ayaklarını yere bas 🌍"
         ]
       },
-      "todays_luck": "BUGÜNÜN ŞANSI",
+      "todays_luck": "BUGÜNÜN TEMASI",
       "compatible": "UYUMLU",
       "warning": "DİKKAT",
       "for_your_sign_analysis": "SENİN BURÇ ANALİZİN İÇİN",
@@ -8264,7 +8272,7 @@
     "todays_voice": "Bugünün Sesi",
     "dream_trace": "Rüya İzi",
     "todays_number": "Bugünün Sayısı",
-    "lucky_hour": "Şanslı Saat",
+    "lucky_hour": "Odak Saati",
     "tantra_title": "Tantra",
     "breath": "Nefes",
     "awareness": "Farkındalık",
@@ -8543,8 +8551,8 @@
       "morning_energy": "SABAH ENERJİSİ (06:00 - 12:00)",
       "noon_energy": "ÖĞLE ENERJİSİ (12:00 - 18:00)",
       "evening_energy": "AKŞAM ENERJİSİ (18:00 - 24:00)",
-      "lucky_hours": "ŞANS SAATLERİN",
-      "lucky_hours_note": "Bu saatlerde önemli görüşmeler, iş teklifleri ve yeni başlangıçlar için ideal.",
+      "lucky_hours": "ODAK SAATLERİN",
+      "lucky_hours_note": "Bu saatler odaklanma ve farkındalık için uygun olabilir.",
       "careful_hours": "DİKKATLİ OLMASI GEREKEN SAATLER",
       "careful_hours_note": "Bu saatlerde büyük kararlardan, tartışmalardan ve riskli yatırımlardan kaçın.",
       "golden_advice": "BUGÜNÜN 3 ALTIN TAVSİYESİ",
@@ -8808,7 +8816,7 @@
       "air": "iletişim ve sosyal etkileşimler için ideal bir gün. Fikirlerini paylaş",
       "water": "duygusal derinlik ve sezgisel bilgelik zamanı. İç sesini dinle"
     },
-    "lucky_hours": {
+    "focus_hours": {
       "aries": "06:00-07:00, 12:00-13:00, 18:00-19:00",
       "taurus": "07:00-08:00, 14:00-15:00, 21:00-22:00",
       "gemini": "08:00-09:00, 13:00-14:00, 17:00-18:00",
@@ -9117,7 +9125,7 @@
     },
     "transit": {
       "saturn_detail": "♄ Saturn seni olgunlaştırıyor ve sorumluluk öğretiyor. Yapı, disiplin ve uzun vadeli hedefler ön planda.",
-      "jupiter_detail": "♃ Jüpiter genişleme ve şans getiriyor. Fırsatlara açık ol.",
+      "jupiter_detail": "♃ Jüpiter genişleme ve büyüme enerjisi getiriyor. Fırsatlara açık ol.",
       "pluto_detail": "♇ Pluto derin dönüşüm gerektiriyor. Ölüm ve yeniden doğuş temaları.",
       "uranus_detail": "♅ Uranüs ani değişimler ve özgürleşme getiriyor.",
       "neptune_detail": "♆ Neptün rüyalar, illüzyonlar ve spiritüel uyanış.",
@@ -9169,7 +9177,7 @@
         "chariot": "Zafer, irade, ilerleme. Kararlılıkla git.",
         "strength": "İç güç, cesaret, sabır. Yumuşak güç.",
         "hermit": "İçsel yolculuk, yalnızlık, bilgelik arayışı.",
-        "wheel": "Değişim, döngüler, kader. Akışa güven.",
+        "wheel": "Değişim, döngüler, dönüşüm. Akışa güven.",
         "justice": "Denge, doğruluk, sonuçlar. Adil ol.",
         "hanged_man": "Teslim ol, farklı perspektif, bekle.",
         "death": "Dönüşüm, son, yeni başlangıç. Bırak.",
@@ -9320,7 +9328,7 @@
       "virgo": "[[Başak]] burcunda [[Güneş]] sahibi olmak, analitik zekânızın ve hizmet odaklı doğanızın güçlü olduğunu gösterir. [[Merkür]]'ün yönetiminde, detayları görme ve düzenleme kapasiteniz üstündür.\n\n[[Değişken]] [[Toprak]] burcu olarak, pratik çözümler üretme ve adaptasyon yeteneğiniz gelişkindir. Mükemmeliyetçilik hem güçlü yanınız hem de [[gölge]] alanınızdır.\n\n[[6. Ev]] ile doğal ilişkiniz, sağlık, günlük rutinler ve hizmet temalarını ön plana çıkarır. Vücudunuzla bilinçli bir ilişki kurmanız önemlidir.\n\n[[Merkür]]'ün [[Başak]]'taki gücü, şifacılık ve analiz yetenekleri verir. Kendinize de başkalarına gösterdiğiniz özeni göstermeyi öğrenmek evrimsel görevinizdir.",
       "libra": "[[Terazi]] burcunda [[Güneş]] sahibi olmak, ilişkilerin ve dengenin hayatınızın merkezinde olduğunu gösterir. [[Venüs]]'ün yönetiminde, uyum ve güzellik sizin için temel değerlerdir.\n\n[[Kardinal]] [[Hava]] burcu olarak, sosyal inisiyatif alma ve ilişkiler kurma konusunda doğal bir yeteneğiniz var. Diplomasi ve adalet duygunuz gelişkindir.\n\n[[7. Ev]] ile doğal ilişkiniz, ortaklıklar, evlilik ve \"öteki\" temasında önemli yaşam dersleri getirir. [[Projeksiyon]] mekanizmasını anlamak sizin için önemlidir.\n\n[[Güneş]] burada \"düşüşte\" (fall) olduğundan, bireysellik ve bağımsızlık temaları zorlayıcı olabilir. Kendi kimliğinizi korurken ilişki kurma dengesini bulmak evrimsel görevinizdir.",
       "scorpio": "[[Akrep]] burcunda [[Güneş]] sahibi olmak, ruhunuzun derin dönüşüm ve yeniden doğuş temalarıyla bağlantılı olduğunu gösterir. [[Pluto]]'nun yönetiminde, yoğunluk ve güç sizin doğal halinizdir.\n\n[[Sabit]] [[Su]] burcu olarak, duygusal derinliğiniz ve kararlılığınız etkileyicidir. Yüzeyin altını görme ve gizli gerçekleri ortaya çıkarma yeteneğiniz güçlüdür.\n\n[[8. Ev]] ile doğal ilişkiniz, paylaşılan kaynaklar, cinsellik, ölüm-yeniden doğuş döngüsü ve [[psikolojik dönüşüm]] temalarında derin deneyimler getirir.\n\n[[Pluto geçişleri]] hayatınızda radikal dönüşüm dönemlerini işaret eder. Kontrol bırakma ve güvenme, evrimsel yolculuğunuzda öğrenilecek en önemli derslerdir.",
-      "sagittarius": "[[Yay]] burcunda [[Güneş]] sahibi olmak, ruhunuzun özgürlük, macera ve anlam arayışıyla karakterize olduğunu gösterir. [[Jüpiter]]'in yönetiminde, genişleme ve büyüme sizin doğal eğiliminizdir.\n\n[[Değişken]] [[Ateş]] burcu olarak, coşkunuz ve idealleriniz sizi ileriye taşır. Felsefe, yüksek öğrenim ve yabancı kültürler size ilham verir.\n\n[[9. Ev]] ile doğal ilişkiniz, uzun yolculuklar, yüksek öğrenim, felsefe ve inanç sistemleri temalarında önemli deneyimler getirir.\n\n[[Jüpiter]] geçişleri hayatınızda şans ve genişleme dönemlerini işaret eder. Dağınıklığı önlemek ve derinleşmek, evrimsel yolculuğunuzda geliştirilecek niteliklerdir.",
+      "sagittarius": "[[Yay]] burcunda [[Güneş]] sahibi olmak, ruhunuzun özgürlük, macera ve anlam arayışıyla karakterize olduğunu gösterir. [[Jüpiter]]'in yönetiminde, genişleme ve büyüme sizin doğal eğiliminizdir.\n\n[[Değişken]] [[Ateş]] burcu olarak, coşkunuz ve idealleriniz sizi ileriye taşır. Felsefe, yüksek öğrenim ve yabancı kültürler size ilham verir.\n\n[[9. Ev]] ile doğal ilişkiniz, uzun yolculuklar, yüksek öğrenim, felsefe ve inanç sistemleri temalarında önemli deneyimler getirir.\n\n[[Jüpiter]] geçişleri hayatınızda fırsatlar ve genişleme dönemlerini işaret eder. Dağınıklığı önlemek ve derinleşmek, evrimsel yolculuğunuzda geliştirilecek niteliklerdir.",
       "capricorn": "[[Oğlak]] burcunda [[Güneş]] sahibi olmak, ruhunuzun başarı, sorumluluk ve uzun vadeli hedeflerle derinden bağlantılı olduğunu gösterir. [[Satürn]]'ün yönetiminde, disiplin ve yapı sizin doğal halinizdir.\n\n[[Kardinal]] [[Toprak]] burcu olarak, liderlik ve pratik başarı elde etme kapasiteniz yüksektir. Zaman sizin müttefikinizdir - yaşla birlikte daha da güçlenirsiniz.\n\n[[10. Ev]] ile doğal ilişkiniz, kariyer, toplumsal statü, itibar ve [[baba arketipi]] temalarında önemli yaşam dersleri getirir.\n\n[[Satürn dönüşü]] (yaklaşık her 29 yılda bir) hayatınızda önemli olgunlaşma dönemlerini işaret eder. Duygusal yumuşaklık ve zevk almayı öğrenmek evrimsel görevinizdir.",
       "aquarius": "[[Kova]] burcunda [[Güneş]] sahibi olmak, ruhunuzun benzersizlik, insanlık ve ilerlemeyle derinden bağlantılı olduğunu gösterir. [[Uranüs]]'ün yönetiminde, devrimci fikirler ve orijinallik sizin doğal halinizdir.\n\n[[Sabit]] [[Hava]] burcu olarak, fikirlerinize olan bağlılığınız güçlüdür. Toplumsal değişim ve kolektif bilinç size ilham verir.\n\n[[11. Ev]] ile doğal ilişkiniz, gruplar, dostluklar, umutlar ve insani idealler temalarında önemli deneyimler getirir.\n\n[[Uranüs]] geçişleri hayatınızda beklenmedik değişimler ve özgürleşme dönemlerini işaret eder. Duygusal yakınlık ve bireysel bağlar kurmak evrimsel görevinizdir.",
       "pisces": "[[Balık]] burcunda [[Güneş]] sahibi olmak, ruhunuzun spiritüel alemlere, sezgiye ve kolektif bilinçdışına derinden bağlı olduğunu gösterir. [[Neptün]]'ün yönetiminde, mistisizm ve yaratıcılık sizin doğal halinizdir.\n\n[[Değişken]] [[Su]] burcu olarak, empati ve uyum sağlama kapasiteniz son derece gelişkindir. Sınırların erimesi hem güçlü yanınız hem de dikkat edilecek [[gölge]] alanınızdır.\n\n[[12. Ev]] ile doğal ilişkiniz, bilinçdışı, spiritüel pratikler, yalnızlık ve [[karmik]] temalar konusunda derin deneyimler getirir.\n\n[[Neptün]] geçişleri hayatınızda spiritüel uyanış ve çözülme dönemlerini işaret eder. Sağlıklı sınırlar koymak ve pratik gerçeklikle bağlantıda kalmak evrimsel görevinizdir.",
@@ -9677,14 +9685,14 @@
     "planet_moon_meaning": "Duygular, sezgi, ev",
     "planet_mars_meaning": "Aksiyon, cesaret, enerji",
     "planet_mercury_meaning": "İletişim, öğrenme, seyahat",
-    "planet_jupiter_meaning": "Şans, genişleme, bolluk",
+    "planet_jupiter_meaning": "Büyüme, genişleme, bolluk",
     "planet_venus_meaning": "Aşk, güzellik, uyum",
     "planet_saturn_meaning": "Disiplin, yapı, sabır",
-    "lucky_elements": "Bugünün Şanslı Elementleri",
-    "lucky_numbers": "Şanslı Sayılar",
-    "lucky_color": "Şanslı Renk",
+    "lucky_elements": "Bugünün Refleksiyon Elementleri",
+    "lucky_numbers": "Odak Sayıları",
+    "lucky_color": "Tema Rengi",
     "lucky_direction": "Yön",
-    "lucky_hour": "Şanslı Saat",
+    "lucky_hour": "Odak Saati",
     "lucky_flower": "Çiçek",
     "lucky_stone": "Taş",
     "biorhythm_cycle": "Biyoritm Döngüsü",
@@ -9700,7 +9708,7 @@
     "aspect_sun_harmonious": "Canlılık ve özgüven artıyor. Liderlik ve yaratıcı ifade için harika.",
     "aspect_moon_harmonious": "Duygusal uyum akıyor. Sevdiklerle bağ kurmak için iyi.",
     "aspect_venus_harmonious": "Aşk ve güzellik ön planda. İlişkiler ve sanatsal uğraşlar için ideal.",
-    "aspect_jupiter_harmonious": "Şans ve genişleme sizinle. Hesaplı riskler için iyi.",
+    "aspect_jupiter_harmonious": "Büyüme ve genişleme sizinle. Hesaplı girişimler için iyi.",
     "aspect_default_harmonious": "Pozitif enerji bugün çabalarınızı destekliyor.",
     "aspect_mars_challenging": "Dürtüsellik veya çatışmaya dikkat. Enerjiyi fiziksel aktiviteye yönlendirin.",
     "aspect_saturn_challenging": "Kısıtlamalar veya gecikmeler hissedilebilir. Sabır ve azim gösterin.",
@@ -9825,7 +9833,7 @@
     "jupiter_saturn_conjunction": "Jüpiter-Satürn Kavuşumu",
     "jupiter_saturn_desc": "Önemli toplumsal ve kişisel dönüşüm. 20 yılda bir gerçekleşen bu olay büyük değişimler getirir.",
     "mars_jupiter_trine": "Mars-Jüpiter Üçgeni",
-    "mars_jupiter_desc": "Enerji ve şans buluşuyor. Cesur girişimler için mükemmel zaman. Fiziksel aktiviteler ve sporlar destekleniyor.",
+    "mars_jupiter_desc": "Enerji ve genişleme buluşuyor. Cesur girişimler için uygun zaman. Fiziksel aktiviteler ve sporlar destekleniyor.",
     "venus_neptune_conjunction": "Venüs-Neptün Kavuşumu",
     "venus_neptune_desc": "Romantik ve sanatsal ilham. Rüyalar ve hayal gücü güçleniyor. Spiritüel aşk deneyimleri."
   },
@@ -10020,7 +10028,7 @@
       "mercury": "Zihin ve iletişim",
       "venus": "Aşk, güzellik ve değerler",
       "mars": "Eylem, tutku ve enerji",
-      "jupiter": "Şans, büyüme ve bilgelik",
+      "jupiter": "Genişleme, büyüme ve bilgelik",
       "saturn": "Yapı, disiplin ve zaman",
       "uranus": "Devrim, özgürlük ve değişim",
       "neptune": "Rüyalar, ilham ve yanılsama",
@@ -10029,8 +10037,8 @@
   },
   "pdf_report": {
     "labels": {
-      "lucky_number": "Şanslı Sayı",
-      "lucky_color": "Şanslı Renk",
+      "lucky_number": "Odak Sayısı",
+      "lucky_color": "Tema Rengi",
       "caution": "Dikkat",
       "compatibility_report": "Uyum Raporu"
     },
@@ -10058,7 +10066,7 @@
       "mercury": "İletişim, düşünce, öğrenme",
       "venus": "Aşk, güzellik, değerler",
       "mars": "Enerji, tutku, eylem",
-      "jupiter": "Genişleme, şans, felsefe",
+      "jupiter": "Genişleme, büyüme, felsefe",
       "saturn": "Disiplin, sorumluluk, sınırlar",
       "uranus": "Değişim, özgürlük, yenilik",
       "neptune": "Hayal gücü, spiritualite, sezgi",
@@ -10338,7 +10346,7 @@
       "Monday": "Pazartesi rüyaları genellikle iş ve sorumluluk temalarını yansıtır.",
       "Tuesday": "Mars günü Salı, aksiyon ve enerji dolu rüyalara yatkındır.",
       "Wednesday": "Merkür günü Çarşamba, iletişim ve mesaj dolu rüyalar getirir.",
-      "Thursday": "Jüpiter günü Perşembe, genişleme ve şans temalı rüyalara sahne olabilir.",
+      "Thursday": "Jüpiter günü Perşembe, genişleme ve büyüme temalı rüyalara sahne olabilir.",
       "Friday": "Venüs günü Cuma, aşk ve güzellik rüyalarına açıktır.",
       "Saturday": "Satürn günü Cumartesi, sınırlar ve yapı hakkında rüyalar getirir.",
       "Sunday": "Güneş günü Pazar, benlik ve kimlik keşfi rüyalarına elverişlidir."
@@ -10604,7 +10612,7 @@
       "pluto_desc": "Dönüşüm sembolleri Plüton ile resonansa girer",
       "category_astrology": "Astroloji",
       "category_moon": "Ay",
-      "category_divination": "Kehanet"
+      "category_divination": "Semboller"
     },
     "moon_phases": {
       "new_moon": "Yeniay fazında gelen bu rüya yeni bir niyet tohumu taşıyor. Bugün bir dilek tut.",

@@ -2087,12 +2087,13 @@ class _ReadyPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const SizedBox(height: 40),
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const SizedBox(height: 40),
 
-          // Success checkmark with glow
+            // Success checkmark with glow
           Container(
             width: 120,
             height: 120,
@@ -2226,7 +2227,8 @@ class _ReadyPage extends StatelessWidget {
               ],
             ),
           ).animate().fadeIn(delay: 800.ms, duration: 400.ms),
-        ],
+          ],
+        ),
       ),
     );
   }

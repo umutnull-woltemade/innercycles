@@ -24,11 +24,11 @@ class HoroscopeService {
     final seed = date.year * 10000 + date.month * 100 + date.day + sign.index;
     final seededRandom = Random(seed);
 
-    // Geçmiş, Şimdi, Gelecek içerikleri
+    // Reflection themes: Past patterns, Present awareness, Future intentions
     final pastInsights = HoroscopeContent.getPastInsights(sign, language);
     final presentEnergies = HoroscopeContent.getPresentEnergies(sign, language);
-    final futureGuidances = HoroscopeContent.getFutureGuidances(sign, language);
-    final cosmicMessages = HoroscopeContent.getCosmicMessages(sign, language);
+    final futureIntentions = HoroscopeContent.getFutureIntentions(sign, language);
+    final dailyThemes = HoroscopeContent.getDailyThemes(sign, language);
 
     return DailyHoroscope(
       sign: sign,
@@ -37,14 +37,14 @@ class HoroscopeService {
       loveAdvice: loveAdvices[seededRandom.nextInt(loveAdvices.length)],
       careerAdvice: careerAdvices[seededRandom.nextInt(careerAdvices.length)],
       healthAdvice: healthAdvices[seededRandom.nextInt(healthAdvices.length)],
-      luckRating: seededRandom.nextInt(5) + 1,
-      luckyNumber: '${seededRandom.nextInt(99) + 1}',
-      luckyColor: colors[seededRandom.nextInt(colors.length)],
+      energyLevel: seededRandom.nextInt(5) + 1, // Thematic intensity for UI
+      focusNumber: '${seededRandom.nextInt(99) + 1}',
+      reflectionColor: colors[seededRandom.nextInt(colors.length)],
       mood: moods[seededRandom.nextInt(moods.length)],
       pastInsight: pastInsights[seededRandom.nextInt(pastInsights.length)],
       presentEnergy: presentEnergies[seededRandom.nextInt(presentEnergies.length)],
-      futureGuidance: futureGuidances[seededRandom.nextInt(futureGuidances.length)],
-      cosmicMessage: cosmicMessages[seededRandom.nextInt(cosmicMessages.length)],
+      futureIntention: futureIntentions[seededRandom.nextInt(futureIntentions.length)],
+      dailyTheme: dailyThemes[seededRandom.nextInt(dailyThemes.length)],
     );
   }
 
@@ -67,8 +67,7 @@ class HoroscopeService {
       overallScore: overallScore,
       loveScore: (overallScore + _random.nextInt(20) - 10).clamp(0, 100),
       friendshipScore: (overallScore + _random.nextInt(20) - 10).clamp(0, 100),
-      communicationScore:
-          (overallScore + _random.nextInt(20) - 10).clamp(0, 100),
+      communicationScore: (overallScore + _random.nextInt(20) - 10).clamp(0, 100),
       summary: _getEsotericCompatibilitySummary(sign1, sign2, overallScore, language),
       strengths: _getEsotericCompatibilityStrengths(sign1, sign2, language),
       challenges: _getEsotericCompatibilityChallenges(sign1, sign2, language),

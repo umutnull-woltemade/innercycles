@@ -1317,12 +1317,12 @@ Tarih: ${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}
 
 Su formatta JSON dondur:
 {
-  "summary": "Genel gunluk ozet (3-4 cumle)",
-  "loveAdvice": "Ask ve iliskiler tavsiyesi (2-3 cumle)",
-  "careerAdvice": "Kariyer ve para tavsiyesi (2-3 cumle)",
-  "healthAdvice": "Saglik ve enerji tavsiyesi (2-3 cumle)",
-  "luckyNumber": "1-99 arasi sansli sayi",
-  "luckyColor": "Turkce renk adi",
+  "summary": "Genel gunluk refleksiyon temasi (3-4 cumle)",
+  "loveAdvice": "Iliskiler uzerine dusunme temasi (2-3 cumle)",
+  "careerAdvice": "Kariyer uzerine farkindalik temasi (2-3 cumle)",
+  "healthAdvice": "Saglik ve enerji farkindaliğı (2-3 cumle)",
+  "focusNumber": "1-99 arasi odak sayisi",
+  "reflectionColor": "Turkce renk adi",
   "mood": "Gunun enerjisi (tek kelime)"
 }
 
@@ -1432,8 +1432,8 @@ Turkce yaz, mistik ve destekleyici bir ton kullan.
         loveAdvice: data['loveAdvice'] ?? '',
         careerAdvice: data['careerAdvice'] ?? '',
         healthAdvice: data['healthAdvice'] ?? '',
-        luckyNumber: data['luckyNumber']?.toString() ?? '7',
-        luckyColor: data['luckyColor'] ?? 'Altin',
+        focusNumber: data['focusNumber']?.toString() ?? data['luckyNumber']?.toString() ?? '7',
+        reflectionColor: data['reflectionColor'] ?? data['luckyColor'] ?? 'Altin',
         mood: data['mood'] ?? 'Dengeli',
         isAiGenerated: true,
       );
@@ -1464,8 +1464,8 @@ Turkce yaz, mistik ve destekleyici bir ton kullan.
       loveAdvice: loveAdvices[random.nextInt(loveAdvices.length)],
       careerAdvice: careerAdvices[random.nextInt(careerAdvices.length)],
       healthAdvice: healthAdvices[random.nextInt(healthAdvices.length)],
-      luckyNumber: (random.nextInt(99) + 1).toString(),
-      luckyColor: _luckyColors[random.nextInt(_luckyColors.length)],
+      focusNumber: (random.nextInt(99) + 1).toString(),
+      reflectionColor: _reflectionColors[random.nextInt(_reflectionColors.length)],
       mood: _moods[random.nextInt(_moods.length)],
       isAiGenerated: false,
     );
@@ -1529,8 +1529,8 @@ Turkce yaz, mistik ve destekleyici bir ton kullan.
     }
   }
 
-  // Local content data
-  static final List<String> _luckyColors = [
+  // Local content data - colors for reflection themes
+  static final List<String> _reflectionColors = [
     'Altin',
     'Mor',
     'Mavi',
@@ -1799,15 +1799,16 @@ Turkce yaz, mistik ve destekleyici bir ton kullan.
   };
 }
 
-/// Personalized horoscope model
+/// Personalized reflection content model
+/// This content is for self-reflection only, not prediction.
 class PersonalizedHoroscope {
   final ZodiacSign sign;
   final String summary;
   final String loveAdvice;
   final String careerAdvice;
   final String healthAdvice;
-  final String luckyNumber;
-  final String luckyColor;
+  final String focusNumber;
+  final String reflectionColor;
   final String mood;
   final bool isAiGenerated;
 
@@ -1817,8 +1818,8 @@ class PersonalizedHoroscope {
     required this.loveAdvice,
     required this.careerAdvice,
     required this.healthAdvice,
-    required this.luckyNumber,
-    required this.luckyColor,
+    required this.focusNumber,
+    required this.reflectionColor,
     required this.mood,
     this.isAiGenerated = false,
   });

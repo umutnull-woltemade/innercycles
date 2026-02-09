@@ -2117,10 +2117,10 @@ class L10n {
       AppLanguage.fr: 'Un Jour = Un An',
     },
     'progressions_kadim_content': {
-      AppLanguage.en: 'Secondary Progressions are one of astrology\'s most subtle prediction techniques. They work with the "one day = one year" formula: the sky 30 days after your birth reflects the energies of your 30th year. This ancient technique shows your inner evolution and spiritual maturation - inner transformation rather than external events.',
-      AppLanguage.tr: 'İkincil İlerlemeler, astrolojinin en incelikli tahmin tekniklerinden biridir. "Bir gün = bir yıl" formülüyle çalışır: doğumunuzdan 30 gün sonraki gökyüzü, 30 yaşınızdaki enerjileri yansıtır. Bu kadim teknik, içsel evriminizi ve ruhsal olgunlaşmanızı gösterir - dış olaylardan ziyade iç dönüşümü.',
-      AppLanguage.de: 'Sekundäre Progressionen sind eine der subtilsten Vorhersagetechniken der Astrologie. Sie arbeiten mit der Formel "ein Tag = ein Jahr": der Himmel 30 Tage nach Ihrer Geburt spiegelt die Energien Ihres 30. Lebensjahres wider. Diese alte Technik zeigt Ihre innere Entwicklung und spirituelle Reifung.',
-      AppLanguage.fr: 'Les Progressions Secondaires sont l\'une des techniques de prédiction les plus subtiles de l\'astrologie. Elles fonctionnent avec la formule "un jour = un an" : le ciel 30 jours après votre naissance reflète les énergies de votre 30e année. Cette technique ancienne montre votre évolution intérieure et votre maturation spirituelle.',
+      AppLanguage.en: 'Secondary Progressions are one of astrology\'s most subtle timing techniques. They work with the "one day = one year" formula: the sky 30 days after your birth reflects themes associated with your 30th year. This ancient technique explores inner evolution and spiritual maturation - inner transformation rather than external events.',
+      AppLanguage.tr: 'İkincil İlerlemeler, astrolojinin en incelikli zamanlama tekniklerinden biridir. "Bir gün = bir yıl" formülüyle çalışır: doğumunuzdan 30 gün sonraki gökyüzü, 30 yaşınızdaki temalarla ilişkilendirilir. Bu kadim teknik, içsel evriminizi ve ruhsal olgunlaşmanızı keşfetmenize yardımcı olur.',
+      AppLanguage.de: 'Sekundäre Progressionen sind eine der subtilsten Zeittechniken der Astrologie. Sie arbeiten mit der Formel "ein Tag = ein Jahr": der Himmel 30 Tage nach Ihrer Geburt spiegelt Themen Ihres 30. Lebensjahres wider. Diese alte Technik erforscht Ihre innere Entwicklung und spirituelle Reifung.',
+      AppLanguage.fr: 'Les Progressions Secondaires sont l\'une des techniques de timing les plus subtiles de l\'astrologie. Elles fonctionnent avec la formule "un jour = un an" : le ciel 30 jours après votre naissance reflète les thèmes associés à votre 30e année. Cette technique ancienne explore votre évolution intérieure et votre maturation spirituelle.',
     },
   };
 }

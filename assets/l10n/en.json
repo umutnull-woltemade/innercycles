@@ -125,7 +125,8 @@
     "before_using": "Before Using",
     "text_1": "The information provided in this app is for entertainment and informational purposes only.",
     "text_2": "It should not be considered as professional advice for health, financial, legal, or psychological matters.",
-    "text_3": "Please consult qualified professionals for important life decisions."
+    "text_3": "Please consult qualified professionals for important life decisions.",
+    "reflection_only": "This content is for reflection and self-awareness only."
   },
   "router": {
     "not_found_title": "Page Not Found",
@@ -286,7 +287,8 @@
         "subtitle": "Energy center alignment"
       }
     },
-    "luck": "Luck",
+    "luck": "Daily Theme",
+    "daily_theme": "Daily Theme",
     "detailed_reading": "Detailed Reading",
     "mercury_retrograde": "Mercury Retrograde",
     "mercury_retrograde_warning": "Be careful with communication and technology!",
@@ -336,7 +338,7 @@
       "promotion": "💼 What career growth themes am I exploring?",
       "job_change": "📈 What factors matter in career decisions?",
       "gambling": "🎰 How do I approach risk and uncertainty?",
-      "lucky_star": "✨ What opportunities am I grateful for?",
+      "gratitude_star": "✨ What opportunities am I grateful for?",
       "mercury_retrograde": "🌙 What communication themes arise now?",
       "big_change": "🦋 What transformation themes resonate with me?",
       "rich_become": "💰 What is my relationship with abundance?",
@@ -603,7 +605,7 @@
     "zodiac": {
       "personalized_guidance": "Personalized daily guidance for {sign}",
       "popular_questions": "Popular Questions",
-      "lucky_months": {
+      "favorable_months": {
         "aries": "March, July, November",
         "taurus": "April, August, December",
         "gemini": "May, September, January",
@@ -1402,8 +1404,8 @@
     "pluto": "Pluto",
     "interpretations": {
       "jupiter": {
-        "line1": "{planet} in {sign} - your growth and luck area is colored by this sign's energy.",
-        "line2": "{sign}'s qualities show how you expand, what you believe in, and where you find luck. Your philosophical outlook, learning style, and optimism toward life are shaped by this sign.",
+        "line1": "{planet} in {sign} - your growth and expansion area is colored by this sign's energy.",
+        "line2": "{sign}'s qualities show how you expand, what you believe in, and where you find opportunity. Your philosophical outlook, learning style, and optimism toward life are shaped by this sign.",
         "line3": "{meaning} areas have {sign} energy active. This placement shows your spiritual growth potential and how abundance flows in your life."
       },
       "saturn": {
@@ -2417,7 +2419,7 @@
           "basic_meaning": "Money and wealth dreams represent self-worth and abundance consciousness. They carry a message of inner, not material, wealth.",
           "special_interpretation": "This dream invites you to question your relationship with the material world. True wealth is inner peace and gratitude.",
           "dream_types_label": "💎 MONEY DREAM TYPES",
-          "dream_types": "• Finding money: Incoming opportunities, luck\n• Losing money: Insecurity, fear of loss\n• Being rich: Awareness of potential\n• Counting money: Need for control\n• Giving money: Generosity or power loss",
+          "dream_types": "• Finding money: Incoming opportunities, abundance\n• Losing money: Insecurity, fear of loss\n• Being rich: Awareness of potential\n• Counting money: Need for control\n• Giving money: Generosity or power loss",
           "symbols_label": "🪙 SYMBOLS",
           "symbols": "• Gold: Spiritual wealth, wisdom\n• Cash: Daily security\n• Treasure: Hidden potential\n• Jewels: Self-worth\n• Bank: Security and structure",
           "psychological_label": "🌙 PSYCHOLOGICAL DIMENSION",
@@ -2609,7 +2611,7 @@
     "result_astrology_medium_title": "Star Traveler",
     "result_astrology_medium_desc": "Your connection with astrology is developing. By exploring your birth chart, you can better understand yourself.",
     "result_astrology_low_title": "Cosmic Explorer",
-    "result_astrology_low_desc": "The stars await you! Start your cosmic journey with simple horoscope readings.",
+    "result_astrology_low_desc": "The stars await you! Start your cosmic journey with daily reflection themes.",
     "result_numerology_high_title": "Number Master",
     "result_numerology_high_desc": "You have a strong connection with numbers! Discover the hidden messages on your life path with your personal numerology report.",
     "result_numerology_medium_title": "Number Traveler",
@@ -2642,7 +2644,7 @@
       "dreams": "Dream reflections are for personal exploration, not professional interpretation.",
       "health": "Not medical advice. Consult healthcare professionals.",
       "astrology": "For entertainment only. Not predictive advice.",
-      "tarot": "For reflection purposes only. Not fortune-telling.",
+      "tarot": "For reflection purposes only. Not predictive.",
       "numerology": "For self-exploration only. Not predictive.",
       "chakra": "For awareness only. Not medical or spiritual prescription.",
       "compatibility": "For reflection only. Not relationship advice.",
@@ -2761,27 +2763,27 @@
     "celestial_sync": "Celestial Synchronization",
     "sign_depth": "Zodiac Depth",
     "mood": "Mood",
-    "lucky_color": "Lucky Color",
-    "lucky_number": "Lucky Number",
+    "lucky_color": "Reflection Color",
+    "lucky_number": "Focus Number",
     "feature_coming_soon": "This feature is coming soon",
-    "what_says_today": "What does your zodiac say today?",
-    "select_discover_energy": "Select your sign, discover your cosmic energy",
+    "what_says_today": "What themes resonate with your sign today?",
+    "select_discover_energy": "Select your sign, explore reflection themes",
     "love_relationships": "Love & Relationships",
     "career_finance": "Career & Finance",
     "health_wellness": "Health & Wellness",
     "health_energy": "Health & Energy",
     "spiritual_guidance": "Spiritual Guidance",
     "important_days": "Important Days",
-    "lucky_days": "Lucky Days",
+    "lucky_days": "Favorable Days",
     "important_transits": "Important Transits",
-    "daily_reading": "Daily Reading",
-    "luck_rate": "Luck Rate",
-    "cosmic_tips": "Cosmic Tips",
+    "daily_reading": "Daily Reflection",
+    "luck_rate": "Energy Level",
+    "cosmic_tips": "Reflection Tips",
     "key_dates": "Key Dates",
     "yearly_theme": "Year Theme",
     "yearly_summary": "Yearly Summary",
     "special_months": "Special Months",
-    "lucky_months": "Lucky Months",
+    "lucky_months": "Favorable Months",
     "planet_transits": "Planet Transits",
     "your_zodiac_readings": "Your Zodiac Readings",
     "sign_today": "How is {sign} today?",
@@ -2843,7 +2845,7 @@
       "aquarius": [
         "You can make a difference with your original ideas.",
         "Group activities and friendships are at the forefront.",
-        "Luck is on your side in technology-related matters."
+        "Favorable energy in technology-related matters."
       ],
       "pisces": [
         "Your intuition is especially strong today.",
@@ -2922,7 +2924,7 @@
     "yearly_horoscope": "Yearly Horoscope — Venus One",
     "love_horoscope": "Love Horoscope — Venus One",
     "compatibility": "Zodiac Compatibility — Venus One",
-    "horoscope": "Horoscope Readings — Venus One",
+    "horoscope": "Daily Reflections — Venus One",
     "tarot": "Tarot — Venus One",
     "dreams": "Dream Oracle — Venus One",
     "astrology": "Astrology — Venus One",
@@ -3415,7 +3417,7 @@
         "description": "Dream symbols"
       },
       "daily_horoscope_reading": {
-        "title": "Daily Horoscope Reading",
+        "title": "Daily Reflection",
         "description": "Today's cosmic energy."
       },
       "cards_message": {
@@ -3681,7 +3683,7 @@
     "important_transits": "Important Planet Transits",
     "special_months_of_year": "Special Months of the Year",
     "caution_required": "Caution Required",
-    "horoscope_readings": "Horoscope Readings",
+    "horoscope_readings": "Daily Reflections",
     "birth_chart_analysis": "Birth Chart & Analysis",
     "time_transits": "Time & Transits",
     "numerology_mystic": "Numerology & Mystic Tools",
@@ -5318,7 +5320,7 @@
     "year_summary": "Year Summary",
     "quarterly_forecasts": "Quarterly Forecasts",
     "important_transits": "Important Transits",
-    "lucky_periods": "Lucky Periods",
+    "lucky_periods": "Favorable Periods",
     "challenging_periods": "Periods Requiring Attention",
     "year_affirmation": "Year Affirmation",
     "quarter_name": "Q{number}",
@@ -5384,7 +5386,7 @@
       "q4": "The last quarter of the year is time for reflection on {theme} and planning for next year."
     },
     "transit_effects": {
-      "jupiter": "Energy bringing expansion and luck. In the opportunity zone for {sign}.",
+      "jupiter": "Energy bringing expansion and growth. In the opportunity zone for {sign}.",
       "saturn": "Time for responsibility and structuring. A period requiring patience.",
       "mercury": "Attention in communication and technology. Opportunity to complete old matters."
     },
@@ -5448,7 +5450,7 @@
       "mercury": "The {direction} direction supports your communication and thought activity. Learning is easier in this direction.",
       "venus": "Your love and beauty energy comes from the {direction}. Relationships develop in this direction.",
       "mars": "Your action and motivation power is concentrated in the {direction}. This direction gives you energy.",
-      "jupiter": "The {direction} direction carries luck and growth potential. Opportunities come from this direction.",
+      "jupiter": "The {direction} direction carries expansion and growth potential. Opportunities come from this direction.",
       "saturn": "The {direction} direction requires structure and discipline. You need to be patient here.",
       "default": "The {direction} direction has special meaning for you."
     },
@@ -5468,7 +5470,7 @@
       "mercury": "Trips to the {direction} for education or business are productive.",
       "venus": "The {direction} direction is perfect for romantic vacations. Recommended for couples.",
       "mars": "Plan adventurous trips to the {direction}. Consider sports activities.",
-      "jupiter": "Long journeys in the {direction} direction bring luck. Explore foreign cultures.",
+      "jupiter": "Long journeys in the {direction} direction bring growth. Explore foreign cultures.",
       "saturn": "Make planned and organized trips to the {direction}. Don't rush.",
       "default": "You can consider traveling to the {direction} direction."
     },
@@ -6302,7 +6304,7 @@
           "power3": "Rebirth - Rising stronger from every fall"
         },
         "sagittarius": {
-          "power1": "Lucky Star - Natural luck",
+          "power1": "Optimism Star - Natural positivity",
           "power2": "Freedom Quest - Breaking boundaries",
           "power3": "Wisdom Quest - Finding life's meaning"
         },
@@ -6716,11 +6718,11 @@
         "advice": "There are answers in silence. Be your own guide but don't remain completely alone."
       },
       "wheel_of_fortune": {
-        "name": "Wheel of Fortune",
-        "keywords": "Change, cycles, patterns",
-        "upright": "Big changes are at the door. Luck is turning. The upward phase of the cycle begins.",
-        "reversed": "Bad luck or the falling phase of the cycle. This too shall pass. Be patient.",
-        "advice": "Life's ups and downs are natural. Be grateful at the top, be patient when you fall."
+        "name": "Wheel of Change",
+        "keywords": "Change, cycles, transformation",
+        "upright": "Change themes are prominent. The cycle is shifting. A time for reflection on transitions.",
+        "reversed": "Challenges or the descending phase of the cycle. This too shall pass. Be patient.",
+        "advice": "Life's ups and downs are natural. Be grateful at the top, be patient during challenges."
       },
       "justice": {
         "name": "Justice",
@@ -6863,7 +6865,7 @@
       "tigers_eye": "Tiger's Eye",
       "tigers_eye_benefit": "Courage and focus",
       "aventurine": "Aventurine",
-      "aventurine_benefit": "Luck and opportunities",
+      "aventurine_benefit": "Growth and opportunities",
       "lapis_lazuli": "Lapis Lazuli",
       "lapis_lazuli_benefit": "Wisdom and truth"
     },
@@ -7195,7 +7197,7 @@
           "Ground yourself today 🌍"
         ]
       },
-      "todays_luck": "TODAY'S LUCK",
+      "todays_luck": "TODAY'S THEME",
       "compatible": "COMPATIBLE",
       "warning": "WARNING",
       "for_your_sign_analysis": "FOR YOUR SIGN ANALYSIS",
@@ -8264,7 +8266,7 @@
     "todays_voice": "Today's Voice",
     "dream_trace": "Dream Trace",
     "todays_number": "Today's Number",
-    "lucky_hour": "Lucky Hour",
+    "lucky_hour": "Focus Hour",
     "tantra_title": "Tantra",
     "breath": "Breath",
     "awareness": "Awareness",
@@ -8438,13 +8440,13 @@
     "good_afternoon": "Good afternoon",
     "good_evening": "Good evening",
     "dear": "dear",
-    "intro_message": "I am Kozmoz Trace, your cosmic guide. I am here to answer your questions about astrology, horoscope readings, transits, numerology and more with the energy of your {sign} sign.",
+    "intro_message": "I am Kozmoz Trace, your cosmic guide. I am here to help you explore astrology, daily reflections, transits, numerology and more with the energy of your {sign} sign.",
     "ask_placeholder": "Ask Kozmoz... (Press Enter to send)",
     "quick_access": "Quick Access",
     "suggested_questions": "Suggested Questions:",
     "all_analyses": "All Analyses",
     "features": {
-      "zodiac_readings": "Horoscope Readings",
+      "zodiac_readings": "Daily Reflections",
       "birth_chart": "Birth Chart",
       "zodiac_compatibility": "Zodiac Compatibility",
       "transits": "Transits",
@@ -8456,8 +8458,8 @@
       "timing": "Timing"
     },
     "questions": {
-      "daily_lucky_hours": "What are my luckiest hours today when my energy will be highest?",
-      "daily_danger_hours": "What dangerous hours and possible obstacles should I watch out for today?",
+      "daily_lucky_hours": "What times today might be good for focused work and reflection?",
+      "daily_danger_hours": "What times today might benefit from extra mindfulness?",
       "weekly_advice": "What are the three most important pieces of advice for my sign this week?",
       "cosmic_weather": "What is my cosmic weather today based on my Sun, Moon and rising signs?",
       "venus_mars_love": "What can I expect in my love life this month based on Venus and Mars transits?",
@@ -8808,7 +8810,7 @@
       "air": "it's an ideal day for communication and social interactions. Share your ideas",
       "water": "it's time for emotional depth and intuitive wisdom. Listen to your inner voice"
     },
-    "lucky_hours": {
+    "focus_hours": {
       "aries": "06:00-07:00, 12:00-13:00, 18:00-19:00",
       "taurus": "07:00-08:00, 14:00-15:00, 21:00-22:00",
       "gemini": "08:00-09:00, 13:00-14:00, 17:00-18:00",
@@ -9117,7 +9119,7 @@
     },
     "transit": {
       "saturn_detail": "♄ Saturn is maturing you and teaching responsibility. Structure, discipline and long-term goals are in focus.",
-      "jupiter_detail": "♃ Jupiter brings expansion and luck. Be open to opportunities.",
+      "jupiter_detail": "♃ Jupiter brings expansion and growth. Be open to opportunities.",
       "pluto_detail": "♇ Pluto requires deep transformation. Death and rebirth themes.",
       "uranus_detail": "♅ Uranus brings sudden changes and liberation.",
       "neptune_detail": "♆ Neptune brings dreams, illusions and spiritual awakening.",
@@ -9677,14 +9679,14 @@
     "planet_moon_meaning": "Emotions, intuition, home",
     "planet_mars_meaning": "Action, courage, energy",
     "planet_mercury_meaning": "Communication, learning, travel",
-    "planet_jupiter_meaning": "Luck, expansion, abundance",
+    "planet_jupiter_meaning": "Growth, expansion, abundance",
     "planet_venus_meaning": "Love, beauty, harmony",
     "planet_saturn_meaning": "Discipline, structure, patience",
-    "lucky_elements": "Lucky Elements Today",
-    "lucky_numbers": "Lucky Numbers",
-    "lucky_color": "Lucky Color",
+    "lucky_elements": "Today's Reflection Elements",
+    "lucky_numbers": "Focus Numbers",
+    "lucky_color": "Theme Color",
     "lucky_direction": "Direction",
-    "lucky_hour": "Lucky Hour",
+    "lucky_hour": "Focus Hour",
     "lucky_flower": "Flower",
     "lucky_stone": "Stone",
     "biorhythm_cycle": "Biorhythm Cycle",
@@ -9700,7 +9702,7 @@
     "aspect_sun_harmonious": "Vitality and confidence are enhanced. Great for leadership and creative expression.",
     "aspect_moon_harmonious": "Emotional harmony flows. Good for nurturing and connecting with loved ones.",
     "aspect_venus_harmonious": "Love and beauty are highlighted. Ideal for relationships and artistic pursuits.",
-    "aspect_jupiter_harmonious": "Luck and expansion favor you. Good for taking calculated risks.",
+    "aspect_jupiter_harmonious": "Growth and expansion favor you. Good for taking calculated risks.",
     "aspect_default_harmonious": "Positive energy supports your endeavors today.",
     "aspect_mars_challenging": "Watch for impulsiveness or conflict. Channel energy into physical activity.",
     "aspect_saturn_challenging": "May feel restrictions or delays. Practice patience and persistence.",
@@ -10020,7 +10022,7 @@
       "mercury": "Mind and communication",
       "venus": "Love, beauty and values",
       "mars": "Action, passion and energy",
-      "jupiter": "Luck, growth and wisdom",
+      "jupiter": "Expansion, growth and wisdom",
       "saturn": "Structure, discipline and time",
       "uranus": "Revolution, freedom and change",
       "neptune": "Dreams, inspiration and illusion",
@@ -10029,8 +10031,8 @@
   },
   "pdf_report": {
     "labels": {
-      "lucky_number": "Lucky Number",
-      "lucky_color": "Lucky Color",
+      "lucky_number": "Focus Number",
+      "lucky_color": "Theme Color",
       "caution": "Caution",
       "compatibility_report": "Compatibility Report"
     },
@@ -10058,7 +10060,7 @@
       "mercury": "Communication, thinking, learning",
       "venus": "Love, beauty, values",
       "mars": "Energy, passion, action",
-      "jupiter": "Expansion, luck, philosophy",
+      "jupiter": "Expansion, growth, philosophy",
       "saturn": "Discipline, responsibility, boundaries",
       "uranus": "Change, freedom, innovation",
       "neptune": "Imagination, spirituality, intuition",
@@ -10338,7 +10340,7 @@
       "Monday": "Monday dreams usually reflect work and responsibility themes.",
       "Tuesday": "Mars day Tuesday is prone to action and energy-filled dreams.",
       "Wednesday": "Mercury day Wednesday brings communication and message-filled dreams.",
-      "Thursday": "Jupiter day Thursday may feature expansion and luck-themed dreams.",
+      "Thursday": "Jupiter day Thursday may feature expansion and growth-themed dreams.",
       "Friday": "Venus day Friday is open to love and beauty dreams.",
       "Saturday": "Saturn day Saturday brings dreams about boundaries and structure.",
       "Sunday": "Sun day Sunday is conducive to self and identity discovery dreams."

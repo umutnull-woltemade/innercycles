@@ -1,5 +1,7 @@
 import 'zodiac_sign.dart';
 
+/// Daily reflection content for self-awareness and mindfulness.
+/// This content is for personal reflection only, not prediction or advice.
 class DailyHoroscope {
   final ZodiacSign sign;
   final DateTime date;
@@ -7,16 +9,16 @@ class DailyHoroscope {
   final String loveAdvice;
   final String careerAdvice;
   final String healthAdvice;
-  final int luckRating; // 1-5
-  final String luckyNumber;
-  final String luckyColor;
+  final int energyLevel; // 1-5 (for UI display only, represents thematic intensity)
+  final String focusNumber;
+  final String reflectionColor;
   final String mood;
 
-  // Kozmik Fısıltı - Geçmiş, Şimdi, Gelecek
-  final String pastInsight;      // Geçmişin Yankısı
-  final String presentEnergy;    // Şimdinin Enerjisi
-  final String futureGuidance;   // Geleceğin Fısıltısı
-  final String cosmicMessage;    // Evrenin Mesajı (kısa özet)
+  // Reflection Themes - Past patterns, Present awareness, Future intentions
+  final String pastInsight;      // Patterns from the past to reflect on
+  final String presentEnergy;    // Current awareness themes
+  final String futureIntention;  // Intentions to consider (not predictions)
+  final String dailyTheme;       // Daily reflection theme (summary)
 
   // Element ve Modalite Analizi
   final String elementAnalysis;   // Element derinlemesine analizi
@@ -54,8 +56,8 @@ class DailyHoroscope {
   final String moonPhaseEffect;   // Ay fazının burca etkisi
 
   // Özel Uyarılar
-  final String specialWarning;    // Özel dikkat edilecek konu
-  final String luckyTime;         // Şanslı saat aralığı
+  final String specialWarning;    // Theme to pay attention to
+  final String focusTime;         // Suggested focus time for activities
 
   DailyHoroscope({
     required this.sign,
@@ -64,14 +66,14 @@ class DailyHoroscope {
     required this.loveAdvice,
     required this.careerAdvice,
     required this.healthAdvice,
-    required this.luckRating,
-    required this.luckyNumber,
-    required this.luckyColor,
+    required this.energyLevel,
+    required this.focusNumber,
+    required this.reflectionColor,
     required this.mood,
     required this.pastInsight,
     required this.presentEnergy,
-    required this.futureGuidance,
-    required this.cosmicMessage,
+    required this.futureIntention,
+    required this.dailyTheme,
     this.elementAnalysis = '',
     this.modalityAnalysis = '',
     this.planetaryHourInfo = '',
@@ -90,7 +92,7 @@ class DailyHoroscope {
     this.tarotMeaning = '',
     this.moonPhaseEffect = '',
     this.specialWarning = '',
-    this.luckyTime = '',
+    this.focusTime = '',
   });
 
   Map<String, dynamic> toJson() => {
@@ -100,14 +102,14 @@ class DailyHoroscope {
         'loveAdvice': loveAdvice,
         'careerAdvice': careerAdvice,
         'healthAdvice': healthAdvice,
-        'luckRating': luckRating,
-        'luckyNumber': luckyNumber,
-        'luckyColor': luckyColor,
+        'energyLevel': energyLevel,
+        'focusNumber': focusNumber,
+        'reflectionColor': reflectionColor,
         'mood': mood,
         'pastInsight': pastInsight,
         'presentEnergy': presentEnergy,
-        'futureGuidance': futureGuidance,
-        'cosmicMessage': cosmicMessage,
+        'futureIntention': futureIntention,
+        'dailyTheme': dailyTheme,
       };
 
   factory DailyHoroscope.fromJson(Map<String, dynamic> json) => DailyHoroscope(
@@ -117,27 +119,31 @@ class DailyHoroscope {
         loveAdvice: json['loveAdvice'] as String,
         careerAdvice: json['careerAdvice'] as String,
         healthAdvice: json['healthAdvice'] as String,
-        luckRating: json['luckRating'] as int,
-        luckyNumber: json['luckyNumber'] as String,
-        luckyColor: json['luckyColor'] as String,
+        energyLevel: json['energyLevel'] as int? ?? json['luckRating'] as int? ?? 3,
+        focusNumber: json['focusNumber'] as String? ?? json['luckyNumber'] as String? ?? '',
+        reflectionColor: json['reflectionColor'] as String? ?? json['luckyColor'] as String? ?? '',
         mood: json['mood'] as String,
         pastInsight: json['pastInsight'] as String? ?? '',
         presentEnergy: json['presentEnergy'] as String? ?? '',
-        futureGuidance: json['futureGuidance'] as String? ?? '',
-        cosmicMessage: json['cosmicMessage'] as String? ?? '',
+        futureIntention: json['futureIntention'] as String? ?? json['futureGuidance'] as String? ?? '',
+        dailyTheme: json['dailyTheme'] as String? ?? json['cosmicMessage'] as String? ?? '',
       );
 }
 
+/// Relationship reflection themes based on archetypal patterns.
+/// Scores represent thematic harmony patterns for self-reflection,
+/// not predictions or guarantees about relationship outcomes.
+/// This content is for entertainment and reflection only.
 class Compatibility {
   final ZodiacSign sign1;
   final ZodiacSign sign2;
-  final int overallScore; // 0-100
+  final int overallScore; // 0-100 thematic harmony indicator
   final int loveScore;
   final int friendshipScore;
   final int communicationScore;
   final String summary;
   final List<String> strengths;
-  final List<String> challenges;
+  final List<String> challenges; // growth areas to consider
 
   Compatibility({
     required this.sign1,

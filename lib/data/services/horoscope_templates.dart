@@ -530,12 +530,12 @@ class HoroscopeTemplates {
     ],
   };
 
-  // Lucky colors by zodiac sign
-  static Map<ZodiacSign, List<String>> getLuckyColors({AppLanguage language = AppLanguage.tr}) {
-    return language == AppLanguage.tr ? _luckyColorsTr : _luckyColorsEn;
+  // Reflection colors by zodiac sign (for thematic awareness, not prediction)
+  static Map<ZodiacSign, List<String>> getReflectionColors({AppLanguage language = AppLanguage.tr}) {
+    return language == AppLanguage.tr ? _reflectionColorsTr : _reflectionColorsEn;
   }
 
-  static const Map<ZodiacSign, List<String>> _luckyColorsTr = {
+  static const Map<ZodiacSign, List<String>> _reflectionColorsTr = {
     ZodiacSign.aries: ['Kırmızı', 'Turuncu', 'Sarı', 'Beyaz'],
     ZodiacSign.taurus: ['Yeşil', 'Pembe', 'Mavi', 'Toprak Tonları'],
     ZodiacSign.gemini: ['Sarı', 'Açık Mavi', 'Yeşil', 'Beyaz'],
@@ -550,7 +550,7 @@ class HoroscopeTemplates {
     ZodiacSign.pisces: ['Deniz Mavisi', 'Yeşil', 'Mor', 'Lila'],
   };
 
-  static const Map<ZodiacSign, List<String>> _luckyColorsEn = {
+  static const Map<ZodiacSign, List<String>> _reflectionColorsEn = {
     ZodiacSign.aries: ['Red', 'Orange', 'Yellow', 'White'],
     ZodiacSign.taurus: ['Green', 'Pink', 'Blue', 'Earth Tones'],
     ZodiacSign.gemini: ['Yellow', 'Light Blue', 'Green', 'White'],
@@ -590,7 +590,7 @@ class HoroscopeTemplates {
     final loveList = getLoveAdvice(language: language);
     final careerList = getCareerAdvice(language: language);
     final healthList = getHealthAdvice(language: language);
-    final colorList = getLuckyColors(language: language);
+    final colorList = getReflectionColors(language: language);
 
     final general = _getSeededItem(generalList, seed, 0);
     final love = _getSeededItem(loveList, seed, 100);
