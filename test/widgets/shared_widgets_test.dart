@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:astrology_app/shared/widgets/gradient_button.dart';
-import 'package:astrology_app/shared/widgets/shimmer_loading.dart';
 
 void main() {
   // ShimmerLoading uses flutter_animate which creates repeating animations.

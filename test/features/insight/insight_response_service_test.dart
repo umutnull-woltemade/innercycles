@@ -1,4 +1,3 @@
-import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:astrology_app/features/insight/services/insight_response_service.dart';
 import 'package:astrology_app/features/insight/services/insight_routing_service.dart';
@@ -291,7 +290,7 @@ void main() {
 
         expect(response, isNotEmpty);
         // Should be German text (not English)
-        final englishResponses = [
+        final _ = [
           L10nService.get('insight.responses.dream_general_1', AppLanguage.en),
           L10nService.get('insight.responses.dream_general_2', AppLanguage.en),
         ];
