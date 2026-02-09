@@ -5,6 +5,8 @@
 /// Content is designed for self-reflection, not fortune-telling or prediction.
 library;
 
+import '../providers/app_providers.dart';
+
 /// Content disclaimer for all tarot content
 const String tarotContentDisclaimer = '''
 Tarot cards are symbolic tools for self-reflection and personal exploration.
@@ -15,8 +17,6 @@ not destined events. Use these themes as journaling prompts and reflection topic
 
 This is not fortune-telling. It is a tool for inner exploration.
 ''';
-
-import '../providers/app_providers.dart';
 
 class MajorArcanaContent {
   final int number;
