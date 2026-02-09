@@ -874,8 +874,8 @@
       "birthday_number": "Dogum Gunu",
       "personal_year": "Kisisel Yil",
       "name_numerology": "Isim Numerolojisi",
-      "destiny_number": "Kader Sayisi",
-      "destiny_number_desc": "Isminizin toplam degerinden hesaplanan bu sayi, hayatinizdaki ana amacinizi ve potansiyelinizi ortaya koyar.",
+      "destiny_number": "İfade Sayısı",
+      "destiny_number_desc": "İsminizin toplam değerinden hesaplanan bu sayı, hayatınızdaki potansiyel temalar ve özellikler hakkında düşünmenize yardımcı olur.",
       "soul_urge": "Ruh Durtusu",
       "personality": "Kisilik",
       "karmic_debt_numbers": "Karmik Borc Sayilari",
@@ -959,14 +959,14 @@
       "advice_house_3": "İletişim becerilerinizi geliştirin. Yakın çevrenizle bağlantıları güçlendirin.",
       "advice_house_4": "Evinize ve ailenize zaman ayırın. Duygusal güvenliğinizi öncelikli yapın.",
       "advice_house_5": "Yaratıcılığınızda özgür bırakın. Aşk ve eğlence hayatında canlılık bekleyin.",
-      "advice_house_6": "Sağlığınıza ve günlük rutinlerinize dikkat edin. İş ortamında gelişmeler olacak.",
+      "advice_house_6": "Sağlığınıza ve günlük rutinlerinize dikkat edin. İş ortamında gelişme temaları öne çıkabilir.",
       "advice_house_7": "İlişkileriniz ön planda. Ortaklıklar ve evlilik konularında önemli adımlar.",
       "advice_house_8": "Derinlere inin. Dönüşüm ve yenilenme zamanı. Ortak finanslar önem kazanıyor.",
       "advice_house_9": "Ufkunuzu genişletin. Eğitim, seyahat ve felsefi arayışlar için ideal yıl.",
       "advice_house_10": "Kariyer hedeflerinize odaklanın. Toplumda yerinizi belirleyin.",
       "advice_house_11": "Sosyal çevrenizi genişletin. Gelecek hayalleriniz için çalışın.",
       "advice_house_12": "İçe dönüş yılı. Ruhsal gelişim ve dinlenme öncelikli olmalı.",
-      "advice_default": "Bu yıl sizin için önemli dönüşümler getirecek."
+      "advice_default": "Bu yıl önemli dönüşüm temaları üzerine düşünmek faydalı olabilir."
     },
     "reiki": {
       "title": "Reiki",
@@ -2121,7 +2121,7 @@
       "error_try_again": "Bir sorun oluştu. Lütfen tekrar dene.",
       "interpretation_failed": "Yorum oluşturulamadı.",
       "share_another": "Başka bir rüya paylaşmak istersen, dinlemeye hazırım.",
-      "welcome_message": "Merhaba, ben Rüya İzi. {signName} burcunun kozmik enerjisiyle sana rehberlik etmek için buradayım.\n\nGördüğün rüyayı detaylı bir şekilde anlat. Ne gördün? Neler hissettin? Rüyandaki semboller, renkler ve duygular hakkında ne kadar çok bilgi verirsen, kozmik yorumum o kadar derin olacak.\n\n",
+      "welcome_message": "Merhaba, ben Rüya İzi. {signName} burcunun kozmik enerjisiyle sana eşlik etmek için buradayım.\n\nGördüğün rüyayı detaylı bir şekilde anlat. Ne gördün? Neler hissettin? Rüyandaki semboller, renkler ve duygular hakkında ne kadar çok bilgi verirsen, sembolik keşfimiz o kadar zengin olur.\n\n",
       "prompts": {
         "water_breathing": "Denizde yüzüyordum ama suyun altında nefes alabiliyordum",
         "rain_running": "Şiddetli yağmur altında koşuyordum ama ıslanmıyordum",
@@ -2449,7 +2449,7 @@
           "aries": "Tavsiyem: Sabah uyandığında ilk düşüncelerini not al. Ateş enerjin, bilinçaltı mesajları hızla unutturabilir.",
           "taurus": "Tavsiyem: Rüyalarını bir rüya defterine yaz. Toprak enerjin, somut kayıtlarla daha iyi çalışır.",
           "gemini": "Tavsiyem: Rüyanı birine anlat. Hava enerjin, sözel ifadeyle anlam bulmayı sever.",
-          "cancer": "Tavsiyem: Ay fazlarına dikkat et. Dolunay ve yeniay zamanları rüyaların daha güçlü olacak.",
+          "cancer": "Tavsiyem: Ay fazlarına dikkat et. Dolunay ve yeniay zamanları rüya farkındalığın artabilir.",
           "leo": "Tavsiyem: Rüyalarını yaratıcı bir şekilde ifade et - çiz, yaz, paylaş. Ateş enerjin ifadeyi sever.",
           "virgo": "Tavsiyem: Rüya sembolleri listesi tut. Toprak enerjin, sistematik analizi takdir eder.",
           "libra": "Tavsiyem: Rüyalarındaki ilişkilere odaklan. Hava enerjin, sosyal dinamiklerden ders çıkarır.",
@@ -2839,7 +2839,7 @@
       "default": [
         "Bugün kozmik enerjiler seninle.",
         "İç sesine kulak ver.",
-        "Yeni fırsatlar kapıda."
+        "Yeni fırsatları fark etmeye açık ol."
       ]
     },
     "sign_summaries": {
@@ -4445,7 +4445,7 @@
         "\"Ruyalar, ruhumuzun gece yazilan mektuplaridir.\"",
         "\"Her ruya bir ayna, her sembol bir anahtar.\"",
         "\"Gece, bilincaltinin en yuksek sesle konustugu andir.\"",
-        "\"Ruyalarini dinleyen, kaderini yazar.\""
+        "\"Rüyalarını dinleyen, hikayesini yazar.\""
       ],
       "privacy_controls": "Gizlilik Kontrolleri",
       "share_anonymously": "Anonim Paylas",
@@ -5364,21 +5364,21 @@
       "three_four_times": "3-4 kez/yıl"
     },
     "overviews": {
-      "aries": "{year} sizin için cesaret ve yeni başlangıçlar yılı. Liderlik özellikleriniz ön plana çıkacak.",
-      "taurus": "{year} finansal istikrar ve kişisel değerler üzerine odaklanacağınız bir yıl olacak.",
-      "gemini": "{year} iletişim ve öğrenim için önemli fırsatlar getirecek. Sosyal çevreniz genişleyecek.",
-      "cancer": "{year} ev, aile ve duygusal güvenlik temalarına odaklanacağınız bir dönem.",
-      "leo": "{year} yaratıcı ifade ve kişisel parlaklık zamanı. Sahneye çıkmaktan korkmayın.",
-      "virgo": "{year} detaylara odaklanma ve hizmet etme enerjisi taşıyor. Sağlık ve rutin önemli.",
-      "libra": "{year} ilişkiler ve ortaklıklar için dönüşüm zamanı. Denge arayın.",
-      "scorpio": "{year} derin dönüşümler ve yenilenme getiriyor. Eski kalıpları bırakın.",
-      "sagittarius": "{year} macera, eğitim ve ufukları genişletme yılı. Özgürlük ön planda.",
-      "capricorn": "{year} kariyer zirvesi ve toplumsal başarı için uygun. Hedeflerinize odaklanın.",
-      "aquarius": "{year} yenilikçi fikirler ve toplumsal bağlantı için güçlü enerji taşıyor.",
-      "pisces": "{year} ruhsal gelişim ve yaratıcı ilham için zengin bir dönem olacak."
+      "aries": "{year} cesaret ve yeni başlangıçlar temaları üzerine düşünmeye davet ediyor. Liderlik özelliklerinizi keşfedebilirsiniz.",
+      "taurus": "{year} finansal istikrar ve kişisel değerler üzerine düşünmek için uygun bir dönem.",
+      "gemini": "{year} iletişim ve öğrenim temaları öne çıkıyor. Sosyal çevrenizi keşfetmeye açık olabilirsiniz.",
+      "cancer": "{year} ev, aile ve duygusal güvenlik temalarını keşfetmeye davet ediyor.",
+      "leo": "{year} yaratıcı ifade ve kişisel parlaklık temalarını keşfetmek için uygun bir dönem.",
+      "virgo": "{year} detaylara odaklanma ve hizmet etme temaları öne çıkıyor. Sağlık ve rutin üzerine düşünün.",
+      "libra": "{year} ilişkiler ve ortaklıklar üzerine düşünmek için uygun. Denge temalarını keşfedin.",
+      "scorpio": "{year} derin dönüşüm ve yenilenme temaları öne çıkıyor. Eski kalıpları sorgulamaya açık olun.",
+      "sagittarius": "{year} macera, eğitim ve ufuk genişletme temaları öne çıkıyor. Özgürlük kavramını keşfedin.",
+      "capricorn": "{year} kariyer ve toplumsal başarı temaları üzerine düşünmek için uygun. Hedeflerinizi gözden geçirin.",
+      "aquarius": "{year} yenilikçi fikirler ve toplumsal bağlantı temaları öne çıkıyor.",
+      "pisces": "{year} ruhsal gelişim ve yaratıcı ilham temalarını keşfetmek için zengin bir dönem."
     },
     "quarter_descriptions": {
-      "q1": "Yılın başlangıcı {theme} enerjisi ile geliyor. {sign} burcu olarak bu dönemde aktif olacaksınız.",
+      "q1": "Yılın başlangıcı {theme} teması ile ilişkilendiriliyor. {sign} burcu olarak bu döneme dikkat edebilirsiniz.",
       "q2": "İlkbahar ve yaz arasında {theme} ön plana çıkıyor. Projelerinizi somutlaştırma zamanı.",
       "q3": "Sonbahar mevsimi {theme} ile ilgili konuları öne çıkarıyor. Dengeleme önemli.",
       "q4": "Yılın son çeyreği {theme} üzerine düşünme ve gelecek yılı planlama zamanı."
@@ -5712,7 +5712,7 @@
       "Enerjin yüksek! Dışarıda oynamak veya spor yapmak için ideal bir gün.",
       "Ailenle güzel anılar biriktireceğin bir gün. Birlikte oyun oynayın.",
       "Yeni bir beceri öğrenmeye başlamak için güzel bir zamanlama.",
-      "Duygularını ifade etmek bugün kolay olacak. Hissettiklerini paylaş."
+      "Duygularını ifade etmek bugün kolay hissedebilirsin. Hissettiklerini paylaşmayı düşün."
     ],
     "family_dynamics": {
       "fire": "Aileniz enerji, inisiyatif ve tutku üzerine kurulu. Ortak aktiviteler ve sağlıklı rekabet, bağ kurma yollarından biri. Rekabet olabilir ama coşkunuz bulaşıcı.",
@@ -5909,7 +5909,7 @@
       },
       "life_number": {
         "title": "Yaşam Sayın",
-        "subtitle": "Numerolojik kaderini keşfet"
+        "subtitle": "Numerolojik temalarını keşfet"
       },
       "kabbala_path": {
         "title": "Kabala Yolun",
@@ -6519,7 +6519,7 @@
         "gemini": "Zeki, iletişimci, esprili biri. Seninle bitmeyen sohbetler edecek, merakini paylaşacak.",
         "cancer": "Sefkatli, koruyucu, aile odakli biri. Seninle duygusal derinlik paylaşacak.",
         "leo": "Karizmatik, cesur, cömert biri. Seninle birlikte parlayacak, seni takdir edecek.",
-        "virgo": "Zeki, duzgun, duşünceli biri. Seninle hayati daha iyi hale getirecek.",
+        "virgo": "Zeki, düzgün, düşünceli biri. Seninle hayatı birlikte keşfedebilir.",
         "libra": "Zarif, dengeleyici, romantik biri. Seninle guzel bir hayat yaratacak.",
         "scorpio": "Yogun, sadık, tutkulu biri. Seninle derin bir bag kuracak.",
         "sagittarius": "Maceraci, ozgur, felsefi biri. Seninle dunyayi kesfedecek.",
@@ -6676,7 +6676,7 @@
       "emperor": {
         "name": "İmparator",
         "keywords": "Otorite, yapı, kontrol",
-        "upright": "Liderlik ve yapı zamanı. Disiplin ve kararlılık başarıyı getirecek.",
+        "upright": "Liderlik ve yapı temaları öne çıkıyor. Disiplin ve kararlılık üzerine düşünün.",
         "reversed": "Aşırı kontrol veya katılık. Esnekliğe ihtiyaç var. Otorite figürleriyle çatışma.",
         "advice": "Güçlü sınırlar koy ama diktatör olma. Sorumluluk al, ama başkalarına da alan bırak."
       },
@@ -6718,14 +6718,14 @@
       "wheel_of_fortune": {
         "name": "Kader Çarkı",
         "keywords": "Değişim, döngüler, kader",
-        "upright": "Büyük değişimler kapıda. Şans dönüyor. Döngünün yukarı evresi başlıyor.",
+        "upright": "Değişim temaları öne çıkıyor. Döngüler ve dönüşümler üzerine düşünün.",
         "reversed": "Kötü şans veya döngünün düşüş evresi. Bu da geçecek. Sabırlı ol.",
         "advice": "Hayatın iniş çıkışları doğal. Tepeye çıktığında şükret, düştüğünde sabret."
       },
       "justice": {
         "name": "Adalet",
         "keywords": "Hakkaniyet, hakikat, karma",
-        "upright": "Adalet yerini bulacak. Dürüstlük ve hakikat önemli. Karma işliyor.",
+        "upright": "Adalet ve denge temaları öne çıkıyor. Dürüstlük ve hakikat üzerine düşünün.",
         "reversed": "Adaletsizlik veya dengesizlik. Sorumluluktan kaçma. Öz-aldatma.",
         "advice": "Eylemlerinin sonuçlarını kabul et. Dürüst ol - önce kendinle."
       },
@@ -6968,7 +6968,7 @@
       "default": "Ben değerli ve yeteriyim."
     },
     "affirmation_lists": {
-      "morning_1": "Bugün harika şeyler olacak.",
+      "morning_1": "Bugün kendimi harika şeylere açık hissediyorum.",
       "morning_2": "Enerjim yüksek ve odağım net.",
       "morning_3": "Tüm fırsatlara açığım.",
       "noon_1": "İlerliyorum ve büyüyorum.",
@@ -7969,7 +7969,7 @@
       ],
       "scorpio": [
         "Karanlıktan korkmuyorsun.",
-        "Dönüşüm kapıda.",
+        "Dönüşüm temaları öne çıkıyor.",
         "Derinliklerde hazine var."
       ],
       "sagittarius": [
@@ -8617,7 +8617,7 @@
       "practical_advice": "PRATİK TAVSİYELER",
       "wisdom_affirmation": "GÜN İÇİN AFİRMASYON",
       "more_help": "Daha spesifik yardım için bana şunları sorabilirsin:",
-      "example_questions": "• \"Bugün için burç yorumum\"\n• \"Aşk hayatım nasıl olacak?\"\n• \"Kariyer için tavsiye\"\n• \"Ay fazı etkisi\"\n• \"Tarot mesajı\"\n\n• Ve çok daha fazlası...\n\nMerak ettiğin her konuyu sorabilirsin! 🌌",
+      "example_questions": "• \"Bugün için burç yorumum\"\n• \"Aşk hayatım hakkında düşünceler\"\n• \"Kariyer için tavsiye\"\n• \"Ay fazı etkisi\"\n• \"Tarot mesajı\"\n\n• Ve çok daha fazlası...\n\nMerak ettiğin her konuyu sorabilirsin! 🌌",
       "date_format": "{day}.{month}.{year}",
       "moon_in_sign": "Ay: {sign} Burcunda",
       "rising_sign_header": "{sign} & YÜKSELEN BURÇ ANALİZİ",
@@ -8672,7 +8672,7 @@
       "advice_card": "TAVSİYE",
       "card_of_the_day": "GÜNÜN KARTI",
       "card_message": "Bu kartın sana mesajı:",
-      "tarot_reminder": "Kartlar potansiyelleri gösterir, kaderi değil!",
+      "tarot_reminder": "Kartlar sembolik temalar sunar, tahmin değil!",
       "aura_header": "{sign} AURA & ENERJİ ANALİZİ",
       "aura_colors": "AURA RENKLERİN",
       "energy_frequency": "ENERJİ FREKANSIM",
@@ -8800,7 +8800,7 @@
       "capricorn": "Hedeflerime kararlılıkla ilerliyorum. Başarı benim doğam.",
       "aquarius": "Benzersizliğim gücüm. Dünyayı daha iyi bir yer yapıyorum.",
       "pisces": "Sezgilerim beni yönlendiriyor. Evrenle bir bütünüm.",
-      "default": "Bugün harika şeyler olacak!"
+      "default": "Bugün kendimi harika şeylere açık hissediyorum!"
     },
     "element_daily_notes": {
       "fire": "aksiyona geçme ve liderlik sergileme enerjin yüksek. Ancak sabrı elden bırakma",
@@ -9502,30 +9502,30 @@
       "meaning_22": "Büyük projeler günü",
       "meaning_33": "Şifa ve öğretme günü",
       "meaning_default": "Güçlü enerji günü",
-      "suggestion_text": "Kader sayısı nedir?",
+      "suggestion_text": "İfade sayısı nedir?",
       "footer": "Numeroloji — Venus One"
     },
     "destiny_number_screen": {
-      "page_title": "Kader sayısı nedir?",
+      "page_title": "İfade sayısı nedir?",
       "tag": "Numeroloji",
       "short_answer_title": "Kısa Cevap",
-      "short_answer_1": "Kader sayısı, tam adından hesaplanan numerolojik değerdir.",
-      "short_answer_2": "Bu hayatta neyi başarmak için geldiğini gösterir.",
-      "short_answer_3": "İfade sayısı olarak da bilinir.",
+      "short_answer_1": "İfade sayısı, tam adından hesaplanan numerolojik değerdir.",
+      "short_answer_2": "Bu hayatta keşfedebileceğin potansiyel temaları yansıtır.",
+      "short_answer_3": "Kendin hakkında düşünmek için bir araçtır.",
       "how_calculated_title": "Nasıl Hesaplanır?",
       "how_calculated_1": "Tam adının her harfine bir sayı karşılığı atanır.",
       "how_calculated_2": "A=1, B=2, C=3... şeklinde devam eder.",
       "how_calculated_3": "Tüm harflerin sayıları toplanır ve tek haneye indirgenir.",
       "letter_number_chart": "Harf-Sayı Tablosu",
-      "what_it_tells_title": "Ne Anlatır?",
-      "what_it_tells_1": "Bu hayatta ifade etmen gereken enerjiyi.",
-      "what_it_tells_2": "Potansiyelini en iyi nasıl kullanacağını.",
-      "what_it_tells_3": "Dünyaya ne katmak için geldiğini.",
+      "what_it_tells_title": "Ne Keşfedebilirsin?",
+      "what_it_tells_1": "Bu hayatta ifade edebileceğin potansiyel enerjiyi.",
+      "what_it_tells_2": "Potansiyelini nasıl keşfedebileceğini.",
+      "what_it_tells_3": "Dünyaya katkıda bulunma temalarını.",
       "what_it_tells_4": "Doğal yeteneklerinin yönünü.",
       "difference_from_life_path_title": "Yaşam Yolundan Farkı",
-      "difference_from_life_path_1": "Yaşam yolu: Yürüdüğün yol.",
-      "difference_from_life_path_2": "Kader sayısı: Ulaşmak istediğin hedef.",
-      "difference_from_life_path_3": "İkisi birlikte tam resmi oluşturur.",
+      "difference_from_life_path_1": "Yaşam yolu: Keşfettiğin yol.",
+      "difference_from_life_path_2": "İfade sayısı: Potansiyel hedefler.",
+      "difference_from_life_path_3": "İkisi birlikte düşünmek için zengin bir bakış açısı sunar.",
       "suggestion_text": "Yaşam yolu sayısı nedir?",
       "footer": "Numeroloji — Venus One"
     }
@@ -9811,7 +9811,7 @@
     "full_moon_title": "Dolunay - {sign}",
     "full_moon_desc": "{sign} burcunda dolunay. Tamamlanma ve hasat zamanı. Duygular yoğunlaşıyor.",
     "solar_eclipse_title": "Güneş Tutulması - {sign}",
-    "solar_eclipse_desc": "{sign} burcunda güneş tutulması. Güçlü yeni başlangıçlar. Kader kapıları açılıyor.",
+    "solar_eclipse_desc": "{sign} burcunda güneş tutulması. Yeni başlangıç temaları öne çıkıyor. Fırsatlar üzerine düşünün.",
     "lunar_eclipse_title": "Ay Tutulması - {sign}",
     "lunar_eclipse_desc": "{sign} burcunda ay tutulması. Büyük kapatışlar ve sonlanmalar. Duygusal dönüşüm.",
     "mercury_retro_start": "Merkür Retro Başlıyor",

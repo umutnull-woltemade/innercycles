@@ -980,7 +980,7 @@
       "advice_house_10": "Focus on your career goals. Establish your place in society.",
       "advice_house_11": "Expand your social circle. Work towards your future dreams.",
       "advice_house_12": "Year of introspection. Spiritual development and rest should be prioritized.",
-      "advice_default": "This year will bring important transformations for you."
+      "advice_default": "This year invites reflection on important transformation themes."
     },
     "reiki": {
       "title": "Reiki",
@@ -5364,21 +5364,21 @@
       "three_four_times": "3-4 times/year"
     },
     "overviews": {
-      "aries": "{year} is a year of courage and new beginnings for you. Your leadership qualities will come to the fore.",
-      "taurus": "{year} will be a year focused on financial stability and personal values.",
-      "gemini": "{year} will bring important opportunities for communication and learning. Your social circle will expand.",
-      "cancer": "{year} is a period focused on home, family, and emotional security themes.",
-      "leo": "{year} is a time for creative expression and personal brilliance. Don't be afraid to take the stage.",
-      "virgo": "{year} carries attention to detail and service energy. Health and routine are important.",
-      "libra": "{year} is a time of transformation for relationships and partnerships. Seek balance.",
-      "scorpio": "{year} brings deep transformations and renewal. Let go of old patterns.",
-      "sagittarius": "{year} is a year of adventure, education, and expanding horizons. Freedom comes first.",
-      "capricorn": "{year} is suitable for career peaks and social success. Focus on your goals.",
-      "aquarius": "{year} carries strong energy for innovative ideas and social connections.",
-      "pisces": "{year} will be a rich period for spiritual development and creative inspiration."
+      "aries": "{year} invites reflection on courage and new beginning themes. Explore your leadership qualities.",
+      "taurus": "{year} highlights themes of financial stability and personal values for reflection.",
+      "gemini": "{year} brings communication and learning themes into focus. Consider exploring your social connections.",
+      "cancer": "{year} invites exploration of home, family, and emotional security themes.",
+      "leo": "{year} highlights themes of creative expression and personal brilliance. Consider taking the stage.",
+      "virgo": "{year} emphasizes attention to detail and service themes. Reflect on health and routine.",
+      "libra": "{year} invites reflection on relationship and partnership themes. Explore balance.",
+      "scorpio": "{year} highlights deep transformation and renewal themes. Consider releasing old patterns.",
+      "sagittarius": "{year} emphasizes adventure, education, and expanding horizons themes. Explore freedom.",
+      "capricorn": "{year} highlights career and achievement themes. Reflect on your goals.",
+      "aquarius": "{year} brings innovative ideas and social connection themes into focus.",
+      "pisces": "{year} invites exploration of spiritual development and creative inspiration themes."
     },
     "quarter_descriptions": {
-      "q1": "The beginning of the year comes with {theme} energy. As a {sign} sign, you will be active during this period.",
+      "q1": "The beginning of the year is associated with {theme} themes. As a {sign} sign, consider being mindful during this period.",
       "q2": "Between spring and summer, {theme} comes to the fore. Time to materialize your projects.",
       "q3": "The autumn season highlights issues related to {theme}. Balance is important.",
       "q4": "The last quarter of the year is time for reflection on {theme} and planning for next year."
@@ -6676,7 +6676,7 @@
       "emperor": {
         "name": "The Emperor",
         "keywords": "Authority, structure, control",
-        "upright": "Time for leadership and structure. Discipline and determination will bring success.",
+        "upright": "Leadership and structure themes emerge. Reflect on discipline and determination.",
         "reversed": "Excessive control or rigidity. Flexibility is needed. Conflict with authority figures.",
         "advice": "Set strong boundaries but don't be a dictator. Take responsibility, but also give others space."
       },
@@ -6968,7 +6968,7 @@
       "default": "I am valuable and enough."
     },
     "affirmation_lists": {
-      "morning_1": "Great things will happen today.",
+      "morning_1": "I am open to great things today.",
       "morning_2": "My energy is high and my focus is clear.",
       "morning_3": "I am open to all opportunities.",
       "noon_1": "I am progressing and growing.",
@@ -8800,7 +8800,7 @@
       "capricorn": "I move toward my goals with determination. Success is my nature.",
       "aquarius": "My uniqueness is my strength. I am making the world a better place.",
       "pisces": "My intuitions guide me. I am one with the universe.",
-      "default": "Great things will happen today!"
+      "default": "I am open to great things today!"
     },
     "element_daily_notes": {
       "fire": "your energy for taking action and showing leadership is high. But don't lose patience",
