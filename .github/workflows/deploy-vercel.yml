@@ -139,6 +139,9 @@ jobs:
     needs: [build-and-preview, smoke-test]
     runs-on: ubuntu-latest
     timeout-minutes: 5
+    env:
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
     steps:
       - name: Setup Node.js
@@ -152,7 +155,7 @@ jobs:
       - name: Promote to Production
         run: |
           echo "Promoting ${{ needs.build-and-preview.outputs.preview_url }} to production..."
-          vercel promote ${{ needs.build-and-preview.outputs.preview_url }} --token=${{ secrets.VERCEL_TOKEN }} --yes
+          vercel promote ${{ needs.build-and-preview.outputs.preview_url }} --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ secrets.VERCEL_ORG_ID }} --yes
           echo "Successfully promoted to production!"
 
       - name: Verify Production Health
