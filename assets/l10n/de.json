@@ -313,7 +313,7 @@
       "promotion": "💼 Welche Karriere-Themen beschäftigen mich?",
       "job_change": "📈 Welche Faktoren sind bei Karriereentscheidungen wichtig?",
       "gambling": "🎰 Wie gehe ich mit Risiko und Unsicherheit um?",
-      "lucky_star": "✨ Für welche Möglichkeiten bin ich dankbar?",
+      "gratitude_star": "✨ Für welche Möglichkeiten bin ich dankbar?",
       "mercury_retrograde": "🌙 Welche Kommunikations-Themen kommen jetzt auf?",
       "big_change": "🦋 Welche Transformations-Themen sprechen mich an?",
       "rich_become": "💰 Wie ist meine Beziehung zu Fülle?",
@@ -579,6 +579,7 @@
       }
     },
     "luck": "Tagesenergie",
+    "daily_theme": "Daily Theme",
     "detailed_reading": "Detailed Reading",
     "mercury_retrograde": "Mercury Retrograde",
     "mercury_retrograde_warning": "Be careful with communication and technology!",
@@ -614,20 +615,20 @@
         "taurus": "Heute bekommst du, was du verdienst. Geduld zahlt sich aus.",
         "virgo": "Heute zählen Details. Sei aufmerksam, Chancen sind versteckt."
       },
-      "lucky_months": {
-        "aquarius": "Januar, Mai, September",
-        "aries": "März, Juli, November",
-        "cancer": "Juni, Oktober, Februar",
-        "capricorn": "Dezember, April, August",
-        "default": "Frühlingsmonate",
-        "gemini": "Mai, September, Januar",
-        "leo": "Juli, November, März",
-        "libra": "September, Januar, Mai",
-        "pisces": "Februar, Juni, Oktober",
-        "sagittarius": "November, März, Juli",
-        "scorpio": "Oktober, Februar, Juni",
-        "taurus": "April, August, Dezember",
-        "virgo": "August, Dezember, April"
+      "favorable_months": {
+        "aries": "March, July, November",
+        "taurus": "April, August, December",
+        "gemini": "May, September, January",
+        "cancer": "June, October, February",
+        "leo": "July, November, March",
+        "virgo": "August, December, April",
+        "libra": "September, January, May",
+        "scorpio": "October, February, June",
+        "sagittarius": "November, March, July",
+        "capricorn": "December, April, August",
+        "aquarius": "January, May, September",
+        "pisces": "February, June, October",
+        "default": "spring months"
       },
       "financial_strength": {
         "aquarius": "Innovation und Technologie. Es gibt Chancen in digitalen Bereichen.",
@@ -7300,6 +7301,23 @@
     "transit_desc": "Wichtige Planetentransite"
   },
   "widgets": {
+    "birth_date_picker": {
+      "day": "Tag",
+      "month": "Monat",
+      "year": "Jahr"
+    },
+    "entertainment_disclaimer": {
+      "general": "Nur zur Unterhaltung",
+      "dreams": "Traumdeutungen sind symbolische Reflexionen",
+      "health": "Keine medizinische Beratung. Konsultieren Sie Fachleute",
+      "astrology": "Astrologie ist ein Werkzeug zur Selbstreflexion",
+      "tarot": "Tarot-Lesungen sind nur für persönliche Einblicke",
+      "numerology": "Numerologie bietet symbolische Perspektiven",
+      "chakra": "Chakra-Informationen dienen der Selbstreflexion",
+      "compatibility": "Kompatibilitätseinblicke dienen nur der Reflexion",
+      "insight": "Diese Einblicke dienen der persönlichen Reflexion",
+      "reflection": "Nutzen Sie dies als Werkzeug zur Selbstentdeckung"
+    },
     "dream_share_card": {
       "themes": {
         "mystical": {
@@ -7978,22 +7996,17 @@
       "general_button": "Start Test",
       "inline_default": "Is this unique to you? Find out with a short test"
     },
-    "birth_date_picker": {
-      "day": "Tag",
-      "month": "Monat",
-      "year": "Jahr"
-    },
     "entertainment_disclaimer": {
+      "general": "Nur zu Unterhaltungs- und Selbstreflexionszwecken.",
+      "dreams": "Traumreflexionen dienen der persönlichen Erkundung, nicht der professionellen Interpretation.",
+      "health": "Keine medizinische Beratung. Konsultiere medizinisches Fachpersonal.",
       "astrology": "Nur zur Unterhaltung. Keine vorhersagende Beratung.",
+      "tarot": "Nur zu Reflexionszwecken. Nicht vorhersagend.",
+      "numerology": "Nur zur Selbsterkundung. Nicht vorhersagend.",
       "chakra": "Nur zur Bewusstseinsbildung. Keine medizinische oder spirituelle Verschreibung.",
       "compatibility": "Nur zur Reflexion. Keine Beziehungsberatung.",
-      "dreams": "Traumreflexionen dienen der persönlichen Erkundung, nicht der professionellen Interpretation.",
-      "general": "Nur zu Unterhaltungs- und Selbstreflexionszwecken.",
-      "health": "Keine medizinische Beratung. Konsultiere medizinisches Fachpersonal.",
       "insight": "Nur zur persönlichen Reflexion. Keine professionelle Beratung.",
-      "numerology": "Nur zur Selbsterkundung. Nicht vorhersagend.",
-      "reflection": "Dies ist ein Raum für Selbstreflexion, nicht für Vorhersagen oder Ratschläge.",
-      "tarot": "Nur zu Reflexionszwecken. Keine Wahrsagerei."
+      "reflection": "Dies ist ein Raum für Selbstreflexion, nicht für Vorhersagen oder Ratschläge."
     }
   },
   "ads": {
@@ -8006,7 +8019,8 @@
     "before_using": "Before Using",
     "text_1": "The information provided in this app is for entertainment and informational purposes only.",
     "text_2": "It should not be considered as professional advice for health, financial, legal, or psychological matters.",
-    "text_3": "Please consult qualified professionals for important life decisions."
+    "text_3": "Please consult qualified professionals for important life decisions.",
+    "reflection_only": "This content is for reflection and self-awareness only."
   },
   "admin": {
     "logout": "Logout",

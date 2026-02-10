@@ -2930,12 +2930,6 @@
     "watch_ad": "Reklam İzle",
     "go_premium": "Premium'a Geç"
   },
-  "disclaimer": {
-    "before_using": "Kullanmadan Önce",
-    "text_1": "Bu uygulamada sunulan bilgiler yalnızca eğlence ve bilgilendirme amaçlıdır.",
-    "text_2": "Sağlık, finansal, hukuki veya psikolojik konularda profesyonel tavsiye olarak değerlendirilmemelidir.",
-    "text_3": "Önemli yaşam kararları için lütfen nitelikli uzmanlara danışın."
-  },
   "admin": {
     "logout": "Çıkış Yap",
     "logout_confirm": "Admin'den çıkış yapmak istediğinize emin misiniz?",

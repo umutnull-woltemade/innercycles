@@ -2716,7 +2716,7 @@ class _KozmozMasterSectionState extends ConsumerState<_KozmozMasterSection> {
     {'key': 'home.questions.job_change', 'category': 'career'},
     {'key': 'home.questions.gambling', 'category': 'career'},
     // Spiritual
-    {'key': 'home.questions.lucky_star', 'category': 'spiritual'},
+    {'key': 'home.questions.gratitude_star', 'category': 'spiritual'},
     {'key': 'home.questions.mercury_retrograde', 'category': 'spiritual'},
     {'key': 'home.questions.big_change', 'category': 'general'},
   ];
@@ -2941,7 +2941,7 @@ class _KozmozMasterSectionState extends ConsumerState<_KozmozMasterSection> {
 
   String _getLuckyMonths(ZodiacSign sign, AppLanguage language) {
     final signKey = sign.name.toLowerCase();
-    return L10nService.get('home.zodiac.lucky_months.$signKey', language);
+    return L10nService.get('home.zodiac.favorable_months.$signKey', language);
   }
 
   String _getFinancialStrength(ZodiacSign sign, AppLanguage language) {
@@ -3485,7 +3485,7 @@ class _AiChatSectionState extends ConsumerState<_AiChatSection> {
       {'text': L10nService.get('home.questions.job_change', language), 'category': 'career', 'icon': '📈'},
       {'text': L10nService.get('home.questions.gambling', language), 'category': 'career', 'icon': '🎰'},
       // Spiritual & General
-      {'text': L10nService.get('home.questions.lucky_star', language), 'category': 'spiritual', 'icon': '✨'},
+      {'text': L10nService.get('home.questions.gratitude_star', language), 'category': 'spiritual', 'icon': '✨'},
       {'text': L10nService.get('home.questions.mercury_retrograde', language), 'category': 'spiritual', 'icon': '🌙'},
       {'text': L10nService.get('home.questions.big_change', language), 'category': 'general', 'icon': '🦋'},
       {'text': L10nService.get('home.questions.attention_this_week', language), 'category': 'general', 'icon': '🎭'},
@@ -3717,7 +3717,7 @@ class _AiChatSectionState extends ConsumerState<_AiChatSection> {
 
   String _getLuckyMonths2(ZodiacSign sign, AppLanguage language) {
     final signKey = sign.name.toLowerCase();
-    return L10nService.get('home.zodiac.lucky_months.$signKey', language);
+    return L10nService.get('home.zodiac.favorable_months.$signKey', language);
   }
 
   String _getFinancialStrength2(ZodiacSign sign, AppLanguage language) {
