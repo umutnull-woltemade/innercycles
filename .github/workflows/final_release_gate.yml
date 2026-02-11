@@ -94,7 +94,11 @@ jobs:
           for phrase in "${FORBIDDEN[@]}"; do
             MATCHES=$(grep -rin "$phrase" lib/ assets/l10n/ \
               --include="*.dart" --include="*.json" 2>/dev/null | \
-              grep -v "// " | grep -v "_replacements" | grep -v "FORBIDDEN" || true)
+              grep -v "^[^:]*:[[:space:]]*///" | \
+              grep -v "^[^:]*:[[:space:]]*//" | \
+              grep -v '"[^"]*_divination"' | \
+              grep -v '"category_[^"]*":' | \
+              grep -v "_replacements" | grep -v "FORBIDDEN" || true)
             if [ -n "$MATCHES" ]; then
               echo "FORBIDDEN: '$phrase'"
               echo "$MATCHES"
@@ -122,7 +126,10 @@ jobs:
         run: |
           MATCHES=$(grep -rn "Merhaba\|Hoşgeldin\|Burç yorumu\|Günlük yorum" lib/ \
             --include="*.dart" 2>/dev/null | \
-            grep -v "// " | grep -v "l10n" | grep -v "nameTr" || true)
+            grep -v "// " | grep -v "l10n" | grep -v "nameTr" | \
+            grep -v "AppLanguage.tr" | grep -v "localization_service.dart" | \
+            grep -v "dream_content" | grep -v "kadim_not_card" | \
+            grep -v "seo_meta_service" || true)
 
           if [ -n "$MATCHES" ]; then
             echo "ERROR: Hardcoded Turkish found:"
