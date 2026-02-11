@@ -1,0 +1,110 @@
+# InnerCycles Content Agent Configuration
+# Used by orchestrator.sh to manage multi-agent content generation
+
+version: "1.0"
+project: innercycles
+
+# Budget Guardrails
+budget:
+  per_agent_max_usd: 2.00
+  per_cycle_max_usd: 10.00
+  weekly_max_usd: 50.00
+  monthly_max_usd: 200.00
+  warning_threshold_pct: 80
+
+# Model Routing
+models:
+  local:
+    primary: "ollama/llama3.1:8b"
+    fallback: "ollama/mistral:7b"
+    tasks: ["affirmations", "seo_clusters", "duplicate_check", "prediction_filter"]
+  cloud_fast:
+    model: "claude-haiku-4-5"
+    tasks: ["compliance_scan", "quick_validation", "translation_review"]
+  cloud_deep:
+    model: "claude-sonnet-4-5"
+    tasks: ["archetype_profiles", "insight_cards", "exercises", "complex_translation"]
+
+# Agent Definitions
+agents:
+  knowledge:
+    name: "Knowledge Agent"
+    window: 1
+    description: "Generates archetype profiles and deep educational content"
+    model_tier: "cloud_deep"
+    output_dir: "lib/data/content/"
+    max_items_per_run: 20
+
+  insight:
+    name: "Insight Agent"
+    window: 2
+    description: "Creates insight cards, reflection prompts, and affirmations"
+    model_tier: "cloud_deep"
+    output_dir: "lib/data/content/"
+    max_items_per_run: 50
+
+  micro:
+    name: "Micro-Content Agent"
+    window: 3
+    description: "Produces social media snippets, quotes, and shareable cards"
+    model_tier: "local"
+    output_dir: "content/social/"
+    max_items_per_run: 100
+
+  compliance:
+    name: "Compliance Agent"
+    window: 4
+    description: "Validates all content against Apple guidelines"
+    model_tier: "cloud_fast"
+    output_dir: "reports/"
+    depends_on: ["knowledge", "insight", "micro"]
+
+  seo:
+    name: "SEO Agent"
+    window: 5
+    description: "Generates SEO cluster pages and meta content"
+    model_tier: "local"
+    output_dir: "content/seo/"
+    max_items_per_run: 200
+
+  locale:
+    name: "Localization Agent"
+    window: 6
+    description: "Translates and culturally adapts content (EN→TR, DE, FR)"
+    model_tier: "cloud_deep"
+    output_dir: "lib/data/content/"
+    depends_on: ["knowledge", "insight"]
+
+# TMUX Layout
+tmux:
+  session_name: "innercycles-agents"
+  windows:
+    - name: "orchestrator"
+      command: "tools/agents/status.sh"
+    - name: "knowledge"
+      command: "tools/agents/run_agent.sh knowledge"
+    - name: "insight"
+      command: "tools/agents/run_agent.sh insight"
+    - name: "micro"
+      command: "tools/agents/run_agent.sh micro"
+    - name: "compliance"
+      command: "tools/agents/run_agent.sh compliance"
+    - name: "seo"
+      command: "tools/agents/run_agent.sh seo"
+    - name: "locale"
+      command: "tools/agents/run_agent.sh locale"
+    - name: "monitor"
+      command: "watch -n 5 'dart run tools/cost_tracker.dart report'"
+
+# Retry Policy
+retry:
+  max_retries: 3
+  backoff_seconds: [5, 15, 60]
+  on_failure: "log_and_skip"
+
+# Logging
+logging:
+  level: "info"
+  dir: "logs/"
+  format: "{timestamp} [{agent}] {level}: {message}"
+  rotate_mb: 10
