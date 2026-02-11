@@ -575,10 +575,12 @@ void main() async {
   final webDir = Directory('web');
 
   if (!await webDir.exists()) {
+    // ignore: avoid_print
     print('Error: web directory not found. Run from project root.');
     return;
   }
 
+  // ignore: avoid_print
   print('🌙 Generating static HTML pages for SEO...\n');
 
   for (final page in pages) {
@@ -588,15 +590,20 @@ void main() async {
     final html = generateHtml(page);
     await file.writeAsString(html);
 
+    // ignore: avoid_print
     print('✓ Generated: $fileName');
   }
 
   // Generate sitemap
   await generateSitemap();
 
+  // ignore: avoid_print
   print('\n✨ Done! Generated ${pages.length} static pages.');
+  // ignore: avoid_print
   print('\nNext steps:');
+  // ignore: avoid_print
   print('1. Configure your server to serve these as fallbacks for crawlers');
+  // ignore: avoid_print
   print('2. Use user-agent detection or prerender.io for dynamic serving');
 }
 
@@ -761,5 +768,6 @@ $urls
 ''';
 
   await File('web/sitemap.xml').writeAsString(sitemap);
+  // ignore: avoid_print
   print('✓ Generated: sitemap.xml');
 }

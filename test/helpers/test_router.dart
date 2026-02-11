@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use_from_same_package
+
 /// Shared GoRouter configuration for route-aware tests.
 ///
 /// Mirrors the REAL router in router_service.dart — same paths, same widgets.

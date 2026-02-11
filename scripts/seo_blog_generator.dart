@@ -4,14 +4,14 @@
 /// SEO Blog Generator for Venus One
 ///
 /// Generates SEO-optimized blog content for various astrology topics.
-/// Usage: dart run scripts/seo_blog_generator.dart <topic> [options]
+/// Usage: `dart run scripts/seo_blog_generator.dart [topic] [options]`
 ///
 /// Topics:
-///   - daily-horoscope <sign>
-///   - zodiac-guide <sign>
-///   - planet-in-sign <planet> <sign>
+///   - daily-horoscope [sign]
+///   - zodiac-guide [sign]
+///   - planet-in-sign [planet] [sign]
 ///   - birth-chart-guide
-///   - aspect-guide <aspect>
+///   - aspect-guide [aspect]
 library;
 
 import 'dart:io';

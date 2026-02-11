@@ -469,5 +469,6 @@ class CosmicDiscoveryContent {
 ''';
 
 void main() {
+  // ignore: avoid_print
   print(newCosmicDiscoveryContent);
 }

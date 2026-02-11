@@ -501,12 +501,16 @@ final routerProvider = Provider<GoRouter>((ref) {
       // DEPRECATED ROUTES - Redirect to Insight for App Store 4.3(b) compliance
       // ════════════════════════════════════════════════════════════════
       // Kozmik Iletisim - redirects to Insight
+      // ignore: deprecated_member_use_from_same_package
       GoRoute(
+        // ignore: deprecated_member_use_from_same_package
         path: Routes.kozmikIletisim,
         redirect: (context, state) => Routes.insight,
       ),
       // Ruya Dongusu - redirects to Insight
+      // ignore: deprecated_member_use_from_same_package
       GoRoute(
+        // ignore: deprecated_member_use_from_same_package
         path: Routes.ruyaDongusu,
         redirect: (context, state) => Routes.insight,
       ),

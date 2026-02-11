@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:astrology_app/data/models/natal_chart.dart';
 import 'package:astrology_app/data/models/zodiac_sign.dart';
 import 'package:astrology_app/data/services/ephemeris_service.dart';

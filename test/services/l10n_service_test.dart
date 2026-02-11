@@ -165,7 +165,7 @@ void main() {
       for (final lang in L10nService.supportedLanguages) {
         for (final key in commonKeys) {
           final result = L10nService.get(key, lang);
-          expect(result, isNot(contains('[' + key)),
+          expect(result, isNot(contains('[$key')),
                  reason: 'Key "$key" missing in ${lang.name}');
         }
       }
@@ -181,7 +181,7 @@ void main() {
       for (final lang in L10nService.supportedLanguages) {
         for (final key in appKeys) {
           final result = L10nService.get(key, lang);
-          expect(result, isNot(contains('[' + key)),
+          expect(result, isNot(contains('[$key')),
                  reason: 'Key "$key" missing in ${lang.name}');
         }
       }
