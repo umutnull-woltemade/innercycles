@@ -6,6 +6,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import '../../core/constants/routes.dart';
 import '../../core/config/feature_flags.dart';
 import '../../data/providers/app_providers.dart';
+import '../../features/disclaimer/presentation/disclaimer_screen.dart';
 import '../../features/onboarding/presentation/onboarding_screen.dart';
 import '../../features/home/presentation/responsive_home_screen.dart';
 import '../../features/horoscope/presentation/horoscope_screen.dart';
@@ -90,13 +91,15 @@ import '../../data/services/l10n_service.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
   return GoRouter(
-    initialLocation: Routes.onboarding,
+    initialLocation: Routes.disclaimer,
     errorBuilder: (context, state) => _NotFoundScreen(path: state.uri.path),
     redirect: (context, state) {
       final path = state.uri.path;
 
-      // Allow splash and onboarding without guard
-      if (path == Routes.splash || path == Routes.onboarding) {
+      // Allow splash, disclaimer, and onboarding without guard
+      if (path == Routes.splash ||
+          path == Routes.disclaimer ||
+          path == Routes.onboarding) {
         return null;
       }
 
@@ -120,6 +123,12 @@ final routerProvider = Provider<GoRouter>((ref) {
         return null;
       }
 
+      // MOBILE: First-launch disclaimer check (App Store compliance)
+      final disclaimerAccepted = StorageService.loadDisclaimerAccepted();
+      if (!disclaimerAccepted) {
+        return Routes.disclaimer;
+      }
+
       // MOBILE: Guard - redirect to onboarding if not completed
       final onboardingDone = StorageService.loadOnboardingComplete();
       if (!onboardingDone) {
@@ -132,6 +141,10 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: Routes.splash,
         builder: (context, state) => const _SplashScreen(),
+      ),
+      GoRoute(
+        path: Routes.disclaimer,
+        builder: (context, state) => const DisclaimerScreen(),
       ),
       GoRoute(
         path: Routes.onboarding,
