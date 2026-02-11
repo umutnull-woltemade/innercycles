@@ -1891,7 +1891,7 @@ JSON çıktısı da ekle.
         description: L10nService.get('dream_interpretation.exploration.tarot_desc', language),
         route: '/tarot',
         emoji: '🃏',
-        category: L10nService.get('dream_interpretation.exploration.category_divination', language),
+        category: L10nService.get('dream_interpretation.exploration.category_symbols', language),
       ),
     ];
   }

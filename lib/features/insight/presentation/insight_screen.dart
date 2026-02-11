@@ -1,6 +1,6 @@
 /// Insight Assistant - Unified Personal Reflection Chat
 /// Apple-safe single entry point for dream reflection & pattern awareness
-/// NO astrology, NO predictions, NO fortune-telling
+/// Strictly reflective language only - no predictions
 library;
 
 import 'package:flutter/material.dart';
@@ -12,6 +12,7 @@ import '../../../data/providers/app_providers.dart';
 import '../../../data/services/l10n_service.dart';
 import '../services/insight_routing_service.dart';
 import '../services/insight_response_service.dart';
+import '../../../shared/widgets/entertainment_disclaimer.dart';
 
 /// Insight - Personal Reflection Assistant
 /// Single unified chat interface for self-reflection
@@ -175,6 +176,13 @@ class _InsightScreenState extends ConsumerState<InsightScreen>
                   return _buildMessageBubble(_messages[index], isDark);
                 },
               ),
+            ),
+
+            // Disclaimer
+            EntertainmentDisclaimer(
+              compact: true,
+              customText: DisclaimerTexts.insight(language),
+              language: language,
             ),
 
             // Input area

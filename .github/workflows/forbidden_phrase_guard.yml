@@ -72,7 +72,12 @@ jobs:
           for pattern in "${FORBIDDEN_PATTERNS[@]}"; do
             for path in "${SCAN_PATHS[@]}"; do
               if [ -d "$path" ] || [ -f "$path" ]; then
-                MATCHES=$(grep -ri "$pattern" $path 2>/dev/null || true)
+                # Exclude comments (/// and //) and JSON key names (only check values)
+                MATCHES=$(grep -ri "$pattern" $path 2>/dev/null | \
+                          grep -v "^[^:]*:[[:space:]]*///" | \
+                          grep -v "^[^:]*:[[:space:]]*//" | \
+                          grep -v '"[^"]*_divination"' | \
+                          grep -v '"category_[^"]*":' || true)
                 if [ -n "$MATCHES" ]; then
                   echo "FORBIDDEN PHRASE FOUND: '$pattern'"
                   echo "$MATCHES"

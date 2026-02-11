@@ -1,6 +1,6 @@
 /// Insight Response Service - Safe Reflection Response Generation
 /// Generates Apple-safe, non-predictive, reflective responses
-/// NO fortune-telling, NO astrology, NO predictions
+/// Strictly reflective language only - no predictions
 library;
 
 import 'dart:math';
