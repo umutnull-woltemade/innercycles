@@ -5619,7 +5619,7 @@ Recognizing all types of addiction - substance, relationship, activity.
 Knowing the difference between escape tools and real satisfaction.
 
 4. ACCEPTING CHANGE
-Change is inevitable - but controlled change is possible.
+Change is a constant - but intentional change is possible.
 Not every change is necessary.
 ''',
     redemptionPath: '''

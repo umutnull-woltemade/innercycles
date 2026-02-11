@@ -1245,7 +1245,7 @@ Mantra: "I accept my shadow. It's part of me - but it's not me."
     shortMeaning:
         'When lightning strikes, truth is revealed. Enlightenment born from destruction.',
     deepMeaning: '''
-The Tower is the card of inevitable destruction. Structures built on false foundations must fall - so truth can emerge.
+The Tower is the card of sudden transformation. Structures built on false foundations must fall - so truth can emerge.
 
 In Kabbalah, Peh means "mouth." The Tower is the painful truth the universe tells you - even if you don't want to hear it.
 
@@ -1258,7 +1258,7 @@ The reversed Tower indicates avoided destruction or inner transformation.
 
 Perhaps you narrowly escaped disaster. Perhaps the destruction is internal - not visible from outside but everything has changed inside.
 
-Resistance to change, postponing the inevitable. But postponed destruction comes bigger.
+Resistance to change, postponing what needs to shift. But postponed transformation often comes with greater intensity.
 ''',
     symbolism: '''
 • Tower: Ego, false structures
@@ -1667,7 +1667,7 @@ Mantra: "I am whole. One with the universe. And the journey continues."
 /// Viral sharing texts for Tarot
 class TarotViralTexts {
   static const List<String> generalTexts = [
-    'What do the cards say? 🎴',
+    'What themes do the cards reflect? 🎴',
     'Today\'s archetype is with you 🔮',
     'The universe is sending a message ✨',
     'Tarot mirror: See what\'s within 🪞',

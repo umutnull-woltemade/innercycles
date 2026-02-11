@@ -38,7 +38,7 @@ What you'll find here:
 • Card-based journaling and number symbolism
 • Symbolic theme exploration for self-discovery
 
-Archetypes are cultural patterns that can serve as mirrors for self-reflection. These symbols are not fixed destinies, but tools for exploring your inner world. We don't tell you "this will happen" — we invite you to ask "what does this theme evoke in me?"
+Archetypes are cultural patterns that can serve as mirrors for self-reflection. These symbols are not fixed destinies, but tools for exploring your inner world. We don't make claims about outcomes — we invite you to ask "what does this theme evoke in me?"
 ''';
 
   static const String whatWeOfferSection = '''
@@ -77,7 +77,7 @@ Create a profile to save your chart. As transits change, the sky will present di
 ## What This Platform Is NOT
 
 **It's Not a Fortune-Telling Service**
-We don't tell you "this will happen on this date." Astrology is built on probabilities and tendencies, not certainties.
+We don't make specific claims about what happens on a given date. These reflections are built on symbolic tendencies, not certainties.
 
 **It's Not Psychological Counseling**
 For serious emotional or mental health issues, please seek professional support. Astrology can be a complementary tool, but it doesn't replace treatment.
@@ -207,7 +207,7 @@ A single day's reading may not always hit. Weekly and monthly perspectives offer
 ## What This Is NOT
 
 **It's Not a Precise Prediction**
-We don't use definitive statements like "You will make money today" or "There will be an argument today." Instead, we talk about energy tendencies.
+We don't use definitive statements like "Expect money today" or "Arguments are certain today." Instead, we talk about energy tendencies.
 
 **It's Not a Personalized Natal Analysis**
 Horoscope readings offer a general perspective. See birth chart analysis for the details of your personal chart.
@@ -251,7 +251,7 @@ Emotions, intuitions, and depth. Inner processes and emotional awareness may be 
     {
       'question': 'What should I do when I see a negative reading?',
       'answer':
-          'Read negative readings not as "warnings" but as "invitations to awareness." "Be careful in communication today" doesn\'t mean "you will have an argument today." It just suggests paying a bit more attention to that area.',
+          'Read negative readings not as "warnings" but as "invitations to awareness." "Be careful in communication today" doesn\'t mean arguments are certain. It just suggests paying a bit more attention to that area.',
     },
     {
       'question': 'Are compatibility readings accurate?',
