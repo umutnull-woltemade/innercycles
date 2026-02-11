@@ -8,6 +8,7 @@ import '../../../core/constants/app_constants.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/services/auth_service.dart';
+import '../../../data/services/local_mode_service.dart';
 import '../../../data/services/l10n_service.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/cosmic_background.dart';
@@ -42,7 +43,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     });
 
     try {
-      final user = await AuthService.signInWithApple();
+      // Use retry-enabled sign in (2 attempts for transient failures)
+      final user = await AuthService.signInWithAppleWithRetry(maxRetries: 2);
       // user null ise kullanici iptal etti veya web OAuth redirect yapti
       if (user != null && mounted) {
         context.go(Routes.home);
@@ -54,25 +56,34 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     } catch (e) {
       debugPrint('Apple Sign-In UI error: $e');
       if (mounted) {
-        setState(() {
-          final language = ref.read(languageProvider);
-          // Handle typed Apple auth exceptions with localized messages
-          if (e is AppleAuthException) {
-            _errorMessage = _getLocalizedAppleError(e.type, language);
+        final language = ref.read(languageProvider);
+        // Handle typed Apple auth exceptions with localized messages
+        if (e is AppleAuthException) {
+          // For persistent failures, offer Local Mode
+          if (e.type == AppleAuthErrorType.timeout ||
+              e.type == AppleAuthErrorType.networkError ||
+              e.type == AppleAuthErrorType.serverError) {
+            _showLocalModeFallbackDialog(language);
           } else {
-            final errorStr = e.toString();
-            if (errorStr.contains('canceled') ||
-                errorStr.contains('cancelled')) {
-              // User canceled - don't show error
-              _errorMessage = null;
-            } else {
+            setState(() {
+              _errorMessage = _getLocalizedAppleError(e.type, language);
+            });
+          }
+        } else {
+          final errorStr = e.toString();
+          if (errorStr.contains('canceled') ||
+              errorStr.contains('cancelled')) {
+            // User canceled - don't show error
+            setState(() => _errorMessage = null);
+          } else {
+            setState(() {
               _errorMessage = L10nService.get(
                 'auth.apple_sign_in_failed',
                 language,
               );
-            }
+            });
           }
-        });
+        }
       }
     } finally {
       if (mounted) {
@@ -84,14 +95,49 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     }
   }
 
+  /// Show dialog offering Local Mode when sign-in fails persistently
+  void _showLocalModeFallbackDialog(AppLanguage language) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => AlertDialog(
+        title: const Text('Sign In Failed'),
+        content: const Text(
+          'We couldn\'t connect to the server. Would you like to continue in Local Mode?\n\n'
+          'Your entries will be stored on this device only.',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+              _signInWithApple(); // Try again
+            },
+            child: const Text('Try Again'),
+          ),
+          ElevatedButton(
+            onPressed: () async {
+              Navigator.of(context).pop();
+              await _continueWithLocalMode();
+            },
+            child: const Text('Use Local Mode'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  /// Continue without sign-in using Local Mode
+  Future<void> _continueWithLocalMode() async {
+    await LocalModeService.enableLocalMode();
+    if (mounted) {
+      context.go(Routes.onboarding);
+    }
+  }
+
   void _navigateToEmailLogin() {
     Navigator.of(
       context,
     ).push(MaterialPageRoute(builder: (_) => const EmailLoginScreen()));
-  }
-
-  void _skipLogin() {
-    context.go(Routes.onboarding);
   }
 
   /// Get localized error message for Apple auth errors
@@ -259,16 +305,28 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   }
 
   Widget _buildSkipOption(BuildContext context, bool isDark) {
-    final language = ref.watch(languageProvider);
-    return TextButton(
-      onPressed: _isLoading ? null : _skipLogin,
-      child: Text(
-        L10nService.get('auth.skip_for_now', language),
-        style: TextStyle(
-          color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-          fontSize: 14,
+    return Column(
+      children: [
+        TextButton(
+          onPressed: _isLoading ? null : _continueWithLocalMode,
+          child: Text(
+            'Continue without signing in',
+            style: TextStyle(
+              color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+              fontSize: 15,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
         ),
-      ),
+        const SizedBox(height: 4),
+        Text(
+          'Entries stored on device only',
+          style: TextStyle(
+            color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+            fontSize: 12,
+          ),
+        ),
+      ],
     ).animate().fadeIn(delay: 700.ms, duration: 400.ms);
   }
 }

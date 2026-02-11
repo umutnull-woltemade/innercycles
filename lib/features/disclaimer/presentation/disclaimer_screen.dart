@@ -97,6 +97,10 @@ class DisclaimerScreen extends ConsumerWidget {
         ? AppColors.textSecondary
         : AppColors.lightTextSecondary;
 
+    // Use English for App Store review (explicit "no predictions" statement)
+    // Localized content as fallback for user experience
+    final isEnglish = language == AppLanguage.en;
+
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
@@ -115,22 +119,29 @@ class DisclaimerScreen extends ConsumerWidget {
         children: [
           _buildParagraph(
             context,
-            L10nService.get('disclaimer.text_1', language),
+            isEnglish
+                ? 'InnerCycles is a personal journaling tool for self-reflection and pattern awareness.'
+                : L10nService.get('disclaimer.text_1', language),
             textColor,
+            icon: Icons.edit_note,
           ),
           const SizedBox(height: 16),
           _buildParagraph(
             context,
-            L10nService.get('disclaimer.text_2', language),
+            isEnglish
+                ? 'All insights are based solely on your own journal entries. This app does not make predictions about your future.'
+                : L10nService.get('disclaimer.text_2', language),
             textColor,
-            icon: Icons.favorite_border,
+            icon: Icons.insights_outlined,
           ),
           const SizedBox(height: 16),
           _buildParagraph(
             context,
-            L10nService.get('disclaimer.text_3', language),
+            isEnglish
+                ? 'This is for personal reflection only. It is not medical, psychological, or professional advice.'
+                : L10nService.get('disclaimer.text_3', language),
             textColor,
-            icon: Icons.nights_stay_outlined,
+            icon: Icons.info_outline,
           ),
         ],
       ),

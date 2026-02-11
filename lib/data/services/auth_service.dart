@@ -131,6 +131,45 @@ class AuthService {
 
   // ==================== Apple Sign In ====================
 
+  /// Sign in with Apple with automatic retry on transient failures
+  /// Retries up to [maxRetries] times for timeout/network errors
+  /// Returns null if user cancels, throws AppleAuthException on persistent failure
+  static Future<AuthUserInfo?> signInWithAppleWithRetry({
+    int maxRetries = 2,
+  }) async {
+    AppleAuthException? lastError;
+
+    for (int attempt = 1; attempt <= maxRetries; attempt++) {
+      try {
+        debugPrint('🍎 Sign-in attempt $attempt of $maxRetries');
+        return await signInWithApple();
+      } on AppleAuthException catch (e) {
+        lastError = e;
+        debugPrint('🍎 Attempt $attempt failed: ${e.type}');
+
+        // Only retry on transient errors (timeout, network)
+        if (e.type == AppleAuthErrorType.timeout ||
+            e.type == AppleAuthErrorType.networkError ||
+            e.type == AppleAuthErrorType.serverError) {
+          if (attempt < maxRetries) {
+            debugPrint('🍎 Retrying in 2 seconds...');
+            await Future.delayed(const Duration(seconds: 2));
+            continue;
+          }
+        }
+
+        // Don't retry on user cancellation or auth errors
+        rethrow;
+      }
+    }
+
+    // All retries exhausted
+    throw lastError ?? const AppleAuthException(
+      AppleAuthErrorType.failed,
+      'Sign in failed after multiple attempts.',
+    );
+  }
+
   /// Sign in with Apple
   /// Uses Supabase OAuth on web, native Apple Sign-In on mobile
   static Future<AuthUserInfo?> signInWithApple() async {
