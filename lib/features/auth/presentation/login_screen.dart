@@ -95,10 +95,27 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   }
 
   /// Get localized error message for Apple auth errors
+  /// ALWAYS returns a user-friendly English message if localization fails
+  /// This prevents "bilinmeyen bir hata" from appearing to reviewers
   String _getLocalizedAppleError(
     AppleAuthErrorType type,
     AppLanguage language,
   ) {
+    // English fallback messages - NEVER show raw error strings
+    const englishFallbacks = {
+      AppleAuthErrorType.failed: 'Sign in failed. Please try again.',
+      AppleAuthErrorType.invalidResponse: 'Invalid response from Apple. Please try again.',
+      AppleAuthErrorType.notHandled: 'Sign in could not be completed. Please try again.',
+      AppleAuthErrorType.notInteractive: 'Please complete the sign in process.',
+      AppleAuthErrorType.unknown: 'An error occurred. Please try again.',
+      AppleAuthErrorType.notAvailable: 'Sign in with Apple is not available on this device.',
+      AppleAuthErrorType.tokenFailed: 'Authentication failed. Please try again.',
+      AppleAuthErrorType.supabaseError: 'Server error. Please try again later.',
+      AppleAuthErrorType.networkError: 'Network error. Please check your connection.',
+      AppleAuthErrorType.timeout: 'Request timed out. Please try again.',
+      AppleAuthErrorType.serverError: 'Server temporarily unavailable. Please try again.',
+    };
+
     final key = switch (type) {
       AppleAuthErrorType.failed => 'auth.apple_error_failed',
       AppleAuthErrorType.invalidResponse => 'auth.apple_error_invalid_response',
@@ -112,7 +129,16 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       AppleAuthErrorType.timeout => 'auth.apple_error_timeout',
       AppleAuthErrorType.serverError => 'auth.apple_error_server',
     };
-    return L10nService.get(key, language);
+
+    final localizedMessage = L10nService.get(key, language);
+
+    // If localization returns the key itself (missing), use English fallback
+    // This ensures Apple reviewers NEVER see "bilinmeyen bir hata"
+    if (localizedMessage == key || localizedMessage.startsWith('[')) {
+      return englishFallbacks[type] ?? 'An error occurred. Please try again.';
+    }
+
+    return localizedMessage;
   }
 
   @override

@@ -1,4 +1,6 @@
+import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 import 'dart:math';
 import 'package:crypto/crypto.dart';
 import 'package:flutter/foundation.dart' show kIsWeb, debugPrint;
@@ -280,15 +282,40 @@ class AuthService {
     final hashedNonce = _sha256ofString(rawNonce);
     debugPrint('🍎 Nonce generated');
 
-    // Start Apple Sign In
+    // Start Apple Sign In with timeout protection
+    // iPad/slower networks may need more time for the native dialog
     debugPrint('🍎 Requesting Apple credential...');
-    final appleCredential = await SignInWithApple.getAppleIDCredential(
-      scopes: [
-        AppleIDAuthorizationScopes.email,
-        AppleIDAuthorizationScopes.fullName,
-      ],
-      nonce: hashedNonce,
-    );
+    final AuthorizationCredentialAppleID appleCredential;
+    try {
+      appleCredential = await SignInWithApple.getAppleIDCredential(
+        scopes: [
+          AppleIDAuthorizationScopes.email,
+          AppleIDAuthorizationScopes.fullName,
+        ],
+        nonce: hashedNonce,
+      ).timeout(
+        const Duration(seconds: 60), // Generous timeout for iPad/slow networks
+        onTimeout: () {
+          debugPrint('🍎 Apple Sign-In timed out after 60 seconds');
+          throw const AppleAuthException(
+            AppleAuthErrorType.timeout,
+            'Sign in request timed out. Please try again.',
+          );
+        },
+      );
+    } on TimeoutException {
+      debugPrint('🍎 Apple Sign-In timeout exception');
+      throw const AppleAuthException(
+        AppleAuthErrorType.timeout,
+        'Sign in request timed out. Please try again.',
+      );
+    } on SocketException catch (e) {
+      debugPrint('🍎 Network error during Apple Sign-In: $e');
+      throw const AppleAuthException(
+        AppleAuthErrorType.networkError,
+        'Network connection failed. Please check your internet.',
+      );
+    }
     debugPrint('🍎 Apple credential received');
 
     final idToken = appleCredential.identityToken;
@@ -310,12 +337,36 @@ class AuthService {
       );
     }
 
-    // Sign in to Supabase
-    final response = await _supabase.auth.signInWithIdToken(
-      provider: OAuthProvider.apple,
-      idToken: idToken,
-      nonce: rawNonce,
-    );
+    // Sign in to Supabase with timeout protection
+    debugPrint('🍎 Authenticating with Supabase...');
+    final AuthResponse response;
+    try {
+      response = await _supabase.auth.signInWithIdToken(
+        provider: OAuthProvider.apple,
+        idToken: idToken,
+        nonce: rawNonce,
+      ).timeout(
+        const Duration(seconds: 30),
+        onTimeout: () {
+          debugPrint('🍎 Supabase auth timed out');
+          throw const AppleAuthException(
+            AppleAuthErrorType.timeout,
+            'Server authentication timed out. Please try again.',
+          );
+        },
+      );
+    } on TimeoutException {
+      throw const AppleAuthException(
+        AppleAuthErrorType.timeout,
+        'Server authentication timed out. Please try again.',
+      );
+    } on SocketException {
+      throw const AppleAuthException(
+        AppleAuthErrorType.networkError,
+        'Network connection failed. Please check your internet.',
+      );
+    }
+    debugPrint('🍎 Supabase auth successful');
 
     final user = response.user;
     if (user == null) return null;

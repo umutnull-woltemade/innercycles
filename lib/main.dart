@@ -107,7 +107,7 @@ class _AppInitializerState extends State<AppInitializer> {
           ),
           // Deep link for Apple Sign In callback (iOS native)
           // Uses bundle ID as scheme: com.venusone.innercycles://
-        ).timeout(const Duration(seconds: 5));
+        ).timeout(const Duration(seconds: 15)); // Extended for iPad/slow networks
         if (kDebugMode) {
           debugPrint('✓ Supabase initialized');
         }
