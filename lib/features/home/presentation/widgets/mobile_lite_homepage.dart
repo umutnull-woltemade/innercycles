@@ -5,27 +5,25 @@ import '../../../../core/constants/routes.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../data/models/zodiac_sign.dart';
 import '../../../../data/providers/app_providers.dart';
-import '../../../../data/content/venus_homepage_content.dart';
 import '../../../../data/services/l10n_service.dart';
 
-/// MOBILE LITE HOMEPAGE
+/// MOBILE LITE HOMEPAGE - App Store 4.3(b) Compliant
 ///
 /// STRICT RULES FOLLOWED:
 /// - NO heavy animations (only simple fade/scale)
 /// - NO blur, glow, parallax effects
 /// - NO background video or canvas
-/// - NO astro calculations on load
+/// - NO astrology calculations on load
 /// - NO lottie, particles, scroll-based JS logic
 /// - Flat background colors only
 /// - Single font family, max 2 weights
 /// - First load target: < 1.5s on slow 4G
 /// - Static, simple, FAST
 ///
-/// PERFORMANCE OPTIMIZATIONS (2026):
-/// - const constructors everywhere possible
-/// - RepaintBoundary on scroll content
-/// - AutomaticKeepAlive for cached state
-/// - Minimal rebuilds with select() when possible
+/// APP STORE 4.3(b) COMPLIANCE:
+/// - All astrology/horoscope features removed
+/// - Focus on: Insight, Wellness, Dreams, Numerology (educational)
+/// - No zodiac-based predictions
 class MobileLiteHomepage extends ConsumerWidget {
   const MobileLiteHomepage({super.key});
 
@@ -111,8 +109,8 @@ class _AboveTheFold extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final language = ref.watch(languageProvider);
-    final headline = _getDailyHeadline(sign, language);
-    final sentence = _getDailySentence(sign, language);
+    final headline = _getDailyHeadline(language);
+    final sentence = _getDailySentence(language);
 
     return Container(
       padding: const EdgeInsets.fromLTRB(20, 24, 20, 32),
@@ -125,7 +123,7 @@ class _AboveTheFold extends ConsumerWidget {
           // Minimal header row
           Row(
             children: [
-              // Sign symbol
+              // Insight symbol
               Container(
                 width: 48,
                 height: 48,
@@ -136,14 +134,12 @@ class _AboveTheFold extends ConsumerWidget {
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Center(
-                  child: Text(
-                    sign.symbol,
-                    style: TextStyle(
-                      fontSize: 24,
-                      color: isDark
-                          ? AppColors.starGold
-                          : AppColors.lightStarGold,
-                    ),
+                  child: Icon(
+                    Icons.auto_awesome,
+                    size: 24,
+                    color: isDark
+                        ? AppColors.starGold
+                        : AppColors.lightStarGold,
                   ),
                 ),
               ),
@@ -171,7 +167,9 @@ class _AboveTheFold extends ConsumerWidget {
                     ),
                     const SizedBox(height: 2),
                     Text(
-                      sign.localizedName(language),
+                      language == AppLanguage.en
+                          ? 'Personal Reflection'
+                          : 'Kişisel Yansıma',
                       style: TextStyle(
                         fontSize: 13,
                         color: isDark
@@ -198,11 +196,25 @@ class _AboveTheFold extends ConsumerWidget {
 
           const SizedBox(height: 16),
 
-          // Quick discovery chips - Quick access to cosmic tools
+          // Quick discovery chips - Quick access to safe features
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
               children: [
+                _QuickDiscoveryChip(
+                  icon: '📓',
+                  label: language == AppLanguage.en ? 'Journal' : 'Günlük',
+                  onTap: () => context.push(Routes.journal),
+                  isDark: isDark,
+                ),
+                const SizedBox(width: 8),
+                _QuickDiscoveryChip(
+                  icon: '✨',
+                  label: language == AppLanguage.en ? 'Insight' : 'İçgörü',
+                  onTap: () => context.push(Routes.insight),
+                  isDark: isDark,
+                ),
+                const SizedBox(width: 8),
                 _QuickDiscoveryChip(
                   icon: '🌙',
                   label: L10nService.get('home.chips.dream', language),
@@ -211,40 +223,9 @@ class _AboveTheFold extends ConsumerWidget {
                 ),
                 const SizedBox(width: 8),
                 _QuickDiscoveryChip(
-                  icon: '🌌',
-                  label: L10nService.get('home.chips.kozmoz', language),
-                  onTap: () => context.push(Routes.kozmoz),
-                  isDark: isDark,
-                ),
-                const SizedBox(width: 8),
-                _QuickDiscoveryChip(
-                  icon: '🗺️',
-                  label: L10nService.get('home.chips.birth_chart', language),
-                  onTap: () => context.push(Routes.birthChart),
-                  isDark: isDark,
-                ),
-                const SizedBox(width: 8),
-                _QuickDiscoveryChip(
-                  icon: '🧠',
-                  label: L10nService.get('home.chips.theta_healing', language),
-                  onTap: () => context.push(Routes.thetaHealing),
-                  isDark: isDark,
-                ),
-                const SizedBox(width: 8),
-                _QuickDiscoveryChip(
-                  icon: '🌍',
-                  label: L10nService.get(
-                    'home.chips.astrocartography',
-                    language,
-                  ),
-                  onTap: () => context.push(Routes.astroCartography),
-                  isDark: isDark,
-                ),
-                const SizedBox(width: 8),
-                _QuickDiscoveryChip(
-                  icon: '🙏',
-                  label: L10nService.get('home.chips.reiki', language),
-                  onTap: () => context.push(Routes.reiki),
+                  icon: '🧘',
+                  label: language == AppLanguage.en ? 'Chakra' : 'Çakra',
+                  onTap: () => context.push(Routes.chakraAnalysis),
                   isDark: isDark,
                 ),
                 const SizedBox(width: 8),
@@ -256,9 +237,16 @@ class _AboveTheFold extends ConsumerWidget {
                 ),
                 const SizedBox(width: 8),
                 _QuickDiscoveryChip(
-                  icon: '⭐',
-                  label: L10nService.get('home.chips.horoscope', language),
-                  onTap: () => context.push(Routes.horoscope),
+                  icon: '🔢',
+                  label: language == AppLanguage.en ? 'Numerology' : 'Numeroloji',
+                  onTap: () => context.push(Routes.numerology),
+                  isDark: isDark,
+                ),
+                const SizedBox(width: 8),
+                _QuickDiscoveryChip(
+                  icon: '🙏',
+                  label: L10nService.get('home.chips.reiki', language),
+                  onTap: () => context.push(Routes.reiki),
                   isDark: isDark,
                 ),
                 const SizedBox(width: 8),
@@ -274,7 +262,7 @@ class _AboveTheFold extends ConsumerWidget {
 
           const SizedBox(height: 20),
 
-          // Cosmic headline - short, impactful
+          // Reflection headline - short, impactful
           Text(
             headline,
             style: TextStyle(
@@ -301,11 +289,11 @@ class _AboveTheFold extends ConsumerWidget {
 
           const SizedBox(height: 24),
 
-          // Primary CTA - Today's Cosmic Message
+          // Primary CTA - Personal Insight
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
-              onPressed: () => context.push(Routes.cosmicShare),
+              onPressed: () => context.push(Routes.insight),
               style: ElevatedButton.styleFrom(
                 backgroundColor: isDark
                     ? AppColors.starGold
@@ -322,7 +310,9 @@ class _AboveTheFold extends ConsumerWidget {
                 children: [
                   Flexible(
                     child: Text(
-                      L10nService.get('home.todays_cosmic_message', language),
+                      language == AppLanguage.en
+                          ? 'Start Your Reflection'
+                          : 'Yansımanı Başlat',
                       style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
@@ -341,27 +331,59 @@ class _AboveTheFold extends ConsumerWidget {
     );
   }
 
-  // Pre-computed headlines - uses localized content
-  String _getDailyHeadline(ZodiacSign sign, AppLanguage language) {
-    final signKey = sign.toString().split('.').last; // 'aries', 'taurus', etc.
-    final headlines = L10nService.getList('home.headlines.$signKey', language);
-    if (headlines.isEmpty) return '';
+  // Pre-computed headlines - reflection focused
+  String _getDailyHeadline(AppLanguage language) {
+    final headlines = language == AppLanguage.en
+        ? [
+            'What patterns are you noticing today?',
+            'Take a moment for self-reflection',
+            'Your inner wisdom awaits',
+            'Discover something new about yourself',
+            'Today is a day for growth',
+            'Embrace your personal journey',
+            'Find clarity in stillness',
+          ]
+        : [
+            'Bugün hangi kalıpları fark ediyorsun?',
+            'Kendine yansıma için bir an al',
+            'İç bilgeliğin seni bekliyor',
+            'Kendin hakkında yeni bir şey keşfet',
+            'Bugün büyüme günü',
+            'Kişisel yolculuğunu kucakla',
+            'Sessizlikte netlik bul',
+          ];
+
     final dayOfYear = DateTime.now()
         .difference(DateTime(DateTime.now().year, 1, 1))
         .inDays;
-    final index = (dayOfYear + sign.index) % headlines.length;
-    return headlines[index];
+    return headlines[dayOfYear % headlines.length];
   }
 
-  String _getDailySentence(ZodiacSign sign, AppLanguage language) {
-    final signKey = sign.toString().split('.').last; // 'aries', 'taurus', etc.
-    final sentences = L10nService.getList('home.sentences.$signKey', language);
-    if (sentences.isEmpty) return '';
+  String _getDailySentence(AppLanguage language) {
+    final sentences = language == AppLanguage.en
+        ? [
+            'Every moment of reflection brings you closer to understanding yourself.',
+            'Your thoughts and feelings hold valuable insights.',
+            'Take time to explore your inner world today.',
+            'Self-awareness is the first step to personal growth.',
+            'What does your intuition tell you today?',
+            'Notice the patterns in your thoughts and emotions.',
+            'Your journey of self-discovery continues.',
+          ]
+        : [
+            'Her yansıma anı seni kendini anlamaya yaklaştırır.',
+            'Düşüncelerin ve duyguların değerli içgörüler taşır.',
+            'Bugün iç dünyanı keşfetmek için zaman ayır.',
+            'Öz farkındalık kişisel büyümenin ilk adımıdır.',
+            'Sezgilerin bugün sana ne söylüyor?',
+            'Düşüncelerindeki ve duygularındaki kalıpları fark et.',
+            'Kendini keşif yolculuğun devam ediyor.',
+          ];
+
     final dayOfYear = DateTime.now()
         .difference(DateTime(DateTime.now().year, 1, 1))
         .inDays;
-    final index = (dayOfYear + sign.index) % sentences.length;
-    return sentences[index];
+    return sentences[dayOfYear % sentences.length];
   }
 }
 
@@ -383,9 +405,11 @@ class _BelowTheFold extends ConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Section title
+          // Section title - Journal & Patterns
           Text(
-            L10nService.get('home.sections.star_gate', language),
+            language == AppLanguage.en
+                ? 'Journal & Patterns'
+                : 'Günlük ve Kalıplar',
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,
@@ -397,68 +421,202 @@ class _BelowTheFold extends ConsumerWidget {
 
           const SizedBox(height: 16),
 
-          // Entry points list
           _EntryPointTile(
-            icon: Icons.wb_sunny_outlined,
-            title: L10nService.get('home.entries.cosmic_flow.title', language),
-            subtitle: L10nService.get(
-              'home.entries.cosmic_flow.subtitle',
-              language,
-            ),
-            route: Routes.horoscope,
-            isDark: isDark,
-          ),
-
-          _EntryPointTile(
-            icon: Icons.auto_awesome_outlined,
-            title: L10nService.get('home.entries.cosmic_share.title', language),
-            subtitle: L10nService.get(
-              'home.entries.cosmic_share.subtitle',
-              language,
-            ),
-            route: Routes.cosmicShare,
+            icon: Icons.edit_note_outlined,
+            title: language == AppLanguage.en
+                ? 'Daily Journal'
+                : 'Günlük Kayıt',
+            subtitle: language == AppLanguage.en
+                ? 'Track your energy, focus & emotions'
+                : 'Enerji, odak ve duygularını takip et',
+            route: Routes.journal,
             isDark: isDark,
             isHighlighted: true,
           ),
 
           _EntryPointTile(
-            icon: Icons.style_outlined,
-            title: L10nService.get('home.entries.tarot.title', language),
-            subtitle: L10nService.get('home.entries.tarot.subtitle', language),
-            route: Routes.tarot,
+            icon: Icons.insights_outlined,
+            title: language == AppLanguage.en
+                ? 'Your Patterns'
+                : 'Kalıpların',
+            subtitle: language == AppLanguage.en
+                ? 'Trends & correlations from your entries'
+                : 'Kayıtlarındaki eğilimler ve bağlantılar',
+            route: Routes.journalPatterns,
             isDark: isDark,
           ),
 
           _EntryPointTile(
-            icon: Icons.favorite_border_outlined,
-            title: L10nService.get(
-              'home.entries.compatibility.title',
-              language,
-            ),
-            subtitle: L10nService.get(
-              'home.entries.compatibility.subtitle',
-              language,
-            ),
-            route: Routes.compatibility,
+            icon: Icons.calendar_month_outlined,
+            title: language == AppLanguage.en
+                ? 'Monthly Reflection'
+                : 'Aylık Yansıma',
+            subtitle: language == AppLanguage.en
+                ? 'Review your month at a glance'
+                : 'Ayına bir bakışta göz at',
+            route: Routes.journalMonthly,
             isDark: isDark,
           ),
 
           _EntryPointTile(
-            icon: Icons.pie_chart_outline,
-            title: L10nService.get('home.entries.birth_chart.title', language),
-            subtitle: L10nService.get(
-              'home.entries.birth_chart.subtitle',
-              language,
-            ),
-            route: Routes.birthChart,
+            icon: Icons.archive_outlined,
+            title: language == AppLanguage.en
+                ? 'Archive'
+                : 'Arşiv',
+            subtitle: language == AppLanguage.en
+                ? 'Search & browse all entries'
+                : 'Tüm kayıtları ara ve gözat',
+            route: Routes.journalArchive,
             isDark: isDark,
           ),
 
           const SizedBox(height: 24),
 
-          // Secondary section - More features
+          // Section title - Insight & Reflection
           Text(
-            L10nService.get('home.sections.hidden_knowledge', language),
+            language == AppLanguage.en
+                ? 'Insight & Reflection'
+                : 'İçgörü ve Yansıma',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w600,
+              color: isDark
+                  ? AppColors.textPrimary
+                  : AppColors.lightTextPrimary,
+            ),
+          ),
+
+          const SizedBox(height: 16),
+
+          // Entry points list - Safe features only
+          _EntryPointTile(
+            icon: Icons.auto_awesome_outlined,
+            title: language == AppLanguage.en
+                ? 'Personal Insight'
+                : 'Kişisel İçgörü',
+            subtitle: language == AppLanguage.en
+                ? 'AI-powered self-reflection assistant'
+                : 'Yapay zeka destekli öz-yansıma asistanı',
+            route: Routes.insight,
+            isDark: isDark,
+            isHighlighted: true,
+          ),
+
+          _EntryPointTile(
+            icon: Icons.wb_sunny_outlined,
+            title: language == AppLanguage.en
+                ? 'Daily Theme'
+                : 'Günün Teması',
+            subtitle: language == AppLanguage.en
+                ? 'Today\'s reflection theme'
+                : 'Bugünün yansıma teması',
+            route: Routes.cosmicToday,
+            isDark: isDark,
+          ),
+
+          const SizedBox(height: 24),
+
+          // Wellness section
+          Text(
+            language == AppLanguage.en
+                ? 'Wellness & Mindfulness'
+                : 'Sağlık ve Farkındalık',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w600,
+              color: isDark
+                  ? AppColors.textPrimary
+                  : AppColors.lightTextPrimary,
+            ),
+          ),
+
+          const SizedBox(height: 16),
+
+          _EntryPointTile(
+            icon: Icons.blur_circular_outlined,
+            title: language == AppLanguage.en
+                ? 'Chakra Analysis'
+                : 'Çakra Analizi',
+            subtitle: language == AppLanguage.en
+                ? 'Energy center awareness'
+                : 'Enerji merkezi farkındalığı',
+            route: Routes.chakraAnalysis,
+            isDark: isDark,
+          ),
+
+          _EntryPointTile(
+            icon: Icons.spa_outlined,
+            title: language == AppLanguage.en
+                ? 'Aura Reading'
+                : 'Aura Okuma',
+            subtitle: language == AppLanguage.en
+                ? 'Energy field exploration'
+                : 'Enerji alanı keşfi',
+            route: Routes.aura,
+            isDark: isDark,
+          ),
+
+          _EntryPointTile(
+            icon: Icons.self_improvement_outlined,
+            title: language == AppLanguage.en
+                ? 'Daily Rituals'
+                : 'Günlük Ritüeller',
+            subtitle: language == AppLanguage.en
+                ? 'Mindfulness practices'
+                : 'Farkındalık pratikleri',
+            route: Routes.dailyRituals,
+            isDark: isDark,
+          ),
+
+          const SizedBox(height: 24),
+
+          // Dream Journal section
+          Text(
+            language == AppLanguage.en
+                ? 'Dream Journal'
+                : 'Rüya Günlüğü',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w600,
+              color: isDark
+                  ? AppColors.textPrimary
+                  : AppColors.lightTextPrimary,
+            ),
+          ),
+
+          const SizedBox(height: 16),
+
+          _EntryPointTile(
+            icon: Icons.nights_stay_outlined,
+            title: language == AppLanguage.en
+                ? 'Dream Interpretation'
+                : 'Rüya Yorumu',
+            subtitle: language == AppLanguage.en
+                ? 'Explore your dream symbols'
+                : 'Rüya sembollerini keşfet',
+            route: Routes.dreamInterpretation,
+            isDark: isDark,
+          ),
+
+          _EntryPointTile(
+            icon: Icons.book_outlined,
+            title: language == AppLanguage.en
+                ? 'Dream Dictionary'
+                : 'Rüya Sözlüğü',
+            subtitle: language == AppLanguage.en
+                ? 'Symbol reference guide'
+                : 'Sembol referans rehberi',
+            route: Routes.dreamGlossary,
+            isDark: isDark,
+          ),
+
+          const SizedBox(height: 24),
+
+          // Learning section
+          Text(
+            language == AppLanguage.en
+                ? 'Learning & Reference'
+                : 'Öğrenme ve Referans',
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,
@@ -472,145 +630,48 @@ class _BelowTheFold extends ConsumerWidget {
 
           _EntryPointTile(
             icon: Icons.numbers_outlined,
-            title: L10nService.get('home.entries.numerology.title', language),
-            subtitle: L10nService.get(
-              'home.entries.numerology.subtitle',
-              language,
-            ),
+            title: language == AppLanguage.en
+                ? 'Numerology'
+                : 'Numeroloji',
+            subtitle: language == AppLanguage.en
+                ? 'Number patterns & meanings'
+                : 'Sayı kalıpları ve anlamları',
             route: Routes.numerology,
             isDark: isDark,
           ),
 
           _EntryPointTile(
-            icon: Icons.nights_stay_outlined,
-            title: L10nService.get('home.entries.dream.title', language),
-            subtitle: L10nService.get('home.entries.dream.subtitle', language),
-            route: Routes.dreamInterpretation,
+            icon: Icons.style_outlined,
+            title: language == AppLanguage.en
+                ? 'Tarot Guide'
+                : 'Tarot Rehberi',
+            subtitle: language == AppLanguage.en
+                ? 'Card symbolism & meanings'
+                : 'Kart sembolizmi ve anlamları',
+            route: Routes.tarot,
             isDark: isDark,
           ),
 
           _EntryPointTile(
-            icon: Icons.blur_circular_outlined,
-            title: L10nService.get('home.entries.chakra.title', language),
-            subtitle: L10nService.get('home.entries.chakra.subtitle', language),
-            route: Routes.chakraAnalysis,
-            isDark: isDark,
-          ),
-
-          _EntryPointTile(
-            icon: Icons.all_inclusive_outlined,
-            title: L10nService.get('home.entries.all_signs.title', language),
-            subtitle: L10nService.get(
-              'home.entries.all_signs.subtitle',
-              language,
-            ),
-            route: Routes.horoscope,
+            icon: Icons.menu_book_outlined,
+            title: language == AppLanguage.en
+                ? 'Glossary'
+                : 'Sözlük',
+            subtitle: language == AppLanguage.en
+                ? 'Terms & definitions'
+                : 'Terimler ve tanımlar',
+            route: Routes.glossary,
             isDark: isDark,
           ),
 
           const SizedBox(height: 32),
 
-          // ════════════════════════════════════════════════════════════
-          // VENUS WISDOM SECTION - 12 Rich Content Sections
-          // ════════════════════════════════════════════════════════════
-          Text(
-            L10nService.get('home.sections.venus_wisdom', language),
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w600,
-              color: isDark
-                  ? AppColors.textPrimary
-                  : AppColors.lightTextPrimary,
-            ),
-          ),
-
-          const SizedBox(height: 8),
-
-          Text(
-            L10nService.get('home.sections.venus_wisdom_subtitle', language),
-            style: TextStyle(
-              fontSize: 14,
-              color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-            ),
-          ),
-
-          const SizedBox(height: 16),
-
-          // Venus content tiles (first 6)
-          ...VenusHomepageContent.sections
-              .take(6)
-              .map(
-                (section) => _VenusContentTile(
-                  emoji: section.emoji,
-                  title: section.getTitle(language),
-                  subtitle: section.getSubtitle(language),
-                  badge: section.getBadge(language),
-                  route: section.route,
-                  isDark: isDark,
-                ),
-              ),
-
-          const SizedBox(height: 24),
-
-          // Expandable "More Venus Content" section
-          Text(
-            L10nService.get('home.sections.ancient_secrets', language),
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w600,
-              color: isDark
-                  ? AppColors.textPrimary
-                  : AppColors.lightTextPrimary,
-            ),
-          ),
-
-          const SizedBox(height: 16),
-
-          // Venus content tiles (remaining 6)
-          ...VenusHomepageContent.sections
-              .skip(6)
-              .map(
-                (section) => _VenusContentTile(
-                  emoji: section.emoji,
-                  title: section.getTitle(language),
-                  subtitle: section.getSubtitle(language),
-                  badge: section.getBadge(language),
-                  route: section.route,
-                  isDark: isDark,
-                ),
-              ),
-
-          const SizedBox(height: 32),
-
-          // House System Section
-          Text(
-            L10nService.get('home.sections.astrological_houses', language),
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-              color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-              fontWeight: FontWeight.w600,
-              letterSpacing: 0.5,
-            ),
-          ),
-          const SizedBox(height: 12),
-          _EntryPointTile(
-            icon: Icons.home_outlined,
-            title: L10nService.get('home.entries.house_system.title', language),
-            subtitle: L10nService.get(
-              'home.entries.house_system.subtitle',
-              language,
-            ),
-            route: Routes.birthChart,
-            isDark: isDark,
-          ),
-
-          const SizedBox(height: 24),
-
-          // Footer branding - minimal (tap to go to Kozmoz)
+          // Footer branding - minimal
           Center(
             child: GestureDetector(
-              onTap: () => context.push(Routes.kozmoz),
+              onTap: () => context.push(Routes.settings),
               child: Text(
-                'Venus One',
+                'InnerCycles',
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
@@ -627,150 +688,6 @@ class _BelowTheFold extends ConsumerWidget {
     );
   }
 }
-
-// ═══════════════════════════════════════════════════════════════════════════
-// VENUS CONTENT TILE
-// Rich content entry point with emoji, badge support
-// ═══════════════════════════════════════════════════════════════════════════
-
-class _VenusContentTile extends StatelessWidget {
-  final String emoji;
-  final String title;
-  final String subtitle;
-  final String? badge;
-  final String route;
-  final bool isDark;
-
-  const _VenusContentTile({
-    required this.emoji,
-    required this.title,
-    required this.subtitle,
-    this.badge,
-    required this.route,
-    required this.isDark,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 12),
-      child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-          onTap: () => context.push(route),
-          borderRadius: BorderRadius.circular(12),
-          child: Container(
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: isDark
-                  ? AppColors.surfaceDark.withValues(alpha: 0.5)
-                  : AppColors.lightSurfaceVariant,
-              borderRadius: BorderRadius.circular(12),
-              border: Border.all(
-                color: isDark
-                    ? AppColors.cosmicPurple.withValues(alpha: 0.3)
-                    : Colors.grey.shade200,
-              ),
-            ),
-            child: Row(
-              children: [
-                // Emoji icon
-                Container(
-                  width: 44,
-                  height: 44,
-                  decoration: BoxDecoration(
-                    color: isDark
-                        ? AppColors.cosmicPurple.withValues(alpha: 0.4)
-                        : AppColors.lightStarGold.withValues(alpha: 0.1),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Center(
-                    child: Text(emoji, style: const TextStyle(fontSize: 22)),
-                  ),
-                ),
-                const SizedBox(width: 14),
-                // Text content
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Text(
-                              title,
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w600,
-                                color: isDark
-                                    ? AppColors.textPrimary
-                                    : AppColors.lightTextPrimary,
-                              ),
-                            ),
-                          ),
-                          if (badge != null)
-                            Container(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 8,
-                                vertical: 2,
-                              ),
-                              decoration: BoxDecoration(
-                                color: badge == 'Yeni'
-                                    ? AppColors.starGold.withValues(alpha: 0.2)
-                                    : AppColors.cosmicPurple.withValues(
-                                        alpha: 0.2,
-                                      ),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: Text(
-                                badge!,
-                                style: TextStyle(
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.w600,
-                                  color: badge == 'Yeni'
-                                      ? AppColors.starGold
-                                      : (isDark
-                                            ? AppColors.textSecondary
-                                            : AppColors.lightTextSecondary),
-                                ),
-                              ),
-                            ),
-                        ],
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        subtitle,
-                        style: TextStyle(
-                          fontSize: 13,
-                          color: isDark
-                              ? AppColors.textMuted
-                              : AppColors.lightTextMuted,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(width: 8),
-                Icon(
-                  Icons.chevron_right,
-                  size: 20,
-                  color: isDark
-                      ? AppColors.textMuted
-                      : AppColors.lightTextMuted,
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-// ═══════════════════════════════════════════════════════════════════════════
-// ENTRY POINT TILE
-// Simple, clean, no animations
-// ═══════════════════════════════════════════════════════════════════════════
 
 // ═══════════════════════════════════════════════════════════════════════════
 // QUICK DISCOVERY CHIP

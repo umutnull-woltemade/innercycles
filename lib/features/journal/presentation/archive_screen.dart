@@ -1,0 +1,378 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import '../../../core/constants/app_constants.dart';
+import '../../../core/constants/routes.dart';
+import '../../../core/theme/app_colors.dart';
+import '../../../data/models/journal_entry.dart';
+import '../../../data/providers/app_providers.dart';
+import '../../../shared/widgets/cosmic_background.dart';
+
+class ArchiveScreen extends ConsumerStatefulWidget {
+  const ArchiveScreen({super.key});
+
+  @override
+  ConsumerState<ArchiveScreen> createState() => _ArchiveScreenState();
+}
+
+class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
+  FocusArea? _filterArea;
+  String _searchQuery = '';
+  final _searchController = TextEditingController();
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final language = ref.watch(languageProvider);
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final isEn = language == AppLanguage.en;
+    final serviceAsync = ref.watch(journalServiceProvider);
+
+    return Scaffold(
+      body: CosmicBackground(
+        child: SafeArea(
+          child: serviceAsync.when(
+            loading: () => const Center(child: CircularProgressIndicator()),
+            error: (e, _) => Center(child: Text('Error: $e')),
+            data: (service) {
+              var entries = service.getAllEntries();
+
+              // Apply filters
+              if (_filterArea != null) {
+                entries = entries
+                    .where((e) => e.focusArea == _filterArea)
+                    .toList();
+              }
+              if (_searchQuery.isNotEmpty) {
+                entries = entries
+                    .where(
+                      (e) =>
+                          e.note?.toLowerCase().contains(
+                                _searchQuery.toLowerCase(),
+                              ) ??
+                          false,
+                    )
+                    .toList();
+              }
+
+              return CustomScrollView(
+                slivers: [
+                  SliverAppBar(
+                    backgroundColor: Colors.transparent,
+                    pinned: true,
+                    leading: IconButton(
+                      onPressed: () => context.pop(),
+                      icon: Icon(
+                        Icons.arrow_back_ios_new,
+                        color: isDark
+                            ? AppColors.textPrimary
+                            : AppColors.lightTextPrimary,
+                      ),
+                    ),
+                    title: Text(
+                      isEn ? 'Archive' : 'Arşiv',
+                      style:
+                          Theme.of(context).textTheme.titleLarge?.copyWith(
+                        color: AppColors.starGold,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                  // Search bar
+                  SliverToBoxAdapter(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: AppConstants.spacingLg,
+                      ),
+                      child: _buildSearchBar(isDark, isEn),
+                    ),
+                  ),
+                  // Filter chips
+                  SliverToBoxAdapter(
+                    child: Padding(
+                      padding: const EdgeInsets.all(AppConstants.spacingLg),
+                      child: _buildFilterChips(isDark, isEn),
+                    ),
+                  ),
+                  // Entry count
+                  SliverToBoxAdapter(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: AppConstants.spacingLg,
+                      ),
+                      child: Text(
+                        isEn
+                            ? '${entries.length} entries'
+                            : '${entries.length} kayıt',
+                        style: TextStyle(
+                          color: isDark
+                              ? AppColors.textMuted
+                              : AppColors.lightTextMuted,
+                          fontSize: 13,
+                        ),
+                      ),
+                    ),
+                  ),
+                  // Entry list
+                  if (entries.isEmpty)
+                    SliverFillRemaining(
+                      hasScrollBody: false,
+                      child: Center(
+                        child: Text(
+                          isEn ? 'No entries yet' : 'Henüz kayıt yok',
+                          style: TextStyle(
+                            color: isDark
+                                ? AppColors.textMuted
+                                : AppColors.lightTextMuted,
+                          ),
+                        ),
+                      ),
+                    )
+                  else
+                    SliverPadding(
+                      padding: const EdgeInsets.all(AppConstants.spacingLg),
+                      sliver: SliverList(
+                        delegate: SliverChildBuilderDelegate(
+                          (context, index) {
+                            return _buildEntryCard(
+                              context,
+                              entries[index],
+                              isDark,
+                              isEn,
+                            )
+                                .animate()
+                                .fadeIn(
+                                  delay: Duration(
+                                    milliseconds: 50 * (index % 10),
+                                  ),
+                                  duration: 300.ms,
+                                );
+                          },
+                          childCount: entries.length,
+                        ),
+                      ),
+                    ),
+                ],
+              );
+            },
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSearchBar(bool isDark, bool isEn) {
+    return Container(
+      decoration: BoxDecoration(
+        color: isDark
+            ? AppColors.surfaceDark.withValues(alpha: 0.7)
+            : AppColors.lightCard,
+        borderRadius: BorderRadius.circular(AppConstants.radiusFull),
+        border: Border.all(
+          color: isDark
+              ? Colors.white.withValues(alpha: 0.1)
+              : Colors.black.withValues(alpha: 0.05),
+        ),
+      ),
+      child: TextField(
+        controller: _searchController,
+        onChanged: (v) => setState(() => _searchQuery = v),
+        style: TextStyle(
+          color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+        ),
+        decoration: InputDecoration(
+          hintText: isEn ? 'Search notes...' : 'Notlarda ara...',
+          hintStyle: TextStyle(
+            color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+          ),
+          prefixIcon: Icon(
+            Icons.search,
+            color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+          ),
+          border: InputBorder.none,
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: AppConstants.spacingMd,
+            vertical: 14,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildFilterChips(bool isDark, bool isEn) {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: [
+          _buildChip(
+            isEn ? 'All' : 'Tümü',
+            _filterArea == null,
+            () => setState(() => _filterArea = null),
+            isDark,
+          ),
+          ...FocusArea.values.map((area) {
+            final label =
+                isEn ? area.displayNameEn : area.displayNameTr;
+            return _buildChip(
+              label,
+              _filterArea == area,
+              () => setState(() => _filterArea = area),
+              isDark,
+            );
+          }),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildChip(
+    String label,
+    bool isSelected,
+    VoidCallback onTap,
+    bool isDark,
+  ) {
+    return Padding(
+      padding: const EdgeInsets.only(right: 8),
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+          decoration: BoxDecoration(
+            color: isSelected
+                ? AppColors.starGold.withValues(alpha: 0.2)
+                : (isDark
+                      ? AppColors.surfaceDark.withValues(alpha: 0.5)
+                      : AppColors.lightSurfaceVariant),
+            borderRadius: BorderRadius.circular(AppConstants.radiusFull),
+            border: Border.all(
+              color: isSelected ? AppColors.starGold : Colors.transparent,
+            ),
+          ),
+          child: Text(
+            label,
+            style: TextStyle(
+              fontSize: 13,
+              fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+              color: isSelected
+                  ? AppColors.starGold
+                  : (isDark
+                        ? AppColors.textSecondary
+                        : AppColors.lightTextSecondary),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildEntryCard(
+    BuildContext context,
+    JournalEntry entry,
+    bool isDark,
+    bool isEn,
+  ) {
+    final areaLabel =
+        isEn ? entry.focusArea.displayNameEn : entry.focusArea.displayNameTr;
+    final dateStr =
+        '${entry.date.day}.${entry.date.month}.${entry.date.year}';
+
+    return Padding(
+      padding: const EdgeInsets.only(bottom: AppConstants.spacingMd),
+      child: GestureDetector(
+        onTap: () => context.push('${Routes.journal}/entry/${entry.id}'),
+        child: Container(
+          padding: const EdgeInsets.all(AppConstants.spacingLg),
+          decoration: BoxDecoration(
+            color: isDark
+                ? AppColors.surfaceDark.withValues(alpha: 0.7)
+                : AppColors.lightCard,
+            borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+            border: Border.all(
+              color: isDark
+                  ? Colors.white.withValues(alpha: 0.1)
+                  : Colors.black.withValues(alpha: 0.05),
+            ),
+          ),
+          child: Row(
+            children: [
+              // Rating circle
+              Container(
+                width: 44,
+                height: 44,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: AppColors.starGold.withValues(alpha: 0.15),
+                  border: Border.all(
+                    color: AppColors.starGold.withValues(alpha: 0.5),
+                  ),
+                ),
+                child: Center(
+                  child: Text(
+                    '${entry.overallRating}',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.starGold,
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(width: AppConstants.spacingMd),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      areaLabel,
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        color: isDark
+                            ? AppColors.textPrimary
+                            : AppColors.lightTextPrimary,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      dateStr,
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: isDark
+                            ? AppColors.textMuted
+                            : AppColors.lightTextMuted,
+                      ),
+                    ),
+                    if (entry.note != null && entry.note!.isNotEmpty) ...[
+                      const SizedBox(height: 4),
+                      Text(
+                        entry.note!,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontSize: 13,
+                          color: isDark
+                              ? AppColors.textSecondary
+                              : AppColors.lightTextSecondary,
+                        ),
+                      ),
+                    ],
+                  ],
+                ),
+              ),
+              Icon(
+                Icons.chevron_right,
+                color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

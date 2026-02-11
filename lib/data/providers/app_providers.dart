@@ -1,15 +1,29 @@
+// ════════════════════════════════════════════════════════════════════════════
+// APP PROVIDERS - Core State Management (App Store 4.3(b) Compliant)
+// ════════════════════════════════════════════════════════════════════════════
+// All astrology-related providers have been removed for App Store compliance.
+// This file now focuses on:
+// - User profile management
+// - Language settings
+// - Theme settings
+// - Dream journal
+// ════════════════════════════════════════════════════════════════════════════
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/user_profile.dart';
 import '../models/zodiac_sign.dart' as zodiac;
-import '../models/horoscope.dart';
-import '../models/house.dart';
-import '../services/horoscope_service.dart';
-import '../services/api/astrology_api_service.dart';
+
 import '../services/storage_service.dart';
 import '../services/dream_journal_service.dart';
+import '../services/journal_service.dart';
+import '../models/journal_entry.dart';
 
-// User profile state using Notifier (Riverpod 2.x+)
+// =============================================================================
+// USER PROFILE PROVIDERS
+// =============================================================================
+
+/// User profile state using Notifier (Riverpod 2.x+)
 final userProfileProvider = NotifierProvider<UserProfileNotifier, UserProfile?>(
   () {
     return UserProfileNotifier();
@@ -46,7 +60,7 @@ class UserProfileNotifier extends Notifier<UserProfile?> {
   }
 }
 
-// Multiple profiles provider
+/// Multiple profiles provider
 final savedProfilesProvider =
     NotifierProvider<SavedProfilesNotifier, List<UserProfile>>(() {
       return SavedProfilesNotifier();
@@ -86,6 +100,7 @@ class SavedProfilesNotifier extends Notifier<List<UserProfile>> {
   }
 }
 
+/// Primary profile provider
 final primaryProfileProvider = Provider<UserProfile?>((ref) {
   final profiles = ref.watch(savedProfilesProvider);
   final primaryId = StorageService.getPrimaryProfileId();
@@ -98,54 +113,24 @@ final primaryProfileProvider = Provider<UserProfile?>((ref) {
   return profiles.isNotEmpty ? profiles.first : null;
 });
 
-// Comparison profiles selection
+/// Comparison profiles selection (for pattern comparison, not astrology)
 final comparisonProfile1Provider = StateProvider<UserProfile?>((ref) => null);
 final comparisonProfile2Provider = StateProvider<UserProfile?>((ref) => null);
 
-// Selected zodiac sign for viewing
-final selectedZodiacProvider = StateProvider<zodiac.ZodiacSign?>((ref) => null);
+// =============================================================================
+// APP STATE PROVIDERS
+// =============================================================================
 
-// Daily horoscope for a sign with language support
-final dailyHoroscopeProvider =
-    Provider.family<DailyHoroscope, (zodiac.ZodiacSign, AppLanguage)>((
-      ref,
-      params,
-    ) {
-      return HoroscopeService.generateDailyHoroscope(
-        params.$1,
-        DateTime.now(),
-        language: params.$2,
-      );
-    });
-
-// Compatibility between two signs with language support
-final compatibilityProvider =
-    Provider.family<
-      Compatibility,
-      (zodiac.ZodiacSign, zodiac.ZodiacSign, AppLanguage)
-    >((ref, params) {
-      return HoroscopeService.calculateCompatibility(
-        params.$1,
-        params.$2,
-        language: params.$3,
-      );
-    });
-
-// Selected signs for compatibility checker
-final compatibilitySign1Provider = StateProvider<zodiac.ZodiacSign?>(
-  (ref) => null,
-);
-final compatibilitySign2Provider = StateProvider<zodiac.ZodiacSign?>(
-  (ref) => null,
-);
-
-// Onboarding completed flag
+/// Onboarding completed flag
 final onboardingCompleteProvider = StateProvider<bool>((ref) => false);
 
-// Bottom navigation index
+/// Bottom navigation index
 final bottomNavIndexProvider = StateProvider<int>((ref) => 0);
 
-// Language provider - supports multiple languages
+// =============================================================================
+// LANGUAGE PROVIDER
+// =============================================================================
+
 enum AppLanguage {
   en, // English
   tr, // Türkçe
@@ -213,7 +198,6 @@ extension AppLanguageExtension on AppLanguage {
   bool get isRTL => this == AppLanguage.ar;
 
   /// Languages with complete translations and strict isolation support
-  /// These languages have NO fallback - all content is native
   bool get hasStrictIsolation {
     return this == AppLanguage.en ||
         this == AppLanguage.tr ||
@@ -222,7 +206,6 @@ extension AppLanguageExtension on AppLanguage {
   }
 
   /// Languages that are fully available for selection
-  /// Non-strict languages show "Coming soon" in settings
   bool get isFullyAvailable => hasStrictIsolation;
 
   Locale get locale {
@@ -253,84 +236,15 @@ extension AppLanguageExtension on AppLanguage {
 
 final languageProvider = StateProvider<AppLanguage>((ref) => AppLanguage.en);
 
-// Theme mode provider - default is dark
+// =============================================================================
+// THEME PROVIDER
+// =============================================================================
+
+/// Theme mode provider - default is dark
 final themeModeProvider = StateProvider<ThemeMode>((ref) => ThemeMode.dark);
 
-// House system provider - persisted to storage, default is Placidus
-final houseSystemProvider = StateProvider<HouseSystem>((ref) {
-  final index = StorageService.loadHouseSystemIndex();
-  if (index >= 0 && index < HouseSystem.values.length) {
-    return HouseSystem.values[index];
-  }
-  return HouseSystem.placidus;
-});
-
 // =============================================================================
-// API Integration Providers
-// =============================================================================
-
-/// Main API service provider
-final astrologyApiProvider = Provider<AstrologyApiService>((ref) {
-  final service = AstrologyApiService(
-    baseUrl: const String.fromEnvironment(
-      'API_BASE_URL',
-      defaultValue: 'http://localhost:3000/api',
-    ),
-  );
-  ref.onDispose(() => service.dispose());
-  return service;
-});
-
-/// Current planet positions from API
-final currentPlanetsProvider = FutureProvider<List<PlanetPositionDto>>((
-  ref,
-) async {
-  final api = ref.watch(astrologyApiProvider);
-  final response = await api.planets.getCurrentPositions();
-  if (response.isSuccess && response.data != null) {
-    return response.data!;
-  }
-  throw Exception(response.error ?? 'Failed to fetch planets');
-});
-
-/// Current moon phase from API
-final moonPhaseProvider = FutureProvider<MoonPhaseDto>((ref) async {
-  final api = ref.watch(astrologyApiProvider);
-  final response = await api.planets.getMoonPhase();
-  if (response.isSuccess && response.data != null) {
-    return response.data!;
-  }
-  throw Exception(response.error ?? 'Failed to fetch moon phase');
-});
-
-/// Retrograde planets from API
-final retrogradesProvider = FutureProvider<List<RetrogradeDto>>((ref) async {
-  final api = ref.watch(astrologyApiProvider);
-  final response = await api.planets.getRetrogrades();
-  if (response.isSuccess && response.data != null) {
-    return response.data!;
-  }
-  throw Exception(response.error ?? 'Failed to fetch retrogrades');
-});
-
-/// Sign compatibility from API
-final apiCompatibilityProvider =
-    FutureProvider.family<SignCompatibilityDto, ({String sign1, String sign2})>(
-      (ref, params) async {
-        final api = ref.watch(astrologyApiProvider);
-        final response = await api.compatibility.calculateSignCompatibility(
-          sign1: params.sign1,
-          sign2: params.sign2,
-        );
-        if (response.isSuccess && response.data != null) {
-          return response.data!;
-        }
-        throw Exception(response.error ?? 'Failed to calculate compatibility');
-      },
-    );
-
-// =============================================================================
-// Dream Journal Provider
+// DREAM JOURNAL PROVIDER
 // =============================================================================
 
 /// Dream Journal Service provider - async initialization
@@ -338,4 +252,25 @@ final dreamJournalServiceProvider = FutureProvider<DreamJournalService>((
   ref,
 ) async {
   return await DreamJournalService.init();
+});
+
+// =============================================================================
+// JOURNAL PROVIDERS (InnerCycles)
+// =============================================================================
+
+/// Journal Service provider - async initialization
+final journalServiceProvider = FutureProvider<JournalService>((ref) async {
+  return await JournalService.init();
+});
+
+/// Today's journal entry (null if not logged yet)
+final todayJournalEntryProvider = FutureProvider<JournalEntry?>((ref) async {
+  final service = await ref.watch(journalServiceProvider.future);
+  return service.getTodayEntry();
+});
+
+/// Current streak count
+final journalStreakProvider = FutureProvider<int>((ref) async {
+  final service = await ref.watch(journalServiceProvider.future);
+  return service.getCurrentStreak();
 });

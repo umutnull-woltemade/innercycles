@@ -484,13 +484,14 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             ],
           ),
           const SizedBox(height: AppConstants.spacingLg),
+          // App Store 4.3(b): Birth chart removed, navigate to Insight instead
           SizedBox(
             width: double.infinity,
             child: OutlinedButton.icon(
-              onPressed: () => context.push(Routes.birthChart),
-              icon: const Icon(Icons.public),
+              onPressed: () => context.push(Routes.insight),
+              icon: const Icon(Icons.auto_awesome),
               label: Text(
-                L10nService.get('profile.view_birth_chart', language),
+                L10nService.get('profile.view_insight', language),
               ),
               style: OutlinedButton.styleFrom(
                 foregroundColor: AppColors.auroraStart,

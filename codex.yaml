@@ -1,0 +1,74 @@
+# Codex Project Configuration
+# InnerCycles - Personal Reflection & Wellness App
+
+name: innercycles
+description: Flutter iOS app for personal reflection, wellness, and mindfulness
+
+# Model settings
+model: o4-mini
+provider: openai
+
+# Approval mode: suggest | auto-edit | full-auto
+approval_mode: full-auto
+
+# Sandbox mode for safe file operations
+sandbox: true
+
+# Instructions file
+instructions: CODEX.md
+
+# File patterns to include
+include:
+  - "lib/**/*.dart"
+  - "test/**/*.dart"
+  - "pubspec.yaml"
+  - "ios/Runner/Info.plist"
+  - "android/app/build.gradle"
+
+# File patterns to exclude
+exclude:
+  - "build/**"
+  - ".dart_tool/**"
+  - "*.g.dart"
+  - "*.freezed.dart"
+  - ".flutter-plugins*"
+  - "ios/Pods/**"
+  - "android/.gradle/**"
+
+# Project-specific context
+context:
+  language: dart
+  framework: flutter
+  state_management: riverpod
+  navigation: go_router
+
+# Custom commands
+commands:
+  build:
+    description: Build iOS app
+    run: flutter build ios --no-codesign
+
+  analyze:
+    description: Run static analysis
+    run: flutter analyze
+
+  test:
+    description: Run all tests
+    run: flutter test
+
+  fix:
+    description: Apply dart fixes
+    run: dart fix --apply
+
+# Compliance rules (App Store 4.3b)
+rules:
+  - name: no-astrology-terms
+    description: Reject astrology terminology
+    forbidden:
+      - horoscope
+      - zodiac prediction
+      - birth chart
+      - natal chart
+      - compatibility reading
+      - daily reading
+      - weekly reading

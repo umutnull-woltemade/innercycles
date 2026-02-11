@@ -8,7 +8,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/localization_service.dart';
 import '../../../data/services/l10n_service.dart';
-import '../../../data/models/house.dart';
+
 import '../../../data/services/storage_service.dart';
 import '../../../data/services/url_launcher_service.dart';
 import '../../../data/services/premium_service.dart';
@@ -23,7 +23,6 @@ class SettingsScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final language = ref.watch(languageProvider);
     final themeMode = ref.watch(themeModeProvider);
-    final houseSystem = ref.watch(houseSystemProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
@@ -39,14 +38,6 @@ class SettingsScreen extends ConsumerWidget {
                 _buildThemeSection(context, ref, language, themeMode, isDark),
                 const SizedBox(height: AppConstants.spacingLg),
                 _buildLanguageSection(context, ref, language, isDark),
-                const SizedBox(height: AppConstants.spacingLg),
-                _buildHouseSystemSection(
-                  context,
-                  ref,
-                  language,
-                  houseSystem,
-                  isDark,
-                ),
                 const SizedBox(height: AppConstants.spacingLg),
                 _buildAccountSection(context, ref, language, isDark),
                 const SizedBox(height: AppConstants.spacingLg),
@@ -222,126 +213,6 @@ class SettingsScreen extends ConsumerWidget {
         }).toList(),
       ),
     ).animate().fadeIn(delay: 200.ms, duration: 400.ms).slideY(begin: 0.1);
-  }
-
-  Widget _buildHouseSystemSection(
-    BuildContext context,
-    WidgetRef ref,
-    AppLanguage language,
-    HouseSystem currentSystem,
-    bool isDark,
-  ) {
-    return _SettingsSection(
-      title: L10nService.get('settings.house_system', language),
-      icon: Icons.grid_view_rounded,
-      isDark: isDark,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            L10nService.get('settings.house_system_desc', language),
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-            ),
-          ),
-          const SizedBox(height: AppConstants.spacingMd),
-          Wrap(
-            spacing: AppConstants.spacingSm,
-            runSpacing: AppConstants.spacingSm,
-            children: HouseSystem.values.map((system) {
-              final isSelected = system == currentSystem;
-              return GestureDetector(
-                onTap: () {
-                  ref.read(houseSystemProvider.notifier).state = system;
-                  StorageService.saveHouseSystem(system.index);
-                },
-                child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: AppConstants.spacingMd,
-                    vertical: AppConstants.spacingSm,
-                  ),
-                  decoration: BoxDecoration(
-                    color: isSelected
-                        ? AppColors.celestialGold.withValues(alpha: 0.2)
-                        : (isDark
-                              ? AppColors.surfaceLight.withValues(alpha: 0.3)
-                              : AppColors.lightSurfaceVariant),
-                    borderRadius: BorderRadius.circular(
-                      AppConstants.radiusFull,
-                    ),
-                    border: Border.all(
-                      color: isSelected
-                          ? AppColors.celestialGold
-                          : Colors.transparent,
-                      width: 2,
-                    ),
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        system.name,
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: isSelected
-                              ? AppColors.celestialGold
-                              : (isDark
-                                    ? AppColors.textPrimary
-                                    : AppColors.lightTextPrimary),
-                          fontWeight: isSelected
-                              ? FontWeight.bold
-                              : FontWeight.normal,
-                        ),
-                      ),
-                      if (isSelected) ...[
-                        const SizedBox(width: 4),
-                        Icon(
-                          Icons.check_circle,
-                          size: 14,
-                          color: AppColors.celestialGold,
-                        ),
-                      ],
-                    ],
-                  ),
-                ),
-              );
-            }).toList(),
-          ),
-          if (currentSystem != HouseSystem.placidus) ...[
-            const SizedBox(height: AppConstants.spacingMd),
-            Container(
-              padding: const EdgeInsets.all(AppConstants.spacingMd),
-              decoration: BoxDecoration(
-                color: AppColors.celestialGold.withValues(alpha: 0.1),
-                borderRadius: BorderRadius.circular(AppConstants.radiusSm),
-                border: Border.all(
-                  color: AppColors.celestialGold.withValues(alpha: 0.3),
-                ),
-              ),
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.info_outline,
-                    color: AppColors.celestialGold,
-                    size: 18,
-                  ),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: Text(
-                      currentSystem.description,
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: isDark
-                            ? AppColors.textSecondary
-                            : AppColors.lightTextSecondary,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ],
-      ),
-    ).animate().fadeIn(delay: 250.ms, duration: 400.ms).slideY(begin: 0.1);
   }
 
   Widget _buildAccountSection(

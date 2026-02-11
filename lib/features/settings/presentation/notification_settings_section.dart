@@ -14,6 +14,7 @@ final notificationSettingsProvider = FutureProvider<NotificationSettings>((
 });
 
 /// Notification settings section for the settings screen
+/// App Store 4.3(b) Compliant: No astrology/horoscope terminology
 class NotificationSettingsSection extends ConsumerStatefulWidget {
   const NotificationSettingsSection({super.key});
 
@@ -28,13 +29,12 @@ class _NotificationSettingsSectionState
   bool _isInitialized = false;
   bool _permissionsGranted = false;
 
-  // Settings state
-  bool _dailyEnabled = false;
+  // Settings state - renamed for App Store compliance
+  bool _dailyInsightEnabled = false;
   int _dailyHour = 8;
   int _dailyMinute = 0;
-  bool _moonEnabled = false;
-  bool _retrogradeEnabled = false;
-  bool _transitEnabled = false;
+  bool _moonPhaseEnabled = false;
+  bool _wellnessRemindersEnabled = false;
 
   @override
   void initState() {
@@ -49,14 +49,16 @@ class _NotificationSettingsSectionState
     final settings = await _notificationService.getSettings();
     setState(() {
       _isInitialized = true;
-      _dailyEnabled = settings.dailyHoroscopeEnabled;
+      // Map old settings to new App Store compliant names
+      _dailyInsightEnabled = settings.dailyHoroscopeEnabled;
       if (settings.dailyHoroscopeTimeMinutes != null) {
         _dailyHour = settings.dailyHoroscopeTimeMinutes! ~/ 60;
         _dailyMinute = settings.dailyHoroscopeTimeMinutes! % 60;
       }
-      _moonEnabled = settings.moonPhaseEnabled;
-      _retrogradeEnabled = settings.retrogradeAlertsEnabled;
-      _transitEnabled = settings.transitAlertsEnabled;
+      _moonPhaseEnabled = settings.moonPhaseEnabled;
+      // Combine retrograde + transit into wellness reminders
+      _wellnessRemindersEnabled =
+          settings.retrogradeAlertsEnabled || settings.transitAlertsEnabled;
     });
   }
 
@@ -67,8 +69,8 @@ class _NotificationSettingsSectionState
     });
   }
 
-  Future<void> _toggleDailyNotification(bool value) async {
-    setState(() => _dailyEnabled = value);
+  Future<void> _toggleDailyInsight(bool value) async {
+    setState(() => _dailyInsightEnabled = value);
 
     if (value) {
       final userProfile = ref.read(userProfileProvider);
@@ -108,7 +110,7 @@ class _NotificationSettingsSectionState
         _dailyMinute = time.minute;
       });
 
-      if (_dailyEnabled) {
+      if (_dailyInsightEnabled) {
         final userProfile = ref.read(userProfileProvider);
         final sign = userProfile?.sunSign;
         if (sign != null) {
@@ -122,8 +124,8 @@ class _NotificationSettingsSectionState
     }
   }
 
-  Future<void> _toggleMoonNotification(bool value) async {
-    setState(() => _moonEnabled = value);
+  Future<void> _toggleMoonPhase(bool value) async {
+    setState(() => _moonPhaseEnabled = value);
 
     if (value) {
       await _notificationService.scheduleMoonPhaseNotifications();
@@ -132,13 +134,10 @@ class _NotificationSettingsSectionState
     }
   }
 
-  Future<void> _toggleRetrogradeNotification(bool value) async {
-    setState(() => _retrogradeEnabled = value);
+  Future<void> _toggleWellnessReminders(bool value) async {
+    setState(() => _wellnessRemindersEnabled = value);
+    // Use existing service methods but with wellness framing
     await _notificationService.scheduleRetrogradeAlerts(value);
-  }
-
-  Future<void> _toggleTransitNotification(bool value) async {
-    setState(() => _transitEnabled = value);
     await _notificationService.setTransitAlertsEnabled(value);
   }
 
@@ -146,6 +145,7 @@ class _NotificationSettingsSectionState
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final language = ref.watch(languageProvider);
+    final isEnglish = language == AppLanguage.en;
 
     if (!_isInitialized) {
       return const Center(child: CircularProgressIndicator());
@@ -191,72 +191,50 @@ class _NotificationSettingsSectionState
             _buildPermissionBanner(context, isDark, language),
 
           if (_permissionsGranted) ...[
-            // Daily horoscope notification
+            // Daily Insight notification (App Store compliant name)
             _buildNotificationTile(
               context,
               isDark,
-              icon: Icons.wb_sunny_outlined,
-              title: L10nService.get('notifications.daily_horoscope', language),
-              subtitle: _dailyEnabled
-                  ? L10nService.get(
-                      'notifications.daily_horoscope_desc',
-                      language,
-                    ).replaceAll(
-                      '{time}',
-                      '${_dailyHour.toString().padLeft(2, '0')}:${_dailyMinute.toString().padLeft(2, '0')}',
-                    )
-                  : L10nService.get('notifications.off', language),
-              value: _dailyEnabled,
-              onChanged: _toggleDailyNotification,
-              onTap: _dailyEnabled ? _selectDailyTime : null,
+              icon: Icons.auto_awesome_outlined,
+              title: isEnglish ? 'Daily Insight' : 'Günlük İçgörü',
+              subtitle: _dailyInsightEnabled
+                  ? (isEnglish
+                      ? 'Reminder at ${_dailyHour.toString().padLeft(2, '0')}:${_dailyMinute.toString().padLeft(2, '0')}'
+                      : 'Hatırlatma: ${_dailyHour.toString().padLeft(2, '0')}:${_dailyMinute.toString().padLeft(2, '0')}')
+                  : (isEnglish ? 'Off' : 'Kapalı'),
+              value: _dailyInsightEnabled,
+              onChanged: _toggleDailyInsight,
+              onTap: _dailyInsightEnabled ? _selectDailyTime : null,
             ),
 
             const Divider(height: 24),
 
-            // Moon phase notifications
+            // Moon phase notifications (wellness framing)
             _buildNotificationTile(
               context,
               isDark,
               icon: Icons.nightlight_round_outlined,
-              title: L10nService.get('notifications.moon_phases', language),
-              subtitle: L10nService.get(
-                'notifications.moon_phases_desc',
-                language,
-              ),
-              value: _moonEnabled,
-              onChanged: _toggleMoonNotification,
+              title: isEnglish ? 'Moon Cycle Awareness' : 'Ay Döngüsü Farkındalığı',
+              subtitle: isEnglish
+                  ? 'New & full moon mindfulness reminders'
+                  : 'Yeni ve dolunay farkındalık hatırlatmaları',
+              value: _moonPhaseEnabled,
+              onChanged: _toggleMoonPhase,
             ),
 
             const Divider(height: 24),
 
-            // Retrograde alerts
+            // Wellness reminders (replaced retrograde/transit alerts)
             _buildNotificationTile(
               context,
               isDark,
-              icon: Icons.replay,
-              title: L10nService.get(
-                'notifications.retrograde_alerts',
-                language,
-              ),
-              subtitle: L10nService.get(
-                'notifications.retrograde_desc',
-                language,
-              ),
-              value: _retrogradeEnabled,
-              onChanged: _toggleRetrogradeNotification,
-            ),
-
-            const Divider(height: 24),
-
-            // Transit alerts
-            _buildNotificationTile(
-              context,
-              isDark,
-              icon: Icons.route_outlined,
-              title: L10nService.get('notifications.transit_alerts', language),
-              subtitle: L10nService.get('notifications.transit_desc', language),
-              value: _transitEnabled,
-              onChanged: _toggleTransitNotification,
+              icon: Icons.spa_outlined,
+              title: isEnglish ? 'Wellness Reminders' : 'Sağlık Hatırlatmaları',
+              subtitle: isEnglish
+                  ? 'Self-care and reflection prompts'
+                  : 'Öz bakım ve yansıma uyarıları',
+              value: _wellnessRemindersEnabled,
+              onChanged: _toggleWellnessReminders,
             ),
           ],
         ],

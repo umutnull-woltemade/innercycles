@@ -5,16 +5,16 @@ import '../../core/constants/routes.dart';
 import '../../data/services/l10n_service.dart';
 import '../../data/providers/app_providers.dart';
 
-/// NEXT BLOCKS WIDGET
+/// NEXT BLOCKS WIDGET - App Store 4.3(b) Compliant
 ///
-/// Kullanıcıyı dead-end'de bırakmamak için her sayfanın sonuna eklenen
-/// "sonraki adımlar" önerileri.
+/// Suggests next features to explore after completing a page.
+/// All astrology/horoscope features removed for App Store compliance.
 ///
-/// KULLANIM:
+/// USAGE:
 /// ```dart
 /// NextBlocks(
-///   currentPage: 'horoscope',
-///   signName: 'aries', // optional
+///   currentPage: 'insight',
+///   language: AppLanguage.en,
 /// )
 /// ```
 class NextBlocks extends StatelessWidget {
@@ -34,7 +34,7 @@ class NextBlocks extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final blocks = _getBlocksForPage(currentPage, signName);
+    final blocks = _getBlocksForPage(currentPage);
 
     if (blocks.isEmpty) return const SizedBox.shrink();
 
@@ -69,632 +69,192 @@ class NextBlocks extends StatelessWidget {
     );
   }
 
-  List<_NextBlock> _getBlocksForPage(String page, String? sign) {
-    // Helper to get localized strings
-    String t(String key) => L10nService.get(key, language);
+  List<_NextBlock> _getBlocksForPage(String page) {
+    // Default blocks for all pages - safe features only
+    final defaultBlocks = [
+      _NextBlock(
+        icon: Icons.edit_note_outlined,
+        title: language == AppLanguage.en ? 'Journal' : 'Günlük',
+        subtitle: language == AppLanguage.en
+            ? 'Track your day'
+            : 'Gününü takip et',
+        route: Routes.journal,
+        isHighlighted: true,
+      ),
+      _NextBlock(
+        icon: Icons.auto_awesome_outlined,
+        title: language == AppLanguage.en ? 'Insight' : 'İçgörü',
+        subtitle: language == AppLanguage.en
+            ? 'Personal reflection'
+            : 'Kişisel yansıma',
+        route: Routes.insight,
+      ),
+      _NextBlock(
+        icon: Icons.nights_stay_outlined,
+        title: language == AppLanguage.en ? 'Dreams' : 'Rüyalar',
+        subtitle: language == AppLanguage.en
+            ? 'Explore your dreams'
+            : 'Rüyalarını keşfet',
+        route: Routes.dreamInterpretation,
+      ),
+      _NextBlock(
+        icon: Icons.blur_circular_outlined,
+        title: language == AppLanguage.en ? 'Chakra' : 'Çakra',
+        subtitle: language == AppLanguage.en
+            ? 'Energy awareness'
+            : 'Enerji farkındalığı',
+        route: Routes.chakraAnalysis,
+      ),
+    ];
 
     switch (page) {
-      case 'horoscope':
-      case 'horoscope_detail':
+      case 'journal':
+      case 'daily_entry':
         return [
+          _NextBlock(
+            icon: Icons.insights_outlined,
+            title: language == AppLanguage.en ? 'Patterns' : 'Kalıplar',
+            subtitle: language == AppLanguage.en
+                ? 'Your trends'
+                : 'Eğilimlerin',
+            route: Routes.journalPatterns,
+          ),
           _NextBlock(
             icon: Icons.calendar_month_outlined,
-            title: t('nav.weekly_reading'),
-            subtitle: t('nav.weekly_energy'),
-            route: Routes.weeklyHoroscope,
+            title: language == AppLanguage.en ? 'Monthly' : 'Aylık',
+            subtitle: language == AppLanguage.en
+                ? 'Month overview'
+                : 'Ay özeti',
+            route: Routes.journalMonthly,
+          ),
+          _NextBlock(
+            icon: Icons.archive_outlined,
+            title: language == AppLanguage.en ? 'Archive' : 'Arşiv',
+            subtitle: language == AppLanguage.en
+                ? 'All entries'
+                : 'Tüm kayıtlar',
+            route: Routes.journalArchive,
           ),
           _NextBlock(
             icon: Icons.auto_awesome_outlined,
-            title: t('nav.cosmic_share'),
-            subtitle: t('nav.share_energy'),
-            route: Routes.cosmicShare,
-            isHighlighted: true,
-          ),
-          _NextBlock(
-            icon: Icons.favorite_border_outlined,
-            title: t('nav.compatibility'),
-            subtitle: t('nav.who_compatible'),
-            route: Routes.compatibility,
-          ),
-          _NextBlock(
-            icon: Icons.pie_chart_outline,
-            title: t('nav.birth_chart'),
-            subtitle: t('nav.explore_cosmic_map'),
-            route: Routes.birthChart,
-          ),
-          _NextBlock(
-            icon: Icons.style_outlined,
-            title: t('nav.tarot'),
-            subtitle: t('nav.tarot_guidance'),
-            route: Routes.tarot,
-          ),
-          _NextBlock(
-            icon: Icons.grid_view_outlined,
-            title: t('nav.all_signs'),
-            subtitle: t('nav.discover_12_signs'),
-            route: Routes.horoscope,
+            title: language == AppLanguage.en ? 'Insight' : 'İçgörü',
+            subtitle: language == AppLanguage.en
+                ? 'Personal reflection'
+                : 'Kişisel yansıma',
+            route: Routes.insight,
           ),
         ];
 
-      case 'natal_chart':
-      case 'birth_chart':
+      case 'insight':
         return [
           _NextBlock(
-            icon: Icons.compare_arrows_outlined,
-            title: t('nav.transits'),
-            subtitle: t('nav.transits_insight'),
-            route: Routes.transits,
-          ),
-          _NextBlock(
-            icon: Icons.people_outline,
-            title: t('nav.synastry'),
-            subtitle: t('nav.synastry_insight'),
-            route: Routes.synastry,
-          ),
-          _NextBlock(
-            icon: Icons.cake_outlined,
-            title: t('nav.solar_return'),
-            subtitle: t('nav.solar_return_insight'),
-            route: Routes.solarReturn,
-          ),
-          _NextBlock(
-            icon: Icons.loop_outlined,
-            title: t('nav.saturn_return'),
-            subtitle: t('nav.saturn_return_insight'),
-            route: Routes.saturnReturn,
-          ),
-          _NextBlock(
-            icon: Icons.auto_awesome_outlined,
-            title: t('nav.share_chart'),
-            subtitle: t('nav.share_cosmic_energy'),
-            route: Routes.cosmicShare,
+            icon: Icons.edit_note_outlined,
+            title: language == AppLanguage.en ? 'Journal' : 'Günlük',
+            subtitle: language == AppLanguage.en
+                ? 'Track your day'
+                : 'Gününü takip et',
+            route: Routes.journal,
             isHighlighted: true,
-          ),
-          _NextBlock(
-            icon: Icons.person_add_outlined,
-            title: t('nav.compare_profiles'),
-            subtitle: t('nav.compare_with_friend'),
-            route: Routes.comparison,
-          ),
-        ];
-
-      case 'tarot':
-        return [
-          _NextBlock(
-            icon: Icons.auto_graph_outlined,
-            title: t('nav.the_fool'),
-            subtitle: t('nav.new_beginnings'),
-            route: '/tarot/major/0',
-          ),
-          _NextBlock(
-            icon: Icons.auto_awesome_outlined,
-            title: t('nav.share_card'),
-            subtitle: t('nav.share_cosmic_message'),
-            route: Routes.cosmicShare,
-            isHighlighted: true,
-          ),
-          _NextBlock(
-            icon: Icons.numbers_outlined,
-            title: t('nav.numerology'),
-            subtitle: t('nav.numerology_insight'),
-            route: Routes.numerology,
-          ),
-          _NextBlock(
-            icon: Icons.blur_circular_outlined,
-            title: t('nav.chakra_analysis'),
-            subtitle: t('nav.energy_centers'),
-            route: Routes.chakraAnalysis,
           ),
           _NextBlock(
             icon: Icons.nights_stay_outlined,
-            title: t('nav.dream_trace'),
-            subtitle: t('nav.dream_meanings'),
+            title: language == AppLanguage.en ? 'Dreams' : 'Rüyalar',
+            subtitle: language == AppLanguage.en
+                ? 'Explore your dreams'
+                : 'Rüyalarını keşfet',
             route: Routes.dreamInterpretation,
           ),
           _NextBlock(
-            icon: Icons.wb_sunny_outlined,
-            title: t('nav.daily_reading'),
-            subtitle: t('nav.daily_energy'),
-            route: Routes.horoscope,
+            icon: Icons.blur_circular_outlined,
+            title: language == AppLanguage.en ? 'Chakra' : 'Çakra',
+            subtitle: language == AppLanguage.en
+                ? 'Energy awareness'
+                : 'Enerji farkındalığı',
+            route: Routes.chakraAnalysis,
+          ),
+          _NextBlock(
+            icon: Icons.numbers_outlined,
+            title: language == AppLanguage.en ? 'Numerology' : 'Numeroloji',
+            subtitle: language == AppLanguage.en
+                ? 'Number patterns'
+                : 'Sayı kalıpları',
+            route: Routes.numerology,
           ),
         ];
 
-      case 'compatibility':
+      case 'dream':
+      case 'dream_interpretation':
         return [
           _NextBlock(
-            icon: Icons.people_outline,
-            title: t('nav.synastry'),
-            subtitle: t('nav.detailed_relationship'),
-            route: Routes.synastry,
-          ),
-          _NextBlock(
-            icon: Icons.group_outlined,
-            title: t('nav.composite'),
-            subtitle: t('nav.combined_chart'),
-            route: Routes.compositeChart,
-          ),
-          _NextBlock(
             icon: Icons.auto_awesome_outlined,
-            title: t('nav.share_compatibility'),
-            subtitle: t('nav.share_cosmic_bond'),
-            route: Routes.cosmicShare,
+            title: language == AppLanguage.en ? 'Insight' : 'İçgörü',
+            subtitle: language == AppLanguage.en
+                ? 'Personal reflection'
+                : 'Kişisel yansıma',
+            route: Routes.insight,
             isHighlighted: true,
           ),
           _NextBlock(
-            icon: Icons.wb_sunny_outlined,
-            title: t('nav.daily_reading'),
-            subtitle: t('nav.daily_energy'),
-            route: Routes.horoscope,
-          ),
-          _NextBlock(
-            icon: Icons.favorite_outlined,
-            title: t('nav.love_reading'),
-            subtitle: t('nav.relationship_energy'),
-            route: Routes.loveHoroscope,
-          ),
-          _NextBlock(
-            icon: Icons.grid_view_outlined,
-            title: t('nav.all_signs'),
-            subtitle: t('nav.discover_12_signs'),
-            route: Routes.horoscope,
-          ),
-        ];
-
-      case 'numerology':
-        return [
-          _NextBlock(
-            icon: Icons.route_outlined,
-            title: t('nav.life_path'),
-            subtitle: t('nav.leader_archetype'),
-            route: '/numerology/life-path/1',
-          ),
-          _NextBlock(
-            icon: Icons.auto_awesome_outlined,
-            title: t('nav.share'),
-            subtitle: t('nav.share_insight'),
-            route: Routes.cosmicShare,
-            isHighlighted: true,
-          ),
-          _NextBlock(
-            icon: Icons.star_outline,
-            title: t('nav.expression_number'),
-            subtitle: t('nav.master_mystery'),
-            route: '/numerology/master/11',
-          ),
-          _NextBlock(
-            icon: Icons.warning_amber_outlined,
-            title: t('nav.soul_urge'),
-            subtitle: t('nav.deepest_desires'),
-            route: '/numerology/karmic-debt/13',
-          ),
-          _NextBlock(
-            icon: Icons.style_outlined,
-            title: t('nav.tarot'),
-            subtitle: t('nav.tarot_guidance'),
-            route: Routes.tarot,
+            icon: Icons.book_outlined,
+            title: language == AppLanguage.en ? 'Dream Dictionary' : 'Rüya Sözlüğü',
+            subtitle: language == AppLanguage.en
+                ? 'Symbol meanings'
+                : 'Sembol anlamları',
+            route: Routes.dreamGlossary,
           ),
           _NextBlock(
             icon: Icons.blur_circular_outlined,
-            title: t('nav.chakra_analysis'),
-            subtitle: t('nav.energy_centers'),
+            title: language == AppLanguage.en ? 'Chakra' : 'Çakra',
+            subtitle: language == AppLanguage.en
+                ? 'Energy awareness'
+                : 'Enerji farkındalığı',
             route: Routes.chakraAnalysis,
+          ),
+          _NextBlock(
+            icon: Icons.self_improvement_outlined,
+            title: language == AppLanguage.en ? 'Rituals' : 'Ritüeller',
+            subtitle: language == AppLanguage.en
+                ? 'Daily practices'
+                : 'Günlük pratikler',
+            route: Routes.dailyRituals,
           ),
         ];
 
       case 'chakra':
+      case 'chakra_analysis':
         return [
           _NextBlock(
-            icon: Icons.numbers_outlined,
-            title: t('nav.numerology'),
-            subtitle: t('nav.numerology_insight'),
-            route: Routes.numerology,
-          ),
-          _NextBlock(
-            icon: Icons.style_outlined,
-            title: t('nav.tarot'),
-            subtitle: t('nav.tarot_guidance'),
-            route: Routes.tarot,
-          ),
-          _NextBlock(
-            icon: Icons.auto_awesome_outlined,
-            title: t('nav.share_energy'),
-            subtitle: t('nav.share_cosmic_energy'),
-            route: Routes.cosmicShare,
-            isHighlighted: true,
-          ),
-          _NextBlock(
-            icon: Icons.palette_outlined,
-            title: t('nav.aura'),
-            subtitle: t('nav.aura_insight'),
+            icon: Icons.spa_outlined,
+            title: language == AppLanguage.en ? 'Aura' : 'Aura',
+            subtitle: language == AppLanguage.en
+                ? 'Energy field'
+                : 'Enerji alanı',
             route: Routes.aura,
           ),
           _NextBlock(
-            icon: Icons.spa_outlined,
-            title: t('nav.rituals'),
-            subtitle: t('nav.cosmic_rituals'),
+            icon: Icons.self_improvement_outlined,
+            title: language == AppLanguage.en ? 'Rituals' : 'Ritüeller',
+            subtitle: language == AppLanguage.en
+                ? 'Daily practices'
+                : 'Günlük pratikler',
             route: Routes.dailyRituals,
           ),
           _NextBlock(
-            icon: Icons.nights_stay_outlined,
-            title: t('nav.dream_trace'),
-            subtitle: t('nav.dream_meanings'),
-            route: Routes.dreamInterpretation,
-          ),
-        ];
-
-      case 'synastry':
-        return [
-          _NextBlock(
-            icon: Icons.group_outlined,
-            title: t('nav.composite'),
-            subtitle: t('nav.combined_chart'),
-            route: Routes.compositeChart,
-          ),
-          _NextBlock(
-            icon: Icons.favorite_border_outlined,
-            title: t('nav.compatibility'),
-            subtitle: t('nav.basic_compatibility'),
-            route: Routes.compatibility,
-          ),
-          _NextBlock(
             icon: Icons.auto_awesome_outlined,
-            title: t('nav.share_relationship'),
-            subtitle: t('nav.share_cosmic_bond'),
-            route: Routes.cosmicShare,
+            title: language == AppLanguage.en ? 'Insight' : 'İçgörü',
+            subtitle: language == AppLanguage.en
+                ? 'Personal reflection'
+                : 'Kişisel yansıma',
+            route: Routes.insight,
             isHighlighted: true,
-          ),
-          _NextBlock(
-            icon: Icons.favorite_outlined,
-            title: t('nav.love_reading'),
-            subtitle: t('nav.relationship_energy'),
-            route: Routes.loveHoroscope,
-          ),
-          _NextBlock(
-            icon: Icons.pie_chart_outline,
-            title: t('nav.birth_chart'),
-            subtitle: t('nav.explore_cosmic_map'),
-            route: Routes.birthChart,
-          ),
-          _NextBlock(
-            icon: Icons.wb_sunny_outlined,
-            title: t('nav.daily_reading'),
-            subtitle: t('nav.daily_energy'),
-            route: Routes.horoscope,
-          ),
-        ];
-
-      case 'dreams':
-      case 'dream_interpretation':
-        return [
-          _NextBlock(
-            icon: Icons.blur_circular_outlined,
-            title: t('nav.chakra_analysis'),
-            subtitle: t('nav.energy_centers'),
-            route: Routes.chakraAnalysis,
-          ),
-          _NextBlock(
-            icon: Icons.style_outlined,
-            title: t('nav.tarot'),
-            subtitle: t('nav.tarot_guidance'),
-            route: Routes.tarot,
-          ),
-          _NextBlock(
-            icon: Icons.auto_awesome_outlined,
-            title: t('nav.share'),
-            subtitle: t('nav.share_cosmic_message'),
-            route: Routes.cosmicShare,
-            isHighlighted: true,
-          ),
-          _NextBlock(
-            icon: Icons.bedtime_outlined,
-            title: t('nav.transits'),
-            subtitle: t('nav.transits_insight'),
-            route: Routes.horoscope,
-          ),
-          _NextBlock(
-            icon: Icons.wb_sunny_outlined,
-            title: t('nav.daily_reading'),
-            subtitle: t('nav.daily_energy'),
-            route: Routes.horoscope,
-          ),
-          _NextBlock(
-            icon: Icons.numbers_outlined,
-            title: t('nav.numerology'),
-            subtitle: t('nav.numerology_insight'),
-            route: Routes.numerology,
-          ),
-        ];
-
-      // ════════════════════════════════════════════════════════════════
-      // TAROT DETAIL PAGES
-      // ════════════════════════════════════════════════════════════════
-      case 'major_arcana_detail':
-        return [
-          _NextBlock(
-            icon: Icons.style_outlined,
-            title: t('nav.tarot'),
-            subtitle: '22 Major Arcana',
-            route: Routes.tarot,
-          ),
-          _NextBlock(
-            icon: Icons.auto_awesome_outlined,
-            title: t('nav.share_card'),
-            subtitle: t('nav.share_cosmic_message'),
-            route: Routes.cosmicShare,
-            isHighlighted: true,
-          ),
-          _NextBlock(
-            icon: Icons.numbers_outlined,
-            title: t('nav.numerology'),
-            subtitle: t('nav.numerology_insight'),
-            route: Routes.numerology,
-          ),
-          _NextBlock(
-            icon: Icons.blur_circular_outlined,
-            title: t('nav.chakra_analysis'),
-            subtitle: t('nav.energy_centers'),
-            route: Routes.chakraAnalysis,
           ),
           _NextBlock(
             icon: Icons.nights_stay_outlined,
-            title: t('nav.dream_trace'),
-            subtitle: t('nav.dream_meanings'),
+            title: language == AppLanguage.en ? 'Dreams' : 'Rüyalar',
+            subtitle: language == AppLanguage.en
+                ? 'Explore your dreams'
+                : 'Rüyalarını keşfet',
             route: Routes.dreamInterpretation,
-          ),
-          _NextBlock(
-            icon: Icons.wb_sunny_outlined,
-            title: t('nav.daily_reading'),
-            subtitle: t('nav.daily_energy'),
-            route: Routes.horoscope,
-          ),
-        ];
-
-      // ════════════════════════════════════════════════════════════════
-      // NUMEROLOGY DETAIL PAGES
-      // ════════════════════════════════════════════════════════════════
-      case 'life_path_detail':
-        return [
-          _NextBlock(
-            icon: Icons.numbers_outlined,
-            title: t('nav.numerology'),
-            subtitle: t('nav.numerology_insight'),
-            route: Routes.numerology,
-          ),
-          _NextBlock(
-            icon: Icons.auto_awesome_outlined,
-            title: t('nav.share'),
-            subtitle: t('nav.share_insight'),
-            route: Routes.cosmicShare,
-            isHighlighted: true,
-          ),
-          _NextBlock(
-            icon: Icons.star_outline,
-            title: t('nav.expression_number'),
-            subtitle: t('nav.soul_voice'),
-            route: '/numerology/master/11',
-          ),
-          _NextBlock(
-            icon: Icons.warning_amber_outlined,
-            title: t('nav.soul_urge'),
-            subtitle: t('nav.deepest_desires'),
-            route: '/numerology/karmic-debt/13',
-          ),
-          _NextBlock(
-            icon: Icons.style_outlined,
-            title: t('nav.tarot'),
-            subtitle: t('nav.tarot_guidance'),
-            route: Routes.tarot,
-          ),
-          _NextBlock(
-            icon: Icons.pie_chart_outline,
-            title: t('nav.birth_chart'),
-            subtitle: t('nav.explore_cosmic_map'),
-            route: Routes.birthChart,
-          ),
-        ];
-
-      case 'master_number_detail':
-        return [
-          _NextBlock(
-            icon: Icons.numbers_outlined,
-            title: t('nav.numerology'),
-            subtitle: t('nav.numerology_insight'),
-            route: Routes.numerology,
-          ),
-          _NextBlock(
-            icon: Icons.auto_awesome_outlined,
-            title: t('nav.share'),
-            subtitle: t('nav.share_insight'),
-            route: Routes.cosmicShare,
-            isHighlighted: true,
-          ),
-          _NextBlock(
-            icon: Icons.route_outlined,
-            title: t('nav.life_path'),
-            subtitle: t('nav.life_path'),
-            route: '/numerology/life-path/1',
-          ),
-          _NextBlock(
-            icon: Icons.warning_amber_outlined,
-            title: t('nav.soul_urge'),
-            subtitle: t('nav.deepest_desires'),
-            route: '/numerology/karmic-debt/13',
-          ),
-          _NextBlock(
-            icon: Icons.blur_circular_outlined,
-            title: t('nav.chakra_analysis'),
-            subtitle: t('nav.energy_centers'),
-            route: Routes.chakraAnalysis,
-          ),
-          _NextBlock(
-            icon: Icons.account_tree_outlined,
-            title: t('nav.kabbalah'),
-            subtitle: t('nav.cosmic_wisdom'),
-            route: Routes.kabbalah,
-          ),
-        ];
-
-      case 'karmic_debt_detail':
-        return [
-          _NextBlock(
-            icon: Icons.numbers_outlined,
-            title: t('nav.numerology'),
-            subtitle: t('nav.numerology_insight'),
-            route: Routes.numerology,
-          ),
-          _NextBlock(
-            icon: Icons.auto_awesome_outlined,
-            title: t('nav.share'),
-            subtitle: t('nav.share_insight'),
-            route: Routes.cosmicShare,
-            isHighlighted: true,
-          ),
-          _NextBlock(
-            icon: Icons.route_outlined,
-            title: t('nav.life_path'),
-            subtitle: t('nav.life_path'),
-            route: '/numerology/life-path/1',
-          ),
-          _NextBlock(
-            icon: Icons.star_outline,
-            title: t('nav.expression_number'),
-            subtitle: t('nav.master_mystery'),
-            route: '/numerology/master/11',
-          ),
-          _NextBlock(
-            icon: Icons.loop_outlined,
-            title: t('nav.saturn_return'),
-            subtitle: t('nav.saturn_return_insight'),
-            route: Routes.saturnReturn,
-          ),
-          _NextBlock(
-            icon: Icons.style_outlined,
-            title: t('nav.tarot'),
-            subtitle: t('nav.tarot_guidance'),
-            route: Routes.tarot,
-          ),
-        ];
-
-      case 'personal_year_detail':
-        return [
-          _NextBlock(
-            icon: Icons.numbers_outlined,
-            title: t('nav.numerology'),
-            subtitle: t('nav.numerology_insight'),
-            route: Routes.numerology,
-          ),
-          _NextBlock(
-            icon: Icons.auto_awesome_outlined,
-            title: t('nav.share'),
-            subtitle: t('nav.share_insight'),
-            route: Routes.cosmicShare,
-            isHighlighted: true,
-          ),
-          _NextBlock(
-            icon: Icons.calendar_today_outlined,
-            title: t('nav.yearly_reading'),
-            subtitle: t('nav.yearly_energy'),
-            route: Routes.yearAhead,
-          ),
-          _NextBlock(
-            icon: Icons.cake_outlined,
-            title: t('nav.solar_return'),
-            subtitle: t('nav.solar_return_insight'),
-            route: Routes.solarReturn,
-          ),
-          _NextBlock(
-            icon: Icons.route_outlined,
-            title: t('nav.life_path'),
-            subtitle: t('nav.life_path'),
-            route: '/numerology/life-path/1',
-          ),
-          _NextBlock(
-            icon: Icons.compare_arrows_outlined,
-            title: t('nav.transits'),
-            subtitle: t('nav.transits_insight'),
-            route: Routes.transits,
-          ),
-        ];
-
-      case 'transits':
-        return [
-          _NextBlock(
-            icon: Icons.pie_chart_outline,
-            title: t('nav.birth_chart'),
-            subtitle: t('nav.explore_cosmic_map'),
-            route: Routes.birthChart,
-          ),
-          _NextBlock(
-            icon: Icons.auto_awesome_outlined,
-            title: t('nav.share'),
-            subtitle: t('nav.share_insight'),
-            route: Routes.cosmicShare,
-            isHighlighted: true,
-          ),
-          _NextBlock(
-            icon: Icons.timeline_outlined,
-            title: t('nav.progressions'),
-            subtitle: t('nav.inner_evolution'),
-            route: Routes.progressions,
-          ),
-          _NextBlock(
-            icon: Icons.cake_outlined,
-            title: t('nav.solar_return'),
-            subtitle: t('nav.solar_return_insight'),
-            route: Routes.solarReturn,
-          ),
-          _NextBlock(
-            icon: Icons.loop_outlined,
-            title: t('nav.saturn_return'),
-            subtitle: t('nav.saturn_return_insight'),
-            route: Routes.saturnReturn,
-          ),
-          _NextBlock(
-            icon: Icons.schedule_outlined,
-            title: t('nav.transits'),
-            subtitle: t('nav.best_times'),
-            route: Routes.timing,
-          ),
-        ];
-
-      case 'timing':
-        return [
-          _NextBlock(
-            icon: Icons.compare_arrows_outlined,
-            title: t('nav.transits'),
-            subtitle: t('nav.transits_insight'),
-            route: Routes.transits,
-          ),
-          _NextBlock(
-            icon: Icons.auto_awesome_outlined,
-            title: t('nav.share'),
-            subtitle: t('nav.share_insight'),
-            route: Routes.cosmicShare,
-            isHighlighted: true,
-          ),
-          _NextBlock(
-            icon: Icons.do_not_disturb_outlined,
-            title: t('nav.transits'),
-            subtitle: t('nav.transits_insight'),
-            route: Routes.voidOfCourse,
-          ),
-          _NextBlock(
-            icon: Icons.calendar_month_outlined,
-            title: t('nav.yearly_reading'),
-            subtitle: t('nav.solar_return_insight'),
-            route: Routes.yearAhead,
-          ),
-          _NextBlock(
-            icon: Icons.wb_sunny_outlined,
-            title: t('nav.daily_reading'),
-            subtitle: t('nav.daily_energy'),
-            route: Routes.horoscope,
-          ),
-          _NextBlock(
-            icon: Icons.numbers_outlined,
-            title: t('nav.numerology'),
-            subtitle: t('nav.numerology_insight'),
-            route: Routes.numerology,
           ),
         ];
 
@@ -702,329 +262,190 @@ class NextBlocks extends StatelessWidget {
         return [
           _NextBlock(
             icon: Icons.blur_circular_outlined,
-            title: t('nav.chakra_analysis'),
-            subtitle: t('nav.energy_centers'),
+            title: language == AppLanguage.en ? 'Chakra' : 'Çakra',
+            subtitle: language == AppLanguage.en
+                ? 'Energy centers'
+                : 'Enerji merkezleri',
             route: Routes.chakraAnalysis,
           ),
           _NextBlock(
+            icon: Icons.self_improvement_outlined,
+            title: language == AppLanguage.en ? 'Rituals' : 'Ritüeller',
+            subtitle: language == AppLanguage.en
+                ? 'Daily practices'
+                : 'Günlük pratikler',
+            route: Routes.dailyRituals,
+          ),
+          _NextBlock(
             icon: Icons.auto_awesome_outlined,
-            title: t('nav.aura'),
-            subtitle: t('nav.share_insight'),
-            route: Routes.cosmicShare,
+            title: language == AppLanguage.en ? 'Insight' : 'İçgörü',
+            subtitle: language == AppLanguage.en
+                ? 'Personal reflection'
+                : 'Kişisel yansıma',
+            route: Routes.insight,
+            isHighlighted: true,
+          ),
+          _NextBlock(
+            icon: Icons.nights_stay_outlined,
+            title: language == AppLanguage.en ? 'Dreams' : 'Rüyalar',
+            subtitle: language == AppLanguage.en
+                ? 'Explore your dreams'
+                : 'Rüyalarını keşfet',
+            route: Routes.dreamInterpretation,
+          ),
+        ];
+
+      case 'numerology':
+        return [
+          _NextBlock(
+            icon: Icons.auto_awesome_outlined,
+            title: language == AppLanguage.en ? 'Insight' : 'İçgörü',
+            subtitle: language == AppLanguage.en
+                ? 'Personal reflection'
+                : 'Kişisel yansıma',
+            route: Routes.insight,
+            isHighlighted: true,
+          ),
+          _NextBlock(
+            icon: Icons.style_outlined,
+            title: language == AppLanguage.en ? 'Tarot' : 'Tarot',
+            subtitle: language == AppLanguage.en
+                ? 'Card meanings'
+                : 'Kart anlamları',
+            route: Routes.tarot,
+          ),
+          _NextBlock(
+            icon: Icons.blur_circular_outlined,
+            title: language == AppLanguage.en ? 'Chakra' : 'Çakra',
+            subtitle: language == AppLanguage.en
+                ? 'Energy awareness'
+                : 'Enerji farkındalığı',
+            route: Routes.chakraAnalysis,
+          ),
+          _NextBlock(
+            icon: Icons.menu_book_outlined,
+            title: language == AppLanguage.en ? 'Glossary' : 'Sözlük',
+            subtitle: language == AppLanguage.en
+                ? 'Learn terms'
+                : 'Terimleri öğren',
+            route: Routes.glossary,
+          ),
+        ];
+
+      case 'tarot':
+        return [
+          _NextBlock(
+            icon: Icons.auto_awesome_outlined,
+            title: language == AppLanguage.en ? 'Insight' : 'İçgörü',
+            subtitle: language == AppLanguage.en
+                ? 'Personal reflection'
+                : 'Kişisel yansıma',
+            route: Routes.insight,
             isHighlighted: true,
           ),
           _NextBlock(
             icon: Icons.numbers_outlined,
-            title: t('nav.numerology'),
-            subtitle: t('nav.numerology_insight'),
+            title: language == AppLanguage.en ? 'Numerology' : 'Numeroloji',
+            subtitle: language == AppLanguage.en
+                ? 'Number patterns'
+                : 'Sayı kalıpları',
+            route: Routes.numerology,
+          ),
+          _NextBlock(
+            icon: Icons.nights_stay_outlined,
+            title: language == AppLanguage.en ? 'Dreams' : 'Rüyalar',
+            subtitle: language == AppLanguage.en
+                ? 'Dream symbols'
+                : 'Rüya sembolleri',
+            route: Routes.dreamInterpretation,
+          ),
+          _NextBlock(
+            icon: Icons.menu_book_outlined,
+            title: language == AppLanguage.en ? 'Glossary' : 'Sözlük',
+            subtitle: language == AppLanguage.en
+                ? 'Learn terms'
+                : 'Terimleri öğren',
+            route: Routes.glossary,
+          ),
+        ];
+
+      case 'rituals':
+      case 'daily_rituals':
+        return [
+          _NextBlock(
+            icon: Icons.blur_circular_outlined,
+            title: language == AppLanguage.en ? 'Chakra' : 'Çakra',
+            subtitle: language == AppLanguage.en
+                ? 'Energy centers'
+                : 'Enerji merkezleri',
+            route: Routes.chakraAnalysis,
+          ),
+          _NextBlock(
+            icon: Icons.spa_outlined,
+            title: language == AppLanguage.en ? 'Aura' : 'Aura',
+            subtitle: language == AppLanguage.en
+                ? 'Energy field'
+                : 'Enerji alanı',
+            route: Routes.aura,
+          ),
+          _NextBlock(
+            icon: Icons.auto_awesome_outlined,
+            title: language == AppLanguage.en ? 'Insight' : 'İçgörü',
+            subtitle: language == AppLanguage.en
+                ? 'Personal reflection'
+                : 'Kişisel yansıma',
+            route: Routes.insight,
+            isHighlighted: true,
+          ),
+          _NextBlock(
+            icon: Icons.nights_stay_outlined,
+            title: language == AppLanguage.en ? 'Dreams' : 'Rüyalar',
+            subtitle: language == AppLanguage.en
+                ? 'Dream journal'
+                : 'Rüya günlüğü',
+            route: Routes.dreamInterpretation,
+          ),
+        ];
+
+      case 'glossary':
+        return [
+          _NextBlock(
+            icon: Icons.auto_awesome_outlined,
+            title: language == AppLanguage.en ? 'Insight' : 'İçgörü',
+            subtitle: language == AppLanguage.en
+                ? 'Personal reflection'
+                : 'Kişisel yansıma',
+            route: Routes.insight,
+            isHighlighted: true,
+          ),
+          _NextBlock(
+            icon: Icons.article_outlined,
+            title: language == AppLanguage.en ? 'Articles' : 'Makaleler',
+            subtitle: language == AppLanguage.en
+                ? 'Read more'
+                : 'Daha fazla oku',
+            route: Routes.articles,
+          ),
+          _NextBlock(
+            icon: Icons.numbers_outlined,
+            title: language == AppLanguage.en ? 'Numerology' : 'Numeroloji',
+            subtitle: language == AppLanguage.en
+                ? 'Number patterns'
+                : 'Sayı kalıpları',
             route: Routes.numerology,
           ),
           _NextBlock(
             icon: Icons.style_outlined,
-            title: t('nav.tarot'),
-            subtitle: t('nav.tarot_guidance'),
+            title: language == AppLanguage.en ? 'Tarot' : 'Tarot',
+            subtitle: language == AppLanguage.en
+                ? 'Card meanings'
+                : 'Kart anlamları',
             route: Routes.tarot,
-          ),
-          _NextBlock(
-            icon: Icons.spa_outlined,
-            title: t('nav.rituals'),
-            subtitle: t('nav.energy_practices'),
-            route: Routes.dailyRituals,
-          ),
-          _NextBlock(
-            icon: Icons.diamond_outlined,
-            title: t('nav.crystal_guide'),
-            subtitle: t('nav.cosmic_wisdom'),
-            route: Routes.crystalGuide,
-          ),
-        ];
-
-      case 'saturn_return':
-        return [
-          _NextBlock(
-            icon: Icons.compare_arrows_outlined,
-            title: t('nav.transits'),
-            subtitle: t('nav.transits_insight'),
-            route: Routes.transits,
-          ),
-          _NextBlock(
-            icon: Icons.auto_awesome_outlined,
-            title: t('nav.share'),
-            subtitle: t('nav.share_insight'),
-            route: Routes.cosmicShare,
-            isHighlighted: true,
-          ),
-          _NextBlock(
-            icon: Icons.pie_chart_outline,
-            title: t('nav.birth_chart'),
-            subtitle: t('nav.explore_cosmic_map'),
-            route: Routes.birthChart,
-          ),
-          _NextBlock(
-            icon: Icons.calendar_today_outlined,
-            title: t('nav.yearly_reading'),
-            subtitle: t('nav.solar_return_insight'),
-            route: Routes.yearAhead,
-          ),
-          _NextBlock(
-            icon: Icons.warning_amber_outlined,
-            title: t('nav.soul_urge'),
-            subtitle: t('nav.deepest_desires'),
-            route: '/numerology/karmic-debt/13',
-          ),
-          _NextBlock(
-            icon: Icons.timeline_outlined,
-            title: t('nav.progressions'),
-            subtitle: t('nav.inner_evolution'),
-            route: Routes.progressions,
-          ),
-        ];
-
-      case 'progressions':
-        return [
-          _NextBlock(
-            icon: Icons.compare_arrows_outlined,
-            title: t('nav.transits'),
-            subtitle: t('nav.transits_insight'),
-            route: Routes.transits,
-          ),
-          _NextBlock(
-            icon: Icons.auto_awesome_outlined,
-            title: t('nav.share'),
-            subtitle: t('nav.share_insight'),
-            route: Routes.cosmicShare,
-            isHighlighted: true,
-          ),
-          _NextBlock(
-            icon: Icons.cake_outlined,
-            title: t('nav.solar_return'),
-            subtitle: t('nav.solar_return_insight'),
-            route: Routes.solarReturn,
-          ),
-          _NextBlock(
-            icon: Icons.loop_outlined,
-            title: t('nav.saturn_return'),
-            subtitle: t('nav.saturn_return_insight'),
-            route: Routes.saturnReturn,
-          ),
-          _NextBlock(
-            icon: Icons.pie_chart_outline,
-            title: t('nav.birth_chart'),
-            subtitle: t('nav.explore_cosmic_map'),
-            route: Routes.birthChart,
-          ),
-          _NextBlock(
-            icon: Icons.calendar_today_outlined,
-            title: t('nav.yearly_reading'),
-            subtitle: t('nav.solar_return_insight'),
-            route: Routes.yearAhead,
-          ),
-        ];
-
-      case 'cosmic_share':
-        return [
-          _NextBlock(
-            icon: Icons.wb_sunny_outlined,
-            title: t('nav.daily_reading'),
-            subtitle: t('nav.cosmic_wisdom'),
-            route: Routes.horoscope,
-          ),
-          _NextBlock(
-            icon: Icons.calendar_month_outlined,
-            title: t('nav.weekly_reading'),
-            subtitle: t('nav.what_awaits_this_week'),
-            route: Routes.weeklyHoroscope,
-          ),
-          _NextBlock(
-            icon: Icons.pie_chart_outline,
-            title: t('nav.birth_chart'),
-            subtitle: t('nav.explore_cosmic_map'),
-            route: Routes.birthChart,
-          ),
-          _NextBlock(
-            icon: Icons.style_outlined,
-            title: t('nav.tarot'),
-            subtitle: t('nav.tarot_guidance'),
-            route: Routes.tarot,
-          ),
-          _NextBlock(
-            icon: Icons.favorite_border_outlined,
-            title: t('nav.compatibility'),
-            subtitle: t('nav.who_compatible'),
-            route: Routes.compatibility,
-          ),
-          _NextBlock(
-            icon: Icons.chat_bubble_outline,
-            title: t('nav.cosmic_share'),
-            subtitle: t('nav.cosmic_wisdom'),
-            route: Routes.kozmoz,
-          ),
-        ];
-
-      case 'weekly_horoscope':
-        return [
-          _NextBlock(
-            icon: Icons.calendar_view_month_outlined,
-            title: t('nav.monthly_reading'),
-            subtitle: t('nav.what_awaits_this_month'),
-            route: Routes.monthlyHoroscope,
-          ),
-          _NextBlock(
-            icon: Icons.auto_awesome_outlined,
-            title: t('nav.share'),
-            subtitle: t('nav.share_insight'),
-            route: Routes.cosmicShare,
-            isHighlighted: true,
-          ),
-          _NextBlock(
-            icon: Icons.pie_chart_outline,
-            title: t('nav.birth_chart'),
-            subtitle: t('nav.explore_cosmic_map'),
-            route: Routes.birthChart,
-          ),
-          _NextBlock(
-            icon: Icons.compare_arrows_outlined,
-            title: t('nav.transits'),
-            subtitle: t('nav.transits_insight'),
-            route: Routes.transits,
-          ),
-          _NextBlock(
-            icon: Icons.style_outlined,
-            title: t('nav.tarot'),
-            subtitle: t('nav.tarot_guidance'),
-            route: Routes.tarot,
-          ),
-          _NextBlock(
-            icon: Icons.grid_view_outlined,
-            title: t('nav.all_signs'),
-            subtitle: t('nav.discover_12_signs'),
-            route: Routes.horoscope,
-          ),
-        ];
-
-      case 'solar_return':
-        return [
-          _NextBlock(
-            icon: Icons.calendar_today_outlined,
-            title: t('nav.yearly_reading'),
-            subtitle: t('nav.solar_return_insight'),
-            route: Routes.yearAhead,
-          ),
-          _NextBlock(
-            icon: Icons.loop_outlined,
-            title: t('nav.saturn_return'),
-            subtitle: t('nav.saturn_return_insight'),
-            route: Routes.saturnReturn,
-          ),
-          _NextBlock(
-            icon: Icons.auto_awesome_outlined,
-            title: t('nav.share'),
-            subtitle: t('nav.share_insight'),
-            route: Routes.cosmicShare,
-            isHighlighted: true,
-          ),
-          _NextBlock(
-            icon: Icons.pie_chart_outline,
-            title: t('nav.birth_chart'),
-            subtitle: t('nav.explore_cosmic_map'),
-            route: Routes.birthChart,
-          ),
-          _NextBlock(
-            icon: Icons.compare_arrows_outlined,
-            title: t('nav.transits'),
-            subtitle: t('nav.transits_insight'),
-            route: Routes.transits,
-          ),
-          _NextBlock(
-            icon: Icons.wb_sunny_outlined,
-            title: t('nav.daily_reading'),
-            subtitle: t('nav.daily_energy'),
-            route: Routes.horoscope,
-          ),
-        ];
-
-      case 'year_ahead':
-        return [
-          _NextBlock(
-            icon: Icons.cake_outlined,
-            title: t('nav.solar_return'),
-            subtitle: t('nav.solar_return_insight'),
-            route: Routes.solarReturn,
-          ),
-          _NextBlock(
-            icon: Icons.calendar_view_month_outlined,
-            title: t('nav.monthly_reading'),
-            subtitle: t('nav.monthly_energy'),
-            route: Routes.monthlyHoroscope,
-          ),
-          _NextBlock(
-            icon: Icons.auto_awesome_outlined,
-            title: t('nav.share'),
-            subtitle: t('nav.share_insight'),
-            route: Routes.cosmicShare,
-            isHighlighted: true,
-          ),
-          _NextBlock(
-            icon: Icons.timeline_outlined,
-            title: t('nav.progressions'),
-            subtitle: t('nav.inner_evolution'),
-            route: Routes.progressions,
-          ),
-          _NextBlock(
-            icon: Icons.compare_arrows_outlined,
-            title: t('nav.transits'),
-            subtitle: t('nav.transits_insight'),
-            route: Routes.transits,
-          ),
-          _NextBlock(
-            icon: Icons.pie_chart_outline,
-            title: t('nav.birth_chart'),
-            subtitle: t('nav.explore_cosmic_map'),
-            route: Routes.birthChart,
           ),
         ];
 
       default:
-        // Generic blocks for any page
-        return [
-          _NextBlock(
-            icon: Icons.wb_sunny_outlined,
-            title: t('nav.daily_reading'),
-            subtitle: t('nav.daily_energy'),
-            route: Routes.horoscope,
-          ),
-          _NextBlock(
-            icon: Icons.auto_awesome_outlined,
-            title: t('nav.cosmic_share'),
-            subtitle: t('nav.share_energy'),
-            route: Routes.cosmicShare,
-            isHighlighted: true,
-          ),
-          _NextBlock(
-            icon: Icons.pie_chart_outline,
-            title: t('nav.birth_chart'),
-            subtitle: t('nav.explore_cosmic_map'),
-            route: Routes.birthChart,
-          ),
-          _NextBlock(
-            icon: Icons.style_outlined,
-            title: t('nav.tarot'),
-            subtitle: t('nav.tarot_guidance'),
-            route: Routes.tarot,
-          ),
-          _NextBlock(
-            icon: Icons.favorite_border_outlined,
-            title: t('nav.compatibility'),
-            subtitle: t('nav.who_compatible'),
-            route: Routes.compatibility,
-          ),
-          _NextBlock(
-            icon: Icons.home_outlined,
-            title: t('nav.home'),
-            subtitle: t('common.all_features'),
-            route: Routes.home,
-          ),
-        ];
+        return defaultBlocks;
     }
   }
 }
@@ -1049,13 +470,14 @@ class _NextBlockCard extends StatelessWidget {
   final _NextBlock block;
   final bool isDark;
 
-  const _NextBlockCard({required this.block, required this.isDark});
+  const _NextBlockCard({
+    required this.block,
+    required this.isDark,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final cardWidth =
-        (screenWidth - 32 - 12) / 2; // 2 columns with padding and gap
+    final cardWidth = (MediaQuery.of(context).size.width - 48 - 12) / 2;
 
     return SizedBox(
       width: cardWidth,
@@ -1063,26 +485,32 @@ class _NextBlockCard extends StatelessWidget {
         color: Colors.transparent,
         child: InkWell(
           onTap: () => context.push(block.route),
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(16),
           child: Container(
-            padding: const EdgeInsets.all(14),
+            padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
               color: block.isHighlighted
                   ? (isDark
                         ? AppColors.starGold.withValues(alpha: 0.1)
                         : AppColors.lightStarGold.withValues(alpha: 0.1))
-                  : (isDark ? AppColors.surfaceDark : AppColors.lightCard),
-              borderRadius: BorderRadius.circular(12),
+                  : (isDark
+                        ? AppColors.surfaceDark
+                        : AppColors.lightCard),
+              borderRadius: BorderRadius.circular(16),
               border: block.isHighlighted
                   ? Border.all(
                       color: isDark
                           ? AppColors.starGold.withValues(alpha: 0.3)
                           : AppColors.lightStarGold.withValues(alpha: 0.3),
-                      width: 1,
                     )
-                  : null,
+                  : Border.all(
+                      color: isDark
+                          ? Colors.white.withValues(alpha: 0.05)
+                          : Colors.grey.withValues(alpha: 0.1),
+                    ),
             ),
-            child: Row(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // Icon
                 Container(
@@ -1090,7 +518,7 @@ class _NextBlockCard extends StatelessWidget {
                   height: 40,
                   decoration: BoxDecoration(
                     color: isDark
-                        ? AppColors.cosmicPurple
+                        ? AppColors.cosmicPurple.withValues(alpha: 0.5)
                         : AppColors.lightSurfaceVariant,
                     borderRadius: BorderRadius.circular(10),
                   ),
@@ -1106,37 +534,27 @@ class _NextBlockCard extends StatelessWidget {
                               : AppColors.lightAuroraStart),
                   ),
                 ),
-                const SizedBox(width: 12),
-                // Text
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        block.title,
-                        style: TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.w600,
-                          color: isDark
-                              ? AppColors.textPrimary
-                              : AppColors.lightTextPrimary,
-                        ),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      const SizedBox(height: 2),
-                      Text(
-                        block.subtitle,
-                        style: TextStyle(
-                          fontSize: 11,
-                          color: isDark
-                              ? AppColors.textSecondary
-                              : AppColors.lightTextSecondary,
-                        ),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ],
+                const SizedBox(height: 12),
+                // Title
+                Text(
+                  block.title,
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: isDark
+                        ? AppColors.textPrimary
+                        : AppColors.lightTextPrimary,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                // Subtitle
+                Text(
+                  block.subtitle,
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: isDark
+                        ? AppColors.textMuted
+                        : AppColors.lightTextMuted,
                   ),
                 ),
               ],
@@ -1144,29 +562,6 @@ class _NextBlockCard extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-/// Compact version for smaller spaces
-class NextBlocksCompact extends StatelessWidget {
-  final String currentPage;
-  final int maxItems;
-  final AppLanguage language;
-
-  const NextBlocksCompact({
-    super.key,
-    required this.currentPage,
-    this.maxItems = 3,
-    this.language = AppLanguage.en,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return NextBlocks(
-      currentPage: currentPage,
-      title: L10nService.get('nav.up_next', language),
-      language: language,
     );
   }
 }

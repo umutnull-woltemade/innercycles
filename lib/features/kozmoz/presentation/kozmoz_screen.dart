@@ -4392,26 +4392,27 @@ class _ChatMessage {
 // ═══════════════════════════════════════════════════════════════
 
 class _FeaturesSheet extends ConsumerWidget {
+  // App Store 4.3(b) Compliant: Safe features only
   final List<Map<String, dynamic>> _features = [
     {
-      'emoji': '⭐',
-      'nameKey': 'kozmoz.features.zodiac_readings',
-      'route': Routes.horoscope,
+      'emoji': '✨',
+      'nameKey': 'kozmoz.features.insight',
+      'route': Routes.insight,
     },
     {
-      'emoji': '🗺️',
-      'nameKey': 'kozmoz.features.birth_chart',
-      'route': Routes.birthChart,
+      'emoji': '🌙',
+      'nameKey': 'kozmoz.features.dream_trace',
+      'route': Routes.dreamInterpretation,
     },
     {
-      'emoji': '💕',
-      'nameKey': 'kozmoz.features.zodiac_compatibility',
-      'route': Routes.compatibility,
+      'emoji': '🔮',
+      'nameKey': 'kozmoz.features.chakra_analysis',
+      'route': Routes.chakraAnalysis,
     },
     {
-      'emoji': '🪐',
-      'nameKey': 'kozmoz.features.transits',
-      'route': Routes.transits,
+      'emoji': '🌟',
+      'nameKey': 'kozmoz.features.aura_analysis',
+      'route': Routes.aura,
     },
     {
       'emoji': '🔢',
@@ -4420,24 +4421,14 @@ class _FeaturesSheet extends ConsumerWidget {
     },
     {'emoji': '🎴', 'nameKey': 'kozmoz.features.tarot', 'route': Routes.tarot},
     {
-      'emoji': '🌙',
-      'nameKey': 'kozmoz.features.dream_trace',
-      'route': Routes.dreamInterpretation,
+      'emoji': '🙏',
+      'nameKey': 'kozmoz.features.rituals',
+      'route': Routes.dailyRituals,
     },
     {
-      'emoji': '✨',
-      'nameKey': 'kozmoz.features.aura_analysis',
-      'route': Routes.aura,
-    },
-    {
-      'emoji': '🔮',
-      'nameKey': 'kozmoz.features.chakra_analysis',
-      'route': Routes.chakraAnalysis,
-    },
-    {
-      'emoji': '📅',
-      'nameKey': 'kozmoz.features.timing',
-      'route': Routes.timing,
+      'emoji': '📚',
+      'nameKey': 'kozmoz.features.glossary',
+      'route': Routes.glossary,
     },
   ];
 

@@ -321,312 +321,221 @@ class _AllServicesScreenState extends ConsumerState<AllServicesScreen>
   }
 
   // ════════════════════════════════════════════════════════════════
-  // CATEGORIES DATA - Localized
+  // CATEGORIES DATA - App Store 4.3(b) Compliant
+  // All astrology/horoscope categories have been removed
+  // Focus: Insight, Wellness, Dreams, Numerology (educational)
   // ════════════════════════════════════════════════════════════════
 
   List<Map<String, dynamic>> _getCategories(AppLanguage language) => [
+    // Journal & Patterns (Primary Feature)
     {
-      'name': L10nService.get('sections.horoscope_readings', language),
-      'icon': '⭐',
+      'name': language == AppLanguage.en
+          ? 'Journal & Patterns'
+          : 'Günlük ve Kalıplar',
+      'icon': '📓',
+      'color': AppColors.auroraStart,
+      'services': [
+        {
+          'name': language == AppLanguage.en
+              ? 'Daily Journal'
+              : 'Günlük Kayıt',
+          'route': Routes.journal,
+        },
+        {
+          'name': language == AppLanguage.en
+              ? 'Your Patterns'
+              : 'Kalıpların',
+          'route': Routes.journalPatterns,
+        },
+        {
+          'name': language == AppLanguage.en
+              ? 'Monthly Reflection'
+              : 'Aylık Yansıma',
+          'route': Routes.journalMonthly,
+        },
+        {
+          'name': language == AppLanguage.en ? 'Archive' : 'Arşiv',
+          'route': Routes.journalArchive,
+        },
+      ],
+    },
+    // Insight & Reflection
+    {
+      'name': language == AppLanguage.en
+          ? 'Insight & Reflection'
+          : 'Içgörü ve Yansıma',
+      'icon': '✨',
       'color': AppColors.starGold,
       'services': [
         {
-          'name': L10nService.get('menu_features.daily_reading', language),
-          'route': Routes.horoscope,
+          'name': language == AppLanguage.en
+              ? 'Personal Insight'
+              : 'Kişisel Içgörü',
+          'route': Routes.insight,
         },
         {
-          'name': L10nService.get('menu_features.weekly_reading', language),
-          'route': Routes.weeklyHoroscope,
+          'name': language == AppLanguage.en ? 'Daily Theme' : 'Günün Teması',
+          'route': Routes.cosmicToday,
         },
         {
-          'name': L10nService.get('menu_features.monthly_reading', language),
-          'route': Routes.monthlyHoroscope,
-        },
-        {
-          'name': L10nService.get('menu_features.yearly_reading', language),
-          'route': Routes.yearlyHoroscope,
-        },
-        {
-          'name': L10nService.get('menu_features.love_reading', language),
-          'route': Routes.loveHoroscope,
-        },
-        {
-          'name': L10nService.get('menu_features.compatibility', language),
-          'route': Routes.compatibility,
+          'name':
+              language == AppLanguage.en ? 'Daily Energy' : 'Günlük Enerji',
+          'route': Routes.cosmicEnergy,
         },
       ],
     },
+    // Wellness & Mindfulness
     {
-      'name': L10nService.get('sections.birth_chart_analysis', language),
-      'icon': '🗺️',
-      'color': AppColors.cosmicPurple,
-      'services': [
-        {
-          'name': L10nService.get('menu_features.birth_chart', language),
-          'route': Routes.birthChart,
-        },
-        {
-          'name': L10nService.get('menu_features.synastry', language),
-          'route': Routes.synastry,
-        },
-        {
-          'name': L10nService.get('menu_features.composite', language),
-          'route': Routes.compositeChart,
-        },
-        {
-          'name': L10nService.get('menu_features.vedic_chart', language),
-          'route': Routes.vedicChart,
-        },
-        {
-          'name': L10nService.get('menu_features.draconic', language),
-          'route': Routes.draconicChart,
-        },
-        {
-          'name': L10nService.get('home.quick_actions.asteroids', language),
-          'route': Routes.asteroids,
-        },
-        {
-          'name': L10nService.get('home.quick_actions.local_space', language),
-          'route': Routes.localSpace,
-        },
-      ],
-    },
-    {
-      'name': L10nService.get('sections.time_transits', language),
-      'icon': '⏰',
-      'color': AppColors.auroraEnd,
-      'services': [
-        {
-          'name': L10nService.get('menu_features.transits', language),
-          'route': Routes.transits,
-        },
-        {
-          'name': L10nService.get('menu_features.progressions', language),
-          'route': Routes.progressions,
-        },
-        {
-          'name': L10nService.get('menu_features.saturn_return', language),
-          'route': Routes.saturnReturn,
-        },
-        {
-          'name': L10nService.get('menu_features.solar_return', language),
-          'route': Routes.solarReturn,
-        },
-        {
-          'name': L10nService.get('menu_features.year_ahead', language),
-          'route': Routes.yearAhead,
-        },
-        {
-          'name': L10nService.get('menu_features.timing', language),
-          'route': Routes.timing,
-        },
-        {
-          'name': L10nService.get('menu_features.void_of_course', language),
-          'route': Routes.voidOfCourse,
-        },
-        {
-          'name': L10nService.get('menu_features.eclipse_calendar', language),
-          'route': Routes.eclipseCalendar,
-        },
-      ],
-    },
-    {
-      'name': L10nService.get('sections.numerology_mystic', language),
-      'icon': '🔢',
-      'color': AppColors.fireElement,
-      'services': [
-        {
-          'name': L10nService.get('menu_features.numerology', language),
-          'route': Routes.numerology,
-        },
-        {
-          'name': L10nService.get('menu_features.life_number', language),
-          'route': Routes.lifePath1,
-        },
-        {
-          'name': L10nService.get('menu_features.kabbalah', language),
-          'route': Routes.master11,
-        },
-        {
-          'name': L10nService.get('menu_features.tarot', language),
-          'route': Routes.personalYear1,
-        },
-        {
-          'name': L10nService.get('menu_features.aura', language),
-          'route': Routes.karmicDebt,
-        },
-      ],
-    },
-    {
-      'name': L10nService.get('sections.spiritual_wellness', language),
+      'name': language == AppLanguage.en
+          ? 'Wellness & Mindfulness'
+          : 'Sağlık ve Farkındalık',
       'icon': '🧘',
       'color': AppColors.tantraCrimson,
       'services': [
         {
-          'name': L10nService.get('menu_features.theta_healing', language),
-          'route': Routes.tantra,
-        },
-        {
-          'name': L10nService.get('menu_features.chakra', language),
+          'name': language == AppLanguage.en
+              ? 'Chakra Analysis'
+              : 'Çakra Analizi',
           'route': Routes.chakraAnalysis,
         },
         {
-          'name': L10nService.get('menu_features.aura', language),
+          'name': language == AppLanguage.en ? 'Aura Reading' : 'Aura Okuma',
           'route': Routes.aura,
         },
         {
-          'name': L10nService.get('menu_features.kabbalah', language),
-          'route': Routes.kabbalah,
-        },
-        {
-          'name': L10nService.get('menu_features.daily_rituals', language),
+          'name':
+              language == AppLanguage.en ? 'Daily Rituals' : 'Günlük Ritüeller',
           'route': Routes.dailyRituals,
         },
         {
-          'name': L10nService.get('menu_features.moon_rituals', language),
-          'route': Routes.moonRituals,
+          'name': language == AppLanguage.en ? 'Tantra' : 'Tantra',
+          'route': Routes.tantra,
         },
         {
-          'name': L10nService.get('menu_features.crystal_guide', language),
-          'route': Routes.crystalGuide,
+          'name':
+              language == AppLanguage.en ? 'Theta Healing' : 'Theta Şifa',
+          'route': Routes.thetaHealing,
+        },
+        {
+          'name': language == AppLanguage.en ? 'Reiki' : 'Reiki',
+          'route': Routes.reiki,
         },
       ],
     },
+    // Dream Journal
     {
-      'name': L10nService.get('menu_features.tarot', language),
-      'icon': '🃏',
-      'color': AppColors.mystic,
-      'services': [
-        {
-          'name': L10nService.get('menu_features.tarot', language),
-          'route': Routes.tarot,
-        },
-        {
-          'name': L10nService.get('tarot.major_arcana', language),
-          'route': Routes.majorArcanaDetail.replaceAll(':number', '0'),
-        },
-      ],
-    },
-    {
-      'name': L10nService.get('sections.dreams_subconscious', language),
+      'name': language == AppLanguage.en
+          ? 'Dream Journal'
+          : 'Rüya Günlüğü',
       'icon': '💭',
       'color': AppColors.waterElement,
       'services': [
         {
-          'name': L10nService.get('menu_features.dream_trace', language),
+          'name': language == AppLanguage.en
+              ? 'Dream Interpretation'
+              : 'Rüya Yorumu',
           'route': Routes.dreamInterpretation,
         },
         {
-          'name': L10nService.get('menu_features.dream_dictionary', language),
+          'name': language == AppLanguage.en
+              ? 'Dream Dictionary'
+              : 'Rüya Sözlüğü',
           'route': Routes.dreamGlossary,
         },
         {
-          'name': L10nService.get('common.share', language),
+          'name': language == AppLanguage.en ? 'Share Dream' : 'Rüya Paylaş',
           'route': Routes.dreamShare,
         },
-        {
-          'name': L10nService.get('menu_features.cosmic_trace', language),
-          'route': Routes.insight,
-        },
-        {
-          'name': L10nService.get('menu_features.dream_journal', language),
-          'route': Routes.insight,
-        },
       ],
     },
+    // Numerology (Educational)
     {
-      'name': L10nService.get('sections.relationship_analysis', language),
-      'icon': '💑',
-      'color': const Color(0xFFE91E63),
+      'name': language == AppLanguage.en
+          ? 'Number Patterns'
+          : 'Sayı Kalıpları',
+      'icon': '🔢',
+      'color': AppColors.fireElement,
       'services': [
         {
-          'name': L10nService.get(
-            'menu_features.compatibility_analysis',
-            language,
-          ),
-          'route': Routes.compatibility,
+          'name':
+              language == AppLanguage.en ? 'Numerology' : 'Numeroloji',
+          'route': Routes.numerology,
         },
         {
-          'name': L10nService.get('menu_features.soulmate', language),
-          'route': Routes.soulMate,
-        },
-        {
-          'name': L10nService.get('menu_features.relationship_karma', language),
-          'route': Routes.relationshipKarma,
-        },
-        {
-          'name': L10nService.get('menu_features.celebrity_twin', language),
-          'route': Routes.celebrityTwin,
+          'name':
+              language == AppLanguage.en ? 'Life Path' : 'Yaşam Yolu',
+          'route': Routes.lifePathDetail.replaceAll(':number', '1'),
         },
       ],
     },
+    // Tarot & Kabbalah (Educational)
     {
-      'name': L10nService.get('sections.personality_analysis', language),
-      'icon': '🔭',
-      'color': AppColors.cosmic,
+      'name': language == AppLanguage.en
+          ? 'Symbolic Wisdom'
+          : 'Sembolik Bilgelik',
+      'icon': '🃏',
+      'color': AppColors.mystic,
       'services': [
         {
-          'name': L10nService.get('menu_features.shadow_self', language),
-          'route': Routes.shadowSelf,
+          'name': language == AppLanguage.en ? 'Tarot Guide' : 'Tarot Rehberi',
+          'route': Routes.tarot,
         },
         {
-          'name': L10nService.get('menu_features.heartbreaker', language),
-          'route': Routes.heartbreak,
+          'name': language == AppLanguage.en ? 'Major Arcana' : 'Büyük Arkana',
+          'route': Routes.majorArcanaDetail.replaceAll(':number', '0'),
         },
         {
-          'name': L10nService.get('menu_features.red_flags', language),
-          'route': Routes.redFlags,
-        },
-        {
-          'name': L10nService.get('menu_features.green_flags', language),
-          'route': Routes.greenFlags,
-        },
-        {
-          'name': L10nService.get('menu_features.flirt_style', language),
-          'route': Routes.flirtStyle,
-        },
-        {
-          'name': L10nService.get('menu_features.leadership_style', language),
-          'route': Routes.leadershipStyle,
-        },
-        {
-          'name': L10nService.get('menu_features.tarot_card', language),
-          'route': Routes.tarotCard,
-        },
-        {
-          'name': L10nService.get('menu_features.aura_color', language),
-          'route': Routes.auraColor,
-        },
-        {
-          'name': L10nService.get('menu_features.chakra_balance', language),
-          'route': Routes.chakraBalance,
-        },
-        {
-          'name': L10nService.get('menu_features.life_number', language),
-          'route': Routes.lifeNumber,
-        },
-        {
-          'name': L10nService.get('menu_features.kabbalah_path', language),
-          'route': Routes.kabbalaPath,
+          'name': language == AppLanguage.en ? 'Kabbalah' : 'Kabala',
+          'route': Routes.kabbalah,
         },
       ],
     },
+    // Reference & Learning
     {
-      'name': L10nService.get('sections.references_learning', language),
+      'name': language == AppLanguage.en
+          ? 'Reference & Learning'
+          : 'Referans ve Öğrenme',
       'icon': '📚',
       'color': AppColors.earthElement,
       'services': [
         {
-          'name': L10nService.get('menu_features.glossary', language),
+          'name': language == AppLanguage.en ? 'Glossary' : 'Sözlük',
           'route': Routes.glossary,
         },
         {
-          'name': L10nService.get('menu_features.celebrities', language),
-          'route': Routes.celebrities,
+          'name': language == AppLanguage.en ? 'Articles' : 'Makaleler',
+          'route': Routes.articles,
         },
         {
-          'name': L10nService.get('menu_features.cosmic_trace', language),
-          'route': Routes.kozmoz,
+          'name': language == AppLanguage.en ? 'Celebrities' : 'Ünlüler',
+          'route': Routes.celebrities,
+        },
+      ],
+    },
+    // Profile & Settings
+    {
+      'name': language == AppLanguage.en
+          ? 'Profile & Settings'
+          : 'Profil ve Ayarlar',
+      'icon': '⚙️',
+      'color': AppColors.cosmic,
+      'services': [
+        {
+          'name': language == AppLanguage.en ? 'My Profile' : 'Profilim',
+          'route': Routes.profile,
+        },
+        {
+          'name':
+              language == AppLanguage.en ? 'Saved Profiles' : 'Kayıtlı Profiller',
+          'route': Routes.savedProfiles,
+        },
+        {
+          'name': language == AppLanguage.en ? 'Settings' : 'Ayarlar',
+          'route': Routes.settings,
+        },
+        {
+          'name': language == AppLanguage.en ? 'Premium' : 'Premium',
+          'route': Routes.premium,
         },
       ],
     },
