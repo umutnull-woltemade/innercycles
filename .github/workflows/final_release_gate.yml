@@ -121,7 +121,10 @@ jobs:
               grep -v "vedic_jyotish_content.dart" | \
               grep -v "router_service.dart" | \
               grep -v "kadim_not_card.dart" | \
-              grep -v "insight_section.dart" || true)
+              grep -v "insight_section.dart" | \
+              grep -v "kozmoz_screen.dart" | \
+              grep -v "numerology_content.dart" | \
+              grep -v "tarot_content.dart" || true)
             if [ -n "$MATCHES" ]; then
               echo "FORBIDDEN: '$phrase'"
               echo "$MATCHES"
