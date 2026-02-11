@@ -20,38 +20,72 @@ jobs:
     outputs:
       preview_url: ${{ steps.deploy.outputs.url }}
       deployment_id: ${{ steps.deploy.outputs.deployment_id }}
+      skipped: ${{ steps.check_creds.outputs.skip == 'true' || steps.validate_token.outputs.valid != 'true' }}
 
     steps:
+      - name: Check Vercel credentials
+        id: check_creds
+        run: |
+          if [ -z "${{ secrets.VERCEL_TOKEN }}" ] || [ -z "${{ secrets.VERCEL_ORG_ID }}" ] || [ -z "${{ secrets.VERCEL_PROJECT_ID }}" ]; then
+            echo "skip=true" >> $GITHUB_OUTPUT
+            echo "⚠️ Vercel credentials not configured. Skipping deployment."
+            echo "To enable deployment, add VERCEL_TOKEN, VERCEL_ORG_ID, and VERCEL_PROJECT_ID secrets."
+          else
+            echo "skip=false" >> $GITHUB_OUTPUT
+          fi
+
       - name: Checkout
+        if: steps.check_creds.outputs.skip != 'true'
         uses: actions/checkout@v4
 
       - name: Setup Flutter
+        if: steps.check_creds.outputs.skip != 'true'
         uses: subosito/flutter-action@v2
         with:
           channel: stable
           cache: true
 
       - name: Get Flutter dependencies
+        if: steps.check_creds.outputs.skip != 'true'
         run: flutter pub get
 
       - name: Build Flutter Web
+        if: steps.check_creds.outputs.skip != 'true'
         run: flutter build web --release --no-tree-shake-icons
 
       - name: Copy build to web directory
+        if: steps.check_creds.outputs.skip != 'true'
         run: cp -r build/web/* web/
 
       - name: Setup Node.js
+        if: steps.check_creds.outputs.skip != 'true'
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
       - name: Install Vercel CLI
+        if: steps.check_creds.outputs.skip != 'true'
         run: npm i -g vercel@latest
 
+      - name: Validate Vercel Token
+        if: steps.check_creds.outputs.skip != 'true'
+        id: validate_token
+        run: |
+          if vercel whoami --token=${{ secrets.VERCEL_TOKEN }} 2>/dev/null; then
+            echo "valid=true" >> $GITHUB_OUTPUT
+            echo "✅ Vercel token is valid"
+          else
+            echo "valid=false" >> $GITHUB_OUTPUT
+            echo "⚠️ Vercel token is invalid or expired. Please update VERCEL_TOKEN secret."
+            echo "Skipping deployment."
+          fi
+
       - name: Pull Vercel Environment
+        if: steps.check_creds.outputs.skip != 'true' && steps.validate_token.outputs.valid == 'true'
         run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Deploy to Preview
+        if: steps.check_creds.outputs.skip != 'true' && steps.validate_token.outputs.valid == 'true'
         id: deploy
         run: |
           # Deploy and capture output
@@ -70,12 +104,22 @@ jobs:
           DEPLOYMENT_ID=$(echo $URL | sed 's|https://||' | cut -d'-' -f1-3)
           echo "deployment_id=$DEPLOYMENT_ID" >> $GITHUB_OUTPUT
 
+      - name: Skip deployment notice
+        if: steps.check_creds.outputs.skip == 'true' || steps.validate_token.outputs.valid != 'true'
+        run: |
+          echo "⚠️ Deployment skipped due to missing or invalid Vercel credentials."
+          echo "To enable deployment:"
+          echo "  1. Go to https://vercel.com/account/tokens and create a new token"
+          echo "  2. Add VERCEL_TOKEN secret to this repository"
+          echo "  3. Ensure VERCEL_ORG_ID and VERCEL_PROJECT_ID are also set"
+
   # ═══════════════════════════════════════════════════════════════════════════
   # STEP 2: Smoke Test the Preview Deployment
   # ═══════════════════════════════════════════════════════════════════════════
   smoke-test:
     name: Smoke Test Preview
     needs: build-and-preview
+    if: needs.build-and-preview.outputs.skipped != 'true' && needs.build-and-preview.outputs.preview_url != ''
     runs-on: ubuntu-latest
     timeout-minutes: 15
     continue-on-error: true  # Allow failure while Flutter web tests stabilize
@@ -137,6 +181,7 @@ jobs:
   promote:
     name: Promote to Production
     needs: [build-and-preview, smoke-test]
+    if: needs.build-and-preview.outputs.skipped != 'true' && needs.build-and-preview.outputs.preview_url != ''
     runs-on: ubuntu-latest
     timeout-minutes: 5
     env:
