@@ -197,7 +197,7 @@ class ExtendedHoroscopeContent {
       'This month invites $signName to consider new possibilities and themes. Explore areas of change and growth in your life.',
       'Throughout the month $signName\'s energy is intense. There may be emotional ups and downs but each one will make you stronger. Be patient, the process is working for you.',
       'This month universal energy surrounds $signName. The changes you\'ve been waiting for are starting. Let go of your fears, be open to the new.',
-      'The cosmic calendar is opening important pages for you this month. There are turning points in your personal and professional life. Every decision you make shapes your future.',
+      'The cosmic calendar is opening important pages for you this month. There are turning points in your personal and professional life. Every decision you make shapes your path.',
       'A fruitful month begins for $signName. Time to reap the rewards of your efforts, time to approach your goals. The universe sees and rewards your efforts.',
     ];
   }

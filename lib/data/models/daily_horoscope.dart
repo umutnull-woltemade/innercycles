@@ -93,7 +93,7 @@ class DailyHoroscope {
         'Your natural enthusiasm inspires those around you. Lead by example and others will follow.',
       ],
       Element.earth: [
-        'Grounding energy surrounds you today. Focus on building solid foundations for your future.',
+        'Grounding energy surrounds you today. Focus on building solid foundations for your goals.',
         'Practical matters take center stage. Your attention to detail will pay off in unexpected ways.',
         'Material abundance flows your way. Stay patient and trust in your methodical approach.',
       ],

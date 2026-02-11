@@ -1787,10 +1787,10 @@ class L10n {
       AppLanguage.fr: 'Concentrez-vous sur vos objectifs de carrière. Établissez votre place dans la société.',
     },
     'solar_return_advice_house_11': {
-      AppLanguage.en: 'Expand your social circle. Work towards your future dreams.',
-      AppLanguage.tr: 'Sosyal çevrenizi genişletin. Gelecek hayalleriniz için çalışın.',
-      AppLanguage.de: 'Erweitern Sie Ihren sozialen Kreis. Arbeiten Sie auf Ihre Zukunftsträume hin.',
-      AppLanguage.fr: 'Élargissez votre cercle social. Travaillez vers vos rêves futurs.',
+      AppLanguage.en: 'Expand your social circle. Work towards your personal aspirations.',
+      AppLanguage.tr: 'Sosyal çevrenizi genişletin. Kişisel hedefleriniz için çalışın.',
+      AppLanguage.de: 'Erweitern Sie Ihren sozialen Kreis. Arbeiten Sie auf Ihre persönlichen Ziele hin.',
+      AppLanguage.fr: 'Élargissez votre cercle social. Travaillez vers vos aspirations personnelles.',
     },
     'solar_return_advice_house_12': {
       AppLanguage.en: 'Year of introspection. Spiritual development and rest should be prioritized.',

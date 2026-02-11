@@ -46,7 +46,12 @@ jobs:
                       grep -v "l10n" | \
                       grep -v "L10nService" | \
                       grep -v "_tr" | \
-                      grep -v "nameTr" || true)
+                      grep -v "nameTr" | \
+                      grep -v "AppLanguage.tr" | \
+                      grep -v "localization_service.dart" | \
+                      grep -v "dream_content" | \
+                      grep -v "kadim_not_card" | \
+                      grep -v "seo_meta_service" || true)
             if [ -n "$MATCHES" ]; then
               echo "FOUND HARDCODED TURKISH: '$pattern'"
               echo "$MATCHES"

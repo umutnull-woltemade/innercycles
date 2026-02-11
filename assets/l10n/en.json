@@ -980,7 +980,7 @@
       "advice_house_8": "Go deep. Time for transformation and renewal. Shared finances gain importance.",
       "advice_house_9": "Expand your horizons. Ideal year for education, travel and philosophical pursuits.",
       "advice_house_10": "Focus on your career goals. Establish your place in society.",
-      "advice_house_11": "Expand your social circle. Work towards your future dreams.",
+      "advice_house_11": "Expand your social circle. Work towards your personal aspirations.",
       "advice_house_12": "Year of introspection. Spiritual development and rest should be prioritized.",
       "advice_default": "This year invites reflection on important transformation themes."
     },
@@ -2785,7 +2785,7 @@
     "special_months": "Special Months",
     "lucky_months": "Favorable Months",
     "planet_transits": "Planet Transits",
-    "your_zodiac_readings": "Your Zodiac Readings",
+    "your_zodiac_readings": "Your Sign Insights",
     "sign_today": "How is {sign} today?",
     "astrology_brand": "Astrology — Venus One",
     "astrology": "Astrology",
@@ -3698,7 +3698,7 @@
     "dreams_subconscious": "Dreams & Subconscious"
   },
   "misc": {
-    "zodiac_interpretation": "Zodiac Reading",
+    "zodiac_interpretation": "Sign Insight",
     "love_interpretation": "Love Reading",
     "zodiac_compatibility": "Zodiac Compatibility",
     "zodiac_profiles": "Zodiac Profiles",
@@ -6792,7 +6792,7 @@
         "keywords": "Reflection, reckoning, awakening",
         "upright": "A great awakening and calling. Reckoning with the past. Rebirth.",
         "reversed": "Self-doubt or being stuck in the past. Not hearing the call.",
-        "advice": "Accept your past, live your present, create your future. Answer your call."
+        "advice": "Accept your past, live your present, shape your path forward. Answer your call."
       },
       "world": {
         "name": "The World",
@@ -8540,7 +8540,7 @@
       "energy_cleansing": "What are the most effective rituals and timing for energy cleansing?"
     },
     "responses": {
-      "greeting_intro": "I am Kozmoz, your personal cosmic AI guide!\n\nWith the powerful energy of {element} element, I am here to help you today.\n\nTopics we can discuss:\n\n🔮 ZODIAC & INTERPRETATION\n• Daily/Weekly/Monthly horoscope readings\n• Sun, Moon and Ascending analysis\n• Element and modality interpretations\n\n💕 LOVE & RELATIONSHIPS\n• Zodiac compatibility and synastry\n• Ideal partner profile\n• Relationship advice\n\n💼 CAREER & FINANCE\n• Suitable career paths\n• Financial periods\n• Business partnership compatibility\n\n🌙 COSMIC TIMING\n• Moon phases and effects\n• Important dates\n\n🔢 NUMEROLOGY & MYSTIC\n• Life path number\n• Tarot messages\n\n🧘 SPIRITUAL DEVELOPMENT\n• Meditation and rituals\n\nWhat would you like to talk about? ✨",
+      "greeting_intro": "I am Kozmoz, your personal reflection guide!\n\nWith the powerful energy of {element} element, I am here to help you today.\n\nTopics we can discuss:\n\n🔮 SELF-REFLECTION\n• Daily/Weekly/Monthly insights\n• Sun, Moon and Ascending analysis\n• Element and modality interpretations\n\n💕 LOVE & RELATIONSHIPS\n• Compatibility insights and synastry\n• Ideal partner profile\n• Relationship advice\n\n💼 CAREER & FINANCE\n• Suitable career paths\n• Financial periods\n• Business partnership compatibility\n\n🌙 TIMING & CYCLES\n• Moon phases and effects\n• Important dates\n\n🔢 NUMEROLOGY & SYMBOLS\n• Life path number\n• Card messages\n\n🧘 PERSONAL DEVELOPMENT\n• Meditation and rituals\n\nWhat would you like to talk about? ✨",
       "daily_report_header": "{sign} DAILY COSMIC REPORT",
       "morning_energy": "MORNING ENERGY (06:00 - 12:00)",
       "noon_energy": "NOON ENERGY (12:00 - 18:00)",
@@ -10606,7 +10606,7 @@
       "pluto_desc": "Transformation symbols resonate with Pluto",
       "category_astrology": "Astrology",
       "category_moon": "Moon",
-      "category_divination": "Divination"
+      "category_divination": "Symbols"
     },
     "moon_phases": {
       "new_moon": "This dream coming in the new moon phase carries a seed of new intention. Make a wish today.",
