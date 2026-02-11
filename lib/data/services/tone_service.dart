@@ -5,10 +5,7 @@
 // UK English tends to be refined, calm, and slightly more formal.
 
 /// Tone region for US/UK English variants
-enum ToneRegion {
-  us,
-  uk,
-}
+enum ToneRegion { us, uk }
 
 class ToneService {
   static ToneRegion _currentRegion = ToneRegion.us;
@@ -123,51 +120,29 @@ class ToneService {
 /// Marketing copy variants for US and UK markets
 class MarketingCopy {
   // CTA Buttons
-  static String get getStarted => ToneService.getText(
-    'Get Started',
-    'Begin Your Journey',
-  );
+  static String get getStarted =>
+      ToneService.getText('Get Started', 'Begin Your Journey');
 
-  static String get learnMore => ToneService.getText(
-    'Learn More',
-    'Discover More',
-  );
+  static String get learnMore =>
+      ToneService.getText('Learn More', 'Discover More');
 
-  static String get checkItOut => ToneService.getText(
-    'Check it out',
-    'Have a look',
-  );
+  static String get checkItOut =>
+      ToneService.getText('Check it out', 'Have a look');
 
-  static String get tryNow => ToneService.getText(
-    'Try Now',
-    'Try It Now',
-  );
+  static String get tryNow => ToneService.getText('Try Now', 'Try It Now');
 
-  static String get signUp => ToneService.getText(
-    'Sign Up',
-    'Create Account',
-  );
+  static String get signUp => ToneService.getText('Sign Up', 'Create Account');
 
-  static String get downloadFree => ToneService.getText(
-    'Download Free',
-    'Download for Free',
-  );
+  static String get downloadFree =>
+      ToneService.getText('Download Free', 'Download for Free');
 
   // Greetings
-  static String get hi => ToneService.getText(
-    'Hi',
-    'Hello',
-  );
+  static String get hi => ToneService.getText('Hi', 'Hello');
 
-  static String get hey => ToneService.getText(
-    'Hey',
-    'Hello',
-  );
+  static String get hey => ToneService.getText('Hey', 'Hello');
 
-  static String greeting(String name) => ToneService.getText(
-    'Hey $name!',
-    'Hello $name,',
-  );
+  static String greeting(String name) =>
+      ToneService.getText('Hey $name!', 'Hello $name,');
 
   // Feature descriptions
   static String get personalizedInsights => ToneService.getText(
@@ -175,20 +150,14 @@ class MarketingCopy {
     'Personalised insights tailored to you',
   );
 
-  static String get checkYourHoroscope => ToneService.getText(
-    'Check your horoscope',
-    'View your horoscope',
-  );
+  static String get checkYourHoroscope =>
+      ToneService.getText('Check your horoscope', 'View your horoscope');
 
-  static String get exploreYourChart => ToneService.getText(
-    'Explore your chart',
-    'Discover your chart',
-  );
+  static String get exploreYourChart =>
+      ToneService.getText('Explore your chart', 'Discover your chart');
 
-  static String get unlockFeatures => ToneService.getText(
-    'Unlock all features',
-    'Access all features',
-  );
+  static String get unlockFeatures =>
+      ToneService.getText('Unlock all features', 'Access all features');
 
   // Push notifications
   static String get cosmicMissesYou => ToneService.getText(
@@ -196,15 +165,11 @@ class MarketingCopy {
     'Welcome back to your reflection space.',
   );
 
-  static String get dontMiss => ToneService.getText(
-    "Don't miss out!",
-    "Don't miss this.",
-  );
+  static String get dontMiss =>
+      ToneService.getText("Don't miss out!", "Don't miss this.");
 
-  static String get readyForYou => ToneService.getText(
-    'Ready for you!',
-    'Ready for you.',
-  );
+  static String get readyForYou =>
+      ToneService.getText('Ready for you!', 'Ready for you.');
 
   // Error messages
   static String get somethingWentWrong => ToneService.getText(
@@ -212,26 +177,16 @@ class MarketingCopy {
     'Apologies, something went wrong.',
   );
 
-  static String get tryAgain => ToneService.getText(
-    'Try again',
-    'Please try again',
-  );
+  static String get tryAgain =>
+      ToneService.getText('Try again', 'Please try again');
 
   // Success messages
-  static String get awesome => ToneService.getText(
-    'Awesome!',
-    'Wonderful!',
-  );
+  static String get awesome => ToneService.getText('Awesome!', 'Wonderful!');
 
-  static String get gotIt => ToneService.getText(
-    'Got it!',
-    'Understood!',
-  );
+  static String get gotIt => ToneService.getText('Got it!', 'Understood!');
 
-  static String get allSet => ToneService.getText(
-    "You're all set!",
-    "You're all ready!",
-  );
+  static String get allSet =>
+      ToneService.getText("You're all set!", "You're all ready!");
 
   // Marketing headlines
   static String get heroHeadline => ToneService.getText(
@@ -254,10 +209,8 @@ class MarketingCopy {
     'Trusted by 500,000+ cosmic seekers worldwide',
   );
 
-  static String get finalCta => ToneService.getText(
-    'The Stars Are Waiting',
-    'The Stars Await',
-  );
+  static String get finalCta =>
+      ToneService.getText('The Stars Are Waiting', 'The Stars Await');
 
   // Email subject lines
   static String welcomeSubject(String appName) => ToneService.getText(
@@ -271,30 +224,16 @@ class MarketingCopy {
   );
 
   // Casual expressions to formal
-  static String get checkOut => ToneService.getText(
-    'Check out',
-    'Discover',
-  );
+  static String get checkOut => ToneService.getText('Check out', 'Discover');
 
-  static String get superEasy => ToneService.getText(
-    'Super easy',
-    'Quite simple',
-  );
+  static String get superEasy =>
+      ToneService.getText('Super easy', 'Quite simple');
 
-  static String get totally => ToneService.getText(
-    'totally',
-    'completely',
-  );
+  static String get totally => ToneService.getText('totally', 'completely');
 
-  static String get amazing => ToneService.getText(
-    'amazing',
-    'remarkable',
-  );
+  static String get amazing => ToneService.getText('amazing', 'remarkable');
 
-  static String get awesome2 => ToneService.getText(
-    'awesome',
-    'wonderful',
-  );
+  static String get awesome2 => ToneService.getText('awesome', 'wonderful');
 }
 
 /// Extension for applying tone to any string

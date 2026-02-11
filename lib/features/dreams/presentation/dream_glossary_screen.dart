@@ -27,7 +27,8 @@ class DreamGlossaryScreen extends ConsumerStatefulWidget {
   const DreamGlossaryScreen({super.key});
 
   @override
-  ConsumerState<DreamGlossaryScreen> createState() => _DreamGlossaryScreenState();
+  ConsumerState<DreamGlossaryScreen> createState() =>
+      _DreamGlossaryScreenState();
 }
 
 class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
@@ -52,21 +53,73 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
 
   // Alphabet letters (Turkish)
   static const List<String> _alphabet = [
-    'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I',
-    'J', 'K', 'L', 'M', 'N', 'O', 'P', 'R', 'S',
-    'T', 'U', 'V', 'Y', 'Z'
+    'A',
+    'B',
+    'C',
+    'D',
+    'E',
+    'F',
+    'G',
+    'H',
+    'I',
+    'J',
+    'K',
+    'L',
+    'M',
+    'N',
+    'O',
+    'P',
+    'R',
+    'S',
+    'T',
+    'U',
+    'V',
+    'Y',
+    'Z',
   ];
 
   // Categories with labels - built dynamically with language
   List<_CategoryItem> _buildCategories(AppLanguage language) => [
-    _CategoryItem(null, L10nService.get('screens.dream_glossary.categories.all', language), ''),
-    _CategoryItem(SymbolCategory.hayvan, L10nService.get('screens.dream_glossary.categories.animals', language), ''),
-    _CategoryItem(SymbolCategory.dogaOlayi, L10nService.get('screens.dream_glossary.categories.nature', language), ''),
-    _CategoryItem(SymbolCategory.insan, L10nService.get('screens.dream_glossary.categories.people', language), ''),
-    _CategoryItem(SymbolCategory.mekan, L10nService.get('screens.dream_glossary.categories.places', language), ''),
-    _CategoryItem(SymbolCategory.eylem, L10nService.get('screens.dream_glossary.categories.actions', language), ''),
-    _CategoryItem(SymbolCategory.nesne, L10nService.get('screens.dream_glossary.categories.objects', language), ''),
-    _CategoryItem(SymbolCategory.soyut, L10nService.get('screens.dream_glossary.categories.abstract', language), ''),
+    _CategoryItem(
+      null,
+      L10nService.get('screens.dream_glossary.categories.all', language),
+      '',
+    ),
+    _CategoryItem(
+      SymbolCategory.hayvan,
+      L10nService.get('screens.dream_glossary.categories.animals', language),
+      '',
+    ),
+    _CategoryItem(
+      SymbolCategory.dogaOlayi,
+      L10nService.get('screens.dream_glossary.categories.nature', language),
+      '',
+    ),
+    _CategoryItem(
+      SymbolCategory.insan,
+      L10nService.get('screens.dream_glossary.categories.people', language),
+      '',
+    ),
+    _CategoryItem(
+      SymbolCategory.mekan,
+      L10nService.get('screens.dream_glossary.categories.places', language),
+      '',
+    ),
+    _CategoryItem(
+      SymbolCategory.eylem,
+      L10nService.get('screens.dream_glossary.categories.actions', language),
+      '',
+    ),
+    _CategoryItem(
+      SymbolCategory.nesne,
+      L10nService.get('screens.dream_glossary.categories.objects', language),
+      '',
+    ),
+    _CategoryItem(
+      SymbolCategory.soyut,
+      L10nService.get('screens.dream_glossary.categories.abstract', language),
+      '',
+    ),
   ];
 
   @override
@@ -197,9 +250,7 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
                 child: Row(
                   children: [
                     // Main content
-                    Expanded(
-                      child: _buildSymbolGrid(language),
-                    ),
+                    Expanded(child: _buildSymbolGrid(language)),
 
                     // Alphabet sidebar
                     _buildAlphabetSidebar(),
@@ -230,7 +281,10 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
         children: [
           IconButton(
             onPressed: () => context.pop(),
-            icon: const Icon(Icons.arrow_back_ios, color: AppColors.textPrimary),
+            icon: const Icon(
+              Icons.arrow_back_ios,
+              color: AppColors.textPrimary,
+            ),
           ),
           const SizedBox(width: 8),
           Container(
@@ -257,16 +311,21 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
                 Text(
                   L10nService.get('screens.dream_glossary.title', language),
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        color: AppColors.textPrimary,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    color: AppColors.textPrimary,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 Text(
-                  L10nService.get('screens.dream_glossary.symbol_count', language)
-                      .replaceAll('{count}', '${DreamSymbolsDatabase.allSymbols.length}'),
+                  L10nService.get(
+                    'screens.dream_glossary.symbol_count',
+                    language,
+                  ).replaceAll(
+                    '{count}',
+                    '${DreamSymbolsDatabase.allSymbols.length}',
+                  ),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: AppColors.textSecondary,
-                      ),
+                    color: AppColors.textSecondary,
+                  ),
                 ),
               ],
             ),
@@ -275,7 +334,10 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
           IconButton(
             onPressed: () => _showPersonalDictionary(language),
             icon: const Icon(Icons.bookmark, color: MysticalColors.starGold),
-            tooltip: L10nService.get('screens.dream_glossary.personal_dictionary', language),
+            tooltip: L10nService.get(
+              'screens.dream_glossary.personal_dictionary',
+              language,
+            ),
           ),
         ],
       ),
@@ -304,12 +366,23 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
           style: const TextStyle(color: AppColors.textPrimary),
           onChanged: _onSearchChanged,
           decoration: InputDecoration(
-            hintText: L10nService.get('screens.dream_glossary.search_hint', language),
-            hintStyle: TextStyle(color: AppColors.textSecondary.withValues(alpha: 0.6)),
-            prefixIcon: const Icon(Icons.search, color: MysticalColors.starGold),
+            hintText: L10nService.get(
+              'screens.dream_glossary.search_hint',
+              language,
+            ),
+            hintStyle: TextStyle(
+              color: AppColors.textSecondary.withValues(alpha: 0.6),
+            ),
+            prefixIcon: const Icon(
+              Icons.search,
+              color: MysticalColors.starGold,
+            ),
             suffixIcon: _searchQuery.isNotEmpty
                 ? IconButton(
-                    icon: const Icon(Icons.clear, color: AppColors.textSecondary),
+                    icon: const Icon(
+                      Icons.clear,
+                      color: AppColors.textSecondary,
+                    ),
                     onPressed: () {
                       _searchController.clear();
                       _onSearchChanged('');
@@ -340,10 +413,7 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
         indicatorWeight: 3,
         labelColor: MysticalColors.starGold,
         unselectedLabelColor: AppColors.textSecondary,
-        labelStyle: const TextStyle(
-          fontWeight: FontWeight.w600,
-          fontSize: 13,
-        ),
+        labelStyle: const TextStyle(fontWeight: FontWeight.w600, fontSize: 13),
         unselectedLabelStyle: const TextStyle(
           fontWeight: FontWeight.normal,
           fontSize: 13,
@@ -355,7 +425,10 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
               mainAxisSize: MainAxisSize.min,
               children: [
                 if (cat.category != null) ...[
-                  Text(cat.category!.emoji, style: const TextStyle(fontSize: 14)),
+                  Text(
+                    cat.category!.emoji,
+                    style: const TextStyle(fontSize: 14),
+                  ),
                   const SizedBox(width: 4),
                 ],
                 Text(cat.label),
@@ -377,16 +450,19 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
             const SizedBox(height: 16),
             Text(
               L10nService.get('screens.dream_glossary.no_results', language),
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    color: AppColors.textSecondary,
-                  ),
+              style: Theme.of(
+                context,
+              ).textTheme.titleMedium?.copyWith(color: AppColors.textSecondary),
             ),
             const SizedBox(height: 8),
             Text(
-              L10nService.get('screens.dream_glossary.try_different_search', language),
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.textMuted,
-                  ),
+              L10nService.get(
+                'screens.dream_glossary.try_different_search',
+                language,
+              ),
+              style: Theme.of(
+                context,
+              ).textTheme.bodySmall?.copyWith(color: AppColors.textMuted),
             ),
           ],
         ),
@@ -402,15 +478,14 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
         final isDreamed = _personalDictionary.hasDreamed(symbol.symbol);
 
         return _SymbolCard(
-          symbol: symbol,
-          isDreamed: isDreamed,
-          searchQuery: _searchQuery,
-          onTap: () => _showSymbolDetails(symbol, language),
-        ).animate().fadeIn(delay: (30 * (index % 20)).ms).slideX(
-              begin: 0.1,
-              end: 0,
-              delay: (30 * (index % 20)).ms,
-            );
+              symbol: symbol,
+              isDreamed: isDreamed,
+              searchQuery: _searchQuery,
+              onTap: () => _showSymbolDetails(symbol, language),
+            )
+            .animate()
+            .fadeIn(delay: (30 * (index % 20)).ms)
+            .slideX(begin: 0.1, end: 0, delay: (30 * (index % 20)).ms);
       },
     );
   }
@@ -525,7 +600,9 @@ class _SymbolCard extends StatelessWidget {
                   decoration: BoxDecoration(
                     gradient: RadialGradient(
                       colors: [
-                        _getCategoryColor(symbol.category).withValues(alpha: 0.3),
+                        _getCategoryColor(
+                          symbol.category,
+                        ).withValues(alpha: 0.3),
                         Colors.transparent,
                       ],
                     ),
@@ -550,9 +627,9 @@ class _SymbolCard extends StatelessWidget {
                               symbol.symbolTr,
                               searchQuery,
                               Theme.of(context).textTheme.titleMedium?.copyWith(
-                                    color: AppColors.textPrimary,
-                                    fontWeight: FontWeight.w600,
-                                  ),
+                                color: AppColors.textPrimary,
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
                           ),
                           if (isDreamed) ...[
@@ -563,7 +640,9 @@ class _SymbolCard extends StatelessWidget {
                                 vertical: 2,
                               ),
                               decoration: BoxDecoration(
-                                color: MysticalColors.starGold.withValues(alpha: 0.2),
+                                color: MysticalColors.starGold.withValues(
+                                  alpha: 0.2,
+                                ),
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               child: const Text(
@@ -578,8 +657,8 @@ class _SymbolCard extends StatelessWidget {
                       Text(
                         symbol.universalMeanings.first,
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                              color: AppColors.textSecondary,
-                            ),
+                          color: AppColors.textSecondary,
+                        ),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -679,10 +758,7 @@ class _SymbolDetailSheet extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: [
-            MysticalColors.bgCosmic,
-            MysticalColors.bgDeepSpace,
-          ],
+          colors: [MysticalColors.bgCosmic, MysticalColors.bgDeepSpace],
         ),
         borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
       ),
@@ -729,7 +805,8 @@ class _SymbolDetailSheet extends StatelessWidget {
                     children: [
                       Text(
                         symbol.symbolTr,
-                        style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                        style: Theme.of(context).textTheme.headlineSmall
+                            ?.copyWith(
                               color: AppColors.textPrimary,
                               fontWeight: FontWeight.bold,
                             ),
@@ -777,7 +854,10 @@ class _SymbolDetailSheet extends StatelessWidget {
                 // Universal meanings
                 _buildSection(
                   context,
-                  title: L10nService.get('screens.dream_glossary.sections.universal_meanings', language),
+                  title: L10nService.get(
+                    'screens.dream_glossary.sections.universal_meanings',
+                    language,
+                  ),
                   emoji: '\u{1F30D}',
                   content: symbol.universalMeanings
                       .map((m) => '\u{2022} $m')
@@ -787,7 +867,10 @@ class _SymbolDetailSheet extends StatelessWidget {
                 // Light aspect
                 _buildSection(
                   context,
-                  title: L10nService.get('screens.dream_glossary.sections.light_aspect', language),
+                  title: L10nService.get(
+                    'screens.dream_glossary.sections.light_aspect',
+                    language,
+                  ),
                   emoji: '\u{2728}',
                   content: symbol.lightAspect,
                   color: MysticalColors.starGold,
@@ -796,7 +879,10 @@ class _SymbolDetailSheet extends StatelessWidget {
                 // Shadow aspect
                 _buildSection(
                   context,
-                  title: L10nService.get('screens.dream_glossary.sections.shadow_aspect', language),
+                  title: L10nService.get(
+                    'screens.dream_glossary.sections.shadow_aspect',
+                    language,
+                  ),
                   emoji: '\u{1F311}',
                   content: symbol.shadowAspect,
                   color: MysticalColors.amethyst,
@@ -858,9 +944,9 @@ class _SymbolDetailSheet extends StatelessWidget {
               Text(
                 title,
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      color: color ?? MysticalColors.starGold,
-                      fontWeight: FontWeight.w600,
-                    ),
+                  color: color ?? MysticalColors.starGold,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ],
           ),
@@ -868,9 +954,9 @@ class _SymbolDetailSheet extends StatelessWidget {
           Text(
             content,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: AppColors.textSecondary,
-                  height: 1.6,
-                ),
+              color: AppColors.textSecondary,
+              height: 1.6,
+            ),
           ),
         ],
       ),
@@ -901,11 +987,14 @@ class _SymbolDetailSheet extends StatelessWidget {
               const Text('\u{1F3DB}', style: TextStyle(fontSize: 18)),
               const SizedBox(width: 8),
               Text(
-                L10nService.get('screens.dream_glossary.sections.cultural_interpretations', language),
+                L10nService.get(
+                  'screens.dream_glossary.sections.cultural_interpretations',
+                  language,
+                ),
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      color: MysticalColors.etherealCyan,
-                      fontWeight: FontWeight.w600,
-                    ),
+                  color: MysticalColors.etherealCyan,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ],
           ),
@@ -914,7 +1003,10 @@ class _SymbolDetailSheet extends StatelessWidget {
           // Turkish interpretation
           _buildInterpretationRow(
             context,
-            label: L10nService.get('screens.dream_glossary.interpretation_labels.turkish', language),
+            label: L10nService.get(
+              'screens.dream_glossary.interpretation_labels.turkish',
+              language,
+            ),
             content: _getTurkishInterpretation(),
           ),
           const SizedBox(height: 8),
@@ -922,7 +1014,10 @@ class _SymbolDetailSheet extends StatelessWidget {
           // Islamic interpretation
           _buildInterpretationRow(
             context,
-            label: L10nService.get('screens.dream_glossary.interpretation_labels.islamic', language),
+            label: L10nService.get(
+              'screens.dream_glossary.interpretation_labels.islamic',
+              language,
+            ),
             content: _getIslamicInterpretation(),
           ),
           const SizedBox(height: 8),
@@ -930,7 +1025,10 @@ class _SymbolDetailSheet extends StatelessWidget {
           // Western interpretation
           _buildInterpretationRow(
             context,
-            label: L10nService.get('screens.dream_glossary.interpretation_labels.western', language),
+            label: L10nService.get(
+              'screens.dream_glossary.interpretation_labels.western',
+              language,
+            ),
             content: _getWesternInterpretation(),
           ),
         ],
@@ -950,9 +1048,7 @@ class _SymbolDetailSheet extends StatelessWidget {
           ],
         ),
         borderRadius: BorderRadius.circular(Spacing.radiusMd),
-        border: Border.all(
-          color: MysticalColors.orchid.withValues(alpha: 0.2),
-        ),
+        border: Border.all(color: MysticalColors.orchid.withValues(alpha: 0.2)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -962,11 +1058,14 @@ class _SymbolDetailSheet extends StatelessWidget {
               const Text('\u{1F9E0}', style: TextStyle(fontSize: 18)),
               const SizedBox(width: 8),
               Text(
-                L10nService.get('screens.dream_glossary.sections.psychological_interpretations', language),
+                L10nService.get(
+                  'screens.dream_glossary.sections.psychological_interpretations',
+                  language,
+                ),
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      color: MysticalColors.orchid,
-                      fontWeight: FontWeight.w600,
-                    ),
+                  color: MysticalColors.orchid,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ],
           ),
@@ -975,7 +1074,10 @@ class _SymbolDetailSheet extends StatelessWidget {
           // Jungian
           _buildInterpretationRow(
             context,
-            label: L10nService.get('screens.dream_glossary.interpretation_labels.jung', language),
+            label: L10nService.get(
+              'screens.dream_glossary.interpretation_labels.jung',
+              language,
+            ),
             content: _getJungianInterpretation(),
           ),
           const SizedBox(height: 8),
@@ -983,7 +1085,10 @@ class _SymbolDetailSheet extends StatelessWidget {
           // Freudian
           _buildInterpretationRow(
             context,
-            label: L10nService.get('screens.dream_glossary.interpretation_labels.freud', language),
+            label: L10nService.get(
+              'screens.dream_glossary.interpretation_labels.freud',
+              language,
+            ),
             content: _getFreudianInterpretation(),
           ),
         ],
@@ -1021,9 +1126,9 @@ class _SymbolDetailSheet extends StatelessWidget {
           child: Text(
             content,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppColors.textSecondary,
-                  height: 1.4,
-                ),
+              color: AppColors.textSecondary,
+              height: 1.4,
+            ),
           ),
         ),
       ],
@@ -1054,11 +1159,14 @@ class _SymbolDetailSheet extends StatelessWidget {
               const Text('\u{1F517}', style: TextStyle(fontSize: 18)),
               const SizedBox(width: 8),
               Text(
-                L10nService.get('screens.dream_glossary.sections.related_symbols', language),
+                L10nService.get(
+                  'screens.dream_glossary.sections.related_symbols',
+                  language,
+                ),
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      color: MysticalColors.stardustBlue,
-                      fontWeight: FontWeight.w600,
-                    ),
+                  color: MysticalColors.stardustBlue,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ],
           ),
@@ -1132,7 +1240,9 @@ class _SymbolDetailSheet extends StatelessWidget {
           color: hasDreamed ? MysticalColors.bgElevated : null,
           borderRadius: BorderRadius.circular(Spacing.radiusMd),
           border: hasDreamed
-              ? Border.all(color: MysticalColors.starGold.withValues(alpha: 0.3))
+              ? Border.all(
+                  color: MysticalColors.starGold.withValues(alpha: 0.3),
+                )
               : null,
         ),
         child: Row(
@@ -1145,8 +1255,14 @@ class _SymbolDetailSheet extends StatelessWidget {
             const SizedBox(width: 10),
             Text(
               hasDreamed
-                  ? L10nService.get('screens.dream_glossary.dreamed_button.in_journal', language)
-                  : L10nService.get('screens.dream_glossary.dreamed_button.i_dreamed_this', language),
+                  ? L10nService.get(
+                      'screens.dream_glossary.dreamed_button.in_journal',
+                      language,
+                    )
+                  : L10nService.get(
+                      'screens.dream_glossary.dreamed_button.i_dreamed_this',
+                      language,
+                    ),
               style: TextStyle(
                 color: hasDreamed ? MysticalColors.starGold : Colors.black87,
                 fontWeight: FontWeight.w600,
@@ -1163,35 +1279,48 @@ class _SymbolDetailSheet extends StatelessWidget {
   String _getTurkishInterpretation() {
     // Generate context-aware Turkish interpretation
     final base = symbol.universalMeanings.first;
-    return L10nService.get('screens.dream_glossary.interpretation_templates.turkish', language)
+    return L10nService.get(
+          'screens.dream_glossary.interpretation_templates.turkish',
+          language,
+        )
         .replaceAll('{symbol}', symbol.symbolTr.toLowerCase())
         .replaceAll('{meaning}', base);
   }
 
   String _getIslamicInterpretation() {
     // Generate context-aware Islamic interpretation
-    return L10nService.get('screens.dream_glossary.interpretation_templates.islamic', language)
-        .replaceAll('{symbol}', symbol.symbolTr.toLowerCase());
+    return L10nService.get(
+      'screens.dream_glossary.interpretation_templates.islamic',
+      language,
+    ).replaceAll('{symbol}', symbol.symbolTr.toLowerCase());
   }
 
   String _getWesternInterpretation() {
     // Generate context-aware Western interpretation
-    return L10nService.get('screens.dream_glossary.interpretation_templates.western', language)
+    return L10nService.get(
+          'screens.dream_glossary.interpretation_templates.western',
+          language,
+        )
         .replaceAll('{symbol}', symbol.symbolTr.toLowerCase())
         .replaceAll('{meaning}', symbol.universalMeanings.first.toLowerCase());
   }
 
   String _getJungianInterpretation() {
     final archetypes = symbol.archetypes.join(', ');
-    return L10nService.get('screens.dream_glossary.interpretation_templates.jungian', language)
+    return L10nService.get(
+          'screens.dream_glossary.interpretation_templates.jungian',
+          language,
+        )
         .replaceAll('{symbol}', symbol.symbolTr)
         .replaceAll('{archetypes}', archetypes)
         .replaceAll('{shadow}', symbol.shadowAspect);
   }
 
   String _getFreudianInterpretation() {
-    return L10nService.get('screens.dream_glossary.interpretation_templates.freudian', language)
-        .replaceAll('{symbol}', symbol.symbolTr.toLowerCase());
+    return L10nService.get(
+      'screens.dream_glossary.interpretation_templates.freudian',
+      language,
+    ).replaceAll('{symbol}', symbol.symbolTr.toLowerCase());
   }
 }
 
@@ -1221,10 +1350,7 @@ class _PersonalDictionarySheet extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: [
-            MysticalColors.bgCosmic,
-            MysticalColors.bgDeepSpace,
-          ],
+          colors: [MysticalColors.bgCosmic, MysticalColors.bgDeepSpace],
         ),
         borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
       ),
@@ -1253,18 +1379,23 @@ class _PersonalDictionarySheet extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        L10nService.get('screens.dream_glossary.personal_dictionary_sheet.title', language),
+                        L10nService.get(
+                          'screens.dream_glossary.personal_dictionary_sheet.title',
+                          language,
+                        ),
                         style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                              color: AppColors.textPrimary,
-                              fontWeight: FontWeight.bold,
-                            ),
+                          color: AppColors.textPrimary,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                       Text(
-                        L10nService.get('screens.dream_glossary.personal_dictionary_sheet.symbol_count', language)
-                            .replaceAll('{count}', '${dreamedSymbols.length}'),
+                        L10nService.get(
+                          'screens.dream_glossary.personal_dictionary_sheet.symbol_count',
+                          language,
+                        ).replaceAll('{count}', '${dreamedSymbols.length}'),
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                              color: MysticalColors.starGold,
-                            ),
+                          color: MysticalColors.starGold,
+                        ),
                       ),
                     ],
                   ),
@@ -1282,8 +1413,9 @@ class _PersonalDictionarySheet extends StatelessWidget {
                     itemCount: dreamedSymbols.length,
                     itemBuilder: (context, index) {
                       final entry = dreamedSymbols[index];
-                      final symbol =
-                          DreamSymbolsDatabase.findSymbol(entry.symbolId);
+                      final symbol = DreamSymbolsDatabase.findSymbol(
+                        entry.symbolId,
+                      );
                       if (symbol == null) return const SizedBox.shrink();
 
                       return _buildDreamedSymbolCard(context, symbol, entry);
@@ -1303,18 +1435,24 @@ class _PersonalDictionarySheet extends StatelessWidget {
           const Text('\u{1F319}', style: TextStyle(fontSize: 64)),
           const SizedBox(height: 16),
           Text(
-            L10nService.get('screens.dream_glossary.personal_dictionary_sheet.no_symbols_yet', language),
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  color: AppColors.textSecondary,
-                ),
+            L10nService.get(
+              'screens.dream_glossary.personal_dictionary_sheet.no_symbols_yet',
+              language,
+            ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleMedium?.copyWith(color: AppColors.textSecondary),
           ),
           const SizedBox(height: 8),
           Text(
-            L10nService.get('screens.dream_glossary.personal_dictionary_sheet.add_symbols_hint', language),
+            L10nService.get(
+              'screens.dream_glossary.personal_dictionary_sheet.add_symbols_hint',
+              language,
+            ),
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppColors.textMuted,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.bodySmall?.copyWith(color: AppColors.textMuted),
           ),
         ],
       ),
@@ -1360,7 +1498,8 @@ class _PersonalDictionarySheet extends StatelessWidget {
                     children: [
                       Text(
                         symbol.symbolTr,
-                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        style: Theme.of(context).textTheme.titleMedium
+                            ?.copyWith(
                               color: AppColors.textPrimary,
                               fontWeight: FontWeight.w600,
                             ),
@@ -1368,22 +1507,24 @@ class _PersonalDictionarySheet extends StatelessWidget {
                       const SizedBox(height: 4),
                       Row(
                         children: [
-                          const Text('\u{1F4C5}',
-                              style: TextStyle(fontSize: 12)),
+                          const Text(
+                            '\u{1F4C5}',
+                            style: TextStyle(fontSize: 12),
+                          ),
                           const SizedBox(width: 4),
                           Text(
-                            L10nService.get('screens.dream_glossary.personal_dictionary_sheet.times_count', language)
-                                .replaceAll('{count}', '${entry.count}'),
-                            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                                  color: MysticalColors.starGold,
-                                ),
+                            L10nService.get(
+                              'screens.dream_glossary.personal_dictionary_sheet.times_count',
+                              language,
+                            ).replaceAll('{count}', '${entry.count}'),
+                            style: Theme.of(context).textTheme.bodySmall
+                                ?.copyWith(color: MysticalColors.starGold),
                           ),
                           const SizedBox(width: 12),
                           Text(
                             _formatDate(entry.lastDreamed),
-                            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                                  color: AppColors.textMuted,
-                                ),
+                            style: Theme.of(context).textTheme.bodySmall
+                                ?.copyWith(color: AppColors.textMuted),
                           ),
                         ],
                       ),
@@ -1410,21 +1551,33 @@ class _PersonalDictionarySheet extends StatelessWidget {
     final diff = now.difference(date);
 
     if (diff.inDays == 0) {
-      return L10nService.get('screens.dream_glossary.date_formats.today', language);
+      return L10nService.get(
+        'screens.dream_glossary.date_formats.today',
+        language,
+      );
     }
     if (diff.inDays == 1) {
-      return L10nService.get('screens.dream_glossary.date_formats.yesterday', language);
+      return L10nService.get(
+        'screens.dream_glossary.date_formats.yesterday',
+        language,
+      );
     }
     if (diff.inDays < 7) {
-      return L10nService.get('screens.dream_glossary.date_formats.days_ago', language)
-          .replaceAll('{count}', '${diff.inDays}');
+      return L10nService.get(
+        'screens.dream_glossary.date_formats.days_ago',
+        language,
+      ).replaceAll('{count}', '${diff.inDays}');
     }
     if (diff.inDays < 30) {
-      return L10nService.get('screens.dream_glossary.date_formats.weeks_ago', language)
-          .replaceAll('{count}', '${diff.inDays ~/ 7}');
+      return L10nService.get(
+        'screens.dream_glossary.date_formats.weeks_ago',
+        language,
+      ).replaceAll('{count}', '${diff.inDays ~/ 7}');
     }
-    return L10nService.get('screens.dream_glossary.date_formats.months_ago', language)
-        .replaceAll('{count}', '${diff.inDays ~/ 30}');
+    return L10nService.get(
+      'screens.dream_glossary.date_formats.months_ago',
+      language,
+    ).replaceAll('{count}', '${diff.inDays ~/ 30}');
   }
 }
 
@@ -1448,12 +1601,12 @@ class PersonalSymbolEntry {
   });
 
   Map<String, dynamic> toJson() => {
-        'symbolId': symbolId,
-        'count': count,
-        'firstDreamed': firstDreamed.toIso8601String(),
-        'lastDreamed': lastDreamed.toIso8601String(),
-        'personalMeaning': personalMeaning,
-      };
+    'symbolId': symbolId,
+    'count': count,
+    'firstDreamed': firstDreamed.toIso8601String(),
+    'lastDreamed': lastDreamed.toIso8601String(),
+    'personalMeaning': personalMeaning,
+  };
 
   factory PersonalSymbolEntry.fromJson(Map<String, dynamic> json) =>
       PersonalSymbolEntry(
@@ -1468,14 +1621,13 @@ class PersonalSymbolEntry {
     int? count,
     DateTime? lastDreamed,
     String? personalMeaning,
-  }) =>
-      PersonalSymbolEntry(
-        symbolId: symbolId,
-        count: count ?? this.count,
-        firstDreamed: firstDreamed,
-        lastDreamed: lastDreamed ?? this.lastDreamed,
-        personalMeaning: personalMeaning ?? this.personalMeaning,
-      );
+  }) => PersonalSymbolEntry(
+    symbolId: symbolId,
+    count: count ?? this.count,
+    firstDreamed: firstDreamed,
+    lastDreamed: lastDreamed ?? this.lastDreamed,
+    personalMeaning: personalMeaning ?? this.personalMeaning,
+  );
 }
 
 class PersonalDictionaryService {
@@ -1528,12 +1680,14 @@ class PersonalDictionaryService {
         lastDreamed: DateTime.now(),
       );
     } else {
-      _entries.add(PersonalSymbolEntry(
-        symbolId: symbolId,
-        count: 1,
-        firstDreamed: DateTime.now(),
-        lastDreamed: DateTime.now(),
-      ));
+      _entries.add(
+        PersonalSymbolEntry(
+          symbolId: symbolId,
+          count: 1,
+          firstDreamed: DateTime.now(),
+          lastDreamed: DateTime.now(),
+        ),
+      );
     }
 
     _saveEntries();

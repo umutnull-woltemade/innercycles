@@ -32,9 +32,9 @@ class LifePathDetailScreen extends ConsumerWidget {
           child: Center(
             child: Text(
               L10nService.get('numerology.life_path_not_found', language),
-              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                color: AppColors.textSecondary,
-              ),
+              style: Theme.of(
+                context,
+              ).textTheme.bodyLarge?.copyWith(color: AppColors.textSecondary),
             ),
           ),
         ),
@@ -54,7 +54,10 @@ class LifePathDetailScreen extends ConsumerWidget {
                 expandedHeight: 200,
                 flexibleSpace: _buildHeader(context, content, language),
                 leading: IconButton(
-                  icon: const Icon(Icons.arrow_back, color: AppColors.textPrimary),
+                  icon: const Icon(
+                    Icons.arrow_back,
+                    color: AppColors.textPrimary,
+                  ),
                   onPressed: () => context.pop(),
                 ),
               ),
@@ -103,17 +106,26 @@ class LifePathDetailScreen extends ConsumerWidget {
 
                     // Kadim Not
                     KadimNotCard(
-                      title: L10nService.get('numerology.number_secret', language).replaceAll('{number}', content.number.toString()),
+                      title: L10nService.get(
+                        'numerology.number_secret',
+                        language,
+                      ).replaceAll('{number}', content.number.toString()),
                       content: content.viralQuote,
                       category: KadimCategory.numerology,
-                      source: L10nService.get('numerology.ancient_numerology', language),
+                      source: L10nService.get(
+                        'numerology.ancient_numerology',
+                        language,
+                      ),
                     ),
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Love & Relationships
                     _buildSection(
                       context,
-                      L10nService.get('numerology.love_relationships', language),
+                      L10nService.get(
+                        'numerology.love_relationships',
+                        language,
+                      ),
                       content.loveAndRelationships,
                       Icons.favorite,
                       AppColors.fireElement,
@@ -159,11 +171,19 @@ class LifePathDetailScreen extends ConsumerWidget {
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Famous People
-                    _buildFamousPeopleSection(context, content.famousPeople, language),
+                    _buildFamousPeopleSection(
+                      context,
+                      content.famousPeople,
+                      language,
+                    ),
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Daily Affirmation
-                    _buildAffirmationCard(context, content.dailyAffirmation, language),
+                    _buildAffirmationCard(
+                      context,
+                      content.dailyAffirmation,
+                      language,
+                    ),
                     const SizedBox(height: AppConstants.spacingXl),
 
                     // Next Blocks
@@ -171,7 +191,10 @@ class LifePathDetailScreen extends ConsumerWidget {
                     const SizedBox(height: AppConstants.spacingXl),
 
                     // Bottom Navigation
-                    PageBottomNavigation(currentRoute: '/numerology', language: language),
+                    PageBottomNavigation(
+                      currentRoute: '/numerology',
+                      language: language,
+                    ),
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // AI-QUOTABLE: Footer
@@ -195,7 +218,11 @@ class LifePathDetailScreen extends ConsumerWidget {
   }
 
   /// AI-QUOTABLE: İlk 3 bullet - direkt cevap
-  Widget _buildQuotableBullets(BuildContext context, LifePathContent content, AppLanguage language) {
+  Widget _buildQuotableBullets(
+    BuildContext context,
+    LifePathContent content,
+    AppLanguage language,
+  ) {
     final color = _getColorForNumber(content.number);
     final bullets = _getQuotableBullets(content.number, language);
     return Container(
@@ -216,33 +243,35 @@ class LifePathDetailScreen extends ConsumerWidget {
             ),
           ),
           const SizedBox(height: AppConstants.spacingMd),
-          ...bullets.map((bullet) => Padding(
-            padding: const EdgeInsets.only(bottom: 8),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  width: 6,
-                  height: 6,
-                  margin: const EdgeInsets.only(top: 7),
-                  decoration: BoxDecoration(
-                    color: color,
-                    shape: BoxShape.circle,
-                  ),
-                ),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: Text(
-                    bullet,
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: AppColors.textPrimary,
-                      height: 1.5,
+          ...bullets.map(
+            (bullet) => Padding(
+              padding: const EdgeInsets.only(bottom: 8),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    width: 6,
+                    height: 6,
+                    margin: const EdgeInsets.only(top: 7),
+                    decoration: BoxDecoration(
+                      color: color,
+                      shape: BoxShape.circle,
                     ),
                   ),
-                ),
-              ],
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: Text(
+                      bullet,
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: AppColors.textPrimary,
+                        height: 1.5,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          )),
+          ),
         ],
       ),
     ).animate().fadeIn(duration: 400.ms);
@@ -263,7 +292,11 @@ class LifePathDetailScreen extends ConsumerWidget {
     ];
   }
 
-  Widget _buildHeader(BuildContext context, LifePathContent content, AppLanguage language) {
+  Widget _buildHeader(
+    BuildContext context,
+    LifePathContent content,
+    AppLanguage language,
+  ) {
     final color = _getColorForNumber(content.number);
     return FlexibleSpaceBar(
       background: Container(
@@ -271,10 +304,7 @@ class LifePathDetailScreen extends ConsumerWidget {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [
-              color.withValues(alpha: 0.3),
-              Colors.transparent,
-            ],
+            colors: [color.withValues(alpha: 0.3), Colors.transparent],
           ),
         ),
         child: Column(
@@ -282,9 +312,14 @@ class LifePathDetailScreen extends ConsumerWidget {
           children: [
             // AI-QUOTABLE: H1 Soru formatı
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: AppConstants.spacingLg),
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppConstants.spacingLg,
+              ),
               child: Text(
-                L10nService.get('numerology.life_path_question', language).replaceAll('{number}', content.number.toString()),
+                L10nService.get(
+                  'numerology.life_path_question',
+                  language,
+                ).replaceAll('{number}', content.number.toString()),
                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                   color: AppColors.textPrimary,
                   fontWeight: FontWeight.bold,
@@ -324,7 +359,9 @@ class LifePathDetailScreen extends ConsumerWidget {
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: _getColorForNumber(content.number).withValues(alpha: 0.5),
+                    color: _getColorForNumber(
+                      content.number,
+                    ).withValues(alpha: 0.5),
                     blurRadius: 20,
                     spreadRadius: 5,
                   ),
@@ -371,7 +408,12 @@ class LifePathDetailScreen extends ConsumerWidget {
       runSpacing: 8,
       alignment: WrapAlignment.center,
       children: [
-        _buildInfoPill(context, content.symbol, content.element, _getElementColor(content.element)),
+        _buildInfoPill(
+          context,
+          content.symbol,
+          content.element,
+          _getElementColor(content.element),
+        ),
         _buildInfoPill(context, '☿', content.planet, AppColors.auroraStart),
         _buildInfoPill(context, '🎴', content.tarotCard, AppColors.auroraEnd),
         _buildInfoPill(context, '🎨', content.color, AppColors.starGold),
@@ -380,7 +422,12 @@ class LifePathDetailScreen extends ConsumerWidget {
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildInfoPill(BuildContext context, String emoji, String label, Color color) {
+  Widget _buildInfoPill(
+    BuildContext context,
+    String emoji,
+    String label,
+    Color color,
+  ) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       decoration: BoxDecoration(
@@ -395,9 +442,9 @@ class LifePathDetailScreen extends ConsumerWidget {
           const SizedBox(width: 6),
           Text(
             label,
-            style: Theme.of(context).textTheme.labelSmall?.copyWith(
-              color: color,
-            ),
+            style: Theme.of(
+              context,
+            ).textTheme.labelSmall?.copyWith(color: color),
           ),
         ],
       ),
@@ -417,10 +464,7 @@ class LifePathDetailScreen extends ConsumerWidget {
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [
-            color.withValues(alpha: 0.15),
-            AppColors.surfaceDark,
-          ],
+          colors: [color.withValues(alpha: 0.15), AppColors.surfaceDark],
         ),
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         border: Border.all(color: color.withValues(alpha: 0.3)),
@@ -461,7 +505,11 @@ class LifePathDetailScreen extends ConsumerWidget {
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildShadowSection(BuildContext context, String shadowWork, AppLanguage language) {
+  Widget _buildShadowSection(
+    BuildContext context,
+    String shadowWork,
+    AppLanguage language,
+  ) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -487,7 +535,11 @@ class LifePathDetailScreen extends ConsumerWidget {
                   color: AppColors.error.withValues(alpha: 0.2),
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: const Icon(Icons.nights_stay, color: AppColors.error, size: 20),
+                child: const Icon(
+                  Icons.nights_stay,
+                  color: AppColors.error,
+                  size: 20,
+                ),
               ),
               const SizedBox(width: 12),
               Text(
@@ -516,7 +568,11 @@ class LifePathDetailScreen extends ConsumerWidget {
             ),
             child: Row(
               children: [
-                const Icon(Icons.info_outline, color: AppColors.textMuted, size: 16),
+                const Icon(
+                  Icons.info_outline,
+                  color: AppColors.textMuted,
+                  size: 16,
+                ),
                 const SizedBox(width: 8),
                 Expanded(
                   child: Text(
@@ -535,7 +591,11 @@ class LifePathDetailScreen extends ConsumerWidget {
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildCompatibilitySection(BuildContext context, LifePathContent content, AppLanguage language) {
+  Widget _buildCompatibilitySection(
+    BuildContext context,
+    LifePathContent content,
+    AppLanguage language,
+  ) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -590,9 +650,9 @@ class LifePathDetailScreen extends ConsumerWidget {
       children: [
         Text(
           label,
-          style: Theme.of(context).textTheme.labelMedium?.copyWith(
-            color: color,
-          ),
+          style: Theme.of(
+            context,
+          ).textTheme.labelMedium?.copyWith(color: color),
         ),
         const SizedBox(height: 8),
         Wrap(
@@ -622,7 +682,11 @@ class LifePathDetailScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildFamousPeopleSection(BuildContext context, String famousPeople, AppLanguage language) {
+  Widget _buildFamousPeopleSection(
+    BuildContext context,
+    String famousPeople,
+    AppLanguage language,
+  ) {
     final people = famousPeople.split(', ');
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -640,9 +704,9 @@ class LifePathDetailScreen extends ConsumerWidget {
               const SizedBox(width: 8),
               Text(
                 L10nService.get('numerology.famous_people', language),
-                style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                  color: AppColors.starGold,
-                ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleSmall?.copyWith(color: AppColors.starGold),
               ),
             ],
           ),
@@ -652,16 +716,19 @@ class LifePathDetailScreen extends ConsumerWidget {
             runSpacing: 8,
             children: people.map((person) {
               return Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 6,
+                ),
                 decoration: BoxDecoration(
                   color: AppColors.starGold.withValues(alpha: 0.15),
                   borderRadius: BorderRadius.circular(16),
                 ),
                 child: Text(
                   person.trim(),
-                  style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                    color: AppColors.starGold,
-                  ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.labelSmall?.copyWith(color: AppColors.starGold),
                 ),
               );
             }).toList(),
@@ -671,7 +738,11 @@ class LifePathDetailScreen extends ConsumerWidget {
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildAffirmationCard(BuildContext context, String affirmation, AppLanguage language) {
+  Widget _buildAffirmationCard(
+    BuildContext context,
+    String affirmation,
+    AppLanguage language,
+  ) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingXl),
       decoration: BoxDecoration(
@@ -690,11 +761,7 @@ class LifePathDetailScreen extends ConsumerWidget {
       ),
       child: Column(
         children: [
-          Icon(
-            Icons.format_quote,
-            color: _getColorForNumber(number),
-            size: 32,
-          ),
+          Icon(Icons.format_quote, color: _getColorForNumber(number), size: 32),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
             affirmation,
@@ -708,9 +775,9 @@ class LifePathDetailScreen extends ConsumerWidget {
           const SizedBox(height: AppConstants.spacingMd),
           Text(
             L10nService.get('numerology.your_affirmation', language),
-            style: Theme.of(context).textTheme.labelSmall?.copyWith(
-              color: AppColors.textMuted,
-            ),
+            style: Theme.of(
+              context,
+            ).textTheme.labelSmall?.copyWith(color: AppColors.textMuted),
           ),
         ],
       ),

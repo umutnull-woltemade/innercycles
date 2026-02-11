@@ -99,7 +99,9 @@ class _ObservatoryDashboardScreenState
             onPressed: () => context.go(Routes.admin),
             icon: Icon(
               Icons.arrow_back_ios_new,
-              color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+              color: isDark
+                  ? AppColors.textPrimary
+                  : AppColors.lightTextPrimary,
             ),
           ),
           Container(
@@ -108,11 +110,7 @@ class _ObservatoryDashboardScreenState
               gradient: AppColors.goldGradient,
               shape: BoxShape.circle,
             ),
-            child: const Icon(
-              Icons.insights,
-              color: Colors.white,
-              size: 24,
-            ),
+            child: const Icon(Icons.insights, color: Colors.white, size: 24),
           ),
           const SizedBox(width: AppConstants.spacingMd),
           Expanded(
@@ -151,9 +149,9 @@ class _ObservatoryDashboardScreenState
                   ),
                   error: (_, _) => Text(
                     'Error loading data',
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: AppColors.error,
-                    ),
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodySmall?.copyWith(color: AppColors.error),
                   ),
                 ),
               ],
@@ -169,7 +167,9 @@ class _ObservatoryDashboardScreenState
             },
             icon: Icon(
               Icons.refresh,
-              color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+              color: isDark
+                  ? AppColors.textSecondary
+                  : AppColors.lightTextSecondary,
             ),
             tooltip: 'Refresh Data',
           ),
@@ -177,7 +177,9 @@ class _ObservatoryDashboardScreenState
             onPressed: () => _showExportDialog(context),
             icon: Icon(
               Icons.download,
-              color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+              color: isDark
+                  ? AppColors.textSecondary
+                  : AppColors.lightTextSecondary,
             ),
             tooltip: 'Export Report',
           ),
@@ -206,10 +208,7 @@ class _ObservatoryDashboardScreenState
           Container(
             width: 8,
             height: 8,
-            decoration: BoxDecoration(
-              color: color,
-              shape: BoxShape.circle,
-            ),
+            decoration: BoxDecoration(color: color, shape: BoxShape.circle),
           ),
           const SizedBox(width: 4),
           Text(
@@ -305,7 +304,9 @@ class _ObservatoryDashboardScreenState
                 style: Theme.of(context).textTheme.labelSmall?.copyWith(
                   color: isSelected
                       ? AppColors.starGold
-                      : (isDark ? AppColors.textMuted : AppColors.lightTextMuted),
+                      : (isDark
+                            ? AppColors.textMuted
+                            : AppColors.lightTextMuted),
                   fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
                 ),
               ),
@@ -337,7 +338,13 @@ class _ObservatoryDashboardScreenState
             padding: const EdgeInsets.all(AppConstants.spacingMd),
             children: [
               _buildSidebarItem(context, isDark, 0, 'Summary', Icons.dashboard),
-              _buildSidebarItem(context, isDark, 1, 'Language', Icons.translate),
+              _buildSidebarItem(
+                context,
+                isDark,
+                1,
+                'Language',
+                Icons.translate,
+              ),
               _buildSidebarItem(context, isDark, 2, 'Content', Icons.article),
               _buildSidebarItem(context, isDark, 3, 'Safety', Icons.shield),
               _buildSidebarItem(context, isDark, 4, 'Platform', Icons.build),
@@ -409,11 +416,21 @@ class _ObservatoryDashboardScreenState
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildSectionTitle(context, isDark, 'System Status', Icons.dashboard),
+            _buildSectionTitle(
+              context,
+              isDark,
+              'System Status',
+              Icons.dashboard,
+            ),
             const SizedBox(height: AppConstants.spacingMd),
             _buildStatusGrid(context, isDark, summary),
             const SizedBox(height: AppConstants.spacingXl),
-            _buildSectionTitle(context, isDark, 'Technology Inventory', Icons.memory),
+            _buildSectionTitle(
+              context,
+              isDark,
+              'Technology Inventory',
+              Icons.memory,
+            ),
             const SizedBox(height: AppConstants.spacingMd),
             _buildTechInventory(context, isDark),
           ],
@@ -421,15 +438,16 @@ class _ObservatoryDashboardScreenState
       ),
       loading: () => const Center(child: CircularProgressIndicator()),
       error: (error, _) => Center(
-        child: Text(
-          'Error: $error',
-          style: TextStyle(color: AppColors.error),
-        ),
+        child: Text('Error: $error', style: TextStyle(color: AppColors.error)),
       ),
     );
   }
 
-  Widget _buildStatusGrid(BuildContext context, bool isDark, ObservatorySummary summary) {
+  Widget _buildStatusGrid(
+    BuildContext context,
+    bool isDark,
+    ObservatorySummary summary,
+  ) {
     return GridView.count(
       crossAxisCount: MediaQuery.of(context).size.width > 600 ? 4 : 2,
       crossAxisSpacing: AppConstants.spacingMd,
@@ -439,7 +457,8 @@ class _ObservatoryDashboardScreenState
       children: [
         _StatusCard(
           title: 'Language',
-          value: '${summary.languageCoverage.averageCompletion.toStringAsFixed(1)}%',
+          value:
+              '${summary.languageCoverage.averageCompletion.toStringAsFixed(1)}%',
           subtitle: '${summary.languageCoverage.totalStrings} strings',
           status: summary.languageCoverage.status,
           icon: Icons.translate,
@@ -503,13 +522,17 @@ class _ObservatoryDashboardScreenState
           return ExpansionTile(
             leading: Icon(
               engine.isUserFacing ? Icons.person : Icons.settings,
-              color: engine.isUserFacing ? AppColors.auroraStart : AppColors.starGold,
+              color: engine.isUserFacing
+                  ? AppColors.auroraStart
+                  : AppColors.starGold,
               size: 20,
             ),
             title: Text(
               engine.name,
               style: TextStyle(
-                color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                color: isDark
+                    ? AppColors.textPrimary
+                    : AppColors.lightTextPrimary,
                 fontWeight: FontWeight.w500,
               ),
             ),
@@ -523,8 +546,11 @@ class _ObservatoryDashboardScreenState
             trailing: Container(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
               decoration: BoxDecoration(
-                color: (engine.isUserFacing ? AppColors.auroraStart : AppColors.starGold)
-                    .withValues(alpha: 0.2),
+                color:
+                    (engine.isUserFacing
+                            ? AppColors.auroraStart
+                            : AppColors.starGold)
+                        .withValues(alpha: 0.2),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Text(
@@ -532,7 +558,9 @@ class _ObservatoryDashboardScreenState
                 style: TextStyle(
                   fontSize: 10,
                   fontWeight: FontWeight.bold,
-                  color: engine.isUserFacing ? AppColors.auroraStart : AppColors.starGold,
+                  color: engine.isUserFacing
+                      ? AppColors.auroraStart
+                      : AppColors.starGold,
                 ),
               ),
             ),
@@ -543,8 +571,16 @@ class _ObservatoryDashboardScreenState
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     _buildDetailRow('Inputs', engine.inputs.join(', '), isDark),
-                    _buildDetailRow('Outputs', engine.outputs.join(', '), isDark),
-                    _buildDetailRow('Safety Role', engine.appleSafetyRole, isDark),
+                    _buildDetailRow(
+                      'Outputs',
+                      engine.outputs.join(', '),
+                      isDark,
+                    ),
+                    _buildDetailRow(
+                      'Safety Role',
+                      engine.appleSafetyRole,
+                      isDark,
+                    ),
                     if (engine.filePath != null)
                       _buildDetailRow('File', engine.filePath!, isDark),
                   ],
@@ -578,7 +614,9 @@ class _ObservatoryDashboardScreenState
             child: Text(
               value,
               style: TextStyle(
-                color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+                color: isDark
+                    ? AppColors.textSecondary
+                    : AppColors.lightTextSecondary,
                 fontSize: 12,
               ),
             ),
@@ -601,16 +639,31 @@ class _ObservatoryDashboardScreenState
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildSectionTitle(context, isDark, 'Translation Coverage', Icons.translate),
+            _buildSectionTitle(
+              context,
+              isDark,
+              'Translation Coverage',
+              Icons.translate,
+            ),
             const SizedBox(height: AppConstants.spacingMd),
             _buildCoverageStats(context, isDark, coverage),
             const SizedBox(height: AppConstants.spacingXl),
-            _buildSectionTitle(context, isDark, 'Per-Locale Breakdown', Icons.language),
+            _buildSectionTitle(
+              context,
+              isDark,
+              'Per-Locale Breakdown',
+              Icons.language,
+            ),
             const SizedBox(height: AppConstants.spacingMd),
             _buildLocaleBreakdown(context, isDark, coverage),
             if (coverage.missingTranslations.isNotEmpty) ...[
               const SizedBox(height: AppConstants.spacingXl),
-              _buildSectionTitle(context, isDark, 'Missing Translations', Icons.warning),
+              _buildSectionTitle(
+                context,
+                isDark,
+                'Missing Translations',
+                Icons.warning,
+              ),
               const SizedBox(height: AppConstants.spacingMd),
               _buildMissingTranslations(context, isDark, coverage),
             ],
@@ -622,7 +675,11 @@ class _ObservatoryDashboardScreenState
     );
   }
 
-  Widget _buildCoverageStats(BuildContext context, bool isDark, LanguageCoverage coverage) {
+  Widget _buildCoverageStats(
+    BuildContext context,
+    bool isDark,
+    LanguageCoverage coverage,
+  ) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -640,7 +697,8 @@ class _ObservatoryDashboardScreenState
         children: [
           Expanded(
             child: _buildStatItem(
-              context, isDark,
+              context,
+              isDark,
               'Total Strings',
               '${coverage.totalStrings}',
               Icons.text_fields,
@@ -648,7 +706,8 @@ class _ObservatoryDashboardScreenState
           ),
           Expanded(
             child: _buildStatItem(
-              context, isDark,
+              context,
+              isDark,
               'Avg Coverage',
               '${coverage.averageCompletion.toStringAsFixed(1)}%',
               Icons.pie_chart,
@@ -656,7 +715,8 @@ class _ObservatoryDashboardScreenState
           ),
           Expanded(
             child: _buildStatItem(
-              context, isDark,
+              context,
+              isDark,
               'Hardcoded',
               '${coverage.hardcodedCount}',
               Icons.warning_amber,
@@ -664,7 +724,8 @@ class _ObservatoryDashboardScreenState
           ),
           Expanded(
             child: _buildStatItem(
-              context, isDark,
+              context,
+              isDark,
               'Missing',
               '${coverage.missingTranslations.length}',
               Icons.error_outline,
@@ -703,7 +764,11 @@ class _ObservatoryDashboardScreenState
     );
   }
 
-  Widget _buildLocaleBreakdown(BuildContext context, bool isDark, LanguageCoverage coverage) {
+  Widget _buildLocaleBreakdown(
+    BuildContext context,
+    bool isDark,
+    LanguageCoverage coverage,
+  ) {
     return Container(
       decoration: BoxDecoration(
         color: isDark
@@ -735,7 +800,9 @@ class _ObservatoryDashboardScreenState
                       child: Text(
                         locale.displayName,
                         style: TextStyle(
-                          color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                          color: isDark
+                              ? AppColors.textPrimary
+                              : AppColors.lightTextPrimary,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -743,7 +810,9 @@ class _ObservatoryDashboardScreenState
                     Text(
                       '${locale.translatedCount}/${locale.totalCount}',
                       style: TextStyle(
-                        color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                        color: isDark
+                            ? AppColors.textMuted
+                            : AppColors.lightTextMuted,
                         fontSize: 12,
                       ),
                     ),
@@ -775,7 +844,11 @@ class _ObservatoryDashboardScreenState
     ).animate().fadeIn(delay: 200.ms, duration: 400.ms);
   }
 
-  Widget _buildMissingTranslations(BuildContext context, bool isDark, LanguageCoverage coverage) {
+  Widget _buildMissingTranslations(
+    BuildContext context,
+    bool isDark,
+    LanguageCoverage coverage,
+  ) {
     return Container(
       constraints: const BoxConstraints(maxHeight: 300),
       decoration: BoxDecoration(
@@ -802,21 +875,24 @@ class _ObservatoryDashboardScreenState
           final missing = coverage.missingTranslations[index];
           return ListTile(
             dense: true,
-            leading: const Icon(Icons.warning_amber, color: AppColors.warning, size: 18),
+            leading: const Icon(
+              Icons.warning_amber,
+              color: AppColors.warning,
+              size: 18,
+            ),
             title: Text(
               missing.key,
               style: TextStyle(
-                color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                color: isDark
+                    ? AppColors.textPrimary
+                    : AppColors.lightTextPrimary,
                 fontSize: 13,
                 fontFamily: 'monospace',
               ),
             ),
             subtitle: Text(
               'Missing: ${missing.missingLocales.join(", ")}',
-              style: TextStyle(
-                color: AppColors.warning,
-                fontSize: 11,
-              ),
+              style: TextStyle(color: AppColors.warning, fontSize: 11),
             ),
             trailing: Container(
               padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
@@ -848,11 +924,21 @@ class _ObservatoryDashboardScreenState
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildSectionTitle(context, isDark, 'Content Inventory', Icons.article),
+            _buildSectionTitle(
+              context,
+              isDark,
+              'Content Inventory',
+              Icons.article,
+            ),
             const SizedBox(height: AppConstants.spacingMd),
             _buildContentStats(context, isDark, content),
             const SizedBox(height: AppConstants.spacingXl),
-            _buildSectionTitle(context, isDark, 'Category Distribution', Icons.category),
+            _buildSectionTitle(
+              context,
+              isDark,
+              'Category Distribution',
+              Icons.category,
+            ),
             const SizedBox(height: AppConstants.spacingMd),
             _buildCategoryChart(context, isDark, content),
           ],
@@ -863,7 +949,11 @@ class _ObservatoryDashboardScreenState
     );
   }
 
-  Widget _buildContentStats(BuildContext context, bool isDark, ContentInventory content) {
+  Widget _buildContentStats(
+    BuildContext context,
+    bool isDark,
+    ContentInventory content,
+  ) {
     return GridView.count(
       crossAxisCount: MediaQuery.of(context).size.width > 600 ? 4 : 2,
       crossAxisSpacing: AppConstants.spacingMd,
@@ -872,28 +962,32 @@ class _ObservatoryDashboardScreenState
       physics: const NeverScrollableScrollPhysics(),
       children: [
         _buildMetricCard(
-          context, isDark,
+          context,
+          isDark,
           'Total Items',
           '${content.totalItems}',
           Icons.inventory_2,
           AppColors.starGold,
         ),
         _buildMetricCard(
-          context, isDark,
+          context,
+          isDark,
           'AI Generated',
           '${content.aiGeneratedCount}',
           Icons.auto_awesome,
           AppColors.auroraStart,
         ),
         _buildMetricCard(
-          context, isDark,
+          context,
+          isDark,
           'Static Content',
           '${content.staticCount}',
           Icons.text_snippet,
           AppColors.twilightEnd,
         ),
         _buildMetricCard(
-          context, isDark,
+          context,
+          isDark,
           'Growth (7d)',
           '+${content.growth.last7Days}',
           Icons.trending_up,
@@ -944,7 +1038,11 @@ class _ObservatoryDashboardScreenState
     );
   }
 
-  Widget _buildCategoryChart(BuildContext context, bool isDark, ContentInventory content) {
+  Widget _buildCategoryChart(
+    BuildContext context,
+    bool isDark,
+    ContentInventory content,
+  ) {
     final total = content.byCategory.values.fold<int>(0, (sum, c) => sum + c);
     final colors = [
       AppColors.starGold,
@@ -969,7 +1067,9 @@ class _ObservatoryDashboardScreenState
         ),
       ),
       child: Column(
-        children: content.byCategory.entries.toList().asMap().entries.map((entry) {
+        children: content.byCategory.entries.toList().asMap().entries.map((
+          entry,
+        ) {
           final index = entry.key;
           final category = entry.value;
           final pct = total > 0 ? (category.value / total * 100) : 0.0;
@@ -986,7 +1086,9 @@ class _ObservatoryDashboardScreenState
                     Text(
                       category.key,
                       style: TextStyle(
-                        color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+                        color: isDark
+                            ? AppColors.textSecondary
+                            : AppColors.lightTextSecondary,
                         fontSize: 13,
                       ),
                     ),
@@ -1035,12 +1137,22 @@ class _ObservatoryDashboardScreenState
             const SizedBox(height: AppConstants.spacingMd),
             _buildSafetyOverview(context, isDark, safety),
             const SizedBox(height: AppConstants.spacingXl),
-            _buildSectionTitle(context, isDark, 'Last 24 Hours', Icons.schedule),
+            _buildSectionTitle(
+              context,
+              isDark,
+              'Last 24 Hours',
+              Icons.schedule,
+            ),
             const SizedBox(height: AppConstants.spacingMd),
             _buildSafety24hMetrics(context, isDark, safety),
             if (safety.topPatterns.isNotEmpty) ...[
               const SizedBox(height: AppConstants.spacingXl),
-              _buildSectionTitle(context, isDark, 'Top Triggered Patterns', Icons.pattern),
+              _buildSectionTitle(
+                context,
+                isDark,
+                'Top Triggered Patterns',
+                Icons.pattern,
+              ),
               const SizedBox(height: AppConstants.spacingMd),
               _buildTopPatterns(context, isDark, safety),
             ],
@@ -1052,7 +1164,11 @@ class _ObservatoryDashboardScreenState
     );
   }
 
-  Widget _buildSafetyOverview(BuildContext context, bool isDark, SafetyMetrics safety) {
+  Widget _buildSafetyOverview(
+    BuildContext context,
+    bool isDark,
+    SafetyMetrics safety,
+  ) {
     final statusColor = switch (safety.status) {
       HealthStatus.healthy => AppColors.success,
       HealthStatus.warning => AppColors.warning,
@@ -1102,13 +1218,17 @@ class _ObservatoryDashboardScreenState
                 Text(
                   'Review Mode: ${safety.reviewMode.mode.label}',
                   style: TextStyle(
-                    color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                    color: isDark
+                        ? AppColors.textMuted
+                        : AppColors.lightTextMuted,
                   ),
                 ),
                 Text(
                   'Hit Rate: ${safety.hitRatePercent.toStringAsFixed(2)}% | Rewrite Success: ${safety.rewriteSuccessPercent.toStringAsFixed(1)}%',
                   style: TextStyle(
-                    color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                    color: isDark
+                        ? AppColors.textMuted
+                        : AppColors.lightTextMuted,
                     fontSize: 12,
                   ),
                 ),
@@ -1120,7 +1240,11 @@ class _ObservatoryDashboardScreenState
     ).animate().fadeIn(delay: 100.ms, duration: 400.ms);
   }
 
-  Widget _buildSafety24hMetrics(BuildContext context, bool isDark, SafetyMetrics safety) {
+  Widget _buildSafety24hMetrics(
+    BuildContext context,
+    bool isDark,
+    SafetyMetrics safety,
+  ) {
     return GridView.count(
       crossAxisCount: MediaQuery.of(context).size.width > 600 ? 4 : 2,
       crossAxisSpacing: AppConstants.spacingMd,
@@ -1129,28 +1253,32 @@ class _ObservatoryDashboardScreenState
       physics: const NeverScrollableScrollPhysics(),
       children: [
         _buildMetricCard(
-          context, isDark,
+          context,
+          isDark,
           'Content Processed',
           '${safety.contentProcessed24h}',
           Icons.article,
           AppColors.starGold,
         ),
         _buildMetricCard(
-          context, isDark,
+          context,
+          isDark,
           'Filter Hits',
           '${safety.filterHits24h}',
           Icons.warning_amber,
           AppColors.warning,
         ),
         _buildMetricCard(
-          context, isDark,
+          context,
+          isDark,
           'Auto-Rewrites',
           '${safety.autoRewrites24h}',
           Icons.auto_fix_high,
           AppColors.auroraStart,
         ),
         _buildMetricCard(
-          context, isDark,
+          context,
+          isDark,
           'Blocks',
           '${safety.runtimeBlocks24h}',
           Icons.block,
@@ -1160,7 +1288,11 @@ class _ObservatoryDashboardScreenState
     ).animate().fadeIn(delay: 200.ms, duration: 400.ms);
   }
 
-  Widget _buildTopPatterns(BuildContext context, bool isDark, SafetyMetrics safety) {
+  Widget _buildTopPatterns(
+    BuildContext context,
+    bool isDark,
+    SafetyMetrics safety,
+  ) {
     return Container(
       decoration: BoxDecoration(
         color: isDark
@@ -1201,7 +1333,9 @@ class _ObservatoryDashboardScreenState
             title: Text(
               '"${pattern.pattern}"',
               style: TextStyle(
-                color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                color: isDark
+                    ? AppColors.textPrimary
+                    : AppColors.lightTextPrimary,
                 fontFamily: 'monospace',
                 fontSize: 13,
               ),
@@ -1251,7 +1385,11 @@ class _ObservatoryDashboardScreenState
     );
   }
 
-  Widget _buildBuildStatus(BuildContext context, bool isDark, PlatformHealth platform) {
+  Widget _buildBuildStatus(
+    BuildContext context,
+    bool isDark,
+    PlatformHealth platform,
+  ) {
     return Row(
       children: [
         Expanded(
@@ -1265,7 +1403,12 @@ class _ObservatoryDashboardScreenState
     ).animate().fadeIn(delay: 100.ms, duration: 400.ms);
   }
 
-  Widget _buildBuildCard(BuildContext context, bool isDark, String label, BuildStatus build) {
+  Widget _buildBuildCard(
+    BuildContext context,
+    bool isDark,
+    String label,
+    BuildStatus build,
+  ) {
     final statusColor = switch (build.status) {
       BuildStatusType.success => AppColors.success,
       BuildStatusType.failed => AppColors.error,
@@ -1296,7 +1439,9 @@ class _ObservatoryDashboardScreenState
               Text(
                 '$label Platform',
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                  color: isDark
+                      ? AppColors.textPrimary
+                      : AppColors.lightTextPrimary,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -1356,7 +1501,11 @@ class _ObservatoryDashboardScreenState
     );
   }
 
-  Widget _buildCIWorkflows(BuildContext context, bool isDark, PlatformHealth platform) {
+  Widget _buildCIWorkflows(
+    BuildContext context,
+    bool isDark,
+    PlatformHealth platform,
+  ) {
     return Container(
       decoration: BoxDecoration(
         color: isDark
@@ -1390,27 +1539,28 @@ class _ObservatoryDashboardScreenState
           };
 
           return ListTile(
-            leading: Icon(
-              switch (workflow.status) {
-                BuildStatusType.success => Icons.check_circle,
-                BuildStatusType.failed => Icons.error,
-                BuildStatusType.building => Icons.refresh,
-                BuildStatusType.warning => Icons.warning,
-                BuildStatusType.unknown => Icons.help_outline,
-              },
-              color: statusColor,
-            ),
+            leading: Icon(switch (workflow.status) {
+              BuildStatusType.success => Icons.check_circle,
+              BuildStatusType.failed => Icons.error,
+              BuildStatusType.building => Icons.refresh,
+              BuildStatusType.warning => Icons.warning,
+              BuildStatusType.unknown => Icons.help_outline,
+            }, color: statusColor),
             title: Text(
               workflow.name,
               style: TextStyle(
-                color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                color: isDark
+                    ? AppColors.textPrimary
+                    : AppColors.lightTextPrimary,
               ),
             ),
             subtitle: workflow.duration != null
                 ? Text(
                     _formatDuration(workflow.duration!),
                     style: TextStyle(
-                      color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                      color: isDark
+                          ? AppColors.textMuted
+                          : AppColors.lightTextMuted,
                       fontSize: 12,
                     ),
                   )
@@ -1436,21 +1586,40 @@ class _ObservatoryDashboardScreenState
     ).animate().fadeIn(delay: 200.ms, duration: 400.ms);
   }
 
-  Widget _buildPerformanceMetrics(BuildContext context, bool isDark, PlatformHealth platform) {
+  Widget _buildPerformanceMetrics(
+    BuildContext context,
+    bool isDark,
+    PlatformHealth platform,
+  ) {
     return Row(
       children: [
         Expanded(
-          child: _buildPerfCard(context, isDark, 'Web', platform.webPerformance),
+          child: _buildPerfCard(
+            context,
+            isDark,
+            'Web',
+            platform.webPerformance,
+          ),
         ),
         const SizedBox(width: AppConstants.spacingMd),
         Expanded(
-          child: _buildPerfCard(context, isDark, 'iOS', platform.iosPerformance),
+          child: _buildPerfCard(
+            context,
+            isDark,
+            'iOS',
+            platform.iosPerformance,
+          ),
         ),
       ],
     ).animate().fadeIn(delay: 300.ms, duration: 400.ms);
   }
 
-  Widget _buildPerfCard(BuildContext context, bool isDark, String label, PerformanceMetrics perf) {
+  Widget _buildPerfCard(
+    BuildContext context,
+    bool isDark,
+    String label,
+    PerformanceMetrics perf,
+  ) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -1470,16 +1639,38 @@ class _ObservatoryDashboardScreenState
           Text(
             '$label Performance',
             style: Theme.of(context).textTheme.titleSmall?.copyWith(
-              color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+              color: isDark
+                  ? AppColors.textPrimary
+                  : AppColors.lightTextPrimary,
               fontWeight: FontWeight.bold,
             ),
           ),
           const SizedBox(height: 12),
           if (perf.lighthouseScore > 0)
-            _buildPerfRow('Lighthouse', '${perf.lighthouseScore}', _getLighthouseColor(perf.lighthouseScore), isDark),
-          _buildPerfRow('Crash-Free', '${perf.crashFreePercent.toStringAsFixed(1)}%', _getCrashFreeColor(perf.crashFreePercent), isDark),
-          _buildPerfRow('Cold Start', '${perf.coldStartMs}ms', _getColdStartColor(perf.coldStartMs), isDark),
-          _buildPerfRow('Bundle Size', '${perf.bundleSizeMb.toStringAsFixed(1)} MB', AppColors.starGold, isDark),
+            _buildPerfRow(
+              'Lighthouse',
+              '${perf.lighthouseScore}',
+              _getLighthouseColor(perf.lighthouseScore),
+              isDark,
+            ),
+          _buildPerfRow(
+            'Crash-Free',
+            '${perf.crashFreePercent.toStringAsFixed(1)}%',
+            _getCrashFreeColor(perf.crashFreePercent),
+            isDark,
+          ),
+          _buildPerfRow(
+            'Cold Start',
+            '${perf.coldStartMs}ms',
+            _getColdStartColor(perf.coldStartMs),
+            isDark,
+          ),
+          _buildPerfRow(
+            'Bundle Size',
+            '${perf.bundleSizeMb.toStringAsFixed(1)} MB',
+            AppColors.starGold,
+            isDark,
+          ),
         ],
       ),
     );
@@ -1721,7 +1912,9 @@ class _StatusCard extends StatelessWidget {
           Text(
             title,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+              color: isDark
+                  ? AppColors.textSecondary
+                  : AppColors.lightTextSecondary,
             ),
           ),
         ],

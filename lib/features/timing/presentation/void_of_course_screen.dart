@@ -28,9 +28,11 @@ final upcomingVocPeriodsProvider = Provider<List<VoidOfCourseMoon>>((ref) {
       final voc = VoidOfCourseMoonExtension.getVoidOfCourseStatus(checkTime);
       if (voc.isVoid && voc.startTime != null) {
         // Avoid duplicates
-        if (!periods.any((p) =>
-            p.startTime?.day == voc.startTime?.day &&
-            p.startTime?.hour == voc.startTime?.hour)) {
+        if (!periods.any(
+          (p) =>
+              p.startTime?.day == voc.startTime?.day &&
+              p.startTime?.hour == voc.startTime?.hour,
+        )) {
           periods.add(voc);
         }
       }
@@ -38,8 +40,11 @@ final upcomingVocPeriodsProvider = Provider<List<VoidOfCourseMoon>>((ref) {
   }
 
   // Sort by start time
-  periods.sort((a, b) => (a.startTime ?? DateTime.now())
-      .compareTo(b.startTime ?? DateTime.now()));
+  periods.sort(
+    (a, b) => (a.startTime ?? DateTime.now()).compareTo(
+      b.startTime ?? DateTime.now(),
+    ),
+  );
 
   return periods;
 });
@@ -79,12 +84,20 @@ class VoidOfCourseScreen extends ConsumerWidget {
                     .fadeIn(delay: 300.ms, duration: 400.ms)
                     .slideY(begin: 0.1),
                 const SizedBox(height: AppConstants.spacingXl),
-                _buildUpcomingPeriods(context, upcomingPeriods, isDark, language)
+                _buildUpcomingPeriods(
+                      context,
+                      upcomingPeriods,
+                      isDark,
+                      language,
+                    )
                     .animate()
                     .fadeIn(delay: 400.ms, duration: 400.ms)
                     .slideY(begin: 0.1),
                 const SizedBox(height: AppConstants.spacingXxl),
-                PageBottomNavigation(currentRoute: '/timing', language: language),
+                PageBottomNavigation(
+                  currentRoute: '/timing',
+                  language: language,
+                ),
               ],
             ),
           ),
@@ -112,15 +125,17 @@ class VoidOfCourseScreen extends ConsumerWidget {
               Text(
                 L10nService.get('voc.title', language),
                 style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                      color: AppColors.starGold,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  color: AppColors.starGold,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               Text(
                 L10nService.get('voc.subtitle', language),
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
-                    ),
+                  color: isDark
+                      ? AppColors.textSecondary
+                      : AppColors.lightTextSecondary,
+                ),
               ),
             ],
           ),
@@ -142,7 +157,12 @@ class VoidOfCourseScreen extends ConsumerWidget {
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildCurrentStatus(BuildContext context, VoidOfCourseMoon voc, bool isDark, AppLanguage language) {
+  Widget _buildCurrentStatus(
+    BuildContext context,
+    VoidOfCourseMoon voc,
+    bool isDark,
+    AppLanguage language,
+  ) {
     final isVoid = voc.isVoid;
     final statusColor = isVoid ? AppColors.warning : AppColors.success;
     final moonPhase = MoonService.getCurrentPhase();
@@ -190,12 +210,14 @@ class VoidOfCourseScreen extends ConsumerWidget {
               ),
               const SizedBox(width: 10),
               Text(
-                isVoid ? L10nService.get('voc.moon_voc', language) : L10nService.get('voc.moon_active', language),
+                isVoid
+                    ? L10nService.get('voc.moon_voc', language)
+                    : L10nService.get('voc.moon_active', language),
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      color: statusColor,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 2,
-                    ),
+                  color: statusColor,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 2,
+                ),
               ),
             ],
           ),
@@ -246,9 +268,9 @@ class VoidOfCourseScreen extends ConsumerWidget {
                   Text(
                     '${L10nService.get('voc.time_remaining', language)}: ${voc.timeRemainingFormatted}',
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          color: statusColor,
-                          fontWeight: FontWeight.w600,
-                        ),
+                      color: statusColor,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ],
               ),
@@ -261,8 +283,10 @@ class VoidOfCourseScreen extends ConsumerWidget {
                 ? L10nService.get('voc.warning_message', language)
                 : L10nService.get('voc.active_message', language),
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
-                ),
+              color: isDark
+                  ? AppColors.textSecondary
+                  : AppColors.lightTextSecondary,
+            ),
             textAlign: TextAlign.center,
           ),
         ],
@@ -282,8 +306,8 @@ class VoidOfCourseScreen extends ConsumerWidget {
         Text(
           label,
           style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-              ),
+            color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+          ),
         ),
         const SizedBox(height: 6),
         Text(symbol, style: const TextStyle(fontSize: 28)),
@@ -291,15 +315,19 @@ class VoidOfCourseScreen extends ConsumerWidget {
         Text(
           value,
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
-                fontWeight: FontWeight.w600,
-              ),
+            color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+            fontWeight: FontWeight.w600,
+          ),
         ),
       ],
     );
   }
 
-  Widget _buildWhatIsVoc(BuildContext context, bool isDark, AppLanguage language) {
+  Widget _buildWhatIsVoc(
+    BuildContext context,
+    bool isDark,
+    AppLanguage language,
+  ) {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
@@ -318,18 +346,16 @@ class VoidOfCourseScreen extends ConsumerWidget {
         children: [
           Row(
             children: [
-              Icon(
-                Icons.help_outline,
-                color: AppColors.mysticBlue,
-                size: 24,
-              ),
+              Icon(Icons.help_outline, color: AppColors.mysticBlue, size: 24),
               const SizedBox(width: 10),
               Text(
                 L10nService.get('voc.what_is_voc', language),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  color: isDark
+                      ? AppColors.textPrimary
+                      : AppColors.lightTextPrimary,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ],
           ),
@@ -337,24 +363,32 @@ class VoidOfCourseScreen extends ConsumerWidget {
           Text(
             L10nService.get('voc.explanation_1', language),
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
-                  height: 1.5,
-                ),
+              color: isDark
+                  ? AppColors.textSecondary
+                  : AppColors.lightTextSecondary,
+              height: 1.5,
+            ),
           ),
           const SizedBox(height: 12),
           Text(
             L10nService.get('voc.explanation_2', language),
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
-                  height: 1.5,
-                ),
+              color: isDark
+                  ? AppColors.textSecondary
+                  : AppColors.lightTextSecondary,
+              height: 1.5,
+            ),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildDosDonts(BuildContext context, bool isDark, AppLanguage language) {
+  Widget _buildDosDonts(
+    BuildContext context,
+    bool isDark,
+    AppLanguage language,
+  ) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -409,37 +443,36 @@ class VoidOfCourseScreen extends ConsumerWidget {
                 child: Text(
                   title,
                   style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                        color: color,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    color: color,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ],
           ),
           const SizedBox(height: 12),
-          ...items.map((item) => Padding(
-                padding: const EdgeInsets.only(bottom: 8),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      '•',
-                      style: TextStyle(color: color, fontSize: 16),
-                    ),
-                    const SizedBox(width: 8),
-                    Expanded(
-                      child: Text(
-                        item,
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                              color: isDark
-                                  ? AppColors.textSecondary
-                                  : AppColors.lightTextSecondary,
-                            ),
+          ...items.map(
+            (item) => Padding(
+              padding: const EdgeInsets.only(bottom: 8),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('•', style: TextStyle(color: color, fontSize: 16)),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      item,
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: isDark
+                            ? AppColors.textSecondary
+                            : AppColors.lightTextSecondary,
                       ),
                     ),
-                  ],
-                ),
-              )),
+                  ),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -469,18 +502,16 @@ class VoidOfCourseScreen extends ConsumerWidget {
         children: [
           Row(
             children: [
-              Icon(
-                Icons.calendar_today,
-                color: AppColors.starGold,
-                size: 24,
-              ),
+              Icon(Icons.calendar_today, color: AppColors.starGold, size: 24),
               const SizedBox(width: 10),
               Text(
                 L10nService.get('voc.upcoming_periods', language),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  color: isDark
+                      ? AppColors.textPrimary
+                      : AppColors.lightTextPrimary,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ],
           ),
@@ -489,24 +520,35 @@ class VoidOfCourseScreen extends ConsumerWidget {
             Text(
               L10nService.get('voc.no_upcoming', language),
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-                  ),
+                color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+              ),
             )
           else
-            ...periods.take(5).map((voc) => _buildVocPeriodItem(context, voc, isDark, language)),
+            ...periods
+                .take(5)
+                .map(
+                  (voc) => _buildVocPeriodItem(context, voc, isDark, language),
+                ),
         ],
       ),
     );
   }
 
-  Widget _buildVocPeriodItem(BuildContext context, VoidOfCourseMoon voc, bool isDark, AppLanguage language) {
+  Widget _buildVocPeriodItem(
+    BuildContext context,
+    VoidOfCourseMoon voc,
+    bool isDark,
+    AppLanguage language,
+  ) {
     final start = voc.startTime;
     final end = voc.endTime;
 
     if (start == null || end == null) return const SizedBox.shrink();
 
     final dayNames = L10nService.getList('common.weekdays_short', language);
-    final dayName = dayNames.isNotEmpty ? dayNames[start.weekday % 7] : '${start.weekday}';
+    final dayName = dayNames.isNotEmpty
+        ? dayNames[start.weekday % 7]
+        : '${start.weekday}';
     final duration = voc.durationHours;
 
     return Container(
@@ -533,15 +575,15 @@ class VoidOfCourseScreen extends ConsumerWidget {
                 Text(
                   '${start.day}',
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        color: AppColors.warning,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    color: AppColors.warning,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 Text(
                   dayName,
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: AppColors.warning,
-                      ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodySmall?.copyWith(color: AppColors.warning),
                 ),
               ],
             ),
@@ -554,9 +596,11 @@ class VoidOfCourseScreen extends ConsumerWidget {
                 Text(
                   '${_formatTime(start)} - ${_formatTime(end)}',
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
-                        fontWeight: FontWeight.w600,
-                      ),
+                    color: isDark
+                        ? AppColors.textPrimary
+                        : AppColors.lightTextPrimary,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
                 const SizedBox(height: 4),
                 Row(
@@ -564,16 +608,20 @@ class VoidOfCourseScreen extends ConsumerWidget {
                     Text(
                       '${voc.currentSign.symbol} ${voc.currentSign.localizedName(language)}',
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
-                          ),
+                        color: isDark
+                            ? AppColors.textSecondary
+                            : AppColors.lightTextSecondary,
+                      ),
                     ),
                     if (voc.nextSign != null) ...[
                       const Text(' → '),
                       Text(
                         '${voc.nextSign!.symbol} ${voc.nextSign!.localizedName(language)}',
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                              color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
-                            ),
+                          color: isDark
+                              ? AppColors.textSecondary
+                              : AppColors.lightTextSecondary,
+                        ),
                       ),
                     ],
                   ],
@@ -591,9 +639,9 @@ class VoidOfCourseScreen extends ConsumerWidget {
               child: Text(
                 '${duration.toStringAsFixed(1)}${L10nService.get('voc.hours_abbr', language)}',
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: AppColors.warning,
-                      fontWeight: FontWeight.w600,
-                    ),
+                  color: AppColors.warning,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
         ],

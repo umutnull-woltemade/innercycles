@@ -191,8 +191,14 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
           // Continue button
           GradientButton(
             label: _currentPage == 2
-                ? L10nService.get('common.start_journey', ref.watch(languageProvider))
-                : L10nService.get('common.continue', ref.watch(languageProvider)),
+                ? L10nService.get(
+                    'common.start_journey',
+                    ref.watch(languageProvider),
+                  )
+                : L10nService.get(
+                    'common.continue',
+                    ref.watch(languageProvider),
+                  ),
             icon: _currentPage == 2 ? Icons.auto_awesome : Icons.arrow_forward,
             width: double.infinity,
             onPressed: _canProceed() ? _nextPage : null,
@@ -297,7 +303,10 @@ class _WelcomePageState extends State<_WelcomePage>
 
   void _showCosmicWelcome(String? name) {
     // Ezoterik karşılama mesajları - from locale
-    final cosmicGreetings = L10nService.getList('greetings.cosmic_welcome', widget.language);
+    final cosmicGreetings = L10nService.getList(
+      'greetings.cosmic_welcome',
+      widget.language,
+    );
     final greeting = cosmicGreetings.isNotEmpty
         ? cosmicGreetings[DateTime.now().millisecond % cosmicGreetings.length]
         : L10nService.get('greetings.cosmic_welcome', widget.language);
@@ -366,7 +375,11 @@ class _WelcomePageState extends State<_WelcomePage>
                         colors: [Color(0xFF667EEA), Color(0xFF764BA2)],
                       ),
                     ),
-                    child: const Icon(Icons.auto_awesome, color: Colors.white, size: 60),
+                    child: const Icon(
+                      Icons.auto_awesome,
+                      color: Colors.white,
+                      size: 60,
+                    ),
                   );
                 },
               ),
@@ -384,7 +397,10 @@ class _WelcomePageState extends State<_WelcomePage>
               const SizedBox(height: 8),
               // Tagline
               Text(
-                L10nService.get('onboarding.start_cosmic_journey', widget.language),
+                L10nService.get(
+                  'onboarding.start_cosmic_journey',
+                  widget.language,
+                ),
                 style: const TextStyle(color: Colors.white70, fontSize: 16),
               ),
               const SizedBox(height: 48),
@@ -394,21 +410,24 @@ class _WelcomePageState extends State<_WelcomePage>
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF667EEA),
                   foregroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(horizontal: 48, vertical: 16),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 48,
+                    vertical: 16,
+                  ),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30),
                   ),
                 ),
-                child: Text(L10nService.get('common.continue', widget.language), style: const TextStyle(fontSize: 18)),
+                child: Text(
+                  L10nService.get('common.continue', widget.language),
+                  style: const TextStyle(fontSize: 18),
+                ),
               ),
               const SizedBox(height: 32),
               // ═══════════════════════════════════════════════════════════════
               // ENTERTAINMENT DISCLAIMER - App Store 4.3(b) Compliance
               // ═══════════════════════════════════════════════════════════════
-              EntertainmentDisclaimer(
-                language: widget.language,
-                compact: true,
-              ),
+              EntertainmentDisclaimer(language: widget.language, compact: true),
             ],
           ),
         ),
@@ -444,7 +463,10 @@ class _WelcomePageState extends State<_WelcomePage>
 
             // Tagline
             Text(
-              L10nService.get('onboarding.start_cosmic_journey', widget.language),
+              L10nService.get(
+                'onboarding.start_cosmic_journey',
+                widget.language,
+              ),
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 color: AppColors.textSecondary,
                 fontSize: 16,
@@ -494,10 +516,7 @@ class _WelcomePageState extends State<_WelcomePage>
             // ═══════════════════════════════════════════════════════════════
             // ENTERTAINMENT DISCLAIMER - App Store 4.3(b) Compliance
             // ═══════════════════════════════════════════════════════════════
-            EntertainmentDisclaimer(
-              language: widget.language,
-              compact: true,
-            ),
+            EntertainmentDisclaimer(language: widget.language, compact: true),
 
             const SizedBox(height: 20),
           ],
@@ -593,7 +612,10 @@ class _WelcomePageState extends State<_WelcomePage>
             Text(
               _isAppleLoading
                   ? L10nService.get('onboarding.connecting', widget.language)
-                  : L10nService.get('onboarding.connect_with_apple', widget.language),
+                  : L10nService.get(
+                      'onboarding.connect_with_apple',
+                      widget.language,
+                    ),
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 16,
@@ -708,10 +730,31 @@ class _WelcomePageState extends State<_WelcomePage>
 
   Widget _buildFeaturesPreview() {
     final features = [
-      {'icon': '🌙', 'text': L10nService.get('onboarding.features.birth_chart', widget.language)},
-      {'icon': '✨', 'text': L10nService.get('onboarding.features.daily_reading', widget.language)},
-      {'icon': '🔮', 'text': L10nService.get('onboarding.features.tarot', widget.language)},
-      {'icon': '💫', 'text': L10nService.get('onboarding.features.numerology', widget.language)},
+      {
+        'icon': '🌙',
+        'text': L10nService.get(
+          'onboarding.features.birth_chart',
+          widget.language,
+        ),
+      },
+      {
+        'icon': '✨',
+        'text': L10nService.get(
+          'onboarding.features.daily_reading',
+          widget.language,
+        ),
+      },
+      {
+        'icon': '🔮',
+        'text': L10nService.get('onboarding.features.tarot', widget.language),
+      },
+      {
+        'icon': '💫',
+        'text': L10nService.get(
+          'onboarding.features.numerology',
+          widget.language,
+        ),
+      },
     ];
 
     return Wrap(
@@ -791,7 +834,9 @@ class _WelcomePageState extends State<_WelcomePage>
 
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('${L10nService.get('auth.apple_connection_failed', widget.language)}: $e'),
+          content: Text(
+            '${L10nService.get('auth.apple_connection_failed', widget.language)}: $e',
+          ),
           backgroundColor: AppColors.error,
           behavior: SnackBarBehavior.floating,
           shape: RoundedRectangleBorder(
@@ -841,7 +886,10 @@ class _BirthDataPage extends StatelessWidget {
           const SizedBox(height: 16),
 
           // Name input
-          _buildSectionTitle(context, L10nService.get('input.name_required', language)),
+          _buildSectionTitle(
+            context,
+            L10nService.get('input.name_required', language),
+          ),
           const SizedBox(height: 8),
           _NameInput(
             userName: userName,
@@ -851,7 +899,10 @@ class _BirthDataPage extends StatelessWidget {
           const SizedBox(height: AppConstants.spacingLg),
 
           // Birth Date
-          _buildSectionTitle(context, L10nService.get('input.birth_date_required', language)),
+          _buildSectionTitle(
+            context,
+            L10nService.get('input.birth_date_required', language),
+          ),
           const SizedBox(height: 8),
           BirthDatePicker(
             initialDate: selectedDate,
@@ -861,7 +912,10 @@ class _BirthDataPage extends StatelessWidget {
           const SizedBox(height: AppConstants.spacingLg),
 
           // Birth Time
-          _buildSectionTitle(context, L10nService.get('input.birth_time_required', language)),
+          _buildSectionTitle(
+            context,
+            L10nService.get('input.birth_time_required', language),
+          ),
           const SizedBox(height: 8),
           _BirthTimePicker(
             selectedTime: selectedTime,
@@ -871,7 +925,10 @@ class _BirthDataPage extends StatelessWidget {
           const SizedBox(height: AppConstants.spacingLg),
 
           // Birth Place
-          _buildSectionTitle(context, L10nService.get('input.birth_place_required', language)),
+          _buildSectionTitle(
+            context,
+            L10nService.get('input.birth_place_required', language),
+          ),
           const SizedBox(height: 8),
           _BirthPlacePicker(
             selectedPlace: birthPlace,
@@ -882,7 +939,9 @@ class _BirthDataPage extends StatelessWidget {
           const SizedBox(height: AppConstants.spacingLg),
 
           // Info box
-          _InfoBox(language: language).animate().fadeIn(delay: 700.ms, duration: 400.ms),
+          _InfoBox(
+            language: language,
+          ).animate().fadeIn(delay: 700.ms, duration: 400.ms),
 
           const SizedBox(height: 20),
         ],
@@ -907,7 +966,11 @@ class _NameInput extends StatelessWidget {
   final ValueChanged<String> onNameChanged;
   final AppLanguage language;
 
-  const _NameInput({required this.userName, required this.onNameChanged, required this.language});
+  const _NameInput({
+    required this.userName,
+    required this.onNameChanged,
+    required this.language,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -1328,7 +1391,10 @@ class _BirthPlacePickerState extends State<_BirthPlacePicker> {
                       Column(
                         children: [
                           Text(
-                            L10nService.get('input.birth_place', widget.language),
+                            L10nService.get(
+                              'input.birth_place',
+                              widget.language,
+                            ),
                             style: Theme.of(context).textTheme.titleMedium
                                 ?.copyWith(
                                   color: isDark
@@ -1362,7 +1428,10 @@ class _BirthPlacePickerState extends State<_BirthPlacePicker> {
                           : AppColors.lightTextPrimary,
                     ),
                     decoration: InputDecoration(
-                      hintText: L10nService.get('input.search_city', widget.language),
+                      hintText: L10nService.get(
+                        'input.search_city',
+                        widget.language,
+                      ),
                       hintStyle: TextStyle(
                         color: isDark
                             ? AppColors.textMuted
@@ -1606,7 +1675,10 @@ class _YourSignPage extends StatelessWidget {
                                 ),
                                 const SizedBox(width: 8),
                                 Text(
-                                  L10nService.get('profile.your_birth_info', language),
+                                  L10nService.get(
+                                    'profile.your_birth_info',
+                                    language,
+                                  ),
                                   style: Theme.of(context).textTheme.titleSmall
                                       ?.copyWith(
                                         color: AppColors.auroraStart,
@@ -1676,7 +1748,10 @@ class _YourSignPage extends StatelessWidget {
                                 const SizedBox(width: 8),
                                 Flexible(
                                   child: Text(
-                                    L10nService.get('onboarding.will_be_calculated', language),
+                                    L10nService.get(
+                                      'onboarding.will_be_calculated',
+                                      language,
+                                    ),
                                     style: Theme.of(context)
                                         .textTheme
                                         .titleSmall
@@ -1701,63 +1776,90 @@ class _YourSignPage extends StatelessWidget {
                                 _buildPastelFeatureRow(
                                   context,
                                   '♄',
-                                  L10nService.get('onboarding.calculated_items.planets', language),
+                                  L10nService.get(
+                                    'onboarding.calculated_items.planets',
+                                    language,
+                                  ),
                                   const Color(0xFFFFB347),
                                   true,
                                 ),
                                 _buildPastelFeatureRow(
                                   context,
                                   '△',
-                                  L10nService.get('onboarding.calculated_items.aspects', language),
+                                  L10nService.get(
+                                    'onboarding.calculated_items.aspects',
+                                    language,
+                                  ),
                                   const Color(0xFF87CEEB),
                                   true,
                                 ),
                                 _buildPastelFeatureRow(
                                   context,
                                   '□',
-                                  L10nService.get('onboarding.calculated_items.houses', language),
+                                  L10nService.get(
+                                    'onboarding.calculated_items.houses',
+                                    language,
+                                  ),
                                   const Color(0xFFDDA0DD),
                                   selectedTime != null && birthPlace != null,
                                 ),
                                 _buildPastelFeatureRow(
                                   context,
                                   '↑',
-                                  L10nService.get('onboarding.calculated_items.rising', language),
+                                  L10nService.get(
+                                    'onboarding.calculated_items.rising',
+                                    language,
+                                  ),
                                   const Color(0xFF98FB98),
                                   selectedTime != null && birthPlace != null,
                                 ),
                                 _buildPastelFeatureRow(
                                   context,
                                   '☽',
-                                  L10nService.get('onboarding.calculated_items.nodes', language),
+                                  L10nService.get(
+                                    'onboarding.calculated_items.nodes',
+                                    language,
+                                  ),
                                   const Color(0xFFE6E6FA),
                                   true,
                                 ),
                                 _buildPastelFeatureRow(
                                   context,
                                   '◆',
-                                  L10nService.get('onboarding.calculated_items.karmic', language),
+                                  L10nService.get(
+                                    'onboarding.calculated_items.karmic',
+                                    language,
+                                  ),
                                   const Color(0xFFFFB6C1),
                                   true,
                                 ),
                                 _buildPastelFeatureRow(
                                   context,
                                   '○',
-                                  L10nService.get('onboarding.calculated_items.psychological', language),
+                                  L10nService.get(
+                                    'onboarding.calculated_items.psychological',
+                                    language,
+                                  ),
                                   const Color(0xFFADD8E6),
                                   true,
                                 ),
                                 _buildPastelFeatureRow(
                                   context,
                                   '∞',
-                                  L10nService.get('onboarding.calculated_items.numerology', language),
+                                  L10nService.get(
+                                    'onboarding.calculated_items.numerology',
+                                    language,
+                                  ),
                                   const Color(0xFFF0E68C),
                                   true,
                                 ),
                                 _buildPastelFeatureRow(
                                   context,
                                   '☯',
-                                  L10nService.get('onboarding.calculated_items.elements', language),
+                                  L10nService.get(
+                                    'onboarding.calculated_items.elements',
+                                    language,
+                                  ),
                                   const Color(0xFFB0E0E6),
                                   true,
                                 ),
@@ -2094,139 +2196,148 @@ class _ReadyPage extends StatelessWidget {
             const SizedBox(height: 40),
 
             // Success checkmark with glow
-          Container(
-            width: 120,
-            height: 120,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  const Color(0xFF667EEA).withAlpha(40),
-                  const Color(0xFF9B59B6).withAlpha(40),
+            Container(
+              width: 120,
+              height: 120,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    const Color(0xFF667EEA).withAlpha(40),
+                    const Color(0xFF9B59B6).withAlpha(40),
+                  ],
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: const Color(0xFF667EEA).withAlpha(60),
+                    blurRadius: 40,
+                    spreadRadius: 10,
+                  ),
                 ],
               ),
-              boxShadow: [
-                BoxShadow(
-                  color: const Color(0xFF667EEA).withAlpha(60),
-                  blurRadius: 40,
-                  spreadRadius: 10,
-                ),
-              ],
-            ),
-            child: const Icon(
-              Icons.check_circle_outline,
-              size: 64,
-              color: Color(0xFF4CAF50),
-            ),
-          ).animate().scale(
-                begin: const Offset(0.5, 0.5),
-                curve: Curves.elasticOut,
-                duration: 600.ms,
+              child: const Icon(
+                Icons.check_circle_outline,
+                size: 64,
+                color: Color(0xFF4CAF50),
               ),
-
-          const SizedBox(height: 32),
-
-          // Title - neutral, no zodiac
-          Text(
-            L10nService.get('onboarding.profile_ready', language),
-            style: const TextStyle(
-              fontSize: 28,
-              fontWeight: FontWeight.w300,
-              color: Colors.white,
-              letterSpacing: 1,
+            ).animate().scale(
+              begin: const Offset(0.5, 0.5),
+              curve: Curves.elasticOut,
+              duration: 600.ms,
             ),
-            textAlign: TextAlign.center,
-          ).animate().fadeIn(delay: 200.ms, duration: 400.ms),
 
-          const SizedBox(height: 16),
+            const SizedBox(height: 32),
 
-          // Subtitle - reflection focused
-          Text(
-            L10nService.get('onboarding.ready_subtitle', language),
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: AppColors.textSecondary,
-                  fontSize: 16,
-                ),
-            textAlign: TextAlign.center,
-          ).animate().fadeIn(delay: 400.ms, duration: 400.ms),
+            // Title - neutral, no zodiac
+            Text(
+              L10nService.get('onboarding.profile_ready', language),
+              style: const TextStyle(
+                fontSize: 28,
+                fontWeight: FontWeight.w300,
+                color: Colors.white,
+                letterSpacing: 1,
+              ),
+              textAlign: TextAlign.center,
+            ).animate().fadeIn(delay: 200.ms, duration: 400.ms),
 
-          const SizedBox(height: 48),
+            const SizedBox(height: 16),
 
-          // Feature preview - safe features only
-          Container(
-            padding: const EdgeInsets.all(20),
-            decoration: BoxDecoration(
-              color: AppColors.surfaceLight.withAlpha(30),
-              borderRadius: BorderRadius.circular(16),
-              border: Border.all(color: Colors.white.withAlpha(20)),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  L10nService.get('onboarding.whats_included', language),
-                  style: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    color: Color(0xFFE6E6FA),
+            // Subtitle - reflection focused
+            Text(
+              L10nService.get('onboarding.ready_subtitle', language),
+              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                color: AppColors.textSecondary,
+                fontSize: 16,
+              ),
+              textAlign: TextAlign.center,
+            ).animate().fadeIn(delay: 400.ms, duration: 400.ms),
+
+            const SizedBox(height: 48),
+
+            // Feature preview - safe features only
+            Container(
+                  padding: const EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    color: AppColors.surfaceLight.withAlpha(30),
+                    borderRadius: BorderRadius.circular(16),
+                    border: Border.all(color: Colors.white.withAlpha(20)),
                   ),
-                ),
-                const SizedBox(height: 16),
-                _buildFeatureItem(
-                  context,
-                  Icons.edit_note,
-                  L10nService.get('onboarding.feature_reflection', language),
-                ),
-                _buildFeatureItem(
-                  context,
-                  Icons.nights_stay,
-                  L10nService.get('onboarding.feature_dreams', language),
-                ),
-                _buildFeatureItem(
-                  context,
-                  Icons.auto_graph,
-                  L10nService.get('onboarding.feature_patterns', language),
-                ),
-                _buildFeatureItem(
-                  context,
-                  Icons.library_books,
-                  L10nService.get('onboarding.feature_symbols', language),
-                ),
-              ],
-            ),
-          ).animate().fadeIn(delay: 600.ms, duration: 400.ms).slideY(begin: 0.2),
-
-          const SizedBox(height: 24),
-
-          // Disclaimer
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-            decoration: BoxDecoration(
-              color: Colors.white.withAlpha(10),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: Row(
-              children: [
-                Icon(
-                  Icons.info_outline,
-                  size: 16,
-                  color: AppColors.textMuted,
-                ),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: Text(
-                    L10nService.get('disclaimer.reflection_only', language),
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: AppColors.textMuted,
-                          fontSize: 12,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        L10nService.get('onboarding.whats_included', language),
+                        style: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                          color: Color(0xFFE6E6FA),
                         ),
+                      ),
+                      const SizedBox(height: 16),
+                      _buildFeatureItem(
+                        context,
+                        Icons.edit_note,
+                        L10nService.get(
+                          'onboarding.feature_reflection',
+                          language,
+                        ),
+                      ),
+                      _buildFeatureItem(
+                        context,
+                        Icons.nights_stay,
+                        L10nService.get('onboarding.feature_dreams', language),
+                      ),
+                      _buildFeatureItem(
+                        context,
+                        Icons.auto_graph,
+                        L10nService.get(
+                          'onboarding.feature_patterns',
+                          language,
+                        ),
+                      ),
+                      _buildFeatureItem(
+                        context,
+                        Icons.library_books,
+                        L10nService.get('onboarding.feature_symbols', language),
+                      ),
+                    ],
                   ),
-                ),
-              ],
-            ),
-          ).animate().fadeIn(delay: 800.ms, duration: 400.ms),
+                )
+                .animate()
+                .fadeIn(delay: 600.ms, duration: 400.ms)
+                .slideY(begin: 0.2),
+
+            const SizedBox(height: 24),
+
+            // Disclaimer
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              decoration: BoxDecoration(
+                color: Colors.white.withAlpha(10),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Row(
+                children: [
+                  Icon(
+                    Icons.info_outline,
+                    size: 16,
+                    color: AppColors.textMuted,
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      L10nService.get('disclaimer.reflection_only', language),
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: AppColors.textMuted,
+                        fontSize: 12,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ).animate().fadeIn(delay: 800.ms, duration: 400.ms),
           ],
         ),
       ),
@@ -2243,10 +2354,7 @@ class _ReadyPage extends StatelessWidget {
           Expanded(
             child: Text(
               text,
-              style: const TextStyle(
-                fontSize: 14,
-                color: Colors.white70,
-              ),
+              style: const TextStyle(fontSize: 14, color: Colors.white70),
             ),
           ),
         ],

@@ -124,8 +124,9 @@ class _RewardedAdButtonState extends ConsumerState<RewardedAdButton> {
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: (isPremium ? const Color(0xFFFFD700) : const Color(0xFF6B46C1))
-                .withValues(alpha: 0.3),
+            color:
+                (isPremium ? const Color(0xFFFFD700) : const Color(0xFF6B46C1))
+                    .withValues(alpha: 0.3),
             blurRadius: 8,
             offset: const Offset(0, 4),
           ),
@@ -292,7 +293,10 @@ class PremiumContentCard extends ConsumerWidget {
                       final language = ref.read(languageProvider);
                       return RewardedAdButton(
                         label: L10nService.get('common.unlock', language),
-                        rewardDescription: L10nService.get('ads.watch_ad', language),
+                        rewardDescription: L10nService.get(
+                          'ads.watch_ad',
+                          language,
+                        ),
                         onRewardEarned: onUnlocked,
                         icon: Icons.lock_open,
                       );

@@ -31,10 +31,16 @@ class NumerologyScreen extends ConsumerWidget {
       );
     }
 
-    final lifePath = NumerologyService.calculateLifePathNumber(userProfile.birthDate);
-    final birthday = NumerologyService.calculateBirthdayNumber(userProfile.birthDate);
+    final lifePath = NumerologyService.calculateLifePathNumber(
+      userProfile.birthDate,
+    );
+    final birthday = NumerologyService.calculateBirthdayNumber(
+      userProfile.birthDate,
+    );
     final personalYear = NumerologyService.calculatePersonalYearNumber(
-        userProfile.birthDate, DateTime.now().year);
+      userProfile.birthDate,
+      DateTime.now().year,
+    );
     final lifePathMeaning = NumerologyService.getNumberMeaning(lifePath);
 
     // If user has name, calculate name-based numbers
@@ -44,13 +50,21 @@ class NumerologyScreen extends ConsumerWidget {
     NumerologyMeaning? destinyMeaning;
 
     if (userProfile.name != null && userProfile.name!.isNotEmpty) {
-      destinyNumber = NumerologyService.calculateDestinyNumber(userProfile.name!);
-      soulUrgeNumber = NumerologyService.calculateSoulUrgeNumber(userProfile.name!);
-      personalityNumber = NumerologyService.calculatePersonalityNumber(userProfile.name!);
+      destinyNumber = NumerologyService.calculateDestinyNumber(
+        userProfile.name!,
+      );
+      soulUrgeNumber = NumerologyService.calculateSoulUrgeNumber(
+        userProfile.name!,
+      );
+      personalityNumber = NumerologyService.calculatePersonalityNumber(
+        userProfile.name!,
+      );
       destinyMeaning = NumerologyService.getNumberMeaning(destinyNumber);
     }
 
-    final karmicDebts = NumerologyService.findKarmicDebtNumbers(userProfile.birthDate);
+    final karmicDebts = NumerologyService.findKarmicDebtNumbers(
+      userProfile.birthDate,
+    );
 
     return Scaffold(
       body: CosmicBackground(
@@ -64,12 +78,15 @@ class NumerologyScreen extends ConsumerWidget {
                 title: Text(
                   L10nService.get('screens.numerology.title', language),
                   style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                        color: AppColors.starGold,
-                        fontSize: 20,
-                      ),
+                    color: AppColors.starGold,
+                    fontSize: 20,
+                  ),
                 ),
                 leading: IconButton(
-                  icon: const Icon(Icons.arrow_back, color: AppColors.textPrimary),
+                  icon: const Icon(
+                    Icons.arrow_back,
+                    color: AppColors.textPrimary,
+                  ),
                   onPressed: () => Navigator.pop(context),
                 ),
               ),
@@ -83,7 +100,10 @@ class NumerologyScreen extends ConsumerWidget {
                     // Life Path Number - Main card
                     _buildMainNumberCard(
                       context,
-                      L10nService.get('screens.numerology.life_path_number', language),
+                      L10nService.get(
+                        'screens.numerology.life_path_number',
+                        language,
+                      ),
                       lifePath,
                       lifePathMeaning.title,
                       lifePathMeaning.meaning,
@@ -98,7 +118,10 @@ class NumerologyScreen extends ConsumerWidget {
                         Expanded(
                           child: _buildQuickStat(
                             context,
-                            L10nService.get('screens.numerology.birthday_number', language),
+                            L10nService.get(
+                              'screens.numerology.birthday_number',
+                              language,
+                            ),
                             birthday.toString(),
                             AppColors.auroraStart,
                           ),
@@ -107,7 +130,10 @@ class NumerologyScreen extends ConsumerWidget {
                         Expanded(
                           child: _buildQuickStat(
                             context,
-                            L10nService.get('screens.numerology.personal_year', language),
+                            L10nService.get(
+                              'screens.numerology.personal_year',
+                              language,
+                            ),
                             personalYear.toString(),
                             AppColors.auroraEnd,
                           ),
@@ -118,14 +144,26 @@ class NumerologyScreen extends ConsumerWidget {
 
                     // Name-based numbers (if name provided)
                     if (destinyNumber != null) ...[
-                      _buildSectionTitle(context, L10nService.get('screens.numerology.name_numerology', language)),
+                      _buildSectionTitle(
+                        context,
+                        L10nService.get(
+                          'screens.numerology.name_numerology',
+                          language,
+                        ),
+                      ),
                       const SizedBox(height: AppConstants.spacingMd),
                       _buildNumberCard(
                         context,
-                        L10nService.get('screens.numerology.destiny_number', language),
+                        L10nService.get(
+                          'screens.numerology.destiny_number',
+                          language,
+                        ),
                         destinyNumber,
                         destinyMeaning?.title ?? '',
-                        L10nService.get('screens.numerology.destiny_number_desc', language),
+                        L10nService.get(
+                          'screens.numerology.destiny_number_desc',
+                          language,
+                        ),
                         AppColors.fireElement,
                       ).animate().fadeIn(delay: 200.ms, duration: 400.ms),
                       const SizedBox(height: AppConstants.spacingMd),
@@ -134,7 +172,10 @@ class NumerologyScreen extends ConsumerWidget {
                           Expanded(
                             child: _buildQuickStat(
                               context,
-                              L10nService.get('screens.numerology.soul_urge', language),
+                              L10nService.get(
+                                'screens.numerology.soul_urge',
+                                language,
+                              ),
                               soulUrgeNumber.toString(),
                               AppColors.waterElement,
                             ),
@@ -143,7 +184,10 @@ class NumerologyScreen extends ConsumerWidget {
                           Expanded(
                             child: _buildQuickStat(
                               context,
-                              L10nService.get('screens.numerology.personality', language),
+                              L10nService.get(
+                                'screens.numerology.personality',
+                                language,
+                              ),
                               personalityNumber.toString(),
                               AppColors.earthElement,
                             ),
@@ -155,29 +199,54 @@ class NumerologyScreen extends ConsumerWidget {
 
                     // Karmic debts
                     if (karmicDebts.isNotEmpty) ...[
-                      _buildSectionTitle(context, L10nService.get('screens.numerology.karmic_debt_numbers', language)),
+                      _buildSectionTitle(
+                        context,
+                        L10nService.get(
+                          'screens.numerology.karmic_debt_numbers',
+                          language,
+                        ),
+                      ),
                       const SizedBox(height: AppConstants.spacingMd),
-                      _buildKarmicDebtCard(context, karmicDebts, language)
-                          .animate()
-                          .fadeIn(delay: 400.ms, duration: 400.ms),
+                      _buildKarmicDebtCard(
+                        context,
+                        karmicDebts,
+                        language,
+                      ).animate().fadeIn(delay: 400.ms, duration: 400.ms),
                       const SizedBox(height: AppConstants.spacingLg),
                     ],
 
                     // Life Path detailed interpretation
-                    _buildSectionTitle(context, L10nService.get('screens.numerology.life_path_interpretation', language)),
+                    _buildSectionTitle(
+                      context,
+                      L10nService.get(
+                        'screens.numerology.life_path_interpretation',
+                        language,
+                      ),
+                    ),
                     const SizedBox(height: AppConstants.spacingMd),
-                    _buildInterpretationCard(context, lifePath, lifePathMeaning, language)
-                        .animate()
-                        .fadeIn(delay: 500.ms, duration: 400.ms),
+                    _buildInterpretationCard(
+                      context,
+                      lifePath,
+                      lifePathMeaning,
+                      language,
+                    ).animate().fadeIn(delay: 500.ms, duration: 400.ms),
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Detailed interpretation - NEW
                     if (lifePathMeaning.detailedInterpretation.isNotEmpty) ...[
-                      _buildSectionTitle(context, L10nService.get('screens.numerology.deep_interpretation', language)),
+                      _buildSectionTitle(
+                        context,
+                        L10nService.get(
+                          'screens.numerology.deep_interpretation',
+                          language,
+                        ),
+                      ),
                       const SizedBox(height: AppConstants.spacingMd),
-                      _buildDetailedInterpretationCard(context, lifePathMeaning, language)
-                          .animate()
-                          .fadeIn(delay: 600.ms, duration: 400.ms),
+                      _buildDetailedInterpretationCard(
+                        context,
+                        lifePathMeaning,
+                        language,
+                      ).animate().fadeIn(delay: 600.ms, duration: 400.ms),
                       const SizedBox(height: AppConstants.spacingLg),
                     ],
 
@@ -188,7 +257,10 @@ class NumerologyScreen extends ConsumerWidget {
                         Expanded(
                           child: _buildInfoCard(
                             context,
-                            L10nService.get('screens.numerology.career_path', language),
+                            L10nService.get(
+                              'screens.numerology.career_path',
+                              language,
+                            ),
                             lifePathMeaning.careerPath,
                             Icons.work,
                             AppColors.auroraEnd,
@@ -198,7 +270,10 @@ class NumerologyScreen extends ConsumerWidget {
                         Expanded(
                           child: _buildInfoCard(
                             context,
-                            L10nService.get('screens.numerology.compatible_numbers', language),
+                            L10nService.get(
+                              'screens.numerology.compatible_numbers',
+                              language,
+                            ),
                             lifePathMeaning.compatibleNumbers,
                             Icons.favorite,
                             AppColors.fireElement,
@@ -209,15 +284,19 @@ class NumerologyScreen extends ConsumerWidget {
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Spiritual lesson - NEW
-                    _buildSpiritualLessonCard(context, lifePathMeaning, language)
-                        .animate()
-                        .fadeIn(delay: 800.ms, duration: 400.ms),
+                    _buildSpiritualLessonCard(
+                      context,
+                      lifePathMeaning,
+                      language,
+                    ).animate().fadeIn(delay: 800.ms, duration: 400.ms),
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Shadow side - NEW
-                    _buildShadowSideCard(context, lifePathMeaning, language)
-                        .animate()
-                        .fadeIn(delay: 900.ms, duration: 400.ms),
+                    _buildShadowSideCard(
+                      context,
+                      lifePathMeaning,
+                      language,
+                    ).animate().fadeIn(delay: 900.ms, duration: 400.ms),
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Explore All Life Paths
@@ -234,8 +313,14 @@ class NumerologyScreen extends ConsumerWidget {
 
                     // Kadim Not - Numeroloji bilgeliği
                     KadimNotCard(
-                      title: L10nService.get('screens.numerology.kadim_title', language),
-                      content: L10nService.get('screens.numerology.kadim_content', language),
+                      title: L10nService.get(
+                        'screens.numerology.kadim_title',
+                        language,
+                      ),
+                      content: L10nService.get(
+                        'screens.numerology.kadim_content',
+                        language,
+                      ),
                       category: KadimCategory.numerology,
                       source: 'Pisagorcu Ogreti',
                     ),
@@ -246,7 +331,10 @@ class NumerologyScreen extends ConsumerWidget {
                     const SizedBox(height: AppConstants.spacingXl),
                     // Disclaimer
                     PageFooterWithDisclaimer(
-                      brandText: L10nService.get('screens.numerology.brand_text', language),
+                      brandText: L10nService.get(
+                        'screens.numerology.brand_text',
+                        language,
+                      ),
                       disclaimerText: DisclaimerTexts.numerology(language),
                       language: language,
                     ),
@@ -275,10 +363,7 @@ class NumerologyScreen extends ConsumerWidget {
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [
-            color.withAlpha(76),
-            AppColors.surfaceDark,
-          ],
+          colors: [color.withAlpha(76), AppColors.surfaceDark],
         ),
         borderRadius: BorderRadius.circular(AppConstants.radiusXl),
         border: Border.all(color: color.withAlpha(128)),
@@ -303,14 +388,14 @@ class NumerologyScreen extends ConsumerWidget {
                     Text(
                       title,
                       style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                            color: AppColors.textMuted,
-                          ),
+                        color: AppColors.textMuted,
+                      ),
                     ),
                     Text(
                       subtitle,
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            color: AppColors.textPrimary,
-                          ),
+                        color: AppColors.textPrimary,
+                      ),
                     ),
                   ],
                 ),
@@ -327,9 +412,9 @@ class NumerologyScreen extends ConsumerWidget {
                   child: Text(
                     number.toString(),
                     style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                          color: color,
-                          fontWeight: FontWeight.bold,
-                        ),
+                      color: color,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
@@ -339,9 +424,9 @@ class NumerologyScreen extends ConsumerWidget {
           Text(
             description,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: AppColors.textSecondary,
-                  height: 1.6,
-                ),
+              color: AppColors.textSecondary,
+              height: 1.6,
+            ),
           ),
         ],
       ),
@@ -366,16 +451,16 @@ class NumerologyScreen extends ConsumerWidget {
           Text(
             value,
             style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                  color: color,
-                  fontWeight: FontWeight.bold,
-                ),
+              color: color,
+              fontWeight: FontWeight.bold,
+            ),
           ),
           const SizedBox(height: 4),
           Text(
             label,
-            style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                  color: AppColors.textMuted,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.labelSmall?.copyWith(color: AppColors.textMuted),
           ),
         ],
       ),
@@ -410,9 +495,9 @@ class NumerologyScreen extends ConsumerWidget {
               child: Text(
                 number.toString(),
                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                      color: color,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  color: color,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ),
@@ -423,16 +508,16 @@ class NumerologyScreen extends ConsumerWidget {
               children: [
                 Text(
                   title,
-                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                        color: color,
-                      ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleSmall?.copyWith(color: color),
                 ),
                 if (subtitle.isNotEmpty)
                   Text(
                     subtitle,
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: AppColors.textSecondary,
-                        ),
+                      color: AppColors.textSecondary,
+                    ),
                   ),
               ],
             ),
@@ -442,17 +527,18 @@ class NumerologyScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildKarmicDebtCard(BuildContext context, List<int> karmicDebts, AppLanguage language) {
+  Widget _buildKarmicDebtCard(
+    BuildContext context,
+    List<int> karmicDebts,
+    AppLanguage language,
+  ) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [
-            AppColors.error.withAlpha(38),
-            AppColors.surfaceDark,
-          ],
+          colors: [AppColors.error.withAlpha(38), AppColors.surfaceDark],
         ),
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         border: Border.all(color: AppColors.error.withAlpha(76)),
@@ -465,10 +551,13 @@ class NumerologyScreen extends ConsumerWidget {
               Icon(Icons.warning_amber, color: AppColors.error, size: 20),
               const SizedBox(width: 8),
               Text(
-                L10nService.get('screens.numerology.karmic_debt_numbers', language),
-                style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      color: AppColors.error,
-                    ),
+                L10nService.get(
+                  'screens.numerology.karmic_debt_numbers',
+                  language,
+                ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleSmall?.copyWith(color: AppColors.error),
               ),
             ],
           ),
@@ -478,7 +567,10 @@ class NumerologyScreen extends ConsumerWidget {
             runSpacing: 8,
             children: karmicDebts.map((debt) {
               return Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 6,
+                ),
                 decoration: BoxDecoration(
                   color: AppColors.error.withAlpha(51),
                   borderRadius: BorderRadius.circular(20),
@@ -486,9 +578,9 @@ class NumerologyScreen extends ConsumerWidget {
                 child: Text(
                   debt.toString(),
                   style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                        color: AppColors.error,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    color: AppColors.error,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               );
             }).toList(),
@@ -497,9 +589,9 @@ class NumerologyScreen extends ConsumerWidget {
           Text(
             _getKarmicDebtDescription(karmicDebts.first, language),
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppColors.textSecondary,
-                  height: 1.5,
-                ),
+              color: AppColors.textSecondary,
+              height: 1.5,
+            ),
           ),
         ],
       ),
@@ -509,14 +601,18 @@ class NumerologyScreen extends ConsumerWidget {
   Widget _buildSectionTitle(BuildContext context, String title) {
     return Text(
       title,
-      style: Theme.of(context).textTheme.titleLarge?.copyWith(
-            color: AppColors.textPrimary,
-          ),
+      style: Theme.of(
+        context,
+      ).textTheme.titleLarge?.copyWith(color: AppColors.textPrimary),
     );
   }
 
   Widget _buildInterpretationCard(
-      BuildContext context, int number, NumerologyMeaning meaning, AppLanguage language) {
+    BuildContext context,
+    int number,
+    NumerologyMeaning meaning,
+    AppLanguage language,
+  ) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -534,18 +630,18 @@ class NumerologyScreen extends ConsumerWidget {
               const SizedBox(width: 8),
               Text(
                 L10nService.get('screens.numerology.keywords', language),
-                style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      color: AppColors.auroraStart,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleSmall?.copyWith(color: AppColors.auroraStart),
               ),
             ],
           ),
           const SizedBox(height: 8),
           Text(
             meaning.keywords,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: AppColors.textSecondary,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.bodyMedium?.copyWith(color: AppColors.textSecondary),
           ),
           const SizedBox(height: AppConstants.spacingLg),
           // Strengths
@@ -555,18 +651,18 @@ class NumerologyScreen extends ConsumerWidget {
               const SizedBox(width: 8),
               Text(
                 L10nService.get('screens.numerology.strengths', language),
-                style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      color: AppColors.success,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleSmall?.copyWith(color: AppColors.success),
               ),
             ],
           ),
           const SizedBox(height: 8),
           Text(
             meaning.strengths,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppColors.textSecondary,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.bodySmall?.copyWith(color: AppColors.textSecondary),
           ),
           const SizedBox(height: AppConstants.spacingLg),
           // Challenges
@@ -576,18 +672,18 @@ class NumerologyScreen extends ConsumerWidget {
               const SizedBox(width: 8),
               Text(
                 L10nService.get('screens.numerology.challenges', language),
-                style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      color: AppColors.warning,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleSmall?.copyWith(color: AppColors.warning),
               ),
             ],
           ),
           const SizedBox(height: 8),
           Text(
             meaning.challenges,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppColors.textSecondary,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.bodySmall?.copyWith(color: AppColors.textSecondary),
           ),
           const SizedBox(height: AppConstants.spacingLg),
           // Love style
@@ -596,19 +692,22 @@ class NumerologyScreen extends ConsumerWidget {
               Icon(Icons.favorite, color: AppColors.fireElement, size: 18),
               const SizedBox(width: 8),
               Text(
-                L10nService.get('screens.numerology.love_relationships', language),
-                style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      color: AppColors.fireElement,
-                    ),
+                L10nService.get(
+                  'screens.numerology.love_relationships',
+                  language,
+                ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleSmall?.copyWith(color: AppColors.fireElement),
               ),
             ],
           ),
           const SizedBox(height: 8),
           Text(
             meaning.loveStyle,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppColors.textSecondary,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.bodySmall?.copyWith(color: AppColors.textSecondary),
           ),
         ],
       ),
@@ -626,7 +725,10 @@ class NumerologyScreen extends ConsumerWidget {
       case 19:
         return L10nService.get('screens.numerology.karmic_19_desc', language);
       default:
-        return L10nService.get('screens.numerology.karmic_default_desc', language);
+        return L10nService.get(
+          'screens.numerology.karmic_default_desc',
+          language,
+        );
     }
   }
 
@@ -637,10 +739,7 @@ class NumerologyScreen extends ConsumerWidget {
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [
-            AppColors.starGold.withAlpha(25),
-            Colors.transparent,
-          ],
+          colors: [AppColors.starGold.withAlpha(25), Colors.transparent],
         ),
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         border: Border.all(color: AppColors.starGold.withAlpha(51)),
@@ -650,15 +749,22 @@ class NumerologyScreen extends ConsumerWidget {
         children: [
           Row(
             children: [
-              const Icon(Icons.auto_awesome, color: AppColors.starGold, size: 18),
+              const Icon(
+                Icons.auto_awesome,
+                color: AppColors.starGold,
+                size: 18,
+              ),
               const SizedBox(width: 8),
               Flexible(
                 child: Text(
-                  L10nService.get('screens.numerology.ancient_secret_title', language),
+                  L10nService.get(
+                    'screens.numerology.ancient_secret_title',
+                    language,
+                  ),
                   style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                        color: AppColors.starGold,
-                        fontStyle: FontStyle.italic,
-                      ),
+                    color: AppColors.starGold,
+                    fontStyle: FontStyle.italic,
+                  ),
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
@@ -668,10 +774,10 @@ class NumerologyScreen extends ConsumerWidget {
           Text(
             L10nService.get('screens.numerology.ancient_secret_desc', language),
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppColors.textSecondary,
-                  height: 1.6,
-                  fontStyle: FontStyle.italic,
-                ),
+              color: AppColors.textSecondary,
+              height: 1.6,
+              fontStyle: FontStyle.italic,
+            ),
           ),
         ],
       ),
@@ -679,17 +785,17 @@ class NumerologyScreen extends ConsumerWidget {
   }
 
   Widget _buildDetailedInterpretationCard(
-      BuildContext context, NumerologyMeaning meaning, AppLanguage language) {
+    BuildContext context,
+    NumerologyMeaning meaning,
+    AppLanguage language,
+  ) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [
-            AppColors.auroraStart.withAlpha(20),
-            AppColors.surfaceDark,
-          ],
+          colors: [AppColors.auroraStart.withAlpha(20), AppColors.surfaceDark],
         ),
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         border: Border.all(color: AppColors.auroraStart.withAlpha(50)),
@@ -708,18 +814,21 @@ class NumerologyScreen extends ConsumerWidget {
                 child: Text(
                   meaning.number.toString(),
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        color: AppColors.auroraStart,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    color: AppColors.auroraStart,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
               const SizedBox(width: AppConstants.spacingMd),
               Expanded(
                 child: Text(
-                  L10nService.get('screens.numerology.number_depth_title', language).replaceAll('{number}', meaning.number.toString()),
+                  L10nService.get(
+                    'screens.numerology.number_depth_title',
+                    language,
+                  ).replaceAll('{number}', meaning.number.toString()),
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        color: AppColors.auroraStart,
-                      ),
+                    color: AppColors.auroraStart,
+                  ),
                 ),
               ),
             ],
@@ -728,9 +837,9 @@ class NumerologyScreen extends ConsumerWidget {
           Text(
             meaning.detailedInterpretation.trim(),
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: AppColors.textSecondary,
-                  height: 1.7,
-                ),
+              color: AppColors.textSecondary,
+              height: 1.7,
+            ),
           ),
         ],
       ),
@@ -764,9 +873,9 @@ class NumerologyScreen extends ConsumerWidget {
                 child: Text(
                   title,
                   style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                        color: color,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    color: color,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ],
@@ -775,16 +884,20 @@ class NumerologyScreen extends ConsumerWidget {
           Text(
             content,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppColors.textSecondary,
-                  height: 1.5,
-                ),
+              color: AppColors.textSecondary,
+              height: 1.5,
+            ),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildSpiritualLessonCard(BuildContext context, NumerologyMeaning meaning, AppLanguage language) {
+  Widget _buildSpiritualLessonCard(
+    BuildContext context,
+    NumerologyMeaning meaning,
+    AppLanguage language,
+  ) {
     if (meaning.spiritualLesson.isEmpty) return const SizedBox.shrink();
 
     return Container(
@@ -793,10 +906,7 @@ class NumerologyScreen extends ConsumerWidget {
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [
-            AppColors.moonSilver.withAlpha(20),
-            AppColors.surfaceDark,
-          ],
+          colors: [AppColors.moonSilver.withAlpha(20), AppColors.surfaceDark],
         ),
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         border: Border.all(color: AppColors.moonSilver.withAlpha(50)),
@@ -821,10 +931,13 @@ class NumerologyScreen extends ConsumerWidget {
               const SizedBox(width: AppConstants.spacingMd),
               Expanded(
                 child: Text(
-                  L10nService.get('screens.numerology.spiritual_lesson', language),
-                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                        color: AppColors.moonSilver,
-                      ),
+                  L10nService.get(
+                    'screens.numerology.spiritual_lesson',
+                    language,
+                  ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleSmall?.copyWith(color: AppColors.moonSilver),
                 ),
               ),
             ],
@@ -833,17 +946,21 @@ class NumerologyScreen extends ConsumerWidget {
           Text(
             meaning.spiritualLesson,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: AppColors.textSecondary,
-                  height: 1.6,
-                  fontStyle: FontStyle.italic,
-                ),
+              color: AppColors.textSecondary,
+              height: 1.6,
+              fontStyle: FontStyle.italic,
+            ),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildShadowSideCard(BuildContext context, NumerologyMeaning meaning, AppLanguage language) {
+  Widget _buildShadowSideCard(
+    BuildContext context,
+    NumerologyMeaning meaning,
+    AppLanguage language,
+  ) {
     if (meaning.shadowSide.isEmpty) return const SizedBox.shrink();
 
     return Container(
@@ -852,10 +969,7 @@ class NumerologyScreen extends ConsumerWidget {
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [
-            AppColors.error.withAlpha(15),
-            AppColors.surfaceDark,
-          ],
+          colors: [AppColors.error.withAlpha(15), AppColors.surfaceDark],
         ),
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         border: Border.all(color: AppColors.error.withAlpha(40)),
@@ -881,9 +995,9 @@ class NumerologyScreen extends ConsumerWidget {
               Expanded(
                 child: Text(
                   L10nService.get('screens.numerology.shadow_side', language),
-                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                        color: AppColors.error,
-                      ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleSmall?.copyWith(color: AppColors.error),
                 ),
               ),
             ],
@@ -892,24 +1006,28 @@ class NumerologyScreen extends ConsumerWidget {
           Text(
             meaning.shadowSide,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: AppColors.textSecondary,
-                  height: 1.6,
-                ),
+              color: AppColors.textSecondary,
+              height: 1.6,
+            ),
           ),
           const SizedBox(height: AppConstants.spacingSm),
           Text(
             L10nService.get('screens.numerology.shadow_side_footer', language),
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppColors.textMuted,
-                  fontStyle: FontStyle.italic,
-                ),
+              color: AppColors.textMuted,
+              fontStyle: FontStyle.italic,
+            ),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildLifePathExplorer(BuildContext context, int currentLifePath, AppLanguage language) {
+  Widget _buildLifePathExplorer(
+    BuildContext context,
+    int currentLifePath,
+    AppLanguage language,
+  ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -918,7 +1036,10 @@ class NumerologyScreen extends ConsumerWidget {
             const Icon(Icons.explore, color: AppColors.auroraStart, size: 20),
             const SizedBox(width: 8),
             Text(
-              L10nService.get('screens.numerology.all_life_path_numbers', language),
+              L10nService.get(
+                'screens.numerology.all_life_path_numbers',
+                language,
+              ),
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 color: AppColors.auroraStart,
                 fontWeight: FontWeight.bold,
@@ -939,52 +1060,57 @@ class NumerologyScreen extends ConsumerWidget {
               final color = _getLifePathColor(number);
 
               return GestureDetector(
-                onTap: () => context.push('/numerology/life-path/$number'),
-                child: Container(
-                  width: 75,
-                  margin: const EdgeInsets.only(right: 10),
-                  padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: isCurrentPath
-                          ? [color, color.withAlpha(150)]
-                          : [color.withAlpha(50), AppColors.surfaceDark],
-                    ),
-                    borderRadius: BorderRadius.circular(12),
-                    border: Border.all(
-                      color: color,
-                      width: isCurrentPath ? 2 : 1,
-                    ),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        number.toString(),
-                        style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                          color: isCurrentPath ? Colors.white : color,
-                          fontWeight: FontWeight.bold,
+                    onTap: () => context.push('/numerology/life-path/$number'),
+                    child: Container(
+                      width: 75,
+                      margin: const EdgeInsets.only(right: 10),
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: isCurrentPath
+                              ? [color, color.withAlpha(150)]
+                              : [color.withAlpha(50), AppColors.surfaceDark],
+                        ),
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(
+                          color: color,
+                          width: isCurrentPath ? 2 : 1,
                         ),
                       ),
-                      const SizedBox(height: 4),
-                      Text(
-                        content?.title ?? '',
-                        style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                          color: isCurrentPath ? Colors.white70 : AppColors.textMuted,
-                          fontSize: 9,
-                        ),
-                        textAlign: TextAlign.center,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            number.toString(),
+                            style: Theme.of(context).textTheme.headlineSmall
+                                ?.copyWith(
+                                  color: isCurrentPath ? Colors.white : color,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            content?.title ?? '',
+                            style: Theme.of(context).textTheme.labelSmall
+                                ?.copyWith(
+                                  color: isCurrentPath
+                                      ? Colors.white70
+                                      : AppColors.textMuted,
+                                  fontSize: 9,
+                                ),
+                            textAlign: TextAlign.center,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                ),
-              ).animate(delay: Duration(milliseconds: index * 50))
-                .fadeIn(duration: 300.ms)
-                .slideX(begin: 0.2, end: 0);
+                    ),
+                  )
+                  .animate(delay: Duration(milliseconds: index * 50))
+                  .fadeIn(duration: 300.ms)
+                  .slideX(begin: 0.2, end: 0);
             },
           ),
         ),
@@ -996,9 +1122,9 @@ class NumerologyScreen extends ConsumerWidget {
             const SizedBox(width: 6),
             Text(
               L10nService.get('screens.numerology.master_numbers', language),
-              style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                color: AppColors.starGold,
-              ),
+              style: Theme.of(
+                context,
+              ).textTheme.labelMedium?.copyWith(color: AppColors.starGold),
             ),
           ],
         ),
@@ -1010,7 +1136,10 @@ class NumerologyScreen extends ConsumerWidget {
               onTap: () => context.push('/numerology/master/$master'),
               child: Container(
                 margin: const EdgeInsets.only(right: 10),
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 10,
+                ),
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
@@ -1048,7 +1177,11 @@ class NumerologyScreen extends ConsumerWidget {
     ).animate().fadeIn(delay: 500.ms, duration: 400.ms);
   }
 
-  Widget _buildKarmicDebtSection(BuildContext context, List<int> userKarmicDebts, AppLanguage language) {
+  Widget _buildKarmicDebtSection(
+    BuildContext context,
+    List<int> userKarmicDebts,
+    AppLanguage language,
+  ) {
     final allKarmicDebts = [13, 14, 16, 19];
 
     return Column(
@@ -1059,7 +1192,10 @@ class NumerologyScreen extends ConsumerWidget {
             const Icon(Icons.link, color: AppColors.error, size: 20),
             const SizedBox(width: 8),
             Text(
-              L10nService.get('screens.numerology.karmic_debt_numbers', language),
+              L10nService.get(
+                'screens.numerology.karmic_debt_numbers',
+                language,
+              ),
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 color: AppColors.error,
                 fontWeight: FontWeight.bold,
@@ -1069,7 +1205,10 @@ class NumerologyScreen extends ConsumerWidget {
         ),
         const SizedBox(height: 8),
         Text(
-          L10nService.get('screens.numerology.lessons_from_past_lives', language),
+          L10nService.get(
+            'screens.numerology.lessons_from_past_lives',
+            language,
+          ),
           style: Theme.of(context).textTheme.bodySmall?.copyWith(
             color: AppColors.textMuted,
             fontStyle: FontStyle.italic,
@@ -1093,13 +1232,12 @@ class NumerologyScreen extends ConsumerWidget {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       gradient: hasDebt
-                          ? LinearGradient(colors: [color, color.withAlpha(150)])
+                          ? LinearGradient(
+                              colors: [color, color.withAlpha(150)],
+                            )
                           : null,
                       color: hasDebt ? null : color.withAlpha(30),
-                      border: Border.all(
-                        color: color,
-                        width: hasDebt ? 3 : 1,
-                      ),
+                      border: Border.all(color: color, width: hasDebt ? 3 : 1),
                       boxShadow: hasDebt
                           ? [
                               BoxShadow(
@@ -1132,7 +1270,10 @@ class NumerologyScreen extends ConsumerWidget {
                   if (hasDebt)
                     Container(
                       margin: const EdgeInsets.only(top: 4),
-                      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 6,
+                        vertical: 2,
+                      ),
                       decoration: BoxDecoration(
                         color: color.withAlpha(50),
                         borderRadius: BorderRadius.circular(8),
@@ -1162,14 +1303,21 @@ class NumerologyScreen extends ConsumerWidget {
             ),
             child: Row(
               children: [
-                const Icon(Icons.info_outline, color: AppColors.error, size: 18),
+                const Icon(
+                  Icons.info_outline,
+                  color: AppColors.error,
+                  size: 18,
+                ),
                 const SizedBox(width: 8),
                 Expanded(
                   child: Text(
-                    L10nService.get('screens.numerology.karmic_debt_message', language).replaceAll('{debts}', userKarmicDebts.join(", ")),
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: AppColors.error,
-                    ),
+                    L10nService.get(
+                      'screens.numerology.karmic_debt_message',
+                      language,
+                    ).replaceAll('{debts}', userKarmicDebts.join(", ")),
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodySmall?.copyWith(color: AppColors.error),
                   ),
                 ),
               ],

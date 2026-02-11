@@ -58,10 +58,7 @@ class InsightCard extends StatelessWidget {
                   ],
           ),
           borderRadius: BorderRadius.circular(20),
-          border: Border.all(
-            color: color.withValues(alpha: 0.3),
-            width: 1,
-          ),
+          border: Border.all(color: color.withValues(alpha: 0.3), width: 1),
           boxShadow: [
             BoxShadow(
               color: color.withValues(alpha: 0.15),
@@ -80,10 +77,7 @@ class InsightCard extends StatelessWidget {
                 Row(
                   children: [
                     if (emoji != null) ...[
-                      Text(
-                        emoji!,
-                        style: const TextStyle(fontSize: 24),
-                      ),
+                      Text(emoji!, style: const TextStyle(fontSize: 24)),
                       const SizedBox(width: 10),
                     ],
                     Expanded(
@@ -99,7 +93,10 @@ class InsightCard extends StatelessWidget {
                     ),
                     if (isPremium)
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 4,
+                        ),
                         decoration: BoxDecoration(
                           color: AppColors.starGold.withValues(alpha: 0.2),
                           borderRadius: BorderRadius.circular(8),
@@ -137,7 +134,9 @@ class InsightCard extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 15,
                     height: 1.5,
-                    color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                    color: isDark
+                        ? AppColors.textPrimary
+                        : AppColors.lightTextPrimary,
                   ),
                   maxLines: 4,
                   overflow: TextOverflow.ellipsis,
@@ -170,7 +169,9 @@ class InsightCard extends StatelessWidget {
                     else
                       const SizedBox(),
                     Icon(
-                      isPremium ? Icons.lock_outline : Icons.arrow_forward_rounded,
+                      isPremium
+                          ? Icons.lock_outline
+                          : Icons.arrow_forward_rounded,
                       size: 16,
                       color: isPremium ? AppColors.starGold : color,
                     ),
@@ -191,7 +192,8 @@ class InsightCard extends StatelessWidget {
                         end: Alignment.bottomCenter,
                         colors: [
                           Colors.transparent,
-                          (isDark ? AppColors.surfaceDark : Colors.white).withValues(alpha: 0.7),
+                          (isDark ? AppColors.surfaceDark : Colors.white)
+                              .withValues(alpha: 0.7),
                         ],
                         stops: const [0.3, 1.0],
                       ),
@@ -246,7 +248,9 @@ class InsightCarousel extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
-                    color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                    color: isDark
+                        ? AppColors.textPrimary
+                        : AppColors.lightTextPrimary,
                   ),
                 ),
                 const Spacer(),
@@ -314,7 +318,10 @@ class InsightCardData {
 
 /// Pre-built insight card themes
 class InsightThemes {
-  static List<InsightCardData> getDailyInsights(String sunSign, AppLanguage language) {
+  static List<InsightCardData> getDailyInsights(
+    String sunSign,
+    AppLanguage language,
+  ) {
     return [
       InsightCardData(
         title: L10nService.get('insights.daily_energy_title', language),
@@ -353,7 +360,10 @@ class InsightThemes {
 
   static String _getSignMessage(String sign, AppLanguage language) {
     final signKey = sign.toLowerCase();
-    final message = L10nService.get('insights.sign_messages.$signKey', language);
+    final message = L10nService.get(
+      'insights.sign_messages.$signKey',
+      language,
+    );
     // If key not found, return default
     if (message.contains('[insights.sign_messages.')) {
       return L10nService.get('insights.sign_messages.default', language);

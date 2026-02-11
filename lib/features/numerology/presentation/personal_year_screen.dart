@@ -75,10 +75,16 @@ class PersonalYearScreen extends ConsumerWidget {
 
                     // Kadim Not
                     KadimNotCard(
-                      title: L10nService.get('numerology.year_wisdom', language).replaceAll('{number}', year.toString()),
+                      title: L10nService.get(
+                        'numerology.year_wisdom',
+                        language,
+                      ).replaceAll('{number}', year.toString()),
                       content: content.viralQuote,
                       category: KadimCategory.numerology,
-                      source: L10nService.get('numerology.cyclical_wisdom', language),
+                      source: L10nService.get(
+                        'numerology.cyclical_wisdom',
+                        language,
+                      ),
                     ),
                     const SizedBox(height: AppConstants.spacingLg),
 
@@ -87,7 +93,11 @@ class PersonalYearScreen extends ConsumerWidget {
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Affirmation
-                    _buildAffirmationCard(context, content.affirmation, language),
+                    _buildAffirmationCard(
+                      context,
+                      content.affirmation,
+                      language,
+                    ),
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Year Cycle Visual
@@ -99,7 +109,10 @@ class PersonalYearScreen extends ConsumerWidget {
                     const SizedBox(height: AppConstants.spacingXl),
 
                     // Bottom Navigation
-                    PageBottomNavigation(currentRoute: '/numerology', language: language),
+                    PageBottomNavigation(
+                      currentRoute: '/numerology',
+                      language: language,
+                    ),
                   ]),
                 ),
               ),
@@ -110,7 +123,11 @@ class PersonalYearScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildHeader(BuildContext context, PersonalYearContent content, AppLanguage language) {
+  Widget _buildHeader(
+    BuildContext context,
+    PersonalYearContent content,
+    AppLanguage language,
+  ) {
     final color = _getColorForYear(year);
 
     return FlexibleSpaceBar(
@@ -184,7 +201,11 @@ class PersonalYearScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildThemeCard(BuildContext context, PersonalYearContent content, AppLanguage language) {
+  Widget _buildThemeCard(
+    BuildContext context,
+    PersonalYearContent content,
+    AppLanguage language,
+  ) {
     final color = _getColorForYear(year);
 
     return Container(
@@ -257,7 +278,11 @@ class PersonalYearScreen extends ConsumerWidget {
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildGuidanceSection(BuildContext context, String guidance, AppLanguage language) {
+  Widget _buildGuidanceSection(
+    BuildContext context,
+    String guidance,
+    AppLanguage language,
+  ) {
     final color = _getColorForYear(year);
 
     return Container(
@@ -388,7 +413,11 @@ class PersonalYearScreen extends ConsumerWidget {
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildAffirmationCard(BuildContext context, String affirmation, AppLanguage language) {
+  Widget _buildAffirmationCard(
+    BuildContext context,
+    String affirmation,
+    AppLanguage language,
+  ) {
     final color = _getColorForYear(year);
 
     return Container(
@@ -430,7 +459,11 @@ class PersonalYearScreen extends ConsumerWidget {
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildYearCycleVisual(BuildContext context, int currentYear, AppLanguage language) {
+  Widget _buildYearCycleVisual(
+    BuildContext context,
+    int currentYear,
+    AppLanguage language,
+  ) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -487,7 +520,10 @@ class PersonalYearScreen extends ConsumerWidget {
           const SizedBox(height: AppConstants.spacingMd),
           Center(
             child: Text(
-              L10nService.get('numerology.current_year_text', language).replaceAll('{number}', currentYear.toString()),
+              L10nService.get(
+                'numerology.current_year_text',
+                language,
+              ).replaceAll('{number}', currentYear.toString()),
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
                 color: AppColors.textMuted,
                 fontStyle: FontStyle.italic,

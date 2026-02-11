@@ -45,16 +45,37 @@ class InsightResponseService {
     final lower = message.toLowerCase();
 
     // Detect specific dream themes
-    if (_containsAny(lower, ['fall', 'falling', 'düşmek', 'dusmek', 'düşüyorum'])) {
+    if (_containsAny(lower, [
+      'fall',
+      'falling',
+      'düşmek',
+      'dusmek',
+      'düşüyorum',
+    ])) {
       return _getFallingDreamResponse(language);
     }
-    if (_containsAny(lower, ['water', 'ocean', 'sea', 'swim', 'su', 'deniz', 'yüzmek'])) {
+    if (_containsAny(lower, [
+      'water',
+      'ocean',
+      'sea',
+      'swim',
+      'su',
+      'deniz',
+      'yüzmek',
+    ])) {
       return _getWaterDreamResponse(language);
     }
     if (_containsAny(lower, ['fly', 'flying', 'uçmak', 'ucmak', 'uçuyorum'])) {
       return _getFlyingDreamResponse(language);
     }
-    if (_containsAny(lower, ['chase', 'chased', 'running', 'kovalanmak', 'kaçmak', 'kacmak'])) {
+    if (_containsAny(lower, [
+      'chase',
+      'chased',
+      'running',
+      'kovalanmak',
+      'kaçmak',
+      'kacmak',
+    ])) {
       return _getChaseDreamResponse(language);
     }
     if (_containsAny(lower, ['teeth', 'tooth', 'diş', 'dis', 'dişler'])) {
@@ -112,16 +133,44 @@ class InsightResponseService {
     final lower = message.toLowerCase();
 
     // Detect specific emotions
-    if (_containsAny(lower, ['anxious', 'anxiety', 'worried', 'kaygı', 'endişe', 'tedirgin'])) {
+    if (_containsAny(lower, [
+      'anxious',
+      'anxiety',
+      'worried',
+      'kaygı',
+      'endişe',
+      'tedirgin',
+    ])) {
       return _getAnxietyResponse(language);
     }
-    if (_containsAny(lower, ['sad', 'depressed', 'down', 'üzgün', 'mutsuz', 'kötü'])) {
+    if (_containsAny(lower, [
+      'sad',
+      'depressed',
+      'down',
+      'üzgün',
+      'mutsuz',
+      'kötü',
+    ])) {
       return _getSadnessResponse(language);
     }
-    if (_containsAny(lower, ['angry', 'frustrated', 'mad', 'kızgın', 'sinirli', 'öfkeli'])) {
+    if (_containsAny(lower, [
+      'angry',
+      'frustrated',
+      'mad',
+      'kızgın',
+      'sinirli',
+      'öfkeli',
+    ])) {
       return _getAngerResponse(language);
     }
-    if (_containsAny(lower, ['overwhelmed', 'stressed', 'burnout', 'bunalmış', 'stresli', 'tükenmiş'])) {
+    if (_containsAny(lower, [
+      'overwhelmed',
+      'stressed',
+      'burnout',
+      'bunalmış',
+      'stresli',
+      'tükenmiş',
+    ])) {
       return _getOverwhelmedResponse(language);
     }
 

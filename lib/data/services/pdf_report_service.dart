@@ -139,7 +139,8 @@ class PdfReportService {
           bold: boldFont,
           italic: italicFont,
         ),
-        header: (context) => _buildCompatibilityHeader(profile1, profile2, context),
+        header: (context) =>
+            _buildCompatibilityHeader(profile1, profile2, context),
         footer: (context) => _buildFooter(context),
         build: (context) => [
           _buildCompatibilityTitleSection(profile1, profile2),
@@ -162,9 +163,7 @@ class PdfReportService {
     return pw.Container(
       padding: const pw.EdgeInsets.only(bottom: 10),
       decoration: const pw.BoxDecoration(
-        border: pw.Border(
-          bottom: pw.BorderSide(color: _goldColor, width: 1),
-        ),
+        border: pw.Border(bottom: pw.BorderSide(color: _goldColor, width: 1)),
       ),
       child: pw.Row(
         mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
@@ -179,11 +178,11 @@ class PdfReportService {
             ),
           ),
           pw.Text(
-            L10nService.get('pdf_report.headers.birth_chart_report', _currentLanguage),
-            style: const pw.TextStyle(
-              fontSize: 10,
-              color: _textMuted,
+            L10nService.get(
+              'pdf_report.headers.birth_chart_report',
+              _currentLanguage,
             ),
+            style: const pw.TextStyle(fontSize: 10, color: _textMuted),
           ),
         ],
       ),
@@ -194,26 +193,18 @@ class PdfReportService {
     return pw.Container(
       padding: const pw.EdgeInsets.only(top: 10),
       decoration: const pw.BoxDecoration(
-        border: pw.Border(
-          top: pw.BorderSide(color: _textMuted, width: 0.5),
-        ),
+        border: pw.Border(top: pw.BorderSide(color: _textMuted, width: 0.5)),
       ),
       child: pw.Row(
         mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
         children: [
           pw.Text(
             'Venus One - ${L10nService.get('pdf_report.headers.cosmic_guide', _currentLanguage)}',
-            style: const pw.TextStyle(
-              fontSize: 8,
-              color: _textMuted,
-            ),
+            style: const pw.TextStyle(fontSize: 8, color: _textMuted),
           ),
           pw.Text(
             '${L10nService.get('pdf_report.headers.page', _currentLanguage)} ${context.pageNumber}/${context.pagesCount}',
-            style: const pw.TextStyle(
-              fontSize: 8,
-              color: _textMuted,
-            ),
+            style: const pw.TextStyle(fontSize: 8, color: _textMuted),
           ),
         ],
       ),
@@ -236,7 +227,8 @@ class PdfReportService {
           ),
           pw.SizedBox(height: 10),
           pw.Text(
-            profile.name ?? L10nService.get('pdf_report.defaults.user', _currentLanguage),
+            profile.name ??
+                L10nService.get('pdf_report.defaults.user', _currentLanguage),
             style: pw.TextStyle(
               fontSize: 28,
               fontWeight: pw.FontWeight.bold,
@@ -246,10 +238,7 @@ class PdfReportService {
           pw.SizedBox(height: 5),
           pw.Text(
             '${profile.sunSign.localizedName(_currentLanguage)} ${L10nService.get('pdf_report.units.sign_suffix', _currentLanguage)}',
-            style: const pw.TextStyle(
-              fontSize: 16,
-              color: _textMuted,
-            ),
+            style: const pw.TextStyle(fontSize: 16, color: _textMuted),
           ),
         ],
       ),
@@ -267,16 +256,33 @@ class PdfReportService {
         mainAxisAlignment: pw.MainAxisAlignment.spaceAround,
         children: [
           _buildBirthDataItem(
-            L10nService.get('pdf_report.birth_data.birth_date', _currentLanguage),
+            L10nService.get(
+              'pdf_report.birth_data.birth_date',
+              _currentLanguage,
+            ),
             '${profile.birthDate.day}.${profile.birthDate.month}.${profile.birthDate.year}',
           ),
           _buildBirthDataItem(
-            L10nService.get('pdf_report.birth_data.birth_time', _currentLanguage),
-            profile.birthTime ?? L10nService.get('pdf_report.birth_data.unknown', _currentLanguage),
+            L10nService.get(
+              'pdf_report.birth_data.birth_time',
+              _currentLanguage,
+            ),
+            profile.birthTime ??
+                L10nService.get(
+                  'pdf_report.birth_data.unknown',
+                  _currentLanguage,
+                ),
           ),
           _buildBirthDataItem(
-            L10nService.get('pdf_report.birth_data.birth_place', _currentLanguage),
-            profile.birthPlace ?? L10nService.get('pdf_report.birth_data.unknown', _currentLanguage),
+            L10nService.get(
+              'pdf_report.birth_data.birth_place',
+              _currentLanguage,
+            ),
+            profile.birthPlace ??
+                L10nService.get(
+                  'pdf_report.birth_data.unknown',
+                  _currentLanguage,
+                ),
           ),
         ],
       ),
@@ -288,18 +294,12 @@ class PdfReportService {
       children: [
         pw.Text(
           label,
-          style: const pw.TextStyle(
-            fontSize: 10,
-            color: _textMuted,
-          ),
+          style: const pw.TextStyle(fontSize: 10, color: _textMuted),
         ),
         pw.SizedBox(height: 4),
         pw.Text(
           value,
-          style: pw.TextStyle(
-            fontSize: 12,
-            fontWeight: pw.FontWeight.bold,
-          ),
+          style: pw.TextStyle(fontSize: 12, fontWeight: pw.FontWeight.bold),
         ),
       ],
     );
@@ -310,7 +310,10 @@ class PdfReportService {
     ZodiacSign? moonSign,
     ZodiacSign? ascendant,
   ) {
-    final unknown = L10nService.get('pdf_report.birth_data.unknown', _currentLanguage);
+    final unknown = L10nService.get(
+      'pdf_report.birth_data.unknown',
+      _currentLanguage,
+    );
     return pw.Column(
       crossAxisAlignment: pw.CrossAxisAlignment.start,
       children: [
@@ -327,28 +330,46 @@ class PdfReportService {
           children: [
             pw.Expanded(
               child: _buildBigThreeItem(
-                L10nService.get('pdf_report.big_three_items.sun_sign', _currentLanguage),
+                L10nService.get(
+                  'pdf_report.big_three_items.sun_sign',
+                  _currentLanguage,
+                ),
                 sunSign.symbol,
                 sunSign.localizedName(_currentLanguage),
-                L10nService.get('pdf_report.big_three_items.sun_description', _currentLanguage),
+                L10nService.get(
+                  'pdf_report.big_three_items.sun_description',
+                  _currentLanguage,
+                ),
               ),
             ),
             pw.SizedBox(width: 10),
             pw.Expanded(
               child: _buildBigThreeItem(
-                L10nService.get('pdf_report.big_three_items.moon_sign', _currentLanguage),
+                L10nService.get(
+                  'pdf_report.big_three_items.moon_sign',
+                  _currentLanguage,
+                ),
                 moonSign?.symbol ?? '?',
                 moonSign?.localizedName(_currentLanguage) ?? unknown,
-                L10nService.get('pdf_report.big_three_items.moon_description', _currentLanguage),
+                L10nService.get(
+                  'pdf_report.big_three_items.moon_description',
+                  _currentLanguage,
+                ),
               ),
             ),
             pw.SizedBox(width: 10),
             pw.Expanded(
               child: _buildBigThreeItem(
-                L10nService.get('pdf_report.big_three_items.ascendant', _currentLanguage),
+                L10nService.get(
+                  'pdf_report.big_three_items.ascendant',
+                  _currentLanguage,
+                ),
                 ascendant?.symbol ?? '?',
                 ascendant?.localizedName(_currentLanguage) ?? unknown,
-                L10nService.get('pdf_report.big_three_items.ascendant_description', _currentLanguage),
+                L10nService.get(
+                  'pdf_report.big_three_items.ascendant_description',
+                  _currentLanguage,
+                ),
               ),
             ),
           ],
@@ -373,31 +394,19 @@ class PdfReportService {
         children: [
           pw.Text(
             title,
-            style: const pw.TextStyle(
-              fontSize: 10,
-              color: _textMuted,
-            ),
+            style: const pw.TextStyle(fontSize: 10, color: _textMuted),
           ),
           pw.SizedBox(height: 8),
-          pw.Text(
-            symbol,
-            style: const pw.TextStyle(fontSize: 24),
-          ),
+          pw.Text(symbol, style: const pw.TextStyle(fontSize: 24)),
           pw.SizedBox(height: 4),
           pw.Text(
             sign,
-            style: pw.TextStyle(
-              fontSize: 14,
-              fontWeight: pw.FontWeight.bold,
-            ),
+            style: pw.TextStyle(fontSize: 14, fontWeight: pw.FontWeight.bold),
           ),
           pw.SizedBox(height: 6),
           pw.Text(
             description,
-            style: const pw.TextStyle(
-              fontSize: 8,
-              color: _textMuted,
-            ),
+            style: const pw.TextStyle(fontSize: 8, color: _textMuted),
             textAlign: pw.TextAlign.center,
           ),
         ],
@@ -413,7 +422,10 @@ class PdfReportService {
       crossAxisAlignment: pw.CrossAxisAlignment.start,
       children: [
         pw.Text(
-          L10nService.get('pdf_report.sections.planet_positions', _currentLanguage),
+          L10nService.get(
+            'pdf_report.sections.planet_positions',
+            _currentLanguage,
+          ),
           style: pw.TextStyle(
             fontSize: 18,
             fontWeight: pw.FontWeight.bold,
@@ -430,10 +442,34 @@ class PdfReportService {
                 color: PdfColor.fromInt(0xFFF3E8FF),
               ),
               children: [
-                _buildTableCell(L10nService.get('pdf_report.table_headers.planet', _currentLanguage), isHeader: true),
-                _buildTableCell(L10nService.get('pdf_report.table_headers.sign', _currentLanguage), isHeader: true),
-                _buildTableCell(L10nService.get('pdf_report.table_headers.house', _currentLanguage), isHeader: true),
-                _buildTableCell(L10nService.get('pdf_report.table_headers.meaning', _currentLanguage), isHeader: true),
+                _buildTableCell(
+                  L10nService.get(
+                    'pdf_report.table_headers.planet',
+                    _currentLanguage,
+                  ),
+                  isHeader: true,
+                ),
+                _buildTableCell(
+                  L10nService.get(
+                    'pdf_report.table_headers.sign',
+                    _currentLanguage,
+                  ),
+                  isHeader: true,
+                ),
+                _buildTableCell(
+                  L10nService.get(
+                    'pdf_report.table_headers.house',
+                    _currentLanguage,
+                  ),
+                  isHeader: true,
+                ),
+                _buildTableCell(
+                  L10nService.get(
+                    'pdf_report.table_headers.meaning',
+                    _currentLanguage,
+                  ),
+                  isHeader: true,
+                ),
               ],
             ),
             // Data rows
@@ -443,10 +479,19 @@ class PdfReportService {
               final house = houses[planet] ?? 1;
               return pw.TableRow(
                 children: [
-                  _buildTableCell('${planet.symbol} ${planet.localizedName(_currentLanguage)}'),
-                  _buildTableCell('${sign.symbol} ${sign.localizedName(_currentLanguage)}'),
-                  _buildTableCell('$house. ${L10nService.get('pdf_report.table_headers.house', _currentLanguage)}'),
-                  _buildTableCell(_getPlanetMeaning(planet, _currentLanguage), fontSize: 8),
+                  _buildTableCell(
+                    '${planet.symbol} ${planet.localizedName(_currentLanguage)}',
+                  ),
+                  _buildTableCell(
+                    '${sign.symbol} ${sign.localizedName(_currentLanguage)}',
+                  ),
+                  _buildTableCell(
+                    '$house. ${L10nService.get('pdf_report.table_headers.house', _currentLanguage)}',
+                  ),
+                  _buildTableCell(
+                    _getPlanetMeaning(planet, _currentLanguage),
+                    fontSize: 8,
+                  ),
                 ],
               );
             }),
@@ -456,7 +501,11 @@ class PdfReportService {
     );
   }
 
-  pw.Widget _buildTableCell(String text, {bool isHeader = false, double fontSize = 10}) {
+  pw.Widget _buildTableCell(
+    String text, {
+    bool isHeader = false,
+    double fontSize = 10,
+  }) {
     return pw.Padding(
       padding: const pw.EdgeInsets.all(8),
       child: pw.Text(
@@ -470,7 +519,9 @@ class PdfReportService {
     );
   }
 
-  pw.Widget _buildElementDistributionSection(Map<Planet, ZodiacSign> positions) {
+  pw.Widget _buildElementDistributionSection(
+    Map<Planet, ZodiacSign> positions,
+  ) {
     final elementCounts = <Element, int>{};
     for (final sign in positions.values) {
       elementCounts[sign.element] = (elementCounts[sign.element] ?? 0) + 1;
@@ -480,7 +531,10 @@ class PdfReportService {
       crossAxisAlignment: pw.CrossAxisAlignment.start,
       children: [
         pw.Text(
-          L10nService.get('pdf_report.sections.element_distribution', _currentLanguage),
+          L10nService.get(
+            'pdf_report.sections.element_distribution',
+            _currentLanguage,
+          ),
           style: pw.TextStyle(
             fontSize: 18,
             fontWeight: pw.FontWeight.bold,
@@ -501,34 +555,30 @@ class PdfReportService {
 
   pw.Widget _buildElementItem(Element element, int count, int total) {
     final percentage = (count / total * 100).round();
-    final planetsLabel = L10nService.get('pdf_report.units.planets', _currentLanguage);
+    final planetsLabel = L10nService.get(
+      'pdf_report.units.planets',
+      _currentLanguage,
+    );
     return pw.Column(
       children: [
-        pw.Text(
-          element.symbol,
-          style: const pw.TextStyle(fontSize: 24),
-        ),
+        pw.Text(element.symbol, style: const pw.TextStyle(fontSize: 24)),
         pw.SizedBox(height: 4),
         pw.Text(
           element.localizedName(_currentLanguage),
-          style: pw.TextStyle(
-            fontSize: 12,
-            fontWeight: pw.FontWeight.bold,
-          ),
+          style: pw.TextStyle(fontSize: 12, fontWeight: pw.FontWeight.bold),
         ),
         pw.SizedBox(height: 2),
         pw.Text(
           '$count $planetsLabel ($percentage%)',
-          style: const pw.TextStyle(
-            fontSize: 10,
-            color: _textMuted,
-          ),
+          style: const pw.TextStyle(fontSize: 10, color: _textMuted),
         ),
       ],
     );
   }
 
-  pw.Widget _buildModalityDistributionSection(Map<Planet, ZodiacSign> positions) {
+  pw.Widget _buildModalityDistributionSection(
+    Map<Planet, ZodiacSign> positions,
+  ) {
     final modalityCounts = <Modality, int>{};
     for (final sign in positions.values) {
       modalityCounts[sign.modality] = (modalityCounts[sign.modality] ?? 0) + 1;
@@ -538,7 +588,10 @@ class PdfReportService {
       crossAxisAlignment: pw.CrossAxisAlignment.start,
       children: [
         pw.Text(
-          L10nService.get('pdf_report.sections.modality_distribution', _currentLanguage),
+          L10nService.get(
+            'pdf_report.sections.modality_distribution',
+            _currentLanguage,
+          ),
           style: pw.TextStyle(
             fontSize: 18,
             fontWeight: pw.FontWeight.bold,
@@ -559,7 +612,10 @@ class PdfReportService {
 
   pw.Widget _buildModalityItem(Modality modality, int count, int total) {
     final percentage = (count / total * 100).round();
-    final planetsLabel = L10nService.get('pdf_report.units.planets', _currentLanguage);
+    final planetsLabel = L10nService.get(
+      'pdf_report.units.planets',
+      _currentLanguage,
+    );
     return pw.Container(
       width: 150,
       padding: const pw.EdgeInsets.all(10),
@@ -571,26 +627,17 @@ class PdfReportService {
         children: [
           pw.Text(
             modality.localizedName(_currentLanguage),
-            style: pw.TextStyle(
-              fontSize: 14,
-              fontWeight: pw.FontWeight.bold,
-            ),
+            style: pw.TextStyle(fontSize: 14, fontWeight: pw.FontWeight.bold),
           ),
           pw.SizedBox(height: 4),
           pw.Text(
             '$count $planetsLabel ($percentage%)',
-            style: const pw.TextStyle(
-              fontSize: 10,
-              color: _textMuted,
-            ),
+            style: const pw.TextStyle(fontSize: 10, color: _textMuted),
           ),
           pw.SizedBox(height: 4),
           pw.Text(
             _getModalityMeaning(modality),
-            style: const pw.TextStyle(
-              fontSize: 8,
-              color: _textMuted,
-            ),
+            style: const pw.TextStyle(fontSize: 8, color: _textMuted),
             textAlign: pw.TextAlign.center,
           ),
         ],
@@ -604,7 +651,10 @@ class PdfReportService {
       Modality.fixed => 'fixed',
       Modality.mutable => 'mutable',
     };
-    return L10nService.get('pdf_report.modality_meanings.$key', _currentLanguage);
+    return L10nService.get(
+      'pdf_report.modality_meanings.$key',
+      _currentLanguage,
+    );
   }
 
   pw.Widget _buildPersonalityInterpretation(
@@ -616,7 +666,10 @@ class PdfReportService {
       crossAxisAlignment: pw.CrossAxisAlignment.start,
       children: [
         pw.Text(
-          L10nService.get('pdf_report.sections.personality_interpretation', _currentLanguage),
+          L10nService.get(
+            'pdf_report.sections.personality_interpretation',
+            _currentLanguage,
+          ),
           style: pw.TextStyle(
             fontSize: 18,
             fontWeight: pw.FontWeight.bold,
@@ -634,7 +687,11 @@ class PdfReportService {
             crossAxisAlignment: pw.CrossAxisAlignment.start,
             children: [
               pw.Text(
-                L10nService.getWithParams('pdf_report.interpretations.sun_in_sign', _currentLanguage, params: {'sign': sunSign.localizedName(_currentLanguage)}),
+                L10nService.getWithParams(
+                  'pdf_report.interpretations.sun_in_sign',
+                  _currentLanguage,
+                  params: {'sign': sunSign.localizedName(_currentLanguage)},
+                ),
                 style: pw.TextStyle(
                   fontSize: 14,
                   fontWeight: pw.FontWeight.bold,
@@ -648,7 +705,11 @@ class PdfReportService {
               if (moonSign != null) ...[
                 pw.SizedBox(height: 15),
                 pw.Text(
-                  L10nService.getWithParams('pdf_report.interpretations.moon_in_sign', _currentLanguage, params: {'sign': moonSign.localizedName(_currentLanguage)}),
+                  L10nService.getWithParams(
+                    'pdf_report.interpretations.moon_in_sign',
+                    _currentLanguage,
+                    params: {'sign': moonSign.localizedName(_currentLanguage)},
+                  ),
                   style: pw.TextStyle(
                     fontSize: 14,
                     fontWeight: pw.FontWeight.bold,
@@ -663,7 +724,11 @@ class PdfReportService {
               if (ascendant != null) ...[
                 pw.SizedBox(height: 15),
                 pw.Text(
-                  L10nService.getWithParams('pdf_report.interpretations.ascendant_in_sign', _currentLanguage, params: {'sign': ascendant.localizedName(_currentLanguage)}),
+                  L10nService.getWithParams(
+                    'pdf_report.interpretations.ascendant_in_sign',
+                    _currentLanguage,
+                    params: {'sign': ascendant.localizedName(_currentLanguage)},
+                  ),
                   style: pw.TextStyle(
                     fontSize: 14,
                     fontWeight: pw.FontWeight.bold,
@@ -689,10 +754,7 @@ class PdfReportService {
       padding: const pw.EdgeInsets.all(20),
       decoration: pw.BoxDecoration(
         gradient: const pw.LinearGradient(
-          colors: [
-            PdfColor.fromInt(0xFFF3E8FF),
-            PdfColor.fromInt(0xFFE8F4FF),
-          ],
+          colors: [PdfColor.fromInt(0xFFF3E8FF), PdfColor.fromInt(0xFFE8F4FF)],
         ),
         borderRadius: pw.BorderRadius.circular(10),
       ),
@@ -707,7 +769,10 @@ class PdfReportService {
             crossAxisAlignment: pw.CrossAxisAlignment.start,
             children: [
               pw.Text(
-                L10nService.get('pdf_report.sections.daily_horoscope', _currentLanguage),
+                L10nService.get(
+                  'pdf_report.sections.daily_horoscope',
+                  _currentLanguage,
+                ),
                 style: pw.TextStyle(
                   fontSize: 10,
                   fontWeight: pw.FontWeight.bold,
@@ -725,10 +790,7 @@ class PdfReportService {
               ),
               pw.Text(
                 '${date.day}.${date.month}.${date.year}',
-                style: const pw.TextStyle(
-                  fontSize: 12,
-                  color: _textMuted,
-                ),
+                style: const pw.TextStyle(fontSize: 12, color: _textMuted),
               ),
             ],
           ),
@@ -749,17 +811,14 @@ class PdfReportService {
         children: [
           pw.Column(
             children: [
-              pw.Text(
-                phase.emoji,
-                style: const pw.TextStyle(fontSize: 24),
-              ),
+              pw.Text(phase.emoji, style: const pw.TextStyle(fontSize: 24)),
               pw.SizedBox(height: 4),
               pw.Text(
-                L10nService.get('pdf_report.moon_labels.moon_phase', _currentLanguage),
-                style: const pw.TextStyle(
-                  fontSize: 8,
-                  color: _textMuted,
+                L10nService.get(
+                  'pdf_report.moon_labels.moon_phase',
+                  _currentLanguage,
                 ),
+                style: const pw.TextStyle(fontSize: 8, color: _textMuted),
               ),
               pw.Text(
                 phase.localizedName(_currentLanguage),
@@ -772,17 +831,14 @@ class PdfReportService {
           ),
           pw.Column(
             children: [
-              pw.Text(
-                sign.symbol,
-                style: const pw.TextStyle(fontSize: 24),
-              ),
+              pw.Text(sign.symbol, style: const pw.TextStyle(fontSize: 24)),
               pw.SizedBox(height: 4),
               pw.Text(
-                L10nService.get('pdf_report.moon_labels.moon_sign', _currentLanguage),
-                style: const pw.TextStyle(
-                  fontSize: 8,
-                  color: _textMuted,
+                L10nService.get(
+                  'pdf_report.moon_labels.moon_sign',
+                  _currentLanguage,
                 ),
+                style: const pw.TextStyle(fontSize: 8, color: _textMuted),
               ),
               pw.Text(
                 sign.localizedName(_currentLanguage),
@@ -807,10 +863,7 @@ class PdfReportService {
       ),
       child: pw.Text(
         horoscope,
-        style: const pw.TextStyle(
-          fontSize: 11,
-          lineSpacing: 1.5,
-        ),
+        style: const pw.TextStyle(fontSize: 11, lineSpacing: 1.5),
       ),
     );
   }
@@ -820,7 +873,10 @@ class PdfReportService {
       crossAxisAlignment: pw.CrossAxisAlignment.start,
       children: [
         pw.Text(
-          L10nService.get('pdf_report.sections.daily_recommendation', _currentLanguage),
+          L10nService.get(
+            'pdf_report.sections.daily_recommendation',
+            _currentLanguage,
+          ),
           style: pw.TextStyle(
             fontSize: 14,
             fontWeight: pw.FontWeight.bold,
@@ -832,14 +888,20 @@ class PdfReportService {
           children: [
             pw.Expanded(
               child: _buildRecommendationItem(
-                L10nService.get('pdf_report.labels.lucky_number', _currentLanguage),
+                L10nService.get(
+                  'pdf_report.labels.lucky_number',
+                  _currentLanguage,
+                ),
                 _getLuckyNumber(sign).toString(),
               ),
             ),
             pw.SizedBox(width: 10),
             pw.Expanded(
               child: _buildRecommendationItem(
-                L10nService.get('pdf_report.labels.lucky_color', _currentLanguage),
+                L10nService.get(
+                  'pdf_report.labels.lucky_color',
+                  _currentLanguage,
+                ),
                 _getLuckyColor(sign, _currentLanguage),
               ),
             ),
@@ -867,18 +929,12 @@ class PdfReportService {
         children: [
           pw.Text(
             label,
-            style: const pw.TextStyle(
-              fontSize: 8,
-              color: _textMuted,
-            ),
+            style: const pw.TextStyle(fontSize: 8, color: _textMuted),
           ),
           pw.SizedBox(height: 4),
           pw.Text(
             value,
-            style: pw.TextStyle(
-              fontSize: 11,
-              fontWeight: pw.FontWeight.bold,
-            ),
+            style: pw.TextStyle(fontSize: 11, fontWeight: pw.FontWeight.bold),
             textAlign: pw.TextAlign.center,
           ),
         ],
@@ -896,9 +952,7 @@ class PdfReportService {
     return pw.Container(
       padding: const pw.EdgeInsets.only(bottom: 10),
       decoration: const pw.BoxDecoration(
-        border: pw.Border(
-          bottom: pw.BorderSide(color: _goldColor, width: 1),
-        ),
+        border: pw.Border(bottom: pw.BorderSide(color: _goldColor, width: 1)),
       ),
       child: pw.Row(
         mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
@@ -913,11 +967,11 @@ class PdfReportService {
             ),
           ),
           pw.Text(
-            L10nService.get('pdf_report.labels.compatibility_report', _currentLanguage),
-            style: const pw.TextStyle(
-              fontSize: 10,
-              color: _textMuted,
+            L10nService.get(
+              'pdf_report.labels.compatibility_report',
+              _currentLanguage,
             ),
+            style: const pw.TextStyle(fontSize: 10, color: _textMuted),
           ),
         ],
       ),
@@ -932,10 +986,7 @@ class PdfReportService {
       padding: const pw.EdgeInsets.all(20),
       decoration: pw.BoxDecoration(
         gradient: const pw.LinearGradient(
-          colors: [
-            PdfColor.fromInt(0xFFFFE8F0),
-            PdfColor.fromInt(0xFFF3E8FF),
-          ],
+          colors: [PdfColor.fromInt(0xFFFFE8F0), PdfColor.fromInt(0xFFF3E8FF)],
         ),
         borderRadius: pw.BorderRadius.circular(10),
       ),
@@ -950,7 +1001,11 @@ class PdfReportService {
               ),
               pw.SizedBox(height: 5),
               pw.Text(
-                profile1.name ?? L10nService.get('pdf_report.defaults.person_1', _currentLanguage),
+                profile1.name ??
+                    L10nService.get(
+                      'pdf_report.defaults.person_1',
+                      _currentLanguage,
+                    ),
                 style: pw.TextStyle(
                   fontSize: 14,
                   fontWeight: pw.FontWeight.bold,
@@ -958,19 +1013,13 @@ class PdfReportService {
               ),
               pw.Text(
                 profile1.sunSign.localizedName(_currentLanguage),
-                style: const pw.TextStyle(
-                  fontSize: 10,
-                  color: _textMuted,
-                ),
+                style: const pw.TextStyle(fontSize: 10, color: _textMuted),
               ),
             ],
           ),
           pw.Text(
             '+',
-            style: const pw.TextStyle(
-              fontSize: 24,
-              color: _goldColor,
-            ),
+            style: const pw.TextStyle(fontSize: 24, color: _goldColor),
           ),
           pw.Column(
             children: [
@@ -980,7 +1029,11 @@ class PdfReportService {
               ),
               pw.SizedBox(height: 5),
               pw.Text(
-                profile2.name ?? L10nService.get('pdf_report.defaults.person_2', _currentLanguage),
+                profile2.name ??
+                    L10nService.get(
+                      'pdf_report.defaults.person_2',
+                      _currentLanguage,
+                    ),
                 style: pw.TextStyle(
                   fontSize: 14,
                   fontWeight: pw.FontWeight.bold,
@@ -988,10 +1041,7 @@ class PdfReportService {
               ),
               pw.Text(
                 profile2.sunSign.localizedName(_currentLanguage),
-                style: const pw.TextStyle(
-                  fontSize: 10,
-                  color: _textMuted,
-                ),
+                style: const pw.TextStyle(fontSize: 10, color: _textMuted),
               ),
             ],
           ),
@@ -1005,7 +1055,10 @@ class PdfReportService {
       child: pw.Column(
         children: [
           pw.Text(
-            L10nService.get('pdf_report.sections.overall_compatibility', _currentLanguage),
+            L10nService.get(
+              'pdf_report.sections.overall_compatibility',
+              _currentLanguage,
+            ),
             style: pw.TextStyle(
               fontSize: 12,
               fontWeight: pw.FontWeight.bold,
@@ -1019,10 +1072,7 @@ class PdfReportService {
             height: 100,
             decoration: pw.BoxDecoration(
               shape: pw.BoxShape.circle,
-              border: pw.Border.all(
-                color: _getScoreColor(score),
-                width: 4,
-              ),
+              border: pw.Border.all(color: _getScoreColor(score), width: 4),
             ),
             child: pw.Center(
               child: pw.Text(
@@ -1045,7 +1095,10 @@ class PdfReportService {
       crossAxisAlignment: pw.CrossAxisAlignment.start,
       children: [
         pw.Text(
-          L10nService.get('pdf_report.sections.category_compatibility', _currentLanguage),
+          L10nService.get(
+            'pdf_report.sections.category_compatibility',
+            _currentLanguage,
+          ),
           style: pw.TextStyle(
             fontSize: 14,
             fontWeight: pw.FontWeight.bold,
@@ -1053,10 +1106,12 @@ class PdfReportService {
           ),
         ),
         pw.SizedBox(height: 15),
-        ...categoryScores.entries.map((entry) => pw.Padding(
-          padding: const pw.EdgeInsets.only(bottom: 10),
-          child: _buildCategoryScoreBar(entry.key, entry.value),
-        )),
+        ...categoryScores.entries.map(
+          (entry) => pw.Padding(
+            padding: const pw.EdgeInsets.only(bottom: 10),
+            child: _buildCategoryScoreBar(entry.key, entry.value),
+          ),
+        ),
       ],
     );
   }
@@ -1066,10 +1121,7 @@ class PdfReportService {
       children: [
         pw.SizedBox(
           width: 100,
-          child: pw.Text(
-            category,
-            style: const pw.TextStyle(fontSize: 10),
-          ),
+          child: pw.Text(category, style: const pw.TextStyle(fontSize: 10)),
         ),
         pw.Expanded(
           child: pw.Stack(
@@ -1095,10 +1147,7 @@ class PdfReportService {
         pw.SizedBox(width: 10),
         pw.Text(
           '%$score',
-          style: pw.TextStyle(
-            fontSize: 10,
-            fontWeight: pw.FontWeight.bold,
-          ),
+          style: pw.TextStyle(fontSize: 10, fontWeight: pw.FontWeight.bold),
         ),
       ],
     );
@@ -1115,7 +1164,10 @@ class PdfReportService {
         crossAxisAlignment: pw.CrossAxisAlignment.start,
         children: [
           pw.Text(
-            L10nService.get('pdf_report.sections.detailed_analysis', _currentLanguage),
+            L10nService.get(
+              'pdf_report.sections.detailed_analysis',
+              _currentLanguage,
+            ),
             style: pw.TextStyle(
               fontSize: 12,
               fontWeight: pw.FontWeight.bold,
@@ -1125,10 +1177,7 @@ class PdfReportService {
           pw.SizedBox(height: 10),
           pw.Text(
             analysis,
-            style: const pw.TextStyle(
-              fontSize: 10,
-              lineSpacing: 1.5,
-            ),
+            style: const pw.TextStyle(fontSize: 10, lineSpacing: 1.5),
           ),
         ],
       ),
@@ -1171,17 +1220,26 @@ class PdfReportService {
 
   String _getSunSignInterpretation(ZodiacSign sign, AppLanguage language) {
     final key = sign.name.toLowerCase();
-    return L10nService.get('pdf_report.sun_sign_interpretations.$key', language);
+    return L10nService.get(
+      'pdf_report.sun_sign_interpretations.$key',
+      language,
+    );
   }
 
   String _getMoonSignInterpretation(ZodiacSign sign, AppLanguage language) {
     final key = sign.name.toLowerCase();
-    return L10nService.get('pdf_report.moon_sign_interpretations.$key', language);
+    return L10nService.get(
+      'pdf_report.moon_sign_interpretations.$key',
+      language,
+    );
   }
 
   String _getAscendantInterpretation(ZodiacSign sign, AppLanguage language) {
     final key = sign.name.toLowerCase();
-    return L10nService.get('pdf_report.ascendant_interpretations.$key', language);
+    return L10nService.get(
+      'pdf_report.ascendant_interpretations.$key',
+      language,
+    );
   }
 
   int _getLuckyNumber(ZodiacSign sign) {
@@ -1191,43 +1249,54 @@ class PdfReportService {
   }
 
   String _getLuckyColor(ZodiacSign sign, AppLanguage language) {
-    final colorKeys = ['red', 'blue', 'green', 'purple', 'orange', 'yellow', 'pink', 'white'];
+    final colorKeys = [
+      'red',
+      'blue',
+      'green',
+      'purple',
+      'orange',
+      'yellow',
+      'pink',
+      'white',
+    ];
     final now = DateTime.now();
     final index = (now.day + sign.index) % colorKeys.length;
     return L10nService.get('pdf_report.colors.${colorKeys[index]}', language);
   }
 
   String _getCautionArea(ZodiacSign sign, AppLanguage language) {
-    final areaKeys = ['communication', 'finance', 'health', 'relationships', 'work', 'family'];
+    final areaKeys = [
+      'communication',
+      'finance',
+      'health',
+      'relationships',
+      'work',
+      'family',
+    ];
     final now = DateTime.now();
     final index = (now.day + sign.index + 3) % areaKeys.length;
-    return L10nService.get('pdf_report.caution_areas.${areaKeys[index]}', language);
+    return L10nService.get(
+      'pdf_report.caution_areas.${areaKeys[index]}',
+      language,
+    );
   }
 
   // ============== Public Methods ==============
 
   /// Preview PDF in system viewer
   Future<void> previewPdf(Uint8List pdfData) async {
-    await Printing.layoutPdf(
-      onLayout: (_) => pdfData,
-    );
+    await Printing.layoutPdf(onLayout: (_) => pdfData);
   }
 
   /// Share PDF
   Future<void> sharePdf(Uint8List pdfData, String filename) async {
-    await Printing.sharePdf(
-      bytes: pdfData,
-      filename: filename,
-    );
+    await Printing.sharePdf(bytes: pdfData, filename: filename);
   }
 
   /// Save PDF to device
   Future<bool> savePdf(Uint8List pdfData, String filename) async {
     try {
-      await Printing.sharePdf(
-        bytes: pdfData,
-        filename: filename,
-      );
+      await Printing.sharePdf(bytes: pdfData, filename: filename);
       return true;
     } catch (e) {
       return false;

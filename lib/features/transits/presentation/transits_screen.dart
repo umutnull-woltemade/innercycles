@@ -16,7 +16,9 @@ import '../../../shared/widgets/entertainment_disclaimer.dart';
 import '../../../shared/widgets/quiz_cta_card.dart';
 
 /// Current planetary transits provider - uses API with local fallback
-final currentTransitsProvider = FutureProvider<List<PlanetPosition>>((ref) async {
+final currentTransitsProvider = FutureProvider<List<PlanetPosition>>((
+  ref,
+) async {
   try {
     // Try to fetch from API
     final api = ref.watch(astrologyApiProvider);
@@ -24,20 +26,24 @@ final currentTransitsProvider = FutureProvider<List<PlanetPosition>>((ref) async
 
     if (response.isSuccess && response.data != null) {
       // Convert API data to local PlanetPosition model
-      return response.data!.map((dto) {
-        final planet = _stringToPlanet(dto.name);
-        return PlanetPosition(
-          planet: planet,
-          longitude: dto.longitude,
-          latitude: dto.latitude,
-          isRetrograde: dto.isRetrograde,
-        );
-      }).where((p) =>
-          p.planet != Planet.ascendant &&
-          p.planet != Planet.midheaven &&
-          p.planet != Planet.ic &&
-          p.planet != Planet.descendant)
-      .toList();
+      return response.data!
+          .map((dto) {
+            final planet = _stringToPlanet(dto.name);
+            return PlanetPosition(
+              planet: planet,
+              longitude: dto.longitude,
+              latitude: dto.latitude,
+              isRetrograde: dto.isRetrograde,
+            );
+          })
+          .where(
+            (p) =>
+                p.planet != Planet.ascendant &&
+                p.planet != Planet.midheaven &&
+                p.planet != Planet.ic &&
+                p.planet != Planet.descendant,
+          )
+          .toList();
     }
   } catch (e) {
     // Fallback to local calculation if API fails
@@ -49,11 +55,13 @@ final currentTransitsProvider = FutureProvider<List<PlanetPosition>>((ref) async
   final birthData = BirthData(date: now);
   final chart = EphemerisService.calculateNatalChart(birthData);
   return chart.planets
-      .where((p) =>
-          p.planet != Planet.ascendant &&
-          p.planet != Planet.midheaven &&
-          p.planet != Planet.ic &&
-          p.planet != Planet.descendant)
+      .where(
+        (p) =>
+            p.planet != Planet.ascendant &&
+            p.planet != Planet.midheaven &&
+            p.planet != Planet.ic &&
+            p.planet != Planet.descendant,
+      )
       .toList();
 });
 
@@ -96,7 +104,11 @@ class TransitsScreen extends ConsumerWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.error_outline, color: AppColors.fireElement, size: 48),
+                  Icon(
+                    Icons.error_outline,
+                    color: AppColors.fireElement,
+                    size: 48,
+                  ),
                   const SizedBox(height: 16),
                   Text(
                     L10nService.get('transits.error_loading', language),
@@ -128,7 +140,10 @@ class TransitsScreen extends ConsumerWidget {
                   KadimNotCard(
                     category: KadimCategory.astrology,
                     title: L10nService.get('transits.kadim_title', language),
-                    content: L10nService.get('transits.kadim_content', language),
+                    content: L10nService.get(
+                      'transits.kadim_content',
+                      language,
+                    ),
                     icon: Icons.compare_arrows,
                   ),
                   const SizedBox(height: AppConstants.spacingXl),
@@ -140,7 +155,10 @@ class TransitsScreen extends ConsumerWidget {
                   const SizedBox(height: AppConstants.spacingXl),
                   // Entertainment Disclaimer
                   PageFooterWithDisclaimer(
-                    brandText: L10nService.get('transits.brand_footer', language),
+                    brandText: L10nService.get(
+                      'transits.brand_footer',
+                      language,
+                    ),
                     disclaimerText: DisclaimerTexts.astrology(language),
                     language: language,
                   ),
@@ -169,15 +187,15 @@ class TransitsScreen extends ConsumerWidget {
             children: [
               Text(
                 L10nService.get('transits.title', language),
-                style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                      color: AppColors.starGold,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.headlineMedium?.copyWith(color: AppColors.starGold),
               ).animate().fadeIn(duration: 400.ms),
               Text(
                 L10nService.get('transits.subtitle', language),
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: AppColors.textSecondary,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.bodySmall?.copyWith(color: AppColors.textSecondary),
               ).animate().fadeIn(delay: 100.ms, duration: 400.ms),
             ],
           ),
@@ -186,7 +204,11 @@ class TransitsScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildCurrentSkyCard(BuildContext context, List<PlanetPosition> transits, AppLanguage language) {
+  Widget _buildCurrentSkyCard(
+    BuildContext context,
+    List<PlanetPosition> transits,
+    AppLanguage language,
+  ) {
     final now = DateTime.now();
     final dateStr = '${now.day}.${now.month}.${now.year}';
 
@@ -203,9 +225,7 @@ class TransitsScreen extends ConsumerWidget {
           ],
         ),
         borderRadius: BorderRadius.circular(AppConstants.radiusXl),
-        border: Border.all(
-          color: AppColors.auroraStart.withValues(alpha: 0.3),
-        ),
+        border: Border.all(color: AppColors.auroraStart.withValues(alpha: 0.3)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -232,14 +252,14 @@ class TransitsScreen extends ConsumerWidget {
                     Text(
                       L10nService.get('transits.todays_sky', language),
                       style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            color: AppColors.textPrimary,
-                          ),
+                        color: AppColors.textPrimary,
+                      ),
                     ),
                     Text(
                       dateStr,
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: AppColors.textSecondary,
-                          ),
+                        color: AppColors.textSecondary,
+                      ),
                     ),
                   ],
                 ),
@@ -253,7 +273,11 @@ class TransitsScreen extends ConsumerWidget {
     ).animate().fadeIn(delay: 200.ms, duration: 400.ms).slideY(begin: 0.1);
   }
 
-  Widget _buildMiniPlanetRow(BuildContext context, List<PlanetPosition> transits, AppLanguage language) {
+  Widget _buildMiniPlanetRow(
+    BuildContext context,
+    List<PlanetPosition> transits,
+    AppLanguage language,
+  ) {
     // Show first 5 personal planets
     final personalPlanets = transits
         .where((p) => p.planet.isPersonalPlanet)
@@ -278,34 +302,25 @@ class TransitsScreen extends ConsumerWidget {
             children: [
               Text(
                 planet.planet.symbol,
-                style: TextStyle(
-                  fontSize: 16,
-                  color: planet.planet.color,
-                ),
+                style: TextStyle(fontSize: 16, color: planet.planet.color),
               ),
               const SizedBox(width: 6),
               Text(
                 planet.sign.symbol,
-                style: TextStyle(
-                  fontSize: 14,
-                  color: planet.sign.color,
-                ),
+                style: TextStyle(fontSize: 14, color: planet.sign.color),
               ),
               const SizedBox(width: 4),
               Text(
                 planet.sign.localizedName(language),
-                style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                      color: planet.sign.color,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.labelSmall?.copyWith(color: planet.sign.color),
               ),
               if (planet.isRetrograde) ...[
                 const SizedBox(width: 4),
                 Text(
                   '℞',
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: AppColors.fireElement,
-                  ),
+                  style: TextStyle(fontSize: 12, color: AppColors.fireElement),
                 ),
               ],
             ],
@@ -315,7 +330,11 @@ class TransitsScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildRetrogradePlanets(BuildContext context, List<PlanetPosition> transits, AppLanguage language) {
+  Widget _buildRetrogradePlanets(
+    BuildContext context,
+    List<PlanetPosition> transits,
+    AppLanguage language,
+  ) {
     final retrogrades = transits.where((p) => p.isRetrograde).toList();
 
     if (retrogrades.isEmpty) {
@@ -331,17 +350,14 @@ class TransitsScreen extends ConsumerWidget {
         ),
         child: Row(
           children: [
-            Icon(
-              Icons.check_circle_outline,
-              color: AppColors.earthElement,
-            ),
+            Icon(Icons.check_circle_outline, color: AppColors.earthElement),
             const SizedBox(width: AppConstants.spacingMd),
             Expanded(
               child: Text(
                 L10nService.get('transits.no_retrograde', language),
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: AppColors.earthElement,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.bodyMedium?.copyWith(color: AppColors.earthElement),
               ),
             ),
           ],
@@ -354,17 +370,13 @@ class TransitsScreen extends ConsumerWidget {
       children: [
         Row(
           children: [
-            Icon(
-              Icons.rotate_left,
-              color: AppColors.fireElement,
-              size: 20,
-            ),
+            Icon(Icons.rotate_left, color: AppColors.fireElement, size: 20),
             const SizedBox(width: 8),
             Text(
               L10nService.get('transits.retrograde_planets', language),
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    color: AppColors.textPrimary,
-                  ),
+              style: Theme.of(
+                context,
+              ).textTheme.titleMedium?.copyWith(color: AppColors.textPrimary),
             ),
           ],
         ),
@@ -372,15 +384,21 @@ class TransitsScreen extends ConsumerWidget {
         ...retrogrades.asMap().entries.map((entry) {
           final index = entry.key;
           final planet = entry.value;
-          return _buildRetrogradeCard(context, planet, language)
-              .animate()
-              .fadeIn(delay: (300 + index * 100).ms, duration: 400.ms);
+          return _buildRetrogradeCard(
+            context,
+            planet,
+            language,
+          ).animate().fadeIn(delay: (300 + index * 100).ms, duration: 400.ms);
         }),
       ],
     );
   }
 
-  Widget _buildRetrogradeCard(BuildContext context, PlanetPosition planet, AppLanguage language) {
+  Widget _buildRetrogradeCard(
+    BuildContext context,
+    PlanetPosition planet,
+    AppLanguage language,
+  ) {
     return Container(
       width: double.infinity,
       margin: const EdgeInsets.only(bottom: AppConstants.spacingSm),
@@ -395,9 +413,7 @@ class TransitsScreen extends ConsumerWidget {
           ],
         ),
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-        border: Border.all(
-          color: planet.planet.color.withValues(alpha: 0.3),
-        ),
+        border: Border.all(color: planet.planet.color.withValues(alpha: 0.3)),
       ),
       child: Row(
         children: [
@@ -409,10 +425,7 @@ class TransitsScreen extends ConsumerWidget {
             ),
             child: Text(
               planet.planet.symbol,
-              style: TextStyle(
-                fontSize: 20,
-                color: planet.planet.color,
-              ),
+              style: TextStyle(fontSize: 20, color: planet.planet.color),
             ),
           ),
           const SizedBox(width: AppConstants.spacingMd),
@@ -425,12 +438,15 @@ class TransitsScreen extends ConsumerWidget {
                     Text(
                       planet.planet.localizedName(language),
                       style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                            color: planet.planet.color,
-                          ),
+                        color: planet.planet.color,
+                      ),
                     ),
                     const SizedBox(width: 8),
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 6,
+                        vertical: 2,
+                      ),
                       decoration: BoxDecoration(
                         color: AppColors.fireElement.withValues(alpha: 0.2),
                         borderRadius: BorderRadius.circular(4),
@@ -438,9 +454,9 @@ class TransitsScreen extends ConsumerWidget {
                       child: Text(
                         '℞ RETRO',
                         style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                              color: AppColors.fireElement,
-                              fontSize: 10,
-                            ),
+                          color: AppColors.fireElement,
+                          fontSize: 10,
+                        ),
                       ),
                     ),
                   ],
@@ -449,8 +465,8 @@ class TransitsScreen extends ConsumerWidget {
                 Text(
                   _getRetrogradeMessage(planet.planet, language),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: AppColors.textSecondary,
-                      ),
+                    color: AppColors.textSecondary,
+                  ),
                 ),
               ],
             ),
@@ -465,29 +481,39 @@ class TransitsScreen extends ConsumerWidget {
     return L10nService.get(key, language);
   }
 
-  Widget _buildPlanetList(BuildContext context, List<PlanetPosition> transits, AppLanguage language) {
+  Widget _buildPlanetList(
+    BuildContext context,
+    List<PlanetPosition> transits,
+    AppLanguage language,
+  ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           L10nService.get('transits.all_planets', language),
-          style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                color: AppColors.textPrimary,
-              ),
+          style: Theme.of(
+            context,
+          ).textTheme.titleMedium?.copyWith(color: AppColors.textPrimary),
         ).animate().fadeIn(delay: 400.ms, duration: 400.ms),
         const SizedBox(height: AppConstants.spacingMd),
         ...transits.asMap().entries.map((entry) {
           final index = entry.key;
           final planet = entry.value;
-          return _buildPlanetCard(context, planet, language)
-              .animate()
-              .fadeIn(delay: (500 + index * 50).ms, duration: 300.ms);
+          return _buildPlanetCard(
+            context,
+            planet,
+            language,
+          ).animate().fadeIn(delay: (500 + index * 50).ms, duration: 300.ms);
         }),
       ],
     );
   }
 
-  Widget _buildPlanetCard(BuildContext context, PlanetPosition position, AppLanguage language) {
+  Widget _buildPlanetCard(
+    BuildContext context,
+    PlanetPosition position,
+    AppLanguage language,
+  ) {
     final planetName = position.planet.localizedName(language);
     final signName = position.sign.localizedName(language);
 
@@ -498,9 +524,7 @@ class TransitsScreen extends ConsumerWidget {
       decoration: BoxDecoration(
         color: AppColors.surfaceLight.withValues(alpha: 0.05),
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-        border: Border.all(
-          color: Colors.white.withValues(alpha: 0.1),
-        ),
+        border: Border.all(color: Colors.white.withValues(alpha: 0.1)),
       ),
       child: Row(
         children: [
@@ -514,10 +538,7 @@ class TransitsScreen extends ConsumerWidget {
             child: Center(
               child: Text(
                 position.planet.symbol,
-                style: TextStyle(
-                  fontSize: 20,
-                  color: position.planet.color,
-                ),
+                style: TextStyle(fontSize: 20, color: position.planet.color),
               ),
             ),
           ),
@@ -531,8 +552,8 @@ class TransitsScreen extends ConsumerWidget {
                     Text(
                       planetName,
                       style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                            color: AppColors.textPrimary,
-                          ),
+                        color: AppColors.textPrimary,
+                      ),
                     ),
                     if (position.isRetrograde) ...[
                       const SizedBox(width: 6),
@@ -549,9 +570,9 @@ class TransitsScreen extends ConsumerWidget {
                 const SizedBox(height: 2),
                 Text(
                   position.planet.meaning,
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: AppColors.textMuted,
-                      ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodySmall?.copyWith(color: AppColors.textMuted),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -569,24 +590,21 @@ class TransitsScreen extends ConsumerWidget {
               children: [
                 Text(
                   position.sign.symbol,
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: position.sign.color,
-                  ),
+                  style: TextStyle(fontSize: 14, color: position.sign.color),
                 ),
                 const SizedBox(width: 4),
                 Text(
                   signName,
-                  style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                        color: position.sign.color,
-                      ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.labelSmall?.copyWith(color: position.sign.color),
                 ),
                 const SizedBox(width: 4),
                 Text(
                   '${position.degree}°',
                   style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                        color: AppColors.textPrimary,
-                      ),
+                    color: AppColors.textPrimary,
+                  ),
                 ),
               ],
             ),

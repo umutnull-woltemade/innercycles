@@ -45,7 +45,8 @@ class GlossaryEntry {
     // For non-Turkish, try hintEn first, then try l10n lookup, then fallback to hint
     if (hintEn != null && hintEn!.isNotEmpty) return hintEn!;
     // Try to get from l10n using term as key
-    final l10nKey = 'glossary.hints.${term.toLowerCase().replaceAll(' ', '_').replaceAll('(', '').replaceAll(')', '')}';
+    final l10nKey =
+        'glossary.hints.${term.toLowerCase().replaceAll(' ', '_').replaceAll('(', '').replaceAll(')', '')}';
     final l10nHint = L10nService.get(l10nKey, language);
     if (!l10nHint.startsWith('[')) return l10nHint;
     return hint; // Fallback to Turkish
@@ -80,43 +81,44 @@ class GlossaryEntry {
   }
 
   Map<String, dynamic> toJson() => {
-        'term': term,
-        'termTr': termTr,
-        'hint': hint,
-        'hintEn': hintEn,
-        'definition': definition,
-        'definitionEn': definitionEn,
-        'deepExplanation': deepExplanation,
-        'deepExplanationEn': deepExplanationEn,
-        'example': example,
-        'exampleEn': exampleEn,
-        'category': category.index,
-        'relatedTerms': relatedTerms,
-        'references': references.map((r) => r.toJson()).toList(),
-        'planetInHouse': planetInHouse,
-        'signRuler': signRuler,
-      };
+    'term': term,
+    'termTr': termTr,
+    'hint': hint,
+    'hintEn': hintEn,
+    'definition': definition,
+    'definitionEn': definitionEn,
+    'deepExplanation': deepExplanation,
+    'deepExplanationEn': deepExplanationEn,
+    'example': example,
+    'exampleEn': exampleEn,
+    'category': category.index,
+    'relatedTerms': relatedTerms,
+    'references': references.map((r) => r.toJson()).toList(),
+    'planetInHouse': planetInHouse,
+    'signRuler': signRuler,
+  };
 
   factory GlossaryEntry.fromJson(Map<String, dynamic> json) => GlossaryEntry(
-        term: json['term'] as String,
-        termTr: json['termTr'] as String,
-        hint: json['hint'] as String? ?? '',
-        hintEn: json['hintEn'] as String?,
-        definition: json['definition'] as String,
-        definitionEn: json['definitionEn'] as String?,
-        deepExplanation: json['deepExplanation'] as String?,
-        deepExplanationEn: json['deepExplanationEn'] as String?,
-        example: json['example'] as String?,
-        exampleEn: json['exampleEn'] as String?,
-        category: GlossaryCategory.values[json['category'] as int],
-        relatedTerms: List<String>.from(json['relatedTerms'] as List? ?? []),
-        references: (json['references'] as List?)
-                ?.map((r) => GlossaryReference.fromJson(r as Map<String, dynamic>))
-                .toList() ??
-            [],
-        planetInHouse: json['planetInHouse'] as String?,
-        signRuler: json['signRuler'] as String?,
-      );
+    term: json['term'] as String,
+    termTr: json['termTr'] as String,
+    hint: json['hint'] as String? ?? '',
+    hintEn: json['hintEn'] as String?,
+    definition: json['definition'] as String,
+    definitionEn: json['definitionEn'] as String?,
+    deepExplanation: json['deepExplanation'] as String?,
+    deepExplanationEn: json['deepExplanationEn'] as String?,
+    example: json['example'] as String?,
+    exampleEn: json['exampleEn'] as String?,
+    category: GlossaryCategory.values[json['category'] as int],
+    relatedTerms: List<String>.from(json['relatedTerms'] as List? ?? []),
+    references:
+        (json['references'] as List?)
+            ?.map((r) => GlossaryReference.fromJson(r as Map<String, dynamic>))
+            .toList() ??
+        [],
+    planetInHouse: json['planetInHouse'] as String?,
+    signRuler: json['signRuler'] as String?,
+  );
 }
 
 /// Kaynak/Referans bilgisi
@@ -134,13 +136,14 @@ class GlossaryReference {
   });
 
   Map<String, dynamic> toJson() => {
-        'title': title,
-        'author': author,
-        'url': url,
-        'type': type,
-      };
+    'title': title,
+    'author': author,
+    'url': url,
+    'type': type,
+  };
 
-  factory GlossaryReference.fromJson(Map<String, dynamic> json) => GlossaryReference(
+  factory GlossaryReference.fromJson(Map<String, dynamic> json) =>
+      GlossaryReference(
         title: json['title'] as String,
         author: json['author'] as String,
         url: json['url'] as String?,
@@ -156,10 +159,10 @@ enum GlossaryCategory {
   aspects,
   techniques,
   modern,
-  esoteric,       // Ezoterik ve spiritüel kavramlar
-  psychological,  // Psikolojik astroloji
-  predictive,     // Tahmin teknikleri
-  relationships,  // İlişki astrolojisi
+  esoteric, // Ezoterik ve spiritüel kavramlar
+  psychological, // Psikolojik astroloji
+  predictive, // Tahmin teknikleri
+  relationships, // İlişki astrolojisi
 }
 
 extension GlossaryCategoryExtension on GlossaryCategory {
@@ -336,15 +339,15 @@ class GardeningMoonDay {
   });
 
   Map<String, dynamic> toJson() => {
-        'date': date.toIso8601String(),
-        'phase': phase.index,
-        'moonSign': moonSign.index,
-        'bestActivity': bestActivity.index,
-        'goodActivities': goodActivities.map((a) => a.index).toList(),
-        'avoidActivities': avoidActivities.map((a) => a.index).toList(),
-        'advice': advice,
-        'fertilityRating': fertilityRating,
-      };
+    'date': date.toIso8601String(),
+    'phase': phase.index,
+    'moonSign': moonSign.index,
+    'bestActivity': bestActivity.index,
+    'goodActivities': goodActivities.map((a) => a.index).toList(),
+    'avoidActivities': avoidActivities.map((a) => a.index).toList(),
+    'advice': advice,
+    'fertilityRating': fertilityRating,
+  };
 
   factory GardeningMoonDay.fromJson(Map<String, dynamic> json) =>
       GardeningMoonDay(
@@ -685,32 +688,32 @@ class CelebrityChart {
   });
 
   Map<String, dynamic> toJson() => {
-        'name': name,
-        'profession': profession,
-        'birthDate': birthDate.toIso8601String(),
-        'birthPlace': birthPlace,
-        'sunSign': sunSign.index,
-        'moonSign': moonSign.index,
-        'ascendant': ascendant.index,
-        'imageUrl': imageUrl,
-        'chartAnalysis': chartAnalysis,
-        'notableAspects': notableAspects,
-        'category': category.index,
-      };
+    'name': name,
+    'profession': profession,
+    'birthDate': birthDate.toIso8601String(),
+    'birthPlace': birthPlace,
+    'sunSign': sunSign.index,
+    'moonSign': moonSign.index,
+    'ascendant': ascendant.index,
+    'imageUrl': imageUrl,
+    'chartAnalysis': chartAnalysis,
+    'notableAspects': notableAspects,
+    'category': category.index,
+  };
 
   factory CelebrityChart.fromJson(Map<String, dynamic> json) => CelebrityChart(
-        name: json['name'] as String,
-        profession: json['profession'] as String,
-        birthDate: DateTime.parse(json['birthDate'] as String),
-        birthPlace: json['birthPlace'] as String,
-        sunSign: ZodiacSign.values[json['sunSign'] as int],
-        moonSign: ZodiacSign.values[json['moonSign'] as int],
-        ascendant: ZodiacSign.values[json['ascendant'] as int],
-        imageUrl: json['imageUrl'] as String,
-        chartAnalysis: json['chartAnalysis'] as String,
-        notableAspects: List<String>.from(json['notableAspects'] as List),
-        category: CelebrityCategory.values[json['category'] as int],
-      );
+    name: json['name'] as String,
+    profession: json['profession'] as String,
+    birthDate: DateTime.parse(json['birthDate'] as String),
+    birthPlace: json['birthPlace'] as String,
+    sunSign: ZodiacSign.values[json['sunSign'] as int],
+    moonSign: ZodiacSign.values[json['moonSign'] as int],
+    ascendant: ZodiacSign.values[json['ascendant'] as int],
+    imageUrl: json['imageUrl'] as String,
+    chartAnalysis: json['chartAnalysis'] as String,
+    notableAspects: List<String>.from(json['notableAspects'] as List),
+    category: CelebrityCategory.values[json['category'] as int],
+  );
 }
 
 enum CelebrityCategory {
@@ -872,17 +875,17 @@ class AstrologyArticle {
   });
 
   Map<String, dynamic> toJson() => {
-        'id': id,
-        'title': title,
-        'summary': summary,
-        'content': content,
-        'category': category.index,
-        'publishedAt': publishedAt.toIso8601String(),
-        'author': author,
-        'readTimeMinutes': readTimeMinutes,
-        'tags': tags,
-        'isPremium': isPremium,
-      };
+    'id': id,
+    'title': title,
+    'summary': summary,
+    'content': content,
+    'category': category.index,
+    'publishedAt': publishedAt.toIso8601String(),
+    'author': author,
+    'readTimeMinutes': readTimeMinutes,
+    'tags': tags,
+    'isPremium': isPremium,
+  };
 
   factory AstrologyArticle.fromJson(Map<String, dynamic> json) =>
       AstrologyArticle(

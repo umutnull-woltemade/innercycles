@@ -16,7 +16,8 @@ class ChakraAnalysisScreen extends ConsumerStatefulWidget {
   const ChakraAnalysisScreen({super.key});
 
   @override
-  ConsumerState<ChakraAnalysisScreen> createState() => _ChakraAnalysisScreenState();
+  ConsumerState<ChakraAnalysisScreen> createState() =>
+      _ChakraAnalysisScreenState();
 }
 
 class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
@@ -90,24 +91,39 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
                       const SizedBox(height: AppConstants.spacingLg),
                       // Kadim Not - Chakra bilgeliği
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: AppConstants.spacingLg),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: AppConstants.spacingLg,
+                        ),
                         child: KadimNotCard(
-                          title: L10nService.get('chakra.energy_cycle', language),
-                          content: L10nService.get('chakra.energy_cycle_content', language),
+                          title: L10nService.get(
+                            'chakra.energy_cycle',
+                            language,
+                          ),
+                          content: L10nService.get(
+                            'chakra.energy_cycle_content',
+                            language,
+                          ),
                           category: KadimCategory.chakra,
-                          source: L10nService.get('chakra.tantric_wisdom', language),
+                          source: L10nService.get(
+                            'chakra.tantric_wisdom',
+                            language,
+                          ),
                         ),
                       ),
                       const SizedBox(height: AppConstants.spacingXl),
                       // Next Blocks - keşfetmeye devam et
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: AppConstants.spacingLg),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: AppConstants.spacingLg,
+                        ),
                         child: const NextBlocks(currentPage: 'chakra'),
                       ),
                       const SizedBox(height: AppConstants.spacingXl),
                       // Entertainment Disclaimer
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: AppConstants.spacingLg),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: AppConstants.spacingLg,
+                        ),
                         child: PageFooterWithDisclaimer(
                           brandText: 'Chakra — Venus One',
                           disclaimerText: DisclaimerTexts.chakra(language),
@@ -175,10 +191,7 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
           borderRadius: BorderRadius.circular(12),
         ),
         child: IconButton(
-          icon: const Icon(
-            Icons.arrow_back,
-            color: Colors.white,
-          ),
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () => Navigator.pop(context),
         ),
       ),
@@ -195,10 +208,7 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [
-            const Color(0xFF1A1A2E),
-            const Color(0xFF16213E),
-          ],
+          colors: [const Color(0xFF1A1A2E), const Color(0xFF16213E)],
         ),
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
@@ -257,10 +267,7 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
                   ),
                 ],
               ),
-            )
-                .animate()
-                .fadeIn(delay: 700.ms)
-                .slideY(begin: -0.2),
+            ).animate().fadeIn(delay: 700.ms).slideY(begin: -0.2),
           ),
           // Chakra points
           ...List.generate(7, (index) {
@@ -279,7 +286,11 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
     ).animate().fadeIn(delay: 200.ms, duration: 400.ms);
   }
 
-  Widget _buildChakraPoint(BuildContext context, ChakraData chakra, AppLanguage language) {
+  Widget _buildChakraPoint(
+    BuildContext context,
+    ChakraData chakra,
+    AppLanguage language,
+  ) {
     final size = 32 + (chakra.balance * 18);
 
     return GestureDetector(
@@ -308,10 +319,7 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               gradient: RadialGradient(
-                colors: [
-                  chakra.color,
-                  chakra.color.withValues(alpha: 0.7),
-                ],
+                colors: [chakra.color, chakra.color.withValues(alpha: 0.7)],
               ),
               boxShadow: [
                 BoxShadow(
@@ -332,12 +340,7 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
                   color: Colors.white,
                   fontSize: 10,
                   fontWeight: FontWeight.bold,
-                  shadows: [
-                    Shadow(
-                      color: Colors.black54,
-                      blurRadius: 4,
-                    ),
-                  ],
+                  shadows: [Shadow(color: Colors.black54, blurRadius: 4)],
                 ),
               ),
             ),
@@ -348,12 +351,13 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
             width: 90,
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
             decoration: BoxDecoration(
-              color: (chakra.balance > 0.7
-                      ? Colors.green
-                      : chakra.balance < 0.4
+              color:
+                  (chakra.balance > 0.7
+                          ? Colors.green
+                          : chakra.balance < 0.4
                           ? Colors.red
                           : Colors.orange)
-                  .withValues(alpha: 0.2),
+                      .withValues(alpha: 0.2),
               borderRadius: BorderRadius.circular(12),
             ),
             child: Row(
@@ -363,13 +367,13 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
                   chakra.balance > 0.7
                       ? Icons.arrow_upward
                       : chakra.balance < 0.4
-                          ? Icons.arrow_downward
-                          : Icons.remove,
+                      ? Icons.arrow_downward
+                      : Icons.remove,
                   color: chakra.balance > 0.7
                       ? Colors.green
                       : chakra.balance < 0.4
-                          ? Colors.red
-                          : Colors.orange,
+                      ? Colors.red
+                      : Colors.orange,
                   size: 14,
                 ),
                 const SizedBox(width: 4),
@@ -377,8 +381,8 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
                   chakra.balance > 0.7
                       ? L10nService.get('chakra.active', language)
                       : chakra.balance < 0.4
-                          ? L10nService.get('chakra.blocked', language)
-                          : L10nService.get('chakra.balanced', language),
+                      ? L10nService.get('chakra.blocked', language)
+                      : L10nService.get('chakra.balanced', language),
                   style: TextStyle(
                     color: Colors.white.withValues(alpha: 0.9),
                     fontSize: 10,
@@ -393,7 +397,11 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
     );
   }
 
-  void _showChakraDetail(BuildContext context, ChakraData chakra, AppLanguage language) {
+  void _showChakraDetail(
+    BuildContext context,
+    ChakraData chakra,
+    AppLanguage language,
+  ) {
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
@@ -404,10 +412,7 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [
-              const Color(0xFF1A1A2E),
-              const Color(0xFF0D0D1A),
-            ],
+            colors: [const Color(0xFF1A1A2E), const Color(0xFF0D0D1A)],
           ),
           borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
           border: Border.all(
@@ -457,7 +462,10 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
                           child: Center(
                             child: Text(
                               chakra.symbol,
-                              style: const TextStyle(fontSize: 28, color: Colors.white),
+                              style: const TextStyle(
+                                fontSize: 28,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                         ),
@@ -468,7 +476,8 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
                             children: [
                               Text(
                                 chakra.localizedName(language),
-                                style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                                style: Theme.of(context).textTheme.titleLarge
+                                    ?.copyWith(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -504,7 +513,10 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
                     _buildDetailSection(
                       context,
                       icon: Icons.favorite_outline,
-                      title: L10nService.get('chakra.physical_connections', language),
+                      title: L10nService.get(
+                        'chakra.physical_connections',
+                        language,
+                      ),
                       content: chakra.getPhysicalConnection(language),
                     ),
 
@@ -512,7 +524,10 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
                     _buildDetailSection(
                       context,
                       icon: Icons.psychology_outlined,
-                      title: L10nService.get('chakra.emotional_aspects', language),
+                      title: L10nService.get(
+                        'chakra.emotional_aspects',
+                        language,
+                      ),
                       content: chakra.getEmotionalAspects(language),
                     ),
 
@@ -531,15 +546,17 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
     );
   }
 
-  Widget _buildBalanceIndicator(BuildContext context, ChakraData chakra, AppLanguage language) {
+  Widget _buildBalanceIndicator(
+    BuildContext context,
+    ChakraData chakra,
+    AppLanguage language,
+  ) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingMd),
       decoration: BoxDecoration(
         color: chakra.color.withValues(alpha: 0.15),
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-        border: Border.all(
-          color: chakra.color.withValues(alpha: 0.3),
-        ),
+        border: Border.all(color: chakra.color.withValues(alpha: 0.3)),
       ),
       child: Column(
         children: [
@@ -548,9 +565,7 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
             children: [
               Text(
                 L10nService.get('chakra.balance_status', language),
-                style: TextStyle(
-                  color: Colors.white.withValues(alpha: 0.8),
-                ),
+                style: TextStyle(color: Colors.white.withValues(alpha: 0.8)),
               ),
               Text(
                 '${(chakra.balance * 100).toInt()}%',
@@ -623,16 +638,18 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
     );
   }
 
-  Widget _buildHealingSuggestions(BuildContext context, ChakraData chakra, AppLanguage language) {
+  Widget _buildHealingSuggestions(
+    BuildContext context,
+    ChakraData chakra,
+    AppLanguage language,
+  ) {
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
       padding: const EdgeInsets.all(AppConstants.spacingMd),
       decoration: BoxDecoration(
         color: Colors.white.withValues(alpha: 0.08),
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-        border: Border.all(
-          color: Colors.green.withValues(alpha: 0.3),
-        ),
+        border: Border.all(color: Colors.green.withValues(alpha: 0.3)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -651,59 +668,77 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
             ],
           ),
           const SizedBox(height: 12),
-          ...chakra.getHealingSuggestions(language).map((suggestion) => Padding(
-                padding: const EdgeInsets.only(bottom: 8),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      width: 6,
-                      height: 6,
-                      margin: const EdgeInsets.only(top: 6),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: chakra.color,
-                      ),
-                    ),
-                    const SizedBox(width: 8),
-                    Expanded(
-                      child: Text(
-                        suggestion,
-                        style: TextStyle(
-                          color: Colors.white.withValues(alpha: 0.8),
+          ...chakra
+              .getHealingSuggestions(language)
+              .map(
+                (suggestion) => Padding(
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        width: 6,
+                        height: 6,
+                        margin: const EdgeInsets.only(top: 6),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: chakra.color,
                         ),
                       ),
-                    ),
-                  ],
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: Text(
+                          suggestion,
+                          style: TextStyle(
+                            color: Colors.white.withValues(alpha: 0.8),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              )),
+              ),
           const SizedBox(height: 12),
           // Crystals
           Wrap(
             spacing: 8,
             runSpacing: 8,
-            children: chakra.getCrystals(language).map((crystal) => Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                  decoration: BoxDecoration(
-                    color: chakra.color.withValues(alpha: 0.2),
-                    borderRadius: BorderRadius.circular(16),
-                    border: Border.all(color: chakra.color.withValues(alpha: 0.4)),
-                  ),
-                  child: Text(
-                    crystal,
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.white.withValues(alpha: 0.9),
+            children: chakra
+                .getCrystals(language)
+                .map(
+                  (crystal) => Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 6,
+                    ),
+                    decoration: BoxDecoration(
+                      color: chakra.color.withValues(alpha: 0.2),
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(
+                        color: chakra.color.withValues(alpha: 0.4),
+                      ),
+                    ),
+                    child: Text(
+                      crystal,
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Colors.white.withValues(alpha: 0.9),
+                      ),
                     ),
                   ),
-                )).toList(),
+                )
+                .toList(),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildAffirmationCard(BuildContext context, ChakraData chakra, AppLanguage language) {
+  Widget _buildAffirmationCard(
+    BuildContext context,
+    ChakraData chakra,
+    AppLanguage language,
+  ) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingMd),
       decoration: BoxDecoration(
@@ -794,9 +829,9 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
             child: Text(
               L10nService.get('chakra.profile', language),
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
           const SizedBox(height: 12),
@@ -833,12 +868,14 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
           Text(
             L10nService.get('chakra.general_tips', language),
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w600,
-                ),
+              color: Colors.white,
+              fontWeight: FontWeight.w600,
+            ),
           ),
           const SizedBox(height: 12),
-          ..._analysisData!.getGeneralTips(language).map((tip) => _buildTipCard(context, tip)),
+          ..._analysisData!
+              .getGeneralTips(language)
+              .map((tip) => _buildTipCard(context, tip)),
         ],
       ),
     );
@@ -881,7 +918,10 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
               ],
             ),
             child: Center(
-              child: Text(chakra.symbol, style: const TextStyle(fontSize: 22, color: Colors.white)),
+              child: Text(
+                chakra.symbol,
+                style: const TextStyle(fontSize: 22, color: Colors.white),
+              ),
             ),
           ),
           const SizedBox(width: 16),
@@ -934,9 +974,7 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
       decoration: BoxDecoration(
         color: Colors.white.withValues(alpha: 0.08),
         borderRadius: BorderRadius.circular(AppConstants.radiusSm),
-        border: Border.all(
-          color: AppColors.starGold.withValues(alpha: 0.2),
-        ),
+        border: Border.all(color: AppColors.starGold.withValues(alpha: 0.2)),
       ),
       child: Row(
         children: [
@@ -945,9 +983,7 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
           Expanded(
             child: Text(
               tip,
-              style: TextStyle(
-                color: Colors.white.withValues(alpha: 0.8),
-              ),
+              style: TextStyle(color: Colors.white.withValues(alpha: 0.8)),
             ),
           ),
         ],
@@ -968,29 +1004,32 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
             child: Text(
               L10nService.get('chakra.meditations', language),
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
           const SizedBox(height: 16),
-          ..._analysisData!.meditations.map((meditation) => _buildMeditationCard(context, meditation, language)),
+          ..._analysisData!.meditations.map(
+            (meditation) => _buildMeditationCard(context, meditation, language),
+          ),
         ],
       ),
     );
   }
 
-  Widget _buildMeditationCard(BuildContext context, ChakraMeditation meditation, AppLanguage language) {
+  Widget _buildMeditationCard(
+    BuildContext context,
+    ChakraMeditation meditation,
+    AppLanguage language,
+  ) {
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [
-            const Color(0xFF1A1A2E),
-            const Color(0xFF16213E),
-          ],
+          colors: [const Color(0xFF1A1A2E), const Color(0xFF16213E)],
         ),
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         border: Border.all(
@@ -1009,7 +1048,9 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
                   meditation.chakra.color.withValues(alpha: 0.1),
                 ],
               ),
-              borderRadius: const BorderRadius.vertical(top: Radius.circular(AppConstants.radiusMd)),
+              borderRadius: const BorderRadius.vertical(
+                top: Radius.circular(AppConstants.radiusMd),
+              ),
             ),
             child: Row(
               children: [
@@ -1019,7 +1060,10 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     gradient: RadialGradient(
-                      colors: [meditation.chakra.color, meditation.chakra.color.withValues(alpha: 0.7)],
+                      colors: [
+                        meditation.chakra.color,
+                        meditation.chakra.color.withValues(alpha: 0.7),
+                      ],
                     ),
                     boxShadow: [
                       BoxShadow(
@@ -1029,7 +1073,10 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
                     ],
                   ),
                   child: Center(
-                    child: Text(meditation.chakra.symbol, style: const TextStyle(fontSize: 18, color: Colors.white)),
+                    child: Text(
+                      meditation.chakra.symbol,
+                      style: const TextStyle(fontSize: 18, color: Colors.white),
+                    ),
                   ),
                 ),
                 const SizedBox(width: 12),
@@ -1046,7 +1093,11 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
                       ),
                       Row(
                         children: [
-                          Icon(Icons.timer_outlined, size: 14, color: Colors.white.withValues(alpha: 0.6)),
+                          Icon(
+                            Icons.timer_outlined,
+                            size: 14,
+                            color: Colors.white.withValues(alpha: 0.6),
+                          ),
                           const SizedBox(width: 4),
                           Text(
                             meditation.getFormattedDuration(language),
@@ -1071,7 +1122,11 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
                     ],
                   ),
                   child: IconButton(
-                    icon: Icon(Icons.play_circle_fill, color: meditation.chakra.color, size: 45),
+                    icon: Icon(
+                      Icons.play_circle_fill,
+                      color: meditation.chakra.color,
+                      size: 45,
+                    ),
                     onPressed: () {
                       // Start meditation
                     },
@@ -1108,9 +1163,9 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
             child: Text(
               L10nService.get('chakra.todays_energy', language),
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
           const SizedBox(height: 12),
@@ -1131,13 +1186,19 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: [
-                  _analysisData!.dailyFocus.focusChakra.color.withValues(alpha: 0.25),
-                  _analysisData!.dailyFocus.focusChakra.color.withValues(alpha: 0.1),
+                  _analysisData!.dailyFocus.focusChakra.color.withValues(
+                    alpha: 0.25,
+                  ),
+                  _analysisData!.dailyFocus.focusChakra.color.withValues(
+                    alpha: 0.1,
+                  ),
                 ],
               ),
               borderRadius: BorderRadius.circular(AppConstants.radiusMd),
               border: Border.all(
-                color: _analysisData!.dailyFocus.focusChakra.color.withValues(alpha: 0.4),
+                color: _analysisData!.dailyFocus.focusChakra.color.withValues(
+                  alpha: 0.4,
+                ),
               ),
             ),
             child: Column(
@@ -1150,12 +1211,15 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
                     gradient: RadialGradient(
                       colors: [
                         _analysisData!.dailyFocus.focusChakra.color,
-                        _analysisData!.dailyFocus.focusChakra.color.withValues(alpha: 0.7),
+                        _analysisData!.dailyFocus.focusChakra.color.withValues(
+                          alpha: 0.7,
+                        ),
                       ],
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: _analysisData!.dailyFocus.focusChakra.color.withValues(alpha: 0.5),
+                        color: _analysisData!.dailyFocus.focusChakra.color
+                            .withValues(alpha: 0.5),
                         blurRadius: 25,
                         spreadRadius: 5,
                       ),
@@ -1170,7 +1234,12 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
                 ),
                 const SizedBox(height: 16),
                 Text(
-                  L10nService.get('chakra.focus_today', language).replaceAll('{chakra}', _analysisData!.dailyFocus.focusChakra.localizedName(language)),
+                  L10nService.get('chakra.focus_today', language).replaceAll(
+                    '{chakra}',
+                    _analysisData!.dailyFocus.focusChakra.localizedName(
+                      language,
+                    ),
+                  ),
                   style: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
@@ -1181,9 +1250,7 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
                 const SizedBox(height: 8),
                 Text(
                   _analysisData!.dailyFocus.getFocusReason(language),
-                  style: TextStyle(
-                    color: Colors.white.withValues(alpha: 0.7),
-                  ),
+                  style: TextStyle(color: Colors.white.withValues(alpha: 0.7)),
                   textAlign: TextAlign.center,
                 ),
               ],
@@ -1195,40 +1262,45 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
           Text(
             L10nService.get('chakra.suggested_activities', language),
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w600,
-                ),
+              color: Colors.white,
+              fontWeight: FontWeight.w600,
+            ),
           ),
           const SizedBox(height: 12),
-          ..._analysisData!.dailyFocus.getActivities(language).map((activity) => Container(
-                margin: const EdgeInsets.only(bottom: 8),
-                padding: const EdgeInsets.all(AppConstants.spacingMd),
-                decoration: BoxDecoration(
-                  color: Colors.white.withValues(alpha: 0.08),
-                  borderRadius: BorderRadius.circular(AppConstants.radiusSm),
-                  border: Border.all(
-                    color: _analysisData!.dailyFocus.focusChakra.color.withValues(alpha: 0.2),
-                  ),
-                ),
-                child: Row(
-                  children: [
-                    Icon(
-                      _getActivityIcon(activity),
-                      color: _analysisData!.dailyFocus.focusChakra.color,
-                      size: 24,
+          ..._analysisData!.dailyFocus
+              .getActivities(language)
+              .map(
+                (activity) => Container(
+                  margin: const EdgeInsets.only(bottom: 8),
+                  padding: const EdgeInsets.all(AppConstants.spacingMd),
+                  decoration: BoxDecoration(
+                    color: Colors.white.withValues(alpha: 0.08),
+                    borderRadius: BorderRadius.circular(AppConstants.radiusSm),
+                    border: Border.all(
+                      color: _analysisData!.dailyFocus.focusChakra.color
+                          .withValues(alpha: 0.2),
                     ),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: Text(
-                        activity,
-                        style: TextStyle(
-                          color: Colors.white.withValues(alpha: 0.8),
+                  ),
+                  child: Row(
+                    children: [
+                      Icon(
+                        _getActivityIcon(activity),
+                        color: _analysisData!.dailyFocus.focusChakra.color,
+                        size: 24,
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Text(
+                          activity,
+                          style: TextStyle(
+                            color: Colors.white.withValues(alpha: 0.8),
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              )),
+              ),
         ],
       ),
     );
@@ -1237,14 +1309,31 @@ class _ChakraAnalysisScreenState extends ConsumerState<ChakraAnalysisScreen>
   IconData _getActivityIcon(String activity) {
     final lowerActivity = activity.toLowerCase();
     // Turkish and English keywords for activity detection
-    if (lowerActivity.contains('meditasyon') || lowerActivity.contains('meditation')) return Icons.self_improvement;
+    if (lowerActivity.contains('meditasyon') ||
+        lowerActivity.contains('meditation'))
+      return Icons.self_improvement;
     if (lowerActivity.contains('yoga')) return Icons.sports_gymnastics;
-    if (lowerActivity.contains('nefes') || lowerActivity.contains('breath')) return Icons.air;
-    if (lowerActivity.contains('yürü') || lowerActivity.contains('walk') || lowerActivity.contains('barefoot')) return Icons.directions_walk;
-    if (lowerActivity.contains('su') || lowerActivity.contains('water') || lowerActivity.contains('swim')) return Icons.water_drop;
-    if (lowerActivity.contains('yaz') || lowerActivity.contains('write') || lowerActivity.contains('journal')) return Icons.edit_note;
-    if (lowerActivity.contains('taş') || lowerActivity.contains('crystal') || lowerActivity.contains('stone')) return Icons.diamond;
-    if (lowerActivity.contains('olumlama') || lowerActivity.contains('affirmation')) return Icons.format_quote;
+    if (lowerActivity.contains('nefes') || lowerActivity.contains('breath'))
+      return Icons.air;
+    if (lowerActivity.contains('yürü') ||
+        lowerActivity.contains('walk') ||
+        lowerActivity.contains('barefoot'))
+      return Icons.directions_walk;
+    if (lowerActivity.contains('su') ||
+        lowerActivity.contains('water') ||
+        lowerActivity.contains('swim'))
+      return Icons.water_drop;
+    if (lowerActivity.contains('yaz') ||
+        lowerActivity.contains('write') ||
+        lowerActivity.contains('journal'))
+      return Icons.edit_note;
+    if (lowerActivity.contains('taş') ||
+        lowerActivity.contains('crystal') ||
+        lowerActivity.contains('stone'))
+      return Icons.diamond;
+    if (lowerActivity.contains('olumlama') ||
+        lowerActivity.contains('affirmation'))
+      return Icons.format_quote;
     return Icons.circle_outlined;
   }
 }
@@ -1272,14 +1361,20 @@ class ChakraAnalysisData {
     final signName = sign.getLocalizedName(language);
     final strongestName = strongestChakra.localizedName(language);
     final weakestName = needsAttention.localizedName(language);
-    final emotionalAspects = strongestChakra.getEmotionalAspects(language).toLowerCase();
+    final emotionalAspects = strongestChakra
+        .getEmotionalAspects(language)
+        .toLowerCase();
 
-    return L10nService.getWithParams('chakra.overall_analysis', language, params: {
-      'sign': signName,
-      'strongest': strongestName,
-      'weakest': weakestName,
-      'emotional_aspects': emotionalAspects,
-    });
+    return L10nService.getWithParams(
+      'chakra.overall_analysis',
+      language,
+      params: {
+        'sign': signName,
+        'strongest': strongestName,
+        'weakest': weakestName,
+        'emotional_aspects': emotionalAspects,
+      },
+    );
   }
 
   List<String> getGeneralTips(AppLanguage language) {
@@ -1289,7 +1384,8 @@ class ChakraAnalysisData {
 
 class ChakraData {
   final String name;
-  final String key; // key for l10n lookup (root, sacral, solar_plexus, heart, throat, third_eye, crown)
+  final String
+  key; // key for l10n lookup (root, sacral, solar_plexus, heart, throat, third_eye, crown)
   final String sanskritName;
   final String symbol;
   final Color color;
@@ -1331,7 +1427,10 @@ class ChakraData {
   }
 
   List<String> getHealingSuggestions(AppLanguage language) {
-    final suggestions = L10nService.getList('chakra.data.$key.healing_suggestions', language);
+    final suggestions = L10nService.getList(
+      'chakra.data.$key.healing_suggestions',
+      language,
+    );
     return suggestions.isNotEmpty ? suggestions : [];
   }
 
@@ -1347,7 +1446,8 @@ class ChakraData {
 
 class ChakraMeditation {
   final ChakraData chakra;
-  final String titleKey; // key for l10n lookup (grounding, heart_opening, third_eye_activation)
+  final String
+  titleKey; // key for l10n lookup (grounding, heart_opening, third_eye_activation)
   final int duration;
 
   ChakraMeditation({
@@ -1361,29 +1461,40 @@ class ChakraMeditation {
   }
 
   String getDescription(AppLanguage language) {
-    return L10nService.get('chakra.meditation_descriptions.$titleKey', language);
+    return L10nService.get(
+      'chakra.meditation_descriptions.$titleKey',
+      language,
+    );
   }
 
   String getFormattedDuration(AppLanguage language) {
-    return L10nService.getWithParams('chakra.minutes', language, params: {'duration': duration.toString()});
+    return L10nService.getWithParams(
+      'chakra.minutes',
+      language,
+      params: {'duration': duration.toString()},
+    );
   }
 }
 
 class DailyChakraFocus {
   final ChakraData focusChakra;
 
-  DailyChakraFocus({
-    required this.focusChakra,
-  });
+  DailyChakraFocus({required this.focusChakra});
 
   String getDescription(AppLanguage language) {
-    return L10nService.getWithParams('chakra.daily_description', language,
-      params: {'chakra': focusChakra.localizedName(language)});
+    return L10nService.getWithParams(
+      'chakra.daily_description',
+      language,
+      params: {'chakra': focusChakra.localizedName(language)},
+    );
   }
 
   String getFocusReason(AppLanguage language) {
-    return L10nService.getWithParams('chakra.daily_reason', language,
-      params: {'chakra': focusChakra.name});
+    return L10nService.getWithParams(
+      'chakra.daily_reason',
+      language,
+      params: {'chakra': focusChakra.name},
+    );
   }
 
   List<String> getActivities(AppLanguage language) {
@@ -1394,13 +1505,25 @@ class DailyChakraFocus {
     if (healingSuggestions.isNotEmpty) {
       activities.add(healingSuggestions.first);
     }
-    activities.add(L10nService.getWithParams('chakra.daily_activities.meditation_5min', language,
-      params: {'chakra': focusChakra.localizedName(language)}));
+    activities.add(
+      L10nService.getWithParams(
+        'chakra.daily_activities.meditation_5min',
+        language,
+        params: {'chakra': focusChakra.localizedName(language)},
+      ),
+    );
     if (crystals.isNotEmpty) {
-      activities.add(L10nService.getWithParams('chakra.daily_activities.carry_crystal', language,
-        params: {'crystal': crystals.first}));
+      activities.add(
+        L10nService.getWithParams(
+          'chakra.daily_activities.carry_crystal',
+          language,
+          params: {'crystal': crystals.first},
+        ),
+      );
     }
-    activities.add(L10nService.get('chakra.daily_activities.affirmation_3x', language));
+    activities.add(
+      L10nService.get('chakra.daily_activities.affirmation_3x', language),
+    );
 
     return activities;
   }
@@ -1527,11 +1650,7 @@ class ChakraAnalysisService {
 
   static List<ChakraMeditation> _getMeditations(List<ChakraData> chakras) {
     return [
-      ChakraMeditation(
-        chakra: chakras[0],
-        titleKey: 'grounding',
-        duration: 10,
-      ),
+      ChakraMeditation(chakra: chakras[0], titleKey: 'grounding', duration: 10),
       ChakraMeditation(
         chakra: chakras[3],
         titleKey: 'heart_opening',
@@ -1550,8 +1669,6 @@ class ChakraAnalysisService {
     final focusIndex = dayOfWeek % 7;
     final focusChakra = chakras[focusIndex];
 
-    return DailyChakraFocus(
-      focusChakra: focusChakra,
-    );
+    return DailyChakraFocus(focusChakra: focusChakra);
   }
 }

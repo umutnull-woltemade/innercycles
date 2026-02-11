@@ -40,92 +40,96 @@ class PremiumUpsell extends ConsumerWidget {
     this.icon,
     this.onTap,
     this.dismissible = false,
-  })  : titleOverride = title,
-        descriptionOverride = description,
-        ctaTextOverride = ctaText,
-        _preset = _UpsellPreset.defaultPreset;
+  }) : titleOverride = title,
+       descriptionOverride = description,
+       ctaTextOverride = ctaText,
+       _preset = _UpsellPreset.defaultPreset;
 
   /// Factory for birth chart upsell
-  const PremiumUpsell.birthChart({
-    super.key,
-    this.onTap,
-  })  : type = PremiumUpsellType.card,
-        titleOverride = null,
-        descriptionOverride = null,
-        ctaTextOverride = null,
-        features = null,
-        icon = Icons.auto_graph,
-        dismissible = false,
-        _preset = _UpsellPreset.birthChart;
+  const PremiumUpsell.birthChart({super.key, this.onTap})
+    : type = PremiumUpsellType.card,
+      titleOverride = null,
+      descriptionOverride = null,
+      ctaTextOverride = null,
+      features = null,
+      icon = Icons.auto_graph,
+      dismissible = false,
+      _preset = _UpsellPreset.birthChart;
 
   /// Factory for transit report upsell
-  const PremiumUpsell.transits({
-    super.key,
-    this.onTap,
-  })  : type = PremiumUpsellType.card,
-        titleOverride = null,
-        descriptionOverride = null,
-        ctaTextOverride = null,
-        features = null,
-        icon = Icons.timeline,
-        dismissible = false,
-        _preset = _UpsellPreset.transits;
+  const PremiumUpsell.transits({super.key, this.onTap})
+    : type = PremiumUpsellType.card,
+      titleOverride = null,
+      descriptionOverride = null,
+      ctaTextOverride = null,
+      features = null,
+      icon = Icons.timeline,
+      dismissible = false,
+      _preset = _UpsellPreset.transits;
 
   /// Factory for compatibility upsell
-  const PremiumUpsell.compatibility({
-    super.key,
-    this.onTap,
-  })  : type = PremiumUpsellType.card,
-        titleOverride = null,
-        descriptionOverride = null,
-        ctaTextOverride = null,
-        features = null,
-        icon = Icons.favorite,
-        dismissible = false,
-        _preset = _UpsellPreset.compatibility;
+  const PremiumUpsell.compatibility({super.key, this.onTap})
+    : type = PremiumUpsellType.card,
+      titleOverride = null,
+      descriptionOverride = null,
+      ctaTextOverride = null,
+      features = null,
+      icon = Icons.favorite,
+      dismissible = false,
+      _preset = _UpsellPreset.compatibility;
 
   /// Factory for subtle inline upsell
   const PremiumUpsell.subtle({
     super.key,
     required String featureName,
     this.onTap,
-  })  : type = PremiumUpsellType.subtle,
-        titleOverride = featureName,
-        descriptionOverride = null,
-        ctaTextOverride = null,
-        features = null,
-        icon = null,
-        dismissible = false,
-        _preset = _UpsellPreset.subtle;
+  }) : type = PremiumUpsellType.subtle,
+       titleOverride = featureName,
+       descriptionOverride = null,
+       ctaTextOverride = null,
+       features = null,
+       icon = null,
+       dismissible = false,
+       _preset = _UpsellPreset.subtle;
 
   /// Factory for banner upsell
-  const PremiumUpsell.banner({
-    super.key,
-    this.onTap,
-  })  : type = PremiumUpsellType.banner,
-        titleOverride = null,
-        descriptionOverride = null,
-        ctaTextOverride = null,
-        features = null,
-        icon = Icons.auto_awesome,
-        dismissible = false,
-        _preset = _UpsellPreset.banner;
+  const PremiumUpsell.banner({super.key, this.onTap})
+    : type = PremiumUpsellType.banner,
+      titleOverride = null,
+      descriptionOverride = null,
+      ctaTextOverride = null,
+      features = null,
+      icon = Icons.auto_awesome,
+      dismissible = false,
+      _preset = _UpsellPreset.banner;
 
   String _getTitle(AppLanguage language) {
     if (titleOverride != null) return titleOverride!;
     switch (_preset) {
       case _UpsellPreset.birthChart:
-        return L10nService.get('widgets.premium_upsell.birth_chart_title', language);
+        return L10nService.get(
+          'widgets.premium_upsell.birth_chart_title',
+          language,
+        );
       case _UpsellPreset.transits:
-        return L10nService.get('widgets.premium_upsell.transits_title', language);
+        return L10nService.get(
+          'widgets.premium_upsell.transits_title',
+          language,
+        );
       case _UpsellPreset.compatibility:
-        return L10nService.get('widgets.premium_upsell.compatibility_title', language);
+        return L10nService.get(
+          'widgets.premium_upsell.compatibility_title',
+          language,
+        );
       case _UpsellPreset.banner:
         return L10nService.get('widgets.premium_upsell.banner_title', language);
       case _UpsellPreset.subtle:
         return titleOverride ?? '';
       case _UpsellPreset.defaultPreset:
-        return L10nService.get('widgets.premium_upsell.default_title', language);
+        return L10nService.get(
+          'widgets.premium_upsell.default_title',
+          language,
+        );
     }
   }
 
@@ -133,17 +137,35 @@ class PremiumUpsell extends ConsumerWidget {
     if (descriptionOverride != null) return descriptionOverride!;
     switch (_preset) {
       case _UpsellPreset.birthChart:
-        return L10nService.get('widgets.premium_upsell.birth_chart_description', language);
+        return L10nService.get(
+          'widgets.premium_upsell.birth_chart_description',
+          language,
+        );
       case _UpsellPreset.transits:
-        return L10nService.get('widgets.premium_upsell.transits_description', language);
+        return L10nService.get(
+          'widgets.premium_upsell.transits_description',
+          language,
+        );
       case _UpsellPreset.compatibility:
-        return L10nService.get('widgets.premium_upsell.compatibility_description', language);
+        return L10nService.get(
+          'widgets.premium_upsell.compatibility_description',
+          language,
+        );
       case _UpsellPreset.banner:
-        return L10nService.get('widgets.premium_upsell.banner_description', language);
+        return L10nService.get(
+          'widgets.premium_upsell.banner_description',
+          language,
+        );
       case _UpsellPreset.subtle:
-        return L10nService.get('widgets.premium_upsell.subtle_description', language);
+        return L10nService.get(
+          'widgets.premium_upsell.subtle_description',
+          language,
+        );
       case _UpsellPreset.defaultPreset:
-        return L10nService.get('widgets.premium_upsell.default_description', language);
+        return L10nService.get(
+          'widgets.premium_upsell.default_description',
+          language,
+        );
     }
   }
 
@@ -151,11 +173,17 @@ class PremiumUpsell extends ConsumerWidget {
     if (ctaTextOverride != null) return ctaTextOverride!;
     switch (_preset) {
       case _UpsellPreset.birthChart:
-        return L10nService.get('widgets.premium_upsell.birth_chart_cta', language);
+        return L10nService.get(
+          'widgets.premium_upsell.birth_chart_cta',
+          language,
+        );
       case _UpsellPreset.transits:
         return L10nService.get('widgets.premium_upsell.transits_cta', language);
       case _UpsellPreset.compatibility:
-        return L10nService.get('widgets.premium_upsell.compatibility_cta', language);
+        return L10nService.get(
+          'widgets.premium_upsell.compatibility_cta',
+          language,
+        );
       case _UpsellPreset.banner:
         return L10nService.get('widgets.premium_upsell.banner_cta', language);
       case _UpsellPreset.subtle:
@@ -170,24 +198,60 @@ class PremiumUpsell extends ConsumerWidget {
     switch (_preset) {
       case _UpsellPreset.birthChart:
         return [
-          L10nService.get('widgets.premium_upsell.birth_chart_feature_1', language),
-          L10nService.get('widgets.premium_upsell.birth_chart_feature_2', language),
-          L10nService.get('widgets.premium_upsell.birth_chart_feature_3', language),
-          L10nService.get('widgets.premium_upsell.birth_chart_feature_4', language),
+          L10nService.get(
+            'widgets.premium_upsell.birth_chart_feature_1',
+            language,
+          ),
+          L10nService.get(
+            'widgets.premium_upsell.birth_chart_feature_2',
+            language,
+          ),
+          L10nService.get(
+            'widgets.premium_upsell.birth_chart_feature_3',
+            language,
+          ),
+          L10nService.get(
+            'widgets.premium_upsell.birth_chart_feature_4',
+            language,
+          ),
         ];
       case _UpsellPreset.transits:
         return [
-          L10nService.get('widgets.premium_upsell.transits_feature_1', language),
-          L10nService.get('widgets.premium_upsell.transits_feature_2', language),
-          L10nService.get('widgets.premium_upsell.transits_feature_3', language),
-          L10nService.get('widgets.premium_upsell.transits_feature_4', language),
+          L10nService.get(
+            'widgets.premium_upsell.transits_feature_1',
+            language,
+          ),
+          L10nService.get(
+            'widgets.premium_upsell.transits_feature_2',
+            language,
+          ),
+          L10nService.get(
+            'widgets.premium_upsell.transits_feature_3',
+            language,
+          ),
+          L10nService.get(
+            'widgets.premium_upsell.transits_feature_4',
+            language,
+          ),
         ];
       case _UpsellPreset.compatibility:
         return [
-          L10nService.get('widgets.premium_upsell.compatibility_feature_1', language),
-          L10nService.get('widgets.premium_upsell.compatibility_feature_2', language),
-          L10nService.get('widgets.premium_upsell.compatibility_feature_3', language),
-          L10nService.get('widgets.premium_upsell.compatibility_feature_4', language),
+          L10nService.get(
+            'widgets.premium_upsell.compatibility_feature_1',
+            language,
+          ),
+          L10nService.get(
+            'widgets.premium_upsell.compatibility_feature_2',
+            language,
+          ),
+          L10nService.get(
+            'widgets.premium_upsell.compatibility_feature_3',
+            language,
+          ),
+          L10nService.get(
+            'widgets.premium_upsell.compatibility_feature_4',
+            language,
+          ),
         ];
       default:
         return [];
@@ -208,7 +272,10 @@ class PremiumUpsell extends ConsumerWidget {
       case PremiumUpsellType.subtle:
         return _buildSubtle(context, language);
       case PremiumUpsellType.modal:
-        return _buildCard(context, language); // Modal uses same UI, different presentation
+        return _buildCard(
+          context,
+          language,
+        ); // Modal uses same UI, different presentation
     }
   }
 
@@ -218,113 +285,124 @@ class PremiumUpsell extends ConsumerWidget {
     final description = _getDescription(language);
 
     return Container(
-      width: double.infinity,
-      margin: const EdgeInsets.symmetric(
-        horizontal: AppConstants.spacingMd,
-        vertical: AppConstants.spacingLg,
-      ),
-      padding: const EdgeInsets.all(AppConstants.spacingLg),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            AppColors.auroraStart.withValues(alpha: isDark ? 0.3 : 0.15),
-            AppColors.auroraEnd.withValues(alpha: isDark ? 0.2 : 0.1),
-            AppColors.starGold.withValues(alpha: isDark ? 0.15 : 0.08),
-          ],
-        ),
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: AppColors.starGold.withValues(alpha: 0.3),
-          width: 1.5,
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.auroraStart.withValues(alpha: 0.2),
-            blurRadius: 20,
-            offset: const Offset(0, 8),
+          width: double.infinity,
+          margin: const EdgeInsets.symmetric(
+            horizontal: AppConstants.spacingMd,
+            vertical: AppConstants.spacingLg,
           ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Container(
-                padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  gradient: const LinearGradient(
-                    colors: [AppColors.starGold, AppColors.auroraStart],
-                  ),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Icon(
-                  icon ?? Icons.auto_awesome,
-                  color: Colors.white,
-                  size: 24,
-                ),
+          padding: const EdgeInsets.all(AppConstants.spacingLg),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                AppColors.auroraStart.withValues(alpha: isDark ? 0.3 : 0.15),
+                AppColors.auroraEnd.withValues(alpha: isDark ? 0.2 : 0.1),
+                AppColors.starGold.withValues(alpha: isDark ? 0.15 : 0.08),
+              ],
+            ),
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(
+              color: AppColors.starGold.withValues(alpha: 0.3),
+              width: 1.5,
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: AppColors.auroraStart.withValues(alpha: 0.2),
+                blurRadius: 20,
+                offset: const Offset(0, 8),
               ),
-              const SizedBox(width: 14),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
+            ],
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      gradient: const LinearGradient(
+                        colors: [AppColors.starGold, AppColors.auroraStart],
+                      ),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Icon(
+                      icon ?? Icons.auto_awesome,
+                      color: Colors.white,
+                      size: 24,
+                    ),
+                  ),
+                  const SizedBox(width: 14),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 8,
-                            vertical: 3,
-                          ),
-                          decoration: BoxDecoration(
-                            gradient: const LinearGradient(
-                              colors: [AppColors.starGold, AppColors.auroraStart],
+                        Row(
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8,
+                                vertical: 3,
+                              ),
+                              decoration: BoxDecoration(
+                                gradient: const LinearGradient(
+                                  colors: [
+                                    AppColors.starGold,
+                                    AppColors.auroraStart,
+                                  ],
+                                ),
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Text(
+                                L10nService.get(
+                                  'widgets.premium_upsell.premium_badge',
+                                  language,
+                                ),
+                                style: GoogleFonts.raleway(
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w700,
+                                  color: Colors.white,
+                                  letterSpacing: 1,
+                                ),
+                              ),
                             ),
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Text(
-                            L10nService.get('widgets.premium_upsell.premium_badge', language),
-                            style: GoogleFonts.raleway(
-                              fontSize: 10,
-                              fontWeight: FontWeight.w700,
-                              color: Colors.white,
-                              letterSpacing: 1,
-                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 6),
+                        Text(
+                          title,
+                          style: GoogleFonts.cormorantGaramond(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w700,
+                            color: isDark
+                                ? AppColors.textPrimary
+                                : AppColors.lightTextPrimary,
                           ),
                         ),
                       ],
                     ),
-                    const SizedBox(height: 6),
-                    Text(
-                      title,
-                      style: GoogleFonts.cormorantGaramond(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w700,
-                        color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
-                      ),
-                    ),
-                  ],
+                  ),
+                ],
+              ),
+              const SizedBox(height: 12),
+              Text(
+                description,
+                style: GoogleFonts.raleway(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                  color: isDark
+                      ? AppColors.textSecondary
+                      : AppColors.lightTextSecondary,
+                  height: 1.4,
                 ),
               ),
+              const SizedBox(height: 16),
+              _buildCtaButton(context, language, compact: false),
             ],
           ),
-          const SizedBox(height: 12),
-          Text(
-            description,
-            style: GoogleFonts.raleway(
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
-              color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
-              height: 1.4,
-            ),
-          ),
-          const SizedBox(height: 16),
-          _buildCtaButton(context, language, compact: false),
-        ],
-      ),
-    ).animate()
+        )
+        .animate()
         .fadeIn(duration: 400.ms)
         .slideY(begin: 0.1, curve: Curves.easeOut);
   }
@@ -350,10 +428,7 @@ class PremiumUpsell extends ConsumerWidget {
                   AppColors.surfaceLight.withValues(alpha: 0.1),
                   AppColors.surfaceDark.withValues(alpha: 0.5),
                 ]
-              : [
-                  AppColors.lightCard,
-                  AppColors.lightSurfaceVariant,
-                ],
+              : [AppColors.lightCard, AppColors.lightSurfaceVariant],
         ),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
@@ -396,7 +471,9 @@ class PremiumUpsell extends ConsumerWidget {
                   style: GoogleFonts.cormorantGaramond(
                     fontSize: 18,
                     fontWeight: FontWeight.w700,
-                    color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                    color: isDark
+                        ? AppColors.textPrimary
+                        : AppColors.lightTextPrimary,
                   ),
                 ),
               ),
@@ -426,46 +503,48 @@ class PremiumUpsell extends ConsumerWidget {
             style: GoogleFonts.raleway(
               fontSize: 13,
               fontWeight: FontWeight.w500,
-              color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+              color: isDark
+                  ? AppColors.textSecondary
+                  : AppColors.lightTextSecondary,
               height: 1.4,
             ),
           ),
           // Features list
           if (featuresList.isNotEmpty) ...[
             const SizedBox(height: 14),
-            ...featuresList.map((feature) => Padding(
-                  padding: const EdgeInsets.only(bottom: 6),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.check_circle,
-                        size: 14,
-                        color: AppColors.success,
-                      ),
-                      const SizedBox(width: 8),
-                      Expanded(
-                        child: Text(
-                          feature,
-                          style: GoogleFonts.raleway(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                            color: isDark
-                                ? AppColors.textSecondary.withValues(alpha: 0.9)
-                                : AppColors.lightTextSecondary,
-                          ),
+            ...featuresList.map(
+              (feature) => Padding(
+                padding: const EdgeInsets.only(bottom: 6),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.check_circle,
+                      size: 14,
+                      color: AppColors.success,
+                    ),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Text(
+                        feature,
+                        style: GoogleFonts.raleway(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                          color: isDark
+                              ? AppColors.textSecondary.withValues(alpha: 0.9)
+                              : AppColors.lightTextSecondary,
                         ),
                       ),
-                    ],
-                  ),
-                )),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ],
           const SizedBox(height: 16),
           _buildCtaButton(context, language, compact: true),
         ],
       ),
-    ).animate()
-        .fadeIn(duration: 300.ms)
-        .scale(begin: const Offset(0.98, 0.98));
+    ).animate().fadeIn(duration: 300.ms).scale(begin: const Offset(0.98, 0.98));
   }
 
   Widget _buildInline(BuildContext context, AppLanguage language) {
@@ -552,7 +631,11 @@ class PremiumUpsell extends ConsumerWidget {
     );
   }
 
-  Widget _buildCtaButton(BuildContext context, AppLanguage language, {bool compact = false}) {
+  Widget _buildCtaButton(
+    BuildContext context,
+    AppLanguage language, {
+    bool compact = false,
+  }) {
     final ctaText = _getCtaText(language);
 
     return GestureDetector(
@@ -652,15 +735,37 @@ Future<void> showPremiumUpsellModal(
               const SizedBox(height: AppConstants.spacingLg),
               PremiumUpsell(
                 type: PremiumUpsellType.card,
-                title: title ?? L10nService.get('widgets.premium_upsell.modal_default_title', language),
-                description: description ??
-                    L10nService.get('widgets.premium_upsell.modal_default_description', language),
-                features: features ??
+                title:
+                    title ??
+                    L10nService.get(
+                      'widgets.premium_upsell.modal_default_title',
+                      language,
+                    ),
+                description:
+                    description ??
+                    L10nService.get(
+                      'widgets.premium_upsell.modal_default_description',
+                      language,
+                    ),
+                features:
+                    features ??
                     [
-                      L10nService.get('widgets.premium_upsell.modal_feature_1', language),
-                      L10nService.get('widgets.premium_upsell.modal_feature_2', language),
-                      L10nService.get('widgets.premium_upsell.modal_feature_3', language),
-                      L10nService.get('widgets.premium_upsell.modal_feature_4', language),
+                      L10nService.get(
+                        'widgets.premium_upsell.modal_feature_1',
+                        language,
+                      ),
+                      L10nService.get(
+                        'widgets.premium_upsell.modal_feature_2',
+                        language,
+                      ),
+                      L10nService.get(
+                        'widgets.premium_upsell.modal_feature_3',
+                        language,
+                      ),
+                      L10nService.get(
+                        'widgets.premium_upsell.modal_feature_4',
+                        language,
+                      ),
                     ],
                 onTap: () {
                   Navigator.pop(context);
@@ -675,7 +780,9 @@ Future<void> showPremiumUpsellModal(
                   style: GoogleFonts.raleway(
                     fontSize: 13,
                     fontWeight: FontWeight.w500,
-                    color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                    color: isDark
+                        ? AppColors.textMuted
+                        : AppColors.lightTextMuted,
                   ),
                 ),
               ),

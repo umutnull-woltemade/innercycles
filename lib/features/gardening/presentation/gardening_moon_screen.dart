@@ -15,7 +15,8 @@ class GardeningMoonScreen extends ConsumerStatefulWidget {
   const GardeningMoonScreen({super.key});
 
   @override
-  ConsumerState<GardeningMoonScreen> createState() => _GardeningMoonScreenState();
+  ConsumerState<GardeningMoonScreen> createState() =>
+      _GardeningMoonScreenState();
 }
 
 class _GardeningMoonScreenState extends ConsumerState<GardeningMoonScreen> {
@@ -95,8 +96,8 @@ class _GardeningMoonScreenState extends ConsumerState<GardeningMoonScreen> {
               Icons.arrow_back_ios,
               color: isDark ? Colors.white : AppColors.textDark,
             ),
-          tooltip: L10nService.get('common.back', language),
-        ),
+            tooltip: L10nService.get('common.back', language),
+          ),
           Expanded(
             child: Column(
               children: [
@@ -307,7 +308,11 @@ class _GardeningMoonScreenState extends ConsumerState<GardeningMoonScreen> {
     );
   }
 
-  Widget _buildDayHeader(GardeningMoonDay day, bool isDark, AppLanguage language) {
+  Widget _buildDayHeader(
+    GardeningMoonDay day,
+    bool isDark,
+    AppLanguage language,
+  ) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -373,7 +378,11 @@ class _GardeningMoonScreenState extends ConsumerState<GardeningMoonScreen> {
     );
   }
 
-  Widget _buildMoonInfo(GardeningMoonDay day, bool isDark, AppLanguage language) {
+  Widget _buildMoonInfo(
+    GardeningMoonDay day,
+    bool isDark,
+    AppLanguage language,
+  ) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -390,7 +399,10 @@ class _GardeningMoonScreenState extends ConsumerState<GardeningMoonScreen> {
                 Text(day.moonSign.symbol, style: const TextStyle(fontSize: 28)),
                 const SizedBox(height: 4),
                 Text(
-                  L10nService.get('gardening.moon_in_sign', language).replaceAll('{sign}', day.moonSign.localizedName(language)),
+                  L10nService.get(
+                    'gardening.moon_in_sign',
+                    language,
+                  ).replaceAll('{sign}', day.moonSign.localizedName(language)),
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: isDark ? Colors.white : AppColors.textDark,
@@ -420,14 +432,18 @@ class _GardeningMoonScreenState extends ConsumerState<GardeningMoonScreen> {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  day.phase.isWaxing ? L10nService.get('gardening.waxing_moon', language) : L10nService.get('gardening.waning_moon', language),
+                  day.phase.isWaxing
+                      ? L10nService.get('gardening.waxing_moon', language)
+                      : L10nService.get('gardening.waning_moon', language),
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: isDark ? Colors.white : AppColors.textDark,
                   ),
                 ),
                 Text(
-                  day.phase.isWaxing ? L10nService.get('gardening.planting_time', language) : L10nService.get('gardening.harvest_time', language),
+                  day.phase.isWaxing
+                      ? L10nService.get('gardening.planting_time', language)
+                      : L10nService.get('gardening.harvest_time', language),
                   style: TextStyle(
                     fontSize: 12,
                     color: isDark ? Colors.white60 : AppColors.textLight,
@@ -441,7 +457,11 @@ class _GardeningMoonScreenState extends ConsumerState<GardeningMoonScreen> {
     );
   }
 
-  Widget _buildBestActivity(GardeningMoonDay day, bool isDark, AppLanguage language) {
+  Widget _buildBestActivity(
+    GardeningMoonDay day,
+    bool isDark,
+    AppLanguage language,
+  ) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -500,7 +520,11 @@ class _GardeningMoonScreenState extends ConsumerState<GardeningMoonScreen> {
     );
   }
 
-  Widget _buildActivityLists(GardeningMoonDay day, bool isDark, AppLanguage language) {
+  Widget _buildActivityLists(
+    GardeningMoonDay day,
+    bool isDark,
+    AppLanguage language,
+  ) {
     return Row(
       children: [
         Expanded(

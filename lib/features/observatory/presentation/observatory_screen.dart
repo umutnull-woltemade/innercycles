@@ -100,7 +100,9 @@ class _ObservatoryScreenState extends ConsumerState<ObservatoryScreen>
             onPressed: () => context.go(Routes.admin),
             icon: Icon(
               Icons.arrow_back_ios_new,
-              color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+              color: isDark
+                  ? AppColors.textPrimary
+                  : AppColors.lightTextPrimary,
             ),
           ),
           Container(
@@ -111,11 +113,7 @@ class _ObservatoryScreenState extends ConsumerState<ObservatoryScreen>
               ),
               shape: BoxShape.circle,
             ),
-            child: const Icon(
-              Icons.insights,
-              color: Colors.white,
-              size: 24,
-            ),
+            child: const Icon(Icons.insights, color: Colors.white, size: 24),
           ),
           const SizedBox(width: AppConstants.spacingMd),
           Expanded(
@@ -154,9 +152,9 @@ class _ObservatoryScreenState extends ConsumerState<ObservatoryScreen>
                   ),
                   error: (_, _) => Text(
                     'Error loading data',
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: AppColors.error,
-                    ),
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodySmall?.copyWith(color: AppColors.error),
                   ),
                 ),
               ],
@@ -171,7 +169,9 @@ class _ObservatoryScreenState extends ConsumerState<ObservatoryScreen>
             },
             icon: Icon(
               Icons.refresh,
-              color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+              color: isDark
+                  ? AppColors.textSecondary
+                  : AppColors.lightTextSecondary,
             ),
             tooltip: 'Refresh Data',
           ),
@@ -184,8 +184,8 @@ class _ObservatoryScreenState extends ConsumerState<ObservatoryScreen>
     final color = status == HealthStatus.healthy
         ? AppColors.success
         : status == HealthStatus.warning
-            ? AppColors.warning
-            : AppColors.error;
+        ? AppColors.warning
+        : AppColors.error;
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
@@ -293,7 +293,9 @@ class _ObservatoryScreenState extends ConsumerState<ObservatoryScreen>
                 style: Theme.of(context).textTheme.labelMedium?.copyWith(
                   color: isSelected
                       ? AppColors.starGold
-                      : (isDark ? AppColors.textMuted : AppColors.lightTextMuted),
+                      : (isDark
+                            ? AppColors.textMuted
+                            : AppColors.lightTextMuted),
                   fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
                 ),
               ),
@@ -325,8 +327,20 @@ class _ObservatoryScreenState extends ConsumerState<ObservatoryScreen>
             padding: const EdgeInsets.all(AppConstants.spacingMd),
             children: [
               _buildSidebarItem(context, isDark, 0, 'Summary', Icons.dashboard),
-              _buildSidebarItem(context, isDark, 1, 'Language', Icons.translate),
-              _buildSidebarItem(context, isDark, 2, 'Content', Icons.library_books),
+              _buildSidebarItem(
+                context,
+                isDark,
+                1,
+                'Language',
+                Icons.translate,
+              ),
+              _buildSidebarItem(
+                context,
+                isDark,
+                2,
+                'Content',
+                Icons.library_books,
+              ),
               _buildSidebarItem(context, isDark, 3, 'Safety', Icons.security),
               _buildSidebarItem(context, isDark, 4, 'Platform', Icons.devices),
             ],
@@ -401,7 +415,12 @@ class _ObservatoryScreenState extends ConsumerState<ObservatoryScreen>
             const SizedBox(height: AppConstants.spacingMd),
             _buildQuickMetricsGrid(context, isDark, summary),
             const SizedBox(height: AppConstants.spacingXl),
-            _buildSectionTitle(context, isDark, 'Technology Inventory', Icons.memory),
+            _buildSectionTitle(
+              context,
+              isDark,
+              'Technology Inventory',
+              Icons.memory,
+            ),
             const SizedBox(height: AppConstants.spacingMd),
             _buildTechnologyList(context, isDark),
           ],
@@ -426,7 +445,8 @@ class _ObservatoryScreenState extends ConsumerState<ObservatoryScreen>
       children: [
         _MetricCard(
           title: 'Language Coverage',
-          value: '${summary.languageCoverage.averageCompletion.toStringAsFixed(1)}%',
+          value:
+              '${summary.languageCoverage.averageCompletion.toStringAsFixed(1)}%',
           subtitle: '4 languages',
           status: summary.languageCoverage.status,
           icon: Icons.translate,
@@ -435,7 +455,8 @@ class _ObservatoryScreenState extends ConsumerState<ObservatoryScreen>
         _MetricCard(
           title: 'Content Items',
           value: _formatNumber(summary.contentInventory.totalItems),
-          subtitle: '${summary.contentInventory.aiGeneratedPercent.toStringAsFixed(0)}% AI-generated',
+          subtitle:
+              '${summary.contentInventory.aiGeneratedPercent.toStringAsFixed(0)}% AI-generated',
           status: summary.contentInventory.status,
           icon: Icons.library_books,
           isDark: isDark,
@@ -450,7 +471,8 @@ class _ObservatoryScreenState extends ConsumerState<ObservatoryScreen>
         ),
         _MetricCard(
           title: 'Platform Status',
-          value: summary.platformHealth.webBuild.status == BuildStatusType.success
+          value:
+              summary.platformHealth.webBuild.status == BuildStatusType.success
               ? 'All Green'
               : 'Issues',
           subtitle: 'Web + iOS',
@@ -498,7 +520,9 @@ class _ObservatoryScreenState extends ConsumerState<ObservatoryScreen>
             title: Text(
               engine.name,
               style: TextStyle(
-                color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                color: isDark
+                    ? AppColors.textPrimary
+                    : AppColors.lightTextPrimary,
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -516,8 +540,16 @@ class _ObservatoryScreenState extends ConsumerState<ObservatoryScreen>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     _buildDetailRow('Inputs', engine.inputs.join(', '), isDark),
-                    _buildDetailRow('Outputs', engine.outputs.join(', '), isDark),
-                    _buildDetailRow('Apple Safety', engine.appleSafetyRole, isDark),
+                    _buildDetailRow(
+                      'Outputs',
+                      engine.outputs.join(', '),
+                      isDark,
+                    ),
+                    _buildDetailRow(
+                      'Apple Safety',
+                      engine.appleSafetyRole,
+                      isDark,
+                    ),
                     if (engine.filePath != null)
                       _buildDetailRow('File', engine.filePath!, isDark),
                   ],
@@ -551,7 +583,9 @@ class _ObservatoryScreenState extends ConsumerState<ObservatoryScreen>
             child: Text(
               value,
               style: TextStyle(
-                color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+                color: isDark
+                    ? AppColors.textSecondary
+                    : AppColors.lightTextSecondary,
                 fontSize: 12,
               ),
             ),
@@ -574,11 +608,21 @@ class _ObservatoryScreenState extends ConsumerState<ObservatoryScreen>
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildSectionTitle(context, isDark, 'Coverage Overview', Icons.pie_chart),
+            _buildSectionTitle(
+              context,
+              isDark,
+              'Coverage Overview',
+              Icons.pie_chart,
+            ),
             const SizedBox(height: AppConstants.spacingMd),
             _buildCoverageOverview(context, isDark, coverage),
             const SizedBox(height: AppConstants.spacingXl),
-            _buildSectionTitle(context, isDark, 'Per-Language Status', Icons.language),
+            _buildSectionTitle(
+              context,
+              isDark,
+              'Per-Language Status',
+              Icons.language,
+            ),
             const SizedBox(height: AppConstants.spacingMd),
             _buildLocaleGrid(context, isDark, coverage),
             if (coverage.missingTranslations.isNotEmpty) ...[
@@ -590,7 +634,11 @@ class _ObservatoryScreenState extends ConsumerState<ObservatoryScreen>
                 Icons.warning_amber,
               ),
               const SizedBox(height: AppConstants.spacingMd),
-              _buildMissingTranslationsList(context, isDark, coverage.missingTranslations),
+              _buildMissingTranslationsList(
+                context,
+                isDark,
+                coverage.missingTranslations,
+              ),
             ],
           ],
         ),
@@ -739,7 +787,9 @@ class _ObservatoryScreenState extends ConsumerState<ObservatoryScreen>
             title: Text(
               item.key,
               style: TextStyle(
-                color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                color: isDark
+                    ? AppColors.textPrimary
+                    : AppColors.lightTextPrimary,
                 fontSize: 13,
                 fontFamily: 'monospace',
               ),
@@ -759,10 +809,7 @@ class _ObservatoryScreenState extends ConsumerState<ObservatoryScreen>
               ),
               child: Text(
                 item.namespace,
-                style: TextStyle(
-                  fontSize: 10,
-                  color: AppColors.starGold,
-                ),
+                style: TextStyle(fontSize: 10, color: AppColors.starGold),
               ),
             ),
           );
@@ -784,7 +831,12 @@ class _ObservatoryScreenState extends ConsumerState<ObservatoryScreen>
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildSectionTitle(context, isDark, 'Content Overview', Icons.analytics),
+            _buildSectionTitle(
+              context,
+              isDark,
+              'Content Overview',
+              Icons.analytics,
+            ),
             const SizedBox(height: AppConstants.spacingMd),
             _buildContentOverview(context, isDark, inventory),
             const SizedBox(height: AppConstants.spacingXl),
@@ -792,7 +844,12 @@ class _ObservatoryScreenState extends ConsumerState<ObservatoryScreen>
             const SizedBox(height: AppConstants.spacingMd),
             _buildCategoryBreakdown(context, isDark, inventory),
             const SizedBox(height: AppConstants.spacingXl),
-            _buildSectionTitle(context, isDark, 'Growth Trend', Icons.trending_up),
+            _buildSectionTitle(
+              context,
+              isDark,
+              'Growth Trend',
+              Icons.trending_up,
+            ),
             const SizedBox(height: AppConstants.spacingMd),
             _buildGrowthTrend(context, isDark, inventory),
           ],
@@ -832,16 +889,19 @@ class _ObservatoryScreenState extends ConsumerState<ObservatoryScreen>
                     Text(
                       'Total Content Items',
                       style: TextStyle(
-                        color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                        color: isDark
+                            ? AppColors.textMuted
+                            : AppColors.lightTextMuted,
                         fontSize: 12,
                       ),
                     ),
                     Text(
                       _formatNumber(inventory.totalItems),
-                      style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                        color: AppColors.starGold,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: Theme.of(context).textTheme.headlineMedium
+                          ?.copyWith(
+                            color: AppColors.starGold,
+                            fontWeight: FontWeight.bold,
+                          ),
                     ),
                   ],
                 ),
@@ -864,7 +924,9 @@ class _ObservatoryScreenState extends ConsumerState<ObservatoryScreen>
                       Text(
                         'Static: ${inventory.staticCount}',
                         style: TextStyle(
-                          color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+                          color: isDark
+                              ? AppColors.textSecondary
+                              : AppColors.lightTextSecondary,
                           fontSize: 12,
                         ),
                       ),
@@ -885,7 +947,9 @@ class _ObservatoryScreenState extends ConsumerState<ObservatoryScreen>
                       Text(
                         'AI: ${inventory.aiGeneratedCount}',
                         style: TextStyle(
-                          color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+                          color: isDark
+                              ? AppColors.textSecondary
+                              : AppColors.lightTextSecondary,
                           fontSize: 12,
                         ),
                       ),
@@ -902,17 +966,11 @@ class _ObservatoryScreenState extends ConsumerState<ObservatoryScreen>
               children: [
                 Expanded(
                   flex: (100 - inventory.aiGeneratedPercent).round(),
-                  child: Container(
-                    height: 8,
-                    color: AppColors.success,
-                  ),
+                  child: Container(height: 8, color: AppColors.success),
                 ),
                 Expanded(
                   flex: inventory.aiGeneratedPercent.round(),
-                  child: Container(
-                    height: 8,
-                    color: AppColors.auroraStart,
-                  ),
+                  child: Container(height: 8, color: AppColors.auroraStart),
                 ),
               ],
             ),
@@ -950,7 +1008,9 @@ class _ObservatoryScreenState extends ConsumerState<ObservatoryScreen>
         ),
       ),
       child: Column(
-        children: inventory.byCategory.entries.toList().asMap().entries.map((entry) {
+        children: inventory.byCategory.entries.toList().asMap().entries.map((
+          entry,
+        ) {
           final index = entry.key;
           final category = entry.value;
           final total = inventory.totalItems;
@@ -967,7 +1027,9 @@ class _ObservatoryScreenState extends ConsumerState<ObservatoryScreen>
                     Text(
                       category.key,
                       style: TextStyle(
-                        color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+                        color: isDark
+                            ? AppColors.textSecondary
+                            : AppColors.lightTextSecondary,
                         fontSize: 13,
                       ),
                     ),
@@ -986,8 +1048,12 @@ class _ObservatoryScreenState extends ConsumerState<ObservatoryScreen>
                   borderRadius: BorderRadius.circular(4),
                   child: LinearProgressIndicator(
                     value: percent / 100,
-                    backgroundColor: colors[index % colors.length].withValues(alpha: 0.2),
-                    valueColor: AlwaysStoppedAnimation(colors[index % colors.length]),
+                    backgroundColor: colors[index % colors.length].withValues(
+                      alpha: 0.2,
+                    ),
+                    valueColor: AlwaysStoppedAnimation(
+                      colors[index % colors.length],
+                    ),
                     minHeight: 6,
                   ),
                 ),
@@ -1035,7 +1101,9 @@ class _ObservatoryScreenState extends ConsumerState<ObservatoryScreen>
                   Text(
                     'Last 7 days',
                     style: TextStyle(
-                      color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                      color: isDark
+                          ? AppColors.textMuted
+                          : AppColors.lightTextMuted,
                       fontSize: 12,
                     ),
                   ),
@@ -1061,7 +1129,9 @@ class _ObservatoryScreenState extends ConsumerState<ObservatoryScreen>
                   Text(
                     'Last 30 days',
                     style: TextStyle(
-                      color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                      color: isDark
+                          ? AppColors.textMuted
+                          : AppColors.lightTextMuted,
                       fontSize: 12,
                     ),
                   ),
@@ -1089,16 +1159,31 @@ class _ObservatoryScreenState extends ConsumerState<ObservatoryScreen>
           children: [
             _buildSafetyHeader(context, isDark, safety),
             const SizedBox(height: AppConstants.spacingXl),
-            _buildSectionTitle(context, isDark, 'Last 24 Hours', Icons.schedule),
+            _buildSectionTitle(
+              context,
+              isDark,
+              'Last 24 Hours',
+              Icons.schedule,
+            ),
             const SizedBox(height: AppConstants.spacingMd),
             _buildSafetyMetricsGrid(context, isDark, safety),
             const SizedBox(height: AppConstants.spacingXl),
-            _buildSectionTitle(context, isDark, 'Top Triggered Patterns', Icons.pattern),
+            _buildSectionTitle(
+              context,
+              isDark,
+              'Top Triggered Patterns',
+              Icons.pattern,
+            ),
             const SizedBox(height: AppConstants.spacingMd),
             _buildPatternsList(context, isDark, safety.topPatterns),
             if (safety.recentEvents.isNotEmpty) ...[
               const SizedBox(height: AppConstants.spacingXl),
-              _buildSectionTitle(context, isDark, 'Recent Events', Icons.history),
+              _buildSectionTitle(
+                context,
+                isDark,
+                'Recent Events',
+                Icons.history,
+              ),
               const SizedBox(height: AppConstants.spacingMd),
               _buildRecentEventsList(context, isDark, safety.recentEvents),
             ],
@@ -1139,14 +1224,18 @@ class _ObservatoryScreenState extends ConsumerState<ObservatoryScreen>
                 Text(
                   'Overall Status: ${safety.status.label}',
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                    color: isDark
+                        ? AppColors.textPrimary
+                        : AppColors.lightTextPrimary,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 Text(
                   'Review Mode: ${safety.reviewMode.mode.label}',
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                    color: isDark
+                        ? AppColors.textMuted
+                        : AppColors.lightTextMuted,
                   ),
                 ),
               ],
@@ -1156,12 +1245,16 @@ class _ObservatoryScreenState extends ConsumerState<ObservatoryScreen>
             onPressed: () {
               // Toggle review-safe mode
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Review-Safe mode toggle coming soon')),
+                const SnackBar(
+                  content: Text('Review-Safe mode toggle coming soon'),
+                ),
               );
             },
             style: OutlinedButton.styleFrom(
               foregroundColor: AppColors.starGold,
-              side: BorderSide(color: AppColors.starGold.withValues(alpha: 0.5)),
+              side: BorderSide(
+                color: AppColors.starGold.withValues(alpha: 0.5),
+              ),
             ),
             child: const Text('Activate Review-Safe'),
           ),
@@ -1193,12 +1286,15 @@ class _ObservatoryScreenState extends ConsumerState<ObservatoryScreen>
           value: safety.filterHits24h.toString(),
           subtitle: '${safety.hitRatePercent.toStringAsFixed(2)}%',
           isDark: isDark,
-          color: safety.filterHits24h > 50 ? AppColors.warning : AppColors.success,
+          color: safety.filterHits24h > 50
+              ? AppColors.warning
+              : AppColors.success,
         ),
         _SafetyMetricCard(
           title: 'Auto-Rewrites',
           value: safety.autoRewrites24h.toString(),
-          subtitle: '${safety.rewriteSuccessPercent.toStringAsFixed(0)}% success',
+          subtitle:
+              '${safety.rewriteSuccessPercent.toStringAsFixed(0)}% success',
           isDark: isDark,
           color: AppColors.success,
         ),
@@ -1206,7 +1302,9 @@ class _ObservatoryScreenState extends ConsumerState<ObservatoryScreen>
           title: 'Blocks',
           value: safety.runtimeBlocks24h.toString(),
           isDark: isDark,
-          color: safety.runtimeBlocks24h > 0 ? AppColors.error : AppColors.success,
+          color: safety.runtimeBlocks24h > 0
+              ? AppColors.error
+              : AppColors.success,
         ),
       ],
     ).animate().fadeIn(delay: 200.ms, duration: 400.ms);
@@ -1263,15 +1361,13 @@ class _ObservatoryScreenState extends ConsumerState<ObservatoryScreen>
           final pattern = patterns[index];
           return ListTile(
             dense: true,
-            leading: Icon(
-              Icons.pattern,
-              color: AppColors.warning,
-              size: 18,
-            ),
+            leading: Icon(Icons.pattern, color: AppColors.warning, size: 18),
             title: Text(
               '"${pattern.pattern}"',
               style: TextStyle(
-                color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                color: isDark
+                    ? AppColors.textPrimary
+                    : AppColors.lightTextPrimary,
                 fontSize: 13,
                 fontFamily: 'monospace',
               ),
@@ -1336,8 +1432,8 @@ class _ObservatoryScreenState extends ConsumerState<ObservatoryScreen>
           final color = event.type == SafetyEventType.block
               ? AppColors.error
               : event.type == SafetyEventType.rewrite
-                  ? AppColors.success
-                  : AppColors.warning;
+              ? AppColors.success
+              : AppColors.warning;
 
           return ListTile(
             dense: true,
@@ -1345,15 +1441,17 @@ class _ObservatoryScreenState extends ConsumerState<ObservatoryScreen>
               event.type == SafetyEventType.block
                   ? Icons.block
                   : event.type == SafetyEventType.rewrite
-                      ? Icons.autorenew
-                      : Icons.warning,
+                  ? Icons.autorenew
+                  : Icons.warning,
               color: color,
               size: 18,
             ),
             title: Text(
               event.type.label,
               style: TextStyle(
-                color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                color: isDark
+                    ? AppColors.textPrimary
+                    : AppColors.lightTextPrimary,
                 fontSize: 13,
               ),
             ),
@@ -1390,11 +1488,21 @@ class _ObservatoryScreenState extends ConsumerState<ObservatoryScreen>
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildSectionTitle(context, isDark, 'Platform Status', Icons.devices),
+            _buildSectionTitle(
+              context,
+              isDark,
+              'Platform Status',
+              Icons.devices,
+            ),
             const SizedBox(height: AppConstants.spacingMd),
             _buildPlatformStatusGrid(context, isDark, platform),
             const SizedBox(height: AppConstants.spacingXl),
-            _buildSectionTitle(context, isDark, 'CI Pipelines', Icons.account_tree),
+            _buildSectionTitle(
+              context,
+              isDark,
+              'CI Pipelines',
+              Icons.account_tree,
+            ),
             const SizedBox(height: AppConstants.spacingMd),
             _buildCIPipelinesList(context, isDark, platform.ciWorkflows),
             const SizedBox(height: AppConstants.spacingXl),
@@ -1469,23 +1577,25 @@ class _ObservatoryScreenState extends ConsumerState<ObservatoryScreen>
           final statusColor = workflow.status == BuildStatusType.success
               ? AppColors.success
               : workflow.status == BuildStatusType.failed
-                  ? AppColors.error
-                  : AppColors.warning;
+              ? AppColors.error
+              : AppColors.warning;
 
           return ListTile(
             leading: Icon(
               workflow.status == BuildStatusType.success
                   ? Icons.check_circle
                   : workflow.status == BuildStatusType.failed
-                      ? Icons.error
-                      : Icons.warning,
+                  ? Icons.error
+                  : Icons.warning,
               color: statusColor,
               size: 20,
             ),
             title: Text(
               workflow.name,
               style: TextStyle(
-                color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                color: isDark
+                    ? AppColors.textPrimary
+                    : AppColors.lightTextPrimary,
                 fontSize: 13,
               ),
             ),
@@ -1493,7 +1603,9 @@ class _ObservatoryScreenState extends ConsumerState<ObservatoryScreen>
                 ? Text(
                     _formatTimeAgo(workflow.completedAt!),
                     style: TextStyle(
-                      color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                      color: isDark
+                          ? AppColors.textMuted
+                          : AppColors.lightTextMuted,
                       fontSize: 11,
                     ),
                   )
@@ -1502,7 +1614,9 @@ class _ObservatoryScreenState extends ConsumerState<ObservatoryScreen>
                 ? Text(
                     _formatDuration(workflow.duration!),
                     style: TextStyle(
-                      color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                      color: isDark
+                          ? AppColors.textMuted
+                          : AppColors.lightTextMuted,
                       fontSize: 11,
                     ),
                   )
@@ -1519,8 +1633,14 @@ class _ObservatoryScreenState extends ConsumerState<ObservatoryScreen>
     List<BuildHistoryEntry> history,
   ) {
     // Group by platform
-    final webBuilds = history.where((b) => b.platform == 'web').take(21).toList();
-    final iosBuilds = history.where((b) => b.platform == 'ios').take(8).toList();
+    final webBuilds = history
+        .where((b) => b.platform == 'web')
+        .take(21)
+        .toList();
+    final iosBuilds = history
+        .where((b) => b.platform == 'ios')
+        .take(8)
+        .toList();
 
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -1541,7 +1661,9 @@ class _ObservatoryScreenState extends ConsumerState<ObservatoryScreen>
           Text(
             'Web (${webBuilds.length} builds)',
             style: TextStyle(
-              color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+              color: isDark
+                  ? AppColors.textSecondary
+                  : AppColors.lightTextSecondary,
               fontSize: 12,
             ),
           ),
@@ -1557,8 +1679,8 @@ class _ObservatoryScreenState extends ConsumerState<ObservatoryScreen>
                   color: build.status == BuildStatusType.success
                       ? AppColors.success
                       : build.status == BuildStatusType.warning
-                          ? AppColors.warning
-                          : AppColors.error,
+                      ? AppColors.warning
+                      : AppColors.error,
                   borderRadius: BorderRadius.circular(2),
                 ),
               );
@@ -1568,7 +1690,9 @@ class _ObservatoryScreenState extends ConsumerState<ObservatoryScreen>
           Text(
             'iOS (${iosBuilds.length} builds)',
             style: TextStyle(
-              color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+              color: isDark
+                  ? AppColors.textSecondary
+                  : AppColors.lightTextSecondary,
               fontSize: 12,
             ),
           ),
@@ -1584,8 +1708,8 @@ class _ObservatoryScreenState extends ConsumerState<ObservatoryScreen>
                   color: build.status == BuildStatusType.success
                       ? AppColors.success
                       : build.status == BuildStatusType.warning
-                          ? AppColors.warning
-                          : AppColors.error,
+                      ? AppColors.warning
+                      : AppColors.error,
                   borderRadius: BorderRadius.circular(2),
                 ),
               );
@@ -1672,8 +1796,8 @@ class _MetricCard extends StatelessWidget {
     final statusColor = status == HealthStatus.healthy
         ? AppColors.success
         : status == HealthStatus.warning
-            ? AppColors.warning
-            : AppColors.error;
+        ? AppColors.warning
+        : AppColors.error;
 
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingMd),
@@ -1722,7 +1846,9 @@ class _MetricCard extends StatelessWidget {
           Text(
             title,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+              color: isDark
+                  ? AppColors.textSecondary
+                  : AppColors.lightTextSecondary,
             ),
           ),
         ],
@@ -1746,8 +1872,8 @@ class _LocaleCard extends StatelessWidget {
     final statusColor = locale.status == HealthStatus.healthy
         ? AppColors.success
         : locale.status == HealthStatus.warning
-            ? AppColors.warning
-            : AppColors.error;
+        ? AppColors.warning
+        : AppColors.error;
 
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingMd),
@@ -1767,7 +1893,9 @@ class _LocaleCard extends StatelessWidget {
               Text(
                 locale.displayName,
                 style: TextStyle(
-                  color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                  color: isDark
+                      ? AppColors.textPrimary
+                      : AppColors.lightTextPrimary,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -1866,7 +1994,9 @@ class _SafetyMetricCard extends StatelessWidget {
           Text(
             title,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+              color: isDark
+                  ? AppColors.textSecondary
+                  : AppColors.lightTextSecondary,
             ),
             textAlign: TextAlign.center,
           ),
@@ -1898,8 +2028,8 @@ class _PlatformCard extends StatelessWidget {
     final statusColor = buildStatus.status == BuildStatusType.success
         ? AppColors.success
         : buildStatus.status == BuildStatusType.failed
-            ? AppColors.error
-            : AppColors.warning;
+        ? AppColors.error
+        : AppColors.warning;
 
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -1919,7 +2049,9 @@ class _PlatformCard extends StatelessWidget {
               Text(
                 title,
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                  color: isDark
+                      ? AppColors.textPrimary
+                      : AppColors.lightTextPrimary,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -1944,7 +2076,9 @@ class _PlatformCard extends StatelessWidget {
           Text(
             'Build: ${buildStatus.buildNumber}',
             style: TextStyle(
-              color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+              color: isDark
+                  ? AppColors.textSecondary
+                  : AppColors.lightTextSecondary,
               fontSize: 12,
             ),
           ),
@@ -1964,7 +2098,9 @@ class _PlatformCard extends StatelessWidget {
                 Text(
                   'Lighthouse',
                   style: TextStyle(
-                    color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                    color: isDark
+                        ? AppColors.textMuted
+                        : AppColors.lightTextMuted,
                     fontSize: 11,
                   ),
                 ),
@@ -1980,7 +2116,8 @@ class _PlatformCard extends StatelessWidget {
                         fontSize: 13,
                       ),
                     ),
-                    if (performance.scoreChange != null && performance.scoreChange != 0)
+                    if (performance.scoreChange != null &&
+                        performance.scoreChange != 0)
                       Text(
                         ' (${performance.scoreChange! > 0 ? '+' : ''}${performance.scoreChange})',
                         style: TextStyle(
@@ -2002,7 +2139,9 @@ class _PlatformCard extends StatelessWidget {
               Text(
                 'Crash-Free',
                 style: TextStyle(
-                  color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                  color: isDark
+                      ? AppColors.textMuted
+                      : AppColors.lightTextMuted,
                   fontSize: 11,
                 ),
               ),
@@ -2025,14 +2164,18 @@ class _PlatformCard extends StatelessWidget {
               Text(
                 'Cold Start',
                 style: TextStyle(
-                  color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                  color: isDark
+                      ? AppColors.textMuted
+                      : AppColors.lightTextMuted,
                   fontSize: 11,
                 ),
               ),
               Text(
                 '${(performance.coldStartMs / 1000).toStringAsFixed(1)}s',
                 style: TextStyle(
-                  color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+                  color: isDark
+                      ? AppColors.textSecondary
+                      : AppColors.lightTextSecondary,
                   fontSize: 13,
                 ),
               ),

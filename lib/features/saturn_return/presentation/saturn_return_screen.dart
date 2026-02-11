@@ -64,7 +64,10 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
                 KadimNotCard(
                   category: KadimCategory.astrology,
                   title: L10nService.get('saturn_return.kadim_title', language),
-                  content: L10nService.get('saturn_return.kadim_content', language),
+                  content: L10nService.get(
+                    'saturn_return.kadim_content',
+                    language,
+                  ),
                   icon: Icons.loop,
                 ),
                 const SizedBox(height: AppConstants.spacingXl),
@@ -73,7 +76,10 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
                 const SizedBox(height: AppConstants.spacingXl),
                 // Entertainment Disclaimer
                 PageFooterWithDisclaimer(
-                  brandText: L10nService.get('saturn_return.brand_text', language),
+                  brandText: L10nService.get(
+                    'saturn_return.brand_text',
+                    language,
+                  ),
                   disclaimerText: DisclaimerTexts.astrology(language),
                   language: language,
                 ),
@@ -100,15 +106,15 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
               Text(
                 L10nService.get('saturn_return.title', language),
                 style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                      color: AppColors.starGold,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  color: AppColors.starGold,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               Text(
                 L10nService.get('saturn_return.subtitle', language),
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: AppColors.textSecondary,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.bodySmall?.copyWith(color: AppColors.textSecondary),
               ),
             ],
           ),
@@ -158,7 +164,10 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
             Row(
               children: [
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 6,
+                  ),
                   decoration: BoxDecoration(
                     color: AppColors.saturnColor.withAlpha(50),
                     borderRadius: BorderRadius.circular(20),
@@ -176,23 +185,30 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
                       ),
                       const SizedBox(width: 6),
                       Text(
-                        L10nService.get('saturn_return.status_active', language).toUpperCase(),
+                        L10nService.get(
+                          'saturn_return.status_active',
+                          language,
+                        ).toUpperCase(),
                         style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                              color: AppColors.saturnColor,
-                              fontWeight: FontWeight.bold,
-                              letterSpacing: 1.2,
-                            ),
+                          color: AppColors.saturnColor,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 1.2,
+                        ),
                       ),
                     ],
                   ),
                 ),
                 const Spacer(),
                 Text(
-                  L10nService.getWithParams('saturn_return.return_number', language, params: {'number': '${currentReturn.returnNumber}'}),
+                  L10nService.getWithParams(
+                    'saturn_return.return_number',
+                    language,
+                    params: {'number': '${currentReturn.returnNumber}'},
+                  ),
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        color: AppColors.saturnColor,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    color: AppColors.saturnColor,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ],
             ),
@@ -200,17 +216,17 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
             Text(
               L10nService.get('saturn_return.in_return', language),
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                    color: AppColors.textPrimary,
-                    fontWeight: FontWeight.bold,
-                  ),
+                color: AppColors.textPrimary,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             const SizedBox(height: 8),
             Text(
               _getActiveReturnMessage(currentReturn.returnNumber, language),
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: AppColors.textSecondary,
-                    height: 1.5,
-                  ),
+                color: AppColors.textSecondary,
+                height: 1.5,
+              ),
               textAlign: TextAlign.center,
             ),
           ] else if (nextReturn != null) ...[
@@ -218,33 +234,41 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
             Text(
               L10nService.get('saturn_return.next_return', language),
               style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                    color: AppColors.textMuted,
-                    letterSpacing: 1.2,
-                  ),
+                color: AppColors.textMuted,
+                letterSpacing: 1.2,
+              ),
             ),
             const SizedBox(height: AppConstants.spacingSm),
             Text(
-              L10nService.getWithParams('saturn_return.return_number', language, params: {'number': '${nextReturn.returnNumber}'}),
+              L10nService.getWithParams(
+                'saturn_return.return_number',
+                language,
+                params: {'number': '${nextReturn.returnNumber}'},
+              ),
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                    color: AppColors.starGold,
-                    fontWeight: FontWeight.bold,
-                  ),
+                color: AppColors.starGold,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             const SizedBox(height: AppConstants.spacingMd),
             _buildCountdown(context, nextReturn, language),
             const SizedBox(height: AppConstants.spacingMd),
             Text(
-              _formatDateRange(nextReturn.startDate, nextReturn.endDate, language),
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.textSecondary,
-                  ),
+              _formatDateRange(
+                nextReturn.startDate,
+                nextReturn.endDate,
+                language,
+              ),
+              style: Theme.of(
+                context,
+              ).textTheme.bodySmall?.copyWith(color: AppColors.textSecondary),
             ),
           ] else if (_returnData.returns.isEmpty) ...[
             Text(
               L10nService.get('saturn_return.returns_completed', language),
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    color: AppColors.textSecondary,
-                  ),
+              style: Theme.of(
+                context,
+              ).textTheme.titleMedium?.copyWith(color: AppColors.textSecondary),
             ),
           ],
         ],
@@ -252,7 +276,11 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
     ).animate().fadeIn(delay: 100.ms, duration: 400.ms);
   }
 
-  Widget _buildCountdown(BuildContext context, SaturnReturn returnData, AppLanguage language) {
+  Widget _buildCountdown(
+    BuildContext context,
+    SaturnReturn returnData,
+    AppLanguage language,
+  ) {
     final now = DateTime.now();
     final daysUntil = returnData.startDate.difference(now).inDays;
     final yearsUntil = (daysUntil / 365).floor();
@@ -263,14 +291,23 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         if (yearsUntil > 0) ...[
-          _CountdownUnit(value: yearsUntil, label: L10nService.get('saturn_return.countdown.years', language)),
+          _CountdownUnit(
+            value: yearsUntil,
+            label: L10nService.get('saturn_return.countdown.years', language),
+          ),
           const SizedBox(width: 16),
         ],
         if (monthsUntil > 0 || yearsUntil > 0) ...[
-          _CountdownUnit(value: monthsUntil, label: L10nService.get('saturn_return.countdown.months', language)),
+          _CountdownUnit(
+            value: monthsUntil,
+            label: L10nService.get('saturn_return.countdown.months', language),
+          ),
           const SizedBox(width: 16),
         ],
-        _CountdownUnit(value: remainingDays, label: L10nService.get('saturn_return.countdown.days', language)),
+        _CountdownUnit(
+          value: remainingDays,
+          label: L10nService.get('saturn_return.countdown.days', language),
+        ),
       ],
     );
   }
@@ -281,9 +318,9 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
       children: [
         Text(
           L10nService.get('saturn_return.your_returns', language),
-          style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                color: AppColors.textPrimary,
-              ),
+          style: Theme.of(
+            context,
+          ).textTheme.titleLarge?.copyWith(color: AppColors.textPrimary),
         ),
         const SizedBox(height: AppConstants.spacingMd),
         ..._returnData.returns.asMap().entries.map((entry) {
@@ -298,7 +335,11 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
     );
   }
 
-  Widget _buildReturnCard(BuildContext context, SaturnReturn returnItem, AppLanguage language) {
+  Widget _buildReturnCard(
+    BuildContext context,
+    SaturnReturn returnItem,
+    AppLanguage language,
+  ) {
     final isPast = returnItem.isPast;
     final isActive = returnItem.isActive;
 
@@ -346,9 +387,9 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
               child: Text(
                 '${returnItem.returnNumber}',
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      color: statusColor,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  color: statusColor,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ),
@@ -358,25 +399,37 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  L10nService.getWithParams('saturn_return.return_title', language, params: {'number': '${returnItem.returnNumber}'}),
+                  L10nService.getWithParams(
+                    'saturn_return.return_title',
+                    language,
+                    params: {'number': '${returnItem.returnNumber}'},
+                  ),
                   style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                        color: AppColors.textPrimary,
-                        fontWeight: FontWeight.w600,
-                      ),
+                    color: AppColors.textPrimary,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
                 const SizedBox(height: 2),
                 Text(
-                  _formatDateRange(returnItem.startDate, returnItem.endDate, language),
+                  _formatDateRange(
+                    returnItem.startDate,
+                    returnItem.endDate,
+                    language,
+                  ),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: AppColors.textSecondary,
-                      ),
+                    color: AppColors.textSecondary,
+                  ),
                 ),
                 const SizedBox(height: 2),
                 Text(
-                  L10nService.getWithParams('saturn_return.age_label', language, params: {'age': '${returnItem.ageAtReturn}'}),
-                  style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                        color: AppColors.textMuted,
-                      ),
+                  L10nService.getWithParams(
+                    'saturn_return.age_label',
+                    language,
+                    params: {'age': '${returnItem.ageAtReturn}'},
+                  ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.labelSmall?.copyWith(color: AppColors.textMuted),
                 ),
               ],
             ),
@@ -395,9 +448,9 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
                 Text(
                   statusText,
                   style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                        color: statusColor,
-                        fontWeight: FontWeight.w600,
-                      ),
+                    color: statusColor,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ],
             ),
@@ -408,7 +461,8 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
   }
 
   Widget _buildInterpretation(BuildContext context, AppLanguage language) {
-    final currentOrNext = _returnData.getCurrentReturn() ?? _returnData.getNextReturn();
+    final currentOrNext =
+        _returnData.getCurrentReturn() ?? _returnData.getNextReturn();
     if (currentOrNext == null) return const SizedBox.shrink();
 
     return Container(
@@ -418,10 +472,7 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [
-            AppColors.starGold.withAlpha(20),
-            AppColors.surfaceDark,
-          ],
+          colors: [AppColors.starGold.withAlpha(20), AppColors.surfaceDark],
         ),
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         border: Border.all(color: AppColors.starGold.withAlpha(40)),
@@ -431,14 +482,22 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
         children: [
           Row(
             children: [
-              const Icon(Icons.auto_awesome, color: AppColors.starGold, size: 20),
+              const Icon(
+                Icons.auto_awesome,
+                color: AppColors.starGold,
+                size: 20,
+              ),
               const SizedBox(width: 8),
               Text(
-                L10nService.getWithParams('saturn_return.interpretation_title', language, params: {'number': '${currentOrNext.returnNumber}'}),
+                L10nService.getWithParams(
+                  'saturn_return.interpretation_title',
+                  language,
+                  params: {'number': '${currentOrNext.returnNumber}'},
+                ),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      color: AppColors.starGold,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  color: AppColors.starGold,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ],
           ),
@@ -446,37 +505,44 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
           Text(
             _getReturnInterpretation(currentOrNext.returnNumber, language),
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: AppColors.textPrimary,
-                  height: 1.6,
-                ),
+              color: AppColors.textPrimary,
+              height: 1.6,
+            ),
           ),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
             L10nService.get('saturn_return.key_themes', language),
             style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                  color: AppColors.starGold,
-                  fontWeight: FontWeight.bold,
-                ),
+              color: AppColors.starGold,
+              fontWeight: FontWeight.bold,
+            ),
           ),
           const SizedBox(height: 8),
           Wrap(
             spacing: 8,
             runSpacing: 8,
             children: _getReturnThemes(currentOrNext.returnNumber, language)
-                .map((theme) => Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                      decoration: BoxDecoration(
-                        color: AppColors.starGold.withAlpha(20),
-                        borderRadius: BorderRadius.circular(16),
-                        border: Border.all(color: AppColors.starGold.withAlpha(40)),
+                .map(
+                  (theme) => Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 6,
+                    ),
+                    decoration: BoxDecoration(
+                      color: AppColors.starGold.withAlpha(20),
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(
+                        color: AppColors.starGold.withAlpha(40),
                       ),
-                      child: Text(
-                        theme,
-                        style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                              color: AppColors.starGold,
-                            ),
+                    ),
+                    child: Text(
+                      theme,
+                      style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                        color: AppColors.starGold,
                       ),
-                    ))
+                    ),
+                  ),
+                )
                 .toList(),
           ),
         ],
@@ -497,29 +563,51 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
         children: [
           Row(
             children: [
-              Text('♄', style: TextStyle(fontSize: 24, color: AppColors.saturnColor)),
+              Text(
+                '♄',
+                style: TextStyle(fontSize: 24, color: AppColors.saturnColor),
+              ),
               const SizedBox(width: 8),
               Text(
                 L10nService.get('saturn_return.about_saturn', language),
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      color: AppColors.textPrimary,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleMedium?.copyWith(color: AppColors.textPrimary),
               ),
             ],
           ),
           const SizedBox(height: AppConstants.spacingMd),
-          _buildInfoRow(context, L10nService.get('saturn_return.info.orbital_period', language), L10nService.get('saturn_return.info.orbital_period_value', language)),
-          _buildInfoRow(context, L10nService.get('saturn_return.info.represents', language), L10nService.get('saturn_return.info.represents_value', language)),
-          _buildInfoRow(context, L10nService.get('saturn_return.info.house', language), L10nService.get('saturn_return.info.house_value', language)),
-          _buildInfoRow(context, L10nService.get('saturn_return.info.element', language), L10nService.get('saturn_return.info.element_value', language)),
+          _buildInfoRow(
+            context,
+            L10nService.get('saturn_return.info.orbital_period', language),
+            L10nService.get(
+              'saturn_return.info.orbital_period_value',
+              language,
+            ),
+          ),
+          _buildInfoRow(
+            context,
+            L10nService.get('saturn_return.info.represents', language),
+            L10nService.get('saturn_return.info.represents_value', language),
+          ),
+          _buildInfoRow(
+            context,
+            L10nService.get('saturn_return.info.house', language),
+            L10nService.get('saturn_return.info.house_value', language),
+          ),
+          _buildInfoRow(
+            context,
+            L10nService.get('saturn_return.info.element', language),
+            L10nService.get('saturn_return.info.element_value', language),
+          ),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
             L10nService.get('saturn_return.info.wisdom_quote', language),
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppColors.textSecondary,
-                  fontStyle: FontStyle.italic,
-                  height: 1.5,
-                ),
+              color: AppColors.textSecondary,
+              fontStyle: FontStyle.italic,
+              height: 1.5,
+            ),
           ),
         ],
       ),
@@ -536,17 +624,17 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
             width: 120,
             child: Text(
               label,
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.textMuted,
-                  ),
+              style: Theme.of(
+                context,
+              ).textTheme.bodySmall?.copyWith(color: AppColors.textMuted),
             ),
           ),
           Expanded(
             child: Text(
               value,
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.textPrimary,
-                  ),
+              style: Theme.of(
+                context,
+              ).textTheme.bodySmall?.copyWith(color: AppColors.textPrimary),
             ),
           ),
         ],
@@ -556,11 +644,27 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
 
   String _formatDateRange(DateTime start, DateTime end, AppLanguage language) {
     final monthKeys = [
-      'january', 'february', 'march', 'april', 'may', 'june',
-      'july', 'august', 'september', 'october', 'november', 'december'
+      'january',
+      'february',
+      'march',
+      'april',
+      'may',
+      'june',
+      'july',
+      'august',
+      'september',
+      'october',
+      'november',
+      'december',
     ];
-    final startMonth = L10nService.get('saturn_return.months.${monthKeys[start.month - 1]}', language);
-    final endMonth = L10nService.get('saturn_return.months.${monthKeys[end.month - 1]}', language);
+    final startMonth = L10nService.get(
+      'saturn_return.months.${monthKeys[start.month - 1]}',
+      language,
+    );
+    final endMonth = L10nService.get(
+      'saturn_return.months.${monthKeys[end.month - 1]}',
+      language,
+    );
     return '$startMonth ${start.year} - $endMonth ${end.year}';
   }
 
@@ -569,11 +673,17 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
       case 1:
         return L10nService.get('saturn_return.active_messages.first', language);
       case 2:
-        return L10nService.get('saturn_return.active_messages.second', language);
+        return L10nService.get(
+          'saturn_return.active_messages.second',
+          language,
+        );
       case 3:
         return L10nService.get('saturn_return.active_messages.third', language);
       default:
-        return L10nService.get('saturn_return.active_messages.default', language);
+        return L10nService.get(
+          'saturn_return.active_messages.default',
+          language,
+        );
     }
   }
 
@@ -582,7 +692,10 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
       case 1:
         return L10nService.get('saturn_return.interpretations.first', language);
       case 2:
-        return L10nService.get('saturn_return.interpretations.second', language);
+        return L10nService.get(
+          'saturn_return.interpretations.second',
+          language,
+        );
       case 3:
         return L10nService.get('saturn_return.interpretations.third', language);
       default:
@@ -591,7 +704,11 @@ class _SaturnReturnScreenState extends ConsumerState<SaturnReturnScreen> {
   }
 
   List<String> _getReturnThemes(int returnNumber, AppLanguage language) {
-    final key = returnNumber == 1 ? 'first' : returnNumber == 2 ? 'second' : 'third';
+    final key = returnNumber == 1
+        ? 'first'
+        : returnNumber == 2
+        ? 'second'
+        : 'third';
     final themes = L10nService.getList('saturn_return.themes.$key', language);
     return themes.isNotEmpty ? themes : [];
   }
@@ -619,18 +736,18 @@ class _CountdownUnit extends StatelessWidget {
             child: Text(
               '$value',
               style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                    color: AppColors.starGold,
-                    fontWeight: FontWeight.bold,
-                  ),
+                color: AppColors.starGold,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
         ),
         const SizedBox(height: 4),
         Text(
           label,
-          style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                color: AppColors.textMuted,
-              ),
+          style: Theme.of(
+            context,
+          ).textTheme.labelSmall?.copyWith(color: AppColors.textMuted),
         ),
       ],
     );
@@ -648,19 +765,27 @@ class SaturnReturnCalculator {
 
     for (int i = 1; i <= 3; i++) {
       final exactReturnAge = saturnOrbitalPeriod * i;
-      final startAge = exactReturnAge - 1.5; // Saturn return period starts ~1.5 years before exact
+      final startAge =
+          exactReturnAge -
+          1.5; // Saturn return period starts ~1.5 years before exact
       final endAge = exactReturnAge + 1.0; // And ends ~1 year after
 
-      final startDate = birthDate.add(Duration(days: (startAge * 365.25).round()));
+      final startDate = birthDate.add(
+        Duration(days: (startAge * 365.25).round()),
+      );
       final endDate = birthDate.add(Duration(days: (endAge * 365.25).round()));
 
-      returns.add(SaturnReturn(
-        returnNumber: i,
-        startDate: startDate,
-        endDate: endDate,
-        exactDate: birthDate.add(Duration(days: (exactReturnAge * 365.25).round())),
-        ageAtReturn: exactReturnAge.round(),
-      ));
+      returns.add(
+        SaturnReturn(
+          returnNumber: i,
+          startDate: startDate,
+          endDate: endDate,
+          exactDate: birthDate.add(
+            Duration(days: (exactReturnAge * 365.25).round()),
+          ),
+          ageAtReturn: exactReturnAge.round(),
+        ),
+      );
     }
 
     return SaturnReturnData(birthDate: birthDate, returns: returns);
@@ -715,4 +840,3 @@ class SaturnReturn {
   bool get isPast => DateTime.now().isAfter(endDate);
   bool get isFuture => DateTime.now().isBefore(startDate);
 }
-

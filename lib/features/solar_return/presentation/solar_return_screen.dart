@@ -232,7 +232,10 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      L10nService.get('screens.solar_return.sun_returns', language).replaceAll('{sign}', sunSign.localizedName(language)),
+                      L10nService.get(
+                        'screens.solar_return.sun_returns',
+                        language,
+                      ).replaceAll('{sign}', sunSign.localizedName(language)),
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: AppColors.textSecondary,
                       ),
@@ -257,7 +260,10 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
                   children: [
                     _buildInfoItem(
                       context,
-                      L10nService.get('screens.solar_return.return_date', language),
+                      L10nService.get(
+                        'screens.solar_return.return_date',
+                        language,
+                      ),
                       _formatDate(_returnData.exactReturnDate, language),
                     ),
                     _buildInfoItem(
@@ -273,8 +279,14 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
                   children: [
                     _buildInfoItem(
                       context,
-                      L10nService.get('screens.solar_return.sun_house', language),
-                      L10nService.get('screens.solar_return.house_number', language).replaceAll('{number}', '${_returnData.sunHouse}'),
+                      L10nService.get(
+                        'screens.solar_return.sun_house',
+                        language,
+                      ),
+                      L10nService.get(
+                        'screens.solar_return.house_number',
+                        language,
+                      ).replaceAll('{number}', '${_returnData.sunHouse}'),
                     ),
                     _buildInfoItem(
                       context,
@@ -342,7 +354,11 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
     );
   }
 
-  Widget _buildThemeCard(BuildContext context, SolarReturnTheme theme, AppLanguage language) {
+  Widget _buildThemeCard(
+    BuildContext context,
+    SolarReturnTheme theme,
+    AppLanguage language,
+  ) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingMd),
       decoration: BoxDecoration(
@@ -403,7 +419,10 @@ class _SolarReturnScreenState extends ConsumerState<SolarReturnScreen> {
             ),
             const SizedBox(width: 8),
             Text(
-              L10nService.get('screens.solar_return.monthly_highlights', language),
+              L10nService.get(
+                'screens.solar_return.monthly_highlights',
+                language,
+              ),
               style: Theme.of(
                 context,
               ).textTheme.titleLarge?.copyWith(color: AppColors.textPrimary),

@@ -19,10 +19,12 @@ class MonthlyHoroscopeScreen extends ConsumerStatefulWidget {
   const MonthlyHoroscopeScreen({super.key, this.signName});
 
   @override
-  ConsumerState<MonthlyHoroscopeScreen> createState() => _MonthlyHoroscopeScreenState();
+  ConsumerState<MonthlyHoroscopeScreen> createState() =>
+      _MonthlyHoroscopeScreenState();
 }
 
-class _MonthlyHoroscopeScreenState extends ConsumerState<MonthlyHoroscopeScreen> {
+class _MonthlyHoroscopeScreenState
+    extends ConsumerState<MonthlyHoroscopeScreen> {
   late ZodiacSign _selectedSign;
   MonthlyHoroscope? _horoscope;
   AppLanguage? _cachedLanguage;
@@ -107,7 +109,10 @@ class _MonthlyHoroscopeScreenState extends ConsumerState<MonthlyHoroscopeScreen>
                       const SizedBox(height: AppConstants.spacingXl),
                       // Entertainment Disclaimer
                       PageFooterWithDisclaimer(
-                        brandText: L10n.get('brand_monthly_horoscope', language),
+                        brandText: L10n.get(
+                          'brand_monthly_horoscope',
+                          language,
+                        ),
                         disclaimerText: DisclaimerTexts.astrology(language),
                         language: language,
                       ),
@@ -168,9 +173,9 @@ class _MonthlyHoroscopeScreenState extends ConsumerState<MonthlyHoroscopeScreen>
           ),
           Text(
             '${_horoscope!.monthName} $_selectedYear',
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.w600,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
           ),
           IconButton(
             icon: const Icon(Icons.chevron_right),
@@ -207,8 +212,8 @@ class _MonthlyHoroscopeScreenState extends ConsumerState<MonthlyHoroscopeScreen>
                 color: isSelected
                     ? AppColors.auroraStart.withValues(alpha: 0.3)
                     : isDark
-                        ? AppColors.surfaceLight.withValues(alpha: 0.2)
-                        : AppColors.lightSurfaceVariant,
+                    ? AppColors.surfaceLight.withValues(alpha: 0.2)
+                    : AppColors.lightSurfaceVariant,
                 borderRadius: BorderRadius.circular(AppConstants.radiusSm),
                 border: isSelected
                     ? Border.all(color: AppColors.auroraStart, width: 2)
@@ -219,15 +224,18 @@ class _MonthlyHoroscopeScreenState extends ConsumerState<MonthlyHoroscopeScreen>
                 children: [
                   Text(
                     sign.symbol,
-                    style: const TextStyle(fontSize: 20), // Küçültüldü: 24 -> 20
+                    style: const TextStyle(
+                      fontSize: 20,
+                    ), // Küçültüldü: 24 -> 20
                   ),
                   Text(
                     sign.localizedName(ref.read(languageProvider)),
                     style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                          fontWeight:
-                              isSelected ? FontWeight.bold : FontWeight.normal,
-                          fontSize: 10,
-                        ),
+                      fontWeight: isSelected
+                          ? FontWeight.bold
+                          : FontWeight.normal,
+                      fontSize: 10,
+                    ),
                     textAlign: TextAlign.center,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
@@ -275,8 +283,8 @@ class _MonthlyHoroscopeScreenState extends ConsumerState<MonthlyHoroscopeScreen>
                   Text(
                     _selectedSign.localizedName(ref.read(languageProvider)),
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   _buildRatingStars(_horoscope!.overallRating),
                 ],
@@ -300,9 +308,9 @@ class _MonthlyHoroscopeScreenState extends ConsumerState<MonthlyHoroscopeScreen>
                 child: Text(
                   '$day. ${L10nService.get('sections.day_suffix', ref.read(languageProvider))}',
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: AppColors.starGold,
-                        fontWeight: FontWeight.w600,
-                      ),
+                    color: AppColors.starGold,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               );
             }).toList(),
@@ -310,9 +318,7 @@ class _MonthlyHoroscopeScreenState extends ConsumerState<MonthlyHoroscopeScreen>
           const SizedBox(height: AppConstants.spacingLg),
           Text(
             _horoscope!.overview,
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  height: 1.6,
-                ),
+            style: Theme.of(context).textTheme.bodyLarge?.copyWith(height: 1.6),
           ),
         ],
       ),
@@ -333,7 +339,12 @@ class _MonthlyHoroscopeScreenState extends ConsumerState<MonthlyHoroscopeScreen>
 
   Widget _buildWeeklyRatingsCard(bool isDark, AppLanguage language) {
     final weekLabel = L10n.get('week_number', language);
-    final weeks = ['1. $weekLabel', '2. $weekLabel', '3. $weekLabel', '4. $weekLabel'];
+    final weeks = [
+      '1. $weekLabel',
+      '2. $weekLabel',
+      '3. $weekLabel',
+      '4. $weekLabel',
+    ];
 
     return Container(
       width: double.infinity,
@@ -358,15 +369,14 @@ class _MonthlyHoroscopeScreenState extends ConsumerState<MonthlyHoroscopeScreen>
         children: [
           Text(
             L10n.get('weekly_energy_chart', language),
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: AppConstants.spacingLg),
           Row(
             children: List.generate(4, (index) {
-              final rating =
-                  _horoscope!.weeklyRatings['week${index + 1}'] ?? 3;
+              final rating = _horoscope!.weeklyRatings['week${index + 1}'] ?? 3;
               return Expanded(
                 child: Column(
                   children: [
@@ -377,10 +387,7 @@ class _MonthlyHoroscopeScreenState extends ConsumerState<MonthlyHoroscopeScreen>
                         gradient: LinearGradient(
                           begin: Alignment.bottomCenter,
                           end: Alignment.topCenter,
-                          colors: [
-                            AppColors.auroraStart,
-                            AppColors.auroraEnd,
-                          ],
+                          colors: [AppColors.auroraStart, AppColors.auroraEnd],
                         ),
                         borderRadius: BorderRadius.circular(8),
                       ),
@@ -471,17 +478,17 @@ class _MonthlyHoroscopeScreenState extends ConsumerState<MonthlyHoroscopeScreen>
                   Text(
                     cat['title'] as String,
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ],
               ),
               const SizedBox(height: AppConstants.spacingMd),
               Text(
                 cat['content'] as String,
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      height: 1.5,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.bodyMedium?.copyWith(height: 1.5),
               ),
             ],
           ),
@@ -504,9 +511,7 @@ class _MonthlyHoroscopeScreenState extends ConsumerState<MonthlyHoroscopeScreen>
           ],
         ),
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-        border: Border.all(
-          color: Colors.purple.withValues(alpha: 0.3),
-        ),
+        border: Border.all(color: Colors.purple.withValues(alpha: 0.3)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -527,19 +532,22 @@ class _MonthlyHoroscopeScreenState extends ConsumerState<MonthlyHoroscopeScreen>
               ),
               const SizedBox(width: AppConstants.spacingMd),
               Text(
-                L10nService.get('horoscope.spiritual_guidance', ref.read(languageProvider)),
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+                L10nService.get(
+                  'horoscope.spiritual_guidance',
+                  ref.read(languageProvider),
+                ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
               ),
             ],
           ),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
             _horoscope!.spiritualGuidance,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  height: 1.5,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.bodyMedium?.copyWith(height: 1.5),
           ),
         ],
       ),
@@ -584,19 +592,22 @@ class _MonthlyHoroscopeScreenState extends ConsumerState<MonthlyHoroscopeScreen>
               ),
               const SizedBox(width: AppConstants.spacingMd),
               Text(
-                L10nService.get('horoscope.planet_transits', ref.read(languageProvider)),
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+                L10nService.get(
+                  'horoscope.planet_transits',
+                  ref.read(languageProvider),
+                ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
               ),
             ],
           ),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
             _horoscope!.keyTransits,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  height: 1.5,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.bodyMedium?.copyWith(height: 1.5),
           ),
         ],
       ),
@@ -617,32 +628,29 @@ class _MonthlyHoroscopeScreenState extends ConsumerState<MonthlyHoroscopeScreen>
           ],
         ),
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-        border: Border.all(
-          color: AppColors.starGold.withValues(alpha: 0.3),
-        ),
+        border: Border.all(color: AppColors.starGold.withValues(alpha: 0.3)),
       ),
       child: Column(
         children: [
-          const Icon(
-            Icons.auto_awesome,
-            color: AppColors.starGold,
-            size: 32,
-          ),
+          const Icon(Icons.auto_awesome, color: AppColors.starGold, size: 32),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
-            L10nService.get('sections.monthly_mantra', ref.read(languageProvider)),
+            L10nService.get(
+              'sections.monthly_mantra',
+              ref.read(languageProvider),
+            ),
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: AppColors.starGold,
-                ),
+              fontWeight: FontWeight.bold,
+              color: AppColors.starGold,
+            ),
           ),
           const SizedBox(height: AppConstants.spacingSm),
           Text(
             '"${_horoscope!.monthlyMantra}"',
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  fontStyle: FontStyle.italic,
-                  height: 1.5,
-                ),
+              fontStyle: FontStyle.italic,
+              height: 1.5,
+            ),
             textAlign: TextAlign.center,
           ),
         ],

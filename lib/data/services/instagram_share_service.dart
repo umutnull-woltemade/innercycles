@@ -48,31 +48,40 @@ class InstagramShareService {
 
       // 2. Platform-specific share
       if (kIsWeb) {
-        return await _shareOnWeb(imageBytes, shareText, hashtags, language: language);
+        return await _shareOnWeb(
+          imageBytes,
+          shareText,
+          hashtags,
+          language: language,
+        );
       }
 
       // 3. For native platforms, save to temp file first
       final file = await _saveToTempFile(imageBytes);
       if (file == null) {
-        return const ShareResult(
-          success: false,
-          error: ShareError.saveFailed,
-        );
+        return const ShareResult(success: false, error: ShareError.saveFailed);
       }
 
       if (Platform.isIOS) {
         return await _shareOnIOS(file, shareText, hashtags, language: language);
       } else if (Platform.isAndroid) {
-        return await _shareOnAndroid(file, shareText, hashtags, language: language);
+        return await _shareOnAndroid(
+          file,
+          shareText,
+          hashtags,
+          language: language,
+        );
       } else {
-        return await _shareGeneric(file, shareText, hashtags, language: language);
+        return await _shareGeneric(
+          file,
+          shareText,
+          hashtags,
+          language: language,
+        );
       }
     } catch (e) {
       debugPrint('Share error: $e');
-      return const ShareResult(
-        success: false,
-        error: ShareError.unknown,
-      );
+      return const ShareResult(success: false, error: ShareError.unknown);
     }
   }
 
@@ -120,7 +129,9 @@ class InstagramShareService {
   }) async {
     try {
       final fullText = _buildShareText(shareText, hashtags);
-      final subject = language == AppLanguage.tr ? 'Kozmik Enerji' : 'Cosmic Energy';
+      final subject = language == AppLanguage.tr
+          ? 'Kozmik Enerji'
+          : 'Cosmic Energy';
 
       final result = await Share.shareXFiles(
         [XFile(file.path)],
@@ -129,10 +140,7 @@ class InstagramShareService {
       );
 
       if (result.status == ShareResultStatus.success) {
-        return const ShareResult(
-          success: true,
-          platform: SharePlatform.ios,
-        );
+        return const ShareResult(success: true, platform: SharePlatform.ios);
       } else if (result.status == ShareResultStatus.dismissed) {
         return const ShareResult(
           success: false,
@@ -165,7 +173,9 @@ class InstagramShareService {
   }) async {
     try {
       final fullText = _buildShareText(shareText, hashtags);
-      final subject = language == AppLanguage.tr ? 'Kozmik Enerji' : 'Cosmic Energy';
+      final subject = language == AppLanguage.tr
+          ? 'Kozmik Enerji'
+          : 'Cosmic Energy';
 
       final result = await Share.shareXFiles(
         [XFile(file.path, mimeType: 'image/png')],
@@ -214,7 +224,9 @@ class InstagramShareService {
       final fileName = 'venusone_cosmic_$timestamp.png';
 
       // Try Web Share API with files first (modern browsers on HTTPS)
-      final subject = language == AppLanguage.tr ? 'Kozmik Enerji' : 'Cosmic Energy';
+      final subject = language == AppLanguage.tr
+          ? 'Kozmik Enerji'
+          : 'Cosmic Energy';
       try {
         final xFile = XFile.fromData(
           imageBytes,
@@ -229,10 +241,7 @@ class InstagramShareService {
         );
 
         if (result.status == ShareResultStatus.success) {
-          return const ShareResult(
-            success: true,
-            platform: SharePlatform.web,
-          );
+          return const ShareResult(success: true, platform: SharePlatform.web);
         } else if (result.status == ShareResultStatus.dismissed) {
           return const ShareResult(
             success: false,
@@ -254,10 +263,7 @@ class InstagramShareService {
         success: true,
         platform: SharePlatform.web,
         error: ShareError.webFallback,
-        fallbackData: ShareFallbackData(
-          downloadUrl: '',
-          copyText: fullText,
-        ),
+        fallbackData: ShareFallbackData(downloadUrl: '', copyText: fullText),
       );
     } catch (e) {
       debugPrint('Web share error: $e');
@@ -282,10 +288,7 @@ class InstagramShareService {
       ], text: _buildShareText(shareText, hashtags));
 
       if (result.status == ShareResultStatus.success) {
-        return const ShareResult(
-          success: true,
-          platform: SharePlatform.other,
-        );
+        return const ShareResult(success: true, platform: SharePlatform.other);
       } else if (result.status == ShareResultStatus.dismissed) {
         return const ShareResult(
           success: false,
@@ -301,10 +304,7 @@ class InstagramShareService {
       }
     } catch (e) {
       debugPrint('Generic share error: $e');
-      return const ShareResult(
-        success: false,
-        error: ShareError.unknown,
-      );
+      return const ShareResult(success: false, error: ShareError.unknown);
     }
   }
 
@@ -388,8 +388,5 @@ class ShareFallbackData {
   final String downloadUrl;
   final String copyText;
 
-  const ShareFallbackData({
-    required this.downloadUrl,
-    required this.copyText,
-  });
+  const ShareFallbackData({required this.downloadUrl, required this.copyText});
 }

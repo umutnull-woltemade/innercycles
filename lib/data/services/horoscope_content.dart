@@ -21,10 +21,11 @@ class HoroscopeContent {
     return content[lang] ?? content[AppLanguage.tr] ?? [];
   }
 
-  static final Map<ZodiacSign, Map<AppLanguage, List<String>>> _esotericSummaries = {
+  static final Map<ZodiacSign, Map<AppLanguage, List<String>>>
+  _esotericSummaries = {
     ZodiacSign.aries: {
       AppLanguage.tr: [
-        'Ateş senin içinde yanmaktan yorulmaz, çünkü sen ateşin ta kendisisin. Bugün ruhun, başlangıcın gizli sırrını hatırlamak için uyanıyor. Öncü olmak kaderindir - ama bu sefer, savaşmak yerine aydınlatmak için ileri atıl. İçindeki savaşçı şimdi bilge bir lider olarak dönüşüyor.',
+        'Ateş senin içinde yanmaktan yorulmaz, çünkü sen ateşin ta kendisisin. Bugün ruhun, başlangıcın gizli sırrını hatırlamak için uyanıyor. Öncü olmak keşfedebileceğin bir tema - bu sefer, savaşmak yerine aydınlatmak için ileri atıl. İçindeki savaşçı şimdi bilge bir lider olarak dönüşüyor.',
         'Mars enerjisi bugün damarlarında volkanik bir güç gibi akıyor. Eski ezoterik öğretiler, Koç burcunun ruhunun "İlk Işık" olduğunu söyler - karanlıktan önce var olan, yaratımın kendisi olan ışık. Bugün o ışığı taşımak için çağırıldın. Korkusuzca parla.',
         'Kozmik savaşçı arketipi içinde uyanıyor. Cesaretinin kökü, maddi dünyada değil, ruhsal alemde yatıyor. Bugün eylemlerinin arkasındaki niyet, sonucundan daha önemli. Bilincinle hareket et.',
       ],
@@ -271,12 +272,32 @@ class HoroscopeContent {
 
   static final Map<AppLanguage, List<String>> _moods = {
     AppLanguage.tr: [
-      'Sezgisel', 'Dönüşümde', 'Aydınlanmış', 'Topraklı', 'Akışta',
-      'Uyanan', 'Alıcı', 'Yaratıcı', 'Mistik', 'Bütünleşmiş', 'Ateşli', 'Dingin',
+      'Sezgisel',
+      'Dönüşümde',
+      'Aydınlanmış',
+      'Topraklı',
+      'Akışta',
+      'Uyanan',
+      'Alıcı',
+      'Yaratıcı',
+      'Mistik',
+      'Bütünleşmiş',
+      'Ateşli',
+      'Dingin',
     ],
     AppLanguage.en: [
-      'Intuitive', 'Transforming', 'Enlightened', 'Grounded', 'Flowing',
-      'Awakening', 'Receptive', 'Creative', 'Mystical', 'Integrated', 'Fiery', 'Serene',
+      'Intuitive',
+      'Transforming',
+      'Enlightened',
+      'Grounded',
+      'Flowing',
+      'Awakening',
+      'Receptive',
+      'Creative',
+      'Mystical',
+      'Integrated',
+      'Fiery',
+      'Serene',
     ],
   };
 
@@ -296,7 +317,12 @@ class HoroscopeContent {
       AppLanguage.en: ['Fire Red', 'Gold', 'Orange', 'Coral'],
     },
     ZodiacSign.taurus: {
-      AppLanguage.tr: ['Zümrüt Yeşili', 'Gül Pembesi', 'Toprak Tonları', 'Bakır'],
+      AppLanguage.tr: [
+        'Zümrüt Yeşili',
+        'Gül Pembesi',
+        'Toprak Tonları',
+        'Bakır',
+      ],
       AppLanguage.en: ['Emerald Green', 'Rose Pink', 'Earth Tones', 'Copper'],
     },
     ZodiacSign.gemini: {
@@ -308,7 +334,12 @@ class HoroscopeContent {
       AppLanguage.en: ['Pearl White', 'Moon Silver', 'Sea Blue', 'Nacre'],
     },
     ZodiacSign.leo: {
-      AppLanguage.tr: ['Güneş Altını', 'Kraliyet Kırmızısı', 'Turuncu', 'Bronz'],
+      AppLanguage.tr: [
+        'Güneş Altını',
+        'Kraliyet Kırmızısı',
+        'Turuncu',
+        'Bronz',
+      ],
       AppLanguage.en: ['Sun Gold', 'Royal Red', 'Orange', 'Bronze'],
     },
     ZodiacSign.virgo: {
@@ -665,7 +696,8 @@ class HoroscopeContent {
     return content[lang] ?? content[AppLanguage.tr] ?? [];
   }
 
-  static final Map<ZodiacSign, Map<AppLanguage, List<String>>> _presentEnergies = {
+  static final Map<ZodiacSign, Map<AppLanguage, List<String>>>
+  _presentEnergies = {
     ZodiacSign.aries: {
       AppLanguage.tr: [
         'Şu an, içindeki ateş en parlak haliyle yanıyor. Bu an, harekete geçme zamanı.',
@@ -822,7 +854,8 @@ class HoroscopeContent {
     return content[lang] ?? content[AppLanguage.tr] ?? [];
   }
 
-  static final Map<ZodiacSign, Map<AppLanguage, List<String>>> _futureIntentions = {
+  static final Map<ZodiacSign, Map<AppLanguage, List<String>>>
+  _futureIntentions = {
     ZodiacSign.aries: {
       AppLanguage.tr: [
         'Büyüme temalarını düşünürken, yeni savaş alanları yerine zafer ve başarı konseptleri üzerine odaklanabilirsin.',

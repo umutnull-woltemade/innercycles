@@ -83,16 +83,16 @@ class _ThetaHealingScreenState extends ConsumerState<ThetaHealingScreen>
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text(
-                          '\u{1F9E0}',
-                          style: TextStyle(fontSize: 24),
-                        ),
+                        const Text('\u{1F9E0}', style: TextStyle(fontSize: 24)),
                         const SizedBox(width: 8),
                         Text(
                           L10nService.get('theta_healing.title', language),
-                          style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                          style: Theme.of(context).textTheme.headlineSmall
+                              ?.copyWith(
                                 fontWeight: FontWeight.bold,
-                                color: isDark ? Colors.white : AppColors.textDark,
+                                color: isDark
+                                    ? Colors.white
+                                    : AppColors.textDark,
                               ),
                         ),
                       ],
@@ -165,7 +165,9 @@ class _ThetaHealingScreenState extends ConsumerState<ThetaHealingScreen>
         tabs: [
           Tab(text: L10nService.get('theta_healing.tabs.intro', language)),
           Tab(text: L10nService.get('theta_healing.tabs.techniques', language)),
-          Tab(text: L10nService.get('theta_healing.tabs.meditations', language)),
+          Tab(
+            text: L10nService.get('theta_healing.tabs.meditations', language),
+          ),
         ],
       ),
     );
@@ -178,39 +180,64 @@ class _ThetaHealingScreenState extends ConsumerState<ThetaHealingScreen>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildInfoCard(
-            title: L10nService.get('theta_healing.intro.theta_state_title', language),
-            content: L10nService.get('theta_healing.intro.theta_state_content', language),
+            title: L10nService.get(
+              'theta_healing.intro.theta_state_title',
+              language,
+            ),
+            content: L10nService.get(
+              'theta_healing.intro.theta_state_content',
+              language,
+            ),
             icon: '\u{1F30A}',
             color: const Color(0xFF7C4DFF),
             isDark: isDark,
           ).animate().fadeIn(duration: 500.ms).slideY(begin: 0.1),
           const SizedBox(height: AppConstants.spacingMd),
           _buildInfoCard(
-            title: L10nService.get('theta_healing.intro.limiting_beliefs_title', language),
-            content: L10nService.get('theta_healing.intro.limiting_beliefs_content', language),
+            title: L10nService.get(
+              'theta_healing.intro.limiting_beliefs_title',
+              language,
+            ),
+            content: L10nService.get(
+              'theta_healing.intro.limiting_beliefs_content',
+              language,
+            ),
             icon: '\u{1F513}',
             color: const Color(0xFFE040FB),
             isDark: isDark,
           ).animate(delay: 100.ms).fadeIn(duration: 500.ms).slideY(begin: 0.1),
           const SizedBox(height: AppConstants.spacingMd),
           _buildInfoCard(
-            title: L10nService.get('theta_healing.intro.energy_transformation_title', language),
-            content: L10nService.get('theta_healing.intro.energy_transformation_content', language),
+            title: L10nService.get(
+              'theta_healing.intro.energy_transformation_title',
+              language,
+            ),
+            content: L10nService.get(
+              'theta_healing.intro.energy_transformation_content',
+              language,
+            ),
             icon: '\u2728',
             color: const Color(0xFF00BCD4),
             isDark: isDark,
           ).animate(delay: 200.ms).fadeIn(duration: 500.ms).slideY(begin: 0.1),
           const SizedBox(height: AppConstants.spacingMd),
           _buildInfoCard(
-            title: L10nService.get('theta_healing.intro.seven_planes_title', language),
-            content: L10nService.get('theta_healing.intro.seven_planes_content', language),
+            title: L10nService.get(
+              'theta_healing.intro.seven_planes_title',
+              language,
+            ),
+            content: L10nService.get(
+              'theta_healing.intro.seven_planes_content',
+              language,
+            ),
             icon: '\u{1F30C}',
             color: const Color(0xFFFFD700),
             isDark: isDark,
           ).animate(delay: 300.ms).fadeIn(duration: 500.ms).slideY(begin: 0.1),
           const SizedBox(height: AppConstants.spacingXl),
           PageFooterWithDisclaimer(
-            brandText: '${L10nService.get('theta_healing.title', language)} \u2014 Venus One',
+            brandText:
+                '${L10nService.get('theta_healing.title', language)} \u2014 Venus One',
             disclaimerText: DisclaimerTexts.astrology(language),
             language: language,
           ),
@@ -222,8 +249,14 @@ class _ThetaHealingScreenState extends ConsumerState<ThetaHealingScreen>
   Widget _buildTechniquesTab(bool isDark, AppLanguage language) {
     final techniques = [
       _TechniqueTile(
-        title: L10nService.get('theta_healing.techniques.digging_title', language),
-        description: L10nService.get('theta_healing.techniques.digging_description', language),
+        title: L10nService.get(
+          'theta_healing.techniques.digging_title',
+          language,
+        ),
+        description: L10nService.get(
+          'theta_healing.techniques.digging_description',
+          language,
+        ),
         steps: [
           L10nService.get('theta_healing.techniques.digging_step_1', language),
           L10nService.get('theta_healing.techniques.digging_step_2', language),
@@ -234,37 +267,91 @@ class _ThetaHealingScreenState extends ConsumerState<ThetaHealingScreen>
         color: const Color(0xFFFF7043),
       ),
       _TechniqueTile(
-        title: L10nService.get('theta_healing.techniques.belief_change_title', language),
-        description: L10nService.get('theta_healing.techniques.belief_change_description', language),
+        title: L10nService.get(
+          'theta_healing.techniques.belief_change_title',
+          language,
+        ),
+        description: L10nService.get(
+          'theta_healing.techniques.belief_change_description',
+          language,
+        ),
         steps: [
-          L10nService.get('theta_healing.techniques.belief_change_step_1', language),
-          L10nService.get('theta_healing.techniques.belief_change_step_2', language),
-          L10nService.get('theta_healing.techniques.belief_change_step_3', language),
-          L10nService.get('theta_healing.techniques.belief_change_step_4', language),
+          L10nService.get(
+            'theta_healing.techniques.belief_change_step_1',
+            language,
+          ),
+          L10nService.get(
+            'theta_healing.techniques.belief_change_step_2',
+            language,
+          ),
+          L10nService.get(
+            'theta_healing.techniques.belief_change_step_3',
+            language,
+          ),
+          L10nService.get(
+            'theta_healing.techniques.belief_change_step_4',
+            language,
+          ),
         ],
         icon: '\u{1F504}',
         color: const Color(0xFF4CAF50),
       ),
       _TechniqueTile(
-        title: L10nService.get('theta_healing.techniques.feeling_download_title', language),
-        description: L10nService.get('theta_healing.techniques.feeling_download_description', language),
+        title: L10nService.get(
+          'theta_healing.techniques.feeling_download_title',
+          language,
+        ),
+        description: L10nService.get(
+          'theta_healing.techniques.feeling_download_description',
+          language,
+        ),
         steps: [
-          L10nService.get('theta_healing.techniques.feeling_download_step_1', language),
-          L10nService.get('theta_healing.techniques.feeling_download_step_2', language),
-          L10nService.get('theta_healing.techniques.feeling_download_step_3', language),
-          L10nService.get('theta_healing.techniques.feeling_download_step_4', language),
+          L10nService.get(
+            'theta_healing.techniques.feeling_download_step_1',
+            language,
+          ),
+          L10nService.get(
+            'theta_healing.techniques.feeling_download_step_2',
+            language,
+          ),
+          L10nService.get(
+            'theta_healing.techniques.feeling_download_step_3',
+            language,
+          ),
+          L10nService.get(
+            'theta_healing.techniques.feeling_download_step_4',
+            language,
+          ),
         ],
         icon: '\u{1F49C}',
         color: const Color(0xFF9C27B0),
       ),
       _TechniqueTile(
-        title: L10nService.get('theta_healing.techniques.body_scan_title', language),
-        description: L10nService.get('theta_healing.techniques.body_scan_description', language),
+        title: L10nService.get(
+          'theta_healing.techniques.body_scan_title',
+          language,
+        ),
+        description: L10nService.get(
+          'theta_healing.techniques.body_scan_description',
+          language,
+        ),
         steps: [
-          L10nService.get('theta_healing.techniques.body_scan_step_1', language),
-          L10nService.get('theta_healing.techniques.body_scan_step_2', language),
-          L10nService.get('theta_healing.techniques.body_scan_step_3', language),
-          L10nService.get('theta_healing.techniques.body_scan_step_4', language),
+          L10nService.get(
+            'theta_healing.techniques.body_scan_step_1',
+            language,
+          ),
+          L10nService.get(
+            'theta_healing.techniques.body_scan_step_2',
+            language,
+          ),
+          L10nService.get(
+            'theta_healing.techniques.body_scan_step_3',
+            language,
+          ),
+          L10nService.get(
+            'theta_healing.techniques.body_scan_step_4',
+            language,
+          ),
         ],
         icon: '\u{1F50D}',
         color: const Color(0xFF2196F3),
@@ -286,44 +373,98 @@ class _ThetaHealingScreenState extends ConsumerState<ThetaHealingScreen>
   Widget _buildMeditationsTab(bool isDark, AppLanguage language) {
     final meditations = [
       _MeditationTile(
-        title: L10nService.get('theta_healing.meditations.theta_transition_title', language),
-        duration: L10nService.get('theta_healing.meditations.theta_transition_duration', language),
-        description: L10nService.get('theta_healing.meditations.theta_transition_description', language),
+        title: L10nService.get(
+          'theta_healing.meditations.theta_transition_title',
+          language,
+        ),
+        duration: L10nService.get(
+          'theta_healing.meditations.theta_transition_duration',
+          language,
+        ),
+        description: L10nService.get(
+          'theta_healing.meditations.theta_transition_description',
+          language,
+        ),
         icon: '\u{1F30A}',
         color: const Color(0xFF7C4DFF),
       ),
       _MeditationTile(
-        title: L10nService.get('theta_healing.meditations.seventh_plane_title', language),
-        duration: L10nService.get('theta_healing.meditations.seventh_plane_duration', language),
-        description: L10nService.get('theta_healing.meditations.seventh_plane_description', language),
+        title: L10nService.get(
+          'theta_healing.meditations.seventh_plane_title',
+          language,
+        ),
+        duration: L10nService.get(
+          'theta_healing.meditations.seventh_plane_duration',
+          language,
+        ),
+        description: L10nService.get(
+          'theta_healing.meditations.seventh_plane_description',
+          language,
+        ),
         icon: '\u{1F30C}',
         color: const Color(0xFFFFD700),
       ),
       _MeditationTile(
-        title: L10nService.get('theta_healing.meditations.inner_child_title', language),
-        duration: L10nService.get('theta_healing.meditations.inner_child_duration', language),
-        description: L10nService.get('theta_healing.meditations.inner_child_description', language),
+        title: L10nService.get(
+          'theta_healing.meditations.inner_child_title',
+          language,
+        ),
+        duration: L10nService.get(
+          'theta_healing.meditations.inner_child_duration',
+          language,
+        ),
+        description: L10nService.get(
+          'theta_healing.meditations.inner_child_description',
+          language,
+        ),
         icon: '\u{1F476}',
         color: const Color(0xFFFF6B9D),
       ),
       _MeditationTile(
-        title: L10nService.get('theta_healing.meditations.ancestor_clearing_title', language),
-        duration: L10nService.get('theta_healing.meditations.ancestor_clearing_duration', language),
-        description: L10nService.get('theta_healing.meditations.ancestor_clearing_description', language),
+        title: L10nService.get(
+          'theta_healing.meditations.ancestor_clearing_title',
+          language,
+        ),
+        duration: L10nService.get(
+          'theta_healing.meditations.ancestor_clearing_duration',
+          language,
+        ),
+        description: L10nService.get(
+          'theta_healing.meditations.ancestor_clearing_description',
+          language,
+        ),
         icon: '\u{1F333}',
         color: const Color(0xFF4CAF50),
       ),
       _MeditationTile(
-        title: L10nService.get('theta_healing.meditations.abundance_title', language),
-        duration: L10nService.get('theta_healing.meditations.abundance_duration', language),
-        description: L10nService.get('theta_healing.meditations.abundance_description', language),
+        title: L10nService.get(
+          'theta_healing.meditations.abundance_title',
+          language,
+        ),
+        duration: L10nService.get(
+          'theta_healing.meditations.abundance_duration',
+          language,
+        ),
+        description: L10nService.get(
+          'theta_healing.meditations.abundance_description',
+          language,
+        ),
         icon: '\u{1F4B0}',
         color: const Color(0xFF50C878),
       ),
       _MeditationTile(
-        title: L10nService.get('theta_healing.meditations.soulmate_title', language),
-        duration: L10nService.get('theta_healing.meditations.soulmate_duration', language),
-        description: L10nService.get('theta_healing.meditations.soulmate_description', language),
+        title: L10nService.get(
+          'theta_healing.meditations.soulmate_title',
+          language,
+        ),
+        duration: L10nService.get(
+          'theta_healing.meditations.soulmate_duration',
+          language,
+        ),
+        description: L10nService.get(
+          'theta_healing.meditations.soulmate_description',
+          language,
+        ),
         icon: '\u{1F495}',
         color: const Color(0xFFE91E63),
       ),
@@ -333,9 +474,10 @@ class _ThetaHealingScreenState extends ConsumerState<ThetaHealingScreen>
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       itemCount: meditations.length,
       itemBuilder: (context, index) {
-        return _buildMeditationCard(meditations[index], isDark)
-            .animate(delay: (80 * index).ms)
-            .fadeIn(duration: 400.ms);
+        return _buildMeditationCard(
+          meditations[index],
+          isDark,
+        ).animate(delay: (80 * index).ms).fadeIn(duration: 400.ms);
       },
     );
   }
@@ -359,9 +501,7 @@ class _ThetaHealingScreenState extends ConsumerState<ThetaHealingScreen>
           ],
         ),
         borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: color.withValues(alpha: 0.3),
-        ),
+        border: Border.all(color: color.withValues(alpha: 0.3)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -396,7 +536,11 @@ class _ThetaHealingScreenState extends ConsumerState<ThetaHealingScreen>
     );
   }
 
-  Widget _buildTechniqueCard(_TechniqueTile technique, bool isDark, AppLanguage language) {
+  Widget _buildTechniqueCard(
+    _TechniqueTile technique,
+    bool isDark,
+    AppLanguage language,
+  ) {
     return Container(
       margin: const EdgeInsets.only(bottom: AppConstants.spacingMd),
       decoration: BoxDecoration(
@@ -428,10 +572,7 @@ class _ThetaHealingScreenState extends ConsumerState<ThetaHealingScreen>
             borderRadius: BorderRadius.circular(12),
           ),
           child: Center(
-            child: Text(
-              technique.icon,
-              style: const TextStyle(fontSize: 22),
-            ),
+            child: Text(technique.icon, style: const TextStyle(fontSize: 22)),
           ),
         ),
         title: Text(
@@ -531,9 +672,7 @@ class _ThetaHealingScreenState extends ConsumerState<ThetaHealingScreen>
           ],
         ),
         borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: meditation.color.withValues(alpha: 0.3),
-        ),
+        border: Border.all(color: meditation.color.withValues(alpha: 0.3)),
       ),
       child: Row(
         children: [

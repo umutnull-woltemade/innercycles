@@ -43,7 +43,8 @@ class _CelebritiesScreenState extends ConsumerState<CelebritiesScreen> {
   void _filterCelebrities() {
     setState(() {
       _filteredCelebrities = _celebrities.where((celeb) {
-        final matchesSearch = _searchQuery.isEmpty ||
+        final matchesSearch =
+            _searchQuery.isEmpty ||
             celeb.name.toLowerCase().contains(_searchQuery.toLowerCase()) ||
             celeb.profession.toLowerCase().contains(_searchQuery.toLowerCase());
 
@@ -102,11 +103,12 @@ class _CelebritiesScreenState extends ConsumerState<CelebritiesScreen> {
           ),
           Expanded(
             child: Text(
-              _selectedCelebrity?.name ?? L10nService.get('screens.celebrities.title', language),
+              _selectedCelebrity?.name ??
+                  L10nService.get('screens.celebrities.title', language),
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: isDark ? Colors.white : AppColors.textDark,
-                  ),
+                fontWeight: FontWeight.bold,
+                color: isDark ? Colors.white : AppColors.textDark,
+              ),
               textAlign: TextAlign.center,
             ),
           ),
@@ -125,7 +127,10 @@ class _CelebritiesScreenState extends ConsumerState<CelebritiesScreen> {
       child: TextField(
         controller: _searchController,
         decoration: InputDecoration(
-          hintText: L10nService.get('screens.celebrities.search_hint', language),
+          hintText: L10nService.get(
+            'screens.celebrities.search_hint',
+            language,
+          ),
           prefixIcon: const Icon(Icons.search),
           suffixIcon: _searchQuery.isNotEmpty
               ? IconButton(
@@ -169,9 +174,19 @@ class _CelebritiesScreenState extends ConsumerState<CelebritiesScreen> {
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.symmetric(horizontal: AppConstants.spacingLg),
         children: [
-          _buildCategoryChip(null, L10nService.get('common.all', language), '⭐', isDark),
+          _buildCategoryChip(
+            null,
+            L10nService.get('common.all', language),
+            '⭐',
+            isDark,
+          ),
           ...CelebrityCategory.values.map(
-            (cat) => _buildCategoryChip(cat, cat.localizedName(language), cat.icon, isDark),
+            (cat) => _buildCategoryChip(
+              cat,
+              cat.localizedName(language),
+              cat.icon,
+              isDark,
+            ),
           ),
         ],
       ),
@@ -179,7 +194,11 @@ class _CelebritiesScreenState extends ConsumerState<CelebritiesScreen> {
   }
 
   Widget _buildCategoryChip(
-      CelebrityCategory? category, String label, String icon, bool isDark) {
+    CelebrityCategory? category,
+    String label,
+    String icon,
+    bool isDark,
+  ) {
     final isSelected = _selectedCategory == category;
 
     return Padding(
@@ -188,11 +207,7 @@ class _CelebritiesScreenState extends ConsumerState<CelebritiesScreen> {
         selected: isSelected,
         label: Row(
           mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(icon),
-            const SizedBox(width: 4),
-            Text(label),
-          ],
+          children: [Text(icon), const SizedBox(width: 4), Text(label)],
         ),
         onSelected: (_) {
           setState(() {
@@ -342,10 +357,7 @@ class _CelebritiesScreenState extends ConsumerState<CelebritiesScreen> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(emoji, style: const TextStyle(fontSize: 10)),
-          Text(
-            sign.symbol,
-            style: const TextStyle(fontSize: 10),
-          ),
+          Text(sign.symbol, style: const TextStyle(fontSize: 10)),
         ],
       ),
     );
@@ -448,7 +460,12 @@ class _CelebritiesScreenState extends ConsumerState<CelebritiesScreen> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          _buildDetailedSign(L10nService.get('natal_chart.sun_sign', language), '☀️', celeb.sunSign, isDark),
+          _buildDetailedSign(
+            L10nService.get('natal_chart.sun_sign', language),
+            '☀️',
+            celeb.sunSign,
+            isDark,
+          ),
           Container(
             width: 1,
             height: 60,
@@ -456,7 +473,12 @@ class _CelebritiesScreenState extends ConsumerState<CelebritiesScreen> {
                 ? Colors.white.withValues(alpha: 0.1)
                 : Colors.grey.withValues(alpha: 0.3),
           ),
-          _buildDetailedSign(L10nService.get('natal_chart.moon_sign', language), '🌙', celeb.moonSign, isDark),
+          _buildDetailedSign(
+            L10nService.get('natal_chart.moon_sign', language),
+            '🌙',
+            celeb.moonSign,
+            isDark,
+          ),
           Container(
             width: 1,
             height: 60,
@@ -464,14 +486,23 @@ class _CelebritiesScreenState extends ConsumerState<CelebritiesScreen> {
                 ? Colors.white.withValues(alpha: 0.1)
                 : Colors.grey.withValues(alpha: 0.3),
           ),
-          _buildDetailedSign(L10nService.get('natal_chart.rising_sign', language), '⬆️', celeb.ascendant, isDark),
+          _buildDetailedSign(
+            L10nService.get('natal_chart.rising_sign', language),
+            '⬆️',
+            celeb.ascendant,
+            isDark,
+          ),
         ],
       ),
     );
   }
 
   Widget _buildDetailedSign(
-      String label, String emoji, ZodiacSign sign, bool isDark) {
+    String label,
+    String emoji,
+    ZodiacSign sign,
+    bool isDark,
+  ) {
     final language = ref.watch(languageProvider);
     return Column(
       children: [
@@ -570,7 +601,10 @@ class _CelebritiesScreenState extends ConsumerState<CelebritiesScreen> {
               const Text('⚡', style: TextStyle(fontSize: 20)),
               const SizedBox(width: 8),
               Text(
-                L10nService.get('screens.celebrities.notable_aspects', language),
+                L10nService.get(
+                  'screens.celebrities.notable_aspects',
+                  language,
+                ),
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16,

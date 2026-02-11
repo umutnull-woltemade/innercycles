@@ -13,10 +13,12 @@ class GeoService {
   static Future<String?> detectCountry() async {
     try {
       // Use free ipapi.co service (no API key required for basic use)
-      final response = await http.get(
-        Uri.parse('https://ipapi.co/json/'),
-        headers: {'Accept': 'application/json'},
-      ).timeout(const Duration(seconds: 5));
+      final response = await http
+          .get(
+            Uri.parse('https://ipapi.co/json/'),
+            headers: {'Accept': 'application/json'},
+          )
+          .timeout(const Duration(seconds: 5));
 
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body) as Map<String, dynamic>;

@@ -4,13 +4,7 @@ import '../../core/theme/app_colors.dart';
 import '../../core/constants/app_constants.dart';
 
 /// Toast notification types
-enum ToastType {
-  success,
-  error,
-  warning,
-  info,
-  cosmic,
-}
+enum ToastType { success, error, warning, info, cosmic }
 
 /// Custom toast notification widget
 class ToastNotification {
@@ -119,104 +113,123 @@ class _ToastWidget extends StatelessWidget {
         padding: const EdgeInsets.all(AppConstants.spacingLg),
         child: Align(
           alignment: Alignment.topCenter,
-          child: Material(
-            color: Colors.transparent,
-            child: GestureDetector(
-              onTap: () {
-                onTap?.call();
-                onDismiss();
-              },
-              onHorizontalDragEnd: (details) {
-                if (details.primaryVelocity != null &&
-                    details.primaryVelocity!.abs() > 100) {
-                  onDismiss();
-                }
-              },
-              child: Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(AppConstants.spacingLg),
-                decoration: BoxDecoration(
-                  gradient: type == ToastType.cosmic
-                      ? LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          colors: [
-                            AppColors.cosmicPurple.withValues(alpha: 0.95),
-                            AppColors.mysticBlue.withValues(alpha: 0.95),
-                          ],
-                        )
-                      : null,
-                  color: type != ToastType.cosmic ? config.backgroundColor : null,
-                  borderRadius: BorderRadius.circular(16),
-                  border: Border.all(
-                    color: config.borderColor,
-                    width: 1.5,
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: config.color.withValues(alpha: 0.3),
-                      blurRadius: 20,
-                      offset: const Offset(0, 8),
-                    ),
-                  ],
-                ),
-                child: Row(
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        color: config.color.withValues(alpha: 0.2),
-                        shape: BoxShape.circle,
-                      ),
-                      child: Icon(
-                        customIcon ?? config.icon,
-                        color: config.iconColor,
-                        size: 22,
-                      ),
-                    ),
-                    const SizedBox(width: AppConstants.spacingMd),
-                    Expanded(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          if (title != null)
-                            Text(
-                              title!,
-                              style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                                    color: config.textColor,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                            ),
-                          Text(
-                            message,
-                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                  color: config.textColor.withValues(alpha: 0.9),
-                                ),
-                            maxLines: 3,
-                            overflow: TextOverflow.ellipsis,
+          child:
+              Material(
+                    color: Colors.transparent,
+                    child: GestureDetector(
+                      onTap: () {
+                        onTap?.call();
+                        onDismiss();
+                      },
+                      onHorizontalDragEnd: (details) {
+                        if (details.primaryVelocity != null &&
+                            details.primaryVelocity!.abs() > 100) {
+                          onDismiss();
+                        }
+                      },
+                      child: Container(
+                        width: double.infinity,
+                        padding: const EdgeInsets.all(AppConstants.spacingLg),
+                        decoration: BoxDecoration(
+                          gradient: type == ToastType.cosmic
+                              ? LinearGradient(
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                  colors: [
+                                    AppColors.cosmicPurple.withValues(
+                                      alpha: 0.95,
+                                    ),
+                                    AppColors.mysticBlue.withValues(
+                                      alpha: 0.95,
+                                    ),
+                                  ],
+                                )
+                              : null,
+                          color: type != ToastType.cosmic
+                              ? config.backgroundColor
+                              : null,
+                          borderRadius: BorderRadius.circular(16),
+                          border: Border.all(
+                            color: config.borderColor,
+                            width: 1.5,
                           ),
-                        ],
+                          boxShadow: [
+                            BoxShadow(
+                              color: config.color.withValues(alpha: 0.3),
+                              blurRadius: 20,
+                              offset: const Offset(0, 8),
+                            ),
+                          ],
+                        ),
+                        child: Row(
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                color: config.color.withValues(alpha: 0.2),
+                                shape: BoxShape.circle,
+                              ),
+                              child: Icon(
+                                customIcon ?? config.icon,
+                                color: config.iconColor,
+                                size: 22,
+                              ),
+                            ),
+                            const SizedBox(width: AppConstants.spacingMd),
+                            Expanded(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  if (title != null)
+                                    Text(
+                                      title!,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleSmall
+                                          ?.copyWith(
+                                            color: config.textColor,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    ),
+                                  Text(
+                                    message,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium
+                                        ?.copyWith(
+                                          color: config.textColor.withValues(
+                                            alpha: 0.9,
+                                          ),
+                                        ),
+                                    maxLines: 3,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            IconButton(
+                              onPressed: onDismiss,
+                              icon: Icon(
+                                Icons.close,
+                                color: config.textColor.withValues(alpha: 0.6),
+                                size: 20,
+                              ),
+                              padding: EdgeInsets.zero,
+                              constraints: const BoxConstraints(),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                    IconButton(
-                      onPressed: onDismiss,
-                      icon: Icon(
-                        Icons.close,
-                        color: config.textColor.withValues(alpha: 0.6),
-                        size: 20,
-                      ),
-                      padding: EdgeInsets.zero,
-                      constraints: const BoxConstraints(),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          )
-              .animate()
-              .fadeIn(duration: 200.ms)
-              .slideY(begin: -0.5, duration: 300.ms, curve: Curves.easeOutBack),
+                  )
+                  .animate()
+                  .fadeIn(duration: 200.ms)
+                  .slideY(
+                    begin: -0.5,
+                    duration: 300.ms,
+                    curve: Curves.easeOutBack,
+                  ),
         ),
       ),
     );
@@ -233,7 +246,9 @@ class _ToastWidget extends StatelessWidget {
               : AppColors.success.withValues(alpha: 0.1),
           borderColor: AppColors.success.withValues(alpha: 0.4),
           iconColor: AppColors.success,
-          textColor: isDark ? Colors.white : AppColors.success.withValues(alpha: 0.9),
+          textColor: isDark
+              ? Colors.white
+              : AppColors.success.withValues(alpha: 0.9),
         );
       case ToastType.error:
         return _ToastConfig(
@@ -244,7 +259,9 @@ class _ToastWidget extends StatelessWidget {
               : AppColors.error.withValues(alpha: 0.1),
           borderColor: AppColors.error.withValues(alpha: 0.4),
           iconColor: AppColors.error,
-          textColor: isDark ? Colors.white : AppColors.error.withValues(alpha: 0.9),
+          textColor: isDark
+              ? Colors.white
+              : AppColors.error.withValues(alpha: 0.9),
         );
       case ToastType.warning:
         return _ToastConfig(
@@ -255,7 +272,9 @@ class _ToastWidget extends StatelessWidget {
               : AppColors.warning.withValues(alpha: 0.1),
           borderColor: AppColors.warning.withValues(alpha: 0.4),
           iconColor: AppColors.warning,
-          textColor: isDark ? Colors.white : AppColors.warning.withValues(alpha: 0.9),
+          textColor: isDark
+              ? Colors.white
+              : AppColors.warning.withValues(alpha: 0.9),
         );
       case ToastType.info:
         return _ToastConfig(
@@ -266,7 +285,9 @@ class _ToastWidget extends StatelessWidget {
               : AppColors.airElement.withValues(alpha: 0.1),
           borderColor: AppColors.airElement.withValues(alpha: 0.4),
           iconColor: AppColors.airElement,
-          textColor: isDark ? Colors.white : AppColors.airElement.withValues(alpha: 0.9),
+          textColor: isDark
+              ? Colors.white
+              : AppColors.airElement.withValues(alpha: 0.9),
         );
       case ToastType.cosmic:
         return _ToastConfig(
@@ -308,7 +329,10 @@ class CosmicSnackBar {
     Duration duration = const Duration(seconds: 3),
     SnackBarAction? action,
   }) {
-    final config = _getConfig(type, Theme.of(context).brightness == Brightness.dark);
+    final config = _getConfig(
+      type,
+      Theme.of(context).brightness == Brightness.dark,
+    );
 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -317,10 +341,7 @@ class CosmicSnackBar {
             Icon(config.icon, color: config.iconColor, size: 20),
             const SizedBox(width: 12),
             Expanded(
-              child: Text(
-                message,
-                style: TextStyle(color: config.textColor),
-              ),
+              child: Text(message, style: TextStyle(color: config.textColor)),
             ),
           ],
         ),

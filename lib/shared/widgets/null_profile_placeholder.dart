@@ -37,32 +37,34 @@ class NullProfilePlaceholder extends ConsumerWidget {
                 Text(
                   emoji,
                   style: const TextStyle(fontSize: 64),
-                ).animate().scale(
-                      duration: 600.ms,
-                      curve: Curves.elasticOut,
-                    ),
+                ).animate().scale(duration: 600.ms, curve: Curves.elasticOut),
                 const SizedBox(height: 16),
                 Text(
                   L10nService.get(titleKey, language),
                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                        color: AppColors.textPrimary,
-                        fontWeight: FontWeight.w600,
-                      ),
+                    color: AppColors.textPrimary,
+                    fontWeight: FontWeight.w600,
+                  ),
                   textAlign: TextAlign.center,
                 ).animate().fadeIn(delay: 200.ms),
                 const SizedBox(height: 8),
                 Text(
                   L10nService.get(messageKey, language),
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: AppColors.textSecondary,
-                      ),
+                    color: AppColors.textSecondary,
+                  ),
                   textAlign: TextAlign.center,
                 ).animate().fadeIn(delay: 300.ms),
                 const SizedBox(height: 32),
                 ElevatedButton.icon(
                   onPressed: () => context.go('/onboarding'),
                   icon: const Icon(Icons.person_add_rounded),
-                  label: Text(L10nService.get('widgets.null_profile_placeholder.create_profile_button', language)),
+                  label: Text(
+                    L10nService.get(
+                      'widgets.null_profile_placeholder.create_profile_button',
+                      language,
+                    ),
+                  ),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.venusPink,
                     foregroundColor: Colors.white,

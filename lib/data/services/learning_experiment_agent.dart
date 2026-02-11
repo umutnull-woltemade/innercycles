@@ -46,8 +46,8 @@ class LearningExperimentAgent {
   LearningExperimentAgent({
     ExperimentFeatureExtractor? featureExtractor,
     LearningModelState? initialModelState,
-  })  : _featureExtractor = featureExtractor ?? ExperimentFeatureExtractor(),
-        _modelState = initialModelState ?? LearningModelState.initial();
+  }) : _featureExtractor = featureExtractor ?? ExperimentFeatureExtractor(),
+       _modelState = initialModelState ?? LearningModelState.initial();
 
   /// Get current model state
   LearningModelState get modelState => _modelState;
@@ -95,7 +95,8 @@ class LearningExperimentAgent {
       triggeredGuards.add('crash_rate_exceeded');
       return AgentRecommendation.safetyOverride(
         recommendation: RecommendationType.rollback,
-        reason: 'Crash rate ${(current.crashRate * 100).toStringAsFixed(2)}% exceeds absolute limit of ${(kCrashThresholdAbsolute * 100).toStringAsFixed(1)}%',
+        reason:
+            'Crash rate ${(current.crashRate * 100).toStringAsFixed(2)}% exceeds absolute limit of ${(kCrashThresholdAbsolute * 100).toStringAsFixed(1)}%',
         triggeredGuards: triggeredGuards,
       );
     }
@@ -105,7 +106,8 @@ class LearningExperimentAgent {
       triggeredGuards.add('error_rate_exceeded');
       return AgentRecommendation.safetyOverride(
         recommendation: RecommendationType.rollback,
-        reason: 'Error rate ${(current.errorRate * 100).toStringAsFixed(1)}% exceeds absolute limit of ${(kErrorThresholdAbsolute * 100).toStringAsFixed(0)}%',
+        reason:
+            'Error rate ${(current.errorRate * 100).toStringAsFixed(1)}% exceeds absolute limit of ${(kErrorThresholdAbsolute * 100).toStringAsFixed(0)}%',
         triggeredGuards: triggeredGuards,
       );
     }
@@ -126,7 +128,8 @@ class LearningExperimentAgent {
       return AgentRecommendation(
         recommendation: RecommendationType.hold,
         confidence: 0.5,
-        explanation: 'Insufficient sample size: ${current.sampleSize} < $kMinSampleSize minimum',
+        explanation:
+            'Insufficient sample size: ${current.sampleSize} < $kMinSampleSize minimum',
         generatedAt: DateTime.now(),
         isSafetyOverride: true,
         safetyOverrideReason: 'Minimum sample size not met',
@@ -140,7 +143,8 @@ class LearningExperimentAgent {
       return AgentRecommendation(
         recommendation: RecommendationType.hold,
         confidence: 0.5,
-        explanation: 'Insufficient observation time: ${current.hoursInStage}h < ${kMinHoursPerStage}h minimum',
+        explanation:
+            'Insufficient observation time: ${current.hoursInStage}h < ${kMinHoursPerStage}h minimum',
         generatedAt: DateTime.now(),
         isSafetyOverride: true,
         safetyOverrideReason: 'Minimum observation time not met',
@@ -154,7 +158,8 @@ class LearningExperimentAgent {
       return AgentRecommendation(
         recommendation: RecommendationType.hold,
         confidence: 0.7,
-        explanation: 'Crash rate ${(current.crashRate * 100).toStringAsFixed(2)}% exceeds learned warning threshold',
+        explanation:
+            'Crash rate ${(current.crashRate * 100).toStringAsFixed(2)}% exceeds learned warning threshold',
         signals: features.earlyWarningSignals,
         generatedAt: DateTime.now(),
         triggeredSafetyGuards: triggeredGuards,
@@ -166,7 +171,8 @@ class LearningExperimentAgent {
       return AgentRecommendation(
         recommendation: RecommendationType.hold,
         confidence: 0.7,
-        explanation: 'Error rate ${(current.errorRate * 100).toStringAsFixed(1)}% exceeds learned warning threshold',
+        explanation:
+            'Error rate ${(current.errorRate * 100).toStringAsFixed(1)}% exceeds learned warning threshold',
         signals: features.earlyWarningSignals,
         generatedAt: DateTime.now(),
         triggeredSafetyGuards: triggeredGuards,
@@ -231,11 +237,13 @@ class LearningExperimentAgent {
       if (features.confidenceScore < kMinConfidenceForAdvance) {
         recommendation = RecommendationType.hold;
         confidence = features.confidenceScore;
-        explanation = 'Metrics look good but confidence ${(features.confidenceScore * 100).toStringAsFixed(0)}% below ${(kMinConfidenceForAdvance * 100).toStringAsFixed(0)}% threshold';
+        explanation =
+            'Metrics look good but confidence ${(features.confidenceScore * 100).toStringAsFixed(0)}% below ${(kMinConfidenceForAdvance * 100).toStringAsFixed(0)}% threshold';
       } else if (features.isStabilizing) {
         recommendation = RecommendationType.advance;
         confidence = math.min(0.95, advanceScore + 0.1);
-        explanation = 'Metrics stable and healthy. Recommend advancing to next stage.';
+        explanation =
+            'Metrics stable and healthy. Recommend advancing to next stage.';
       } else {
         recommendation = RecommendationType.advance;
         confidence = advanceScore;
@@ -249,7 +257,8 @@ class LearningExperimentAgent {
       recommendation = RecommendationType.hold;
       confidence = holdScore;
       if (features.earlyWarningSignals.isNotEmpty) {
-        explanation = 'Early warnings detected: ${features.earlyWarningSignals.join(", ")}';
+        explanation =
+            'Early warnings detected: ${features.earlyWarningSignals.join(", ")}';
       } else {
         explanation = 'Metrics inconclusive. Recommend holding for more data.';
       }
@@ -258,8 +267,11 @@ class LearningExperimentAgent {
     return AgentRecommendation(
       recommendation: recommendation,
       confidence: confidence,
-      confidenceDelta: features.confidenceScore -
-          (history.length > 1 ? history[history.length - 2].confidenceScore : 0),
+      confidenceDelta:
+          features.confidenceScore -
+          (history.length > 1
+              ? history[history.length - 2].confidenceScore
+              : 0),
       explanation: explanation,
       signals: features.earlyWarningSignals,
       featureWeights: contributingFeatures,
@@ -323,8 +335,10 @@ class LearningExperimentAgent {
         adjustment = -kLearningRate * featureValue * entry.value.sign;
       }
 
-      newWeights[entry.key] =
-          (entry.value + adjustment).clamp(kMinWeight, kMaxWeight);
+      newWeights[entry.key] = (entry.value + adjustment).clamp(
+        kMinWeight,
+        kMaxWeight,
+      );
     }
 
     // Update thresholds based on outcome
@@ -345,7 +359,8 @@ class LearningExperimentAgent {
           newErrorThreshold - 0.005,
         );
       }
-    } else if (wasCorrect && recommendation.recommendation == RecommendationType.advance) {
+    } else if (wasCorrect &&
+        recommendation.recommendation == RecommendationType.advance) {
       // If successful advance, consider loosening thresholds slightly
       newCrashThreshold = math.min(
         LearningModelState.kCrashThresholdMax,
@@ -359,7 +374,11 @@ class LearningExperimentAgent {
 
     // Detect and store new patterns
     final newPatterns = List<LearnedPattern>.from(_modelState.patterns);
-    final patternCandidate = _detectPattern(featureMap, wasSuccessful, recommendation);
+    final patternCandidate = _detectPattern(
+      featureMap,
+      wasSuccessful,
+      recommendation,
+    );
     if (patternCandidate != null) {
       // Check if similar pattern exists
       final existingIndex = newPatterns.indexWhere(
@@ -374,7 +393,8 @@ class LearningExperimentAgent {
           description: existing.description,
           featureConditions: patternCandidate.featureConditions,
           recommendedAction: patternCandidate.recommendedAction,
-          confidence: (existing.confidence * existing.observationCount +
+          confidence:
+              (existing.confidence * existing.observationCount +
                   patternCandidate.confidence) /
               (existing.observationCount + 1),
           observationCount: existing.observationCount + 1,

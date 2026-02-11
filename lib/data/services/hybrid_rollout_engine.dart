@@ -53,7 +53,7 @@ class HybridRolloutEngine {
   final MLRolloutPredictor _predictor;
 
   HybridRolloutEngine({MLRolloutPredictor? predictor})
-      : _predictor = predictor ?? MLRolloutPredictor();
+    : _predictor = predictor ?? MLRolloutPredictor();
 
   /// Make rollout decision using hierarchy
   /// Returns decision with full audit trail
@@ -156,9 +156,10 @@ class HybridRolloutEngine {
 
     // Check crash spike (>2x baseline)
     if (context.crashRateBaseline > 0 &&
-        context.crashRateCurrent > context.crashRateBaseline * kCrashSpikeMultiplier) {
-      final multiple =
-          (context.crashRateCurrent / context.crashRateBaseline).toStringAsFixed(1);
+        context.crashRateCurrent >
+            context.crashRateBaseline * kCrashSpikeMultiplier) {
+      final multiple = (context.crashRateCurrent / context.crashRateBaseline)
+          .toStringAsFixed(1);
       return RolloutDecision(
         id: _generateId(),
         flagName: flagName,
@@ -178,9 +179,10 @@ class HybridRolloutEngine {
 
     // Check error spike (>3x baseline)
     if (context.errorRateBaseline > 0 &&
-        context.errorRateCurrent > context.errorRateBaseline * kErrorSpikeMultiplier) {
-      final multiple =
-          (context.errorRateCurrent / context.errorRateBaseline).toStringAsFixed(1);
+        context.errorRateCurrent >
+            context.errorRateBaseline * kErrorSpikeMultiplier) {
+      final multiple = (context.errorRateCurrent / context.errorRateBaseline)
+          .toStringAsFixed(1);
       return RolloutDecision(
         id: _generateId(),
         flagName: flagName,
@@ -279,7 +281,10 @@ class HybridRolloutEngine {
     }
 
     // Apply suggested delta (capped at max)
-    final suggestedDelta = prediction.suggestedDelta.clamp(0, kMaxRolloutStepSize);
+    final suggestedDelta = prediction.suggestedDelta.clamp(
+      0,
+      kMaxRolloutStepSize,
+    );
     final newPercentage = (currentPercentage + suggestedDelta).clamp(0, 100);
 
     if (suggestedDelta == 0 || newPercentage == currentPercentage) {
@@ -328,9 +333,15 @@ class HybridRolloutEngine {
   }
 
   /// Build human-readable explanation
-  String _buildExplanation(MLPrediction prediction, String action, [int? delta]) {
+  String _buildExplanation(
+    MLPrediction prediction,
+    String action, [
+    int? delta,
+  ]) {
     final risk = (prediction.riskProbability * 100).toStringAsFixed(0);
-    final confidence = (prediction.confidenceNextStage * 100).toStringAsFixed(0);
+    final confidence = (prediction.confidenceNextStage * 100).toStringAsFixed(
+      0,
+    );
 
     final buffer = StringBuffer();
 

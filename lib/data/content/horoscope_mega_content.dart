@@ -16,17 +16,30 @@ class DailyHoroscopeTemplates {
   static const Map<String, MoonPhaseTheme> moonPhaseThemes = {
     'new_moon': MoonPhaseTheme(
       phase: 'Yeni Ay',
-      generalTheme: 'Birçok kültürde yeni başlangıçlarla ilişkilendirilen bir dönem',
+      generalTheme:
+          'Birçok kültürde yeni başlangıçlarla ilişkilendirilen bir dönem',
       energyLevel: 'İçsel, yansıtıcı',
-      bestFor: ['Niyet belirleme üzerine düşünme', 'Yeni projeler planlama', 'İç görü çalışması'],
-      avoid: ['Bu dönemde bazı insanlar büyük kararları ertelemeyi tercih eder'],
-      affirmation: 'Niyetlerimi netleştirmek için bir fırsat olarak düşünebilirim.',
+      bestFor: [
+        'Niyet belirleme üzerine düşünme',
+        'Yeni projeler planlama',
+        'İç görü çalışması',
+      ],
+      avoid: [
+        'Bu dönemde bazı insanlar büyük kararları ertelemeyi tercih eder',
+      ],
+      affirmation:
+          'Niyetlerimi netleştirmek için bir fırsat olarak düşünebilirim.',
     ),
     'waxing_crescent': MoonPhaseTheme(
       phase: 'Hilal (Büyüyen)',
-      generalTheme: 'Geleneksel olarak momentum ve hareket ile ilişkilendirilen dönem',
+      generalTheme:
+          'Geleneksel olarak momentum ve hareket ile ilişkilendirilen dönem',
       energyLevel: 'Artan, motive',
-      bestFor: ['Planları gözden geçirme', 'İlk adımlar üzerine düşünme', 'Engeller üzerine refleksiyon'],
+      bestFor: [
+        'Planları gözden geçirme',
+        'İlk adımlar üzerine düşünme',
+        'Engeller üzerine refleksiyon',
+      ],
       avoid: ['Erteleme kalıplarını fark etme fırsatı'],
       affirmation: 'Her adım bir öğrenme fırsatı olarak düşünülebilir.',
     ),
@@ -34,7 +47,11 @@ class DailyHoroscopeTemplates {
       phase: 'İlk Dördün',
       generalTheme: 'Zorluklar ve kararlılık üzerine düşünme daveti',
       energyLevel: 'Gerilimli, zorlayıcı',
-      bestFor: ['Zorluklar üzerine refleksiyon', 'Kararlılık teması', 'Strateji değerlendirmesi'],
+      bestFor: [
+        'Zorluklar üzerine refleksiyon',
+        'Kararlılık teması',
+        'Strateji değerlendirmesi',
+      ],
       avoid: ['Sabırsızlık kalıplarını fark etme'],
       affirmation: 'Zorluklarla yüzleşmek üzerine düşünmek isteyebilirim.',
     ),
@@ -42,23 +59,39 @@ class DailyHoroscopeTemplates {
       phase: 'Şişkin Ay (Büyüyen)',
       generalTheme: 'İyileştirme ve detaylar üzerine düşünme daveti',
       energyLevel: 'Yoğun, detay odaklı',
-      bestFor: ['İnce ayarlar üzerine düşünme', 'Analiz ve değerlendirme', 'Hazırlık refleksiyonu'],
+      bestFor: [
+        'İnce ayarlar üzerine düşünme',
+        'Analiz ve değerlendirme',
+        'Hazırlık refleksiyonu',
+      ],
       avoid: ['Mükemmeliyetçilik kalıplarını fark etme'],
-      affirmation: 'Detaylar ve büyük resim arasındaki denge üzerine düşünebilirim.',
+      affirmation:
+          'Detaylar ve büyük resim arasındaki denge üzerine düşünebilirim.',
     ),
     'full_moon': MoonPhaseTheme(
       phase: 'Dolunay',
-      generalTheme: 'Birçok gelenekte tamamlanma ve şükran ile ilişkilendirilen dönem',
+      generalTheme:
+          'Birçok gelenekte tamamlanma ve şükran ile ilişkilendirilen dönem',
       energyLevel: 'Maksimum, yoğun',
-      bestFor: ['Şükran pratiği', 'Farkındalık', 'İlişkiler üzerine refleksiyon', 'Bırakma temaları'],
+      bestFor: [
+        'Şükran pratiği',
+        'Farkındalık',
+        'İlişkiler üzerine refleksiyon',
+        'Bırakma temaları',
+      ],
       avoid: ['Aşırı tepki kalıplarını fark etme'],
-      affirmation: 'Başarılarımı ve öğrendiklerimi takdir etmek için bir fırsat.',
+      affirmation:
+          'Başarılarımı ve öğrendiklerimi takdir etmek için bir fırsat.',
     ),
     'waning_gibbous': MoonPhaseTheme(
       phase: 'Şişkin Ay (Küçülen)',
       generalTheme: 'Paylaşma ve şükran temaları üzerine düşünme daveti',
       energyLevel: 'Azalan, içsel dönen',
-      bestFor: ['Öğrenilenleri paylaşma üzerine düşünme', 'Şükran pratiği', 'Başkalarına yardım teması'],
+      bestFor: [
+        'Öğrenilenleri paylaşma üzerine düşünme',
+        'Şükran pratiği',
+        'Başkalarına yardım teması',
+      ],
       avoid: ['Ego kalıplarını fark etme'],
       affirmation: 'Öğrendiklerimi paylaşmak üzerine düşünmek isteyebilirim.',
     ),
@@ -66,13 +99,18 @@ class DailyHoroscopeTemplates {
       phase: 'Son Dördün',
       generalTheme: 'Bırakma ve temizlik temaları üzerine düşünme daveti',
       energyLevel: 'Gerilimli, dönüştürücü',
-      bestFor: ['Eski kalıplar üzerine refleksiyon', 'Temizlik teması', 'Bağışlama üzerine düşünme'],
+      bestFor: [
+        'Eski kalıplar üzerine refleksiyon',
+        'Temizlik teması',
+        'Bağışlama üzerine düşünme',
+      ],
       avoid: ['Geçmişe takılma kalıplarını fark etme'],
       affirmation: 'Bırakma ve yenilenme temaları üzerine düşünebilirim.',
     ),
     'waning_crescent': MoonPhaseTheme(
       phase: 'Hilal (Küçülen)',
-      generalTheme: 'Dinlenme ve içsel hazırlık temaları üzerine düşünme daveti',
+      generalTheme:
+          'Dinlenme ve içsel hazırlık temaları üzerine düşünme daveti',
       energyLevel: 'Minimum, içsel',
       bestFor: ['Meditasyon', 'Rüyalara dikkat', 'Sessizlik', 'Kendine bakım'],
       avoid: ['Aşırı yorgunluk kalıplarını fark etme'],
@@ -87,7 +125,12 @@ class DailyHoroscopeTemplates {
       rulingPlanet: 'Ay',
       planetSymbol: '☽',
       theme: 'Duygular, sezgi, ev ve aile',
-      bestActivities: ['Ev işleri', 'Aile zamanı', 'Bakım ve beslenme', 'Duygusal iyileşme'],
+      bestActivities: [
+        'Ev işleri',
+        'Aile zamanı',
+        'Bakım ve beslenme',
+        'Duygusal iyileşme',
+      ],
       color: 'Beyaz, gümüş',
       crystal: 'Aytaşı, İnci',
       affirmation: 'Duygularımı onurlandırıyorum.',
@@ -97,7 +140,12 @@ class DailyHoroscopeTemplates {
       rulingPlanet: 'Mars',
       planetSymbol: '♂',
       theme: 'Eylem, enerji, cesaret ve rekabet',
-      bestActivities: ['Spor', 'Yeni girişimler', 'Fiziksel aktivite', 'Liderlik'],
+      bestActivities: [
+        'Spor',
+        'Yeni girişimler',
+        'Fiziksel aktivite',
+        'Liderlik',
+      ],
       color: 'Kırmızı, turuncu',
       crystal: 'Kırmızı Jasper, Karneol',
       affirmation: 'Cesaretim ve enerjim beni ileriye taşıyor.',
@@ -107,7 +155,12 @@ class DailyHoroscopeTemplates {
       rulingPlanet: 'Merkür',
       planetSymbol: '☿',
       theme: 'İletişim, öğrenme, yazma ve seyahat',
-      bestActivities: ['Yazışmalar', 'Öğrenme', 'Toplantılar', 'Kısa yolculuklar'],
+      bestActivities: [
+        'Yazışmalar',
+        'Öğrenme',
+        'Toplantılar',
+        'Kısa yolculuklar',
+      ],
       color: 'Sarı, turuncu',
       crystal: 'Sitrin, Kaplan Gözü',
       affirmation: 'Fikirlerimi açıkça ifade ediyorum.',
@@ -117,7 +170,12 @@ class DailyHoroscopeTemplates {
       rulingPlanet: 'Jüpiter',
       planetSymbol: '♃',
       theme: 'Genişleme, şans, yüksek öğrenim ve felsefe',
-      bestActivities: ['Yasal işler', 'Yayıncılık', 'Eğitim', 'Uzun yolculuklar'],
+      bestActivities: [
+        'Yasal işler',
+        'Yayıncılık',
+        'Eğitim',
+        'Uzun yolculuklar',
+      ],
       color: 'Mavi, mor',
       crystal: 'Ametist, Lapis Lazuli',
       affirmation: 'Evren benim için bolluğu açıyor.',
@@ -137,7 +195,12 @@ class DailyHoroscopeTemplates {
       rulingPlanet: 'Satürn',
       planetSymbol: '♄',
       theme: 'Yapı, disiplin, sorumluluk ve kariyer',
-      bestActivities: ['Planlama', 'Organizasyon', 'Kariyer işleri', 'Yaşlılara saygı'],
+      bestActivities: [
+        'Planlama',
+        'Organizasyon',
+        'Kariyer işleri',
+        'Yaşlılara saygı',
+      ],
       color: 'Siyah, koyu mavi',
       crystal: 'Obsidyen, Oniks',
       affirmation: 'Disiplin ve sabırla hedeflerime ulaşıyorum.',
@@ -147,7 +210,12 @@ class DailyHoroscopeTemplates {
       rulingPlanet: 'Güneş',
       planetSymbol: '☉',
       theme: 'Benlik, yaratıcılık, neşe ve liderlik',
-      bestActivities: ['Kendine zaman', 'Yaratıcı projeler', 'Dinlenme', 'Kutlama'],
+      bestActivities: [
+        'Kendine zaman',
+        'Yaratıcı projeler',
+        'Dinlenme',
+        'Kutlama',
+      ],
       color: 'Altın, sarı',
       crystal: 'Kaplan Gözü, Sitrin',
       affirmation: 'Işığımı dünyayla paylaşıyorum.',
@@ -498,7 +566,11 @@ GÜNLÜK SORUSU:
 
 *Bu içerik kültürel/sembolik bir geleneği tanımlar. Olayları veya sonuçları tahmin etmez.*
 ''',
-      doList: ['İletişim üzerine refleksiyon', 'Geçmiş dersleri gözden geçirme', 'Bilinçli iletişim'],
+      doList: [
+        'İletişim üzerine refleksiyon',
+        'Geçmiş dersleri gözden geçirme',
+        'Bilinçli iletişim',
+      ],
       dontList: [], // Kaldırıldı - tahmin içeriyordu
     ),
     'venus_retrograde': WeeklyTheme(
@@ -543,7 +615,11 @@ DÜŞÜNME DAVETLERİ:
 
 *Bu içerik enerji ve eylem refleksiyonu için tasarlanmıştır. Olayları tahmin etmez.*
 ''',
-      doList: ['Strateji refleksiyonu', 'Dinlenme ve yenilenme', 'İçsel motivasyon keşfi'],
+      doList: [
+        'Strateji refleksiyonu',
+        'Dinlenme ve yenilenme',
+        'İçsel motivasyon keşfi',
+      ],
       dontList: [], // Kaldırıldı - tahmin içeriyordu
     ),
   };

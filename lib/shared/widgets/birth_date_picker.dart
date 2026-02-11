@@ -116,7 +116,10 @@ class _BirthDatePickerState extends State<BirthDatePicker> {
                 _notifyDateChanged();
               },
               itemBuilder: (index) => '${index + 1}',
-              label: L10nService.get('widgets.birth_date_picker.day', widget.language),
+              label: L10nService.get(
+                'widgets.birth_date_picker.day',
+                widget.language,
+              ),
             ),
           ),
 
@@ -143,7 +146,10 @@ class _BirthDatePickerState extends State<BirthDatePicker> {
                 _notifyDateChanged();
               },
               itemBuilder: (index) => _months[index],
-              label: L10nService.get('widgets.birth_date_picker.month', widget.language),
+              label: L10nService.get(
+                'widgets.birth_date_picker.month',
+                widget.language,
+              ),
             ),
           ),
 
@@ -170,7 +176,10 @@ class _BirthDatePickerState extends State<BirthDatePicker> {
                 _notifyDateChanged();
               },
               itemBuilder: (index) => '${now.year - index}',
-              label: L10nService.get('widgets.birth_date_picker.year', widget.language),
+              label: L10nService.get(
+                'widgets.birth_date_picker.year',
+                widget.language,
+              ),
             ),
           ),
         ],
@@ -192,7 +201,10 @@ class _BirthDatePickerState extends State<BirthDatePicker> {
           // Day dropdown
           Expanded(
             child: _buildDropdown(
-              label: L10nService.get('widgets.birth_date_picker.day', widget.language),
+              label: L10nService.get(
+                'widgets.birth_date_picker.day',
+                widget.language,
+              ),
               value: _selectedDay,
               items: List.generate(daysInMonth, (i) => i + 1),
               itemLabel: (i) => '$i',
@@ -209,7 +221,10 @@ class _BirthDatePickerState extends State<BirthDatePicker> {
           Expanded(
             flex: 2,
             child: _buildDropdown(
-              label: L10nService.get('widgets.birth_date_picker.month', widget.language),
+              label: L10nService.get(
+                'widgets.birth_date_picker.month',
+                widget.language,
+              ),
               value: _selectedMonth,
               items: List.generate(12, (i) => i + 1),
               itemLabel: (i) => _months[i - 1],
@@ -217,7 +232,10 @@ class _BirthDatePickerState extends State<BirthDatePicker> {
                 if (value != null) {
                   setState(() {
                     _selectedMonth = value;
-                    final newDaysInMonth = _getDaysInMonth(_selectedMonth, _selectedYear);
+                    final newDaysInMonth = _getDaysInMonth(
+                      _selectedMonth,
+                      _selectedYear,
+                    );
                     if (_selectedDay > newDaysInMonth) {
                       _selectedDay = newDaysInMonth;
                     }
@@ -231,7 +249,10 @@ class _BirthDatePickerState extends State<BirthDatePicker> {
           // Year dropdown
           Expanded(
             child: _buildDropdown(
-              label: L10nService.get('widgets.birth_date_picker.year', widget.language),
+              label: L10nService.get(
+                'widgets.birth_date_picker.year',
+                widget.language,
+              ),
               value: _selectedYear,
               items: List.generate(100, (i) => now.year - i),
               itemLabel: (i) => '$i',
@@ -239,7 +260,10 @@ class _BirthDatePickerState extends State<BirthDatePicker> {
                 if (value != null) {
                   setState(() {
                     _selectedYear = value;
-                    final newDaysInMonth = _getDaysInMonth(_selectedMonth, _selectedYear);
+                    final newDaysInMonth = _getDaysInMonth(
+                      _selectedMonth,
+                      _selectedYear,
+                    );
                     if (_selectedDay > newDaysInMonth) {
                       _selectedDay = newDaysInMonth;
                     }
@@ -286,10 +310,7 @@ class _BirthDatePickerState extends State<BirthDatePicker> {
             isExpanded: true,
             underline: const SizedBox(),
             dropdownColor: const Color(0xFF1a1a2e),
-            style: TextStyle(
-              color: AppColors.textPrimary,
-              fontSize: 16,
-            ),
+            style: TextStyle(color: AppColors.textPrimary, fontSize: 16),
             items: items.map((item) {
               return DropdownMenuItem<T>(
                 value: item,

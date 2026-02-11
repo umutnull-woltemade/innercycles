@@ -106,7 +106,7 @@ class _AppInitializerState extends State<AppInitializer> {
             authFlowType: AuthFlowType.pkce,
           ),
           // Deep link for Apple Sign In callback (iOS native)
-          // Uses bundle ID as scheme: com.umut.astrologyApp://
+          // Uses bundle ID as scheme: com.venusone.innercycles://
         ).timeout(const Duration(seconds: 5));
         if (kDebugMode) {
           debugPrint('✓ Supabase initialized');
@@ -161,7 +161,9 @@ class _AppInitializerState extends State<AppInitializer> {
         }
       }
       try {
-        await AdminAnalyticsService.initialize().timeout(const Duration(seconds: 5));
+        await AdminAnalyticsService.initialize().timeout(
+          const Duration(seconds: 5),
+        );
       } catch (e) {
         if (kDebugMode) {
           debugPrint('⚠️ AdminAnalyticsService init failed: $e');
@@ -301,16 +303,27 @@ class _AppInitializerState extends State<AppInitializer> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Icon(Icons.error_outline, color: Colors.amber, size: 64),
+                    const Icon(
+                      Icons.error_outline,
+                      color: Colors.amber,
+                      size: 64,
+                    ),
                     const SizedBox(height: 24),
                     const Text(
                       'Venus One',
-                      style: TextStyle(color: Colors.white, fontSize: 28, fontWeight: FontWeight.w300),
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 28,
+                        fontWeight: FontWeight.w300,
+                      ),
                     ),
                     const SizedBox(height: 16),
                     Text(
                       'Error: ${snapshot.error}',
-                      style: const TextStyle(color: Colors.redAccent, fontSize: 14),
+                      style: const TextStyle(
+                        color: Colors.redAccent,
+                        fontSize: 14,
+                      ),
                       textAlign: TextAlign.center,
                     ),
                   ],
@@ -331,9 +344,13 @@ class _AppInitializerState extends State<AppInitializer> {
           overrides: [
             languageProvider.overrideWith((ref) => result.language),
             themeModeProvider.overrideWith((ref) => result.themeMode),
-            onboardingCompleteProvider.overrideWith((ref) => result.onboardingComplete),
+            onboardingCompleteProvider.overrideWith(
+              (ref) => result.onboardingComplete,
+            ),
             if (result.profile != null)
-              userProfileProvider.overrideWith(() => _InitializedUserProfileNotifier(result.profile!)),
+              userProfileProvider.overrideWith(
+                () => _InitializedUserProfileNotifier(result.profile!),
+              ),
           ],
           child: const VenusOneApp(),
         );

@@ -61,11 +61,15 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
             _errorMessage = _getLocalizedAppleError(e.type, language);
           } else {
             final errorStr = e.toString();
-            if (errorStr.contains('canceled') || errorStr.contains('cancelled')) {
+            if (errorStr.contains('canceled') ||
+                errorStr.contains('cancelled')) {
               // User canceled - don't show error
               _errorMessage = null;
             } else {
-              _errorMessage = L10nService.get('auth.apple_sign_in_failed', language);
+              _errorMessage = L10nService.get(
+                'auth.apple_sign_in_failed',
+                language,
+              );
             }
           }
         });
@@ -81,11 +85,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   }
 
   void _navigateToEmailLogin() {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (_) => const EmailLoginScreen(),
-      ),
-    );
+    Navigator.of(
+      context,
+    ).push(MaterialPageRoute(builder: (_) => const EmailLoginScreen()));
   }
 
   void _skipLogin() {
@@ -93,7 +95,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   }
 
   /// Get localized error message for Apple auth errors
-  String _getLocalizedAppleError(AppleAuthErrorType type, AppLanguage language) {
+  String _getLocalizedAppleError(
+    AppleAuthErrorType type,
+    AppLanguage language,
+  ) {
     final key = switch (type) {
       AppleAuthErrorType.failed => 'auth.apple_error_failed',
       AppleAuthErrorType.invalidResponse => 'auth.apple_error_invalid_response',
@@ -135,10 +140,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   const SizedBox(height: AppConstants.spacingMd),
                   Text(
                     _errorMessage!,
-                    style: TextStyle(
-                      color: AppColors.error,
-                      fontSize: 14,
-                    ),
+                    style: TextStyle(color: AppColors.error, fontSize: 14),
                     textAlign: TextAlign.center,
                   ).animate().shake(),
                 ],
@@ -160,21 +162,17 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   Widget _buildHeader(BuildContext context, bool isDark) {
     return Column(
       children: [
-        const Text(
-          '✨',
-          style: TextStyle(fontSize: 64),
-        ).animate(onPlay: (c) => c.repeat()).shimmer(
-              duration: 2.seconds,
-              color: AppColors.starGold,
-            ),
+        const Text('✨', style: TextStyle(fontSize: 64))
+            .animate(onPlay: (c) => c.repeat())
+            .shimmer(duration: 2.seconds, color: AppColors.starGold),
         const SizedBox(height: AppConstants.spacingLg),
         Text(
           AppConstants.appName,
           style: Theme.of(context).textTheme.displayLarge?.copyWith(
-                color: AppColors.starGold,
-                fontSize: 42,
-                fontWeight: FontWeight.bold,
-              ),
+            color: AppColors.starGold,
+            fontSize: 42,
+            fontWeight: FontWeight.bold,
+          ),
         ).animate().fadeIn(duration: 600.ms).slideY(begin: 0.3),
         const SizedBox(height: AppConstants.spacingSm),
         Builder(
@@ -184,8 +182,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
             return Text(
               L10nService.get('auth.start_cosmic_journey', language),
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
-                  ),
+                color: isDark
+                    ? AppColors.textSecondary
+                    : AppColors.lightTextSecondary,
+              ),
               textAlign: TextAlign.center,
             ).animate().fadeIn(delay: 300.ms, duration: 600.ms);
           },
@@ -201,13 +201,16 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         // Apple Sign In (iOS/macOS/Web)
         if (_showAppleSignIn)
           _SocialLoginButton(
-            label: L10nService.get('auth.continue_with_apple', language),
-            icon: Icons.apple,
-            backgroundColor: isDark ? Colors.white : Colors.black,
-            textColor: isDark ? Colors.black : Colors.white,
-            onPressed: _isLoading ? null : _signInWithApple,
-            isLoading: _loadingProvider == AuthProvider.apple,
-          ).animate().fadeIn(delay: 400.ms, duration: 400.ms).slideY(begin: 0.2),
+                label: L10nService.get('auth.continue_with_apple', language),
+                icon: Icons.apple,
+                backgroundColor: isDark ? Colors.white : Colors.black,
+                textColor: isDark ? Colors.black : Colors.white,
+                onPressed: _isLoading ? null : _signInWithApple,
+                isLoading: _loadingProvider == AuthProvider.apple,
+              )
+              .animate()
+              .fadeIn(delay: 400.ms, duration: 400.ms)
+              .slideY(begin: 0.2),
 
         if (_showAppleSignIn) const SizedBox(height: AppConstants.spacingMd),
 
@@ -216,8 +219,12 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
           label: L10nService.get('auth.continue_with_email', language),
           icon: Icons.email_outlined,
           backgroundColor: Colors.transparent,
-          textColor: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
-          borderColor: isDark ? AppColors.auroraStart : AppColors.lightAuroraStart,
+          textColor: isDark
+              ? AppColors.textPrimary
+              : AppColors.lightTextPrimary,
+          borderColor: isDark
+              ? AppColors.auroraStart
+              : AppColors.lightAuroraStart,
           onPressed: _isLoading ? null : _navigateToEmailLogin,
           isLoading: _loadingProvider == AuthProvider.email,
         ).animate().fadeIn(delay: 600.ms, duration: 400.ms).slideY(begin: 0.2),
@@ -290,15 +297,11 @@ class _SocialLoginButton extends StatelessWidget {
             : Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  if (icon != null)
-                    Icon(icon, size: 24),
+                  if (icon != null) Icon(icon, size: 24),
                   const SizedBox(width: 12),
                   Text(
                     label,
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                    ),
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                   ),
                 ],
               ),
@@ -431,7 +434,9 @@ class _EmailLoginScreenState extends ConsumerState<EmailLoginScreen> {
                     onPressed: () => Navigator.of(context).pop(),
                     icon: Icon(
                       Icons.arrow_back_ios,
-                      color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                      color: isDark
+                          ? AppColors.textPrimary
+                          : AppColors.lightTextPrimary,
                     ),
                   ),
 
@@ -451,9 +456,8 @@ class _EmailLoginScreenState extends ConsumerState<EmailLoginScreen> {
                           _isSignUp
                               ? L10nService.get('auth.create_account', language)
                               : L10nService.get('auth.sign_in', language),
-                          style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                                fontWeight: FontWeight.bold,
-                              ),
+                          style: Theme.of(context).textTheme.headlineMedium
+                              ?.copyWith(fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
@@ -470,7 +474,10 @@ class _EmailLoginScreenState extends ConsumerState<EmailLoginScreen> {
                       isDark: isDark,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return L10nService.get('auth.name_required', language);
+                          return L10nService.get(
+                            'auth.name_required',
+                            language,
+                          );
                         }
                         return null;
                       },
@@ -507,8 +514,12 @@ class _EmailLoginScreenState extends ConsumerState<EmailLoginScreen> {
                     isDark: isDark,
                     suffixIcon: IconButton(
                       icon: Icon(
-                        _obscurePassword ? Icons.visibility_off : Icons.visibility,
-                        color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                        _obscurePassword
+                            ? Icons.visibility_off
+                            : Icons.visibility,
+                        color: isDark
+                            ? AppColors.textMuted
+                            : AppColors.lightTextMuted,
                       ),
                       onPressed: () {
                         setState(() => _obscurePassword = !_obscurePassword);
@@ -516,10 +527,16 @@ class _EmailLoginScreenState extends ConsumerState<EmailLoginScreen> {
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return L10nService.get('auth.password_required', language);
+                        return L10nService.get(
+                          'auth.password_required',
+                          language,
+                        );
                       }
                       if (value.length < 6) {
-                        return L10nService.get('auth.password_min_length', language);
+                        return L10nService.get(
+                          'auth.password_min_length',
+                          language,
+                        );
                       }
                       return null;
                     },
@@ -551,16 +568,25 @@ class _EmailLoginScreenState extends ConsumerState<EmailLoginScreen> {
                       decoration: BoxDecoration(
                         color: AppColors.error.withValues(alpha: 0.1),
                         borderRadius: BorderRadius.circular(8),
-                        border: Border.all(color: AppColors.error.withValues(alpha: 0.3)),
+                        border: Border.all(
+                          color: AppColors.error.withValues(alpha: 0.3),
+                        ),
                       ),
                       child: Row(
                         children: [
-                          Icon(Icons.error_outline, color: AppColors.error, size: 20),
+                          Icon(
+                            Icons.error_outline,
+                            color: AppColors.error,
+                            size: 20,
+                          ),
                           const SizedBox(width: 8),
                           Expanded(
                             child: Text(
                               _errorMessage!,
-                              style: TextStyle(color: AppColors.error, fontSize: 14),
+                              style: TextStyle(
+                                color: AppColors.error,
+                                fontSize: 14,
+                              ),
                             ),
                           ),
                         ],
@@ -611,10 +637,15 @@ class _EmailLoginScreenState extends ConsumerState<EmailLoginScreen> {
                     children: [
                       Text(
                         _isSignUp
-                            ? L10nService.get('auth.already_have_account', language)
+                            ? L10nService.get(
+                                'auth.already_have_account',
+                                language,
+                              )
                             : L10nService.get('auth.no_account', language),
                         style: TextStyle(
-                          color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                          color: isDark
+                              ? AppColors.textMuted
+                              : AppColors.lightTextMuted,
                         ),
                       ),
                       TextButton(
@@ -676,7 +707,9 @@ class _EmailLoginScreenState extends ConsumerState<EmailLoginScreen> {
         ),
         suffixIcon: suffixIcon,
         filled: true,
-        fillColor: isDark ? AppColors.surfaceDark.withAlpha(128) : AppColors.lightSurfaceVariant,
+        fillColor: isDark
+            ? AppColors.surfaceDark.withAlpha(128)
+            : AppColors.lightSurfaceVariant,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide.none,

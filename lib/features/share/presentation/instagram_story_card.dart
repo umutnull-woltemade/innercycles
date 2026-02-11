@@ -233,7 +233,10 @@ class InstagramStoryCard extends StatelessWidget {
 
   List<String> _getViralHooks(zodiac.ZodiacSign sign) {
     final signKey = sign.name.toLowerCase();
-    final hooks = L10nService.getList('share.instagram.viral_hooks.$signKey', language);
+    final hooks = L10nService.getList(
+      'share.instagram.viral_hooks.$signKey',
+      language,
+    );
     if (hooks.isNotEmpty) return hooks;
     return [L10nService.get('share.instagram.default_hook', language)];
   }
@@ -286,9 +289,7 @@ class InstagramStoryCard extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 52,
                     color: Colors.white,
-                    shadows: [
-                      Shadow(color: sign.color, blurRadius: 25),
-                    ],
+                    shadows: [Shadow(color: sign.color, blurRadius: 25)],
                   ),
                 ),
               ),
@@ -401,7 +402,10 @@ class InstagramStoryCard extends StatelessWidget {
   String _getViralMessage(zodiac.ZodiacSign sign) {
     final day = DateTime.now().day;
     final signKey = sign.name.toLowerCase();
-    final messages = L10nService.getList('share.instagram.viral_messages.$signKey', language);
+    final messages = L10nService.getList(
+      'share.instagram.viral_messages.$signKey',
+      language,
+    );
     if (messages.isNotEmpty) return messages[day % messages.length];
     return L10nService.get('share.instagram.default_message', language);
   }
@@ -420,17 +424,41 @@ class InstagramStoryCard extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          _buildBigThreeItem('☀️', L10nService.get('share.instagram.sun', language), sign),
-          Container(width: 1, height: 35, color: Colors.white.withValues(alpha: 0.1)),
-          _buildBigThreeItem('🌙', L10nService.get('share.instagram.moon', language), moonSign ?? sign),
-          Container(width: 1, height: 35, color: Colors.white.withValues(alpha: 0.1)),
-          _buildBigThreeItem('⬆️', L10nService.get('share.instagram.rising', language), risingSign ?? sign),
+          _buildBigThreeItem(
+            '☀️',
+            L10nService.get('share.instagram.sun', language),
+            sign,
+          ),
+          Container(
+            width: 1,
+            height: 35,
+            color: Colors.white.withValues(alpha: 0.1),
+          ),
+          _buildBigThreeItem(
+            '🌙',
+            L10nService.get('share.instagram.moon', language),
+            moonSign ?? sign,
+          ),
+          Container(
+            width: 1,
+            height: 35,
+            color: Colors.white.withValues(alpha: 0.1),
+          ),
+          _buildBigThreeItem(
+            '⬆️',
+            L10nService.get('share.instagram.rising', language),
+            risingSign ?? sign,
+          ),
         ],
       ),
     );
   }
 
-  Widget _buildBigThreeItem(String emoji, String label, zodiac.ZodiacSign itemSign) {
+  Widget _buildBigThreeItem(
+    String emoji,
+    String label,
+    zodiac.ZodiacSign itemSign,
+  ) {
     return Column(
       children: [
         Row(
@@ -467,35 +495,45 @@ class InstagramStoryCard extends StatelessWidget {
       alignment: WrapAlignment.center,
       spacing: 6,
       runSpacing: 6,
-      children: traits.map((trait) => Container(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              sign.color.withValues(alpha: 0.35),
-              sign.color.withValues(alpha: 0.15),
-            ],
-          ),
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: sign.color.withValues(alpha: 0.5)),
-        ),
-        child: Text(
-          trait,
-          style: GoogleFonts.inter(
-            fontSize: 10,
-            fontWeight: FontWeight.w700,
-            color: Colors.white,
-          ),
-        ),
-      )).toList(),
+      children: traits
+          .map(
+            (trait) => Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    sign.color.withValues(alpha: 0.35),
+                    sign.color.withValues(alpha: 0.15),
+                  ],
+                ),
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(color: sign.color.withValues(alpha: 0.5)),
+              ),
+              child: Text(
+                trait,
+                style: GoogleFonts.inter(
+                  fontSize: 10,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          )
+          .toList(),
     );
   }
 
   List<String> _getViralTraits(zodiac.ZodiacSign sign) {
     final signKey = sign.name.toLowerCase();
-    final traits = L10nService.getList('share.instagram.viral_traits.$signKey', language);
+    final traits = L10nService.getList(
+      'share.instagram.viral_traits.$signKey',
+      language,
+    );
     if (traits.isNotEmpty) return traits;
-    return L10nService.getList('share.instagram.viral_traits.default', language);
+    return L10nService.getList(
+      'share.instagram.viral_traits.default',
+      language,
+    );
   }
 
   // ═══════════════════════════════════════════════════════════════════════════
@@ -518,22 +556,52 @@ class InstagramStoryCard extends StatelessWidget {
           ],
         ),
         borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: const Color(0xFF9C27B0).withValues(alpha: 0.4)),
+        border: Border.all(
+          color: const Color(0xFF9C27B0).withValues(alpha: 0.4),
+        ),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          _buildEsotericItem('💎', L10nService.get('share.instagram.crystal', language), crystal['name']!, crystal['emoji']!),
-          Container(width: 1, height: 35, color: Colors.white.withValues(alpha: 0.1)),
-          _buildEsotericItem('🃏', L10nService.get('share.instagram.tarot', language), tarot['name']!, tarot['emoji']!),
-          Container(width: 1, height: 35, color: Colors.white.withValues(alpha: 0.1)),
-          _buildEsotericItem('🔮', L10nService.get('share.instagram.chakra', language), chakra['name']!, chakra['emoji']!),
+          _buildEsotericItem(
+            '💎',
+            L10nService.get('share.instagram.crystal', language),
+            crystal['name']!,
+            crystal['emoji']!,
+          ),
+          Container(
+            width: 1,
+            height: 35,
+            color: Colors.white.withValues(alpha: 0.1),
+          ),
+          _buildEsotericItem(
+            '🃏',
+            L10nService.get('share.instagram.tarot', language),
+            tarot['name']!,
+            tarot['emoji']!,
+          ),
+          Container(
+            width: 1,
+            height: 35,
+            color: Colors.white.withValues(alpha: 0.1),
+          ),
+          _buildEsotericItem(
+            '🔮',
+            L10nService.get('share.instagram.chakra', language),
+            chakra['name']!,
+            chakra['emoji']!,
+          ),
         ],
       ),
     );
   }
 
-  Widget _buildEsotericItem(String emoji, String label, String value, String valueEmoji) {
+  Widget _buildEsotericItem(
+    String emoji,
+    String label,
+    String value,
+    String valueEmoji,
+  ) {
     return Column(
       children: [
         Row(
@@ -575,13 +643,25 @@ class InstagramStoryCard extends StatelessWidget {
   Map<String, String> _getDailyCrystal(zodiac.ZodiacSign sign) {
     final day = DateTime.now().day % 4;
     final signKey = sign.name.toLowerCase();
-    final crystals = L10nService.getMapList('share.instagram.crystals.$signKey', language);
+    final crystals = L10nService.getMapList(
+      'share.instagram.crystals.$signKey',
+      language,
+    );
     if (crystals.isNotEmpty && day < crystals.length) {
-      return {'name': crystals[day]['name'] ?? '', 'emoji': crystals[day]['emoji'] ?? '💎'};
+      return {
+        'name': crystals[day]['name'] ?? '',
+        'emoji': crystals[day]['emoji'] ?? '💎',
+      };
     }
-    final defaultCrystals = L10nService.getMapList('share.instagram.crystals.default', language);
+    final defaultCrystals = L10nService.getMapList(
+      'share.instagram.crystals.default',
+      language,
+    );
     if (defaultCrystals.isNotEmpty) {
-      return {'name': defaultCrystals[0]['name'] ?? 'Crystal', 'emoji': defaultCrystals[0]['emoji'] ?? '💎'};
+      return {
+        'name': defaultCrystals[0]['name'] ?? 'Crystal',
+        'emoji': defaultCrystals[0]['emoji'] ?? '💎',
+      };
     }
     return {'name': 'Crystal', 'emoji': '💎'};
   }
@@ -589,26 +669,47 @@ class InstagramStoryCard extends StatelessWidget {
   Map<String, String> _getDailyTarot(zodiac.ZodiacSign sign) {
     final day = DateTime.now().day % 4;
     final signKey = sign.name.toLowerCase();
-    final tarots = L10nService.getMapList('share.instagram.tarot_cards.$signKey', language);
+    final tarots = L10nService.getMapList(
+      'share.instagram.tarot_cards.$signKey',
+      language,
+    );
     if (tarots.isNotEmpty && day < tarots.length) {
-      return {'name': tarots[day]['name'] ?? '', 'emoji': tarots[day]['emoji'] ?? '🃏'};
+      return {
+        'name': tarots[day]['name'] ?? '',
+        'emoji': tarots[day]['emoji'] ?? '🃏',
+      };
     }
-    final defaultTarots = L10nService.getMapList('share.instagram.tarot_cards.default', language);
+    final defaultTarots = L10nService.getMapList(
+      'share.instagram.tarot_cards.default',
+      language,
+    );
     if (defaultTarots.isNotEmpty) {
-      return {'name': defaultTarots[0]['name'] ?? 'Tarot', 'emoji': defaultTarots[0]['emoji'] ?? '🃏'};
+      return {
+        'name': defaultTarots[0]['name'] ?? 'Tarot',
+        'emoji': defaultTarots[0]['emoji'] ?? '🃏',
+      };
     }
     return {'name': 'Tarot', 'emoji': '🃏'};
   }
 
   Map<String, String> _getDailyChakra(zodiac.ZodiacSign sign) {
     final signKey = sign.name.toLowerCase();
-    final chakra = L10nService.getMap('share.instagram.chakras.$signKey', language);
+    final chakra = L10nService.getMap(
+      'share.instagram.chakras.$signKey',
+      language,
+    );
     if (chakra.isNotEmpty) {
       return {'name': chakra['name'] ?? '', 'emoji': chakra['emoji'] ?? '💚'};
     }
-    final defaultChakra = L10nService.getMap('share.instagram.chakras.default', language);
+    final defaultChakra = L10nService.getMap(
+      'share.instagram.chakras.default',
+      language,
+    );
     if (defaultChakra.isNotEmpty) {
-      return {'name': defaultChakra['name'] ?? 'Heart', 'emoji': defaultChakra['emoji'] ?? '💚'};
+      return {
+        'name': defaultChakra['name'] ?? 'Heart',
+        'emoji': defaultChakra['emoji'] ?? '💚',
+      };
     }
     return {'name': 'Heart', 'emoji': '💚'};
   }
@@ -629,7 +730,9 @@ class InstagramStoryCard extends StatelessWidget {
           ],
         ),
         borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: MysticalColors.starGold.withValues(alpha: 0.4)),
+        border: Border.all(
+          color: MysticalColors.starGold.withValues(alpha: 0.4),
+        ),
       ),
       child: Row(
         children: [
@@ -669,7 +772,10 @@ class InstagramStoryCard extends StatelessWidget {
   String _getCosmicAdvice(zodiac.ZodiacSign sign) {
     final day = DateTime.now().day % 4;
     final signKey = sign.name.toLowerCase();
-    final advices = L10nService.getList('share.instagram.cosmic_advice.$signKey', language);
+    final advices = L10nService.getList(
+      'share.instagram.cosmic_advice.$signKey',
+      language,
+    );
     if (advices.isNotEmpty) return advices[day % advices.length];
     return L10nService.get('share.instagram.default_advice', language);
   }
@@ -678,15 +784,22 @@ class InstagramStoryCard extends StatelessWidget {
   // LUCK METER - Gamification
   // ═══════════════════════════════════════════════════════════════════════════
   Widget _buildLuckMeter() {
-    final luck = (sign.index + DateTime.now().day + DateTime.now().hour) % 5 + 6;
-    final luckEmoji = luck >= 9 ? '🔥' : luck >= 7 ? '✨' : '💫';
+    final luck =
+        (sign.index + DateTime.now().day + DateTime.now().hour) % 5 + 6;
+    final luckEmoji = luck >= 9
+        ? '🔥'
+        : luck >= 7
+        ? '✨'
+        : '💫';
 
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: Colors.white.withValues(alpha: 0.05),
         borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: MysticalColors.starGold.withValues(alpha: 0.3)),
+        border: Border.all(
+          color: MysticalColors.starGold.withValues(alpha: 0.3),
+        ),
       ),
       child: Column(
         children: [
@@ -709,7 +822,10 @@ class InstagramStoryCard extends StatelessWidget {
                 ],
               ),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 4,
+                ),
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [MysticalColors.starGold, Colors.orange],
@@ -734,7 +850,11 @@ class InstagramStoryCard extends StatelessWidget {
               value: luck / 10,
               backgroundColor: Colors.white.withValues(alpha: 0.1),
               valueColor: AlwaysStoppedAnimation<Color>(
-                luck >= 8 ? Colors.green : luck >= 6 ? MysticalColors.starGold : Colors.orange,
+                luck >= 8
+                    ? Colors.green
+                    : luck >= 6
+                    ? MysticalColors.starGold
+                    : Colors.orange,
               ),
               minHeight: 6,
             ),
@@ -761,20 +881,41 @@ class InstagramStoryCard extends StatelessWidget {
           ],
         ),
         borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: const Color(0xFFE91E63).withValues(alpha: 0.4)),
+        border: Border.all(
+          color: const Color(0xFFE91E63).withValues(alpha: 0.4),
+        ),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          _buildMatchItem('💕', L10nService.get('share.instagram.compatible', language), bestMatch, true),
-          Container(width: 1, height: 30, color: Colors.white.withValues(alpha: 0.1)),
-          _buildMatchItem('💔', L10nService.get('share.instagram.warning', language), worstMatch, false),
+          _buildMatchItem(
+            '💕',
+            L10nService.get('share.instagram.compatible', language),
+            bestMatch,
+            true,
+          ),
+          Container(
+            width: 1,
+            height: 30,
+            color: Colors.white.withValues(alpha: 0.1),
+          ),
+          _buildMatchItem(
+            '💔',
+            L10nService.get('share.instagram.warning', language),
+            worstMatch,
+            false,
+          ),
         ],
       ),
     );
   }
 
-  Widget _buildMatchItem(String emoji, String label, zodiac.ZodiacSign matchSign, bool isGood) {
+  Widget _buildMatchItem(
+    String emoji,
+    String label,
+    zodiac.ZodiacSign matchSign,
+    bool isGood,
+  ) {
     return Column(
       children: [
         Row(
@@ -799,7 +940,9 @@ class InstagramStoryCard extends StatelessWidget {
             color: (isGood ? Colors.green : Colors.red).withValues(alpha: 0.2),
             borderRadius: BorderRadius.circular(8),
             border: Border.all(
-              color: (isGood ? Colors.green : Colors.red).withValues(alpha: 0.4),
+              color: (isGood ? Colors.green : Colors.red).withValues(
+                alpha: 0.4,
+              ),
             ),
           ),
           child: Row(
@@ -875,7 +1018,9 @@ class InstagramStoryCard extends StatelessWidget {
               ],
             ),
             borderRadius: BorderRadius.circular(20),
-            border: Border.all(color: MysticalColors.starGold.withValues(alpha: 0.5)),
+            border: Border.all(
+              color: MysticalColors.starGold.withValues(alpha: 0.5),
+            ),
           ),
           child: Row(
             mainAxisSize: MainAxisSize.min,
@@ -883,7 +1028,10 @@ class InstagramStoryCard extends StatelessWidget {
               const Text('👆', style: TextStyle(fontSize: 14)),
               const SizedBox(width: 6),
               Text(
-                L10nService.get('share.instagram.for_your_sign_analysis', language),
+                L10nService.get(
+                  'share.instagram.for_your_sign_analysis',
+                  language,
+                ),
                 style: GoogleFonts.inter(
                   fontSize: 10,
                   fontWeight: FontWeight.w700,
@@ -901,7 +1049,11 @@ class InstagramStoryCard extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(width: 30, height: 1, color: MysticalColors.starGold.withValues(alpha: 0.4)),
+            Container(
+              width: 30,
+              height: 1,
+              color: MysticalColors.starGold.withValues(alpha: 0.4),
+            ),
             const SizedBox(width: 10),
             Text(
               '✨ ASTROBOBO ✨',
@@ -913,7 +1065,11 @@ class InstagramStoryCard extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 10),
-            Container(width: 30, height: 1, color: MysticalColors.starGold.withValues(alpha: 0.4)),
+            Container(
+              width: 30,
+              height: 1,
+              color: MysticalColors.starGold.withValues(alpha: 0.4),
+            ),
           ],
         ),
       ],
@@ -925,19 +1081,27 @@ class InstagramStoryCard extends StatelessWidget {
   // ═══════════════════════════════════════════════════════════════════════════
   String _getElementEmoji(zodiac.Element element) {
     switch (element) {
-      case zodiac.Element.fire: return '🔥';
-      case zodiac.Element.earth: return '🌍';
-      case zodiac.Element.air: return '💨';
-      case zodiac.Element.water: return '💧';
+      case zodiac.Element.fire:
+        return '🔥';
+      case zodiac.Element.earth:
+        return '🌍';
+      case zodiac.Element.air:
+        return '💨';
+      case zodiac.Element.water:
+        return '💧';
     }
   }
 
   String _getElementName(zodiac.Element element) {
     switch (element) {
-      case zodiac.Element.fire: return L10nService.get('elements.fire', language);
-      case zodiac.Element.earth: return L10nService.get('elements.earth', language);
-      case zodiac.Element.air: return L10nService.get('elements.air', language);
-      case zodiac.Element.water: return L10nService.get('elements.water', language);
+      case zodiac.Element.fire:
+        return L10nService.get('elements.fire', language);
+      case zodiac.Element.earth:
+        return L10nService.get('elements.earth', language);
+      case zodiac.Element.air:
+        return L10nService.get('elements.air', language);
+      case zodiac.Element.water:
+        return L10nService.get('elements.water', language);
     }
   }
 }

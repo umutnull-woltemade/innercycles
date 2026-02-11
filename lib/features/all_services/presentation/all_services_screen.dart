@@ -58,28 +58,23 @@ class _AllServicesScreenState extends ConsumerState<AllServicesScreen>
                 SliverPadding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   sliver: SliverList(
-                    delegate: SliverChildBuilderDelegate(
-                      (context, index) {
-                        final category = _getCategories(language)[index];
-                        return _buildCategorySection(
-                          context,
-                          category['name'] as String,
-                          category['icon'] as String,
-                          category['color'] as Color,
-                          (category['services'] as List<Map<String, dynamic>>),
-                          isDark,
-                          index,
-                        );
-                      },
-                      childCount: _getCategories(language).length,
-                    ),
+                    delegate: SliverChildBuilderDelegate((context, index) {
+                      final category = _getCategories(language)[index];
+                      return _buildCategorySection(
+                        context,
+                        category['name'] as String,
+                        category['icon'] as String,
+                        category['color'] as Color,
+                        (category['services'] as List<Map<String, dynamic>>),
+                        isDark,
+                        index,
+                      );
+                    }, childCount: _getCategories(language).length),
                   ),
                 ),
 
                 // Bottom spacing
-                const SliverToBoxAdapter(
-                  child: SizedBox(height: 80),
-                ),
+                const SliverToBoxAdapter(child: SizedBox(height: 80)),
               ],
             ),
           ),
@@ -230,65 +225,63 @@ class _AllServicesScreenState extends ConsumerState<AllServicesScreen>
     int categoryIndex,
   ) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 28),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Category header - minimal
-          Padding(
-            padding: const EdgeInsets.only(bottom: 12),
-            child: Row(
-              children: [
-                Text(
-                  icon,
-                  style: const TextStyle(fontSize: 16),
-                ),
-                const SizedBox(width: 8),
-                Text(
-                  title,
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    color: color,
-                    letterSpacing: 0.5,
-                  ),
-                ),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: Container(
-                    height: 1,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                          color.withValues(alpha: 0.3),
-                          Colors.transparent,
-                        ],
+          margin: const EdgeInsets.only(bottom: 28),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Category header - minimal
+              Padding(
+                padding: const EdgeInsets.only(bottom: 12),
+                child: Row(
+                  children: [
+                    Text(icon, style: const TextStyle(fontSize: 16)),
+                    const SizedBox(width: 8),
+                    Text(
+                      title,
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                        color: color,
+                        letterSpacing: 0.5,
                       ),
                     ),
-                  ),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Container(
+                        height: 1,
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [
+                              color.withValues(alpha: 0.3),
+                              Colors.transparent,
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          ),
+              ),
 
-          // Services - text only, wrapped
-          Wrap(
-            spacing: 6,
-            runSpacing: 6,
-            children: services.asMap().entries.map((entry) {
-              final service = entry.value;
-              return _buildServiceChip(
-                context,
-                service['name'] as String,
-                service['route'] as String,
-                color,
-                isDark,
-              );
-            }).toList(),
+              // Services - text only, wrapped
+              Wrap(
+                spacing: 6,
+                runSpacing: 6,
+                children: services.asMap().entries.map((entry) {
+                  final service = entry.value;
+                  return _buildServiceChip(
+                    context,
+                    service['name'] as String,
+                    service['route'] as String,
+                    color,
+                    isDark,
+                  );
+                }).toList(),
+              ),
+            ],
           ),
-        ],
-      ),
-    ).animate(delay: (80 * categoryIndex).ms)
+        )
+        .animate(delay: (80 * categoryIndex).ms)
         .fadeIn(duration: 400.ms)
         .slideX(begin: -0.02);
   }
@@ -337,12 +330,30 @@ class _AllServicesScreenState extends ConsumerState<AllServicesScreen>
       'icon': '⭐',
       'color': AppColors.starGold,
       'services': [
-        {'name': L10nService.get('menu_features.daily_reading', language), 'route': Routes.horoscope},
-        {'name': L10nService.get('menu_features.weekly_reading', language), 'route': Routes.weeklyHoroscope},
-        {'name': L10nService.get('menu_features.monthly_reading', language), 'route': Routes.monthlyHoroscope},
-        {'name': L10nService.get('menu_features.yearly_reading', language), 'route': Routes.yearlyHoroscope},
-        {'name': L10nService.get('menu_features.love_reading', language), 'route': Routes.loveHoroscope},
-        {'name': L10nService.get('menu_features.compatibility', language), 'route': Routes.compatibility},
+        {
+          'name': L10nService.get('menu_features.daily_reading', language),
+          'route': Routes.horoscope,
+        },
+        {
+          'name': L10nService.get('menu_features.weekly_reading', language),
+          'route': Routes.weeklyHoroscope,
+        },
+        {
+          'name': L10nService.get('menu_features.monthly_reading', language),
+          'route': Routes.monthlyHoroscope,
+        },
+        {
+          'name': L10nService.get('menu_features.yearly_reading', language),
+          'route': Routes.yearlyHoroscope,
+        },
+        {
+          'name': L10nService.get('menu_features.love_reading', language),
+          'route': Routes.loveHoroscope,
+        },
+        {
+          'name': L10nService.get('menu_features.compatibility', language),
+          'route': Routes.compatibility,
+        },
       ],
     },
     {
@@ -350,13 +361,34 @@ class _AllServicesScreenState extends ConsumerState<AllServicesScreen>
       'icon': '🗺️',
       'color': AppColors.cosmicPurple,
       'services': [
-        {'name': L10nService.get('menu_features.birth_chart', language), 'route': Routes.birthChart},
-        {'name': L10nService.get('menu_features.synastry', language), 'route': Routes.synastry},
-        {'name': L10nService.get('menu_features.composite', language), 'route': Routes.compositeChart},
-        {'name': L10nService.get('menu_features.vedic_chart', language), 'route': Routes.vedicChart},
-        {'name': L10nService.get('menu_features.draconic', language), 'route': Routes.draconicChart},
-        {'name': L10nService.get('home.quick_actions.asteroids', language), 'route': Routes.asteroids},
-        {'name': L10nService.get('home.quick_actions.local_space', language), 'route': Routes.localSpace},
+        {
+          'name': L10nService.get('menu_features.birth_chart', language),
+          'route': Routes.birthChart,
+        },
+        {
+          'name': L10nService.get('menu_features.synastry', language),
+          'route': Routes.synastry,
+        },
+        {
+          'name': L10nService.get('menu_features.composite', language),
+          'route': Routes.compositeChart,
+        },
+        {
+          'name': L10nService.get('menu_features.vedic_chart', language),
+          'route': Routes.vedicChart,
+        },
+        {
+          'name': L10nService.get('menu_features.draconic', language),
+          'route': Routes.draconicChart,
+        },
+        {
+          'name': L10nService.get('home.quick_actions.asteroids', language),
+          'route': Routes.asteroids,
+        },
+        {
+          'name': L10nService.get('home.quick_actions.local_space', language),
+          'route': Routes.localSpace,
+        },
       ],
     },
     {
@@ -364,14 +396,38 @@ class _AllServicesScreenState extends ConsumerState<AllServicesScreen>
       'icon': '⏰',
       'color': AppColors.auroraEnd,
       'services': [
-        {'name': L10nService.get('menu_features.transits', language), 'route': Routes.transits},
-        {'name': L10nService.get('menu_features.progressions', language), 'route': Routes.progressions},
-        {'name': L10nService.get('menu_features.saturn_return', language), 'route': Routes.saturnReturn},
-        {'name': L10nService.get('menu_features.solar_return', language), 'route': Routes.solarReturn},
-        {'name': L10nService.get('menu_features.year_ahead', language), 'route': Routes.yearAhead},
-        {'name': L10nService.get('menu_features.timing', language), 'route': Routes.timing},
-        {'name': L10nService.get('menu_features.void_of_course', language), 'route': Routes.voidOfCourse},
-        {'name': L10nService.get('menu_features.eclipse_calendar', language), 'route': Routes.eclipseCalendar},
+        {
+          'name': L10nService.get('menu_features.transits', language),
+          'route': Routes.transits,
+        },
+        {
+          'name': L10nService.get('menu_features.progressions', language),
+          'route': Routes.progressions,
+        },
+        {
+          'name': L10nService.get('menu_features.saturn_return', language),
+          'route': Routes.saturnReturn,
+        },
+        {
+          'name': L10nService.get('menu_features.solar_return', language),
+          'route': Routes.solarReturn,
+        },
+        {
+          'name': L10nService.get('menu_features.year_ahead', language),
+          'route': Routes.yearAhead,
+        },
+        {
+          'name': L10nService.get('menu_features.timing', language),
+          'route': Routes.timing,
+        },
+        {
+          'name': L10nService.get('menu_features.void_of_course', language),
+          'route': Routes.voidOfCourse,
+        },
+        {
+          'name': L10nService.get('menu_features.eclipse_calendar', language),
+          'route': Routes.eclipseCalendar,
+        },
       ],
     },
     {
@@ -379,11 +435,26 @@ class _AllServicesScreenState extends ConsumerState<AllServicesScreen>
       'icon': '🔢',
       'color': AppColors.fireElement,
       'services': [
-        {'name': L10nService.get('menu_features.numerology', language), 'route': Routes.numerology},
-        {'name': L10nService.get('menu_features.life_number', language), 'route': Routes.lifePath1},
-        {'name': L10nService.get('menu_features.kabbalah', language), 'route': Routes.master11},
-        {'name': L10nService.get('menu_features.tarot', language), 'route': Routes.personalYear1},
-        {'name': L10nService.get('menu_features.aura', language), 'route': Routes.karmicDebt},
+        {
+          'name': L10nService.get('menu_features.numerology', language),
+          'route': Routes.numerology,
+        },
+        {
+          'name': L10nService.get('menu_features.life_number', language),
+          'route': Routes.lifePath1,
+        },
+        {
+          'name': L10nService.get('menu_features.kabbalah', language),
+          'route': Routes.master11,
+        },
+        {
+          'name': L10nService.get('menu_features.tarot', language),
+          'route': Routes.personalYear1,
+        },
+        {
+          'name': L10nService.get('menu_features.aura', language),
+          'route': Routes.karmicDebt,
+        },
       ],
     },
     {
@@ -391,13 +462,34 @@ class _AllServicesScreenState extends ConsumerState<AllServicesScreen>
       'icon': '🧘',
       'color': AppColors.tantraCrimson,
       'services': [
-        {'name': L10nService.get('menu_features.theta_healing', language), 'route': Routes.tantra},
-        {'name': L10nService.get('menu_features.chakra', language), 'route': Routes.chakraAnalysis},
-        {'name': L10nService.get('menu_features.aura', language), 'route': Routes.aura},
-        {'name': L10nService.get('menu_features.kabbalah', language), 'route': Routes.kabbalah},
-        {'name': L10nService.get('menu_features.daily_rituals', language), 'route': Routes.dailyRituals},
-        {'name': L10nService.get('menu_features.moon_rituals', language), 'route': Routes.moonRituals},
-        {'name': L10nService.get('menu_features.crystal_guide', language), 'route': Routes.crystalGuide},
+        {
+          'name': L10nService.get('menu_features.theta_healing', language),
+          'route': Routes.tantra,
+        },
+        {
+          'name': L10nService.get('menu_features.chakra', language),
+          'route': Routes.chakraAnalysis,
+        },
+        {
+          'name': L10nService.get('menu_features.aura', language),
+          'route': Routes.aura,
+        },
+        {
+          'name': L10nService.get('menu_features.kabbalah', language),
+          'route': Routes.kabbalah,
+        },
+        {
+          'name': L10nService.get('menu_features.daily_rituals', language),
+          'route': Routes.dailyRituals,
+        },
+        {
+          'name': L10nService.get('menu_features.moon_rituals', language),
+          'route': Routes.moonRituals,
+        },
+        {
+          'name': L10nService.get('menu_features.crystal_guide', language),
+          'route': Routes.crystalGuide,
+        },
       ],
     },
     {
@@ -405,8 +497,14 @@ class _AllServicesScreenState extends ConsumerState<AllServicesScreen>
       'icon': '🃏',
       'color': AppColors.mystic,
       'services': [
-        {'name': L10nService.get('menu_features.tarot', language), 'route': Routes.tarot},
-        {'name': L10nService.get('tarot.major_arcana', language), 'route': Routes.majorArcanaDetail.replaceAll(':number', '0')},
+        {
+          'name': L10nService.get('menu_features.tarot', language),
+          'route': Routes.tarot,
+        },
+        {
+          'name': L10nService.get('tarot.major_arcana', language),
+          'route': Routes.majorArcanaDetail.replaceAll(':number', '0'),
+        },
       ],
     },
     {
@@ -414,11 +512,26 @@ class _AllServicesScreenState extends ConsumerState<AllServicesScreen>
       'icon': '💭',
       'color': AppColors.waterElement,
       'services': [
-        {'name': L10nService.get('menu_features.dream_trace', language), 'route': Routes.dreamInterpretation},
-        {'name': L10nService.get('menu_features.dream_dictionary', language), 'route': Routes.dreamGlossary},
-        {'name': L10nService.get('common.share', language), 'route': Routes.dreamShare},
-        {'name': L10nService.get('menu_features.cosmic_trace', language), 'route': Routes.insight},
-        {'name': L10nService.get('menu_features.dream_journal', language), 'route': Routes.insight},
+        {
+          'name': L10nService.get('menu_features.dream_trace', language),
+          'route': Routes.dreamInterpretation,
+        },
+        {
+          'name': L10nService.get('menu_features.dream_dictionary', language),
+          'route': Routes.dreamGlossary,
+        },
+        {
+          'name': L10nService.get('common.share', language),
+          'route': Routes.dreamShare,
+        },
+        {
+          'name': L10nService.get('menu_features.cosmic_trace', language),
+          'route': Routes.insight,
+        },
+        {
+          'name': L10nService.get('menu_features.dream_journal', language),
+          'route': Routes.insight,
+        },
       ],
     },
     {
@@ -426,10 +539,25 @@ class _AllServicesScreenState extends ConsumerState<AllServicesScreen>
       'icon': '💑',
       'color': const Color(0xFFE91E63),
       'services': [
-        {'name': L10nService.get('menu_features.compatibility_analysis', language), 'route': Routes.compatibility},
-        {'name': L10nService.get('menu_features.soulmate', language), 'route': Routes.soulMate},
-        {'name': L10nService.get('menu_features.relationship_karma', language), 'route': Routes.relationshipKarma},
-        {'name': L10nService.get('menu_features.celebrity_twin', language), 'route': Routes.celebrityTwin},
+        {
+          'name': L10nService.get(
+            'menu_features.compatibility_analysis',
+            language,
+          ),
+          'route': Routes.compatibility,
+        },
+        {
+          'name': L10nService.get('menu_features.soulmate', language),
+          'route': Routes.soulMate,
+        },
+        {
+          'name': L10nService.get('menu_features.relationship_karma', language),
+          'route': Routes.relationshipKarma,
+        },
+        {
+          'name': L10nService.get('menu_features.celebrity_twin', language),
+          'route': Routes.celebrityTwin,
+        },
       ],
     },
     {
@@ -437,17 +565,50 @@ class _AllServicesScreenState extends ConsumerState<AllServicesScreen>
       'icon': '🔭',
       'color': AppColors.cosmic,
       'services': [
-        {'name': L10nService.get('menu_features.shadow_self', language), 'route': Routes.shadowSelf},
-        {'name': L10nService.get('menu_features.heartbreaker', language), 'route': Routes.heartbreak},
-        {'name': L10nService.get('menu_features.red_flags', language), 'route': Routes.redFlags},
-        {'name': L10nService.get('menu_features.green_flags', language), 'route': Routes.greenFlags},
-        {'name': L10nService.get('menu_features.flirt_style', language), 'route': Routes.flirtStyle},
-        {'name': L10nService.get('menu_features.leadership_style', language), 'route': Routes.leadershipStyle},
-        {'name': L10nService.get('menu_features.tarot_card', language), 'route': Routes.tarotCard},
-        {'name': L10nService.get('menu_features.aura_color', language), 'route': Routes.auraColor},
-        {'name': L10nService.get('menu_features.chakra_balance', language), 'route': Routes.chakraBalance},
-        {'name': L10nService.get('menu_features.life_number', language), 'route': Routes.lifeNumber},
-        {'name': L10nService.get('menu_features.kabbalah_path', language), 'route': Routes.kabbalaPath},
+        {
+          'name': L10nService.get('menu_features.shadow_self', language),
+          'route': Routes.shadowSelf,
+        },
+        {
+          'name': L10nService.get('menu_features.heartbreaker', language),
+          'route': Routes.heartbreak,
+        },
+        {
+          'name': L10nService.get('menu_features.red_flags', language),
+          'route': Routes.redFlags,
+        },
+        {
+          'name': L10nService.get('menu_features.green_flags', language),
+          'route': Routes.greenFlags,
+        },
+        {
+          'name': L10nService.get('menu_features.flirt_style', language),
+          'route': Routes.flirtStyle,
+        },
+        {
+          'name': L10nService.get('menu_features.leadership_style', language),
+          'route': Routes.leadershipStyle,
+        },
+        {
+          'name': L10nService.get('menu_features.tarot_card', language),
+          'route': Routes.tarotCard,
+        },
+        {
+          'name': L10nService.get('menu_features.aura_color', language),
+          'route': Routes.auraColor,
+        },
+        {
+          'name': L10nService.get('menu_features.chakra_balance', language),
+          'route': Routes.chakraBalance,
+        },
+        {
+          'name': L10nService.get('menu_features.life_number', language),
+          'route': Routes.lifeNumber,
+        },
+        {
+          'name': L10nService.get('menu_features.kabbalah_path', language),
+          'route': Routes.kabbalaPath,
+        },
       ],
     },
     {
@@ -455,9 +616,18 @@ class _AllServicesScreenState extends ConsumerState<AllServicesScreen>
       'icon': '📚',
       'color': AppColors.earthElement,
       'services': [
-        {'name': L10nService.get('menu_features.glossary', language), 'route': Routes.glossary},
-        {'name': L10nService.get('menu_features.celebrities', language), 'route': Routes.celebrities},
-        {'name': L10nService.get('menu_features.cosmic_trace', language), 'route': Routes.kozmoz},
+        {
+          'name': L10nService.get('menu_features.glossary', language),
+          'route': Routes.glossary,
+        },
+        {
+          'name': L10nService.get('menu_features.celebrities', language),
+          'route': Routes.celebrities,
+        },
+        {
+          'name': L10nService.get('menu_features.cosmic_trace', language),
+          'route': Routes.kozmoz,
+        },
       ],
     },
   ];

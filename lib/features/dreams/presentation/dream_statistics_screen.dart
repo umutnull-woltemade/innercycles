@@ -510,8 +510,14 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
       achievements.add(
         DreamAchievement(
           id: 'first_dream',
-          title: L10nService.get('dreams.statistics.achievements_list.first_step', lang),
-          description: L10nService.get('dreams.statistics.achievements_list.first_step_desc', lang),
+          title: L10nService.get(
+            'dreams.statistics.achievements_list.first_step',
+            lang,
+          ),
+          description: L10nService.get(
+            'dreams.statistics.achievements_list.first_step_desc',
+            lang,
+          ),
           emoji: '🌱',
           isUnlocked: true,
           unlockedAt: dreams.last.createdAt,
@@ -523,8 +529,14 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
       achievements.add(
         DreamAchievement(
           id: 'dream_explorer',
-          title: L10nService.get('dreams.statistics.achievements_list.dream_explorer', lang),
-          description: L10nService.get('dreams.statistics.achievements_list.dream_explorer_desc', lang),
+          title: L10nService.get(
+            'dreams.statistics.achievements_list.dream_explorer',
+            lang,
+          ),
+          description: L10nService.get(
+            'dreams.statistics.achievements_list.dream_explorer_desc',
+            lang,
+          ),
           emoji: '🔍',
           isUnlocked: true,
         ),
@@ -535,8 +547,14 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
       achievements.add(
         DreamAchievement(
           id: 'dream_voyager',
-          title: L10nService.get('dreams.statistics.achievements_list.dream_traveler', lang),
-          description: L10nService.get('dreams.statistics.achievements_list.dream_traveler_desc', lang),
+          title: L10nService.get(
+            'dreams.statistics.achievements_list.dream_traveler',
+            lang,
+          ),
+          description: L10nService.get(
+            'dreams.statistics.achievements_list.dream_traveler_desc',
+            lang,
+          ),
           emoji: '🚀',
           isUnlocked: true,
         ),
@@ -547,8 +565,14 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
       achievements.add(
         DreamAchievement(
           id: 'dream_master',
-          title: L10nService.get('dreams.statistics.achievements_list.dream_master', lang),
-          description: L10nService.get('dreams.statistics.achievements_list.dream_master_desc', lang),
+          title: L10nService.get(
+            'dreams.statistics.achievements_list.dream_master',
+            lang,
+          ),
+          description: L10nService.get(
+            'dreams.statistics.achievements_list.dream_master_desc',
+            lang,
+          ),
           emoji: '👑',
           isUnlocked: true,
         ),
@@ -560,8 +584,14 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
       achievements.add(
         DreamAchievement(
           id: 'week_streak',
-          title: L10nService.get('dreams.statistics.achievements_list.weekly_streak', lang),
-          description: L10nService.get('dreams.statistics.achievements_list.weekly_streak_desc', lang),
+          title: L10nService.get(
+            'dreams.statistics.achievements_list.weekly_streak',
+            lang,
+          ),
+          description: L10nService.get(
+            'dreams.statistics.achievements_list.weekly_streak_desc',
+            lang,
+          ),
           emoji: '🔥',
           isUnlocked: true,
         ),
@@ -572,8 +602,14 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
       achievements.add(
         DreamAchievement(
           id: 'month_streak',
-          title: L10nService.get('dreams.statistics.achievements_list.monthly_streak', lang),
-          description: L10nService.get('dreams.statistics.achievements_list.monthly_streak_desc', lang),
+          title: L10nService.get(
+            'dreams.statistics.achievements_list.monthly_streak',
+            lang,
+          ),
+          description: L10nService.get(
+            'dreams.statistics.achievements_list.monthly_streak_desc',
+            lang,
+          ),
           emoji: '⚡',
           isUnlocked: true,
         ),
@@ -586,8 +622,14 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
       achievements.add(
         DreamAchievement(
           id: 'symbol_finder',
-          title: L10nService.get('dreams.statistics.achievements_list.symbol_hunter', lang),
-          description: L10nService.get('dreams.statistics.achievements_list.symbol_hunter_desc', lang),
+          title: L10nService.get(
+            'dreams.statistics.achievements_list.symbol_hunter',
+            lang,
+          ),
+          description: L10nService.get(
+            'dreams.statistics.achievements_list.symbol_hunter_desc',
+            lang,
+          ),
           emoji: '🎯',
           isUnlocked: true,
         ),
@@ -598,8 +640,14 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
       achievements.add(
         DreamAchievement(
           id: 'symbol_master',
-          title: L10nService.get('dreams.statistics.achievements_list.symbol_master', lang),
-          description: L10nService.get('dreams.statistics.achievements_list.symbol_master_desc', lang),
+          title: L10nService.get(
+            'dreams.statistics.achievements_list.symbol_master',
+            lang,
+          ),
+          description: L10nService.get(
+            'dreams.statistics.achievements_list.symbol_master_desc',
+            lang,
+          ),
           emoji: '🏆',
           isUnlocked: true,
         ),
@@ -619,8 +667,14 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
       achievements.add(
         DreamAchievement(
           id: 'first_lucid',
-          title: L10nService.get('dreams.statistics.achievements_list.awakening', lang),
-          description: L10nService.get('dreams.statistics.achievements_list.awakening_desc', lang),
+          title: L10nService.get(
+            'dreams.statistics.achievements_list.awakening',
+            lang,
+          ),
+          description: L10nService.get(
+            'dreams.statistics.achievements_list.awakening_desc',
+            lang,
+          ),
           emoji: '✨',
           isUnlocked: true,
         ),
@@ -631,8 +685,14 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
       achievements.add(
         DreamAchievement(
           id: 'lucid_master',
-          title: L10nService.get('dreams.statistics.achievements_list.lucid_master', lang),
-          description: L10nService.get('dreams.statistics.achievements_list.lucid_master_desc', lang),
+          title: L10nService.get(
+            'dreams.statistics.achievements_list.lucid_master',
+            lang,
+          ),
+          description: L10nService.get(
+            'dreams.statistics.achievements_list.lucid_master_desc',
+            lang,
+          ),
           emoji: '🌟',
           isUnlocked: true,
         ),
@@ -644,8 +704,14 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
       achievements.add(
         DreamAchievement(
           id: 'dream_explorer_locked',
-          title: L10nService.get('dreams.statistics.achievements_list.dream_explorer', lang),
-          description: L10nService.get('dreams.statistics.achievements_list.dream_explorer_desc', lang),
+          title: L10nService.get(
+            'dreams.statistics.achievements_list.dream_explorer',
+            lang,
+          ),
+          description: L10nService.get(
+            'dreams.statistics.achievements_list.dream_explorer_desc',
+            lang,
+          ),
           emoji: '🔒',
           isUnlocked: false,
           progress: dreams.length / 10,
@@ -657,8 +723,14 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
       achievements.add(
         DreamAchievement(
           id: 'week_streak_locked',
-          title: L10nService.get('dreams.statistics.achievements_list.weekly_streak', lang),
-          description: L10nService.get('dreams.statistics.achievements_list.weekly_streak_desc', lang),
+          title: L10nService.get(
+            'dreams.statistics.achievements_list.weekly_streak',
+            lang,
+          ),
+          description: L10nService.get(
+            'dreams.statistics.achievements_list.weekly_streak_desc',
+            lang,
+          ),
           emoji: '🔒',
           isUnlocked: false,
           progress: memory.milestones.longestStreak / 7,
@@ -1178,7 +1250,10 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [AppColors.mystic.withValues(alpha: 0.2), Colors.transparent],
+                colors: [
+                  AppColors.mystic.withValues(alpha: 0.2),
+                  Colors.transparent,
+                ],
               ),
               borderRadius: BorderRadius.circular(12),
             ),
@@ -1212,7 +1287,10 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
                   ),
                 ),
                 Text(
-                  L10nService.get('dreams.dreams_count', language).replaceAll('{count}', '${bestPhase.value}'),
+                  L10nService.get(
+                    'dreams.dreams_count',
+                    language,
+                  ).replaceAll('{count}', '${bestPhase.value}'),
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
@@ -1608,7 +1686,9 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
                         symbolInfo?.nameTr ?? entry.key,
                         style: TextStyle(
                           fontSize: size - 4,
-                          color: AppColors.textPrimary.withValues(alpha: opacity),
+                          color: AppColors.textPrimary.withValues(
+                            alpha: opacity,
+                          ),
                         ),
                       ),
                     ],
@@ -1772,7 +1852,9 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
                 decoration: BoxDecoration(
                   color: AppColors.mystic.withValues(alpha: 0.15),
                   borderRadius: BorderRadius.circular(20),
-                  border: Border.all(color: AppColors.mystic.withValues(alpha: 0.3)),
+                  border: Border.all(
+                    color: AppColors.mystic.withValues(alpha: 0.3),
+                  ),
                 ),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
@@ -2318,14 +2400,20 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
             label: L10nService.get('dreams.lucid_progress', language),
             value: _stats!.progress.lucidProgress,
             emoji: '\u{2728}',
-            description: L10nService.get('dreams.lucid_dream_development', language),
+            description: L10nService.get(
+              'dreams.lucid_dream_development',
+              language,
+            ),
           ),
           const SizedBox(height: 16),
           _buildProgressRow(
             label: L10nService.get('dreams.nightmare_reduction', language),
             value: _stats!.progress.nightmareReduction,
             emoji: '\u{1F31F}',
-            description: L10nService.get('dreams.nightmare_frequency_change', language),
+            description: L10nService.get(
+              'dreams.nightmare_frequency_change',
+              language,
+            ),
           ),
         ],
       ),
@@ -2480,7 +2568,10 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    _buildJourneyStep(L10nService.get('dreams.awareness', language), true),
+                    _buildJourneyStep(
+                      L10nService.get('dreams.awareness', language),
+                      true,
+                    ),
                     _buildJourneyStep(
                       L10nService.get('dreams.acceptance', language),
                       _stats!.progress.shadowIntegration >= 30,

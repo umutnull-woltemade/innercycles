@@ -22,23 +22,53 @@ class CosmicShareContentService {
     final dayOfYear = today.difference(DateTime(today.year, 1, 1)).inDays;
 
     return CosmicShareContent(
-      heroBlock: _generateHeroBlock(sunSign, today, moonPhase, language: language),
-      personalMessage: _generatePersonalMessage(sunSign, risingSign, moonSign, language: language),
+      heroBlock: _generateHeroBlock(
+        sunSign,
+        today,
+        moonPhase,
+        language: language,
+      ),
+      personalMessage: _generatePersonalMessage(
+        sunSign,
+        risingSign,
+        moonSign,
+        language: language,
+      ),
       energyMeter: _generateEnergyMeter(sunSign, dayOfYear, language: language),
-      planetaryInfluence: _generatePlanetaryInfluence(sunSign, today, language: language),
+      planetaryInfluence: _generatePlanetaryInfluence(
+        sunSign,
+        today,
+        language: language,
+      ),
       shadowLight: _generateShadowLight(sunSign, language: language),
       cosmicAdvice: _generateCosmicAdvice(sunSign, language: language),
-      symbolicMessage: _generateSymbolicMessage(sunSign, dayOfYear, language: language),
+      symbolicMessage: _generateSymbolicMessage(
+        sunSign,
+        dayOfYear,
+        language: language,
+      ),
       viralHook: _generateViralHook(sunSign, language: language),
       sharePrompt: _generateSharePrompt(language: language),
-      collectiveMoment: _generateCollectiveMoment(sunSign, moonPhase, language: language),
+      collectiveMoment: _generateCollectiveMoment(
+        sunSign,
+        moonPhase,
+        language: language,
+      ),
       premiumCuriosity: _generatePremiumCuriosity(sunSign, language: language),
       microMessages: _generateMicroMessages(sunSign, language: language),
       // MASTER LEVEL additions
-      dreamInsight: _generateDreamInsight(sunSign, moonPhase, language: language),
+      dreamInsight: _generateDreamInsight(
+        sunSign,
+        moonPhase,
+        language: language,
+      ),
       numerologyInsight: _generateNumerologyInsight(today, language: language),
       tantraWisdom: _generateTantraWisdom(sunSign, language: language),
-      chakraSnapshot: _generateChakraSnapshot(sunSign, dayOfYear, language: language),
+      chakraSnapshot: _generateChakraSnapshot(
+        sunSign,
+        dayOfYear,
+        language: language,
+      ),
       timingHint: _generateTimingHint(sunSign, today, language: language),
     );
   }
@@ -47,7 +77,11 @@ class CosmicShareContentService {
   // MASTER LEVEL: NEW GENERATORS
   // ═══════════════════════════════════════════════════════════════
 
-  static DreamInsight _generateDreamInsight(ZodiacSign sign, MoonPhase moonPhase, {AppLanguage language = AppLanguage.tr}) {
+  static DreamInsight _generateDreamInsight(
+    ZodiacSign sign,
+    MoonPhase moonPhase, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     // Get localized symbol meaning
     final symbolKey = 'cosmic_share.dream_symbols.${sign.name}';
     final localizedSymbol = L10nService.get(symbolKey, language);
@@ -82,7 +116,9 @@ class CosmicShareContentService {
     };
 
     final symbols = language == AppLanguage.tr ? trSymbols : enSymbols;
-    final defaultSymbol = language == AppLanguage.tr ? ['✨', 'Yıldız — sonsuz potansiyel'] : ['✨', 'Star — infinite potential'];
+    final defaultSymbol = language == AppLanguage.tr
+        ? ['✨', 'Yıldız — sonsuz potansiyel']
+        : ['✨', 'Star — infinite potential'];
 
     // Get localized dream prompts
     final promptKey = 'cosmic_share.dream_prompts.${_random.nextInt(4) + 1}';
@@ -124,24 +160,41 @@ class CosmicShareContentService {
       MoonPhase.lastQuarter: 'The old cycle is closing.',
       MoonPhase.waningCrescent: 'Time to rest.',
     };
-    final nightMessages = language == AppLanguage.tr ? trNightMessages : enNightMessages;
-    final defaultNightMsg = language == AppLanguage.tr ? 'Rüyaların rehberin olsun.' : 'Let your dreams guide you.';
+    final nightMessages = language == AppLanguage.tr
+        ? trNightMessages
+        : enNightMessages;
+    final defaultNightMsg = language == AppLanguage.tr
+        ? 'Rüyaların rehberin olsun.'
+        : 'Let your dreams guide you.';
 
     final symbolData = symbols[sign] ?? defaultSymbol;
 
     return DreamInsight(
       symbol: symbolData[0],
-      symbolMeaning: localizedSymbol != symbolKey ? localizedSymbol : symbolData[1],
-      dreamPrompt: localizedPrompt != promptKey ? localizedPrompt : prompts[_random.nextInt(prompts.length)],
-      nightMessage: localizedNight != nightKey ? localizedNight : (nightMessages[moonPhase] ?? defaultNightMsg),
+      symbolMeaning: localizedSymbol != symbolKey
+          ? localizedSymbol
+          : symbolData[1],
+      dreamPrompt: localizedPrompt != promptKey
+          ? localizedPrompt
+          : prompts[_random.nextInt(prompts.length)],
+      nightMessage: localizedNight != nightKey
+          ? localizedNight
+          : (nightMessages[moonPhase] ?? defaultNightMsg),
     );
   }
 
-  static NumerologyInsight _generateNumerologyInsight(DateTime today, {AppLanguage language = AppLanguage.tr}) {
+  static NumerologyInsight _generateNumerologyInsight(
+    DateTime today, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     // Calculate day number (reduce to single digit)
     int daySum = today.day + today.month + today.year;
     while (daySum > 9 && daySum != 11 && daySum != 22 && daySum != 33) {
-      daySum = daySum.toString().split('').map(int.parse).reduce((a, b) => a + b);
+      daySum = daySum
+          .toString()
+          .split('')
+          .map(int.parse)
+          .reduce((a, b) => a + b);
     }
 
     // Get localized meaning
@@ -177,7 +230,9 @@ class CosmicShareContentService {
       33: 'Cosmic teacher',
     };
     final meanings = language == AppLanguage.tr ? trMeanings : enMeanings;
-    final defaultMeaning = language == AppLanguage.tr ? 'Evrensel enerji' : 'Universal energy';
+    final defaultMeaning = language == AppLanguage.tr
+        ? 'Evrensel enerji'
+        : 'Universal energy';
 
     // Get localized vibration
     final vibrationKey = 'cosmic_share.numerology.vibrations.$daySum';
@@ -212,21 +267,39 @@ class CosmicShareContentService {
       33: 'Healer and higher consciousness',
     };
     final vibrations = language == AppLanguage.tr ? trVibrations : enVibrations;
-    final defaultVibration = language == AppLanguage.tr ? 'Dengeli titreşim' : 'Balanced vibration';
+    final defaultVibration = language == AppLanguage.tr
+        ? 'Dengeli titreşim'
+        : 'Balanced vibration';
 
     // Calculate lucky hour based on day number
-    final luckyHours = ['06:00', '09:00', '11:11', '14:00', '17:00', '19:00', '21:00', '23:00'];
+    final luckyHours = [
+      '06:00',
+      '09:00',
+      '11:11',
+      '14:00',
+      '17:00',
+      '19:00',
+      '21:00',
+      '23:00',
+    ];
     final luckyHour = luckyHours[(daySum - 1) % luckyHours.length];
 
     return NumerologyInsight(
       dayNumber: daySum,
-      numberMeaning: localizedMeaning != meaningKey ? localizedMeaning : (meanings[daySum] ?? defaultMeaning),
-      vibration: localizedVibration != vibrationKey ? localizedVibration : (vibrations[daySum] ?? defaultVibration),
+      numberMeaning: localizedMeaning != meaningKey
+          ? localizedMeaning
+          : (meanings[daySum] ?? defaultMeaning),
+      vibration: localizedVibration != vibrationKey
+          ? localizedVibration
+          : (vibrations[daySum] ?? defaultVibration),
       luckyHour: luckyHour,
     );
   }
 
-  static TantraWisdom _generateTantraWisdom(ZodiacSign sign, {AppLanguage language = AppLanguage.tr}) {
+  static TantraWisdom _generateTantraWisdom(
+    ZodiacSign sign, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     final breathIndex = _random.nextInt(4) + 1;
     final breathKey = 'cosmic_share.tantra.breath_focus.$breathIndex';
     final localizedBreath = L10nService.get(breathKey, language);
@@ -243,7 +316,9 @@ class CosmicShareContentService {
       'Light as you inhale, peace as you exhale.',
       'Listen to the sound of your breath in silence.',
     ];
-    final breathFocuses = language == AppLanguage.tr ? trBreathFocuses : enBreathFocuses;
+    final breathFocuses = language == AppLanguage.tr
+        ? trBreathFocuses
+        : enBreathFocuses;
 
     // Awareness points
     final awarenessKey = 'cosmic_share.tantra.awareness.${sign.name}';
@@ -277,8 +352,12 @@ class CosmicShareContentService {
       ZodiacSign.aquarius: 'Third eye — gate of intuition',
       ZodiacSign.pisces: 'Soles of your feet — grounding',
     };
-    final awarenessPoints = language == AppLanguage.tr ? trAwarenessPoints : enAwarenessPoints;
-    final defaultAwareness = language == AppLanguage.tr ? 'Kalbinin derinliği' : 'Depth of your heart';
+    final awarenessPoints = language == AppLanguage.tr
+        ? trAwarenessPoints
+        : enAwarenessPoints;
+    final defaultAwareness = language == AppLanguage.tr
+        ? 'Kalbinin derinliği'
+        : 'Depth of your heart';
 
     // Inner connection
     final connectionIndex = _random.nextInt(5) + 1;
@@ -299,16 +378,28 @@ class CosmicShareContentService {
       'The universe breathes with you.',
       'Every moment is a new beginning.',
     ];
-    final connections = language == AppLanguage.tr ? trConnections : enConnections;
+    final connections = language == AppLanguage.tr
+        ? trConnections
+        : enConnections;
 
     return TantraWisdom(
-      breathFocus: localizedBreath != breathKey ? localizedBreath : breathFocuses[_random.nextInt(breathFocuses.length)],
-      awarenessPoint: localizedAwareness != awarenessKey ? localizedAwareness : (awarenessPoints[sign] ?? defaultAwareness),
-      innerConnection: localizedConnection != connectionKey ? localizedConnection : connections[_random.nextInt(connections.length)],
+      breathFocus: localizedBreath != breathKey
+          ? localizedBreath
+          : breathFocuses[_random.nextInt(breathFocuses.length)],
+      awarenessPoint: localizedAwareness != awarenessKey
+          ? localizedAwareness
+          : (awarenessPoints[sign] ?? defaultAwareness),
+      innerConnection: localizedConnection != connectionKey
+          ? localizedConnection
+          : connections[_random.nextInt(connections.length)],
     );
   }
 
-  static ChakraSnapshot _generateChakraSnapshot(ZodiacSign sign, int dayOfYear, {AppLanguage language = AppLanguage.tr}) {
+  static ChakraSnapshot _generateChakraSnapshot(
+    ZodiacSign sign,
+    int dayOfYear, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     // Get localized chakra data
     final chakraNameKey = 'cosmic_share.chakras.${sign.name}.name';
     final chakraMsgKey = 'cosmic_share.chakras.${sign.name}.message';
@@ -332,7 +423,11 @@ class CosmicShareContentService {
     final enChakras = {
       ZodiacSign.aries: ['Root Chakra', '🔴', 'Security and grounding'],
       ZodiacSign.taurus: ['Sacral Chakra', '🟠', 'Creativity and passion'],
-      ZodiacSign.gemini: ['Throat Chakra', '🔵', 'Communication and expression'],
+      ZodiacSign.gemini: [
+        'Throat Chakra',
+        '🔵',
+        'Communication and expression',
+      ],
       ZodiacSign.cancer: ['Heart Chakra', '💚', 'Love and compassion'],
       ZodiacSign.leo: ['Solar Plexus', '💛', 'Power and confidence'],
       ZodiacSign.virgo: ['Solar Plexus', '💛', 'Analysis and order'],
@@ -345,20 +440,30 @@ class CosmicShareContentService {
     };
 
     final chakras = language == AppLanguage.tr ? trChakras : enChakras;
-    final defaultChakra = language == AppLanguage.tr ? ['Kalp Çakra', '💚', 'Sevgi merkezi'] : ['Heart Chakra', '💚', 'Love center'];
+    final defaultChakra = language == AppLanguage.tr
+        ? ['Kalp Çakra', '💚', 'Sevgi merkezi']
+        : ['Heart Chakra', '💚', 'Love center'];
 
     final chakraData = chakras[sign] ?? defaultChakra;
     final balance = 0.5 + (dayOfYear % 50) / 100.0; // 0.5 - 1.0 arası
 
     return ChakraSnapshot(
-      activeChakra: localizedName != chakraNameKey ? localizedName : chakraData[0],
+      activeChakra: localizedName != chakraNameKey
+          ? localizedName
+          : chakraData[0],
       chakraSymbol: chakraData[1],
-      chakraMessage: localizedMsg != chakraMsgKey ? localizedMsg : chakraData[2],
+      chakraMessage: localizedMsg != chakraMsgKey
+          ? localizedMsg
+          : chakraData[2],
       balanceLevel: balance.clamp(0.0, 1.0),
     );
   }
 
-  static CosmicTimingHint _generateTimingHint(ZodiacSign sign, DateTime today, {AppLanguage language = AppLanguage.tr}) {
+  static CosmicTimingHint _generateTimingHint(
+    ZodiacSign sign,
+    DateTime today, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     final goldenHours = {
       ZodiacSign.aries: '06:00 - 08:00',
       ZodiacSign.taurus: '10:00 - 12:00',
@@ -415,7 +520,9 @@ class CosmicShareContentService {
     return CosmicTimingHint(
       goldenHour: goldenHours[sign] ?? '12:00 - 14:00',
       avoidHour: avoidHours[sign] ?? '15:00 - 16:00',
-      ritualSuggestion: localizedRitual != ritualKey ? localizedRitual : rituals[_random.nextInt(rituals.length)],
+      ritualSuggestion: localizedRitual != ritualKey
+          ? localizedRitual
+          : rituals[_random.nextInt(rituals.length)],
     );
   }
 
@@ -431,7 +538,9 @@ class CosmicShareContentService {
     // Get localized cosmic title
     final key = 'cosmic_share.cosmic_titles.${sign.name}';
     final localizedTitle = L10nService.get(key, language);
-    final cosmicTitle = localizedTitle != key ? localizedTitle : _getCosmicTitleFallback(sign, language);
+    final cosmicTitle = localizedTitle != key
+        ? localizedTitle
+        : _getCosmicTitleFallback(sign, language);
 
     return HeroBlock(
       signTitle: cosmicTitle,
@@ -498,7 +607,11 @@ class CosmicShareContentService {
     );
   }
 
-  static CosmicEnergyMeter _generateEnergyMeter(ZodiacSign sign, int dayOfYear, {AppLanguage language = AppLanguage.tr}) {
+  static CosmicEnergyMeter _generateEnergyMeter(
+    ZodiacSign sign,
+    int dayOfYear, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     // Pseudo-randomized but consistent for the same day
     final seed = dayOfYear + sign.index;
     final energyLevel = 45 + (seed % 50);
@@ -514,16 +627,22 @@ class CosmicShareContentService {
     final balanceKey = balanceRatio > 0.6
         ? 'action_day'
         : balanceRatio < 0.4
-            ? 'reflection_day'
-            : 'balanced_day';
+        ? 'reflection_day'
+        : 'balanced_day';
 
     return CosmicEnergyMeter(
       energyLevel: energyLevel,
       energyDescription: _getEnergyDescription(energyLevel, language: language),
       emotionalIntensity: intensityOptions[intensityIndex],
-      intensityDescription: _getIntensityDescription(intensityOptions[intensityIndex], language: language),
+      intensityDescription: _getIntensityDescription(
+        intensityOptions[intensityIndex],
+        language: language,
+      ),
       intuitionStrength: intuitionLevel,
-      intuitionDescription: _getIntuitionDescription(intuitionLevel, language: language),
+      intuitionDescription: _getIntuitionDescription(
+        intuitionLevel,
+        language: language,
+      ),
       actionReflectionBalance: balanceRatio,
       balanceDescription: balanceKey,
     );
@@ -540,14 +659,18 @@ class CosmicShareContentService {
     final planetData = _getPlanetInfluenceData(dominant, language: language);
     final signName = language == AppLanguage.tr ? sign.nameTr : sign.name;
     final compatibleSign = _getCompatibleSign(sign);
-    final compatibleName = language == AppLanguage.tr ? compatibleSign.nameTr : compatibleSign.name;
+    final compatibleName = language == AppLanguage.tr
+        ? compatibleSign.nameTr
+        : compatibleSign.name;
 
     // Get localized exclusivity text
     final exclKey = 'cosmic_share.planetary.exclusivity';
     final localizedExcl = L10nService.get(exclKey, language);
     String exclusivityText;
     if (localizedExcl != exclKey) {
-      exclusivityText = localizedExcl.replaceAll('{sign1}', signName).replaceAll('{sign2}', compatibleName);
+      exclusivityText = localizedExcl
+          .replaceAll('{sign1}', signName)
+          .replaceAll('{sign2}', compatibleName);
     } else {
       exclusivityText = language == AppLanguage.tr
           ? 'Bu gezegen etkisi bugün sadece $signName ve $compatibleName için bu kadar güçlü.'
@@ -564,7 +687,10 @@ class CosmicShareContentService {
     );
   }
 
-  static PlanetInfluenceData _getPlanetInfluenceData(Planet planet, {AppLanguage language = AppLanguage.tr}) {
+  static PlanetInfluenceData _getPlanetInfluenceData(
+    Planet planet, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     final activatesKey = 'cosmic_share.planetary.${planet.name}.activates';
     final blocksKey = 'cosmic_share.planetary.${planet.name}.blocks';
     final actionKey = 'cosmic_share.planetary.${planet.name}.action';
@@ -651,19 +777,36 @@ class CosmicShareContentService {
 
     final data = language == AppLanguage.tr ? trData : enData;
     final defaultData = language == AppLanguage.tr
-        ? PlanetInfluenceData(activates: 'İç gücünüzü', blocks: 'Şüphelerinizi', action: 'Kalbinizin sesini dinleyin.')
-        : PlanetInfluenceData(activates: 'Your inner power', blocks: 'Your doubts', action: 'Listen to your heart.');
+        ? PlanetInfluenceData(
+            activates: 'İç gücünüzü',
+            blocks: 'Şüphelerinizi',
+            action: 'Kalbinizin sesini dinleyin.',
+          )
+        : PlanetInfluenceData(
+            activates: 'Your inner power',
+            blocks: 'Your doubts',
+            action: 'Listen to your heart.',
+          );
 
     final fallbackData = data[planet] ?? defaultData;
 
     return PlanetInfluenceData(
-      activates: localizedActivates != activatesKey ? localizedActivates : fallbackData.activates,
-      blocks: localizedBlocks != blocksKey ? localizedBlocks : fallbackData.blocks,
-      action: localizedAction != actionKey ? localizedAction : fallbackData.action,
+      activates: localizedActivates != activatesKey
+          ? localizedActivates
+          : fallbackData.activates,
+      blocks: localizedBlocks != blocksKey
+          ? localizedBlocks
+          : fallbackData.blocks,
+      action: localizedAction != actionKey
+          ? localizedAction
+          : fallbackData.action,
     );
   }
 
-  static ShadowLightDuality _generateShadowLight(ZodiacSign sign, {AppLanguage language = AppLanguage.tr}) {
+  static ShadowLightDuality _generateShadowLight(
+    ZodiacSign sign, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     final shadowData = _getShadowData(sign, language: language);
     final lightData = _getLightData(sign, language: language);
 
@@ -677,7 +820,10 @@ class CosmicShareContentService {
     );
   }
 
-  static ShadowData _getShadowData(ZodiacSign sign, {AppLanguage language = AppLanguage.tr}) {
+  static ShadowData _getShadowData(
+    ZodiacSign sign, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     final challengeKey = 'cosmic_share.shadow.${sign.name}.challenge';
     final fearKey = 'cosmic_share.shadow.${sign.name}.fear';
     final patternKey = 'cosmic_share.shadow.${sign.name}.pattern';
@@ -694,9 +840,13 @@ class CosmicShareContentService {
     }
 
     return ShadowData(
-      challenge: localizedChallenge != challengeKey ? localizedChallenge : fallbackData.challenge,
+      challenge: localizedChallenge != challengeKey
+          ? localizedChallenge
+          : fallbackData.challenge,
       fear: localizedFear != fearKey ? localizedFear : fallbackData.fear,
-      pattern: localizedPattern != patternKey ? localizedPattern : fallbackData.pattern,
+      pattern: localizedPattern != patternKey
+          ? localizedPattern
+          : fallbackData.pattern,
     );
   }
 
@@ -763,14 +913,18 @@ class CosmicShareContentService {
         pattern: 'Dream, then crash with reality.',
       ),
     };
-    return enShadowData[sign] ?? ShadowData(
-      challenge: 'Inner conflicts are blocking clarity.',
-      fear: 'Fear of the unknown',
-      pattern: 'Repeating cycles.',
-    );
+    return enShadowData[sign] ??
+        ShadowData(
+          challenge: 'Inner conflicts are blocking clarity.',
+          fear: 'Fear of the unknown',
+          pattern: 'Repeating cycles.',
+        );
   }
 
-  static LightData _getLightData(ZodiacSign sign, {AppLanguage language = AppLanguage.tr}) {
+  static LightData _getLightData(
+    ZodiacSign sign, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     final strengthKey = 'cosmic_share.light.${sign.name}.strength';
     final opportunityKey = 'cosmic_share.light.${sign.name}.opportunity';
     final magneticKey = 'cosmic_share.light.${sign.name}.magnetic';
@@ -787,9 +941,15 @@ class CosmicShareContentService {
     }
 
     return LightData(
-      strength: localizedStrength != strengthKey ? localizedStrength : fallbackData.strength,
-      opportunity: localizedOpportunity != opportunityKey ? localizedOpportunity : fallbackData.opportunity,
-      magnetic: localizedMagnetic != magneticKey ? localizedMagnetic : fallbackData.magnetic,
+      strength: localizedStrength != strengthKey
+          ? localizedStrength
+          : fallbackData.strength,
+      opportunity: localizedOpportunity != opportunityKey
+          ? localizedOpportunity
+          : fallbackData.opportunity,
+      magnetic: localizedMagnetic != magneticKey
+          ? localizedMagnetic
+          : fallbackData.magnetic,
     );
   }
 
@@ -838,7 +998,8 @@ class CosmicShareContentService {
       ZodiacSign.sagittarius: LightData(
         strength: 'Optimism and vision',
         opportunity: 'New horizons opening',
-        magnetic: 'Your adventurous spirit is contagious, you bring excitement.',
+        magnetic:
+            'Your adventurous spirit is contagious, you bring excitement.',
       ),
       ZodiacSign.capricorn: LightData(
         strength: 'Discipline and resilience',
@@ -856,14 +1017,18 @@ class CosmicShareContentService {
         magnetic: 'Your mysterious aura enchants, you\'re like a dream.',
       ),
     };
-    return enLightData[sign] ?? LightData(
-      strength: 'Inner strength and potential',
-      opportunity: 'New opportunities emerging',
-      magnetic: 'Your energy attracts people.',
-    );
+    return enLightData[sign] ??
+        LightData(
+          strength: 'Inner strength and potential',
+          opportunity: 'New opportunities emerging',
+          magnetic: 'Your energy attracts people.',
+        );
   }
 
-  static List<String> _generateCosmicAdvice(ZodiacSign sign, {AppLanguage language = AppLanguage.tr}) {
+  static List<String> _generateCosmicAdvice(
+    ZodiacSign sign, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     // Check for localized advice
     final key = 'cosmic_share.advice.${sign.name}';
     final localized = L10nService.get(key, language);
@@ -972,14 +1137,19 @@ class CosmicShareContentService {
         'Don\'t escape, face it.',
       ],
     };
-    return enCosmicAdvice[sign] ?? [
-      'Be kind to yourself.',
-      'Patience is needed today.',
-      'Trust your intuition.',
-    ];
+    return enCosmicAdvice[sign] ??
+        [
+          'Be kind to yourself.',
+          'Patience is needed today.',
+          'Trust your intuition.',
+        ];
   }
 
-  static SymbolicMessage _generateSymbolicMessage(ZodiacSign sign, int dayOfYear, {AppLanguage language = AppLanguage.tr}) {
+  static SymbolicMessage _generateSymbolicMessage(
+    ZodiacSign sign,
+    int dayOfYear, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     if (language == AppLanguage.tr) {
       final archetypes = _archetypes[sign] ?? _defaultArchetypes;
       final index = dayOfYear % archetypes.length;
@@ -998,14 +1168,16 @@ class CosmicShareContentService {
           type: 'Archetype',
           symbol: 'Warrior',
           title: 'The Warrior Within',
-          meaning: 'The warrior archetype is active today. But the true warrior knows: The greatest victory is conquering yourself.',
+          meaning:
+              'The warrior archetype is active today. But the true warrior knows: The greatest victory is conquering yourself.',
           imageHint: 'aries_warrior',
         ),
         SymbolicMessage(
           type: 'Tarot',
           symbol: 'Emperor',
           title: 'IV - The Emperor',
-          meaning: 'Structure, authority and control. Your leadership energy is strong today. But beware: Power brings responsibility.',
+          meaning:
+              'Structure, authority and control. Your leadership energy is strong today. But beware: Power brings responsibility.',
           imageHint: 'emperor',
         ),
       ],
@@ -1014,14 +1186,16 @@ class CosmicShareContentService {
           type: 'Archetype',
           symbol: 'Gardener',
           title: 'The Patient Gardener',
-          meaning: 'Seeds bear fruit in time. Consider how what you planted with patience is now sprouting.',
+          meaning:
+              'Seeds bear fruit in time. Consider how what you planted with patience is now sprouting.',
           imageHint: 'taurus_gardener',
         ),
         SymbolicMessage(
           type: 'Tarot',
           symbol: 'Empress',
           title: 'III - The Empress',
-          meaning: 'Abundance, sensuality and creativity. Time to feel life\'s beauties.',
+          meaning:
+              'Abundance, sensuality and creativity. Time to feel life\'s beauties.',
           imageHint: 'empress',
         ),
       ],
@@ -1030,14 +1204,16 @@ class CosmicShareContentService {
           type: 'Archetype',
           symbol: 'Messenger',
           title: 'Messenger of the Gods',
-          meaning: 'Like Hermes, you build bridges between worlds. Your words carry power today.',
+          meaning:
+              'Like Hermes, you build bridges between worlds. Your words carry power today.',
           imageHint: 'gemini_messenger',
         ),
         SymbolicMessage(
           type: 'Tarot',
           symbol: 'Lovers',
           title: 'VI - The Lovers',
-          meaning: 'Choices and connections. Time to unite two paths, not choose between them.',
+          meaning:
+              'Choices and connections. Time to unite two paths, not choose between them.',
           imageHint: 'lovers',
         ),
       ],
@@ -1046,14 +1222,16 @@ class CosmicShareContentService {
           type: 'Archetype',
           symbol: 'Mother',
           title: 'The Great Mother',
-          meaning: 'Nurturing, protecting, embracing. Today, mother both others and yourself.',
+          meaning:
+              'Nurturing, protecting, embracing. Today, mother both others and yourself.',
           imageHint: 'cancer_mother',
         ),
         SymbolicMessage(
           type: 'Tarot',
           symbol: 'Moon',
           title: 'XVIII - The Moon',
-          meaning: 'Subconscious, intuition and hidden fears. You can find your way even in darkness.',
+          meaning:
+              'Subconscious, intuition and hidden fears. You can find your way even in darkness.',
           imageHint: 'moon',
         ),
       ],
@@ -1062,14 +1240,16 @@ class CosmicShareContentService {
           type: 'Archetype',
           symbol: 'King',
           title: 'The Just King',
-          meaning: 'The true king rules hearts, not thrones. Rule today with generosity.',
+          meaning:
+              'The true king rules hearts, not thrones. Rule today with generosity.',
           imageHint: 'leo_king',
         ),
         SymbolicMessage(
           type: 'Tarot',
           symbol: 'Strength',
           title: 'VIII - Strength',
-          meaning: 'Taming the inner lion. Strength lies in gentleness, not control.',
+          meaning:
+              'Taming the inner lion. Strength lies in gentleness, not control.',
           imageHint: 'strength',
         ),
       ],
@@ -1078,14 +1258,16 @@ class CosmicShareContentService {
           type: 'Archetype',
           symbol: 'Healer',
           title: 'The Sacred Healer',
-          meaning: 'Your hands carry healing. Today you have the potential to heal everything you touch.',
+          meaning:
+              'Your hands carry healing. Today you have the potential to heal everything you touch.',
           imageHint: 'virgo_healer',
         ),
         SymbolicMessage(
           type: 'Tarot',
           symbol: 'Hermit',
           title: 'IX - The Hermit',
-          meaning: 'Inner search and wisdom. Answers are not outside, but in the depths.',
+          meaning:
+              'Inner search and wisdom. Answers are not outside, but in the depths.',
           imageHint: 'hermit',
         ),
       ],
@@ -1094,14 +1276,16 @@ class CosmicShareContentService {
           type: 'Archetype',
           symbol: 'Diplomat',
           title: 'Peace Ambassador',
-          meaning: 'Building bridges, healing wounds. A theme of harmony today.',
+          meaning:
+              'Building bridges, healing wounds. A theme of harmony today.',
           imageHint: 'libra_diplomat',
         ),
         SymbolicMessage(
           type: 'Tarot',
           symbol: 'Justice',
           title: 'XI - Justice',
-          meaning: 'Balance, truth and decisions. The scales are balanced — now is the time to choose.',
+          meaning:
+              'Balance, truth and decisions. The scales are balanced — now is the time to choose.',
           imageHint: 'justice',
         ),
       ],
@@ -1110,14 +1294,16 @@ class CosmicShareContentService {
           type: 'Archetype',
           symbol: 'Alchemist',
           title: 'The Dark Alchemist',
-          meaning: 'You turn lead into gold. You have the power to transform pain into wisdom, loss into gain.',
+          meaning:
+              'You turn lead into gold. You have the power to transform pain into wisdom, loss into gain.',
           imageHint: 'scorpio_alchemist',
         ),
         SymbolicMessage(
           type: 'Tarot',
           symbol: 'Death',
           title: 'XIII - Death',
-          meaning: 'Transformation and rebirth. Endings are doorways to beginnings.',
+          meaning:
+              'Transformation and rebirth. Endings are doorways to beginnings.',
           imageHint: 'death',
         ),
       ],
@@ -1126,14 +1312,16 @@ class CosmicShareContentService {
           type: 'Archetype',
           symbol: 'Explorer',
           title: 'Horizon Explorer',
-          meaning: 'The unknown is calling you. Today the courage to cross boundaries is within you.',
+          meaning:
+              'The unknown is calling you. Today the courage to cross boundaries is within you.',
           imageHint: 'sagittarius_explorer',
         ),
         SymbolicMessage(
           type: 'Tarot',
           symbol: 'Temperance',
           title: 'XIV - Temperance',
-          meaning: 'Balance and patience. Find the middle way between extremes.',
+          meaning:
+              'Balance and patience. Find the middle way between extremes.',
           imageHint: 'temperance',
         ),
       ],
@@ -1142,14 +1330,16 @@ class CosmicShareContentService {
           type: 'Archetype',
           symbol: 'Sage',
           title: 'Sage of the Mountain',
-          meaning: 'Those who climb to the summit return to guide others. Your experience lights the way for others.',
+          meaning:
+              'Those who climb to the summit return to guide others. Your experience lights the way for others.',
           imageHint: 'capricorn_sage',
         ),
         SymbolicMessage(
           type: 'Tarot',
           symbol: 'Devil',
           title: 'XV - The Devil',
-          meaning: 'Chains or choices? Do the things you\'re attached to define you?',
+          meaning:
+              'Chains or choices? Do the things you\'re attached to define you?',
           imageHint: 'devil',
         ),
       ],
@@ -1158,14 +1348,16 @@ class CosmicShareContentService {
           type: 'Archetype',
           symbol: 'Revolutionary',
           title: 'Visionary Revolutionary',
-          meaning: 'You see the future from today. Your ideas are ahead of their time.',
+          meaning:
+              'You see the future from today. Your ideas are ahead of their time.',
           imageHint: 'aquarius_revolutionary',
         ),
         SymbolicMessage(
           type: 'Tarot',
           symbol: 'Star',
           title: 'XVII - The Star',
-          meaning: 'Hope, inspiration and guidance. Even in the darkest night, stars shine.',
+          meaning:
+              'Hope, inspiration and guidance. Even in the darkest night, stars shine.',
           imageHint: 'star',
         ),
       ],
@@ -1174,30 +1366,36 @@ class CosmicShareContentService {
           type: 'Archetype',
           symbol: 'Dreamer',
           title: 'Mystic Dreamer',
-          meaning: 'You swim between worlds. Your dreams carry messages, listen.',
+          meaning:
+              'You swim between worlds. Your dreams carry messages, listen.',
           imageHint: 'pisces_dreamer',
         ),
         SymbolicMessage(
           type: 'Tarot',
           symbol: 'Moon',
           title: 'XVIII - The Moon',
-          meaning: 'Intuition, illusion and subconscious. Look behind what\'s visible.',
+          meaning:
+              'Intuition, illusion and subconscious. Look behind what\'s visible.',
           imageHint: 'moon',
         ),
       ],
     };
-    return enArchetypes[sign] ?? [
-      SymbolicMessage(
-        type: 'Archetype',
-        symbol: 'Traveler',
-        title: 'Cosmic Traveler',
-        meaning: 'The journey continues. Every step is a discovery.',
-        imageHint: 'traveler',
-      ),
-    ];
+    return enArchetypes[sign] ??
+        [
+          SymbolicMessage(
+            type: 'Archetype',
+            symbol: 'Traveler',
+            title: 'Cosmic Traveler',
+            meaning: 'The journey continues. Every step is a discovery.',
+            imageHint: 'traveler',
+          ),
+        ];
   }
 
-  static String _generateViralHook(ZodiacSign sign, {AppLanguage language = AppLanguage.tr}) {
+  static String _generateViralHook(
+    ZodiacSign sign, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     final hookIndex = _random.nextInt(12) + 1;
     final key = 'cosmic_share.viral_hooks.$hookIndex';
     final localized = L10nService.get(key, language);
@@ -1276,7 +1474,11 @@ class CosmicShareContentService {
     return prompts[_random.nextInt(prompts.length)];
   }
 
-  static CollectiveMoment _generateCollectiveMoment(ZodiacSign sign, MoonPhase moonPhase, {AppLanguage language = AppLanguage.tr}) {
+  static CollectiveMoment _generateCollectiveMoment(
+    ZodiacSign sign,
+    MoonPhase moonPhase, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     final signName = language == AppLanguage.tr ? sign.nameTr : sign.name;
 
     final mainIndex = _random.nextInt(5) + 1;
@@ -1321,12 +1523,19 @@ class CosmicShareContentService {
     final subTexts = language == AppLanguage.tr ? trSubTexts : enSubTexts;
 
     return CollectiveMoment(
-      mainText: localizedMain != mainKey ? localizedMain.replaceAll('{sign}', signName) : mainTexts[_random.nextInt(mainTexts.length)],
-      subText: localizedSub != subKey ? localizedSub : subTexts[_random.nextInt(subTexts.length)],
+      mainText: localizedMain != mainKey
+          ? localizedMain.replaceAll('{sign}', signName)
+          : mainTexts[_random.nextInt(mainTexts.length)],
+      subText: localizedSub != subKey
+          ? localizedSub
+          : subTexts[_random.nextInt(subTexts.length)],
     );
   }
 
-  static SoftPremiumCuriosity _generatePremiumCuriosity(ZodiacSign sign, {AppLanguage language = AppLanguage.tr}) {
+  static SoftPremiumCuriosity _generatePremiumCuriosity(
+    ZodiacSign sign, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     final curiosityIndex = _random.nextInt(5) + 1;
     final curiosityKey = 'cosmic_share.premium.curiosity.$curiosityIndex';
     final localizedCuriosity = L10nService.get(curiosityKey, language);
@@ -1350,7 +1559,9 @@ class CosmicShareContentService {
       'There\'s more hidden in the depths.',
       'This message is a door — if you wonder what lies beyond...',
     ];
-    final curiosityTexts = language == AppLanguage.tr ? trCuriosityTexts : enCuriosityTexts;
+    final curiosityTexts = language == AppLanguage.tr
+        ? trCuriosityTexts
+        : enCuriosityTexts;
 
     final trInvitationTexts = [
       'Bazıları bu kalıbı daha derinden keşfetmeyi seçiyor.',
@@ -1366,17 +1577,27 @@ class CosmicShareContentService {
       'The universe has much more to tell you.',
       'If you wish, this could be just the beginning.',
     ];
-    final invitationTexts = language == AppLanguage.tr ? trInvitationTexts : enInvitationTexts;
+    final invitationTexts = language == AppLanguage.tr
+        ? trInvitationTexts
+        : enInvitationTexts;
 
     return SoftPremiumCuriosity(
-      curiosityText: localizedCuriosity != curiosityKey ? localizedCuriosity : curiosityTexts[_random.nextInt(curiosityTexts.length)],
-      invitationText: localizedInvitation != invitationKey ? localizedInvitation : invitationTexts[_random.nextInt(invitationTexts.length)],
+      curiosityText: localizedCuriosity != curiosityKey
+          ? localizedCuriosity
+          : curiosityTexts[_random.nextInt(curiosityTexts.length)],
+      invitationText: localizedInvitation != invitationKey
+          ? localizedInvitation
+          : invitationTexts[_random.nextInt(invitationTexts.length)],
     );
   }
 
-  static List<String> _generateMicroMessages(ZodiacSign sign, {AppLanguage language = AppLanguage.tr}) {
+  static List<String> _generateMicroMessages(
+    ZodiacSign sign, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     if (language == AppLanguage.tr) {
-      final allMicroMessages = _microMessagesBySign[sign] ?? _defaultMicroMessages;
+      final allMicroMessages =
+          _microMessagesBySign[sign] ?? _defaultMicroMessages;
       final shuffled = List<String>.from(allMicroMessages)..shuffle(_random);
       return shuffled.take(3).toList();
     } else {
@@ -1473,11 +1694,12 @@ class CosmicShareContentService {
         'Don\'t escape, face it.',
       ],
     };
-    return enMicroMessages[sign] ?? [
-      'Be kind to yourself today.',
-      'Trust your intuition.',
-      'The answer is already within you.',
-    ];
+    return enMicroMessages[sign] ??
+        [
+          'Be kind to yourself today.',
+          'Trust your intuition.',
+          'The answer is already within you.',
+        ];
   }
 
   static const Map<ZodiacSign, List<String>> _microMessagesBySign = {
@@ -1574,7 +1796,10 @@ class CosmicShareContentService {
   ];
 
   // Helper methods
-  static String _formatDate(DateTime date, {AppLanguage language = AppLanguage.tr}) {
+  static String _formatDate(
+    DateTime date, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     final monthKey = 'common.months.${date.month}';
     final dayKey = 'common.days.${date.weekday}';
 
@@ -1587,17 +1812,62 @@ class CosmicShareContentService {
     }
 
     // Fallback
-    final trMonths = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
-    final enMonths = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    final trDays = ['Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi', 'Pazar'];
-    final enDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    final trMonths = [
+      'Ocak',
+      'Şubat',
+      'Mart',
+      'Nisan',
+      'Mayıs',
+      'Haziran',
+      'Temmuz',
+      'Ağustos',
+      'Eylül',
+      'Ekim',
+      'Kasım',
+      'Aralık',
+    ];
+    final enMonths = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
+    ];
+    final trDays = [
+      'Pazartesi',
+      'Salı',
+      'Çarşamba',
+      'Perşembe',
+      'Cuma',
+      'Cumartesi',
+      'Pazar',
+    ];
+    final enDays = [
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday',
+      'Sunday',
+    ];
 
     final months = language == AppLanguage.tr ? trMonths : enMonths;
     final days = language == AppLanguage.tr ? trDays : enDays;
     return '${date.day} ${months[date.month - 1]} ${date.year} · ${days[date.weekday - 1]}';
   }
 
-  static String _getMoonPhaseText(MoonPhase phase, {AppLanguage language = AppLanguage.tr}) {
+  static String _getMoonPhaseText(
+    MoonPhase phase, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     final key = 'cosmic_share.moon_phases.${phase.name}';
     final localized = L10nService.get(key, language);
     if (localized != key) return localized;
@@ -1647,7 +1917,10 @@ class CosmicShareContentService {
     }
   }
 
-  static String _getEmotionalCore(ZodiacSign sign, {AppLanguage language = AppLanguage.tr}) {
+  static String _getEmotionalCore(
+    ZodiacSign sign, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     final key = 'cosmic_share.emotional_cores.${sign.name}';
     final localized = L10nService.get(key, language);
     if (localized != key) return localized;
@@ -1681,10 +1954,14 @@ class CosmicShareContentService {
       ZodiacSign.pisces: 'Voice of your intuition',
     };
     final cores = language == AppLanguage.tr ? trCores : enCores;
-    return cores[sign] ?? (language == AppLanguage.tr ? 'Ruhunun özü' : 'Essence of your soul');
+    return cores[sign] ??
+        (language == AppLanguage.tr ? 'Ruhunun özü' : 'Essence of your soul');
   }
 
-  static String _getEnergyDescription(int level, {AppLanguage language = AppLanguage.tr}) {
+  static String _getEnergyDescription(
+    int level, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     String key;
     if (level >= 80) {
       key = 'cosmic_share.energy.peak';
@@ -1719,7 +1996,10 @@ class CosmicShareContentService {
     return language == AppLanguage.tr ? trDescs[key]! : enDescs[key]!;
   }
 
-  static String _getIntensityDescription(String intensity, {AppLanguage language = AppLanguage.tr}) {
+  static String _getIntensityDescription(
+    String intensity, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     final key = 'cosmic_share.intensity.$intensity';
     final localized = L10nService.get(key, language);
     if (localized != key) return localized;
@@ -1737,10 +2017,15 @@ class CosmicShareContentService {
       'intense': 'Intense and deep',
       'stormy': 'Stormy energy',
     };
-    return language == AppLanguage.tr ? (trDescs[intensity] ?? 'Dengeli') : (enDescs[intensity] ?? 'Balanced');
+    return language == AppLanguage.tr
+        ? (trDescs[intensity] ?? 'Dengeli')
+        : (enDescs[intensity] ?? 'Balanced');
   }
 
-  static String _getIntuitionDescription(int level, {AppLanguage language = AppLanguage.tr}) {
+  static String _getIntuitionDescription(
+    int level, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     String key;
     if (level >= 80) {
       key = 'cosmic_share.intuition.peak';
@@ -1979,11 +2264,14 @@ class CosmicShareContentService {
     ZodiacSign.cancer: 'Ay\'ın Yengeç\'te olması duygusal derinlik katıyor.',
     ZodiacSign.leo: 'Ay\'ın Aslan\'da olması özgüvenini artırıyor.',
     ZodiacSign.virgo: 'Ay\'ın Başak\'ta olması pratikliğini güçlendiriyor.',
-    ZodiacSign.libra: 'Ay\'ın Terazi\'de olması ilişkilere odaklanmanı sağlıyor.',
+    ZodiacSign.libra:
+        'Ay\'ın Terazi\'de olması ilişkilere odaklanmanı sağlıyor.',
     ZodiacSign.scorpio: 'Ay\'ın Akrep\'te olması yoğunluğunu artırıyor.',
-    ZodiacSign.sagittarius: 'Ay\'ın Yay\'da olması macera ruhunu canlandırıyor.',
+    ZodiacSign.sagittarius:
+        'Ay\'ın Yay\'da olması macera ruhunu canlandırıyor.',
     ZodiacSign.capricorn: 'Ay\'ın Oğlak\'ta olması disiplinini güçlendiriyor.',
-    ZodiacSign.aquarius: 'Ay\'ın Kova\'da olması yenilikçiliğini öne çıkarıyor.',
+    ZodiacSign.aquarius:
+        'Ay\'ın Kova\'da olması yenilikçiliğini öne çıkarıyor.',
     ZodiacSign.pisces: 'Ay\'ın Balık\'ta olması sezgilerini zirveye taşıyor.',
   };
 
@@ -2224,14 +2512,16 @@ class CosmicShareContentService {
         type: 'Arketip',
         symbol: 'Savaşçı',
         title: 'İçindeki Savaşçı',
-        meaning: 'Bugün savaşçı arketipi aktif. Ama gerçek savaşçı bilir: En büyük zafer kendini fethetmektir.',
+        meaning:
+            'Bugün savaşçı arketipi aktif. Ama gerçek savaşçı bilir: En büyük zafer kendini fethetmektir.',
         imageHint: 'aries_warrior',
       ),
       SymbolicMessage(
         type: 'Tarot',
         symbol: 'İmparator',
         title: 'IV - İmparator',
-        meaning: 'Yapı, otorite ve kontrol. Bugün liderlik enerjin güçlü. Ama dikkat: Güç sorumluluk getirir.',
+        meaning:
+            'Yapı, otorite ve kontrol. Bugün liderlik enerjin güçlü. Ama dikkat: Güç sorumluluk getirir.',
         imageHint: 'emperor',
       ),
     ],
@@ -2240,14 +2530,16 @@ class CosmicShareContentService {
         type: 'Arketip',
         symbol: 'Bahçıvan',
         title: 'Sabırlı Bahçıvan',
-        meaning: 'Tohumlar zamanla meyve verir. Bugün sabırla ektiğin şeylerin yeşermesi teması güçlü.',
+        meaning:
+            'Tohumlar zamanla meyve verir. Bugün sabırla ektiğin şeylerin yeşermesi teması güçlü.',
         imageHint: 'taurus_gardener',
       ),
       SymbolicMessage(
         type: 'Tarot',
         symbol: 'İmparatoriçe',
         title: 'III - İmparatoriçe',
-        meaning: 'Bereket, duyusallık ve yaratıcılık. Hayatın güzelliklerini hissetme zamanı.',
+        meaning:
+            'Bereket, duyusallık ve yaratıcılık. Hayatın güzelliklerini hissetme zamanı.',
         imageHint: 'empress',
       ),
     ],
@@ -2256,14 +2548,16 @@ class CosmicShareContentService {
         type: 'Arketip',
         symbol: 'Elçi',
         title: 'Tanrıların Elçisi',
-        meaning: 'Hermes gibi sen de dünyalar arasında köprü kuruyorsun. Sözlerin bugün güç taşıyor.',
+        meaning:
+            'Hermes gibi sen de dünyalar arasında köprü kuruyorsun. Sözlerin bugün güç taşıyor.',
         imageHint: 'gemini_messenger',
       ),
       SymbolicMessage(
         type: 'Tarot',
         symbol: 'Aşıklar',
         title: 'VI - Aşıklar',
-        meaning: 'Seçimler ve bağlantılar. İki yol arasında değil, ikisini birleştirme zamanı.',
+        meaning:
+            'Seçimler ve bağlantılar. İki yol arasında değil, ikisini birleştirme zamanı.',
         imageHint: 'lovers',
       ),
     ],
@@ -2272,14 +2566,16 @@ class CosmicShareContentService {
         type: 'Arketip',
         symbol: 'Anne',
         title: 'Büyük Anne',
-        meaning: 'Besleyen, koruyan, sarmalayan. Bugün hem başkalarına hem kendine annelik et.',
+        meaning:
+            'Besleyen, koruyan, sarmalayan. Bugün hem başkalarına hem kendine annelik et.',
         imageHint: 'cancer_mother',
       ),
       SymbolicMessage(
         type: 'Tarot',
         symbol: 'Ay',
         title: 'XVIII - Ay',
-        meaning: 'Bilinçaltı, sezgiler ve gizli korkular. Karanlıkta da yol bulabilirsin.',
+        meaning:
+            'Bilinçaltı, sezgiler ve gizli korkular. Karanlıkta da yol bulabilirsin.',
         imageHint: 'moon',
       ),
     ],
@@ -2288,14 +2584,16 @@ class CosmicShareContentService {
         type: 'Arketip',
         symbol: 'Kral',
         title: 'Adil Kral',
-        meaning: 'Gerçek kral tahtı değil, kalpleri yönetir. Bugün cömertliğinle hükmet.',
+        meaning:
+            'Gerçek kral tahtı değil, kalpleri yönetir. Bugün cömertliğinle hükmet.',
         imageHint: 'leo_king',
       ),
       SymbolicMessage(
         type: 'Tarot',
         symbol: 'Güç',
         title: 'VIII - Güç',
-        meaning: 'İç aslanını evcilleştirme. Güç kontrolde değil, yumuşaklıkta.',
+        meaning:
+            'İç aslanını evcilleştirme. Güç kontrolde değil, yumuşaklıkta.',
         imageHint: 'strength',
       ),
     ],
@@ -2304,7 +2602,8 @@ class CosmicShareContentService {
         type: 'Arketip',
         symbol: 'Şifacı',
         title: 'Kutsal Şifacı',
-        meaning: 'Ellerin şifa taşıyor. Bugün dokunduğun her şeyi iyileştirme potansiyelin var.',
+        meaning:
+            'Ellerin şifa taşıyor. Bugün dokunduğun her şeyi iyileştirme potansiyelin var.',
         imageHint: 'virgo_healer',
       ),
       SymbolicMessage(
@@ -2320,14 +2619,16 @@ class CosmicShareContentService {
         type: 'Arketip',
         symbol: 'Diplomat',
         title: 'Barış Elçisi',
-        meaning: 'Köprüler kuran, yaralar saran. Bugün uyum teması öne çıkıyor.',
+        meaning:
+            'Köprüler kuran, yaralar saran. Bugün uyum teması öne çıkıyor.',
         imageHint: 'libra_diplomat',
       ),
       SymbolicMessage(
         type: 'Tarot',
         symbol: 'Adalet',
         title: 'XI - Adalet',
-        meaning: 'Denge, doğruluk ve kararlar. Terazi dengede — şimdi seçim zamanı.',
+        meaning:
+            'Denge, doğruluk ve kararlar. Terazi dengede — şimdi seçim zamanı.',
         imageHint: 'justice',
       ),
     ],
@@ -2336,14 +2637,16 @@ class CosmicShareContentService {
         type: 'Arketip',
         symbol: 'Simyacı',
         title: 'Karanlık Simyacı',
-        meaning: 'Kurşunu altına çevirirsin. Acıyı bilgeliğe, kaybı kazanca dönüştürme gücün var.',
+        meaning:
+            'Kurşunu altına çevirirsin. Acıyı bilgeliğe, kaybı kazanca dönüştürme gücün var.',
         imageHint: 'scorpio_alchemist',
       ),
       SymbolicMessage(
         type: 'Tarot',
         symbol: 'Ölüm',
         title: 'XIII - Ölüm',
-        meaning: 'Dönüşüm ve yeniden doğuş. Bitişler, başlangıçların kapısıdır.',
+        meaning:
+            'Dönüşüm ve yeniden doğuş. Bitişler, başlangıçların kapısıdır.',
         imageHint: 'death',
       ),
     ],
@@ -2352,7 +2655,8 @@ class CosmicShareContentService {
         type: 'Arketip',
         symbol: 'Kaşif',
         title: 'Ufuk Kaşifi',
-        meaning: 'Bilinmeyen seni çağırıyor. Bugün sınırları aşma cesareti içinde.',
+        meaning:
+            'Bilinmeyen seni çağırıyor. Bugün sınırları aşma cesareti içinde.',
         imageHint: 'sagittarius_explorer',
       ),
       SymbolicMessage(
@@ -2368,14 +2672,16 @@ class CosmicShareContentService {
         type: 'Arketip',
         symbol: 'Bilge',
         title: 'Dağın Bilgesi',
-        meaning: 'Zirveye çıkan, geri dönüp yol gösterir. Deneyimin başkalarına ışık tutuyor.',
+        meaning:
+            'Zirveye çıkan, geri dönüp yol gösterir. Deneyimin başkalarına ışık tutuyor.',
         imageHint: 'capricorn_sage',
       ),
       SymbolicMessage(
         type: 'Tarot',
         symbol: 'Şeytan',
         title: 'XV - Şeytan',
-        meaning: 'Zincirler mi, seçimler mi? Bağlandığın şeyler seni tanımlıyor mu?',
+        meaning:
+            'Zincirler mi, seçimler mi? Bağlandığın şeyler seni tanımlıyor mu?',
         imageHint: 'devil',
       ),
     ],
@@ -2391,7 +2697,8 @@ class CosmicShareContentService {
         type: 'Tarot',
         symbol: 'Yıldız',
         title: 'XVII - Yıldız',
-        meaning: 'Umut, ilham ve rehberlik. En karanlık gecede bile yıldızlar parlar.',
+        meaning:
+            'Umut, ilham ve rehberlik. En karanlık gecede bile yıldızlar parlar.',
         imageHint: 'star',
       ),
     ],
@@ -2608,10 +2915,7 @@ class CollectiveMoment {
   final String mainText;
   final String subText;
 
-  const CollectiveMoment({
-    required this.mainText,
-    required this.subText,
-  });
+  const CollectiveMoment({required this.mainText, required this.subText});
 }
 
 class SoftPremiumCuriosity {

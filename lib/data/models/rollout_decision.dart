@@ -2,13 +2,7 @@
 // Part of the ML Rollout Policy (Hybrid)
 
 /// Rollout action types
-enum RolloutAction {
-  hold,
-  advance,
-  rollback,
-  freeze,
-  unfreeze,
-}
+enum RolloutAction { hold, advance, rollback, freeze, unfreeze }
 
 /// Decision source types (hierarchy levels)
 enum DecisionSource {
@@ -43,12 +37,7 @@ enum DecisionSource {
 }
 
 /// Incident severity levels
-enum IncidentSeverity {
-  low,
-  medium,
-  high,
-  critical,
-}
+enum IncidentSeverity { low, medium, high, critical }
 
 /// Feature contribution for explainability
 class FeatureContribution {
@@ -108,9 +97,11 @@ class MLPrediction {
       riskProbability: (json['risk_probability'] as num).toDouble(),
       suggestedDelta: json['suggested_delta'] as int,
       confidenceNextStage: (json['confidence_next_stage'] as num).toDouble(),
-      topContributors: (json['top_contributors'] as List?)
+      topContributors:
+          (json['top_contributors'] as List?)
               ?.map(
-                  (c) => FeatureContribution.fromJson(c as Map<String, dynamic>))
+                (c) => FeatureContribution.fromJson(c as Map<String, dynamic>),
+              )
               .toList() ??
           [],
       naturalLanguageExplanation:
@@ -195,7 +186,9 @@ class RolloutDecision {
       ),
       previousPercentage: json['previous_percentage'] as int?,
       newPercentage: json['new_percentage'] as int?,
-      decisionSource: DecisionSource.fromDbValue(json['decision_source'] as String),
+      decisionSource: DecisionSource.fromDbValue(
+        json['decision_source'] as String,
+      ),
       decisionLevel: json['decision_level'] as int? ?? 1,
       mlRiskProbability: (json['ml_risk_probability'] as num?)?.toDouble(),
       mlSuggestedDelta: json['ml_suggested_delta'] as int?,
@@ -203,9 +196,11 @@ class RolloutDecision {
       mlOverridden: json['ml_overridden'] as bool? ?? false,
       overrideReason: json['override_reason'] as String?,
       explanation: json['explanation'] as String?,
-      topContributors: (json['top_contributors'] as List?)
+      topContributors:
+          (json['top_contributors'] as List?)
               ?.map(
-                  (c) => FeatureContribution.fromJson(c as Map<String, dynamic>))
+                (c) => FeatureContribution.fromJson(c as Map<String, dynamic>),
+              )
               .toList() ??
           [],
       createdAt: DateTime.parse(json['created_at'] as String),
@@ -304,12 +299,12 @@ class RolloutTrainingSnapshot {
       totalExposedUsers: json['total_exposed_users'] as int,
       crashRateDelta24h: (json['crash_rate_delta_24h'] as num).toDouble(),
       errorRateDelta24h: (json['error_rate_delta_24h'] as num).toDouble(),
-      churnRateExposedVsControl:
-          (json['churn_rate_exposed_vs_control'] as num).toDouble(),
-      conversionRateExposed:
-          (json['conversion_rate_exposed'] as num).toDouble(),
-      engagementDeltaExposed:
-          (json['engagement_delta_exposed'] as num).toDouble(),
+      churnRateExposedVsControl: (json['churn_rate_exposed_vs_control'] as num)
+          .toDouble(),
+      conversionRateExposed: (json['conversion_rate_exposed'] as num)
+          .toDouble(),
+      engagementDeltaExposed: (json['engagement_delta_exposed'] as num)
+          .toDouble(),
       retentionD1Exposed: (json['retention_d1_exposed'] as num).toDouble(),
       platformIosRatio: (json['platform_ios_ratio'] as num).toDouble(),
       platformAndroidRatio: (json['platform_android_ratio'] as num).toDouble(),
@@ -506,12 +501,16 @@ class MLRolloutModel {
       final weight = weights[featureName] ?? 0.0;
       final contribution = weight * features[i];
 
-      contributions.add(FeatureContribution(
-        featureName: featureName,
-        featureValue: features[i],
-        contribution: contribution.abs(),
-        direction: contribution > 0 ? 'positive' : (contribution < 0 ? 'negative' : 'neutral'),
-      ));
+      contributions.add(
+        FeatureContribution(
+          featureName: featureName,
+          featureValue: features[i],
+          contribution: contribution.abs(),
+          direction: contribution > 0
+              ? 'positive'
+              : (contribution < 0 ? 'negative' : 'neutral'),
+        ),
+      );
     }
 
     // Sort by absolute contribution

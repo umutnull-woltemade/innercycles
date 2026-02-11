@@ -24,52 +24,58 @@ class BreadcrumbNavigation extends ConsumerWidget {
     required this.items,
     this.activeColor,
     this.inactiveColor,
-  })  : _signName = null,
-        _signSymbol = null,
-        _toolName = null,
-        _parentLabel = null,
-        _parentRoute = null,
-        _currentLabel = null,
-        _type = _BreadcrumbType.custom;
+  }) : _signName = null,
+       _signSymbol = null,
+       _toolName = null,
+       _parentLabel = null,
+       _parentRoute = null,
+       _currentLabel = null,
+       _type = _BreadcrumbType.custom;
 
   /// Creates breadcrumbs for a zodiac sign page
-  const BreadcrumbNavigation.zodiacSign(String signName, String signSymbol, {super.key})
-      : items = const [],
-        activeColor = null,
-        inactiveColor = null,
-        _signName = signName,
-        _signSymbol = signSymbol,
-        _toolName = null,
-        _parentLabel = null,
-        _parentRoute = null,
-        _currentLabel = null,
-        _type = _BreadcrumbType.zodiacSign;
+  const BreadcrumbNavigation.zodiacSign(
+    String signName,
+    String signSymbol, {
+    super.key,
+  }) : items = const [],
+       activeColor = null,
+       inactiveColor = null,
+       _signName = signName,
+       _signSymbol = signSymbol,
+       _toolName = null,
+       _parentLabel = null,
+       _parentRoute = null,
+       _currentLabel = null,
+       _type = _BreadcrumbType.zodiacSign;
 
   /// Creates breadcrumbs for a tool page
-  const BreadcrumbNavigation.tool(String toolName, String toolRoute, {super.key})
-      : items = const [],
-        activeColor = null,
-        inactiveColor = null,
-        _signName = null,
-        _signSymbol = null,
-        _toolName = toolName,
-        _parentLabel = null,
-        _parentRoute = null,
-        _currentLabel = null,
-        _type = _BreadcrumbType.tool;
+  const BreadcrumbNavigation.tool(
+    String toolName,
+    String toolRoute, {
+    super.key,
+  }) : items = const [],
+       activeColor = null,
+       inactiveColor = null,
+       _signName = null,
+       _signSymbol = null,
+       _toolName = toolName,
+       _parentLabel = null,
+       _parentRoute = null,
+       _currentLabel = null,
+       _type = _BreadcrumbType.tool;
 
   /// Creates breadcrumbs for horoscope page
   const BreadcrumbNavigation.horoscope({super.key})
-      : items = const [],
-        activeColor = null,
-        inactiveColor = null,
-        _signName = null,
-        _signSymbol = null,
-        _toolName = null,
-        _parentLabel = null,
-        _parentRoute = null,
-        _currentLabel = null,
-        _type = _BreadcrumbType.horoscope;
+    : items = const [],
+      activeColor = null,
+      inactiveColor = null,
+      _signName = null,
+      _signSymbol = null,
+      _toolName = null,
+      _parentLabel = null,
+      _parentRoute = null,
+      _currentLabel = null,
+      _type = _BreadcrumbType.horoscope;
 
   /// Creates breadcrumbs for any nested page
   const BreadcrumbNavigation.nested({
@@ -77,20 +83,22 @@ class BreadcrumbNavigation extends ConsumerWidget {
     required String parentLabel,
     required String parentRoute,
     required String currentLabel,
-  })  : items = const [],
-        activeColor = null,
-        inactiveColor = null,
-        _signName = null,
-        _signSymbol = null,
-        _toolName = null,
-        _parentLabel = parentLabel,
-        _parentRoute = parentRoute,
-        _currentLabel = currentLabel,
-        _type = _BreadcrumbType.nested;
+  }) : items = const [],
+       activeColor = null,
+       inactiveColor = null,
+       _signName = null,
+       _signSymbol = null,
+       _toolName = null,
+       _parentLabel = parentLabel,
+       _parentRoute = parentRoute,
+       _currentLabel = currentLabel,
+       _type = _BreadcrumbType.nested;
 
   List<BreadcrumbItem> _buildItems(LocalizedL10n l10n) {
     final homeLabel = l10n.get('widgets.breadcrumb_navigation.home');
-    final horoscopeLabel = l10n.get('widgets.breadcrumb_navigation.horoscope_interpretations');
+    final horoscopeLabel = l10n.get(
+      'widgets.breadcrumb_navigation.horoscope_interpretations',
+    );
 
     switch (_type) {
       case _BreadcrumbType.zodiacSign:
@@ -125,7 +133,9 @@ class BreadcrumbNavigation extends ConsumerWidget {
     final l10n = ref.watch(l10nServiceProvider);
     final builtItems = _buildItems(l10n);
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final defaultActiveColor = isDark ? AppColors.textPrimary : AppColors.lightTextPrimary;
+    final defaultActiveColor = isDark
+        ? AppColors.textPrimary
+        : AppColors.lightTextPrimary;
     final defaultInactiveColor = isDark
         ? AppColors.textSecondary.withValues(alpha: 0.7)
         : AppColors.lightTextSecondary.withValues(alpha: 0.8);
@@ -147,7 +157,10 @@ class BreadcrumbNavigation extends ConsumerWidget {
               GestureDetector(
                 onTap: isClickable ? () => context.push(item.route!) : null,
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                    vertical: 4,
+                  ),
                   decoration: isClickable
                       ? BoxDecoration(
                           borderRadius: BorderRadius.circular(4),
@@ -192,10 +205,7 @@ class BreadcrumbItem {
   final String label;
   final String? route;
 
-  const BreadcrumbItem({
-    required this.label,
-    this.route,
-  });
+  const BreadcrumbItem({required this.label, this.route});
 }
 
 /// Compact breadcrumb for mobile views
@@ -234,7 +244,9 @@ class BreadcrumbNavigationCompact extends StatelessWidget {
             Icon(
               Icons.arrow_back_ios,
               size: 12,
-              color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+              color: isDark
+                  ? AppColors.textSecondary
+                  : AppColors.lightTextSecondary,
             ),
             const SizedBox(width: 4),
             Text(
@@ -242,7 +254,9 @@ class BreadcrumbNavigationCompact extends StatelessWidget {
               style: GoogleFonts.raleway(
                 fontSize: 12,
                 fontWeight: FontWeight.w600,
-                color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+                color: isDark
+                    ? AppColors.textSecondary
+                    : AppColors.lightTextSecondary,
               ),
             ),
           ],
@@ -253,10 +267,4 @@ class BreadcrumbNavigationCompact extends StatelessWidget {
 }
 
 /// Internal enum to track breadcrumb type
-enum _BreadcrumbType {
-  custom,
-  zodiacSign,
-  tool,
-  horoscope,
-  nested,
-}
+enum _BreadcrumbType { custom, zodiacSign, tool, horoscope, nested }

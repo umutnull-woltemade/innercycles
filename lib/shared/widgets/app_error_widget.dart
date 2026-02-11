@@ -9,10 +9,7 @@ import '../../data/providers/app_providers.dart';
 class AppErrorWidget extends ConsumerWidget {
   final FlutterErrorDetails details;
 
-  const AppErrorWidget({
-    super.key,
-    required this.details,
-  });
+  const AppErrorWidget({super.key, required this.details});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -20,7 +17,9 @@ class AppErrorWidget extends ConsumerWidget {
 
     // Log the error in debug mode
     if (kDebugMode) {
-      debugPrint('AppErrorWidget: Rendering error fallback for: ${details.exception}');
+      debugPrint(
+        'AppErrorWidget: Rendering error fallback for: ${details.exception}',
+      );
     }
 
     return Container(
@@ -33,10 +32,7 @@ class AppErrorWidget extends ConsumerWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 // Icon
-                const Text(
-                  '✨',
-                  style: TextStyle(fontSize: 64),
-                ),
+                const Text('✨', style: TextStyle(fontSize: 64)),
                 const SizedBox(height: 24),
 
                 // Title
@@ -94,7 +90,9 @@ class AppErrorWidget extends ConsumerWidget {
                       // Try to pop to root or reload
                       try {
                         if (Navigator.of(context).canPop()) {
-                          Navigator.of(context).popUntil((route) => route.isFirst);
+                          Navigator.of(
+                            context,
+                          ).popUntil((route) => route.isFirst);
                         }
                       } catch (e) {
                         // If navigation fails, we're in a bad state
@@ -112,7 +110,10 @@ class AppErrorWidget extends ConsumerWidget {
                       ),
                     ),
                     child: Text(
-                      L10nService.get('widgets.app_error.back_to_home', language),
+                      L10nService.get(
+                        'widgets.app_error.back_to_home',
+                        language,
+                      ),
                       style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
@@ -130,11 +131,16 @@ class AppErrorWidget extends ConsumerWidget {
                       // On web, this will reload the page
                       // Using JS interop would be cleaner but this is simpler
                       if (kDebugMode) {
-                        debugPrint('User requested page reload from error widget');
+                        debugPrint(
+                          'User requested page reload from error widget',
+                        );
                       }
                     },
                     child: Text(
-                      L10nService.get('widgets.app_error.reload_page', language),
+                      L10nService.get(
+                        'widgets.app_error.reload_page',
+                        language,
+                      ),
                       style: TextStyle(
                         color: Colors.white.withValues(alpha: 0.6),
                         fontSize: 14,
@@ -178,10 +184,7 @@ class ProductionErrorWidget extends ConsumerWidget {
               const SizedBox(height: 12),
               Text(
                 L10nService.get('widgets.app_error.please_reload', language),
-                style: const TextStyle(
-                  color: Colors.white70,
-                  fontSize: 14,
-                ),
+                style: const TextStyle(color: Colors.white70, fontSize: 14),
               ),
             ],
           ),

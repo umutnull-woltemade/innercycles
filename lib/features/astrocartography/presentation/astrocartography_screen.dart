@@ -9,15 +9,18 @@ import '../../../data/services/premium_astrology_service.dart';
 import '../../../data/services/l10n_service.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/entertainment_disclaimer.dart';
 
 class AstroCartographyScreen extends ConsumerStatefulWidget {
   const AstroCartographyScreen({super.key});
 
   @override
-  ConsumerState<AstroCartographyScreen> createState() => _AstroCartographyScreenState();
+  ConsumerState<AstroCartographyScreen> createState() =>
+      _AstroCartographyScreenState();
 }
 
-class _AstroCartographyScreenState extends ConsumerState<AstroCartographyScreen> {
+class _AstroCartographyScreenState
+    extends ConsumerState<AstroCartographyScreen> {
   final _service = PremiumAstrologyService();
 
   AstroCartographyData? _data;
@@ -66,34 +69,51 @@ class _AstroCartographyScreenState extends ConsumerState<AstroCartographyScreen>
                 const Text('🗺️', style: TextStyle(fontSize: 64)),
                 const SizedBox(height: 16),
                 Text(
-                  L10nService.get('astrocartography.profile_not_found', language),
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        color: Colors.white,
-                      ),
+                  L10nService.get(
+                    'astrocartography.profile_not_found',
+                    language,
+                  ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleLarge?.copyWith(color: Colors.white),
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  L10nService.get('astrocartography.enter_birth_info', language),
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: Colors.white70,
-                      ),
+                  L10nService.get(
+                    'astrocartography.enter_birth_info',
+                    language,
+                  ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodyMedium?.copyWith(color: Colors.white70),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 24),
                 ElevatedButton.icon(
                   onPressed: () => context.go(Routes.onboarding),
                   icon: const Icon(Icons.person_add),
-                  label: Text(L10nService.get('astrocartography.create_profile', language)),
+                  label: Text(
+                    L10nService.get(
+                      'astrocartography.create_profile',
+                      language,
+                    ),
+                  ),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF667EEA),
                     foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 24,
+                      vertical: 12,
+                    ),
                   ),
                 ),
                 const SizedBox(height: 12),
                 TextButton(
                   onPressed: () => context.pop(),
-                  child: Text(L10nService.get('common.go_back', language), style: const TextStyle(color: Colors.white70)),
+                  child: Text(
+                    L10nService.get('common.go_back', language),
+                    style: const TextStyle(color: Colors.white70),
+                  ),
                 ),
               ],
             ),
@@ -127,15 +147,28 @@ class _AstroCartographyScreenState extends ConsumerState<AstroCartographyScreen>
                         _buildPlanetaryLinesCard(isDark, language),
                         const SizedBox(height: AppConstants.spacingMd),
                         _buildAnalysisCard(isDark, language),
+                        const SizedBox(height: AppConstants.spacingXl),
+                        PageFooterWithDisclaimer(
+                          brandText: 'Astrocartography — Venus One',
+                          disclaimerText: DisclaimerTexts.astrology(language),
+                          language: language,
+                        ),
                         const SizedBox(height: AppConstants.spacingXxl),
                       ] else ...[
                         const SizedBox(height: 100),
-                        const CircularProgressIndicator(color: AppColors.cosmic),
+                        const CircularProgressIndicator(
+                          color: AppColors.cosmic,
+                        ),
                         const SizedBox(height: 16),
                         Text(
-                          L10nService.get('astrocartography.generating_map', language),
+                          L10nService.get(
+                            'astrocartography.generating_map',
+                            language,
+                          ),
                           style: TextStyle(
-                            color: isDark ? Colors.white70 : AppColors.textLight,
+                            color: isDark
+                                ? Colors.white70
+                                : AppColors.textLight,
                           ),
                         ),
                       ],
@@ -166,9 +199,9 @@ class _AstroCartographyScreenState extends ConsumerState<AstroCartographyScreen>
             child: Text(
               L10nService.get('astrocartography.title', language),
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: isDark ? Colors.white : AppColors.textDark,
-                  ),
+                fontWeight: FontWeight.bold,
+                color: isDark ? Colors.white : AppColors.textDark,
+              ),
               textAlign: TextAlign.center,
             ),
           ),
@@ -189,9 +222,7 @@ class _AstroCartographyScreenState extends ConsumerState<AstroCartographyScreen>
           ],
         ),
         borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: AppColors.cosmic.withValues(alpha: 0.5),
-        ),
+        border: Border.all(color: AppColors.cosmic.withValues(alpha: 0.5)),
       ),
       child: Row(
         children: [
@@ -202,14 +233,20 @@ class _AstroCartographyScreenState extends ConsumerState<AstroCartographyScreen>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  L10nService.get('astrocartography.location_astrology', language),
+                  L10nService.get(
+                    'astrocartography.location_astrology',
+                    language,
+                  ),
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: isDark ? Colors.white : AppColors.textDark,
                   ),
                 ),
                 Text(
-                  L10nService.get('astrocartography.discover_reflections', language),
+                  L10nService.get(
+                    'astrocartography.discover_reflections',
+                    language,
+                  ),
                   style: TextStyle(
                     fontSize: 12,
                     color: isDark ? Colors.white70 : AppColors.textLight,
@@ -223,8 +260,13 @@ class _AstroCartographyScreenState extends ConsumerState<AstroCartographyScreen>
     );
   }
 
-  Widget _buildProfileCard(bool isDark, dynamic userProfile, AppLanguage language) {
-    final hasCoordinates = userProfile.birthLatitude != null && userProfile.birthLongitude != null;
+  Widget _buildProfileCard(
+    bool isDark,
+    dynamic userProfile,
+    AppLanguage language,
+  ) {
+    final hasCoordinates =
+        userProfile.birthLatitude != null && userProfile.birthLongitude != null;
 
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -233,20 +275,14 @@ class _AstroCartographyScreenState extends ConsumerState<AstroCartographyScreen>
             ? Colors.white.withValues(alpha: 0.05)
             : Colors.white.withValues(alpha: 0.9),
         borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: AppColors.cosmic.withValues(alpha: 0.3),
-        ),
+        border: Border.all(color: AppColors.cosmic.withValues(alpha: 0.3)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
-              Icon(
-                Icons.person,
-                color: AppColors.cosmic,
-                size: 20,
-              ),
+              Icon(Icons.person, color: AppColors.cosmic, size: 20),
               const SizedBox(width: 8),
               Text(
                 L10nService.get('common.profile_info', language),
@@ -273,10 +309,20 @@ class _AstroCartographyScreenState extends ConsumerState<AstroCartographyScreen>
                     ),
                     const SizedBox(width: 4),
                     Text(
-                      hasCoordinates ? L10nService.get('astrocartography.full_data', language) : L10nService.get('astrocartography.default_location', language),
+                      hasCoordinates
+                          ? L10nService.get(
+                              'astrocartography.full_data',
+                              language,
+                            )
+                          : L10nService.get(
+                              'astrocartography.default_location',
+                              language,
+                            ),
                       style: TextStyle(
                         fontSize: 11,
-                        color: hasCoordinates ? AppColors.cosmic : Colors.orange,
+                        color: hasCoordinates
+                            ? AppColors.cosmic
+                            : Colors.orange,
                       ),
                     ),
                   ],
@@ -285,9 +331,25 @@ class _AstroCartographyScreenState extends ConsumerState<AstroCartographyScreen>
             ],
           ),
           const SizedBox(height: AppConstants.spacingMd),
-          _buildInfoRow(isDark, Icons.person_outline, L10nService.get('common.name', language), userProfile.name ?? L10nService.get('common.user', language)),
-          _buildInfoRow(isDark, Icons.cake_outlined, L10nService.get('common.birth_date', language), _formatDate(userProfile.birthDate, language)),
-          _buildInfoRow(isDark, Icons.location_on_outlined, L10nService.get('common.birth_place', language), userProfile.birthPlace ?? L10nService.get('common.not_specified', language)),
+          _buildInfoRow(
+            isDark,
+            Icons.person_outline,
+            L10nService.get('common.name', language),
+            userProfile.name ?? L10nService.get('common.user', language),
+          ),
+          _buildInfoRow(
+            isDark,
+            Icons.cake_outlined,
+            L10nService.get('common.birth_date', language),
+            _formatDate(userProfile.birthDate, language),
+          ),
+          _buildInfoRow(
+            isDark,
+            Icons.location_on_outlined,
+            L10nService.get('common.birth_place', language),
+            userProfile.birthPlace ??
+                L10nService.get('common.not_specified', language),
+          ),
           if (hasCoordinates)
             _buildInfoRow(
               isDark,
@@ -305,7 +367,11 @@ class _AstroCartographyScreenState extends ConsumerState<AstroCartographyScreen>
       padding: const EdgeInsets.symmetric(vertical: 4),
       child: Row(
         children: [
-          Icon(icon, size: 16, color: isDark ? Colors.white54 : AppColors.textLight),
+          Icon(
+            icon,
+            size: 16,
+            color: isDark ? Colors.white54 : AppColors.textLight,
+          ),
           const SizedBox(width: 8),
           Text(
             '$label: ',
@@ -394,9 +460,7 @@ class _AstroCartographyScreenState extends ConsumerState<AstroCartographyScreen>
           ],
         ),
         borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: AppColors.cosmic.withValues(alpha: 0.5),
-        ),
+        border: Border.all(color: AppColors.cosmic.withValues(alpha: 0.5)),
       ),
       child: Stack(
         children: [
@@ -404,11 +468,7 @@ class _AstroCartographyScreenState extends ConsumerState<AstroCartographyScreen>
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Icon(
-                  Icons.public,
-                  size: 64,
-                  color: Colors.white54,
-                ),
+                const Icon(Icons.public, size: 64, color: Colors.white54),
                 const SizedBox(height: AppConstants.spacingMd),
                 Text(
                   L10nService.get('astrocartography.world_map', language),
@@ -418,7 +478,10 @@ class _AstroCartographyScreenState extends ConsumerState<AstroCartographyScreen>
                   ),
                 ),
                 Text(
-                  L10nService.get('astrocartography.planetary_lines_shown_here', language),
+                  L10nService.get(
+                    'astrocartography.planetary_lines_shown_here',
+                    language,
+                  ),
                   style: TextStyle(
                     color: Colors.white.withValues(alpha: 0.6),
                     fontSize: 12,
@@ -491,13 +554,19 @@ class _AstroCartographyScreenState extends ConsumerState<AstroCartographyScreen>
             ],
           ),
           const SizedBox(height: AppConstants.spacingMd),
-          ..._data!.powerPlaces.take(5).map((place) => _buildPowerPlaceTile(place, isDark, language)),
+          ..._data!.powerPlaces
+              .take(5)
+              .map((place) => _buildPowerPlaceTile(place, isDark, language)),
         ],
       ),
     );
   }
 
-  Widget _buildPowerPlaceTile(PowerPlace place, bool isDark, AppLanguage language) {
+  Widget _buildPowerPlaceTile(
+    PowerPlace place,
+    bool isDark,
+    AppLanguage language,
+  ) {
     return Container(
       margin: const EdgeInsets.only(bottom: AppConstants.spacingMd),
       padding: const EdgeInsets.all(AppConstants.spacingMd),
@@ -583,8 +652,8 @@ class _AstroCartographyScreenState extends ConsumerState<AstroCartographyScreen>
     final filteredPlanets = _selectedFilter == 'all'
         ? linesByPlanet.keys.toList()
         : linesByPlanet.keys
-            .where((p) => p.toLowerCase().contains(_selectedFilter))
-            .toList();
+              .where((p) => p.toLowerCase().contains(_selectedFilter))
+              .toList();
 
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -626,7 +695,12 @@ class _AstroCartographyScreenState extends ConsumerState<AstroCartographyScreen>
     );
   }
 
-  Widget _buildPlanetSection(String planet, List<PlanetaryLine> lines, bool isDark, AppLanguage language) {
+  Widget _buildPlanetSection(
+    String planet,
+    List<PlanetaryLine> lines,
+    bool isDark,
+    AppLanguage language,
+  ) {
     return ExpansionTile(
       tilePadding: EdgeInsets.zero,
       title: Text(
@@ -726,9 +800,7 @@ class _AstroCartographyScreenState extends ConsumerState<AstroCartographyScreen>
           ],
         ),
         borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: AppColors.mystic.withValues(alpha: 0.3),
-        ),
+        border: Border.all(color: AppColors.mystic.withValues(alpha: 0.3)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

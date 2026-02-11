@@ -4452,7 +4452,13 @@ const lifePathMega7 = LifePathMegaContent(
   tarotMajorArcana: 'The Chariot (VII) - Inner Victory',
   runicSymbol: 'Algiz ᛉ - Protection and Higher Self',
   colors: ['Purple', 'Navy Blue', 'Silver', 'Black'],
-  crystals: ['Amethyst', 'Labradorite', 'Lapis Lazuli', 'Selenite', 'Black Tourmaline'],
+  crystals: [
+    'Amethyst',
+    'Labradorite',
+    'Lapis Lazuli',
+    'Selenite',
+    'Black Tourmaline',
+  ],
   chakraAlignment: 'Third Eye (Ajna) - Inner Vision',
   sacredGeometry: 'Heptagram - Seven-Pointed Star',
   frequencyHz: '852 Hz - Third Eye Activation',
@@ -5239,7 +5245,13 @@ Career Suggestions:
 - Research and development (discovery)
 - Sports and competition (individual)
 ''',
-    keywords: ['Leadership', 'Originality', 'Initiation', 'Independence', 'Courage'],
+    keywords: [
+      'Leadership',
+      'Originality',
+      'Initiation',
+      'Independence',
+      'Courage',
+    ],
   ),
 
   2: const ExpressionNumberContent(
@@ -5395,7 +5407,13 @@ Your healing path:
 6. Learn the difference between ego and soul
 7. Develop service-oriented creativity
 ''',
-    soulKeywords: ['Freedom', 'Uniqueness', 'Success', 'Recognition', 'Creativity'],
+    soulKeywords: [
+      'Freedom',
+      'Uniqueness',
+      'Success',
+      'Recognition',
+      'Creativity',
+    ],
   ),
 
   // Content for other soul urge numbers to be added (2-9, 11, 22, 33)

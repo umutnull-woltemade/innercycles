@@ -140,9 +140,8 @@ class ExperimentFeatureExtractor {
     if (values.length < kMinVolatilitySamples) return 0.0;
 
     final mean = values.reduce((a, b) => a + b) / values.length;
-    final variance = values
-            .map((v) => (v - mean) * (v - mean))
-            .reduce((a, b) => a + b) /
+    final variance =
+        values.map((v) => (v - mean) * (v - mean)).reduce((a, b) => a + b) /
         values.length;
 
     return math.sqrt(variance);
@@ -230,25 +229,33 @@ class ExperimentFeatureExtractor {
     // Error rate increasing rapidly
     final errorDelta = current.errorRate - previous.errorRate;
     if (errorDelta > 0.02) {
-      warnings.add('Error rate increased by ${(errorDelta * 100).toStringAsFixed(1)}%');
+      warnings.add(
+        'Error rate increased by ${(errorDelta * 100).toStringAsFixed(1)}%',
+      );
     }
 
     // Crash rate spike
     final crashDelta = current.crashRate - previous.crashRate;
     if (crashDelta > 0.005) {
-      warnings.add('Crash rate spiked by ${(crashDelta * 100).toStringAsFixed(2)}%');
+      warnings.add(
+        'Crash rate spiked by ${(crashDelta * 100).toStringAsFixed(2)}%',
+      );
     }
 
     // Success rate declining
     final successDelta = current.successRate - previous.successRate;
     if (successDelta < -0.05) {
-      warnings.add('Success rate declined by ${(successDelta.abs() * 100).toStringAsFixed(1)}%');
+      warnings.add(
+        'Success rate declined by ${(successDelta.abs() * 100).toStringAsFixed(1)}%',
+      );
     }
 
     // Confidence dropping
     final confidenceDelta = current.confidenceScore - previous.confidenceScore;
     if (confidenceDelta < -0.1) {
-      warnings.add('Confidence score dropped by ${(confidenceDelta.abs() * 100).toStringAsFixed(0)}%');
+      warnings.add(
+        'Confidence score dropped by ${(confidenceDelta.abs() * 100).toStringAsFixed(0)}%',
+      );
     }
 
     // Sample growth stalling

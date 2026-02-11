@@ -10,12 +10,14 @@ import '../../../data/services/premium_astrology_service.dart';
 import '../../../data/services/l10n_service.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/entertainment_disclaimer.dart';
 
 class DraconicChartScreen extends ConsumerStatefulWidget {
   const DraconicChartScreen({super.key});
 
   @override
-  ConsumerState<DraconicChartScreen> createState() => _DraconicChartScreenState();
+  ConsumerState<DraconicChartScreen> createState() =>
+      _DraconicChartScreenState();
 }
 
 class _DraconicChartScreenState extends ConsumerState<DraconicChartScreen> {
@@ -67,16 +69,16 @@ class _DraconicChartScreenState extends ConsumerState<DraconicChartScreen> {
                 const SizedBox(height: 16),
                 Text(
                   L10nService.get('draconic.profile_not_found', language),
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        color: Colors.white,
-                      ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleLarge?.copyWith(color: Colors.white),
                 ),
                 const SizedBox(height: 8),
                 Text(
                   L10nService.get('draconic.enter_birth_info', language),
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: Colors.white70,
-                      ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodyMedium?.copyWith(color: Colors.white70),
                 ),
                 const SizedBox(height: 24),
                 ElevatedButton(
@@ -119,15 +121,28 @@ class _DraconicChartScreenState extends ConsumerState<DraconicChartScreen> {
                         _buildEvolutionaryPathCard(isDark, language),
                         const SizedBox(height: AppConstants.spacingMd),
                         _buildPlanetPositionsCard(isDark, language),
+                        const SizedBox(height: AppConstants.spacingXl),
+                        PageFooterWithDisclaimer(
+                          brandText: 'Draconic Chart — Venus One',
+                          disclaimerText: DisclaimerTexts.astrology(language),
+                          language: language,
+                        ),
                         const SizedBox(height: AppConstants.spacingXxl),
                       ] else ...[
                         const SizedBox(height: 100),
-                        const CircularProgressIndicator(color: AppColors.mystic),
+                        const CircularProgressIndicator(
+                          color: AppColors.mystic,
+                        ),
                         const SizedBox(height: 16),
                         Text(
-                          L10nService.get('draconic.generating_chart', language),
+                          L10nService.get(
+                            'draconic.generating_chart',
+                            language,
+                          ),
                           style: TextStyle(
-                            color: isDark ? Colors.white70 : AppColors.textLight,
+                            color: isDark
+                                ? Colors.white70
+                                : AppColors.textLight,
                           ),
                         ),
                       ],
@@ -158,9 +173,9 @@ class _DraconicChartScreenState extends ConsumerState<DraconicChartScreen> {
             child: Text(
               L10nService.get('draconic.title', language),
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: isDark ? Colors.white : AppColors.textDark,
-                  ),
+                fontWeight: FontWeight.bold,
+                color: isDark ? Colors.white : AppColors.textDark,
+              ),
               textAlign: TextAlign.center,
             ),
           ),
@@ -181,9 +196,7 @@ class _DraconicChartScreenState extends ConsumerState<DraconicChartScreen> {
           ],
         ),
         borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: AppColors.mystic.withValues(alpha: 0.5),
-        ),
+        border: Border.all(color: AppColors.mystic.withValues(alpha: 0.5)),
       ),
       child: Row(
         children: [
@@ -215,7 +228,11 @@ class _DraconicChartScreenState extends ConsumerState<DraconicChartScreen> {
     );
   }
 
-  Widget _buildProfileCard(bool isDark, UserProfile userProfile, AppLanguage language) {
+  Widget _buildProfileCard(
+    bool isDark,
+    UserProfile userProfile,
+    AppLanguage language,
+  ) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -223,20 +240,14 @@ class _DraconicChartScreenState extends ConsumerState<DraconicChartScreen> {
             ? Colors.white.withValues(alpha: 0.05)
             : Colors.white.withValues(alpha: 0.9),
         borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: AppColors.mystic.withValues(alpha: 0.3),
-        ),
+        border: Border.all(color: AppColors.mystic.withValues(alpha: 0.3)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
-              Icon(
-                Icons.person,
-                color: AppColors.mystic,
-                size: 20,
-              ),
+              Icon(Icons.person, color: AppColors.mystic, size: 20),
               const SizedBox(width: 8),
               Text(
                 L10nService.get('draconic.profile_info', language),
@@ -249,13 +260,38 @@ class _DraconicChartScreenState extends ConsumerState<DraconicChartScreen> {
             ],
           ),
           const SizedBox(height: AppConstants.spacingMd),
-          _buildInfoRow(isDark, Icons.person_outline, L10nService.get('draconic.name', language), userProfile.name ?? L10nService.get('draconic.user', language)),
-          _buildInfoRow(isDark, Icons.cake_outlined, L10nService.get('draconic.birth_date', language), _formatDate(userProfile.birthDate, language)),
-          _buildInfoRow(isDark, Icons.wb_sunny_outlined, L10nService.get('draconic.sun_sign', language), userProfile.sunSign.localizedName(language)),
+          _buildInfoRow(
+            isDark,
+            Icons.person_outline,
+            L10nService.get('draconic.name', language),
+            userProfile.name ?? L10nService.get('draconic.user', language),
+          ),
+          _buildInfoRow(
+            isDark,
+            Icons.cake_outlined,
+            L10nService.get('draconic.birth_date', language),
+            _formatDate(userProfile.birthDate, language),
+          ),
+          _buildInfoRow(
+            isDark,
+            Icons.wb_sunny_outlined,
+            L10nService.get('draconic.sun_sign', language),
+            userProfile.sunSign.localizedName(language),
+          ),
           if (userProfile.moonSign != null)
-            _buildInfoRow(isDark, Icons.nightlight_outlined, L10nService.get('draconic.moon_sign', language), userProfile.moonSign!.localizedName(language)),
+            _buildInfoRow(
+              isDark,
+              Icons.nightlight_outlined,
+              L10nService.get('draconic.moon_sign', language),
+              userProfile.moonSign!.localizedName(language),
+            ),
           if (userProfile.risingSign != null)
-            _buildInfoRow(isDark, Icons.arrow_upward, L10nService.get('draconic.rising_sign', language), userProfile.risingSign!.localizedName(language)),
+            _buildInfoRow(
+              isDark,
+              Icons.arrow_upward,
+              L10nService.get('draconic.rising_sign', language),
+              userProfile.risingSign!.localizedName(language),
+            ),
         ],
       ),
     );
@@ -266,7 +302,11 @@ class _DraconicChartScreenState extends ConsumerState<DraconicChartScreen> {
       padding: const EdgeInsets.symmetric(vertical: 4),
       child: Row(
         children: [
-          Icon(icon, size: 16, color: isDark ? Colors.white54 : AppColors.textLight),
+          Icon(
+            icon,
+            size: 16,
+            color: isDark ? Colors.white54 : AppColors.textLight,
+          ),
           const SizedBox(width: 8),
           Text(
             '$label: ',
@@ -293,9 +333,18 @@ class _DraconicChartScreenState extends ConsumerState<DraconicChartScreen> {
 
   String _formatDate(DateTime date, AppLanguage language) {
     final monthKey = [
-      'months.january', 'months.february', 'months.march', 'months.april',
-      'months.may', 'months.june', 'months.july', 'months.august',
-      'months.september', 'months.october', 'months.november', 'months.december'
+      'months.january',
+      'months.february',
+      'months.march',
+      'months.april',
+      'months.may',
+      'months.june',
+      'months.july',
+      'months.august',
+      'months.september',
+      'months.october',
+      'months.november',
+      'months.december',
     ][date.month - 1];
     return '${date.day} ${L10nService.get(monthKey, language)} ${date.year}';
   }
@@ -313,9 +362,7 @@ class _DraconicChartScreenState extends ConsumerState<DraconicChartScreen> {
           ],
         ),
         borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: AppColors.mystic.withValues(alpha: 0.5),
-        ),
+        border: Border.all(color: AppColors.mystic.withValues(alpha: 0.5)),
       ),
       child: Column(
         children: [
@@ -360,7 +407,12 @@ class _DraconicChartScreenState extends ConsumerState<DraconicChartScreen> {
   }
 
   Widget _buildDraconicSign(
-      String label, ZodiacSign sign, String emoji, bool isDark, AppLanguage language) {
+    String label,
+    ZodiacSign sign,
+    String emoji,
+    bool isDark,
+    AppLanguage language,
+  ) {
     return Column(
       children: [
         Text(emoji, style: const TextStyle(fontSize: 28)),
@@ -378,9 +430,7 @@ class _DraconicChartScreenState extends ConsumerState<DraconicChartScreen> {
           decoration: BoxDecoration(
             color: sign.color.withValues(alpha: 0.2),
             borderRadius: BorderRadius.circular(16),
-            border: Border.all(
-              color: sign.color.withValues(alpha: 0.5),
-            ),
+            border: Border.all(color: sign.color.withValues(alpha: 0.5)),
           ),
           child: Row(
             mainAxisSize: MainAxisSize.min,
@@ -476,9 +526,7 @@ class _DraconicChartScreenState extends ConsumerState<DraconicChartScreen> {
             ? Colors.white.withValues(alpha: 0.05)
             : Colors.white.withValues(alpha: 0.9),
         borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: color.withValues(alpha: 0.3),
-        ),
+        border: Border.all(color: color.withValues(alpha: 0.3)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -545,13 +593,19 @@ class _DraconicChartScreenState extends ConsumerState<DraconicChartScreen> {
             ],
           ),
           const SizedBox(height: AppConstants.spacingMd),
-          ..._chart!.planets.map((planet) => _buildPlanetTile(planet, isDark, language)),
+          ..._chart!.planets.map(
+            (planet) => _buildPlanetTile(planet, isDark, language),
+          ),
         ],
       ),
     );
   }
 
-  Widget _buildPlanetTile(DraconicPlanet planet, bool isDark, AppLanguage language) {
+  Widget _buildPlanetTile(
+    DraconicPlanet planet,
+    bool isDark,
+    AppLanguage language,
+  ) {
     return ExpansionTile(
       tilePadding: EdgeInsets.zero,
       leading: CircleAvatar(
@@ -597,11 +651,7 @@ class _DraconicChartScreenState extends ConsumerState<DraconicChartScreen> {
       ),
       children: [
         Padding(
-          padding: const EdgeInsets.only(
-            left: 56,
-            right: 16,
-            bottom: 16,
-          ),
+          padding: const EdgeInsets.only(left: 56, right: 16, bottom: 16),
           child: Text(
             planet.interpretation,
             style: TextStyle(

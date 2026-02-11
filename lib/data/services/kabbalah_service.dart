@@ -5,7 +5,10 @@ import 'l10n_service.dart';
 class KabbalahService {
   /// Kabala sayısını hesapla (isimden)
   static int calculateKabbalahNumber(String name) {
-    final cleanName = name.toUpperCase().replaceAll(RegExp(r'[^A-ZÇĞİÖŞÜ]'), '');
+    final cleanName = name.toUpperCase().replaceAll(
+      RegExp(r'[^A-ZÇĞİÖŞÜ]'),
+      '',
+    );
     var sum = 0;
 
     for (final char in cleanName.split('')) {
@@ -17,7 +20,10 @@ class KabbalahService {
 
   /// Ruh Sayısını hesapla (sadece sesli harfler)
   static int calculateSoulNumber(String name) {
-    final cleanName = name.toUpperCase().replaceAll(RegExp(r'[^A-ZÇĞİÖŞÜ]'), '');
+    final cleanName = name.toUpperCase().replaceAll(
+      RegExp(r'[^A-ZÇĞİÖŞÜ]'),
+      '',
+    );
     const vowels = 'AEIİOÖUÜ';
     var sum = 0;
 
@@ -32,7 +38,10 @@ class KabbalahService {
 
   /// Persona Sayısını hesapla (sadece sessiz harfler)
   static int calculatePersonaNumber(String name) {
-    final cleanName = name.toUpperCase().replaceAll(RegExp(r'[^A-ZÇĞİÖŞÜ]'), '');
+    final cleanName = name.toUpperCase().replaceAll(
+      RegExp(r'[^A-ZÇĞİÖŞÜ]'),
+      '',
+    );
     const vowels = 'AEIİOÖUÜ';
     var sum = 0;
 
@@ -65,7 +74,10 @@ class KabbalahService {
 
   /// Gematria değerini hesapla
   static int calculateGematria(String text) {
-    final cleanText = text.toUpperCase().replaceAll(RegExp(r'[^A-ZÇĞİÖŞÜ]'), '');
+    final cleanText = text.toUpperCase().replaceAll(
+      RegExp(r'[^A-ZÇĞİÖŞÜ]'),
+      '',
+    );
     var sum = 0;
 
     for (final char in cleanText.split('')) {
@@ -76,7 +88,10 @@ class KabbalahService {
   }
 
   /// İki isim arasındaki Kabalistik uyumu hesapla
-  static KabbalahCompatibility calculateCompatibility(String name1, String name2) {
+  static KabbalahCompatibility calculateCompatibility(
+    String name1,
+    String name2,
+  ) {
     final kab1 = calculateKabbalahNumber(name1);
     final kab2 = calculateKabbalahNumber(name2);
     final soul1 = calculateSoulNumber(name1);
@@ -92,7 +107,8 @@ class KabbalahService {
     final soulCompatibility = _getNumberCompatibility(soul1, soul2);
 
     // Genel skor
-    final overallScore = ((sefirahCompatibility + soulCompatibility) / 2).round();
+    final overallScore = ((sefirahCompatibility + soulCompatibility) / 2)
+        .round();
 
     return KabbalahCompatibility(
       person1Number: kab1,
@@ -102,13 +118,19 @@ class KabbalahService {
       sefirahCompatibility: sefirahCompatibility,
       soulCompatibility: soulCompatibility,
       overallScore: overallScore,
-      interpretation: _getCompatibilityInterpretation(sefirah1, sefirah2, overallScore, language: AppLanguage.tr),
+      interpretation: _getCompatibilityInterpretation(
+        sefirah1,
+        sefirah2,
+        overallScore,
+        language: AppLanguage.tr,
+      ),
     );
   }
 
   /// Günlük Kabala enerjisi
   static DailyKabbalahEnergy getDailyEnergy(DateTime date) {
-    final daySum = _digitSum(date.day) + _digitSum(date.month) + _digitSum(date.year);
+    final daySum =
+        _digitSum(date.day) + _digitSum(date.month) + _digitSum(date.year);
     final reduced = _reduceToSingleDigit(daySum);
     final sefirah = _sefirahFromNumber(reduced);
 
@@ -123,27 +145,66 @@ class KabbalahService {
 
   static Sefirah _sefirahFromNumber(int number) {
     switch (number) {
-      case 1: return Sefirah.keter;
-      case 2: return Sefirah.chokhmah;
-      case 3: return Sefirah.binah;
-      case 4: return Sefirah.chesed;
-      case 5: return Sefirah.gevurah;
-      case 6: return Sefirah.tiferet;
-      case 7: return Sefirah.netzach;
-      case 8: return Sefirah.hod;
-      case 9: return Sefirah.yesod;
-      case 10: return Sefirah.malkut;
-      default: return Sefirah.malkut;
+      case 1:
+        return Sefirah.keter;
+      case 2:
+        return Sefirah.chokhmah;
+      case 3:
+        return Sefirah.binah;
+      case 4:
+        return Sefirah.chesed;
+      case 5:
+        return Sefirah.gevurah;
+      case 6:
+        return Sefirah.tiferet;
+      case 7:
+        return Sefirah.netzach;
+      case 8:
+        return Sefirah.hod;
+      case 9:
+        return Sefirah.yesod;
+      case 10:
+        return Sefirah.malkut;
+      default:
+        return Sefirah.malkut;
     }
   }
 
   static int _hebrewLetterValue(String letter) {
     // Latin harflerini İbranice sayısal değerlere eşle
     const values = {
-      'A': 1, 'B': 2, 'C': 3, 'D': 4, 'E': 5, 'F': 6, 'G': 7, 'H': 8, 'I': 9, 'İ': 9,
-      'J': 10, 'K': 20, 'L': 30, 'M': 40, 'N': 50, 'O': 60, 'Ö': 60, 'P': 70, 'Q': 80,
-      'R': 90, 'S': 100, 'Ş': 100, 'T': 200, 'U': 300, 'Ü': 300, 'V': 400, 'W': 500,
-      'X': 600, 'Y': 700, 'Z': 800, 'Ç': 3, 'Ğ': 7,
+      'A': 1,
+      'B': 2,
+      'C': 3,
+      'D': 4,
+      'E': 5,
+      'F': 6,
+      'G': 7,
+      'H': 8,
+      'I': 9,
+      'İ': 9,
+      'J': 10,
+      'K': 20,
+      'L': 30,
+      'M': 40,
+      'N': 50,
+      'O': 60,
+      'Ö': 60,
+      'P': 70,
+      'Q': 80,
+      'R': 90,
+      'S': 100,
+      'Ş': 100,
+      'T': 200,
+      'U': 300,
+      'Ü': 300,
+      'V': 400,
+      'W': 500,
+      'X': 600,
+      'Y': 700,
+      'Z': 800,
+      'Ç': 3,
+      'Ğ': 7,
     };
     return values[letter] ?? 0;
   }
@@ -184,7 +245,12 @@ class KabbalahService {
     // Aynı sütundaki sefirahlar
     final rightPillar = [Sefirah.chokhmah, Sefirah.chesed, Sefirah.netzach];
     final leftPillar = [Sefirah.binah, Sefirah.gevurah, Sefirah.hod];
-    final middlePillar = [Sefirah.keter, Sefirah.tiferet, Sefirah.yesod, Sefirah.malkut];
+    final middlePillar = [
+      Sefirah.keter,
+      Sefirah.tiferet,
+      Sefirah.yesod,
+      Sefirah.malkut,
+    ];
 
     if ((rightPillar.contains(s1) && rightPillar.contains(s2)) ||
         (leftPillar.contains(s1) && leftPillar.contains(s2)) ||
@@ -203,7 +269,12 @@ class KabbalahService {
     return 55;
   }
 
-  static String _getCompatibilityInterpretation(Sefirah s1, Sefirah s2, int score, {AppLanguage language = AppLanguage.tr}) {
+  static String _getCompatibilityInterpretation(
+    Sefirah s1,
+    Sefirah s2,
+    int score, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     final s1Name = s1.localizedName(language);
     final s2Name = s2.localizedName(language);
     String key;
@@ -232,7 +303,10 @@ class KabbalahService {
     }
   }
 
-  static String _getDailyGuidance(Sefirah sefirah, {AppLanguage language = AppLanguage.tr}) {
+  static String _getDailyGuidance(
+    Sefirah sefirah, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     final key = 'kabbalah.daily_guidance.${sefirah.name}';
     final localized = L10nService.get(key, language);
     if (localized != key) return localized;
@@ -261,7 +335,10 @@ class KabbalahService {
     }
   }
 
-  static String _getDailyMeditation(Sefirah sefirah, {AppLanguage language = AppLanguage.tr}) {
+  static String _getDailyMeditation(
+    Sefirah sefirah, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     final key = 'kabbalah.daily_meditation.${sefirah.name}';
     final localized = L10nService.get(key, language);
     if (localized != key) return localized;
@@ -293,46 +370,66 @@ class KabbalahService {
 
 /// Sefirah (Hayat Ağacındaki emanasyonlar)
 enum Sefirah {
-  keter,    // 1 - Taç
+  keter, // 1 - Taç
   chokhmah, // 2 - Bilgelik
-  binah,    // 3 - Anlayış
-  chesed,   // 4 - Merhamet
-  gevurah,  // 5 - Güç
-  tiferet,  // 6 - Güzellik
-  netzach,  // 7 - Zafer
-  hod,      // 8 - Görkem
-  yesod,    // 9 - Temel
-  malkut,   // 10 - Krallık
+  binah, // 3 - Anlayış
+  chesed, // 4 - Merhamet
+  gevurah, // 5 - Güç
+  tiferet, // 6 - Güzellik
+  netzach, // 7 - Zafer
+  hod, // 8 - Görkem
+  yesod, // 9 - Temel
+  malkut, // 10 - Krallık
 }
 
 extension SefirahExtension on Sefirah {
   String get name {
     switch (this) {
-      case Sefirah.keter: return 'Keter';
-      case Sefirah.chokhmah: return 'Chokhmah';
-      case Sefirah.binah: return 'Binah';
-      case Sefirah.chesed: return 'Chesed';
-      case Sefirah.gevurah: return 'Gevurah';
-      case Sefirah.tiferet: return 'Tiferet';
-      case Sefirah.netzach: return 'Netzach';
-      case Sefirah.hod: return 'Hod';
-      case Sefirah.yesod: return 'Yesod';
-      case Sefirah.malkut: return 'Malkut';
+      case Sefirah.keter:
+        return 'Keter';
+      case Sefirah.chokhmah:
+        return 'Chokhmah';
+      case Sefirah.binah:
+        return 'Binah';
+      case Sefirah.chesed:
+        return 'Chesed';
+      case Sefirah.gevurah:
+        return 'Gevurah';
+      case Sefirah.tiferet:
+        return 'Tiferet';
+      case Sefirah.netzach:
+        return 'Netzach';
+      case Sefirah.hod:
+        return 'Hod';
+      case Sefirah.yesod:
+        return 'Yesod';
+      case Sefirah.malkut:
+        return 'Malkut';
     }
   }
 
   String get nameTr {
     switch (this) {
-      case Sefirah.keter: return 'Taç (Keter)';
-      case Sefirah.chokhmah: return 'Bilgelik (Hokmah)';
-      case Sefirah.binah: return 'Anlayış (Binah)';
-      case Sefirah.chesed: return 'Merhamet (Hesed)';
-      case Sefirah.gevurah: return 'Güç (Gevurah)';
-      case Sefirah.tiferet: return 'Güzellik (Tiferet)';
-      case Sefirah.netzach: return 'Zafer (Netsah)';
-      case Sefirah.hod: return 'Görkem (Hod)';
-      case Sefirah.yesod: return 'Temel (Yesod)';
-      case Sefirah.malkut: return 'Krallık (Malkut)';
+      case Sefirah.keter:
+        return 'Taç (Keter)';
+      case Sefirah.chokhmah:
+        return 'Bilgelik (Hokmah)';
+      case Sefirah.binah:
+        return 'Anlayış (Binah)';
+      case Sefirah.chesed:
+        return 'Merhamet (Hesed)';
+      case Sefirah.gevurah:
+        return 'Güç (Gevurah)';
+      case Sefirah.tiferet:
+        return 'Güzellik (Tiferet)';
+      case Sefirah.netzach:
+        return 'Zafer (Netsah)';
+      case Sefirah.hod:
+        return 'Görkem (Hod)';
+      case Sefirah.yesod:
+        return 'Temel (Yesod)';
+      case Sefirah.malkut:
+        return 'Krallık (Malkut)';
     }
   }
 
@@ -452,31 +549,51 @@ Malkut'un gizemi şudur: Yolculuk yukarı çıkmak için önce burada, maddede b
 
   String get divineNameEn {
     switch (this) {
-      case Sefirah.keter: return 'Ehyeh Asher Ehyeh (I Am That I Am)';
-      case Sefirah.chokhmah: return 'Yah (Yod-Heh)';
-      case Sefirah.binah: return 'YHVH Elohim';
-      case Sefirah.chesed: return 'El (God)';
-      case Sefirah.gevurah: return 'Elohim Gibor (Mighty God)';
-      case Sefirah.tiferet: return 'YHVH Eloah ve-Daath';
-      case Sefirah.netzach: return 'YHVH Tzavaot (Lord of Hosts)';
-      case Sefirah.hod: return 'Elohim Tzavaot';
-      case Sefirah.yesod: return 'El Chai (Living God)';
-      case Sefirah.malkut: return 'Adonai (Lord)';
+      case Sefirah.keter:
+        return 'Ehyeh Asher Ehyeh (I Am That I Am)';
+      case Sefirah.chokhmah:
+        return 'Yah (Yod-Heh)';
+      case Sefirah.binah:
+        return 'YHVH Elohim';
+      case Sefirah.chesed:
+        return 'El (God)';
+      case Sefirah.gevurah:
+        return 'Elohim Gibor (Mighty God)';
+      case Sefirah.tiferet:
+        return 'YHVH Eloah ve-Daath';
+      case Sefirah.netzach:
+        return 'YHVH Tzavaot (Lord of Hosts)';
+      case Sefirah.hod:
+        return 'Elohim Tzavaot';
+      case Sefirah.yesod:
+        return 'El Chai (Living God)';
+      case Sefirah.malkut:
+        return 'Adonai (Lord)';
     }
   }
 
   String get divineNameTr {
     switch (this) {
-      case Sefirah.keter: return 'Ehyeh Asher Ehyeh (Ben Olanım)';
-      case Sefirah.chokhmah: return 'Yah (Yod-Heh)';
-      case Sefirah.binah: return 'YHVH Elohim';
-      case Sefirah.chesed: return 'El (Tanrı)';
-      case Sefirah.gevurah: return 'Elohim Gibor (Güçlü Tanrı)';
-      case Sefirah.tiferet: return 'YHVH Eloah ve-Daath';
-      case Sefirah.netzach: return 'YHVH Tzavaot (Ordular Tanrısı)';
-      case Sefirah.hod: return 'Elohim Tzavaot';
-      case Sefirah.yesod: return 'El Chai (Yaşayan Tanrı)';
-      case Sefirah.malkut: return 'Adonai (Efendim)';
+      case Sefirah.keter:
+        return 'Ehyeh Asher Ehyeh (Ben Olanım)';
+      case Sefirah.chokhmah:
+        return 'Yah (Yod-Heh)';
+      case Sefirah.binah:
+        return 'YHVH Elohim';
+      case Sefirah.chesed:
+        return 'El (Tanrı)';
+      case Sefirah.gevurah:
+        return 'Elohim Gibor (Güçlü Tanrı)';
+      case Sefirah.tiferet:
+        return 'YHVH Eloah ve-Daath';
+      case Sefirah.netzach:
+        return 'YHVH Tzavaot (Ordular Tanrısı)';
+      case Sefirah.hod:
+        return 'Elohim Tzavaot';
+      case Sefirah.yesod:
+        return 'El Chai (Yaşayan Tanrı)';
+      case Sefirah.malkut:
+        return 'Adonai (Efendim)';
     }
   }
 
@@ -489,31 +606,51 @@ Malkut'un gizemi şudur: Yolculuk yukarı çıkmak için önce burada, maddede b
 
   String get archangelEn {
     switch (this) {
-      case Sefirah.keter: return 'Metatron';
-      case Sefirah.chokhmah: return 'Raziel (Angel of Secrets)';
-      case Sefirah.binah: return 'Tzafkiel (God\'s Watcher)';
-      case Sefirah.chesed: return 'Tzadkiel (God\'s Justice)';
-      case Sefirah.gevurah: return 'Kamael (Who Sees God)';
-      case Sefirah.tiferet: return 'Mikhael (Who Is Like God)';
-      case Sefirah.netzach: return 'Haniel (Grace of God)';
-      case Sefirah.hod: return 'Raphael (God Heals)';
-      case Sefirah.yesod: return 'Gabriel (Strength of God)';
-      case Sefirah.malkut: return 'Sandalphon';
+      case Sefirah.keter:
+        return 'Metatron';
+      case Sefirah.chokhmah:
+        return 'Raziel (Angel of Secrets)';
+      case Sefirah.binah:
+        return 'Tzafkiel (God\'s Watcher)';
+      case Sefirah.chesed:
+        return 'Tzadkiel (God\'s Justice)';
+      case Sefirah.gevurah:
+        return 'Kamael (Who Sees God)';
+      case Sefirah.tiferet:
+        return 'Mikhael (Who Is Like God)';
+      case Sefirah.netzach:
+        return 'Haniel (Grace of God)';
+      case Sefirah.hod:
+        return 'Raphael (God Heals)';
+      case Sefirah.yesod:
+        return 'Gabriel (Strength of God)';
+      case Sefirah.malkut:
+        return 'Sandalphon';
     }
   }
 
   String get archangelTr {
     switch (this) {
-      case Sefirah.keter: return 'Metatron';
-      case Sefirah.chokhmah: return 'Raziel (Sırların Meleği)';
-      case Sefirah.binah: return 'Tzafkiel (Tanrı\'nın Gözcüsü)';
-      case Sefirah.chesed: return 'Tzadkiel (Tanrı\'nın Adaleti)';
-      case Sefirah.gevurah: return 'Kamael (Tanrı\'yı Gören)';
-      case Sefirah.tiferet: return 'Mikhael (Tanrı Gibi Olan)';
-      case Sefirah.netzach: return 'Haniel (Tanrı\'nın Lütfu)';
-      case Sefirah.hod: return 'Raphael (Tanrı Şifa Verir)';
-      case Sefirah.yesod: return 'Gabriel (Tanrı\'nın Gücü)';
-      case Sefirah.malkut: return 'Sandalphon';
+      case Sefirah.keter:
+        return 'Metatron';
+      case Sefirah.chokhmah:
+        return 'Raziel (Sırların Meleği)';
+      case Sefirah.binah:
+        return 'Tzafkiel (Tanrı\'nın Gözcüsü)';
+      case Sefirah.chesed:
+        return 'Tzadkiel (Tanrı\'nın Adaleti)';
+      case Sefirah.gevurah:
+        return 'Kamael (Tanrı\'yı Gören)';
+      case Sefirah.tiferet:
+        return 'Mikhael (Tanrı Gibi Olan)';
+      case Sefirah.netzach:
+        return 'Haniel (Tanrı\'nın Lütfu)';
+      case Sefirah.hod:
+        return 'Raphael (Tanrı Şifa Verir)';
+      case Sefirah.yesod:
+        return 'Gabriel (Tanrı\'nın Gücü)';
+      case Sefirah.malkut:
+        return 'Sandalphon';
     }
   }
 
@@ -526,31 +663,51 @@ Malkut'un gizemi şudur: Yolculuk yukarı çıkmak için önce burada, maddede b
 
   String get planetEn {
     switch (this) {
-      case Sefirah.keter: return 'Primum Mobile (First Movement)';
-      case Sefirah.chokhmah: return 'Fixed Stars';
-      case Sefirah.binah: return 'Saturn';
-      case Sefirah.chesed: return 'Jupiter';
-      case Sefirah.gevurah: return 'Mars';
-      case Sefirah.tiferet: return 'Sun';
-      case Sefirah.netzach: return 'Venus';
-      case Sefirah.hod: return 'Mercury';
-      case Sefirah.yesod: return 'Moon';
-      case Sefirah.malkut: return 'Earth (Elements)';
+      case Sefirah.keter:
+        return 'Primum Mobile (First Movement)';
+      case Sefirah.chokhmah:
+        return 'Fixed Stars';
+      case Sefirah.binah:
+        return 'Saturn';
+      case Sefirah.chesed:
+        return 'Jupiter';
+      case Sefirah.gevurah:
+        return 'Mars';
+      case Sefirah.tiferet:
+        return 'Sun';
+      case Sefirah.netzach:
+        return 'Venus';
+      case Sefirah.hod:
+        return 'Mercury';
+      case Sefirah.yesod:
+        return 'Moon';
+      case Sefirah.malkut:
+        return 'Earth (Elements)';
     }
   }
 
   String get planetTr {
     switch (this) {
-      case Sefirah.keter: return 'Primum Mobile (İlk Hareket)';
-      case Sefirah.chokhmah: return 'Sabit Yıldızlar';
-      case Sefirah.binah: return 'Satürn';
-      case Sefirah.chesed: return 'Jüpiter';
-      case Sefirah.gevurah: return 'Mars';
-      case Sefirah.tiferet: return 'Güneş';
-      case Sefirah.netzach: return 'Venüs';
-      case Sefirah.hod: return 'Merkür';
-      case Sefirah.yesod: return 'Ay';
-      case Sefirah.malkut: return 'Dünya (Elementler)';
+      case Sefirah.keter:
+        return 'Primum Mobile (İlk Hareket)';
+      case Sefirah.chokhmah:
+        return 'Sabit Yıldızlar';
+      case Sefirah.binah:
+        return 'Satürn';
+      case Sefirah.chesed:
+        return 'Jüpiter';
+      case Sefirah.gevurah:
+        return 'Mars';
+      case Sefirah.tiferet:
+        return 'Güneş';
+      case Sefirah.netzach:
+        return 'Venüs';
+      case Sefirah.hod:
+        return 'Merkür';
+      case Sefirah.yesod:
+        return 'Ay';
+      case Sefirah.malkut:
+        return 'Dünya (Elementler)';
     }
   }
 
@@ -604,9 +761,12 @@ Malkut'un gizemi şudur: Yolculuk yukarı çıkmak için önce burada, maddede b
   /// Ruh düzeyi
   String get soulLevel {
     switch (this) {
-      case Sefirah.keter: return 'Yechida (Teklik)';
-      case Sefirah.chokhmah: return 'Chaya (Yaşam Gücü)';
-      case Sefirah.binah: return 'Neshamah (Yüksek Ruh)';
+      case Sefirah.keter:
+        return 'Yechida (Teklik)';
+      case Sefirah.chokhmah:
+        return 'Chaya (Yaşam Gücü)';
+      case Sefirah.binah:
+        return 'Neshamah (Yüksek Ruh)';
       case Sefirah.chesed:
       case Sefirah.gevurah:
       case Sefirah.tiferet:
@@ -623,16 +783,26 @@ Malkut'un gizemi şudur: Yolculuk yukarı çıkmak için önce burada, maddede b
   /// Vücut bölgesi
   String get bodyPart {
     switch (this) {
-      case Sefirah.keter: return 'Başın tepesi (Taç)';
-      case Sefirah.chokhmah: return 'Sağ beyin yarımküresi';
-      case Sefirah.binah: return 'Sol beyin yarımküresi';
-      case Sefirah.chesed: return 'Sağ omuz/kol';
-      case Sefirah.gevurah: return 'Sol omuz/kol';
-      case Sefirah.tiferet: return 'Kalp/Göğüs';
-      case Sefirah.netzach: return 'Sağ kalça/bacak';
-      case Sefirah.hod: return 'Sol kalça/bacak';
-      case Sefirah.yesod: return 'Üreme organları';
-      case Sefirah.malkut: return 'Ayaklar/Tüm beden';
+      case Sefirah.keter:
+        return 'Başın tepesi (Taç)';
+      case Sefirah.chokhmah:
+        return 'Sağ beyin yarımküresi';
+      case Sefirah.binah:
+        return 'Sol beyin yarımküresi';
+      case Sefirah.chesed:
+        return 'Sağ omuz/kol';
+      case Sefirah.gevurah:
+        return 'Sol omuz/kol';
+      case Sefirah.tiferet:
+        return 'Kalp/Göğüs';
+      case Sefirah.netzach:
+        return 'Sağ kalça/bacak';
+      case Sefirah.hod:
+        return 'Sol kalça/bacak';
+      case Sefirah.yesod:
+        return 'Üreme organları';
+      case Sefirah.malkut:
+        return 'Ayaklar/Tüm beden';
     }
   }
 
@@ -641,31 +811,51 @@ Malkut'un gizemi şudur: Yolculuk yukarı çıkmak için önce burada, maddede b
 
   String get virtueEn {
     switch (this) {
-      case Sefirah.keter: return 'Infinite Will, Unity Consciousness';
-      case Sefirah.chokhmah: return 'Pure Wisdom, Inspiration';
-      case Sefirah.binah: return 'Deep Understanding, Silence';
-      case Sefirah.chesed: return 'Compassion, Generosity';
-      case Sefirah.gevurah: return 'Courage, Discipline';
-      case Sefirah.tiferet: return 'Kindness, Balance, Beauty';
-      case Sefirah.netzach: return 'Determination, Loyalty';
-      case Sefirah.hod: return 'Honesty, Openness';
-      case Sefirah.yesod: return 'Purity, Independence';
-      case Sefirah.malkut: return 'Discernment, Grounding';
+      case Sefirah.keter:
+        return 'Infinite Will, Unity Consciousness';
+      case Sefirah.chokhmah:
+        return 'Pure Wisdom, Inspiration';
+      case Sefirah.binah:
+        return 'Deep Understanding, Silence';
+      case Sefirah.chesed:
+        return 'Compassion, Generosity';
+      case Sefirah.gevurah:
+        return 'Courage, Discipline';
+      case Sefirah.tiferet:
+        return 'Kindness, Balance, Beauty';
+      case Sefirah.netzach:
+        return 'Determination, Loyalty';
+      case Sefirah.hod:
+        return 'Honesty, Openness';
+      case Sefirah.yesod:
+        return 'Purity, Independence';
+      case Sefirah.malkut:
+        return 'Discernment, Grounding';
     }
   }
 
   String get virtueTr {
     switch (this) {
-      case Sefirah.keter: return 'Sonsuz İrade, Birlik Bilinci';
-      case Sefirah.chokhmah: return 'Saf Bilgelik, İlham';
-      case Sefirah.binah: return 'Derin Anlayış, Sessizlik';
-      case Sefirah.chesed: return 'Merhamet, Cömertlik';
-      case Sefirah.gevurah: return 'Cesaret, Disiplin';
-      case Sefirah.tiferet: return 'Şefkat, Denge, Güzellik';
-      case Sefirah.netzach: return 'Kararlılık, Sadakat';
-      case Sefirah.hod: return 'Dürüstlük, Açıklık';
-      case Sefirah.yesod: return 'Saflık, Bağımsızlık';
-      case Sefirah.malkut: return 'Ayrımcılık, Topraklanma';
+      case Sefirah.keter:
+        return 'Sonsuz İrade, Birlik Bilinci';
+      case Sefirah.chokhmah:
+        return 'Saf Bilgelik, İlham';
+      case Sefirah.binah:
+        return 'Derin Anlayış, Sessizlik';
+      case Sefirah.chesed:
+        return 'Merhamet, Cömertlik';
+      case Sefirah.gevurah:
+        return 'Cesaret, Disiplin';
+      case Sefirah.tiferet:
+        return 'Şefkat, Denge, Güzellik';
+      case Sefirah.netzach:
+        return 'Kararlılık, Sadakat';
+      case Sefirah.hod:
+        return 'Dürüstlük, Açıklık';
+      case Sefirah.yesod:
+        return 'Saflık, Bağımsızlık';
+      case Sefirah.malkut:
+        return 'Ayrımcılık, Topraklanma';
     }
   }
 
@@ -678,31 +868,51 @@ Malkut'un gizemi şudur: Yolculuk yukarı çıkmak için önce burada, maddede b
 
   String get viceEn {
     switch (this) {
-      case Sefirah.keter: return 'Lack of commitment';
-      case Sefirah.chokhmah: return 'Evil, Destructiveness';
-      case Sefirah.binah: return 'Greed, Jealousy';
-      case Sefirah.chesed: return 'Extravagance, Dependency';
-      case Sefirah.gevurah: return 'Cruelty, Ruthlessness';
-      case Sefirah.tiferet: return 'Pride, False glory';
-      case Sefirah.netzach: return 'Lust, Obsession';
-      case Sefirah.hod: return 'Dishonesty, Deceit';
-      case Sefirah.yesod: return 'Indecision, Fantasy-prone';
-      case Sefirah.malkut: return 'Laziness, Materialism';
+      case Sefirah.keter:
+        return 'Lack of commitment';
+      case Sefirah.chokhmah:
+        return 'Evil, Destructiveness';
+      case Sefirah.binah:
+        return 'Greed, Jealousy';
+      case Sefirah.chesed:
+        return 'Extravagance, Dependency';
+      case Sefirah.gevurah:
+        return 'Cruelty, Ruthlessness';
+      case Sefirah.tiferet:
+        return 'Pride, False glory';
+      case Sefirah.netzach:
+        return 'Lust, Obsession';
+      case Sefirah.hod:
+        return 'Dishonesty, Deceit';
+      case Sefirah.yesod:
+        return 'Indecision, Fantasy-prone';
+      case Sefirah.malkut:
+        return 'Laziness, Materialism';
     }
   }
 
   String get viceTr {
     switch (this) {
-      case Sefirah.keter: return 'Bağlılık eksikliği';
-      case Sefirah.chokhmah: return 'Kötülük, Yıkıcılık';
-      case Sefirah.binah: return 'Açgözlülük, Kıskançlık';
-      case Sefirah.chesed: return 'Savurganlık, Bağımlılık';
-      case Sefirah.gevurah: return 'Zalimlik, Acımasızlık';
-      case Sefirah.tiferet: return 'Kibir, Yanlış gurur';
-      case Sefirah.netzach: return 'Şehvet, Saplantı';
-      case Sefirah.hod: return 'Yalancılık, Sahtecilik';
-      case Sefirah.yesod: return 'Kararsızlık, Hayal düşkünlüğü';
-      case Sefirah.malkut: return 'Tembellik, Materyalizm';
+      case Sefirah.keter:
+        return 'Bağlılık eksikliği';
+      case Sefirah.chokhmah:
+        return 'Kötülük, Yıkıcılık';
+      case Sefirah.binah:
+        return 'Açgözlülük, Kıskançlık';
+      case Sefirah.chesed:
+        return 'Savurganlık, Bağımlılık';
+      case Sefirah.gevurah:
+        return 'Zalimlik, Acımasızlık';
+      case Sefirah.tiferet:
+        return 'Kibir, Yanlış gurur';
+      case Sefirah.netzach:
+        return 'Şehvet, Saplantı';
+      case Sefirah.hod:
+        return 'Yalancılık, Sahtecilik';
+      case Sefirah.yesod:
+        return 'Kararsızlık, Hayal düşkünlüğü';
+      case Sefirah.malkut:
+        return 'Tembellik, Materyalizm';
     }
   }
 
@@ -714,31 +924,51 @@ Malkut'un gizemi şudur: Yolculuk yukarı çıkmak için önce burada, maddede b
 
   String get colorEn {
     switch (this) {
-      case Sefirah.keter: return 'White/Brilliant';
-      case Sefirah.chokhmah: return 'Gray/Silver';
-      case Sefirah.binah: return 'Black/Dark Blue';
-      case Sefirah.chesed: return 'Blue';
-      case Sefirah.gevurah: return 'Red';
-      case Sefirah.tiferet: return 'Gold/Yellow';
-      case Sefirah.netzach: return 'Green';
-      case Sefirah.hod: return 'Orange';
-      case Sefirah.yesod: return 'Purple';
-      case Sefirah.malkut: return 'Earth Tones';
+      case Sefirah.keter:
+        return 'White/Brilliant';
+      case Sefirah.chokhmah:
+        return 'Gray/Silver';
+      case Sefirah.binah:
+        return 'Black/Dark Blue';
+      case Sefirah.chesed:
+        return 'Blue';
+      case Sefirah.gevurah:
+        return 'Red';
+      case Sefirah.tiferet:
+        return 'Gold/Yellow';
+      case Sefirah.netzach:
+        return 'Green';
+      case Sefirah.hod:
+        return 'Orange';
+      case Sefirah.yesod:
+        return 'Purple';
+      case Sefirah.malkut:
+        return 'Earth Tones';
     }
   }
 
   String get colorTr {
     switch (this) {
-      case Sefirah.keter: return 'Beyaz/Parlak';
-      case Sefirah.chokhmah: return 'Gri/Gümüş';
-      case Sefirah.binah: return 'Siyah/Koyu Mavi';
-      case Sefirah.chesed: return 'Mavi';
-      case Sefirah.gevurah: return 'Kırmızı';
-      case Sefirah.tiferet: return 'Altın/Sarı';
-      case Sefirah.netzach: return 'Yeşil';
-      case Sefirah.hod: return 'Turuncu';
-      case Sefirah.yesod: return 'Mor';
-      case Sefirah.malkut: return 'Toprak Tonları';
+      case Sefirah.keter:
+        return 'Beyaz/Parlak';
+      case Sefirah.chokhmah:
+        return 'Gri/Gümüş';
+      case Sefirah.binah:
+        return 'Siyah/Koyu Mavi';
+      case Sefirah.chesed:
+        return 'Mavi';
+      case Sefirah.gevurah:
+        return 'Kırmızı';
+      case Sefirah.tiferet:
+        return 'Altın/Sarı';
+      case Sefirah.netzach:
+        return 'Yeşil';
+      case Sefirah.hod:
+        return 'Turuncu';
+      case Sefirah.yesod:
+        return 'Mor';
+      case Sefirah.malkut:
+        return 'Toprak Tonları';
     }
   }
 
@@ -748,32 +978,53 @@ Malkut'un gizemi şudur: Yolculuk yukarı çıkmak için önce burada, maddede b
 
   int get number {
     switch (this) {
-      case Sefirah.keter: return 1;
-      case Sefirah.chokhmah: return 2;
-      case Sefirah.binah: return 3;
-      case Sefirah.chesed: return 4;
-      case Sefirah.gevurah: return 5;
-      case Sefirah.tiferet: return 6;
-      case Sefirah.netzach: return 7;
-      case Sefirah.hod: return 8;
-      case Sefirah.yesod: return 9;
-      case Sefirah.malkut: return 10;
+      case Sefirah.keter:
+        return 1;
+      case Sefirah.chokhmah:
+        return 2;
+      case Sefirah.binah:
+        return 3;
+      case Sefirah.chesed:
+        return 4;
+      case Sefirah.gevurah:
+        return 5;
+      case Sefirah.tiferet:
+        return 6;
+      case Sefirah.netzach:
+        return 7;
+      case Sefirah.hod:
+        return 8;
+      case Sefirah.yesod:
+        return 9;
+      case Sefirah.malkut:
+        return 10;
     }
   }
 
   static Sefirah fromNumber(int number) {
     switch (number) {
-      case 1: return Sefirah.keter;
-      case 2: return Sefirah.chokhmah;
-      case 3: return Sefirah.binah;
-      case 4: return Sefirah.chesed;
-      case 5: return Sefirah.gevurah;
-      case 6: return Sefirah.tiferet;
-      case 7: return Sefirah.netzach;
-      case 8: return Sefirah.hod;
-      case 9: return Sefirah.yesod;
-      case 10: return Sefirah.malkut;
-      default: return Sefirah.malkut;
+      case 1:
+        return Sefirah.keter;
+      case 2:
+        return Sefirah.chokhmah;
+      case 3:
+        return Sefirah.binah;
+      case 4:
+        return Sefirah.chesed;
+      case 5:
+        return Sefirah.gevurah;
+      case 6:
+        return Sefirah.tiferet;
+      case 7:
+        return Sefirah.netzach;
+      case 8:
+        return Sefirah.hod;
+      case 9:
+        return Sefirah.yesod;
+      case 10:
+        return Sefirah.malkut;
+      default:
+        return Sefirah.malkut;
     }
   }
 }

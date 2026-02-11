@@ -70,7 +70,9 @@ class EnergyBar extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w500,
-                      color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+                      color: isDark
+                          ? AppColors.textSecondary
+                          : AppColors.lightTextSecondary,
                     ),
                   ),
                   if (showPercentage)
@@ -96,19 +98,19 @@ class EnergyBar extends StatelessWidget {
                 ),
                 child: LayoutBuilder(
                   builder: (context, constraints) {
-                    final barWidth = constraints.maxWidth * value.clamp(0.0, 1.0);
+                    final barWidth =
+                        constraints.maxWidth * value.clamp(0.0, 1.0);
                     return Stack(
                       children: [
                         AnimatedContainer(
-                          duration: animate ? const Duration(milliseconds: 800) : Duration.zero,
+                          duration: animate
+                              ? const Duration(milliseconds: 800)
+                              : Duration.zero,
                           curve: Curves.easeOutCubic,
                           width: barWidth,
                           decoration: BoxDecoration(
                             gradient: LinearGradient(
-                              colors: [
-                                color.withValues(alpha: 0.7),
-                                color,
-                              ],
+                              colors: [color.withValues(alpha: 0.7), color],
                             ),
                             borderRadius: BorderRadius.circular(4),
                             boxShadow: [
@@ -138,7 +140,7 @@ class EnergyBar extends StatelessWidget {
 /// Günlük enerji seviyelerini gösteren kompakt kart.
 /// Aşk, Kariyer, Sağlık ve Genel enerji bar'larını içerir.
 class DailyEnergyCard extends ConsumerWidget {
-  final int loveEnergy;   // 0-100
+  final int loveEnergy; // 0-100
   final int careerEnergy; // 0-100
   final int healthEnergy; // 0-100
   final int overallEnergy; // 0-100
@@ -154,7 +156,10 @@ class DailyEnergyCard extends ConsumerWidget {
   });
 
   /// Helper factory to create from energy level values (thematic intensity, not prediction)
-  factory DailyEnergyCard.fromEnergyLevel(int energyLevel, {Color? accentColor}) {
+  factory DailyEnergyCard.fromEnergyLevel(
+    int energyLevel, {
+    Color? accentColor,
+  }) {
     // Convert 1-5 energy level to theme percentages for display
     final baseEnergy = (energyLevel / 5.0);
     return DailyEnergyCard(
@@ -167,8 +172,10 @@ class DailyEnergyCard extends ConsumerWidget {
   }
 
   /// Backward compatibility alias
-  factory DailyEnergyCard.fromLuckRating(int luckRating, {Color? accentColor}) =>
-      DailyEnergyCard.fromEnergyLevel(luckRating, accentColor: accentColor);
+  factory DailyEnergyCard.fromLuckRating(
+    int luckRating, {
+    Color? accentColor,
+  }) => DailyEnergyCard.fromEnergyLevel(luckRating, accentColor: accentColor);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -199,11 +206,7 @@ class DailyEnergyCard extends ConsumerWidget {
                   color: accent.withValues(alpha: 0.15),
                   borderRadius: BorderRadius.circular(6),
                 ),
-                child: Icon(
-                  Icons.bolt,
-                  size: 16,
-                  color: accent,
-                ),
+                child: Icon(Icons.bolt, size: 16, color: accent),
               ),
               const SizedBox(width: 10),
               Flexible(
@@ -212,7 +215,9 @@ class DailyEnergyCard extends ConsumerWidget {
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
-                    color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                    color: isDark
+                        ? AppColors.textPrimary
+                        : AppColors.lightTextPrimary,
                   ),
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -248,7 +253,11 @@ class DailyEnergyCard extends ConsumerWidget {
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildOverallBadge(BuildContext context, bool isDark, AppLanguage language) {
+  Widget _buildOverallBadge(
+    BuildContext context,
+    bool isDark,
+    AppLanguage language,
+  ) {
     Color badgeColor;
     String label;
 
@@ -275,11 +284,7 @@ class DailyEnergyCard extends ConsumerWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(
-            Icons.trending_up,
-            size: 12,
-            color: badgeColor,
-          ),
+          Icon(Icons.trending_up, size: 12, color: badgeColor),
           const SizedBox(width: 4),
           Text(
             label,

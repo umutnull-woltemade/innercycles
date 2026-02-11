@@ -5,7 +5,9 @@ class L10n {
   L10n._();
 
   static String get(String key, AppLanguage language) {
-    return _translations[key]?[language] ?? _translations[key]?[AppLanguage.en] ?? key;
+    return _translations[key]?[language] ??
+        _translations[key]?[AppLanguage.en] ??
+        key;
   }
 
   static final Map<String, Map<AppLanguage, String>> _translations = {
@@ -109,39 +111,62 @@ class L10n {
       AppLanguage.ar: 'تحليل الكابالا',
     },
     'enter_birth_info_numerology': {
-      AppLanguage.en: 'Enter your birth information\nto see your life path number',
-      AppLanguage.tr: 'Hayat yolu sayınızı görmek için\nönce doğum bilgilerinizi girin',
-      AppLanguage.el: 'Εισάγετε τα στοιχεία γέννησής σας\nγια να δείτε τον αριθμό της πορείας ζωής σας',
-      AppLanguage.bg: 'Въведете данните си за раждане\nза да видите числото на жизнения си път',
-      AppLanguage.ru: 'Введите данные о рождении\nчтобы увидеть число жизненного пути',
+      AppLanguage.en:
+          'Enter your birth information\nto see your life path number',
+      AppLanguage.tr:
+          'Hayat yolu sayınızı görmek için\nönce doğum bilgilerinizi girin',
+      AppLanguage.el:
+          'Εισάγετε τα στοιχεία γέννησής σας\nγια να δείτε τον αριθμό της πορείας ζωής σας',
+      AppLanguage.bg:
+          'Въведете данните си за раждане\nза да видите числото на жизнения си път',
+      AppLanguage.ru:
+          'Введите данные о рождении\nчтобы увидеть число жизненного пути',
       AppLanguage.zh: '输入您的出生信息\n查看您的生命路径数字',
-      AppLanguage.fr: 'Entrez vos informations de naissance\npour voir votre nombre de chemin de vie',
-      AppLanguage.de: 'Geben Sie Ihre Geburtsdaten ein\num Ihre Lebensweg-Zahl zu sehen',
-      AppLanguage.es: 'Ingrese su información de nacimiento\npara ver su número de camino de vida',
+      AppLanguage.fr:
+          'Entrez vos informations de naissance\npour voir votre nombre de chemin de vie',
+      AppLanguage.de:
+          'Geben Sie Ihre Geburtsdaten ein\num Ihre Lebensweg-Zahl zu sehen',
+      AppLanguage.es:
+          'Ingrese su información de nacimiento\npara ver su número de camino de vida',
       AppLanguage.ar: 'أدخل معلومات ميلادك\nلرؤية رقم مسار حياتك',
     },
     'enter_birth_info_aura': {
-      AppLanguage.en: 'Enter your birth information\nto discover your aura color',
-      AppLanguage.tr: 'Aura renginizi keşfetmek için\nönce doğum bilgilerinizi girin',
-      AppLanguage.el: 'Εισάγετε τα στοιχεία γέννησής σας\nγια να ανακαλύψετε το χρώμα της αύρας σας',
-      AppLanguage.bg: 'Въведете данните си за раждане\nза да откриете цвета на аурата си',
+      AppLanguage.en:
+          'Enter your birth information\nto discover your aura color',
+      AppLanguage.tr:
+          'Aura renginizi keşfetmek için\nönce doğum bilgilerinizi girin',
+      AppLanguage.el:
+          'Εισάγετε τα στοιχεία γέννησής σας\nγια να ανακαλύψετε το χρώμα της αύρας σας',
+      AppLanguage.bg:
+          'Въведете данните си за раждане\nза да откриете цвета на аурата си',
       AppLanguage.ru: 'Введите данные о рождении\nчтобы узнать цвет вашей ауры',
       AppLanguage.zh: '输入您的出生信息\n发现您的灵气颜色',
-      AppLanguage.fr: 'Entrez vos informations de naissance\npour découvrir la couleur de votre aura',
-      AppLanguage.de: 'Geben Sie Ihre Geburtsdaten ein\num Ihre Aura-Farbe zu entdecken',
-      AppLanguage.es: 'Ingrese su información de nacimiento\npara descubrir el color de su aura',
+      AppLanguage.fr:
+          'Entrez vos informations de naissance\npour découvrir la couleur de votre aura',
+      AppLanguage.de:
+          'Geben Sie Ihre Geburtsdaten ein\num Ihre Aura-Farbe zu entdecken',
+      AppLanguage.es:
+          'Ingrese su información de nacimiento\npara descubrir el color de su aura',
       AppLanguage.ar: 'أدخل معلومات ميلادك\nلاكتشاف لون هالتك',
     },
     'enter_birth_info_kabbalah': {
-      AppLanguage.en: 'Enter your birth information\nto see your Kabbalah chart',
-      AppLanguage.tr: 'Kabala haritanızı görmek için\nönce doğum bilgilerinizi girin',
-      AppLanguage.el: 'Εισάγετε τα στοιχεία γέννησής σας\nγια να δείτε τον χάρτη Καμπαλά σας',
-      AppLanguage.bg: 'Въведете данните си за раждане\nза да видите картата си на Кабала',
-      AppLanguage.ru: 'Введите данные о рождении\nчтобы увидеть вашу карту Каббалы',
+      AppLanguage.en:
+          'Enter your birth information\nto see your Kabbalah chart',
+      AppLanguage.tr:
+          'Kabala haritanızı görmek için\nönce doğum bilgilerinizi girin',
+      AppLanguage.el:
+          'Εισάγετε τα στοιχεία γέννησής σας\nγια να δείτε τον χάρτη Καμπαλά σας',
+      AppLanguage.bg:
+          'Въведете данните си за раждане\nза да видите картата си на Кабала',
+      AppLanguage.ru:
+          'Введите данные о рождении\nчтобы увидеть вашу карту Каббалы',
       AppLanguage.zh: '输入您的出生信息\n查看您的卡巴拉图表',
-      AppLanguage.fr: 'Entrez vos informations de naissance\npour voir votre carte Kabbale',
-      AppLanguage.de: 'Geben Sie Ihre Geburtsdaten ein\num Ihre Kabbala-Karte zu sehen',
-      AppLanguage.es: 'Ingrese su información de nacimiento\npara ver su carta de Cábala',
+      AppLanguage.fr:
+          'Entrez vos informations de naissance\npour voir votre carte Kabbale',
+      AppLanguage.de:
+          'Geben Sie Ihre Geburtsdaten ein\num Ihre Kabbala-Karte zu sehen',
+      AppLanguage.es:
+          'Ingrese su información de nacimiento\npara ver su carta de Cábala',
       AppLanguage.ar: 'أدخل معلومات ميلادك\nلرؤية مخطط الكابالا الخاص بك',
     },
 
@@ -209,16 +234,25 @@ class L10n {
 
     // ============ ONBOARDING ============
     'onboarding_welcome_text': {
-      AppLanguage.en: 'Listen to the secrets the universe whispers to you.\nThe sky drew a map for you\nthe moment you were born, discover it.',
-      AppLanguage.tr: 'Evrenin sana fısıldadığı sırları dinle.\nDoğduğun an gökyüzü senin için\nbir harita çizdi, onu keşfet.',
-      AppLanguage.el: 'Άκου τα μυστικά που το σύμπαν σου ψιθυρίζει.\nΤη στιγμή που γεννήθηκες ο ουρανός\nσχεδίασε έναν χάρτη για σένα, ανακάλυψέ τον.',
-      AppLanguage.bg: 'Слушай тайните, които вселената ти шепне.\nВ момента на твоето раждане небето\nначерта карта за теб, открий я.',
-      AppLanguage.ru: 'Слушай тайны, которые вселенная шепчет тебе.\nВ момент твоего рождения небо\nначертило для тебя карту, открой её.',
+      AppLanguage.en:
+          'Listen to the secrets the universe whispers to you.\nThe sky drew a map for you\nthe moment you were born, discover it.',
+      AppLanguage.tr:
+          'Evrenin sana fısıldadığı sırları dinle.\nDoğduğun an gökyüzü senin için\nbir harita çizdi, onu keşfet.',
+      AppLanguage.el:
+          'Άκου τα μυστικά που το σύμπαν σου ψιθυρίζει.\nΤη στιγμή που γεννήθηκες ο ουρανός\nσχεδίασε έναν χάρτη για σένα, ανακάλυψέ τον.',
+      AppLanguage.bg:
+          'Слушай тайните, които вселената ти шепне.\nВ момента на твоето раждане небето\nначерта карта за теб, открий я.',
+      AppLanguage.ru:
+          'Слушай тайны, которые вселенная шепчет тебе.\nВ момент твоего рождения небо\nначертило для тебя карту, открой её.',
       AppLanguage.zh: '倾听宇宙向你低语的秘密。\n在你出生的那一刻，天空为你\n绘制了一张地图，去发现它吧。',
-      AppLanguage.fr: 'Écoutez les secrets que l\'univers vous murmure.\nAu moment de votre naissance, le ciel\na dessiné une carte pour vous, découvrez-la.',
-      AppLanguage.de: 'Höre auf die Geheimnisse, die das Universum dir zuflüstert.\nIn dem Moment, als du geboren wurdest,\nzeichnete der Himmel eine Karte für dich, entdecke sie.',
-      AppLanguage.es: 'Escucha los secretos que el universo te susurra.\nEn el momento de tu nacimiento, el cielo\ndibujó un mapa para ti, descúbrelo.',
-      AppLanguage.ar: 'استمع إلى الأسرار التي يهمسها لك الكون.\nفي لحظة ولادتك، رسمت السماء\nخريطة لك، اكتشفها.',
+      AppLanguage.fr:
+          'Écoutez les secrets que l\'univers vous murmure.\nAu moment de votre naissance, le ciel\na dessiné une carte pour vous, découvrez-la.',
+      AppLanguage.de:
+          'Höre auf die Geheimnisse, die das Universum dir zuflüstert.\nIn dem Moment, als du geboren wurdest,\nzeichnete der Himmel eine Karte für dich, entdecke sie.',
+      AppLanguage.es:
+          'Escucha los secretos que el universo te susurra.\nEn el momento de tu nacimiento, el cielo\ndibujó un mapa para ti, descúbrelo.',
+      AppLanguage.ar:
+          'استمع إلى الأسرار التي يهمسها لك الكون.\nفي لحظة ولادتك، رسمت السماء\nخريطة لك، اكتشفها.',
     },
     'cosmic_identity': {
       AppLanguage.en: 'Your Cosmic Identity',
@@ -239,8 +273,10 @@ class L10n {
       AppLanguage.bg: 'Въведете информацията си, за да се свържете с вселената',
       AppLanguage.ru: 'Введите свою информацию, чтобы соединиться со вселенной',
       AppLanguage.zh: '输入您的信息以与宇宙连接',
-      AppLanguage.fr: 'Entrez vos informations pour vous connecter à l\'univers',
-      AppLanguage.de: 'Gib deine Informationen ein, um dich mit dem Universum zu verbinden',
+      AppLanguage.fr:
+          'Entrez vos informations pour vous connecter à l\'univers',
+      AppLanguage.de:
+          'Gib deine Informationen ein, um dich mit dem Universum zu verbinden',
       AppLanguage.es: 'Ingresa tu información para conectarte con el universo',
       AppLanguage.ar: 'أدخل معلوماتك للتواصل مع الكون',
     },
@@ -269,15 +305,23 @@ class L10n {
       AppLanguage.ar: 'متابعة',
     },
     'info_box_text': {
-      AppLanguage.en: 'Fill in all the information to unlock all layers of your cosmic map.',
-      AppLanguage.tr: 'Kozmik haritanın tüm katmanlarını açmak için bilgilerini eksiksiz gir.',
-      AppLanguage.el: 'Συμπληρώστε όλες τις πληροφορίες για να ξεκλειδώσετε όλα τα επίπεδα του κοσμικού σας χάρτη.',
-      AppLanguage.bg: 'Попълнете цялата информация, за да отключите всички слоеве на вашата космическа карта.',
-      AppLanguage.ru: 'Заполните всю информацию, чтобы открыть все слои вашей космической карты.',
+      AppLanguage.en:
+          'Fill in all the information to unlock all layers of your cosmic map.',
+      AppLanguage.tr:
+          'Kozmik haritanın tüm katmanlarını açmak için bilgilerini eksiksiz gir.',
+      AppLanguage.el:
+          'Συμπληρώστε όλες τις πληροφορίες για να ξεκλειδώσετε όλα τα επίπεδα του κοσμικού σας χάρτη.',
+      AppLanguage.bg:
+          'Попълнете цялата информация, за да отключите всички слоеве на вашата космическа карта.',
+      AppLanguage.ru:
+          'Заполните всю информацию, чтобы открыть все слои вашей космической карты.',
       AppLanguage.zh: '填写所有信息以解锁您宇宙地图的所有层次。',
-      AppLanguage.fr: 'Remplissez toutes les informations pour débloquer toutes les couches de votre carte cosmique.',
-      AppLanguage.de: 'Fülle alle Informationen aus, um alle Ebenen deiner kosmischen Karte freizuschalten.',
-      AppLanguage.es: 'Complete toda la información para desbloquear todas las capas de su mapa cósmico.',
+      AppLanguage.fr:
+          'Remplissez toutes les informations pour débloquer toutes les couches de votre carte cosmique.',
+      AppLanguage.de:
+          'Fülle alle Informationen aus, um alle Ebenen deiner kosmischen Karte freizuschalten.',
+      AppLanguage.es:
+          'Complete toda la información para desbloquear todas las capas de su mapa cósmico.',
       AppLanguage.ar: 'أكمل جميع المعلومات لفتح جميع طبقات خريطتك الكونية.',
     },
     'will_be_calculated': {
@@ -697,16 +741,25 @@ class L10n {
       AppLanguage.ar: 'انفتح الباب الكوني!',
     },
     'premium_success_message': {
-      AppLanguage.en: 'Full access to the secrets of the universe is now with you. You are ready for limitless exploration under the guidance of the stars.',
-      AppLanguage.tr: 'Evrenin sırlarına tam erişim artık seninle. Yıldızların rehberliğinde sınırsız keşfe hazırsın.',
-      AppLanguage.el: 'Η πλήρης πρόσβαση στα μυστικά του σύμπαντος είναι τώρα μαζί σας. Είστε έτοιμοι για απεριόριστη εξερεύνηση υπό την καθοδήγηση των άστρων.',
-      AppLanguage.bg: 'Пълен достъп до тайните на вселената вече е с вас. Готови сте за безгранично изследване под напътствието на звездите.',
-      AppLanguage.ru: 'Полный доступ к тайнам вселенной теперь с вами. Вы готовы к безграничному исследованию под руководством звёзд.',
+      AppLanguage.en:
+          'Full access to the secrets of the universe is now with you. You are ready for limitless exploration under the guidance of the stars.',
+      AppLanguage.tr:
+          'Evrenin sırlarına tam erişim artık seninle. Yıldızların rehberliğinde sınırsız keşfe hazırsın.',
+      AppLanguage.el:
+          'Η πλήρης πρόσβαση στα μυστικά του σύμπαντος είναι τώρα μαζί σας. Είστε έτοιμοι για απεριόριστη εξερεύνηση υπό την καθοδήγηση των άστρων.',
+      AppLanguage.bg:
+          'Пълен достъп до тайните на вселената вече е с вас. Готови сте за безгранично изследване под напътствието на звездите.',
+      AppLanguage.ru:
+          'Полный доступ к тайнам вселенной теперь с вами. Вы готовы к безграничному исследованию под руководством звёзд.',
       AppLanguage.zh: '您现在拥有了宇宙秘密的完全访问权限。在星星的指引下，您已准备好进行无限探索。',
-      AppLanguage.fr: 'L\'accès complet aux secrets de l\'univers est maintenant avec vous. Vous êtes prêt pour une exploration illimitée sous la guidance des étoiles.',
-      AppLanguage.de: 'Der volle Zugang zu den Geheimnissen des Universums ist jetzt bei dir. Du bist bereit für grenzenlose Erkundung unter der Führung der Sterne.',
-      AppLanguage.es: 'El acceso completo a los secretos del universo ahora está contigo. Estás listo para una exploración ilimitada bajo la guía de las estrellas.',
-      AppLanguage.ar: 'الوصول الكامل إلى أسرار الكون الآن معك. أنت مستعد للاستكشاف اللامحدود تحت إرشاد النجوم.',
+      AppLanguage.fr:
+          'L\'accès complet aux secrets de l\'univers est maintenant avec vous. Vous êtes prêt pour une exploration illimitée sous la guidance des étoiles.',
+      AppLanguage.de:
+          'Der volle Zugang zu den Geheimnissen des Universums ist jetzt bei dir. Du bist bereit für grenzenlose Erkundung unter der Führung der Sterne.',
+      AppLanguage.es:
+          'El acceso completo a los secretos del universo ahora está contigo. Estás listo para una exploración ilimitada bajo la guía de las estrellas.',
+      AppLanguage.ar:
+          'الوصول الكامل إلى أسرار الكون الآن معك. أنت مستعد للاستكشاف اللامحدود تحت إرشاد النجوم.',
     },
 
     // ============ FEATURES ============
@@ -1238,96 +1291,36 @@ class L10n {
     },
 
     // ============ TAB LABELS ============
-    'tab_daily': {
-      AppLanguage.en: 'Daily',
-      AppLanguage.tr: 'Günlük',
-    },
-    'tab_weekly': {
-      AppLanguage.en: 'Weekly',
-      AppLanguage.tr: 'Haftalık',
-    },
-    'tab_monthly': {
-      AppLanguage.en: 'Monthly',
-      AppLanguage.tr: 'Aylık',
-    },
-    'tab_yearly': {
-      AppLanguage.en: 'Yearly',
-      AppLanguage.tr: 'Yıllık',
-    },
-    'tab_zodiac': {
-      AppLanguage.en: 'Zodiac',
-      AppLanguage.tr: 'Burç',
-    },
+    'tab_daily': {AppLanguage.en: 'Daily', AppLanguage.tr: 'Günlük'},
+    'tab_weekly': {AppLanguage.en: 'Weekly', AppLanguage.tr: 'Haftalık'},
+    'tab_monthly': {AppLanguage.en: 'Monthly', AppLanguage.tr: 'Aylık'},
+    'tab_yearly': {AppLanguage.en: 'Yearly', AppLanguage.tr: 'Yıllık'},
+    'tab_zodiac': {AppLanguage.en: 'Zodiac', AppLanguage.tr: 'Burç'},
     'tab_meditation': {
       AppLanguage.en: 'Meditation',
       AppLanguage.tr: 'Meditasyon',
     },
-    'tab_explore': {
-      AppLanguage.en: 'Explore',
-      AppLanguage.tr: 'Keşfet',
-    },
-    'tab_questions': {
-      AppLanguage.en: 'Questions',
-      AppLanguage.tr: 'Sorular',
-    },
+    'tab_explore': {AppLanguage.en: 'Explore', AppLanguage.tr: 'Keşfet'},
+    'tab_questions': {AppLanguage.en: 'Questions', AppLanguage.tr: 'Sorular'},
     'tab_main_asteroids': {
       AppLanguage.en: 'Main Asteroids',
       AppLanguage.tr: 'Ana Asteroidler',
     },
-    'tab_secondary': {
-      AppLanguage.en: 'Secondary',
-      AppLanguage.tr: 'İkincil',
-    },
-    'tab_analysis': {
-      AppLanguage.en: 'Analysis',
-      AppLanguage.tr: 'Analiz',
-    },
-    'tab_general': {
-      AppLanguage.en: 'General',
-      AppLanguage.tr: 'Genel',
-    },
-    'tab_aspects': {
-      AppLanguage.en: 'Aspects',
-      AppLanguage.tr: 'Aspektler',
-    },
-    'tab_houses': {
-      AppLanguage.en: 'Houses',
-      AppLanguage.tr: 'Evler',
-    },
-    'tab_advice': {
-      AppLanguage.en: 'Advice',
-      AppLanguage.tr: 'Tavsiye',
-    },
-    'tab_directions': {
-      AppLanguage.en: 'Directions',
-      AppLanguage.tr: 'Yönler',
-    },
-    'tab_home': {
-      AppLanguage.en: 'Home',
-      AppLanguage.tr: 'Ev',
-    },
-    'tab_office': {
-      AppLanguage.en: 'Office',
-      AppLanguage.tr: 'Ofis',
-    },
+    'tab_secondary': {AppLanguage.en: 'Secondary', AppLanguage.tr: 'İkincil'},
+    'tab_analysis': {AppLanguage.en: 'Analysis', AppLanguage.tr: 'Analiz'},
+    'tab_general': {AppLanguage.en: 'General', AppLanguage.tr: 'Genel'},
+    'tab_aspects': {AppLanguage.en: 'Aspects', AppLanguage.tr: 'Aspektler'},
+    'tab_houses': {AppLanguage.en: 'Houses', AppLanguage.tr: 'Evler'},
+    'tab_advice': {AppLanguage.en: 'Advice', AppLanguage.tr: 'Tavsiye'},
+    'tab_directions': {AppLanguage.en: 'Directions', AppLanguage.tr: 'Yönler'},
+    'tab_home': {AppLanguage.en: 'Home', AppLanguage.tr: 'Ev'},
+    'tab_office': {AppLanguage.en: 'Office', AppLanguage.tr: 'Ofis'},
 
     // ============ CATEGORIES ============
-    'category_love': {
-      AppLanguage.en: 'Love',
-      AppLanguage.tr: 'Aşk',
-    },
-    'category_career': {
-      AppLanguage.en: 'Career',
-      AppLanguage.tr: 'Kariyer',
-    },
-    'category_health': {
-      AppLanguage.en: 'Health',
-      AppLanguage.tr: 'Sağlık',
-    },
-    'category_finance': {
-      AppLanguage.en: 'Finance',
-      AppLanguage.tr: 'Finans',
-    },
+    'category_love': {AppLanguage.en: 'Love', AppLanguage.tr: 'Aşk'},
+    'category_career': {AppLanguage.en: 'Career', AppLanguage.tr: 'Kariyer'},
+    'category_health': {AppLanguage.en: 'Health', AppLanguage.tr: 'Sağlık'},
+    'category_finance': {AppLanguage.en: 'Finance', AppLanguage.tr: 'Finans'},
 
     // ============ BRAND FOOTERS ============
     'brand_weekly_horoscope': {
@@ -1352,18 +1345,9 @@ class L10n {
     },
 
     // ============ NAVIGATION ============
-    'nav_search': {
-      AppLanguage.en: 'Search',
-      AppLanguage.tr: 'Ara',
-    },
-    'nav_profile': {
-      AppLanguage.en: 'Profile',
-      AppLanguage.tr: 'Profil',
-    },
-    'nav_settings': {
-      AppLanguage.en: 'Settings',
-      AppLanguage.tr: 'Ayar',
-    },
+    'nav_search': {AppLanguage.en: 'Search', AppLanguage.tr: 'Ara'},
+    'nav_profile': {AppLanguage.en: 'Profile', AppLanguage.tr: 'Profil'},
+    'nav_settings': {AppLanguage.en: 'Settings', AppLanguage.tr: 'Ayar'},
 
     // ============ SECTION HEADERS ============
     'weekly_energy_chart': {
@@ -1398,14 +1382,8 @@ class L10n {
       AppLanguage.en: 'What themes can you explore this year?',
       AppLanguage.tr: 'Bu yıl hangi temaları keşfedebilirsin?',
     },
-    'week_number': {
-      AppLanguage.en: 'Week',
-      AppLanguage.tr: 'Hafta',
-    },
-    'day_suffix': {
-      AppLanguage.en: 'day',
-      AppLanguage.tr: 'gün',
-    },
+    'week_number': {AppLanguage.en: 'Week', AppLanguage.tr: 'Hafta'},
+    'day_suffix': {AppLanguage.en: 'day', AppLanguage.tr: 'gün'},
 
     // ============ MISC UI ============
     'zodiac_interpretation': {
@@ -1511,10 +1489,13 @@ class L10n {
       AppLanguage.fr: 'Focus Carrière',
     },
     'solar_return_theme_career_desc': {
-      AppLanguage.en: 'Professional development and social status at the forefront',
+      AppLanguage.en:
+          'Professional development and social status at the forefront',
       AppLanguage.tr: 'Mesleki gelişim ve toplumsal konum ön planda',
-      AppLanguage.de: 'Berufliche Entwicklung und sozialer Status im Vordergrund',
-      AppLanguage.fr: 'Développement professionnel et statut social au premier plan',
+      AppLanguage.de:
+          'Berufliche Entwicklung und sozialer Status im Vordergrund',
+      AppLanguage.fr:
+          'Développement professionnel et statut social au premier plan',
     },
     'solar_return_theme_relationships_title': {
       AppLanguage.en: 'Relationships',
@@ -1523,10 +1504,13 @@ class L10n {
       AppLanguage.fr: 'Relations',
     },
     'solar_return_theme_relationships_desc': {
-      AppLanguage.en: 'Important developments in partnerships and collaborations',
+      AppLanguage.en:
+          'Important developments in partnerships and collaborations',
       AppLanguage.tr: 'Partnerlik ve iş birliklerinde önemli gelişmeler',
-      AppLanguage.de: 'Wichtige Entwicklungen in Partnerschaften und Kooperationen',
-      AppLanguage.fr: 'Développements importants dans les partenariats et collaborations',
+      AppLanguage.de:
+          'Wichtige Entwicklungen in Partnerschaften und Kooperationen',
+      AppLanguage.fr:
+          'Développements importants dans les partenariats et collaborations',
     },
     'solar_return_theme_personal_growth_title': {
       AppLanguage.en: 'Personal Growth',
@@ -1727,82 +1711,133 @@ class L10n {
 
     // Solar Return Advice by House
     'solar_return_advice_house_1': {
-      AppLanguage.en: 'Focus on yourself this year. Set your personal goals and use your courage.',
-      AppLanguage.tr: 'Bu yıl kendinize odaklanın. Kişisel hedeflerinizi belirleyin ve cesaretinizi kullanın.',
-      AppLanguage.de: 'Konzentrieren Sie sich dieses Jahr auf sich selbst. Setzen Sie persönliche Ziele und nutzen Sie Ihren Mut.',
-      AppLanguage.fr: 'Concentrez-vous sur vous-même cette année. Fixez vos objectifs personnels et utilisez votre courage.',
+      AppLanguage.en:
+          'Focus on yourself this year. Set your personal goals and use your courage.',
+      AppLanguage.tr:
+          'Bu yıl kendinize odaklanın. Kişisel hedeflerinizi belirleyin ve cesaretinizi kullanın.',
+      AppLanguage.de:
+          'Konzentrieren Sie sich dieses Jahr auf sich selbst. Setzen Sie persönliche Ziele und nutzen Sie Ihren Mut.',
+      AppLanguage.fr:
+          'Concentrez-vous sur vous-même cette année. Fixez vos objectifs personnels et utilisez votre courage.',
     },
     'solar_return_advice_house_2': {
-      AppLanguage.en: 'Review your financial plans. Work on your values and resources.',
-      AppLanguage.tr: 'Finansal planlarınızı gözden geçirin. Değerleriniz ve kaynaklarınız üzerinde çalışın.',
-      AppLanguage.de: 'Überprüfen Sie Ihre Finanzpläne. Arbeiten Sie an Ihren Werten und Ressourcen.',
-      AppLanguage.fr: 'Révisez vos plans financiers. Travaillez sur vos valeurs et ressources.',
+      AppLanguage.en:
+          'Review your financial plans. Work on your values and resources.',
+      AppLanguage.tr:
+          'Finansal planlarınızı gözden geçirin. Değerleriniz ve kaynaklarınız üzerinde çalışın.',
+      AppLanguage.de:
+          'Überprüfen Sie Ihre Finanzpläne. Arbeiten Sie an Ihren Werten und Ressourcen.',
+      AppLanguage.fr:
+          'Révisez vos plans financiers. Travaillez sur vos valeurs et ressources.',
     },
     'solar_return_advice_house_3': {
-      AppLanguage.en: 'Develop your communication skills. Strengthen connections with your close circle.',
-      AppLanguage.tr: 'İletişim becerilerinizi geliştirin. Yakın çevrenizle bağlantıları güçlendirin.',
-      AppLanguage.de: 'Entwickeln Sie Ihre Kommunikationsfähigkeiten. Stärken Sie Verbindungen mit Ihrem engeren Kreis.',
-      AppLanguage.fr: 'Développez vos compétences en communication. Renforcez les liens avec votre entourage.',
+      AppLanguage.en:
+          'Develop your communication skills. Strengthen connections with your close circle.',
+      AppLanguage.tr:
+          'İletişim becerilerinizi geliştirin. Yakın çevrenizle bağlantıları güçlendirin.',
+      AppLanguage.de:
+          'Entwickeln Sie Ihre Kommunikationsfähigkeiten. Stärken Sie Verbindungen mit Ihrem engeren Kreis.',
+      AppLanguage.fr:
+          'Développez vos compétences en communication. Renforcez les liens avec votre entourage.',
     },
     'solar_return_advice_house_4': {
-      AppLanguage.en: 'Dedicate time to your home and family. Prioritize your emotional security.',
-      AppLanguage.tr: 'Evinize ve ailenize zaman ayırın. Duygusal güvenliğinizi öncelikli yapın.',
-      AppLanguage.de: 'Widmen Sie Ihrem Zuhause und Ihrer Familie Zeit. Priorisieren Sie Ihre emotionale Sicherheit.',
-      AppLanguage.fr: 'Consacrez du temps à votre maison et votre famille. Priorisez votre sécurité émotionnelle.',
+      AppLanguage.en:
+          'Dedicate time to your home and family. Prioritize your emotional security.',
+      AppLanguage.tr:
+          'Evinize ve ailenize zaman ayırın. Duygusal güvenliğinizi öncelikli yapın.',
+      AppLanguage.de:
+          'Widmen Sie Ihrem Zuhause und Ihrer Familie Zeit. Priorisieren Sie Ihre emotionale Sicherheit.',
+      AppLanguage.fr:
+          'Consacrez du temps à votre maison et votre famille. Priorisez votre sécurité émotionnelle.',
     },
     'solar_return_advice_house_5': {
-      AppLanguage.en: 'Let your creativity flow freely. Expect vitality in love and entertainment.',
-      AppLanguage.tr: 'Yaratıcılığınızda özgür bırakın. Aşk ve eğlence hayatında canlılık bekleyin.',
-      AppLanguage.de: 'Lassen Sie Ihre Kreativität frei fließen. Erwarten Sie Vitalität in Liebe und Unterhaltung.',
-      AppLanguage.fr: 'Laissez votre créativité s\'exprimer librement. Attendez-vous à de la vitalité en amour et divertissement.',
+      AppLanguage.en:
+          'Let your creativity flow freely. Expect vitality in love and entertainment.',
+      AppLanguage.tr:
+          'Yaratıcılığınızda özgür bırakın. Aşk ve eğlence hayatında canlılık bekleyin.',
+      AppLanguage.de:
+          'Lassen Sie Ihre Kreativität frei fließen. Erwarten Sie Vitalität in Liebe und Unterhaltung.',
+      AppLanguage.fr:
+          'Laissez votre créativité s\'exprimer librement. Attendez-vous à de la vitalité en amour et divertissement.',
     },
     'solar_return_advice_house_6': {
-      AppLanguage.en: 'Pay attention to your health and daily routines. Work environment themes are highlighted.',
-      AppLanguage.tr: 'Sağlığınıza ve günlük rutinlerinize dikkat edin. İş ortamı temaları öne çıkıyor.',
-      AppLanguage.de: 'Achten Sie auf Ihre Gesundheit und täglichen Routinen. Arbeitsumfeld-Themen sind hervorgehoben.',
-      AppLanguage.fr: 'Faites attention à votre santé et routines quotidiennes. Les thèmes de l\'environnement de travail sont mis en avant.',
+      AppLanguage.en:
+          'Pay attention to your health and daily routines. Work environment themes are highlighted.',
+      AppLanguage.tr:
+          'Sağlığınıza ve günlük rutinlerinize dikkat edin. İş ortamı temaları öne çıkıyor.',
+      AppLanguage.de:
+          'Achten Sie auf Ihre Gesundheit und täglichen Routinen. Arbeitsumfeld-Themen sind hervorgehoben.',
+      AppLanguage.fr:
+          'Faites attention à votre santé et routines quotidiennes. Les thèmes de l\'environnement de travail sont mis en avant.',
     },
     'solar_return_advice_house_7': {
-      AppLanguage.en: 'Relationships take center stage. Important steps in partnerships and marriage matters.',
-      AppLanguage.tr: 'İlişkileriniz ön planda. Ortaklıklar ve evlilik konularında önemli adımlar.',
-      AppLanguage.de: 'Beziehungen stehen im Mittelpunkt. Wichtige Schritte in Partnerschaften und Eheangelegenheiten.',
-      AppLanguage.fr: 'Les relations sont au premier plan. Étapes importantes dans les partenariats et questions de mariage.',
+      AppLanguage.en:
+          'Relationships take center stage. Important steps in partnerships and marriage matters.',
+      AppLanguage.tr:
+          'İlişkileriniz ön planda. Ortaklıklar ve evlilik konularında önemli adımlar.',
+      AppLanguage.de:
+          'Beziehungen stehen im Mittelpunkt. Wichtige Schritte in Partnerschaften und Eheangelegenheiten.',
+      AppLanguage.fr:
+          'Les relations sont au premier plan. Étapes importantes dans les partenariats et questions de mariage.',
     },
     'solar_return_advice_house_8': {
-      AppLanguage.en: 'Go deep. Time for transformation and renewal. Shared finances gain importance.',
-      AppLanguage.tr: 'Derinlere inin. Dönüşüm ve yenilenme zamanı. Ortak finanslar önem kazanıyor.',
-      AppLanguage.de: 'Gehen Sie in die Tiefe. Zeit für Transformation und Erneuerung. Gemeinsame Finanzen gewinnen an Bedeutung.',
-      AppLanguage.fr: 'Allez en profondeur. Temps de transformation et renouvellement. Les finances partagées gagnent en importance.',
+      AppLanguage.en:
+          'Go deep. Time for transformation and renewal. Shared finances gain importance.',
+      AppLanguage.tr:
+          'Derinlere inin. Dönüşüm ve yenilenme zamanı. Ortak finanslar önem kazanıyor.',
+      AppLanguage.de:
+          'Gehen Sie in die Tiefe. Zeit für Transformation und Erneuerung. Gemeinsame Finanzen gewinnen an Bedeutung.',
+      AppLanguage.fr:
+          'Allez en profondeur. Temps de transformation et renouvellement. Les finances partagées gagnent en importance.',
     },
     'solar_return_advice_house_9': {
-      AppLanguage.en: 'Expand your horizons. Ideal year for education, travel and philosophical pursuits.',
-      AppLanguage.tr: 'Ufkunuzu genişletin. Eğitim, seyahat ve felsefi arayışlar için ideal yıl.',
-      AppLanguage.de: 'Erweitern Sie Ihren Horizont. Ideales Jahr für Bildung, Reisen und philosophische Bestrebungen.',
-      AppLanguage.fr: 'Élargissez vos horizons. Année idéale pour l\'éducation, les voyages et les quêtes philosophiques.',
+      AppLanguage.en:
+          'Expand your horizons. Ideal year for education, travel and philosophical pursuits.',
+      AppLanguage.tr:
+          'Ufkunuzu genişletin. Eğitim, seyahat ve felsefi arayışlar için ideal yıl.',
+      AppLanguage.de:
+          'Erweitern Sie Ihren Horizont. Ideales Jahr für Bildung, Reisen und philosophische Bestrebungen.',
+      AppLanguage.fr:
+          'Élargissez vos horizons. Année idéale pour l\'éducation, les voyages et les quêtes philosophiques.',
     },
     'solar_return_advice_house_10': {
-      AppLanguage.en: 'Focus on your career goals. Establish your place in society.',
-      AppLanguage.tr: 'Kariyer hedeflerinize odaklanın. Toplumda yerinizi belirleyin.',
-      AppLanguage.de: 'Konzentrieren Sie sich auf Ihre Karriereziele. Etablieren Sie Ihren Platz in der Gesellschaft.',
-      AppLanguage.fr: 'Concentrez-vous sur vos objectifs de carrière. Établissez votre place dans la société.',
+      AppLanguage.en:
+          'Focus on your career goals. Establish your place in society.',
+      AppLanguage.tr:
+          'Kariyer hedeflerinize odaklanın. Toplumda yerinizi belirleyin.',
+      AppLanguage.de:
+          'Konzentrieren Sie sich auf Ihre Karriereziele. Etablieren Sie Ihren Platz in der Gesellschaft.',
+      AppLanguage.fr:
+          'Concentrez-vous sur vos objectifs de carrière. Établissez votre place dans la société.',
     },
     'solar_return_advice_house_11': {
-      AppLanguage.en: 'Expand your social circle. Work towards your personal aspirations.',
-      AppLanguage.tr: 'Sosyal çevrenizi genişletin. Kişisel hedefleriniz için çalışın.',
-      AppLanguage.de: 'Erweitern Sie Ihren sozialen Kreis. Arbeiten Sie auf Ihre persönlichen Ziele hin.',
-      AppLanguage.fr: 'Élargissez votre cercle social. Travaillez vers vos aspirations personnelles.',
+      AppLanguage.en:
+          'Expand your social circle. Work towards your personal aspirations.',
+      AppLanguage.tr:
+          'Sosyal çevrenizi genişletin. Kişisel hedefleriniz için çalışın.',
+      AppLanguage.de:
+          'Erweitern Sie Ihren sozialen Kreis. Arbeiten Sie auf Ihre persönlichen Ziele hin.',
+      AppLanguage.fr:
+          'Élargissez votre cercle social. Travaillez vers vos aspirations personnelles.',
     },
     'solar_return_advice_house_12': {
-      AppLanguage.en: 'Year of introspection. Spiritual development and rest should be prioritized.',
-      AppLanguage.tr: 'İçe dönüş yılı. Ruhsal gelişim ve dinlenme öncelikli olmalı.',
-      AppLanguage.de: 'Jahr der Innenschau. Spirituelle Entwicklung und Ruhe sollten Priorität haben.',
-      AppLanguage.fr: 'Année d\'introspection. Le développement spirituel et le repos doivent être prioritaires.',
+      AppLanguage.en:
+          'Year of introspection. Spiritual development and rest should be prioritized.',
+      AppLanguage.tr:
+          'İçe dönüş yılı. Ruhsal gelişim ve dinlenme öncelikli olmalı.',
+      AppLanguage.de:
+          'Jahr der Innenschau. Spirituelle Entwicklung und Ruhe sollten Priorität haben.',
+      AppLanguage.fr:
+          'Année d\'introspection. Le développement spirituel et le repos doivent être prioritaires.',
     },
     'solar_return_advice_default': {
-      AppLanguage.en: 'This year highlights important transformation themes for you.',
+      AppLanguage.en:
+          'This year highlights important transformation themes for you.',
       AppLanguage.tr: 'Bu yıl sizin için önemli dönüşüm temalarını vurguluyor.',
-      AppLanguage.de: 'Dieses Jahr betont wichtige Transformationsthemen für Sie.',
-      AppLanguage.fr: 'Cette année met en évidence des thèmes de transformation importants pour vous.',
+      AppLanguage.de:
+          'Dieses Jahr betont wichtige Transformationsthemen für Sie.',
+      AppLanguage.fr:
+          'Cette année met en évidence des thèmes de transformation importants pour vous.',
     },
 
     // Months
@@ -1979,10 +2014,14 @@ class L10n {
       AppLanguage.fr: 'Retour',
     },
     'progressions_info_banner': {
-      AppLanguage.en: 'Secondary progressions are based on the "one day = one year" principle. They show the slow evolution of your natal chart.',
-      AppLanguage.tr: 'İkincil ilerlemeler, "bir gün = bir yıl" prensibine dayanır. Natal haritanızın yavaş evrimini gösterir.',
-      AppLanguage.de: 'Sekundäre Progressionen basieren auf dem Prinzip "ein Tag = ein Jahr". Sie zeigen die langsame Entwicklung Ihres Geburtshoroskops.',
-      AppLanguage.fr: 'Les progressions secondaires sont basées sur le principe "un jour = un an". Elles montrent l\'évolution lente de votre thème natal.',
+      AppLanguage.en:
+          'Secondary progressions are based on the "one day = one year" principle. They show the slow evolution of your natal chart.',
+      AppLanguage.tr:
+          'İkincil ilerlemeler, "bir gün = bir yıl" prensibine dayanır. Natal haritanızın yavaş evrimini gösterir.',
+      AppLanguage.de:
+          'Sekundäre Progressionen basieren auf dem Prinzip "ein Tag = ein Jahr". Sie zeigen die langsame Entwicklung Ihres Geburtshoroskops.',
+      AppLanguage.fr:
+          'Les progressions secondaires sont basées sur le principe "un jour = un an". Elles montrent l\'évolution lente de votre thème natal.',
     },
     'progressions_profile_info': {
       AppLanguage.en: 'Profile Information',
@@ -2117,10 +2156,14 @@ class L10n {
       AppLanguage.fr: 'Un Jour = Un An',
     },
     'progressions_kadim_content': {
-      AppLanguage.en: 'Secondary Progressions are one of astrology\'s most subtle timing techniques. They work with the "one day = one year" formula: the sky 30 days after your birth reflects themes associated with your 30th year. This ancient technique explores inner evolution and spiritual maturation - inner transformation rather than external events.',
-      AppLanguage.tr: 'İkincil İlerlemeler, astrolojinin en incelikli zamanlama tekniklerinden biridir. "Bir gün = bir yıl" formülüyle çalışır: doğumunuzdan 30 gün sonraki gökyüzü, 30 yaşınızdaki temalarla ilişkilendirilir. Bu kadim teknik, içsel evriminizi ve ruhsal olgunlaşmanızı keşfetmenize yardımcı olur.',
-      AppLanguage.de: 'Sekundäre Progressionen sind eine der subtilsten Zeittechniken der Astrologie. Sie arbeiten mit der Formel "ein Tag = ein Jahr": der Himmel 30 Tage nach Ihrer Geburt spiegelt Themen Ihres 30. Lebensjahres wider. Diese alte Technik erforscht Ihre innere Entwicklung und spirituelle Reifung.',
-      AppLanguage.fr: 'Les Progressions Secondaires sont l\'une des techniques de timing les plus subtiles de l\'astrologie. Elles fonctionnent avec la formule "un jour = un an" : le ciel 30 jours après votre naissance reflète les thèmes associés à votre 30e année. Cette technique ancienne explore votre évolution intérieure et votre maturation spirituelle.',
+      AppLanguage.en:
+          'Secondary Progressions are one of astrology\'s most subtle timing techniques. They work with the "one day = one year" formula: the sky 30 days after your birth reflects themes associated with your 30th year. This ancient technique explores inner evolution and spiritual maturation - inner transformation rather than external events.',
+      AppLanguage.tr:
+          'İkincil İlerlemeler, astrolojinin en incelikli zamanlama tekniklerinden biridir. "Bir gün = bir yıl" formülüyle çalışır: doğumunuzdan 30 gün sonraki gökyüzü, 30 yaşınızdaki temalarla ilişkilendirilir. Bu kadim teknik, içsel evriminizi ve ruhsal olgunlaşmanızı keşfetmenize yardımcı olur.',
+      AppLanguage.de:
+          'Sekundäre Progressionen sind eine der subtilsten Zeittechniken der Astrologie. Sie arbeiten mit der Formel "ein Tag = ein Jahr": der Himmel 30 Tage nach Ihrer Geburt spiegelt Themen Ihres 30. Lebensjahres wider. Diese alte Technik erforscht Ihre innere Entwicklung und spirituelle Reifung.',
+      AppLanguage.fr:
+          'Les Progressions Secondaires sont l\'une des techniques de timing les plus subtiles de l\'astrologie. Elles fonctionnent avec la formule "un jour = un an" : le ciel 30 jours après votre naissance reflète les thèmes associés à votre 30e année. Cette technique ancienne explore votre évolution intérieure et votre maturation spirituelle.',
     },
   };
 }

@@ -59,7 +59,10 @@ class DreamWaterScreen extends ConsumerWidget {
                 const SizedBox(height: 8),
 
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 4,
+                  ),
                   decoration: BoxDecoration(
                     color: AppColors.waterElement.withValues(alpha: 0.15),
                     borderRadius: BorderRadius.circular(12),
@@ -79,12 +82,24 @@ class DreamWaterScreen extends ConsumerWidget {
                 // Short answer section
                 _buildQuotableSection(
                   isDark: isDark,
-                  title: L10nService.get('dreams.canonical.sections.short_answer', language),
+                  title: L10nService.get(
+                    'dreams.canonical.sections.short_answer',
+                    language,
+                  ),
                   color: AppColors.waterElement,
                   bullets: [
-                    L10nService.get('dreams.canonical.water.short_answer_1', language),
-                    L10nService.get('dreams.canonical.water.short_answer_2', language),
-                    L10nService.get('dreams.canonical.water.short_answer_3', language),
+                    L10nService.get(
+                      'dreams.canonical.water.short_answer_1',
+                      language,
+                    ),
+                    L10nService.get(
+                      'dreams.canonical.water.short_answer_2',
+                      language,
+                    ),
+                    L10nService.get(
+                      'dreams.canonical.water.short_answer_3',
+                      language,
+                    ),
                   ],
                 ),
 
@@ -92,7 +107,10 @@ class DreamWaterScreen extends ConsumerWidget {
 
                 _buildQuotableSection(
                   isDark: isDark,
-                  title: L10nService.get('dreams.canonical.water.state_title', language),
+                  title: L10nService.get(
+                    'dreams.canonical.water.state_title',
+                    language,
+                  ),
                   color: AppColors.waterElement,
                   bullets: [
                     L10nService.get('dreams.canonical.water.state_1', language),
@@ -106,12 +124,24 @@ class DreamWaterScreen extends ConsumerWidget {
 
                 _buildQuotableSection(
                   isDark: isDark,
-                  title: L10nService.get('dreams.canonical.water.emotion_title', language),
+                  title: L10nService.get(
+                    'dreams.canonical.water.emotion_title',
+                    language,
+                  ),
                   color: AppColors.waterElement,
                   bullets: [
-                    L10nService.get('dreams.canonical.water.emotion_1', language),
-                    L10nService.get('dreams.canonical.water.emotion_2', language),
-                    L10nService.get('dreams.canonical.water.emotion_3', language),
+                    L10nService.get(
+                      'dreams.canonical.water.emotion_1',
+                      language,
+                    ),
+                    L10nService.get(
+                      'dreams.canonical.water.emotion_2',
+                      language,
+                    ),
+                    L10nService.get(
+                      'dreams.canonical.water.emotion_3',
+                      language,
+                    ),
                   ],
                 ),
 
@@ -119,12 +149,24 @@ class DreamWaterScreen extends ConsumerWidget {
 
                 _buildQuotableSection(
                   isDark: isDark,
-                  title: L10nService.get('dreams.canonical.sections.if_recurring', language),
+                  title: L10nService.get(
+                    'dreams.canonical.sections.if_recurring',
+                    language,
+                  ),
                   color: AppColors.waterElement,
                   bullets: [
-                    L10nService.get('dreams.canonical.water.recurring_1', language),
-                    L10nService.get('dreams.canonical.water.recurring_2', language),
-                    L10nService.get('dreams.canonical.water.recurring_3', language),
+                    L10nService.get(
+                      'dreams.canonical.water.recurring_1',
+                      language,
+                    ),
+                    L10nService.get(
+                      'dreams.canonical.water.recurring_2',
+                      language,
+                    ),
+                    L10nService.get(
+                      'dreams.canonical.water.recurring_3',
+                      language,
+                    ),
                   ],
                 ),
 
@@ -165,37 +207,43 @@ class DreamWaterScreen extends ConsumerWidget {
           ),
         ),
         const SizedBox(height: 12),
-        ...bullets.map((bullet) => Padding(
-              padding: const EdgeInsets.only(bottom: 8),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    '•',
+        ...bullets.map(
+          (bullet) => Padding(
+            padding: const EdgeInsets.only(bottom: 8),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '•',
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: isDark ? Colors.white54 : AppColors.textLight,
+                  ),
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    bullet,
                     style: TextStyle(
-                      fontSize: 14,
-                      color: isDark ? Colors.white54 : AppColors.textLight,
+                      fontSize: 15,
+                      height: 1.5,
+                      color: isDark ? Colors.white70 : AppColors.textDark,
                     ),
                   ),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: Text(
-                      bullet,
-                      style: TextStyle(
-                        fontSize: 15,
-                        height: 1.5,
-                        color: isDark ? Colors.white70 : AppColors.textDark,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            )),
+                ),
+              ],
+            ),
+          ),
+        ),
       ],
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildSuggestionBox(BuildContext context, bool isDark, AppLanguage language) {
+  Widget _buildSuggestionBox(
+    BuildContext context,
+    bool isDark,
+    AppLanguage language,
+  ) {
     return GestureDetector(
       onTap: () => context.push(Routes.dreamRecurring),
       child: Container(
@@ -228,7 +276,10 @@ class DreamWaterScreen extends ConsumerWidget {
                   ),
                   const SizedBox(height: 2),
                   Text(
-                    L10nService.get('dreams.canonical.recurring_question', language),
+                    L10nService.get(
+                      'dreams.canonical.recurring_question',
+                      language,
+                    ),
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w500,

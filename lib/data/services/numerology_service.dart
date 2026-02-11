@@ -68,7 +68,10 @@ class NumerologyService {
 
   /// Calculate Personal Month Number
   static int calculatePersonalMonthNumber(
-      DateTime birthDate, int currentYear, int currentMonth) {
+    DateTime birthDate,
+    int currentYear,
+    int currentMonth,
+  ) {
     final personalYear = calculatePersonalYearNumber(birthDate, currentYear);
     return _reduceToSingleDigitOrMaster(personalYear + currentMonth);
   }
@@ -95,8 +98,11 @@ class NumerologyService {
 
   /// Calculate Compatibility Score between two people
   static NumerologyCompatibility calculateCompatibility(
-      DateTime date1, DateTime date2,
-      {String? name1, String? name2}) {
+    DateTime date1,
+    DateTime date2, {
+    String? name1,
+    String? name2,
+  }) {
     final lifeP1 = calculateLifePathNumber(date1);
     final lifeP2 = calculateLifePathNumber(date2);
 
@@ -151,9 +157,32 @@ class NumerologyService {
 
   static int _letterToNumber(String letter) {
     const values = {
-      'A': 1, 'B': 2, 'C': 3, 'D': 4, 'E': 5, 'F': 6, 'G': 7, 'H': 8, 'I': 9,
-      'J': 1, 'K': 2, 'L': 3, 'M': 4, 'N': 5, 'O': 6, 'P': 7, 'Q': 8, 'R': 9,
-      'S': 1, 'T': 2, 'U': 3, 'V': 4, 'W': 5, 'X': 6, 'Y': 7, 'Z': 8,
+      'A': 1,
+      'B': 2,
+      'C': 3,
+      'D': 4,
+      'E': 5,
+      'F': 6,
+      'G': 7,
+      'H': 8,
+      'I': 9,
+      'J': 1,
+      'K': 2,
+      'L': 3,
+      'M': 4,
+      'N': 5,
+      'O': 6,
+      'P': 7,
+      'Q': 8,
+      'R': 9,
+      'S': 1,
+      'T': 2,
+      'U': 3,
+      'V': 4,
+      'W': 5,
+      'X': 6,
+      'Y': 7,
+      'Z': 8,
     };
     return values[letter] ?? 0;
   }
@@ -264,7 +293,8 @@ class NumerologyMeaning {
           keywords: 'Independence - Pioneering - Creativity',
           meaning:
               'Natural leaders, innovators, and pioneers. Independence is their greatest value.',
-          strengths: 'Determination, self-confidence, creativity, entrepreneurship',
+          strengths:
+              'Determination, self-confidence, creativity, entrepreneurship',
           challenges: 'Stubbornness, selfishness, impatience',
           loveStyle: 'Independent but loyal, prefers to take the lead',
           detailedInterpretation: '''
@@ -276,9 +306,12 @@ The 1 energy is associated with the Sun - the central, radiating, life-giving fo
 
 The shadow side of this number is isolation and arrogance. The thought "I know best" can lead to loneliness. To find your balance, you need to learn cooperation and humility.
 ''',
-          careerPath: 'Entrepreneurship, management, innovation, starting your own business, sports, artistic direction',
-          spiritualLesson: 'Finding the balance between ego and soul. Understanding that leadership is service.',
-          shadowSide: 'Selfishness, dictatorship, closed to criticism, loneliness',
+          careerPath:
+              'Entrepreneurship, management, innovation, starting your own business, sports, artistic direction',
+          spiritualLesson:
+              'Finding the balance between ego and soul. Understanding that leadership is service.',
+          shadowSide:
+              'Selfishness, dictatorship, closed to criticism, loneliness',
           compatibleNumbers: '1, 3, 5, 7',
         );
       case 2:
@@ -300,9 +333,12 @@ The 2 energy is associated with the Moon - reflecting, cyclical, emotional. Like
 
 The shadow side of this number is excessive dependency and loss of identity. In trying to make others happy, you can lose yourself. To find your balance, you need to find your own voice.
 ''',
-          careerPath: 'Counseling, therapy, human resources, diplomacy, negotiation, mediation',
-          spiritualLesson: 'Merging while maintaining your own identity. Learning to set boundaries.',
-          shadowSide: 'Indecisiveness, conflict avoidance, passive-aggressiveness, loss of identity',
+          careerPath:
+              'Counseling, therapy, human resources, diplomacy, negotiation, mediation',
+          spiritualLesson:
+              'Merging while maintaining your own identity. Learning to set boundaries.',
+          shadowSide:
+              'Indecisiveness, conflict avoidance, passive-aggressiveness, loss of identity',
           compatibleNumbers: '2, 4, 6, 8',
         );
       case 3:
@@ -313,7 +349,8 @@ The shadow side of this number is excessive dependency and loss of identity. In 
           meaning:
               'Artistic, social, and energetic individuals. They love to express themselves.',
           strengths: 'Creativity, sociability, optimism, expressive power',
-          challenges: 'Scattered energy, superficiality, fear of self-expression',
+          challenges:
+              'Scattered energy, superficiality, fear of self-expression',
           loveStyle: 'Fun, romantic, spontaneous relationships',
           detailedInterpretation: '''
 The number 3 represents the sacred trinity - creator, creation, and created. Father, Mother, Child. Beginning, middle, end. Those born with this number came into the world with the message "I express."
@@ -324,9 +361,12 @@ The 3 energy is associated with Jupiter - expanding, optimistic, abundant. Like 
 
 The shadow side of this number is scattered energy and superficiality. The danger of touching everything but not deepening anything. To find your balance, you need to learn to focus.
 ''',
-          careerPath: 'Art, writing, acting, music, marketing, communications, entertainment industry',
-          spiritualLesson: 'Combining creativity with discipline. Bearing the responsibility of expression.',
-          shadowSide: 'Scattered energy, superficiality, gossip, wasting energy',
+          careerPath:
+              'Art, writing, acting, music, marketing, communications, entertainment industry',
+          spiritualLesson:
+              'Combining creativity with discipline. Bearing the responsibility of expression.',
+          shadowSide:
+              'Scattered energy, superficiality, gossip, wasting energy',
           compatibleNumbers: '1, 3, 5, 9',
         );
       case 4:
@@ -348,9 +388,12 @@ The 4 energy is associated with Saturn - disciplined, limiting, teaching. Like S
 
 The shadow side of this number is rigidity and fear-based control. Trying to plan everything kills spontaneity. To find your balance, you need to learn flexibility.
 ''',
-          careerPath: 'Engineering, architecture, accounting, project management, banking, real estate',
-          spiritualLesson: 'Understanding that security comes from within. Learning to let go of control.',
-          shadowSide: 'Rigidity, workaholism, control obsession, fear of change',
+          careerPath:
+              'Engineering, architecture, accounting, project management, banking, real estate',
+          spiritualLesson:
+              'Understanding that security comes from within. Learning to let go of control.',
+          shadowSide:
+              'Rigidity, workaholism, control obsession, fear of change',
           compatibleNumbers: '2, 4, 6, 8',
         );
       case 5:
@@ -372,9 +415,12 @@ The 5 energy is associated with Mercury - mobile, communicative, adaptive. Like 
 
 The shadow side of this number is scattered energy and addictive searching. Trying everything and staying with nothing. To find your balance, you need to learn commitment.
 ''',
-          careerPath: 'Travel, sales, media, marketing, entrepreneurship, consulting, entertainment',
-          spiritualLesson: 'Understanding that freedom can coexist with commitment.',
-          shadowSide: 'Fear of attachment, excessive risk-taking, addictions, restlessness',
+          careerPath:
+              'Travel, sales, media, marketing, entrepreneurship, consulting, entertainment',
+          spiritualLesson:
+              'Understanding that freedom can coexist with commitment.',
+          shadowSide:
+              'Fear of attachment, excessive risk-taking, addictions, restlessness',
           compatibleNumbers: '1, 3, 5, 7, 9',
         );
       case 6:
@@ -396,8 +442,10 @@ The 6 energy is associated with Venus - love, beauty, harmony. Like Venus, you s
 
 The shadow side of this number is intrusive protection and perfectionism. Trying to save everyone can lead to neglecting yourself. To find your balance, you need to learn to set boundaries.
 ''',
-          careerPath: 'Healthcare, therapy, education, interior design, beauty, family counseling, social services',
-          spiritualLesson: 'Learning to care for yourself before caring for others.',
+          careerPath:
+              'Healthcare, therapy, education, interior design, beauty, family counseling, social services',
+          spiritualLesson:
+              'Learning to care for yourself before caring for others.',
           shadowSide: 'Intrusiveness, martyr complex, perfectionism, criticism',
           compatibleNumbers: '2, 4, 6, 9',
         );
@@ -406,11 +454,11 @@ The shadow side of this number is intrusive protection and perfectionism. Trying
           number: 7,
           title: 'The Seeker',
           keywords: 'Wisdom - Analysis - Spirituality',
-          meaning:
-              'Thinker, researcher, and on a spiritual quest.',
+          meaning: 'Thinker, researcher, and on a spiritual quest.',
           strengths: 'Analytical intelligence, intuition, depth, wisdom',
           challenges: 'Isolation, skepticism, emotional distance',
-          loveStyle: 'Seeks deep connection, intellectual compatibility important',
+          loveStyle:
+              'Seeks deep connection, intellectual compatibility important',
           detailedInterpretation: '''
 The number 7 is the mystical number - seven planets, seven chakras, seven days. Those born with this number came into the world with the message "I understand."
 
@@ -420,8 +468,10 @@ The 7 energy is associated with Neptune - mystical, intuitive, spiritual. Like N
 
 The shadow side of this number is isolation and skepticism. Getting lost in the world in your head and disconnecting from the real world. To find your balance, you need to learn grounding.
 ''',
-          careerPath: 'Research, academia, psychology, philosophy, writing, spiritual teaching, analysis',
-          spiritualLesson: 'Sharing inner wisdom with the outer world. The difference between solitude and isolation.',
+          careerPath:
+              'Research, academia, psychology, philosophy, writing, spiritual teaching, analysis',
+          spiritualLesson:
+              'Sharing inner wisdom with the outer world. The difference between solitude and isolation.',
           shadowSide: 'Over-analysis, paranoia, emotional closure, arrogance',
           compatibleNumbers: '1, 5, 7',
         );
@@ -444,9 +494,12 @@ The 8 energy is associated with Saturn - karma, responsibility, consequences. Li
 
 The shadow side of this number is greed and power intoxication. Success obsession can crush human values. To find your balance, you need to understand the responsibility of power.
 ''',
-          careerPath: 'Finance, management, entrepreneurship, banking, law, real estate',
-          spiritualLesson: 'Balancing material and spiritual wealth. Understanding that power is for service.',
-          shadowSide: 'Greed, power intoxication, workaholism, emotional blindness',
+          careerPath:
+              'Finance, management, entrepreneurship, banking, law, real estate',
+          spiritualLesson:
+              'Balancing material and spiritual wealth. Understanding that power is for service.',
+          shadowSide:
+              'Greed, power intoxication, workaholism, emotional blindness',
           compatibleNumbers: '2, 4, 8',
         );
       case 9:
@@ -454,8 +507,7 @@ The shadow side of this number is greed and power intoxication. Success obsessio
           number: 9,
           title: 'The Humanitarian',
           keywords: 'Compassion - Universality - Wisdom',
-          meaning:
-              'Idealistic, compassionate, and working for humanity.',
+          meaning: 'Idealistic, compassionate, and working for humanity.',
           strengths: 'Mercy, universal love, wisdom, creativity',
           challenges: 'Disappointment, difficulty letting go, being scattered',
           loveStyle: 'Unconditional love, self-sacrificing, idealistic',
@@ -468,9 +520,12 @@ The 9 energy is associated with Mars - action, passion, struggle. Like Mars, you
 
 The shadow side of this number is disappointment and burnout. Exhausting yourself trying to change the world. To find your balance, you need to know your limits.
 ''',
-          careerPath: 'Philanthropy, art, therapy, international work, activism, teaching',
-          spiritualLesson: 'Learning to let go and accept. To change the world, first change yourself.',
-          shadowSide: 'Fanaticism, disappointment, martyr complex, difficulty finishing',
+          careerPath:
+              'Philanthropy, art, therapy, international work, activism, teaching',
+          spiritualLesson:
+              'Learning to let go and accept. To change the world, first change yourself.',
+          shadowSide:
+              'Fanaticism, disappointment, martyr complex, difficulty finishing',
           compatibleNumbers: '3, 5, 6, 9',
         );
       case 11:
@@ -481,7 +536,8 @@ The shadow side of this number is disappointment and burnout. Exhausting yoursel
           meaning:
               'Master number. High intuition, inspiration, and spiritual leadership potential.',
           strengths: 'Strong intuition, inspiring, visionary, spiritual',
-          challenges: 'Nervous tension, hypersensitivity, practical difficulties',
+          challenges:
+              'Nervous tension, hypersensitivity, practical difficulties',
           loveStyle: 'Seeking a soulmate, deep spiritual connection',
           detailedInterpretation: '''
 11 is a Master Number - high vibration, high potential, high responsibility. Double the power of 1, but also the sensitivity of 2. Those born with this number came into the world with the message "I inspire."
@@ -492,9 +548,12 @@ The 11 energy is like electricity - high voltage, high impact, but dangerous if 
 
 The shadow side of this number is hypersensitivity and inability to cope with the practical world. Your visions are great but you may forget to keep your feet on the ground. To find your balance, you need to learn grounding.
 ''',
-          careerPath: 'Spiritual teaching, psychology, art, music, healing, inspirational speaking',
-          spiritualLesson: 'Combining vision with practice. Transforming sensitivity into strength.',
-          shadowSide: 'Nervous tension, disconnection from reality, excessive idealism, inability to decide',
+          careerPath:
+              'Spiritual teaching, psychology, art, music, healing, inspirational speaking',
+          spiritualLesson:
+              'Combining vision with practice. Transforming sensitivity into strength.',
+          shadowSide:
+              'Nervous tension, disconnection from reality, excessive idealism, inability to decide',
           compatibleNumbers: '2, 11, 22',
         );
       case 22:
@@ -516,9 +575,12 @@ The 22 energy is like pyramids - massive, permanent, inspiring. Like pyramids, y
 
 The shadow side of this number is burnout and excessive pressure. Big goals create big stress. To find your balance, you need to show compassion to yourself too.
 ''',
-          careerPath: 'Large-scale entrepreneurship, architecture, international organizations, leadership',
-          spiritualLesson: 'Understanding that great power requires great responsibility.',
-          shadowSide: 'Burnout, perfectionism, crushing others, exhausting yourself',
+          careerPath:
+              'Large-scale entrepreneurship, architecture, international organizations, leadership',
+          spiritualLesson:
+              'Understanding that great power requires great responsibility.',
+          shadowSide:
+              'Burnout, perfectionism, crushing others, exhausting yourself',
           compatibleNumbers: '4, 11, 22, 33',
         );
       case 33:
@@ -540,9 +602,12 @@ The 33 energy is associated with Christ consciousness - self-sacrifice, uncondit
 
 The shadow side of this number is excessive self-sacrifice and martyrdom complex. You can sacrifice yourself trying to save everyone. To find your balance, you need to love yourself too.
 ''',
-          careerPath: 'Spiritual teaching, therapy, healing, philanthropy, art therapy, counseling',
-          spiritualLesson: 'Healing yourself while healing others. Loving while maintaining boundaries.',
-          shadowSide: 'Martyr complex, victim mentality, self-exhaustion, inability to set boundaries',
+          careerPath:
+              'Spiritual teaching, therapy, healing, philanthropy, art therapy, counseling',
+          spiritualLesson:
+              'Healing yourself while healing others. Loving while maintaining boundaries.',
+          shadowSide:
+              'Martyr complex, victim mentality, self-exhaustion, inability to set boundaries',
           compatibleNumbers: '6, 22, 33',
         );
       default:

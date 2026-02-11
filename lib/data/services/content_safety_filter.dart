@@ -71,6 +71,73 @@ class ContentSafetyFilter {
     RegExp(r'\bexpect to receive\b', caseSensitive: false),
     RegExp(r'\bdoors will open\b', caseSensitive: false),
     RegExp(r'\bsoulmate will\b', caseSensitive: false),
+
+    // Love/relationship prediction patterns
+    RegExp(r'\byour soulmate\b', caseSensitive: false),
+    RegExp(r'\btrue love awaits\b', caseSensitive: false),
+    RegExp(r'\bperfect match\b', caseSensitive: false),
+    RegExp(r'\bwill meet\b', caseSensitive: false),
+    RegExp(r'\bwill marry\b', caseSensitive: false),
+
+    // Health claim patterns (critical)
+    RegExp(r'\bwill cure\b', caseSensitive: false),
+    RegExp(r'\bwill heal\b', caseSensitive: false),
+    RegExp(r'\bguaranteed cure\b', caseSensitive: false),
+    RegExp(r'\bproven remedy\b', caseSensitive: false),
+    RegExp(r'\bmedical advice\b', caseSensitive: false),
+
+    // Financial prediction patterns
+    RegExp(r'\bget rich\b', caseSensitive: false),
+    RegExp(r'\bguaranteed profit\b', caseSensitive: false),
+    RegExp(r'\bfinancial advice\b', caseSensitive: false),
+
+    // Additional certainty patterns
+    RegExp(r'\bwill surely\b', caseSensitive: false),
+    RegExp(r'\bsurely will\b', caseSensitive: false),
+    RegExp(r'\bwill definitely\b', caseSensitive: false),
+    RegExp(r'\bwill certainly\b', caseSensitive: false),
+    RegExp(r'\bis meant for you\b', caseSensitive: false),
+    RegExp(r'\bbelongs to you\b', caseSensitive: false),
+
+    // Negative prediction patterns
+    RegExp(r'\bwill fail\b', caseSensitive: false),
+    RegExp(r'\bwill suffer\b', caseSensitive: false),
+    RegExp(r'\bbad luck\b', caseSensitive: false),
+    RegExp(r'\bmisfortune\b', caseSensitive: false),
+
+    // Time-specific predictions
+    RegExp(r'\bby age \d+\b', caseSensitive: false),
+    RegExp(r'\bwithin \d+ years\b', caseSensitive: false),
+
+    // Additional Turkish patterns
+    RegExp(r'\bruh eşi\b', caseSensitive: false),
+    RegExp(r'\bevlenecek\b', caseSensitive: false),
+    RegExp(r'\bzengin olacak\b', caseSensitive: false),
+    RegExp(r'\başkın bulacak\b', caseSensitive: false),
+    RegExp(r'\bkötü şans\b', caseSensitive: false),
+    RegExp(r'\btalihsizlik\b', caseSensitive: false),
+
+    // German patterns
+    RegExp(r'\bwird passieren\b', caseSensitive: false),
+    RegExp(r'\bSchicksal\b', caseSensitive: false),
+    RegExp(r'\bVorhersage\b', caseSensitive: false),
+    RegExp(r'\bwird kommen\b', caseSensitive: false),
+    RegExp(r'\bgarantiert\b', caseSensitive: false),
+    RegExp(r'\bSeelenverwandter\b', caseSensitive: false),
+
+    // French patterns
+    RegExp(r'\bva arriver\b', caseSensitive: false),
+    RegExp(r'\bdestin\b', caseSensitive: false),
+    RegExp(r'\bprédiction\b', caseSensitive: false),
+    RegExp(r'\bâme sœur\b', caseSensitive: false),
+    RegExp(r'\bgaranti\b', caseSensitive: false),
+
+    // Spanish patterns
+    RegExp(r'\bva a pasar\b', caseSensitive: false),
+    RegExp(r'\bdestino\b', caseSensitive: false),
+    RegExp(r'\bpredicción\b', caseSensitive: false),
+    RegExp(r'\balma gemela\b', caseSensitive: false),
+    RegExp(r'\bgarantizado\b', caseSensitive: false),
   ];
 
   // ══════════════════════════════════════════════════════════════════════════
@@ -125,6 +192,69 @@ class ContentSafetyFilter {
     'expect to receive': 'may encounter',
     'doors will open': 'opportunities may appear',
     'soulmate will': 'connection themes',
+
+    // Love/relationship replacements
+    'your soulmate': 'meaningful connections',
+    'true love awaits': 'love themes may emerge',
+    'perfect match': 'compatible energies',
+    'will meet': 'may encounter',
+    'will marry': 'may explore partnership themes',
+
+    // Health claim replacements
+    'will cure': 'may support',
+    'will heal': 'may nurture',
+    'guaranteed cure': 'supportive practice',
+    'proven remedy': 'traditional practice',
+    'medical advice': 'wellness reflection',
+
+    // Financial replacements
+    'get rich': 'explore abundance themes',
+    'guaranteed profit': 'potential opportunity',
+    'financial advice': 'financial reflection',
+
+    // Certainty replacements
+    'will surely': 'may often',
+    'surely will': 'often appears',
+    'will definitely': 'commonly shows',
+    'will certainly': 'frequently indicates',
+    'is meant for you': 'resonates with your path',
+    'belongs to you': 'aligns with your journey',
+
+    // Negative prediction replacements
+    'will fail': 'may face challenges in',
+    'will suffer': 'may experience tension in',
+    'bad luck': 'challenging themes',
+    'misfortune': 'growth opportunity',
+
+    // Turkish replacements
+    'ruh eşi': 'anlamlı bağlantılar',
+    'evlenecek': 'ilişki temalarını keşfedebilir',
+    'zengin olacak': 'bolluk temalarını keşfedebilir',
+    'aşkın bulacak': 'sevgi temalarını keşfedebilir',
+    'kötü şans': 'zorlayıcı temalar',
+    'talihsizlik': 'büyüme fırsatı',
+
+    // German replacements
+    'wird passieren': 'könnte sich entfalten',
+    'Schicksal': 'Lebensweg',
+    'Vorhersage': 'Reflexion',
+    'wird kommen': 'könnte erscheinen',
+    'garantiert': 'häufig',
+    'Seelenverwandter': 'bedeutungsvolle Verbindungen',
+
+    // French replacements
+    'va arriver': 'pourrait se développer',
+    'destin': 'chemin de vie',
+    'prédiction': 'réflexion',
+    'âme sœur': 'connexions significatives',
+    'garanti': 'souvent',
+
+    // Spanish replacements
+    'va a pasar': 'podría desarrollarse',
+    'destino': 'camino de vida',
+    'predicción': 'reflexión',
+    'alma gemela': 'conexiones significativas',
+    'garantizado': 'frecuentemente',
   };
 
   // ══════════════════════════════════════════════════════════════════════════
@@ -170,10 +300,7 @@ class ContentSafetyFilter {
     }
 
     // Log that content was filtered (privacy-safe - no actual content logged)
-    logBlockedContent(
-      content.hashCode.toString(),
-      context ?? 'AI_RESPONSE',
-    );
+    logBlockedContent(content.hashCode.toString(), context ?? 'AI_RESPONSE');
 
     return filterContent(content);
   }

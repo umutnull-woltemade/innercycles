@@ -95,7 +95,12 @@ class _AspectsCardState extends ConsumerState<AspectsCard> {
         const SizedBox(height: AppConstants.spacingMd),
 
         // Aspect type summary
-        _buildAspectSummary(context, language, harmoniousAspects, challengingAspects),
+        _buildAspectSummary(
+          context,
+          language,
+          harmoniousAspects,
+          challengingAspects,
+        ),
         const SizedBox(height: AppConstants.spacingMd),
 
         // Harmonious aspects
@@ -200,7 +205,10 @@ class _AspectsCardState extends ConsumerState<AspectsCard> {
           ),
           const SizedBox(height: 8),
           Text(
-            L10nService.get('aspects.energy_balance', language).replaceAll('{percent}', '$harmoniousRatio'),
+            L10nService.get(
+              'aspects.energy_balance',
+              language,
+            ).replaceAll('{percent}', '$harmoniousRatio'),
             style: Theme.of(
               context,
             ).textTheme.bodySmall?.copyWith(color: AppColors.textMuted),
@@ -321,7 +329,11 @@ class _AspectRow extends StatelessWidget {
   final AppLanguage language;
   final bool isLast;
 
-  const _AspectRow({required this.aspect, required this.language, this.isLast = false});
+  const _AspectRow({
+    required this.aspect,
+    required this.language,
+    this.isLast = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -429,14 +441,19 @@ class _AspectRow extends StatelessWidget {
               Row(
                 children: [
                   _InfoChip(
-                    label: aspect.type.isMajor ? L10nService.get('aspects.main_aspect', language) : L10nService.get('aspects.minor', language),
+                    label: aspect.type.isMajor
+                        ? L10nService.get('aspects.main_aspect', language)
+                        : L10nService.get('aspects.minor', language),
                     color: aspect.type.isMajor
                         ? AppColors.starGold
                         : AppColors.textMuted,
                   ),
                   const SizedBox(width: 8),
                   _InfoChip(
-                    label: L10nService.get('aspects.strength', language).replaceAll('{percent}', '${aspect.strength}'),
+                    label: L10nService.get(
+                      'aspects.strength',
+                      language,
+                    ).replaceAll('{percent}', '${aspect.strength}'),
                     color: aspect.type.color,
                   ),
                 ],

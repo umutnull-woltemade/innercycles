@@ -595,49 +595,68 @@ class NumerologyCalculationService {
   }
 
   /// Get detailed Karmic Lesson information
-  static KarmicLesson? getKarmicLessonDetails(int number, {AppLanguage language = AppLanguage.tr}) {
+  static KarmicLesson? getKarmicLessonDetails(
+    int number, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     // Turkish lessons
     final lessonsTr = {
       1: const KarmicLesson(
         number: 1,
-        description: 'Özgüven ve bağımsızlık konusunda dersler öğrenmeniz gerekiyor.',
-        howToHeal: 'Kendi kararlarınızı vermeyi, liderlik almayı ve kendinize güvenmeyi öğrenmek.',
+        description:
+            'Özgüven ve bağımsızlık konusunda dersler öğrenmeniz gerekiyor.',
+        howToHeal:
+            'Kendi kararlarınızı vermeyi, liderlik almayı ve kendinize güvenmeyi öğrenmek.',
         affirmations: ['Ben güçlü ve bağımsızım', 'Kendi yolumu yaratıyorum'],
       ),
       2: const KarmicLesson(
         number: 2,
         description: 'İşbirliği ve diplomasi konusunda gelişmeniz gerekiyor.',
-        howToHeal: 'Sabır, empati ve başkalarıyla uyum içinde çalışmayı öğrenmek.',
+        howToHeal:
+            'Sabır, empati ve başkalarıyla uyum içinde çalışmayı öğrenmek.',
         affirmations: ['İşbirliğine açığım', 'Uyum yaratıyorum'],
       ),
       3: const KarmicLesson(
         number: 3,
         description: 'Yaratıcı ifade ve iletişim konusunda engelleriniz var.',
-        howToHeal: 'Kendinizi ifade etmekten korkmamak, yaratıcılığı kucaklamak.',
-        affirmations: ['Yaratıcılığımı özgürce ifade ediyorum', 'Sesim değerli'],
+        howToHeal:
+            'Kendinizi ifade etmekten korkmamak, yaratıcılığı kucaklamak.',
+        affirmations: [
+          'Yaratıcılığımı özgürce ifade ediyorum',
+          'Sesim değerli',
+        ],
       ),
       4: const KarmicLesson(
         number: 4,
-        description: 'Disiplin, organizasyon ve pratiklik konusunda çalışmanız gerekiyor.',
+        description:
+            'Disiplin, organizasyon ve pratiklik konusunda çalışmanız gerekiyor.',
         howToHeal: 'Düzenli çalışma, planlama ve sabır geliştirmek.',
-        affirmations: ['Düzen ve stabilite yaratıyorum', 'Sabırla inşa ediyorum'],
+        affirmations: [
+          'Düzen ve stabilite yaratıyorum',
+          'Sabırla inşa ediyorum',
+        ],
       ),
       5: const KarmicLesson(
         number: 5,
-        description: 'Değişim, özgürlük ve adaptasyon konusunda dersleriniz var.',
-        howToHeal: 'Değişimi kucaklamak, esnek olmak, yeni deneyimlere açık olmak.',
+        description:
+            'Değişim, özgürlük ve adaptasyon konusunda dersleriniz var.',
+        howToHeal:
+            'Değişimi kucaklamak, esnek olmak, yeni deneyimlere açık olmak.',
         affirmations: ['Değişime açığım', 'Özgürlüğümü kutluyorum'],
       ),
       6: const KarmicLesson(
         number: 6,
-        description: 'Sorumluluk, aile ve bakım verme konusunda öğreniminiz var.',
+        description:
+            'Sorumluluk, aile ve bakım verme konusunda öğreniminiz var.',
         howToHeal: 'Başkalarına şefkat göstermek, sorumluluk almak.',
         affirmations: ['Sevgiyle bakım veriyorum', 'Ailem için varım'],
       ),
       7: const KarmicLesson(
         number: 7,
-        description: 'Spiritüel arayış ve içsel bilgelik konusunda gelişmeniz gerekiyor.',
-        howToHeal: 'Meditasyon, kendini tanımayla, derin düşünce ile bağlanmak.',
+        description:
+            'Spiritüel arayış ve içsel bilgelik konusunda gelişmeniz gerekiyor.',
+        howToHeal:
+            'Meditasyon, kendini tanımayla, derin düşünce ile bağlanmak.',
         affirmations: ['İçsel bilgeliğimi dinliyorum', 'Derinliğe iniyorum'],
       ),
       8: const KarmicLesson(
@@ -648,7 +667,8 @@ class NumerologyCalculationService {
       ),
       9: const KarmicLesson(
         number: 9,
-        description: 'Evrensel sevgi, şefkat ve bırakma konusunda öğreniminiz var.',
+        description:
+            'Evrensel sevgi, şefkat ve bırakma konusunda öğreniminiz var.',
         howToHeal: 'Koşulsuz sevgi, affetme ve hizmet etmeyi öğrenmek.',
         affirmations: ['Koşulsuz seviyorum', 'Kolayca bırakıyorum'],
       ),
@@ -658,25 +678,33 @@ class NumerologyCalculationService {
     final lessonsEn = {
       1: const KarmicLesson(
         number: 1,
-        description: 'You need to learn lessons about self-confidence and independence.',
-        howToHeal: 'Learn to make your own decisions, take leadership, and trust yourself.',
+        description:
+            'You need to learn lessons about self-confidence and independence.',
+        howToHeal:
+            'Learn to make your own decisions, take leadership, and trust yourself.',
         affirmations: ['I am strong and independent', 'I create my own path'],
       ),
       2: const KarmicLesson(
         number: 2,
         description: 'You need to develop in cooperation and diplomacy.',
-        howToHeal: 'Learn patience, empathy, and working in harmony with others.',
+        howToHeal:
+            'Learn patience, empathy, and working in harmony with others.',
         affirmations: ['I am open to cooperation', 'I create harmony'],
       ),
       3: const KarmicLesson(
         number: 3,
-        description: 'You have blocks in creative expression and communication.',
+        description:
+            'You have blocks in creative expression and communication.',
         howToHeal: 'Don\'t fear expressing yourself, embrace creativity.',
-        affirmations: ['I freely express my creativity', 'My voice is valuable'],
+        affirmations: [
+          'I freely express my creativity',
+          'My voice is valuable',
+        ],
       ),
       4: const KarmicLesson(
         number: 4,
-        description: 'You need to work on discipline, organization, and practicality.',
+        description:
+            'You need to work on discipline, organization, and practicality.',
         howToHeal: 'Develop regular work habits, planning, and patience.',
         affirmations: ['I create order and stability', 'I build with patience'],
       ),
@@ -688,25 +716,30 @@ class NumerologyCalculationService {
       ),
       6: const KarmicLesson(
         number: 6,
-        description: 'You have learning about responsibility, family, and caregiving.',
+        description:
+            'You have learning about responsibility, family, and caregiving.',
         howToHeal: 'Show compassion to others, take responsibility.',
         affirmations: ['I give care with love', 'I am here for my family'],
       ),
       7: const KarmicLesson(
         number: 7,
-        description: 'You need to develop in spiritual seeking and inner wisdom.',
-        howToHeal: 'Connect through meditation, self-knowledge, and deep thought.',
+        description:
+            'You need to develop in spiritual seeking and inner wisdom.',
+        howToHeal:
+            'Connect through meditation, self-knowledge, and deep thought.',
         affirmations: ['I listen to my inner wisdom', 'I go into depth'],
       ),
       8: const KarmicLesson(
         number: 8,
-        description: 'You have lessons about the material world, power, and authority.',
+        description:
+            'You have lessons about the material world, power, and authority.',
         howToHeal: 'Learn financial awareness and power balance.',
         affirmations: ['I deserve abundance', 'I use my power wisely'],
       ),
       9: const KarmicLesson(
         number: 9,
-        description: 'You have learning about universal love, compassion, and letting go.',
+        description:
+            'You have learning about universal love, compassion, and letting go.',
         howToHeal: 'Learn unconditional love, forgiveness, and service.',
         affirmations: ['I love unconditionally', 'I let go easily'],
       ),
@@ -1947,7 +1980,11 @@ class NumerologyCalculationService {
     return dayMappings[number] ?? ['Pazartesi', 'Cuma'];
   }
 
-  static List<String> _getMonthlyReflectionDays(int number, int year, int month) {
+  static List<String> _getMonthlyReflectionDays(
+    int number,
+    int year,
+    int month,
+  ) {
     // Return days of the month that match the personal number for reflection focus
     final reflectionDays = <String>[];
     final daysInMonth = DateTime(year, month + 1, 0).day;

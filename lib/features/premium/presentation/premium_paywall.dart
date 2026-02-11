@@ -28,11 +28,7 @@ class PremiumPaywall extends ConsumerStatefulWidget {
   final VoidCallback? onDismiss;
   final VoidCallback? onPurchaseSuccess;
 
-  const PremiumPaywall({
-    super.key,
-    this.onDismiss,
-    this.onPurchaseSuccess,
-  });
+  const PremiumPaywall({super.key, this.onDismiss, this.onPurchaseSuccess});
 
   @override
   ConsumerState<PremiumPaywall> createState() => _PremiumPaywallState();
@@ -72,7 +68,9 @@ class _PremiumPaywallState extends ConsumerState<PremiumPaywall> {
   }
 
   Future<void> _loadPricingVariant() async {
-    final variant = await ref.read(experimentServiceProvider).getPricingVariant();
+    final variant = await ref
+        .read(experimentServiceProvider)
+        .getPricingVariant();
     if (mounted) {
       setState(() => _pricingVariant = variant);
     }
@@ -94,7 +92,8 @@ class _PremiumPaywallState extends ConsumerState<PremiumPaywall> {
       // Use RevenueCat native paywall for actual purchase
       final result = await premiumNotifier.presentPaywall();
 
-      if (result == PaywallResult.purchased || result == PaywallResult.restored) {
+      if (result == PaywallResult.purchased ||
+          result == PaywallResult.restored) {
         await monetization.onPurchaseSuccess(
           price: _pricingVariant?.price ?? 7.99,
           productId: _pricingVariant?.productId ?? 'monthly_799',
@@ -237,13 +236,22 @@ class _PremiumPaywallState extends ConsumerState<PremiumPaywall> {
 
                   // Benefits
                   PaywallBenefitItem(
-                    text: L10nService.get('premium.paywall.benefit_ad_free', language),
+                    text: L10nService.get(
+                      'premium.paywall.benefit_ad_free',
+                      language,
+                    ),
                   ),
                   PaywallBenefitItem(
-                    text: L10nService.get('premium.paywall.benefit_unlimited', language),
+                    text: L10nService.get(
+                      'premium.paywall.benefit_unlimited',
+                      language,
+                    ),
                   ),
                   PaywallBenefitItem(
-                    text: L10nService.get('premium.paywall.benefit_priority', language),
+                    text: L10nService.get(
+                      'premium.paywall.benefit_priority',
+                      language,
+                    ),
                   ),
 
                   const SizedBox(height: 32),
@@ -294,10 +302,15 @@ class _PremiumPaywallState extends ConsumerState<PremiumPaywall> {
                       GestureDetector(
                         onTap: _openPrivacyPolicy,
                         child: Text(
-                          L10nService.get('premium.paywall.privacy_policy', language),
+                          L10nService.get(
+                            'premium.paywall.privacy_policy',
+                            language,
+                          ),
                           style: TextStyle(
                             fontSize: 11,
-                            color: PaywallColors.textSecondary.withValues(alpha: 0.7),
+                            color: PaywallColors.textSecondary.withValues(
+                              alpha: 0.7,
+                            ),
                             decoration: TextDecoration.underline,
                           ),
                         ),
@@ -306,16 +319,23 @@ class _PremiumPaywallState extends ConsumerState<PremiumPaywall> {
                         '  ·  ',
                         style: TextStyle(
                           fontSize: 11,
-                          color: PaywallColors.textSecondary.withValues(alpha: 0.7),
+                          color: PaywallColors.textSecondary.withValues(
+                            alpha: 0.7,
+                          ),
                         ),
                       ),
                       GestureDetector(
                         onTap: _openTermsOfService,
                         child: Text(
-                          L10nService.get('premium.paywall.terms_of_use', language),
+                          L10nService.get(
+                            'premium.paywall.terms_of_use',
+                            language,
+                          ),
                           style: TextStyle(
                             fontSize: 11,
-                            color: PaywallColors.textSecondary.withValues(alpha: 0.7),
+                            color: PaywallColors.textSecondary.withValues(
+                              alpha: 0.7,
+                            ),
                             decoration: TextDecoration.underline,
                           ),
                         ),
@@ -341,10 +361,7 @@ class _PremiumPaywallState extends ConsumerState<PremiumPaywall> {
         gradient: const LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [
-            PaywallColors.accentGold,
-            PaywallColors.accentGoldDark,
-          ],
+          colors: [PaywallColors.accentGold, PaywallColors.accentGoldDark],
         ),
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
@@ -374,7 +391,10 @@ class _PremiumPaywallState extends ConsumerState<PremiumPaywall> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        L10nService.get('premium.paywall.continue_pro', language),
+                        L10nService.get(
+                          'premium.paywall.continue_pro',
+                          language,
+                        ),
                         style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
@@ -387,7 +407,9 @@ class _PremiumPaywallState extends ConsumerState<PremiumPaywall> {
                         style: TextStyle(
                           fontSize: 13,
                           fontWeight: FontWeight.w500,
-                          color: PaywallColors.background.withValues(alpha: 0.8),
+                          color: PaywallColors.background.withValues(
+                            alpha: 0.8,
+                          ),
                         ),
                       ),
                     ],
@@ -416,9 +438,7 @@ class RetentionMessageDialog extends ConsumerWidget {
     final language = ref.watch(languageProvider);
     return Dialog(
       backgroundColor: PaywallColors.cardBackground,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(24),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
       child: Padding(
         padding: const EdgeInsets.all(24),
         child: Column(
@@ -464,7 +484,9 @@ class RetentionMessageDialog extends ConsumerWidget {
               child: TextButton(
                 onPressed: () => Navigator.of(context).pop(),
                 style: TextButton.styleFrom(
-                  backgroundColor: PaywallColors.accentGold.withValues(alpha: 0.15),
+                  backgroundColor: PaywallColors.accentGold.withValues(
+                    alpha: 0.15,
+                  ),
                   foregroundColor: PaywallColors.accentGold,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),

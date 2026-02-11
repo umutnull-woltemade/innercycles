@@ -51,7 +51,9 @@ class NotificationService {
     tz_data.initializeTimeZones();
 
     // Android settings
-    const androidSettings = AndroidInitializationSettings('@mipmap/ic_launcher');
+    const androidSettings = AndroidInitializationSettings(
+      '@mipmap/ic_launcher',
+    );
 
     // iOS settings
     const darwinSettings = DarwinInitializationSettings(
@@ -79,10 +81,12 @@ class NotificationService {
   Future<bool> requestPermissions() async {
     if (kIsWeb) return false;
 
-    if (defaultTargetPlatform == TargetPlatform.iOS || defaultTargetPlatform == TargetPlatform.macOS) {
+    if (defaultTargetPlatform == TargetPlatform.iOS ||
+        defaultTargetPlatform == TargetPlatform.macOS) {
       final result = await _notifications
           .resolvePlatformSpecificImplementation<
-              IOSFlutterLocalNotificationsPlugin>()
+            IOSFlutterLocalNotificationsPlugin
+          >()
           ?.requestPermissions(alert: true, badge: true, sound: true);
       return result ?? false;
     }
@@ -90,7 +94,8 @@ class NotificationService {
     if (defaultTargetPlatform == TargetPlatform.android) {
       final result = await _notifications
           .resolvePlatformSpecificImplementation<
-              AndroidFlutterLocalNotificationsPlugin>()
+            AndroidFlutterLocalNotificationsPlugin
+          >()
           ?.requestNotificationsPermission();
       return result ?? false;
     }
@@ -105,7 +110,8 @@ class NotificationService {
     if (defaultTargetPlatform == TargetPlatform.android) {
       final result = await _notifications
           .resolvePlatformSpecificImplementation<
-              AndroidFlutterLocalNotificationsPlugin>()
+            AndroidFlutterLocalNotificationsPlugin
+          >()
           ?.areNotificationsEnabled();
       return result ?? false;
     }
@@ -169,7 +175,8 @@ class NotificationService {
     final element = WidgetService.getElement(sign.name);
 
     // Default message if not personalized
-    final message = personalizedMessage ??
+    final message =
+        personalizedMessage ??
         'Your daily cosmic insights for ${sign.name} are ready.';
 
     await _notifications.zonedSchedule(
@@ -525,7 +532,11 @@ class NotificationService {
   }) async {
     if (daysUntil > 30) return;
 
-    final ordinal = returnNumber == 1 ? '1st' : returnNumber == 2 ? '2nd' : '${returnNumber}rd';
+    final ordinal = returnNumber == 1
+        ? '1st'
+        : returnNumber == 2
+        ? '2nd'
+        : '${returnNumber}rd';
 
     await _notifications.show(
       saturnReturnId,

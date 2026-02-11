@@ -34,7 +34,9 @@ class MobileLiteHomepage extends ConsumerWidget {
     final userProfile = ref.watch(userProfileProvider);
 
     // Guard: Show loading if no valid profile (don't redirect - causes loop)
-    if (userProfile == null || userProfile.name == null || userProfile.name!.isEmpty) {
+    if (userProfile == null ||
+        userProfile.name == null ||
+        userProfile.name!.isEmpty) {
       final language = ref.watch(languageProvider);
       return Scaffold(
         backgroundColor: const Color(0xFF0D0D1A),
@@ -66,24 +68,24 @@ class MobileLiteHomepage extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-              // ════════════════════════════════════════════════════════════
-              // ABOVE THE FOLD - Ultra simple, instant load
-              // ════════════════════════════════════════════════════════════
-              _AboveTheFold(
-                userName: userProfile.name ?? '',
-                sign: sign,
-                isDark: isDark,
-              ),
+                // ════════════════════════════════════════════════════════════
+                // ABOVE THE FOLD - Ultra simple, instant load
+                // ════════════════════════════════════════════════════════════
+                _AboveTheFold(
+                  userName: userProfile.name ?? '',
+                  sign: sign,
+                  isDark: isDark,
+                ),
 
-              // ════════════════════════════════════════════════════════════
-              // BELOW THE FOLD - Simple list of entry points
-              // ════════════════════════════════════════════════════════════
-              _BelowTheFold(isDark: isDark),
+                // ════════════════════════════════════════════════════════════
+                // BELOW THE FOLD - Simple list of entry points
+                // ════════════════════════════════════════════════════════════
+                _BelowTheFold(isDark: isDark),
 
-              const SizedBox(height: 32),
-            ],
+                const SizedBox(height: 32),
+              ],
+            ),
           ),
-        ),
         ),
       ),
     );
@@ -115,9 +117,7 @@ class _AboveTheFold extends ConsumerWidget {
     return Container(
       padding: const EdgeInsets.fromLTRB(20, 24, 20, 32),
       decoration: BoxDecoration(
-        color: isDark
-            ? const Color(0xFF1A1A2E)
-            : const Color(0xFFF0F2F8),
+        color: isDark ? const Color(0xFF1A1A2E) : const Color(0xFFF0F2F8),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -140,7 +140,9 @@ class _AboveTheFold extends ConsumerWidget {
                     sign.symbol,
                     style: TextStyle(
                       fontSize: 24,
-                      color: isDark ? AppColors.starGold : AppColors.lightStarGold,
+                      color: isDark
+                          ? AppColors.starGold
+                          : AppColors.lightStarGold,
                     ),
                   ),
                 ),
@@ -152,11 +154,17 @@ class _AboveTheFold extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      L10nService.getWithParams('home.greeting', language, params: {'name': userName}),
+                      L10nService.getWithParams(
+                        'home.greeting',
+                        language,
+                        params: {'name': userName},
+                      ),
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
-                        color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                        color: isDark
+                            ? AppColors.textPrimary
+                            : AppColors.lightTextPrimary,
                       ),
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
@@ -166,7 +174,9 @@ class _AboveTheFold extends ConsumerWidget {
                       sign.localizedName(language),
                       style: TextStyle(
                         fontSize: 13,
-                        color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+                        color: isDark
+                            ? AppColors.textSecondary
+                            : AppColors.lightTextSecondary,
                       ),
                     ),
                   ],
@@ -177,7 +187,9 @@ class _AboveTheFold extends ConsumerWidget {
                 onPressed: () => context.push(Routes.settings),
                 icon: Icon(
                   Icons.settings_outlined,
-                  color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+                  color: isDark
+                      ? AppColors.textSecondary
+                      : AppColors.lightTextSecondary,
                   size: 22,
                 ),
               ),
@@ -221,7 +233,10 @@ class _AboveTheFold extends ConsumerWidget {
                 const SizedBox(width: 8),
                 _QuickDiscoveryChip(
                   icon: '🌍',
-                  label: L10nService.get('home.chips.astrocartography', language),
+                  label: L10nService.get(
+                    'home.chips.astrocartography',
+                    language,
+                  ),
                   onTap: () => context.push(Routes.astroCartography),
                   isDark: isDark,
                 ),
@@ -277,7 +292,9 @@ class _AboveTheFold extends ConsumerWidget {
             sentence,
             style: TextStyle(
               fontSize: 15,
-              color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+              color: isDark
+                  ? AppColors.textSecondary
+                  : AppColors.lightTextSecondary,
               height: 1.5,
             ),
           ),
@@ -290,7 +307,9 @@ class _AboveTheFold extends ConsumerWidget {
             child: ElevatedButton(
               onPressed: () => context.push(Routes.cosmicShare),
               style: ElevatedButton.styleFrom(
-                backgroundColor: isDark ? AppColors.starGold : AppColors.lightStarGold,
+                backgroundColor: isDark
+                    ? AppColors.starGold
+                    : AppColors.lightStarGold,
                 foregroundColor: AppColors.deepSpace,
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 shape: RoundedRectangleBorder(
@@ -327,7 +346,9 @@ class _AboveTheFold extends ConsumerWidget {
     final signKey = sign.toString().split('.').last; // 'aries', 'taurus', etc.
     final headlines = L10nService.getList('home.headlines.$signKey', language);
     if (headlines.isEmpty) return '';
-    final dayOfYear = DateTime.now().difference(DateTime(DateTime.now().year, 1, 1)).inDays;
+    final dayOfYear = DateTime.now()
+        .difference(DateTime(DateTime.now().year, 1, 1))
+        .inDays;
     final index = (dayOfYear + sign.index) % headlines.length;
     return headlines[index];
   }
@@ -336,7 +357,9 @@ class _AboveTheFold extends ConsumerWidget {
     final signKey = sign.toString().split('.').last; // 'aries', 'taurus', etc.
     final sentences = L10nService.getList('home.sentences.$signKey', language);
     if (sentences.isEmpty) return '';
-    final dayOfYear = DateTime.now().difference(DateTime(DateTime.now().year, 1, 1)).inDays;
+    final dayOfYear = DateTime.now()
+        .difference(DateTime(DateTime.now().year, 1, 1))
+        .inDays;
     final index = (dayOfYear + sign.index) % sentences.length;
     return sentences[index];
   }
@@ -366,7 +389,9 @@ class _BelowTheFold extends ConsumerWidget {
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,
-              color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+              color: isDark
+                  ? AppColors.textPrimary
+                  : AppColors.lightTextPrimary,
             ),
           ),
 
@@ -376,7 +401,10 @@ class _BelowTheFold extends ConsumerWidget {
           _EntryPointTile(
             icon: Icons.wb_sunny_outlined,
             title: L10nService.get('home.entries.cosmic_flow.title', language),
-            subtitle: L10nService.get('home.entries.cosmic_flow.subtitle', language),
+            subtitle: L10nService.get(
+              'home.entries.cosmic_flow.subtitle',
+              language,
+            ),
             route: Routes.horoscope,
             isDark: isDark,
           ),
@@ -384,7 +412,10 @@ class _BelowTheFold extends ConsumerWidget {
           _EntryPointTile(
             icon: Icons.auto_awesome_outlined,
             title: L10nService.get('home.entries.cosmic_share.title', language),
-            subtitle: L10nService.get('home.entries.cosmic_share.subtitle', language),
+            subtitle: L10nService.get(
+              'home.entries.cosmic_share.subtitle',
+              language,
+            ),
             route: Routes.cosmicShare,
             isDark: isDark,
             isHighlighted: true,
@@ -400,8 +431,14 @@ class _BelowTheFold extends ConsumerWidget {
 
           _EntryPointTile(
             icon: Icons.favorite_border_outlined,
-            title: L10nService.get('home.entries.compatibility.title', language),
-            subtitle: L10nService.get('home.entries.compatibility.subtitle', language),
+            title: L10nService.get(
+              'home.entries.compatibility.title',
+              language,
+            ),
+            subtitle: L10nService.get(
+              'home.entries.compatibility.subtitle',
+              language,
+            ),
             route: Routes.compatibility,
             isDark: isDark,
           ),
@@ -409,7 +446,10 @@ class _BelowTheFold extends ConsumerWidget {
           _EntryPointTile(
             icon: Icons.pie_chart_outline,
             title: L10nService.get('home.entries.birth_chart.title', language),
-            subtitle: L10nService.get('home.entries.birth_chart.subtitle', language),
+            subtitle: L10nService.get(
+              'home.entries.birth_chart.subtitle',
+              language,
+            ),
             route: Routes.birthChart,
             isDark: isDark,
           ),
@@ -422,7 +462,9 @@ class _BelowTheFold extends ConsumerWidget {
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,
-              color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+              color: isDark
+                  ? AppColors.textPrimary
+                  : AppColors.lightTextPrimary,
             ),
           ),
 
@@ -431,7 +473,10 @@ class _BelowTheFold extends ConsumerWidget {
           _EntryPointTile(
             icon: Icons.numbers_outlined,
             title: L10nService.get('home.entries.numerology.title', language),
-            subtitle: L10nService.get('home.entries.numerology.subtitle', language),
+            subtitle: L10nService.get(
+              'home.entries.numerology.subtitle',
+              language,
+            ),
             route: Routes.numerology,
             isDark: isDark,
           ),
@@ -455,7 +500,10 @@ class _BelowTheFold extends ConsumerWidget {
           _EntryPointTile(
             icon: Icons.all_inclusive_outlined,
             title: L10nService.get('home.entries.all_signs.title', language),
-            subtitle: L10nService.get('home.entries.all_signs.subtitle', language),
+            subtitle: L10nService.get(
+              'home.entries.all_signs.subtitle',
+              language,
+            ),
             route: Routes.horoscope,
             isDark: isDark,
           ),
@@ -470,7 +518,9 @@ class _BelowTheFold extends ConsumerWidget {
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,
-              color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+              color: isDark
+                  ? AppColors.textPrimary
+                  : AppColors.lightTextPrimary,
             ),
           ),
 
@@ -487,16 +537,18 @@ class _BelowTheFold extends ConsumerWidget {
           const SizedBox(height: 16),
 
           // Venus content tiles (first 6)
-          ...VenusHomepageContent.sections.take(6).map((section) =>
-            _VenusContentTile(
-              emoji: section.emoji,
-              title: section.getTitle(language),
-              subtitle: section.getSubtitle(language),
-              badge: section.getBadge(language),
-              route: section.route,
-              isDark: isDark,
-            ),
-          ),
+          ...VenusHomepageContent.sections
+              .take(6)
+              .map(
+                (section) => _VenusContentTile(
+                  emoji: section.emoji,
+                  title: section.getTitle(language),
+                  subtitle: section.getSubtitle(language),
+                  badge: section.getBadge(language),
+                  route: section.route,
+                  isDark: isDark,
+                ),
+              ),
 
           const SizedBox(height: 24),
 
@@ -506,23 +558,27 @@ class _BelowTheFold extends ConsumerWidget {
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,
-              color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+              color: isDark
+                  ? AppColors.textPrimary
+                  : AppColors.lightTextPrimary,
             ),
           ),
 
           const SizedBox(height: 16),
 
           // Venus content tiles (remaining 6)
-          ...VenusHomepageContent.sections.skip(6).map((section) =>
-            _VenusContentTile(
-              emoji: section.emoji,
-              title: section.getTitle(language),
-              subtitle: section.getSubtitle(language),
-              badge: section.getBadge(language),
-              route: section.route,
-              isDark: isDark,
-            ),
-          ),
+          ...VenusHomepageContent.sections
+              .skip(6)
+              .map(
+                (section) => _VenusContentTile(
+                  emoji: section.emoji,
+                  title: section.getTitle(language),
+                  subtitle: section.getSubtitle(language),
+                  badge: section.getBadge(language),
+                  route: section.route,
+                  isDark: isDark,
+                ),
+              ),
 
           const SizedBox(height: 32),
 
@@ -530,16 +586,19 @@ class _BelowTheFold extends ConsumerWidget {
           Text(
             L10nService.get('home.sections.astrological_houses', language),
             style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                  color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-                  fontWeight: FontWeight.w600,
-                  letterSpacing: 0.5,
-                ),
+              color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+              fontWeight: FontWeight.w600,
+              letterSpacing: 0.5,
+            ),
           ),
           const SizedBox(height: 12),
           _EntryPointTile(
             icon: Icons.home_outlined,
             title: L10nService.get('home.entries.house_system.title', language),
-            subtitle: L10nService.get('home.entries.house_system.subtitle', language),
+            subtitle: L10nService.get(
+              'home.entries.house_system.subtitle',
+              language,
+            ),
             route: Routes.birthChart,
             isDark: isDark,
           ),
@@ -643,17 +702,24 @@ class _VenusContentTile extends StatelessWidget {
                               style: TextStyle(
                                 fontSize: 15,
                                 fontWeight: FontWeight.w600,
-                                color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                                color: isDark
+                                    ? AppColors.textPrimary
+                                    : AppColors.lightTextPrimary,
                               ),
                             ),
                           ),
                           if (badge != null)
                             Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8,
+                                vertical: 2,
+                              ),
                               decoration: BoxDecoration(
                                 color: badge == 'Yeni'
                                     ? AppColors.starGold.withValues(alpha: 0.2)
-                                    : AppColors.cosmicPurple.withValues(alpha: 0.2),
+                                    : AppColors.cosmicPurple.withValues(
+                                        alpha: 0.2,
+                                      ),
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               child: Text(
@@ -663,7 +729,9 @@ class _VenusContentTile extends StatelessWidget {
                                   fontWeight: FontWeight.w600,
                                   color: badge == 'Yeni'
                                       ? AppColors.starGold
-                                      : (isDark ? AppColors.textSecondary : AppColors.lightTextSecondary),
+                                      : (isDark
+                                            ? AppColors.textSecondary
+                                            : AppColors.lightTextSecondary),
                                 ),
                               ),
                             ),
@@ -674,7 +742,9 @@ class _VenusContentTile extends StatelessWidget {
                         subtitle,
                         style: TextStyle(
                           fontSize: 13,
-                          color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                          color: isDark
+                              ? AppColors.textMuted
+                              : AppColors.lightTextMuted,
                         ),
                       ),
                     ],
@@ -684,7 +754,9 @@ class _VenusContentTile extends StatelessWidget {
                 Icon(
                   Icons.chevron_right,
                   size: 20,
-                  color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                  color: isDark
+                      ? AppColors.textMuted
+                      : AppColors.lightTextMuted,
                 ),
               ],
             ),
@@ -748,7 +820,9 @@ class _QuickDiscoveryChip extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 13,
                   fontWeight: FontWeight.w600,
-                  color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                  color: isDark
+                      ? AppColors.textPrimary
+                      : AppColors.lightTextPrimary,
                 ),
               ),
             ],
@@ -795,11 +869,9 @@ class _EntryPointTile extends StatelessWidget {
             decoration: BoxDecoration(
               color: isHighlighted
                   ? (isDark
-                      ? AppColors.starGold.withValues(alpha: 0.1)
-                      : AppColors.lightStarGold.withValues(alpha: 0.1))
-                  : (isDark
-                      ? AppColors.surfaceDark
-                      : AppColors.lightCard),
+                        ? AppColors.starGold.withValues(alpha: 0.1)
+                        : AppColors.lightStarGold.withValues(alpha: 0.1))
+                  : (isDark ? AppColors.surfaceDark : AppColors.lightCard),
               borderRadius: BorderRadius.circular(12),
               border: isHighlighted
                   ? Border.all(
@@ -826,8 +898,12 @@ class _EntryPointTile extends StatelessWidget {
                     icon,
                     size: 22,
                     color: isHighlighted
-                        ? (isDark ? AppColors.starGold : AppColors.lightStarGold)
-                        : (isDark ? AppColors.auroraStart : AppColors.lightAuroraStart),
+                        ? (isDark
+                              ? AppColors.starGold
+                              : AppColors.lightStarGold)
+                        : (isDark
+                              ? AppColors.auroraStart
+                              : AppColors.lightAuroraStart),
                   ),
                 ),
 

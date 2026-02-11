@@ -47,7 +47,9 @@ class AiContentService {
       // _anthropicApiKey ??= const String.fromEnvironment('ANTHROPIC_API_KEY');
 
       if (kDebugMode) {
-        debugPrint('AiContentService: Initialized (AI available: $isAiAvailable)');
+        debugPrint(
+          'AiContentService: Initialized (AI available: $isAiAvailable)',
+        );
       }
     } catch (e) {
       if (kDebugMode) {
@@ -110,7 +112,9 @@ class AiContentService {
         if (response != null) {
           final horoscope = _parseHoroscopeResponse(response, sunSign);
           _cache[cacheKey] = _CachedContent(horoscope);
-          _analytics?.logEvent('ai_horoscope_generated', {'sign': sunSign.name});
+          _analytics?.logEvent('ai_horoscope_generated', {
+            'sign': sunSign.name,
+          });
           return horoscope;
         }
       } catch (e) {
@@ -140,11 +144,18 @@ class AiContentService {
   }) async {
     if (isAiAvailable && userName != null) {
       try {
-        final prompt = _buildCosmicMessagePrompt(sign, userName, mood, language);
+        final prompt = _buildCosmicMessagePrompt(
+          sign,
+          userName,
+          mood,
+          language,
+        );
 
         final response = await _generateWithAi(prompt);
         if (response != null && response.isNotEmpty) {
-          _analytics?.logEvent('ai_cosmic_message_generated', {'sign': sign.name});
+          _analytics?.logEvent('ai_cosmic_message_generated', {
+            'sign': sign.name,
+          });
           return response;
         }
       } catch (e) {
@@ -157,7 +168,12 @@ class AiContentService {
     return CosmicMessagesContent.getDailyCosmicMessage(sign);
   }
 
-  String _buildCosmicMessagePrompt(ZodiacSign sign, String userName, String? mood, AppLanguage language) {
+  String _buildCosmicMessagePrompt(
+    ZodiacSign sign,
+    String userName,
+    String? mood,
+    AppLanguage language,
+  ) {
     switch (language) {
       case AppLanguage.tr:
         return '''
@@ -232,7 +248,12 @@ Write in English, no emojis.
     return _getLocalAdvice(sign, area);
   }
 
-  String _buildAdvicePrompt(ZodiacSign sign, AdviceArea area, String? context, AppLanguage language) {
+  String _buildAdvicePrompt(
+    ZodiacSign sign,
+    AdviceArea area,
+    String? context,
+    AppLanguage language,
+  ) {
     final areaName = _getAreaName(area, language);
     final signName = language == AppLanguage.tr ? sign.nameTr : sign.name;
 
@@ -297,7 +318,11 @@ Write in English, keep astrological terms simple.
     return CosmicMessagesContent.getMorningAffirmation(sign);
   }
 
-  String _buildAffirmationPrompt(ZodiacSign sign, String? focus, AppLanguage language) {
+  String _buildAffirmationPrompt(
+    ZodiacSign sign,
+    String? focus,
+    AppLanguage language,
+  ) {
     final signName = language == AppLanguage.tr ? sign.nameTr : sign.name;
 
     switch (language) {
@@ -374,7 +399,8 @@ Write in English.
 
   /// Get acknowledgment message for the dream symbol
   String getDreamAcknowledgment(String symbol) {
-    final acknowledgments = _dreamSymbolAcknowledgments[symbol.toLowerCase()] ??
+    final acknowledgments =
+        _dreamSymbolAcknowledgments[symbol.toLowerCase()] ??
         'Bu sembol ruyalarinda onemli bir mesaj tasiyor olabilir.';
     return acknowledgments;
   }
@@ -386,9 +412,7 @@ Write in English.
     ZodiacSign? userSign,
   }) async {
     // Update session with answers
-    var updatedSession = session.copyWith(
-      contextAnswers: contextAnswers,
-    );
+    var updatedSession = session.copyWith(contextAnswers: contextAnswers);
 
     String interpretation;
 
@@ -412,7 +436,9 @@ Write in English.
           } else {
             // AI response failed validation, use local fallback
             if (kDebugMode) {
-              debugPrint('Dream interpretation AI response failed APEX validation');
+              debugPrint(
+                'Dream interpretation AI response failed APEX validation',
+              );
             }
             interpretation = _generateLocalDreamInterpretation(
               symbol: session.dreamSymbol,
@@ -470,7 +496,15 @@ Write in English.
     // FAIL CONDITION 1: Starts with zodiac/astrology terms (TR + EN)
     final zodiacStarters = [
       // Turkish
-      'burc', 'burç', 'koc', 'koç', 'boga', 'boğa', 'ikizler', 'yengec', 'yengeç',
+      'burc',
+      'burç',
+      'koc',
+      'koç',
+      'boga',
+      'boğa',
+      'ikizler',
+      'yengec',
+      'yengeç',
       'aslan', 'basak', 'başak', 'terazi', 'akrep', 'yay', 'oglak', 'oğlak',
       'kova', 'balik', 'balık', 'astroloji', 'zodyak', 'gezegen',
       // English
@@ -486,7 +520,9 @@ Write in English.
     for (final starter in zodiacStarters) {
       if (firstParagraph.contains(starter)) {
         if (kDebugMode) {
-          debugPrint('INSIGHT FAIL: Response starts with zodiac term: $starter');
+          debugPrint(
+            'INSIGHT FAIL: Response starts with zodiac term: $starter',
+          );
         }
         return false;
       }
@@ -538,7 +574,9 @@ Write in English.
     // Allow max 1 certainty phrase
     if (certaintyCount > 1) {
       if (kDebugMode) {
-        debugPrint('INSIGHT FAIL: Too much certainty language ($certaintyCount instances)');
+        debugPrint(
+          'INSIGHT FAIL: Too much certainty language ($certaintyCount instances)',
+        );
       }
       return false;
     }
@@ -546,7 +584,9 @@ Write in English.
     // FAIL CONDITION 4: Too short (less than 200 characters = likely generic)
     if (response.length < 200) {
       if (kDebugMode) {
-        debugPrint('INSIGHT FAIL: Response too short (${response.length} chars)');
+        debugPrint(
+          'INSIGHT FAIL: Response too short (${response.length} chars)',
+        );
       }
       return false;
     }
@@ -583,7 +623,10 @@ Write in English.
       if (kDebugMode) {
         debugPrint('AI_SANITIZE: Filtering forbidden content from response');
       }
-      return ContentSafetyFilter.validateAndFilter(response, context: 'AI_RESPONSE');
+      return ContentSafetyFilter.validateAndFilter(
+        response,
+        context: 'AI_RESPONSE',
+      );
     }
     return response;
   }
@@ -595,22 +638,102 @@ Write in English.
     // Common dream symbols in Turkish
     final symbols = {
       'yilan': ['yilan', 'yılan', 'kobra', 'boa', 'engerek'],
-      'su': ['su', 'deniz', 'okyanus', 'göl', 'gol', 'nehir', 'irmak', 'sel', 'bogulma', 'boğulma'],
-      'ucmak': ['ucmak', 'uçmak', 'ucuyorum', 'uçuyorum', 'havada', 'gokyuzu', 'gökyüzü'],
-      'dusmek': ['dusmek', 'düşmek', 'dusuyorum', 'düşüyorum', 'yuksekten', 'yüksekten'],
-      'dis': ['dis', 'diş', 'disler', 'dişler', 'dis dokulmesi', 'diş dökülmesi'],
-      'olum': ['olum', 'ölüm', 'olu', 'ölü', 'cenaze', 'mezar', 'oluyorum', 'ölüyorum'],
-      'kovalanmak': ['kovalanmak', 'kovaliyor', 'kovalıyor', 'kaciyorum', 'kaçıyorum', 'kacmak', 'kaçmak'],
+      'su': [
+        'su',
+        'deniz',
+        'okyanus',
+        'göl',
+        'gol',
+        'nehir',
+        'irmak',
+        'sel',
+        'bogulma',
+        'boğulma',
+      ],
+      'ucmak': [
+        'ucmak',
+        'uçmak',
+        'ucuyorum',
+        'uçuyorum',
+        'havada',
+        'gokyuzu',
+        'gökyüzü',
+      ],
+      'dusmek': [
+        'dusmek',
+        'düşmek',
+        'dusuyorum',
+        'düşüyorum',
+        'yuksekten',
+        'yüksekten',
+      ],
+      'dis': [
+        'dis',
+        'diş',
+        'disler',
+        'dişler',
+        'dis dokulmesi',
+        'diş dökülmesi',
+      ],
+      'olum': [
+        'olum',
+        'ölüm',
+        'olu',
+        'ölü',
+        'cenaze',
+        'mezar',
+        'oluyorum',
+        'ölüyorum',
+      ],
+      'kovalanmak': [
+        'kovalanmak',
+        'kovaliyor',
+        'kovalıyor',
+        'kaciyorum',
+        'kaçıyorum',
+        'kacmak',
+        'kaçmak',
+      ],
       'bebek': ['bebek', 'cocuk', 'çocuk', 'hamile', 'dogum', 'doğum'],
       'ev': ['ev', 'oda', 'bina', 'apartman', 'kapi', 'kapı', 'pencere'],
       'araba': ['araba', 'arac', 'araç', 'surmek', 'sürmek', 'kaza', 'trafik'],
-      'kopek': ['kopek', 'köpek', 'it', 'havliyor', 'havlıyor', 'isiriyor', 'ısırıyor'],
+      'kopek': [
+        'kopek',
+        'köpek',
+        'it',
+        'havliyor',
+        'havlıyor',
+        'isiriyor',
+        'ısırıyor',
+      ],
       'kedi': ['kedi', 'miyavliyor', 'miyavlıyor', 'tirmaladi', 'tırmaladı'],
       'para': ['para', 'altin', 'altın', 'zenginlik', 'piyango', 'bulmak'],
-      'sinav': ['sinav', 'sınav', 'okul', 'test', 'basarisizlik', 'başarısızlık'],
+      'sinav': [
+        'sinav',
+        'sınav',
+        'okul',
+        'test',
+        'basarisizlik',
+        'başarısızlık',
+      ],
       'ciplaklık': ['ciplak', 'çıplak', 'utanc', 'utanç', 'mahcup'],
-      'kaybolmak': ['kaybolmak', 'kayip', 'kayıp', 'bulamiyorum', 'bulamıyorum', 'yolumu'],
-      'ates': ['ates', 'ateş', 'yangin', 'yangın', 'alev', 'yaniyor', 'yanıyor'],
+      'kaybolmak': [
+        'kaybolmak',
+        'kayip',
+        'kayıp',
+        'bulamiyorum',
+        'bulamıyorum',
+        'yolumu',
+      ],
+      'ates': [
+        'ates',
+        'ateş',
+        'yangin',
+        'yangın',
+        'alev',
+        'yaniyor',
+        'yanıyor',
+      ],
       'kan': ['kan', 'kanama', 'yarali', 'yaralı', 'yara'],
       'gelin': ['gelin', 'dugun', 'düğün', 'evlilik', 'nikah'],
       'hastalik': ['hasta', 'hastalik', 'hastalık', 'doktor', 'hastane'],
@@ -629,12 +752,17 @@ Write in English.
   }
 
   /// Generate context questions based on dream symbol
-  List<String> _generateContextQuestions(String symbol, String dreamDescription) {
-    final questions = _dreamContextQuestions[symbol] ?? [
-      'Ruyada nasil bir duygu hissettin?',
-      'Ortam nasil gorunuyordu?',
-      'Ruyada baska kimler vardi?',
-    ];
+  List<String> _generateContextQuestions(
+    String symbol,
+    String dreamDescription,
+  ) {
+    final questions =
+        _dreamContextQuestions[symbol] ??
+        [
+          'Ruyada nasil bir duygu hissettin?',
+          'Ortam nasil gorunuyordu?',
+          'Ruyada baska kimler vardi?',
+        ];
 
     // Return max 3 questions
     return questions.take(3).toList();
@@ -748,86 +876,120 @@ CIKTI KURALLARI:
 
     // 1) RUYA YENIDEN OLUSTURMA
     buffer.writeln('RUYANIN OZETI');
-    buffer.writeln(interpretations['reconstruction'] ??
-        'Bu ruyada $symbol sembolu merkezi bir rol oynuyor.');
+    buffer.writeln(
+      interpretations['reconstruction'] ??
+          'Bu ruyada $symbol sembolu merkezi bir rol oynuyor.',
+    );
     buffer.writeln();
 
     // 2) DUYGUSAL AGIRLIK MERKEZI
     buffer.writeln('DUYGUSAL AGIRLIK');
     if (emotionType == 'fearful') {
-      buffer.writeln(interpretations['emotionalCenter_fear'] ??
-          'Ruyada duygusal agirlik korku veya gerilim etrfinda toplanmis gorunuyor.');
+      buffer.writeln(
+        interpretations['emotionalCenter_fear'] ??
+            'Ruyada duygusal agirlik korku veya gerilim etrfinda toplanmis gorunuyor.',
+      );
     } else if (emotionType == 'peaceful') {
-      buffer.writeln(interpretations['emotionalCenter_peace'] ??
-          'Ruyada duygusal agirlik huzur ve kabul etrafinda toplanmis gorunuyor.');
+      buffer.writeln(
+        interpretations['emotionalCenter_peace'] ??
+            'Ruyada duygusal agirlik huzur ve kabul etrafinda toplanmis gorunuyor.',
+      );
     } else if (emotionType == 'curious') {
-      buffer.writeln(interpretations['emotionalCenter_curiosity'] ??
-          'Ruyada duygusal agirlik merak ve kesif etrafinda toplanmis gorunuyor.');
+      buffer.writeln(
+        interpretations['emotionalCenter_curiosity'] ??
+            'Ruyada duygusal agirlik merak ve kesif etrafinda toplanmis gorunuyor.',
+      );
     } else {
-      buffer.writeln(interpretations['emotionalCenter_neutral'] ??
-          'Ruyada duygusal ton belirsiz veya karisik gorunuyor.');
+      buffer.writeln(
+        interpretations['emotionalCenter_neutral'] ??
+            'Ruyada duygusal ton belirsiz veya karisik gorunuyor.',
+      );
     }
     buffer.writeln();
 
     // 3) SEMBOL DINAMIKLERI
     buffer.writeln('SEMBOL DINAMIGI');
-    buffer.writeln(interpretations['symbolDynamics'] ??
-        'Bu sembol, ic dunya ile dis dunya arasindaki bir dinamigi temsil ediyor olabilir.');
+    buffer.writeln(
+      interpretations['symbolDynamics'] ??
+          'Bu sembol, ic dunya ile dis dunya arasindaki bir dinamigi temsil ediyor olabilir.',
+    );
     buffer.writeln();
 
     // 4) RUYACI POZISYONU
     buffer.writeln('SENIN POZISYONUN');
     if (positionType == 'observer') {
-      buffer.writeln(interpretations['position_observer'] ??
-          'Ruyada gozlemci pozisyonundaydin - olaylari disaridan izliyordun.');
+      buffer.writeln(
+        interpretations['position_observer'] ??
+            'Ruyada gozlemci pozisyonundaydin - olaylari disaridan izliyordun.',
+      );
     } else if (positionType == 'participant') {
-      buffer.writeln(interpretations['position_participant'] ??
-          'Ruyada aktif katilimci pozisyonundaydin - olaylara dahildin.');
+      buffer.writeln(
+        interpretations['position_participant'] ??
+            'Ruyada aktif katilimci pozisyonundaydin - olaylara dahildin.',
+      );
     } else if (positionType == 'escaping') {
-      buffer.writeln(interpretations['position_escaping'] ??
-          'Ruyada kacan pozisyonundaydin - bir seyden uzaklasiyordun.');
+      buffer.writeln(
+        interpretations['position_escaping'] ??
+            'Ruyada kacan pozisyonundaydin - bir seyden uzaklasiyordun.',
+      );
     } else if (positionType == 'confronting') {
-      buffer.writeln(interpretations['position_confronting'] ??
-          'Ruyada yuzlesen pozisyonundaydin - bir seyle karsi karsiyaydin.');
+      buffer.writeln(
+        interpretations['position_confronting'] ??
+            'Ruyada yuzlesen pozisyonundaydin - bir seyle karsi karsiyaydin.',
+      );
     } else {
-      buffer.writeln(interpretations['position_neutral'] ??
-          'Ruyada pozisyonun belirsiz veya degisen bir yapida.');
+      buffer.writeln(
+        interpretations['position_neutral'] ??
+            'Ruyada pozisyonun belirsiz veya degisen bir yapida.',
+      );
     }
     buffer.writeln();
 
     // 5) ORUNTU VE ZAMANLAMA
     buffer.writeln('ORUNTU VE ZAMANLAMA');
-    buffer.writeln(interpretations['timing'] ??
-        'Bu ruya, bir gecis donemini veya islenmekte olan bir sureci yansıtıyor olabilir.');
+    buffer.writeln(
+      interpretations['timing'] ??
+          'Bu ruya, bir gecis donemini veya islenmekte olan bir sureci yansıtıyor olabilir.',
+    );
     buffer.writeln();
 
     // 6) YASAM-DUNYA REZONANSI (Conditional)
     buffer.writeln('OLASI YASAM YANSIMASI');
     if (emotionType == 'fearful') {
-      buffer.writeln(interpretations['lifeResonance_fear'] ??
-          'Bu ruya, gercek hayatinda kontrol kaybi veya belirsizlikle ilgili bir durumla rezonans yapiyor olabilir.');
+      buffer.writeln(
+        interpretations['lifeResonance_fear'] ??
+            'Bu ruya, gercek hayatinda kontrol kaybi veya belirsizlikle ilgili bir durumla rezonans yapiyor olabilir.',
+      );
     } else if (emotionType == 'peaceful') {
-      buffer.writeln(interpretations['lifeResonance_peace'] ??
-          'Bu ruya, hayatinda bir kabul veya birakma sureciyle rezonans yapiyor olabilir.');
+      buffer.writeln(
+        interpretations['lifeResonance_peace'] ??
+            'Bu ruya, hayatinda bir kabul veya birakma sureciyle rezonans yapiyor olabilir.',
+      );
     } else {
-      buffer.writeln(interpretations['lifeResonance_neutral'] ??
-          'Bu ruya, hayatinda dikkat bekleyen bir alanla rezonans yapiyor olabilir.');
+      buffer.writeln(
+        interpretations['lifeResonance_neutral'] ??
+            'Bu ruya, hayatinda dikkat bekleyen bir alanla rezonans yapiyor olabilir.',
+      );
     }
     buffer.writeln();
 
     // 7) ENTEGRASYON ODAGI
     buffer.writeln('ENTEGRASYON ODAGI');
-    buffer.writeln(interpretations['integration'] ??
-        'Bu ruya, senden bir seyi fark etmeni veya kabul etmeni istiyor olabilir.');
+    buffer.writeln(
+      interpretations['integration'] ??
+          'Bu ruya, senden bir seyi fark etmeni veya kabul etmeni istiyor olabilir.',
+    );
     buffer.writeln();
 
     // 8) YANSITICI SORULAR
     buffer.writeln('YANSITICI SORULAR');
-    final questions = interpretations['questions']?.split('|') ?? [
-      'Bu sembol senin icin kisisel olarak ne ifade ediyor?',
-      'Son zamanlarda benzer duygular yasadigin bir durum var mi?',
-      'Ruyadaki bu enerjiyi nerede hissediyorsun?',
-    ];
+    final questions =
+        interpretations['questions']?.split('|') ??
+        [
+          'Bu sembol senin icin kisisel olarak ne ifade ediyor?',
+          'Son zamanlarda benzer duygular yasadigin bir durum var mi?',
+          'Ruyadaki bu enerjiyi nerede hissediyorsun?',
+        ];
     for (final q in questions.take(3)) {
       buffer.writeln('- $q');
     }
@@ -851,13 +1013,13 @@ CIKTI KURALLARI:
         allAnswers.contains('tehdit')) {
       return 'fearful';
     } else if (allAnswers.contains('huzur') ||
-               allAnswers.contains('sakin') ||
-               allAnswers.contains('rahat') ||
-               allAnswers.contains('ozgur')) {
+        allAnswers.contains('sakin') ||
+        allAnswers.contains('rahat') ||
+        allAnswers.contains('ozgur')) {
       return 'peaceful';
     } else if (allAnswers.contains('merak') ||
-               allAnswers.contains('ilginc') ||
-               allAnswers.contains('saskin')) {
+        allAnswers.contains('ilginc') ||
+        allAnswers.contains('saskin')) {
       return 'curious';
     }
     return 'neutral';
@@ -870,22 +1032,25 @@ CIKTI KURALLARI:
         allAnswers.contains('disaridan')) {
       return 'observer';
     } else if (allAnswers.contains('kaciyordum') ||
-               allAnswers.contains('kacti') ||
-               allAnswers.contains('uzaklasiyordum')) {
+        allAnswers.contains('kacti') ||
+        allAnswers.contains('uzaklasiyordum')) {
       return 'escaping';
     } else if (allAnswers.contains('yuzles') ||
-               allAnswers.contains('karsi') ||
-               allAnswers.contains('durdum')) {
+        allAnswers.contains('karsi') ||
+        allAnswers.contains('durdum')) {
       return 'confronting';
     } else if (allAnswers.contains('icinde') ||
-               allAnswers.contains('yapiyordum') ||
-               allAnswers.contains('suruyordum')) {
+        allAnswers.contains('yapiyordum') ||
+        allAnswers.contains('suruyordum')) {
       return 'participant';
     }
     return 'neutral';
   }
 
-  String _getGenericDreamInterpretation(Map<String, String> contextAnswers, ZodiacSign? userSign) {
+  String _getGenericDreamInterpretation(
+    Map<String, String> contextAnswers,
+    ZodiacSign? userSign,
+  ) {
     final allAnswers = contextAnswers.values.join(' ').toLowerCase();
     final emotionType = _detectEmotionType(allAnswers);
 
@@ -906,26 +1071,36 @@ CIKTI KURALLARI:
     buffer.writeln();
 
     buffer.writeln('SEMBOL DINAMIGI');
-    buffer.writeln('Her ruya sembolu kisisel anlam tasir. Onemli olan, bu sembolun senin icin ne ifade ettigini kesfetmektir.');
+    buffer.writeln(
+      'Her ruya sembolu kisisel anlam tasir. Onemli olan, bu sembolun senin icin ne ifade ettigini kesfetmektir.',
+    );
     buffer.writeln();
 
     buffer.writeln('OLASI YASAM YANSIMASI');
-    buffer.writeln('Bu ruya, su anki hayat doneminde dikkat etmen gereken bir konuya isaret ediyor olabilir.');
+    buffer.writeln(
+      'Bu ruya, su anki hayat doneminde dikkat etmen gereken bir konuya isaret ediyor olabilir.',
+    );
     buffer.writeln();
 
     buffer.writeln('ENTEGRASYON ODAGI');
-    buffer.writeln('Ruyada hissettigin duygular, gercek hayattaki bir duruma nasil tepki verdigini gosteriyor olabilir.');
+    buffer.writeln(
+      'Ruyada hissettigin duygular, gercek hayattaki bir duruma nasil tepki verdigini gosteriyor olabilir.',
+    );
     buffer.writeln();
 
     buffer.writeln('YANSITICI SORULAR');
     buffer.writeln('- Bu sembol senin icin kisisel olarak ne ifade ediyor?');
-    buffer.writeln('- Son zamanlarda benzer duygular yasadigin bir durum var mi?');
+    buffer.writeln(
+      '- Son zamanlarda benzer duygular yasadigin bir durum var mi?',
+    );
     buffer.writeln('- Ruyadaki bu enerjiyi nerede hissediyorsun?');
 
     if (userSign != null) {
       buffer.writeln();
       buffer.writeln('---');
-      buffer.writeln('Eger istersen, bu ruyanin ${userSign.nameTr} enerjisi acisindan nasil okunabilecegini konusabiliriz.');
+      buffer.writeln(
+        'Eger istersen, bu ruyanin ${userSign.nameTr} enerjisi acisindan nasil okunabilecegini konusabiliriz.',
+      );
     }
 
     return buffer.toString().trim();
@@ -934,18 +1109,26 @@ CIKTI KURALLARI:
   String _getAstrologicalDreamNote(String symbol, ZodiacSign sign) {
     final notes = {
       'yilan': {
-        ZodiacSign.scorpio: 'Akrep burcu olarak yilan sembolu, dogal donusum gucunle derin bir rezonans tasir.',
-        ZodiacSign.aries: 'Koc burcunun atesli enerjisi, bu semboldeki meydan okuma yonunu guclendiriyor olabilir.',
+        ZodiacSign.scorpio:
+            'Akrep burcu olarak yilan sembolu, dogal donusum gucunle derin bir rezonans tasir.',
+        ZodiacSign.aries:
+            'Koc burcunun atesli enerjisi, bu semboldeki meydan okuma yonunu guclendiriyor olabilir.',
       },
       'su': {
-        ZodiacSign.pisces: 'Balik burcu olarak su elementi seninle dogal bir bag kurar. Sezgilerin bu ruya hakkinda sana daha fazlasini soyluyor olabilir.',
-        ZodiacSign.cancer: 'Yengec burcu olarak duygusal derinlik ve su elementi sana cok tanidik gelebilir.',
-        ZodiacSign.scorpio: 'Akrep burcunun derin sulari, bu ruyanin bilincdisi katmanlarini kesfetmene yardimci olabilir.',
+        ZodiacSign.pisces:
+            'Balik burcu olarak su elementi seninle dogal bir bag kurar. Sezgilerin bu ruya hakkinda sana daha fazlasini soyluyor olabilir.',
+        ZodiacSign.cancer:
+            'Yengec burcu olarak duygusal derinlik ve su elementi sana cok tanidik gelebilir.',
+        ZodiacSign.scorpio:
+            'Akrep burcunun derin sulari, bu ruyanin bilincdisi katmanlarini kesfetmene yardimci olabilir.',
       },
       'ates': {
-        ZodiacSign.aries: 'Koc burcunun ates elementi, bu semboldeki enerji ve donusum temalarini guclendiriyor.',
-        ZodiacSign.leo: 'Aslan burcu olarak ates elementi seninle dogal bir bag kurar.',
-        ZodiacSign.sagittarius: 'Yay burcunun ates enerjisi, bu ruyadaki ozgurluk ve donusum temalarini destekliyor olabilir.',
+        ZodiacSign.aries:
+            'Koc burcunun ates elementi, bu semboldeki enerji ve donusum temalarini guclendiriyor.',
+        ZodiacSign.leo:
+            'Aslan burcu olarak ates elementi seninle dogal bir bag kurar.',
+        ZodiacSign.sagittarius:
+            'Yay burcunun ates enerjisi, bu ruyadaki ozgurluk ve donusum temalarini destekliyor olabilir.',
       },
     };
 
@@ -983,52 +1166,88 @@ CIKTI KURALLARI:
   };
 
   /// Get localized symbol acknowledgment
-  static String getSymbolAcknowledgment(String symbolKey, AppLanguage language) {
+  static String getSymbolAcknowledgment(
+    String symbolKey,
+    AppLanguage language,
+  ) {
     final localizedKey = _symbolKeyMap[symbolKey] ?? 'general';
-    final localized = L10nService.get('dreams.symbol_acknowledgments.$localizedKey', language);
+    final localized = L10nService.get(
+      'dreams.symbol_acknowledgments.$localizedKey',
+      language,
+    );
     // If localization exists, use it
     if (localized != 'dreams.symbol_acknowledgments.$localizedKey') {
       return localized;
     }
     // Fallback to hardcoded Turkish
-    return _dreamSymbolAcknowledgments[symbolKey] ?? _dreamSymbolAcknowledgments['genel']!;
+    return _dreamSymbolAcknowledgments[symbolKey] ??
+        _dreamSymbolAcknowledgments['genel']!;
   }
 
   /// Get localized context questions for a symbol
-  static List<String> getContextQuestions(String symbolKey, AppLanguage language) {
+  static List<String> getContextQuestions(
+    String symbolKey,
+    AppLanguage language,
+  ) {
     final localizedKey = _symbolKeyMap[symbolKey] ?? 'general';
-    final localized = L10nService.getList('dreams.context_questions.$localizedKey', language);
+    final localized = L10nService.getList(
+      'dreams.context_questions.$localizedKey',
+      language,
+    );
     // If localization exists and has content, use it
-    if (localized.isNotEmpty && localized.first != 'dreams.context_questions.$localizedKey') {
+    if (localized.isNotEmpty &&
+        localized.first != 'dreams.context_questions.$localizedKey') {
       return localized;
     }
     // Fallback to hardcoded Turkish
-    return _dreamContextQuestions[symbolKey] ?? _dreamContextQuestions['genel']!;
+    return _dreamContextQuestions[symbolKey] ??
+        _dreamContextQuestions['genel']!;
   }
 
   // Dream symbol acknowledgments (fallback)
   static final Map<String, String> _dreamSymbolAcknowledgments = {
-    'yilan': 'Yilan, ruyalarin en guclu ve cok katmanli sembollerinden biridir. Donusum, sifa, gizli bilgi veya ic tehditler gibi pek cok anlam tasiyabilir.',
-    'su': 'Su, ruyalarda duygusal durumu ve bilincdisini temsil eden evrensel bir semboldur. Suyun hali - durgun, dalgali, temiz veya bulanik - onemli ipuclari tasir.',
-    'ucmak': 'Ucmak, ruyalarda ozgurluk, yuksek hedefler veya gerceklikten kacis gibi temalari isaret edebilen guclu bir deneyimdir.',
-    'dusmek': 'Dusme ruyalari, kontrol kaybetme, guvensizilik veya buyuk bir degisim oncesi hissedilen korkulari yansitabilir.',
-    'dis': 'Dis ruyalari, kayip, degisim, gorunum kaygilari veya iletisim sorunlariyla iliskili olabilir.',
-    'olum': 'Olum ruyalari cogunlukla literal degildir. Donusum, bir donemim sonu veya buyuk bir degisimi simgeleyebilir.',
-    'kovalanmak': 'Kovalanma ruyalari, kacilmaya calisilan duygular, sorumluluklar veya korkulari temsil edebilir.',
-    'bebek': 'Bebek ruyalari, yeni baslangiclari, yaraticilik projelerini veya ic cocugunuzla baglantinizi simgeleyebilir.',
-    'ev': 'Ev, ruyalarda benlik ve ic dunyanin bir yansimasi olarak gorulur. Evin durumu ve odalari farkli yasam alanlarini temsil edebilir.',
-    'araba': 'Araba ruyalari, hayat yolculugunda kontrol, yon ve ilerleme temalarini isaret eder.',
-    'kopek': 'Kopek, sadakat, dostluk veya icgudusel yanlarimizi temsil edebilir. Kopegin davranisi onemli ipuclari tasir.',
-    'kedi': 'Kedi, bagimsizlik, sezgi ve gizemle iliskilidir. Feminen enerji ve ic bilgeligi de simgeleyebilir.',
-    'para': 'Para ruyalari, deger, ozsaygi ve kaynaklara erisim temalarini yansitabilir.',
-    'sinav': 'Sinav ruyalari, performans kaygisi, degerlendirilme korkusu veya yasam testleri hakkinda olabilir.',
-    'ciplaklık': 'Cipkallik ruyalari, savunmasizlik, autentik benligin ifasi veya maskelerden arinma ile iliskilidir.',
-    'kaybolmak': 'Kaybolma ruyalari, hayatta yon kaybetme, kimlik arayisi veya belirsizlik hislerini yansitabilir.',
-    'ates': 'Ates, tutku, ofke, donusum veya arinmayi temsil edebilir. Yanginin kontrollu veya kontrolsuz olmasi onemlidir.',
-    'kan': 'Kan, yasam enerjisi, duygusal yaralar veya aile baglariyla iliskili temalar isaret edebilir.',
-    'gelin': 'Gelin/dugun ruyalari, birlesme, taahhut veya hayatin yeni bir evresine gecisi simgeleyebilir.',
-    'hastalik': 'Hastalik ruyalari, duygusal veya ruhsal dengesizliklere, dikkat edilmesi gereken alanlara isaret edebilir.',
-    'genel': 'Her ruya sembolu kisisel anlam tasir. Onemli olan, bu sembolun senin icin ne ifade ettigini kesfetmektir.',
+    'yilan':
+        'Yilan, ruyalarin en guclu ve cok katmanli sembollerinden biridir. Donusum, sifa, gizli bilgi veya ic tehditler gibi pek cok anlam tasiyabilir.',
+    'su':
+        'Su, ruyalarda duygusal durumu ve bilincdisini temsil eden evrensel bir semboldur. Suyun hali - durgun, dalgali, temiz veya bulanik - onemli ipuclari tasir.',
+    'ucmak':
+        'Ucmak, ruyalarda ozgurluk, yuksek hedefler veya gerceklikten kacis gibi temalari isaret edebilen guclu bir deneyimdir.',
+    'dusmek':
+        'Dusme ruyalari, kontrol kaybetme, guvensizilik veya buyuk bir degisim oncesi hissedilen korkulari yansitabilir.',
+    'dis':
+        'Dis ruyalari, kayip, degisim, gorunum kaygilari veya iletisim sorunlariyla iliskili olabilir.',
+    'olum':
+        'Olum ruyalari cogunlukla literal degildir. Donusum, bir donemim sonu veya buyuk bir degisimi simgeleyebilir.',
+    'kovalanmak':
+        'Kovalanma ruyalari, kacilmaya calisilan duygular, sorumluluklar veya korkulari temsil edebilir.',
+    'bebek':
+        'Bebek ruyalari, yeni baslangiclari, yaraticilik projelerini veya ic cocugunuzla baglantinizi simgeleyebilir.',
+    'ev':
+        'Ev, ruyalarda benlik ve ic dunyanin bir yansimasi olarak gorulur. Evin durumu ve odalari farkli yasam alanlarini temsil edebilir.',
+    'araba':
+        'Araba ruyalari, hayat yolculugunda kontrol, yon ve ilerleme temalarini isaret eder.',
+    'kopek':
+        'Kopek, sadakat, dostluk veya icgudusel yanlarimizi temsil edebilir. Kopegin davranisi onemli ipuclari tasir.',
+    'kedi':
+        'Kedi, bagimsizlik, sezgi ve gizemle iliskilidir. Feminen enerji ve ic bilgeligi de simgeleyebilir.',
+    'para':
+        'Para ruyalari, deger, ozsaygi ve kaynaklara erisim temalarini yansitabilir.',
+    'sinav':
+        'Sinav ruyalari, performans kaygisi, degerlendirilme korkusu veya yasam testleri hakkinda olabilir.',
+    'ciplaklık':
+        'Cipkallik ruyalari, savunmasizlik, autentik benligin ifasi veya maskelerden arinma ile iliskilidir.',
+    'kaybolmak':
+        'Kaybolma ruyalari, hayatta yon kaybetme, kimlik arayisi veya belirsizlik hislerini yansitabilir.',
+    'ates':
+        'Ates, tutku, ofke, donusum veya arinmayi temsil edebilir. Yanginin kontrollu veya kontrolsuz olmasi onemlidir.',
+    'kan':
+        'Kan, yasam enerjisi, duygusal yaralar veya aile baglariyla iliskili temalar isaret edebilir.',
+    'gelin':
+        'Gelin/dugun ruyalari, birlesme, taahhut veya hayatin yeni bir evresine gecisi simgeleyebilir.',
+    'hastalik':
+        'Hastalik ruyalari, duygusal veya ruhsal dengesizliklere, dikkat edilmesi gereken alanlara isaret edebilir.',
+    'genel':
+        'Her ruya sembolu kisisel anlam tasir. Onemli olan, bu sembolun senin icin ne ifade ettigini kesfetmektir.',
   };
 
   // Context questions for each symbol - APEX SYMBOL-SPECIFIC QUESTION SETS
@@ -1165,136 +1384,245 @@ CIKTI KURALLARI:
   static final Map<String, Map<String, String>> _localDreamInterpretations = {
     'yilan': {
       'reconstruction': 'Bu ruyada yilan sembolu merkezi bir rol oynuyor.',
-      'emotionalCenter_fear': 'Duygusal agirlik korku ve gerilim etrafinda toplanmis gorunuyor. Yilan, hayatinda tehdit olarak algiladigin bir seyi temsil ediyor olabilir.',
-      'emotionalCenter_peace': 'Duygusal agirlik sakinlik ve kabul etrafinda toplanmis. Yilan burada sifa veya donusum enerjisi tasiyor olabilir.',
-      'emotionalCenter_curiosity': 'Duygusal agirlik merak etrafinda. Yilan, kesfedilmeyi bekleyen gizli bir bilgiyi temsil ediyor olabilir.',
-      'emotionalCenter_neutral': 'Duygusal ton belirsiz. Yilan sembolu, henuz tanimlanmamis bir degisim surecine isaret ediyor olabilir.',
-      'symbolDynamics': 'Yilan, donusum ve yenilenmenin evrensel semboludur. Hareket sekli - sana dogru, uzaga, durgun - onemli ipuclari tasir. Yaklasiyor ise yuzlesme, uzaklasiyorsa kacis temasini isaret edebilir.',
-      'position_observer': 'Gozlemci pozisyonundaydin - bu, durumu disaridan degerlendidigini gosteriyor olabilir.',
-      'position_participant': 'Aktif katilimci pozisyonundaydin - bu donusum sureci seni dogrudan ilgilendiriyor.',
-      'position_escaping': 'Kacan pozisyonundaydin - bu, yuzlesmekten kacindigin bir durumu yansıtıyor olabilir.',
-      'position_confronting': 'Yuzlesen pozisyonundaydin - bu, bir seyle hesaplasma surecinde olduğunu gosteriyor.',
-      'position_neutral': 'Pozisyonun belirsizdi - bu, duruma karsi henuz net bir tutum gelistirmedigini gosteriyor olabilir.',
-      'timing': 'Yilan ruyalari genellikle buyuk degisim ve donusum donemlerinde ortaya cikar. Bu, bir gecis surecinin baslangici, ortasi veya sonu olabilir.',
-      'lifeResonance_fear': 'Bu ruya, hayatinda bastirilan bir korku veya kacinilan bir gercekle rezonans yapiyor olabilir.',
-      'lifeResonance_peace': 'Bu ruya, hayatinda dogal bir donusum surecinin saglikli ilerledigini yansıtıyor olabilir.',
-      'lifeResonance_neutral': 'Bu ruya, hayatinda farkinda olmadan islenmekte olan bir temaya isaret ediyor olabilir.',
-      'integration': 'Bu ruya, senden donusumu kabul etmeni ve degisimden kaçmamani istiyor olabilir. Yilan, eski kabugu birakmanin yeni buyumeye alan actigini hatırlatiyor.',
-      'questions': 'Hayatinda simdi sonlanmakta olan ne var?|Hangi korku veya gercekle yuzlesmekten kaciniyorsun?|Bu sembolu gorduğunde ilk aklina gelen kisi veya durum ne?',
+      'emotionalCenter_fear':
+          'Duygusal agirlik korku ve gerilim etrafinda toplanmis gorunuyor. Yilan, hayatinda tehdit olarak algiladigin bir seyi temsil ediyor olabilir.',
+      'emotionalCenter_peace':
+          'Duygusal agirlik sakinlik ve kabul etrafinda toplanmis. Yilan burada sifa veya donusum enerjisi tasiyor olabilir.',
+      'emotionalCenter_curiosity':
+          'Duygusal agirlik merak etrafinda. Yilan, kesfedilmeyi bekleyen gizli bir bilgiyi temsil ediyor olabilir.',
+      'emotionalCenter_neutral':
+          'Duygusal ton belirsiz. Yilan sembolu, henuz tanimlanmamis bir degisim surecine isaret ediyor olabilir.',
+      'symbolDynamics':
+          'Yilan, donusum ve yenilenmenin evrensel semboludur. Hareket sekli - sana dogru, uzaga, durgun - onemli ipuclari tasir. Yaklasiyor ise yuzlesme, uzaklasiyorsa kacis temasini isaret edebilir.',
+      'position_observer':
+          'Gozlemci pozisyonundaydin - bu, durumu disaridan degerlendidigini gosteriyor olabilir.',
+      'position_participant':
+          'Aktif katilimci pozisyonundaydin - bu donusum sureci seni dogrudan ilgilendiriyor.',
+      'position_escaping':
+          'Kacan pozisyonundaydin - bu, yuzlesmekten kacindigin bir durumu yansıtıyor olabilir.',
+      'position_confronting':
+          'Yuzlesen pozisyonundaydin - bu, bir seyle hesaplasma surecinde olduğunu gosteriyor.',
+      'position_neutral':
+          'Pozisyonun belirsizdi - bu, duruma karsi henuz net bir tutum gelistirmedigini gosteriyor olabilir.',
+      'timing':
+          'Yilan ruyalari genellikle buyuk degisim ve donusum donemlerinde ortaya cikar. Bu, bir gecis surecinin baslangici, ortasi veya sonu olabilir.',
+      'lifeResonance_fear':
+          'Bu ruya, hayatinda bastirilan bir korku veya kacinilan bir gercekle rezonans yapiyor olabilir.',
+      'lifeResonance_peace':
+          'Bu ruya, hayatinda dogal bir donusum surecinin saglikli ilerledigini yansıtıyor olabilir.',
+      'lifeResonance_neutral':
+          'Bu ruya, hayatinda farkinda olmadan islenmekte olan bir temaya isaret ediyor olabilir.',
+      'integration':
+          'Bu ruya, senden donusumu kabul etmeni ve degisimden kaçmamani istiyor olabilir. Yilan, eski kabugu birakmanin yeni buyumeye alan actigini hatırlatiyor.',
+      'questions':
+          'Hayatinda simdi sonlanmakta olan ne var?|Hangi korku veya gercekle yuzlesmekten kaciniyorsun?|Bu sembolu gorduğunde ilk aklina gelen kisi veya durum ne?',
     },
     'su': {
       'reconstruction': 'Bu ruyada su elementi merkezi bir rol oynuyor.',
-      'emotionalCenter_fear': 'Duygusal agirlik korku etrafinda toplanmis - bogulma, kontrolsuz akis veya karanlik sular gibi temalar duygusal bunalmisi yansıtıyor olabilir.',
-      'emotionalCenter_peace': 'Duygusal agirlik huzur etrafinda - berrak ve sakin sular, ic huzur ve duygusal netliği yansıtıyor olabilir.',
-      'emotionalCenter_curiosity': 'Duygusal agirlik merak etrafinda - suyun derinliklerine bakmak, ic dünyanı kesfetmeye hazır olduğunu gosteriyor.',
-      'emotionalCenter_neutral': 'Duygusal ton karisik - su hem sakinlestirici hem de tehditkar olabilir, bu ikiliği incele.',
-      'symbolDynamics': 'Su, bilincdisi ve duyguların evrensel semboludur. Durumu - temiz/bulanik, durgun/dalgali - onemli ipuclari tasir. Suyun icinde olmak ve disinda olmak arasindaki fark buyuktur.',
-      'position_observer': 'Suyu disaridan izliyordun - duygularinı mesafeli bir yerden degerlendiriyorsun.',
-      'position_participant': 'Suyun icindeydin - duygularina tamamen dalmiş durumdasin.',
-      'position_escaping': 'Sudan kaciyordun - duygusal yükten uzaklasmaya calisiyor olabilirsin.',
-      'position_confronting': 'Suyla yuzlesiyordun - duygusal derinlige inmeye hazirsin.',
-      'position_neutral': 'Pozisyonun degisken - duygularinla iliskin henuz netlesmiyor olabilir.',
-      'timing': 'Su ruyalari genellikle duygusal gecis donemlerinde ortaya cikar. Bir duygunun islenmesi veya serbest birakilmasi surecinde olabilirsin.',
-      'lifeResonance_fear': 'Bu ruya, hayatinda duygusal olarak bunaldigin veya kontrol edemediğin bir durumu yansıtıyor olabilir.',
-      'lifeResonance_peace': 'Bu ruya, duygusal netlik ve ic huzur doneminin basladigini yansıtıyor olabilir.',
-      'lifeResonance_neutral': 'Bu ruya, islenmesi gereken duygusal bir temaya dikkat cekiyor olabilir.',
-      'integration': 'Bu ruya, duygularina dikkat etmeni ve onlari akmasina izin vermeni istiyor olabilir. Suyun dogasi akmaktır - tutmak yerine birak.',
-      'questions': 'Hayatinda su anda hangi duygu en yogun?|Duygularini ifade etmekte zorlandigin bir alan var mi?|Su elementi seninle nasil konusuyor?',
+      'emotionalCenter_fear':
+          'Duygusal agirlik korku etrafinda toplanmis - bogulma, kontrolsuz akis veya karanlik sular gibi temalar duygusal bunalmisi yansıtıyor olabilir.',
+      'emotionalCenter_peace':
+          'Duygusal agirlik huzur etrafinda - berrak ve sakin sular, ic huzur ve duygusal netliği yansıtıyor olabilir.',
+      'emotionalCenter_curiosity':
+          'Duygusal agirlik merak etrafinda - suyun derinliklerine bakmak, ic dünyanı kesfetmeye hazır olduğunu gosteriyor.',
+      'emotionalCenter_neutral':
+          'Duygusal ton karisik - su hem sakinlestirici hem de tehditkar olabilir, bu ikiliği incele.',
+      'symbolDynamics':
+          'Su, bilincdisi ve duyguların evrensel semboludur. Durumu - temiz/bulanik, durgun/dalgali - onemli ipuclari tasir. Suyun icinde olmak ve disinda olmak arasindaki fark buyuktur.',
+      'position_observer':
+          'Suyu disaridan izliyordun - duygularinı mesafeli bir yerden degerlendiriyorsun.',
+      'position_participant':
+          'Suyun icindeydin - duygularina tamamen dalmiş durumdasin.',
+      'position_escaping':
+          'Sudan kaciyordun - duygusal yükten uzaklasmaya calisiyor olabilirsin.',
+      'position_confronting':
+          'Suyla yuzlesiyordun - duygusal derinlige inmeye hazirsin.',
+      'position_neutral':
+          'Pozisyonun degisken - duygularinla iliskin henuz netlesmiyor olabilir.',
+      'timing':
+          'Su ruyalari genellikle duygusal gecis donemlerinde ortaya cikar. Bir duygunun islenmesi veya serbest birakilmasi surecinde olabilirsin.',
+      'lifeResonance_fear':
+          'Bu ruya, hayatinda duygusal olarak bunaldigin veya kontrol edemediğin bir durumu yansıtıyor olabilir.',
+      'lifeResonance_peace':
+          'Bu ruya, duygusal netlik ve ic huzur doneminin basladigini yansıtıyor olabilir.',
+      'lifeResonance_neutral':
+          'Bu ruya, islenmesi gereken duygusal bir temaya dikkat cekiyor olabilir.',
+      'integration':
+          'Bu ruya, duygularina dikkat etmeni ve onlari akmasina izin vermeni istiyor olabilir. Suyun dogasi akmaktır - tutmak yerine birak.',
+      'questions':
+          'Hayatinda su anda hangi duygu en yogun?|Duygularini ifade etmekte zorlandigin bir alan var mi?|Su elementi seninle nasil konusuyor?',
     },
     'ucmak': {
       'reconstruction': 'Bu ruyada ucma deneyimi merkezi bir rol oynuyor.',
-      'emotionalCenter_fear': 'Duygusal agirlik korku etrafinda - yukseklik korkusu veya dusme endisesi, kontrol kaybetme korkusunu yansıtıyor olabilir.',
-      'emotionalCenter_peace': 'Duygusal agirlik ozgurluk etrafinda - keyifli ucus, potansiyelini kullandiğinin ve dogru yolda ilerlediğinin isareti olabilir.',
-      'emotionalCenter_curiosity': 'Duygusal agirlik merak etrafinda - yeni bakis açilari ve olasılıklara açık olduğunu gosteriyor.',
-      'emotionalCenter_neutral': 'Duygusal ton karisik - ucmak hem ozgurlestirici hem de korkutucu olabilir.',
-      'symbolDynamics': 'Ucmak, sinirlari asma ve ozgurluk arzusunun semboludur. Kontrol sende mi degil mi - bu cok onemli. Yukseklik ve ucus sekli de anlam tasir.',
-      'position_observer': 'Disaridan izliyordun - ozgurlugu veya potansiyeli mesafeli bir yerden degerlendiriyorsun.',
-      'position_participant': 'Aktif olarak ucuyordun - potansiyelinle dogrudan temas halindesin.',
-      'position_escaping': 'Ucarak kaciyordun - bir seyden uzaklasmak istiyorsun.',
-      'position_confronting': 'Ucarak yuzlesiyordun - engellerle karsi karsiya gelmeye hazirsın.',
-      'position_neutral': 'Pozisyonun belirsizdi - ozgurlugunle iliskin henuz netlesmiyor.',
-      'timing': 'Ucma ruyalari genellikle sınırları zorlama veya yeni ufuklara acılma donemlerinde ortaya çıkar.',
-      'lifeResonance_fear': 'Bu ruya, basarinin getirdigi sorumluluktan veya yukselmekten duydugun endiseyi yansıtıyor olabilir.',
-      'lifeResonance_peace': 'Bu ruya, hayatinda gerceklestirdigin bir ozgurluk veya yukselis donemini yansıtıyor olabilir.',
-      'lifeResonance_neutral': 'Bu ruya, potansiyelinle ilgili kesfedilmemis bir alana isaret ediyor olabilir.',
-      'integration': 'Bu ruya, potansiyelinin sinirsiz oldugunu hatırlatiyor. Ama ayaklarini yere basan pratik adimlarla hayallerini dengelemen gerekebilir.',
-      'questions': 'Hayatinda hangi sinirları asmak istiyorsun?|Basari veya yukselme seni endiselendirir mi?|Ozgur hissettigin anlar ne zaman?',
+      'emotionalCenter_fear':
+          'Duygusal agirlik korku etrafinda - yukseklik korkusu veya dusme endisesi, kontrol kaybetme korkusunu yansıtıyor olabilir.',
+      'emotionalCenter_peace':
+          'Duygusal agirlik ozgurluk etrafinda - keyifli ucus, potansiyelini kullandiğinin ve dogru yolda ilerlediğinin isareti olabilir.',
+      'emotionalCenter_curiosity':
+          'Duygusal agirlik merak etrafinda - yeni bakis açilari ve olasılıklara açık olduğunu gosteriyor.',
+      'emotionalCenter_neutral':
+          'Duygusal ton karisik - ucmak hem ozgurlestirici hem de korkutucu olabilir.',
+      'symbolDynamics':
+          'Ucmak, sinirlari asma ve ozgurluk arzusunun semboludur. Kontrol sende mi degil mi - bu cok onemli. Yukseklik ve ucus sekli de anlam tasir.',
+      'position_observer':
+          'Disaridan izliyordun - ozgurlugu veya potansiyeli mesafeli bir yerden degerlendiriyorsun.',
+      'position_participant':
+          'Aktif olarak ucuyordun - potansiyelinle dogrudan temas halindesin.',
+      'position_escaping':
+          'Ucarak kaciyordun - bir seyden uzaklasmak istiyorsun.',
+      'position_confronting':
+          'Ucarak yuzlesiyordun - engellerle karsi karsiya gelmeye hazirsın.',
+      'position_neutral':
+          'Pozisyonun belirsizdi - ozgurlugunle iliskin henuz netlesmiyor.',
+      'timing':
+          'Ucma ruyalari genellikle sınırları zorlama veya yeni ufuklara acılma donemlerinde ortaya çıkar.',
+      'lifeResonance_fear':
+          'Bu ruya, basarinin getirdigi sorumluluktan veya yukselmekten duydugun endiseyi yansıtıyor olabilir.',
+      'lifeResonance_peace':
+          'Bu ruya, hayatinda gerceklestirdigin bir ozgurluk veya yukselis donemini yansıtıyor olabilir.',
+      'lifeResonance_neutral':
+          'Bu ruya, potansiyelinle ilgili kesfedilmemis bir alana isaret ediyor olabilir.',
+      'integration':
+          'Bu ruya, potansiyelinin sinirsiz oldugunu hatırlatiyor. Ama ayaklarini yere basan pratik adimlarla hayallerini dengelemen gerekebilir.',
+      'questions':
+          'Hayatinda hangi sinirları asmak istiyorsun?|Basari veya yukselme seni endiselendirir mi?|Ozgur hissettigin anlar ne zaman?',
     },
     'dusmek': {
       'reconstruction': 'Bu ruyada dusme deneyimi merkezi bir rol oynuyor.',
-      'emotionalCenter_fear': 'Duygusal agirlik korku ve panik etrafinda - kontrol kaybi veya guvensizlik hissini yogun yasiyorsun.',
-      'emotionalCenter_peace': 'Duygusal agirlik teslimiyet etrafinda - dusus huzurlu hissediyorsa, birakma ve surece guvenme cagrisı olabilir.',
-      'emotionalCenter_curiosity': 'Duygusal agirlik merak etrafinda - dususe merakla yaklasıyorsan, degisime açık oldugunu gosteriyor.',
-      'emotionalCenter_neutral': 'Duygusal ton belirsiz - dusus hem korku hem de birakma iceriyor olabilir.',
-      'symbolDynamics': 'Dusme, kontrol kaybi ve guvensizliğin evrensel semboludur. Dusmeden once ne oldu, yere carptin mi, bu detaylar onemli.',
-      'position_observer': 'Disaridan izliyordun - kontrol kaybini mesafeli değerlendiriyorsun.',
-      'position_participant': 'Dusen sendin - bu durum seni dogrudan etkiliyor.',
-      'position_escaping': 'Dusus bir kacis gibi hissettirdi - bir seyden uzaklasma istegi olabilir.',
-      'position_confronting': 'Dususe teslim oldun - surece guvenmeyi ogreniyorsun.',
-      'position_neutral': 'Pozisyonun belirsizdi - kontrolle iliskin henuz netlesmiyor.',
-      'timing': 'Dusme ruyalari genellikle buyuk belirsizlik veya degisim donemlerinde ortaya cikar.',
-      'lifeResonance_fear': 'Bu ruya, hayatinda zemin ayaklarinin altindan kayiyor gibi hissettiğin bir durumu yansıtıyor olabilir.',
-      'lifeResonance_peace': 'Bu ruya, birakma ve teslim olma surecini yansıtıyor olabilir.',
-      'lifeResonance_neutral': 'Bu ruya, kontrol ve guvenlik temalarına dikkat cekiyor olabilir.',
-      'integration': 'Bu ruya, tutundugun seyleri gözden gecirmeni istiyor olabilir. Bazen birakmak, ileri gitmek icin gereklidir.',
-      'questions': 'Hayatinda kontrolu kaybettigini hissettigin bir alan var mi?|Neyi tutuyorsun ve birakamiyorsun?|Dusus sana ne ogretiyor?',
+      'emotionalCenter_fear':
+          'Duygusal agirlik korku ve panik etrafinda - kontrol kaybi veya guvensizlik hissini yogun yasiyorsun.',
+      'emotionalCenter_peace':
+          'Duygusal agirlik teslimiyet etrafinda - dusus huzurlu hissediyorsa, birakma ve surece guvenme cagrisı olabilir.',
+      'emotionalCenter_curiosity':
+          'Duygusal agirlik merak etrafinda - dususe merakla yaklasıyorsan, degisime açık oldugunu gosteriyor.',
+      'emotionalCenter_neutral':
+          'Duygusal ton belirsiz - dusus hem korku hem de birakma iceriyor olabilir.',
+      'symbolDynamics':
+          'Dusme, kontrol kaybi ve guvensizliğin evrensel semboludur. Dusmeden once ne oldu, yere carptin mi, bu detaylar onemli.',
+      'position_observer':
+          'Disaridan izliyordun - kontrol kaybini mesafeli değerlendiriyorsun.',
+      'position_participant':
+          'Dusen sendin - bu durum seni dogrudan etkiliyor.',
+      'position_escaping':
+          'Dusus bir kacis gibi hissettirdi - bir seyden uzaklasma istegi olabilir.',
+      'position_confronting':
+          'Dususe teslim oldun - surece guvenmeyi ogreniyorsun.',
+      'position_neutral':
+          'Pozisyonun belirsizdi - kontrolle iliskin henuz netlesmiyor.',
+      'timing':
+          'Dusme ruyalari genellikle buyuk belirsizlik veya degisim donemlerinde ortaya cikar.',
+      'lifeResonance_fear':
+          'Bu ruya, hayatinda zemin ayaklarinin altindan kayiyor gibi hissettiğin bir durumu yansıtıyor olabilir.',
+      'lifeResonance_peace':
+          'Bu ruya, birakma ve teslim olma surecini yansıtıyor olabilir.',
+      'lifeResonance_neutral':
+          'Bu ruya, kontrol ve guvenlik temalarına dikkat cekiyor olabilir.',
+      'integration':
+          'Bu ruya, tutundugun seyleri gözden gecirmeni istiyor olabilir. Bazen birakmak, ileri gitmek icin gereklidir.',
+      'questions':
+          'Hayatinda kontrolu kaybettigini hissettigin bir alan var mi?|Neyi tutuyorsun ve birakamiyorsun?|Dusus sana ne ogretiyor?',
     },
     'kovalanmak': {
       'reconstruction': 'Bu ruyada kovalanma deneyimi merkezi bir rol oynuyor.',
-      'emotionalCenter_fear': 'Duygusal agirlik korku ve panik etrafinda - kacinilan bir sey seni takip ediyor.',
-      'emotionalCenter_peace': 'Duygusal agirlik merak etrafinda - kovalayani anlamaya calisiyorsun.',
-      'emotionalCenter_curiosity': 'Duygusal agirlik kesif etrafinda - kovalayan aslinda ne istiyor?',
-      'emotionalCenter_neutral': 'Duygusal ton karisik - hem korku hem merak var.',
-      'symbolDynamics': 'Kovalanmak, kacilan duygular, sorumluluklar veya gercekleri temsil eder. Kovalayan kim/ne oldugu cok onemli.',
-      'position_observer': 'Disaridan izliyordun - kacis mekanizmani degerlendiriyorsun.',
-      'position_participant': 'Kacan sendin - bir seyden aktif olarak uzaklasıyorsun.',
+      'emotionalCenter_fear':
+          'Duygusal agirlik korku ve panik etrafinda - kacinilan bir sey seni takip ediyor.',
+      'emotionalCenter_peace':
+          'Duygusal agirlik merak etrafinda - kovalayani anlamaya calisiyorsun.',
+      'emotionalCenter_curiosity':
+          'Duygusal agirlik kesif etrafinda - kovalayan aslinda ne istiyor?',
+      'emotionalCenter_neutral':
+          'Duygusal ton karisik - hem korku hem merak var.',
+      'symbolDynamics':
+          'Kovalanmak, kacilan duygular, sorumluluklar veya gercekleri temsil eder. Kovalayan kim/ne oldugu cok onemli.',
+      'position_observer':
+          'Disaridan izliyordun - kacis mekanizmani degerlendiriyorsun.',
+      'position_participant':
+          'Kacan sendin - bir seyden aktif olarak uzaklasıyorsun.',
       'position_escaping': 'Kacıyordun - yuzlesmekten kaciniyorsun.',
       'position_confronting': 'Donup yuzlestin - cesaret gosteriyorsun.',
-      'position_neutral': 'Pozisyonun degisti - kacinma ve yuzlesme arasinda gidip geliyorsun.',
-      'timing': 'Kovalanma ruyalari genellikle kacinılan bir konu giderek acil hale geldiginde ortaya cikar.',
-      'lifeResonance_fear': 'Bu ruya, hayatinda kacmaya calistigin bir sorumluluk, duygu veya gercegi yansıtıyor olabilir.',
-      'lifeResonance_peace': 'Bu ruya, kovalayani anlamaya ve entegre etmeye basladiğini gosteriyor olabilir.',
-      'lifeResonance_neutral': 'Bu ruya, yuzlesmemen gereken bir alana dikkat cekiyor olabilir.',
-      'integration': 'Bu ruya, don ve sor: Ne istiyorsun? Cogu zaman kactigimiz sey, en cok ihtiyacımız olan ders.',
-      'questions': 'Hayatinda neden kaciyorsun?|Kovalayan sana tanidik geliyor mu?|Dursan ve donsen ne olurdu?',
+      'position_neutral':
+          'Pozisyonun degisti - kacinma ve yuzlesme arasinda gidip geliyorsun.',
+      'timing':
+          'Kovalanma ruyalari genellikle kacinılan bir konu giderek acil hale geldiginde ortaya cikar.',
+      'lifeResonance_fear':
+          'Bu ruya, hayatinda kacmaya calistigin bir sorumluluk, duygu veya gercegi yansıtıyor olabilir.',
+      'lifeResonance_peace':
+          'Bu ruya, kovalayani anlamaya ve entegre etmeye basladiğini gosteriyor olabilir.',
+      'lifeResonance_neutral':
+          'Bu ruya, yuzlesmemen gereken bir alana dikkat cekiyor olabilir.',
+      'integration':
+          'Bu ruya, don ve sor: Ne istiyorsun? Cogu zaman kactigimiz sey, en cok ihtiyacımız olan ders.',
+      'questions':
+          'Hayatinda neden kaciyorsun?|Kovalayan sana tanidik geliyor mu?|Dursan ve donsen ne olurdu?',
     },
     'olum': {
       'reconstruction': 'Bu ruyada olum temasi merkezi bir rol oynuyor.',
-      'emotionalCenter_fear': 'Duygusal agirlik korku ve kaygi etrafinda - kayip veya son korkusunu yansıtıyor olabilir.',
-      'emotionalCenter_peace': 'Duygusal agirlik kabul etrafinda - donusumu ve bitisin dogalligini kabul ediyorsun.',
-      'emotionalCenter_curiosity': 'Duygusal agirlik merak etrafinda - olumun otesinde ne var sorusu seni cezbediyor.',
-      'emotionalCenter_neutral': 'Duygusal ton karısik - hem korku hem kabul var.',
-      'symbolDynamics': 'Olum ruyalari nadiren literal. Donusum, bir doneminin sonu, buyuk degisimi temsil eder. Kim oldugu cok onemli - sen mi, baskasi mi?',
-      'position_observer': 'Disaridan izliyordun - donusumu mesafeli degerlendiriyorsun.',
-      'position_participant': 'Sen oluyordun - buyuk bir ic degisim yasiyorsun.',
-      'position_escaping': 'Olumden kaciyordun - degisime direnc gosteriyorsun.',
-      'position_confronting': 'Olumle yuzlesiyordun - donusumu kabul ediyorsun.',
-      'position_neutral': 'Pozisyonun belirsizdi - degisime karsi tutumun henuz netlesmiyor.',
-      'timing': 'Olum ruyalari genellikle hayatin buyuk gecis noktalarinda - iliskilerin sonu, kariyer degisimleri, kimlik donusumleri - ortaya cikar.',
-      'lifeResonance_fear': 'Bu ruya, hayatinda biten veya olmesi gereken bir seyin korkusunu yansıtıyor olabilir.',
-      'lifeResonance_peace': 'Bu ruya, bir seyin dogal olarak sona erdigini ve bunun iyi oldugunu yansıtıyor olabilir.',
-      'lifeResonance_neutral': 'Bu ruya, hayatinda donusum bekleyen bir alana isaret ediyor olabilir.',
-      'integration': 'Bu ruya, eski kimligin, aliṣkanlıgın veya yasam biciminin olmesinin yeni bir baslangiça yer actığını hatirlatıyor.',
-      'questions': 'Hayatinda simdi ne bitiyor veya bitmesi gerekiyor?|Neyi birakmaktan korkuyorsun?|Donusumu engelleyen ne?',
+      'emotionalCenter_fear':
+          'Duygusal agirlik korku ve kaygi etrafinda - kayip veya son korkusunu yansıtıyor olabilir.',
+      'emotionalCenter_peace':
+          'Duygusal agirlik kabul etrafinda - donusumu ve bitisin dogalligini kabul ediyorsun.',
+      'emotionalCenter_curiosity':
+          'Duygusal agirlik merak etrafinda - olumun otesinde ne var sorusu seni cezbediyor.',
+      'emotionalCenter_neutral':
+          'Duygusal ton karısik - hem korku hem kabul var.',
+      'symbolDynamics':
+          'Olum ruyalari nadiren literal. Donusum, bir doneminin sonu, buyuk degisimi temsil eder. Kim oldugu cok onemli - sen mi, baskasi mi?',
+      'position_observer':
+          'Disaridan izliyordun - donusumu mesafeli degerlendiriyorsun.',
+      'position_participant':
+          'Sen oluyordun - buyuk bir ic degisim yasiyorsun.',
+      'position_escaping':
+          'Olumden kaciyordun - degisime direnc gosteriyorsun.',
+      'position_confronting':
+          'Olumle yuzlesiyordun - donusumu kabul ediyorsun.',
+      'position_neutral':
+          'Pozisyonun belirsizdi - degisime karsi tutumun henuz netlesmiyor.',
+      'timing':
+          'Olum ruyalari genellikle hayatin buyuk gecis noktalarinda - iliskilerin sonu, kariyer degisimleri, kimlik donusumleri - ortaya cikar.',
+      'lifeResonance_fear':
+          'Bu ruya, hayatinda biten veya olmesi gereken bir seyin korkusunu yansıtıyor olabilir.',
+      'lifeResonance_peace':
+          'Bu ruya, bir seyin dogal olarak sona erdigini ve bunun iyi oldugunu yansıtıyor olabilir.',
+      'lifeResonance_neutral':
+          'Bu ruya, hayatinda donusum bekleyen bir alana isaret ediyor olabilir.',
+      'integration':
+          'Bu ruya, eski kimligin, aliṣkanlıgın veya yasam biciminin olmesinin yeni bir baslangiça yer actığını hatirlatıyor.',
+      'questions':
+          'Hayatinda simdi ne bitiyor veya bitmesi gerekiyor?|Neyi birakmaktan korkuyorsun?|Donusumu engelleyen ne?',
     },
     'genel': {
       'reconstruction': 'Bu ruyada onemli bir sembol veya deneyim var.',
-      'emotionalCenter_fear': 'Duygusal agirlik gerginlik veya endise etrafinda toplanmis gorunuyor.',
-      'emotionalCenter_peace': 'Duygusal agirlik huzur ve kabul etrafinda toplanmis gorunuyor.',
-      'emotionalCenter_curiosity': 'Duygusal agirlik merak ve kesif etrafinda toplanmis gorunuyor.',
-      'emotionalCenter_neutral': 'Duygusal ton belirsiz veya karisik gorunuyor.',
-      'symbolDynamics': 'Her sembol kisisel anlam tasir. Bu sembolin sana ozel ne ifade ettigini kesfetmek onemli.',
-      'position_observer': 'Gozlemci pozisyonundaydin - olaylari disaridan degerlendiriyorsun.',
+      'emotionalCenter_fear':
+          'Duygusal agirlik gerginlik veya endise etrafinda toplanmis gorunuyor.',
+      'emotionalCenter_peace':
+          'Duygusal agirlik huzur ve kabul etrafinda toplanmis gorunuyor.',
+      'emotionalCenter_curiosity':
+          'Duygusal agirlik merak ve kesif etrafinda toplanmis gorunuyor.',
+      'emotionalCenter_neutral':
+          'Duygusal ton belirsiz veya karisik gorunuyor.',
+      'symbolDynamics':
+          'Her sembol kisisel anlam tasir. Bu sembolin sana ozel ne ifade ettigini kesfetmek onemli.',
+      'position_observer':
+          'Gozlemci pozisyonundaydin - olaylari disaridan degerlendiriyorsun.',
       'position_participant': 'Katilimci pozisyonundaydin - olaylara dahilsin.',
-      'position_escaping': 'Kacan pozisyonundaydin - bir seyden uzaklasiyorsun.',
-      'position_confronting': 'Yuzlesen pozisyonundaydin - bir seyle karsi karsiyasin.',
-      'position_neutral': 'Pozisyonun belirsiz - duruma karsi tutumun henuz netlesmiyor.',
-      'timing': 'Bu ruya, yasam yolculugunda belirli bir noktaya isaret ediyor olabilir.',
-      'lifeResonance_fear': 'Bu ruya, hayatinda dikkat edilmesi gereken bir kaygi veya endiseyi yansıtıyor olabilir.',
-      'lifeResonance_peace': 'Bu ruya, ic huzur ve uyum donemini yansıtıyor olabilir.',
-      'lifeResonance_neutral': 'Bu ruya, hayatinda kesfedilmeyi bekleyen bir alana isaret ediyor olabilir.',
-      'integration': 'Bu ruya, dikkatini belirli bir alana cekmeye calisiyor olabilir.',
-      'questions': 'Bu sembol senin icin kisisel olarak ne ifade ediyor?|Son zamanlarda benzer duygular yasadigin bir durum var mi?|Ruyadaki bu enerjiyi nerede hissediyorsun?',
+      'position_escaping':
+          'Kacan pozisyonundaydin - bir seyden uzaklasiyorsun.',
+      'position_confronting':
+          'Yuzlesen pozisyonundaydin - bir seyle karsi karsiyasin.',
+      'position_neutral':
+          'Pozisyonun belirsiz - duruma karsi tutumun henuz netlesmiyor.',
+      'timing':
+          'Bu ruya, yasam yolculugunda belirli bir noktaya isaret ediyor olabilir.',
+      'lifeResonance_fear':
+          'Bu ruya, hayatinda dikkat edilmesi gereken bir kaygi veya endiseyi yansıtıyor olabilir.',
+      'lifeResonance_peace':
+          'Bu ruya, ic huzur ve uyum donemini yansıtıyor olabilir.',
+      'lifeResonance_neutral':
+          'Bu ruya, hayatinda kesfedilmeyi bekleyen bir alana isaret ediyor olabilir.',
+      'integration':
+          'Bu ruya, dikkatini belirli bir alana cekmeye calisiyor olabilir.',
+      'questions':
+          'Bu sembol senin icin kisisel olarak ne ifade ediyor?|Son zamanlarda benzer duygular yasadigin bir durum var mi?|Ruyadaki bu enerjiyi nerede hissediyorsun?',
     },
   };
 
@@ -1348,7 +1676,7 @@ Turkce yaz, mistik ve destekleyici bir ton kullan.
                   {
                     'role': 'system',
                     'content':
-                        'Sen deneyimli bir Turk astrologusun. Mistik, ilham verici ve destekleyici bir tonda yaziyorsun.'
+                        'Sen deneyimli bir Turk astrologusun. Mistik, ilham verici ve destekleyici bir tonda yaziyorsun.',
                   },
                   {'role': 'user', 'content': prompt},
                 ],
@@ -1364,7 +1692,9 @@ Turkce yaz, mistik ve destekleyici bir ton kullan.
           // Apply safety filter to all AI responses
           return _sanitizeResponse(content);
         } else if (kDebugMode) {
-          debugPrint('OpenAI API error: ${response.statusCode} - ${response.body}');
+          debugPrint(
+            'OpenAI API error: ${response.statusCode} - ${response.body}',
+          );
         }
       } catch (e) {
         if (kDebugMode) {
@@ -1402,7 +1732,9 @@ Turkce yaz, mistik ve destekleyici bir ton kullan.
           // Apply safety filter to all AI responses
           return _sanitizeResponse(content);
         } else if (kDebugMode) {
-          debugPrint('Anthropic API error: ${response.statusCode} - ${response.body}');
+          debugPrint(
+            'Anthropic API error: ${response.statusCode} - ${response.body}',
+          );
         }
       } catch (e) {
         if (kDebugMode) {
@@ -1415,7 +1747,10 @@ Turkce yaz, mistik ve destekleyici bir ton kullan.
   }
 
   /// Private: Parse horoscope JSON response
-  PersonalizedHoroscope _parseHoroscopeResponse(String response, ZodiacSign sign) {
+  PersonalizedHoroscope _parseHoroscopeResponse(
+    String response,
+    ZodiacSign sign,
+  ) {
     try {
       // Extract JSON from response if wrapped in markdown
       var jsonStr = response;
@@ -1432,8 +1767,12 @@ Turkce yaz, mistik ve destekleyici bir ton kullan.
         loveAdvice: data['loveAdvice'] ?? '',
         careerAdvice: data['careerAdvice'] ?? '',
         healthAdvice: data['healthAdvice'] ?? '',
-        focusNumber: data['focusNumber']?.toString() ?? data['luckyNumber']?.toString() ?? '7',
-        reflectionColor: data['reflectionColor'] ?? data['luckyColor'] ?? 'Altin',
+        focusNumber:
+            data['focusNumber']?.toString() ??
+            data['luckyNumber']?.toString() ??
+            '7',
+        reflectionColor:
+            data['reflectionColor'] ?? data['luckyColor'] ?? 'Altin',
         mood: data['mood'] ?? 'Dengeli',
         isAiGenerated: true,
       );
@@ -1465,46 +1804,70 @@ Turkce yaz, mistik ve destekleyici bir ton kullan.
       careerAdvice: careerAdvices[random.nextInt(careerAdvices.length)],
       healthAdvice: healthAdvices[random.nextInt(healthAdvices.length)],
       focusNumber: (random.nextInt(99) + 1).toString(),
-      reflectionColor: _reflectionColors[random.nextInt(_reflectionColors.length)],
+      reflectionColor:
+          _reflectionColors[random.nextInt(_reflectionColors.length)],
       mood: _moods[random.nextInt(_moods.length)],
       isAiGenerated: false,
     );
   }
 
-  String _getAreaName(AdviceArea area, [AppLanguage language = AppLanguage.en]) {
+  String _getAreaName(
+    AdviceArea area, [
+    AppLanguage language = AppLanguage.en,
+  ]) {
     switch (language) {
       case AppLanguage.tr:
         switch (area) {
-          case AdviceArea.love: return 'ask ve iliskiler';
-          case AdviceArea.career: return 'kariyer ve is';
-          case AdviceArea.health: return 'saglik ve enerji';
-          case AdviceArea.money: return 'para ve bolluk';
-          case AdviceArea.spiritual: return 'spirituel gelisim';
+          case AdviceArea.love:
+            return 'ask ve iliskiler';
+          case AdviceArea.career:
+            return 'kariyer ve is';
+          case AdviceArea.health:
+            return 'saglik ve enerji';
+          case AdviceArea.money:
+            return 'para ve bolluk';
+          case AdviceArea.spiritual:
+            return 'spirituel gelisim';
         }
       case AppLanguage.de:
         switch (area) {
-          case AdviceArea.love: return 'Liebe und Beziehungen';
-          case AdviceArea.career: return 'Karriere und Arbeit';
-          case AdviceArea.health: return 'Gesundheit und Energie';
-          case AdviceArea.money: return 'Geld und Fülle';
-          case AdviceArea.spiritual: return 'spirituelle Entwicklung';
+          case AdviceArea.love:
+            return 'Liebe und Beziehungen';
+          case AdviceArea.career:
+            return 'Karriere und Arbeit';
+          case AdviceArea.health:
+            return 'Gesundheit und Energie';
+          case AdviceArea.money:
+            return 'Geld und Fülle';
+          case AdviceArea.spiritual:
+            return 'spirituelle Entwicklung';
         }
       case AppLanguage.fr:
         switch (area) {
-          case AdviceArea.love: return 'amour et relations';
-          case AdviceArea.career: return 'carrière et travail';
-          case AdviceArea.health: return 'santé et énergie';
-          case AdviceArea.money: return 'argent et abondance';
-          case AdviceArea.spiritual: return 'développement spirituel';
+          case AdviceArea.love:
+            return 'amour et relations';
+          case AdviceArea.career:
+            return 'carrière et travail';
+          case AdviceArea.health:
+            return 'santé et énergie';
+          case AdviceArea.money:
+            return 'argent et abondance';
+          case AdviceArea.spiritual:
+            return 'développement spirituel';
         }
       case AppLanguage.en:
       default:
         switch (area) {
-          case AdviceArea.love: return 'love and relationships';
-          case AdviceArea.career: return 'career and work';
-          case AdviceArea.health: return 'health and energy';
-          case AdviceArea.money: return 'money and abundance';
-          case AdviceArea.spiritual: return 'spiritual growth';
+          case AdviceArea.love:
+            return 'love and relationships';
+          case AdviceArea.career:
+            return 'career and work';
+          case AdviceArea.health:
+            return 'health and energy';
+          case AdviceArea.money:
+            return 'money and abundance';
+          case AdviceArea.spiritual:
+            return 'spiritual growth';
         }
     }
   }
@@ -1541,7 +1904,7 @@ Turkce yaz, mistik ve destekleyici bir ton kullan.
     'Gumus',
     'Turkuaz',
     'Lavanta',
-    'Sampanya'
+    'Sampanya',
   ];
 
   static final List<String> _moods = [
@@ -1554,7 +1917,7 @@ Turkce yaz, mistik ve destekleyici bir ton kullan.
     'Kararli',
     'Romantik',
     'Guclu',
-    'Sezgisel'
+    'Sezgisel',
   ];
 
   static final List<String> _defaultSummaries = [
@@ -1826,19 +2189,13 @@ class PersonalizedHoroscope {
 }
 
 /// Advice areas
-enum AdviceArea {
-  love,
-  career,
-  health,
-  money,
-  spiritual,
-}
+enum AdviceArea { love, career, health, money, spiritual }
 
 /// Dream interpretation conversation state
 enum DreamConversationState {
-  initial,           // User just shared a dream
-  awaitingContext,   // Waiting for context answers
-  interpreted,       // Interpretation provided
+  initial, // User just shared a dream
+  awaitingContext, // Waiting for context answers
+  interpreted, // Interpretation provided
 }
 
 /// Dream interpretation session

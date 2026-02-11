@@ -114,8 +114,7 @@ class JungianDreamPsychology {
         'What is my true potential?',
         'What are my deepest values?',
       ],
-      healingAffirmation:
-          'I am whole. All my parts dance in harmony.',
+      healingAffirmation: 'I am whole. All my parts dance in harmony.',
       relatedSymbols: ['mandala', 'sun', 'crown', 'diamond', 'tree', 'center'],
     ),
     'persona': ArchetypeDeepAnalysis(
@@ -292,7 +291,8 @@ class JungianDreamPsychology {
         name: 'Persona Awareness',
         description: 'Recognition and questioning of social masks',
         dreamSigns: ['Mask falling off', 'Nakedness', 'Identity confusion'],
-        task: 'Understand the difference between who you are and who you appear to be',
+        task:
+            'Understand the difference between who you are and who you appear to be',
       ),
       IndividuationStage(
         name: 'Confronting the Shadow',
@@ -480,7 +480,8 @@ class FreudianDreamPsychology {
     ),
     'house': FreudianSymbol(
       symbol: 'House',
-      freudianMeaning: 'Body, self, family. Floors represent layers of the psyche.',
+      freudianMeaning:
+          'Body, self, family. Floors represent layers of the psyche.',
       unconsciousContent: 'Self-image, family dynamics',
       relatedFeelings: ['Security', 'Identity', 'Belonging'],
     ),
@@ -512,8 +513,8 @@ class FreudianDreamPsychology {
   };
 
   /// Free association technique
-  static const FreeAssociationTechnique freeAssociation =
-      FreeAssociationTechnique(
+  static const FreeAssociationTechnique
+  freeAssociation = FreeAssociationTechnique(
     description:
         'Freud\'s fundamental technique. Starting from dream elements, saying '
         'everything that comes to mind without censorship.',
@@ -672,10 +673,8 @@ class CognitiveDreamTheory {
       name: 'Threat Simulation',
       description:
           'Evolutionary theory: Dreams allow us to safely rehearse dangerous situations.',
-      dreamManifestation:
-          'Chase, fight, escape dreams. Threat scenarios.',
-      practicalUse:
-          'Nightmares may be "training." Subconscious preparation.',
+      dreamManifestation: 'Chase, fight, escape dreams. Threat scenarios.',
+      practicalUse: 'Nightmares may be "training." Subconscious preparation.',
     ),
   ];
 
@@ -720,10 +719,7 @@ class IndividuationProcess {
   final String description;
   final List<IndividuationStage> stages;
 
-  const IndividuationProcess({
-    required this.description,
-    required this.stages,
-  });
+  const IndividuationProcess({required this.description, required this.stages});
 }
 
 class IndividuationStage {

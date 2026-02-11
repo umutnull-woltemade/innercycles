@@ -43,7 +43,10 @@ class TantraMicroRitualScreen extends ConsumerWidget {
                     IconButton(
                       onPressed: () => context.pop(),
                       tooltip: L10nService.get('common.back', language),
-                      icon: Icon(Icons.arrow_back_ios, color: isDark ? Colors.white70 : AppColors.textDark),
+                      icon: Icon(
+                        Icons.arrow_back_ios,
+                        color: isDark ? Colors.white70 : AppColors.textDark,
+                      ),
                     ),
                     const Spacer(),
                     _buildDateBadge(context, isDark, today, language),
@@ -60,7 +63,10 @@ class TantraMicroRitualScreen extends ConsumerWidget {
 
                 // Title
                 Text(
-                  L10nService.get('screens.tantra_micro_ritual.todays_micro_ritual', language),
+                  L10nService.get(
+                    'screens.tantra_micro_ritual.todays_micro_ritual',
+                    language,
+                  ),
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
@@ -72,7 +78,10 @@ class TantraMicroRitualScreen extends ConsumerWidget {
 
                 // Ritual Name
                 Text(
-                  L10nService.get('screens.tantra_micro_ritual.rituals.${ritual.key}.name', language),
+                  L10nService.get(
+                    'screens.tantra_micro_ritual.rituals.${ritual.key}.name',
+                    language,
+                  ),
                   style: TextStyle(
                     fontSize: 28,
                     fontWeight: FontWeight.w600,
@@ -84,44 +93,61 @@ class TantraMicroRitualScreen extends ConsumerWidget {
                 const SizedBox(height: 8),
 
                 // Tag
-                _buildTag(L10nService.get('screens.tantra_micro_ritual.tantra_tag', language), const Color(0xFFE57373)),
+                _buildTag(
+                  L10nService.get(
+                    'screens.tantra_micro_ritual.tantra_tag',
+                    language,
+                  ),
+                  const Color(0xFFE57373),
+                ),
                 const SizedBox(height: 48),
 
                 // Core Message Box - 2-3 lines
                 Container(
-                  padding: const EdgeInsets.all(24),
-                  decoration: BoxDecoration(
-                    color: isDark
-                        ? Colors.white.withValues(alpha: 0.05)
-                        : Colors.white.withValues(alpha: 0.9),
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(
-                      color: isDark
-                          ? const Color(0xFFE57373).withValues(alpha: 0.2)
-                          : const Color(0xFFE57373).withValues(alpha: 0.15),
-                    ),
-                  ),
-                  child: Column(
-                    children: [
-                      Text(
-                        L10nService.get('screens.tantra_micro_ritual.rituals.${ritual.key}.instruction', language),
-                        style: TextStyle(
-                          fontSize: 18,
-                          height: 1.6,
-                          color: isDark ? Colors.white : AppColors.textDark,
+                      padding: const EdgeInsets.all(24),
+                      decoration: BoxDecoration(
+                        color: isDark
+                            ? Colors.white.withValues(alpha: 0.05)
+                            : Colors.white.withValues(alpha: 0.9),
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(
+                          color: isDark
+                              ? const Color(0xFFE57373).withValues(alpha: 0.2)
+                              : const Color(0xFFE57373).withValues(alpha: 0.15),
                         ),
-                        textAlign: TextAlign.center,
                       ),
-                    ],
-                  ),
-                ).animate().fadeIn(delay: 200.ms, duration: 400.ms).slideY(begin: 0.1),
+                      child: Column(
+                        children: [
+                          Text(
+                            L10nService.get(
+                              'screens.tantra_micro_ritual.rituals.${ritual.key}.instruction',
+                              language,
+                            ),
+                            style: TextStyle(
+                              fontSize: 18,
+                              height: 1.6,
+                              color: isDark ? Colors.white : AppColors.textDark,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
+                      ),
+                    )
+                    .animate()
+                    .fadeIn(delay: 200.ms, duration: 400.ms)
+                    .slideY(begin: 0.1),
                 const SizedBox(height: 32),
 
                 // Intention
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 16,
+                  ),
                   decoration: BoxDecoration(
-                    color: const Color(0xFFE57373).withValues(alpha: isDark ? 0.15 : 0.1),
+                    color: const Color(
+                      0xFFE57373,
+                    ).withValues(alpha: isDark ? 0.15 : 0.1),
                     borderRadius: BorderRadius.circular(16),
                   ),
                   child: Row(
@@ -131,11 +157,16 @@ class TantraMicroRitualScreen extends ConsumerWidget {
                       const SizedBox(width: 12),
                       Flexible(
                         child: Text(
-                          L10nService.get('screens.tantra_micro_ritual.rituals.${ritual.key}.intention', language),
+                          L10nService.get(
+                            'screens.tantra_micro_ritual.rituals.${ritual.key}.intention',
+                            language,
+                          ),
                           style: TextStyle(
                             fontSize: 15,
                             fontStyle: FontStyle.italic,
-                            color: isDark ? const Color(0xFFE57373) : const Color(0xFFC62828),
+                            color: isDark
+                                ? const Color(0xFFE57373)
+                                : const Color(0xFFC62828),
                           ),
                         ),
                       ),
@@ -149,15 +180,24 @@ class TantraMicroRitualScreen extends ConsumerWidget {
                   context,
                   isDark,
                   '\ud83c\udf19',
-                  L10nService.get('screens.tantra_micro_ritual.discover_dream_trace', language),
+                  L10nService.get(
+                    'screens.tantra_micro_ritual.discover_dream_trace',
+                    language,
+                  ),
                   Routes.dreamRecurring,
                 ),
                 const SizedBox(height: 48),
 
                 // Footer
                 Text(
-                  L10nService.get('screens.tantra_micro_ritual.brand_footer', language),
-                  style: TextStyle(fontSize: 12, color: isDark ? Colors.white38 : AppColors.textLight),
+                  L10nService.get(
+                    'screens.tantra_micro_ritual.brand_footer',
+                    language,
+                  ),
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: isDark ? Colors.white38 : AppColors.textLight,
+                  ),
                 ),
                 const SizedBox(height: 20),
               ],
@@ -168,16 +208,36 @@ class TantraMicroRitualScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildDateBadge(BuildContext context, bool isDark, DateTime date, AppLanguage language) {
+  Widget _buildDateBadge(
+    BuildContext context,
+    bool isDark,
+    DateTime date,
+    AppLanguage language,
+  ) {
     final monthKeys = [
-      'january', 'february', 'march', 'april', 'may', 'june',
-      'july', 'august', 'september', 'october', 'november', 'december'
+      'january',
+      'february',
+      'march',
+      'april',
+      'may',
+      'june',
+      'july',
+      'august',
+      'september',
+      'october',
+      'november',
+      'december',
     ];
-    final monthName = L10nService.get('screens.tantra_micro_ritual.months.${monthKeys[date.month - 1]}', language);
+    final monthName = L10nService.get(
+      'screens.tantra_micro_ritual.months.${monthKeys[date.month - 1]}',
+      language,
+    );
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       decoration: BoxDecoration(
-        color: isDark ? Colors.white.withValues(alpha: 0.1) : Colors.black.withValues(alpha: 0.05),
+        color: isDark
+            ? Colors.white.withValues(alpha: 0.1)
+            : Colors.black.withValues(alpha: 0.05),
         borderRadius: BorderRadius.circular(16),
       ),
       child: Text(
@@ -197,26 +257,52 @@ class TantraMicroRitualScreen extends ConsumerWidget {
       color: color.withValues(alpha: 0.15),
       borderRadius: BorderRadius.circular(14),
     ),
-    child: Text(text, style: TextStyle(fontSize: 13, color: color, fontWeight: FontWeight.w500)),
+    child: Text(
+      text,
+      style: TextStyle(fontSize: 13, color: color, fontWeight: FontWeight.w500),
+    ),
   );
 
-  Widget _buildSuggestion(BuildContext context, bool isDark, String emoji, String text, String route) => GestureDetector(
+  Widget _buildSuggestion(
+    BuildContext context,
+    bool isDark,
+    String emoji,
+    String text,
+    String route,
+  ) => GestureDetector(
     onTap: () => context.push(route),
     child: Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.white.withValues(alpha: 0.8),
+        color: isDark
+            ? Colors.white.withValues(alpha: 0.05)
+            : Colors.white.withValues(alpha: 0.8),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: isDark ? Colors.white.withValues(alpha: 0.1) : Colors.black.withValues(alpha: 0.1)),
+        border: Border.all(
+          color: isDark
+              ? Colors.white.withValues(alpha: 0.1)
+              : Colors.black.withValues(alpha: 0.1),
+        ),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(emoji, style: const TextStyle(fontSize: 24)),
           const SizedBox(width: 12),
-          Text(text, style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: isDark ? Colors.white : AppColors.textDark)),
+          Text(
+            text,
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+              color: isDark ? Colors.white : AppColors.textDark,
+            ),
+          ),
           const SizedBox(width: 8),
-          Icon(Icons.arrow_forward_ios, size: 14, color: isDark ? Colors.white38 : AppColors.textLight),
+          Icon(
+            Icons.arrow_forward_ios,
+            size: 14,
+            color: isDark ? Colors.white38 : AppColors.textLight,
+          ),
         ],
       ),
     ),
@@ -243,8 +329,5 @@ class _MicroRitual {
   final String emoji;
   final String key;
 
-  const _MicroRitual({
-    required this.emoji,
-    required this.key,
-  });
+  const _MicroRitual({required this.emoji, required this.key});
 }

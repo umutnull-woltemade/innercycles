@@ -115,8 +115,10 @@ class HoroscopeDto {
       category: json['category'] as String?,
       content: json['content'] as String,
       ratings: json['ratings'] as Map<String, dynamic>?,
-      focusNumber: json['focusNumber']?.toString() ?? json['luckyNumber']?.toString(),
-      reflectionColor: json['reflectionColor'] as String? ?? json['luckyColor'] as String?,
+      focusNumber:
+          json['focusNumber']?.toString() ?? json['luckyNumber']?.toString(),
+      reflectionColor:
+          json['reflectionColor'] as String? ?? json['luckyColor'] as String?,
       compatibility: json['compatibility'] as String?,
       mood: json['mood'] as String?,
       validFrom: DateTime.parse(json['validFrom'] as String),

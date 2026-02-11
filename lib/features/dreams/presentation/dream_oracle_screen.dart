@@ -111,7 +111,12 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
 
   Future<void> _interpretDream() async {
     if (_dreamController.text.trim().isEmpty) {
-      _showError(L10nService.get('dreams.oracle.please_describe', ref.read(languageProvider)));
+      _showError(
+        L10nService.get(
+          'dreams.oracle.please_describe',
+          ref.read(languageProvider),
+        ),
+      );
       return;
     }
 
@@ -163,7 +168,12 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
         setState(() {
           _state = DreamOracleState.input;
         });
-        _showError(L10nService.get('dreams.oracle.error_occurred', ref.read(languageProvider)));
+        _showError(
+          L10nService.get(
+            'dreams.oracle.error_occurred',
+            ref.read(languageProvider),
+          ),
+        );
       }
     }
   }
@@ -260,11 +270,14 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  L10nService.get('dreams.oracle.title', ref.watch(languageProvider)),
+                  L10nService.get(
+                    'dreams.oracle.title',
+                    ref.watch(languageProvider),
+                  ),
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        color: MysticalColors.textPrimary,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    color: MysticalColors.textPrimary,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 Row(
                   children: [
@@ -276,8 +289,8 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
                     Text(
                       _currentMoonPhase.label,
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: MysticalColors.textSecondary,
-                          ),
+                        color: MysticalColors.textSecondary,
+                      ),
                     ),
                   ],
                 ),
@@ -289,7 +302,10 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
               onPressed: _resetToInput,
               icon: const Icon(Icons.refresh),
               color: MysticalColors.starGold,
-              tooltip: L10nService.get('dreams.oracle.new_dream', ref.watch(languageProvider)),
+              tooltip: L10nService.get(
+                'dreams.oracle.new_dream',
+                ref.watch(languageProvider),
+              ),
             ),
         ],
       ),
@@ -305,25 +321,24 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
           decoration: BoxDecoration(
             gradient: RadialGradient(
               colors: [
-                MysticalColors.amethyst
-                    .withValues(alpha: 0.5 + _pulseController.value * 0.3),
+                MysticalColors.amethyst.withValues(
+                  alpha: 0.5 + _pulseController.value * 0.3,
+                ),
                 MysticalColors.cosmicPurple.withValues(alpha: 0.3),
               ],
             ),
             shape: BoxShape.circle,
             boxShadow: [
               BoxShadow(
-                color:
-                    MysticalColors.amethyst.withValues(alpha: 0.4 * _pulseController.value),
+                color: MysticalColors.amethyst.withValues(
+                  alpha: 0.4 * _pulseController.value,
+                ),
                 blurRadius: 15 + _pulseController.value * 10,
                 spreadRadius: 2,
               ),
             ],
           ),
-          child: const Text(
-            '\u{1F319}',
-            style: TextStyle(fontSize: 24),
-          ),
+          child: const Text('\u{1F319}', style: TextStyle(fontSize: 24)),
         );
       },
     );
@@ -431,25 +446,36 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
                 const Text('\u{2728}', style: TextStyle(fontSize: 20)),
                 const SizedBox(width: Spacing.sm),
                 Text(
-                  L10nService.get('dreams.oracle.describe_dream', ref.watch(languageProvider)),
+                  L10nService.get(
+                    'dreams.oracle.describe_dream',
+                    ref.watch(languageProvider),
+                  ),
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        color: isDark
-                            ? MysticalColors.textPrimary
-                            : MysticalColors.textDark,
-                        fontWeight: FontWeight.w600,
-                      ),
+                    color: isDark
+                        ? MysticalColors.textPrimary
+                        : MysticalColors.textDark,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
                 const Spacer(),
                 // Voice-to-text icon (placeholder)
                 IconButton(
                   onPressed: () {
-                    _showError(L10nService.get('dreams.oracle.voice_input_soon', ref.read(languageProvider)));
+                    _showError(
+                      L10nService.get(
+                        'dreams.oracle.voice_input_soon',
+                        ref.read(languageProvider),
+                      ),
+                    );
                   },
                   icon: Icon(
                     Icons.mic_outlined,
                     color: MysticalColors.amethyst,
                   ),
-                  tooltip: L10nService.get('dreams.oracle.voice_describe', ref.watch(languageProvider)),
+                  tooltip: L10nService.get(
+                    'dreams.oracle.voice_describe',
+                    ref.watch(languageProvider),
+                  ),
                 ),
               ],
             ),
@@ -467,13 +493,16 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
                 height: 1.6,
               ),
               decoration: InputDecoration(
-                hintText:
-                    L10nService.get('dreams.oracle.dream_hint', ref.watch(languageProvider)),
+                hintText: L10nService.get(
+                  'dreams.oracle.dream_hint',
+                  ref.watch(languageProvider),
+                ),
                 hintStyle: TextStyle(
-                  color: (isDark
-                          ? MysticalColors.textSecondary
-                          : MysticalColors.textDarkSecondary)
-                      .withValues(alpha: 0.6),
+                  color:
+                      (isDark
+                              ? MysticalColors.textSecondary
+                              : MysticalColors.textDarkSecondary)
+                          .withValues(alpha: 0.6),
                   height: 1.6,
                 ),
                 border: InputBorder.none,
@@ -495,8 +524,8 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
                 Text(
                   '${_dreamController.text.length} ${L10nService.get('dreams.oracle.characters', ref.watch(languageProvider))}',
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: MysticalColors.textMuted,
-                      ),
+                    color: MysticalColors.textMuted,
+                  ),
                 ),
               ],
             ),
@@ -518,13 +547,16 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
             const Text('\u{1F3AD}', style: TextStyle(fontSize: 18)),
             const SizedBox(width: Spacing.sm),
             Text(
-              L10nService.get('dreams.oracle.dream_emotion', ref.watch(languageProvider)),
+              L10nService.get(
+                'dreams.oracle.dream_emotion',
+                ref.watch(languageProvider),
+              ),
               style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                    color: isDark
-                        ? MysticalColors.textPrimary
-                        : MysticalColors.textDark,
-                    fontWeight: FontWeight.w600,
-                  ),
+                color: isDark
+                    ? MysticalColors.textPrimary
+                    : MysticalColors.textDark,
+                fontWeight: FontWeight.w600,
+              ),
             ),
           ],
         ),
@@ -582,19 +614,25 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  L10nService.get('dreams.oracle.is_recurring', ref.watch(languageProvider)),
+                  L10nService.get(
+                    'dreams.oracle.is_recurring',
+                    ref.watch(languageProvider),
+                  ),
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        color: isDark
-                            ? MysticalColors.textPrimary
-                            : MysticalColors.textDark,
-                        fontWeight: FontWeight.w500,
-                      ),
+                    color: isDark
+                        ? MysticalColors.textPrimary
+                        : MysticalColors.textDark,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
                 Text(
-                  L10nService.get('dreams.oracle.recurring_message', ref.watch(languageProvider)),
+                  L10nService.get(
+                    'dreams.oracle.recurring_message',
+                    ref.watch(languageProvider),
+                  ),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: MysticalColors.textMuted,
-                      ),
+                    color: MysticalColors.textMuted,
+                  ),
                 ),
               ],
             ),
@@ -624,13 +662,16 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
             const Text('\u{1F4DD}', style: TextStyle(fontSize: 18)),
             const SizedBox(width: Spacing.sm),
             Text(
-              L10nService.get('dreams.oracle.life_situation', ref.watch(languageProvider)),
+              L10nService.get(
+                'dreams.oracle.life_situation',
+                ref.watch(languageProvider),
+              ),
               style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                    color: isDark
-                        ? MysticalColors.textPrimary
-                        : MysticalColors.textDark,
-                    fontWeight: FontWeight.w600,
-                  ),
+                color: isDark
+                    ? MysticalColors.textPrimary
+                    : MysticalColors.textDark,
+                fontWeight: FontWeight.w600,
+              ),
             ),
           ],
         ),
@@ -649,11 +690,15 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
             controller: _lifeContextController,
             maxLines: 2,
             style: TextStyle(
-              color:
-                  isDark ? MysticalColors.textPrimary : MysticalColors.textDark,
+              color: isDark
+                  ? MysticalColors.textPrimary
+                  : MysticalColors.textDark,
             ),
             decoration: InputDecoration(
-              hintText: L10nService.get('dreams.oracle.life_hint', ref.watch(languageProvider)),
+              hintText: L10nService.get(
+                'dreams.oracle.life_hint',
+                ref.watch(languageProvider),
+              ),
               hintStyle: TextStyle(
                 color: MysticalColors.textMuted.withValues(alpha: 0.6),
               ),
@@ -677,13 +722,16 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
             const Text('\u{1F52E}', style: TextStyle(fontSize: 18)),
             const SizedBox(width: Spacing.sm),
             Text(
-              L10nService.get('dreams.oracle.interpretation_style', ref.watch(languageProvider)),
+              L10nService.get(
+                'dreams.oracle.interpretation_style',
+                ref.watch(languageProvider),
+              ),
               style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                    color: isDark
-                        ? MysticalColors.textPrimary
-                        : MysticalColors.textDark,
-                    fontWeight: FontWeight.w600,
-                  ),
+                color: isDark
+                    ? MysticalColors.textPrimary
+                    : MysticalColors.textDark,
+                fontWeight: FontWeight.w600,
+              ),
             ),
           ],
         ),
@@ -730,38 +778,38 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
       ),
       child: Row(
         children: [
-          Text(
-            _currentMoonPhase.emoji,
-            style: const TextStyle(fontSize: 40),
-          ),
+          Text(_currentMoonPhase.emoji, style: const TextStyle(fontSize: 40)),
           const SizedBox(width: Spacing.lg),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  L10nService.get('dreams.oracle.moon_phase_today', ref.watch(languageProvider)),
+                  L10nService.get(
+                    'dreams.oracle.moon_phase_today',
+                    ref.watch(languageProvider),
+                  ),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: MysticalColors.textSecondary,
-                      ),
+                    color: MysticalColors.textSecondary,
+                  ),
                 ),
                 const SizedBox(height: 4),
                 Text(
                   _currentMoonPhase.label,
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        color: isDark
-                            ? MysticalColors.textPrimary
-                            : MysticalColors.textDark,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    color: isDark
+                        ? MysticalColors.textPrimary
+                        : MysticalColors.textDark,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 const SizedBox(height: 4),
                 Text(
                   _currentMoonPhase.meaning,
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: MysticalColors.textSecondary,
-                        fontStyle: FontStyle.italic,
-                      ),
+                    color: MysticalColors.textSecondary,
+                    fontStyle: FontStyle.italic,
+                  ),
                 ),
               ],
             ),
@@ -773,22 +821,22 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
 
   Widget _buildInterpretButton() {
     return SizedBox(
-      width: double.infinity,
-      child: GradientButton(
-        label: L10nService.get('dreams.oracle.interpret_dream', ref.watch(languageProvider)),
-        icon: Icons.auto_awesome,
-        onPressed: _interpretDream,
-        gradient: LinearGradient(
-          colors: [
-            MysticalColors.amethyst,
-            MysticalColors.orchid,
-          ],
-        ),
-      ),
-    ).animate().fadeIn(duration: 400.ms, delay: 600.ms).scale(
-          begin: const Offset(0.95, 0.95),
-          end: const Offset(1, 1),
-        );
+          width: double.infinity,
+          child: GradientButton(
+            label: L10nService.get(
+              'dreams.oracle.interpret_dream',
+              ref.watch(languageProvider),
+            ),
+            icon: Icons.auto_awesome,
+            onPressed: _interpretDream,
+            gradient: LinearGradient(
+              colors: [MysticalColors.amethyst, MysticalColors.orchid],
+            ),
+          ),
+        )
+        .animate()
+        .fadeIn(duration: 400.ms, delay: 600.ms)
+        .scale(begin: const Offset(0.95, 0.95), end: const Offset(1, 1));
   }
 
   // ============================================================================
@@ -805,16 +853,16 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
           const SizedBox(height: Spacing.xxl),
           // Loading message
           Text(
-            _getLoadingMessages(ref.watch(languageProvider))[_currentLoadingIndex],
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                _getLoadingMessages(
+                  ref.watch(languageProvider),
+                )[_currentLoadingIndex],
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                   color: MysticalColors.textSecondary,
                   fontStyle: FontStyle.italic,
                 ),
-            textAlign: TextAlign.center,
-          )
-              .animate(
-                key: ValueKey(_currentLoadingIndex),
+                textAlign: TextAlign.center,
               )
+              .animate(key: ValueKey(_currentLoadingIndex))
               .fadeIn(duration: 300.ms)
               .slideY(begin: 0.1, end: 0),
           const SizedBox(height: Spacing.xl),
@@ -876,7 +924,9 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
                             shape: BoxShape.circle,
                             boxShadow: [
                               BoxShadow(
-                                color: MysticalColors.starGold.withValues(alpha: 0.5),
+                                color: MysticalColors.starGold.withValues(
+                                  alpha: 0.5,
+                                ),
                                 blurRadius: 10,
                               ),
                             ],
@@ -918,7 +968,9 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
                             shape: BoxShape.circle,
                             boxShadow: [
                               BoxShadow(
-                                color: MysticalColors.amethyst.withValues(alpha: 0.5),
+                                color: MysticalColors.amethyst.withValues(
+                                  alpha: 0.5,
+                                ),
                                 blurRadius: 8,
                               ),
                             ],
@@ -949,10 +1001,7 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
                   ),
                 ),
                 child: const Center(
-                  child: Text(
-                    '\u{1F441}',
-                    style: TextStyle(fontSize: 32),
-                  ),
+                  child: Text('\u{1F441}', style: TextStyle(fontSize: 32)),
                 ),
               );
             },
@@ -1046,69 +1095,63 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
     final color = accentColor ?? MysticalColors.amethyst;
 
     return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: isDark
-              ? [
-                  color.withValues(alpha: 0.15),
-                  MysticalColors.bgCosmic,
-                ]
-              : [
-                  color.withValues(alpha: 0.1),
-                  MysticalColors.bgLightElevated,
-                ],
-        ),
-        borderRadius: BorderRadius.circular(Spacing.radiusLg),
-        border: Border.all(
-          color: color.withValues(alpha: 0.3),
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: color.withValues(alpha: 0.1),
-            blurRadius: 16,
-            offset: const Offset(0, 6),
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Header
-          Container(
-            padding: const EdgeInsets.all(Spacing.lg),
-            decoration: BoxDecoration(
-              border: Border(
-                bottom: BorderSide(
-                  color: color.withValues(alpha: 0.2),
-                ),
-              ),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: isDark
+                  ? [color.withValues(alpha: 0.15), MysticalColors.bgCosmic]
+                  : [
+                      color.withValues(alpha: 0.1),
+                      MysticalColors.bgLightElevated,
+                    ],
             ),
-            child: Row(
-              children: [
-                Text(emoji, style: const TextStyle(fontSize: 24)),
-                const SizedBox(width: Spacing.md),
-                Expanded(
-                  child: Text(
-                    title,
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          color: color,
-                          fontWeight: FontWeight.bold,
-                        ),
+            borderRadius: BorderRadius.circular(Spacing.radiusLg),
+            border: Border.all(color: color.withValues(alpha: 0.3)),
+            boxShadow: [
+              BoxShadow(
+                color: color.withValues(alpha: 0.1),
+                blurRadius: 16,
+                offset: const Offset(0, 6),
+              ),
+            ],
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Header
+              Container(
+                padding: const EdgeInsets.all(Spacing.lg),
+                decoration: BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(color: color.withValues(alpha: 0.2)),
                   ),
                 ),
-              ],
-            ),
+                child: Row(
+                  children: [
+                    Text(emoji, style: const TextStyle(fontSize: 24)),
+                    const SizedBox(width: Spacing.md),
+                    Expanded(
+                      child: Text(
+                        title,
+                        style: Theme.of(context).textTheme.titleMedium
+                            ?.copyWith(
+                              color: color,
+                              fontWeight: FontWeight.bold,
+                            ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              // Content
+              Padding(
+                padding: const EdgeInsets.all(Spacing.lg),
+                child: content,
+              ),
+            ],
           ),
-          // Content
-          Padding(
-            padding: const EdgeInsets.all(Spacing.lg),
-            child: content,
-          ),
-        ],
-      ),
-    )
+        )
         .animate()
         .fadeIn(duration: 400.ms, delay: (100 * delayIndex).ms)
         .slideY(begin: 0.1, end: 0);
@@ -1119,17 +1162,19 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
 
     return _buildSectionCard(
       emoji: '\u{1F3DB}',
-      title: L10nService.get('dreams.oracle.sections.ancient_intro', ref.watch(languageProvider)),
+      title: L10nService.get(
+        'dreams.oracle.sections.ancient_intro',
+        ref.watch(languageProvider),
+      ),
       accentColor: MysticalColors.antiqueGold,
       delayIndex: 0,
       content: Text(
         _interpretation!.ancientIntro,
         style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-              color:
-                  isDark ? MysticalColors.textPrimary : MysticalColors.textDark,
-              height: 1.8,
-              fontStyle: FontStyle.italic,
-            ),
+          color: isDark ? MysticalColors.textPrimary : MysticalColors.textDark,
+          height: 1.8,
+          fontStyle: FontStyle.italic,
+        ),
       ),
     );
   }
@@ -1139,7 +1184,10 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
 
     return _buildSectionCard(
       emoji: '\u{1F4AC}',
-      title: L10nService.get('dreams.oracle.sections.core_message', ref.watch(languageProvider)),
+      title: L10nService.get(
+        'dreams.oracle.sections.core_message',
+        ref.watch(languageProvider),
+      ),
       accentColor: MysticalColors.starGold,
       delayIndex: 1,
       content: Container(
@@ -1154,11 +1202,12 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
         child: Text(
           _interpretation!.coreMessage,
           style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                color:
-                    isDark ? MysticalColors.textPrimary : MysticalColors.textDark,
-                height: 1.6,
-                fontWeight: FontWeight.w500,
-              ),
+            color: isDark
+                ? MysticalColors.textPrimary
+                : MysticalColors.textDark,
+            height: 1.6,
+            fontWeight: FontWeight.w500,
+          ),
           textAlign: TextAlign.center,
         ),
       ),
@@ -1172,7 +1221,10 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
 
     return _buildSectionCard(
       emoji: '\u{1F50D}',
-      title: L10nService.get('dreams.oracle.sections.symbol_analysis', ref.watch(languageProvider)),
+      title: L10nService.get(
+        'dreams.oracle.sections.symbol_analysis',
+        ref.watch(languageProvider),
+      ),
       accentColor: MysticalColors.nebulaTeal,
       delayIndex: 2,
       content: Column(
@@ -1188,16 +1240,16 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
 
     return _buildSectionCard(
       emoji: '\u{1F3AD}',
-      title: '${L10nService.get('dreams.oracle.sections.archetype_connection', ref.watch(languageProvider))}: ${_interpretation!.archetypeName}',
+      title:
+          '${L10nService.get('dreams.oracle.sections.archetype_connection', ref.watch(languageProvider))}: ${_interpretation!.archetypeName}',
       accentColor: MysticalColors.orchid,
       delayIndex: 3,
       content: Text(
         _interpretation!.archetypeConnection,
         style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-              color:
-                  isDark ? MysticalColors.textPrimary : MysticalColors.textDark,
-              height: 1.7,
-            ),
+          color: isDark ? MysticalColors.textPrimary : MysticalColors.textDark,
+          height: 1.7,
+        ),
       ),
     );
   }
@@ -1208,7 +1260,10 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
 
     return _buildSectionCard(
       emoji: '\u{2764}',
-      title: L10nService.get('dreams.oracle.sections.emotional_reading', ref.watch(languageProvider)),
+      title: L10nService.get(
+        'dreams.oracle.sections.emotional_reading',
+        ref.watch(languageProvider),
+      ),
       accentColor: MysticalColors.nebulaRose,
       delayIndex: 4,
       content: Column(
@@ -1244,26 +1299,38 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
           ),
           const SizedBox(height: Spacing.lg),
           _buildEmotionalItem(
-            L10nService.get('dreams.oracle.emotional.surface_message', ref.watch(languageProvider)),
+            L10nService.get(
+              'dreams.oracle.emotional.surface_message',
+              ref.watch(languageProvider),
+            ),
             reading.surfaceMessage,
             isDark,
           ),
           const SizedBox(height: Spacing.md),
           _buildEmotionalItem(
-            L10nService.get('dreams.oracle.emotional.deep_meaning', ref.watch(languageProvider)),
+            L10nService.get(
+              'dreams.oracle.emotional.deep_meaning',
+              ref.watch(languageProvider),
+            ),
             reading.deeperMeaning,
             isDark,
           ),
           const SizedBox(height: Spacing.md),
           _buildEmotionalItem(
-            L10nService.get('dreams.oracle.emotional.shadow_question', ref.watch(languageProvider)),
+            L10nService.get(
+              'dreams.oracle.emotional.shadow_question',
+              ref.watch(languageProvider),
+            ),
             reading.shadowQuestion,
             isDark,
             isQuestion: true,
           ),
           const SizedBox(height: Spacing.md),
           _buildEmotionalItem(
-            L10nService.get('dreams.oracle.emotional.integration_path', ref.watch(languageProvider)),
+            L10nService.get(
+              'dreams.oracle.emotional.integration_path',
+              ref.watch(languageProvider),
+            ),
             reading.integrationPath,
             isDark,
           ),
@@ -1272,8 +1339,12 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
     );
   }
 
-  Widget _buildEmotionalItem(String label, String text, bool isDark,
-      {bool isQuestion = false}) {
+  Widget _buildEmotionalItem(
+    String label,
+    String text,
+    bool isDark, {
+    bool isQuestion = false,
+  }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -1290,7 +1361,9 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
         Text(
           isQuestion ? '"$text"' : text,
           style: TextStyle(
-            color: isDark ? MysticalColors.textPrimary : MysticalColors.textDark,
+            color: isDark
+                ? MysticalColors.textPrimary
+                : MysticalColors.textDark,
             height: 1.5,
             fontStyle: isQuestion ? FontStyle.italic : FontStyle.normal,
           ),
@@ -1305,7 +1378,10 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
 
     return _buildSectionCard(
       emoji: '\u{1FA90}',
-      title: L10nService.get('dreams.oracle.sections.astro_timing', ref.watch(languageProvider)),
+      title: L10nService.get(
+        'dreams.oracle.sections.astro_timing',
+        ref.watch(languageProvider),
+      ),
       accentColor: MysticalColors.stardustBlue,
       delayIndex: 5,
       content: Column(
@@ -1314,7 +1390,10 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
           // Moon phase badge
           Row(
             children: [
-              Text(timing.moonPhase.emoji, style: const TextStyle(fontSize: 32)),
+              Text(
+                timing.moonPhase.emoji,
+                style: const TextStyle(fontSize: 32),
+              ),
               const SizedBox(width: Spacing.md),
               Expanded(
                 child: Column(
@@ -1344,8 +1423,9 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
           Text(
             timing.timingMessage,
             style: TextStyle(
-              color:
-                  isDark ? MysticalColors.textPrimary : MysticalColors.textDark,
+              color: isDark
+                  ? MysticalColors.textPrimary
+                  : MysticalColors.textDark,
               height: 1.6,
             ),
           ),
@@ -1356,17 +1436,17 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
               color: MysticalColors.stardustBlue.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(Spacing.radiusMd),
               border: Border(
-                left: BorderSide(
-                  color: MysticalColors.stardustBlue,
-                  width: 3,
-                ),
+                left: BorderSide(color: MysticalColors.stardustBlue, width: 3),
               ),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  L10nService.get('dreams.oracle.timing.why_now', ref.watch(languageProvider)),
+                  L10nService.get(
+                    'dreams.oracle.timing.why_now',
+                    ref.watch(languageProvider),
+                  ),
                   style: TextStyle(
                     color: MysticalColors.stardustBlue,
                     fontWeight: FontWeight.w600,
@@ -1398,7 +1478,10 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
 
     return _buildSectionCard(
       emoji: '\u{2600}\u{FE0F}\u{1F311}',
-      title: L10nService.get('dreams.oracle.sections.light_shadow', ref.watch(languageProvider)),
+      title: L10nService.get(
+        'dreams.oracle.sections.light_shadow',
+        ref.watch(languageProvider),
+      ),
       accentColor: MysticalColors.lavender,
       delayIndex: 6,
       content: Column(
@@ -1406,7 +1489,10 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
           // Light
           _buildLightShadowItem(
             '\u{2600}\u{FE0F}',
-            L10nService.get('dreams.oracle.light_shadow.light_side', ref.watch(languageProvider)),
+            L10nService.get(
+              'dreams.oracle.light_shadow.light_side',
+              ref.watch(languageProvider),
+            ),
             ls.lightMessage,
             MysticalColors.starGold,
             isDark,
@@ -1415,7 +1501,10 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
           // Shadow
           _buildLightShadowItem(
             '\u{1F311}',
-            L10nService.get('dreams.oracle.light_shadow.shadow_side', ref.watch(languageProvider)),
+            L10nService.get(
+              'dreams.oracle.light_shadow.shadow_side',
+              ref.watch(languageProvider),
+            ),
             ls.shadowMessage,
             MysticalColors.cosmicPurple,
             isDark,
@@ -1438,11 +1527,16 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
               children: [
                 Row(
                   children: [
-                    const Text('\u{267E}\u{FE0F}',
-                        style: TextStyle(fontSize: 16)),
+                    const Text(
+                      '\u{267E}\u{FE0F}',
+                      style: TextStyle(fontSize: 16),
+                    ),
                     const SizedBox(width: Spacing.sm),
                     Text(
-                      L10nService.get('dreams.oracle.emotional.integration_path', ref.watch(languageProvider)),
+                      L10nService.get(
+                        'dreams.oracle.emotional.integration_path',
+                        ref.watch(languageProvider),
+                      ),
                       style: TextStyle(
                         color: MysticalColors.lavender,
                         fontWeight: FontWeight.w600,
@@ -1571,9 +1665,7 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
       decoration: BoxDecoration(
         color: color.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(Spacing.radiusMd),
-        border: Border(
-          left: BorderSide(color: color, width: 3),
-        ),
+        border: Border(left: BorderSide(color: color, width: 3)),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1700,10 +1792,14 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
           ),
           const SizedBox(height: Spacing.lg),
           Text(
-            L10nService.get('dreams.oracle.lucid.potential_message', ref.watch(languageProvider)),
+            L10nService.get(
+              'dreams.oracle.lucid.potential_message',
+              ref.watch(languageProvider),
+            ),
             style: TextStyle(
-              color:
-                  isDark ? MysticalColors.textSecondary : MysticalColors.textDarkSecondary,
+              color: isDark
+                  ? MysticalColors.textSecondary
+                  : MysticalColors.textDarkSecondary,
               height: 1.5,
             ),
           ),
@@ -1715,11 +1811,14 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
   /// Maps Turkish potential values to language-agnostic keys
   String _getLucidPotentialLevel(String potential) {
     final normalizedPotential = potential.toLowerCase();
-    if (normalizedPotential.contains('cok') || normalizedPotential.contains('very')) {
+    if (normalizedPotential.contains('cok') ||
+        normalizedPotential.contains('very')) {
       return 'very_high';
-    } else if (normalizedPotential.contains('yuksek') || normalizedPotential.contains('high')) {
+    } else if (normalizedPotential.contains('yuksek') ||
+        normalizedPotential.contains('high')) {
       return 'high';
-    } else if (normalizedPotential.contains('orta') || normalizedPotential.contains('medium')) {
+    } else if (normalizedPotential.contains('orta') ||
+        normalizedPotential.contains('medium')) {
       return 'medium';
     }
     return 'low';
@@ -1741,56 +1840,56 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
 
   Widget _buildWhisperQuoteSection() {
     return Container(
-      padding: const EdgeInsets.all(Spacing.xl),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            MysticalColors.cosmicPurple.withValues(alpha: 0.8),
-            MysticalColors.midnightBlue.withValues(alpha: 0.9),
-          ],
-        ),
-        borderRadius: BorderRadius.circular(Spacing.radiusLg),
-        boxShadow: [
-          BoxShadow(
-            color: MysticalColors.amethyst.withValues(alpha: 0.3),
-            blurRadius: 20,
-            offset: const Offset(0, 8),
-          ),
-        ],
-      ),
-      child: Column(
-        children: [
-          const Text(
-            '\u{1F54A}\u{FE0F}',
-            style: TextStyle(fontSize: 36),
-          ),
-          const SizedBox(height: Spacing.lg),
-          Text(
-            L10nService.get('dreams.oracle.sections.whisper_quote', ref.watch(languageProvider)),
-            style: TextStyle(
-              color: MysticalColors.starGold,
-              fontSize: 12,
-              fontWeight: FontWeight.w600,
-              letterSpacing: 2,
+          padding: const EdgeInsets.all(Spacing.xl),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                MysticalColors.cosmicPurple.withValues(alpha: 0.8),
+                MysticalColors.midnightBlue.withValues(alpha: 0.9),
+              ],
             ),
+            borderRadius: BorderRadius.circular(Spacing.radiusLg),
+            boxShadow: [
+              BoxShadow(
+                color: MysticalColors.amethyst.withValues(alpha: 0.3),
+                blurRadius: 20,
+                offset: const Offset(0, 8),
+              ),
+            ],
           ),
-          const SizedBox(height: Spacing.md),
-          Text(
-            '"${_interpretation!.whisperQuote}"',
-            style: const TextStyle(
-              color: MysticalColors.starlightWhite,
-              fontSize: 20,
-              fontWeight: FontWeight.w500,
-              fontStyle: FontStyle.italic,
-              height: 1.6,
-            ),
-            textAlign: TextAlign.center,
+          child: Column(
+            children: [
+              const Text('\u{1F54A}\u{FE0F}', style: TextStyle(fontSize: 36)),
+              const SizedBox(height: Spacing.lg),
+              Text(
+                L10nService.get(
+                  'dreams.oracle.sections.whisper_quote',
+                  ref.watch(languageProvider),
+                ),
+                style: TextStyle(
+                  color: MysticalColors.starGold,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w600,
+                  letterSpacing: 2,
+                ),
+              ),
+              const SizedBox(height: Spacing.md),
+              Text(
+                '"${_interpretation!.whisperQuote}"',
+                style: const TextStyle(
+                  color: MysticalColors.starlightWhite,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
+                  fontStyle: FontStyle.italic,
+                  height: 1.6,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ],
           ),
-        ],
-      ),
-    )
+        )
         .animate()
         .fadeIn(duration: 600.ms, delay: 900.ms)
         .scale(begin: const Offset(0.95, 0.95), end: const Offset(1, 1));
@@ -1803,10 +1902,14 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
           child: OutlinedButton.icon(
             onPressed: _shareDream,
             icon: const Icon(Icons.share_outlined),
-            label: Text(L10nService.get('dreams.share', ref.watch(languageProvider))),
+            label: Text(
+              L10nService.get('dreams.share', ref.watch(languageProvider)),
+            ),
             style: OutlinedButton.styleFrom(
               foregroundColor: MysticalColors.starGold,
-              side: BorderSide(color: MysticalColors.starGold.withValues(alpha: 0.5)),
+              side: BorderSide(
+                color: MysticalColors.starGold.withValues(alpha: 0.5),
+              ),
               padding: const EdgeInsets.symmetric(vertical: Spacing.md),
             ),
           ),
@@ -1816,10 +1919,14 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
           child: OutlinedButton.icon(
             onPressed: _saveDream,
             icon: const Icon(Icons.bookmark_outline),
-            label: Text(L10nService.get('dreams.save', ref.watch(languageProvider))),
+            label: Text(
+              L10nService.get('dreams.save', ref.watch(languageProvider)),
+            ),
             style: OutlinedButton.styleFrom(
               foregroundColor: MysticalColors.amethyst,
-              side: BorderSide(color: MysticalColors.amethyst.withValues(alpha: 0.5)),
+              side: BorderSide(
+                color: MysticalColors.amethyst.withValues(alpha: 0.5),
+              ),
               padding: const EdgeInsets.symmetric(vertical: Spacing.md),
             ),
           ),
@@ -1841,11 +1948,14 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
             const Text('\u{1F517}', style: TextStyle(fontSize: 18)),
             const SizedBox(width: Spacing.sm),
             Text(
-              L10nService.get('common.explore_more', ref.watch(languageProvider)),
+              L10nService.get(
+                'common.explore_more',
+                ref.watch(languageProvider),
+              ),
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    color: MysticalColors.textPrimary,
-                    fontWeight: FontWeight.w600,
-                  ),
+                color: MysticalColors.textPrimary,
+                fontWeight: FontWeight.w600,
+              ),
             ),
           ],
         ),
@@ -1924,7 +2034,8 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
     final lang = ref.read(languageProvider);
     final hashtags = L10nService.get('dreams.oracle.share_hashtags', lang);
 
-    final shareText = '${_interpretation!.shareCard.emoji} '
+    final shareText =
+        '${_interpretation!.shareCard.emoji} '
         '"${_interpretation!.shareCard.quote}"\n\n'
         '$hashtags';
 
@@ -1940,9 +2051,7 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
     await journalAsync.when(
       data: (journalService) async {
         // Extract detected symbols from interpretation
-        final symbols = _interpretation!.symbols
-            .map((s) => s.symbol)
-            .toList();
+        final symbols = _interpretation!.symbols.map((s) => s.symbol).toList();
 
         // Create dream entry
         final entry = DreamEntry(
@@ -1955,7 +2064,8 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
           content: _dreamController.text,
           detectedSymbols: symbols,
           dominantEmotion: _selectedEmotion ?? EmotionalTone.merak,
-          emotionalIntensity: 7, // Default high intensity for interpreted dreams
+          emotionalIntensity:
+              7, // Default high intensity for interpreted dreams
           isRecurring: _isRecurring,
           moonPhase: _currentMoonPhase,
           interpretation: _interpretation,
@@ -2042,8 +2152,8 @@ class _EmotionChip extends StatelessWidget {
           color: isSelected
               ? null
               : isDark
-                  ? MysticalColors.bgElevated.withValues(alpha: 0.5)
-                  : MysticalColors.bgLightElevated,
+              ? MysticalColors.bgElevated.withValues(alpha: 0.5)
+              : MysticalColors.bgLightElevated,
           borderRadius: BorderRadius.circular(Spacing.radiusFull),
           border: Border.all(
             color: isSelected
@@ -2119,8 +2229,8 @@ class _StyleChip extends ConsumerWidget {
           color: isSelected
               ? null
               : isDark
-                  ? MysticalColors.bgElevated.withValues(alpha: 0.5)
-                  : MysticalColors.bgLightElevated,
+              ? MysticalColors.bgElevated.withValues(alpha: 0.5)
+              : MysticalColors.bgLightElevated,
           borderRadius: BorderRadius.circular(Spacing.radiusMd),
           border: Border.all(
             color: isSelected
@@ -2147,8 +2257,8 @@ class _StyleChip extends ConsumerWidget {
                 color: isSelected
                     ? style.color
                     : isDark
-                        ? MysticalColors.textSecondary
-                        : MysticalColors.textDarkSecondary,
+                    ? MysticalColors.textSecondary
+                    : MysticalColors.textDarkSecondary,
                 fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
                 fontSize: 12,
               ),
@@ -2167,7 +2277,8 @@ class _ExpandableSymbolCard extends ConsumerStatefulWidget {
   const _ExpandableSymbolCard({required this.symbol});
 
   @override
-  ConsumerState<_ExpandableSymbolCard> createState() => _ExpandableSymbolCardState();
+  ConsumerState<_ExpandableSymbolCard> createState() =>
+      _ExpandableSymbolCardState();
 }
 
 class _ExpandableSymbolCardState extends ConsumerState<_ExpandableSymbolCard> {
@@ -2228,8 +2339,7 @@ class _ExpandableSymbolCardState extends ConsumerState<_ExpandableSymbolCard> {
                             fontSize: 12,
                           ),
                           maxLines: _isExpanded ? null : 1,
-                          overflow:
-                              _isExpanded ? null : TextOverflow.ellipsis,
+                          overflow: _isExpanded ? null : TextOverflow.ellipsis,
                         ),
                       ],
                     ),
@@ -2259,10 +2369,15 @@ class _ExpandableSymbolCardState extends ConsumerState<_ExpandableSymbolCard> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Divider(color: MysticalColors.textMuted.withValues(alpha: 0.2)),
+                  Divider(
+                    color: MysticalColors.textMuted.withValues(alpha: 0.2),
+                  ),
                   const SizedBox(height: Spacing.md),
                   _buildSymbolDetail(
-                    L10nService.get('dreams.oracle.symbol.personal_context', lang),
+                    L10nService.get(
+                      'dreams.oracle.symbol.personal_context',
+                      lang,
+                    ),
                     widget.symbol.personalContext,
                     isDark,
                   ),
@@ -2306,9 +2421,12 @@ class _ExpandableSymbolCardState extends ConsumerState<_ExpandableSymbolCard> {
                               vertical: 2,
                             ),
                             decoration: BoxDecoration(
-                              color: MysticalColors.nebulaTeal.withValues(alpha: 0.2),
-                              borderRadius:
-                                  BorderRadius.circular(Spacing.radiusSm),
+                              color: MysticalColors.nebulaTeal.withValues(
+                                alpha: 0.2,
+                              ),
+                              borderRadius: BorderRadius.circular(
+                                Spacing.radiusSm,
+                              ),
                             ),
                             child: Text(
                               s,
@@ -2351,8 +2469,9 @@ class _ExpandableSymbolCardState extends ConsumerState<_ExpandableSymbolCard> {
         Text(
           text,
           style: TextStyle(
-            color:
-                isDark ? MysticalColors.textPrimary : MysticalColors.textDark,
+            color: isDark
+                ? MysticalColors.textPrimary
+                : MysticalColors.textDark,
             fontSize: 13,
             height: 1.4,
           ),
@@ -2367,11 +2486,7 @@ class _ExpandableSymbolCardState extends ConsumerState<_ExpandableSymbolCard> {
 // ============================================================================
 
 /// Screen state
-enum DreamOracleState {
-  input,
-  loading,
-  results,
-}
+enum DreamOracleState { input, loading, results }
 
 /// Interpretation styles
 enum InterpretationStyle {
@@ -2419,5 +2534,6 @@ enum InterpretationStyle {
   );
 
   String getLabel(AppLanguage lang) => L10nService.get(labelKey, lang);
-  String getDescription(AppLanguage lang) => L10nService.get(descriptionKey, lang);
+  String getDescription(AppLanguage lang) =>
+      L10nService.get(descriptionKey, lang);
 }

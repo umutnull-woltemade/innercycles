@@ -89,7 +89,10 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
       _headerEmoji = widget.quickShareSymbol ?? '\u{1F319}';
     } else {
       // Default content
-      _mainText = L10nService.get('dreams.share_screen.default_text', ref.read(languageProvider));
+      _mainText = L10nService.get(
+        'dreams.share_screen.default_text',
+        ref.read(languageProvider),
+      );
       _headerEmoji = '\u{1F319}';
     }
   }
@@ -108,36 +111,55 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
     }
 
     final symbols = widget.interpretation!.symbols;
-    final mainSymbol = symbols.isNotEmpty ? symbols.first.symbol : L10nService.get('dreams.share_screen.mystery', language);
+    final mainSymbol = symbols.isNotEmpty
+        ? symbols.first.symbol
+        : L10nService.get('dreams.share_screen.mystery', language);
     final archetype = widget.interpretation!.archetypeName;
 
-    final poetryTemplates = L10nService.getList('dreams.share_screen.poetry_templates', language);
+    final poetryTemplates = L10nService.getList(
+      'dreams.share_screen.poetry_templates',
+      language,
+    );
     if (poetryTemplates.isEmpty) {
       return L10nService.get('dreams.share_screen.default_poetry', language);
     }
 
-    final template = poetryTemplates[DateTime.now().microsecond % poetryTemplates.length];
-    return template.replaceAll('{mainSymbol}', mainSymbol).replaceAll('{archetype}', archetype);
+    final template =
+        poetryTemplates[DateTime.now().microsecond % poetryTemplates.length];
+    return template
+        .replaceAll('{mainSymbol}', mainSymbol)
+        .replaceAll('{archetype}', archetype);
   }
 
   String _generateDreamAffirmation() {
     final language = ref.read(languageProvider);
     if (widget.interpretation == null) {
-      return L10nService.get('dreams.share_screen.default_affirmation', language);
+      return L10nService.get(
+        'dreams.share_screen.default_affirmation',
+        language,
+      );
     }
 
     final guidance = widget.interpretation!.guidance;
     final moonPhase = MoonService.getCurrentPhase();
 
-    final affirmations = L10nService.getList('dreams.share_screen.affirmations', language);
+    final affirmations = L10nService.getList(
+      'dreams.share_screen.affirmations',
+      language,
+    );
     if (affirmations.isEmpty) {
-      return L10nService.get('dreams.share_screen.default_affirmation', language);
+      return L10nService.get(
+        'dreams.share_screen.default_affirmation',
+        language,
+      );
     }
 
     // First item includes moon phase and guidance
     final result = affirmations[DateTime.now().second % affirmations.length];
     if (result.contains('{moonEmoji}')) {
-      return result.replaceAll('{moonEmoji}', moonPhase.emoji).replaceAll('{todayAction}', guidance.todayAction);
+      return result
+          .replaceAll('{moonEmoji}', moonPhase.emoji)
+          .replaceAll('{todayAction}', guidance.todayAction);
     }
     return result;
   }
@@ -145,18 +167,27 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
   List<String> _generateSymbolArtSuggestions() {
     final language = ref.read(languageProvider);
     if (widget.interpretation == null) {
-      return L10nService.getList('dreams.share_screen.default_art_suggestions', language);
+      return L10nService.getList(
+        'dreams.share_screen.default_art_suggestions',
+        language,
+      );
     }
 
     final suggestions = <String>[];
-    final symbolTemplate = L10nService.get('dreams.share_screen.symbol_art_template', language);
+    final symbolTemplate = L10nService.get(
+      'dreams.share_screen.symbol_art_template',
+      language,
+    );
     for (final symbol in widget.interpretation!.symbols.take(3)) {
       suggestions.add(
         '${symbol.symbolEmoji} ${symbolTemplate.replaceAll('{symbol}', symbol.symbol)}',
       );
     }
 
-    final archetypeTemplate = L10nService.get('dreams.share_screen.archetype_symbol_template', language);
+    final archetypeTemplate = L10nService.get(
+      'dreams.share_screen.archetype_symbol_template',
+      language,
+    );
     suggestions.add(
       '\u{1F52E} ${archetypeTemplate.replaceAll('{archetype}', widget.interpretation!.archetypeName)}',
     );
@@ -282,10 +313,30 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
         indicatorSize: TabBarIndicatorSize.tab,
         dividerColor: Colors.transparent,
         tabs: [
-          Tab(text: L10nService.get('dreams.share_screen.tab_cards', ref.watch(languageProvider))),
-          Tab(text: L10nService.get('dreams.share_screen.tab_customize', ref.watch(languageProvider))),
-          Tab(text: L10nService.get('dreams.share_screen.tab_templates', ref.watch(languageProvider))),
-          Tab(text: L10nService.get('dreams.share_screen.tab_generated', ref.watch(languageProvider))),
+          Tab(
+            text: L10nService.get(
+              'dreams.share_screen.tab_cards',
+              ref.watch(languageProvider),
+            ),
+          ),
+          Tab(
+            text: L10nService.get(
+              'dreams.share_screen.tab_customize',
+              ref.watch(languageProvider),
+            ),
+          ),
+          Tab(
+            text: L10nService.get(
+              'dreams.share_screen.tab_templates',
+              ref.watch(languageProvider),
+            ),
+          ),
+          Tab(
+            text: L10nService.get(
+              'dreams.share_screen.tab_generated',
+              ref.watch(languageProvider),
+            ),
+          ),
         ],
       ),
     );
@@ -305,7 +356,10 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
 
           // Quick template buttons
           Text(
-            L10nService.get('dreams.share_screen.quick_templates', ref.watch(languageProvider)),
+            L10nService.get(
+              'dreams.share_screen.quick_templates',
+              ref.watch(languageProvider),
+            ),
             style: Theme.of(
               context,
             ).textTheme.titleSmall?.copyWith(color: AppColors.textSecondary),
@@ -317,7 +371,10 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
 
           // Theme preview strip
           Text(
-            L10nService.get('dreams.share_screen.select_theme', ref.watch(languageProvider)),
+            L10nService.get(
+              'dreams.share_screen.select_theme',
+              ref.watch(languageProvider),
+            ),
             style: Theme.of(
               context,
             ).textTheme.titleSmall?.copyWith(color: AppColors.textSecondary),
@@ -379,7 +436,9 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
                       colors: [AppColors.mystic, AppColors.cosmicPurple],
                     )
                   : null,
-              color: isSelected ? null : AppColors.surfaceDark.withValues(alpha: 0.5),
+              color: isSelected
+                  ? null
+                  : AppColors.surfaceDark.withValues(alpha: 0.5),
               borderRadius: BorderRadius.circular(20),
               border: Border.all(
                 color: isSelected
@@ -408,7 +467,11 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
     switch (template) {
       case DreamCardTemplate.dreamQuote:
         _mainText =
-            interp?.whisperQuote ?? L10nService.get('dreams.share_screen.found_myself_in_dreams', language);
+            interp?.whisperQuote ??
+            L10nService.get(
+              'dreams.share_screen.found_myself_in_dreams',
+              language,
+            );
         _subtitle = '';
         _headerEmoji = '\u{1F319}';
         break;
@@ -419,36 +482,57 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
           _subtitle = symbol.universalMeaning;
           _headerEmoji = symbol.symbolEmoji;
         } else {
-          _mainText = L10nService.get('dreams.share_screen.symbol_insight_title', language);
-          _subtitle = L10nService.get('dreams.share_screen.subconscious_messages', language);
+          _mainText = L10nService.get(
+            'dreams.share_screen.symbol_insight_title',
+            language,
+          );
+          _subtitle = L10nService.get(
+            'dreams.share_screen.subconscious_messages',
+            language,
+          );
           _headerEmoji = '\u{1F52E}';
         }
         break;
       case DreamCardTemplate.dailyMessage:
         _mainText =
-            _generatedAffirmation ?? L10nService.get('dreams.share_screen.walking_in_dream_light', language);
+            _generatedAffirmation ??
+            L10nService.get(
+              'dreams.share_screen.walking_in_dream_light',
+              language,
+            );
         _subtitle = '';
         _headerEmoji = '\u{1F31F}';
         break;
       case DreamCardTemplate.moonPhase:
         final moonPhase = MoonService.getCurrentPhase();
         _mainText = moonPhase.meaning;
-        _subtitle = '${moonPhase.localizedName(language)} ${L10nService.get('dreams.share_screen.energy', language)}';
+        _subtitle =
+            '${moonPhase.localizedName(language)} ${L10nService.get('dreams.share_screen.energy', language)}';
         _headerEmoji = moonPhase.emoji;
         break;
       case DreamCardTemplate.personalInsight:
-        _mainText = interp?.coreMessage ?? L10nService.get('dreams.share_screen.personal_insight', language);
+        _mainText =
+            interp?.coreMessage ??
+            L10nService.get('dreams.share_screen.personal_insight', language);
         _subtitle = '';
         _headerEmoji = '\u{2728}';
         break;
       case DreamCardTemplate.archetypeDiscovery:
-        _mainText = interp?.archetypeName ?? L10nService.get('dreams.share_screen.archetype', language);
+        _mainText =
+            interp?.archetypeName ??
+            L10nService.get('dreams.share_screen.archetype', language);
         _subtitle = interp?.archetypeConnection ?? '';
         _headerEmoji = '\u{1F3AD}';
         break;
       case DreamCardTemplate.weeklySummary:
-        _mainText = L10nService.get('dreams.share_screen.weekly_subconscious_guided', language);
-        _subtitle = L10nService.get('dreams.share_screen.weekly_dream_summary', language);
+        _mainText = L10nService.get(
+          'dreams.share_screen.weekly_subconscious_guided',
+          language,
+        );
+        _subtitle = L10nService.get(
+          'dreams.share_screen.weekly_dream_summary',
+          language,
+        );
         _headerEmoji = '\u{1F4D6}';
         break;
     }
@@ -558,35 +642,60 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Edit main text
-          _buildSectionTitle(L10nService.get('dreams.share_screen.main_text', ref.watch(languageProvider))),
+          _buildSectionTitle(
+            L10nService.get(
+              'dreams.share_screen.main_text',
+              ref.watch(languageProvider),
+            ),
+          ),
           const SizedBox(height: 8),
           _buildTextEditor(),
 
           const SizedBox(height: 24),
 
           // Font style
-          _buildSectionTitle(L10nService.get('dreams.share_screen.font_style', ref.watch(languageProvider))),
+          _buildSectionTitle(
+            L10nService.get(
+              'dreams.share_screen.font_style',
+              ref.watch(languageProvider),
+            ),
+          ),
           const SizedBox(height: 8),
           _buildFontSelector(),
 
           const SizedBox(height: 24),
 
           // Emoji decorations
-          _buildSectionTitle(L10nService.get('dreams.share_screen.emoji_decoration', ref.watch(languageProvider))),
+          _buildSectionTitle(
+            L10nService.get(
+              'dreams.share_screen.emoji_decoration',
+              ref.watch(languageProvider),
+            ),
+          ),
           const SizedBox(height: 8),
           _buildEmojiSelector(),
 
           const SizedBox(height: 24),
 
           // Toggle options
-          _buildSectionTitle(L10nService.get('dreams.share_screen.visual_elements', ref.watch(languageProvider))),
+          _buildSectionTitle(
+            L10nService.get(
+              'dreams.share_screen.visual_elements',
+              ref.watch(languageProvider),
+            ),
+          ),
           const SizedBox(height: 8),
           _buildToggleOptions(),
 
           const SizedBox(height: 24),
 
           // Color accent
-          _buildSectionTitle(L10nService.get('dreams.share_screen.accent_color', ref.watch(languageProvider))),
+          _buildSectionTitle(
+            L10nService.get(
+              'dreams.share_screen.accent_color',
+              ref.watch(languageProvider),
+            ),
+          ),
           const SizedBox(height: 8),
           _buildColorPicker(),
         ],
@@ -625,7 +734,10 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
             maxLines: 4,
             style: const TextStyle(color: AppColors.textPrimary),
             decoration: InputDecoration(
-              hintText: L10nService.get('dreams.share_screen.write_text_hint', ref.watch(languageProvider)),
+              hintText: L10nService.get(
+                'dreams.share_screen.write_text_hint',
+                ref.watch(languageProvider),
+              ),
               hintStyle: const TextStyle(color: AppColors.textMuted),
               border: InputBorder.none,
             ),
@@ -643,8 +755,14 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
               fontSize: 14,
             ),
             decoration: InputDecoration(
-              hintText: L10nService.get('dreams.share_screen.subtitle_hint', ref.watch(languageProvider)),
-              hintStyle: const TextStyle(color: AppColors.textMuted, fontSize: 14),
+              hintText: L10nService.get(
+                'dreams.share_screen.subtitle_hint',
+                ref.watch(languageProvider),
+              ),
+              hintStyle: const TextStyle(
+                color: AppColors.textMuted,
+                fontSize: 14,
+              ),
               border: InputBorder.none,
             ),
           ),
@@ -674,7 +792,9 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
                       colors: [AppColors.mystic, AppColors.cosmicPurple],
                     )
                   : null,
-              color: isSelected ? null : AppColors.surfaceDark.withValues(alpha: 0.5),
+              color: isSelected
+                  ? null
+                  : AppColors.surfaceDark.withValues(alpha: 0.5),
               borderRadius: BorderRadius.circular(12),
               border: Border.all(
                 color: isSelected
@@ -784,7 +904,10 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              L10nService.get('dreams.share_screen.select_emoji', ref.watch(languageProvider)),
+              L10nService.get(
+                'dreams.share_screen.select_emoji',
+                ref.watch(languageProvider),
+              ),
               style: Theme.of(
                 context,
               ).textTheme.titleMedium?.copyWith(color: AppColors.textPrimary),
@@ -847,7 +970,9 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
                         },
                         child: Container(
                           decoration: BoxDecoration(
-                            color: AppColors.surfaceLight.withValues(alpha: 0.3),
+                            color: AppColors.surfaceLight.withValues(
+                              alpha: 0.3,
+                            ),
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Center(
@@ -871,21 +996,33 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
     final language = ref.watch(languageProvider);
     return Column(
       children: [
-        _buildToggleTile(L10nService.get('dreams.share_screen.show_moon_phase', language), _config.showMoonPhase, (value) {
-          setState(() {
-            _config = _config.copyWith(showMoonPhase: value);
-          });
-        }),
-        _buildToggleTile(L10nService.get('dreams.share_screen.show_watermark', language), _config.showWatermark, (value) {
-          setState(() {
-            _config = _config.copyWith(showWatermark: value);
-          });
-        }),
-        _buildToggleTile(L10nService.get('dreams.share_screen.emoji_decorations', language), _config.showEmoji, (value) {
-          setState(() {
-            _config = _config.copyWith(showEmoji: value);
-          });
-        }),
+        _buildToggleTile(
+          L10nService.get('dreams.share_screen.show_moon_phase', language),
+          _config.showMoonPhase,
+          (value) {
+            setState(() {
+              _config = _config.copyWith(showMoonPhase: value);
+            });
+          },
+        ),
+        _buildToggleTile(
+          L10nService.get('dreams.share_screen.show_watermark', language),
+          _config.showWatermark,
+          (value) {
+            setState(() {
+              _config = _config.copyWith(showWatermark: value);
+            });
+          },
+        ),
+        _buildToggleTile(
+          L10nService.get('dreams.share_screen.emoji_decorations', language),
+          _config.showEmoji,
+          (value) {
+            setState(() {
+              _config = _config.copyWith(showEmoji: value);
+            });
+          },
+        ),
       ],
     );
   }
@@ -973,51 +1110,88 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildSectionTitle(L10nService.get('dreams.share_screen.ready_templates', language)),
+          _buildSectionTitle(
+            L10nService.get('dreams.share_screen.ready_templates', language),
+          ),
           const SizedBox(height: 16),
 
           // "Bu gece ruyamda..." template
           _buildTemplateCard(
             emoji: '\u{1F319}',
-            title: L10nService.get('dreams.share_screen.template_tonight', language),
-            description: L10nService.get('dreams.share_screen.template_tonight_desc', language),
+            title: L10nService.get(
+              'dreams.share_screen.template_tonight',
+              language,
+            ),
+            description: L10nService.get(
+              'dreams.share_screen.template_tonight_desc',
+              language,
+            ),
             onTap: () => _useTemplate('dream_tonight'),
           ),
 
           // Symbol meaning card
           _buildTemplateCard(
             emoji: '\u{1F52E}',
-            title: L10nService.get('dreams.share_screen.template_symbol', language),
-            description: L10nService.get('dreams.share_screen.template_symbol_desc', language),
+            title: L10nService.get(
+              'dreams.share_screen.template_symbol',
+              language,
+            ),
+            description: L10nService.get(
+              'dreams.share_screen.template_symbol_desc',
+              language,
+            ),
             onTap: () => _useTemplate('symbol_meaning'),
           ),
 
           // Archetype discovery
           _buildTemplateCard(
             emoji: '\u{1F3AD}',
-            title: L10nService.get('dreams.share_screen.template_archetype', language),
-            description: L10nService.get('dreams.share_screen.template_archetype_desc', language),
+            title: L10nService.get(
+              'dreams.share_screen.template_archetype',
+              language,
+            ),
+            description: L10nService.get(
+              'dreams.share_screen.template_archetype_desc',
+              language,
+            ),
             onTap: () => _useTemplate('archetype'),
           ),
 
           // Moon phase wisdom
           _buildTemplateCard(
             emoji: MoonService.getCurrentPhase().emoji,
-            title: L10nService.get('dreams.share_screen.template_moon_phase', language),
-            description: L10nService.get('dreams.share_screen.template_moon_phase_desc', language),
+            title: L10nService.get(
+              'dreams.share_screen.template_moon_phase',
+              language,
+            ),
+            description: L10nService.get(
+              'dreams.share_screen.template_moon_phase_desc',
+              language,
+            ),
             onTap: () => _useTemplate('moon_phase'),
           ),
 
           // Weekly dream summary
           _buildTemplateCard(
             emoji: '\u{1F4D6}',
-            title: L10nService.get('dreams.share_screen.template_weekly', language),
-            description: L10nService.get('dreams.share_screen.template_weekly_desc', language),
+            title: L10nService.get(
+              'dreams.share_screen.template_weekly',
+              language,
+            ),
+            description: L10nService.get(
+              'dreams.share_screen.template_weekly_desc',
+              language,
+            ),
             onTap: () => _useTemplate('weekly'),
           ),
 
           const SizedBox(height: 24),
-          _buildSectionTitle(L10nService.get('dreams.share_screen.instagram_story_size', language)),
+          _buildSectionTitle(
+            L10nService.get(
+              'dreams.share_screen.instagram_story_size',
+              language,
+            ),
+          ),
           const SizedBox(height: 16),
 
           // Story format preview
@@ -1096,7 +1270,8 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
       switch (templateId) {
         case 'dream_tonight':
           _selectedTemplate = DreamCardTemplate.dreamQuote;
-          _mainText = '${L10nService.get('dreams.share_screen.tonight_in_my_dream', language)} $_mainText';
+          _mainText =
+              '${L10nService.get('dreams.share_screen.tonight_in_my_dream', language)} $_mainText';
           _headerEmoji = '\u{1F319}';
           break;
         case 'symbol_meaning':
@@ -1186,7 +1361,9 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // AI Generated Poetry
-          _buildSectionTitle(L10nService.get('dreams.share_screen.dream_poetry', language)),
+          _buildSectionTitle(
+            L10nService.get('dreams.share_screen.dream_poetry', language),
+          ),
           const SizedBox(height: 12),
           _buildGeneratedContent(
             content: _generatedPoetry ?? '',
@@ -1203,7 +1380,9 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
           const SizedBox(height: 24),
 
           // Daily Affirmation
-          _buildSectionTitle(L10nService.get('dreams.share_screen.daily_affirmations', language)),
+          _buildSectionTitle(
+            L10nService.get('dreams.share_screen.daily_affirmations', language),
+          ),
           const SizedBox(height: 12),
           _buildGeneratedContent(
             content: _generatedAffirmation ?? '',
@@ -1220,14 +1399,21 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
           const SizedBox(height: 24),
 
           // Mystical Quotes
-          _buildSectionTitle(L10nService.get('dreams.share_screen.mystical_quotes', language)),
+          _buildSectionTitle(
+            L10nService.get('dreams.share_screen.mystical_quotes', language),
+          ),
           const SizedBox(height: 12),
           ..._buildMysticalQuotes(),
 
           const SizedBox(height: 24),
 
           // Symbol Art Suggestions
-          _buildSectionTitle(L10nService.get('dreams.share_screen.symbol_art_suggestions', language)),
+          _buildSectionTitle(
+            L10nService.get(
+              'dreams.share_screen.symbol_art_suggestions',
+              language,
+            ),
+          ),
           const SizedBox(height: 12),
           ..._symbolArtSuggestions.map((suggestion) {
             return Container(
@@ -1284,7 +1470,10 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
               Icon(icon, color: AppColors.starGold, size: 18),
               const SizedBox(width: 8),
               Text(
-                L10nService.get('dreams.share_screen.ai_generated', ref.watch(languageProvider)),
+                L10nService.get(
+                  'dreams.share_screen.ai_generated',
+                  ref.watch(languageProvider),
+                ),
                 style: const TextStyle(
                   color: AppColors.starGold,
                   fontSize: 11,
@@ -1310,12 +1499,16 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
                 onPressed: () {
                   Clipboard.setData(ClipboardData(text: content));
                   final lang = ref.read(languageProvider);
-                  ScaffoldMessenger.of(
-                    context,
-                  ).showSnackBar(SnackBar(content: Text(L10nService.get('common.copied', lang))));
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(L10nService.get('common.copied', lang)),
+                    ),
+                  );
                 },
                 icon: const Icon(Icons.copy, size: 16),
-                label: Text(L10nService.get('common.copy', ref.watch(languageProvider))),
+                label: Text(
+                  L10nService.get('common.copy', ref.watch(languageProvider)),
+                ),
                 style: TextButton.styleFrom(
                   foregroundColor: AppColors.textSecondary,
                 ),
@@ -1324,7 +1517,9 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
               TextButton.icon(
                 onPressed: onUse,
                 icon: const Icon(Icons.check, size: 16),
-                label: Text(L10nService.get('common.use', ref.watch(languageProvider))),
+                label: Text(
+                  L10nService.get('common.use', ref.watch(languageProvider)),
+                ),
                 style: TextButton.styleFrom(foregroundColor: AppColors.mystic),
               ),
             ],
@@ -1336,7 +1531,10 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
 
   List<Widget> _buildMysticalQuotes() {
     final language = ref.watch(languageProvider);
-    final quotes = L10nService.getList('dreams.share_screen.mystical_quotes_list', language);
+    final quotes = L10nService.getList(
+      'dreams.share_screen.mystical_quotes_list',
+      language,
+    );
 
     return quotes.map((quote) {
       return GestureDetector(
@@ -1387,7 +1585,10 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
         gradient: LinearGradient(
           begin: Alignment.bottomCenter,
           end: Alignment.topCenter,
-          colors: [AppColors.nebulaPurple.withValues(alpha: 0.8), Colors.transparent],
+          colors: [
+            AppColors.nebulaPurple.withValues(alpha: 0.8),
+            Colors.transparent,
+          ],
         ),
       ),
       child: Row(
@@ -1395,7 +1596,12 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
           // Save to gallery
           Expanded(
             child: OutlineButton(
-              label: _isSaving ? L10nService.get('common.saving', ref.watch(languageProvider)) : L10nService.get('common.save', ref.watch(languageProvider)),
+              label: _isSaving
+                  ? L10nService.get(
+                      'common.saving',
+                      ref.watch(languageProvider),
+                    )
+                  : L10nService.get('common.save', ref.watch(languageProvider)),
               icon: Icons.save_alt,
               onPressed: _isSaving ? null : _saveToGallery,
             ),
@@ -1405,7 +1611,15 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
           Expanded(
             flex: 2,
             child: GradientButton(
-              label: _isSharing ? L10nService.get('common.sharing', ref.watch(languageProvider)) : L10nService.get('common.share', ref.watch(languageProvider)),
+              label: _isSharing
+                  ? L10nService.get(
+                      'common.sharing',
+                      ref.watch(languageProvider),
+                    )
+                  : L10nService.get(
+                      'common.share',
+                      ref.watch(languageProvider),
+                    ),
               icon: Icons.share,
               isLoading: _isSharing,
               onPressed: _isSharing ? null : _shareCard,
@@ -1439,8 +1653,14 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
             ),
             const SizedBox(height: 20),
             _buildPrivacyToggle(
-              L10nService.get('dreams.share_screen.share_anonymously', language),
-              L10nService.get('dreams.share_screen.share_anonymously_desc', language),
+              L10nService.get(
+                'dreams.share_screen.share_anonymously',
+                language,
+              ),
+              L10nService.get(
+                'dreams.share_screen.share_anonymously_desc',
+                language,
+              ),
               _shareAnonymously,
               (value) {
                 setState(() {
@@ -1450,8 +1670,14 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
               },
             ),
             _buildPrivacyToggle(
-              L10nService.get('dreams.share_screen.share_interpretation_only', language),
-              L10nService.get('dreams.share_screen.share_interpretation_only_desc', language),
+              L10nService.get(
+                'dreams.share_screen.share_interpretation_only',
+                language,
+              ),
+              L10nService.get(
+                'dreams.share_screen.share_interpretation_only_desc',
+                language,
+              ),
               _shareInterpretationOnly,
               (value) {
                 setState(() {
@@ -1461,8 +1687,14 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
               },
             ),
             _buildPrivacyToggle(
-              L10nService.get('dreams.share_screen.share_symbol_only', language),
-              L10nService.get('dreams.share_screen.share_symbol_only_desc', language),
+              L10nService.get(
+                'dreams.share_screen.share_symbol_only',
+                language,
+              ),
+              L10nService.get(
+                'dreams.share_screen.share_symbol_only_desc',
+                language,
+              ),
               _shareSymbolOnly,
               (value) {
                 setState(() {
@@ -1528,13 +1760,17 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
     try {
       final imageBytes = await DreamCardCapture.captureCard(_cardKey);
       if (imageBytes == null) {
-        _showError(L10nService.get('dreams.share_screen.image_creation_error', language));
+        _showError(
+          L10nService.get('dreams.share_screen.image_creation_error', language),
+        );
         return;
       }
 
       if (kIsWeb) {
         // Web: Download file
-        _showSuccess(L10nService.get('dreams.share_screen.image_downloaded', language));
+        _showSuccess(
+          L10nService.get('dreams.share_screen.image_downloaded', language),
+        );
       } else {
         // Mobile: Save to temp and share to photos
         final tempDir = await getTemporaryDirectory();
@@ -1543,10 +1779,14 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
         );
         await file.writeAsBytes(imageBytes);
 
-        _showSuccess(L10nService.get('dreams.share_screen.image_saved', language));
+        _showSuccess(
+          L10nService.get('dreams.share_screen.image_saved', language),
+        );
       }
     } catch (e) {
-      _showError('${L10nService.get('dreams.share_screen.save_error', language)}: $e');
+      _showError(
+        '${L10nService.get('dreams.share_screen.save_error', language)}: $e',
+      );
     } finally {
       setState(() {
         _isSaving = false;
@@ -1563,7 +1803,9 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
     try {
       final imageBytes = await DreamCardCapture.captureCard(_cardKey);
       if (imageBytes == null) {
-        _showError(L10nService.get('dreams.share_screen.image_creation_error', language));
+        _showError(
+          L10nService.get('dreams.share_screen.image_creation_error', language),
+        );
         return;
       }
 
@@ -1589,7 +1831,10 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
         await Share.shareXFiles(
           [XFile(file.path)],
           text: shareText,
-          subject: L10nService.get('dreams.share_screen.dream_interpretation', language),
+          subject: L10nService.get(
+            'dreams.share_screen.dream_interpretation',
+            language,
+          ),
         );
       }
     } catch (e) {

@@ -40,22 +40,39 @@ class MoonSignTodayScreen extends ConsumerWidget {
                 IconButton(
                   onPressed: () => context.pop(),
                   tooltip: L10nService.get('common.back', language),
-                  icon: Icon(Icons.arrow_back_ios, color: isDark ? Colors.white70 : AppColors.textDark),
+                  icon: Icon(
+                    Icons.arrow_back_ios,
+                    color: isDark ? Colors.white70 : AppColors.textDark,
+                  ),
                 ),
                 const SizedBox(height: 24),
                 Text(
                   L10nService.get('astrology.moon_sign_today.title', language),
-                  style: TextStyle(fontSize: 28, fontWeight: FontWeight.w600, color: isDark ? Colors.white : AppColors.textDark, height: 1.2),
+                  style: TextStyle(
+                    fontSize: 28,
+                    fontWeight: FontWeight.w600,
+                    color: isDark ? Colors.white : AppColors.textDark,
+                    height: 1.2,
+                  ),
                 ).animate().fadeIn(duration: 400.ms),
                 const SizedBox(height: 8),
-                _buildTag(L10nService.get('astrology.moon_sign_today.tag', language), color),
+                _buildTag(
+                  L10nService.get('astrology.moon_sign_today.tag', language),
+                  color,
+                ),
                 const SizedBox(height: 32),
 
                 _buildSection(
                   isDark,
-                  L10nService.get('astrology.moon_sign_today.short_answer_title', language),
+                  L10nService.get(
+                    'astrology.moon_sign_today.short_answer_title',
+                    language,
+                  ),
                   color,
-                  L10nService.getList('astrology.moon_sign_today.short_answer_bullets', language),
+                  L10nService.getList(
+                    'astrology.moon_sign_today.short_answer_bullets',
+                    language,
+                  ),
                 ),
                 const SizedBox(height: 28),
 
@@ -65,17 +82,29 @@ class MoonSignTodayScreen extends ConsumerWidget {
 
                 _buildSection(
                   isDark,
-                  L10nService.get('astrology.moon_sign_today.why_important_title', language),
+                  L10nService.get(
+                    'astrology.moon_sign_today.why_important_title',
+                    language,
+                  ),
                   color,
-                  L10nService.getList('astrology.moon_sign_today.why_important_bullets', language),
+                  L10nService.getList(
+                    'astrology.moon_sign_today.why_important_bullets',
+                    language,
+                  ),
                 ),
                 const SizedBox(height: 28),
 
                 _buildSection(
                   isDark,
-                  L10nService.get('astrology.moon_sign_today.daily_life_title', language),
+                  L10nService.get(
+                    'astrology.moon_sign_today.daily_life_title',
+                    language,
+                  ),
                   color,
-                  L10nService.getList('astrology.moon_sign_today.daily_life_bullets', language),
+                  L10nService.getList(
+                    'astrology.moon_sign_today.daily_life_bullets',
+                    language,
+                  ),
                 ),
                 const SizedBox(height: 32),
 
@@ -84,15 +113,26 @@ class MoonSignTodayScreen extends ConsumerWidget {
                   isDark,
                   language,
                   '⬆️',
-                  L10nService.get('astrology.moon_sign_today.suggestion_text', language),
+                  L10nService.get(
+                    'astrology.moon_sign_today.suggestion_text',
+                    language,
+                  ),
                   Routes.horoscope,
                 ),
                 const SizedBox(height: 40),
 
-                Center(child: Text(
-                  L10nService.get('astrology.moon_sign_today.brand_text', language),
-                  style: TextStyle(fontSize: 12, color: isDark ? Colors.white38 : AppColors.textLight),
-                )),
+                Center(
+                  child: Text(
+                    L10nService.get(
+                      'astrology.moon_sign_today.brand_text',
+                      language,
+                    ),
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: isDark ? Colors.white38 : AppColors.textLight,
+                    ),
+                  ),
+                ),
                 const SizedBox(height: 20),
               ],
             ),
@@ -106,8 +146,18 @@ class MoonSignTodayScreen extends ConsumerWidget {
     // Simplified moon sign calculation based on lunar cycle
     // In production, this would use precise ephemeris data
     final signKeys = [
-      'aries', 'taurus', 'gemini', 'cancer', 'leo', 'virgo',
-      'libra', 'scorpio', 'sagittarius', 'capricorn', 'aquarius', 'pisces'
+      'aries',
+      'taurus',
+      'gemini',
+      'cancer',
+      'leo',
+      'virgo',
+      'libra',
+      'scorpio',
+      'sagittarius',
+      'capricorn',
+      'aquarius',
+      'pisces',
     ];
 
     // Approximate lunar cycle position (29.5 days)
@@ -133,14 +183,32 @@ class MoonSignTodayScreen extends ConsumerWidget {
     };
 
     final signSymbols = {
-      'aries': '♈', 'taurus': '♉', 'gemini': '♊', 'cancer': '♋',
-      'leo': '♌', 'virgo': '♍', 'libra': '♎', 'scorpio': '♏',
-      'sagittarius': '♐', 'capricorn': '♑', 'aquarius': '♒', 'pisces': '♓'
+      'aries': '♈',
+      'taurus': '♉',
+      'gemini': '♊',
+      'cancer': '♋',
+      'leo': '♌',
+      'virgo': '♍',
+      'libra': '♎',
+      'scorpio': '♏',
+      'sagittarius': '♐',
+      'capricorn': '♑',
+      'aquarius': '♒',
+      'pisces': '♓',
     };
 
-    final name = L10nService.get('astrology.moon_sign_today.signs.$signKey.name', language);
-    final element = L10nService.get('astrology.moon_sign_today.signs.$signKey.element', language);
-    final bullets = L10nService.getList('astrology.moon_sign_today.signs.$signKey.bullets', language);
+    final name = L10nService.get(
+      'astrology.moon_sign_today.signs.$signKey.name',
+      language,
+    );
+    final element = L10nService.get(
+      'astrology.moon_sign_today.signs.$signKey.element',
+      language,
+    );
+    final bullets = L10nService.getList(
+      'astrology.moon_sign_today.signs.$signKey.bullets',
+      language,
+    );
 
     return _MoonData(
       name,
@@ -151,11 +219,20 @@ class MoonSignTodayScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildMoonCard(BuildContext context, bool isDark, _MoonData data, AppLanguage language) {
-    final moonInSign = L10nService.get('astrology.moon_sign_today.moon_in_sign', language)
-        .replaceAll('{sign}', data.name);
-    final elementLabel = L10nService.get('astrology.moon_sign_today.element_label', language)
-        .replaceAll('{element}', data.element);
+  Widget _buildMoonCard(
+    BuildContext context,
+    bool isDark,
+    _MoonData data,
+    AppLanguage language,
+  ) {
+    final moonInSign = L10nService.get(
+      'astrology.moon_sign_today.moon_in_sign',
+      language,
+    ).replaceAll('{sign}', data.name);
+    final elementLabel = L10nService.get(
+      'astrology.moon_sign_today.element_label',
+      language,
+    ).replaceAll('{element}', data.element);
 
     return Container(
       padding: const EdgeInsets.all(24),
@@ -202,28 +279,34 @@ class MoonSignTodayScreen extends ConsumerWidget {
             ),
             child: Text(
               elementLabel,
-              style: TextStyle(fontSize: 12, color: data.color, fontWeight: FontWeight.w500),
+              style: TextStyle(
+                fontSize: 12,
+                color: data.color,
+                fontWeight: FontWeight.w500,
+              ),
             ),
           ),
           const SizedBox(height: 16),
-          ...data.bullets.map((b) => Padding(
-            padding: const EdgeInsets.symmetric(vertical: 4),
-            child: Row(
-              children: [
-                Icon(Icons.circle, size: 6, color: data.color),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: Text(
-                    b,
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: isDark ? Colors.white70 : AppColors.textDark,
+          ...data.bullets.map(
+            (b) => Padding(
+              padding: const EdgeInsets.symmetric(vertical: 4),
+              child: Row(
+                children: [
+                  Icon(Icons.circle, size: 6, color: data.color),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      b,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: isDark ? Colors.white70 : AppColors.textDark,
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          )),
+          ),
         ],
       ),
     ).animate().fadeIn(delay: 100.ms, duration: 400.ms);
@@ -231,45 +314,120 @@ class MoonSignTodayScreen extends ConsumerWidget {
 
   Widget _buildTag(String text, Color color) => Container(
     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-    decoration: BoxDecoration(color: color.withValues(alpha: 0.15), borderRadius: BorderRadius.circular(12)),
-    child: Text(text, style: TextStyle(fontSize: 12, color: color, fontWeight: FontWeight.w500)),
+    decoration: BoxDecoration(
+      color: color.withValues(alpha: 0.15),
+      borderRadius: BorderRadius.circular(12),
+    ),
+    child: Text(
+      text,
+      style: TextStyle(fontSize: 12, color: color, fontWeight: FontWeight.w500),
+    ),
   );
 
-  Widget _buildSection(bool isDark, String title, Color color, List<String> bullets) => Column(
+  Widget _buildSection(
+    bool isDark,
+    String title,
+    Color color,
+    List<String> bullets,
+  ) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      Text(title, style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: isDark ? color : color.withValues(alpha: 0.85))),
+      Text(
+        title,
+        style: TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.w600,
+          color: isDark ? color : color.withValues(alpha: 0.85),
+        ),
+      ),
       const SizedBox(height: 12),
-      ...bullets.map((b) => Padding(
-        padding: const EdgeInsets.only(bottom: 8),
-        child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text('•', style: TextStyle(fontSize: 14, color: isDark ? Colors.white54 : AppColors.textLight)),
-          const SizedBox(width: 8),
-          Expanded(child: Text(b, style: TextStyle(fontSize: 15, height: 1.5, color: isDark ? Colors.white70 : AppColors.textDark))),
-        ]),
-      )),
+      ...bullets.map(
+        (b) => Padding(
+          padding: const EdgeInsets.only(bottom: 8),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                '•',
+                style: TextStyle(
+                  fontSize: 14,
+                  color: isDark ? Colors.white54 : AppColors.textLight,
+                ),
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Text(
+                  b,
+                  style: TextStyle(
+                    fontSize: 15,
+                    height: 1.5,
+                    color: isDark ? Colors.white70 : AppColors.textDark,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     ],
   ).animate().fadeIn(duration: 400.ms);
 
-  Widget _buildSuggestion(BuildContext context, bool isDark, AppLanguage language, String emoji, String text, String route) => GestureDetector(
+  Widget _buildSuggestion(
+    BuildContext context,
+    bool isDark,
+    AppLanguage language,
+    String emoji,
+    String text,
+    String route,
+  ) => GestureDetector(
     onTap: () => context.push(route),
     child: Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.white.withValues(alpha: 0.8),
+        color: isDark
+            ? Colors.white.withValues(alpha: 0.05)
+            : Colors.white.withValues(alpha: 0.8),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: isDark ? Colors.white.withValues(alpha: 0.1) : Colors.black.withValues(alpha: 0.1)),
+        border: Border.all(
+          color: isDark
+              ? Colors.white.withValues(alpha: 0.1)
+              : Colors.black.withValues(alpha: 0.1),
+        ),
       ),
-      child: Row(children: [
-        Text(emoji, style: const TextStyle(fontSize: 24)),
-        const SizedBox(width: 12),
-        Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text(L10nService.get('common.also_discover', language), style: TextStyle(fontSize: 11, color: isDark ? Colors.white38 : AppColors.textLight)),
-          const SizedBox(height: 2),
-          Text(text, style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: isDark ? Colors.white : AppColors.textDark)),
-        ])),
-        Icon(Icons.arrow_forward_ios, size: 14, color: isDark ? Colors.white38 : AppColors.textLight),
-      ]),
+      child: Row(
+        children: [
+          Text(emoji, style: const TextStyle(fontSize: 24)),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  L10nService.get('common.also_discover', language),
+                  style: TextStyle(
+                    fontSize: 11,
+                    color: isDark ? Colors.white38 : AppColors.textLight,
+                  ),
+                ),
+                const SizedBox(height: 2),
+                Text(
+                  text,
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    color: isDark ? Colors.white : AppColors.textDark,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Icon(
+            Icons.arrow_forward_ios,
+            size: 14,
+            color: isDark ? Colors.white38 : AppColors.textLight,
+          ),
+        ],
+      ),
     ),
   ).animate().fadeIn(delay: 200.ms, duration: 400.ms);
 }
@@ -281,5 +439,11 @@ class _MoonData {
   final Color color;
   final List<String> bullets;
 
-  const _MoonData(this.name, this.symbol, this.element, this.color, this.bullets);
+  const _MoonData(
+    this.name,
+    this.symbol,
+    this.element,
+    this.color,
+    this.bullets,
+  );
 }

@@ -789,8 +789,10 @@ Kaçınılması gereken: İşkoliklik, stresi yemeyle bastırma, uyku ihmalı.
     yearlyGuidance: {
       '2024':
           '2024 finansal fırsatlar yılı. Yatırım yap, ama etik çizgini koru.',
-      '2025': '2025\'te güç dengesi teması öne çıkıyor. Yönetirken empati göster.',
-      '2026': '2026 karma hasat temalı bir yıl. Geçmişte ektiğin tohumların meyve verme zamanı.',
+      '2025':
+          '2025\'te güç dengesi teması öne çıkıyor. Yönetirken empati göster.',
+      '2026':
+          '2026 karma hasat temalı bir yıl. Geçmişte ektiğin tohumların meyve verme zamanı.',
     },
   ),
 

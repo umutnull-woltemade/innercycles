@@ -99,10 +99,12 @@ class InterpretiveText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final defaultStyle = style ?? Theme.of(context).textTheme.bodyMedium?.copyWith(
-      color: isDark ? AppColors.textSecondary : AppColors.textLight,
-      height: 1.6,
-    );
+    final defaultStyle =
+        style ??
+        Theme.of(context).textTheme.bodyMedium?.copyWith(
+          color: isDark ? AppColors.textSecondary : AppColors.textLight,
+          height: 1.6,
+        );
 
     final spans = _parseText(context, text, defaultStyle, isDark);
 
@@ -114,7 +116,12 @@ class InterpretiveText extends StatelessWidget {
     );
   }
 
-  List<InlineSpan> _parseText(BuildContext context, String text, TextStyle? baseStyle, bool isDark) {
+  List<InlineSpan> _parseText(
+    BuildContext context,
+    String text,
+    TextStyle? baseStyle,
+    bool isDark,
+  ) {
     final spans = <InlineSpan>[];
     final regex = RegExp(r'\[\[([^\]]+)\]\]');
     int lastEnd = 0;
@@ -122,32 +129,30 @@ class InterpretiveText extends StatelessWidget {
     for (final match in regex.allMatches(text)) {
       // Add text before the match
       if (match.start > lastEnd) {
-        spans.add(TextSpan(
-          text: text.substring(lastEnd, match.start),
-          style: baseStyle,
-        ));
+        spans.add(
+          TextSpan(
+            text: text.substring(lastEnd, match.start),
+            style: baseStyle,
+          ),
+        );
       }
 
       // Add the glossary link with tooltip
       final term = match.group(1)!;
-      spans.add(WidgetSpan(
-        alignment: PlaceholderAlignment.baseline,
-        baseline: TextBaseline.alphabetic,
-        child: _GlossaryTermWidget(
-          term: term,
-          style: baseStyle,
+      spans.add(
+        WidgetSpan(
+          alignment: PlaceholderAlignment.baseline,
+          baseline: TextBaseline.alphabetic,
+          child: _GlossaryTermWidget(term: term, style: baseStyle),
         ),
-      ));
+      );
 
       lastEnd = match.end;
     }
 
     // Add remaining text
     if (lastEnd < text.length) {
-      spans.add(TextSpan(
-        text: text.substring(lastEnd),
-        style: baseStyle,
-      ));
+      spans.add(TextSpan(text: text.substring(lastEnd), style: baseStyle));
     }
 
     return spans;
@@ -159,10 +164,7 @@ class _GlossaryTermWidget extends StatefulWidget {
   final String term;
   final TextStyle? style;
 
-  const _GlossaryTermWidget({
-    required this.term,
-    this.style,
-  });
+  const _GlossaryTermWidget({required this.term, this.style});
 
   @override
   State<_GlossaryTermWidget> createState() => _GlossaryTermWidgetState();
@@ -217,10 +219,14 @@ class _GlossaryTermWidgetState extends State<_GlossaryTermWidget> {
             child: Text(
               widget.term,
               style: widget.style?.copyWith(
-                color: _isHovered ? AppColors.celestialGold : AppColors.starGold,
+                color: _isHovered
+                    ? AppColors.celestialGold
+                    : AppColors.starGold,
                 fontWeight: FontWeight.w600,
                 decoration: TextDecoration.underline,
-                decorationColor: (_isHovered ? AppColors.celestialGold : AppColors.starGold).withValues(alpha: 0.7),
+                decorationColor:
+                    (_isHovered ? AppColors.celestialGold : AppColors.starGold)
+                        .withValues(alpha: 0.7),
                 decorationStyle: TextDecorationStyle.dotted,
                 decorationThickness: 2,
               ),
@@ -257,10 +263,7 @@ class _ConstrainedTooltipOverlay extends StatelessWidget {
   final LayerLink link;
   final Widget child;
 
-  const _ConstrainedTooltipOverlay({
-    required this.link,
-    required this.child,
-  });
+  const _ConstrainedTooltipOverlay({required this.link, required this.child});
 
   @override
   Widget build(BuildContext context) {
@@ -273,7 +276,8 @@ class _ConstrainedTooltipOverlay extends StatelessWidget {
     final safeHorizontalPadding = 16.0;
     final safeBottom = screenPadding.bottom + viewInsets.bottom + 16;
     final availableWidth = screenSize.width - (safeHorizontalPadding * 2);
-    final availableHeight = screenSize.height - screenPadding.top - safeBottom - 100;
+    final availableHeight =
+        screenSize.height - screenPadding.top - safeBottom - 100;
 
     // On mobile, center the tooltip horizontally and position below the target
     if (isMobile) {
@@ -293,10 +297,7 @@ class _ConstrainedTooltipOverlay extends StatelessWidget {
             ),
             child: SingleChildScrollView(
               physics: const ClampingScrollPhysics(),
-              child: Material(
-                color: Colors.transparent,
-                child: child,
-              ),
+              child: Material(color: Colors.transparent, child: child),
             ),
           ),
         ),
@@ -421,11 +422,15 @@ class GlossaryRichTooltip extends ConsumerWidget {
                           ),
                           // Alternate term (other language)
                           Text(
-                            language == AppLanguage.tr ? entry.term : entry.termTr,
+                            language == AppLanguage.tr
+                                ? entry.term
+                                : entry.termTr,
                             style: TextStyle(
                               fontSize: 12,
                               fontStyle: FontStyle.italic,
-                              color: isDark ? Colors.white60 : AppColors.textLight,
+                              color: isDark
+                                  ? Colors.white60
+                                  : AppColors.textLight,
                             ),
                           ),
                         ],
@@ -446,7 +451,10 @@ class GlossaryRichTooltip extends ConsumerWidget {
                 if (entry.localizedHint(language).isNotEmpty) ...[
                   const SizedBox(height: 12),
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 6,
+                    ),
                     decoration: BoxDecoration(
                       color: AppColors.starGold.withValues(alpha: 0.15),
                       borderRadius: BorderRadius.circular(20),
@@ -504,7 +512,10 @@ class GlossaryRichTooltip extends ConsumerWidget {
                             const Text('🔮', style: TextStyle(fontSize: 12)),
                             const SizedBox(width: 6),
                             Text(
-                              L10nService.get('widgets.interpretive_text.deep_interpretation', language),
+                              L10nService.get(
+                                'widgets.interpretive_text.deep_interpretation',
+                                language,
+                              ),
                               style: TextStyle(
                                 fontSize: 11,
                                 fontWeight: FontWeight.bold,
@@ -519,7 +530,9 @@ class GlossaryRichTooltip extends ConsumerWidget {
                           style: TextStyle(
                             fontSize: 11,
                             height: 1.4,
-                            color: isDark ? Colors.white60 : AppColors.textLight,
+                            color: isDark
+                                ? Colors.white60
+                                : AppColors.textLight,
                           ),
                           maxLines: 3,
                           overflow: TextOverflow.ellipsis,
@@ -543,7 +556,9 @@ class GlossaryRichTooltip extends ConsumerWidget {
                           style: TextStyle(
                             fontSize: 11,
                             fontStyle: FontStyle.italic,
-                            color: isDark ? Colors.white54 : AppColors.textLight,
+                            color: isDark
+                                ? Colors.white54
+                                : AppColors.textLight,
                           ),
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
@@ -561,7 +576,10 @@ class GlossaryRichTooltip extends ConsumerWidget {
                     runSpacing: 6,
                     children: entry.relatedTerms.take(4).map((term) {
                       return Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 3,
+                        ),
                         decoration: BoxDecoration(
                           color: isDark
                               ? Colors.white.withValues(alpha: 0.1)
@@ -605,7 +623,10 @@ class GlossaryRichTooltip extends ConsumerWidget {
                         ),
                         const SizedBox(width: 6),
                         Text(
-                          L10nService.get('widgets.interpretive_text.view_in_glossary', language),
+                          L10nService.get(
+                            'widgets.interpretive_text.view_in_glossary',
+                            language,
+                          ),
                           style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w600,
@@ -657,10 +678,12 @@ class AutoGlossaryText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final defaultStyle = style ?? Theme.of(context).textTheme.bodyMedium?.copyWith(
-      color: isDark ? AppColors.textSecondary : AppColors.textLight,
-      height: 1.6,
-    );
+    final defaultStyle =
+        style ??
+        Theme.of(context).textTheme.bodyMedium?.copyWith(
+          color: isDark ? AppColors.textSecondary : AppColors.textLight,
+          height: 1.6,
+        );
 
     if (!enableHighlighting) {
       return Text(
@@ -682,7 +705,11 @@ class AutoGlossaryText extends StatelessWidget {
     );
   }
 
-  List<InlineSpan> _autoDetectTerms(BuildContext context, String text, TextStyle? baseStyle) {
+  List<InlineSpan> _autoDetectTerms(
+    BuildContext context,
+    String text,
+    TextStyle? baseStyle,
+  ) {
     final spans = <InlineSpan>[];
     final cache = GlossaryCache();
     final pattern = cache.termPattern;
@@ -702,10 +729,12 @@ class AutoGlossaryText extends StatelessWidget {
 
       // Add text before the match
       if (match.start > lastEnd) {
-        spans.add(TextSpan(
-          text: text.substring(lastEnd, match.start),
-          style: baseStyle,
-        ));
+        spans.add(
+          TextSpan(
+            text: text.substring(lastEnd, match.start),
+            style: baseStyle,
+          ),
+        );
       }
 
       // Add the matched term with tooltip
@@ -713,15 +742,17 @@ class AutoGlossaryText extends StatelessWidget {
       final entry = cache.getEntry(matchedText);
 
       if (entry != null) {
-        spans.add(WidgetSpan(
-          alignment: PlaceholderAlignment.baseline,
-          baseline: TextBaseline.alphabetic,
-          child: _AutoGlossaryTermWidget(
-            displayText: matchedText,
-            entry: entry,
-            style: baseStyle,
+        spans.add(
+          WidgetSpan(
+            alignment: PlaceholderAlignment.baseline,
+            baseline: TextBaseline.alphabetic,
+            child: _AutoGlossaryTermWidget(
+              displayText: matchedText,
+              entry: entry,
+              style: baseStyle,
+            ),
           ),
-        ));
+        );
         highlightCount++;
       } else {
         spans.add(TextSpan(text: matchedText, style: baseStyle));
@@ -732,10 +763,7 @@ class AutoGlossaryText extends StatelessWidget {
 
     // Add remaining text
     if (lastEnd < text.length) {
-      spans.add(TextSpan(
-        text: text.substring(lastEnd),
-        style: baseStyle,
-      ));
+      spans.add(TextSpan(text: text.substring(lastEnd), style: baseStyle));
     }
 
     return spans;
@@ -755,7 +783,8 @@ class _AutoGlossaryTermWidget extends StatefulWidget {
   });
 
   @override
-  State<_AutoGlossaryTermWidget> createState() => _AutoGlossaryTermWidgetState();
+  State<_AutoGlossaryTermWidget> createState() =>
+      _AutoGlossaryTermWidgetState();
 }
 
 class _AutoGlossaryTermWidgetState extends State<_AutoGlossaryTermWidget> {
@@ -798,10 +827,14 @@ class _AutoGlossaryTermWidgetState extends State<_AutoGlossaryTermWidget> {
             child: Text(
               widget.displayText,
               style: widget.style?.copyWith(
-                color: _isHovered ? AppColors.celestialGold : AppColors.starGold,
+                color: _isHovered
+                    ? AppColors.celestialGold
+                    : AppColors.starGold,
                 fontWeight: FontWeight.w600,
                 decoration: TextDecoration.underline,
-                decorationColor: (_isHovered ? AppColors.celestialGold : AppColors.starGold).withValues(alpha: 0.5),
+                decorationColor:
+                    (_isHovered ? AppColors.celestialGold : AppColors.starGold)
+                        .withValues(alpha: 0.5),
                 decorationStyle: TextDecorationStyle.dotted,
               ),
             ),
@@ -848,10 +881,12 @@ class DeepInterpretationCard extends ConsumerStatefulWidget {
   });
 
   @override
-  ConsumerState<DeepInterpretationCard> createState() => _DeepInterpretationCardState();
+  ConsumerState<DeepInterpretationCard> createState() =>
+      _DeepInterpretationCardState();
 }
 
-class _DeepInterpretationCardState extends ConsumerState<DeepInterpretationCard> {
+class _DeepInterpretationCardState
+    extends ConsumerState<DeepInterpretationCard> {
   bool _isExpanded = false;
 
   @override
@@ -872,9 +907,7 @@ class _DeepInterpretationCardState extends ConsumerState<DeepInterpretationCard>
           ],
         ),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: accentColor.withValues(alpha: 0.3),
-        ),
+        border: Border.all(color: accentColor.withValues(alpha: 0.3)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -935,8 +968,14 @@ class _DeepInterpretationCardState extends ConsumerState<DeepInterpretationCard>
                   const SizedBox(width: 4),
                   Text(
                     _isExpanded
-                        ? L10nService.get('widgets.interpretive_text.collapse', language)
-                        : L10nService.get('widgets.interpretive_text.read_deep_interpretation', language),
+                        ? L10nService.get(
+                            'widgets.interpretive_text.collapse',
+                            language,
+                          )
+                        : L10nService.get(
+                            'widgets.interpretive_text.read_deep_interpretation',
+                            language,
+                          ),
                     style: Theme.of(context).textTheme.labelMedium?.copyWith(
                       color: accentColor,
                       fontWeight: FontWeight.bold,
@@ -954,13 +993,9 @@ class _DeepInterpretationCardState extends ConsumerState<DeepInterpretationCard>
               margin: const EdgeInsets.fromLTRB(16, 0, 16, 16),
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: isDark
-                    ? Colors.black26
-                    : AppColors.lightSurfaceVariant,
+                color: isDark ? Colors.black26 : AppColors.lightSurfaceVariant,
                 borderRadius: BorderRadius.circular(12),
-                border: Border.all(
-                  color: accentColor.withValues(alpha: 0.2),
-                ),
+                border: Border.all(color: accentColor.withValues(alpha: 0.2)),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -970,11 +1005,15 @@ class _DeepInterpretationCardState extends ConsumerState<DeepInterpretationCard>
                       Icon(Icons.auto_stories, size: 16, color: accentColor),
                       const SizedBox(width: 8),
                       Text(
-                        L10nService.get('widgets.interpretive_text.deep_interpretation', language),
-                        style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                          color: accentColor,
-                          fontWeight: FontWeight.bold,
+                        L10nService.get(
+                          'widgets.interpretive_text.deep_interpretation',
+                          language,
                         ),
+                        style: Theme.of(context).textTheme.labelMedium
+                            ?.copyWith(
+                              color: accentColor,
+                              fontWeight: FontWeight.bold,
+                            ),
                       ),
                     ],
                   ),
@@ -986,34 +1025,46 @@ class _DeepInterpretationCardState extends ConsumerState<DeepInterpretationCard>
                       height: 1.7,
                     ),
                   ),
-                  if (widget.relatedTerms != null && widget.relatedTerms!.isNotEmpty) ...[
+                  if (widget.relatedTerms != null &&
+                      widget.relatedTerms!.isNotEmpty) ...[
                     const SizedBox(height: 16),
                     Wrap(
                       spacing: 8,
                       runSpacing: 8,
                       children: widget.relatedTerms!.map((term) {
                         return GestureDetector(
-                          onTap: () => context.push('${Routes.glossary}?search=$term'),
+                          onTap: () =>
+                              context.push('${Routes.glossary}?search=$term'),
                           child: Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 10,
+                              vertical: 4,
+                            ),
                             decoration: BoxDecoration(
                               color: AppColors.starGold.withValues(alpha: 0.2),
                               borderRadius: BorderRadius.circular(12),
                               border: Border.all(
-                                color: AppColors.starGold.withValues(alpha: 0.4),
+                                color: AppColors.starGold.withValues(
+                                  alpha: 0.4,
+                                ),
                               ),
                             ),
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                Icon(Icons.search, size: 12, color: AppColors.starGold),
+                                Icon(
+                                  Icons.search,
+                                  size: 12,
+                                  color: AppColors.starGold,
+                                ),
                                 const SizedBox(width: 4),
                                 Text(
                                   term,
-                                  style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                                    color: AppColors.starGold,
-                                    fontWeight: FontWeight.w500,
-                                  ),
+                                  style: Theme.of(context).textTheme.labelSmall
+                                      ?.copyWith(
+                                        color: AppColors.starGold,
+                                        fontWeight: FontWeight.w500,
+                                      ),
                                 ),
                               ],
                             ),
@@ -1077,7 +1128,10 @@ class _GlossaryTooltipState extends ConsumerState<GlossaryTooltip> {
 
   String _getTooltipMessage(AppLanguage language) {
     if (_entry == null) {
-      return L10nService.get('widgets.interpretive_text.search_in_glossary', language).replaceAll('{term}', widget.term);
+      return L10nService.get(
+        'widgets.interpretive_text.search_in_glossary',
+        language,
+      ).replaceAll('{term}', widget.term);
     }
 
     final localizedHint = _entry!.localizedHint(language);
@@ -1122,7 +1176,9 @@ class _GlossaryTooltipState extends ConsumerState<GlossaryTooltip> {
         ),
         padding: const EdgeInsets.all(12),
         child: GestureDetector(
-          onTap: () => context.push('${Routes.glossary}?search=${_entry?.termTr ?? widget.term}'),
+          onTap: () => context.push(
+            '${Routes.glossary}?search=${_entry?.termTr ?? widget.term}',
+          ),
           child: widget.child,
         ),
       );
@@ -1150,7 +1206,8 @@ class _GlossaryTooltipState extends ConsumerState<GlossaryTooltip> {
             _hideRichTooltip,
           ),
           child: GestureDetector(
-            onTap: () => context.push('${Routes.glossary}?search=${_entry!.termTr}'),
+            onTap: () =>
+                context.push('${Routes.glossary}?search=${_entry!.termTr}'),
             onLongPress: _showRichTooltip,
             child: widget.child,
           ),
@@ -1177,20 +1234,19 @@ class GlossaryTerm extends StatelessWidget {
   Widget build(BuildContext context) {
     final entry = GlossaryCache().getEntry(term);
 
-    final defaultStyle = style ?? Theme.of(context).textTheme.bodyMedium?.copyWith(
-      color: AppColors.starGold,
-      fontWeight: FontWeight.w600,
-      decoration: TextDecoration.underline,
-      decorationColor: AppColors.starGold.withValues(alpha: 0.5),
-      decorationStyle: TextDecorationStyle.dotted,
-    );
+    final defaultStyle =
+        style ??
+        Theme.of(context).textTheme.bodyMedium?.copyWith(
+          color: AppColors.starGold,
+          fontWeight: FontWeight.w600,
+          decoration: TextDecoration.underline,
+          decorationColor: AppColors.starGold.withValues(alpha: 0.5),
+          decorationStyle: TextDecorationStyle.dotted,
+        );
 
     return GlossaryTooltip(
       term: term,
-      child: Text(
-        displayText ?? entry?.termTr ?? term,
-        style: defaultStyle,
-      ),
+      child: Text(displayText ?? entry?.termTr ?? term, style: defaultStyle),
     );
   }
 }
@@ -1200,11 +1256,7 @@ class GlossaryBadge extends ConsumerWidget {
   final String term;
   final bool showIcon;
 
-  const GlossaryBadge({
-    super.key,
-    required this.term,
-    this.showIcon = true,
-  });
+  const GlossaryBadge({super.key, required this.term, this.showIcon = true});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -1227,9 +1279,7 @@ class GlossaryBadge extends ConsumerWidget {
             ],
           ),
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(
-            color: AppColors.starGold.withValues(alpha: 0.3),
-          ),
+          border: Border.all(color: AppColors.starGold.withValues(alpha: 0.3)),
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,

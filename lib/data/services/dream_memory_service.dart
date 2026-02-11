@@ -30,8 +30,14 @@ class DreamMemoryService {
     final dreams = await getAllDreams();
     dreams.insert(0, dream); // Add to beginning (newest first)
 
-    await _prefs.setString(_dreamsKey, jsonEncode(dreams.map((d) => d.toJson()).toList()));
-    await _prefs.setString(_lastDreamDateKey, dream.dreamDate.toIso8601String());
+    await _prefs.setString(
+      _dreamsKey,
+      jsonEncode(dreams.map((d) => d.toJson()).toList()),
+    );
+    await _prefs.setString(
+      _lastDreamDateKey,
+      dream.dreamDate.toIso8601String(),
+    );
 
     // Update memory with new symbols and patterns
     await _updateMemoryFromDream(dream);
@@ -71,7 +77,10 @@ class DreamMemoryService {
     final index = dreams.indexWhere((d) => d.id == dream.id);
     if (index != -1) {
       dreams[index] = dream;
-      await _prefs.setString(_dreamsKey, jsonEncode(dreams.map((d) => d.toJson()).toList()));
+      await _prefs.setString(
+        _dreamsKey,
+        jsonEncode(dreams.map((d) => d.toJson()).toList()),
+      );
     }
   }
 
@@ -79,7 +88,10 @@ class DreamMemoryService {
   Future<void> deleteDream(String id) async {
     final dreams = await getAllDreams();
     dreams.removeWhere((d) => d.id == id);
-    await _prefs.setString(_dreamsKey, jsonEncode(dreams.map((d) => d.toJson()).toList()));
+    await _prefs.setString(
+      _dreamsKey,
+      jsonEncode(dreams.map((d) => d.toJson()).toList()),
+    );
   }
 
   // ═══════════════════════════════════════════════════════════════
@@ -118,7 +130,9 @@ class DreamMemoryService {
           firstSeen: DateTime.now(),
           lastSeen: DateTime.now(),
           contexts: dream.mood != null ? [dream.mood!] : [],
-          emotionalAssociations: dream.dominantEmotion != null ? [dream.dominantEmotion!] : [],
+          emotionalAssociations: dream.dominantEmotion != null
+              ? [dream.dominantEmotion!]
+              : [],
         );
       }
     }
@@ -161,7 +175,10 @@ class DreamMemoryService {
     await _prefs.setString(_memoryKey, jsonEncode(updatedMemory.toJson()));
   }
 
-  EmotionalProfile _updateEmotionalProfile(EmotionalProfile current, String? newEmotion) {
+  EmotionalProfile _updateEmotionalProfile(
+    EmotionalProfile current,
+    String? newEmotion,
+  ) {
     if (newEmotion == null) return current;
 
     final tones = List<String>.from(current.dominantTones);
@@ -211,7 +228,10 @@ class DreamMemoryService {
   }
 
   /// Detect new patterns (called after saving a dream)
-  Future<PatternAlert?> detectNewPattern(Dream dream, {AppLanguage language = AppLanguage.tr}) async {
+  Future<PatternAlert?> detectNewPattern(
+    Dream dream, {
+    AppLanguage language = AppLanguage.tr,
+  }) async {
     final memory = await getDreamMemory();
 
     // Check for recurring symbol alert
@@ -220,11 +240,15 @@ class DreamMemoryService {
       if (occurrence != null && occurrence.count == 3) {
         return PatternAlert(
           type: PatternAlertType.recurringSymbol,
-          title: L10nService.get('dreams.alerts.recurring_symbol_title', language),
-          message: L10nService.getWithParams('dreams.alerts.recurring_symbol_message', language, params: {
-            'emoji': _getSymbolEmoji(symbol),
-            'symbol': symbol,
-          }),
+          title: L10nService.get(
+            'dreams.alerts.recurring_symbol_title',
+            language,
+          ),
+          message: L10nService.getWithParams(
+            'dreams.alerts.recurring_symbol_message',
+            language,
+            params: {'emoji': _getSymbolEmoji(symbol), 'symbol': symbol},
+          ),
           symbol: symbol,
           count: 3,
         );
@@ -265,7 +289,9 @@ class DreamMemoryService {
   /// Get current streak
   Future<int> getCurrentStreak() async {
     final memory = await getDreamMemory();
-    return memory.milestones.isStreakActive ? memory.milestones.currentStreak : 0;
+    return memory.milestones.isStreakActive
+        ? memory.milestones.currentStreak
+        : 0;
   }
 
   /// Get longest streak
@@ -342,7 +368,10 @@ class DreamMemoryService {
     return counts.entries.reduce((a, b) => a.value > b.value ? a : b).key;
   }
 
-  String _generateWeeklyInsight(int dreamCount, List<MapEntry<String, int>> topSymbols) {
+  String _generateWeeklyInsight(
+    int dreamCount,
+    List<MapEntry<String, int>> topSymbols,
+  ) {
     if (dreamCount == 0) {
       return 'Bu hafta henüz rüya kaydetmedin. Bilinçaltının sesini dinlemeye hazır mısın?';
     }
@@ -367,7 +396,17 @@ class DreamMemoryService {
 
     // Turkish keyword patterns
     final patterns = {
-      'su': ['su ', 'suda', 'suya', 'suyu', 'deniz', 'okyanus', 'göl', 'nehir', 'yağmur'],
+      'su': [
+        'su ',
+        'suda',
+        'suya',
+        'suyu',
+        'deniz',
+        'okyanus',
+        'göl',
+        'nehir',
+        'yağmur',
+      ],
       'yilan': ['yılan', 'yilan', 'kobra', 'boa'],
       'ucmak': ['uçuyordum', 'uçtum', 'uçmak', 'havada', 'gökyüzü'],
       'dusmek': ['düştüm', 'düşüyordum', 'düşmek', 'düşüş'],

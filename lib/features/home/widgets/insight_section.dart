@@ -29,10 +29,7 @@ class InsightSection extends ConsumerWidget {
         gradient: const LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [
-            Color(0xFF1A2A3A),
-            Color(0xFF0D1821),
-          ],
+          colors: [Color(0xFF1A2A3A), Color(0xFF0D1821)],
         ),
         borderRadius: BorderRadius.circular(24),
         border: Border.all(
@@ -74,10 +71,7 @@ class InsightSection extends ConsumerWidget {
                     gradient: const LinearGradient(
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
-                      colors: [
-                        Color(0xFF4A90A4),
-                        Color(0xFF357A8C),
-                      ],
+                      colors: [Color(0xFF4A90A4), Color(0xFF357A8C)],
                     ),
                     borderRadius: BorderRadius.circular(16),
                     boxShadow: [
@@ -224,10 +218,7 @@ class _SuggestionChip extends StatelessWidget {
   final String label;
   final IconData icon;
 
-  const _SuggestionChip({
-    required this.label,
-    required this.icon,
-  });
+  const _SuggestionChip({required this.label, required this.icon});
 
   @override
   Widget build(BuildContext context) {
@@ -236,9 +227,7 @@ class _SuggestionChip extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white.withValues(alpha: 0.08),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: Colors.white.withValues(alpha: 0.1),
-        ),
+        border: Border.all(color: Colors.white.withValues(alpha: 0.1)),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -247,10 +236,7 @@ class _SuggestionChip extends StatelessWidget {
           const SizedBox(width: 6),
           Text(
             label,
-            style: const TextStyle(
-              color: Colors.white70,
-              fontSize: 13,
-            ),
+            style: const TextStyle(color: Colors.white70, fontSize: 13),
           ),
         ],
       ),

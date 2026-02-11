@@ -147,14 +147,19 @@ class Routes {
   // INSIGHT - Unified Personal Reflection Assistant (Apple-Safe)
   // Single entry point replacing Kozmoz and Dream Oracle
   // ════════════════════════════════════════════════════════════════
-  static const String insight = '/insight';  // Primary entry - "Start a Reflection"
+  static const String insight =
+      '/insight'; // Primary entry - "Start a Reflection"
 
   // Legacy routes (DEPRECATED - kept for backward compatibility)
   // These should redirect to /insight
-  @Deprecated('Use insight instead - merging into single assistant for App Store compliance')
-  static const String kozmikIletisim = '/cosmic-chat';  // DEPRECATED
-  @Deprecated('Use insight instead - merging into single assistant for App Store compliance')
-  static const String ruyaDongusu = '/dream-oracle';    // DEPRECATED
+  @Deprecated(
+    'Use insight instead - merging into single assistant for App Store compliance',
+  )
+  static const String kozmikIletisim = '/cosmic-chat'; // DEPRECATED
+  @Deprecated(
+    'Use insight instead - merging into single assistant for App Store compliance',
+  )
+  static const String ruyaDongusu = '/dream-oracle'; // DEPRECATED
 
   // Profile Management
   static const String savedProfiles = '/saved-profiles';
@@ -177,7 +182,8 @@ class Routes {
   static const String abundanceEnergy = '/discovery/abundance-energy';
 
   // Spiritual Transformation & Life Purpose
-  static const String spiritualTransformation = '/discovery/spiritual-transformation';
+  static const String spiritualTransformation =
+      '/discovery/spiritual-transformation';
   static const String lifePurpose = '/discovery/life-purpose';
   static const String subconsciousPatterns = '/discovery/subconscious-patterns';
   static const String karmaLessons = '/discovery/karma-lessons';
@@ -206,7 +212,8 @@ class Routes {
   static const String transitFlow = '/discovery/transit-flow';
 
   // Relationship Analysis
-  static const String compatibilityAnalysis = '/discovery/compatibility-analysis';
+  static const String compatibilityAnalysis =
+      '/discovery/compatibility-analysis';
   static const String soulMate = '/discovery/soulmate';
   static const String relationshipKarma = '/discovery/relationship-karma';
   static const String celebrityTwin = '/discovery/celebrity-twin';

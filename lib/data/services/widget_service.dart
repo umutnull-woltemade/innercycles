@@ -8,10 +8,11 @@ import 'package:flutter/services.dart';
 /// Service for updating iOS Widget content
 /// Uses App Groups to share data with WidgetKit extensions
 class WidgetService {
-  static const _channel = MethodChannel('com.umut.astrologyApp/widgets');
+  static const _channel = MethodChannel('com.venusone.innercycles/widgets');
+
   /// App Group ID for shared data (used in iOS native code)
   // ignore: unused_field
-  static const appGroupId = 'group.com.umut.astrologyApp';
+  static const appGroupId = 'group.com.venusone.innercycles';
 
   /// Singleton instance
   static final WidgetService _instance = WidgetService._();
@@ -42,7 +43,9 @@ class WidgetService {
         'widget_mood_rating': moodRating.clamp(1, 5),
       });
 
-      debugPrint('[WidgetService] Daily horoscope widget updated for $zodiacSign');
+      debugPrint(
+        '[WidgetService] Daily horoscope widget updated for $zodiacSign',
+      );
     } catch (e) {
       debugPrint('[WidgetService] Error updating horoscope widget: $e');
     }
@@ -192,7 +195,9 @@ class WidgetService {
     if (phaseLower.contains('waxing gibbous')) return '🌔';
     if (phaseLower.contains('full')) return '🌕';
     if (phaseLower.contains('waning gibbous')) return '🌖';
-    if (phaseLower.contains('third quarter') || phaseLower.contains('last quarter')) return '🌗';
+    if (phaseLower.contains('third quarter') ||
+        phaseLower.contains('last quarter'))
+      return '🌗';
     if (phaseLower.contains('waning crescent')) return '🌘';
     return '🌙';
   }

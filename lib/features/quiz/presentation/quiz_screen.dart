@@ -17,11 +17,7 @@ class QuizScreen extends ConsumerStatefulWidget {
   final String? quizType; // 'dream', 'astrology', 'numerology', 'general'
   final String? sourceContext; // Hangi sayfadan geldi
 
-  const QuizScreen({
-    super.key,
-    this.quizType,
-    this.sourceContext,
-  });
+  const QuizScreen({super.key, this.quizType, this.sourceContext});
 
   @override
   ConsumerState<QuizScreen> createState() => _QuizScreenState();
@@ -43,7 +39,10 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
   void _loadQuiz() {
     final language = ref.read(languageProvider);
     setState(() {
-      _currentQuiz = QuizService.getQuiz(widget.quizType ?? 'general', language);
+      _currentQuiz = QuizService.getQuiz(
+        widget.quizType ?? 'general',
+        language,
+      );
       _isLoading = false;
     });
   }
@@ -67,7 +66,11 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
 
   void _calculateResult() {
     final language = ref.read(languageProvider);
-    final result = QuizService.calculateResult(_currentQuiz, _answers, language);
+    final result = QuizService.calculateResult(
+      _currentQuiz,
+      _answers,
+      language,
+    );
     setState(() {
       _result = result;
     });
@@ -78,9 +81,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     if (_isLoading) {
-      return const Scaffold(
-        body: Center(child: CircularProgressIndicator()),
-      );
+      return const Scaffold(body: Center(child: CircularProgressIndicator()));
     }
 
     return Scaffold(
@@ -96,7 +97,8 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
 
   Widget _buildQuizView(BuildContext context, bool isDark) {
     final question = _currentQuiz.questions[_currentQuestionIndex];
-    final progress = (_currentQuestionIndex + 1) / _currentQuiz.questions.length;
+    final progress =
+        (_currentQuestionIndex + 1) / _currentQuiz.questions.length;
 
     return Column(
       children: [
@@ -111,7 +113,9 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
                   IconButton(
                     icon: Icon(
                       Icons.close,
-                      color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+                      color: isDark
+                          ? AppColors.textSecondary
+                          : AppColors.lightTextSecondary,
                     ),
                     onPressed: () => Navigator.pop(context),
                   ),
@@ -120,7 +124,9 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
                     style: GoogleFonts.raleway(
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
-                      color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+                      color: isDark
+                          ? AppColors.textSecondary
+                          : AppColors.lightTextSecondary,
                     ),
                   ),
                   const SizedBox(width: 48), // Balance
@@ -135,7 +141,9 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
                   backgroundColor: isDark
                       ? AppColors.surfaceLight.withValues(alpha: 0.3)
                       : AppColors.lightSurfaceVariant,
-                  valueColor: const AlwaysStoppedAnimation<Color>(AppColors.auroraStart),
+                  valueColor: const AlwaysStoppedAnimation<Color>(
+                    AppColors.auroraStart,
+                  ),
                   minHeight: 6,
                 ),
               ),
@@ -146,7 +154,9 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
         // Question
         Expanded(
           child: SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(horizontal: AppConstants.spacingLg),
+            padding: const EdgeInsets.symmetric(
+              horizontal: AppConstants.spacingLg,
+            ),
             child: Column(
               children: [
                 const SizedBox(height: AppConstants.spacingXl),
@@ -155,10 +165,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
                   Text(
                     question.emoji!,
                     style: const TextStyle(fontSize: 48),
-                  ).animate().scale(
-                        duration: 300.ms,
-                        curve: Curves.elasticOut,
-                      ),
+                  ).animate().scale(duration: 300.ms, curve: Curves.elasticOut),
                 const SizedBox(height: AppConstants.spacingLg),
                 // Question text
                 Text(
@@ -167,7 +174,9 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
                   style: GoogleFonts.cormorantGaramond(
                     fontSize: 24,
                     fontWeight: FontWeight.w600,
-                    color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                    color: isDark
+                        ? AppColors.textPrimary
+                        : AppColors.lightTextPrimary,
                     height: 1.4,
                   ),
                 ).animate().fadeIn(duration: 300.ms).slideY(begin: 0.1),
@@ -179,14 +188,20 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
                   final isSelected = _answers[_currentQuestionIndex] == index;
 
                   return Padding(
-                    padding: const EdgeInsets.only(bottom: AppConstants.spacingMd),
-                    child: _buildAnswerCard(
-                      context,
-                      answer,
-                      isSelected,
-                      isDark,
-                      () => _selectAnswer(index),
-                    ).animate(delay: (100 * index).ms).fadeIn().slideX(begin: 0.05),
+                    padding: const EdgeInsets.only(
+                      bottom: AppConstants.spacingMd,
+                    ),
+                    child:
+                        _buildAnswerCard(
+                              context,
+                              answer,
+                              isSelected,
+                              isDark,
+                              () => _selectAnswer(index),
+                            )
+                            .animate(delay: (100 * index).ms)
+                            .fadeIn()
+                            .slideX(begin: 0.05),
                   );
                 }),
               ],
@@ -218,15 +233,15 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
           color: isSelected
               ? null
               : isDark
-                  ? AppColors.surfaceLight.withValues(alpha: 0.5)
-                  : AppColors.lightCard,
+              ? AppColors.surfaceLight.withValues(alpha: 0.5)
+              : AppColors.lightCard,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
             color: isSelected
                 ? Colors.transparent
                 : isDark
-                    ? AppColors.surfaceLight
-                    : AppColors.lightSurfaceVariant,
+                ? AppColors.surfaceLight
+                : AppColors.lightSurfaceVariant,
             width: 1.5,
           ),
           boxShadow: isSelected
@@ -242,10 +257,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
         child: Row(
           children: [
             if (answer.emoji != null) ...[
-              Text(
-                answer.emoji!,
-                style: const TextStyle(fontSize: 24),
-              ),
+              Text(answer.emoji!, style: const TextStyle(fontSize: 24)),
               const SizedBox(width: AppConstants.spacingMd),
             ],
             Expanded(
@@ -257,17 +269,13 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
                   color: isSelected
                       ? Colors.white
                       : isDark
-                          ? AppColors.textPrimary
-                          : AppColors.lightTextPrimary,
+                      ? AppColors.textPrimary
+                      : AppColors.lightTextPrimary,
                 ),
               ),
             ),
             if (isSelected)
-              const Icon(
-                Icons.check_circle,
-                color: Colors.white,
-                size: 24,
-              ),
+              const Icon(Icons.check_circle, color: Colors.white, size: 24),
           ],
         ),
       ),
@@ -301,10 +309,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
               ],
             ),
             child: Center(
-              child: Text(
-                result.emoji,
-                style: const TextStyle(fontSize: 48),
-              ),
+              child: Text(result.emoji, style: const TextStyle(fontSize: 48)),
             ),
           ).animate().scale(duration: 400.ms, curve: Curves.elasticOut),
           const SizedBox(height: AppConstants.spacingXl),
@@ -328,7 +333,9 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
             style: GoogleFonts.raleway(
               fontSize: 16,
               fontWeight: FontWeight.w500,
-              color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+              color: isDark
+                  ? AppColors.textSecondary
+                  : AppColors.lightTextSecondary,
               height: 1.6,
             ),
           ).animate().fadeIn(delay: 300.ms),
@@ -361,7 +368,11 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
     );
   }
 
-  Widget _buildPremiumCTA(BuildContext context, bool isDark, AppLanguage language) {
+  Widget _buildPremiumCTA(
+    BuildContext context,
+    bool isDark,
+    AppLanguage language,
+  ) {
     // seg=high için agresif premium teklif (%30-40 dönüşüm hedefi)
     return GestureDetector(
       onTap: () => context.push('/premium?source=quiz_high&discount=20'),
@@ -408,11 +419,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
               ),
             ),
             const SizedBox(height: AppConstants.spacingMd),
-            const Icon(
-              Icons.auto_awesome,
-              color: Colors.white,
-              size: 32,
-            ),
+            const Icon(Icons.auto_awesome, color: Colors.white, size: 32),
             const SizedBox(height: AppConstants.spacingMd),
             Text(
               L10nService.get('screens.quiz.open_cosmic_map', language),
@@ -434,10 +441,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
             ),
             const SizedBox(height: AppConstants.spacingMd),
             Container(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 24,
-                vertical: 12,
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(30),
@@ -454,7 +458,11 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
                     ),
                   ),
                   const SizedBox(width: 6),
-                  const Icon(Icons.arrow_forward, color: AppColors.auroraStart, size: 18),
+                  const Icon(
+                    Icons.arrow_forward,
+                    color: AppColors.auroraStart,
+                    size: 18,
+                  ),
                 ],
               ),
             ),
@@ -474,7 +482,11 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
     ).animate().fadeIn(delay: 400.ms).scale(begin: const Offset(0.95, 0.95));
   }
 
-  Widget _buildSoftPremiumCTA(BuildContext context, bool isDark, AppLanguage language) {
+  Widget _buildSoftPremiumCTA(
+    BuildContext context,
+    bool isDark,
+    AppLanguage language,
+  ) {
     // seg=medium için soft premium teklif
     return Column(
       children: [
@@ -495,11 +507,16 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
           child: Column(
             children: [
               Text(
-                L10nService.get('screens.quiz.continue_cosmic_journey', language),
+                L10nService.get(
+                  'screens.quiz.continue_cosmic_journey',
+                  language,
+                ),
                 style: GoogleFonts.raleway(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
-                  color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                  color: isDark
+                      ? AppColors.textPrimary
+                      : AppColors.lightTextPrimary,
                 ),
               ),
               const SizedBox(height: AppConstants.spacingMd),
@@ -517,7 +534,10 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
                     borderRadius: BorderRadius.circular(30),
                   ),
                   child: Text(
-                    L10nService.get('screens.quiz.view_premium_features', language),
+                    L10nService.get(
+                      'screens.quiz.view_premium_features',
+                      language,
+                    ),
                     style: GoogleFonts.raleway(
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
@@ -537,7 +557,9 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
             style: GoogleFonts.raleway(
               fontSize: 14,
               fontWeight: FontWeight.w500,
-              color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+              color: isDark
+                  ? AppColors.textSecondary
+                  : AppColors.lightTextSecondary,
             ),
           ),
         ),
@@ -545,7 +567,11 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
     ).animate().fadeIn(delay: 400.ms);
   }
 
-  Widget _buildExploreCTA(BuildContext context, bool isDark, AppLanguage language) {
+  Widget _buildExploreCTA(
+    BuildContext context,
+    bool isDark,
+    AppLanguage language,
+  ) {
     return GestureDetector(
       onTap: () => context.go('/home'),
       child: Container(
@@ -563,11 +589,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(
-              Icons.explore,
-              color: Colors.white,
-              size: 24,
-            ),
+            const Icon(Icons.explore, color: Colors.white, size: 24),
             const SizedBox(width: AppConstants.spacingMd),
             Text(
               L10nService.get('screens.quiz.start_exploring', language),

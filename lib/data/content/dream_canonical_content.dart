@@ -29,12 +29,14 @@ class DreamCanonicalContent {
     }
     return DreamContentData(
       title: content['title'] as String? ?? '',
-      sections: (content['sections'] as List?)?.map((section) {
-        return DreamSection(
-          title: section['title'] as String? ?? '',
-          bullets: (section['bullets'] as List<String>?) ?? [],
-        );
-      }).toList() ?? [],
+      sections:
+          (content['sections'] as List?)?.map((section) {
+            return DreamSection(
+              title: section['title'] as String? ?? '',
+              bullets: (section['bullets'] as List<String>?) ?? [],
+            );
+          }).toList() ??
+          [],
       suggestion: DreamSuggestion(
         emoji: content['suggestion']?['emoji'] ?? '🔮',
         text: content['suggestion']?['text'] ?? '',
@@ -564,10 +566,10 @@ class DreamContentData {
   });
 
   factory DreamContentData.empty() => const DreamContentData(
-        title: '',
-        sections: [],
-        suggestion: DreamSuggestion(emoji: '', text: '', route: ''),
-      );
+    title: '',
+    sections: [],
+    suggestion: DreamSuggestion(emoji: '', text: '', route: ''),
+  );
 }
 
 /// Data class for dream section
@@ -575,10 +577,7 @@ class DreamSection {
   final String title;
   final List<String> bullets;
 
-  const DreamSection({
-    required this.title,
-    required this.bullets,
-  });
+  const DreamSection({required this.title, required this.bullets});
 }
 
 /// Data class for dream suggestion

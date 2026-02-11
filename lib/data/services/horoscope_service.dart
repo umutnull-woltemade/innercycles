@@ -27,7 +27,10 @@ class HoroscopeService {
     // Reflection themes: Past patterns, Present awareness, Future intentions
     final pastInsights = HoroscopeContent.getPastInsights(sign, language);
     final presentEnergies = HoroscopeContent.getPresentEnergies(sign, language);
-    final futureIntentions = HoroscopeContent.getFutureIntentions(sign, language);
+    final futureIntentions = HoroscopeContent.getFutureIntentions(
+      sign,
+      language,
+    );
     final dailyThemes = HoroscopeContent.getDailyThemes(sign, language);
 
     return DailyHoroscope(
@@ -42,8 +45,10 @@ class HoroscopeService {
       reflectionColor: colors[seededRandom.nextInt(colors.length)],
       mood: moods[seededRandom.nextInt(moods.length)],
       pastInsight: pastInsights[seededRandom.nextInt(pastInsights.length)],
-      presentEnergy: presentEnergies[seededRandom.nextInt(presentEnergies.length)],
-      futureIntention: futureIntentions[seededRandom.nextInt(futureIntentions.length)],
+      presentEnergy:
+          presentEnergies[seededRandom.nextInt(presentEnergies.length)],
+      futureIntention:
+          futureIntentions[seededRandom.nextInt(futureIntentions.length)],
       dailyTheme: dailyThemes[seededRandom.nextInt(dailyThemes.length)],
     );
   }
@@ -54,8 +59,10 @@ class HoroscopeService {
     AppLanguage language = AppLanguage.tr,
   }) {
     final elementMatch = _getElementCompatibility(sign1.element, sign2.element);
-    final modalityMatch =
-        _getModalityCompatibility(sign1.modality, sign2.modality);
+    final modalityMatch = _getModalityCompatibility(
+      sign1.modality,
+      sign2.modality,
+    );
 
     final baseScore = ((elementMatch + modalityMatch) / 2 * 100).round();
     final variation = _random.nextInt(20) - 10;
@@ -67,8 +74,16 @@ class HoroscopeService {
       overallScore: overallScore,
       loveScore: (overallScore + _random.nextInt(20) - 10).clamp(0, 100),
       friendshipScore: (overallScore + _random.nextInt(20) - 10).clamp(0, 100),
-      communicationScore: (overallScore + _random.nextInt(20) - 10).clamp(0, 100),
-      summary: _getEsotericCompatibilitySummary(sign1, sign2, overallScore, language),
+      communicationScore: (overallScore + _random.nextInt(20) - 10).clamp(
+        0,
+        100,
+      ),
+      summary: _getEsotericCompatibilitySummary(
+        sign1,
+        sign2,
+        overallScore,
+        language,
+      ),
       strengths: _getEsotericCompatibilityStrengths(sign1, sign2, language),
       challenges: _getEsotericCompatibilityChallenges(sign1, sign2, language),
     );
@@ -110,7 +125,11 @@ class HoroscopeService {
   }
 
   static String _getEsotericCompatibilitySummary(
-      ZodiacSign sign1, ZodiacSign sign2, int score, AppLanguage language) {
+    ZodiacSign sign1,
+    ZodiacSign sign2,
+    int score,
+    AppLanguage language,
+  ) {
     final name1 = language == AppLanguage.en ? sign1.name : sign1.nameTr;
     final name2 = language == AppLanguage.en ? sign2.name : sign2.nameTr;
 
@@ -138,87 +157,109 @@ class HoroscopeService {
   }
 
   static List<String> _getEsotericCompatibilityStrengths(
-      ZodiacSign sign1, ZodiacSign sign2, AppLanguage language) {
+    ZodiacSign sign1,
+    ZodiacSign sign2,
+    AppLanguage language,
+  ) {
     final strengths = <String>[];
     final isEn = language == AppLanguage.en;
 
     if (sign1.element == sign2.element) {
-      final elementName = isEn
-          ? sign1.element.name
-          : sign1.element.nameTr;
-      strengths.add(isEn
-          ? 'Sharing the same $elementName element creates wordless understanding - as if you speak the same language.'
-          : 'Aynı $elementName elementini paylaşmak, kelimesiz bir anlayış yaratıyor - sanki aynı dili konuşuyorsunuz.');
+      final elementName = isEn ? sign1.element.name : sign1.element.nameTr;
+      strengths.add(
+        isEn
+            ? 'Sharing the same $elementName element creates wordless understanding - as if you speak the same language.'
+            : 'Aynı $elementName elementini paylaşmak, kelimesiz bir anlayış yaratıyor - sanki aynı dili konuşuyorsunuz.',
+      );
     }
 
     if (sign1.modality != sign2.modality) {
-      strengths.add(isEn
-          ? 'Different modalities complete missing pieces. Where one starts, the other can continue.'
-          : 'Farklı modaliteler, eksik parçaları tamamlıyor. Birinin başladığı yerde diğeri devam edebilir.');
+      strengths.add(
+        isEn
+            ? 'Different modalities complete missing pieces. Where one starts, the other can continue.'
+            : 'Farklı modaliteler, eksik parçaları tamamlıyor. Birinin başladığı yerde diğeri devam edebilir.',
+      );
     }
 
     if (sign1.element == Element.fire && sign2.element == Element.air ||
         sign1.element == Element.air && sign2.element == Element.fire) {
-      strengths.add(isEn
-          ? 'The alchemical union of Fire and Air: ideas catch fire, passions take flight.'
-          : 'Ateş ve Hava\'nın simyasal birleşimi: fikirler alev alıyor, tutkular kanat açıyor.');
+      strengths.add(
+        isEn
+            ? 'The alchemical union of Fire and Air: ideas catch fire, passions take flight.'
+            : 'Ateş ve Hava\'nın simyasal birleşimi: fikirler alev alıyor, tutkular kanat açıyor.',
+      );
     }
 
     if (sign1.element == Element.earth && sign2.element == Element.water ||
         sign1.element == Element.water && sign2.element == Element.earth) {
-      strengths.add(isEn
-          ? 'The sacred marriage of Earth and Water: emotions materialize, dreams become reality.'
-          : 'Toprak ve Su\'yun kutsal evliliği: duygular somutlaşıyor, hayaller gerçekleşiyor.');
+      strengths.add(
+        isEn
+            ? 'The sacred marriage of Earth and Water: emotions materialize, dreams become reality.'
+            : 'Toprak ve Su\'yun kutsal evliliği: duygular somutlaşıyor, hayaller gerçekleşiyor.',
+      );
     }
 
-    strengths.addAll(isEn
-        ? [
-            'Strong potential for spiritual growth - you elevate each other.',
-            'A foundation of mutual respect and admiration exists.',
-            'The ability to see each other\'s hidden potentials.',
-          ]
-        : [
-            'Ruhsal büyüme için güçlü bir potansiyel - birbirinizi yükseltiyorsunuz.',
-            'Karşılıklı saygı ve hayranlık temeli var.',
-            'Birbirinizin gizli potansiyellerini görebilme yeteneği.',
-          ]);
+    strengths.addAll(
+      isEn
+          ? [
+              'Strong potential for spiritual growth - you elevate each other.',
+              'A foundation of mutual respect and admiration exists.',
+              'The ability to see each other\'s hidden potentials.',
+            ]
+          : [
+              'Ruhsal büyüme için güçlü bir potansiyel - birbirinizi yükseltiyorsunuz.',
+              'Karşılıklı saygı ve hayranlık temeli var.',
+              'Birbirinizin gizli potansiyellerini görebilme yeteneği.',
+            ],
+    );
 
     return strengths.take(4).toList();
   }
 
   static List<String> _getEsotericCompatibilityChallenges(
-      ZodiacSign sign1, ZodiacSign sign2, AppLanguage language) {
+    ZodiacSign sign1,
+    ZodiacSign sign2,
+    AppLanguage language,
+  ) {
     final challenges = <String>[];
     final isEn = language == AppLanguage.en;
 
     if (sign1.element != sign2.element) {
-      challenges.add(isEn
-          ? 'Different elements mean different needs. Can one withstand the other\'s fire? Does water want to cool or nourish?'
-          : 'Farklı elementler, farklı ihtiyaçlar demek. Birinin ateşine diğer dayanabilir mi? Su soğutmak mı istiyor, beslemek mi?');
+      challenges.add(
+        isEn
+            ? 'Different elements mean different needs. Can one withstand the other\'s fire? Does water want to cool or nourish?'
+            : 'Farklı elementler, farklı ihtiyaçlar demek. Birinin ateşine diğer dayanabilir mi? Su soğutmak mı istiyor, beslemek mi?',
+      );
     }
 
     if (sign1.modality == sign2.modality) {
-      challenges.add(isEn
-          ? 'The same modality carries the risk of power struggle. Who will set the direction? Who will follow?'
-          : 'Aynı modalite, iktidar mücadelesi riski taşıyor. Kim yön belirleyecek? Kim takip edecek?');
+      challenges.add(
+        isEn
+            ? 'The same modality carries the risk of power struggle. Who will set the direction? Who will follow?'
+            : 'Aynı modalite, iktidar mücadelesi riski taşıyor. Kim yön belirleyecek? Kim takip edecek?',
+      );
     }
 
     if (sign1.element == Element.fire && sign2.element == Element.water ||
         sign1.element == Element.water && sign2.element == Element.fire) {
-      challenges.add(isEn
-          ? 'The dance of Fire and Water can be dangerous - you either extinguish each other or evaporate together.'
-          : 'Ateş ve Su\'yun dansı tehlikeli olabilir - ya birbirinizi söndürürsünüz, ya da buhar olup uçarsınız.');
+      challenges.add(
+        isEn
+            ? 'The dance of Fire and Water can be dangerous - you either extinguish each other or evaporate together.'
+            : 'Ateş ve Su\'yun dansı tehlikeli olabilir - ya birbirinizi söndürürsünüz, ya da buhar olup uçarsınız.',
+      );
     }
 
-    challenges.addAll(isEn
-        ? [
-            'Communication differences: You may assign different meanings to the same words.',
-            'Shadow reflections: You may see sides in each other that you don\'t want to see.',
-          ]
-        : [
-            'İletişim farklılıkları: Aynı kelimelere farklı anlamlar yükleyebilirsiniz.',
-            'Gölge yansımaları: Birbirinizde görmek istemediğiniz yanları görebilirsiniz.',
-          ]);
+    challenges.addAll(
+      isEn
+          ? [
+              'Communication differences: You may assign different meanings to the same words.',
+              'Shadow reflections: You may see sides in each other that you don\'t want to see.',
+            ]
+          : [
+              'İletişim farklılıkları: Aynı kelimelere farklı anlamlar yükleyebilirsiniz.',
+              'Gölge yansımaları: Birbirinizde görmek istemediğiniz yanları görebilirsiniz.',
+            ],
+    );
 
     return challenges.take(3).toList();
   }

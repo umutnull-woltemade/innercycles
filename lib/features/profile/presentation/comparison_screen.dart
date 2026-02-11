@@ -46,7 +46,9 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
       // Her ikili kombinasyonu hesapla
       for (int i = 0; i < validProfiles.length; i++) {
         for (int j = i + 1; j < validProfiles.length; j++) {
-          _pairResults.add(ComparisonService.analyze(validProfiles[i], validProfiles[j]));
+          _pairResults.add(
+            ComparisonService.analyze(validProfiles[i], validProfiles[j]),
+          );
         }
       }
     }
@@ -60,12 +62,16 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
 
   ComparisonResult? get _bestPair {
     if (_pairResults.isEmpty) return null;
-    return _pairResults.reduce((a, b) => a.overallScore > b.overallScore ? a : b);
+    return _pairResults.reduce(
+      (a, b) => a.overallScore > b.overallScore ? a : b,
+    );
   }
 
   ComparisonResult? get _worstPair {
     if (_pairResults.isEmpty) return null;
-    return _pairResults.reduce((a, b) => a.overallScore < b.overallScore ? a : b);
+    return _pairResults.reduce(
+      (a, b) => a.overallScore < b.overallScore ? a : b,
+    );
   }
 
   @override
@@ -80,7 +86,9 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
     }
 
     return Scaffold(
-      backgroundColor: isDark ? const Color(0xFF1F1A2E) : const Color(0xFFFFF0F5),
+      backgroundColor: isDark
+          ? const Color(0xFF1F1A2E)
+          : const Color(0xFFFFF0F5),
       body: Stack(
         children: [
           // Kalpli arka plan
@@ -95,23 +103,65 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
                     padding: const EdgeInsets.all(AppConstants.spacingLg),
                     child: Column(
                       children: [
-                        _buildMultiProfileSelectors(context, profiles, isDark, language),
+                        _buildMultiProfileSelectors(
+                          context,
+                          profiles,
+                          isDark,
+                          language,
+                        ),
                         if (_pairResults.isNotEmpty) ...[
                           const SizedBox(height: AppConstants.spacingLg),
-                          if (_selectedProfiles.whereType<UserProfile>().length > 2)
+                          if (_selectedProfiles
+                                  .whereType<UserProfile>()
+                                  .length >
+                              2)
                             _buildGroupScoreSection(context, isDark, language),
-                          if (_selectedProfiles.whereType<UserProfile>().length == 2 && _pairResults.isNotEmpty) ...[
-                            _buildScoreSection(context, _pairResults.first, isDark, language),
+                          if (_selectedProfiles
+                                      .whereType<UserProfile>()
+                                      .length ==
+                                  2 &&
+                              _pairResults.isNotEmpty) ...[
+                            _buildScoreSection(
+                              context,
+                              _pairResults.first,
+                              isDark,
+                              language,
+                            ),
                             const SizedBox(height: AppConstants.spacingLg),
-                            _buildCategoryScores(context, _pairResults.first, isDark, language),
+                            _buildCategoryScores(
+                              context,
+                              _pairResults.first,
+                              isDark,
+                              language,
+                            ),
                             const SizedBox(height: AppConstants.spacingLg),
-                            _buildSummaryCard(context, _pairResults.first, isDark, language),
+                            _buildSummaryCard(
+                              context,
+                              _pairResults.first,
+                              isDark,
+                              language,
+                            ),
                             const SizedBox(height: AppConstants.spacingLg),
-                            _buildStrengthsCard(context, _pairResults.first, isDark, language),
+                            _buildStrengthsCard(
+                              context,
+                              _pairResults.first,
+                              isDark,
+                              language,
+                            ),
                             const SizedBox(height: AppConstants.spacingLg),
-                            _buildChallengesCard(context, _pairResults.first, isDark, language),
+                            _buildChallengesCard(
+                              context,
+                              _pairResults.first,
+                              isDark,
+                              language,
+                            ),
                             const SizedBox(height: AppConstants.spacingLg),
-                            _buildAdviceCard(context, _pairResults.first, isDark, language),
+                            _buildAdviceCard(
+                              context,
+                              _pairResults.first,
+                              isDark,
+                              language,
+                            ),
                           ],
                           const SizedBox(height: AppConstants.spacingXl),
                         ] else if (validCount < 2)
@@ -137,7 +187,9 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
             onPressed: () => context.pop(),
             icon: Icon(
               Icons.arrow_back_ios_new,
-              color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+              color: isDark
+                  ? AppColors.textPrimary
+                  : AppColors.lightTextPrimary,
             ),
           ),
           const SizedBox(width: AppConstants.spacingSm),
@@ -148,15 +200,17 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
                 Text(
                   L10nService.get('comparison.title', language),
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        color: Colors.pink,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    color: Colors.pink,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 Text(
                   L10nService.get('comparison.subtitle', language),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-                      ),
+                    color: isDark
+                        ? AppColors.textMuted
+                        : AppColors.lightTextMuted,
+                  ),
                 ),
               ],
             ),
@@ -165,7 +219,10 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [Colors.pink.withAlpha(40), Colors.purple.withAlpha(30)],
+                colors: [
+                  Colors.pink.withAlpha(40),
+                  Colors.purple.withAlpha(30),
+                ],
               ),
               shape: BoxShape.circle,
             ),
@@ -191,14 +248,17 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
             Text(
               '${L10nService.get('navigation.profile', language)} (${_selectedProfiles.whereType<UserProfile>().length}/$_maxProfiles)',
               style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                    color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-                  ),
+                color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+              ),
             ),
             if (_selectedProfiles.length > 2)
               TextButton.icon(
                 onPressed: () {
                   setState(() {
-                    _selectedProfiles = [_selectedProfiles[0], _selectedProfiles[1]];
+                    _selectedProfiles = [
+                      _selectedProfiles[0],
+                      _selectedProfiles[1],
+                    ];
                     _pairResults.clear();
                   });
                 },
@@ -224,8 +284,11 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
                 final label = index == 0
                     ? L10nService.get('misc.you', language)
                     : (index == 1
-                        ? L10nService.get('profile.relationship_types.partner', language)
-                        : '${L10nService.get('misc.friend_index', language)} ${index - 1}');
+                          ? L10nService.get(
+                              'profile.relationship_types.partner',
+                              language,
+                            )
+                          : '${L10nService.get('misc.friend_index', language)} ${index - 1}');
 
                 return Padding(
                   padding: const EdgeInsets.only(right: 8),
@@ -269,7 +332,9 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
                       color: isDark
                           ? Colors.pink.withAlpha(20)
                           : Colors.pink.withAlpha(15),
-                      borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+                      borderRadius: BorderRadius.circular(
+                        AppConstants.radiusMd,
+                      ),
                       border: Border.all(
                         color: Colors.pink.withAlpha(60),
                         style: BorderStyle.solid,
@@ -278,13 +343,16 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.add, color: Colors.pink.withAlpha(180), size: 28),
+                        Icon(
+                          Icons.add,
+                          color: Colors.pink.withAlpha(180),
+                          size: 28,
+                        ),
                         const SizedBox(height: 4),
                         Text(
                           L10nService.get('comparison.add', language),
-                          style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                                color: Colors.pink.withAlpha(180),
-                              ),
+                          style: Theme.of(context).textTheme.labelSmall
+                              ?.copyWith(color: Colors.pink.withAlpha(180)),
                         ),
                       ],
                     ),
@@ -297,175 +365,210 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
     ).animate().fadeIn(delay: 100.ms, duration: 400.ms);
   }
 
-  Widget _buildGroupScoreSection(BuildContext context, bool isDark, AppLanguage language) {
+  Widget _buildGroupScoreSection(
+    BuildContext context,
+    bool isDark,
+    AppLanguage language,
+  ) {
     final avgScore = _groupAverageScore;
     final best = _bestPair;
     final worst = _worstPair;
     final scoreColor = avgScore >= 70
         ? Colors.green
         : avgScore >= 50
-            ? Colors.amber
-            : Colors.red;
+        ? Colors.amber
+        : Colors.red;
 
     return Container(
-      padding: const EdgeInsets.all(AppConstants.spacingLg),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            Colors.pink.withAlpha(30),
-            Colors.purple.withAlpha(20),
-            isDark ? Colors.transparent : AppColors.lightCard.withAlpha(200),
-          ],
-        ),
-        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(color: Colors.pink.withAlpha(50)),
-      ),
-      child: Column(
-        children: [
-          // Grup ortalaması
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                width: 90,
-                height: 90,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  gradient: RadialGradient(
-                    colors: [
-                      scoreColor.withAlpha(120),
-                      scoreColor.withAlpha(40),
-                    ],
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: scoreColor.withAlpha(80),
-                      blurRadius: 20,
-                      spreadRadius: 5,
-                    ),
-                  ],
-                ),
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        '$avgScore%',
-                        style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                              color: scoreColor,
-                              fontWeight: FontWeight.bold,
-                            ),
-                      ),
-                      Text(
-                        L10nService.get('comparison.group_harmony', language),
-                        style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                              color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-                              fontSize: 9,
-                            ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
+          padding: const EdgeInsets.all(AppConstants.spacingLg),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Colors.pink.withAlpha(30),
+                Colors.purple.withAlpha(20),
+                isDark
+                    ? Colors.transparent
+                    : AppColors.lightCard.withAlpha(200),
+              ],
+            ),
+            borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+            border: Border.all(color: Colors.pink.withAlpha(50)),
           ),
-
-          const SizedBox(height: AppConstants.spacingLg),
-
-          // En uyumlu ve en az uyumlu ikililer
-          Row(
+          child: Column(
             children: [
-              if (best != null)
-                Expanded(
-                  child: _PairHighlightCard(
-                    title: L10nService.get('comparison.most_compatible', language),
-                    result: best,
-                    color: Colors.green,
-                    icon: Icons.favorite,
-                    isDark: isDark,
-                    language: language,
-                  ),
-                ),
-              if (best != null && worst != null) const SizedBox(width: 12),
-              if (worst != null && _pairResults.length > 1)
-                Expanded(
-                  child: _PairHighlightCard(
-                    title: L10nService.get('comparison.caution', language),
-                    result: worst,
-                    color: Colors.orange,
-                    icon: Icons.warning_amber,
-                    isDark: isDark,
-                    language: language,
-                  ),
-                ),
-            ],
-          ),
-
-          if (_pairResults.length > 2) ...[
-            const SizedBox(height: AppConstants.spacingMd),
-            // Tüm ikililer listesi
-            ExpansionTile(
-              title: Text(
-                '${L10nService.get('comparison.all_pair_compatibilities', language)} (${_pairResults.length})',
-                style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                      color: Colors.pink,
-                    ),
-              ),
-              iconColor: Colors.pink,
-              collapsedIconColor: Colors.pink,
-              children: _pairResults.map((r) {
-                return ListTile(
-                  dense: true,
-                  leading: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(r.profile1.sunSign.symbol, style: const TextStyle(fontSize: 16)),
-                      const Text(' 💕 ', style: TextStyle(fontSize: 10)),
-                      Text(r.profile2.sunSign.symbol, style: const TextStyle(fontSize: 16)),
-                    ],
-                  ),
-                  title: Text(
-                    '${r.profile1.name ?? r.profile1.sunSign.localizedName(language)} & ${r.profile2.name ?? r.profile2.sunSign.localizedName(language)}',
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
-                        ),
-                  ),
-                  trailing: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+              // Grup ortalaması
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width: 90,
+                    height: 90,
                     decoration: BoxDecoration(
-                      color: (r.overallScore >= 70
-                              ? Colors.green
-                              : r.overallScore >= 50
-                                  ? Colors.amber
-                                  : Colors.red)
-                          .withAlpha(40),
-                      borderRadius: BorderRadius.circular(12),
+                      shape: BoxShape.circle,
+                      gradient: RadialGradient(
+                        colors: [
+                          scoreColor.withAlpha(120),
+                          scoreColor.withAlpha(40),
+                        ],
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: scoreColor.withAlpha(80),
+                          blurRadius: 20,
+                          spreadRadius: 5,
+                        ),
+                      ],
                     ),
-                    child: Text(
-                      '${r.overallScore}%',
-                      style: TextStyle(
-                        color: r.overallScore >= 70
-                            ? Colors.green
-                            : r.overallScore >= 50
+                    child: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            '$avgScore%',
+                            style: Theme.of(context).textTheme.headlineSmall
+                                ?.copyWith(
+                                  color: scoreColor,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                          ),
+                          Text(
+                            L10nService.get(
+                              'comparison.group_harmony',
+                              language,
+                            ),
+                            style: Theme.of(context).textTheme.labelSmall
+                                ?.copyWith(
+                                  color: isDark
+                                      ? AppColors.textMuted
+                                      : AppColors.lightTextMuted,
+                                  fontSize: 9,
+                                ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+
+              const SizedBox(height: AppConstants.spacingLg),
+
+              // En uyumlu ve en az uyumlu ikililer
+              Row(
+                children: [
+                  if (best != null)
+                    Expanded(
+                      child: _PairHighlightCard(
+                        title: L10nService.get(
+                          'comparison.most_compatible',
+                          language,
+                        ),
+                        result: best,
+                        color: Colors.green,
+                        icon: Icons.favorite,
+                        isDark: isDark,
+                        language: language,
+                      ),
+                    ),
+                  if (best != null && worst != null) const SizedBox(width: 12),
+                  if (worst != null && _pairResults.length > 1)
+                    Expanded(
+                      child: _PairHighlightCard(
+                        title: L10nService.get('comparison.caution', language),
+                        result: worst,
+                        color: Colors.orange,
+                        icon: Icons.warning_amber,
+                        isDark: isDark,
+                        language: language,
+                      ),
+                    ),
+                ],
+              ),
+
+              if (_pairResults.length > 2) ...[
+                const SizedBox(height: AppConstants.spacingMd),
+                // Tüm ikililer listesi
+                ExpansionTile(
+                  title: Text(
+                    '${L10nService.get('comparison.all_pair_compatibilities', language)} (${_pairResults.length})',
+                    style: Theme.of(
+                      context,
+                    ).textTheme.labelMedium?.copyWith(color: Colors.pink),
+                  ),
+                  iconColor: Colors.pink,
+                  collapsedIconColor: Colors.pink,
+                  children: _pairResults.map((r) {
+                    return ListTile(
+                      dense: true,
+                      leading: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            r.profile1.sunSign.symbol,
+                            style: const TextStyle(fontSize: 16),
+                          ),
+                          const Text(' 💕 ', style: TextStyle(fontSize: 10)),
+                          Text(
+                            r.profile2.sunSign.symbol,
+                            style: const TextStyle(fontSize: 16),
+                          ),
+                        ],
+                      ),
+                      title: Text(
+                        '${r.profile1.name ?? r.profile1.sunSign.localizedName(language)} & ${r.profile2.name ?? r.profile2.sunSign.localizedName(language)}',
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: isDark
+                              ? AppColors.textPrimary
+                              : AppColors.lightTextPrimary,
+                        ),
+                      ),
+                      trailing: Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 4,
+                        ),
+                        decoration: BoxDecoration(
+                          color:
+                              (r.overallScore >= 70
+                                      ? Colors.green
+                                      : r.overallScore >= 50
+                                      ? Colors.amber
+                                      : Colors.red)
+                                  .withAlpha(40),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Text(
+                          '${r.overallScore}%',
+                          style: TextStyle(
+                            color: r.overallScore >= 70
+                                ? Colors.green
+                                : r.overallScore >= 50
                                 ? Colors.amber
                                 : Colors.red,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 12,
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                );
-              }).toList(),
-            ),
-          ],
-        ],
-      ),
-    ).animate().fadeIn(delay: 200.ms, duration: 400.ms).scale(begin: const Offset(0.95, 0.95));
+                    );
+                  }).toList(),
+                ),
+              ],
+            ],
+          ),
+        )
+        .animate()
+        .fadeIn(delay: 200.ms, duration: 400.ms)
+        .scale(begin: const Offset(0.95, 0.95));
   }
 
-  Widget _buildEmptyState(BuildContext context, bool isDark, AppLanguage language) {
+  Widget _buildEmptyState(
+    BuildContext context,
+    bool isDark,
+    AppLanguage language,
+  ) {
     return Container(
       margin: const EdgeInsets.only(top: 60),
       child: Column(
@@ -486,116 +589,130 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
           Text(
             L10nService.get('misc.select_two_profiles', language),
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
-                ),
+              color: isDark
+                  ? AppColors.textPrimary
+                  : AppColors.lightTextPrimary,
+            ),
           ),
           const SizedBox(height: AppConstants.spacingSm),
           Text(
             L10nService.get('misc.select_profiles_hint', language),
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-                ),
+              color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+            ),
           ),
         ],
       ),
     ).animate().fadeIn(delay: 200.ms, duration: 400.ms);
   }
 
-  Widget _buildScoreSection(BuildContext context, ComparisonResult result, bool isDark, AppLanguage language) {
+  Widget _buildScoreSection(
+    BuildContext context,
+    ComparisonResult result,
+    bool isDark,
+    AppLanguage language,
+  ) {
     final scoreColor = result.overallScore >= 70
         ? Colors.green
         : result.overallScore >= 50
-            ? Colors.amber
-            : Colors.red;
+        ? Colors.amber
+        : Colors.red;
 
     return Container(
-      padding: const EdgeInsets.all(AppConstants.spacingLg),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            Colors.pink.withAlpha(25),
-            Colors.purple.withAlpha(15),
-            isDark ? AppColors.surfaceDark : AppColors.lightCard,
-          ],
-        ),
-        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(color: Colors.pink.withAlpha(40)),
-      ),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+          padding: const EdgeInsets.all(AppConstants.spacingLg),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Colors.pink.withAlpha(25),
+                Colors.purple.withAlpha(15),
+                isDark ? AppColors.surfaceDark : AppColors.lightCard,
+              ],
+            ),
+            borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+            border: Border.all(color: Colors.pink.withAlpha(40)),
+          ),
+          child: Column(
             children: [
-              _buildProfileAvatar(result.profile1, language),
-              const SizedBox(width: 16),
-              Column(
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
-                    width: 80,
-                    height: 80,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      gradient: RadialGradient(
-                        colors: [
-                          scoreColor.withAlpha(100),
-                          scoreColor.withAlpha(30),
-                        ],
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: scoreColor.withAlpha(60),
-                          blurRadius: 16,
-                          spreadRadius: 4,
+                  _buildProfileAvatar(result.profile1, language),
+                  const SizedBox(width: 16),
+                  Column(
+                    children: [
+                      Container(
+                        width: 80,
+                        height: 80,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          gradient: RadialGradient(
+                            colors: [
+                              scoreColor.withAlpha(100),
+                              scoreColor.withAlpha(30),
+                            ],
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: scoreColor.withAlpha(60),
+                              blurRadius: 16,
+                              spreadRadius: 4,
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                    child: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            '${result.overallScore}%',
-                            style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                                  color: scoreColor,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                '${result.overallScore}%',
+                                style: Theme.of(context).textTheme.titleLarge
+                                    ?.copyWith(
+                                      color: scoreColor,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                              ),
+                              Text(
+                                result.emoji,
+                                style: const TextStyle(fontSize: 14),
+                              ),
+                            ],
                           ),
-                          Text(
-                            result.emoji,
-                            style: const TextStyle(fontSize: 14),
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 4,
+                        ),
+                        decoration: BoxDecoration(
+                          color: scoreColor.withAlpha(30),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Text(
+                          result.levelTr,
+                          style: TextStyle(
+                            color: scoreColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 12,
                           ),
-                        ],
+                        ),
                       ),
-                    ),
+                    ],
                   ),
-                  const SizedBox(height: 8),
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                    decoration: BoxDecoration(
-                      color: scoreColor.withAlpha(30),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Text(
-                      result.levelTr,
-                      style: TextStyle(
-                        color: scoreColor,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 12,
-                      ),
-                    ),
-                  ),
+                  const SizedBox(width: 16),
+                  _buildProfileAvatar(result.profile2, language),
                 ],
               ),
-              const SizedBox(width: 16),
-              _buildProfileAvatar(result.profile2, language),
             ],
           ),
-        ],
-      ),
-    ).animate().fadeIn(delay: 200.ms, duration: 400.ms).scale(begin: const Offset(0.95, 0.95));
+        )
+        .animate()
+        .fadeIn(delay: 200.ms, duration: 400.ms)
+        .scale(begin: const Offset(0.95, 0.95));
   }
 
   Widget _buildProfileAvatar(UserProfile profile, AppLanguage language) {
@@ -627,16 +744,18 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
         ),
         Text(
           profile.sunSign.localizedName(language),
-          style: TextStyle(
-            fontSize: 10,
-            color: profile.sunSign.color,
-          ),
+          style: TextStyle(fontSize: 10, color: profile.sunSign.color),
         ),
       ],
     );
   }
 
-  Widget _buildCategoryScores(BuildContext context, ComparisonResult result, bool isDark, AppLanguage language) {
+  Widget _buildCategoryScores(
+    BuildContext context,
+    ComparisonResult result,
+    bool isDark,
+    AppLanguage language,
+  ) {
     return Row(
       children: [
         Expanded(
@@ -682,15 +801,20 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
     ).animate().fadeIn(delay: 300.ms, duration: 400.ms);
   }
 
-  Widget _buildSummaryCard(BuildContext context, ComparisonResult result, bool isDark, AppLanguage language) {
+  Widget _buildSummaryCard(
+    BuildContext context,
+    ComparisonResult result,
+    bool isDark,
+    AppLanguage language,
+  ) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
-        color: isDark ? AppColors.surfaceLight.withAlpha(20) : AppColors.lightCard,
+        color: isDark
+            ? AppColors.surfaceLight.withAlpha(20)
+            : AppColors.lightCard,
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-        border: Border.all(
-          color: isDark ? Colors.white12 : Colors.black12,
-        ),
+        border: Border.all(color: isDark ? Colors.white12 : Colors.black12),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -702,9 +826,9 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
               Text(
                 L10nService.get('comparison.cosmic_harmony', language),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      color: Colors.purple,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  color: Colors.purple,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ],
           ),
@@ -712,16 +836,23 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
           Text(
             result.summaryTr,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
-                  height: 1.6,
-                ),
+              color: isDark
+                  ? AppColors.textSecondary
+                  : AppColors.lightTextSecondary,
+              height: 1.6,
+            ),
           ),
         ],
       ),
     ).animate().fadeIn(delay: 400.ms, duration: 400.ms);
   }
 
-  Widget _buildStrengthsCard(BuildContext context, ComparisonResult result, bool isDark, AppLanguage language) {
+  Widget _buildStrengthsCard(
+    BuildContext context,
+    ComparisonResult result,
+    bool isDark,
+    AppLanguage language,
+  ) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -739,37 +870,46 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
               Text(
                 L10nService.get('comparison.strengths', language),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      color: Colors.green,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  color: Colors.green,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ],
           ),
           const SizedBox(height: AppConstants.spacingMd),
-          ...result.strengthsTr.map((s) => Padding(
-                padding: const EdgeInsets.only(bottom: 8),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Icon(Icons.check_circle, color: Colors.green, size: 16),
-                    const SizedBox(width: 8),
-                    Expanded(
-                      child: Text(
-                        s,
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
-                            ),
+          ...result.strengthsTr.map(
+            (s) => Padding(
+              padding: const EdgeInsets.only(bottom: 8),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Icon(Icons.check_circle, color: Colors.green, size: 16),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      s,
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: isDark
+                            ? AppColors.textSecondary
+                            : AppColors.lightTextSecondary,
                       ),
                     ),
-                  ],
-                ),
-              )),
+                  ),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     ).animate().fadeIn(delay: 500.ms, duration: 400.ms);
   }
 
-  Widget _buildChallengesCard(BuildContext context, ComparisonResult result, bool isDark, AppLanguage language) {
+  Widget _buildChallengesCard(
+    BuildContext context,
+    ComparisonResult result,
+    bool isDark,
+    AppLanguage language,
+  ) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -787,37 +927,50 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
               Text(
                 L10nService.get('comparison.things_to_watch', language),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      color: Colors.orange,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  color: Colors.orange,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ],
           ),
           const SizedBox(height: AppConstants.spacingMd),
-          ...result.challengesTr.map((c) => Padding(
-                padding: const EdgeInsets.only(bottom: 8),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Icon(Icons.info_outline, color: Colors.orange, size: 16),
-                    const SizedBox(width: 8),
-                    Expanded(
-                      child: Text(
-                        c,
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
-                            ),
+          ...result.challengesTr.map(
+            (c) => Padding(
+              padding: const EdgeInsets.only(bottom: 8),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Icon(
+                    Icons.info_outline,
+                    color: Colors.orange,
+                    size: 16,
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      c,
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: isDark
+                            ? AppColors.textSecondary
+                            : AppColors.lightTextSecondary,
                       ),
                     ),
-                  ],
-                ),
-              )),
+                  ),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     ).animate().fadeIn(delay: 600.ms, duration: 400.ms);
   }
 
-  Widget _buildAdviceCard(BuildContext context, ComparisonResult result, bool isDark, AppLanguage language) {
+  Widget _buildAdviceCard(
+    BuildContext context,
+    ComparisonResult result,
+    bool isDark,
+    AppLanguage language,
+  ) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -832,14 +985,18 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
         children: [
           Row(
             children: [
-              const Icon(Icons.lightbulb_outline, color: Colors.purple, size: 20),
+              const Icon(
+                Icons.lightbulb_outline,
+                color: Colors.purple,
+                size: 20,
+              ),
               const SizedBox(width: 8),
               Text(
                 L10nService.get('comparison.advice', language),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      color: Colors.purple,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  color: Colors.purple,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ],
           ),
@@ -847,10 +1004,12 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
           Text(
             result.adviceTr,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
-                  height: 1.6,
-                  fontStyle: FontStyle.italic,
-                ),
+              color: isDark
+                  ? AppColors.textSecondary
+                  : AppColors.lightTextSecondary,
+              height: 1.6,
+              fontStyle: FontStyle.italic,
+            ),
           ),
         ],
       ),
@@ -900,7 +1059,9 @@ class _HeartPatternPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = (isDark ? Colors.pink : Colors.pink.shade200).withAlpha(isDark ? 15 : 25)
+      ..color = (isDark ? Colors.pink : Colors.pink.shade200).withAlpha(
+        isDark ? 15 : 25,
+      )
       ..style = PaintingStyle.fill;
 
     final random = math.Random(42); // Deterministic random for consistency
@@ -921,14 +1082,20 @@ class _HeartPatternPainter extends CustomPainter {
     // Basit kalp şekli
     path.moveTo(center.dx, center.dy + size * 0.3);
     path.cubicTo(
-      center.dx - size * 0.5, center.dy - size * 0.3,
-      center.dx - size * 0.5, center.dy - size * 0.7,
-      center.dx, center.dy - size * 0.3,
+      center.dx - size * 0.5,
+      center.dy - size * 0.3,
+      center.dx - size * 0.5,
+      center.dy - size * 0.7,
+      center.dx,
+      center.dy - size * 0.3,
     );
     path.cubicTo(
-      center.dx + size * 0.5, center.dy - size * 0.7,
-      center.dx + size * 0.5, center.dy - size * 0.3,
-      center.dx, center.dy + size * 0.3,
+      center.dx + size * 0.5,
+      center.dy - size * 0.7,
+      center.dx + size * 0.5,
+      center.dy - size * 0.3,
+      center.dx,
+      center.dy + size * 0.3,
     );
 
     canvas.drawPath(path, paint);
@@ -986,9 +1153,15 @@ class _PairHighlightCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(result.profile1.sunSign.symbol, style: const TextStyle(fontSize: 18)),
+              Text(
+                result.profile1.sunSign.symbol,
+                style: const TextStyle(fontSize: 18),
+              ),
               const Text(' 💕 ', style: TextStyle(fontSize: 12)),
-              Text(result.profile2.sunSign.symbol, style: const TextStyle(fontSize: 18)),
+              Text(
+                result.profile2.sunSign.symbol,
+                style: const TextStyle(fontSize: 18),
+              ),
             ],
           ),
           const SizedBox(height: 4),
@@ -1003,9 +1176,9 @@ class _PairHighlightCard extends StatelessWidget {
           Text(
             '${result.profile1.name ?? L10nService.get('comparison.unnamed', language)} & ${result.profile2.name ?? L10nService.get('comparison.unnamed', language)}',
             style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                  color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-                  fontSize: 9,
-                ),
+              color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+              fontSize: 9,
+            ),
             textAlign: TextAlign.center,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
@@ -1047,7 +1220,9 @@ class _ProfileSelector extends StatelessWidget {
             width: 80,
             padding: const EdgeInsets.all(AppConstants.spacingSm),
             decoration: BoxDecoration(
-              color: isDark ? AppColors.surfaceLight.withAlpha(20) : AppColors.lightCard,
+              color: isDark
+                  ? AppColors.surfaceLight.withAlpha(20)
+                  : AppColors.lightCard,
               borderRadius: BorderRadius.circular(AppConstants.radiusMd),
               border: Border.all(
                 color: profile != null
@@ -1061,9 +1236,11 @@ class _ProfileSelector extends StatelessWidget {
                 Text(
                   label,
                   style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                        color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-                        fontSize: 9,
-                      ),
+                    color: isDark
+                        ? AppColors.textMuted
+                        : AppColors.lightTextMuted,
+                    fontSize: 9,
+                  ),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -1090,12 +1267,15 @@ class _ProfileSelector extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    profile!.name ?? L10nService.get('comparison.unnamed', language),
+                    profile!.name ??
+                        L10nService.get('comparison.unnamed', language),
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 10,
-                        ),
+                      color: isDark
+                          ? AppColors.textPrimary
+                          : AppColors.lightTextPrimary,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 10,
+                    ),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -1112,21 +1292,27 @@ class _ProfileSelector extends StatelessWidget {
                     height: 40,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: isDark ? AppColors.surfaceLight.withAlpha(40) : Colors.grey.shade200,
+                      color: isDark
+                          ? AppColors.surfaceLight.withAlpha(40)
+                          : Colors.grey.shade200,
                     ),
                     child: Icon(
                       Icons.person_add,
                       size: 18,
-                      color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                      color: isDark
+                          ? AppColors.textMuted
+                          : AppColors.lightTextMuted,
                     ),
                   ),
                   const SizedBox(height: 4),
                   Text(
                     L10nService.get('comparison.select', language),
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-                          fontSize: 10,
-                        ),
+                      color: isDark
+                          ? AppColors.textMuted
+                          : AppColors.lightTextMuted,
+                      fontSize: 10,
+                    ),
                   ),
                 ],
               ],
@@ -1147,10 +1333,7 @@ class _ProfileSelector extends StatelessWidget {
                   color: Colors.red.withAlpha(200),
                   shape: BoxShape.circle,
                   boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withAlpha(40),
-                      blurRadius: 4,
-                    ),
+                    BoxShadow(color: Colors.black.withAlpha(40), blurRadius: 4),
                   ],
                 ),
                 child: const Icon(Icons.close, size: 12, color: Colors.white),
@@ -1176,9 +1359,11 @@ class _ProfileSelector extends StatelessWidget {
             Text(
               L10nService.get('comparison.select_profile', language),
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
-                    fontWeight: FontWeight.bold,
-                  ),
+                color: isDark
+                    ? AppColors.textPrimary
+                    : AppColors.lightTextPrimary,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             const SizedBox(height: AppConstants.spacingLg),
             if (profiles.isEmpty)
@@ -1187,43 +1372,52 @@ class _ProfileSelector extends StatelessWidget {
                 child: Text(
                   L10nService.get('comparison.no_profiles_yet', language),
                   style: TextStyle(
-                    color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                    color: isDark
+                        ? AppColors.textMuted
+                        : AppColors.lightTextMuted,
                   ),
                 ),
               )
             else
-              ...profiles.map((p) => ListTile(
-                    leading: Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        gradient: RadialGradient(
-                          colors: [
-                            p.sunSign.color.withAlpha(100),
-                            p.sunSign.color.withAlpha(30),
-                          ],
-                        ),
-                      ),
-                      child: Center(
-                        child: Text(p.avatarEmoji ?? p.sunSign.symbol, style: const TextStyle(fontSize: 20)),
+              ...profiles.map(
+                (p) => ListTile(
+                  leading: Container(
+                    width: 40,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      gradient: RadialGradient(
+                        colors: [
+                          p.sunSign.color.withAlpha(100),
+                          p.sunSign.color.withAlpha(30),
+                        ],
                       ),
                     ),
-                    title: Text(
-                      p.name ?? L10nService.get('comparison.unnamed', language),
-                      style: TextStyle(
-                        color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                    child: Center(
+                      child: Text(
+                        p.avatarEmoji ?? p.sunSign.symbol,
+                        style: const TextStyle(fontSize: 20),
                       ),
                     ),
-                    subtitle: Text(
-                      p.sunSign.localizedName(language),
-                      style: TextStyle(color: p.sunSign.color),
+                  ),
+                  title: Text(
+                    p.name ?? L10nService.get('comparison.unnamed', language),
+                    style: TextStyle(
+                      color: isDark
+                          ? AppColors.textPrimary
+                          : AppColors.lightTextPrimary,
                     ),
-                    onTap: () {
-                      onSelect(p);
-                      Navigator.pop(context);
-                    },
-                  )),
+                  ),
+                  subtitle: Text(
+                    p.sunSign.localizedName(language),
+                    style: TextStyle(color: p.sunSign.color),
+                  ),
+                  onTap: () {
+                    onSelect(p);
+                    Navigator.pop(context);
+                  },
+                ),
+              ),
             const SizedBox(height: AppConstants.spacingMd),
           ],
         ),

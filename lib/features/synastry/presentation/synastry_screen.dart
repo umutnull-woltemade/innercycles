@@ -63,10 +63,18 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen>
         child: SafeArea(
           child: NestedScrollView(
             headerSliverBuilder: (context, innerBoxIsScrolled) => [
-              SliverToBoxAdapter(child: _buildHeader(context, userSign, language)),
-              SliverToBoxAdapter(child: _buildPartnerSelector(context, language)),
               SliverToBoxAdapter(
-                child: _buildCompactCompatibilityScore(context, synastryData, language),
+                child: _buildHeader(context, userSign, language),
+              ),
+              SliverToBoxAdapter(
+                child: _buildPartnerSelector(context, language),
+              ),
+              SliverToBoxAdapter(
+                child: _buildCompactCompatibilityScore(
+                  context,
+                  synastryData,
+                  language,
+                ),
               ),
               SliverToBoxAdapter(child: _buildTabBar(context, language)),
             ],
@@ -85,7 +93,11 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen>
     );
   }
 
-  Widget _buildHeader(BuildContext context, ZodiacSign userSign, AppLanguage language) {
+  Widget _buildHeader(
+    BuildContext context,
+    ZodiacSign userSign,
+    AppLanguage language,
+  ) {
     return Padding(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       child: Row(
@@ -405,7 +417,11 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen>
     ).animate().fadeIn(delay: 300.ms, duration: 400.ms);
   }
 
-  Widget _buildOverviewTab(BuildContext context, SynastryData data, AppLanguage language) {
+  Widget _buildOverviewTab(
+    BuildContext context,
+    SynastryData data,
+    AppLanguage language,
+  ) {
     return ListView(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       children: [
@@ -415,7 +431,10 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen>
         // Synastry explanation
         _buildSynastryExplanation(context, language),
         const SizedBox(height: AppConstants.spacingLg),
-        _buildSectionTitle(context, L10nService.get('synastry.relationship_dynamics', language)),
+        _buildSectionTitle(
+          context,
+          L10nService.get('synastry.relationship_dynamics', language),
+        ),
         const SizedBox(height: AppConstants.spacingMd),
         _buildInfoCard(
           context,
@@ -468,7 +487,11 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen>
     );
   }
 
-  Widget _buildCategoryScoresRow(BuildContext context, SynastryData data, AppLanguage language) {
+  Widget _buildCategoryScoresRow(
+    BuildContext context,
+    SynastryData data,
+    AppLanguage language,
+  ) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
       decoration: BoxDecoration(
@@ -555,11 +578,18 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen>
     return Container(width: 1, height: 30, color: Colors.white12);
   }
 
-  Widget _buildAspectsTab(BuildContext context, SynastryData data, AppLanguage language) {
+  Widget _buildAspectsTab(
+    BuildContext context,
+    SynastryData data,
+    AppLanguage language,
+  ) {
     return ListView(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       children: [
-        _buildSectionTitle(context, L10nService.get('synastry.planet_aspects', language)),
+        _buildSectionTitle(
+          context,
+          L10nService.get('synastry.planet_aspects', language),
+        ),
         const SizedBox(height: AppConstants.spacingMd),
         ...data.aspects.asMap().entries.map((entry) {
           final index = entry.key;
@@ -571,11 +601,18 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen>
     );
   }
 
-  Widget _buildHousesTab(BuildContext context, SynastryData data, AppLanguage language) {
+  Widget _buildHousesTab(
+    BuildContext context,
+    SynastryData data,
+    AppLanguage language,
+  ) {
     return ListView(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       children: [
-        _buildSectionTitle(context, L10nService.get('synastry.house_placement', language)),
+        _buildSectionTitle(
+          context,
+          L10nService.get('synastry.house_placement', language),
+        ),
         Text(
           L10nService.get('synastry.house_placement_subtitle', language),
           style: Theme.of(
@@ -593,11 +630,18 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen>
     );
   }
 
-  Widget _buildAdviceTab(BuildContext context, SynastryData data, AppLanguage language) {
+  Widget _buildAdviceTab(
+    BuildContext context,
+    SynastryData data,
+    AppLanguage language,
+  ) {
     return ListView(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       children: [
-        _buildSectionTitle(context, L10nService.get('synastry.relationship_advice', language)),
+        _buildSectionTitle(
+          context,
+          L10nService.get('synastry.relationship_advice', language),
+        ),
         const SizedBox(height: AppConstants.spacingMd),
         ...data.advice.asMap().entries.map((entry) {
           final index = entry.key;
@@ -605,7 +649,10 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen>
           return _buildAdviceCard(context, advice, index);
         }),
         const SizedBox(height: AppConstants.spacingLg),
-        _buildSectionTitle(context, L10nService.get('synastry.important_dates', language)),
+        _buildSectionTitle(
+          context,
+          L10nService.get('synastry.important_dates', language),
+        ),
         const SizedBox(height: AppConstants.spacingMd),
         ...data.importantDates.asMap().entries.map((entry) {
           final index = entry.key;
@@ -669,13 +716,33 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen>
           const SizedBox(height: AppConstants.spacingMd),
           Row(
             children: [
-              _buildSynastryKeyPoint(context, '☌', L10nService.get('synastry.conjunction', language), L10nService.get('synastry.union', language)),
+              _buildSynastryKeyPoint(
+                context,
+                '☌',
+                L10nService.get('synastry.conjunction', language),
+                L10nService.get('synastry.union', language),
+              ),
               const SizedBox(width: 8),
-              _buildSynastryKeyPoint(context, '△', L10nService.get('synastry.trine', language), L10nService.get('synastry.harmony', language)),
+              _buildSynastryKeyPoint(
+                context,
+                '△',
+                L10nService.get('synastry.trine', language),
+                L10nService.get('synastry.harmony', language),
+              ),
               const SizedBox(width: 8),
-              _buildSynastryKeyPoint(context, '□', L10nService.get('synastry.square', language), L10nService.get('synastry.growth', language)),
+              _buildSynastryKeyPoint(
+                context,
+                '□',
+                L10nService.get('synastry.square', language),
+                L10nService.get('synastry.growth', language),
+              ),
               const SizedBox(width: 8),
-              _buildSynastryKeyPoint(context, '☍', L10nService.get('synastry.opposition', language), L10nService.get('synastry.balance', language)),
+              _buildSynastryKeyPoint(
+                context,
+                '☍',
+                L10nService.get('synastry.opposition', language),
+                L10nService.get('synastry.balance', language),
+              ),
             ],
           ),
         ],
@@ -842,7 +909,9 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen>
               borderRadius: BorderRadius.circular(10),
             ),
             child: Text(
-              aspect.isHarmonious ? L10nService.get('synastry.harmonious', language) : L10nService.get('synastry.challenging', language),
+              aspect.isHarmonious
+                  ? L10nService.get('synastry.harmonious', language)
+                  : L10nService.get('synastry.challenging', language),
               style: Theme.of(context).textTheme.labelSmall?.copyWith(
                 color: aspectColor,
                 fontWeight: FontWeight.bold,
@@ -902,7 +971,11 @@ class _SynastryScreenState extends ConsumerState<SynastryScreen>
                       ),
                     ),
                     Text(
-                      L10nService.getWithParams('synastry.in_house', language, params: {'house': overlay.house.toString()}),
+                      L10nService.getWithParams(
+                        'synastry.in_house',
+                        language,
+                        params: {'house': overlay.house.toString()},
+                      ),
                       style: Theme.of(
                         context,
                       ).textTheme.titleSmall?.copyWith(color: Colors.purple),
@@ -1301,7 +1374,13 @@ class SynastryCalculator {
       challenges: _getChallenges(person1Sign, person2Sign, random, language),
       aspects: _generateAspects(person1Sign, person2Sign, random, language),
       houseOverlays: _generateHouseOverlays(person2Sign, random, language),
-      advice: _generateAdvice(person1Sign, person2Sign, overallScore, random, language),
+      advice: _generateAdvice(
+        person1Sign,
+        person2Sign,
+        overallScore,
+        random,
+        language,
+      ),
       importantDates: _generateImportantDates(random, language),
     );
   }
@@ -1318,21 +1397,40 @@ class SynastryCalculator {
 
   static String _getCompatibilityLevel(int score, AppLanguage language) {
     if (score >= 80) return L10nService.get('synastry.level_perfect', language);
-    if (score >= 65) return L10nService.get('synastry.level_very_good', language);
+    if (score >= 65)
+      return L10nService.get('synastry.level_very_good', language);
     if (score >= 50) return L10nService.get('synastry.level_good', language);
-    if (score >= 35) return L10nService.get('synastry.level_moderate', language);
+    if (score >= 35)
+      return L10nService.get('synastry.level_moderate', language);
     return L10nService.get('synastry.level_challenging', language);
   }
 
-  static String _getOverview(ZodiacSign sign1, ZodiacSign sign2, int score, AppLanguage language) {
+  static String _getOverview(
+    ZodiacSign sign1,
+    ZodiacSign sign2,
+    int score,
+    AppLanguage language,
+  ) {
     final sign1Name = sign1.localizedName(language);
     final sign2Name = sign2.localizedName(language);
     if (score >= 70) {
-      return L10nService.getWithParams('synastry.overview_high', language, params: {'sign1': sign1Name, 'sign2': sign2Name});
+      return L10nService.getWithParams(
+        'synastry.overview_high',
+        language,
+        params: {'sign1': sign1Name, 'sign2': sign2Name},
+      );
     } else if (score >= 50) {
-      return L10nService.getWithParams('synastry.overview_medium', language, params: {'sign1': sign1Name, 'sign2': sign2Name});
+      return L10nService.getWithParams(
+        'synastry.overview_medium',
+        language,
+        params: {'sign1': sign1Name, 'sign2': sign2Name},
+      );
     } else {
-      return L10nService.getWithParams('synastry.overview_low', language, params: {'sign1': sign1Name, 'sign2': sign2Name});
+      return L10nService.getWithParams(
+        'synastry.overview_low',
+        language,
+        params: {'sign1': sign1Name, 'sign2': sign2Name},
+      );
     }
   }
 
@@ -1342,7 +1440,10 @@ class SynastryCalculator {
     Random random,
     AppLanguage language,
   ) {
-    final allStrengths = L10nService.getList('synastry.strengths_list', language);
+    final allStrengths = L10nService.getList(
+      'synastry.strengths_list',
+      language,
+    );
 
     final count = 3 + random.nextInt(2);
     final shuffled = List<String>.from(allStrengths);
@@ -1356,7 +1457,10 @@ class SynastryCalculator {
     Random random,
     AppLanguage language,
   ) {
-    final allChallenges = L10nService.getList('synastry.challenges_list', language);
+    final allChallenges = L10nService.getList(
+      'synastry.challenges_list',
+      language,
+    );
 
     final count = 2 + random.nextInt(2);
     final shuffled = List<String>.from(allChallenges);
@@ -1408,7 +1512,10 @@ class SynastryCalculator {
         planet2: '$mercuryLabel ($sign2Name)',
         aspectName: sextileName,
         aspectSymbol: '⚹',
-        interpretation: L10nService.get('synastry.aspect_mercury_mercury', language),
+        interpretation: L10nService.get(
+          'synastry.aspect_mercury_mercury',
+          language,
+        ),
         isHarmonious: true,
       ),
     ];
@@ -1455,13 +1562,19 @@ class SynastryCalculator {
     return [
       RelationshipAdvice(
         title: L10nService.get('synastry.advice_communication_title', language),
-        content: L10nService.get('synastry.advice_communication_content', language),
+        content: L10nService.get(
+          'synastry.advice_communication_content',
+          language,
+        ),
         icon: Icons.chat_bubble_outline,
         color: Colors.blue,
       ),
       RelationshipAdvice(
         title: L10nService.get('synastry.advice_quality_time_title', language),
-        content: L10nService.get('synastry.advice_quality_time_content', language),
+        content: L10nService.get(
+          'synastry.advice_quality_time_content',
+          language,
+        ),
         icon: Icons.schedule,
         color: Colors.green,
       ),
@@ -1480,14 +1593,20 @@ class SynastryCalculator {
     ];
   }
 
-  static List<ImportantDate> _generateImportantDates(Random random, AppLanguage language) {
+  static List<ImportantDate> _generateImportantDates(
+    Random random,
+    AppLanguage language,
+  ) {
     final now = DateTime.now();
     return [
       ImportantDate(
         formattedDate:
             '${now.add(const Duration(days: 14)).day}/${now.add(const Duration(days: 14)).month}',
         event: L10nService.get('synastry.date_venus_trine', language),
-        description: L10nService.get('synastry.date_venus_trine_desc', language),
+        description: L10nService.get(
+          'synastry.date_venus_trine_desc',
+          language,
+        ),
       ),
       ImportantDate(
         formattedDate:
@@ -1499,7 +1618,10 @@ class SynastryCalculator {
         formattedDate:
             '${now.add(const Duration(days: 45)).day}/${now.add(const Duration(days: 45)).month}',
         event: L10nService.get('synastry.date_mars_sextile', language),
-        description: L10nService.get('synastry.date_mars_sextile_desc', language),
+        description: L10nService.get(
+          'synastry.date_mars_sextile_desc',
+          language,
+        ),
       ),
     ];
   }

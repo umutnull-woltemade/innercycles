@@ -647,10 +647,7 @@ class TechnologyInventory {
   final List<TechnologyEngine> engines;
   final DateTime lastUpdated;
 
-  const TechnologyInventory({
-    required this.engines,
-    required this.lastUpdated,
-  });
+  const TechnologyInventory({required this.engines, required this.lastUpdated});
 
   static TechnologyInventory get standard => TechnologyInventory(
     engines: const [

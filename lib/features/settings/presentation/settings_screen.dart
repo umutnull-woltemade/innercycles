@@ -40,7 +40,13 @@ class SettingsScreen extends ConsumerWidget {
                 const SizedBox(height: AppConstants.spacingLg),
                 _buildLanguageSection(context, ref, language, isDark),
                 const SizedBox(height: AppConstants.spacingLg),
-                _buildHouseSystemSection(context, ref, language, houseSystem, isDark),
+                _buildHouseSystemSection(
+                  context,
+                  ref,
+                  language,
+                  houseSystem,
+                  isDark,
+                ),
                 const SizedBox(height: AppConstants.spacingLg),
                 _buildAccountSection(context, ref, language, isDark),
                 const SizedBox(height: AppConstants.spacingLg),
@@ -73,9 +79,9 @@ class SettingsScreen extends ConsumerWidget {
         const SizedBox(width: AppConstants.spacingSm),
         Text(
           L10n.get('settings.title', language),
-          style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                color: AppColors.starGold,
-              ),
+          style: Theme.of(
+            context,
+          ).textTheme.headlineMedium?.copyWith(color: AppColors.starGold),
         ),
       ],
     ).animate().fadeIn(duration: 400.ms);
@@ -149,7 +155,12 @@ class SettingsScreen extends ConsumerWidget {
               } else {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
-                    content: Text(L10nService.get('settings.coming_soon_language', currentLanguage)),
+                    content: Text(
+                      L10nService.get(
+                        'settings.coming_soon_language',
+                        currentLanguage,
+                      ),
+                    ),
                     duration: const Duration(seconds: 2),
                     behavior: SnackBarBehavior.floating,
                   ),
@@ -167,8 +178,8 @@ class SettingsScreen extends ConsumerWidget {
                   color: isSelected
                       ? AppColors.auroraStart.withValues(alpha: 0.2)
                       : (isDark
-                          ? AppColors.surfaceLight.withValues(alpha: 0.3)
-                          : AppColors.lightSurfaceVariant),
+                            ? AppColors.surfaceLight.withValues(alpha: 0.3)
+                            : AppColors.lightSurfaceVariant),
                   borderRadius: BorderRadius.circular(AppConstants.radiusFull),
                   border: Border.all(
                     color: isSelected
@@ -185,14 +196,15 @@ class SettingsScreen extends ConsumerWidget {
                     Text(
                       lang.displayName,
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: isSelected
-                                ? AppColors.auroraStart
-                                : (isDark
-                                    ? AppColors.textPrimary
-                                    : AppColors.lightTextPrimary),
-                            fontWeight:
-                                isSelected ? FontWeight.bold : FontWeight.normal,
-                          ),
+                        color: isSelected
+                            ? AppColors.auroraStart
+                            : (isDark
+                                  ? AppColors.textPrimary
+                                  : AppColors.lightTextPrimary),
+                        fontWeight: isSelected
+                            ? FontWeight.bold
+                            : FontWeight.normal,
+                      ),
                     ),
                     if (isSelected) ...[
                       const SizedBox(width: 4),
@@ -252,9 +264,11 @@ class SettingsScreen extends ConsumerWidget {
                     color: isSelected
                         ? AppColors.celestialGold.withValues(alpha: 0.2)
                         : (isDark
-                            ? AppColors.surfaceLight.withValues(alpha: 0.3)
-                            : AppColors.lightSurfaceVariant),
-                    borderRadius: BorderRadius.circular(AppConstants.radiusFull),
+                              ? AppColors.surfaceLight.withValues(alpha: 0.3)
+                              : AppColors.lightSurfaceVariant),
+                    borderRadius: BorderRadius.circular(
+                      AppConstants.radiusFull,
+                    ),
                     border: Border.all(
                       color: isSelected
                           ? AppColors.celestialGold
@@ -271,10 +285,11 @@ class SettingsScreen extends ConsumerWidget {
                           color: isSelected
                               ? AppColors.celestialGold
                               : (isDark
-                                  ? AppColors.textPrimary
-                                  : AppColors.lightTextPrimary),
-                          fontWeight:
-                              isSelected ? FontWeight.bold : FontWeight.normal,
+                                    ? AppColors.textPrimary
+                                    : AppColors.lightTextPrimary),
+                          fontWeight: isSelected
+                              ? FontWeight.bold
+                              : FontWeight.normal,
                         ),
                       ),
                       if (isSelected) ...[
@@ -298,17 +313,25 @@ class SettingsScreen extends ConsumerWidget {
               decoration: BoxDecoration(
                 color: AppColors.celestialGold.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(AppConstants.radiusSm),
-                border: Border.all(color: AppColors.celestialGold.withValues(alpha: 0.3)),
+                border: Border.all(
+                  color: AppColors.celestialGold.withValues(alpha: 0.3),
+                ),
               ),
               child: Row(
                 children: [
-                  Icon(Icons.info_outline, color: AppColors.celestialGold, size: 18),
+                  Icon(
+                    Icons.info_outline,
+                    color: AppColors.celestialGold,
+                    size: 18,
+                  ),
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
                       currentSystem.description,
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+                        color: isDark
+                            ? AppColors.textSecondary
+                            : AppColors.lightTextSecondary,
                       ),
                     ),
                   ),
@@ -357,7 +380,10 @@ class SettingsScreen extends ConsumerWidget {
               decoration: BoxDecoration(
                 gradient: isPremium
                     ? LinearGradient(
-                        colors: [AppColors.success, AppColors.success.withValues(alpha: 0.8)],
+                        colors: [
+                          AppColors.success,
+                          AppColors.success.withValues(alpha: 0.8),
+                        ],
                       )
                     : AppColors.goldGradient,
                 borderRadius: BorderRadius.circular(12),
@@ -365,9 +391,9 @@ class SettingsScreen extends ConsumerWidget {
               child: Text(
                 isPremium ? '✓ PRO' : 'PRO',
                 style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                      color: isPremium ? Colors.white : AppColors.deepSpace,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  color: isPremium ? Colors.white : AppColors.deepSpace,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ),
@@ -377,7 +403,10 @@ class SettingsScreen extends ConsumerWidget {
             _SettingsTile(
               icon: Icons.credit_card_outlined,
               title: L10nService.get('settings.manage_subscription', language),
-              subtitle: L10nService.get('settings.manage_subscription_desc', language),
+              subtitle: L10nService.get(
+                'settings.manage_subscription_desc',
+                language,
+              ),
               isDark: isDark,
               onTap: () async {
                 await ref.read(paywallServiceProvider).presentCustomerCenter();
@@ -466,8 +495,8 @@ class SettingsScreen extends ConsumerWidget {
           Text(
             L10nService.get('settings.version', language),
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-                ),
+              color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+            ),
           ),
           const Divider(height: 24),
           _SettingsTile(
@@ -487,9 +516,9 @@ class SettingsScreen extends ConsumerWidget {
               child: Text(
                 L10nService.get('settings.pin', language),
                 style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                      color: AppColors.deepSpace,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  color: AppColors.deepSpace,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ),
@@ -508,7 +537,9 @@ class SettingsScreen extends ConsumerWidget {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        backgroundColor: isDark ? AppColors.surfaceDark : AppColors.lightSurface,
+        backgroundColor: isDark
+            ? AppColors.surfaceDark
+            : AppColors.lightSurface,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppConstants.radiusLg),
         ),
@@ -521,7 +552,9 @@ class SettingsScreen extends ConsumerWidget {
         content: Text(
           L10nService.get('settings.clear_data_warning', language),
           style: TextStyle(
-            color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+            color: isDark
+                ? AppColors.textSecondary
+                : AppColors.lightTextSecondary,
           ),
         ),
         actions: [
@@ -554,11 +587,17 @@ class SettingsScreen extends ConsumerWidget {
     );
   }
 
-  void _showDisclaimerDialog(BuildContext context, AppLanguage language, bool isDark) {
+  void _showDisclaimerDialog(
+    BuildContext context,
+    AppLanguage language,
+    bool isDark,
+  ) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        backgroundColor: isDark ? AppColors.surfaceDark : AppColors.lightSurface,
+        backgroundColor: isDark
+            ? AppColors.surfaceDark
+            : AppColors.lightSurface,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppConstants.radiusLg),
         ),
@@ -569,7 +608,9 @@ class SettingsScreen extends ConsumerWidget {
             Text(
               L10nService.get('settings.disclaimer', language),
               style: TextStyle(
-                color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                color: isDark
+                    ? AppColors.textPrimary
+                    : AppColors.lightTextPrimary,
               ),
             ),
           ],
@@ -582,7 +623,9 @@ class SettingsScreen extends ConsumerWidget {
               Text(
                 L10nService.get('settings.disclaimer_content', language),
                 style: TextStyle(
-                  color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+                  color: isDark
+                      ? AppColors.textSecondary
+                      : AppColors.lightTextSecondary,
                   height: 1.5,
                 ),
               ),
@@ -592,17 +635,25 @@ class SettingsScreen extends ConsumerWidget {
                 decoration: BoxDecoration(
                   color: AppColors.starGold.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(8),
-                  border: Border.all(color: AppColors.starGold.withValues(alpha: 0.3)),
+                  border: Border.all(
+                    color: AppColors.starGold.withValues(alpha: 0.3),
+                  ),
                 ),
                 child: Row(
                   children: [
-                    Icon(Icons.lightbulb_outline, color: AppColors.starGold, size: 20),
+                    Icon(
+                      Icons.lightbulb_outline,
+                      color: AppColors.starGold,
+                      size: 20,
+                    ),
                     const SizedBox(width: 8),
                     Expanded(
                       child: Text(
                         L10nService.get('settings.disclaimer_tip', language),
                         style: TextStyle(
-                          color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+                          color: isDark
+                              ? AppColors.textSecondary
+                              : AppColors.lightTextSecondary,
                           fontSize: 12,
                           fontStyle: FontStyle.italic,
                         ),
@@ -661,20 +712,16 @@ class _SettingsSection extends StatelessWidget {
         children: [
           Row(
             children: [
-              Icon(
-                icon,
-                color: AppColors.starGold,
-                size: 20,
-              ),
+              Icon(icon, color: AppColors.starGold, size: 20),
               const SizedBox(width: AppConstants.spacingSm),
               Text(
                 title,
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      color: isDark
-                          ? AppColors.textPrimary
-                          : AppColors.lightTextPrimary,
-                      fontWeight: FontWeight.w600,
-                    ),
+                  color: isDark
+                      ? AppColors.textPrimary
+                      : AppColors.lightTextPrimary,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ],
           ),
@@ -719,8 +766,8 @@ class _ThemeOption extends StatelessWidget {
           color: isSelected
               ? null
               : (isDark
-                  ? AppColors.surfaceLight.withValues(alpha: 0.3)
-                  : AppColors.lightSurfaceVariant),
+                    ? AppColors.surfaceLight.withValues(alpha: 0.3)
+                    : AppColors.lightSurfaceVariant),
           borderRadius: BorderRadius.circular(AppConstants.radiusMd),
           border: Border.all(
             color: isSelected ? AppColors.auroraStart : Colors.transparent,
@@ -740,15 +787,13 @@ class _ThemeOption extends StatelessWidget {
             Text(
               label,
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: isSelected
-                        ? (isDark
-                            ? AppColors.textPrimary
-                            : AppColors.lightTextPrimary)
-                        : (isDark
-                            ? AppColors.textMuted
-                            : AppColors.lightTextMuted),
-                    fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
-                  ),
+                color: isSelected
+                    ? (isDark
+                          ? AppColors.textPrimary
+                          : AppColors.lightTextPrimary)
+                    : (isDark ? AppColors.textMuted : AppColors.lightTextMuted),
+                fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+              ),
             ),
           ],
         ),
@@ -792,20 +837,18 @@ class _SettingsTile extends StatelessWidget {
       ),
       title: Text(
         title,
-        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              color: color,
-            ),
+        style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: color),
       ),
       subtitle: subtitle != null
           ? Text(
               subtitle!,
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color:
-                        isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-                  ),
+                color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+              ),
             )
           : null,
-      trailing: trailing ??
+      trailing:
+          trailing ??
           Icon(
             Icons.chevron_right,
             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,

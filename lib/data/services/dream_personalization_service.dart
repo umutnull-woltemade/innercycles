@@ -49,11 +49,15 @@ enum DreamStyle {
     if (localized != key) return localized;
     // Fallback
     return switch (this) {
-      DreamStyle.jungian => 'Archetype-focused, shadow work, unconscious analysis',
-      DreamStyle.spiritual => 'Cosmic messages, spiritual guidance, mystical interpretation',
-      DreamStyle.practical => 'Daily life focused, action suggestions, concrete advice',
+      DreamStyle.jungian =>
+        'Archetype-focused, shadow work, unconscious analysis',
+      DreamStyle.spiritual =>
+        'Cosmic messages, spiritual guidance, mystical interpretation',
+      DreamStyle.practical =>
+        'Daily life focused, action suggestions, concrete advice',
       DreamStyle.esoteric => 'Ancient wisdom, symbolism, hidden teachings',
-      DreamStyle.psychological => 'Modern psychology perspective, emotional analysis',
+      DreamStyle.psychological =>
+        'Modern psychology perspective, emotional analysis',
     };
   }
 }
@@ -367,7 +371,10 @@ class LifePhaseData {
     'new_beginning': '🌱',
   };
 
-  static LifePhaseInfo? getPhase(String phaseId, {AppLanguage language = AppLanguage.en}) {
+  static LifePhaseInfo? getPhase(
+    String phaseId, {
+    AppLanguage language = AppLanguage.en,
+  }) {
     final normalizedId = phaseId.toLowerCase().replaceAll(' ', '_');
     if (!_phaseIds.contains(normalizedId)) return null;
     return LifePhaseInfo.fromId(normalizedId, language);
@@ -404,8 +411,14 @@ class LifePhaseInfo {
       id: id,
       label: L10nService.get('$baseKey.label', language),
       emoji: LifePhaseData._phaseEmojis[id] ?? '📝',
-      commonDreamThemes: L10nService.getList('$baseKey.common_dream_themes', language),
-      interpretationFocus: L10nService.get('$baseKey.interpretation_focus', language),
+      commonDreamThemes: L10nService.getList(
+        '$baseKey.common_dream_themes',
+        language,
+      ),
+      interpretationFocus: L10nService.get(
+        '$baseKey.interpretation_focus',
+        language,
+      ),
       advice: L10nService.get('$baseKey.advice', language),
     );
   }
@@ -1067,7 +1080,10 @@ class DreamPersonalizationService {
     return Map.fromEntries(sorted.take(10));
   }
 
-  String _getStyleGuide(DreamStyle style, {AppLanguage language = AppLanguage.en}) {
+  String _getStyleGuide(
+    DreamStyle style, {
+    AppLanguage language = AppLanguage.en,
+  }) {
     final key = 'dream_personalization.style_guides.${style.name}';
     final localized = L10nService.get(key, language);
     if (localized != key) return localized;
@@ -1111,7 +1127,10 @@ class DreamPersonalizationService {
   // ═══════════════════════════════════════════════════════════════════════
 
   /// Get personal patterns
-  List<String> getPersonalPatterns(UserDreamProfile profile, {AppLanguage language = AppLanguage.en}) {
+  List<String> getPersonalPatterns(
+    UserDreamProfile profile, {
+    AppLanguage language = AppLanguage.en,
+  }) {
     final patterns = <String>[];
 
     // Symbol patterns
@@ -1122,9 +1141,11 @@ class DreamPersonalizationService {
         final key = 'dream_personalization.patterns.symbol_frequency';
         final localized = L10nService.get(key, language);
         if (localized != key) {
-          patterns.add(localized
-              .replaceAll('{symbol}', topSymbol.key.toUpperCase())
-              .replaceAll('{count}', topSymbol.value.toString()));
+          patterns.add(
+            localized
+                .replaceAll('{symbol}', topSymbol.key.toUpperCase())
+                .replaceAll('{count}', topSymbol.value.toString()),
+          );
         } else {
           patterns.add(
             'The ${topSymbol.key.toUpperCase()} symbol appears frequently in your dreams (${topSymbol.value} times). '
@@ -1139,9 +1160,14 @@ class DreamPersonalizationService {
       final key = 'dream_personalization.patterns.dominant_emotion';
       final localized = L10nService.get(key, language);
       if (localized != key) {
-        patterns.add(localized
-            .replaceAll('{emotion}', profile.dominantDreamEmotion!.label.toLowerCase())
-            .replaceAll('{hint}', profile.dominantDreamEmotion!.hint));
+        patterns.add(
+          localized
+              .replaceAll(
+                '{emotion}',
+                profile.dominantDreamEmotion!.label.toLowerCase(),
+              )
+              .replaceAll('{hint}', profile.dominantDreamEmotion!.hint),
+        );
       } else {
         patterns.add(
           'The ${profile.dominantDreamEmotion!.label.toLowerCase()} emotion is most dominant in your dreams. '
@@ -1154,20 +1180,24 @@ class DreamPersonalizationService {
     if (profile.lucidDreamFrequency > 0.3) {
       final key = 'dream_personalization.patterns.lucid_tendency';
       final localized = L10nService.get(key, language);
-      patterns.add(localized != key
-          ? localized
-          : 'Your lucid dream experience is above average. You can use '
-              'MILD or reality check techniques to develop this awareness.');
+      patterns.add(
+        localized != key
+            ? localized
+            : 'Your lucid dream experience is above average. You can use '
+                  'MILD or reality check techniques to develop this awareness.',
+      );
     }
 
     // Nightmare frequency
     if (profile.nightmareFrequency > 0.2) {
       final key = 'dream_personalization.patterns.nightmare_frequency';
       final localized = L10nService.get(key, language);
-      patterns.add(localized != key
-          ? localized
-          : 'Your nightmare frequency seems a bit high. This may indicate '
-              'unprocessed emotional material or stress periods.');
+      patterns.add(
+        localized != key
+            ? localized
+            : 'Your nightmare frequency seems a bit high. This may indicate '
+                  'unprocessed emotional material or stress periods.',
+      );
     }
 
     // Recurring themes
@@ -1175,7 +1205,9 @@ class DreamPersonalizationService {
       final key = 'dream_personalization.patterns.recurring_themes';
       final localized = L10nService.get(key, language);
       if (localized != key) {
-        patterns.add(localized.replaceAll('{themes}', profile.recurringThemes.join(", ")));
+        patterns.add(
+          localized.replaceAll('{themes}', profile.recurringThemes.join(", ")),
+        );
       } else {
         patterns.add(
           'Recurring themes: ${profile.recurringThemes.join(", ")}. '
@@ -1188,7 +1220,10 @@ class DreamPersonalizationService {
   }
 
   /// User-specific transit information
-  Future<List<String>> getRelevantTransitsForUser(String userId, {AppLanguage language = AppLanguage.en}) async {
+  Future<List<String>> getRelevantTransitsForUser(
+    String userId, {
+    AppLanguage language = AppLanguage.en,
+  }) async {
     final profile = await getOrCreateProfile(userId);
     final now = DateTime.now();
 
@@ -1210,16 +1245,20 @@ class DreamPersonalizationService {
       if (currentMoonSign == profile.sunSign) {
         final key = 'dream_personalization.transits.moon_in_sign';
         final localized = L10nService.get(key, language);
-        transits.add(localized != key
-            ? localized.replaceAll('{sign}', profile.sunSign!)
-            : 'Moon is in your sign (${profile.sunSign}) - Emotional intensity and intuition increase');
+        transits.add(
+          localized != key
+              ? localized.replaceAll('{sign}', profile.sunSign!)
+              : 'Moon is in your sign (${profile.sunSign}) - Emotional intensity and intuition increase',
+        );
       }
       if (currentMoonSign == profile.moonSign) {
         final key = 'dream_personalization.transits.moon_natal';
         final localized = L10nService.get(key, language);
-        transits.add(localized != key
-            ? localized.replaceAll('{sign}', profile.moonSign!)
-            : 'Moon is in your natal Moon sign (${profile.moonSign}) - Deep connection with inner world');
+        transits.add(
+          localized != key
+              ? localized.replaceAll('{sign}', profile.moonSign!)
+              : 'Moon is in your natal Moon sign (${profile.moonSign}) - Deep connection with inner world',
+        );
       }
     }
 
@@ -1228,18 +1267,22 @@ class DreamPersonalizationService {
     if (retrograde != null) {
       final key = 'dream_personalization.transits.retrograde_active';
       final localized = L10nService.get(key, language);
-      transits.add(localized != key
-          ? localized.replaceAll('{planet}', retrograde)
-          : '$retrograde retrograde active - Dreams about the past likely');
+      transits.add(
+        localized != key
+            ? localized.replaceAll('{planet}', retrograde)
+            : '$retrograde retrograde active - Dreams about the past likely',
+      );
     }
 
     // Moon phase - basic info without undefined AstroDreamCorrelations
     final moonPhase = MoonPhaseCalculator.calculate(now);
     final phaseKey = 'dream_personalization.transits.moon_phase';
     final phaseLocalized = L10nService.get(phaseKey, language);
-    transits.add(phaseLocalized != phaseKey
-        ? phaseLocalized.replaceAll('{phase}', moonPhase.name)
-        : 'Moon phase: ${moonPhase.name} - affects dream clarity');
+    transits.add(
+      phaseLocalized != phaseKey
+          ? phaseLocalized.replaceAll('{phase}', moonPhase.name)
+          : 'Moon phase: ${moonPhase.name} - affects dream clarity',
+    );
 
     if (transits.isEmpty) {
       final noTransitKey = 'dream_personalization.transits.no_transits';
@@ -1339,7 +1382,10 @@ class DreamPersonalizationService {
 /// Personalization helpers
 class PersonalizationHelpers {
   /// Language level suggestion based on age
-  static String getLanguageLevelForAge(int age, {AppLanguage language = AppLanguage.en}) {
+  static String getLanguageLevelForAge(
+    int age, {
+    AppLanguage language = AppLanguage.en,
+  }) {
     String levelKey;
     if (age < 18) {
       levelKey = 'young';
@@ -1360,7 +1406,10 @@ class PersonalizationHelpers {
   }
 
   /// Focus symbols for life area
-  static List<String> getFocusSymbolsForLifeArea(String area, {AppLanguage language = AppLanguage.en}) {
+  static List<String> getFocusSymbolsForLifeArea(
+    String area, {
+    AppLanguage language = AppLanguage.en,
+  }) {
     final key = 'dream_personalization.focus_symbols.${area.toLowerCase()}';
     final localized = L10nService.getList(key, language);
     if (localized.isNotEmpty && localized.first != key) return localized;
@@ -1386,8 +1435,12 @@ class PersonalizationHelpers {
   }
 
   /// Additional interpretation based on season
-  static String getSeasonalInsight(String season, {AppLanguage language = AppLanguage.en}) {
-    final key = 'dream_personalization.seasonal_insights.${season.toLowerCase()}';
+  static String getSeasonalInsight(
+    String season, {
+    AppLanguage language = AppLanguage.en,
+  }) {
+    final key =
+        'dream_personalization.seasonal_insights.${season.toLowerCase()}';
     final localized = L10nService.get(key, language);
     if (localized != key) return localized;
     // Fallback
@@ -1410,7 +1463,10 @@ class PersonalizationHelpers {
   }
 
   /// Dream tendency based on day of the week
-  static String getDayOfWeekInsight(String day, {AppLanguage language = AppLanguage.en}) {
+  static String getDayOfWeekInsight(
+    String day, {
+    AppLanguage language = AppLanguage.en,
+  }) {
     final key = 'dream_personalization.day_insights.$day';
     final localized = L10nService.get(key, language);
     if (localized != key) return localized;

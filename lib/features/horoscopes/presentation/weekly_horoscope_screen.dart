@@ -19,7 +19,8 @@ class WeeklyHoroscopeScreen extends ConsumerStatefulWidget {
   const WeeklyHoroscopeScreen({super.key, this.signName});
 
   @override
-  ConsumerState<WeeklyHoroscopeScreen> createState() => _WeeklyHoroscopeScreenState();
+  ConsumerState<WeeklyHoroscopeScreen> createState() =>
+      _WeeklyHoroscopeScreenState();
 }
 
 class _WeeklyHoroscopeScreenState extends ConsumerState<WeeklyHoroscopeScreen> {
@@ -101,11 +102,17 @@ class _WeeklyHoroscopeScreenState extends ConsumerState<WeeklyHoroscopeScreen> {
                       QuizCTACard.astrology(compact: true),
                       const SizedBox(height: AppConstants.spacingXl),
                       // Next Blocks
-                      NextBlocks(currentPage: 'weekly_horoscope', signName: _selectedSign.name),
+                      NextBlocks(
+                        currentPage: 'weekly_horoscope',
+                        signName: _selectedSign.name,
+                      ),
                       const SizedBox(height: AppConstants.spacingXl),
                       // Entertainment Disclaimer
                       PageFooterWithDisclaimer(
-                        brandText: L10nService.get('brands.weekly_horoscope', language),
+                        brandText: L10nService.get(
+                          'brands.weekly_horoscope',
+                          language,
+                        ),
                         disclaimerText: DisclaimerTexts.astrology(language),
                         language: language,
                       ),
@@ -146,7 +153,8 @@ class _WeeklyHoroscopeScreenState extends ConsumerState<WeeklyHoroscopeScreen> {
 
   Widget _buildWeekSelector(bool isDark, AppLanguage language) {
     final weekEnd = _weekStart.add(const Duration(days: 6));
-    final dateFormat = '${_weekStart.day}.${_weekStart.month} - ${weekEnd.day}.${weekEnd.month}';
+    final dateFormat =
+        '${_weekStart.day}.${_weekStart.month} - ${weekEnd.day}.${weekEnd.month}';
 
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: AppConstants.spacingLg),
@@ -170,9 +178,9 @@ class _WeeklyHoroscopeScreenState extends ConsumerState<WeeklyHoroscopeScreen> {
           ),
           Text(
             dateFormat,
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.w600,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
           ),
           IconButton(
             icon: const Icon(Icons.chevron_right),
@@ -210,8 +218,8 @@ class _WeeklyHoroscopeScreenState extends ConsumerState<WeeklyHoroscopeScreen> {
                 color: isSelected
                     ? AppColors.auroraStart.withValues(alpha: 0.3)
                     : isDark
-                        ? AppColors.surfaceLight.withValues(alpha: 0.2)
-                        : AppColors.lightSurfaceVariant,
+                    ? AppColors.surfaceLight.withValues(alpha: 0.2)
+                    : AppColors.lightSurfaceVariant,
                 borderRadius: BorderRadius.circular(AppConstants.radiusSm),
                 border: isSelected
                     ? Border.all(color: AppColors.auroraStart, width: 2)
@@ -220,17 +228,15 @@ class _WeeklyHoroscopeScreenState extends ConsumerState<WeeklyHoroscopeScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    sign.symbol,
-                    style: const TextStyle(fontSize: 20),
-                  ),
+                  Text(sign.symbol, style: const TextStyle(fontSize: 20)),
                   Text(
                     sign.localizedName(ref.read(languageProvider)),
                     style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                          fontSize: 10,
-                          fontWeight:
-                              isSelected ? FontWeight.bold : FontWeight.normal,
-                        ),
+                      fontSize: 10,
+                      fontWeight: isSelected
+                          ? FontWeight.bold
+                          : FontWeight.normal,
+                    ),
                     textAlign: TextAlign.center,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
@@ -258,19 +264,14 @@ class _WeeklyHoroscopeScreenState extends ConsumerState<WeeklyHoroscopeScreen> {
           ],
         ),
         borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: AppColors.auroraStart.withValues(alpha: 0.3),
-        ),
+        border: Border.all(color: AppColors.auroraStart.withValues(alpha: 0.3)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
-              Text(
-                _selectedSign.symbol,
-                style: const TextStyle(fontSize: 26),
-              ),
+              Text(_selectedSign.symbol, style: const TextStyle(fontSize: 26)),
               const SizedBox(width: AppConstants.spacingMd),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -278,8 +279,8 @@ class _WeeklyHoroscopeScreenState extends ConsumerState<WeeklyHoroscopeScreen> {
                   Text(
                     _selectedSign.localizedName(ref.read(languageProvider)),
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   _buildRatingStars(_horoscope!.overallRating),
                 ],
@@ -297,9 +298,9 @@ class _WeeklyHoroscopeScreenState extends ConsumerState<WeeklyHoroscopeScreen> {
                 child: Text(
                   '${L10nService.get('horoscope.lucky_days', ref.read(languageProvider))}: ${_horoscope!.luckyDay}',
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: AppColors.starGold,
-                        fontWeight: FontWeight.w600,
-                      ),
+                    color: AppColors.starGold,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
             ],
@@ -307,9 +308,7 @@ class _WeeklyHoroscopeScreenState extends ConsumerState<WeeklyHoroscopeScreen> {
           const SizedBox(height: AppConstants.spacingLg),
           Text(
             _horoscope!.overview,
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  height: 1.6,
-                ),
+            style: Theme.of(context).textTheme.bodyLarge?.copyWith(height: 1.6),
           ),
         ],
       ),
@@ -399,17 +398,17 @@ class _WeeklyHoroscopeScreenState extends ConsumerState<WeeklyHoroscopeScreen> {
                   Text(
                     cat['title'] as String,
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ],
               ),
               const SizedBox(height: AppConstants.spacingMd),
               Text(
                 cat['content'] as String,
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      height: 1.5,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.bodyMedium?.copyWith(height: 1.5),
               ),
             ],
           ),
@@ -457,9 +456,9 @@ class _WeeklyHoroscopeScreenState extends ConsumerState<WeeklyHoroscopeScreen> {
               const SizedBox(width: AppConstants.spacingMd),
               Text(
                 _getKeyDatesTitle(),
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
               ),
             ],
           ),
@@ -469,11 +468,7 @@ class _WeeklyHoroscopeScreenState extends ConsumerState<WeeklyHoroscopeScreen> {
               padding: const EdgeInsets.symmetric(vertical: 4),
               child: Row(
                 children: [
-                  const Icon(
-                    Icons.circle,
-                    size: 8,
-                    color: AppColors.starGold,
-                  ),
+                  const Icon(Icons.circle, size: 8, color: AppColors.starGold),
                   const SizedBox(width: AppConstants.spacingMd),
                   Expanded(
                     child: Text(
@@ -504,32 +499,29 @@ class _WeeklyHoroscopeScreenState extends ConsumerState<WeeklyHoroscopeScreen> {
           ],
         ),
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-        border: Border.all(
-          color: AppColors.starGold.withValues(alpha: 0.3),
-        ),
+        border: Border.all(color: AppColors.starGold.withValues(alpha: 0.3)),
       ),
       child: Column(
         children: [
-          const Icon(
-            Icons.auto_awesome,
-            color: AppColors.starGold,
-            size: 32,
-          ),
+          const Icon(Icons.auto_awesome, color: AppColors.starGold, size: 32),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
-            L10nService.get('sections.weekly_affirmation', ref.watch(languageProvider)),
+            L10nService.get(
+              'sections.weekly_affirmation',
+              ref.watch(languageProvider),
+            ),
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: AppColors.starGold,
-                ),
+              fontWeight: FontWeight.bold,
+              color: AppColors.starGold,
+            ),
           ),
           const SizedBox(height: AppConstants.spacingSm),
           Text(
             '"${_horoscope!.weeklyAffirmation}"',
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  fontStyle: FontStyle.italic,
-                  height: 1.5,
-                ),
+              fontStyle: FontStyle.italic,
+              height: 1.5,
+            ),
             textAlign: TextAlign.center,
           ),
         ],

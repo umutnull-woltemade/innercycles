@@ -63,7 +63,9 @@ class _GlossaryScreenState extends ConsumerState<GlossaryScreen> {
 
       // Apply category filter
       if (_selectedCategory != null) {
-        results = results.where((e) => e.category == _selectedCategory).toList();
+        results = results
+            .where((e) => e.category == _selectedCategory)
+            .toList();
       }
 
       _filteredEntries = results;
@@ -106,21 +108,25 @@ class _GlossaryScreenState extends ConsumerState<GlossaryScreen> {
               Icons.arrow_back_ios,
               color: isDark ? Colors.white : AppColors.textDark,
             ),
-          tooltip: L10nService.get('common.back', language),
-        ),
+            tooltip: L10nService.get('common.back', language),
+          ),
           Expanded(
             child: Column(
               children: [
                 Text(
                   L10nService.get('screens.glossary.title', language),
                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                        fontWeight: FontWeight.bold,
-                        color: isDark ? Colors.white : AppColors.textDark,
-                      ),
+                    fontWeight: FontWeight.bold,
+                    color: isDark ? Colors.white : AppColors.textDark,
+                  ),
                   textAlign: TextAlign.center,
                 ),
                 Text(
-                  L10nService.getWithParams('screens.glossary.term_count', language, params: {'count': '${_service.glossaryCount}'}),
+                  L10nService.getWithParams(
+                    'screens.glossary.term_count',
+                    language,
+                    params: {'count': '${_service.glossaryCount}'},
+                  ),
                   style: TextStyle(
                     fontSize: 12,
                     color: isDark ? Colors.white60 : AppColors.textLight,
@@ -184,9 +190,19 @@ class _GlossaryScreenState extends ConsumerState<GlossaryScreen> {
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.symmetric(horizontal: AppConstants.spacingLg),
         children: [
-          _buildCategoryChip(null, L10nService.get('common.all', language), '📚', isDark),
+          _buildCategoryChip(
+            null,
+            L10nService.get('common.all', language),
+            '📚',
+            isDark,
+          ),
           ...GlossaryCategory.values.map(
-            (cat) => _buildCategoryChip(cat, cat.localizedName(language), cat.icon, isDark),
+            (cat) => _buildCategoryChip(
+              cat,
+              cat.localizedName(language),
+              cat.icon,
+              isDark,
+            ),
           ),
         ],
       ),
@@ -194,7 +210,11 @@ class _GlossaryScreenState extends ConsumerState<GlossaryScreen> {
   }
 
   Widget _buildCategoryChip(
-      GlossaryCategory? category, String label, String icon, bool isDark) {
+    GlossaryCategory? category,
+    String label,
+    String icon,
+    bool isDark,
+  ) {
     final isSelected = _selectedCategory == category;
 
     return Padding(
@@ -203,11 +223,7 @@ class _GlossaryScreenState extends ConsumerState<GlossaryScreen> {
         selected: isSelected,
         label: Row(
           mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(icon),
-            const SizedBox(width: 4),
-            Text(label),
-          ],
+          children: [Text(icon), const SizedBox(width: 4), Text(label)],
         ),
         onSelected: (_) {
           setState(() {
@@ -310,10 +326,7 @@ class _GlossaryScreenState extends ConsumerState<GlossaryScreen> {
                     ),
                     child: Text(
                       '${entries.length}',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: AppColors.cosmic,
-                      ),
+                      style: TextStyle(fontSize: 12, color: AppColors.cosmic),
                     ),
                   ),
                 ],
@@ -377,10 +390,7 @@ class _GlossaryScreenState extends ConsumerState<GlossaryScreen> {
                       color: AppColors.mystic.withValues(alpha: 0.2),
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    child: Text(
-                      '🏠',
-                      style: const TextStyle(fontSize: 12),
-                    ),
+                    child: Text('🏠', style: const TextStyle(fontSize: 12)),
                   ),
               ],
             ),
@@ -398,10 +408,7 @@ class _GlossaryScreenState extends ConsumerState<GlossaryScreen> {
               const SizedBox(height: 4),
               Text(
                 '✨ ${entry.localizedHint(language)}',
-                style: TextStyle(
-                  fontSize: 12,
-                  color: AppColors.starGold,
-                ),
+                style: TextStyle(fontSize: 12, color: AppColors.starGold),
               ),
             ],
           ],
@@ -446,7 +453,10 @@ class _GlossaryScreenState extends ConsumerState<GlossaryScreen> {
                       const Text('🔮', style: TextStyle(fontSize: 16)),
                       const SizedBox(width: 8),
                       Text(
-                        L10nService.get('screens.glossary.deep_interpretation', language),
+                        L10nService.get(
+                          'screens.glossary.deep_interpretation',
+                          language,
+                        ),
                         style: TextStyle(
                           fontSize: 13,
                           fontWeight: FontWeight.bold,
@@ -505,10 +515,7 @@ class _GlossaryScreenState extends ConsumerState<GlossaryScreen> {
           if (entry.planetInHouse != null) ...[
             const SizedBox(height: AppConstants.spacingMd),
             Container(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 12,
-                vertical: 6,
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
               decoration: BoxDecoration(
                 color: AppColors.mystic.withValues(alpha: 0.15),
                 borderRadius: BorderRadius.circular(20),
@@ -535,10 +542,7 @@ class _GlossaryScreenState extends ConsumerState<GlossaryScreen> {
           if (entry.signRuler != null) ...[
             const SizedBox(height: AppConstants.spacingSm),
             Container(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 12,
-                vertical: 6,
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
               decoration: BoxDecoration(
                 color: AppColors.starGold.withValues(alpha: 0.15),
                 borderRadius: BorderRadius.circular(20),
@@ -549,7 +553,11 @@ class _GlossaryScreenState extends ConsumerState<GlossaryScreen> {
                   const Text('👑', style: TextStyle(fontSize: 14)),
                   const SizedBox(width: 6),
                   Text(
-                    L10nService.getWithParams('screens.glossary.ruler', language, params: {'ruler': entry.signRuler!}),
+                    L10nService.getWithParams(
+                      'screens.glossary.ruler',
+                      language,
+                      params: {'ruler': entry.signRuler!},
+                    ),
                     style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w500,
@@ -650,10 +658,10 @@ class _GlossaryScreenState extends ConsumerState<GlossaryScreen> {
                             ref.type == 'book'
                                 ? '📖'
                                 : ref.type == 'article'
-                                    ? '📰'
-                                    : ref.type == 'website'
-                                        ? '🌐'
-                                        : '📜',
+                                ? '📰'
+                                : ref.type == 'website'
+                                ? '🌐'
+                                : '📜',
                             style: const TextStyle(fontSize: 12),
                           ),
                           const SizedBox(width: 6),

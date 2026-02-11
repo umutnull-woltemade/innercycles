@@ -5,7 +5,10 @@ import '../providers/app_providers.dart';
 class ExtendedHoroscopeContent {
   // ============ WEEKLY CONTENT ============
 
-  static List<String> getWeeklyOverviews(ZodiacSign sign, AppLanguage language) {
+  static List<String> getWeeklyOverviews(
+    ZodiacSign sign,
+    AppLanguage language,
+  ) {
     if (language == AppLanguage.tr) {
       final signName = sign.nameTr;
       final elementName = sign.element.nameTr;
@@ -143,9 +146,25 @@ class ExtendedHoroscopeContent {
 
   static List<String> getDays(AppLanguage language) {
     if (language == AppLanguage.tr) {
-      return ['Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi', 'Pazar'];
+      return [
+        'Pazartesi',
+        'Salı',
+        'Çarşamba',
+        'Perşembe',
+        'Cuma',
+        'Cumartesi',
+        'Pazar',
+      ];
     }
-    return ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    return [
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday',
+      'Sunday',
+    ];
   }
 
   static List<String> getKeyDateEvents(AppLanguage language) {
@@ -171,7 +190,10 @@ class ExtendedHoroscopeContent {
 
   // ============ MONTHLY CONTENT ============
 
-  static List<String> getMonthlyOverviews(ZodiacSign sign, AppLanguage language) {
+  static List<String> getMonthlyOverviews(
+    ZodiacSign sign,
+    AppLanguage language,
+  ) {
     if (language == AppLanguage.tr) {
       final signName = sign.nameTr;
       final elementName = sign.element.nameTr;
@@ -332,7 +354,7 @@ class ExtendedHoroscopeContent {
         'Eylül',
         'Ekim',
         'Kasım',
-        'Aralık'
+        'Aralık',
       ];
     }
     return [
@@ -347,13 +369,16 @@ class ExtendedHoroscopeContent {
       'September',
       'October',
       'November',
-      'December'
+      'December',
     ];
   }
 
   // ============ YEARLY CONTENT ============
 
-  static List<String> getYearlyOverviews(ZodiacSign sign, AppLanguage language) {
+  static List<String> getYearlyOverviews(
+    ZodiacSign sign,
+    AppLanguage language,
+  ) {
     if (language == AppLanguage.tr) {
       final signName = sign.nameTr;
       return [
@@ -497,7 +522,10 @@ class ExtendedHoroscopeContent {
 
   // ============ LOVE HOROSCOPE CONTENT ============
 
-  static List<String> getRomanticOutlooks(ZodiacSign sign, AppLanguage language) {
+  static List<String> getRomanticOutlooks(
+    ZodiacSign sign,
+    AppLanguage language,
+  ) {
     if (language == AppLanguage.tr) {
       final signName = sign.nameTr;
       return [

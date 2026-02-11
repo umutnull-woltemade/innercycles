@@ -7,7 +7,10 @@ void downloadImageOnWeb(Uint8List bytes, String fileName) {
   try {
     // Create blob from bytes
     final jsArray = bytes.toJS;
-    final blob = web.Blob([jsArray].toJS, web.BlobPropertyBag(type: 'image/png'));
+    final blob = web.Blob(
+      [jsArray].toJS,
+      web.BlobPropertyBag(type: 'image/png'),
+    );
     final url = web.URL.createObjectURL(blob);
 
     // Create anchor element and trigger download

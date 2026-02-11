@@ -27,9 +27,9 @@ class SyncService {
       _syncBox = await Hive.openBox(_syncQueueBoxName);
 
       // Listen for connectivity changes
-      _connectivitySubscription = Connectivity()
-          .onConnectivityChanged
-          .listen((List<ConnectivityResult> result) {
+      _connectivitySubscription = Connectivity().onConnectivityChanged.listen((
+        List<ConnectivityResult> result,
+      ) {
         if (!result.contains(ConnectivityResult.none)) {
           syncPendingOperations();
         }
@@ -39,7 +39,9 @@ class SyncService {
       syncPendingOperations();
 
       if (kDebugMode) {
-        debugPrint('SyncService: Initialized with ${_syncBox?.length ?? 0} pending operations');
+        debugPrint(
+          'SyncService: Initialized with ${_syncBox?.length ?? 0} pending operations',
+        );
       }
     } catch (e) {
       if (kDebugMode) {
@@ -73,15 +75,17 @@ class SyncService {
     if (kIsWeb || _syncBox == null) {
       // On web, try to execute immediately
       if (await isOnline) {
-        await _executeOperation(SyncQueueItem(
-          id: recordId,
-          operation: operation,
-          tableName: tableName,
-          recordId: recordId,
-          payload: payload,
-          createdAt: DateTime.now(),
-          status: 'pending',
-        ));
+        await _executeOperation(
+          SyncQueueItem(
+            id: recordId,
+            operation: operation,
+            tableName: tableName,
+            recordId: recordId,
+            payload: payload,
+            createdAt: DateTime.now(),
+            status: 'pending',
+          ),
+        );
       }
       return;
     }
@@ -111,7 +115,11 @@ class SyncService {
   /// Sync all pending operations
   static Future<SyncResult> syncPendingOperations() async {
     if (_isSyncing) {
-      return SyncResult(synced: 0, failed: 0, message: 'Sync already in progress');
+      return SyncResult(
+        synced: 0,
+        failed: 0,
+        message: 'Sync already in progress',
+      );
     }
 
     if (kIsWeb || _syncBox == null) {
@@ -170,11 +178,7 @@ class SyncService {
       debugPrint('SyncService: Sync complete - $synced synced, $failed failed');
     }
 
-    return SyncResult(
-      synced: synced,
-      failed: failed,
-      message: 'Sync complete',
-    );
+    return SyncResult(synced: synced, failed: failed, message: 'Sync complete');
   }
 
   /// Execute a single sync operation
@@ -187,14 +191,13 @@ class SyncService {
           await supabase.from(item.tableName).insert(item.payload);
           break;
         case 'UPDATE':
-          await supabase.from(item.tableName)
+          await supabase
+              .from(item.tableName)
               .update(item.payload)
               .eq('id', item.recordId);
           break;
         case 'DELETE':
-          await supabase.from(item.tableName)
-              .delete()
-              .eq('id', item.recordId);
+          await supabase.from(item.tableName).delete().eq('id', item.recordId);
           break;
         case 'UPSERT':
           await supabase.from(item.tableName).upsert(item.payload);

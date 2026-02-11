@@ -10,10 +10,11 @@ import '../services/storage_service.dart';
 import '../services/dream_journal_service.dart';
 
 // User profile state using Notifier (Riverpod 2.x+)
-final userProfileProvider =
-    NotifierProvider<UserProfileNotifier, UserProfile?>(() {
-  return UserProfileNotifier();
-});
+final userProfileProvider = NotifierProvider<UserProfileNotifier, UserProfile?>(
+  () {
+    return UserProfileNotifier();
+  },
+);
 
 class UserProfileNotifier extends Notifier<UserProfile?> {
   @override
@@ -48,8 +49,8 @@ class UserProfileNotifier extends Notifier<UserProfile?> {
 // Multiple profiles provider
 final savedProfilesProvider =
     NotifierProvider<SavedProfilesNotifier, List<UserProfile>>(() {
-  return SavedProfilesNotifier();
-});
+      return SavedProfilesNotifier();
+    });
 
 class SavedProfilesNotifier extends Notifier<List<UserProfile>> {
   @override
@@ -102,34 +103,41 @@ final comparisonProfile1Provider = StateProvider<UserProfile?>((ref) => null);
 final comparisonProfile2Provider = StateProvider<UserProfile?>((ref) => null);
 
 // Selected zodiac sign for viewing
-final selectedZodiacProvider =
-    StateProvider<zodiac.ZodiacSign?>((ref) => null);
+final selectedZodiacProvider = StateProvider<zodiac.ZodiacSign?>((ref) => null);
 
 // Daily horoscope for a sign with language support
 final dailyHoroscopeProvider =
-    Provider.family<DailyHoroscope, (zodiac.ZodiacSign, AppLanguage)>((ref, params) {
-  return HoroscopeService.generateDailyHoroscope(
-    params.$1,
-    DateTime.now(),
-    language: params.$2,
-  );
-});
+    Provider.family<DailyHoroscope, (zodiac.ZodiacSign, AppLanguage)>((
+      ref,
+      params,
+    ) {
+      return HoroscopeService.generateDailyHoroscope(
+        params.$1,
+        DateTime.now(),
+        language: params.$2,
+      );
+    });
 
 // Compatibility between two signs with language support
-final compatibilityProvider = Provider.family<Compatibility,
-    (zodiac.ZodiacSign, zodiac.ZodiacSign, AppLanguage)>((ref, params) {
-  return HoroscopeService.calculateCompatibility(
-    params.$1,
-    params.$2,
-    language: params.$3,
-  );
-});
+final compatibilityProvider =
+    Provider.family<
+      Compatibility,
+      (zodiac.ZodiacSign, zodiac.ZodiacSign, AppLanguage)
+    >((ref, params) {
+      return HoroscopeService.calculateCompatibility(
+        params.$1,
+        params.$2,
+        language: params.$3,
+      );
+    });
 
 // Selected signs for compatibility checker
-final compatibilitySign1Provider =
-    StateProvider<zodiac.ZodiacSign?>((ref) => null);
-final compatibilitySign2Provider =
-    StateProvider<zodiac.ZodiacSign?>((ref) => null);
+final compatibilitySign1Provider = StateProvider<zodiac.ZodiacSign?>(
+  (ref) => null,
+);
+final compatibilitySign2Provider = StateProvider<zodiac.ZodiacSign?>(
+  (ref) => null,
+);
 
 // Onboarding completed flag
 final onboardingCompleteProvider = StateProvider<bool>((ref) => false);
@@ -139,46 +147,66 @@ final bottomNavIndexProvider = StateProvider<int>((ref) => 0);
 
 // Language provider - supports multiple languages
 enum AppLanguage {
-  en,  // English
-  tr,  // Türkçe
-  el,  // Ελληνικά (Greek)
-  bg,  // Български (Bulgarian)
-  ru,  // Русский (Russian)
-  zh,  // 中文 (Chinese)
-  fr,  // Français (French)
-  de,  // Deutsch (German)
-  es,  // Español (Spanish)
-  ar,  // العربية (Arabic - RTL)
+  en, // English
+  tr, // Türkçe
+  el, // Ελληνικά (Greek)
+  bg, // Български (Bulgarian)
+  ru, // Русский (Russian)
+  zh, // 中文 (Chinese)
+  fr, // Français (French)
+  de, // Deutsch (German)
+  es, // Español (Spanish)
+  ar, // العربية (Arabic - RTL)
 }
 
 extension AppLanguageExtension on AppLanguage {
   String get displayName {
     switch (this) {
-      case AppLanguage.en: return 'English';
-      case AppLanguage.tr: return 'Türkçe';
-      case AppLanguage.el: return 'Ελληνικά';
-      case AppLanguage.bg: return 'Български';
-      case AppLanguage.ru: return 'Русский';
-      case AppLanguage.zh: return '中文';
-      case AppLanguage.fr: return 'Français';
-      case AppLanguage.de: return 'Deutsch';
-      case AppLanguage.es: return 'Español';
-      case AppLanguage.ar: return 'العربية';
+      case AppLanguage.en:
+        return 'English';
+      case AppLanguage.tr:
+        return 'Türkçe';
+      case AppLanguage.el:
+        return 'Ελληνικά';
+      case AppLanguage.bg:
+        return 'Български';
+      case AppLanguage.ru:
+        return 'Русский';
+      case AppLanguage.zh:
+        return '中文';
+      case AppLanguage.fr:
+        return 'Français';
+      case AppLanguage.de:
+        return 'Deutsch';
+      case AppLanguage.es:
+        return 'Español';
+      case AppLanguage.ar:
+        return 'العربية';
     }
   }
 
   String get flag {
     switch (this) {
-      case AppLanguage.en: return '🇬🇧';
-      case AppLanguage.tr: return '🇹🇷';
-      case AppLanguage.el: return '🇬🇷';
-      case AppLanguage.bg: return '🇧🇬';
-      case AppLanguage.ru: return '🇷🇺';
-      case AppLanguage.zh: return '🇨🇳';
-      case AppLanguage.fr: return '🇫🇷';
-      case AppLanguage.de: return '🇩🇪';
-      case AppLanguage.es: return '🇪🇸';
-      case AppLanguage.ar: return '🇸🇦';
+      case AppLanguage.en:
+        return '🇬🇧';
+      case AppLanguage.tr:
+        return '🇹🇷';
+      case AppLanguage.el:
+        return '🇬🇷';
+      case AppLanguage.bg:
+        return '🇧🇬';
+      case AppLanguage.ru:
+        return '🇷🇺';
+      case AppLanguage.zh:
+        return '🇨🇳';
+      case AppLanguage.fr:
+        return '🇫🇷';
+      case AppLanguage.de:
+        return '🇩🇪';
+      case AppLanguage.es:
+        return '🇪🇸';
+      case AppLanguage.ar:
+        return '🇸🇦';
     }
   }
 
@@ -199,16 +227,26 @@ extension AppLanguageExtension on AppLanguage {
 
   Locale get locale {
     switch (this) {
-      case AppLanguage.en: return const Locale('en', 'US');
-      case AppLanguage.tr: return const Locale('tr', 'TR');
-      case AppLanguage.el: return const Locale('el', 'GR');
-      case AppLanguage.bg: return const Locale('bg', 'BG');
-      case AppLanguage.ru: return const Locale('ru', 'RU');
-      case AppLanguage.zh: return const Locale('zh', 'CN');
-      case AppLanguage.fr: return const Locale('fr', 'FR');
-      case AppLanguage.de: return const Locale('de', 'DE');
-      case AppLanguage.es: return const Locale('es', 'ES');
-      case AppLanguage.ar: return const Locale('ar', 'SA');
+      case AppLanguage.en:
+        return const Locale('en', 'US');
+      case AppLanguage.tr:
+        return const Locale('tr', 'TR');
+      case AppLanguage.el:
+        return const Locale('el', 'GR');
+      case AppLanguage.bg:
+        return const Locale('bg', 'BG');
+      case AppLanguage.ru:
+        return const Locale('ru', 'RU');
+      case AppLanguage.zh:
+        return const Locale('zh', 'CN');
+      case AppLanguage.fr:
+        return const Locale('fr', 'FR');
+      case AppLanguage.de:
+        return const Locale('de', 'DE');
+      case AppLanguage.es:
+        return const Locale('es', 'ES');
+      case AppLanguage.ar:
+        return const Locale('ar', 'SA');
     }
   }
 }
@@ -244,7 +282,9 @@ final astrologyApiProvider = Provider<AstrologyApiService>((ref) {
 });
 
 /// Current planet positions from API
-final currentPlanetsProvider = FutureProvider<List<PlanetPositionDto>>((ref) async {
+final currentPlanetsProvider = FutureProvider<List<PlanetPositionDto>>((
+  ref,
+) async {
   final api = ref.watch(astrologyApiProvider);
   final response = await api.planets.getCurrentPositions();
   if (response.isSuccess && response.data != null) {
@@ -274,24 +314,28 @@ final retrogradesProvider = FutureProvider<List<RetrogradeDto>>((ref) async {
 });
 
 /// Sign compatibility from API
-final apiCompatibilityProvider = FutureProvider.family<SignCompatibilityDto,
-    ({String sign1, String sign2})>((ref, params) async {
-  final api = ref.watch(astrologyApiProvider);
-  final response = await api.compatibility.calculateSignCompatibility(
-    sign1: params.sign1,
-    sign2: params.sign2,
-  );
-  if (response.isSuccess && response.data != null) {
-    return response.data!;
-  }
-  throw Exception(response.error ?? 'Failed to calculate compatibility');
-});
+final apiCompatibilityProvider =
+    FutureProvider.family<SignCompatibilityDto, ({String sign1, String sign2})>(
+      (ref, params) async {
+        final api = ref.watch(astrologyApiProvider);
+        final response = await api.compatibility.calculateSignCompatibility(
+          sign1: params.sign1,
+          sign2: params.sign2,
+        );
+        if (response.isSuccess && response.data != null) {
+          return response.data!;
+        }
+        throw Exception(response.error ?? 'Failed to calculate compatibility');
+      },
+    );
 
 // =============================================================================
 // Dream Journal Provider
 // =============================================================================
 
 /// Dream Journal Service provider - async initialization
-final dreamJournalServiceProvider = FutureProvider<DreamJournalService>((ref) async {
+final dreamJournalServiceProvider = FutureProvider<DreamJournalService>((
+  ref,
+) async {
   return await DreamJournalService.init();
 });

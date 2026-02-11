@@ -155,8 +155,10 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
                 ),
                 if (session != null)
                   Text(
-                    L10nService.get('admin.session_expires', lang)
-                        .replaceAll('{hours}', '${session.remainingTime.inHours}'),
+                    L10nService.get(
+                      'admin.session_expires',
+                      lang,
+                    ).replaceAll('{hours}', '${session.remainingTime.inHours}'),
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: isDark
                           ? AppColors.textMuted
@@ -214,10 +216,34 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
       ),
       child: Row(
         children: [
-          _buildNavChip(context, isDark, 0, L10nService.get('admin.overview', lang), Icons.dashboard),
-          _buildNavChip(context, isDark, 1, L10nService.get('admin.growth', lang), Icons.trending_up),
-          _buildNavChip(context, isDark, 2, L10nService.get('admin.events', lang), Icons.analytics),
-          _buildNavChip(context, isDark, 3, L10nService.get('admin.notes', lang), Icons.note_alt),
+          _buildNavChip(
+            context,
+            isDark,
+            0,
+            L10nService.get('admin.overview', lang),
+            Icons.dashboard,
+          ),
+          _buildNavChip(
+            context,
+            isDark,
+            1,
+            L10nService.get('admin.growth', lang),
+            Icons.trending_up,
+          ),
+          _buildNavChip(
+            context,
+            isDark,
+            2,
+            L10nService.get('admin.events', lang),
+            Icons.analytics,
+          ),
+          _buildNavChip(
+            context,
+            isDark,
+            3,
+            L10nService.get('admin.notes', lang),
+            Icons.note_alt,
+          ),
         ],
       ),
     );
@@ -319,8 +345,20 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
                     L10nService.get('admin.growth', lang),
                     Icons.trending_up,
                   ),
-                  _buildSidebarItem(context, isDark, 2, L10nService.get('admin.events', lang), Icons.analytics),
-                  _buildSidebarItem(context, isDark, 3, L10nService.get('admin.notes', lang), Icons.note_alt),
+                  _buildSidebarItem(
+                    context,
+                    isDark,
+                    2,
+                    L10nService.get('admin.events', lang),
+                    Icons.analytics,
+                  ),
+                  _buildSidebarItem(
+                    context,
+                    isDark,
+                    3,
+                    L10nService.get('admin.notes', lang),
+                    Icons.note_alt,
+                  ),
                 ],
               );
             },
@@ -389,7 +427,12 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildSectionTitle(context, isDark, L10nService.get('admin.key_metrics', lang), Icons.analytics),
+          _buildSectionTitle(
+            context,
+            isDark,
+            L10nService.get('admin.key_metrics', lang),
+            Icons.analytics,
+          ),
           const SizedBox(height: AppConstants.spacingMd),
           _buildKpiGrid(context, isDark),
           const SizedBox(height: AppConstants.spacingXl),
@@ -402,7 +445,12 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
           const SizedBox(height: AppConstants.spacingMd),
           _buildUsageChart(context, isDark),
           const SizedBox(height: AppConstants.spacingXl),
-          _buildSectionTitle(context, isDark, L10nService.get('admin.quick_actions', lang), Icons.flash_on),
+          _buildSectionTitle(
+            context,
+            isDark,
+            L10nService.get('admin.quick_actions', lang),
+            Icons.flash_on,
+          ),
           const SizedBox(height: AppConstants.spacingMd),
           _buildQuickActions(context, isDark),
         ],
@@ -604,7 +652,8 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
           isDark,
           L10nService.get('admin.export_data', lang),
           Icons.download,
-          () => _showSnackbar(L10nService.get('admin.export_coming_soon', lang)),
+          () =>
+              _showSnackbar(L10nService.get('admin.export_coming_soon', lang)),
         ),
         _buildActionButton(
           context,
@@ -653,15 +702,15 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
             color: isHighlighted
                 ? AppColors.starGold.withValues(alpha: 0.15)
                 : (isDark
-                    ? AppColors.surfaceLight.withValues(alpha: 0.5)
-                    : AppColors.lightSurfaceVariant),
+                      ? AppColors.surfaceLight.withValues(alpha: 0.5)
+                      : AppColors.lightSurfaceVariant),
             borderRadius: BorderRadius.circular(AppConstants.radiusMd),
             border: Border.all(
               color: isHighlighted
                   ? AppColors.starGold.withValues(alpha: 0.5)
                   : (isDark
-                      ? Colors.white.withValues(alpha: 0.1)
-                      : Colors.black.withValues(alpha: 0.05)),
+                        ? Colors.white.withValues(alpha: 0.1)
+                        : Colors.black.withValues(alpha: 0.05)),
             ),
           ),
           child: Row(
@@ -675,8 +724,8 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
                   color: isHighlighted
                       ? AppColors.starGold
                       : (isDark
-                          ? AppColors.textPrimary
-                          : AppColors.lightTextPrimary),
+                            ? AppColors.textPrimary
+                            : AppColors.lightTextPrimary),
                   fontWeight: isHighlighted ? FontWeight.bold : null,
                 ),
               ),
@@ -707,7 +756,12 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
           const SizedBox(height: AppConstants.spacingMd),
           _buildRetentionChart(context, isDark),
           const SizedBox(height: AppConstants.spacingXl),
-          _buildSectionTitle(context, isDark, L10nService.get('admin.growth_tasks', lang), Icons.task_alt),
+          _buildSectionTitle(
+            context,
+            isDark,
+            L10nService.get('admin.growth_tasks', lang),
+            Icons.task_alt,
+          ),
           const SizedBox(height: AppConstants.spacingMd),
           _buildGrowthTasksList(context, isDark),
         ],
@@ -907,7 +961,12 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildSectionTitle(context, isDark, L10nService.get('admin.event_log', lang), Icons.list_alt),
+          _buildSectionTitle(
+            context,
+            isDark,
+            L10nService.get('admin.event_log', lang),
+            Icons.list_alt,
+          ),
           const SizedBox(height: AppConstants.spacingMd),
           _buildEventLogTable(context, isDark),
         ],
@@ -948,7 +1007,10 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
               children: [
                 Expanded(
                   flex: 2,
-                  child: Text(L10nService.get('admin.event', lang), style: _headerStyle(context, isDark)),
+                  child: Text(
+                    L10nService.get('admin.event', lang),
+                    style: _headerStyle(context, isDark),
+                  ),
                 ),
                 Expanded(
                   flex: 1,
@@ -1077,15 +1139,21 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
 
     if (diff.inMinutes < 1) return L10nService.get('admin.just_now', lang);
     if (diff.inMinutes < 60) {
-      return L10nService.get('admin.minutes_ago', lang)
-          .replaceAll('{count}', '${diff.inMinutes}');
+      return L10nService.get(
+        'admin.minutes_ago',
+        lang,
+      ).replaceAll('{count}', '${diff.inMinutes}');
     }
     if (diff.inHours < 24) {
-      return L10nService.get('admin.hours_ago', lang)
-          .replaceAll('{count}', '${diff.inHours}');
+      return L10nService.get(
+        'admin.hours_ago',
+        lang,
+      ).replaceAll('{count}', '${diff.inHours}');
     }
-    return L10nService.get('admin.days_ago', lang)
-        .replaceAll('{count}', '${diff.inDays}');
+    return L10nService.get(
+      'admin.days_ago',
+      lang,
+    ).replaceAll('{count}', '${diff.inDays}');
   }
 
   // ═══════════════════════════════════════════════════════════════════
@@ -1099,7 +1167,12 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildSectionTitle(context, isDark, L10nService.get('admin.snapshots', lang), Icons.camera_alt),
+          _buildSectionTitle(
+            context,
+            isDark,
+            L10nService.get('admin.snapshots', lang),
+            Icons.camera_alt,
+          ),
           const SizedBox(height: AppConstants.spacingMd),
           _buildSnapshotsList(context, isDark),
           const SizedBox(height: AppConstants.spacingXl),
@@ -1293,7 +1366,8 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               TextButton.icon(
-                onPressed: () => _showSnackbar(L10nService.get('admin.note_saved', lang)),
+                onPressed: () =>
+                    _showSnackbar(L10nService.get('admin.note_saved', lang)),
                 icon: const Icon(Icons.save, size: 18),
                 label: Text(L10nService.get('admin.save_note', lang)),
                 style: TextButton.styleFrom(

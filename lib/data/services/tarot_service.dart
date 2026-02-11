@@ -76,8 +76,25 @@ class TarotService {
 
     // Ters kartlar genelde "hayır" veya "bekle"
     // Bazı kartlar doğal olarak daha pozitif veya negatif
-    final positiveCards = [1, 3, 6, 9, 10, 11, 14, 17, 19, 21]; // Fool, Empress, Lovers, etc.
-    final negativeCards = [12, 13, 15, 16, 18]; // Hanged Man, Death, Devil, Tower, Moon
+    final positiveCards = [
+      1,
+      3,
+      6,
+      9,
+      10,
+      11,
+      14,
+      17,
+      19,
+      21,
+    ]; // Fool, Empress, Lovers, etc.
+    final negativeCards = [
+      12,
+      13,
+      15,
+      16,
+      18,
+    ]; // Hanged Man, Death, Devil, Tower, Moon
 
     final cardName = card.localizedName(language);
     String answer;
@@ -124,11 +141,7 @@ class TarotService {
       }
     }
 
-    return YesNoReading(
-      card: card,
-      answer: answer,
-      explanation: explanation,
-    );
+    return YesNoReading(card: card, answer: answer, explanation: explanation);
   }
 }
 
@@ -211,7 +224,10 @@ class TarotCard {
   /// Localized keywords based on language
   String localizedKeywords(AppLanguage language) {
     final key = _getCardKey();
-    final localizedKeywords = L10nService.get('tarot.cards.$key.keywords', language);
+    final localizedKeywords = L10nService.get(
+      'tarot.cards.$key.keywords',
+      language,
+    );
     // If localization exists, use it; otherwise fall back to hardcoded
     if (localizedKeywords != 'tarot.cards.$key.keywords') {
       return localizedKeywords;
@@ -230,29 +246,52 @@ class TarotCard {
   /// Get the card key for L10nService lookup
   String _getCardKey() {
     switch (number) {
-      case 0: return 'fool';
-      case 1: return 'magician';
-      case 2: return 'high_priestess';
-      case 3: return 'empress';
-      case 4: return 'emperor';
-      case 5: return 'hierophant';
-      case 6: return 'lovers';
-      case 7: return 'chariot';
-      case 8: return 'strength';
-      case 9: return 'hermit';
-      case 10: return 'wheel_of_fortune';
-      case 11: return 'justice';
-      case 12: return 'hanged_man';
-      case 13: return 'death';
-      case 14: return 'temperance';
-      case 15: return 'devil';
-      case 16: return 'tower';
-      case 17: return 'star';
-      case 18: return 'moon';
-      case 19: return 'sun';
-      case 20: return 'judgement';
-      case 21: return 'world';
-      default: return 'fool';
+      case 0:
+        return 'fool';
+      case 1:
+        return 'magician';
+      case 2:
+        return 'high_priestess';
+      case 3:
+        return 'empress';
+      case 4:
+        return 'emperor';
+      case 5:
+        return 'hierophant';
+      case 6:
+        return 'lovers';
+      case 7:
+        return 'chariot';
+      case 8:
+        return 'strength';
+      case 9:
+        return 'hermit';
+      case 10:
+        return 'wheel_of_fortune';
+      case 11:
+        return 'justice';
+      case 12:
+        return 'hanged_man';
+      case 13:
+        return 'death';
+      case 14:
+        return 'temperance';
+      case 15:
+        return 'devil';
+      case 16:
+        return 'tower';
+      case 17:
+        return 'star';
+      case 18:
+        return 'moon';
+      case 19:
+        return 'sun';
+      case 20:
+        return 'judgement';
+      case 21:
+        return 'world';
+      default:
+        return 'fool';
     }
   }
 
@@ -288,7 +327,9 @@ class TarotCard {
 
   /// Get current meaning based on reversed state and language
   String localizedCurrentMeaning(AppLanguage language) {
-    return isReversed ? localizedReversedMeaning(language) : localizedUprightMeaning(language);
+    return isReversed
+        ? localizedReversedMeaning(language)
+        : localizedUprightMeaning(language);
   }
 
   /// Büyük Arkana kartları
@@ -299,10 +340,14 @@ class TarotCard {
       nameTr: 'Deli',
       keywords: 'New beginnings, innocence, spontaneity',
       keywordsTr: 'Yeni başlangıçlar, masumiyet, spontanlık',
-      uprightMeaning: 'Yeni bir yolculuğun eşiğindesin. Korkularını bırak ve bilinmeyene atıl. Evren seni destekliyor.',
-      reversedMeaning: 'Tedbirsizlik veya korku seni engelliyor. Düşünmeden atılma, ama çok da bekleme.',
-      advice: 'Kalbin sana ne söylüyorsa onu dinle. Bazen en büyük bilgelik, bilmediğini kabul etmektir.',
-      esotericMeaning: 'Deli, ruhun madde alemine iniş öncesi saf halidir - henüz hiçbir deneyimle kirletilmemiş, sonsuz potansiyel. Kabala\'da Keter\'den Hokmah\'a giden yolu temsil eder: Saf varoluştan ilk tezahüre geçiş. Sıfır sayısı hem hiçlik hem de sonsuzluktur; tüm sayıları içinde barındırır. Deli\'nin uçuruma yaklaşması korku değil, madde alemine doğum öncesi ruhun cesaretini simgeler. Beyaz köpek içgüdüsel bilgeliği, omzundaki bohça geçmiş yaşamlardan taşınan karmaları temsil eder.',
+      uprightMeaning:
+          'Yeni bir yolculuğun eşiğindesin. Korkularını bırak ve bilinmeyene atıl. Evren seni destekliyor.',
+      reversedMeaning:
+          'Tedbirsizlik veya korku seni engelliyor. Düşünmeden atılma, ama çok da bekleme.',
+      advice:
+          'Kalbin sana ne söylüyorsa onu dinle. Bazen en büyük bilgelik, bilmediğini kabul etmektir.',
+      esotericMeaning:
+          'Deli, ruhun madde alemine iniş öncesi saf halidir - henüz hiçbir deneyimle kirletilmemiş, sonsuz potansiyel. Kabala\'da Keter\'den Hokmah\'a giden yolu temsil eder: Saf varoluştan ilk tezahüre geçiş. Sıfır sayısı hem hiçlik hem de sonsuzluktur; tüm sayıları içinde barındırır. Deli\'nin uçuruma yaklaşması korku değil, madde alemine doğum öncesi ruhun cesaretini simgeler. Beyaz köpek içgüdüsel bilgeliği, omzundaki bohça geçmiş yaşamlardan taşınan karmaları temsil eder.',
       archetype: 'İlahi Çocuk, Trickster, Saf Ruh',
       element: 'Hava',
       astrologicalSign: 'Uranüs',
@@ -315,10 +360,14 @@ class TarotCard {
       nameTr: 'Büyücü',
       keywords: 'Manifestation, willpower, skill',
       keywordsTr: 'Manifestasyon, irade gücü, beceri',
-      uprightMeaning: 'Tüm araçlar elinde. İstediğini gerçekleştirme gücün var. Niyetini netleştir ve harekete geç.',
-      reversedMeaning: 'Potansiyelini harcıyor olabilirsin. Manipülasyona veya aldatmaya dikkat et.',
-      advice: 'Dört element - düşünce, duygu, eylem ve madde - hepsini dengede tut. Yaratıcı gücünü bilinçle kullan.',
-      esotericMeaning: 'Büyücü, "Yukarıda ne varsa aşağıda da o vardır" Hermetik ilkesinin cisimleşmiş halidir. Masasındaki dört araç - asa, kılıç, kupa ve pentakl - dört elementi ve Tetragrammaton\'un harflerini temsil eder. Bir eli göğe, diğeri yere işaret eder: İlahi enerjiyi kanalize eden bir kanal. Başının üstündeki sonsuzluk sembolü (∞) kozmik bilincin aktığını gösterir. Büyücü yaratmaz, var olanı dönüştürür - bu錬 kimyanın özüdür. Hermes Trismegistus\'un arketipi olarak tüm okült bilimlerin ustasıdır.',
+      uprightMeaning:
+          'Tüm araçlar elinde. İstediğini gerçekleştirme gücün var. Niyetini netleştir ve harekete geç.',
+      reversedMeaning:
+          'Potansiyelini harcıyor olabilirsin. Manipülasyona veya aldatmaya dikkat et.',
+      advice:
+          'Dört element - düşünce, duygu, eylem ve madde - hepsini dengede tut. Yaratıcı gücünü bilinçle kullan.',
+      esotericMeaning:
+          'Büyücü, "Yukarıda ne varsa aşağıda da o vardır" Hermetik ilkesinin cisimleşmiş halidir. Masasındaki dört araç - asa, kılıç, kupa ve pentakl - dört elementi ve Tetragrammaton\'un harflerini temsil eder. Bir eli göğe, diğeri yere işaret eder: İlahi enerjiyi kanalize eden bir kanal. Başının üstündeki sonsuzluk sembolü (∞) kozmik bilincin aktığını gösterir. Büyücü yaratmaz, var olanı dönüştürür - bu錬 kimyanın özüdür. Hermes Trismegistus\'un arketipi olarak tüm okült bilimlerin ustasıdır.',
       archetype: 'Hermes, Thoth, Şaman, Simyacı',
       element: 'Hava',
       astrologicalSign: 'Merkür',
@@ -331,10 +380,14 @@ class TarotCard {
       nameTr: 'Başrahibe',
       keywords: 'Intuition, mystery, inner knowledge',
       keywordsTr: 'Sezgi, gizem, içsel bilgi',
-      uprightMeaning: 'Sezgilerine güven. Cevaplar içinde. Sessizlikte ve dinlemede büyük güç var.',
-      reversedMeaning: 'İç sesini bastırıyor olabilirsin. Sırlar veya gizli bilgiler ortaya çıkabilir.',
-      advice: 'Meditasyon ve içsel yolculuk zamanı. Rüyalarına ve sezgilerine dikkat et.',
-      esotericMeaning: 'Başrahibe, Isis\'in peçeli yüzüdür - görünenin ardındaki gizli hakikatin bekçisi. Siyah ve beyaz sütunlar (Boaz ve Jakin) Süleyman Tapınağı\'nın girişindeki düalizmi temsil eder. Arkasındaki perde, görünen ve görünmeyen alemleri ayırır; üzerindeki nar motifleri Persephone\'un yeraltı bilgeliğine işaret eder. Kucağındaki Tora rulosu içsel bilgiyi, hilal ay tahtı değişen ama ölümsüz dişil bilgeliği simgeler. O, Şekina\'dır - İlahi\'nin dişil yüzü, sessiz ama her şeyi bilen.',
+      uprightMeaning:
+          'Sezgilerine güven. Cevaplar içinde. Sessizlikte ve dinlemede büyük güç var.',
+      reversedMeaning:
+          'İç sesini bastırıyor olabilirsin. Sırlar veya gizli bilgiler ortaya çıkabilir.',
+      advice:
+          'Meditasyon ve içsel yolculuk zamanı. Rüyalarına ve sezgilerine dikkat et.',
+      esotericMeaning:
+          'Başrahibe, Isis\'in peçeli yüzüdür - görünenin ardındaki gizli hakikatin bekçisi. Siyah ve beyaz sütunlar (Boaz ve Jakin) Süleyman Tapınağı\'nın girişindeki düalizmi temsil eder. Arkasındaki perde, görünen ve görünmeyen alemleri ayırır; üzerindeki nar motifleri Persephone\'un yeraltı bilgeliğine işaret eder. Kucağındaki Tora rulosu içsel bilgiyi, hilal ay tahtı değişen ama ölümsüz dişil bilgeliği simgeler. O, Şekina\'dır - İlahi\'nin dişil yüzü, sessiz ama her şeyi bilen.',
       archetype: 'Isis, Persephone, Sophia, Ay Tanrıçası',
       element: 'Su',
       astrologicalSign: 'Ay',
@@ -347,10 +400,14 @@ class TarotCard {
       nameTr: 'İmparatoriçe',
       keywords: 'Abundance, fertility, nurturing',
       keywordsTr: 'Bolluk, verimlilik, besleyicilik',
-      uprightMeaning: 'Bolluk ve bereket enerjisi güçlü. Yaratıcılık ve doğurganlık döngüsündesin.',
-      reversedMeaning: 'Kendinle ilgilen. Başkalarına bakarken kendini ihmal etme. Yaratıcı tıkanıklık olabilir.',
-      advice: 'Doğayla bağlantı kur. Güzelliği takdir et. Kendine ve başkalarına şefkat göster.',
-      esotericMeaning: 'İmparatoriçe, Toprak Ana\'nın tezahürüdür - Gaia, Demeter, Venüs\'ün birleşimi. Başrahibe\'nin gizli bilgeliği onda somutlaşır ve dünyaya doğurur. Yıldızlı tacı göklerin kraliçesi olduğunu, buğday başakları ise bolluk ve hasatın koruyucusu olduğunu gösterir. Kalp şeklindeki kalkan üzerindeki Venüs sembolü, sevgi yoluyla yaratımı temsil eder. Akan nehir yaşam enerjisinin (prana, chi) sürekli akışını simgeler. O sadece doğuran değil, besleyen ve dönüştüren güçtür -錬 Binah Sefirası\'nın dünyevi yansıması.',
+      uprightMeaning:
+          'Bolluk ve bereket enerjisi güçlü. Yaratıcılık ve doğurganlık döngüsündesin.',
+      reversedMeaning:
+          'Kendinle ilgilen. Başkalarına bakarken kendini ihmal etme. Yaratıcı tıkanıklık olabilir.',
+      advice:
+          'Doğayla bağlantı kur. Güzelliği takdir et. Kendine ve başkalarına şefkat göster.',
+      esotericMeaning:
+          'İmparatoriçe, Toprak Ana\'nın tezahürüdür - Gaia, Demeter, Venüs\'ün birleşimi. Başrahibe\'nin gizli bilgeliği onda somutlaşır ve dünyaya doğurur. Yıldızlı tacı göklerin kraliçesi olduğunu, buğday başakları ise bolluk ve hasatın koruyucusu olduğunu gösterir. Kalp şeklindeki kalkan üzerindeki Venüs sembolü, sevgi yoluyla yaratımı temsil eder. Akan nehir yaşam enerjisinin (prana, chi) sürekli akışını simgeler. O sadece doğuran değil, besleyen ve dönüştüren güçtür -錬 Binah Sefirası\'nın dünyevi yansıması.',
       archetype: 'Gaia, Demeter, Venüs, Büyük Ana',
       element: 'Toprak',
       astrologicalSign: 'Venüs',
@@ -363,10 +420,14 @@ class TarotCard {
       nameTr: 'İmparator',
       keywords: 'Authority, structure, control',
       keywordsTr: 'Otorite, yapı, kontrol',
-      uprightMeaning: 'Liderlik ve yapı temaları öne çıkıyor. Disiplin ve kararlılık başarı için önemli unsurlar.',
-      reversedMeaning: 'Aşırı kontrol veya katılık. Esnekliğe ihtiyaç var. Otorite figürleriyle çatışma.',
-      advice: 'Güçlü sınırlar koy ama diktatör olma. Sorumluluk al, ama başkalarına da alan bırak.',
-      esotericMeaning: 'İmparator, kozmik düzenin dünyevi uygulayıcısıdır - İlahi Yasa\'nın madde alemindeki koruyucusu. Koç sembolleri Mars\'ın savaşçı enerjisini, taş taht değişmez iradeyi temsil eder. Dört sayısı stabilite ve maddi dünyanın temelini simgeler: dört element, dört yön, dört mevsim. Elindeki ankh yaşam üzerindeki hakimiyeti, küre dünyevi güçü temsil eder. O, Hokmah\'ın aktif, yönlendirici enerjisidir - kaos içinde düzen yaratan, sınırlar koyan ama bu sınırları korumak için güç kullanan. Zeus-Jüpiter arketipinin dünyevi yansımasıdır.',
+      uprightMeaning:
+          'Liderlik ve yapı temaları öne çıkıyor. Disiplin ve kararlılık başarı için önemli unsurlar.',
+      reversedMeaning:
+          'Aşırı kontrol veya katılık. Esnekliğe ihtiyaç var. Otorite figürleriyle çatışma.',
+      advice:
+          'Güçlü sınırlar koy ama diktatör olma. Sorumluluk al, ama başkalarına da alan bırak.',
+      esotericMeaning:
+          'İmparator, kozmik düzenin dünyevi uygulayıcısıdır - İlahi Yasa\'nın madde alemindeki koruyucusu. Koç sembolleri Mars\'ın savaşçı enerjisini, taş taht değişmez iradeyi temsil eder. Dört sayısı stabilite ve maddi dünyanın temelini simgeler: dört element, dört yön, dört mevsim. Elindeki ankh yaşam üzerindeki hakimiyeti, küre dünyevi güçü temsil eder. O, Hokmah\'ın aktif, yönlendirici enerjisidir - kaos içinde düzen yaratan, sınırlar koyan ama bu sınırları korumak için güç kullanan. Zeus-Jüpiter arketipinin dünyevi yansımasıdır.',
       archetype: 'Zeus, Mars, Kral, Baba',
       element: 'Ateş',
       astrologicalSign: 'Koç',
@@ -379,10 +440,14 @@ class TarotCard {
       nameTr: 'Başrahip',
       keywords: 'Tradition, conformity, spirituality',
       keywordsTr: 'Gelenek, uyum, maneviyat',
-      uprightMeaning: 'Geleneksel yollar ve kurumlar önemli. Bir öğretmen veya rehber ortaya çıkabilir.',
-      reversedMeaning: 'Gelenekleri sorgulama zamanı. Kendi spiritüel yolunu bul. Dogmatizmden uzak dur.',
-      advice: 'Bilgelik her yerde bulunabilir. Hem gelenekten öğren hem de kendi hakikatini ara.',
-      esotericMeaning: 'Başrahip, Eleusis\'in büyük rahibi, gizli öğretilerin meşru aktarıcısıdır. İki sütun arasında oturması onu iki dünya arasındaki köprü yapar - profan ile kutsal, bilinç ile bilinçaltı. Üç katlı tacı üç dünyayı (fiziksel, astral, ilahi), çapraz anahtarlar sırların kilidini açma yetkisini temsil eder. Önündeki iki mürit alma ve verme, aktif ve pasif öğrenmeyi simgeler. O, inisiyasyonun bekçisidir - ezoterik bilgiyi layık olana aktaran, gizemi koruyan. Başrahibe\'nin içsel bilgisini kurumsal forma döken güçtür.',
+      uprightMeaning:
+          'Geleneksel yollar ve kurumlar önemli. Bir öğretmen veya rehber ortaya çıkabilir.',
+      reversedMeaning:
+          'Gelenekleri sorgulama zamanı. Kendi spiritüel yolunu bul. Dogmatizmden uzak dur.',
+      advice:
+          'Bilgelik her yerde bulunabilir. Hem gelenekten öğren hem de kendi hakikatini ara.',
+      esotericMeaning:
+          'Başrahip, Eleusis\'in büyük rahibi, gizli öğretilerin meşru aktarıcısıdır. İki sütun arasında oturması onu iki dünya arasındaki köprü yapar - profan ile kutsal, bilinç ile bilinçaltı. Üç katlı tacı üç dünyayı (fiziksel, astral, ilahi), çapraz anahtarlar sırların kilidini açma yetkisini temsil eder. Önündeki iki mürit alma ve verme, aktif ve pasif öğrenmeyi simgeler. O, inisiyasyonun bekçisidir - ezoterik bilgiyi layık olana aktaran, gizemi koruyan. Başrahibe\'nin içsel bilgisini kurumsal forma döken güçtür.',
       archetype: 'Papa, Guru, Zarathustra, Chiron',
       element: 'Toprak',
       astrologicalSign: 'Boğa',
@@ -395,10 +460,14 @@ class TarotCard {
       nameTr: 'Aşıklar',
       keywords: 'Love, harmony, choices',
       keywordsTr: 'Aşk, uyum, seçimler',
-      uprightMeaning: 'Önemli bir seçim veya birleşme. Aşk ve uyum enerjisi güçlü. Kalbin sesini dinle.',
-      reversedMeaning: 'İlişkilerde uyumsuzluk. Değerlerinle çelişen bir seçim. İç çatışma.',
-      advice: 'Gerçek aşk kendini sevmekle başlar. Seçimlerinde hem kalbini hem aklını dinle.',
-      esotericMeaning: 'Aşıklar kartı, simyadaki "Kutsal Evlilik" (Hieros Gamos) konseptini taşır - zıtların birleşmesi yoluyla bütünlüğe ulaşma. Adem ve Havva figürleri bilinç ve bilinçaltının, rasyonel ve sezgisel olanın birleşimini temsil eder. Melek Raphael şifa ve dengeyi simgeler; onun rehberliğinde iki yarım bütünleşir. Ağaç motifleri - bilgi ağacı ve yaşam ağacı - düşüşten önceki ve sonraki bilinci gösterir. Bu kart sadece romantik aşk değil, içsel erkil-dişil dengesinin (anima-animus) kurulmasıdır.',
+      uprightMeaning:
+          'Önemli bir seçim veya birleşme. Aşk ve uyum enerjisi güçlü. Kalbin sesini dinle.',
+      reversedMeaning:
+          'İlişkilerde uyumsuzluk. Değerlerinle çelişen bir seçim. İç çatışma.',
+      advice:
+          'Gerçek aşk kendini sevmekle başlar. Seçimlerinde hem kalbini hem aklını dinle.',
+      esotericMeaning:
+          'Aşıklar kartı, simyadaki "Kutsal Evlilik" (Hieros Gamos) konseptini taşır - zıtların birleşmesi yoluyla bütünlüğe ulaşma. Adem ve Havva figürleri bilinç ve bilinçaltının, rasyonel ve sezgisel olanın birleşimini temsil eder. Melek Raphael şifa ve dengeyi simgeler; onun rehberliğinde iki yarım bütünleşir. Ağaç motifleri - bilgi ağacı ve yaşam ağacı - düşüşten önceki ve sonraki bilinci gösterir. Bu kart sadece romantik aşk değil, içsel erkil-dişil dengesinin (anima-animus) kurulmasıdır.',
       archetype: 'Adem ve Havva, Eros ve Psyche, Şiva ve Şakti',
       element: 'Hava',
       astrologicalSign: 'İkizler',
@@ -411,10 +480,14 @@ class TarotCard {
       nameTr: 'Savaş Arabası',
       keywords: 'Determination, willpower, victory',
       keywordsTr: 'Kararlılık, irade gücü, zafer',
-      uprightMeaning: 'Zafer teması güçlü. İrade gücü ve kararlılık önemli temalar. Engelleri aşma potansiyeli yüksek.',
-      reversedMeaning: 'Kontrol kaybı veya yön karmaşası. Zıt güçler seni çekiştiriyor.',
-      advice: 'Hedefine odaklan. İç çatışmalarını dengele. Zafere giden yolda sebat et.',
-      esotericMeaning: 'Savaş Arabası, ruhun madde üzerindeki zaferini temsil eder - İsrail\'in Mısır\'dan çıkışı, Platon\'un ruh arabasının ustaca yönetilmesi. Siyah ve beyaz sfenksler düşen ve yükselen güçleri, gizli ve açık olanı simgeler; dizginlerin olmayışı iradenin onları yönettiğini gösterir. Yıldızlı gölgelik kozmik korumanın, ay sembolleri bilinçaltının fethedilmesini temsil eder. Kabala\'da Merkaba\'dır - ilahi arabanın, mistik yükselişin sembolü. Savaşçının zırhı psişik korumayı, kadeh (Holy Grail) ruhani arayışı simgeler.',
+      uprightMeaning:
+          'Zafer teması güçlü. İrade gücü ve kararlılık önemli temalar. Engelleri aşma potansiyeli yüksek.',
+      reversedMeaning:
+          'Kontrol kaybı veya yön karmaşası. Zıt güçler seni çekiştiriyor.',
+      advice:
+          'Hedefine odaklan. İç çatışmalarını dengele. Zafere giden yolda sebat et.',
+      esotericMeaning:
+          'Savaş Arabası, ruhun madde üzerindeki zaferini temsil eder - İsrail\'in Mısır\'dan çıkışı, Platon\'un ruh arabasının ustaca yönetilmesi. Siyah ve beyaz sfenksler düşen ve yükselen güçleri, gizli ve açık olanı simgeler; dizginlerin olmayışı iradenin onları yönettiğini gösterir. Yıldızlı gölgelik kozmik korumanın, ay sembolleri bilinçaltının fethedilmesini temsil eder. Kabala\'da Merkaba\'dır - ilahi arabanın, mistik yükselişin sembolü. Savaşçının zırhı psişik korumayı, kadeh (Holy Grail) ruhani arayışı simgeler.',
       archetype: 'Fetih Tanrısı, Helios, Arjuna',
       element: 'Su',
       astrologicalSign: 'Yengeç',
@@ -427,10 +500,14 @@ class TarotCard {
       nameTr: 'Güç',
       keywords: 'Courage, compassion, inner strength',
       keywordsTr: 'Cesaret, merhamet, iç güç',
-      uprightMeaning: 'Gerçek güç şefkatte yatar. İçsel cesaret ve zorlukların üstesinden gelme temaları öne çıkıyor.',
-      reversedMeaning: 'Özgüven eksikliği veya bastırılmış duygular. İç gücünü yeniden keşfet.',
-      advice: 'Vahşi doğanı inkar etme, onu sev ve evcilleştir. Yumuşaklık güçsüzlük değildir.',
-      esotericMeaning: 'Güç kartı, dişil bilgeliğin hayvansal doğayı şefkatle evcilleştirmesini gösterir - Jung\'un gölge ile entegrasyonu, Tantrik tradisyonda kundalini enerjisinin ustaca yönlendirilmesi. Kadının aslanı okşaması, alt chakraların (hayvansal dürtüler) üst merkezler tarafından aydınlatılmasını simgeler. Başındaki sonsuzluk sembolü Büyücü\'nün gücünün içselleşmiş halini, çiçek çelengi sevgi yoluyla dönüşümü temsil eder. Bu fiziksel güç değil, korku üzerindeki zaferdir - karanlığı inkâr etmek yerine sevgiyle kucaklamak. Sekiz sayısı sonsuzluğun, karmanın ve kozmik dengenin sembolüdür.',
+      uprightMeaning:
+          'Gerçek güç şefkatte yatar. İçsel cesaret ve zorlukların üstesinden gelme temaları öne çıkıyor.',
+      reversedMeaning:
+          'Özgüven eksikliği veya bastırılmış duygular. İç gücünü yeniden keşfet.',
+      advice:
+          'Vahşi doğanı inkar etme, onu sev ve evcilleştir. Yumuşaklık güçsüzlük değildir.',
+      esotericMeaning:
+          'Güç kartı, dişil bilgeliğin hayvansal doğayı şefkatle evcilleştirmesini gösterir - Jung\'un gölge ile entegrasyonu, Tantrik tradisyonda kundalini enerjisinin ustaca yönlendirilmesi. Kadının aslanı okşaması, alt chakraların (hayvansal dürtüler) üst merkezler tarafından aydınlatılmasını simgeler. Başındaki sonsuzluk sembolü Büyücü\'nün gücünün içselleşmiş halini, çiçek çelengi sevgi yoluyla dönüşümü temsil eder. Bu fiziksel güç değil, korku üzerindeki zaferdir - karanlığı inkâr etmek yerine sevgiyle kucaklamak. Sekiz sayısı sonsuzluğun, karmanın ve kozmik dengenin sembolüdür.',
       archetype: 'Cybele, Durga, Daniel',
       element: 'Ateş',
       astrologicalSign: 'Aslan',
@@ -443,10 +520,14 @@ class TarotCard {
       nameTr: 'Ermiş',
       keywords: 'Soul searching, introspection, solitude',
       keywordsTr: 'Ruh arayışı, içe bakış, yalnızlık',
-      uprightMeaning: 'İçe dönme ve tefekkür zamanı. Kalabalıklardan uzaklaş, kendi ışığını bul.',
-      reversedMeaning: 'Aşırı izolasyon veya içe kapanma. Ya da tam tersi - yalnızlıktan kaçış.',
-      advice: 'Sessizlikte cevaplar var. Kendi rehberin ol ama tamamen yalnız kalma.',
-      esotericMeaning: 'Ermiş, ilahi bilgeliğin arayıcısıdır - dağ tepesindeki mürşit, zamanın ötesinde olan bilge. Fenerindeki altı köşeli yıldız Süleyman\'ın mührüdür: yukarı ve aşağı üçgenlerin birleşimi, makrokozmos ile mikrokozmos\'un aynalığı. Asası kundalini enerjisinin yükseldiği omurgayı, gri cüppesi dünyevi arzulardan arınmışlığı simgeler. Karanlıkta yol gösterici olması, kendi ışığını bulmuş olanın başkalarına da yol gösterebileceğini hatırlatır. Dokuz sayısı tamamlanmayı, bir döngünün sonunu ve içsel bilgeliği temsil eder.',
+      uprightMeaning:
+          'İçe dönme ve tefekkür zamanı. Kalabalıklardan uzaklaş, kendi ışığını bul.',
+      reversedMeaning:
+          'Aşırı izolasyon veya içe kapanma. Ya da tam tersi - yalnızlıktan kaçış.',
+      advice:
+          'Sessizlikte cevaplar var. Kendi rehberin ol ama tamamen yalnız kalma.',
+      esotericMeaning:
+          'Ermiş, ilahi bilgeliğin arayıcısıdır - dağ tepesindeki mürşit, zamanın ötesinde olan bilge. Fenerindeki altı köşeli yıldız Süleyman\'ın mührüdür: yukarı ve aşağı üçgenlerin birleşimi, makrokozmos ile mikrokozmos\'un aynalığı. Asası kundalini enerjisinin yükseldiği omurgayı, gri cüppesi dünyevi arzulardan arınmışlığı simgeler. Karanlıkta yol gösterici olması, kendi ışığını bulmuş olanın başkalarına da yol gösterebileceğini hatırlatır. Dokuz sayısı tamamlanmayı, bir döngünün sonunu ve içsel bilgeliği temsil eder.',
       archetype: 'Diogenes, Merlin, Kronos, Satürn',
       element: 'Toprak',
       astrologicalSign: 'Başak',
@@ -459,10 +540,14 @@ class TarotCard {
       nameTr: 'Kader Çarkı',
       keywords: 'Change, cycles, fate',
       keywordsTr: 'Değişim, döngüler, kader',
-      uprightMeaning: 'Büyük değişim temaları öne çıkıyor. Döngülerin doğası üzerine düşünmek faydalı olabilir.',
-      reversedMeaning: 'Kötü şans veya döngünün düşüş evresi. Bu da geçecek. Sabırlı ol.',
-      advice: 'Hayatın iniş çıkışları doğal. Tepeye çıktığında şükret, düştüğünde sabret.',
-      esotericMeaning: 'Kader Çarkı, evrenin döngüsel doğasını ve karma yasasını temsil eder. Çarkın dört köşesindeki figürler (insan, aslan, boğa, kartal) sabit burçları ve dört evangelisti simgeler - değişimin ortasındaki değişmez hakikati. Sfenks tepede oturur: bilgi ve gizem üzerinde hâkimiyet. Yılan Set-Typhon olarak iniş güçlerini, Anubis yükselişi temsil eder. Simyasal sembolleri (cıva, kükürt, tuz, su) dönüşüm sürecinin aşamalarını gösterir. TARO harfleri dört yönde döner: TORA (yasa), ROTA (çark), ORAT (konuşur), ATOR (Hathor-Isis). Bu kartın mesajı: "Bu da geçecek."',
+      uprightMeaning:
+          'Büyük değişim temaları öne çıkıyor. Döngülerin doğası üzerine düşünmek faydalı olabilir.',
+      reversedMeaning:
+          'Kötü şans veya döngünün düşüş evresi. Bu da geçecek. Sabırlı ol.',
+      advice:
+          'Hayatın iniş çıkışları doğal. Tepeye çıktığında şükret, düştüğünde sabret.',
+      esotericMeaning:
+          'Kader Çarkı, evrenin döngüsel doğasını ve karma yasasını temsil eder. Çarkın dört köşesindeki figürler (insan, aslan, boğa, kartal) sabit burçları ve dört evangelisti simgeler - değişimin ortasındaki değişmez hakikati. Sfenks tepede oturur: bilgi ve gizem üzerinde hâkimiyet. Yılan Set-Typhon olarak iniş güçlerini, Anubis yükselişi temsil eder. Simyasal sembolleri (cıva, kükürt, tuz, su) dönüşüm sürecinin aşamalarını gösterir. TARO harfleri dört yönde döner: TORA (yasa), ROTA (çark), ORAT (konuşur), ATOR (Hathor-Isis). Bu kartın mesajı: "Bu da geçecek."',
       archetype: 'Fortuna, Moirai, Norns',
       element: 'Ateş',
       astrologicalSign: 'Jüpiter',
@@ -475,10 +560,13 @@ class TarotCard {
       nameTr: 'Adalet',
       keywords: 'Fairness, truth, karma',
       keywordsTr: 'Hakkaniyet, hakikat, karma',
-      uprightMeaning: 'Adalet teması güçlü. Dürüstlük ve hakikat önemli. Karma temaları öne çıkıyor.',
-      reversedMeaning: 'Adaletsizlik veya dengesizlik. Sorumluluktan kaçma. Öz-aldatma.',
+      uprightMeaning:
+          'Adalet teması güçlü. Dürüstlük ve hakikat önemli. Karma temaları öne çıkıyor.',
+      reversedMeaning:
+          'Adaletsizlik veya dengesizlik. Sorumluluktan kaçma. Öz-aldatma.',
       advice: 'Eylemlerinin sonuçlarını kabul et. Dürüst ol - önce kendinle.',
-      esotericMeaning: 'Adalet, kozmik dengenin ve karma yasasının tecessümüdür - Mısırlıların Maat\'ı, kalbin tüyle tartılması. Terazi ruhun eylemlerini ölçer; kılıç hakikati tüm illüzyonlardan ayırır. Tahtın simetrisi ve kırmızı örtü maddi dünyanın (Mars enerjisi) dengelenmesi gerektiğini hatırlatır. On bir sayısı, on (tamamlanma) sonrası yeni bir döngünün başlangıcını, usta sayısını temsil eder. Bu kart "Ne ekersen onu biçersin" evrensel yasasının hatırlatıcısıdır. Adalet kör değildir - her şeyi görür ve dengeler.',
+      esotericMeaning:
+          'Adalet, kozmik dengenin ve karma yasasının tecessümüdür - Mısırlıların Maat\'ı, kalbin tüyle tartılması. Terazi ruhun eylemlerini ölçer; kılıç hakikati tüm illüzyonlardan ayırır. Tahtın simetrisi ve kırmızı örtü maddi dünyanın (Mars enerjisi) dengelenmesi gerektiğini hatırlatır. On bir sayısı, on (tamamlanma) sonrası yeni bir döngünün başlangıcını, usta sayısını temsil eder. Bu kart "Ne ekersen onu biçersin" evrensel yasasının hatırlatıcısıdır. Adalet kör değildir - her şeyi görür ve dengeler.',
       archetype: 'Maat, Themis, Athena, Nemesis',
       element: 'Hava',
       astrologicalSign: 'Terazi',
@@ -491,10 +579,14 @@ class TarotCard {
       nameTr: 'Asılan Adam',
       keywords: 'Suspension, letting go, new perspective',
       keywordsTr: 'Askıda kalma, bırakma, yeni bakış açısı',
-      uprightMeaning: 'Bekle ve teslim ol. Farklı bir açıdan bak. Fedakarlık gerekebilir.',
-      reversedMeaning: 'Gereksiz fedakarlık veya kurban rolü. Ya da teslimiyete direnç.',
-      advice: 'Bazen ilerlemenin yolu durmaktır. Perspektifini değiştir, cevap görünecek.',
-      esotericMeaning: 'Asılan Adam, Odin\'in Yggdrasil\'de dokuz gün asılarak runları keşfetmesi efsanesini yansıtır - bilgelik için gönüllü fedakarlık. Tek ayaktan asılı duruş ters bakış açısını, geleneksel değerlerin sorgulanmasını temsil eder. Başın etrafındaki hale aydınlanmanın bu durağan dönemde gerçekleştiğini gösterir. Tau haçına (T şeklinde) asılması İbrani alfabesinin son harfini, bir döngünün sonunu işaret eder. Bu kart egonun teslimiyetini, zamanın askıya alınmasını ve "yapmama" yoluyla "yapma"nın gücünü öğretir. Su elementinin pasif bilgeliğini taşır.',
+      uprightMeaning:
+          'Bekle ve teslim ol. Farklı bir açıdan bak. Fedakarlık gerekebilir.',
+      reversedMeaning:
+          'Gereksiz fedakarlık veya kurban rolü. Ya da teslimiyete direnç.',
+      advice:
+          'Bazen ilerlemenin yolu durmaktır. Perspektifini değiştir, cevap görünecek.',
+      esotericMeaning:
+          'Asılan Adam, Odin\'in Yggdrasil\'de dokuz gün asılarak runları keşfetmesi efsanesini yansıtır - bilgelik için gönüllü fedakarlık. Tek ayaktan asılı duruş ters bakış açısını, geleneksel değerlerin sorgulanmasını temsil eder. Başın etrafındaki hale aydınlanmanın bu durağan dönemde gerçekleştiğini gösterir. Tau haçına (T şeklinde) asılması İbrani alfabesinin son harfini, bir döngünün sonunu işaret eder. Bu kart egonun teslimiyetini, zamanın askıya alınmasını ve "yapmama" yoluyla "yapma"nın gücünü öğretir. Su elementinin pasif bilgeliğini taşır.',
       archetype: 'Odin, Prometheus, Hz. Petrus',
       element: 'Su',
       astrologicalSign: 'Neptün',
@@ -507,10 +599,13 @@ class TarotCard {
       nameTr: 'Ölüm',
       keywords: 'Transformation, endings, change',
       keywordsTr: 'Dönüşüm, sonlanmalar, değişim',
-      uprightMeaning: 'Büyük bir dönüşüm. Bir şeyin sonu, yeninin başlangıcı. Direnmek acıyı uzatır.',
+      uprightMeaning:
+          'Büyük bir dönüşüm. Bir şeyin sonu, yeninin başlangıcı. Direnmek acıyı uzatır.',
       reversedMeaning: 'Değişime direnç. Bırakamama. Durağanlık.',
-      advice: 'Ölüm yeniden doğuşun kapısıdır. Eskiyi bırak ki yeniye yer açılsın.',
-      esotericMeaning: 'Ölüm kartı, fiziksel ölümü değil, simyasal "nigredo" aşamasını - eski benliğin çözülmesini temsil eder. İskelet süvari (siyah zırh içinde olmadığına dikkat edin - çıplaklık, süslemesizlik) herkesin önünde eşit olduğu hakikati simgeler. Beyaz at saflığı, güller dönüşümü, yükselen güneş yeni doğuşu temsil eder. Ayaklar altındaki kral ve dilenci, ölümün herkesi eşitlediğini gösterir. On üç sayısı geleneksel olarak "uğursuz" kabul edilse de, ezoterik olarak dönüşüm ve yeniden yapılanmanın kutsal sayısıdır. Akrep burcunun kartı olarak en derin dönüşümü simgeler.',
+      advice:
+          'Ölüm yeniden doğuşun kapısıdır. Eskiyi bırak ki yeniye yer açılsın.',
+      esotericMeaning:
+          'Ölüm kartı, fiziksel ölümü değil, simyasal "nigredo" aşamasını - eski benliğin çözülmesini temsil eder. İskelet süvari (siyah zırh içinde olmadığına dikkat edin - çıplaklık, süslemesizlik) herkesin önünde eşit olduğu hakikati simgeler. Beyaz at saflığı, güller dönüşümü, yükselen güneş yeni doğuşu temsil eder. Ayaklar altındaki kral ve dilenci, ölümün herkesi eşitlediğini gösterir. On üç sayısı geleneksel olarak "uğursuz" kabul edilse de, ezoterik olarak dönüşüm ve yeniden yapılanmanın kutsal sayısıdır. Akrep burcunun kartı olarak en derin dönüşümü simgeler.',
       archetype: 'Thanatos, Hades, Kali, Osiris',
       element: 'Su',
       astrologicalSign: 'Akrep',
@@ -523,10 +618,12 @@ class TarotCard {
       nameTr: 'Denge',
       keywords: 'Balance, moderation, patience',
       keywordsTr: 'Denge, ılımlılık, sabır',
-      uprightMeaning: 'Denge ve uyum zamanı. Sabır ve ılımlılık başarı getirir. Şifa enerjisi güçlü.',
+      uprightMeaning:
+          'Denge ve uyum zamanı. Sabır ve ılımlılık başarı getirir. Şifa enerjisi güçlü.',
       reversedMeaning: 'Dengesizlik veya aşırılıklar. Sabırsızlık. Uyumsuzluk.',
       advice: 'Orta yolu bul. Zıtlıkları harmanlayarak altın senteze ulaş.',
-      esotericMeaning: 'Denge, simyacının Büyük Eser\'inin aşamalarından birini gösterir - zıtların birleşimi yoluyla altın (aydınlanma) elde etme. Melek bir ayağını suda (bilinçaltı, duygular), diğerini karada (bilinç, madde) tutar: iki dünya arasında denge. İki kupa arasında dökülen su, bilinç ile bilinçaltı arasındaki sürekli akışı, simyasal "solve et coagula" (çöz ve birleştir) ilkesini temsil eder. Arka plandaki yol illuminasyona giden patikadır; güneş tacı aydınlanmış bilinci simgeler. On dört sayısı yedi\'nin iki katı olarak çift spiritüel tamamlanmayı ifade eder.',
+      esotericMeaning:
+          'Denge, simyacının Büyük Eser\'inin aşamalarından birini gösterir - zıtların birleşimi yoluyla altın (aydınlanma) elde etme. Melek bir ayağını suda (bilinçaltı, duygular), diğerini karada (bilinç, madde) tutar: iki dünya arasında denge. İki kupa arasında dökülen su, bilinç ile bilinçaltı arasındaki sürekli akışı, simyasal "solve et coagula" (çöz ve birleştir) ilkesini temsil eder. Arka plandaki yol illuminasyona giden patikadır; güneş tacı aydınlanmış bilinci simgeler. On dört sayısı yedi\'nin iki katı olarak çift spiritüel tamamlanmayı ifade eder.',
       archetype: 'Iris, Raphael, Simyacı',
       element: 'Ateş',
       astrologicalSign: 'Yay',
@@ -539,10 +636,14 @@ class TarotCard {
       nameTr: 'Şeytan',
       keywords: 'Bondage, addiction, materialism',
       keywordsTr: 'Esaret, bağımlılık, maddecilik',
-      uprightMeaning: 'Bağımlılıkların ve korkuların seni esir alıyor. Gölge yönlerinle yüzleş.',
-      reversedMeaning: 'Zincirleri kırma zamanı. Özgürleşme başlıyor. Bağımlılıktan kurtulma.',
-      advice: 'Zincirlerini sen taktın, sen de çıkarabilirsin. Gölgenle dans et, ama onun kölesi olma.',
-      esotericMeaning: 'Şeytan, Jung\'un "gölge" kavramının mükemmel temsilidir - bastırılmış, inkâr edilen ama entegre edilmesi gereken yönlerimiz. Baphomet figürü zıtların birleşimini (erkek/dişi, insan/hayvan, göksel/yersel) gösterir, ancak burada bu birleşim bilinçsiz ve tutsak edicidir. Zincirlerin gevşek olması, tutsaklığın gönüllü olduğunu hatırlatır. Ters pentagram ruhun maddeye mahkum olduğunu, ateşli meşale kontrol altına alınmamış arzuyu simgeler. Aşıklar kartının karanlık aynası olarak, bu kart bizi gölgemizle yüzleşmeye, illüzyonları görmeye ve özgürleşmeye çağırır.',
+      uprightMeaning:
+          'Bağımlılıkların ve korkuların seni esir alıyor. Gölge yönlerinle yüzleş.',
+      reversedMeaning:
+          'Zincirleri kırma zamanı. Özgürleşme başlıyor. Bağımlılıktan kurtulma.',
+      advice:
+          'Zincirlerini sen taktın, sen de çıkarabilirsin. Gölgenle dans et, ama onun kölesi olma.',
+      esotericMeaning:
+          'Şeytan, Jung\'un "gölge" kavramının mükemmel temsilidir - bastırılmış, inkâr edilen ama entegre edilmesi gereken yönlerimiz. Baphomet figürü zıtların birleşimini (erkek/dişi, insan/hayvan, göksel/yersel) gösterir, ancak burada bu birleşim bilinçsiz ve tutsak edicidir. Zincirlerin gevşek olması, tutsaklığın gönüllü olduğunu hatırlatır. Ters pentagram ruhun maddeye mahkum olduğunu, ateşli meşale kontrol altına alınmamış arzuyu simgeler. Aşıklar kartının karanlık aynası olarak, bu kart bizi gölgemizle yüzleşmeye, illüzyonları görmeye ve özgürleşmeye çağırır.',
       archetype: 'Baphomet, Pan, Gölge, Mefisto',
       element: 'Toprak',
       astrologicalSign: 'Oğlak',
@@ -555,10 +656,13 @@ class TarotCard {
       nameTr: 'Kule',
       keywords: 'Sudden change, revelation, upheaval',
       keywordsTr: 'Ani değişim, aydınlanma, altüst oluş',
-      uprightMeaning: 'Ani ve yıkıcı değişim. Çürük temeller çöküyor. Ama bu bir arınma.',
+      uprightMeaning:
+          'Ani ve yıkıcı değişim. Çürük temeller çöküyor. Ama bu bir arınma.',
       reversedMeaning: 'Kaçınılan felaket veya değişime direnç. İç yıkım.',
-      advice: 'Bazen her şeyin yıkılması gerekir ki gerçek olan kalabilsin. Fırtınayı kabul et.',
-      esotericMeaning: 'Kule, Babil Kulesi mitinin ve ego\'nun yapay yapılarının yıkılışını simgeler - gerçek aydınlanma öncesi zorunlu çöküş. Yıldırım Tanrısal müdahaleyi, tacın düşmesi ego\'nun tahttan indirilmesini temsil eder. Yirmi iki düşen yod (İbrani harfi) Tanrısal enerjinin dünyaya akışını, kaostan yeni düzenin doğuşunu gösterir. Düşen figürler eski inançların, sahte güvenliklerin terkedilmesidir. Bu kart, Zen geleneğindeki "büyük şüphe" anına, simyadaki ani kırılmaya denk gelir. Korkulan ama gerekli olan uyanış deneyimidir.',
+      advice:
+          'Bazen her şeyin yıkılması gerekir ki gerçek olan kalabilsin. Fırtınayı kabul et.',
+      esotericMeaning:
+          'Kule, Babil Kulesi mitinin ve ego\'nun yapay yapılarının yıkılışını simgeler - gerçek aydınlanma öncesi zorunlu çöküş. Yıldırım Tanrısal müdahaleyi, tacın düşmesi ego\'nun tahttan indirilmesini temsil eder. Yirmi iki düşen yod (İbrani harfi) Tanrısal enerjinin dünyaya akışını, kaostan yeni düzenin doğuşunu gösterir. Düşen figürler eski inançların, sahte güvenliklerin terkedilmesidir. Bu kart, Zen geleneğindeki "büyük şüphe" anına, simyadaki ani kırılmaya denk gelir. Korkulan ama gerekli olan uyanış deneyimidir.',
       archetype: 'Babil Kulesi, Şiva\'nın Dansı, Prometheus\'un Ateşi',
       element: 'Ateş',
       astrologicalSign: 'Mars',
@@ -571,10 +675,14 @@ class TarotCard {
       nameTr: 'Yıldız',
       keywords: 'Hope, inspiration, serenity',
       keywordsTr: 'Umut, ilham, huzur',
-      uprightMeaning: 'Umut ve ilham zamanı. Şifa ve yenilenme. Evren seninle konuşuyor.',
-      reversedMeaning: 'Umutsuzluk veya inanç kaybı. Kozmik bağlantının kesilmesi.',
-      advice: 'En karanlık geceden sonra bile yıldızlar parlar. Umudunu kaybetme.',
-      esotericMeaning: 'Yıldız, Kule\'nin yıkımından sonra gelen huzur ve şifadır - karanlık gecenin ardından gelen şafak. Çıplak kadın saf ruhun ifadesidir, utanç ve maske olmadan var oluş. Sekiz kollu yıldız Venüs\'ün sembolü, sevgi ve güzelliğin kozmik enerjisi; yedi küçük yıldız yedi chakra ve yedi gezegeni temsil eder. İki kaptaki su bilinç (kara) ve bilinçaltına (suya) dökülen yaşam enerjisidir. Kuş arkada Thoth\'un ibisi, ilahi mesajcıdır. On yedi sayısı (1+7=8) sonsuzluk ve kozmik denge ile bağlantılıdır. Bu kart "sınavdan geçtin, şimdi hediyeler geliyor" der.',
+      uprightMeaning:
+          'Umut ve ilham zamanı. Şifa ve yenilenme. Evren seninle konuşuyor.',
+      reversedMeaning:
+          'Umutsuzluk veya inanç kaybı. Kozmik bağlantının kesilmesi.',
+      advice:
+          'En karanlık geceden sonra bile yıldızlar parlar. Umudunu kaybetme.',
+      esotericMeaning:
+          'Yıldız, Kule\'nin yıkımından sonra gelen huzur ve şifadır - karanlık gecenin ardından gelen şafak. Çıplak kadın saf ruhun ifadesidir, utanç ve maske olmadan var oluş. Sekiz kollu yıldız Venüs\'ün sembolü, sevgi ve güzelliğin kozmik enerjisi; yedi küçük yıldız yedi chakra ve yedi gezegeni temsil eder. İki kaptaki su bilinç (kara) ve bilinçaltına (suya) dökülen yaşam enerjisidir. Kuş arkada Thoth\'un ibisi, ilahi mesajcıdır. On yedi sayısı (1+7=8) sonsuzluk ve kozmik denge ile bağlantılıdır. Bu kart "sınavdan geçtin, şimdi hediyeler geliyor" der.',
       archetype: 'Isis, Nuit, Aquarius, Yıldız Tanrıçası',
       element: 'Hava',
       astrologicalSign: 'Kova',
@@ -587,10 +695,13 @@ class TarotCard {
       nameTr: 'Ay',
       keywords: 'Illusion, fear, subconscious',
       keywordsTr: 'İllüzyon, korku, bilinçaltı',
-      uprightMeaning: 'Bilinçaltı yüzeye çıkıyor. Yanılsamalar ve korkularla yüzleş. Rüyalara dikkat.',
-      reversedMeaning: 'Korkuların üstesinden gelme. Yanılsamalardan uyanma. Netlik.',
+      uprightMeaning:
+          'Bilinçaltı yüzeye çıkıyor. Yanılsamalar ve korkularla yüzleş. Rüyalara dikkat.',
+      reversedMeaning:
+          'Korkuların üstesinden gelme. Yanılsamalardan uyanma. Netlik.',
       advice: 'Gölgeler gerçek değil. Karanlıkta yürürken sezgine güven.',
-      esotericMeaning: 'Ay, bilinçaltının labirentlerine inişi temsil eder - şafaktan önceki en karanlık saat. Havlayan köpek ve ulayan kurt evcilleştirilmiş ve vahşi içgüdüleri, su bilinçaltının derinliklerini simgeler. Sudan çıkan istakoz/yengeç primitif bilinci, evrimsel geçmişimizi temsil eder. İki kule geçilmesi gereken eşiği, yol ise karanlıkta bile devam eden inisiyasyon yolculuğunu gösterir. Damlaları toplayan ay, bilinçaltından bilinçe yükselen içerikleri simgeler. Bu kart rüyaların, vizyonların ve psişik algının kapısıdır; yanılsama ile sezgiyi ayırt etmeyi öğretir.',
+      esotericMeaning:
+          'Ay, bilinçaltının labirentlerine inişi temsil eder - şafaktan önceki en karanlık saat. Havlayan köpek ve ulayan kurt evcilleştirilmiş ve vahşi içgüdüleri, su bilinçaltının derinliklerini simgeler. Sudan çıkan istakoz/yengeç primitif bilinci, evrimsel geçmişimizi temsil eder. İki kule geçilmesi gereken eşiği, yol ise karanlıkta bile devam eden inisiyasyon yolculuğunu gösterir. Damlaları toplayan ay, bilinçaltından bilinçe yükselen içerikleri simgeler. Bu kart rüyaların, vizyonların ve psişik algının kapısıdır; yanılsama ile sezgiyi ayırt etmeyi öğretir.',
       archetype: 'Hekate, Selene, Bilinçaltı, Rüya Zamanı',
       element: 'Su',
       astrologicalSign: 'Balık',
@@ -603,10 +714,13 @@ class TarotCard {
       nameTr: 'Güneş',
       keywords: 'Joy, success, vitality',
       keywordsTr: 'Neşe, başarı, canlılık',
-      uprightMeaning: 'Işık, neşe ve başarı zamanı. Her şey aydınlanıyor. Kutlama!',
-      reversedMeaning: 'Geçici gölgeler veya geciken başarı. İç çocuğunla bağlantını yenile.',
+      uprightMeaning:
+          'Işık, neşe ve başarı zamanı. Her şey aydınlanıyor. Kutlama!',
+      reversedMeaning:
+          'Geçici gölgeler veya geciken başarı. İç çocuğunla bağlantını yenile.',
       advice: 'Işığını parlatmaktan korkma. Neşen bulaşıcı. Hayatı kutla!',
-      esotericMeaning: 'Güneş, Büyük Eser\'in (Magnum Opus) tamamlanmasına yaklaşmayı - simyasal altına dönüşümü temsil eder. Çıplak çocuk yeniden doğmuş bilinci, masumiyete dönüşü simgeler; beyaz at saflaştırılmış içgüdüleri ve zaferi. Ayçiçekleri (her biri bir Sefirah\'ı temsil eder) güneşe dönük olarak ilahi ışığa yönelimi gösterir. Duvar bilinç ile bilinçaltı arasındaki son bariyerin aşılmasını işaret eder. On dokuz sayısı (1+9=10=1) yeni bir döngünün başlangıcını, birliğe dönüşü temsil eder. Bu kart Güneş tanrısı Ra, Apollo, Helios\'un enerjisini taşır - aydınlanma, netlik ve yaşam sevinci.',
+      esotericMeaning:
+          'Güneş, Büyük Eser\'in (Magnum Opus) tamamlanmasına yaklaşmayı - simyasal altına dönüşümü temsil eder. Çıplak çocuk yeniden doğmuş bilinci, masumiyete dönüşü simgeler; beyaz at saflaştırılmış içgüdüleri ve zaferi. Ayçiçekleri (her biri bir Sefirah\'ı temsil eder) güneşe dönük olarak ilahi ışığa yönelimi gösterir. Duvar bilinç ile bilinçaltı arasındaki son bariyerin aşılmasını işaret eder. On dokuz sayısı (1+9=10=1) yeni bir döngünün başlangıcını, birliğe dönüşü temsil eder. Bu kart Güneş tanrısı Ra, Apollo, Helios\'un enerjisini taşır - aydınlanma, netlik ve yaşam sevinci.',
       archetype: 'Ra, Apollo, Helios, İç Çocuk',
       element: 'Ateş',
       astrologicalSign: 'Güneş',
@@ -619,10 +733,13 @@ class TarotCard {
       nameTr: 'Mahkeme',
       keywords: 'Reflection, reckoning, awakening',
       keywordsTr: 'Yansıma, hesap, uyanış',
-      uprightMeaning: 'Büyük bir uyanış ve çağrı. Geçmişle hesaplaşma. Yeniden doğuş.',
+      uprightMeaning:
+          'Büyük bir uyanış ve çağrı. Geçmişle hesaplaşma. Yeniden doğuş.',
       reversedMeaning: 'Öz-şüphe veya geçmişe takılma. Çağrıyı duymamak.',
-      advice: 'Geçmişini kabul et, bugününü yaşa, geleceğini yarat. Çağrına cevap ver.',
-      esotericMeaning: 'Mahkeme, ruhun son uyanışını ve diriliş çağrısını temsil eder - Hristiyanlıktaki Son Yargı, Hinduizm\'deki Mahapralaya\'dan sonra yeni yaratılış. Gabriel\'in borusu kundalini enerjisinin tam uyanışı, üçüncü gözün açılmasıdır. Mezarlardan kalkan figürler (aile olarak: baba-ana-çocuk) tüm yaşamların, tüm yönlerin entegrasyonunu simgeler. Dağlar bilinç düzeylerini, bayrak yeni çağın başlangıcını temsil eder. Bu kart "Uyan! Zamanı geldi!" der. İç sesin çağrısına cevap verme, yüksek benliğe yükselme zamanıdır.',
+      advice:
+          'Geçmişini kabul et, bugününü yaşa, geleceğini yarat. Çağrına cevap ver.',
+      esotericMeaning:
+          'Mahkeme, ruhun son uyanışını ve diriliş çağrısını temsil eder - Hristiyanlıktaki Son Yargı, Hinduizm\'deki Mahapralaya\'dan sonra yeni yaratılış. Gabriel\'in borusu kundalini enerjisinin tam uyanışı, üçüncü gözün açılmasıdır. Mezarlardan kalkan figürler (aile olarak: baba-ana-çocuk) tüm yaşamların, tüm yönlerin entegrasyonunu simgeler. Dağlar bilinç düzeylerini, bayrak yeni çağın başlangıcını temsil eder. Bu kart "Uyan! Zamanı geldi!" der. İç sesin çağrısına cevap verme, yüksek benliğe yükselme zamanıdır.',
       archetype: 'Gabriel, Osiris\'in Dirilişi, Phoenix',
       element: 'Ateş',
       astrologicalSign: 'Plüton',
@@ -635,10 +752,14 @@ class TarotCard {
       nameTr: 'Dünya',
       keywords: 'Completion, integration, accomplishment',
       keywordsTr: 'Tamamlanma, bütünleşme, başarı',
-      uprightMeaning: 'Döngü tamamlanıyor. Başarı ve bütünlük. Yeni bir seviyeye geçiş.',
-      reversedMeaning: 'Eksik kalan işler veya tamamlanmamış döngüler. Bir adım daha gerekiyor.',
-      advice: 'Her son yeni bir başlangıçtır. Başardıklarını kutla ve bir sonraki döngüye hazırlan.',
-      esotericMeaning: 'Dünya, Deli\'nin yolculuğunun tamamlanmasıdır - ouroboros yılanı gibi son ve başlangıcın birleşimi. Çelenk içindeki dansçı kozmik dansı, yaratılışın ritüel hareketini simgeler; iki asa dualiteyi, sonsuz döngüyü temsil eder. Dört köşedeki figürler (aslan, boğa, kartal, insan) Hayat Ağacı\'nın dört dünyasını, dört elementi, sabit burçları ve evangelistleri temsil eder. Çelengin yumurta şekli kozmik yumurtayı, sonsuz potansiyeli simgeler. Yirmi bir sayısı (3x7) üçlü yedili mükemmelliği ifade eder. Bu kart "Döngü tamamlandı, şimdi daha yüksek bir spiral başlıyor" der - Nirvana değil, spiritüel evrim.',
+      uprightMeaning:
+          'Döngü tamamlanıyor. Başarı ve bütünlük. Yeni bir seviyeye geçiş.',
+      reversedMeaning:
+          'Eksik kalan işler veya tamamlanmamış döngüler. Bir adım daha gerekiyor.',
+      advice:
+          'Her son yeni bir başlangıçtır. Başardıklarını kutla ve bir sonraki döngüye hazırlan.',
+      esotericMeaning:
+          'Dünya, Deli\'nin yolculuğunun tamamlanmasıdır - ouroboros yılanı gibi son ve başlangıcın birleşimi. Çelenk içindeki dansçı kozmik dansı, yaratılışın ritüel hareketini simgeler; iki asa dualiteyi, sonsuz döngüyü temsil eder. Dört köşedeki figürler (aslan, boğa, kartal, insan) Hayat Ağacı\'nın dört dünyasını, dört elementi, sabit burçları ve evangelistleri temsil eder. Çelengin yumurta şekli kozmik yumurtayı, sonsuz potansiyeli simgeler. Yirmi bir sayısı (3x7) üçlü yedili mükemmelliği ifade eder. Bu kart "Döngü tamamlandı, şimdi daha yüksek bir spiral başlıyor" der - Nirvana değil, spiritüel evrim.',
       archetype: 'Anima Mundi, Sophia, Kozmik Dansçı, Shiva Nataraja',
       element: 'Toprak',
       astrologicalSign: 'Satürn',
@@ -662,23 +783,62 @@ class ThreeCardSpread {
 
   /// Get localized interpretation
   String localizedInterpretation(AppLanguage language) {
-    final pastLabel = L10nService.get('tarot.spread_labels.past_label', language);
-    final presentLabel = L10nService.get('tarot.spread_labels.present_label', language);
-    final futureLabel = L10nService.get('tarot.spread_labels.future_label', language);
-    final reversedSuffix = L10nService.get('tarot.spread_labels.reversed_suffix', language);
-    final generalLabel = L10nService.get('tarot.spread_labels.general_interpretation', language);
+    final pastLabel = L10nService.get(
+      'tarot.spread_labels.past_label',
+      language,
+    );
+    final presentLabel = L10nService.get(
+      'tarot.spread_labels.present_label',
+      language,
+    );
+    final futureLabel = L10nService.get(
+      'tarot.spread_labels.future_label',
+      language,
+    );
+    final reversedSuffix = L10nService.get(
+      'tarot.spread_labels.reversed_suffix',
+      language,
+    );
+    final generalLabel = L10nService.get(
+      'tarot.spread_labels.general_interpretation',
+      language,
+    );
 
     final pastReversed = past.isReversed ? reversedSuffix : '';
     final presentReversed = present.isReversed ? reversedSuffix : '';
     final futureReversed = future.isReversed ? reversedSuffix : '';
 
-    final pastKeyword = past.localizedKeywords(language).split(',').first.trim().toLowerCase();
-    final presentKeyword = present.localizedKeywords(language).split(',').first.trim().toLowerCase();
-    final futureKeyword = future.localizedKeywords(language).split(',').first.trim().toLowerCase();
+    final pastKeyword = past
+        .localizedKeywords(language)
+        .split(',')
+        .first
+        .trim()
+        .toLowerCase();
+    final presentKeyword = present
+        .localizedKeywords(language)
+        .split(',')
+        .first
+        .trim()
+        .toLowerCase();
+    final futureKeyword = future
+        .localizedKeywords(language)
+        .split(',')
+        .first
+        .trim()
+        .toLowerCase();
 
-    final pastEnergy = L10nService.get('tarot.spread_labels.past_energy', language).replaceAll('{keyword}', pastKeyword);
-    final presentEnergy = L10nService.get('tarot.spread_labels.present_energy', language).replaceAll('{keyword}', presentKeyword);
-    final futureEnergy = L10nService.get('tarot.spread_labels.future_energy', language).replaceAll('{keyword}', futureKeyword);
+    final pastEnergy = L10nService.get(
+      'tarot.spread_labels.past_energy',
+      language,
+    ).replaceAll('{keyword}', pastKeyword);
+    final presentEnergy = L10nService.get(
+      'tarot.spread_labels.present_energy',
+      language,
+    ).replaceAll('{keyword}', presentKeyword);
+    final futureEnergy = L10nService.get(
+      'tarot.spread_labels.future_energy',
+      language,
+    ).replaceAll('{keyword}', futureKeyword);
 
     return '''
 **$pastLabel (${past.localizedName(language)}$pastReversed):**
@@ -703,16 +863,16 @@ $futureEnergy
 
 /// Kelt Haçı açılımı
 class CelticCrossSpread {
-  final TarotCard significator;  // Mevcut durum
-  final TarotCard crossing;      // Zorluk/engel
-  final TarotCard foundation;    // Temel/geçmiş
-  final TarotCard recentPast;    // Yakın geçmiş
-  final TarotCard crown;         // Olası sonuç
-  final TarotCard nearFuture;    // Yakın gelecek
-  final TarotCard selfImage;     // Kendin hakkındaki görüşün
-  final TarotCard environment;   // Çevre/dış etkiler
+  final TarotCard significator; // Mevcut durum
+  final TarotCard crossing; // Zorluk/engel
+  final TarotCard foundation; // Temel/geçmiş
+  final TarotCard recentPast; // Yakın geçmiş
+  final TarotCard crown; // Olası sonuç
+  final TarotCard nearFuture; // Yakın gelecek
+  final TarotCard selfImage; // Kendin hakkındaki görüşün
+  final TarotCard environment; // Çevre/dış etkiler
   final TarotCard hopesAndFears; // Umutlar ve korkular
-  final TarotCard outcome;       // Sonuç
+  final TarotCard outcome; // Sonuç
 
   CelticCrossSpread({
     required this.significator,
@@ -747,15 +907,32 @@ class LoveSpread {
   /// Get localized interpretation
   String localizedInterpretation(AppLanguage language) {
     final youLabel = L10nService.get('tarot.spread_labels.you_label', language);
-    final partnerLabel = L10nService.get('tarot.spread_labels.partner_label', language);
-    final relationshipLabel = L10nService.get('tarot.spread_labels.relationship_label', language);
-    final challengeLabel = L10nService.get('tarot.spread_labels.challenge_label', language);
-    final adviceLabel = L10nService.get('tarot.spread_labels.advice_label', language);
-    final reversedSuffix = L10nService.get('tarot.spread_labels.reversed_suffix', language);
+    final partnerLabel = L10nService.get(
+      'tarot.spread_labels.partner_label',
+      language,
+    );
+    final relationshipLabel = L10nService.get(
+      'tarot.spread_labels.relationship_label',
+      language,
+    );
+    final challengeLabel = L10nService.get(
+      'tarot.spread_labels.challenge_label',
+      language,
+    );
+    final adviceLabel = L10nService.get(
+      'tarot.spread_labels.advice_label',
+      language,
+    );
+    final reversedSuffix = L10nService.get(
+      'tarot.spread_labels.reversed_suffix',
+      language,
+    );
 
     final youReversed = youCard.isReversed ? reversedSuffix : '';
     final partnerReversed = partnerCard.isReversed ? reversedSuffix : '';
-    final relationshipReversed = relationshipCard.isReversed ? reversedSuffix : '';
+    final relationshipReversed = relationshipCard.isReversed
+        ? reversedSuffix
+        : '';
     final challengeReversed = challengeCard.isReversed ? reversedSuffix : '';
     final adviceReversed = adviceCard.isReversed ? reversedSuffix : '';
 

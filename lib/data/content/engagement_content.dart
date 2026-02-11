@@ -103,32 +103,32 @@ Astrology is not empirical science. It's a symbolic language system spanning tho
     {
       'question': 'Does astrology really work?',
       'answer':
-          'Astrology is a symbolic language system spanning thousands of years. It depends on your definition of "work" — if you expect precise prophecies, you may be disappointed. However, it can be a powerful tool for self-discovery, inner reflection, and different perspectives. Instead of seeking scientific proof, we suggest focusing on what it evokes in you.'
+          'Astrology is a symbolic language system spanning thousands of years. It depends on your definition of "work" — if you expect precise prophecies, you may be disappointed. However, it can be a powerful tool for self-discovery, inner reflection, and different perspectives. Instead of seeking scientific proof, we suggest focusing on what it evokes in you.',
     },
     {
       'question': 'What if I don\'t know my birth time?',
       'answer':
-          'Without a birth time, your Sun sign, Moon sign (approximate), and planetary positions can still be calculated. However, the exact time is needed for the Ascendant and house placements. You can use a default time like "noon 12:00," but skip the house interpretations in that case.'
+          'Without a birth time, your Sun sign, Moon sign (approximate), and planetary positions can still be calculated. However, the exact time is needed for the Ascendant and house placements. You can use a default time like "noon 12:00," but skip the house interpretations in that case.',
     },
     {
       'question': 'Are daily horoscopes the same for everyone?',
       'answer':
-          'Everyone with the same sign shares the same general energy, but other factors in your individual chart (Moon sign, Ascendant, planetary aspects) personalize your experience. That\'s why sometimes it "hits exactly" and sometimes "doesn\'t resonate at all."'
+          'Everyone with the same sign shares the same general energy, but other factors in your individual chart (Moon sign, Ascendant, planetary aspects) personalize your experience. That\'s why sometimes it "hits exactly" and sometimes "doesn\'t resonate at all."',
     },
     {
       'question': 'Are tarot and astrology the same thing?',
       'answer':
-          "No. Astrology is a system based on planetary positions, while tarot is a reading practice using symbolic cards. Both are tools for inner reflection but use different languages. You can find both on Venus One."
+          "No. Astrology is a system based on planetary positions, while tarot is a reading practice using symbolic cards. Both are tools for inner reflection but use different languages. You can find both on Venus One.",
     },
     {
       'question': 'What difference does Premium membership make?',
       'answer':
-          'With Premium membership, you get detailed transit reports, unlimited synastry analysis, advanced progression tracking, and an ad-free experience. Basic features are free.'
+          'With Premium membership, you get detailed transit reports, unlimited synastry analysis, advanced progression tracking, and an ad-free experience. Basic features are free.',
     },
     {
       'question': 'Is my data safe?',
       'answer':
-          'Your birth information is stored encrypted on your device. It is not shared with third parties. You can delete your account at any time.'
+          'Your birth information is stored encrypted on your device. It is not shared with third parties. You can delete your account at any time.',
     },
   ];
 
@@ -236,32 +236,32 @@ Emotions, intuitions, and depth. Inner processes and emotional awareness may be 
     {
       'question': 'Why does my horoscope sometimes not resonate at all?',
       'answer':
-          'Because you\'re only looking at your Sun sign. Your chart has 10 planets, 12 houses, and countless aspects. The Sun sign is just one piece. Also, readings describe possibilities, not certainties.'
+          'Because you\'re only looking at your Sun sign. Your chart has 10 planets, 12 houses, and countless aspects. The Sun sign is just one piece. Also, readings describe possibilities, not certainties.',
     },
     {
       'question': 'Should I read my Ascendant or Sun sign?',
       'answer':
-          'Read both. The Sun sign reflects your inner identity, the Ascendant reflects your experiences in the outer world. Some astrologers find the Ascendant more important, some the Sun. You can prioritize whichever "fits" you better.'
+          'Read both. The Sun sign reflects your inner identity, the Ascendant reflects your experiences in the outer world. Some astrologers find the Ascendant more important, some the Sun. You can prioritize whichever "fits" you better.',
     },
     {
       'question': 'Do daily readings really change every day?',
       'answer':
-          'Yes. The Moon changes signs every 2.5 days, planets are constantly moving. That\'s why cosmic energy is truly different every day.'
+          'Yes. The Moon changes signs every 2.5 days, planets are constantly moving. That\'s why cosmic energy is truly different every day.',
     },
     {
       'question': 'What should I do when I see a negative reading?',
       'answer':
-          'Read negative readings not as "warnings" but as "invitations to awareness." "Be careful in communication today" doesn\'t mean "you will have an argument today." It just suggests paying a bit more attention to that area.'
+          'Read negative readings not as "warnings" but as "invitations to awareness." "Be careful in communication today" doesn\'t mean "you will have an argument today." It just suggests paying a bit more attention to that area.',
     },
     {
       'question': 'Are compatibility readings accurate?',
       'answer':
-          'They show general tendencies, but no sign combination is "impossible" or "perfect." Individual charts, personal development, and communication quality are much more determinant.'
+          'They show general tendencies, but no sign combination is "impossible" or "perfect." Individual charts, personal development, and communication quality are much more determinant.',
     },
     {
       'question': 'Are weekly and monthly readings more accurate than daily?',
       'answer':
-          'They may feel more consistent because they offer a broader perspective. Daily readings describe micro energy, weekly/monthly readings describe macro themes.'
+          'They may feel more consistent because they offer a broader perspective. Daily readings describe micro energy, weekly/monthly readings describe macro themes.',
     },
   ];
 
@@ -273,7 +273,7 @@ Emotions, intuitions, and depth. Inner processes and emotional awareness may be 
       'symbol': '♈',
       'dates': 'March 21 - April 19',
       'element': 'Fire',
-      'hook': 'Which door do you want to break down today?'
+      'hook': 'Which door do you want to break down today?',
     },
     {
       'sign': 'taurus',
@@ -281,7 +281,7 @@ Emotions, intuitions, and depth. Inner processes and emotional awareness may be 
       'symbol': '♉',
       'dates': 'April 20 - May 20',
       'element': 'Earth',
-      'hook': 'What do you want to protect, what do you want to grow today?'
+      'hook': 'What do you want to protect, what do you want to grow today?',
     },
     {
       'sign': 'gemini',
@@ -289,7 +289,7 @@ Emotions, intuitions, and depth. Inner processes and emotional awareness may be 
       'symbol': '♊',
       'dates': 'May 21 - June 20',
       'element': 'Air',
-      'hook': 'Which story will you tell today?'
+      'hook': 'Which story will you tell today?',
     },
     {
       'sign': 'cancer',
@@ -297,7 +297,7 @@ Emotions, intuitions, and depth. Inner processes and emotional awareness may be 
       'symbol': '♋',
       'dates': 'June 21 - July 22',
       'element': 'Water',
-      'hook': 'Who will you open your heart to today?'
+      'hook': 'Who will you open your heart to today?',
     },
     {
       'sign': 'leo',
@@ -305,7 +305,7 @@ Emotions, intuitions, and depth. Inner processes and emotional awareness may be 
       'symbol': '♌',
       'dates': 'July 23 - August 22',
       'element': 'Fire',
-      'hook': 'Which stage will you shine on today?'
+      'hook': 'Which stage will you shine on today?',
     },
     {
       'sign': 'virgo',
@@ -313,7 +313,7 @@ Emotions, intuitions, and depth. Inner processes and emotional awareness may be 
       'symbol': '♍',
       'dates': 'August 23 - September 22',
       'element': 'Earth',
-      'hook': 'What do you want to improve today?'
+      'hook': 'What do you want to improve today?',
     },
     {
       'sign': 'libra',
@@ -321,7 +321,7 @@ Emotions, intuitions, and depth. Inner processes and emotional awareness may be 
       'symbol': '♎',
       'dates': 'September 23 - October 22',
       'element': 'Air',
-      'hook': 'Where are you seeking balance today?'
+      'hook': 'Where are you seeking balance today?',
     },
     {
       'sign': 'scorpio',
@@ -329,7 +329,7 @@ Emotions, intuitions, and depth. Inner processes and emotional awareness may be 
       'symbol': '♏',
       'dates': 'October 23 - November 21',
       'element': 'Water',
-      'hook': 'Which depth will you dive into today?'
+      'hook': 'Which depth will you dive into today?',
     },
     {
       'sign': 'sagittarius',
@@ -337,7 +337,7 @@ Emotions, intuitions, and depth. Inner processes and emotional awareness may be 
       'symbol': '♐',
       'dates': 'November 22 - December 21',
       'element': 'Fire',
-      'hook': 'Which horizon are you running towards today?'
+      'hook': 'Which horizon are you running towards today?',
     },
     {
       'sign': 'capricorn',
@@ -345,7 +345,7 @@ Emotions, intuitions, and depth. Inner processes and emotional awareness may be 
       'symbol': '♑',
       'dates': 'December 22 - January 19',
       'element': 'Earth',
-      'hook': 'Which peak are you climbing today?'
+      'hook': 'Which peak are you climbing today?',
     },
     {
       'sign': 'aquarius',
@@ -353,7 +353,7 @@ Emotions, intuitions, and depth. Inner processes and emotional awareness may be 
       'symbol': '♒',
       'dates': 'January 20 - February 18',
       'element': 'Air',
-      'hook': 'Which rule will you rewrite today?'
+      'hook': 'Which rule will you rewrite today?',
     },
     {
       'sign': 'pisces',
@@ -361,7 +361,7 @@ Emotions, intuitions, and depth. Inner processes and emotional awareness may be 
       'symbol': '♓',
       'dates': 'February 19 - March 20',
       'element': 'Water',
-      'hook': 'Which dream will you dive into today?'
+      'hook': 'Which dream will you dive into today?',
     },
   ];
 
@@ -507,32 +507,32 @@ Aries' dreams are usually action-packed and intense. Chases, races, battles, fal
       {
         'question': 'Why is Aries so impatient?',
         'answer':
-            'Mars rulership and cardinal modality give Aries a "now" focused energy. Not the future or past, but the present moment matters. This impatience is actually a reflection of an intense passion for life.'
+            'Mars rulership and cardinal modality give Aries a "now" focused energy. Not the future or past, but the present moment matters. This impatience is actually a reflection of an intense passion for life.',
       },
       {
         'question': 'Does Aries want leadership or dictatorship?',
         'answer':
-            'A developed Aries is a leader who empowers others. An undeveloped Aries crushes to maintain control. The difference is self-awareness and emotional maturity.'
+            'A developed Aries is a leader who empowers others. An undeveloped Aries crushes to maintain control. The difference is self-awareness and emotional maturity.',
       },
       {
         'question': 'How do you maintain a relationship with Aries?',
         'answer':
-            'Keep the excitement alive, be challenging but respectful, don\'t be passive-aggressive (Aries wants direct communication), and respect their independence.'
+            'Keep the excitement alive, be challenging but respectful, don\'t be passive-aggressive (Aries wants direct communication), and respect their independence.',
       },
       {
         'question': 'Why does Aries get bored so quickly?',
         'answer':
-            'The search for novelty is in Aries\' nature. Chasing, exploring keeps them alive. They may lose interest after "winning" — this is an area they need to consciously work on.'
+            'The search for novelty is in Aries\' nature. Chasing, exploring keeps them alive. They may lose interest after "winning" — this is an area they need to consciously work on.',
       },
       {
         'question': 'What is Aries\' biggest fear?',
         'answer':
-            'Being insignificant, invisible, slowing down, or "losing." Aries\' hidden fear is powerlessness.'
+            'Being insignificant, invisible, slowing down, or "losing." Aries\' hidden fear is powerlessness.',
       },
       {
         'question': 'How does Aries calm down?',
         'answer':
-            'Physical activity (sports, walking, boxing), competitive games, starting new projects. Meditation is difficult but moving meditation (running, swimming) may work.'
+            'Physical activity (sports, walking, boxing), competitive games, starting new projects. Meditation is difficult but moving meditation (running, swimming) may work.',
       },
     ],
     dailyAffirmation:
@@ -619,32 +619,32 @@ Taurus' dreams are usually sensory and concrete. Food, garden, home, money, sexu
       {
         'question': 'Why is Taurus so stubborn?',
         'answer':
-            'Fixed modality and earth element give Taurus a deep "rooting" energy. Change is a threat because it shakes their security. Stubbornness is actually a protection mechanism.'
+            'Fixed modality and earth element give Taurus a deep "rooting" energy. Change is a threat because it shakes their security. Stubbornness is actually a protection mechanism.',
       },
       {
         'question': 'Why is Taurus so attached to money?',
         'answer':
-            'Money for Taurus isn\'t just money, it\'s a symbol of security and freedom. Material stability is the foundation of Taurus\' inner peace.'
+            'Money for Taurus isn\'t just money, it\'s a symbol of security and freedom. Material stability is the foundation of Taurus\' inner peace.',
       },
       {
         'question': 'Can you argue with a Taurus?',
         'answer':
-            'Taurus tolerates for a long time but once they explode, it can be intense. Direct, calm, and respectful communication works best. If you pressure them, they build walls.'
+            'Taurus tolerates for a long time but once they explode, it can be intense. Direct, calm, and respectful communication works best. If you pressure them, they build walls.',
       },
       {
         'question': 'How do you influence a Taurus?',
         'answer':
-            'Not with logic, but with experience. Instead of telling, show them, let them taste, let them experience. Taurus is convinced through their senses.'
+            'Not with logic, but with experience. Instead of telling, show them, let them taste, let them experience. Taurus is convinced through their senses.',
       },
       {
         'question': 'How does Taurus act when in love?',
         'answer':
-            'They start slow and cautious but once attached, they\'re loyal and devoted. They seek gifts, physical closeness, and stability.'
+            'They start slow and cautious but once attached, they\'re loyal and devoted. They seek gifts, physical closeness, and stability.',
       },
       {
         'question': 'How does Taurus adapt to change?',
         'answer':
-            'With great difficulty, but they adapt when forced. They can transition with small steps, at their own pace, and while maintaining a sense of control.'
+            'With great difficulty, but they adapt when forced. They can transition with small steps, at their own pace, and while maintaining a sense of control.',
       },
     ],
     dailyAffirmation:
@@ -731,36 +731,35 @@ Gemini's dreams are usually complex, multi-scene, and communication-themed. Conv
       {
         'question': 'Is Gemini really two-faced?',
         'answer':
-            'No, but they are multi-faceted. They show different sides in different environments — this isn\'t fakeness, it\'s adaptation. However, inconsistency can cause trust issues.'
+            'No, but they are multi-faceted. They show different sides in different environments — this isn\'t fakeness, it\'s adaptation. However, inconsistency can cause trust issues.',
       },
       {
         'question': 'Why is Gemini so indecisive?',
         'answer':
-            'Being able to see all options is both a blessing and a curse. Making the "best" choice is difficult for Gemini because they see potential in everything.'
+            'Being able to see all options is both a blessing and a curse. Making the "best" choice is difficult for Gemini because they see potential in everything.',
       },
       {
         'question': 'Can you have a deep relationship with a Gemini?',
         'answer':
-            'Yes, but it requires patience. Gemini may prefer to stay on the surface but can open up to someone they trust. Emotional depth can come after mental connection is established.'
+            'Yes, but it requires patience. Gemini may prefer to stay on the surface but can open up to someone they trust. Emotional depth can come after mental connection is established.',
       },
       {
         'question': 'Why does Gemini talk so much?',
         'answer':
-            'Mercury rulership and air element make Gemini a natural communicator. Thoughts flow constantly and the need to share is intense. Sometimes listening is also a skill to learn.'
+            'Mercury rulership and air element make Gemini a natural communicator. Thoughts flow constantly and the need to share is intense. Sometimes listening is also a skill to learn.',
       },
       {
         'question': 'How do you calm a Gemini down?',
         'answer':
-            'Distract their attention (new topic), give logical explanations, physical activity (walking, dancing), writing or talking. Mental occupation calms them.'
+            'Distract their attention (new topic), give logical explanations, physical activity (walking, dancing), writing or talking. Mental occupation calms them.',
       },
       {
         'question': 'What does Gemini do when bored?',
         'answer':
-            'They escape — mentally or physically. They seek new people, new ideas, new projects. Boredom is the biggest threat to Gemini.'
+            'They escape — mentally or physically. They seek new people, new ideas, new projects. Boredom is the biggest threat to Gemini.',
       },
     ],
-    dailyAffirmation:
-        'My curiosity enriches me, but depth completes me.',
+    dailyAffirmation: 'My curiosity enriches me, but depth completes me.',
     internalLinks: {
       '/compatibility': 'Signs compatible with Gemini →',
       '/birth-chart': 'Mercury\'s position in your chart →',
@@ -844,32 +843,32 @@ Cancer's dreams are usually themed around home, family, water, and the past. Old
       {
         'question': 'Why is Cancer so emotional?',
         'answer':
-            'Moon rulership gives Cancer a fluctuating, cyclical emotional life. Like the Moon, Cancer also experiences constantly changing inner landscapes. This emotional depth is also a capacity for deep empathy.'
+            'Moon rulership gives Cancer a fluctuating, cyclical emotional life. Like the Moon, Cancer also experiences constantly changing inner landscapes. This emotional depth is also a capacity for deep empathy.',
       },
       {
         'question': 'Why does Cancer sulk?',
         'answer':
-            'Cancer avoids direct conflict, instead withdrawing and building a shell. This is a protection mechanism but can harm relationships. They can open up if they feel safe.'
+            'Cancer avoids direct conflict, instead withdrawing and building a shell. This is a protection mechanism but can harm relationships. They can open up if they feel safe.',
       },
       {
         'question': 'How do you build a bond with Cancer?',
         'answer':
-            'By offering patience, consistency, and emotional security. Don\'t rush, open up, share your past. Cancer needs time to build trust.'
+            'By offering patience, consistency, and emotional security. Don\'t rush, open up, share your past. Cancer needs time to build trust.',
       },
       {
         'question': 'Why does Cancer get stuck in the past?',
         'answer':
-            'The Moon gives strong memory. Cancer learns from past experiences, memories nourish them. But sometimes this nostalgic tendency can make living in the "now" difficult.'
+            'The Moon gives strong memory. Cancer learns from past experiences, memories nourish them. But sometimes this nostalgic tendency can make living in the "now" difficult.',
       },
       {
         'question': 'What does Cancer do when angry?',
         'answer':
-            'First withdraws (shell), then may become passive-aggressive (jabs), finally explodes. The explosion is rare but can be intense. It\'s important not to let emotions accumulate.'
+            'First withdraws (shell), then may become passive-aggressive (jabs), finally explodes. The explosion is rare but can be intense. It\'s important not to let emotions accumulate.',
       },
       {
         'question': 'How do you love a Cancer?',
         'answer':
-            'By listening, remembering, small gestures, caring about their family, spending time with them at home. Cancer wants sincere, not grand expressions.'
+            'By listening, remembering, small gestures, caring about their family, spending time with them at home. Cancer wants sincere, not grand expressions.',
       },
     ],
     dailyAffirmation:
@@ -958,32 +957,32 @@ Leo's dreams are usually themed around performance, stage, light, and recognitio
       {
         'question': 'Why does Leo want so much attention?',
         'answer':
-            'Sun rulership gives Leo a "center" energy. Attention is validation and a sense of existence for Leo. This need can be balanced with healthy self-confidence.'
+            'Sun rulership gives Leo a "center" energy. Attention is validation and a sense of existence for Leo. This need can be balanced with healthy self-confidence.',
       },
       {
         'question': 'Is Leo arrogant?',
         'answer':
-            'It may look that way from the outside, but many Leos have deep insecurity in their inner world. Arrogance is actually a defense mechanism. True self-confidence doesn\'t need arrogance.'
+            'It may look that way from the outside, but many Leos have deep insecurity in their inner world. Arrogance is actually a defense mechanism. True self-confidence doesn\'t need arrogance.',
       },
       {
         'question': 'How does Leo take criticism?',
         'answer':
-            'Usually with difficulty, especially in public settings. Private and gentle feedback works better. It may take time for them to understand that criticism isn\'t a personal attack.'
+            'Usually with difficulty, especially in public settings. Private and gentle feedback works better. It may take time for them to understand that criticism isn\'t a personal attack.',
       },
       {
         'question': 'How do you make Leo happy?',
         'answer':
-            'Appreciate them, compliment them, listen to them, make them feel special. Leo wants generous praise but senses insincerity. Tell them about things that genuinely impress you.'
+            'Appreciate them, compliment them, listen to them, make them feel special. Leo wants generous praise but senses insincerity. Tell them about things that genuinely impress you.',
       },
       {
         'question': 'Is Leo loyal?',
         'answer':
-            'Very loyal — to their family, friends, loved ones. But loyalty must be mutual. If Leo feels undervalued, they may seek attention elsewhere.'
+            'Very loyal — to their family, friends, loved ones. But loyalty must be mutual. If Leo feels undervalued, they may seek attention elsewhere.',
       },
       {
         'question': 'What is Leo\'s fear?',
         'answer':
-            'Being unseen, being unimportant, being ordinary. Leo\'s deepest fear is going unnoticed.'
+            'Being unseen, being unimportant, being ordinary. Leo\'s deepest fear is going unnoticed.',
       },
     ],
     dailyAffirmation:
@@ -1002,11 +1001,11 @@ Leo's dreams are usually themed around performance, stage, light, and recognitio
   // VIRGO, LIBRA, SCORPIO, SAGITTARIUS, CAPRICORN, AQUARIUS, PISCES
 
   static List<ZodiacSignContent> get allSigns => [
-        aries,
-        taurus,
-        gemini,
-        cancer,
-        leo,
-        // virgo, libra, scorpio, sagittarius, capricorn, aquarius, pisces
-      ];
+    aries,
+    taurus,
+    gemini,
+    cancer,
+    leo,
+    // virgo, libra, scorpio, sagittarius, capricorn, aquarius, pisces
+  ];
 }

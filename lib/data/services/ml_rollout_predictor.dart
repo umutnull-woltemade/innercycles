@@ -10,11 +10,9 @@ class MLRolloutPredictor {
   MLRolloutModel? _activeModel;
   bool _shadowMode;
 
-  MLRolloutPredictor({
-    MLRolloutModel? initialModel,
-    bool shadowMode = true,
-  })  : _activeModel = initialModel,
-        _shadowMode = shadowMode;
+  MLRolloutPredictor({MLRolloutModel? initialModel, bool shadowMode = true})
+    : _activeModel = initialModel,
+      _shadowMode = shadowMode;
 
   /// Whether predictor is in shadow mode (log only, don't influence decisions)
   bool get isShadowMode => _shadowMode;
@@ -212,7 +210,9 @@ class MLRolloutPredictor {
           .take(3)
           .map((c) {
             final name = c.featureName.replaceAll('_', ' ');
-            final direction = c.direction == 'positive' ? 'increasing' : 'decreasing';
+            final direction = c.direction == 'positive'
+                ? 'increasing'
+                : 'decreasing';
             return '$name ($direction risk)';
           })
           .join(', ');
@@ -229,7 +229,9 @@ class MLRolloutPredictor {
     required String version,
   }) {
     if (trainingData.length < 100) {
-      throw ArgumentError('Insufficient training data: ${trainingData.length} < 100 required');
+      throw ArgumentError(
+        'Insufficient training data: ${trainingData.length} < 100 required',
+      );
     }
 
     // Extract features and labels
@@ -328,7 +330,9 @@ class MLRolloutPredictor {
         // Compute prediction
         double z = weights['bias']!;
         for (var j = 0; j < m; j++) {
-          z += weights[RolloutTrainingSnapshot.featureNames[j]]! * features[i][j];
+          z +=
+              weights[RolloutTrainingSnapshot.featureNames[j]]! *
+              features[i][j];
         }
         final prediction = 1.0 / (1.0 + math.exp(-z.clamp(-500, 500)));
 
@@ -344,7 +348,8 @@ class MLRolloutPredictor {
       }
 
       // Update weights
-      weights['bias'] = weights['bias']! - learningRate * gradients['bias']! / n;
+      weights['bias'] =
+          weights['bias']! - learningRate * gradients['bias']! / n;
       for (final name in RolloutTrainingSnapshot.featureNames) {
         weights[name] = weights[name]! - learningRate * gradients[name]! / n;
       }

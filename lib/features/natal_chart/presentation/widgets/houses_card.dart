@@ -200,28 +200,51 @@ class _HouseRowState extends State<_HouseRow> {
     int houseNumber,
     zodiac.ZodiacSign sign,
   ) {
-    final signName = zodiac.ZodiacSignExtension(sign).localizedName(widget.language);
-    final description = L10nService.get('houses.esoteric.$houseNumber.description', widget.language);
+    final signName = zodiac.ZodiacSignExtension(
+      sign,
+    ).localizedName(widget.language);
+    final description = L10nService.get(
+      'houses.esoteric.$houseNumber.description',
+      widget.language,
+    );
     // Replace {signName} placeholder if present
     return description.replaceAll('{signName}', signName);
   }
 
   String _getHouseShadowAndGift(int houseNumber) {
-    final shadow = L10nService.get('houses.shadow_gift_short.$houseNumber.shadow', widget.language);
-    final gift = L10nService.get('houses.shadow_gift_short.$houseNumber.gift', widget.language);
+    final shadow = L10nService.get(
+      'houses.shadow_gift_short.$houseNumber.shadow',
+      widget.language,
+    );
+    final gift = L10nService.get(
+      'houses.shadow_gift_short.$houseNumber.gift',
+      widget.language,
+    );
     return '$shadow | $gift';
   }
 
   String _getHouseSignInterpretation(int houseNumber, zodiac.ZodiacSign sign) {
-    final signName = zodiac.ZodiacSignExtension(sign).localizedName(widget.language);
+    final signName = zodiac.ZodiacSignExtension(
+      sign,
+    ).localizedName(widget.language);
     final signKey = sign.name.toLowerCase();
 
-    final theme = L10nService.get('houses.themes.$houseNumber', widget.language);
-    final trait = L10nService.get('houses.sign_traits.$signKey', widget.language);
+    final theme = L10nService.get(
+      'houses.themes.$houseNumber',
+      widget.language,
+    );
+    final trait = L10nService.get(
+      'houses.sign_traits.$signKey',
+      widget.language,
+    );
 
     // Use template from JSON if available, otherwise build manually
-    final template = L10nService.get('houses.sign_interpretation_template', widget.language);
-    if (template.isNotEmpty && !template.contains('houses.sign_interpretation_template')) {
+    final template = L10nService.get(
+      'houses.sign_interpretation_template',
+      widget.language,
+    );
+    if (template.isNotEmpty &&
+        !template.contains('houses.sign_interpretation_template')) {
       return template
           .replaceAll('{houseNumber}', houseNumber.toString())
           .replaceAll('{signName}', signName)
@@ -239,23 +262,36 @@ class _HouseRowState extends State<_HouseRow> {
   ) {
     if (planets.isEmpty) return '';
 
-    final area = L10nService.get('houses.planet_areas.$houseNumber', widget.language);
-    final planetNames = planets.map((p) => p.planet.localizedName(widget.language)).join(', ');
+    final area = L10nService.get(
+      'houses.planet_areas.$houseNumber',
+      widget.language,
+    );
+    final planetNames = planets
+        .map((p) => p.planet.localizedName(widget.language))
+        .join(', ');
     final count = planets.length;
 
     // Build interpretation based on language
     if (count == 1) {
-      return L10nService.getWithParams('houses.planet_single', widget.language, params: {
-        'planet': planetNames,
-        'area': area,
-        'energy': planets.first.planet.meaning.toLowerCase(),
-      });
+      return L10nService.getWithParams(
+        'houses.planet_single',
+        widget.language,
+        params: {
+          'planet': planetNames,
+          'area': area,
+          'energy': planets.first.planet.meaning.toLowerCase(),
+        },
+      );
     } else {
-      return L10nService.getWithParams('houses.planet_multiple', widget.language, params: {
-        'count': count.toString(),
-        'planets': planetNames,
-        'area': area,
-      });
+      return L10nService.getWithParams(
+        'houses.planet_multiple',
+        widget.language,
+        params: {
+          'count': count.toString(),
+          'planets': planetNames,
+          'area': area,
+        },
+      );
     }
   }
 
@@ -498,8 +534,15 @@ class _HouseRowState extends State<_HouseRow> {
                         ),
                         const SizedBox(width: 6),
                         Text(
-                          L10nService.get('houses.under_sign_rule', widget.language)
-                              .replaceAll('{signName}', zodiac.ZodiacSignExtension(widget.house.sign).localizedName(widget.language)),
+                          L10nService.get(
+                            'houses.under_sign_rule',
+                            widget.language,
+                          ).replaceAll(
+                            '{signName}',
+                            zodiac.ZodiacSignExtension(
+                              widget.house.sign,
+                            ).localizedName(widget.language),
+                          ),
                           style: Theme.of(context).textTheme.labelSmall
                               ?.copyWith(
                                 color: signColor,
@@ -531,7 +574,10 @@ class _HouseRowState extends State<_HouseRow> {
                     Icon(Icons.public, size: 16, color: AppColors.auroraStart),
                     const SizedBox(width: 8),
                     Text(
-                      L10nService.get('houses.planets_in_house', widget.language),
+                      L10nService.get(
+                        'houses.planets_in_house',
+                        widget.language,
+                      ),
                       style: Theme.of(context).textTheme.labelMedium?.copyWith(
                         color: AppColors.auroraStart,
                         fontWeight: FontWeight.bold,
@@ -606,7 +652,10 @@ class _HouseRowState extends State<_HouseRow> {
                       const SizedBox(width: 8),
                       Expanded(
                         child: Text(
-                          L10nService.get('houses.no_planets_info', widget.language),
+                          L10nService.get(
+                            'houses.no_planets_info',
+                            widget.language,
+                          ),
                           style: Theme.of(context).textTheme.bodySmall
                               ?.copyWith(
                                 color: AppColors.textMuted,
@@ -626,7 +675,10 @@ class _HouseRowState extends State<_HouseRow> {
   }
 
   String _getEsotericTitle(int houseNumber) {
-    final title = L10nService.get('houses.esoteric.$houseNumber.title', widget.language);
+    final title = L10nService.get(
+      'houses.esoteric.$houseNumber.title',
+      widget.language,
+    );
     if (title.isNotEmpty && !title.contains('houses.esoteric')) {
       return title;
     }

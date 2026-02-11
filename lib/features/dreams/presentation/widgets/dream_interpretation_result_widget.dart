@@ -38,9 +38,7 @@ class DreamInterpretationResultWidget extends ConsumerWidget {
           ],
         ),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: AppColors.mystic.withValues(alpha: 0.3),
-        ),
+        border: Border.all(color: AppColors.mystic.withValues(alpha: 0.3)),
         boxShadow: [
           BoxShadow(
             color: AppColors.mystic.withValues(alpha: 0.2),
@@ -63,7 +61,10 @@ class DreamInterpretationResultWidget extends ConsumerWidget {
                 context,
                 lang,
                 emoji: '📜',
-                title: L10nService.get('dreams.result_widget.ancient_wisdom', lang),
+                title: L10nService.get(
+                  'dreams.result_widget.ancient_wisdom',
+                  lang,
+                ),
                 content: interpretation.ancientIntro,
                 delay: 100,
               ),
@@ -151,18 +152,21 @@ class DreamInterpretationResultWidget extends ConsumerWidget {
                 Text(
                   L10nService.get('dreams.result_widget.title_badge', lang),
                   style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                        color: AppColors.starGold,
-                        fontWeight: FontWeight.w600,
-                        letterSpacing: 1.5,
-                      ),
+                    color: AppColors.starGold,
+                    fontWeight: FontWeight.w600,
+                    letterSpacing: 1.5,
+                  ),
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  L10nService.get('dreams.result_widget.subconscious_message', lang),
+                  L10nService.get(
+                    'dreams.result_widget.subconscious_message',
+                    lang,
+                  ),
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        color: AppColors.textPrimary,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    color: AppColors.textPrimary,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ],
             ),
@@ -188,8 +192,8 @@ class DreamInterpretationResultWidget extends ConsumerWidget {
                 Text(
                   interpretation.astroTiming.moonPhase.label,
                   style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                        color: AppColors.textSecondary,
-                      ),
+                    color: AppColors.textSecondary,
+                  ),
                 ),
               ],
             ),
@@ -208,81 +212,87 @@ class DreamInterpretationResultWidget extends ConsumerWidget {
     int delay = 0,
   }) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(emoji, style: const TextStyle(fontSize: 18)),
-              const SizedBox(width: 8),
-              Text(
-                title,
-                style: Theme.of(context).textTheme.titleSmall?.copyWith(
+              Row(
+                children: [
+                  Text(emoji, style: const TextStyle(fontSize: 18)),
+                  const SizedBox(width: 8),
+                  Text(
+                    title,
+                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       color: AppColors.starGold,
                       fontWeight: FontWeight.w600,
                     ),
+                  ),
+                ],
               ),
-            ],
-          ),
-          const SizedBox(height: 8),
-          Text(
-            content,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              const SizedBox(height: 8),
+              Text(
+                content,
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   color: AppColors.textPrimary,
                   height: 1.6,
                 ),
+              ),
+            ],
           ),
-        ],
-      ),
-    ).animate().fadeIn(duration: 300.ms, delay: delay.ms).slideX(begin: -0.05, end: 0);
+        )
+        .animate()
+        .fadeIn(duration: 300.ms, delay: delay.ms)
+        .slideX(begin: -0.05, end: 0);
   }
 
   Widget _buildCoreMessage(BuildContext context, AppLanguage lang) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            AppColors.starGold.withValues(alpha: 0.15),
-            AppColors.cosmicPurple.withValues(alpha: 0.1),
-          ],
-        ),
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: AppColors.starGold.withValues(alpha: 0.3),
-        ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
+          margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                AppColors.starGold.withValues(alpha: 0.15),
+                AppColors.cosmicPurple.withValues(alpha: 0.1),
+              ],
+            ),
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(
+              color: AppColors.starGold.withValues(alpha: 0.3),
+            ),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('✨', style: TextStyle(fontSize: 18)),
-              const SizedBox(width: 8),
-              Text(
-                L10nService.get('dreams.result_widget.core_message', lang),
-                style: Theme.of(context).textTheme.labelSmall?.copyWith(
+              Row(
+                children: [
+                  const Text('✨', style: TextStyle(fontSize: 18)),
+                  const SizedBox(width: 8),
+                  Text(
+                    L10nService.get('dreams.result_widget.core_message', lang),
+                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
                       color: AppColors.starGold,
                       fontWeight: FontWeight.w700,
                       letterSpacing: 1,
                     ),
+                  ),
+                ],
               ),
-            ],
-          ),
-          const SizedBox(height: 12),
-          Text(
-            interpretation.coreMessage,
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+              const SizedBox(height: 12),
+              Text(
+                interpretation.coreMessage,
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                   color: AppColors.textPrimary,
                   fontWeight: FontWeight.w500,
                   height: 1.5,
                 ),
+              ),
+            ],
           ),
-        ],
-      ),
-    ).animate().fadeIn(duration: 400.ms, delay: 200.ms).scale(begin: const Offset(0.95, 0.95), end: const Offset(1, 1));
+        )
+        .animate()
+        .fadeIn(duration: 400.ms, delay: 200.ms)
+        .scale(begin: const Offset(0.95, 0.95), end: const Offset(1, 1));
   }
 
   Widget _buildSymbolsSection(BuildContext context, AppLanguage lang) {
@@ -298,9 +308,9 @@ class DreamInterpretationResultWidget extends ConsumerWidget {
               Text(
                 L10nService.get('dreams.result_widget.symbol_analysis', lang),
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      color: AppColors.starGold,
-                      fontWeight: FontWeight.w600,
-                    ),
+                  color: AppColors.starGold,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ],
           ),
@@ -315,46 +325,80 @@ class DreamInterpretationResultWidget extends ConsumerWidget {
     ).animate().fadeIn(duration: 300.ms, delay: 300.ms);
   }
 
-  Widget _buildSymbolCard(BuildContext context, AppLanguage lang, SymbolInterpretation symbol, int index) {
+  Widget _buildSymbolCard(
+    BuildContext context,
+    AppLanguage lang,
+    SymbolInterpretation symbol,
+    int index,
+  ) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 12),
-      padding: const EdgeInsets.all(14),
-      decoration: BoxDecoration(
-        color: AppColors.mystic.withValues(alpha: 0.1),
-        borderRadius: BorderRadius.circular(14),
-        border: Border.all(
-          color: AppColors.mystic.withValues(alpha: 0.2),
-        ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
+          margin: const EdgeInsets.only(bottom: 12),
+          padding: const EdgeInsets.all(14),
+          decoration: BoxDecoration(
+            color: AppColors.mystic.withValues(alpha: 0.1),
+            borderRadius: BorderRadius.circular(14),
+            border: Border.all(color: AppColors.mystic.withValues(alpha: 0.2)),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(symbol.symbolEmoji, style: const TextStyle(fontSize: 24)),
-              const SizedBox(width: 10),
-              Expanded(
-                child: Text(
-                  symbol.symbol.toUpperCase(),
-                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
+              Row(
+                children: [
+                  Text(
+                    symbol.symbolEmoji,
+                    style: const TextStyle(fontSize: 24),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: Text(
+                      symbol.symbol.toUpperCase(),
+                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
                         color: AppColors.textPrimary,
                         fontWeight: FontWeight.bold,
                       ),
-                ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 10),
+              _buildSymbolDetail(
+                context,
+                '🌍',
+                L10nService.get('dreams.result_widget.universal', lang),
+                symbol.universalMeaning,
+              ),
+              _buildSymbolDetail(
+                context,
+                '👤',
+                L10nService.get('dreams.result_widget.personal', lang),
+                symbol.personalContext,
+              ),
+              _buildSymbolDetail(
+                context,
+                '🌑',
+                L10nService.get('dreams.result_widget.shadow', lang),
+                symbol.shadowAspect,
+              ),
+              _buildSymbolDetail(
+                context,
+                '☀️',
+                L10nService.get('dreams.result_widget.light', lang),
+                symbol.lightAspect,
               ),
             ],
           ),
-          const SizedBox(height: 10),
-          _buildSymbolDetail(context, '🌍', L10nService.get('dreams.result_widget.universal', lang), symbol.universalMeaning),
-          _buildSymbolDetail(context, '👤', L10nService.get('dreams.result_widget.personal', lang), symbol.personalContext),
-          _buildSymbolDetail(context, '🌑', L10nService.get('dreams.result_widget.shadow', lang), symbol.shadowAspect),
-          _buildSymbolDetail(context, '☀️', L10nService.get('dreams.result_widget.light', lang), symbol.lightAspect),
-        ],
-      ),
-    ).animate().fadeIn(duration: 200.ms, delay: (400 + index * 100).ms).slideX(begin: 0.05, end: 0);
+        )
+        .animate()
+        .fadeIn(duration: 200.ms, delay: (400 + index * 100).ms)
+        .slideX(begin: 0.05, end: 0);
   }
 
-  Widget _buildSymbolDetail(BuildContext context, String emoji, String label, String content) {
+  Widget _buildSymbolDetail(
+    BuildContext context,
+    String emoji,
+    String label,
+    String content,
+  ) {
     return Padding(
       padding: const EdgeInsets.only(top: 6),
       child: Row(
@@ -365,16 +409,16 @@ class DreamInterpretationResultWidget extends ConsumerWidget {
           Text(
             '$label: ',
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppColors.textSecondary,
-                  fontWeight: FontWeight.w600,
-                ),
+              color: AppColors.textSecondary,
+              fontWeight: FontWeight.w600,
+            ),
           ),
           Expanded(
             child: Text(
               content,
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.textPrimary.withValues(alpha: 0.9),
-                  ),
+                color: AppColors.textPrimary.withValues(alpha: 0.9),
+              ),
             ),
           ),
         ],
@@ -408,9 +452,9 @@ class DreamInterpretationResultWidget extends ConsumerWidget {
               Text(
                 '${L10nService.get('dreams.result_widget.archetype', lang)}: ${interpretation.archetypeName.toUpperCase()}',
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      color: AppColors.textPrimary,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  color: AppColors.textPrimary,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ],
           ),
@@ -418,9 +462,9 @@ class DreamInterpretationResultWidget extends ConsumerWidget {
           Text(
             interpretation.archetypeConnection,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: AppColors.textPrimary.withValues(alpha: 0.9),
-                  height: 1.5,
-                ),
+              color: AppColors.textPrimary.withValues(alpha: 0.9),
+              height: 1.5,
+            ),
           ),
         ],
       ),
@@ -436,28 +480,56 @@ class DreamInterpretationResultWidget extends ConsumerWidget {
         children: [
           Row(
             children: [
-              Text(emotional.dominantEmotion.emoji, style: const TextStyle(fontSize: 20)),
+              Text(
+                emotional.dominantEmotion.emoji,
+                style: const TextStyle(fontSize: 20),
+              ),
               const SizedBox(width: 10),
               Text(
                 '${L10nService.get('dreams.result_widget.emotional_reading', lang)}: ${emotional.dominantEmotion.label.toUpperCase()}',
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      color: AppColors.starGold,
-                      fontWeight: FontWeight.w600,
-                    ),
+                  color: AppColors.starGold,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ],
           ),
           const SizedBox(height: 12),
-          _buildEmotionalRow(context, '📍', L10nService.get('dreams.result_widget.surface', lang), emotional.surfaceMessage),
-          _buildEmotionalRow(context, '🔮', L10nService.get('dreams.result_widget.depth', lang), emotional.deeperMeaning),
-          _buildEmotionalRow(context, '❓', L10nService.get('dreams.result_widget.shadow_question', lang), emotional.shadowQuestion),
-          _buildEmotionalRow(context, '🛤️', L10nService.get('dreams.result_widget.integration', lang), emotional.integrationPath),
+          _buildEmotionalRow(
+            context,
+            '📍',
+            L10nService.get('dreams.result_widget.surface', lang),
+            emotional.surfaceMessage,
+          ),
+          _buildEmotionalRow(
+            context,
+            '🔮',
+            L10nService.get('dreams.result_widget.depth', lang),
+            emotional.deeperMeaning,
+          ),
+          _buildEmotionalRow(
+            context,
+            '❓',
+            L10nService.get('dreams.result_widget.shadow_question', lang),
+            emotional.shadowQuestion,
+          ),
+          _buildEmotionalRow(
+            context,
+            '🛤️',
+            L10nService.get('dreams.result_widget.integration', lang),
+            emotional.integrationPath,
+          ),
         ],
       ),
     ).animate().fadeIn(duration: 300.ms, delay: 600.ms);
   }
 
-  Widget _buildEmotionalRow(BuildContext context, String emoji, String label, String content) {
+  Widget _buildEmotionalRow(
+    BuildContext context,
+    String emoji,
+    String label,
+    String content,
+  ) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 8),
       child: Row(
@@ -468,17 +540,17 @@ class DreamInterpretationResultWidget extends ConsumerWidget {
           Text(
             '$label: ',
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppColors.textSecondary,
-                  fontWeight: FontWeight.w600,
-                ),
+              color: AppColors.textSecondary,
+              fontWeight: FontWeight.w600,
+            ),
           ),
           Expanded(
             child: Text(
               content,
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.textPrimary,
-                    height: 1.4,
-                  ),
+                color: AppColors.textPrimary,
+                height: 1.4,
+              ),
             ),
           ),
         ],
@@ -513,23 +585,26 @@ class DreamInterpretationResultWidget extends ConsumerWidget {
               Text(
                 L10nService.get('dreams.result_widget.astro_timing', lang),
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      color: AppColors.textPrimary,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  color: AppColors.textPrimary,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               const Spacer(),
               if (astro.isRetrograde)
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                    vertical: 4,
+                  ),
                   decoration: BoxDecoration(
                     color: Colors.orange.withValues(alpha: 0.2),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Text(
                     '℞ Retro',
-                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                          color: Colors.orange,
-                        ),
+                    style: Theme.of(
+                      context,
+                    ).textTheme.labelSmall?.copyWith(color: Colors.orange),
                   ),
                 ),
             ],
@@ -538,9 +613,9 @@ class DreamInterpretationResultWidget extends ConsumerWidget {
           Text(
             astro.timingMessage,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: AppColors.textPrimary,
-                  height: 1.5,
-                ),
+              color: AppColors.textPrimary,
+              height: 1.5,
+            ),
           ),
           const SizedBox(height: 10),
           Container(
@@ -557,9 +632,9 @@ class DreamInterpretationResultWidget extends ConsumerWidget {
                   child: Text(
                     '${L10nService.get('dreams.result_widget.why_now', lang)} ${astro.whyNow}',
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: AppColors.textSecondary,
-                          fontStyle: FontStyle.italic,
-                        ),
+                      color: AppColors.textSecondary,
+                      fontStyle: FontStyle.italic,
+                    ),
                   ),
                 ),
               ],
@@ -589,9 +664,7 @@ class DreamInterpretationResultWidget extends ConsumerWidget {
                   ],
                 ),
                 borderRadius: BorderRadius.circular(14),
-                border: Border.all(
-                  color: Colors.amber.withValues(alpha: 0.3),
-                ),
+                border: Border.all(color: Colors.amber.withValues(alpha: 0.3)),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -601,11 +674,14 @@ class DreamInterpretationResultWidget extends ConsumerWidget {
                       const Text('☀️', style: TextStyle(fontSize: 16)),
                       const SizedBox(width: 6),
                       Text(
-                        L10nService.get('dreams.result_widget.light_label', lang),
+                        L10nService.get(
+                          'dreams.result_widget.light_label',
+                          lang,
+                        ),
                         style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                              color: Colors.amber,
-                              fontWeight: FontWeight.bold,
-                            ),
+                          color: Colors.amber,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ],
                   ),
@@ -613,9 +689,9 @@ class DreamInterpretationResultWidget extends ConsumerWidget {
                   Text(
                     ls.lightMessage,
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: AppColors.textPrimary,
-                          height: 1.4,
-                        ),
+                      color: AppColors.textPrimary,
+                      height: 1.4,
+                    ),
                   ),
                 ],
               ),
@@ -635,9 +711,7 @@ class DreamInterpretationResultWidget extends ConsumerWidget {
                   ],
                 ),
                 borderRadius: BorderRadius.circular(14),
-                border: Border.all(
-                  color: Colors.indigo.withValues(alpha: 0.3),
-                ),
+                border: Border.all(color: Colors.indigo.withValues(alpha: 0.3)),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -647,11 +721,14 @@ class DreamInterpretationResultWidget extends ConsumerWidget {
                       const Text('🌑', style: TextStyle(fontSize: 16)),
                       const SizedBox(width: 6),
                       Text(
-                        L10nService.get('dreams.result_widget.shadow_label', lang),
+                        L10nService.get(
+                          'dreams.result_widget.shadow_label',
+                          lang,
+                        ),
                         style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                              color: Colors.indigo[300],
-                              fontWeight: FontWeight.bold,
-                            ),
+                          color: Colors.indigo[300],
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ],
                   ),
@@ -659,9 +736,9 @@ class DreamInterpretationResultWidget extends ConsumerWidget {
                   Text(
                     ls.shadowMessage,
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: AppColors.textPrimary,
-                          height: 1.4,
-                        ),
+                      color: AppColors.textPrimary,
+                      height: 1.4,
+                    ),
                   ),
                 ],
               ),
@@ -680,9 +757,7 @@ class DreamInterpretationResultWidget extends ConsumerWidget {
       decoration: BoxDecoration(
         color: AppColors.mystic.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: AppColors.mystic.withValues(alpha: 0.2),
-        ),
+        border: Border.all(color: AppColors.mystic.withValues(alpha: 0.2)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -692,18 +767,36 @@ class DreamInterpretationResultWidget extends ConsumerWidget {
               const Text('🧭', style: TextStyle(fontSize: 20)),
               const SizedBox(width: 10),
               Text(
-                L10nService.get('dreams.result_widget.practical_guidance', lang),
+                L10nService.get(
+                  'dreams.result_widget.practical_guidance',
+                  lang,
+                ),
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      color: AppColors.starGold,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  color: AppColors.starGold,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ],
           ),
           const SizedBox(height: 14),
-          _buildGuidanceItem(context, '📅', L10nService.get('dreams.result_widget.today', lang), guidance.todayAction),
-          _buildGuidanceItem(context, '📆', L10nService.get('dreams.result_widget.this_week', lang), guidance.weeklyFocus),
-          _buildGuidanceItem(context, '🚫', L10nService.get('dreams.result_widget.avoid', lang), guidance.avoidance),
+          _buildGuidanceItem(
+            context,
+            '📅',
+            L10nService.get('dreams.result_widget.today', lang),
+            guidance.todayAction,
+          ),
+          _buildGuidanceItem(
+            context,
+            '📆',
+            L10nService.get('dreams.result_widget.this_week', lang),
+            guidance.weeklyFocus,
+          ),
+          _buildGuidanceItem(
+            context,
+            '🚫',
+            L10nService.get('dreams.result_widget.avoid', lang),
+            guidance.avoidance,
+          ),
           const Divider(color: AppColors.mystic, height: 20),
           Container(
             padding: const EdgeInsets.all(12),
@@ -721,18 +814,21 @@ class DreamInterpretationResultWidget extends ConsumerWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        L10nService.get('dreams.result_widget.reflection_question', lang),
+                        L10nService.get(
+                          'dreams.result_widget.reflection_question',
+                          lang,
+                        ),
                         style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                              color: AppColors.textSecondary,
-                            ),
+                          color: AppColors.textSecondary,
+                        ),
                       ),
                       const SizedBox(height: 4),
                       Text(
                         guidance.reflectionQuestion,
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              color: AppColors.textPrimary,
-                              fontStyle: FontStyle.italic,
-                            ),
+                          color: AppColors.textPrimary,
+                          fontStyle: FontStyle.italic,
+                        ),
                       ),
                     ],
                   ),
@@ -745,7 +841,12 @@ class DreamInterpretationResultWidget extends ConsumerWidget {
     ).animate().fadeIn(duration: 300.ms, delay: 900.ms);
   }
 
-  Widget _buildGuidanceItem(BuildContext context, String emoji, String label, String content) {
+  Widget _buildGuidanceItem(
+    BuildContext context,
+    String emoji,
+    String label,
+    String content,
+  ) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
       child: Row(
@@ -758,17 +859,17 @@ class DreamInterpretationResultWidget extends ConsumerWidget {
             child: Text(
               label,
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.textSecondary,
-                    fontWeight: FontWeight.w600,
-                  ),
+                color: AppColors.textSecondary,
+                fontWeight: FontWeight.w600,
+              ),
             ),
           ),
           Expanded(
             child: Text(
               content,
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.textPrimary,
-                  ),
+              style: Theme.of(
+                context,
+              ).textTheme.bodySmall?.copyWith(color: AppColors.textPrimary),
             ),
           ),
         ],
@@ -778,131 +879,138 @@ class DreamInterpretationResultWidget extends ConsumerWidget {
 
   Widget _buildWhisperQuote(BuildContext context, AppLanguage lang) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            AppColors.mystic.withValues(alpha: 0.25),
-            AppColors.nebulaPurple.withValues(alpha: 0.2),
-          ],
-        ),
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.mystic.withValues(alpha: 0.15),
-            blurRadius: 20,
-            spreadRadius: 2,
+          margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                AppColors.mystic.withValues(alpha: 0.25),
+                AppColors.nebulaPurple.withValues(alpha: 0.2),
+              ],
+            ),
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: [
+              BoxShadow(
+                color: AppColors.mystic.withValues(alpha: 0.15),
+                blurRadius: 20,
+                spreadRadius: 2,
+              ),
+            ],
           ),
-        ],
-      ),
-      child: Column(
-        children: [
-          const Text('🌙', style: TextStyle(fontSize: 28)),
-          const SizedBox(height: 12),
-          Text(
-            '"${interpretation.whisperQuote}"',
-            textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+          child: Column(
+            children: [
+              const Text('🌙', style: TextStyle(fontSize: 28)),
+              const SizedBox(height: 12),
+              Text(
+                '"${interpretation.whisperQuote}"',
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                   color: AppColors.textPrimary,
                   fontStyle: FontStyle.italic,
                   height: 1.5,
                   letterSpacing: 0.5,
                 ),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            '— ${L10nService.get('dreams.result_widget.whisper_wisdom', lang)}',
-            style: Theme.of(context).textTheme.labelSmall?.copyWith(
+              ),
+              const SizedBox(height: 8),
+              Text(
+                '— ${L10nService.get('dreams.result_widget.whisper_wisdom', lang)}',
+                style: Theme.of(context).textTheme.labelSmall?.copyWith(
                   color: AppColors.textSecondary,
                 ),
+              ),
+            ],
           ),
-        ],
-      ),
-    )
+        )
         .animate()
         .fadeIn(duration: 500.ms, delay: 1000.ms)
-        .shimmer(duration: 2000.ms, delay: 1200.ms, color: AppColors.starGold.withValues(alpha: 0.3));
+        .shimmer(
+          duration: 2000.ms,
+          delay: 1200.ms,
+          color: AppColors.starGold.withValues(alpha: 0.3),
+        );
   }
 
   Widget _buildShareCard(BuildContext context, AppLanguage lang) {
     final card = interpretation.shareCard;
     return GestureDetector(
-      onTap: () => _shareCard(context, card),
-      child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-        padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              AppColors.cosmicPurple,
-              AppColors.nebulaPurple,
-            ],
-          ),
-          borderRadius: BorderRadius.circular(20),
-          boxShadow: [
-            BoxShadow(
-              color: AppColors.cosmicPurple.withValues(alpha: 0.4),
-              blurRadius: 15,
-              spreadRadius: 2,
-            ),
-          ],
-        ),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  card.emoji,
-                  style: const TextStyle(fontSize: 32),
-                ),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                  decoration: BoxDecoration(
-                    color: Colors.white.withValues(alpha: 0.2),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Row(
-                    children: [
-                      const Icon(Icons.share, color: Colors.white, size: 14),
-                      const SizedBox(width: 4),
-                      Text(
-                        L10nService.get('dreams.result_widget.share', lang),
-                        style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                              color: Colors.white,
-                            ),
-                      ),
-                    ],
-                  ),
+          onTap: () => _shareCard(context, card),
+          child: Container(
+            margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+            padding: const EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [AppColors.cosmicPurple, AppColors.nebulaPurple],
+              ),
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: [
+                BoxShadow(
+                  color: AppColors.cosmicPurple.withValues(alpha: 0.4),
+                  blurRadius: 15,
+                  spreadRadius: 2,
                 ),
               ],
             ),
-            const SizedBox(height: 16),
-            Text(
-              '"${card.quote}"',
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(card.emoji, style: const TextStyle(fontSize: 32)),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 4,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.white.withValues(alpha: 0.2),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Row(
+                        children: [
+                          const Icon(
+                            Icons.share,
+                            color: Colors.white,
+                            size: 14,
+                          ),
+                          const SizedBox(width: 4),
+                          Text(
+                            L10nService.get('dreams.result_widget.share', lang),
+                            style: Theme.of(context).textTheme.labelSmall
+                                ?.copyWith(color: Colors.white),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 16),
+                Text(
+                  '"${card.quote}"',
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     color: Colors.white,
                     fontWeight: FontWeight.w600,
                     height: 1.4,
                   ),
-            ),
-            const SizedBox(height: 12),
-            Text(
-              '— ${L10nService.get('dreams.result_widget.share_footer', lang)}',
-              style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                ),
+                const SizedBox(height: 12),
+                Text(
+                  '— ${L10nService.get('dreams.result_widget.share_footer', lang)}',
+                  style: Theme.of(context).textTheme.labelSmall?.copyWith(
                     color: Colors.white.withValues(alpha: 0.7),
                   ),
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
-    ).animate().fadeIn(duration: 400.ms, delay: 1100.ms).scale(begin: const Offset(0.95, 0.95), end: const Offset(1, 1));
+          ),
+        )
+        .animate()
+        .fadeIn(duration: 400.ms, delay: 1100.ms)
+        .scale(begin: const Offset(0.95, 0.95), end: const Offset(1, 1));
   }
 
   Widget _buildExplorationLinks(BuildContext context, AppLanguage lang) {
@@ -918,9 +1026,9 @@ class DreamInterpretationResultWidget extends ConsumerWidget {
               Text(
                 L10nService.get('dreams.result_widget.explore', lang),
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      color: AppColors.starGold,
-                      fontWeight: FontWeight.w600,
-                    ),
+                  color: AppColors.starGold,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ],
           ),
@@ -933,7 +1041,10 @@ class DreamInterpretationResultWidget extends ConsumerWidget {
                 onTap: onExploreLink,
                 borderRadius: BorderRadius.circular(12),
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 14,
+                    vertical: 10,
+                  ),
                   decoration: BoxDecoration(
                     color: AppColors.cosmicPurple.withValues(alpha: 0.2),
                     borderRadius: BorderRadius.circular(12),
@@ -949,8 +1060,8 @@ class DreamInterpretationResultWidget extends ConsumerWidget {
                       Text(
                         link.title,
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                              color: AppColors.textPrimary,
-                            ),
+                          color: AppColors.textPrimary,
+                        ),
                       ),
                       const SizedBox(width: 4),
                       Icon(

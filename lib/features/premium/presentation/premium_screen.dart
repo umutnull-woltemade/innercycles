@@ -89,7 +89,10 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
     );
   }
 
-  Widget _buildPremiumActiveScreen(BuildContext context, PremiumState premiumState) {
+  Widget _buildPremiumActiveScreen(
+    BuildContext context,
+    PremiumState premiumState,
+  ) {
     return Scaffold(
       body: CosmicBackground(
         child: SafeArea(
@@ -174,16 +177,16 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
           if (premiumState.isLifetime)
             Text(
               L10nService.get('premium.lifetime_access', language),
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: AppColors.textSecondary,
-              ),
+              style: Theme.of(
+                context,
+              ).textTheme.bodyMedium?.copyWith(color: AppColors.textSecondary),
             )
           else if (premiumState.expiryDate != null)
             Text(
               '${L10nService.get('common.next', language)}: ${_formatDate(premiumState.expiryDate!)}',
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: AppColors.textSecondary,
-              ),
+              style: Theme.of(
+                context,
+              ).textTheme.bodyMedium?.copyWith(color: AppColors.textSecondary),
             ),
         ],
       ),
@@ -288,9 +291,9 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
           Expanded(
             child: Text(
               'RevenueCat Paywall',
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: Colors.orange,
-              ),
+              style: Theme.of(
+                context,
+              ).textTheme.bodySmall?.copyWith(color: Colors.orange),
             ),
           ),
           Switch(
@@ -303,7 +306,10 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
     );
   }
 
-  Widget _buildRevenueCatPaywallButton(BuildContext context, PremiumState premiumState) {
+  Widget _buildRevenueCatPaywallButton(
+    BuildContext context,
+    PremiumState premiumState,
+  ) {
     return Column(
       children: [
         // Features preview
@@ -333,7 +339,9 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                 onTap: premiumState.isLoading
                     ? null
                     : () async {
-                        final result = await ref.read(paywallServiceProvider).presentPaywall();
+                        final result = await ref
+                            .read(paywallServiceProvider)
+                            .presentPaywall();
                         if (mounted && result == PaywallResult.purchased) {
                           _showSuccessDialog();
                         }
@@ -348,16 +356,25 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                             height: 24,
                             child: CircularProgressIndicator(
                               strokeWidth: 2,
-                              valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                Colors.white,
+                              ),
                             ),
                           )
                         : Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const Icon(Icons.star, color: Colors.black, size: 20),
+                              const Icon(
+                                Icons.star,
+                                color: Colors.black,
+                                size: 20,
+                              ),
                               const SizedBox(width: 8),
                               Text(
-                                L10nService.get('premium.view_plans', ref.watch(languageProvider)),
+                                L10nService.get(
+                                  'premium.view_plans',
+                                  ref.watch(languageProvider),
+                                ),
                                 style: const TextStyle(
                                   color: Colors.black,
                                   fontSize: 16,
@@ -390,7 +407,10 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            L10nService.get('premium.cosmic_powers', ref.watch(languageProvider)),
+            L10nService.get(
+              'premium.cosmic_powers',
+              ref.watch(languageProvider),
+            ),
             style: Theme.of(
               context,
             ).textTheme.titleMedium?.copyWith(color: AppColors.starGold),
@@ -508,8 +528,14 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                   SnackBar(
                     content: Text(
                       restored
-                          ? L10nService.get('premium.purchases_restored', language)
-                          : L10nService.get('premium.no_purchases_found', language),
+                          ? L10nService.get(
+                              'premium.purchases_restored',
+                              language,
+                            )
+                          : L10nService.get(
+                              'premium.no_purchases_found',
+                              language,
+                            ),
                     ),
                     backgroundColor: restored
                         ? AppColors.success
@@ -706,7 +732,10 @@ class _PlanCard extends StatelessWidget {
                               ),
                               if (isLifetime) ...[
                                 const SizedBox(width: 8),
-                                const Text('♾️', style: TextStyle(fontSize: 14)),
+                                const Text(
+                                  '♾️',
+                                  style: TextStyle(fontSize: 14),
+                                ),
                               ],
                             ],
                           ),
@@ -739,17 +768,9 @@ class _PlanCard extends StatelessWidget {
           ),
         ),
         if (isBestValue)
-          Positioned(
-            top: -10,
-            right: 16,
-            child: _BestValueBadge(),
-          ),
+          Positioned(top: -10, right: 16, child: _BestValueBadge()),
         if (isLifetime)
-          Positioned(
-            top: -10,
-            right: 16,
-            child: _LifetimeBadge(),
-          ),
+          Positioned(top: -10, right: 16, child: _LifetimeBadge()),
       ],
     );
   }

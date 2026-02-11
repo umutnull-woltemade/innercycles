@@ -12,7 +12,10 @@ class SchemaMarkupService {
   static const String _orgName = 'Venus One';
 
   /// Generate JSON-LD script tag content for a given route
-  static String generateSchemaMarkup(String route, {AppLanguage language = AppLanguage.tr}) {
+  static String generateSchemaMarkup(
+    String route, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     final meta = SeoMetaService.getMetaForRoute(route, language: language);
     final schemas = <Map<String, dynamic>>[];
 
@@ -57,11 +60,17 @@ class SchemaMarkupService {
     }
 
     // Return as script tags
-    return schemas.map((s) => '<script type="application/ld+json">${jsonEncode(s)}</script>').join('\n');
+    return schemas
+        .map(
+          (s) => '<script type="application/ld+json">${jsonEncode(s)}</script>',
+        )
+        .join('\n');
   }
 
   /// Organization schema - appears on all pages
-  static Map<String, dynamic> _organizationSchema({AppLanguage language = AppLanguage.tr}) {
+  static Map<String, dynamic> _organizationSchema({
+    AppLanguage language = AppLanguage.tr,
+  }) {
     return {
       '@context': 'https://schema.org',
       '@type': 'Organization',
@@ -82,10 +91,12 @@ class SchemaMarkupService {
   }
 
   /// WebSite schema with search action
-  static Map<String, dynamic> _websiteSchema({AppLanguage language = AppLanguage.tr}) {
+  static Map<String, dynamic> _websiteSchema({
+    AppLanguage language = AppLanguage.tr,
+  }) {
     final description = language == AppLanguage.tr
-      ? "Türkiye'nin en kapsamlı astroloji, numeroloji ve tarot uygulaması"
-      : "The most comprehensive astrology, numerology and tarot application";
+        ? "Türkiye'nin en kapsamlı astroloji, numeroloji ve tarot uygulaması"
+        : "The most comprehensive astrology, numerology and tarot application";
     final languageCode = language == AppLanguage.tr ? 'tr-TR' : 'en-US';
     return {
       '@context': 'https://schema.org',
@@ -103,16 +114,17 @@ class SchemaMarkupService {
   }
 
   /// Breadcrumb schema
-  static Map<String, dynamic> _breadcrumbSchema(String route, String title, {AppLanguage language = AppLanguage.tr}) {
-    final normalizedRoute = route.replaceAll(RegExp(r'^/+|/+$'), '').toLowerCase();
+  static Map<String, dynamic> _breadcrumbSchema(
+    String route,
+    String title, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
+    final normalizedRoute = route
+        .replaceAll(RegExp(r'^/+|/+$'), '')
+        .toLowerCase();
     final homeName = language == AppLanguage.tr ? 'Ana Sayfa' : 'Home';
     final items = <Map<String, dynamic>>[
-      {
-        '@type': 'ListItem',
-        'position': 1,
-        'name': homeName,
-        'item': _baseUrl,
-      },
+      {'@type': 'ListItem', 'position': 1, 'name': homeName, 'item': _baseUrl},
     ];
 
     if (normalizedRoute.isNotEmpty && normalizedRoute != 'home') {
@@ -132,7 +144,10 @@ class SchemaMarkupService {
   }
 
   /// Web Application schema for tools
-  static Map<String, dynamic> _webApplicationSchema(PageMeta meta, {AppLanguage language = AppLanguage.tr}) {
+  static Map<String, dynamic> _webApplicationSchema(
+    PageMeta meta, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     final languageCode = language == AppLanguage.tr ? 'tr-TR' : 'en-US';
     final currency = language == AppLanguage.tr ? 'TRY' : 'USD';
     return {
@@ -143,21 +158,17 @@ class SchemaMarkupService {
       'description': meta.description,
       'applicationCategory': 'LifestyleApplication',
       'operatingSystem': 'Web, iOS, Android',
-      'offers': {
-        '@type': 'Offer',
-        'price': '0',
-        'priceCurrency': currency,
-      },
-      'author': {
-        '@type': 'Organization',
-        'name': _orgName,
-      },
+      'offers': {'@type': 'Offer', 'price': '0', 'priceCurrency': currency},
+      'author': {'@type': 'Organization', 'name': _orgName},
       'inLanguage': languageCode,
     };
   }
 
   /// Article schema for content pages
-  static Map<String, dynamic> _articleSchema(PageMeta meta, {AppLanguage language = AppLanguage.tr}) {
+  static Map<String, dynamic> _articleSchema(
+    PageMeta meta, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     final now = DateTime.now().toIso8601String();
     final languageCode = language == AppLanguage.tr ? 'tr-TR' : 'en-US';
     return {
@@ -168,18 +179,11 @@ class SchemaMarkupService {
       'url': meta.getCanonicalUrl(_baseUrl),
       'datePublished': now,
       'dateModified': now,
-      'author': {
-        '@type': 'Organization',
-        'name': _orgName,
-        'url': _baseUrl,
-      },
+      'author': {'@type': 'Organization', 'name': _orgName, 'url': _baseUrl},
       'publisher': {
         '@type': 'Organization',
         'name': _orgName,
-        'logo': {
-          '@type': 'ImageObject',
-          'url': _logoUrl,
-        },
+        'logo': {'@type': 'ImageObject', 'url': _logoUrl},
       },
       'mainEntityOfPage': {
         '@type': 'WebPage',
@@ -190,19 +194,46 @@ class SchemaMarkupService {
   }
 
   /// HowTo schema for ritual/guide pages
-  static Map<String, dynamic> _howToSchema(PageMeta meta, {AppLanguage language = AppLanguage.tr}) {
+  static Map<String, dynamic> _howToSchema(
+    PageMeta meta, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     final languageCode = language == AppLanguage.tr ? 'tr-TR' : 'en-US';
     final steps = language == AppLanguage.tr
-      ? [
-          {'@type': 'HowToStep', 'name': 'Hazırlık', 'text': 'Sessiz ve rahat bir ortam oluşturun.'},
-          {'@type': 'HowToStep', 'name': 'Niyet Belirleme', 'text': 'Açık ve net niyetinizi belirleyin.'},
-          {'@type': 'HowToStep', 'name': 'Uygulama', 'text': 'Ritüeli talimatlar doğrultusunda gerçekleştirin.'},
-        ]
-      : [
-          {'@type': 'HowToStep', 'name': 'Preparation', 'text': 'Create a quiet and comfortable environment.'},
-          {'@type': 'HowToStep', 'name': 'Set Intention', 'text': 'Clearly define your intention.'},
-          {'@type': 'HowToStep', 'name': 'Practice', 'text': 'Perform the ritual according to the instructions.'},
-        ];
+        ? [
+            {
+              '@type': 'HowToStep',
+              'name': 'Hazırlık',
+              'text': 'Sessiz ve rahat bir ortam oluşturun.',
+            },
+            {
+              '@type': 'HowToStep',
+              'name': 'Niyet Belirleme',
+              'text': 'Açık ve net niyetinizi belirleyin.',
+            },
+            {
+              '@type': 'HowToStep',
+              'name': 'Uygulama',
+              'text': 'Ritüeli talimatlar doğrultusunda gerçekleştirin.',
+            },
+          ]
+        : [
+            {
+              '@type': 'HowToStep',
+              'name': 'Preparation',
+              'text': 'Create a quiet and comfortable environment.',
+            },
+            {
+              '@type': 'HowToStep',
+              'name': 'Set Intention',
+              'text': 'Clearly define your intention.',
+            },
+            {
+              '@type': 'HowToStep',
+              'name': 'Practice',
+              'text': 'Perform the ritual according to the instructions.',
+            },
+          ];
     return {
       '@context': 'https://schema.org',
       '@type': 'HowTo',
@@ -215,7 +246,10 @@ class SchemaMarkupService {
   }
 
   /// Product schema for premium page
-  static Map<String, dynamic> _productSchema(PageMeta meta, {AppLanguage language = AppLanguage.tr}) {
+  static Map<String, dynamic> _productSchema(
+    PageMeta meta, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     final currency = language == AppLanguage.tr ? 'TRY' : 'USD';
     return {
       '@context': 'https://schema.org',
@@ -223,10 +257,7 @@ class SchemaMarkupService {
       'name': 'Venus One Premium',
       'description': meta.description,
       'url': meta.getCanonicalUrl(_baseUrl),
-      'brand': {
-        '@type': 'Brand',
-        'name': _orgName,
-      },
+      'brand': {'@type': 'Brand', 'name': _orgName},
       'offers': {
         '@type': 'Offer',
         'priceCurrency': currency,
@@ -236,7 +267,10 @@ class SchemaMarkupService {
   }
 
   /// Collection page schema
-  static Map<String, dynamic> _collectionPageSchema(PageMeta meta, {AppLanguage language = AppLanguage.tr}) {
+  static Map<String, dynamic> _collectionPageSchema(
+    PageMeta meta, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     final languageCode = language == AppLanguage.tr ? 'tr-TR' : 'en-US';
     return {
       '@context': 'https://schema.org',
@@ -249,7 +283,10 @@ class SchemaMarkupService {
   }
 
   /// Defined term set schema for glossary
-  static Map<String, dynamic> _definedTermSetSchema(PageMeta meta, {AppLanguage language = AppLanguage.tr}) {
+  static Map<String, dynamic> _definedTermSetSchema(
+    PageMeta meta, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     final languageCode = language == AppLanguage.tr ? 'tr-TR' : 'en-US';
     return {
       '@context': 'https://schema.org',
@@ -262,7 +299,10 @@ class SchemaMarkupService {
   }
 
   /// FAQ page schema
-  static Map<String, dynamic> _faqPageSchema(PageMeta meta, {AppLanguage language = AppLanguage.tr}) {
+  static Map<String, dynamic> _faqPageSchema(
+    PageMeta meta, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     final languageCode = language == AppLanguage.tr ? 'tr-TR' : 'en-US';
     return {
       '@context': 'https://schema.org',
@@ -276,7 +316,10 @@ class SchemaMarkupService {
   }
 
   /// Profile page schema
-  static Map<String, dynamic> _profilePageSchema(PageMeta meta, {AppLanguage language = AppLanguage.tr}) {
+  static Map<String, dynamic> _profilePageSchema(
+    PageMeta meta, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     final languageCode = language == AppLanguage.tr ? 'tr-TR' : 'en-US';
     return {
       '@context': 'https://schema.org',
@@ -289,7 +332,10 @@ class SchemaMarkupService {
   }
 
   /// Generic web page schema
-  static Map<String, dynamic> _webPageSchema(PageMeta meta, {AppLanguage language = AppLanguage.tr}) {
+  static Map<String, dynamic> _webPageSchema(
+    PageMeta meta, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     final languageCode = language == AppLanguage.tr ? 'tr-TR' : 'en-US';
     return {
       '@context': 'https://schema.org',
@@ -302,7 +348,9 @@ class SchemaMarkupService {
   }
 
   /// Generate FAQ schema from a list of FAQ items
-  static Map<String, dynamic> generateFaqSchema(List<Map<String, String>> faqs) {
+  static Map<String, dynamic> generateFaqSchema(
+    List<Map<String, String>> faqs,
+  ) {
     return {
       '@context': 'https://schema.org',
       '@type': 'FAQPage',
@@ -310,10 +358,7 @@ class SchemaMarkupService {
         return {
           '@type': 'Question',
           'name': faq['question'],
-          'acceptedAnswer': {
-            '@type': 'Answer',
-            'text': faq['answer'],
-          },
+          'acceptedAnswer': {'@type': 'Answer', 'text': faq['answer']},
         };
       }).toList(),
     };
@@ -330,12 +375,12 @@ class SchemaMarkupService {
     final now = DateTime.now().toIso8601String();
     final languageCode = language == AppLanguage.tr ? 'tr-TR' : 'en-US';
     final headline = language == AppLanguage.tr
-      ? '$signName Burcu $signSymbol — Günlük Burç Yorumu'
-      : '$signName $signSymbol — Daily Horoscope';
+        ? '$signName Burcu $signSymbol — Günlük Burç Yorumu'
+        : '$signName $signSymbol — Daily Horoscope';
     final signLabel = language == AppLanguage.tr ? '$signName Burcu' : signName;
     final datesDescription = language == AppLanguage.tr
-      ? '$dates tarihleri arasında doğanlar'
-      : 'Born between $dates';
+        ? '$dates tarihleri arasında doğanlar'
+        : 'Born between $dates';
     return {
       '@context': 'https://schema.org',
       '@type': 'Article',
@@ -344,17 +389,11 @@ class SchemaMarkupService {
       'url': '$_baseUrl/horoscope/${signName.toLowerCase()}',
       'datePublished': now,
       'dateModified': now,
-      'author': {
-        '@type': 'Organization',
-        'name': _orgName,
-      },
+      'author': {'@type': 'Organization', 'name': _orgName},
       'publisher': {
         '@type': 'Organization',
         'name': _orgName,
-        'logo': {
-          '@type': 'ImageObject',
-          'url': _logoUrl,
-        },
+        'logo': {'@type': 'ImageObject', 'url': _logoUrl},
       },
       'about': {
         '@type': 'Thing',

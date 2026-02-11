@@ -756,8 +756,7 @@ Her 12 yılda Jüpiter doğum konumuna döner (12, 24, 36, 48... yaşlar). Bu ö
       AstrologyArticle(
         id: '20',
         title: 'Tutulmalar ve Sembolik Anlamları',
-        summary:
-            'Güneş ve Ay tutulmalarının kültürel ve sembolik önemi.',
+        summary: 'Güneş ve Ay tutulmalarının kültürel ve sembolik önemi.',
         content: '''
 Tutulmalar, birçok kültürde önemli astronomik olaylardır. Yılda 4-6 tutulma gerçekleşir.
 

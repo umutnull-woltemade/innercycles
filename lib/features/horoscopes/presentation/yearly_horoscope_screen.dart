@@ -749,7 +749,10 @@ class _YearlyHoroscopeScreenState extends ConsumerState<YearlyHoroscopeScreen> {
                         ),
                         const SizedBox(width: 4),
                         Text(
-                          L10nService.get('sections.caution_required', language),
+                          L10nService.get(
+                            'sections.caution_required',
+                            language,
+                          ),
                           style: Theme.of(context).textTheme.bodySmall
                               ?.copyWith(
                                 color: Colors.orange,

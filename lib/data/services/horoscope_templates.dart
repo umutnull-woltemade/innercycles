@@ -6,7 +6,9 @@ import '../providers/app_providers.dart';
 /// Uses seeded random selection for deterministic, reproducible daily readings
 class HoroscopeTemplates {
   // General daily opening statements (50+ variations)
-  static List<String> getGeneralOpenings({AppLanguage language = AppLanguage.tr}) {
+  static List<String> getGeneralOpenings({
+    AppLanguage language = AppLanguage.tr,
+  }) {
     return language == AppLanguage.tr ? _generalOpeningsTr : _generalOpeningsEn;
   }
 
@@ -450,8 +452,12 @@ class HoroscopeTemplates {
   ];
 
   // Planetary influence modifiers
-  static Map<String, List<String>> getPlanetaryModifiers({AppLanguage language = AppLanguage.tr}) {
-    return language == AppLanguage.tr ? _planetaryModifiersTr : _planetaryModifiersEn;
+  static Map<String, List<String>> getPlanetaryModifiers({
+    AppLanguage language = AppLanguage.tr,
+  }) {
+    return language == AppLanguage.tr
+        ? _planetaryModifiersTr
+        : _planetaryModifiersEn;
   }
 
   static const Map<String, List<String>> _planetaryModifiersTr = {
@@ -531,8 +537,12 @@ class HoroscopeTemplates {
   };
 
   // Reflection colors by zodiac sign (for thematic awareness, not prediction)
-  static Map<ZodiacSign, List<String>> getReflectionColors({AppLanguage language = AppLanguage.tr}) {
-    return language == AppLanguage.tr ? _reflectionColorsTr : _reflectionColorsEn;
+  static Map<ZodiacSign, List<String>> getReflectionColors({
+    AppLanguage language = AppLanguage.tr,
+  }) {
+    return language == AppLanguage.tr
+        ? _reflectionColorsTr
+        : _reflectionColorsEn;
   }
 
   static const Map<ZodiacSign, List<String>> _reflectionColorsTr = {
@@ -581,7 +591,10 @@ class HoroscopeTemplates {
 
   /// Generate daily horoscope reading
   static Map<String, dynamic> generateDailyReading(
-      DateTime date, ZodiacSign sign, {AppLanguage language = AppLanguage.tr}) {
+    DateTime date,
+    ZodiacSign sign, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     final seed = _generateSeed(date, sign);
     final random = Random(seed);
 
@@ -628,7 +641,11 @@ class HoroscopeTemplates {
   }
 
   /// Apply planetary modifier if applicable
-  static String applyModifier(String reading, String modifier, {AppLanguage language = AppLanguage.tr}) {
+  static String applyModifier(
+    String reading,
+    String modifier, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     final modifierMap = getPlanetaryModifiers(language: language);
     final modifiers = modifierMap[modifier];
     if (modifiers != null && modifiers.isNotEmpty) {
@@ -640,7 +657,11 @@ class HoroscopeTemplates {
 
   /// Generate compatibility summary
   static String generateCompatibilitySummary(
-      ZodiacSign sign1, ZodiacSign sign2, int overallScore, {AppLanguage language = AppLanguage.tr}) {
+    ZodiacSign sign1,
+    ZodiacSign sign2,
+    int overallScore, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     final sign1Name = language == AppLanguage.tr ? sign1.nameTr : sign1.name;
     final sign2Name = language == AppLanguage.tr ? sign2.nameTr : sign2.name;
 

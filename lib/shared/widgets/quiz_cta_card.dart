@@ -24,42 +24,28 @@ class QuizCTACard extends ConsumerWidget {
 
   /// Rüya sayfası için hazır CTA
   factory QuizCTACard.dream({bool compact = false, VoidCallback? onTap}) {
-    return QuizCTACard(
-      cta: QuizCTA.dream,
-      compact: compact,
-      onTap: onTap,
-    );
+    return QuizCTACard(cta: QuizCTA.dream, compact: compact, onTap: onTap);
   }
 
   /// Astroloji sayfası için hazır CTA
   factory QuizCTACard.astrology({bool compact = false, VoidCallback? onTap}) {
-    return QuizCTACard(
-      cta: QuizCTA.astrology,
-      compact: compact,
-      onTap: onTap,
-    );
+    return QuizCTACard(cta: QuizCTA.astrology, compact: compact, onTap: onTap);
   }
 
   /// Numeroloji sayfası için hazır CTA
   factory QuizCTACard.numerology({bool compact = false, VoidCallback? onTap}) {
-    return QuizCTACard(
-      cta: QuizCTA.numerology,
-      compact: compact,
-      onTap: onTap,
-    );
+    return QuizCTACard(cta: QuizCTA.numerology, compact: compact, onTap: onTap);
   }
 
   /// Genel keşif CTA
   factory QuizCTACard.general({bool compact = false, VoidCallback? onTap}) {
-    return QuizCTACard(
-      cta: QuizCTA.general,
-      compact: compact,
-      onTap: onTap,
-    );
+    return QuizCTACard(cta: QuizCTA.general, compact: compact, onTap: onTap);
   }
 
   /// Get localized CTA content based on quiz type
-  ({String headline, String subtext, String buttonText}) _getLocalizedCTA(LocalizedL10n l10n) {
+  ({String headline, String subtext, String buttonText}) _getLocalizedCTA(
+    LocalizedL10n l10n,
+  ) {
     switch (cta.quizType) {
       case 'dream':
         return (
@@ -100,7 +86,11 @@ class QuizCTACard extends ConsumerWidget {
     return _buildFullCard(context, isDark, localizedCTA);
   }
 
-  Widget _buildFullCard(BuildContext context, bool isDark, ({String headline, String subtext, String buttonText}) localizedCTA) {
+  Widget _buildFullCard(
+    BuildContext context,
+    bool isDark,
+    ({String headline, String subtext, String buttonText}) localizedCTA,
+  ) {
     return GestureDetector(
       onTap: onTap ?? () => context.push('/quiz?type=${cta.quizType}'),
       child: Container(
@@ -115,10 +105,7 @@ class QuizCTACard extends ConsumerWidget {
                     AppColors.cosmicPurple.withValues(alpha: 0.8),
                     AppColors.nebulaPurple.withValues(alpha: 0.9),
                   ]
-                : [
-                    AppColors.lightSurfaceVariant,
-                    AppColors.lightCard,
-                  ],
+                : [AppColors.lightSurfaceVariant, AppColors.lightCard],
           ),
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
@@ -175,7 +162,9 @@ class QuizCTACard extends ConsumerWidget {
                     style: GoogleFonts.cormorantGaramond(
                       fontSize: 20,
                       fontWeight: FontWeight.w600,
-                      color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                      color: isDark
+                          ? AppColors.textPrimary
+                          : AppColors.lightTextPrimary,
                       height: 1.3,
                     ),
                   ),
@@ -190,7 +179,9 @@ class QuizCTACard extends ConsumerWidget {
               style: GoogleFonts.raleway(
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
-                color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+                color: isDark
+                    ? AppColors.textSecondary
+                    : AppColors.lightTextSecondary,
                 height: 1.5,
               ),
             ),
@@ -198,10 +189,7 @@ class QuizCTACard extends ConsumerWidget {
 
             // CTA butonu
             Container(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 20,
-                vertical: 12,
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
               decoration: BoxDecoration(
                 gradient: const LinearGradient(
                   colors: [AppColors.auroraStart, AppColors.auroraEnd],
@@ -241,7 +229,11 @@ class QuizCTACard extends ConsumerWidget {
     ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.05);
   }
 
-  Widget _buildCompactCard(BuildContext context, bool isDark, ({String headline, String subtext, String buttonText}) localizedCTA) {
+  Widget _buildCompactCard(
+    BuildContext context,
+    bool isDark,
+    ({String headline, String subtext, String buttonText}) localizedCTA,
+  ) {
     return GestureDetector(
       onTap: onTap ?? () => context.push('/quiz?type=${cta.quizType}'),
       child: Container(
@@ -264,10 +256,7 @@ class QuizCTACard extends ConsumerWidget {
         child: Row(
           children: [
             if (cta.emoji != null) ...[
-              Text(
-                cta.emoji!,
-                style: const TextStyle(fontSize: 20),
-              ),
+              Text(cta.emoji!, style: const TextStyle(fontSize: 20)),
               const SizedBox(width: AppConstants.spacingSm),
             ],
             Expanded(
@@ -276,7 +265,9 @@ class QuizCTACard extends ConsumerWidget {
                 style: GoogleFonts.raleway(
                   fontSize: 13,
                   fontWeight: FontWeight.w500,
-                  color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                  color: isDark
+                      ? AppColors.textPrimary
+                      : AppColors.lightTextPrimary,
                 ),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
@@ -284,10 +275,7 @@ class QuizCTACard extends ConsumerWidget {
             ),
             const SizedBox(width: AppConstants.spacingSm),
             Container(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 12,
-                vertical: 6,
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
               decoration: BoxDecoration(
                 gradient: const LinearGradient(
                   colors: [AppColors.auroraStart, AppColors.auroraEnd],
@@ -353,7 +341,9 @@ class InlineQuizCTA extends ConsumerWidget {
             Icon(
               Icons.quiz_outlined,
               size: 16,
-              color: isDark ? AppColors.auroraStart : AppColors.lightAuroraStart,
+              color: isDark
+                  ? AppColors.auroraStart
+                  : AppColors.lightAuroraStart,
             ),
             const SizedBox(width: 8),
             Flexible(
@@ -362,7 +352,9 @@ class InlineQuizCTA extends ConsumerWidget {
                 style: GoogleFonts.raleway(
                   fontSize: 13,
                   fontWeight: FontWeight.w500,
-                  color: isDark ? AppColors.auroraStart : AppColors.lightAuroraStart,
+                  color: isDark
+                      ? AppColors.auroraStart
+                      : AppColors.lightAuroraStart,
                 ),
               ),
             ),
@@ -434,9 +426,7 @@ class FloatingQuizCTA extends ConsumerWidget {
                 ],
         ),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: AppColors.auroraStart.withValues(alpha: 0.3),
-        ),
+        border: Border.all(color: AppColors.auroraStart.withValues(alpha: 0.3)),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withValues(alpha: 0.2),
@@ -448,10 +438,7 @@ class FloatingQuizCTA extends ConsumerWidget {
       child: Row(
         children: [
           if (cta.emoji != null) ...[
-            Text(
-              cta.emoji!,
-              style: const TextStyle(fontSize: 28),
-            ),
+            Text(cta.emoji!, style: const TextStyle(fontSize: 28)),
             const SizedBox(width: AppConstants.spacingMd),
           ],
           Expanded(
@@ -464,7 +451,9 @@ class FloatingQuizCTA extends ConsumerWidget {
                   style: GoogleFonts.raleway(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
-                    color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                    color: isDark
+                        ? AppColors.textPrimary
+                        : AppColors.lightTextPrimary,
                   ),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
@@ -476,10 +465,7 @@ class FloatingQuizCTA extends ConsumerWidget {
           GestureDetector(
             onTap: onTap ?? () => context.push('/quiz?type=${cta.quizType}'),
             child: Container(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 16,
-                vertical: 10,
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
               decoration: BoxDecoration(
                 gradient: const LinearGradient(
                   colors: [AppColors.auroraStart, AppColors.auroraEnd],

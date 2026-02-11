@@ -25,10 +25,7 @@ class UrlLauncherService {
         );
 
         if (launched && source != null) {
-          _analytics.logEvent('url_launched', {
-            'url': url,
-            'source': source,
-          });
+          _analytics.logEvent('url_launched', {'url': url, 'source': source});
         }
 
         return launched;
@@ -63,10 +60,7 @@ class UrlLauncherService {
     final emailUri = Uri(
       scheme: 'mailto',
       path: AppConstants.supportEmail,
-      queryParameters: {
-        'subject': ?subject,
-        'body': ?body,
-      },
+      queryParameters: {'subject': ?subject, 'body': ?body},
     );
 
     _analytics.logEvent('support_email_opened');
@@ -143,7 +137,8 @@ class UrlLauncherService {
           return false;
         }
       } else if (Platform.isAndroid) {
-        storeUrl = 'https://play.google.com/store/apps/details?id=${AppConstants.playStoreId}';
+        storeUrl =
+            'https://play.google.com/store/apps/details?id=${AppConstants.playStoreId}';
       } else {
         return false;
       }
@@ -173,7 +168,10 @@ class UrlLauncherService {
 }
 
 // Helper to use url_launcher's launchUrl with different name
-Future<bool> launchUrl2(Uri uri, {LaunchMode mode = LaunchMode.platformDefault}) async {
+Future<bool> launchUrl2(
+  Uri uri, {
+  LaunchMode mode = LaunchMode.platformDefault,
+}) async {
   return launchUrl(uri, mode: mode);
 }
 

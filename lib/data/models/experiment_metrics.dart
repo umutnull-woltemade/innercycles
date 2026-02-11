@@ -3,11 +3,7 @@
 import 'dart:math' as math;
 
 /// Recommendation types for experiment decisions
-enum RecommendationType {
-  hold,
-  advance,
-  rollback,
-}
+enum RecommendationType { hold, advance, rollback }
 
 /// Time-series metric snapshot for experiment tracking
 class ExperimentMetricSnapshot {
@@ -167,7 +163,9 @@ class AgentRecommendation {
       generatedAt: DateTime.parse(json['generated_at'] as String),
       isSafetyOverride: json['is_safety_override'] as bool? ?? false,
       safetyOverrideReason: json['safety_override_reason'] as String?,
-      triggeredSafetyGuards: List<String>.from(json['triggered_safety_guards'] ?? []),
+      triggeredSafetyGuards: List<String>.from(
+        json['triggered_safety_guards'] ?? [],
+      ),
     );
   }
 
@@ -181,7 +179,8 @@ class AgentRecommendation {
       'feature_weights': featureWeights,
       'generated_at': generatedAt.toIso8601String(),
       'is_safety_override': isSafetyOverride,
-      if (safetyOverrideReason != null) 'safety_override_reason': safetyOverrideReason,
+      if (safetyOverrideReason != null)
+        'safety_override_reason': safetyOverrideReason,
       'triggered_safety_guards': triggeredSafetyGuards,
     };
   }
@@ -304,16 +303,21 @@ class LearningModelState {
       modelVersion: json['model_version'] as String,
       lastUpdated: DateTime.parse(json['last_updated'] as String),
       trainingEpochs: json['training_epochs'] as int? ?? 0,
-      crashThresholdWarning: (json['crash_threshold_warning'] as num?)?.toDouble() ?? 0.003,
-      errorThresholdWarning: (json['error_threshold_warning'] as num?)?.toDouble() ?? 0.05,
+      crashThresholdWarning:
+          (json['crash_threshold_warning'] as num?)?.toDouble() ?? 0.003,
+      errorThresholdWarning:
+          (json['error_threshold_warning'] as num?)?.toDouble() ?? 0.05,
       featureWeights: Map<String, double>.from(
         (json['feature_weights'] as Map?)?.map(
               (k, v) => MapEntry(k as String, (v as num).toDouble()),
-            ) ?? {},
+            ) ??
+            {},
       ),
-      patterns: (json['patterns'] as List?)
+      patterns:
+          (json['patterns'] as List?)
               ?.map((p) => LearnedPattern.fromJson(p as Map<String, dynamic>))
-              .toList() ?? [],
+              .toList() ??
+          [],
       accuracy: (json['accuracy'] as num?)?.toDouble() ?? 0.0,
       correctPredictions: json['correct_predictions'] as int? ?? 0,
       totalPredictions: json['total_predictions'] as int? ?? 0,
@@ -373,15 +377,23 @@ class LearningModelState {
     int? correctPredictions,
     int? totalPredictions,
   }) {
-    final newCrashThreshold = crashThresholdWarning ?? this.crashThresholdWarning;
-    final newErrorThreshold = errorThresholdWarning ?? this.errorThresholdWarning;
+    final newCrashThreshold =
+        crashThresholdWarning ?? this.crashThresholdWarning;
+    final newErrorThreshold =
+        errorThresholdWarning ?? this.errorThresholdWarning;
 
     return LearningModelState(
       modelVersion: modelVersion ?? this.modelVersion,
       lastUpdated: lastUpdated ?? this.lastUpdated,
       trainingEpochs: trainingEpochs ?? this.trainingEpochs,
-      crashThresholdWarning: newCrashThreshold.clamp(kCrashThresholdMin, kCrashThresholdMax),
-      errorThresholdWarning: newErrorThreshold.clamp(kErrorThresholdMin, kErrorThresholdMax),
+      crashThresholdWarning: newCrashThreshold.clamp(
+        kCrashThresholdMin,
+        kCrashThresholdMax,
+      ),
+      errorThresholdWarning: newErrorThreshold.clamp(
+        kErrorThresholdMin,
+        kErrorThresholdMax,
+      ),
       featureWeights: featureWeights ?? this.featureWeights,
       patterns: patterns ?? this.patterns,
       accuracy: accuracy ?? this.accuracy,
@@ -426,10 +438,16 @@ class ExperimentOutcome {
       experimentId: json['experiment_id'] as String,
       wasSuccessful: json['was_successful'] as bool,
       variantCode: json['variant_code'] as String,
-      recommendations: (json['recommendations'] as List?)
-              ?.map((r) => AgentRecommendation.fromJson(r as Map<String, dynamic>))
-              .toList() ?? [],
-      metricSummary: Map<String, dynamic>.from(json['metric_summary'] as Map? ?? {}),
+      recommendations:
+          (json['recommendations'] as List?)
+              ?.map(
+                (r) => AgentRecommendation.fromJson(r as Map<String, dynamic>),
+              )
+              .toList() ??
+          [],
+      metricSummary: Map<String, dynamic>.from(
+        json['metric_summary'] as Map? ?? {},
+      ),
       recordedAt: DateTime.parse(json['recorded_at'] as String),
     );
   }
@@ -532,17 +550,22 @@ class ExtractedFeatures {
       successDelta: (json['success_delta'] as num?)?.toDouble() ?? 0.0,
       errorDelta: (json['error_delta'] as num?)?.toDouble() ?? 0.0,
       crashDelta: (json['crash_delta'] as num?)?.toDouble() ?? 0.0,
-      successTrendSlope: (json['success_trend_slope'] as num?)?.toDouble() ?? 0.0,
+      successTrendSlope:
+          (json['success_trend_slope'] as num?)?.toDouble() ?? 0.0,
       errorTrendSlope: (json['error_trend_slope'] as num?)?.toDouble() ?? 0.0,
       crashTrendSlope: (json['crash_trend_slope'] as num?)?.toDouble() ?? 0.0,
-      successVolatility: (json['success_volatility'] as num?)?.toDouble() ?? 0.0,
+      successVolatility:
+          (json['success_volatility'] as num?)?.toDouble() ?? 0.0,
       errorVolatility: (json['error_volatility'] as num?)?.toDouble() ?? 0.0,
       crashVolatility: (json['crash_volatility'] as num?)?.toDouble() ?? 0.0,
       sampleGrowthRate: (json['sample_growth_rate'] as num?)?.toDouble() ?? 0.0,
-      confidenceGrowthRate: (json['confidence_growth_rate'] as num?)?.toDouble() ?? 0.0,
+      confidenceGrowthRate:
+          (json['confidence_growth_rate'] as num?)?.toDouble() ?? 0.0,
       isStabilizing: json['is_stabilizing'] as bool? ?? false,
       hasCriticalAnomaly: json['has_critical_anomaly'] as bool? ?? false,
-      earlyWarningSignals: List<String>.from(json['early_warning_signals'] ?? []),
+      earlyWarningSignals: List<String>.from(
+        json['early_warning_signals'] ?? [],
+      ),
     );
   }
 

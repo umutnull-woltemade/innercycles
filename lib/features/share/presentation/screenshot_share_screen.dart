@@ -28,7 +28,8 @@ class ScreenshotShareScreen extends ConsumerStatefulWidget {
   const ScreenshotShareScreen({super.key});
 
   @override
-  ConsumerState<ScreenshotShareScreen> createState() => _ScreenshotShareScreenState();
+  ConsumerState<ScreenshotShareScreen> createState() =>
+      _ScreenshotShareScreenState();
 }
 
 class _ScreenshotShareScreenState extends ConsumerState<ScreenshotShareScreen> {
@@ -52,9 +53,7 @@ class _ScreenshotShareScreenState extends ConsumerState<ScreenshotShareScreen> {
       overlays: [],
     );
     // Lock to portrait for consistent screenshots
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-    ]);
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   }
 
   void _exitCaptureMode() {
@@ -135,7 +134,10 @@ class _ScreenshotShareScreenState extends ConsumerState<ScreenshotShareScreen> {
               right: 0,
               child: Center(
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 10,
+                  ),
                   decoration: BoxDecoration(
                     color: Colors.black.withValues(alpha: 0.5),
                     borderRadius: BorderRadius.circular(24),
@@ -151,7 +153,10 @@ class _ScreenshotShareScreenState extends ConsumerState<ScreenshotShareScreen> {
                       const SizedBox(width: 8),
                       Flexible(
                         child: Text(
-                          L10nService.get('share.take_screenshot_and_share', language),
+                          L10nService.get(
+                            'share.take_screenshot_and_share',
+                            language,
+                          ),
                           style: const TextStyle(
                             color: Colors.white70,
                             fontSize: 13,
@@ -319,11 +324,20 @@ class _ShareImageCard extends StatelessWidget {
 
                   // SECTION 2: Cosmic Headline
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 16,
+                    ),
                     decoration: BoxDecoration(
                       border: Border(
-                        top: BorderSide(color: sign.color.withValues(alpha: 0.3), width: 1),
-                        bottom: BorderSide(color: sign.color.withValues(alpha: 0.3), width: 1),
+                        top: BorderSide(
+                          color: sign.color.withValues(alpha: 0.3),
+                          width: 1,
+                        ),
+                        bottom: BorderSide(
+                          color: sign.color.withValues(alpha: 0.3),
+                          width: 1,
+                        ),
                       ),
                     ),
                     child: Text(
@@ -399,7 +413,10 @@ class _ShareImageCard extends StatelessWidget {
 
                   // SECTION 6: Micro Message
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 12,
+                    ),
                     decoration: BoxDecoration(
                       color: Colors.white.withValues(alpha: 0.05),
                       borderRadius: BorderRadius.circular(12),
@@ -463,10 +480,7 @@ class _ShareImageCard extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(4),
             gradient: LinearGradient(
-              colors: [
-                AppColors.starGold,
-                AppColors.celestialGold,
-              ],
+              colors: [AppColors.starGold, AppColors.celestialGold],
             ),
           ),
         ),
@@ -480,10 +494,7 @@ class _ShareImageCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white.withValues(alpha: 0.05),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: color.withValues(alpha: 0.2),
-          width: 1,
-        ),
+        border: Border.all(color: color.withValues(alpha: 0.2), width: 1),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -513,20 +524,29 @@ class _ShareImageCard extends StatelessWidget {
 
   /// Get cosmic content for the sign (deterministic based on day)
   _CosmicContent _getCosmicContent(ZodiacSign sign, AppLanguage language) {
-    final dayOfYear = DateTime.now().difference(DateTime(DateTime.now().year, 1, 1)).inDays;
+    final dayOfYear = DateTime.now()
+        .difference(DateTime(DateTime.now().year, 1, 1))
+        .inDays;
 
     // Get localized content for the sign
     final signKey = sign.name.toLowerCase();
     final headlines = L10nService.getList('share.headlines.$signKey', language);
     final quotes = L10nService.getList('share.quotes.$signKey', language);
-    final microMessages = L10nService.getList('share.micro_messages.$signKey', language);
+    final microMessages = L10nService.getList(
+      'share.micro_messages.$signKey',
+      language,
+    );
     final shadows = L10nService.getList('share.shadows.$signKey', language);
     final lights = L10nService.getList('share.lights.$signKey', language);
 
     // Fallback to static content if localization not available
-    final headlineList = headlines.isNotEmpty ? headlines : _headlines[sign.index];
+    final headlineList = headlines.isNotEmpty
+        ? headlines
+        : _headlines[sign.index];
     final quoteList = quotes.isNotEmpty ? quotes : _quotes[sign.index];
-    final microMessageList = microMessages.isNotEmpty ? microMessages : _microMessages[sign.index];
+    final microMessageList = microMessages.isNotEmpty
+        ? microMessages
+        : _microMessages[sign.index];
     final shadowList = shadows.isNotEmpty ? shadows : _shadows[sign.index];
     final lightList = lights.isNotEmpty ? lights : _lights[sign.index];
 
@@ -548,83 +568,223 @@ class _ShareImageCard extends StatelessWidget {
 
   static const List<List<String>> _headlines = [
     // Aries / Koç
-    ['Bugün cesaretin test ediliyor.', 'Ateşin içinden geçme zamanı.', 'Liderlik enerjin yükseliyor.'],
+    [
+      'Bugün cesaretin test ediliyor.',
+      'Ateşin içinden geçme zamanı.',
+      'Liderlik enerjin yükseliyor.',
+    ],
     // Taurus / Boğa
-    ['Köklerin seni taşıyor.', 'Sabır bugün en büyük gücün.', 'Değerini bil, taviz verme.'],
+    [
+      'Köklerin seni taşıyor.',
+      'Sabır bugün en büyük gücün.',
+      'Değerini bil, taviz verme.',
+    ],
     // Gemini / İkizler
-    ['İki dünya arasında dans ediyorsun.', 'Kelimeler bugün silahın.', 'Merakın kapıları açıyor.'],
+    [
+      'İki dünya arasında dans ediyorsun.',
+      'Kelimeler bugün silahın.',
+      'Merakın kapıları açıyor.',
+    ],
     // Cancer / Yengeç
-    ['Ay seninle konuşuyor.', 'Duygularında cevap var.', 'Koruyucu kabuğun altında güç.'],
+    [
+      'Ay seninle konuşuyor.',
+      'Duygularında cevap var.',
+      'Koruyucu kabuğun altında güç.',
+    ],
     // Leo / Aslan
-    ['Güneş senin için doğuyor.', 'Işığın karanlığı yırtıyor.', 'Tahtın hazır, sahip çık.'],
+    [
+      'Güneş senin için doğuyor.',
+      'Işığın karanlığı yırtıyor.',
+      'Tahtın hazır, sahip çık.',
+    ],
     // Virgo / Başak
-    ['Detaylarda evren gizli.', 'Mükemmellik değil, anlam ara.', 'Şifa veren ellerin var.'],
+    [
+      'Detaylarda evren gizli.',
+      'Mükemmellik değil, anlam ara.',
+      'Şifa veren ellerin var.',
+    ],
     // Libra / Terazi
-    ['Denge noktasındasın.', 'Güzellik ve adalet senin.', 'İlişkilerde dönüşüm zamanı.'],
+    [
+      'Denge noktasındasın.',
+      'Güzellik ve adalet senin.',
+      'İlişkilerde dönüşüm zamanı.',
+    ],
     // Scorpio / Akrep
-    ['Karanlıktan korkmuyorsun.', 'Dönüşüm temaları öne çıkıyor.', 'Derinliklerde hazine var.'],
+    [
+      'Karanlıktan korkmuyorsun.',
+      'Dönüşüm temaları öne çıkıyor.',
+      'Derinliklerde hazine var.',
+    ],
     // Sagittarius / Yay
-    ['Ufuk seni çağırıyor.', 'Ok yaydan çıkmak üzere.', 'Özgürlük senin doğum hakkın.'],
+    [
+      'Ufuk seni çağırıyor.',
+      'Ok yaydan çıkmak üzere.',
+      'Özgürlük senin doğum hakkın.',
+    ],
     // Capricorn / Oğlak
-    ['Zirve görüş mesafesinde.', 'Disiplin bugün süper gücün.', 'Zamanın ustası sensin.'],
+    [
+      'Zirve görüş mesafesinde.',
+      'Disiplin bugün süper gücün.',
+      'Zamanın ustası sensin.',
+    ],
     // Aquarius / Kova
-    ['Geleceği sen yazıyorsun.', 'Farklılığın senin armağanın.', 'Devrim içinden başlıyor.'],
+    [
+      'Geleceği sen yazıyorsun.',
+      'Farklılığın senin armağanın.',
+      'Devrim içinden başlıyor.',
+    ],
     // Pisces / Balık
-    ['Rüyalar gerçeğe dönüşüyor.', 'Sezgilerin keskin.', 'Okyanus derinliğinde yüzüyorsun.'],
+    [
+      'Rüyalar gerçeğe dönüşüyor.',
+      'Sezgilerin keskin.',
+      'Okyanus derinliğinde yüzüyorsun.',
+    ],
   ];
 
   static const List<List<String>> _quotes = [
     // Aries
-    ['Beklemek bitsin, harekete geçme zamanı.', 'Korkuyla değil, güvenle ilerle.', 'İlk adımı atan kazanır.'],
+    [
+      'Beklemek bitsin, harekete geçme zamanı.',
+      'Korkuyla değil, güvenle ilerle.',
+      'İlk adımı atan kazanır.',
+    ],
     // Taurus
-    ['Bırakmak bazen sahiplenmektir.', 'Değişim düşman değil, davet.', 'Köklerin sağlam, dalların özgür.'],
+    [
+      'Bırakmak bazen sahiplenmektir.',
+      'Değişim düşman değil, davet.',
+      'Köklerin sağlam, dalların özgür.',
+    ],
     // Gemini
-    ['Her düşünceni takip etmek zorunda değilsin.', 'Sessizlik de bir cevap.', 'İki yol varsa, üçüncüsünü bul.'],
+    [
+      'Her düşünceni takip etmek zorunda değilsin.',
+      'Sessizlik de bir cevap.',
+      'İki yol varsa, üçüncüsünü bul.',
+    ],
     // Cancer
-    ['Kırılganlık zayıflık değil.', 'Geçmiş öğretmen, ev değil.', 'Kendini sevmek için izin al.'],
+    [
+      'Kırılganlık zayıflık değil.',
+      'Geçmiş öğretmen, ev değil.',
+      'Kendini sevmek için izin al.',
+    ],
     // Leo
-    ['Alkış olmadan da değerlisin.', 'Işığın başkalarını aydınlatıyor.', 'Kalbin pusulan olsun.'],
+    [
+      'Alkış olmadan da değerlisin.',
+      'Işığın başkalarını aydınlatıyor.',
+      'Kalbin pusulan olsun.',
+    ],
     // Virgo
-    ['Kusursuz değil, gerçek ol.', 'Detaylar önemli ama bütün daha önemli.', 'Yardım istemek güçtür.'],
+    [
+      'Kusursuz değil, gerçek ol.',
+      'Detaylar önemli ama bütün daha önemli.',
+      'Yardım istemek güçtür.',
+    ],
     // Libra
-    ['Hayır demek de sevgi.', 'Dengeyi kendinde bul.', 'Güzellik içinden başlar.'],
+    [
+      'Hayır demek de sevgi.',
+      'Dengeyi kendinde bul.',
+      'Güzellik içinden başlar.',
+    ],
     // Scorpio
-    ['Kontrol illüzyon.', 'Güvenmek risk değil, hediye.', 'Karanlık, ışığı tanımlar.'],
+    [
+      'Kontrol illüzyon.',
+      'Güvenmek risk değil, hediye.',
+      'Karanlık, ışığı tanımlar.',
+    ],
     // Sagittarius
-    ['Kaçış çözüm değil, keşif.', 'Cevap burada da olabilir.', 'Özgürlük sorumlulukla gelir.'],
+    [
+      'Kaçış çözüm değil, keşif.',
+      'Cevap burada da olabilir.',
+      'Özgürlük sorumlulukla gelir.',
+    ],
     // Capricorn
-    ['Başarı mutluluk garantisi değil.', 'Mola vermek vazgeçmek değil.', 'Zirve yolculuktur, varış değil.'],
+    [
+      'Başarı mutluluk garantisi değil.',
+      'Mola vermek vazgeçmek değil.',
+      'Zirve yolculuktur, varış değil.',
+    ],
     // Aquarius
-    ['Farklı olmak için farklı olma.', 'Kalp de akıl kadar önemli.', 'Devrim önce kendinde.'],
+    [
+      'Farklı olmak için farklı olma.',
+      'Kalp de akıl kadar önemli.',
+      'Devrim önce kendinde.',
+    ],
     // Pisces
-    ['Rüya güzel, gerçeklik de.', 'Sınırlar sevgisizlik değil.', 'Hayal et ama yap da.'],
+    [
+      'Rüya güzel, gerçeklik de.',
+      'Sınırlar sevgisizlik değil.',
+      'Hayal et ama yap da.',
+    ],
   ];
 
   static const List<List<String>> _microMessages = [
     // Aries
-    ['Sessizliğin bazen en güçlü cevaptır.', 'Herkes senin enerjine erişmeyi hak etmiyor.', 'Sabır en keskin silahın.'],
+    [
+      'Sessizliğin bazen en güçlü cevaptır.',
+      'Herkes senin enerjine erişmeyi hak etmiyor.',
+      'Sabır en keskin silahın.',
+    ],
     // Taurus
-    ['Değişimden korkma, onu yönet.', 'Konfor alanın hapishane olmasın.', 'Esneklik de güçtür.'],
+    [
+      'Değişimden korkma, onu yönet.',
+      'Konfor alanın hapishane olmasın.',
+      'Esneklik de güçtür.',
+    ],
     // Gemini
-    ['Çelişkilerin seni zenginleştiriyor.', 'Odaklan, dağılma.', 'Derinlik, genişlikten değerlidir.'],
+    [
+      'Çelişkilerin seni zenginleştiriyor.',
+      'Odaklan, dağılma.',
+      'Derinlik, genişlikten değerlidir.',
+    ],
     // Cancer
-    ['Sevilmek için mükemmel olmana gerek yok.', 'Duvarlar korumaz, hapseder.', 'Geçmişi bırak, şimdiye dön.'],
+    [
+      'Sevilmek için mükemmel olmana gerek yok.',
+      'Duvarlar korumaz, hapseder.',
+      'Geçmişi bırak, şimdiye dön.',
+    ],
     // Leo
-    ['Görünmez olduğunda kim oluyorsun?', 'Ego değil, özgüven.', 'Işık paylaşınca çoğalır.'],
+    [
+      'Görünmez olduğunda kim oluyorsun?',
+      'Ego değil, özgüven.',
+      'Işık paylaşınca çoğalır.',
+    ],
     // Virgo
     ['Büyük resmi gör.', 'Hata yapmak öğrenmektir.', 'Kendine de şefkatli ol.'],
     // Libra
-    ['Kararsızlık da bir karar.', 'Herkes mutlu olamaz, sen de dahil.', 'Kendi seçimlerini yap.'],
+    [
+      'Kararsızlık da bir karar.',
+      'Herkes mutlu olamaz, sen de dahil.',
+      'Kendi seçimlerini yap.',
+    ],
     // Scorpio
-    ['Affetmek seni özgürleştirir.', 'Her şeyi bilmek zorunda değilsin.', 'Güven, kontrolden değerlidir.'],
+    [
+      'Affetmek seni özgürleştirir.',
+      'Her şeyi bilmek zorunda değilsin.',
+      'Güven, kontrolden değerlidir.',
+    ],
     // Sagittarius
-    ['Macera içeride de var.', 'Her yol bir ders.', 'Bağlanmak bağımlılık değil.'],
+    [
+      'Macera içeride de var.',
+      'Her yol bir ders.',
+      'Bağlanmak bağımlılık değil.',
+    ],
     // Capricorn
-    ['Yolculuk önemli, varış değil.', 'Başarı tanımını sen yaz.', 'Dinlenmek üretkenliğin parçası.'],
+    [
+      'Yolculuk önemli, varış değil.',
+      'Başarı tanımını sen yaz.',
+      'Dinlenmek üretkenliğin parçası.',
+    ],
     // Aquarius
-    ['Bağlantı özgürlüğü kısıtlamaz.', 'İnsanlık bireysellikten önemli.', 'Fikirler eylemle değerlenir.'],
+    [
+      'Bağlantı özgürlüğü kısıtlamaz.',
+      'İnsanlık bireysellikten önemli.',
+      'Fikirler eylemle değerlenir.',
+    ],
     // Pisces
-    ['Sınırlar korunmaktır, reddedilmek değil.', 'Gerçeklik de güzel olabilir.', 'Duygular pusula, harita değil.'],
+    [
+      'Sınırlar korunmaktır, reddedilmek değil.',
+      'Gerçeklik de güzel olabilir.',
+      'Duygular pusula, harita değil.',
+    ],
   ];
 
   static const List<List<String>> _shadows = [

@@ -76,24 +76,24 @@ class _ReikiScreenState extends ConsumerState<ReikiScreen>
                   Icons.arrow_back_ios,
                   color: isDark ? Colors.white : AppColors.textDark,
                 ),
-          tooltip: L10nService.get('common.back', language),
-        ),
+                tooltip: L10nService.get('common.back', language),
+              ),
               Expanded(
                 child: Column(
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text(
-                          '🙏',
-                          style: TextStyle(fontSize: 24),
-                        ),
+                        const Text('🙏', style: TextStyle(fontSize: 24)),
                         const SizedBox(width: 8),
                         Text(
                           L10nService.get('screens.reiki.title', language),
-                          style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                          style: Theme.of(context).textTheme.headlineSmall
+                              ?.copyWith(
                                 fontWeight: FontWeight.bold,
-                                color: isDark ? Colors.white : AppColors.textDark,
+                                color: isDark
+                                    ? Colors.white
+                                    : AppColors.textDark,
                               ),
                         ),
                       ],
@@ -175,44 +175,98 @@ class _ReikiScreenState extends ConsumerState<ReikiScreen>
   Widget _buildPrinciplesTab(bool isDark, AppLanguage language) {
     final principles = [
       _ReikiPrinciple(
-        japanese: L10nService.get('screens.reiki.principles.kyo_dake_wa.japanese', language),
-        translation: L10nService.get('screens.reiki.principles.kyo_dake_wa.translation', language),
-        description: L10nService.get('screens.reiki.principles.kyo_dake_wa.description', language),
+        japanese: L10nService.get(
+          'screens.reiki.principles.kyo_dake_wa.japanese',
+          language,
+        ),
+        translation: L10nService.get(
+          'screens.reiki.principles.kyo_dake_wa.translation',
+          language,
+        ),
+        description: L10nService.get(
+          'screens.reiki.principles.kyo_dake_wa.description',
+          language,
+        ),
         icon: '☀️',
         color: const Color(0xFFFFD700),
       ),
       _ReikiPrinciple(
-        japanese: L10nService.get('screens.reiki.principles.ikaru_na.japanese', language),
-        translation: L10nService.get('screens.reiki.principles.ikaru_na.translation', language),
-        description: L10nService.get('screens.reiki.principles.ikaru_na.description', language),
+        japanese: L10nService.get(
+          'screens.reiki.principles.ikaru_na.japanese',
+          language,
+        ),
+        translation: L10nService.get(
+          'screens.reiki.principles.ikaru_na.translation',
+          language,
+        ),
+        description: L10nService.get(
+          'screens.reiki.principles.ikaru_na.description',
+          language,
+        ),
         icon: '🔥',
         color: const Color(0xFFFF5722),
       ),
       _ReikiPrinciple(
-        japanese: L10nService.get('screens.reiki.principles.shinpai_suna.japanese', language),
-        translation: L10nService.get('screens.reiki.principles.shinpai_suna.translation', language),
-        description: L10nService.get('screens.reiki.principles.shinpai_suna.description', language),
+        japanese: L10nService.get(
+          'screens.reiki.principles.shinpai_suna.japanese',
+          language,
+        ),
+        translation: L10nService.get(
+          'screens.reiki.principles.shinpai_suna.translation',
+          language,
+        ),
+        description: L10nService.get(
+          'screens.reiki.principles.shinpai_suna.description',
+          language,
+        ),
         icon: '🌊',
         color: const Color(0xFF2196F3),
       ),
       _ReikiPrinciple(
-        japanese: L10nService.get('screens.reiki.principles.kansha_shite.japanese', language),
-        translation: L10nService.get('screens.reiki.principles.kansha_shite.translation', language),
-        description: L10nService.get('screens.reiki.principles.kansha_shite.description', language),
+        japanese: L10nService.get(
+          'screens.reiki.principles.kansha_shite.japanese',
+          language,
+        ),
+        translation: L10nService.get(
+          'screens.reiki.principles.kansha_shite.translation',
+          language,
+        ),
+        description: L10nService.get(
+          'screens.reiki.principles.kansha_shite.description',
+          language,
+        ),
         icon: '💚',
         color: const Color(0xFF4CAF50),
       ),
       _ReikiPrinciple(
-        japanese: L10nService.get('screens.reiki.principles.gyo_wo_hageme.japanese', language),
-        translation: L10nService.get('screens.reiki.principles.gyo_wo_hageme.translation', language),
-        description: L10nService.get('screens.reiki.principles.gyo_wo_hageme.description', language),
+        japanese: L10nService.get(
+          'screens.reiki.principles.gyo_wo_hageme.japanese',
+          language,
+        ),
+        translation: L10nService.get(
+          'screens.reiki.principles.gyo_wo_hageme.translation',
+          language,
+        ),
+        description: L10nService.get(
+          'screens.reiki.principles.gyo_wo_hageme.description',
+          language,
+        ),
         icon: '⭐',
         color: const Color(0xFF9C27B0),
       ),
       _ReikiPrinciple(
-        japanese: L10nService.get('screens.reiki.principles.hito_ni_shinsetsu_ni.japanese', language),
-        translation: L10nService.get('screens.reiki.principles.hito_ni_shinsetsu_ni.translation', language),
-        description: L10nService.get('screens.reiki.principles.hito_ni_shinsetsu_ni.description', language),
+        japanese: L10nService.get(
+          'screens.reiki.principles.hito_ni_shinsetsu_ni.japanese',
+          language,
+        ),
+        translation: L10nService.get(
+          'screens.reiki.principles.hito_ni_shinsetsu_ni.translation',
+          language,
+        ),
+        description: L10nService.get(
+          'screens.reiki.principles.hito_ni_shinsetsu_ni.description',
+          language,
+        ),
         icon: '💕',
         color: const Color(0xFFE91E63),
       ),
@@ -224,42 +278,46 @@ class _ReikiScreenState extends ConsumerState<ReikiScreen>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            padding: const EdgeInsets.all(AppConstants.spacingMd),
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  const Color(0xFFFF7043).withValues(alpha: isDark ? 0.2 : 0.1),
-                  const Color(0xFFFFD700).withValues(alpha: isDark ? 0.1 : 0.05),
-                ],
-              ),
-              borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-            ),
-            child: Column(
-              children: [
-                const Text(
-                  '五戒',
-                  style: TextStyle(fontSize: 32),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  L10nService.get('screens.reiki.gokai.title', language),
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: isDark ? Colors.white : AppColors.textDark,
+                padding: const EdgeInsets.all(AppConstants.spacingMd),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      const Color(
+                        0xFFFF7043,
+                      ).withValues(alpha: isDark ? 0.2 : 0.1),
+                      const Color(
+                        0xFFFFD700,
+                      ).withValues(alpha: isDark ? 0.1 : 0.05),
+                    ],
                   ),
+                  borderRadius: BorderRadius.circular(AppConstants.radiusLg),
                 ),
-                const SizedBox(height: 4),
-                Text(
-                  L10nService.get('screens.reiki.gokai.subtitle', language),
-                  style: TextStyle(
-                    fontSize: 13,
-                    color: isDark ? Colors.white60 : AppColors.textLight,
-                  ),
+                child: Column(
+                  children: [
+                    const Text('五戒', style: TextStyle(fontSize: 32)),
+                    const SizedBox(height: 8),
+                    Text(
+                      L10nService.get('screens.reiki.gokai.title', language),
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: isDark ? Colors.white : AppColors.textDark,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      L10nService.get('screens.reiki.gokai.subtitle', language),
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: isDark ? Colors.white60 : AppColors.textLight,
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          ).animate().fadeIn(duration: 500.ms).scale(begin: const Offset(0.95, 0.95)),
+              )
+              .animate()
+              .fadeIn(duration: 500.ms)
+              .scale(begin: const Offset(0.95, 0.95)),
           const SizedBox(height: AppConstants.spacingLg),
           ...principles.asMap().entries.map((entry) {
             return _buildPrincipleCard(entry.value, isDark)
@@ -282,66 +340,153 @@ class _ReikiScreenState extends ConsumerState<ReikiScreen>
     final chakras = [
       _ChakraInfo(
         name: L10nService.get('screens.reiki.chakras.root.name', language),
-        sanskrit: L10nService.get('screens.reiki.chakras.root.sanskrit', language),
-        location: L10nService.get('screens.reiki.chakras.root.location', language),
+        sanskrit: L10nService.get(
+          'screens.reiki.chakras.root.sanskrit',
+          language,
+        ),
+        location: L10nService.get(
+          'screens.reiki.chakras.root.location',
+          language,
+        ),
         color: const Color(0xFFE53935),
         icon: '🔴',
-        attributes: L10nService.getList('screens.reiki.chakras.root.attributes', language),
-        reikiPosition: L10nService.get('screens.reiki.chakras.root.reiki_position', language),
+        attributes: L10nService.getList(
+          'screens.reiki.chakras.root.attributes',
+          language,
+        ),
+        reikiPosition: L10nService.get(
+          'screens.reiki.chakras.root.reiki_position',
+          language,
+        ),
       ),
       _ChakraInfo(
         name: L10nService.get('screens.reiki.chakras.sacral.name', language),
-        sanskrit: L10nService.get('screens.reiki.chakras.sacral.sanskrit', language),
-        location: L10nService.get('screens.reiki.chakras.sacral.location', language),
+        sanskrit: L10nService.get(
+          'screens.reiki.chakras.sacral.sanskrit',
+          language,
+        ),
+        location: L10nService.get(
+          'screens.reiki.chakras.sacral.location',
+          language,
+        ),
         color: const Color(0xFFFF9800),
         icon: '🟠',
-        attributes: L10nService.getList('screens.reiki.chakras.sacral.attributes', language),
-        reikiPosition: L10nService.get('screens.reiki.chakras.sacral.reiki_position', language),
+        attributes: L10nService.getList(
+          'screens.reiki.chakras.sacral.attributes',
+          language,
+        ),
+        reikiPosition: L10nService.get(
+          'screens.reiki.chakras.sacral.reiki_position',
+          language,
+        ),
       ),
       _ChakraInfo(
-        name: L10nService.get('screens.reiki.chakras.solar_plexus.name', language),
-        sanskrit: L10nService.get('screens.reiki.chakras.solar_plexus.sanskrit', language),
-        location: L10nService.get('screens.reiki.chakras.solar_plexus.location', language),
+        name: L10nService.get(
+          'screens.reiki.chakras.solar_plexus.name',
+          language,
+        ),
+        sanskrit: L10nService.get(
+          'screens.reiki.chakras.solar_plexus.sanskrit',
+          language,
+        ),
+        location: L10nService.get(
+          'screens.reiki.chakras.solar_plexus.location',
+          language,
+        ),
         color: const Color(0xFFFFEB3B),
         icon: '🟡',
-        attributes: L10nService.getList('screens.reiki.chakras.solar_plexus.attributes', language),
-        reikiPosition: L10nService.get('screens.reiki.chakras.solar_plexus.reiki_position', language),
+        attributes: L10nService.getList(
+          'screens.reiki.chakras.solar_plexus.attributes',
+          language,
+        ),
+        reikiPosition: L10nService.get(
+          'screens.reiki.chakras.solar_plexus.reiki_position',
+          language,
+        ),
       ),
       _ChakraInfo(
         name: L10nService.get('screens.reiki.chakras.heart.name', language),
-        sanskrit: L10nService.get('screens.reiki.chakras.heart.sanskrit', language),
-        location: L10nService.get('screens.reiki.chakras.heart.location', language),
+        sanskrit: L10nService.get(
+          'screens.reiki.chakras.heart.sanskrit',
+          language,
+        ),
+        location: L10nService.get(
+          'screens.reiki.chakras.heart.location',
+          language,
+        ),
         color: const Color(0xFF4CAF50),
         icon: '💚',
-        attributes: L10nService.getList('screens.reiki.chakras.heart.attributes', language),
-        reikiPosition: L10nService.get('screens.reiki.chakras.heart.reiki_position', language),
+        attributes: L10nService.getList(
+          'screens.reiki.chakras.heart.attributes',
+          language,
+        ),
+        reikiPosition: L10nService.get(
+          'screens.reiki.chakras.heart.reiki_position',
+          language,
+        ),
       ),
       _ChakraInfo(
         name: L10nService.get('screens.reiki.chakras.throat.name', language),
-        sanskrit: L10nService.get('screens.reiki.chakras.throat.sanskrit', language),
-        location: L10nService.get('screens.reiki.chakras.throat.location', language),
+        sanskrit: L10nService.get(
+          'screens.reiki.chakras.throat.sanskrit',
+          language,
+        ),
+        location: L10nService.get(
+          'screens.reiki.chakras.throat.location',
+          language,
+        ),
         color: const Color(0xFF03A9F4),
         icon: '🔵',
-        attributes: L10nService.getList('screens.reiki.chakras.throat.attributes', language),
-        reikiPosition: L10nService.get('screens.reiki.chakras.throat.reiki_position', language),
+        attributes: L10nService.getList(
+          'screens.reiki.chakras.throat.attributes',
+          language,
+        ),
+        reikiPosition: L10nService.get(
+          'screens.reiki.chakras.throat.reiki_position',
+          language,
+        ),
       ),
       _ChakraInfo(
         name: L10nService.get('screens.reiki.chakras.third_eye.name', language),
-        sanskrit: L10nService.get('screens.reiki.chakras.third_eye.sanskrit', language),
-        location: L10nService.get('screens.reiki.chakras.third_eye.location', language),
+        sanskrit: L10nService.get(
+          'screens.reiki.chakras.third_eye.sanskrit',
+          language,
+        ),
+        location: L10nService.get(
+          'screens.reiki.chakras.third_eye.location',
+          language,
+        ),
         color: const Color(0xFF3F51B5),
         icon: '🟣',
-        attributes: L10nService.getList('screens.reiki.chakras.third_eye.attributes', language),
-        reikiPosition: L10nService.get('screens.reiki.chakras.third_eye.reiki_position', language),
+        attributes: L10nService.getList(
+          'screens.reiki.chakras.third_eye.attributes',
+          language,
+        ),
+        reikiPosition: L10nService.get(
+          'screens.reiki.chakras.third_eye.reiki_position',
+          language,
+        ),
       ),
       _ChakraInfo(
         name: L10nService.get('screens.reiki.chakras.crown.name', language),
-        sanskrit: L10nService.get('screens.reiki.chakras.crown.sanskrit', language),
-        location: L10nService.get('screens.reiki.chakras.crown.location', language),
+        sanskrit: L10nService.get(
+          'screens.reiki.chakras.crown.sanskrit',
+          language,
+        ),
+        location: L10nService.get(
+          'screens.reiki.chakras.crown.location',
+          language,
+        ),
         color: const Color(0xFF9C27B0),
         icon: '👑',
-        attributes: L10nService.getList('screens.reiki.chakras.crown.attributes', language),
-        reikiPosition: L10nService.get('screens.reiki.chakras.crown.reiki_position', language),
+        attributes: L10nService.getList(
+          'screens.reiki.chakras.crown.attributes',
+          language,
+        ),
+        reikiPosition: L10nService.get(
+          'screens.reiki.chakras.crown.reiki_position',
+          language,
+        ),
       ),
     ];
 
@@ -349,9 +494,11 @@ class _ReikiScreenState extends ConsumerState<ReikiScreen>
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       itemCount: chakras.length,
       itemBuilder: (context, index) {
-        return _buildChakraCard(chakras[index], isDark, language)
-            .animate(delay: (80 * index).ms)
-            .fadeIn(duration: 400.ms);
+        return _buildChakraCard(
+          chakras[index],
+          isDark,
+          language,
+        ).animate(delay: (80 * index).ms).fadeIn(duration: 400.ms);
       },
     );
   }
@@ -363,25 +510,43 @@ class _ReikiScreenState extends ConsumerState<ReikiScreen>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildPracticeSection(
-            title: L10nService.get('screens.reiki.practice.self_reiki.title', language),
+            title: L10nService.get(
+              'screens.reiki.practice.self_reiki.title',
+              language,
+            ),
             icon: '🙌',
-            steps: L10nService.getList('screens.reiki.practice.self_reiki.steps', language),
+            steps: L10nService.getList(
+              'screens.reiki.practice.self_reiki.steps',
+              language,
+            ),
             color: const Color(0xFFFF7043),
             isDark: isDark,
           ).animate().fadeIn(duration: 500.ms).slideY(begin: 0.1),
           const SizedBox(height: AppConstants.spacingLg),
           _buildPracticeSection(
-            title: L10nService.get('screens.reiki.practice.daily_cleansing.title', language),
+            title: L10nService.get(
+              'screens.reiki.practice.daily_cleansing.title',
+              language,
+            ),
             icon: '🌊',
-            steps: L10nService.getList('screens.reiki.practice.daily_cleansing.steps', language),
+            steps: L10nService.getList(
+              'screens.reiki.practice.daily_cleansing.steps',
+              language,
+            ),
             color: const Color(0xFF2196F3),
             isDark: isDark,
           ).animate(delay: 100.ms).fadeIn(duration: 500.ms).slideY(begin: 0.1),
           const SizedBox(height: AppConstants.spacingLg),
           _buildPracticeSection(
-            title: L10nService.get('screens.reiki.practice.distance_reiki.title', language),
+            title: L10nService.get(
+              'screens.reiki.practice.distance_reiki.title',
+              language,
+            ),
             icon: '🌍',
-            steps: L10nService.getList('screens.reiki.practice.distance_reiki.steps', language),
+            steps: L10nService.getList(
+              'screens.reiki.practice.distance_reiki.steps',
+              language,
+            ),
             color: const Color(0xFF9C27B0),
             isDark: isDark,
           ).animate(delay: 200.ms).fadeIn(duration: 500.ms).slideY(begin: 0.1),
@@ -393,9 +558,7 @@ class _ReikiScreenState extends ConsumerState<ReikiScreen>
                   ? Colors.white.withValues(alpha: 0.05)
                   : Colors.amber.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-              border: Border.all(
-                color: Colors.amber.withValues(alpha: 0.3),
-              ),
+              border: Border.all(color: Colors.amber.withValues(alpha: 0.3)),
             ),
             child: Row(
               children: [
@@ -434,9 +597,7 @@ class _ReikiScreenState extends ConsumerState<ReikiScreen>
           ],
         ),
         borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: principle.color.withValues(alpha: 0.3),
-        ),
+        border: Border.all(color: principle.color.withValues(alpha: 0.3)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -484,7 +645,11 @@ class _ReikiScreenState extends ConsumerState<ReikiScreen>
     );
   }
 
-  Widget _buildChakraCard(_ChakraInfo chakra, bool isDark, AppLanguage language) {
+  Widget _buildChakraCard(
+    _ChakraInfo chakra,
+    bool isDark,
+    AppLanguage language,
+  ) {
     return Container(
       margin: const EdgeInsets.only(bottom: AppConstants.spacingMd),
       decoration: BoxDecoration(
@@ -492,9 +657,7 @@ class _ReikiScreenState extends ConsumerState<ReikiScreen>
             ? Colors.white.withValues(alpha: 0.05)
             : Colors.white.withValues(alpha: 0.9),
         borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: chakra.color.withValues(alpha: 0.3),
-        ),
+        border: Border.all(color: chakra.color.withValues(alpha: 0.3)),
       ),
       child: ExpansionTile(
         tilePadding: const EdgeInsets.symmetric(
@@ -514,10 +677,7 @@ class _ReikiScreenState extends ConsumerState<ReikiScreen>
             borderRadius: BorderRadius.circular(22),
           ),
           child: Center(
-            child: Text(
-              chakra.icon,
-              style: const TextStyle(fontSize: 22),
-            ),
+            child: Text(chakra.icon, style: const TextStyle(fontSize: 22)),
           ),
         ),
         title: Text(
@@ -555,7 +715,10 @@ class _ReikiScreenState extends ConsumerState<ReikiScreen>
             runSpacing: 8,
             children: chakra.attributes.map((attr) {
               return Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 6,
+                ),
                 decoration: BoxDecoration(
                   color: chakra.color.withValues(alpha: 0.15),
                   borderRadius: BorderRadius.circular(16),
@@ -588,7 +751,10 @@ class _ReikiScreenState extends ConsumerState<ReikiScreen>
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        L10nService.get('screens.reiki.reiki_position_label', language),
+                        L10nService.get(
+                          'screens.reiki.reiki_position_label',
+                          language,
+                        ),
                         style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w600,
@@ -633,9 +799,7 @@ class _ReikiScreenState extends ConsumerState<ReikiScreen>
           ],
         ),
         borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: color.withValues(alpha: 0.3),
-        ),
+        border: Border.all(color: color.withValues(alpha: 0.3)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

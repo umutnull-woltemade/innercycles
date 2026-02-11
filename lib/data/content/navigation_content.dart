@@ -75,7 +75,8 @@ class HomepageNavigation {
     alsoViewed: [
       NavigationCard(
         title: 'Bugünün Kozmik Enerjisi',
-        description: 'Gökyüzü bugün ne fısıldıyor? Günlük burç yorumlarına göz at.',
+        description:
+            'Gökyüzü bugün ne fısıldıyor? Günlük burç yorumlarına göz at.',
         route: '/horoscope',
         emoji: '🌟',
         titleKey: 'navigation.cards.todays_cosmic_energy.title',
@@ -254,7 +255,8 @@ class HoroscopeHubNavigation {
         route: '/compatibility',
         emoji: '💕',
         titleKey: 'navigation.cards.relationship_compatibility.title',
-        descriptionKey: 'navigation.cards.relationship_compatibility.description',
+        descriptionKey:
+            'navigation.cards.relationship_compatibility.description',
       ),
       NavigationCard(
         title: 'Günlük Tarot',
@@ -320,7 +322,8 @@ class ZodiacSignNavigation {
           description: 'Aynı element, farklı enerji.',
           route: '/horoscope/${signData['elementBuddyRoute1']}',
           emoji: signData['elementBuddyEmoji1'],
-          titleKey: 'navigation.zodiac.${signData['elementBuddyRoute1']}.sign_title',
+          titleKey:
+              'navigation.zodiac.${signData['elementBuddyRoute1']}.sign_title',
           descriptionKey: 'navigation.phrases.same_element_different_energy',
         ),
         NavigationCard(
@@ -328,7 +331,8 @@ class ZodiacSignNavigation {
           description: 'Kardeş element enerjisi.',
           route: '/horoscope/${signData['elementBuddyRoute2']}',
           emoji: signData['elementBuddyEmoji2'],
-          titleKey: 'navigation.zodiac.${signData['elementBuddyRoute2']}.sign_title',
+          titleKey:
+              'navigation.zodiac.${signData['elementBuddyRoute2']}.sign_title',
           descriptionKey: 'navigation.phrases.sibling_element_energy',
         ),
         NavigationCard(
@@ -1331,7 +1335,8 @@ class TransitsNavigation {
         route: '/kozmoz',
         emoji: '✨',
         titleKey: 'navigation.cards.personal_transit_guidance.title',
-        descriptionKey: 'navigation.cards.personal_transit_guidance.description',
+        descriptionKey:
+            'navigation.cards.personal_transit_guidance.description',
       ),
     ],
     keepExploring: [
@@ -1634,7 +1639,8 @@ class ChakraNavigation {
         route: '/moon-rituals',
         emoji: '🌕',
         titleKey: 'navigation.cards.moon_rituals.title',
-        descriptionKey: 'navigation.cards.chakra_balancing_practices.description',
+        descriptionKey:
+            'navigation.cards.chakra_balancing_practices.description',
       ),
       NavigationCard(
         title: 'Kabala Sefirotları',
@@ -1844,7 +1850,9 @@ class MoonRitualsNavigation {
 class NavigationService {
   static PageNavigation getNavigationForRoute(String route) {
     // Normalize route
-    final normalizedRoute = route.replaceAll(RegExp(r'^/+|/+$'), '').toLowerCase();
+    final normalizedRoute = route
+        .replaceAll(RegExp(r'^/+|/+$'), '')
+        .toLowerCase();
 
     // Check for zodiac sign pages
     if (normalizedRoute.startsWith('horoscope/')) {

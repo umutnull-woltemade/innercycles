@@ -29,7 +29,8 @@ class HoroscopeDetailScreen extends ConsumerStatefulWidget {
   const HoroscopeDetailScreen({super.key, required this.signName});
 
   @override
-  ConsumerState<HoroscopeDetailScreen> createState() => _HoroscopeDetailScreenState();
+  ConsumerState<HoroscopeDetailScreen> createState() =>
+      _HoroscopeDetailScreenState();
 }
 
 class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
@@ -52,7 +53,9 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
   }
 
   void _updateHoroscopesIfNeeded(AppLanguage language) {
-    if (_cachedLanguage != language || _weeklyHoroscope == null || _monthlyHoroscope == null) {
+    if (_cachedLanguage != language ||
+        _weeklyHoroscope == null ||
+        _monthlyHoroscope == null) {
       _cachedLanguage = language;
       _weeklyHoroscope = ExtendedHoroscopeService.generateWeeklyHoroscope(
         _sign,
@@ -130,9 +133,9 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
         ),
         labelColor: _sign.color,
         unselectedLabelColor: AppColors.textSecondary,
-        labelStyle: Theme.of(context).textTheme.labelMedium?.copyWith(
-              fontWeight: FontWeight.bold,
-            ),
+        labelStyle: Theme.of(
+          context,
+        ).textTheme.labelMedium?.copyWith(fontWeight: FontWeight.bold),
         unselectedLabelStyle: Theme.of(context).textTheme.labelMedium,
         dividerColor: Colors.transparent,
         tabs: [
@@ -145,7 +148,12 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
     ).animate().fadeIn(delay: 200.ms, duration: 300.ms);
   }
 
-  Widget _buildDailyContent(BuildContext context, dynamic horoscope, ZodiacSign sign, AppLanguage language) {
+  Widget _buildDailyContent(
+    BuildContext context,
+    dynamic horoscope,
+    ZodiacSign sign,
+    AppLanguage language,
+  ) {
     return SingleChildScrollView(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       child: Column(
@@ -158,7 +166,10 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
           _buildDateSection(context, horoscope.energyLevel),
           const SizedBox(height: AppConstants.spacingMd),
           // Daily Energy Bar
-          DailyEnergyCard.fromEnergyLevel(horoscope.energyLevel, accentColor: sign.color),
+          DailyEnergyCard.fromEnergyLevel(
+            horoscope.energyLevel,
+            accentColor: sign.color,
+          ),
           const SizedBox(height: AppConstants.spacingXl),
           // Main horoscope
           _buildMainHoroscope(context, horoscope.summary, sign),
@@ -189,8 +200,13 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
           ),
           const SizedBox(height: AppConstants.spacingXl),
           // Quick facts
-          _buildQuickFacts(context, horoscope.mood,
-              horoscope.reflectionColor, horoscope.focusNumber, sign),
+          _buildQuickFacts(
+            context,
+            horoscope.mood,
+            horoscope.reflectionColor,
+            horoscope.focusNumber,
+            sign,
+          ),
           const SizedBox(height: AppConstants.spacingLg),
           // Kadim Not - Astroloji bilgeliği
           KadimNotCard(
@@ -208,7 +224,10 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
           const NextBlocks(currentPage: 'horoscope_detail'),
           const SizedBox(height: AppConstants.spacingXl),
           // Back-Button-Free Navigation
-          PageBottomNavigation(currentRoute: '/horoscope/${_sign.name.toLowerCase()}', language: language),
+          PageBottomNavigation(
+            currentRoute: '/horoscope/${_sign.name.toLowerCase()}',
+            language: language,
+          ),
           const SizedBox(height: AppConstants.spacingLg),
           // AI-QUOTABLE: Footer with Disclaimer
           PageFooterWithDisclaimer(
@@ -223,7 +242,11 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
   }
 
   /// AI-QUOTABLE: İlk 3 bullet - direkt cevap
-  Widget _buildQuotableBullets(BuildContext context, ZodiacSign sign, dynamic horoscope) {
+  Widget _buildQuotableBullets(
+    BuildContext context,
+    ZodiacSign sign,
+    dynamic horoscope,
+  ) {
     final bullets = _getQuotableBullets(sign, horoscope);
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -236,41 +259,46 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            L10nService.get('horoscope.your_zodiac_readings', ref.read(languageProvider)),
+            L10nService.get(
+              'horoscope.your_zodiac_readings',
+              ref.read(languageProvider),
+            ),
             style: Theme.of(context).textTheme.titleSmall?.copyWith(
               color: sign.color,
               fontWeight: FontWeight.w600,
             ),
           ),
           const SizedBox(height: AppConstants.spacingMd),
-          ...bullets.map((bullet) => Padding(
-            padding: const EdgeInsets.only(bottom: 8),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  width: 6,
-                  height: 6,
-                  margin: const EdgeInsets.only(top: 7),
-                  decoration: BoxDecoration(
-                    color: sign.color,
-                    shape: BoxShape.circle,
-                  ),
-                ),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: AutoGlossaryText(
-                    text: bullet,
-                    enableHighlighting: true,
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: AppColors.textPrimary,
-                      height: 1.5,
+          ...bullets.map(
+            (bullet) => Padding(
+              padding: const EdgeInsets.only(bottom: 8),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    width: 6,
+                    height: 6,
+                    margin: const EdgeInsets.only(top: 7),
+                    decoration: BoxDecoration(
+                      color: sign.color,
+                      shape: BoxShape.circle,
                     ),
                   ),
-                ),
-              ],
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: AutoGlossaryText(
+                      text: bullet,
+                      enableHighlighting: true,
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: AppColors.textPrimary,
+                        height: 1.5,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          )),
+          ),
         ],
       ),
     ).animate().fadeIn(duration: 400.ms);
@@ -281,7 +309,10 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
     final signKey = sign.name.toLowerCase();
 
     // Get localized bullets from JSON
-    final bullets = L10nService.getList('horoscope.quotable_bullets.$signKey', language);
+    final bullets = L10nService.getList(
+      'horoscope.quotable_bullets.$signKey',
+      language,
+    );
     if (bullets.isNotEmpty) {
       return bullets;
     }
@@ -290,7 +321,11 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
     return L10nService.getList('horoscope.quotable_bullets.default', language);
   }
 
-  Widget _buildWeeklyContent(BuildContext context, WeeklyHoroscope horoscope, ZodiacSign sign) {
+  Widget _buildWeeklyContent(
+    BuildContext context,
+    WeeklyHoroscope horoscope,
+    ZodiacSign sign,
+  ) {
     return SingleChildScrollView(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       child: Column(
@@ -305,7 +340,10 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
           // Categories
           _buildCategoryCard(
             context,
-            L10nService.get('horoscope.love_relationships', ref.read(languageProvider)),
+            L10nService.get(
+              'horoscope.love_relationships',
+              ref.read(languageProvider),
+            ),
             Icons.favorite,
             horoscope.loveWeek,
             AppColors.fireElement,
@@ -313,7 +351,10 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
           const SizedBox(height: AppConstants.spacingMd),
           _buildCategoryCard(
             context,
-            L10nService.get('horoscope.career_finance', ref.read(languageProvider)),
+            L10nService.get(
+              'horoscope.career_finance',
+              ref.read(languageProvider),
+            ),
             Icons.work,
             horoscope.careerWeek,
             AppColors.earthElement,
@@ -321,7 +362,10 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
           const SizedBox(height: AppConstants.spacingMd),
           _buildCategoryCard(
             context,
-            L10nService.get('horoscope.health_energy', ref.read(languageProvider)),
+            L10nService.get(
+              'horoscope.health_energy',
+              ref.read(languageProvider),
+            ),
             Icons.spa,
             horoscope.healthWeek,
             AppColors.airElement,
@@ -336,13 +380,20 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
           const InlineAdBanner(),
           const SizedBox(height: AppConstants.spacingXl),
           // Back-Button-Free Navigation (compact)
-          PageBottomNavigationCompact(currentRoute: '/horoscope/${sign.name.toLowerCase()}', language: ref.read(languageProvider)),
+          PageBottomNavigationCompact(
+            currentRoute: '/horoscope/${sign.name.toLowerCase()}',
+            language: ref.read(languageProvider),
+          ),
         ],
       ),
     );
   }
 
-  Widget _buildMonthlyContent(BuildContext context, MonthlyHoroscope horoscope, ZodiacSign sign) {
+  Widget _buildMonthlyContent(
+    BuildContext context,
+    MonthlyHoroscope horoscope,
+    ZodiacSign sign,
+  ) {
     final language = ref.read(languageProvider);
     final months = _getLocalizedMonths(language);
 
@@ -368,16 +419,18 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
                     Text(
                       '${months[horoscope.month - 1]} ${horoscope.year}',
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            color: sign.color,
-                            fontWeight: FontWeight.bold,
-                          ),
+                        color: sign.color,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ],
                 ),
                 Row(
                   children: List.generate(5, (index) {
                     return Icon(
-                      index < horoscope.overallRating ? Icons.star : Icons.star_border,
+                      index < horoscope.overallRating
+                          ? Icons.star
+                          : Icons.star_border,
                       size: 16,
                       color: AppColors.starGold,
                     );
@@ -435,7 +488,10 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
           const InlineAdBanner(),
           const SizedBox(height: AppConstants.spacingXl),
           // Back-Button-Free Navigation (compact)
-          PageBottomNavigationCompact(currentRoute: '/horoscope/${sign.name.toLowerCase()}', language: ref.read(languageProvider)),
+          PageBottomNavigationCompact(
+            currentRoute: '/horoscope/${sign.name.toLowerCase()}',
+            language: ref.read(languageProvider),
+          ),
         ],
       ),
     );
@@ -456,12 +512,18 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
           const SizedBox(height: AppConstants.spacingLg),
           // Deep Interpretation Card
           DeepInterpretationCard(
-            title: '$signName ${L10nService.get('horoscope.sign_depth', language)}',
+            title:
+                '$signName ${L10nService.get('horoscope.sign_depth', language)}',
             summary: _getSignSummary(sign),
             deepInterpretation: _getSignDeepInterpretation(sign),
             icon: Icons.auto_stories,
             accentColor: sign.color,
-            relatedTerms: [signName, sign.element.getLocalizedName(language), sign.modality.getLocalizedName(language), sign.rulingPlanet],
+            relatedTerms: [
+              signName,
+              sign.element.getLocalizedName(language),
+              sign.modality.getLocalizedName(language),
+              sign.rulingPlanet,
+            ],
           ),
           const SizedBox(height: AppConstants.spacingLg),
           // FAQ Section for this zodiac sign
@@ -470,7 +532,10 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
           const InlineAdBanner(),
           const SizedBox(height: AppConstants.spacingXl),
           // Back-Button-Free Navigation
-          PageBottomNavigation(currentRoute: '/horoscope/${sign.name.toLowerCase()}', language: language),
+          PageBottomNavigation(
+            currentRoute: '/horoscope/${sign.name.toLowerCase()}',
+            language: language,
+          ),
         ],
       ),
     );
@@ -491,25 +556,79 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
   List<String> _getLocalizedMonths(AppLanguage language) {
     switch (language) {
       case AppLanguage.en:
-        return ['January', 'February', 'March', 'April', 'May', 'June',
-                'July', 'August', 'September', 'October', 'November', 'December'];
+        return [
+          'January',
+          'February',
+          'March',
+          'April',
+          'May',
+          'June',
+          'July',
+          'August',
+          'September',
+          'October',
+          'November',
+          'December',
+        ];
       case AppLanguage.de:
-        return ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni',
-                'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
+        return [
+          'Januar',
+          'Februar',
+          'März',
+          'April',
+          'Mai',
+          'Juni',
+          'Juli',
+          'August',
+          'September',
+          'Oktober',
+          'November',
+          'Dezember',
+        ];
       case AppLanguage.fr:
-        return ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
-                'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+        return [
+          'Janvier',
+          'Février',
+          'Mars',
+          'Avril',
+          'Mai',
+          'Juin',
+          'Juillet',
+          'Août',
+          'Septembre',
+          'Octobre',
+          'Novembre',
+          'Décembre',
+        ];
       case AppLanguage.tr:
       default:
-        return ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran',
-                'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
+        return [
+          'Ocak',
+          'Şubat',
+          'Mart',
+          'Nisan',
+          'Mayıs',
+          'Haziran',
+          'Temmuz',
+          'Ağustos',
+          'Eylül',
+          'Ekim',
+          'Kasım',
+          'Aralık',
+        ];
     }
   }
 
   Widget _buildWeekHeader(BuildContext context, WeeklyHoroscope horoscope) {
     final weekEnd = horoscope.weekStart.add(const Duration(days: 6));
     final language = ref.read(languageProvider);
-    final localeCode = language == AppLanguage.tr ? 'tr' : language == AppLanguage.de ? 'de' : language == AppLanguage.fr ? 'fr' : 'en';
+    final localeCode = language == AppLanguage.tr
+        ? 'tr'
+        : language == AppLanguage.de
+        ? 'de'
+        : language == AppLanguage.fr
+        ? 'fr'
+        : 'en';
     final format = DateFormat('d MMM', localeCode);
 
     return Container(
@@ -528,16 +647,18 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
               Text(
                 '${format.format(horoscope.weekStart)} - ${format.format(weekEnd)}',
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      color: _sign.color,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  color: _sign.color,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ],
           ),
           Row(
             children: List.generate(5, (index) {
               return Icon(
-                index < horoscope.overallRating ? Icons.star : Icons.star_border,
+                index < horoscope.overallRating
+                    ? Icons.star
+                    : Icons.star_border,
                 size: 16,
                 color: AppColors.starGold,
               );
@@ -548,7 +669,11 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
     );
   }
 
-  Widget _buildKeyDatesStringSection(BuildContext context, List<String> keyDates, ZodiacSign sign) {
+  Widget _buildKeyDatesStringSection(
+    BuildContext context,
+    List<String> keyDates,
+    ZodiacSign sign,
+  ) {
     if (keyDates.isEmpty) return const SizedBox.shrink();
 
     return Container(
@@ -565,10 +690,13 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
               Icon(Icons.event_note, color: sign.color, size: 20),
               const SizedBox(width: 8),
               Text(
-                L10nService.get('horoscope.important_days', ref.read(languageProvider)),
-                style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      color: sign.color,
-                    ),
+                L10nService.get(
+                  'horoscope.important_days',
+                  ref.read(languageProvider),
+                ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleSmall?.copyWith(color: sign.color),
               ),
             ],
           ),
@@ -591,8 +719,8 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
                     child: Text(
                       keyDate,
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: AppColors.textSecondary,
-                          ),
+                        color: AppColors.textSecondary,
+                      ),
                     ),
                   ),
                 ],
@@ -604,17 +732,18 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
     );
   }
 
-  Widget _buildWeeklyOverview(BuildContext context, String overview, ZodiacSign sign) {
+  Widget _buildWeeklyOverview(
+    BuildContext context,
+    String overview,
+    ZodiacSign sign,
+  ) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [
-            sign.color.withAlpha(15),
-            AppColors.surfaceDark,
-          ],
+          colors: [sign.color.withAlpha(15), AppColors.surfaceDark],
         ),
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         border: Border.all(color: sign.color.withAlpha(20)),
@@ -627,10 +756,13 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
               Icon(Icons.auto_awesome, color: sign.color, size: 20),
               const SizedBox(width: 8),
               Text(
-                L10nService.get('horoscope.cosmic_energy', ref.read(languageProvider)),
-                style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      color: sign.color,
-                    ),
+                L10nService.get(
+                  'horoscope.cosmic_energy',
+                  ref.read(languageProvider),
+                ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleSmall?.copyWith(color: sign.color),
               ),
             ],
           ),
@@ -638,16 +770,20 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
           Text(
             overview,
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: AppColors.textPrimary,
-                  height: 1.8,
-                ),
+              color: AppColors.textPrimary,
+              height: 1.8,
+            ),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildLuckyDaysSection(BuildContext context, List<String> luckyDays, ZodiacSign sign) {
+  Widget _buildLuckyDaysSection(
+    BuildContext context,
+    List<String> luckyDays,
+    ZodiacSign sign,
+  ) {
     if (luckyDays.isEmpty) return const SizedBox.shrink();
 
     return Container(
@@ -665,10 +801,13 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
               Icon(Icons.star, color: AppColors.starGold, size: 20),
               const SizedBox(width: 8),
               Text(
-                L10nService.get('horoscope.lucky_days', ref.read(languageProvider)),
-                style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      color: AppColors.starGold,
-                    ),
+                L10nService.get(
+                  'horoscope.lucky_days',
+                  ref.read(languageProvider),
+                ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleSmall?.copyWith(color: AppColors.starGold),
               ),
             ],
           ),
@@ -678,16 +817,19 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
             runSpacing: 8,
             children: luckyDays.map((day) {
               return Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 6,
+                ),
                 decoration: BoxDecoration(
                   color: AppColors.starGold.withAlpha(30),
                   borderRadius: BorderRadius.circular(16),
                 ),
                 child: Text(
                   day,
-                  style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                        color: AppColors.starGold,
-                      ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.labelSmall?.copyWith(color: AppColors.starGold),
                 ),
               );
             }).toList(),
@@ -697,7 +839,11 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
     );
   }
 
-  Widget _buildKeyTransitsSection(BuildContext context, String keyTransits, ZodiacSign sign) {
+  Widget _buildKeyTransitsSection(
+    BuildContext context,
+    String keyTransits,
+    ZodiacSign sign,
+  ) {
     if (keyTransits.isEmpty) return const SizedBox.shrink();
 
     return Container(
@@ -714,10 +860,13 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
               Icon(Icons.route, color: sign.color, size: 20),
               const SizedBox(width: 8),
               Text(
-                L10nService.get('horoscope.important_transits', ref.read(languageProvider)),
-                style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      color: sign.color,
-                    ),
+                L10nService.get(
+                  'horoscope.important_transits',
+                  ref.read(languageProvider),
+                ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleSmall?.copyWith(color: sign.color),
               ),
             ],
           ),
@@ -725,24 +874,25 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
           Text(
             keyTransits,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppColors.textSecondary,
-                  height: 1.5,
-                ),
+              color: AppColors.textSecondary,
+              height: 1.5,
+            ),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildAffirmationCard(BuildContext context, String affirmation, ZodiacSign sign) {
+  Widget _buildAffirmationCard(
+    BuildContext context,
+    String affirmation,
+    ZodiacSign sign,
+  ) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [
-            sign.color.withAlpha(30),
-            AppColors.starGold.withAlpha(20),
-          ],
+          colors: [sign.color.withAlpha(30), AppColors.starGold.withAlpha(20)],
         ),
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         border: Border.all(color: sign.color.withAlpha(40)),
@@ -755,23 +905,25 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
             affirmation,
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: AppColors.textPrimary,
-                  fontStyle: FontStyle.italic,
-                  height: 1.5,
-                ),
+              color: AppColors.textPrimary,
+              fontStyle: FontStyle.italic,
+              height: 1.5,
+            ),
           ),
           const SizedBox(height: AppConstants.spacingSm),
           Text(
-            L10nService.get('horoscope.weekly_affirmation_label', ref.read(languageProvider)),
-            style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                  color: AppColors.textMuted,
-                ),
+            L10nService.get(
+              'horoscope.weekly_affirmation_label',
+              ref.read(languageProvider),
+            ),
+            style: Theme.of(
+              context,
+            ).textTheme.labelSmall?.copyWith(color: AppColors.textMuted),
           ),
         ],
       ),
     );
   }
-
 
   Widget _buildHeader(BuildContext context, ZodiacSign sign) {
     // AI-QUOTABLE HEADER - Soru formatı
@@ -784,10 +936,7 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: [
-            sign.color.withValues(alpha: 0.25),
-            Colors.transparent,
-          ],
+          colors: [sign.color.withValues(alpha: 0.25), Colors.transparent],
         ),
       ),
       child: Column(
@@ -810,7 +959,12 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
                 onPressed: () {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
-                      content: Text(L10nService.get('horoscope.feature_coming_soon', ref.read(languageProvider))),
+                      content: Text(
+                        L10nService.get(
+                          'horoscope.feature_coming_soon',
+                          ref.read(languageProvider),
+                        ),
+                      ),
                       backgroundColor: AppColors.starGold,
                       behavior: SnackBarBehavior.floating,
                       duration: const Duration(seconds: 2),
@@ -855,22 +1009,34 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
                   children: [
                     // H1 - Soru formatı (AI-quotable)
                     Text(
-                      L10nService.get('horoscope.sign_today', ref.read(languageProvider)).replaceAll('{sign}', sign.localizedName(ref.read(languageProvider))),
+                      L10nService.get(
+                        'horoscope.sign_today',
+                        ref.read(languageProvider),
+                      ).replaceAll(
+                        '{sign}',
+                        sign.localizedName(ref.read(languageProvider)),
+                      ),
                       style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            color: AppColors.textPrimary,
-                            fontWeight: FontWeight.bold,
-                          ),
+                        color: AppColors.textPrimary,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     const SizedBox(height: 4),
                     // Brand tag
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8,
+                        vertical: 3,
+                      ),
                       decoration: BoxDecoration(
                         color: sign.color.withValues(alpha: 0.15),
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Text(
-                        L10nService.get('horoscope.astrology', ref.read(languageProvider)),
+                        L10nService.get(
+                          'horoscope.astrology',
+                          ref.read(languageProvider),
+                        ),
                         style: TextStyle(
                           fontSize: 11,
                           color: sign.color,
@@ -899,17 +1065,20 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              L10nService.get('horoscope.daily_reading', ref.read(languageProvider)),
+              L10nService.get(
+                'horoscope.daily_reading',
+                ref.read(languageProvider),
+              ),
               style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                    color: AppColors.textMuted,
-                    letterSpacing: 1.5,
-                  ),
+                color: AppColors.textMuted,
+                letterSpacing: 1.5,
+              ),
             ),
             Text(
               dateStr,
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    color: AppColors.textPrimary,
-                  ),
+              style: Theme.of(
+                context,
+              ).textTheme.titleMedium?.copyWith(color: AppColors.textPrimary),
             ),
           ],
         ),
@@ -917,11 +1086,14 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Text(
-              L10nService.get('horoscope.luck_rate', ref.read(languageProvider)),
+              L10nService.get(
+                'horoscope.luck_rate',
+                ref.read(languageProvider),
+              ),
               style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                    color: AppColors.textMuted,
-                    letterSpacing: 1.5,
-                  ),
+                color: AppColors.textMuted,
+                letterSpacing: 1.5,
+              ),
             ),
             Row(
               children: List.generate(5, (index) {
@@ -939,17 +1111,17 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
   }
 
   Widget _buildMainHoroscope(
-      BuildContext context, String summary, ZodiacSign sign) {
+    BuildContext context,
+    String summary,
+    ZodiacSign sign,
+  ) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [
-            sign.color.withValues(alpha: 0.15),
-            AppColors.surfaceDark,
-          ],
+          colors: [sign.color.withValues(alpha: 0.15), AppColors.surfaceDark],
         ),
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         border: Border.all(color: sign.color.withValues(alpha: 0.2)),
@@ -962,10 +1134,13 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
               Icon(Icons.auto_awesome, color: sign.color, size: 20),
               const SizedBox(width: 8),
               Text(
-                L10nService.get('horoscope.daily_cosmic_energy', ref.read(languageProvider)),
-                style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      color: sign.color,
-                    ),
+                L10nService.get(
+                  'horoscope.daily_cosmic_energy',
+                  ref.read(languageProvider),
+                ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleSmall?.copyWith(color: sign.color),
               ),
             ],
           ),
@@ -973,17 +1148,22 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
           Text(
             summary,
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: AppColors.textPrimary,
-                  height: 1.8,
-                ),
+              color: AppColors.textPrimary,
+              height: 1.8,
+            ),
           ),
         ],
       ),
     ).animate().fadeIn(delay: 500.ms, duration: 400.ms);
   }
 
-  Widget _buildCategoryCard(BuildContext context, String title, IconData icon,
-      String content, Color color) {
+  Widget _buildCategoryCard(
+    BuildContext context,
+    String title,
+    IconData icon,
+    String content,
+    Color color,
+  ) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -1007,9 +1187,9 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
               const SizedBox(width: AppConstants.spacingMd),
               Text(
                 title,
-                style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      color: AppColors.textPrimary,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleSmall?.copyWith(color: AppColors.textPrimary),
               ),
             ],
           ),
@@ -1018,17 +1198,22 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
             text: content,
             enableHighlighting: true,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: AppColors.textSecondary,
-                  height: 1.6,
-                ),
+              color: AppColors.textSecondary,
+              height: 1.6,
+            ),
           ),
         ],
       ),
     ).animate().fadeIn(delay: 600.ms, duration: 400.ms);
   }
 
-  Widget _buildQuickFacts(BuildContext context, String mood, String luckyColor,
-      String luckyNumber, ZodiacSign sign) {
+  Widget _buildQuickFacts(
+    BuildContext context,
+    String mood,
+    String luckyColor,
+    String luckyNumber,
+    ZodiacSign sign,
+  ) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -1039,10 +1224,13 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            L10nService.get('horoscope.cosmic_tips', ref.read(languageProvider)),
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                  color: AppColors.textPrimary,
-                ),
+            L10nService.get(
+              'horoscope.cosmic_tips',
+              ref.read(languageProvider),
+            ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleSmall?.copyWith(color: AppColors.textPrimary),
           ),
           const SizedBox(height: AppConstants.spacingLg),
           Row(
@@ -1050,7 +1238,10 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
               Expanded(
                 child: _QuickFactItem(
                   icon: Icons.mood,
-                  label: L10nService.get('horoscope.mood', ref.read(languageProvider)),
+                  label: L10nService.get(
+                    'horoscope.mood',
+                    ref.read(languageProvider),
+                  ),
                   value: mood,
                   color: sign.color,
                 ),
@@ -1058,7 +1249,10 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
               Expanded(
                 child: _QuickFactItem(
                   icon: Icons.palette,
-                  label: L10nService.get('horoscope.lucky_color', ref.read(languageProvider)),
+                  label: L10nService.get(
+                    'horoscope.lucky_color',
+                    ref.read(languageProvider),
+                  ),
                   value: luckyColor,
                   color: sign.color,
                 ),
@@ -1066,7 +1260,10 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
               Expanded(
                 child: _QuickFactItem(
                   icon: Icons.tag,
-                  label: L10nService.get('horoscope.lucky_number', ref.read(languageProvider)),
+                  label: L10nService.get(
+                    'horoscope.lucky_number',
+                    ref.read(languageProvider),
+                  ),
                   value: luckyNumber,
                   color: sign.color,
                 ),
@@ -1091,17 +1288,17 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
         children: [
           Text(
             '${sign.localizedName(ref.read(languageProvider))} ${L10nService.get('horoscope.zodiac_secrets', ref.read(languageProvider))}',
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                  color: sign.color,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleSmall?.copyWith(color: sign.color),
           ),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
             sign.description,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: AppColors.textSecondary,
-                  height: 1.6,
-                ),
+              color: AppColors.textSecondary,
+              height: 1.6,
+            ),
           ),
           const SizedBox(height: AppConstants.spacingLg),
           Wrap(
@@ -1109,20 +1306,32 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
             runSpacing: 8,
             children: [
               _InfoTag(
-                  label: sign.element.name, icon: null, color: sign.element.color),
-              _InfoTag(label: sign.modality.name, icon: null, color: sign.color),
+                label: sign.element.name,
+                icon: null,
+                color: sign.element.color,
+              ),
               _InfoTag(
-                  label: '${L10nService.get('horoscope.ruling_planet', ref.read(languageProvider))}: ${sign.rulingPlanet}',
-                  icon: null,
-                  color: AppColors.starGold),
+                label: sign.modality.name,
+                icon: null,
+                color: sign.color,
+              ),
+              _InfoTag(
+                label:
+                    '${L10nService.get('horoscope.ruling_planet', ref.read(languageProvider))}: ${sign.rulingPlanet}',
+                icon: null,
+                color: AppColors.starGold,
+              ),
             ],
           ),
           const SizedBox(height: AppConstants.spacingLg),
           Text(
-            L10nService.get('horoscope.spiritual_signature', ref.read(languageProvider)),
-            style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                  color: AppColors.textMuted,
-                ),
+            L10nService.get(
+              'horoscope.spiritual_signature',
+              ref.read(languageProvider),
+            ),
+            style: Theme.of(
+              context,
+            ).textTheme.labelMedium?.copyWith(color: AppColors.textMuted),
           ),
           const SizedBox(height: AppConstants.spacingSm),
           Wrap(
@@ -1130,17 +1339,19 @@ class _HoroscopeDetailScreenState extends ConsumerState<HoroscopeDetailScreen>
             runSpacing: 8,
             children: sign.traits.map((trait) {
               return Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 6,
+                ),
                 decoration: BoxDecoration(
                   color: sign.color.withValues(alpha: 0.15),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Text(
                   trait,
-                  style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                        color: sign.color,
-                      ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.labelSmall?.copyWith(color: sign.color),
                 ),
               );
             }).toList(),
@@ -1172,16 +1383,16 @@ class _QuickFactItem extends StatelessWidget {
         const SizedBox(height: 8),
         Text(
           label,
-          style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                color: AppColors.textMuted,
-              ),
+          style: Theme.of(
+            context,
+          ).textTheme.labelSmall?.copyWith(color: AppColors.textMuted),
         ),
         const SizedBox(height: 4),
         Text(
           value,
-          style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                color: AppColors.textPrimary,
-              ),
+          style: Theme.of(
+            context,
+          ).textTheme.titleSmall?.copyWith(color: AppColors.textPrimary),
           textAlign: TextAlign.center,
         ),
       ],
@@ -1194,11 +1405,7 @@ class _InfoTag extends StatelessWidget {
   final IconData? icon;
   final Color color;
 
-  const _InfoTag({
-    required this.label,
-    this.icon,
-    required this.color,
-  });
+  const _InfoTag({required this.label, this.icon, required this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -1218,9 +1425,9 @@ class _InfoTag extends StatelessWidget {
           ],
           Text(
             label,
-            style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                  color: color,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.labelSmall?.copyWith(color: color),
           ),
         ],
       ),

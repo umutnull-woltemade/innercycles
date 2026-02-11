@@ -21,7 +21,11 @@ class QuizService {
   }
 
   /// Cevaplara göre sonuç hesapla
-  static QuizResult calculateResult(Quiz quiz, Map<int, int> answers, AppLanguage language) {
+  static QuizResult calculateResult(
+    Quiz quiz,
+    Map<int, int> answers,
+    AppLanguage language,
+  ) {
     int totalScore = 0;
     int maxPossibleScore = quiz.questions.length * 5;
 
@@ -85,47 +89,115 @@ class QuizService {
           text: L10nService.get('quiz.dream_q1', language),
           emoji: '💭',
           answers: [
-            QuizAnswer(text: L10nService.get('quiz.dream_a1_1', language), emoji: '🌟', weight: 5),
-            QuizAnswer(text: L10nService.get('quiz.dream_a1_2', language), emoji: '✨', weight: 4),
-            QuizAnswer(text: L10nService.get('quiz.dream_a1_3', language), emoji: '🌙', weight: 2),
-            QuizAnswer(text: L10nService.get('quiz.dream_a1_4', language), emoji: '😴', weight: 1),
+            QuizAnswer(
+              text: L10nService.get('quiz.dream_a1_1', language),
+              emoji: '🌟',
+              weight: 5,
+            ),
+            QuizAnswer(
+              text: L10nService.get('quiz.dream_a1_2', language),
+              emoji: '✨',
+              weight: 4,
+            ),
+            QuizAnswer(
+              text: L10nService.get('quiz.dream_a1_3', language),
+              emoji: '🌙',
+              weight: 2,
+            ),
+            QuizAnswer(
+              text: L10nService.get('quiz.dream_a1_4', language),
+              emoji: '😴',
+              weight: 1,
+            ),
           ],
         ),
         QuizQuestion(
           text: L10nService.get('quiz.dream_q2', language),
           emoji: '🎭',
           answers: [
-            QuizAnswer(text: L10nService.get('quiz.dream_a2_1', language), emoji: '💫', weight: 5),
-            QuizAnswer(text: L10nService.get('quiz.dream_a2_2', language), emoji: '🔍', weight: 4),
-            QuizAnswer(text: L10nService.get('quiz.dream_a2_3', language), emoji: '🌓', weight: 3),
-            QuizAnswer(text: L10nService.get('quiz.dream_a2_4', language), emoji: '😐', weight: 1),
+            QuizAnswer(
+              text: L10nService.get('quiz.dream_a2_1', language),
+              emoji: '💫',
+              weight: 5,
+            ),
+            QuizAnswer(
+              text: L10nService.get('quiz.dream_a2_2', language),
+              emoji: '🔍',
+              weight: 4,
+            ),
+            QuizAnswer(
+              text: L10nService.get('quiz.dream_a2_3', language),
+              emoji: '🌓',
+              weight: 3,
+            ),
+            QuizAnswer(
+              text: L10nService.get('quiz.dream_a2_4', language),
+              emoji: '😐',
+              weight: 1,
+            ),
           ],
         ),
         QuizQuestion(
           text: L10nService.get('quiz.dream_q3', language),
           emoji: '🔄',
           answers: [
-            QuizAnswer(text: L10nService.get('quiz.dream_a3_1', language), emoji: '🔮', weight: 5),
-            QuizAnswer(text: L10nService.get('quiz.dream_a3_2', language), emoji: '🌀', weight: 3),
-            QuizAnswer(text: L10nService.get('quiz.dream_a3_3', language), emoji: '💫', weight: 2),
-            QuizAnswer(text: L10nService.get('quiz.dream_a3_4', language), emoji: '❌', weight: 1),
+            QuizAnswer(
+              text: L10nService.get('quiz.dream_a3_1', language),
+              emoji: '🔮',
+              weight: 5,
+            ),
+            QuizAnswer(
+              text: L10nService.get('quiz.dream_a3_2', language),
+              emoji: '🌀',
+              weight: 3,
+            ),
+            QuizAnswer(
+              text: L10nService.get('quiz.dream_a3_3', language),
+              emoji: '💫',
+              weight: 2,
+            ),
+            QuizAnswer(
+              text: L10nService.get('quiz.dream_a3_4', language),
+              emoji: '❌',
+              weight: 1,
+            ),
           ],
         ),
         QuizQuestion(
           text: L10nService.get('quiz.dream_q4', language),
           emoji: '🧩',
           answers: [
-            QuizAnswer(text: L10nService.get('quiz.dream_a4_1', language), emoji: '🔥', weight: 5),
-            QuizAnswer(text: L10nService.get('quiz.dream_a4_2', language), emoji: '📚', weight: 4),
-            QuizAnswer(text: L10nService.get('quiz.dream_a4_3', language), emoji: '🤔', weight: 2),
-            QuizAnswer(text: L10nService.get('quiz.dream_a4_4', language), emoji: '🤷', weight: 1),
+            QuizAnswer(
+              text: L10nService.get('quiz.dream_a4_1', language),
+              emoji: '🔥',
+              weight: 5,
+            ),
+            QuizAnswer(
+              text: L10nService.get('quiz.dream_a4_2', language),
+              emoji: '📚',
+              weight: 4,
+            ),
+            QuizAnswer(
+              text: L10nService.get('quiz.dream_a4_3', language),
+              emoji: '🤔',
+              weight: 2,
+            ),
+            QuizAnswer(
+              text: L10nService.get('quiz.dream_a4_4', language),
+              emoji: '🤷',
+              weight: 1,
+            ),
           ],
         ),
       ],
     );
   }
 
-  static QuizResult _getDreamResult(QuizSegment segment, int score, AppLanguage language) {
+  static QuizResult _getDreamResult(
+    QuizSegment segment,
+    int score,
+    AppLanguage language,
+  ) {
     switch (segment) {
       case QuizSegment.high:
         return QuizResult(
@@ -139,7 +211,10 @@ class QuizService {
       case QuizSegment.medium:
         return QuizResult(
           title: L10nService.get('quiz.result_dream_medium_title', language),
-          description: L10nService.get('quiz.result_dream_medium_desc', language),
+          description: L10nService.get(
+            'quiz.result_dream_medium_desc',
+            language,
+          ),
           emoji: '🌙',
           segment: segment,
           score: score,
@@ -170,42 +245,97 @@ class QuizService {
           text: L10nService.get('quiz.astrology_q1', language),
           emoji: '⭐',
           answers: [
-            QuizAnswer(text: L10nService.get('quiz.astrology_a1_1', language), emoji: '🌟', weight: 5),
-            QuizAnswer(text: L10nService.get('quiz.astrology_a1_2', language), emoji: '✨', weight: 4),
-            QuizAnswer(text: L10nService.get('quiz.astrology_a1_3', language), emoji: '🌙', weight: 2),
-            QuizAnswer(text: L10nService.get('quiz.astrology_a1_4', language), emoji: '💫', weight: 1),
+            QuizAnswer(
+              text: L10nService.get('quiz.astrology_a1_1', language),
+              emoji: '🌟',
+              weight: 5,
+            ),
+            QuizAnswer(
+              text: L10nService.get('quiz.astrology_a1_2', language),
+              emoji: '✨',
+              weight: 4,
+            ),
+            QuizAnswer(
+              text: L10nService.get('quiz.astrology_a1_3', language),
+              emoji: '🌙',
+              weight: 2,
+            ),
+            QuizAnswer(
+              text: L10nService.get('quiz.astrology_a1_4', language),
+              emoji: '💫',
+              weight: 1,
+            ),
           ],
         ),
         QuizQuestion(
           text: L10nService.get('quiz.astrology_q2', language),
           emoji: '🗺️',
           answers: [
-            QuizAnswer(text: L10nService.get('quiz.astrology_a2_1', language), emoji: '📊', weight: 5),
-            QuizAnswer(text: L10nService.get('quiz.astrology_a2_2', language), emoji: '☀️', weight: 4),
-            QuizAnswer(text: L10nService.get('quiz.astrology_a2_3', language), emoji: '♈', weight: 2),
-            QuizAnswer(text: L10nService.get('quiz.astrology_a2_4', language), emoji: '🤷', weight: 1),
+            QuizAnswer(
+              text: L10nService.get('quiz.astrology_a2_1', language),
+              emoji: '📊',
+              weight: 5,
+            ),
+            QuizAnswer(
+              text: L10nService.get('quiz.astrology_a2_2', language),
+              emoji: '☀️',
+              weight: 4,
+            ),
+            QuizAnswer(
+              text: L10nService.get('quiz.astrology_a2_3', language),
+              emoji: '♈',
+              weight: 2,
+            ),
+            QuizAnswer(
+              text: L10nService.get('quiz.astrology_a2_4', language),
+              emoji: '🤷',
+              weight: 1,
+            ),
           ],
         ),
         QuizQuestion(
           text: L10nService.get('quiz.astrology_q3', language),
           emoji: '🔄',
           answers: [
-            QuizAnswer(text: L10nService.get('quiz.astrology_a3_1', language), emoji: '⚠️', weight: 5),
-            QuizAnswer(text: L10nService.get('quiz.astrology_a3_2', language), emoji: '👀', weight: 3),
-            QuizAnswer(text: L10nService.get('quiz.astrology_a3_3', language), emoji: '🤔', weight: 2),
-            QuizAnswer(text: L10nService.get('quiz.astrology_a3_4', language), emoji: '❓', weight: 1),
+            QuizAnswer(
+              text: L10nService.get('quiz.astrology_a3_1', language),
+              emoji: '⚠️',
+              weight: 5,
+            ),
+            QuizAnswer(
+              text: L10nService.get('quiz.astrology_a3_2', language),
+              emoji: '👀',
+              weight: 3,
+            ),
+            QuizAnswer(
+              text: L10nService.get('quiz.astrology_a3_3', language),
+              emoji: '🤔',
+              weight: 2,
+            ),
+            QuizAnswer(
+              text: L10nService.get('quiz.astrology_a3_4', language),
+              emoji: '❓',
+              weight: 1,
+            ),
           ],
         ),
       ],
     );
   }
 
-  static QuizResult _getAstrologyResult(QuizSegment segment, int score, AppLanguage language) {
+  static QuizResult _getAstrologyResult(
+    QuizSegment segment,
+    int score,
+    AppLanguage language,
+  ) {
     switch (segment) {
       case QuizSegment.high:
         return QuizResult(
           title: L10nService.get('quiz.result_astrology_high_title', language),
-          description: L10nService.get('quiz.result_astrology_high_desc', language),
+          description: L10nService.get(
+            'quiz.result_astrology_high_desc',
+            language,
+          ),
           emoji: '🌟',
           segment: segment,
           score: score,
@@ -213,8 +343,14 @@ class QuizService {
         );
       case QuizSegment.medium:
         return QuizResult(
-          title: L10nService.get('quiz.result_astrology_medium_title', language),
-          description: L10nService.get('quiz.result_astrology_medium_desc', language),
+          title: L10nService.get(
+            'quiz.result_astrology_medium_title',
+            language,
+          ),
+          description: L10nService.get(
+            'quiz.result_astrology_medium_desc',
+            language,
+          ),
           emoji: '⭐',
           segment: segment,
           score: score,
@@ -222,7 +358,10 @@ class QuizService {
       case QuizSegment.low:
         return QuizResult(
           title: L10nService.get('quiz.result_astrology_low_title', language),
-          description: L10nService.get('quiz.result_astrology_low_desc', language),
+          description: L10nService.get(
+            'quiz.result_astrology_low_desc',
+            language,
+          ),
           emoji: '✨',
           segment: segment,
           score: score,
@@ -245,42 +384,97 @@ class QuizService {
           text: L10nService.get('quiz.numerology_q1', language),
           emoji: '🔢',
           answers: [
-            QuizAnswer(text: L10nService.get('quiz.numerology_a1_1', language), emoji: '1️⃣', weight: 5),
-            QuizAnswer(text: L10nService.get('quiz.numerology_a1_2', language), emoji: '👀', weight: 3),
-            QuizAnswer(text: L10nService.get('quiz.numerology_a1_3', language), emoji: '🤔', weight: 2),
-            QuizAnswer(text: L10nService.get('quiz.numerology_a1_4', language), emoji: '🤷', weight: 1),
+            QuizAnswer(
+              text: L10nService.get('quiz.numerology_a1_1', language),
+              emoji: '1️⃣',
+              weight: 5,
+            ),
+            QuizAnswer(
+              text: L10nService.get('quiz.numerology_a1_2', language),
+              emoji: '👀',
+              weight: 3,
+            ),
+            QuizAnswer(
+              text: L10nService.get('quiz.numerology_a1_3', language),
+              emoji: '🤔',
+              weight: 2,
+            ),
+            QuizAnswer(
+              text: L10nService.get('quiz.numerology_a1_4', language),
+              emoji: '🤷',
+              weight: 1,
+            ),
           ],
         ),
         QuizQuestion(
           text: L10nService.get('quiz.numerology_q2', language),
           emoji: '🛤️',
           answers: [
-            QuizAnswer(text: L10nService.get('quiz.numerology_a2_1', language), emoji: '📖', weight: 5),
-            QuizAnswer(text: L10nService.get('quiz.numerology_a2_2', language), emoji: '🔍', weight: 3),
-            QuizAnswer(text: L10nService.get('quiz.numerology_a2_3', language), emoji: '💭', weight: 2),
-            QuizAnswer(text: L10nService.get('quiz.numerology_a2_4', language), emoji: '❓', weight: 1),
+            QuizAnswer(
+              text: L10nService.get('quiz.numerology_a2_1', language),
+              emoji: '📖',
+              weight: 5,
+            ),
+            QuizAnswer(
+              text: L10nService.get('quiz.numerology_a2_2', language),
+              emoji: '🔍',
+              weight: 3,
+            ),
+            QuizAnswer(
+              text: L10nService.get('quiz.numerology_a2_3', language),
+              emoji: '💭',
+              weight: 2,
+            ),
+            QuizAnswer(
+              text: L10nService.get('quiz.numerology_a2_4', language),
+              emoji: '❓',
+              weight: 1,
+            ),
           ],
         ),
         QuizQuestion(
           text: L10nService.get('quiz.numerology_q3', language),
           emoji: '📅',
           answers: [
-            QuizAnswer(text: L10nService.get('quiz.numerology_a3_1', language), emoji: '✅', weight: 5),
-            QuizAnswer(text: L10nService.get('quiz.numerology_a3_2', language), emoji: '🤔', weight: 3),
-            QuizAnswer(text: L10nService.get('quiz.numerology_a3_3', language), emoji: '🌙', weight: 2),
-            QuizAnswer(text: L10nService.get('quiz.numerology_a3_4', language), emoji: '❌', weight: 1),
+            QuizAnswer(
+              text: L10nService.get('quiz.numerology_a3_1', language),
+              emoji: '✅',
+              weight: 5,
+            ),
+            QuizAnswer(
+              text: L10nService.get('quiz.numerology_a3_2', language),
+              emoji: '🤔',
+              weight: 3,
+            ),
+            QuizAnswer(
+              text: L10nService.get('quiz.numerology_a3_3', language),
+              emoji: '🌙',
+              weight: 2,
+            ),
+            QuizAnswer(
+              text: L10nService.get('quiz.numerology_a3_4', language),
+              emoji: '❌',
+              weight: 1,
+            ),
           ],
         ),
       ],
     );
   }
 
-  static QuizResult _getNumerologyResult(QuizSegment segment, int score, AppLanguage language) {
+  static QuizResult _getNumerologyResult(
+    QuizSegment segment,
+    int score,
+    AppLanguage language,
+  ) {
     switch (segment) {
       case QuizSegment.high:
         return QuizResult(
           title: L10nService.get('quiz.result_numerology_high_title', language),
-          description: L10nService.get('quiz.result_numerology_high_desc', language),
+          description: L10nService.get(
+            'quiz.result_numerology_high_desc',
+            language,
+          ),
           emoji: '🔢',
           segment: segment,
           score: score,
@@ -288,8 +482,14 @@ class QuizService {
         );
       case QuizSegment.medium:
         return QuizResult(
-          title: L10nService.get('quiz.result_numerology_medium_title', language),
-          description: L10nService.get('quiz.result_numerology_medium_desc', language),
+          title: L10nService.get(
+            'quiz.result_numerology_medium_title',
+            language,
+          ),
+          description: L10nService.get(
+            'quiz.result_numerology_medium_desc',
+            language,
+          ),
           emoji: '🔮',
           segment: segment,
           score: score,
@@ -297,7 +497,10 @@ class QuizService {
       case QuizSegment.low:
         return QuizResult(
           title: L10nService.get('quiz.result_numerology_low_title', language),
-          description: L10nService.get('quiz.result_numerology_low_desc', language),
+          description: L10nService.get(
+            'quiz.result_numerology_low_desc',
+            language,
+          ),
           emoji: '✨',
           segment: segment,
           score: score,
@@ -320,52 +523,123 @@ class QuizService {
           text: L10nService.get('quiz.general_q1', language),
           emoji: '🧘',
           answers: [
-            QuizAnswer(text: L10nService.get('quiz.general_a1_1', language), emoji: '🕯️', weight: 5),
-            QuizAnswer(text: L10nService.get('quiz.general_a1_2', language), emoji: '🌿', weight: 4),
-            QuizAnswer(text: L10nService.get('quiz.general_a1_3', language), emoji: '💕', weight: 3),
-            QuizAnswer(text: L10nService.get('quiz.general_a1_4', language), emoji: '🏃', weight: 2),
+            QuizAnswer(
+              text: L10nService.get('quiz.general_a1_1', language),
+              emoji: '🕯️',
+              weight: 5,
+            ),
+            QuizAnswer(
+              text: L10nService.get('quiz.general_a1_2', language),
+              emoji: '🌿',
+              weight: 4,
+            ),
+            QuizAnswer(
+              text: L10nService.get('quiz.general_a1_3', language),
+              emoji: '💕',
+              weight: 3,
+            ),
+            QuizAnswer(
+              text: L10nService.get('quiz.general_a1_4', language),
+              emoji: '🏃',
+              weight: 2,
+            ),
           ],
         ),
         QuizQuestion(
           text: L10nService.get('quiz.general_q2', language),
           emoji: '🔮',
           answers: [
-            QuizAnswer(text: L10nService.get('quiz.general_a2_1', language), emoji: '💫', weight: 5),
-            QuizAnswer(text: L10nService.get('quiz.general_a2_2', language), emoji: '👂', weight: 4),
-            QuizAnswer(text: L10nService.get('quiz.general_a2_3', language), emoji: '🤔', weight: 2),
-            QuizAnswer(text: L10nService.get('quiz.general_a2_4', language), emoji: '🧠', weight: 1),
+            QuizAnswer(
+              text: L10nService.get('quiz.general_a2_1', language),
+              emoji: '💫',
+              weight: 5,
+            ),
+            QuizAnswer(
+              text: L10nService.get('quiz.general_a2_2', language),
+              emoji: '👂',
+              weight: 4,
+            ),
+            QuizAnswer(
+              text: L10nService.get('quiz.general_a2_3', language),
+              emoji: '🤔',
+              weight: 2,
+            ),
+            QuizAnswer(
+              text: L10nService.get('quiz.general_a2_4', language),
+              emoji: '🧠',
+              weight: 1,
+            ),
           ],
         ),
         QuizQuestion(
           text: L10nService.get('quiz.general_q3', language),
           emoji: '✨',
           answers: [
-            QuizAnswer(text: L10nService.get('quiz.general_a3_1', language), emoji: '📿', weight: 5),
-            QuizAnswer(text: L10nService.get('quiz.general_a3_2', language), emoji: '📚', weight: 4),
-            QuizAnswer(text: L10nService.get('quiz.general_a3_3', language), emoji: '🌙', weight: 2),
-            QuizAnswer(text: L10nService.get('quiz.general_a3_4', language), emoji: '🤷', weight: 1),
+            QuizAnswer(
+              text: L10nService.get('quiz.general_a3_1', language),
+              emoji: '📿',
+              weight: 5,
+            ),
+            QuizAnswer(
+              text: L10nService.get('quiz.general_a3_2', language),
+              emoji: '📚',
+              weight: 4,
+            ),
+            QuizAnswer(
+              text: L10nService.get('quiz.general_a3_3', language),
+              emoji: '🌙',
+              weight: 2,
+            ),
+            QuizAnswer(
+              text: L10nService.get('quiz.general_a3_4', language),
+              emoji: '🤷',
+              weight: 1,
+            ),
           ],
         ),
         QuizQuestion(
           text: L10nService.get('quiz.general_q4', language),
           emoji: '🎯',
           answers: [
-            QuizAnswer(text: L10nService.get('quiz.general_a4_1', language), emoji: '🌟', weight: 5),
-            QuizAnswer(text: L10nService.get('quiz.general_a4_2', language), emoji: '☮️', weight: 4),
-            QuizAnswer(text: L10nService.get('quiz.general_a4_3', language), emoji: '💗', weight: 3),
-            QuizAnswer(text: L10nService.get('quiz.general_a4_4', language), emoji: '🏆', weight: 2),
+            QuizAnswer(
+              text: L10nService.get('quiz.general_a4_1', language),
+              emoji: '🌟',
+              weight: 5,
+            ),
+            QuizAnswer(
+              text: L10nService.get('quiz.general_a4_2', language),
+              emoji: '☮️',
+              weight: 4,
+            ),
+            QuizAnswer(
+              text: L10nService.get('quiz.general_a4_3', language),
+              emoji: '💗',
+              weight: 3,
+            ),
+            QuizAnswer(
+              text: L10nService.get('quiz.general_a4_4', language),
+              emoji: '🏆',
+              weight: 2,
+            ),
           ],
         ),
       ],
     );
   }
 
-  static QuizResult _getGeneralResult(QuizSegment segment, int score, AppLanguage language) {
+  static QuizResult _getGeneralResult(
+    QuizSegment segment,
+    int score,
+    AppLanguage language,
+  ) {
     switch (segment) {
       case QuizSegment.high:
         return QuizResult(
           title: L10nService.get('quiz.result_general_high_title', language),
-          description: L10nService.get('quiz.result_general_high_desc', language),
+          description: L10nService.get(
+            'quiz.result_general_high_desc',
+            language,
+          ),
           emoji: '🌟',
           segment: segment,
           score: score,
@@ -374,7 +648,10 @@ class QuizService {
       case QuizSegment.medium:
         return QuizResult(
           title: L10nService.get('quiz.result_general_medium_title', language),
-          description: L10nService.get('quiz.result_general_medium_desc', language),
+          description: L10nService.get(
+            'quiz.result_general_medium_desc',
+            language,
+          ),
           emoji: '🚀',
           segment: segment,
           score: score,
@@ -382,7 +659,10 @@ class QuizService {
       case QuizSegment.low:
         return QuizResult(
           title: L10nService.get('quiz.result_general_low_title', language),
-          description: L10nService.get('quiz.result_general_low_desc', language),
+          description: L10nService.get(
+            'quiz.result_general_low_desc',
+            language,
+          ),
           emoji: '🌱',
           segment: segment,
           score: score,

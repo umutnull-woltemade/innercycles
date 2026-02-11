@@ -35,16 +35,20 @@ class VenusContentSection {
   });
 
   /// Get localized title
-  String getTitle(AppLanguage lang) => lang == AppLanguage.en ? titleEn : titleTr;
+  String getTitle(AppLanguage lang) =>
+      lang == AppLanguage.en ? titleEn : titleTr;
 
   /// Get localized subtitle
-  String getSubtitle(AppLanguage lang) => lang == AppLanguage.en ? subtitleEn : subtitleTr;
+  String getSubtitle(AppLanguage lang) =>
+      lang == AppLanguage.en ? subtitleEn : subtitleTr;
 
   /// Get localized badge
-  String? getBadge(AppLanguage lang) => lang == AppLanguage.en ? badgeEn : badgeTr;
+  String? getBadge(AppLanguage lang) =>
+      lang == AppLanguage.en ? badgeEn : badgeTr;
 
   /// Get localized full content
-  String getFullContent(AppLanguage lang) => lang == AppLanguage.en ? fullContentEn : fullContentTr;
+  String getFullContent(AppLanguage lang) =>
+      lang == AppLanguage.en ? fullContentEn : fullContentTr;
 }
 
 /// 12 Rich Venus-themed content sections
@@ -870,7 +874,10 @@ Time to face past relationships. Exes may return — this is an opportunity for 
   ];
 
   /// Get sections by category or badge (language-aware)
-  static List<VenusContentSection> getSectionsByBadge(String badge, AppLanguage lang) {
+  static List<VenusContentSection> getSectionsByBadge(
+    String badge,
+    AppLanguage lang,
+  ) {
     return sections.where((s) => s.getBadge(lang) == badge).toList();
   }
 

@@ -43,7 +43,9 @@ class FeatureFlagService {
     await refresh();
 
     if (kDebugMode) {
-      debugPrint('FeatureFlagService: Initialized for $_platform v$_appVersion');
+      debugPrint(
+        'FeatureFlagService: Initialized for $_platform v$_appVersion',
+      );
       debugPrint('FeatureFlagService: ${_flags.length} flags loaded');
     }
   }

@@ -10,6 +10,7 @@ import '../../../data/services/advanced_astrology_service.dart';
 import '../../../data/services/l10n_service.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/entertainment_disclaimer.dart';
 
 class VedicChartScreen extends ConsumerStatefulWidget {
   const VedicChartScreen({super.key});
@@ -65,16 +66,16 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
                 const SizedBox(height: 16),
                 Text(
                   L10nService.get('vedic.profile_not_found', language),
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        color: Colors.white,
-                      ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleLarge?.copyWith(color: Colors.white),
                 ),
                 const SizedBox(height: 8),
                 Text(
                   L10nService.get('vedic.enter_birth_info', language),
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: Colors.white70,
-                      ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodyMedium?.copyWith(color: Colors.white70),
                 ),
                 const SizedBox(height: 24),
                 ElevatedButton(
@@ -117,6 +118,12 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
                         _buildDoshaCard(isDark, language),
                         const SizedBox(height: AppConstants.spacingMd),
                         _buildPredictionCard(isDark, language),
+                        const SizedBox(height: AppConstants.spacingXl),
+                        PageFooterWithDisclaimer(
+                          brandText: 'Vedic Jyotish — Venus One',
+                          disclaimerText: DisclaimerTexts.astrology(language),
+                          language: language,
+                        ),
                         const SizedBox(height: AppConstants.spacingXxl),
                       ] else ...[
                         const SizedBox(height: 100),
@@ -125,7 +132,9 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
                         Text(
                           L10nService.get('vedic.generating_chart', language),
                           style: TextStyle(
-                            color: isDark ? Colors.white70 : AppColors.textLight,
+                            color: isDark
+                                ? Colors.white70
+                                : AppColors.textLight,
                           ),
                         ),
                       ],
@@ -191,7 +200,11 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
     );
   }
 
-  Widget _buildProfileCard(bool isDark, UserProfile userProfile, AppLanguage language) {
+  Widget _buildProfileCard(
+    bool isDark,
+    UserProfile userProfile,
+    AppLanguage language,
+  ) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -205,11 +218,7 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
         children: [
           Row(
             children: [
-              Icon(
-                Icons.person,
-                color: Colors.orange,
-                size: 20,
-              ),
+              Icon(Icons.person, color: Colors.orange, size: 20),
               const SizedBox(width: 8),
               Text(
                 L10nService.get('vedic.profile_info', language),
@@ -222,13 +231,38 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
             ],
           ),
           const SizedBox(height: AppConstants.spacingMd),
-          _buildInfoRow(isDark, Icons.person_outline, L10nService.get('vedic.name', language), userProfile.name ?? L10nService.get('vedic.user', language)),
-          _buildInfoRow(isDark, Icons.cake_outlined, L10nService.get('vedic.birth_date', language), _formatDate(userProfile.birthDate, language)),
-          _buildInfoRow(isDark, Icons.wb_sunny_outlined, L10nService.get('vedic.western_sun', language), userProfile.sunSign.localizedName(language)),
+          _buildInfoRow(
+            isDark,
+            Icons.person_outline,
+            L10nService.get('vedic.name', language),
+            userProfile.name ?? L10nService.get('vedic.user', language),
+          ),
+          _buildInfoRow(
+            isDark,
+            Icons.cake_outlined,
+            L10nService.get('vedic.birth_date', language),
+            _formatDate(userProfile.birthDate, language),
+          ),
+          _buildInfoRow(
+            isDark,
+            Icons.wb_sunny_outlined,
+            L10nService.get('vedic.western_sun', language),
+            userProfile.sunSign.localizedName(language),
+          ),
           if (userProfile.moonSign != null)
-            _buildInfoRow(isDark, Icons.nightlight_outlined, L10nService.get('vedic.western_moon', language), userProfile.moonSign!.localizedName(language)),
+            _buildInfoRow(
+              isDark,
+              Icons.nightlight_outlined,
+              L10nService.get('vedic.western_moon', language),
+              userProfile.moonSign!.localizedName(language),
+            ),
           if (userProfile.risingSign != null)
-            _buildInfoRow(isDark, Icons.arrow_upward, L10nService.get('vedic.western_rising', language), userProfile.risingSign!.localizedName(language)),
+            _buildInfoRow(
+              isDark,
+              Icons.arrow_upward,
+              L10nService.get('vedic.western_rising', language),
+              userProfile.risingSign!.localizedName(language),
+            ),
         ],
       ),
     );
@@ -239,7 +273,11 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
       padding: const EdgeInsets.symmetric(vertical: 4),
       child: Row(
         children: [
-          Icon(icon, size: 16, color: isDark ? Colors.white54 : AppColors.textLight),
+          Icon(
+            icon,
+            size: 16,
+            color: isDark ? Colors.white54 : AppColors.textLight,
+          ),
           const SizedBox(width: 8),
           Text(
             '$label: ',
@@ -266,9 +304,18 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
 
   String _formatDate(DateTime date, AppLanguage language) {
     final monthKey = [
-      'months.january', 'months.february', 'months.march', 'months.april',
-      'months.may', 'months.june', 'months.july', 'months.august',
-      'months.september', 'months.october', 'months.november', 'months.december'
+      'months.january',
+      'months.february',
+      'months.march',
+      'months.april',
+      'months.may',
+      'months.june',
+      'months.july',
+      'months.august',
+      'months.september',
+      'months.october',
+      'months.november',
+      'months.december',
     ][date.month - 1];
     return '${date.day} ${L10nService.get(monthKey, language)} ${date.year}';
   }
@@ -310,15 +357,14 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
                   children: [
                     Text(
                       L10nService.get('vedic.rasi_moon_sign', language),
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: Colors.orange,
-                          ),
+                      style: Theme.of(
+                        context,
+                      ).textTheme.bodySmall?.copyWith(color: Colors.orange),
                     ),
                     Text(
                       _chart!.moonSign.localizedName(language),
-                      style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                            fontWeight: FontWeight.bold,
-                          ),
+                      style: Theme.of(context).textTheme.headlineSmall
+                          ?.copyWith(fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
@@ -328,9 +374,9 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
                 children: [
                   Text(
                     L10nService.get('vedic.lagna', language),
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: Colors.orange,
-                        ),
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodySmall?.copyWith(color: Colors.orange),
                   ),
                   Row(
                     children: [
@@ -342,8 +388,8 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
                       Text(
                         _chart!.ascendant.localizedName(language),
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              fontWeight: FontWeight.bold,
-                            ),
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ],
                   ),
@@ -381,9 +427,9 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
               const SizedBox(width: 12),
               Text(
                 L10nService.get('vedic.nakshatra', language),
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
               ),
             ],
           ),
@@ -404,8 +450,8 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
                     Text(
                       '${_chart!.nakshatra}. ${_chart!.nakshatraName}',
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            fontWeight: FontWeight.bold,
-                          ),
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     Container(
                       padding: const EdgeInsets.symmetric(
@@ -418,9 +464,9 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
                       ),
                       child: Text(
                         '${L10nService.get('vedic.pada', language)} ${_chart!.nakshatraPada}',
-                        style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                              color: Colors.purple,
-                            ),
+                        style: Theme.of(
+                          context,
+                        ).textTheme.labelSmall?.copyWith(color: Colors.purple),
                       ),
                     ),
                   ],
@@ -428,7 +474,11 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
                 const SizedBox(height: 8),
                 Row(
                   children: [
-                    _buildNakshatraInfo(L10nService.get('vedic.lord', language), _chart!.nakshatraLord, isDark),
+                    _buildNakshatraInfo(
+                      L10nService.get('vedic.lord', language),
+                      _chart!.nakshatraLord,
+                      isDark,
+                    ),
                   ],
                 ),
               ],
@@ -450,15 +500,12 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
       ),
       child: Row(
         children: [
-          Text(
-            '$label: ',
-            style: Theme.of(context).textTheme.bodySmall,
-          ),
+          Text('$label: ', style: Theme.of(context).textTheme.bodySmall),
           Text(
             value,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.bodySmall?.copyWith(fontWeight: FontWeight.bold),
           ),
         ],
       ),
@@ -489,9 +536,9 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
               const SizedBox(width: 8),
               Text(
                 L10nService.get('vedic.dasha_period', language),
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
               ),
             ],
           ),
@@ -531,7 +578,12 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
     );
   }
 
-  Widget _buildDashaPeriod(String label, String planet, Color color, bool isDark) {
+  Widget _buildDashaPeriod(
+    String label,
+    String planet,
+    Color color,
+    bool isDark,
+  ) {
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
@@ -544,16 +596,16 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
         children: [
           Text(
             label,
-            style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                  color: color,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.labelSmall?.copyWith(color: color),
           ),
           const SizedBox(height: 4),
           Text(
             planet,
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.bold),
           ),
         ],
       ),
@@ -574,9 +626,9 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
         children: [
           Text(
             L10nService.get('vedic.planet_positions_sidereal', language),
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: AppConstants.spacingMd),
           ..._chart!.planets.map((planet) {
@@ -600,8 +652,8 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
                     child: Text(
                       planet.planet,
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            fontWeight: FontWeight.w600,
-                          ),
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ),
                   Text(
@@ -643,9 +695,9 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
                       child: Text(
                         'R',
                         style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                              color: Colors.orange,
-                              fontWeight: FontWeight.bold,
-                            ),
+                          color: Colors.orange,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   const SizedBox(width: 8),
@@ -661,9 +713,9 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
                     child: Text(
                       planet.dignity,
                       style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                            color: dignityColor,
-                            fontSize: 10,
-                          ),
+                        color: dignityColor,
+                        fontSize: 10,
+                      ),
                     ),
                   ),
                 ],
@@ -700,9 +752,9 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
               const SizedBox(width: 12),
               Text(
                 L10nService.get('vedic.yogas', language),
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
               ),
             ],
           ),
@@ -714,9 +766,7 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
               decoration: BoxDecoration(
                 color: Colors.green.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(8),
-                border: Border.all(
-                  color: Colors.green.withValues(alpha: 0.3),
-                ),
+                border: Border.all(color: Colors.green.withValues(alpha: 0.3)),
               ),
               child: Row(
                 children: [
@@ -751,21 +801,30 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
         children: [
           Text(
             L10nService.get('vedic.dosha_analysis', language),
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: AppConstants.spacingMd),
-          _buildDoshaItem(L10nService.get('vedic.manglik_dosha', language), _chart!.manglikStatus, isDark),
+          _buildDoshaItem(
+            L10nService.get('vedic.manglik_dosha', language),
+            _chart!.manglikStatus,
+            isDark,
+          ),
           const SizedBox(height: 8),
-          _buildDoshaItem(L10nService.get('vedic.kala_sarpa_yoga', language), _chart!.kalaSarpaYoga, isDark),
+          _buildDoshaItem(
+            L10nService.get('vedic.kala_sarpa_yoga', language),
+            _chart!.kalaSarpaYoga,
+            isDark,
+          ),
         ],
       ),
     );
   }
 
   Widget _buildDoshaItem(String title, String content, bool isDark) {
-    final hasDosha = content.contains('mevcut') || content.contains('belirtileri');
+    final hasDosha =
+        content.contains('mevcut') || content.contains('belirtileri');
 
     return Container(
       padding: const EdgeInsets.all(12),
@@ -793,17 +852,14 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
               const SizedBox(width: 8),
               Text(
                 title,
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
               ),
             ],
           ),
           const SizedBox(height: 4),
-          Text(
-            content,
-            style: Theme.of(context).textTheme.bodySmall,
-          ),
+          Text(content, style: Theme.of(context).textTheme.bodySmall),
         ],
       ),
     );
@@ -831,16 +887,16 @@ class _VedicChartScreenState extends ConsumerState<VedicChartScreen> {
           Text(
             L10nService.get('vedic.interpretation', language),
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: AppColors.starGold,
-                ),
+              fontWeight: FontWeight.bold,
+              color: AppColors.starGold,
+            ),
           ),
           const SizedBox(height: AppConstants.spacingSm),
           Text(
             _chart!.generalPrediction,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  height: 1.6,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.bodyMedium?.copyWith(height: 1.6),
             textAlign: TextAlign.center,
           ),
         ],

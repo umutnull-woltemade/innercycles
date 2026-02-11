@@ -7,7 +7,9 @@ import '../../../data/services/l10n_service.dart';
 import '../../../data/providers/app_providers.dart';
 
 /// Notification settings provider
-final notificationSettingsProvider = FutureProvider<NotificationSettings>((ref) async {
+final notificationSettingsProvider = FutureProvider<NotificationSettings>((
+  ref,
+) async {
   return NotificationService().getSettings();
 });
 
@@ -16,10 +18,12 @@ class NotificationSettingsSection extends ConsumerStatefulWidget {
   const NotificationSettingsSection({super.key});
 
   @override
-  ConsumerState<NotificationSettingsSection> createState() => _NotificationSettingsSectionState();
+  ConsumerState<NotificationSettingsSection> createState() =>
+      _NotificationSettingsSectionState();
 }
 
-class _NotificationSettingsSectionState extends ConsumerState<NotificationSettingsSection> {
+class _NotificationSettingsSectionState
+    extends ConsumerState<NotificationSettingsSection> {
   final NotificationService _notificationService = NotificationService();
   bool _isInitialized = false;
   bool _permissionsGranted = false;
@@ -153,7 +157,9 @@ class _NotificationSettingsSectionState extends ConsumerState<NotificationSettin
         color: isDark ? AppColors.surfaceLight.withAlpha(20) : Colors.white,
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         border: Border.all(
-          color: isDark ? AppColors.surfaceLight.withAlpha(30) : Colors.grey.shade200,
+          color: isDark
+              ? AppColors.surfaceLight.withAlpha(30)
+              : Colors.grey.shade200,
         ),
       ),
       child: Column(
@@ -170,9 +176,11 @@ class _NotificationSettingsSectionState extends ConsumerState<NotificationSettin
               Text(
                 L10nService.get('common.notifications', language),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  color: isDark
+                      ? AppColors.textPrimary
+                      : AppColors.lightTextPrimary,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ],
           ),
@@ -190,8 +198,13 @@ class _NotificationSettingsSectionState extends ConsumerState<NotificationSettin
               icon: Icons.wb_sunny_outlined,
               title: L10nService.get('notifications.daily_horoscope', language),
               subtitle: _dailyEnabled
-                  ? L10nService.get('notifications.daily_horoscope_desc', language)
-                      .replaceAll('{time}', '${_dailyHour.toString().padLeft(2, '0')}:${_dailyMinute.toString().padLeft(2, '0')}')
+                  ? L10nService.get(
+                      'notifications.daily_horoscope_desc',
+                      language,
+                    ).replaceAll(
+                      '{time}',
+                      '${_dailyHour.toString().padLeft(2, '0')}:${_dailyMinute.toString().padLeft(2, '0')}',
+                    )
                   : L10nService.get('notifications.off', language),
               value: _dailyEnabled,
               onChanged: _toggleDailyNotification,
@@ -206,7 +219,10 @@ class _NotificationSettingsSectionState extends ConsumerState<NotificationSettin
               isDark,
               icon: Icons.nightlight_round_outlined,
               title: L10nService.get('notifications.moon_phases', language),
-              subtitle: L10nService.get('notifications.moon_phases_desc', language),
+              subtitle: L10nService.get(
+                'notifications.moon_phases_desc',
+                language,
+              ),
               value: _moonEnabled,
               onChanged: _toggleMoonNotification,
             ),
@@ -218,8 +234,14 @@ class _NotificationSettingsSectionState extends ConsumerState<NotificationSettin
               context,
               isDark,
               icon: Icons.replay,
-              title: L10nService.get('notifications.retrograde_alerts', language),
-              subtitle: L10nService.get('notifications.retrograde_desc', language),
+              title: L10nService.get(
+                'notifications.retrograde_alerts',
+                language,
+              ),
+              subtitle: L10nService.get(
+                'notifications.retrograde_desc',
+                language,
+              ),
               value: _retrogradeEnabled,
               onChanged: _toggleRetrogradeNotification,
             ),
@@ -242,7 +264,11 @@ class _NotificationSettingsSectionState extends ConsumerState<NotificationSettin
     );
   }
 
-  Widget _buildPermissionBanner(BuildContext context, bool isDark, AppLanguage language) {
+  Widget _buildPermissionBanner(
+    BuildContext context,
+    bool isDark,
+    AppLanguage language,
+  ) {
     return Container(
       margin: const EdgeInsets.only(bottom: AppConstants.spacingMd),
       padding: const EdgeInsets.all(AppConstants.spacingMd),
@@ -259,8 +285,10 @@ class _NotificationSettingsSectionState extends ConsumerState<NotificationSettin
             child: Text(
               L10nService.get('common.permission_required', language),
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
-                  ),
+                color: isDark
+                    ? AppColors.textSecondary
+                    : AppColors.lightTextSecondary,
+              ),
             ),
           ),
           TextButton(
@@ -293,7 +321,8 @@ class _NotificationSettingsSectionState extends ConsumerState<NotificationSettin
           Container(
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-              color: (value ? AppColors.starGold : AppColors.textMuted).withAlpha(20),
+              color: (value ? AppColors.starGold : AppColors.textMuted)
+                  .withAlpha(20),
               borderRadius: BorderRadius.circular(8),
             ),
             child: Icon(
@@ -310,25 +339,25 @@ class _NotificationSettingsSectionState extends ConsumerState<NotificationSettin
                 Text(
                   title,
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
-                        fontWeight: FontWeight.w500,
-                      ),
+                    color: isDark
+                        ? AppColors.textPrimary
+                        : AppColors.lightTextPrimary,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
                 Text(
                   subtitle,
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: isDark ? AppColors.textMuted : AppColors.lightTextSecondary,
-                      ),
+                    color: isDark
+                        ? AppColors.textMuted
+                        : AppColors.lightTextSecondary,
+                  ),
                 ),
               ],
             ),
           ),
           if (onTap != null && value)
-            Icon(
-              Icons.chevron_right,
-              color: AppColors.textMuted,
-              size: 20,
-            ),
+            Icon(Icons.chevron_right, color: AppColors.textMuted, size: 20),
           const SizedBox(width: 8),
           Switch.adaptive(
             value: value,

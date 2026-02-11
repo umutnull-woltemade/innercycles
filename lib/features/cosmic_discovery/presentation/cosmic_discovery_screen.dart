@@ -26,7 +26,8 @@ class CosmicDiscoveryScreen extends ConsumerStatefulWidget {
   });
 
   @override
-  ConsumerState<CosmicDiscoveryScreen> createState() => _CosmicDiscoveryScreenState();
+  ConsumerState<CosmicDiscoveryScreen> createState() =>
+      _CosmicDiscoveryScreenState();
 }
 
 class _CosmicDiscoveryScreenState extends ConsumerState<CosmicDiscoveryScreen>
@@ -54,7 +55,9 @@ class _CosmicDiscoveryScreenState extends ConsumerState<CosmicDiscoveryScreen>
     final userProfile = ref.watch(userProfileProvider);
     final language = ref.watch(languageProvider);
     final sign = userProfile?.sunSign ?? zodiac.ZodiacSign.aries;
-    final userName = userProfile?.name ?? L10nService.get('cosmic_discovery.default_username', language);
+    final userName =
+        userProfile?.name ??
+        L10nService.get('cosmic_discovery.default_username', language);
 
     return Scaffold(
       body: CosmicBackground(
@@ -104,7 +107,11 @@ class _CosmicDiscoveryScreenState extends ConsumerState<CosmicDiscoveryScreen>
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(color: Colors.white.withValues(alpha: 0.2)),
               ),
-              child: const Icon(Icons.arrow_back_rounded, color: Colors.white, size: 22),
+              child: const Icon(
+                Icons.arrow_back_rounded,
+                color: Colors.white,
+                size: 22,
+              ),
             ),
           ),
           const SizedBox(width: 16),
@@ -119,7 +126,11 @@ class _CosmicDiscoveryScreenState extends ConsumerState<CosmicDiscoveryScreen>
                     Flexible(
                       child: ShaderMask(
                         shaderCallback: (bounds) => LinearGradient(
-                          colors: [widget.primaryColor, Colors.white, widget.primaryColor],
+                          colors: [
+                            widget.primaryColor,
+                            Colors.white,
+                            widget.primaryColor,
+                          ],
                         ).createShader(bounds),
                         child: Text(
                           widget.type.getLocalizedTitle(language),
@@ -151,12 +162,21 @@ class _CosmicDiscoveryScreenState extends ConsumerState<CosmicDiscoveryScreen>
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [widget.primaryColor.withValues(alpha: 0.3), widget.primaryColor.withValues(alpha: 0.1)],
+                  colors: [
+                    widget.primaryColor.withValues(alpha: 0.3),
+                    widget.primaryColor.withValues(alpha: 0.1),
+                  ],
                 ),
                 borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: widget.primaryColor.withValues(alpha: 0.5)),
+                border: Border.all(
+                  color: widget.primaryColor.withValues(alpha: 0.5),
+                ),
               ),
-              child: const Icon(Icons.share_rounded, color: Colors.white, size: 22),
+              child: const Icon(
+                Icons.share_rounded,
+                color: Colors.white,
+                size: 22,
+              ),
             ),
           ),
         ],
@@ -164,7 +184,12 @@ class _CosmicDiscoveryScreenState extends ConsumerState<CosmicDiscoveryScreen>
     );
   }
 
-  Widget _buildHeroSection(BuildContext context, zodiac.ZodiacSign sign, String userName, AppLanguage language) {
+  Widget _buildHeroSection(
+    BuildContext context,
+    zodiac.ZodiacSign sign,
+    String userName,
+    AppLanguage language,
+  ) {
     return Container(
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
@@ -178,7 +203,10 @@ class _CosmicDiscoveryScreenState extends ConsumerState<CosmicDiscoveryScreen>
           ],
         ),
         borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: widget.primaryColor.withValues(alpha: 0.5), width: 2),
+        border: Border.all(
+          color: widget.primaryColor.withValues(alpha: 0.5),
+          width: 2,
+        ),
         boxShadow: [
           BoxShadow(
             color: widget.primaryColor.withValues(alpha: 0.3),
@@ -199,12 +227,18 @@ class _CosmicDiscoveryScreenState extends ConsumerState<CosmicDiscoveryScreen>
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   gradient: RadialGradient(
-                    colors: [sign.color.withValues(alpha: 0.4), sign.color.withValues(alpha: 0.1)],
+                    colors: [
+                      sign.color.withValues(alpha: 0.4),
+                      sign.color.withValues(alpha: 0.1),
+                    ],
                   ),
                   shape: BoxShape.circle,
                   border: Border.all(color: sign.color, width: 2),
                 ),
-                child: Text(sign.symbol, style: TextStyle(fontSize: 36, color: sign.color)),
+                child: Text(
+                  sign.symbol,
+                  style: TextStyle(fontSize: 36, color: sign.color),
+                ),
               ),
             ],
           ),
@@ -216,9 +250,7 @@ class _CosmicDiscoveryScreenState extends ConsumerState<CosmicDiscoveryScreen>
               fontSize: 24,
               fontWeight: FontWeight.bold,
               color: Colors.white,
-              shadows: [
-                Shadow(color: widget.primaryColor, blurRadius: 10),
-              ],
+              shadows: [Shadow(color: widget.primaryColor, blurRadius: 10)],
             ),
             textAlign: TextAlign.center,
           ),
@@ -249,7 +281,10 @@ class _CosmicDiscoveryScreenState extends ConsumerState<CosmicDiscoveryScreen>
         padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [widget.primaryColor, widget.primaryColor.withValues(alpha: 0.7)],
+            colors: [
+              widget.primaryColor,
+              widget.primaryColor.withValues(alpha: 0.7),
+            ],
           ),
           borderRadius: BorderRadius.circular(30),
           boxShadow: [
@@ -279,7 +314,12 @@ class _CosmicDiscoveryScreenState extends ConsumerState<CosmicDiscoveryScreen>
     );
   }
 
-  Widget _buildContent(BuildContext context, zodiac.ZodiacSign sign, String userName, AppLanguage language) {
+  Widget _buildContent(
+    BuildContext context,
+    zodiac.ZodiacSign sign,
+    String userName,
+    AppLanguage language,
+  ) {
     final content = _getContent(sign, userName, language);
 
     return Column(
@@ -298,7 +338,9 @@ class _CosmicDiscoveryScreenState extends ConsumerState<CosmicDiscoveryScreen>
               ],
             ),
             borderRadius: BorderRadius.circular(20),
-            border: Border.all(color: widget.primaryColor.withValues(alpha: 0.3)),
+            border: Border.all(
+              color: widget.primaryColor.withValues(alpha: 0.3),
+            ),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -317,13 +359,24 @@ class _CosmicDiscoveryScreenState extends ConsumerState<CosmicDiscoveryScreen>
 
               // Detaylar
               if (content['details'] != null) ...[
-                _buildDetailSection(L10nService.get('cosmic_discovery.detailed_analysis', language), content['details']!, Icons.psychology),
+                _buildDetailSection(
+                  L10nService.get(
+                    'cosmic_discovery.detailed_analysis',
+                    language,
+                  ),
+                  content['details']!,
+                  Icons.psychology,
+                ),
                 const SizedBox(height: 16),
               ],
 
               // Tavsiyeler
               if (content['advice'] != null) ...[
-                _buildDetailSection(L10nService.get('cosmic_discovery.advice', language), content['advice']!, Icons.lightbulb_outline),
+                _buildDetailSection(
+                  L10nService.get('cosmic_discovery.advice', language),
+                  content['advice']!,
+                  Icons.lightbulb_outline,
+                ),
                 const SizedBox(height: 16),
               ],
 
@@ -393,7 +446,11 @@ class _CosmicDiscoveryScreenState extends ConsumerState<CosmicDiscoveryScreen>
       ),
       child: Row(
         children: [
-          const Icon(Icons.warning_amber_rounded, color: Colors.amber, size: 24),
+          const Icon(
+            Icons.warning_amber_rounded,
+            color: Colors.amber,
+            size: 24,
+          ),
           const SizedBox(width: 12),
           Expanded(
             child: AutoGlossaryText(
@@ -411,7 +468,11 @@ class _CosmicDiscoveryScreenState extends ConsumerState<CosmicDiscoveryScreen>
     );
   }
 
-  Widget _buildShareCard(BuildContext context, Map<String, String> content, AppLanguage language) {
+  Widget _buildShareCard(
+    BuildContext context,
+    Map<String, String> content,
+    AppLanguage language,
+  ) {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
@@ -422,7 +483,9 @@ class _CosmicDiscoveryScreenState extends ConsumerState<CosmicDiscoveryScreen>
           ],
         ),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: const Color(0xFFE91E63).withValues(alpha: 0.5)),
+        border: Border.all(
+          color: const Color(0xFFE91E63).withValues(alpha: 0.5),
+        ),
       ),
       child: Column(
         children: [
@@ -432,7 +495,10 @@ class _CosmicDiscoveryScreenState extends ConsumerState<CosmicDiscoveryScreen>
               const SizedBox(width: 12),
               Expanded(
                 child: Text(
-                  L10nService.get('cosmic_discovery.share_on_instagram', language),
+                  L10nService.get(
+                    'cosmic_discovery.share_on_instagram',
+                    language,
+                  ),
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 16,
@@ -479,7 +545,9 @@ class _CosmicDiscoveryScreenState extends ConsumerState<CosmicDiscoveryScreen>
   void _shareContent(BuildContext context, AppLanguage language) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text(L10nService.get('cosmic_discovery.share_coming_soon', language)),
+        content: Text(
+          L10nService.get('cosmic_discovery.share_coming_soon', language),
+        ),
         backgroundColor: widget.primaryColor,
         behavior: SnackBarBehavior.floating,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -487,8 +555,17 @@ class _CosmicDiscoveryScreenState extends ConsumerState<CosmicDiscoveryScreen>
     );
   }
 
-  Map<String, String> _getContent(zodiac.ZodiacSign sign, String userName, AppLanguage language) {
-    return CosmicDiscoveryContent.getContent(widget.type, sign, userName, language);
+  Map<String, String> _getContent(
+    zodiac.ZodiacSign sign,
+    String userName,
+    AppLanguage language,
+  ) {
+    return CosmicDiscoveryContent.getContent(
+      widget.type,
+      sign,
+      userName,
+      language,
+    );
   }
 }
 
@@ -497,7 +574,7 @@ enum CosmicDiscoveryType {
   // Günlük Enerjiler
   dailySummary,
   moonEnergy,
-  moonRituals,    // Ay Ritüelleri - distinct from moonEnergy
+  moonRituals, // Ay Ritüelleri - distinct from moonEnergy
   loveEnergy,
   abundanceEnergy,
 
@@ -520,7 +597,7 @@ enum CosmicDiscoveryType {
   // Mistik Keşifler
   tarotCard,
   auraColor,
-  crystalGuide,   // Kristal Rehberi - distinct from auraColor
+  crystalGuide, // Kristal Rehberi - distinct from auraColor
   chakraBalance,
   lifeNumber,
   kabbalaPath,
@@ -543,37 +620,68 @@ extension CosmicDiscoveryTypeL10n on CosmicDiscoveryType {
   /// Get the l10n key for this type (maps enum to JSON key)
   String get _l10nKey {
     switch (this) {
-      case CosmicDiscoveryType.dailySummary: return 'daily_summary';
-      case CosmicDiscoveryType.moonEnergy: return 'moon_energy';
-      case CosmicDiscoveryType.moonRituals: return 'moon_rituals';
-      case CosmicDiscoveryType.loveEnergy: return 'love_energy';
-      case CosmicDiscoveryType.abundanceEnergy: return 'abundance_energy';
-      case CosmicDiscoveryType.spiritualTransformation: return 'spiritual_transformation';
-      case CosmicDiscoveryType.lifePurpose: return 'life_purpose';
-      case CosmicDiscoveryType.subconsciousPatterns: return 'subconscious_patterns';
-      case CosmicDiscoveryType.karmaLessons: return 'karma_lessons';
-      case CosmicDiscoveryType.soulContract: return 'soul_contract';
-      case CosmicDiscoveryType.innerPower: return 'inner_power';
-      case CosmicDiscoveryType.shadowSelf: return 'shadow_self';
-      case CosmicDiscoveryType.leadershipStyle: return 'leadership_style';
-      case CosmicDiscoveryType.heartbreak: return 'heartbreak';
-      case CosmicDiscoveryType.redFlags: return 'red_flags';
-      case CosmicDiscoveryType.greenFlags: return 'green_flags';
-      case CosmicDiscoveryType.flirtStyle: return 'flirt_style';
-      case CosmicDiscoveryType.tarotCard: return 'tarot_card';
-      case CosmicDiscoveryType.auraColor: return 'aura_color';
-      case CosmicDiscoveryType.crystalGuide: return 'crystal_guide';
-      case CosmicDiscoveryType.chakraBalance: return 'chakra_balance';
-      case CosmicDiscoveryType.lifeNumber: return 'life_number';
-      case CosmicDiscoveryType.kabbalaPath: return 'kabbala_path';
-      case CosmicDiscoveryType.saturnLessons: return 'saturn_lessons';
-      case CosmicDiscoveryType.birthdayEnergy: return 'birthday_energy';
-      case CosmicDiscoveryType.eclipseEffect: return 'eclipse_effect';
-      case CosmicDiscoveryType.transitFlow: return 'transit_flow';
-      case CosmicDiscoveryType.compatibilityAnalysis: return 'compatibility_analysis';
-      case CosmicDiscoveryType.soulMate: return 'soul_mate';
-      case CosmicDiscoveryType.relationshipKarma: return 'relationship_karma';
-      case CosmicDiscoveryType.celebrityTwin: return 'celebrity_twin';
+      case CosmicDiscoveryType.dailySummary:
+        return 'daily_summary';
+      case CosmicDiscoveryType.moonEnergy:
+        return 'moon_energy';
+      case CosmicDiscoveryType.moonRituals:
+        return 'moon_rituals';
+      case CosmicDiscoveryType.loveEnergy:
+        return 'love_energy';
+      case CosmicDiscoveryType.abundanceEnergy:
+        return 'abundance_energy';
+      case CosmicDiscoveryType.spiritualTransformation:
+        return 'spiritual_transformation';
+      case CosmicDiscoveryType.lifePurpose:
+        return 'life_purpose';
+      case CosmicDiscoveryType.subconsciousPatterns:
+        return 'subconscious_patterns';
+      case CosmicDiscoveryType.karmaLessons:
+        return 'karma_lessons';
+      case CosmicDiscoveryType.soulContract:
+        return 'soul_contract';
+      case CosmicDiscoveryType.innerPower:
+        return 'inner_power';
+      case CosmicDiscoveryType.shadowSelf:
+        return 'shadow_self';
+      case CosmicDiscoveryType.leadershipStyle:
+        return 'leadership_style';
+      case CosmicDiscoveryType.heartbreak:
+        return 'heartbreak';
+      case CosmicDiscoveryType.redFlags:
+        return 'red_flags';
+      case CosmicDiscoveryType.greenFlags:
+        return 'green_flags';
+      case CosmicDiscoveryType.flirtStyle:
+        return 'flirt_style';
+      case CosmicDiscoveryType.tarotCard:
+        return 'tarot_card';
+      case CosmicDiscoveryType.auraColor:
+        return 'aura_color';
+      case CosmicDiscoveryType.crystalGuide:
+        return 'crystal_guide';
+      case CosmicDiscoveryType.chakraBalance:
+        return 'chakra_balance';
+      case CosmicDiscoveryType.lifeNumber:
+        return 'life_number';
+      case CosmicDiscoveryType.kabbalaPath:
+        return 'kabbala_path';
+      case CosmicDiscoveryType.saturnLessons:
+        return 'saturn_lessons';
+      case CosmicDiscoveryType.birthdayEnergy:
+        return 'birthday_energy';
+      case CosmicDiscoveryType.eclipseEffect:
+        return 'eclipse_effect';
+      case CosmicDiscoveryType.transitFlow:
+        return 'transit_flow';
+      case CosmicDiscoveryType.compatibilityAnalysis:
+        return 'compatibility_analysis';
+      case CosmicDiscoveryType.soulMate:
+        return 'soul_mate';
+      case CosmicDiscoveryType.relationshipKarma:
+        return 'relationship_karma';
+      case CosmicDiscoveryType.celebrityTwin:
+        return 'celebrity_twin';
     }
   }
 
@@ -584,7 +692,10 @@ extension CosmicDiscoveryTypeL10n on CosmicDiscoveryType {
 
   /// Get localized subtitle for this type
   String getLocalizedSubtitle(AppLanguage language) {
-    return L10nService.get('cosmic_discovery.routes.$_l10nKey.subtitle', language);
+    return L10nService.get(
+      'cosmic_discovery.routes.$_l10nKey.subtitle',
+      language,
+    );
   }
 }
 
@@ -592,22 +703,39 @@ extension CosmicDiscoveryTypeL10n on CosmicDiscoveryType {
 class CosmicDiscoveryContent {
   static String _signKey(zodiac.ZodiacSign sign) {
     switch (sign) {
-      case zodiac.ZodiacSign.aries: return 'aries';
-      case zodiac.ZodiacSign.taurus: return 'taurus';
-      case zodiac.ZodiacSign.gemini: return 'gemini';
-      case zodiac.ZodiacSign.cancer: return 'cancer';
-      case zodiac.ZodiacSign.leo: return 'leo';
-      case zodiac.ZodiacSign.virgo: return 'virgo';
-      case zodiac.ZodiacSign.libra: return 'libra';
-      case zodiac.ZodiacSign.scorpio: return 'scorpio';
-      case zodiac.ZodiacSign.sagittarius: return 'sagittarius';
-      case zodiac.ZodiacSign.capricorn: return 'capricorn';
-      case zodiac.ZodiacSign.aquarius: return 'aquarius';
-      case zodiac.ZodiacSign.pisces: return 'pisces';
+      case zodiac.ZodiacSign.aries:
+        return 'aries';
+      case zodiac.ZodiacSign.taurus:
+        return 'taurus';
+      case zodiac.ZodiacSign.gemini:
+        return 'gemini';
+      case zodiac.ZodiacSign.cancer:
+        return 'cancer';
+      case zodiac.ZodiacSign.leo:
+        return 'leo';
+      case zodiac.ZodiacSign.virgo:
+        return 'virgo';
+      case zodiac.ZodiacSign.libra:
+        return 'libra';
+      case zodiac.ZodiacSign.scorpio:
+        return 'scorpio';
+      case zodiac.ZodiacSign.sagittarius:
+        return 'sagittarius';
+      case zodiac.ZodiacSign.capricorn:
+        return 'capricorn';
+      case zodiac.ZodiacSign.aquarius:
+        return 'aquarius';
+      case zodiac.ZodiacSign.pisces:
+        return 'pisces';
     }
   }
 
-  static Map<String, String> getContent(CosmicDiscoveryType type, zodiac.ZodiacSign sign, String userName, AppLanguage language) {
+  static Map<String, String> getContent(
+    CosmicDiscoveryType type,
+    zodiac.ZodiacSign sign,
+    String userName,
+    AppLanguage language,
+  ) {
     switch (type) {
       case CosmicDiscoveryType.shadowSelf:
         return _getShadowSelfContent(sign, userName, language);
@@ -674,7 +802,11 @@ class CosmicDiscoveryContent {
     }
   }
 
-  static Map<String, String> _getShadowSelfContent(zodiac.ZodiacSign sign, String userName, AppLanguage language) {
+  static Map<String, String> _getShadowSelfContent(
+    zodiac.ZodiacSign sign,
+    String userName,
+    AppLanguage language,
+  ) {
     final signKey = _signKey(sign);
     return {
       'mainMessage': L10nService.getWithParams(
@@ -682,13 +814,26 @@ class CosmicDiscoveryContent {
         language,
         params: {'name': userName},
       ),
-      'details': L10nService.get('cosmic_discovery.shadow_self.$signKey.details', language),
-      'advice': L10nService.get('cosmic_discovery.shadow_self.$signKey.advice', language),
-      'warning': L10nService.get('cosmic_discovery.shadow_self.$signKey.warning', language),
+      'details': L10nService.get(
+        'cosmic_discovery.shadow_self.$signKey.details',
+        language,
+      ),
+      'advice': L10nService.get(
+        'cosmic_discovery.shadow_self.$signKey.advice',
+        language,
+      ),
+      'warning': L10nService.get(
+        'cosmic_discovery.shadow_self.$signKey.warning',
+        language,
+      ),
     };
   }
 
-  static Map<String, String> _getRedFlagsContent(zodiac.ZodiacSign sign, String userName, AppLanguage language) {
+  static Map<String, String> _getRedFlagsContent(
+    zodiac.ZodiacSign sign,
+    String userName,
+    AppLanguage language,
+  ) {
     final signKey = _signKey(sign);
     return {
       'mainMessage': L10nService.getWithParams(
@@ -696,12 +841,22 @@ class CosmicDiscoveryContent {
         language,
         params: {'name': userName},
       ),
-      'details': L10nService.get('cosmic_discovery.red_flags.$signKey.details', language),
-      'advice': L10nService.get('cosmic_discovery.red_flags.$signKey.advice', language),
+      'details': L10nService.get(
+        'cosmic_discovery.red_flags.$signKey.details',
+        language,
+      ),
+      'advice': L10nService.get(
+        'cosmic_discovery.red_flags.$signKey.advice',
+        language,
+      ),
     };
   }
 
-  static Map<String, String> _getGreenFlagsContent(zodiac.ZodiacSign sign, String userName, AppLanguage language) {
+  static Map<String, String> _getGreenFlagsContent(
+    zodiac.ZodiacSign sign,
+    String userName,
+    AppLanguage language,
+  ) {
     final signKey = _signKey(sign);
     return {
       'mainMessage': L10nService.getWithParams(
@@ -709,12 +864,22 @@ class CosmicDiscoveryContent {
         language,
         params: {'name': userName},
       ),
-      'details': L10nService.get('cosmic_discovery.green_flags.$signKey.details', language),
-      'advice': L10nService.get('cosmic_discovery.green_flags.$signKey.advice', language),
+      'details': L10nService.get(
+        'cosmic_discovery.green_flags.$signKey.details',
+        language,
+      ),
+      'advice': L10nService.get(
+        'cosmic_discovery.green_flags.$signKey.advice',
+        language,
+      ),
     };
   }
 
-  static Map<String, String> _getLifePurposeContent(zodiac.ZodiacSign sign, String userName, AppLanguage language) {
+  static Map<String, String> _getLifePurposeContent(
+    zodiac.ZodiacSign sign,
+    String userName,
+    AppLanguage language,
+  ) {
     final signKey = _signKey(sign);
     return {
       'mainMessage': L10nService.getWithParams(
@@ -722,15 +887,28 @@ class CosmicDiscoveryContent {
         language,
         params: {'name': userName},
       ),
-      'details': L10nService.get('cosmic_discovery.life_purpose.$signKey.details', language),
-      'advice': L10nService.get('cosmic_discovery.life_purpose.$signKey.advice', language),
+      'details': L10nService.get(
+        'cosmic_discovery.life_purpose.$signKey.details',
+        language,
+      ),
+      'advice': L10nService.get(
+        'cosmic_discovery.life_purpose.$signKey.advice',
+        language,
+      ),
     };
   }
 
-  static Map<String, String> _getKarmaLessonsContent(zodiac.ZodiacSign sign, String userName, AppLanguage language) {
+  static Map<String, String> _getKarmaLessonsContent(
+    zodiac.ZodiacSign sign,
+    String userName,
+    AppLanguage language,
+  ) {
     final signName = sign.localizedName(language);
     final elementName = sign.element.localizedName(language);
-    final elementLesson = L10nService.get('cosmic_discovery.karma_lessons.${sign.element.name.toLowerCase()}_lesson', language);
+    final elementLesson = L10nService.get(
+      'cosmic_discovery.karma_lessons.${sign.element.name.toLowerCase()}_lesson',
+      language,
+    );
 
     return {
       'mainMessage': L10nService.getWithParams(
@@ -738,7 +916,8 @@ class CosmicDiscoveryContent {
         language,
         params: {'name': userName, 'sign': signName},
       ),
-      'details': '${L10nService.get('cosmic_discovery.karma_lessons.details_intro', language)}\n'
+      'details':
+          '${L10nService.get('cosmic_discovery.karma_lessons.details_intro', language)}\n'
           '${L10nService.getWithParams('cosmic_discovery.karma_lessons.details_template', language, params: {'element': elementName, 'lesson': elementLesson})}\n\n'
           '${L10nService.get('cosmic_discovery.karma_lessons.soul_contract_lessons', language)}\n'
           '${L10nService.get('cosmic_discovery.karma_lessons.saturn_lessons', language)}\n'
@@ -746,15 +925,28 @@ class CosmicDiscoveryContent {
           '${L10nService.get('cosmic_discovery.karma_lessons.north_node', language)}\n\n'
           '${L10nService.get('cosmic_discovery.karma_lessons.karma_timeline', language)}\n'
           '${L10nService.get('cosmic_discovery.karma_lessons.karma_timeline_desc', language)}',
-      'advice': L10nService.get('cosmic_discovery.karma_lessons.advice', language),
-      'warning': L10nService.get('cosmic_discovery.karma_lessons.warning', language),
+      'advice': L10nService.get(
+        'cosmic_discovery.karma_lessons.advice',
+        language,
+      ),
+      'warning': L10nService.get(
+        'cosmic_discovery.karma_lessons.warning',
+        language,
+      ),
     };
   }
 
-  static Map<String, String> _getSoulContractContent(zodiac.ZodiacSign sign, String userName, AppLanguage language) {
+  static Map<String, String> _getSoulContractContent(
+    zodiac.ZodiacSign sign,
+    String userName,
+    AppLanguage language,
+  ) {
     final signKey = _signKey(sign);
     final signName = sign.localizedName(language);
-    final theme = L10nService.get('cosmic_discovery.soul_contract.themes.$signKey', language);
+    final theme = L10nService.get(
+      'cosmic_discovery.soul_contract.themes.$signKey',
+      language,
+    );
 
     return {
       'mainMessage': L10nService.getWithParams(
@@ -762,7 +954,8 @@ class CosmicDiscoveryContent {
         language,
         params: {'name': userName, 'sign': signName},
       ),
-      'details': '${L10nService.get('cosmic_discovery.soul_contract.contract_items', language)}\n\n'
+      'details':
+          '${L10nService.get('cosmic_discovery.soul_contract.contract_items', language)}\n\n'
           '${L10nService.getWithParams('cosmic_discovery.soul_contract.contract_intro', language, params: {'sign': signName, 'theme': theme})}\n\n'
           '${L10nService.get('cosmic_discovery.soul_contract.contract_details', language)}\n'
           '${L10nService.get('cosmic_discovery.soul_contract.life_purpose', language)}\n'
@@ -771,12 +964,22 @@ class CosmicDiscoveryContent {
           '${L10nService.get('cosmic_discovery.soul_contract.maturation_areas', language)}\n\n'
           '${L10nService.get('cosmic_discovery.soul_contract.soul_connections', language)}\n'
           '${L10nService.get('cosmic_discovery.soul_contract.soul_connections_desc', language)}',
-      'advice': L10nService.get('cosmic_discovery.soul_contract.advice', language),
-      'warning': L10nService.get('cosmic_discovery.soul_contract.warning', language),
+      'advice': L10nService.get(
+        'cosmic_discovery.soul_contract.advice',
+        language,
+      ),
+      'warning': L10nService.get(
+        'cosmic_discovery.soul_contract.warning',
+        language,
+      ),
     };
   }
 
-  static Map<String, String> _getInnerPowerContent(zodiac.ZodiacSign sign, String userName, AppLanguage language) {
+  static Map<String, String> _getInnerPowerContent(
+    zodiac.ZodiacSign sign,
+    String userName,
+    AppLanguage language,
+  ) {
     final signKey = _signKey(sign);
     final signName = sign.localizedName(language);
 
@@ -786,15 +989,23 @@ class CosmicDiscoveryContent {
         language,
         params: {'name': userName, 'sign': signName},
       ),
-      'details': '${L10nService.get('cosmic_discovery.inner_power.details_intro', language)}\n'
+      'details':
+          '${L10nService.get('cosmic_discovery.inner_power.details_intro', language)}\n'
           '${L10nService.get('cosmic_discovery.inner_power.powers.$signKey.power1', language)}\n'
           '${L10nService.get('cosmic_discovery.inner_power.powers.$signKey.power2', language)}\n'
           '${L10nService.get('cosmic_discovery.inner_power.powers.$signKey.power3', language)}',
-      'advice': L10nService.get('cosmic_discovery.inner_power.advice', language),
+      'advice': L10nService.get(
+        'cosmic_discovery.inner_power.advice',
+        language,
+      ),
     };
   }
 
-  static Map<String, String> _getFlirtStyleContent(zodiac.ZodiacSign sign, String userName, AppLanguage language) {
+  static Map<String, String> _getFlirtStyleContent(
+    zodiac.ZodiacSign sign,
+    String userName,
+    AppLanguage language,
+  ) {
     final signKey = _signKey(sign);
     return {
       'mainMessage': L10nService.getWithParams(
@@ -802,18 +1013,40 @@ class CosmicDiscoveryContent {
         language,
         params: {'name': userName},
       ),
-      'details': L10nService.get('cosmic_discovery.flirt_style.$signKey.details', language),
-      'advice': L10nService.get('cosmic_discovery.flirt_style.$signKey.advice', language),
+      'details': L10nService.get(
+        'cosmic_discovery.flirt_style.$signKey.details',
+        language,
+      ),
+      'advice': L10nService.get(
+        'cosmic_discovery.flirt_style.$signKey.advice',
+        language,
+      ),
     };
   }
 
-  static Map<String, String> _getLeadershipStyleContent(zodiac.ZodiacSign sign, String userName, AppLanguage language) {
+  static Map<String, String> _getLeadershipStyleContent(
+    zodiac.ZodiacSign sign,
+    String userName,
+    AppLanguage language,
+  ) {
     final signKey = _signKey(sign);
     final signName = sign.localizedName(language);
-    final type = L10nService.get('cosmic_discovery.leadership_style.types.$signKey', language);
-    final strength = L10nService.get('cosmic_discovery.leadership_style.strengths.$signKey', language);
-    final weakness = L10nService.get('cosmic_discovery.leadership_style.weaknesses.$signKey', language);
-    final adviceText = L10nService.get('cosmic_discovery.leadership_style.advice.$signKey', language);
+    final type = L10nService.get(
+      'cosmic_discovery.leadership_style.types.$signKey',
+      language,
+    );
+    final strength = L10nService.get(
+      'cosmic_discovery.leadership_style.strengths.$signKey',
+      language,
+    );
+    final weakness = L10nService.get(
+      'cosmic_discovery.leadership_style.weaknesses.$signKey',
+      language,
+    );
+    final adviceText = L10nService.get(
+      'cosmic_discovery.leadership_style.advice.$signKey',
+      language,
+    );
 
     return {
       'mainMessage': L10nService.getWithParams(
@@ -834,13 +1067,29 @@ class CosmicDiscoveryContent {
     };
   }
 
-  static Map<String, String> _getHeartbreakContent(zodiac.ZodiacSign sign, String userName, AppLanguage language) {
+  static Map<String, String> _getHeartbreakContent(
+    zodiac.ZodiacSign sign,
+    String userName,
+    AppLanguage language,
+  ) {
     final signKey = _signKey(sign);
     final signName = sign.localizedName(language);
-    final trigger = L10nService.get('cosmic_discovery.heartbreak.triggers.$signKey', language);
-    final reaction = L10nService.get('cosmic_discovery.heartbreak.reactions.$signKey', language);
-    final healing = L10nService.get('cosmic_discovery.heartbreak.healing.$signKey', language);
-    final adviceText = L10nService.get('cosmic_discovery.heartbreak.advice.$signKey', language);
+    final trigger = L10nService.get(
+      'cosmic_discovery.heartbreak.triggers.$signKey',
+      language,
+    );
+    final reaction = L10nService.get(
+      'cosmic_discovery.heartbreak.reactions.$signKey',
+      language,
+    );
+    final healing = L10nService.get(
+      'cosmic_discovery.heartbreak.healing.$signKey',
+      language,
+    );
+    final adviceText = L10nService.get(
+      'cosmic_discovery.heartbreak.advice.$signKey',
+      language,
+    );
 
     return {
       'mainMessage': L10nService.getWithParams(
@@ -858,17 +1107,36 @@ class CosmicDiscoveryContent {
         language,
         params: {'advice': adviceText},
       ),
-      'warning': L10nService.get('cosmic_discovery.heartbreak.warning', language),
+      'warning': L10nService.get(
+        'cosmic_discovery.heartbreak.warning',
+        language,
+      ),
     };
   }
 
-  static Map<String, String> _getSoulMateContent(zodiac.ZodiacSign sign, String userName, AppLanguage language) {
+  static Map<String, String> _getSoulMateContent(
+    zodiac.ZodiacSign sign,
+    String userName,
+    AppLanguage language,
+  ) {
     final signKey = _signKey(sign);
     final signName = sign.localizedName(language);
-    final description = L10nService.get('cosmic_discovery.soul_mate.descriptions.$signKey', language);
-    final compatible = L10nService.get('cosmic_discovery.soul_mate.compatible.$signKey', language);
-    final places = L10nService.get('cosmic_discovery.soul_mate.places.$signKey', language);
-    final adviceText = L10nService.get('cosmic_discovery.soul_mate.advice.$signKey', language);
+    final description = L10nService.get(
+      'cosmic_discovery.soul_mate.descriptions.$signKey',
+      language,
+    );
+    final compatible = L10nService.get(
+      'cosmic_discovery.soul_mate.compatible.$signKey',
+      language,
+    );
+    final places = L10nService.get(
+      'cosmic_discovery.soul_mate.places.$signKey',
+      language,
+    );
+    final adviceText = L10nService.get(
+      'cosmic_discovery.soul_mate.advice.$signKey',
+      language,
+    );
 
     return {
       'mainMessage': L10nService.getWithParams(
@@ -879,7 +1147,11 @@ class CosmicDiscoveryContent {
       'details': L10nService.getWithParams(
         'cosmic_discovery.soul_mate.details_template',
         language,
-        params: {'description': description, 'compatible': compatible, 'places': places},
+        params: {
+          'description': description,
+          'compatible': compatible,
+          'places': places,
+        },
       ),
       'advice': L10nService.getWithParams(
         'cosmic_discovery.soul_mate.advice_template',
@@ -890,7 +1162,11 @@ class CosmicDiscoveryContent {
   }
 
   // For content types not yet fully translated, return loading message
-  static Map<String, String> _getSpiritualTransformationContent(zodiac.ZodiacSign sign, String userName, AppLanguage language) {
+  static Map<String, String> _getSpiritualTransformationContent(
+    zodiac.ZodiacSign sign,
+    String userName,
+    AppLanguage language,
+  ) {
     return {
       'mainMessage': L10nService.get('cosmic_discovery.loading', language),
       'details': L10nService.get('cosmic_discovery.loading', language),
@@ -898,7 +1174,11 @@ class CosmicDiscoveryContent {
     };
   }
 
-  static Map<String, String> _getSubconsciousPatternsContent(zodiac.ZodiacSign sign, String userName, AppLanguage language) {
+  static Map<String, String> _getSubconsciousPatternsContent(
+    zodiac.ZodiacSign sign,
+    String userName,
+    AppLanguage language,
+  ) {
     return {
       'mainMessage': L10nService.get('cosmic_discovery.loading', language),
       'details': L10nService.get('cosmic_discovery.loading', language),
@@ -906,7 +1186,11 @@ class CosmicDiscoveryContent {
     };
   }
 
-  static Map<String, String> _getDailySummaryContent(zodiac.ZodiacSign sign, String userName, AppLanguage language) {
+  static Map<String, String> _getDailySummaryContent(
+    zodiac.ZodiacSign sign,
+    String userName,
+    AppLanguage language,
+  ) {
     return {
       'mainMessage': L10nService.get('cosmic_discovery.loading', language),
       'details': L10nService.get('cosmic_discovery.loading', language),
@@ -914,7 +1198,11 @@ class CosmicDiscoveryContent {
     };
   }
 
-  static Map<String, String> _getMoonEnergyContent(zodiac.ZodiacSign sign, String userName, AppLanguage language) {
+  static Map<String, String> _getMoonEnergyContent(
+    zodiac.ZodiacSign sign,
+    String userName,
+    AppLanguage language,
+  ) {
     return {
       'mainMessage': L10nService.get('cosmic_discovery.loading', language),
       'details': L10nService.get('cosmic_discovery.loading', language),
@@ -922,7 +1210,11 @@ class CosmicDiscoveryContent {
     };
   }
 
-  static Map<String, String> _getMoonRitualsContent(zodiac.ZodiacSign sign, String userName, AppLanguage language) {
+  static Map<String, String> _getMoonRitualsContent(
+    zodiac.ZodiacSign sign,
+    String userName,
+    AppLanguage language,
+  ) {
     return {
       'mainMessage': L10nService.get('cosmic_discovery.loading', language),
       'details': L10nService.get('cosmic_discovery.loading', language),
@@ -930,7 +1222,11 @@ class CosmicDiscoveryContent {
     };
   }
 
-  static Map<String, String> _getLoveEnergyContent(zodiac.ZodiacSign sign, String userName, AppLanguage language) {
+  static Map<String, String> _getLoveEnergyContent(
+    zodiac.ZodiacSign sign,
+    String userName,
+    AppLanguage language,
+  ) {
     return {
       'mainMessage': L10nService.get('cosmic_discovery.loading', language),
       'details': L10nService.get('cosmic_discovery.loading', language),
@@ -938,7 +1234,11 @@ class CosmicDiscoveryContent {
     };
   }
 
-  static Map<String, String> _getAbundanceEnergyContent(zodiac.ZodiacSign sign, String userName, AppLanguage language) {
+  static Map<String, String> _getAbundanceEnergyContent(
+    zodiac.ZodiacSign sign,
+    String userName,
+    AppLanguage language,
+  ) {
     return {
       'mainMessage': L10nService.get('cosmic_discovery.loading', language),
       'details': L10nService.get('cosmic_discovery.loading', language),
@@ -946,7 +1246,11 @@ class CosmicDiscoveryContent {
     };
   }
 
-  static Map<String, String> _getTarotCardContent(zodiac.ZodiacSign sign, String userName, AppLanguage language) {
+  static Map<String, String> _getTarotCardContent(
+    zodiac.ZodiacSign sign,
+    String userName,
+    AppLanguage language,
+  ) {
     return {
       'mainMessage': L10nService.get('cosmic_discovery.loading', language),
       'details': L10nService.get('cosmic_discovery.loading', language),
@@ -954,7 +1258,11 @@ class CosmicDiscoveryContent {
     };
   }
 
-  static Map<String, String> _getAuraColorContent(zodiac.ZodiacSign sign, String userName, AppLanguage language) {
+  static Map<String, String> _getAuraColorContent(
+    zodiac.ZodiacSign sign,
+    String userName,
+    AppLanguage language,
+  ) {
     return {
       'mainMessage': L10nService.get('cosmic_discovery.loading', language),
       'details': L10nService.get('cosmic_discovery.loading', language),
@@ -962,7 +1270,11 @@ class CosmicDiscoveryContent {
     };
   }
 
-  static Map<String, String> _getCrystalGuideContent(zodiac.ZodiacSign sign, String userName, AppLanguage language) {
+  static Map<String, String> _getCrystalGuideContent(
+    zodiac.ZodiacSign sign,
+    String userName,
+    AppLanguage language,
+  ) {
     return {
       'mainMessage': L10nService.get('cosmic_discovery.loading', language),
       'details': L10nService.get('cosmic_discovery.loading', language),
@@ -970,7 +1282,11 @@ class CosmicDiscoveryContent {
     };
   }
 
-  static Map<String, String> _getChakraBalanceContent(zodiac.ZodiacSign sign, String userName, AppLanguage language) {
+  static Map<String, String> _getChakraBalanceContent(
+    zodiac.ZodiacSign sign,
+    String userName,
+    AppLanguage language,
+  ) {
     return {
       'mainMessage': L10nService.get('cosmic_discovery.loading', language),
       'details': L10nService.get('cosmic_discovery.loading', language),
@@ -978,7 +1294,11 @@ class CosmicDiscoveryContent {
     };
   }
 
-  static Map<String, String> _getLifeNumberContent(zodiac.ZodiacSign sign, String userName, AppLanguage language) {
+  static Map<String, String> _getLifeNumberContent(
+    zodiac.ZodiacSign sign,
+    String userName,
+    AppLanguage language,
+  ) {
     return {
       'mainMessage': L10nService.get('cosmic_discovery.loading', language),
       'details': L10nService.get('cosmic_discovery.loading', language),
@@ -986,7 +1306,11 @@ class CosmicDiscoveryContent {
     };
   }
 
-  static Map<String, String> _getKabbalaPathContent(zodiac.ZodiacSign sign, String userName, AppLanguage language) {
+  static Map<String, String> _getKabbalaPathContent(
+    zodiac.ZodiacSign sign,
+    String userName,
+    AppLanguage language,
+  ) {
     return {
       'mainMessage': L10nService.get('cosmic_discovery.loading', language),
       'details': L10nService.get('cosmic_discovery.loading', language),
@@ -994,7 +1318,11 @@ class CosmicDiscoveryContent {
     };
   }
 
-  static Map<String, String> _getSaturnLessonsContent(zodiac.ZodiacSign sign, String userName, AppLanguage language) {
+  static Map<String, String> _getSaturnLessonsContent(
+    zodiac.ZodiacSign sign,
+    String userName,
+    AppLanguage language,
+  ) {
     return {
       'mainMessage': L10nService.get('cosmic_discovery.loading', language),
       'details': L10nService.get('cosmic_discovery.loading', language),
@@ -1002,7 +1330,11 @@ class CosmicDiscoveryContent {
     };
   }
 
-  static Map<String, String> _getBirthdayEnergyContent(zodiac.ZodiacSign sign, String userName, AppLanguage language) {
+  static Map<String, String> _getBirthdayEnergyContent(
+    zodiac.ZodiacSign sign,
+    String userName,
+    AppLanguage language,
+  ) {
     return {
       'mainMessage': L10nService.get('cosmic_discovery.loading', language),
       'details': L10nService.get('cosmic_discovery.loading', language),
@@ -1010,7 +1342,11 @@ class CosmicDiscoveryContent {
     };
   }
 
-  static Map<String, String> _getEclipseEffectContent(zodiac.ZodiacSign sign, String userName, AppLanguage language) {
+  static Map<String, String> _getEclipseEffectContent(
+    zodiac.ZodiacSign sign,
+    String userName,
+    AppLanguage language,
+  ) {
     return {
       'mainMessage': L10nService.get('cosmic_discovery.loading', language),
       'details': L10nService.get('cosmic_discovery.loading', language),
@@ -1018,7 +1354,11 @@ class CosmicDiscoveryContent {
     };
   }
 
-  static Map<String, String> _getTransitFlowContent(zodiac.ZodiacSign sign, String userName, AppLanguage language) {
+  static Map<String, String> _getTransitFlowContent(
+    zodiac.ZodiacSign sign,
+    String userName,
+    AppLanguage language,
+  ) {
     return {
       'mainMessage': L10nService.get('cosmic_discovery.loading', language),
       'details': L10nService.get('cosmic_discovery.loading', language),
@@ -1026,7 +1366,11 @@ class CosmicDiscoveryContent {
     };
   }
 
-  static Map<String, String> _getCompatibilityAnalysisContent(zodiac.ZodiacSign sign, String userName, AppLanguage language) {
+  static Map<String, String> _getCompatibilityAnalysisContent(
+    zodiac.ZodiacSign sign,
+    String userName,
+    AppLanguage language,
+  ) {
     return {
       'mainMessage': L10nService.get('cosmic_discovery.loading', language),
       'details': L10nService.get('cosmic_discovery.loading', language),
@@ -1034,7 +1378,11 @@ class CosmicDiscoveryContent {
     };
   }
 
-  static Map<String, String> _getRelationshipKarmaContent(zodiac.ZodiacSign sign, String userName, AppLanguage language) {
+  static Map<String, String> _getRelationshipKarmaContent(
+    zodiac.ZodiacSign sign,
+    String userName,
+    AppLanguage language,
+  ) {
     return {
       'mainMessage': L10nService.get('cosmic_discovery.loading', language),
       'details': L10nService.get('cosmic_discovery.loading', language),
@@ -1042,7 +1390,11 @@ class CosmicDiscoveryContent {
     };
   }
 
-  static Map<String, String> _getCelebrityTwinContent(zodiac.ZodiacSign sign, String userName, AppLanguage language) {
+  static Map<String, String> _getCelebrityTwinContent(
+    zodiac.ZodiacSign sign,
+    String userName,
+    AppLanguage language,
+  ) {
     return {
       'mainMessage': L10nService.get('cosmic_discovery.loading', language),
       'details': L10nService.get('cosmic_discovery.loading', language),

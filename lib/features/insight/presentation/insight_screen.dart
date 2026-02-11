@@ -56,20 +56,24 @@ class _InsightScreenState extends ConsumerState<InsightScreen>
   void _addWelcomeMessage() {
     final userProfile = ref.read(userProfileProvider);
     final language = ref.read(languageProvider);
-    final userName = userProfile?.name ??
-        L10nService.get('insight.default_user', language);
+    final userName =
+        userProfile?.name ?? L10nService.get('insight.default_user', language);
 
-    final greeting = L10nService.get('insight.greeting', language)
-        .replaceAll('{name}', userName);
+    final greeting = L10nService.get(
+      'insight.greeting',
+      language,
+    ).replaceAll('{name}', userName);
     final intro = L10nService.get('insight.intro', language);
     final disclaimer = L10nService.get('insight.disclaimer', language);
 
     setState(() {
-      _messages.add(_ChatMessage(
-        text: '$greeting\n\n$intro\n\n$disclaimer',
-        isUser: false,
-        timestamp: DateTime.now(),
-      ));
+      _messages.add(
+        _ChatMessage(
+          text: '$greeting\n\n$intro\n\n$disclaimer',
+          isUser: false,
+          timestamp: DateTime.now(),
+        ),
+      );
     });
   }
 
@@ -78,11 +82,9 @@ class _InsightScreenState extends ConsumerState<InsightScreen>
     if (text.isEmpty) return;
 
     setState(() {
-      _messages.add(_ChatMessage(
-        text: text,
-        isUser: true,
-        timestamp: DateTime.now(),
-      ));
+      _messages.add(
+        _ChatMessage(text: text, isUser: true, timestamp: DateTime.now()),
+      );
       _isTyping = true;
     });
 
@@ -111,11 +113,9 @@ class _InsightScreenState extends ConsumerState<InsightScreen>
 
     setState(() {
       _isTyping = false;
-      _messages.add(_ChatMessage(
-        text: response,
-        isUser: false,
-        timestamp: DateTime.now(),
-      ));
+      _messages.add(
+        _ChatMessage(text: response, isUser: false, timestamp: DateTime.now()),
+      );
     });
 
     _scrollToBottom();
@@ -167,7 +167,10 @@ class _InsightScreenState extends ConsumerState<InsightScreen>
             Expanded(
               child: ListView.builder(
                 controller: _scrollController,
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 8,
+                ),
                 itemCount: _messages.length + (_isTyping ? 1 : 0),
                 itemBuilder: (context, index) {
                   if (_isTyping && index == _messages.length) {
@@ -199,8 +202,9 @@ class _InsightScreenState extends ConsumerState<InsightScreen>
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 6),
       child: Row(
-        mainAxisAlignment:
-            isUser ? MainAxisAlignment.end : MainAxisAlignment.start,
+        mainAxisAlignment: isUser
+            ? MainAxisAlignment.end
+            : MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (!isUser) ...[
@@ -208,42 +212,46 @@ class _InsightScreenState extends ConsumerState<InsightScreen>
             const SizedBox(width: 8),
           ],
           Flexible(
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-              decoration: BoxDecoration(
-                color: isUser
-                    ? (isDark ? const Color(0xFF2D5A7B) : const Color(0xFF4A90A4))
-                    : (isDark ? const Color(0xFF1C2128) : Colors.white),
-                borderRadius: BorderRadius.only(
-                  topLeft: const Radius.circular(16),
-                  topRight: const Radius.circular(16),
-                  bottomLeft: Radius.circular(isUser ? 16 : 4),
-                  bottomRight: Radius.circular(isUser ? 4 : 16),
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withValues(alpha: 0.05),
-                    blurRadius: 4,
-                    offset: const Offset(0, 2),
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 12,
                   ),
-                ],
-              ),
-              child: Text(
-                message.text,
-                style: TextStyle(
-                  color: isUser
-                      ? Colors.white
-                      : (isDark ? Colors.white70 : Colors.black87),
-                  fontSize: 15,
-                  height: 1.5,
+                  decoration: BoxDecoration(
+                    color: isUser
+                        ? (isDark
+                              ? const Color(0xFF2D5A7B)
+                              : const Color(0xFF4A90A4))
+                        : (isDark ? const Color(0xFF1C2128) : Colors.white),
+                    borderRadius: BorderRadius.only(
+                      topLeft: const Radius.circular(16),
+                      topRight: const Radius.circular(16),
+                      bottomLeft: Radius.circular(isUser ? 16 : 4),
+                      bottomRight: Radius.circular(isUser ? 4 : 16),
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withValues(alpha: 0.05),
+                        blurRadius: 4,
+                        offset: const Offset(0, 2),
+                      ),
+                    ],
+                  ),
+                  child: Text(
+                    message.text,
+                    style: TextStyle(
+                      color: isUser
+                          ? Colors.white
+                          : (isDark ? Colors.white70 : Colors.black87),
+                      fontSize: 15,
+                      height: 1.5,
+                    ),
+                  ),
                 ),
-              ),
-            ),
-          ).animate().fadeIn(duration: 300.ms).slideX(
-                begin: isUser ? 0.1 : -0.1,
-                end: 0,
-                duration: 300.ms,
-              ),
+              )
+              .animate()
+              .fadeIn(duration: 300.ms)
+              .slideX(begin: isUser ? 0.1 : -0.1, end: 0, duration: 300.ms),
           if (isUser) const SizedBox(width: 8),
         ],
       ),
@@ -256,10 +264,7 @@ class _InsightScreenState extends ConsumerState<InsightScreen>
       height: 36,
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [
-            const Color(0xFF4A90A4),
-            const Color(0xFF357A8C),
-          ],
+          colors: [const Color(0xFF4A90A4), const Color(0xFF357A8C)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),

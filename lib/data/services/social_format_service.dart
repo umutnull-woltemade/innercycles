@@ -15,10 +15,22 @@ class SocialFormatService {
     AppLanguage language = AppLanguage.tr,
   }) {
     return SocialFormats(
-      storySlides: _generateStorySlides(masterContent, sign, language: language),
+      storySlides: _generateStorySlides(
+        masterContent,
+        sign,
+        language: language,
+      ),
       squarePost: _generateSquarePost(masterContent, sign, language: language),
-      portraitPost: _generatePortraitPost(masterContent, sign, language: language),
-      reelsScript: _generateReelsScript(masterContent, sign, language: language),
+      portraitPost: _generatePortraitPost(
+        masterContent,
+        sign,
+        language: language,
+      ),
+      reelsScript: _generateReelsScript(
+        masterContent,
+        sign,
+        language: language,
+      ),
       videoPrompt: _generateVideoPrompt(sign),
     );
   }
@@ -150,7 +162,9 @@ class SocialFormatService {
     AppLanguage language = AppLanguage.tr,
   }) {
     final signName = language == AppLanguage.tr ? sign.nameTr : sign.name;
-    final todayForYou = language == AppLanguage.tr ? 'Bugün senin için...' : 'Today for you...';
+    final todayForYou = language == AppLanguage.tr
+        ? 'Bugün senin için...'
+        : 'Today for you...';
 
     return ReelsScript(
       totalDuration: 18,
@@ -236,7 +250,8 @@ Playfair Display for headlines.
 Raleway for body text.
 Safe area: 10% margin all sides for subtitles.
 ''',
-      atmosphereNotes: '''
+      atmosphereNotes:
+          '''
 Emotional, introspective mood.
 Night sky feeling without being literal.
 Zodiac symbol (${sign.symbol}) as subtle watermark.
@@ -278,7 +293,10 @@ ${content.sharePrompt}
 ''';
   }
 
-  static List<String> _generateHashtags(ZodiacSign sign, {AppLanguage language = AppLanguage.tr}) {
+  static List<String> _generateHashtags(
+    ZodiacSign sign, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     if (language == AppLanguage.tr) {
       return [
         '#${sign.name.toLowerCase()}',
@@ -373,16 +391,15 @@ class ReelsScript {
   final int totalDuration;
   final List<VideoSegment> segments;
 
-  const ReelsScript({
-    required this.totalDuration,
-    required this.segments,
-  });
+  const ReelsScript({required this.totalDuration, required this.segments});
 
   String toReadableScript() {
     final buffer = StringBuffer();
     buffer.writeln('=== REELS SCRIPT (${totalDuration}s) ===\n');
     for (final segment in segments) {
-      buffer.writeln('[${segment.startTime}s - ${segment.endTime}s] ${segment.type.name.toUpperCase()}');
+      buffer.writeln(
+        '[${segment.startTime}s - ${segment.endTime}s] ${segment.type.name.toUpperCase()}',
+      );
       buffer.writeln('Text: "${segment.textOverlay}"');
       if (segment.subtext != null) {
         buffer.writeln('Subtext: "${segment.subtext}"');

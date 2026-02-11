@@ -75,7 +75,8 @@ class _YearAheadScreenState extends ConsumerState<YearAheadScreen> {
                 const SizedBox(height: AppConstants.spacingXl),
                 // Entertainment Disclaimer
                 PageFooterWithDisclaimer(
-                  brandText: '${L10nService.get('year_ahead.title', language)} — Venus One',
+                  brandText:
+                      '${L10nService.get('year_ahead.title', language)} — Venus One',
                   disclaimerText: DisclaimerTexts.astrology(language),
                   language: language,
                 ),
@@ -87,7 +88,11 @@ class _YearAheadScreenState extends ConsumerState<YearAheadScreen> {
     );
   }
 
-  Widget _buildHeader(BuildContext context, ZodiacSign sign, AppLanguage language) {
+  Widget _buildHeader(
+    BuildContext context,
+    ZodiacSign sign,
+    AppLanguage language,
+  ) {
     return Row(
       children: [
         IconButton(
@@ -99,19 +104,23 @@ class _YearAheadScreenState extends ConsumerState<YearAheadScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                L10nService.getWithParams('year_ahead.year_forecast', language, params: {'year': '$_selectedYear'}),
+                L10nService.getWithParams(
+                  'year_ahead.year_forecast',
+                  language,
+                  params: {'year': '$_selectedYear'},
+                ),
                 style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                      color: AppColors.starGold,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  color: AppColors.starGold,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               Row(
                 children: [
                   Text(
                     sign.localizedName(language),
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: sign.color,
-                        ),
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodySmall?.copyWith(color: sign.color),
                   ),
                   const SizedBox(width: 4),
                   Text(sign.symbol, style: TextStyle(color: sign.color)),
@@ -136,9 +145,9 @@ class _YearAheadScreenState extends ConsumerState<YearAheadScreen> {
                 Text(
                   '$_selectedYear',
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        color: AppColors.starGold,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    color: AppColors.starGold,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 const SizedBox(width: 4),
                 const Icon(Icons.arrow_drop_down, color: AppColors.starGold),
@@ -166,9 +175,9 @@ class _YearAheadScreenState extends ConsumerState<YearAheadScreen> {
           children: [
             Text(
               L10nService.get('year_ahead.select_year', language),
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    color: AppColors.textPrimary,
-                  ),
+              style: Theme.of(
+                context,
+              ).textTheme.titleLarge?.copyWith(color: AppColors.textPrimary),
             ),
             const SizedBox(height: 20),
             Wrap(
@@ -186,17 +195,24 @@ class _YearAheadScreenState extends ConsumerState<YearAheadScreen> {
                     Navigator.pop(context);
                   },
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 24,
+                      vertical: 12,
+                    ),
                     decoration: BoxDecoration(
-                      color: isSelected ? AppColors.starGold : AppColors.surfaceLight.withAlpha(50),
+                      color: isSelected
+                          ? AppColors.starGold
+                          : AppColors.surfaceLight.withAlpha(50),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Text(
                       '$year',
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            color: isSelected ? AppColors.deepSpace : AppColors.textPrimary,
-                            fontWeight: FontWeight.bold,
-                          ),
+                        color: isSelected
+                            ? AppColors.deepSpace
+                            : AppColors.textPrimary,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 );
@@ -217,10 +233,7 @@ class _YearAheadScreenState extends ConsumerState<YearAheadScreen> {
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [
-            AppColors.auroraStart.withAlpha(30),
-            AppColors.surfaceDark,
-          ],
+          colors: [AppColors.auroraStart.withAlpha(30), AppColors.surfaceDark],
         ),
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         border: Border.all(color: AppColors.auroraStart.withAlpha(50)),
@@ -236,14 +249,18 @@ class _YearAheadScreenState extends ConsumerState<YearAheadScreen> {
                   color: AppColors.auroraStart.withAlpha(30),
                   shape: BoxShape.circle,
                 ),
-                child: const Icon(Icons.auto_awesome, color: AppColors.auroraStart, size: 24),
+                child: const Icon(
+                  Icons.auto_awesome,
+                  color: AppColors.auroraStart,
+                  size: 24,
+                ),
               ),
               const SizedBox(width: 12),
               Text(
                 L10nService.get('year_ahead.year_summary', language),
-                style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      color: AppColors.textPrimary,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleLarge?.copyWith(color: AppColors.textPrimary),
               ),
             ],
           ),
@@ -251,24 +268,52 @@ class _YearAheadScreenState extends ConsumerState<YearAheadScreen> {
           Text(
             _forecast.overview,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: AppColors.textPrimary,
-                  height: 1.6,
-                ),
+              color: AppColors.textPrimary,
+              height: 1.6,
+            ),
           ),
           const SizedBox(height: AppConstants.spacingLg),
           Row(
             children: [
-              Expanded(child: _buildScoreCard(context, L10nService.get('categories.career', language), _forecast.careerScore, Icons.work)),
+              Expanded(
+                child: _buildScoreCard(
+                  context,
+                  L10nService.get('categories.career', language),
+                  _forecast.careerScore,
+                  Icons.work,
+                ),
+              ),
               const SizedBox(width: 12),
-              Expanded(child: _buildScoreCard(context, L10nService.get('categories.love', language), _forecast.loveScore, Icons.favorite)),
+              Expanded(
+                child: _buildScoreCard(
+                  context,
+                  L10nService.get('categories.love', language),
+                  _forecast.loveScore,
+                  Icons.favorite,
+                ),
+              ),
             ],
           ),
           const SizedBox(height: 12),
           Row(
             children: [
-              Expanded(child: _buildScoreCard(context, L10nService.get('categories.finance', language), _forecast.financeScore, Icons.attach_money)),
+              Expanded(
+                child: _buildScoreCard(
+                  context,
+                  L10nService.get('categories.finance', language),
+                  _forecast.financeScore,
+                  Icons.attach_money,
+                ),
+              ),
               const SizedBox(width: 12),
-              Expanded(child: _buildScoreCard(context, L10nService.get('categories.health', language), _forecast.healthScore, Icons.favorite_border)),
+              Expanded(
+                child: _buildScoreCard(
+                  context,
+                  L10nService.get('categories.health', language),
+                  _forecast.healthScore,
+                  Icons.favorite_border,
+                ),
+              ),
             ],
           ),
         ],
@@ -276,8 +321,19 @@ class _YearAheadScreenState extends ConsumerState<YearAheadScreen> {
     ).animate().fadeIn(delay: 100.ms, duration: 400.ms);
   }
 
-  Widget _buildScoreCard(BuildContext context, String label, int score, IconData icon) {
-    final color = score >= 80 ? Colors.green : score >= 60 ? AppColors.starGold : score >= 40 ? Colors.orange : Colors.red;
+  Widget _buildScoreCard(
+    BuildContext context,
+    String label,
+    int score,
+    IconData icon,
+  ) {
+    final color = score >= 80
+        ? Colors.green
+        : score >= 60
+        ? AppColors.starGold
+        : score >= 40
+        ? Colors.orange
+        : Colors.red;
 
     return Container(
       padding: const EdgeInsets.all(12),
@@ -296,16 +352,16 @@ class _YearAheadScreenState extends ConsumerState<YearAheadScreen> {
               children: [
                 Text(
                   label,
-                  style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                        color: AppColors.textMuted,
-                      ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.labelSmall?.copyWith(color: AppColors.textMuted),
                 ),
                 Text(
                   '$score%',
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        color: color,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    color: color,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ],
             ),
@@ -321,13 +377,17 @@ class _YearAheadScreenState extends ConsumerState<YearAheadScreen> {
       children: [
         Row(
           children: [
-            const Icon(Icons.calendar_view_month, color: AppColors.twilightStart, size: 20),
+            const Icon(
+              Icons.calendar_view_month,
+              color: AppColors.twilightStart,
+              size: 20,
+            ),
             const SizedBox(width: 8),
             Text(
               L10nService.get('year_ahead.quarterly_forecasts', language),
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    color: AppColors.textPrimary,
-                  ),
+              style: Theme.of(
+                context,
+              ).textTheme.titleLarge?.copyWith(color: AppColors.textPrimary),
             ),
           ],
         ),
@@ -358,7 +418,10 @@ class _YearAheadScreenState extends ConsumerState<YearAheadScreen> {
           Row(
             children: [
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 4,
+                ),
                 decoration: BoxDecoration(
                   color: quarter.color.withAlpha(30),
                   borderRadius: BorderRadius.circular(12),
@@ -366,17 +429,17 @@ class _YearAheadScreenState extends ConsumerState<YearAheadScreen> {
                 child: Text(
                   quarter.name,
                   style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                        color: quarter.color,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    color: quarter.color,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
               const SizedBox(width: 8),
               Text(
                 quarter.dateRange,
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: AppColors.textMuted,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.bodySmall?.copyWith(color: AppColors.textMuted),
               ),
               const Spacer(),
               Text(quarter.emoji, style: const TextStyle(fontSize: 24)),
@@ -386,17 +449,17 @@ class _YearAheadScreenState extends ConsumerState<YearAheadScreen> {
           Text(
             quarter.theme,
             style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                  color: AppColors.textPrimary,
-                  fontWeight: FontWeight.w600,
-                ),
+              color: AppColors.textPrimary,
+              fontWeight: FontWeight.w600,
+            ),
           ),
           const SizedBox(height: 4),
           Text(
             quarter.description,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppColors.textSecondary,
-                  height: 1.5,
-                ),
+              color: AppColors.textSecondary,
+              height: 1.5,
+            ),
           ),
         ],
       ),
@@ -413,55 +476,57 @@ class _YearAheadScreenState extends ConsumerState<YearAheadScreen> {
             const SizedBox(width: 8),
             Text(
               L10nService.get('year_ahead.important_transits', language),
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    color: AppColors.textPrimary,
-                  ),
+              style: Theme.of(
+                context,
+              ).textTheme.titleLarge?.copyWith(color: AppColors.textPrimary),
             ),
           ],
         ),
         const SizedBox(height: AppConstants.spacingMd),
-        ..._forecast.keyTransits.map((transit) => Padding(
-              padding: const EdgeInsets.only(bottom: AppConstants.spacingSm),
-              child: Container(
-                padding: const EdgeInsets.all(AppConstants.spacingMd),
-                decoration: BoxDecoration(
-                  color: AppColors.surfaceLight.withAlpha(30),
-                  borderRadius: BorderRadius.circular(AppConstants.radiusSm),
-                ),
-                child: Row(
-                  children: [
-                    Text(transit.planetEmoji, style: const TextStyle(fontSize: 24)),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            transit.title,
-                            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                                  color: AppColors.textPrimary,
-                                ),
-                          ),
-                          Text(
-                            transit.dateRange,
-                            style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                                  color: AppColors.starGold,
-                                ),
-                          ),
-                          const SizedBox(height: 4),
-                          Text(
-                            transit.effect,
-                            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                                  color: AppColors.textSecondary,
-                                ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+        ..._forecast.keyTransits.map(
+          (transit) => Padding(
+            padding: const EdgeInsets.only(bottom: AppConstants.spacingSm),
+            child: Container(
+              padding: const EdgeInsets.all(AppConstants.spacingMd),
+              decoration: BoxDecoration(
+                color: AppColors.surfaceLight.withAlpha(30),
+                borderRadius: BorderRadius.circular(AppConstants.radiusSm),
               ),
-            )),
+              child: Row(
+                children: [
+                  Text(
+                    transit.planetEmoji,
+                    style: const TextStyle(fontSize: 24),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          transit.title,
+                          style: Theme.of(context).textTheme.titleSmall
+                              ?.copyWith(color: AppColors.textPrimary),
+                        ),
+                        Text(
+                          transit.dateRange,
+                          style: Theme.of(context).textTheme.labelSmall
+                              ?.copyWith(color: AppColors.starGold),
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          transit.effect,
+                          style: Theme.of(context).textTheme.bodySmall
+                              ?.copyWith(color: AppColors.textSecondary),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
       ],
     ).animate().fadeIn(delay: 600.ms, duration: 400.ms);
   }
@@ -476,9 +541,9 @@ class _YearAheadScreenState extends ConsumerState<YearAheadScreen> {
             const SizedBox(width: 8),
             Text(
               L10nService.get('year_ahead.lucky_periods', language),
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    color: AppColors.textPrimary,
-                  ),
+              style: Theme.of(
+                context,
+              ).textTheme.titleLarge?.copyWith(color: AppColors.textPrimary),
             ),
           ],
         ),
@@ -501,9 +566,9 @@ class _YearAheadScreenState extends ConsumerState<YearAheadScreen> {
                   const SizedBox(width: 6),
                   Text(
                     period,
-                    style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                          color: Colors.green,
-                        ),
+                    style: Theme.of(
+                      context,
+                    ).textTheme.labelMedium?.copyWith(color: Colors.green),
                   ),
                 ],
               ),
@@ -524,9 +589,9 @@ class _YearAheadScreenState extends ConsumerState<YearAheadScreen> {
             const SizedBox(width: 8),
             Text(
               L10nService.get('year_ahead.challenging_periods', language),
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    color: AppColors.textPrimary,
-                  ),
+              style: Theme.of(
+                context,
+              ).textTheme.titleLarge?.copyWith(color: AppColors.textPrimary),
             ),
           ],
         ),
@@ -549,9 +614,9 @@ class _YearAheadScreenState extends ConsumerState<YearAheadScreen> {
                   const SizedBox(width: 6),
                   Text(
                     period,
-                    style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                          color: Colors.orange,
-                        ),
+                    style: Theme.of(
+                      context,
+                    ).textTheme.labelMedium?.copyWith(color: Colors.orange),
                   ),
                 ],
               ),
@@ -584,18 +649,18 @@ class _YearAheadScreenState extends ConsumerState<YearAheadScreen> {
           const SizedBox(height: 12),
           Text(
             L10nService.get('year_ahead.year_affirmation', language),
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  color: AppColors.starGold,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleMedium?.copyWith(color: AppColors.starGold),
           ),
           const SizedBox(height: 8),
           Text(
             '"${_forecast.affirmation}"',
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: AppColors.textPrimary,
-                  fontStyle: FontStyle.italic,
-                  height: 1.5,
-                ),
+              color: AppColors.textPrimary,
+              fontStyle: FontStyle.italic,
+              height: 1.5,
+            ),
             textAlign: TextAlign.center,
           ),
         ],
@@ -606,7 +671,11 @@ class _YearAheadScreenState extends ConsumerState<YearAheadScreen> {
 
 /// Year Ahead Service
 class YearAheadService {
-  static YearAheadForecast generate(ZodiacSign sign, int year, AppLanguage language) {
+  static YearAheadForecast generate(
+    ZodiacSign sign,
+    int year,
+    AppLanguage language,
+  ) {
     final seed = sign.index * 1000 + year;
     final random = Random(seed);
 
@@ -626,12 +695,25 @@ class YearAheadService {
     );
   }
 
-  static String _generateOverview(ZodiacSign sign, int year, AppLanguage language) {
+  static String _generateOverview(
+    ZodiacSign sign,
+    int year,
+    AppLanguage language,
+  ) {
     final signKey = sign.name.toLowerCase();
-    return L10nService.getWithParams('year_ahead.overviews.$signKey', language, params: {'year': '$year'});
+    return L10nService.getWithParams(
+      'year_ahead.overviews.$signKey',
+      language,
+      params: {'year': '$year'},
+    );
   }
 
-  static List<QuarterForecast> _generateQuarters(ZodiacSign sign, int year, Random random, AppLanguage language) {
+  static List<QuarterForecast> _generateQuarters(
+    ZodiacSign sign,
+    int year,
+    Random random,
+    AppLanguage language,
+  ) {
     final themeKeys = [
       ['beginnings', 'energy', 'innovation', 'courage'],
       ['growth', 'stability', 'application', 'gathering'],
@@ -658,8 +740,13 @@ class YearAheadService {
 
       return QuarterForecast(
         quarter: q,
-        name: L10nService.getWithParams('year_ahead.quarter_name', language, params: {'number': '$q'}),
-        dateRange: '${_getMonthName(startMonth, language)} - ${_getMonthName(endMonth, language)}',
+        name: L10nService.getWithParams(
+          'year_ahead.quarter_name',
+          language,
+          params: {'number': '$q'},
+        ),
+        dateRange:
+            '${_getMonthName(startMonth, language)} - ${_getMonthName(endMonth, language)}',
         theme: theme,
         description: _getQuarterDescription(sign, q, theme, language),
         color: colors[i],
@@ -669,47 +756,112 @@ class YearAheadService {
   }
 
   static String _getMonthName(int month, AppLanguage language) {
-    const monthKeys = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'];
-    return L10nService.get('year_ahead.months.${monthKeys[month - 1]}', language);
+    const monthKeys = [
+      'january',
+      'february',
+      'march',
+      'april',
+      'may',
+      'june',
+      'july',
+      'august',
+      'september',
+      'october',
+      'november',
+      'december',
+    ];
+    return L10nService.get(
+      'year_ahead.months.${monthKeys[month - 1]}',
+      language,
+    );
   }
 
-  static String _getQuarterDescription(ZodiacSign sign, int quarter, String theme, AppLanguage language) {
+  static String _getQuarterDescription(
+    ZodiacSign sign,
+    int quarter,
+    String theme,
+    AppLanguage language,
+  ) {
     final signName = sign.localizedName(language);
     final quarterKey = 'q$quarter';
-    return L10nService.getWithParams('year_ahead.quarter_descriptions.$quarterKey', language, params: {'theme': theme, 'sign': signName});
+    return L10nService.getWithParams(
+      'year_ahead.quarter_descriptions.$quarterKey',
+      language,
+      params: {'theme': theme, 'sign': signName},
+    );
   }
 
-  static List<TransitInfo> _generateTransits(ZodiacSign sign, int year, AppLanguage language) {
+  static List<TransitInfo> _generateTransits(
+    ZodiacSign sign,
+    int year,
+    AppLanguage language,
+  ) {
     final signName = sign.localizedName(language);
     return [
       TransitInfo(
         planetEmoji: '♃',
         title: L10nService.get('year_ahead.transit_titles.jupiter', language),
-        dateRange: L10nService.get('year_ahead.transit_dates.year_long', language),
-        effect: L10nService.getWithParams('year_ahead.transit_effects.jupiter', language, params: {'sign': signName}),
+        dateRange: L10nService.get(
+          'year_ahead.transit_dates.year_long',
+          language,
+        ),
+        effect: L10nService.getWithParams(
+          'year_ahead.transit_effects.jupiter',
+          language,
+          params: {'sign': signName},
+        ),
       ),
       TransitInfo(
         planetEmoji: '♄',
         title: L10nService.get('year_ahead.transit_titles.saturn', language),
-        dateRange: L10nService.get('year_ahead.transit_dates.year_long', language),
+        dateRange: L10nService.get(
+          'year_ahead.transit_dates.year_long',
+          language,
+        ),
         effect: L10nService.get('year_ahead.transit_effects.saturn', language),
       ),
       TransitInfo(
         planetEmoji: '☿',
-        title: L10nService.get('year_ahead.transit_titles.mercury_retro', language),
-        dateRange: L10nService.get('year_ahead.transit_dates.three_four_times', language),
+        title: L10nService.get(
+          'year_ahead.transit_titles.mercury_retro',
+          language,
+        ),
+        dateRange: L10nService.get(
+          'year_ahead.transit_dates.three_four_times',
+          language,
+        ),
         effect: L10nService.get('year_ahead.transit_effects.mercury', language),
       ),
     ];
   }
 
-  static List<String> _generateLuckyPeriods(ZodiacSign sign, int year, Random random, AppLanguage language) {
-    const monthKeys = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'];
+  static List<String> _generateLuckyPeriods(
+    ZodiacSign sign,
+    int year,
+    Random random,
+    AppLanguage language,
+  ) {
+    const monthKeys = [
+      'january',
+      'february',
+      'march',
+      'april',
+      'may',
+      'june',
+      'july',
+      'august',
+      'september',
+      'october',
+      'november',
+      'december',
+    ];
     final luckyMonths = <String>[];
 
     for (int i = 0; i < 12; i++) {
       if (random.nextDouble() > 0.6) {
-        luckyMonths.add(L10nService.get('year_ahead.months.${monthKeys[i]}', language));
+        luckyMonths.add(
+          L10nService.get('year_ahead.months.${monthKeys[i]}', language),
+        );
       }
     }
 
@@ -723,7 +875,11 @@ class YearAheadService {
     return luckyMonths;
   }
 
-  static List<String> _generateChallengingPeriods(int year, Random random, AppLanguage language) {
+  static List<String> _generateChallengingPeriods(
+    int year,
+    Random random,
+    AppLanguage language,
+  ) {
     // Mercury retrograde periods
     return [
       L10nService.get('year_ahead.mercury_retro_periods.april', language),

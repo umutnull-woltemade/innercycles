@@ -122,29 +122,84 @@ extension ZodiacSignExtension on ZodiacSign {
     // English trait equivalents
     switch (this) {
       case ZodiacSign.aries:
-        return ['Warrior Spirit', 'Fire Energy', 'Pioneer Force', 'Instant Action'];
+        return [
+          'Warrior Spirit',
+          'Fire Energy',
+          'Pioneer Force',
+          'Instant Action',
+        ];
       case ZodiacSign.taurus:
-        return ['Earth Wisdom', 'Stone Patience', 'Loyal Heart', 'Mountain Resolve'];
+        return [
+          'Earth Wisdom',
+          'Stone Patience',
+          'Loyal Heart',
+          'Mountain Resolve',
+        ];
       case ZodiacSign.gemini:
-        return ['Wind Intelligence', 'Curious Light', 'Word Magic', 'Flying Thought'];
+        return [
+          'Wind Intelligence',
+          'Curious Light',
+          'Word Magic',
+          'Flying Thought',
+        ];
       case ZodiacSign.cancer:
-        return ['Mother Energy', 'Moon Intuition', 'Protective Shell', 'Tidal Emotion'];
+        return [
+          'Mother Energy',
+          'Moon Intuition',
+          'Protective Shell',
+          'Tidal Emotion',
+        ];
       case ZodiacSign.leo:
         return ['Sun Heart', 'Creative Fire', 'Royal Aura', 'Stage Spirit'];
       case ZodiacSign.virgo:
-        return ['Detail Eye', 'Earth Practice', 'Service Spirit', 'Perfect Quest'];
+        return [
+          'Detail Eye',
+          'Earth Practice',
+          'Service Spirit',
+          'Perfect Quest',
+        ];
       case ZodiacSign.libra:
-        return ['Balance Master', 'Justice Scales', 'Venus Charm', 'Weighing Soul'];
+        return [
+          'Balance Master',
+          'Justice Scales',
+          'Venus Charm',
+          'Weighing Soul',
+        ];
       case ZodiacSign.scorpio:
-        return ['Transform Power', 'Depth Knowledge', 'Pluto Courage', 'Mystery Veil'];
+        return [
+          'Transform Power',
+          'Depth Knowledge',
+          'Pluto Courage',
+          'Mystery Veil',
+        ];
       case ZodiacSign.sagittarius:
-        return ['Archer Vision', 'Adventure Fire', 'Truth Arrow', 'Free Spirit'];
+        return [
+          'Archer Vision',
+          'Adventure Fire',
+          'Truth Arrow',
+          'Free Spirit',
+        ];
       case ZodiacSign.capricorn:
-        return ['Summit Drive', 'Saturn Discipline', 'Mountain Patience', 'Stone Wall'];
+        return [
+          'Summit Drive',
+          'Saturn Discipline',
+          'Mountain Patience',
+          'Stone Wall',
+        ];
       case ZodiacSign.aquarius:
-        return ['Revolutionary Soul', 'Uranus Spark', 'Free Mind', 'Distant Gaze'];
+        return [
+          'Revolutionary Soul',
+          'Uranus Spark',
+          'Free Mind',
+          'Distant Gaze',
+        ];
       case ZodiacSign.pisces:
-        return ['Ocean Heart', 'Neptune Dream', 'Mystic Intuition', 'Boundless Imagination'];
+        return [
+          'Ocean Heart',
+          'Neptune Dream',
+          'Mystic Intuition',
+          'Boundless Imagination',
+        ];
     }
   }
 
@@ -323,27 +378,62 @@ extension ZodiacSignExtension on ZodiacSign {
       case ZodiacSign.aries:
         return ['Savaşçı Ruh', 'Ateş Enerjisi', 'Öncü Güç', 'Anlık Aksiyon'];
       case ZodiacSign.taurus:
-        return ['Toprak Bilgeliği', 'Sabır Taşı', 'Sadık Kalp', 'Dağ Kararlılığı'];
+        return [
+          'Toprak Bilgeliği',
+          'Sabır Taşı',
+          'Sadık Kalp',
+          'Dağ Kararlılığı',
+        ];
       case ZodiacSign.gemini:
         return ['Rüzgar Zekası', 'Merak Işığı', 'Söz Büyüsü', 'Uçan Düşünce'];
       case ZodiacSign.cancer:
-        return ['Anne Enerjisi', 'Ay Sezgisi', 'Koruyucu Kabuk', 'Gelgit Duygusu'];
+        return [
+          'Anne Enerjisi',
+          'Ay Sezgisi',
+          'Koruyucu Kabuk',
+          'Gelgit Duygusu',
+        ];
       case ZodiacSign.leo:
         return ['Güneş Kalbi', 'Yaratıcı Ateş', 'Kral Aurası', 'Sahne Ruhu'];
       case ZodiacSign.virgo:
-        return ['Detay Gözü', 'Toprak Pratiği', 'Hizmet Ruhu', 'Mükemmel Arayış'];
+        return [
+          'Detay Gözü',
+          'Toprak Pratiği',
+          'Hizmet Ruhu',
+          'Mükemmel Arayış',
+        ];
       case ZodiacSign.libra:
-        return ['Denge Ustası', 'Adalet Terazisi', 'Venüs Cazibesi', 'Tartı Ruhu'];
+        return [
+          'Denge Ustası',
+          'Adalet Terazisi',
+          'Venüs Cazibesi',
+          'Tartı Ruhu',
+        ];
       case ZodiacSign.scorpio:
-        return ['Dönüşüm Gücü', 'Derinlik Bilgisi', 'Plüton Cesareti', 'Gizem Perdesi'];
+        return [
+          'Dönüşüm Gücü',
+          'Derinlik Bilgisi',
+          'Plüton Cesareti',
+          'Gizem Perdesi',
+        ];
       case ZodiacSign.sagittarius:
         return ['Okçu Vizyonu', 'Macera Ateşi', 'Hakikat Oku', 'Özgür Ruh'];
       case ZodiacSign.capricorn:
         return ['Zirve Azmi', 'Saturn Disiplini', 'Dağ Sabrı', 'Taş Duvar'];
       case ZodiacSign.aquarius:
-        return ['Devrimci Ruh', 'Uranüs Kıvılcımı', 'Özgür Zihin', 'Uzak Bakış'];
+        return [
+          'Devrimci Ruh',
+          'Uranüs Kıvılcımı',
+          'Özgür Zihin',
+          'Uzak Bakış',
+        ];
       case ZodiacSign.pisces:
-        return ['Okyanus Kalbi', 'Neptün Rüyası', 'Mistik Sezgi', 'Sınırsız Hayal'];
+        return [
+          'Okyanus Kalbi',
+          'Neptün Rüyası',
+          'Mistik Sezgi',
+          'Sınırsız Hayal',
+        ];
     }
   }
 

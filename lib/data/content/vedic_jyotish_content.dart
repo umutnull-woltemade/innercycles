@@ -100,7 +100,7 @@ class Nakshatra {
   final String tantricPractice;
   final String sexualEnergy;
   final List<String> compatibleNakshatras;
-  final String remedy;
+  final String supportivePractice;
   final String deepMeaning;
   final String spiritualPath;
   final List<String> pada;
@@ -128,7 +128,7 @@ class Nakshatra {
     required this.tantricPractice,
     required this.sexualEnergy,
     required this.compatibleNakshatras,
-    required this.remedy,
+    required this.supportivePractice,
     required this.deepMeaning,
     required this.spiritualPath,
     required this.pada,
@@ -1151,7 +1151,7 @@ Cinsel enerjinin hızlı yükselmesi ve dönüşümü bu nakshatra'nın özelli�
 Tantrik pratiklerde, enerjiyi hızla yükseltmek için kullanılır.
 ''',
       compatibleNakshatras: ['Bharani', 'Revati', 'Hasta', 'Swati'],
-      remedy: '''
+      supportivePractice: '''
 Ashwini zayıfsa:
 - Ketu mantrasını günlük okuyun
 - Sarı ve turuncu giysiler giyin
@@ -1216,7 +1216,7 @@ Tantrik birliktelik için en güçlü nakshatra'lardan biridir.
 Cinsel enerji burada transformatif bir güç haline gelir.
 ''',
       compatibleNakshatras: ['Revati', 'Pushya', 'Shravana', 'Ashwini'],
-      remedy: '''
+      supportivePractice: '''
 Bharani zorlu etkiler gösteriyorsa:
 - Shukra mantrasını okuyun
 - Beyaz çiçekler sunun
@@ -1285,7 +1285,7 @@ Tantrik pratiklerde, içsel ateşin uyandırılması için kullanılır.
         'Pushya',
         'Uttara Phalguni',
       ],
-      remedy: '''
+      supportivePractice: '''
 Krittika dengesizse:
 - Surya mantrasını okuyun
 - Ateş ritüelleri (homa) yapın
@@ -1349,7 +1349,7 @@ Ay'ın en sevdiği eşi (nakshatra) olarak bilinir.
 Cinsel enerji burada besleyici ve yaratıcı bir güç olur.
 ''',
       compatibleNakshatras: ['Uttara Phalguni', 'Hasta', 'Shravana', 'Revati'],
-      remedy: '''
+      supportivePractice: '''
 Rohini dengesizse:
 - Chandra mantrasını okuyun
 - Ay ışığında meditasyon
@@ -1413,7 +1413,7 @@ Hafif, oyuncu ve meraklı bir cinsel enerji taşır.
 Keşif ve deneyim arzusu öne çıkar.
 ''',
       compatibleNakshatras: ['Chitra', 'Anuradha', 'Revati', 'Hasta'],
-      remedy: '''
+      supportivePractice: '''
 Mrigashira dengesizse:
 - Soma/Chandra mantrasını okuyun
 - Doğada yürüyüş yapın
@@ -1477,7 +1477,7 @@ Yıkım ve yeniden yaratım dinamiği cinsellikte de görülür.
 Rahu'nun etkisi, alışılmadık ve tabu arzuları getirebilir.
 ''',
       compatibleNakshatras: ['Swati', 'Shatabhisha', 'Punarvasu', 'Ashlesha'],
-      remedy: '''
+      supportivePractice: '''
 Ardra zorlu dönemlerde:
 - Rudra Abhisheka (Shiva'ya libation)
 - Rahu mantrasını okuyun
@@ -1546,7 +1546,7 @@ Yeniden başlama ve tazelenme teması cinsellikte de görülür.
         'Uttarashadha',
         'Hasta',
       ],
-      remedy: '''
+      supportivePractice: '''
 Punarvasu zayıfsa:
 - Guru mantrasını okuyun
 - Aditi'ye dua edin
@@ -1615,7 +1615,7 @@ Spiritüel ve fiziksel beslenme iç içe geçer.
         'Anuradha',
         'Uttara Bhadrapada',
       ],
-      remedy: '''
+      supportivePractice: '''
 Pushya enerjisini güçlendirmek için:
 - Perşembe ve Cumartesi ritüelleri birleştirin
 - Peepal ağacına su dökün
@@ -1679,7 +1679,7 @@ Cinsel enerji burada Kundalini ile doğrudan bağlantılıdır.
 Bağımlılık yapıcı ve obsesif olabilir - dikkat gerektirir.
 ''',
       compatibleNakshatras: ['Punarvasu', 'Pushya', 'Jyeshtha', 'Moola'],
-      remedy: '''
+      supportivePractice: '''
 Ashlesha zorlu etkiler gösteriyorsa:
 - Naga Panchami'de yılan tapınağını ziyaret edin
 - Budha mantrasını okuyun
@@ -1743,7 +1743,7 @@ Soy devamı ve hanedan kurma arzusu öne çıkar.
 Cinsellik bir "görev" veya "miras" olarak algılanabilir.
 ''',
       compatibleNakshatras: ['Uttara Phalguni', 'Swati', 'Shravana', 'Revati'],
-      remedy: '''
+      supportivePractice: '''
 Magha dengesizse:
 - Atalara shraddha yapın
 - Ketu mantrasını okuyun
@@ -1801,7 +1801,7 @@ Dünyevi başarı ve spiritüel ayrılık paradoksu.
       sexualEnergy:
           'En romantik ve zevk odaklı cinsel enerji. Yaratıcı ve üretken.',
       compatibleNakshatras: ['Uttara Phalguni', 'Hasta', 'Swati', 'Anuradha'],
-      remedy:
+      supportivePractice:
           'Shukra mantrasını okuyun, Lakshmi puja yapın, pembe çiçekler sunun',
       deepMeaning: 'Zevk yoluyla yaratım, romantik aşkın spiritüel boyutu',
       spiritualPath: 'Tantra yoluyla aydınlanma, zevki spiritüelleştirme',
@@ -1838,7 +1838,8 @@ Dünyevi başarı ve spiritüel ayrılık paradoksu.
           'Evlilik ve birlik ritüelleri, bağlılık tantrik pratikleri',
       sexualEnergy: 'Sadık, derin ve kalıcı cinsel bağlanma. Evlilik odaklı.',
       compatibleNakshatras: ['Purva Phalguni', 'Hasta', 'Chitra', 'Swati'],
-      remedy: 'Surya mantrasını okuyun, evlilik sözleşmelerini kutlayın',
+      supportivePractice:
+          'Surya mantrasını okuyun, evlilik sözleşmelerini kutlayın',
       deepMeaning: 'Birlik yoluyla kurtuluş, sadakat ve bağlılık',
       spiritualPath: 'Grihasta (ev sahibi) dharma yoluyla moksha',
       pada: [
@@ -1873,7 +1874,7 @@ Dünyevi başarı ve spiritüel ayrılık paradoksu.
       tantricPractice: 'Mudra pratikleri, el ile şifa, sanat ritüelleri',
       sexualEnergy: 'Ellerle ifade edilen duyusal enerji. Masaj ve dokunuş.',
       compatibleNakshatras: ['Ashwini', 'Swati', 'Shravana', 'Revati'],
-      remedy:
+      supportivePractice:
           'Savitar Gayatri mantrasını okuyun, eller ile yaratıcı işler yapın',
       deepMeaning:
           'Yaratıcılığın el becerileriyle ifadesi, sanat yoluyla kurtuluş',
@@ -1912,7 +1913,8 @@ Dünyevi başarı ve spiritüel ayrılık paradoksu.
       sexualEnergy:
           'Estetik ve görsel çekicilik. Güzellik yoluyla cinsel enerji.',
       compatibleNakshatras: ['Mrigashira', 'Anuradha', 'Hasta', 'Swati'],
-      remedy: 'Tvashtar mantrasını okuyun, güzel sanatlarla uğraşın',
+      supportivePractice:
+          'Tvashtar mantrasını okuyun, güzel sanatlarla uğraşın',
       deepMeaning: 'İlahi yaratıcılık, evrensel güzellik',
       spiritualPath: 'Sanat yoluyla aydınlanma',
       pada: [
@@ -1947,7 +1949,7 @@ Dünyevi başarı ve spiritüel ayrılık paradoksu.
       tantricPractice: 'Nefes çalışmaları, prana yönetimi, rüzgar ritüelleri',
       sexualEnergy: 'Özgür, hafif, esnek. Bağımsızlık içinde birleşme.',
       compatibleNakshatras: ['Ashwini', 'Hasta', 'Shravana', 'Shatabhisha'],
-      remedy:
+      supportivePractice:
           'Vayu puja yapın, derin nefes egzersizleri, açık havada meditasyon',
       deepMeaning: 'Rüzgar gibi özgür ama güçlü, bağımsızlık ve denge',
       spiritualPath: 'Pranayama ve nefes yoluyla kurtuluş',
@@ -1988,7 +1990,8 @@ Dünyevi başarı ve spiritüel ayrılık paradoksu.
         'Uttarashadha',
         'Shravana',
       ],
-      remedy: 'Indra ve Agni mantrasını okuyun, hedeflerinizi netleştirin',
+      supportivePractice:
+          'Indra ve Agni mantrasını okuyun, hedeflerinizi netleştirin',
       deepMeaning: 'Kararlılık ve odaklanma yoluyla başarı',
       spiritualPath: 'Tek hedefe odaklanma yoluyla aydınlanma',
       pada: [
@@ -2029,7 +2032,7 @@ Dünyevi başarı ve spiritüel ayrılık paradoksu.
         'Shravana',
         'Uttara Bhadrapada',
       ],
-      remedy: 'Mitra mantrasını okuyun, dostlukları güçlendirin',
+      supportivePractice: 'Mitra mantrasını okuyun, dostlukları güçlendirin',
       deepMeaning: 'Dostluk ve sadakat yoluyla ilahi aşka ulaşma',
       spiritualPath: 'Bhakti Yoga - aşk ve bağlılık',
       pada: [
@@ -2065,7 +2068,8 @@ Dünyevi başarı ve spiritüel ayrılık paradoksu.
           'Güç ve liderlik ritüelleri, Indra puja, koruyucu tantras',
       sexualEnergy: 'Dominant, güçlü, koruyucu. Liderlik yoluyla çekim.',
       compatibleNakshatras: ['Ashlesha', 'Anuradha', 'Moola', 'Shatabhisha'],
-      remedy: 'Indra mantrasını okuyun, liderlik rollerini üstlenin',
+      supportivePractice:
+          'Indra mantrasını okuyun, liderlik rollerini üstlenin',
       deepMeaning: 'Gerçek büyüklük, sorumluluk ile gelir',
       spiritualPath: 'Liderlik yoluyla hizmet',
       pada: [
@@ -2106,7 +2110,7 @@ Dünyevi başarı ve spiritüel ayrılık paradoksu.
         'Purvashadha',
         'Purva Bhadrapada',
       ],
-      remedy:
+      supportivePractice:
           'Kali mantrasını okuyun, köklerinizi araştırın, bağımlılıkları bırakın',
       deepMeaning: 'Köke inme, temel gerçeklerle yüzleşme',
       spiritualPath: 'Yıkım yoluyla kurtuluş, sıfırdan başlama',
@@ -2142,7 +2146,8 @@ Dünyevi başarı ve spiritüel ayrılık paradoksu.
       tantricPractice: 'Su ritüelleri, arınma tantras, Apas puja',
       sexualEnergy: 'Akışkan, arındırıcı, yenileyici. Su gibi adapte olan.',
       compatibleNakshatras: ['Moola', 'Uttarashadha', 'Shravana', 'Dhanishtha'],
-      remedy: 'Su tanrıçasına dua edin, nehir veya okyanusta arınma yapın',
+      supportivePractice:
+          'Su tanrıçasına dua edin, nehir veya okyanusta arınma yapın',
       deepMeaning: 'Su gibi engelleri aşma, yenilmez irade',
       spiritualPath: 'Akış ile kurtuluş, su elementi yoluyla arınma',
       pada: [
@@ -2183,7 +2188,8 @@ Dünyevi başarı ve spiritüel ayrılık paradoksu.
         'Dhanishtha',
         'Punarvasu',
       ],
-      remedy: 'Vishve Devas mantrasını okuyun, evrensel değerlere bağlanın',
+      supportivePractice:
+          'Vishve Devas mantrasını okuyun, evrensel değerlere bağlanın',
       deepMeaning: 'Nihai zafer, evrensel başarı',
       spiritualPath: 'Dharma yoluyla evrensel kurtuluş',
       pada: [
@@ -2218,7 +2224,7 @@ Dünyevi başarı ve spiritüel ayrılık paradoksu.
       tantricPractice: 'Mantra yoga, dinleme meditasyonları, Vishnu puja',
       sexualEnergy: 'Dinleme ve alma odaklı. Alıcı, duyarlı cinsel enerji.',
       compatibleNakshatras: ['Hasta', 'Swati', 'Uttarashadha', 'Dhanishtha'],
-      remedy: 'Vishnu mantrasını dinleyin, sessizlik pratiği yapın',
+      supportivePractice: 'Vishnu mantrasını dinleyin, sessizlik pratiği yapın',
       deepMeaning: 'İlahi sesi dinleme yoluyla bilgelik',
       spiritualPath: 'Nada Yoga - ses yoluyla kurtuluş',
       pada: [
@@ -2258,7 +2264,7 @@ Dünyevi başarı ve spiritüel ayrılık paradoksu.
         'Purva Bhadrapada',
         'Uttara Bhadrapada',
       ],
-      remedy: 'Müzik ile meditasyon, Ashta Vasu mantrasını okuyun',
+      supportivePractice: 'Müzik ile meditasyon, Ashta Vasu mantrasını okuyun',
       deepMeaning: 'Ritim ve harmoni yoluyla evrensel zenginlik',
       spiritualPath: 'Sanat ve müzik yoluyla kurtuluş',
       pada: [
@@ -2298,7 +2304,7 @@ Dünyevi başarı ve spiritüel ayrılık paradoksu.
         'Dhanishtha',
         'Purva Bhadrapada',
       ],
-      remedy: 'Varuna mantrasını okuyun, şifa pratikleri yapın',
+      supportivePractice: 'Varuna mantrasını okuyun, şifa pratikleri yapın',
       deepMeaning: 'Gizli şifa bilgisi, okült güçler',
       spiritualPath: 'Şifa yoluyla kurtuluş',
       pada: [
@@ -2338,7 +2344,8 @@ Dünyevi başarı ve spiritüel ayrılık paradoksu.
         'Uttara Bhadrapada',
         'Revati',
       ],
-      remedy: 'Aja Ekapada mantrasını okuyun, ateş ritüelleri yapın',
+      supportivePractice:
+          'Aja Ekapada mantrasını okuyun, ateş ritüelleri yapın',
       deepMeaning: 'İkili doğanın birleşimi, spiritüel yükseliş',
       spiritualPath: 'Tapas (çilecilik) yoluyla kurtuluş',
       pada: [
@@ -2378,7 +2385,8 @@ Dünyevi başarı ve spiritüel ayrılık paradoksu.
         'Purva Bhadrapada',
         'Revati',
       ],
-      remedy: 'Ahirbudhnya mantrasını okuyun, derin meditasyon yapın',
+      supportivePractice:
+          'Ahirbudhnya mantrasını okuyun, derin meditasyon yapın',
       deepMeaning: 'Kozmik derinlik, spiritüel bilgelik',
       spiritualPath: 'Derin meditasyon yoluyla kurtuluş',
       pada: [
@@ -2418,7 +2426,7 @@ Dünyevi başarı ve spiritüel ayrılık paradoksu.
         'Hasta',
         'Uttara Bhadrapada',
       ],
-      remedy: 'Pushan mantrasını okuyun, seyahatlerde dua edin',
+      supportivePractice: 'Pushan mantrasını okuyun, seyahatlerde dua edin',
       deepMeaning: 'Yolculuğun sonu ve yeni başlangıç, döngünün tamamlanması',
       spiritualPath: 'Teslimiyet ve bırakma yoluyla kurtuluş',
       pada: [

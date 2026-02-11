@@ -21,7 +21,13 @@ class SpecializedToolsService {
   }) {
     final random = Random(birthDate.millisecondsSinceEpoch);
     final localSpacePlanets = [
-      Planet.sun, Planet.moon, Planet.mercury, Planet.venus, Planet.mars, Planet.jupiter, Planet.saturn
+      Planet.sun,
+      Planet.moon,
+      Planet.mercury,
+      Planet.venus,
+      Planet.mars,
+      Planet.jupiter,
+      Planet.saturn,
     ];
 
     final planetLines = localSpacePlanets.map((planet) {
@@ -77,22 +83,39 @@ class SpecializedToolsService {
     return CardinalDirection.northwest;
   }
 
-  String _getPlanetDirectionMeaning(Planet planet, CardinalDirection dir, AppLanguage language) {
-    final directionName = L10nService.get('local_space.directions.${dir.name}', language);
+  String _getPlanetDirectionMeaning(
+    Planet planet,
+    CardinalDirection dir,
+    AppLanguage language,
+  ) {
+    final directionName = L10nService.get(
+      'local_space.directions.${dir.name}',
+      language,
+    );
     final planetKey = planet.name.toLowerCase();
     final key = 'local_space.planet_meanings.$planetKey';
 
     // Try specific planet key, fallback to default
     String template = L10nService.get(key, language);
     if (template == key) {
-      template = L10nService.get('local_space.planet_meanings.default', language);
+      template = L10nService.get(
+        'local_space.planet_meanings.default',
+        language,
+      );
     }
 
     return template.replaceAll('{direction}', directionName);
   }
 
-  String _getPlanetHomeAdvice(Planet planet, CardinalDirection dir, AppLanguage language) {
-    final directionName = L10nService.get('local_space.directions.${dir.name}', language);
+  String _getPlanetHomeAdvice(
+    Planet planet,
+    CardinalDirection dir,
+    AppLanguage language,
+  ) {
+    final directionName = L10nService.get(
+      'local_space.directions.${dir.name}',
+      language,
+    );
     final planetKey = planet.name.toLowerCase();
     final key = 'local_space.home_advice.$planetKey';
 
@@ -104,8 +127,15 @@ class SpecializedToolsService {
     return template.replaceAll('{direction}', directionName);
   }
 
-  String _getPlanetTravelAdvice(Planet planet, CardinalDirection dir, AppLanguage language) {
-    final directionName = L10nService.get('local_space.directions.${dir.name}', language);
+  String _getPlanetTravelAdvice(
+    Planet planet,
+    CardinalDirection dir,
+    AppLanguage language,
+  ) {
+    final directionName = L10nService.get(
+      'local_space.directions.${dir.name}',
+      language,
+    );
     final planetKey = planet.name.toLowerCase();
     final key = 'local_space.travel_advice.$planetKey';
 
@@ -117,8 +147,15 @@ class SpecializedToolsService {
     return template.replaceAll('{direction}', directionName);
   }
 
-  String _getDirectionTheme(CardinalDirection dir, List<String> planets, AppLanguage language) {
-    final directionName = L10nService.get('local_space.directions.${dir.name}', language);
+  String _getDirectionTheme(
+    CardinalDirection dir,
+    List<String> planets,
+    AppLanguage language,
+  ) {
+    final directionName = L10nService.get(
+      'local_space.directions.${dir.name}',
+      language,
+    );
 
     String themeKey;
     if (planets.isEmpty) {
@@ -139,28 +176,51 @@ class SpecializedToolsService {
       }
     }
 
-    final template = L10nService.get('local_space.direction_themes.$themeKey', language);
+    final template = L10nService.get(
+      'local_space.direction_themes.$themeKey',
+      language,
+    );
     return template.replaceAll('{direction}', directionName);
   }
 
-  String _getDirectionAdvice(CardinalDirection dir, List<String> planets, AppLanguage language) {
-    final directionName = L10nService.get('local_space.directions.${dir.name}', language);
+  String _getDirectionAdvice(
+    CardinalDirection dir,
+    List<String> planets,
+    AppLanguage language,
+  ) {
+    final directionName = L10nService.get(
+      'local_space.directions.${dir.name}',
+      language,
+    );
 
     if (planets.isEmpty) {
-      final template = L10nService.get('local_space.direction_themes.neutral', language);
+      final template = L10nService.get(
+        'local_space.direction_themes.neutral',
+        language,
+      );
       return template.replaceAll('{direction}', directionName);
     }
 
     final planetStr = planets.join(', ');
-    final template = L10nService.get('local_space.direction_themes.balanced', language);
+    final template = L10nService.get(
+      'local_space.direction_themes.balanced',
+      language,
+    );
     return '$planetStr - ${template.replaceAll('{direction}', directionName)}';
   }
 
-  String _generateHomeAnalysis(List<LocalSpaceLine> lines, AppLanguage language) {
+  String _generateHomeAnalysis(
+    List<LocalSpaceLine> lines,
+    AppLanguage language,
+  ) {
     final buffer = StringBuffer();
-    buffer.writeln(L10nService.get('local_space.analysis.home_title', language));
+    buffer.writeln(
+      L10nService.get('local_space.analysis.home_title', language),
+    );
     buffer.writeln();
-    buffer.writeln(L10nService.get('local_space.analysis.home_intro', language));
+    buffer.writeln(
+      L10nService.get('local_space.analysis.home_intro', language),
+    );
     buffer.writeln();
 
     for (final line in lines.take(4)) {
@@ -168,16 +228,25 @@ class SpecializedToolsService {
     }
 
     buffer.writeln();
-    buffer.writeln(L10nService.get('local_space.analysis.home_conclusion', language));
+    buffer.writeln(
+      L10nService.get('local_space.analysis.home_conclusion', language),
+    );
 
     return buffer.toString();
   }
 
-  String _generateOfficeAnalysis(List<LocalSpaceLine> lines, AppLanguage language) {
+  String _generateOfficeAnalysis(
+    List<LocalSpaceLine> lines,
+    AppLanguage language,
+  ) {
     final buffer = StringBuffer();
-    buffer.writeln(L10nService.get('local_space.analysis.office_title', language));
+    buffer.writeln(
+      L10nService.get('local_space.analysis.office_title', language),
+    );
     buffer.writeln();
-    buffer.writeln(L10nService.get('local_space.analysis.office_intro', language));
+    buffer.writeln(
+      L10nService.get('local_space.analysis.office_intro', language),
+    );
     buffer.writeln();
 
     // Find planets by their localized names
@@ -189,13 +258,28 @@ class SpecializedToolsService {
     final mercuryLine = lines.firstWhere((l) => l.planet == mercuryName);
     final jupiterLine = lines.firstWhere((l) => l.planet == jupiterName);
 
-    final sunDir = L10nService.get('local_space.directions.${sunLine.direction.name}', language);
-    final mercuryDir = L10nService.get('local_space.directions.${mercuryLine.direction.name}', language);
-    final jupiterDir = L10nService.get('local_space.directions.${jupiterLine.direction.name}', language);
+    final sunDir = L10nService.get(
+      'local_space.directions.${sunLine.direction.name}',
+      language,
+    );
+    final mercuryDir = L10nService.get(
+      'local_space.directions.${mercuryLine.direction.name}',
+      language,
+    );
+    final jupiterDir = L10nService.get(
+      'local_space.directions.${jupiterLine.direction.name}',
+      language,
+    );
 
-    buffer.writeln('• ${L10nService.get('local_space.analysis.desk_position', language).replaceAll('{direction}', sunDir)}');
-    buffer.writeln('• ${L10nService.get('local_space.analysis.communication_devices', language).replaceAll('{direction}', mercuryDir)}');
-    buffer.writeln('• ${L10nService.get('local_space.analysis.growth_goals', language).replaceAll('{direction}', jupiterDir)}');
+    buffer.writeln(
+      '• ${L10nService.get('local_space.analysis.desk_position', language).replaceAll('{direction}', sunDir)}',
+    );
+    buffer.writeln(
+      '• ${L10nService.get('local_space.analysis.communication_devices', language).replaceAll('{direction}', mercuryDir)}',
+    );
+    buffer.writeln(
+      '• ${L10nService.get('local_space.analysis.growth_goals', language).replaceAll('{direction}', jupiterDir)}',
+    );
 
     return buffer.toString();
   }
@@ -207,7 +291,9 @@ class SpecializedToolsService {
     ZodiacSign? moonSign,
     AppLanguage language = AppLanguage.tr,
   }) {
-    final random = Random(birthDate.millisecondsSinceEpoch + DateTime.now().day);
+    final random = Random(
+      birthDate.millisecondsSinceEpoch + DateTime.now().day,
+    );
     final sunSign = ZodiacSignExtension.fromDate(birthDate);
 
     return ChildHoroscope(
@@ -236,18 +322,30 @@ class SpecializedToolsService {
 
   String _getSignKey(ZodiacSign sign) {
     switch (sign) {
-      case ZodiacSign.aries: return 'aries';
-      case ZodiacSign.taurus: return 'taurus';
-      case ZodiacSign.gemini: return 'gemini';
-      case ZodiacSign.cancer: return 'cancer';
-      case ZodiacSign.leo: return 'leo';
-      case ZodiacSign.virgo: return 'virgo';
-      case ZodiacSign.libra: return 'libra';
-      case ZodiacSign.scorpio: return 'scorpio';
-      case ZodiacSign.sagittarius: return 'sagittarius';
-      case ZodiacSign.capricorn: return 'capricorn';
-      case ZodiacSign.aquarius: return 'aquarius';
-      case ZodiacSign.pisces: return 'pisces';
+      case ZodiacSign.aries:
+        return 'aries';
+      case ZodiacSign.taurus:
+        return 'taurus';
+      case ZodiacSign.gemini:
+        return 'gemini';
+      case ZodiacSign.cancer:
+        return 'cancer';
+      case ZodiacSign.leo:
+        return 'leo';
+      case ZodiacSign.virgo:
+        return 'virgo';
+      case ZodiacSign.libra:
+        return 'libra';
+      case ZodiacSign.scorpio:
+        return 'scorpio';
+      case ZodiacSign.sagittarius:
+        return 'sagittarius';
+      case ZodiacSign.capricorn:
+        return 'capricorn';
+      case ZodiacSign.aquarius:
+        return 'aquarius';
+      case ZodiacSign.pisces:
+        return 'pisces';
     }
   }
 
@@ -261,10 +359,17 @@ class SpecializedToolsService {
     return L10nService.get('child_horoscope.social_style.$signKey', language);
   }
 
-  String _getChildEmotionalNeeds(ZodiacSign sun, ZodiacSign? moon, AppLanguage language) {
+  String _getChildEmotionalNeeds(
+    ZodiacSign sun,
+    ZodiacSign? moon,
+    AppLanguage language,
+  ) {
     final moonSign = moon ?? sun;
     final signKey = _getSignKey(moonSign);
-    return L10nService.get('child_horoscope.emotional_needs.$signKey', language);
+    return L10nService.get(
+      'child_horoscope.emotional_needs.$signKey',
+      language,
+    );
   }
 
   List<String> _getChildTalents(ZodiacSign sign, AppLanguage language) {
@@ -282,13 +387,23 @@ class SpecializedToolsService {
     return L10nService.get('child_horoscope.parenting_tips.$signKey', language);
   }
 
-  String _getChildDailyHoroscope(ZodiacSign sign, Random random, AppLanguage language) {
-    final horoscopes = L10nService.getList('child_horoscope.daily_horoscopes', language);
+  String _getChildDailyHoroscope(
+    ZodiacSign sign,
+    Random random,
+    AppLanguage language,
+  ) {
+    final horoscopes = L10nService.getList(
+      'child_horoscope.daily_horoscopes',
+      language,
+    );
     return horoscopes[random.nextInt(horoscopes.length)];
   }
 
   /// Generate Family Horoscope
-  FamilyHoroscope generateFamilyHoroscope(List<FamilyMember> members, {AppLanguage language = AppLanguage.tr}) {
+  FamilyHoroscope generateFamilyHoroscope(
+    List<FamilyMember> members, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     final random = Random(DateTime.now().millisecondsSinceEpoch);
 
     // Analyze family dynamics based on elements
@@ -305,7 +420,11 @@ class SpecializedToolsService {
     return FamilyHoroscope(
       members: members,
       familyDynamics: _getFamilyDynamics(dominantElement, members, language),
-      strengthsAsFamily: _getFamilyStrengths(dominantElement, members, language),
+      strengthsAsFamily: _getFamilyStrengths(
+        dominantElement,
+        members,
+        language,
+      ),
       challengesAsFamily: _getFamilyChallenges(elementCounts, language),
       communicationStyle: _getFamilyCommunicationStyle(members, language),
       familyAdvice: _getFamilyAdvice(dominantElement, random, language),
@@ -315,61 +434,127 @@ class SpecializedToolsService {
 
   String _getElementKey(Element element) {
     switch (element) {
-      case Element.fire: return 'fire';
-      case Element.earth: return 'earth';
-      case Element.air: return 'air';
-      case Element.water: return 'water';
+      case Element.fire:
+        return 'fire';
+      case Element.earth:
+        return 'earth';
+      case Element.air:
+        return 'air';
+      case Element.water:
+        return 'water';
     }
   }
 
-  String _getFamilyDynamics(Element dominant, List<FamilyMember> members, AppLanguage language) {
+  String _getFamilyDynamics(
+    Element dominant,
+    List<FamilyMember> members,
+    AppLanguage language,
+  ) {
     final elementKey = _getElementKey(dominant);
-    return L10nService.get('child_horoscope.family_dynamics.$elementKey', language);
+    return L10nService.get(
+      'child_horoscope.family_dynamics.$elementKey',
+      language,
+    );
   }
 
-  List<String> _getFamilyStrengths(Element dominant, List<FamilyMember> members, AppLanguage language) {
+  List<String> _getFamilyStrengths(
+    Element dominant,
+    List<FamilyMember> members,
+    AppLanguage language,
+  ) {
     final elementKey = _getElementKey(dominant);
-    return L10nService.getList('child_horoscope.family_strengths.$elementKey', language);
+    return L10nService.getList(
+      'child_horoscope.family_strengths.$elementKey',
+      language,
+    );
   }
 
-  List<String> _getFamilyChallenges(Map<Element, int> elements, AppLanguage language) {
+  List<String> _getFamilyChallenges(
+    Map<Element, int> elements,
+    AppLanguage language,
+  ) {
     final challenges = <String>[];
 
     if ((elements[Element.fire] ?? 0) > 2) {
-      challenges.add(L10nService.get('child_horoscope.family_challenges.fire_dominant', language));
+      challenges.add(
+        L10nService.get(
+          'child_horoscope.family_challenges.fire_dominant',
+          language,
+        ),
+      );
     }
     if ((elements[Element.earth] ?? 0) > 2) {
-      challenges.add(L10nService.get('child_horoscope.family_challenges.earth_dominant', language));
+      challenges.add(
+        L10nService.get(
+          'child_horoscope.family_challenges.earth_dominant',
+          language,
+        ),
+      );
     }
     if ((elements[Element.air] ?? 0) > 2) {
-      challenges.add(L10nService.get('child_horoscope.family_challenges.air_dominant', language));
+      challenges.add(
+        L10nService.get(
+          'child_horoscope.family_challenges.air_dominant',
+          language,
+        ),
+      );
     }
     if ((elements[Element.water] ?? 0) > 2) {
-      challenges.add(L10nService.get('child_horoscope.family_challenges.water_dominant', language));
+      challenges.add(
+        L10nService.get(
+          'child_horoscope.family_challenges.water_dominant',
+          language,
+        ),
+      );
     }
 
     if (challenges.isEmpty) {
-      challenges.add(L10nService.get('child_horoscope.family_challenges.balanced', language));
+      challenges.add(
+        L10nService.get('child_horoscope.family_challenges.balanced', language),
+      );
     }
 
     return challenges;
   }
 
-  String _getFamilyCommunicationStyle(List<FamilyMember> members, AppLanguage language) {
-    final airCount = members.where((m) => m.sunSign.element == Element.air).length;
-    final waterCount = members.where((m) => m.sunSign.element == Element.water).length;
+  String _getFamilyCommunicationStyle(
+    List<FamilyMember> members,
+    AppLanguage language,
+  ) {
+    final airCount = members
+        .where((m) => m.sunSign.element == Element.air)
+        .length;
+    final waterCount = members
+        .where((m) => m.sunSign.element == Element.water)
+        .length;
 
     if (airCount > members.length / 2) {
-      return L10nService.get('child_horoscope.communication_style.air_heavy', language);
+      return L10nService.get(
+        'child_horoscope.communication_style.air_heavy',
+        language,
+      );
     }
     if (waterCount > members.length / 2) {
-      return L10nService.get('child_horoscope.communication_style.water_heavy', language);
+      return L10nService.get(
+        'child_horoscope.communication_style.water_heavy',
+        language,
+      );
     }
-    return L10nService.get('child_horoscope.communication_style.default', language);
+    return L10nService.get(
+      'child_horoscope.communication_style.default',
+      language,
+    );
   }
 
-  String _getFamilyAdvice(Element dominant, Random random, AppLanguage language) {
+  String _getFamilyAdvice(
+    Element dominant,
+    Random random,
+    AppLanguage language,
+  ) {
     final elementKey = _getElementKey(dominant);
-    return L10nService.get('child_horoscope.daily_advice.$elementKey', language);
+    return L10nService.get(
+      'child_horoscope.daily_advice.$elementKey',
+      language,
+    );
   }
 }

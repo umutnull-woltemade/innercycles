@@ -15,7 +15,8 @@ class SupabaseDreamService {
     }
   }
 
-  static bool get isAvailable => _supabase != null && _supabase!.auth.currentUser != null;
+  static bool get isAvailable =>
+      _supabase != null && _supabase!.auth.currentUser != null;
 
   /// Fetch all dreams from Supabase
   static Future<List<DreamEntry>> fetchDreams() async {
@@ -154,7 +155,8 @@ class SupabaseDreamService {
       if (response['user_dreams'] == null) return null;
 
       // Increment view count
-      await _supabase!.from('shared_dreams')
+      await _supabase!
+          .from('shared_dreams')
           .update({'view_count': (response['view_count'] ?? 0) + 1})
           .eq('share_code', shareCode);
 

@@ -70,15 +70,18 @@ class ReferenceContentService {
       // Contains in definition (TR or EN) or deep explanation (TR or EN)
       if (definitionLower.contains(normalizedQuery) ||
           definitionEnLower.contains(normalizedQuery) ||
-          (entry.deepExplanation?.toLowerCase().contains(normalizedQuery) ?? false) ||
-          (entry.deepExplanationEn?.toLowerCase().contains(normalizedQuery) ?? false)) {
+          (entry.deepExplanation?.toLowerCase().contains(normalizedQuery) ??
+              false) ||
+          (entry.deepExplanationEn?.toLowerCase().contains(normalizedQuery) ??
+              false)) {
         relatedMatches.add(entry);
         continue;
       }
 
       // Related terms match
       if (entry.relatedTerms.any(
-          (term) => term.toLowerCase().contains(normalizedQuery))) {
+        (term) => term.toLowerCase().contains(normalizedQuery),
+      )) {
         relatedMatches.add(entry);
       }
     }
@@ -176,7 +179,10 @@ class ReferenceContentService {
     return activities.toSet().toList();
   }
 
-  List<GardeningActivity> _getAvoidActivities(MoonPhase phase, ZodiacSign sign) {
+  List<GardeningActivity> _getAvoidActivities(
+    MoonPhase phase,
+    ZodiacSign sign,
+  ) {
     final activities = <GardeningActivity>[];
 
     if (phase == MoonPhase.newMoon || phase == MoonPhase.fullMoon) {
@@ -797,7 +803,8 @@ class ReferenceContentService {
       AstrologyArticle(
         id: '1',
         title: 'Introduction to Astrology: Basic Concepts',
-        summary: 'Take your first step into the world of astrology. Basic information about zodiac signs, planets, and houses.',
+        summary:
+            'Take your first step into the world of astrology. Basic information about zodiac signs, planets, and houses.',
         content: '''
 Astrology is an ancient science based on the belief that the positions of celestial bodies in the sky influence events on Earth and human behavior.
 
@@ -859,7 +866,8 @@ The birth chart is divided into 12 houses, each representing a different area of
       AstrologyArticle(
         id: '2',
         title: 'Astrology in Relationships: A Synastry Guide',
-        summary: 'How can you evaluate your compatibility with your partner from an astrological perspective?',
+        summary:
+            'How can you evaluate your compatibility with your partner from an astrological perspective?',
         content: '''
 Synastry is the art of understanding relationship dynamics by comparing two people's birth charts.
 
@@ -897,7 +905,8 @@ Both partners' 7th house shows relationship expectations. The position and aspec
       AstrologyArticle(
         id: '3',
         title: 'Mercury Retrograde: Nothing to Fear',
-        summary: 'The true meaning of Mercury retrograde and how to make this period productive.',
+        summary:
+            'The true meaning of Mercury retrograde and how to make this period productive.',
         content: '''
 Mercury retrograde is one of the most talked about and feared periods in astrology. However, with the right understanding, this period can turn into an opportunity.
 

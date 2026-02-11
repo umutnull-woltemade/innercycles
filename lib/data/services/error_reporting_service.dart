@@ -42,7 +42,9 @@ class ErrorReportingService {
     _initialized = true;
 
     if (kDebugMode) {
-      debugPrint('ErrorReportingService: Initialized for $_platform v$_appVersion');
+      debugPrint(
+        'ErrorReportingService: Initialized for $_platform v$_appVersion',
+      );
     }
   }
 
@@ -79,11 +81,7 @@ class ErrorReportingService {
     required String message,
     Map<String, dynamic>? context,
   }) async {
-    await _report(
-      errorType: 'warning',
-      message: message,
-      context: context,
-    );
+    await _report(errorType: 'warning', message: message, context: context);
   }
 
   /// Report an info-level event
@@ -178,14 +176,14 @@ class ErrorReportingService {
     );
 
     // Remove phone numbers (basic pattern)
-    sanitized = sanitized.replaceAll(
-      RegExp(r'\+?[\d\s-]{10,}'),
-      '[PHONE]',
-    );
+    sanitized = sanitized.replaceAll(RegExp(r'\+?[\d\s-]{10,}'), '[PHONE]');
 
     // Remove UUIDs
     sanitized = sanitized.replaceAll(
-      RegExp(r'[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}', caseSensitive: false),
+      RegExp(
+        r'[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}',
+        caseSensitive: false,
+      ),
       '[UUID]',
     );
 
@@ -216,11 +214,7 @@ class ErrorReportingService {
 
   /// Get device info (privacy-safe)
   static Map<String, dynamic> _getDeviceInfo() {
-    return {
-      'platform': _platform,
-      'is_web': kIsWeb,
-      'is_debug': kDebugMode,
-    };
+    return {'platform': _platform, 'is_web': kIsWeb, 'is_debug': kDebugMode};
   }
 
   /// Convenience method for Flutter error handler
@@ -237,10 +231,7 @@ class ErrorReportingService {
 
   /// Convenience method for async error handler
   static bool handleAsyncError(Object error, StackTrace stack) {
-    reportFatal(
-      message: error.toString(),
-      stackTrace: stack.toString(),
-    );
+    reportFatal(message: error.toString(), stackTrace: stack.toString());
     return true; // Error handled
   }
 }

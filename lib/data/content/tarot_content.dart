@@ -141,7 +141,8 @@ Journaling prompt: "What professional leap have I been hesitant to take, and wha
 
 *This is a reflection theme, not a career prediction.*
 ''',
-    advice: 'A reflection invitation: Consider what it would mean to trust the unknown. What would change if you approached today with beginner\'s mind?',
+    advice:
+        'A reflection invitation: Consider what it would mean to trust the unknown. What would change if you approached today with beginner\'s mind?',
     meditation: '''
 Close your eyes. Imagine you're standing at the edge of a cliff. You can't see below - only clouds.
 
@@ -291,7 +292,8 @@ Feel the desire to look behind the veil. But don't rush. The veil will open in i
 
 Mantra: "I hear my inner wisdom. Answers come to me in silence."
 ''',
-    viralQuote: '"Be the Priestess: Be silent, listen, know. The mystery is in you - you are the mystery."',
+    viralQuote:
+        '"Be the Priestess: Be silent, listen, know. The mystery is in you - you are the mystery."',
     shadowAspect:
         'Secrecy obsession, passivity, disconnection from reality, manipulative use of intuition.',
   ),
@@ -377,7 +379,8 @@ Mantra: "I am a source of abundance. I multiply as I give."
     planet: 'Mars / Aries',
     hebrewLetter: 'Heh (ה)',
     keywords: 'Authority, structure, order, leadership, protection, discipline',
-    shortMeaning: 'The power representing order and law. Protective father, leader.',
+    shortMeaning:
+        'The power representing order and law. Protective father, leader.',
     deepMeaning: '''
 The Emperor is the power that establishes order within chaos. He gives form and structure to the Empress's creative energy.
 
@@ -447,7 +450,8 @@ Mantra: "I stand on solid foundations. My power is for service."
     planet: 'Taurus',
     hebrewLetter: 'Vav (ו)',
     keywords: 'Tradition, institutions, teaching, faith, morality, ritual',
-    shortMeaning: 'Teacher of sacred knowledge. Tradition and spiritual guidance.',
+    shortMeaning:
+        'Teacher of sacred knowledge. Tradition and spiritual guidance.',
     deepMeaning: '''
 Hierophant means "one who shows the sacred." He is the bridge that makes the invisible visible - carrying spiritual knowledge into everyday life.
 
@@ -589,7 +593,8 @@ Mantra: "I unite with myself. All parts within me are in harmony."
     planet: 'Cancer',
     hebrewLetter: 'Cheth (ח)',
     keywords: 'Victory, willpower, determination, control, progress, conquest',
-    shortMeaning: 'Will that directs opposing forces. Moving forward by overcoming obstacles.',
+    shortMeaning:
+        'Will that directs opposing forces. Moving forward by overcoming obstacles.',
     deepMeaning: '''
 The Chariot is the symbol of inner and outer victory. The black and white sphinxes represent opposing forces - and the warrior directs them.
 
@@ -660,7 +665,8 @@ Mantra: "I manage opposites. My will carries me to my goal."
     planet: 'Leo',
     hebrewLetter: 'Teth (ט)',
     keywords: 'Inner strength, courage, compassion, patience, soft power',
-    shortMeaning: 'Compassion that tames the lion. True strength is inner strength.',
+    shortMeaning:
+        'Compassion that tames the lion. True strength is inner strength.',
     deepMeaning: '''
 The Strength card is the opposite of The Chariot. There was control by force - here is transformation through compassion.
 
@@ -707,7 +713,8 @@ Handle difficult situations with patience. Don't react - respond.
 
 Psychology, therapy, working with animals, leadership coaching fields are suitable.
 ''',
-    advice: 'Don\'t show off strength. True strength is not shown - it\'s felt.',
+    advice:
+        'Don\'t show off strength. True strength is not shown - it\'s felt.',
     meditation: '''
 Close your eyes. A lion sits before you. Its eyes look at you - challenging, but also waiting.
 
@@ -850,7 +857,8 @@ Good time to take risks - but calculated risk. The wheel is turning in your favo
 
 Gambling, finance, investment, fields requiring opportunism.
 ''',
-    advice: 'Be ready for change. Stay in the center while the wheel turns - there is peace there.',
+    advice:
+        'Be ready for change. Stay in the center while the wheel turns - there is peace there.',
     meditation: '''
 Close your eyes. You're standing in the center of a massive wheel. The wheel turns - but you are fixed.
 
@@ -1014,7 +1022,8 @@ Mantra: "I surrender. I trust the universe's timing."
     element: 'Water',
     planet: 'Scorpio',
     hebrewLetter: 'Nun (נ)',
-    keywords: 'Transformation, ending, new beginning, letting go, metamorphosis',
+    keywords:
+        'Transformation, ending, new beginning, letting go, metamorphosis',
     shortMeaning: 'Every ending is a beginning. Death is the door to rebirth.',
     deepMeaning: '''
 The Death card is Tarot's most misunderstood card. It represents not physical death, but ego death - transformation.
@@ -1062,7 +1071,8 @@ Leaving a job, career change, company transformation may occur.
 
 Don't be afraid. When one door closes, other doors open.
 ''',
-    advice: 'Let go. Don\'t hold on. Every ending carries the seed of a beginning.',
+    advice:
+        'Let go. Don\'t hold on. Every ending carries the seed of a beginning.',
     meditation: '''
 Close your eyes. Imagine your old self before you - your past, old beliefs, worn-out patterns.
 
@@ -1072,7 +1082,8 @@ Mantra: "I don't fear death. Every ending is a new beginning."
 ''',
     viralQuote:
         '"Die and be reborn: Every day, every moment. Transformation is the breath of the universe."',
-    shadowAspect: 'Fear of change, obsessive clinging, destructiveness, nihilism.',
+    shadowAspect:
+        'Fear of change, obsessive clinging, destructiveness, nihilism.',
   ),
 
   14: const MajorArcanaContent(
@@ -1084,7 +1095,8 @@ Mantra: "I don't fear death. Every ending is a new beginning."
     planet: 'Sagittarius',
     hebrewLetter: 'Samekh (ס)',
     keywords: 'Balance, harmony, moderation, integration, patience, healing',
-    shortMeaning: 'Harmony of opposites. The art of alchemy - turning lead into gold.',
+    shortMeaning:
+        'Harmony of opposites. The art of alchemy - turning lead into gold.',
     deepMeaning: '''
 Temperance is the healing card that comes after Death. Transformation has occurred - now a new balance must be found.
 
@@ -1140,7 +1152,8 @@ Slowly pour from one to the other. Fire and water merge - steam rises.
 
 Mantra: "I unite opposites. I find strength in balance."
 ''',
-    viralQuote: '"Find balance: Not too little, not too much. True mastery is standing in the middle."',
+    viralQuote:
+        '"Find balance: Not too little, not too much. True mastery is standing in the middle."',
     shadowAspect:
         'Extremes, addiction, avoidance, artificial harmony, self-deception.',
   ),
@@ -1154,7 +1167,8 @@ Mantra: "I unite opposites. I find strength in balance."
     planet: 'Capricorn',
     hebrewLetter: 'Ayin (ע)',
     keywords: 'Addiction, passion, shadow, materialism, restriction, illusion',
-    shortMeaning: 'The chains are your own creation. Confronting the shadow, liberation.',
+    shortMeaning:
+        'The chains are your own creation. Confronting the shadow, liberation.',
     deepMeaning: '''
 The Devil is one of Tarot's most misunderstood cards. It's not an external force - it's the reflection of the inner shadow.
 
@@ -1226,7 +1240,8 @@ Mantra: "I accept my shadow. It's part of me - but it's not me."
     element: 'Fire',
     planet: 'Mars',
     hebrewLetter: 'Peh (פ)',
-    keywords: 'Sudden change, destruction, revelation, crisis, collapse, liberation',
+    keywords:
+        'Sudden change, destruction, revelation, crisis, collapse, liberation',
     shortMeaning:
         'When lightning strikes, truth is revealed. Enlightenment born from destruction.',
     deepMeaning: '''
@@ -1359,7 +1374,8 @@ Mantra: "I receive guidance from the universe. Light is always with me."
 ''',
     viralQuote:
         '"Be a star: Shine in darkness, spread hope, give healing. Even in the darkest night, there is light."',
-    shadowAspect: 'Excessive idealism, disconnection from reality, passive hope, fantasy.',
+    shadowAspect:
+        'Excessive idealism, disconnection from reality, passive hope, fantasy.',
   ),
 
   18: const MajorArcanaContent(
@@ -1430,7 +1446,8 @@ Mantra: "I see even in darkness. My intuition guides me."
 ''',
     viralQuote:
         '"Look at the Moon: Not full, incomplete - but beautiful. Darkness is also part of light."',
-    shadowAspect: 'Fear, paranoia, illusion, deception, subconscious suppression.',
+    shadowAspect:
+        'Fear, paranoia, illusion, deception, subconscious suppression.',
   ),
 
   19: const MajorArcanaContent(
@@ -1442,7 +1459,8 @@ Mantra: "I see even in darkness. My intuition guides me."
     planet: 'Sun',
     hebrewLetter: 'Resh (ר)',
     keywords: 'Joy, success, vitality, enlightenment, positivity, clarity',
-    shortMeaning: 'The sun illuminates everything. Joy, success, and childlike happiness.',
+    shortMeaning:
+        'The sun illuminates everything. Joy, success, and childlike happiness.',
     deepMeaning: '''
 The Sun is Tarot's most positive card. After the Moon's uncertainty, the sun clarifies everything.
 
@@ -1499,7 +1517,8 @@ Mantra: "My light is shining. My joy is contagious. The child within me is free.
 ''',
     viralQuote:
         '"Be the Sun: Shine, warm, illuminate. Unconditional, unrequited - just be."',
-    shadowAspect: 'Naivety, excessive optimism, arrogant light, denying the shadow.',
+    shadowAspect:
+        'Naivety, excessive optimism, arrogant light, denying the shadow.',
   ),
 
   20: const MajorArcanaContent(

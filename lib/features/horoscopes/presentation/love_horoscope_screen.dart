@@ -20,7 +20,8 @@ class LoveHoroscopeScreen extends ConsumerStatefulWidget {
   const LoveHoroscopeScreen({super.key, this.signName});
 
   @override
-  ConsumerState<LoveHoroscopeScreen> createState() => _LoveHoroscopeScreenState();
+  ConsumerState<LoveHoroscopeScreen> createState() =>
+      _LoveHoroscopeScreenState();
 }
 
 class _LoveHoroscopeScreenState extends ConsumerState<LoveHoroscopeScreen> {
@@ -179,7 +180,9 @@ class _LoveHoroscopeScreenState extends ConsumerState<LoveHoroscopeScreen> {
           Column(
             children: [
               Text(
-                isToday ? L10nService.get('love_horoscope.today', language) : dateFormat,
+                isToday
+                    ? L10nService.get('love_horoscope.today', language)
+                    : dateFormat,
                 style: Theme.of(
                   context,
                 ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
@@ -297,7 +300,10 @@ class _LoveHoroscopeScreenState extends ConsumerState<LoveHoroscopeScreen> {
                     ),
                   ),
                   Text(
-                    L10nService.get('love_horoscope.love_energy', ref.read(languageProvider)),
+                    L10nService.get(
+                      'love_horoscope.love_energy',
+                      ref.read(languageProvider),
+                    ),
                     style: Theme.of(
                       context,
                     ).textTheme.bodySmall?.copyWith(color: Colors.pink),
@@ -460,7 +466,10 @@ class _LoveHoroscopeScreenState extends ConsumerState<LoveHoroscopeScreen> {
               ),
               const SizedBox(width: AppConstants.spacingMd),
               Text(
-                L10nService.get('love_horoscope.for_singles', ref.read(languageProvider)),
+                L10nService.get(
+                  'love_horoscope.for_singles',
+                  ref.read(languageProvider),
+                ),
                 style: Theme.of(
                   context,
                 ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
@@ -513,7 +522,10 @@ class _LoveHoroscopeScreenState extends ConsumerState<LoveHoroscopeScreen> {
               ),
               const SizedBox(width: AppConstants.spacingMd),
               Text(
-                L10nService.get('love_horoscope.for_couples', ref.read(languageProvider)),
+                L10nService.get(
+                  'love_horoscope.for_couples',
+                  ref.read(languageProvider),
+                ),
                 style: Theme.of(
                   context,
                 ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
@@ -552,7 +564,10 @@ class _LoveHoroscopeScreenState extends ConsumerState<LoveHoroscopeScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            L10nService.get('love_horoscope.todays_compatibility', ref.read(languageProvider)),
+            L10nService.get(
+              'love_horoscope.todays_compatibility',
+              ref.read(languageProvider),
+            ),
             style: Theme.of(
               context,
             ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
@@ -562,7 +577,10 @@ class _LoveHoroscopeScreenState extends ConsumerState<LoveHoroscopeScreen> {
             children: [
               Expanded(
                 child: _buildMatchCard(
-                  L10nService.get('love_horoscope.most_compatible', ref.read(languageProvider)),
+                  L10nService.get(
+                    'love_horoscope.most_compatible',
+                    ref.read(languageProvider),
+                  ),
                   _horoscope!.bestMatch,
                   Colors.green,
                   Icons.favorite,
@@ -572,7 +590,10 @@ class _LoveHoroscopeScreenState extends ConsumerState<LoveHoroscopeScreen> {
               const SizedBox(width: AppConstants.spacingMd),
               Expanded(
                 child: _buildMatchCard(
-                  L10nService.get('love_horoscope.challenging', ref.read(languageProvider)),
+                  L10nService.get(
+                    'love_horoscope.challenging',
+                    ref.read(languageProvider),
+                  ),
                   _horoscope!.challengingMatch,
                   Colors.orange,
                   Icons.warning_amber,
@@ -666,7 +687,10 @@ class _LoveHoroscopeScreenState extends ConsumerState<LoveHoroscopeScreen> {
               ),
               const SizedBox(width: AppConstants.spacingMd),
               Text(
-                L10nService.get('love_horoscope.soul_connection', ref.read(languageProvider)),
+                L10nService.get(
+                  'love_horoscope.soul_connection',
+                  ref.read(languageProvider),
+                ),
                 style: Theme.of(
                   context,
                 ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
@@ -719,7 +743,10 @@ class _LoveHoroscopeScreenState extends ConsumerState<LoveHoroscopeScreen> {
               ),
               const SizedBox(width: AppConstants.spacingMd),
               Text(
-                L10nService.get('love_horoscope.venus_influence', ref.read(languageProvider)),
+                L10nService.get(
+                  'love_horoscope.venus_influence',
+                  ref.read(languageProvider),
+                ),
                 style: Theme.of(
                   context,
                 ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
@@ -745,7 +772,10 @@ class _LoveHoroscopeScreenState extends ConsumerState<LoveHoroscopeScreen> {
               ),
               const SizedBox(width: 8),
               Text(
-                L10nService.get('love_horoscope.intimacy_advice', ref.read(languageProvider)),
+                L10nService.get(
+                  'love_horoscope.intimacy_advice',
+                  ref.read(languageProvider),
+                ),
                 style: Theme.of(
                   context,
                 ).textTheme.bodySmall?.copyWith(fontWeight: FontWeight.w600),

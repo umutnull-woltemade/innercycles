@@ -88,7 +88,9 @@ class _HoroscopeScreenState extends ConsumerState<HoroscopeScreen> {
                   children: [
                     IconButton(
                       icon: const Icon(Icons.arrow_back),
-                      color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                      color: isDark
+                          ? AppColors.textPrimary
+                          : AppColors.lightTextPrimary,
                       onPressed: () => context.pop(),
                       visualDensity: VisualDensity.compact,
                     ),
@@ -98,17 +100,29 @@ class _HoroscopeScreenState extends ConsumerState<HoroscopeScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            L10nService.get('horoscope.what_says_today', language),
-                            style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                              color: isDark ? AppColors.starGold : AppColors.lightStarGold,
-                              fontWeight: FontWeight.bold,
+                            L10nService.get(
+                              'horoscope.what_says_today',
+                              language,
                             ),
+                            style: Theme.of(context).textTheme.titleLarge
+                                ?.copyWith(
+                                  color: isDark
+                                      ? AppColors.starGold
+                                      : AppColors.lightStarGold,
+                                  fontWeight: FontWeight.bold,
+                                ),
                           ),
                           Text(
-                            L10nService.get('horoscope.select_discover_energy', language),
-                            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                              color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+                            L10nService.get(
+                              'horoscope.select_discover_energy',
+                              language,
                             ),
+                            style: Theme.of(context).textTheme.bodySmall
+                                ?.copyWith(
+                                  color: isDark
+                                      ? AppColors.textSecondary
+                                      : AppColors.lightTextSecondary,
+                                ),
                           ),
                         ],
                       ),
@@ -123,24 +137,28 @@ class _HoroscopeScreenState extends ConsumerState<HoroscopeScreen> {
                     children: [
                       Padding(
                         padding: EdgeInsets.symmetric(
-                          horizontal: screenWidth > 900 ? 24 : AppConstants.spacingLg,
+                          horizontal: screenWidth > 900
+                              ? 24
+                              : AppConstants.spacingLg,
                         ),
                         child: GridView.builder(
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
-                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: crossAxisCount,
-                            crossAxisSpacing: spacing,
-                            mainAxisSpacing: spacing,
-                            childAspectRatio: childAspectRatio,
-                          ),
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: crossAxisCount,
+                                crossAxisSpacing: spacing,
+                                mainAxisSpacing: spacing,
+                                childAspectRatio: childAspectRatio,
+                              ),
                           itemCount: ZodiacSign.values.length,
                           itemBuilder: (context, index) {
                             final sign = ZodiacSign.values[index];
                             return ZodiacGridCard(
                               sign: sign,
                               onTap: () => context.push(
-                                  '${Routes.horoscope}/${sign.name.toLowerCase()}'),
+                                '${Routes.horoscope}/${sign.name.toLowerCase()}',
+                              ),
                             );
                           },
                         ),
@@ -149,17 +167,25 @@ class _HoroscopeScreenState extends ConsumerState<HoroscopeScreen> {
                       // Quiz CTA - Google Discover Funnel
                       Padding(
                         padding: EdgeInsets.symmetric(
-                          horizontal: screenWidth > 900 ? 24 : AppConstants.spacingLg,
+                          horizontal: screenWidth > 900
+                              ? 24
+                              : AppConstants.spacingLg,
                         ),
                         child: QuizCTACard.astrology(compact: true),
                       ),
                       const SizedBox(height: AppConstants.spacingXl),
                       // Back-Button-Free Navigation
-                      PageBottomNavigation(currentRoute: '/horoscope', language: language),
+                      PageBottomNavigation(
+                        currentRoute: '/horoscope',
+                        language: language,
+                      ),
                       const SizedBox(height: AppConstants.spacingLg),
                       // Footer with branding
                       PageFooterWithDisclaimer(
-                        brandText: L10nService.get('brands.horoscope', language),
+                        brandText: L10nService.get(
+                          'brands.horoscope',
+                          language,
+                        ),
                         disclaimerText: DisclaimerTexts.astrology(language),
                         language: language,
                       ),

@@ -22,16 +22,16 @@ import '../../data/providers/app_providers.dart';
 
 /// Kadim not kategorileri
 enum KadimCategory {
-  numerology,    // Numeroloji - Sayıların Kadim Bilgeliği
-  astrology,     // Astroloji - Göksel Bilgelik
-  tarot,         // Tarot - Arketipsel Semboller
-  chakra,        // Çakra - Enerji Merkezleri
-  moonWisdom,    // Ay Bilgeliği - Döngüsel Sırlar
-  elements,      // Elementler - Doğanın Dili
-  rituals,       // Ritüeller - Kadim Pratikler
-  dreams,        // Rüyalar - Bilinçaltının Sırları
-  symbols,       // Semboller - Evrensel Dil
-  alchemy,       // Simya - Dönüşüm Sanatı
+  numerology, // Numeroloji - Sayıların Kadim Bilgeliği
+  astrology, // Astroloji - Göksel Bilgelik
+  tarot, // Tarot - Arketipsel Semboller
+  chakra, // Çakra - Enerji Merkezleri
+  moonWisdom, // Ay Bilgeliği - Döngüsel Sırlar
+  elements, // Elementler - Doğanın Dili
+  rituals, // Ritüeller - Kadim Pratikler
+  dreams, // Rüyalar - Bilinçaltının Sırları
+  symbols, // Semboller - Evrensel Dil
+  alchemy, // Simya - Dönüşüm Sanatı
 }
 
 /// Kadim not kartı - Ezoterik bilgelik parçaları
@@ -331,11 +331,7 @@ class KadimNotRow extends StatelessWidget {
   final KadimNotCard left;
   final KadimNotCard right;
 
-  const KadimNotRow({
-    super.key,
-    required this.left,
-    required this.right,
-  });
+  const KadimNotRow({super.key, required this.left, required this.right});
 
   @override
   Widget build(BuildContext context) {
@@ -386,9 +382,7 @@ class KadimBanner extends StatelessWidget {
             ],
           ),
           border: Border(
-            top: BorderSide(
-              color: categoryData.color.withValues(alpha: 0.3),
-            ),
+            top: BorderSide(color: categoryData.color.withValues(alpha: 0.3)),
             bottom: BorderSide(
               color: categoryData.color.withValues(alpha: 0.3),
             ),
@@ -398,10 +392,7 @@ class KadimBanner extends StatelessWidget {
           children: [
             Text(
               categoryData.symbol,
-              style: TextStyle(
-                fontSize: 20,
-                color: categoryData.color,
-              ),
+              style: TextStyle(fontSize: 20, color: categoryData.color),
             ),
             const SizedBox(width: 12),
             Expanded(
@@ -421,10 +412,7 @@ class KadimBanner extends StatelessWidget {
             const SizedBox(width: 12),
             Text(
               categoryData.symbol,
-              style: TextStyle(
-                fontSize: 20,
-                color: categoryData.color,
-              ),
+              style: TextStyle(fontSize: 20, color: categoryData.color),
             ),
           ],
         ),

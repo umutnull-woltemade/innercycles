@@ -51,7 +51,12 @@ class _AdminLoginScreenState extends ConsumerState<AdminLoginScreen> {
   Future<void> _handleLogin() async {
     final pin = _pinController.text.trim();
     if (pin.isEmpty) {
-      setState(() => _error = L10nService.get('screens.admin_login.pin_required', ref.read(languageProvider)));
+      setState(
+        () => _error = L10nService.get(
+          'screens.admin_login.pin_required',
+          ref.read(languageProvider),
+        ),
+      );
       return;
     }
 
@@ -96,7 +101,13 @@ class _AdminLoginScreenState extends ConsumerState<AdminLoginScreen> {
               children: [
                 _buildHeader(context, isDark, language),
                 const SizedBox(height: AppConstants.spacingHuge),
-                _buildLoginCard(context, isDark, isLocked, remainingAttempts, language),
+                _buildLoginCard(
+                  context,
+                  isDark,
+                  isLocked,
+                  remainingAttempts,
+                  language,
+                ),
                 const SizedBox(height: AppConstants.spacingXl),
                 _buildSecurityInfo(context, isDark, language),
               ],
@@ -121,9 +132,9 @@ class _AdminLoginScreenState extends ConsumerState<AdminLoginScreen> {
         Flexible(
           child: Text(
             L10nService.get('screens.admin_login.title', language),
-            style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                  color: AppColors.starGold,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.headlineMedium?.copyWith(color: AppColors.starGold),
             overflow: TextOverflow.ellipsis,
           ),
         ),
@@ -184,27 +195,36 @@ class _AdminLoginScreenState extends ConsumerState<AdminLoginScreen> {
           // Title
           Text(
             isLocked
-                ? L10nService.get('screens.admin_login.account_locked', language)
+                ? L10nService.get(
+                    'screens.admin_login.account_locked',
+                    language,
+                  )
                 : L10nService.get('screens.admin_login.enter_pin', language),
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  color: isDark
-                      ? AppColors.textPrimary
-                      : AppColors.lightTextPrimary,
-                  fontWeight: FontWeight.bold,
-                ),
+              color: isDark
+                  ? AppColors.textPrimary
+                  : AppColors.lightTextPrimary,
+              fontWeight: FontWeight.bold,
+            ),
           ),
           const SizedBox(height: AppConstants.spacingSm),
 
           // Subtitle
           Text(
             isLocked
-                ? L10nService.get('screens.admin_login.too_many_attempts', language)
-                : L10nService.get('screens.admin_login.secure_access_required', language),
+                ? L10nService.get(
+                    'screens.admin_login.too_many_attempts',
+                    language,
+                  )
+                : L10nService.get(
+                    'screens.admin_login.secure_access_required',
+                    language,
+                  ),
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: isDark
-                      ? AppColors.textSecondary
-                      : AppColors.lightTextSecondary,
-                ),
+              color: isDark
+                  ? AppColors.textSecondary
+                  : AppColors.lightTextSecondary,
+            ),
           ),
           const SizedBox(height: AppConstants.spacingXl),
 
@@ -222,15 +242,17 @@ class _AdminLoginScreenState extends ConsumerState<AdminLoginScreen> {
               enabled: !_isLoading,
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
               style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                    letterSpacing: 8,
-                    color: isDark
-                        ? AppColors.textPrimary
-                        : AppColors.lightTextPrimary,
-                  ),
+                letterSpacing: 8,
+                color: isDark
+                    ? AppColors.textPrimary
+                    : AppColors.lightTextPrimary,
+              ),
               decoration: InputDecoration(
                 hintText: '••••',
                 hintStyle: TextStyle(
-                  color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                  color: isDark
+                      ? AppColors.textMuted
+                      : AppColors.lightTextMuted,
                   letterSpacing: 8,
                 ),
                 counterText: '',
@@ -244,15 +266,14 @@ class _AdminLoginScreenState extends ConsumerState<AdminLoginScreen> {
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-                  borderSide: BorderSide(
-                    color: AppColors.starGold,
-                    width: 2,
-                  ),
+                  borderSide: BorderSide(color: AppColors.starGold, width: 2),
                 ),
                 suffixIcon: IconButton(
                   icon: Icon(
                     _obscurePin ? Icons.visibility_off : Icons.visibility,
-                    color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                    color: isDark
+                        ? AppColors.textMuted
+                        : AppColors.lightTextMuted,
                   ),
                   onPressed: () => setState(() => _obscurePin = !_obscurePin),
                 ),
@@ -282,12 +303,14 @@ class _AdminLoginScreenState extends ConsumerState<AdminLoginScreen> {
                     ),
                     const SizedBox(width: 6),
                     Text(
-                      L10nService.get('screens.admin_login.attempts_remaining', language)
-                          .replaceAll('{count}', '$remainingAttempts'),
+                      L10nService.get(
+                        'screens.admin_login.attempts_remaining',
+                        language,
+                      ).replaceAll('{count}', '$remainingAttempts'),
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: AppColors.warning,
-                            fontWeight: FontWeight.w500,
-                          ),
+                        color: AppColors.warning,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ],
                 ),
@@ -301,7 +324,9 @@ class _AdminLoginScreenState extends ConsumerState<AdminLoginScreen> {
                 decoration: BoxDecoration(
                   color: AppColors.error.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(AppConstants.radiusSm),
-                  border: Border.all(color: AppColors.error.withValues(alpha: 0.3)),
+                  border: Border.all(
+                    color: AppColors.error.withValues(alpha: 0.3),
+                  ),
                 ),
                 child: Row(
                   children: [
@@ -310,9 +335,9 @@ class _AdminLoginScreenState extends ConsumerState<AdminLoginScreen> {
                     Expanded(
                       child: Text(
                         _error!,
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                              color: AppColors.error,
-                            ),
+                        style: Theme.of(
+                          context,
+                        ).textTheme.bodySmall?.copyWith(color: AppColors.error),
                       ),
                     ),
                   ],
@@ -342,8 +367,9 @@ class _AdminLoginScreenState extends ConsumerState<AdminLoginScreen> {
                         height: 24,
                         child: CircularProgressIndicator(
                           strokeWidth: 2,
-                          valueColor:
-                              AlwaysStoppedAnimation(AppColors.deepSpace),
+                          valueColor: AlwaysStoppedAnimation(
+                            AppColors.deepSpace,
+                          ),
                         ),
                       )
                     : Row(
@@ -352,10 +378,11 @@ class _AdminLoginScreenState extends ConsumerState<AdminLoginScreen> {
                           const Icon(Icons.login),
                           const SizedBox(width: 8),
                           Text(
-                            L10nService.get('screens.admin_login.access_dashboard', language),
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleMedium
+                            L10nService.get(
+                              'screens.admin_login.access_dashboard',
+                              language,
+                            ),
+                            style: Theme.of(context).textTheme.titleMedium
                                 ?.copyWith(
                                   color: AppColors.deepSpace,
                                   fontWeight: FontWeight.bold,
@@ -371,41 +398,45 @@ class _AdminLoginScreenState extends ConsumerState<AdminLoginScreen> {
     ).animate().fadeIn(delay: 200.ms, duration: 400.ms).slideY(begin: 0.1);
   }
 
-  Widget _buildLockoutTimer(BuildContext context, bool isDark, AppLanguage language) {
+  Widget _buildLockoutTimer(
+    BuildContext context,
+    bool isDark,
+    AppLanguage language,
+  ) {
     final remaining = AdminAuthService.remainingLockoutTime;
     final minutes = remaining.inMinutes;
     final seconds = remaining.inSeconds % 60;
 
     return Column(
       children: [
-        const Icon(
-          Icons.timer_outlined,
-          size: 48,
-          color: AppColors.error,
-        ),
+        const Icon(Icons.timer_outlined, size: 48, color: AppColors.error),
         const SizedBox(height: AppConstants.spacingMd),
         Text(
           '${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}',
           style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                color: AppColors.error,
-                fontWeight: FontWeight.bold,
-                fontFamily: 'monospace',
-              ),
+            color: AppColors.error,
+            fontWeight: FontWeight.bold,
+            fontFamily: 'monospace',
+          ),
         ),
         const SizedBox(height: AppConstants.spacingMd),
         Text(
           L10nService.get('screens.admin_login.wait_before_retry', language),
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: isDark
-                    ? AppColors.textSecondary
-                    : AppColors.lightTextSecondary,
-              ),
+            color: isDark
+                ? AppColors.textSecondary
+                : AppColors.lightTextSecondary,
+          ),
         ),
       ],
     );
   }
 
-  Widget _buildSecurityInfo(BuildContext context, bool isDark, AppLanguage language) {
+  Widget _buildSecurityInfo(
+    BuildContext context,
+    bool isDark,
+    AppLanguage language,
+  ) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -419,20 +450,19 @@ class _AdminLoginScreenState extends ConsumerState<AdminLoginScreen> {
         children: [
           Row(
             children: [
-              Icon(
-                Icons.security,
-                color: AppColors.auroraStart,
-                size: 20,
-              ),
+              Icon(Icons.security, color: AppColors.auroraStart, size: 20),
               const SizedBox(width: 8),
               Text(
-                L10nService.get('screens.admin_login.security_features', language),
+                L10nService.get(
+                  'screens.admin_login.security_features',
+                  language,
+                ),
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      color: isDark
-                          ? AppColors.textPrimary
-                          : AppColors.lightTextPrimary,
-                      fontWeight: FontWeight.w600,
-                    ),
+                  color: isDark
+                      ? AppColors.textPrimary
+                      : AppColors.lightTextPrimary,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ],
           ),
@@ -441,15 +471,22 @@ class _AdminLoginScreenState extends ConsumerState<AdminLoginScreen> {
             context,
             isDark,
             Icons.lock_clock,
-            L10nService.get('screens.admin_login.rate_limiting', language)
-                .replaceAll('{count}', '${AdminAuthService.maxAttempts}'),
+            L10nService.get(
+              'screens.admin_login.rate_limiting',
+              language,
+            ).replaceAll('{count}', '${AdminAuthService.maxAttempts}'),
           ),
           _buildSecurityItem(
             context,
             isDark,
             Icons.timer,
-            L10nService.get('screens.admin_login.lockout_duration', language)
-                .replaceAll('{minutes}', '${AdminAuthService.lockoutDuration.inMinutes}'),
+            L10nService.get(
+              'screens.admin_login.lockout_duration',
+              language,
+            ).replaceAll(
+              '{minutes}',
+              '${AdminAuthService.lockoutDuration.inMinutes}',
+            ),
           ),
           _buildSecurityItem(
             context,
@@ -488,10 +525,10 @@ class _AdminLoginScreenState extends ConsumerState<AdminLoginScreen> {
             child: Text(
               text,
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: isDark
-                        ? AppColors.textSecondary
-                        : AppColors.lightTextSecondary,
-                  ),
+                color: isDark
+                    ? AppColors.textSecondary
+                    : AppColors.lightTextSecondary,
+              ),
             ),
           ),
         ],

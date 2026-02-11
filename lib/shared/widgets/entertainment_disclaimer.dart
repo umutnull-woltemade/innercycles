@@ -30,8 +30,9 @@ class EntertainmentDisclaimer extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
-    final text = customText ??
-      L10nService.get('widgets.entertainment_disclaimer.general', language);
+    final text =
+        customText ??
+        L10nService.get('widgets.entertainment_disclaimer.general', language);
 
     if (compact) {
       return Padding(
@@ -40,7 +41,9 @@ class EntertainmentDisclaimer extends StatelessWidget {
           text,
           style: TextStyle(
             fontSize: 10,
-            color: isDark ? Colors.white30 : AppColors.textLight.withValues(alpha: 0.6),
+            color: isDark
+                ? Colors.white30
+                : AppColors.textLight.withValues(alpha: 0.6),
             fontStyle: FontStyle.italic,
           ),
           textAlign: TextAlign.center,
@@ -67,7 +70,9 @@ class EntertainmentDisclaimer extends StatelessWidget {
           Icon(
             Icons.info_outline,
             size: 14,
-            color: isDark ? Colors.white30 : AppColors.textLight.withValues(alpha: 0.5),
+            color: isDark
+                ? Colors.white30
+                : AppColors.textLight.withValues(alpha: 0.5),
           ),
           const SizedBox(width: 8),
           Expanded(
@@ -75,7 +80,9 @@ class EntertainmentDisclaimer extends StatelessWidget {
               text,
               style: TextStyle(
                 fontSize: 11,
-                color: isDark ? Colors.white38 : AppColors.textLight.withValues(alpha: 0.7),
+                color: isDark
+                    ? Colors.white38
+                    : AppColors.textLight.withValues(alpha: 0.7),
                 height: 1.4,
               ),
             ),
@@ -89,38 +96,40 @@ class EntertainmentDisclaimer extends StatelessWidget {
 /// Category-based disclaimer texts
 class DisclaimerTexts {
   static String general(AppLanguage language) =>
-    L10nService.get('widgets.entertainment_disclaimer.general', language);
+      L10nService.get('widgets.entertainment_disclaimer.general', language);
 
   static String dreams(AppLanguage language) =>
-    L10nService.get('widgets.entertainment_disclaimer.dreams', language);
+      L10nService.get('widgets.entertainment_disclaimer.dreams', language);
 
   static String health(AppLanguage language) =>
-    L10nService.get('widgets.entertainment_disclaimer.health', language);
+      L10nService.get('widgets.entertainment_disclaimer.health', language);
 
   static String astrology(AppLanguage language) =>
-    L10nService.get('widgets.entertainment_disclaimer.astrology', language);
+      L10nService.get('widgets.entertainment_disclaimer.astrology', language);
 
   static String tarot(AppLanguage language) =>
-    L10nService.get('widgets.entertainment_disclaimer.tarot', language);
+      L10nService.get('widgets.entertainment_disclaimer.tarot', language);
 
   static String numerology(AppLanguage language) =>
-    L10nService.get('widgets.entertainment_disclaimer.numerology', language);
+      L10nService.get('widgets.entertainment_disclaimer.numerology', language);
 
   static String chakra(AppLanguage language) =>
-    L10nService.get('widgets.entertainment_disclaimer.chakra', language);
+      L10nService.get('widgets.entertainment_disclaimer.chakra', language);
 
-  static String compatibility(AppLanguage language) =>
-    L10nService.get('widgets.entertainment_disclaimer.compatibility', language);
+  static String compatibility(AppLanguage language) => L10nService.get(
+    'widgets.entertainment_disclaimer.compatibility',
+    language,
+  );
 
   /// Apple-safe disclaimer for Insight assistant
   /// Emphasizes reflection, not prediction
   static String insight(AppLanguage language) =>
-    L10nService.get('widgets.entertainment_disclaimer.insight', language);
+      L10nService.get('widgets.entertainment_disclaimer.insight', language);
 
   /// Apple-safe reflection disclaimer
   /// Used in the unified Insight assistant
   static String reflection(AppLanguage language) =>
-    L10nService.get('widgets.entertainment_disclaimer.reflection', language);
+      L10nService.get('widgets.entertainment_disclaimer.reflection', language);
 }
 
 /// Page footer with disclaimer

@@ -9,6 +9,7 @@ import '../../../data/services/specialized_tools_service.dart';
 import '../../../data/services/l10n_service.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/entertainment_disclaimer.dart';
 
 class LocalSpaceScreen extends ConsumerStatefulWidget {
   const LocalSpaceScreen({super.key});
@@ -55,7 +56,8 @@ class _LocalSpaceScreenState extends ConsumerState<LocalSpaceScreen>
 
     setState(() {
       _chart = _service.generateLocalSpaceChart(
-        userName: userProfile.name ?? L10nService.get('local_space.user', language),
+        userName:
+            userProfile.name ?? L10nService.get('local_space.user', language),
         birthDate: userProfile.birthDate,
         latitude: latitude,
         longitude: longitude,
@@ -116,16 +118,19 @@ class _LocalSpaceScreenState extends ConsumerState<LocalSpaceScreen>
                 const SizedBox(height: 16),
                 Text(
                   L10nService.get('local_space.profile_not_found', language),
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        color: Colors.white,
-                      ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleLarge?.copyWith(color: Colors.white),
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  L10nService.get('local_space.enter_birth_info_first', language),
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: Colors.white70,
-                      ),
+                  L10nService.get(
+                    'local_space.enter_birth_info_first',
+                    language,
+                  ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodyMedium?.copyWith(color: Colors.white70),
                 ),
                 const SizedBox(height: 24),
                 ElevatedButton(
@@ -158,15 +163,26 @@ class _LocalSpaceScreenState extends ConsumerState<LocalSpaceScreen>
                         _buildCompass(isDark, language),
                         const SizedBox(height: AppConstants.spacingLg),
                         _buildTabSection(isDark, language),
+                        const SizedBox(height: AppConstants.spacingXl),
+                        PageFooterWithDisclaimer(
+                          brandText: 'Local Space — Venus One',
+                          disclaimerText: DisclaimerTexts.astrology(language),
+                          language: language,
+                        ),
                         const SizedBox(height: AppConstants.spacingXxl),
                       ] else ...[
                         const SizedBox(height: 100),
                         const CircularProgressIndicator(color: Colors.teal),
                         const SizedBox(height: 16),
                         Text(
-                          L10nService.get('local_space.generating_chart', language),
+                          L10nService.get(
+                            'local_space.generating_chart',
+                            language,
+                          ),
                           style: TextStyle(
-                            color: isDark ? Colors.white70 : AppColors.textLight,
+                            color: isDark
+                                ? Colors.white70
+                                : AppColors.textLight,
                           ),
                         ),
                       ],
@@ -197,9 +213,9 @@ class _LocalSpaceScreenState extends ConsumerState<LocalSpaceScreen>
             child: Text(
               L10nService.get('local_space.title', language),
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: isDark ? Colors.white : AppColors.textDark,
-                  ),
+                fontWeight: FontWeight.bold,
+                color: isDark ? Colors.white : AppColors.textDark,
+              ),
               textAlign: TextAlign.center,
             ),
           ),
@@ -220,9 +236,7 @@ class _LocalSpaceScreenState extends ConsumerState<LocalSpaceScreen>
           ],
         ),
         borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: Colors.teal.withValues(alpha: 0.5),
-        ),
+        border: Border.all(color: Colors.teal.withValues(alpha: 0.5)),
       ),
       child: Row(
         children: [
@@ -240,7 +254,10 @@ class _LocalSpaceScreenState extends ConsumerState<LocalSpaceScreen>
                   ),
                 ),
                 Text(
-                  L10nService.get('local_space.discover_planet_energies', language),
+                  L10nService.get(
+                    'local_space.discover_planet_energies',
+                    language,
+                  ),
                   style: TextStyle(
                     fontSize: 12,
                     color: isDark ? Colors.white70 : AppColors.textLight,
@@ -254,8 +271,13 @@ class _LocalSpaceScreenState extends ConsumerState<LocalSpaceScreen>
     );
   }
 
-  Widget _buildProfileCard(bool isDark, dynamic userProfile, AppLanguage language) {
-    final hasCoordinates = userProfile.birthLatitude != null && userProfile.birthLongitude != null;
+  Widget _buildProfileCard(
+    bool isDark,
+    dynamic userProfile,
+    AppLanguage language,
+  ) {
+    final hasCoordinates =
+        userProfile.birthLatitude != null && userProfile.birthLongitude != null;
 
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -264,20 +286,14 @@ class _LocalSpaceScreenState extends ConsumerState<LocalSpaceScreen>
             ? Colors.white.withValues(alpha: 0.05)
             : Colors.white.withValues(alpha: 0.9),
         borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: Colors.teal.withValues(alpha: 0.3),
-        ),
+        border: Border.all(color: Colors.teal.withValues(alpha: 0.3)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
-              Icon(
-                Icons.person,
-                color: Colors.teal,
-                size: 20,
-              ),
+              Icon(Icons.person, color: Colors.teal, size: 20),
               const SizedBox(width: 8),
               Text(
                 L10nService.get('local_space.profile_info', language),
@@ -306,7 +322,10 @@ class _LocalSpaceScreenState extends ConsumerState<LocalSpaceScreen>
                     Text(
                       hasCoordinates
                           ? L10nService.get('local_space.full_data', language)
-                          : L10nService.get('local_space.default_location', language),
+                          : L10nService.get(
+                              'local_space.default_location',
+                              language,
+                            ),
                       style: TextStyle(
                         fontSize: 11,
                         color: hasCoordinates ? Colors.teal : Colors.orange,
@@ -318,9 +337,25 @@ class _LocalSpaceScreenState extends ConsumerState<LocalSpaceScreen>
             ],
           ),
           const SizedBox(height: AppConstants.spacingMd),
-          _buildInfoRow(isDark, Icons.person_outline, L10nService.get('local_space.name', language), userProfile.name ?? L10nService.get('local_space.user', language)),
-          _buildInfoRow(isDark, Icons.cake_outlined, L10nService.get('local_space.birth_date', language), _formatDate(userProfile.birthDate, language)),
-          _buildInfoRow(isDark, Icons.location_on_outlined, L10nService.get('local_space.birth_place', language), userProfile.birthPlace ?? L10nService.get('local_space.not_specified', language)),
+          _buildInfoRow(
+            isDark,
+            Icons.person_outline,
+            L10nService.get('local_space.name', language),
+            userProfile.name ?? L10nService.get('local_space.user', language),
+          ),
+          _buildInfoRow(
+            isDark,
+            Icons.cake_outlined,
+            L10nService.get('local_space.birth_date', language),
+            _formatDate(userProfile.birthDate, language),
+          ),
+          _buildInfoRow(
+            isDark,
+            Icons.location_on_outlined,
+            L10nService.get('local_space.birth_place', language),
+            userProfile.birthPlace ??
+                L10nService.get('local_space.not_specified', language),
+          ),
           if (hasCoordinates)
             _buildInfoRow(
               isDark,
@@ -338,7 +373,11 @@ class _LocalSpaceScreenState extends ConsumerState<LocalSpaceScreen>
       padding: const EdgeInsets.symmetric(vertical: 4),
       child: Row(
         children: [
-          Icon(icon, size: 16, color: isDark ? Colors.white54 : AppColors.textLight),
+          Icon(
+            icon,
+            size: 16,
+            color: isDark ? Colors.white54 : AppColors.textLight,
+          ),
           const SizedBox(width: 8),
           Text(
             '$label: ',
@@ -365,9 +404,18 @@ class _LocalSpaceScreenState extends ConsumerState<LocalSpaceScreen>
 
   String _formatDate(DateTime date, AppLanguage language) {
     final monthKeys = [
-      'months.january', 'months.february', 'months.march', 'months.april',
-      'months.may', 'months.june', 'months.july', 'months.august',
-      'months.september', 'months.october', 'months.november', 'months.december'
+      'months.january',
+      'months.february',
+      'months.march',
+      'months.april',
+      'months.may',
+      'months.june',
+      'months.july',
+      'months.august',
+      'months.september',
+      'months.october',
+      'months.november',
+      'months.december',
     ];
     final month = L10nService.get(monthKeys[date.month - 1], language);
     return '${date.day} $month ${date.year}';
@@ -418,7 +466,10 @@ class _LocalSpaceScreenState extends ConsumerState<LocalSpaceScreen>
               if (_compassRotation != 0.0) ...[
                 const SizedBox(width: 8),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 6,
+                    vertical: 2,
+                  ),
                   decoration: BoxDecoration(
                     color: Colors.teal.withValues(alpha: 0.2),
                     borderRadius: BorderRadius.circular(8),
@@ -485,7 +536,10 @@ class _LocalSpaceScreenState extends ConsumerState<LocalSpaceScreen>
               label: Text(L10nService.get('local_space.reset', language)),
               style: TextButton.styleFrom(
                 foregroundColor: Colors.teal,
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 4,
+                ),
               ),
             ),
           ],
@@ -601,7 +655,10 @@ class _LocalSpaceScreenState extends ConsumerState<LocalSpaceScreen>
     );
   }
 
-  String _getDirectionLocalizedName(CardinalDirection direction, AppLanguage language) {
+  String _getDirectionLocalizedName(
+    CardinalDirection direction,
+    AppLanguage language,
+  ) {
     final key = 'local_space.directions.${direction.name}';
     return L10nService.get(key, language);
   }
@@ -624,7 +681,10 @@ class _LocalSpaceScreenState extends ConsumerState<LocalSpaceScreen>
               children: [
                 Row(
                   children: [
-                    Text(dir.direction.icon, style: const TextStyle(fontSize: 24)),
+                    Text(
+                      dir.direction.icon,
+                      style: const TextStyle(fontSize: 24),
+                    ),
                     const SizedBox(width: 8),
                     Text(
                       _getDirectionLocalizedName(dir.direction, language),
@@ -663,10 +723,7 @@ class _LocalSpaceScreenState extends ConsumerState<LocalSpaceScreen>
                           color: _getPlanetColor(p).withValues(alpha: 0.2),
                           borderRadius: BorderRadius.circular(8),
                         ),
-                        child: Text(
-                          p,
-                          style: const TextStyle(fontSize: 10),
-                        ),
+                        child: Text(p, style: const TextStyle(fontSize: 10)),
                       );
                     }).toList(),
                   ),
@@ -850,7 +907,10 @@ class _LocalSpaceScreenState extends ConsumerState<LocalSpaceScreen>
                   children: [
                     Row(
                       children: [
-                        Text(line.direction.icon, style: const TextStyle(fontSize: 18)),
+                        Text(
+                          line.direction.icon,
+                          style: const TextStyle(fontSize: 18),
+                        ),
                         const SizedBox(width: 8),
                         Text(
                           '${_getDirectionLocalizedName(line.direction, language)} - ${line.planet}',

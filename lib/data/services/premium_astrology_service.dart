@@ -28,25 +28,41 @@ class PremiumAstrologyService {
         // Generate line coordinates across the globe
         final coordinates = <GeoPoint>[];
         for (int i = 0; i < 20; i++) {
-          coordinates.add(GeoPoint(
-            latitude: -90 + (i * 9.0) + random.nextDouble() * 5,
-            longitude: random.nextDouble() * 360 - 180,
-          ));
+          coordinates.add(
+            GeoPoint(
+              latitude: -90 + (i * 9.0) + random.nextDouble() * 5,
+              longitude: random.nextDouble() * 360 - 180,
+            ),
+          );
         }
         coordinates.sort((a, b) => a.latitude.compareTo(b.latitude));
 
-        planetaryLines.add(PlanetaryLine(
-          planet: planet,
-          lineType: lineType,
-          coordinates: coordinates,
-          meaning: _getPlanetaryLineMeaning(planet, lineType, language: language),
-          advice: _getPlanetaryLineAdvice(planet, lineType, language: language),
-          isPositive: _isPlanetaryLinePositive(planet, lineType),
-        ));
+        planetaryLines.add(
+          PlanetaryLine(
+            planet: planet,
+            lineType: lineType,
+            coordinates: coordinates,
+            meaning: _getPlanetaryLineMeaning(
+              planet,
+              lineType,
+              language: language,
+            ),
+            advice: _getPlanetaryLineAdvice(
+              planet,
+              lineType,
+              language: language,
+            ),
+            isPositive: _isPlanetaryLinePositive(planet, lineType),
+          ),
+        );
       }
     }
 
-    final powerPlaces = _generatePowerPlaces(birthDate, random, language: language);
+    final powerPlaces = _generatePowerPlaces(
+      birthDate,
+      random,
+      language: language,
+    );
 
     return AstroCartographyData(
       userName: userName,
@@ -55,7 +71,11 @@ class PremiumAstrologyService {
       birthLongitude: birthLongitude,
       planetaryLines: planetaryLines,
       powerPlaces: powerPlaces,
-      overallAnalysis: _generateCartographyAnalysis(userName, birthDate, language: language),
+      overallAnalysis: _generateCartographyAnalysis(
+        userName,
+        birthDate,
+        language: language,
+      ),
     );
   }
 
@@ -67,7 +87,11 @@ class PremiumAstrologyService {
     }
   }
 
-  String _getPlanetaryLineMeaning(String planet, LineType lineType, {AppLanguage language = AppLanguage.tr}) {
+  String _getPlanetaryLineMeaning(
+    String planet,
+    LineType lineType, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     // Map planet name to key
     final planetKey = _getPlanetKey(planet);
     final lineKey = lineType.name;
@@ -78,116 +102,176 @@ class PremiumAstrologyService {
     // Fallback
     final trMeanings = {
       'Güneş': {
-        LineType.ascendant: 'Kişisel güç ve kimlik burada en yoğun. Liderlik potansiyeliniz parlar.',
-        LineType.descendant: 'İlişkilerde güneş gibi parlarsınız. Ortaklıklar size enerji verir.',
-        LineType.midheaven: 'Kariyer ve toplumsal statü için güçlü bir konum. Tanınırlık potansiyeli.',
-        LineType.imumCoeli: 'Aileniz ve köklerinizle derin bağ. Ev ve yuva konularında bereket.',
+        LineType.ascendant:
+            'Kişisel güç ve kimlik burada en yoğun. Liderlik potansiyeliniz parlar.',
+        LineType.descendant:
+            'İlişkilerde güneş gibi parlarsınız. Ortaklıklar size enerji verir.',
+        LineType.midheaven:
+            'Kariyer ve toplumsal statü için güçlü bir konum. Tanınırlık potansiyeli.',
+        LineType.imumCoeli:
+            'Aileniz ve köklerinizle derin bağ. Ev ve yuva konularında bereket.',
       },
       'Ay': {
-        LineType.ascendant: 'Duygusal hassasiyet artar. Sezgisel yetenekleriniz güçlenir.',
-        LineType.descendant: 'İlişkilerde duygusal derinlik. Empatik bağlar kurulur.',
-        LineType.midheaven: 'Toplum tarafından duygusal olarak kabul görürsünüz. Şifa meslekleri için ideal.',
-        LineType.imumCoeli: 'Ev ortamında huzur bulursunuz. Aile bağları güçlüdür.',
+        LineType.ascendant:
+            'Duygusal hassasiyet artar. Sezgisel yetenekleriniz güçlenir.',
+        LineType.descendant:
+            'İlişkilerde duygusal derinlik. Empatik bağlar kurulur.',
+        LineType.midheaven:
+            'Toplum tarafından duygusal olarak kabul görürsünüz. Şifa meslekleri için ideal.',
+        LineType.imumCoeli:
+            'Ev ortamında huzur bulursunuz. Aile bağları güçlüdür.',
       },
       'Merkür': {
-        LineType.ascendant: 'İletişim becerileri zirve yapar. Öğrenme ve öğretme için ideal.',
+        LineType.ascendant:
+            'İletişim becerileri zirve yapar. Öğrenme ve öğretme için ideal.',
         LineType.descendant: 'İş ortaklıkları ve müzakereler için güçlü konum.',
         LineType.midheaven: 'Yazarlık, medya ve eğitim kariyeri için mükemmel.',
-        LineType.imumCoeli: 'Ev ofis çalışması için ideal. Ailede iletişim güçlü.',
+        LineType.imumCoeli:
+            'Ev ofis çalışması için ideal. Ailede iletişim güçlü.',
       },
       'Venüs': {
-        LineType.ascendant: 'Çekicilik ve cazibe artar. Sanat ve güzellik alanında başarı.',
-        LineType.descendant: 'Romantik ilişkiler için muhteşem konum. Aşk burada çiçek açar.',
-        LineType.midheaven: 'Sanat, moda ve güzellik sektörlerinde kariyer fırsatları.',
+        LineType.ascendant:
+            'Çekicilik ve cazibe artar. Sanat ve güzellik alanında başarı.',
+        LineType.descendant:
+            'Romantik ilişkiler için muhteşem konum. Aşk burada çiçek açar.',
+        LineType.midheaven:
+            'Sanat, moda ve güzellik sektörlerinde kariyer fırsatları.',
         LineType.imumCoeli: 'Güzel ve huzurlu bir ev ortamı. Aile içi uyum.',
       },
       'Mars': {
-        LineType.ascendant: 'Fiziksel enerji ve motivasyon zirve yapar. Spor başarıları.',
-        LineType.descendant: 'İlişkilerde tutku ama dikkatli olun, çatışma potansiyeli.',
-        LineType.midheaven: 'Rekabetçi iş ortamlarında başarı. Liderlik rolleri.',
-        LineType.imumCoeli: 'Ev ortamında hareketlilik. Ev tadilatı veya inşaat işleri.',
+        LineType.ascendant:
+            'Fiziksel enerji ve motivasyon zirve yapar. Spor başarıları.',
+        LineType.descendant:
+            'İlişkilerde tutku ama dikkatli olun, çatışma potansiyeli.',
+        LineType.midheaven:
+            'Rekabetçi iş ortamlarında başarı. Liderlik rolleri.',
+        LineType.imumCoeli:
+            'Ev ortamında hareketlilik. Ev tadilatı veya inşaat işleri.',
       },
       'Jüpiter': {
-        LineType.ascendant: 'Şans ve bereket sizi takip eder. Büyüme fırsatları.',
-        LineType.descendant: 'İş ortaklıkları genişler. Yabancılarla bağlantılar.',
+        LineType.ascendant:
+            'Şans ve bereket sizi takip eder. Büyüme fırsatları.',
+        LineType.descendant:
+            'İş ortaklıkları genişler. Yabancılarla bağlantılar.',
         LineType.midheaven: 'Kariyer zirve yapar. Uluslararası fırsatlar.',
         LineType.imumCoeli: 'Geniş aile. Miras ve mülk konularında bereket.',
       },
       'Satürn': {
-        LineType.ascendant: 'Disiplin ve olgunluk gerektirir. Zorluklar büyüme getirir.',
+        LineType.ascendant:
+            'Disiplin ve olgunluk gerektirir. Zorluklar büyüme getirir.',
         LineType.descendant: 'İlişkilerde ciddiyet. Uzun vadeli bağlılıklar.',
-        LineType.midheaven: 'Kariyer zaman alır ama kalıcı başarı. Otorite pozisyonları.',
+        LineType.midheaven:
+            'Kariyer zaman alır ama kalıcı başarı. Otorite pozisyonları.',
         LineType.imumCoeli: 'Aile sorumlulukları. Geleneklerle yüzleşme.',
       },
     };
 
     final enMeanings = {
       'Sun': {
-        LineType.ascendant: 'Personal power and identity are most intense here. Your leadership potential shines.',
-        LineType.descendant: 'You shine like the sun in relationships. Partnerships give you energy.',
-        LineType.midheaven: 'Strong position for career and social status. Recognition potential.',
-        LineType.imumCoeli: 'Deep connection with family and roots. Blessings in home matters.',
+        LineType.ascendant:
+            'Personal power and identity are most intense here. Your leadership potential shines.',
+        LineType.descendant:
+            'You shine like the sun in relationships. Partnerships give you energy.',
+        LineType.midheaven:
+            'Strong position for career and social status. Recognition potential.',
+        LineType.imumCoeli:
+            'Deep connection with family and roots. Blessings in home matters.',
       },
       'Moon': {
-        LineType.ascendant: 'Emotional sensitivity increases. Your intuitive abilities strengthen.',
-        LineType.descendant: 'Emotional depth in relationships. Empathic bonds are formed.',
-        LineType.midheaven: 'Emotionally accepted by society. Ideal for healing professions.',
-        LineType.imumCoeli: 'You find peace in home environment. Family bonds are strong.',
+        LineType.ascendant:
+            'Emotional sensitivity increases. Your intuitive abilities strengthen.',
+        LineType.descendant:
+            'Emotional depth in relationships. Empathic bonds are formed.',
+        LineType.midheaven:
+            'Emotionally accepted by society. Ideal for healing professions.',
+        LineType.imumCoeli:
+            'You find peace in home environment. Family bonds are strong.',
       },
       'Mercury': {
-        LineType.ascendant: 'Communication skills peak. Ideal for learning and teaching.',
-        LineType.descendant: 'Strong position for business partnerships and negotiations.',
+        LineType.ascendant:
+            'Communication skills peak. Ideal for learning and teaching.',
+        LineType.descendant:
+            'Strong position for business partnerships and negotiations.',
         LineType.midheaven: 'Perfect for writing, media and education careers.',
-        LineType.imumCoeli: 'Ideal for home office work. Strong family communication.',
+        LineType.imumCoeli:
+            'Ideal for home office work. Strong family communication.',
       },
       'Venus': {
-        LineType.ascendant: 'Attractiveness and charm increase. Success in art and beauty.',
-        LineType.descendant: 'Wonderful position for romantic relationships. Love blooms here.',
-        LineType.midheaven: 'Career opportunities in art, fashion and beauty sectors.',
-        LineType.imumCoeli: 'Beautiful and peaceful home environment. Family harmony.',
+        LineType.ascendant:
+            'Attractiveness and charm increase. Success in art and beauty.',
+        LineType.descendant:
+            'Wonderful position for romantic relationships. Love blooms here.',
+        LineType.midheaven:
+            'Career opportunities in art, fashion and beauty sectors.',
+        LineType.imumCoeli:
+            'Beautiful and peaceful home environment. Family harmony.',
       },
       'Mars': {
-        LineType.ascendant: 'Physical energy and motivation peak. Sports achievements.',
-        LineType.descendant: 'Passion in relationships but be careful, conflict potential.',
-        LineType.midheaven: 'Success in competitive work environments. Leadership roles.',
-        LineType.imumCoeli: 'Activity in home environment. Home renovation or construction.',
+        LineType.ascendant:
+            'Physical energy and motivation peak. Sports achievements.',
+        LineType.descendant:
+            'Passion in relationships but be careful, conflict potential.',
+        LineType.midheaven:
+            'Success in competitive work environments. Leadership roles.',
+        LineType.imumCoeli:
+            'Activity in home environment. Home renovation or construction.',
       },
       'Jupiter': {
-        LineType.ascendant: 'Luck and blessings follow you. Growth opportunities.',
-        LineType.descendant: 'Business partnerships expand. Connections with foreigners.',
+        LineType.ascendant:
+            'Luck and blessings follow you. Growth opportunities.',
+        LineType.descendant:
+            'Business partnerships expand. Connections with foreigners.',
         LineType.midheaven: 'Career peaks. International opportunities.',
-        LineType.imumCoeli: 'Large family. Blessings in inheritance and property matters.',
+        LineType.imumCoeli:
+            'Large family. Blessings in inheritance and property matters.',
       },
       'Saturn': {
-        LineType.ascendant: 'Requires discipline and maturity. Challenges bring growth.',
-        LineType.descendant: 'Seriousness in relationships. Long-term commitments.',
-        LineType.midheaven: 'Career takes time but lasting success. Authority positions.',
+        LineType.ascendant:
+            'Requires discipline and maturity. Challenges bring growth.',
+        LineType.descendant:
+            'Seriousness in relationships. Long-term commitments.',
+        LineType.midheaven:
+            'Career takes time but lasting success. Authority positions.',
         LineType.imumCoeli: 'Family responsibilities. Confronting traditions.',
       },
     };
 
     final meanings = language == AppLanguage.tr ? trMeanings : enMeanings;
-    final defaultMsg = language == AppLanguage.tr ? 'Bu konum sizin için özel anlamlar taşır.' : 'This position holds special meaning for you.';
+    final defaultMsg = language == AppLanguage.tr
+        ? 'Bu konum sizin için özel anlamlar taşır.'
+        : 'This position holds special meaning for you.';
     return meanings[planet]?[lineType] ?? defaultMsg;
   }
 
   String _getPlanetKey(String planet) {
     final keyMap = {
-      'Güneş': 'sun', 'Sun': 'sun',
-      'Ay': 'moon', 'Moon': 'moon',
-      'Merkür': 'mercury', 'Mercury': 'mercury',
-      'Venüs': 'venus', 'Venus': 'venus',
+      'Güneş': 'sun',
+      'Sun': 'sun',
+      'Ay': 'moon',
+      'Moon': 'moon',
+      'Merkür': 'mercury',
+      'Mercury': 'mercury',
+      'Venüs': 'venus',
+      'Venus': 'venus',
       'Mars': 'mars',
-      'Jüpiter': 'jupiter', 'Jupiter': 'jupiter',
-      'Satürn': 'saturn', 'Saturn': 'saturn',
-      'Uranüs': 'uranus', 'Uranus': 'uranus',
-      'Neptün': 'neptune', 'Neptune': 'neptune',
+      'Jüpiter': 'jupiter',
+      'Jupiter': 'jupiter',
+      'Satürn': 'saturn',
+      'Saturn': 'saturn',
+      'Uranüs': 'uranus',
+      'Uranus': 'uranus',
+      'Neptün': 'neptune',
+      'Neptune': 'neptune',
       'Pluto': 'pluto',
     };
     return keyMap[planet] ?? planet.toLowerCase();
   }
 
-  String _getPlanetaryLineAdvice(String planet, LineType lineType, {AppLanguage language = AppLanguage.tr}) {
+  String _getPlanetaryLineAdvice(
+    String planet,
+    LineType lineType, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     final planetKey = _getPlanetKey(planet);
     final lineKey = lineType.name;
     final key = 'premium_astrology.planetary_line_advice.$planetKey.$lineKey';
@@ -197,25 +281,33 @@ class PremiumAstrologyService {
     // Fallback
     final trAdvice = {
       'Güneş': {
-        LineType.ascendant: 'Bu bölgede kendinizi ifade edin ve liderlik rollerini üstlenin.',
+        LineType.ascendant:
+            'Bu bölgede kendinizi ifade edin ve liderlik rollerini üstlenin.',
         LineType.descendant: 'İş ortaklıkları için bu bölgeleri değerlendirin.',
-        LineType.midheaven: 'Kariyer atılımları için bu bölgelerde fırsatları takip edin.',
+        LineType.midheaven:
+            'Kariyer atılımları için bu bölgelerde fırsatları takip edin.',
         LineType.imumCoeli: 'Emeklilik veya aile yuvası kurmak için düşünün.',
       },
       'Ay': {
         LineType.ascendant: 'Duygusal şifa için bu bölgeleri ziyaret edin.',
-        LineType.descendant: 'Ruh eşinizi bu bölgelerde bulabilirsiniz.',
-        LineType.midheaven: 'Terapi veya şifa meslekleri için bu bölgeler idealdir.',
-        LineType.imumCoeli: 'Aile kökleriyle bağlantı kurmak için bu yerleri ziyaret edin.',
+        LineType.descendant:
+            'Bu bölgelerde derin duygusal bağlantı temaları keşfedilebilir.',
+        LineType.midheaven:
+            'Terapi veya şifa meslekleri için bu bölgeler idealdir.',
+        LineType.imumCoeli:
+            'Aile kökleriyle bağlantı kurmak için bu yerleri ziyaret edin.',
       },
       'Venüs': {
-        LineType.ascendant: 'Kişisel stil ve güzellik işleri için bu bölgeler mükemmel.',
+        LineType.ascendant:
+            'Kişisel stil ve güzellik işleri için bu bölgeler mükemmel.',
         LineType.descendant: 'Romantik tatiller ve balayı için ideal yerler.',
         LineType.midheaven: 'Sanat galerisi açmak veya moda işi için düşünün.',
-        LineType.imumCoeli: 'Güzel bir ev dekorasyonu bu bölgelerde ilham verir.',
+        LineType.imumCoeli:
+            'Güzel bir ev dekorasyonu bu bölgelerde ilham verir.',
       },
       'Jüpiter': {
-        LineType.ascendant: 'Yeni başlangıçlar için şanslı bölgeler. Risk alın!',
+        LineType.ascendant:
+            'Yeni başlangıçlar için şanslı bölgeler. Risk alın!',
         LineType.descendant: 'Uluslararası iş ortaklıkları kurun.',
         LineType.midheaven: 'Global kariyer fırsatlarını değerlendirin.',
         LineType.imumCoeli: 'Mülk yatırımları için değerlendirin.',
@@ -224,22 +316,31 @@ class PremiumAstrologyService {
 
     final enAdvice = {
       'Sun': {
-        LineType.ascendant: 'Express yourself and take on leadership roles in this region.',
+        LineType.ascendant:
+            'Express yourself and take on leadership roles in this region.',
         LineType.descendant: 'Evaluate this region for business partnerships.',
-        LineType.midheaven: 'Follow opportunities in this region for career breakthroughs.',
-        LineType.imumCoeli: 'Consider for retirement or establishing a family home.',
+        LineType.midheaven:
+            'Follow opportunities in this region for career breakthroughs.',
+        LineType.imumCoeli:
+            'Consider for retirement or establishing a family home.',
       },
       'Moon': {
         LineType.ascendant: 'Visit this region for emotional healing.',
-        LineType.descendant: 'You may find your soulmate in this region.',
-        LineType.midheaven: 'This region is ideal for therapy or healing professions.',
+        LineType.descendant:
+            'This region may offer themes of deep emotional connection.',
+        LineType.midheaven:
+            'This region is ideal for therapy or healing professions.',
         LineType.imumCoeli: 'Visit these places to connect with family roots.',
       },
       'Venus': {
-        LineType.ascendant: 'Perfect regions for personal style and beauty businesses.',
-        LineType.descendant: 'Ideal places for romantic holidays and honeymoons.',
-        LineType.midheaven: 'Consider for opening an art gallery or fashion business.',
-        LineType.imumCoeli: 'Beautiful home decoration is inspired in these regions.',
+        LineType.ascendant:
+            'Perfect regions for personal style and beauty businesses.',
+        LineType.descendant:
+            'Ideal places for romantic holidays and honeymoons.',
+        LineType.midheaven:
+            'Consider for opening an art gallery or fashion business.',
+        LineType.imumCoeli:
+            'Beautiful home decoration is inspired in these regions.',
       },
       'Jupiter': {
         LineType.ascendant: 'Lucky regions for new beginnings. Take risks!',
@@ -267,18 +368,47 @@ class PremiumAstrologyService {
     return true;
   }
 
-  List<PowerPlace> _generatePowerPlaces(DateTime birthDate, Random random, {AppLanguage language = AppLanguage.tr}) {
+  List<PowerPlace> _generatePowerPlaces(
+    DateTime birthDate,
+    Random random, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     final trCities = [
-      {'name': 'İstanbul', 'country': 'Türkiye', 'lat': 41.0082, 'lng': 28.9784},
+      {
+        'name': 'İstanbul',
+        'country': 'Türkiye',
+        'lat': 41.0082,
+        'lng': 28.9784,
+      },
       {'name': 'Paris', 'country': 'Fransa', 'lat': 48.8566, 'lng': 2.3522},
-      {'name': 'Londra', 'country': 'İngiltere', 'lat': 51.5074, 'lng': -0.1278},
+      {
+        'name': 'Londra',
+        'country': 'İngiltere',
+        'lat': 51.5074,
+        'lng': -0.1278,
+      },
       {'name': 'New York', 'country': 'ABD', 'lat': 40.7128, 'lng': -74.0060},
       {'name': 'Tokyo', 'country': 'Japonya', 'lat': 35.6762, 'lng': 139.6503},
       {'name': 'Dubai', 'country': 'BAE', 'lat': 25.2048, 'lng': 55.2708},
-      {'name': 'Barselona', 'country': 'İspanya', 'lat': 41.3851, 'lng': 2.1734},
+      {
+        'name': 'Barselona',
+        'country': 'İspanya',
+        'lat': 41.3851,
+        'lng': 2.1734,
+      },
       {'name': 'Roma', 'country': 'İtalya', 'lat': 41.9028, 'lng': 12.4964},
-      {'name': 'Amsterdam', 'country': 'Hollanda', 'lat': 52.3676, 'lng': 4.9041},
-      {'name': 'Sidney', 'country': 'Avustralya', 'lat': -33.8688, 'lng': 151.2093},
+      {
+        'name': 'Amsterdam',
+        'country': 'Hollanda',
+        'lat': 52.3676,
+        'lng': 4.9041,
+      },
+      {
+        'name': 'Sidney',
+        'country': 'Avustralya',
+        'lat': -33.8688,
+        'lng': 151.2093,
+      },
     ];
 
     final enCities = [
@@ -290,15 +420,41 @@ class PremiumAstrologyService {
       {'name': 'Dubai', 'country': 'UAE', 'lat': 25.2048, 'lng': 55.2708},
       {'name': 'Barcelona', 'country': 'Spain', 'lat': 41.3851, 'lng': 2.1734},
       {'name': 'Rome', 'country': 'Italy', 'lat': 41.9028, 'lng': 12.4964},
-      {'name': 'Amsterdam', 'country': 'Netherlands', 'lat': 52.3676, 'lng': 4.9041},
-      {'name': 'Sydney', 'country': 'Australia', 'lat': -33.8688, 'lng': 151.2093},
+      {
+        'name': 'Amsterdam',
+        'country': 'Netherlands',
+        'lat': 52.3676,
+        'lng': 4.9041,
+      },
+      {
+        'name': 'Sydney',
+        'country': 'Australia',
+        'lat': -33.8688,
+        'lng': 151.2093,
+      },
     ];
 
     final cities = language == AppLanguage.tr ? trCities : enCities;
 
-    final trEnergyTypes = ['Kariyer ve Başarı', 'Aşk ve Romantizm', 'Spiritüel Gelişim', 'Finansal Bereket', 'Yaratıcı İlham', 'Sağlık ve Şifa'];
-    final enEnergyTypes = ['Career and Success', 'Love and Romance', 'Spiritual Growth', 'Financial Abundance', 'Creative Inspiration', 'Health and Healing'];
-    final energyTypes = language == AppLanguage.tr ? trEnergyTypes : enEnergyTypes;
+    final trEnergyTypes = [
+      'Kariyer ve Başarı',
+      'Aşk ve Romantizm',
+      'Spiritüel Gelişim',
+      'Finansal Bereket',
+      'Yaratıcı İlham',
+      'Sağlık ve Şifa',
+    ];
+    final enEnergyTypes = [
+      'Career and Success',
+      'Love and Romance',
+      'Spiritual Growth',
+      'Financial Abundance',
+      'Creative Inspiration',
+      'Health and Healing',
+    ];
+    final energyTypes = language == AppLanguage.tr
+        ? trEnergyTypes
+        : enEnergyTypes;
 
     final planets = _getPlanetNames(language);
 
@@ -320,13 +476,23 @@ class PremiumAstrologyService {
         longitude: city['lng'] as double,
         activePlanets: activePlanets,
         energyType: energyType,
-        description: _getPowerPlaceDescription(city['name'] as String, energyType, activePlanets, language: language),
+        description: _getPowerPlaceDescription(
+          city['name'] as String,
+          energyType,
+          activePlanets,
+          language: language,
+        ),
         powerRating: 3 + random.nextInt(3),
       );
     }).toList();
   }
 
-  String _getPowerPlaceDescription(String city, String energyType, List<String> planets, {AppLanguage language = AppLanguage.tr}) {
+  String _getPowerPlaceDescription(
+    String city,
+    String energyType,
+    List<String> planets, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     if (language == AppLanguage.tr) {
       return '$city, sizin için $energyType enerjisi taşıyor. '
           '${planets.join(", ")} gezegenleri burada güçleniyor. '
@@ -340,7 +506,11 @@ class PremiumAstrologyService {
     }
   }
 
-  String _generateCartographyAnalysis(String userName, DateTime birthDate, {AppLanguage language = AppLanguage.tr}) {
+  String _generateCartographyAnalysis(
+    String userName,
+    DateTime birthDate, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     if (language == AppLanguage.tr) {
       return '''$userName, AstroCartography haritanız dünya üzerindeki enerji noktalarınızı gösteriyor.
 
@@ -383,7 +553,12 @@ Advice: Use this map as a reference when planning travel or considering relocati
         description: isFavorable
             ? _getFavorableDescription(purpose, random, language: language)
             : _getUnfavorableDescription(purpose, random, language: language),
-        supportingAspects: _getAspects(purpose, isFavorable, random, language: language),
+        supportingAspects: _getAspects(
+          purpose,
+          isFavorable,
+          random,
+          language: language,
+        ),
         score: isFavorable ? 60 + random.nextInt(40) : 20 + random.nextInt(40),
       );
 
@@ -406,14 +581,28 @@ Advice: Use this map as a reference when planning travel or considering relocati
       selectedDate: startDate,
       favorableWindows: favorableWindows.take(10).toList(),
       unfavorableWindows: unfavorableWindows.take(5).toList(),
-      moonPhaseAdvice: _getMoonPhaseAdvice(purpose, startDate, language: language),
+      moonPhaseAdvice: _getMoonPhaseAdvice(
+        purpose,
+        startDate,
+        language: language,
+      ),
       retrogradeWarning: _getRetrogradeWarning(startDate, language: language),
-      overallRecommendation: _getOverallRecommendation(purpose, favorableWindows, language: language),
-      optimalScore: favorableWindows.isNotEmpty ? favorableWindows.first.score : 50,
+      overallRecommendation: _getOverallRecommendation(
+        purpose,
+        favorableWindows,
+        language: language,
+      ),
+      optimalScore: favorableWindows.isNotEmpty
+          ? favorableWindows.first.score
+          : 50,
     );
   }
 
-  String _getFavorableDescription(ElectionalPurpose purpose, Random random, {AppLanguage language = AppLanguage.tr}) {
+  String _getFavorableDescription(
+    ElectionalPurpose purpose,
+    Random random, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     final trDescriptions = {
       ElectionalPurpose.wedding: [
         'Venüs-Jüpiter üçgeni evlilik için muhteşem',
@@ -460,16 +649,25 @@ Advice: Use this map as a reference when planning travel or considering relocati
       ],
     };
 
-    final descriptions = language == AppLanguage.tr ? trDescriptions : enDescriptions;
+    final descriptions = language == AppLanguage.tr
+        ? trDescriptions
+        : enDescriptions;
     final defaultDescs = language == AppLanguage.tr
         ? ['Genel olarak olumlu koşullar mevcut', 'Gezegen enerjileri uyumlu']
-        : ['Generally favorable conditions present', 'Planetary energies are harmonious'];
+        : [
+            'Generally favorable conditions present',
+            'Planetary energies are harmonious',
+          ];
 
     final purposeDescs = descriptions[purpose] ?? defaultDescs;
     return purposeDescs[random.nextInt(purposeDescs.length)];
   }
 
-  String _getUnfavorableDescription(ElectionalPurpose purpose, Random random, {AppLanguage language = AppLanguage.tr}) {
+  String _getUnfavorableDescription(
+    ElectionalPurpose purpose,
+    Random random, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     final trDescriptions = [
       'Ay boşlukta - önemli kararlar ertelenmeli',
       'Merkür retrosu etkili - sözleşmeler için riskli',
@@ -486,11 +684,18 @@ Advice: Use this map as a reference when planning travel or considering relocati
       'Venus in weak position - be careful with relationship matters',
     ];
 
-    final descriptions = language == AppLanguage.tr ? trDescriptions : enDescriptions;
+    final descriptions = language == AppLanguage.tr
+        ? trDescriptions
+        : enDescriptions;
     return descriptions[random.nextInt(descriptions.length)];
   }
 
-  List<String> _getAspects(ElectionalPurpose purpose, bool isFavorable, Random random, {AppLanguage language = AppLanguage.tr}) {
+  List<String> _getAspects(
+    ElectionalPurpose purpose,
+    bool isFavorable,
+    Random random, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     final trFavorable = [
       'Venüs üçgen Jüpiter',
       'Ay altıgen Güneş',
@@ -520,7 +725,9 @@ Advice: Use this map as a reference when planning travel or considering relocati
     ];
 
     final favorable = language == AppLanguage.tr ? trFavorable : enFavorable;
-    final unfavorable = language == AppLanguage.tr ? trUnfavorable : enUnfavorable;
+    final unfavorable = language == AppLanguage.tr
+        ? trUnfavorable
+        : enUnfavorable;
 
     final source = isFavorable ? favorable : unfavorable;
     final count = 2 + random.nextInt(3);
@@ -536,7 +743,11 @@ Advice: Use this map as a reference when planning travel or considering relocati
     return result;
   }
 
-  String _getMoonPhaseAdvice(ElectionalPurpose purpose, DateTime date, {AppLanguage language = AppLanguage.tr}) {
+  String _getMoonPhaseAdvice(
+    ElectionalPurpose purpose,
+    DateTime date, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     final dayOfMonth = date.day;
     final purposeName = purpose.localizedName(language);
 
@@ -563,7 +774,10 @@ Advice: Use this map as a reference when planning travel or considering relocati
     }
   }
 
-  String _getRetrogradeWarning(DateTime date, {AppLanguage language = AppLanguage.tr}) {
+  String _getRetrogradeWarning(
+    DateTime date, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     // Simplified retrograde check based on month
     final month = date.month;
 
@@ -584,7 +798,11 @@ Advice: Use this map as a reference when planning travel or considering relocati
     }
   }
 
-  String _getOverallRecommendation(ElectionalPurpose purpose, List<ElectionalWindow> windows, {AppLanguage language = AppLanguage.tr}) {
+  String _getOverallRecommendation(
+    ElectionalPurpose purpose,
+    List<ElectionalWindow> windows, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     final purposeName = purpose.localizedName(language);
 
     if (windows.isEmpty) {
@@ -595,7 +813,8 @@ Advice: Use this map as a reference when planning travel or considering relocati
 
     final best = windows.first;
     final dateStr = '${best.start.day}/${best.start.month}/${best.start.year}';
-    final timeStr = '${best.start.hour.toString().padLeft(2, '0')}:${best.start.minute.toString().padLeft(2, '0')}';
+    final timeStr =
+        '${best.start.hour.toString().padLeft(2, '0')}:${best.start.minute.toString().padLeft(2, '0')}';
 
     if (language == AppLanguage.tr) {
       return '$purposeName için en uygun zaman: $dateStr saat $timeStr. Bu zaman diliminde gezegen enerjileri sizin lehinize çalışıyor. Skor: ${best.score}/100. ${best.description}';
@@ -620,9 +839,15 @@ Advice: Use this map as a reference when planning travel or considering relocati
 
     final draconicSun = ZodiacSign.values[(natalSun.index + nodeOffset) % 12];
     final draconicMoon = ZodiacSign.values[(natalMoon.index + nodeOffset) % 12];
-    final draconicAscendant = ZodiacSign.values[(natalAscendant.index + nodeOffset) % 12];
+    final draconicAscendant =
+        ZodiacSign.values[(natalAscendant.index + nodeOffset) % 12];
 
-    final planets = _generateDraconicPlanets(birthDate, nodeOffset, random, language: language);
+    final planets = _generateDraconicPlanets(
+      birthDate,
+      nodeOffset,
+      random,
+      language: language,
+    );
 
     return DraconicChart(
       birthDate: birthDate,
@@ -631,17 +856,57 @@ Advice: Use this map as a reference when planning travel or considering relocati
       draconicAscendant: draconicAscendant,
       planets: planets,
       soulPurpose: _getSoulPurpose(draconicSun, language: language),
-      karmicLessons: _getKarmicLessons(draconicMoon, draconicAscendant, language: language),
+      karmicLessons: _getKarmicLessons(
+        draconicMoon,
+        draconicAscendant,
+        language: language,
+      ),
       spiritualGifts: _getSpiritualGifts(planets, language: language),
-      pastLifeIndicators: _getPastLifeIndicators(draconicSun, draconicMoon, language: language),
-      evolutionaryPath: _getEvolutionaryPath(draconicAscendant, language: language),
+      pastLifeIndicators: _getPastLifeIndicators(
+        draconicSun,
+        draconicMoon,
+        language: language,
+      ),
+      evolutionaryPath: _getEvolutionaryPath(
+        draconicAscendant,
+        language: language,
+      ),
     );
   }
 
-  List<DraconicPlanet> _generateDraconicPlanets(DateTime birthDate, int offset, Random random, {AppLanguage language = AppLanguage.tr}) {
-    final trPlanetNames = ['Güneş', 'Ay', 'Merkür', 'Venüs', 'Mars', 'Jüpiter', 'Satürn', 'Uranüs', 'Neptün', 'Pluto'];
-    final enPlanetNames = ['Sun', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto'];
-    final planetNames = language == AppLanguage.tr ? trPlanetNames : enPlanetNames;
+  List<DraconicPlanet> _generateDraconicPlanets(
+    DateTime birthDate,
+    int offset,
+    Random random, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
+    final trPlanetNames = [
+      'Güneş',
+      'Ay',
+      'Merkür',
+      'Venüs',
+      'Mars',
+      'Jüpiter',
+      'Satürn',
+      'Uranüs',
+      'Neptün',
+      'Pluto',
+    ];
+    final enPlanetNames = [
+      'Sun',
+      'Moon',
+      'Mercury',
+      'Venus',
+      'Mars',
+      'Jupiter',
+      'Saturn',
+      'Uranus',
+      'Neptune',
+      'Pluto',
+    ];
+    final planetNames = language == AppLanguage.tr
+        ? trPlanetNames
+        : enPlanetNames;
 
     return planetNames.map((name) {
       final signIndex = (random.nextInt(12) + offset) % 12;
@@ -654,76 +919,137 @@ Advice: Use this map as a reference when planning travel or considering relocati
         sign: sign,
         degree: degree,
         house: house,
-        interpretation: _getDraconicPlanetInterpretation(name, sign, house, language: language),
+        interpretation: _getDraconicPlanetInterpretation(
+          name,
+          sign,
+          house,
+          language: language,
+        ),
       );
     }).toList();
   }
 
-  String _getDraconicPlanetInterpretation(String planet, ZodiacSign sign, int house, {AppLanguage language = AppLanguage.tr}) {
+  String _getDraconicPlanetInterpretation(
+    String planet,
+    ZodiacSign sign,
+    int house, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     final signName = language == AppLanguage.tr ? sign.nameTr : sign.name;
 
     if (language == AppLanguage.tr) {
       final interpretations = {
-        'Güneş': 'Ruhunuzun özü $signName enerjisi taşıyor. $house. ev konumu, yaşam amacınızın bu alanla derinden bağlantılı olduğunu gösterir.',
-        'Ay': 'Ruhsal duygusal doğanız $signName kalitelerini yansıtıyor. $house. evde, geçmiş yaşam duygusal kalıplarınız bu alanda açığa çıkıyor.',
-        'Venüs': 'Ruhsal sevgi diliniz $signName üzerinden ifade buluyor. $house. ev, karmik ilişki temalarınızı işaret ediyor.',
-        'Mars': 'Ruhsal irade gücünüz $signName enerjisiyle besleniyor. $house. evde, geçmiş yaşam mücadelelerinizin izleri var.',
-        'Jüpiter': 'Ruhsal bilgeliğiniz $signName felsefesini taşıyor. $house. ev, spiritüel büyüme alanınızı gösteriyor.',
+        'Güneş':
+            'Ruhunuzun özü $signName enerjisi taşıyor. $house. ev konumu, yaşam amacınızın bu alanla derinden bağlantılı olduğunu gösterir.',
+        'Ay':
+            'Ruhsal duygusal doğanız $signName kalitelerini yansıtıyor. $house. evde, geçmiş yaşam duygusal kalıplarınız bu alanda açığa çıkıyor.',
+        'Venüs':
+            'Ruhsal sevgi diliniz $signName üzerinden ifade buluyor. $house. ev, karmik ilişki temalarınızı işaret ediyor.',
+        'Mars':
+            'Ruhsal irade gücünüz $signName enerjisiyle besleniyor. $house. evde, geçmiş yaşam mücadelelerinizin izleri var.',
+        'Jüpiter':
+            'Ruhsal bilgeliğiniz $signName felsefesini taşıyor. $house. ev, spiritüel büyüme alanınızı gösteriyor.',
       };
-      return interpretations[planet] ?? '$signName burcundaki $planet, ruhsal yolculuğunuzun önemli bir parçası. $house. ev konumu, bu enerjinin yaşamınızda nasıl aktif olduğunu gösterir.';
+      return interpretations[planet] ??
+          '$signName burcundaki $planet, ruhsal yolculuğunuzun önemli bir parçası. $house. ev konumu, bu enerjinin yaşamınızda nasıl aktif olduğunu gösterir.';
     } else {
       final interpretations = {
-        'Sun': 'Your soul essence carries $signName energy. The $house house position shows your life purpose is deeply connected to this area.',
-        'Moon': 'Your spiritual emotional nature reflects $signName qualities. In the $house house, your past life emotional patterns emerge in this area.',
-        'Venus': 'Your spiritual love language expresses through $signName. The $house house indicates your karmic relationship themes.',
-        'Mars': 'Your spiritual willpower is nourished by $signName energy. In the $house house, there are traces of your past life struggles.',
-        'Jupiter': 'Your spiritual wisdom carries $signName philosophy. The $house house shows your area of spiritual growth.',
+        'Sun':
+            'Your soul essence carries $signName energy. The $house house position shows your life purpose is deeply connected to this area.',
+        'Moon':
+            'Your spiritual emotional nature reflects $signName qualities. In the $house house, your past life emotional patterns emerge in this area.',
+        'Venus':
+            'Your spiritual love language expresses through $signName. The $house house indicates your karmic relationship themes.',
+        'Mars':
+            'Your spiritual willpower is nourished by $signName energy. In the $house house, there are traces of your past life struggles.',
+        'Jupiter':
+            'Your spiritual wisdom carries $signName philosophy. The $house house shows your area of spiritual growth.',
       };
-      return interpretations[planet] ?? '$planet in $signName is an important part of your spiritual journey. The $house house position shows how this energy is active in your life.';
+      return interpretations[planet] ??
+          '$planet in $signName is an important part of your spiritual journey. The $house house position shows how this energy is active in your life.';
     }
   }
 
-  String _getSoulPurpose(ZodiacSign draconicSun, {AppLanguage language = AppLanguage.tr}) {
+  String _getSoulPurpose(
+    ZodiacSign draconicSun, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     if (language == AppLanguage.tr) {
       final purposes = {
-        ZodiacSign.aries: 'Ruhunuz cesaret ve öncülük için buraya geldi. Yeni yollar açmak ve başkalarına ilham vermek sizin kutsal göreviniz.',
-        ZodiacSign.taurus: 'Ruhunuz değer ve istikrar yaratmak için enkarne oldu. Güzellik ve bolluk manifestasyonu sizin spiritüel hediyeniz.',
-        ZodiacSign.gemini: 'Ruhunuz iletişim köprüleri kurmak için burada. Bilgiyi yaymak ve bağlantılar oluşturmak kutsal amacınız.',
-        ZodiacSign.cancer: 'Ruhunuz şifa ve koruma için geldi. Başkalarını beslemek ve güvenli alanlar yaratmak sizin spiritüel misyonunuz.',
-        ZodiacSign.leo: 'Ruhunuz yaratıcı ifade ve liderlik için enkarne oldu. Işığınızla başkalarını aydınlatmak kutsal hediyeniz.',
-        ZodiacSign.virgo: 'Ruhunuz hizmet ve iyileştirme için burada. Mükemmelliği arayış ve başkalarına yardım etmek spiritüel amacınız.',
-        ZodiacSign.libra: 'Ruhunuz denge ve uyum yaratmak için geldi. İlişkilerde barış ve adalet getirmek kutsal göreviniz.',
-        ZodiacSign.scorpio: 'Ruhunuz dönüşüm ve şifa için enkarne oldu. Derin hakikatleri ortaya çıkarmak ve başkalarını dönüştürmek misyonunuz.',
-        ZodiacSign.sagittarius: 'Ruhunuz bilgelik arayışı ve öğretme için burada. Yüksek gerçekleri paylaşmak spiritüel hediyeniz.',
-        ZodiacSign.capricorn: 'Ruhunuz kalıcı yapılar kurmak için geldi. Topluma katkı sağlayan başarılar kutsal amacınız.',
-        ZodiacSign.aquarius: 'Ruhunuz insanlığa hizmet ve yenilik için enkarne oldu. Geleceği şekillendirmek spiritüel misyonunuz.',
-        ZodiacSign.pisces: 'Ruhunuz evrensel şefkat ve spiritüel birlik için burada. Sınırları aşan sevgi yaymak kutsal hediyeniz.',
+        ZodiacSign.aries:
+            'Ruhunuz cesaret ve öncülük için buraya geldi. Yeni yollar açmak ve başkalarına ilham vermek sizin kutsal göreviniz.',
+        ZodiacSign.taurus:
+            'Ruhunuz değer ve istikrar yaratmak için enkarne oldu. Güzellik ve bolluk manifestasyonu sizin spiritüel hediyeniz.',
+        ZodiacSign.gemini:
+            'Ruhunuz iletişim köprüleri kurmak için burada. Bilgiyi yaymak ve bağlantılar oluşturmak kutsal amacınız.',
+        ZodiacSign.cancer:
+            'Ruhunuz şifa ve koruma için geldi. Başkalarını beslemek ve güvenli alanlar yaratmak sizin spiritüel misyonunuz.',
+        ZodiacSign.leo:
+            'Ruhunuz yaratıcı ifade ve liderlik için enkarne oldu. Işığınızla başkalarını aydınlatmak kutsal hediyeniz.',
+        ZodiacSign.virgo:
+            'Ruhunuz hizmet ve iyileştirme için burada. Mükemmelliği arayış ve başkalarına yardım etmek spiritüel amacınız.',
+        ZodiacSign.libra:
+            'Ruhunuz denge ve uyum yaratmak için geldi. İlişkilerde barış ve adalet getirmek kutsal göreviniz.',
+        ZodiacSign.scorpio:
+            'Ruhunuz dönüşüm ve şifa için enkarne oldu. Derin hakikatleri ortaya çıkarmak ve başkalarını dönüştürmek misyonunuz.',
+        ZodiacSign.sagittarius:
+            'Ruhunuz bilgelik arayışı ve öğretme için burada. Yüksek gerçekleri paylaşmak spiritüel hediyeniz.',
+        ZodiacSign.capricorn:
+            'Ruhunuz kalıcı yapılar kurmak için geldi. Topluma katkı sağlayan başarılar kutsal amacınız.',
+        ZodiacSign.aquarius:
+            'Ruhunuz insanlığa hizmet ve yenilik için enkarne oldu. Geleceği şekillendirmek spiritüel misyonunuz.',
+        ZodiacSign.pisces:
+            'Ruhunuz evrensel şefkat ve spiritüel birlik için burada. Sınırları aşan sevgi yaymak kutsal hediyeniz.',
       };
-      return purposes[draconicSun] ?? 'Ruhunuz benzersiz bir amaçla bu dünyaya geldi.';
+      return purposes[draconicSun] ??
+          'Ruhunuz benzersiz bir amaçla bu dünyaya geldi.';
     } else {
       final purposes = {
-        ZodiacSign.aries: 'Your soul came here for courage and pioneering. Opening new paths and inspiring others is your sacred duty.',
-        ZodiacSign.taurus: 'Your soul incarnated to create value and stability. Beauty and abundance manifestation is your spiritual gift.',
-        ZodiacSign.gemini: 'Your soul is here to build bridges of communication. Spreading knowledge and creating connections is your sacred purpose.',
-        ZodiacSign.cancer: 'Your soul came for healing and protection. Nurturing others and creating safe spaces is your spiritual mission.',
-        ZodiacSign.leo: 'Your soul incarnated for creative expression and leadership. Illuminating others with your light is your sacred gift.',
-        ZodiacSign.virgo: 'Your soul is here for service and healing. The pursuit of perfection and helping others is your spiritual purpose.',
-        ZodiacSign.libra: 'Your soul came to create balance and harmony. Bringing peace and justice to relationships is your sacred duty.',
-        ZodiacSign.scorpio: 'Your soul incarnated for transformation and healing. Revealing deep truths and transforming others is your mission.',
-        ZodiacSign.sagittarius: 'Your soul is here for wisdom seeking and teaching. Sharing higher truths is your spiritual gift.',
-        ZodiacSign.capricorn: 'Your soul came to build lasting structures. Achievements that contribute to society is your sacred purpose.',
-        ZodiacSign.aquarius: 'Your soul incarnated to serve humanity and innovate. Shaping the future is your spiritual mission.',
-        ZodiacSign.pisces: 'Your soul is here for universal compassion and spiritual unity. Spreading love that transcends boundaries is your sacred gift.',
+        ZodiacSign.aries:
+            'Your soul came here for courage and pioneering. Opening new paths and inspiring others is your sacred duty.',
+        ZodiacSign.taurus:
+            'Your soul incarnated to create value and stability. Beauty and abundance manifestation is your spiritual gift.',
+        ZodiacSign.gemini:
+            'Your soul is here to build bridges of communication. Spreading knowledge and creating connections is your sacred purpose.',
+        ZodiacSign.cancer:
+            'Your soul came for healing and protection. Nurturing others and creating safe spaces is your spiritual mission.',
+        ZodiacSign.leo:
+            'Your soul incarnated for creative expression and leadership. Illuminating others with your light is your sacred gift.',
+        ZodiacSign.virgo:
+            'Your soul is here for service and healing. The pursuit of perfection and helping others is your spiritual purpose.',
+        ZodiacSign.libra:
+            'Your soul came to create balance and harmony. Bringing peace and justice to relationships is your sacred duty.',
+        ZodiacSign.scorpio:
+            'Your soul incarnated for transformation and healing. Revealing deep truths and transforming others is your mission.',
+        ZodiacSign.sagittarius:
+            'Your soul is here for wisdom seeking and teaching. Sharing higher truths is your spiritual gift.',
+        ZodiacSign.capricorn:
+            'Your soul came to build lasting structures. Achievements that contribute to society is your sacred purpose.',
+        ZodiacSign.aquarius:
+            'Your soul incarnated to serve humanity and innovate. Shaping the future is your spiritual mission.',
+        ZodiacSign.pisces:
+            'Your soul is here for universal compassion and spiritual unity. Spreading love that transcends boundaries is your sacred gift.',
       };
-      return purposes[draconicSun] ?? 'Your soul came to this world with a unique purpose.';
+      return purposes[draconicSun] ??
+          'Your soul came to this world with a unique purpose.';
     }
   }
 
-  String _getKarmicLessons(ZodiacSign moon, ZodiacSign ascendant, {AppLanguage language = AppLanguage.tr}) {
+  String _getKarmicLessons(
+    ZodiacSign moon,
+    ZodiacSign ascendant, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     final moonName = language == AppLanguage.tr ? moon.nameTr : moon.name;
-    final ascendantName = language == AppLanguage.tr ? ascendant.nameTr : ascendant.name;
-    final moonElement = language == AppLanguage.tr ? moon.element.nameTr : moon.element.name;
-    final ascendantModality = language == AppLanguage.tr ? ascendant.modality.nameTr : ascendant.modality.name;
+    final ascendantName = language == AppLanguage.tr
+        ? ascendant.nameTr
+        : ascendant.name;
+    final moonElement = language == AppLanguage.tr
+        ? moon.element.nameTr
+        : moon.element.name;
+    final ascendantModality = language == AppLanguage.tr
+        ? ascendant.modality.nameTr
+        : ascendant.modality.name;
 
     if (language == AppLanguage.tr) {
       return '''Drakonik Ay'ınız $moonName burcunda, duygusal karmik kalıplarınızı gösteriyor.
@@ -750,17 +1076,26 @@ Your karmic lessons:
     }
   }
 
-  String _getSpiritualGifts(List<DraconicPlanet> planets, {AppLanguage language = AppLanguage.tr}) {
+  String _getSpiritualGifts(
+    List<DraconicPlanet> planets, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     final gifts = <String>[];
 
     for (final planet in planets.take(5)) {
-      final signName = language == AppLanguage.tr ? planet.sign.nameTr : planet.sign.name;
+      final signName = language == AppLanguage.tr
+          ? planet.sign.nameTr
+          : planet.sign.name;
       if (planet.house == 9 || planet.house == 12) {
-        final giftType = language == AppLanguage.tr ? 'Spiritüel sezgi' : 'Spiritual intuition';
+        final giftType = language == AppLanguage.tr
+            ? 'Spiritüel sezgi'
+            : 'Spiritual intuition';
         gifts.add('${planet.planet} $signName - $giftType');
       }
       if (planet.house == 5 || planet.house == 1) {
-        final giftType = language == AppLanguage.tr ? 'Yaratıcı güç' : 'Creative power';
+        final giftType = language == AppLanguage.tr
+            ? 'Yaratıcı güç'
+            : 'Creative power';
         gifts.add('${planet.planet} $signName - $giftType');
       }
     }
@@ -775,7 +1110,9 @@ Your karmic lessons:
       }
     }
 
-    final title = language == AppLanguage.tr ? 'Spiritüel hediyeleriniz:' : 'Your spiritual gifts:';
+    final title = language == AppLanguage.tr
+        ? 'Spiritüel hediyeleriniz:'
+        : 'Your spiritual gifts:';
     final footer = language == AppLanguage.tr
         ? 'Bu yetenekler geçmiş yaşamlardan taşıdığınız bilgeliği temsil eder.'
         : 'These abilities represent wisdom carried from past lives.';
@@ -783,12 +1120,22 @@ Your karmic lessons:
     return '$title\n\n${gifts.map((g) => '• $g').join('\n')}\n\n$footer';
   }
 
-  String _getPastLifeIndicators(ZodiacSign sun, ZodiacSign moon, {AppLanguage language = AppLanguage.tr}) {
+  String _getPastLifeIndicators(
+    ZodiacSign sun,
+    ZodiacSign moon, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     final sunName = language == AppLanguage.tr ? sun.nameTr : sun.name;
     final moonName = language == AppLanguage.tr ? moon.nameTr : moon.name;
-    final sunElement = language == AppLanguage.tr ? sun.element.nameTr : sun.element.name;
-    final moonElement = language == AppLanguage.tr ? moon.element.nameTr : moon.element.name;
-    final moonModality = language == AppLanguage.tr ? moon.modality.nameTr : moon.modality.name;
+    final sunElement = language == AppLanguage.tr
+        ? sun.element.nameTr
+        : sun.element.name;
+    final moonElement = language == AppLanguage.tr
+        ? moon.element.nameTr
+        : moon.element.name;
+    final moonModality = language == AppLanguage.tr
+        ? moon.modality.nameTr
+        : moon.modality.name;
 
     if (language == AppLanguage.tr) {
       return '''Drakonik haritanız, ruhunuzun geçmiş yaşam deneyimlerine dair ipuçları taşıyor.
@@ -819,11 +1166,22 @@ Strong indicators:
     }
   }
 
-  String _getEvolutionaryPath(ZodiacSign ascendant, {AppLanguage language = AppLanguage.tr}) {
-    final ascendantName = language == AppLanguage.tr ? ascendant.nameTr : ascendant.name;
-    final element = language == AppLanguage.tr ? ascendant.element.nameTr : ascendant.element.name;
-    final modality = language == AppLanguage.tr ? ascendant.modality.nameTr : ascendant.modality.name;
-    final traits = ascendant.traits.take(2).join(language == AppLanguage.tr ? ' ve ' : ' and ');
+  String _getEvolutionaryPath(
+    ZodiacSign ascendant, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
+    final ascendantName = language == AppLanguage.tr
+        ? ascendant.nameTr
+        : ascendant.name;
+    final element = language == AppLanguage.tr
+        ? ascendant.element.nameTr
+        : ascendant.element.name;
+    final modality = language == AppLanguage.tr
+        ? ascendant.modality.nameTr
+        : ascendant.modality.name;
+    final traits = ascendant.traits
+        .take(2)
+        .join(language == AppLanguage.tr ? ' ve ' : ' and ');
 
     if (language == AppLanguage.tr) {
       return '''Drakonik Yükseleniz $ascendantName, bu yaşamdaki evrimsel yönünüzü gösteriyor.
@@ -862,8 +1220,16 @@ Every challenge is a step towards a higher level of consciousness.''';
   }) {
     final random = Random(birthDate.millisecondsSinceEpoch);
 
-    final trAspects = ['Güneş ile üçgen', 'Ay ile altıgen', 'Venüs ile kavuşum'];
-    final enAspects = ['Trine with Sun', 'Sextile with Moon', 'Conjunction with Venus'];
+    final trAspects = [
+      'Güneş ile üçgen',
+      'Ay ile altıgen',
+      'Venüs ile kavuşum',
+    ];
+    final enAspects = [
+      'Trine with Sun',
+      'Sextile with Moon',
+      'Conjunction with Venus',
+    ];
     final aspectList = language == AppLanguage.tr ? trAspects : enAspects;
 
     final asteroids = Asteroid.values.map((asteroid) {
@@ -883,13 +1249,22 @@ Every challenge is a step towards a higher level of consciousness.''';
         degree: degree,
         house: house,
         aspects: aspects,
-        interpretation: _getAsteroidInterpretation(asteroid, sign, house, language: language),
+        interpretation: _getAsteroidInterpretation(
+          asteroid,
+          sign,
+          house,
+          language: language,
+        ),
       );
     }).toList();
 
-    final chironPos = asteroids.firstWhere((a) => a.asteroid == Asteroid.chiron);
+    final chironPos = asteroids.firstWhere(
+      (a) => a.asteroid == Asteroid.chiron,
+    );
     final ceresPos = asteroids.firstWhere((a) => a.asteroid == Asteroid.ceres);
-    final pallasPos = asteroids.firstWhere((a) => a.asteroid == Asteroid.pallas);
+    final pallasPos = asteroids.firstWhere(
+      (a) => a.asteroid == Asteroid.pallas,
+    );
     final junoPos = asteroids.firstWhere((a) => a.asteroid == Asteroid.juno);
     final vestaPos = asteroids.firstWhere((a) => a.asteroid == Asteroid.vesta);
 
@@ -901,14 +1276,26 @@ Every challenge is a step towards a higher level of consciousness.''';
       pallas: _getPallasAnalysis(pallasPos, language: language),
       juno: _getJunoAnalysis(junoPos, language: language),
       vesta: _getVestaAnalysis(vestaPos, language: language),
-      overallAnalysis: _getOverallAsteroidAnalysis(asteroids, language: language),
+      overallAnalysis: _getOverallAsteroidAnalysis(
+        asteroids,
+        language: language,
+      ),
     );
   }
 
-  String _getAsteroidInterpretation(Asteroid asteroid, ZodiacSign sign, int house, {AppLanguage language = AppLanguage.tr}) {
-    final asteroidName = language == AppLanguage.tr ? asteroid.nameTr : asteroid.name;
+  String _getAsteroidInterpretation(
+    Asteroid asteroid,
+    ZodiacSign sign,
+    int house, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
+    final asteroidName = language == AppLanguage.tr
+        ? asteroid.nameTr
+        : asteroid.name;
     final signName = language == AppLanguage.tr ? sign.nameTr : sign.name;
-    final elementName = language == AppLanguage.tr ? sign.element.nameTr : sign.element.name;
+    final elementName = language == AppLanguage.tr
+        ? sign.element.nameTr
+        : sign.element.name;
     final theme = _getAsteroidTheme(asteroid, language);
 
     if (language == AppLanguage.tr) {
@@ -936,9 +1323,16 @@ Every challenge is a step towards a higher level of consciousness.''';
     return enThemes[asteroid] ?? 'Special cosmic influence';
   }
 
-  String _getChironAnalysis(AsteroidPosition pos, {AppLanguage language = AppLanguage.tr}) {
-    final signName = language == AppLanguage.tr ? pos.sign.nameTr : pos.sign.name;
-    final elementName = language == AppLanguage.tr ? pos.sign.element.nameTr : pos.sign.element.name;
+  String _getChironAnalysis(
+    AsteroidPosition pos, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
+    final signName = language == AppLanguage.tr
+        ? pos.sign.nameTr
+        : pos.sign.name;
+    final elementName = language == AppLanguage.tr
+        ? pos.sign.element.nameTr
+        : pos.sign.element.name;
 
     if (language == AppLanguage.tr) {
       return '''Kiron - Yaralı Şifacı
@@ -963,9 +1357,16 @@ Your healing journey begins with accepting your wound and transforming this expe
     }
   }
 
-  String _getCeresAnalysis(AsteroidPosition pos, {AppLanguage language = AppLanguage.tr}) {
-    final signName = language == AppLanguage.tr ? pos.sign.nameTr : pos.sign.name;
-    final modalityName = language == AppLanguage.tr ? pos.sign.modality.nameTr : pos.sign.modality.name;
+  String _getCeresAnalysis(
+    AsteroidPosition pos, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
+    final signName = language == AppLanguage.tr
+        ? pos.sign.nameTr
+        : pos.sign.name;
+    final modalityName = language == AppLanguage.tr
+        ? pos.sign.modality.nameTr
+        : pos.sign.modality.name;
 
     if (language == AppLanguage.tr) {
       return '''Ceres - Besleme ve Bakım
@@ -990,9 +1391,16 @@ Ceres also represents loss and return cycles. Your experiences in this position 
     }
   }
 
-  String _getPallasAnalysis(AsteroidPosition pos, {AppLanguage language = AppLanguage.tr}) {
-    final signName = language == AppLanguage.tr ? pos.sign.nameTr : pos.sign.name;
-    final elementName = language == AppLanguage.tr ? pos.sign.element.nameTr : pos.sign.element.name;
+  String _getPallasAnalysis(
+    AsteroidPosition pos, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
+    final signName = language == AppLanguage.tr
+        ? pos.sign.nameTr
+        : pos.sign.name;
+    final elementName = language == AppLanguage.tr
+        ? pos.sign.element.nameTr
+        : pos.sign.element.name;
 
     if (language == AppLanguage.tr) {
       return '''Pallas Athena - Bilgelik ve Strateji
@@ -1017,9 +1425,16 @@ Pallas also represents father-daughter dynamics and feminine wisdom. This positi
     }
   }
 
-  String _getJunoAnalysis(AsteroidPosition pos, {AppLanguage language = AppLanguage.tr}) {
-    final signName = language == AppLanguage.tr ? pos.sign.nameTr : pos.sign.name;
-    final modalityName = language == AppLanguage.tr ? pos.sign.modality.nameTr : pos.sign.modality.name;
+  String _getJunoAnalysis(
+    AsteroidPosition pos, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
+    final signName = language == AppLanguage.tr
+        ? pos.sign.nameTr
+        : pos.sign.name;
+    final modalityName = language == AppLanguage.tr
+        ? pos.sign.modality.nameTr
+        : pos.sign.modality.name;
 
     if (language == AppLanguage.tr) {
       return '''Juno - Evlilik ve Bağlılık
@@ -1044,9 +1459,16 @@ With strong or challenging Juno aspects, power balances and equality struggles m
     }
   }
 
-  String _getVestaAnalysis(AsteroidPosition pos, {AppLanguage language = AppLanguage.tr}) {
-    final signName = language == AppLanguage.tr ? pos.sign.nameTr : pos.sign.name;
-    final elementName = language == AppLanguage.tr ? pos.sign.element.nameTr : pos.sign.element.name;
+  String _getVestaAnalysis(
+    AsteroidPosition pos, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
+    final signName = language == AppLanguage.tr
+        ? pos.sign.nameTr
+        : pos.sign.name;
+    final elementName = language == AppLanguage.tr
+        ? pos.sign.element.nameTr
+        : pos.sign.element.name;
 
     if (language == AppLanguage.tr) {
       return '''Vesta - Kutsal Alev ve Adanmışlık
@@ -1071,7 +1493,10 @@ Vesta also represents the need for solitude and periods of withdrawal into yours
     }
   }
 
-  String _getOverallAsteroidAnalysis(List<AsteroidPosition> asteroids, {AppLanguage language = AppLanguage.tr}) {
+  String _getOverallAsteroidAnalysis(
+    List<AsteroidPosition> asteroids, {
+    AppLanguage language = AppLanguage.tr,
+  }) {
     final elements = <Element, int>{};
     for (final pos in asteroids) {
       elements[pos.sign.element] = (elements[pos.sign.element] ?? 0) + 1;
@@ -1081,7 +1506,9 @@ Vesta also represents the need for solitude and periods of withdrawal into yours
         .reduce((a, b) => a.value > b.value ? a : b)
         .key;
 
-    final elementName = language == AppLanguage.tr ? dominantElement.nameTr : dominantElement.name;
+    final elementName = language == AppLanguage.tr
+        ? dominantElement.nameTr
+        : dominantElement.name;
 
     if (language == AppLanguage.tr) {
       return '''Asteroid Haritası Genel Analizi

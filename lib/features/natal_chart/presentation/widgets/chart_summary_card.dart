@@ -20,10 +20,16 @@ class ChartSummaryCard extends ConsumerWidget {
     final sunSign = chart.sunSign;
     final signColor = zodiac.ZodiacSignExtension(sunSign).color;
     final signSymbol = zodiac.ZodiacSignExtension(sunSign).symbol;
-    final signName = zodiac.ZodiacSignExtension(sunSign).localizedName(language);
-    final elementName = zodiac.ElementExtension(sunSign.element).localizedName(language);
+    final signName = zodiac.ZodiacSignExtension(
+      sunSign,
+    ).localizedName(language);
+    final elementName = zodiac.ElementExtension(
+      sunSign.element,
+    ).localizedName(language);
     final elementSymbol = zodiac.ElementExtension(sunSign.element).symbol;
-    final modalityName = zodiac.ModalityExtension(sunSign.modality).localizedName(language);
+    final modalityName = zodiac.ModalityExtension(
+      sunSign.modality,
+    ).localizedName(language);
 
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -128,10 +134,18 @@ class ChartSummaryCard extends ConsumerWidget {
           DeepInterpretationCard(
             title: '$signName ${L10nService.get('chart.your_sun', language)}',
             summary: _getSunSignSummary(sunSign, language),
-            deepInterpretation: _getSunSignDeepInterpretation(sunSign, language),
+            deepInterpretation: _getSunSignDeepInterpretation(
+              sunSign,
+              language,
+            ),
             icon: Icons.wb_sunny,
             accentColor: signColor,
-            relatedTerms: [signName, elementName, modalityName, L10nService.get('planets.sun', language)],
+            relatedTerms: [
+              signName,
+              elementName,
+              modalityName,
+              L10nService.get('planets.sun', language),
+            ],
           ),
         ],
       ),
@@ -143,7 +157,10 @@ class ChartSummaryCard extends ConsumerWidget {
     return L10nService.get('chart.sun_sign_summary.$signKey', language);
   }
 
-  String _getSunSignDeepInterpretation(zodiac.ZodiacSign sign, AppLanguage language) {
+  String _getSunSignDeepInterpretation(
+    zodiac.ZodiacSign sign,
+    AppLanguage language,
+  ) {
     final signKey = sign.name.toLowerCase();
     return L10nService.get('chart.sun_sign_interpretation.$signKey', language);
   }

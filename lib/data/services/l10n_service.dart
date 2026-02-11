@@ -204,7 +204,10 @@ class L10nService {
 
   /// Get a list of maps from a translation key
   /// Returns empty list if key is not found or is not a list of maps
-  static List<Map<String, String>> getMapList(String key, AppLanguage language) {
+  static List<Map<String, String>> getMapList(
+    String key,
+    AppLanguage language,
+  ) {
     if (!_translations.containsKey(language)) {
       _logMissingKeyForAIRepair(key, language, 'LOCALE_NOT_LOADED');
       return [];
@@ -268,13 +271,12 @@ class L10nService {
       'timestamp': DateTime.now().toIso8601String(),
     };
 
-    developer.log(
-      'MISSING_L10N_KEY: $logData',
-      name: 'L10nService',
-    );
+    developer.log('MISSING_L10N_KEY: $logData', name: 'L10nService');
 
     if (kDebugMode) {
-      debugPrint('L10nService: Missing key "$key" for ${language.name} ($reason)');
+      debugPrint(
+        'L10nService: Missing key "$key" for ${language.name} ($reason)',
+      );
     }
 
     // TODO: Trigger AI auto-repair hook (non-blocking)
@@ -319,7 +321,10 @@ class L10nService {
   }
 
   /// Flatten nested JSON keys into dot-notation for key counting
-  static Set<String> _flattenKeys(Map<String, dynamic> map, [String prefix = '']) {
+  static Set<String> _flattenKeys(
+    Map<String, dynamic> map, [
+    String prefix = '',
+  ]) {
     final keys = <String>{};
 
     for (final entry in map.entries) {
@@ -394,5 +399,8 @@ String tr(String key, AppLanguage language) => L10nService.get(key, language);
 
 /// Global convenience function for translation with parameters
 /// Usage: trParams('greeting', AppLanguage.en, params: {'name': 'John'})
-String trParams(String key, AppLanguage language, {required Map<String, String> params}) =>
-    L10nService.getWithParams(key, language, params: params);
+String trParams(
+  String key,
+  AppLanguage language, {
+  required Map<String, String> params,
+}) => L10nService.getWithParams(key, language, params: params);

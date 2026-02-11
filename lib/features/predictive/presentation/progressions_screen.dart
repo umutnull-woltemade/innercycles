@@ -67,22 +67,30 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
                 const Text('', style: TextStyle(fontSize: 64)),
                 const SizedBox(height: 16),
                 Text(
-                  L10nService.get('screens.progressions.profile_not_found', language),
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        color: Colors.white,
-                      ),
+                  L10nService.get(
+                    'screens.progressions.profile_not_found',
+                    language,
+                  ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleLarge?.copyWith(color: Colors.white),
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  L10nService.get('screens.progressions.enter_birth_info', language),
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: Colors.white70,
-                      ),
+                  L10nService.get(
+                    'screens.progressions.enter_birth_info',
+                    language,
+                  ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodyMedium?.copyWith(color: Colors.white70),
                 ),
                 const SizedBox(height: 24),
                 ElevatedButton(
                   onPressed: () => context.pop(),
-                  child: Text(L10nService.get('screens.progressions.go_back', language)),
+                  child: Text(
+                    L10nService.get('screens.progressions.go_back', language),
+                  ),
                 ),
               ],
             ),
@@ -107,7 +115,11 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
                       _buildProfileCard(isDark, userProfile, language),
                       const SizedBox(height: AppConstants.spacingLg),
                       if (_progressions != null) ...[
-                        _buildProgressedPositions(isDark, userProfile, language),
+                        _buildProgressedPositions(
+                          isDark,
+                          userProfile,
+                          language,
+                        ),
                         const SizedBox(height: AppConstants.spacingMd),
                         _buildLifePhaseCard(isDark, language),
                         const SizedBox(height: AppConstants.spacingMd),
@@ -124,8 +136,14 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
                         // Kadim Not
                         KadimNotCard(
                           category: KadimCategory.astrology,
-                          title: L10nService.get('screens.progressions.kadim_title', language),
-                          content: L10nService.get('screens.progressions.kadim_content', language),
+                          title: L10nService.get(
+                            'screens.progressions.kadim_title',
+                            language,
+                          ),
+                          content: L10nService.get(
+                            'screens.progressions.kadim_content',
+                            language,
+                          ),
                           icon: Icons.trending_up,
                         ),
                         const SizedBox(height: AppConstants.spacingXl),
@@ -141,12 +159,19 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
                         const SizedBox(height: AppConstants.spacingLg),
                       ] else ...[
                         const SizedBox(height: 100),
-                        const CircularProgressIndicator(color: AppColors.auroraStart),
+                        const CircularProgressIndicator(
+                          color: AppColors.auroraStart,
+                        ),
                         const SizedBox(height: 16),
                         Text(
-                          L10nService.get('screens.progressions.calculating', language),
+                          L10nService.get(
+                            'screens.progressions.calculating',
+                            language,
+                          ),
                           style: TextStyle(
-                            color: isDark ? Colors.white70 : AppColors.textLight,
+                            color: isDark
+                                ? Colors.white70
+                                : AppColors.textLight,
                           ),
                         ),
                       ],
@@ -176,7 +201,11 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
           Expanded(
             child: Row(
               children: [
-                const Icon(Icons.trending_up, color: AppColors.auroraStart, size: 24),
+                const Icon(
+                  Icons.trending_up,
+                  color: AppColors.auroraStart,
+                  size: 24,
+                ),
                 const SizedBox(width: 8),
                 Text(
                   L10nService.get('screens.progressions.title', language),
@@ -213,7 +242,11 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
     );
   }
 
-  Widget _buildProfileCard(bool isDark, UserProfile userProfile, AppLanguage language) {
+  Widget _buildProfileCard(
+    bool isDark,
+    UserProfile userProfile,
+    AppLanguage language,
+  ) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -227,11 +260,7 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
         children: [
           Row(
             children: [
-              Icon(
-                Icons.person,
-                color: AppColors.auroraStart,
-                size: 20,
-              ),
+              Icon(Icons.person, color: AppColors.auroraStart, size: 20),
               const SizedBox(width: 8),
               Text(
                 L10nService.get('screens.progressions.profile_info', language),
@@ -244,13 +273,39 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
             ],
           ),
           const SizedBox(height: AppConstants.spacingMd),
-          _buildInfoRow(isDark, Icons.person_outline, L10nService.get('screens.progressions.name', language), userProfile.name ?? L10nService.get('screens.progressions.user', language)),
-          _buildInfoRow(isDark, Icons.cake_outlined, L10nService.get('birth_date', language), _formatDate(userProfile.birthDate, language)),
-          _buildInfoRow(isDark, Icons.wb_sunny_outlined, L10nService.get('sun_sign', language), userProfile.sunSign.localizedName(language)),
+          _buildInfoRow(
+            isDark,
+            Icons.person_outline,
+            L10nService.get('screens.progressions.name', language),
+            userProfile.name ??
+                L10nService.get('screens.progressions.user', language),
+          ),
+          _buildInfoRow(
+            isDark,
+            Icons.cake_outlined,
+            L10nService.get('birth_date', language),
+            _formatDate(userProfile.birthDate, language),
+          ),
+          _buildInfoRow(
+            isDark,
+            Icons.wb_sunny_outlined,
+            L10nService.get('sun_sign', language),
+            userProfile.sunSign.localizedName(language),
+          ),
           if (userProfile.moonSign != null)
-            _buildInfoRow(isDark, Icons.nightlight_outlined, L10nService.get('moon_sign', language), userProfile.moonSign!.localizedName(language)),
+            _buildInfoRow(
+              isDark,
+              Icons.nightlight_outlined,
+              L10nService.get('moon_sign', language),
+              userProfile.moonSign!.localizedName(language),
+            ),
           if (userProfile.risingSign != null)
-            _buildInfoRow(isDark, Icons.arrow_upward, L10nService.get('rising_sign', language), userProfile.risingSign!.localizedName(language)),
+            _buildInfoRow(
+              isDark,
+              Icons.arrow_upward,
+              L10nService.get('rising_sign', language),
+              userProfile.risingSign!.localizedName(language),
+            ),
         ],
       ),
     );
@@ -261,7 +316,11 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
       padding: const EdgeInsets.symmetric(vertical: 4),
       child: Row(
         children: [
-          Icon(icon, size: 16, color: isDark ? Colors.white54 : AppColors.textLight),
+          Icon(
+            icon,
+            size: 16,
+            color: isDark ? Colors.white54 : AppColors.textLight,
+          ),
           const SizedBox(width: 8),
           Text(
             '$label: ',
@@ -310,7 +369,11 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
     return monthKeys[month - 1];
   }
 
-  Widget _buildProgressedPositions(bool isDark, UserProfile userProfile, AppLanguage language) {
+  Widget _buildProgressedPositions(
+    bool isDark,
+    UserProfile userProfile,
+    AppLanguage language,
+  ) {
     final natalSun = userProfile.sunSign;
     final natalMoon = userProfile.moonSign ?? userProfile.sunSign;
     final natalAscendant = userProfile.risingSign ?? userProfile.sunSign;
@@ -337,12 +400,15 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
             children: [
               Text(
                 L10nService.get('screens.progressions.positions', language),
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
               ),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 6,
+                ),
                 decoration: BoxDecoration(
                   color: AppColors.starGold.withValues(alpha: 0.2),
                   borderRadius: BorderRadius.circular(AppConstants.radiusFull),
@@ -350,9 +416,9 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
                 child: Text(
                   '${_progressions!.progressedAge} ${L10nService.get('screens.progressions.age', language)}',
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: AppColors.starGold,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    color: AppColors.starGold,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ],
@@ -461,30 +527,27 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
         children: [
           Text(icon, style: const TextStyle(fontSize: 18)),
           const SizedBox(height: 4),
-          Text(
-            name,
-            style: Theme.of(context).textTheme.labelSmall,
-          ),
+          Text(name, style: Theme.of(context).textTheme.labelSmall),
           const SizedBox(height: 4),
-          Text(
-            progressed.symbol,
-            style: const TextStyle(fontSize: 16),
-          ),
+          Text(progressed.symbol, style: const TextStyle(fontSize: 16)),
           Text(
             progressed.localizedName(language),
-            style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.labelSmall?.copyWith(fontWeight: FontWeight.bold),
             textAlign: TextAlign.center,
           ),
           if (hasChanged) ...[
             const SizedBox(height: 2),
             Text(
-              L10nService.get('screens.progressions.from', language).replaceAll('{sign}', natal.localizedName(language)),
+              L10nService.get(
+                'screens.progressions.from',
+                language,
+              ).replaceAll('{sign}', natal.localizedName(language)),
               style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                    color: AppColors.starGold,
-                    fontSize: 8,
-                  ),
+                color: AppColors.starGold,
+                fontSize: 8,
+              ),
             ),
           ],
         ],
@@ -516,19 +579,22 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
               ),
               const SizedBox(width: 12),
               Text(
-                L10nService.get('screens.progressions.current_life_phase', language),
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+                L10nService.get(
+                  'screens.progressions.current_life_phase',
+                  language,
+                ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
               ),
             ],
           ),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
             _progressions!.currentLifePhase,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  height: 1.6,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.bodyMedium?.copyWith(height: 1.6),
           ),
         ],
       ),
@@ -558,19 +624,22 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
               const Icon(Icons.favorite, color: Colors.pink),
               const SizedBox(width: 8),
               Text(
-                L10nService.get('screens.progressions.emotional_theme', language),
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+                L10nService.get(
+                  'screens.progressions.emotional_theme',
+                  language,
+                ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
               ),
             ],
           ),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
             _progressions!.emotionalTheme,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  height: 1.6,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.bodyMedium?.copyWith(height: 1.6),
           ),
         ],
       ),
@@ -597,23 +666,30 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
                   color: Colors.orange.withValues(alpha: 0.2),
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: const Icon(Icons.auto_awesome, color: Colors.orange, size: 20),
+                child: const Icon(
+                  Icons.auto_awesome,
+                  color: Colors.orange,
+                  size: 20,
+                ),
               ),
               const SizedBox(width: 12),
               Text(
-                L10nService.get('screens.progressions.identity_evolution', language),
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+                L10nService.get(
+                  'screens.progressions.identity_evolution',
+                  language,
+                ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
               ),
             ],
           ),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
             _progressions!.identityEvolution,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  height: 1.6,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.bodyMedium?.copyWith(height: 1.6),
           ),
         ],
       ),
@@ -634,9 +710,9 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
         children: [
           Text(
             L10nService.get('screens.progressions.active_aspects', language),
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: AppConstants.spacingMd),
           ..._progressions!.activeAspects.map((aspect) {
@@ -657,8 +733,8 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
                       Text(
                         'P.${aspect.progressedPlanet} ${aspect.type.symbol} N.${aspect.natalPlanet}',
                         style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                              fontWeight: FontWeight.bold,
-                            ),
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                       const Spacer(),
                       Container(
@@ -673,8 +749,17 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
                           borderRadius: BorderRadius.circular(4),
                         ),
                         child: Text(
-                          aspect.isApplying ? L10nService.get('screens.progressions.applying', language) : L10nService.get('screens.progressions.separating', language),
-                          style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                          aspect.isApplying
+                              ? L10nService.get(
+                                  'screens.progressions.applying',
+                                  language,
+                                )
+                              : L10nService.get(
+                                  'screens.progressions.separating',
+                                  language,
+                                ),
+                          style: Theme.of(context).textTheme.labelSmall
+                              ?.copyWith(
                                 color: aspect.isApplying
                                     ? Colors.green
                                     : Colors.orange,
@@ -721,10 +806,13 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
               ),
               const SizedBox(width: 12),
               Text(
-                L10nService.get('screens.progressions.significant_events', language),
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+                L10nService.get(
+                  'screens.progressions.significant_events',
+                  language,
+                ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
               ),
             ],
           ),
@@ -748,10 +836,7 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
               ),
               child: Row(
                 children: [
-                  Text(
-                    event.type.icon,
-                    style: const TextStyle(fontSize: 24),
-                  ),
+                  Text(event.type.icon, style: const TextStyle(fontSize: 24)),
                   const SizedBox(width: 12),
                   Expanded(
                     child: Column(
@@ -761,14 +846,14 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
                           children: [
                             Text(
                               event.event,
-                              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                              style: Theme.of(context).textTheme.bodyMedium
+                                  ?.copyWith(fontWeight: FontWeight.bold),
                             ),
                             const Spacer(),
                             Text(
                               '${event.date.day}.${event.date.month}.${event.date.year}',
-                              style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                              style: Theme.of(context).textTheme.labelSmall
+                                  ?.copyWith(
                                     color: isPast ? Colors.grey : Colors.purple,
                                   ),
                             ),
@@ -808,25 +893,21 @@ class _ProgressionsScreenState extends ConsumerState<ProgressionsScreen> {
       ),
       child: Column(
         children: [
-          const Icon(
-            Icons.upcoming,
-            color: AppColors.starGold,
-            size: 32,
-          ),
+          const Icon(Icons.upcoming, color: AppColors.starGold, size: 32),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
             L10nService.get('screens.progressions.upcoming_changes', language),
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: AppColors.starGold,
-                ),
+              fontWeight: FontWeight.bold,
+              color: AppColors.starGold,
+            ),
           ),
           const SizedBox(height: AppConstants.spacingSm),
           Text(
             _progressions!.upcomingChanges,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  height: 1.6,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.bodyMedium?.copyWith(height: 1.6),
             textAlign: TextAlign.center,
           ),
         ],

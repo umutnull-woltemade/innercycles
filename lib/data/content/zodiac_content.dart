@@ -665,7 +665,10 @@ The Fish, symbol of this sign, represents the connection between conscious and u
     ),
   };
 
-  static ZodiacDetailedInfo _createDetailedInfo(ZodiacSign sign, String overview) {
+  static ZodiacDetailedInfo _createDetailedInfo(
+    ZodiacSign sign,
+    String overview,
+  ) {
     return ZodiacDetailedInfo(
       sign: sign,
       overview: overview,

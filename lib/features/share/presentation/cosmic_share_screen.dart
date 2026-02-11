@@ -105,7 +105,10 @@ class _CosmicShareScreenState extends ConsumerState<CosmicShareScreen> {
                         if (liteMode) {
                           return card;
                         }
-                        return card.animate().fadeIn(duration: 600.ms).scale(
+                        return card
+                            .animate()
+                            .fadeIn(duration: 600.ms)
+                            .scale(
                               begin: const Offset(0.95, 0.95),
                               curve: Curves.easeOutBack,
                             );
@@ -200,10 +203,7 @@ class _CosmicShareScreenState extends ConsumerState<CosmicShareScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 48, vertical: 16),
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [
-                  MysticalColors.amethyst,
-                  MysticalColors.cosmicPurple,
-                ],
+                colors: [MysticalColors.amethyst, MysticalColors.cosmicPurple],
               ),
               borderRadius: BorderRadius.circular(30),
               boxShadow: [
@@ -230,7 +230,9 @@ class _CosmicShareScreenState extends ConsumerState<CosmicShareScreen> {
                   const Icon(Icons.share, color: Colors.white, size: 20),
                 const SizedBox(width: 12),
                 Text(
-                  _isCapturing ? '...' : L10nService.get('share.share_on_instagram', _language),
+                  _isCapturing
+                      ? '...'
+                      : L10nService.get('share.share_on_instagram', _language),
                   style: GoogleFonts.raleway(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
@@ -262,7 +264,8 @@ class _CosmicShareScreenState extends ConsumerState<CosmicShareScreen> {
       await Future.delayed(const Duration(milliseconds: 100));
 
       final boundary =
-          _shareCardKey.currentContext?.findRenderObject() as RenderRepaintBoundary?;
+          _shareCardKey.currentContext?.findRenderObject()
+              as RenderRepaintBoundary?;
       if (boundary == null) {
         _showErrorFeedback(L10nService.get('share.share_error', _language));
         return;
@@ -282,16 +285,21 @@ class _CosmicShareScreenState extends ConsumerState<CosmicShareScreen> {
       if (!mounted) return;
 
       if (result.success) {
-        if (result.error == ShareError.webFallback && result.fallbackData != null) {
+        if (result.error == ShareError.webFallback &&
+            result.fallbackData != null) {
           // Show web fallback dialog
           _showWebFallbackDialog(result.fallbackData!);
         } else {
-          _showSuccessFeedback(_getLocalizedShareMessage(result.error, success: true));
+          _showSuccessFeedback(
+            _getLocalizedShareMessage(result.error, success: true),
+          );
         }
       } else if (result.error == ShareError.dismissed) {
         // User cancelled - no feedback needed
       } else {
-        _showErrorFeedback(_getLocalizedShareMessage(result.error, success: false));
+        _showErrorFeedback(
+          _getLocalizedShareMessage(result.error, success: false),
+        );
       }
     } catch (e) {
       debugPrint('Share error: $e');
@@ -403,45 +411,56 @@ class _CosmicShareScreenState extends ConsumerState<CosmicShareScreen> {
               ),
             ),
             const SizedBox(height: 16),
-            ..._getLocalizedInstructions().map((instruction) => Padding(
-              padding: const EdgeInsets.only(bottom: 8),
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.arrow_right,
-                    size: 16,
-                    color: MysticalColors.amethyst,
-                  ),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: Text(
-                      instruction,
-                      style: GoogleFonts.raleway(
-                        fontSize: 14,
-                        color: MysticalColors.textSecondary,
+            ..._getLocalizedInstructions().map(
+              (instruction) => Padding(
+                padding: const EdgeInsets.only(bottom: 8),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.arrow_right,
+                      size: 16,
+                      color: MysticalColors.amethyst,
+                    ),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Text(
+                        instruction,
+                        style: GoogleFonts.raleway(
+                          fontSize: 14,
+                          color: MysticalColors.textSecondary,
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            )),
+            ),
             const SizedBox(height: 20),
             Row(
               children: [
                 Expanded(
                   child: OutlinedButton.icon(
                     onPressed: () async {
-                      await Clipboard.setData(ClipboardData(text: fallback.copyText));
+                      await Clipboard.setData(
+                        ClipboardData(text: fallback.copyText),
+                      );
                       if (context.mounted) {
                         Navigator.pop(context);
-                        _showSuccessFeedback(L10nService.get('share.text_copied_success', _language));
+                        _showSuccessFeedback(
+                          L10nService.get(
+                            'share.text_copied_success',
+                            _language,
+                          ),
+                        );
                       }
                     },
                     icon: const Icon(Icons.copy, size: 18),
                     label: Text(L10nService.get('share.copy_text', _language)),
                     style: OutlinedButton.styleFrom(
                       foregroundColor: MysticalColors.textPrimary,
-                      side: BorderSide(color: MysticalColors.amethyst.withValues(alpha: 0.5)),
+                      side: BorderSide(
+                        color: MysticalColors.amethyst.withValues(alpha: 0.5),
+                      ),
                       padding: const EdgeInsets.symmetric(vertical: 12),
                     ),
                   ),
@@ -454,7 +473,9 @@ class _CosmicShareScreenState extends ConsumerState<CosmicShareScreen> {
                       if (context.mounted) Navigator.pop(context);
                     },
                     icon: const Icon(Icons.open_in_new, size: 18),
-                    label: Text(L10nService.get('share.open_instagram', _language)),
+                    label: Text(
+                      L10nService.get('share.open_instagram', _language),
+                    ),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: MysticalColors.amethyst,
                       foregroundColor: Colors.white,
@@ -535,9 +556,7 @@ class _CosmicShareCard extends StatelessWidget {
           // Background decorations - SKIP in lite mode for performance
           if (!liteMode)
             Positioned.fill(
-              child: CustomPaint(
-                painter: _CosmicBackgroundPainter(sign.color),
-              ),
+              child: CustomPaint(painter: _CosmicBackgroundPainter(sign.color)),
             ),
           // Stars - REDUCED in lite mode
           ..._buildStars(screenWidth, liteMode: liteMode),
@@ -668,10 +687,7 @@ class _CosmicShareCard extends StatelessWidget {
             MysticalColors.cosmicPurple.withValues(alpha: 0.3),
           ],
         ),
-        border: Border.all(
-          color: sign.color.withValues(alpha: 0.3),
-          width: 1,
-        ),
+        border: Border.all(color: sign.color.withValues(alpha: 0.3), width: 1),
       ),
       child: Column(
         children: [
@@ -889,7 +905,9 @@ class _CosmicShareCard extends StatelessWidget {
             label: L10nService.get('share.energy_level', language),
             value: content.energyMeter.energyLevel,
             color: MysticalColors.auroraGreen,
-            description: _getLocalizedDescription(content.energyMeter.energyDescription),
+            description: _getLocalizedDescription(
+              content.energyMeter.energyDescription,
+            ),
           ),
           const SizedBox(height: 14),
 
@@ -898,7 +916,9 @@ class _CosmicShareCard extends StatelessWidget {
             label: L10nService.get('share.intuition_power', language),
             value: content.energyMeter.intuitionStrength,
             color: MysticalColors.amethyst,
-            description: _getLocalizedDescription(content.energyMeter.intuitionDescription),
+            description: _getLocalizedDescription(
+              content.energyMeter.intuitionDescription,
+            ),
           ),
           const SizedBox(height: 14),
 
@@ -906,25 +926,35 @@ class _CosmicShareCard extends StatelessWidget {
           Row(
             children: [
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 5,
+                ),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
-                  color: _getIntensityColor(content.energyMeter.emotionalIntensity)
-                      .withValues(alpha: 0.2),
+                  color: _getIntensityColor(
+                    content.energyMeter.emotionalIntensity,
+                  ).withValues(alpha: 0.2),
                 ),
                 child: Text(
-                  _getLocalizedIntensity(content.energyMeter.emotionalIntensity),
+                  _getLocalizedIntensity(
+                    content.energyMeter.emotionalIntensity,
+                  ),
                   style: GoogleFonts.raleway(
                     fontSize: 11,
                     fontWeight: FontWeight.w600,
-                    color: _getIntensityColor(content.energyMeter.emotionalIntensity),
+                    color: _getIntensityColor(
+                      content.energyMeter.emotionalIntensity,
+                    ),
                   ),
                 ),
               ),
               const SizedBox(width: 8),
               Expanded(
                 child: Text(
-                  _getLocalizedDescription(content.energyMeter.intensityDescription),
+                  _getLocalizedDescription(
+                    content.energyMeter.intensityDescription,
+                  ),
                   style: GoogleFonts.raleway(
                     fontSize: 10,
                     color: MysticalColors.textSecondary,
@@ -944,7 +974,13 @@ class _CosmicShareCard extends StatelessWidget {
             ),
             child: Row(
               children: [
-                Text(L10nService.get('share.reflect', language), style: GoogleFonts.raleway(fontSize: 9, color: MysticalColors.textMuted)),
+                Text(
+                  L10nService.get('share.reflect', language),
+                  style: GoogleFonts.raleway(
+                    fontSize: 9,
+                    color: MysticalColors.textMuted,
+                  ),
+                ),
                 const SizedBox(width: 6),
                 Expanded(
                   child: Stack(
@@ -957,13 +993,17 @@ class _CosmicShareCard extends StatelessWidget {
                         ),
                       ),
                       FractionallySizedBox(
-                        widthFactor: content.energyMeter.actionReflectionBalance,
+                        widthFactor:
+                            content.energyMeter.actionReflectionBalance,
                         child: Container(
                           height: 6,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(3),
                             gradient: LinearGradient(
-                              colors: [MysticalColors.stardustBlue, MysticalColors.solarOrange],
+                              colors: [
+                                MysticalColors.stardustBlue,
+                                MysticalColors.solarOrange,
+                              ],
                             ),
                           ),
                         ),
@@ -972,7 +1012,13 @@ class _CosmicShareCard extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 6),
-                Text(L10nService.get('share.action', language), style: GoogleFonts.raleway(fontSize: 9, color: MysticalColors.textMuted)),
+                Text(
+                  L10nService.get('share.action', language),
+                  style: GoogleFonts.raleway(
+                    fontSize: 9,
+                    color: MysticalColors.textMuted,
+                  ),
+                ),
               ],
             ),
           ),
@@ -1301,7 +1347,11 @@ class _CosmicShareCard extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          Icon(Icons.nights_stay, size: 14, color: MysticalColors.violetMist),
+                          Icon(
+                            Icons.nights_stay,
+                            size: 14,
+                            color: MysticalColors.violetMist,
+                          ),
                           const SizedBox(width: 6),
                           Text(
                             L10nService.get('share.shadow', language),
@@ -1314,11 +1364,20 @@ class _CosmicShareCard extends StatelessWidget {
                         ],
                       ),
                       const SizedBox(height: 10),
-                      _buildShadowItem(L10nService.get('share.challenge', language), content.shadowLight.shadowChallenge),
+                      _buildShadowItem(
+                        L10nService.get('share.challenge', language),
+                        content.shadowLight.shadowChallenge,
+                      ),
                       const SizedBox(height: 8),
-                      _buildShadowItem(L10nService.get('share.fear', language), content.shadowLight.shadowFear),
+                      _buildShadowItem(
+                        L10nService.get('share.fear', language),
+                        content.shadowLight.shadowFear,
+                      ),
                       const SizedBox(height: 8),
-                      _buildShadowItem(L10nService.get('share.pattern', language), content.shadowLight.shadowPattern),
+                      _buildShadowItem(
+                        L10nService.get('share.pattern', language),
+                        content.shadowLight.shadowPattern,
+                      ),
                     ],
                   ),
                 ),
@@ -1337,7 +1396,11 @@ class _CosmicShareCard extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          Icon(Icons.wb_sunny, size: 14, color: MysticalColors.starGold),
+                          Icon(
+                            Icons.wb_sunny,
+                            size: 14,
+                            color: MysticalColors.starGold,
+                          ),
                           const SizedBox(width: 6),
                           Text(
                             L10nService.get('share.light', language),
@@ -1350,11 +1413,20 @@ class _CosmicShareCard extends StatelessWidget {
                         ],
                       ),
                       const SizedBox(height: 10),
-                      _buildLightItem(L10nService.get('share.strength', language), content.shadowLight.lightStrength),
+                      _buildLightItem(
+                        L10nService.get('share.strength', language),
+                        content.shadowLight.lightStrength,
+                      ),
                       const SizedBox(height: 8),
-                      _buildLightItem(L10nService.get('share.opportunity', language), content.shadowLight.lightOpportunity),
+                      _buildLightItem(
+                        L10nService.get('share.opportunity', language),
+                        content.shadowLight.lightOpportunity,
+                      ),
                       const SizedBox(height: 8),
-                      _buildLightItem(L10nService.get('share.aura_label', language), content.shadowLight.lightMagnetic),
+                      _buildLightItem(
+                        L10nService.get('share.aura_label', language),
+                        content.shadowLight.lightMagnetic,
+                      ),
                     ],
                   ),
                 ),
@@ -1431,7 +1503,11 @@ class _CosmicShareCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(Icons.format_quote, size: 16, color: MysticalColors.amethyst),
+              Icon(
+                Icons.format_quote,
+                size: 16,
+                color: MysticalColors.amethyst,
+              ),
               const SizedBox(width: 8),
               Text(
                 L10nService.get('share.cosmic_advice_title', language),
@@ -1446,15 +1522,22 @@ class _CosmicShareCard extends StatelessWidget {
           const SizedBox(height: 16),
           ...content.cosmicAdvice.asMap().entries.map((entry) {
             return Padding(
-              padding: EdgeInsets.only(bottom: entry.key < content.cosmicAdvice.length - 1 ? 12 : 0),
+              padding: EdgeInsets.only(
+                bottom: entry.key < content.cosmicAdvice.length - 1 ? 12 : 0,
+              ),
               child: Container(
                 width: double.infinity,
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 12,
+                ),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   gradient: LinearGradient(
                     colors: [
-                      MysticalColors.amethyst.withValues(alpha: 0.1 + entry.key * 0.05),
+                      MysticalColors.amethyst.withValues(
+                        alpha: 0.1 + entry.key * 0.05,
+                      ),
                       MysticalColors.cosmicPurple.withValues(alpha: 0.2),
                     ],
                   ),
@@ -1491,9 +1574,7 @@ class _CosmicShareCard extends StatelessWidget {
             MysticalColors.cosmicPurple.withValues(alpha: 0.3),
           ],
         ),
-        border: Border.all(
-          color: MysticalColors.orchid.withValues(alpha: 0.3),
-        ),
+        border: Border.all(color: MysticalColors.orchid.withValues(alpha: 0.3)),
       ),
       child: Column(
         children: [
@@ -1582,10 +1663,7 @@ class _CosmicShareCard extends StatelessWidget {
             children: [
               Text(
                 '✦',
-                style: TextStyle(
-                  fontSize: 14,
-                  color: MysticalColors.starGold,
-                ),
+                style: TextStyle(fontSize: 14, color: MysticalColors.starGold),
               ),
               const SizedBox(width: 8),
               Text(
@@ -1599,10 +1677,7 @@ class _CosmicShareCard extends StatelessWidget {
               const SizedBox(width: 8),
               Text(
                 '✦',
-                style: TextStyle(
-                  fontSize: 14,
-                  color: MysticalColors.starGold,
-                ),
+                style: TextStyle(fontSize: 14, color: MysticalColors.starGold),
               ),
             ],
           ),
@@ -1616,7 +1691,10 @@ class _CosmicShareCard extends StatelessWidget {
               ),
               child: Container(
                 width: double.infinity,
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 14,
+                ),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
                   color: Colors.black.withValues(alpha: 0.25),
@@ -1796,10 +1874,7 @@ class _CosmicShareCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                '🌙',
-                style: const TextStyle(fontSize: 18),
-              ),
+              Text('🌙', style: const TextStyle(fontSize: 18)),
               const SizedBox(width: 8),
               Text(
                 L10nService.get('share.dream_trace', language),
@@ -1905,10 +1980,7 @@ class _CosmicShareCard extends StatelessWidget {
             children: [
               Text(
                 '✦',
-                style: TextStyle(
-                  fontSize: 14,
-                  color: MysticalColors.starGold,
-                ),
+                style: TextStyle(fontSize: 14, color: MysticalColors.starGold),
               ),
               const SizedBox(width: 8),
               Text(
@@ -1922,10 +1994,7 @@ class _CosmicShareCard extends StatelessWidget {
               const SizedBox(width: 8),
               Text(
                 '✦',
-                style: TextStyle(
-                  fontSize: 14,
-                  color: MysticalColors.starGold,
-                ),
+                style: TextStyle(fontSize: 14, color: MysticalColors.starGold),
               ),
             ],
           ),
@@ -2280,10 +2349,7 @@ class _CosmicShareCard extends StatelessWidget {
                   ),
                   child: Column(
                     children: [
-                      Text(
-                        '✨',
-                        style: const TextStyle(fontSize: 16),
-                      ),
+                      Text('✨', style: const TextStyle(fontSize: 16)),
                       const SizedBox(height: 4),
                       Text(
                         L10nService.get('share.golden_hour', language),
@@ -2316,10 +2382,7 @@ class _CosmicShareCard extends StatelessWidget {
                   ),
                   child: Column(
                     children: [
-                      Text(
-                        '⏸️',
-                        style: const TextStyle(fontSize: 16),
-                      ),
+                      Text('⏸️', style: const TextStyle(fontSize: 16)),
                       const SizedBox(height: 4),
                       Text(
                         L10nService.get('share.be_careful', language),
@@ -2388,7 +2451,10 @@ class _CosmicShareCard extends StatelessWidget {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 gradient: LinearGradient(
-                  colors: [MysticalColors.amethyst, MysticalColors.cosmicPurple],
+                  colors: [
+                    MysticalColors.amethyst,
+                    MysticalColors.cosmicPurple,
+                  ],
                 ),
               ),
               child: const Center(
@@ -2503,15 +2569,21 @@ class _CosmicBackgroundPainter extends CustomPainter {
 
     final constellationPoints = <Offset>[];
     for (int i = 0; i < 8; i++) {
-      constellationPoints.add(Offset(
-        random.nextDouble() * size.width,
-        random.nextDouble() * size.height,
-      ));
+      constellationPoints.add(
+        Offset(
+          random.nextDouble() * size.width,
+          random.nextDouble() * size.height,
+        ),
+      );
     }
 
     for (int i = 0; i < constellationPoints.length - 1; i++) {
       if (random.nextBool()) {
-        canvas.drawLine(constellationPoints[i], constellationPoints[i + 1], paint);
+        canvas.drawLine(
+          constellationPoints[i],
+          constellationPoints[i + 1],
+          paint,
+        );
       }
     }
 

@@ -32,7 +32,9 @@ class DesktopRichHomepage extends ConsumerWidget {
     final language = ref.watch(languageProvider);
 
     // Guard: Show loading if no valid profile (don't redirect - causes loop)
-    if (userProfile == null || userProfile.name == null || userProfile.name!.isEmpty) {
+    if (userProfile == null ||
+        userProfile.name == null ||
+        userProfile.name!.isEmpty) {
       return Scaffold(
         backgroundColor: const Color(0xFF0D0D1A),
         body: Center(
@@ -75,9 +77,9 @@ class DesktopRichHomepage extends ConsumerWidget {
                   // ══════════════════════════════════════════════════════
                   // QUICK DISCOVERY BAR - Lightweight tool access
                   // ══════════════════════════════════════════════════════
-                  _QuickDiscoveryBar(language: language)
-                      .animate()
-                      .fadeIn(duration: 400.ms, delay: 100.ms),
+                  _QuickDiscoveryBar(
+                    language: language,
+                  ).animate().fadeIn(duration: 400.ms, delay: 100.ms),
 
                   const SizedBox(height: 24),
 
@@ -94,18 +96,18 @@ class DesktopRichHomepage extends ConsumerWidget {
                   // ══════════════════════════════════════════════════════
                   // MOON PHASE - Interactive moon widget
                   // ══════════════════════════════════════════════════════
-                  _MoonPhaseSection(language: language)
-                      .animate()
-                      .fadeIn(duration: 500.ms, delay: 400.ms),
+                  _MoonPhaseSection(
+                    language: language,
+                  ).animate().fadeIn(duration: 500.ms, delay: 400.ms),
 
                   const SizedBox(height: 40),
 
                   // ══════════════════════════════════════════════════════
                   // QUICK ACTIONS GRID - Premium cards
                   // ══════════════════════════════════════════════════════
-                  _QuickActionsGrid(language: language)
-                      .animate()
-                      .fadeIn(duration: 500.ms, delay: 500.ms),
+                  _QuickActionsGrid(
+                    language: language,
+                  ).animate().fadeIn(duration: 500.ms, delay: 500.ms),
 
                   const SizedBox(height: 40),
 
@@ -122,18 +124,18 @@ class DesktopRichHomepage extends ConsumerWidget {
                   // ══════════════════════════════════════════════════════
                   // DISCOVERY SECTION - Featured tools
                   // ══════════════════════════════════════════════════════
-                  _DiscoverySection(language: language)
-                      .animate()
-                      .fadeIn(duration: 500.ms, delay: 700.ms),
+                  _DiscoverySection(
+                    language: language,
+                  ).animate().fadeIn(duration: 500.ms, delay: 700.ms),
 
                   const SizedBox(height: 32),
 
                   // ══════════════════════════════════════════════════════
                   // EV SİSTEMİ SECTION - Astrolojik Evler
                   // ══════════════════════════════════════════════════════
-                  _HouseSystemSection(language: language)
-                      .animate()
-                      .fadeIn(duration: 500.ms, delay: 800.ms),
+                  _HouseSystemSection(
+                    language: language,
+                  ).animate().fadeIn(duration: 500.ms, delay: 800.ms),
 
                   const SizedBox(height: 32),
 
@@ -170,9 +172,7 @@ class _QuickDiscoveryBar extends StatelessWidget {
           ],
         ),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: Colors.white.withValues(alpha: 0.08),
-        ),
+        border: Border.all(color: Colors.white.withValues(alpha: 0.08)),
       ),
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
@@ -350,59 +350,57 @@ class _DesktopHeader extends StatelessWidget {
                   _VenusOneLogo(),
 
                   // Bağlantı çizgisi 1
-                Container(
-                  width: 20,
-                  height: 2,
-                  margin: const EdgeInsets.symmetric(horizontal: 4),
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        AppColors.starGold.withValues(alpha: 0.8),
-                        const Color(0xFF9D4EDD).withValues(alpha: 0.6),
+                  Container(
+                    width: 20,
+                    height: 2,
+                    margin: const EdgeInsets.symmetric(horizontal: 4),
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          AppColors.starGold.withValues(alpha: 0.8),
+                          const Color(0xFF9D4EDD).withValues(alpha: 0.6),
+                        ],
+                      ),
+                      borderRadius: BorderRadius.circular(1),
+                      boxShadow: [
+                        BoxShadow(
+                          color: AppColors.starGold.withValues(alpha: 0.4),
+                          blurRadius: 4,
+                        ),
                       ],
                     ),
-                    borderRadius: BorderRadius.circular(1),
-                    boxShadow: [
-                      BoxShadow(
-                        color: AppColors.starGold.withValues(alpha: 0.4),
-                        blurRadius: 4,
-                      ),
-                    ],
                   ),
-                ),
 
-                // Rüya İzi Button
-                _DreamHeaderButton(
-                  onTap: () => context.push(Routes.dreamInterpretation),
-                ),
+                  // Rüya İzi Button
+                  _DreamHeaderButton(
+                    onTap: () => context.push(Routes.dreamInterpretation),
+                  ),
 
-                // Bağlantı çizgisi 2
-                Container(
-                  width: 20,
-                  height: 2,
-                  margin: const EdgeInsets.symmetric(horizontal: 4),
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        const Color(0xFF5C6BC0).withValues(alpha: 0.6),
-                        const Color(0xFF6A1B9A).withValues(alpha: 0.8),
+                  // Bağlantı çizgisi 2
+                  Container(
+                    width: 20,
+                    height: 2,
+                    margin: const EdgeInsets.symmetric(horizontal: 4),
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          const Color(0xFF5C6BC0).withValues(alpha: 0.6),
+                          const Color(0xFF6A1B9A).withValues(alpha: 0.8),
+                        ],
+                      ),
+                      borderRadius: BorderRadius.circular(1),
+                      boxShadow: [
+                        BoxShadow(
+                          color: const Color(0xFF5C6BC0).withValues(alpha: 0.3),
+                          blurRadius: 4,
+                        ),
                       ],
                     ),
-                    borderRadius: BorderRadius.circular(1),
-                    boxShadow: [
-                      BoxShadow(
-                        color: const Color(0xFF5C6BC0).withValues(alpha: 0.3),
-                        blurRadius: 4,
-                      ),
-                    ],
                   ),
-                ),
 
-                // Kozmoz Button - En sağda
-                _KozmozHeaderButton(
-                  onTap: () => context.push(Routes.kozmoz),
-                ),
-              ],
+                  // Kozmoz Button - En sağda
+                  _KozmozHeaderButton(onTap: () => context.push(Routes.kozmoz)),
+                ],
               ),
             ),
           ),
@@ -414,10 +412,7 @@ class _DesktopHeader extends StatelessWidget {
             children: [
               Text(
                 sign.symbol,
-                style: const TextStyle(
-                  fontSize: 28,
-                  color: AppColors.starGold,
-                ),
+                style: const TextStyle(fontSize: 28, color: AppColors.starGold),
               ),
               const SizedBox(width: 12),
               ConstrainedBox(
@@ -475,10 +470,7 @@ class _HeaderIconButton extends StatelessWidget {
   final IconData icon;
   final VoidCallback onTap;
 
-  const _HeaderIconButton({
-    required this.icon,
-    required this.onTap,
-  });
+  const _HeaderIconButton({required this.icon, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -493,15 +485,9 @@ class _HeaderIconButton extends StatelessWidget {
           decoration: BoxDecoration(
             color: Colors.white.withValues(alpha: 0.05),
             borderRadius: BorderRadius.circular(12),
-            border: Border.all(
-              color: Colors.white.withValues(alpha: 0.1),
-            ),
+            border: Border.all(color: Colors.white.withValues(alpha: 0.1)),
           ),
-          child: Icon(
-            icon,
-            color: AppColors.textSecondary,
-            size: 20,
-          ),
+          child: Icon(icon, color: AppColors.textSecondary, size: 20),
         ),
       ),
     );
@@ -558,7 +544,10 @@ class _HeroSection extends StatelessWidget {
               children: [
                 // Today's date badge
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 6,
+                  ),
                   decoration: BoxDecoration(
                     color: AppColors.starGold.withValues(alpha: 0.15),
                     borderRadius: BorderRadius.circular(20),
@@ -609,7 +598,10 @@ class _HeroSection extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.starGold,
                     foregroundColor: AppColors.deepSpace,
-                    padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 32,
+                      vertical: 16,
+                    ),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16),
                     ),
@@ -642,9 +634,7 @@ class _HeroSection extends StatelessWidget {
           // Right side - Animated zodiac symbol
           Expanded(
             flex: 2,
-            child: Center(
-              child: _AnimatedZodiacSymbol(sign: sign),
-            ),
+            child: Center(child: _AnimatedZodiacSymbol(sign: sign)),
           ),
         ],
       ),
@@ -654,19 +644,41 @@ class _HeroSection extends StatelessWidget {
   String _getTodayString() {
     final now = DateTime.now();
     final monthsEn = [
-      'January', 'February', 'March', 'April', 'May', 'June',
-      'July', 'August', 'September', 'October', 'November', 'December'
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
     ];
     final monthsTr = [
-      'Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran',
-      'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'
+      'Ocak',
+      'Şubat',
+      'Mart',
+      'Nisan',
+      'Mayıs',
+      'Haziran',
+      'Temmuz',
+      'Ağustos',
+      'Eylül',
+      'Ekim',
+      'Kasım',
+      'Aralık',
     ];
     final months = language == AppLanguage.en ? monthsEn : monthsTr;
     return '${now.day} ${months[now.month - 1]} ${now.year}';
   }
 
   String _getCosmicHeadline(ZodiacSign sign) {
-    final dayOfYear = DateTime.now().difference(DateTime(DateTime.now().year, 1, 1)).inDays;
+    final dayOfYear = DateTime.now()
+        .difference(DateTime(DateTime.now().year, 1, 1))
+        .inDays;
     final headlinesEn = <String>[
       'Cosmic energies are with you.',
       'The universe is smiling at you.',
@@ -686,7 +698,9 @@ class _HeroSection extends StatelessWidget {
   }
 
   String _getCosmicMessage(ZodiacSign sign) {
-    final dayOfYear = DateTime.now().difference(DateTime(DateTime.now().year, 1, 1)).inDays;
+    final dayOfYear = DateTime.now()
+        .difference(DateTime(DateTime.now().year, 1, 1))
+        .inDays;
     final messagesEn = <String>[
       'Today is a perfect day to discover your inner power. Trust your intuition and listen to your heart.',
       'The universe\'s energy flows with you. Seize this opportunity and move one step closer to your dreams.',
@@ -831,101 +845,108 @@ class _MoonPhaseSection extends StatelessWidget {
     return GestureDetector(
       onTap: () => context.push(Routes.timing),
       child: Container(
-      padding: const EdgeInsets.all(24),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            Colors.white.withValues(alpha: 0.05),
-            Colors.white.withValues(alpha: 0.02),
-          ],
-        ),
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: Colors.white.withValues(alpha: 0.1),
-        ),
-      ),
-      child: Row(
-        children: [
-          // Moon icon
-          Container(
-            width: 80,
-            height: 80,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              gradient: RadialGradient(
-                colors: [
-                  AppColors.moonSilver.withValues(alpha: 0.3),
-                  Colors.transparent,
-                ],
-              ),
-            ),
-            child: Center(
-              child: Text(
-                moonPhase.emoji,
-                style: const TextStyle(fontSize: 48),
-              ),
-            ),
+        padding: const EdgeInsets.all(24),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Colors.white.withValues(alpha: 0.05),
+              Colors.white.withValues(alpha: 0.02),
+            ],
           ),
-
-          const SizedBox(width: 24),
-
-          // Moon info
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  language == AppLanguage.en ? moonPhase.name : moonPhase.nameTr,
-                  style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.textPrimary,
-                  ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  language == AppLanguage.en
-                      ? 'Moon in ${moonSign.name}'
-                      : 'Ay ${moonSign.nameTr} burcunda',
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: AppColors.textSecondary.withValues(alpha: 0.8),
-                  ),
-                ),
-              ],
-            ),
-          ),
-
-          // Mercury retrograde badge if active
-          if (MoonService.isPlanetRetrograde('mercury'))
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(color: Colors.white.withValues(alpha: 0.1)),
+        ),
+        child: Row(
+          children: [
+            // Moon icon
             Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+              width: 80,
+              height: 80,
               decoration: BoxDecoration(
-                color: AppColors.error.withValues(alpha: 0.15),
-                borderRadius: BorderRadius.circular(8),
-                border: Border.all(
-                  color: AppColors.error.withValues(alpha: 0.3),
+                shape: BoxShape.circle,
+                gradient: RadialGradient(
+                  colors: [
+                    AppColors.moonSilver.withValues(alpha: 0.3),
+                    Colors.transparent,
+                  ],
                 ),
               ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
+              child: Center(
+                child: Text(
+                  moonPhase.emoji,
+                  style: const TextStyle(fontSize: 48),
+                ),
+              ),
+            ),
+
+            const SizedBox(width: 24),
+
+            // Moon info
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Icon(Icons.warning_amber_rounded, color: AppColors.error, size: 16),
-                  const SizedBox(width: 4),
                   Text(
-                    L10nService.get('timing.mercury_retrograde', language),
+                    language == AppLanguage.en
+                        ? moonPhase.name
+                        : moonPhase.nameTr,
                     style: const TextStyle(
-                      fontSize: 12,
+                      fontSize: 20,
                       fontWeight: FontWeight.w600,
-                      color: AppColors.error,
+                      color: AppColors.textPrimary,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    language == AppLanguage.en
+                        ? 'Moon in ${moonSign.name}'
+                        : 'Ay ${moonSign.nameTr} burcunda',
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: AppColors.textSecondary.withValues(alpha: 0.8),
                     ),
                   ),
                 ],
               ),
             ),
-        ],
+
+            // Mercury retrograde badge if active
+            if (MoonService.isPlanetRetrograde('mercury'))
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 6,
+                ),
+                decoration: BoxDecoration(
+                  color: AppColors.error.withValues(alpha: 0.15),
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(
+                    color: AppColors.error.withValues(alpha: 0.3),
+                  ),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(
+                      Icons.warning_amber_rounded,
+                      color: AppColors.error,
+                      size: 16,
+                    ),
+                    const SizedBox(width: 4),
+                    Text(
+                      L10nService.get('timing.mercury_retrograde', language),
+                      style: const TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.error,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+          ],
+        ),
       ),
-    ),
     );
   }
 }
@@ -943,7 +964,8 @@ class _QuickActionsGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        final cardWidth = (constraints.maxWidth - 48) / 4; // 4 columns with gaps
+        final cardWidth =
+            (constraints.maxWidth - 48) / 4; // 4 columns with gaps
 
         return Wrap(
           spacing: 16,
@@ -1068,11 +1090,7 @@ class _QuickActionCardState extends State<_QuickActionCard> {
                   color: widget.color.withValues(alpha: 0.15),
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: Icon(
-                  widget.icon,
-                  color: widget.color,
-                  size: 24,
-                ),
+                child: Icon(widget.icon, color: widget.color, size: 24),
               ),
               const SizedBox(height: 16),
               Text(
@@ -1107,7 +1125,10 @@ class _ZodiacWheelSection extends StatelessWidget {
   final ZodiacSign currentSign;
   final AppLanguage language;
 
-  const _ZodiacWheelSection({required this.currentSign, required this.language});
+  const _ZodiacWheelSection({
+    required this.currentSign,
+    required this.language,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -1121,9 +1142,7 @@ class _ZodiacWheelSection extends StatelessWidget {
           ],
         ),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: Colors.white.withValues(alpha: 0.1),
-        ),
+        border: Border.all(color: Colors.white.withValues(alpha: 0.1)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1189,7 +1208,8 @@ class _ZodiacChipState extends State<_ZodiacChip> {
       onEnter: (_) => setState(() => _isHovered = true),
       onExit: (_) => setState(() => _isHovered = false),
       child: GestureDetector(
-        onTap: () => context.push('/horoscope/${widget.sign.name.toLowerCase()}'),
+        onTap: () =>
+            context.push('/horoscope/${widget.sign.name.toLowerCase()}'),
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 200),
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
@@ -1226,10 +1246,14 @@ class _ZodiacChipState extends State<_ZodiacChip> {
               ),
               const SizedBox(width: 8),
               Text(
-                widget.language == AppLanguage.en ? widget.sign.name : widget.sign.nameTr,
+                widget.language == AppLanguage.en
+                    ? widget.sign.name
+                    : widget.sign.nameTr,
                 style: TextStyle(
                   fontSize: 14,
-                  fontWeight: widget.isSelected ? FontWeight.w600 : FontWeight.w500,
+                  fontWeight: widget.isSelected
+                      ? FontWeight.w600
+                      : FontWeight.w500,
                   color: widget.isSelected || _isHovered
                       ? AppColors.textPrimary
                       : AppColors.textSecondary,
@@ -1264,9 +1288,7 @@ class _DiscoverySection extends StatelessWidget {
           ],
         ),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: Colors.white.withValues(alpha: 0.1),
-        ),
+        border: Border.all(color: Colors.white.withValues(alpha: 0.1)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1276,9 +1298,17 @@ class _DiscoverySection extends StatelessWidget {
             children: [
               ShaderMask(
                 shaderCallback: (bounds) => const LinearGradient(
-                  colors: [Color(0xFFFFD700), Color(0xFFFF6B9D), Color(0xFF9D4EDD)],
+                  colors: [
+                    Color(0xFFFFD700),
+                    Color(0xFFFF6B9D),
+                    Color(0xFF9D4EDD),
+                  ],
                 ).createShader(bounds),
-                child: const Icon(Icons.auto_awesome, color: Colors.white, size: 24),
+                child: const Icon(
+                  Icons.auto_awesome,
+                  color: Colors.white,
+                  size: 24,
+                ),
               ),
               const SizedBox(width: 10),
               Text(
@@ -1291,7 +1321,10 @@ class _DiscoverySection extends StatelessWidget {
               ),
               const Spacer(),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 4,
+                ),
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(
                     colors: [Color(0xFFE91E63), Color(0xFFFF5722)],
@@ -1299,7 +1332,10 @@ class _DiscoverySection extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Text(
-                  L10nService.get('common.all_features', language).toUpperCase(),
+                  L10nService.get(
+                    'common.all_features',
+                    language,
+                  ).toUpperCase(),
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 10,
@@ -1315,18 +1351,61 @@ class _DiscoverySection extends StatelessWidget {
           // ═══════════════════════════════════════════════════════════════
           // HOROSCOPE READINGS
           // ═══════════════════════════════════════════════════════════════
-          _DiscoveryCategoryHeader(title: '⭐ ${L10nService.get('sections.horoscope_readings', language)}', color: const Color(0xFFFFD700)),
+          _DiscoveryCategoryHeader(
+            title:
+                '⭐ ${L10nService.get('sections.horoscope_readings', language)}',
+            color: const Color(0xFFFFD700),
+          ),
           const SizedBox(height: 12),
           Wrap(
             spacing: 12,
             runSpacing: 12,
             children: [
-              _DiscoveryCard(icon: Icons.wb_sunny_rounded, title: L10nService.get('menu_features.daily_reading', language), color: const Color(0xFFFFD700), route: Routes.horoscope),
-              _DiscoveryCard(icon: Icons.calendar_view_week_rounded, title: L10nService.get('menu_features.weekly_reading', language), color: const Color(0xFFFF9800), route: Routes.weeklyHoroscope),
-              _DiscoveryCard(icon: Icons.calendar_month_rounded, title: L10nService.get('menu_features.monthly_reading', language), color: const Color(0xFFFF5722), route: Routes.monthlyHoroscope),
-              _DiscoveryCard(icon: Icons.calendar_today_rounded, title: L10nService.get('menu_features.yearly_reading', language), color: const Color(0xFFF44336), route: Routes.yearlyHoroscope),
-              _DiscoveryCard(icon: Icons.favorite_rounded, title: L10nService.get('menu_features.love_reading', language), color: const Color(0xFFE91E63), route: Routes.loveHoroscope),
-              _DiscoveryCard(icon: Icons.people_rounded, title: L10nService.get('menu_features.compatibility', language), color: const Color(0xFFFF4081), route: Routes.compatibility),
+              _DiscoveryCard(
+                icon: Icons.wb_sunny_rounded,
+                title: L10nService.get('menu_features.daily_reading', language),
+                color: const Color(0xFFFFD700),
+                route: Routes.horoscope,
+              ),
+              _DiscoveryCard(
+                icon: Icons.calendar_view_week_rounded,
+                title: L10nService.get(
+                  'menu_features.weekly_reading',
+                  language,
+                ),
+                color: const Color(0xFFFF9800),
+                route: Routes.weeklyHoroscope,
+              ),
+              _DiscoveryCard(
+                icon: Icons.calendar_month_rounded,
+                title: L10nService.get(
+                  'menu_features.monthly_reading',
+                  language,
+                ),
+                color: const Color(0xFFFF5722),
+                route: Routes.monthlyHoroscope,
+              ),
+              _DiscoveryCard(
+                icon: Icons.calendar_today_rounded,
+                title: L10nService.get(
+                  'menu_features.yearly_reading',
+                  language,
+                ),
+                color: const Color(0xFFF44336),
+                route: Routes.yearlyHoroscope,
+              ),
+              _DiscoveryCard(
+                icon: Icons.favorite_rounded,
+                title: L10nService.get('menu_features.love_reading', language),
+                color: const Color(0xFFE91E63),
+                route: Routes.loveHoroscope,
+              ),
+              _DiscoveryCard(
+                icon: Icons.people_rounded,
+                title: L10nService.get('menu_features.compatibility', language),
+                color: const Color(0xFFFF4081),
+                route: Routes.compatibility,
+              ),
             ],
           ),
 
@@ -1335,18 +1414,52 @@ class _DiscoverySection extends StatelessWidget {
           // ═══════════════════════════════════════════════════════════════
           // BIRTH CHART & ANALYSIS
           // ═══════════════════════════════════════════════════════════════
-          _DiscoveryCategoryHeader(title: '🌌 ${L10nService.get('sections.birth_chart_analysis', language)}', color: const Color(0xFF9C27B0)),
+          _DiscoveryCategoryHeader(
+            title:
+                '🌌 ${L10nService.get('sections.birth_chart_analysis', language)}',
+            color: const Color(0xFF9C27B0),
+          ),
           const SizedBox(height: 12),
           Wrap(
             spacing: 12,
             runSpacing: 12,
             children: [
-              _DiscoveryCard(icon: Icons.pie_chart_rounded, title: L10nService.get('menu_features.birth_chart', language), color: const Color(0xFF9C27B0), route: Routes.birthChart),
-              _DiscoveryCard(icon: Icons.compare_arrows_rounded, title: L10nService.get('menu_features.synastry', language), color: const Color(0xFFE91E63), route: Routes.synastry),
-              _DiscoveryCard(icon: Icons.group_rounded, title: L10nService.get('menu_features.composite', language), color: const Color(0xFFFF4081), route: Routes.compositeChart),
-              _DiscoveryCard(icon: Icons.auto_graph_rounded, title: L10nService.get('menu_features.vedic_chart', language), color: const Color(0xFFFF9800), route: Routes.vedicChart),
-              _DiscoveryCard(icon: Icons.timeline_rounded, title: L10nService.get('menu_features.progressions', language), color: const Color(0xFF3F51B5), route: Routes.progressions),
-              _DiscoveryCard(icon: Icons.all_inclusive_rounded, title: L10nService.get('menu_features.draconic', language), color: const Color(0xFF673AB7), route: Routes.draconicChart),
+              _DiscoveryCard(
+                icon: Icons.pie_chart_rounded,
+                title: L10nService.get('menu_features.birth_chart', language),
+                color: const Color(0xFF9C27B0),
+                route: Routes.birthChart,
+              ),
+              _DiscoveryCard(
+                icon: Icons.compare_arrows_rounded,
+                title: L10nService.get('menu_features.synastry', language),
+                color: const Color(0xFFE91E63),
+                route: Routes.synastry,
+              ),
+              _DiscoveryCard(
+                icon: Icons.group_rounded,
+                title: L10nService.get('menu_features.composite', language),
+                color: const Color(0xFFFF4081),
+                route: Routes.compositeChart,
+              ),
+              _DiscoveryCard(
+                icon: Icons.auto_graph_rounded,
+                title: L10nService.get('menu_features.vedic_chart', language),
+                color: const Color(0xFFFF9800),
+                route: Routes.vedicChart,
+              ),
+              _DiscoveryCard(
+                icon: Icons.timeline_rounded,
+                title: L10nService.get('menu_features.progressions', language),
+                color: const Color(0xFF3F51B5),
+                route: Routes.progressions,
+              ),
+              _DiscoveryCard(
+                icon: Icons.all_inclusive_rounded,
+                title: L10nService.get('menu_features.draconic', language),
+                color: const Color(0xFF673AB7),
+                route: Routes.draconicChart,
+              ),
             ],
           ),
 
@@ -1355,20 +1468,72 @@ class _DiscoverySection extends StatelessWidget {
           // ═══════════════════════════════════════════════════════════════
           // TIME & TRANSITS
           // ═══════════════════════════════════════════════════════════════
-          _DiscoveryCategoryHeader(title: '⏰ ${L10nService.get('sections.time_transits', language)}', color: const Color(0xFF2196F3)),
+          _DiscoveryCategoryHeader(
+            title: '⏰ ${L10nService.get('sections.time_transits', language)}',
+            color: const Color(0xFF2196F3),
+          ),
           const SizedBox(height: 12),
           Wrap(
             spacing: 12,
             runSpacing: 12,
             children: [
-              _DiscoveryCard(icon: Icons.compare_arrows_rounded, title: L10nService.get('menu_features.transits', language), color: const Color(0xFF2196F3), route: Routes.transits),
-              _DiscoveryCard(icon: Icons.access_time_rounded, title: L10nService.get('menu_features.timing', language), color: const Color(0xFF00BCD4), route: Routes.timing),
-              _DiscoveryCard(icon: Icons.cake_rounded, title: L10nService.get('menu_features.solar_return', language), color: const Color(0xFFFF9800), route: Routes.solarReturn),
-              _DiscoveryCard(icon: Icons.loop_rounded, title: L10nService.get('menu_features.saturn_return', language), color: const Color(0xFF607D8B), route: Routes.saturnReturn),
-              _DiscoveryCard(icon: Icons.calendar_view_month_rounded, title: L10nService.get('menu_features.year_ahead', language), color: const Color(0xFF4CAF50), route: Routes.yearAhead),
-              _DiscoveryCard(icon: Icons.do_not_disturb_rounded, title: L10nService.get('menu_features.void_of_course', language), color: const Color(0xFF9E9E9E), route: Routes.voidOfCourse),
-              _DiscoveryCard(icon: Icons.dark_mode_rounded, title: L10nService.get('menu_features.eclipse_calendar', language), color: const Color(0xFF37474F), route: Routes.eclipseCalendar),
-              _DiscoveryCard(icon: Icons.event_note_rounded, title: L10nService.get('menu_features.transit_calendar', language), color: const Color(0xFF00ACC1), route: Routes.transitCalendar),
+              _DiscoveryCard(
+                icon: Icons.compare_arrows_rounded,
+                title: L10nService.get('menu_features.transits', language),
+                color: const Color(0xFF2196F3),
+                route: Routes.transits,
+              ),
+              _DiscoveryCard(
+                icon: Icons.access_time_rounded,
+                title: L10nService.get('menu_features.timing', language),
+                color: const Color(0xFF00BCD4),
+                route: Routes.timing,
+              ),
+              _DiscoveryCard(
+                icon: Icons.cake_rounded,
+                title: L10nService.get('menu_features.solar_return', language),
+                color: const Color(0xFFFF9800),
+                route: Routes.solarReturn,
+              ),
+              _DiscoveryCard(
+                icon: Icons.loop_rounded,
+                title: L10nService.get('menu_features.saturn_return', language),
+                color: const Color(0xFF607D8B),
+                route: Routes.saturnReturn,
+              ),
+              _DiscoveryCard(
+                icon: Icons.calendar_view_month_rounded,
+                title: L10nService.get('menu_features.year_ahead', language),
+                color: const Color(0xFF4CAF50),
+                route: Routes.yearAhead,
+              ),
+              _DiscoveryCard(
+                icon: Icons.do_not_disturb_rounded,
+                title: L10nService.get(
+                  'menu_features.void_of_course',
+                  language,
+                ),
+                color: const Color(0xFF9E9E9E),
+                route: Routes.voidOfCourse,
+              ),
+              _DiscoveryCard(
+                icon: Icons.dark_mode_rounded,
+                title: L10nService.get(
+                  'menu_features.eclipse_calendar',
+                  language,
+                ),
+                color: const Color(0xFF37474F),
+                route: Routes.eclipseCalendar,
+              ),
+              _DiscoveryCard(
+                icon: Icons.event_note_rounded,
+                title: L10nService.get(
+                  'menu_features.transit_calendar',
+                  language,
+                ),
+                color: const Color(0xFF00ACC1),
+                route: Routes.transitCalendar,
+              ),
             ],
           ),
 
@@ -1377,18 +1542,52 @@ class _DiscoverySection extends StatelessWidget {
           // ═══════════════════════════════════════════════════════════════
           // NUMEROLOGY & MYSTIC TOOLS
           // ═══════════════════════════════════════════════════════════════
-          _DiscoveryCategoryHeader(title: '🔢 ${L10nService.get('sections.numerology_mystic', language)}', color: const Color(0xFF7C4DFF)),
+          _DiscoveryCategoryHeader(
+            title:
+                '🔢 ${L10nService.get('sections.numerology_mystic', language)}',
+            color: const Color(0xFF7C4DFF),
+          ),
           const SizedBox(height: 12),
           Wrap(
             spacing: 12,
             runSpacing: 12,
             children: [
-              _DiscoveryCard(icon: Icons.numbers_rounded, title: L10nService.get('menu_features.numerology', language), color: const Color(0xFF7C4DFF), route: Routes.numerology),
-              _DiscoveryCard(icon: Icons.style_rounded, title: L10nService.get('menu_features.tarot', language), color: const Color(0xFF9C27B0), route: Routes.tarot),
-              _DiscoveryCard(icon: Icons.account_tree_rounded, title: L10nService.get('menu_features.kabbalah', language), color: const Color(0xFF4CAF50), route: Routes.kabbalah),
-              _DiscoveryCard(icon: Icons.brightness_7_rounded, title: L10nService.get('menu_features.aura', language), color: const Color(0xFFAB47BC), route: Routes.aura),
-              _DiscoveryCard(icon: Icons.blur_circular_rounded, title: L10nService.get('menu_features.chakra', language), color: const Color(0xFFFF5722), route: Routes.chakraAnalysis),
-              _DiscoveryCard(icon: Icons.diamond_rounded, title: L10nService.get('menu_features.crystal_guide', language), color: const Color(0xFF00BCD4), route: Routes.crystalGuide),
+              _DiscoveryCard(
+                icon: Icons.numbers_rounded,
+                title: L10nService.get('menu_features.numerology', language),
+                color: const Color(0xFF7C4DFF),
+                route: Routes.numerology,
+              ),
+              _DiscoveryCard(
+                icon: Icons.style_rounded,
+                title: L10nService.get('menu_features.tarot', language),
+                color: const Color(0xFF9C27B0),
+                route: Routes.tarot,
+              ),
+              _DiscoveryCard(
+                icon: Icons.account_tree_rounded,
+                title: L10nService.get('menu_features.kabbalah', language),
+                color: const Color(0xFF4CAF50),
+                route: Routes.kabbalah,
+              ),
+              _DiscoveryCard(
+                icon: Icons.brightness_7_rounded,
+                title: L10nService.get('menu_features.aura', language),
+                color: const Color(0xFFAB47BC),
+                route: Routes.aura,
+              ),
+              _DiscoveryCard(
+                icon: Icons.blur_circular_rounded,
+                title: L10nService.get('menu_features.chakra', language),
+                color: const Color(0xFFFF5722),
+                route: Routes.chakraAnalysis,
+              ),
+              _DiscoveryCard(
+                icon: Icons.diamond_rounded,
+                title: L10nService.get('menu_features.crystal_guide', language),
+                color: const Color(0xFF00BCD4),
+                route: Routes.crystalGuide,
+              ),
             ],
           ),
 
@@ -1397,17 +1596,49 @@ class _DiscoverySection extends StatelessWidget {
           // ═══════════════════════════════════════════════════════════════
           // SPIRITUAL & WELLNESS
           // ═══════════════════════════════════════════════════════════════
-          _DiscoveryCategoryHeader(title: '🧘 ${L10nService.get('sections.spiritual_wellness', language)}', color: const Color(0xFF4CAF50)),
+          _DiscoveryCategoryHeader(
+            title:
+                '🧘 ${L10nService.get('sections.spiritual_wellness', language)}',
+            color: const Color(0xFF4CAF50),
+          ),
           const SizedBox(height: 12),
           Wrap(
             spacing: 12,
             runSpacing: 12,
             children: [
-              _DiscoveryCard(icon: Icons.spa_rounded, title: L10nService.get('menu_features.daily_rituals', language), color: const Color(0xFF4CAF50), route: Routes.dailyRituals),
-              _DiscoveryCard(icon: Icons.nightlight_rounded, title: L10nService.get('menu_features.moon_rituals', language), color: const Color(0xFFC0C0C0), route: Routes.moonRituals),
-              _DiscoveryCard(icon: Icons.grass_rounded, title: L10nService.get('menu_features.moon_gardening', language), color: const Color(0xFF8BC34A), route: Routes.gardeningMoon),
-              _DiscoveryCard(icon: Icons.psychology_rounded, title: L10nService.get('menu_features.theta_healing', language), color: const Color(0xFF7C4DFF), route: Routes.thetaHealing),
-              _DiscoveryCard(icon: Icons.self_improvement_rounded, title: L10nService.get('menu_features.reiki', language), color: const Color(0xFFFF7043), route: Routes.reiki),
+              _DiscoveryCard(
+                icon: Icons.spa_rounded,
+                title: L10nService.get('menu_features.daily_rituals', language),
+                color: const Color(0xFF4CAF50),
+                route: Routes.dailyRituals,
+              ),
+              _DiscoveryCard(
+                icon: Icons.nightlight_rounded,
+                title: L10nService.get('menu_features.moon_rituals', language),
+                color: const Color(0xFFC0C0C0),
+                route: Routes.moonRituals,
+              ),
+              _DiscoveryCard(
+                icon: Icons.grass_rounded,
+                title: L10nService.get(
+                  'menu_features.moon_gardening',
+                  language,
+                ),
+                color: const Color(0xFF8BC34A),
+                route: Routes.gardeningMoon,
+              ),
+              _DiscoveryCard(
+                icon: Icons.psychology_rounded,
+                title: L10nService.get('menu_features.theta_healing', language),
+                color: const Color(0xFF7C4DFF),
+                route: Routes.thetaHealing,
+              ),
+              _DiscoveryCard(
+                icon: Icons.self_improvement_rounded,
+                title: L10nService.get('menu_features.reiki', language),
+                color: const Color(0xFFFF7043),
+                route: Routes.reiki,
+              ),
             ],
           ),
 
@@ -1416,16 +1647,52 @@ class _DiscoverySection extends StatelessWidget {
           // ═══════════════════════════════════════════════════════════════
           // ADVANCED ASTROLOGY
           // ═══════════════════════════════════════════════════════════════
-          _DiscoveryCategoryHeader(title: '🔮 ${L10nService.get('sections.advanced_astrology', language)}', color: const Color(0xFFFFD700)),
+          _DiscoveryCategoryHeader(
+            title:
+                '🔮 ${L10nService.get('sections.advanced_astrology', language)}',
+            color: const Color(0xFFFFD700),
+          ),
           const SizedBox(height: 12),
           Wrap(
             spacing: 12,
             runSpacing: 12,
             children: [
-              _DiscoveryCard(icon: Icons.public_rounded, title: L10nService.get('home.quick_actions.astrocartography', language), color: const Color(0xFFFFD700), route: Routes.astroCartography),
-              _DiscoveryCard(icon: Icons.event_available_rounded, title: L10nService.get('home.quick_actions.electional', language), color: const Color(0xFFFF9800), route: Routes.electional),
-              _DiscoveryCard(icon: Icons.star_rounded, title: L10nService.get('home.quick_actions.asteroids', language), color: const Color(0xFF9E9E9E), route: Routes.asteroids),
-              _DiscoveryCard(icon: Icons.location_on_rounded, title: L10nService.get('home.quick_actions.local_space', language), color: const Color(0xFF795548), route: Routes.localSpace),
+              _DiscoveryCard(
+                icon: Icons.public_rounded,
+                title: L10nService.get(
+                  'home.quick_actions.astrocartography',
+                  language,
+                ),
+                color: const Color(0xFFFFD700),
+                route: Routes.astroCartography,
+              ),
+              _DiscoveryCard(
+                icon: Icons.event_available_rounded,
+                title: L10nService.get(
+                  'home.quick_actions.electional',
+                  language,
+                ),
+                color: const Color(0xFFFF9800),
+                route: Routes.electional,
+              ),
+              _DiscoveryCard(
+                icon: Icons.star_rounded,
+                title: L10nService.get(
+                  'home.quick_actions.asteroids',
+                  language,
+                ),
+                color: const Color(0xFF9E9E9E),
+                route: Routes.asteroids,
+              ),
+              _DiscoveryCard(
+                icon: Icons.location_on_rounded,
+                title: L10nService.get(
+                  'home.quick_actions.local_space',
+                  language,
+                ),
+                color: const Color(0xFF795548),
+                route: Routes.localSpace,
+              ),
             ],
           ),
 
@@ -1434,15 +1701,34 @@ class _DiscoverySection extends StatelessWidget {
           // ═══════════════════════════════════════════════════════════════
           // REFERENCES & LEARNING
           // ═══════════════════════════════════════════════════════════════
-          _DiscoveryCategoryHeader(title: '📚 ${L10nService.get('sections.references_learning', language)}', color: const Color(0xFF607D8B)),
+          _DiscoveryCategoryHeader(
+            title:
+                '📚 ${L10nService.get('sections.references_learning', language)}',
+            color: const Color(0xFF607D8B),
+          ),
           const SizedBox(height: 12),
           Wrap(
             spacing: 12,
             runSpacing: 12,
             children: [
-              _DiscoveryCard(icon: Icons.menu_book_rounded, title: L10nService.get('menu_features.glossary', language), color: const Color(0xFF607D8B), route: Routes.glossary),
-              _DiscoveryCard(icon: Icons.stars_rounded, title: L10nService.get('menu_features.celebrities', language), color: const Color(0xFFFFB74D), route: Routes.celebrities),
-              _DiscoveryCard(icon: Icons.article_rounded, title: L10nService.get('menu_features.articles', language), color: const Color(0xFF78909C), route: Routes.articles),
+              _DiscoveryCard(
+                icon: Icons.menu_book_rounded,
+                title: L10nService.get('menu_features.glossary', language),
+                color: const Color(0xFF607D8B),
+                route: Routes.glossary,
+              ),
+              _DiscoveryCard(
+                icon: Icons.stars_rounded,
+                title: L10nService.get('menu_features.celebrities', language),
+                color: const Color(0xFFFFB74D),
+                route: Routes.celebrities,
+              ),
+              _DiscoveryCard(
+                icon: Icons.article_rounded,
+                title: L10nService.get('menu_features.articles', language),
+                color: const Color(0xFF78909C),
+                route: Routes.articles,
+              ),
             ],
           ),
 
@@ -1451,15 +1737,37 @@ class _DiscoverySection extends StatelessWidget {
           // ═══════════════════════════════════════════════════════════════
           // DREAMS & SUBCONSCIOUS
           // ═══════════════════════════════════════════════════════════════
-          _DiscoveryCategoryHeader(title: '🌙 ${L10nService.get('sections.dreams_subconscious', language)}', color: const Color(0xFF5C6BC0)),
+          _DiscoveryCategoryHeader(
+            title:
+                '🌙 ${L10nService.get('sections.dreams_subconscious', language)}',
+            color: const Color(0xFF5C6BC0),
+          ),
           const SizedBox(height: 12),
           Wrap(
             spacing: 12,
             runSpacing: 12,
             children: [
-              _DiscoveryCard(icon: Icons.nights_stay_rounded, title: L10nService.get('menu_features.dream_trace', language), color: const Color(0xFF5C6BC0), route: Routes.dreamInterpretation),
-              _DiscoveryCard(icon: Icons.auto_stories_rounded, title: L10nService.get('menu_features.dream_dictionary', language), color: const Color(0xFF7C4DFF), route: Routes.dreamGlossary),
-              _DiscoveryCard(icon: Icons.share_rounded, title: L10nService.get('menu_features.cosmic_share', language), color: const Color(0xFF9575CD), route: Routes.dreamShare),
+              _DiscoveryCard(
+                icon: Icons.nights_stay_rounded,
+                title: L10nService.get('menu_features.dream_trace', language),
+                color: const Color(0xFF5C6BC0),
+                route: Routes.dreamInterpretation,
+              ),
+              _DiscoveryCard(
+                icon: Icons.auto_stories_rounded,
+                title: L10nService.get(
+                  'menu_features.dream_dictionary',
+                  language,
+                ),
+                color: const Color(0xFF7C4DFF),
+                route: Routes.dreamGlossary,
+              ),
+              _DiscoveryCard(
+                icon: Icons.share_rounded,
+                title: L10nService.get('menu_features.cosmic_share', language),
+                color: const Color(0xFF9575CD),
+                route: Routes.dreamShare,
+              ),
             ],
           ),
 
@@ -1475,18 +1783,55 @@ class _DiscoverySection extends StatelessWidget {
           // ═══════════════════════════════════════════════════════════════
           // PERSONALITY ANALYSIS
           // ═══════════════════════════════════════════════════════════════
-          _DiscoveryCategoryHeader(title: '🎭 ${L10nService.get('sections.personality_analysis', language)}', color: const Color(0xFFFF4081)),
+          _DiscoveryCategoryHeader(
+            title:
+                '🎭 ${L10nService.get('sections.personality_analysis', language)}',
+            color: const Color(0xFFFF4081),
+          ),
           const SizedBox(height: 12),
           Wrap(
             spacing: 12,
             runSpacing: 12,
             children: [
-              _DiscoveryCard(icon: Icons.contrast_rounded, title: L10nService.get('menu_features.shadow_self', language), color: const Color(0xFF37474F), route: Routes.shadowSelf),
-              _DiscoveryCard(icon: Icons.leaderboard_rounded, title: L10nService.get('menu_features.leadership_style', language), color: const Color(0xFFFF9800), route: Routes.leadershipStyle),
-              _DiscoveryCard(icon: Icons.heart_broken_rounded, title: L10nService.get('menu_features.heartbreaker', language), color: const Color(0xFFE91E63), route: Routes.heartbreak),
-              _DiscoveryCard(icon: Icons.flag_rounded, title: L10nService.get('menu_features.red_flags', language), color: const Color(0xFFF44336), route: Routes.redFlags),
-              _DiscoveryCard(icon: Icons.verified_rounded, title: L10nService.get('menu_features.green_flags', language), color: const Color(0xFF4CAF50), route: Routes.greenFlags),
-              _DiscoveryCard(icon: Icons.local_fire_department_rounded, title: L10nService.get('menu_features.flirt_style', language), color: const Color(0xFFFF6B9D), route: Routes.flirtStyle),
+              _DiscoveryCard(
+                icon: Icons.contrast_rounded,
+                title: L10nService.get('menu_features.shadow_self', language),
+                color: const Color(0xFF37474F),
+                route: Routes.shadowSelf,
+              ),
+              _DiscoveryCard(
+                icon: Icons.leaderboard_rounded,
+                title: L10nService.get(
+                  'menu_features.leadership_style',
+                  language,
+                ),
+                color: const Color(0xFFFF9800),
+                route: Routes.leadershipStyle,
+              ),
+              _DiscoveryCard(
+                icon: Icons.heart_broken_rounded,
+                title: L10nService.get('menu_features.heartbreaker', language),
+                color: const Color(0xFFE91E63),
+                route: Routes.heartbreak,
+              ),
+              _DiscoveryCard(
+                icon: Icons.flag_rounded,
+                title: L10nService.get('menu_features.red_flags', language),
+                color: const Color(0xFFF44336),
+                route: Routes.redFlags,
+              ),
+              _DiscoveryCard(
+                icon: Icons.verified_rounded,
+                title: L10nService.get('menu_features.green_flags', language),
+                color: const Color(0xFF4CAF50),
+                route: Routes.greenFlags,
+              ),
+              _DiscoveryCard(
+                icon: Icons.local_fire_department_rounded,
+                title: L10nService.get('menu_features.flirt_style', language),
+                color: const Color(0xFFFF6B9D),
+                route: Routes.flirtStyle,
+              ),
             ],
           ),
 
@@ -1495,17 +1840,49 @@ class _DiscoverySection extends StatelessWidget {
           // ═══════════════════════════════════════════════════════════════
           // MYSTIC DISCOVERIES
           // ═══════════════════════════════════════════════════════════════
-          _DiscoveryCategoryHeader(title: '🔮 ${L10nService.get('sections.mystic_discoveries', language)}', color: const Color(0xFF9D4EDD)),
+          _DiscoveryCategoryHeader(
+            title:
+                '🔮 ${L10nService.get('sections.mystic_discoveries', language)}',
+            color: const Color(0xFF9D4EDD),
+          ),
           const SizedBox(height: 12),
           Wrap(
             spacing: 12,
             runSpacing: 12,
             children: [
-              _DiscoveryCard(icon: Icons.style_rounded, title: L10nService.get('menu_features.tarot_card', language), color: const Color(0xFF9C27B0), route: Routes.tarotCard),
-              _DiscoveryCard(icon: Icons.lens_blur_rounded, title: L10nService.get('menu_features.aura_color', language), color: const Color(0xFFAB47BC), route: Routes.auraColor),
-              _DiscoveryCard(icon: Icons.radio_button_checked_rounded, title: L10nService.get('menu_features.chakra_balance', language), color: const Color(0xFFFF5722), route: Routes.chakraBalance),
-              _DiscoveryCard(icon: Icons.tag_rounded, title: L10nService.get('menu_features.life_number', language), color: const Color(0xFF7C4DFF), route: Routes.lifeNumber),
-              _DiscoveryCard(icon: Icons.account_tree_rounded, title: L10nService.get('menu_features.kabbalah_path', language), color: const Color(0xFF4CAF50), route: Routes.kabbalaPath),
+              _DiscoveryCard(
+                icon: Icons.style_rounded,
+                title: L10nService.get('menu_features.tarot_card', language),
+                color: const Color(0xFF9C27B0),
+                route: Routes.tarotCard,
+              ),
+              _DiscoveryCard(
+                icon: Icons.lens_blur_rounded,
+                title: L10nService.get('menu_features.aura_color', language),
+                color: const Color(0xFFAB47BC),
+                route: Routes.auraColor,
+              ),
+              _DiscoveryCard(
+                icon: Icons.radio_button_checked_rounded,
+                title: L10nService.get(
+                  'menu_features.chakra_balance',
+                  language,
+                ),
+                color: const Color(0xFFFF5722),
+                route: Routes.chakraBalance,
+              ),
+              _DiscoveryCard(
+                icon: Icons.tag_rounded,
+                title: L10nService.get('menu_features.life_number', language),
+                color: const Color(0xFF7C4DFF),
+                route: Routes.lifeNumber,
+              ),
+              _DiscoveryCard(
+                icon: Icons.account_tree_rounded,
+                title: L10nService.get('menu_features.kabbalah_path', language),
+                color: const Color(0xFF4CAF50),
+                route: Routes.kabbalaPath,
+              ),
             ],
           ),
 
@@ -1514,16 +1891,49 @@ class _DiscoverySection extends StatelessWidget {
           // ═══════════════════════════════════════════════════════════════
           // RELATIONSHIP ANALYSIS
           // ═══════════════════════════════════════════════════════════════
-          _DiscoveryCategoryHeader(title: '💕 ${L10nService.get('sections.relationship_analysis', language)}', color: const Color(0xFFE91E63)),
+          _DiscoveryCategoryHeader(
+            title:
+                '💕 ${L10nService.get('sections.relationship_analysis', language)}',
+            color: const Color(0xFFE91E63),
+          ),
           const SizedBox(height: 12),
           Wrap(
             spacing: 12,
             runSpacing: 12,
             children: [
-              _DiscoveryCard(icon: Icons.favorite_border_rounded, title: L10nService.get('menu_features.compatibility_analysis', language), color: const Color(0xFFE91E63), route: Routes.compatibilityAnalysis),
-              _DiscoveryCard(icon: Icons.favorite_rounded, title: L10nService.get('menu_features.soulmate', language), color: const Color(0xFFFF4081), route: Routes.soulMate),
-              _DiscoveryCard(icon: Icons.loop_rounded, title: L10nService.get('menu_features.relationship_karma', language), color: const Color(0xFF9C27B0), route: Routes.relationshipKarma),
-              _DiscoveryCard(icon: Icons.star_rounded, title: L10nService.get('menu_features.celebrity_twin', language), color: const Color(0xFFFFD700), route: Routes.celebrityTwin),
+              _DiscoveryCard(
+                icon: Icons.favorite_border_rounded,
+                title: L10nService.get(
+                  'menu_features.compatibility_analysis',
+                  language,
+                ),
+                color: const Color(0xFFE91E63),
+                route: Routes.compatibilityAnalysis,
+              ),
+              _DiscoveryCard(
+                icon: Icons.favorite_rounded,
+                title: L10nService.get('menu_features.soulmate', language),
+                color: const Color(0xFFFF4081),
+                route: Routes.soulMate,
+              ),
+              _DiscoveryCard(
+                icon: Icons.loop_rounded,
+                title: L10nService.get(
+                  'menu_features.relationship_karma',
+                  language,
+                ),
+                color: const Color(0xFF9C27B0),
+                route: Routes.relationshipKarma,
+              ),
+              _DiscoveryCard(
+                icon: Icons.star_rounded,
+                title: L10nService.get(
+                  'menu_features.celebrity_twin',
+                  language,
+                ),
+                color: const Color(0xFFFFD700),
+                route: Routes.celebrityTwin,
+              ),
             ],
           ),
 
@@ -1532,15 +1942,36 @@ class _DiscoverySection extends StatelessWidget {
           // ═══════════════════════════════════════════════════════════════
           // AI ASSISTANTS
           // ═══════════════════════════════════════════════════════════════
-          _DiscoveryCategoryHeader(title: '🤖 ${L10nService.get('sections.ai_assistants', language)}', color: const Color(0xFF6A1B9A)),
+          _DiscoveryCategoryHeader(
+            title: '🤖 ${L10nService.get('sections.ai_assistants', language)}',
+            color: const Color(0xFF6A1B9A),
+          ),
           const SizedBox(height: 12),
           Wrap(
             spacing: 12,
             runSpacing: 12,
             children: [
-              _DiscoveryCard(icon: Icons.auto_awesome_rounded, title: L10nService.get('menu_features.cosmic_trace', language), color: const Color(0xFF6A1B9A), route: Routes.kozmoz),
-              _DiscoveryCard(icon: Icons.nights_stay_rounded, title: L10nService.get('menu_features.dream_trace', language), color: const Color(0xFF5C6BC0), route: Routes.dreamInterpretation),
-              _DiscoveryCard(icon: Icons.star_rounded, title: L10nService.get('menu_features.horoscope_reader', language), color: const Color(0xFFFF6B9D), route: Routes.horoscope),
+              _DiscoveryCard(
+                icon: Icons.auto_awesome_rounded,
+                title: L10nService.get('menu_features.cosmic_trace', language),
+                color: const Color(0xFF6A1B9A),
+                route: Routes.kozmoz,
+              ),
+              _DiscoveryCard(
+                icon: Icons.nights_stay_rounded,
+                title: L10nService.get('menu_features.dream_trace', language),
+                color: const Color(0xFF5C6BC0),
+                route: Routes.dreamInterpretation,
+              ),
+              _DiscoveryCard(
+                icon: Icons.star_rounded,
+                title: L10nService.get(
+                  'menu_features.horoscope_reader',
+                  language,
+                ),
+                color: const Color(0xFFFF6B9D),
+                route: Routes.horoscope,
+              ),
             ],
           ),
 
@@ -1549,16 +1980,43 @@ class _DiscoverySection extends StatelessWidget {
           // ═══════════════════════════════════════════════════════════════
           // SHARING & PROFILE
           // ═══════════════════════════════════════════════════════════════
-          _DiscoveryCategoryHeader(title: '📱 ${L10nService.get('sections.sharing_profile', language)}', color: const Color(0xFFE91E63)),
+          _DiscoveryCategoryHeader(
+            title:
+                '📱 ${L10nService.get('sections.sharing_profile', language)}',
+            color: const Color(0xFFE91E63),
+          ),
           const SizedBox(height: 12),
           Wrap(
             spacing: 12,
             runSpacing: 12,
             children: [
-              _DiscoveryCard(icon: Icons.share_rounded, title: L10nService.get('menu_features.cosmic_share', language), color: const Color(0xFFE91E63), route: Routes.cosmicShare),
-              _DiscoveryCard(icon: Icons.people_alt_rounded, title: L10nService.get('menu_features.saved_profiles', language), color: const Color(0xFF9C27B0), route: Routes.savedProfiles),
-              _DiscoveryCard(icon: Icons.compare_rounded, title: L10nService.get('menu_features.compare', language), color: const Color(0xFFFF4081), route: Routes.comparison),
-              _DiscoveryCard(icon: Icons.workspace_premium_rounded, title: L10nService.get('menu_features.premium', language), color: const Color(0xFFFFD700), route: Routes.premium),
+              _DiscoveryCard(
+                icon: Icons.share_rounded,
+                title: L10nService.get('menu_features.cosmic_share', language),
+                color: const Color(0xFFE91E63),
+                route: Routes.cosmicShare,
+              ),
+              _DiscoveryCard(
+                icon: Icons.people_alt_rounded,
+                title: L10nService.get(
+                  'menu_features.saved_profiles',
+                  language,
+                ),
+                color: const Color(0xFF9C27B0),
+                route: Routes.savedProfiles,
+              ),
+              _DiscoveryCard(
+                icon: Icons.compare_rounded,
+                title: L10nService.get('menu_features.compare', language),
+                color: const Color(0xFFFF4081),
+                route: Routes.comparison,
+              ),
+              _DiscoveryCard(
+                icon: Icons.workspace_premium_rounded,
+                title: L10nService.get('menu_features.premium', language),
+                color: const Color(0xFFFFD700),
+                route: Routes.premium,
+              ),
             ],
           ),
         ],
@@ -1572,10 +2030,7 @@ class _DiscoveryCategoryHeader extends StatelessWidget {
   final String title;
   final Color color;
 
-  const _DiscoveryCategoryHeader({
-    required this.title,
-    required this.color,
-  });
+  const _DiscoveryCategoryHeader({required this.title, required this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -1647,11 +2102,7 @@ class _DiscoveryCardState extends State<_DiscoveryCard> {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(
-                widget.icon,
-                color: widget.color,
-                size: 22,
-              ),
+              Icon(widget.icon, color: widget.color, size: 22),
               const SizedBox(width: 10),
               Text(
                 widget.title,
@@ -1767,11 +2218,7 @@ class _AllServicesButtonState extends State<_AllServicesButton>
                         const Color(0xFFFFD700),
                         const Color(0xFFE040FB),
                       ],
-                      stops: [
-                        0.0,
-                        _controller.value,
-                        1.0,
-                      ],
+                      stops: [0.0, _controller.value, 1.0],
                     ).createShader(bounds),
                     child: const Icon(
                       Icons.explore_rounded,
@@ -1802,7 +2249,10 @@ class _AllServicesButtonState extends State<_AllServicesButton>
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        L10nService.get('home.all_services_desc', widget.language),
+                        L10nService.get(
+                          'home.all_services_desc',
+                          widget.language,
+                        ),
                         style: TextStyle(
                           fontSize: 13,
                           color: Colors.white.withValues(alpha: 0.7),
@@ -1907,7 +2357,10 @@ class _HouseSystemSection extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
               child: Container(
                 width: double.infinity,
-                padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 20),
+                padding: const EdgeInsets.symmetric(
+                  vertical: 14,
+                  horizontal: 20,
+                ),
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(
                     colors: [Color(0xFF4A90A4), Color(0xFF357ABD)],
@@ -1917,7 +2370,11 @@ class _HouseSystemSection extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Icon(Icons.explore_outlined, color: Colors.white, size: 20),
+                    const Icon(
+                      Icons.explore_outlined,
+                      color: Colors.white,
+                      size: 20,
+                    ),
                     const SizedBox(width: 8),
                     Text(
                       L10nService.get('houses.explore_houses', language),
@@ -1984,19 +2441,25 @@ class _VenusOneLogoState extends ConsumerState<_VenusOneLogo>
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
               colors: [
-                AppColors.cosmicPurple.withValues(alpha: _isHovered ? 0.4 : 0.3),
+                AppColors.cosmicPurple.withValues(
+                  alpha: _isHovered ? 0.4 : 0.3,
+                ),
                 AppColors.auroraStart.withValues(alpha: _isHovered ? 0.3 : 0.2),
                 AppColors.deepSpace.withValues(alpha: _isHovered ? 0.5 : 0.4),
               ],
             ),
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
-              color: AppColors.starGold.withValues(alpha: _isHovered ? 0.8 : 0.5),
+              color: AppColors.starGold.withValues(
+                alpha: _isHovered ? 0.8 : 0.5,
+              ),
               width: _isHovered ? 2 : 1.5,
             ),
             boxShadow: [
               BoxShadow(
-                color: AppColors.starGold.withValues(alpha: _isHovered ? 0.4 : 0.2),
+                color: AppColors.starGold.withValues(
+                  alpha: _isHovered ? 0.4 : 0.2,
+                ),
                 blurRadius: _isHovered ? 20 : 12,
                 spreadRadius: _isHovered ? 2 : 0,
               ),
@@ -2025,7 +2488,14 @@ class _VenusOneLogoState extends ConsumerState<_VenusOneLogo>
                           shape: BoxShape.circle,
                           gradient: RadialGradient(
                             colors: [
-                              AppColors.starGold.withValues(alpha: 0.3 + 0.1 * math.sin(_controller.value * 2 * math.pi)),
+                              AppColors.starGold.withValues(
+                                alpha:
+                                    0.3 +
+                                    0.1 *
+                                        math.sin(
+                                          _controller.value * 2 * math.pi,
+                                        ),
+                              ),
                               Colors.transparent,
                             ],
                           ),
@@ -2096,11 +2566,10 @@ class _VenusOneLogoState extends ConsumerState<_VenusOneLogo>
                 animation: _controller,
                 builder: (context, child) {
                   return Transform.rotate(
-                    angle: _isHovered ? 0.1 * math.sin(_controller.value * 4 * math.pi) : 0,
-                    child: const Text(
-                      '🪄',
-                      style: TextStyle(fontSize: 18),
-                    ),
+                    angle: _isHovered
+                        ? 0.1 * math.sin(_controller.value * 4 * math.pi)
+                        : 0,
+                    child: const Text('🪄', style: TextStyle(fontSize: 18)),
                   );
                 },
               ),
@@ -2163,14 +2632,22 @@ class _KozmozHeaderButtonState extends State<_KozmozHeaderButton>
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [
-                    const Color(0xFF6A1B9A).withValues(alpha: _isHovered ? 0.6 : 0.4),
-                    const Color(0xFF9C27B0).withValues(alpha: _isHovered ? 0.5 : 0.3),
-                    const Color(0xFFE040FB).withValues(alpha: _isHovered ? 0.4 : 0.2),
+                    const Color(
+                      0xFF6A1B9A,
+                    ).withValues(alpha: _isHovered ? 0.6 : 0.4),
+                    const Color(
+                      0xFF9C27B0,
+                    ).withValues(alpha: _isHovered ? 0.5 : 0.3),
+                    const Color(
+                      0xFFE040FB,
+                    ).withValues(alpha: _isHovered ? 0.4 : 0.2),
                   ],
                 ),
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
-                  color: const Color(0xFFE040FB).withValues(alpha: _isHovered ? 0.8 : 0.5),
+                  color: const Color(
+                    0xFFE040FB,
+                  ).withValues(alpha: _isHovered ? 0.8 : 0.5),
                   width: 1.5,
                 ),
                 boxShadow: [
@@ -2257,14 +2734,22 @@ class _DreamHeaderButtonState extends State<_DreamHeaderButton>
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    const Color(0xFF1A237E).withValues(alpha: _isHovered ? 0.6 : 0.4),
-                    const Color(0xFF303F9F).withValues(alpha: _isHovered ? 0.5 : 0.3),
-                    const Color(0xFF5C6BC0).withValues(alpha: _isHovered ? 0.4 : 0.2),
+                    const Color(
+                      0xFF1A237E,
+                    ).withValues(alpha: _isHovered ? 0.6 : 0.4),
+                    const Color(
+                      0xFF303F9F,
+                    ).withValues(alpha: _isHovered ? 0.5 : 0.3),
+                    const Color(
+                      0xFF5C6BC0,
+                    ).withValues(alpha: _isHovered ? 0.4 : 0.2),
                   ],
                 ),
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
-                  color: const Color(0xFF7C4DFF).withValues(alpha: _isHovered ? 0.8 : 0.5),
+                  color: const Color(
+                    0xFF7C4DFF,
+                  ).withValues(alpha: _isHovered ? 0.8 : 0.5),
                   width: 1.5,
                 ),
                 boxShadow: [
@@ -2351,14 +2836,22 @@ class _HoroscopeHeaderButtonState extends State<_HoroscopeHeaderButton>
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [
-                    const Color(0xFFFF6B9D).withValues(alpha: _isHovered ? 0.6 : 0.4),
-                    const Color(0xFFE91E63).withValues(alpha: _isHovered ? 0.5 : 0.3),
-                    const Color(0xFFAD1457).withValues(alpha: _isHovered ? 0.4 : 0.2),
+                    const Color(
+                      0xFFFF6B9D,
+                    ).withValues(alpha: _isHovered ? 0.6 : 0.4),
+                    const Color(
+                      0xFFE91E63,
+                    ).withValues(alpha: _isHovered ? 0.5 : 0.3),
+                    const Color(
+                      0xFFAD1457,
+                    ).withValues(alpha: _isHovered ? 0.4 : 0.2),
                   ],
                 ),
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
-                  color: const Color(0xFFFF6B9D).withValues(alpha: _isHovered ? 0.8 : 0.5),
+                  color: const Color(
+                    0xFFFF6B9D,
+                  ).withValues(alpha: _isHovered ? 0.8 : 0.5),
                   width: 1.5,
                 ),
                 boxShadow: [

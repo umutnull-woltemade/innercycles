@@ -11,10 +11,7 @@ import '../../../data/services/l10n_service.dart';
 class ContentDetailScreen extends ConsumerWidget {
   final String contentId;
 
-  const ContentDetailScreen({
-    super.key,
-    required this.contentId,
-  });
+  const ContentDetailScreen({super.key, required this.contentId});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -40,9 +37,7 @@ class ContentDetailScreen extends ConsumerWidget {
               child: _buildContent(context, section, isDark, language),
             ),
             // Bottom spacing
-            const SliverToBoxAdapter(
-              child: SizedBox(height: 48),
-            ),
+            const SliverToBoxAdapter(child: SizedBox(height: 48)),
           ],
         ),
       ),
@@ -62,14 +57,8 @@ class ContentDetailScreen extends ConsumerWidget {
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: isDark
-              ? [
-                  const Color(0xFF1A1A2E),
-                  AppColors.deepSpace,
-                ]
-              : [
-                  const Color(0xFFF5F0FF),
-                  AppColors.lightBackground,
-                ],
+              ? [const Color(0xFF1A1A2E), AppColors.deepSpace]
+              : [const Color(0xFFF5F0FF), AppColors.lightBackground],
         ),
       ),
       child: Column(
@@ -83,8 +72,8 @@ class ContentDetailScreen extends ConsumerWidget {
               color: isDark ? Colors.white70 : AppColors.lightTextPrimary,
               size: 20,
             ),
-          tooltip: L10nService.get('common.back', language),
-        ),
+            tooltip: L10nService.get('common.back', language),
+          ),
           const SizedBox(height: 16),
           // Emoji and title
           Padding(
@@ -120,7 +109,9 @@ class ContentDetailScreen extends ConsumerWidget {
                             vertical: 2,
                           ),
                           decoration: BoxDecoration(
-                            color: section.getBadge(language) == 'Yeni' || section.getBadge(language) == 'New'
+                            color:
+                                section.getBadge(language) == 'Yeni' ||
+                                    section.getBadge(language) == 'New'
                                 ? AppColors.starGold.withValues(alpha: 0.2)
                                 : AppColors.cosmicPurple.withValues(alpha: 0.2),
                             borderRadius: BorderRadius.circular(8),
@@ -130,11 +121,13 @@ class ContentDetailScreen extends ConsumerWidget {
                             style: TextStyle(
                               fontSize: 10,
                               fontWeight: FontWeight.w600,
-                              color: section.getBadge(language) == 'Yeni' || section.getBadge(language) == 'New'
+                              color:
+                                  section.getBadge(language) == 'Yeni' ||
+                                      section.getBadge(language) == 'New'
                                   ? AppColors.starGold
                                   : (isDark
-                                      ? AppColors.textSecondary
-                                      : AppColors.lightTextSecondary),
+                                        ? AppColors.textSecondary
+                                        : AppColors.lightTextSecondary),
                             ),
                           ),
                         ),
@@ -370,7 +363,11 @@ class ContentDetailScreen extends ConsumerWidget {
         .replaceAll(RegExp(r'\*([^*]+)\*'), r'\1');
   }
 
-  Widget _buildNotFound(BuildContext context, bool isDark, AppLanguage language) {
+  Widget _buildNotFound(
+    BuildContext context,
+    bool isDark,
+    AppLanguage language,
+  ) {
     return Scaffold(
       backgroundColor: isDark ? AppColors.deepSpace : AppColors.lightBackground,
       body: SafeArea(
@@ -380,13 +377,13 @@ class ContentDetailScreen extends ConsumerWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
-                  '🔮',
-                  style: TextStyle(fontSize: 64),
-                ),
+                const Text('🔮', style: TextStyle(fontSize: 64)),
                 const SizedBox(height: 24),
                 Text(
-                  L10nService.get('screens.content_detail.not_found_title', language),
+                  L10nService.get(
+                    'screens.content_detail.not_found_title',
+                    language,
+                  ),
                   style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.w600,
@@ -397,7 +394,10 @@ class ContentDetailScreen extends ConsumerWidget {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  L10nService.get('screens.content_detail.not_found_message', language),
+                  L10nService.get(
+                    'screens.content_detail.not_found_message',
+                    language,
+                  ),
                   style: TextStyle(
                     fontSize: 15,
                     color: isDark
@@ -409,10 +409,13 @@ class ContentDetailScreen extends ConsumerWidget {
                 ElevatedButton.icon(
                   onPressed: () => context.pop(),
                   icon: const Icon(Icons.arrow_back),
-                  label: Text(L10nService.get('screens.content_detail.go_back', language)),
+                  label: Text(
+                    L10nService.get('screens.content_detail.go_back', language),
+                  ),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor:
-                        isDark ? AppColors.starGold : AppColors.lightStarGold,
+                    backgroundColor: isDark
+                        ? AppColors.starGold
+                        : AppColors.lightStarGold,
                     foregroundColor: AppColors.deepSpace,
                     padding: const EdgeInsets.symmetric(
                       horizontal: 24,

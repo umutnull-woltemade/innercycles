@@ -21,7 +21,9 @@ final observatoryServiceProvider = Provider<ObservatoryService>((ref) {
 });
 
 /// Provider for observatory summary (auto-refreshing)
-final observatorySummaryProvider = FutureProvider<ObservatorySummary>((ref) async {
+final observatorySummaryProvider = FutureProvider<ObservatorySummary>((
+  ref,
+) async {
   final service = ref.watch(observatoryServiceProvider);
   return service.getSummary();
 });
@@ -153,11 +155,13 @@ class ObservatoryService {
 
         if (missing.isNotEmpty) {
           final namespace = key.contains('.') ? key.split('.').first : 'root';
-          missingTranslations.add(MissingTranslation(
-            key: key,
-            missingLocales: missing,
-            namespace: namespace,
-          ));
+          missingTranslations.add(
+            MissingTranslation(
+              key: key,
+              missingLocales: missing,
+              namespace: namespace,
+            ),
+          );
         }
       }
 
@@ -334,15 +338,18 @@ class ObservatoryService {
         : 100.0;
 
     // Build pattern hits list
-    final topPatterns = _patternHits.entries
-        .map((e) => PatternHit(
-              pattern: e.key,
-              hitCount: e.value,
-              firstHit: DateTime.now().subtract(const Duration(days: 7)),
-              lastHit: DateTime.now(),
-            ))
-        .toList()
-      ..sort((a, b) => b.hitCount.compareTo(a.hitCount));
+    final topPatterns =
+        _patternHits.entries
+            .map(
+              (e) => PatternHit(
+                pattern: e.key,
+                hitCount: e.value,
+                firstHit: DateTime.now().subtract(const Duration(days: 7)),
+                lastHit: DateTime.now(),
+              ),
+            )
+            .toList()
+          ..sort((a, b) => b.hitCount.compareTo(a.hitCount));
 
     return SafetyMetrics(
       contentProcessed24h: _contentProcessed,
@@ -532,22 +539,26 @@ class ObservatoryService {
 
     // Generate 21 web builds over 7 days
     for (var i = 0; i < 21; i++) {
-      entries.add(BuildHistoryEntry(
-        platform: 'web',
-        buildNumber: '#${847 - i}',
-        status: i == 6 ? BuildStatusType.warning : BuildStatusType.success,
-        completedAt: now.subtract(Duration(hours: i * 8)),
-      ));
+      entries.add(
+        BuildHistoryEntry(
+          platform: 'web',
+          buildNumber: '#${847 - i}',
+          status: i == 6 ? BuildStatusType.warning : BuildStatusType.success,
+          completedAt: now.subtract(Duration(hours: i * 8)),
+        ),
+      );
     }
 
     // Generate 8 iOS builds over 7 days
     for (var i = 0; i < 8; i++) {
-      entries.add(BuildHistoryEntry(
-        platform: 'ios',
-        buildNumber: '2.4.${1 - (i ~/ 3)} (${92 - i})',
-        status: BuildStatusType.success,
-        completedAt: now.subtract(Duration(hours: i * 21)),
-      ));
+      entries.add(
+        BuildHistoryEntry(
+          platform: 'ios',
+          buildNumber: '2.4.${1 - (i ~/ 3)} (${92 - i})',
+          status: BuildStatusType.success,
+          completedAt: now.subtract(Duration(hours: i * 21)),
+        ),
+      );
     }
 
     return entries..sort((a, b) => b.completedAt.compareTo(a.completedAt));
@@ -630,7 +641,10 @@ class ObservatoryService {
 /// Extension to ContentSafetyFilter for observatory integration
 extension ContentSafetyFilterObservatory on ContentSafetyFilter {
   /// Filter content and record metrics
-  static String filterWithMetrics(String content, {String context = 'UNKNOWN'}) {
+  static String filterWithMetrics(
+    String content, {
+    String context = 'UNKNOWN',
+  }) {
     final observatory = ObservatoryService();
     observatory.recordContentProcessed();
 

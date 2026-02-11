@@ -51,7 +51,8 @@ class _ArticlesScreenState extends ConsumerState<ArticlesScreen> {
           child: Column(
             children: [
               _buildHeader(context, isDark, language),
-              if (_selectedArticle == null) _buildCategoryFilter(isDark, language),
+              if (_selectedArticle == null)
+                _buildCategoryFilter(isDark, language),
               Expanded(
                 child: _selectedArticle != null
                     ? _buildArticleDetail(isDark, language)
@@ -90,9 +91,9 @@ class _ArticlesScreenState extends ConsumerState<ArticlesScreen> {
                   ? L10nService.get('articles.article', language)
                   : L10nService.get('articles.title', language),
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: isDark ? Colors.white : AppColors.textDark,
-                  ),
+                fontWeight: FontWeight.bold,
+                color: isDark ? Colors.white : AppColors.textDark,
+              ),
               textAlign: TextAlign.center,
             ),
           ),
@@ -110,9 +111,19 @@ class _ArticlesScreenState extends ConsumerState<ArticlesScreen> {
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.symmetric(horizontal: AppConstants.spacingLg),
         children: [
-          _buildCategoryChip(null, L10nService.get('common.all', language), '📚', isDark),
+          _buildCategoryChip(
+            null,
+            L10nService.get('common.all', language),
+            '📚',
+            isDark,
+          ),
           ...ArticleCategory.values.map(
-            (cat) => _buildCategoryChip(cat, cat.localizedName(language), cat.icon, isDark),
+            (cat) => _buildCategoryChip(
+              cat,
+              cat.localizedName(language),
+              cat.icon,
+              isDark,
+            ),
           ),
         ],
       ),
@@ -120,7 +131,11 @@ class _ArticlesScreenState extends ConsumerState<ArticlesScreen> {
   }
 
   Widget _buildCategoryChip(
-      ArticleCategory? category, String label, String icon, bool isDark) {
+    ArticleCategory? category,
+    String label,
+    String icon,
+    bool isDark,
+  ) {
     final isSelected = _selectedCategory == category;
 
     return Padding(
@@ -129,11 +144,7 @@ class _ArticlesScreenState extends ConsumerState<ArticlesScreen> {
         selected: isSelected,
         label: Row(
           mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(icon),
-            const SizedBox(width: 4),
-            Text(label),
-          ],
+          children: [Text(icon), const SizedBox(width: 4), Text(label)],
         ),
         onSelected: (_) {
           setState(() {
@@ -180,7 +191,11 @@ class _ArticlesScreenState extends ConsumerState<ArticlesScreen> {
     );
   }
 
-  Widget _buildArticleCard(AstrologyArticle article, bool isDark, AppLanguage language) {
+  Widget _buildArticleCard(
+    AstrologyArticle article,
+    bool isDark,
+    AppLanguage language,
+  ) {
     return GestureDetector(
       onTap: () {
         setState(() {
@@ -262,11 +277,7 @@ class _ArticlesScreenState extends ConsumerState<ArticlesScreen> {
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Icon(
-                                Icons.star,
-                                size: 12,
-                                color: AppColors.gold,
-                              ),
+                              Icon(Icons.star, size: 12, color: AppColors.gold),
                               const SizedBox(width: 4),
                               Text(
                                 'Premium',
@@ -313,7 +324,9 @@ class _ArticlesScreenState extends ConsumerState<ArticlesScreen> {
                         L10nService.getWithParams(
                           'articles.read_time',
                           language,
-                          params: {'minutes': article.readTimeMinutes.toString()},
+                          params: {
+                            'minutes': article.readTimeMinutes.toString(),
+                          },
                         ),
                         style: TextStyle(
                           fontSize: 12,
@@ -591,9 +604,7 @@ class _ArticlesScreenState extends ConsumerState<ArticlesScreen> {
                     ),
                   ),
                   const SizedBox(width: 8),
-                  Expanded(
-                    child: _buildFormattedText(match.group(2)!, isDark),
-                  ),
+                  Expanded(child: _buildFormattedText(match.group(2)!, isDark)),
                 ],
               ),
             ),
@@ -635,8 +646,6 @@ class _ArticlesScreenState extends ConsumerState<ArticlesScreen> {
       );
     }
 
-    return RichText(
-      text: TextSpan(children: spans),
-    );
+    return RichText(text: TextSpan(children: spans));
   }
 }

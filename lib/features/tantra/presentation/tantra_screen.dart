@@ -85,16 +85,16 @@ class _TantraScreenState extends ConsumerState<TantraScreen>
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text(
-                          '🕯️',
-                          style: TextStyle(fontSize: 24),
-                        ),
+                        const Text('🕯️', style: TextStyle(fontSize: 24)),
                         const SizedBox(width: 8),
                         Text(
                           L10nService.get('tantra.title', language),
-                          style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                          style: Theme.of(context).textTheme.headlineSmall
+                              ?.copyWith(
                                 fontWeight: FontWeight.bold,
-                                color: isDark ? Colors.white : AppColors.textDark,
+                                color: isDark
+                                    ? Colors.white
+                                    : AppColors.textDark,
                               ),
                         ),
                       ],
@@ -188,10 +188,11 @@ class _TantraScreenState extends ConsumerState<TantraScreen>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Daily module card
-          _buildDailyModuleCard(dailyModule, isDark, language)
-              .animate()
-              .fadeIn(duration: 500.ms)
-              .slideY(begin: 0.1),
+          _buildDailyModuleCard(
+            dailyModule,
+            isDark,
+            language,
+          ).animate().fadeIn(duration: 500.ms).slideY(begin: 0.1),
 
           const SizedBox(height: AppConstants.spacingXl),
 
@@ -223,7 +224,11 @@ class _TantraScreenState extends ConsumerState<TantraScreen>
     );
   }
 
-  Widget _buildDailyModuleCard(TantraModule module, bool isDark, AppLanguage language) {
+  Widget _buildDailyModuleCard(
+    TantraModule module,
+    bool isDark,
+    AppLanguage language,
+  ) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -241,9 +246,7 @@ class _TantraScreenState extends ConsumerState<TantraScreen>
                 ],
         ),
         borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: AppColors.tantraGold.withValues(alpha: 0.3),
-        ),
+        border: Border.all(color: AppColors.tantraGold.withValues(alpha: 0.3)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -276,10 +279,7 @@ class _TantraScreenState extends ConsumerState<TantraScreen>
                 ),
               ),
               const Spacer(),
-              Text(
-                module.theme.icon,
-                style: const TextStyle(fontSize: 24),
-              ),
+              Text(module.theme.icon, style: const TextStyle(fontSize: 24)),
             ],
           ),
           const SizedBox(height: AppConstants.spacingMd),
@@ -427,13 +427,23 @@ class _TantraScreenState extends ConsumerState<TantraScreen>
           margin: const EdgeInsets.symmetric(vertical: AppConstants.spacingMd),
           child: ListView(
             scrollDirection: Axis.horizontal,
-            padding:
-                const EdgeInsets.symmetric(horizontal: AppConstants.spacingLg),
+            padding: const EdgeInsets.symmetric(
+              horizontal: AppConstants.spacingLg,
+            ),
             children: [
-              _buildThemeChip(null, L10nService.get('common.all', language), '📚', isDark),
+              _buildThemeChip(
+                null,
+                L10nService.get('common.all', language),
+                '📚',
+                isDark,
+              ),
               ...TantraTheme.values.map(
-                (theme) =>
-                    _buildThemeChip(theme, theme.localizedName(language), theme.icon, isDark),
+                (theme) => _buildThemeChip(
+                  theme,
+                  theme.localizedName(language),
+                  theme.icon,
+                  isDark,
+                ),
               ),
             ],
           ),
@@ -452,7 +462,9 @@ class _TantraScreenState extends ConsumerState<TantraScreen>
                 end: Alignment.bottomRight,
                 colors: [
                   AppColors.tantraWarm.withValues(alpha: isDark ? 0.2 : 0.1),
-                  AppColors.tantraCrimson.withValues(alpha: isDark ? 0.15 : 0.08),
+                  AppColors.tantraCrimson.withValues(
+                    alpha: isDark ? 0.15 : 0.08,
+                  ),
                 ],
               ),
               borderRadius: BorderRadius.circular(AppConstants.radiusMd),
@@ -476,7 +488,9 @@ class _TantraScreenState extends ConsumerState<TantraScreen>
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
-                          color: isDark ? AppColors.tantraGold : AppColors.tantraCrimson,
+                          color: isDark
+                              ? AppColors.tantraGold
+                              : AppColors.tantraCrimson,
                         ),
                       ),
                       const SizedBox(height: 4),
@@ -503,9 +517,11 @@ class _TantraScreenState extends ConsumerState<TantraScreen>
             padding: const EdgeInsets.all(AppConstants.spacingLg),
             itemCount: modules.length,
             itemBuilder: (context, index) {
-              return _buildModuleCard(modules[index], isDark, language)
-                  .animate(delay: (50 * index).ms)
-                  .fadeIn(duration: 300.ms);
+              return _buildModuleCard(
+                modules[index],
+                isDark,
+                language,
+              ).animate(delay: (50 * index).ms).fadeIn(duration: 300.ms);
             },
           ),
         ),
@@ -514,7 +530,11 @@ class _TantraScreenState extends ConsumerState<TantraScreen>
   }
 
   Widget _buildThemeChip(
-      TantraTheme? theme, String label, String icon, bool isDark) {
+    TantraTheme? theme,
+    String label,
+    String icon,
+    bool isDark,
+  ) {
     final isSelected = _selectedTheme == theme;
 
     return Padding(
@@ -523,11 +543,7 @@ class _TantraScreenState extends ConsumerState<TantraScreen>
         selected: isSelected,
         label: Row(
           mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(icon),
-            const SizedBox(width: 4),
-            Text(label),
-          ],
+          children: [Text(icon), const SizedBox(width: 4), Text(label)],
         ),
         onSelected: (_) {
           setState(() {
@@ -542,7 +558,11 @@ class _TantraScreenState extends ConsumerState<TantraScreen>
     );
   }
 
-  Widget _buildModuleCard(TantraModule module, bool isDark, AppLanguage language) {
+  Widget _buildModuleCard(
+    TantraModule module,
+    bool isDark,
+    AppLanguage language,
+  ) {
     return Container(
       margin: const EdgeInsets.only(bottom: AppConstants.spacingMd),
       decoration: BoxDecoration(
@@ -608,10 +628,7 @@ class _TantraScreenState extends ConsumerState<TantraScreen>
               ),
               child: Text(
                 '${module.durationMinutes} ${L10nService.get('common.minutes_short', language)}',
-                style: TextStyle(
-                  fontSize: 11,
-                  color: AppColors.tantraCrimson,
-                ),
+                style: TextStyle(fontSize: 11, color: AppColors.tantraCrimson),
               ),
             ),
             const SizedBox(width: 8),
@@ -657,8 +674,8 @@ class _TantraScreenState extends ConsumerState<TantraScreen>
         color: highlight
             ? AppColors.tantraCrimson.withValues(alpha: 0.1)
             : (isDark
-                ? Colors.white.withValues(alpha: 0.03)
-                : Colors.grey.withValues(alpha: 0.05)),
+                  ? Colors.white.withValues(alpha: 0.03)
+                  : Colors.grey.withValues(alpha: 0.05)),
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         border: highlight
             ? Border.all(color: AppColors.tantraCrimson.withValues(alpha: 0.3))
@@ -739,10 +756,7 @@ class _TantraScreenState extends ConsumerState<TantraScreen>
           ),
           child: Row(
             children: [
-              Text(
-                purpose.icon,
-                style: const TextStyle(fontSize: 24),
-              ),
+              Text(purpose.icon, style: const TextStyle(fontSize: 24)),
               const SizedBox(width: AppConstants.spacingMd),
               Expanded(
                 child: Column(
@@ -753,7 +767,9 @@ class _TantraScreenState extends ConsumerState<TantraScreen>
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
-                        color: isDark ? AppColors.tantraGold : AppColors.tantraCrimson,
+                        color: isDark
+                            ? AppColors.tantraGold
+                            : AppColors.tantraCrimson,
                       ),
                     ),
                     const SizedBox(height: 4),
@@ -771,9 +787,7 @@ class _TantraScreenState extends ConsumerState<TantraScreen>
             ],
           ),
         ),
-        ...questions.take(5).map(
-              (q) => _buildQuestionCard(q, isDark),
-            ),
+        ...questions.take(5).map((q) => _buildQuestionCard(q, isDark)),
         const SizedBox(height: AppConstants.spacingMd),
       ],
     );

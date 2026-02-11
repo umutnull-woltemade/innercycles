@@ -197,7 +197,9 @@ class TodayOverviewCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          t('widgets.today_overview_card.moon_in_sign').replaceAll('{sign}', moonInSign.toString()),
+                          t(
+                            'widgets.today_overview_card.moon_in_sign',
+                          ).replaceAll('{sign}', moonInSign.toString()),
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
@@ -274,7 +276,9 @@ class TodayOverviewCard extends StatelessWidget {
                   ],
                 ),
                 borderRadius: BorderRadius.circular(16),
-                border: Border.all(color: AppColors.starGold.withValues(alpha: 0.3)),
+                border: Border.all(
+                  color: AppColors.starGold.withValues(alpha: 0.3),
+                ),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -336,9 +340,11 @@ class TodayOverviewCard extends StatelessWidget {
   String _getTimeBasedGreeting() {
     final hour = DateTime.now().hour;
     if (hour < 6) return t('widgets.today_overview_card.greetings.midnight');
-    if (hour < 12) return t('widgets.today_overview_card.greetings.good_morning');
+    if (hour < 12)
+      return t('widgets.today_overview_card.greetings.good_morning');
     if (hour < 17) return t('widgets.today_overview_card.greetings.good_day');
-    if (hour < 21) return t('widgets.today_overview_card.greetings.good_evening');
+    if (hour < 21)
+      return t('widgets.today_overview_card.greetings.good_evening');
     return t('widgets.today_overview_card.greetings.good_night');
   }
 
@@ -351,21 +357,53 @@ class TodayOverviewCard extends StatelessWidget {
           'seed',
         );
       case 'waxing crescent':
-        return _TodayEnergy(t('widgets.today_overview_card.energy.growth_energy'), AppColors.success, 'sprout');
+        return _TodayEnergy(
+          t('widgets.today_overview_card.energy.growth_energy'),
+          AppColors.success,
+          'sprout',
+        );
       case 'first quarter':
-        return _TodayEnergy(t('widgets.today_overview_card.energy.action_time'), AppColors.fireElement, 'fire');
+        return _TodayEnergy(
+          t('widgets.today_overview_card.energy.action_time'),
+          AppColors.fireElement,
+          'fire',
+        );
       case 'waxing gibbous':
-        return _TodayEnergy(t('widgets.today_overview_card.energy.development_day'), AppColors.auroraStart, 'star');
+        return _TodayEnergy(
+          t('widgets.today_overview_card.energy.development_day'),
+          AppColors.auroraStart,
+          'star',
+        );
       case 'full moon':
-        return _TodayEnergy(t('widgets.today_overview_card.energy.full_moon_power'), AppColors.starGold, 'moon');
+        return _TodayEnergy(
+          t('widgets.today_overview_card.energy.full_moon_power'),
+          AppColors.starGold,
+          'moon',
+        );
       case 'waning gibbous':
-        return _TodayEnergy(t('widgets.today_overview_card.energy.gratitude_time'), AppColors.venusColor, 'heart');
+        return _TodayEnergy(
+          t('widgets.today_overview_card.energy.gratitude_time'),
+          AppColors.venusColor,
+          'heart',
+        );
       case 'last quarter':
-        return _TodayEnergy(t('widgets.today_overview_card.energy.letting_go'), AppColors.waterElement, 'water');
+        return _TodayEnergy(
+          t('widgets.today_overview_card.energy.letting_go'),
+          AppColors.waterElement,
+          'water',
+        );
       case 'waning crescent':
-        return _TodayEnergy(t('widgets.today_overview_card.energy.rest_period'), AppColors.moonSilver, 'rest');
+        return _TodayEnergy(
+          t('widgets.today_overview_card.energy.rest_period'),
+          AppColors.moonSilver,
+          'rest',
+        );
       default:
-        return _TodayEnergy(t('widgets.today_overview_card.energy.cosmic_energy'), AppColors.cosmic, 'sparkle');
+        return _TodayEnergy(
+          t('widgets.today_overview_card.energy.cosmic_energy'),
+          AppColors.cosmic,
+          'sparkle',
+        );
     }
   }
 
@@ -392,8 +430,20 @@ class TodayOverviewCard extends StatelessWidget {
   String _getDailyFocus(String sunSign, String moonSign) {
     // Simplified personalized focus based on sun sign and current moon
     final signKey = sunSign.toLowerCase();
-    final validSigns = ['aries', 'taurus', 'gemini', 'cancer', 'leo', 'virgo',
-                        'libra', 'scorpio', 'sagittarius', 'capricorn', 'aquarius', 'pisces'];
+    final validSigns = [
+      'aries',
+      'taurus',
+      'gemini',
+      'cancer',
+      'leo',
+      'virgo',
+      'libra',
+      'scorpio',
+      'sagittarius',
+      'capricorn',
+      'aquarius',
+      'pisces',
+    ];
     final key = validSigns.contains(signKey) ? signKey : 'default';
     return t('widgets.today_overview_card.daily_focus.$key');
   }
