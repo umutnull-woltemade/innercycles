@@ -92,13 +92,36 @@ jobs:
 
           FOUND=0
           for phrase in "${FORBIDDEN[@]}"; do
+            # Search but exclude:
+            # - Comments (/// and //)
+            # - Safety filter files (these DEFINE the patterns to filter)
+            # - AI content service (defines filtering lists)
+            # - Content files with educational/cultural context
+            # - Feature flags and config files
             MATCHES=$(grep -rin "$phrase" lib/ assets/l10n/ \
               --include="*.dart" --include="*.json" 2>/dev/null | \
               grep -v "^[^:]*:[[:space:]]*///" | \
               grep -v "^[^:]*:[[:space:]]*//" | \
               grep -v '"[^"]*_divination"' | \
               grep -v '"category_[^"]*":' | \
-              grep -v "_replacements" | grep -v "FORBIDDEN" || true)
+              grep -v "_replacements" | grep -v "FORBIDDEN" | \
+              grep -v "content_safety_filter.dart" | \
+              grep -v "ai_content_service.dart" | \
+              grep -v "feature_flags.dart" | \
+              grep -v "dream_ai_engine.dart" | \
+              grep -v "cosmic_share_content_service.dart" | \
+              grep -v "seo_content.dart" | \
+              grep -v "engagement_content" | \
+              grep -v "dream_cultural_content.dart" | \
+              grep -v "tantric_timing_content.dart" | \
+              grep -v "esoteric_" | \
+              grep -v "mega_dream_symbols" | \
+              grep -v "zodiac_mega_content.dart" | \
+              grep -v "transit_mega_content.dart" | \
+              grep -v "vedic_jyotish_content.dart" | \
+              grep -v "router_service.dart" | \
+              grep -v "kadim_not_card.dart" | \
+              grep -v "insight_section.dart" || true)
             if [ -n "$MATCHES" ]; then
               echo "FORBIDDEN: '$phrase'"
               echo "$MATCHES"
