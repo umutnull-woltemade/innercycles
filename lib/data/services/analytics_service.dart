@@ -72,9 +72,9 @@ class AnalyticsService {
     logEvent('feature_used', {'feature': feature, ...?details});
   }
 
-  /// Log horoscope view
-  void logHoroscopeView(String sign, String type) {
-    logEvent('horoscope_view', {'sign': sign, 'type': type});
+  /// Log insight view
+  void logInsightView(String category, String type) {
+    logEvent('insight_view', {'category': category, 'type': type});
   }
 
   /// Log chart generation

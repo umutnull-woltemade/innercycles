@@ -232,7 +232,7 @@ class ObservatoryService {
 
     // Calculate category breakdown
     final byCategory = <String, int>{
-      'Horoscopes': contentCounts['horoscopes'] ?? 0,
+      'Insights': contentCounts['insights'] ?? 0,
       'Dreams': contentCounts['dreams'] ?? 0,
       'Tarot': contentCounts['tarot'] ?? 0,
       'Reflections': contentCounts['reflections'] ?? 0,
@@ -268,7 +268,7 @@ class ObservatoryService {
   /// Count content items by category
   Map<String, int> _countContentItems(Map<String, dynamic> translations) {
     final counts = <String, int>{
-      'horoscopes': 0,
+      'insights': 0,
       'dreams': 0,
       'tarot': 0,
       'reflections': 0,
@@ -284,10 +284,10 @@ class ObservatoryService {
           countRecursive(entry.value as Map<String, dynamic>, currentPath);
         } else {
           // Categorize based on path
-          if (currentPath.contains('horoscope') ||
-              currentPath.contains('zodiac') ||
+          if (currentPath.contains('insight') ||
+              currentPath.contains('archetype') ||
               currentPath.contains('sign')) {
-            counts['horoscopes'] = (counts['horoscopes'] ?? 0) + 1;
+            counts['insights'] = (counts['insights'] ?? 0) + 1;
           } else if (currentPath.contains('dream')) {
             counts['dreams'] = (counts['dreams'] ?? 0) + 1;
           } else if (currentPath.contains('tarot') ||

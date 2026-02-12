@@ -16,7 +16,7 @@ class ReferenceContentService {
   /// Get glossary entries count
   int get glossaryCount => GlossaryContent.totalCount;
 
-  /// Search planet in house interpretations
+  /// Search for driver-in-area interpretations
   List<GlossaryEntry> searchPlanetInHouse(String query) {
     return GlossaryContent.searchPlanetInHouse(query);
   }
@@ -802,15 +802,15 @@ class ReferenceContentService {
     return [
       AstrologyArticle(
         id: '1',
-        title: 'Introduction to Astrology: Basic Concepts',
+        title: 'Introduction to Self-Awareness: Basic Concepts',
         summary:
-            'Take your first step into the world of astrology. Basic information about zodiac signs, planets, and houses.',
+            'Take your first step into the world of personal growth. Basic information about personality archetypes, inner drivers, and life areas.',
         content: '''
-Astrology is an ancient science based on the belief that the positions of celestial bodies in the sky influence events on Earth and human behavior.
+Self-awareness is an ancient practice based on the understanding that natural cycles and personal patterns influence our daily lives and behavior.
 
-## Zodiac Signs
+## Personality Archetypes
 
-The zodiac belt is divided into 12 equal parts, each representing a sign:
+The archetype system is divided into 12 distinct types, each representing a pattern:
 
 1. **Aries (March 21 - April 19)**: Courage, energy, leadership
 2. **Taurus (April 20 - May 20)**: Stability, security, comfort
@@ -825,94 +825,94 @@ The zodiac belt is divided into 12 equal parts, each representing a sign:
 11. **Aquarius (January 20 - February 18)**: Innovation, humanitarianism, independence
 12. **Pisces (February 19 - March 20)**: Intuition, compassion, spirituality
 
-## Planets
+## Inner Drivers
 
-Each planet represents a different area of life:
+Each inner driver represents a different area of life:
 
-- **Sun**: Self, identity
-- **Moon**: Emotions, instincts
-- **Mercury**: Communication, thought
-- **Venus**: Love, beauty
-- **Mars**: Action, energy
-- **Jupiter**: Growth, luck
-- **Saturn**: Structure, discipline
-- **Uranus**: Change, originality
-- **Neptune**: Dreams, spirituality
-- **Pluto**: Transformation, power
+- **Vitality**: Self, identity
+- **Intuition**: Emotions, instincts
+- **Expression**: Communication, thought
+- **Connection**: Love, beauty
+- **Motivation**: Action, energy
+- **Expansion**: Growth, luck
+- **Discipline**: Structure, responsibility
+- **Innovation**: Change, originality
+- **Imagination**: Dreams, spirituality
+- **Transformation**: Renewal, power
 
-## Houses
+## Life Areas
 
-The birth chart is divided into 12 houses, each representing a different area of life:
+The personal profile is divided into 12 areas, each representing a different domain of life:
 
-1st House - Self and appearance
-2nd House - Money and values
-3rd House - Communication and immediate environment
-4th House - Home and family
-5th House - Creativity and romance
-6th House - Health and daily routines
-7th House - Partnerships and marriage
-8th House - Transformation and shared resources
-9th House - Philosophy and foreign cultures
-10th House - Career and social status
-11th House - Friendships and ideals
-12th House - Subconscious and spirituality
+1st Area - Self and appearance
+2nd Area - Money and values
+3rd Area - Communication and immediate environment
+4th Area - Home and family
+5th Area - Creativity and romance
+6th Area - Health and daily routines
+7th Area - Partnerships and relationships
+8th Area - Transformation and shared resources
+9th Area - Philosophy and personal growth
+10th Area - Career and social purpose
+11th Area - Friendships and ideals
+12th Area - Inner world and spirituality
         ''',
         category: ArticleCategory.beginners,
         publishedAt: DateTime.now().subtract(const Duration(days: 30)),
-        author: 'Venus One Team',
+        author: 'InnerCycles Team',
         readTimeMinutes: 8,
-        tags: ['beginners', 'zodiac signs', 'planets', 'houses'],
+        tags: ['beginners', 'personality archetypes', 'inner drivers', 'life areas'],
       ),
       AstrologyArticle(
         id: '2',
-        title: 'Astrology in Relationships: A Synastry Guide',
+        title: 'Self-Awareness in Relationships: A Compatibility Guide',
         summary:
-            'How can you evaluate your compatibility with your partner from an astrological perspective?',
+            'How can you evaluate your compatibility with your partner from a personal growth perspective?',
         content: '''
-Synastry is the art of understanding relationship dynamics by comparing two people's birth charts.
+Compatibility analysis is the art of understanding relationship dynamics by comparing two people's personal profiles.
 
-## Important Aspects
+## Important Dynamics
 
-Planetary connections between two charts determine the nature of the relationship:
+Key connections between two personal profiles determine the nature of the relationship:
 
-### Conjunctions (0°)
-When two planets come together, a strong bond is formed. Sun-Moon conjunction indicates a deep emotional connection.
+### Deep Alignment
+When two core traits align, a strong bond is formed. A shared sense of identity and emotional resonance indicates a deep connection.
 
-### Trines (120°)
-Natural harmony and flow. Venus-Mars trine facilitates romantic attraction.
+### Natural Flow
+Natural harmony and ease. Complementary strengths in love and motivation facilitate romantic attraction.
 
-### Squares (90°)
-Challenge but growth potential. Sun-Saturn square requires maturation in the relationship.
+### Growth Edges
+Challenge but growth potential. Tension between ambition and discipline requires maturation in the relationship.
 
 ## Most Important Connections
 
-1. **Sun-Moon**: Basic compatibility indicator
-2. **Venus-Mars**: Romantic and sexual attraction
-3. **Mercury-Mercury**: Communication harmony
-4. **Moon-Venus**: Emotional bond and affection
-5. **Jupiter connections**: Growing together
+1. **Identity-Emotion**: Basic compatibility indicator
+2. **Love-Motivation**: Romantic and physical attraction
+3. **Communication styles**: Dialogue harmony
+4. **Emotion-Affection**: Emotional bond and care
+5. **Growth mindset**: Evolving together
 
-## 7th House Analysis
+## Relationship Area Analysis
 
-Both partners' 7th house shows relationship expectations. The position and aspects of the 7th house ruler are important.
+Both partners' relationship area shows expectations for partnership. Understanding each other's needs and boundaries is important.
         ''',
         category: ArticleCategory.relationships,
         publishedAt: DateTime.now().subtract(const Duration(days: 15)),
-        author: 'Venus One Team',
+        author: 'InnerCycles Team',
         readTimeMinutes: 6,
-        tags: ['synastry', 'relationships', 'compatibility'],
+        tags: ['compatibility', 'relationships', 'personal growth'],
       ),
       AstrologyArticle(
         id: '3',
-        title: 'Mercury Retrograde: Nothing to Fear',
+        title: 'Reflective Periods: Nothing to Fear',
         summary:
-            'The true meaning of Mercury retrograde and how to make this period productive.',
+            'The true meaning of reflective periods and how to make this time productive.',
         content: '''
-Mercury retrograde is one of the most talked about and feared periods in astrology. However, with the right understanding, this period can turn into an opportunity.
+A reflective period is one of the most talked about and misunderstood cycles in personal growth. However, with the right understanding, this period can turn into an opportunity.
 
-## What is Mercury Retrograde?
+## What is a Reflective Period?
 
-It's when Mercury appears to move backward when viewed from Earth. It happens about three times a year, each lasting 3 weeks.
+It is a natural cycle of slowing down and turning inward. It happens about three times a year, each lasting 3 weeks.
 
 ## What to Expect?
 
@@ -936,15 +936,15 @@ It's when Mercury appears to move backward when viewed from Earth. It happens ab
 - Making important decisions
 - Starting new projects
 
-## Shadow Periods
+## Transition Periods
 
-The 2-week shadow periods before and after the retrograde also require attention.
+The 2-week transition periods before and after a reflective period also require attention.
         ''',
         category: ArticleCategory.currentTransits,
         publishedAt: DateTime.now().subtract(const Duration(days: 5)),
-        author: 'Venus One Team',
+        author: 'InnerCycles Team',
         readTimeMinutes: 5,
-        tags: ['mercury', 'retrograde', 'transit'],
+        tags: ['reflection', 'mindfulness', 'personal cycles'],
       ),
     ];
   }

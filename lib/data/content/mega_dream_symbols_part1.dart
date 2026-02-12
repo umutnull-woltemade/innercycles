@@ -2335,7 +2335,7 @@ class MegaDreamSymbolsPart1 {
         EmotionalTone.donukluk: 'Kararsizlik, donma',
       },
       archetypes: ['Secim', 'Kader', 'Karar'],
-      relatedSymbols: ['path', 'direction', 'choice', 'destiny'],
+      relatedSymbols: ['path', 'direction', 'choice', 'purpose'],
       shadowAspect: 'Kararsizlik, kaybolma',
       lightAspect: 'Secim gucu, olasiliklar',
     ),

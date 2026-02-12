@@ -200,7 +200,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
 
   bool _canProceed() {
     if (_currentPage == 1) {
-      // All fields are required for accurate chart calculation
+      // All fields are required for accurate profile calculation
       return _userName != null &&
           _userName!.isNotEmpty &&
           _selectedDate != null &&
@@ -346,7 +346,7 @@ class _WelcomePageState extends State<_WelcomePage>
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: [
-              // Logo - Use actual Venus One logo with fallback for web
+              // Logo - Use actual InnerCycles logo with fallback for web
               Image.asset(
                 'assets/brand/venus-logo/png/venus-logo-256.png',
                 width: 120,
@@ -723,7 +723,7 @@ class _WelcomePageState extends State<_WelcomePage>
       {
         'icon': '🌙',
         'text': L10nService.get(
-          'onboarding.features.birth_chart',
+          'onboarding.features.personal_profile',
           widget.language,
         ),
       },
@@ -1714,8 +1714,8 @@ class _CosmicWelcomeOverlayState extends State<_CosmicWelcomeOverlay>
 /// ════════════════════════════════════════════════════════════════════════════
 /// APP STORE 4.3(b) COMPLIANT READY PAGE
 /// ════════════════════════════════════════════════════════════════════════════
-/// Neutral completion page that does NOT show zodiac sign.
-/// Used during App Store review mode to avoid triggering 4.3(b) rejection.
+/// Neutral completion page for App Store 4.3(b) compliance.
+/// Shows a safe, personality-type-free ready screen.
 class _ReadyPage extends StatelessWidget {
   final DateTime? selectedDate;
   final VoidCallback onComplete;
@@ -1772,7 +1772,7 @@ class _ReadyPage extends StatelessWidget {
 
             const SizedBox(height: 32),
 
-            // Title - neutral, no zodiac
+            // Title - neutral
             Text(
               L10nService.get('onboarding.profile_ready', language),
               style: const TextStyle(

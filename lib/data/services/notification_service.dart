@@ -4,14 +4,11 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz_data;
 import 'package:shared_preferences/shared_preferences.dart';
-import '../models/zodiac_sign.dart';
-import 'widget_service.dart';
 
 /// Global navigator key for notification navigation
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
-/// Notification service for daily horoscope reminders and transit alerts
-/// Integrates with iOS Widgets for synchronized content delivery
+/// Notification service for daily journal reminders
 class NotificationService {
   static final NotificationService _instance = NotificationService._internal();
   factory NotificationService() => _instance;
@@ -19,50 +16,44 @@ class NotificationService {
 
   final FlutterLocalNotificationsPlugin _notifications =
       FlutterLocalNotificationsPlugin();
-  final WidgetService _widgetService = WidgetService();
 
   bool _isInitialized = false;
 
   // Notification IDs
-  static const int dailyHoroscopeId = 1;
-  static const int mercuryRetrogradeId = 2;
-  static const int moonPhaseId = 3;
-  static const int transitAlertId = 4;
-  static const int saturnReturnId = 5;
-  static const int voidOfCourseMoonId = 6;
+  static const int dailyReflectionId = 1;
+  static const int weeklyReviewId = 2;
+  static const int moonCycleId = 3;
+  static const int wellnessReminderId = 4;
+  static const int journalStreakId = 5;
+  static const int mindfulnessId = 6;
   static const int newMoonId = 7;
   static const int fullMoonId = 8;
-  static const int cosmicEnergyId = 9;
+  static const int eveningReflectionId = 9;
 
   // Preference keys
   static const String _keyDailyEnabled = 'notification_daily_enabled';
   static const String _keyDailyTime = 'notification_daily_time';
   static const String _keyMoonPhaseEnabled = 'notification_moon_enabled';
-  static const String _keyTransitsEnabled = 'notification_transits_enabled';
-  static const String _keyRetrogradeEnabled = 'notification_retrograde_enabled';
-  static const String _keyCosmicEnergyEnabled = 'notification_cosmic_enabled';
+  static const String _keyWellnessEnabled = 'notification_wellness_enabled';
+  static const String _keyEveningEnabled = 'notification_evening_enabled';
 
   /// Initialize the notification service
   Future<void> initialize() async {
     if (_isInitialized) return;
-    if (kIsWeb) return; // Notifications not supported on web
+    if (kIsWeb) return;
 
-    // Initialize timezone
     tz_data.initializeTimeZones();
 
-    // Android settings
     const androidSettings = AndroidInitializationSettings(
       '@mipmap/ic_launcher',
     );
 
-    // iOS settings
     const darwinSettings = DarwinInitializationSettings(
       requestAlertPermission: false,
       requestBadgePermission: false,
       requestSoundPermission: false,
     );
 
-    // Initialize
     const initSettings = InitializationSettings(
       android: androidSettings,
       iOS: darwinSettings,
@@ -116,83 +107,64 @@ class NotificationService {
       return result ?? false;
     }
 
-    // For iOS, we can't check directly, assume enabled if initialized
     return _isInitialized;
   }
 
   /// Handle notification tap
   void _onNotificationTapped(NotificationResponse response) {
-    // Handle navigation based on notification payload
     final payload = response.payload;
     if (payload == null) return;
 
-    // Navigate based on payload
     String? route;
     switch (payload) {
-      case 'daily_horoscope':
-        route = '/horoscope';
+      case 'daily_reflection':
+        route = '/journal';
         break;
-      case 'moon_phase':
+      case 'moon_cycle':
       case 'new_moon':
       case 'full_moon':
-        route = '/discovery/moon-energy';
+        route = '/journal';
         break;
-      case 'mercury_retrograde':
-        route = '/transits';
+      case 'wellness':
+        route = '/insight';
         break;
-      case 'transit':
-        route = '/transit-calendar';
-        break;
-      case 'saturn_return':
-        route = '/saturn-return';
-        break;
-      case 'void_of_course':
-        route = '/timing';
-        break;
-      case 'cosmic_energy':
-        route = '/cosmic/daily-energy';
+      case 'evening_reflection':
+        route = '/journal';
         break;
       default:
         route = '/home';
     }
 
-    // Use global navigator key if available
     if (navigatorKey.currentState != null) {
       navigatorKey.currentState!.pushNamed(route);
     }
   }
 
-  // ============== Daily Horoscope Notifications ==============
+  // ============== Daily Reflection Notifications ==============
 
-  /// Schedule daily horoscope notification with widget sync
-  Future<void> scheduleDailyHoroscope({
-    required ZodiacSign sign,
+  /// Schedule daily reflection notification
+  Future<void> scheduleDailyReflection({
     required int hour,
     required int minute,
     String? personalizedMessage,
   }) async {
-    final zodiacEmoji = WidgetService.getZodiacEmoji(sign.name);
-    final element = WidgetService.getElement(sign.name);
-
-    // Default message if not personalized
     final message =
-        personalizedMessage ??
-        'Your daily cosmic insights for ${sign.name} are ready.';
+        personalizedMessage ?? 'Take a moment to reflect on your day.';
 
     await _notifications.zonedSchedule(
-      dailyHoroscopeId,
-      '$zodiacEmoji Your Daily Horoscope',
+      dailyReflectionId,
+      '✨ Your Daily Reflection',
       message,
       _nextInstanceOfTime(hour, minute),
       NotificationDetails(
         android: AndroidNotificationDetails(
-          'daily_horoscope',
-          'Daily Horoscope',
-          channelDescription: 'Daily horoscope notifications',
+          'daily_reflection',
+          'Daily Reflection',
+          channelDescription: 'Daily journal reflection reminders',
           importance: Importance.high,
           priority: Priority.high,
           icon: '@mipmap/ic_launcher',
-          color: const Color(0xFFFFD700), // Venus gold
+          color: const Color(0xFFFFD700),
         ),
         iOS: const DarwinNotificationDetails(
           presentAlert: true,
@@ -204,100 +176,52 @@ class NotificationService {
       uiLocalNotificationDateInterpretation:
           UILocalNotificationDateInterpretation.absoluteTime,
       matchDateTimeComponents: DateTimeComponents.time,
-      payload: 'daily_horoscope',
+      payload: 'daily_reflection',
     );
 
-    // Sync with iOS widget
-    await _widgetService.updateDailyHoroscope(
-      zodiacSign: sign.name,
-      zodiacEmoji: zodiacEmoji,
-      dailyMessage: message,
-      focusNumber: DateTime.now().day % 9 + 1, // Daily focus number
-      element: element,
-      moodRating: 4, // Will be updated by actual content
-    );
-
-    // Save preference
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool(_keyDailyEnabled, true);
     await prefs.setInt(_keyDailyTime, hour * 60 + minute);
   }
 
-  /// Send personalized daily notification and update widgets
-  Future<void> sendPersonalizedDaily({
-    required ZodiacSign sign,
-    required String dailyMessage,
-    required String shortMessage,
-    required int moodRating,
-    required int focusNumber,
-    required String moonPhase,
-    required String planetaryFocus,
-    required int energyLevel,
-    required String cosmicAdvice,
-    String currentTransit = '',
-  }) async {
-    final zodiacEmoji = WidgetService.getZodiacEmoji(sign.name);
-    final moonEmoji = WidgetService.getMoonEmoji(moonPhase);
-    final element = WidgetService.getElement(sign.name);
-
-    // Update all iOS widgets with synced content
-    await _widgetService.updateAllWidgets(
-      zodiacSign: sign.name,
-      zodiacEmoji: zodiacEmoji,
-      element: element,
-      dailyMessage: dailyMessage,
-      shortMessage: shortMessage,
-      focusNumber: focusNumber,
-      moodRating: moodRating,
-      moonPhase: moonPhase,
-      moonEmoji: moonEmoji,
-      planetaryFocus: planetaryFocus,
-      energyLevel: energyLevel,
-      cosmicAdvice: cosmicAdvice,
-      currentTransit: currentTransit,
-    );
-
-    debugPrint('[NotificationService] Widgets synced for ${sign.name}');
-  }
-
-  /// Cancel daily horoscope notification
-  Future<void> cancelDailyHoroscope() async {
-    await _notifications.cancel(dailyHoroscopeId);
+  /// Cancel daily reflection notification
+  Future<void> cancelDailyReflection() async {
+    await _notifications.cancel(dailyReflectionId);
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool(_keyDailyEnabled, false);
   }
 
-  /// Check if daily horoscope notification is enabled
-  Future<bool> isDailyHoroscopeEnabled() async {
+  /// Check if daily reflection notification is enabled
+  Future<bool> isDailyReflectionEnabled() async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getBool(_keyDailyEnabled) ?? false;
   }
 
-  /// Get scheduled daily horoscope time
-  Future<TimeOfDay?> getDailyHoroscopeTime() async {
+  /// Get scheduled daily reflection time
+  Future<TimeOfDay?> getDailyReflectionTime() async {
     final prefs = await SharedPreferences.getInstance();
     final minutes = prefs.getInt(_keyDailyTime);
     if (minutes == null) return null;
     return TimeOfDay(hour: minutes ~/ 60, minute: minutes % 60);
   }
 
-  // ============== Cosmic Energy Notifications ==============
+  // ============== Evening Reflection Notifications ==============
 
-  /// Schedule cosmic energy notification
-  Future<void> scheduleCosmicEnergy({
+  /// Schedule evening reflection notification
+  Future<void> scheduleEveningReflection({
     required int hour,
     required int minute,
   }) async {
     await _notifications.zonedSchedule(
-      cosmicEnergyId,
-      'Cosmic Energy Update',
-      'Check today\'s planetary alignments and energy forecast.',
+      eveningReflectionId,
+      'Evening Reflection',
+      'How was your day? Take a moment to journal your thoughts.',
       _nextInstanceOfTime(hour, minute),
       NotificationDetails(
         android: AndroidNotificationDetails(
-          'cosmic_energy',
-          'Cosmic Energy',
-          channelDescription: 'Daily cosmic energy notifications',
+          'evening_reflection',
+          'Evening Reflection',
+          channelDescription: 'Evening journal reflection reminders',
           importance: Importance.defaultImportance,
           priority: Priority.defaultPriority,
           icon: '@mipmap/ic_launcher',
@@ -313,34 +237,34 @@ class NotificationService {
       uiLocalNotificationDateInterpretation:
           UILocalNotificationDateInterpretation.absoluteTime,
       matchDateTimeComponents: DateTimeComponents.time,
-      payload: 'cosmic_energy',
+      payload: 'evening_reflection',
     );
 
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool(_keyCosmicEnergyEnabled, true);
+    await prefs.setBool(_keyEveningEnabled, true);
   }
 
-  /// Cancel cosmic energy notifications
-  Future<void> cancelCosmicEnergy() async {
-    await _notifications.cancel(cosmicEnergyId);
+  /// Cancel evening reflection notifications
+  Future<void> cancelEveningReflection() async {
+    await _notifications.cancel(eveningReflectionId);
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool(_keyCosmicEnergyEnabled, false);
+    await prefs.setBool(_keyEveningEnabled, false);
   }
 
-  // ============== Moon Phase Notifications ==============
+  // ============== Moon Cycle Awareness Notifications ==============
 
-  /// Schedule moon phase notifications (new moon, full moon)
+  /// Schedule moon cycle mindfulness reminders
   Future<void> scheduleMoonPhaseNotifications() async {
     await _notifications.zonedSchedule(
-      moonPhaseId,
-      'Moon Phase Update',
-      'The moon is entering a new phase. Align your energy with the lunar cycle.',
-      _nextInstanceOfTime(20, 0), // 8 PM
+      moonCycleId,
+      'Moon Cycle Awareness',
+      'A new lunar phase is here. A good time for mindful reflection.',
+      _nextInstanceOfTime(20, 0),
       NotificationDetails(
         android: AndroidNotificationDetails(
-          'moon_phase',
-          'Moon Phases',
-          channelDescription: 'Moon phase notifications',
+          'moon_cycle',
+          'Moon Cycle Awareness',
+          channelDescription: 'Moon cycle mindfulness reminders',
           importance: Importance.defaultImportance,
           priority: Priority.defaultPriority,
           icon: '@mipmap/ic_launcher',
@@ -350,7 +274,7 @@ class NotificationService {
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
       uiLocalNotificationDateInterpretation:
           UILocalNotificationDateInterpretation.absoluteTime,
-      payload: 'moon_phase',
+      payload: 'moon_cycle',
     );
 
     final prefs = await SharedPreferences.getInstance();
@@ -358,19 +282,16 @@ class NotificationService {
   }
 
   /// Show new moon notification
-  Future<void> showNewMoonNotification({
-    required String zodiacSign,
-    String? message,
-  }) async {
+  Future<void> showNewMoonNotification({String? message}) async {
     await _notifications.show(
       newMoonId,
-      '🌑 New Moon in $zodiacSign',
-      message ?? 'Time for new beginnings and setting intentions.',
+      '🌑 New Moon',
+      message ?? 'A time for new beginnings and setting intentions.',
       NotificationDetails(
         android: AndroidNotificationDetails(
-          'moon_phase',
-          'Moon Phases',
-          channelDescription: 'Moon phase notifications',
+          'moon_cycle',
+          'Moon Cycle Awareness',
+          channelDescription: 'Moon cycle mindfulness reminders',
           importance: Importance.high,
           priority: Priority.high,
           icon: '@mipmap/ic_launcher',
@@ -384,31 +305,19 @@ class NotificationService {
       ),
       payload: 'new_moon',
     );
-
-    // Update widgets with new moon
-    await _widgetService.updateCosmicEnergy(
-      moonPhase: 'New Moon',
-      moonEmoji: '🌑',
-      planetaryFocus: 'Moon in $zodiacSign',
-      energyLevel: 60,
-      advice: message ?? 'Time for new beginnings',
-    );
   }
 
   /// Show full moon notification
-  Future<void> showFullMoonNotification({
-    required String zodiacSign,
-    String? message,
-  }) async {
+  Future<void> showFullMoonNotification({String? message}) async {
     await _notifications.show(
       fullMoonId,
-      '🌕 Full Moon in $zodiacSign',
-      message ?? 'Emotions peak and revelations come to light.',
+      '🌕 Full Moon',
+      message ?? 'A time for reflection and gratitude.',
       NotificationDetails(
         android: AndroidNotificationDetails(
-          'moon_phase',
-          'Moon Phases',
-          channelDescription: 'Moon phase notifications',
+          'moon_cycle',
+          'Moon Cycle Awareness',
+          channelDescription: 'Moon cycle mindfulness reminders',
           importance: Importance.high,
           priority: Priority.high,
           icon: '@mipmap/ic_launcher',
@@ -422,144 +331,27 @@ class NotificationService {
       ),
       payload: 'full_moon',
     );
-
-    // Update widgets with full moon
-    await _widgetService.updateCosmicEnergy(
-      moonPhase: 'Full Moon',
-      moonEmoji: '🌕',
-      planetaryFocus: 'Moon in $zodiacSign',
-      energyLevel: 95,
-      advice: message ?? 'Emotions peak and revelations come',
-    );
   }
 
-  /// Cancel moon phase notifications
+  /// Cancel moon cycle notifications
   Future<void> cancelMoonPhaseNotifications() async {
-    await _notifications.cancel(moonPhaseId);
+    await _notifications.cancel(moonCycleId);
     await _notifications.cancel(newMoonId);
     await _notifications.cancel(fullMoonId);
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool(_keyMoonPhaseEnabled, false);
   }
 
-  // ============== Retrograde Alerts ==============
+  // ============== Wellness Reminders ==============
 
-  /// Show Mercury retrograde alert
-  Future<void> showMercuryRetrogradeAlert({
-    required DateTime startDate,
-    required DateTime endDate,
-  }) async {
-    final daysUntil = startDate.difference(DateTime.now()).inDays;
-    if (daysUntil < 0 || daysUntil > 7) return;
-
-    await _notifications.show(
-      mercuryRetrogradeId,
-      '☿️ Mercury Retrograde Approaching',
-      'Mercury goes retrograde in $daysUntil days. Review communications carefully.',
-      NotificationDetails(
-        android: AndroidNotificationDetails(
-          'retrograde_alerts',
-          'Retrograde Alerts',
-          channelDescription: 'Planet retrograde notifications',
-          importance: Importance.high,
-          priority: Priority.high,
-          icon: '@mipmap/ic_launcher',
-          color: const Color(0xFFFF9800),
-        ),
-        iOS: const DarwinNotificationDetails(
-          presentAlert: true,
-          presentBadge: true,
-          presentSound: true,
-        ),
-      ),
-      payload: 'mercury_retrograde',
-    );
-  }
-
-  /// Schedule retrograde alerts
-  Future<void> scheduleRetrogradeAlerts(bool enabled) async {
+  /// Enable/disable wellness reminders
+  Future<void> setWellnessRemindersEnabled(bool enabled) async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool(_keyRetrogradeEnabled, enabled);
+    await prefs.setBool(_keyWellnessEnabled, enabled);
 
     if (!enabled) {
-      await _notifications.cancel(mercuryRetrogradeId);
+      await _notifications.cancel(wellnessReminderId);
     }
-  }
-
-  // ============== Transit Alerts ==============
-
-  /// Show transit alert
-  Future<void> showTransitAlert({
-    required String title,
-    required String body,
-    String? payload,
-  }) async {
-    await _notifications.show(
-      transitAlertId,
-      title,
-      body,
-      NotificationDetails(
-        android: AndroidNotificationDetails(
-          'transit_alerts',
-          'Transit Alerts',
-          channelDescription: 'Planetary transit notifications',
-          importance: Importance.defaultImportance,
-          priority: Priority.defaultPriority,
-          icon: '@mipmap/ic_launcher',
-        ),
-        iOS: const DarwinNotificationDetails(),
-      ),
-      payload: payload ?? 'transit',
-    );
-  }
-
-  /// Enable/disable transit alerts
-  Future<void> setTransitAlertsEnabled(bool enabled) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool(_keyTransitsEnabled, enabled);
-
-    if (!enabled) {
-      await _notifications.cancel(transitAlertId);
-    }
-  }
-
-  // ============== Saturn Return Alert ==============
-
-  /// Show Saturn Return notification
-  Future<void> showSaturnReturnAlert({
-    required int returnNumber,
-    required int daysUntil,
-  }) async {
-    if (daysUntil > 30) return;
-
-    final ordinal = returnNumber == 1
-        ? '1st'
-        : returnNumber == 2
-        ? '2nd'
-        : '${returnNumber}rd';
-
-    await _notifications.show(
-      saturnReturnId,
-      '🪐 Your $ordinal Saturn Return Approaches',
-      'In $daysUntil days, a major life transformation begins.',
-      NotificationDetails(
-        android: AndroidNotificationDetails(
-          'saturn_return',
-          'Saturn Return',
-          channelDescription: 'Saturn return notifications',
-          importance: Importance.high,
-          priority: Priority.high,
-          icon: '@mipmap/ic_launcher',
-          color: const Color(0xFF6B7280),
-        ),
-        iOS: const DarwinNotificationDetails(
-          presentAlert: true,
-          presentBadge: true,
-          presentSound: true,
-        ),
-      ),
-      payload: 'saturn_return',
-    );
   }
 
   // ============== Utility Methods ==============
@@ -589,48 +381,44 @@ class NotificationService {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool(_keyDailyEnabled, false);
     await prefs.setBool(_keyMoonPhaseEnabled, false);
-    await prefs.setBool(_keyTransitsEnabled, false);
-    await prefs.setBool(_keyRetrogradeEnabled, false);
-    await prefs.setBool(_keyCosmicEnergyEnabled, false);
+    await prefs.setBool(_keyWellnessEnabled, false);
+    await prefs.setBool(_keyEveningEnabled, false);
   }
 
   /// Get notification settings
   Future<NotificationSettings> getSettings() async {
     final prefs = await SharedPreferences.getInstance();
     return NotificationSettings(
-      dailyHoroscopeEnabled: prefs.getBool(_keyDailyEnabled) ?? false,
-      dailyHoroscopeTimeMinutes: prefs.getInt(_keyDailyTime),
+      dailyReflectionEnabled: prefs.getBool(_keyDailyEnabled) ?? false,
+      dailyReflectionTimeMinutes: prefs.getInt(_keyDailyTime),
       moonPhaseEnabled: prefs.getBool(_keyMoonPhaseEnabled) ?? false,
-      transitAlertsEnabled: prefs.getBool(_keyTransitsEnabled) ?? false,
-      retrogradeAlertsEnabled: prefs.getBool(_keyRetrogradeEnabled) ?? false,
-      cosmicEnergyEnabled: prefs.getBool(_keyCosmicEnergyEnabled) ?? false,
+      wellnessRemindersEnabled: prefs.getBool(_keyWellnessEnabled) ?? false,
+      eveningReflectionEnabled: prefs.getBool(_keyEveningEnabled) ?? false,
     );
   }
 }
 
 /// Notification settings model
 class NotificationSettings {
-  final bool dailyHoroscopeEnabled;
-  final int? dailyHoroscopeTimeMinutes;
+  final bool dailyReflectionEnabled;
+  final int? dailyReflectionTimeMinutes;
   final bool moonPhaseEnabled;
-  final bool transitAlertsEnabled;
-  final bool retrogradeAlertsEnabled;
-  final bool cosmicEnergyEnabled;
+  final bool wellnessRemindersEnabled;
+  final bool eveningReflectionEnabled;
 
   NotificationSettings({
-    required this.dailyHoroscopeEnabled,
-    this.dailyHoroscopeTimeMinutes,
+    required this.dailyReflectionEnabled,
+    this.dailyReflectionTimeMinutes,
     required this.moonPhaseEnabled,
-    required this.transitAlertsEnabled,
-    required this.retrogradeAlertsEnabled,
-    required this.cosmicEnergyEnabled,
+    required this.wellnessRemindersEnabled,
+    required this.eveningReflectionEnabled,
   });
 
-  TimeOfDay? get dailyHoroscopeTime {
-    if (dailyHoroscopeTimeMinutes == null) return null;
+  TimeOfDay? get dailyReflectionTime {
+    if (dailyReflectionTimeMinutes == null) return null;
     return TimeOfDay(
-      hour: dailyHoroscopeTimeMinutes! ~/ 60,
-      minute: dailyHoroscopeTimeMinutes! % 60,
+      hour: dailyReflectionTimeMinutes! ~/ 60,
+      minute: dailyReflectionTimeMinutes! % 60,
     );
   }
 }

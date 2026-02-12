@@ -41,7 +41,7 @@ import '../../features/journal/presentation/archive_screen.dart';
 import '../../features/journal/presentation/monthly_reflection_screen.dart';
 import '../../features/admin/presentation/admin_login_screen.dart';
 import '../../features/admin/presentation/admin_dashboard_screen.dart';
-import '../../features/content/presentation/content_detail_screen.dart';
+
 import '../../data/services/admin_auth_service.dart';
 import '../../data/services/storage_service.dart';
 
@@ -220,13 +220,7 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: Routes.articles,
         builder: (context, state) => const ArticlesScreen(),
       ),
-      GoRoute(
-        path: '/content/:id',
-        builder: (context, state) {
-          final id = state.pathParameters['id'] ?? '';
-          return ContentDetailScreen(contentId: id);
-        },
-      ),
+      // Content detail route archived
 
       // ════════════════════════════════════════════════════════════════
       // PROFILE & SETTINGS

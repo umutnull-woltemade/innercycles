@@ -353,39 +353,30 @@ class _CosmicPainter extends CustomPainter {
     final random = math.Random(99);
     final symbols = <_EsotericSymbol>[];
 
-    // Burç sembolleri
-    const zodiacSymbols = [
-      '♈',
-      '♉',
-      '♊',
-      '♋',
-      '♌',
-      '♍',
-      '♎',
-      '♏',
-      '♐',
-      '♑',
-      '♒',
-      '♓',
+    // Decorative symbols
+    const decorativeSymbols = [
+      '✧', '⚹', '△', '☆', '◇', '⬡', '⊛', '✦',
+      '○', '◆', '✶', '❋', '✺', '✹', '❈', '✿',
+      '⊕', '⊗', '◎', '☾', '☽', '✵', '❂', '⊙',
     ];
-    // Gezegen sembolleri
-    const planetSymbols = ['☉', '☽', '☿', '♀', '♂', '♃', '♄', '♅', '♆', '⚷'];
-    // Ezoterik semboller
-    const esotericSymbols = ['✧', '⚹', '△', '☆', '◇', '⬡', '⊛', '✦'];
+    // Nature symbols
+    const natureSymbols = ['☉', '☽', '✧', '◇', '△', '○', '⊛', '✦'];
+    // Geometric symbols
+    const geometricSymbols = ['◇', '△', '○', '⬡', '◆', '☆', '✶', '❋'];
 
-    // Pastel renkler
+    // Pastel colors
     const pastelColors = [
-      Color(0xFFE6E6FA), // Lavanta
-      Color(0xFFFFB6C1), // Pembe
-      Color(0xFFADD8E6), // Açık mavi
-      Color(0xFFFFE4B5), // Sıcak sarı
-      Color(0xFFB0E0E6), // Turkuaz
-      Color(0xFFDDA0DD), // Mor
-      Color(0xFF98FB98), // Yeşil
-      Color(0xFFF0E68C), // Altın
+      Color(0xFFE6E6FA), // Lavender
+      Color(0xFFFFB6C1), // Pink
+      Color(0xFFADD8E6), // Light blue
+      Color(0xFFFFE4B5), // Warm yellow
+      Color(0xFFB0E0E6), // Turquoise
+      Color(0xFFDDA0DD), // Purple
+      Color(0xFF98FB98), // Green
+      Color(0xFFF0E68C), // Gold
     ];
 
-    final allSymbols = [...zodiacSymbols, ...planetSymbols, ...esotericSymbols];
+    final allSymbols = [...decorativeSymbols, ...natureSymbols, ...geometricSymbols];
 
     // 25-30 sembol ekle - dağınık ve soluk
     for (int i = 0; i < 28; i++) {

@@ -34,7 +34,7 @@ class MoonService {
   static MoonSign getCurrentMoonSign([DateTime? date]) {
     final now = date ?? DateTime.now();
 
-    // Approximate lunar cycle through zodiac (27.32 days sidereal month)
+    // Approximate lunar cycle through signs (27.32 days sidereal month)
     final siderealMonth = 27.321661;
     final knownMoonInAries = DateTime.utc(
       2024,
@@ -51,38 +51,38 @@ class MoonService {
     return MoonSign.values[signIndex];
   }
 
-  /// Check if a planet is currently retrograde
-  static bool isPlanetRetrograde(String planet, [DateTime? date]) {
+  /// Check if a planet is currently in a review period
+  static bool isPlanetInReview(String planet, [DateTime? date]) {
     final now = date ?? DateTime.now();
     final year = now.year;
     final dayOfYear = now.difference(DateTime(year, 1, 1)).inDays;
 
-    // Approximate retrograde periods for 2024-2026
+    // Approximate review periods for 2024-2026
     // These are simplified approximations
     switch (planet.toLowerCase()) {
       case 'mercury':
-        return _isMercuryRetrograde(year, dayOfYear);
+        return _isMercuryInReview(year, dayOfYear);
       case 'venus':
-        return _isVenusRetrograde(year, dayOfYear);
+        return _isVenusInReview(year, dayOfYear);
       case 'mars':
-        return _isMarsRetrograde(year, dayOfYear);
+        return _isMarsInReview(year, dayOfYear);
       case 'jupiter':
-        return _isOuterPlanetRetrograde(year, dayOfYear, 120, 4); // ~4 months
+        return _isOuterPlanetInReview(year, dayOfYear, 120, 4); // ~4 months
       case 'saturn':
-        return _isOuterPlanetRetrograde(year, dayOfYear, 140, 4.5);
+        return _isOuterPlanetInReview(year, dayOfYear, 140, 4.5);
       case 'uranus':
-        return _isOuterPlanetRetrograde(year, dayOfYear, 150, 5);
+        return _isOuterPlanetInReview(year, dayOfYear, 150, 5);
       case 'neptune':
-        return _isOuterPlanetRetrograde(year, dayOfYear, 160, 5.5);
+        return _isOuterPlanetInReview(year, dayOfYear, 160, 5.5);
       case 'pluto':
-        return _isOuterPlanetRetrograde(year, dayOfYear, 180, 6);
+        return _isOuterPlanetInReview(year, dayOfYear, 180, 6);
       default:
         return false;
     }
   }
 
-  /// Get all currently retrograde planets
-  static List<String> getRetrogradePlanets([DateTime? date]) {
+  /// Get all planets currently in review period
+  static List<String> getPlanetsInReview([DateTime? date]) {
     final planets = [
       'mercury',
       'venus',
@@ -93,40 +93,40 @@ class MoonService {
       'neptune',
       'pluto',
     ];
-    return planets.where((p) => isPlanetRetrograde(p, date)).toList();
+    return planets.where((p) => isPlanetInReview(p, date)).toList();
   }
 
-  /// Get Mercury retrograde periods for a year
-  static List<RetrogradePeroid> getMercuryRetrogradePeriods(int year) {
-    // Mercury goes retrograde 3-4 times per year
+  /// Get Mercury review periods for a year
+  static List<ReviewPeriod> getMercuryReviewPeriods(int year) {
+    // Mercury enters review period 3-4 times per year
     // These are approximate dates
     switch (year) {
       case 2024:
         return [
-          RetrogradePeroid(DateTime(2024, 4, 1), DateTime(2024, 4, 25)),
-          RetrogradePeroid(DateTime(2024, 8, 5), DateTime(2024, 8, 28)),
-          RetrogradePeroid(DateTime(2024, 11, 25), DateTime(2024, 12, 15)),
+          ReviewPeriod(DateTime(2024, 4, 1), DateTime(2024, 4, 25)),
+          ReviewPeriod(DateTime(2024, 8, 5), DateTime(2024, 8, 28)),
+          ReviewPeriod(DateTime(2024, 11, 25), DateTime(2024, 12, 15)),
         ];
       case 2025:
         return [
-          RetrogradePeroid(DateTime(2025, 3, 15), DateTime(2025, 4, 7)),
-          RetrogradePeroid(DateTime(2025, 7, 18), DateTime(2025, 8, 11)),
-          RetrogradePeroid(DateTime(2025, 11, 9), DateTime(2025, 11, 29)),
+          ReviewPeriod(DateTime(2025, 3, 15), DateTime(2025, 4, 7)),
+          ReviewPeriod(DateTime(2025, 7, 18), DateTime(2025, 8, 11)),
+          ReviewPeriod(DateTime(2025, 11, 9), DateTime(2025, 11, 29)),
         ];
       case 2026:
         return [
-          RetrogradePeroid(DateTime(2026, 2, 26), DateTime(2026, 3, 20)),
-          RetrogradePeroid(DateTime(2026, 6, 29), DateTime(2026, 7, 23)),
-          RetrogradePeroid(DateTime(2026, 10, 24), DateTime(2026, 11, 13)),
+          ReviewPeriod(DateTime(2026, 2, 26), DateTime(2026, 3, 20)),
+          ReviewPeriod(DateTime(2026, 6, 29), DateTime(2026, 7, 23)),
+          ReviewPeriod(DateTime(2026, 10, 24), DateTime(2026, 11, 13)),
         ];
       default:
         return [];
     }
   }
 
-  /// Check if Mercury is retrograde
-  static bool _isMercuryRetrograde(int year, int dayOfYear) {
-    final periods = getMercuryRetrogradePeriods(year);
+  /// Check if Mercury is in review period
+  static bool _isMercuryInReview(int year, int dayOfYear) {
+    final periods = getMercuryReviewPeriods(year);
     final date = DateTime(year, 1, 1).add(Duration(days: dayOfYear));
 
     for (final period in periods) {
@@ -138,28 +138,28 @@ class MoonService {
     return false;
   }
 
-  /// Venus retrograde (every 18 months approximately)
-  static bool _isVenusRetrograde(int year, int dayOfYear) {
-    // Venus retrograde 2024: March 1 - April 12 (approx)
-    // Venus retrograde 2025: None
-    // Venus retrograde 2026: February 2 - March 14 (approx)
+  /// Venus review period (every 18 months approximately)
+  static bool _isVenusInReview(int year, int dayOfYear) {
+    // Venus review 2024: March 1 - April 12 (approx)
+    // Venus review 2025: None
+    // Venus review 2026: February 2 - March 14 (approx)
     if (year == 2024 && dayOfYear >= 61 && dayOfYear <= 103) return true;
     if (year == 2026 && dayOfYear >= 33 && dayOfYear <= 73) return true;
     return false;
   }
 
-  /// Mars retrograde (every 2 years approximately)
-  static bool _isMarsRetrograde(int year, int dayOfYear) {
-    // Mars retrograde 2024: December 6, 2024 - February 23, 2025
-    // Mars retrograde 2026: October 30, 2026 - January 12, 2027
+  /// Mars review period (every 2 years approximately)
+  static bool _isMarsInReview(int year, int dayOfYear) {
+    // Mars review 2024: December 6, 2024 - February 23, 2025
+    // Mars review 2026: October 30, 2026 - January 12, 2027
     if (year == 2024 && dayOfYear >= 341) return true;
     if (year == 2025 && dayOfYear <= 54) return true;
     if (year == 2026 && dayOfYear >= 303) return true;
     return false;
   }
 
-  /// Outer planets retrograde (approximate)
-  static bool _isOuterPlanetRetrograde(
+  /// Outer planets review period (approximate)
+  static bool _isOuterPlanetInReview(
     int year,
     int dayOfYear,
     int startDay,
@@ -169,12 +169,12 @@ class MoonService {
     return dayOfYear >= startDay && dayOfYear <= endDay;
   }
 
-  /// Get next Mercury retrograde date
-  static DateTime? getNextMercuryRetrograde([DateTime? fromDate]) {
+  /// Get next Mercury review period date
+  static DateTime? getNextMercuryReviewPeriod([DateTime? fromDate]) {
     final now = fromDate ?? DateTime.now();
 
     for (int year = now.year; year <= now.year + 1; year++) {
-      final periods = getMercuryRetrogradePeriods(year);
+      final periods = getMercuryReviewPeriods(year);
       for (final period in periods) {
         if (period.start.isAfter(now)) {
           return period.start;
@@ -184,10 +184,10 @@ class MoonService {
     return null;
   }
 
-  /// Get current Mercury retrograde end date if in retrograde
-  static DateTime? getCurrentMercuryRetrogradeEnd([DateTime? date]) {
+  /// Get current Mercury review period end date if in review
+  static DateTime? getCurrentMercuryReviewEnd([DateTime? date]) {
     final now = date ?? DateTime.now();
-    final periods = getMercuryRetrogradePeriods(now.year);
+    final periods = getMercuryReviewPeriods(now.year);
 
     for (final period in periods) {
       if (now.isAfter(period.start.subtract(const Duration(days: 1))) &&
@@ -445,17 +445,17 @@ extension MoonSignExtension on MoonSign {
   }
 
   String localizedName(AppLanguage language) {
-    final key = 'zodiac.${name.toLowerCase()}';
+    final key = 'signs.${name.toLowerCase()}';
     return L10nService.get(key, language);
   }
 }
 
-/// Retrograde period
-class RetrogradePeroid {
+/// Review period
+class ReviewPeriod {
   final DateTime start;
   final DateTime end;
 
-  RetrogradePeroid(this.start, this.end);
+  ReviewPeriod(this.start, this.end);
 
   bool isActive([DateTime? date]) {
     final now = date ?? DateTime.now();
@@ -525,7 +525,7 @@ extension VoidOfCourseMoonExtension on MoonService {
     final now = date ?? DateTime.now();
     final currentSign = MoonService.getCurrentMoonSign(now);
 
-    // Approximate lunar transit through each sign (~2.5 days)
+    // Approximate lunar cycle through each sign (~2.5 days)
     final siderealMonth = 27.321661;
     final daysPerSign = siderealMonth / 12; // ~2.28 days
     final knownMoonInAries = DateTime.utc(2024, 1, 14, 12, 0);

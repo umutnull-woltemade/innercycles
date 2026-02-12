@@ -1,6 +1,6 @@
 /// Insight Response Service - Safe Reflection Response Generation
 /// Generates Apple-safe, non-predictive, reflective responses
-/// Strictly reflective language only - no predictions
+/// Strictly reflective language only - safe for App Store
 library;
 
 import 'dart:math';

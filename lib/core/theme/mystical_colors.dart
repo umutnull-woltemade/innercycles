@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-/// Mystical/ethereal color palette for the astrology app
+/// Mystical/ethereal color palette for the InnerCycles app
 class MysticalColors {
   MysticalColors._();
 

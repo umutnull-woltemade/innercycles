@@ -1,7 +1,7 @@
 class AppConstants {
   AppConstants._();
 
-  static const String appName = 'Venus One';
+  static const String appName = 'InnerCycles';
   // REMOVED: Turkish tagline - use L10nService.get('app.tagline', language) instead
 
   // App IDs and Links

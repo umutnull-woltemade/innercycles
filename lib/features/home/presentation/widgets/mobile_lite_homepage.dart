@@ -9,7 +9,7 @@ import '../../../../data/services/l10n_service.dart';
 /// MOBILE LITE HOMEPAGE - InnerCycles
 ///
 /// App Store 4.3(b) Compliant - Journal & Reflection focused.
-/// No astrology, no esoteric features.
+/// Journal-focused, safe language.
 class MobileLiteHomepage extends ConsumerWidget {
   const MobileLiteHomepage({super.key});
 

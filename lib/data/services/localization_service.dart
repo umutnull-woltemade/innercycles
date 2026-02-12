@@ -13,16 +13,16 @@ class L10n {
   static final Map<String, Map<AppLanguage, String>> _translations = {
     // ============ APP GENERAL ============
     'app_name': {
-      AppLanguage.en: 'Venus One',
-      AppLanguage.tr: 'Venus One',
-      AppLanguage.el: 'Venus One',
-      AppLanguage.bg: 'Venus One',
-      AppLanguage.ru: 'Venus One',
-      AppLanguage.zh: 'Venus One',
-      AppLanguage.fr: 'Venus One',
-      AppLanguage.de: 'Venus One',
-      AppLanguage.es: 'Venus One',
-      AppLanguage.ar: 'Venus One',
+      AppLanguage.en: 'InnerCycles',
+      AppLanguage.tr: 'InnerCycles',
+      AppLanguage.el: 'InnerCycles',
+      AppLanguage.bg: 'InnerCycles',
+      AppLanguage.ru: 'InnerCycles',
+      AppLanguage.zh: 'InnerCycles',
+      AppLanguage.fr: 'InnerCycles',
+      AppLanguage.de: 'InnerCycles',
+      AppLanguage.es: 'InnerCycles',
+      AppLanguage.ar: 'InnerCycles',
     },
     'app_tagline': {
       AppLanguage.en: 'Explore the Secrets of the Sky',
@@ -62,17 +62,17 @@ class L10n {
       AppLanguage.es: 'Crear Perfil',
       AppLanguage.ar: 'إنشاء ملف شخصي',
     },
-    'zodiac_analysis': {
-      AppLanguage.en: 'Zodiac Analysis',
-      AppLanguage.tr: 'Burç Çözümlemesi',
-      AppLanguage.el: 'Ανάλυση Ζωδίου',
-      AppLanguage.bg: 'Зодиакален Анализ',
-      AppLanguage.ru: 'Анализ Зодиака',
-      AppLanguage.zh: '星座分析',
-      AppLanguage.fr: 'Analyse du Zodiaque',
-      AppLanguage.de: 'Sternzeichen-Analyse',
-      AppLanguage.es: 'Análisis del Zodiaco',
-      AppLanguage.ar: 'تحليل الأبراج',
+    'personality_analysis': {
+      AppLanguage.en: 'Personality Analysis',
+      AppLanguage.tr: 'Kişilik Çözümlemesi',
+      AppLanguage.el: 'Ανάλυση Προσωπικότητας',
+      AppLanguage.bg: 'Анализ на Личността',
+      AppLanguage.ru: 'Анализ Личности',
+      AppLanguage.zh: '性格分析',
+      AppLanguage.fr: 'Analyse de Personnalité',
+      AppLanguage.de: 'Persönlichkeitsanalyse',
+      AppLanguage.es: 'Análisis de Personalidad',
+      AppLanguage.ar: 'تحليل الشخصية',
     },
     'numerology_analysis': {
       AppLanguage.en: 'Numerology Analysis',
@@ -495,30 +495,30 @@ class L10n {
       AppLanguage.ar: 'نتائج',
     },
 
-    // ============ NATAL CHART ============
-    'natal_chart': {
-      AppLanguage.en: 'Birth Chart',
-      AppLanguage.tr: 'Doğum Haritası',
-      AppLanguage.el: 'Αστρολογικός Χάρτης',
-      AppLanguage.bg: 'Натална Карта',
-      AppLanguage.ru: 'Натальная Карта',
-      AppLanguage.zh: '出生图',
-      AppLanguage.fr: 'Carte Natale',
-      AppLanguage.de: 'Geburtshoroskop',
-      AppLanguage.es: 'Carta Natal',
-      AppLanguage.ar: 'خريطة الميلاد',
+    // ============ PERSONAL PROFILE ============
+    'personal_profile': {
+      AppLanguage.en: 'Personal Profile',
+      AppLanguage.tr: 'Kişisel Profil',
+      AppLanguage.el: 'Προσωπικό Προφίλ',
+      AppLanguage.bg: 'Личен Профил',
+      AppLanguage.ru: 'Личный Профиль',
+      AppLanguage.zh: '个人档案',
+      AppLanguage.fr: 'Profil Personnel',
+      AppLanguage.de: 'Persönliches Profil',
+      AppLanguage.es: 'Perfil Personal',
+      AppLanguage.ar: 'الملف الشخصي',
     },
-    'chart_calculating': {
-      AppLanguage.en: 'Your cosmic map is being decoded...',
-      AppLanguage.tr: 'Kozmik haritanız çözümleniyor...',
-      AppLanguage.el: 'Ο κοσμικός σας χάρτης αποκρυπτογραφείται...',
-      AppLanguage.bg: 'Вашата космическа карта се дешифрира...',
-      AppLanguage.ru: 'Ваша космическая карта расшифровывается...',
-      AppLanguage.zh: '您的宇宙地图正在解码...',
-      AppLanguage.fr: 'Votre carte cosmique est en cours de décodage...',
-      AppLanguage.de: 'Deine kosmische Karte wird entschlüsselt...',
-      AppLanguage.es: 'Tu mapa cósmico se está decodificando...',
-      AppLanguage.ar: 'خريطتك الكونية قيد فك التشفير...',
+    'profile_calculating': {
+      AppLanguage.en: 'Your personal profile is being prepared...',
+      AppLanguage.tr: 'Kişisel profiliniz hazırlanıyor...',
+      AppLanguage.el: 'Το προσωπικό σας προφίλ προετοιμάζεται...',
+      AppLanguage.bg: 'Вашият личен профил се подготвя...',
+      AppLanguage.ru: 'Ваш личный профиль подготавливается...',
+      AppLanguage.zh: '您的个人档案正在准备中...',
+      AppLanguage.fr: 'Votre profil personnel est en cours de préparation...',
+      AppLanguage.de: 'Dein persönliches Profil wird vorbereitet...',
+      AppLanguage.es: 'Tu perfil personal se está preparando...',
+      AppLanguage.ar: 'ملفك الشخصي قيد التحضير...',
     },
     'planets_whispering': {
       AppLanguage.en: 'Planets are whispering their positions',
@@ -664,17 +664,17 @@ class L10n {
       AppLanguage.es: 'Modalidad',
       AppLanguage.ar: 'النمط',
     },
-    'retrograde_planets': {
-      AppLanguage.en: 'Retrograde Planets',
-      AppLanguage.tr: 'Retro Gezegenler',
-      AppLanguage.el: 'Ανάδρομοι Πλανήτες',
-      AppLanguage.bg: 'Ретроградни Планети',
-      AppLanguage.ru: 'Ретроградные Планеты',
-      AppLanguage.zh: '逆行行星',
-      AppLanguage.fr: 'Planètes Rétrogrades',
-      AppLanguage.de: 'Rückläufige Planeten',
-      AppLanguage.es: 'Planetas Retrógrados',
-      AppLanguage.ar: 'الكواكب الراجعة',
+    'challenging_phases': {
+      AppLanguage.en: 'Challenging Phases',
+      AppLanguage.tr: 'Zorlu Dönemler',
+      AppLanguage.el: 'Προκλητικές Φάσεις',
+      AppLanguage.bg: 'Предизвикателни Фази',
+      AppLanguage.ru: 'Сложные Периоды',
+      AppLanguage.zh: '挑战期',
+      AppLanguage.fr: 'Phases Difficiles',
+      AppLanguage.de: 'Herausfordernde Phasen',
+      AppLanguage.es: 'Fases Desafiantes',
+      AppLanguage.ar: 'مراحل صعبة',
     },
 
     // ============ HOME SCREEN ============
@@ -764,16 +764,16 @@ class L10n {
 
     // ============ FEATURES ============
     'daily_whispers': {
-      AppLanguage.en: 'Daily horoscope whispers',
-      AppLanguage.tr: 'Günlük burç fısıltıları',
-      AppLanguage.el: 'Καθημερινά ωροσκοπικά ψιθυρίσματα',
-      AppLanguage.bg: 'Ежедневни хороскопни шепоти',
-      AppLanguage.ru: 'Ежедневные гороскопические шёпоты',
-      AppLanguage.zh: '每日星座低语',
-      AppLanguage.fr: 'Murmures horoscopiques quotidiens',
-      AppLanguage.de: 'Tägliche Horoskop-Flüstern',
-      AppLanguage.es: 'Susurros del horóscopo diario',
-      AppLanguage.ar: 'همسات الأبراج اليومية',
+      AppLanguage.en: 'Daily insight whispers',
+      AppLanguage.tr: 'Günlük içgörü fısıltıları',
+      AppLanguage.el: 'Καθημερινά ψιθυρίσματα ενόρασης',
+      AppLanguage.bg: 'Ежедневни шепоти на прозрение',
+      AppLanguage.ru: 'Ежедневные шёпоты прозрения',
+      AppLanguage.zh: '每日洞察低语',
+      AppLanguage.fr: 'Murmures quotidiens d\'intuition',
+      AppLanguage.de: 'Tägliche Einsichts-Flüstern',
+      AppLanguage.es: 'Susurros de reflexión diaria',
+      AppLanguage.ar: 'همسات التأمل اليومية',
     },
     'pure_cosmic_experience': {
       AppLanguage.en: 'Pure cosmic experience (ad-free)',
@@ -847,17 +847,17 @@ class L10n {
       AppLanguage.es: 'Lectura de energía áurica',
       AppLanguage.ar: 'قراءة طاقة الهالة',
     },
-    'planet_transits': {
-      AppLanguage.en: 'Planet transits',
-      AppLanguage.tr: 'Gezegen transitleri',
-      AppLanguage.el: 'Διελεύσεις πλανητών',
-      AppLanguage.bg: 'Планетарни транзити',
-      AppLanguage.ru: 'Транзиты планет',
-      AppLanguage.zh: '行星过境',
-      AppLanguage.fr: 'Transits planétaires',
-      AppLanguage.de: 'Planetentransite',
-      AppLanguage.es: 'Tránsitos planetarios',
-      AppLanguage.ar: 'عبور الكواكب',
+    'planet_cycles': {
+      AppLanguage.en: 'Planetary cycles',
+      AppLanguage.tr: 'Gezegen döngüleri',
+      AppLanguage.el: 'Πλανητικοί κύκλοι',
+      AppLanguage.bg: 'Планетарни цикли',
+      AppLanguage.ru: 'Планетарные циклы',
+      AppLanguage.zh: '行星周期',
+      AppLanguage.fr: 'Cycles planétaires',
+      AppLanguage.de: 'Planetenzyklen',
+      AppLanguage.es: 'Ciclos planetarios',
+      AppLanguage.ar: 'دورات الكواكب',
     },
     'priority_guidance': {
       AppLanguage.en: 'Priority cosmic guidance',
@@ -872,7 +872,7 @@ class L10n {
       AppLanguage.ar: 'إرشاد كوني ذو أولوية',
     },
 
-    // ============ ZODIAC SIGNS ============
+    // ============ PERSONALITY TYPES ============
     'aries': {
       AppLanguage.en: 'Aries',
       AppLanguage.tr: 'Koç',
@@ -1168,42 +1168,42 @@ class L10n {
       AppLanguage.ar: 'الوضع الداكن',
     },
 
-    // ============ HOROSCOPE SECTIONS ============
-    'horoscope_analysis': {
-      AppLanguage.en: 'Horoscope Analysis',
-      AppLanguage.tr: 'Burç Çözümlemelerin',
-      AppLanguage.el: 'Αστρολογική Ανάλυση',
-      AppLanguage.bg: 'Хороскопен Анализ',
-      AppLanguage.ru: 'Астрологический Анализ',
-      AppLanguage.zh: '星座分析',
-      AppLanguage.fr: 'Analyse Horoscope',
-      AppLanguage.de: 'Horoskop-Analyse',
-      AppLanguage.es: 'Análisis del Horóscopo',
-      AppLanguage.ar: 'تحليل الأبراج',
+    // ============ REFLECTION SECTIONS ============
+    'daily_reflection_analysis': {
+      AppLanguage.en: 'Daily Reflection',
+      AppLanguage.tr: 'Günlük Düşünce',
+      AppLanguage.el: 'Καθημερινή Αναστοχασμός',
+      AppLanguage.bg: 'Дневна Рефлексия',
+      AppLanguage.ru: 'Ежедневная Рефлексия',
+      AppLanguage.zh: '每日反思',
+      AppLanguage.fr: 'Réflexion Quotidienne',
+      AppLanguage.de: 'Tägliche Reflexion',
+      AppLanguage.es: 'Reflexión Diaria',
+      AppLanguage.ar: 'التأمل اليومي',
     },
-    'cosmic_energy': {
-      AppLanguage.en: 'Your Cosmic Energy',
-      AppLanguage.tr: 'Kozmik Enerjin',
-      AppLanguage.el: 'Η Κοσμική σου Ενέργεια',
-      AppLanguage.bg: 'Твоята Космическа Енергия',
-      AppLanguage.ru: 'Твоя Космическая Энергия',
-      AppLanguage.zh: '你的宇宙能量',
-      AppLanguage.fr: 'Votre Énergie Cosmique',
-      AppLanguage.de: 'Deine Kosmische Energie',
-      AppLanguage.es: 'Tu Energía Cósmica',
-      AppLanguage.ar: 'طاقتك الكونية',
+    'inner_energy': {
+      AppLanguage.en: 'Your Inner Energy',
+      AppLanguage.tr: 'İç Enerjin',
+      AppLanguage.el: 'Η Εσωτερική σου Ενέργεια',
+      AppLanguage.bg: 'Твоята Вътрешна Енергия',
+      AppLanguage.ru: 'Твоя Внутренняя Энергия',
+      AppLanguage.zh: '你的内在能量',
+      AppLanguage.fr: 'Votre Énergie Intérieure',
+      AppLanguage.de: 'Deine Innere Energie',
+      AppLanguage.es: 'Tu Energía Interior',
+      AppLanguage.ar: 'طاقتك الداخلية',
     },
-    'daily_cosmic_energy': {
-      AppLanguage.en: "Today's Cosmic Energy",
-      AppLanguage.tr: 'Günün Kozmik Enerjin',
-      AppLanguage.el: 'Η Σημερινή Κοσμική Ενέργεια',
-      AppLanguage.bg: 'Днешната Космическа Енергия',
-      AppLanguage.ru: 'Космическая Энергия Дня',
-      AppLanguage.zh: '今日宇宙能量',
-      AppLanguage.fr: "L'Énergie Cosmique du Jour",
-      AppLanguage.de: 'Heutige Kosmische Energie',
-      AppLanguage.es: 'Energía Cósmica de Hoy',
-      AppLanguage.ar: 'طاقة اليوم الكونية',
+    'daily_inner_energy': {
+      AppLanguage.en: "Today's Inner Energy",
+      AppLanguage.tr: 'Günün İç Enerjin',
+      AppLanguage.el: 'Η Σημερινή Εσωτερική Ενέργεια',
+      AppLanguage.bg: 'Днешната Вътрешна Енергия',
+      AppLanguage.ru: 'Внутренняя Энергия Дня',
+      AppLanguage.zh: '今日内在能量',
+      AppLanguage.fr: "L'Énergie Intérieure du Jour",
+      AppLanguage.de: 'Heutige Innere Energie',
+      AppLanguage.es: 'Energía Interior de Hoy',
+      AppLanguage.ar: 'طاقة اليوم الداخلية',
     },
     'spiritual_signature': {
       AppLanguage.en: 'Spiritual Signature',
@@ -1217,17 +1217,17 @@ class L10n {
       AppLanguage.es: 'Firma Espiritual',
       AppLanguage.ar: 'التوقيع الروحي',
     },
-    'zodiac_secrets': {
-      AppLanguage.en: 'Zodiac Secrets',
-      AppLanguage.tr: 'Burcu Sırları',
-      AppLanguage.el: 'Μυστικά Ζωδίου',
-      AppLanguage.bg: 'Тайни на Зодиака',
-      AppLanguage.ru: 'Секреты Зодиака',
-      AppLanguage.zh: '星座秘密',
-      AppLanguage.fr: 'Secrets du Zodiaque',
-      AppLanguage.de: 'Sternzeichen-Geheimnisse',
-      AppLanguage.es: 'Secretos del Zodíaco',
-      AppLanguage.ar: 'أسرار الأبراج',
+    'personality_insights': {
+      AppLanguage.en: 'Personality Insights',
+      AppLanguage.tr: 'Kişilik İçgörüleri',
+      AppLanguage.el: 'Ενοράσεις Προσωπικότητας',
+      AppLanguage.bg: 'Прозрения за Личността',
+      AppLanguage.ru: 'Инсайты Личности',
+      AppLanguage.zh: '性格洞察',
+      AppLanguage.fr: 'Aperçus de Personnalité',
+      AppLanguage.de: 'Persönlichkeitseinblicke',
+      AppLanguage.es: 'Perspectivas de Personalidad',
+      AppLanguage.ar: 'رؤى الشخصية',
     },
     'ruling_planet': {
       AppLanguage.en: 'Ruling Planet',
@@ -1295,7 +1295,7 @@ class L10n {
     'tab_weekly': {AppLanguage.en: 'Weekly', AppLanguage.tr: 'Haftalık'},
     'tab_monthly': {AppLanguage.en: 'Monthly', AppLanguage.tr: 'Aylık'},
     'tab_yearly': {AppLanguage.en: 'Yearly', AppLanguage.tr: 'Yıllık'},
-    'tab_zodiac': {AppLanguage.en: 'Zodiac', AppLanguage.tr: 'Burç'},
+    'tab_personality': {AppLanguage.en: 'Personality', AppLanguage.tr: 'Kişilik'},
     'tab_meditation': {
       AppLanguage.en: 'Meditation',
       AppLanguage.tr: 'Meditasyon',
@@ -1323,25 +1323,25 @@ class L10n {
     'category_finance': {AppLanguage.en: 'Finance', AppLanguage.tr: 'Finans'},
 
     // ============ BRAND FOOTERS ============
-    'brand_weekly_horoscope': {
-      AppLanguage.en: 'Weekly Horoscope — Venus One',
-      AppLanguage.tr: 'Haftalık Burç — Venus One',
+    'brand_weekly_reflection': {
+      AppLanguage.en: 'Weekly Reflection — InnerCycles',
+      AppLanguage.tr: 'Haftalık Düşünce — InnerCycles',
     },
-    'brand_monthly_horoscope': {
-      AppLanguage.en: 'Monthly Horoscope — Venus One',
-      AppLanguage.tr: 'Aylık Burç — Venus One',
+    'brand_monthly_reflection': {
+      AppLanguage.en: 'Monthly Reflection — InnerCycles',
+      AppLanguage.tr: 'Aylık Düşünce — InnerCycles',
     },
-    'brand_yearly_horoscope': {
-      AppLanguage.en: 'Yearly Horoscope — Venus One',
-      AppLanguage.tr: 'Yıllık Burç — Venus One',
+    'brand_yearly_reflection': {
+      AppLanguage.en: 'Yearly Reflection — InnerCycles',
+      AppLanguage.tr: 'Yıllık Düşünce — InnerCycles',
     },
-    'brand_love_horoscope': {
-      AppLanguage.en: 'Love Horoscope — Venus One',
-      AppLanguage.tr: 'Aşk Burcu — Venus One',
+    'brand_love_reflection': {
+      AppLanguage.en: 'Love Reflection — InnerCycles',
+      AppLanguage.tr: 'Aşk Düşüncesi — InnerCycles',
     },
     'brand_compatibility': {
-      AppLanguage.en: 'Zodiac Compatibility — Venus One',
-      AppLanguage.tr: 'Burç Uyumu — Venus One',
+      AppLanguage.en: 'Personality Compatibility — InnerCycles',
+      AppLanguage.tr: 'Kişilik Uyumu — InnerCycles',
     },
 
     // ============ NAVIGATION ============
@@ -1386,25 +1386,25 @@ class L10n {
     'day_suffix': {AppLanguage.en: 'day', AppLanguage.tr: 'gün'},
 
     // ============ MISC UI ============
-    'zodiac_interpretation': {
-      AppLanguage.en: 'Zodiac Reading',
-      AppLanguage.tr: 'Burç Yorumu',
+    'personality_reading': {
+      AppLanguage.en: 'Personality Reading',
+      AppLanguage.tr: 'Kişilik Yorumu',
     },
     'love_interpretation': {
       AppLanguage.en: 'Love Reading',
       AppLanguage.tr: 'Aşk Yorumu',
     },
-    'zodiac_compatibility': {
-      AppLanguage.en: 'Zodiac Compatibility',
-      AppLanguage.tr: 'Burç Uyumu',
+    'personality_compatibility': {
+      AppLanguage.en: 'Personality Compatibility',
+      AppLanguage.tr: 'Kişilik Uyumu',
     },
-    'zodiac_profiles': {
-      AppLanguage.en: 'Zodiac Profiles',
-      AppLanguage.tr: 'Burç Profilleri',
+    'personality_profiles': {
+      AppLanguage.en: 'Personality Profiles',
+      AppLanguage.tr: 'Kişilik Profilleri',
     },
-    'select_zodiac': {
-      AppLanguage.en: 'Select Zodiac',
-      AppLanguage.tr: 'Burç Seç',
+    'select_personality_type': {
+      AppLanguage.en: 'Select Personality Type',
+      AppLanguage.tr: 'Kişilik Tipi Seç',
     },
     'view_house_on_map': {
       AppLanguage.en: 'View This House on My Chart',
@@ -2015,13 +2015,13 @@ class L10n {
     },
     'progressions_info_banner': {
       AppLanguage.en:
-          'Secondary progressions are based on the "one day = one year" principle. They show the slow evolution of your natal chart.',
+          'Secondary progressions are based on the "one day = one year" principle. They show the slow evolution of your personal profile.',
       AppLanguage.tr:
-          'İkincil ilerlemeler, "bir gün = bir yıl" prensibine dayanır. Natal haritanızın yavaş evrimini gösterir.',
+          'İkincil ilerlemeler, "bir gün = bir yıl" prensibine dayanır. Kişisel profilinizin yavaş evrimini gösterir.',
       AppLanguage.de:
-          'Sekundäre Progressionen basieren auf dem Prinzip "ein Tag = ein Jahr". Sie zeigen die langsame Entwicklung Ihres Geburtshoroskops.',
+          'Sekundäre Progressionen basieren auf dem Prinzip "ein Tag = ein Jahr". Sie zeigen die langsame Entwicklung Ihres persönlichen Profils.',
       AppLanguage.fr:
-          'Les progressions secondaires sont basées sur le principe "un jour = un an". Elles montrent l\'évolution lente de votre thème natal.',
+          'Les progressions secondaires sont basées sur le principe "un jour = un an". Elles montrent l\'évolution lente de votre profil personnel.',
     },
     'progressions_profile_info': {
       AppLanguage.en: 'Profile Information',
@@ -2157,13 +2157,13 @@ class L10n {
     },
     'progressions_kadim_content': {
       AppLanguage.en:
-          'Secondary Progressions are one of astrology\'s most subtle timing techniques. They work with the "one day = one year" formula: the sky 30 days after your birth reflects themes associated with your 30th year. This ancient technique explores inner evolution and spiritual maturation - inner transformation rather than external events.',
+          'Secondary Progressions are one of personal growth\'s most subtle timing techniques. They work with the "one day = one year" formula: the patterns 30 days after your birth reflect themes associated with your 30th year. This ancient technique explores inner evolution and spiritual maturation - inner transformation rather than external events.',
       AppLanguage.tr:
-          'İkincil İlerlemeler, astrolojinin en incelikli zamanlama tekniklerinden biridir. "Bir gün = bir yıl" formülüyle çalışır: doğumunuzdan 30 gün sonraki gökyüzü, 30 yaşınızdaki temalarla ilişkilendirilir. Bu kadim teknik, içsel evriminizi ve ruhsal olgunlaşmanızı keşfetmenize yardımcı olur.',
+          'İkincil İlerlemeler, kişisel gelişimin en incelikli zamanlama tekniklerinden biridir. "Bir gün = bir yıl" formülüyle çalışır: doğumunuzdan 30 gün sonraki örüntüler, 30 yaşınızdaki temalarla ilişkilendirilir. Bu kadim teknik, içsel evriminizi ve ruhsal olgunlaşmanızı keşfetmenize yardımcı olur.',
       AppLanguage.de:
-          'Sekundäre Progressionen sind eine der subtilsten Zeittechniken der Astrologie. Sie arbeiten mit der Formel "ein Tag = ein Jahr": der Himmel 30 Tage nach Ihrer Geburt spiegelt Themen Ihres 30. Lebensjahres wider. Diese alte Technik erforscht Ihre innere Entwicklung und spirituelle Reifung.',
+          'Sekundäre Progressionen sind eine der subtilsten Zeittechniken der persönlichen Entwicklung. Sie arbeiten mit der Formel "ein Tag = ein Jahr": die Muster 30 Tage nach Ihrer Geburt spiegeln Themen Ihres 30. Lebensjahres wider. Diese alte Technik erforscht Ihre innere Entwicklung und spirituelle Reifung.',
       AppLanguage.fr:
-          'Les Progressions Secondaires sont l\'une des techniques de timing les plus subtiles de l\'astrologie. Elles fonctionnent avec la formule "un jour = un an" : le ciel 30 jours après votre naissance reflète les thèmes associés à votre 30e année. Cette technique ancienne explore votre évolution intérieure et votre maturation spirituelle.',
+          'Les Progressions Secondaires sont l\'une des techniques de timing les plus subtiles du développement personnel. Elles fonctionnent avec la formule "un jour = un an" : les schémas 30 jours après votre naissance reflètent les thèmes associés à votre 30e année. Cette technique ancienne explore votre évolution intérieure et votre maturation spirituelle.',
     },
   };
 }

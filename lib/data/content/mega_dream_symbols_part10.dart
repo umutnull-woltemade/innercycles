@@ -636,7 +636,7 @@ class MegaDreamSymbolsPart10 {
         EmotionalTone.korku: 'Gezegensel tehdit',
       },
       archetypes: ['Dunya', 'Etki', 'Dongu'],
-      relatedSymbols: ['astrology', 'orbit', 'cosmos', 'influence'],
+      relatedSymbols: ['awareness', 'orbit', 'cosmos', 'influence'],
       shadowAspect: 'Kozmik zorlanma',
       lightAspect: 'Gezegensel harmoni',
     ),

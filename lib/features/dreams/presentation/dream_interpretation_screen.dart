@@ -691,7 +691,7 @@ class _DreamInterpretationScreenState
     final userProfile = ref.read(userProfileProvider);
     final sign = userProfile?.sunSign ?? zodiac.ZodiacSign.aries;
 
-    // Generate interpretation based on dream content and zodiac
+    // Generate interpretation based on dream content and personality profile
     final interpretation = _interpretDream(dreamText, sign);
 
     setState(() {
@@ -793,7 +793,7 @@ class _DreamInterpretationScreenState
     final language = ref.read(languageProvider);
 
     if (themes.isEmpty) {
-      // Generic interpretation based on zodiac
+      // Generic interpretation based on personality archetype
       buffer.writeln(_getGenericInterpretation(sign, dreamText));
     } else {
       final signPerspective = L10nService.getWithParams(
@@ -808,7 +808,7 @@ class _DreamInterpretationScreenState
         buffer.writeln();
       }
 
-      buffer.writeln(_getZodiacAdvice(sign));
+      buffer.writeln(_getPersonalAdvice(sign));
     }
 
     return buffer.toString().trim();
@@ -1702,10 +1702,10 @@ $practiceLabel
 $practice
 
 $adviceLabel
-${_getZodiacAdvice(sign)}''';
+${_getPersonalAdvice(sign)}''';
   }
 
-  String _getZodiacAdvice(zodiac.ZodiacSign sign) {
+  String _getPersonalAdvice(zodiac.ZodiacSign sign) {
     final language = ref.read(languageProvider);
     final signKeyMap = {
       zodiac.ZodiacSign.aries: 'aries',
@@ -1723,7 +1723,7 @@ ${_getZodiacAdvice(sign)}''';
     };
     final signKey = signKeyMap[sign] ?? 'aries';
     return L10nService.get(
-      'widgets.dreams.interpretations.zodiac_advice.$signKey',
+      'widgets.dreams.interpretations.personal_advice.$signKey',
       language,
     );
   }

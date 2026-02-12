@@ -97,7 +97,8 @@
     "explore_now": "Start Exploring Now",
     "by_continuing": "By continuing, you agree to the Terms of Use",
     "features": {
-      "birth_chart": "Birth Chart",
+      "birth_chart": "Personal Profile",
+      "personal_profile": "Personal Profile",
       "daily_reading": "Daily Reading",
       "tarot": "Tarot",
       "numerology": "Numerology"
@@ -133,7 +134,7 @@
     "not_found_message": "The page you're looking for seems lost among the stars.",
     "not_found_path": "Looking for: {path}",
     "return_home": "Return to Home",
-    "go_to_horoscope": "Go to Horoscope",
+    "go_to_horoscope": "Go to Insight",
     "stars_aligning": "Stars are aligning..."
   },
   "input": {
@@ -175,7 +176,7 @@
     "your_birth_info": "Your Birth Info",
     "your_sun_sign": "Your Sun Sign",
     "edit_info": "Edit Info",
-    "view_birth_chart": "View Birth Chart",
+    "view_birth_chart": "View Personal Profile",
     "profile_saved": "Profile saved successfully",
     "discard_changes_title": "Discard Changes?",
     "discard_changes_message": "You have unsaved changes. Are you sure you want to exit?",
@@ -187,10 +188,14 @@
       "other": "Other"
     },
     "emoji_select": "Select Emoji",
-    "relationship_type": "Relationship Type"
+    "relationship_type": "Relationship Type",
+    "big_three": "Big Three",
+    "sun_type": "Sun Sign",
+    "moon_type": "Moon Sign",
+    "rising_type": "Rising Sign"
   },
   "natal_chart": {
-    "title": "Birth Chart",
+    "title": "Personal Profile",
     "calculating": "Your personal profile is being generated...",
     "planets_whispering": "Planets are whispering their positions",
     "summary": "Summary",
@@ -241,12 +246,12 @@
     "chips": {
       "dream": "Dream",
       "kozmoz": "Kozmoz",
-      "birth_chart": "Birth Chart",
+      "birth_chart": "Personal Profile",
       "theta_healing": "Theta Healing",
       "astrocartography": "Astrocartography",
       "reiki": "Reiki",
       "tarot": "Tarot",
-      "horoscope": "Horoscope",
+      "horoscope": "Insight",
       "tantra": "Tantra"
     },
     "sections": {
@@ -271,7 +276,7 @@
         "subtitle": "Explore relationship themes"
       },
       "birth_chart": {
-        "title": "Birth Chart",
+        "title": "Personal Profile",
         "subtitle": "Your cosmic blueprint"
       },
       "numerology": {
@@ -359,7 +364,7 @@
       "compatibility_desc": "Explore relationship dynamics",
       "numerology_title": "Numerology",
       "numerology_desc": "The spiritual meaning of numbers",
-      "birth_chart_title": "Birth Chart",
+      "birth_chart_title": "Personal Profile",
       "birth_chart_desc": "Your cosmic map",
       "transits_title": "Planet Transits",
       "transits_desc": "Cosmic effects",
@@ -368,11 +373,11 @@
       "solar_return_title": "Solar Return",
       "solar_return_desc": "Your annual cosmic map",
       "progressions_title": "Progressions",
-      "progressions_desc": "Evolutionary astrology",
+      "progressions_desc": "Evolutionary self-awareness",
       "local_space_title": "Local Space",
-      "local_space_desc": "Spatial astrology",
+      "local_space_desc": "Spatial self-awareness",
       "synastry_title": "Synastry",
-      "synastry_desc": "Relationship astrology",
+      "synastry_desc": "Relationship self-awareness",
       "composite_title": "Composite Chart",
       "composite_desc": "Relationship chart",
       "draconic_title": "Draconic Chart",
@@ -384,7 +389,7 @@
       "rituals_title": "Rituals",
       "rituals_desc": "Daily rituals",
       "celebrities_title": "Celebrity Charts",
-      "celebrities_desc": "Famous birth charts",
+      "celebrities_desc": "Famous personal profiles",
       "year_ahead_title": "Year Ahead",
       "year_ahead_desc": "Annual personal preview",
       "timing_title": "Optimal Timing",
@@ -403,7 +408,7 @@
       "tarot": "Tarot",
       "dreams": "Dreams",
       "compatibility": "Compatibility",
-      "birth_chart": "Birth Chart",
+      "birth_chart": "Personal Profile",
       "synastry": "Synastry",
       "composite": "Composite",
       "transits": "Transits",
@@ -442,7 +447,7 @@
       "weekly_tooltip": "This week's energies and guidance"
     },
     "tooltips": {
-      "monthly": "This month's astrological themes and opportunities",
+      "monthly": "This month's personal themes and opportunities",
       "yearly": "The year's overall flow and major cycles",
       "tarot": "Daily card draw and tarot readings",
       "all_kozmoz": "All Kozmoz",
@@ -470,8 +475,8 @@
         "desc": "Love and relationship readings"
       },
       "birth_chart": {
-        "title": "Birth Chart",
-        "desc": "Natal chart analysis"
+        "title": "Personal Profile",
+        "desc": "Personal profile analysis"
       },
       "compatibility": {
         "title": "Compatibility",
@@ -527,7 +532,7 @@
       },
       "year_ahead": {
         "title": "Year Ahead",
-        "desc": "Year forecast"
+        "desc": "Year outlook"
       },
       "timing": {
         "title": "Timing",
@@ -762,7 +767,7 @@
         "most_jealous": "😈 Most jealous signs:\n\n🔥 1. SCORPIO - King/Queen of jealousy! Intense possessiveness, trust issues.\n\n2. LEO - Ego matter. \"What's mine can't be anyone else's\" mentality.\n\n3. TAURUS - Strong possessive instinct. Slow to trust but can have jealousy outbursts.\n\n4. CANCER - Emotional jealousy. Withdraws when feeling insecure.\n\n5. ARIES - Can have sudden anger outbursts but passes quickly.\n\n😎 Least jealous: Sagittarius, Aquarius, Gemini - they value freedom!",
         "most_passionate": "💋 Most passionate signs in bed:\n\n🔥 1. SCORPIO - Undisputed champion! Passion, intensity, depth... They turn it into an art form.\n\n2. ARIES - Fiery and energetic. Spontaneous and adventurous.\n\n3. LEO - Dramatic and showy. Performance matters!\n\n4. TAURUS - Master of sensual pleasures. Slow but effective.\n\n5. PISCES - Romantic and dreamy. Emotional connection + physical = perfect!\n\n😌 Least: Virgo (too analytical), Capricorn (work-focused), Aquarius (mind elsewhere)",
         "financial_future": "💰 As a {sign}, here are some financial themes to reflect on:\n\n✨ The Jupiter archetype symbolizes growth, expansion, and opportunity-seeking. Consider what areas you might want to develop.\n\n💎 Strengths to consider: {financial_strength}\n\n🎯 Reflection: What financial habits serve you well? What areas might benefit from more attention? This is for reflection only, not financial advice.",
-        "soulmate": "💕 Relationship reflection for {sign}:\n\n🌟 The North Node in your chart suggests growth themes in relationships. Consider what qualities matter most to you.\n\n🔮 Compatible archetypes to reflect on: {soulmate_compatibility}\n\n💫 Reflection: What do you value most in deep connection? What personal growth supports healthy relationships? This is for self-reflection, not prediction.",
+        "soulmate": "💕 Relationship reflection for {sign}:\n\n🌟 The North Node in your chart suggests growth themes in relationships. Consider what qualities matter most to you.\n\n🔮 Compatible archetypes to reflect on: {soulmate_compatibility}\n\n💫 Reflection: What do you value most in deep connection? What personal growth supports healthy relationships? This is for self-reflection, not reflection.",
         "love_reading": "💕 Relationship reflection for {sign}:\n\n🌹 Venus themes currently suggest {venus_effect}.\n\n✨ This is a good time to reflect on your relationship values and what you appreciate in connections.\n\n💫 Journaling prompt: {love_advice}",
         "venus_fire": "increasing your passion",
         "venus_water": "strengthening your emotional depth",
@@ -912,7 +917,7 @@
       "challenges": "Challenges",
       "love_relationships": "Love & Relationships",
       "ancient_secret_title": "Ancient Secret of Numbers",
-      "ancient_secret_desc": "Numerology is an ancient reflection system using mathematical symbolism. From Pythagoras to Kabbalah, many cultural traditions explored the meaning of numbers. Your birth date and name can be used as themes for self-reflection and personal exploration. Each number represents symbolic qualities to consider. This is a tool for introspection, not prediction.",
+      "ancient_secret_desc": "Numerology is an ancient reflection system using mathematical symbolism. From Pythagoras to Kabbalah, many cultural traditions explored the meaning of numbers. Your birth date and name can be used as themes for self-reflection and personal exploration. Each number represents symbolic qualities to consider. This is a tool for introspection, not reflection.",
       "number_depth_title": "Depth of Number {number}",
       "kadim_title": "Eternal Dance of Numbers",
       "kadim_content": "Since Pythagoras, many traditions have explored symbolic meanings of numbers. Your life path number is a reflection theme - a way to think about personal qualities and life patterns. These symbolic associations can be useful for journaling and self-discovery.",
@@ -1247,7 +1252,7 @@
     "modern": "Modern Analysis",
     "esoteric": "Esoteric",
     "psychological": "Psychological",
-    "predictive": "Predictive",
+    "predictive": "Suggestive",
     "relationships": "Relationships"
   },
   "celebrity_categories": {
@@ -1293,7 +1298,7 @@
       "got_it": "Got it"
     },
     "features": {
-      "daily_whispers": "Daily horoscope whispers",
+      "daily_whispers": "Daily insight whispers",
       "pure_cosmic_experience": "Pure cosmic experience (ad-free)",
       "deep_planet_readings": "Deep planet readings",
       "unlimited_tarot": "Unlimited tarot sessions",
@@ -1308,8 +1313,8 @@
         "name": "Free",
         "savings": "",
         "features": [
-          "Daily horoscope whispers",
-          "Basic birth chart",
+          "Daily insight whispers",
+          "Basic personal profile",
           "Daily tarot card",
           "Ad-supported"
         ]
@@ -1362,8 +1367,8 @@
     }
   },
   "zodiac": {
-    "all_signs": "All Zodiac Signs",
-    "discover_all_signs": "Discover all 12 signs and read daily horoscopes",
+    "all_signs": "All Personality Types",
+    "discover_all_signs": "Discover all 12 signs and read daily insights",
     "aries": "Aries",
     "taurus": "Taurus",
     "gemini": "Gemini",
@@ -1453,10 +1458,10 @@
     }
   },
   "houses": {
-    "title": "Astrological Houses",
-    "subtitle": "12 astrological houses and life areas",
+    "title": "Personal Houses",
+    "subtitle": "12 personal houses and life areas",
     "explore_houses": "Explore House System",
-    "section_title": "12 Astrological Houses",
+    "section_title": "12 Personal Houses",
     "section_subtitle": "Discover different areas of your life",
     "detail_button": "Detail",
     "areas_governed": "Areas Governed by This House:",
@@ -1953,7 +1958,7 @@
       "general": "For entertainment purposes only",
       "dreams": "Dream interpretations are symbolic reflections",
       "health": "Not medical advice. Consult professionals for health concerns",
-      "astrology": "Astrology is a tool for self-reflection, not prediction",
+      "astrology": "Self-Awareness is a tool for self-reflection, not reflection",
       "tarot": "Tarot readings are for personal insight only",
       "numerology": "Numerology offers symbolic perspectives",
       "chakra": "Chakra information is for self-reflection purposes",
@@ -2461,7 +2466,7 @@
           "air_generic": "communication, ideas and social connections",
           "water_generic": "emotions, intuition and spiritual depth"
         },
-        "zodiac_advice": {
+        "personal_advice": {
           "aries": "Advice: Write down your first thoughts when you wake up in the morning. Your fire energy can quickly make you forget subconscious messages.",
           "taurus": "Advice: Write your dreams in a dream journal. Your earth energy works better with tangible records.",
           "gemini": "Advice: Tell your dream to someone. Your air energy loves to find meaning through verbal expression.",
@@ -2482,24 +2487,24 @@
     "title": "Frequently Asked Questions",
     "zodiac_title": "{sign} Sign FAQ",
     "zodiac_subtitle": "Most frequently asked questions and answers",
-    "birth_chart_title": "Birth Chart FAQ",
-    "birth_chart_subtitle": "Everything you wonder about natal charts",
+    "birth_chart_title": "Personal Profile FAQ",
+    "birth_chart_subtitle": "Everything you wonder about personal profiles",
     "tarot_title": "Tarot FAQ",
     "tarot_subtitle": "What you need to know about tarot cards",
     "numerology_title": "Numerology FAQ",
     "numerology_subtitle": "The mysterious world of numbers",
     "zodiac_q1": "What are the traits of {sign}?",
-    "zodiac_a1": "{sign} is one of the zodiac signs. Each sign has unique personality traits, strengths and weaknesses. Even if your Sun sign is {sign}, your rising sign and Moon sign also significantly influence your personality.",
+    "zodiac_a1": "{sign} is one of the personality types. Each sign has unique personality traits, strengths and weaknesses. Even if your Sun sign is {sign}, your rising sign and Moon sign also significantly influence your personality.",
     "zodiac_q2": "Which signs are compatible with {sign}?",
-    "zodiac_a2": "Sign compatibility depends on the entire birth chart, not just Sun signs. Generally, signs in the same element group (fire, earth, air, water) tend to be more compatible. For detailed compatibility analysis, synastry (comparative chart) analysis is recommended.",
-    "zodiac_q3": "How accurate are daily {sign} horoscopes?",
-    "zodiac_a3": "Daily horoscopes reflect general cosmic energies. Since each individual's birth chart is unique, personalized readings through birth chart analysis and transit reports provide more accurate results.",
+    "zodiac_a2": "Sign compatibility depends on the entire personal profile, not just Sun signs. Generally, signs in the same element group (fire, earth, air, water) tend to be more compatible. For detailed compatibility analysis, synastry (comparative chart) analysis is recommended.",
+    "zodiac_q3": "How accurate are daily {sign} insights?",
+    "zodiac_a3": "Daily insights reflect general cosmic energies. Since each individual's personal profile is unique, personalized readings through personal profile analysis and transit reports provide more accurate results.",
     "zodiac_q4": "What does it mean if my rising sign is {sign}?",
     "zodiac_a4": "The rising sign (Ascendant) is the sign that was rising on the eastern horizon at your birth moment. It represents your outer appearance, how others perceive you, and your approach to life. You need to know your birth time to find your rising sign.",
-    "birth_chart_q1": "What is a birth chart?",
-    "birth_chart_a1": "A birth chart (natal chart) is a cosmic map showing the positions of planets in the sky at the moment you were born. It shows which signs and houses the Sun, Moon and planets were in, and the aspects they make to each other.",
-    "birth_chart_q2": "What do I need to calculate a birth chart?",
-    "birth_chart_a2": "To calculate a birth chart, you need your birth date, birth time, and birth place. The more precise your birth time, the more accurately your rising sign and house placements can be calculated.",
+    "birth_chart_q1": "What is a personal profile?",
+    "birth_chart_a1": "A personal profile (personal profile) is a cosmic map showing the positions of planets in the sky at the moment you were born. It shows which signs and houses the Sun, Moon and planets were in, and the aspects they make to each other.",
+    "birth_chart_q2": "What do I need to calculate a personal profile?",
+    "birth_chart_a2": "To calculate a personal profile, you need your birth date, birth time, and birth place. The more precise your birth time, the more accurately your rising sign and house placements can be calculated.",
     "birth_chart_q3": "What if I don't know my birth time?",
     "birth_chart_a3": "When birth time is unknown, noon (12:00) is typically used. In this case, the Moon sign and rising sign may be inaccurate. Planet sign placements and aspects between them will still be accurate.",
     "birth_chart_q4": "What is the difference between house systems (Placidus, Whole Sign)?",
@@ -2550,12 +2555,12 @@
     "dream_a4_2": "I research sometimes",
     "dream_a4_3": "Only the interesting ones",
     "dream_a4_4": "I don't really care",
-    "astrology_q1": "How often do you read horoscopes?",
+    "astrology_q1": "How often do you read insights?",
     "astrology_a1_1": "I check every day",
     "astrology_a1_2": "A few times a week",
     "astrology_a1_3": "Occasionally",
     "astrology_a1_4": "Rarely",
-    "astrology_q2": "Do you know your birth chart?",
+    "astrology_q2": "Do you know your personal profile?",
     "astrology_a2_1": "I know it in detail",
     "astrology_a2_2": "I know my Sun and Moon sign",
     "astrology_a2_3": "Only my Sun sign",
@@ -2609,7 +2614,7 @@
     "result_astrology_high_title": "Cosmic Master",
     "result_astrology_high_desc": "You have a strong connection with the stars! Deepen your cosmic journey with personal transit reports and detailed chart analysis.",
     "result_astrology_medium_title": "Star Traveler",
-    "result_astrology_medium_desc": "Your connection with astrology is developing. By exploring your birth chart, you can better understand yourself.",
+    "result_astrology_medium_desc": "Your connection with self-awareness is developing. By exploring your personal profile, you can better understand yourself.",
     "result_astrology_low_title": "Cosmic Explorer",
     "result_astrology_low_desc": "The stars await you! Start your cosmic journey with daily reflection themes.",
     "result_numerology_high_title": "Number Master",
@@ -2628,7 +2633,7 @@
       "dream_headline": "This dream doesn't mean the same for everyone...",
       "dream_subtext": "A short test can show if this is unique to you.",
       "dream_button": "Take Short Test",
-      "astrology_headline": "How well does your horoscope fit you?",
+      "astrology_headline": "How well does your insight fit you?",
       "astrology_subtext": "Discover your cosmic alignment with a 3-question test.",
       "astrology_button": "Start Test",
       "numerology_headline": "What do the numbers tell you?",
@@ -2643,13 +2648,13 @@
       "general": "For entertainment and self-reflection purposes only.",
       "dreams": "Dream reflections are for personal exploration, not professional interpretation.",
       "health": "Not medical advice. Consult healthcare professionals.",
-      "astrology": "For entertainment only. Not predictive advice.",
-      "tarot": "For reflection purposes only. Not predictive.",
-      "numerology": "For self-exploration only. Not predictive.",
+      "astrology": "For entertainment only. Not suggestive advice.",
+      "tarot": "For reflection purposes only. Not suggestive.",
+      "numerology": "For self-exploration only. Not suggestive.",
       "chakra": "For awareness only. Not medical or spiritual prescription.",
       "compatibility": "For reflection only. Not relationship advice.",
       "insight": "For personal reflection only. Not professional advice.",
-      "reflection": "This is a space for self-reflection, not prediction or advice."
+      "reflection": "This is a space for self-reflection, not reflection or advice."
     }
   },
   "insight": {
@@ -2741,27 +2746,27 @@
     "rate_app_desc": "Share your cosmic experience",
     "disclaimer": "Disclaimer",
     "disclaimer_desc": "Entertainment purposes only",
-    "disclaimer_content": "This app provides astrological, numerological, tarot, and dream interpretation content for entertainment and self-reflection purposes only.\n\nThe content does not constitute professional advice in any field including but not limited to: medical, psychological, financial, legal, or relationship advice.\n\nIf you need professional support, please consult qualified professionals in the relevant field.\n\nAll interpretations are generated for informational and entertainment purposes and should not be used as the basis for important life decisions.",
+    "disclaimer_content": "This app provides personal, numerological, tarot, and dream interpretation content for entertainment and self-reflection purposes only.\n\nThe content does not constitute professional advice in any field including but not limited to: medical, psychological, financial, legal, or relationship advice.\n\nIf you need professional support, please consult qualified professionals in the relevant field.\n\nAll interpretations are generated for informational and entertainment purposes and should not be used as the basis for important life decisions.",
     "disclaimer_tip": "Use the content for self-reflection, not decision-making.",
     "privacy_policy": "Privacy Policy",
     "terms_of_service": "Terms of Service",
     "contact_support": "Contact Support"
   },
   "horoscope": {
-    "title": "Horoscope",
+    "title": "Insight",
     "reading": "Reading",
-    "analysis": "Horoscope Analysis",
+    "analysis": "Insight Analysis",
     "cosmic_energy": "Your Cosmic Energy",
     "daily_cosmic_energy": "Today's Cosmic Energy",
     "spiritual_signature": "Spiritual Signature",
-    "zodiac_secrets": "Zodiac Secrets",
+    "zodiac_secrets": "Personality Secrets",
     "ruling_planet": "Ruler",
     "cosmic_overview": "Cosmic Overview",
     "cosmic_harmony": "Cosmic Harmony",
     "spiritual_bond": "Spiritual Bond",
     "chakra_map": "Chakra Map",
     "celestial_sync": "Celestial Synchronization",
-    "sign_depth": "Zodiac Depth",
+    "sign_depth": "Archetype Depth",
     "mood": "Mood",
     "lucky_color": "Reflection Color",
     "lucky_number": "Focus Number",
@@ -2787,8 +2792,8 @@
     "planet_transits": "Planet Transits",
     "your_zodiac_readings": "Your Sign Insights",
     "sign_today": "How is {sign} today?",
-    "astrology_brand": "Astrology — Venus One",
-    "astrology": "Astrology",
+    "astrology_brand": "Self-Awareness — Venus One",
+    "astrology": "Self-Awareness",
     "hermetic_teaching": "Hermetic Teaching",
     "weekly_affirmation_label": "Weekly Affirmation",
     "quotable_bullets": {
@@ -2859,7 +2864,7 @@
       ]
     },
     "sign_summaries": {
-      "aries": "[[Aries]] is the first sign of the [[Zodiac]] and carries [[Cardinal]] [[Fire]] energy. Ruled by [[Mars]], it has a strong drive toward action, leadership, and new beginnings.",
+      "aries": "[[Aries]] is the first sign of the [[Archetype]] and carries [[Cardinal]] [[Fire]] energy. Ruled by [[Mars]], it has a strong drive toward action, leadership, and new beginnings.",
       "taurus": "[[Taurus]] represents stability and security with [[Fixed]] [[Earth]] energy. Under [[Venus]] rule, beauty, value, and material comfort are the main motivations.",
       "gemini": "[[Gemini]] represents communication and intelligence with [[Mutable]] [[Air]] energy. Under [[Mercury]] rule, learning and sharing knowledge is vital.",
       "cancer": "[[Cancer]] represents emotional depth and protection with [[Cardinal]] [[Water]] energy. Under [[Moon]] rule, home and family are the most important themes.",
@@ -2874,18 +2879,18 @@
       "default": "Loading detailed information about this sign..."
     },
     "deep_interpretations": {
-      "aries": "[[Aries]] is located at the starting point of the [[Zodiac]] circle and represents the \"I am\" principle. This period, beginning with the [[Spring equinox]], reflects the energy of rebirth and growth in nature.\n\nUnder the rule of planet [[Mars]], Aries are action-oriented. Their natural relationship with the [[1st House]] determines identity, physical appearance, and how one approaches the world. The [[Fire]] element provides courage and passion, while the [[Cardinal]] quality brings leadership and initiative.\n\nIn evolutionary astrology, Aries represents the beginning of the [[Soul's journey]]. It takes the first steps in ego development and the individuation process. [[Shadow]] aspects include impatience and acting without thinking.\n\nPlanets in Aries generally display fast, direct, and competitive energy. During [[Mars]] [[Retrograde]] periods, it's beneficial to direct this energy toward inner motivation.",
-      "taurus": "[[Taurus]] is the second sign of the [[Zodiac]] and represents the \"I have\" principle. As the most stable form of the [[Earth]] element, Taurus manages values and resources.\n\nUnder the rule of planet [[Venus]], Taurus shows deep appreciation for sensory experiences and beauty. Their natural relationship with the [[2nd House]] covers self-worth, material resources, and talents.\n\nThe [[Fixed]] quality gives Taurus endurance and determination. Once started, projects continue until completion. However, this can also lead to the [[Shadow]] aspect of stubbornness.\n\nPlanets in Taurus display slow but determined energy. [[Venus]] transits indicate important periods especially for Taurus and [[Libra]] signs.",
-      "gemini": "[[Gemini]] represents the \"I think\" principle and is the first [[Air]] sign of the [[Zodiac]]. Under [[Mercury]] rule, mental agility and communication abilities are strong.\n\nTheir natural relationship with the [[3rd House]] covers immediate environment, siblings, short trips, and basic communication. The [[Mutable]] quality provides the ability to adapt and be flexible.\n\nGemini's [[Duality]] symbolism - twin siblings - represents the two aspects of the mind: rational and intuitive. This energy, sometimes perceived as scattered, is actually the ability to see multiple perspectives.\n\n[[Mercury Retrograde]] periods are especially important for Gemini. These times are valuable for introspection and looking back. The [[Shadow]] aspect is superficiality and indecisiveness.",
-      "cancer": "[[Cancer]] is the fourth sign of the [[Zodiac]] and represents the [[Cardinal]] form of the [[Water]] element. With the \"I feel\" principle, it embodies emotional intelligence and intuition.\n\nUnder [[Moon]] rule, Cancers display emotional depth and protective instincts. Their natural relationship with the [[4th House]] covers home, family roots, inner world, and emotional security.\n\nThe [[Mother archetype]] resonates strongly with Cancer. Nurturing energy and caregiving ability are naturally developed. [[Moon phases]] are especially effective for Cancer natives.\n\n[[Shadow]] aspects include overprotection, emotional manipulation, and tendency to get stuck in the past. Learning to set [[Emotional boundaries]] is the evolutionary task.",
-      "leo": "[[Leo]] is the fifth sign of the [[Zodiac]] and represents the [[Fixed]] form of the [[Fire]] element. With the \"I create\" principle, self-expression and creativity are central.\n\nThe [[Sun]] is the ruler of this sign and is \"at home\" - in its strongest state. Their natural relationship with the [[5th House]] covers creativity, romance, children, and entertainment. The [[Heart chakra]] is strongly connected to Leo.\n\nLeo's attraction to drama and the stage stems from a spiritual need: to be seen and feel valued. This is not an ego matter, but the natural expression of the [[Sun]].\n\n[[Shadow]] aspects include arrogance, excessive pride, and tendency to ignore others' light. Humility and sharing are qualities to develop on the evolutionary journey.",
-      "virgo": "[[Virgo]] is the sixth sign of the [[Zodiac]] and represents the [[Mutable]] form of the [[Earth]] element. With the \"I analyze\" principle, service and pursuit of perfection are central.\n\nUnder [[Mercury]] rule, Virgo displays analytical intelligence and detail orientation. Their natural relationship with the [[6th House]] covers health, daily routines, service, and work environment.\n\nVirgo's perfectionist tendency actually comes from the concept of [[Sacred service]] - the desire to do one's job in the best way. [[Healing]] abilities are generally strong.\n\n[[Shadow]] aspects include being overly critical, worry, and self-deprecation. Accepting oneself and freeing from the pressure of flawlessness is the evolutionary task.",
-      "libra": "[[Libra]] is the seventh sign of the [[Zodiac]] and represents the [[Cardinal]] form of the [[Air]] element. With the \"I balance\" principle, relationship and harmony are central.\n\nUnder [[Venus]] rule, Libra displays aesthetic sensitivity and social grace. Their natural relationship with the [[7th House]] covers partnerships, marriage, and the concept of \"the other.\"\n\nLibra's search for balance actually comes from the concept of [[Cosmic justice]]. Understanding the [[Projection]] mechanism is important for this sign - what we see in others belongs to us.\n\nThe [[Sun]] is \"in fall\" in this sign - individuality themes can be challenging. [[Shadow]] aspects include indecisiveness, passive-aggressive behaviors, and avoiding conflict. Developing self-identity is the evolutionary task.",
-      "scorpio": "[[Scorpio]] is the eighth sign of the [[Zodiac]] and represents the [[Fixed]] form of the [[Water]] element. With the \"I transform\" principle, depth and power are central.\n\nUnder [[Pluto]] (modern) and [[Mars]] (traditional) rule, Scorpio displays intense emotional depth and penetrative intelligence. Their natural relationship with the [[8th House]] covers shared resources, sexuality, death-rebirth, and psychological transformation.\n\nScorpio's intensity actually comes from [[Spiritual alchemy]] - the desire to turn lead into gold. [[Kundalini]] energy is strongly related to this sign.\n\n[[Shadow]] aspects include jealousy, obsession, revenge, and need for control. Letting go and trusting are the most important lessons on the evolutionary journey.",
-      "sagittarius": "[[Sagittarius]] is the ninth sign of the [[Zodiac]] and represents the [[Mutable]] form of the [[Fire]] element. With the \"I explore\" principle, freedom and search for meaning are central.\n\nUnder [[Jupiter]] rule, Sagittarius displays optimism, generosity, and expansion energy. Their natural relationship with the [[9th House]] covers long journeys, higher education, philosophy, and belief systems.\n\nThe archer symbolism of Sagittarius - bow and arrow - represents goal-oriented vision and high ideals. [[Centaur]] mythology symbolizes the union of human and animal nature.\n\n[[Shadow]] aspects include excessive optimism, scatteredness, irresponsibility, and not keeping promises. Deepening and commitment are evolutionary tasks.",
-      "capricorn": "[[Capricorn]] is the tenth sign of the [[Zodiac]] and represents the [[Cardinal]] form of the [[Earth]] element. With the \"I achieve\" principle, discipline and responsibility are central.\n\nUnder [[Saturn]] rule, Capricorn works with themes of structure, time, and maturity. Their natural relationship with the [[10th House]] covers career, social status, reputation, and the [[Father archetype]].\n\nCapricorn's mountain goat symbolism represents determination to climb challenging peaks and reach the goal. Time is this sign's ally - wisdom and success increase with age.\n\n[[Saturn Return]] (approximately every 29 years) is especially meaningful for Capricorns. [[Shadow]] aspects include rigidity, pessimism, and excessive seriousness. Joy and flexibility are evolutionary tasks.",
-      "aquarius": "[[Aquarius]] is the eleventh sign of the [[Zodiac]] and represents the [[Fixed]] form of the [[Air]] element. With the \"I know\" principle, innovation and humanity are central.\n\nUnder [[Uranus]] (modern) and [[Saturn]] (traditional) rule, Aquarius works with revolutionary ideas and social consciousness. Their natural relationship with the [[11th House]] covers groups, friendships, hopes, and humanitarian ideals.\n\nThe water-bearer symbolism of Aquarius represents the distribution of wisdom to humanity. [[Collective consciousness]] and future-oriented vision are strongly related to this sign.\n\n[[Shadow]] aspects include emotional distance, excessive intellectualism, and neglecting individuals while thinking \"for everyone.\" Emotional closeness is the evolutionary task.",
-      "pisces": "[[Pisces]] is the twelfth and last sign of the [[Zodiac]] and represents the [[Mutable]] form of the [[Water]] element. With the \"I believe\" principle, spirituality and transcendence are central.\n\nUnder [[Neptune]] (modern) and [[Jupiter]] (traditional) rule, Pisces works with mysticism, empathy, and cosmic consciousness. Their natural relationship with the [[12th House]] covers the unconscious, spiritual practices, seclusion, and [[Karmic]] themes.\n\nThe two fish symbolism of Pisces - swimming in opposite directions - represents the tension between material and spiritual worlds. Direct access to the [[Collective unconscious]] is this sign's gift.\n\n[[Shadow]] aspects include escape tendencies (addiction), lack of boundaries, and victim mentality. Healthy boundaries and connection with reality are evolutionary tasks.",
+      "aries": "[[Aries]] is located at the starting point of the [[Archetype]] circle and represents the \"I am\" principle. This period, beginning with the [[Spring equinox]], reflects the energy of rebirth and growth in nature.\n\nUnder the rule of planet [[Mars]], Aries are action-oriented. Their natural relationship with the [[1st House]] determines identity, physical appearance, and how one approaches the world. The [[Fire]] element provides courage and passion, while the [[Cardinal]] quality brings leadership and initiative.\n\nIn evolutionary self-awareness, Aries represents the beginning of the [[Soul's journey]]. It takes the first steps in ego development and the individuation process. [[Shadow]] aspects include impatience and acting without thinking.\n\nPlanets in Aries generally display fast, direct, and competitive energy. During [[Mars]] [[Retrograde]] periods, it's beneficial to direct this energy toward inner motivation.",
+      "taurus": "[[Taurus]] is the second sign of the [[Archetype]] and represents the \"I have\" principle. As the most stable form of the [[Earth]] element, Taurus manages values and resources.\n\nUnder the rule of planet [[Venus]], Taurus shows deep appreciation for sensory experiences and beauty. Their natural relationship with the [[2nd House]] covers self-worth, material resources, and talents.\n\nThe [[Fixed]] quality gives Taurus endurance and determination. Once started, projects continue until completion. However, this can also lead to the [[Shadow]] aspect of stubbornness.\n\nPlanets in Taurus display slow but determined energy. [[Venus]] transits indicate important periods especially for Taurus and [[Libra]] signs.",
+      "gemini": "[[Gemini]] represents the \"I think\" principle and is the first [[Air]] sign of the [[Archetype]]. Under [[Mercury]] rule, mental agility and communication abilities are strong.\n\nTheir natural relationship with the [[3rd House]] covers immediate environment, siblings, short trips, and basic communication. The [[Mutable]] quality provides the ability to adapt and be flexible.\n\nGemini's [[Duality]] symbolism - twin siblings - represents the two aspects of the mind: rational and intuitive. This energy, sometimes perceived as scattered, is actually the ability to see multiple perspectives.\n\n[[Mercury Retrograde]] periods are especially important for Gemini. These times are valuable for introspection and looking back. The [[Shadow]] aspect is superficiality and indecisiveness.",
+      "cancer": "[[Cancer]] is the fourth sign of the [[Archetype]] and represents the [[Cardinal]] form of the [[Water]] element. With the \"I feel\" principle, it embodies emotional intelligence and intuition.\n\nUnder [[Moon]] rule, Cancers display emotional depth and protective instincts. Their natural relationship with the [[4th House]] covers home, family roots, inner world, and emotional security.\n\nThe [[Mother archetype]] resonates strongly with Cancer. Nurturing energy and caregiving ability are naturally developed. [[Moon phases]] are especially effective for Cancer natives.\n\n[[Shadow]] aspects include overprotection, emotional manipulation, and tendency to get stuck in the past. Learning to set [[Emotional boundaries]] is the evolutionary task.",
+      "leo": "[[Leo]] is the fifth sign of the [[Archetype]] and represents the [[Fixed]] form of the [[Fire]] element. With the \"I create\" principle, self-expression and creativity are central.\n\nThe [[Sun]] is the ruler of this sign and is \"at home\" - in its strongest state. Their natural relationship with the [[5th House]] covers creativity, romance, children, and entertainment. The [[Heart chakra]] is strongly connected to Leo.\n\nLeo's attraction to drama and the stage stems from a spiritual need: to be seen and feel valued. This is not an ego matter, but the natural expression of the [[Sun]].\n\n[[Shadow]] aspects include arrogance, excessive pride, and tendency to ignore others' light. Humility and sharing are qualities to develop on the evolutionary journey.",
+      "virgo": "[[Virgo]] is the sixth sign of the [[Archetype]] and represents the [[Mutable]] form of the [[Earth]] element. With the \"I analyze\" principle, service and pursuit of perfection are central.\n\nUnder [[Mercury]] rule, Virgo displays analytical intelligence and detail orientation. Their natural relationship with the [[6th House]] covers health, daily routines, service, and work environment.\n\nVirgo's perfectionist tendency actually comes from the concept of [[Sacred service]] - the desire to do one's job in the best way. [[Healing]] abilities are generally strong.\n\n[[Shadow]] aspects include being overly critical, worry, and self-deprecation. Accepting oneself and freeing from the pressure of flawlessness is the evolutionary task.",
+      "libra": "[[Libra]] is the seventh sign of the [[Archetype]] and represents the [[Cardinal]] form of the [[Air]] element. With the \"I balance\" principle, relationship and harmony are central.\n\nUnder [[Venus]] rule, Libra displays aesthetic sensitivity and social grace. Their natural relationship with the [[7th House]] covers partnerships, marriage, and the concept of \"the other.\"\n\nLibra's search for balance actually comes from the concept of [[Cosmic justice]]. Understanding the [[Projection]] mechanism is important for this sign - what we see in others belongs to us.\n\nThe [[Sun]] is \"in fall\" in this sign - individuality themes can be challenging. [[Shadow]] aspects include indecisiveness, passive-aggressive behaviors, and avoiding conflict. Developing self-identity is the evolutionary task.",
+      "scorpio": "[[Scorpio]] is the eighth sign of the [[Archetype]] and represents the [[Fixed]] form of the [[Water]] element. With the \"I transform\" principle, depth and power are central.\n\nUnder [[Pluto]] (modern) and [[Mars]] (traditional) rule, Scorpio displays intense emotional depth and penetrative intelligence. Their natural relationship with the [[8th House]] covers shared resources, sexuality, death-rebirth, and psychological transformation.\n\nScorpio's intensity actually comes from [[Spiritual alchemy]] - the desire to turn lead into gold. [[Kundalini]] energy is strongly related to this sign.\n\n[[Shadow]] aspects include jealousy, obsession, revenge, and need for control. Letting go and trusting are the most important lessons on the evolutionary journey.",
+      "sagittarius": "[[Sagittarius]] is the ninth sign of the [[Archetype]] and represents the [[Mutable]] form of the [[Fire]] element. With the \"I explore\" principle, freedom and search for meaning are central.\n\nUnder [[Jupiter]] rule, Sagittarius displays optimism, generosity, and expansion energy. Their natural relationship with the [[9th House]] covers long journeys, higher education, philosophy, and belief systems.\n\nThe archer symbolism of Sagittarius - bow and arrow - represents goal-oriented vision and high ideals. [[Centaur]] mythology symbolizes the union of human and animal nature.\n\n[[Shadow]] aspects include excessive optimism, scatteredness, irresponsibility, and not keeping promises. Deepening and commitment are evolutionary tasks.",
+      "capricorn": "[[Capricorn]] is the tenth sign of the [[Archetype]] and represents the [[Cardinal]] form of the [[Earth]] element. With the \"I achieve\" principle, discipline and responsibility are central.\n\nUnder [[Saturn]] rule, Capricorn works with themes of structure, time, and maturity. Their natural relationship with the [[10th House]] covers career, social status, reputation, and the [[Father archetype]].\n\nCapricorn's mountain goat symbolism represents determination to climb challenging peaks and reach the goal. Time is this sign's ally - wisdom and success increase with age.\n\n[[Saturn Return]] (approximately every 29 years) is especially meaningful for Capricorns. [[Shadow]] aspects include rigidity, pessimism, and excessive seriousness. Joy and flexibility are evolutionary tasks.",
+      "aquarius": "[[Aquarius]] is the eleventh sign of the [[Archetype]] and represents the [[Fixed]] form of the [[Air]] element. With the \"I know\" principle, innovation and humanity are central.\n\nUnder [[Uranus]] (modern) and [[Saturn]] (traditional) rule, Aquarius works with revolutionary ideas and social consciousness. Their natural relationship with the [[11th House]] covers groups, friendships, hopes, and humanitarian ideals.\n\nThe water-bearer symbolism of Aquarius represents the distribution of wisdom to humanity. [[Collective consciousness]] and future-oriented vision are strongly related to this sign.\n\n[[Shadow]] aspects include emotional distance, excessive intellectualism, and neglecting individuals while thinking \"for everyone.\" Emotional closeness is the evolutionary task.",
+      "pisces": "[[Pisces]] is the twelfth and last sign of the [[Archetype]] and represents the [[Mutable]] form of the [[Water]] element. With the \"I believe\" principle, spirituality and transcendence are central.\n\nUnder [[Neptune]] (modern) and [[Jupiter]] (traditional) rule, Pisces works with mysticism, empathy, and cosmic consciousness. Their natural relationship with the [[12th House]] covers the unconscious, spiritual practices, seclusion, and [[Karmic]] themes.\n\nThe two fish symbolism of Pisces - swimming in opposite directions - represents the tension between material and spiritual worlds. Direct access to the [[Collective unconscious]] is this sign's gift.\n\n[[Shadow]] aspects include escape tendencies (addiction), lack of boundaries, and victim mentality. Healthy boundaries and connection with reality are evolutionary tasks.",
       "default": "Loading sign interpretation..."
     }
   },
@@ -2894,7 +2899,7 @@
     "weekly": "Weekly",
     "monthly": "Monthly",
     "yearly": "Yearly",
-    "zodiac": "Zodiac",
+    "zodiac": "Archetype",
     "meditation": "Meditation",
     "explore": "Explore",
     "questions": "Questions",
@@ -2919,18 +2924,18 @@
     "trust": "Trust"
   },
   "brands": {
-    "weekly_horoscope": "Weekly Horoscope — Venus One",
-    "monthly_horoscope": "Monthly Horoscope — Venus One",
-    "yearly_horoscope": "Yearly Horoscope — Venus One",
-    "love_horoscope": "Love Horoscope — Venus One",
-    "compatibility": "Zodiac Compatibility — Venus One",
+    "weekly_horoscope": "Weekly Insight — Venus One",
+    "monthly_horoscope": "Monthly Insight — Venus One",
+    "yearly_horoscope": "Yearly Insight — Venus One",
+    "love_horoscope": "Love Insight — Venus One",
+    "compatibility": "Personality Compatibility — Venus One",
     "horoscope": "Daily Reflections — Venus One",
     "tarot": "Tarot — Venus One",
     "dreams": "Dream Oracle — Venus One",
-    "astrology": "Astrology — Venus One",
+    "astrology": "Self-Awareness — Venus One",
     "numerology": "Numerology — Venus One",
     "dream_trace": "Dream Trace — Venus One",
-    "natal_chart": "Birth Chart — Venus One"
+    "natal_chart": "Personal Profile — Venus One"
   },
   "ads": {
     "failed_to_load": "Ad Failed to Load",
@@ -2996,7 +3001,7 @@
         "description": "What is the sky whispering today? Check out daily readings."
       },
       "birth_chart_question": {
-        "title": "What Does My Birth Chart Say?",
+        "title": "What Does My Personal Profile Say?",
         "description": "Discover your cosmic fingerprint — calculate for free."
       },
       "partner_compatible": {
@@ -3032,12 +3037,12 @@
         "description": "All features in one place"
       },
       "astrology_glossary": {
-        "title": "Astrology Glossary",
+        "title": "Wellness Glossary",
         "description": "Learn the terms"
       },
       "premium_features": {
         "title": "Premium Features",
-        "description": "Advanced astrology tools"
+        "description": "Advanced self-awareness tools"
       },
       "most_read_scorpio": {
         "title": "Most Read: Scorpio",
@@ -3056,7 +3061,7 @@
         "description": "What is the big theme of the month?"
       },
       "calculate_birth_chart": {
-        "title": "Calculate Your Birth Chart",
+        "title": "Calculate Your Personal Profile",
         "description": "See beyond your sun sign."
       },
       "relationship_compatibility": {
@@ -3101,7 +3106,7 @@
       },
       "vedic_chart": {
         "title": "Vedic Chart",
-        "description": "Indian astrology perspective."
+        "description": "Indian self-awareness perspective."
       },
       "draconic_chart": {
         "title": "Draconic Chart",
@@ -3140,7 +3145,7 @@
         "description": "When is Mercury retrograde?"
       },
       "electional_astrology": {
-        "title": "Electional Astrology",
+        "title": "Optimal Timing",
         "description": "Choose the right times."
       },
       "celebrity_couples": {
@@ -3170,7 +3175,7 @@
         "description": "The mystery of numbers — a similar journey."
       },
       "daily_horoscope": {
-        "title": "Daily Horoscope",
+        "title": "Daily Insight",
         "description": "Read along with tarot."
       },
       "read_with_tarot": {
@@ -3185,7 +3190,7 @@
         "description": "A message beyond the cards."
       },
       "birth_chart": {
-        "title": "Birth Chart",
+        "title": "Personal Profile",
         "description": "Your cosmic identity."
       },
       "cosmic_identity": {
@@ -3210,7 +3215,7 @@
         "description": "Mystical origin of numbers."
       },
       "astrological_perspective": {
-        "description": "Astrological perspective."
+        "description": "Personal perspective."
       },
       "tarot": {
         "title": "Tarot",
@@ -3256,7 +3261,7 @@
         "description": "Compare charts in detail."
       },
       "love_horoscope": {
-        "title": "Love Horoscope",
+        "title": "Love Insight",
         "description": "Weekly love energy"
       },
       "venus_and_mars": {
@@ -3327,7 +3332,7 @@
         "description": "Gematria and numbers."
       },
       "astrology_connection": {
-        "title": "Astrology Connection",
+        "title": "Self-Awareness Connection",
         "description": "Sefirot and planets."
       },
       "chakra_system": {
@@ -3350,7 +3355,7 @@
         "description": "10 sefirah meanings"
       },
       "my_birth_chart": {
-        "title": "My Birth Chart",
+        "title": "My Personal Profile",
         "description": "Your cosmic identity"
       },
       "transits_affecting_chart": {
@@ -3391,7 +3396,7 @@
       },
       "twelfth_house_dreams": {
         "title": "12th House and Dreams",
-        "description": "The dream house in your natal chart."
+        "description": "The dream house in your personal profile."
       },
       "your_cosmic_message": {
         "title": "Your Cosmic Message",
@@ -3455,7 +3460,7 @@
         "description": "My energy centers."
       },
       "advanced_astrology": {
-        "description": "Advanced astrology"
+        "description": "Advanced self-awareness"
       },
       "learn_concepts": {
         "description": "Learn the concepts"
@@ -3684,11 +3689,11 @@
     "special_months_of_year": "Special Months of the Year",
     "caution_required": "Caution Required",
     "horoscope_readings": "Daily Reflections",
-    "birth_chart_analysis": "Birth Chart & Analysis",
+    "birth_chart_analysis": "Personal Profile & Analysis",
     "time_transits": "Time & Transits",
     "numerology_mystic": "Numerology & Mystic Tools",
     "spiritual_wellness": "Spiritual & Wellness",
-    "advanced_astrology": "Advanced Astrology",
+    "advanced_astrology": "Advanced Self-Awareness",
     "personality_analysis": "Personality Analysis",
     "mystic_discoveries": "Mystic Discoveries",
     "relationship_analysis": "Relationship Analysis",
@@ -3700,9 +3705,9 @@
   "misc": {
     "zodiac_interpretation": "Sign Insight",
     "love_interpretation": "Love Reading",
-    "zodiac_compatibility": "Zodiac Compatibility",
-    "zodiac_profiles": "Zodiac Profiles",
-    "select_zodiac": "Select Zodiac",
+    "zodiac_compatibility": "Personality Compatibility",
+    "zodiac_profiles": "Personality Profiles",
+    "select_zodiac": "Select Archetype",
     "view_house_on_map": "View This House on My Chart",
     "how_is_your_love_life": "How is your love life going?",
     "opposite_sign": "Opposite Sign",
@@ -3715,7 +3720,7 @@
     "friend_index": "Friend"
   },
   "comparison": {
-    "title": "Zodiac Compatibility",
+    "title": "Personality Compatibility",
     "subtitle": "Detailed comparison analysis",
     "select_profile": "Select Profile",
     "add": "Add",
@@ -3741,7 +3746,7 @@
     "communication": "Communication",
     "for_singles": "For Singles",
     "for_couples": "For Couples",
-    "todays_compatibility": "Today's Zodiac Compatibility",
+    "todays_compatibility": "Today's Personality Compatibility",
     "most_compatible": "Most Compatible",
     "challenging": "Challenging",
     "soul_connection": "Soul Connection",
@@ -3760,8 +3765,8 @@
     "good_match": "Good Match",
     "moderate_match": "Moderate Match",
     "challenging": "Challenging",
-    "zodiac_profiles": "Zodiac Profiles",
-    "brand_text": "Zodiac Compatibility — Venus One",
+    "zodiac_profiles": "Personality Profiles",
+    "brand_text": "Personality Compatibility — Venus One",
     "cosmic_chemistry": "Cosmic Chemistry",
     "ancient_note": "The compatibility between two signs is not just an element and modality calculation. Every relationship carries the potential for two souls to complete and transform each other. Challenges are the greatest teachers."
   },
@@ -4280,7 +4285,7 @@
       "depth": "Depth",
       "shadow_question": "Shadow Question",
       "integration": "Integration",
-      "astro_timing": "ASTROLOGICAL TIMING",
+      "astro_timing": "PERSONAL TIMING",
       "why_now": "Why now?",
       "light_label": "LIGHT",
       "shadow_label": "SHADOW",
@@ -4587,7 +4592,7 @@
     "december": "December"
   },
   "analysis": {
-    "zodiac_analysis": "Zodiac Analysis",
+    "zodiac_analysis": "Archetype Analysis",
     "numerology_analysis": "Numerology Analysis",
     "aura_analysis": "Aura Analysis",
     "kabbalah_analysis": "Kabbalah Analysis",
@@ -4605,7 +4610,7 @@
     "profile_not_found": "Profile not found",
     "enter_birth_info": "Please enter your birth information first",
     "generating_chart": "Generating Vedic chart...",
-    "info_banner": "Vedic astrology uses the sidereal (star-based) zodiac. There is approximately a 24 degree difference from Western astrology.",
+    "info_banner": "Vedic self-awareness uses the sidereal (star-based) archetype. There is approximately a 24 degree difference from Western self-awareness.",
     "profile_info": "Profile Information",
     "name": "Name",
     "user": "User",
@@ -4635,7 +4640,7 @@
     "profile_not_found": "Profile not found",
     "enter_birth_info": "Please enter your birth information first",
     "generating_chart": "Generating chart...",
-    "soul_level_astrology": "Soul Level Astrology",
+    "soul_level_astrology": "Soul Level Self-Awareness",
     "info_banner": "Discover your soul's true purpose and past life traces",
     "profile_info": "Profile Information",
     "name": "Name",
@@ -4855,10 +4860,10 @@
   "astrology": {
     "rising_sign": {
       "title": "What is rising sign?",
-      "tag": "Astrology",
+      "tag": "Self-Awareness",
       "short_answer_title": "Short Answer",
       "short_answer_bullets": [
-        "Rising sign is the zodiac sign that was rising on the eastern horizon at the moment of birth.",
+        "Rising sign is the personality type that was rising on the eastern horizon at the moment of birth.",
         "It determines how the outside world sees you.",
         "It is different from your Sun sign and requires birth time to calculate."
       ],
@@ -4874,7 +4879,7 @@
         "Sun sign: Your essence, who you are.",
         "Rising sign: Your mask, how you appear.",
         "Moon sign: Your emotions, what you feel.",
-        "Together: Complete astrological profile."
+        "Together: Complete personality profile."
       ],
       "how_calculated_title": "How Is It Calculated?",
       "how_calculated_bullets": [
@@ -4890,11 +4895,11 @@
         "It positions life areas from career to relationships."
       ],
       "suggestion_text": "What does Mercury retrograde mean?",
-      "brand_text": "Astrology — Venus One"
+      "brand_text": "Self-Awareness — Venus One"
     },
     "moon_sign_today": {
       "title": "What sign is the Moon in today?",
-      "tag": "Astrology",
+      "tag": "Self-Awareness",
       "short_answer_title": "Short Answer",
       "short_answer_bullets": [
         "The Moon changes signs approximately every 2.5 days.",
@@ -4918,7 +4923,7 @@
       "moon_in_sign": "Moon is in {sign}",
       "element_label": "{element} Element",
       "suggestion_text": "What is rising sign?",
-      "brand_text": "Astrology — Venus One",
+      "brand_text": "Self-Awareness — Venus One",
       "signs": {
         "aries": {
           "name": "Aries",
@@ -5231,7 +5236,7 @@
     "subtitle": "The Great Teacher's Cosmic Lessons",
     "brand_text": "Saturn Return — Venus One",
     "kadim_title": "The Wisdom of Saturn",
-    "kadim_content": "Saturn, known as the Lord of Karma in astrology, demands discipline, responsibility, and maturity with each return. Approximately every 29.5 years, this cosmic teacher tests your foundations, destroys structures that don't serve your authentic self, and guides you toward building lasting achievements. The challenges are real, but so are the rewards for those who do the inner work.",
+    "kadim_content": "Saturn, known as the Lord of Karma in self-awareness, demands discipline, responsibility, and maturity with each return. Approximately every 29.5 years, this cosmic teacher tests your foundations, destroys structures that don't serve your authentic self, and guides you toward building lasting achievements. The challenges are real, but so are the rewards for those who do the inner work.",
     "status_active": "Active",
     "in_return": "You are in your Saturn Return",
     "next_return": "Next Saturn Return",
@@ -5315,10 +5320,10 @@
   },
   "year_ahead": {
     "title": "Year Ahead",
-    "year_forecast": "{year} Year Forecast",
+    "year_forecast": "{year} Year Outlook",
     "select_year": "Select Year",
     "year_summary": "Year Summary",
-    "quarterly_forecasts": "Quarterly Forecasts",
+    "quarterly_forecasts": "Quarterly Outlooks",
     "important_transits": "Important Transits",
     "lucky_periods": "Favorable Periods",
     "challenging_periods": "Periods Requiring Attention",
@@ -5411,11 +5416,11 @@
     }
   },
   "local_space": {
-    "title": "Local Space Astrology",
+    "title": "Local Space Self-Awareness",
     "profile_not_found": "Profile not found",
     "enter_birth_info_first": "Please enter your birth information first",
     "go_back": "Go Back",
-    "spatial_astrology": "Spatial Astrology",
+    "spatial_astrology": "Spatial Awareness",
     "discover_planet_energies": "Discover the effects of planetary energies on directions and spaces",
     "profile_info": "Profile Information",
     "full_data": "Full Data",
@@ -5483,7 +5488,7 @@
     "analysis": {
       "home_title": "Local Space Analysis of Your Home",
       "home_intro": "To optimize your home layout according to planetary energies:",
-      "home_conclusion": "These arrangements align your home's energy with your birth chart.",
+      "home_conclusion": "These arrangements align your home's energy with your personal profile.",
       "office_title": "Local Space Analysis of Your Workplace",
       "office_intro": "Recommendations for career success:",
       "desk_position": "Position your desk facing the {direction} direction.",
@@ -6231,7 +6236,7 @@
       "water_lesson": "setting boundaries, realism, and emotional independence"
     },
     "soul_contract": {
-      "main": "{name}, before coming to this world, your soul made a contract. As a {sign}, your birth chart's North Node, Saturn, and 12th house carry traces of this contract.",
+      "main": "{name}, before coming to this world, your soul made a contract. As a {sign}, your personal profile's North Node, Saturn, and 12th house carry traces of this contract.",
       "contract_items": "Main Articles of Your Soul Contract:",
       "contract_intro": "Your soul contract includes your life purpose, karma lessons, and basic experiences you'll encounter in this life. As a {sign}, you came to work on {theme}.",
       "contract_details": "Contract Details:",
@@ -6241,7 +6246,7 @@
       "maturation_areas": "Maturation Areas: Saturn's house",
       "soul_connections": "Soul Connections:",
       "soul_connections_desc": "Important people entering your life are also part of your soul contract. Moon Node connections in synastry charts show karmic soul bonds.",
-      "advice": "To remember your soul contract: Meditate, pay attention to your dreams, observe recurring themes. The 12th house and Neptune position in your birth chart show doors to access your subconscious memory.",
+      "advice": "To remember your soul contract: Meditate, pay attention to your dreams, observe recurring themes. The 12th house and Neptune position in your personal profile show doors to access your subconscious memory.",
       "warning": "The soul contract is not unchangeable. With your free will, you can make new choices at any moment.",
       "themes": {
         "aries": "courage and leadership",
@@ -7091,13 +7096,13 @@
       "November",
       "December"
     ],
-    "share_text": "Today's cosmic energy is with me! The universe whispers... #venusone #astrology #horoscope #cosmicenergy",
+    "share_text": "Today's cosmic energy is with me! The universe whispers... #venusone #self-awareness #insight #cosmicenergy",
     "instagram": {
       "hook_1": "{sign} BUT NOT A RED FLAG 🚩",
       "hook_2": "IF YOU'RE CHASING? THEY'RE RUNNING 😏",
       "hook_3": "NOT TOXIC (MAYBE) 🤭",
       "hook_4": "LOYALTY TEST: {sign} WON 💪",
-      "hook_5": "HOTTEST ZODIAC RANKING 🔥",
+      "hook_5": "HOTTEST ARCHETYPE RANKING 🔥",
       "hook_6": "MOST DRAMATIC SIGNS 🎭",
       "hook_7": "WHO FALLS IN LOVE HARDEST? 💘",
       "hook_8": "TRUST ISSUES? BLAME YOUR SIGN 😅",
@@ -7109,7 +7114,7 @@
       "viral_title_4": "{sign} WHEN THEY'RE MAD 😤",
       "viral_title_5": "{sign}'S LOVE LANGUAGE",
       "viral_title_6": "SIGNS THAT CAN'T SAY NO",
-      "viral_title_7": "MOST LOYAL ZODIAC SIGNS",
+      "viral_title_7": "MOST LOYAL ARCHETYPE SIGNS",
       "viral_title_8": "WHO WINS ARGUMENTS BY SIGN",
       "meme_introvert": "INTROVERT OR JUST {sign}? 🤔",
       "meme_overthink": "{sign} AT 3AM OVERTHINKING 🌙",
@@ -7208,7 +7213,7 @@
         "aries": [
           "ARIES BUT NOT A RED FLAG 🚩",
           "RUNNING IF YOU'RE CHASING? THAT'S ARIES 😏",
-          "HOTTEST ZODIAC RANKING: 1️⃣",
+          "HOTTEST ARCHETYPE RANKING: 1️⃣",
           "ARIES ENERGY HITS DIFFERENT TODAY"
         ],
         "taurus": [
@@ -8282,8 +8287,8 @@
     "enter_birth_info": "To see your astrocartography map\nplease enter your birth information first",
     "create_profile": "Create Profile",
     "generating_map": "Generating map...",
-    "location_astrology": "Location Astrology",
-    "discover_reflections": "Discover the reflections of your birth chart across the world",
+    "location_astrology": "Location Self-Awareness",
+    "discover_reflections": "Discover the reflections of your personal profile across the world",
     "full_data": "Full Data",
     "default_location": "Default Location",
     "coordinates": "Coordinates",
@@ -8307,12 +8312,12 @@
     "practice": "Practice"
   },
   "electional": {
-    "title": "Electional Astrology",
+    "title": "Optimal Timing",
     "profile_not_found": "Profile Not Found",
     "enter_birth_info": "Please enter your birth information first",
     "analyzing": "Analyzing...",
     "find_best_time": "Find the Best Time",
-    "discover_supported_times": "Discover astrologically supported times for important decisions",
+    "discover_supported_times": "Discover personally supported times for important decisions",
     "select_purpose": "Select Purpose",
     "date_range": "Date Range",
     "start_date": "Start",
@@ -8358,7 +8363,7 @@
   },
   "notifications": {
     "title": "Notifications",
-    "daily_horoscope": "Daily Horoscope",
+    "daily_horoscope": "Daily Insight",
     "daily_horoscope_desc": "Every day at {time}",
     "off": "Off",
     "moon_phases": "Moon Phases",
@@ -8375,7 +8380,7 @@
     "yearly_reading": "Yearly Reading",
     "love_reading": "Love Reading",
     "compatibility": "Compatibility",
-    "birth_chart": "Birth Chart",
+    "birth_chart": "Personal Profile",
     "synastry": "Synastry",
     "composite": "Composite",
     "vedic_chart": "Vedic Chart",
@@ -8417,7 +8422,7 @@
     "celebrity_twin": "Your Celebrity Twin",
     "cosmic_trace": "Cosmic Trace",
     "dream_trace": "Dream Trace",
-    "horoscope_reader": "Horoscope Reader",
+    "horoscope_reader": "Insight Reader",
     "cosmic_share": "Cosmic Share",
     "saved_profiles": "Saved Profiles",
     "compare": "Compare",
@@ -8440,15 +8445,15 @@
     "good_afternoon": "Good afternoon",
     "good_evening": "Good evening",
     "dear": "dear",
-    "intro_message": "I am Kozmoz Trace, your cosmic guide. I am here to help you explore astrology, daily reflections, transits, numerology and more with the energy of your {sign} sign.",
+    "intro_message": "I am Kozmoz Trace, your cosmic guide. I am here to help you explore self-awareness, daily reflections, transits, numerology and more with the energy of your {sign} sign.",
     "ask_placeholder": "Ask Kozmoz... (Press Enter to send)",
     "quick_access": "Quick Access",
     "suggested_questions": "Suggested Questions:",
     "all_analyses": "All Analyses",
     "features": {
       "zodiac_readings": "Daily Reflections",
-      "birth_chart": "Birth Chart",
-      "zodiac_compatibility": "Zodiac Compatibility",
+      "birth_chart": "Personal Profile",
+      "zodiac_compatibility": "Personality Compatibility",
       "transits": "Transits",
       "numerology": "Numerology",
       "tarot": "Tarot",
@@ -8463,11 +8468,11 @@
       "weekly_advice": "What are the three most important pieces of advice for my sign this week?",
       "cosmic_weather": "What is my cosmic weather today based on my Sun, Moon and rising signs?",
       "venus_mars_love": "What can I expect in my love life this month based on Venus and Mars transits?",
-      "ideal_partner": "What is my ideal partner like according to my birth chart and where might I meet them?",
-      "relationship_challenges": "What are the astrological root causes of the challenges in my relationship?",
+      "ideal_partner": "What is my ideal partner like according to my personal profile and where might I meet them?",
+      "relationship_challenges": "What are the personal root causes of the challenges in my relationship?",
       "synastry_analysis": "How is my synastry compatibility with my partner, what are our strengths and weaknesses?",
-      "marriage_timing": "When are the most suitable astrological times for marriage this year?",
-      "career_paths": "What are the most suitable career paths and sectors for me according to my birth chart?",
+      "marriage_timing": "When are the most suitable personal times for marriage this year?",
+      "career_paths": "What are the most suitable career paths and sectors for me according to my personal profile?",
       "financial_success": "What themes about abundance and success can I reflect on?",
       "business_timing": "What factors should I consider when planning business decisions?",
       "business_partners": "What collaboration styles complement my working preferences?",
@@ -8478,7 +8483,7 @@
       "critical_dates": "What seasonal and cyclical themes can I reflect on this year?",
       "big_three": "How does the combination of my Sun, Moon and rising trio shape my personality?",
       "lunar_nodes": "What do my lunar nodes say about my spiritual evolution journey?",
-      "houses": "How do the empty and occupied houses in my birth chart affect my life?",
+      "houses": "How do the empty and occupied houses in my personal profile affect my life?",
       "difficult_aspects": "What life lessons do the difficult aspects (squares, oppositions) in my chart bring?",
       "mc_ic_axis": "How should my career and family life be shaped according to my MC and IC axis?",
       "life_path": "What reflection themes does my life path number suggest?",
@@ -8497,7 +8502,7 @@
       "hidden_talents": "What potential strengths might I explore and develop?",
       "repeating_patterns": "What recurring patterns do I notice in my life for reflection?",
       "blockages": "What obstacles do I perceive, and what might they teach me?",
-      "dream_meaning": "What do my dreams mean astrologically? Interpret the dream I had today.",
+      "dream_meaning": "What do my dreams mean personally? Interpret the dream I had today.",
       "subconscious_messages": "What messages is my subconscious sending during this period?",
       "sleep_cycles": "How are my sleep quality and dream cycles affected by moon phases?",
       "lucid_dreaming": "When are the most suitable cosmic times for lucid dreaming?",
@@ -8505,9 +8510,9 @@
       "sexual_energy": "How can I transform my sexual energy into creative and spiritual power?",
       "breathing_techniques": "What are the breathing exercises and meditation techniques specific to my sign?",
       "energy_blockages": "Do I have blockages in my energy body? How can I cleanse them?",
-      "weak_organs": "What are my weak organs and health issues I should be careful about according to my birth chart?",
+      "weak_organs": "What are my weak organs and health issues I should be careful about according to my personal profile?",
       "herbal_healing": "What are the herbal healing methods and natural treatments suitable for my sign?",
-      "astro_nutrition": "Astrological nutrition: Which foods are good for me according to my sign?",
+      "astro_nutrition": "Personal nutrition: Which foods are good for me according to my sign?",
       "detox_timing": "When are the most suitable moon phases and periods for detox and purification?",
       "home_buying": "What home and living environment themes can I reflect on?",
       "family_dynamics": "What family dynamic themes might I explore for understanding?",
@@ -8520,7 +8525,7 @@
       "exam_dates": "How can I prepare mentally for important presentations?",
       "creative_periods": "What creative expression themes can I explore?",
       "shadow_self": "What is my shadow self and how can I make peace with it?",
-      "fears_origins": "What is the astrological origin of my fears and suppressed emotions?",
+      "fears_origins": "What is the personal origin of my fears and suppressed emotions?",
       "dark_moon_work": "What shadow work should I do during dark moon periods?",
       "projection_patterns": "My projection patterns: What do the things that bother me in others actually show?",
       "manifestation_timing": "What intention-setting practices can I explore this month?",
@@ -8531,7 +8536,7 @@
       "guardian_angels": "What spiritual guidance themes can I explore?",
       "star_seeds": "What cosmic origin concepts might inspire my reflection?",
       "akashic_records": "What soul journey themes might I contemplate?",
-      "power_stones": "What are my power stones according to my sign and birth chart?",
+      "power_stones": "What are my power stones according to my sign and personal profile?",
       "current_crystals": "Which crystals should I carry this period and how should I activate them?",
       "stones_to_avoid": "Which stones should I avoid when choosing jewelry?",
       "full_moon_ritual": "Full moon ritual: What should I release and celebrate this month?",
@@ -8619,7 +8624,7 @@
       "practical_advice": "PRACTICAL ADVICE",
       "wisdom_affirmation": "AFFIRMATION OF THE DAY",
       "more_help": "For more specific help, you can ask me:",
-      "example_questions": "• \"My horoscope for today\"\n• \"How will my love life be?\"\n• \"Advice for career\"\n• \"Moon phase effect\"\n• \"Tarot message\"\n\n• And much more...\n\nYou can ask anything you're curious about! 🌌",
+      "example_questions": "• \"My insight for today\"\n• \"How will my love life be?\"\n• \"Advice for career\"\n• \"Moon phase effect\"\n• \"Tarot message\"\n\n• And much more...\n\nYou can ask anything you're curious about! 🌌",
       "date_format": "{day}.{month}.{year}",
       "moon_in_sign": "Moon: In {sign}",
       "rising_sign_header": "{sign} & RISING SIGN ANALYSIS",
@@ -8640,7 +8645,7 @@
       "rising_aquarius": "AQUARIUS RISING",
       "rising_pisces": "PISCES RISING",
       "calculate_rising_tip": "TO CALCULATE YOUR RISING SIGN",
-      "calculate_rising_note": "Your birth time and birthplace are required. You can get your full chart from the \"Birth Chart\" section on the main page!",
+      "calculate_rising_note": "Your birth time and birthplace are required. You can get your full chart from the \"Personal Profile\" section on the main page!",
       "rising_reminder": "Your rising sign is the door through which your soul opens to the world!",
       "compatibility_header": "{sign} DETAILED COMPATIBILITY ANALYSIS",
       "element_compatibility": "ELEMENT COMPATIBILITY",
@@ -9285,7 +9290,7 @@
     "title": "Reiki"
   },
   "birth_chart": {
-    "title": "Birth Chart"
+    "title": "Personal Profile"
   },
   "chart": {
     "birth_date": "Birth Date",
@@ -9334,7 +9339,7 @@
     "challenges": "Challenges",
     "kadim_title": "Ancient Synastry Wisdom",
     "kadim_content": "In the dance of two souls, the stars reveal not just compatibility, but the deeper lessons each person brings to the other. Synastry is the ancient art of reading these cosmic conversations.",
-    "kadim_source": "Traditional Astrology"
+    "kadim_source": "Traditional Self-Awareness"
   },
   "kadim": {
     "celestial_wisdom": "Celestial Wisdom",
@@ -9551,7 +9556,7 @@
     "keep_exploring": "Continue Exploring",
     "daily_reading": "Daily Reading",
     "daily_energy": "Today's Energy",
-    "birth_chart": "Birth Chart",
+    "birth_chart": "Personal Profile",
     "explore_cosmic_map": "Explore Your Cosmic Map",
     "compatibility": "Compatibility",
     "basic_compatibility": "Basic Compatibility Analysis",
@@ -9623,14 +9628,14 @@
     "soul_chart": "Your soul's chart",
     "solar_arc": "Solar Arc",
     "life_directions": "Life directions",
-    "vedic": "Vedic Astrology",
+    "vedic": "Vedic Self-Awareness",
     "eastern_wisdom": "Eastern wisdom",
     "transit_calendar": "Transit Calendar",
     "upcoming_transits": "Upcoming transits",
     "aspect_analysis": "Aspect Analysis",
     "planetary_conversations": "Planetary conversations",
     "celebrities": "Celebrities",
-    "famous_charts": "Famous birth charts",
+    "famous_charts": "Famous personal profiles",
     "articles": "Articles",
     "cosmic_wisdom": "Cosmic wisdom",
     "kabbalah": "Kabbalah",
@@ -9646,7 +9651,7 @@
   "timing": {
     "title": "Cosmic Timing",
     "subtitle": "Discover the best times for your activities",
-    "kadim_title": "The Art of Astrological Timing",
+    "kadim_title": "The Art of Personal Timing",
     "kadim_content": "Ancient civilizations knew the importance of timing. Each hour of the day is ruled by a different planet. By aligning your activities with cosmic rhythms, you can maximize your potential.",
     "brand_footer": "Cosmic Timing by Venus One",
     "todays_energy": "Today's Energy",
@@ -9667,7 +9672,7 @@
     "other_retros_title": "Other Retrogrades",
     "in_retrograde": "in retrograde",
     "clear_sky_title": "Clear Skies",
-    "clear_sky_desc": "No major astrological warnings active. Good day for initiatives.",
+    "clear_sky_desc": "No major personal warnings active. Good day for initiatives.",
     "good_times": "Good Times For",
     "next_7_days": "Next 7 Days",
     "today": "Today",
@@ -9794,7 +9799,7 @@
   },
   "transit_calendar": {
     "title": "Transit Calendar",
-    "subtitle": "Monthly astrological events",
+    "subtitle": "Monthly cosmic events",
     "select_month": "Select Month",
     "no_transit_day": "No transits on this day",
     "no_transit_month": "No transits this month",
@@ -10117,7 +10122,7 @@
       "pisces": "You are seen as dreamy, artistic, and spiritual. You radiate an empathic and understanding energy."
     },
     "headers": {
-      "birth_chart_report": "Birth Chart Report",
+      "birth_chart_report": "Personal Profile Report",
       "cosmic_guide": "Your Cosmic Guide",
       "page": "Page"
     },
@@ -10127,7 +10132,7 @@
       "element_distribution": "ELEMENT DISTRIBUTION",
       "modality_distribution": "MODALITY DISTRIBUTION",
       "personality_interpretation": "PERSONALITY INTERPRETATION",
-      "daily_horoscope": "DAILY HOROSCOPE",
+      "daily_horoscope": "DAILY INSIGHT",
       "daily_recommendation": "TODAY'S RECOMMENDATION",
       "overall_compatibility": "OVERALL COMPATIBILITY",
       "category_compatibility": "CATEGORY BASED COMPATIBILITY",
@@ -10592,19 +10597,24 @@
       "avoidance": "Avoid ignoring the dream."
     },
     "exploration": {
-      "birth_chart_title": "Explore Your Birth Chart",
-      "birth_chart_desc": "See the connection between symbols in your dream and your natal chart",
+      "birth_chart_title": "Explore Your Personal Profile",
+      "birth_chart_desc": "See the connection between symbols in your dream and your personal profile",
+      "personal_profile_title": "Explore Your Personal Profile",
+      "personal_profile_desc": "See how dream symbols connect with your inner patterns",
       "moon_calendar_title": "Check Moon Calendar",
       "moon_calendar_desc": "Learn the meaning of the moon phase when your dream came",
       "transits_title": "Examine Your Transits",
       "transits_desc": "The effect of current planetary transits on your dream",
+      "timing_insights_title": "Timing Insights",
+      "timing_insights_desc": "Explore how cosmic rhythms influence your dream patterns",
       "tarot_title": "Draw Tarot",
       "tarot_desc": "Deepen the message of your dream with tarot",
       "neptune_title": "Neptune Transit",
       "neptune_desc": "Water symbols are connected to Neptune energy",
       "pluto_title": "Pluto Analysis",
       "pluto_desc": "Transformation symbols resonate with Pluto",
-      "category_astrology": "Astrology",
+      "category_astrology": "Self-Awareness",
+      "category_self_awareness": "Self-Awareness",
       "category_moon": "Moon",
       "category_symbols": "Symbols"
     },

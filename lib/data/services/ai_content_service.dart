@@ -82,7 +82,7 @@ class AiContentService {
       (_openAiApiKey?.isNotEmpty ?? false) ||
       (_anthropicApiKey?.isNotEmpty ?? false);
 
-  /// Generate personalized daily horoscope
+  /// Generate personalized daily reflection
   Future<PersonalizedHoroscope> generatePersonalizedHoroscope({
     required ZodiacSign sunSign,
     ZodiacSign? moonSign,
@@ -90,7 +90,7 @@ class AiContentService {
     DateTime? birthDate,
     String? currentMoonPhase,
   }) async {
-    final cacheKey = 'horoscope_${sunSign.name}_${DateTime.now().day}';
+    final cacheKey = 'reflection_${sunSign.name}_${DateTime.now().day}';
 
     // Check cache first
     if (_cache.containsKey(cacheKey) && !_cache[cacheKey]!.isExpired) {
@@ -100,7 +100,7 @@ class AiContentService {
     // Try AI generation first
     if (isAiAvailable) {
       try {
-        final prompt = _buildHoroscopePrompt(
+        final prompt = _buildReflectionPrompt(
           sunSign: sunSign,
           moonSign: moonSign,
           risingSign: risingSign,
@@ -110,12 +110,12 @@ class AiContentService {
 
         final response = await _generateWithAi(prompt);
         if (response != null) {
-          final horoscope = _parseHoroscopeResponse(response, sunSign);
-          _cache[cacheKey] = _CachedContent(horoscope);
-          _analytics?.logEvent('ai_horoscope_generated', {
+          final reflection = _parseReflectionResponse(response, sunSign);
+          _cache[cacheKey] = _CachedContent(reflection);
+          _analytics?.logEvent('ai_reflection_generated', {
             'sign': sunSign.name,
           });
-          return horoscope;
+          return reflection;
         }
       } catch (e) {
         if (kDebugMode) {
@@ -126,16 +126,16 @@ class AiContentService {
     }
 
     // Fallback to local generation
-    final localHoroscope = _generateLocalHoroscope(
+    final localReflection = _generateLocalReflection(
       sunSign: sunSign,
       moonSign: moonSign,
       risingSign: risingSign,
     );
-    _cache[cacheKey] = _CachedContent(localHoroscope);
-    return localHoroscope;
+    _cache[cacheKey] = _CachedContent(localReflection);
+    return localReflection;
   }
 
-  /// Generate personalized cosmic message
+  /// Generate personalized inner message
   Future<String> generateCosmicMessage({
     required ZodiacSign sign,
     String? userName,
@@ -144,7 +144,7 @@ class AiContentService {
   }) async {
     if (isAiAvailable && userName != null) {
       try {
-        final prompt = _buildCosmicMessagePrompt(
+        final prompt = _buildInnerMessagePrompt(
           sign,
           userName,
           mood,
@@ -153,14 +153,14 @@ class AiContentService {
 
         final response = await _generateWithAi(prompt);
         if (response != null && response.isNotEmpty) {
-          _analytics?.logEvent('ai_cosmic_message_generated', {
+          _analytics?.logEvent('ai_inner_message_generated', {
             'sign': sign.name,
           });
           return response;
         }
       } catch (e) {
         if (kDebugMode) {
-          debugPrint('AiContentService: Cosmic message generation failed - $e');
+          debugPrint('AiContentService: Inner message generation failed - $e');
         }
       }
     }
@@ -168,7 +168,7 @@ class AiContentService {
     return CosmicMessagesContent.getDailyCosmicMessage(sign);
   }
 
-  String _buildCosmicMessagePrompt(
+  String _buildInnerMessagePrompt(
     ZodiacSign sign,
     String userName,
     String? mood,
@@ -177,43 +177,43 @@ class AiContentService {
     switch (language) {
       case AppLanguage.tr:
         return '''
-Kullanici icin kisa, ilham verici bir kozmik mesaj yaz.
+Kullanici icin kisa, ilham verici bir ic ses mesaji yaz.
 Isim: $userName
-Burc: ${sign.nameTr}
+Kisilik tipi: ${sign.nameTr}
 ${mood != null ? 'Ruh hali: $mood' : ''}
 
-Mesaj 2-3 cumle olsun, mistik ve motive edici bir tonda yaz.
+Mesaj 2-3 cumle olsun, destekleyici ve motive edici bir tonda yaz.
 Turkce yaz, emoji kullanma.
 ''';
       case AppLanguage.de:
         return '''
-Write a short, inspiring cosmic message for the user.
+Write a short, inspiring inner wellness message for the user.
 Name: $userName
-Sign: ${sign.name}
+Personality type: ${sign.name}
 ${mood != null ? 'Mood: $mood' : ''}
 
-Message should be 2-3 sentences, written in a mystical and motivating tone.
+Message should be 2-3 sentences, written in a warm and motivating tone.
 Write in German, no emojis.
 ''';
       case AppLanguage.fr:
         return '''
-Write a short, inspiring cosmic message for the user.
+Write a short, inspiring inner wellness message for the user.
 Name: $userName
-Sign: ${sign.name}
+Personality type: ${sign.name}
 ${mood != null ? 'Mood: $mood' : ''}
 
-Message should be 2-3 sentences, written in a mystical and motivating tone.
+Message should be 2-3 sentences, written in a warm and motivating tone.
 Write in French, no emojis.
 ''';
       case AppLanguage.en:
       default:
         return '''
-Write a short, inspiring cosmic message for the user.
+Write a short, inspiring inner wellness message for the user.
 Name: $userName
-Sign: ${sign.name}
+Personality type: ${sign.name}
 ${mood != null ? 'Mood: $mood' : ''}
 
-Message should be 2-3 sentences, written in a mystical and motivating tone.
+Message should be 2-3 sentences, written in a warm and motivating tone.
 Write in English, no emojis.
 ''';
     }
@@ -260,36 +260,36 @@ Write in English, no emojis.
     switch (language) {
       case AppLanguage.tr:
         return '''
-$signName burcu icin $areaName konusunda kisa bir tavsiye yaz.
+$signName kisilik tipi icin $areaName konusunda kisa bir tavsiye yaz.
 ${context != null ? 'Baglam: $context' : ''}
 
 2-3 cumle olsun, pozitif ve destekleyici bir tonda.
-Turkce yaz, astrolojik kavramlari basit tut.
+Turkce yaz, kisisel gelisim kavramlarini basit tut.
 ''';
       case AppLanguage.de:
         return '''
-Write short advice for $signName sign about $areaName.
+Write short advice for $signName personality type about $areaName.
 ${context != null ? 'Context: $context' : ''}
 
 2-3 sentences, positive and supportive tone.
-Write in German, keep astrological terms simple.
+Write in German, keep personal growth terms simple.
 ''';
       case AppLanguage.fr:
         return '''
-Write short advice for $signName sign about $areaName.
+Write short advice for $signName personality type about $areaName.
 ${context != null ? 'Context: $context' : ''}
 
 2-3 sentences, positive and supportive tone.
-Write in French, keep astrological terms simple.
+Write in French, keep personal growth terms simple.
 ''';
       case AppLanguage.en:
       default:
         return '''
-Write short advice for $signName sign about $areaName.
+Write short advice for $signName personality type about $areaName.
 ${context != null ? 'Context: $context' : ''}
 
 2-3 sentences, positive and supportive tone.
-Write in English, keep astrological terms simple.
+Write in English, keep personal growth terms simple.
 ''';
     }
   }
@@ -328,7 +328,7 @@ Write in English, keep astrological terms simple.
     switch (language) {
       case AppLanguage.tr:
         return '''
-$signName burcu icin guclu bir gunluk olumlama yaz.
+$signName kisilik tipi icin guclu bir gunluk olumlama yaz.
 ${focus != null ? 'Odak: $focus' : ''}
 
 "Bugun..." ile baslasin, kisa ve guclu olsun (1 cumle).
@@ -336,7 +336,7 @@ Turkce yaz.
 ''';
       case AppLanguage.de:
         return '''
-Write a powerful daily affirmation for $signName sign.
+Write a powerful daily affirmation for $signName personality type.
 ${focus != null ? 'Focus: $focus' : ''}
 
 Start with "Today...", keep it short and powerful (1 sentence).
@@ -344,7 +344,7 @@ Write in German.
 ''';
       case AppLanguage.fr:
         return '''
-Write a powerful daily affirmation for $signName sign.
+Write a powerful daily affirmation for $signName personality type.
 ${focus != null ? 'Focus: $focus' : ''}
 
 Start with "Aujourd'hui...", keep it short and powerful (1 sentence).
@@ -353,7 +353,7 @@ Write in French.
       case AppLanguage.en:
       default:
         return '''
-Write a powerful daily affirmation for $signName sign.
+Write a powerful daily affirmation for $signName personality type.
 ${focus != null ? 'Focus: $focus' : ''}
 
 Start with "Today...", keep it short and powerful (1 sentence).
@@ -493,8 +493,8 @@ Write in English.
     final lowerResponse = response.toLowerCase();
     final firstParagraph = response.split('\n').first.toLowerCase();
 
-    // FAIL CONDITION 1: Starts with zodiac/astrology terms (TR + EN)
-    final zodiacStarters = [
+    // FAIL CONDITION 1: Starts with forbidden archetype/wellness terms (TR + EN)
+    final forbiddenStarters = [
       // Turkish
       'burc',
       'burç',
@@ -510,18 +510,18 @@ Write in English.
       // English
       'aries', 'taurus', 'gemini', 'cancer', 'leo', 'virgo', 'libra',
       'scorpio', 'sagittarius', 'capricorn', 'aquarius', 'pisces',
-      'zodiac', 'horoscope', 'astrology', 'astrological',
+      'zodiac', 'horoscope', 'astrology', 'astrological', 'natal chart', 'birth chart',
       // Planets (both)
       'mars', 'venus', 'merkur', 'merkür', 'mercury', 'jupiter', 'saturn',
       'satürn', 'neptun', 'neptün', 'neptune', 'uranüs', 'uranus',
       'pluto', 'pluton',
     ];
 
-    for (final starter in zodiacStarters) {
+    for (final starter in forbiddenStarters) {
       if (firstParagraph.contains(starter)) {
         if (kDebugMode) {
           debugPrint(
-            'INSIGHT FAIL: Response starts with zodiac term: $starter',
+            'INSIGHT FAIL: Response starts with forbidden term: $starter',
           );
         }
         return false;
@@ -543,6 +543,7 @@ Write in English.
       'the cards reveal', 'your horoscope', 'zodiac reading',
       'according to the stars', 'the planets indicate',
       'you are destined', 'prophecy', 'divination',
+      'natal chart', 'birth chart', 'fortune-telling',
     ];
 
     for (final phrase in forbiddenPhrases) {
@@ -782,7 +783,7 @@ Write in English.
 ROL: Elite Dream Intelligence Architect ve Symbolic Psychologist.
 
 YAPMA:
-- Burc/astroloji ile BASLAMAK
+- Burc/yildiz yorumu ile BASLAMAK
 - Bagnam olmadan yorum yapmak
 - Tavsiye veya ongoruler vermek
 - Ruya sozlukleri veya kliseler kullanmak
@@ -838,9 +839,9 @@ ZORUNLU 8 BOLUMLU YORUM YAPISI (Bu sirayla yaz):
 ═══════════════════════════════════════════════════════════════
 
 ${userSign != null ? '''
-ASTROLOJIK NOT (SADECE EN SONDA, OPSIYONEL):
-Kullanicinin burcu: ${userSign.nameTr}
-- Astroloji sadece RENK KATAR, anlam vermez
+KISILIK NOTU (SADECE EN SONDA, OPSIYONEL):
+Kullanicinin kisilik tipi: ${userSign.nameTr}
+- Kisilik tipi sadece RENK KATAR, anlam vermez
 - Yorum ZATEN tamalandiktan sonra, eger istersen kisa bir not ekle
 - Format: "Eger istersen, ${userSign.nameTr} enerjisi acisindan bu ruya... olarak da okunabilir."
 ''' : ''}
@@ -994,11 +995,11 @@ CIKTI KURALLARI:
       buffer.writeln('- $q');
     }
 
-    // Optional astrological note - ONLY AT THE END
+    // Optional personality note - ONLY AT THE END
     if (userSign != null) {
       buffer.writeln();
       buffer.writeln('---');
-      buffer.writeln(_getAstrologicalDreamNote(symbol, userSign));
+      buffer.writeln(_getPersonalityDreamNote(symbol, userSign));
     }
 
     return buffer.toString().trim();
@@ -1099,45 +1100,45 @@ CIKTI KURALLARI:
       buffer.writeln();
       buffer.writeln('---');
       buffer.writeln(
-        'Eger istersen, bu ruyanin ${userSign.nameTr} enerjisi acisindan nasil okunabilecegini konusabiliriz.',
+        'Eger istersen, bu ruyanin ${userSign.nameTr} kisilik tipin acisindan nasil okunabilecegini konusabiliriz.',
       );
     }
 
     return buffer.toString().trim();
   }
 
-  String _getAstrologicalDreamNote(String symbol, ZodiacSign sign) {
+  String _getPersonalityDreamNote(String symbol, ZodiacSign sign) {
     final notes = {
       'yilan': {
         ZodiacSign.scorpio:
-            'Akrep burcu olarak yilan sembolu, dogal donusum gucunle derin bir rezonans tasir.',
+            'Kisilik tipin olarak yilan sembolu, dogal donusum gucunle derin bir rezonans tasir.',
         ZodiacSign.aries:
-            'Koc burcunun atesli enerjisi, bu semboldeki meydan okuma yonunu guclendiriyor olabilir.',
+            'Kisilik tipinin atesli enerjisi, bu semboldeki meydan okuma yonunu guclendiriyor olabilir.',
       },
       'su': {
         ZodiacSign.pisces:
-            'Balik burcu olarak su elementi seninle dogal bir bag kurar. Sezgilerin bu ruya hakkinda sana daha fazlasini soyluyor olabilir.',
+            'Kisilik tipin olarak su elementi seninle dogal bir bag kurar. Sezgilerin bu ruya hakkinda sana daha fazlasini soyluyor olabilir.',
         ZodiacSign.cancer:
-            'Yengec burcu olarak duygusal derinlik ve su elementi sana cok tanidik gelebilir.',
+            'Kisilik tipin olarak duygusal derinlik ve su elementi sana cok tanidik gelebilir.',
         ZodiacSign.scorpio:
-            'Akrep burcunun derin sulari, bu ruyanin bilincdisi katmanlarini kesfetmene yardimci olabilir.',
+            'Kisilik tipinin derin sulari, bu ruyanin bilincdisi katmanlarini kesfetmene yardimci olabilir.',
       },
       'ates': {
         ZodiacSign.aries:
-            'Koc burcunun ates elementi, bu semboldeki enerji ve donusum temalarini guclendiriyor.',
+            'Kisilik tipinin ates elementi, bu semboldeki enerji ve donusum temalarini guclendiriyor.',
         ZodiacSign.leo:
-            'Aslan burcu olarak ates elementi seninle dogal bir bag kurar.',
+            'Kisilik tipin olarak ates elementi seninle dogal bir bag kurar.',
         ZodiacSign.sagittarius:
-            'Yay burcunun ates enerjisi, bu ruyadaki ozgurluk ve donusum temalarini destekliyor olabilir.',
+            'Kisilik tipinin ates enerjisi, bu ruyadaki ozgurluk ve donusum temalarini destekliyor olabilir.',
       },
     };
 
     final symbolNotes = notes[symbol];
     if (symbolNotes != null && symbolNotes.containsKey(sign)) {
-      return 'Astrolojik not: ${symbolNotes[sign]}';
+      return 'Kisilik notu: ${symbolNotes[sign]}';
     }
 
-    return 'Eger istersen, bu ruyanin ${sign.nameTr} burcuyla olan baglantisini daha detayli inceleyebiliriz.';
+    return 'Eger istersen, bu ruyanin ${sign.nameTr} kisilik tipinle olan baglantisini daha detayli inceleyebiliriz.';
   }
 
   // Map Turkish symbol keys to localization keys
@@ -1626,8 +1627,8 @@ CIKTI KURALLARI:
     },
   };
 
-  /// Private: Build horoscope prompt
-  String _buildHoroscopePrompt({
+  /// Private: Build reflection prompt
+  String _buildReflectionPrompt({
     required ZodiacSign sunSign,
     ZodiacSign? moonSign,
     ZodiacSign? risingSign,
@@ -1635,12 +1636,12 @@ CIKTI KURALLARI:
     String? currentMoonPhase,
   }) {
     return '''
-Bir astroloji uzmani olarak gunluk burc yorumu yaz.
+Bir kisisel gelisim uzmani olarak gunluk ic yansima yaz.
 
-Gunes Burcu: ${sunSign.nameTr}
-${moonSign != null ? 'Ay Burcu: ${moonSign.nameTr}' : ''}
-${risingSign != null ? 'Yukselen Burc: ${risingSign.nameTr}' : ''}
-${currentMoonPhase != null ? 'Guncel Ay Fazi: $currentMoonPhase' : ''}
+Kisilik Tipi: ${sunSign.nameTr}
+${moonSign != null ? 'Duygusal Profil: ${moonSign.nameTr}' : ''}
+${risingSign != null ? 'Sosyal Profil: ${risingSign.nameTr}' : ''}
+${currentMoonPhase != null ? 'Guncel Dogal Dongu: $currentMoonPhase' : ''}
 Tarih: ${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}
 
 Su formatta JSON dondur:
@@ -1648,13 +1649,13 @@ Su formatta JSON dondur:
   "summary": "Genel gunluk refleksiyon temasi (3-4 cumle)",
   "loveAdvice": "Iliskiler uzerine dusunme temasi (2-3 cumle)",
   "careerAdvice": "Kariyer uzerine farkindalik temasi (2-3 cumle)",
-  "healthAdvice": "Saglik ve enerji farkindaliğı (2-3 cumle)",
+  "healthAdvice": "Saglik ve enerji farkindaliği (2-3 cumle)",
   "focusNumber": "1-99 arasi odak sayisi",
   "reflectionColor": "Turkce renk adi",
   "mood": "Gunun enerjisi (tek kelime)"
 }
 
-Turkce yaz, mistik ve destekleyici bir ton kullan.
+Turkce yaz, sicak ve destekleyici bir ton kullan.
 ''';
   }
 
@@ -1676,7 +1677,7 @@ Turkce yaz, mistik ve destekleyici bir ton kullan.
                   {
                     'role': 'system',
                     'content':
-                        'Sen deneyimli bir Turk astrologusun. Mistik, ilham verici ve destekleyici bir tonda yaziyorsun.',
+                        'Sen deneyimli bir kisisel gelisim uzmanisın. Ilham verici ve destekleyici bir tonda yaziyorsun.',
                   },
                   {'role': 'user', 'content': prompt},
                 ],
@@ -1721,7 +1722,7 @@ Turkce yaz, mistik ve destekleyici bir ton kullan.
                   {'role': 'user', 'content': prompt},
                 ],
                 'system':
-                    'Sen deneyimli bir Turk astrologusun. Mistik, ilham verici ve destekleyici bir tonda yaziyorsun.',
+                    'Sen deneyimli bir kisisel gelisim uzmanisın. Ilham verici ve destekleyici bir tonda yaziyorsun.',
               }),
             )
             .timeout(const Duration(seconds: 30));
@@ -1746,8 +1747,8 @@ Turkce yaz, mistik ve destekleyici bir ton kullan.
     return null;
   }
 
-  /// Private: Parse horoscope JSON response
-  PersonalizedHoroscope _parseHoroscopeResponse(
+  /// Private: Parse reflection JSON response
+  PersonalizedHoroscope _parseReflectionResponse(
     String response,
     ZodiacSign sign,
   ) {
@@ -1780,12 +1781,12 @@ Turkce yaz, mistik ve destekleyici bir ton kullan.
       if (kDebugMode) {
         debugPrint('Failed to parse AI response: $e');
       }
-      return _generateLocalHoroscope(sunSign: sign);
+      return _generateLocalReflection(sunSign: sign);
     }
   }
 
-  /// Private: Generate local horoscope
-  PersonalizedHoroscope _generateLocalHoroscope({
+  /// Private: Generate local reflection
+  PersonalizedHoroscope _generateLocalReflection({
     required ZodiacSign sunSign,
     ZodiacSign? moonSign,
     ZodiacSign? risingSign,
@@ -1921,9 +1922,9 @@ Turkce yaz, mistik ve destekleyici bir ton kullan.
   ];
 
   static final List<String> _defaultSummaries = [
-    'Bugun kozmik enerjiler senin lehine calisiyor. Firsatlari degerlendir, kalbinin sesini dinle.',
-    'Yildizlar pozitif degisimlere isaret ediyor. Beklenmedik surprizlere hazir ol.',
-    'Evrensel enerji bugun sana guc veriyor. Hedeflerine odaklan, basari yakin.',
+    'Bugun ic enerjin senin lehine calisiyor. Firsatlari degerlendir, kalbinin sesini dinle.',
+    'Pozitif degisim temalari one cikiyor. Beklenmedik surprizlere hazir ol.',
+    'Ic gucun bugun sana enerji veriyor. Hedeflerine odaklan, basari yakin.',
   ];
 
   static final List<String> _defaultLoveAdvice = [
@@ -1948,17 +1949,17 @@ Turkce yaz, mistik ve destekleyici bir ton kullan.
   static final Map<ZodiacSign, List<String>> _localSummaries = {
     ZodiacSign.aries: [
       'Ates enerjin bugun doruklarda. Liderlik yetenegini goster, cesaretinle ileri atil.',
-      'Mars gucunu destekliyor. Yeni baslangiclar icin mukemmel bir gun.',
+      'Ic gucun seni destekliyor. Yeni baslangiclar icin mukemmel bir gun.',
       'Savasci ruhun uyaniyor. Hedeflerine kararlilikla ilerle.',
     ],
     ZodiacSign.taurus: [
-      'Toprak enerjisi seni besliyor. Maddi konularda sans yildizin parliyor.',
-      'Venus guzellik ve cekicilik temalarini vurguluyor. Ask ve is alanlari uzerinde dusunebilirsin.',
+      'Toprak enerjisi seni besliyor. Maddi konularda dengelerin gucleniyor.',
+      'Guzellik ve cekicilik temalari one cikiyor. Ask ve is alanlari uzerinde dusunebilirsin.',
       'Sabir ve kararlilik temalari one cikiyor. Guven ve devamlilik uzerine dusun.',
     ],
     ZodiacSign.gemini: [
       'Zihinsel cevikligin bugun super guc. Iletisimde parliyorsun.',
-      'Merkur dusuncelerini keskinlestiriyor. Yeni fikirler, yeni baglantilar.',
+      'Dusuncelerin keskinlesiyor. Yeni fikirler, yeni baglantilar.',
       'Sosyal enerji temalari one cikiyor. Network kurmayi dusunebilirsin.',
     ],
     ZodiacSign.cancer: [
@@ -1978,7 +1979,7 @@ Turkce yaz, mistik ve destekleyici bir ton kullan.
     ],
     ZodiacSign.libra: [
       'Denge ve uyum enerjisi guclu. Iliskilerde harmoni zamani.',
-      'Venus guzelligini ve diplomasi yetenegini artiriyor.',
+      'Guzellik ve diplomasi yetenegin artis gosteriyor.',
       'Estetik duyarliligim dorukta. Guzellik yarat, guzellik cek.',
     ],
     ZodiacSign.scorpio: [
@@ -1988,22 +1989,22 @@ Turkce yaz, mistik ve destekleyici bir ton kullan.
     ],
     ZodiacSign.sagittarius: [
       'Macera ruhu temalari one cikiyor. Yeni ufuklar ve deneyimler uzerine dusunebilirsin.',
-      'Jupiter genisleme temalarini vurguluyor. Firsat alanlari uzerine dusunebilirsin.',
+      'Genisleme temalari one cikiyor. Firsat alanlari uzerine dusunebilirsin.',
       'Felsefi derinlik gunu. Hayatin anlamini sorgula, bilgelik bul.',
     ],
     ZodiacSign.capricorn: [
       'Kariyer temalari one cikiyor. Profesyonel gelisim uzerine dusunebilirsin.',
-      'Saturn disiplin ve yapi veriyor. Hedeflerine kararlilikla ilerle.',
+      'Disiplin ve yapi temalari guclu. Hedeflerine kararlilikla ilerle.',
       'Uzun vadeli planlar icin mukemmel gun. Temelleri saglam at.',
     ],
     ZodiacSign.aquarius: [
       'Yenilikci enerjin bugun dorukta. Sira disi fikirler, devrimci cozumler.',
-      'Uranus beklenmedik firsatlar getiriyor. Degisime acik ol.',
+      'Beklenmedik firsatlar temalari one cikiyor. Degisime acik ol.',
       'Topluluk enerjisi guclu. Insanliga hizmet zamani.',
     ],
     ZodiacSign.pisces: [
-      'Spirituel baglantin bugun cok guclu. Evrenle bir ol.',
-      'Neptun yaraticiligin ve sezgilerini besliyor. Sanatin aksin.',
+      'Spirituel baglantin bugun cok guclu. Ic dunya ile uyum icinde ol.',
+      'Yaraticiligin ve sezgilerin besleniyor. Sanatin aksin.',
       'Ruyalar ve hayal gucu on planda. Ic dunyaina kulak ver.',
     ],
   };
@@ -2163,7 +2164,7 @@ Turkce yaz, mistik ve destekleyici bir ton kullan.
 }
 
 /// Personalized reflection content model
-/// This content is for self-reflection only, not prediction.
+/// This content is for self-reflection and personal growth only.
 class PersonalizedHoroscope {
   final ZodiacSign sign;
   final String summary;

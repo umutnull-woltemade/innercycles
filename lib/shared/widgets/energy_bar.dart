@@ -155,7 +155,7 @@ class DailyEnergyCard extends ConsumerWidget {
     this.accentColor,
   });
 
-  /// Helper factory to create from energy level values (thematic intensity, not prediction)
+  /// Helper factory to create from energy level values (thematic intensity)
   factory DailyEnergyCard.fromEnergyLevel(
     int energyLevel, {
     Color? accentColor,

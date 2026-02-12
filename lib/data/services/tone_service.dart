@@ -150,8 +150,8 @@ class MarketingCopy {
     'Personalised insights tailored to you',
   );
 
-  static String get checkYourHoroscope =>
-      ToneService.getText('Check your horoscope', 'View your horoscope');
+  static String get checkYourInsights =>
+      ToneService.getText('Check your daily insights', 'View your daily insights');
 
   static String get exploreYourChart =>
       ToneService.getText('Explore your chart', 'Discover your chart');
@@ -190,18 +190,18 @@ class MarketingCopy {
 
   // Marketing headlines
   static String get heroHeadline => ToneService.getText(
-    'Your Personal Astrologer, Always With You',
-    'Your Personal Astrologer, Always at Hand',
+    'Your Personal Reflection Journal, Always With You',
+    'Your Personal Reflection Journal, Always at Hand',
   );
 
   static String get heroSubheadline => ToneService.getText(
-    'Get personalized birth charts, daily horoscopes, and cosmic guidance — powered by AI and ancient wisdom.',
-    'Receive personalised birth charts, daily horoscopes, and cosmic guidance — powered by AI and ancient wisdom.',
+    'Get personalized insights, daily reflections, and mindful guidance — powered by AI and timeless wisdom.',
+    'Receive personalised insights, daily reflections, and mindful guidance — powered by AI and timeless wisdom.',
   );
 
   static String get valueProposition => ToneService.getText(
-    'Every reading is calculated for your exact birth time and place — not generic Sun sign content.',
-    'Every reading is calculated for your precise birth time and location — not generic Sun sign content.',
+    'Every insight is tailored to your personal journey — not generic content.',
+    'Every insight is tailored to your personal journey — not generic content.',
   );
 
   static String get socialProof => ToneService.getText(

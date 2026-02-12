@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-/// Cosmic color palette for the astrology app
+/// Cosmic color palette for the InnerCycles app
 class AppColors {
   AppColors._();
 

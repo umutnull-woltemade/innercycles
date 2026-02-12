@@ -134,7 +134,7 @@ class DisclaimerTexts {
 
 /// Page footer with disclaimer
 class PageFooterWithDisclaimer extends StatelessWidget {
-  final String brandText; // "Dream Trace — Venus One"
+  final String brandText; // "Dream Trace — InnerCycles"
   final String? disclaimerText;
   final bool showDisclaimer;
   final AppLanguage language;

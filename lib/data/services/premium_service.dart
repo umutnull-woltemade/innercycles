@@ -74,9 +74,9 @@ extension PremiumTierExtension on PremiumTier {
     switch (this) {
       case PremiumTier.free:
         return [
-          'Daily horoscope whispers',
-          'Basic birth chart',
-          'Daily tarot card',
+          'Daily reflection insights',
+          'Basic journal features',
+          'Dream journal',
           'Ad-supported',
         ];
       case PremiumTier.monthly:
@@ -84,14 +84,14 @@ extension PremiumTierExtension on PremiumTier {
       case PremiumTier.lifetime:
         return [
           'All basic features',
-          'Pure cosmic experience (ad-free)',
-          'Deep planet interpretations',
-          'Unlimited tarot sessions',
-          'Soul mate compatibility analysis',
-          'Kabbalistic secrets',
-          'Auric energy reading',
-          'Planet transits',
-          'Priority cosmic guidance',
+          'Ad-free experience',
+          'Deep pattern analysis',
+          'Unlimited dream interpretations',
+          'Monthly reflection reports',
+          'Advanced insight tools',
+          'Personal growth tracking',
+          'Trend analysis',
+          'Priority support',
         ];
     }
   }

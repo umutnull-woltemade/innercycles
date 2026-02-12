@@ -171,7 +171,7 @@ class FeatureFlagService {
   static const String flagDreamJournal = 'dream_journal';
   static const String flagPremiumFeatures = 'premium_features';
   static const String flagNewOnboarding = 'new_onboarding';
-  static const String flagAdvancedAstrology = 'advanced_astrology';
+  static const String flagAdvancedInsights = 'advanced_insights';
   static const String flagSocialSharing = 'social_sharing';
 }
 

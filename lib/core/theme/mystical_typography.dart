@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-/// Typography styles for the astrology app
+/// Typography styles for the InnerCycles app
 ///
 /// FONT CHOICES:
 /// - Playfair Display: Elegant serif for headers (şık, mistik hissiyat)
 /// - Space Grotesk: Modern, havalı sans-serif for body (kolay okunan, futuristik)
-/// - Cinzel: Ancient style for zodiac accents (kadim, mistik)
+/// - Cinzel: Ancient style for accent text (kadim, mistik)
 ///
 /// BOYUTLAR BÜYÜTÜLDÜ - daha okunaklı
 class MysticalTypography {
@@ -15,7 +15,7 @@ class MysticalTypography {
   /// Display font - Playfair Display (elegant, serif, premium)
   static TextStyle get displayFont => GoogleFonts.playfairDisplay();
 
-  /// Accent font for zodiac signs - Cinzel (ancient, mystical)
+  /// Accent font - Cinzel (ancient, mystical)
   static TextStyle get accentFont => GoogleFonts.cinzel();
 
   /// Body font - Space Grotesk (modern, clean, futuristic, highly readable)
@@ -123,7 +123,7 @@ class MysticalTypography {
     ),
   );
 
-  /// Get Cinzel style for zodiac signs and mystical accents
+  /// Get Cinzel style for mystical accents
   static TextStyle zodiacAccent({
     double fontSize = 16,
     FontWeight fontWeight = FontWeight.w600,

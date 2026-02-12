@@ -6,7 +6,7 @@ enum PaywallTimingVariant {
   /// Show immediately after onboarding
   immediate('A', 'Immediate'),
 
-  /// Show after first insight/horoscope (DEFAULT)
+  /// Show after first insight (DEFAULT)
   firstInsight('B', 'First Insight'),
 
   /// Show on 2nd session or after 24 hours

@@ -1,4 +1,4 @@
-/// Venus One Homepage Content Library
+/// InnerCycles Homepage Content Library
 /// Rich, scroll-worthy content sections for homepage expansion
 /// Topics: Venus archetypes, love patterns, attachment styles, and more
 /// Multi-language support: Turkish (tr) and English (en)

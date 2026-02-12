@@ -1,5 +1,5 @@
 /// Dream Interpretation Service - 7 Boyutlu Rüya Yorumlama Motoru
-/// AI destekli kadim bilgelik + Jungian analiz + Astrolojik zamanlama
+/// AI destekli kadim bilgelik + Jungian analiz + kozmik zamanlama
 library;
 
 import 'dart:math';
@@ -939,17 +939,17 @@ JSON FORMATI:
     final links = <DreamExplorationLink>[
       DreamExplorationLink(
         title: L10nService.get(
-          'dream_interpretation.exploration.birth_chart_title',
+          'dream_interpretation.exploration.personal_profile_title',
           language,
         ),
         description: L10nService.get(
-          'dream_interpretation.exploration.birth_chart_desc',
+          'dream_interpretation.exploration.personal_profile_desc',
           language,
         ),
-        route: '/birth-chart',
+        route: '/insight',
         emoji: '🗺️',
         category: L10nService.get(
-          'dream_interpretation.exploration.category_astrology',
+          'dream_interpretation.exploration.category_self_awareness',
           language,
         ),
       ),
@@ -971,17 +971,17 @@ JSON FORMATI:
       ),
       DreamExplorationLink(
         title: L10nService.get(
-          'dream_interpretation.exploration.transits_title',
+          'dream_interpretation.exploration.timing_insights_title',
           language,
         ),
         description: L10nService.get(
-          'dream_interpretation.exploration.transits_desc',
+          'dream_interpretation.exploration.timing_insights_desc',
           language,
         ),
-        route: '/transits',
+        route: '/timing',
         emoji: '🪐',
         category: L10nService.get(
-          'dream_interpretation.exploration.category_astrology',
+          'dream_interpretation.exploration.category_self_awareness',
           language,
         ),
       ),
@@ -1015,10 +1015,10 @@ JSON FORMATI:
             'dream_interpretation.exploration.neptune_desc',
             language,
           ),
-          route: '/transits',
+          route: '/timing',
           emoji: '🌊',
           category: L10nService.get(
-            'dream_interpretation.exploration.category_astrology',
+            'dream_interpretation.exploration.category_self_awareness',
             language,
           ),
         ),
@@ -1036,10 +1036,10 @@ JSON FORMATI:
             'dream_interpretation.exploration.pluto_desc',
             language,
           ),
-          route: '/transits',
+          route: '/timing',
           emoji: '♇',
           category: L10nService.get(
-            'dream_interpretation.exploration.category_astrology',
+            'dream_interpretation.exploration.category_self_awareness',
             language,
           ),
         ),
@@ -1142,43 +1142,43 @@ JSON FORMATI:
 // ═══════════════════════════════════════════════════════════════
 
 // ═══════════════════════════════════════════════════════════════
-// BURÇ-BAZLI RÜYA ANALİZİ
+// ARKETİP-BAZLI RÜYA ANALİZİ
 // ═══════════════════════════════════════════════════════════════
 
-/// Burç bazlı rüya içgörüleri
+/// Arketip bazli ruya icgoruleri
 class ZodiacDreamInsights {
-  /// Burca özel rüya analizi
+  /// Arketipe ozel ruya analizi
   static ZodiacDreamProfile? getProfile(String zodiacSign) {
     final normalizedSign = zodiacSign.toLowerCase().trim();
     return AstroRuyaKorelasyonlari.burcRuyaProfili[normalizedSign];
   }
 
-  /// Burca özel rüya tavsiyesi
+  /// Arketipe ozel ruya tavsiyesi
   static String getDreamAdvice(String zodiacSign) {
     final profile = getProfile(zodiacSign);
     return profile?.dreamAdvice ??
-        L10nService.get('dream_interpretation.zodiac_fallback', AppLanguage.tr);
+        L10nService.get('dream_interpretation.archetype_fallback', AppLanguage.tr);
   }
 
-  /// Burca özel lucid eğilimi
+  /// Arketipe ozel lucid egilimi
   static String getLucidTendency(String zodiacSign) {
     final profile = getProfile(zodiacSign);
     return profile?.lucidTendency ?? 'Orta';
   }
 
-  /// Burca özel şifa sembolleri
+  /// Arketipe ozel sifa sembolleri
   static List<String> getHealingSymbols(String zodiacSign) {
     final profile = getProfile(zodiacSign);
     return profile?.healingSymbols ?? [];
   }
 
-  /// Burca özel yaygın temalar
+  /// Arketipe ozel yaygin temalar
   static List<String> getCommonThemes(String zodiacSign) {
     final profile = getProfile(zodiacSign);
     return profile?.commonThemes ?? [];
   }
 
-  /// Burca özel kâbus temaları
+  /// Arketipe ozel kabus temalari
   static List<String> getNightmareThemes(String zodiacSign) {
     final profile = getProfile(zodiacSign);
     return profile?.nightmareThemes ?? [];
@@ -1369,10 +1369,10 @@ class DreamRitualService {
 }
 
 // ═══════════════════════════════════════════════════════════════
-// GEZEGENSEl ETKİ ANALİZİ
+// KOZMIK ETKI ANALIZI
 // ═══════════════════════════════════════════════════════════════
 
-/// Gezegen transitlerinin rüyalara etkisi
+/// Kozmik ritimlerin ruyalara etkisi
 class PlanetaryDreamInfluenceService {
   /// Gezegen etkisi bilgisi al
   static PlanetaryDreamInfluence? getPlanetInfluence(String planet) {

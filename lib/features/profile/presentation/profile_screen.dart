@@ -142,11 +142,11 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     final sign = profile.sunSign as ZodiacSign;
     final language = ref.watch(languageProvider);
 
-    // Compact header with logo and zodiac sign inline
+    // Compact header with logo and personality type inline
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        // Venus One Logo - smaller
+        // InnerCycles Logo - smaller
         Container(
           width: 56,
           height: 56,
@@ -442,7 +442,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
               Icon(Icons.auto_awesome, color: AppColors.starGold, size: 20),
               const SizedBox(width: AppConstants.spacingSm),
               Text(
-                L10nService.get('natal_chart.big_three', language),
+                L10nService.get('profile.big_three', language),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   color: isDark
                       ? AppColors.textPrimary
@@ -457,7 +457,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             children: [
               Expanded(
                 child: _CosmicSignCard(
-                  title: L10nService.get('natal_chart.sun_sign', language),
+                  title: L10nService.get('profile.sun_type', language),
                   sign: profile.sunSign,
                   isDark: isDark,
                   language: language,
@@ -466,7 +466,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
               const SizedBox(width: AppConstants.spacingSm),
               Expanded(
                 child: _CosmicSignCard(
-                  title: L10nService.get('natal_chart.moon_sign', language),
+                  title: L10nService.get('profile.moon_type', language),
                   sign: profile.moonSign,
                   isDark: isDark,
                   language: language,
@@ -475,7 +475,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
               const SizedBox(width: AppConstants.spacingSm),
               Expanded(
                 child: _CosmicSignCard(
-                  title: L10nService.get('natal_chart.rising_sign', language),
+                  title: L10nService.get('profile.rising_type', language),
                   sign: profile.risingSign,
                   isDark: isDark,
                   language: language,
@@ -484,7 +484,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             ],
           ),
           const SizedBox(height: AppConstants.spacingLg),
-          // App Store 4.3(b): Birth chart removed, navigate to Insight instead
+          // App Store 4.3(b): Navigate to Insight
           SizedBox(
             width: double.infinity,
             child: OutlinedButton.icon(

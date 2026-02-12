@@ -46,11 +46,11 @@ class AdConfig {
 
 /// Ad placement types for tracking
 enum AdPlacement {
-  horoscopeResult,
-  birthChartResult,
-  tarotResult,
-  numerologyResult,
-  compatibilityResult,
+  insightResult,
+  journalResult,
+  dreamResult,
+  reflectionResult,
+  patternResult,
   auraResult,
   postAnalysis,
   premiumUnlock,

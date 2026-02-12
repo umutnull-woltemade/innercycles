@@ -602,6 +602,6 @@ class DreamUIStrings {
   }
 
   static String getBrandText(AppLanguage language) {
-    return 'Dream Trace — Venus One';
+    return 'Dream Trace — InnerCycles';
   }
 }

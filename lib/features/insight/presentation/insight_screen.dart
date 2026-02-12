@@ -1,6 +1,6 @@
 /// Insight Assistant - Unified Personal Reflection Chat
 /// Apple-safe single entry point for dream reflection & pattern awareness
-/// Strictly reflective language only - no predictions
+/// Strictly reflective language only - safe for App Store
 library;
 
 import 'package:flutter/material.dart';

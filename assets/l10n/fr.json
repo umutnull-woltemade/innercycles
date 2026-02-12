@@ -30,7 +30,7 @@
     "close": "Fermer",
     "back": "Retour",
     "next": "Suivant",
-    "zodiac_signs": "Signes du Zodiaque",
+    "zodiac_signs": "Types de Personnalité",
     "done": "Terminé",
     "yes": "Oui",
     "no": "Non",
@@ -98,7 +98,8 @@
     "by_continuing": "En continuant, vous acceptez les Conditions d'Utilisation",
     "features": {
       "birth_chart": "Thème de Naissance",
-      "daily_reading": "Horoscope du Jour",
+      "personal_profile": "Profil Personnel",
+      "daily_reading": "Aperçu du Jour",
       "tarot": "Tarot",
       "numerology": "Numérologie"
     },
@@ -172,7 +173,11 @@
       "other": "Autre"
     },
     "emoji_select": "Sélectionner un Emoji",
-    "relationship_type": "Type de Relation"
+    "relationship_type": "Type de Relation",
+    "big_three": "Les Trois Grands",
+    "sun_type": "Signe Solaire",
+    "moon_type": "Signe Lunaire",
+    "rising_type": "Signe Ascendant"
   },
   "natal_chart": {
     "title": "Thème de Naissance",
@@ -226,12 +231,12 @@
     "chips": {
       "dream": "Rêve",
       "kozmoz": "Kozmoz",
-      "birth_chart": "Thème Natal",
+      "birth_chart": "Profil Personnel",
       "theta_healing": "Theta Healing",
       "astrocartography": "Astrocartographie",
       "reiki": "Reiki",
       "tarot": "Tarot",
-      "horoscope": "Horoscope",
+      "horoscope": "Aperçu",
       "tantra": "Tantra"
     },
     "sections": {
@@ -256,7 +261,7 @@
         "subtitle": "Explorez les thèmes relationnels"
       },
       "birth_chart": {
-        "title": "Thème Natal",
+        "title": "Profil Personnel",
         "subtitle": "Votre empreinte cosmique"
       },
       "numerology": {
@@ -281,7 +286,7 @@
     "illumination": "Illumination",
     "void_of_course": "Lune Hors Cours",
     "light_mode": "Clair",
-    "search_hint": "Rechercher... (ex: horoscope, tarot, saturne)",
+    "search_hint": "Rechercher... (ex: aperçu, tarot, saturne)",
     "explore_category": "Explorer",
     "more_tools_category": "Plus d'Outils",
     "no_results": "Aucun résultat trouvé",
@@ -325,7 +330,7 @@
     "share_on_instagram": "Partager sur Instagram",
     "share_cosmic_energy": "Partagez votre énergie cosmique dans votre story!",
     "search_features": {
-      "horoscope_title": "Horoscope du Jour",
+      "horoscope_title": "Aperçu du Jour",
       "horoscope_desc": "Guidance cosmique quotidienne",
       "tarot_title": "Tirage de Tarot",
       "tarot_desc": "Découvrez la sagesse des cartes",
@@ -335,7 +340,7 @@
       "compatibility_desc": "Explorez l'harmonie des signes",
       "numerology_title": "Numérologie",
       "numerology_desc": "La signification spirituelle des nombres",
-      "birth_chart_title": "Thème Natal",
+      "birth_chart_title": "Profil Personnel",
       "birth_chart_desc": "Votre carte cosmique",
       "transits_title": "Transits Planétaires",
       "transits_desc": "Influences cosmiques",
@@ -344,17 +349,17 @@
       "solar_return_title": "Révolution Solaire",
       "solar_return_desc": "Votre carte cosmique annuelle",
       "progressions_title": "Progressions",
-      "progressions_desc": "Astrologie évolutive",
+      "progressions_desc": "Connaissance de soi évolutive",
       "local_space_title": "Espace Local",
-      "local_space_desc": "Astrologie spatiale",
+      "local_space_desc": "Connaissance de soi spatiale",
       "synastry_title": "Synastrie",
-      "synastry_desc": "Astrologie relationnelle",
+      "synastry_desc": "Connaissance de soi relationnelle",
       "composite_title": "Thème Composite",
       "composite_desc": "Thème de relation",
       "draconic_title": "Thème Draconique",
-      "draconic_desc": "Astrologie de l'âme",
-      "vedic_title": "Astrologie Védique",
-      "vedic_desc": "Système astrologique indien",
+      "draconic_desc": "Connaissance de soi de l'âme",
+      "vedic_title": "Connaissance de soi Védique",
+      "vedic_desc": "Système personnel indien",
       "chakra_title": "Analyse des Chakras",
       "chakra_desc": "Analyse des centres énergétiques",
       "rituals_title": "Rituels",
@@ -375,11 +380,11 @@
       "love_improve": "Comment puis-je nourrir mes relations?"
     },
     "quick_actions": {
-      "horoscope": "Horoscope",
+      "horoscope": "Aperçu",
       "tarot": "Tarot",
       "dreams": "Rêves",
       "compatibility": "Compatibilité",
-      "birth_chart": "Thème Natal",
+      "birth_chart": "Profil Personnel",
       "synastry": "Synastrie",
       "composite": "Composite",
       "transits": "Transits",
@@ -387,7 +392,7 @@
       "progressions": "Progressions",
       "saturn_return": "Retour de Saturne",
       "solar_return": "Révolution Solaire",
-      "year_ahead": "Prévisions Annuelles",
+      "year_ahead": "Perspectives Annuelles",
       "vedic": "Védique",
       "draconic": "Draconique",
       "asteroids": "Astéroïdes",
@@ -414,11 +419,11 @@
     },
     "other_tools": {
       "title": "Nos autres analyses",
-      "subtitle": "Outils d'astrologie générale et lectures du zodiaque",
+      "subtitle": "Outils d'connaissance de soi générale et lectures du archétype",
       "weekly_tooltip": "Les énergies cosmiques et conseils de cette semaine"
     },
     "tooltips": {
-      "monthly": "Les thèmes et opportunités astrologiques de ce mois",
+      "monthly": "Les thèmes et opportunités personnels de ce mois",
       "yearly": "Le flux général de l'année et les grands cycles",
       "tarot": "Tirage quotidien et lectures de tarot",
       "all_kozmoz": "Tout Kozmoz",
@@ -426,28 +431,28 @@
     },
     "search_items": {
       "daily_horoscope": {
-        "title": "Horoscope du Jour",
-        "desc": "Interprétations d'horoscope quotidiennes"
+        "title": "Aperçu du Jour",
+        "desc": "Interprétations d'aperçu quotidiennes"
       },
       "weekly_horoscope": {
-        "title": "Horoscope Hebdomadaire",
-        "desc": "Interprétations d'horoscope hebdomadaires"
+        "title": "Aperçu Hebdomadaire",
+        "desc": "Interprétations d'aperçu hebdomadaires"
       },
       "monthly_horoscope": {
-        "title": "Horoscope Mensuel",
-        "desc": "Interprétations d'horoscope mensuelles"
+        "title": "Aperçu Mensuel",
+        "desc": "Interprétations d'aperçu mensuelles"
       },
       "yearly_horoscope": {
-        "title": "Horoscope Annuel",
-        "desc": "Interprétations d'horoscope annuelles"
+        "title": "Aperçu Annuel",
+        "desc": "Interprétations d'aperçu annuelles"
       },
       "love_horoscope": {
-        "title": "Horoscope Amour",
+        "title": "Aperçu Amour",
         "desc": "Lectures d'amour et de relations"
       },
       "birth_chart": {
-        "title": "Thème Natal",
-        "desc": "Analyse du thème natal"
+        "title": "Profil Personnel",
+        "desc": "Analyse du profil personnel"
       },
       "compatibility": {
         "title": "Compatibilité",
@@ -503,7 +508,7 @@
       },
       "year_ahead": {
         "title": "Année à Venir",
-        "desc": "Prévisions annuelles"
+        "desc": "Perspectives annuelles"
       },
       "timing": {
         "title": "Timing",
@@ -511,7 +516,7 @@
       },
       "vedic": {
         "title": "Védique",
-        "desc": "Astrologie védique"
+        "desc": "Connaissance de soi védique"
       },
       "astro_map": {
         "title": "Carte Astro",
@@ -519,7 +524,7 @@
       },
       "local_space": {
         "title": "Espace Local",
-        "desc": "Astrologie de l'espace local"
+        "desc": "Connaissance de soi de l'espace local"
       },
       "electional": {
         "title": "Élective",
@@ -543,11 +548,11 @@
       },
       "articles": {
         "title": "Articles",
-        "desc": "Articles d'astrologie"
+        "desc": "Articles d'connaissance de soi"
       },
       "glossary": {
         "title": "Glossaire",
-        "desc": "Termes d'astrologie"
+        "desc": "Termes d'connaissance de soi"
       },
       "profile": {
         "title": "Profil",
@@ -761,7 +766,7 @@
   "screens": {
     "daily_ritual": "Rituel Quotidien",
     "glossary": {
-      "title": "Dictionnaire d'Astrologie",
+      "title": "Dictionnaire d'Connaissance de soi",
       "term_count": "{count} termes",
       "search_hint": "Rechercher un terme...",
       "no_results": "Aucun résultat trouvé",
@@ -1229,7 +1234,7 @@
     "houses": "Maisons",
     "aspects": "Aspects",
     "techniques": "Techniques",
-    "modern": "Astrologie Moderne",
+    "modern": "Connaissance de soi Moderne",
     "esoteric": "Ésotérique",
     "psychological": "Psychologique",
     "predictive": "Prédictif",
@@ -1262,7 +1267,7 @@
     "terms_text": "L'abonnement se renouvelle automatiquement sauf s'il est annulé au moins 24 heures avant la fin de la période en cours. Votre compte sera débité pour le renouvellement dans les 24 heures avant la fin de la période en cours. Vous pouvez gérer et annuler votre abonnement à tout moment dans les paramètres de votre compte App Store.",
     "paywall": {
       "title": "Déverrouillez votre voyage complet",
-      "subtitle": "Vivez l'astrologie sans interruption",
+      "subtitle": "Vivez l'connaissance de soi sans interruption",
       "benefit_ad_free": "Expérience calme sans publicité",
       "benefit_unlimited": "Insights personnels illimités",
       "benefit_priority": "Guidance cosmique prioritaire",
@@ -1305,7 +1310,7 @@
         "features": "['Toutes les fonctionnalités de base', 'Expérience cosmique pure (sans pub)', 'Interprétations planétaires profondes', 'Sessions de tarot illimitées', 'Analyse de compatibilité âme sœur', 'Secrets kabbalistiques', 'Lecture d\\'énergie aurique', 'Transits planétaires', 'Guidance cosmique prioritaire']"
       },
       "free": {
-        "features": "['Murmures horoscope quotidiens', 'Thème natal de base', 'Carte de tarot quotidienne', 'Avec publicités']",
+        "features": "['Murmures aperçu quotidiens', 'Profil personnel de base', 'Carte de tarot quotidienne', 'Avec publicités']",
         "name": "Gratuit",
         "savings": ""
       }
@@ -1325,7 +1330,7 @@
     "aquarius": "Verseau",
     "pisces": "Poissons",
     "all_signs": "All Zodiac Signs",
-    "discover_all_signs": "Discover all 12 signs and read daily horoscopes",
+    "discover_all_signs": "Discover all 12 signs and read daily aperçus",
     "dates": {
       "aries": "21 Mars - 19 Avril",
       "taurus": "20 Avril - 20 Mai",
@@ -1989,11 +1994,11 @@
     "contact_support": "Contact Support"
   },
   "horoscope": {
-    "analysis": "Analyse Horoscope",
+    "analysis": "Analyse Aperçu",
     "cosmic_energy": "Votre Énergie Cosmique",
     "daily_cosmic_energy": "L'Énergie Cosmique du Jour",
     "spiritual_signature": "Signature Spirituelle",
-    "zodiac_secrets": "Secrets du Zodiaque",
+    "zodiac_secrets": "Secrets du Archétype",
     "ruling_planet": "Maître",
     "cosmic_overview": "Aperçu Cosmique",
     "cosmic_harmony": "Harmonie Cosmique",
@@ -2026,11 +2031,11 @@
     "planet_transits": "Transits Planétaires",
     "your_zodiac_readings": "Vos Lectures Zodiacales",
     "sign_today": "Comment va {sign} aujourd'hui?",
-    "astrology_brand": "Astrologie — Venus One",
-    "astrology": "Astrologie",
+    "astrology_brand": "Connaissance de soi — Venus One",
+    "astrology": "Connaissance de soi",
     "hermetic_teaching": "Enseignement Hermétique",
     "weekly_affirmation_label": "Affirmation de la Semaine",
-    "title": "Horoscope",
+    "title": "Aperçu",
     "reading": "Reading",
     "quotable_bullets": {
       "aries": [
@@ -2100,7 +2105,7 @@
       ]
     },
     "sign_summaries": {
-      "aries": "Le [[Bélier]] est le premier signe du [[Zodiaque]] et porte l'énergie [[Cardinale]] de [[Feu]]. Gouverné par [[Mars]], il a une forte impulsion vers l'action, le leadership et les nouveaux départs.",
+      "aries": "Le [[Bélier]] est le premier signe du [[Archétype]] et porte l'énergie [[Cardinale]] de [[Feu]]. Gouverné par [[Mars]], il a une forte impulsion vers l'action, le leadership et les nouveaux départs.",
       "taurus": "Le [[Taureau]] représente la stabilité et la sécurité avec l'énergie [[Fixe]] de [[Terre]]. Sous la domination de [[Vénus]], la beauté, la valeur et le confort matériel sont les principales motivations.",
       "gemini": "Les [[Gémeaux]] représentent la communication et l'intelligence avec l'énergie [[Mutable]] d'[[Air]]. Sous la domination de [[Mercure]], l'apprentissage et le partage des connaissances sont vitaux.",
       "cancer": "Le [[Cancer]] représente la profondeur émotionnelle et la protection avec l'énergie [[Cardinale]] d'[[Eau]]. Sous la domination de la [[Lune]], le foyer et la famille sont les thèmes les plus importants.",
@@ -2115,18 +2120,18 @@
       "default": "Chargement des informations détaillées sur ce signe..."
     },
     "deep_interpretations": {
-      "aries": "Le [[Bélier]] se situe au point de départ du cercle du [[Zodiaque]] et représente le principe \"Je suis\". Cette période, commençant avec l'[[équinoxe de printemps]], reflète l'énergie de renaissance et de croissance dans la nature.\n\nSous la domination de [[Mars]], les Béliers sont orientés vers l'action. Leur relation naturelle avec la [[1ère Maison]] détermine l'identité, l'apparence physique et comment on aborde le monde. L'élément [[Feu]] apporte courage et passion, tandis que la qualité [[Cardinale]] apporte leadership et initiative.\n\nDans l'astrologie évolutive, le Bélier représente le début du [[voyage de l'âme]]. Il fait les premiers pas dans le développement de l'ego et le processus d'individuation. Les aspects [[Ombre]] comprennent l'impatience et agir sans réfléchir.\n\nLes planètes en Bélier affichent généralement une énergie rapide, directe et compétitive. Pendant les périodes de [[Mars]] [[Rétrograde]], il est bénéfique de diriger cette énergie vers la motivation intérieure.",
-      "taurus": "Le [[Taureau]] est le deuxième signe du [[Zodiaque]] et représente le principe \"Je possède\". En tant que forme la plus stable de l'élément [[Terre]], le Taureau gère les valeurs et les ressources.\n\nSous la domination de [[Vénus]], les Taureaux montrent une profonde appréciation pour les expériences sensorielles et la beauté. Leur relation naturelle avec la [[2ème Maison]] couvre l'estime de soi, les ressources matérielles et les talents.\n\nLa qualité [[Fixe]] donne au Taureau endurance et détermination. Une fois commencés, les projets continuent jusqu'à leur achèvement. Cependant, cela peut aussi mener à l'aspect [[Ombre]] de l'entêtement.\n\nLes planètes en Taureau affichent une énergie lente mais déterminée. Les transits de [[Vénus]] indiquent des périodes importantes particulièrement pour les signes Taureau et [[Balance]].",
-      "gemini": "Les [[Gémeaux]] représentent le principe \"Je pense\" et sont le premier signe d'[[Air]] du [[Zodiaque]]. Sous la domination de [[Mercure]], l'agilité mentale et les capacités de communication sont fortes.\n\nLeur relation naturelle avec la [[3ème Maison]] couvre l'environnement immédiat, les frères et sœurs, les courts voyages et la communication de base. La qualité [[Mutable]] offre la capacité de s'adapter et d'être flexible.\n\nLe symbolisme de la [[Dualité]] des Gémeaux - les jumeaux - représente les deux aspects de l'esprit : rationnel et intuitif. Cette énergie, parfois perçue comme dispersée, est en fait la capacité de voir plusieurs perspectives.\n\nLes périodes de [[Mercure Rétrograde]] sont particulièrement importantes pour les Gémeaux. Ces moments sont précieux pour l'introspection et le regard en arrière. L'aspect [[Ombre]] est la superficialité et l'indécision.",
-      "cancer": "Le [[Cancer]] est le quatrième signe du [[Zodiaque]] et représente la forme [[Cardinale]] de l'élément [[Eau]]. Avec le principe \"Je ressens\", il incarne l'intelligence émotionnelle et l'intuition.\n\nSous la domination de la [[Lune]], les Cancers affichent profondeur émotionnelle et instincts protecteurs. Leur relation naturelle avec la [[4ème Maison]] couvre le foyer, les racines familiales, le monde intérieur et la sécurité émotionnelle.\n\nL'[[archétype de la Mère]] résonne fortement avec le Cancer. L'énergie nourricière et la capacité de prendre soin sont naturellement développées. Les [[phases lunaires]] sont particulièrement efficaces pour les natifs du Cancer.\n\nLes aspects [[Ombre]] comprennent la surprotection, la manipulation émotionnelle et la tendance à rester coincé dans le passé. Apprendre à établir des [[limites émotionnelles]] est la tâche évolutive.",
-      "leo": "Le [[Lion]] est le cinquième signe du [[Zodiaque]] et représente la forme [[Fixe]] de l'élément [[Feu]]. Avec le principe \"Je crée\", l'expression de soi et la créativité sont au centre.\n\nLe [[Soleil]] est le dirigeant de ce signe et est \"chez lui\" - dans son état le plus fort. Leur relation naturelle avec la [[5ème Maison]] couvre la créativité, la romance, les enfants et le divertissement. Le [[chakra du cœur]] est fortement connecté au Lion.\n\nL'attraction du Lion pour le drame et la scène provient d'un besoin spirituel : être vu et se sentir valorisé. Ce n'est pas une question d'ego, mais l'expression naturelle du [[Soleil]].\n\nLes aspects [[Ombre]] comprennent l'arrogance, la fierté excessive et la tendance à ignorer la lumière des autres. L'humilité et le partage sont des qualités à développer sur le voyage évolutif.",
-      "virgo": "La [[Vierge]] est le sixième signe du [[Zodiaque]] et représente la forme [[Mutable]] de l'élément [[Terre]]. Avec le principe \"J'analyse\", le service et la quête de perfection sont au centre.\n\nSous la domination de [[Mercure]], la Vierge affiche intelligence analytique et orientation vers les détails. Leur relation naturelle avec la [[6ème Maison]] couvre la santé, les routines quotidiennes, le service et l'environnement de travail.\n\nLa tendance perfectionniste de la Vierge vient en fait du concept de [[Service sacré]] - le désir de faire son travail de la meilleure façon. Les capacités de [[guérison]] sont généralement fortes.\n\nLes aspects [[Ombre]] comprennent être trop critique, l'inquiétude et l'auto-dépréciation. S'accepter soi-même et se libérer de la pression de l'imperfection est la tâche évolutive.",
-      "libra": "La [[Balance]] est le septième signe du [[Zodiaque]] et représente la forme [[Cardinale]] de l'élément [[Air]]. Avec le principe \"J'équilibre\", la relation et l'harmonie sont au centre.\n\nSous la domination de [[Vénus]], la Balance affiche sensibilité esthétique et grâce sociale. Leur relation naturelle avec la [[7ème Maison]] couvre les partenariats, le mariage et le concept de \"l'autre\".\n\nLa recherche d'équilibre de la Balance vient en fait du concept de [[Justice cosmique]]. Comprendre le mécanisme de [[Projection]] est important pour ce signe - ce que nous voyons chez les autres nous appartient.\n\nLe [[Soleil]] est \"en chute\" dans ce signe - les thèmes d'individualité peuvent être difficiles. Les aspects [[Ombre]] comprennent l'indécision, les comportements passifs-agressifs et l'évitement des conflits. Développer l'identité personnelle est la tâche évolutive.",
-      "scorpio": "Le [[Scorpion]] est le huitième signe du [[Zodiaque]] et représente la forme [[Fixe]] de l'élément [[Eau]]. Avec le principe \"Je transforme\", la profondeur et le pouvoir sont au centre.\n\nSous la domination de [[Pluton]] (moderne) et [[Mars]] (traditionnel), le Scorpion affiche une intense profondeur émotionnelle et une intelligence pénétrante. Leur relation naturelle avec la [[8ème Maison]] couvre les ressources partagées, la sexualité, la mort-renaissance et la transformation psychologique.\n\nL'intensité du Scorpion vient en fait de l'[[Alchimie spirituelle]] - le désir de transformer le plomb en or. L'énergie [[Kundalini]] est fortement liée à ce signe.\n\nLes aspects [[Ombre]] comprennent la jalousie, l'obsession, la vengeance et le besoin de contrôle. Lâcher prise et faire confiance sont les leçons les plus importantes du voyage évolutif.",
-      "sagittarius": "Le [[Sagittaire]] est le neuvième signe du [[Zodiaque]] et représente la forme [[Mutable]] de l'élément [[Feu]]. Avec le principe \"J'explore\", la liberté et la quête de sens sont au centre.\n\nSous la domination de [[Jupiter]], le Sagittaire affiche optimisme, générosité et énergie d'expansion. Leur relation naturelle avec la [[9ème Maison]] couvre les longs voyages, l'éducation supérieure, la philosophie et les systèmes de croyances.\n\nLe symbolisme de l'archer du Sagittaire - l'arc et la flèche - représente la vision orientée vers les objectifs et les hauts idéaux. La mythologie du [[Centaure]] symbolise l'union de la nature humaine et animale.\n\nLes aspects [[Ombre]] comprennent l'optimisme excessif, l'éparpillement, l'irresponsabilité et ne pas tenir ses promesses. L'approfondissement et l'engagement sont des tâches évolutives.",
-      "capricorn": "Le [[Capricorne]] est le dixième signe du [[Zodiaque]] et représente la forme [[Cardinale]] de l'élément [[Terre]]. Avec le principe \"J'accomplis\", la discipline et la responsabilité sont au centre.\n\nSous la domination de [[Saturne]], le Capricorne travaille avec les thèmes de structure, de temps et de maturité. Leur relation naturelle avec la [[10ème Maison]] couvre la carrière, le statut social, la réputation et l'[[archétype du Père]].\n\nLe symbolisme de la chèvre de montagne du Capricorne représente la détermination à gravir des sommets difficiles et atteindre l'objectif. Le temps est l'allié de ce signe - la sagesse et le succès augmentent avec l'âge.\n\nLe [[Retour de Saturne]] (environ tous les 29 ans) est particulièrement significatif pour les Capricornes. Les aspects [[Ombre]] comprennent la rigidité, le pessimisme et le sérieux excessif. La joie et la flexibilité sont des tâches évolutives.",
-      "aquarius": "Le [[Verseau]] est le onzième signe du [[Zodiaque]] et représente la forme [[Fixe]] de l'élément [[Air]]. Avec le principe \"Je sais\", l'innovation et l'humanité sont au centre.\n\nSous la domination d'[[Uranus]] (moderne) et [[Saturne]] (traditionnel), le Verseau travaille avec des idées révolutionnaires et la conscience sociale. Leur relation naturelle avec la [[11ème Maison]] couvre les groupes, les amitiés, les espoirs et les idéaux humanitaires.\n\nLe symbolisme du porteur d'eau du Verseau représente la distribution de la sagesse à l'humanité. La [[Conscience collective]] et la vision orientée vers l'avenir sont fortement liées à ce signe.\n\nLes aspects [[Ombre]] comprennent la distance émotionnelle, l'intellectualisation excessive et négliger les individus tout en pensant \"pour tous\". La proximité émotionnelle est la tâche évolutive.",
-      "pisces": "Les [[Poissons]] sont le douzième et dernier signe du [[Zodiaque]] et représentent la forme [[Mutable]] de l'élément [[Eau]]. Avec le principe \"Je crois\", la spiritualité et la transcendance sont au centre.\n\nSous la domination de [[Neptune]] (moderne) et [[Jupiter]] (traditionnel), les Poissons travaillent avec le mysticisme, l'empathie et la conscience cosmique. Leur relation naturelle avec la [[12ème Maison]] couvre l'inconscient, les pratiques spirituelles, l'isolement et les thèmes [[Karmiques]].\n\nLe symbolisme des deux poissons - nageant dans des directions opposées - représente la tension entre les mondes matériel et spirituel. L'accès direct à l'[[inconscient collectif]] est le don de ce signe.\n\nLes aspects [[Ombre]] comprennent les tendances à la fuite (addiction), le manque de limites et la mentalité de victime. Des limites saines et la connexion avec la réalité sont des tâches évolutives.",
+      "aries": "Le [[Bélier]] se situe au point de départ du cercle du [[Archétype]] et représente le principe \"Je suis\". Cette période, commençant avec l'[[équinoxe de printemps]], reflète l'énergie de renaissance et de croissance dans la nature.\n\nSous la domination de [[Mars]], les Béliers sont orientés vers l'action. Leur relation naturelle avec la [[1ère Maison]] détermine l'identité, l'apparence physique et comment on aborde le monde. L'élément [[Feu]] apporte courage et passion, tandis que la qualité [[Cardinale]] apporte leadership et initiative.\n\nDans l'connaissance de soi évolutive, le Bélier représente le début du [[voyage de l'âme]]. Il fait les premiers pas dans le développement de l'ego et le processus d'individuation. Les aspects [[Ombre]] comprennent l'impatience et agir sans réfléchir.\n\nLes planètes en Bélier affichent généralement une énergie rapide, directe et compétitive. Pendant les périodes de [[Mars]] [[Rétrograde]], il est bénéfique de diriger cette énergie vers la motivation intérieure.",
+      "taurus": "Le [[Taureau]] est le deuxième signe du [[Archétype]] et représente le principe \"Je possède\". En tant que forme la plus stable de l'élément [[Terre]], le Taureau gère les valeurs et les ressources.\n\nSous la domination de [[Vénus]], les Taureaux montrent une profonde appréciation pour les expériences sensorielles et la beauté. Leur relation naturelle avec la [[2ème Maison]] couvre l'estime de soi, les ressources matérielles et les talents.\n\nLa qualité [[Fixe]] donne au Taureau endurance et détermination. Une fois commencés, les projets continuent jusqu'à leur achèvement. Cependant, cela peut aussi mener à l'aspect [[Ombre]] de l'entêtement.\n\nLes planètes en Taureau affichent une énergie lente mais déterminée. Les transits de [[Vénus]] indiquent des périodes importantes particulièrement pour les signes Taureau et [[Balance]].",
+      "gemini": "Les [[Gémeaux]] représentent le principe \"Je pense\" et sont le premier signe d'[[Air]] du [[Archétype]]. Sous la domination de [[Mercure]], l'agilité mentale et les capacités de communication sont fortes.\n\nLeur relation naturelle avec la [[3ème Maison]] couvre l'environnement immédiat, les frères et sœurs, les courts voyages et la communication de base. La qualité [[Mutable]] offre la capacité de s'adapter et d'être flexible.\n\nLe symbolisme de la [[Dualité]] des Gémeaux - les jumeaux - représente les deux aspects de l'esprit : rationnel et intuitif. Cette énergie, parfois perçue comme dispersée, est en fait la capacité de voir plusieurs perspectives.\n\nLes périodes de [[Mercure Rétrograde]] sont particulièrement importantes pour les Gémeaux. Ces moments sont précieux pour l'introspection et le regard en arrière. L'aspect [[Ombre]] est la superficialité et l'indécision.",
+      "cancer": "Le [[Cancer]] est le quatrième signe du [[Archétype]] et représente la forme [[Cardinale]] de l'élément [[Eau]]. Avec le principe \"Je ressens\", il incarne l'intelligence émotionnelle et l'intuition.\n\nSous la domination de la [[Lune]], les Cancers affichent profondeur émotionnelle et instincts protecteurs. Leur relation naturelle avec la [[4ème Maison]] couvre le foyer, les racines familiales, le monde intérieur et la sécurité émotionnelle.\n\nL'[[archétype de la Mère]] résonne fortement avec le Cancer. L'énergie nourricière et la capacité de prendre soin sont naturellement développées. Les [[phases lunaires]] sont particulièrement efficaces pour les natifs du Cancer.\n\nLes aspects [[Ombre]] comprennent la surprotection, la manipulation émotionnelle et la tendance à rester coincé dans le passé. Apprendre à établir des [[limites émotionnelles]] est la tâche évolutive.",
+      "leo": "Le [[Lion]] est le cinquième signe du [[Archétype]] et représente la forme [[Fixe]] de l'élément [[Feu]]. Avec le principe \"Je crée\", l'expression de soi et la créativité sont au centre.\n\nLe [[Soleil]] est le dirigeant de ce signe et est \"chez lui\" - dans son état le plus fort. Leur relation naturelle avec la [[5ème Maison]] couvre la créativité, la romance, les enfants et le divertissement. Le [[chakra du cœur]] est fortement connecté au Lion.\n\nL'attraction du Lion pour le drame et la scène provient d'un besoin spirituel : être vu et se sentir valorisé. Ce n'est pas une question d'ego, mais l'expression naturelle du [[Soleil]].\n\nLes aspects [[Ombre]] comprennent l'arrogance, la fierté excessive et la tendance à ignorer la lumière des autres. L'humilité et le partage sont des qualités à développer sur le voyage évolutif.",
+      "virgo": "La [[Vierge]] est le sixième signe du [[Archétype]] et représente la forme [[Mutable]] de l'élément [[Terre]]. Avec le principe \"J'analyse\", le service et la quête de perfection sont au centre.\n\nSous la domination de [[Mercure]], la Vierge affiche intelligence analytique et orientation vers les détails. Leur relation naturelle avec la [[6ème Maison]] couvre la santé, les routines quotidiennes, le service et l'environnement de travail.\n\nLa tendance perfectionniste de la Vierge vient en fait du concept de [[Service sacré]] - le désir de faire son travail de la meilleure façon. Les capacités de [[guérison]] sont généralement fortes.\n\nLes aspects [[Ombre]] comprennent être trop critique, l'inquiétude et l'auto-dépréciation. S'accepter soi-même et se libérer de la pression de l'imperfection est la tâche évolutive.",
+      "libra": "La [[Balance]] est le septième signe du [[Archétype]] et représente la forme [[Cardinale]] de l'élément [[Air]]. Avec le principe \"J'équilibre\", la relation et l'harmonie sont au centre.\n\nSous la domination de [[Vénus]], la Balance affiche sensibilité esthétique et grâce sociale. Leur relation naturelle avec la [[7ème Maison]] couvre les partenariats, le mariage et le concept de \"l'autre\".\n\nLa recherche d'équilibre de la Balance vient en fait du concept de [[Justice cosmique]]. Comprendre le mécanisme de [[Projection]] est important pour ce signe - ce que nous voyons chez les autres nous appartient.\n\nLe [[Soleil]] est \"en chute\" dans ce signe - les thèmes d'individualité peuvent être difficiles. Les aspects [[Ombre]] comprennent l'indécision, les comportements passifs-agressifs et l'évitement des conflits. Développer l'identité personnelle est la tâche évolutive.",
+      "scorpio": "Le [[Scorpion]] est le huitième signe du [[Archétype]] et représente la forme [[Fixe]] de l'élément [[Eau]]. Avec le principe \"Je transforme\", la profondeur et le pouvoir sont au centre.\n\nSous la domination de [[Pluton]] (moderne) et [[Mars]] (traditionnel), le Scorpion affiche une intense profondeur émotionnelle et une intelligence pénétrante. Leur relation naturelle avec la [[8ème Maison]] couvre les ressources partagées, la sexualité, la mort-renaissance et la transformation psychologique.\n\nL'intensité du Scorpion vient en fait de l'[[Alchimie spirituelle]] - le désir de transformer le plomb en or. L'énergie [[Kundalini]] est fortement liée à ce signe.\n\nLes aspects [[Ombre]] comprennent la jalousie, l'obsession, la vengeance et le besoin de contrôle. Lâcher prise et faire confiance sont les leçons les plus importantes du voyage évolutif.",
+      "sagittarius": "Le [[Sagittaire]] est le neuvième signe du [[Archétype]] et représente la forme [[Mutable]] de l'élément [[Feu]]. Avec le principe \"J'explore\", la liberté et la quête de sens sont au centre.\n\nSous la domination de [[Jupiter]], le Sagittaire affiche optimisme, générosité et énergie d'expansion. Leur relation naturelle avec la [[9ème Maison]] couvre les longs voyages, l'éducation supérieure, la philosophie et les systèmes de croyances.\n\nLe symbolisme de l'archer du Sagittaire - l'arc et la flèche - représente la vision orientée vers les objectifs et les hauts idéaux. La mythologie du [[Centaure]] symbolise l'union de la nature humaine et animale.\n\nLes aspects [[Ombre]] comprennent l'optimisme excessif, l'éparpillement, l'irresponsabilité et ne pas tenir ses promesses. L'approfondissement et l'engagement sont des tâches évolutives.",
+      "capricorn": "Le [[Capricorne]] est le dixième signe du [[Archétype]] et représente la forme [[Cardinale]] de l'élément [[Terre]]. Avec le principe \"J'accomplis\", la discipline et la responsabilité sont au centre.\n\nSous la domination de [[Saturne]], le Capricorne travaille avec les thèmes de structure, de temps et de maturité. Leur relation naturelle avec la [[10ème Maison]] couvre la carrière, le statut social, la réputation et l'[[archétype du Père]].\n\nLe symbolisme de la chèvre de montagne du Capricorne représente la détermination à gravir des sommets difficiles et atteindre l'objectif. Le temps est l'allié de ce signe - la sagesse et le succès augmentent avec l'âge.\n\nLe [[Retour de Saturne]] (environ tous les 29 ans) est particulièrement significatif pour les Capricornes. Les aspects [[Ombre]] comprennent la rigidité, le pessimisme et le sérieux excessif. La joie et la flexibilité sont des tâches évolutives.",
+      "aquarius": "Le [[Verseau]] est le onzième signe du [[Archétype]] et représente la forme [[Fixe]] de l'élément [[Air]]. Avec le principe \"Je sais\", l'innovation et l'humanité sont au centre.\n\nSous la domination d'[[Uranus]] (moderne) et [[Saturne]] (traditionnel), le Verseau travaille avec des idées révolutionnaires et la conscience sociale. Leur relation naturelle avec la [[11ème Maison]] couvre les groupes, les amitiés, les espoirs et les idéaux humanitaires.\n\nLe symbolisme du porteur d'eau du Verseau représente la distribution de la sagesse à l'humanité. La [[Conscience collective]] et la vision orientée vers l'avenir sont fortement liées à ce signe.\n\nLes aspects [[Ombre]] comprennent la distance émotionnelle, l'intellectualisation excessive et négliger les individus tout en pensant \"pour tous\". La proximité émotionnelle est la tâche évolutive.",
+      "pisces": "Les [[Poissons]] sont le douzième et dernier signe du [[Archétype]] et représentent la forme [[Mutable]] de l'élément [[Eau]]. Avec le principe \"Je crois\", la spiritualité et la transcendance sont au centre.\n\nSous la domination de [[Neptune]] (moderne) et [[Jupiter]] (traditionnel), les Poissons travaillent avec le mysticisme, l'empathie et la conscience cosmique. Leur relation naturelle avec la [[12ème Maison]] couvre l'inconscient, les pratiques spirituelles, l'isolement et les thèmes [[Karmiques]].\n\nLe symbolisme des deux poissons - nageant dans des directions opposées - représente la tension entre les mondes matériel et spirituel. L'accès direct à l'[[inconscient collectif]] est le don de ce signe.\n\nLes aspects [[Ombre]] comprennent les tendances à la fuite (addiction), le manque de limites et la mentalité de victime. Des limites saines et la connexion avec la réalité sont des tâches évolutives.",
       "default": "Chargement de l'interprétation du signe..."
     }
   },
@@ -2135,7 +2140,7 @@
     "weekly": "Hebdomadaire",
     "monthly": "Mensuel",
     "yearly": "Annuel",
-    "zodiac": "Zodiaque",
+    "zodiac": "Archétype",
     "meditation": "Méditation",
     "explore": "Explorer",
     "questions": "Questions",
@@ -2160,12 +2165,12 @@
     "trust": "Confiance"
   },
   "brands": {
-    "horoscope": "Horoscope — Venus One",
-    "weekly_horoscope": "Horoscope Hebdomadaire — Venus One",
-    "monthly_horoscope": "Horoscope Mensuel — Venus One",
-    "yearly_horoscope": "Horoscope Annuel — Venus One",
-    "love_horoscope": "Horoscope Amoureux — Venus One",
-    "compatibility": "Compatibilité Zodiaque — Venus One",
+    "horoscope": "Aperçu — Venus One",
+    "weekly_horoscope": "Aperçu Hebdomadaire — Venus One",
+    "monthly_horoscope": "Aperçu Mensuel — Venus One",
+    "yearly_horoscope": "Aperçu Annuel — Venus One",
+    "love_horoscope": "Aperçu Amoureux — Venus One",
+    "compatibility": "Compatibilité Archétype — Venus One",
     "tarot": "Tarot — Venus One",
     "dreams": "Oracle des Rêves — Venus One",
     "astrology": "Astrology — Venus One",
@@ -2183,10 +2188,10 @@
     "cards": {
       "todays_cosmic_energy": {
         "title": "Énergie cosmique du jour",
-        "description": "Que murmure le ciel aujourd'hui ? Consultez les horoscopes quotidiens."
+        "description": "Que murmure le ciel aujourd'hui ? Consultez les aperçus quotidiens."
       },
       "birth_chart_question": {
-        "title": "Que dit mon thème natal ?",
+        "title": "Que dit mon profil personnel ?",
         "description": "Découvrez votre empreinte cosmique — calcul gratuit."
       },
       "partner_compatible": {
@@ -2222,12 +2227,12 @@
         "description": "Toutes les fonctionnalités en un seul endroit"
       },
       "astrology_glossary": {
-        "title": "Glossaire d'astrologie",
+        "title": "Glossaire d'connaissance de soi",
         "description": "Apprenez les termes"
       },
       "premium_features": {
         "title": "Fonctionnalités Premium",
-        "description": "Outils d'astrologie avancés"
+        "description": "Outils d'connaissance de soi avancés"
       },
       "most_read_scorpio": {
         "title": "Le plus lu : Scorpion",
@@ -2246,7 +2251,7 @@
         "description": "Quel est le grand thème du mois ?"
       },
       "calculate_birth_chart": {
-        "title": "Calculez votre thème natal",
+        "title": "Calculez votre profil personnel",
         "description": "Voyez au-delà de votre signe solaire."
       },
       "relationship_compatibility": {
@@ -2291,7 +2296,7 @@
       },
       "vedic_chart": {
         "title": "Thème védique",
-        "description": "Perspective de l'astrologie indienne."
+        "description": "Perspective de l'connaissance de soi indienne."
       },
       "draconic_chart": {
         "title": "Thème draconique",
@@ -2330,7 +2335,7 @@
         "description": "Quand Mercure est-il rétrograde ?"
       },
       "electional_astrology": {
-        "title": "Astrologie élective",
+        "title": "Connaissance de soi élective",
         "description": "Choisissez les bons moments."
       },
       "celebrity_couples": {
@@ -2354,7 +2359,7 @@
         "description": "Guidance spécifique à votre thème."
       },
       "daily_horoscope": {
-        "title": "Horoscope quotidien",
+        "title": "Aperçu quotidien",
         "description": "Lisez avec le tarot."
       },
       "decode_dream_symbols": {
@@ -2366,7 +2371,7 @@
         "description": "Un message au-delà des cartes."
       },
       "birth_chart": {
-        "title": "Thème natal",
+        "title": "Profil personnel",
         "description": "Votre identité cosmique."
       },
       "tarot_ritual": {
@@ -2410,7 +2415,7 @@
         "description": "Comparez les thèmes en détail."
       },
       "love_horoscope": {
-        "title": "Horoscope amoureux",
+        "title": "Aperçu amoureux",
         "description": "Énergie amoureuse hebdomadaire"
       },
       "venus_and_mars": {
@@ -2454,7 +2459,7 @@
         "description": "22 Arcanes majeurs, 22 chemins."
       },
       "astrology_connection": {
-        "title": "Connexion astrologique",
+        "title": "Connexion personnel",
         "description": "Sefirot et planètes."
       },
       "chakra_system": {
@@ -2474,7 +2479,7 @@
         "description": "Significations des 10 sefirot"
       },
       "my_birth_chart": {
-        "title": "Mon thème natal",
+        "title": "Mon profil personnel",
         "description": "Votre identité cosmique"
       },
       "transit_dreams": {
@@ -2503,7 +2508,7 @@
       },
       "twelfth_house_dreams": {
         "title": "12e maison et rêves",
-        "description": "La maison des rêves dans votre thème natal."
+        "description": "La maison des rêves dans votre profil personnel."
       },
       "your_cosmic_message": {
         "title": "Votre message cosmique",
@@ -2526,7 +2531,7 @@
         "description": "Symboles de rêves"
       },
       "daily_horoscope_reading": {
-        "title": "Lecture d'horoscope quotidien",
+        "title": "Lecture d'aperçu quotidien",
         "description": "L'énergie cosmique du jour."
       },
       "moon_phase": {
@@ -2575,7 +2580,7 @@
       },
       "glossary": {
         "title": "Glossaire",
-        "description": "Termes d'astrologie"
+        "description": "Termes d'connaissance de soi"
       },
       "aura": {
         "title": "Aura",
@@ -2598,10 +2603,10 @@
         "description": "Pratiques pour l'équilibre."
       },
       "advanced_astrology": {
-        "description": "Astrologie avancée"
+        "description": "Connaissance de soi avancée"
       },
       "astrological_perspective": {
-        "description": "Perspective astrologique."
+        "description": "Perspective personnelle."
       },
       "cards_message": {
         "description": "Le message des cartes."
@@ -2860,7 +2865,7 @@
     "not_found_message": "La page que vous cherchez semble s'être perdue parmi les étoiles.",
     "not_found_path": "Recherche : {path}",
     "return_home": "Retour à l'accueil",
-    "go_to_horoscope": "Voir l'horoscope",
+    "go_to_horoscope": "Voir l'aperçu",
     "stars_aligning": "Les étoiles s'alignent..."
   },
   "sections": {
@@ -2896,10 +2901,10 @@
     "dreams_subconscious": "Dreams & Subconscious"
   },
   "misc": {
-    "zodiac_interpretation": "Lecture du Zodiaque",
+    "zodiac_interpretation": "Lecture du Archétype",
     "love_interpretation": "Lecture de l'Amour",
-    "zodiac_compatibility": "Compatibilité Zodiaque",
-    "zodiac_profiles": "Profils du Zodiaque",
+    "zodiac_compatibility": "Compatibilité Archétype",
+    "zodiac_profiles": "Profils du Archétype",
     "select_zodiac": "Sélectionner le Signe",
     "view_house_on_map": "Voir Cette Maison sur Ma Carte",
     "how_is_your_love_life": "Comment va votre vie amoureuse?",
@@ -2913,7 +2918,7 @@
     "friend_index": "Ami"
   },
   "comparison": {
-    "title": "Compatibilité Zodiaque",
+    "title": "Compatibilité Archétype",
     "subtitle": "Analyse de comparaison détaillée",
     "select_profile": "Sélectionner un Profil",
     "add": "Ajouter",
@@ -2958,8 +2963,8 @@
     "good_match": "Bonne Compatibilité",
     "moderate_match": "Compatibilité Modérée",
     "challenging": "Difficile",
-    "zodiac_profiles": "Profils du Zodiaque",
-    "brand_text": "Compatibilité Zodiaque — Venus One",
+    "zodiac_profiles": "Profils du Archétype",
+    "brand_text": "Compatibilité Archétype — Venus One",
     "cosmic_chemistry": "Chimie Cosmique",
     "ancient_note": "La compatibilité entre deux signes n'est pas qu'un calcul d'élément et de modalité. Chaque relation porte le potentiel pour deux âmes de se compléter et de se transformer mutuellement. Les défis sont les plus grands enseignants."
   },
@@ -3785,7 +3790,7 @@
     "december": "Décembre"
   },
   "analysis": {
-    "zodiac_analysis": "Analyse du Zodiaque",
+    "zodiac_analysis": "Analyse du Archétype",
     "numerology_analysis": "Analyse Numérologique",
     "aura_analysis": "Analyse de l'Aura",
     "kabbalah_analysis": "Analyse Kabbalistique",
@@ -3803,7 +3808,7 @@
     "profile_not_found": "Profil introuvable",
     "enter_birth_info": "Veuillez d'abord entrer vos informations de naissance",
     "generating_chart": "Creation de la carte vedique...",
-    "info_banner": "L'astrologie vedique utilise le zodiaque sideral (base sur les etoiles). Il y a environ 24 degres de difference avec l'astrologie occidentale.",
+    "info_banner": "L'connaissance de soi vedique utilise le archétype sideral (base sur les etoiles). Il y a environ 24 degres de difference avec l'connaissance de soi occidentale.",
     "profile_info": "Informations du Profil",
     "name": "Nom",
     "user": "Utilisateur",
@@ -3833,7 +3838,7 @@
     "profile_not_found": "Profil introuvable",
     "enter_birth_info": "Veuillez d'abord entrer vos informations de naissance",
     "generating_chart": "Creation de la carte...",
-    "soul_level_astrology": "Astrologie de l'Ame",
+    "soul_level_astrology": "Connaissance de soi de l'Ame",
     "info_banner": "Decouvrez le veritable but de votre ame et les traces de vies passees",
     "profile_info": "Informations du Profil",
     "name": "Nom",
@@ -3856,10 +3861,10 @@
   },
   "year_ahead": {
     "title": "L'Annee a Venir",
-    "year_forecast": "Previsions pour {year}",
+    "year_forecast": "Perspectives pour {year}",
     "select_year": "Choisir l'Annee",
     "year_summary": "Resume de l'Annee",
-    "quarterly_forecasts": "Previsions Trimestrielles",
+    "quarterly_forecasts": "Perspectives Trimestrielles",
     "important_transits": "Transits Importants",
     "lucky_periods": "Périodes Favorables",
     "challenging_periods": "Periodes a Surveiller",
@@ -3952,11 +3957,11 @@
     }
   },
   "local_space": {
-    "title": "Astrologie de l'Espace Local",
+    "title": "Connaissance de soi de l'Espace Local",
     "profile_not_found": "Profil introuvable",
     "enter_birth_info_first": "Veuillez d'abord entrer vos informations de naissance",
     "go_back": "Retour",
-    "spatial_astrology": "Astrologie Spatiale",
+    "spatial_astrology": "Connaissance de soi Spatiale",
     "discover_planet_energies": "Decouvrez les effets des energies planetaires sur les directions et les espaces",
     "profile_info": "Informations du Profil",
     "full_data": "Donnees Completes",
@@ -4024,7 +4029,7 @@
     "analysis": {
       "home_title": "Analyse de l'Espace Local de Votre Maison",
       "home_intro": "Pour optimiser l'aménagement de votre maison selon les énergies planétaires:",
-      "home_conclusion": "Ces arrangements alignent l'énergie de votre maison avec votre thème natal.",
+      "home_conclusion": "Ces arrangements alignent l'énergie de votre maison avec votre profil personnel.",
       "office_title": "Analyse de l'Espace Local de Votre Lieu de Travail",
       "office_intro": "Recommandations pour le succès professionnel:",
       "desk_position": "Positionnez votre bureau face à la direction {direction}.",
@@ -6009,7 +6014,7 @@
       "Novembre",
       "Decembre"
     ],
-    "share_text": "L'energie cosmique du jour est avec moi! L'univers murmure... #venusone #astrologie #horoscope #energiecosmique",
+    "share_text": "L'energie cosmique du jour est avec moi! L'univers murmure... #venusone #connaissance de soi #aperçu #energiecosmique",
     "headlines": {
       "aries": [
         "Ton courage est mis a l'epreuve aujourd'hui.",
@@ -7200,7 +7205,7 @@
     "enter_birth_info": "Pour voir votre carte astrocartographique\nveuillez d'abord entrer vos informations de naissance",
     "create_profile": "Creer un profil",
     "generating_map": "Generation de la carte...",
-    "location_astrology": "Astrologie de localisation",
+    "location_astrology": "Connaissance de soi de localisation",
     "discover_reflections": "Decouvrez les reflexions de votre theme natal a travers le monde",
     "full_data": "Donnees completes",
     "default_location": "Emplacement par defaut",
@@ -7225,12 +7230,12 @@
     "practice": "Pratique"
   },
   "electional": {
-    "title": "Astrologie elective",
+    "title": "Connaissance de soi elective",
     "profile_not_found": "Profil non trouve",
     "enter_birth_info": "Veuillez d'abord entrer vos informations de naissance",
     "analyzing": "Analyse en cours...",
     "find_best_time": "Trouver le meilleur moment",
-    "discover_supported_times": "Decouvrez les moments astrologiquement favorables pour les decisions importantes",
+    "discover_supported_times": "Decouvrez les moments personnelment favorables pour les decisions importantes",
     "select_purpose": "Selectionner l'objectif",
     "date_range": "Plage de dates",
     "start_date": "Debut",
@@ -7276,7 +7281,7 @@
   },
   "notifications": {
     "title": "Notifications",
-    "daily_horoscope": "Horoscope quotidien",
+    "daily_horoscope": "Aperçu quotidien",
     "daily_horoscope_desc": "Chaque jour a {time}",
     "off": "Desactive",
     "moon_phases": "Phases lunaires",
@@ -7296,7 +7301,7 @@
       "general": "À des fins de divertissement uniquement",
       "dreams": "Les interprétations des rêves sont des réflexions symboliques",
       "health": "Pas un avis médical. Consultez des professionnels",
-      "astrology": "L'astrologie est un outil de réflexion personnelle",
+      "astrology": "L'connaissance de soi est un outil de réflexion personnelle",
       "tarot": "Les lectures de tarot sont uniquement pour un aperçu personnel",
       "numerology": "La numérologie offre des perspectives symboliques",
       "chakra": "Les informations sur les chakras servent à la réflexion",
@@ -7804,7 +7809,7 @@
           "air_generic": "communication, ideas and social connections",
           "water_generic": "emotions, intuition and spiritual depth"
         },
-        "zodiac_advice": {
+        "personal_advice": {
           "aries": "Advice: Write down your first thoughts when you wake up in the morning. Your fire energy can quickly make you forget subconscious messages.",
           "taurus": "Advice: Write your dreams in a dream journal. Your earth energy works better with tangible records.",
           "gemini": "Advice: Tell your dream to someone. Your air energy loves to find meaning through verbal expression.",
@@ -7835,8 +7840,8 @@
     "zodiac_a1": "{sign} is one of the zodiac signs. Each sign has unique personality traits, strengths and weaknesses. Even if your Sun sign is {sign}, your rising sign and Moon sign also significantly influence your personality.",
     "zodiac_q2": "Which signs are compatible with {sign}?",
     "zodiac_a2": "Sign compatibility depends on the entire birth chart, not just Sun signs. Generally, signs in the same element group (fire, earth, air, water) tend to be more compatible. For detailed compatibility analysis, synastry (comparative chart) analysis is recommended.",
-    "zodiac_q3": "How accurate are daily {sign} horoscopes?",
-    "zodiac_a3": "Daily horoscopes reflect general cosmic energies. Since each individual's birth chart is unique, personalized readings through birth chart analysis and transit reports provide more accurate results.",
+    "zodiac_q3": "How accurate are daily {sign} aperçus?",
+    "zodiac_a3": "Daily aperçus reflect general cosmic energies. Since each individual's birth chart is unique, personalized readings through birth chart analysis and transit reports provide more accurate results.",
     "zodiac_q4": "What does it mean if my rising sign is {sign}?",
     "zodiac_a4": "The rising sign (Ascendant) is the sign that was rising on the eastern horizon at your birth moment. It represents your outer appearance, how others perceive you, and your approach to life. You need to know your birth time to find your rising sign.",
     "birth_chart_q1": "What is a birth chart?",
@@ -7893,7 +7898,7 @@
     "dream_a4_2": "I research sometimes",
     "dream_a4_3": "Only the interesting ones",
     "dream_a4_4": "I don't really care",
-    "astrology_q1": "How often do you read horoscopes?",
+    "astrology_q1": "How often do you read aperçus?",
     "astrology_a1_1": "I check every day",
     "astrology_a1_2": "A few times a week",
     "astrology_a1_3": "Occasionally",
@@ -7971,7 +7976,7 @@
       "dream_headline": "This dream doesn't mean the same for everyone...",
       "dream_subtext": "A short test can show if this is unique to you.",
       "dream_button": "Take Short Test",
-      "astrology_headline": "How well does your horoscope fit you?",
+      "astrology_headline": "How well does your aperçu fit you?",
       "astrology_subtext": "Discover your cosmic alignment with a 3-question test.",
       "astrology_button": "Start Test",
       "numerology_headline": "What do the numbers tell you?",
@@ -7992,7 +7997,7 @@
       "chakra": "Pour la sensibilisation uniquement. Pas de prescription médicale ou spirituelle.",
       "compatibility": "Pour la réflexion uniquement. Pas de conseil relationnel.",
       "insight": "Pour la réflexion personnelle uniquement. Pas de conseil professionnel.",
-      "reflection": "Ceci est un espace d'auto-réflexion, pas de prédiction ou de conseil."
+      "reflection": "Ceci est un espace d'auto-réflexion, pas de réflexion ou de conseil."
     }
   },
   "ads": {
@@ -8368,7 +8373,7 @@
     "celebrity_twin": "Your Celebrity Twin",
     "cosmic_trace": "Cosmic Trace",
     "dream_trace": "Dream Trace",
-    "horoscope_reader": "Horoscope Reader",
+    "horoscope_reader": "Aperçu Reader",
     "cosmic_share": "Cosmic Share",
     "saved_profiles": "Saved Profiles",
     "compare": "Compare",
@@ -8414,13 +8419,13 @@
       "weekly_advice": "Quels sont les trois conseils les plus importants pour mon signe cette semaine?",
       "cosmic_weather": "Quelle est ma météo cosmique aujourd'hui selon mon Soleil, ma Lune et mon ascendant?",
       "venus_mars_love": "Que puis-je attendre dans ma vie amoureuse ce mois-ci selon les transits de Vénus et Mars?",
-      "ideal_partner": "Comment est mon partenaire idéal selon mon thème natal et où pourrais-je le rencontrer?",
-      "relationship_challenges": "Quelles sont les causes astrologiques profondes des défis dans ma relation?",
+      "ideal_partner": "Comment est mon partenaire idéal selon mon profil personnel et où pourrais-je le rencontrer?",
+      "relationship_challenges": "Quelles sont les causes personnels profondes des défis dans ma relation?",
       "synastry_analysis": "Comment est ma compatibilité synastrique avec mon partenaire, quelles sont nos forces et faiblesses?",
-      "marriage_timing": "Quels sont les moments astrologiques les plus favorables pour le mariage cette année?",
-      "career_paths": "Quels sont les chemins de carrière et secteurs les plus adaptés pour moi selon mon thème natal?",
+      "marriage_timing": "Quels sont les moments personnels les plus favorables pour le mariage cette année?",
+      "career_paths": "Quels sont les chemins de carrière et secteurs les plus adaptés pour moi selon mon profil personnel?",
       "financial_success": "Quelles périodes sont chanceuses pour moi pour l'abondance financière et le succès?",
-      "business_timing": "Quand est la meilleure fenêtre astrologique pour créer une entreprise ou être promu?",
+      "business_timing": "Quand est la meilleure fenêtre personnel pour créer une entreprise ou être promu?",
       "business_partners": "Avec quels signes devrais-je travailler pour les partenariats commerciaux?",
       "saturn_return": "Quand est mon retour de Saturne et comment dois-je me préparer à cette transformation?",
       "mercury_retrograde": "Comment Mercure rétrograde m'affecte-t-il et à quoi dois-je faire attention?",
@@ -8429,7 +8434,7 @@
       "critical_dates": "Quels sont les tournants critiques et dates importantes pour moi cette année?",
       "big_three": "Comment la combinaison de mon Soleil, Lune et ascendant façonne-t-elle ma personnalité?",
       "lunar_nodes": "Que disent mes noeuds lunaires sur mon voyage d'évolution spirituelle?",
-      "houses": "Comment les maisons vides et occupées dans mon thème natal affectent-elles ma vie?",
+      "houses": "Comment les maisons vides et occupées dans mon profil personnel affectent-elles ma vie?",
       "difficult_aspects": "Quelles leçons de vie apportent les aspects difficiles (carrés, oppositions) de mon thème?",
       "mc_ic_axis": "Comment ma carrière et vie familiale devraient-elles être façonnées selon mon axe MC et IC?",
       "life_path": "Comment mon nombre de chemin de vie affecte-t-il mon destin et mon but de vie?",
@@ -8442,13 +8447,13 @@
       "spiritual_awakening": "Où en suis-je dans mon processus actuel d'éveil spirituel et d'expansion de conscience?",
       "karmic_debts": "Comment mes dettes karmiques et résidus de vies passées affectent-ils cette vie?",
       "chakra_status": "Comment va mon système de chakras et corps énergétique, quels chakras sont bloqués?",
-      "healing_crystals": "Quelles devraient être mes pierres de guérison et cristaux selon mon signe et thème natal?",
+      "healing_crystals": "Quelles devraient être mes pierres de guérison et cristaux selon mon signe et profil personnel?",
       "moon_rituals": "Quelles sont tes suggestions de rituels et méditation adaptés à la phase lunaire d'aujourd'hui?",
-      "life_purpose": "Quel est mon vrai but et ma mission dans cette vie selon mon thème natal?",
+      "life_purpose": "Quel est mon vrai but et ma mission dans cette vie selon mon profil personnel?",
       "hidden_talents": "Quels sont mes talents cachés, mon potentiel attendant d'être activé?",
-      "repeating_patterns": "Quels sont les schémas qui se répètent cycliquement dans ma vie et leur explication astrologique?",
+      "repeating_patterns": "Quels sont les schémas qui se répètent cycliquement dans ma vie et leur explication personnel?",
       "blockages": "Quels sont les blocages qui me retiennent et quelles sont leurs racines cosmiques?",
-      "dream_meaning": "Que signifient mes rêves astrologiquement? Interprète le rêve que j'ai eu aujourd'hui.",
+      "dream_meaning": "Que signifient mes rêves personnelment? Interprète le rêve que j'ai eu aujourd'hui.",
       "subconscious_messages": "Quels messages mon subconscient envoie-t-il pendant cette période?",
       "sleep_cycles": "Comment la qualité de mon sommeil et mes cycles de rêve sont-ils affectés par les phases lunaires?",
       "lucid_dreaming": "Quand sont les moments cosmiques les plus favorables pour le rêve lucide?",
@@ -8456,33 +8461,33 @@
       "sexual_energy": "Comment puis-je transformer mon énergie sexuelle en pouvoir créatif et spirituel?",
       "breathing_techniques": "Quels sont les exercices de respiration et techniques de méditation spécifiques à mon signe?",
       "energy_blockages": "Ai-je des blocages dans mon corps énergétique? Comment puis-je les nettoyer?",
-      "weak_organs": "Quels sont mes organes faibles et problèmes de santé à surveiller selon mon thème natal?",
+      "weak_organs": "Quels sont mes organes faibles et problèmes de santé à surveiller selon mon profil personnel?",
       "herbal_healing": "Quelles méthodes de guérison par les plantes et traitements naturels conviennent à mon signe?",
-      "astro_nutrition": "Nutrition astrologique: Quels aliments sont bons pour moi selon mon signe?",
+      "astro_nutrition": "Nutrition personnel: Quels aliments sont bons pour moi selon mon signe?",
       "detox_timing": "Quand sont les phases lunaires et périodes les plus favorables pour la détox et la purification?",
-      "home_buying": "Quand est la période astrologique la plus favorable pour acheter une maison ou déménager?",
-      "family_dynamics": "Comment ma dynamique familiale et mes relations parentales s'expliquent-elles astrologiquement?",
+      "home_buying": "Quand est la période personnel la plus favorable pour acheter une maison ou déménager?",
+      "family_dynamics": "Comment ma dynamique familiale et mes relations parentales s'expliquent-elles personnelment?",
       "having_children": "Quand sont les moments cosmiques les plus favorables pour avoir des enfants?",
       "pets": "Quand est le bon moment pour adopter un animal et quels types d'animaux conviennent à mon signe?",
-      "lucky_places": "Géographie astrologique: Quelles villes et pays sont chanceux pour moi?",
+      "lucky_places": "Géographie personnel: Quelles villes et pays sont chanceux pour moi?",
       "travel_timing": "Quand sont les périodes les plus favorables et les plus risquées pour planifier un voyage?",
       "vacation_destinations": "Quelles destinations conviennent à mon énergie lors de la planification de vacances?",
       "learning_talents": "Pour quels sujets ai-je un talent naturel d'apprentissage?",
       "exam_dates": "Quelles sont les dates les plus favorables pour les examens, entretiens et présentations importantes?",
       "creative_periods": "Quand sont mes périodes les plus productives pour l'écriture créative et l'expression artistique?",
       "shadow_self": "Qu'est-ce que mon moi de l'ombre et comment puis-je faire la paix avec lui?",
-      "fears_origins": "Quelle est l'origine astrologique de mes peurs et émotions refoulées?",
+      "fears_origins": "Quelle est l'origine personnel de mes peurs et émotions refoulées?",
       "dark_moon_work": "Quel travail de l'ombre devrais-je faire pendant les périodes de lune noire?",
       "projection_patterns": "Mes schémas de projection: Que montrent réellement les choses qui me dérangent chez les autres?",
       "manifestation_timing": "Quand sont les fenêtres cosmiques les plus puissantes pour la manifestation ce mois-ci?",
       "intention_moon": "Quelles phases lunaires devrais-je utiliser pour renforcer mes intentions?",
       "abundance_rituals": "Quels sont les rituels spécifiques à mon signe pour attirer l'abondance et la prospérité?",
-      "vision_board": "Quand est le moment astrologique le plus favorable pour créer un tableau de vision?",
-      "past_lives": "Que dit mon thème natal sur mes vies passées?",
+      "vision_board": "Quand est le moment personnel le plus favorable pour créer un tableau de vision?",
+      "past_lives": "Que dit mon profil personnel sur mes vies passées?",
       "guardian_angels": "Qui sont mes anges gardiens et guides spirituels?",
       "star_seeds": "Que sais-tu sur les graines d'étoiles et mes origines cosmiques?",
       "akashic_records": "Que disent mes archives akashiques sur cette vie?",
-      "power_stones": "Quelles sont mes pierres de pouvoir selon mon signe et mon thème natal?",
+      "power_stones": "Quelles sont mes pierres de pouvoir selon mon signe et mon profil personnel?",
       "current_crystals": "Quels cristaux devrais-je porter pendant cette période et comment les activer?",
       "stones_to_avoid": "Quelles pierres devrais-je éviter lors du choix de bijoux?",
       "full_moon_ritual": "Rituel de pleine lune: Que devrais-je libérer et célébrer ce mois-ci?",
@@ -8977,7 +8982,7 @@
       "sign_connection": "Votre signe et votre chemin de vie se renforcent mutuellement"
     },
     "responses": {
-      "greeting_intro": "Je suis Kozmoz, votre guide cosmique IA personnel !\n\nAvec l'énergie puissante de l'élément {element}, je suis ici pour vous aider aujourd'hui.\n\nSujets dont nous pouvons discuter :\n\n🔮 ZODIAQUE & INTERPRÉTATION\n• Horoscope quotidien\n• Amour & Relations\n• Carrière & Finances\n• Analyse de personnalité\n\n🌙 PHASES LUNAIRES\n• Phase lunaire actuelle\n• Énergies lunaires\n• Rituels lunaires\n\n✨ PERSPECTIVES COSMIQUES\n• Transits & Effets\n• Numérologie\n• Lecture de Tarot\n• Analyse de l'aura\n\nDemandez-moi simplement ce qui vous intéresse !",
+      "greeting_intro": "Je suis Kozmoz, votre guide cosmique IA personnel !\n\nAvec l'énergie puissante de l'élément {element}, je suis ici pour vous aider aujourd'hui.\n\nSujets dont nous pouvons discuter :\n\n🔮 ARCHÉTYPE & INTERPRÉTATION\n• Aperçu quotidien\n• Amour & Relations\n• Carrière & Finances\n• Analyse de personnalité\n\n🌙 PHASES LUNAIRES\n• Phase lunaire actuelle\n• Énergies lunaires\n• Rituels lunaires\n\n✨ PERSPECTIVES COSMIQUES\n• Transits & Effets\n• Numérologie\n• Lecture de Tarot\n• Analyse de l'aura\n\nDemandez-moi simplement ce qui vous intéresse !",
       "daily_report_header": "RAPPORT COSMIQUE QUOTIDIEN {sign}",
       "morning_energy": "ÉNERGIE DU MATIN (06:00 - 12:00)",
       "noon_energy": "ÉNERGIE DE MIDI (12:00 - 18:00)",
@@ -9056,7 +9061,7 @@
       "practical_advice": "CONSEIL PRATIQUE",
       "wisdom_affirmation": "AFFIRMATION DU JOUR",
       "more_help": "Pour une aide plus spécifique, vous pouvez me demander :",
-      "example_questions": "• \"Mon horoscope pour aujourd'hui\"\n• \"Comment sera ma vie amoureuse ?\"\n• \"Conseils pour la carrière\"\n• \"Effets des phases lunaires\"",
+      "example_questions": "• \"Mon aperçu pour aujourd'hui\"\n• \"Comment sera ma vie amoureuse ?\"\n• \"Conseils pour la carrière\"\n• \"Effets des phases lunaires\"",
       "date_format": "{day}/{month}/{year}",
       "moon_in_sign": "Lune : En {sign}",
       "rising_sign_header": "{sign} & ANALYSE DE L'ASCENDANT",
@@ -10056,7 +10061,7 @@
       "pisces": "Vous êtes vu comme rêveur, artistique et spirituel. Vous rayonnez d'une énergie empathique et compréhensive."
     },
     "headers": {
-      "birth_chart_report": "Rapport de Thème Natal",
+      "birth_chart_report": "Rapport de Profil Personnel",
       "cosmic_guide": "Votre Guide Cosmique",
       "page": "Page"
     },
@@ -10066,7 +10071,7 @@
       "element_distribution": "DISTRIBUTION DES ÉLÉMENTS",
       "modality_distribution": "DISTRIBUTION DES MODALITÉS",
       "personality_interpretation": "INTERPRÉTATION DE LA PERSONNALITÉ",
-      "daily_horoscope": "HOROSCOPE DU JOUR",
+      "daily_horoscope": "APERÇU DU JOUR",
       "daily_recommendation": "RECOMMANDATION DU JOUR",
       "overall_compatibility": "COMPATIBILITÉ GLOBALE",
       "category_compatibility": "COMPATIBILITÉ PAR CATÉGORIE",
@@ -10494,19 +10499,24 @@
       "avoidance": "Évitez d'ignorer le rêve."
     },
     "exploration": {
-      "birth_chart_title": "Explorez votre thème natal",
-      "birth_chart_desc": "Voyez la connexion entre les symboles de votre rêve et votre thème natal",
+      "birth_chart_title": "Explorez votre profil personnel",
+      "birth_chart_desc": "Voyez la connexion entre les symboles de votre rêve et votre profil personnel",
+      "personal_profile_title": "Explorez votre profil personnel",
+      "personal_profile_desc": "Voyez comment les symboles de rêve se connectent à vos schémas intérieurs",
       "moon_calendar_title": "Consultez le calendrier lunaire",
       "moon_calendar_desc": "Apprenez la signification de la phase lunaire lors de votre rêve",
       "transits_title": "Examinez vos transits",
       "transits_desc": "L'effet des transits planétaires actuels sur votre rêve",
+      "timing_insights_title": "Aperçus de Timing",
+      "timing_insights_desc": "Explorez comment les rythmes cosmiques influencent vos schémas de rêve",
       "tarot_title": "Tirez le Tarot",
       "tarot_desc": "Approfondissez le message de votre rêve avec le tarot",
       "neptune_title": "Transit de Neptune",
       "neptune_desc": "Les symboles d'eau sont connectés à l'énergie de Neptune",
       "pluto_title": "Analyse de Pluton",
       "pluto_desc": "Les symboles de transformation résonnent avec Pluton",
-      "category_astrology": "Astrologie",
+      "category_astrology": "Connaissance de soi",
+      "category_self_awareness": "Conscience de Soi",
       "category_moon": "Lune",
       "category_symbols": "Symbols"
     },

@@ -414,7 +414,7 @@ class EkSemboller {
         EmotionalTone.heyecan: 'Parlayan yıldız - tanınma ve başarı',
       },
       archetypes: ['Rehber', 'Kader', 'İlahi'],
-      relatedSymbols: ['sky', 'night', 'light', 'destiny'],
+      relatedSymbols: ['sky', 'night', 'light', 'purpose'],
       shadowAspect: 'Ulaşılamazlık, soğuk uzaklık',
       lightAspect: 'Rehberlik, kader, ilham, amaç',
     ),

@@ -1,6 +1,6 @@
 /// Insight Section - Apple-Safe Reflection Entry Point
 /// Primary CTA on home screen - "Start a Reflection"
-/// NO astrology, NO predictions, NO fortune-telling
+/// Reflection-only, safe language
 library;
 
 import 'package:flutter/material.dart';
@@ -14,7 +14,7 @@ import '../../../data/providers/app_providers.dart';
 import '../../../data/services/l10n_service.dart';
 
 /// Clean, Apple-safe section for starting personal reflections
-/// Replaces the old astrology-forward Kozmoz section
+/// Primary reflection section for home screen
 class InsightSection extends ConsumerWidget {
   const InsightSection({super.key});
 

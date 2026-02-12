@@ -842,7 +842,7 @@ class MegaDreamSymbolsPart6 {
         EmotionalTone.ozlem: 'Tamamlanmış döngü - yenilenme',
       },
       archetypes: ['Döngü', 'Düzen', 'Kozmik'],
-      relatedSymbols: ['cycle', 'zodiac', 'time', 'completion'],
+      relatedSymbols: ['cycle', 'rhythm', 'time', 'completion'],
       shadowAspect: 'Döngüde sıkışma, tekrar',
       lightAspect: 'Kozmik uyum, tamamlanma, düzen',
     ),

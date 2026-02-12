@@ -1,7 +1,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 // APP PROVIDERS - Core State Management (App Store 4.3(b) Compliant)
 // ════════════════════════════════════════════════════════════════════════════
-// All astrology-related providers have been removed for App Store compliance.
+// All legacy providers have been removed for App Store compliance.
 // This file now focuses on:
 // - User profile management
 // - Language settings

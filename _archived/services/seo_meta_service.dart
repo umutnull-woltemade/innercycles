@@ -23,7 +23,7 @@ class SeoMetaService {
   static final Map<String, PageMeta> _pageMetas = {
     // Ana Sayfa
     'home': PageMeta(
-      title: 'Venus One — Kişisel Kozmik Rehberiniz | Ücretsiz Doğum Haritası',
+      title: 'InnerCycles — Kişisel Kozmik Rehberiniz | Ücretsiz Doğum Haritası',
       description:
           'Ücretsiz doğum haritası, günlük burç yorumları, synastry uyum analizi ve gezegen transitleri. Swiss Ephemeris ile hesaplanan profesyonel astroloji.',
       keywords: [
@@ -41,7 +41,7 @@ class SeoMetaService {
 
     // Doğum Haritası
     'birth-chart': PageMeta(
-      title: 'Ücretsiz Doğum Haritası Hesaplama | Venus One',
+      title: 'Ücretsiz Doğum Haritası Hesaplama | InnerCycles',
       description:
           'Profesyonel doğum haritası hesaplayıcı. Gezegen pozisyonları, ev yerleşimleri, açılar ve yükselen burç analizi. Swiss Ephemeris hassasiyetinde.',
       keywords: [
@@ -58,7 +58,7 @@ class SeoMetaService {
 
     // Günlük Burç Refleksiyonu
     'horoscope': PageMeta(
-      title: 'Günlük Refleksiyon Temaları — 12 Burç İçin | Venus One',
+      title: 'Günlük Refleksiyon Temaları — 12 Burç İçin | InnerCycles',
       description:
           'Günlük, haftalık ve aylık refleksiyon temaları. Aşk, kariyer, sağlık ve wellness konularında farkındalık içgörüleri. Kişisel gelişim için refleksiyon aracı.',
       keywords: [
@@ -75,7 +75,7 @@ class SeoMetaService {
 
     // Synastry (İlişki Uyumu)
     'synastry': PageMeta(
-      title: 'Synastry — İlişki Uyumu Analizi | Venus One',
+      title: 'Synastry — İlişki Uyumu Analizi | InnerCycles',
       description:
           'İki kişinin doğum haritaları arasındaki uyumu keşfedin. Synastry açıları, gezegen etkileşimleri ve ilişki dinamikleri analizi.',
       keywords: [
@@ -92,7 +92,7 @@ class SeoMetaService {
 
     // Kompozit Harita
     'composite': PageMeta(
-      title: 'Kompozit Harita — İlişkinin Doğum Haritası | Venus One',
+      title: 'Kompozit Harita — İlişkinin Doğum Haritası | InnerCycles',
       description:
           'İki kişinin birleşik haritası. İlişkinizin ortak enerjisi, potansiyeli ve dinamikleri. Kompozit analiz ile ilişkinizi derinlemesine keşfedin.',
       keywords: [
@@ -109,7 +109,7 @@ class SeoMetaService {
 
     // Solar Return
     'solar-return': PageMeta(
-      title: 'Solar Return — Güneş Dönüşü Haritası | Venus One',
+      title: 'Solar Return — Güneş Dönüşü Haritası | InnerCycles',
       description:
           'Yıllık Solar Return haritanız. Doğum gününüzde Güneşin konumuna göre yılın enerjisini, temalarını ve potansiyellerini keşfedin.',
       keywords: [
@@ -126,7 +126,7 @@ class SeoMetaService {
 
     // Progresyonlar
     'progressions': PageMeta(
-      title: 'İkincil Progresyonlar — İç Evrim Haritası | Venus One',
+      title: 'İkincil Progresyonlar — İç Evrim Haritası | InnerCycles',
       description:
           'Secondary Progressions ile içsel gelişiminizi takip edin. Progrese Ay fazları, gezegen ilerlemeleri ve kişisel evrim döngüleri.',
       keywords: [
@@ -143,7 +143,7 @@ class SeoMetaService {
 
     // Transitler
     'transits': PageMeta(
-      title: 'Gezegen Transitleri — Güncel Kozmik Akış | Venus One',
+      title: 'Gezegen Transitleri — Güncel Kozmik Akış | InnerCycles',
       description:
           'Şu anki gezegen transitlerinin doğum haritanıza etkileri. Transit Satürn, Jüpiter, Pluto ve diğer gezegenlerin kişisel etkileri.',
       keywords: [
@@ -160,7 +160,7 @@ class SeoMetaService {
 
     // Vedik Astroloji
     'vedic': PageMeta(
-      title: 'Vedik Astroloji — Hint Astrolojisi Haritası | Venus One',
+      title: 'Vedik Astroloji — Hint Astrolojisi Haritası | InnerCycles',
       description:
           'Jyotish (Vedik Astroloji) haritanız. Sidereal zodiac, Nakshatra analizi, Dasha dönemleri ve Hint astroloji yorumları.',
       keywords: [
@@ -178,7 +178,7 @@ class SeoMetaService {
 
     // Drakonik Harita
     'draconic': PageMeta(
-      title: 'Drakonik Harita — Ruhsal Köken Haritası | Venus One',
+      title: 'Drakonik Harita — Ruhsal Köken Haritası | InnerCycles',
       description:
           'Ay Düğümüne dayalı drakonik haritanız. Ruhsal kökeniniz, karma mirasınız ve yaşam amacınızı keşfedin.',
       keywords: [
@@ -195,7 +195,7 @@ class SeoMetaService {
 
     // Asteroidler
     'asteroids': PageMeta(
-      title: 'Asteroidler — Chiron, Lilith, Juno, Ceres | Venus One',
+      title: 'Asteroidler — Chiron, Lilith, Juno, Ceres | InnerCycles',
       description:
           'Asteroitlerin doğum haritanızdaki etkileri. Chiron yaraları, Lilith gölgesi, Juno ilişki kalıpları ve Ceres bakım tarzı.',
       keywords: [
@@ -214,7 +214,7 @@ class SeoMetaService {
 
     // Local Space
     'local-space': PageMeta(
-      title: 'Local Space — Mekansal Astroloji | Venus One',
+      title: 'Local Space — Mekansal Astroloji | InnerCycles',
       description:
           'Bulunduğunuz konumun astrolojik analizi. Gezegen yönleri, enerji hatları ve mekansal etkilerin haritası.',
       keywords: [
@@ -231,7 +231,7 @@ class SeoMetaService {
 
     // Zamanlama (Timing)
     'timing': PageMeta(
-      title: 'Astrolojik Zamanlama — Electional Astrology | Venus One',
+      title: 'Astrolojik Zamanlama — Electional Astrology | InnerCycles',
       description:
           'Önemli kararlarınız için en uygun zamanları keşfedin. İş başlangıçları, evlilik, seyahat ve yatırım için ideal tarihler.',
       keywords: [
@@ -248,7 +248,7 @@ class SeoMetaService {
 
     // Yıllık Önizleme
     'year-ahead': PageMeta(
-      title: 'Yıllık Astroloji Önizlemesi — 2026 Analizi | Venus One',
+      title: 'Yıllık Astroloji Önizlemesi — 2026 Analizi | InnerCycles',
       description:
           '2026 yılı için kişisel astroloji önizlemeniz. Major transitler, tutulmalar ve önemli dönemlerin analizi.',
       keywords: [
@@ -266,7 +266,7 @@ class SeoMetaService {
     // Haftalık Burç
     'weekly-horoscope': PageMeta(
       title:
-          'Haftalık Burç Yorumları — Bu Hafta İçin Refleksiyon Temaları | Venus One',
+          'Haftalık Burç Yorumları — Bu Hafta İçin Refleksiyon Temaları | InnerCycles',
       description:
           'Haftalık burç yorumları. Haftanın öne çıkan günleri, kozmik enerjileri ve 12 burç için detaylı haftalık analiz.',
       keywords: [
@@ -283,7 +283,7 @@ class SeoMetaService {
     // Aylık Burç
     'monthly-horoscope': PageMeta(
       title:
-          'Aylık Burç Yorumları — Bu Ay İçin Refleksiyon Temaları | Venus One',
+          'Aylık Burç Yorumları — Bu Ay İçin Refleksiyon Temaları | InnerCycles',
       description:
           'Aylık burç yorumları. Ayın önemli transitleri, dolunay/yeniay etkileri ve 12 burç için detaylı aylık analiz.',
       keywords: [
@@ -300,7 +300,7 @@ class SeoMetaService {
     // Yıllık Burç
     'yearly-horoscope': PageMeta(
       title:
-          'Yıllık Burç Yorumları 2026 — Yılın Astrolojik Analizi | Venus One',
+          'Yıllık Burç Yorumları 2026 — Yılın Astrolojik Analizi | InnerCycles',
       description:
           '2026 yılı burç yorumları. Major gezegenler, tutulmalar ve yılın dönüm noktaları. Tüm burçlar için kapsamlı yıllık analiz.',
       keywords: [
@@ -316,7 +316,7 @@ class SeoMetaService {
 
     // Ünlüler
     'celebrities': PageMeta(
-      title: 'Ünlü Doğum Haritaları — Celebrity Astrology | Venus One',
+      title: 'Ünlü Doğum Haritaları — Celebrity Astrology | InnerCycles',
       description:
           'Ünlülerin doğum haritaları ve astrolojik analizleri. Dünya liderlerinden sanatçılara, sporculardan iş dünyasına ünlü haritaları.',
       keywords: [
@@ -332,7 +332,7 @@ class SeoMetaService {
 
     // Glossary (Sözlük)
     'glossary': PageMeta(
-      title: 'Astroloji Sözlüğü — Terimler ve Kavramlar | Venus One',
+      title: 'Astroloji Sözlüğü — Terimler ve Kavramlar | InnerCycles',
       description:
           'A\'dan Z\'ye astroloji terimleri sözlüğü. Açı, ev, burç, gezegen ve diğer kavramların detaylı açıklamaları.',
       keywords: [
@@ -348,7 +348,7 @@ class SeoMetaService {
 
     // Tarot
     'tarot': PageMeta(
-      title: 'Tarot Falı — Günlük Tarot Kartı | Venus One',
+      title: 'Tarot Falı — Günlük Tarot Kartı | InnerCycles',
       description:
           'Ücretsiz tarot falı. Günlük kart, 3 kart açılımı, aşk tarot ve Celtic Cross. 78 kartın detaylı anlamları.',
       keywords: [
@@ -365,7 +365,7 @@ class SeoMetaService {
 
     // Numeroloji
     'numerology': PageMeta(
-      title: 'Numeroloji — Sayılarla Kişilik Analizi | Venus One',
+      title: 'Numeroloji — Sayılarla Kişilik Analizi | InnerCycles',
       description:
           'Yaşam yolu sayınız, kişilik sayınız ve ruh sayınız. İsim numerolojisi ve doğum tarihi analizleri.',
       keywords: [
@@ -382,7 +382,7 @@ class SeoMetaService {
 
     // Satürn Dönüşü
     'saturn-return': PageMeta(
-      title: 'Satürn Dönüşü — 29 Yaş Krizi Astrolojisi | Venus One',
+      title: 'Satürn Dönüşü — 29 Yaş Krizi Astrolojisi | InnerCycles',
       description:
           'Satürn Dönüşü nedir ve sizi nasıl etkiler? 27-30 ve 57-60 yaş dönemleri, hayat dersleri ve olgunlaşma süreci.',
       keywords: [
@@ -399,7 +399,7 @@ class SeoMetaService {
 
     // Premium
     'premium': PageMeta(
-      title: 'Venus One Premium — Gelişmiş Astroloji Özellikleri',
+      title: 'InnerCycles Premium — Gelişmiş Astroloji Özellikleri',
       description:
           'Premium özelliklere erişin: Detaylı transit raporları, karşılaştırmalı analizler, sınırsız harita ve daha fazlası.',
       keywords: ['astroloji premium', 'venusone premium', 'gelişmiş astroloji'],
@@ -410,7 +410,7 @@ class SeoMetaService {
 
     // Profil
     'profile': PageMeta(
-      title: 'Profilim — Astroloji Profilim | Venus One',
+      title: 'Profilim — Astroloji Profilim | InnerCycles',
       description:
           'Kişisel astroloji profiliniz. Kayıtlı haritalarınız, favorileriniz ve astrolojik tercihleriniz.',
       keywords: ['astroloji profil', 'doğum bilgisi', 'kişisel harita'],
@@ -421,7 +421,7 @@ class SeoMetaService {
 
     // Ayarlar
     'settings': PageMeta(
-      title: 'Ayarlar | Venus One',
+      title: 'Ayarlar | InnerCycles',
       description:
           'Uygulama ayarları. Ev sistemi, zodiac tipi, tema ve bildirim tercihleri.',
       keywords: ['ayarlar', 'tercihler', 'uygulama ayarları'],
@@ -432,7 +432,7 @@ class SeoMetaService {
 
     // Kozmoz (Cosmic Discovery)
     'kozmoz': PageMeta(
-      title: 'Kozmoz — Günlük Kozmik Keşif | Venus One',
+      title: 'Kozmoz — Günlük Kozmik Keşif | InnerCycles',
       description:
           'Her gün yeni bir kozmik mesaj. Günün enerjisi, ay fazı etkisi ve kişisel kozmik rehberlik.',
       keywords: ['kozmik mesaj', 'günlük enerji', 'ay fazı', 'kozmik rehber'],
@@ -443,7 +443,7 @@ class SeoMetaService {
 
     // Rüyalar
     'dreams': PageMeta(
-      title: 'Rüya Yorumu — Sembolik Rüya Analizi | Venus One',
+      title: 'Rüya Yorumu — Sembolik Rüya Analizi | InnerCycles',
       description:
           'Rüyalarınızın sembolik anlamlarını keşfedin. Arketipsel imgeler, bilinçaltı mesajlar ve kişisel içgörüler.',
       keywords: [
@@ -459,7 +459,7 @@ class SeoMetaService {
 
     // Chakra
     'chakra': PageMeta(
-      title: 'Chakra Analizi — Enerji Merkezi Dengesi | Venus One',
+      title: 'Chakra Analizi — Enerji Merkezi Dengesi | InnerCycles',
       description:
           'Yedi ana chakranızın analizi. Enerji blokajları, denge durumu ve chakra uyumlaştırma önerileri.',
       keywords: [
@@ -476,7 +476,7 @@ class SeoMetaService {
 
     // Ritüeller
     'rituals': PageMeta(
-      title: 'Kozmik Ritüeller — Ay Fazı Ritüelleri | Venus One',
+      title: 'Kozmik Ritüeller — Ay Fazı Ritüelleri | InnerCycles',
       description:
           'Yeniay ve dolunay ritüelleri. Niyet belirleme, manifestasyon ve enerji temizliği pratikleri.',
       keywords: [
@@ -495,7 +495,7 @@ class SeoMetaService {
     // CANONICAL DREAM PAGES - AI-First SEO with FAQ Schema
     // ════════════════════════════════════════════════════════════════
     'ruya/dusmek': PageMeta(
-      title: 'Rüyada Düşmek Ne Demek? | Rüya İzi — Venus One',
+      title: 'Rüyada Düşmek Ne Demek? | Rüya İzi — InnerCycles',
       description:
           'Rüyada düşmek kontrol kaybı hissini yansıtır. Hayatta bir şeylerin elimizden kaydığını düşündüğümüzde ortaya çıkar. Düşme rüyalarının psikolojik anlamı.',
       keywords: [
@@ -509,7 +509,7 @@ class SeoMetaService {
       schemaType: SchemaType.faqPage,
     ),
     'ruya/su-gormek': PageMeta(
-      title: 'Rüyada Su Görmek Ne Anlama Gelir? | Rüya İzi — Venus One',
+      title: 'Rüyada Su Görmek Ne Anlama Gelir? | Rüya İzi — InnerCycles',
       description:
           'Rüyada su görmek bilinçaltını ve duyguları simgeler. Suyun durumu iç dünyanın durumunu yansıtır. Durgun su huzuru, dalgalı su karmaşayı gösterir.',
       keywords: [
@@ -523,7 +523,7 @@ class SeoMetaService {
       schemaType: SchemaType.faqPage,
     ),
     'ruya/tekrar-eden': PageMeta(
-      title: 'Tekrar Eden Rüyalar Neden Olur? | Rüya İzi — Venus One',
+      title: 'Tekrar Eden Rüyalar Neden Olur? | Rüya İzi — InnerCycles',
       description:
           'Tekrar eden rüyalar çözülmemiş bir duygusal konuyu işaret eder. Bilinçaltının dikkatinizi çekmek istediği mesajlar. Tekrarlayan rüya kalıpları.',
       keywords: [
@@ -537,7 +537,7 @@ class SeoMetaService {
       schemaType: SchemaType.faqPage,
     ),
     'ruya/kosmak': PageMeta(
-      title: 'Rüyada Koşmak Ne Anlama Gelir? | Rüya İzi — Venus One',
+      title: 'Rüyada Koşmak Ne Anlama Gelir? | Rüya İzi — InnerCycles',
       description:
           'Rüyada koşmak bir şeyden kaçma veya bir şeye ulaşma arzusunu gösterir. Koşma hızı ve yönü duygusal durumu yansıtır.',
       keywords: [
@@ -551,7 +551,7 @@ class SeoMetaService {
       schemaType: SchemaType.faqPage,
     ),
     'ruya/ucmak': PageMeta(
-      title: 'Rüyada Uçmak Ne Demek? | Rüya İzi — Venus One',
+      title: 'Rüyada Uçmak Ne Demek? | Rüya İzi — InnerCycles',
       description:
           'Rüyada uçmak özgürlük, başarı ve engelleri aşma arzusunu simgeler. Uçuş yüksekliği ve kontrolü öz güveni yansıtır.',
       keywords: [
@@ -565,7 +565,7 @@ class SeoMetaService {
       schemaType: SchemaType.faqPage,
     ),
     'ruya/karanlik': PageMeta(
-      title: 'Rüyada Karanlık Görmek Ne Anlama Gelir? | Rüya İzi — Venus One',
+      title: 'Rüyada Karanlık Görmek Ne Anlama Gelir? | Rüya İzi — InnerCycles',
       description:
           'Rüyada karanlık bilinmeyeni, korkulaı ve belirsizliği simgeler. Karanlıkta kaybolmak veya yol bulmak duygusal durumu yansıtır.',
       keywords: [
@@ -579,7 +579,7 @@ class SeoMetaService {
       schemaType: SchemaType.faqPage,
     ),
     'ruya/kaybolmak': PageMeta(
-      title: 'Rüyada Kaybolmak Ne Anlama Gelir? | Rüya İzi — Venus One',
+      title: 'Rüyada Kaybolmak Ne Anlama Gelir? | Rüya İzi — InnerCycles',
       description:
           'Rüyada kaybolmak yön kaybını ve belirsizliği simgeler. Hayatta rotanı kaybetmiş hissetmek bilinçaltının uyarısı olabilir.',
       keywords: [
@@ -593,7 +593,7 @@ class SeoMetaService {
       schemaType: SchemaType.faqPage,
     ),
     'ruya/sessiz-kalmak': PageMeta(
-      title: 'Rüyada Ses Çıkaramamak Ne Demek? | Rüya İzi — Venus One',
+      title: 'Rüyada Ses Çıkaramamak Ne Demek? | Rüya İzi — InnerCycles',
       description:
           'Rüyada bağıramamak veya konuşamamak ifade edilememiş duyguları simgeler. İletişim zorlukları ve bastırılmış düşünceler.',
       keywords: [
@@ -607,7 +607,7 @@ class SeoMetaService {
       schemaType: SchemaType.faqPage,
     ),
     'ruya/aramak': PageMeta(
-      title: 'Rüyada Bir Şey Aramak Ne Anlama Gelir? | Rüya İzi — Venus One',
+      title: 'Rüyada Bir Şey Aramak Ne Anlama Gelir? | Rüya İzi — InnerCycles',
       description:
           'Rüyada aramak eksiklik hissini ve tamamlanmamış bir arayışı simgeler. Neyi aradığınız bilinçaltının mesajını ortaya koyar.',
       keywords: [
@@ -621,7 +621,7 @@ class SeoMetaService {
       schemaType: SchemaType.faqPage,
     ),
     'ruya/gecmis': PageMeta(
-      title: 'Rüyada Geçmiş Görmek Ne Demek? | Rüya İzi — Venus One',
+      title: 'Rüyada Geçmiş Görmek Ne Demek? | Rüya İzi — InnerCycles',
       description:
           'Rüyada geçmişi görmek çözülmemiş duygular ve nostaljik bağları simgeler. Eski yerler, kişiler ve anıların anlamı.',
       keywords: [
@@ -635,7 +635,7 @@ class SeoMetaService {
       schemaType: SchemaType.faqPage,
     ),
     'ruya/ucamamak': PageMeta(
-      title: 'Rüyada Uçamamak Ne Demek? | Rüya İzi — Venus One',
+      title: 'Rüyada Uçamamak Ne Demek? | Rüya İzi — InnerCycles',
       description:
           'Rüyada uçmaya çalışıp uçamamak engellenmişlik hissini yansıtır. Hedeflere ulaşmakta zorluk ve sınırlanmış hissetme.',
       keywords: [
@@ -649,7 +649,7 @@ class SeoMetaService {
       schemaType: SchemaType.faqPage,
     ),
     'ruya/kaybetmek': PageMeta(
-      title: 'Rüyada Bir Şey Kaybetmek Ne Anlama Gelir? | Rüya İzi — Venus One',
+      title: 'Rüyada Bir Şey Kaybetmek Ne Anlama Gelir? | Rüya İzi — InnerCycles',
       description:
           'Rüyada kaybetmek değerli bir şeyi yitirme korkusunu simgeler. Kaybedilen nesne veya kişi duygusal bağı ortaya koyar.',
       keywords: [
@@ -668,7 +668,7 @@ class SeoMetaService {
   static final Map<String, PageMeta> _pageMetasEn = {
     // Home Page
     'home': PageMeta(
-      title: 'Venus One — Your Personal Cosmic Guide | Free Birth Chart',
+      title: 'InnerCycles — Your Personal Cosmic Guide | Free Birth Chart',
       description:
           'Free birth chart, daily horoscope readings, synastry compatibility analysis, and planetary transits. Professional astrology calculated with Swiss Ephemeris.',
       keywords: [
@@ -686,7 +686,7 @@ class SeoMetaService {
 
     // Birth Chart
     'birth-chart': PageMeta(
-      title: 'Free Birth Chart Calculator | Venus One',
+      title: 'Free Birth Chart Calculator | InnerCycles',
       description:
           'Professional birth chart calculator. Planet positions, house placements, aspects, and rising sign analysis. Swiss Ephemeris accuracy.',
       keywords: [
@@ -703,7 +703,7 @@ class SeoMetaService {
 
     // Daily Horoscope
     'horoscope': PageMeta(
-      title: 'Daily Horoscope — Detailed Readings for All 12 Signs | Venus One',
+      title: 'Daily Horoscope — Detailed Readings for All 12 Signs | InnerCycles',
       description:
           'Daily, weekly, and monthly horoscope readings. Love, career, health, and money cosmic energy analysis. Personalized readings for all zodiac signs.',
       keywords: [
@@ -720,7 +720,7 @@ class SeoMetaService {
 
     // Synastry (Relationship Compatibility)
     'synastry': PageMeta(
-      title: 'Synastry — Relationship Compatibility Analysis | Venus One',
+      title: 'Synastry — Relationship Compatibility Analysis | InnerCycles',
       description:
           'Discover the compatibility between two birth charts. Synastry aspects, planetary interactions, and relationship dynamics analysis.',
       keywords: [
@@ -738,7 +738,7 @@ class SeoMetaService {
     // Composite Chart
     'composite': PageMeta(
       title:
-          'Composite Chart — The Birth Chart of Your Relationship | Venus One',
+          'Composite Chart — The Birth Chart of Your Relationship | InnerCycles',
       description:
           'The combined chart of two people. Your relationship\'s shared energy, potential, and dynamics. Explore your relationship deeply with composite analysis.',
       keywords: [
@@ -754,7 +754,7 @@ class SeoMetaService {
 
     // Solar Return
     'solar-return': PageMeta(
-      title: 'Solar Return — Birthday Chart | Venus One',
+      title: 'Solar Return — Birthday Chart | InnerCycles',
       description:
           'Your annual Solar Return chart. Discover the year\'s energy, themes, and potentials based on the Sun\'s position on your birthday.',
       keywords: [
@@ -770,7 +770,7 @@ class SeoMetaService {
 
     // Progressions
     'progressions': PageMeta(
-      title: 'Secondary Progressions — Inner Evolution Chart | Venus One',
+      title: 'Secondary Progressions — Inner Evolution Chart | InnerCycles',
       description:
           'Track your inner development with Secondary Progressions. Progressed Moon phases, planetary progressions, and personal evolution cycles.',
       keywords: [
@@ -787,7 +787,7 @@ class SeoMetaService {
 
     // Transits
     'transits': PageMeta(
-      title: 'Planetary Transits — Current Cosmic Flow | Venus One',
+      title: 'Planetary Transits — Current Cosmic Flow | InnerCycles',
       description:
           'Current planetary transits\' effects on your birth chart. Transit Saturn, Jupiter, Pluto, and other planets\' personal influences.',
       keywords: [
@@ -804,7 +804,7 @@ class SeoMetaService {
 
     // Vedic Astrology
     'vedic': PageMeta(
-      title: 'Vedic Astrology — Jyotish Chart | Venus One',
+      title: 'Vedic Astrology — Jyotish Chart | InnerCycles',
       description:
           'Your Jyotish (Vedic Astrology) chart. Sidereal zodiac, Nakshatra analysis, Dasha periods, and Hindu astrology interpretations.',
       keywords: [
@@ -822,7 +822,7 @@ class SeoMetaService {
 
     // Draconic Chart
     'draconic': PageMeta(
-      title: 'Draconic Chart — Soul Origin Chart | Venus One',
+      title: 'Draconic Chart — Soul Origin Chart | InnerCycles',
       description:
           'Your draconic chart based on the Lunar Node. Discover your soul\'s origin, karmic heritage, and life purpose.',
       keywords: [
@@ -838,7 +838,7 @@ class SeoMetaService {
 
     // Asteroids
     'asteroids': PageMeta(
-      title: 'Asteroids — Chiron, Lilith, Juno, Ceres | Venus One',
+      title: 'Asteroids — Chiron, Lilith, Juno, Ceres | InnerCycles',
       description:
           'Asteroids\' effects in your birth chart. Chiron wounds, Lilith shadow, Juno relationship patterns, and Ceres nurturing style.',
       keywords: [
@@ -857,7 +857,7 @@ class SeoMetaService {
 
     // Local Space
     'local-space': PageMeta(
-      title: 'Local Space — Spatial Astrology | Venus One',
+      title: 'Local Space — Spatial Astrology | InnerCycles',
       description:
           'Astrological analysis of your current location. Planetary directions, energy lines, and spatial effects map.',
       keywords: [
@@ -874,7 +874,7 @@ class SeoMetaService {
 
     // Timing (Electional)
     'timing': PageMeta(
-      title: 'Astrological Timing — Electional Astrology | Venus One',
+      title: 'Astrological Timing — Electional Astrology | InnerCycles',
       description:
           'Discover the best times for important decisions. Ideal dates for business starts, marriage, travel, and investments.',
       keywords: [
@@ -891,7 +891,7 @@ class SeoMetaService {
 
     // Year Ahead
     'year-ahead': PageMeta(
-      title: 'Annual Astrology Preview — 2026 Analysis | Venus One',
+      title: 'Annual Astrology Preview — 2026 Analysis | InnerCycles',
       description:
           'Your personal astrology preview for 2026. Major transits, eclipses, and key period analysis.',
       keywords: [
@@ -909,7 +909,7 @@ class SeoMetaService {
     // Weekly Horoscope
     'weekly-horoscope': PageMeta(
       title:
-          'Weekly Horoscope — What Awaits the Zodiac Signs This Week | Venus One',
+          'Weekly Horoscope — What Awaits the Zodiac Signs This Week | InnerCycles',
       description:
           'Weekly horoscope readings. The week\'s highlight days, cosmic energies, and detailed weekly analysis for all 12 signs.',
       keywords: [
@@ -926,7 +926,7 @@ class SeoMetaService {
     // Monthly Horoscope
     'monthly-horoscope': PageMeta(
       title:
-          'Monthly Horoscope — What Awaits the Zodiac Signs This Month | Venus One',
+          'Monthly Horoscope — What Awaits the Zodiac Signs This Month | InnerCycles',
       description:
           'Monthly horoscope readings. Major transits, full moon/new moon effects, and detailed monthly analysis for all 12 signs.',
       keywords: [
@@ -942,7 +942,7 @@ class SeoMetaService {
 
     // Yearly Horoscope
     'yearly-horoscope': PageMeta(
-      title: '2026 Yearly Horoscope — Annual Astrological Analysis | Venus One',
+      title: '2026 Yearly Horoscope — Annual Astrological Analysis | InnerCycles',
       description:
           '2026 horoscope readings. Major planets, eclipses, and turning points of the year. Comprehensive annual analysis for all signs.',
       keywords: [
@@ -958,7 +958,7 @@ class SeoMetaService {
 
     // Celebrities
     'celebrities': PageMeta(
-      title: 'Celebrity Birth Charts — Celebrity Astrology | Venus One',
+      title: 'Celebrity Birth Charts — Celebrity Astrology | InnerCycles',
       description:
           'Birth charts and astrological analyses of celebrities. From world leaders to artists, athletes to business leaders.',
       keywords: [
@@ -974,7 +974,7 @@ class SeoMetaService {
 
     // Glossary
     'glossary': PageMeta(
-      title: 'Astrology Glossary — Terms and Concepts | Venus One',
+      title: 'Astrology Glossary — Terms and Concepts | InnerCycles',
       description:
           'A to Z astrology terms dictionary. Detailed explanations of aspects, houses, signs, planets, and other concepts.',
       keywords: [
@@ -990,7 +990,7 @@ class SeoMetaService {
 
     // Tarot
     'tarot': PageMeta(
-      title: 'Tarot Reading — Daily Tarot Card | Venus One',
+      title: 'Tarot Reading — Daily Tarot Card | InnerCycles',
       description:
           'Free tarot reading. Daily card, 3-card spread, love tarot, and Celtic Cross. Detailed meanings of all 78 cards.',
       keywords: [
@@ -1007,7 +1007,7 @@ class SeoMetaService {
 
     // Numerology
     'numerology': PageMeta(
-      title: 'Numerology — Personality Analysis Through Numbers | Venus One',
+      title: 'Numerology — Personality Analysis Through Numbers | InnerCycles',
       description:
           'Your life path number, personality number, and soul number. Name numerology and birth date analyses.',
       keywords: [
@@ -1024,7 +1024,7 @@ class SeoMetaService {
 
     // Saturn Return
     'saturn-return': PageMeta(
-      title: 'Saturn Return — Age 29 Crisis Astrology | Venus One',
+      title: 'Saturn Return — Age 29 Crisis Astrology | InnerCycles',
       description:
           'What is Saturn Return and how does it affect you? The 27-30 and 57-60 age periods, life lessons, and maturation process.',
       keywords: ['saturn return', '29 crisis', 'saturn transit', 'maturation'],
@@ -1035,7 +1035,7 @@ class SeoMetaService {
 
     // Premium
     'premium': PageMeta(
-      title: 'Venus One Premium — Advanced Astrology Features',
+      title: 'InnerCycles Premium — Advanced Astrology Features',
       description:
           'Access premium features: Detailed transit reports, comparative analyses, unlimited charts, and more.',
       keywords: ['astrology premium', 'venusone premium', 'advanced astrology'],
@@ -1046,7 +1046,7 @@ class SeoMetaService {
 
     // Profile
     'profile': PageMeta(
-      title: 'My Profile — My Astrology Profile | Venus One',
+      title: 'My Profile — My Astrology Profile | InnerCycles',
       description:
           'Your personal astrology profile. Saved charts, favorites, and astrological preferences.',
       keywords: ['astrology profile', 'birth info', 'personal chart'],
@@ -1057,7 +1057,7 @@ class SeoMetaService {
 
     // Settings
     'settings': PageMeta(
-      title: 'Settings | Venus One',
+      title: 'Settings | InnerCycles',
       description:
           'App settings. House system, zodiac type, theme, and notification preferences.',
       keywords: ['settings', 'preferences', 'app settings'],
@@ -1068,7 +1068,7 @@ class SeoMetaService {
 
     // Kozmoz (Cosmic Discovery)
     'kozmoz': PageMeta(
-      title: 'Kozmoz — Daily Cosmic Discovery | Venus One',
+      title: 'Kozmoz — Daily Cosmic Discovery | InnerCycles',
       description:
           'A new cosmic message every day. Today\'s energy, moon phase effect, and personal cosmic guidance.',
       keywords: [
@@ -1084,7 +1084,7 @@ class SeoMetaService {
 
     // Dreams
     'dreams': PageMeta(
-      title: 'Dream Interpretation — Symbolic Dream Analysis | Venus One',
+      title: 'Dream Interpretation — Symbolic Dream Analysis | InnerCycles',
       description:
           'Discover the symbolic meanings of your dreams. Archetypal images, subconscious messages, and personal insights.',
       keywords: [
@@ -1100,7 +1100,7 @@ class SeoMetaService {
 
     // Chakra
     'chakra': PageMeta(
-      title: 'Chakra Analysis — Energy Center Balance | Venus One',
+      title: 'Chakra Analysis — Energy Center Balance | InnerCycles',
       description:
           'Analysis of your seven main chakras. Energy blockages, balance status, and chakra alignment suggestions.',
       keywords: [
@@ -1117,7 +1117,7 @@ class SeoMetaService {
 
     // Rituals
     'rituals': PageMeta(
-      title: 'Cosmic Rituals — Moon Phase Rituals | Venus One',
+      title: 'Cosmic Rituals — Moon Phase Rituals | InnerCycles',
       description:
           'New moon and full moon rituals. Intention setting, manifestation, and energy cleansing practices.',
       keywords: [
@@ -1136,7 +1136,7 @@ class SeoMetaService {
     // CANONICAL DREAM PAGES - English versions
     // ════════════════════════════════════════════════════════════════
     'dream/falling': PageMeta(
-      title: 'What Does Falling in a Dream Mean? | Dream Trace — Venus One',
+      title: 'What Does Falling in a Dream Mean? | Dream Trace — InnerCycles',
       description:
           'Falling in a dream reflects a feeling of losing control. It appears when we feel things are slipping away in life. Psychological meaning of falling dreams.',
       keywords: [
@@ -1150,7 +1150,7 @@ class SeoMetaService {
       schemaType: SchemaType.faqPage,
     ),
     'dream/water': PageMeta(
-      title: 'What Does Water in a Dream Mean? | Dream Trace — Venus One',
+      title: 'What Does Water in a Dream Mean? | Dream Trace — InnerCycles',
       description:
           'Water in dreams symbolizes the subconscious and emotions. The state of water reflects the inner world. Calm water shows peace, turbulent water shows turmoil.',
       keywords: [
@@ -1164,7 +1164,7 @@ class SeoMetaService {
       schemaType: SchemaType.faqPage,
     ),
     'dream/recurring': PageMeta(
-      title: 'Why Do Recurring Dreams Happen? | Dream Trace — Venus One',
+      title: 'Why Do Recurring Dreams Happen? | Dream Trace — InnerCycles',
       description:
           'Recurring dreams indicate an unresolved emotional issue. Messages your subconscious wants to draw attention to. Recurring dream patterns.',
       keywords: [
@@ -1178,7 +1178,7 @@ class SeoMetaService {
       schemaType: SchemaType.faqPage,
     ),
     'dream/running': PageMeta(
-      title: 'What Does Running in a Dream Mean? | Dream Trace — Venus One',
+      title: 'What Does Running in a Dream Mean? | Dream Trace — InnerCycles',
       description:
           'Running in a dream shows a desire to escape from something or reach something. Running speed and direction reflect emotional state.',
       keywords: [
@@ -1192,7 +1192,7 @@ class SeoMetaService {
       schemaType: SchemaType.faqPage,
     ),
     'dream/flying': PageMeta(
-      title: 'What Does Flying in a Dream Mean? | Dream Trace — Venus One',
+      title: 'What Does Flying in a Dream Mean? | Dream Trace — InnerCycles',
       description:
           'Flying in a dream symbolizes freedom, success, and the desire to overcome obstacles. Flight height and control reflect self-confidence.',
       keywords: [
@@ -1206,7 +1206,7 @@ class SeoMetaService {
       schemaType: SchemaType.faqPage,
     ),
     'dream/darkness': PageMeta(
-      title: 'What Does Darkness in a Dream Mean? | Dream Trace — Venus One',
+      title: 'What Does Darkness in a Dream Mean? | Dream Trace — InnerCycles',
       description:
           'Darkness in dreams symbolizes the unknown, fears, and uncertainty. Getting lost or finding your way in darkness reflects emotional state.',
       keywords: [
@@ -1221,7 +1221,7 @@ class SeoMetaService {
     ),
     'dream/lost': PageMeta(
       title:
-          'What Does Getting Lost in a Dream Mean? | Dream Trace — Venus One',
+          'What Does Getting Lost in a Dream Mean? | Dream Trace — InnerCycles',
       description:
           'Getting lost in a dream symbolizes loss of direction and uncertainty. Feeling lost in life may be a warning from your subconscious.',
       keywords: [
@@ -1236,7 +1236,7 @@ class SeoMetaService {
     ),
     'dream/voiceless': PageMeta(
       title:
-          'What Does Not Being Able to Speak in a Dream Mean? | Dream Trace — Venus One',
+          'What Does Not Being Able to Speak in a Dream Mean? | Dream Trace — InnerCycles',
       description:
           'Not being able to scream or speak in a dream symbolizes unexpressed emotions. Communication difficulties and suppressed thoughts.',
       keywords: [
@@ -1251,7 +1251,7 @@ class SeoMetaService {
     ),
     'dream/searching': PageMeta(
       title:
-          'What Does Searching for Something in a Dream Mean? | Dream Trace — Venus One',
+          'What Does Searching for Something in a Dream Mean? | Dream Trace — InnerCycles',
       description:
           'Searching in a dream symbolizes a feeling of lack and an incomplete quest. What you\'re looking for reveals your subconscious message.',
       keywords: [
@@ -1266,7 +1266,7 @@ class SeoMetaService {
     ),
     'dream/past': PageMeta(
       title:
-          'What Does Seeing the Past in a Dream Mean? | Dream Trace — Venus One',
+          'What Does Seeing the Past in a Dream Mean? | Dream Trace — InnerCycles',
       description:
           'Seeing the past in a dream symbolizes unresolved emotions and nostalgic connections. The meaning of old places, people, and memories.',
       keywords: [
@@ -1281,7 +1281,7 @@ class SeoMetaService {
     ),
     'dream/unable-to-fly': PageMeta(
       title:
-          'What Does Not Being Able to Fly in a Dream Mean? | Dream Trace — Venus One',
+          'What Does Not Being Able to Fly in a Dream Mean? | Dream Trace — InnerCycles',
       description:
           'Trying but failing to fly in a dream reflects a feeling of being blocked. Difficulty reaching goals and feeling limited.',
       keywords: [
@@ -1296,7 +1296,7 @@ class SeoMetaService {
     ),
     'dream/losing': PageMeta(
       title:
-          'What Does Losing Something in a Dream Mean? | Dream Trace — Venus One',
+          'What Does Losing Something in a Dream Mean? | Dream Trace — InnerCycles',
       description:
           'Losing something in a dream symbolizes the fear of losing something valuable. The lost object or person reveals the emotional connection.',
       keywords: [
@@ -1410,12 +1410,12 @@ class FaqSchemaGenerator {
           'dateModified': dateModified ?? now,
           'author': {
             '@type': 'Organization',
-            'name': 'Venus One',
+            'name': 'InnerCycles',
             'url': 'https://venusone.com',
           },
           'publisher': {
             '@type': 'Organization',
-            'name': 'Venus One',
+            'name': 'InnerCycles',
             'logo': {
               '@type': 'ImageObject',
               'url': 'https://venusone.com/images/logo.png',
@@ -1546,7 +1546,7 @@ class DiscoverMeta {
 <meta property="og:image:height" content="628">
 <meta property="og:image:alt" content="$ogImageAlt">
 <meta property="og:locale" content="tr_TR">
-<meta property="og:site_name" content="Venus One">
+<meta property="og:site_name" content="InnerCycles">
 
 <!-- Article-specific -->
 <meta property="article:published_time" content="$articlePublishedTime">

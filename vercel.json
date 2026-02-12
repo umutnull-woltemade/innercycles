@@ -45,7 +45,20 @@
     { "source": "/profile", "destination": "/index.html" },
     { "source": "/settings", "destination": "/index.html" },
     { "source": "/ruya/:path*", "destination": "/index.html" },
-    { "source": "/en/:path*", "destination": "/index.html" }
+    { "source": "/en/:path*", "destination": "/index.html" },
+    { "source": "/zodiac", "destination": "/index.html" },
+    { "source": "/zodiac/:sign", "destination": "/index.html" },
+    { "source": "/articles/:slug", "destination": "/index.html" },
+    { "source": "/archetype", "destination": "/index.html" },
+    { "source": "/archetype/:id", "destination": "/index.html" },
+    { "source": "/reflections", "destination": "/index.html" },
+    { "source": "/affirmations", "destination": "/index.html" },
+    { "source": "/eclipse-calendar", "destination": "/index.html" },
+    { "source": "/void-of-course", "destination": "/index.html" },
+    { "source": "/electional", "destination": "/index.html" },
+    { "source": "/astrocartography", "destination": "/index.html" },
+    { "source": "/burc/:sign", "destination": "/index.html" },
+    { "source": "/tr/:path*", "destination": "/index.html" }
   ],
   "headers": [
     {
@@ -112,6 +125,24 @@
     },
     {
       "source": "/canvaskit/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
+      "source": "/zodiac/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, s-maxage=3600, stale-while-revalidate=86400" }
+      ]
+    },
+    {
+      "source": "/articles/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, s-maxage=1800, stale-while-revalidate=43200" }
+      ]
+    },
+    {
+      "source": "/images/(.*)",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
       ]

@@ -2,8 +2,7 @@
 // FEATURE FLAGS - InnerCycles App Configuration
 // ════════════════════════════════════════════════════════════════════════════
 //
-// Controls feature visibility. All astrology features have been permanently
-// removed from the codebase for App Store 4.3(b) compliance.
+// Controls feature visibility for App Store 4.3(b) compliance.
 //
 // ════════════════════════════════════════════════════════════════════════════
 
@@ -26,25 +25,11 @@ class FeatureFlags {
   /// Dream journal - personal notes and interpretation
   static const bool showDreamJournal = true;
 
-  /// Numerology (educational framing, pattern awareness)
-  static const bool showNumerology = true;
-
-  /// Wellness features
-  static const bool showChakra = true;
-  static const bool showAura = true;
-  static const bool showRituals = true;
-
-  /// Tarot - card symbolism (educational)
-  static const bool showTarot = true;
-
-  /// Quiz features
-  static const bool showQuiz = true;
-
   // ══════════════════════════════════════════════════════════════════════════
   // LANGUAGE CONTROL
   // ══════════════════════════════════════════════════════════════════════════
 
-  /// Use prediction-free language throughout the app
+  /// Use safe, reflection-focused language throughout the app
   static const bool useSafeLanguage = true;
 
   /// Show entertainment disclaimer on all screens

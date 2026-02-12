@@ -12,7 +12,7 @@ import '../../../../data/services/l10n_service.dart';
 /// DESKTOP RICH HOMEPAGE - InnerCycles
 ///
 /// App Store 4.3(b) Compliant - Journal & Reflection focused.
-/// No astrology, no esoteric features.
+/// Journal-focused, safe language.
 class DesktopRichHomepage extends ConsumerWidget {
   const DesktopRichHomepage({super.key});
 

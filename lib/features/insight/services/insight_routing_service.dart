@@ -1,6 +1,6 @@
 /// Insight Routing Service - Input Classification
 /// Classifies user input into reflection categories (invisible to user)
-/// NO astrology, NO predictions - purely for response routing
+/// Reflection-only, safe language - purely for response routing
 library;
 
 import '../../../data/providers/app_providers.dart';

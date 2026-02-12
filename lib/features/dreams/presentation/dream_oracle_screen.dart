@@ -1074,7 +1074,7 @@ class _DreamOracleScreenState extends ConsumerState<DreamOracleScreen>
 
           // Entertainment Disclaimer
           PageFooterWithDisclaimer(
-            brandText: 'Dream Oracle — Venus One',
+            brandText: 'Dream Oracle — InnerCycles',
             disclaimerText: DisclaimerTexts.dreams(ref.watch(languageProvider)),
             language: ref.watch(languageProvider),
           ),

@@ -14,7 +14,6 @@ final notificationSettingsProvider = FutureProvider<NotificationSettings>((
 });
 
 /// Notification settings section for the settings screen
-/// App Store 4.3(b) Compliant: No astrology/horoscope terminology
 class NotificationSettingsSection extends ConsumerStatefulWidget {
   const NotificationSettingsSection({super.key});
 
@@ -29,7 +28,6 @@ class _NotificationSettingsSectionState
   bool _isInitialized = false;
   bool _permissionsGranted = false;
 
-  // Settings state - renamed for App Store compliance
   bool _dailyInsightEnabled = false;
   int _dailyHour = 8;
   int _dailyMinute = 0;
@@ -49,16 +47,13 @@ class _NotificationSettingsSectionState
     final settings = await _notificationService.getSettings();
     setState(() {
       _isInitialized = true;
-      // Map old settings to new App Store compliant names
-      _dailyInsightEnabled = settings.dailyHoroscopeEnabled;
-      if (settings.dailyHoroscopeTimeMinutes != null) {
-        _dailyHour = settings.dailyHoroscopeTimeMinutes! ~/ 60;
-        _dailyMinute = settings.dailyHoroscopeTimeMinutes! % 60;
+      _dailyInsightEnabled = settings.dailyReflectionEnabled;
+      if (settings.dailyReflectionTimeMinutes != null) {
+        _dailyHour = settings.dailyReflectionTimeMinutes! ~/ 60;
+        _dailyMinute = settings.dailyReflectionTimeMinutes! % 60;
       }
       _moonPhaseEnabled = settings.moonPhaseEnabled;
-      // Combine retrograde + transit into wellness reminders
-      _wellnessRemindersEnabled =
-          settings.retrogradeAlertsEnabled || settings.transitAlertsEnabled;
+      _wellnessRemindersEnabled = settings.wellnessRemindersEnabled;
     });
   }
 
@@ -73,17 +68,12 @@ class _NotificationSettingsSectionState
     setState(() => _dailyInsightEnabled = value);
 
     if (value) {
-      final userProfile = ref.read(userProfileProvider);
-      final sign = userProfile?.sunSign;
-      if (sign != null) {
-        await _notificationService.scheduleDailyHoroscope(
-          sign: sign,
-          hour: _dailyHour,
-          minute: _dailyMinute,
-        );
-      }
+      await _notificationService.scheduleDailyReflection(
+        hour: _dailyHour,
+        minute: _dailyMinute,
+      );
     } else {
-      await _notificationService.cancelDailyHoroscope();
+      await _notificationService.cancelDailyReflection();
     }
   }
 
@@ -111,15 +101,10 @@ class _NotificationSettingsSectionState
       });
 
       if (_dailyInsightEnabled) {
-        final userProfile = ref.read(userProfileProvider);
-        final sign = userProfile?.sunSign;
-        if (sign != null) {
-          await _notificationService.scheduleDailyHoroscope(
-            sign: sign,
-            hour: _dailyHour,
-            minute: _dailyMinute,
-          );
-        }
+        await _notificationService.scheduleDailyReflection(
+          hour: _dailyHour,
+          minute: _dailyMinute,
+        );
       }
     }
   }
@@ -136,9 +121,7 @@ class _NotificationSettingsSectionState
 
   Future<void> _toggleWellnessReminders(bool value) async {
     setState(() => _wellnessRemindersEnabled = value);
-    // Use existing service methods but with wellness framing
-    await _notificationService.scheduleRetrogradeAlerts(value);
-    await _notificationService.setTransitAlertsEnabled(value);
+    await _notificationService.setWellnessRemindersEnabled(value);
   }
 
   @override
@@ -186,12 +169,10 @@ class _NotificationSettingsSectionState
           ),
           const SizedBox(height: AppConstants.spacingMd),
 
-          // Permission banner if needed
           if (!_permissionsGranted)
             _buildPermissionBanner(context, isDark, language),
 
           if (_permissionsGranted) ...[
-            // Daily Insight notification (App Store compliant name)
             _buildNotificationTile(
               context,
               isDark,
@@ -209,7 +190,6 @@ class _NotificationSettingsSectionState
 
             const Divider(height: 24),
 
-            // Moon phase notifications (wellness framing)
             _buildNotificationTile(
               context,
               isDark,
@@ -224,7 +204,6 @@ class _NotificationSettingsSectionState
 
             const Divider(height: 24),
 
-            // Wellness reminders (replaced retrograde/transit alerts)
             _buildNotificationTile(
               context,
               isDark,
