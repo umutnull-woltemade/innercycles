@@ -242,7 +242,7 @@
   },
   "home": {
     "greeting": "Hi, {name}!",
-    "todays_cosmic_message": "Today's Cosmic Message",
+    "todays_cosmic_message": "Today's Reflective Message",
     "chips": {
       "dream": "Dream",
       "kozmoz": "Kozmoz",
@@ -2329,7 +2329,7 @@
           "flight_style": "• Gliding: State of flow in life\n• Flapping: Difficult but achieved goals\n• Unable to rise: Suppressed potential\n• Falling: Fear of losing control",
           "practice_label": "✨ PRACTICAL APPLICATION",
           "practice": "• Write your fears and burn them\n• Go to a high place, look at the view\n• Repeat 'I can fly' affirmation\n• Set intention for lucid dreaming",
-          "cosmic_message_label": "💫 COSMIC MESSAGE",
+          "cosmic_message_label": "💫 REFLECTIVE INSIGHT",
           "cosmic_message": "Your entries suggest you have untapped potential — explore it. As a {element} element, {element_message}."
         },
         "falling": {
@@ -2343,7 +2343,7 @@
           "attention": "• Areas in life where you've lost control\n• Signs of excessive stress and anxiety\n• Meeting of basic needs\n• Work-life balance",
           "practice_label": "✨ PRACTICAL APPLICATION",
           "practice": "• Walk barefoot on the earth\n• Do root chakra meditation\n• List your security needs\n• Practice breathing exercises",
-          "cosmic_message_label": "💫 COSMIC MESSAGE",
+          "cosmic_message_label": "💫 REFLECTIVE INSIGHT",
           "cosmic_message": "Falling is actually letting go. Let go of the illusion of control, trust the process. As a {element} element, grounding practice is especially important."
         },
         "death": {
@@ -2357,7 +2357,7 @@
           "transformation": "• Career change\n• Relationship transformation\n• Renewal of beliefs\n• Identity evolution\n• Lifestyle change",
           "practice_label": "✨ PRACTICAL APPLICATION",
           "practice": "• Make a list of what needs to let go\n• Review old photos\n• Clean out your wardrobe\n• Identify habits that need to 'die'",
-          "cosmic_message_label": "💫 COSMIC MESSAGE",
+          "cosmic_message_label": "💫 REFLECTIVE INSIGHT",
           "cosmic_message": "You're being reborn from your ashes like a phoenix. {sign} energy empowers this transformation. A new you is being born!"
         },
         "chase": {
@@ -2371,7 +2371,7 @@
           "chaser": "• Fear or anxiety\n• Suppressed anger\n• Postponed responsibilities\n• Avoided relationship issues\n• Unmet needs",
           "practice_label": "✨ PRACTICAL APPLICATION",
           "practice": "• In your dream, stop and talk to the chaser\n• Ask 'What do you want?'\n• Practice active imagination technique\n• Identify what you're running from and take small steps",
-          "cosmic_message_label": "💫 COSMIC MESSAGE",
+          "cosmic_message_label": "💫 REFLECTIVE INSIGHT",
           "cosmic_message": "The chaser is actually you - a suppressed aspect of yourself. Embrace and integrate it. Your enemy can become your friend."
         },
         "animal": {
@@ -2385,7 +2385,7 @@
           "psychological": "• Animal's behavior: Your suppressed behavior\n• Your relationship with animal: Your relationship with instincts\n• Animal's color: Emotional tone\n• If animal attacks: Suppressed energy eruption",
           "practice_label": "✨ PRACTICAL APPLICATION",
           "practice": "• Research that animal - mythology, symbolism\n• Do animal meditation\n• Draw totem cards\n• Get an object related to that animal",
-          "cosmic_message_label": "💫 COSMIC MESSAGE",
+          "cosmic_message_label": "💫 REFLECTIVE INSIGHT",
           "cosmic_message": "Your animal guide is communicating with you. As a {element} element, this connection is especially strong."
         },
         "house": {
@@ -2399,7 +2399,7 @@
           "house_states": "• New house: New self, change\n• Ruined house: Neglected aspects\n• Childhood home: Roots, past\n• Strange house: Unknown potential",
           "practice_label": "✨ PRACTICAL APPLICATION",
           "practice": "• Clean the room you visit least in your home\n• Renew house corners with energy\n• Draw a map of your inner world\n• Do 'spiritual home' meditation",
-          "cosmic_message_label": "💫 COSMIC MESSAGE",
+          "cosmic_message_label": "💫 REFLECTIVE INSIGHT",
           "cosmic_message": "The house is you. Each room is an aspect of you. Explore and own them all."
         },
         "love": {
@@ -2415,7 +2415,7 @@
           "psychological": "• Anima/Animus: Opposite gender archetype\n• Projection: Seeing your own qualities\n• Need: Unmet emotional requirements",
           "practice_label": "✨ PRACTICAL APPLICATION",
           "practice": "• Take a love language test\n• List your relationship needs\n• Work on self-worth\n• Heart chakra meditation",
-          "cosmic_message_label": "💫 COSMIC MESSAGE",
+          "cosmic_message_label": "💫 REFLECTIVE INSIGHT",
           "cosmic_message": "Love yourself first. {element} element in love life {element_message}."
         },
         "money": {
@@ -2431,7 +2431,7 @@
           "psychological": "• Money = Energy exchange\n• Wealth = Self-worth perception\n• Poverty = Feeling of inadequacy\n• Abundance = Harmony with universe",
           "practice_label": "✨ PRACTICAL APPLICATION",
           "practice": "• Repeat abundance affirmations\n• Keep a gratitude list\n• Question your relationship with money\n• Practice generosity",
-          "cosmic_message_label": "💫 COSMIC MESSAGE",
+          "cosmic_message_label": "💫 REFLECTIVE INSIGHT",
           "cosmic_message": "Your reflections point toward abundance - be a receiver. {element} element in financial matters {element_message}."
         },
         "generic": {
@@ -2529,8 +2529,8 @@
   "quiz": {
     "dream_title": "Dream Awareness Test",
     "dream_description": "Discover what your dreams tell you",
-    "astrology_title": "Cosmic Awareness Test",
-    "astrology_description": "Discover your connection with the stars",
+    "astrology_title": "Self-Awareness Test",
+    "astrology_description": "Discover your connection with yourself",
     "numerology_title": "Number Awareness Test",
     "numerology_description": "Discover the hidden messages of numbers",
     "general_title": "Cosmic Profile Test",
@@ -2562,8 +2562,8 @@
     "astrology_a1_4": "Rarely",
     "astrology_q2": "Do you know your personal profile?",
     "astrology_a2_1": "I know it in detail",
-    "astrology_a2_2": "I know my Sun and Moon sign",
-    "astrology_a2_3": "Only my Sun sign",
+    "astrology_a2_2": "I know my core and emotional profile",
+    "astrology_a2_3": "Only my core identity",
     "astrology_a2_4": "I've never looked",
     "astrology_q3": "Do you follow retrograde periods?",
     "astrology_a3_1": "Absolutely, it's important!",
@@ -2611,12 +2611,12 @@
     "result_dream_medium_desc": "Your connection with dreams is developing. With a little more awareness, you can hear your subconscious messages more clearly.",
     "result_dream_low_title": "Dream Sleeper",
     "result_dream_low_desc": "The dream world to explore. With small steps, you can strengthen your connection with your subconscious.",
-    "result_astrology_high_title": "Cosmic Master",
-    "result_astrology_high_desc": "You have a strong connection with the stars! Deepen your cosmic journey with personal transit reports and detailed chart analysis.",
-    "result_astrology_medium_title": "Star Traveler",
+    "result_astrology_high_title": "Self-Awareness Master",
+    "result_astrology_high_desc": "You have a strong connection with self-reflection! Deepen your journey with personal cycle reports and detailed profile analysis.",
+    "result_astrology_medium_title": "Awareness Traveler",
     "result_astrology_medium_desc": "Your connection with self-awareness is developing. By exploring your personal profile, you can better understand yourself.",
-    "result_astrology_low_title": "Cosmic Explorer",
-    "result_astrology_low_desc": "The stars await you! Start your cosmic journey with daily reflection themes.",
+    "result_astrology_low_title": "Awareness Explorer",
+    "result_astrology_low_desc": "Your self-awareness journey begins here! Start with daily reflection themes.",
     "result_numerology_high_title": "Number Master",
     "result_numerology_high_desc": "You have a strong connection with numbers! Discover the hidden messages on your life path with your personal numerology report.",
     "result_numerology_medium_title": "Number Traveler",
