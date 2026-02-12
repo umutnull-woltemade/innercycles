@@ -2896,7 +2896,7 @@ class _DreamSymbolsSheet extends ConsumerWidget {
           end: Alignment.bottomCenter,
           colors: [AppColors.nebulaPurple, const Color(0xFF0D0D1A)],
         ),
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(10)),
       ),
       child: Column(
         children: [

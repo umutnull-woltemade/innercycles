@@ -113,6 +113,147 @@ class AnalyticsService {
   }
 
   // ─────────────────────────────────────────────────────────────────────────
+  // P1: Comprehensive Feature Tracking Events
+  // Naming convention: {noun}_{verb}
+  // ─────────────────────────────────────────────────────────────────────────
+
+  /// Journal events
+  void logJournalStarted({required String focusArea}) {
+    logEvent('journal_started', {'focus_area': focusArea});
+  }
+
+  void logJournalCompleted({
+    required String focusArea,
+    required int rating,
+    required bool hasNote,
+    required bool hasGratitude,
+  }) {
+    logEvent('journal_completed', {
+      'focus_area': focusArea,
+      'rating': rating.toString(),
+      'has_note': hasNote.toString(),
+      'has_gratitude': hasGratitude.toString(),
+    });
+  }
+
+  void logJournalAbandoned({required String focusArea}) {
+    logEvent('journal_abandoned', {'focus_area': focusArea});
+  }
+
+  /// Streak events
+  void logStreakUpdated({required int streakDays}) {
+    logEvent('streak_updated', {'streak_days': streakDays.toString()});
+  }
+
+  void logStreakFreezeUsed({required bool isPremium}) {
+    logEvent('streak_freeze_used', {'is_premium': isPremium.toString()});
+  }
+
+  void logStreakMilestoneReached({required int milestone}) {
+    logEvent('streak_milestone_reached', {'milestone': milestone.toString()});
+  }
+
+  /// Gratitude events
+  void logGratitudeSaved({required int itemCount}) {
+    logEvent('gratitude_saved', {'item_count': itemCount.toString()});
+  }
+
+  /// Ritual events
+  void logRitualCreated({required String time, required int itemCount}) {
+    logEvent('ritual_created', {
+      'time': time,
+      'item_count': itemCount.toString(),
+    });
+  }
+
+  void logRitualItemToggled({required bool completed}) {
+    logEvent('ritual_item_toggled', {'completed': completed.toString()});
+  }
+
+  void logRitualStackCompleted({required String time}) {
+    logEvent('ritual_stack_completed', {'time': time});
+  }
+
+  /// Sleep events
+  void logSleepLogged({required int quality, required bool hasNote}) {
+    logEvent('sleep_logged', {
+      'quality': quality.toString(),
+      'has_note': hasNote.toString(),
+    });
+  }
+
+  /// Wellness score events
+  void logWellnessScoreCalculated({required int score}) {
+    logEvent('wellness_score_calculated', {'score': score.toString()});
+  }
+
+  void logWellnessTrendViewed({required String direction}) {
+    logEvent('wellness_trend_viewed', {'direction': direction});
+  }
+
+  /// Dream events
+  void logDreamSaved({required bool hasInterpretation}) {
+    logEvent('dream_saved', {
+      'has_interpretation': hasInterpretation.toString(),
+    });
+  }
+
+  void logDreamGlossaryViewed() {
+    logEvent('dream_glossary_viewed');
+  }
+
+  /// Pattern events
+  void logPatternViewed({required String type}) {
+    logEvent('pattern_viewed', {'type': type});
+  }
+
+  void logPatternCorrelationViewed({required String areas}) {
+    logEvent('pattern_correlation_viewed', {'areas': areas});
+  }
+
+  /// Navigation events
+  void logNavigationEvent({required String from, required String to}) {
+    logEvent('navigation', {'from': from, 'to': to});
+  }
+
+  /// Onboarding events
+  void logOnboardingStarted() {
+    logEvent('onboarding_started');
+  }
+
+  void logOnboardingStepCompleted({required int step}) {
+    logEvent('onboarding_step_completed', {'step': step.toString()});
+  }
+
+  void logOnboardingCompleted() {
+    logEvent('onboarding_completed');
+  }
+
+  /// Premium trigger events
+  void logPremiumFeatureBlocked({required String feature}) {
+    logEvent('premium_feature_blocked', {'feature': feature});
+  }
+
+  void logPremiumUpsellShown({required String trigger}) {
+    logEvent('premium_upsell_shown', {'trigger': trigger});
+  }
+
+  /// App lifecycle
+  void logAppOpened() {
+    logEvent('app_opened', {
+      'timestamp': DateTime.now().toIso8601String(),
+    });
+  }
+
+  void logAppBackgrounded() {
+    logEvent('app_backgrounded');
+  }
+
+  void logSessionDuration({required int seconds}) {
+    logEvent('session_duration', {'seconds': seconds.toString()});
+  }
+
+  // ─────────────────────────────────────────────────────────────────────────
   // Experiment & Monetization Events
   // ─────────────────────────────────────────────────────────────────────────
 

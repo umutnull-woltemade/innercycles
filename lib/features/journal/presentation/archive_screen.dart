@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,6 +9,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../data/models/journal_entry.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/glass_sliver_app_bar.dart';
 
 class ArchiveScreen extends ConsumerStatefulWidget {
   const ArchiveScreen({super.key});
@@ -61,29 +63,15 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
                     .toList();
               }
 
-              return CustomScrollView(
-                slivers: [
-                  SliverAppBar(
-                    backgroundColor: Colors.transparent,
-                    pinned: true,
-                    leading: IconButton(
-                      onPressed: () => context.pop(),
-                      icon: Icon(
-                        Icons.arrow_back_ios_new,
-                        color: isDark
-                            ? AppColors.textPrimary
-                            : AppColors.lightTextPrimary,
-                      ),
-                    ),
-                    title: Text(
-                      isEn ? 'Archive' : 'Arşiv',
-                      style:
-                          Theme.of(context).textTheme.titleLarge?.copyWith(
-                        color: AppColors.starGold,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
+              return CupertinoScrollbar(
+                child: CustomScrollView(
+                  physics: const BouncingScrollPhysics(
+                    parent: AlwaysScrollableScrollPhysics(),
                   ),
+                  slivers: [
+                    GlassSliverAppBar(
+                      title: isEn ? 'Archive' : 'Arşiv',
+                    ),
                   // Search bar
                   SliverToBoxAdapter(
                     child: Padding(
@@ -158,7 +146,8 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
                         ),
                       ),
                     ),
-                ],
+                  ],
+                ),
               );
             },
           ),
@@ -171,12 +160,12 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
     return Container(
       decoration: BoxDecoration(
         color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.7)
+            ? AppColors.surfaceDark.withValues(alpha: 0.85)
             : AppColors.lightCard,
         borderRadius: BorderRadius.circular(AppConstants.radiusFull),
         border: Border.all(
           color: isDark
-              ? Colors.white.withValues(alpha: 0.1)
+              ? Colors.white.withValues(alpha: 0.15)
               : Colors.black.withValues(alpha: 0.05),
         ),
       ),
@@ -241,7 +230,9 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
       padding: const EdgeInsets.only(right: 8),
       child: GestureDetector(
         onTap: onTap,
-        child: Container(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(minHeight: 44),
+          child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
           decoration: BoxDecoration(
             color: isSelected
@@ -267,6 +258,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
             ),
           ),
         ),
+        ),
       ),
     );
   }
@@ -290,12 +282,12 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
           padding: const EdgeInsets.all(AppConstants.spacingLg),
           decoration: BoxDecoration(
             color: isDark
-                ? AppColors.surfaceDark.withValues(alpha: 0.7)
+                ? AppColors.surfaceDark.withValues(alpha: 0.85)
                 : AppColors.lightCard,
             borderRadius: BorderRadius.circular(AppConstants.radiusLg),
             border: Border.all(
               color: isDark
-                  ? Colors.white.withValues(alpha: 0.1)
+                  ? Colors.white.withValues(alpha: 0.15)
                   : Colors.black.withValues(alpha: 0.05),
             ),
           ),

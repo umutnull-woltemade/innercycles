@@ -154,7 +154,7 @@ class _ArticlesScreenState extends ConsumerState<ArticlesScreen> {
         },
         selectedColor: AppColors.mystic.withValues(alpha: 0.3),
         backgroundColor: isDark
-            ? Colors.white.withValues(alpha: 0.1)
+            ? Colors.white.withValues(alpha: 0.15)
             : Colors.white.withValues(alpha: 0.9),
       ),
     );
@@ -211,7 +211,7 @@ class _ArticlesScreenState extends ConsumerState<ArticlesScreen> {
           borderRadius: BorderRadius.circular(AppConstants.radiusLg),
           border: Border.all(
             color: isDark
-                ? Colors.white.withValues(alpha: 0.1)
+                ? Colors.white.withValues(alpha: 0.15)
                 : Colors.grey.withValues(alpha: 0.2),
           ),
         ),
@@ -473,7 +473,7 @@ class _ArticlesScreenState extends ConsumerState<ArticlesScreen> {
                 ),
                 decoration: BoxDecoration(
                   color: isDark
-                      ? Colors.white.withValues(alpha: 0.1)
+                      ? Colors.white.withValues(alpha: 0.15)
                       : Colors.grey.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(20),
                 ),

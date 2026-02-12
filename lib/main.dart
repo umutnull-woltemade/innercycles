@@ -13,6 +13,7 @@ import 'shared/widgets/app_error_widget.dart';
 import 'data/services/ad_service.dart';
 import 'data/services/storage_service.dart';
 import 'data/services/notification_service.dart';
+import 'data/services/daily_hook_service.dart';
 import 'data/services/admin_auth_service.dart';
 import 'data/services/admin_analytics_service.dart';
 import 'data/services/web_error_service.dart';
@@ -211,6 +212,23 @@ class _AppInitializerState extends State<AppInitializer> {
     if (!kIsWeb) {
       try {
         await NotificationService().initialize();
+
+        // Refresh daily notification with personalized hook message
+        final notifService = NotificationService();
+        final isDailyEnabled = await notifService.isDailyReflectionEnabled();
+        if (isDailyEnabled) {
+          final dailyTime = await notifService.getDailyReflectionTime();
+          if (dailyTime != null) {
+            final hookService = await DailyHookService.init();
+            final isEnglish = savedLanguage == AppLanguage.en;
+            final hookMessage = hookService.getMorningHook(isEnglish: isEnglish);
+            await notifService.scheduleDailyReflection(
+              hour: dailyTime.hour,
+              minute: dailyTime.minute,
+              personalizedMessage: hookMessage,
+            );
+          }
+        }
       } catch (e) {
         if (kDebugMode) {
           debugPrint('⚠️ NotificationService init failed: $e');

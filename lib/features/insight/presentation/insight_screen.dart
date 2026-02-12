@@ -145,7 +145,8 @@ class _InsightScreenState extends ConsumerState<InsightScreen>
         elevation: 0,
         leading: IconButton(
           icon: Icon(
-            Icons.arrow_back_ios_new,
+            Icons.chevron_left,
+            size: 28,
             color: isDark ? Colors.white70 : Colors.black87,
           ),
           onPressed: () => context.pop(),
@@ -352,7 +353,7 @@ class _InsightScreenState extends ConsumerState<InsightScreen>
                 borderRadius: BorderRadius.circular(24),
                 border: Border.all(
                   color: isDark
-                      ? Colors.white.withValues(alpha: 0.1)
+                      ? Colors.white.withValues(alpha: 0.15)
                       : Colors.grey.withValues(alpha: 0.2),
                 ),
               ),

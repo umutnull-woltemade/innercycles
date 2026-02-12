@@ -113,7 +113,7 @@ class _DesktopHeader extends StatelessWidget {
         color: Colors.white.withValues(alpha: 0.05),
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
-          color: Colors.white.withValues(alpha: 0.1),
+          color: Colors.white.withValues(alpha: 0.15),
         ),
       ),
       child: Row(

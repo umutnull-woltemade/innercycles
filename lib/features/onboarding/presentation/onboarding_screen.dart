@@ -1129,7 +1129,7 @@ class _BirthTimePicker extends StatelessWidget {
       context: context,
       backgroundColor: isDark ? AppColors.surfaceDark : AppColors.lightSurface,
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
       ),
       builder: (context) {
         int selectedHour = selectedTime?.hour ?? 12;
@@ -1345,7 +1345,7 @@ class _BirthPlacePickerState extends State<_BirthPlacePicker> {
       backgroundColor: isDark ? AppColors.surfaceDark : AppColors.lightSurface,
       isScrollControlled: true,
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
       ),
       builder: (context) {
         String searchQuery = '';

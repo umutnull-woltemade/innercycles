@@ -56,10 +56,44 @@ class Routes {
   static const String dreamUnableToFly = '/dreams/unable-to-fly';
 
   // ════════════════════════════════════════════════════════════════
+  // RITUALS & HABITS
+  // ════════════════════════════════════════════════════════════════
+  static const String rituals = '/rituals';
+  static const String ritualCreate = '/rituals/create';
+
+  // ════════════════════════════════════════════════════════════════
+  // WELLNESS & SLEEP
+  // ════════════════════════════════════════════════════════════════
+  static const String wellnessDetail = '/wellness';
+  static const String energyMap = '/energy-map';
+
+  // ════════════════════════════════════════════════════════════════
+  // GUIDED PROGRAMS
+  // ════════════════════════════════════════════════════════════════
+  static const String programs = '/programs';
+  static const String programDetail = '/programs/:id';
+
+  // ════════════════════════════════════════════════════════════════
+  // P2: SEASONAL, BREATHING, MOON CALENDAR, CHALLENGES
+  // ════════════════════════════════════════════════════════════════
+  static const String seasonal = '/seasonal';
+  static const String breathing = '/breathing';
+  static const String moonCalendar = '/moon-calendar';
+  static const String challenges = '/challenges';
+
+  // ════════════════════════════════════════════════════════════════
   // REFERENCE & CONTENT
   // ════════════════════════════════════════════════════════════════
   static const String glossary = '/glossary';
   static const String articles = '/articles';
+
+  // ════════════════════════════════════════════════════════════════
+  // GROWTH & ENGAGEMENT
+  // ════════════════════════════════════════════════════════════════
+  static const String attachmentQuiz = '/quiz/attachment';
+  static const String shareInsight = '/share-insight';
+  static const String emotionalCycles = '/emotional-cycles';
+  static const String growthDashboard = '/growth';
 
   // ════════════════════════════════════════════════════════════════
   // PROFILE & SETTINGS

@@ -2609,7 +2609,7 @@ class _DreamStatisticsScreenState extends ConsumerState<DreamStatisticsScreen>
             decoration: BoxDecoration(
               color: isComplete
                   ? AppColors.success
-                  : Colors.white.withValues(alpha: 0.1),
+                  : Colors.white.withValues(alpha: 0.15),
               shape: BoxShape.circle,
               border: Border.all(
                 color: isComplete ? AppColors.success : Colors.white24,
@@ -3024,7 +3024,7 @@ class _ProgressCirclePainter extends CustomPainter {
       center,
       radius,
       Paint()
-        ..color = Colors.white.withValues(alpha: 0.1)
+        ..color = Colors.white.withValues(alpha: 0.15)
         ..style = PaintingStyle.stroke
         ..strokeWidth = 10,
     );

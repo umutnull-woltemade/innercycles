@@ -5,6 +5,13 @@ import '../../../../core/constants/routes.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../data/providers/app_providers.dart';
 import '../../../../data/services/l10n_service.dart';
+import '../../../../data/services/premium_service.dart';
+import '../../../streak/presentation/streak_card.dart';
+import '../../../gratitude/presentation/gratitude_section.dart';
+import '../../../rituals/presentation/ritual_checkoff_card.dart';
+import '../../../wellness/presentation/wellness_score_card.dart';
+import '../../../sleep/presentation/sleep_section.dart';
+import '../../../moon/presentation/moon_phase_widget.dart'; // P1: Moon phase card
 
 /// MOBILE LITE HOMEPAGE - InnerCycles
 ///
@@ -46,7 +53,7 @@ class MobileLiteHomepage extends ConsumerWidget {
       body: SafeArea(
         child: RepaintBoundary(
           child: SingleChildScrollView(
-            physics: const ClampingScrollPhysics(),
+            physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
@@ -81,8 +88,24 @@ class _AboveTheFold extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final language = ref.watch(languageProvider);
-    final headline = _getDailyHeadline(language);
-    final sentence = _getDailySentence(language);
+    final isEn = language == AppLanguage.en;
+
+    // Try ContentEngine for dynamic headline, fallback to static
+    final contentAsync = ref.watch(contentEngineServiceProvider);
+    final hookAsync = ref.watch(dailyHookServiceProvider);
+
+    final headline = contentAsync.maybeWhen(
+      data: (engine) {
+        final content = engine.generateDailyContent();
+        return content.reflectiveQuestion;
+      },
+      orElse: () => _getDailyHeadline(language),
+    );
+
+    final sentence = hookAsync.maybeWhen(
+      data: (hookService) => hookService.getMorningHook(isEnglish: isEn),
+      orElse: () => _getDailySentence(language),
+    );
 
     return Container(
       padding: const EdgeInsets.fromLTRB(20, 24, 20, 32),
@@ -202,6 +225,13 @@ class _AboveTheFold extends ConsumerWidget {
                   icon: '📅',
                   label: language == AppLanguage.en ? 'Monthly' : 'Aylik',
                   onTap: () => context.push(Routes.journalMonthly),
+                  isDark: isDark,
+                ),
+                const SizedBox(width: 8),
+                _QuickDiscoveryChip(
+                  icon: '📈',
+                  label: language == AppLanguage.en ? 'Growth' : 'Büyüme',
+                  onTap: () => context.push(Routes.growthDashboard),
                   isDark: isDark,
                 ),
               ],
@@ -351,6 +381,34 @@ class _BelowTheFold extends ConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          // ═══ P0: Streak Card ═══
+          const StreakCard(),
+          const SizedBox(height: 16),
+
+          // ═══ P0: Ritual Check-off ═══
+          const RitualCheckoffCard(),
+          const SizedBox(height: 16),
+
+          // ═══ P0: Gratitude Summary ═══
+          const GratitudeSummaryCard(),
+          const SizedBox(height: 16),
+
+          // ═══ P1: Wellness Score ═══
+          const WellnessScoreCard(),
+          const SizedBox(height: 16),
+
+          // ═══ P1: Sleep Summary ═══
+          const SleepSummaryCard(),
+          const SizedBox(height: 16),
+
+          // ═══ P1: Moon Phase ═══
+          const MoonPhaseCard(),
+          const SizedBox(height: 16),
+
+          // ═══ P2: Upgrade Trigger Banner (contextual) ═══
+          _UpgradeTriggerBanner(isDark: isDark),
+          const SizedBox(height: 24),
+
           // Journal & Patterns
           Text(
             language == AppLanguage.en
@@ -413,6 +471,164 @@ class _BelowTheFold extends ConsumerWidget {
                 ? 'Search & browse all entries'
                 : 'Tüm kayitlari ara ve gözat',
             route: Routes.journalArchive,
+            isDark: isDark,
+          ),
+
+          _EntryPointTile(
+            icon: Icons.waves_outlined,
+            title: language == AppLanguage.en
+                ? 'Emotional Cycles'
+                : 'Duygusal Döngüler',
+            subtitle: language == AppLanguage.en
+                ? 'Visualize your emotional wave patterns'
+                : 'Duygusal dalga kaliplarini görsellestin',
+            route: Routes.emotionalCycles,
+            isDark: isDark,
+          ),
+
+          const SizedBox(height: 24),
+
+          // Growth & Self-Discovery
+          Text(
+            language == AppLanguage.en
+                ? 'Growth & Self-Discovery'
+                : 'Büyüme ve Kendini Kesfetme',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w600,
+              color: isDark
+                  ? AppColors.textPrimary
+                  : AppColors.lightTextPrimary,
+            ),
+          ),
+
+          const SizedBox(height: 16),
+
+          _EntryPointTile(
+            icon: Icons.dashboard_outlined,
+            title: language == AppLanguage.en
+                ? 'Growth Dashboard'
+                : 'Büyüme Paneli',
+            subtitle: language == AppLanguage.en
+                ? 'Your wellness score, streaks & milestones'
+                : 'Saglik skorun, serilerin ve kilometre taslarin',
+            route: Routes.growthDashboard,
+            isDark: isDark,
+            isHighlighted: true,
+          ),
+
+          _EntryPointTile(
+            icon: Icons.psychology_outlined,
+            title: language == AppLanguage.en
+                ? 'Attachment Style Quiz'
+                : 'Baglanma Stili Testi',
+            subtitle: language == AppLanguage.en
+                ? 'Discover your relationship patterns'
+                : 'Iliski kaliplarini kesfet',
+            route: Routes.attachmentQuiz,
+            isDark: isDark,
+          ),
+
+          _EntryPointTile(
+            icon: Icons.share_outlined,
+            title: language == AppLanguage.en
+                ? 'Share Insights'
+                : 'Icgörüleri Paylas',
+            subtitle: language == AppLanguage.en
+                ? 'Beautiful cards for your journey moments'
+                : 'Yolculuk anlarinin güzel kartlari',
+            route: Routes.shareInsight,
+            isDark: isDark,
+          ),
+
+          _EntryPointTile(
+            icon: Icons.grid_view_rounded,
+            title: language == AppLanguage.en
+                ? 'Energy Map'
+                : 'Enerji Haritasi',
+            subtitle: language == AppLanguage.en
+                ? 'Heatmap of your energy by day & area'
+                : 'Gün ve alana göre enerji isi haritasi',
+            route: Routes.energyMap,
+            isDark: isDark,
+          ),
+
+          _EntryPointTile(
+            icon: Icons.auto_stories_outlined,
+            title: language == AppLanguage.en
+                ? 'Guided Programs'
+                : 'Rehberli Programlar',
+            subtitle: language == AppLanguage.en
+                ? 'Structured journeys for self-discovery'
+                : 'Kendini kesfetme icin yapilandirilmis yolculuklar',
+            route: Routes.programs,
+            isDark: isDark,
+          ),
+
+          _EntryPointTile(
+            icon: Icons.emoji_events_outlined,
+            title: language == AppLanguage.en
+                ? 'Growth Challenges'
+                : 'Büyüme Görevleri',
+            subtitle: language == AppLanguage.en
+                ? 'Gamified challenges to build habits'
+                : 'Aliskanlık olusturmak icin oyunlastirilmis görevler',
+            route: Routes.challenges,
+            isDark: isDark,
+          ),
+
+          _EntryPointTile(
+            icon: Icons.eco_outlined,
+            title: language == AppLanguage.en
+                ? 'Seasonal Reflections'
+                : 'Mevsimsel Yansimalar',
+            subtitle: language == AppLanguage.en
+                ? 'Guided prompts for each season'
+                : 'Her mevsim icin rehberli sorular',
+            route: Routes.seasonal,
+            isDark: isDark,
+          ),
+
+          const SizedBox(height: 24),
+
+          // Wellness & Mindfulness
+          Text(
+            language == AppLanguage.en
+                ? 'Wellness & Mindfulness'
+                : 'Saglik ve Farkindalik',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w600,
+              color: isDark
+                  ? AppColors.textPrimary
+                  : AppColors.lightTextPrimary,
+            ),
+          ),
+
+          const SizedBox(height: 16),
+
+          _EntryPointTile(
+            icon: Icons.air_outlined,
+            title: language == AppLanguage.en
+                ? 'Breathing Exercises'
+                : 'Nefes Egzersizleri',
+            subtitle: language == AppLanguage.en
+                ? 'Guided breathing for calm & focus'
+                : 'Sakinlik ve odak icin rehberli nefes',
+            route: Routes.breathing,
+            isDark: isDark,
+            isHighlighted: true,
+          ),
+
+          _EntryPointTile(
+            icon: Icons.dark_mode_outlined,
+            title: language == AppLanguage.en
+                ? 'Moon Calendar'
+                : 'Ay Takvimi',
+            subtitle: language == AppLanguage.en
+                ? 'Lunar phases & reflection prompts'
+                : 'Ay evreleri ve yansima sorulari',
+            route: Routes.moonCalendar,
             isDark: isDark,
           ),
 
@@ -727,6 +943,109 @@ class _EntryPointTile extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// UPGRADE TRIGGER BANNER
+// ═══════════════════════════════════════════════════════════════════════════
+
+class _UpgradeTriggerBanner extends ConsumerWidget {
+  final bool isDark;
+
+  const _UpgradeTriggerBanner({required this.isDark});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isPremium = ref.watch(premiumProvider).isPremium;
+    if (isPremium) return const SizedBox.shrink();
+
+    final upgradeAsync = ref.watch(upgradeTriggerServiceProvider);
+    final journalAsync = ref.watch(journalServiceProvider);
+    final streakAsync = ref.watch(streakStatsProvider);
+    final language = ref.watch(languageProvider);
+    final isEn = language == AppLanguage.en;
+
+    return upgradeAsync.maybeWhen(
+      data: (upgradeService) {
+        final entryCount = journalAsync.valueOrNull?.entryCount ?? 0;
+        final streak = streakAsync.valueOrNull?.currentStreak ?? 0;
+
+        final trigger = upgradeService.checkTriggers(
+          entryCount: entryCount,
+          dreamCount: 0,
+          streak: streak,
+          shareCount: 0,
+          profileCount: 1,
+          hasCompletedQuiz: false,
+          adExposures: 0,
+        );
+
+        if (trigger == null) return const SizedBox.shrink();
+
+        final prompt = upgradeService.getPromptForTrigger(trigger);
+
+        return GestureDetector(
+          onTap: () {
+            upgradeService.markTriggerShown(trigger);
+            context.push(Routes.premium);
+          },
+          child: Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  AppColors.starGold.withValues(alpha: isDark ? 0.15 : 0.1),
+                  AppColors.auroraStart.withValues(alpha: isDark ? 0.1 : 0.05),
+                ],
+              ),
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(
+                color: AppColors.starGold.withValues(alpha: 0.3),
+              ),
+            ),
+            child: Row(
+              children: [
+                Icon(prompt.icon, size: 28, color: AppColors.starGold),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        isEn ? prompt.headlineEn : prompt.headlineTr,
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                          color: isDark
+                              ? AppColors.textPrimary
+                              : AppColors.lightTextPrimary,
+                        ),
+                      ),
+                      const SizedBox(height: 2),
+                      Text(
+                        isEn ? prompt.ctaEn : prompt.ctaTr,
+                        style: const TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                          color: AppColors.starGold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Icon(
+                  Icons.chevron_right_rounded,
+                  size: 20,
+                  color: AppColors.starGold.withValues(alpha: 0.7),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+      orElse: () => const SizedBox.shrink(),
     );
   }
 }

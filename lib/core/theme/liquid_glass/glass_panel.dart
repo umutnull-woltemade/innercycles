@@ -64,7 +64,7 @@ class GlassPanel extends StatelessWidget {
             decoration: BoxDecoration(
               color: surfaceColor,
               borderRadius: radius,
-              border: Border.all(color: borderColor, width: 0.5),
+              border: Border.all(color: borderColor, width: 0.33),
               boxShadow: _level >= 3
                   ? [
                       BoxShadow(

@@ -76,7 +76,7 @@ class AppColors {
   // Light mode text
   static const Color lightTextPrimary = Color(0xFF1A1A2E);
   static const Color lightTextSecondary = Color(0xFF4A4A6A);
-  static const Color lightTextMuted = Color(0xFF8A8AA8);
+  static const Color lightTextMuted = Color(0xFF6B6B8A);
 
   // Light mode accent (slightly darker for better contrast)
   static const Color lightAuroraStart = Color(0xFF5A6FD6);

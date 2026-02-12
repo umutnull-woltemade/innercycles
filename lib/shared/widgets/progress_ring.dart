@@ -41,7 +41,7 @@ class ProgressRing extends StatelessWidget {
     final bgColor =
         backgroundColor ??
         (isDark
-            ? Colors.white.withValues(alpha: 0.1)
+            ? Colors.white.withValues(alpha: 0.15)
             : Colors.black.withValues(alpha: 0.08));
 
     Widget ring = SizedBox(
@@ -321,7 +321,7 @@ class StatsCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
           color: isDark
-              ? Colors.white.withValues(alpha: 0.1)
+              ? Colors.white.withValues(alpha: 0.15)
               : Colors.black.withValues(alpha: 0.05),
         ),
         boxShadow: [

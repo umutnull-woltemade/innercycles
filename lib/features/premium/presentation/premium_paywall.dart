@@ -144,7 +144,7 @@ class _PremiumPaywallState extends ConsumerState<PremiumPaywall> {
     return Container(
       decoration: const BoxDecoration(
         color: PaywallColors.background,
-        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
       ),
       child: SafeArea(
         top: false,
@@ -154,11 +154,11 @@ class _PremiumPaywallState extends ConsumerState<PremiumPaywall> {
             // Handle bar
             Container(
               margin: const EdgeInsets.only(top: 12),
-              width: 40,
-              height: 4,
+              width: 36,
+              height: 5,
               decoration: BoxDecoration(
                 color: PaywallColors.textSecondary.withValues(alpha: 0.3),
-                borderRadius: BorderRadius.circular(2),
+                borderRadius: BorderRadius.circular(2.5),
               ),
             ),
 

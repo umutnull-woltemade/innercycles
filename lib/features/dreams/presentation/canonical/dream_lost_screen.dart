@@ -234,7 +234,7 @@ class DreamLostScreen extends ConsumerWidget {
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
           color: isDark
-              ? Colors.white.withValues(alpha: 0.1)
+              ? Colors.white.withValues(alpha: 0.15)
               : Colors.black.withValues(alpha: 0.1),
         ),
       ),

@@ -94,17 +94,17 @@ class _AddProfileSheetState extends ConsumerState<AddProfileSheet> {
       height: MediaQuery.of(context).size.height * 0.85,
       decoration: BoxDecoration(
         color: isDark ? AppColors.surfaceDark : AppColors.lightSurface,
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(10)),
       ),
       child: Column(
         children: [
           const SizedBox(height: 12),
           Container(
-            width: 40,
-            height: 4,
+            width: 36,
+            height: 5,
             decoration: BoxDecoration(
               color: Colors.grey.withAlpha(80),
-              borderRadius: BorderRadius.circular(2),
+              borderRadius: BorderRadius.circular(2.5),
             ),
           ),
           Expanded(
@@ -726,7 +726,7 @@ class _AddProfileSheetState extends ConsumerState<AddProfileSheet> {
       backgroundColor: isDark ? AppColors.surfaceDark : AppColors.lightSurface,
       isScrollControlled: true,
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
       ),
       builder: (context) => DraggableScrollableSheet(
         initialChildSize: 0.7,
@@ -896,7 +896,7 @@ class _AddProfileSheetState extends ConsumerState<AddProfileSheet> {
       context: context,
       backgroundColor: isDark ? AppColors.surfaceDark : AppColors.lightSurface,
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
       ),
       builder: (context) => Container(
         padding: const EdgeInsets.all(AppConstants.spacingLg),

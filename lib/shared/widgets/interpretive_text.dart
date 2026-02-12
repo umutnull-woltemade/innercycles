@@ -296,7 +296,7 @@ class _ConstrainedTooltipOverlay extends StatelessWidget {
               maxHeight: availableHeight.clamp(200.0, screenSize.height * 0.4),
             ),
             child: SingleChildScrollView(
-              physics: const ClampingScrollPhysics(),
+              physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
               child: Material(color: Colors.transparent, child: child),
             ),
           ),
@@ -320,7 +320,7 @@ class _ConstrainedTooltipOverlay extends StatelessWidget {
           child: Material(
             color: Colors.transparent,
             child: SingleChildScrollView(
-              physics: const ClampingScrollPhysics(),
+              physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
               child: child,
             ),
           ),
@@ -582,7 +582,7 @@ class GlossaryRichTooltip extends ConsumerWidget {
                         ),
                         decoration: BoxDecoration(
                           color: isDark
-                              ? Colors.white.withValues(alpha: 0.1)
+                              ? Colors.white.withValues(alpha: 0.15)
                               : AppColors.cosmic.withValues(alpha: 0.1),
                           borderRadius: BorderRadius.circular(12),
                         ),

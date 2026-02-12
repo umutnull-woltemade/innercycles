@@ -23,7 +23,7 @@ class ComparisonScreen extends ConsumerStatefulWidget {
 }
 
 class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
-  List<UserProfile?> _selectedProfiles = [null, null];
+  final List<UserProfile?> _selectedProfiles = [null, null];
 
   @override
   void initState() {
@@ -93,7 +93,7 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: isDark ? Colors.white.withOpacity(0.05) : Colors.black.withOpacity(0.03),
+        color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.black.withValues(alpha: 0.03),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
           color: isDark ? Colors.white12 : Colors.black12,
@@ -169,7 +169,7 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
       child: Container(
         height: 120,
         decoration: BoxDecoration(
-          color: isDark ? Colors.white.withOpacity(0.05) : Colors.black.withOpacity(0.03),
+          color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.black.withValues(alpha: 0.03),
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
             color: selected != null
@@ -231,7 +231,7 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
       context: context,
       backgroundColor: isDark ? AppColors.deepSpace : Colors.white,
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
       ),
       builder: (context) {
         return SafeArea(
@@ -325,7 +325,7 @@ class _ComparisonScreenState extends ConsumerState<ComparisonScreen> {
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: isDark ? Colors.white.withOpacity(0.05) : Colors.black.withOpacity(0.03),
+        color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.black.withValues(alpha: 0.03),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(

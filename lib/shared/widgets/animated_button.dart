@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_animate/flutter_animate.dart';
+
 import '../../core/theme/app_colors.dart';
 
 /// Animated gradient button with press effects
@@ -83,7 +83,7 @@ class _AnimatedGradientButtonState extends State<AnimatedGradientButton>
     if (widget.isDisabled || widget.isLoading || widget.onPressed == null)
       return;
     if (widget.hapticFeedback) {
-      HapticFeedback.mediumImpact();
+      HapticFeedback.lightImpact();
     }
     widget.onPressed!();
   }
@@ -339,8 +339,7 @@ class _CosmicFloatingButtonState extends State<CosmicFloatingButton> {
             ),
           ),
         )
-        .animate(onPlay: (c) => c.repeat(reverse: true))
-        .moveY(begin: 0, end: -4, duration: 2000.ms, curve: Curves.easeInOut);
+;
   }
 }
 

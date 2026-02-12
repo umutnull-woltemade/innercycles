@@ -63,7 +63,8 @@ class SavedProfilesScreen extends ConsumerWidget {
           IconButton(
             onPressed: () => context.pop(),
             icon: Icon(
-              Icons.arrow_back_ios_new,
+              Icons.chevron_left,
+              size: 28,
               color: isDark
                   ? AppColors.textPrimary
                   : AppColors.lightTextPrimary,
@@ -224,7 +225,7 @@ class SavedProfilesScreen extends ConsumerWidget {
       context: context,
       backgroundColor: isDark ? AppColors.surfaceDark : AppColors.lightSurface,
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
       ),
       builder: (context) => Container(
         padding: const EdgeInsets.all(AppConstants.spacingLg),

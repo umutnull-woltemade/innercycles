@@ -92,7 +92,7 @@ class EnergyBar extends StatelessWidget {
                 height: 8,
                 decoration: BoxDecoration(
                   color: isDark
-                      ? Colors.white.withValues(alpha: 0.1)
+                      ? Colors.white.withValues(alpha: 0.15)
                       : Colors.black.withValues(alpha: 0.08),
                   borderRadius: BorderRadius.circular(4),
                 ),
@@ -330,7 +330,7 @@ class EnergyBarCompact extends StatelessWidget {
               CircularProgressIndicator(
                 value: value,
                 backgroundColor: isDark
-                    ? Colors.white.withValues(alpha: 0.1)
+                    ? Colors.white.withValues(alpha: 0.15)
                     : Colors.black.withValues(alpha: 0.08),
                 valueColor: AlwaysStoppedAnimation(color),
                 strokeWidth: 4,
@@ -420,7 +420,7 @@ class EnergyBarsSummary extends ConsumerWidget {
       width: 1,
       height: 40,
       color: isDark
-          ? Colors.white.withValues(alpha: 0.1)
+          ? Colors.white.withValues(alpha: 0.15)
           : Colors.black.withValues(alpha: 0.08),
     );
   }

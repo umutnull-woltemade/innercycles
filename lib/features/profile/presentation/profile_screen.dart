@@ -107,7 +107,8 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             }
           },
           icon: Icon(
-            Icons.arrow_back_ios_new,
+            Icons.chevron_left,
+            size: 28,
             color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
           ),
         ),
@@ -218,12 +219,12 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
         color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.7)
+            ? AppColors.surfaceDark.withValues(alpha: 0.85)
             : AppColors.lightCard,
         borderRadius: BorderRadius.circular(AppConstants.radiusLg),
         border: Border.all(
           color: isDark
-              ? Colors.white.withValues(alpha: 0.1)
+              ? Colors.white.withValues(alpha: 0.15)
               : Colors.black.withValues(alpha: 0.05),
         ),
       ),
@@ -425,12 +426,12 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
         color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.7)
+            ? AppColors.surfaceDark.withValues(alpha: 0.85)
             : AppColors.lightCard,
         borderRadius: BorderRadius.circular(AppConstants.radiusLg),
         border: Border.all(
           color: isDark
-              ? Colors.white.withValues(alpha: 0.1)
+              ? Colors.white.withValues(alpha: 0.15)
               : Colors.black.withValues(alpha: 0.05),
         ),
       ),
@@ -568,7 +569,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
       isScrollControlled: true,
       backgroundColor: isDark ? AppColors.surfaceDark : AppColors.lightSurface,
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
       ),
       builder: (context) {
         String searchQuery = '';

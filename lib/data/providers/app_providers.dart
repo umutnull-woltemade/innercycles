@@ -17,6 +17,21 @@ import '../models/zodiac_sign.dart' as zodiac;
 import '../services/storage_service.dart';
 import '../services/dream_journal_service.dart';
 import '../services/journal_service.dart';
+import '../services/streak_service.dart';
+import '../services/gratitude_service.dart';
+import '../services/ritual_service.dart';
+import '../services/review_service.dart';
+import '../services/content_engine_service.dart';
+import '../services/attachment_style_service.dart';
+import '../services/daily_hook_service.dart';
+import '../services/upgrade_trigger_service.dart';
+import '../services/sleep_service.dart';
+import '../services/wellness_score_service.dart';
+import '../services/energy_map_service.dart';
+import '../services/guided_program_service.dart';
+import '../services/seasonal_reflection_service.dart';
+import '../services/growth_challenge_service.dart';
+import '../services/export_service.dart';
 import '../models/journal_entry.dart';
 
 // =============================================================================
@@ -273,4 +288,198 @@ final todayJournalEntryProvider = FutureProvider<JournalEntry?>((ref) async {
 final journalStreakProvider = FutureProvider<int>((ref) async {
   final service = await ref.watch(journalServiceProvider.future);
   return service.getCurrentStreak();
+});
+
+// =============================================================================
+// STREAK SERVICE PROVIDER
+// =============================================================================
+
+final streakServiceProvider = FutureProvider<StreakService>((ref) async {
+  final journalService = await ref.watch(journalServiceProvider.future);
+  return await StreakService.init(journalService);
+});
+
+final streakStatsProvider = FutureProvider<StreakStats>((ref) async {
+  final streakService = await ref.watch(streakServiceProvider.future);
+  return streakService.getStats();
+});
+
+// =============================================================================
+// GRATITUDE SERVICE PROVIDER
+// =============================================================================
+
+final gratitudeServiceProvider = FutureProvider<GratitudeService>((ref) async {
+  return await GratitudeService.init();
+});
+
+final todayGratitudeProvider = FutureProvider<GratitudeEntry?>((ref) async {
+  final service = await ref.watch(gratitudeServiceProvider.future);
+  return service.getTodayEntry();
+});
+
+final gratitudeSummaryProvider = FutureProvider<GratitudeSummary>((ref) async {
+  final service = await ref.watch(gratitudeServiceProvider.future);
+  return service.getWeeklySummary();
+});
+
+// =============================================================================
+// RITUAL SERVICE PROVIDER
+// =============================================================================
+
+final ritualServiceProvider = FutureProvider<RitualService>((ref) async {
+  return await RitualService.init();
+});
+
+final ritualStacksProvider = FutureProvider<List<RitualStack>>((ref) async {
+  final service = await ref.watch(ritualServiceProvider.future);
+  return service.getStacks();
+});
+
+final todayRitualSummaryProvider =
+    FutureProvider<DailyRitualSummary>((ref) async {
+  final service = await ref.watch(ritualServiceProvider.future);
+  return service.getTodaySummary();
+});
+
+// =============================================================================
+// REVIEW SERVICE PROVIDER
+// =============================================================================
+
+final reviewServiceProvider = FutureProvider<ReviewService>((ref) async {
+  return await ReviewService.init();
+});
+
+// =============================================================================
+// CONTENT ENGINE PROVIDER
+// =============================================================================
+
+final contentEngineServiceProvider =
+    FutureProvider<ContentEngineService>((ref) async {
+  return await ContentEngineService.init();
+});
+
+// =============================================================================
+// ATTACHMENT STYLE PROVIDER
+// =============================================================================
+
+final attachmentStyleServiceProvider =
+    FutureProvider<AttachmentStyleService>((ref) async {
+  return await AttachmentStyleService.init();
+});
+
+// =============================================================================
+// DAILY HOOK PROVIDER
+// =============================================================================
+
+final dailyHookServiceProvider = FutureProvider<DailyHookService>((ref) async {
+  return await DailyHookService.init();
+});
+
+// =============================================================================
+// UPGRADE TRIGGER PROVIDER
+// =============================================================================
+
+final upgradeTriggerServiceProvider =
+    FutureProvider<UpgradeTriggerService>((ref) async {
+  return await UpgradeTriggerService.init();
+});
+
+// =============================================================================
+// SLEEP SERVICE PROVIDER
+// =============================================================================
+
+final sleepServiceProvider = FutureProvider<SleepService>((ref) async {
+  return await SleepService.init();
+});
+
+final todaySleepProvider = FutureProvider<SleepEntry?>((ref) async {
+  final service = await ref.watch(sleepServiceProvider.future);
+  return service.getTodayEntry();
+});
+
+final sleepSummaryProvider = FutureProvider<SleepSummary>((ref) async {
+  final service = await ref.watch(sleepServiceProvider.future);
+  return service.getWeeklySummary();
+});
+
+// =============================================================================
+// WELLNESS SCORE PROVIDER
+// =============================================================================
+
+final wellnessScoreServiceProvider =
+    FutureProvider<WellnessScoreService>((ref) async {
+  final journalService = await ref.watch(journalServiceProvider.future);
+  final gratitudeService = await ref.watch(gratitudeServiceProvider.future);
+  final ritualService = await ref.watch(ritualServiceProvider.future);
+  final streakService = await ref.watch(streakServiceProvider.future);
+  final sleepService = await ref.watch(sleepServiceProvider.future);
+  return await WellnessScoreService.init(
+    journalService: journalService,
+    gratitudeService: gratitudeService,
+    ritualService: ritualService,
+    streakService: streakService,
+    sleepService: sleepService,
+  );
+});
+
+final wellnessScoreProvider = FutureProvider<WellnessScore?>((ref) async {
+  final service = await ref.watch(wellnessScoreServiceProvider.future);
+  return await service.calculateTodayScore();
+});
+
+final wellnessTrendProvider = FutureProvider<WellnessTrend>((ref) async {
+  final service = await ref.watch(wellnessScoreServiceProvider.future);
+  return service.getWeeklyTrend();
+});
+
+// =============================================================================
+// ENERGY MAP PROVIDER
+// =============================================================================
+
+final energyMapServiceProvider =
+    FutureProvider<EnergyMapService>((ref) async {
+  final journalService = await ref.watch(journalServiceProvider.future);
+  return EnergyMapService(journalService);
+});
+
+final energyMapProvider = FutureProvider<EnergyMapData?>((ref) async {
+  final service = await ref.watch(energyMapServiceProvider.future);
+  if (!service.hasEnoughData()) return null;
+  return service.buildHeatmap();
+});
+
+// =============================================================================
+// GUIDED PROGRAM PROVIDER
+// =============================================================================
+
+final guidedProgramServiceProvider =
+    FutureProvider<GuidedProgramService>((ref) async {
+  return await GuidedProgramService.init();
+});
+
+// =============================================================================
+// SEASONAL REFLECTION PROVIDER
+// =============================================================================
+
+final seasonalReflectionServiceProvider =
+    FutureProvider<SeasonalReflectionService>((ref) async {
+  return SeasonalReflectionService.init();
+});
+
+// =============================================================================
+// EXPORT SERVICE PROVIDER
+// =============================================================================
+
+// =============================================================================
+// GROWTH CHALLENGE PROVIDER
+// =============================================================================
+
+final growthChallengeServiceProvider =
+    FutureProvider<GrowthChallengeService>((ref) async {
+  return await GrowthChallengeService.init();
+});
+
+final exportServiceProvider = FutureProvider<ExportService>((ref) async {
+  final journalService = await ref.watch(journalServiceProvider.future);
+  return ExportService(journalService);
 });

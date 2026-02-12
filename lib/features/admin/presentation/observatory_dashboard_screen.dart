@@ -98,7 +98,8 @@ class _ObservatoryDashboardScreenState
           IconButton(
             onPressed: () => context.go(Routes.admin),
             icon: Icon(
-              Icons.arrow_back_ios_new,
+              Icons.chevron_left,
+              size: 28,
               color: isDark
                   ? AppColors.textPrimary
                   : AppColors.lightTextPrimary,
@@ -329,7 +330,7 @@ class _ObservatoryDashboardScreenState
             border: Border(
               right: BorderSide(
                 color: isDark
-                    ? Colors.white.withValues(alpha: 0.1)
+                    ? Colors.white.withValues(alpha: 0.15)
                     : Colors.black.withValues(alpha: 0.05),
               ),
             ),
@@ -498,12 +499,12 @@ class _ObservatoryDashboardScreenState
     return Container(
       decoration: BoxDecoration(
         color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.7)
+            ? AppColors.surfaceDark.withValues(alpha: 0.85)
             : AppColors.lightCard,
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         border: Border.all(
           color: isDark
-              ? Colors.white.withValues(alpha: 0.1)
+              ? Colors.white.withValues(alpha: 0.15)
               : Colors.black.withValues(alpha: 0.05),
         ),
       ),
@@ -514,7 +515,7 @@ class _ObservatoryDashboardScreenState
         separatorBuilder: (_, _) => Divider(
           height: 1,
           color: isDark
-              ? Colors.white.withValues(alpha: 0.1)
+              ? Colors.white.withValues(alpha: 0.15)
               : Colors.black.withValues(alpha: 0.05),
         ),
         itemBuilder: (context, index) {
@@ -684,12 +685,12 @@ class _ObservatoryDashboardScreenState
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
         color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.7)
+            ? AppColors.surfaceDark.withValues(alpha: 0.85)
             : AppColors.lightCard,
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         border: Border.all(
           color: isDark
-              ? Colors.white.withValues(alpha: 0.1)
+              ? Colors.white.withValues(alpha: 0.15)
               : Colors.black.withValues(alpha: 0.05),
         ),
       ),
@@ -772,12 +773,12 @@ class _ObservatoryDashboardScreenState
     return Container(
       decoration: BoxDecoration(
         color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.7)
+            ? AppColors.surfaceDark.withValues(alpha: 0.85)
             : AppColors.lightCard,
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         border: Border.all(
           color: isDark
-              ? Colors.white.withValues(alpha: 0.1)
+              ? Colors.white.withValues(alpha: 0.15)
               : Colors.black.withValues(alpha: 0.05),
         ),
       ),
@@ -853,12 +854,12 @@ class _ObservatoryDashboardScreenState
       constraints: const BoxConstraints(maxHeight: 300),
       decoration: BoxDecoration(
         color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.7)
+            ? AppColors.surfaceDark.withValues(alpha: 0.85)
             : AppColors.lightCard,
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         border: Border.all(
           color: isDark
-              ? Colors.white.withValues(alpha: 0.1)
+              ? Colors.white.withValues(alpha: 0.15)
               : Colors.black.withValues(alpha: 0.05),
         ),
       ),
@@ -1009,7 +1010,7 @@ class _ObservatoryDashboardScreenState
       padding: const EdgeInsets.all(AppConstants.spacingMd),
       decoration: BoxDecoration(
         color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.7)
+            ? AppColors.surfaceDark.withValues(alpha: 0.85)
             : AppColors.lightCard,
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         border: Border.all(color: color.withValues(alpha: 0.3)),
@@ -1057,12 +1058,12 @@ class _ObservatoryDashboardScreenState
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
         color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.7)
+            ? AppColors.surfaceDark.withValues(alpha: 0.85)
             : AppColors.lightCard,
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         border: Border.all(
           color: isDark
-              ? Colors.white.withValues(alpha: 0.1)
+              ? Colors.white.withValues(alpha: 0.15)
               : Colors.black.withValues(alpha: 0.05),
         ),
       ),
@@ -1179,7 +1180,7 @@ class _ObservatoryDashboardScreenState
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
         color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.7)
+            ? AppColors.surfaceDark.withValues(alpha: 0.85)
             : AppColors.lightCard,
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         border: Border.all(color: statusColor.withValues(alpha: 0.3)),
@@ -1296,12 +1297,12 @@ class _ObservatoryDashboardScreenState
     return Container(
       decoration: BoxDecoration(
         color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.7)
+            ? AppColors.surfaceDark.withValues(alpha: 0.85)
             : AppColors.lightCard,
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         border: Border.all(
           color: isDark
-              ? Colors.white.withValues(alpha: 0.1)
+              ? Colors.white.withValues(alpha: 0.15)
               : Colors.black.withValues(alpha: 0.05),
         ),
       ),
@@ -1421,7 +1422,7 @@ class _ObservatoryDashboardScreenState
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
         color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.7)
+            ? AppColors.surfaceDark.withValues(alpha: 0.85)
             : AppColors.lightCard,
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         border: Border.all(color: statusColor.withValues(alpha: 0.3)),
@@ -1509,12 +1510,12 @@ class _ObservatoryDashboardScreenState
     return Container(
       decoration: BoxDecoration(
         color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.7)
+            ? AppColors.surfaceDark.withValues(alpha: 0.85)
             : AppColors.lightCard,
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         border: Border.all(
           color: isDark
-              ? Colors.white.withValues(alpha: 0.1)
+              ? Colors.white.withValues(alpha: 0.15)
               : Colors.black.withValues(alpha: 0.05),
         ),
       ),
@@ -1624,12 +1625,12 @@ class _ObservatoryDashboardScreenState
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
         color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.7)
+            ? AppColors.surfaceDark.withValues(alpha: 0.85)
             : AppColors.lightCard,
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         border: Border.all(
           color: isDark
-              ? Colors.white.withValues(alpha: 0.1)
+              ? Colors.white.withValues(alpha: 0.15)
               : Colors.black.withValues(alpha: 0.05),
         ),
       ),
@@ -1870,7 +1871,7 @@ class _StatusCard extends StatelessWidget {
       padding: const EdgeInsets.all(AppConstants.spacingMd),
       decoration: BoxDecoration(
         color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.7)
+            ? AppColors.surfaceDark.withValues(alpha: 0.85)
             : AppColors.lightCard,
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         border: Border.all(color: statusColor.withValues(alpha: 0.3)),

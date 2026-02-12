@@ -41,6 +41,20 @@ import '../../features/journal/presentation/archive_screen.dart';
 import '../../features/journal/presentation/monthly_reflection_screen.dart';
 import '../../features/admin/presentation/admin_login_screen.dart';
 import '../../features/admin/presentation/admin_dashboard_screen.dart';
+import '../../features/quiz/presentation/attachment_quiz_screen.dart';
+import '../../features/sharing/presentation/share_insight_screen.dart';
+import '../../features/journal/presentation/emotional_cycle_screen.dart';
+import '../../features/growth/presentation/growth_dashboard_screen.dart';
+import '../../features/rituals/presentation/rituals_screen.dart';
+import '../../features/rituals/presentation/ritual_create_screen.dart';
+import '../../features/wellness/presentation/wellness_detail_screen.dart';
+import '../../features/energy/presentation/energy_map_screen.dart';
+import '../../features/programs/presentation/program_list_screen.dart';
+import '../../features/programs/presentation/active_program_screen.dart';
+import '../../features/seasonal/presentation/seasonal_reflection_screen.dart';
+import '../../features/breathing/presentation/breathing_timer_screen.dart';
+import '../../features/moon/presentation/moon_calendar_screen.dart';
+import '../../features/challenges/presentation/challenge_list_screen.dart';
 
 import '../../data/services/admin_auth_service.dart';
 import '../../data/services/storage_service.dart';
@@ -207,6 +221,85 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: Routes.dreamUnableToFly,
         builder: (context, state) => const DreamUnableToFlyScreen(),
+      ),
+
+      // ════════════════════════════════════════════════════════════════
+      // GROWTH & ENGAGEMENT
+      // ════════════════════════════════════════════════════════════════
+      GoRoute(
+        path: Routes.attachmentQuiz,
+        builder: (context, state) => const AttachmentQuizScreen(),
+      ),
+      GoRoute(
+        path: Routes.shareInsight,
+        builder: (context, state) => const ShareInsightScreen(),
+      ),
+      GoRoute(
+        path: Routes.emotionalCycles,
+        builder: (context, state) => const EmotionalCycleScreen(),
+      ),
+      GoRoute(
+        path: Routes.growthDashboard,
+        builder: (context, state) => const GrowthDashboardScreen(),
+      ),
+
+      // ════════════════════════════════════════════════════════════════
+      // RITUALS & HABITS
+      // ════════════════════════════════════════════════════════════════
+      GoRoute(
+        path: Routes.rituals,
+        builder: (context, state) => const RitualsScreen(),
+      ),
+      GoRoute(
+        path: Routes.ritualCreate,
+        builder: (context, state) => const RitualCreateScreen(),
+      ),
+
+      // ════════════════════════════════════════════════════════════════
+      // WELLNESS & SLEEP
+      // ════════════════════════════════════════════════════════════════
+      GoRoute(
+        path: Routes.wellnessDetail,
+        builder: (context, state) => const WellnessDetailScreen(),
+      ),
+      GoRoute(
+        path: Routes.energyMap,
+        builder: (context, state) => const EnergyMapScreen(),
+      ),
+
+      // ════════════════════════════════════════════════════════════════
+      // GUIDED PROGRAMS
+      // ════════════════════════════════════════════════════════════════
+      GoRoute(
+        path: Routes.programs,
+        builder: (context, state) => const ProgramListScreen(),
+      ),
+      GoRoute(
+        path: Routes.programDetail,
+        builder: (context, state) {
+          final id = state.pathParameters['id'] ?? '';
+          return ActiveProgramScreen(programId: id);
+        },
+      ),
+
+      // ════════════════════════════════════════════════════════════════
+      // P2: SEASONAL, BREATHING, MOON CALENDAR, CHALLENGES
+      // ════════════════════════════════════════════════════════════════
+      GoRoute(
+        path: Routes.seasonal,
+        builder: (context, state) => const SeasonalReflectionScreen(),
+      ),
+      GoRoute(
+        path: Routes.breathing,
+        builder: (context, state) => const BreathingTimerScreen(),
+      ),
+      GoRoute(
+        path: Routes.moonCalendar,
+        builder: (context, state) => const MoonCalendarScreen(),
+      ),
+      GoRoute(
+        path: Routes.challenges,
+        builder: (context, state) => const ChallengeListScreen(),
       ),
 
       // ════════════════════════════════════════════════════════════════

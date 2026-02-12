@@ -897,7 +897,7 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
         height: 300,
         decoration: BoxDecoration(
           color: AppColors.surfaceDark,
-          borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(10)),
         ),
         padding: const EdgeInsets.all(20),
         child: Column(
@@ -1336,7 +1336,7 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
               decoration: BoxDecoration(
-                color: Colors.white.withValues(alpha: 0.1),
+                color: Colors.white.withValues(alpha: 0.15),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: const Text(
@@ -1639,7 +1639,7 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
         padding: const EdgeInsets.all(24),
         decoration: BoxDecoration(
           color: AppColors.surfaceDark,
-          borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(10)),
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,

@@ -80,7 +80,7 @@ class _GlassPrimaryButtonState extends State<GlassPrimaryButton>
                   color: enabled
                       ? GlassTokens.starGold.withValues(alpha: 0.5)
                       : Colors.grey.withValues(alpha: 0.3),
-                  width: 0.5,
+                  width: 0.33,
                 ),
               ),
               child: Row(
@@ -189,7 +189,7 @@ class _GlassSecondaryButtonState extends State<GlassSecondaryButton>
               decoration: BoxDecoration(
                 color: textColor.withValues(alpha: 0.08),
                 borderRadius: BorderRadius.circular(GlassTokens.radiusMd),
-                border: Border.all(color: borderColor, width: 0.5),
+                border: Border.all(color: borderColor, width: 0.33),
               ),
               child: Row(
                 mainAxisSize: MainAxisSize.min,

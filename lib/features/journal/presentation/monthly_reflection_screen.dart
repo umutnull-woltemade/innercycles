@@ -1,13 +1,15 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
+
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/pattern_engine_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/glass_sliver_app_bar.dart';
 
 class MonthlyReflectionScreen extends ConsumerStatefulWidget {
   const MonthlyReflectionScreen({super.key});
@@ -48,58 +50,45 @@ class _MonthlyReflectionScreenState
               final summary =
                   engine.getMonthSummary(_selectedYear, _selectedMonth);
 
-              return CustomScrollView(
-                slivers: [
-                  SliverAppBar(
-                    backgroundColor: Colors.transparent,
-                    pinned: true,
-                    leading: IconButton(
-                      onPressed: () => context.pop(),
-                      icon: Icon(
-                        Icons.arrow_back_ios_new,
-                        color: isDark
-                            ? AppColors.textPrimary
-                            : AppColors.lightTextPrimary,
-                      ),
-                    ),
-                    title: Text(
-                      isEn ? 'Monthly Reflection' : 'Aylık Yansıma',
-                      style:
-                          Theme.of(context).textTheme.titleLarge?.copyWith(
-                        color: AppColors.starGold,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
+              return CupertinoScrollbar(
+                child: CustomScrollView(
+                  physics: const BouncingScrollPhysics(
+                    parent: AlwaysScrollableScrollPhysics(),
                   ),
-                  SliverPadding(
-                    padding: const EdgeInsets.all(AppConstants.spacingLg),
-                    sliver: SliverList(
-                      delegate: SliverChildListDelegate([
-                        // Month selector
-                        _buildMonthSelector(context, isDark, isEn),
-                        const SizedBox(height: AppConstants.spacingXl),
+                  slivers: [
+                    GlassSliverAppBar(
+                      title: isEn ? 'Monthly Reflection' : 'Aylık Yansıma',
+                    ),
+                    SliverPadding(
+                      padding: const EdgeInsets.all(AppConstants.spacingLg),
+                      sliver: SliverList(
+                        delegate: SliverChildListDelegate([
+                          // Month selector
+                          _buildMonthSelector(context, isDark, isEn),
+                          const SizedBox(height: AppConstants.spacingXl),
 
-                        // Summary card
-                        _buildSummaryCard(context, summary, isDark, isEn)
-                            .animate()
-                            .fadeIn(duration: 400.ms),
-                        const SizedBox(height: AppConstants.spacingLg),
-
-                        // Area breakdown
-                        if (summary.averagesByArea.isNotEmpty)
-                          _buildAreaBreakdown(
-                            context,
-                            summary,
-                            isDark,
-                            isEn,
-                          )
+                          // Summary card
+                          _buildSummaryCard(context, summary, isDark, isEn)
                               .animate()
-                              .fadeIn(delay: 100.ms, duration: 400.ms),
-                        const SizedBox(height: 40),
-                      ]),
+                              .fadeIn(duration: 400.ms),
+                          const SizedBox(height: AppConstants.spacingLg),
+
+                          // Area breakdown
+                          if (summary.averagesByArea.isNotEmpty)
+                            _buildAreaBreakdown(
+                              context,
+                              summary,
+                              isDark,
+                              isEn,
+                            )
+                                .animate()
+                                .fadeIn(delay: 100.ms, duration: 400.ms),
+                          const SizedBox(height: 40),
+                        ]),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               );
             },
           ),
@@ -126,7 +115,7 @@ class _MonthlyReflectionScreenState
       ),
       decoration: BoxDecoration(
         color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.7)
+            ? AppColors.surfaceDark.withValues(alpha: 0.85)
             : AppColors.lightCard,
         borderRadius: BorderRadius.circular(AppConstants.radiusLg),
         border: Border.all(
@@ -199,12 +188,12 @@ class _MonthlyReflectionScreenState
       padding: const EdgeInsets.all(AppConstants.spacingXl),
       decoration: BoxDecoration(
         color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.7)
+            ? AppColors.surfaceDark.withValues(alpha: 0.85)
             : AppColors.lightCard,
         borderRadius: BorderRadius.circular(AppConstants.radiusLg),
         border: Border.all(
           color: isDark
-              ? Colors.white.withValues(alpha: 0.1)
+              ? Colors.white.withValues(alpha: 0.15)
               : Colors.black.withValues(alpha: 0.05),
         ),
       ),
@@ -326,12 +315,12 @@ class _MonthlyReflectionScreenState
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
         color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.7)
+            ? AppColors.surfaceDark.withValues(alpha: 0.85)
             : AppColors.lightCard,
         borderRadius: BorderRadius.circular(AppConstants.radiusLg),
         border: Border.all(
           color: isDark
-              ? Colors.white.withValues(alpha: 0.1)
+              ? Colors.white.withValues(alpha: 0.15)
               : Colors.black.withValues(alpha: 0.05),
         ),
       ),

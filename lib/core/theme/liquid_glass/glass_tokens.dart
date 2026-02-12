@@ -56,20 +56,20 @@ class GlassTokens {
   static const double g1Opacity = 0.05;
   static const double g1BorderOpacity = 0.08;
 
-  // G2: Card level (e.g. content cards, list items)
+  // G2: Card level (e.g. content cards, list items) — matches iOS .ultraThinMaterial
   static const double g2Blur = 12;
-  static const double g2Opacity = 0.10;
-  static const double g2BorderOpacity = 0.12;
+  static const double g2Opacity = 0.18;
+  static const double g2BorderOpacity = 0.15;
 
-  // G3: Elevated panel (e.g. modals, sheets)
+  // G3: Elevated panel (e.g. modals, sheets) — matches iOS .thinMaterial
   static const double g3Blur = 20;
-  static const double g3Opacity = 0.15;
-  static const double g3BorderOpacity = 0.18;
+  static const double g3Opacity = 0.30;
+  static const double g3BorderOpacity = 0.20;
 
-  // G4: Prominent surface (e.g. floating action areas)
+  // G4: Prominent surface (e.g. floating action areas) — matches iOS .regularMaterial
   static const double g4Blur = 28;
-  static const double g4Opacity = 0.20;
-  static const double g4BorderOpacity = 0.22;
+  static const double g4Opacity = 0.45;
+  static const double g4BorderOpacity = 0.25;
 
   // G5: Maximum glass (e.g. overlay dialogs, tooltips)
   static const double g5Blur = 40;

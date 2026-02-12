@@ -760,7 +760,7 @@ class _SymbolDetailSheet extends StatelessWidget {
           end: Alignment.bottomCenter,
           colors: [MysticalColors.bgCosmic, MysticalColors.bgDeepSpace],
         ),
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(10)),
       ),
       child: Column(
         children: [
@@ -1352,7 +1352,7 @@ class _PersonalDictionarySheet extends StatelessWidget {
           end: Alignment.bottomCenter,
           colors: [MysticalColors.bgCosmic, MysticalColors.bgDeepSpace],
         ),
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(10)),
       ),
       child: Column(
         children: [

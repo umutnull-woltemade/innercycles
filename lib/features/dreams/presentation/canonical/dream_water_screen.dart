@@ -255,7 +255,7 @@ class DreamWaterScreen extends ConsumerWidget {
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
             color: isDark
-                ? Colors.white.withValues(alpha: 0.1)
+                ? Colors.white.withValues(alpha: 0.15)
                 : AppColors.waterElement.withValues(alpha: 0.2),
           ),
         ),

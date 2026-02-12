@@ -124,7 +124,8 @@ class _AdminLoginScreenState extends ConsumerState<AdminLoginScreen> {
         IconButton(
           onPressed: () => context.pop(),
           icon: Icon(
-            Icons.arrow_back_ios_new,
+            Icons.chevron_left,
+            size: 28,
             color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
           ),
         ),

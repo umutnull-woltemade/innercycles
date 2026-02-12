@@ -90,8 +90,8 @@ class _GlassBackButton extends StatelessWidget {
     return IconButton(
       onPressed: () => Navigator.of(context).pop(),
       icon: Icon(
-        Icons.arrow_back_ios_new_rounded,
-        size: 20,
+        Icons.chevron_left,
+        size: 28,
         color: isDark ? Colors.white70 : Colors.black54,
       ),
     );

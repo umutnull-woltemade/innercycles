@@ -1,0 +1,373 @@
+// ════════════════════════════════════════════════════════════════════════════
+// GUIDED PROGRAM SERVICE - InnerCycles Structured Reflection Programs
+// ════════════════════════════════════════════════════════════════════════════
+// 7-day and 21-day structured programs with daily prompts.
+// Free: 1 program at a time. Premium: all programs + completion badges.
+// ════════════════════════════════════════════════════════════════════════════
+
+import 'dart:convert';
+import 'package:shared_preferences/shared_preferences.dart';
+
+/// A single day's prompt in a program
+class ProgramDay {
+  final int dayNumber;
+  final String titleEn;
+  final String titleTr;
+  final String promptEn;
+  final String promptTr;
+
+  const ProgramDay({
+    required this.dayNumber,
+    required this.titleEn,
+    required this.titleTr,
+    required this.promptEn,
+    required this.promptTr,
+  });
+}
+
+/// A guided reflection program
+class GuidedProgram {
+  final String id;
+  final String titleEn;
+  final String titleTr;
+  final String descriptionEn;
+  final String descriptionTr;
+  final String emoji;
+  final int durationDays;
+  final List<ProgramDay> days;
+  final bool isPremium;
+
+  const GuidedProgram({
+    required this.id,
+    required this.titleEn,
+    required this.titleTr,
+    required this.descriptionEn,
+    required this.descriptionTr,
+    required this.emoji,
+    required this.durationDays,
+    required this.days,
+    this.isPremium = false,
+  });
+}
+
+/// User's progress in a program
+class ProgramProgress {
+  final String programId;
+  final DateTime startedAt;
+  final Set<int> completedDays; // day numbers
+  final bool isCompleted;
+
+  ProgramProgress({
+    required this.programId,
+    required this.startedAt,
+    required this.completedDays,
+    this.isCompleted = false,
+  });
+
+  int get currentDay {
+    final daysSinceStart =
+        DateTime.now().difference(startedAt).inDays + 1;
+    return daysSinceStart;
+  }
+
+  Map<String, dynamic> toJson() => {
+        'programId': programId,
+        'startedAt': startedAt.toIso8601String(),
+        'completedDays': completedDays.toList(),
+        'isCompleted': isCompleted,
+      };
+
+  factory ProgramProgress.fromJson(Map<String, dynamic> json) =>
+      ProgramProgress(
+        programId: json['programId'] as String,
+        startedAt: DateTime.parse(json['startedAt'] as String),
+        completedDays:
+            (json['completedDays'] as List<dynamic>).cast<int>().toSet(),
+        isCompleted: json['isCompleted'] as bool? ?? false,
+      );
+}
+
+class GuidedProgramService {
+  static const String _progressKey = 'inner_cycles_program_progress';
+  static const String _completedKey = 'inner_cycles_completed_programs';
+
+  final SharedPreferences _prefs;
+  Map<String, ProgramProgress> _activePrograms = {};
+  Set<String> _completedProgramIds = {};
+
+  GuidedProgramService._(this._prefs) {
+    _loadProgress();
+    _loadCompletedPrograms();
+  }
+
+  static Future<GuidedProgramService> init() async {
+    final prefs = await SharedPreferences.getInstance();
+    return GuidedProgramService._(prefs);
+  }
+
+  // ══════════════════════════════════════════════════════════════════════════
+  // PROGRAMS CATALOG
+  // ══════════════════════════════════════════════════════════════════════════
+
+  static const List<GuidedProgram> allPrograms = [
+    _energyDiscovery,
+    _decisionClarity,
+    _socialMapping,
+    _dreamAwareness,
+    _freshStart,
+  ];
+
+  List<GuidedProgram> getAvailablePrograms({bool isPremium = false}) {
+    if (isPremium) return allPrograms;
+    return allPrograms.where((p) => !p.isPremium).toList();
+  }
+
+  // ══════════════════════════════════════════════════════════════════════════
+  // PROGRESS MANAGEMENT
+  // ══════════════════════════════════════════════════════════════════════════
+
+  /// Start a new program
+  Future<ProgramProgress> startProgram(String programId) async {
+    final progress = ProgramProgress(
+      programId: programId,
+      startedAt: DateTime.now(),
+      completedDays: {},
+    );
+    _activePrograms[programId] = progress;
+    await _persistProgress();
+    return progress;
+  }
+
+  /// Complete a day in a program
+  Future<void> completeDay(String programId, int dayNumber) async {
+    final progress = _activePrograms[programId];
+    if (progress == null) return;
+
+    progress.completedDays.add(dayNumber);
+
+    // Check if program is fully completed
+    final program = allPrograms.firstWhere(
+      (p) => p.id == programId,
+      orElse: () => allPrograms.first,
+    );
+
+    if (progress.completedDays.length >= program.durationDays) {
+      _activePrograms[programId] = ProgramProgress(
+        programId: programId,
+        startedAt: progress.startedAt,
+        completedDays: progress.completedDays,
+        isCompleted: true,
+      );
+      _completedProgramIds.add(programId);
+      await _persistCompletedPrograms();
+    }
+
+    await _persistProgress();
+  }
+
+  /// Get active progress for a program
+  ProgramProgress? getProgress(String programId) {
+    return _activePrograms[programId];
+  }
+
+  /// Check if a program has been completed
+  bool isProgramCompleted(String programId) {
+    return _completedProgramIds.contains(programId);
+  }
+
+  /// Get today's prompt for an active program
+  ProgramDay? getTodayPrompt(String programId) {
+    final progress = _activePrograms[programId];
+    if (progress == null || progress.isCompleted) return null;
+
+    final program = allPrograms.firstWhere(
+      (p) => p.id == programId,
+      orElse: () => allPrograms.first,
+    );
+
+    final currentDay = progress.currentDay;
+    if (currentDay > program.durationDays) return null;
+
+    return program.days.firstWhere(
+      (d) => d.dayNumber == currentDay,
+      orElse: () => program.days.last,
+    );
+  }
+
+  /// Get count of active programs
+  int get activeProgramCount => _activePrograms.values
+      .where((p) => !p.isCompleted)
+      .length;
+
+  /// Get count of completed programs
+  int get completedProgramCount => _completedProgramIds.length;
+
+  /// Abandon a program
+  Future<void> abandonProgram(String programId) async {
+    _activePrograms.remove(programId);
+    await _persistProgress();
+  }
+
+  // ══════════════════════════════════════════════════════════════════════════
+  // PERSISTENCE
+  // ══════════════════════════════════════════════════════════════════════════
+
+  void _loadProgress() {
+    final jsonString = _prefs.getString(_progressKey);
+    if (jsonString != null) {
+      try {
+        final Map<String, dynamic> jsonMap = json.decode(jsonString);
+        _activePrograms = jsonMap.map(
+          (k, v) => MapEntry(k, ProgramProgress.fromJson(v)),
+        );
+      } catch (_) {
+        _activePrograms = {};
+      }
+    }
+  }
+
+  Future<void> _persistProgress() async {
+    final jsonMap = _activePrograms.map((k, v) => MapEntry(k, v.toJson()));
+    await _prefs.setString(_progressKey, json.encode(jsonMap));
+  }
+
+  void _loadCompletedPrograms() {
+    final jsonString = _prefs.getString(_completedKey);
+    if (jsonString != null) {
+      try {
+        final List<dynamic> list = json.decode(jsonString);
+        _completedProgramIds = list.cast<String>().toSet();
+      } catch (_) {
+        _completedProgramIds = {};
+      }
+    }
+  }
+
+  Future<void> _persistCompletedPrograms() async {
+    await _prefs.setString(
+        _completedKey, json.encode(_completedProgramIds.toList()));
+  }
+
+  Future<void> clearAll() async {
+    _activePrograms.clear();
+    _completedProgramIds.clear();
+    await _prefs.remove(_progressKey);
+    await _prefs.remove(_completedKey);
+  }
+
+  // ══════════════════════════════════════════════════════════════════════════
+  // PROGRAM DEFINITIONS
+  // ══════════════════════════════════════════════════════════════════════════
+
+  static const _energyDiscovery = GuidedProgram(
+    id: 'energy_discovery',
+    titleEn: 'Energy Discovery',
+    titleTr: 'Enerji Keşfi',
+    descriptionEn: 'Understand your energy patterns over 7 days',
+    descriptionTr: '7 günde enerji kalıplarını anla',
+    emoji: '⚡',
+    durationDays: 7,
+    days: [
+      ProgramDay(dayNumber: 1, titleEn: 'Baseline', titleTr: 'Başlangıç', promptEn: 'Rate your energy right now on 1-5. What time of day feels most energizing?', promptTr: 'Enerjini 1-5 arasında puanla. Günün hangi saati en enerjik hissettiriyor?'),
+      ProgramDay(dayNumber: 2, titleEn: 'Morning Check', titleTr: 'Sabah Kontrolü', promptEn: 'How did you wake up today? What was your first thought?', promptTr: 'Bugün nasıl uyandın? İlk düşüncen neydi?'),
+      ProgramDay(dayNumber: 3, titleEn: 'Energy Drains', titleTr: 'Enerji Kayıpları', promptEn: 'What drained your energy today? Notice any patterns.', promptTr: 'Bugün enerjini ne tüketti? Kalıpları fark et.'),
+      ProgramDay(dayNumber: 4, titleEn: 'Energy Sources', titleTr: 'Enerji Kaynakları', promptEn: 'What gave you energy today? What activities lift you up?', promptTr: 'Bugün sana ne enerji verdi? Hangi aktiviteler seni yükseltiyor?'),
+      ProgramDay(dayNumber: 5, titleEn: 'Mid-Week Review', titleTr: 'Hafta Ortası Gözden Geçirme', promptEn: 'Compare your energy levels across the week. Notice any shifts.', promptTr: 'Hafta boyunca enerji seviyelerini karşılaştır. Değişimleri fark et.'),
+      ProgramDay(dayNumber: 6, titleEn: 'Physical Connection', titleTr: 'Fiziksel Bağlantı', promptEn: 'How does your body feel today? What does it need?', promptTr: 'Bugün vücudun nasıl hissediyor? Neye ihtiyacı var?'),
+      ProgramDay(dayNumber: 7, titleEn: 'Integration', titleTr: 'Bütünleştirme', promptEn: 'What did you learn about your energy this week? What will you carry forward?', promptTr: 'Bu hafta enerjin hakkında ne öğrendin? Neyi ileriye taşıyacaksın?'),
+    ],
+  );
+
+  static const _decisionClarity = GuidedProgram(
+    id: 'decision_clarity',
+    titleEn: 'Decision Clarity',
+    titleTr: 'Karar Netliği',
+    descriptionEn: 'Build confidence in your decision-making over 7 days',
+    descriptionTr: '7 günde karar verme güvenini oluştur',
+    emoji: '🧭',
+    durationDays: 7,
+    isPremium: true,
+    days: [
+      ProgramDay(dayNumber: 1, titleEn: 'Current Decisions', titleTr: 'Mevcut Kararlar', promptEn: 'What decisions are you facing right now? List them without judgment.', promptTr: 'Şu anda hangi kararlarla karşı karşıyasın? Yargılamadan listele.'),
+      ProgramDay(dayNumber: 2, titleEn: 'Past Wins', titleTr: 'Geçmiş Başarılar', promptEn: 'Recall a decision you are proud of. What guided you?', promptTr: 'Gurur duyduğun bir kararı hatırla. Seni ne yönlendirdi?'),
+      ProgramDay(dayNumber: 3, titleEn: 'Values Check', titleTr: 'Değerler Kontrolü', promptEn: 'What are your top 3 values? How do they influence your choices?', promptTr: 'En önemli 3 değerin nedir? Seçimlerini nasıl etkiliyor?'),
+      ProgramDay(dayNumber: 4, titleEn: 'Fear vs. Wisdom', titleTr: 'Korku vs. Bilgelik', promptEn: 'Is fear driving any of your current decisions? How can you tell?', promptTr: 'Mevcut kararlarından herhangi birini korku mu yönlendiriyor? Nasıl anlarsın?'),
+      ProgramDay(dayNumber: 5, titleEn: 'Body Compass', titleTr: 'Beden Pusulası', promptEn: 'Think about a choice. Where do you feel it in your body?', promptTr: 'Bir seçim hakkında düşün. Vücudunda nerede hissediyorsun?'),
+      ProgramDay(dayNumber: 6, titleEn: 'Advice Column', titleTr: 'Tavsiye Köşesi', promptEn: 'What advice would you give a friend facing your situation?', promptTr: 'Senin durumundaki bir arkadaşına ne tavsiye ederdin?'),
+      ProgramDay(dayNumber: 7, titleEn: 'Decision Map', titleTr: 'Karar Haritası', promptEn: 'Choose one decision. Write down the best and worst outcomes. What feels right?', promptTr: 'Bir karar seç. En iyi ve en kötü sonuçları yaz. Ne doğru hissettiriyor?'),
+    ],
+  );
+
+  static const _socialMapping = GuidedProgram(
+    id: 'social_mapping',
+    titleEn: 'Social Mapping',
+    titleTr: 'Sosyal Haritalama',
+    descriptionEn: 'Understand your social patterns over 7 days',
+    descriptionTr: '7 günde sosyal kalıplarını anla',
+    emoji: '🤝',
+    durationDays: 7,
+    isPremium: true,
+    days: [
+      ProgramDay(dayNumber: 1, titleEn: 'Social Inventory', titleTr: 'Sosyal Envanter', promptEn: 'Who did you interact with today? How did each interaction feel?', promptTr: 'Bugün kimlerle etkileşimde bulundun? Her etkileşim nasıl hissettirdi?'),
+      ProgramDay(dayNumber: 2, titleEn: 'Energy Givers', titleTr: 'Enerji Verenler', promptEn: 'Which people energize you? What is it about them?', promptTr: 'Hangi insanlar sana enerji veriyor? Onlar hakkında ne var?'),
+      ProgramDay(dayNumber: 3, titleEn: 'Boundaries', titleTr: 'Sınırlar', promptEn: 'Where do you need stronger boundaries? What would that look like?', promptTr: 'Nerede daha güçlü sınırlara ihtiyacın var? Bu nasıl görünürdü?'),
+      ProgramDay(dayNumber: 4, titleEn: 'Alone Time', titleTr: 'Yalnız Zaman', promptEn: 'How much alone time do you need? Are you getting enough?', promptTr: 'Ne kadar yalnız zamana ihtiyacın var? Yeterince alıyor musun?'),
+      ProgramDay(dayNumber: 5, titleEn: 'Connection Quality', titleTr: 'Bağlantı Kalitesi', promptEn: 'Rate the depth of your connections this week. Surface vs. meaningful.', promptTr: 'Bu haftaki bağlantılarının derinliğini puanla. Yüzeysel vs. anlamlı.'),
+      ProgramDay(dayNumber: 6, titleEn: 'Communication', titleTr: 'İletişim', promptEn: 'Is there something unsaid? What would you say if you felt safe?', promptTr: 'Söylenmemiş bir şey var mı? Güvende hissetseydin ne söylerdin?'),
+      ProgramDay(dayNumber: 7, titleEn: 'Social Map', titleTr: 'Sosyal Harita', promptEn: 'Draw a mental map of your relationships. Who is closest? Who do you want closer?', promptTr: 'İlişkilerinin zihinsel haritasını çiz. Kim en yakın? Kimi daha yakın istiyorsun?'),
+    ],
+  );
+
+  static const _dreamAwareness = GuidedProgram(
+    id: 'dream_awareness',
+    titleEn: 'Dream Awareness',
+    titleTr: 'Rüya Farkındalığı',
+    descriptionEn: 'Develop your dream recall over 7 days',
+    descriptionTr: '7 günde rüya hatırlama yeteneğini geliştir',
+    emoji: '🌙',
+    durationDays: 7,
+    days: [
+      ProgramDay(dayNumber: 1, titleEn: 'Dream Intention', titleTr: 'Rüya Niyeti', promptEn: 'Before bed tonight, set an intention to remember your dreams. Write it down.', promptTr: 'Bu gece yatmadan önce rüyalarını hatırlama niyeti koy. Yaz.'),
+      ProgramDay(dayNumber: 2, titleEn: 'First Fragments', titleTr: 'İlk Parçalar', promptEn: 'What do you remember from last night? Even fragments count.', promptTr: 'Dün geceden ne hatırlıyorsun? Parçalar bile sayılır.'),
+      ProgramDay(dayNumber: 3, titleEn: 'Recurring Themes', titleTr: 'Tekrarlayan Temalar', promptEn: 'Do you have recurring dream themes? What might they reflect?', promptTr: 'Tekrarlayan rüya temaların var mı? Ne yansıtıyor olabilirler?'),
+      ProgramDay(dayNumber: 4, titleEn: 'Emotions in Dreams', titleTr: 'Rüyalardaki Duygular', promptEn: 'Focus on how you felt in your dream, not just what happened.', promptTr: 'Rüyanda ne olduğuna değil, nasıl hissettiğine odaklan.'),
+      ProgramDay(dayNumber: 5, titleEn: 'Dream Symbols', titleTr: 'Rüya Sembolleri', promptEn: 'What symbols appeared in your dreams this week? What do they mean to you?', promptTr: 'Bu hafta rüyalarında hangi semboller belirdi? Senin için ne anlam ifade ediyorlar?'),
+      ProgramDay(dayNumber: 6, titleEn: 'Day-Dream Connection', titleTr: 'Gün-Rüya Bağlantısı', promptEn: 'Can you connect any dream to something from your waking life?', promptTr: 'Herhangi bir rüyayı uyanık hayatından bir şeyle bağlantılayabilir misin?'),
+      ProgramDay(dayNumber: 7, titleEn: 'Dream Summary', titleTr: 'Rüya Özeti', promptEn: 'Review your dream notes this week. What patterns emerged? What surprised you?', promptTr: 'Bu haftaki rüya notlarını gözden geçir. Hangi kalıplar ortaya çıktı? Ne seni şaşırttı?'),
+    ],
+  );
+
+  static const _freshStart = GuidedProgram(
+    id: 'fresh_start',
+    titleEn: 'Fresh Start',
+    titleTr: 'Yeni Başlangıç',
+    descriptionEn: 'A 21-day reset for mind, body, and spirit',
+    descriptionTr: 'Zihin, beden ve ruh için 21 günlük sıfırlama',
+    emoji: '🌱',
+    durationDays: 21,
+    isPremium: true,
+    days: [
+      ProgramDay(dayNumber: 1, titleEn: 'Where You Are', titleTr: 'Neredesin', promptEn: 'Honestly assess where you are right now. No judgment, just truth.', promptTr: 'Şu an nerede olduğunu dürüstçe değerlendir. Yargılama yok, sadece gerçek.'),
+      ProgramDay(dayNumber: 2, titleEn: 'What to Release', titleTr: 'Ne Bırakacaksın', promptEn: 'What habits, thoughts, or patterns no longer serve you?', promptTr: 'Hangi alışkanlıklar, düşünceler veya kalıplar artık sana hizmet etmiyor?'),
+      ProgramDay(dayNumber: 3, titleEn: 'Core Values', titleTr: 'Temel Değerler', promptEn: 'Define 3 values that will guide your fresh start.', promptTr: 'Yeni başlangıcına rehberlik edecek 3 değer belirle.'),
+      ProgramDay(dayNumber: 4, titleEn: 'Morning Ritual', titleTr: 'Sabah Ritüeli', promptEn: 'Design your ideal morning. Try it tomorrow.', promptTr: 'İdeal sabahını tasarla. Yarın dene.'),
+      ProgramDay(dayNumber: 5, titleEn: 'Gratitude Anchor', titleTr: 'Şükran Çapası', promptEn: 'List 5 things you are grateful for. Feel each one.', promptTr: '5 şükran maddesi listele. Her birini hisset.'),
+      ProgramDay(dayNumber: 6, titleEn: 'Body Listen', titleTr: 'Beden Dinle', promptEn: 'Scan your body from head to toe. What is it telling you?', promptTr: 'Vücudunu tepeden tırnağa tara. Sana ne söylüyor?'),
+      ProgramDay(dayNumber: 7, titleEn: 'Week 1 Review', titleTr: 'Hafta 1 Gözden Geçirme', promptEn: 'How has your first week been? What surprised you?', promptTr: 'İlk haftan nasıl geçti? Ne seni şaşırttı?'),
+      ProgramDay(dayNumber: 8, titleEn: 'Mindful Eating', titleTr: 'Bilinçli Beslenme', promptEn: 'Pay attention to one meal today. How does food affect your mood?', promptTr: 'Bugün bir öğüne dikkat et. Yemek ruh halini nasıl etkiliyor?'),
+      ProgramDay(dayNumber: 9, titleEn: 'Digital Detox', titleTr: 'Dijital Detoks', promptEn: 'Take a 2-hour break from screens. What did you notice?', promptTr: 'Ekranlardan 2 saatlik ara ver. Ne fark ettin?'),
+      ProgramDay(dayNumber: 10, titleEn: 'Connection', titleTr: 'Bağlantı', promptEn: 'Reach out to someone you care about. How did it feel?', promptTr: 'Önem verdiğin birine ulaş. Nasıl hissettirdi?'),
+      ProgramDay(dayNumber: 11, titleEn: 'Nature Time', titleTr: 'Doğa Zamanı', promptEn: 'Spend at least 20 minutes in nature. What did you observe?', promptTr: 'Doğada en az 20 dakika geçir. Ne gözlemledin?'),
+      ProgramDay(dayNumber: 12, titleEn: 'Creative Expression', titleTr: 'Yaratıcı İfade', promptEn: 'Express yourself creatively today — draw, write, cook, anything.', promptTr: 'Bugün yaratıcı bir şekilde ifade et — çiz, yaz, pişir, herhangi bir şey.'),
+      ProgramDay(dayNumber: 13, titleEn: 'Forgiveness', titleTr: 'Affetme', promptEn: 'Is there something or someone you need to forgive? Including yourself?', promptTr: 'Affetmen gereken bir şey ya da biri var mı? Kendini de dahil ederek?'),
+      ProgramDay(dayNumber: 14, titleEn: 'Week 2 Review', titleTr: 'Hafta 2 Gözden Geçirme', promptEn: 'Halfway through! What changes are you noticing?', promptTr: 'Yarı yoldasın! Hangi değişiklikleri fark ediyorsun?'),
+      ProgramDay(dayNumber: 15, titleEn: 'Sleep Quality', titleTr: 'Uyku Kalitesi', promptEn: 'How is your sleep? What could improve your rest?', promptTr: 'Uykun nasıl? Dinlenmeni ne iyileştirebilir?'),
+      ProgramDay(dayNumber: 16, titleEn: 'Stress Map', titleTr: 'Stres Haritası', promptEn: 'Identify your top 3 stress triggers. Any you can reduce?', promptTr: 'En önemli 3 stres tetikleyicini belirle. Azaltabileceğin var mı?'),
+      ProgramDay(dayNumber: 17, titleEn: 'Joy List', titleTr: 'Neşe Listesi', promptEn: 'List 10 things that bring you joy. When was the last time you did them?', promptTr: 'Sana neşe getiren 10 şey listele. En son ne zaman yaptın?'),
+      ProgramDay(dayNumber: 18, titleEn: 'Future Self', titleTr: 'Gelecek Ben', promptEn: 'Write a letter from your future self, 1 year from now.', promptTr: 'Bir yıl sonraki gelecek beninden bir mektup yaz.'),
+      ProgramDay(dayNumber: 19, titleEn: 'Boundaries', titleTr: 'Sınırlar', promptEn: 'Where do you need to set or reinforce a boundary?', promptTr: 'Nerede bir sınır koymalı veya pekiştirmelisin?'),
+      ProgramDay(dayNumber: 20, titleEn: 'Legacy', titleTr: 'Miras', promptEn: 'What do you want to be remembered for? How does that guide your days?', promptTr: 'Neyle hatırlanmak istiyorsun? Bu günlerini nasıl yönlendiriyor?'),
+      ProgramDay(dayNumber: 21, titleEn: 'Integration', titleTr: 'Bütünleştirme', promptEn: 'Review your 21-day journey. What 3 habits will you keep? What is your intention going forward?', promptTr: '21 günlük yolculuğunu gözden geçir. Hangi 3 alışkanlığı koruyacaksın? İleriye dönük niyetin ne?'),
+    ],
+  );
+}

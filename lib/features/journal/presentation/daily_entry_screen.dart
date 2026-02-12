@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -7,8 +8,14 @@ import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/journal_entry.dart';
 import '../../../data/providers/app_providers.dart';
+import '../../../data/services/review_service.dart';
 
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../data/services/premium_service.dart';
+import '../../gratitude/presentation/gratitude_section.dart';
+import '../../sleep/presentation/sleep_section.dart';
+import '../../moon/presentation/moon_phase_widget.dart';
 
 class DailyEntryScreen extends ConsumerStatefulWidget {
   const DailyEntryScreen({super.key});
@@ -53,88 +60,98 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
     return Scaffold(
       body: CosmicBackground(
         child: SafeArea(
-          child: CustomScrollView(
-            slivers: [
-              SliverAppBar(
-                backgroundColor: Colors.transparent,
-                pinned: true,
-                leading: IconButton(
-                  onPressed: () => context.pop(),
-                  icon: Icon(
-                    Icons.arrow_back_ios_new,
-                    color: isDark
-                        ? AppColors.textPrimary
-                        : AppColors.lightTextPrimary,
+          child: CupertinoScrollbar(
+            child: CustomScrollView(
+              physics: const BouncingScrollPhysics(
+                parent: AlwaysScrollableScrollPhysics(),
+              ),
+              slivers: [
+                GlassSliverAppBar(
+                  title: isEn ? 'Log Your Day' : 'Gününü Kaydet',
+                ),
+                SliverPadding(
+                  padding: const EdgeInsets.all(AppConstants.spacingLg),
+                  sliver: SliverList(
+                    delegate: SliverChildListDelegate([
+                      // Date selector
+                      _buildDateSelector(context, isDark, isEn),
+                      const SizedBox(height: AppConstants.spacingSm),
+
+                      // Moon phase badge
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: MoonPhaseBadge(
+                          date: _selectedDate,
+                          isEn: isEn,
+                          isDark: isDark,
+                        ),
+                      ),
+                      const SizedBox(height: AppConstants.spacingXl),
+
+                      // Focus area selector
+                      _buildSectionLabel(
+                        context,
+                        isDark,
+                        isEn ? 'Focus Area' : 'Odak Alanı',
+                      ),
+                      const SizedBox(height: AppConstants.spacingMd),
+                      _buildFocusAreaSelector(isDark, isEn),
+                      const SizedBox(height: AppConstants.spacingXl),
+
+                      // Overall rating
+                      _buildSectionLabel(
+                        context,
+                        isDark,
+                        isEn ? 'Overall Rating' : 'Genel Değerlendirme',
+                      ),
+                      const SizedBox(height: AppConstants.spacingMd),
+                      _buildRatingSlider(
+                        isDark,
+                        isEn,
+                        _overallRating,
+                        (v) => setState(() => _overallRating = v),
+                      ),
+                      const SizedBox(height: AppConstants.spacingXl),
+
+                      // Sub-ratings
+                      _buildSectionLabel(
+                        context,
+                        isDark,
+                        isEn ? 'Details' : 'Detaylar',
+                      ),
+                      const SizedBox(height: AppConstants.spacingMd),
+                      _buildSubRatings(isDark, isEn),
+                      const SizedBox(height: AppConstants.spacingXl),
+
+                      // Note
+                      _buildSectionLabel(
+                        context,
+                        isDark,
+                        isEn ? 'Notes (optional)' : 'Notlar (opsiyonel)',
+                      ),
+                      const SizedBox(height: AppConstants.spacingMd),
+                      _buildNoteField(isDark, isEn),
+                      const SizedBox(height: AppConstants.spacingXl),
+
+                      // Gratitude section (collapsible)
+                      GratitudeSection(
+                        date: _selectedDate,
+                        isPremium: ref.watch(premiumProvider).isPremium,
+                      ),
+                      const SizedBox(height: AppConstants.spacingXl),
+
+                      // Sleep quality section (collapsible)
+                      SleepSection(date: _selectedDate),
+                      const SizedBox(height: AppConstants.spacingXl),
+
+                      // Save button
+                      _buildSaveButton(isDark, isEn),
+                      const SizedBox(height: 40),
+                    ]),
                   ),
                 ),
-                title: Text(
-                  isEn ? 'Log Your Day' : 'Gününü Kaydet',
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    color: AppColors.starGold,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ),
-              SliverPadding(
-                padding: const EdgeInsets.all(AppConstants.spacingLg),
-                sliver: SliverList(
-                  delegate: SliverChildListDelegate([
-                    // Date selector
-                    _buildDateSelector(context, isDark, isEn),
-                    const SizedBox(height: AppConstants.spacingXl),
-
-                    // Focus area selector
-                    _buildSectionLabel(
-                      context,
-                      isDark,
-                      isEn ? 'Focus Area' : 'Odak Alanı',
-                    ),
-                    const SizedBox(height: AppConstants.spacingMd),
-                    _buildFocusAreaSelector(isDark, isEn),
-                    const SizedBox(height: AppConstants.spacingXl),
-
-                    // Overall rating
-                    _buildSectionLabel(
-                      context,
-                      isDark,
-                      isEn ? 'Overall Rating' : 'Genel Değerlendirme',
-                    ),
-                    const SizedBox(height: AppConstants.spacingMd),
-                    _buildRatingSlider(
-                      isDark,
-                      isEn,
-                      _overallRating,
-                      (v) => setState(() => _overallRating = v),
-                    ),
-                    const SizedBox(height: AppConstants.spacingXl),
-
-                    // Sub-ratings
-                    _buildSectionLabel(
-                      context,
-                      isDark,
-                      isEn ? 'Details' : 'Detaylar',
-                    ),
-                    const SizedBox(height: AppConstants.spacingMd),
-                    _buildSubRatings(isDark, isEn),
-                    const SizedBox(height: AppConstants.spacingXl),
-
-                    // Note
-                    _buildSectionLabel(
-                      context,
-                      isDark,
-                      isEn ? 'Notes (optional)' : 'Notlar (opsiyonel)',
-                    ),
-                    const SizedBox(height: AppConstants.spacingMd),
-                    _buildNoteField(isDark, isEn),
-                    const SizedBox(height: AppConstants.spacingXl),
-
-                    // Save button
-                    _buildSaveButton(isDark, isEn),
-                    const SizedBox(height: 40),
-                  ]),
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
@@ -160,7 +177,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
         padding: const EdgeInsets.all(AppConstants.spacingLg),
         decoration: BoxDecoration(
           color: isDark
-              ? AppColors.surfaceDark.withValues(alpha: 0.7)
+              ? AppColors.surfaceDark.withValues(alpha: 0.85)
               : AppColors.lightCard,
           borderRadius: BorderRadius.circular(AppConstants.radiusLg),
           border: Border.all(
@@ -230,13 +247,15 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
 
         return GestureDetector(
           onTap: () {
-            HapticFeedback.lightImpact();
+            HapticFeedback.selectionClick();
             setState(() {
               _selectedArea = area;
               _initSubRatings();
             });
           },
-          child: AnimatedContainer(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(minHeight: 44),
+            child: AnimatedContainer(
             duration: const Duration(milliseconds: 200),
             padding: const EdgeInsets.symmetric(
               horizontal: AppConstants.spacingMd,
@@ -285,6 +304,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
               ],
             ),
           ),
+          ),
         );
       }).toList(),
     ).animate().fadeIn(delay: 100.ms, duration: 300.ms);
@@ -304,12 +324,12 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
         color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.7)
+            ? AppColors.surfaceDark.withValues(alpha: 0.85)
             : AppColors.lightCard,
         borderRadius: BorderRadius.circular(AppConstants.radiusLg),
         border: Border.all(
           color: isDark
-              ? Colors.white.withValues(alpha: 0.1)
+              ? Colors.white.withValues(alpha: 0.15)
               : Colors.black.withValues(alpha: 0.05),
         ),
       ),
@@ -340,7 +360,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                       color: isActive
                           ? AppColors.starGold
                           : (isDark
-                                ? Colors.white.withValues(alpha: 0.1)
+                                ? Colors.white.withValues(alpha: 0.15)
                                 : Colors.black.withValues(alpha: 0.1)),
                     ),
                   ),
@@ -385,12 +405,12 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
         color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.7)
+            ? AppColors.surfaceDark.withValues(alpha: 0.85)
             : AppColors.lightCard,
         borderRadius: BorderRadius.circular(AppConstants.radiusLg),
         border: Border.all(
           color: isDark
-              ? Colors.white.withValues(alpha: 0.1)
+              ? Colors.white.withValues(alpha: 0.15)
               : Colors.black.withValues(alpha: 0.05),
         ),
       ),
@@ -462,12 +482,12 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
     return Container(
       decoration: BoxDecoration(
         color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.7)
+            ? AppColors.surfaceDark.withValues(alpha: 0.85)
             : AppColors.lightCard,
         borderRadius: BorderRadius.circular(AppConstants.radiusLg),
         border: Border.all(
           color: isDark
-              ? Colors.white.withValues(alpha: 0.1)
+              ? Colors.white.withValues(alpha: 0.15)
               : Colors.black.withValues(alpha: 0.05),
         ),
       ),
@@ -545,8 +565,11 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
       ref.invalidate(todayJournalEntryProvider);
       ref.invalidate(journalStreakProvider);
 
+      // Check for review prompt at engagement milestones
+      _checkReviewTrigger(service);
+
       if (mounted) {
-        HapticFeedback.mediumImpact();
+        HapticFeedback.heavyImpact();
         final isEn = ref.read(languageProvider) == AppLanguage.en;
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -564,6 +587,21 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
       }
     } finally {
       if (mounted) setState(() => _isSaving = false);
+    }
+  }
+
+  Future<void> _checkReviewTrigger(dynamic service) async {
+    try {
+      final reviewService = await ref.read(reviewServiceProvider.future);
+      final streak = service.getCurrentStreak();
+      final entryCount = service.entryCount;
+      await reviewService.checkAndPromptReview(
+        ReviewTrigger.streakMilestone,
+        currentStreak: streak,
+        journalEntryCount: entryCount,
+      );
+    } catch (_) {
+      // Review prompt is non-critical, silently ignore errors
     }
   }
 

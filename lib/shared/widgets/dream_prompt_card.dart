@@ -439,7 +439,7 @@ class _QuickPromptChip extends StatelessWidget {
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
             color: isDark
-                ? Colors.white.withValues(alpha: 0.1)
+                ? Colors.white.withValues(alpha: 0.15)
                 : Colors.black.withValues(alpha: 0.08),
           ),
         ),

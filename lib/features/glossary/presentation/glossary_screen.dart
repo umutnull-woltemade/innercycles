@@ -164,7 +164,7 @@ class _GlossaryScreenState extends ConsumerState<GlossaryScreen> {
               : null,
           filled: true,
           fillColor: isDark
-              ? Colors.white.withValues(alpha: 0.1)
+              ? Colors.white.withValues(alpha: 0.15)
               : Colors.white.withValues(alpha: 0.9),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(AppConstants.radiusLg),
@@ -233,7 +233,7 @@ class _GlossaryScreenState extends ConsumerState<GlossaryScreen> {
         },
         selectedColor: AppColors.cosmic.withValues(alpha: 0.3),
         backgroundColor: isDark
-            ? Colors.white.withValues(alpha: 0.1)
+            ? Colors.white.withValues(alpha: 0.15)
             : Colors.white.withValues(alpha: 0.9),
       ),
     );
@@ -351,7 +351,7 @@ class _GlossaryScreenState extends ConsumerState<GlossaryScreen> {
         borderRadius: BorderRadius.circular(AppConstants.radiusLg),
         border: Border.all(
           color: isDark
-              ? Colors.white.withValues(alpha: 0.1)
+              ? Colors.white.withValues(alpha: 0.15)
               : Colors.grey.withValues(alpha: 0.2),
         ),
       ),
@@ -601,7 +601,7 @@ class _GlossaryScreenState extends ConsumerState<GlossaryScreen> {
                       ),
                       decoration: BoxDecoration(
                         color: isDark
-                            ? Colors.white.withValues(alpha: 0.1)
+                            ? Colors.white.withValues(alpha: 0.15)
                             : Colors.grey.withValues(alpha: 0.1),
                         borderRadius: BorderRadius.circular(12),
                       ),

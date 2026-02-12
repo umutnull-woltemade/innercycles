@@ -97,7 +97,7 @@ class _MoodSelectorState extends ConsumerState<MoodSelector> {
                   showLabel: widget.showLabels,
                   language: language,
                   onTap: () {
-                    HapticFeedback.lightImpact();
+                    HapticFeedback.selectionClick();
                     widget.onSelect(mood);
                   },
                   onHover: (hover) {
@@ -171,7 +171,7 @@ class _MoodChip extends StatelessWidget {
                   color: isSelected
                       ? mood.color
                       : isDark
-                      ? Colors.white.withValues(alpha: 0.1)
+                      ? Colors.white.withValues(alpha: 0.15)
                       : Colors.black.withValues(alpha: 0.05),
                   width: isSelected ? 2 : 1,
                 ),

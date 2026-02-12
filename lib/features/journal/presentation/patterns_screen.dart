@@ -1,13 +1,15 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
+
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/journal_entry.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/pattern_engine_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/glass_sliver_app_bar.dart';
 
 class PatternsScreen extends ConsumerWidget {
   const PatternsScreen({super.key});
@@ -53,10 +55,14 @@ class PatternsScreen extends ConsumerWidget {
     int needed,
     int current,
   ) {
-    return CustomScrollView(
-      slivers: [
-        _buildAppBar(context, isDark, isEn),
-        SliverFillRemaining(
+    return CupertinoScrollbar(
+      child: CustomScrollView(
+        physics: const BouncingScrollPhysics(
+          parent: AlwaysScrollableScrollPhysics(),
+        ),
+        slivers: [
+          _buildAppBar(context, isDark, isEn),
+          SliverFillRemaining(
           hasScrollBody: false,
           child: Center(
             child: Padding(
@@ -121,6 +127,7 @@ class PatternsScreen extends ConsumerWidget {
           ),
         ),
       ],
+      ),
     );
   }
 
@@ -136,8 +143,12 @@ class PatternsScreen extends ConsumerWidget {
     final trends = engine.detectTrends();
     final correlations = engine.detectCorrelations();
 
-    return CustomScrollView(
-      slivers: [
+    return CupertinoScrollbar(
+      child: CustomScrollView(
+        physics: const BouncingScrollPhysics(
+          parent: AlwaysScrollableScrollPhysics(),
+        ),
+        slivers: [
         _buildAppBar(context, isDark, isEn),
         SliverPadding(
           padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -179,27 +190,13 @@ class PatternsScreen extends ConsumerWidget {
           ),
         ),
       ],
+      ),
     );
   }
 
-  SliverAppBar _buildAppBar(BuildContext context, bool isDark, bool isEn) {
-    return SliverAppBar(
-      backgroundColor: Colors.transparent,
-      pinned: true,
-      leading: IconButton(
-        onPressed: () => context.pop(),
-        icon: Icon(
-          Icons.arrow_back_ios_new,
-          color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
-        ),
-      ),
-      title: Text(
-        isEn ? 'Your Patterns' : 'Kalıpların',
-        style: Theme.of(context).textTheme.titleLarge?.copyWith(
-          color: AppColors.starGold,
-          fontWeight: FontWeight.w600,
-        ),
-      ),
+  GlassSliverAppBar _buildAppBar(BuildContext context, bool isDark, bool isEn) {
+    return GlassSliverAppBar(
+      title: isEn ? 'Your Patterns' : 'Kalıpların',
     );
   }
 
@@ -213,7 +210,7 @@ class PatternsScreen extends ConsumerWidget {
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
         color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.7)
+            ? AppColors.surfaceDark.withValues(alpha: 0.85)
             : AppColors.lightCard,
         borderRadius: BorderRadius.circular(AppConstants.radiusLg),
         border: Border.all(
@@ -238,12 +235,12 @@ class PatternsScreen extends ConsumerWidget {
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
         color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.7)
+            ? AppColors.surfaceDark.withValues(alpha: 0.85)
             : AppColors.lightCard,
         borderRadius: BorderRadius.circular(AppConstants.radiusLg),
         border: Border.all(
           color: isDark
-              ? Colors.white.withValues(alpha: 0.1)
+              ? Colors.white.withValues(alpha: 0.15)
               : Colors.black.withValues(alpha: 0.05),
         ),
       ),
@@ -336,12 +333,12 @@ class PatternsScreen extends ConsumerWidget {
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
         color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.7)
+            ? AppColors.surfaceDark.withValues(alpha: 0.85)
             : AppColors.lightCard,
         borderRadius: BorderRadius.circular(AppConstants.radiusLg),
         border: Border.all(
           color: isDark
-              ? Colors.white.withValues(alpha: 0.1)
+              ? Colors.white.withValues(alpha: 0.15)
               : Colors.black.withValues(alpha: 0.05),
         ),
       ),
@@ -406,12 +403,12 @@ class PatternsScreen extends ConsumerWidget {
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
         color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.7)
+            ? AppColors.surfaceDark.withValues(alpha: 0.85)
             : AppColors.lightCard,
         borderRadius: BorderRadius.circular(AppConstants.radiusLg),
         border: Border.all(
           color: isDark
-              ? Colors.white.withValues(alpha: 0.1)
+              ? Colors.white.withValues(alpha: 0.15)
               : Colors.black.withValues(alpha: 0.05),
         ),
       ),
