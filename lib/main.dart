@@ -78,7 +78,7 @@ class _AppInitializerState extends State<AppInitializer> {
 
   Future<_InitResult> _initializeApp() async {
     if (kDebugMode) {
-      debugPrint('🚀 Venus One: Starting initialization...');
+      debugPrint('🚀 InnerCycles: Starting initialization...');
     }
 
     // Load .env (optional - may not exist on web)
@@ -257,7 +257,7 @@ class _AppInitializerState extends State<AppInitializer> {
     }
 
     if (kDebugMode) {
-      debugPrint('✅ Venus One: Initialization complete!');
+      debugPrint('✅ InnerCycles: Initialization complete!');
     }
 
     return _InitResult(
@@ -310,7 +310,7 @@ class _AppInitializerState extends State<AppInitializer> {
                     ),
                     const SizedBox(height: 24),
                     const Text(
-                      'Venus One',
+                      'InnerCycles',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 28,
@@ -337,7 +337,7 @@ class _AppInitializerState extends State<AppInitializer> {
         final result = snapshot.data!;
 
         if (kDebugMode) {
-          debugPrint('🎨 Launching VenusOneApp with providers...');
+          debugPrint('🎨 Launching InnerCycles with providers...');
         }
 
         return ProviderScope(
@@ -404,7 +404,7 @@ class VenusOneApp extends ConsumerWidget {
     final language = ref.watch(languageProvider);
 
     return MaterialApp.router(
-      title: 'Venus One',
+      title: 'InnerCycles',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light,
       darkTheme: AppTheme.dark,

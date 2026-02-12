@@ -3,27 +3,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/constants/routes.dart';
 import '../../../../core/theme/app_colors.dart';
-import '../../../../data/models/zodiac_sign.dart';
 import '../../../../data/providers/app_providers.dart';
 import '../../../../data/services/l10n_service.dart';
 
-/// MOBILE LITE HOMEPAGE - App Store 4.3(b) Compliant
+/// MOBILE LITE HOMEPAGE - InnerCycles
 ///
-/// STRICT RULES FOLLOWED:
-/// - NO heavy animations (only simple fade/scale)
-/// - NO blur, glow, parallax effects
-/// - NO background video or canvas
-/// - NO astrology calculations on load
-/// - NO lottie, particles, scroll-based JS logic
-/// - Flat background colors only
-/// - Single font family, max 2 weights
-/// - First load target: < 1.5s on slow 4G
-/// - Static, simple, FAST
-///
-/// APP STORE 4.3(b) COMPLIANCE:
-/// - All astrology/horoscope features removed
-/// - Focus on: Insight, Wellness, Dreams, Numerology (educational)
-/// - No zodiac-based predictions
+/// App Store 4.3(b) Compliant - Journal & Reflection focused.
+/// No astrology, no esoteric features.
 class MobileLiteHomepage extends ConsumerWidget {
   const MobileLiteHomepage({super.key});
 
@@ -31,7 +17,6 @@ class MobileLiteHomepage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final userProfile = ref.watch(userProfileProvider);
 
-    // Guard: Show loading if no valid profile (don't redirect - causes loop)
     if (userProfile == null ||
         userProfile.name == null ||
         userProfile.name!.isEmpty) {
@@ -54,7 +39,6 @@ class MobileLiteHomepage extends ConsumerWidget {
       );
     }
 
-    final sign = userProfile.sunSign;
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
@@ -66,20 +50,11 @@ class MobileLiteHomepage extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                // ════════════════════════════════════════════════════════════
-                // ABOVE THE FOLD - Ultra simple, instant load
-                // ════════════════════════════════════════════════════════════
                 _AboveTheFold(
                   userName: userProfile.name ?? '',
-                  sign: sign,
                   isDark: isDark,
                 ),
-
-                // ════════════════════════════════════════════════════════════
-                // BELOW THE FOLD - Simple list of entry points
-                // ════════════════════════════════════════════════════════════
                 _BelowTheFold(isDark: isDark),
-
                 const SizedBox(height: 32),
               ],
             ),
@@ -92,17 +67,14 @@ class MobileLiteHomepage extends ConsumerWidget {
 
 // ═══════════════════════════════════════════════════════════════════════════
 // ABOVE THE FOLD SECTION
-// Flat background, one headline, one sentence, one CTA
 // ═══════════════════════════════════════════════════════════════════════════
 
 class _AboveTheFold extends ConsumerWidget {
   final String userName;
-  final ZodiacSign sign;
   final bool isDark;
 
   const _AboveTheFold({
     required this.userName,
-    required this.sign,
     required this.isDark,
   });
 
@@ -120,10 +92,9 @@ class _AboveTheFold extends ConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Minimal header row
+          // Header row
           Row(
             children: [
-              // Insight symbol
               Container(
                 width: 48,
                 height: 48,
@@ -144,7 +115,6 @@ class _AboveTheFold extends ConsumerWidget {
                 ),
               ),
               const SizedBox(width: 12),
-              // User greeting
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -168,8 +138,8 @@ class _AboveTheFold extends ConsumerWidget {
                     const SizedBox(height: 2),
                     Text(
                       language == AppLanguage.en
-                          ? 'Personal Reflection'
-                          : 'Kişisel Yansıma',
+                          ? 'Personal Reflection Journal'
+                          : 'Kisisel Yansima Günlügü',
                       style: TextStyle(
                         fontSize: 13,
                         color: isDark
@@ -180,7 +150,6 @@ class _AboveTheFold extends ConsumerWidget {
                   ],
                 ),
               ),
-              // Settings icon
               IconButton(
                 onPressed: () => context.push(Routes.settings),
                 icon: Icon(
@@ -196,7 +165,7 @@ class _AboveTheFold extends ConsumerWidget {
 
           const SizedBox(height: 16),
 
-          // Quick discovery chips - Quick access to safe features
+          // Quick access chips
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
@@ -209,8 +178,15 @@ class _AboveTheFold extends ConsumerWidget {
                 ),
                 const SizedBox(width: 8),
                 _QuickDiscoveryChip(
+                  icon: '📊',
+                  label: language == AppLanguage.en ? 'Patterns' : 'Kaliplar',
+                  onTap: () => context.push(Routes.journalPatterns),
+                  isDark: isDark,
+                ),
+                const SizedBox(width: 8),
+                _QuickDiscoveryChip(
                   icon: '✨',
-                  label: language == AppLanguage.en ? 'Insight' : 'İçgörü',
+                  label: language == AppLanguage.en ? 'Insight' : 'Icgörü',
                   onTap: () => context.push(Routes.insight),
                   isDark: isDark,
                 ),
@@ -223,37 +199,9 @@ class _AboveTheFold extends ConsumerWidget {
                 ),
                 const SizedBox(width: 8),
                 _QuickDiscoveryChip(
-                  icon: '🧘',
-                  label: language == AppLanguage.en ? 'Chakra' : 'Çakra',
-                  onTap: () => context.push(Routes.chakraAnalysis),
-                  isDark: isDark,
-                ),
-                const SizedBox(width: 8),
-                _QuickDiscoveryChip(
-                  icon: '🔮',
-                  label: L10nService.get('home.chips.tarot', language),
-                  onTap: () => context.push(Routes.tarot),
-                  isDark: isDark,
-                ),
-                const SizedBox(width: 8),
-                _QuickDiscoveryChip(
-                  icon: '🔢',
-                  label: language == AppLanguage.en ? 'Numerology' : 'Numeroloji',
-                  onTap: () => context.push(Routes.numerology),
-                  isDark: isDark,
-                ),
-                const SizedBox(width: 8),
-                _QuickDiscoveryChip(
-                  icon: '🙏',
-                  label: L10nService.get('home.chips.reiki', language),
-                  onTap: () => context.push(Routes.reiki),
-                  isDark: isDark,
-                ),
-                const SizedBox(width: 8),
-                _QuickDiscoveryChip(
-                  icon: '🕯️',
-                  label: L10nService.get('home.chips.tantra', language),
-                  onTap: () => context.push(Routes.tantra),
+                  icon: '📅',
+                  label: language == AppLanguage.en ? 'Monthly' : 'Aylik',
+                  onTap: () => context.push(Routes.journalMonthly),
                   isDark: isDark,
                 ),
               ],
@@ -262,7 +210,7 @@ class _AboveTheFold extends ConsumerWidget {
 
           const SizedBox(height: 20),
 
-          // Reflection headline - short, impactful
+          // Reflection headline
           Text(
             headline,
             style: TextStyle(
@@ -275,7 +223,7 @@ class _AboveTheFold extends ConsumerWidget {
 
           const SizedBox(height: 12),
 
-          // Daily emotional sentence
+          // Daily sentence
           Text(
             sentence,
             style: TextStyle(
@@ -289,11 +237,11 @@ class _AboveTheFold extends ConsumerWidget {
 
           const SizedBox(height: 24),
 
-          // Primary CTA - Personal Insight
+          // Primary CTA
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
-              onPressed: () => context.push(Routes.insight),
+              onPressed: () => context.push(Routes.journal),
               style: ElevatedButton.styleFrom(
                 backgroundColor: isDark
                     ? AppColors.starGold
@@ -311,8 +259,8 @@ class _AboveTheFold extends ConsumerWidget {
                   Flexible(
                     child: Text(
                       language == AppLanguage.en
-                          ? 'Start Your Reflection'
-                          : 'Yansımanı Başlat',
+                          ? 'Start Today\'s Entry'
+                          : 'Bugünün Kaydini Baslat',
                       style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
@@ -331,7 +279,6 @@ class _AboveTheFold extends ConsumerWidget {
     );
   }
 
-  // Pre-computed headlines - reflection focused
   String _getDailyHeadline(AppLanguage language) {
     final headlines = language == AppLanguage.en
         ? [
@@ -344,12 +291,12 @@ class _AboveTheFold extends ConsumerWidget {
             'Find clarity in stillness',
           ]
         : [
-            'Bugün hangi kalıpları fark ediyorsun?',
-            'Kendine yansıma için bir an al',
-            'İç bilgeliğin seni bekliyor',
-            'Kendin hakkında yeni bir şey keşfet',
+            'Bugün hangi kaliplari fark ediyorsun?',
+            'Kendine yansima için bir an al',
+            'Ic bilgeligin seni bekliyor',
+            'Kendin hakkinda yeni bir sey kesfet',
             'Bugün büyüme günü',
-            'Kişisel yolculuğunu kucakla',
+            'Kisisel yolculugunu kucakla',
             'Sessizlikte netlik bul',
           ];
 
@@ -371,13 +318,13 @@ class _AboveTheFold extends ConsumerWidget {
             'Your journey of self-discovery continues.',
           ]
         : [
-            'Her yansıma anı seni kendini anlamaya yaklaştırır.',
-            'Düşüncelerin ve duyguların değerli içgörüler taşır.',
-            'Bugün iç dünyanı keşfetmek için zaman ayır.',
-            'Öz farkındalık kişisel büyümenin ilk adımıdır.',
+            'Her yansima ani seni kendini anlamaya yaklastirir.',
+            'Düsüncelerin ve duyularin degerli icgörüler tasir.',
+            'Bugün ic dünyanı kesfetmek için zaman ayir.',
+            'Öz farkindalik kisisel büyümenin ilk adimidir.',
             'Sezgilerin bugün sana ne söylüyor?',
-            'Düşüncelerindeki ve duygularındaki kalıpları fark et.',
-            'Kendini keşif yolculuğun devam ediyor.',
+            'Düsüncelerindeki ve duygularindaki kaliplari fark et.',
+            'Kendini kesfif yolculugun devam ediyor.',
           ];
 
     final dayOfYear = DateTime.now()
@@ -389,7 +336,6 @@ class _AboveTheFold extends ConsumerWidget {
 
 // ═══════════════════════════════════════════════════════════════════════════
 // BELOW THE FOLD SECTION
-// Simple list of entry points - no heavy UI
 // ═══════════════════════════════════════════════════════════════════════════
 
 class _BelowTheFold extends ConsumerWidget {
@@ -405,11 +351,11 @@ class _BelowTheFold extends ConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Section title - Journal & Patterns
+          // Journal & Patterns
           Text(
             language == AppLanguage.en
                 ? 'Journal & Patterns'
-                : 'Günlük ve Kalıplar',
+                : 'Günlük ve Kaliplar',
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,
@@ -425,10 +371,10 @@ class _BelowTheFold extends ConsumerWidget {
             icon: Icons.edit_note_outlined,
             title: language == AppLanguage.en
                 ? 'Daily Journal'
-                : 'Günlük Kayıt',
+                : 'Günlük Kayit',
             subtitle: language == AppLanguage.en
                 ? 'Track your energy, focus & emotions'
-                : 'Enerji, odak ve duygularını takip et',
+                : 'Enerji, odak ve duygularini takip et',
             route: Routes.journal,
             isDark: isDark,
             isHighlighted: true,
@@ -438,10 +384,10 @@ class _BelowTheFold extends ConsumerWidget {
             icon: Icons.insights_outlined,
             title: language == AppLanguage.en
                 ? 'Your Patterns'
-                : 'Kalıpların',
+                : 'Kaliplarin',
             subtitle: language == AppLanguage.en
                 ? 'Trends & correlations from your entries'
-                : 'Kayıtlarındaki eğilimler ve bağlantılar',
+                : 'Kayitlarindaki egilimler ve baglantilar',
             route: Routes.journalPatterns,
             isDark: isDark,
           ),
@@ -450,10 +396,10 @@ class _BelowTheFold extends ConsumerWidget {
             icon: Icons.calendar_month_outlined,
             title: language == AppLanguage.en
                 ? 'Monthly Reflection'
-                : 'Aylık Yansıma',
+                : 'Aylik Yansima',
             subtitle: language == AppLanguage.en
                 ? 'Review your month at a glance'
-                : 'Ayına bir bakışta göz at',
+                : 'Ayina bir bakista göz at',
             route: Routes.journalMonthly,
             isDark: isDark,
           ),
@@ -462,21 +408,21 @@ class _BelowTheFold extends ConsumerWidget {
             icon: Icons.archive_outlined,
             title: language == AppLanguage.en
                 ? 'Archive'
-                : 'Arşiv',
+                : 'Arsiv',
             subtitle: language == AppLanguage.en
                 ? 'Search & browse all entries'
-                : 'Tüm kayıtları ara ve gözat',
+                : 'Tüm kayitlari ara ve gözat',
             route: Routes.journalArchive,
             isDark: isDark,
           ),
 
           const SizedBox(height: 24),
 
-          // Section title - Insight & Reflection
+          // Insight & Reflection
           Text(
             language == AppLanguage.en
                 ? 'Insight & Reflection'
-                : 'İçgörü ve Yansıma',
+                : 'Icgörü ve Yansima',
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,
@@ -488,93 +434,26 @@ class _BelowTheFold extends ConsumerWidget {
 
           const SizedBox(height: 16),
 
-          // Entry points list - Safe features only
           _EntryPointTile(
             icon: Icons.auto_awesome_outlined,
             title: language == AppLanguage.en
                 ? 'Personal Insight'
-                : 'Kişisel İçgörü',
+                : 'Kisisel Icgörü',
             subtitle: language == AppLanguage.en
                 ? 'AI-powered self-reflection assistant'
-                : 'Yapay zeka destekli öz-yansıma asistanı',
+                : 'Yapay zeka destekli öz-yansima asistani',
             route: Routes.insight,
             isDark: isDark,
             isHighlighted: true,
           ),
 
-          _EntryPointTile(
-            icon: Icons.wb_sunny_outlined,
-            title: language == AppLanguage.en
-                ? 'Daily Theme'
-                : 'Günün Teması',
-            subtitle: language == AppLanguage.en
-                ? 'Today\'s reflection theme'
-                : 'Bugünün yansıma teması',
-            route: Routes.cosmicToday,
-            isDark: isDark,
-          ),
-
           const SizedBox(height: 24),
 
-          // Wellness section
-          Text(
-            language == AppLanguage.en
-                ? 'Wellness & Mindfulness'
-                : 'Sağlık ve Farkındalık',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w600,
-              color: isDark
-                  ? AppColors.textPrimary
-                  : AppColors.lightTextPrimary,
-            ),
-          ),
-
-          const SizedBox(height: 16),
-
-          _EntryPointTile(
-            icon: Icons.blur_circular_outlined,
-            title: language == AppLanguage.en
-                ? 'Chakra Analysis'
-                : 'Çakra Analizi',
-            subtitle: language == AppLanguage.en
-                ? 'Energy center awareness'
-                : 'Enerji merkezi farkındalığı',
-            route: Routes.chakraAnalysis,
-            isDark: isDark,
-          ),
-
-          _EntryPointTile(
-            icon: Icons.spa_outlined,
-            title: language == AppLanguage.en
-                ? 'Aura Reading'
-                : 'Aura Okuma',
-            subtitle: language == AppLanguage.en
-                ? 'Energy field exploration'
-                : 'Enerji alanı keşfi',
-            route: Routes.aura,
-            isDark: isDark,
-          ),
-
-          _EntryPointTile(
-            icon: Icons.self_improvement_outlined,
-            title: language == AppLanguage.en
-                ? 'Daily Rituals'
-                : 'Günlük Ritüeller',
-            subtitle: language == AppLanguage.en
-                ? 'Mindfulness practices'
-                : 'Farkındalık pratikleri',
-            route: Routes.dailyRituals,
-            isDark: isDark,
-          ),
-
-          const SizedBox(height: 24),
-
-          // Dream Journal section
+          // Dream Journal
           Text(
             language == AppLanguage.en
                 ? 'Dream Journal'
-                : 'Rüya Günlüğü',
+                : 'Rüya Günlügü',
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,
@@ -593,7 +472,7 @@ class _BelowTheFold extends ConsumerWidget {
                 : 'Rüya Yorumu',
             subtitle: language == AppLanguage.en
                 ? 'Explore your dream symbols'
-                : 'Rüya sembollerini keşfet',
+                : 'Rüya sembollerini kesfet',
             route: Routes.dreamInterpretation,
             isDark: isDark,
           ),
@@ -602,7 +481,7 @@ class _BelowTheFold extends ConsumerWidget {
             icon: Icons.book_outlined,
             title: language == AppLanguage.en
                 ? 'Dream Dictionary'
-                : 'Rüya Sözlüğü',
+                : 'Rüya Sözlügü',
             subtitle: language == AppLanguage.en
                 ? 'Symbol reference guide'
                 : 'Sembol referans rehberi',
@@ -612,11 +491,11 @@ class _BelowTheFold extends ConsumerWidget {
 
           const SizedBox(height: 24),
 
-          // Learning section
+          // Reference
           Text(
             language == AppLanguage.en
-                ? 'Learning & Reference'
-                : 'Öğrenme ve Referans',
+                ? 'Reference'
+                : 'Referans',
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,
@@ -629,44 +508,32 @@ class _BelowTheFold extends ConsumerWidget {
           const SizedBox(height: 16),
 
           _EntryPointTile(
-            icon: Icons.numbers_outlined,
-            title: language == AppLanguage.en
-                ? 'Numerology'
-                : 'Numeroloji',
-            subtitle: language == AppLanguage.en
-                ? 'Number patterns & meanings'
-                : 'Sayı kalıpları ve anlamları',
-            route: Routes.numerology,
-            isDark: isDark,
-          ),
-
-          _EntryPointTile(
-            icon: Icons.style_outlined,
-            title: language == AppLanguage.en
-                ? 'Tarot Guide'
-                : 'Tarot Rehberi',
-            subtitle: language == AppLanguage.en
-                ? 'Card symbolism & meanings'
-                : 'Kart sembolizmi ve anlamları',
-            route: Routes.tarot,
-            isDark: isDark,
-          ),
-
-          _EntryPointTile(
             icon: Icons.menu_book_outlined,
             title: language == AppLanguage.en
                 ? 'Glossary'
                 : 'Sözlük',
             subtitle: language == AppLanguage.en
                 ? 'Terms & definitions'
-                : 'Terimler ve tanımlar',
+                : 'Terimler ve tanimlar',
             route: Routes.glossary,
+            isDark: isDark,
+          ),
+
+          _EntryPointTile(
+            icon: Icons.article_outlined,
+            title: language == AppLanguage.en
+                ? 'Articles'
+                : 'Makaleler',
+            subtitle: language == AppLanguage.en
+                ? 'Wellness & self-growth articles'
+                : 'Saglik ve kisisel gelisim makaleleri',
+            route: Routes.articles,
             isDark: isDark,
           ),
 
           const SizedBox(height: 32),
 
-          // Footer branding - minimal
+          // Footer branding
           Center(
             child: GestureDetector(
               onTap: () => context.push(Routes.settings),
@@ -691,7 +558,6 @@ class _BelowTheFold extends ConsumerWidget {
 
 // ═══════════════════════════════════════════════════════════════════════════
 // QUICK DISCOVERY CHIP
-// Compact chip for above-fold quick access
 // ═══════════════════════════════════════════════════════════════════════════
 
 class _QuickDiscoveryChip extends StatelessWidget {
@@ -752,7 +618,6 @@ class _QuickDiscoveryChip extends StatelessWidget {
 
 // ═══════════════════════════════════════════════════════════════════════════
 // ENTRY POINT TILE
-// Simple, clean, no animations
 // ═══════════════════════════════════════════════════════════════════════════
 
 class _EntryPointTile extends StatelessWidget {
@@ -801,7 +666,6 @@ class _EntryPointTile extends StatelessWidget {
             ),
             child: Row(
               children: [
-                // Icon
                 Container(
                   width: 44,
                   height: 44,
@@ -823,10 +687,7 @@ class _EntryPointTile extends StatelessWidget {
                               : AppColors.lightAuroraStart),
                   ),
                 ),
-
                 const SizedBox(width: 14),
-
-                // Text
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -854,8 +715,6 @@ class _EntryPointTile extends StatelessWidget {
                     ],
                   ),
                 ),
-
-                // Arrow
                 Icon(
                   Icons.chevron_right_rounded,
                   size: 20,

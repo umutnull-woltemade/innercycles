@@ -4,27 +4,15 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/constants/routes.dart';
 import '../../../../core/theme/app_colors.dart';
-import '../../../../data/models/zodiac_sign.dart';
 import '../../../../data/providers/app_providers.dart';
 import '../../../../shared/widgets/cosmic_background.dart';
 import '../../../../shared/widgets/page_bottom_navigation.dart';
 import '../../../../data/services/l10n_service.dart';
 
-/// DESKTOP RICH HOMEPAGE - App Store 4.3(b) Compliant
+/// DESKTOP RICH HOMEPAGE - InnerCycles
 ///
-/// DESIGN GOALS:
-/// - Visual, immersive, cinematic experience
-/// - Heavy animations, parallax effects, glows
-/// - Full cosmic background with nebula
-/// - Multi-column layout for large screens
-/// - Premium feel with glass morphism
-///
-/// APP STORE 4.3(b) COMPLIANCE:
-/// - All astrology/horoscope features removed
-/// - Focus on: Insight, Wellness, Dreams, Numerology (educational)
-/// - No zodiac-based predictions
-///
-/// TARGET: Desktop/Tablet (>768px width)
+/// App Store 4.3(b) Compliant - Journal & Reflection focused.
+/// No astrology, no esoteric features.
 class DesktopRichHomepage extends ConsumerWidget {
   const DesktopRichHomepage({super.key});
 
@@ -33,7 +21,6 @@ class DesktopRichHomepage extends ConsumerWidget {
     final userProfile = ref.watch(userProfileProvider);
     final language = ref.watch(languageProvider);
 
-    // Guard: Show loading if no valid profile (don't redirect - causes loop)
     if (userProfile == null ||
         userProfile.name == null ||
         userProfile.name!.isEmpty) {
@@ -55,8 +42,6 @@ class DesktopRichHomepage extends ConsumerWidget {
       );
     }
 
-    final sign = userProfile.sunSign;
-
     return Scaffold(
       body: CosmicBackground(
         child: SafeArea(
@@ -65,48 +50,32 @@ class DesktopRichHomepage extends ConsumerWidget {
               padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 24),
               child: Column(
                 children: [
-                  // ══════════════════════════════════════════════════════
-                  // HEADER - Premium glass morphism header
-                  // ══════════════════════════════════════════════════════
                   _DesktopHeader(
                     userName: userProfile.name ?? '',
-                    sign: sign,
                     language: language,
                   ).animate().fadeIn(duration: 500.ms).slideY(begin: -0.1),
 
                   const SizedBox(height: 16),
 
-                  // ══════════════════════════════════════════════════════
-                  // QUICK DISCOVERY BAR - Safe features only
-                  // ══════════════════════════════════════════════════════
                   _QuickDiscoveryBar(
                     language: language,
                   ).animate().fadeIn(duration: 400.ms, delay: 100.ms),
 
                   const SizedBox(height: 24),
 
-                  // ══════════════════════════════════════════════════════
-                  // HERO SECTION - Large cosmic card with daily message
-                  // ══════════════════════════════════════════════════════
-                  _HeroSection(sign: sign, language: language)
+                  _HeroSection(language: language)
                       .animate()
                       .fadeIn(duration: 600.ms, delay: 200.ms)
                       .scale(begin: const Offset(0.95, 0.95)),
 
                   const SizedBox(height: 40),
 
-                  // ══════════════════════════════════════════════════════
-                  // FEATURE CATEGORIES - Multi-column grid
-                  // ══════════════════════════════════════════════════════
                   _FeatureCategoriesSection(language: language)
                       .animate()
                       .fadeIn(duration: 500.ms, delay: 400.ms),
 
                   const SizedBox(height: 40),
 
-                  // ══════════════════════════════════════════════════════
-                  // BOTTOM NAVIGATION
-                  // ══════════════════════════════════════════════════════
                   PageBottomNavigation(
                     currentRoute: '/',
                     language: language,
@@ -129,12 +98,10 @@ class DesktopRichHomepage extends ConsumerWidget {
 
 class _DesktopHeader extends StatelessWidget {
   final String userName;
-  final ZodiacSign sign;
   final AppLanguage language;
 
   const _DesktopHeader({
     required this.userName,
-    required this.sign,
     required this.language,
   });
 
@@ -151,7 +118,6 @@ class _DesktopHeader extends StatelessWidget {
       ),
       child: Row(
         children: [
-          // User greeting
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -171,8 +137,8 @@ class _DesktopHeader extends StatelessWidget {
                 const SizedBox(height: 4),
                 Text(
                   language == AppLanguage.en
-                      ? 'Personal Reflection & Wellness'
-                      : 'Kişisel Yansıma ve Sağlık',
+                      ? 'Personal Reflection Journal'
+                      : 'Kisisel Yansima Günlügü',
                   style: TextStyle(
                     fontSize: 14,
                     color: Colors.white.withValues(alpha: 0.7),
@@ -181,7 +147,6 @@ class _DesktopHeader extends StatelessWidget {
               ],
             ),
           ),
-          // Settings button
           IconButton(
             onPressed: () => context.push(Routes.settings),
             icon: Icon(
@@ -190,7 +155,6 @@ class _DesktopHeader extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 8),
-          // Profile button
           IconButton(
             onPressed: () => context.push(Routes.profile),
             icon: Icon(
@@ -205,7 +169,7 @@ class _DesktopHeader extends StatelessWidget {
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// QUICK DISCOVERY BAR - Safe features only
+// QUICK DISCOVERY BAR
 // ═══════════════════════════════════════════════════════════════════════════
 
 class _QuickDiscoveryBar extends StatelessWidget {
@@ -222,8 +186,13 @@ class _QuickDiscoveryBar extends StatelessWidget {
         route: Routes.journal,
       ),
       _QuickItem(
+        icon: '📊',
+        label: language == AppLanguage.en ? 'Patterns' : 'Kaliplar',
+        route: Routes.journalPatterns,
+      ),
+      _QuickItem(
         icon: '✨',
-        label: language == AppLanguage.en ? 'Insight' : 'İçgörü',
+        label: language == AppLanguage.en ? 'Insight' : 'Icgörü',
         route: Routes.insight,
       ),
       _QuickItem(
@@ -232,24 +201,14 @@ class _QuickDiscoveryBar extends StatelessWidget {
         route: Routes.dreamInterpretation,
       ),
       _QuickItem(
-        icon: '🧘',
-        label: language == AppLanguage.en ? 'Chakra' : 'Çakra',
-        route: Routes.chakraAnalysis,
+        icon: '📅',
+        label: language == AppLanguage.en ? 'Monthly' : 'Aylik',
+        route: Routes.journalMonthly,
       ),
       _QuickItem(
-        icon: '🔮',
-        label: language == AppLanguage.en ? 'Tarot' : 'Tarot',
-        route: Routes.tarot,
-      ),
-      _QuickItem(
-        icon: '🔢',
-        label: language == AppLanguage.en ? 'Numerology' : 'Numeroloji',
-        route: Routes.numerology,
-      ),
-      _QuickItem(
-        icon: '🙏',
-        label: language == AppLanguage.en ? 'Rituals' : 'Ritüeller',
-        route: Routes.dailyRituals,
+        icon: '📚',
+        label: language == AppLanguage.en ? 'Archive' : 'Arsiv',
+        route: Routes.journalArchive,
       ),
     ];
 
@@ -338,13 +297,9 @@ class _QuickDiscoveryChip extends StatelessWidget {
 // ═══════════════════════════════════════════════════════════════════════════
 
 class _HeroSection extends StatelessWidget {
-  final ZodiacSign sign;
   final AppLanguage language;
 
-  const _HeroSection({
-    required this.sign,
-    required this.language,
-  });
+  const _HeroSection({required this.language});
 
   @override
   Widget build(BuildContext context) {
@@ -370,7 +325,6 @@ class _HeroSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Headline
           Text(
             _getDailyHeadline(language),
             style: const TextStyle(
@@ -381,7 +335,6 @@ class _HeroSection extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 16),
-          // Sentence
           Text(
             _getDailySentence(language),
             style: TextStyle(
@@ -391,9 +344,8 @@ class _HeroSection extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 24),
-          // CTA Button
           ElevatedButton(
-            onPressed: () => context.push(Routes.insight),
+            onPressed: () => context.push(Routes.journal),
             style: ElevatedButton.styleFrom(
               backgroundColor: AppColors.starGold,
               foregroundColor: AppColors.deepSpace,
@@ -410,8 +362,8 @@ class _HeroSection extends StatelessWidget {
               children: [
                 Text(
                   language == AppLanguage.en
-                      ? 'Start Your Reflection'
-                      : 'Yansımanı Başlat',
+                      ? 'Start Today\'s Entry'
+                      : 'Bugünün Kaydini Baslat',
                   style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
@@ -439,12 +391,12 @@ class _HeroSection extends StatelessWidget {
             'Find clarity in stillness',
           ]
         : [
-            'Bugün hangi kalıpları fark ediyorsun?',
-            'Kendine yansıma için bir an al',
-            'İç bilgeliğin seni bekliyor',
-            'Kendin hakkında yeni bir şey keşfet',
+            'Bugün hangi kaliplari fark ediyorsun?',
+            'Kendine yansima için bir an al',
+            'Ic bilgeligin seni bekliyor',
+            'Kendin hakkinda yeni bir sey kesfet',
             'Bugün büyüme günü',
-            'Kişisel yolculuğunu kucakla',
+            'Kisisel yolculugunu kucakla',
             'Sessizlikte netlik bul',
           ];
 
@@ -466,13 +418,13 @@ class _HeroSection extends StatelessWidget {
             'Your journey of self-discovery continues.',
           ]
         : [
-            'Her yansıma anı seni kendini anlamaya yaklaştırır.',
-            'Düşüncelerin ve duyguların değerli içgörüler taşır.',
-            'Bugün iç dünyanı keşfetmek için zaman ayır.',
-            'Öz farkındalık kişisel büyümenin ilk adımıdır.',
+            'Her yansima ani seni kendini anlamaya yaklastirir.',
+            'Düsüncelerin ve duyularin degerli icgörüler tasir.',
+            'Bugün ic dünyanı kesfetmek için zaman ayir.',
+            'Öz farkindalik kisisel büyümenin ilk adimidir.',
             'Sezgilerin bugün sana ne söylüyor?',
-            'Düşüncelerindeki ve duygularındaki kalıpları fark et.',
-            'Kendini keşif yolculuğun devam ediyor.',
+            'Düsüncelerindeki ve duygularindaki kaliplari fark et.',
+            'Kendini kesfif yolculugun devam ediyor.',
           ];
 
     final dayOfYear = DateTime.now()
@@ -507,8 +459,8 @@ class _FeatureCategoriesSection extends StatelessWidget {
           children: [
             _FeatureCard(
               title: language == AppLanguage.en
-                  ? 'Journal & Patterns'
-                  : 'Günlük ve Kalıplar',
+                  ? 'Daily Journal'
+                  : 'Günlük Kayit',
               subtitle: language == AppLanguage.en
                   ? 'Track your daily cycles'
                   : 'Günlük döngülerini takip et',
@@ -518,11 +470,22 @@ class _FeatureCategoriesSection extends StatelessWidget {
             ),
             _FeatureCard(
               title: language == AppLanguage.en
-                  ? 'Insight & Reflection'
-                  : 'İçgörü ve Yansıma',
+                  ? 'Your Patterns'
+                  : 'Kaliplarin',
+              subtitle: language == AppLanguage.en
+                  ? 'Trends from your entries'
+                  : 'Kayitlarindaki egilimler',
+              icon: Icons.insights,
+              color: AppColors.starGold,
+              route: Routes.journalPatterns,
+            ),
+            _FeatureCard(
+              title: language == AppLanguage.en
+                  ? 'Personal Insight'
+                  : 'Kisisel Icgörü',
               subtitle: language == AppLanguage.en
                   ? 'AI-powered self-discovery'
-                  : 'Yapay zeka destekli öz-keşif',
+                  : 'Yapay zeka destekli öz-kesfif',
               icon: Icons.auto_awesome,
               color: AppColors.starGold,
               route: Routes.insight,
@@ -530,46 +493,24 @@ class _FeatureCategoriesSection extends StatelessWidget {
             _FeatureCard(
               title: language == AppLanguage.en
                   ? 'Dream Journal'
-                  : 'Rüya Günlüğü',
+                  : 'Rüya Günlügü',
               subtitle: language == AppLanguage.en
                   ? 'Explore your subconscious'
-                  : 'Bilinçaltını keşfet',
+                  : 'Bilinçaltini kesfet',
               icon: Icons.nights_stay,
               color: AppColors.waterElement,
               route: Routes.dreamInterpretation,
             ),
             _FeatureCard(
               title: language == AppLanguage.en
-                  ? 'Wellness'
-                  : 'Sağlık',
+                  ? 'Monthly Reflection'
+                  : 'Aylik Yansima',
               subtitle: language == AppLanguage.en
-                  ? 'Chakra, Aura & Rituals'
-                  : 'Çakra, Aura ve Ritüeller',
-              icon: Icons.spa,
-              color: AppColors.tantraCrimson,
-              route: Routes.chakraAnalysis,
-            ),
-            _FeatureCard(
-              title: language == AppLanguage.en
-                  ? 'Numerology'
-                  : 'Numeroloji',
-              subtitle: language == AppLanguage.en
-                  ? 'Number patterns & meanings'
-                  : 'Sayı kalıpları ve anlamları',
-              icon: Icons.numbers,
+                  ? 'Review your month'
+                  : 'Ayini gözden geçir',
+              icon: Icons.calendar_month,
               color: AppColors.fireElement,
-              route: Routes.numerology,
-            ),
-            _FeatureCard(
-              title: language == AppLanguage.en
-                  ? 'Tarot Guide'
-                  : 'Tarot Rehberi',
-              subtitle: language == AppLanguage.en
-                  ? 'Card symbolism'
-                  : 'Kart sembolizmi',
-              icon: Icons.style,
-              color: AppColors.mystic,
-              route: Routes.tarot,
+              route: Routes.journalMonthly,
             ),
             _FeatureCard(
               title: language == AppLanguage.en
