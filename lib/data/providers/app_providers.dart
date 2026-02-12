@@ -31,6 +31,11 @@ import '../services/energy_map_service.dart';
 import '../services/guided_program_service.dart';
 import '../services/seasonal_reflection_service.dart';
 import '../services/growth_challenge_service.dart';
+import '../services/weekly_digest_service.dart';
+import '../services/mood_checkin_service.dart';
+import '../services/archetype_service.dart';
+import '../services/compatibility_service.dart';
+import '../services/blind_spot_service.dart';
 import '../services/export_service.dart';
 import '../models/journal_entry.dart';
 
@@ -478,6 +483,55 @@ final growthChallengeServiceProvider =
     FutureProvider<GrowthChallengeService>((ref) async {
   return await GrowthChallengeService.init();
 });
+
+// =============================================================================
+// WEEKLY DIGEST PROVIDER
+// =============================================================================
+
+final weeklyDigestServiceProvider =
+    FutureProvider<WeeklyDigestService>((ref) async {
+  return await WeeklyDigestService.init();
+});
+
+// =============================================================================
+// MOOD CHECK-IN PROVIDER
+// =============================================================================
+
+final moodCheckinServiceProvider =
+    FutureProvider<MoodCheckinService>((ref) async {
+  return await MoodCheckinService.init();
+});
+
+// =============================================================================
+// ARCHETYPE PROVIDER
+// =============================================================================
+
+final archetypeServiceProvider =
+    FutureProvider<ArchetypeService>((ref) async {
+  return await ArchetypeService.init();
+});
+
+// =============================================================================
+// COMPATIBILITY PROVIDER
+// =============================================================================
+
+final compatibilityServiceProvider =
+    FutureProvider<CompatibilityService>((ref) async {
+  return await CompatibilityService.init();
+});
+
+// =============================================================================
+// BLIND SPOT PROVIDER
+// =============================================================================
+
+final blindSpotServiceProvider =
+    FutureProvider<BlindSpotService>((ref) async {
+  return await BlindSpotService.init();
+});
+
+// =============================================================================
+// EXPORT SERVICE PROVIDER
+// =============================================================================
 
 final exportServiceProvider = FutureProvider<ExportService>((ref) async {
   final journalService = await ref.watch(journalServiceProvider.future);

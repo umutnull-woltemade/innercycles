@@ -55,6 +55,10 @@ import '../../features/seasonal/presentation/seasonal_reflection_screen.dart';
 import '../../features/breathing/presentation/breathing_timer_screen.dart';
 import '../../features/moon/presentation/moon_calendar_screen.dart';
 import '../../features/challenges/presentation/challenge_list_screen.dart';
+import '../../features/digest/presentation/weekly_digest_screen.dart';
+import '../../features/archetype/presentation/archetype_screen.dart';
+import '../../features/compatibility/presentation/compatibility_reflection_screen.dart';
+import '../../features/blind_spot/presentation/blind_spot_screen.dart';
 
 import '../../data/services/admin_auth_service.dart';
 import '../../data/services/storage_service.dart';
@@ -300,6 +304,26 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: Routes.challenges,
         builder: (context, state) => const ChallengeListScreen(),
+      ),
+
+      // ════════════════════════════════════════════════════════════════
+      // TIER 2 FEATURES
+      // ════════════════════════════════════════════════════════════════
+      GoRoute(
+        path: Routes.weeklyDigest,
+        builder: (context, state) => const WeeklyDigestScreen(),
+      ),
+      GoRoute(
+        path: Routes.archetype,
+        builder: (context, state) => const ArchetypeScreen(),
+      ),
+      GoRoute(
+        path: Routes.compatibilityReflection,
+        builder: (context, state) => const CompatibilityReflectionScreen(),
+      ),
+      GoRoute(
+        path: Routes.blindSpot,
+        builder: (context, state) => const BlindSpotScreen(),
       ),
 
       // ════════════════════════════════════════════════════════════════

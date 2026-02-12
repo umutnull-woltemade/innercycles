@@ -96,6 +96,14 @@ class Routes {
   static const String growthDashboard = '/growth';
 
   // ════════════════════════════════════════════════════════════════
+  // TIER 2 FEATURES
+  // ════════════════════════════════════════════════════════════════
+  static const String weeklyDigest = '/weekly-digest';
+  static const String archetype = '/archetype';
+  static const String compatibilityReflection = '/compatibility';
+  static const String blindSpot = '/blind-spot';
+
+  // ════════════════════════════════════════════════════════════════
   // PROFILE & SETTINGS
   // ════════════════════════════════════════════════════════════════
   static const String profile = '/profile';

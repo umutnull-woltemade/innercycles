@@ -12,6 +12,7 @@ import '../../../rituals/presentation/ritual_checkoff_card.dart';
 import '../../../wellness/presentation/wellness_score_card.dart';
 import '../../../sleep/presentation/sleep_section.dart';
 import '../../../moon/presentation/moon_phase_widget.dart'; // P1: Moon phase card
+import '../../../mood/presentation/mood_checkin_card.dart';
 
 /// MOBILE LITE HOMEPAGE - InnerCycles
 ///
@@ -381,6 +382,10 @@ class _BelowTheFold extends ConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          // ═══ P0: Quick Mood Check-in ═══
+          const MoodCheckinCard(),
+          const SizedBox(height: 16),
+
           // ═══ P0: Streak Card ═══
           const StreakCard(),
           const SizedBox(height: 16),
@@ -586,6 +591,54 @@ class _BelowTheFold extends ConsumerWidget {
                 ? 'Guided prompts for each season'
                 : 'Her mevsim icin rehberli sorular',
             route: Routes.seasonal,
+            isDark: isDark,
+          ),
+
+          _EntryPointTile(
+            icon: Icons.theater_comedy_outlined,
+            title: language == AppLanguage.en
+                ? 'Your Archetype'
+                : 'Arketip Profilin',
+            subtitle: language == AppLanguage.en
+                ? 'Discover your inner archetype from your patterns'
+                : 'Kaliplarından iç arketipini keşfet',
+            route: Routes.archetype,
+            isDark: isDark,
+          ),
+
+          _EntryPointTile(
+            icon: Icons.people_outline,
+            title: language == AppLanguage.en
+                ? 'Relationship Reflections'
+                : 'İlişki Yansımaları',
+            subtitle: language == AppLanguage.en
+                ? 'Reflect on your connections with others'
+                : 'Başkalarıyla bağlantılarını yansıt',
+            route: Routes.compatibilityReflection,
+            isDark: isDark,
+          ),
+
+          _EntryPointTile(
+            icon: Icons.visibility_outlined,
+            title: language == AppLanguage.en
+                ? 'Blind Spot Reveal'
+                : 'Kör Nokta Keşfi',
+            subtitle: language == AppLanguage.en
+                ? 'Patterns you might not notice about yourself'
+                : 'Kendin hakkında fark etmeyebileceğin kalıplar',
+            route: Routes.blindSpot,
+            isDark: isDark,
+          ),
+
+          _EntryPointTile(
+            icon: Icons.summarize_outlined,
+            title: language == AppLanguage.en
+                ? 'Weekly Digest'
+                : 'Haftalık Özet',
+            subtitle: language == AppLanguage.en
+                ? 'Your week summarized with insights'
+                : 'İçgörülerle haftalık özetin',
+            route: Routes.weeklyDigest,
             isDark: isDark,
           ),
 

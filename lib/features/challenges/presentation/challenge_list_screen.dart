@@ -151,6 +151,7 @@ class ChallengeListScreen extends ConsumerWidget {
               ),
             ],
           ),
+          ),
         ),
       ),
     );
