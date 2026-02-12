@@ -8,15 +8,7 @@ import '../../data/providers/app_providers.dart';
 /// NEXT BLOCKS WIDGET - App Store 4.3(b) Compliant
 ///
 /// Suggests next features to explore after completing a page.
-/// All astrology/horoscope features removed for App Store compliance.
-///
-/// USAGE:
-/// ```dart
-/// NextBlocks(
-///   currentPage: 'insight',
-///   language: AppLanguage.en,
-/// )
-/// ```
+/// Only references journaling, insight, dreams, and reference features.
 class NextBlocks extends StatelessWidget {
   final String currentPage;
   final String? signName;
@@ -98,12 +90,12 @@ class NextBlocks extends StatelessWidget {
         route: Routes.dreamInterpretation,
       ),
       _NextBlock(
-        icon: Icons.blur_circular_outlined,
-        title: language == AppLanguage.en ? 'Chakra' : 'Çakra',
+        icon: Icons.menu_book_outlined,
+        title: language == AppLanguage.en ? 'Glossary' : 'Sözlük',
         subtitle: language == AppLanguage.en
-            ? 'Energy awareness'
-            : 'Enerji farkındalığı',
-        route: Routes.chakraAnalysis,
+            ? 'Learn terms'
+            : 'Terimleri öğren',
+        route: Routes.glossary,
       ),
     ];
 
@@ -165,20 +157,20 @@ class NextBlocks extends StatelessWidget {
             route: Routes.dreamInterpretation,
           ),
           _NextBlock(
-            icon: Icons.blur_circular_outlined,
-            title: language == AppLanguage.en ? 'Chakra' : 'Çakra',
+            icon: Icons.insights_outlined,
+            title: language == AppLanguage.en ? 'Patterns' : 'Kalıplar',
             subtitle: language == AppLanguage.en
-                ? 'Energy awareness'
-                : 'Enerji farkındalığı',
-            route: Routes.chakraAnalysis,
+                ? 'Your trends'
+                : 'Eğilimlerin',
+            route: Routes.journalPatterns,
           ),
           _NextBlock(
-            icon: Icons.numbers_outlined,
-            title: language == AppLanguage.en ? 'Numerology' : 'Numeroloji',
+            icon: Icons.menu_book_outlined,
+            title: language == AppLanguage.en ? 'Glossary' : 'Sözlük',
             subtitle: language == AppLanguage.en
-                ? 'Number patterns'
-                : 'Sayı kalıpları',
-            route: Routes.numerology,
+                ? 'Learn terms'
+                : 'Terimleri öğren',
+            route: Routes.glossary,
           ),
         ];
 
@@ -203,207 +195,20 @@ class NextBlocks extends StatelessWidget {
             route: Routes.dreamGlossary,
           ),
           _NextBlock(
-            icon: Icons.blur_circular_outlined,
-            title: language == AppLanguage.en ? 'Chakra' : 'Çakra',
+            icon: Icons.edit_note_outlined,
+            title: language == AppLanguage.en ? 'Journal' : 'Günlük',
             subtitle: language == AppLanguage.en
-                ? 'Energy awareness'
-                : 'Enerji farkındalığı',
-            route: Routes.chakraAnalysis,
+                ? 'Track your day'
+                : 'Gününü takip et',
+            route: Routes.journal,
           ),
           _NextBlock(
-            icon: Icons.self_improvement_outlined,
-            title: language == AppLanguage.en ? 'Rituals' : 'Ritüeller',
+            icon: Icons.article_outlined,
+            title: language == AppLanguage.en ? 'Articles' : 'Makaleler',
             subtitle: language == AppLanguage.en
-                ? 'Daily practices'
-                : 'Günlük pratikler',
-            route: Routes.dailyRituals,
-          ),
-        ];
-
-      case 'chakra':
-      case 'chakra_analysis':
-        return [
-          _NextBlock(
-            icon: Icons.spa_outlined,
-            title: language == AppLanguage.en ? 'Aura' : 'Aura',
-            subtitle: language == AppLanguage.en
-                ? 'Energy field'
-                : 'Enerji alanı',
-            route: Routes.aura,
-          ),
-          _NextBlock(
-            icon: Icons.self_improvement_outlined,
-            title: language == AppLanguage.en ? 'Rituals' : 'Ritüeller',
-            subtitle: language == AppLanguage.en
-                ? 'Daily practices'
-                : 'Günlük pratikler',
-            route: Routes.dailyRituals,
-          ),
-          _NextBlock(
-            icon: Icons.auto_awesome_outlined,
-            title: language == AppLanguage.en ? 'Insight' : 'İçgörü',
-            subtitle: language == AppLanguage.en
-                ? 'Personal reflection'
-                : 'Kişisel yansıma',
-            route: Routes.insight,
-            isHighlighted: true,
-          ),
-          _NextBlock(
-            icon: Icons.nights_stay_outlined,
-            title: language == AppLanguage.en ? 'Dreams' : 'Rüyalar',
-            subtitle: language == AppLanguage.en
-                ? 'Explore your dreams'
-                : 'Rüyalarını keşfet',
-            route: Routes.dreamInterpretation,
-          ),
-        ];
-
-      case 'aura':
-        return [
-          _NextBlock(
-            icon: Icons.blur_circular_outlined,
-            title: language == AppLanguage.en ? 'Chakra' : 'Çakra',
-            subtitle: language == AppLanguage.en
-                ? 'Energy centers'
-                : 'Enerji merkezleri',
-            route: Routes.chakraAnalysis,
-          ),
-          _NextBlock(
-            icon: Icons.self_improvement_outlined,
-            title: language == AppLanguage.en ? 'Rituals' : 'Ritüeller',
-            subtitle: language == AppLanguage.en
-                ? 'Daily practices'
-                : 'Günlük pratikler',
-            route: Routes.dailyRituals,
-          ),
-          _NextBlock(
-            icon: Icons.auto_awesome_outlined,
-            title: language == AppLanguage.en ? 'Insight' : 'İçgörü',
-            subtitle: language == AppLanguage.en
-                ? 'Personal reflection'
-                : 'Kişisel yansıma',
-            route: Routes.insight,
-            isHighlighted: true,
-          ),
-          _NextBlock(
-            icon: Icons.nights_stay_outlined,
-            title: language == AppLanguage.en ? 'Dreams' : 'Rüyalar',
-            subtitle: language == AppLanguage.en
-                ? 'Explore your dreams'
-                : 'Rüyalarını keşfet',
-            route: Routes.dreamInterpretation,
-          ),
-        ];
-
-      case 'numerology':
-        return [
-          _NextBlock(
-            icon: Icons.auto_awesome_outlined,
-            title: language == AppLanguage.en ? 'Insight' : 'İçgörü',
-            subtitle: language == AppLanguage.en
-                ? 'Personal reflection'
-                : 'Kişisel yansıma',
-            route: Routes.insight,
-            isHighlighted: true,
-          ),
-          _NextBlock(
-            icon: Icons.style_outlined,
-            title: language == AppLanguage.en ? 'Tarot' : 'Tarot',
-            subtitle: language == AppLanguage.en
-                ? 'Card meanings'
-                : 'Kart anlamları',
-            route: Routes.tarot,
-          ),
-          _NextBlock(
-            icon: Icons.blur_circular_outlined,
-            title: language == AppLanguage.en ? 'Chakra' : 'Çakra',
-            subtitle: language == AppLanguage.en
-                ? 'Energy awareness'
-                : 'Enerji farkındalığı',
-            route: Routes.chakraAnalysis,
-          ),
-          _NextBlock(
-            icon: Icons.menu_book_outlined,
-            title: language == AppLanguage.en ? 'Glossary' : 'Sözlük',
-            subtitle: language == AppLanguage.en
-                ? 'Learn terms'
-                : 'Terimleri öğren',
-            route: Routes.glossary,
-          ),
-        ];
-
-      case 'tarot':
-        return [
-          _NextBlock(
-            icon: Icons.auto_awesome_outlined,
-            title: language == AppLanguage.en ? 'Insight' : 'İçgörü',
-            subtitle: language == AppLanguage.en
-                ? 'Personal reflection'
-                : 'Kişisel yansıma',
-            route: Routes.insight,
-            isHighlighted: true,
-          ),
-          _NextBlock(
-            icon: Icons.numbers_outlined,
-            title: language == AppLanguage.en ? 'Numerology' : 'Numeroloji',
-            subtitle: language == AppLanguage.en
-                ? 'Number patterns'
-                : 'Sayı kalıpları',
-            route: Routes.numerology,
-          ),
-          _NextBlock(
-            icon: Icons.nights_stay_outlined,
-            title: language == AppLanguage.en ? 'Dreams' : 'Rüyalar',
-            subtitle: language == AppLanguage.en
-                ? 'Dream symbols'
-                : 'Rüya sembolleri',
-            route: Routes.dreamInterpretation,
-          ),
-          _NextBlock(
-            icon: Icons.menu_book_outlined,
-            title: language == AppLanguage.en ? 'Glossary' : 'Sözlük',
-            subtitle: language == AppLanguage.en
-                ? 'Learn terms'
-                : 'Terimleri öğren',
-            route: Routes.glossary,
-          ),
-        ];
-
-      case 'rituals':
-      case 'daily_rituals':
-        return [
-          _NextBlock(
-            icon: Icons.blur_circular_outlined,
-            title: language == AppLanguage.en ? 'Chakra' : 'Çakra',
-            subtitle: language == AppLanguage.en
-                ? 'Energy centers'
-                : 'Enerji merkezleri',
-            route: Routes.chakraAnalysis,
-          ),
-          _NextBlock(
-            icon: Icons.spa_outlined,
-            title: language == AppLanguage.en ? 'Aura' : 'Aura',
-            subtitle: language == AppLanguage.en
-                ? 'Energy field'
-                : 'Enerji alanı',
-            route: Routes.aura,
-          ),
-          _NextBlock(
-            icon: Icons.auto_awesome_outlined,
-            title: language == AppLanguage.en ? 'Insight' : 'İçgörü',
-            subtitle: language == AppLanguage.en
-                ? 'Personal reflection'
-                : 'Kişisel yansıma',
-            route: Routes.insight,
-            isHighlighted: true,
-          ),
-          _NextBlock(
-            icon: Icons.nights_stay_outlined,
-            title: language == AppLanguage.en ? 'Dreams' : 'Rüyalar',
-            subtitle: language == AppLanguage.en
-                ? 'Dream journal'
-                : 'Rüya günlüğü',
-            route: Routes.dreamInterpretation,
+                ? 'Read more'
+                : 'Daha fazla oku',
+            route: Routes.articles,
           ),
         ];
 
@@ -427,20 +232,20 @@ class NextBlocks extends StatelessWidget {
             route: Routes.articles,
           ),
           _NextBlock(
-            icon: Icons.numbers_outlined,
-            title: language == AppLanguage.en ? 'Numerology' : 'Numeroloji',
+            icon: Icons.edit_note_outlined,
+            title: language == AppLanguage.en ? 'Journal' : 'Günlük',
             subtitle: language == AppLanguage.en
-                ? 'Number patterns'
-                : 'Sayı kalıpları',
-            route: Routes.numerology,
+                ? 'Track your day'
+                : 'Gününü takip et',
+            route: Routes.journal,
           ),
           _NextBlock(
-            icon: Icons.style_outlined,
-            title: language == AppLanguage.en ? 'Tarot' : 'Tarot',
+            icon: Icons.nights_stay_outlined,
+            title: language == AppLanguage.en ? 'Dreams' : 'Rüyalar',
             subtitle: language == AppLanguage.en
-                ? 'Card meanings'
-                : 'Kart anlamları',
-            route: Routes.tarot,
+                ? 'Dream journal'
+                : 'Rüya günlüğü',
+            route: Routes.dreamInterpretation,
           ),
         ];
 

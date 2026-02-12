@@ -10,7 +10,6 @@ import '../../../data/services/ai_content_service.dart';
 import '../../../data/services/l10n_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/entertainment_disclaimer.dart';
-import '../../../shared/widgets/quiz_cta_card.dart';
 
 /// Kozmik Iletisim - AI-Powered Dream Chatbot
 /// Sohbet formatinda mistik ruya yorumlama deneyimi
@@ -1883,11 +1882,6 @@ ${_getZodiacAdvice(sign)}''';
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Quiz CTA - Google Discover Funnel
-          Padding(
-            padding: const EdgeInsets.only(bottom: 16),
-            child: QuizCTACard.dream(compact: true),
-          ),
           Padding(
             padding: const EdgeInsets.only(bottom: 12),
             child: Row(

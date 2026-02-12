@@ -644,7 +644,7 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
           isDark,
           'Observatory',
           Icons.insights,
-          () => context.go(Routes.observatory),
+          () => _showSnackbar('Observatory archived'),
           isHighlighted: true,
         ),
         _buildActionButton(
