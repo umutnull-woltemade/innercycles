@@ -30,7 +30,7 @@ import WidgetKit
     }
 
     let widgetChannel = FlutterMethodChannel(
-      name: "com.umut.astrologyApp/widgets",
+      name: "com.venusone.innercycles/widgets",
       binaryMessenger: controller.binaryMessenger
     )
 
@@ -52,7 +52,7 @@ import WidgetKit
       return
     }
 
-    let sharedDefaults = UserDefaults(suiteName: "group.com.umut.astrologyApp")
+    let sharedDefaults = UserDefaults(suiteName: "group.com.venusone.innercycles")
 
     // Store all provided data
     for (key, value) in args {

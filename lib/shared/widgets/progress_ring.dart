@@ -288,7 +288,7 @@ class StreakDisplay extends StatelessWidget {
   Color _getStreakColor(int streak) {
     if (streak >= 30) return AppColors.starGold;
     if (streak >= 14) return const Color(0xFFFF6B6B);
-    if (streak >= 7) return AppColors.fireElement;
+    if (streak >= 7) return AppColors.warmAccent;
     return AppColors.warning;
   }
 

@@ -333,7 +333,7 @@ class InsightThemes {
         title: L10nService.get('insights.transit_effect_title', language),
         content: L10nService.get('insights.transit_effect_content', language),
         emoji: '💫',
-        color: AppColors.venusColor,
+        color: AppColors.softPink,
         isPremium: true,
       ),
       InsightCardData(

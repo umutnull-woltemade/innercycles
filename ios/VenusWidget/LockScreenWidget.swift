@@ -1,4 +1,4 @@
-// Venus One - Lock Screen Widgets (iOS 16+)
+// InnerCycles - Lock Screen Widgets (iOS 16+)
 // Compact widgets for Lock Screen and StandBy mode
 
 import WidgetKit
@@ -11,9 +11,9 @@ struct LockScreenProvider: TimelineProvider {
     func placeholder(in context: Context) -> LockScreenEntry {
         LockScreenEntry(
             date: Date(),
-            zodiacEmoji: "♏️",
+            moodEmoji: "😊",
             moonEmoji: "🌒",
-            shortMessage: "Trust your intuition",
+            shortMessage: "Reflect on what matters",
             energyLevel: 4 // 1-5 scale for lock screen
         )
     }
@@ -35,9 +35,9 @@ struct LockScreenProvider: TimelineProvider {
     }
 
     private func loadFromUserDefaults() -> LockScreenEntry? {
-        let sharedDefaults = UserDefaults(suiteName: "group.com.umut.astrologyApp")
+        let sharedDefaults = UserDefaults(suiteName: "group.com.venusone.innercycles")
 
-        guard let zodiacEmoji = sharedDefaults?.string(forKey: "widget_zodiac_emoji"),
+        guard let moodEmoji = sharedDefaults?.string(forKey: "widget_mood_emoji"),
               let moonEmoji = sharedDefaults?.string(forKey: "widget_moon_emoji"),
               let shortMessage = sharedDefaults?.string(forKey: "widget_short_message") else {
             return nil
@@ -47,7 +47,7 @@ struct LockScreenProvider: TimelineProvider {
 
         return LockScreenEntry(
             date: Date(),
-            zodiacEmoji: zodiacEmoji,
+            moodEmoji: moodEmoji,
             moonEmoji: moonEmoji,
             shortMessage: shortMessage,
             energyLevel: energyLevel
@@ -59,7 +59,7 @@ struct LockScreenProvider: TimelineProvider {
 
 struct LockScreenEntry: TimelineEntry {
     let date: Date
-    let zodiacEmoji: String
+    let moodEmoji: String
     let moonEmoji: String
     let shortMessage: String
     let energyLevel: Int // 1-5
@@ -95,7 +95,7 @@ struct CircularLockScreenView: View {
             AccessoryWidgetBackground()
 
             VStack(spacing: 2) {
-                Text(entry.zodiacEmoji)
+                Text(entry.moodEmoji)
                     .font(.system(size: 20))
 
                 // Energy dots
@@ -118,7 +118,7 @@ struct RectangularLockScreenView: View {
     var body: some View {
         HStack(spacing: 8) {
             VStack(spacing: 2) {
-                Text(entry.zodiacEmoji)
+                Text(entry.moodEmoji)
                     .font(.system(size: 24))
                 Text(entry.moonEmoji)
                     .font(.system(size: 14))
@@ -147,7 +147,7 @@ struct InlineLockScreenView: View {
 
     var body: some View {
         HStack(spacing: 4) {
-            Text(entry.zodiacEmoji)
+            Text(entry.moodEmoji)
             Text(entry.shortMessage)
                 .lineLimit(1)
         }
@@ -164,8 +164,8 @@ struct LockScreenWidget: Widget {
         StaticConfiguration(kind: kind, provider: LockScreenProvider()) { entry in
             LockScreenWidgetEntryView(entry: entry)
         }
-        .configurationDisplayName("Venus Glance")
-        .description("Quick cosmic insights on your Lock Screen.")
+        .configurationDisplayName("Quick Glance")
+        .description("Your mood and reflection at a glance.")
         .supportedFamilies([.accessoryCircular, .accessoryRectangular, .accessoryInline])
     }
 }
@@ -178,27 +178,27 @@ struct LockScreenWidget_Previews: PreviewProvider {
         Group {
             LockScreenWidgetEntryView(entry: LockScreenEntry(
                 date: Date(),
-                zodiacEmoji: "♏️",
+                moodEmoji: "😊",
                 moonEmoji: "🌕",
-                shortMessage: "Trust your intuition today",
+                shortMessage: "Reflect on what matters today",
                 energyLevel: 4
             ))
             .previewContext(WidgetPreviewContext(family: .accessoryCircular))
 
             LockScreenWidgetEntryView(entry: LockScreenEntry(
                 date: Date(),
-                zodiacEmoji: "♏️",
+                moodEmoji: "😊",
                 moonEmoji: "🌕",
-                shortMessage: "Trust your intuition today",
+                shortMessage: "Reflect on what matters today",
                 energyLevel: 4
             ))
             .previewContext(WidgetPreviewContext(family: .accessoryRectangular))
 
             LockScreenWidgetEntryView(entry: LockScreenEntry(
                 date: Date(),
-                zodiacEmoji: "♏️",
+                moodEmoji: "😊",
                 moonEmoji: "🌕",
-                shortMessage: "Trust your intuition",
+                shortMessage: "Reflect on what matters",
                 energyLevel: 4
             ))
             .previewContext(WidgetPreviewContext(family: .accessoryInline))

@@ -73,7 +73,7 @@ class ToastNotification {
     show(context, message: message, type: ToastType.info, title: title);
   }
 
-  /// Show cosmic toast (special astrology themed)
+  /// Show cosmic toast (special themed)
   static void cosmic(BuildContext context, String message, {String? title}) {
     show(context, message: message, type: ToastType.cosmic, title: title);
   }
@@ -279,15 +279,15 @@ class _ToastWidget extends StatelessWidget {
       case ToastType.info:
         return _ToastConfig(
           icon: Icons.info_outline,
-          color: AppColors.airElement,
+          color: AppColors.blueAccent,
           backgroundColor: isDark
-              ? AppColors.airElement.withValues(alpha: 0.15)
-              : AppColors.airElement.withValues(alpha: 0.1),
-          borderColor: AppColors.airElement.withValues(alpha: 0.4),
-          iconColor: AppColors.airElement,
+              ? AppColors.blueAccent.withValues(alpha: 0.15)
+              : AppColors.blueAccent.withValues(alpha: 0.1),
+          borderColor: AppColors.blueAccent.withValues(alpha: 0.4),
+          iconColor: AppColors.blueAccent,
           textColor: isDark
               ? Colors.white
-              : AppColors.airElement.withValues(alpha: 0.9),
+              : AppColors.blueAccent.withValues(alpha: 0.9),
         );
       case ToastType.cosmic:
         return _ToastConfig(
@@ -395,12 +395,12 @@ class CosmicSnackBar {
       case ToastType.info:
         return _ToastConfig(
           icon: Icons.info_outline,
-          color: AppColors.airElement,
+          color: AppColors.blueAccent,
           backgroundColor: isDark
-              ? AppColors.airElement.withValues(alpha: 0.2)
-              : AppColors.airElement.withValues(alpha: 0.15),
-          borderColor: AppColors.airElement.withValues(alpha: 0.4),
-          iconColor: isDark ? Colors.white : AppColors.airElement,
+              ? AppColors.blueAccent.withValues(alpha: 0.2)
+              : AppColors.blueAccent.withValues(alpha: 0.15),
+          borderColor: AppColors.blueAccent.withValues(alpha: 0.4),
+          iconColor: isDark ? Colors.white : AppColors.blueAccent,
           textColor: isDark ? Colors.white : Colors.black87,
         );
       case ToastType.cosmic:

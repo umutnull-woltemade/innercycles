@@ -1,105 +1,86 @@
-# Venus One - App Store Metadata
+# InnerCycles - App Store Metadata
 
 ## App Name
-Venus One
+InnerCycles
 
 ## Subtitle (30 karakter max)
-Self-Discovery & Reflection
+Daily Mood & Dream Diary
 
 ## Promotional Text (170 karakter max)
-Explore your inner world through astrology, tarot symbolism, dream journaling, and mindfulness tools. A beautiful space for daily reflection and self-discovery.
+Track your moods, discover emotional patterns, and grow through daily self-awareness. A beautiful space for journaling and self-discovery.
 
 ## Description (4000 karakter max)
 
-Welcome to Venus One – Your Personal Reflection Companion
+Welcome to InnerCycles - Your Personal Journal & Mood Tracker
 
-Explore the rich symbolism of astrology, tarot, and numerology as tools for self-reflection and personal growth. Venus One creates a beautiful space for daily mindfulness, journaling, and inner exploration.
+Understand yourself better, one day at a time. InnerCycles helps you track your moods, reflect on patterns, and grow through daily self-awareness. Discover your unique emotional cycles — the rhythms of energy, focus, emotions, decisions, and connection that shape your days.
 
 DAILY REFLECTION & JOURNALING
-• Personalized daily themes for self-reflection
-• Journal prompts inspired by cosmic symbolism
-• Moon phase awareness and natural rhythms
-• Mindful moments throughout your day
+- Personalized daily themes for self-reflection
+- Guided journal prompts that help you explore your inner world
+- Mood tracking across 5 dimensions
+- Mindful moments throughout your day
 
-BIRTH CHART EXPLORATION
-• Generate your complete natal chart
-• Explore planetary symbolism and archetypes
-• Understand house themes and aspects
-• Learn about astrological patterns as self-reflection tools
+DREAM JOURNAL
+- Capture your dreams with a 1000+ symbol interpretation database
+- Track recurring dream themes and patterns
+- Multiple interpretation frameworks
 
-RELATIONSHIP THEMES
-• Synastry exploration for understanding connection patterns
-• Composite chart symbolism for relationships
-• Compatibility themes to reflect on
-• Communication and connection insights
+EMOTIONAL PATTERN ANALYSIS
+- See how your emotions flow over weeks and months
+- Discover your personal rhythms and cycles
+- Monthly insight reports with data-driven summaries
 
-SYMBOLIC TOOLS FOR REFLECTION
-• Daily tarot card draws with archetypal meanings
-• Numerology: explore life path themes and patterns
-• Dream journal with symbol exploration
-• Chakra awareness and energy themes
-• Ancient wisdom traditions for contemplation
-
-EDUCATIONAL CONTENT
-• Comprehensive astrology glossary
-• Learn symbolic meanings and archetypes
-• Educational articles and guides
-• Celebrity chart comparisons for learning
-• Save multiple profiles to explore patterns
+WELLNESS TOOLS
+- Chakra awareness and energy themes
+- Daily rituals for mindfulness
+- Self-care practices
 
 PREMIUM EXPERIENCE
-• Ad-free reflection space
-• Unlimited symbolic explorations
-• Deeper archetypal interpretations
-• Full access to educational content
-• Enhanced journaling features
+- Deep pattern analysis engine
+- Unlimited dream interpretations
+- Monthly reflection reports
+- Advanced emotional insights
+- Ad-free experience
 
 IMPORTANT NOTICE
-Venus One is designed for entertainment and self-reflection purposes only. The symbolic interpretations provided are not predictions of future events. Astrology, tarot, and numerology are presented as tools for personal contemplation and should not be used for making important life decisions. Please consult qualified professionals for health, financial, legal, or psychological matters.
-
-Whether you're curious about symbolic systems or seeking a beautiful journaling companion, Venus One provides thoughtful prompts and themes for your personal reflection practice.
-
-Download now and begin your journey of self-discovery!
+InnerCycles is designed for self-reflection and educational purposes only. Content is based on personal journaling best practices and should not replace professional medical, psychological, or financial advice.
 
 ## Keywords (100 karakter max, comma separated)
-astrology,journal,reflection,zodiac,mindfulness,tarot,self-discovery,meditation,birth chart,wellness
+journal,mood,dream,reflection,mindfulness,wellness,self-care,emotional,cycle,tracker
 
 ## What's New (4000 karakter max)
-Welcome to Venus One 1.0!
+Welcome to InnerCycles 1.0!
 
-Your personal reflection companion is here with:
-• Beautiful birth chart visualizations
-• Daily reflection themes and journal prompts
-• Symbolic tarot card exploration
-• Numerology patterns for self-understanding
-• Dream journal with symbol library
-• Chakra awareness themes
-• Educational astrology content
-
-All content is for entertainment and self-reflection purposes only.
+Your personal journal companion is here with:
+- Daily mood tracking and reflection prompts
+- Dream journal with symbol library
+- Emotional pattern analysis
+- Wellness tools and daily rituals
+- Monthly insight reports
 
 Start your self-discovery journey today!
 
 ## Support URL
-https://venusone.com/support
+https://innercycles.app/support
 
 ## Marketing URL
-https://venusone.com
+https://innercycles.app
 
 ## Privacy Policy URL
-https://venusone.com/privacy
+https://innercycles.app/privacy
 
 ## Copyright
-© 2024 Venus One
+2026 Venus One
 
 ## Age Rating
-Rated 4+ (No objectionable content)
+Rated 4+
 
 ## Primary Category
 Lifestyle
 
 ## Secondary Category
-Entertainment
+Health & Fitness
 
 ## Primary Language
 English
@@ -127,102 +108,78 @@ Required: 1-10 screenshots
 Resolution: 2048 x 2732 pixels
 Required: 1-10 screenshots
 
-## iPad Pro 12.9" (2nd gen)
-Resolution: 2048 x 2732 pixels
-Required: 1-10 screenshots
-
 ---
 
 # Suggested Screenshot Captions
 
-1. "Your Daily Reflection Space"
-2. "Explore Your Birth Chart"
-3. "Relationship Themes & Patterns"
-4. "Symbolic Tarot Exploration"
-5. "Track Moon Phases & Rhythms"
-6. "Numerology Self-Discovery"
-7. "Dream Journal & Symbols"
-8. "Beautiful Premium Experience"
+1. "Track Your Daily Mood & Reflections"
+2. "Discover Your Emotional Patterns"
+3. "Dream Journal with Symbol Analysis"
+4. "Personal Growth & Wellness Insights"
+5. "Guided Self-Care Rituals"
+6. "Your Emotional Cycle Visualized"
+7. "Monthly Reflection Reports"
+8. "Private & Secure Self-Discovery"
 
 ---
 
 # App Store Review Notes
 
 ## App Purpose
-Venus One is a lifestyle and entertainment app that uses astrological, tarot, and numerological symbolism as frameworks for self-reflection and personal journaling. The app does NOT make predictions about future events or claim to provide guidance for important life decisions.
+InnerCycles is a lifestyle app that provides journaling tools, mood tracking, dream journaling, and emotional pattern analysis for personal self-reflection.
 
 ## Key Compliance Features
 
-1. **Entertainment Disclaimer**: Prominently displayed on first launch and accessible throughout the app. States clearly that content is for entertainment and self-reflection only.
+1. **Disclaimer**: Prominently displayed on first launch. States clearly that content is for self-reflection and educational purposes only.
 
-2. **Reflection-Based Language**: All content uses phrases like "themes to explore," "patterns to reflect on," and "symbolic meanings" rather than predictive language.
+2. **Reflection-Based Language**: All content uses phrases like "patterns to reflect on," "themes to explore," and "insights from your entries" rather than predictive language.
 
-3. **No Health/Financial Claims**: App explicitly disclaims any medical, financial, or professional advice. Health-related content includes additional disclaimers.
+3. **No Health/Financial Claims**: App explicitly disclaims any medical, financial, or professional advice.
 
-4. **Educational Focus**: Includes glossary, educational articles, and explanations of symbolic systems as cultural/historical topics.
+4. **Educational Focus**: Includes educational content about emotional wellness and journaling practices.
 
 ## Content Categories
-- Daily horoscope themes based on zodiac symbolism
-- Birth chart visualizations using astronomical calculations
-- Tarot card archetypal interpretations
-- Numerology pattern exploration
-- Dream symbol library
-- Compatibility theme exploration
+- Daily mood journaling with guided prompts
+- Dream journal with symbol interpretation
+- Emotional pattern tracking and analysis
+- Wellness and mindfulness tools
+- Monthly insight reports
 
 ## Technical Implementation
 - RevenueCat for subscription management
-- Google AdMob for advertisements (free tier)
-- Swiss Ephemeris for astronomical calculations
-- Feature flags for content management
+- Local storage for all user data (SharedPreferences, Hive)
+- Firebase Analytics
 
 ## Compliance Statement
-All content is presented for entertainment and self-reflection purposes only. The app makes no claims of accuracy in predicting future events. Users are encouraged to treat symbolic interpretations as prompts for personal reflection rather than factual guidance.
+All content is presented for self-reflection and educational purposes only. The app makes no claims about predicting future events. Users are encouraged to treat insights as prompts for personal reflection.
 
 ---
 
 # Turkish Metadata (TR)
 
 ## Subtitle
-Kisisel Kesfif & Dusunce
+Gunluk Ruh Hali & Ruya
 
 ## Promotional Text
-Astroloji, tarot sembolleri, ruya gunlugu ve farkindalik araclariyla ic dunyanizi kesfedin. Gunluk dusunce ve kisisel kesfif icin guzel bir alan.
+Ruh halini takip et, duygusal oruntuleri kesfet ve gunluk oz-farkindalikla buyume. Gunluk tutma ve kendini kesfetme icin guzel bir alan.
 
 ## Description
 
-Venus One'a Hos Geldiniz – Kisisel Dusunce Yoldasiniz
+InnerCycles'a Hos Geldiniz - Kisisel Gunluk ve Ruh Hali Takipcisi
 
-Astroloji, tarot ve numerolojinin zengin sembolizmini oz-yansitma ve kisisel gelisim araclari olarak kesfedin. Venus One, gunluk farkindalik, gunluk tutma ve ic kesif icin guzel bir alan olusturur.
+Her gun kendini biraz daha iyi anla.
 
-GUNLUK DUSUNCE VE GUNLUK
-• Oz-yansitma icin kisisellestirilmis gunluk temalar
-• Kozmik sembolizmden esinlenen gunluk ipuclari
-• Ay fazlari ve dogal ritimler hakkinda farkindalik
-• Gun boyunca bilinçli anlar
+InnerCycles, ruh halini takip etmeni, oruntuleri kesfetmeni ve gunluk farkindalikla buyumeni saglayan kisisel bir gunluktur.
 
-DOGUM HARITASI KESFI
-• Tam natal haritanizi olusturun
-• Gezegen sembolizmi ve arketipleri kesfedin
-• Ev temalarini ve acilari anlayin
-• Astrolojik oruntuleri oz-yansitma araclari olarak ogrenin
+OZELLIKLER:
+- Gunluk Yansima — Ic dunyanizi kesfetmeniz icin rehberli sorular
+- Ruh Hali & Oruntu Takibi — Duygularinizin haftalar ve aylar boyunca akisini gorun
+- Ruya Gunlugu — 1000+ sembol yorumlama veritabani
+- Duygusal Dongu Haritasi — Kisisel ritimlerinizi kesfedin
+- Aylik Icgoru Raporlari — Buyumenizi verilerle anlayin
+- Ozel & Guvenli — Dusunceleriniz her zaman sizde kalir
 
-ILISKI TEMALARI
-• Baglanti kaliplarini anlamak icin sinastri kesfi
-• Iliskiler icin kompozit harita sembolizmi
-• Uzerine dusunulecek uyum temalari
-• Iletisim ve baglanti icgoruleri
-
-DUSUNCE ICIN SEMBOLIK ARACLAR
-• Arketipsel anlamlarla gunluk tarot karti cekimi
-• Numeroloji: yasam yolu temalarini ve kaliplarini kesfedin
-• Sembol kesfili ruya gunlugu
-• Cakra farkindaliği ve enerji temalari
-• Tefekkur icin kadim bilgelik gelenekleri
-
-ONEMLI BILGILENDIRME
-Venus One yalnizca eglence ve oz-yansitma amaciyla tasarlanmistir. Sunulan sembolik yorumlar gelecekteki olaylarin tahminleri degildir. Astroloji, tarot ve numeroloji kisisel tefekkur araclari olarak sunulmaktadir ve onemli yasam kararlari icin kullanilmamalidir.
-
-Kisisel kesfif yolculugunuza bugun baslayin!
+Ucretsiz baslayin. Sizi siz yapan oruntuleri kesfedin.
 
 ## Keywords
-astroloji,gunluk,dusunce,zodyak,farkindalik,tarot,kisisel-kesfif,meditasyon,dogum haritasi
+gunluk,ruh hali,ruya,yansima,farkindalik,saglik,oz-bakim,duygu,dongu,takip

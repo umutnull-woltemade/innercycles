@@ -305,13 +305,13 @@ extension ZodiacSignExtension on ZodiacSign {
   Color get color {
     switch (element) {
       case Element.fire:
-        return AppColors.fireElement;
+        return AppColors.warmAccent;
       case Element.earth:
-        return AppColors.earthElement;
+        return AppColors.greenAccent;
       case Element.air:
-        return AppColors.airElement;
+        return AppColors.blueAccent;
       case Element.water:
-        return AppColors.waterElement;
+        return AppColors.purpleAccent;
     }
   }
 
@@ -588,13 +588,13 @@ extension ElementExtension on Element {
   Color get color {
     switch (this) {
       case Element.fire:
-        return AppColors.fireElement;
+        return AppColors.warmAccent;
       case Element.earth:
-        return AppColors.earthElement;
+        return AppColors.greenAccent;
       case Element.air:
-        return AppColors.airElement;
+        return AppColors.blueAccent;
       case Element.water:
-        return AppColors.waterElement;
+        return AppColors.purpleAccent;
     }
   }
 }

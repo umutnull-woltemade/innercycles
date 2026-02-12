@@ -1,12 +1,11 @@
 # InnerCycles - Codex Instructions
 
 ## Project Overview
-InnerCycles is a Flutter iOS app focused on personal reflection, wellness, and mindfulness.
+InnerCycles is a Flutter iOS app focused on personal journaling, mood tracking, and wellness.
 
 **CRITICAL: App Store 4.3(b) Compliance**
-- NO astrology, horoscopes, zodiac predictions, birth charts
-- Focus: Insight, Dreams, Wellness (Chakra, Aura, Rituals), Numerology (educational)
-- App was pivoted from astrology app to pass Apple review
+- Focus: Journaling, Mood Tracking, Dream Journal, Wellness, Pattern Analysis
+- All content is reflective and educational — no predictions or forecasts
 
 ## Tech Stack
 - Flutter 3.x / Dart
@@ -20,25 +19,17 @@ InnerCycles is a Flutter iOS app focused on personal reflection, wellness, and m
 lib/
 ├── core/           # Constants, theme, config
 ├── data/           # Models, providers, services
-├── features/       # Feature modules (insight, dreams, wellness, etc.)
+├── features/       # Feature modules (journal, dreams, wellness, etc.)
 └── shared/         # Shared widgets and services
 ```
 
-## Safe Features (App Store Compliant)
-- `/insight` - AI-powered personal reflection
-- `/dream-interpretation` - Dream journal
-- `/chakra-analysis` - Wellness
-- `/aura` - Energy awareness
-- `/numerology` - Number patterns (educational)
-- `/tarot` - Card symbolism (educational)
+## Core Features
+- `/journal` - Daily mood journal with guided prompts
+- `/dream-interpretation` - Dream journal with symbol library
+- `/patterns` - Emotional pattern analysis over time
+- `/wellness` - Wellness tools (chakra, aura, rituals)
+- `/challenges` - Personal growth challenges
 - `/daily-rituals` - Mindfulness practices
-
-## FORBIDDEN (Removed for App Store)
-- Horoscopes, daily/weekly/monthly readings
-- Birth charts, natal charts
-- Compatibility/synastry
-- Transits, progressions
-- Any zodiac-based predictions
 
 ## Commands
 ```bash

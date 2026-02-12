@@ -30,7 +30,7 @@
     "close": "Close",
     "back": "Back",
     "next": "Next",
-    "zodiac_signs": "Personality Archetypes",
+    "zodiac_signs": "Personality Types",
     "done": "Done",
     "yes": "Yes",
     "no": "No",
@@ -107,7 +107,7 @@
       "planets": "10 Planets",
       "aspects": "Planet Aspects",
       "houses": "12 House System",
-      "rising": "Rising Sign",
+      "rising": "Outer Expression",
       "nodes": "Lunar Nodes",
       "karmic": "Karmic Chart",
       "psychological": "Psychological Profile",
@@ -135,7 +135,7 @@
     "not_found_path": "Looking for: {path}",
     "return_home": "Return to Home",
     "go_to_horoscope": "Go to Insight",
-    "stars_aligning": "Stars are aligning..."
+    "stars_aligning": "Preparing your insights..."
   },
   "input": {
     "name": "Full Name",
@@ -156,8 +156,8 @@
     "turkey_kktc": "Turkey & TRNC",
     "whole_world": "Whole World",
     "popular_cities": "Popular Cities",
-    "required_for_rising": "Required for Rising Sign",
-    "required_for_moon": "Required for Moon Sign",
+    "required_for_rising": "Required for Outer Expression",
+    "required_for_moon": "Required for Emotional Profile",
     "please_enter_name": "Please enter a name",
     "profile_name_hint": "Enter profile name",
     "date": "Date",
@@ -174,7 +174,7 @@
     "compare": "Compare",
     "delete_profile": "Delete Profile",
     "your_birth_info": "Your Birth Info",
-    "your_sun_sign": "Your Sun Sign",
+    "your_sun_sign": "Your Core Identity",
     "edit_info": "Edit Info",
     "view_birth_chart": "View Personal Profile",
     "profile_saved": "Profile saved successfully",
@@ -190,22 +190,22 @@
     "emoji_select": "Select Emoji",
     "relationship_type": "Relationship Type",
     "big_three": "Big Three",
-    "sun_type": "Sun Sign",
-    "moon_type": "Moon Sign",
-    "rising_type": "Rising Sign"
+    "sun_type": "Core Identity",
+    "moon_type": "Emotional Profile",
+    "rising_type": "Outer Expression"
   },
   "natal_chart": {
     "title": "Personal Profile",
     "calculating": "Your personal profile is being generated...",
-    "planets_whispering": "Planets are whispering their positions",
+    "planets_whispering": "Generating your profile dimensions",
     "summary": "Summary",
     "planets": "Planets",
     "houses": "Houses",
     "aspects": "Aspects",
     "big_three": "Big Three",
-    "sun_sign": "Sun Sign",
-    "moon_sign": "Moon Sign",
-    "rising_sign": "Rising Sign",
+    "sun_sign": "Core Identity",
+    "moon_sign": "Emotional Profile",
+    "rising_sign": "Outer Expression",
     "dominant_energies": "Dominant Energies",
     "element": "Element",
     "modality": "Modality",
@@ -220,11 +220,11 @@
     "share_as_pdf": "Share as PDF",
     "pdf_error": "PDF could not be generated",
     "share_error": "PDF could not be shared",
-    "your_sun_sign": "Your Sun Sign:",
+    "your_sun_sign": "Your Core Identity:",
     "essence_secret": "Secret of Your Essence",
-    "your_moon_sign": "Your Moon Sign:",
+    "your_moon_sign": "Your Emotional Profile:",
     "emotional_world": "Your Emotional World",
-    "your_rising": "Rising:",
+    "your_rising": "Outer Expression:",
     "outer_image": "Your Outer Image & First Impression",
     "mercury_label": "Mercury:",
     "mind_communication": "Mind & Communication Style",
@@ -365,9 +365,9 @@
       "numerology_title": "Numerology",
       "numerology_desc": "The spiritual meaning of numbers",
       "birth_chart_title": "Personal Profile",
-      "birth_chart_desc": "Your cosmic map",
-      "transits_title": "Planet Transits",
-      "transits_desc": "Cosmic effects",
+      "birth_chart_desc": "Your self-awareness map",
+      "transits_title": "Life Cycles",
+      "transits_desc": "Current influences",
       "saturn_return_title": "Saturn Return",
       "saturn_return_desc": "Life's transformation period",
       "solar_return_title": "Solar Return",
@@ -376,7 +376,7 @@
       "progressions_desc": "Evolutionary self-awareness",
       "local_space_title": "Local Space",
       "local_space_desc": "Spatial self-awareness",
-      "synastry_title": "Synastry",
+      "synastry_title": "Relationship Chart",
       "synastry_desc": "Relationship self-awareness",
       "composite_title": "Composite Chart",
       "composite_desc": "Relationship chart",
@@ -409,10 +409,10 @@
       "dreams": "Dreams",
       "compatibility": "Compatibility",
       "birth_chart": "Personal Profile",
-      "synastry": "Synastry",
+      "synastry": "Relationship Chart",
       "composite": "Composite",
-      "transits": "Transits",
-      "transit_calendar": "Transit Calendar",
+      "transits": "Life Cycles",
+      "transit_calendar": "Cycle Calendar",
       "progressions": "Progressions",
       "saturn_return": "Saturn Return",
       "solar_return": "Solar Return",
@@ -483,8 +483,8 @@
         "desc": "Relationship pattern analysis"
       },
       "transits": {
-        "title": "Transits",
-        "desc": "Current planet transits"
+        "title": "Life Cycles",
+        "desc": "Current life cycle patterns"
       },
       "numerology": {
         "title": "Numerology",
@@ -503,15 +503,15 @@
         "desc": "Aura colors"
       },
       "transit_calendar": {
-        "title": "Transit Calendar",
-        "desc": "Monthly transit calendar"
+        "title": "Cycle Calendar",
+        "desc": "Monthly cycle calendar"
       },
       "eclipse_calendar": {
         "title": "Eclipse Calendar",
         "desc": "Solar and lunar eclipses"
       },
       "synastry": {
-        "title": "Synastry",
+        "title": "Relationship Chart",
         "desc": "Relationship analysis"
       },
       "composite": {
@@ -2330,7 +2330,7 @@
           "practice_label": "✨ PRACTICAL APPLICATION",
           "practice": "• Write your fears and burn them\n• Go to a high place, look at the view\n• Repeat 'I can fly' affirmation\n• Set intention for lucid dreaming",
           "cosmic_message_label": "💫 COSMIC MESSAGE",
-          "cosmic_message": "The universe is saying 'you have wings, use them.' As a {element} element, {element_message}."
+          "cosmic_message": "Your entries suggest you have untapped potential — explore it. As a {element} element, {element_message}."
         },
         "falling": {
           "title": "⬇️ FALLING DREAM - {sign} INTERPRETATION",
@@ -2344,7 +2344,7 @@
           "practice_label": "✨ PRACTICAL APPLICATION",
           "practice": "• Walk barefoot on the earth\n• Do root chakra meditation\n• List your security needs\n• Practice breathing exercises",
           "cosmic_message_label": "💫 COSMIC MESSAGE",
-          "cosmic_message": "Falling is actually letting go. Let go of the illusion of control, trust the universe. As a {element} element, grounding practice is especially important."
+          "cosmic_message": "Falling is actually letting go. Let go of the illusion of control, trust the process. As a {element} element, grounding practice is especially important."
         },
         "death": {
           "title": "💀 DEATH DREAM - {sign} INTERPRETATION",
@@ -2432,7 +2432,7 @@
           "practice_label": "✨ PRACTICAL APPLICATION",
           "practice": "• Repeat abundance affirmations\n• Keep a gratitude list\n• Question your relationship with money\n• Practice generosity",
           "cosmic_message_label": "💫 COSMIC MESSAGE",
-          "cosmic_message": "The universe offers abundance - be a receiver. {element} element in financial matters {element_message}."
+          "cosmic_message": "Your reflections point toward abundance - be a receiver. {element} element in financial matters {element_message}."
         },
         "generic": {
           "title": "{sign} COSMIC DREAM INTERPRETATION",
@@ -2494,19 +2494,19 @@
     "numerology_title": "Numerology FAQ",
     "numerology_subtitle": "The mysterious world of numbers",
     "zodiac_q1": "What are the traits of {sign}?",
-    "zodiac_a1": "{sign} is one of the personality types. Each sign has unique personality traits, strengths and weaknesses. Even if your Sun sign is {sign}, your rising sign and Moon sign also significantly influence your personality.",
+    "zodiac_a1": "{sign} is one of the personality types. Each sign has unique personality traits, strengths and weaknesses. Even if your core identity is {sign}, your outer expression and emotional profile also significantly influence your personality.",
     "zodiac_q2": "Which signs are compatible with {sign}?",
-    "zodiac_a2": "Sign compatibility depends on the entire personal profile, not just Sun signs. Generally, signs in the same element group (fire, earth, air, water) tend to be more compatible. For detailed compatibility analysis, synastry (comparative chart) analysis is recommended.",
+    "zodiac_a2": "Sign compatibility depends on the entire personal profile, not just core identity. Generally, signs in the same element group (fire, earth, air, water) tend to be more compatible. For detailed compatibility analysis, relationship chart analysis is recommended.",
     "zodiac_q3": "How accurate are daily {sign} insights?",
-    "zodiac_a3": "Daily insights reflect general cosmic energies. Since each individual's personal profile is unique, personalized readings through personal profile analysis and transit reports provide more accurate results.",
-    "zodiac_q4": "What does it mean if my rising sign is {sign}?",
-    "zodiac_a4": "The rising sign (Ascendant) is the sign that was rising on the eastern horizon at your birth moment. It represents your outer appearance, how others perceive you, and your approach to life. You need to know your birth time to find your rising sign.",
+    "zodiac_a3": "Daily insights reflect general wellness themes. Since each individual's personal profile is unique, personalized reflections through profile analysis and pattern reports tend to be more relevant.",
+    "zodiac_q4": "What does it mean if my outer expression is {sign}?",
+    "zodiac_a4": "Your outer expression represents how you present yourself to the world. It shapes your outer appearance, how others perceive you, and your approach to life. You need to know your birth time to determine your outer expression.",
     "birth_chart_q1": "What is a personal profile?",
-    "birth_chart_a1": "A personal profile (personal profile) is a cosmic map showing the positions of planets in the sky at the moment you were born. It shows which signs and houses the Sun, Moon and planets were in, and the aspects they make to each other.",
+    "birth_chart_a1": "A personal profile is a comprehensive self-awareness map based on the moment you were born. It shows which personality dimensions and life areas are highlighted, and how they relate to each other.",
     "birth_chart_q2": "What do I need to calculate a personal profile?",
-    "birth_chart_a2": "To calculate a personal profile, you need your birth date, birth time, and birth place. The more precise your birth time, the more accurately your rising sign and house placements can be calculated.",
+    "birth_chart_a2": "To calculate a personal profile, you need your birth date, birth time, and birth place. The more precise your birth time, the more accurately your outer expression and life area placements can be determined.",
     "birth_chart_q3": "What if I don't know my birth time?",
-    "birth_chart_a3": "When birth time is unknown, noon (12:00) is typically used. In this case, the Moon sign and rising sign may be inaccurate. Planet sign placements and aspects between them will still be accurate.",
+    "birth_chart_a3": "When birth time is unknown, noon (12:00) is typically used. In this case, the emotional profile and outer expression may be less precise. Core personality traits and their relationships will still be accurate.",
     "birth_chart_q4": "What is the difference between house systems (Placidus, Whole Sign)?",
     "birth_chart_a4": "Different house systems use different mathematical methods to divide the sky into 12 houses. Placidus is the most commonly used system. Whole Sign is an ancient system where each sign represents one house. Both systems are valid.",
     "tarot_q1": "Do tarot cards show the future?",
@@ -2756,16 +2756,16 @@
     "title": "Insight",
     "reading": "Reading",
     "analysis": "Insight Analysis",
-    "cosmic_energy": "Your Cosmic Energy",
-    "daily_cosmic_energy": "Today's Cosmic Energy",
+    "cosmic_energy": "Your Personal Energy",
+    "daily_cosmic_energy": "Today's Personal Energy",
     "spiritual_signature": "Spiritual Signature",
     "zodiac_secrets": "Personality Secrets",
     "ruling_planet": "Ruler",
-    "cosmic_overview": "Cosmic Overview",
-    "cosmic_harmony": "Cosmic Harmony",
+    "cosmic_overview": "Wellness Overview",
+    "cosmic_harmony": "Inner Harmony",
     "spiritual_bond": "Spiritual Bond",
     "chakra_map": "Chakra Map",
-    "celestial_sync": "Celestial Synchronization",
+    "celestial_sync": "Inner Synchronization",
     "sign_depth": "Archetype Depth",
     "mood": "Mood",
     "lucky_color": "Reflection Color",
@@ -2780,7 +2780,7 @@
     "spiritual_guidance": "Spiritual Guidance",
     "important_days": "Important Days",
     "lucky_days": "Favorable Days",
-    "important_transits": "Important Transits",
+    "important_transits": "Important Cycles",
     "daily_reading": "Daily Reflection",
     "luck_rate": "Energy Level",
     "cosmic_tips": "Reflection Tips",
@@ -2789,8 +2789,8 @@
     "yearly_summary": "Yearly Summary",
     "special_months": "Special Months",
     "lucky_months": "Favorable Months",
-    "planet_transits": "Planet Transits",
-    "your_zodiac_readings": "Your Sign Insights",
+    "planet_transits": "Life Cycles",
+    "your_zodiac_readings": "Your Personality Insights",
     "sign_today": "How is {sign} today?",
     "astrology_brand": "Self-Awareness — Venus One",
     "astrology": "Self-Awareness",
@@ -3838,7 +3838,7 @@
       "life_path": {
         "title": "What is life path number?",
         "answer1": "Life path number is the fundamental numerological number calculated from your birth date.",
-        "answer2": "It shows which path you will walk in this life.",
+        "answer2": "It reflects the path you tend to walk in this life.",
         "answer3": "It ranges from 1 to 9 (and master numbers 11, 22, 33).",
         "how_calculated": "How Is It Calculated?",
         "calc1": "All digits of your birth date are added together.",
@@ -3847,7 +3847,7 @@
         "what_tells": "What Does It Tell?",
         "tells1": "Your soul's purpose in this life.",
         "tells2": "Your natural talents and strengths.",
-        "tells3": "Challenges and lessons you will face.",
+        "tells3": "Challenges and lessons you may encounter.",
         "tells4": "Recurring themes in your life.",
         "note1": "Life path number is not destiny.",
         "note2": "It shows potential, decisions are yours.",
@@ -4618,7 +4618,7 @@
     "western_sun": "Western Sun",
     "western_moon": "Western Moon",
     "western_rising": "Western Rising",
-    "rasi_moon_sign": "Rasi (Moon Sign)",
+    "rasi_moon_sign": "Rasi (Emotional Profile)",
     "lagna": "Lagna",
     "nakshatra": "Nakshatra",
     "pada": "Pada",
@@ -4646,9 +4646,9 @@
     "name": "Name",
     "user": "User",
     "birth_date": "Birth Date",
-    "sun_sign": "Sun Sign",
-    "moon_sign": "Moon Sign",
-    "rising_sign": "Rising",
+    "sun_sign": "Core Identity",
+    "moon_sign": "Emotional Profile",
+    "rising_sign": "Outer Expression",
     "triad": "Draconic Triad",
     "sun": "Sun",
     "moon": "Moon",
@@ -4874,18 +4874,18 @@
         "Your defense mechanism: How you behave in new situations.",
         "Your approach to life: How you interact with the world."
       ],
-      "difference_from_sun_title": "Difference From Sun Sign",
+      "difference_from_sun_title": "Difference From Core Identity",
       "difference_from_sun_bullets": [
-        "Sun sign: Your essence, who you are.",
-        "Rising sign: Your mask, how you appear.",
-        "Moon sign: Your emotions, what you feel.",
+        "Core identity: Your essence, who you are.",
+        "Outer expression: Your mask, how you appear.",
+        "Emotional profile: Your emotions, what you feel.",
         "Together: Complete personality profile."
       ],
       "how_calculated_title": "How Is It Calculated?",
       "how_calculated_bullets": [
         "Exact birth time is required.",
         "Birth place coordinates are used.",
-        "Rising sign changes approximately every 2 hours.",
+        "Outer expression changes approximately every 2 hours.",
         "Cannot be calculated if birth time is unknown."
       ],
       "why_important_title": "Why Is It Important?",
@@ -4906,7 +4906,7 @@
         "Whatever sign the Moon is in today shapes your emotions.",
         "The Moon sign determines the daily emotional tone."
       ],
-      "why_important_title": "Why Is Moon Sign Important?",
+      "why_important_title": "Why Is Emotional Profile Important?",
       "why_important_bullets": [
         "Shows your emotional needs.",
         "Affects your instinctive reactions.",
@@ -5786,7 +5786,7 @@
     "name": "Name",
     "user": "User",
     "birth_date": "Birth Date",
-    "sun_sign": "Sun Sign",
+    "sun_sign": "Core Identity",
     "main_asteroids": "Main Asteroids",
     "secondary": "Secondary",
     "analysis": "Analysis",
@@ -6529,7 +6529,7 @@
         "libra": "Someone elegant, romantic, fair. Will have a harmonious and beautiful relationship with you.",
         "scorpio": "Someone deep, passionate, loyal. Will build an intense and transformative bond with you.",
         "sagittarius": "Someone adventurous, free-spirited, philosophical. Will explore the world with you.",
-        "capricorn": "Someone ambitious, reliable, goal-oriented. Will walk to success together with you.",
+        "capricorn": "Someone ambitious, reliable, goal-oriented. Tends to walk toward success alongside you.",
         "aquarius": "Someone unique, independent, visionary. Will change the world with you.",
         "pisces": "Someone romantic, intuitive, artistic. Will build a spiritual bond with you."
       },
@@ -10145,8 +10145,8 @@
       "unknown": "Unknown"
     },
     "big_three_items": {
-      "sun_sign": "Sun Sign",
-      "moon_sign": "Moon Sign",
+      "sun_sign": "Core Identity",
+      "moon_sign": "Emotional Profile",
       "ascendant": "Ascendant",
       "sun_description": "Core identity, ego and life purpose",
       "moon_description": "Emotional nature, inner world and intuition",
@@ -10170,7 +10170,7 @@
     },
     "moon_labels": {
       "moon_phase": "Moon Phase",
-      "moon_sign": "Moon Sign"
+      "moon_sign": "Emotional Profile"
     },
     "interpretations": {
       "sun_in_sign": "Sun in {sign}",

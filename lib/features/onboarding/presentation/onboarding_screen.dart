@@ -735,13 +735,16 @@ class _WelcomePageState extends State<_WelcomePage>
         ),
       },
       {
-        'icon': '🔮',
-        'text': L10nService.get('onboarding.features.tarot', widget.language),
+        'icon': '📓',
+        'text': L10nService.get(
+          'onboarding.features.dream_journal',
+          widget.language,
+        ),
       },
       {
-        'icon': '💫',
+        'icon': '📊',
         'text': L10nService.get(
-          'onboarding.features.numerology',
+          'onboarding.features.patterns',
           widget.language,
         ),
       },

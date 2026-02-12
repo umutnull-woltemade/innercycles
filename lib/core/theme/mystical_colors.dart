@@ -62,23 +62,23 @@ class MysticalColors {
     0xFF3A3050,
   ); // Darker secondary text
 
-  // === ZODIAC ELEMENT COLORS ===
-  static const Color elementFire = Color(0xFFFF6B35);
-  static const Color elementEarth = Color(0xFF4A7C59);
-  static const Color elementAir = Color(0xFF7FDBFF);
-  static const Color elementWater = Color(0xFF4A6FA5);
+  // === ENERGY ACCENT COLORS ===
+  static const Color accentWarm = Color(0xFFFF6B35);
+  static const Color accentEarth = Color(0xFF4A7C59);
+  static const Color accentCool = Color(0xFF7FDBFF);
+  static const Color accentDeep = Color(0xFF4A6FA5);
 
-  // === PLANET COLORS ===
-  static const Color planetSun = Color(0xFFFFD700);
-  static const Color planetMoon = Color(0xFFE8E4EF);
-  static const Color planetMercury = Color(0xFFB8B8B8);
-  static const Color planetVenus = Color(0xFFE8B4BC);
-  static const Color planetMars = Color(0xFFFF6B35);
-  static const Color planetJupiter = Color(0xFFD4AF37);
-  static const Color planetSaturn = Color(0xFF8B7355);
-  static const Color planetUranus = Color(0xFF7FDBFF);
-  static const Color planetNeptune = Color(0xFF4A6FA5);
-  static const Color planetPluto = Color(0xFF6B4C9A);
+  // === EXTENDED PALETTE ===
+  static const Color paletteGold = Color(0xFFFFD700);
+  static const Color paletteSilver = Color(0xFFE8E4EF);
+  static const Color paletteGray = Color(0xFFB8B8B8);
+  static const Color paletteRose = Color(0xFFE8B4BC);
+  static const Color paletteOrange = Color(0xFFFF6B35);
+  static const Color paletteAmber = Color(0xFFD4AF37);
+  static const Color paletteBrown = Color(0xFF8B7355);
+  static const Color paletteCyan = Color(0xFF7FDBFF);
+  static const Color paletteNavy = Color(0xFF4A6FA5);
+  static const Color paletteViolet = Color(0xFF6B4C9A);
 
   // === GRADIENTS ===
   static const List<Color> cosmicGradient = [

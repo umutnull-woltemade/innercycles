@@ -12,7 +12,7 @@
     <string>8RBH9ALBH6</string>
     <key>provisioningProfiles</key>
     <dict>
-        <key>com.umut.astrologyApp</key>
+        <key>com.venusone.innercycles</key>
         <string>Venus One Distribution</string>
     </dict>
     <key>signingStyle</key>

@@ -1,31 +1,31 @@
-// Venus One - Daily Horoscope Widget
-// Displays personalized daily horoscope on Home Screen
+// InnerCycles - Daily Reflection Widget
+// Displays daily mood and reflection prompt on Home Screen
 
 import WidgetKit
 import SwiftUI
 
 // MARK: - Timeline Provider
 
-struct DailyHoroscopeProvider: TimelineProvider {
-    func placeholder(in context: Context) -> DailyHoroscopeEntry {
-        DailyHoroscopeEntry(
+struct DailyReflectionProvider: TimelineProvider {
+    func placeholder(in context: Context) -> DailyReflectionEntry {
+        DailyReflectionEntry(
             date: Date(),
-            zodiacSign: "Aries",
-            zodiacEmoji: "♈️",
-            dailyMessage: "The stars align for new beginnings today...",
-            luckyNumber: 7,
-            element: "Fire",
+            moodEmoji: "😊",
+            moodLabel: "Good",
+            dailyPrompt: "What are you grateful for today?",
+            streakDays: 7,
+            focusArea: "Emotional Wellness",
             moodRating: 4
         )
     }
 
-    func getSnapshot(in context: Context, completion: @escaping (DailyHoroscopeEntry) -> Void) {
-        let entry = loadHoroscopeFromUserDefaults() ?? placeholder(in: context)
+    func getSnapshot(in context: Context, completion: @escaping (DailyReflectionEntry) -> Void) {
+        let entry = loadFromUserDefaults() ?? placeholder(in: context)
         completion(entry)
     }
 
-    func getTimeline(in context: Context, completion: @escaping (Timeline<DailyHoroscopeEntry>) -> Void) {
-        let entry = loadHoroscopeFromUserDefaults() ?? placeholder(in: context)
+    func getTimeline(in context: Context, completion: @escaping (Timeline<DailyReflectionEntry>) -> Void) {
+        let entry = loadFromUserDefaults() ?? placeholder(in: context)
 
         // Update at midnight for fresh daily content
         let calendar = Calendar.current
@@ -35,26 +35,26 @@ struct DailyHoroscopeProvider: TimelineProvider {
         completion(timeline)
     }
 
-    private func loadHoroscopeFromUserDefaults() -> DailyHoroscopeEntry? {
-        let sharedDefaults = UserDefaults(suiteName: "group.com.umut.astrologyApp")
+    private func loadFromUserDefaults() -> DailyReflectionEntry? {
+        let sharedDefaults = UserDefaults(suiteName: "group.com.venusone.innercycles")
 
-        guard let zodiacSign = sharedDefaults?.string(forKey: "widget_zodiac_sign"),
-              let zodiacEmoji = sharedDefaults?.string(forKey: "widget_zodiac_emoji"),
-              let dailyMessage = sharedDefaults?.string(forKey: "widget_daily_message"),
-              let element = sharedDefaults?.string(forKey: "widget_element") else {
+        guard let moodEmoji = sharedDefaults?.string(forKey: "widget_mood_emoji"),
+              let moodLabel = sharedDefaults?.string(forKey: "widget_mood_label"),
+              let dailyPrompt = sharedDefaults?.string(forKey: "widget_daily_prompt"),
+              let focusArea = sharedDefaults?.string(forKey: "widget_focus_area") else {
             return nil
         }
 
-        let luckyNumber = sharedDefaults?.integer(forKey: "widget_lucky_number") ?? 7
+        let streakDays = sharedDefaults?.integer(forKey: "widget_streak_days") ?? 0
         let moodRating = sharedDefaults?.integer(forKey: "widget_mood_rating") ?? 3
 
-        return DailyHoroscopeEntry(
+        return DailyReflectionEntry(
             date: Date(),
-            zodiacSign: zodiacSign,
-            zodiacEmoji: zodiacEmoji,
-            dailyMessage: dailyMessage,
-            luckyNumber: luckyNumber,
-            element: element,
+            moodEmoji: moodEmoji,
+            moodLabel: moodLabel,
+            dailyPrompt: dailyPrompt,
+            streakDays: streakDays,
+            focusArea: focusArea,
             moodRating: moodRating
         )
     }
@@ -62,42 +62,41 @@ struct DailyHoroscopeProvider: TimelineProvider {
 
 // MARK: - Timeline Entry
 
-struct DailyHoroscopeEntry: TimelineEntry {
+struct DailyReflectionEntry: TimelineEntry {
     let date: Date
-    let zodiacSign: String
-    let zodiacEmoji: String
-    let dailyMessage: String
-    let luckyNumber: Int
-    let element: String
+    let moodEmoji: String
+    let moodLabel: String
+    let dailyPrompt: String
+    let streakDays: Int
+    let focusArea: String
     let moodRating: Int // 1-5
 }
 
 // MARK: - Widget Views
 
-struct DailyHoroscopeWidgetEntryView: View {
-    var entry: DailyHoroscopeProvider.Entry
+struct DailyReflectionWidgetEntryView: View {
+    var entry: DailyReflectionProvider.Entry
     @Environment(\.widgetFamily) var family
 
     var body: some View {
         switch family {
         case .systemSmall:
-            SmallHoroscopeView(entry: entry)
+            SmallReflectionView(entry: entry)
         case .systemMedium:
-            MediumHoroscopeView(entry: entry)
+            MediumReflectionView(entry: entry)
         case .systemLarge:
-            LargeHoroscopeView(entry: entry)
+            LargeReflectionView(entry: entry)
         default:
-            SmallHoroscopeView(entry: entry)
+            SmallReflectionView(entry: entry)
         }
     }
 }
 
-struct SmallHoroscopeView: View {
-    let entry: DailyHoroscopeEntry
+struct SmallReflectionView: View {
+    let entry: DailyReflectionEntry
 
     var body: some View {
         ZStack {
-            // Venus gradient background
             LinearGradient(
                 gradient: Gradient(colors: [
                     Color(red: 0.05, green: 0.05, blue: 0.1),
@@ -108,33 +107,35 @@ struct SmallHoroscopeView: View {
             )
 
             VStack(spacing: 8) {
-                Text(entry.zodiacEmoji)
+                Text(entry.moodEmoji)
                     .font(.system(size: 36))
 
-                Text(entry.zodiacSign)
+                Text(entry.moodLabel)
                     .font(.system(size: 14, weight: .semibold))
                     .foregroundColor(.white)
 
-                // Mood stars
+                // Mood dots
                 HStack(spacing: 2) {
                     ForEach(1...5, id: \.self) { index in
-                        Image(systemName: index <= entry.moodRating ? "star.fill" : "star")
-                            .font(.system(size: 8))
-                            .foregroundColor(Color(red: 1.0, green: 0.84, blue: 0.0)) // Gold
+                        Circle()
+                            .fill(index <= entry.moodRating ? Color(red: 1.0, green: 0.84, blue: 0.0) : Color.white.opacity(0.3))
+                            .frame(width: 6, height: 6)
                     }
                 }
 
-                Text("Lucky: \(entry.luckyNumber)")
-                    .font(.system(size: 10))
-                    .foregroundColor(.white.opacity(0.7))
+                if entry.streakDays > 0 {
+                    Text("\(entry.streakDays) day streak")
+                        .font(.system(size: 10))
+                        .foregroundColor(.white.opacity(0.7))
+                }
             }
             .padding()
         }
     }
 }
 
-struct MediumHoroscopeView: View {
-    let entry: DailyHoroscopeEntry
+struct MediumReflectionView: View {
+    let entry: DailyReflectionEntry
 
     var body: some View {
         ZStack {
@@ -148,36 +149,36 @@ struct MediumHoroscopeView: View {
             )
 
             HStack(spacing: 16) {
-                // Left: Sign info
+                // Left: Mood info
                 VStack(spacing: 8) {
-                    Text(entry.zodiacEmoji)
+                    Text(entry.moodEmoji)
                         .font(.system(size: 44))
 
-                    Text(entry.zodiacSign)
+                    Text(entry.moodLabel)
                         .font(.system(size: 16, weight: .semibold))
                         .foregroundColor(.white)
 
-                    Text(entry.element)
+                    Text(entry.focusArea)
                         .font(.system(size: 12))
                         .foregroundColor(.white.opacity(0.6))
 
                     HStack(spacing: 2) {
                         ForEach(1...5, id: \.self) { index in
-                            Image(systemName: index <= entry.moodRating ? "star.fill" : "star")
-                                .font(.system(size: 10))
-                                .foregroundColor(Color(red: 1.0, green: 0.84, blue: 0.0))
+                            Circle()
+                                .fill(index <= entry.moodRating ? Color(red: 1.0, green: 0.84, blue: 0.0) : Color.white.opacity(0.3))
+                                .frame(width: 6, height: 6)
                         }
                     }
                 }
                 .frame(width: 80)
 
-                // Right: Daily message
+                // Right: Daily prompt
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("Today's Energy")
+                    Text("Today's Reflection")
                         .font(.system(size: 12, weight: .medium))
                         .foregroundColor(Color(red: 1.0, green: 0.84, blue: 0.0))
 
-                    Text(entry.dailyMessage)
+                    Text(entry.dailyPrompt)
                         .font(.system(size: 13))
                         .foregroundColor(.white.opacity(0.9))
                         .lineLimit(4)
@@ -186,9 +187,9 @@ struct MediumHoroscopeView: View {
                     Spacer()
 
                     HStack {
-                        Image(systemName: "sparkles")
+                        Image(systemName: "flame.fill")
                             .font(.system(size: 10))
-                        Text("Lucky: \(entry.luckyNumber)")
+                        Text("\(entry.streakDays) day streak")
                             .font(.system(size: 11))
                     }
                     .foregroundColor(.white.opacity(0.6))
@@ -199,8 +200,8 @@ struct MediumHoroscopeView: View {
     }
 }
 
-struct LargeHoroscopeView: View {
-    let entry: DailyHoroscopeEntry
+struct LargeReflectionView: View {
+    let entry: DailyReflectionEntry
 
     var body: some View {
         ZStack {
@@ -217,15 +218,15 @@ struct LargeHoroscopeView: View {
             VStack(spacing: 16) {
                 // Header
                 HStack {
-                    Text(entry.zodiacEmoji)
+                    Text(entry.moodEmoji)
                         .font(.system(size: 48))
 
                     VStack(alignment: .leading, spacing: 4) {
-                        Text(entry.zodiacSign)
+                        Text(entry.moodLabel)
                             .font(.system(size: 22, weight: .semibold))
                             .foregroundColor(.white)
 
-                        Text(entry.element + " Element")
+                        Text(entry.focusArea)
                             .font(.system(size: 14))
                             .foregroundColor(.white.opacity(0.6))
                     }
@@ -239,9 +240,9 @@ struct LargeHoroscopeView: View {
                             .foregroundColor(.white.opacity(0.5))
                         HStack(spacing: 2) {
                             ForEach(1...5, id: \.self) { index in
-                                Image(systemName: index <= entry.moodRating ? "star.fill" : "star")
-                                    .font(.system(size: 12))
-                                    .foregroundColor(Color(red: 1.0, green: 0.84, blue: 0.0))
+                                Circle()
+                                    .fill(index <= entry.moodRating ? Color(red: 1.0, green: 0.84, blue: 0.0) : Color.white.opacity(0.3))
+                                    .frame(width: 8, height: 8)
                             }
                         }
                     }
@@ -250,13 +251,13 @@ struct LargeHoroscopeView: View {
                 Divider()
                     .background(Color.white.opacity(0.2))
 
-                // Main message
+                // Main prompt
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("Daily Cosmic Message")
+                    Text("Daily Reflection Prompt")
                         .font(.system(size: 12, weight: .medium))
                         .foregroundColor(Color(red: 1.0, green: 0.84, blue: 0.0))
 
-                    Text(entry.dailyMessage)
+                    Text(entry.dailyPrompt)
                         .font(.system(size: 15))
                         .foregroundColor(.white.opacity(0.9))
                         .lineLimit(6)
@@ -268,15 +269,15 @@ struct LargeHoroscopeView: View {
                 // Footer
                 HStack {
                     HStack(spacing: 4) {
-                        Image(systemName: "sparkles")
-                        Text("Lucky Number: \(entry.luckyNumber)")
+                        Image(systemName: "flame.fill")
+                        Text("\(entry.streakDays) day streak")
                     }
                     .font(.system(size: 12))
                     .foregroundColor(.white.opacity(0.6))
 
                     Spacer()
 
-                    Text("Venus One")
+                    Text("InnerCycles")
                         .font(.system(size: 10, weight: .medium))
                         .foregroundColor(Color(red: 1.0, green: 0.84, blue: 0.0).opacity(0.6))
                 }
@@ -288,53 +289,53 @@ struct LargeHoroscopeView: View {
 
 // MARK: - Widget Configuration
 
-struct DailyHoroscopeWidget: Widget {
-    let kind: String = "DailyHoroscopeWidget"
+struct DailyReflectionWidget: Widget {
+    let kind: String = "DailyReflectionWidget"
 
     var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: DailyHoroscopeProvider()) { entry in
-            DailyHoroscopeWidgetEntryView(entry: entry)
+        StaticConfiguration(kind: kind, provider: DailyReflectionProvider()) { entry in
+            DailyReflectionWidgetEntryView(entry: entry)
         }
-        .configurationDisplayName("Daily Horoscope")
-        .description("Your personalized daily horoscope at a glance.")
+        .configurationDisplayName("Daily Reflection")
+        .description("Your daily mood and reflection prompt at a glance.")
         .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
     }
 }
 
 // MARK: - Preview
 
-struct DailyHoroscopeWidget_Previews: PreviewProvider {
+struct DailyReflectionWidget_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            DailyHoroscopeWidgetEntryView(entry: DailyHoroscopeEntry(
+            DailyReflectionWidgetEntryView(entry: DailyReflectionEntry(
                 date: Date(),
-                zodiacSign: "Scorpio",
-                zodiacEmoji: "♏️",
-                dailyMessage: "Today brings profound insights. Trust your intuition as Venus aligns with your ruling planet, opening doors to deeper connections and hidden truths.",
-                luckyNumber: 8,
-                element: "Water",
+                moodEmoji: "😊",
+                moodLabel: "Good",
+                dailyPrompt: "What brought you joy today? Take a moment to notice the small things that made your day better.",
+                streakDays: 14,
+                focusArea: "Emotional Wellness",
                 moodRating: 4
             ))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
 
-            DailyHoroscopeWidgetEntryView(entry: DailyHoroscopeEntry(
+            DailyReflectionWidgetEntryView(entry: DailyReflectionEntry(
                 date: Date(),
-                zodiacSign: "Scorpio",
-                zodiacEmoji: "♏️",
-                dailyMessage: "Today brings profound insights. Trust your intuition as Venus aligns with your ruling planet, opening doors to deeper connections and hidden truths.",
-                luckyNumber: 8,
-                element: "Water",
+                moodEmoji: "😊",
+                moodLabel: "Good",
+                dailyPrompt: "What brought you joy today? Take a moment to notice the small things that made your day better.",
+                streakDays: 14,
+                focusArea: "Emotional Wellness",
                 moodRating: 4
             ))
             .previewContext(WidgetPreviewContext(family: .systemMedium))
 
-            DailyHoroscopeWidgetEntryView(entry: DailyHoroscopeEntry(
+            DailyReflectionWidgetEntryView(entry: DailyReflectionEntry(
                 date: Date(),
-                zodiacSign: "Scorpio",
-                zodiacEmoji: "♏️",
-                dailyMessage: "Today brings profound insights. Trust your intuition as Venus aligns with your ruling planet, opening doors to deeper connections and hidden truths. The cosmic energy supports transformation and emotional depth.",
-                luckyNumber: 8,
-                element: "Water",
+                moodEmoji: "😊",
+                moodLabel: "Good",
+                dailyPrompt: "What brought you joy today? Take a moment to notice the small things that made your day better. Reflecting on positive moments helps build emotional resilience.",
+                streakDays: 14,
+                focusArea: "Emotional Wellness",
                 moodRating: 4
             ))
             .previewContext(WidgetPreviewContext(family: .systemLarge))

@@ -25,11 +25,11 @@ class AppColors {
   static const Color twilightStart = Color(0xFF4776E6);
   static const Color twilightEnd = Color(0xFF8E54E9);
 
-  // Zodiac element colors
-  static const Color fireElement = Color(0xFFE74C3C);
-  static const Color earthElement = Color(0xFF27AE60);
-  static const Color airElement = Color(0xFF3498DB);
-  static const Color waterElement = Color(0xFF9B59B6);
+  // Category accent colors
+  static const Color warmAccent = Color(0xFFE74C3C);
+  static const Color greenAccent = Color(0xFF27AE60);
+  static const Color blueAccent = Color(0xFF3498DB);
+  static const Color purpleAccent = Color(0xFF9B59B6);
 
   // Text colors (dark mode)
   static const Color textPrimary = Color(0xFFF5F5F5);
@@ -55,12 +55,12 @@ class AppColors {
   static const Color warning = Color(0xFFF39C12);
   static const Color error = Color(0xFFE74C3C);
 
-  // Planet colors
-  static const Color saturnColor = Color(0xFF8B7355);
-  static const Color jupiterColor = Color(0xFFD4A574);
-  static const Color marsColor = Color(0xFFCD5C5C);
-  static const Color venusColor = Color(0xFFFFB6C1);
-  static const Color mercuryColor = Color(0xFFB8B8B8);
+  // Palette accent colors
+  static const Color amberBrown = Color(0xFF8B7355);
+  static const Color warmTan = Color(0xFFD4A574);
+  static const Color softCoral = Color(0xFFCD5C5C);
+  static const Color softPink = Color(0xFFFFB6C1);
+  static const Color silverGray = Color(0xFFB8B8B8);
 
   // Venus brand color
   static const Color venusPink = Color(0xFFE91E8C);
@@ -102,13 +102,13 @@ class AppColors {
     colors: [lightSurface, lightSurfaceVariant],
   );
 
-  // ========== TANTRA COLORS ==========
-  // Warm, sensual, grounding palette (non-explicit)
-  static const Color tantraWarm = Color(0xFFC4A484); // Warm earth
-  static const Color tantraCrimson = Color(0xFFBC544B); // Soft crimson
-  static const Color tantraGold = Color(0xFFE8B4B8); // Rose gold
-  static const Color tantraDeep = Color(0xFF8B5A2B); // Deep amber
-  static const Color tantraIvory = Color(0xFFFDF6E3); // Cream ivory
+  // ========== WARM ACCENT COLORS ==========
+  // Warm, grounding palette
+  static const Color earthWarm = Color(0xFFC4A484); // Warm earth
+  static const Color warmCrimson = Color(0xFFBC544B); // Soft crimson
+  static const Color roseGold = Color(0xFFE8B4B8); // Rose gold
+  static const Color deepAmber = Color(0xFF8B5A2B); // Deep amber
+  static const Color creamIvory = Color(0xFFFDF6E3); // Cream ivory
 
   static const LinearGradient goldGradient = LinearGradient(
     begin: Alignment.topCenter,

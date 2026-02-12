@@ -104,14 +104,8 @@ class DisclaimerTexts {
   static String health(AppLanguage language) =>
       L10nService.get('widgets.entertainment_disclaimer.health', language);
 
-  static String astrology(AppLanguage language) =>
-      L10nService.get('widgets.entertainment_disclaimer.astrology', language);
-
-  static String tarot(AppLanguage language) =>
-      L10nService.get('widgets.entertainment_disclaimer.tarot', language);
-
-  static String numerology(AppLanguage language) =>
-      L10nService.get('widgets.entertainment_disclaimer.numerology', language);
+  static String wellness(AppLanguage language) =>
+      L10nService.get('widgets.entertainment_disclaimer.general', language);
 
   static String chakra(AppLanguage language) =>
       L10nService.get('widgets.entertainment_disclaimer.chakra', language);

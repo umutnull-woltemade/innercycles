@@ -1,6 +1,6 @@
-# astrology_app
+# InnerCycles
 
-A new Flutter project.
+A Flutter journaling and mood tracking app.
 
 ## Getting Started
 

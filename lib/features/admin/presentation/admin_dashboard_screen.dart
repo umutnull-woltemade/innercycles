@@ -577,7 +577,7 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
       case 'kozmik izi':
         return AppColors.celestialGold;
       case 'tantra':
-        return AppColors.tantraCrimson;
+        return AppColors.warmCrimson;
       case 'tarot':
         return AppColors.twilightEnd;
       case 'numerology':

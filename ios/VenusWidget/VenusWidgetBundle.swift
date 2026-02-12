@@ -1,5 +1,5 @@
-// Venus One iOS Widget Bundle
-// Daily horoscope and cosmic energy widgets for Home Screen and Lock Screen
+// InnerCycles iOS Widget Bundle
+// Daily reflection and mood insight widgets for Home Screen and Lock Screen
 
 import WidgetKit
 import SwiftUI
@@ -7,8 +7,8 @@ import SwiftUI
 @main
 struct VenusWidgetBundle: WidgetBundle {
     var body: some Widget {
-        DailyHoroscopeWidget()
-        CosmicEnergyWidget()
+        DailyReflectionWidget()
+        MoodInsightWidget()
         if #available(iOSApplicationExtension 16.0, *) {
             LockScreenWidget()
         }

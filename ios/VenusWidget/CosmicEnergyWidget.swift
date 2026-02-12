@@ -1,96 +1,92 @@
-// Venus One - Cosmic Energy Widget
-// Displays current planetary alignments and cosmic energy
+// InnerCycles - Mood Insight Widget
+// Displays mood trends and energy levels
 
 import WidgetKit
 import SwiftUI
 
 // MARK: - Timeline Provider
 
-struct CosmicEnergyProvider: TimelineProvider {
-    func placeholder(in context: Context) -> CosmicEnergyEntry {
-        CosmicEnergyEntry(
+struct MoodInsightProvider: TimelineProvider {
+    func placeholder(in context: Context) -> MoodInsightEntry {
+        MoodInsightEntry(
             date: Date(),
-            moonPhase: "Waxing Crescent",
-            moonEmoji: "🌒",
-            planetaryFocus: "Venus in Pisces",
+            currentMood: "Calm",
+            moodEmoji: "😌",
             energyLevel: 75,
             advice: "Focus on creativity and emotional connections",
-            currentTransit: "Mercury trine Jupiter"
+            weekTrend: "Improving"
         )
     }
 
-    func getSnapshot(in context: Context, completion: @escaping (CosmicEnergyEntry) -> Void) {
-        let entry = loadCosmicFromUserDefaults() ?? placeholder(in: context)
+    func getSnapshot(in context: Context, completion: @escaping (MoodInsightEntry) -> Void) {
+        let entry = loadFromUserDefaults() ?? placeholder(in: context)
         completion(entry)
     }
 
-    func getTimeline(in context: Context, completion: @escaping (Timeline<CosmicEnergyEntry>) -> Void) {
-        let entry = loadCosmicFromUserDefaults() ?? placeholder(in: context)
+    func getTimeline(in context: Context, completion: @escaping (Timeline<MoodInsightEntry>) -> Void) {
+        let entry = loadFromUserDefaults() ?? placeholder(in: context)
 
-        // Update every 4 hours for cosmic shifts
+        // Update every 4 hours
         let nextUpdate = Calendar.current.date(byAdding: .hour, value: 4, to: Date())!
 
         let timeline = Timeline(entries: [entry], policy: .after(nextUpdate))
         completion(timeline)
     }
 
-    private func loadCosmicFromUserDefaults() -> CosmicEnergyEntry? {
-        let sharedDefaults = UserDefaults(suiteName: "group.com.umut.astrologyApp")
+    private func loadFromUserDefaults() -> MoodInsightEntry? {
+        let sharedDefaults = UserDefaults(suiteName: "group.com.venusone.innercycles")
 
-        guard let moonPhase = sharedDefaults?.string(forKey: "widget_moon_phase"),
-              let moonEmoji = sharedDefaults?.string(forKey: "widget_moon_emoji"),
-              let planetaryFocus = sharedDefaults?.string(forKey: "widget_planetary_focus"),
-              let advice = sharedDefaults?.string(forKey: "widget_cosmic_advice") else {
+        guard let currentMood = sharedDefaults?.string(forKey: "widget_current_mood"),
+              let moodEmoji = sharedDefaults?.string(forKey: "widget_mood_emoji"),
+              let advice = sharedDefaults?.string(forKey: "widget_mood_advice") else {
             return nil
         }
 
         let energyLevel = sharedDefaults?.integer(forKey: "widget_energy_level") ?? 50
-        let currentTransit = sharedDefaults?.string(forKey: "widget_current_transit") ?? ""
+        let weekTrend = sharedDefaults?.string(forKey: "widget_week_trend") ?? "Steady"
 
-        return CosmicEnergyEntry(
+        return MoodInsightEntry(
             date: Date(),
-            moonPhase: moonPhase,
-            moonEmoji: moonEmoji,
-            planetaryFocus: planetaryFocus,
+            currentMood: currentMood,
+            moodEmoji: moodEmoji,
             energyLevel: energyLevel,
             advice: advice,
-            currentTransit: currentTransit
+            weekTrend: weekTrend
         )
     }
 }
 
 // MARK: - Timeline Entry
 
-struct CosmicEnergyEntry: TimelineEntry {
+struct MoodInsightEntry: TimelineEntry {
     let date: Date
-    let moonPhase: String
-    let moonEmoji: String
-    let planetaryFocus: String
+    let currentMood: String
+    let moodEmoji: String
     let energyLevel: Int // 0-100
     let advice: String
-    let currentTransit: String
+    let weekTrend: String
 }
 
 // MARK: - Widget Views
 
-struct CosmicEnergyWidgetEntryView: View {
-    var entry: CosmicEnergyProvider.Entry
+struct MoodInsightWidgetEntryView: View {
+    var entry: MoodInsightProvider.Entry
     @Environment(\.widgetFamily) var family
 
     var body: some View {
         switch family {
         case .systemSmall:
-            SmallCosmicView(entry: entry)
+            SmallMoodView(entry: entry)
         case .systemMedium:
-            MediumCosmicView(entry: entry)
+            MediumMoodView(entry: entry)
         default:
-            SmallCosmicView(entry: entry)
+            SmallMoodView(entry: entry)
         }
     }
 }
 
-struct SmallCosmicView: View {
-    let entry: CosmicEnergyEntry
+struct SmallMoodView: View {
+    let entry: MoodInsightEntry
 
     var energyColor: Color {
         if entry.energyLevel >= 70 {
@@ -104,7 +100,6 @@ struct SmallCosmicView: View {
 
     var body: some View {
         ZStack {
-            // Deep space gradient
             LinearGradient(
                 gradient: Gradient(colors: [
                     Color(red: 0.02, green: 0.02, blue: 0.08),
@@ -115,11 +110,10 @@ struct SmallCosmicView: View {
             )
 
             VStack(spacing: 10) {
-                // Moon phase
-                Text(entry.moonEmoji)
+                Text(entry.moodEmoji)
                     .font(.system(size: 36))
 
-                Text(entry.moonPhase)
+                Text(entry.currentMood)
                     .font(.system(size: 11, weight: .medium))
                     .foregroundColor(.white.opacity(0.9))
 
@@ -150,8 +144,8 @@ struct SmallCosmicView: View {
     }
 }
 
-struct MediumCosmicView: View {
-    let entry: CosmicEnergyEntry
+struct MediumMoodView: View {
+    let entry: MoodInsightEntry
 
     var energyColor: Color {
         if entry.energyLevel >= 70 {
@@ -175,12 +169,12 @@ struct MediumCosmicView: View {
             )
 
             HStack(spacing: 20) {
-                // Left: Moon & Energy
+                // Left: Mood & Energy
                 VStack(spacing: 8) {
-                    Text(entry.moonEmoji)
+                    Text(entry.moodEmoji)
                         .font(.system(size: 44))
 
-                    Text(entry.moonPhase)
+                    Text(entry.currentMood)
                         .font(.system(size: 12, weight: .medium))
                         .foregroundColor(.white.opacity(0.9))
 
@@ -203,28 +197,16 @@ struct MediumCosmicView: View {
                 }
                 .frame(width: 90)
 
-                // Right: Planetary info
+                // Right: Insights
                 VStack(alignment: .leading, spacing: 8) {
                     VStack(alignment: .leading, spacing: 4) {
-                        Text("Planetary Focus")
+                        Text("Weekly Trend")
                             .font(.system(size: 10))
                             .foregroundColor(Color(red: 1.0, green: 0.84, blue: 0.0).opacity(0.8))
 
-                        Text(entry.planetaryFocus)
+                        Text(entry.weekTrend)
                             .font(.system(size: 13, weight: .medium))
                             .foregroundColor(.white)
-                    }
-
-                    if !entry.currentTransit.isEmpty {
-                        VStack(alignment: .leading, spacing: 2) {
-                            Text("Current Transit")
-                                .font(.system(size: 9))
-                                .foregroundColor(.white.opacity(0.5))
-
-                            Text(entry.currentTransit)
-                                .font(.system(size: 11))
-                                .foregroundColor(.white.opacity(0.8))
-                        }
                     }
 
                     Spacer()
@@ -242,43 +224,41 @@ struct MediumCosmicView: View {
 
 // MARK: - Widget Configuration
 
-struct CosmicEnergyWidget: Widget {
-    let kind: String = "CosmicEnergyWidget"
+struct MoodInsightWidget: Widget {
+    let kind: String = "MoodInsightWidget"
 
     var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: CosmicEnergyProvider()) { entry in
-            CosmicEnergyWidgetEntryView(entry: entry)
+        StaticConfiguration(kind: kind, provider: MoodInsightProvider()) { entry in
+            MoodInsightWidgetEntryView(entry: entry)
         }
-        .configurationDisplayName("Cosmic Energy")
-        .description("Track moon phases and planetary alignments.")
+        .configurationDisplayName("Mood Insight")
+        .description("Track your mood trends and energy levels.")
         .supportedFamilies([.systemSmall, .systemMedium])
     }
 }
 
 // MARK: - Preview
 
-struct CosmicEnergyWidget_Previews: PreviewProvider {
+struct MoodInsightWidget_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            CosmicEnergyWidgetEntryView(entry: CosmicEnergyEntry(
+            MoodInsightWidgetEntryView(entry: MoodInsightEntry(
                 date: Date(),
-                moonPhase: "Full Moon",
-                moonEmoji: "🌕",
-                planetaryFocus: "Venus in Pisces",
+                currentMood: "Calm",
+                moodEmoji: "😌",
                 energyLevel: 85,
-                advice: "Perfect for manifestation and emotional healing",
-                currentTransit: "Mercury trine Jupiter"
+                advice: "Great day for creative work and deep reflection",
+                weekTrend: "Improving"
             ))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
 
-            CosmicEnergyWidgetEntryView(entry: CosmicEnergyEntry(
+            MoodInsightWidgetEntryView(entry: MoodInsightEntry(
                 date: Date(),
-                moonPhase: "Full Moon",
-                moonEmoji: "🌕",
-                planetaryFocus: "Venus in Pisces",
+                currentMood: "Calm",
+                moodEmoji: "😌",
                 energyLevel: 85,
-                advice: "Perfect for manifestation and emotional healing work",
-                currentTransit: "Mercury trine Jupiter"
+                advice: "Great day for creative work and deep reflection",
+                weekTrend: "Improving"
             ))
             .previewContext(WidgetPreviewContext(family: .systemMedium))
         }

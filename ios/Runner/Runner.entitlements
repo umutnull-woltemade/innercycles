@@ -10,14 +10,14 @@
 	</array>
 	<key>com.apple.developer.associated-domains</key>
 	<array>
-		<string>applinks:astrobobo.com</string>
-		<string>webcredentials:astrobobo.com</string>
-		<string>applinks:www.astrobobo.com</string>
-		<string>webcredentials:www.astrobobo.com</string>
+		<string>applinks:innercycles.app</string>
+		<string>webcredentials:innercycles.app</string>
+		<string>applinks:www.innercycles.app</string>
+		<string>webcredentials:www.innercycles.app</string>
 	</array>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.com.umut.astrologyApp</string>
+		<string>group.com.venusone.innercycles</string>
 	</array>
 </dict>
 </plist>

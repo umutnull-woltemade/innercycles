@@ -205,22 +205,22 @@ class MarketingCopy {
   );
 
   static String get socialProof => ToneService.getText(
-    'Trusted by 500K+ cosmic seekers worldwide',
-    'Trusted by 500,000+ cosmic seekers worldwide',
+    'Trusted by 500K+ journalers worldwide',
+    'Trusted by 500,000+ journalers worldwide',
   );
 
   static String get finalCta =>
-      ToneService.getText('The Stars Are Waiting', 'The Stars Await');
+      ToneService.getText('Your Journal Awaits', 'Your Journal Awaits');
 
   // Email subject lines
   static String welcomeSubject(String appName) => ToneService.getText(
-    'Welcome to $appName — Your Cosmic Journey Begins',
-    'Welcome to $appName — Your Cosmic Journey Awaits',
+    'Welcome to $appName — Your Self-Discovery Journey Begins',
+    'Welcome to $appName — Your Self-Discovery Journey Awaits',
   );
 
   static String get birthdaySubject => ToneService.getText(
-    'Happy Birthday! Your Solar Return is here',
-    'Many Happy Returns! Your Solar Return awaits',
+    'Happy Birthday! A special reflection awaits you',
+    'Many Happy Returns! A special reflection awaits you',
   );
 
   // Casual expressions to formal

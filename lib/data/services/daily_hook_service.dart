@@ -88,7 +88,7 @@ class DailyHookService {
   // ══════════════════════════════════════════════════════════════════════════
 
   static const List<DailyHook> _hooks = [
-    DailyHook(id: 1, titleEn: 'Your energy forecast for today', titleTr: 'Bugünkü enerji tahminin', category: HookCategory.morning, timeSlot: HookTimeSlot.morning),
+    DailyHook(id: 1, titleEn: 'Your energy outlook for today', titleTr: 'Bugünkü enerji görünümün', category: HookCategory.morning, timeSlot: HookTimeSlot.morning),
     DailyHook(id: 2, titleEn: 'One thing to notice about yourself today', titleTr: 'Bugün kendinde fark edeceğin bir şey', category: HookCategory.reflection, timeSlot: HookTimeSlot.morning),
     DailyHook(id: 3, titleEn: 'Your moon phase alignment', titleTr: 'Ay fazı uyumun', category: HookCategory.cosmic, timeSlot: HookTimeSlot.morning),
     DailyHook(id: 4, titleEn: "Today's focus area spotlight", titleTr: 'Bugünkü odak alanın', category: HookCategory.focus, timeSlot: HookTimeSlot.morning),
@@ -103,7 +103,7 @@ class DailyHookService {
     DailyHook(id: 13, titleEn: 'Your forgotten dream clue', titleTr: 'Unuttuğun rüya ipucu', category: HookCategory.dream, timeSlot: HookTimeSlot.morning),
     DailyHook(id: 14, titleEn: "Today's journaling spark", titleTr: 'Bugünkü günlük kıvılcımı', category: HookCategory.reflection, timeSlot: HookTimeSlot.morning),
     DailyHook(id: 15, titleEn: 'Your inner cycle check-in', titleTr: 'İç döngü kontrolün', category: HookCategory.mood, timeSlot: HookTimeSlot.afternoon),
-    DailyHook(id: 16, titleEn: 'Mercury retrograde survival tip', titleTr: 'Merkür retrosu hayatta kalma ipucu', category: HookCategory.cosmic, timeSlot: HookTimeSlot.morning),
+    DailyHook(id: 16, titleEn: 'Midday mindfulness check-in', titleTr: 'Öğle farkındalık kontrolü', category: HookCategory.cosmic, timeSlot: HookTimeSlot.morning),
     DailyHook(id: 17, titleEn: 'New moon intention setting', titleTr: 'Yeni ay niyet belirleme', category: HookCategory.cosmic, timeSlot: HookTimeSlot.evening),
     DailyHook(id: 18, titleEn: 'Full moon release ritual', titleTr: 'Dolunay bırakma ritüeli', category: HookCategory.cosmic, timeSlot: HookTimeSlot.evening),
     DailyHook(id: 19, titleEn: 'Your decision clarity score today', titleTr: 'Bugünkü karar netliği puanın', category: HookCategory.focus, timeSlot: HookTimeSlot.morning),

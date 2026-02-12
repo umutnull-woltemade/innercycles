@@ -96,7 +96,7 @@ class _ShareInsightScreenState extends ConsumerState<ShareInsightScreen> {
           detail: isEn
               ? 'Drawn from your dream journal'
               : 'Ruya guncenden cikarildi',
-          accentColor: AppColors.airElement,
+          accentColor: AppColors.blueAccent,
           badgeText: isEn ? 'DREAM' : 'RUYA',
         );
 
@@ -107,7 +107,7 @@ class _ShareInsightScreenState extends ConsumerState<ShareInsightScreen> {
           subtitle: isEn
               ? 'Your entries suggest a secure-leaning pattern.'
               : 'Kayitlarin guvenli bir egilim gosteriyor.',
-          accentColor: AppColors.venusColor,
+          accentColor: AppColors.softPink,
           badgeText: isEn ? 'ATTACHMENT' : 'BAGLANMA',
         );
 
@@ -436,9 +436,9 @@ class _ShareInsightScreenState extends ConsumerState<ShareInsightScreen> {
       case InsightCardType.streak:
         return AppColors.starGold;
       case InsightCardType.dreamSymbol:
-        return AppColors.airElement;
+        return AppColors.blueAccent;
       case InsightCardType.attachmentStyle:
-        return AppColors.venusColor;
+        return AppColors.softPink;
       case InsightCardType.emotionalCycle:
         return AppColors.twilightEnd;
       case InsightCardType.monthlyReview:

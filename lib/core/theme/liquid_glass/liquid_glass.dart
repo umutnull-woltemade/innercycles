@@ -1,7 +1,7 @@
 /// Liquid Glass Design System — Barrel Export
 ///
 /// Import this single file to access all Liquid Glass components:
-///   import 'package:astrobobo/core/theme/liquid_glass/liquid_glass.dart';
+///   import 'package:inner_cycles/core/theme/liquid_glass/liquid_glass.dart';
 library;
 
 export 'glass_tokens.dart';

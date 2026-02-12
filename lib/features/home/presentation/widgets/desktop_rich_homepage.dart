@@ -498,7 +498,7 @@ class _FeatureCategoriesSection extends StatelessWidget {
                   ? 'Explore your subconscious'
                   : 'Bilinçaltini kesfet',
               icon: Icons.nights_stay,
-              color: AppColors.waterElement,
+              color: AppColors.purpleAccent,
               route: Routes.dreamInterpretation,
             ),
             _FeatureCard(
@@ -509,7 +509,7 @@ class _FeatureCategoriesSection extends StatelessWidget {
                   ? 'Review your month'
                   : 'Ayini gözden geçir',
               icon: Icons.calendar_month,
-              color: AppColors.fireElement,
+              color: AppColors.warmAccent,
               route: Routes.journalMonthly,
             ),
             _FeatureCard(
@@ -520,7 +520,7 @@ class _FeatureCategoriesSection extends StatelessWidget {
                   ? 'Glossary & Articles'
                   : 'Sözlük ve Makaleler',
               icon: Icons.menu_book,
-              color: AppColors.earthElement,
+              color: AppColors.greenAccent,
               route: Routes.glossary,
             ),
           ],

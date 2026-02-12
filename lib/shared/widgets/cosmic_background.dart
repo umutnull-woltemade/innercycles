@@ -348,7 +348,7 @@ class _CosmicPainter extends CustomPainter {
     ];
   }
 
-  // Ezoterik semboller - burç ve gezegen sembolleri
+  // Decorative background symbols
   static List<_EsotericSymbol> _generateEsotericSymbols() {
     final random = math.Random(99);
     final symbols = <_EsotericSymbol>[];
@@ -357,10 +357,10 @@ class _CosmicPainter extends CustomPainter {
     const decorativeSymbols = [
       '✧', '⚹', '△', '☆', '◇', '⬡', '⊛', '✦',
       '○', '◆', '✶', '❋', '✺', '✹', '❈', '✿',
-      '⊕', '⊗', '◎', '☾', '☽', '✵', '❂', '⊙',
+      '⊕', '⊗', '◎', '✵', '❂', '◈',
     ];
     // Nature symbols
-    const natureSymbols = ['☉', '☽', '✧', '◇', '△', '○', '⊛', '✦'];
+    const natureSymbols = ['✧', '◇', '△', '○', '⊛', '✦', '✶', '❋'];
     // Geometric symbols
     const geometricSymbols = ['◇', '△', '○', '⬡', '◆', '☆', '✶', '❋'];
 

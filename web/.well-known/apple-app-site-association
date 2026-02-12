@@ -3,7 +3,7 @@
     "apps": [],
     "details": [
       {
-        "appIDs": ["8RBH9ALBH6.com.umut.astrologyApp"],
+        "appIDs": ["8RBH9ALBH6.com.venusone.innercycles"],
         "components": [
           {
             "/": "/*",
@@ -14,6 +14,6 @@
     ]
   },
   "webcredentials": {
-    "apps": ["8RBH9ALBH6.com.umut.astrologyApp"]
+    "apps": ["8RBH9ALBH6.com.venusone.innercycles"]
   }
 }

@@ -1,4 +1,4 @@
-/// Comprehensive global cities database for astrology birth location
+/// Comprehensive global cities database for birth location
 /// Contains major cities from all continents with coordinates
 library;
 

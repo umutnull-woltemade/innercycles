@@ -123,8 +123,8 @@ class MysticalTypography {
     ),
   );
 
-  /// Get Cinzel style for mystical accents
-  static TextStyle zodiacAccent({
+  /// Get Cinzel style for elegant accents
+  static TextStyle elegantAccent({
     double fontSize = 16,
     FontWeight fontWeight = FontWeight.w600,
     Color? color,

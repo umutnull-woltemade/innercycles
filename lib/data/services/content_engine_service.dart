@@ -128,8 +128,8 @@ class ContentEngineService {
   static const List<String> trendContexts = [
     'New Moon',
     'Full Moon',
-    'Mercury Retrograde',
-    'Eclipse Season',
+    'Quiet Reflection',
+    'Seasonal Transition',
     'Equinox',
     'Solstice',
     'Monday Reset',
@@ -362,8 +362,8 @@ class ContentEngineService {
     final cosmicContexts = [
       'New Moon',
       'Full Moon',
-      'Mercury Retrograde',
-      'Eclipse Season',
+      'Quiet Reflection',
+      'Seasonal Transition',
     ];
     final seed = now.year * 1000 + now.month * 100 + now.day;
     return cosmicContexts[seed % cosmicContexts.length];
