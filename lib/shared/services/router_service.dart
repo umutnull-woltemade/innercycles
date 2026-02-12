@@ -59,6 +59,12 @@ import '../../features/digest/presentation/weekly_digest_screen.dart';
 import '../../features/archetype/presentation/archetype_screen.dart';
 import '../../features/compatibility/presentation/compatibility_reflection_screen.dart';
 import '../../features/blind_spot/presentation/blind_spot_screen.dart';
+import '../../features/export/presentation/export_screen.dart';
+import '../../features/meditation/presentation/meditation_timer_screen.dart';
+import '../../features/gratitude/presentation/gratitude_screen.dart';
+import '../../features/sleep/presentation/sleep_detail_screen.dart';
+import '../../features/prompts/presentation/prompt_library_screen.dart';
+import '../../features/milestones/presentation/milestone_screen.dart';
 
 import '../../data/services/admin_auth_service.dart';
 import '../../data/services/storage_service.dart';
@@ -324,6 +330,34 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: Routes.blindSpot,
         builder: (context, state) => const BlindSpotScreen(),
+      ),
+      GoRoute(
+        path: Routes.promptLibrary,
+        builder: (context, state) => const PromptLibraryScreen(),
+      ),
+      GoRoute(
+        path: Routes.milestones,
+        builder: (context, state) => const MilestoneScreen(),
+      ),
+
+      // ════════════════════════════════════════════════════════════════
+      // EXPORT, MEDITATION, GRATITUDE, SLEEP DETAIL
+      // ════════════════════════════════════════════════════════════════
+      GoRoute(
+        path: Routes.exportData,
+        builder: (context, state) => const ExportScreen(),
+      ),
+      GoRoute(
+        path: Routes.meditation,
+        builder: (context, state) => const MeditationTimerScreen(),
+      ),
+      GoRoute(
+        path: Routes.gratitudeJournal,
+        builder: (context, state) => const GratitudeScreen(),
+      ),
+      GoRoute(
+        path: Routes.sleepDetail,
+        builder: (context, state) => const SleepDetailScreen(),
       ),
 
       // ════════════════════════════════════════════════════════════════

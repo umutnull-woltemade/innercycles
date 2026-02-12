@@ -27,7 +27,7 @@ class EntryDetailScreen extends ConsumerWidget {
         child: SafeArea(
           child: serviceAsync.when(
             loading: () => const Center(child: CircularProgressIndicator()),
-            error: (e, _) => Center(child: Text('Error: $e')),
+            error: (_, _) => const SizedBox.shrink(),
             data: (service) {
               final entry = service.getEntry(entryId);
               if (entry == null) {

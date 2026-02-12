@@ -40,8 +40,8 @@ class RitualsScreen extends ConsumerWidget {
                   loading: () => const SliverToBoxAdapter(
                     child: Center(child: CircularProgressIndicator()),
                   ),
-                  error: (e, _) => SliverToBoxAdapter(
-                    child: Text('Error: $e'),
+                  error: (_, _) => const SliverToBoxAdapter(
+                    child: SizedBox.shrink(),
                   ),
                   data: (stacks) {
                     if (stacks.isEmpty) {

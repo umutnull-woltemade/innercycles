@@ -426,7 +426,10 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error: $e')),
+          SnackBar(content: Text(
+            ref.read(languageProvider) == AppLanguage.en
+                ? 'Save failed' : 'Kayıt başarısız',
+          )),
         );
       }
     } finally {

@@ -13,6 +13,9 @@ import '../../../wellness/presentation/wellness_score_card.dart';
 import '../../../sleep/presentation/sleep_section.dart';
 import '../../../moon/presentation/moon_phase_widget.dart'; // P1: Moon phase card
 import '../../../mood/presentation/mood_checkin_card.dart';
+import '../../../streak/presentation/streak_recovery_banner.dart';
+import '../../../affirmation/presentation/affirmation_card.dart';
+import 'whats_new_card.dart';
 
 /// MOBILE LITE HOMEPAGE - InnerCycles
 ///
@@ -382,8 +385,18 @@ class _BelowTheFold extends ConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          // ═══ What's New (dismissible) ═══
+          const WhatsNewCard(),
+
+          // ═══ P0: Streak Recovery (shows only when streak broken) ═══
+          const StreakRecoveryBanner(),
+
           // ═══ P0: Quick Mood Check-in ═══
           const MoodCheckinCard(),
+          const SizedBox(height: 16),
+
+          // ═══ P1: Daily Affirmation ═══
+          const AffirmationCard(),
           const SizedBox(height: 16),
 
           // ═══ P0: Streak Card ═══
@@ -642,6 +655,30 @@ class _BelowTheFold extends ConsumerWidget {
             isDark: isDark,
           ),
 
+          _EntryPointTile(
+            icon: Icons.lightbulb_outline,
+            title: language == AppLanguage.en
+                ? 'Journal Prompts'
+                : 'Günlük Soruları',
+            subtitle: language == AppLanguage.en
+                ? '80+ prompts to spark self-reflection'
+                : '80+ öz-yansıma sorusu',
+            route: Routes.promptLibrary,
+            isDark: isDark,
+          ),
+
+          _EntryPointTile(
+            icon: Icons.emoji_events_outlined,
+            title: language == AppLanguage.en
+                ? 'Milestones & Badges'
+                : 'Kilometre Taşları',
+            subtitle: language == AppLanguage.en
+                ? 'Track your achievements & unlock badges'
+                : 'Başarılarını takip et ve rozetleri aç',
+            route: Routes.milestones,
+            isDark: isDark,
+          ),
+
           const SizedBox(height: 24),
 
           // Wellness & Mindfulness
@@ -682,6 +719,30 @@ class _BelowTheFold extends ConsumerWidget {
                 ? 'Lunar phases & reflection prompts'
                 : 'Ay evreleri ve yansima sorulari',
             route: Routes.moonCalendar,
+            isDark: isDark,
+          ),
+
+          _EntryPointTile(
+            icon: Icons.self_improvement_outlined,
+            title: language == AppLanguage.en
+                ? 'Meditation Timer'
+                : 'Meditasyon Zamanlayıcı',
+            subtitle: language == AppLanguage.en
+                ? 'Timed sessions for mindfulness'
+                : 'Farkındalık için zamanlı oturumlar',
+            route: Routes.meditation,
+            isDark: isDark,
+          ),
+
+          _EntryPointTile(
+            icon: Icons.bedtime_outlined,
+            title: language == AppLanguage.en
+                ? 'Sleep Quality'
+                : 'Uyku Kalitesi',
+            subtitle: language == AppLanguage.en
+                ? 'Track and improve your sleep patterns'
+                : 'Uyku kalıplarınızı takip edin ve iyileştirin',
+            route: Routes.sleepDetail,
             isDark: isDark,
           ),
 
@@ -797,6 +858,48 @@ class _BelowTheFold extends ConsumerWidget {
                 ? 'Wellness & self-growth articles'
                 : 'Saglik ve kisisel gelisim makaleleri',
             route: Routes.articles,
+            isDark: isDark,
+          ),
+
+          const SizedBox(height: 24),
+
+          // Your Data
+          Text(
+            language == AppLanguage.en
+                ? 'Your Data'
+                : 'Verileriniz',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w600,
+              color: isDark
+                  ? AppColors.textPrimary
+                  : AppColors.lightTextPrimary,
+            ),
+          ),
+
+          const SizedBox(height: 16),
+
+          _EntryPointTile(
+            icon: Icons.favorite_outline,
+            title: language == AppLanguage.en
+                ? 'Gratitude Journal'
+                : 'Şükran Günlüğü',
+            subtitle: language == AppLanguage.en
+                ? 'Daily gratitude entries & themes'
+                : 'Günlük şükran girdileri ve temalar',
+            route: Routes.gratitudeJournal,
+            isDark: isDark,
+          ),
+
+          _EntryPointTile(
+            icon: Icons.file_download_outlined,
+            title: language == AppLanguage.en
+                ? 'Export Data'
+                : 'Verileri Dışa Aktar',
+            subtitle: language == AppLanguage.en
+                ? 'Download your journal as text, CSV, or JSON'
+                : 'Günlüğünüzü metin, CSV veya JSON olarak indirin',
+            route: Routes.exportData,
             isDark: isDark,
           ),
 

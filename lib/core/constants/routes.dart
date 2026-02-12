@@ -82,6 +82,14 @@ class Routes {
   static const String challenges = '/challenges';
 
   // ════════════════════════════════════════════════════════════════
+  // EXPORT, MEDITATION, GRATITUDE, SLEEP DETAIL
+  // ════════════════════════════════════════════════════════════════
+  static const String exportData = '/export';
+  static const String meditation = '/meditation';
+  static const String gratitudeJournal = '/gratitude';
+  static const String sleepDetail = '/sleep';
+
+  // ════════════════════════════════════════════════════════════════
   // REFERENCE & CONTENT
   // ════════════════════════════════════════════════════════════════
   static const String glossary = '/glossary';
@@ -102,6 +110,8 @@ class Routes {
   static const String archetype = '/archetype';
   static const String compatibilityReflection = '/compatibility';
   static const String blindSpot = '/blind-spot';
+  static const String promptLibrary = '/prompts';
+  static const String milestones = '/milestones';
 
   // ════════════════════════════════════════════════════════════════
   // PROFILE & SETTINGS
@@ -119,10 +129,9 @@ class Routes {
   static const String admin = '/admin';
 
   // ════════════════════════════════════════════════════════════════
-  // LEGACY ROUTE REDIRECTS (backward compatibility)
+  // Turkish dream route redirects (backward compatibility)
   // ════════════════════════════════════════════════════════════════
   static const Map<String, String> legacyRouteRedirects = {
-    // Turkish dream routes -> English
     '/ruya/dusmek': '/dreams/falling',
     '/ruya/su-gormek': '/dreams/water',
     '/ruya/tekrar-eden': '/dreams/recurring',
@@ -135,25 +144,5 @@ class Routes {
     '/ruya/ses-cikaramamak': '/dreams/voiceless',
     '/ruya/kaybolmak': '/dreams/lost',
     '/ruya/ucamamak': '/dreams/unable-to-fly',
-
-    // Old routes -> Insight
-    '/horoscope': '/insight',
-    '/compatibility': '/insight',
-    '/birth-chart': '/insight',
-    '/transits': '/insight',
-    '/synastry': '/insight',
-    '/numerology': '/insight',
-    '/tarot': '/insight',
-    '/kabbalah': '/insight',
-    '/aura': '/insight',
-    '/chakra-analysis': '/insight',
-    '/tantra': '/insight',
-    '/reiki': '/insight',
-    '/theta-healing': '/insight',
-    '/daily-rituals': '/insight',
-    '/gardening-moon': '/insight',
-    '/celebrities': '/insight',
-    '/kozmoz': '/insight',
-    '/all-services': '/insight',
   };
 }

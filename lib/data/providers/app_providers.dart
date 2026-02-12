@@ -37,6 +37,9 @@ import '../services/archetype_service.dart';
 import '../services/compatibility_service.dart';
 import '../services/blind_spot_service.dart';
 import '../services/export_service.dart';
+import '../services/affirmation_service.dart';
+import '../services/milestone_service.dart';
+import '../services/journal_prompt_service.dart';
 import '../models/journal_entry.dart';
 
 // =============================================================================
@@ -536,4 +539,31 @@ final blindSpotServiceProvider =
 final exportServiceProvider = FutureProvider<ExportService>((ref) async {
   final journalService = await ref.watch(journalServiceProvider.future);
   return ExportService(journalService);
+});
+
+// =============================================================================
+// AFFIRMATION SERVICE PROVIDER
+// =============================================================================
+
+final affirmationServiceProvider =
+    FutureProvider<AffirmationService>((ref) async {
+  return await AffirmationService.init();
+});
+
+// =============================================================================
+// MILESTONE SERVICE PROVIDER
+// =============================================================================
+
+final milestoneServiceProvider =
+    FutureProvider<MilestoneService>((ref) async {
+  return await MilestoneService.init();
+});
+
+// =============================================================================
+// JOURNAL PROMPT SERVICE PROVIDER
+// =============================================================================
+
+final journalPromptServiceProvider =
+    FutureProvider<JournalPromptService>((ref) async {
+  return await JournalPromptService.init();
 });

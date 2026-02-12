@@ -51,12 +51,12 @@ class _GrowthDashboardScreenState
         child: SafeArea(
           child: journalAsync.when(
             loading: () => const Center(child: CircularProgressIndicator()),
-            error: (e, _) => Center(child: Text('Error: $e')),
+            error: (_, _) => const SizedBox.shrink(),
             data: (journalService) {
               return dreamAsync.when(
                 loading: () =>
                     const Center(child: CircularProgressIndicator()),
-                error: (e, _) => Center(child: Text('Error: $e')),
+                error: (_, _) => const SizedBox.shrink(),
                 data: (dreamService) {
                   return _buildDashboard(
                     context,

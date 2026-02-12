@@ -41,7 +41,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
         child: SafeArea(
           child: serviceAsync.when(
             loading: () => const Center(child: CircularProgressIndicator()),
-            error: (e, _) => Center(child: Text('Error: $e')),
+            error: (_, _) => const SizedBox.shrink(),
             data: (service) {
               var entries = service.getAllEntries();
 

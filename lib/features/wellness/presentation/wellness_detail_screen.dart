@@ -43,7 +43,7 @@ class WellnessDetailScreen extends ConsumerWidget {
                       loading: () => const Center(
                         child: CircularProgressIndicator(),
                       ),
-                      error: (e, _) => Text('Error: $e'),
+                      error: (_, _) => const SizedBox.shrink(),
                       data: (score) {
                         if (score == null) {
                           return _buildEmptyState(isDark, isEn);
