@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
-
+import '../../../data/content/monthly_themes_content.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/pattern_engine_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
@@ -71,6 +71,17 @@ class _MonthlyReflectionScreenState
                           _buildSummaryCard(context, summary, isDark, isEn)
                               .animate()
                               .fadeIn(duration: 400.ms),
+                          const SizedBox(height: AppConstants.spacingLg),
+
+                          // Monthly theme
+                          _buildMonthlyThemeCard(
+                            context,
+                            _selectedMonth,
+                            isDark,
+                            isEn,
+                          )
+                              .animate()
+                              .fadeIn(delay: 50.ms, duration: 400.ms),
                           const SizedBox(height: AppConstants.spacingLg),
 
                           // Area breakdown
@@ -302,6 +313,139 @@ class _MonthlyReflectionScreenState
           ),
         ),
       ],
+    );
+  }
+
+  Widget _buildMonthlyThemeCard(
+    BuildContext context,
+    int month,
+    bool isDark,
+    bool isEn,
+  ) {
+    final theme = allMonthlyThemes.firstWhere(
+      (t) => t.month == month,
+      orElse: () => allMonthlyThemes[0],
+    );
+
+    final prompts = isEn ? theme.weeklyPromptsEn : theme.weeklyPromptsTr;
+    final tip = isEn ? theme.wellnessTipEn : theme.wellnessTipTr;
+
+    return Container(
+      padding: const EdgeInsets.all(AppConstants.spacingLg),
+      decoration: BoxDecoration(
+        color: isDark
+            ? AppColors.surfaceDark.withValues(alpha: 0.85)
+            : AppColors.lightCard,
+        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+        border: Border.all(
+          color: AppColors.auroraStart.withValues(alpha: 0.3),
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Icon(Icons.auto_awesome, color: AppColors.auroraStart, size: 20),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Text(
+                  isEn ? theme.themeNameEn : theme.themeNameTr,
+                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                    color: AppColors.auroraStart,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Text(
+            isEn ? theme.descriptionEn : theme.descriptionTr,
+            style: TextStyle(
+              fontSize: 13,
+              height: 1.5,
+              color: isDark
+                  ? AppColors.textSecondary
+                  : AppColors.lightTextSecondary,
+            ),
+          ),
+          const SizedBox(height: 16),
+          Text(
+            isEn ? 'Weekly Prompts' : 'Haftalik Sorular',
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w600,
+              color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+              letterSpacing: 0.5,
+            ),
+          ),
+          const SizedBox(height: 8),
+          ...List.generate(prompts.length, (i) {
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 8),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '${isEn ? 'W' : 'H'}${i + 1}',
+                    style: TextStyle(
+                      fontSize: 11,
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.starGold,
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      prompts[i],
+                      style: TextStyle(
+                        fontSize: 13,
+                        height: 1.4,
+                        color: isDark
+                            ? AppColors.textPrimary
+                            : AppColors.lightTextPrimary,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          }),
+          const SizedBox(height: 12),
+          Container(
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: AppColors.starGold.withValues(alpha: 0.08),
+              borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Icon(
+                  Icons.spa_outlined,
+                  size: 16,
+                  color: AppColors.starGold,
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    tip,
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontStyle: FontStyle.italic,
+                      height: 1.4,
+                      color: isDark
+                          ? AppColors.textSecondary
+                          : AppColors.lightTextSecondary,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 

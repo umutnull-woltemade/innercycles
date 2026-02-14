@@ -53,11 +53,11 @@ Em algumas tradições, o afogamento representa a dissolução do ego e a descid
 - **Ver alguém se afogando**: Impotência, incapacidade de ajudar.
 - **Sobreviver ao afogamento**: Resiliência, recuperação emocional.
 - **Afundar lentamente**: Declínio emocional gradual, acúmulo imperceptível.
-- **Afogar-se em água escura**: Alerta vindo das camadas mais profundas do inconsciente.
+- **Afogar-se em água turva**: Alerta vindo das camadas mais profundas do inconsciente.
 
 ## Quando levar a sério?
 
-Sonhos de afogamento tendem a trazer mensagens mais urgentes do que muitos outros temas oníricos. Se esse sonho se repete, se você acorda ofegante ou com sintomas semelhantes a pânico, ou se sente uma sensação persistente de sobrecarga durante o dia, tanto uma avaliação física (triagem de apneia do sono) quanto emocional (gestão do estresse, apoio profissional) podem ser verdadeiramente importantes.
+Sonhos de afogamento tendem a trazer mensagens mais significativas do que muitos outros temas oníricos. Se esse sonho se repete, se você acorda ofegante ou com sintomas semelhantes a pânico, ou se sente uma sensação persistente de sobrecarga durante o dia, tanto uma avaliação física (triagem de apneia do sono) quanto emocional (gestão do estresse, apoio profissional) podem ser verdadeiramente importantes.
 
 **Atenção:** Sonhos crônicos de afogamento podem sinalizar uma sobrecarga emocional que vai além do estresse comum — podendo indicar um transtorno de ansiedade ou trauma não processado. Seja gentil consigo mesmo e busque apoio se necessário.
 

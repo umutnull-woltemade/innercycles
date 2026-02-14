@@ -1,0 +1,111 @@
+# ════════════════════════════════════════════════════════════════════════════
+# APP STORE METADATA - InnerCycles (Optimized February 2026)
+# ════════════════════════════════════════════════════════════════════════════
+# Copy these values into App Store Connect.
+# Title + Subtitle + Keyword Field are all indexed by Apple's algorithm.
+# Screenshot captions are now also indexed via OCR (June 2025 change).
+# ════════════════════════════════════════════════════════════════════════════
+
+# ── TITLE (30 char max) ──────────────────────────────────────────────────
+title: "InnerCycles - Mood Journal"  # 26 chars
+
+# ── SUBTITLE (30 char max) ───────────────────────────────────────────────
+subtitle: "Daily Mood & Dream Diary"  # 25 chars — 4 keywords: daily, mood, dream, diary
+
+# ── KEYWORD FIELD (100 char max, comma-separated, no spaces) ─────────────
+# Do NOT repeat words from title/subtitle. Apple auto-combines tokens.
+# Singular forms only — Apple auto-indexes plurals.
+keywords: "journal,tracker,reflection,gratitude,mindful,wellness,self,care,pattern,cycle,emotional,habit,sleep,anxiety,growth,insight"
+# 100 chars — "diary" and "mood" removed (already in title/subtitle), replaced with high-value terms
+
+# ── CATEGORY ─────────────────────────────────────────────────────────────
+primary_category: "Lifestyle"
+secondary_category: "Health & Fitness"
+
+# ── SCREENSHOT CAPTIONS (keyword-rich for OCR indexing) ──────────────────
+screenshot_captions:
+  1: "How do you feel today? Start tracking in 30 seconds"
+  2: "See your emotional patterns emerge over weeks"
+  3: "Decode your dreams with 1000+ symbol meanings"
+  4: "Your growth score rises with every entry"
+  5: "Daily prompts that spark real self-reflection"
+  6: "Visualize your emotional cycles and rhythms"
+  7: "Discover your attachment style in 5 minutes"
+  8: "Monthly reports show how far you've come"
+  9: "Beautiful insight cards to share your journey"
+  10: "100% private — your thoughts never leave your device"
+
+# ── DESCRIPTION (iOS — not indexed, optimized for conversion) ────────────
+description: |
+  Understand yourself better, one day at a time.
+
+  InnerCycles is the private journal that helps you track your moods, reflect on patterns, and grow through daily self-awareness. Unlike generic journals, InnerCycles reveals your unique emotional cycles — the rhythms of energy, focus, emotions, decisions, and connection that shape your days.
+
+  WHAT YOU GET:
+
+  - Daily Reflection Prompts — Guided questions that help you explore your inner world in just 5 minutes
+  - Mood & Pattern Tracking — See how your emotions flow over weeks and months
+  - Dream Journal — Capture dreams with a 1000+ symbol interpretation database
+  - Emotional Cycle Mapping — Discover your personal rhythms and patterns
+  - Monthly Insight Reports — Understand your growth with data-driven summaries
+  - Moon Phase Integration — Align your reflections with lunar cycles
+  - Attachment Style Quiz — Discover your relationship pattern
+  - Shareable Insight Cards — Share your patterns with friends
+  - Private & Secure — Your thoughts stay on your device, always
+
+  WHO IT'S FOR:
+
+  You don't need to be into astrology. You just need to be curious about yourself. Whether you're processing emotions, building self-awareness, tracking your mental wellness, or simply want a beautiful daily journaling habit — InnerCycles meets you where you are.
+
+  START FREE TODAY
+
+  Download InnerCycles and discover the patterns that make you, you.
+
+  INNERCYCLES PREMIUM:
+  - Deep pattern analysis engine
+  - Unlimited dream interpretations
+  - Monthly reflection reports
+  - Advanced emotional insights
+  - Attachment style evolution tracker
+  - Shareable insight card templates
+  - Ad-free experience
+
+  Subscriptions: Monthly or Annual plans available. Payment charged to iTunes Account at confirmation of purchase. Subscription auto-renews unless turned off at least 24 hours before the end of the current period. Manage subscriptions in Account Settings.
+
+  Privacy Policy: https://innercycles.app/privacy
+  Terms of Use: https://innercycles.app/terms
+
+# ── PROMOTIONAL TEXT (170 chars, can be updated without review) ──────────
+promotional_text: "New: Emotional Cycle Visualizer + Attachment Style Quiz + Shareable Insight Cards. See the patterns behind your feelings in just 7 days."
+
+# ── WHAT'S NEW (for next update) ─────────────────────────────────────────
+whats_new: |
+  What's New in InnerCycles:
+  - Attachment Style Quiz — Discover your relationship pattern
+  - Shareable Insight Cards — Share your emotional patterns
+  - Emotional Cycle Visualizer — See your mood waves over time
+  - Growth Dashboard — Track your personal growth score
+  - Daily Hooks — New reflection prompts every day
+  - Enhanced Dream Analysis — Deeper symbol connections
+  - Bug fixes and performance improvements
+
+# ── LOCALIZED METADATA (Turkish) ─────────────────────────────────────────
+tr:
+  title: "InnerCycles - Ruh Hali"  # 23 chars
+  subtitle: "Günlük Ruh Hali & Rüya"  # 23 chars
+  keywords: "günlük,takip,yansıma,şükran,farkındalık,sağlık,ritüel,benlik,bakım,duygu,döngü,ruh,hali,rüya"
+  description: |
+    Her gün kendini biraz daha iyi anla.
+
+    InnerCycles, ruh halini takip etmeni, örüntülerini keşfetmeni ve günlük farkındalıkla büyümeni sağlayan özel bir günlüktür.
+
+    ÖZELLİKLER:
+    - Günlük Yansıma — İç dünyanı keşfetmen için rehberli sorular
+    - Ruh Hali & Örüntü Takibi — Duygularının haftalar ve aylar boyunca akışını gör
+    - Rüya Günlüğü — 1000+ sembol yorumlama veritabanı
+    - Duygusal Döngü Haritası — Kişisel ritimlerini keşfet
+    - Aylık İçgörü Raporları — Büyümeni verilerle anla
+    - Ay Fazı Entegrasyonu — Yansımalarını ay döngüsüyle hizala
+    - Özel & Güvenli — Düşüncelerin her zaman sende kalır
+
+    Ücretsiz başla. Seni sen yapan örüntüleri keşfet.

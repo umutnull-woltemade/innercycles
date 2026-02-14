@@ -25,7 +25,7 @@ Perdersi, a livello archetipico, rappresenta il lato ombra del tema del "viaggio
 
 **Perdersi in un bosco** rappresenta la ricerca nelle profondita dell'inconscio, nel tuo mondo interiore. Questo e direttamente collegato all'archetipo junghiano della foresta inconscia.
 
-**Perdersi in un luogo familiare** riflette il fatto che uno spazio che consideravi sicuro non ti offre piu sicurezza.
+**Perdersi in un luogo familiare** riflette il fatto che uno spazio che consideravi protetto non ti offre piu protezione.
 
 **Perdersi alla guida** simboleggia la sensazione di perdere il controllo nel percorso della tua vita o di procedere nella direzione sbagliata.
 
@@ -39,17 +39,17 @@ Il panico provato durante il sogno e il riflesso inconscio della perdita di cont
 
 ## Delicata visione spirituale
 
-In alcune tradizioni spirituali, perdersi e il riflesso dell'esperienza della "notte oscura" — una fase di incertezza che l'anima deve attraversare per crescere. Considera questa interpretazione non come un quadro definitivo, ma come uno strumento di approfondimento personale.
+In alcune tradizioni spirituali, perdersi e il riflesso dell'esperienza della "notte profonda" — una fase di incertezza che l'anima deve attraversare per crescere. Considera questa interpretazione non come un quadro definitivo, ma come uno strumento di approfondimento personale.
 
 ## Variazioni comuni
 
 - **Perdersi in una citta**: Perdita di direzione sociale o professionale.
 - **Perdersi in un bosco**: Esplorazione dell'inconscio, ricerca interiore.
-- **Perdersi in un luogo familiare**: Uno spazio sicuro che non si sente piu tale.
+- **Perdersi in un luogo familiare**: Uno spazio protetto che non si sente piu tale.
 - **Perdersi alla guida**: Perdita di controllo nel percorso di vita.
 - **Non riuscire a tornare a casa**: Distacco dalle radici, ricerca di appartenenza.
 - **Perdere qualcuno**: Paura della rottura di un legame importante.
-- **Perdersi nell'oscurita**: La forma piu intensa di incertezza, angoscia esistenziale.
+- **Perdersi nel buio**: La forma piu intensa di incertezza, angoscia esistenziale.
 
 ## Quando prenderlo sul serio?
 

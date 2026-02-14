@@ -7,7 +7,7 @@ updated_at: "2026-01-25"
 
 # Sognare di cadere — Paura di perdere il controllo o un nuovo inizio?
 
-- I sogni di caduta sono il simbolo più diretto di instabilità o insicurezza nella tua vita.
+- I sogni di caduta sono il simbolo più diretto di instabilità o vulnerabilità nella tua vita.
 - Velocità, direzione e conclusione della caduta modellano il messaggio del sogno.
 - Quasi tutti lo sperimentano almeno una volta — è uno dei temi onirici più universali.
 
@@ -21,7 +21,7 @@ Se hai sognato di cadere, probabilmente percepisci che qualcosa nella tua vita s
 
 **Perdita di controllo:** L'interpretazione più comune. Quando una situazione sembra incontrollabile, i sogni di caduta si intensificano.
 
-**Insicurezza e inadeguatezza:** La caduta può emergere quando dubiti delle tue capacità.
+**Vulnerabilità e inadeguatezza:** La caduta può emergere quando dubiti delle tue capacità.
 
 **Lasciar andare:** Non ogni caduta è negativa. Alcuni interpreti la leggono come un bisogno nascosto di rilasciare il controllo.
 
@@ -52,7 +52,7 @@ In alcune tradizioni spirituali, la caduta è interpretata come il ritorno brusc
 
 I sogni di caduta sono comuni e generalmente innocui. In caso di frequente ricorrenza o disturbi del sonno, può essere utile esaminare le fonti di ansia nella vita.
 
-**Avvertenza:** I sogni cronici di caduta possono riflettere un'insicurezza persistente o una paura del fallimento sottostante.
+**Avvertenza:** I sogni cronici di caduta possono riflettere una vulnerabilità persistente o una paura del fallimento sottostante.
 
 **Suggerimento:** Registra i dettagli del tuo sogno di caduta — il luogo, l'emozione e la conclusione. Con il tempo, queste annotazioni possono rivelare il modello personale dietro questo sogno.
 

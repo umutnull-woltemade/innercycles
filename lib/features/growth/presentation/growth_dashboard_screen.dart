@@ -19,6 +19,8 @@ import '../../../data/models/journal_entry.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/journal_service.dart';
 import '../../../data/services/dream_journal_service.dart';
+import '../../../data/services/growth_challenge_service.dart';
+import '../../../data/services/gratitude_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 
@@ -45,6 +47,8 @@ class _GrowthDashboardScreenState
     final isEn = language == AppLanguage.en;
     final journalAsync = ref.watch(journalServiceProvider);
     final dreamAsync = ref.watch(dreamJournalServiceProvider);
+    final challengeAsync = ref.watch(growthChallengeServiceProvider);
+    final gratitudeAsync = ref.watch(gratitudeServiceProvider);
 
     return Scaffold(
       body: CosmicBackground(
@@ -58,10 +62,14 @@ class _GrowthDashboardScreenState
                     const Center(child: CircularProgressIndicator()),
                 error: (_, _) => const SizedBox.shrink(),
                 data: (dreamService) {
+                  final challengeService = challengeAsync.valueOrNull;
+                  final gratitudeService = gratitudeAsync.valueOrNull;
                   return _buildDashboard(
                     context,
                     journalService,
                     dreamService,
+                    challengeService,
+                    gratitudeService,
                     isDark,
                     isEn,
                   );
@@ -78,6 +86,8 @@ class _GrowthDashboardScreenState
     BuildContext context,
     JournalService journalService,
     DreamJournalService dreamService,
+    GrowthChallengeService? challengeService,
+    GratitudeService? gratitudeService,
     bool isDark,
     bool isEn,
   ) {
@@ -90,6 +100,8 @@ class _GrowthDashboardScreenState
     // Calculate data for growth score
     final focusAreasCoveredThisMonth = _focusAreasCoveredThisMonth(monthEntries);
     final consistencyDays = _consistencyDaysLast30(journalService);
+    final completedChallenges = challengeService?.completedChallengeCount ?? 0;
+    final gratitudeCount = gratitudeService?.entryCount ?? 0;
 
     return FutureBuilder<int>(
       future: dreamService.getDreamCount(),
@@ -102,6 +114,8 @@ class _GrowthDashboardScreenState
           focusAreasCovered: focusAreasCoveredThisMonth,
           consistencyDays: consistencyDays,
           dreamCount: dreamCount,
+          completedChallenges: completedChallenges,
+          gratitudeCount: gratitudeCount,
         );
 
         return CupertinoScrollbar(
@@ -155,6 +169,8 @@ class _GrowthDashboardScreenState
                     longestStreak,
                     dreamCount,
                     focusAreasCoveredThisMonth,
+                    completedChallenges,
+                    gratitudeCount,
                     isDark,
                     isEn,
                   ).animate().fadeIn(delay: 200.ms, duration: 400.ms),
@@ -167,6 +183,8 @@ class _GrowthDashboardScreenState
                     context,
                     monthEntries,
                     dreamCount,
+                    completedChallenges,
+                    gratitudeCount,
                     isDark,
                     isEn,
                   ).animate().fadeIn(delay: 300.ms, duration: 400.ms),
@@ -204,22 +222,30 @@ class _GrowthDashboardScreenState
     required int focusAreasCovered,
     required int consistencyDays,
     required int dreamCount,
+    int completedChallenges = 0,
+    int gratitudeCount = 0,
   }) {
     final streakScore =
-        (currentStreak.clamp(0, 30) / 30 * 30).round(); // 30% weight
+        (currentStreak.clamp(0, 30) / 30 * 25).round(); // 25% weight
     final entryScore =
-        (totalEntries.clamp(0, 100) / 100 * 20).round(); // 20% weight
+        (totalEntries.clamp(0, 100) / 100 * 15).round(); // 15% weight
     final coverageScore =
-        (focusAreasCovered / 5 * 20).round(); // 20% weight
+        (focusAreasCovered / 5 * 15).round(); // 15% weight
     final consistencyScore =
         (consistencyDays / 30 * 15).round(); // 15% weight
     final dreamScore =
-        (dreamCount.clamp(0, 20) / 20 * 15).round(); // 15% weight
+        (dreamCount.clamp(0, 20) / 20 * 10).round(); // 10% weight
+    final challengeScore =
+        (completedChallenges.clamp(0, 10) / 10 * 10).round(); // 10% weight
+    final gratitudeScore =
+        (gratitudeCount.clamp(0, 30) / 30 * 10).round(); // 10% weight
     return (streakScore +
             entryScore +
             coverageScore +
             consistencyScore +
-            dreamScore)
+            dreamScore +
+            challengeScore +
+            gratitudeScore)
         .clamp(0, 100);
   }
 
@@ -507,6 +533,8 @@ class _GrowthDashboardScreenState
     int longestStreak,
     int dreamCount,
     int focusAreasCoveredThisMonth,
+    int completedChallenges,
+    int gratitudeCount,
     bool isDark,
     bool isEn,
   ) {
@@ -516,6 +544,8 @@ class _GrowthDashboardScreenState
       longestStreak: longestStreak,
       dreamCount: dreamCount,
       focusAreasCoveredThisMonth: focusAreasCoveredThisMonth,
+      completedChallenges: completedChallenges,
+      gratitudeCount: gratitudeCount,
       isEn: isEn,
     );
 
@@ -672,6 +702,8 @@ class _GrowthDashboardScreenState
     required int longestStreak,
     required int dreamCount,
     required int focusAreasCoveredThisMonth,
+    required int completedChallenges,
+    required int gratitudeCount,
     required bool isEn,
   }) {
     final maxStreak = math.max(currentStreak, longestStreak);
@@ -705,7 +737,7 @@ class _GrowthDashboardScreenState
       ),
       _Milestone(
         icon: Icons.nights_stay,
-        title: isEn ? 'Dream Explorer' : 'Ruya Kasifl',
+        title: isEn ? 'Dream Explorer' : 'Ruya Kasifi',
         unlocked: dreamCount >= 3,
         progressHint: dreamCount < 3
             ? isEn
@@ -714,11 +746,24 @@ class _GrowthDashboardScreenState
             : '',
       ),
       _Milestone(
-        icon: Icons.brightness_2,
-        title: isEn ? 'Moon Connected' : 'Ay Baglantisi',
-        // This requires logging during full/new moon — tracked as a stretch goal
-        unlocked: false,
-        progressHint: isEn ? 'Log during full/new moon' : 'Dolunayda kayit yap',
+        icon: Icons.emoji_events,
+        title: isEn ? 'Challenge Champion' : 'Gorev Sampiyonu',
+        unlocked: completedChallenges >= 3,
+        progressHint: completedChallenges < 3
+            ? isEn
+                ? '${3 - completedChallenges} challenges left'
+                : '${3 - completedChallenges} gorev kaldi'
+            : '',
+      ),
+      _Milestone(
+        icon: Icons.favorite,
+        title: isEn ? 'Gratitude Guru' : 'Sukran Ustasi',
+        unlocked: gratitudeCount >= 7,
+        progressHint: gratitudeCount < 7
+            ? isEn
+                ? '${7 - gratitudeCount} gratitude entries'
+                : '${7 - gratitudeCount} sukran kaydi'
+            : '',
       ),
       _Milestone(
         icon: Icons.emoji_events,
@@ -743,7 +788,6 @@ class _GrowthDashboardScreenState
       _Milestone(
         icon: Icons.share,
         title: isEn ? 'Story Teller' : 'Hikaye Anlaticisi',
-        // Unlocked when user shares — tracked in SharedPreferences as stretch goal
         unlocked: false,
         progressHint:
             isEn ? 'Share your progress' : 'Ilerlemeni paylas',
@@ -759,6 +803,8 @@ class _GrowthDashboardScreenState
     BuildContext context,
     List<JournalEntry> monthEntries,
     int dreamCount,
+    int completedChallenges,
+    int gratitudeCount,
     bool isDark,
     bool isEn,
   ) {
@@ -841,6 +887,22 @@ class _GrowthDashboardScreenState
             label: isEn ? 'Dreams logged' : 'Kaydedilen ruyalar',
             value: '$dreamCount',
             color: AppColors.amethyst,
+            isDark: isDark,
+          ),
+          const SizedBox(height: AppConstants.spacingMd),
+          _buildSummaryRow(
+            icon: Icons.emoji_events,
+            label: isEn ? 'Challenges completed' : 'Tamamlanan gorevler',
+            value: '$completedChallenges',
+            color: AppColors.celestialGold,
+            isDark: isDark,
+          ),
+          const SizedBox(height: AppConstants.spacingMd),
+          _buildSummaryRow(
+            icon: Icons.favorite,
+            label: isEn ? 'Gratitude entries' : 'Sukran kayitlari',
+            value: '$gratitudeCount',
+            color: AppColors.softCoral,
             isDark: isDark,
           ),
         ],

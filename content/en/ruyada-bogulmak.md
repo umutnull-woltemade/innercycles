@@ -59,7 +59,7 @@ In some traditions, drowning represents the dissolution of the ego and descent i
 
 ## When Should You Take It Seriously?
 
-Drowning dreams tend to carry more urgent messages than many other dream themes. If this dream recurs, if you wake gasping or with panic-like symptoms, or if you feel persistently overwhelmed during the day, both physical (sleep apnea screening) and emotional (stress management, professional support) assessment may be genuinely important.
+Drowning dreams tend to carry more significant messages than many other dream themes. If this dream recurs, if you wake gasping or with panic-like symptoms, or if you feel persistently overwhelmed during the day, both physical (sleep apnea screening) and emotional (stress management, professional support) assessment may be genuinely important.
 
 If this dream keeps returning, it's worth paying close attention to what it's reflecting.
 

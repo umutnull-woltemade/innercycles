@@ -1,5 +1,4 @@
 import 'package:uuid/uuid.dart';
-import 'zodiac_sign.dart';
 import '../providers/app_providers.dart';
 import '../services/l10n_service.dart';
 
@@ -11,9 +10,6 @@ class UserProfile {
   final String? birthPlace;
   final double? birthLatitude;
   final double? birthLongitude;
-  final ZodiacSign sunSign;
-  final ZodiacSign? moonSign;
-  final ZodiacSign? risingSign;
   final DateTime createdAt;
   final DateTime updatedAt;
   final bool isPrimary;
@@ -28,16 +24,12 @@ class UserProfile {
     this.birthPlace,
     this.birthLatitude,
     this.birthLongitude,
-    ZodiacSign? sunSign,
-    this.moonSign,
-    this.risingSign,
     DateTime? createdAt,
     DateTime? updatedAt,
     this.isPrimary = false,
     this.relationship,
     this.avatarEmoji,
   }) : id = id ?? const Uuid().v4(),
-       sunSign = sunSign ?? ZodiacSignExtension.fromDate(birthDate),
        createdAt = createdAt ?? DateTime.now(),
        updatedAt = updatedAt ?? DateTime.now();
 
@@ -49,9 +41,6 @@ class UserProfile {
     'birthPlace': birthPlace,
     'birthLatitude': birthLatitude,
     'birthLongitude': birthLongitude,
-    'sunSign': sunSign.index,
-    'moonSign': moonSign?.index,
-    'risingSign': risingSign?.index,
     'createdAt': createdAt.toIso8601String(),
     'updatedAt': updatedAt.toIso8601String(),
     'isPrimary': isPrimary,
@@ -60,10 +49,6 @@ class UserProfile {
   };
 
   factory UserProfile.fromJson(Map<String, dynamic> json) {
-    final sunSignIndex = json['sunSign'] as int? ?? 0;
-    final moonSignIndex = json['moonSign'] as int?;
-    final risingSignIndex = json['risingSign'] as int?;
-
     return UserProfile(
       id: json['id'] as String?,
       name: json['name'] as String?,
@@ -72,21 +57,6 @@ class UserProfile {
       birthPlace: json['birthPlace'] as String?,
       birthLatitude: json['birthLatitude'] as double?,
       birthLongitude: json['birthLongitude'] as double?,
-      sunSign: (sunSignIndex >= 0 && sunSignIndex < ZodiacSign.values.length)
-          ? ZodiacSign.values[sunSignIndex]
-          : null,
-      moonSign:
-          (moonSignIndex != null &&
-              moonSignIndex >= 0 &&
-              moonSignIndex < ZodiacSign.values.length)
-          ? ZodiacSign.values[moonSignIndex]
-          : null,
-      risingSign:
-          (risingSignIndex != null &&
-              risingSignIndex >= 0 &&
-              risingSignIndex < ZodiacSign.values.length)
-          ? ZodiacSign.values[risingSignIndex]
-          : null,
       createdAt: json['createdAt'] != null
           ? DateTime.parse(json['createdAt'] as String)
           : null,
@@ -107,9 +77,6 @@ class UserProfile {
     String? birthPlace,
     double? birthLatitude,
     double? birthLongitude,
-    ZodiacSign? sunSign,
-    ZodiacSign? moonSign,
-    ZodiacSign? risingSign,
     DateTime? createdAt,
     DateTime? updatedAt,
     bool? isPrimary,
@@ -123,9 +90,6 @@ class UserProfile {
     birthPlace: birthPlace ?? this.birthPlace,
     birthLatitude: birthLatitude ?? this.birthLatitude,
     birthLongitude: birthLongitude ?? this.birthLongitude,
-    sunSign: sunSign ?? this.sunSign,
-    moonSign: moonSign ?? this.moonSign,
-    risingSign: risingSign ?? this.risingSign,
     createdAt: createdAt ?? this.createdAt,
     updatedAt: updatedAt ?? DateTime.now(),
     isPrimary: isPrimary ?? this.isPrimary,
@@ -133,33 +97,14 @@ class UserProfile {
     avatarEmoji: avatarEmoji ?? this.avatarEmoji,
   );
 
-  /// Check if the profile has complete birth data for chart calculation
+  /// Check if the profile has complete birth data
   bool get hasCompleteBirthData =>
       birthTime != null && birthLatitude != null && birthLongitude != null;
 
-  /// Check if moon and rising signs have been calculated
-  bool get hasCalculatedSigns => moonSign != null && risingSign != null;
+  /// Get display emoji (uses avatar emoji or generic sparkle)
+  String get displayEmoji => avatarEmoji ?? '✨';
 
-  /// Get effective moon sign (falls back to sun sign if not calculated)
-  /// Moon sign can reasonably fallback to sun sign for approximate readings
-  ZodiacSign get effectiveMoonSign => moonSign ?? sunSign;
-
-  /// Get actual rising sign - returns null if not calculated
-  /// Rising sign should NEVER fallback to sun sign as they are fundamentally different
-  /// Rising sign requires exact birth time and location to calculate accurately
-  ZodiacSign? get actualRisingSign => risingSign;
-
-  /// DEPRECATED: Use actualRisingSign instead
-  /// This getter incorrectly falls back to sun sign which causes inconsistencies
-  @Deprecated(
-    'Use actualRisingSign instead - risingSign should not fallback to sunSign',
-  )
-  ZodiacSign get effectiveRisingSign => risingSign ?? sunSign;
-
-  /// Get display emoji (uses relationship emoji or sign emoji)
-  String get displayEmoji => avatarEmoji ?? sunSign.symbol;
-
-  /// Get relationship display name (Turkish fallback)
+  /// Get relationship display name
   String get relationshipLabel {
     switch (relationship) {
       case 'partner':

@@ -43,14 +43,14 @@ In molte tradizioni antiche, i sogni di volo sono intesi come segni di ascesa sp
 - **Volare basso**: Progresso cauto.
 - **Volare con difficolta**: Lotta contro gli ostacoli.
 - **Volare senza controllo**: Perdita di controllo nella vita.
-- **Cadere mentre si vola**: Insicurezza dopo il successo.
+- **Cadere mentre si vola**: Vulnerabilità dopo il successo.
 - **Sbattere le braccia per volare**: Salire con le proprie forze.
 - **Volare con qualcuno**: Viaggio condiviso, legame profondo.
 - **Volere volare senza riuscirci**: Sensazione di blocco.
 
 ## Quando prenderlo sul serio?
 
-I sogni di volo sono generalmente esperienze positive. Tuttavia, paura intensa o perdita di controllo durante il volo possono riflettere un periodo di insicurezza nella vita da svegli.
+I sogni di volo sono generalmente esperienze positive. Tuttavia, paura intensa o perdita di controllo durante il volo possono riflettere un periodo di vulnerabilità nella vita da svegli.
 
 **Avvertenza:** L'ansia persistente di caduta durante il volo puo riflettere un'incertezza profonda sulla durata dei tuoi successi.
 

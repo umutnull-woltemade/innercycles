@@ -828,9 +828,9 @@ class MegaDreamSymbolsPart6 {
       emoji: '🔢',
       category: SymbolCategory.soyut,
       universalMeanings: [
-        'Kozmik düzen',
+        'Evrensel düzen',
         'Zaman döngüsü',
-        'Burçlar',
+        'Döngüsel semboller',
         'Havariler',
         'Tamamlanmış döngü',
         'Mükemmel düzen',

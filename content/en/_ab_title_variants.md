@@ -49,7 +49,7 @@ updated_at: "2026-01-25"
 ## ruyada-olum (Death)
 - **A (Emotional curiosity):** "Dreaming of Death — Why This Dream Rarely Means What You Think"
 - **B (Personal relevance):** "What a Death Dream Reveals About the Transformation Happening in Your Life"
-- **C (Soft corrective):** "Death Dreams Aren't Predictions — They're One of the Most Misunderstood Symbols"
+- **C (Soft corrective):** "Death Dreams Aren't What You Expect — They're One of the Most Misunderstood Symbols"
 
 ## ruyada-para (Money)
 - **A (Emotional curiosity):** "Dreaming of Money — What Your Self-Worth Is Trying to Say"
@@ -79,4 +79,4 @@ updated_at: "2026-01-25"
 ## ruyada-bogulmak (Drowning)
 - **A (Emotional curiosity):** "Dreaming of Drowning — When Your Emotions Become Overwhelming"
 - **B (Personal relevance):** "Why Drowning Dreams Happen — And What They Say About Your Emotional Load"
-- **C (Soft corrective):** "Drowning in a Dream Isn't a Prediction — It's Your Mind's Way of Asking for Help"
+- **C (Soft corrective):** "Drowning in a Dream Isn't a Warning Sign — It's Your Mind's Way of Asking for Help"

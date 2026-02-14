@@ -243,24 +243,29 @@ class SavedProfilesScreen extends ConsumerWidget {
             const SizedBox(height: AppConstants.spacingLg),
             Row(
               children: [
-                Container(
-                  width: 50,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    gradient: RadialGradient(
-                      colors: [
-                        profile.sunSign.color.withAlpha(100),
-                        profile.sunSign.color.withAlpha(30),
-                      ],
-                    ),
-                  ),
-                  child: Center(
-                    child: Text(
-                      profile.avatarEmoji ?? profile.sunSign.symbol,
-                      style: const TextStyle(fontSize: 24),
-                    ),
-                  ),
+                Builder(
+                  builder: (context) {
+                    final sign = ZodiacSignExtension.fromDate(profile.birthDate);
+                    return Container(
+                      width: 50,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        gradient: RadialGradient(
+                          colors: [
+                            sign.color.withAlpha(100),
+                            sign.color.withAlpha(30),
+                          ],
+                        ),
+                      ),
+                      child: Center(
+                        child: Text(
+                          profile.avatarEmoji ?? profile.displayEmoji,
+                          style: const TextStyle(fontSize: 24),
+                        ),
+                      ),
+                    );
+                  },
                 ),
                 const SizedBox(width: AppConstants.spacingMd),
                 Expanded(
@@ -278,9 +283,11 @@ class SavedProfilesScreen extends ConsumerWidget {
                             ),
                       ),
                       Text(
-                        '${profile.sunSign.getLocalizedName(language)} ${profile.getLocalizedRelationshipLabel(language)}',
+                        profile.getLocalizedRelationshipLabel(language),
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: profile.sunSign.color,
+                          color: isDark
+                              ? AppColors.textMuted
+                              : AppColors.lightTextMuted,
                         ),
                       ),
                     ],
@@ -430,6 +437,7 @@ class _ProfileCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final sign = ZodiacSignExtension.fromDate(profile.birthDate);
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -458,14 +466,14 @@ class _ProfileCard extends StatelessWidget {
                     shape: BoxShape.circle,
                     gradient: RadialGradient(
                       colors: [
-                        profile.sunSign.color.withAlpha(100),
-                        profile.sunSign.color.withAlpha(30),
+                        sign.color.withAlpha(100),
+                        sign.color.withAlpha(30),
                       ],
                     ),
                   ),
                   child: Center(
                     child: Text(
-                      profile.avatarEmoji ?? profile.sunSign.symbol,
+                      profile.avatarEmoji ?? profile.displayEmoji,
                       style: const TextStyle(fontSize: 28),
                     ),
                   ),
@@ -537,14 +545,16 @@ class _ProfileCard extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        profile.sunSign.symbol,
-                        style: TextStyle(color: profile.sunSign.color),
+                        profile.displayEmoji,
+                        style: TextStyle(color: sign.color),
                       ),
                       const SizedBox(width: 4),
                       Text(
-                        profile.sunSign.getLocalizedName(language),
+                        profile.name ?? '',
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: profile.sunSign.color,
+                          color: isDark
+                              ? AppColors.textMuted
+                              : AppColors.lightTextMuted,
                         ),
                       ),
                       const SizedBox(width: 8),

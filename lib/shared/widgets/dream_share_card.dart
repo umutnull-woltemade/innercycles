@@ -333,7 +333,7 @@ class DreamShareCard extends StatelessWidget {
         ),
         const SizedBox(width: 4),
         Text(
-          'venusone.com',
+          'innercycles.app',
           style: TextStyle(
             fontSize: 10,
             color: Colors.white.withValues(alpha: 0.5),

@@ -8,6 +8,7 @@
 import 'dart:convert';
 import 'dart:math';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../content/reflection_prompts_content.dart';
 
 // ════════════════════════════════════════════════════════════════════════════
 // ENUMS
@@ -235,6 +236,23 @@ class JournalPromptService {
 
   /// Get all prompts
   List<JournalPrompt> getAllPrompts() => List.unmodifiable(allPrompts);
+
+  // ══════════════════════════════════════════════════════════════════════════
+  // REFLECTION PROMPTS (108 deep prompts with follow-up questions)
+  // ══════════════════════════════════════════════════════════════════════════
+
+  /// Returns a deterministic reflection prompt for today (from the 108-prompt pool).
+  ReflectionPrompt getDailyReflection() {
+    final now = DateTime.now();
+    final dateHash = now.year * 10000 + now.month * 100 + now.day;
+    final index = dateHash % allReflectionPrompts.length;
+    return allReflectionPrompts[index];
+  }
+
+  /// Returns reflection prompts filtered by focus area.
+  List<ReflectionPrompt> getReflectionsByArea(String area) {
+    return allReflectionPrompts.where((p) => p.focusArea == area).toList();
+  }
 
   // ══════════════════════════════════════════════════════════════════════════
   // 80 CURATED PROMPTS - 10 per category, bilingual EN/TR

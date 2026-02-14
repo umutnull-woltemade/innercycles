@@ -5,10 +5,14 @@ import '../services/localization_service.dart';
 import '../services/l10n_service.dart';
 import '../providers/app_providers.dart';
 
+/// Personality element archetypes used for dream interpretation and reflection
 enum Element { fire, earth, air, water }
 
+/// Personality modality archetypes
 enum Modality { cardinal, fixed, mutable }
 
+/// Personality archetype signs derived from birth date
+/// Used internally for personalized dream interpretation and journaling themes
 enum ZodiacSign {
   aries,
   taurus,

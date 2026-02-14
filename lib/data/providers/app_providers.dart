@@ -12,7 +12,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/user_profile.dart';
-import '../models/zodiac_sign.dart' as zodiac;
 
 import '../services/storage_service.dart';
 import '../services/dream_journal_service.dart';
@@ -40,7 +39,15 @@ import '../services/export_service.dart';
 import '../services/affirmation_service.dart';
 import '../services/milestone_service.dart';
 import '../services/journal_prompt_service.dart';
+import '../services/pattern_health_service.dart';
+import '../services/quiz_engine_service.dart';
+import '../services/emotional_cycle_service.dart';
+import '../services/notification_lifecycle_service.dart';
+import '../services/voice_journal_service.dart';
+import '../services/pattern_engine_service.dart';
+import '../services/year_review_service.dart';
 import '../models/journal_entry.dart';
+import '../models/cross_correlation_result.dart';
 
 // =============================================================================
 // USER PROFILE PROVIDERS
@@ -70,7 +77,6 @@ class UserProfileNotifier extends Notifier<UserProfile?> {
     if (state != null) {
       final updated = state!.copyWith(
         birthDate: date,
-        sunSign: zodiac.ZodiacSignExtension.fromDate(date),
       );
       state = updated;
       _syncToStorage(updated);
@@ -566,4 +572,116 @@ final milestoneServiceProvider =
 final journalPromptServiceProvider =
     FutureProvider<JournalPromptService>((ref) async {
   return await JournalPromptService.init();
+});
+
+// =============================================================================
+// PATTERN HEALTH SERVICE PROVIDER
+// =============================================================================
+
+final patternHealthServiceProvider =
+    FutureProvider<PatternHealthService>((ref) async {
+  final journalService = await ref.watch(journalServiceProvider.future);
+  return await PatternHealthService.init(journalService);
+});
+
+final patternHealthReportProvider =
+    FutureProvider<PatternHealthReport>((ref) async {
+  final service = await ref.watch(patternHealthServiceProvider.future);
+  return await service.analyzeHealth();
+});
+
+// =============================================================================
+// VOICE JOURNAL SERVICE PROVIDER
+// =============================================================================
+
+final voiceJournalServiceProvider =
+    FutureProvider<VoiceJournalService>((ref) async {
+  return await VoiceJournalService.init();
+});
+
+// =============================================================================
+// NOTIFICATION LIFECYCLE PROVIDER
+// =============================================================================
+
+final notificationLifecycleServiceProvider =
+    FutureProvider<NotificationLifecycleService>((ref) async {
+  return await NotificationLifecycleService.init();
+});
+
+// =============================================================================
+// PATTERN ENGINE SERVICE PROVIDER (with cross-correlation support)
+// =============================================================================
+
+final patternEngineServiceProvider =
+    FutureProvider<PatternEngineService>((ref) async {
+  final journalService = await ref.watch(journalServiceProvider.future);
+  final sleepService = await ref.watch(sleepServiceProvider.future);
+  final gratitudeService = await ref.watch(gratitudeServiceProvider.future);
+  final ritualService = await ref.watch(ritualServiceProvider.future);
+  final wellnessScoreService =
+      await ref.watch(wellnessScoreServiceProvider.future);
+  final moodCheckinService =
+      await ref.watch(moodCheckinServiceProvider.future);
+  final streakService = await ref.watch(streakServiceProvider.future);
+  return PatternEngineService(
+    journalService,
+    sleepService: sleepService,
+    gratitudeService: gratitudeService,
+    ritualService: ritualService,
+    wellnessScoreService: wellnessScoreService,
+    moodCheckinService: moodCheckinService,
+    streakService: streakService,
+  );
+});
+
+// =============================================================================
+// CROSS-CORRELATIONS PROVIDER
+// =============================================================================
+
+final crossCorrelationsProvider =
+    FutureProvider<List<CrossCorrelation>>((ref) async {
+  final engine = await ref.watch(patternEngineServiceProvider.future);
+  return engine.getCrossCorrelations();
+});
+
+// =============================================================================
+// EMOTIONAL CYCLE SERVICE PROVIDER
+// =============================================================================
+
+final emotionalCycleServiceProvider =
+    FutureProvider<EmotionalCycleService>((ref) async {
+  final journalService = await ref.watch(journalServiceProvider.future);
+  return EmotionalCycleService(journalService);
+});
+
+// =============================================================================
+// QUIZ ENGINE SERVICE PROVIDER
+// =============================================================================
+
+final quizEngineServiceProvider =
+    FutureProvider<QuizEngineService>((ref) async {
+  return await QuizEngineService.init();
+});
+
+final emotionalCycleAnalysisProvider =
+    FutureProvider<EmotionalCycleAnalysis>((ref) async {
+  final service = await ref.watch(emotionalCycleServiceProvider.future);
+  if (!service.hasEnoughData()) {
+    return EmotionalCycleAnalysis(
+      areaSummaries: {},
+      insights: [],
+      totalEntries: 0,
+    );
+  }
+  return service.analyze();
+});
+
+// =============================================================================
+// YEAR REVIEW SERVICE PROVIDER
+// =============================================================================
+
+final yearReviewServiceProvider =
+    FutureProvider<YearReviewService>((ref) async {
+  final journalService = await ref.watch(journalServiceProvider.future);
+  return await YearReviewService.init(journalService);
 });

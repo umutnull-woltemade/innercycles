@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
@@ -753,7 +754,13 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
       height: 52,
       child: ElevatedButton.icon(
         onPressed: () {
-          // TODO: Implement share functionality
+          if (_result == null) return;
+          final style = _result!.attachmentStyle;
+          final pct = (_result!.percentageFor(style) * 100).toStringAsFixed(0);
+          final text = isEn
+              ? 'I discovered my attachment style: ${style.displayNameEn} ($pct%)\n\nUnderstanding your patterns is the first step to growth.\n\nExplore yours with InnerCycles'
+              : 'Baglanma stilimi kesfettim: ${style.displayNameTr} (%$pct)\n\nKaliplarini anlamak buyumenin ilk adimidir.\n\nInnerCycles ile kesfet';
+          Share.share(text);
         },
         icon: const Icon(Icons.share_rounded, size: 20),
         label: Text(

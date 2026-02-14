@@ -25,7 +25,7 @@ Se perdre, au niveau archétypique, représente la face d'ombre du thème du « 
 
 **Se perdre dans une forêt** représente la recherche de votre chemin dans les profondeurs de l'inconscient, dans votre monde intérieur. Cela est directement lié à l'archétype jungien de la forêt inconsciente.
 
-**Se perdre dans un lieu familier** reflète le fait qu'un espace que vous connaissiez comme sûr ne vous procure plus de sécurité.
+**Se perdre dans un lieu familier** reflète le fait qu'un espace que vous connaissiez comme sûr ne vous apporte plus de protection.
 
 **Se perdre en voiture** symbolise le sentiment de perdre le contrôle sur le parcours de votre vie ou d'avancer dans la mauvaise direction.
 
@@ -39,13 +39,13 @@ La panique ressentie pendant le rêve est le reflet inconscient de la perte de c
 
 ## Perspective spirituelle douce
 
-Dans certaines traditions spirituelles, se perdre est le reflet de l'expérience de la « nuit obscure » — une phase d'incertitude que l'âme doit traverser pour grandir. Considérez cette interprétation non comme un cadre définitif, mais comme un outil d'approfondissement personnel.
+Dans certaines traditions spirituelles, se perdre est le reflet de l'expérience de la « nuit sombre » — une phase d'incertitude que l'âme doit traverser pour grandir. Considérez cette interprétation non comme un cadre définitif, mais comme un outil d'approfondissement personnel.
 
 ## Variations courantes
 
 - **Se perdre dans une ville** : perte de direction sociale ou professionnelle.
 - **Se perdre dans une forêt** : exploration de l'inconscient, quête intérieure.
-- **Se perdre dans un lieu familier** : un espace sûr qui ne procure plus de sécurité.
+- **Se perdre dans un lieu familier** : un espace sûr qui n'apporte plus de protection.
 - **Se perdre en voiture** : perte de contrôle sur le parcours de vie.
 - **Ne pas pouvoir rentrer chez soi** : rupture avec les racines, quête d'appartenance.
 - **Perdre quelqu'un** : peur de la rupture d'un lien important.

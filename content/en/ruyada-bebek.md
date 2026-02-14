@@ -21,7 +21,7 @@ If a baby has appeared in your dream, something new is likely emerging in your l
 
 ## Symbol Analysis
 
-The baby is the archetype of new beginnings and pure potential. Jung described the child archetype as the unconscious's most powerful promise of renewal.
+The baby is the archetype of new beginnings and pure potential. Jung described the child archetype as the unconscious's most powerful expression of potential for renewal.
 
 **A healthy baby** signals a positive new beginning, growth potential, and fresh energy entering your life.
 

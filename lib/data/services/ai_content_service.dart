@@ -165,7 +165,7 @@ class AiContentService {
       }
     }
 
-    return CosmicMessagesContent.getDailyCosmicMessage(sign);
+    return CosmicMessagesContent.getDailyCosmicMessage(DateTime.now());
   }
 
   String _buildInnerMessagePrompt(
@@ -315,7 +315,7 @@ Write in English, keep personal growth terms simple.
       }
     }
 
-    return CosmicMessagesContent.getMorningAffirmation(sign);
+    return CosmicMessagesContent.getMorningAffirmation(DateTime.now());
   }
 
   String _buildAffirmationPrompt(
@@ -1889,7 +1889,7 @@ Turkce yaz, sicak ve destekleyici bir ton kullan.
       case AdviceArea.money:
         return 'Bolluk enerjisi bugun seninle. Bilincli harcamalar ve yeni gelir firsatlari icin gozlerini ac.';
       case AdviceArea.spiritual:
-        return CosmicMessagesContent.getDailyCosmicMessage(sign);
+        return CosmicMessagesContent.getDailyCosmicMessage(DateTime.now());
     }
   }
 

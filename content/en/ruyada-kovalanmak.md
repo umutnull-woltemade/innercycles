@@ -11,7 +11,7 @@ updated_at: "2026-01-25"
 - The identity of your pursuer and how you respond are the keys to understanding the message.
 - This is one of the most common anxiety dreams — and one of the most revealing.
 
-There's a reason chase dreams feel so urgent: they mirror the way your mind processes avoidance. Whether you're running from a stranger, a shadow, an animal, or someone you know, the dream is rarely about the pursuer. It's about what they represent — a feeling you've suppressed, a decision you've postponed, or a truth you're not ready to face.
+There's a reason chase dreams feel so compelling: they mirror the way your mind processes avoidance. Whether you're running from a stranger, a shadow, an animal, or someone you know, the dream is rarely about the pursuer. It's about what they represent — a feeling you've suppressed, a decision you've postponed, or a truth you're not ready to face.
 
 Updated recently for clarity and context.
 

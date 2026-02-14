@@ -1,5 +1,5 @@
-/// Dream Interpretation Service - 7 Boyutlu Rüya Yorumlama Motoru
-/// AI destekli kadim bilgelik + Jungian analiz + kozmik zamanlama
+/// Dream Interpretation Service - 7-Dimensional Dream Interpretation Engine
+/// AI-powered ancient wisdom + Jungian analysis + timing awareness
 library;
 
 import 'dart:math';
@@ -293,10 +293,10 @@ Bu arketipin şu anki mesajı ne?
 - Gölge sorusu (sormaktan kaçınılan)
 - Entegrasyon yolu
 
-6. ASTROLOJİK ZAMANLAMA:
-- Bu rüya NEDEN şimdi geldi?
-- Ay fazı bağlantısı
-- Kozmik zamanlama mesajı
+6. TIMING AWARENESS:
+- Why did this dream come NOW?
+- Moon phase connection
+- Timing insight message
 
 7. IŞIK/GÖLGE:
 - Işık mesajı (olumlu potansiyel)
@@ -987,15 +987,15 @@ JSON FORMATI:
       ),
       DreamExplorationLink(
         title: L10nService.get(
-          'dream_interpretation.exploration.tarot_title',
+          'dream_interpretation.exploration.journal_title',
           language,
         ),
         description: L10nService.get(
-          'dream_interpretation.exploration.tarot_desc',
+          'dream_interpretation.exploration.journal_desc',
           language,
         ),
-        route: '/tarot',
-        emoji: '🃏',
+        route: '/journal',
+        emoji: '📝',
         category: L10nService.get(
           'dream_interpretation.exploration.category_symbols',
           language,
@@ -1146,41 +1146,41 @@ JSON FORMATI:
 // ═══════════════════════════════════════════════════════════════
 
 /// Arketip bazli ruya icgoruleri
-class ZodiacDreamInsights {
+class ArchetypeDreamInsights {
   /// Arketipe ozel ruya analizi
-  static ZodiacDreamProfile? getProfile(String zodiacSign) {
-    final normalizedSign = zodiacSign.toLowerCase().trim();
+  static ZodiacDreamProfile? getProfile(String archetypeSign) {
+    final normalizedSign = archetypeSign.toLowerCase().trim();
     return AstroRuyaKorelasyonlari.burcRuyaProfili[normalizedSign];
   }
 
   /// Arketipe ozel ruya tavsiyesi
-  static String getDreamAdvice(String zodiacSign) {
-    final profile = getProfile(zodiacSign);
+  static String getDreamAdvice(String archetypeSign) {
+    final profile = getProfile(archetypeSign);
     return profile?.dreamAdvice ??
         L10nService.get('dream_interpretation.archetype_fallback', AppLanguage.tr);
   }
 
   /// Arketipe ozel lucid egilimi
-  static String getLucidTendency(String zodiacSign) {
-    final profile = getProfile(zodiacSign);
+  static String getLucidTendency(String archetypeSign) {
+    final profile = getProfile(archetypeSign);
     return profile?.lucidTendency ?? 'Orta';
   }
 
   /// Arketipe ozel sifa sembolleri
-  static List<String> getHealingSymbols(String zodiacSign) {
-    final profile = getProfile(zodiacSign);
+  static List<String> getHealingSymbols(String archetypeSign) {
+    final profile = getProfile(archetypeSign);
     return profile?.healingSymbols ?? [];
   }
 
   /// Arketipe ozel yaygin temalar
-  static List<String> getCommonThemes(String zodiacSign) {
-    final profile = getProfile(zodiacSign);
+  static List<String> getCommonThemes(String archetypeSign) {
+    final profile = getProfile(archetypeSign);
     return profile?.commonThemes ?? [];
   }
 
   /// Arketipe ozel kabus temalari
-  static List<String> getNightmareThemes(String zodiacSign) {
-    final profile = getProfile(zodiacSign);
+  static List<String> getNightmareThemes(String archetypeSign) {
+    final profile = getProfile(archetypeSign);
     return profile?.nightmareThemes ?? [];
   }
 }
@@ -1369,10 +1369,10 @@ class DreamRitualService {
 }
 
 // ═══════════════════════════════════════════════════════════════
-// KOZMIK ETKI ANALIZI
+// CYCLICAL INFLUENCE ANALYSIS
 // ═══════════════════════════════════════════════════════════════
 
-/// Kozmik ritimlerin ruyalara etkisi
+/// Cyclical rhythms' influence on dreams
 class PlanetaryDreamInfluenceService {
   /// Gezegen etkisi bilgisi al
   static PlanetaryDreamInfluence? getPlanetInfluence(String planet) {
@@ -1389,7 +1389,7 @@ class PlanetaryDreamInfluenceService {
     );
   }
 
-  /// Ay burç etkisi
+  /// Moon phase influence
   static String getMoonSignEffect(String moonSign) {
     final moonInfluence = AstroRuyaKorelasyonlari.gezegenEtkileri.firstWhere(
       (p) => p.planet == 'Ay',

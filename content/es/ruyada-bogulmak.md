@@ -57,7 +57,7 @@ En algunas tradiciones, el ahogamiento representa la disolución del ego y el de
 
 ## ¿Cuándo hay que tomarlo en serio?
 
-Los sueños de ahogamiento suelen transmitir mensajes más urgentes que muchos otros temas oníricos. Si este sueño se repite, si despiertas jadeando o con síntomas similares al pánico, o si experimentas una sensación persistente de agobio durante el día, tanto una evaluación física (detección de apnea del sueño) como emocional (manejo del estrés, apoyo profesional) pueden ser verdaderamente importantes.
+Los sueños de ahogamiento suelen transmitir mensajes más significativos que muchos otros temas oníricos. Si este sueño se repite, si despiertas jadeando o con síntomas similares al pánico, o si experimentas una sensación persistente de agobio durante el día, tanto una evaluación física (detección de apnea del sueño) como emocional (manejo del estrés, apoyo profesional) pueden ser verdaderamente importantes.
 
 **Advertencia:** Los sueños crónicos de ahogamiento pueden indicar una sobrecarga emocional que va más allá del estrés cotidiano — y podrían ser señal de un trastorno de ansiedad o de un trauma no procesado. Sé amable contigo mismo y busca apoyo si lo necesitas.
 

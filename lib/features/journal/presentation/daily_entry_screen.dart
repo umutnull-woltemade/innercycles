@@ -16,6 +16,7 @@ import '../../../data/services/premium_service.dart';
 import '../../gratitude/presentation/gratitude_section.dart';
 import '../../sleep/presentation/sleep_section.dart';
 import '../../moon/presentation/moon_phase_widget.dart';
+import 'widgets/voice_input_button.dart';
 
 class DailyEntryScreen extends ConsumerStatefulWidget {
   const DailyEntryScreen({super.key});
@@ -31,6 +32,10 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
   final Map<String, int> _subRatings = {};
   final _noteController = TextEditingController();
   bool _isSaving = false;
+
+  /// Stores the note text before a voice session starts, so partial
+  /// results can be appended without duplicating previous voice output.
+  String _textBeforeVoice = '';
 
   @override
   void initState() {
@@ -479,39 +484,111 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
   }
 
   Widget _buildNoteField(bool isDark, bool isEn) {
-    return Container(
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: isDark
-              ? Colors.white.withValues(alpha: 0.15)
-              : Colors.black.withValues(alpha: 0.05),
-        ),
-      ),
-      child: TextField(
-        controller: _noteController,
-        maxLines: 4,
-        maxLength: 500,
-        style: TextStyle(
-          color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
-        ),
-        decoration: InputDecoration(
-          hintText: isEn
-              ? 'How was your day? Any reflections...'
-              : 'Bugün nasıl geçti? Düşüncelerin...',
-          hintStyle: TextStyle(
-            color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            color: isDark
+                ? AppColors.surfaceDark.withValues(alpha: 0.85)
+                : AppColors.lightCard,
+            borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+            border: Border.all(
+              color: isDark
+                  ? Colors.white.withValues(alpha: 0.15)
+                  : Colors.black.withValues(alpha: 0.05),
+            ),
           ),
-          contentPadding: const EdgeInsets.all(AppConstants.spacingLg),
-          border: InputBorder.none,
-          counterStyle: TextStyle(
-            color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+          child: Column(
+            children: [
+              TextField(
+                controller: _noteController,
+                maxLines: 4,
+                maxLength: 500,
+                style: TextStyle(
+                  color: isDark
+                      ? AppColors.textPrimary
+                      : AppColors.lightTextPrimary,
+                ),
+                decoration: InputDecoration(
+                  hintText: isEn
+                      ? 'How was your day? Any reflections...'
+                      : 'Bugün nasıl geçti? Düşüncelerin...',
+                  hintStyle: TextStyle(
+                    color: isDark
+                        ? AppColors.textMuted
+                        : AppColors.lightTextMuted,
+                  ),
+                  contentPadding:
+                      const EdgeInsets.all(AppConstants.spacingLg),
+                  border: InputBorder.none,
+                  counterStyle: TextStyle(
+                    color: isDark
+                        ? AppColors.textMuted
+                        : AppColors.lightTextMuted,
+                  ),
+                ),
+              ),
+              // Voice input row
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: AppConstants.spacingMd,
+                  right: AppConstants.spacingMd,
+                  bottom: AppConstants.spacingSm,
+                ),
+                child: Row(
+                  children: [
+                    VoiceInputButton(
+                      localeId: isEn ? 'en_US' : 'tr_TR',
+                      size: 40,
+                      onListeningStateChanged: (listening) {
+                        if (listening) {
+                          // Snapshot current text when voice starts
+                          _textBeforeVoice = _noteController.text;
+                        } else {
+                          // Reset snapshot when voice stops
+                          _textBeforeVoice = '';
+                        }
+                      },
+                      onTextRecognized: (text) {
+                        if (text.isNotEmpty) {
+                          setState(() {
+                            // Combine base text with latest voice result
+                            if (_textBeforeVoice.isNotEmpty) {
+                              _noteController.text =
+                                  '$_textBeforeVoice $text';
+                            } else {
+                              _noteController.text = text;
+                            }
+
+                            // Move cursor to end
+                            _noteController.selection =
+                                TextSelection.fromPosition(
+                              TextPosition(
+                                offset: _noteController.text.length,
+                              ),
+                            );
+                          });
+                        }
+                      },
+                    ),
+                    const SizedBox(width: AppConstants.spacingSm),
+                    Text(
+                      isEn ? 'Tap to speak' : 'Konusmak icin dokun',
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: isDark
+                            ? AppColors.textMuted
+                            : AppColors.lightTextMuted,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
         ),
-      ),
+      ],
     ).animate().fadeIn(delay: 400.ms, duration: 300.ms);
   }
 

@@ -11,7 +11,7 @@ updated_at: "2026-01-25"
 - Transformação, medos ocultos e instintos reprimidos formam as camadas simbólicas centrais da cobra.
 - A emoção que você sentiu em relação à cobra contém a chave da interpretação.
 
-A cobra é um dos símbolos oníricos mais universais e profundos. Pode carregar significados opostos simultaneamente: medo e sabedoria, perigo e cura, morte e renascimento.
+A cobra é um dos símbolos oníricos mais universais e profundos. Pode carregar significados opostos simultaneamente: medo e sabedoria, perigo e transformação, morte e renascimento.
 
 ## Resumo pessoal
 
@@ -27,7 +27,7 @@ Se você sonhou com uma cobra, provavelmente está se aproximando de um ponto de
 
 **Aviso:** Uma cobra agressiva pode indicar uma ameaça, uma pessoa não confiável ou um risco ignorado.
 
-**Símbolo de cura:** Na medicina grega antiga, a cobra era símbolo de cura.
+**Símbolo de renovação:** Na medicina grega antiga, a cobra era símbolo de renovação e transformação.
 
 ## Interpretação psicológica
 
@@ -42,7 +42,7 @@ Em muitas culturas, a cobra é associada ao despertar espiritual. No hinduísmo,
 - **Cobra preta**: o desconhecido, emoções reprimidas, arquétipo da sombra.
 - **Cobra verde**: crescimento, mudança natural.
 - **Cobra grande**: grande transformação ou mensagem poderosa.
-- **Picada de cobra**: aviso urgente, verdade ignorada.
+- **Picada de cobra**: aviso importante, verdade ignorada.
 - **Matar uma cobra**: confronto com um medo.
 - **Várias cobras**: pressão emocional de vários lados.
 - **Ser perseguido por uma cobra**: uma realidade da qual você foge.

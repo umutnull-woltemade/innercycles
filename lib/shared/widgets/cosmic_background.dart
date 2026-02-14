@@ -46,7 +46,7 @@ class CosmicBackground extends StatelessWidget {
     // Dark mode - Use lightweight background on web, full on mobile
     return Stack(
       children: [
-        // Ana kozmik arka plan - nebula ve yıldızlar
+        // Main background - nebula and stars
         Positioned.fill(
           child: IgnorePointer(
             child: kIsWeb
@@ -406,7 +406,7 @@ class _CosmicPainter extends CustomPainter {
     // 3. Parlak ışık küreleri
     _drawGlowOrbs(canvas, size);
 
-    // 4. Ezoterik semboller (burç, gezegen)
+    // 4. Decorative symbols
     _drawEsotericSymbols(canvas, size);
 
     // 5. Yıldızlar

@@ -111,7 +111,7 @@ class InstagramShareService {
     try {
       final tempDir = await getTemporaryDirectory();
       final timestamp = DateTime.now().millisecondsSinceEpoch;
-      final file = File('${tempDir.path}/venusone_cosmic_$timestamp.png');
+      final file = File('${tempDir.path}/innercycles_insight_$timestamp.png');
       await file.writeAsBytes(bytes);
       return file;
     } catch (e) {
@@ -130,8 +130,8 @@ class InstagramShareService {
     try {
       final fullText = _buildShareText(shareText, hashtags);
       final subject = language == AppLanguage.tr
-          ? 'Kozmik Enerji'
-          : 'Cosmic Energy';
+          ? 'Günlük Enerji'
+          : 'Daily Energy';
 
       final result = await Share.shareXFiles(
         [XFile(file.path)],
@@ -174,8 +174,8 @@ class InstagramShareService {
     try {
       final fullText = _buildShareText(shareText, hashtags);
       final subject = language == AppLanguage.tr
-          ? 'Kozmik Enerji'
-          : 'Cosmic Energy';
+          ? 'Günlük Enerji'
+          : 'Daily Energy';
 
       final result = await Share.shareXFiles(
         [XFile(file.path, mimeType: 'image/png')],
@@ -221,12 +221,12 @@ class InstagramShareService {
     try {
       final fullText = _buildShareText(shareText, hashtags);
       final timestamp = DateTime.now().millisecondsSinceEpoch;
-      final fileName = 'venusone_cosmic_$timestamp.png';
+      final fileName = 'innercycles_insight_$timestamp.png';
 
       // Try Web Share API with files first (modern browsers on HTTPS)
       final subject = language == AppLanguage.tr
-          ? 'Kozmik Enerji'
-          : 'Cosmic Energy';
+          ? 'Günlük Enerji'
+          : 'Daily Energy';
       try {
         final xFile = XFile.fromData(
           imageBytes,

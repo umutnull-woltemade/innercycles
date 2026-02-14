@@ -30,6 +30,10 @@
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>InnerCycles uses the microphone so you can journal by voice. Your audio is processed on-device and never stored or shared.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>InnerCycles uses speech recognition to convert your voice into journal text. Processing happens on-device for your privacy.</string>
 	<key>NSUserTrackingUsageDescription</key>
 	<string>This allows us to provide you with a more personalized ad experience.</string>
 	<key>SKAdNetworkItems</key>

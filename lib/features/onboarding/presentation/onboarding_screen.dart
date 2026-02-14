@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -10,7 +9,6 @@ import '../../../core/constants/app_constants.dart';
 import '../../../core/constants/routes.dart';
 
 import '../../../core/theme/app_colors.dart';
-import '../../../data/cities/world_cities.dart';
 import '../../../data/models/user_profile.dart';
 
 import '../../../data/providers/app_providers.dart';
@@ -33,14 +31,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
   DateTime? _selectedDate;
-  TimeOfDay? _selectedTime = const TimeOfDay(
-    hour: 12,
-    minute: 0,
-  ); // Default 12:00
   String? _userName;
-  String? _birthPlace = 'Marmaris, Mugla (Türkiye)'; // Default Marmaris
-  double? _birthLatitude = 36.8500; // Marmaris coordinates
-  double? _birthLongitude = 28.2667;
 
   @override
   void dispose() {
@@ -60,20 +51,10 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   }
 
   void _completeOnboarding() async {
-    if (_selectedDate != null) {
-      String? birthTimeStr;
-      if (_selectedTime != null) {
-        birthTimeStr =
-            '${_selectedTime!.hour.toString().padLeft(2, '0')}:${_selectedTime!.minute.toString().padLeft(2, '0')}';
-      }
-
+    if (_userName != null && _userName!.isNotEmpty) {
       final profile = UserProfile(
         name: _userName,
-        birthDate: _selectedDate!,
-        birthTime: birthTimeStr,
-        birthPlace: _birthPlace,
-        birthLatitude: _birthLatitude,
-        birthLongitude: _birthLongitude,
+        birthDate: _selectedDate ?? DateTime(2000, 1, 1),
       );
 
       // Save to state
@@ -88,7 +69,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       await Future.delayed(const Duration(milliseconds: 100));
 
       if (mounted) {
-        context.go(Routes.home);
+        context.go(Routes.archetypeQuiz);
       }
     }
   }
@@ -119,21 +100,9 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                       onDateSelected: (date) {
                         setState(() => _selectedDate = date);
                       },
-                      selectedTime: _selectedTime,
-                      onTimeSelected: (time) {
-                        setState(() => _selectedTime = time);
-                      },
                       userName: _userName,
                       onNameChanged: (name) {
                         setState(() => _userName = name);
-                      },
-                      birthPlace: _birthPlace,
-                      onPlaceChanged: (place, lat, lng) {
-                        setState(() {
-                          _birthPlace = place;
-                          _birthLatitude = lat;
-                          _birthLongitude = lng;
-                        });
                       },
                       onContinue: _nextPage,
                       language: language,
@@ -200,12 +169,8 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
 
   bool _canProceed() {
     if (_currentPage == 1) {
-      // All fields are required for accurate profile calculation
-      return _userName != null &&
-          _userName!.isNotEmpty &&
-          _selectedDate != null &&
-          _selectedTime != null &&
-          _birthPlace != null;
+      // Only name is required; date is optional
+      return _userName != null && _userName!.isNotEmpty;
     }
     return true;
   }
@@ -287,7 +252,7 @@ class _WelcomePageState extends State<_WelcomePage>
         user.userMetadata?['name'] as String? ??
         user.email?.split('@').first;
 
-    // Kozmik karşılama overlay'i göster
+    // Show welcome overlay
     _showCosmicWelcome(displayName);
   }
 
@@ -804,7 +769,7 @@ class _WelcomePageState extends State<_WelcomePage>
       if (!mounted) return;
 
       if (userInfo != null) {
-        // Kozmik karşılama overlay'i göster
+        // Show welcome overlay
         _showCosmicWelcome(userInfo.displayName);
       }
       // userInfo null ise web'de OAuth redirect olacak
@@ -847,24 +812,16 @@ class _WelcomePageState extends State<_WelcomePage>
 class _BirthDataPage extends StatelessWidget {
   final DateTime? selectedDate;
   final ValueChanged<DateTime> onDateSelected;
-  final TimeOfDay? selectedTime;
-  final ValueChanged<TimeOfDay> onTimeSelected;
   final String? userName;
   final ValueChanged<String> onNameChanged;
-  final String? birthPlace;
-  final void Function(String place, double lat, double lng) onPlaceChanged;
   final VoidCallback onContinue;
   final AppLanguage language;
 
   const _BirthDataPage({
     required this.selectedDate,
     required this.onDateSelected,
-    required this.selectedTime,
-    required this.onTimeSelected,
     required this.userName,
     required this.onNameChanged,
-    required this.birthPlace,
-    required this.onPlaceChanged,
     required this.onContinue,
     required this.language,
   });
@@ -891,10 +848,22 @@ class _BirthDataPage extends StatelessWidget {
           ).animate().fadeIn(delay: 300.ms, duration: 400.ms),
           const SizedBox(height: AppConstants.spacingLg),
 
-          // Birth Date
+          // Birth Date (optional)
           _buildSectionTitle(
             context,
-            L10nService.get('input.birth_date_required', language),
+            L10nService.get('input.birth_date', language),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            language == AppLanguage.en
+                ? 'Optional — helps personalize your experience'
+                : 'Istege bagli — deneyiminizi kisisellestirmeye yardimci olur',
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              color: Theme.of(context).brightness == Brightness.dark
+                  ? AppColors.textMuted
+                  : AppColors.lightTextMuted,
+              fontSize: 12,
+            ),
           ),
           const SizedBox(height: 8),
           BirthDatePicker(
@@ -902,39 +871,13 @@ class _BirthDataPage extends StatelessWidget {
             onDateChanged: onDateSelected,
             language: language,
           ).animate().fadeIn(delay: 400.ms, duration: 400.ms),
-          const SizedBox(height: AppConstants.spacingLg),
-
-          // Birth Time
-          _buildSectionTitle(
-            context,
-            L10nService.get('input.birth_time_required', language),
-          ),
-          const SizedBox(height: 8),
-          _BirthTimePicker(
-            selectedTime: selectedTime,
-            onTimeSelected: onTimeSelected,
-            language: language,
-          ).animate().fadeIn(delay: 500.ms, duration: 400.ms),
-          const SizedBox(height: AppConstants.spacingLg),
-
-          // Birth Place
-          _buildSectionTitle(
-            context,
-            L10nService.get('input.birth_place_required', language),
-          ),
-          const SizedBox(height: 8),
-          _BirthPlacePicker(
-            selectedPlace: birthPlace,
-            onPlaceSelected: onPlaceChanged,
-            language: language,
-          ).animate().fadeIn(delay: 600.ms, duration: 400.ms),
 
           const SizedBox(height: AppConstants.spacingLg),
 
           // Info box
           _InfoBox(
             language: language,
-          ).animate().fadeIn(delay: 700.ms, duration: 400.ms),
+          ).animate().fadeIn(delay: 500.ms, duration: 400.ms),
 
           const SizedBox(height: 20),
         ],
@@ -1053,487 +996,11 @@ class _InfoBox extends StatelessWidget {
   }
 }
 
-class _BirthTimePicker extends StatelessWidget {
-  final TimeOfDay? selectedTime;
-  final ValueChanged<TimeOfDay> onTimeSelected;
-  final AppLanguage language;
-
-  const _BirthTimePicker({
-    required this.selectedTime,
-    required this.onTimeSelected,
-    required this.language,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    final colorScheme = Theme.of(context).colorScheme;
-
-    return GestureDetector(
-      onTap: () => _showTimePicker(context),
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: isDark
-              ? AppColors.surfaceDark.withAlpha(128)
-              : AppColors.lightSurfaceVariant,
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(
-            color: selectedTime != null
-                ? colorScheme.primary
-                : (isDark ? AppColors.surfaceLight : Colors.grey.shade300),
-          ),
-        ),
-        child: Row(
-          children: [
-            Icon(
-              Icons.access_time,
-              color: selectedTime != null
-                  ? colorScheme.primary
-                  : (isDark ? AppColors.textMuted : AppColors.lightTextMuted),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: selectedTime != null
-                  ? Text(
-                      '${selectedTime!.hour.toString().padLeft(2, '0')}:${selectedTime!.minute.toString().padLeft(2, '0')}',
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        color: isDark
-                            ? AppColors.textPrimary
-                            : AppColors.lightTextPrimary,
-                      ),
-                    )
-                  : Text(
-                      L10nService.get('input.select_time', language),
-                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        color: isDark
-                            ? AppColors.textMuted
-                            : AppColors.lightTextMuted,
-                      ),
-                    ),
-            ),
-            if (selectedTime != null)
-              const Icon(
-                Icons.check_circle,
-                color: AppColors.success,
-                size: 20,
-              ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  void _showTimePicker(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    final colorScheme = Theme.of(context).colorScheme;
-
-    showModalBottomSheet(
-      context: context,
-      backgroundColor: isDark ? AppColors.surfaceDark : AppColors.lightSurface,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
-      ),
-      builder: (context) {
-        int selectedHour = selectedTime?.hour ?? 12;
-        int selectedMinute = selectedTime?.minute ?? 0;
-
-        return StatefulBuilder(
-          builder: (context, setModalState) {
-            return Container(
-              height: 350,
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      TextButton(
-                        onPressed: () => Navigator.pop(context),
-                        child: Text(
-                          L10nService.get('common.cancel', language),
-                          style: TextStyle(
-                            color: isDark
-                                ? AppColors.textMuted
-                                : AppColors.lightTextMuted,
-                          ),
-                        ),
-                      ),
-                      Text(
-                        L10nService.get('input.birth_time', language),
-                        style: Theme.of(context).textTheme.titleMedium
-                            ?.copyWith(
-                              color: isDark
-                                  ? AppColors.textPrimary
-                                  : AppColors.lightTextPrimary,
-                            ),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          onTimeSelected(
-                            TimeOfDay(
-                              hour: selectedHour,
-                              minute: selectedMinute,
-                            ),
-                          );
-                          Navigator.pop(context);
-                        },
-                        child: Text(
-                          L10nService.get('common.ok', language),
-                          style: TextStyle(color: colorScheme.primary),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 20),
-                  Expanded(
-                    child: Row(
-                      children: [
-                        // Hour picker
-                        Expanded(
-                          child: CupertinoPicker(
-                            scrollController: FixedExtentScrollController(
-                              initialItem: selectedHour,
-                            ),
-                            itemExtent: 40,
-                            onSelectedItemChanged: (index) {
-                              setModalState(() => selectedHour = index);
-                            },
-                            children: List.generate(24, (index) {
-                              return Center(
-                                child: Text(
-                                  index.toString().padLeft(2, '0'),
-                                  style: TextStyle(
-                                    color: isDark
-                                        ? AppColors.textPrimary
-                                        : AppColors.lightTextPrimary,
-                                    fontSize: 20,
-                                  ),
-                                ),
-                              );
-                            }),
-                          ),
-                        ),
-                        Text(
-                          ':',
-                          style: TextStyle(
-                            color: isDark
-                                ? AppColors.textPrimary
-                                : AppColors.lightTextPrimary,
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        // Minute picker
-                        Expanded(
-                          child: CupertinoPicker(
-                            scrollController: FixedExtentScrollController(
-                              initialItem: selectedMinute,
-                            ),
-                            itemExtent: 40,
-                            onSelectedItemChanged: (index) {
-                              setModalState(() => selectedMinute = index);
-                            },
-                            children: List.generate(60, (index) {
-                              return Center(
-                                child: Text(
-                                  index.toString().padLeft(2, '0'),
-                                  style: TextStyle(
-                                    color: isDark
-                                        ? AppColors.textPrimary
-                                        : AppColors.lightTextPrimary,
-                                    fontSize: 20,
-                                  ),
-                                ),
-                              );
-                            }),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            );
-          },
-        );
-      },
-    );
-  }
-}
-
-class _BirthPlacePicker extends StatefulWidget {
-  final String? selectedPlace;
-  final void Function(String place, double lat, double lng) onPlaceSelected;
-  final AppLanguage language;
-
-  const _BirthPlacePicker({
-    required this.selectedPlace,
-    required this.onPlaceSelected,
-    required this.language,
-  });
-
-  @override
-  State<_BirthPlacePicker> createState() => _BirthPlacePickerState();
-}
-
-class _BirthPlacePickerState extends State<_BirthPlacePicker> {
-  @override
-  Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    final colorScheme = Theme.of(context).colorScheme;
-
-    return GestureDetector(
-      onTap: () => _showPlacePicker(context),
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: isDark
-              ? AppColors.surfaceDark.withAlpha(128)
-              : AppColors.lightSurfaceVariant,
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(
-            color: widget.selectedPlace != null
-                ? colorScheme.primary
-                : (isDark ? AppColors.surfaceLight : Colors.grey.shade300),
-          ),
-        ),
-        child: Row(
-          children: [
-            Icon(
-              Icons.location_on,
-              color: widget.selectedPlace != null
-                  ? colorScheme.primary
-                  : (isDark ? AppColors.textMuted : AppColors.lightTextMuted),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: widget.selectedPlace != null
-                  ? Text(
-                      widget.selectedPlace!,
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        color: isDark
-                            ? AppColors.textPrimary
-                            : AppColors.lightTextPrimary,
-                      ),
-                      overflow: TextOverflow.ellipsis,
-                    )
-                  : Text(
-                      '${L10nService.get('input.select_city', widget.language)} (${WorldCities.sortedCities.length})',
-                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        color: isDark
-                            ? AppColors.textMuted
-                            : AppColors.lightTextMuted,
-                      ),
-                    ),
-            ),
-            if (widget.selectedPlace != null)
-              const Icon(
-                Icons.check_circle,
-                color: AppColors.success,
-                size: 20,
-              ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  void _showPlacePicker(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    final colorScheme = Theme.of(context).colorScheme;
-
-    showModalBottomSheet(
-      context: context,
-      backgroundColor: isDark ? AppColors.surfaceDark : AppColors.lightSurface,
-      isScrollControlled: true,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
-      ),
-      builder: (context) {
-        String searchQuery = '';
-
-        return StatefulBuilder(
-          builder: (context, setModalState) {
-            List<CityData> filteredCities;
-            if (searchQuery.isEmpty) {
-              filteredCities = WorldCities.sortedCities;
-            } else {
-              filteredCities = WorldCities.search(searchQuery);
-            }
-
-            return Container(
-              height: MediaQuery.of(context).size.height * 0.8,
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      TextButton(
-                        onPressed: () => Navigator.pop(context),
-                        child: Text(
-                          L10nService.get('common.cancel', widget.language),
-                          style: TextStyle(
-                            color: isDark
-                                ? AppColors.textMuted
-                                : AppColors.lightTextMuted,
-                          ),
-                        ),
-                      ),
-                      Column(
-                        children: [
-                          Text(
-                            L10nService.get(
-                              'input.birth_place',
-                              widget.language,
-                            ),
-                            style: Theme.of(context).textTheme.titleMedium
-                                ?.copyWith(
-                                  color: isDark
-                                      ? AppColors.textPrimary
-                                      : AppColors.lightTextPrimary,
-                                ),
-                          ),
-                          Text(
-                            '${WorldCities.sortedCities.length}',
-                            style: Theme.of(context).textTheme.bodySmall
-                                ?.copyWith(
-                                  color: isDark
-                                      ? AppColors.textMuted
-                                      : AppColors.lightTextMuted,
-                                ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(width: 60),
-                    ],
-                  ),
-                  const SizedBox(height: 12),
-                  // Search field
-                  TextField(
-                    onChanged: (value) {
-                      setModalState(() => searchQuery = value);
-                    },
-                    style: TextStyle(
-                      color: isDark
-                          ? AppColors.textPrimary
-                          : AppColors.lightTextPrimary,
-                    ),
-                    decoration: InputDecoration(
-                      hintText: L10nService.get(
-                        'input.search_city',
-                        widget.language,
-                      ),
-                      hintStyle: TextStyle(
-                        color: isDark
-                            ? AppColors.textMuted
-                            : AppColors.lightTextMuted,
-                      ),
-                      prefixIcon: Icon(
-                        Icons.search,
-                        color: isDark
-                            ? AppColors.textMuted
-                            : AppColors.lightTextMuted,
-                      ),
-                      filled: true,
-                      fillColor: isDark
-                          ? AppColors.surfaceLight.withAlpha(76)
-                          : AppColors.lightSurfaceVariant,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide.none,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  // Results count
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      '${filteredCities.length} ${L10nService.get('common.results', widget.language)}',
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: isDark
-                            ? AppColors.textMuted
-                            : AppColors.lightTextMuted,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Expanded(
-                    child: ListView.builder(
-                      itemCount: filteredCities.length,
-                      itemBuilder: (context, index) {
-                        final city = filteredCities[index];
-                        final isSelected =
-                            widget.selectedPlace == city.displayName;
-
-                        return ListTile(
-                          leading: Icon(
-                            city.country == 'Türkiye' || city.country == 'KKTC'
-                                ? Icons.flag
-                                : Icons.public,
-                            color: isSelected
-                                ? colorScheme.primary
-                                : (isDark
-                                      ? AppColors.textMuted
-                                      : AppColors.lightTextMuted),
-                          ),
-                          title: Text(
-                            city.name,
-                            style: TextStyle(
-                              color: isSelected
-                                  ? colorScheme.primary
-                                  : (isDark
-                                        ? AppColors.textPrimary
-                                        : AppColors.lightTextPrimary),
-                              fontWeight: isSelected
-                                  ? FontWeight.bold
-                                  : FontWeight.normal,
-                            ),
-                          ),
-                          subtitle: Text(
-                            city.region != null
-                                ? '${city.region}, ${city.country}'
-                                : city.country,
-                            style: TextStyle(
-                              color: isDark
-                                  ? AppColors.textMuted
-                                  : AppColors.lightTextMuted,
-                              fontSize: 14,
-                            ),
-                          ),
-                          trailing: isSelected
-                              ? Icon(
-                                  Icons.check_circle,
-                                  color: colorScheme.primary,
-                                )
-                              : null,
-                          onTap: () {
-                            widget.onPlaceSelected(
-                              city.displayName,
-                              city.lat,
-                              city.lng,
-                            );
-                            Navigator.pop(context);
-                          },
-                        );
-                      },
-                    ),
-                  ),
-                ],
-              ),
-            );
-          },
-        );
-      },
-    );
-  }
-}
+// _BirthTimePicker and _BirthPlacePicker removed — no longer collected during onboarding
 
 // _YourSignPage archived to _archived/
 
-/// Kozmik karşılama overlay'i - tam ekran, animasyonlu
+/// Welcome overlay - full screen, animated
 class _CosmicWelcomeOverlay extends StatefulWidget {
   final String greeting;
   final String? name;

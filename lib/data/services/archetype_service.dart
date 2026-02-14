@@ -32,6 +32,11 @@ class Archetype {
   final String shadowTr;
   final String growthTipEn;
   final String growthTipTr;
+  final List<String> growthAreasEn;
+  final List<String> growthAreasTr;
+  final String dailyIntentionStyleEn;
+  final String dailyIntentionStyleTr;
+  final List<String> compatibleArchetypes;
 
   const Archetype({
     required this.id,
@@ -46,6 +51,11 @@ class Archetype {
     required this.shadowTr,
     required this.growthTipEn,
     required this.growthTipTr,
+    this.growthAreasEn = const [],
+    this.growthAreasTr = const [],
+    this.dailyIntentionStyleEn = '',
+    this.dailyIntentionStyleTr = '',
+    this.compatibleArchetypes = const [],
   });
 
   String getName({bool isEnglish = true}) => isEnglish ? nameEn : nameTr;
@@ -57,6 +67,10 @@ class Archetype {
       isEnglish ? shadowEn : shadowTr;
   String getGrowthTip({bool isEnglish = true}) =>
       isEnglish ? growthTipEn : growthTipTr;
+  List<String> getGrowthAreas({bool isEnglish = true}) =>
+      isEnglish ? growthAreasEn : growthAreasTr;
+  String getDailyIntentionStyle({bool isEnglish = true}) =>
+      isEnglish ? dailyIntentionStyleEn : dailyIntentionStyleTr;
 
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -135,6 +149,8 @@ class ArchetypeService {
 
   // ══════════════════════════════════════════════════════════════════════════
   // THE 12 JUNGIAN ARCHETYPES
+  // Each includes: description, strengths, shadow, growth tip, growth areas,
+  // daily intention style, and compatible archetypes.
   // ══════════════════════════════════════════════════════════════════════════
 
   static const List<Archetype> archetypes = [
@@ -167,6 +183,23 @@ class ArchetypeService {
           'Kendine kusurlu yaratma izni ver. Kayitlarin, kusursuz '
           'sonuc ihtiyacini biraktigin zaman buyumenin geldigine '
           'isaret ediyor.',
+      growthAreasEn: [
+        'Finishing projects before starting new ones',
+        'Accepting constructive feedback with openness',
+        'Sharing work before it feels perfectly ready',
+      ],
+      growthAreasTr: [
+        'Yeni baslamadan projeleri bitirmek',
+        'Yapici geri bildirimi aciklikla kabul etmek',
+        'Isini mukemmel hissetmeden once paylasmak',
+      ],
+      dailyIntentionStyleEn:
+          'Set a creative micro-goal each morning — even a single '
+          'sketch, sentence, or idea counts as progress.',
+      dailyIntentionStyleTr:
+          'Her sabah yaratici bir mikro hedef belirle — tek bir cizim, '
+          'cumle veya fikir bile ilerleme sayilir.',
+      compatibleArchetypes: ['explorer', 'magician', 'sage'],
     ),
     Archetype(
       id: 'explorer',
@@ -197,6 +230,23 @@ class ArchetypeService {
           'Kesfi mevcudiyetle dengele. Kayitlarin topraklama '
           'pratiklerinin yeni kesileri daha derinden entegre etmene '
           'yardimci olduguna isaret ediyor.',
+      growthAreasEn: [
+        'Committing to a path long enough to see results',
+        'Finding depth in familiar routines',
+        'Building lasting roots alongside new adventures',
+      ],
+      growthAreasTr: [
+        'Sonuclari gormek icin bir yola yeterince baglanmak',
+        'Bilindik rutinlerde derinlik bulmak',
+        'Yeni maceralarla birlikte kalici kokler olusturmak',
+      ],
+      dailyIntentionStyleEn:
+          'Choose one new perspective or micro-adventure to explore today, '
+          'then journal what you discovered.',
+      dailyIntentionStyleTr:
+          'Bugun kesfetmek icin yeni bir bakis acisi veya mikro-macera sec, '
+          'sonra kesfettiklerini kaydet.',
+      compatibleArchetypes: ['creator', 'hero', 'rebel'],
     ),
     Archetype(
       id: 'sage',
@@ -227,6 +277,23 @@ class ArchetypeService {
           'Duygunun dusuncenin yaninda sana rehberlik etmesine izin '
           'ver. Kaliplarin duygusal katilimin anlavisini '
           'zenginlestirdigine isaret ediyor.',
+      growthAreasEn: [
+        'Trusting intuition alongside logic',
+        'Taking action before having all the answers',
+        'Expressing emotions without intellectualizing them',
+      ],
+      growthAreasTr: [
+        'Mantik yaninda sezgiye guven duymak',
+        'Tum cevaplara sahip olmadan harekete gecmek',
+        'Duyguslari entelektuellestirmeden ifade etmek',
+      ],
+      dailyIntentionStyleEn:
+          'Begin the day with a single question you want to sit with '
+          '— not solve, just observe throughout the day.',
+      dailyIntentionStyleTr:
+          'Gune birlikte oturmak istedigin tek bir soruyla basla '
+          '— cozmek degil, sadece gun boyunca gozlemlemek.',
+      compatibleArchetypes: ['creator', 'ruler', 'magician'],
     ),
     Archetype(
       id: 'hero',
@@ -258,6 +325,23 @@ class ArchetypeService {
           'Dinlenmek geri cekilme degildir. Kayitlarin toparlanma '
           'donemlerinin gelecek zorluklar icin kapasiteni '
           'guclendigine isaret ediyor.',
+      growthAreasEn: [
+        'Accepting vulnerability as a form of strength',
+        'Delegating instead of carrying everything alone',
+        'Celebrating small wins, not only major victories',
+      ],
+      growthAreasTr: [
+        'Savunmasizligi bir guc formu olarak kabul etmek',
+        'Her seyi tek basina tasimak yerine yetki devretmek',
+        'Sadece buyuk zaferler degil, kucuk kazanimlari kutlamak',
+      ],
+      dailyIntentionStyleEn:
+          'Identify one challenge to face today and one way to '
+          'recover afterward — strength needs rhythm.',
+      dailyIntentionStyleTr:
+          'Bugun yuzlesecek bir zorluk ve sonrasinda toparlanacak '
+          'bir yol belirle — gucun ritme ihtiyaci var.',
+      compatibleArchetypes: ['explorer', 'ruler', 'rebel'],
     ),
     Archetype(
       id: 'rebel',
@@ -291,6 +375,23 @@ class ArchetypeService {
           'Bozmayi yaratmaya kanalize et. Kayitlarin asi enerjinin '
           'yeni bir sey insa ettiginde en guclu olduguna isaret '
           'ediyor.',
+      growthAreasEn: [
+        'Choosing battles that truly matter',
+        'Building bridges alongside breaking barriers',
+        'Channeling anger into constructive vision',
+      ],
+      growthAreasTr: [
+        'Gercekten onemli olan savaslari secmek',
+        'Bariyerleri kirarken kopruler de kurmak',
+        'Ofkeyi yapici bir vizyona kanalize etmek',
+      ],
+      dailyIntentionStyleEn:
+          'Ask yourself: "What do I want to change today, and what '
+          'will I create in its place?"',
+      dailyIntentionStyleTr:
+          'Kendine sor: "Bugun neyi degistirmek istiyorum ve yerine '
+          'ne yaratacagim?"',
+      compatibleArchetypes: ['explorer', 'hero', 'magician'],
     ),
     Archetype(
       id: 'magician',
@@ -332,6 +433,23 @@ class ArchetypeService {
           'Vizyonunu gundelik eyleme temelle. Kayitlarin kucuk, '
           'tutarli adimlarin en kalici donusumu yarattigina isaret '
           'ediyor.',
+      growthAreasEn: [
+        'Staying grounded while pursuing transformation',
+        'Sharing your process openly rather than keeping it hidden',
+        'Accepting that some things cannot be changed by will alone',
+      ],
+      growthAreasTr: [
+        'Donusumu takip ederken ayaklarini yere basmak',
+        'Surecini gizli tutmak yerine acikca paylasmak',
+        'Bazi seylerin sadece irade ile degistirilemeyecegini kabul etmek',
+      ],
+      dailyIntentionStyleEn:
+          'Set a single transformative intention: "Today I will shift '
+          'one small pattern that no longer serves me."',
+      dailyIntentionStyleTr:
+          'Tek bir donusturucu niyet belirle: "Bugun bana artik hizmet '
+          'etmeyen kucuk bir kaliibi degistirecegim."',
+      compatibleArchetypes: ['sage', 'creator', 'rebel'],
     ),
     Archetype(
       id: 'lover',
@@ -362,6 +480,23 @@ class ArchetypeService {
       growthTipTr:
           'Once kendini sev. Kaliplarin en derin baglantilarin ic '
           'butunluk yerinden buyudugune isaret ediyor.',
+      growthAreasEn: [
+        'Setting healthy boundaries in close relationships',
+        'Distinguishing your emotions from those of others',
+        'Allowing silence and solitude to nourish you',
+      ],
+      growthAreasTr: [
+        'Yakin iliskilerde saglikli sinirlar koymak',
+        'Kendi duygularini baskalarininkinenden ayirt etmek',
+        'Sessizlik ve yalnizligin seni beslemesine izin vermek',
+      ],
+      dailyIntentionStyleEn:
+          'Begin the day by naming one relationship you want to '
+          'nurture and one way you will nurture yourself.',
+      dailyIntentionStyleTr:
+          'Gune beslemek istedigin bir iliskiyi ve kendini '
+          'besleyecek bir yolu adlandirarak basla.',
+      compatibleArchetypes: ['caregiver', 'creator', 'innocent'],
     ),
     Archetype(
       id: 'caregiver',
@@ -392,6 +527,23 @@ class ArchetypeService {
           'Once kendi kabini doldur. Kayitlarin sinirlarin aslinda '
           'baskalarina otantik bir sekilde bakma yetenegini '
           'derinlestirdigine isaret ediyor.',
+      growthAreasEn: [
+        'Saying no without guilt when your energy is low',
+        'Receiving care as readily as you give it',
+        'Recognizing when helping becomes enabling',
+      ],
+      growthAreasTr: [
+        'Enerjin dusukken sucluluk duymadan hayir demek',
+        'Verdigin kadar kolaylikla bakim almak',
+        'Yardim etmenin bagimlilik yaratmaya donustugunu fark etmek',
+      ],
+      dailyIntentionStyleEn:
+          'Choose one act of care for someone else and one equal '
+          'act of care for yourself today.',
+      dailyIntentionStyleTr:
+          'Bugun baskasi icin bir bakim eylemi ve kendin icin esit '
+          'bir bakim eylemi sec.',
+      compatibleArchetypes: ['lover', 'sage', 'innocent'],
     ),
     Archetype(
       id: 'ruler',
@@ -420,6 +572,23 @@ class ArchetypeService {
       growthTipTr:
           'Birakarak liderlik et. Kayitlarin gercek otoritenin '
           'kontrolden degil esneklikten geldigine isaret ediyor.',
+      growthAreasEn: [
+        'Allowing plans to shift without seeing it as failure',
+        'Listening to others perspectives before deciding',
+        'Embracing uncertainty as a source of possibility',
+      ],
+      growthAreasTr: [
+        'Planlarin degismesini basarisizlik olarak gormeden izin vermek',
+        'Karar vermeden once baskalarin bakis acilarini dinlemek',
+        'Belirsizligi bir olasilik kaynagi olarak kucaklamak',
+      ],
+      dailyIntentionStyleEn:
+          'Set your top three priorities for the day, then release '
+          'attachment to how they unfold.',
+      dailyIntentionStyleTr:
+          'Gunun ilk uc oncelligini belirle, sonra nasil '
+          'geliseceklerine olan bagliligini birak.',
+      compatibleArchetypes: ['hero', 'sage', 'caregiver'],
     ),
     Archetype(
       id: 'innocent',
@@ -451,6 +620,23 @@ class ArchetypeService {
           'Iyimserligini ve farkindaligini birlikte tut. Kayitlarin '
           'golgeleri kabul etmenin aslinda isigini guclendigine '
           'isaret ediyor.',
+      growthAreasEn: [
+        'Facing uncomfortable truths with gentle courage',
+        'Building resilience through small challenges',
+        'Balancing hope with practical preparedness',
+      ],
+      growthAreasTr: [
+        'Rahatssiz edici gerceklerle nazik cesaretle yuzlesmek',
+        'Kucuk zorluklar yoluyla dayaniklilik olusturmak',
+        'Umudu pratik hazirlikla dengelemek',
+      ],
+      dailyIntentionStyleEn:
+          'Start the day with gratitude for three simple things, '
+          'then name one small discomfort you are willing to sit with.',
+      dailyIntentionStyleTr:
+          'Gune uc basit sey icin minnettarlikla basla, sonra '
+          'birlikte oturmaya istekli oldugun kucuk bir rahatsizligi adlandir.',
+      compatibleArchetypes: ['caregiver', 'lover', 'jester'],
     ),
     Archetype(
       id: 'jester',
@@ -482,6 +668,23 @@ class ArchetypeService {
           'Kendini mizahin otesinde gostermeye izin ver. Kayitlarin '
           'en anlamli baglantilarin maskeyi indirdigin zaman '
           'olduguna isaret ediyor.',
+      growthAreasEn: [
+        'Allowing yourself to feel sadness without deflecting it',
+        'Sharing a sincere thought without humor as a shield',
+        'Sitting with silence instead of filling it with laughter',
+      ],
+      growthAreasTr: [
+        'Huznu saptirmadan hissetmenize izin vermek',
+        'Mizahi kalkan olarak kullanmadan samimi bir dusunce paylasmak',
+        'Kahkahayla doldurmak yerine sessizlikle oturmak',
+      ],
+      dailyIntentionStyleEn:
+          'Start the day with something that makes you smile, '
+          'then write one honest sentence about how you really feel.',
+      dailyIntentionStyleTr:
+          'Gune seni gulduren bir seyle basla, sonra gercekten '
+          'nasil hissettigin hakkinda samimi bir cumle yaz.',
+      compatibleArchetypes: ['innocent', 'explorer', 'lover'],
     ),
     Archetype(
       id: 'orphan',
@@ -515,6 +718,23 @@ class ArchetypeService {
           'Yaralarin bilgelgindir. Kayitlarin hikayeni guvendiin '
           'insanlarla paylamasinin aciyi baglantyia donusturdugune '
           'isaret ediyor.',
+      growthAreasEn: [
+        'Trusting new experiences without projecting past hurt',
+        'Accepting support without feeling like a burden',
+        'Separating current reality from old patterns of pain',
+      ],
+      growthAreasTr: [
+        'Gecmis aciyi yansitmadan yeni deneyimlere guvenmek',
+        'Yuk gibi hissetmeden destek kabul etmek',
+        'Mevcut gercekligi eski aci kaliplardan ayirmak',
+      ],
+      dailyIntentionStyleEn:
+          'Name one thing from the past you are ready to release '
+          'and one new experience you are open to receiving today.',
+      dailyIntentionStyleTr:
+          'Gecmisten birakamaya hazir oldugun bir seyi ve bugun '
+          'almaya acik oldugun yeni bir deneyimi adlandir.',
+      compatibleArchetypes: ['caregiver', 'hero', 'sage'],
     ),
   ];
 
@@ -804,6 +1024,28 @@ class ArchetypeService {
   /// Requires at least 3 entries to produce an archetype.
   bool hasEnoughData(List<JournalEntry> entries) {
     return entries.length >= 3;
+  }
+
+  /// Set initial archetype from onboarding quiz (before any journal data)
+  Future<void> setInitialArchetype(String archetypeId) async {
+    final now = DateTime.now();
+    final snapshot = ArchetypeSnapshot(
+      month: now.month,
+      year: now.year,
+      archetypeId: archetypeId,
+      confidence: 0.5, // Low confidence — from quiz, not journal data
+    );
+    final history = getArchetypeHistory();
+    history.add(snapshot);
+    final jsonList = history
+        .map((s) => {
+              'month': s.month,
+              'year': s.year,
+              'archetypeId': s.archetypeId,
+              'confidence': s.confidence,
+            })
+        .toList();
+    await _prefs.setString(_historyKey, json.encode(jsonList));
   }
 
   /// Clear all archetype data

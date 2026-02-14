@@ -53,11 +53,11 @@ In alcune tradizioni, l'annegamento rappresenta la dissoluzione dell'ego e la di
 - **Guardare qualcuno annegare**: Impotenza, impossibilità di aiutare.
 - **Sopravvivere all'annegamento**: Resilienza, capacità di recupero emotivo.
 - **Sprofondare lentamente**: Declino emotivo graduale, accumulo impercettibile.
-- **Annegare in acqua scura**: Avvertimento dagli strati più profondi dell'inconscio.
+- **Annegare in acqua torbida**: Avvertimento dagli strati più profondi dell'inconscio.
 
 ## Quando prenderlo sul serio?
 
-I sogni di annegamento tendono a portare messaggi più urgenti rispetto a molti altri temi onirici. Se questo sogno si ripete, se vi svegliate ansimando o con sintomi simili al panico, oppure se provate una sensazione persistente di sopraffazione durante il giorno, sia una valutazione fisica (screening per l'apnea notturna) che emotiva (gestione dello stress, supporto professionale) possono essere davvero importanti.
+I sogni di annegamento tendono a portare messaggi più significativi rispetto a molti altri temi onirici. Se questo sogno si ripete, se vi svegliate ansimando o con sintomi simili al panico, oppure se provate una sensazione persistente di sopraffazione durante il giorno, sia una valutazione fisica (screening per l'apnea notturna) che emotiva (gestione dello stress, supporto professionale) possono essere davvero importanti.
 
 **Avvertenza:** Sogni cronici di annegamento possono segnalare un sovraccarico emotivo che va oltre lo stress ordinario — potenzialmente indicando un disturbo d'ansia o un trauma non elaborato. Siate gentili con voi stessi e cercate supporto se ne sentite il bisogno.
 

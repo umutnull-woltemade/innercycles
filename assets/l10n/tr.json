@@ -2,7 +2,7 @@
   "_metadata": {
     "language": "tr",
     "version": "1.0.0",
-    "lastUpdated": "2026-02-02T00:00:00Z",
+    "lastUpdated": "2026-02-14T00:00:00Z",
     "completeness": 100
   },
   "app": {
@@ -30,7 +30,7 @@
     "close": "Kapat",
     "back": "Geri",
     "next": "İleri",
-    "zodiac_signs": "Arketipler",
+    "archetype_signs": "Arketipler",
     "done": "Tamam",
     "yes": "Evet",
     "no": "Hayır",
@@ -97,11 +97,12 @@
     "explore_now": "Hemen Keşfetmeye Başla",
     "by_continuing": "Devam ederek Kullanım Şartlarını kabul etmiş olursunuz",
     "features": {
-      "birth_chart": "Kişisel Profil",
       "personal_profile": "Kişisel Profil",
-      "daily_reading": "Günlük Yorum",
-      "tarot": "Tarot",
-      "numerology": "Numeroloji"
+      "daily_reading": "Gunluk Yansitma",
+      "card_insight": "Refleksiyon",
+      "numerology": "Numeroloji",
+      "dream_journal": "Ruya Gunlugu",
+      "patterns": "Kalip Takibi"
     },
     "calculated_items": {
       "planets": "10 Gezegen",
@@ -168,7 +169,7 @@
     "your_birth_info": "Doğum Bilgilerin",
     "your_sun_sign": "Güneş Arketipin",
     "edit_info": "Bilgileri Düzenle",
-    "view_birth_chart": "Kişisel Profilnı Gör",
+    "view_personal_profile": "Kişisel Profilnı Gör",
     "profile_saved": "Profil başarıyla kaydedildi",
     "discard_changes_title": "Değişiklikler Silinsin mi?",
     "discard_changes_message": "Kaydedilmemiş değişiklikleriniz var. Çıkmak istediğinizden emin misiniz?",
@@ -184,53 +185,13 @@
     "big_three": "Büyük Üçlü",
     "sun_type": "Güneş Arketipi",
     "moon_type": "Ay Arketipi",
-    "rising_type": "Yükselen Arketip"
+    "rising_type": "Yükselen Arketip",
+    "journal_streak": "Gunluk Serisi",
+    "entries_logged": "Kayit Sayisi",
+    "patterns_found": "Bulunan Kaliplar"
   },
-  "natal_chart": {
-    "title": "Kişisel Profil",
-    "calculating": "Kozmik haritanız çözümleniyor...",
-    "planets_whispering": "Gezegenler konumlarını fısıldıyor",
-    "summary": "Özet",
-    "planets": "Gezegenler",
-    "houses": "Evler",
-    "aspects": "Açılar",
-    "big_three": "Büyük Üçlü",
-    "sun_sign": "Güneş Arketipi",
-    "moon_sign": "Ay Arketipi",
-    "rising_sign": "Yükselen Arketip",
-    "dominant_energies": "Baskın Enerjiler",
-    "element": "Element",
-    "modality": "Modalite",
-    "retrograde_planets": "Retro Gezegenler",
-    "house": "Ev",
-    "ruler": "Yönetici",
-    "profile_not_found": "Profil bulunamadı",
-    "pdf_generating": "PDF oluşturuluyor...",
-    "export_report": "Raporu Dışa Aktar",
-    "preview": "Önizle",
-    "preview_pdf": "PDF raporunu görüntüle",
-    "share_as_pdf": "PDF olarak paylaş",
-    "pdf_error": "PDF oluşturulamadı",
-    "share_error": "PDF paylaşılamadı",
-    "your_sun_sign": "Güneş Arketipin:",
-    "essence_secret": "Özünün Sırrı",
-    "your_moon_sign": "Ay Arketipin:",
-    "emotional_world": "Duygusal Dünyan",
-    "your_rising": "Yükselen:",
-    "outer_image": "Dış İmajın & İlk İzlenim",
-    "mercury_label": "Merkür:",
-    "mind_communication": "Zihin & İletişim Tarzı",
-    "venus_label": "Venüs:",
-    "love_values": "Aşk & Değerler & Estetik",
-    "mars_label": "Mars:",
-    "will_motivation": "İrade & Motivasyon & Enerji",
-    "planets_title": "Gezegenler: Ruhunun Sesleri",
-    "planets_description": "Her gezegen bir arketipi, içindeki bir iç sesi temsil eder. Güneş özünü, Ay duygusal doğanı, Merkür zihnini, Venüs aşk dilini, Mars iradeni simgeler. Dış gezegenler kuşaksal enerjileri ve derin dönüşüm potansiyelini gösterir.",
-    "houses_title": "Evler: Yaşamın Kutsal Alanları",
-    "houses_description": "On iki ev, yaşamın on iki kutsal alanını temsil eder. Her ev bir tapınak gibidir - kendi ritüelleri, dersleri ve hazineleri vardır.",
-    "aspects_title": "Açılar: Simyanın Dansı",
-    "aspects_description": "Açılar, içindeki farklı enerjilerin birbirleriyle nasıl ilişkilendiğini gösterir. Üçgenler doğal yetenekleri, kareler büyüme fırsatlarını, karşıtlıklar dengelenmesi gereken kutuplaşmaları işaret eder.",
-    "retrograde_description": "Retro gezegenler, o gezegenin enerjisini içe döndürür. Bu dönemlerde o enerjiyi içsel motivasyona yönlendirmek faydalıdır."
+  "personal_profile": {
+    "title": "Kişisel Profil"
   },
   "home": {
     "greeting": "Merhaba, {name}!",
@@ -238,17 +199,24 @@
     "chips": {
       "dream": "Rüya",
       "kozmoz": "Kozmoz",
-      "birth_chart": "Kişisel Profil",
+      "personal_profile": "Kişisel Profil",
       "theta_healing": "Theta Healing",
       "astrocartography": "Astrokartografi",
       "reiki": "Reiki",
-      "tarot": "Tarot",
-      "horoscope": "Arketip",
-      "tantra": "Tantra"
+      "card_insight": "Refleksiyon",
+      "reflection": "Arketip",
+      "tantra": "Tantra",
+      "journal": "Gunluk",
+      "patterns": "Kaliplar",
+      "insight": "Icgoru",
+      "growth": "Gelisim",
+      "breathe": "Nefes"
     },
     "sections": {
       "star_gate": "Yıldız Kapısı",
-      "hidden_knowledge": "Gizli Bilgi"
+      "hidden_knowledge": "Gizli Bilgi",
+      "journal_patterns": "Gunluk & Kaliplar",
+      "growth_discovery": "Gelisim & Kesfet"
     },
     "entries": {
       "cosmic_flow": {
@@ -259,15 +227,15 @@
         "title": "Kozmik Paylaşım",
         "subtitle": "Kozmik enerjini paylaş"
       },
-      "tarot": {
-        "title": "Tarot Refleksiyonu",
+      "card_insight": {
+        "title": "Refleksiyon Refleksiyonu",
         "subtitle": "Sembolik içgörüler"
       },
       "compatibility": {
         "title": "Uyum Analizi",
         "subtitle": "İlişki temalarını keşfet"
       },
-      "birth_chart": {
+      "personal_profile": {
         "title": "Kişisel Profil",
         "subtitle": "Kozmik şablonun"
       },
@@ -282,6 +250,14 @@
       "chakra": {
         "title": "Çakra Dengesi",
         "subtitle": "Enerji merkezi uyumu"
+      },
+      "daily_journal": {
+        "title": "Gunluk Kayit",
+        "subtitle": "Ruh halinizi ve dusuncelerinizi takip edin"
+      },
+      "share_insight": {
+        "title": "Icgoru Paylas",
+        "subtitle": "Yansitma anlarinizi paylasin"
       }
     },
     "luck": "Günün Teması",
@@ -301,7 +277,7 @@
     "illumination": "Aydinlik",
     "void_of_course": "Ay Boş Seyir",
     "light_mode": "Aydınlık",
-    "search_hint": "Ara... (örn: arketip, tarot, saturn)",
+    "search_hint": "Ara... (örn: arketip, refleksiyon, saturn)",
     "explore_category": "Keşfet",
     "more_tools_category": "Daha Fazla Araç",
     "no_results": "Sonuç bulunamadı",
@@ -346,19 +322,19 @@
     "cosmic_connection_lost": "Kozmik bağlantı geçici olarak kesildi. Lütfen tekrar deneyin.",
     "share_on_instagram": "Instagram'da Paylaş",
     "search_features": {
-      "horoscope_title": "Günlük İçgörü",
-      "horoscope_desc": "Günlük kozmik rehberlik",
-      "tarot_title": "Tarot Refleksiyonu",
-      "tarot_desc": "Kartların bilgeliğini keşfet",
+      "reflection_title": "Günlük İçgörü",
+      "reflection_desc": "Günlük kozmik rehberlik",
+      "card_insight_title": "Refleksiyon Refleksiyonu",
+      "card_insight_desc": "Kartların bilgeliğini keşfet",
       "dreams_title": "Rüya Yorumu",
       "dreams_desc": "Rüyalarındaki mesajları keşfet",
       "compatibility_title": "Kişilik Uyumu",
       "compatibility_desc": "Arketip uyumlarını keşfet",
       "numerology_title": "Numeroloji",
       "numerology_desc": "Sayıların ruhsal anlamı",
-      "birth_chart_title": "Kişisel Profil",
-      "birth_chart_desc": "Kozmik haritanız",
-      "transits_title": "Gezegen Transitleri",
+      "personal_profile_title": "Kişisel Profil",
+      "personal_profile_desc": "Kozmik haritanız",
+      "transits_title": "Kozmik Transitler",
       "transits_desc": "Kozmik etkiler",
       "saturn_return_title": "Satürn Dönüşü",
       "saturn_return_desc": "Hayatın dönüşüm dönemi",
@@ -381,7 +357,7 @@
       "rituals_title": "Ritüeller",
       "rituals_desc": "Kozmik ritüeller",
       "celebrities_title": "Ünlü Haritaları",
-      "celebrities_desc": "Ünlü doğum haritaları",
+      "celebrities_desc": "Ünlü kişisel profilleri",
       "year_ahead_title": "Önümüzdeki Yıl",
       "year_ahead_desc": "Yıllık kozmik önizleme",
       "timing_title": "Kozmik Zamanlama",
@@ -396,11 +372,11 @@
       "love_improve": "İlişkilerimi nasıl besleyebilirim?"
     },
     "quick_actions": {
-      "horoscope": "Arketip",
-      "tarot": "Tarot",
+      "reflection": "Arketip",
+      "card_insight": "Refleksiyon",
       "dreams": "Rüyalar",
       "compatibility": "Uyum",
-      "birth_chart": "Kişisel Profil",
+      "personal_profile": "Kişisel Profil",
       "synastry": "Sinastri",
       "composite": "Kompozit",
       "transits": "Transitler",
@@ -441,34 +417,34 @@
     "tooltips": {
       "monthly": "Bu ayın kişisel temaları ve fırsatları",
       "yearly": "Yılın genel akışı ve büyük döngüler",
-      "tarot": "Günlük kart çekimi ve tarot okumları",
+      "card_insight": "Günlük kart çekimi ve refleksiyon okumları",
       "all_kozmoz": "Bütün Kozmoz",
       "all_cosmic_tools": "Tüm kozmik araçlar ve içerikler"
     },
     "search_items": {
-      "daily_horoscope": {
+      "daily_reflection": {
         "title": "Günlük İçgörü",
         "desc": "Günlük içgörü yorumları"
       },
-      "weekly_horoscope": {
+      "weekly_reflection": {
         "title": "Haftalık İçgörü",
         "desc": "Haftalık içgörü yorumları"
       },
-      "monthly_horoscope": {
+      "monthly_reflection": {
         "title": "Aylık İçgörü",
         "desc": "Aylık içgörü yorumları"
       },
-      "yearly_horoscope": {
+      "yearly_reflection": {
         "title": "Yıllık İçgörü",
         "desc": "Yıllık içgörü yorumları"
       },
-      "love_horoscope": {
+      "love_reflection": {
         "title": "Aşk İçgörüsü",
         "desc": "Aşk ve ilişki yorumları"
       },
-      "birth_chart": {
+      "personal_profile": {
         "title": "Kişisel Profil",
-        "desc": "Natal chart analizi"
+        "desc": "Personal profile analizi"
       },
       "compatibility": {
         "title": "Uyumluluk",
@@ -486,9 +462,9 @@
         "title": "Kabala",
         "desc": "Kabalistik analiz"
       },
-      "tarot": {
-        "title": "Tarot",
-        "desc": "Tarot kartları"
+      "card_insight": {
+        "title": "Refleksiyon",
+        "desc": "Refleksiyon kartları"
       },
       "aura": {
         "title": "Aura",
@@ -599,7 +575,7 @@
         "desc": "Enerji merkezleri"
       }
     },
-    "zodiac": {
+    "archetype": {
       "personalized_guidance": "{sign} arketipi için kişiselleştirilmiş kozmik rehberlik",
       "popular_questions": "Popüler Sorular",
       "favorable_months": {
@@ -887,8 +863,8 @@
       "birthday_number": "Dogum Gunu",
       "personal_year": "Kisisel Yil",
       "name_numerology": "Isim Numerolojisi",
-      "destiny_number": "İfade Sayısı",
-      "destiny_number_desc": "İsminizin toplam değerinden hesaplanan bu sayı, hayatınızdaki potansiyel temalar ve özellikler hakkında düşünmenize yardımcı olur.",
+      "expression_number": "İfade Sayısı",
+      "expression_number_desc": "İsminizin toplam değerinden hesaplanan bu sayı, hayatınızdaki potansiyel temalar ve özellikler hakkında düşünmenize yardımcı olur.",
       "soul_urge": "Ruh Durtusu",
       "personality": "Kisilik",
       "karmic_debt_numbers": "Karmik Borc Sayilari",
@@ -1244,7 +1220,7 @@
     "modern": "Modern Öz Farkındalık",
     "esoteric": "Ezoterik",
     "psychological": "Psikolojik",
-    "predictive": "Zamanlama",
+    "suggestive": "Zamanlama",
     "relationships": "İlişkiler"
   },
   "celebrity_categories": {
@@ -1293,11 +1269,11 @@
       "daily_whispers": "Günlük içgörü fısıltıları",
       "pure_cosmic_experience": "Saf kozmik deneyim (reklamsız)",
       "deep_planet_readings": "Derin gezegen yorumları",
-      "unlimited_tarot": "Sınırsız tarot seansları",
+      "unlimited_card_insight": "Sınırsız refleksiyon seansları",
       "soulmate_compatibility": "Ruh ikizi uyum analizi",
       "kabbalistic_secrets": "Kabalistik sırlar",
       "auric_reading": "Aurik enerji okuması",
-      "planet_transits": "Gezegen transitleri",
+      "planet_transits": "Kozmik transitler",
       "priority_guidance": "Öncelikli kozmik rehberlik"
     },
     "tiers": {
@@ -1307,7 +1283,7 @@
         "features": [
           "Günlük içgörü fısıltıları",
           "Temel kişisel profil",
-          "Günlük tarot kartı",
+          "Günlük refleksiyon kartı",
           "Reklam destekli"
         ]
       },
@@ -1318,11 +1294,11 @@
           "Tüm temel özellikler",
           "Saf kozmik deneyim (reklamsız)",
           "Derin gezegen yorumları",
-          "Sınırsız tarot seansları",
+          "Sınırsız refleksiyon seansları",
           "Ruh ikizi uyum analizi",
           "Kabalistik sırlar",
           "Aurik enerji okuması",
-          "Gezegen transitleri",
+          "Kozmik transitler",
           "Öncelikli kozmik rehberlik"
         ]
       },
@@ -1333,11 +1309,11 @@
           "Tüm temel özellikler",
           "Saf kozmik deneyim (reklamsız)",
           "Derin gezegen yorumları",
-          "Sınırsız tarot seansları",
+          "Sınırsız refleksiyon seansları",
           "Ruh ikizi uyum analizi",
           "Kabalistik sırlar",
           "Aurik enerji okuması",
-          "Gezegen transitleri",
+          "Kozmik transitler",
           "Öncelikli kozmik rehberlik"
         ]
       },
@@ -1348,17 +1324,17 @@
           "Tüm temel özellikler",
           "Saf kozmik deneyim (reklamsız)",
           "Derin gezegen yorumları",
-          "Sınırsız tarot seansları",
+          "Sınırsız refleksiyon seansları",
           "Ruh ikizi uyum analizi",
           "Kabalistik sırlar",
           "Aurik enerji okuması",
-          "Gezegen transitleri",
+          "Kozmik transitler",
           "Öncelikli kozmik rehberlik"
         ]
       }
     }
   },
-  "zodiac": {
+  "archetype": {
     "all_signs": "Tüm Arketipler",
     "discover_all_signs": "12 arketipi keşfet ve günlük yorumlarını oku",
     "aries": "Koç",
@@ -1950,8 +1926,8 @@
       "general": "Sadece eğlence amaçlıdır",
       "dreams": "Rüya yorumları sembolik refleksiyonlardır",
       "health": "Tıbbi tavsiye değildir. Sağlık konularında uzmana danışın",
-      "astrology": "Öz Farkındalık bir öz-refleksiyon aracıdır, tahmin değil",
-      "tarot": "Tarot okumaları sadece kişisel içgörü içindir",
+      "self_awareness": "Öz Farkındalık bir öz-refleksiyon aracıdır, tahmin değil",
+      "card_insight": "Refleksiyon okumaları sadece kişisel içgörü içindir",
       "numerology": "Numeroloji sembolik perspektifler sunar",
       "chakra": "Çakra bilgisi öz-refleksiyon amaçlıdır",
       "compatibility": "Uyum içgörüleri sadece refleksiyon içindir",
@@ -2477,38 +2453,38 @@
   },
   "faq": {
     "title": "Sıkça Sorulan Sorular",
-    "zodiac_title": "{sign} Arketipi Hakkında SSS",
-    "zodiac_subtitle": "En çok merak edilen sorular ve cevapları",
-    "birth_chart_title": "Kişisel Profil SSS",
-    "birth_chart_subtitle": "Natal chart hakkında merak edilenler",
-    "tarot_title": "Tarot SSS",
-    "tarot_subtitle": "Tarot kartları hakkında bilmeniz gerekenler",
+    "archetype_title": "{sign} Arketipi Hakkında SSS",
+    "archetype_subtitle": "En çok merak edilen sorular ve cevapları",
+    "personal_profile_title": "Kişisel Profil SSS",
+    "personal_profile_subtitle": "Personal profile hakkında merak edilenler",
+    "card_insight_title": "Refleksiyon SSS",
+    "card_insight_subtitle": "Refleksiyon kartları hakkında bilmeniz gerekenler",
     "numerology_title": "Numeroloji SSS",
     "numerology_subtitle": "Sayıların gizemli dünyası",
-    "zodiac_q1": "{sign} arketipi özellikleri nelerdir?",
-    "zodiac_a1": "{sign} arketipi, zodyak kuşağındaki arketiplerdan biridir. Her arketipin kendine özgü kişilik özellikleri, güçlü ve zayıf yönleri vardır. Doğum haritanızda Güneş arketipinuz {sign} olsa bile, yükselen arketipinuz ve Ay arketipinuz da kişiliğinizi önemli ölçüde etkiler.",
-    "zodiac_q2": "{sign} arketipi ile hangi arketipler uyumludur?",
-    "zodiac_a2": "Kişilik uyumu, sadece Güneş arketiplerına değil, tüm kişisel profilna bağlıdır. Genel olarak aynı element grubundaki arketipler (ateş, toprak, hava, su) birbirleriyle daha uyumlu olma eğilimindedir. Detaylı uyum analizi için synastry (karşılaştırmalı harita) analizi önerilir.",
-    "zodiac_q3": "{sign} arketipi günlük içgörü yorumları ne kadar doğrudur?",
-    "zodiac_a3": "Günlük içgörü yorumları genel kozmik enerjileri yansıtır. Her bireyin kişisel profil benzersiz olduğundan, kişiselleştirilmiş yorumlar için kişisel profil analizi ve transit raporları daha isabetli sonuçlar verir.",
-    "zodiac_q4": "Yükselen arketipim {sign} ise ne anlama gelir?",
-    "zodiac_a4": "Yükselen arketip (Ascendant), doğum anınızda doğu ufkunda yükselen arketiptur. Dış görünüşünüzü, başkalarının sizi nasıl algıladığını ve hayata yaklaşım tarzınızı temsil eder. Yükselen arketipinuzu öğrenmek için doğum saatinizi bilmeniz gerekir.",
-    "birth_chart_q1": "Kişisel profil nedir?",
-    "birth_chart_a1": "Kişisel profil (natal chart), doğduğunuz anda gökyüzündeki gezegenlerin konumlarını gösteren kozmik bir haritadır. Güneş, Ay ve gezegenlerin hangi arketiplerda ve evlerde olduğunu, birbirleriyle yaptıkları açıları gösterir.",
-    "birth_chart_q2": "Kişisel profil hesaplamak için nelere ihtiyacım var?",
-    "birth_chart_a2": "Kişisel profil hesaplamak için doğum tarihiniz, doğum saatiniz ve doğum yeriniz gereklidir. Doğum saati ne kadar hassas olursa, yükselen arketip ve ev yerleşimleri o kadar doğru hesaplanır.",
-    "birth_chart_q3": "Doğum saatimi bilmiyorsam ne olur?",
-    "birth_chart_a3": "Doğum saati bilinmediğinde genellikle öğlen 12:00 kullanılır. Bu durumda Ay arketipi ve yükselen arketip hatalı çıkabilir. Gezegen arketip yerleşimleri ve aralarındaki açılar yine de doğru hesaplanır.",
-    "birth_chart_q4": "Ev sistemleri (Placidus, Whole Sign) farkı nedir?",
-    "birth_chart_a4": "Farklı ev sistemleri, gökyüzünü 12 eve bölerken farklı matematiksel yöntemler kullanır. Placidus en yaygın kullanılan sistemdir. Whole Sign ise her arketipin bir evi temsil ettiği antik sistemdir. Her iki sistem de geçerlidir.",
-    "tarot_q1": "Tarot kartları geleceği gösterir mi?",
-    "tarot_a1": "Tarot kartları kesin geleceği değil, mevcut enerji alanınızı ve olasılıkları gösterir. Kartlar bir ayna gibi çalışır - bilinçaltınızı ve durumunuzu yansıtır. Gelecek, kararlarınız ve eylemlerinizle şekillenir.",
-    "tarot_q2": "Tarot destesi kaç karttan oluşur?",
-    "tarot_a2": "Standart tarot destesi 78 karttan oluşur: 22 Major Arcana (büyük sırlar) ve 56 Minor Arcana (küçük sırlar). Minor Arcana dört gruptan (Asalar, Kupalar, Kılıçlar, Pentaküller) ve her grupta 14 karttan oluşur.",
-    "tarot_q3": "Ters gelen kartlar ne anlama gelir?",
-    "tarot_a3": "Ters (reversed) kartlar, kartın enerjisinin bloke olduğunu, içselleştiğini veya aşırıya kaçtığını gösterebilir. Bazı tarot okuyucuları ters kartları kullanmazken, bazıları önemli bir nüans olarak değerlendirir.",
-    "tarot_q4": "Kendime tarot çekebilir miyim?",
-    "tarot_a4": "Evet, kendinize tarot çekebilirsiniz. Önemli olan niyetinizi net belirlemek ve kartları objektif yorumlamaktır. Günlük kart çekimi, öz-keşif için mükemmel bir pratiktir.",
+    "archetype_q1": "{sign} arketipi özellikleri nelerdir?",
+    "archetype_a1": "{sign} arketipi, zodyak kuşağındaki arketiplerdan biridir. Her arketipin kendine özgü kişilik özellikleri, güçlü ve zayıf yönleri vardır. Kişisel profilinizda Güneş arketipinuz {sign} olsa bile, yükselen arketipinuz ve Ay arketipinuz da kişiliğinizi önemli ölçüde etkiler.",
+    "archetype_q2": "{sign} arketipi ile hangi arketipler uyumludur?",
+    "archetype_a2": "Kişilik uyumu, sadece Güneş arketiplerına değil, tüm kişisel profilna bağlıdır. Genel olarak aynı element grubundaki arketipler (ateş, toprak, hava, su) birbirleriyle daha uyumlu olma eğilimindedir. Detaylı uyum analizi için synastry (karşılaştırmalı harita) analizi önerilir.",
+    "archetype_q3": "{sign} arketipi günlük içgörü yorumları ne kadar doğrudur?",
+    "archetype_a3": "Günlük içgörü yorumları genel kozmik enerjileri yansıtır. Her bireyin kişisel profil benzersiz olduğundan, kişiselleştirilmiş yorumlar için kişisel profil analizi ve transit raporları daha isabetli sonuçlar verir.",
+    "archetype_q4": "Yükselen arketipim {sign} ise ne anlama gelir?",
+    "archetype_a4": "Yükselen arketip (Ascendant), doğum anınızda doğu ufkunda yükselen arketiptur. Dış görünüşünüzü, başkalarının sizi nasıl algıladığını ve hayata yaklaşım tarzınızı temsil eder. Yükselen arketipinuzu öğrenmek için doğum saatinizi bilmeniz gerekir.",
+    "personal_profile_q1": "Kişisel profil nedir?",
+    "personal_profile_a1": "Kişisel profil (personal profile), doğduğunuz anda gökyüzündeki gezegenlerin konumlarını gösteren kozmik bir haritadır. Güneş, Ay ve gezegenlerin hangi arketiplerda ve evlerde olduğunu, birbirleriyle yaptıkları açıları gösterir.",
+    "personal_profile_q2": "Kişisel profil hesaplamak için nelere ihtiyacım var?",
+    "personal_profile_a2": "Kişisel profil hesaplamak için doğum tarihiniz, doğum saatiniz ve doğum yeriniz gereklidir. Doğum saati ne kadar hassas olursa, yükselen arketip ve ev yerleşimleri o kadar doğru hesaplanır.",
+    "personal_profile_q3": "Doğum saatimi bilmiyorsam ne olur?",
+    "personal_profile_a3": "Doğum saati bilinmediğinde genellikle öğlen 12:00 kullanılır. Bu durumda Ay arketipi ve yükselen arketip hatalı çıkabilir. Gezegen arketip yerleşimleri ve aralarındaki açılar yine de doğru hesaplanır.",
+    "personal_profile_q4": "Ev sistemleri (Placidus, Whole Sign) farkı nedir?",
+    "personal_profile_a4": "Farklı ev sistemleri, gökyüzünü 12 eve bölerken farklı matematiksel yöntemler kullanır. Placidus en yaygın kullanılan sistemdir. Whole Sign ise her arketipin bir evi temsil ettiği antik sistemdir. Her iki sistem de geçerlidir.",
+    "card_insight_q1": "Refleksiyon kartları geleceği gösterir mi?",
+    "card_insight_a1": "Refleksiyon kartları kesin geleceği değil, mevcut enerji alanınızı ve olasılıkları gösterir. Kartlar bir ayna gibi çalışır - bilinçaltınızı ve durumunuzu yansıtır. Gelecek, kararlarınız ve eylemlerinizle şekillenir.",
+    "card_insight_q2": "Refleksiyon destesi kaç karttan oluşur?",
+    "card_insight_a2": "Standart refleksiyon destesi 78 karttan oluşur: 22 Major Arcana (büyük sırlar) ve 56 Minor Arcana (küçük sırlar). Minor Arcana dört gruptan (Asalar, Kupalar, Kılıçlar, Pentaküller) ve her grupta 14 karttan oluşur.",
+    "card_insight_q3": "Ters gelen kartlar ne anlama gelir?",
+    "card_insight_a3": "Ters (reversed) kartlar, kartın enerjisinin bloke olduğunu, içselleştiğini veya aşırıya kaçtığını gösterebilir. Bazı refleksiyon okuyucuları ters kartları kullanmazken, bazıları önemli bir nüans olarak değerlendirir.",
+    "card_insight_q4": "Kendime refleksiyon çekebilir miyim?",
+    "card_insight_a4": "Evet, kendinize refleksiyon çekebilirsiniz. Önemli olan niyetinizi net belirlemek ve kartları objektif yorumlamaktır. Günlük kart çekimi, öz-keşif için mükemmel bir pratiktir.",
     "numerology_q1": "Numeroloji nedir?",
     "numerology_a1": "Numeroloji, sayıların sembolik ve ruhani anlamlarını inceleyen antik bir bilgelik sistemidir. Doğum tarihinizdeki ve isminizdeki sayıların yaşam yolunuz, kişiliğiniz ve potansiyeliniz hakkında bilgi verdiğine inanılır.",
     "numerology_q2": "Yaşam yolu sayısı nasıl hesaplanır?",
@@ -2521,8 +2497,8 @@
   "quiz": {
     "dream_title": "Rüya Farkındalık Testi",
     "dream_description": "Rüyalarının sana ne söylediğini keşfet",
-    "astrology_title": "Kozmik Farkındalık Testi",
-    "astrology_description": "Yıldızlarla bağlantını keşfet",
+    "self_awareness_title": "Kozmik Farkındalık Testi",
+    "self_awareness_description": "Yıldızlarla bağlantını keşfet",
     "numerology_title": "Sayı Farkındalık Testi",
     "numerology_description": "Sayıların gizli mesajlarını keşfet",
     "general_title": "Kozmik Profil Testi",
@@ -2547,21 +2523,21 @@
     "dream_a4_2": "Bazen araştırırım",
     "dream_a4_3": "Sadece ilginç olanlarda",
     "dream_a4_4": "Pek umursamam",
-    "astrology_q1": "Arketip yorumlarını ne sıklıkla okursun?",
-    "astrology_a1_1": "Her gün kontrol ederim",
-    "astrology_a1_2": "Haftada birkaç kez",
-    "astrology_a1_3": "Ara sıra",
-    "astrology_a1_4": "Nadiren",
-    "astrology_q2": "Doğum haritanı biliyor musun?",
-    "astrology_a2_1": "Detaylı biliyorum",
-    "astrology_a2_2": "Güneş ve Ay arketipimu biliyorum",
-    "astrology_a2_3": "Sadece güneş arketipimu",
-    "astrology_a2_4": "Hiç bakmadım",
-    "astrology_q3": "Retrograd dönemleri takip eder misin?",
-    "astrology_a3_1": "Kesinlikle, önemli!",
-    "astrology_a3_2": "Bazen dikkat ederim",
-    "astrology_a3_3": "Duydum ama takip etmem",
-    "astrology_a3_4": "Retrograd ne?",
+    "self_awareness_q1": "Arketip yorumlarını ne sıklıkla okursun?",
+    "self_awareness_a1_1": "Her gün kontrol ederim",
+    "self_awareness_a1_2": "Haftada birkaç kez",
+    "self_awareness_a1_3": "Ara sıra",
+    "self_awareness_a1_4": "Nadiren",
+    "self_awareness_q2": "Kişisel profilini biliyor musun?",
+    "self_awareness_a2_1": "Detaylı biliyorum",
+    "self_awareness_a2_2": "Güneş ve Ay arketipimu biliyorum",
+    "self_awareness_a2_3": "Sadece güneş arketipimu",
+    "self_awareness_a2_4": "Hiç bakmadım",
+    "self_awareness_q3": "Retrograd dönemleri takip eder misin?",
+    "self_awareness_a3_1": "Kesinlikle, önemli!",
+    "self_awareness_a3_2": "Bazen dikkat ederim",
+    "self_awareness_a3_3": "Duydum ama takip etmem",
+    "self_awareness_a3_4": "Retrograd ne?",
     "numerology_q1": "Belirli sayıları sürekli görür müsün?",
     "numerology_a1_1": "Evet, 11:11 gibi çok sık",
     "numerology_a1_2": "Bazen dikkatimi çeker",
@@ -2603,12 +2579,12 @@
     "result_dream_medium_desc": "Rüyalarınla bağlantın gelişiyor. Biraz daha farkındalıkla bilinçaltının mesajlarını daha net duyabilirsin.",
     "result_dream_low_title": "Rüya Uyuyanı",
     "result_dream_low_desc": "Rüya dünyasını keşfedebilirsin. Küçük adımlarla bilinçaltınla bağlantını güçlendirebilirsin.",
-    "result_astrology_high_title": "Kozmik Usta",
-    "result_astrology_high_desc": "Yıldızlarla güçlü bir bağın var! Kişisel transit raporları ve detaylı harita analizi ile kozmik yolculuğunu derinleştir.",
-    "result_astrology_medium_title": "Yıldız Yolcusu",
-    "result_astrology_medium_desc": "Öz Farkındalık ile bağlantın gelişiyor. Doğum haritanı keşfederek kendini daha iyi tanıyabilirsin.",
-    "result_astrology_low_title": "Kozmik Kaşif",
-    "result_astrology_low_desc": "Yıldızları keşfedebilirsin! Basit arketip yorumlarıyla başlayarak kozmik yolculuğuna adım at.",
+    "result_self_awareness_high_title": "Kozmik Usta",
+    "result_self_awareness_high_desc": "Yıldızlarla güçlü bir bağın var! Kişisel transit raporları ve detaylı harita analizi ile kozmik yolculuğunu derinleştir.",
+    "result_self_awareness_medium_title": "Yıldız Yolcusu",
+    "result_self_awareness_medium_desc": "Öz Farkındalık ile bağlantın gelişiyor. Kişisel profilini keşfederek kendini daha iyi tanıyabilirsin.",
+    "result_self_awareness_low_title": "Kozmik Kaşif",
+    "result_self_awareness_low_desc": "Yıldızları keşfedebilirsin! Basit arketip yorumlarıyla başlayarak kozmik yolculuğuna adım at.",
     "result_numerology_high_title": "Sayı Ustası",
     "result_numerology_high_desc": "Sayılarla güçlü bir bağın var! Kişisel numeroloji raporun ile yaşam yolundaki gizli mesajları keşfet.",
     "result_numerology_medium_title": "Sayı Yolcusu",
@@ -2625,9 +2601,9 @@
       "dream_headline": "Bu rüya herkeste aynı anlama gelmez...",
       "dream_subtext": "Kısa bir test, bunun sana özel olup olmadığını gösterebilir.",
       "dream_button": "Kısa Testi Gör",
-      "astrology_headline": "Kişisel içgörün sana ne kadar uyuyor?",
-      "astrology_subtext": "3 soruluk test ile kozmik uyumunu keşfet.",
-      "astrology_button": "Testi Başlat",
+      "self_awareness_headline": "Kişisel içgörün sana ne kadar uyuyor?",
+      "self_awareness_subtext": "3 soruluk test ile kozmik uyumunu keşfet.",
+      "self_awareness_button": "Testi Başlat",
       "numerology_headline": "Sayılar sana ne söylüyor?",
       "numerology_subtext": "Yaşam yolunu keşfetmek için kısa bir test.",
       "numerology_button": "Sayı Testini Gör",
@@ -2640,8 +2616,8 @@
       "general": "Sadece eğlence ve kişisel düşünme amaçlıdır.",
       "dreams": "Rüya yorumları kişisel keşif içindir, profesyonel yorum değildir.",
       "health": "Tıbbi tavsiye değildir. Sağlık profesyonellerine danışın.",
-      "astrology": "Sadece eğlence amaçlıdır. Tahmin tavsiyesi değildir.",
-      "tarot": "Sadece düşünme amaçlıdır. Tahmin değildir.",
+      "self_awareness": "Sadece eğlence amaçlıdır. Tahmin tavsiyesi değildir.",
+      "card_insight": "Sadece düşünme amaçlıdır. Tahmin değildir.",
       "numerology": "Sadece öz-keşif amaçlıdır. Tahmin değildir.",
       "chakra": "Sadece farkındalık amaçlıdır. Tıbbi veya ruhani reçete değildir.",
       "compatibility": "Sadece düşünme amaçlıdır. İlişki tavsiyesi değildir.",
@@ -2738,20 +2714,20 @@
     "rate_app_desc": "Kozmik deneyimini paylaş",
     "disclaimer": "Yasal Uyarı",
     "disclaimer_desc": "Sadece eğlence amaçlıdır",
-    "disclaimer_content": "Bu uygulama öz farkındalık, numeroloji, tarot ve rüya yorumu içeriklerini yalnızca eğlence ve kendini keşfetme amaçlı sunmaktadır.\n\nİçerikler; tıbbi, psikolojik, finansal, hukuki veya ilişki danışmanlığı dahil hiçbir alanda profesyonel tavsiye niteliği taşımaz.\n\nProfesyonel desteğe ihtiyacınız varsa, lütfen ilgili alanda uzman kişilere başvurun.\n\nTüm yorumlar bilgilendirme ve eğlence amaçlı oluşturulmaktadır ve önemli yaşam kararlarına temel oluşturmamalıdır.",
+    "disclaimer_content": "Bu uygulama öz farkındalık, numeroloji, refleksiyon ve rüya yorumu içeriklerini yalnızca eğlence ve kendini keşfetme amaçlı sunmaktadır.\n\nİçerikler; tıbbi, psikolojik, finansal, hukuki veya ilişki danışmanlığı dahil hiçbir alanda profesyonel tavsiye niteliği taşımaz.\n\nProfesyonel desteğe ihtiyacınız varsa, lütfen ilgili alanda uzman kişilere başvurun.\n\nTüm yorumlar bilgilendirme ve eğlence amaçlı oluşturulmaktadır ve önemli yaşam kararlarına temel oluşturmamalıdır.",
     "disclaimer_tip": "İçerikleri karar verme için değil, kendini keşfetmek için kullan.",
     "privacy_policy": "Gizlilik Politikası",
     "terms_of_service": "Kullanım Koşulları",
     "contact_support": "Destek ile İletişim"
   },
-  "horoscope": {
+  "reflection": {
     "title": "Kişisel İçgörü",
     "reading": "Yorum",
     "analysis": "Arketip Çözümlemelerin",
     "cosmic_energy": "Kozmik Enerjin",
     "daily_cosmic_energy": "Günün Kozmik Enerjin",
     "spiritual_signature": "Ruhsal İmza",
-    "zodiac_secrets": "Arketipi Sırları",
+    "archetype_secrets": "Arketipi Sırları",
     "ruling_planet": "Yönetici",
     "cosmic_overview": "Kozmik Özeti",
     "cosmic_harmony": "Kozmik Uyum",
@@ -2781,11 +2757,11 @@
     "yearly_summary": "Yıllık Özet",
     "special_months": "Özel Aylar",
     "lucky_months": "Uygun Aylar",
-    "planet_transits": "Gezegen Transitleri",
-    "your_zodiac_readings": "Arketip Çözümlemelerin",
+    "planet_transits": "Kozmik Transitler",
+    "your_archetype_readings": "Arketip Çözümlemelerin",
     "sign_today": "{sign} arketipi bugün nasıl?",
-    "astrology_brand": "Öz Farkındalık — Venus One",
-    "astrology": "Öz Farkındalık",
+    "self_awareness_brand": "Öz Farkındalık — Venus One",
+    "self_awareness": "Öz Farkındalık",
     "hermetic_teaching": "Hermetik Öğreti",
     "weekly_affirmation_label": "Haftanın Olumlaması",
     "quotable_bullets": {
@@ -2891,7 +2867,7 @@
     "weekly": "Haftalık",
     "monthly": "Aylık",
     "yearly": "Yıllık",
-    "zodiac": "Arketip",
+    "archetype": "Arketip",
     "meditation": "Meditasyon",
     "explore": "Keşfet",
     "questions": "Sorular",
@@ -2916,18 +2892,18 @@
     "trust": "Güven"
   },
   "brands": {
-    "weekly_horoscope": "Haftalık İçgörü — Venus One",
-    "monthly_horoscope": "Aylık İçgörü — Venus One",
-    "yearly_horoscope": "Yıllık İçgörü — Venus One",
-    "love_horoscope": "Aşk İçgörüsü — Venus One",
+    "weekly_reflection": "Haftalık İçgörü — Venus One",
+    "monthly_reflection": "Aylık İçgörü — Venus One",
+    "yearly_reflection": "Yıllık İçgörü — Venus One",
+    "love_reflection": "Aşk İçgörüsü — Venus One",
     "compatibility": "Kişilik Uyumu — Venus One",
-    "horoscope": "Arketip Yorumları — Venus One",
-    "tarot": "Tarot — Venus One",
+    "reflection": "Arketip Yorumları — Venus One",
+    "card_insight": "Refleksiyon — Venus One",
     "dreams": "Rüya Kâhini — Venus One",
-    "astrology": "Öz Farkındalık — Venus One",
+    "self_awareness": "Öz Farkındalık — Venus One",
     "numerology": "Numeroloji — Venus One",
     "dream_trace": "Rüya İzi — Venus One",
-    "natal_chart": "Kişisel Profil — Venus One"
+    "personal_profile": "Kişisel Profil — Venus One"
   },
   "ads": {
     "failed_to_load": "Reklam Yüklenemedi",
@@ -2992,7 +2968,7 @@
         "title": "Bugünün Kozmik Enerjisi",
         "description": "Gökyüzü bugün ne fısıldıyor? Günlük içgörü yorumlarına göz at."
       },
-      "birth_chart_question": {
+      "personal_profile_question": {
         "title": "Doğum Haritam Ne Söylüyor?",
         "description": "Kozmik parmak izini keşfet — ücretsiz hesapla."
       },
@@ -3012,8 +2988,8 @@
         "title": "Kozmik Rehberlik Al",
         "description": "İçindeki soruyu sor, yıldızlar yanıt versin."
       },
-      "tarot_insight": {
-        "title": "Tarot ile İçgörü",
+      "card_insight_insight": {
+        "title": "Refleksiyon ile İçgörü",
         "description": "Bilinçaltının aynasına bak — günlük kart çek."
       },
       "number_secrets": {
@@ -3028,7 +3004,7 @@
         "title": "Kozmoz Keşif",
         "description": "Tüm özellikler tek yerde"
       },
-      "astrology_glossary": {
+      "self_awareness_glossary": {
         "title": "Farkındalık Sözlüğü",
         "description": "Terimleri öğren"
       },
@@ -3052,7 +3028,7 @@
         "title": "Aylık Derinlik",
         "description": "Ayın büyük teması ne?"
       },
-      "calculate_birth_chart": {
+      "calculate_personal_profile": {
         "title": "Doğum Haritanı Hesapla",
         "description": "Güneş arketipinun ötesini gör."
       },
@@ -3060,8 +3036,8 @@
         "title": "İlişki Uyumu",
         "description": "Sen ve o — kozmik dans nasıl?"
       },
-      "daily_tarot": {
-        "title": "Günlük Tarot",
+      "daily_card_insight": {
+        "title": "Günlük Refleksiyon",
         "description": "Kartlar bugün ne diyor?"
       },
       "home": {
@@ -3114,7 +3090,7 @@
       },
       "kabbalah": {
         "title": "Kabala",
-        "description": "Tarot ve Hayat Ağacı bağlantısı."
+        "description": "Refleksiyon ve Hayat Ağacı bağlantısı."
       },
       "aura_reading": {
         "title": "Aura Okuma",
@@ -3136,7 +3112,7 @@
         "title": "Retrograd Takvimi",
         "description": "Merkür retrosu ne zaman?"
       },
-      "electional_astrology": {
+      "electional_self_awareness": {
         "title": "Electional Öz Farkındalık",
         "description": "Uygun zamanları seç."
       },
@@ -3166,12 +3142,12 @@
       "numerology_mystery": {
         "description": "Sayıların gizemi — benzer bir yolculuk."
       },
-      "daily_horoscope": {
+      "daily_reflection": {
         "title": "Günlük İçgörü",
-        "description": "Tarotla birlikte oku."
+        "description": "Refleksiyonla birlikte oku."
       },
-      "read_with_tarot": {
-        "description": "Tarotla birlikte oku."
+      "read_with_card_insight": {
+        "description": "Refleksiyonla birlikte oku."
       },
       "decode_dream_symbols": {
         "title": "Rüyandaki Sembolleri Çöz",
@@ -3181,15 +3157,15 @@
         "title": "Kozmik Rehberlik",
         "description": "Kartların ötesinde bir mesaj."
       },
-      "birth_chart": {
+      "personal_profile": {
         "title": "Kişisel Profil",
         "description": "Kozmik kimliğin."
       },
       "cosmic_identity": {
         "description": "Kozmik kimliğin."
       },
-      "tarot_ritual": {
-        "title": "Tarot Ritüeli",
+      "card_insight_ritual": {
+        "title": "Refleksiyon Ritüeli",
         "description": "Kart çekme meditasyonu."
       },
       "all_analyses": {
@@ -3199,18 +3175,18 @@
       "other_exploration_paths": {
         "description": "Diğer keşif yolları"
       },
-      "tarot_terms": {
-        "description": "Tarot terimleri"
+      "card_insight_terms": {
+        "description": "Refleksiyon terimleri"
       },
       "kabbalah_numbers": {
         "title": "Kabala Sayıları",
         "description": "Sayıların mistik kökeni."
       },
-      "astrological_perspective": {
+      "personal_perspective": {
         "description": "Kişisel perspektif."
       },
-      "tarot": {
-        "title": "Tarot",
+      "card_insight": {
+        "title": "Refleksiyon",
         "description": "Günlük kart."
       },
       "numbers_in_cards": {
@@ -3252,7 +3228,7 @@
         "title": "Synastry Derinliği",
         "description": "Haritaları detaylı karşılaştır."
       },
-      "love_horoscope": {
+      "love_reflection": {
         "title": "Aşk İçgörüsü Yorumu",
         "description": "Haftalık aşk enerjisi"
       },
@@ -3271,8 +3247,8 @@
       "cosmic_perspective": {
         "description": "Kozmik perspektif."
       },
-      "love_tarot": {
-        "title": "Aşk Tarot'u",
+      "love_card_insight": {
+        "title": "Aşk Refleksiyon'u",
         "description": "İlişki için kart çek."
       },
       "numerical_harmony": {
@@ -3316,14 +3292,14 @@
         "title": "Renk Anlamları",
         "description": "Aura renkleri sözlüğü"
       },
-      "tarot_and_paths": {
-        "title": "Tarot ve Patikalar",
+      "card_insight_and_paths": {
+        "title": "Refleksiyon ve Patikalar",
         "description": "22 Major Arcana, 22 patika."
       },
       "gematria_and_numbers": {
         "description": "Gematria ve sayılar."
       },
-      "astrology_connection": {
+      "self_awareness_connection": {
         "title": "Öz Farkındalık Bağlantısı",
         "description": "Sefirot ve gezegenler."
       },
@@ -3346,7 +3322,7 @@
         "title": "Sefirot Sözlüğü",
         "description": "10 sefirah anlamları"
       },
-      "my_birth_chart": {
+      "my_personal_profile": {
         "title": "Doğum Haritam",
         "description": "Kozmik kimliğin"
       },
@@ -3382,8 +3358,8 @@
         "title": "Arketip ve Rüya Kalıpları",
         "description": "Arketipin rüyalarına nasıl yansıyor?"
       },
-      "subconscious_tarot": {
-        "title": "Bilinçaltı ve Tarot",
+      "subconscious_card_insight": {
+        "title": "Bilinçaltı ve Refleksiyon",
         "description": "Rüyalar ve kartlar benzer dil konuşur."
       },
       "twelfth_house_dreams": {
@@ -3413,7 +3389,7 @@
         "title": "Sembol Sözlüğü",
         "description": "Rüya sembolleri"
       },
-      "daily_horoscope_reading": {
+      "daily_reflection_reading": {
         "title": "Günlük Kişisel İçgörü",
         "description": "Bugünün kozmik enerjisi."
       },
@@ -3451,7 +3427,7 @@
       "my_energy_centers": {
         "description": "Enerji merkezlerim."
       },
-      "advanced_astrology": {
+      "advanced_self_awareness": {
         "description": "Gelişmiş öz farkındalık"
       },
       "learn_concepts": {
@@ -3561,7 +3537,7 @@
         "description": "Terimler"
       }
     },
-    "zodiac": {
+    "archetype": {
       "aries": {
         "name": "Koç",
         "ruler": "Mars",
@@ -3667,7 +3643,7 @@
     "not_found_message": "Aradığınız sayfa yıldızlarda kaybolmuş görünüyor.",
     "not_found_path": "Aranan: {path}",
     "return_home": "Ana Sayfaya Dön",
-    "go_to_horoscope": "Arketip Yorumlarına Git",
+    "go_to_reflection": "Arketip Yorumlarına Git",
     "stars_aligning": "Yıldızlar Hizalanıyor..."
   },
   "sections": {
@@ -3685,15 +3661,15 @@
     "strengths": "Güçlü Yanlar",
     "cosmic_summary": "Kozmik Özeti",
     "spiritual_journey": "Ruhsal Yolculuk",
-    "important_transits": "Önemli Gezegen Transitleri",
+    "important_transits": "Önemli Kozmik Transitler",
     "special_months_of_year": "Yılın Özel Ayları",
     "caution_required": "Dikkat Gerektiren",
-    "horoscope_readings": "Arketip Yorumları",
-    "birth_chart_analysis": "Kişisel Profil & Analizler",
+    "reflection_readings": "Arketip Yorumları",
+    "personal_profile_analysis": "Kişisel Profil & Analizler",
     "time_transits": "Zaman & Transitler",
     "numerology_mystic": "Numeroloji & Mistik Araçlar",
     "spiritual_wellness": "Ruhsal & Wellness",
-    "advanced_astrology": "İleri Seviye Öz Farkındalık",
+    "advanced_self_awareness": "İleri Seviye Öz Farkındalık",
     "personality_analysis": "Kişilik Analizleri",
     "mystic_discoveries": "Mistik Keşifler",
     "relationship_analysis": "İlişki Analizleri",
@@ -3703,11 +3679,11 @@
     "dreams_subconscious": "Rüyalar & Bilinçaltı"
   },
   "misc": {
-    "zodiac_interpretation": "Kişisel İçgörü",
+    "archetype_interpretation": "Kişisel İçgörü",
     "love_interpretation": "Aşk Yorumu",
-    "zodiac_compatibility": "Kişilik Uyumu",
-    "zodiac_profiles": "Arketip Profilleri",
-    "select_zodiac": "Arketip Seç",
+    "archetype_compatibility": "Kişilik Uyumu",
+    "archetype_profiles": "Arketip Profilleri",
+    "select_archetype": "Arketip Seç",
     "view_house_on_map": "Haritamda Bu Evi Gör",
     "how_is_your_love_life": "Aşk hayatın nasıl gidiyor?",
     "opposite_sign": "Karşı Arketip",
@@ -3736,7 +3712,7 @@
     "advice": "Tavsiye",
     "no_profiles_yet": "Henüz profil eklenmedi"
   },
-  "love_horoscope": {
+  "love_reflection": {
     "title": "Aşk hayatın nasıl gidiyor?",
     "today": "Bugün",
     "love_energy": "Aşk Enerjisi",
@@ -3765,7 +3741,7 @@
     "good_match": "İyi Uyum",
     "moderate_match": "Orta Uyum",
     "challenging": "Zorlu",
-    "zodiac_profiles": "Arketip Profilleri",
+    "archetype_profiles": "Arketip Profilleri",
     "brand_text": "Kişilik Uyumu — Venus One",
     "cosmic_chemistry": "Kozmik Kimya",
     "ancient_note": "İki arketip arasındaki uyum, sadece element ve modalite hesabı değildir. Her ilişki, iki ruhun birbirini tamamlama ve dönüştürme potansiyelini taşır. Zorluklar, en büyük öğretmenlerdir."
@@ -4592,7 +4568,7 @@
     "december": "Aralık"
   },
   "analysis": {
-    "zodiac_analysis": "Arketip Çözümlemesi",
+    "archetype_analysis": "Arketip Çözümlemesi",
     "numerology_analysis": "Numeroloji Analizi",
     "aura_analysis": "Aura Analizi",
     "kabbalah_analysis": "Kabala Analizi",
@@ -4601,7 +4577,7 @@
     "enter_birth_info_kabbalah": "Kabala haritanızı görmek için\nönce doğum bilgilerinizi girin"
   },
   "tooltips": {
-    "birth_chart": "Doğum bilgilerinize göre kişisel kozmik haritanız",
+    "personal_profile": "Doğum bilgilerinize göre kişisel kozmik haritanız",
     "solar_return": "Doğum gününüz etrafındaki yıllık kozmik haritanız",
     "lunar_calendar": "Ay fazlarına göre bahçecilik ve ekim takvimi"
   },
@@ -4640,7 +4616,7 @@
     "profile_not_found": "Profil bulunamadı",
     "enter_birth_info": "Lütfen önce doğum bilgilerinizi girin",
     "generating_chart": "Harita oluşturuluyor...",
-    "soul_level_astrology": "Ruh Seviyesi Öz Farkındalık",
+    "soul_level_self_awareness": "Ruh Seviyesi Öz Farkındalık",
     "info_banner": "Ruhunuzun gerçek amacını ve geçmiş yaşam izlerini keşfedin",
     "profile_info": "Profil Bilgileri",
     "name": "İsim",
@@ -4857,7 +4833,7 @@
       "affirmation_3x": "Gün içinde olumlamayı 3 kez tekrarla"
     }
   },
-  "astrology": {
+  "self_awareness": {
     "rising_sign": {
       "title": "Yükselen arketip nedir?",
       "tag": "Öz Farkındalık",
@@ -5320,10 +5296,10 @@
   },
   "year_ahead": {
     "title": "Yıl Bakışı",
-    "year_forecast": "{year} Yılı Bakışsü",
+    "year_outlook": "{year} Yılı Bakışsü",
     "select_year": "Yıl Seçin",
     "year_summary": "Yıl Özeti",
-    "quarterly_forecasts": "Çeyreklik Bakışlar",
+    "quarterly_outlooks": "Çeyreklik Bakışlar",
     "important_transits": "Önemli Geçişler",
     "lucky_periods": "Uygun Dönemler",
     "challenging_periods": "Dikkat Edilmesi Gereken Dönemler",
@@ -5420,7 +5396,7 @@
     "profile_not_found": "Profil bulunamadı",
     "enter_birth_info_first": "Lütfen önce doğum bilgilerinizi girin",
     "go_back": "Geri Dön",
-    "spatial_astrology": "Mekansal Öz Farkındalık",
+    "spatial_self_awareness": "Mekansal Öz Farkındalık",
     "discover_planet_energies": "Gezegen enerjilerinin yön ve mekan üzerindeki etkilerini keşfedin",
     "profile_info": "Profil Bilgileri",
     "full_data": "Tam Veri",
@@ -5488,7 +5464,7 @@
     "analysis": {
       "home_title": "Evinizin Yerel Uzay Analizi",
       "home_intro": "Ev düzeninizi gezegen enerjilerine göre optimize etmek için:",
-      "home_conclusion": "Bu düzenlemeler, evinizin enerjisini doğum haritanızla uyumlu hale getirir.",
+      "home_conclusion": "Bu düzenlemeler, evinizin enerjisini kişisel profilinizla uyumlu hale getirir.",
       "office_title": "İş Yerinizin Yerel Uzay Analizi",
       "office_intro": "Kariyer başarısı için öneriler:",
       "desk_position": "Masanızı {direction} yönüne bakacak şekilde konumlandırın.",
@@ -5496,7 +5472,7 @@
       "growth_goals": "Büyüme hedeflerinizi {direction} duvarına asın."
     }
   },
-  "child_horoscope": {
+  "child_reflection": {
     "personality": {
       "aries": "Koç çocuğunuz enerjik, cesur ve bağımsız bir ruha sahip. Liderlik özellikleri doğuştan gelir ve rekabeti sever. Heyecan arayışı içindedir ve yeni deneyimlere açıktır. Sabırsız olabilir ama coşkusu bulaşıcıdır.",
       "taurus": "Boğa çocuğunuz sakin, kararlı ve güvenilir bir yapıya sahip. Rutin ve istikrarı sever, değişime dirençli olabilir. Dokunsal deneyimlere ve fiziksel konfora önem verir. Sanatsal yetenekleri yüksektir.",
@@ -5711,7 +5687,7 @@
       "pisces": "Hayal gücünü destekleyin ama sınırlar da koyun. Duygusal ihtiyaçlarına duyarlı olun. Yapı ve yönlendirme sağlayın.",
       "default": "Çocuğunuzu olduğu gibi kabul edin ve destekleyin."
     },
-    "daily_horoscopes": [
+    "daily_reflections": [
       "Bugün yeni şeyler öğrenmek için harika bir gün. Merak et ve sorular sor!",
       "Arkadaşlarınla güzel vakit geçirebilirsin. Paylaşmak seni mutlu edecek.",
       "Yaratıcılığın yüksek bugün. Resim yap, bir şeyler inşa et veya dans et!",
@@ -5898,8 +5874,8 @@
         "title": "Flört Stilin",
         "subtitle": "Nasıl baştan çıkardığını öğren"
       },
-      "tarot_card": {
-        "title": "Tarot Kartın",
+      "card_insight_card": {
+        "title": "Refleksiyon Kartın",
         "subtitle": "Ruhunu temsil eden kart"
       },
       "aura_color": {
@@ -6578,12 +6554,12 @@
       }
     }
   },
-  "tarot": {
-    "title": "Tarot",
+  "card_insight": {
+    "title": "Refleksiyon",
     "reading": "Okuması",
     "page_title": "Kartlar sana ne söylüyor?",
     "ancient_wisdom_title": "Kadim Bilgeliğin Anahtarları",
-    "ancient_wisdom_intro": "Tarot, bilinçaltının aynasıdır. Bu kartlar geleceği değil, olasılıkları gösterir. Her çekiş, şu anki enerji alanını ve potansiyel yolları ortaya koyar. Kartlara bir soru sor veya sadece rehberlik iste. Sezgine güven - cevaplar zaten içinde.",
+    "ancient_wisdom_intro": "Refleksiyon, bilinçaltının aynasıdır. Bu kartlar geleceği değil, olasılıkları gösterir. Her çekiş, şu anki enerji alanını ve potansiyel yolları ortaya koyar. Kartlara bir soru sor veya sadece rehberlik iste. Sezgine güven - cevaplar zaten içinde.",
     "select_spread": "Açılım Seç",
     "daily_card": "Günün Kartı",
     "three_cards": "3 Kart",
@@ -6621,7 +6597,7 @@
     "meditation": "Meditasyon",
     "viewing_card": "Şu an {name} kartındasınız",
     "kadim_note_title": "Arketiplerin Dansı",
-    "kadim_note_content": "Her Tarot kartı, kolektif bilinçaltının bir arketipidir. Jung'un dediği gibi, bu semboller insanlığın ortak rüyalarından doğmuştur. Bir kart çektiğinde, evrenle bir diyalog başlatıyorsun. Cevap kartın kendisinde değil, onunla kurduğun bağlantıda.",
+    "kadim_note_content": "Her Refleksiyon kartı, kolektif bilinçaltının bir arketipidir. Jung'un dediği gibi, bu semboller insanlığın ortak rüyalarından doğmuştur. Bir kart çektiğinde, evrenle bir diyalog başlatıyorsun. Cevap kartın kendisinde değil, onunla kurduğun bağlantıda.",
     "wisdom_source": "Arketipsel Bilgelik",
     "jungian_source": "Jungiyen Sembolizm",
     "yes_no_answers": {
@@ -6722,7 +6698,7 @@
         "reversed": "Aşırı izolasyon veya içe kapanma. Ya da tam tersi - yalnızlıktan kaçış.",
         "advice": "Sessizlikte cevaplar var. Kendi rehberin ol ama tamamen yalnız kalma."
       },
-      "wheel_of_fortune": {
+      "wheel_of_change": {
         "name": "Değişim Çarkı",
         "keywords": "Değişim, döngüler, dönüşüm",
         "upright": "Değişim temaları öne çıkıyor. Döngüler ve dönüşümler üzerine düşünün.",
@@ -7126,7 +7102,7 @@
       "moon": "AY",
       "rising": "YÜKSELEN",
       "crystal": "KRİSTAL",
-      "tarot": "TAROT",
+      "card_insight": "REFLECTION CARD",
       "chakra": "ÇAKRA",
       "cosmic_advice": {
         "aries": [
@@ -7659,7 +7635,7 @@
           }
         ]
       },
-      "tarot_cards": {
+      "card_insight_cards": {
         "aries": [
           {
             "name": "İmparator",
@@ -8287,16 +8263,16 @@
     "enter_birth_info": "Astrokartografi haritanızı görmek için\nönce doğum bilgilerinizi girin",
     "create_profile": "Profil Oluştur",
     "generating_map": "Harita oluşturuluyor...",
-    "location_astrology": "Konum Öz Farkındalıksi",
-    "discover_reflections": "Doğum haritanızın dünya üzerindeki yansımalarını keşfedin",
+    "location_self_awareness": "Konum Öz Farkındalıksi",
+    "discover_reflections": "Kişisel profilinizın dünya üzerindeki yansımalarını keşfedin",
     "full_data": "Tam Veri",
     "default_location": "Varsayılan Konum",
     "coordinates": "Koordinatlar",
     "world_map": "Dünya Haritası",
-    "planetary_lines_shown_here": "Gezegen çizgileriniz burada gösterilir",
+    "energy_lines_shown_here": "Kozmik çizgilerniz burada gösterilir",
     "power_points": "Güç Noktaları",
     "active_planets": "Aktif Gezegenler",
-    "planetary_lines": "Gezegen Çizgileri",
+    "energy_lines": "Kozmik Çizgiler",
     "general_analysis": "Genel Analiz"
   },
   "tantra": {
@@ -8363,15 +8339,41 @@
   },
   "notifications": {
     "title": "Bildirimler",
-    "daily_horoscope": "Günlük Kişisel İçgörü",
-    "daily_horoscope_desc": "Her gün saat {time}",
+    "daily_reflection": "Günlük Kişisel İçgörü",
+    "daily_reflection_desc": "Her gün saat {time}",
     "off": "Kapalı",
     "moon_phases": "Ay Evreleri",
     "moon_phases_desc": "Yeni ay ve dolunay bildirimleri",
     "retrograde_alerts": "Retro Uyarıları",
     "retrograde_desc": "Merkür ve diğer gezegenler",
     "transit_alerts": "Transit Uyarıları",
-    "transit_desc": "Önemli gezegensel transitler"
+    "transit_desc": "Önemli gezegensel transitler",
+    "lifecycle": {
+      "smart_notifications": "Akilli Bildirimler",
+      "smart_notifications_desc": "Gunluk yazma aliskanliklariniza gore kisisel hatirlatmalar",
+      "streak_reminder_title": "Seri Seni Bekliyor",
+      "streak_reminder_body": "{count} gunluk serin seni bekliyor! Hizli bir kayit seriyi surdurur.",
+      "insight_teaser_title": "Ilginc Bir Sey Var",
+      "insight_teaser_body": "Bu hafta kaliplarinda ilginc bir sey fark ettik...",
+      "mood_checkin_title": "Hizli Kontrol",
+      "mood_checkin_body": "Simdi nasil hissediyorsun? Hizli bir kontrol sadece 30 saniye surer.",
+      "milestone_title": "Kilometre Tasi!",
+      "milestone_body": "{count} gun kayit yaptiniz! Kaliplarin gercekten ilginclesiyor.",
+      "seasonal_new_moon_title": "Bu Gece Yeni Ay",
+      "seasonal_new_moon_body": "Bu gece yeni ay var — yansitma icin mukemmel bir zaman.",
+      "seasonal_full_moon_title": "Bu Gece Dolunay",
+      "seasonal_full_moon_body": "Bu gece dolunay var — sukran icin harika bir an.",
+      "re_engagement_3day_title": "Gunlugum Seni Bekliyor",
+      "re_engagement_3day_body": "Yansitmalarini ozledik. Gunlugun seni bekliyor.",
+      "re_engagement_7day_title": "Bir Cumle Bile Yeter",
+      "re_engagement_7day_body": "Biraz zaman oldu — bir cumle bile degerli.",
+      "re_engagement_14day_title": "Hala Buradayiz",
+      "re_engagement_14day_body": "Kaliplarin hala burada, hazir oldugunda seni bekliyor.",
+      "re_engagement_30day_title": "Hos Geldin?",
+      "re_engagement_30day_body": "Bazen en iyi kayitlar bir aradan sonra gelir. Hos geldin?",
+      "weekly_digest_title": "Haftalik Yansitma",
+      "weekly_digest_body": "Haftalik yansitman incelenmeye hazir."
+    }
   },
   "menu_features": {
     "daily_reading": "Günlük Yorum",
@@ -8380,7 +8382,7 @@
     "yearly_reading": "Yıllık Yorum",
     "love_reading": "Aşk Yorumu",
     "compatibility": "Kişilik Uyumu",
-    "birth_chart": "Kişisel Profil",
+    "personal_profile": "Kişisel Profil",
     "synastry": "Synastry",
     "composite": "Composite",
     "vedic_chart": "Vedik Harita",
@@ -8395,7 +8397,7 @@
     "eclipse_calendar": "Tutulma Takvimi",
     "transit_calendar": "Transit Takvimi",
     "numerology": "Numeroloji",
-    "tarot": "Tarot",
+    "card_insight": "Refleksiyon",
     "kabbalah": "Kabala",
     "aura": "Aura",
     "chakra": "Çakra",
@@ -8411,7 +8413,7 @@
     "red_flags": "Kırmızı Bayrakların",
     "green_flags": "Yeşil Bayrakların",
     "flirt_style": "Flört Stilin",
-    "tarot_card": "Tarot Kartın",
+    "card_insight_card": "Refleksiyon Kartın",
     "aura_color": "Aura Rengin",
     "chakra_balance": "Çakra Dengen",
     "life_number": "Yaşam Sayın",
@@ -8422,7 +8424,7 @@
     "celebrity_twin": "Ünlü İkizin",
     "cosmic_trace": "Kozmoz İzi",
     "dream_trace": "Rüya İzi",
-    "horoscope_reader": "Arketip Yorumcusu",
+    "reflection_reader": "Arketip Yorumcusu",
     "cosmic_share": "Kozmik Paylaşım",
     "saved_profiles": "Kayıtlı Profiller",
     "compare": "Karşılaştır",
@@ -8451,12 +8453,12 @@
     "suggested_questions": "Önerilen Sorular:",
     "all_analyses": "Tüm Çözümlemeler",
     "features": {
-      "zodiac_readings": "Arketip Yorumları",
-      "birth_chart": "Kişisel Profil",
-      "zodiac_compatibility": "Kişilik Uyumu",
+      "archetype_readings": "Arketip Yorumları",
+      "personal_profile": "Kişisel Profil",
+      "archetype_compatibility": "Kişilik Uyumu",
       "transits": "Transitler",
       "numerology": "Numeroloji",
-      "tarot": "Tarot",
+      "card_insight": "Refleksiyon",
       "dream_trace": "Rüya İzi",
       "aura_analysis": "Aura Analizi",
       "chakra_analysis": "Çakra Analizi",
@@ -8490,9 +8492,9 @@
       "name_numerology": "İsim numerolojim refleksiyon için hangi sembolik nitelikleri öneriyor?",
       "personal_year": "Kişisel yıl sayım bu yıl için hangi temaları öneriyor?",
       "birthday_number": "Doğum günü sayım hangi sembolik nitelikleri temsil ediyor?",
-      "daily_tarot": "Bugünkü tarot kartı hangi refleksiyon temasını öneriyor?",
+      "daily_card_insight": "Bugünkü refleksiyon kartı hangi refleksiyon temasını öneriyor?",
       "three_card_spread": "Durumum üzerine refleksiyon için üç kart açılımı gösterebilir misin?",
-      "yes_no_tarot": "Tarot soruma bir perspektif sunabilir mi?",
+      "yes_no_card_insight": "Refleksiyon soruma bir perspektif sunabilir mi?",
       "spiritual_awakening": "Şu anki ruhsal uyanış ve bilinç genişlemesi sürecimde neredeyim?",
       "karmic_debts": "Kişisel gelişim için hangi karmik temaları düşünebilirim?",
       "chakra_status": "Denge ve iyilik için hangi çakra temalarını keşfedebilirim?",
@@ -8545,7 +8547,7 @@
       "energy_cleansing": "Enerji temizliği için en etkili ritüeller ve zamanlamalar neler?"
     },
     "responses": {
-      "greeting_intro": "Ben Kozmoz, senin kişisel kozmik AI rehberin!\n\n{element} elementinin güçlü enerjisiyle bugün sana yardımcı olmak için buradayım.\n\nBenimle konuşabileceğin konular:\n\n🔮 ARKETİP & YORUM\n• Günlük/Haftalık/Aylık içgörü yorumları\n• Güneş, Ay ve Yükselen arketip analizleri\n• Element ve modalite yorumları\n\n💕 AŞK & İLİŞKİLER\n• Kişilik uyumu ve synastry\n• İdeal partner profili\n• İlişki tavsiyeleri\n\n💼 KARİYER & FİNANS\n• Uygun kariyer yolları\n• Para çekme dönemleri\n• İş ortaklığı uyumları\n\n🌙 KOZMİK ZAMANLAMALAR\n• Ay fazları ve etkileri\n• Önemli tarihler\n\n🔢 NUMEROLOJİ & MİSTİK\n• Yaşam yolu sayın\n• Tarot mesajları\n\n🧘 SPİRİTÜEL GELİŞİM\n• Meditasyon ve ritüeller\n\nNe hakkında konuşmak istersin? ✨",
+      "greeting_intro": "Ben Kozmoz, senin kişisel kozmik AI rehberin!\n\n{element} elementinin güçlü enerjisiyle bugün sana yardımcı olmak için buradayım.\n\nBenimle konuşabileceğin konular:\n\n🔮 ARKETİP & YORUM\n• Günlük/Haftalık/Aylık içgörü yorumları\n• Güneş, Ay ve Yükselen arketip analizleri\n• Element ve modalite yorumları\n\n💕 AŞK & İLİŞKİLER\n• Kişilik uyumu ve synastry\n• İdeal partner profili\n• İlişki tavsiyeleri\n\n💼 KARİYER & FİNANS\n• Uygun kariyer yolları\n• Para çekme dönemleri\n• İş ortaklığı uyumları\n\n🌙 KOZMİK ZAMANLAMALAR\n• Ay fazları ve etkileri\n• Önemli tarihler\n\n🔢 NUMEROLOJİ & MİSTİK\n• Yaşam yolu sayın\n• Refleksiyon mesajları\n\n🧘 SPİRİTÜEL GELİŞİM\n• Meditasyon ve ritüeller\n\nNe hakkında konuşmak istersin? ✨",
       "daily_report_header": "{sign} GÜNLÜK KOZMİK RAPOR",
       "morning_energy": "SABAH ENERJİSİ (06:00 - 12:00)",
       "noon_energy": "ÖĞLE ENERJİSİ (12:00 - 18:00)",
@@ -8624,7 +8626,7 @@
       "practical_advice": "PRATİK TAVSİYELER",
       "wisdom_affirmation": "GÜN İÇİN AFİRMASYON",
       "more_help": "Daha spesifik yardım için bana şunları sorabilirsin:",
-      "example_questions": "• \"Bugün için kişisel içgörüm\"\n• \"Aşk hayatım hakkında düşünceler\"\n• \"Kariyer için tavsiye\"\n• \"Ay fazı etkisi\"\n• \"Tarot mesajı\"\n\n• Ve çok daha fazlası...\n\nMerak ettiğin her konuyu sorabilirsin! 🌌",
+      "example_questions": "• \"Bugün için kişisel içgörüm\"\n• \"Aşk hayatım hakkında düşünceler\"\n• \"Kariyer için tavsiye\"\n• \"Ay fazı etkisi\"\n• \"Refleksiyon mesajı\"\n\n• Ve çok daha fazlası...\n\nMerak ettiğin her konuyu sorabilirsin! 🌌",
       "date_format": "{day}.{month}.{year}",
       "moon_in_sign": "Ay: {sign} Arketipinda",
       "rising_sign_header": "{sign} & YÜKSELEN ARKETİP ANALİZİ",
@@ -8670,7 +8672,7 @@
       "personal_year_calc": "KİŞİSEL YIL HESAPLAMASI",
       "sign_numerology_connection": "{sign} VE NUMEROLOJİ",
       "numerology_reminder": "Sayılar, evrenin gizli dilidir!",
-      "tarot_header": "{sign} İÇİN TAROT OKUMASI",
+      "card_insight_header": "{sign} İÇİN REFLECTION CARD OKUMASI",
       "three_card_spread": "3 KART AÇILIMI",
       "past_card": "GEÇMİŞ: {card}",
       "present_card": "ŞİMDİ: {card}",
@@ -8679,7 +8681,7 @@
       "advice_card": "TAVSİYE",
       "card_of_the_day": "GÜNÜN KARTI",
       "card_message": "Bu kartın sana mesajı:",
-      "tarot_reminder": "Kartlar sembolik temalar sunar, tahmin değil!",
+      "card_insight_reminder": "Kartlar sembolik temalar sunar, tahmin değil!",
       "aura_header": "{sign} AURA & ENERJİ ANALİZİ",
       "aura_colors": "AURA RENKLERİN",
       "energy_frequency": "ENERJİ FREKANSIM",
@@ -9165,7 +9167,7 @@
       "personal_year_info": "Kişisel yıl sayın, o yılın temasını belirler.",
       "sign_connection": "{sign} ve numeroloji kombinasyonu güçlü bir harita oluşturur."
     },
-    "tarot": {
+    "card_insight": {
       "meanings": {
         "magician": "İrade gücü, yaratıcılık, beceri. Potansiyelini kullan.",
         "high_priestess": "Sezgi, gizli bilgi, içsel bilgelik. Dinle.",
@@ -9288,9 +9290,6 @@
   },
   "reiki": {
     "title": "Reiki"
-  },
-  "birth_chart": {
-    "title": "Kişisel Profil"
   },
   "chart": {
     "birth_date": "Doğum Tarihi",
@@ -9512,7 +9511,7 @@
       "suggestion_text": "İfade sayısı nedir?",
       "footer": "Numeroloji — Venus One"
     },
-    "destiny_number_screen": {
+    "expression_number_screen": {
       "page_title": "İfade sayısı nedir?",
       "tag": "Numeroloji",
       "short_answer_title": "Kısa Cevap",
@@ -9556,7 +9555,7 @@
     "keep_exploring": "Keşfetmeye Devam Et",
     "daily_reading": "Günlük Yorum",
     "daily_energy": "Bugünün enerjisi",
-    "birth_chart": "Kişisel Profil",
+    "personal_profile": "Kişisel Profil",
     "explore_cosmic_map": "Kozmik haritanı keşfet",
     "compatibility": "Kişilik Uyumu",
     "basic_compatibility": "Temel uyum analizi",
@@ -9571,8 +9570,8 @@
     "monthly_energy": "Bu ayın enerjisi",
     "yearly_reading": "Yıllık Yorum",
     "yearly_energy": "Bu yılın enerjisi",
-    "tarot": "Tarot",
-    "tarot_guidance": "Kartlar ne diyor?",
+    "card_insight": "Refleksiyon",
+    "card_insight_guidance": "Kartlar ne diyor?",
     "numerology": "Numeroloji",
     "numerology_insight": "Sayıların gizemi",
     "dreams": "Rüyalar",
@@ -9633,9 +9632,9 @@
     "transit_calendar": "Transit Takvimi",
     "upcoming_transits": "Yaklaşan transitler",
     "aspect_analysis": "Açı Analizi",
-    "planetary_conversations": "Gezegen konuşmaları",
+    "energy_conversations": "Kozmik konuşmalar",
     "celebrities": "Ünlüler",
-    "famous_charts": "Ünlü doğum haritaları",
+    "famous_charts": "Ünlü kişisel profilleri",
     "articles": "Makaleler",
     "cosmic_wisdom": "Kozmik bilgelik",
     "kabbalah": "Kabala",
@@ -9677,7 +9676,7 @@
     "next_7_days": "Önümüzdeki 7 Gün",
     "today": "Bugün",
     "tomorrow": "Yarın",
-    "planetary_hours": "Gezegen Saatleri",
+    "energy_hours": "Kozmik Saatler",
     "now": "Şimdi",
     "hour": "Saati",
     "planet_sun_meaning": "Başarı, liderlik, canlılık",
@@ -10010,7 +10009,7 @@
   },
   "glossary": {
     "hints": {
-      "natal_chart": "Kozmik kimlik kartın",
+      "personal_profile": "Kozmik kimlik kartın",
       "ascendant": "Dünyaya açılan kapın",
       "descendant": "İlişkilerdeki ayna",
       "midheaven": "Kariyer ve kamusal imaj",
@@ -10122,7 +10121,7 @@
       "pisces": "Hayalperest, sanatsal ve spiritüel biri olarak görülüyorsunuz. Empatik ve anlayışlı bir enerji yayıyorsunuz."
     },
     "headers": {
-      "birth_chart_report": "Kişisel Profil Raporu",
+      "personal_profile_report": "Kişisel Profil Raporu",
       "cosmic_guide": "Kozmik Rehberiniz",
       "page": "Sayfa"
     },
@@ -10132,7 +10131,7 @@
       "element_distribution": "ELEMENT DAĞILIMI",
       "modality_distribution": "MODALİTE DAĞILIMI",
       "personality_interpretation": "KİŞİLİK YORUMU",
-      "daily_horoscope": "GÜNLÜK ARKETİP YORUMU",
+      "daily_reflection": "GÜNLÜK ARKETİP YORUMU",
       "daily_recommendation": "GÜNÜN ÖNERİSİ",
       "overall_compatibility": "GENEL UYUM",
       "category_compatibility": "KATEGORİ BAZLI UYUM",
@@ -10580,8 +10579,7 @@
     },
     "why_now": "Bu rüya tam da şu an geldi çünkü {phaseContext} ve {layerContext} Evren, bu mesajı senin için mükemmel zamanda gönderdi.",
     "why_now_simple": "Bu rüya tam da şu an geldi çünkü evren sana bir mesaj gönderiyor.",
-    "archetype_fallback": "Bilinçaltının derinliklerinden bir figür beliriyor.",
-    "zodiac_fallback": "Rüyalarına dikkat et, mesajlar var.",
+    "archetype_fallback": "Rüyalarına dikkat et, mesajlar var.",
     "defaults": {
       "surface_message": "Bilinçaltın seninle konuşmak istiyor.",
       "deeper_meaning": "Bu rüya derinlerde bir mesaj taşıyor.",
@@ -10597,8 +10595,6 @@
       "avoidance": "Rüyayı görmezden gelmekten kaçın."
     },
     "exploration": {
-      "birth_chart_title": "Doğum Haritanı Keşfet",
-      "birth_chart_desc": "Rüyandaki sembollerin kişisel profilnla bağlantısını gör",
       "personal_profile_title": "Kişisel Profilini Keşfet",
       "personal_profile_desc": "Rüya sembollerinin iç kalıplarınla bağlantısını gör",
       "moon_calendar_title": "Ay Takvimine Bak",
@@ -10607,13 +10603,12 @@
       "transits_desc": "Şu anki gezegen geçişlerinin rüyana etkisi",
       "timing_insights_title": "Zamanlama İçgörüleri",
       "timing_insights_desc": "Kozmik ritimlerin rüya kalıplarını nasıl etkilediğini keşfet",
-      "tarot_title": "Tarot Çek",
-      "tarot_desc": "Rüyanın mesajını tarot ile derinleştir",
+      "card_insight_title": "Refleksiyon Çek",
+      "card_insight_desc": "Rüyanın mesajını refleksiyon ile derinleştir",
       "neptune_title": "Neptün Transiti",
       "neptune_desc": "Su sembolleri Neptün enerjisiyle bağlantılı",
       "pluto_title": "Plüton Analizi",
       "pluto_desc": "Dönüşüm sembolleri Plüton ile resonansa girer",
-      "category_astrology": "Öz Farkındalık",
       "category_self_awareness": "Öz Farkındalık",
       "category_moon": "Ay",
       "category_symbols": "Semboller"
@@ -10667,5 +10662,78 @@
     "save_failed": "Kaydetme başarısız. Lütfen tekrar deneyin.",
     "network_error": "Ağ hatası. Lütfen bağlantınızı kontrol edin.",
     "generic_error": "Bir şeyler ters gitti. Lütfen tekrar deneyin."
+  },
+  "emotional_cycles": {
+    "title": "Ic Dongulerin",
+    "title_tr": "Ic Dongulerin",
+    "locked_title": "Dongulerin Olusuyor",
+    "locked_subtitle": "Duygusal kaliplarini kesfetmek icin daha fazla kayit yap.",
+    "start_journaling": "Kayit Yapmaya Basla",
+    "last_n_days": "Son {days} Gun",
+    "today": "Bugun",
+    "days_ago": "{days} gun once",
+    "your_dimensions": "Boyutlarin",
+    "cycle_insights": "Dongu Icgoruleri",
+    "share_my_cycles": "Ic Dongullerimi Paylas",
+    "unlock_full_view": "Tam 30 Gunluk Gorunumu Ac",
+    "unlock_description": "Tam dongu gorunumu icin 30+ gun kayit yap veya premium'a gec.",
+    "go_premium": "Premium'a Gec",
+    "no_data_yet": "Dongulerni gormek icin kayit yapmaya basla",
+    "current_avg": "Ort.",
+    "no_entries_for_area": "{area} icin henuz kayit yok",
+    "phase_rising": "Yukseliyor",
+    "phase_peak": "Zirve",
+    "phase_falling": "Dusuyor",
+    "phase_valley": "Vadi",
+    "trend_improving": "Gelisiyor",
+    "trend_stable": "Sabit",
+    "trend_declining": "Dusuyor",
+    "cycle_summary": "{area} boyutun yaklasik ~{days} gunde bir dongu yapiyor",
+    "cycle_not_detected": "{area} dongunuzu tespit etmek icin henuz yeterli veri yok",
+    "insight_strongest": "{area} son zamanlarda en guclu boyutun olma egiliminde",
+    "insight_correlation_positive": "{area1} ve {area2} verilerinde birlikte hareket etme egiliminde",
+    "insight_correlation_negative": "{area1} yuksek oldugunda, {area2} dusuk olma egiliminde",
+    "insight_best_day": "Puanlarin {day} gunlerinde daha yuksek olma egiliminde",
+    "insight_cycle_detected": "{area} kaliplarin ~{days} gunluk bir dongu oneriyor",
+    "insight_improving": "{area} yavas yavas iyilesiyor gorunuyor",
+    "insight_needs_attention": "{area} son zamanlarda biraz ilgiye ihtiyac duyabilir"
+  },
+  "voice_input": {
+    "tap_to_speak": "Konusmak icin dokun",
+    "listening": "Dinleniyor...",
+    "stop": "Durdur",
+    "not_available": "Sesli giris bu cihazda kullanilamiyor.",
+    "permission_required": "Sesli giris icin mikrofon izni gerekli. Lutfen Ayarlar'dan etkinlestirin.",
+    "error_start": "Dinleme baslatilamadi. Lutfen tekrar deneyin.",
+    "error_generic": "Sesli giris hatasi. Lutfen tekrar deneyin."
+  },
+  "quiz_hub": {
+    "title": "Oz Yansitma Testleri",
+    "description": "Dusunceli oz yansitma yoluyla kendinizin farkli yonlerini kesfedin. Bunlar kisisel farkindalik araclaridir, klinik degerlendirmeler degildir.",
+    "quiz_not_found": "Test bulunamadi",
+    "question_of": "Soru {current} / {total}",
+    "your_result": "Sonucunuz",
+    "disclaimer": "Bu, klinik bir degerlendirme degil, kisisel farkindalik icin bir oz yansitma aracidir.",
+    "your_strengths": "Guclu Yanlariniz",
+    "growth_areas": "Gelisim Alanlari",
+    "full_breakdown": "Detayli Dagilim",
+    "retake_quiz": "Testi Tekrarla",
+    "back_to_all_quizzes": "Tum Testlere Don",
+    "done_badge": "Tamam",
+    "your_result_label": "Sonucunuz: {result}"
+  },
+  "share_gallery": {
+    "title": "Paylasim Kartlari",
+    "back_to_gallery": "Galeriye don",
+    "share_button": "Paylas",
+    "copy_button": "Kopyala",
+    "shared_success": "Basariyla paylasildi!",
+    "share_failed": "Paylasilamadi. Tekrar dene.",
+    "copied_to_clipboard": "Panoya kopyalandi",
+    "share_text_en": "InnerCycles kartimi kesfet! #InnerCycles #KendiniFarkEt",
+    "category_identity": "Kimlik",
+    "category_pattern": "Kalip",
+    "category_achievement": "Basari",
+    "category_wisdom": "Bilgelik"
   }
 }

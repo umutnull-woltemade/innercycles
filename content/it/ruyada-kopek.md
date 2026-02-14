@@ -21,21 +21,21 @@ Se un cane è apparso nel tuo sogno, probabilmente stai elaborando le dinamiche 
 
 Il cane è l'archetipico "compagno fedele." Nella mitologia, i cani sorvegliano la soglia tra i mondi — Anubi in Egitto, Cerbero nella mitologia greca, i cani-spirito nelle tradizioni sciamaniche turche.
 
-**Un cane amichevole e felice** indica relazioni sane, sicurezza emotiva e la presenza di un sostegno incondizionato nella tua vita.
+**Un cane amichevole e felice** indica relazioni sane, stabilità emotiva e la presenza di un sostegno incondizionato nella tua vita.
 
 **Un cane aggressivo** rappresenta una rottura di fiducia, la paura del tradimento o la sensazione che qualcuno stia oltrepassando i tuoi confini.
 
-**Un cane nero** si collega all'archetipo dell'ombra di Jung — paure represse, emozioni oscure o aspetti di te stesso che non hai ancora riconosciuto.
+**Un cane nero** si collega all'archetipo dell'ombra di Jung — paure represse, emozioni ombrose o aspetti di te stesso che non hai ancora riconosciuto.
 
-**Un cucciolo** rappresenta una nuova relazione, l'innocenza, un bisogno di accudimento o qualcosa di nuovo che entra nella tua vita e richiede cura.
+**Un cucciolo** rappresenta una nuova relazione, l'innocenza, un bisogno di accudimento o qualcosa di nuovo che entra nella tua vita e richiede attenzione.
 
 **Un cane smarrito** simboleggia l'erosione della lealtà, un'amicizia che si affievolisce o un senso di appartenenza indebolito.
 
 ## Interpretazione psicologica
 
-In psicologia, i cani rappresentano il sistema di attaccamento e fiducia. Attraverso la lente della teoria dell'attaccamento di Bowlby, i sogni con i cani possono riflettere direttamente il tuo stile di attaccamento — sicuro, ansioso o evitante.
+In psicologia, i cani rappresentano il sistema di attaccamento e fiducia. Attraverso la lente della teoria dell'attaccamento di Bowlby, i sogni con i cani possono riflettere direttamente il tuo stile di attaccamento — stabile, ansioso o evitante.
 
-Provare amore verso il cane suggerisce che il tuo attaccamento sicuro è attivo. Temere il cane potrebbe significare che il tuo sistema di fiducia è in stato di allerta. Perdere il cane potrebbe segnalare che l'ansia da abbandono sta emergendo in superficie.
+Provare amore verso il cane suggerisce che il tuo attaccamento stabile è attivo. Temere il cane potrebbe significare che il tuo sistema di fiducia è in stato di allerta. Perdere il cane potrebbe segnalare che l'ansia da abbandono sta emergendo in superficie.
 
 Nella psicologia moderna del sogno, il cane simboleggia anche l'istinto — la capacità del cane di percepire il pericolo rispecchia la tua intelligenza intuitiva.
 
@@ -48,7 +48,7 @@ Nelle tradizioni sciamaniche turche, il cane è un compagno e protettore dell'an
 - **Morso di cane**: possibile tradimento o delusione da parte di qualcuno di cui ti fidi.
 - **Cane nero**: confronto con l'ombra, paure inconsce.
 - **Cane bianco**: purezza, lealtà, protezione spirituale.
-- **Cucciolo**: nuovo legame, innocenza, bisogno di cura.
+- **Cucciolo**: nuovo legame, innocenza, bisogno di attenzione.
 - **Attacco di cane**: rottura di fiducia, violazione dei confini.
 - **Trovare un cane smarrito**: riscoperta di un legame perduto.
 - **Morte di un cane**: perdita simbolica di lealtà o fiducia.

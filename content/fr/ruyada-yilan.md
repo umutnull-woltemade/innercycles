@@ -11,7 +11,7 @@ updated_at: "2026-01-25"
 - Transformation, peurs cachées et instincts refoulés sont les couches symboliques principales du serpent.
 - L'émotion ressentie face au serpent détient la clé de l'interprétation.
 
-Le serpent est l'un des symboles oniriques les plus universels et les plus profonds. Il peut porter des significations opposées simultanément : peur et sagesse, danger et guérison, mort et renaissance.
+Le serpent est l'un des symboles oniriques les plus universels et les plus profonds. Il peut porter des significations opposées simultanément : peur et sagesse, danger et transformation, mort et renaissance.
 
 ## Résumé personnel
 
@@ -27,7 +27,7 @@ Si vous avez rêvé d'un serpent, vous approchez probablement d'un tournant dans
 
 **Avertissement :** Un serpent agressif peut indiquer une menace, une personne peu fiable ou un risque ignoré.
 
-**Symbole de guérison :** Dans la médecine grecque antique, le serpent symbolisait la guérison.
+**Symbole de renouvellement :** Dans la médecine grecque antique, le serpent symbolisait le renouvellement et la transformation.
 
 ## Perspective psychologique
 
@@ -42,7 +42,7 @@ Dans de nombreuses cultures, le serpent est associé à l'éveil spirituel. Dans
 - **Serpent noir** : L'inconnu, émotions refoulées, archétype de l'ombre.
 - **Serpent vert** : Croissance, changement naturel.
 - **Grand serpent** : Grande transformation ou message puissant.
-- **Morsure de serpent** : Avertissement urgent, vérité ignorée.
+- **Morsure de serpent** : Avertissement important, vérité ignorée.
 - **Tuer un serpent** : Confrontation avec une peur.
 - **Plusieurs serpents** : Pression émotionnelle de plusieurs fronts.
 - **Être poursuivi par un serpent** : Une réalité que vous fuyez.

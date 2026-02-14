@@ -292,6 +292,77 @@ class SettingsScreen extends ConsumerWidget {
                     ),
                     const SizedBox(height: 35),
 
+                    // ═══ FEATURES SECTION ═══
+                    _SectionHeader(
+                      title: (language == AppLanguage.en
+                              ? 'Features'
+                              : 'Özellikler')
+                          .toUpperCase(),
+                      isDark: isDark,
+                    ),
+                    _GroupedContainer(
+                      isDark: isDark,
+                      noPadding: true,
+                      child: Column(
+                        children: [
+                          _GroupedTile(
+                            icon: Icons.air_outlined,
+                            title: language == AppLanguage.en
+                                ? 'Breathing Exercises'
+                                : 'Nefes Egzersizleri',
+                            isDark: isDark,
+                            onTap: () => context.push(Routes.breathing),
+                          ),
+                          _GroupedSeparator(isDark: isDark),
+                          _GroupedTile(
+                            icon: Icons.self_improvement_outlined,
+                            title: language == AppLanguage.en
+                                ? 'Meditation Timer'
+                                : 'Meditasyon Zamanlayici',
+                            isDark: isDark,
+                            onTap: () => context.push(Routes.meditation),
+                          ),
+                          _GroupedSeparator(isDark: isDark),
+                          _GroupedTile(
+                            icon: Icons.emoji_events_outlined,
+                            title: language == AppLanguage.en
+                                ? 'Growth Challenges'
+                                : 'Büyüme Görevleri',
+                            isDark: isDark,
+                            onTap: () => context.push(Routes.challenges),
+                          ),
+                          _GroupedSeparator(isDark: isDark),
+                          _GroupedTile(
+                            icon: Icons.eco_outlined,
+                            title: language == AppLanguage.en
+                                ? 'Seasonal Reflections'
+                                : 'Mevsimsel Yansimalar',
+                            isDark: isDark,
+                            onTap: () => context.push(Routes.seasonal),
+                          ),
+                          _GroupedSeparator(isDark: isDark),
+                          _GroupedTile(
+                            icon: Icons.dark_mode_outlined,
+                            title: language == AppLanguage.en
+                                ? 'Moon Calendar'
+                                : 'Ay Takvimi',
+                            isDark: isDark,
+                            onTap: () => context.push(Routes.moonCalendar),
+                          ),
+                          _GroupedSeparator(isDark: isDark),
+                          _GroupedTile(
+                            icon: Icons.file_download_outlined,
+                            title: language == AppLanguage.en
+                                ? 'Export Data'
+                                : 'Verileri Disa Aktar',
+                            isDark: isDark,
+                            onTap: () => context.push(Routes.exportData),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 35),
+
                     // ═══ NOTIFICATIONS SECTION ═══
                     _SectionHeader(
                       title: L10nService.get(

@@ -27,7 +27,7 @@ Si has soñado con una serpiente, probablemente te aproximas a un punto de infle
 
 **Advertencia:** Una serpiente agresiva puede señalar una amenaza, una persona poco fiable o un riesgo ignorado.
 
-**Símbolo de sanación:** En la medicina griega antigua, la serpiente era símbolo de curación.
+**Símbolo de sanación:** En la medicina griega antigua, la serpiente era símbolo de renovación y transformación.
 
 ## Interpretación Psicológica
 
@@ -42,7 +42,7 @@ En muchas culturas, la serpiente se asocia con el despertar espiritual. En el hi
 - **Serpiente negra**: Lo desconocido, emociones reprimidas, arquetipo de la sombra.
 - **Serpiente verde**: Crecimiento, cambio natural.
 - **Serpiente grande**: Gran transformación o mensaje poderoso.
-- **Mordedura de serpiente**: Advertencia urgente, verdad ignorada.
+- **Mordedura de serpiente**: Advertencia importante, verdad ignorada.
 - **Matar una serpiente**: Confrontación con un miedo.
 - **Múltiples serpientes**: Presión emocional desde varios frentes.
 - **Ser perseguido por una serpiente**: Una realidad de la que huyes.

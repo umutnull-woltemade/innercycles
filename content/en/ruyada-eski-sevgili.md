@@ -35,7 +35,7 @@ In Jungian terms, an ex is a powerful projection of the anima/animus — the con
 
 ## Psychological Perspective
 
-Ex dreams correlate directly with your attachment style and grief process. People with secure attachment tend to experience these dreams with less distress; those with anxious or avoidant attachment may find them more frequent and more intense.
+Ex dreams correlate directly with your attachment style and grief process. People with stable attachment tend to experience these dreams with less distress; those with anxious or avoidant attachment may find them more frequent and more intense.
 
 These dreams also connect to "relationship schemas" — your unconscious may be identifying old patterns to guide your current relationships. It's processing, not pining.
 

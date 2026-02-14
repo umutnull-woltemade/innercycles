@@ -9,6 +9,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/ritual_service.dart';
 import '../../../data/services/premium_service.dart';
+import '../../../data/content/habit_suggestions_content.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 
@@ -241,6 +242,10 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
                     ),
                     const SizedBox(height: 8),
 
+                    // Habit suggestions
+                    _buildHabitSuggestions(isDark, isEn),
+                    const SizedBox(height: 12),
+
                     ...List.generate(_itemControllers.length, (i) {
                       return Padding(
                         padding: const EdgeInsets.only(bottom: 8),
@@ -360,6 +365,92 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
           ),
         ),
       ),
+    );
+  }
+
+  List<String> _categoriesForTime(RitualTime time) {
+    switch (time) {
+      case RitualTime.morning:
+        return ['morning'];
+      case RitualTime.midday:
+        return ['mindfulness', 'social', 'creative'];
+      case RitualTime.evening:
+        return ['evening', 'reflective'];
+    }
+  }
+
+  Widget _buildHabitSuggestions(bool isDark, bool isEn) {
+    final categories = _categoriesForTime(_selectedTime);
+    final suggestions = allHabitSuggestions
+        .where((h) => categories.contains(h.category))
+        .take(6)
+        .toList();
+
+    if (suggestions.isEmpty) return const SizedBox.shrink();
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          isEn ? 'Suggestions' : 'Öneriler',
+          style: TextStyle(
+            fontSize: 12,
+            color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+          ),
+        ),
+        const SizedBox(height: 6),
+        Wrap(
+          spacing: 6,
+          runSpacing: 6,
+          children: suggestions.map((habit) {
+            final title = isEn ? habit.titleEn : habit.titleTr;
+            return GestureDetector(
+              onTap: () {
+                // Find first empty controller or add new one
+                final emptyIndex = _itemControllers.indexWhere(
+                  (c) => c.text.trim().isEmpty,
+                );
+                if (emptyIndex >= 0) {
+                  _itemControllers[emptyIndex].text = title;
+                } else {
+                  final isPremium = ref.read(premiumProvider).isPremium;
+                  final maxItems = isPremium ? 5 : 3;
+                  if (_itemControllers.length < maxItems) {
+                    setState(() {
+                      _itemControllers.add(TextEditingController(text: title));
+                    });
+                  }
+                }
+                setState(() {});
+              },
+              child: Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 6,
+                ),
+                decoration: BoxDecoration(
+                  color: isDark
+                      ? AppColors.auroraStart.withValues(alpha: 0.12)
+                      : AppColors.lightSurfaceVariant,
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(
+                    color: AppColors.auroraStart.withValues(alpha: 0.3),
+                  ),
+                ),
+                child: Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: isDark
+                        ? AppColors.auroraStart
+                        : AppColors.lightTextPrimary,
+                  ),
+                ),
+              ),
+            );
+          }).toList(),
+        ),
+      ],
     );
   }
 

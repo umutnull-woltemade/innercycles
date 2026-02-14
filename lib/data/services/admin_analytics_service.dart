@@ -167,9 +167,9 @@ class AdminAnalyticsService {
     await logEvent('dream_interpreted');
   }
 
-  /// Tarot spread
-  static Future<void> trackTarotSpread(String spreadType) async {
-    await logEvent('tarot_spread', payload: {'spread': spreadType});
+  /// Insight session
+  static Future<void> trackInsightSession(String sessionType) async {
+    await logEvent('insight_session', payload: {'session': sessionType});
   }
 
   /// Feature used

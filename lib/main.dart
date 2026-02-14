@@ -13,7 +13,9 @@ import 'shared/widgets/app_error_widget.dart';
 import 'data/services/ad_service.dart';
 import 'data/services/storage_service.dart';
 import 'data/services/notification_service.dart';
+import 'data/services/notification_lifecycle_service.dart';
 import 'data/services/daily_hook_service.dart';
+import 'data/services/journal_service.dart';
 import 'data/services/admin_auth_service.dart';
 import 'data/services/admin_analytics_service.dart';
 import 'data/services/web_error_service.dart';
@@ -234,6 +236,20 @@ class _AppInitializerState extends State<AppInitializer> {
           debugPrint('⚠️ NotificationService init failed: $e');
         }
       }
+
+      // Initialize notification lifecycle service (MOBILE ONLY)
+      try {
+        final lifecycleService = await NotificationLifecycleService.init();
+        final journalService = await JournalService.init();
+        await lifecycleService.evaluate(journalService);
+        if (kDebugMode) {
+          debugPrint('✓ NotificationLifecycleService initialized');
+        }
+      } catch (e) {
+        if (kDebugMode) {
+          debugPrint('⚠️ NotificationLifecycleService init failed: $e');
+        }
+      }
     }
 
     // Initialize ads (MOBILE ONLY)
@@ -409,7 +425,7 @@ class _InitializedUserProfileNotifier extends UserProfileNotifier {
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// VENUS ONE APP - Main app widget
+// INNERCYCLES APP - Main app widget
 // ═══════════════════════════════════════════════════════════════════════════
 
 class VenusOneApp extends ConsumerWidget {

@@ -127,12 +127,12 @@ class HomepageNavigation {
     ],
     keepExploring: [
       NavigationCard(
-        title: 'Tarot ile İçgörü',
-        description: 'Bilinçaltının aynasına bak — günlük kart çek.',
-        route: '/tarot',
-        emoji: '🃏',
-        titleKey: 'navigation.cards.tarot_insight.title',
-        descriptionKey: 'navigation.cards.tarot_insight.description',
+        title: 'Günlük Yansıma',
+        description: 'Bilinçaltının aynasına bak -- bugünkü içgörünü keşfet.',
+        route: '/journal',
+        emoji: '📝',
+        titleKey: 'navigation.cards.daily_reflection.title',
+        descriptionKey: 'navigation.cards.daily_reflection_insight.description',
       ),
       NavigationCard(
         title: 'Sayılarının Sırrı',
@@ -259,12 +259,12 @@ class InsightHubNavigation {
             'navigation.cards.relationship_compatibility.description',
       ),
       NavigationCard(
-        title: 'Günlük Tarot',
-        description: 'Kartlar bugün ne diyor?',
-        route: '/tarot',
-        emoji: '🃏',
-        titleKey: 'navigation.cards.daily_tarot.title',
-        descriptionKey: 'navigation.cards.daily_tarot.description',
+        title: 'Günlük İçgörü',
+        description: 'Bugün sana ne söylüyor?',
+        route: '/journal',
+        emoji: '📝',
+        titleKey: 'navigation.cards.daily_insight.title',
+        descriptionKey: 'navigation.cards.daily_insight.description',
       ),
     ],
     continueWithoutBack: [
@@ -380,11 +380,11 @@ class ArchetypeNavigation {
           descriptionKey: 'navigation.phrases.where_is_your_ruler',
         ),
         NavigationCard(
-          title: 'Tarot Çek',
-          description: '${archetypeData['name']} enerjisiyle uyumlu bir okuma.',
-          route: '/tarot',
-          emoji: '🃏',
-          titleKey: 'navigation.cards.daily_tarot.title',
+          title: 'Günlük Yansıma',
+          description: '${archetypeData['name']} enerjisiyle uyumlu bir içgörü.',
+          route: '/journal',
+          emoji: '📝',
+          titleKey: 'navigation.cards.daily_reflection.title',
           descriptionKey: 'navigation.phrases.reading_aligned_with_energy',
         ),
       ],
@@ -704,66 +704,30 @@ class PersonalProfileNavigation {
 }
 
 // ============================================================
-// PAGE 16: TAROT (/tarot)
+// PAGE 16: JOURNAL (/journal) - Redirected from former tarot
 // ============================================================
 
-class TarotNavigation {
+class JournalNavigation {
   static const navigation = PageNavigation(
-    pageRoute: '/tarot',
+    pageRoute: '/journal',
     pageType: 'tool',
     alsoViewed: [
       NavigationCard(
-        title: 'Numeroloji',
-        description: 'Sayıların gizemi — benzer bir yolculuk.',
-        route: '/numerology',
-        emoji: '🔢',
-        titleKey: 'navigation.cards.numerology.title',
-        descriptionKey: 'navigation.cards.numerology_mystery.description',
-      ),
-      NavigationCard(
         title: 'Günlük Yansıma',
-        description: 'Tarotla birlikte oku.',
+        description: 'Bugünün iç enerjisi.',
         route: '/insight',
         emoji: '⭐',
         titleKey: 'navigation.cards.daily_reflection.title',
-        descriptionKey: 'navigation.cards.read_with_tarot.description',
+        descriptionKey: 'navigation.cards.todays_inner_energy.description',
       ),
       NavigationCard(
-        title: 'Kabala',
-        description: 'Tarot ve Hayat Ağacı bağlantısı.',
-        route: '/kabbalah',
-        emoji: '🌳',
-        titleKey: 'navigation.cards.kabbalah.title',
-        descriptionKey: 'navigation.cards.kabbalah.description',
-      ),
-      NavigationCard(
-        title: 'Aura Okuma',
-        description: 'Enerji alanını keşfet.',
-        route: '/aura',
-        emoji: '🌈',
-        titleKey: 'navigation.cards.aura_reading.title',
-        descriptionKey: 'navigation.cards.aura_reading.description',
-      ),
-    ],
-    goDeeper: [
-      NavigationCard(
-        title: 'Rüyandaki Sembolleri Çöz',
-        description: 'Kartlar ve rüyalar benzer bir dil konuşur.',
+        title: 'Rüya Yorumu',
+        description: 'Bu gece ne gördün?',
         route: '/dream-interpretation',
         emoji: '🌙',
-        titleKey: 'navigation.cards.decode_dream_symbols.title',
-        descriptionKey: 'navigation.cards.decode_dream_symbols.description',
+        titleKey: 'navigation.cards.dream_interpretation.title',
+        descriptionKey: 'navigation.cards.dream_tonight.description',
       ),
-      NavigationCard(
-        title: 'İçsel Rehberlik',
-        description: 'Kartların ötesinde bir mesaj.',
-        route: '/kozmoz',
-        emoji: '✨',
-        titleKey: 'navigation.cards.inner_guidance_beyond.title',
-        descriptionKey: 'navigation.cards.inner_guidance_beyond.description',
-      ),
-    ],
-    keepExploring: [
       NavigationCard(
         title: 'Kişisel Profil',
         description: 'İçsel kimliğin.',
@@ -772,32 +736,44 @@ class TarotNavigation {
         titleKey: 'navigation.cards.personal_profile.title',
         descriptionKey: 'navigation.cards.inner_identity.description',
       ),
+    ],
+    goDeeper: [
       NavigationCard(
-        title: 'Chakra Analizi',
-        description: 'Enerji merkezlerin.',
-        route: '/chakra-analysis',
-        emoji: '🧘',
-        titleKey: 'navigation.cards.chakra_analysis.title',
-        descriptionKey: 'navigation.cards.chakra_analysis.description',
+        title: 'Rüyandaki Sembolleri Çöz',
+        description: 'Rüyalar ve günlük yazılar benzer bir dil konuşur.',
+        route: '/dream-interpretation',
+        emoji: '🌙',
+        titleKey: 'navigation.cards.decode_dream_symbols.title',
+        descriptionKey: 'navigation.cards.decode_dream_symbols.description',
       ),
       NavigationCard(
-        title: 'Ay Ritüelleri',
-        description: 'Tarotla birlikte ritüel.',
-        route: '/moon-rituals',
-        emoji: '🌕',
-        titleKey: 'navigation.cards.moon_rituals.title',
-        descriptionKey: 'navigation.cards.tarot_ritual.description',
+        title: 'İçsel Rehberlik',
+        description: 'Günlüğünün ötesinde bir mesaj.',
+        route: '/kozmoz',
+        emoji: '✨',
+        titleKey: 'navigation.cards.inner_guidance_beyond.title',
+        descriptionKey: 'navigation.cards.inner_guidance_beyond.description',
+      ),
+    ],
+    keepExploring: [
+      NavigationCard(
+        title: 'Keşif Merkezi',
+        description: 'Tüm özellikler.',
+        route: '/kozmoz',
+        emoji: '✨',
+        titleKey: 'navigation.cards.discovery_center.title',
+        descriptionKey: 'navigation.cards.discovery_center.description',
+      ),
+      NavigationCard(
+        title: 'Kavram Sözlüğü',
+        description: 'Terimleri öğren.',
+        route: '/glossary',
+        emoji: '📖',
+        titleKey: 'navigation.cards.wellness_glossary.title',
+        descriptionKey: 'navigation.cards.wellness_glossary.description',
       ),
     ],
     continueWithoutBack: [
-      NavigationCard(
-        title: 'Tüm Çözümlemeler',
-        description: 'Diğer keşif yolları',
-        route: '/kozmoz',
-        emoji: '🧰',
-        titleKey: 'navigation.cards.all_analyses.title',
-        descriptionKey: 'navigation.cards.other_exploration_paths.description',
-      ),
       NavigationCard(
         title: 'Ana Sayfa',
         description: 'Başa dön',
@@ -808,11 +784,11 @@ class TarotNavigation {
       ),
       NavigationCard(
         title: 'Kavram Sözlüğü',
-        description: 'Tarot terimleri',
+        description: 'Günlük terimleri',
         route: '/glossary',
         emoji: '📖',
         titleKey: 'navigation.cards.wellness_glossary.title',
-        descriptionKey: 'navigation.cards.tarot_terms.description',
+        descriptionKey: 'navigation.cards.wellness_glossary.description',
       ),
     ],
   );
@@ -844,12 +820,12 @@ class NumerologyNavigation {
         descriptionKey: 'navigation.cards.personal_growth_perspective.description',
       ),
       NavigationCard(
-        title: 'Tarot',
-        description: 'Kartlardaki sayılar.',
-        route: '/tarot',
-        emoji: '🃏',
-        titleKey: 'navigation.cards.tarot.title',
-        descriptionKey: 'navigation.cards.numbers_in_cards.description',
+        title: 'Günlük Yansıma',
+        description: 'Sayılarla birlikte keşfet.',
+        route: '/journal',
+        emoji: '📝',
+        titleKey: 'navigation.cards.daily_reflection.title',
+        descriptionKey: 'navigation.cards.explore_with_numbers.description',
       ),
       NavigationCard(
         title: 'İlişki Uyumu',
@@ -995,12 +971,12 @@ class CompatibilityNavigation {
     ],
     keepExploring: [
       NavigationCard(
-        title: 'Aşk Tarot\'u',
-        description: 'İlişki için kart çek.',
-        route: '/tarot',
-        emoji: '🃏',
-        titleKey: 'navigation.cards.love_tarot.title',
-        descriptionKey: 'navigation.cards.love_tarot.description',
+        title: 'İlişki Günlüğü',
+        description: 'İlişki yansımalarını keşfet.',
+        route: '/journal',
+        emoji: '💕',
+        titleKey: 'navigation.cards.relationship_journal.title',
+        descriptionKey: 'navigation.cards.relationship_journal.description',
       ),
       NavigationCard(
         title: 'Sayısal Uyum',
@@ -1082,12 +1058,12 @@ class AuraNavigation {
         descriptionKey: 'navigation.cards.inner_energy_map.description',
       ),
       NavigationCard(
-        title: 'Tarot',
-        description: 'Enerji okuma yolu.',
-        route: '/tarot',
-        emoji: '🃏',
-        titleKey: 'navigation.cards.tarot.title',
-        descriptionKey: 'navigation.cards.energy_reading_path.description',
+        title: 'Günlük Yansıma',
+        description: 'Enerji farkındalığı yolu.',
+        route: '/journal',
+        emoji: '📝',
+        titleKey: 'navigation.cards.daily_reflection.title',
+        descriptionKey: 'navigation.cards.energy_awareness_path.description',
       ),
     ],
     goDeeper: [
@@ -1173,12 +1149,12 @@ class KabbalahNavigation {
     pageType: 'tool',
     alsoViewed: [
       NavigationCard(
-        title: 'Tarot ve Patikalar',
-        description: '22 Major Arcana, 22 patika.',
-        route: '/tarot',
-        emoji: '🃏',
-        titleKey: 'navigation.cards.tarot_and_paths.title',
-        descriptionKey: 'navigation.cards.tarot_and_paths.description',
+        title: 'İçsel Yolculuk',
+        description: 'Derinlemesine keşif patikası.',
+        route: '/journal',
+        emoji: '🧭',
+        titleKey: 'navigation.cards.inner_journey.title',
+        descriptionKey: 'navigation.cards.inner_journey.description',
       ),
       NavigationCard(
         title: 'Numeroloji',
@@ -1420,12 +1396,12 @@ class DreamInterpretationNavigation {
         descriptionKey: 'navigation.cards.personality_dream_patterns.description',
       ),
       NavigationCard(
-        title: 'Bilinçaltı ve Tarot',
-        description: 'Rüyalar ve kartlar benzer dil konuşur.',
-        route: '/tarot',
-        emoji: '🃏',
-        titleKey: 'navigation.cards.subconscious_tarot.title',
-        descriptionKey: 'navigation.cards.subconscious_tarot.description',
+        title: 'Bilinçaltı Keşfi',
+        description: 'Rüyalar ve günlükler benzer dil konuşur.',
+        route: '/journal',
+        emoji: '📝',
+        titleKey: 'navigation.cards.subconscious_exploration.title',
+        descriptionKey: 'navigation.cards.subconscious_exploration.description',
       ),
       NavigationCard(
         title: 'İçsel Keşif ve Rüyalar',
@@ -1523,12 +1499,12 @@ class KozmozNavigation {
         descriptionKey: 'navigation.cards.todays_inner_energy.description',
       ),
       NavigationCard(
-        title: 'Günlük Tarot',
-        description: 'Kartların mesajı.',
-        route: '/tarot',
-        emoji: '🃏',
-        titleKey: 'navigation.cards.daily_tarot.title',
-        descriptionKey: 'navigation.cards.cards_message.description',
+        title: 'Günlük Günlük',
+        description: 'Bugünkü yansıman.',
+        route: '/journal',
+        emoji: '📝',
+        titleKey: 'navigation.cards.daily_journal.title',
+        descriptionKey: 'navigation.cards.todays_reflection.description',
       ),
       NavigationCard(
         title: 'Ay Fazı',
@@ -1679,12 +1655,12 @@ class ChakraNavigation {
     ],
     keepExploring: [
       NavigationCard(
-        title: 'Tarot',
-        description: 'Enerji okuma.',
-        route: '/tarot',
-        emoji: '🃏',
-        titleKey: 'navigation.cards.tarot.title',
-        descriptionKey: 'navigation.cards.energy_reading.description',
+        title: 'Günlük Yansıma',
+        description: 'Enerji farkındalığı.',
+        route: '/journal',
+        emoji: '📝',
+        titleKey: 'navigation.cards.daily_reflection.title',
+        descriptionKey: 'navigation.cards.energy_awareness.description',
       ),
       NavigationCard(
         title: 'Numeroloji',
@@ -1762,12 +1738,12 @@ class MoonRitualsNavigation {
         descriptionKey: 'navigation.cards.aura_cleansing.description',
       ),
       NavigationCard(
-        title: 'Tarot Ritüeli',
-        description: 'Kart çekme meditasyonu.',
-        route: '/tarot',
-        emoji: '🃏',
-        titleKey: 'navigation.cards.tarot_ritual.title',
-        descriptionKey: 'navigation.cards.tarot_ritual.description',
+        title: 'Günlük Meditasyon',
+        description: 'İçsel farkındalık meditasyonu.',
+        route: '/journal',
+        emoji: '🧘',
+        titleKey: 'navigation.cards.daily_meditation.title',
+        descriptionKey: 'navigation.cards.daily_meditation.description',
       ),
     ],
     goDeeper: [
@@ -1867,8 +1843,8 @@ class NavigationService {
         return HomepageNavigation.navigation;
       case 'insight':
         return InsightHubNavigation.navigation;
-      case 'tarot':
-        return TarotNavigation.navigation;
+      case 'journal':
+        return JournalNavigation.navigation;
       case 'numerology':
         return NumerologyNavigation.navigation;
       case 'aura':
@@ -1886,6 +1862,7 @@ class NavigationService {
       // Redirect archived routes to insight
       case 'horoscope':
       case 'birth-chart':
+      case 'tarot':
       case 'transits':
       case 'compatibility':
       case 'saturn-return':
@@ -1926,12 +1903,12 @@ class NavigationService {
           descriptionKey: 'navigation.cards.inner_identity.description',
         ),
         NavigationCard(
-          title: 'Tarot',
-          description: 'Günlük kart.',
-          route: '/tarot',
-          emoji: '🃏',
-          titleKey: 'navigation.cards.tarot.title',
-          descriptionKey: 'navigation.cards.daily_card.description',
+          title: 'Günlük Yansıma',
+          description: 'Günlük içgörü.',
+          route: '/journal',
+          emoji: '📝',
+          titleKey: 'navigation.cards.daily_reflection.title',
+          descriptionKey: 'navigation.cards.daily_insight.description',
         ),
       ],
       goDeeper: const [

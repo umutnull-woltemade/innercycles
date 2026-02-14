@@ -57,3 +57,7 @@ ios/build/
 
 # Info.plist backups
 ios/Runner/Info.plist.backup.*
+
+# Generated artifacts
+logs/
+outputs/

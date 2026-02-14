@@ -91,7 +91,7 @@ class KadimGirisTemplates {
       'Araçlar, güç ve yetenekleri temsil eder. Bu nesneyle ne yapabilirsin?',
     ],
     SymbolCategory.dogaOlayi: [
-      'Doğa olayları, kozmik güçlerin dilidir. Evren senin aracılığınla konuşuyor.',
+      'Doğa olayları, doğanın dilidir. Derin duygular dış dünyada yansımasını buluyor.',
       'Fırtına, yağmur, deprem - iç dünyanın iklimi dışarıda görünüyor.',
       'Doğa olayları dönüşümün habercisidir. Hangi değişim temaları öne çıkıyor?',
     ],

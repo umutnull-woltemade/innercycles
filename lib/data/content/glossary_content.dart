@@ -16,7 +16,7 @@ class GlossaryContent {
       ..._moreTerms,
       ..._esotericTerms,
       ..._psychologicalTerms,
-      ..._predictiveTerms,
+      ..._patternTerms,
       ..._relationshipTerms,
       ..._extendedSignTerms,
       ..._advancedTechniques,
@@ -4368,9 +4368,9 @@ class GlossaryContent {
   ];
 
   // ═══════════════════════════════════════════════════════════════
-  // TAHMİN TEKNİKLERİ
+  // KALIP VE DÖNGÜ TEKNİKLERİ
   // ═══════════════════════════════════════════════════════════════
-  static final List<GlossaryEntry> _predictiveTerms = [
+  static final List<GlossaryEntry> _patternTerms = [
     GlossaryEntry(
       term: 'Secondary Progressions',
       termTr: 'İkincil Progresyonlar',

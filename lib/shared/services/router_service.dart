@@ -16,8 +16,6 @@ import '../../features/settings/presentation/settings_screen.dart';
 import '../../features/profile/presentation/profile_screen.dart';
 import '../../features/profile/presentation/saved_profiles_screen.dart';
 import '../../features/profile/presentation/comparison_screen.dart';
-import '../../features/glossary/presentation/glossary_screen.dart';
-import '../../features/articles/presentation/articles_screen.dart';
 import '../../features/insight/presentation/insight_screen.dart';
 import '../../features/dreams/presentation/dream_interpretation_screen.dart';
 import '../../features/dreams/presentation/dream_glossary_screen.dart';
@@ -42,7 +40,10 @@ import '../../features/journal/presentation/monthly_reflection_screen.dart';
 import '../../features/admin/presentation/admin_login_screen.dart';
 import '../../features/admin/presentation/admin_dashboard_screen.dart';
 import '../../features/quiz/presentation/attachment_quiz_screen.dart';
+import '../../features/quiz/presentation/quiz_hub_screen.dart';
+import '../../features/quiz/presentation/generic_quiz_screen.dart';
 import '../../features/sharing/presentation/share_insight_screen.dart';
+import '../../features/sharing/presentation/share_card_gallery.dart';
 import '../../features/journal/presentation/emotional_cycle_screen.dart';
 import '../../features/growth/presentation/growth_dashboard_screen.dart';
 import '../../features/rituals/presentation/rituals_screen.dart';
@@ -65,7 +66,8 @@ import '../../features/gratitude/presentation/gratitude_screen.dart';
 import '../../features/sleep/presentation/sleep_detail_screen.dart';
 import '../../features/prompts/presentation/prompt_library_screen.dart';
 import '../../features/milestones/presentation/milestone_screen.dart';
-
+import '../../features/onboarding/presentation/archetype_quiz_screen.dart';
+import '../../features/year_review/presentation/year_review_screen.dart';
 import '../../data/services/admin_auth_service.dart';
 import '../../data/services/storage_service.dart';
 
@@ -76,10 +78,11 @@ final routerProvider = Provider<GoRouter>((ref) {
     redirect: (context, state) {
       final path = state.uri.path;
 
-      // Allow splash, disclaimer, and onboarding without guard
+      // Allow splash, disclaimer, onboarding, and quiz without guard
       if (path == Routes.splash ||
           path == Routes.disclaimer ||
-          path == Routes.onboarding) {
+          path == Routes.onboarding ||
+          path == Routes.archetypeQuiz) {
         return null;
       }
 
@@ -128,6 +131,10 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: Routes.onboarding,
         builder: (context, state) => const OnboardingScreen(),
+      ),
+      GoRoute(
+        path: Routes.archetypeQuiz,
+        builder: (context, state) => const ArchetypeQuizScreen(),
       ),
       GoRoute(
         path: Routes.home,
@@ -237,12 +244,27 @@ final routerProvider = Provider<GoRouter>((ref) {
       // GROWTH & ENGAGEMENT
       // ════════════════════════════════════════════════════════════════
       GoRoute(
+        path: Routes.quizHub,
+        builder: (context, state) => const QuizHubScreen(),
+      ),
+      GoRoute(
         path: Routes.attachmentQuiz,
         builder: (context, state) => const AttachmentQuizScreen(),
       ),
       GoRoute(
+        path: Routes.quizGeneric,
+        builder: (context, state) {
+          final quizId = state.pathParameters['quizId'] ?? '';
+          return GenericQuizScreen(quizId: quizId);
+        },
+      ),
+      GoRoute(
         path: Routes.shareInsight,
         builder: (context, state) => const ShareInsightScreen(),
+      ),
+      GoRoute(
+        path: Routes.shareCardGallery,
+        builder: (context, state) => const ShareCardGalleryScreen(),
       ),
       GoRoute(
         path: Routes.emotionalCycles,
@@ -339,6 +361,10 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: Routes.milestones,
         builder: (context, state) => const MilestoneScreen(),
       ),
+      GoRoute(
+        path: Routes.yearReview,
+        builder: (context, state) => const YearReviewScreen(),
+      ),
 
       // ════════════════════════════════════════════════════════════════
       // EXPORT, MEDITATION, GRATITUDE, SLEEP DETAIL
@@ -365,11 +391,11 @@ final routerProvider = Provider<GoRouter>((ref) {
       // ════════════════════════════════════════════════════════════════
       GoRoute(
         path: Routes.glossary,
-        builder: (context, state) => const GlossaryScreen(),
+        redirect: (context, state) => Routes.insight,
       ),
       GoRoute(
         path: Routes.articles,
-        builder: (context, state) => const ArticlesScreen(),
+        redirect: (context, state) => Routes.insight,
       ),
       // Content detail route archived
 

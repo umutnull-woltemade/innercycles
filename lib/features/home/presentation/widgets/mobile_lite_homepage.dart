@@ -192,7 +192,7 @@ class _AboveTheFold extends ConsumerWidget {
 
           const SizedBox(height: 16),
 
-          // Quick access chips
+          // Quick access chips — 5 core actions
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
@@ -205,20 +205,6 @@ class _AboveTheFold extends ConsumerWidget {
                 ),
                 const SizedBox(width: 8),
                 _QuickDiscoveryChip(
-                  icon: '📊',
-                  label: language == AppLanguage.en ? 'Patterns' : 'Kaliplar',
-                  onTap: () => context.push(Routes.journalPatterns),
-                  isDark: isDark,
-                ),
-                const SizedBox(width: 8),
-                _QuickDiscoveryChip(
-                  icon: '✨',
-                  label: language == AppLanguage.en ? 'Insight' : 'Icgörü',
-                  onTap: () => context.push(Routes.insight),
-                  isDark: isDark,
-                ),
-                const SizedBox(width: 8),
-                _QuickDiscoveryChip(
                   icon: '🌙',
                   label: L10nService.get('home.chips.dream', language),
                   onTap: () => context.push(Routes.dreamInterpretation),
@@ -226,9 +212,9 @@ class _AboveTheFold extends ConsumerWidget {
                 ),
                 const SizedBox(width: 8),
                 _QuickDiscoveryChip(
-                  icon: '📅',
-                  label: language == AppLanguage.en ? 'Monthly' : 'Aylik',
-                  onTap: () => context.push(Routes.journalMonthly),
+                  icon: '📊',
+                  label: language == AppLanguage.en ? 'Patterns' : 'Kaliplar',
+                  onTap: () => context.push(Routes.journalPatterns),
                   isDark: isDark,
                 ),
                 const SizedBox(width: 8),
@@ -236,6 +222,13 @@ class _AboveTheFold extends ConsumerWidget {
                   icon: '📈',
                   label: language == AppLanguage.en ? 'Growth' : 'Büyüme',
                   onTap: () => context.push(Routes.growthDashboard),
+                  isDark: isDark,
+                ),
+                const SizedBox(width: 8),
+                _QuickDiscoveryChip(
+                  icon: '✨',
+                  label: language == AppLanguage.en ? 'Insight' : 'Icgörü',
+                  onTap: () => context.push(Routes.insight),
                   isDark: isDark,
                 ),
               ],
@@ -427,7 +420,7 @@ class _BelowTheFold extends ConsumerWidget {
           _UpgradeTriggerBanner(isDark: isDark),
           const SizedBox(height: 24),
 
-          // Journal & Patterns
+          // ═══ JOURNAL & PATTERNS ═══
           Text(
             language == AppLanguage.en
                 ? 'Journal & Patterns'
@@ -440,7 +433,6 @@ class _BelowTheFold extends ConsumerWidget {
                   : AppColors.lightTextPrimary,
             ),
           ),
-
           const SizedBox(height: 16),
 
           _EntryPointTile(
@@ -469,6 +461,18 @@ class _BelowTheFold extends ConsumerWidget {
           ),
 
           _EntryPointTile(
+            icon: Icons.waves_outlined,
+            title: language == AppLanguage.en
+                ? 'Emotional Cycles'
+                : 'Duygusal Döngüler',
+            subtitle: language == AppLanguage.en
+                ? 'Visualize your emotional wave patterns'
+                : 'Duygusal dalga kaliplarini görsellestin',
+            route: Routes.emotionalCycles,
+            isDark: isDark,
+          ),
+
+          _EntryPointTile(
             icon: Icons.calendar_month_outlined,
             title: language == AppLanguage.en
                 ? 'Monthly Reflection'
@@ -481,32 +485,74 @@ class _BelowTheFold extends ConsumerWidget {
           ),
 
           _EntryPointTile(
-            icon: Icons.archive_outlined,
+            icon: Icons.favorite_border_outlined,
             title: language == AppLanguage.en
-                ? 'Archive'
-                : 'Arsiv',
+                ? 'Gratitude Journal'
+                : 'Sükran Günlügü',
             subtitle: language == AppLanguage.en
-                ? 'Search & browse all entries'
-                : 'Tüm kayitlari ara ve gözat',
-            route: Routes.journalArchive,
+                ? 'Capture what you\'re thankful for'
+                : 'Minnettar oldugun seyleri kaydet',
+            route: Routes.gratitudeJournal,
             isDark: isDark,
           ),
 
           _EntryPointTile(
-            icon: Icons.waves_outlined,
+            icon: Icons.lightbulb_outline,
             title: language == AppLanguage.en
-                ? 'Emotional Cycles'
-                : 'Duygusal Döngüler',
+                ? 'Prompt Library'
+                : 'Soru Kütüphanesi',
             subtitle: language == AppLanguage.en
-                ? 'Visualize your emotional wave patterns'
-                : 'Duygusal dalga kaliplarini görsellestin',
-            route: Routes.emotionalCycles,
+                ? 'Curated prompts to spark reflection'
+                : 'Yansima baslatacak secilmis sorular',
+            route: Routes.promptLibrary,
             isDark: isDark,
           ),
 
           const SizedBox(height: 24),
 
-          // Growth & Self-Discovery
+          // ═══ DREAM JOURNAL ═══
+          Text(
+            language == AppLanguage.en
+                ? 'Dream Journal'
+                : 'Rüya Günlügü',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w600,
+              color: isDark
+                  ? AppColors.textPrimary
+                  : AppColors.lightTextPrimary,
+            ),
+          ),
+          const SizedBox(height: 16),
+
+          _EntryPointTile(
+            icon: Icons.nights_stay_outlined,
+            title: language == AppLanguage.en
+                ? 'Dream Interpretation'
+                : 'Rüya Yorumu',
+            subtitle: language == AppLanguage.en
+                ? 'Explore your dream symbols'
+                : 'Rüya sembollerini kesfet',
+            route: Routes.dreamInterpretation,
+            isDark: isDark,
+            isHighlighted: true,
+          ),
+
+          _EntryPointTile(
+            icon: Icons.book_outlined,
+            title: language == AppLanguage.en
+                ? 'Dream Dictionary'
+                : 'Rüya Sözlügü',
+            subtitle: language == AppLanguage.en
+                ? '1000+ symbols with meanings'
+                : '1000+ sembol ve anlami',
+            route: Routes.dreamGlossary,
+            isDark: isDark,
+          ),
+
+          const SizedBox(height: 24),
+
+          // ═══ GROWTH & SELF-DISCOVERY ═══
           Text(
             language == AppLanguage.en
                 ? 'Growth & Self-Discovery'
@@ -519,7 +565,6 @@ class _BelowTheFold extends ConsumerWidget {
                   : AppColors.lightTextPrimary,
             ),
           ),
-
           const SizedBox(height: 16),
 
           _EntryPointTile(
@@ -548,37 +593,37 @@ class _BelowTheFold extends ConsumerWidget {
           ),
 
           _EntryPointTile(
-            icon: Icons.share_outlined,
+            icon: Icons.auto_awesome_outlined,
             title: language == AppLanguage.en
-                ? 'Share Insights'
-                : 'Icgörüleri Paylas',
+                ? 'Personal Insight'
+                : 'Kisisel Icgörü',
             subtitle: language == AppLanguage.en
-                ? 'Beautiful cards for your journey moments'
-                : 'Yolculuk anlarinin güzel kartlari',
-            route: Routes.shareInsight,
+                ? 'AI-powered self-reflection assistant'
+                : 'Yapay zeka destekli öz-yansima asistani',
+            route: Routes.insight,
             isDark: isDark,
           ),
 
           _EntryPointTile(
-            icon: Icons.grid_view_rounded,
+            icon: Icons.quiz_outlined,
             title: language == AppLanguage.en
-                ? 'Energy Map'
-                : 'Enerji Haritasi',
+                ? 'Quiz Hub'
+                : 'Test Merkezi',
             subtitle: language == AppLanguage.en
-                ? 'Heatmap of your energy by day & area'
-                : 'Gün ve alana göre enerji isi haritasi',
-            route: Routes.energyMap,
+                ? 'All self-discovery quizzes in one place'
+                : 'Tüm kendini kesfetme testleri tek yerde',
+            route: Routes.quizHub,
             isDark: isDark,
           ),
 
           _EntryPointTile(
-            icon: Icons.auto_stories_outlined,
+            icon: Icons.school_outlined,
             title: language == AppLanguage.en
                 ? 'Guided Programs'
                 : 'Rehberli Programlar',
             subtitle: language == AppLanguage.en
-                ? 'Structured journeys for self-discovery'
-                : 'Kendini kesfetme icin yapilandirilmis yolculuklar',
+                ? 'Structured growth journeys'
+                : 'Yapilandirilmis büyüme yolculuklari',
             route: Routes.programs,
             isDark: isDark,
           ),
@@ -586,102 +631,30 @@ class _BelowTheFold extends ConsumerWidget {
           _EntryPointTile(
             icon: Icons.emoji_events_outlined,
             title: language == AppLanguage.en
-                ? 'Growth Challenges'
-                : 'Büyüme Görevleri',
+                ? 'Challenges'
+                : 'Meydan Okumalar',
             subtitle: language == AppLanguage.en
-                ? 'Gamified challenges to build habits'
-                : 'Aliskanlık olusturmak icin oyunlastirilmis görevler',
+                ? 'Build better habits with guided challenges'
+                : 'Rehberli meydan okumalarla daha iyi aliskanliklar edin',
             route: Routes.challenges,
             isDark: isDark,
           ),
 
           _EntryPointTile(
-            icon: Icons.eco_outlined,
+            icon: Icons.share_outlined,
             title: language == AppLanguage.en
-                ? 'Seasonal Reflections'
-                : 'Mevsimsel Yansimalar',
+                ? 'Share Cards'
+                : 'Paylasim Kartlari',
             subtitle: language == AppLanguage.en
-                ? 'Guided prompts for each season'
-                : 'Her mevsim icin rehberli sorular',
-            route: Routes.seasonal,
-            isDark: isDark,
-          ),
-
-          _EntryPointTile(
-            icon: Icons.theater_comedy_outlined,
-            title: language == AppLanguage.en
-                ? 'Your Archetype'
-                : 'Arketip Profilin',
-            subtitle: language == AppLanguage.en
-                ? 'Discover your inner archetype from your patterns'
-                : 'Kaliplarından iç arketipini keşfet',
-            route: Routes.archetype,
-            isDark: isDark,
-          ),
-
-          _EntryPointTile(
-            icon: Icons.people_outline,
-            title: language == AppLanguage.en
-                ? 'Relationship Reflections'
-                : 'İlişki Yansımaları',
-            subtitle: language == AppLanguage.en
-                ? 'Reflect on your connections with others'
-                : 'Başkalarıyla bağlantılarını yansıt',
-            route: Routes.compatibilityReflection,
-            isDark: isDark,
-          ),
-
-          _EntryPointTile(
-            icon: Icons.visibility_outlined,
-            title: language == AppLanguage.en
-                ? 'Blind Spot Reveal'
-                : 'Kör Nokta Keşfi',
-            subtitle: language == AppLanguage.en
-                ? 'Patterns you might not notice about yourself'
-                : 'Kendin hakkında fark etmeyebileceğin kalıplar',
-            route: Routes.blindSpot,
-            isDark: isDark,
-          ),
-
-          _EntryPointTile(
-            icon: Icons.summarize_outlined,
-            title: language == AppLanguage.en
-                ? 'Weekly Digest'
-                : 'Haftalık Özet',
-            subtitle: language == AppLanguage.en
-                ? 'Your week summarized with insights'
-                : 'İçgörülerle haftalık özetin',
-            route: Routes.weeklyDigest,
-            isDark: isDark,
-          ),
-
-          _EntryPointTile(
-            icon: Icons.lightbulb_outline,
-            title: language == AppLanguage.en
-                ? 'Journal Prompts'
-                : 'Günlük Soruları',
-            subtitle: language == AppLanguage.en
-                ? '80+ prompts to spark self-reflection'
-                : '80+ öz-yansıma sorusu',
-            route: Routes.promptLibrary,
-            isDark: isDark,
-          ),
-
-          _EntryPointTile(
-            icon: Icons.emoji_events_outlined,
-            title: language == AppLanguage.en
-                ? 'Milestones & Badges'
-                : 'Kilometre Taşları',
-            subtitle: language == AppLanguage.en
-                ? 'Track your achievements & unlock badges'
-                : 'Başarılarını takip et ve rozetleri aç',
-            route: Routes.milestones,
+                ? 'Create & share beautiful insight cards'
+                : 'Güzel icgörü kartlari olustur ve paylas',
+            route: Routes.shareCardGallery,
             isDark: isDark,
           ),
 
           const SizedBox(height: 24),
 
-          // Wellness & Mindfulness
+          // ═══ WELLNESS ═══
           Text(
             language == AppLanguage.en
                 ? 'Wellness & Mindfulness'
@@ -694,7 +667,6 @@ class _BelowTheFold extends ConsumerWidget {
                   : AppColors.lightTextPrimary,
             ),
           ),
-
           const SizedBox(height: 16),
 
           _EntryPointTile(
@@ -707,7 +679,42 @@ class _BelowTheFold extends ConsumerWidget {
                 : 'Sakinlik ve odak icin rehberli nefes',
             route: Routes.breathing,
             isDark: isDark,
-            isHighlighted: true,
+          ),
+
+          _EntryPointTile(
+            icon: Icons.self_improvement_outlined,
+            title: language == AppLanguage.en
+                ? 'Meditation Timer'
+                : 'Meditasyon Zamanlayici',
+            subtitle: language == AppLanguage.en
+                ? 'Timed sessions for mindfulness'
+                : 'Farkindalik icin zamanli oturumlar',
+            route: Routes.meditation,
+            isDark: isDark,
+          ),
+
+          _EntryPointTile(
+            icon: Icons.spa_outlined,
+            title: language == AppLanguage.en
+                ? 'Rituals & Habits'
+                : 'Ritüeller ve Aliskanliklar',
+            subtitle: language == AppLanguage.en
+                ? 'Build daily wellness routines'
+                : 'Günlük saglik rutinleri olustur',
+            route: Routes.rituals,
+            isDark: isDark,
+          ),
+
+          _EntryPointTile(
+            icon: Icons.park_outlined,
+            title: language == AppLanguage.en
+                ? 'Seasonal Reflection'
+                : 'Mevsimsel Yansima',
+            subtitle: language == AppLanguage.en
+                ? 'Align with nature\'s rhythms'
+                : 'Doganin ritimleriyle uyum sagla',
+            route: Routes.seasonal,
+            isDark: isDark,
           ),
 
           _EntryPointTile(
@@ -716,154 +723,15 @@ class _BelowTheFold extends ConsumerWidget {
                 ? 'Moon Calendar'
                 : 'Ay Takvimi',
             subtitle: language == AppLanguage.en
-                ? 'Lunar phases & reflection prompts'
-                : 'Ay evreleri ve yansima sorulari',
+                ? 'Track lunar phases & reflections'
+                : 'Ay evrelerini ve yansimalarini takip et',
             route: Routes.moonCalendar,
             isDark: isDark,
           ),
 
-          _EntryPointTile(
-            icon: Icons.self_improvement_outlined,
-            title: language == AppLanguage.en
-                ? 'Meditation Timer'
-                : 'Meditasyon Zamanlayıcı',
-            subtitle: language == AppLanguage.en
-                ? 'Timed sessions for mindfulness'
-                : 'Farkındalık için zamanlı oturumlar',
-            route: Routes.meditation,
-            isDark: isDark,
-          ),
-
-          _EntryPointTile(
-            icon: Icons.bedtime_outlined,
-            title: language == AppLanguage.en
-                ? 'Sleep Quality'
-                : 'Uyku Kalitesi',
-            subtitle: language == AppLanguage.en
-                ? 'Track and improve your sleep patterns'
-                : 'Uyku kalıplarınızı takip edin ve iyileştirin',
-            route: Routes.sleepDetail,
-            isDark: isDark,
-          ),
-
           const SizedBox(height: 24),
 
-          // Insight & Reflection
-          Text(
-            language == AppLanguage.en
-                ? 'Insight & Reflection'
-                : 'Icgörü ve Yansima',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w600,
-              color: isDark
-                  ? AppColors.textPrimary
-                  : AppColors.lightTextPrimary,
-            ),
-          ),
-
-          const SizedBox(height: 16),
-
-          _EntryPointTile(
-            icon: Icons.auto_awesome_outlined,
-            title: language == AppLanguage.en
-                ? 'Personal Insight'
-                : 'Kisisel Icgörü',
-            subtitle: language == AppLanguage.en
-                ? 'AI-powered self-reflection assistant'
-                : 'Yapay zeka destekli öz-yansima asistani',
-            route: Routes.insight,
-            isDark: isDark,
-            isHighlighted: true,
-          ),
-
-          const SizedBox(height: 24),
-
-          // Dream Journal
-          Text(
-            language == AppLanguage.en
-                ? 'Dream Journal'
-                : 'Rüya Günlügü',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w600,
-              color: isDark
-                  ? AppColors.textPrimary
-                  : AppColors.lightTextPrimary,
-            ),
-          ),
-
-          const SizedBox(height: 16),
-
-          _EntryPointTile(
-            icon: Icons.nights_stay_outlined,
-            title: language == AppLanguage.en
-                ? 'Dream Interpretation'
-                : 'Rüya Yorumu',
-            subtitle: language == AppLanguage.en
-                ? 'Explore your dream symbols'
-                : 'Rüya sembollerini kesfet',
-            route: Routes.dreamInterpretation,
-            isDark: isDark,
-          ),
-
-          _EntryPointTile(
-            icon: Icons.book_outlined,
-            title: language == AppLanguage.en
-                ? 'Dream Dictionary'
-                : 'Rüya Sözlügü',
-            subtitle: language == AppLanguage.en
-                ? 'Symbol reference guide'
-                : 'Sembol referans rehberi',
-            route: Routes.dreamGlossary,
-            isDark: isDark,
-          ),
-
-          const SizedBox(height: 24),
-
-          // Reference
-          Text(
-            language == AppLanguage.en
-                ? 'Reference'
-                : 'Referans',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w600,
-              color: isDark
-                  ? AppColors.textPrimary
-                  : AppColors.lightTextPrimary,
-            ),
-          ),
-
-          const SizedBox(height: 16),
-
-          _EntryPointTile(
-            icon: Icons.menu_book_outlined,
-            title: language == AppLanguage.en
-                ? 'Glossary'
-                : 'Sözlük',
-            subtitle: language == AppLanguage.en
-                ? 'Terms & definitions'
-                : 'Terimler ve tanimlar',
-            route: Routes.glossary,
-            isDark: isDark,
-          ),
-
-          _EntryPointTile(
-            icon: Icons.article_outlined,
-            title: language == AppLanguage.en
-                ? 'Articles'
-                : 'Makaleler',
-            subtitle: language == AppLanguage.en
-                ? 'Wellness & self-growth articles'
-                : 'Saglik ve kisisel gelisim makaleleri',
-            route: Routes.articles,
-            isDark: isDark,
-          ),
-
-          const SizedBox(height: 24),
-
-          // Your Data
+          // ═══ YOUR DATA ═══
           Text(
             language == AppLanguage.en
                 ? 'Your Data'
@@ -876,18 +744,17 @@ class _BelowTheFold extends ConsumerWidget {
                   : AppColors.lightTextPrimary,
             ),
           ),
-
           const SizedBox(height: 16),
 
           _EntryPointTile(
-            icon: Icons.favorite_outline,
+            icon: Icons.archive_outlined,
             title: language == AppLanguage.en
-                ? 'Gratitude Journal'
-                : 'Şükran Günlüğü',
+                ? 'Journal Archive'
+                : 'Günlük Arsivi',
             subtitle: language == AppLanguage.en
-                ? 'Daily gratitude entries & themes'
-                : 'Günlük şükran girdileri ve temalar',
-            route: Routes.gratitudeJournal,
+                ? 'Search & browse all entries'
+                : 'Tüm kayitlari ara ve gözat',
+            route: Routes.journalArchive,
             isDark: isDark,
           ),
 
@@ -895,11 +762,35 @@ class _BelowTheFold extends ConsumerWidget {
             icon: Icons.file_download_outlined,
             title: language == AppLanguage.en
                 ? 'Export Data'
-                : 'Verileri Dışa Aktar',
+                : 'Verileri Disa Aktar',
             subtitle: language == AppLanguage.en
                 ? 'Download your journal as text, CSV, or JSON'
-                : 'Günlüğünüzü metin, CSV veya JSON olarak indirin',
+                : 'Günlügünüzü metin, CSV veya JSON olarak indirin',
             route: Routes.exportData,
+            isDark: isDark,
+          ),
+
+          _EntryPointTile(
+            icon: Icons.auto_stories_outlined,
+            title: language == AppLanguage.en
+                ? 'Year in Review'
+                : 'Yillik Özet',
+            subtitle: language == AppLanguage.en
+                ? 'Your complete emotional story arc'
+                : 'Tam duygusal hikaye arkin',
+            route: Routes.yearReview,
+            isDark: isDark,
+          ),
+
+          _EntryPointTile(
+            icon: Icons.summarize_outlined,
+            title: language == AppLanguage.en
+                ? 'Weekly Digest'
+                : 'Haftalik Özet',
+            subtitle: language == AppLanguage.en
+                ? 'Your week\'s insights at a glance'
+                : 'Haftanin icgörüleri bir bakista',
+            route: Routes.weeklyDigest,
             isDark: isDark,
           ),
 

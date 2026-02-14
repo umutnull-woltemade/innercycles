@@ -21,7 +21,7 @@ Body: Many people who dream of water are navigating a quiet emotional transition
 
 **Email 3 (Day 5)**
 Subject: "Some readers go deeper with their water dreams"
-Body: When a dream theme repeats, it often carries a personal message worth understanding more fully. Some readers choose to explore a personalized interpretation that connects their dream to their current life context — not as prediction, but as a tool for self-awareness.
+Body: When a dream theme repeats, it often carries a personal message worth understanding more fully. Some readers choose to explore a personalized interpretation that connects their dream to their current life context — not as a fixed answer, but as a tool for self-awareness.
 
 ### Push Sequence
 **Push 1:** "Water dreams often reflect emotions you haven't named yet. This one may still resonate."
@@ -315,7 +315,7 @@ Body: If this dream has stayed with you, it may be reflecting a genuine need for
 
 **Email 3 (Day 5)**
 Subject: "Some readers take drowning dreams as an invitation for deeper self-care"
-Body: Drowning dreams carry urgent emotional messages. Some readers choose to explore what their specific dream reveals through a personalized interpretation — a thoughtful way to understand where support might be most needed.
+Body: Drowning dreams carry deeply significant emotional messages. Some readers choose to explore what their specific dream reveals through a personalized interpretation — a thoughtful way to understand where support might be most needed.
 
 ### Push Sequence
 **Push 1:** "Drowning dreams reflect emotional weight. Be gentle with yourself — this one may deserve attention."

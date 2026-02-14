@@ -33,9 +33,9 @@ Le chien est le "compagnon fidèle" archétypal. Dans la mythologie, les chiens 
 
 ## Interprétation psychologique
 
-En psychologie, le chien représente le système d'attachement et de confiance. À travers le prisme de la théorie de l'attachement de Bowlby, les rêves de chien peuvent refléter directement votre style d'attachement — sécure, anxieux ou évitant.
+En psychologie, le chien représente le système d'attachement et de confiance. À travers le prisme de la théorie de l'attachement de Bowlby, les rêves de chien peuvent refléter directement votre style d'attachement — stable, anxieux ou évitant.
 
-Éprouver de l'affection envers le chien suggère que votre attachement sécure est actif. Avoir peur du chien pourrait signifier que votre système de confiance est en alerte. Perdre le chien pourrait indiquer que votre anxiété d'abandon remonte à la surface.
+Éprouver de l'affection envers le chien suggère que votre attachement stable est actif. Avoir peur du chien pourrait signifier que votre système de confiance est en alerte. Perdre le chien pourrait indiquer que votre anxiété d'abandon remonte à la surface.
 
 Dans la psychologie moderne du rêve, le chien symbolise aussi l'instinct — la capacité du chien à flairer le danger reflète votre propre intelligence intuitive.
 

@@ -57,7 +57,7 @@ Dans certaines traditions, la noyade représente la dissolution de l'ego et la d
 
 ## Quand faut-il prendre ce rêve au sérieux ?
 
-Les rêves de noyade portent généralement des messages plus urgents que beaucoup d'autres thèmes oniriques. Si ce rêve se répète, si vous vous réveillez en haletant ou avec des symptômes de panique, ou si vous ressentez un sentiment persistant de submersion dans votre vie quotidienne, une évaluation tant physique (dépistage de l'apnée du sommeil) qu'émotionnelle (gestion du stress, soutien professionnel) peut s'avérer véritablement importante.
+Les rêves de noyade portent généralement des messages plus significatifs que beaucoup d'autres thèmes oniriques. Si ce rêve se répète, si vous vous réveillez en haletant ou avec des symptômes de panique, ou si vous ressentez un sentiment persistant de submersion dans votre vie quotidienne, une évaluation tant physique (dépistage de l'apnée du sommeil) qu'émotionnelle (gestion du stress, soutien professionnel) peut s'avérer véritablement importante.
 
 **Mise en garde :** Des rêves de noyade chroniques peuvent signaler une surcharge émotionnelle qui dépasse le stress ordinaire — pouvant indiquer un trouble anxieux ou un traumatisme non traité. Soyez bienveillant envers vous-même et n'hésitez pas à chercher du soutien si nécessaire.
 

@@ -91,6 +91,11 @@ extension PremiumTierExtension on PremiumTier {
           'Advanced insight tools',
           'Personal growth tracking',
           'Trend analysis',
+          'Guided breathing exercises',
+          'Growth challenges & badges',
+          'Meditation timer',
+          'Seasonal reflections',
+          'Full data export (CSV, JSON)',
           'Priority support',
         ];
     }

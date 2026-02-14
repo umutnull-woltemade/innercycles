@@ -1,12 +1,11 @@
 // ════════════════════════════════════════════════════════════════════════════
-// EMOTIONAL CYCLE VISUALIZER - InnerCycles Wave Chart & Insights
+// EMOTIONAL CYCLE VISUALIZER - InnerCycles Signature Feature
 // ════════════════════════════════════════════════════════════════════════════
-// Visualizes emotional patterns as smooth wave/cycle charts over time.
-// Uses CustomPainter with Bezier curves for each focus area dimension.
-// Includes cycle length detection, phase analysis, and insights.
+// The signature screen of InnerCycles. Visualizes emotional patterns as
+// smooth animated wave curves with gradient fills, cycle detection,
+// phase analysis, per-area summary cards, insights, and share.
 // ════════════════════════════════════════════════════════════════════════════
 
-import 'dart:math' as math;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -16,83 +15,11 @@ import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/models/journal_entry.dart';
-import '../../../data/services/journal_service.dart';
+import '../../../data/services/emotional_cycle_service.dart';
+import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
-
-// ════════════════════════════════════════════════════════════════════════════
-// FOCUS AREA COLORS
-// ════════════════════════════════════════════════════════════════════════════
-
-const Map<FocusArea, Color> _areaColors = {
-  FocusArea.energy: Color(0xFFE74C3C),
-  FocusArea.focus: Color(0xFF3498DB),
-  FocusArea.emotions: Color(0xFF9B59B6),
-  FocusArea.decisions: Color(0xFFFFD700),
-  FocusArea.social: Color(0xFF27AE60),
-};
-
-// ════════════════════════════════════════════════════════════════════════════
-// CYCLE PHASE ENUM
-// ════════════════════════════════════════════════════════════════════════════
-
-enum CyclePhase {
-  rising,
-  peak,
-  declining,
-  rest;
-
-  String labelEn() {
-    switch (this) {
-      case CyclePhase.rising:
-        return 'Rising';
-      case CyclePhase.peak:
-        return 'Peak';
-      case CyclePhase.declining:
-        return 'Declining';
-      case CyclePhase.rest:
-        return 'Rest';
-    }
-  }
-
-  String labelTr() {
-    switch (this) {
-      case CyclePhase.rising:
-        return 'Yükseliş';
-      case CyclePhase.peak:
-        return 'Zirve';
-      case CyclePhase.declining:
-        return 'Düşüş';
-      case CyclePhase.rest:
-        return 'Dinlenme';
-    }
-  }
-
-  IconData get icon {
-    switch (this) {
-      case CyclePhase.rising:
-        return Icons.trending_up;
-      case CyclePhase.peak:
-        return Icons.wb_sunny;
-      case CyclePhase.declining:
-        return Icons.trending_down;
-      case CyclePhase.rest:
-        return Icons.nightlight_round;
-    }
-  }
-
-  Color get color {
-    switch (this) {
-      case CyclePhase.rising:
-        return AppColors.success;
-      case CyclePhase.peak:
-        return AppColors.starGold;
-      case CyclePhase.declining:
-        return AppColors.error;
-      case CyclePhase.rest:
-        return AppColors.auroraStart;
-    }
-  }
-}
+import 'widgets/cycle_wave_painter.dart';
+import 'widgets/cycle_summary_card.dart';
 
 // ════════════════════════════════════════════════════════════════════════════
 // EMOTIONAL CYCLE SCREEN
@@ -106,8 +33,35 @@ class EmotionalCycleScreen extends ConsumerStatefulWidget {
       _EmotionalCycleScreenState();
 }
 
-class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen> {
+class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
+    with SingleTickerProviderStateMixin {
   final Set<FocusArea> _visibleAreas = Set.from(FocusArea.values);
+  late AnimationController _waveAnimController;
+  late Animation<double> _waveAnimation;
+  CycleDataPointInfo? _selectedPoint;
+
+  @override
+  void initState() {
+    super.initState();
+    _waveAnimController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1800),
+    );
+    _waveAnimation = CurvedAnimation(
+      parent: _waveAnimController,
+      curve: Curves.easeOutCubic,
+    );
+    // Start animation after frame renders
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) _waveAnimController.forward();
+    });
+  }
+
+  @override
+  void dispose() {
+    _waveAnimController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -117,60 +71,191 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen> {
     final serviceAsync = ref.watch(journalServiceProvider);
 
     return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: isDark
-                ? [AppColors.deepSpace, AppColors.cosmicPurple]
-                : [AppColors.lightBackground, AppColors.lightSurfaceVariant],
-          ),
-        ),
+      body: CosmicBackground(
         child: SafeArea(
           child: serviceAsync.when(
-            loading: () => const Center(child: CircularProgressIndicator()),
-            error: (_, _) => const SizedBox.shrink(),
-            data: (service) => _buildContent(context, service, isDark, isEn),
+            loading: () => const Center(
+              child: CircularProgressIndicator(color: AppColors.starGold),
+            ),
+            error: (_, _) => Center(
+              child: Text(
+                isEn ? 'Unable to load data' : 'Veri yuklenemedi',
+                style: TextStyle(
+                  color: isDark
+                      ? AppColors.textSecondary
+                      : AppColors.lightTextSecondary,
+                ),
+              ),
+            ),
+            data: (service) {
+              final cycleService = EmotionalCycleService(service);
+
+              if (!cycleService.hasEnoughData()) {
+                return _buildLockedView(
+                  context,
+                  isDark,
+                  isEn,
+                  cycleService.entriesNeeded(),
+                  service.entryCount,
+                );
+              }
+
+              final analysis = cycleService.analyze();
+              return _buildContent(
+                context,
+                service,
+                cycleService,
+                analysis,
+                isDark,
+                isEn,
+              );
+            },
           ),
         ),
       ),
     );
   }
 
+  // ══════════════════════════════════════════════════════════════════════════
+  // LOCKED VIEW - Not enough entries yet
+  // ══════════════════════════════════════════════════════════════════════════
+
+  Widget _buildLockedView(
+    BuildContext context,
+    bool isDark,
+    bool isEn,
+    int needed,
+    int current,
+  ) {
+    return CupertinoScrollbar(
+      child: CustomScrollView(
+        physics: const BouncingScrollPhysics(
+          parent: AlwaysScrollableScrollPhysics(),
+        ),
+        slivers: [
+          GlassSliverAppBar(
+            title: isEn ? 'Your Inner Cycles' : 'Ic Dongulerin',
+          ),
+          SliverFillRemaining(
+            hasScrollBody: false,
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.all(32),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    // Animated wave icon
+                    Icon(
+                      Icons.waves,
+                      size: 72,
+                      color: AppColors.auroraStart.withValues(alpha: 0.6),
+                    ),
+                    const SizedBox(height: 24),
+                    Text(
+                      isEn
+                          ? 'Your Cycles Are Forming'
+                          : 'Dongulerin Olusturuluyor',
+                      style:
+                          Theme.of(context).textTheme.headlineSmall?.copyWith(
+                        color: isDark
+                            ? AppColors.textPrimary
+                            : AppColors.lightTextPrimary,
+                        fontWeight: FontWeight.w700,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 12),
+                    Text(
+                      isEn
+                          ? 'Log $needed more entries to discover your emotional patterns. You have $current so far.'
+                          : '$needed kayit daha yap ve duygusal kaliplarini kesfet. Su ana kadar $current kaydin var.',
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                        color: isDark
+                            ? AppColors.textSecondary
+                            : AppColors.lightTextSecondary,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 32),
+                    // Progress bar
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child: LinearProgressIndicator(
+                        value: current / 7,
+                        backgroundColor: isDark
+                            ? AppColors.surfaceLight.withValues(alpha: 0.3)
+                            : AppColors.lightSurfaceVariant,
+                        valueColor:
+                            const AlwaysStoppedAnimation(AppColors.auroraStart),
+                        minHeight: 12,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      '$current / 7',
+                      style: const TextStyle(
+                        color: AppColors.auroraStart,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14,
+                      ),
+                    ),
+                    const SizedBox(height: 32),
+                    FilledButton.icon(
+                      onPressed: () => context.push('/journal'),
+                      style: FilledButton.styleFrom(
+                        backgroundColor: AppColors.auroraStart,
+                        foregroundColor: Colors.white,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 24,
+                          vertical: 14,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.circular(AppConstants.radiusLg),
+                        ),
+                      ),
+                      icon: const Icon(Icons.edit_note, size: 20),
+                      label: Text(
+                        isEn ? 'Start Journaling' : 'Kayit Yapmaya Basla',
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                  ].animate(interval: 80.ms).fadeIn(duration: 400.ms),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // ══════════════════════════════════════════════════════════════════════════
+  // MAIN CONTENT
+  // ══════════════════════════════════════════════════════════════════════════
+
   Widget _buildContent(
     BuildContext context,
-    JournalService service,
+    dynamic service,
+    EmotionalCycleService cycleService,
+    EmotionalCycleAnalysis analysis,
     bool isDark,
     bool isEn,
   ) {
-    final allEntries = service.getAllEntries();
     final now = DateTime.now();
-
-    // Determine date range based on data availability (premium gate)
-    final bool hasEnoughForFull = allEntries.length >= 30;
-    final int displayDays = hasEnoughForFull ? 30 : 7;
+    final bool hasEnoughForFull = analysis.totalEntries >= 30;
+    final int displayDays = hasEnoughForFull ? 30 : 14;
     final rangeStart = now.subtract(Duration(days: displayDays));
-    final rangeEntries = service.getEntriesByDateRange(rangeStart, now);
 
-    // Build per-area time series data
-    final Map<FocusArea, List<MapEntry<DateTime, double>>> areaData = {};
+    // Build per-area data points for wave chart
+    final Map<FocusArea, List<CycleDataPoint>> chartData = {};
     for (final area in FocusArea.values) {
-      final entries = rangeEntries
-          .where((e) => e.focusArea == area)
-          .toList()
-        ..sort((a, b) => a.date.compareTo(b.date));
-      areaData[area] = entries
-          .map((e) => MapEntry(e.date, e.overallRating.toDouble()))
-          .toList();
+      chartData[area] =
+          cycleService.getAreaDataPoints(area, rangeStart, now);
     }
-
-    // Cycle length detection (on emotions dimension, full history)
-    final cycleInfo = _detectCycleLength(allEntries);
-    final phase = _detectCurrentPhase(allEntries);
-
-    // Insights
-    final insights = _computeInsights(rangeEntries, isEn);
 
     return CupertinoScrollbar(
       child: CustomScrollView(
@@ -179,279 +264,255 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen> {
         ),
         slivers: [
           GlassSliverAppBar(
-            title: isEn ? 'Your Inner Cycles' : 'İç Döngülerin',
+            title: isEn ? 'Your Inner Cycles' : 'Ic Dongulerin',
+            largeTitleMode: true,
           ),
 
-        SliverPadding(
-          padding: const EdgeInsets.all(AppConstants.spacingLg),
-          sliver: SliverList(
-            delegate: SliverChildListDelegate([
-              // ════════════════════════════════════════════════════════════
-              // CYCLE OVERVIEW CARD
-              // ════════════════════════════════════════════════════════════
-              _buildCycleOverviewCard(
-                context,
-                isDark,
-                isEn,
-                cycleInfo,
-                phase,
-              ).animate().fadeIn(duration: 400.ms),
-              const SizedBox(height: AppConstants.spacingXl),
+          SliverPadding(
+            padding: const EdgeInsets.all(AppConstants.spacingLg),
+            sliver: SliverList(
+              delegate: SliverChildListDelegate([
+                // ══════════════════════════════════════════════════════════
+                // HERO SECTION: Wave Chart
+                // ══════════════════════════════════════════════════════════
+                _buildHeroWaveSection(
+                  context,
+                  isDark,
+                  isEn,
+                  chartData,
+                  displayDays,
+                ).animate().fadeIn(duration: 500.ms),
+                const SizedBox(height: AppConstants.spacingMd),
 
-              // ════════════════════════════════════════════════════════════
-              // WAVE CHART
-              // ════════════════════════════════════════════════════════════
-              _buildWaveChart(
-                context,
-                isDark,
-                isEn,
-                areaData,
-                displayDays,
-              ).animate().fadeIn(delay: 100.ms, duration: 400.ms),
-              const SizedBox(height: AppConstants.spacingMd),
+                // ══════════════════════════════════════════════════════════
+                // FOCUS AREA LEGEND (toggle chips)
+                // ══════════════════════════════════════════════════════════
+                _buildLegend(context, isDark, isEn)
+                    .animate()
+                    .fadeIn(delay: 200.ms, duration: 400.ms),
+                const SizedBox(height: AppConstants.spacingXl),
 
-              // ════════════════════════════════════════════════════════════
-              // FOCUS AREA LEGEND
-              // ════════════════════════════════════════════════════════════
-              _buildLegend(context, isDark, isEn)
-                  .animate()
-                  .fadeIn(delay: 200.ms, duration: 400.ms),
-              const SizedBox(height: AppConstants.spacingXl),
-
-              // ════════════════════════════════════════════════════════════
-              // CYCLE INSIGHTS
-              // ════════════════════════════════════════════════════════════
-              if (insights.isNotEmpty) ...[
+                // ══════════════════════════════════════════════════════════
+                // CYCLE SUMMARY CARDS
+                // ══════════════════════════════════════════════════════════
                 Text(
-                  isEn ? 'Cycle Insights' : 'Döngü İçgörüleri',
+                  isEn ? 'Your Dimensions' : 'Boyutlarin',
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     color: isDark
                         ? AppColors.textPrimary
                         : AppColors.lightTextPrimary,
-                    fontWeight: FontWeight.w600,
+                    fontWeight: FontWeight.w700,
                   ),
                 ).animate().fadeIn(delay: 300.ms, duration: 400.ms),
                 const SizedBox(height: AppConstants.spacingMd),
-                ...insights.asMap().entries.map((entry) {
+
+                ...FocusArea.values.asMap().entries.map((entry) {
+                  final area = entry.value;
+                  final summary = analysis.areaSummaries[area];
+                  if (summary == null) return const SizedBox.shrink();
+
                   return Padding(
                     padding: const EdgeInsets.only(
                       bottom: AppConstants.spacingMd,
                     ),
-                    child: _buildInsightCard(
-                      context,
-                      isDark,
-                      entry.value,
+                    child: CycleSummaryCard(
+                      summary: summary,
+                      isDark: isDark,
+                      isEn: isEn,
                     ),
                   ).animate().fadeIn(
-                    delay: (350 + entry.key * 80).ms,
+                    delay: (350 + entry.key * 60).ms,
+                    duration: 400.ms,
+                  ).slideY(
+                    begin: 0.05,
+                    end: 0,
+                    delay: (350 + entry.key * 60).ms,
                     duration: 400.ms,
                   );
                 }),
-              ],
 
-              const SizedBox(height: AppConstants.spacingLg),
+                const SizedBox(height: AppConstants.spacingXl),
 
-              // ════════════════════════════════════════════════════════════
-              // SHARE BUTTON
-              // ════════════════════════════════════════════════════════════
-              _buildShareButton(context, isDark, isEn)
-                  .animate()
-                  .fadeIn(delay: 500.ms, duration: 400.ms),
+                // ══════════════════════════════════════════════════════════
+                // CYCLE INSIGHTS
+                // ══════════════════════════════════════════════════════════
+                if (analysis.insights.isNotEmpty) ...[
+                  Text(
+                    isEn ? 'Cycle Insights' : 'Dongu Icgoruleri',
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      color: isDark
+                          ? AppColors.textPrimary
+                          : AppColors.lightTextPrimary,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ).animate().fadeIn(delay: 700.ms, duration: 400.ms),
+                  const SizedBox(height: AppConstants.spacingMd),
+                  ...analysis.insights.asMap().entries.map((entry) {
+                    return Padding(
+                      padding: const EdgeInsets.only(
+                        bottom: AppConstants.spacingMd,
+                      ),
+                      child: _buildInsightCard(
+                        context,
+                        isDark,
+                        isEn,
+                        entry.value,
+                      ),
+                    ).animate().fadeIn(
+                      delay: (750 + entry.key * 60).ms,
+                      duration: 400.ms,
+                    );
+                  }),
+                ],
 
-              // ════════════════════════════════════════════════════════════
-              // PREMIUM GATE
-              // ════════════════════════════════════════════════════════════
-              if (!hasEnoughForFull) ...[
                 const SizedBox(height: AppConstants.spacingLg),
-                _buildPremiumGate(context, isDark, isEn, allEntries.length)
+
+                // ══════════════════════════════════════════════════════════
+                // SHARE BUTTON
+                // ══════════════════════════════════════════════════════════
+                _buildShareButton(context, isDark, isEn)
                     .animate()
-                    .fadeIn(delay: 600.ms, duration: 400.ms),
-              ],
+                    .fadeIn(delay: 900.ms, duration: 400.ms),
 
-              const SizedBox(height: 40),
-            ]),
-          ),
-        ),
-      ],
-      ),
-    );
-  }
+                // ══════════════════════════════════════════════════════════
+                // PREMIUM GATE (if not enough for 30-day view)
+                // ══════════════════════════════════════════════════════════
+                if (!hasEnoughForFull) ...[
+                  const SizedBox(height: AppConstants.spacingLg),
+                  _buildPremiumGate(
+                    context,
+                    isDark,
+                    isEn,
+                    analysis.totalEntries,
+                  ).animate().fadeIn(delay: 1000.ms, duration: 400.ms),
+                ],
 
-  // ══════════════════════════════════════════════════════════════════════════
-  // CYCLE OVERVIEW CARD
-  // ══════════════════════════════════════════════════════════════════════════
-
-  Widget _buildCycleOverviewCard(
-    BuildContext context,
-    bool isDark,
-    bool isEn,
-    int? cycleLengthDays,
-    CyclePhase? phase,
-  ) {
-    return Container(
-      padding: const EdgeInsets.all(AppConstants.spacingXl),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: AppColors.starGold.withValues(alpha: 0.3),
-        ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Cycle length
-          Row(
-            children: [
-              Icon(
-                Icons.waves,
-                color: AppColors.auroraStart,
-                size: 24,
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Text(
-                  cycleLengthDays != null
-                      ? (isEn
-                          ? 'Your emotional cycle length: ~$cycleLengthDays days'
-                          : 'Duygusal döngü uzunluğun: ~$cycleLengthDays gün')
-                      : (isEn
-                          ? 'Need more entries to detect your cycle'
-                          : 'Döngünü tespit etmek için daha fazla kayıt gerekli'),
-                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: isDark
-                        ? AppColors.textPrimary
-                        : AppColors.lightTextPrimary,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ),
-            ],
-          ),
-
-          // Current phase
-          if (phase != null) ...[
-            const SizedBox(height: AppConstants.spacingLg),
-            Row(
-              children: [
-                Icon(
-                  phase.icon,
-                  color: phase.color,
-                  size: 24,
-                ),
-                const SizedBox(width: 12),
-                Text(
-                  isEn ? 'Current phase: ' : 'Mevcut aşama: ',
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: isDark
-                        ? AppColors.textSecondary
-                        : AppColors.lightTextSecondary,
-                  ),
-                ),
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 12,
-                    vertical: 4,
-                  ),
-                  decoration: BoxDecoration(
-                    color: phase.color.withValues(alpha: 0.15),
-                    borderRadius: BorderRadius.circular(AppConstants.radiusFull),
-                    border: Border.all(
-                      color: phase.color.withValues(alpha: 0.4),
-                    ),
-                  ),
-                  child: Text(
-                    isEn ? phase.labelEn() : phase.labelTr(),
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                      color: phase.color,
-                    ),
-                  ),
-                ),
-              ],
+                const SizedBox(height: 48),
+              ]),
             ),
-          ],
+          ),
         ],
       ),
     );
   }
 
   // ══════════════════════════════════════════════════════════════════════════
-  // WAVE CHART
+  // HERO WAVE SECTION
   // ══════════════════════════════════════════════════════════════════════════
 
-  Widget _buildWaveChart(
+  Widget _buildHeroWaveSection(
     BuildContext context,
     bool isDark,
     bool isEn,
-    Map<FocusArea, List<MapEntry<DateTime, double>>> areaData,
+    Map<FocusArea, List<CycleDataPoint>> chartData,
     int displayDays,
   ) {
-    final bool hasData = areaData.values.any((list) => list.isNotEmpty);
+    final hasData = chartData.values.any((list) => list.isNotEmpty);
 
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
         color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
+            ? AppColors.surfaceDark.withValues(alpha: 0.8)
             : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+        borderRadius: BorderRadius.circular(AppConstants.radiusXl),
         border: Border.all(
           color: isDark
-              ? Colors.white.withValues(alpha: 0.15)
+              ? AppColors.auroraStart.withValues(alpha: 0.2)
               : Colors.black.withValues(alpha: 0.05),
         ),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.auroraStart.withValues(alpha: isDark ? 0.1 : 0.05),
+            blurRadius: 24,
+            offset: const Offset(0, 8),
+          ),
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            isEn
-                ? 'Last $displayDays Days'
-                : 'Son $displayDays Gün',
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-              color: isDark
-                  ? AppColors.textSecondary
-                  : AppColors.lightTextSecondary,
-              fontWeight: FontWeight.w600,
-            ),
+          // Title
+          Row(
+            children: [
+              Icon(
+                Icons.waves,
+                color: AppColors.auroraStart,
+                size: 20,
+              ),
+              const SizedBox(width: 8),
+              Text(
+                isEn
+                    ? 'Last $displayDays Days'
+                    : 'Son $displayDays Gun',
+                style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                  color: isDark
+                      ? AppColors.textSecondary
+                      : AppColors.lightTextSecondary,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ],
           ),
           const SizedBox(height: AppConstants.spacingMd),
+
+          // Wave chart
           if (!hasData)
             SizedBox(
               height: 200,
               child: Center(
-                child: Text(
-                  isEn
-                      ? 'Start journaling to see your cycles'
-                      : 'Döngülerini görmek için kayıt yapmaya başla',
-                  style: TextStyle(
-                    color: isDark
-                        ? AppColors.textMuted
-                        : AppColors.lightTextMuted,
-                  ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(
+                      Icons.show_chart,
+                      size: 48,
+                      color: isDark
+                          ? AppColors.textMuted.withValues(alpha: 0.4)
+                          : AppColors.lightTextMuted.withValues(alpha: 0.4),
+                    ),
+                    const SizedBox(height: 12),
+                    Text(
+                      isEn
+                          ? 'Start journaling to see your cycles'
+                          : 'Dongulerni gormek icin kayit yapmaya basla',
+                      style: TextStyle(
+                        color: isDark
+                            ? AppColors.textMuted
+                            : AppColors.lightTextMuted,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             )
           else
-            SizedBox(
-              height: 220,
-              child: CustomPaint(
-                size: const Size(double.infinity, 220),
-                painter: CycleWavePainter(
-                  data: areaData,
-                  visibleAreas: _visibleAreas,
-                  areaColors: _areaColors,
-                  isDark: isDark,
-                  displayDays: displayDays,
-                ),
-              ),
+            AnimatedBuilder(
+              animation: _waveAnimation,
+              builder: (context, _) {
+                return SizedBox(
+                  height: 240,
+                  child: CycleWaveChart(
+                    areaData: chartData,
+                    visibleAreas: _visibleAreas,
+                    isDark: isDark,
+                    displayDays: displayDays,
+                    animationProgress: _waveAnimation.value,
+                    onPointSelected: (info) {
+                      setState(() => _selectedPoint = info);
+                    },
+                  ),
+                );
+              },
             ),
-          // Y-axis labels
+
+          // Selected point info
+          if (_selectedPoint != null) ...[
+            const SizedBox(height: AppConstants.spacingSm),
+            _buildSelectedPointInfo(context, isDark, isEn),
+          ],
+
+          // Date axis labels
           if (hasData)
             Padding(
               padding: const EdgeInsets.only(top: 4),
@@ -459,7 +520,9 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    isEn ? '$displayDays days ago' : '$displayDays gün önce',
+                    isEn
+                        ? '$displayDays days ago'
+                        : '$displayDays gun once',
                     style: TextStyle(
                       fontSize: 10,
                       color: isDark
@@ -468,7 +531,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen> {
                     ),
                   ),
                   Text(
-                    isEn ? 'Today' : 'Bugün',
+                    isEn ? 'Today' : 'Bugun',
                     style: TextStyle(
                       fontSize: 10,
                       color: isDark
@@ -485,6 +548,65 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen> {
   }
 
   // ══════════════════════════════════════════════════════════════════════════
+  // SELECTED POINT INFO BAR
+  // ══════════════════════════════════════════════════════════════════════════
+
+  Widget _buildSelectedPointInfo(
+    BuildContext context,
+    bool isDark,
+    bool isEn,
+  ) {
+    final point = _selectedPoint!;
+    final color = kAreaColors[point.area] ?? AppColors.auroraStart;
+    final areaName =
+        isEn ? point.area.displayNameEn : point.area.displayNameTr;
+    final dateStr =
+        '${point.date.day}/${point.date.month}/${point.date.year}';
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      decoration: BoxDecoration(
+        color: color.withValues(alpha: 0.1),
+        borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+        border: Border.all(color: color.withValues(alpha: 0.2)),
+      ),
+      child: Row(
+        children: [
+          Container(
+            width: 8,
+            height: 8,
+            decoration: BoxDecoration(
+              color: color,
+              shape: BoxShape.circle,
+            ),
+          ),
+          const SizedBox(width: 8),
+          Text(
+            '$areaName: ${point.value.toStringAsFixed(1)}',
+            style: TextStyle(
+              fontSize: 13,
+              fontWeight: FontWeight.w600,
+              color: isDark
+                  ? AppColors.textPrimary
+                  : AppColors.lightTextPrimary,
+            ),
+          ),
+          const Spacer(),
+          Text(
+            dateStr,
+            style: TextStyle(
+              fontSize: 12,
+              color: isDark
+                  ? AppColors.textMuted
+                  : AppColors.lightTextMuted,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // ══════════════════════════════════════════════════════════════════════════
   // FOCUS AREA LEGEND
   // ══════════════════════════════════════════════════════════════════════════
 
@@ -494,7 +616,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen> {
       child: Row(
         children: FocusArea.values.map((area) {
           final isVisible = _visibleAreas.contains(area);
-          final color = _areaColors[area]!;
+          final color = kAreaColors[area]!;
           final label = isEn ? area.displayNameEn : area.displayNameTr;
 
           return Padding(
@@ -512,56 +634,67 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen> {
               child: ConstrainedBox(
                 constraints: const BoxConstraints(minHeight: 44),
                 child: AnimatedContainer(
-                duration: const Duration(milliseconds: 200),
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 12,
-                  vertical: 8,
-                ),
-                decoration: BoxDecoration(
-                  color: isVisible
-                      ? color.withValues(alpha: 0.2)
-                      : (isDark
-                          ? AppColors.surfaceDark.withValues(alpha: 0.5)
-                          : AppColors.lightSurfaceVariant),
-                  borderRadius: BorderRadius.circular(AppConstants.radiusFull),
-                  border: Border.all(
+                  duration: const Duration(milliseconds: 250),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 14,
+                    vertical: 8,
+                  ),
+                  decoration: BoxDecoration(
                     color: isVisible
-                        ? color.withValues(alpha: 0.6)
-                        : Colors.transparent,
+                        ? color.withValues(alpha: 0.15)
+                        : (isDark
+                            ? AppColors.surfaceDark.withValues(alpha: 0.5)
+                            : AppColors.lightSurfaceVariant),
+                    borderRadius:
+                        BorderRadius.circular(AppConstants.radiusFull),
+                    border: Border.all(
+                      color: isVisible
+                          ? color.withValues(alpha: 0.5)
+                          : Colors.transparent,
+                      width: 1.5,
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      AnimatedContainer(
+                        duration: const Duration(milliseconds: 250),
+                        width: 10,
+                        height: 10,
+                        decoration: BoxDecoration(
+                          color: isVisible
+                              ? color
+                              : color.withValues(alpha: 0.25),
+                          shape: BoxShape.circle,
+                          boxShadow: isVisible
+                              ? [
+                                  BoxShadow(
+                                    color: color.withValues(alpha: 0.4),
+                                    blurRadius: 4,
+                                  ),
+                                ]
+                              : null,
+                        ),
+                      ),
+                      const SizedBox(width: 6),
+                      Text(
+                        label,
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight:
+                              isVisible ? FontWeight.w600 : FontWeight.normal,
+                          color: isVisible
+                              ? (isDark
+                                  ? AppColors.textPrimary
+                                  : AppColors.lightTextPrimary)
+                              : (isDark
+                                  ? AppColors.textMuted
+                                  : AppColors.lightTextMuted),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Container(
-                      width: 10,
-                      height: 10,
-                      decoration: BoxDecoration(
-                        color: isVisible
-                            ? color
-                            : color.withValues(alpha: 0.3),
-                        shape: BoxShape.circle,
-                      ),
-                    ),
-                    const SizedBox(width: 6),
-                    Text(
-                      label,
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontWeight:
-                            isVisible ? FontWeight.w600 : FontWeight.normal,
-                        color: isVisible
-                            ? (isDark
-                                ? AppColors.textPrimary
-                                : AppColors.lightTextPrimary)
-                            : (isDark
-                                ? AppColors.textMuted
-                                : AppColors.lightTextMuted),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
               ),
             ),
           );
@@ -577,8 +710,15 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen> {
   Widget _buildInsightCard(
     BuildContext context,
     bool isDark,
-    _CycleInsight insight,
+    bool isEn,
+    CycleInsight insight,
   ) {
+    final color = insight.relatedArea != null
+        ? (kAreaColors[insight.relatedArea!] ?? AppColors.auroraStart)
+        : AppColors.auroraStart;
+
+    final icon = _insightIcon(insight);
+
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -587,18 +727,28 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen> {
             : AppColors.lightCard,
         borderRadius: BorderRadius.circular(AppConstants.radiusLg),
         border: Border.all(
-          color: insight.color.withValues(alpha: 0.3),
+          color: color.withValues(alpha: 0.2),
         ),
       ),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(insight.icon, color: insight.color, size: 22),
+          Container(
+            width: 32,
+            height: 32,
+            decoration: BoxDecoration(
+              color: color.withValues(alpha: 0.12),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Icon(icon, color: color, size: 18),
+          ),
           const SizedBox(width: 12),
           Expanded(
             child: Text(
-              insight.message,
+              isEn ? insight.messageEn : insight.messageTr,
               style: TextStyle(
                 fontSize: 14,
+                height: 1.4,
                 color: isDark
                     ? AppColors.textPrimary
                     : AppColors.lightTextPrimary,
@@ -610,29 +760,62 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen> {
     );
   }
 
+  IconData _insightIcon(CycleInsight insight) {
+    final msg = insight.messageEn.toLowerCase();
+    if (msg.contains('strongest')) return Icons.star;
+    if (msg.contains('move together') || msg.contains('tend to be'))
+      return Icons.link;
+    if (msg.contains('higher on')) return Icons.calendar_today;
+    if (msg.contains('cycle')) return Icons.waves;
+    if (msg.contains('improving')) return Icons.trending_up;
+    if (msg.contains('attention')) return Icons.priority_high;
+    return Icons.lightbulb_outline;
+  }
+
   // ══════════════════════════════════════════════════════════════════════════
   // SHARE BUTTON
   // ══════════════════════════════════════════════════════════════════════════
 
   Widget _buildShareButton(BuildContext context, bool isDark, bool isEn) {
-    return SizedBox(
+    return Container(
       width: double.infinity,
-      child: ElevatedButton.icon(
-        onPressed: () => context.push('/share-insight'),
-        style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.auroraStart,
-          foregroundColor: Colors.white,
-          padding: const EdgeInsets.symmetric(vertical: 16),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-          ),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+        gradient: const LinearGradient(
+          colors: [AppColors.auroraStart, AppColors.auroraEnd],
         ),
-        icon: const Icon(Icons.share, size: 20),
-        label: Text(
-          isEn ? 'Share Your Cycle' : 'Döngünü Paylaş',
-          style: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.auroraStart.withValues(alpha: 0.3),
+            blurRadius: 12,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: () => context.push('/share-insight'),
+          borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Icon(Icons.share, color: Colors.white, size: 20),
+                const SizedBox(width: 10),
+                Text(
+                  isEn
+                      ? 'Share My Inner Cycles'
+                      : 'Ic Dongullerimi Paylas',
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -656,13 +839,13 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen> {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            AppColors.auroraStart.withValues(alpha: 0.15),
-            AppColors.auroraEnd.withValues(alpha: 0.15),
+            AppColors.auroraStart.withValues(alpha: 0.12),
+            AppColors.auroraEnd.withValues(alpha: 0.12),
           ],
         ),
         borderRadius: BorderRadius.circular(AppConstants.radiusLg),
         border: Border.all(
-          color: AppColors.starGold.withValues(alpha: 0.4),
+          color: AppColors.starGold.withValues(alpha: 0.35),
         ),
       ),
       child: Column(
@@ -674,9 +857,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen> {
           ),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
-            isEn
-                ? 'Unlock Full History'
-                : 'Tüm Geçmişi Aç',
+            isEn ? 'Unlock Full 30-Day View' : 'Tam 30 Gunluk Gorunumu Ac',
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
               color: AppColors.starGold,
               fontWeight: FontWeight.w600,
@@ -685,8 +866,8 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen> {
           const SizedBox(height: AppConstants.spacingSm),
           Text(
             isEn
-                ? 'You have $totalEntries entries. Log 30+ days to unlock the full 30-day cycle view, or upgrade to premium.'
-                : '$totalEntries kaydınız var. 30 günlük döngü görünümünün kilidini açmak için 30+ gün kayıt yapın veya premium\'a geçin.',
+                ? 'You have $totalEntries entries. Log 30+ days for the full cycle view, or go premium.'
+                : '$totalEntries kaydin var. Tam dongu gorunumu icin 30+ gun kayit yap veya premium\'a gec.',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 14,
@@ -699,19 +880,18 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen> {
           SizedBox(
             width: double.infinity,
             child: OutlinedButton(
-              onPressed: () {
-                // Navigate to premium/paywall screen
-              },
+              onPressed: () => context.push('/premium'),
               style: OutlinedButton.styleFrom(
                 foregroundColor: AppColors.starGold,
                 side: const BorderSide(color: AppColors.starGold),
                 padding: const EdgeInsets.symmetric(vertical: 14),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+                  borderRadius:
+                      BorderRadius.circular(AppConstants.radiusLg),
                 ),
               ),
               child: Text(
-                isEn ? 'Go Premium' : 'Premium\'a Geç',
+                isEn ? 'Go Premium' : 'Premium\'a Gec',
                 style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
@@ -722,413 +902,5 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen> {
         ],
       ),
     );
-  }
-
-  // ══════════════════════════════════════════════════════════════════════════
-  // CYCLE LENGTH DETECTION
-  // ══════════════════════════════════════════════════════════════════════════
-
-  /// Detect cycle length by finding peaks in the emotions dimension
-  /// Returns null if insufficient data
-  int? _detectCycleLength(List<JournalEntry> allEntries) {
-    final emotionEntries = allEntries
-        .where((e) => e.focusArea == FocusArea.emotions)
-        .toList()
-      ..sort((a, b) => a.date.compareTo(b.date));
-
-    if (emotionEntries.length < 5) return null;
-
-    // Find peaks (local maxima)
-    final List<DateTime> peaks = [];
-    for (int i = 1; i < emotionEntries.length - 1; i++) {
-      final prev = emotionEntries[i - 1].overallRating;
-      final curr = emotionEntries[i].overallRating;
-      final next = emotionEntries[i + 1].overallRating;
-      if (curr > prev && curr > next) {
-        peaks.add(emotionEntries[i].date);
-      }
-    }
-
-    if (peaks.length < 2) return null;
-
-    // Average distance between consecutive peaks
-    double totalDays = 0;
-    for (int i = 1; i < peaks.length; i++) {
-      totalDays += peaks[i].difference(peaks[i - 1]).inDays;
-    }
-    final avgCycle = totalDays / (peaks.length - 1);
-
-    // Only return if the cycle length is reasonable (3-60 days)
-    if (avgCycle < 3 || avgCycle > 60) return null;
-    return avgCycle.round();
-  }
-
-  // ══════════════════════════════════════════════════════════════════════════
-  // CURRENT PHASE DETECTION
-  // ══════════════════════════════════════════════════════════════════════════
-
-  CyclePhase? _detectCurrentPhase(List<JournalEntry> allEntries) {
-    final emotionEntries = allEntries
-        .where((e) => e.focusArea == FocusArea.emotions)
-        .toList()
-      ..sort((a, b) => b.date.compareTo(a.date)); // Most recent first
-
-    if (emotionEntries.length < 3) return null;
-
-    // Take last 3 entries to determine trend
-    final recent = emotionEntries.take(3).toList();
-    final ratings = recent.map((e) => e.overallRating).toList();
-
-    // ratings[0] is most recent, ratings[2] is oldest
-    final latest = ratings[0];
-    final middle = ratings[1];
-    final oldest = ratings[2];
-
-    if (latest > middle && middle > oldest) {
-      return CyclePhase.rising;
-    } else if (latest >= 4 && middle >= 4) {
-      return CyclePhase.peak;
-    } else if (latest < middle && middle < oldest) {
-      return CyclePhase.declining;
-    } else if (latest <= 2) {
-      return CyclePhase.rest;
-    } else if (latest > middle) {
-      return CyclePhase.rising;
-    } else {
-      return CyclePhase.declining;
-    }
-  }
-
-  // ══════════════════════════════════════════════════════════════════════════
-  // INSIGHTS COMPUTATION
-  // ══════════════════════════════════════════════════════════════════════════
-
-  List<_CycleInsight> _computeInsights(
-    List<JournalEntry> entries,
-    bool isEn,
-  ) {
-    if (entries.isEmpty) return [];
-
-    final List<_CycleInsight> insights = [];
-
-    // Compute averages per area
-    final Map<FocusArea, List<int>> areaRatings = {};
-    for (final entry in entries) {
-      areaRatings.putIfAbsent(entry.focusArea, () => []);
-      areaRatings[entry.focusArea]!.add(entry.overallRating);
-    }
-
-    if (areaRatings.isEmpty) return [];
-
-    // Strongest area (highest average)
-    FocusArea? strongestArea;
-    double highestAvg = 0;
-    for (final entry in areaRatings.entries) {
-      final avg = entry.value.reduce((a, b) => a + b) / entry.value.length;
-      if (avg > highestAvg) {
-        highestAvg = avg;
-        strongestArea = entry.key;
-      }
-    }
-
-    if (strongestArea != null) {
-      final areaName = isEn
-          ? strongestArea.displayNameEn
-          : strongestArea.displayNameTr;
-      insights.add(_CycleInsight(
-        message: isEn
-            ? 'Your strongest area this month: $areaName'
-            : 'Bu ay en güçlü alanın: $areaName',
-        icon: Icons.star,
-        color: _areaColors[strongestArea]!,
-      ));
-    }
-
-    // Most variable area (highest standard deviation)
-    FocusArea? mostVariable;
-    double highestStdDev = 0;
-    for (final entry in areaRatings.entries) {
-      if (entry.value.length < 2) continue;
-      final avg = entry.value.reduce((a, b) => a + b) / entry.value.length;
-      final variance = entry.value
-              .map((r) => (r - avg) * (r - avg))
-              .reduce((a, b) => a + b) /
-          entry.value.length;
-      final stdDev = math.sqrt(variance);
-      if (stdDev > highestStdDev) {
-        highestStdDev = stdDev;
-        mostVariable = entry.key;
-      }
-    }
-
-    if (mostVariable != null && highestStdDev > 0.5) {
-      final areaName = isEn
-          ? mostVariable.displayNameEn
-          : mostVariable.displayNameTr;
-      insights.add(_CycleInsight(
-        message: isEn
-            ? 'Your most variable area: $areaName'
-            : 'En değişken alanın: $areaName',
-        icon: Icons.show_chart,
-        color: _areaColors[mostVariable]!,
-      ));
-    }
-
-    // Best day pattern (weekday with highest average)
-    final Map<int, List<int>> weekdayRatings = {};
-    for (final entry in entries) {
-      weekdayRatings.putIfAbsent(entry.date.weekday, () => []);
-      weekdayRatings[entry.date.weekday]!.add(entry.overallRating);
-    }
-
-    int? bestWeekday;
-    double bestWeekdayAvg = 0;
-    for (final entry in weekdayRatings.entries) {
-      final avg = entry.value.reduce((a, b) => a + b) / entry.value.length;
-      if (avg > bestWeekdayAvg) {
-        bestWeekdayAvg = avg;
-        bestWeekday = entry.key;
-      }
-    }
-
-    if (bestWeekday != null) {
-      final weekdayNames = isEn
-          ? [
-              '',
-              'Monday',
-              'Tuesday',
-              'Wednesday',
-              'Thursday',
-              'Friday',
-              'Saturday',
-              'Sunday',
-            ]
-          : [
-              '',
-              'Pazartesi',
-              'Salı',
-              'Çarşamba',
-              'Perşembe',
-              'Cuma',
-              'Cumartesi',
-              'Pazar',
-            ];
-      insights.add(_CycleInsight(
-        message: isEn
-            ? 'Best day pattern: ${weekdayNames[bestWeekday]}'
-            : 'En iyi gün kalıbı: ${weekdayNames[bestWeekday]}',
-        icon: Icons.calendar_today,
-        color: AppColors.starGold,
-      ));
-    }
-
-    return insights;
-  }
-}
-
-// ════════════════════════════════════════════════════════════════════════════
-// INSIGHT DATA CLASS
-// ════════════════════════════════════════════════════════════════════════════
-
-class _CycleInsight {
-  final String message;
-  final IconData icon;
-  final Color color;
-
-  const _CycleInsight({
-    required this.message,
-    required this.icon,
-    required this.color,
-  });
-}
-
-// ════════════════════════════════════════════════════════════════════════════
-// CYCLE WAVE PAINTER - Smooth Bezier curves for each focus area
-// ════════════════════════════════════════════════════════════════════════════
-
-class CycleWavePainter extends CustomPainter {
-  final Map<FocusArea, List<MapEntry<DateTime, double>>> data;
-  final Set<FocusArea> visibleAreas;
-  final Map<FocusArea, Color> areaColors;
-  final bool isDark;
-  final int displayDays;
-
-  CycleWavePainter({
-    required this.data,
-    required this.visibleAreas,
-    required this.areaColors,
-    required this.isDark,
-    required this.displayDays,
-  });
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final now = DateTime.now();
-    final rangeStart = now.subtract(Duration(days: displayDays));
-    final totalMs = now.difference(rangeStart).inMilliseconds.toDouble();
-
-    // Chart area with padding for Y-axis labels
-    const leftPadding = 24.0;
-    const rightPadding = 8.0;
-    const topPadding = 8.0;
-    const bottomPadding = 20.0;
-    final chartWidth = size.width - leftPadding - rightPadding;
-    final chartHeight = size.height - topPadding - bottomPadding;
-
-    // Draw Y-axis grid lines and labels (1-5)
-    _drawGrid(canvas, size, leftPadding, topPadding, chartWidth, chartHeight);
-
-    // Draw each visible focus area as a smooth bezier curve
-    for (final area in FocusArea.values) {
-      if (!visibleAreas.contains(area)) continue;
-
-      final points = data[area];
-      if (points == null || points.isEmpty) continue;
-
-      final color = areaColors[area] ?? Colors.white;
-      final paint = Paint()
-        ..color = color
-        ..style = PaintingStyle.stroke
-        ..strokeWidth = 2.5
-        ..strokeCap = StrokeCap.round
-        ..isAntiAlias = true;
-
-      // Convert data points to canvas coordinates
-      final List<Offset> canvasPoints = [];
-      for (final point in points) {
-        final dx = leftPadding +
-            (point.key.difference(rangeStart).inMilliseconds / totalMs) *
-                chartWidth;
-        // Y is inverted (top = 5, bottom = 1)
-        final dy = topPadding +
-            chartHeight -
-            ((point.value - 1) / 4) * chartHeight;
-        canvasPoints.add(Offset(dx.clamp(leftPadding, leftPadding + chartWidth),
-            dy.clamp(topPadding, topPadding + chartHeight)));
-      }
-
-      if (canvasPoints.length == 1) {
-        // Single point: draw a dot
-        canvas.drawCircle(
-          canvasPoints.first,
-          4,
-          Paint()..color = color,
-        );
-        continue;
-      }
-
-      // Draw smooth bezier path
-      final path = _buildSmoothPath(canvasPoints);
-      canvas.drawPath(path, paint);
-
-      // Draw glow effect underneath
-      final glowPaint = Paint()
-        ..color = color.withValues(alpha: 0.15)
-        ..style = PaintingStyle.stroke
-        ..strokeWidth = 8
-        ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 4)
-        ..isAntiAlias = true;
-      canvas.drawPath(path, glowPaint);
-
-      // Draw data point dots
-      for (final pt in canvasPoints) {
-        canvas.drawCircle(
-          pt,
-          3,
-          Paint()..color = color,
-        );
-        canvas.drawCircle(
-          pt,
-          1.5,
-          Paint()..color = Colors.white,
-        );
-      }
-    }
-  }
-
-  /// Draw background grid with Y-axis labels
-  void _drawGrid(
-    Canvas canvas,
-    Size size,
-    double leftPadding,
-    double topPadding,
-    double chartWidth,
-    double chartHeight,
-  ) {
-    final gridPaint = Paint()
-      ..color = (isDark ? Colors.white : Colors.black).withValues(alpha: 0.08)
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 0.5;
-
-    for (int rating = 1; rating <= 5; rating++) {
-      final y = topPadding + chartHeight - ((rating - 1) / 4) * chartHeight;
-
-      // Grid line
-      canvas.drawLine(
-        Offset(leftPadding, y),
-        Offset(leftPadding + chartWidth, y),
-        gridPaint,
-      );
-
-      // Label
-      final labelPainter = TextPainter(
-        text: TextSpan(
-          text: '$rating',
-          style: TextStyle(
-            color: (isDark ? Colors.white : Colors.black)
-                .withValues(alpha: 0.35),
-            fontSize: 10,
-          ),
-        ),
-        textDirection: TextDirection.ltr,
-      )..layout();
-
-      labelPainter.paint(
-        canvas,
-        Offset(4, y - labelPainter.height / 2),
-      );
-    }
-  }
-
-  /// Build a smooth cubic bezier path through the given points
-  Path _buildSmoothPath(List<Offset> points) {
-    final path = Path();
-    if (points.isEmpty) return path;
-
-    path.moveTo(points.first.dx, points.first.dy);
-
-    if (points.length == 2) {
-      path.lineTo(points[1].dx, points[1].dy);
-      return path;
-    }
-
-    for (int i = 0; i < points.length - 1; i++) {
-      final p0 = i > 0 ? points[i - 1] : points[i];
-      final p1 = points[i];
-      final p2 = points[i + 1];
-      final p3 = i + 2 < points.length ? points[i + 2] : p2;
-
-      // Catmull-Rom to Bezier control points
-      final tension = 0.3;
-      final cp1 = Offset(
-        p1.dx + (p2.dx - p0.dx) * tension,
-        p1.dy + (p2.dy - p0.dy) * tension,
-      );
-      final cp2 = Offset(
-        p2.dx - (p3.dx - p1.dx) * tension,
-        p2.dy - (p3.dy - p1.dy) * tension,
-      );
-
-      path.cubicTo(cp1.dx, cp1.dy, cp2.dx, cp2.dy, p2.dx, p2.dy);
-    }
-
-    return path;
-  }
-
-  @override
-  bool shouldRepaint(covariant CycleWavePainter oldDelegate) {
-    return oldDelegate.visibleAreas != visibleAreas ||
-        oldDelegate.data != data ||
-        oldDelegate.isDark != isDark;
   }
 }

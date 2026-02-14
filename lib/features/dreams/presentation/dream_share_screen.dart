@@ -1814,7 +1814,7 @@ class _DreamShareScreenState extends ConsumerState<DreamShareScreen>
       if (_subtitle.isNotEmpty) {
         shareText += '\n\n$_subtitle';
       }
-      shareText += '\n\n#dreaminterpretation #venusone #cosmicenergy';
+      shareText += '\n\n#dreamjournal #innercycles #selfreflection';
 
       if (kIsWeb) {
         // Web: Copy text and show instructions

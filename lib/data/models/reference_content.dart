@@ -17,8 +17,8 @@ class GlossaryEntry {
   final GlossaryCategory category;
   final List<String> relatedTerms;
   final List<GlossaryReference> references; // Kaynak ve referanslar
-  final String? planetInHouse; // Gezegen-Ev yorumu için
-  final String? signRuler; // Burç yöneticisi bilgisi
+  final String? planetInHouse; // Category-context interpretation
+  final String? signRuler; // Archetype ruler info
 
   GlossaryEntry({
     required this.term,
@@ -173,15 +173,15 @@ extension GlossaryCategoryExtension on GlossaryCategory {
       case GlossaryCategory.planets:
         return 'Gezegenler';
       case GlossaryCategory.signs:
-        return 'Burçlar';
+        return 'Arketipler';
       case GlossaryCategory.houses:
-        return 'Evler';
+        return 'Alanlar';
       case GlossaryCategory.aspects:
-        return 'Açılar';
+        return 'Perspektifler';
       case GlossaryCategory.techniques:
         return 'Teknikler';
       case GlossaryCategory.modern:
-        return 'Modern Astroloji';
+        return 'Modern Yaklaşım';
       case GlossaryCategory.esoteric:
         return 'Ezoterik';
       case GlossaryCategory.psychological:

@@ -6,8 +6,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/journal_entry.dart';
+import '../../../data/models/cross_correlation_result.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/pattern_engine_service.dart';
+import '../../../data/services/pattern_health_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 
@@ -142,6 +144,18 @@ class PatternsScreen extends ConsumerWidget {
     final lastWeek = engine.getLastWeekAverages();
     final trends = engine.detectTrends();
     final correlations = engine.detectCorrelations();
+    final healthAsync = ref.watch(patternHealthReportProvider);
+    final crossCorrelationsAsync = ref.watch(crossCorrelationsProvider);
+
+    // Extract dimension health map (null if loading/error)
+    final healthMap = healthAsync.whenOrNull(
+      data: (report) => report.dimensionHealth,
+    );
+
+    // Extract cross-correlations (empty list if loading/error)
+    final crossCorrelations = crossCorrelationsAsync.whenOrNull(
+      data: (list) => list,
+    ) ?? [];
 
     return CupertinoScrollbar(
       child: CustomScrollView(
@@ -168,6 +182,7 @@ class PatternsScreen extends ConsumerWidget {
                   lastWeek,
                   isDark,
                   isEn,
+                  healthMap: healthMap,
                 ).animate().fadeIn(delay: 100.ms, duration: 400.ms),
               if (thisWeek.isNotEmpty)
                 const SizedBox(height: AppConstants.spacingLg),
@@ -185,6 +200,17 @@ class PatternsScreen extends ConsumerWidget {
                 _buildCorrelations(context, correlations, isDark, isEn)
                     .animate()
                     .fadeIn(delay: 300.ms, duration: 400.ms),
+              if (correlations.isNotEmpty)
+                const SizedBox(height: AppConstants.spacingLg),
+
+              // Cross-dimension correlations
+              if (crossCorrelations.isNotEmpty)
+                _buildCrossCorrelations(
+                  context,
+                  crossCorrelations,
+                  isDark,
+                  isEn,
+                ).animate().fadeIn(delay: 400.ms, duration: 400.ms),
               const SizedBox(height: 40),
             ]),
           ),
@@ -224,13 +250,25 @@ class PatternsScreen extends ConsumerWidget {
     );
   }
 
+  Color _healthStatusColor(HealthStatus status) {
+    switch (status) {
+      case HealthStatus.green:
+        return AppColors.success;
+      case HealthStatus.yellow:
+        return AppColors.warning;
+      case HealthStatus.red:
+        return const Color(0xFFE53935);
+    }
+  }
+
   Widget _buildWeeklyComparison(
     BuildContext context,
     Map<FocusArea, double> thisWeek,
     Map<FocusArea, double> lastWeek,
     bool isDark,
-    bool isEn,
-  ) {
+    bool isEn, {
+    Map<FocusArea, DimensionHealth>? healthMap,
+  }) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -263,13 +301,26 @@ class PatternsScreen extends ConsumerWidget {
             final label = isEn
                 ? entry.key.displayNameEn
                 : entry.key.displayNameTr;
+            final dimensionHealth = healthMap?[entry.key];
 
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 6),
               child: Row(
                 children: [
+                  // Health status dot
+                  if (dimensionHealth != null) ...[
+                    Container(
+                      width: 8,
+                      height: 8,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: _healthStatusColor(dimensionHealth.status),
+                      ),
+                    ),
+                    const SizedBox(width: 6),
+                  ],
                   SizedBox(
-                    width: 90,
+                    width: dimensionHealth != null ? 76 : 90,
                     child: Text(
                       label,
                       style: TextStyle(
@@ -416,7 +467,7 @@ class PatternsScreen extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            isEn ? 'Connections' : 'Bağlantılar',
+            isEn ? 'Connections' : 'Baglantlar',
             style: Theme.of(context).textTheme.titleSmall?.copyWith(
               color: isDark
                   ? AppColors.textSecondary
@@ -454,6 +505,159 @@ class PatternsScreen extends ConsumerWidget {
               ),
             );
           }),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildCrossCorrelations(
+    BuildContext context,
+    List<CrossCorrelation> crossCorrelations,
+    bool isDark,
+    bool isEn,
+  ) {
+    return Container(
+      padding: const EdgeInsets.all(AppConstants.spacingLg),
+      decoration: BoxDecoration(
+        color: isDark
+            ? AppColors.surfaceDark.withValues(alpha: 0.85)
+            : AppColors.lightCard,
+        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+        border: Border.all(
+          color: isDark
+              ? Colors.white.withValues(alpha: 0.15)
+              : Colors.black.withValues(alpha: 0.05),
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Icon(
+                Icons.insights,
+                color: AppColors.auroraStart,
+                size: 20,
+              ),
+              const SizedBox(width: 8),
+              Text(
+                isEn ? 'Cross-Dimension Insights' : 'Boyutlar Arasi Icgoruler',
+                style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                  color: isDark
+                      ? AppColors.textSecondary
+                      : AppColors.lightTextSecondary,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: AppConstants.spacingMd),
+          ...crossCorrelations.map((cc) {
+            final strengthColor = cc.coefficient.abs() >= 0.7
+                ? AppColors.success
+                : cc.coefficient.abs() >= 0.5
+                    ? AppColors.starGold
+                    : AppColors.auroraStart;
+
+            return Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Dimension pair header
+                  Row(
+                    children: [
+                      Container(
+                        width: 8,
+                        height: 8,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: strengthColor,
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      Text(
+                        isEn
+                            ? cc.shortDisplayEn()
+                            : cc.shortDisplayTr(),
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                          color: isDark
+                              ? AppColors.textPrimary
+                              : AppColors.lightTextPrimary,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 4),
+                  // Insight text
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16),
+                    child: Text(
+                      isEn ? cc.insightTextEn : cc.insightTextTr,
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: isDark
+                            ? AppColors.textSecondary
+                            : AppColors.lightTextSecondary,
+                      ),
+                    ),
+                  ),
+                  // Correlation strength bar
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16, top: 6),
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: 50,
+                          child: Text(
+                            isEn
+                                ? '${cc.sampleSize} days'
+                                : '${cc.sampleSize} gun',
+                            style: TextStyle(
+                              fontSize: 11,
+                              color: isDark
+                                  ? AppColors.textSecondary.withValues(alpha: 0.7)
+                                  : AppColors.lightTextSecondary.withValues(alpha: 0.7),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(3),
+                            child: LinearProgressIndicator(
+                              value: cc.coefficient.abs(),
+                              backgroundColor: isDark
+                                  ? AppColors.surfaceLight.withValues(alpha: 0.3)
+                                  : AppColors.lightSurfaceVariant,
+                              valueColor:
+                                  AlwaysStoppedAnimation(strengthColor),
+                              minHeight: 6,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            );
+          }),
+          const SizedBox(height: AppConstants.spacingSm),
+          // Disclaimer
+          Text(
+            isEn
+                ? 'Based on your personal journal entries. Not a clinical assessment.'
+                : 'Kisisel gunluk kayitlariniza dayanmaktadir. Klinik bir degerlendirme degildir.',
+            style: TextStyle(
+              fontSize: 11,
+              fontStyle: FontStyle.italic,
+              color: isDark
+                  ? AppColors.textSecondary.withValues(alpha: 0.5)
+                  : AppColors.lightTextSecondary.withValues(alpha: 0.5),
+            ),
+          ),
         ],
       ),
     );

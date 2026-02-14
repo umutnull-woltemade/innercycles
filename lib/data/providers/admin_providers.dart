@@ -29,10 +29,10 @@ final adminMetricsProvider = StateProvider<AdminMetrics>((ref) {
     shareReturn: 8.4,
     toolUsage: {
       'Rüya İzi': 35.0,
-      'Kozmik': 28.0,
-      'Tarot': 18.0,
-      'Numeroloji': 12.0,
-      'Tantra': 7.0,
+      'Günlük': 28.0,
+      'Yansıma': 18.0,
+      'İçgörü': 12.0,
+      'Farkındalık': 7.0,
     },
     retentionHistory: [
       RetentionPoint(
@@ -274,7 +274,7 @@ final eventLogProvider = StateProvider<List<EventLogEntry>>((ref) {
       lastFired: DateTime.now().subtract(const Duration(minutes: 3)),
     ),
     EventLogEntry(
-      name: 'tarot_spread',
+      name: 'insight_session',
       count: 234,
       lastFired: DateTime.now().subtract(const Duration(minutes: 7)),
     ),

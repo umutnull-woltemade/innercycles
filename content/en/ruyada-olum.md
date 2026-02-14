@@ -61,7 +61,7 @@ Death dreams are generally a natural part of transformation and are not harmful.
 
 If you've been seeing this theme, a brief personal reflection can clarify what your unconscious is processing.
 
-**A note of caution:** Death dreams are symbolic, but if you are experiencing thoughts of death in your waking hours, please speak with a professional. This content does not replace clinical support.
+**A note of caution:** Death dreams are symbolic, but if you are experiencing thoughts of death in your waking hours, please speak with a professional. This content does not replace professional support.
 
 **A suggestion:** After a death dream, note who or what died and what has been changing in your life recently. The connection often becomes clear quickly.
 

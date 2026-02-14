@@ -23,7 +23,7 @@ If a dog has appeared in your dream, you're likely processing the trust dynamics
 
 The dog is the archetypal "loyal companion." In mythology, dogs guard the threshold between worlds — Anubis in Egypt, Cerberus in Greek myth, spirit dogs in Turkic shamanic traditions.
 
-**A friendly, happy dog** signals healthy relationships, emotional security, and the presence of unconditional support in your life.
+**A friendly, happy dog** signals healthy relationships, emotional safety, and the presence of unconditional support in your life.
 
 **An aggressive dog** represents a breach of trust, fear of betrayal, or a sense that someone is pushing past your boundaries.
 
@@ -35,9 +35,9 @@ The dog is the archetypal "loyal companion." In mythology, dogs guard the thresh
 
 ## Psychological Perspective
 
-In psychology, dogs represent the attachment and trust system. Through Bowlby's attachment theory lens, dog dreams can directly reflect your attachment style — secure, anxious, or avoidant.
+In psychology, dogs represent the attachment and trust system. Through Bowlby's attachment theory lens, dog dreams can directly reflect your attachment style — stable, anxious, or avoidant.
 
-Feeling love toward the dog suggests your secure attachment is active. Fearing the dog may mean your trust system is on alert. Losing the dog could signal abandonment anxiety surfacing.
+Feeling love toward the dog suggests your stable attachment is active. Fearing the dog may mean your trust system is on alert. Losing the dog could signal abandonment anxiety surfacing.
 
 Dogs also symbolize instinct in modern dream psychology — the dog's ability to sense danger mirrors your own intuitive intelligence.
 

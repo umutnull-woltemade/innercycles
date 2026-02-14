@@ -99,7 +99,10 @@ class Routes {
   // GROWTH & ENGAGEMENT
   // ════════════════════════════════════════════════════════════════
   static const String attachmentQuiz = '/quiz/attachment';
+  static const String quizHub = '/quiz';
+  static const String quizGeneric = '/quiz/:quizId';
   static const String shareInsight = '/share-insight';
+  static const String shareCardGallery = '/share-cards';
   static const String emotionalCycles = '/emotional-cycles';
   static const String growthDashboard = '/growth';
 
@@ -112,6 +115,8 @@ class Routes {
   static const String blindSpot = '/blind-spot';
   static const String promptLibrary = '/prompts';
   static const String milestones = '/milestones';
+  static const String archetypeQuiz = '/onboarding/quiz';
+  static const String yearReview = '/year-review';
 
   // ════════════════════════════════════════════════════════════════
   // PROFILE & SETTINGS

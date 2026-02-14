@@ -969,8 +969,6 @@ class _AddProfileSheetState extends ConsumerState<AddProfileSheet> {
       return;
     }
 
-    final sign = ZodiacSignExtension.fromDate(_birthDate);
-
     // Convert time to string format
     String? birthTimeStr;
     if (_birthTime != null) {
@@ -985,7 +983,6 @@ class _AddProfileSheetState extends ConsumerState<AddProfileSheet> {
       birthPlace: _birthPlace,
       birthLatitude: _birthLatitude,
       birthLongitude: _birthLongitude,
-      sunSign: sign,
       relationship: _relationship,
       avatarEmoji: _avatarEmoji,
     );

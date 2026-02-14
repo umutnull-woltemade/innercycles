@@ -62,7 +62,7 @@ class MegaDreamSymbolsPart1 {
         'Hayatin kokeni',
         'Sinirsiz olasiliklar',
         'Evrensel anne',
-        'Kozmik hafiza',
+        'Kolektif hafıza',
       ],
       emotionVariants: {
         EmotionalTone.korku:
