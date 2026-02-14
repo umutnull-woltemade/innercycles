@@ -46,6 +46,7 @@ import '../services/notification_lifecycle_service.dart';
 import '../services/voice_journal_service.dart';
 import '../services/pattern_engine_service.dart';
 import '../services/year_review_service.dart';
+import '../services/referral_service.dart';
 import '../models/journal_entry.dart';
 import '../models/cross_correlation_result.dart';
 
@@ -684,4 +685,12 @@ final yearReviewServiceProvider =
     FutureProvider<YearReviewService>((ref) async {
   final journalService = await ref.watch(journalServiceProvider.future);
   return await YearReviewService.init(journalService);
+});
+
+// =============================================================================
+// REFERRAL SERVICE PROVIDER
+// =============================================================================
+
+final referralServiceProvider = FutureProvider<ReferralService>((ref) async {
+  return await ReferralService.init();
 });
