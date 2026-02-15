@@ -25,6 +25,7 @@ import '../../../digest/presentation/weekly_digest_card.dart';
 import '../../../prompts/presentation/today_prompt_card.dart';
 import '../../../referral/presentation/referral_progress_card.dart';
 import '../../../cosmic/presentation/cosmic_message_card.dart';
+import '../../../quiz/presentation/quiz_suggestion_card.dart';
 import 'whats_new_card.dart';
 
 /// MOBILE LITE HOMEPAGE - InnerCycles
@@ -432,6 +433,10 @@ class _BelowTheFold extends ConsumerWidget {
 
           // ═══ P1: Today's Prompt ═══
           const TodayPromptCard(),
+          const SizedBox(height: 16),
+
+          // ═══ P1: Suggested Quiz ═══
+          const QuizSuggestionCard(),
           const SizedBox(height: 16),
 
           // ═══ P1: Weekly Digest ═══
@@ -871,6 +876,32 @@ class _BelowTheFold extends ConsumerWidget {
             route: Routes.moonCalendar,
             isDark: isDark,
             index: 5,
+          ),
+
+          _EntryPointTile(
+            icon: Icons.bedtime_outlined,
+            title: language == AppLanguage.en
+                ? 'Sleep Tracker'
+                : 'Uyku Takibi',
+            subtitle: language == AppLanguage.en
+                ? 'Log & analyze your sleep patterns'
+                : 'Uyku düzeninizi kaydedin ve analiz edin',
+            route: Routes.sleepDetail,
+            isDark: isDark,
+            index: 6,
+          ),
+
+          _EntryPointTile(
+            icon: Icons.bolt_outlined,
+            title: language == AppLanguage.en
+                ? 'Energy Map'
+                : 'Enerji Haritası',
+            subtitle: language == AppLanguage.en
+                ? 'Visualize your energy patterns over time'
+                : 'Enerji kalıplarınızı zaman içinde görselleştirin',
+            route: Routes.energyMap,
+            isDark: isDark,
+            index: 7,
           ),
 
           const SizedBox(height: 24),

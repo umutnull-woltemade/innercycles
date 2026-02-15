@@ -12,6 +12,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:share_plus/share_plus.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/archetype_service.dart';
@@ -145,6 +146,12 @@ class ArchetypeScreen extends ConsumerWidget {
                               ),
                               const SizedBox(height: 20),
                               _DisclaimerCard(isDark: isDark, isEn: isEn),
+                              const SizedBox(height: 20),
+                              _ShareArchetypeButton(
+                                archetype: result.dominant,
+                                isDark: isDark,
+                                isEn: isEn,
+                              ),
                               const SizedBox(height: 40),
                             ]),
                           );
@@ -901,5 +908,59 @@ class _EmptyState extends StatelessWidget {
         ],
       ),
     ).animate().fadeIn(duration: 300.ms);
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// SHARE ARCHETYPE BUTTON
+// ═══════════════════════════════════════════════════════════════════════════
+
+class _ShareArchetypeButton extends StatelessWidget {
+  final Archetype archetype;
+  final bool isDark;
+  final bool isEn;
+
+  const _ShareArchetypeButton({
+    required this.archetype,
+    required this.isDark,
+    required this.isEn,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      height: 48,
+      child: ElevatedButton.icon(
+        onPressed: () {
+          final name = isEn ? archetype.nameEn : archetype.nameTr;
+          final text = isEn
+              ? 'My emotional archetype is "$name" — discovered through self-reflection with InnerCycles.\n\n'
+                'What\'s yours? Try it free:\nhttps://apps.apple.com/app/innercycles/id6758612716'
+              : 'Duygusal arketipim "$name" — InnerCycles ile kendimi keşfederek buldum.\n\n'
+                'Seninki ne? Ücretsiz dene:\nhttps://apps.apple.com/app/innercycles/id6758612716';
+          Share.share(text);
+        },
+        icon: const Icon(Icons.share_rounded, size: 18),
+        label: Text(
+          isEn ? 'Share Your Archetype' : 'Arketipini Paylaş',
+          style: const TextStyle(
+            fontSize: 15,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: AppColors.amethyst.withValues(alpha: 0.15),
+          foregroundColor: AppColors.amethyst,
+          elevation: 0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+            side: BorderSide(
+              color: AppColors.amethyst.withValues(alpha: 0.3),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }

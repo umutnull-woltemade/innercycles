@@ -157,9 +157,6 @@ final comparisonProfile2Provider = StateProvider<UserProfile?>((ref) => null);
 /// Onboarding completed flag
 final onboardingCompleteProvider = StateProvider<bool>((ref) => false);
 
-/// Bottom navigation index
-final bottomNavIndexProvider = StateProvider<int>((ref) => 0);
-
 // =============================================================================
 // LANGUAGE PROVIDER
 // =============================================================================

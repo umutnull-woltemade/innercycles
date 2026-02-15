@@ -43,7 +43,6 @@ import '../../features/admin/presentation/admin_dashboard_screen.dart';
 import '../../features/quiz/presentation/attachment_quiz_screen.dart';
 import '../../features/quiz/presentation/quiz_hub_screen.dart';
 import '../../features/quiz/presentation/generic_quiz_screen.dart';
-import '../../features/sharing/presentation/share_insight_screen.dart';
 import '../../features/sharing/presentation/share_card_gallery.dart';
 import '../../features/journal/presentation/emotional_cycle_screen.dart';
 import '../../features/growth/presentation/growth_dashboard_screen.dart';
@@ -266,7 +265,7 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(
         path: Routes.shareInsight,
-        builder: (context, state) => const ShareInsightScreen(),
+        redirect: (context, state) => Routes.shareCardGallery,
       ),
       GoRoute(
         path: Routes.shareCardGallery,

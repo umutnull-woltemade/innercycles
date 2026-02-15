@@ -8,6 +8,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:share_plus/share_plus.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/blind_spot_service.dart';
@@ -192,6 +193,12 @@ class _BlindSpotBodyState extends State<_BlindSpotBody> {
                   ),
                   const SizedBox(height: 24),
                   _DisclaimerFooter(
+                    isDark: widget.isDark,
+                    isEn: widget.isEn,
+                  ),
+                  const SizedBox(height: 20),
+                  _ShareInsightsButton(
+                    spotCount: _report!.blindSpots.length,
                     isDark: widget.isDark,
                     isEn: widget.isEn,
                   ),
@@ -931,5 +938,58 @@ class _DisclaimerFooter extends StatelessWidget {
         ],
       ),
     ).animate().fadeIn(delay: 500.ms, duration: 300.ms);
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// SHARE INSIGHTS BUTTON
+// ═══════════════════════════════════════════════════════════════════════════
+
+class _ShareInsightsButton extends StatelessWidget {
+  final int spotCount;
+  final bool isDark;
+  final bool isEn;
+
+  const _ShareInsightsButton({
+    required this.spotCount,
+    required this.isDark,
+    required this.isEn,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      height: 48,
+      child: ElevatedButton.icon(
+        onPressed: () {
+          final text = isEn
+              ? 'I uncovered $spotCount emotional blind spots through self-reflection with InnerCycles.\n\n'
+                'Discover your hidden patterns:\nhttps://apps.apple.com/app/innercycles/id6758612716'
+              : 'InnerCycles ile öz yansıma yaparak $spotCount duygusal kör noktamı keşfettim.\n\n'
+                'Gizli kalıplarını keşfet:\nhttps://apps.apple.com/app/innercycles/id6758612716';
+          Share.share(text);
+        },
+        icon: const Icon(Icons.share_rounded, size: 18),
+        label: Text(
+          isEn ? 'Share Your Insights' : 'İçgörülerini Paylaş',
+          style: const TextStyle(
+            fontSize: 15,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: AppColors.venusPink.withValues(alpha: 0.15),
+          foregroundColor: AppColors.venusPink,
+          elevation: 0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+            side: BorderSide(
+              color: AppColors.venusPink.withValues(alpha: 0.3),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
