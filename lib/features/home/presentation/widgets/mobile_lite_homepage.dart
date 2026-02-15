@@ -23,6 +23,8 @@ import '../../../habits/presentation/habit_suggestion_card.dart';
 import '../../../monthly_themes/presentation/monthly_theme_card.dart';
 import '../../../digest/presentation/weekly_digest_card.dart';
 import '../../../prompts/presentation/today_prompt_card.dart';
+import '../../../referral/presentation/referral_progress_card.dart';
+import '../../../cosmic/presentation/cosmic_message_card.dart';
 import 'whats_new_card.dart';
 
 /// MOBILE LITE HOMEPAGE - InnerCycles
@@ -400,8 +402,16 @@ class _BelowTheFold extends ConsumerWidget {
           const MoodCheckinCard(),
           const SizedBox(height: 16),
 
+          // ═══ P0: Referral Progress (non-premium only) ═══
+          const ReferralProgressCard(),
+          const SizedBox(height: 16),
+
           // ═══ P1: Daily Affirmation ═══
           const AffirmationCard(),
+          const SizedBox(height: 16),
+
+          // ═══ P1: Daily Cosmic Intention ═══
+          const CosmicMessageCard(),
           const SizedBox(height: 16),
 
           // ═══ P1: Daily Insight Module ═══

@@ -123,10 +123,57 @@ class WeeklyDigestCard extends ConsumerWidget {
                         isDark: isDark,
                       ),
                     ],
+                    const SizedBox(width: 16),
+                    _MiniStat(
+                      label: isEn ? 'Focus' : 'Odak',
+                      value: isEn
+                          ? digest.topFocusAreaEn
+                          : digest.topFocusAreaTr,
+                      isDark: isDark,
+                      isText: true,
+                    ),
                   ],
                 ),
 
                 const SizedBox(height: 10),
+
+                // Mood trend pill
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                    vertical: 4,
+                  ),
+                  decoration: BoxDecoration(
+                    color: _moodTrendColor(digest.moodTrendEn)
+                        .withValues(alpha: 0.1),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        _moodTrendIcon(digest.moodTrendEn),
+                        size: 12,
+                        color: _moodTrendColor(digest.moodTrendEn),
+                      ),
+                      const SizedBox(width: 4),
+                      Flexible(
+                        child: Text(
+                          isEn ? digest.moodTrendEn : digest.moodTrendTr,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontSize: 11,
+                            fontWeight: FontWeight.w500,
+                            color: _moodTrendColor(digest.moodTrendEn),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+                const SizedBox(height: 8),
 
                 // Highlight text
                 Text(
@@ -141,6 +188,20 @@ class WeeklyDigestCard extends ConsumerWidget {
                         : AppColors.lightTextSecondary,
                   ),
                 ),
+
+                const SizedBox(height: 6),
+
+                // Growth nudge
+                Text(
+                  isEn ? digest.growthNudgeEn : digest.growthNudgeTr,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontSize: 11,
+                    fontStyle: FontStyle.italic,
+                    color: AppColors.starGold.withValues(alpha: 0.8),
+                  ),
+                ),
               ],
             ),
           ),
@@ -148,40 +209,58 @@ class WeeklyDigestCard extends ConsumerWidget {
       },
     );
   }
+
+  Color _moodTrendColor(String trendEn) {
+    if (trendEn.contains('rising')) return AppColors.success;
+    if (trendEn.contains('dipped')) return AppColors.softCoral;
+    return AppColors.auroraEnd;
+  }
+
+  IconData _moodTrendIcon(String trendEn) {
+    if (trendEn.contains('rising')) return Icons.trending_up_rounded;
+    if (trendEn.contains('dipped')) return Icons.trending_down_rounded;
+    return Icons.trending_flat_rounded;
+  }
 }
 
 class _MiniStat extends StatelessWidget {
   final String label;
   final String value;
   final bool isDark;
+  final bool isText;
 
   const _MiniStat({
     required this.label,
     required this.value,
     required this.isDark,
+    this.isText = false,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          value,
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.w700,
-            color: AppColors.starGold,
+    return Flexible(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            value,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+              fontSize: isText ? 13 : 18,
+              fontWeight: FontWeight.w700,
+              color: AppColors.starGold,
+            ),
           ),
-        ),
-        Text(
-          label,
-          style: TextStyle(
-            fontSize: 10,
-            color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+          Text(
+            label,
+            style: TextStyle(
+              fontSize: 10,
+              color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

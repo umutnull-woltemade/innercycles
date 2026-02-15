@@ -9,11 +9,14 @@
 import 'dart:math' as math;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:go_router/go_router.dart';
 import 'package:share_plus/share_plus.dart';
 import '../../../core/constants/app_constants.dart';
+import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/journal_entry.dart';
 import '../../../data/providers/app_providers.dart';
@@ -174,6 +177,16 @@ class _GrowthDashboardScreenState
                     isDark,
                     isEn,
                   ).animate().fadeIn(delay: 200.ms, duration: 400.ms),
+                  const SizedBox(height: AppConstants.spacingXl),
+
+                  // ═══════════════════════════════════════════════════════
+                  // EXPLORE GROWTH TOOLS
+                  // ═══════════════════════════════════════════════════════
+                  _buildExploreSection(
+                    context,
+                    isDark,
+                    isEn,
+                  ).animate().fadeIn(delay: 250.ms, duration: 400.ms),
                   const SizedBox(height: AppConstants.spacingXl),
 
                   // ═══════════════════════════════════════════════════════
@@ -796,6 +809,155 @@ class _GrowthDashboardScreenState
   }
 
   // ══════════════════════════════════════════════════════════════════════════
+  // EXPLORE GROWTH TOOLS
+  // ══════════════════════════════════════════════════════════════════════════
+
+  Widget _buildExploreSection(
+    BuildContext context,
+    bool isDark,
+    bool isEn,
+  ) {
+    final tools = [
+      _GrowthTool(
+        icon: Icons.fingerprint_outlined,
+        title: isEn ? 'Your Archetype' : 'Arketipiniz',
+        subtitle: isEn ? 'Emotional profile' : 'Duygusal profil',
+        route: Routes.archetype,
+        color: AppColors.amethyst,
+      ),
+      _GrowthTool(
+        icon: Icons.visibility_off_outlined,
+        title: isEn ? 'Blind Spots' : 'Kör Noktalar',
+        subtitle: isEn ? 'Hidden patterns' : 'Gizli kalıplar',
+        route: Routes.blindSpot,
+        color: AppColors.venusPink,
+      ),
+      _GrowthTool(
+        icon: Icons.people_outline_rounded,
+        title: isEn ? 'Compatibility' : 'Uyumluluk',
+        subtitle: isEn ? 'Relationship dynamics' : 'İlişki dinamikleri',
+        route: Routes.compatibilityReflection,
+        color: AppColors.softCoral,
+      ),
+      _GrowthTool(
+        icon: Icons.military_tech_outlined,
+        title: isEn ? 'Milestones' : 'Rozetler',
+        subtitle: isEn ? 'Achievements' : 'Başarılar',
+        route: Routes.milestones,
+        color: AppColors.starGold,
+      ),
+      _GrowthTool(
+        icon: Icons.lightbulb_outline_rounded,
+        title: isEn ? 'Micro-Habits' : 'Mikro Alışkanlıklar',
+        subtitle: isEn ? '56 habits to try' : '56 deneyecek alışkanlık',
+        route: Routes.habitSuggestions,
+        color: AppColors.success,
+      ),
+      _GrowthTool(
+        icon: Icons.psychology_alt_outlined,
+        title: isEn ? 'Insights' : 'İçgörüler',
+        subtitle: isEn ? '36 modules' : '36 modül',
+        route: Routes.insightsDiscovery,
+        color: AppColors.auroraEnd,
+      ),
+    ];
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          isEn ? 'Explore Growth Tools' : 'Büyüme Araçlarını Keşfet',
+          style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                color: isDark
+                    ? AppColors.textPrimary
+                    : AppColors.lightTextPrimary,
+                fontWeight: FontWeight.w600,
+              ),
+        ),
+        const SizedBox(height: AppConstants.spacingMd),
+        GridView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3,
+            childAspectRatio: 0.85,
+            crossAxisSpacing: AppConstants.spacingSm,
+            mainAxisSpacing: AppConstants.spacingSm,
+          ),
+          itemCount: tools.length,
+          itemBuilder: (context, index) {
+            final tool = tools[index];
+            return GestureDetector(
+              onTap: () {
+                HapticFeedback.lightImpact();
+                context.push(tool.route);
+              },
+              child: Container(
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: isDark
+                      ? tool.color.withValues(alpha: 0.08)
+                      : tool.color.withValues(alpha: 0.05),
+                  borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+                  border: Border.all(
+                    color: tool.color.withValues(alpha: 0.2),
+                  ),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: tool.color.withValues(alpha: 0.15),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Icon(
+                        tool.icon,
+                        color: tool.color,
+                        size: 22,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      tool.title,
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600,
+                        color: isDark
+                            ? AppColors.textPrimary
+                            : AppColors.lightTextPrimary,
+                      ),
+                      textAlign: TextAlign.center,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      tool.subtitle,
+                      style: TextStyle(
+                        fontSize: 10,
+                        color: isDark
+                            ? AppColors.textMuted
+                            : AppColors.lightTextMuted,
+                      ),
+                      textAlign: TextAlign.center,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
+              ),
+            ).animate(delay: Duration(milliseconds: 50 * index)).fadeIn(
+                  duration: 300.ms,
+                );
+          },
+        ),
+      ],
+    );
+  }
+
+  // ══════════════════════════════════════════════════════════════════════════
   // MONTHLY SUMMARY CARD
   // ══════════════════════════════════════════════════════════════════════════
 
@@ -1038,5 +1200,21 @@ class _Milestone {
     required this.title,
     required this.unlocked,
     required this.progressHint,
+  });
+}
+
+class _GrowthTool {
+  final IconData icon;
+  final String title;
+  final String subtitle;
+  final String route;
+  final Color color;
+
+  const _GrowthTool({
+    required this.icon,
+    required this.title,
+    required this.subtitle,
+    required this.route,
+    required this.color,
   });
 }
