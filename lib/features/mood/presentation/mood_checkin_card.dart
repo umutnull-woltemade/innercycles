@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../data/content/emotional_vocabulary_content.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/mood_checkin_service.dart';
 
@@ -324,8 +325,32 @@ class _ThankYouView extends StatelessWidget {
     required this.isEn,
   });
 
+  /// Map mood level (1-5) to relevant emotion families for granular suggestion
+  List<GranularEmotion> _getSuggestedEmotions(int mood) {
+    final List<EmotionFamily> families;
+    switch (mood) {
+      case 1:
+        families = [EmotionFamily.sadness, EmotionFamily.fear];
+      case 2:
+        families = [EmotionFamily.sadness, EmotionFamily.anger];
+      case 3:
+        families = [EmotionFamily.calm, EmotionFamily.surprise];
+      case 4:
+        families = [EmotionFamily.joy, EmotionFamily.calm];
+      case 5:
+        families = [EmotionFamily.joy, EmotionFamily.surprise];
+      default:
+        families = [EmotionFamily.calm];
+    }
+    return allGranularEmotions
+        .where((e) => families.contains(e.family))
+        .toList();
+  }
+
   @override
   Widget build(BuildContext context) {
+    final suggestions = _getSuggestedEmotions(todayMood.mood);
+
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -347,26 +372,74 @@ class _ThankYouView extends StatelessWidget {
           color: AppColors.success.withValues(alpha: 0.3),
         ),
       ),
-      child: Row(
+      child: Column(
         children: [
-          Text(todayMood.emoji, style: const TextStyle(fontSize: 32))
-              .animate()
-              .scale(
-                begin: const Offset(0.5, 0.5),
-                end: const Offset(1, 1),
-                duration: 300.ms,
-                curve: Curves.elasticOut,
+          Row(
+            children: [
+              Text(todayMood.emoji, style: const TextStyle(fontSize: 32))
+                  .animate()
+                  .scale(
+                    begin: const Offset(0.5, 0.5),
+                    end: const Offset(1, 1),
+                    duration: 300.ms,
+                    curve: Curves.elasticOut,
+                  ),
+              const SizedBox(width: 14),
+              Expanded(
+                child: Text(
+                  isEn
+                      ? 'Mood logged! Get more specific?'
+                      : 'Ruh hali kaydedildi! Daha spesifik ol?',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.success,
+                  ),
+                ),
               ),
-          const SizedBox(width: 14),
-          Expanded(
-            child: Text(
-              isEn ? 'Mood logged! Keep it up 🎯' : 'Ruh hali kaydedildi! Devam et 🎯',
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
-                color: AppColors.success,
-              ),
-            ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          // Granular emotion chips
+          Wrap(
+            spacing: 6,
+            runSpacing: 6,
+            children: suggestions.take(6).map((emotion) {
+              return Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 6,
+                ),
+                decoration: BoxDecoration(
+                  color: isDark
+                      ? Colors.white.withValues(alpha: 0.06)
+                      : Colors.black.withValues(alpha: 0.04),
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(
+                    color: isDark
+                        ? Colors.white.withValues(alpha: 0.1)
+                        : Colors.black.withValues(alpha: 0.08),
+                  ),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(emotion.emoji, style: const TextStyle(fontSize: 14)),
+                    const SizedBox(width: 4),
+                    Text(
+                      isEn ? emotion.nameEn : emotion.nameTr,
+                      style: TextStyle(
+                        fontSize: 11,
+                        fontWeight: FontWeight.w500,
+                        color: isDark
+                            ? AppColors.textSecondary
+                            : AppColors.lightTextSecondary,
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            }).toList(),
           ),
         ],
       ),

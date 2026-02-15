@@ -47,6 +47,7 @@ import '../services/voice_journal_service.dart';
 import '../services/pattern_engine_service.dart';
 import '../services/year_review_service.dart';
 import '../services/referral_service.dart';
+import '../services/context_module_service.dart';
 import '../models/journal_entry.dart';
 import '../models/cross_correlation_result.dart';
 
@@ -693,4 +694,13 @@ final yearReviewServiceProvider =
 
 final referralServiceProvider = FutureProvider<ReferralService>((ref) async {
   return await ReferralService.init();
+});
+
+// =============================================================================
+// CONTEXT MODULE SERVICE PROVIDER
+// =============================================================================
+
+final contextModuleServiceProvider =
+    FutureProvider<ContextModuleService>((ref) async {
+  return await ContextModuleService.init();
 });

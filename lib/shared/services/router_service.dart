@@ -17,6 +17,7 @@ import '../../features/profile/presentation/profile_screen.dart';
 import '../../features/profile/presentation/saved_profiles_screen.dart';
 import '../../features/profile/presentation/comparison_screen.dart';
 import '../../features/insight/presentation/insight_screen.dart';
+import '../../features/insight/presentation/insights_discovery_screen.dart';
 import '../../features/dreams/presentation/dream_interpretation_screen.dart';
 import '../../features/dreams/presentation/dream_glossary_screen.dart';
 import '../../features/dreams/presentation/dream_share_screen.dart';
@@ -147,6 +148,10 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: Routes.insight,
         builder: (context, state) => const InsightScreen(),
+      ),
+      GoRoute(
+        path: Routes.insightsDiscovery,
+        builder: (context, state) => const InsightsDiscoveryScreen(),
       ),
 
       // ════════════════════════════════════════════════════════════════

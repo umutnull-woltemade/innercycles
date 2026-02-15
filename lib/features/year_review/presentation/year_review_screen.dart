@@ -469,7 +469,19 @@ class _HeroCard extends StatelessWidget {
             size: 40,
             color: AppColors.starGold,
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: 8),
+          Text(
+            'InnerCycles',
+            style: TextStyle(
+              fontSize: 13,
+              fontWeight: FontWeight.w600,
+              letterSpacing: 1.5,
+              color: isDark
+                  ? AppColors.textMuted
+                  : AppColors.lightTextMuted,
+            ),
+          ),
+          const SizedBox(height: 6),
           Text(
             isEn
                 ? 'Your ${review.year} in Review'

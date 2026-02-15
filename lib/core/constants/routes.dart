@@ -33,6 +33,7 @@ class Routes {
   // INSIGHT - Personal Reflection Assistant
   // ════════════════════════════════════════════════════════════════
   static const String insight = '/insight';
+  static const String insightsDiscovery = '/insights-discovery';
 
   // ════════════════════════════════════════════════════════════════
   // DREAM JOURNAL

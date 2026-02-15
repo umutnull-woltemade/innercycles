@@ -15,6 +15,8 @@ import '../../../moon/presentation/moon_phase_widget.dart'; // P1: Moon phase ca
 import '../../../mood/presentation/mood_checkin_card.dart';
 import '../../../streak/presentation/streak_recovery_banner.dart';
 import '../../../affirmation/presentation/affirmation_card.dart';
+import '../../../insight/presentation/context_module_card.dart';
+import '../../../mood/presentation/emotion_of_day_card.dart';
 import 'whats_new_card.dart';
 
 /// MOBILE LITE HOMEPAGE - InnerCycles
@@ -396,6 +398,14 @@ class _BelowTheFold extends ConsumerWidget {
           const AffirmationCard(),
           const SizedBox(height: 16),
 
+          // ═══ P1: Daily Insight Module ═══
+          const ContextModuleCard(),
+          const SizedBox(height: 16),
+
+          // ═══ P1: Emotion of the Day ═══
+          const EmotionOfDayCard(),
+          const SizedBox(height: 16),
+
           // ═══ P0: Streak Card ═══
           const StreakCard(),
           const SizedBox(height: 16),
@@ -605,6 +615,18 @@ class _BelowTheFold extends ConsumerWidget {
                 ? 'AI-powered self-reflection assistant'
                 : 'Yapay zeka destekli öz-yansıma asistanı',
             route: Routes.insight,
+            isDark: isDark,
+          ),
+
+          _EntryPointTile(
+            icon: Icons.psychology_alt_outlined,
+            title: language == AppLanguage.en
+                ? 'Discover Insights'
+                : 'İçgörüleri Keşfet',
+            subtitle: language == AppLanguage.en
+                ? '36 science-backed emotional literacy modules'
+                : '36 bilim destekli duygusal okuryazarlık modülü',
+            route: Routes.insightsDiscovery,
             isDark: isDark,
           ),
 
