@@ -17,6 +17,10 @@ import '../../../streak/presentation/streak_recovery_banner.dart';
 import '../../../affirmation/presentation/affirmation_card.dart';
 import '../../../insight/presentation/context_module_card.dart';
 import '../../../mood/presentation/emotion_of_day_card.dart';
+import '../../../habits/presentation/habit_suggestion_card.dart';
+import '../../../monthly_themes/presentation/monthly_theme_card.dart';
+import '../../../digest/presentation/weekly_digest_card.dart';
+import '../../../prompts/presentation/today_prompt_card.dart';
 import 'whats_new_card.dart';
 
 /// MOBILE LITE HOMEPAGE - InnerCycles
@@ -406,6 +410,22 @@ class _BelowTheFold extends ConsumerWidget {
           const EmotionOfDayCard(),
           const SizedBox(height: 16),
 
+          // ═══ P1: Daily Habit Suggestion ═══
+          const HabitSuggestionCard(),
+          const SizedBox(height: 16),
+
+          // ═══ P1: Monthly Theme ═══
+          const MonthlyThemeCard(),
+          const SizedBox(height: 16),
+
+          // ═══ P1: Today's Prompt ═══
+          const TodayPromptCard(),
+          const SizedBox(height: 16),
+
+          // ═══ P1: Weekly Digest ═══
+          const WeeklyDigestCard(),
+          const SizedBox(height: 16),
+
           // ═══ P0: Streak Card ═══
           const StreakCard(),
           const SizedBox(height: 16),
@@ -728,6 +748,18 @@ class _BelowTheFold extends ConsumerWidget {
                 ? 'Build daily wellness routines'
                 : 'Günlük sağlık rutinleri oluştur',
             route: Routes.rituals,
+            isDark: isDark,
+          ),
+
+          _EntryPointTile(
+            icon: Icons.lightbulb_outline_rounded,
+            title: language == AppLanguage.en
+                ? 'Micro-Habits'
+                : 'Mikro Alışkanlıklar',
+            subtitle: language == AppLanguage.en
+                ? '56 evidence-based habits to try'
+                : '56 kanıta dayalı deneyebileceğin alışkanlık',
+            route: Routes.habitSuggestions,
             isDark: isDark,
           ),
 

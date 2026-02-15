@@ -68,6 +68,7 @@ import '../../features/sleep/presentation/sleep_detail_screen.dart';
 import '../../features/prompts/presentation/prompt_library_screen.dart';
 import '../../features/milestones/presentation/milestone_screen.dart';
 import '../../features/onboarding/presentation/archetype_quiz_screen.dart';
+import '../../features/habits/presentation/habit_suggestions_screen.dart';
 import '../../features/year_review/presentation/year_review_screen.dart';
 import '../../data/services/admin_auth_service.dart';
 import '../../data/services/storage_service.dart';
@@ -369,6 +370,10 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: Routes.yearReview,
         builder: (context, state) => const YearReviewScreen(),
+      ),
+      GoRoute(
+        path: Routes.habitSuggestions,
+        builder: (context, state) => const HabitSuggestionsScreen(),
       ),
 
       // ════════════════════════════════════════════════════════════════

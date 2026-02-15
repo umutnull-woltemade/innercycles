@@ -48,6 +48,8 @@ import '../services/pattern_engine_service.dart';
 import '../services/year_review_service.dart';
 import '../services/referral_service.dart';
 import '../services/context_module_service.dart';
+import '../services/habit_suggestion_service.dart';
+import '../services/monthly_theme_service.dart';
 import '../models/journal_entry.dart';
 import '../models/cross_correlation_result.dart';
 
@@ -703,4 +705,22 @@ final referralServiceProvider = FutureProvider<ReferralService>((ref) async {
 final contextModuleServiceProvider =
     FutureProvider<ContextModuleService>((ref) async {
   return await ContextModuleService.init();
+});
+
+// =============================================================================
+// HABIT SUGGESTION SERVICE PROVIDER
+// =============================================================================
+
+final habitSuggestionServiceProvider =
+    FutureProvider<HabitSuggestionService>((ref) async {
+  return await HabitSuggestionService.init();
+});
+
+// =============================================================================
+// MONTHLY THEME SERVICE PROVIDER
+// =============================================================================
+
+final monthlyThemeServiceProvider =
+    FutureProvider<MonthlyThemeService>((ref) async {
+  return await MonthlyThemeService.init();
 });

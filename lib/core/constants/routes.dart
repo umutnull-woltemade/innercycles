@@ -116,6 +116,7 @@ class Routes {
   static const String blindSpot = '/blind-spot';
   static const String promptLibrary = '/prompts';
   static const String milestones = '/milestones';
+  static const String habitSuggestions = '/habits';
   static const String archetypeQuiz = '/onboarding/quiz';
   static const String yearReview = '/year-review';
 
