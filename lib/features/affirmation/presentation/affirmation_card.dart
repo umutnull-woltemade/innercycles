@@ -113,7 +113,7 @@ class _AffirmationCardState extends ConsumerState<AffirmationCard> {
                         const SizedBox(width: 10),
                         Expanded(
                           child: Text(
-                            isEn ? 'Daily Affirmation' : 'Gunun Olumlamasi',
+                            isEn ? 'Daily Affirmation' : 'Günün Olumlaması',
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w600,

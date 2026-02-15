@@ -260,7 +260,7 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
     if (earned == 0) {
       return isEn
           ? 'Start your journey!'
-          : 'Yolculuguna basla!';
+          : 'Yolculuğuna başla!';
     }
     if (earned >= total) {
       return isEn

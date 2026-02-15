@@ -334,7 +334,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
                 elevation: 0,
               ),
               child: Text(
-                isEn ? 'Start Writing' : 'Yazmaya Basla',
+                isEn ? 'Start Writing' : 'Yazmaya Başla',
                 style: const TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.w600,
@@ -357,7 +357,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
       child: ListView(
         scrollDirection: Axis.horizontal,
         children: [
-          _buildChip(null, isEn ? 'All' : 'Tumu'),
+          _buildChip(null, isEn ? 'All' : 'Tümü'),
           ...PromptCategory.values.map(
             (cat) => _buildChip(cat, _categoryLabel(cat)),
           ),
@@ -575,7 +575,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
                       ),
                       const SizedBox(width: 4),
                       Text(
-                        isEn ? 'Completed' : 'Tamamlandi',
+                        isEn ? 'Completed' : 'Tamamlandı',
                         style: TextStyle(
                           fontSize: 12,
                           color: AppColors.success,
@@ -657,7 +657,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
                       elevation: 0,
                     ),
                     child: Text(
-                      isEn ? 'Start Writing' : 'Yazmaya Basla',
+                      isEn ? 'Start Writing' : 'Yazmaya Başla',
                       style: const TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
@@ -713,21 +713,21 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
   String _categoryLabel(PromptCategory category) {
     switch (category) {
       case PromptCategory.selfDiscovery:
-        return isEn ? 'Self-Discovery' : 'Kendini Kesif';
+        return isEn ? 'Self-Discovery' : 'Kendini Keşfet';
       case PromptCategory.relationships:
-        return isEn ? 'Relationships' : 'Iliskiler';
+        return isEn ? 'Relationships' : 'İlişkiler';
       case PromptCategory.gratitude:
-        return isEn ? 'Gratitude' : 'Minnettarlik';
+        return isEn ? 'Gratitude' : 'Minnettarlık';
       case PromptCategory.emotions:
         return isEn ? 'Emotions' : 'Duygular';
       case PromptCategory.goals:
         return isEn ? 'Goals' : 'Hedefler';
       case PromptCategory.healing:
-        return isEn ? 'Healing' : 'Iyilesme';
+        return isEn ? 'Healing' : 'İyileşme';
       case PromptCategory.creativity:
-        return isEn ? 'Creativity' : 'Yaraticilik';
+        return isEn ? 'Creativity' : 'Yaratıcılık';
       case PromptCategory.mindfulness:
-        return isEn ? 'Mindfulness' : 'Farkindalik';
+        return isEn ? 'Mindfulness' : 'Farkındalık';
     }
   }
 }

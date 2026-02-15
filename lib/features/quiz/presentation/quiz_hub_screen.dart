@@ -39,7 +39,7 @@ class QuizHubScreen extends ConsumerWidget {
             ),
             slivers: [
               GlassSliverAppBar(
-                title: isEn ? 'Self-Reflection Quizzes' : 'Oz Yansitma Testleri',
+                title: isEn ? 'Self-Reflection Quizzes' : 'Öz Yansıtma Testleri',
               ),
               SliverPadding(
                 padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -49,7 +49,7 @@ class QuizHubScreen extends ConsumerWidget {
                     Text(
                       isEn
                           ? 'Explore different aspects of yourself through thoughtful self-reflection. These are personal awareness tools, not clinical assessments.'
-                          : 'Dusunceli oz yansitma yoluyla kendinizin farkli yonlerini kesfedin. Bunlar kisisel farkindalik araclaridir, klinik degerlendirmeler degildir.',
+                          : 'Düşünceli öz yansıtma yoluyla kendinizin farklı yönlerini keşfedin. Bunlar kişisel farkındalık araçlarıdır, klinik değerlendirmeler değildir.',
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             color: AppColors.textSecondary,
                             height: 1.6,

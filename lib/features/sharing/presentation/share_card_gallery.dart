@@ -78,12 +78,12 @@ class _ShareCardGalleryScreenState
     if (!mounted) return;
 
     if (result.success) {
-      _showSnackBar(isEn ? 'Shared successfully!' : 'Basariyla paylasildi!');
+      _showSnackBar(isEn ? 'Shared successfully!' : 'Başarıyla paylaşıldı!');
     } else if (result.error == ShareError.dismissed) {
       // user cancelled
     } else {
       _showSnackBar(
-        isEn ? 'Could not share. Try again.' : 'Paylasilamadi. Tekrar dene.',
+        isEn ? 'Could not share. Try again.' : 'Paylaşılamadı. Tekrar dene.',
       );
     }
   }

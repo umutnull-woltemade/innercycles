@@ -131,7 +131,7 @@ class _DesktopHeader extends StatelessWidget {
                 Text(
                   language == AppLanguage.en
                       ? 'Personal Reflection Journal'
-                      : 'Kisisel Yansima Günlügü',
+                      : 'Kişisel Yansıma Günlüğü',
                   style: TextStyle(
                     fontSize: 14,
                     color: Colors.white.withValues(alpha: 0.7),
@@ -339,7 +339,7 @@ class _HeroSection extends StatelessWidget {
                 Text(
                   language == AppLanguage.en
                       ? 'Start Today\'s Entry'
-                      : 'Bugünün Kaydini Baslat',
+                      : 'Bugünün Kaydını Başlat',
                   style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
@@ -367,12 +367,12 @@ class _HeroSection extends StatelessWidget {
             'Find clarity in stillness',
           ]
         : [
-            'Bugün hangi kaliplari fark ediyorsun?',
-            'Kendine yansima için bir an al',
-            'Ic bilgeligin seni bekliyor',
-            'Kendin hakkinda yeni bir sey kesfet',
+            'Bugün hangi kalıpları fark ediyorsun?',
+            'Kendine yansıma için bir an al',
+            'İç bilgeliğin seni bekliyor',
+            'Kendin hakkında yeni bir şey keşfet',
             'Bugün büyüme günü',
-            'Kisisel yolculugunu kucakla',
+            'Kişisel yolculuğunu kucakla',
             'Sessizlikte netlik bul',
           ];
 
@@ -394,10 +394,10 @@ class _HeroSection extends StatelessWidget {
             'Your journey of self-discovery continues.',
           ]
         : [
-            'Her yansima ani seni kendini anlamaya yaklastirir.',
-            'Düsüncelerin ve duyularin degerli icgörüler tasir.',
-            'Bugün ic dünyanı kesfetmek için zaman ayir.',
-            'Öz farkindalik kisisel büyümenin ilk adimidir.',
+            'Her yansıma anı seni kendini anlamaya yaklaştırır.',
+            'Düşüncelerin ve duyuların değerli içgörüler taşır.',
+            'Bugün iç dünyanı keşfetmek için zaman ayır.',
+            'Öz farkındalık kişisel büyümenin ilk adımıdır.',
             'Sezgilerin bugün sana ne söylüyor?',
             'Düsüncelerindeki ve duygularindaki kaliplari fark et.',
             'Kendini kesfif yolculugun devam ediyor.',
@@ -480,10 +480,10 @@ class _FeatureCategoriesSection extends StatelessWidget {
             _FeatureCard(
               title: language == AppLanguage.en
                   ? 'Monthly Reflection'
-                  : 'Aylik Yansima',
+                  : 'Aylık Yansıma',
               subtitle: language == AppLanguage.en
                   ? 'Review your month'
-                  : 'Ayini gözden geçir',
+                  : 'Ayını gözden geçir',
               icon: Icons.calendar_month,
               color: AppColors.warmAccent,
               route: Routes.journalMonthly,

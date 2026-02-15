@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_constants.dart';
+import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/liquid_glass/glass_animations.dart';
 import '../../../core/theme/liquid_glass/glass_panel.dart';
@@ -610,16 +611,32 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
       ref.invalidate(todayJournalEntryProvider);
       ref.invalidate(journalStreakProvider);
 
+      // Update notification lifecycle with new activity
+      _updateNotificationLifecycle(service);
+
       // Check for review prompt at engagement milestones
       _checkReviewTrigger(service);
 
       if (mounted) {
         HapticFeedback.heavyImpact();
         final isEn = ref.read(languageProvider) == AppLanguage.en;
+        final entryCount = service.entryCount;
+        final suggestion = _getPostSaveSuggestion(entryCount, isEn);
+
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(isEn ? 'Entry saved!' : 'Kayıt kaydedildi!'),
+            content: Text(
+              suggestion != null
+                  ? '${isEn ? 'Saved!' : 'Kaydedildi!'} ${suggestion.$1}'
+                  : (isEn ? 'Entry saved!' : 'Kayıt kaydedildi!'),
+            ),
             behavior: SnackBarBehavior.floating,
+            action: suggestion != null
+                ? SnackBarAction(
+                    label: isEn ? 'Explore' : 'Keşfet',
+                    onPressed: () => context.push(suggestion.$2),
+                  )
+                : null,
           ),
         );
         context.pop();
@@ -638,6 +655,17 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
     }
   }
 
+  Future<void> _updateNotificationLifecycle(dynamic journalService) async {
+    try {
+      final nlcService =
+          await ref.read(notificationLifecycleServiceProvider.future);
+      await nlcService.recordActivity();
+      await nlcService.evaluate(journalService);
+    } catch (_) {
+      // Non-critical — silently ignore
+    }
+  }
+
   Future<void> _checkReviewTrigger(dynamic service) async {
     try {
       final reviewService = await ref.read(reviewServiceProvider.future);
@@ -651,6 +679,36 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
     } catch (_) {
       // Review prompt is non-critical, silently ignore errors
     }
+  }
+
+  /// Returns a contextual (message, route) suggestion based on entry count,
+  /// or null if no suggestion is appropriate.
+  (String, String)? _getPostSaveSuggestion(int entryCount, bool isEn) {
+    if (entryCount == 7) {
+      return (
+        isEn
+            ? 'See how your cycles flow'
+            : 'Döngülerini keşfet',
+        Routes.emotionalCycles,
+      );
+    }
+    if (entryCount == 14) {
+      return (
+        isEn
+            ? 'Try a self-discovery quiz'
+            : 'Kendini keşfet testini dene',
+        Routes.quizHub,
+      );
+    }
+    if (entryCount > 5 && entryCount % 5 == 0) {
+      return (
+        isEn
+            ? 'Your patterns are emerging'
+            : 'Örüntülerin belirginleşiyor',
+        Routes.journalPatterns,
+      );
+    }
+    return null;
   }
 
   IconData _getAreaIcon(FocusArea area) {

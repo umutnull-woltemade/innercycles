@@ -372,7 +372,7 @@ class _MonthlyReflectionScreenState
           ),
           const SizedBox(height: 16),
           Text(
-            isEn ? 'Weekly Prompts' : 'Haftalik Sorular',
+            isEn ? 'Weekly Prompts' : 'Haftalık Sorular',
             style: TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.w600,

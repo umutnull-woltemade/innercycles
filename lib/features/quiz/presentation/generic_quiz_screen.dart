@@ -429,7 +429,7 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
                 if (winningDim.strengthsEn.isNotEmpty) ...[
                   _buildListSection(
                     context,
-                    title: isEn ? 'Your Strengths' : 'Guclu Yanlariniz',
+                    title: isEn ? 'Your Strengths' : 'Güçlü Yanlarınız',
                     items: isEn
                         ? winningDim.strengthsEn
                         : winningDim.strengthsTr,
@@ -444,7 +444,7 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
                 if (winningDim.growthAreasEn.isNotEmpty) ...[
                   _buildListSection(
                     context,
-                    title: isEn ? 'Growth Areas' : 'Gelisim Alanlari',
+                    title: isEn ? 'Growth Areas' : 'Gelişim Alanları',
                     items: isEn
                         ? winningDim.growthAreasEn
                         : winningDim.growthAreasTr,
@@ -576,7 +576,7 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          isEn ? 'Full Breakdown' : 'Detayli Dagilim',
+          isEn ? 'Full Breakdown' : 'Detaylı Dağılım',
           style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 color: isDark
                     ? AppColors.textPrimary

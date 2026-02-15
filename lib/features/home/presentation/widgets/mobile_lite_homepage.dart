@@ -108,17 +108,26 @@ class _AboveTheFold extends ConsumerWidget {
     // Try ContentEngine for dynamic headline, fallback to static
     final contentAsync = ref.watch(contentEngineServiceProvider);
     final hookAsync = ref.watch(dailyHookServiceProvider);
+    final hour = DateTime.now().hour;
 
+    String? contentSubtitle;
     final headline = contentAsync.maybeWhen(
       data: (engine) {
         final content = engine.generateDailyContent();
+        // Surface archetype + growth direction as subtitle
+        if (content.archetype.isNotEmpty && content.growthDirection.isNotEmpty) {
+          contentSubtitle = '${content.archetype} · ${content.growthDirection}';
+        }
         return content.reflectiveQuestion;
       },
       orElse: () => _getDailyHeadline(language),
     );
 
+    // Time-aware hook: morning before noon, evening after 6pm
     final sentence = hookAsync.maybeWhen(
-      data: (hookService) => hookService.getMorningHook(isEnglish: isEn),
+      data: (hookService) => hour >= 18
+          ? hookService.getEveningHook(isEnglish: isEn)
+          : hookService.getMorningHook(isEnglish: isEn),
       orElse: () => _getDailySentence(language),
     );
 
@@ -262,6 +271,22 @@ class _AboveTheFold extends ConsumerWidget {
               height: 1.3,
             ),
           ),
+
+          // Content engine context subtitle
+          if (contentSubtitle != null) ...[
+            const SizedBox(height: 4),
+            Text(
+              contentSubtitle!,
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
+                color: isDark
+                    ? AppColors.textMuted
+                    : AppColors.lightTextMuted,
+                letterSpacing: 0.3,
+              ),
+            ),
+          ],
 
           const SizedBox(height: 12),
 

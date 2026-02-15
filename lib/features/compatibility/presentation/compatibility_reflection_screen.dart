@@ -222,7 +222,7 @@ class _CompatibilityReflectionScreenState
       ),
       slivers: [
         GlassSliverAppBar(
-          title: isEn ? 'Relationship Reflections' : 'Iliski Yansimalari',
+          title: isEn ? 'Relationship Reflections' : 'İlişki Yansımaları',
         ),
         if (_loading)
           const SliverFillRemaining(
@@ -241,7 +241,7 @@ class _CompatibilityReflectionScreenState
                 Text(
                   isEn
                       ? 'Explore how you experience your relationships'
-                      : 'Iliskilerinizi nasil deneyimlediginizi kesfedin',
+                      : 'İlişkilerinizi nasıl deneyimlediğinizi keşfedin',
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         color: isDark
                             ? AppColors.textSecondary
@@ -305,7 +305,7 @@ class _CompatibilityReflectionScreenState
           ),
           const SizedBox(height: 24),
           Text(
-            isEn ? 'Reflect on Your Relationships' : 'Iliskileriniz Uzerine Dusunun',
+            isEn ? 'Reflect on Your Relationships' : 'İlişkileriniz Üzerine Düşünün',
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
                   color: isDark
                       ? AppColors.textPrimary
@@ -349,7 +349,7 @@ class _CompatibilityReflectionScreenState
         },
         icon: const Icon(Icons.add_rounded, size: 22),
         label: Text(
-          isEn ? 'New Reflection' : 'Yeni Yansima',
+          isEn ? 'New Reflection' : 'Yeni Yansıma',
           style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
         ),
         style: ElevatedButton.styleFrom(
@@ -375,7 +375,7 @@ class _CompatibilityReflectionScreenState
       ),
       slivers: [
         GlassSliverAppBar(
-          title: isEn ? 'New Reflection' : 'Yeni Yansima',
+          title: isEn ? 'New Reflection' : 'Yeni Yansıma',
           showBackButton: true,
         ),
         SliverPadding(
@@ -388,7 +388,7 @@ class _CompatibilityReflectionScreenState
               Text(
                 isEn
                     ? 'Who would you like to reflect on?'
-                    : 'Kimin uzerine dusunmek istersiniz?',
+                    : 'Kimin üzerine düşünmek istersiniz?',
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       color: isDark
                           ? AppColors.textPrimary
@@ -409,7 +409,7 @@ class _CompatibilityReflectionScreenState
                   fontSize: 16,
                 ),
                 decoration: InputDecoration(
-                  hintText: isEn ? 'Their name or initials' : 'Adi veya bas harfleri',
+                  hintText: isEn ? 'Their name or initials' : 'Adı veya baş harfleri',
                   hintStyle: TextStyle(
                     color: isDark
                         ? AppColors.textMuted
@@ -441,7 +441,7 @@ class _CompatibilityReflectionScreenState
 
               // Relationship type
               Text(
-                isEn ? 'Relationship type' : 'Iliski turu',
+                isEn ? 'Relationship type' : 'İlişki türü',
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       color: isDark
                           ? AppColors.textPrimary
@@ -547,7 +547,7 @@ class _CompatibilityReflectionScreenState
                     elevation: 0,
                   ),
                   child: Text(
-                    isEn ? 'Begin Reflection' : 'Yansimaya Basla',
+                    isEn ? 'Begin Reflection' : 'Yansımaya Başla',
                     style: const TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: 16,
@@ -904,7 +904,7 @@ class _CompatibilityReflectionScreenState
 
               // Dimension insights
               Text(
-                isEn ? 'Dimension Insights' : 'Boyut Icegoruleri',
+                isEn ? 'Dimension Insights' : 'Boyut İçgörüleri',
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       color: isDark
                           ? AppColors.textPrimary
@@ -956,7 +956,7 @@ class _CompatibilityReflectionScreenState
                       child: Text(
                         isEn
                             ? 'This reflects how you experience this relationship today. Relationships evolve — revisit anytime.'
-                            : 'Bu, bugun bu iliskiyi nasil deneyimlediginizi yansitir. Iliskiler gelisir — istediginiz zaman tekrar ziyaret edin.',
+                            : 'Bu, bugün bu ilişkiyi nasıl deneyimlediğinizi yansıtır. İlişkiler gelişir — istediğiniz zaman tekrar ziyaret edin.',
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
                               color: AppColors.textSecondary
                                   .withValues(alpha: 0.7),
@@ -983,7 +983,7 @@ class _CompatibilityReflectionScreenState
                         : AppColors.lightTextPrimary,
                   ),
                   label: Text(
-                    isEn ? 'Back to Reflections' : 'Yansimalara Don',
+                    isEn ? 'Back to Reflections' : 'Yansımalara Dön',
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: 16,
@@ -1098,7 +1098,7 @@ class _CompatibilityReflectionScreenState
           ),
           const SizedBox(height: 8),
           Text(
-            isEn ? 'Reflection Score' : 'Yansima Puani',
+            isEn ? 'Reflection Score' : 'Yansıma Puanı',
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: AppColors.textSecondary,
                 ),
@@ -1130,7 +1130,7 @@ class _CompatibilityReflectionScreenState
       child: Column(
         children: [
           Text(
-            isEn ? 'Dimension Overview' : 'Boyut Genel Gorunumu',
+            isEn ? 'Dimension Overview' : 'Boyut Genel Görünümü',
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   color: isDark
                       ? AppColors.textPrimary
@@ -1299,15 +1299,15 @@ class _CompatibilityReflectionScreenState
     if (isEn) return name;
     switch (name) {
       case 'Communication':
-        return 'Iletisim';
+        return 'İletişim';
       case 'Emotional':
         return 'Duygusal';
       case 'Values':
-        return 'Degerler';
+        return 'Değerler';
       case 'Growth':
-        return 'Gelisim';
+        return 'Gelişim';
       case 'Trust':
-        return 'Guven';
+        return 'Güven';
       default:
         return name;
     }
@@ -1663,15 +1663,15 @@ class _RadarChartPainter extends CustomPainter {
     if (isEn) return name;
     switch (name) {
       case 'Communication':
-        return 'Iletisim';
+        return 'İletişim';
       case 'Emotional':
         return 'Duygusal';
       case 'Values':
-        return 'Degerler';
+        return 'Değerler';
       case 'Growth':
-        return 'Gelisim';
+        return 'Gelişim';
       case 'Trust':
-        return 'Guven';
+        return 'Güven';
       default:
         return name;
     }

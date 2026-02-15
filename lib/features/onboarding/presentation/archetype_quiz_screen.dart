@@ -442,7 +442,7 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  isEn ? 'Your Strengths' : 'Guclu Yonlerin',
+                  isEn ? 'Your Strengths' : 'Güçlü Yönlerin',
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
@@ -527,7 +527,7 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
                 elevation: 0,
               ),
               child: Text(
-                isEn ? 'Start Your Journey' : 'Yolculuguna Basla',
+                isEn ? 'Start Your Journey' : 'Yolculuğuna Başla',
                 style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
